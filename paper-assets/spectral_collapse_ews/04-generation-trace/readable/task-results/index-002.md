@@ -141,8 +141,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper related work expansion | 1 | 0 | [Read transcript](paper-related-work-expansion.md) | [JSON](../../sessions/90/907786c783d1917b460c.json) |
 | paper research | 1 | 0 | [Read transcript](paper-research.md) | [JSON](../../sessions/35/35375fccae9613cf2cc3.json) |
 | paper research citation verify | 1 | 0 | [Read transcript](paper-research-citation-verify.md) | [JSON](../../sessions/d0/d0b7403d002ec7966883.json) |
-| paper response letter r2 | 1 | 0 | [Read transcript](paper-response-letter-r2.md) | [JSON](../../sessions/5d/5dd502d7f0faac66ac26.json) |
-| paper response letter finalize | 1 | 0 | [Read transcript](paper-response-letter-finalize.md) | [JSON](../../sessions/8f/8fbcf3fe4d296d848c6c.json) |
 | paper results section | 1 | 0 | [Read transcript](paper-results-section.md) | [JSON](../../sessions/0d/0d9e5755e3936c3fea5c.json) |
 | paper s44 mixed source fix | 1 | 0 | [Read transcript](paper-s44-mixed-source-fix.md) | [JSON](../../sessions/b8/b89ab897987df3dbea39.json) |
 | paper s45 cv sentence | 1 | 0 | [Read transcript](paper-s45-cv-sentence.md) | [JSON](../../sessions/05/054666529f4f75ca790e.json) |

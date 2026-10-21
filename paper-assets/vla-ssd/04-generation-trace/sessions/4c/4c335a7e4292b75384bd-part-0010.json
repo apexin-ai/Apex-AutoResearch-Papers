@@ -7,323 +7,6 @@
       "messages": [
         {
           "source_line": 1621,
-          "timestamp": "2026-05-28T11:44:12.278089+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 << 'PYEOF'\nimport fitz\nimport os\n\nLIBERATION_SERIF = \"/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf\"\nLIBERATION_SERIF_BOLD = \"/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf\"\nLIBERATION_SERIF_ITALIC = \"/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf\"\n\ndef replace_fonts_in_pdf(inpath, outpath=None):\n    \"\"\"Replace DejaVu fonts with Liberation Serif in a PDF.\"\"\"\n    if outpath is None:\n        outpath = inpath\n    \n    doc = fitz.open(inpath)\n    \n    for page_num in range(len(doc)):\n        page = doc[page_num]\n        \n        # Get all text with detailed info\n        blocks = page.get_text(\"dict\")\n        \n        spans_to_replace = []\n        for block in blocks.get(\"blocks\", []):\n            if \"lines\" not in block:\n                continue\n            for line in block[\"lines\"]:\n                for span in line[\"spans\"]:\n                    font_name = span.get(\"font\", \"\")\n                    if \"DejaVu\" in font_name:\n                        spans_to_replace.append(span)\n        \n        if not spans_to_replace:\n            continue\n        \n        # For each span: add redaction, then re-insert text\n        for span in spans_to_replace:\n            rect = fitz.Rect(span[\"bbox\"])\n            page.add_redact_annot(rect)\n        \n        page.apply_redactions()\n        \n        # Re-insert text\n        for span in spans_to_replace:\n            rect = fitz.Rect(span[\"bbox\"])\n            text = span[\"text\"]\n            size = span[\"size\"]\n            color = span.get(\"color\", 0)\n            \n            # Convert int color to RGB tuple\n            if isinstance(color, int):\n                r = ((color >> 16) & 0xFF) / 255.0\n                g = ((color >> 8) & 0xFF) / 255.0\n                b = (color & 0xFF) / 255.0\n                color_tuple = (r, g, b)\n            else:\n                color_tuple = (0, 0, 0)\n            \n            font_name = span.get(\"font\", \"\")\n            if \"Bold\" in font_name:\n                fontfile = LIBERATION_SERIF_BOLD\n                fontname = \"LibSer-B\"\n            elif \"Oblique\" in font_name or \"Italic\" in font_name:\n                fontfile = LIBERATION_SERIF_ITALIC\n                fontname = \"LibSer-I\"\n            else:\n                fontfile = LIBERATION_SERIF\n                fontname = \"LibSer\"\n            \n            # Insert text at the same position\n            tw = fitz.TextWriter(page.rect)\n            font = fitz.Font(fontname, fontfile)\n            tw.append(fitz.Point(rect.x0, rect.y1 - size * 0.15), text, font=font, fontsize=size)\n            tw.write_text(page, color=color_tuple)\n    \n    doc.save(outpath)\n    doc.close()\n    return True\n\n# Test on fig2.pdf\ntest_in = \"docs/paper/figures/fig2.pdf\"\ntest_out = \"/tmp/test_fig2_replaced.pdf\"\nreplace_fonts_in_pdf(test_in, test_out)\n\n# Verify\nimport subprocess\nresult = subprocess.run([\"pdffonts\", test_out], capture_output=True, text=True)\nprint(\"Fonts after replacement:\")\nprint(result.stdout)\nPYEOF",
-              "description": "Test PyMuPDF font replacement on fig2.pdf",
-              "timeout": "30000"
-            }
-          },
-          "id": "event-001621"
-        },
-        {
-          "source_line": 1622,
-          "timestamp": "2026-05-28T11:44:12.680113+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Fonts after replacement:\nname                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     17  0\nLiberation Serif Regular             CID TrueType      Identity-H       yes no  yes    130  0\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 402
-          },
-          "id": "event-001622"
-        },
-        {
-          "source_line": 1623,
-          "timestamp": "2026-05-28T11:44:22.786107+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 << 'PYEOF'\nimport fitz\nimport subprocess\n\n# Open the replaced PDF and try garbage collection to remove unused fonts\ndoc = fitz.open(\"/tmp/test_fig2_replaced.pdf\")\ndoc.save(\"/tmp/test_fig2_gc.pdf\", garbage=4, deflate=True)\ndoc.close()\n\nresult = subprocess.run([\"pdffonts\", \"/tmp/test_fig2_gc.pdf\"], capture_output=True, text=True)\nprint(\"Fonts after GC:\")\nprint(result.stdout)\nPYEOF",
-              "description": "Try garbage collection to remove orphaned DejaVu font"
-            }
-          },
-          "id": "event-001623"
-        },
-        {
-          "source_line": 1624,
-          "timestamp": "2026-05-28T11:44:23.087646+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Fonts after GC:\nname                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nBMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes      6  0\nLiberation Serif Regular             CID TrueType      Identity-H       yes no  yes     15  0\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 301
-          },
-          "id": "event-001624"
-        },
-        {
-          "source_line": 1625,
-          "timestamp": "2026-05-28T11:44:53.013550+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 << 'PYEOF'\nimport fitz\nimport subprocess, os\n\nFONT_MAP = {\n    \"Regular\": \"/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf\",\n    \"Bold\": \"/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf\",\n    \"Italic\": \"/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf\",\n    \"BoldItalic\": \"/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf\",\n}\n\ndef fix_pdf_fonts(inpath):\n    \"\"\"Replace DejaVu with Liberation Serif by re-rendering text on clean pages.\"\"\"\n    doc = fitz.open(inpath)\n    new_doc = fitz.open()  # empty doc\n    \n    for page_num in range(len(doc)):\n        page = doc[page_num]\n        \n        # Create a new page with same dimensions\n        new_page = new_doc.new_page(width=page.rect.width, height=page.rect.height)\n        \n        # First: render non-text as a high-res pixmap (vector -> raster for graphics only)\n        # Actually, let's copy everything and just replace fonts\n        # Better approach: render page to SVG, then modify fonts, then render back\n        # Simplest reliable approach: render entire page to 600 DPI pixmap\n        \n        mat = fitz.Matrix(600/72, 600/72)  # 600 DPI\n        pix = page.get_pixmap(matrix=mat, alpha=False)\n        \n        # Insert as image into new page\n        img_data = pix.tobytes(\"png\")\n        new_page.insert_image(new_page.rect, stream=img_data)\n    \n    new_doc.save(inpath, garbage=4, deflate=True)\n    new_doc.close()\n    doc.close()\n\n# Test on fig2.pdf\nimport shutil\ntest_in = \"docs/paper/figures/fig2.pdf\"\ntest_out = \"/tmp/test_fig2_raster.pdf\"\nshutil.copy2(test_in, test_out)\nfix_pdf_fonts(test_out)\n\nresult = subprocess.run([\"pdffonts\", test_out], capture_output=True, text=True)\nprint(\"Fonts after rasterization:\")\nprint(result.stdout)\n\n# Check file size\norig_size = os.path.getsize(test_in)\nnew_size = os.path.getsize(test_out)\nprint(f\"Size: {orig_size/1024:.1f}KB -> {new_size/1024:.1f}KB\")\nPYEOF",
-              "description": "Test 600 DPI rasterization to eliminate DejaVu fonts",
-              "timeout": "30000"
-            }
-          },
-          "id": "event-001625"
-        },
-        {
-          "source_line": 1626,
-          "timestamp": "2026-05-28T11:44:53.967830+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Fonts after rasterization:\nname                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\n\nSize: 13.7KB -> 297.6KB\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 954
-          },
-          "id": "event-001626"
-        },
-        {
-          "source_line": 1627,
-          "timestamp": "2026-05-28T11:45:14.900108+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 << 'PYEOF'\nimport fitz\nimport subprocess\nimport os\n\nFIGURES_DIR = \"docs/paper/figures\"\n\n# Find all PDFs still with DejaVu\nproblem_figs = []\nfor fname in sorted(os.listdir(FIGURES_DIR)):\n    if not fname.endswith('.pdf'):\n        continue\n    fpath = os.path.join(FIGURES_DIR, fname)\n    result = subprocess.run([\"pdffonts\", fpath], capture_output=True, text=True)\n    if \"DejaVu\" in result.stdout:\n        problem_figs.append(fname)\n\nprint(f\"Figures with DejaVu fonts ({len(problem_figs)}):\")\nfor f in problem_figs:\n    print(f\"  {f}\")\n\n# Rasterize each at 600 DPI\nfor fname in problem_figs:\n    fpath = os.path.join(FIGURES_DIR, fname)\n    doc = fitz.open(fpath)\n    new_doc = fitz.open()\n    \n    for page_num in range(len(doc)):\n        page = doc[page_num]\n        new_page = new_doc.new_page(width=page.rect.width, height=page.rect.height)\n        mat = fitz.Matrix(600/72, 600/72)\n        pix = page.get_pixmap(matrix=mat, alpha=False)\n        img_data = pix.tobytes(\"png\")\n        new_page.insert_image(new_page.rect, stream=img_data)\n    \n    new_doc.save(fpath, garbage=4, deflate=True)\n    new_doc.close()\n    doc.close()\n    \n    # Verify\n    result = subprocess.run([\"pdffonts\", fpath], capture_output=True, text=True)\n    has_fonts = len(result.stdout.strip().split('\\n')) > 2\n    status = \"STILL HAS FONTS\" if has_fonts else \"CLEAN\"\n    print(f\"  Processed {fname}: {status}\")\n\nprint(\"\\nDone.\")\nPYEOF",
-              "description": "Batch rasterize all figures with DejaVu fonts at 600 DPI",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-001627"
-        },
-        {
-          "source_line": 1628,
-          "timestamp": "2026-05-28T11:45:33.461104+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Figures with DejaVu fonts (22):\n  fig2.pdf\n  fig2_cross_instruction_heatmap.pdf\n  fig3.pdf\n  fig4.pdf\n  fig7.pdf\n  fig8_attention.pdf\n  fig_32layer_attention.pdf\n  fig_action_head_vs_probe.pdf\n  fig_action_r2_threecond.pdf\n  fig_claim_evidence.pdf\n  fig_cross_arch_l1.pdf\n  fig_cross_architecture_attention.pdf\n  fig_dose_response.pdf\n  fig_linear_vs_mlp_probe.pdf\n  fig_multi_layer_attn.pdf\n  fig_ood_diagnostics.pdf\n  fig_probe_conditions.pdf\n  fig_random_subset_ablation.pdf\n  fig_rsa_perlayer_curve.pdf\n  fig_specificity_bootstrap_30seeds.pdf\n  libero_spatial_r2_perlayer.pdf\n  libero_spatial_rsa_perlayer.pdf\n  Processed fig2.pdf: CLEAN\n  Processed fig2_cross_instruction_heatmap.pdf: CLEAN\n  Processed fig3.pdf: CLEAN\n  Processed fig4.pdf: CLEAN\n  Processed fig7.pdf: CLEAN\n  Processed fig8_attention.pdf: CLEAN\n  Processed fig_32layer_attention.pdf: CLEAN\n  Processed fig_action_head_vs_probe.pdf: CLEAN\n  Processed fig_action_r2_threecond.pdf: CLEAN\n  Processed fig_claim_evidence.pdf: CLEAN\n  Processed fig_cross_arch_l1.pdf: CLEAN\n  Processed fig_cross_architecture_attention.pdf: CLEAN\n  Processed fig_dose_response.pdf: CLEAN\n  Processed fig_linear_vs_mlp_probe.pdf: CLEAN\n  Processed fig_multi_layer_attn.pdf: CLEAN\n  Processed fig_ood_diagnostics.pdf: CLEAN\n  Processed fig_probe_conditions.pdf: CLEAN\n  Processed fig_random_subset_ablation.pdf: CLEAN\n  Processed fig_rsa_perlayer_curve.pdf: CLEAN\n  Processed fig_specificity_bootstrap_30seeds.pdf: CLEAN\n  Processed libero_spatial_r2_perlayer.pdf: CLEAN\n  Processed libero_spatial_rsa_perlayer.pdf: CLEAN\n\nDone.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 18560
-          },
-          "id": "event-001628"
-        },
-        {
-          "source_line": 1629,
-          "timestamp": "2026-05-28T11:45:38.631415+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && rm -f main.aux main.bbl main.blg main.log main.out main.fls main.fdb_latexmk 2>/dev/null; pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
-              "description": "First pdflatex pass",
-              "timeout": "60000"
-            }
-          },
-          "id": "event-001629"
-        },
-        {
-          "source_line": 1630,
-          "timestamp": "2026-05-28T11:45:39.836485+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `main.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\nrw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/us\nyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (36 pages, 6536276 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 1205
-          },
-          "id": "event-001630"
-        },
-        {
-          "source_line": 1631,
-          "timestamp": "2026-05-28T11:45:57.021969+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && bibtex main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
-              "description": "bibtex + two more pdflatex passes",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-001631"
-        },
-        {
-          "source_line": 1632,
-          "timestamp": "2026-05-28T11:45:59.380309+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: corlabbrvnat.bst\nDatabase file #1: references.bib\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (40 pages, 6566453 bytes).\nTranscript written on main.log.\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (40 pages, 6571508 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 2358
-          },
-          "id": "event-001632"
-        },
-        {
-          "source_line": 1633,
-          "timestamp": "2026-05-28T11:46:03.446404+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdffonts main.pdf 2>&1",
-              "description": "Check all fonts in compiled PDF"
-            }
-          },
-          "id": "event-001633"
-        },
-        {
-          "source_line": 1634,
-          "timestamp": "2026-05-28T11:46:03.597543+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nYVODLI+NimbusRomNo9L-Medi            Type 1            Custom           yes yes yes    243  0\nNOLYBC+NimbusRomNo9L-Regu            Type 1            Custom           yes yes yes    244  0\nF69                                  Type 3            Custom           yes no  no     245  0\nNBAIUF+NimbusSanL-Regu               Type 1            Custom           yes yes yes    246  0\nIZMDER+StandardSymL                  Type 1            Builtin          yes yes yes    247  0\nRLIOKY+NimbusRomNo9L-ReguItal        Type 1            Custom           yes yes yes    248  0\nSOSTRQ+CMR10                         Type 1            Builtin          yes yes yes    249  0\nZUBAIA+CMMI10                        Type 1            Builtin          yes yes yes    250  0\nYQQGOE+CMSY10                        Type 1            Builtin          yes yes yes    308  0\nFXGCJY+LiberationSerif-Bold          CID TrueType      Identity-H       yes yes yes    315  0\nGVQPKI+LiberationSerif-Italic        CID TrueType      Identity-H       yes yes yes    316  0\nFXGCJY+LiberationSerif               CID TrueType      Identity-H       yes yes yes    317  0\nFXGCJY+LiberationSerif-Bold          CID TrueType      Identity-H       yes yes yes    460  0\nGVQPKI+LiberationSerif-Italic        CID TrueType      Identity-H       yes yes yes    461  0\nFXGCJY+LiberationSerif               CID TrueType      Identity-H       yes yes yes    462  0\nFXGCJY+LiberationSerif-Bold          CID TrueType      Identity-H       yes yes yes    484  0\nGVQPKI+LiberationSerif-Italic        CID TrueType      Identity-H       yes yes yes    485  0\nFXGCJY+LiberationSerif               CID TrueType      Identity-H       yes yes yes    486  0\nFXGCJY+LiberationSerif-Bold          CID TrueType      Identity-H       yes yes yes    526  0\nFXGCJY+LiberationSerif    \n…[truncated 1222 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 151
-          },
-          "id": "event-001634"
-        },
-        {
-          "source_line": 1635,
-          "timestamp": "2026-05-28T11:46:27.171126+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "kpsewhich txfonts.sty 2>/dev/null && echo \"txfonts available\" || echo \"no txfonts\"; kpsewhich newtxmath.sty 2>/dev/null && echo \"newtxmath available\" || echo \"no newtxmath\"; kpsewhich courier.sty 2>/dev/null && echo \"courier available\" || echo \"no courier\"",
-              "description": "Check font package availability"
-            }
-          },
-          "id": "event-001635"
-        },
-        {
-          "source_line": 1636,
-          "timestamp": "2026-05-28T11:46:27.322111+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/usr/share/texlive/texmf-dist/tex/latex/txfonts/txfonts.sty\ntxfonts available\nno newtxmath\n/usr/share/texlive/texmf-dist/tex/latex/psnfss/courier.sty\ncourier available"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 150
-          },
-          "id": "event-001636"
-        },
-        {
-          "source_line": 1637,
           "timestamp": "2026-05-28T11:46:31.137951+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -340,10 +23,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
             }
           },
-          "id": "event-001637"
+          "id": "event-001621"
         },
         {
-          "source_line": 1638,
+          "source_line": 1622,
           "timestamp": "2026-05-28T11:46:31.188615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -358,10 +41,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001638"
+          "id": "event-001622"
         },
         {
-          "source_line": 1639,
+          "source_line": 1623,
           "timestamp": "2026-05-28T11:46:35.308749+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -381,10 +64,10 @@
               "new_string": "\\usepackage{txfonts}\n\\usepackage{courier}"
             }
           },
-          "id": "event-001639"
+          "id": "event-001623"
         },
         {
-          "source_line": 1640,
+          "source_line": 1624,
           "timestamp": "2026-05-28T11:46:35.360594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -399,10 +82,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001640"
+          "id": "event-001624"
         },
         {
-          "source_line": 1641,
+          "source_line": 1625,
           "timestamp": "2026-05-28T11:46:42.388598+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -419,10 +102,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
             }
           },
-          "id": "event-001641"
+          "id": "event-001625"
         },
         {
-          "source_line": 1642,
+          "source_line": 1626,
           "timestamp": "2026-05-28T11:46:42.439248+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -437,10 +120,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001642"
+          "id": "event-001626"
         },
         {
-          "source_line": 1643,
+          "source_line": 1627,
           "timestamp": "2026-05-28T11:46:49.278000+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -459,10 +142,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001643"
+          "id": "event-001627"
         },
         {
-          "source_line": 1644,
+          "source_line": 1628,
           "timestamp": "2026-05-28T11:46:50.483574+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -477,10 +160,10 @@
             "tool": "Bash",
             "elapsed_ms": 1205
           },
-          "id": "event-001644"
+          "id": "event-001628"
         },
         {
-          "source_line": 1645,
+          "source_line": 1629,
           "timestamp": "2026-05-28T11:46:55.823513+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -499,10 +182,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-001645"
+          "id": "event-001629"
         },
         {
-          "source_line": 1646,
+          "source_line": 1630,
           "timestamp": "2026-05-28T11:46:58.183383+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -517,10 +200,10 @@
             "tool": "Bash",
             "elapsed_ms": 2359
           },
-          "id": "event-001646"
+          "id": "event-001630"
         },
         {
-          "source_line": 1647,
+          "source_line": 1631,
           "timestamp": "2026-05-28T11:47:02.399627+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -538,10 +221,10 @@
               "description": "Final font verification"
             }
           },
-          "id": "event-001647"
+          "id": "event-001631"
         },
         {
-          "source_line": 1648,
+          "source_line": 1632,
           "timestamp": "2026-05-28T11:47:02.550720+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -556,10 +239,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-001648"
+          "id": "event-001632"
         },
         {
-          "source_line": 1649,
+          "source_line": 1633,
           "timestamp": "2026-05-28T11:47:13.143155+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -577,10 +260,10 @@
               "description": "Check page count and find main body boundary"
             }
           },
-          "id": "event-001649"
+          "id": "event-001633"
         },
         {
-          "source_line": 1650,
+          "source_line": 1634,
           "timestamp": "2026-05-28T11:47:13.494898+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -595,10 +278,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-001650"
+          "id": "event-001634"
         },
         {
-          "source_line": 1651,
+          "source_line": 1635,
           "timestamp": "2026-05-28T11:47:25.128511+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -616,10 +299,10 @@
               "description": "Check content on pages 7-10"
             }
           },
-          "id": "event-001651"
+          "id": "event-001635"
         },
         {
-          "source_line": 1652,
+          "source_line": 1636,
           "timestamp": "2026-05-28T11:47:25.430193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -634,10 +317,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-001652"
+          "id": "event-001636"
         },
         {
-          "source_line": 1653,
+          "source_line": 1637,
           "timestamp": "2026-05-28T11:47:31.202104+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -655,10 +338,10 @@
               "description": "Copy compiled PDF as paper_v15"
             }
           },
-          "id": "event-001653"
+          "id": "event-001637"
         },
         {
-          "source_line": 1654,
+          "source_line": 1638,
           "timestamp": "2026-05-28T11:47:31.302939+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -673,10 +356,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001654"
+          "id": "event-001638"
         },
         {
-          "source_line": 1655,
+          "source_line": 1639,
           "timestamp": "2026-05-28T11:47:34.615761+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -694,10 +377,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001655"
+          "id": "event-001639"
         },
         {
-          "source_line": 1656,
+          "source_line": 1640,
           "timestamp": "2026-05-28T11:47:34.666482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -712,10 +395,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001656"
+          "id": "event-001640"
         },
         {
-          "source_line": 1657,
+          "source_line": 1641,
           "timestamp": "2026-05-28T11:47:40.088168+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -737,10 +420,10 @@
               "tags": "['paper', 'v15', 'font-fix', 'corl2026']"
             }
           },
-          "id": "event-001657"
+          "id": "event-001641"
         },
         {
-          "source_line": 1658,
+          "source_line": 1642,
           "timestamp": "2026-05-28T11:47:40.439951+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -755,10 +438,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 351
           },
-          "id": "event-001658"
+          "id": "event-001642"
         },
         {
-          "source_line": 1659,
+          "source_line": 1643,
           "timestamp": "2026-05-28T11:47:53.355710+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -776,10 +459,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001659"
+          "id": "event-001643"
         },
         {
-          "source_line": 1660,
+          "source_line": 1644,
           "timestamp": "2026-05-28T11:47:57.170467+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -794,10 +477,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3814
           },
-          "id": "event-001660"
+          "id": "event-001644"
         },
         {
-          "source_line": 1661,
+          "source_line": 1645,
           "timestamp": "2026-05-28T11:48:01.746389+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -810,7 +493,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-001661"
+          "id": "event-001645"
         }
       ]
     },
@@ -818,7 +501,7 @@
       "number": 21,
       "messages": [
         {
-          "source_line": 1662,
+          "source_line": 1646,
           "timestamp": "2026-05-28T11:53:52.139309+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -832,10 +515,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-001662"
+          "id": "event-001646"
         },
         {
-          "source_line": 1663,
+          "source_line": 1647,
           "timestamp": "2026-05-28T11:53:59.113808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -852,10 +535,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
             }
           },
-          "id": "event-001663"
+          "id": "event-001647"
         },
         {
-          "source_line": 1664,
+          "source_line": 1648,
           "timestamp": "2026-05-28T11:53:59.164412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -870,10 +553,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001664"
+          "id": "event-001648"
         },
         {
-          "source_line": 1665,
+          "source_line": 1649,
           "timestamp": "2026-05-28T11:54:02.176566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -892,10 +575,10 @@
               "limit": "80"
             }
           },
-          "id": "event-001665"
+          "id": "event-001649"
         },
         {
-          "source_line": 1666,
+          "source_line": 1650,
           "timestamp": "2026-05-28T11:54:02.227384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -910,10 +593,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001666"
+          "id": "event-001650"
         },
         {
-          "source_line": 1667,
+          "source_line": 1651,
           "timestamp": "2026-05-28T11:54:17.235409+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -933,10 +616,10 @@
               "new_string": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\n\\paragraph{Limitations.}\\looseness=-1\nOur conclusions rest on $N{=}2$ independent VLM-to-VLA transitions (TraceVLA, NORA) plus one VLA-to-VLA case (OpenVLA), all causal-decoder architectures evaluated on a single benchmark (LIBERO); flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} action heads may produce different routing structures.\nAll findings are correlational: probe $R^2$ reflects decodability, not causal reliance, and confounds from data distribution and optimization cannot be ruled out.\nThe correlation between trained $\\Delta R^2$ and published success rates ($\\rho{=}0.583$, $p{=}0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) is underpowered ($n{=}9$), though the effect size is large ($|\\rho|{>}0.5$).\nEach architecture is analyzed at a single checkpoint, precluding characterization of how exit collapse develops during training; the three-tier gradient has $n{=}1$ at Tier~2 (OpenVLA), limiting its inferential power.\nAll analyses are open-loop, consistent with prior representational studies~\\cite{grant2026,haon2025}; closed-loop behavioral validation, intermediate-checkpoint dynamics, and extension to additional architectures and benchmarks are priorities for future work.\n\n\\paragraph{Conclusion.}\\looseness=-1\nWe present a first cross-architecture decomposition of instruction routing in VLAs, identifying a consistent three-way pattern---entry gating, mid-layer integration, and exit collapse---across three architectures, two training pathways, and four instruction conditions.\n$\\Delta R^2 > 0.10$ provides a probe-based screening signal that can supplement rollout evaluation, and mid-layer features (peak at L9--L11) outperform exit-layer representations where collapse is pronounced (Appendix~\\ref{sec:extended_practical_implications}).\nCode and data will be released upon acceptance."
             }
           },
-          "id": "event-001667"
+          "id": "event-001651"
         },
         {
-          "source_line": 1668,
+          "source_line": 1652,
           "timestamp": "2026-05-28T11:54:17.286159+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -951,10 +634,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001668"
+          "id": "event-001652"
         },
         {
-          "source_line": 1669,
+          "source_line": 1653,
           "timestamp": "2026-05-28T11:54:21.151996+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -973,10 +656,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001669"
+          "id": "event-001653"
         },
         {
-          "source_line": 1670,
+          "source_line": 1654,
           "timestamp": "2026-05-28T11:54:23.612164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -991,10 +674,10 @@
             "tool": "Bash",
             "elapsed_ms": 2460
           },
-          "id": "event-001670"
+          "id": "event-001654"
         },
         {
-          "source_line": 1671,
+          "source_line": 1655,
           "timestamp": "2026-05-28T11:54:27.786134+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1012,10 +695,10 @@
               "description": "Check pages 7-9 for main body boundary"
             }
           },
-          "id": "event-001671"
+          "id": "event-001655"
         },
         {
-          "source_line": 1672,
+          "source_line": 1656,
           "timestamp": "2026-05-28T11:54:28.087684+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1030,10 +713,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-001672"
+          "id": "event-001656"
         },
         {
-          "source_line": 1673,
+          "source_line": 1657,
           "timestamp": "2026-05-28T11:54:32.454775+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1051,10 +734,10 @@
               "description": "Copy as paper_v16"
             }
           },
-          "id": "event-001673"
+          "id": "event-001657"
         },
         {
-          "source_line": 1674,
+          "source_line": 1658,
           "timestamp": "2026-05-28T11:54:32.505442+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1069,10 +752,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001674"
+          "id": "event-001658"
         },
         {
-          "source_line": 1675,
+          "source_line": 1659,
           "timestamp": "2026-05-28T11:54:38.328146+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1094,10 +777,10 @@
               "tags": "['paper', 'v16', 'limitations', 'corl2026']"
             }
           },
-          "id": "event-001675"
+          "id": "event-001659"
         },
         {
-          "source_line": 1676,
+          "source_line": 1660,
           "timestamp": "2026-05-28T11:54:38.679729+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1112,10 +795,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 351
           },
-          "id": "event-001676"
+          "id": "event-001660"
         },
         {
-          "source_line": 1677,
+          "source_line": 1661,
           "timestamp": "2026-05-28T11:54:50.373832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1133,10 +816,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001677"
+          "id": "event-001661"
         },
         {
-          "source_line": 1678,
+          "source_line": 1662,
           "timestamp": "2026-05-28T11:54:54.458071+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1151,10 +834,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4084
           },
-          "id": "event-001678"
+          "id": "event-001662"
         },
         {
-          "source_line": 1679,
+          "source_line": 1663,
           "timestamp": "2026-05-28T11:54:58.162163+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1167,7 +850,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-001679"
+          "id": "event-001663"
         }
       ]
     },
@@ -1175,7 +858,7 @@
       "number": 22,
       "messages": [
         {
-          "source_line": 1680,
+          "source_line": 1664,
           "timestamp": "2026-05-28T11:59:34.748513+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1189,10 +872,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-001680"
+          "id": "event-001664"
         },
         {
-          "source_line": 1681,
+          "source_line": 1665,
           "timestamp": "2026-05-28T11:59:41.224275+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1210,10 +893,10 @@
               "description": "List all overview figure variants"
             }
           },
-          "id": "event-001681"
+          "id": "event-001665"
         },
         {
-          "source_line": 1682,
+          "source_line": 1666,
           "timestamp": "2026-05-28T11:59:43.484130+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1228,10 +911,10 @@
             "tool": "Bash",
             "elapsed_ms": 2259
           },
-          "id": "event-001682"
+          "id": "event-001666"
         },
         {
-          "source_line": 1683,
+          "source_line": 1667,
           "timestamp": "2026-05-28T11:59:43.484599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1249,10 +932,10 @@
               "description": "Check which overview figure was in v14"
             }
           },
-          "id": "event-001683"
+          "id": "event-001667"
         },
         {
-          "source_line": 1684,
+          "source_line": 1668,
           "timestamp": "2026-05-28T11:59:43.786094+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1267,10 +950,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-001684"
+          "id": "event-001668"
         },
         {
-          "source_line": 1685,
+          "source_line": 1669,
           "timestamp": "2026-05-28T11:59:52.336152+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1288,10 +971,10 @@
               "description": "Compare image dimensions to identify which variant v14 used"
             }
           },
-          "id": "event-001685"
+          "id": "event-001669"
         },
         {
-          "source_line": 1686,
+          "source_line": 1670,
           "timestamp": "2026-05-28T11:59:53.692111+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1306,10 +989,10 @@
             "tool": "Bash",
             "elapsed_ms": 1355
           },
-          "id": "event-001686"
+          "id": "event-001670"
         },
         {
-          "source_line": 1687,
+          "source_line": 1671,
           "timestamp": "2026-05-28T12:00:02.680035+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1327,10 +1010,10 @@
               "description": "Check fonts in PaperBanana overview figure"
             }
           },
-          "id": "event-001687"
+          "id": "event-001671"
         },
         {
-          "source_line": 1688,
+          "source_line": 1672,
           "timestamp": "2026-05-28T12:00:02.730899+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1345,10 +1028,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001688"
+          "id": "event-001672"
         },
         {
-          "source_line": 1689,
+          "source_line": 1673,
           "timestamp": "2026-05-28T12:00:07.399466+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1366,10 +1049,10 @@
               "description": "Restore PaperBanana overview figure"
             }
           },
-          "id": "event-001689"
+          "id": "event-001673"
         },
         {
-          "source_line": 1690,
+          "source_line": 1674,
           "timestamp": "2026-05-28T12:00:07.751170+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1384,10 +1067,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-001690"
+          "id": "event-001674"
         },
         {
-          "source_line": 1691,
+          "source_line": 1675,
           "timestamp": "2026-05-28T12:00:07.902054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1404,10 +1087,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py"
             }
           },
-          "id": "event-001691"
+          "id": "event-001675"
         },
         {
-          "source_line": 1692,
+          "source_line": 1676,
           "timestamp": "2026-05-28T12:00:07.952784+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1422,10 +1105,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001692"
+          "id": "event-001676"
         },
         {
-          "source_line": 1693,
+          "source_line": 1677,
           "timestamp": "2026-05-28T12:00:12.926041+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1443,10 +1126,10 @@
               "description": "Run current heatmap script to see dimensions"
             }
           },
-          "id": "event-001693"
+          "id": "event-001677"
         },
         {
-          "source_line": 1694,
+          "source_line": 1678,
           "timestamp": "2026-05-28T12:00:14.837368+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1461,10 +1144,10 @@
             "tool": "Bash",
             "elapsed_ms": 1911
           },
-          "id": "event-001694"
+          "id": "event-001678"
         },
         {
-          "source_line": 1695,
+          "source_line": 1679,
           "timestamp": "2026-05-28T12:00:25.392221+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1484,10 +1167,10 @@
               "new_string": "cell_w = 1.0\ncell_h = 0.78\n\nfig_w = 5.2\nfig_h = 2.8\nfig, ax = plt.subplots(figsize=(fig_w, fig_h))"
             }
           },
-          "id": "event-001695"
+          "id": "event-001679"
         },
         {
-          "source_line": 1696,
+          "source_line": 1680,
           "timestamp": "2026-05-28T12:00:25.442867+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1502,10 +1185,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001696"
+          "id": "event-001680"
         },
         {
-          "source_line": 1697,
+          "source_line": 1681,
           "timestamp": "2026-05-28T12:00:31.566060+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1525,10 +1208,10 @@
               "new_string": "            trans = transition_types[architectures[i]]\n            ax.text(x0 + cell_w/2, y0 + cell_h*0.68, trans,\n                    ha='center', va='center', fontsize=7, color=text_color,\n                    fontstyle='italic')\n            ax.text(x0 + cell_w/2, y0 + cell_h*0.35, f'{val:.3f}',\n                    ha='center', va='center', fontsize=11, color=text_color,\n                    fontweight='bold')"
             }
           },
-          "id": "event-001697"
+          "id": "event-001681"
         },
         {
-          "source_line": 1698,
+          "source_line": 1682,
           "timestamp": "2026-05-28T12:00:31.566654+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1543,10 +1226,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001698"
+          "id": "event-001682"
         },
         {
-          "source_line": 1699,
+          "source_line": 1683,
           "timestamp": "2026-05-28T12:00:35.582355+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1566,10 +1249,10 @@
               "new_string": "ax.set_xlim(-0.03, ncols * cell_w + 0.03)\nax.set_ylim(-0.10, nrows * cell_h + 0.18)"
             }
           },
-          "id": "event-001699"
+          "id": "event-001683"
         },
         {
-          "source_line": 1700,
+          "source_line": 1684,
           "timestamp": "2026-05-28T12:00:35.633000+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1584,10 +1267,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001700"
+          "id": "event-001684"
         },
         {
-          "source_line": 1701,
+          "source_line": 1685,
           "timestamp": "2026-05-28T12:00:39.246411+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1607,10 +1290,10 @@
               "new_string": "cbar_ax = fig.add_axes([0.92, 0.12, 0.015, 0.70])"
             }
           },
-          "id": "event-001701"
+          "id": "event-001685"
         },
         {
-          "source_line": 1702,
+          "source_line": 1686,
           "timestamp": "2026-05-28T12:00:39.297122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1625,10 +1308,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001702"
+          "id": "event-001686"
         },
         {
-          "source_line": 1703,
+          "source_line": 1687,
           "timestamp": "2026-05-28T12:00:44.918050+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1648,10 +1331,10 @@
               "new_string": "plt.subplots_adjust(left=0.14, right=0.90, top=0.88, bottom=0.06)"
             }
           },
-          "id": "event-001703"
+          "id": "event-001687"
         },
         {
-          "source_line": 1704,
+          "source_line": 1688,
           "timestamp": "2026-05-28T12:00:44.968823+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1666,10 +1349,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001704"
+          "id": "event-001688"
         },
         {
-          "source_line": 1705,
+          "source_line": 1689,
           "timestamp": "2026-05-28T12:00:48.132118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1687,10 +1370,10 @@
               "description": "Regenerate heatmap with new proportions"
             }
           },
-          "id": "event-001705"
+          "id": "event-001689"
         },
         {
-          "source_line": 1706,
+          "source_line": 1690,
           "timestamp": "2026-05-28T12:00:49.991288+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1705,10 +1388,10 @@
             "tool": "Bash",
             "elapsed_ms": 1859
           },
-          "id": "event-001706"
+          "id": "event-001690"
         },
         {
-          "source_line": 1707,
+          "source_line": 1691,
           "timestamp": "2026-05-28T12:00:55.489002+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1727,10 +1410,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001707"
+          "id": "event-001691"
         },
         {
-          "source_line": 1708,
+          "source_line": 1692,
           "timestamp": "2026-05-28T12:00:59.458732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1745,10 +1428,10 @@
             "tool": "Bash",
             "elapsed_ms": 3969
           },
-          "id": "event-001708"
+          "id": "event-001692"
         },
         {
-          "source_line": 1709,
+          "source_line": 1693,
           "timestamp": "2026-05-28T12:01:03.376051+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1766,10 +1449,10 @@
               "description": "Check main body/references boundary"
             }
           },
-          "id": "event-001709"
+          "id": "event-001693"
         },
         {
-          "source_line": 1710,
+          "source_line": 1694,
           "timestamp": "2026-05-28T12:01:03.677492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1784,10 +1467,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-001710"
+          "id": "event-001694"
         },
         {
-          "source_line": 1711,
+          "source_line": 1695,
           "timestamp": "2026-05-28T12:01:14.069302+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1805,10 +1488,10 @@
               "description": "Find Discussion section and References location"
             }
           },
-          "id": "event-001711"
+          "id": "event-001695"
         },
         {
-          "source_line": 1712,
+          "source_line": 1696,
           "timestamp": "2026-05-28T12:01:14.421254+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1823,10 +1506,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-001712"
+          "id": "event-001696"
         },
         {
-          "source_line": 1713,
+          "source_line": 1697,
           "timestamp": "2026-05-28T12:01:30.417983+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1844,10 +1527,10 @@
               "description": "Verify no problematic fonts"
             }
           },
-          "id": "event-001713"
+          "id": "event-001697"
         },
         {
-          "source_line": 1714,
+          "source_line": 1698,
           "timestamp": "2026-05-28T12:01:30.619232+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1862,10 +1545,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-001714"
+          "id": "event-001698"
         },
         {
-          "source_line": 1715,
+          "source_line": 1699,
           "timestamp": "2026-05-28T12:01:34.083976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1883,10 +1566,10 @@
               "description": "Copy as paper_v17"
             }
           },
-          "id": "event-001715"
+          "id": "event-001699"
         },
         {
-          "source_line": 1716,
+          "source_line": 1700,
           "timestamp": "2026-05-28T12:01:34.184827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1901,10 +1584,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001716"
+          "id": "event-001700"
         },
         {
-          "source_line": 1717,
+          "source_line": 1701,
           "timestamp": "2026-05-28T12:01:40.159118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1926,10 +1609,10 @@
               "tags": "['paper', 'v17', 'figure-fix', 'corl2026']"
             }
           },
-          "id": "event-001717"
+          "id": "event-001701"
         },
         {
-          "source_line": 1718,
+          "source_line": 1702,
           "timestamp": "2026-05-28T12:01:40.511461+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1944,10 +1627,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 352
           },
-          "id": "event-001718"
+          "id": "event-001702"
         },
         {
-          "source_line": 1719,
+          "source_line": 1703,
           "timestamp": "2026-05-28T12:01:52.608119+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1965,10 +1648,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001719"
+          "id": "event-001703"
         },
         {
-          "source_line": 1720,
+          "source_line": 1704,
           "timestamp": "2026-05-28T12:01:56.582861+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1983,10 +1666,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3974
           },
-          "id": "event-001720"
+          "id": "event-001704"
         },
         {
-          "source_line": 1721,
+          "source_line": 1705,
           "timestamp": "2026-05-28T12:01:58.906840+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1999,7 +1682,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-001721"
+          "id": "event-001705"
         }
       ]
     },
@@ -2007,7 +1690,7 @@
       "number": 23,
       "messages": [
         {
-          "source_line": 1722,
+          "source_line": 1706,
           "timestamp": "2026-05-28T12:01:59.460301+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2021,10 +1704,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-001722"
+          "id": "event-001706"
         },
         {
-          "source_line": 1723,
+          "source_line": 1707,
           "timestamp": "2026-05-28T12:02:08.102727+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2041,10 +1724,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex"
             }
           },
-          "id": "event-001723"
+          "id": "event-001707"
         },
         {
-          "source_line": 1724,
+          "source_line": 1708,
           "timestamp": "2026-05-28T12:02:08.907657+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2059,10 +1742,10 @@
             "tool": "Read",
             "elapsed_ms": 804
           },
-          "id": "event-001724"
+          "id": "event-001708"
         },
         {
-          "source_line": 1725,
+          "source_line": 1709,
           "timestamp": "2026-05-28T12:02:09.058702+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2079,10 +1762,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
             }
           },
-          "id": "event-001725"
+          "id": "event-001709"
         },
         {
-          "source_line": 1726,
+          "source_line": 1710,
           "timestamp": "2026-05-28T12:02:09.109579+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2097,10 +1780,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001726"
+          "id": "event-001710"
         },
         {
-          "source_line": 1727,
+          "source_line": 1711,
           "timestamp": "2026-05-28T12:02:09.461520+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2119,10 +1802,10 @@
               "limit": "40"
             }
           },
-          "id": "event-001727"
+          "id": "event-001711"
         },
         {
-          "source_line": 1728,
+          "source_line": 1712,
           "timestamp": "2026-05-28T12:02:09.662832+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2137,10 +1820,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-001728"
+          "id": "event-001712"
         },
         {
-          "source_line": 1729,
+          "source_line": 1713,
           "timestamp": "2026-05-28T12:02:14.789267+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2159,10 +1842,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001729"
+          "id": "event-001713"
         },
         {
-          "source_line": 1730,
+          "source_line": 1714,
           "timestamp": "2026-05-28T12:02:15.140981+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2177,10 +1860,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-001730"
+          "id": "event-001714"
         },
         {
-          "source_line": 1731,
+          "source_line": 1715,
           "timestamp": "2026-05-28T12:02:15.392491+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2199,10 +1882,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001731"
+          "id": "event-001715"
         },
         {
-          "source_line": 1732,
+          "source_line": 1716,
           "timestamp": "2026-05-28T12:02:15.593746+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2217,10 +1900,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-001732"
+          "id": "event-001716"
         },
         {
-          "source_line": 1733,
+          "source_line": 1717,
           "timestamp": "2026-05-28T12:02:25.801574+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2240,10 +1923,10 @@
               "new_string": "\\begin{table}[t]\n\\centering\n\\caption{Architectures studied. The reference baselines differ in kind: OpenVLA's is an OXE-pretrained VLA; TraceVLA and NORA references are pure VLMs.}\n\\label{tab:arch_overview}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccll@{}}\n\\toprule\n\\textbf{Arch.} & \\textbf{Backbone} & \\textbf{Layers} & \\textbf{Attention} & \\textbf{Vision Enc.} & \\textbf{Reference} \\\\\n\\midrule\nOpenVLA & Llama-2-7B & 32 & 32 MHA & DinoSigLIP $\\to$ MLP proj. & OXE-pret.\\ VLA \\\\\nTraceVLA & Phi-3-mini & 32 & 32 MHA & SigLIP + spatial trace & Phi-3-Vision \\\\\nNORA & Qwen2.5-VL-3B & 36 & 16q/2kv GQA & Qwen2.5-VL native & Qwen2.5-VL \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-6pt}\n\\end{table}"
             }
           },
-          "id": "event-001733"
+          "id": "event-001717"
         },
         {
-          "source_line": 1734,
+          "source_line": 1718,
           "timestamp": "2026-05-28T12:02:25.852422+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2258,10 +1941,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001734"
+          "id": "event-001718"
         },
         {
-          "source_line": 1735,
+          "source_line": 1719,
           "timestamp": "2026-05-28T12:02:48.054035+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2281,10 +1964,10 @@
               "new_string": "\\looseness=-1\nWe study three VLAs spanning distinct backbone families (Table~\\ref{tab:arch_overview}):\n\\textbf{OpenVLA}~\\cite{kim2024_openvla,karamcheti2024} (Llama-2-7B~\\cite{touvron2023_llama2}, 32 layers, pretrained on Open X-Embodiment~\\cite{padalkar2023_oxe} [OXE; 970K episodes]),\n\\textbf{TraceVLA}~\\cite{zheng2024tracevla} (Phi-3-mini~\\cite{abdin2024phi3}, 32 layers, trained on an OXE subset with spatial trace conditioning), and\n\\textbf{NORA}~\\cite{hung2025nora} (Qwen2.5-VL-3B, 36 layers, grouped-query attention with 16 query heads).\nEach is evaluated in trained and reference conditions.\nA critical asymmetry distinguishes the references: OpenVLA's is an OXE-pretrained VLA (already producing actions), while TraceVLA and NORA references are pure VLMs (Phi-3-Vision, Qwen2.5-VL) with no action training; thus OpenVLA comparisons measure VLA-to-VLA transitions, while TraceVLA and NORA measure VLM-to-VLA transitions.\nOpenVLA additionally provides Llama-2 base and random-weight conditions (\\S\\ref{sec:openvla_routing})."
             }
           },
-          "id": "event-001735"
+          "id": "event-001719"
         },
         {
-          "source_line": 1736,
+          "source_line": 1720,
           "timestamp": "2026-05-28T12:02:48.104852+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2299,10 +1982,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001736"
+          "id": "event-001720"
         },
         {
-          "source_line": 1737,
+          "source_line": 1721,
           "timestamp": "2026-05-28T12:03:04.957405+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2322,10 +2005,10 @@
               "new_string": "\\paragraph{NLP finetuning control.}\\looseness=-1\nTo test whether exit collapse is specific to action-oriented training, we probe three chat-finetuned models sharing backbones with our VLAs but lacking action heads or robot data: Llama-2-7b-chat, Phi-3-mini-4k-instruct, and Qwen2.5-3B-Instruct.\\footnote{Qwen2.5-3B-Instruct shares the Qwen2.5 language backbone with NORA's Qwen2.5-VL-3B but lacks the vision encoder; see Appendix~\\ref{sec:nlp_control_appendix}.}\nAll three produce flat $R^2$ profiles ($\\Delta R^2 = 0.000$; Figure~\\ref{fig:nlp_control_r2}), contrasting with VLM-to-VLA collapse ($\\Delta R^2 = 0.156$--$0.455$).\n\\textbf{Exit collapse is consistently associated with VLM-to-VLA transitions and absent in both VLA-to-VLA and NLP-only fine-tuning.}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_nlp_control_r2.pdf}\n\\vspace{-6pt}\n\\caption{\\textbf{NLP controls produce flat $R^2$ profiles.} Each panel overlays the VLA trained (blue) and reference (orange) per-layer action-probe $R^2$ with the NLP control (dashed gray, $R^2 = 0.155$). VLM-to-VLA transitions exhibit peak-to-exit collapse; NLP controls remain flat ($\\Delta R^2 = 0.000$).}\n\\label{fig:nlp_control_r2}\n\\vspace{-6pt}\n\\end{figure}"
             }
           },
-          "id": "event-001737"
+          "id": "event-001721"
         },
         {
-          "source_line": 1738,
+          "source_line": 1722,
           "timestamp": "2026-05-28T12:03:05.108747+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2340,10 +2023,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-001738"
+          "id": "event-001722"
         },
         {
-          "source_line": 1739,
+          "source_line": 1723,
           "timestamp": "2026-05-28T12:03:16.907464+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2363,10 +2046,10 @@
               "new_string": "Matched-size ablation reveals that instruction sensitivity is distributed across heads in proportion to their instruction attention fraction ($d = 0.65$ vs.\\ $0.60$, 8\\% gap; Appendix Table~\\ref{tab:specificity_control}), consistent with instruction information being woven into the residual stream rather than concentrated in a dedicated circuit.\nDose-response ablation of L1 instruction-dominant heads (Figure~\\ref{fig:dose_response}) yields monotonic trajectory divergence ($d = 0.48$--$0.64$), with steep rise through 12 heads and diminishing returns beyond 20, providing causal evidence that L1 gating contributes to downstream action computation.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig_dose_response.pdf}\n\\vspace{-6pt}\n\\caption{Dose-response: trajectory divergence (Cohen's $d$) vs.\\ number of ablated L1 instruction-dominant heads. Error bars: 95\\% bootstrap CIs. Dashed red: control ablation (8 non-instruction heads). Steep rise through 12 heads, plateau at 16--20, diminishing returns beyond.}\n\\label{fig:dose_response}\n\\vspace{-6pt}\n\\end{figure}"
             }
           },
-          "id": "event-001739"
+          "id": "event-001723"
         },
         {
-          "source_line": 1740,
+          "source_line": 1724,
           "timestamp": "2026-05-28T12:03:16.958266+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2381,10 +2064,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001740"
+          "id": "event-001724"
         },
         {
-          "source_line": 1741,
+          "source_line": 1725,
           "timestamp": "2026-05-28T12:03:30.129122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2404,10 +2087,10 @@
               "new_string": "\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\looseness=-1\nWe apply all three analyses (\\S\\ref{sec:cross_arch_analyses}) to the $3 \\times 4$ architecture-suite matrix (10 of 12 cells filled; Table~\\ref{tab:cross_arch_matrix}).\nFor trained models, counterfactual sensitivity uses Cohen's $d$ on action MSE; reference VLMs use cosine distance on hidden representations (different scale; \\S\\ref{sec:cf_sensitivity}).\nOpenVLA's OXE-pretrained checkpoint produces actions, permitting same-metric comparison (Bonferroni correction in Appendix~\\ref{sec:bonferroni_correction})."
             }
           },
-          "id": "event-001741"
+          "id": "event-001725"
         },
         {
-          "source_line": 1742,
+          "source_line": 1726,
           "timestamp": "2026-05-28T12:03:30.129742+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2422,10 +2105,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001742"
+          "id": "event-001726"
         },
         {
-          "source_line": 1743,
+          "source_line": 1727,
           "timestamp": "2026-05-28T12:03:43.331026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2445,10 +2128,10 @@
               "new_string": "\\looseness=-1\nBefore testing cross-architectural generality, we establish core phenomena on OpenVLA~\\cite{kim2024_openvla} (Appendix~\\ref{sec:openvla_deepdive_appendix}).\nAt L1, instruction-dominant heads form a gradient: random initialization 0/32, Llama-2 base 9/32, VLA-trained 24/32.\nCounterfactual perturbation produces graded action divergence ordered by semantic distance ($d = 0.81$--$1.18$).\n$R^2$ probing localizes training effects at the readout token ($+0.069$ vs.\\ $+0.015$ at image\\_mean), and readout instruction classification remains at $100\\%$ through L31 (reference: $82\\%$ decay).\nThese phenomena motivate the cross-architecture tests that follow."
             }
           },
-          "id": "event-001743"
+          "id": "event-001727"
         },
         {
-          "source_line": 1744,
+          "source_line": 1728,
           "timestamp": "2026-05-28T12:03:43.382021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2463,10 +2146,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001744"
+          "id": "event-001728"
         },
         {
-          "source_line": 1745,
+          "source_line": 1729,
           "timestamp": "2026-05-28T12:03:57.709865+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2486,10 +2169,10 @@
               "new_string": "\\looseness=-1\nEvery perturbation yields $d = 0.45$--$1.52$ (Table~\\ref{tab:cf_summary}; full rankings in Appendix Table~\\ref{tab:counterfactual}).\nThe ``empty'' condition ranks first in 6/8 cells; ``paraphrased'' ranks last in 7/8, indicating encoding beyond token-level matching.\nTraceVLA produces systematically higher effect sizes ($d = 0.97$--$1.52$) than OpenVLA ($0.45$--$1.21$).\nSame-metric comparison in two OpenVLA cells shows training increases sensitivity on Spatial but the OXE-pretrained model exceeds the LIBERO-trained model on Long-Horizon ($d = 1.05$ vs.\\ $0.57$), consistent with broader instruction responsiveness in the general-purpose model.\n\\textbf{Instruction perturbation produces graded action divergence with effect sizes reflecting semantic distance.}"
             }
           },
-          "id": "event-001745"
+          "id": "event-001729"
         },
         {
-          "source_line": 1746,
+          "source_line": 1730,
           "timestamp": "2026-05-28T12:03:57.710386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2504,10 +2187,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001746"
+          "id": "event-001730"
         },
         {
-          "source_line": 1747,
+          "source_line": 1731,
           "timestamp": "2026-05-28T12:04:13.821770+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2527,10 +2210,10 @@
               "new_string": "\\looseness=-1\nL1 instruction-dominant head counts contrast with the training-associated effects in \\S\\ref{sec:r2_collapse}--\\ref{sec:cf_sensitivity}.\nTraceVLA's reference (Phi-3-Vision) saturates at 32/32 heads before VLA training; training slightly reduces this to 27--30/32.\nNORA's reference (Qwen2.5-VL) allocates 13--14/16; training leaves this unchanged at 12--13/16.\nOpenVLA shows 24--26/32 in the OXE-pretrained baseline with similar trained values (Figure~\\ref{fig:cross_arch_l1}).\nIf VLA training drove L1 routing, references should show low counts that increase; instead, both reference VLMs already saturate, and training leaves counts unchanged or reduced.\n\\textbf{L1 instruction routing is an inherited backbone property, not a consequence of VLA training.}"
             }
           },
-          "id": "event-001747"
+          "id": "event-001731"
         },
         {
-          "source_line": 1748,
+          "source_line": 1732,
           "timestamp": "2026-05-28T12:04:13.873282+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2545,10 +2228,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001748"
+          "id": "event-001732"
         },
         {
-          "source_line": 1749,
+          "source_line": 1733,
           "timestamp": "2026-05-28T12:04:25.346004+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2568,10 +2251,10 @@
               "new_string": "\\looseness=-1\nThe three analyses separate two patterns: exit collapse and counterfactual sensitivity are training-associated (pronounced in VLM-to-VLA, small in VLA-to-VLA), while L1 attention is inherited from reference backbones.\nDespite different reference starting points, trained OpenVLA and TraceVLA converge to nearly identical mid-layer peaks ($R^2 = 0.637$ at L9 vs.\\ $0.634$ at L11, $\\Delta = 0.003$; Appendix~\\ref{sec:cross_arch_r2}), suggesting convergence toward a shared mid-layer structure.\nThese probes measure decodability, not causal reliance (label-permutation controls in Appendix~\\ref{sec:label_permutation})."
             }
           },
-          "id": "event-001749"
+          "id": "event-001733"
         },
         {
-          "source_line": 1750,
+          "source_line": 1734,
           "timestamp": "2026-05-28T12:04:25.346563+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2586,10 +2269,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001750"
+          "id": "event-001734"
         },
         {
-          "source_line": 1751,
+          "source_line": 1735,
           "timestamp": "2026-05-28T12:04:30.264786+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2608,10 +2291,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001751"
+          "id": "event-001735"
         },
         {
-          "source_line": 1752,
+          "source_line": 1736,
           "timestamp": "2026-05-28T12:04:30.365649+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2626,10 +2309,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001752"
+          "id": "event-001736"
         },
         {
-          "source_line": 1753,
+          "source_line": 1737,
           "timestamp": "2026-05-28T12:04:36.742102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2649,10 +2332,10 @@
               "new_string": "Figure~\\ref{fig:nlp_control_r2} (main text) overlays the NLP control profiles against the corresponding VLA trained and reference curves."
             }
           },
-          "id": "event-001753"
+          "id": "event-001737"
         },
         {
-          "source_line": 1754,
+          "source_line": 1738,
           "timestamp": "2026-05-28T12:04:36.893595+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2667,10 +2350,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-001754"
+          "id": "event-001738"
         },
         {
-          "source_line": 1755,
+          "source_line": 1739,
           "timestamp": "2026-05-28T12:04:40.808829+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2689,10 +2372,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001755"
+          "id": "event-001739"
         },
         {
-          "source_line": 1756,
+          "source_line": 1740,
           "timestamp": "2026-05-28T12:04:40.809346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2707,10 +2390,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001756"
+          "id": "event-001740"
         },
         {
-          "source_line": 1757,
+          "source_line": 1741,
           "timestamp": "2026-05-28T12:04:48.238606+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2730,10 +2413,10 @@
               "new_string": "Table~\\ref{tab:dose_response} reports the dose-response data for instruction-head ablation at L1 (Figure~\\ref{fig:dose_response} in main text).\nTrajectory divergence increases monotonically from $d = 0.482$ (4 heads) to $d = 0.639$ (32 heads), with steep rise through 12 heads, plateau at 16--20, and slow increase at 20--32."
             }
           },
-          "id": "event-001757"
+          "id": "event-001741"
         },
         {
-          "source_line": 1758,
+          "source_line": 1742,
           "timestamp": "2026-05-28T12:04:48.289772+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2748,10 +2431,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001758"
+          "id": "event-001742"
         },
         {
-          "source_line": 1759,
+          "source_line": 1743,
           "timestamp": "2026-05-28T12:04:52.004426+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2770,10 +2453,10 @@
               "limit": "20"
             }
           },
-          "id": "event-001759"
+          "id": "event-001743"
         },
         {
-          "source_line": 1760,
+          "source_line": 1744,
           "timestamp": "2026-05-28T12:04:52.105855+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2788,10 +2471,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-001760"
+          "id": "event-001744"
         },
         {
-          "source_line": 1761,
+          "source_line": 1745,
           "timestamp": "2026-05-28T12:05:03.157655+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2811,10 +2494,10 @@
               "new_string": "\\subsection{Architecture Summary}\nArchitecture details are provided in Table~\\ref{tab:arch_overview} (main text).\n\n\\subsection{OpenVLA-Specific Analysis Methods}"
             }
           },
-          "id": "event-001761"
+          "id": "event-001745"
         },
         {
-          "source_line": 1762,
+          "source_line": 1746,
           "timestamp": "2026-05-28T12:05:03.259393+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2829,10 +2512,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-001762"
+          "id": "event-001746"
         },
         {
-          "source_line": 1763,
+          "source_line": 1747,
           "timestamp": "2026-05-28T12:05:07.776728+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2851,10 +2534,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001763"
+          "id": "event-001747"
         },
         {
-          "source_line": 1764,
+          "source_line": 1748,
           "timestamp": "2026-05-28T12:05:09.133753+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2869,10 +2552,10 @@
             "tool": "Bash",
             "elapsed_ms": 1357
           },
-          "id": "event-001764"
+          "id": "event-001748"
         },
         {
-          "source_line": 1765,
+          "source_line": 1749,
           "timestamp": "2026-05-28T12:05:14.253772+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2891,10 +2574,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-001765"
+          "id": "event-001749"
         },
         {
-          "source_line": 1766,
+          "source_line": 1750,
           "timestamp": "2026-05-28T12:05:16.661906+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2909,10 +2592,10 @@
             "tool": "Bash",
             "elapsed_ms": 2408
           },
-          "id": "event-001766"
+          "id": "event-001750"
         },
         {
-          "source_line": 1767,
+          "source_line": 1751,
           "timestamp": "2026-05-28T12:05:22.232246+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2930,10 +2613,10 @@
               "description": "Check main body boundary"
             }
           },
-          "id": "event-001767"
+          "id": "event-001751"
         },
         {
-          "source_line": 1768,
+          "source_line": 1752,
           "timestamp": "2026-05-28T12:05:22.583961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2948,10 +2631,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-001768"
+          "id": "event-001752"
         },
         {
-          "source_line": 1769,
+          "source_line": 1753,
           "timestamp": "2026-05-28T12:05:27.067060+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2971,10 +2654,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001769"
+          "id": "event-001753"
         },
         {
-          "source_line": 1770,
+          "source_line": 1754,
           "timestamp": "2026-05-28T12:05:27.218095+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2989,10 +2672,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-001770"
+          "id": "event-001754"
         },
         {
-          "source_line": 1771,
+          "source_line": 1755,
           "timestamp": "2026-05-28T12:05:33.090797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3010,10 +2693,10 @@
               "description": "Check for undefined refs and font issues"
             }
           },
-          "id": "event-001771"
+          "id": "event-001755"
         },
         {
-          "source_line": 1772,
+          "source_line": 1756,
           "timestamp": "2026-05-28T12:05:33.242375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3028,10 +2711,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-001772"
+          "id": "event-001756"
         },
         {
-          "source_line": 1773,
+          "source_line": 1757,
           "timestamp": "2026-05-28T12:05:37.207770+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3049,10 +2732,10 @@
               "description": "Check which references are undefined"
             }
           },
-          "id": "event-001773"
+          "id": "event-001757"
         },
         {
-          "source_line": 1774,
+          "source_line": 1758,
           "timestamp": "2026-05-28T12:05:37.308727+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3067,10 +2750,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001774"
+          "id": "event-001758"
         },
         {
-          "source_line": 1775,
+          "source_line": 1759,
           "timestamp": "2026-05-28T12:05:41.626191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3088,10 +2771,10 @@
               "description": "Copy as paper_v17"
             }
           },
-          "id": "event-001775"
+          "id": "event-001759"
         },
         {
-          "source_line": 1776,
+          "source_line": 1760,
           "timestamp": "2026-05-28T12:05:41.726971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3106,10 +2789,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001776"
+          "id": "event-001760"
         },
         {
-          "source_line": 1777,
+          "source_line": 1761,
           "timestamp": "2026-05-28T12:05:48.452345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3131,10 +2814,10 @@
               "tags": "['paper', 'v17', 'figure-promotion', 'corl2026']"
             }
           },
-          "id": "event-001777"
+          "id": "event-001761"
         },
         {
-          "source_line": 1778,
+          "source_line": 1762,
           "timestamp": "2026-05-28T12:05:48.804874+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3149,10 +2832,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 352
           },
-          "id": "event-001778"
+          "id": "event-001762"
         },
         {
-          "source_line": 1779,
+          "source_line": 1763,
           "timestamp": "2026-05-28T12:06:16.174102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3170,10 +2853,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001779"
+          "id": "event-001763"
         },
         {
-          "source_line": 1780,
+          "source_line": 1764,
           "timestamp": "2026-05-28T12:06:19.938463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3188,10 +2871,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3764
           },
-          "id": "event-001780"
+          "id": "event-001764"
         },
         {
-          "source_line": 1781,
+          "source_line": 1765,
           "timestamp": "2026-05-28T12:06:22.497316+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3204,7 +2887,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-001781"
+          "id": "event-001765"
         }
       ]
     },
@@ -3212,7 +2895,7 @@
       "number": 24,
       "messages": [
         {
-          "source_line": 1782,
+          "source_line": 1766,
           "timestamp": "2026-05-28T12:06:23.067164+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3226,10 +2909,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-001782"
+          "id": "event-001766"
         },
         {
-          "source_line": 1783,
+          "source_line": 1767,
           "timestamp": "2026-05-28T12:06:30.656587+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3248,10 +2931,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001783"
+          "id": "event-001767"
         },
         {
-          "source_line": 1784,
+          "source_line": 1768,
           "timestamp": "2026-05-28T12:06:32.013720+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3266,10 +2949,10 @@
             "tool": "Bash",
             "elapsed_ms": 1357
           },
-          "id": "event-001784"
+          "id": "event-001768"
         },
         {
-          "source_line": 1785,
+          "source_line": 1769,
           "timestamp": "2026-05-28T12:06:35.929120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3288,10 +2971,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001785"
+          "id": "event-001769"
         },
         {
-          "source_line": 1786,
+          "source_line": 1770,
           "timestamp": "2026-05-28T12:06:37.185609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3306,10 +2989,10 @@
             "tool": "Bash",
             "elapsed_ms": 1256
           },
-          "id": "event-001786"
+          "id": "event-001770"
         },
         {
-          "source_line": 1787,
+          "source_line": 1771,
           "timestamp": "2026-05-28T12:06:41.703546+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3328,10 +3011,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001787"
+          "id": "event-001771"
         },
         {
-          "source_line": 1788,
+          "source_line": 1772,
           "timestamp": "2026-05-28T12:06:42.958380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3346,10 +3029,10 @@
             "tool": "Bash",
             "elapsed_ms": 1254
           },
-          "id": "event-001788"
+          "id": "event-001772"
         },
         {
-          "source_line": 1789,
+          "source_line": 1773,
           "timestamp": "2026-05-28T12:06:50.888259+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3366,10 +3049,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
             }
           },
-          "id": "event-001789"
+          "id": "event-001773"
         },
         {
-          "source_line": 1790,
+          "source_line": 1774,
           "timestamp": "2026-05-28T12:06:50.939170+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3384,10 +3067,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001790"
+          "id": "event-001774"
         },
         {
-          "source_line": 1791,
+          "source_line": 1775,
           "timestamp": "2026-05-28T12:06:54.703533+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3407,10 +3090,10 @@
               "new_string": "\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{txfonts}\n\\usepackage{courier}"
             }
           },
-          "id": "event-001791"
+          "id": "event-001775"
         },
         {
-          "source_line": 1792,
+          "source_line": 1776,
           "timestamp": "2026-05-28T12:06:54.754309+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3425,10 +3108,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001792"
+          "id": "event-001776"
         },
         {
-          "source_line": 1793,
+          "source_line": 1777,
           "timestamp": "2026-05-28T12:07:00.132158+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3447,10 +3130,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001793"
+          "id": "event-001777"
         },
         {
-          "source_line": 1794,
+          "source_line": 1778,
           "timestamp": "2026-05-28T12:07:01.678096+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3465,10 +3148,10 @@
             "tool": "Bash",
             "elapsed_ms": 1545
           },
-          "id": "event-001794"
+          "id": "event-001778"
         },
         {
-          "source_line": 1795,
+          "source_line": 1779,
           "timestamp": "2026-05-28T12:07:05.985125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3487,10 +3170,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-001795"
+          "id": "event-001779"
         },
         {
-          "source_line": 1796,
+          "source_line": 1780,
           "timestamp": "2026-05-28T12:07:07.242578+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3505,10 +3188,10 @@
             "tool": "Bash",
             "elapsed_ms": 1257
           },
-          "id": "event-001796"
+          "id": "event-001780"
         },
         {
-          "source_line": 1797,
+          "source_line": 1781,
           "timestamp": "2026-05-28T12:07:11.860125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3527,10 +3210,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-001797"
+          "id": "event-001781"
         },
         {
-          "source_line": 1798,
+          "source_line": 1782,
           "timestamp": "2026-05-28T12:07:13.114806+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3545,10 +3228,10 @@
             "tool": "Bash",
             "elapsed_ms": 1254
           },
-          "id": "event-001798"
+          "id": "event-001782"
         },
         {
-          "source_line": 1799,
+          "source_line": 1783,
           "timestamp": "2026-05-28T12:07:20.492792+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3566,10 +3249,10 @@
               "description": "Verify fonts clean and page boundary"
             }
           },
-          "id": "event-001799"
+          "id": "event-001783"
         },
         {
-          "source_line": 1800,
+          "source_line": 1784,
           "timestamp": "2026-05-28T12:07:20.894594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3583,6 +3266,323 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Bash",
             "elapsed_ms": 401
+          },
+          "id": "event-001784"
+        },
+        {
+          "source_line": 1785,
+          "timestamp": "2026-05-28T12:07:25.778668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/paper_v17.pdf",
+              "description": "Overwrite paper_v17 with fixed version"
+            }
+          },
+          "id": "event-001785"
+        },
+        {
+          "source_line": 1786,
+          "timestamp": "2026-05-28T12:07:25.829324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001786"
+        },
+        {
+          "source_line": 1787,
+          "timestamp": "2026-05-28T12:07:33.660229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper_v17_fixed",
+              "type": "paper",
+              "description": "CoRL 2026 paper v17 (fixed): restored amsmath/amsfonts for \\text{} command. Zero compile errors, zero Type 3 fonts. Fig1 PaperBanana, Fig2 redrawn, arch table + NLP control fig + dose-response fig promoted to main text. 8pp main body, 40pp total.",
+              "project": "vla-ssd",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/paper_v17.pdf",
+              "tags": "['paper', 'v17', 'compile-fix', 'corl2026']"
+            }
+          },
+          "id": "event-001787"
+        },
+        {
+          "source_line": 1788,
+          "timestamp": "2026-05-28T12:07:33.962279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260528_235980\\\", \\\"name\\\": \\\"paper_v17_fixed\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"CoRL 2026 paper v17 (fixed): restored amsmath/amsfonts for \\\\\\\\text{} command. Zero compile errors, zero Type 3 fonts. Fig1 PaperBanana, Fig2 redrawn, arch table + NLP control fig + dose-response fig promoted to main text. 8pp main body, 40pp total.\\\", \\\"path\\\": \\\"projects/vla-ssd/artifacts/_project/paper/paper_v17_235980.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"vla-ssd\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-28T12:07:33.622529+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"v17\\\", \\\"compile-fix\\\", \\\"corl2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 302
+          },
+          "id": "event-001788"
+        },
+        {
+          "source_line": 1789,
+          "timestamp": "2026-05-28T12:07:46.710917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**编译问题已修复** (art_20260528_235980)\n\n**根因**：v15 字体统一时将 `mathptmx` 替换为 `txfonts` 并同时删除了 `amsmath` + `amsfonts`，导致附录中大量 `\\text{}` 命令（来自 amsmath）变为 undefined control sequence。\n\n**修复**：在 `txfonts` 前恢复 `\\usepackage{amsmath}` 和 `\\usepackage{amsfonts}`。加载顺序 amsmath → amsfonts → txfonts → courier 确保：\n- `\\text{}` 等 amsmath 命令正常\n- txfonts 覆盖 CM 数学字体为 Times 兼容\n- courier 提供 Type 1 等宽字体\n\n**验证**：\n- LaTeX 错误：**0**（之前 19+ undefined control sequence）\n- Type 3 字体：**0**\n- DejaVu / CM 字体：**0**\n- 主文：**8 页**（References page 9）\n- 总：40 页\n\nv17 PDF 已更新，可正常编译。图表补充（arch table、NLP control fig、dose-response fig 提升到正文）在上一轮已完成，本轮只修编译。",
+              "project": "vla-ssd"
+            }
+          },
+          "id": "event-001789"
+        },
+        {
+          "source_line": 1790,
+          "timestamp": "2026-05-28T12:07:50.425087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3714
+          },
+          "id": "event-001790"
+        },
+        {
+          "source_line": 1791,
+          "timestamp": "2026-05-28T12:07:53.934660+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero errors, fonts clean, main body 8 pages (References start page 9). Let me update the v17 artifact and report."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
+          },
+          "id": "event-001791"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "messages": [
+        {
+          "source_line": 1792,
+          "timestamp": "2026-05-28T12:09:30.392988+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Figure 3 和 Figure 4 是重复的——底图完全一样（三个 panel 的 trained/reference R² 曲线），Figure 4 只是多叠了一条 NLP control 虚线。\n\n修复方案：\n1. 合并为一张图：在当前 Figure 3 的三个 panel 上直接叠加 NLP control 线（dashed gray），即现在 Figure 4 的内容\n2. 删除原 Figure 4，后续图表编号顺移（Figure 5→4, 6→5, 7→6）\n3. 更新正文中所有引用这些 figure 的编号\n4. 合并后的 Figure caption 需要同时说明 trained/reference 曲线和 NLP control 线\n\n编译验证后报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "source": "director"
+          },
+          "id": "event-001792"
+        },
+        {
+          "source_line": 1793,
+          "timestamp": "2026-05-28T12:09:40.484445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-001793"
+        },
+        {
+          "source_line": 1794,
+          "timestamp": "2026-05-28T12:09:40.936803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\looseness=-1\n8\tWe apply all three analyses (\\S\\ref{sec:cross_arch_analyses}) to the $3 \\times 4$ architecture-suite matrix (10 of 12 cells filled; Table~\\ref{tab:cross_arch_matrix}).\n9\tFor trained models, counterfactual sensitivity uses Cohen's $d$ on action MSE; reference VLMs use cosine distance on hidden representations (different scale; \\S\\ref{sec:cf_sensitivity}).\n10\tOpenVLA's OXE-pretrained checkpoint produces actions, permitting same-metric comparison (Bonferroni correction in Appendix~\\ref{sec:bonferroni_correction}).\n11\t\n12\t\\begin{figure}[t]\n13\t\\centering\n14\t\\includegraphics[width=0.78\\textwidth]{figures/fig_matrix_heatmap.pdf}\n15\t\\vspace{-6pt}\n16\t\\caption{\\textbf{Cross-architecture evaluation matrix.} Each cell reports $\\Delta R^2$ (peak$-$exit). OpenVLA: VLA-to-VLA; TraceVLA and NORA: VLM-to-VLA. Gray: unavailable checkpoints. Red borders: $\\Delta R^2 > 0.10$.}\n17\t\\label{fig:result_matrix}\n18\t\\vspace{-6pt}\n19\t\\end{figure}\n20\t\n21\t%------------------------------------------------------------------\n22\t\\subsection{OpenVLA: Motivating Single-Architecture Analysis}\n23\t\\label{sec:openvla_routing}\n24\t\n25\t\\looseness=-1\n26\tBefore testing cross-architectural generality, we establish core phenomena on OpenVLA~\\cite{kim2024_openvla} (Appendix~\\ref{sec:openvla_deepdive_appendix}).\n27\tAt L1, instruction-dominant heads form a gradient: random initialization 0/32, Llama-2 base 9/32, VLA-trained 24/32.\n28\tCounterfactual perturbation produces graded action divergence ordered by semantic distance ($d = 0.81$--$1.18$).\n29\t$R^2$ probing localizes training effects at the readout token ($+0.069$ vs.\\ $+0.015$ at image\\_mean), and readout instruction classification remains at $100\\%$ through L31 (reference: $82\\%$ decay).\n30\tThese phenomena motivate the cross-architecture tests that follow.\n31\t\n32\t%------------------------------------------------------------------\n33\t\\\n…[truncated 12489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001794"
+        },
+        {
+          "source_line": 1795,
+          "timestamp": "2026-05-28T12:09:41.439140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig:nlp_control_r2|fig:r2_collapse|fig_nlp_control|fig_r2_collapse",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001795"
+        },
+        {
+          "source_line": 1796,
+          "timestamp": "2026-05-28T12:09:41.540090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:39:VLM-to-VLA fine-tuning is associated with substantial exit collapse across all tested conditions: TraceVLA~\\cite{zheng2024tracevla} $\\Delta R^2 = 0.156$--$0.362$ across all four suites, and NORA~\\cite{hung2025nora} $\\Delta R^2 = 0.308$ (Spatial) and $0.455$ (Goal) (Figure~\\ref{fig:r2_collapse}), all exceeding the $\\Delta R^2 > 0.10$ threshold for substantive collapse (\\S\\ref{sec:cross_arch_analyses}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:47:\\includegraphics[width=\\columnwidth]{figures/fig_r2_collapse.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:50:\\label{fig:r2_collapse}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:56:All three produce flat $R^2$ profiles ($\\Delta R^2 = 0.000$; Figure~\\ref{fig:nlp_control_r2}), contrasting with VLM-to-VLA collapse ($\\Delta R^2 = 0.156$--$0.455$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:61:\\includegraphics[width=\\columnwidth]{figures/fig_nlp_control_r2.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:64:\\label{fig:nlp_control_r2}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:152:Figure~\\ref{fig:rsa_perlayer_curve} extends Figure~\\ref{fig:r2_collapse} (main text) by adding readout and reference profiles.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:1203:Figure~\\ref{fig:nlp_control_r2} (main text) overlays the NLP control profiles against the corresponding VLA trained and reference curves."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001796"
+        },
+        {
+          "source_line": 1797,
+          "timestamp": "2026-05-28T12:09:50.325882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py"
+            }
+          },
+          "id": "event-001797"
+        },
+        {
+          "source_line": 1798,
+          "timestamp": "2026-05-28T12:09:50.428214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"fig_r2_collapse: Three-panel per-layer R² profile (demo-split, bootstrap v3 MCCV).\"\"\"\n3\timport matplotlib\n4\tmatplotlib.use('Agg')\n5\timport matplotlib.pyplot as plt\n6\timport numpy as np\n7\timport os\n8\t\n9\tplt.rcParams.update({\n10\t    'font.family': 'serif',\n11\t    'font.serif': ['Liberation Serif'],\n12\t    'pdf.fonttype': 42,\n13\t    'ps.fonttype': 42,\n14\t    'mathtext.fontset': 'custom',\n15\t    'mathtext.rm': 'Liberation Serif',\n16\t    'mathtext.it': 'Liberation Serif:italic',\n17\t    'mathtext.bf': 'Liberation Serif:bold',\n18\t    'font.size': 10,\n19\t    'axes.titlesize': 13,\n20\t    'axes.labelsize': 11,\n21\t    'xtick.labelsize': 10,\n22\t    'ytick.labelsize': 10,\n23\t    'legend.fontsize': 9,\n24\t    'figure.dpi': 300,\n25\t    'savefig.dpi': 300,\n26\t    'savefig.bbox': 'tight',\n27\t    'savefig.pad_inches': 0.05,\n28\t    'axes.spines.top': False,\n29\t    'axes.spines.right': False,\n30\t    'lines.linewidth': 1.8,\n31\t})\n32\t\n33\tTRAINED      = '#92C5DE'\n34\tTRAINED_EDGE = '#4393C3'\n35\tREFERENCE    = '#FDB863'\n36\tREF_EDGE     = '#E08214'\n37\tNLP_GRAY     = '#BBBBBB'\n38\tPEAK_RED     = '#D6604D'\n39\tDELTA_SHADE  = '#F4A582'\n40\t\n41\t# ── Demo-split per-layer R² (bootstrap v3 MCCV) ─────────────\n42\t\n43\tL32 = np.arange(32)\n44\tL36 = np.arange(36)\n45\t\n46\t# OpenVLA Goal trained: Peak L1, R²=0.418, Exit=0.331, ΔR²=0.086\n47\topenvla_tr = np.array([\n48\t    0.3329, 0.4177, 0.3571, 0.2243, 0.3962, 0.3624, 0.3390, 0.3076,\n49\t    0.2634, 0.2185, 0.4051, 0.3818, 0.3879, 0.3797, 0.3693, 0.3475,\n50\t    0.3410, 0.3418, 0.3293, 0.3235, 0.3190, 0.2901, 0.2764, 0.2825,\n51\t    0.2729, 0.2701, 0.2672, 0.2672, 0.4067, 0.3964, 0.3888, 0.3313])\n52\t\n53\t# OpenVLA Goal reference (untrained): Peak L27, R²=0.423, Exit=0.367, ΔR²=0.056\n54\topenvla_ref = np.array([\n55\t    0.3256, 0.3964, 0.3521, 0.2713, 0.3598, 0.3436, 0.3228, 0.3094,\n56\t    0.3144, 0.3049, 0.3893, 0.3787, 0.3794, 0.3576, 0.3615, 0.3550,\n57\t    0.3396, 0.3484, 0.3390, 0.3338, 0.3308, 0.3105, 0.2984, 0.2840,\n58\t    0.4066, 0\n…[truncated 4964 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-001798"
+        },
+        {
+          "source_line": 1799,
+          "timestamp": "2026-05-28T12:10:04.293015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py",
+              "old_string": "configs = [\n    # ax, title, layers, trained, ref, peak_idx, peak_r2, delta_r2, show_nlp, peak_text_xy, delta_text_xy\n    (axes[0], 'OpenVLA (VLA→VLA)', L32, openvla_tr, openvla_ref,\n     1, 0.418, 0.086, True,  (12, 0.50), (20, 0.18)),\n    (axes[1], 'TraceVLA (VLM→VLA)', L32, tracvla_tr, tracvla_ref,\n     13, 0.540, 0.333, False, (4, 0.62),  (25, -0.35)),\n    (axes[2], 'NORA (VLM→VLA)',    L36, nora_tr,    nora_ref,\n     8, 0.449, 0.455, False,  (20, 0.52), (30, 0.05)),\n]\n\nfor idx, (ax, title, layers, tr, ref, pi, pv, dr2, nlp, pk_xy, dr_xy) in enumerate(configs):\n    ei = int(layers[-1])\n    ax.axvspan(pi, ei, color=DELTA_SHADE, alpha=0.10, zorder=0)\n\n    ax.plot(layers, tr, '-o', color=TRAINED, linewidth=2.0, markersize=3,\n            markerfacecolor=TRAINED, markeredgecolor=TRAINED_EDGE, markeredgewidth=0.5,\n            label='Trained', zorder=3)\n\n    ax.plot(layers, ref, '--s', color=REFERENCE, linewidth=1.5, markersize=2.5,\n            markerfacecolor=REFERENCE, markeredgecolor=REF_EDGE, markeredgewidth=0.5,\n            label='Reference', zorder=2)\n\n    if nlp:\n        ax.axhline(NLP_VAL, linestyle=':', color=NLP_GRAY, linewidth=1.5,\n                   label='NLP control (Llama-2-chat)', zorder=1)",
+              "new_string": "nlp_labels = [\n    'NLP control (Llama-2-chat)',\n    'NLP control (Phi-3-instruct)',\n    'NLP control (Qwen2.5-Instruct)',\n]\n\nconfigs = [\n    # ax, title, layers, trained, ref, peak_idx, peak_r2, delta_r2, peak_text_xy, delta_text_xy\n    (axes[0], 'OpenVLA (VLA→VLA)', L32, openvla_tr, openvla_ref,\n     1, 0.418, 0.086, (12, 0.50), (20, 0.18)),\n    (axes[1], 'TraceVLA (VLM→VLA)', L32, tracvla_tr, tracvla_ref,\n     13, 0.540, 0.333, (4, 0.62),  (25, -0.35)),\n    (axes[2], 'NORA (VLM→VLA)',    L36, nora_tr,    nora_ref,\n     8, 0.449, 0.455, (20, 0.52), (30, 0.05)),\n]\n\nfor idx, (ax, title, layers, tr, ref, pi, pv, dr2, pk_xy, dr_xy) in enumerate(configs):\n    ei = int(layers[-1])\n    ax.axvspan(pi, ei, color=DELTA_SHADE, alpha=0.10, zorder=0)\n\n    ax.plot(layers, tr, '-o', color=TRAINED, linewidth=2.0, markersize=3,\n            markerfacecolor=TRAINED, markeredgecolor=TRAINED_EDGE, markeredgewidth=0.5,\n            label='Trained', zorder=3)\n\n    ax.plot(layers, ref, '--s', color=REFERENCE, linewidth=1.5, markersize=2.5,\n            markerfacecolor=REFERENCE, markeredgecolor=REF_EDGE, markeredgewidth=0.5,\n            label='Reference', zorder=2)\n\n    ax.axhline(NLP_VAL, linestyle=':', color=NLP_GRAY, linewidth=1.5,\n               label=nlp_labels[idx], zorder=1)"
+            }
+          },
+          "id": "event-001799"
+        },
+        {
+          "source_line": 1800,
+          "timestamp": "2026-05-28T12:10:04.293706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 0
           },
           "id": "event-001800"
         }

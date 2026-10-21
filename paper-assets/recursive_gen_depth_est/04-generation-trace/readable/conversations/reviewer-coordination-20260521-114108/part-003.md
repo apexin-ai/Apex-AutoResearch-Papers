@@ -4,1166 +4,11 @@
 
 [← Part 2](part-002.md) · [Transcript overview](../reviewer-coordination-20260521-114108.md) · [Structured JSON](../../../sessions/68/6872786af0dbff639b5b.json)
 
-## Round 65
-
-### Tool result
-
-_source line 1388 · 2026-05-20T04:26:17.502733+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.39}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 3432
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1389 · 2026-05-20T04:26:18.407810+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  2 root root   34 May 20 11:55 .\\ndrwxr-xr-x 79 root root 4096 May 19 19:24 ..\\n-rw-r--r--  1 root root 1314 May 20 11:55 summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 3768
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1390 · 2026-05-20T04:26:24.483071+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "grep -c \"NaN\\|nan\\|null\\|inf\\|Inf\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "grep -c \"NaN\\|nan\\|null\\|inf\\|Inf\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1391 · 2026-05-20T04:26:24.483548+00:00_
-
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1392 · 2026-05-20T04:26:28.701388+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "grep -c \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "grep -c \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1393 · 2026-05-20T04:26:29.153519+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "grep -c \"null\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "grep -c \"null\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1394 · 2026-05-20T04:26:29.505221+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 803
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1395 · 2026-05-20T04:26:30.818039+00:00_
-
-{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.29}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1664
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1396 · 2026-05-20T04:26:35.941921+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "grep -n \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "grep -n \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/features_self_ref.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1397 · 2026-05-20T04:26:37.450119+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"7161:{\\\"depth\\\": 1, \\\"sample_id\\\": 7160, \\\"mean_ppl\\\": 4689.7051891110905, \\\"var_ppl\\\": 8.271806125530277e-25, \\\"median_ppl\\\": 4689.705189111091, \\\"p75_ppl\\\": 4689.705189111091, \\\"p90_ppl\\\": 4689.705189111091, \\\"skew_ppl\\\": NaN, \\\"kurt_ppl\\\": NaN, \\\"mean_surprisal\\\": 8.453125, \\\"var_surprisal\\\": 0.0, \\\"median_surprisal\\\": 8.453125, \\\"p75_surprisal\\\": 8.453125, \\\"p90_surprisal\\\": 8.453125, \\\"type_token_ratio\\\": 0.002890173410404624, \\\"hapax_ratio\\\": 0.0, \\\"bigram_entropy\\\": 0.0, \\\"trigram_entropy\\\": 0.0, \\\"rep_2gram\\\": 0.9971014492753624, \\\"rep_3gram\\\": 0.997093023255814, \\\"rep_4gram\\\": 0.9970845481049563}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1508
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1398 · 2026-05-20T04:26:58.438957+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "grep -c \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/features_self_ref.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "grep -c \"NaN\" /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/features_self_ref.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1399 · 2026-05-20T04:26:59.946053+00:00_
-
-{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/features_self_ref.jsonl: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.47}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1507
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1400 · 2026-05-20T04:27:11.547979+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] RuntimeWarning NaN 分析完成 — 降级为 info\n\n**发现**：temp09 features_self_ref.jsonl 中仅 **1/20000 样本**（0.005%）含 NaN。\n\n退化样本详情（line 7161, depth=1, sample_id=7160）：\n- mean_ppl = median = p75 = p90 = 4689.705（所有 PPL 值相同）\n- var_ppl = 8.27e-25, var_surprisal = 0.0\n- skew_ppl = NaN, kurt_ppl = NaN（0/0 未定义）\n- type_token_ratio = 0.003, rep_2gram = 0.997 — 纯重复 token\n\n**影响**：1 个样本对 RF 5-fold CV 精度影响可忽略（<0.01 pp）。之前的 RuntimeWarning severity 从 warning 降为 info。\n\n**建议**：\n1. 论文 appendix 可简要提及 14B 下存在极少量退化样本（0.005%）\n2. topk50 完成后同样检查 NaN 数量\n3. 无需 sensitivity analysis — 样本量太小无统计意义",
-  "project": "recursive_gen_depth_est"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] RuntimeWarning NaN 分析完成 — 降级为 info\n\n**发现**：temp09 features_self_ref.jsonl 中仅 **1/20000 样本**（0.005%）含 NaN。\n\n退化样本详情（line 7161, depth=1, sample_id=7160）：\n- mean_ppl = median = p75 = p90 = 4689.705（所有 PPL 值相同）\n- var_ppl = 8.27e-25, var_surprisal = 0.0\n- skew_ppl = NaN, kurt_ppl = NaN（0/0 未定义）\n- type_token_ratio = 0.003, rep_2gram = 0.997 — 纯重复 token\n\n**影响**：1 个样本对 RF 5-fold CV 精度影响可忽略（<0.01 pp）。之前的 RuntimeWarning severity 从 warning 降为 info。\n\n**建议**：\n1. 论文 appendix 可简要提及 14B 下存在极少量退化样本（0.005%）\n2. topk50 完成后同样检查 NaN 数量\n3. 无需 sensitivity analysis — 样本量太小无统计意义",
-    "project": "recursive_gen_depth_est"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1401 · 2026-05-20T04:27:15.424153+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 3876
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 1402 · 2026-05-20T04:27:19.595746+00:00_
-
-NaN 问题已解析——仅 1 个退化样本，影响可忽略。继续等待 topk50 完成。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer"
-}
-```
-
-</details>
-
----
-
-
-## Round 66
-
-## Round 66
-
-20 recorded events
-
-
-### User
-
-_source line 1403 · 2026-05-20T04:48:51.915755+00:00_
-
-[系统通知 — worker_done:worker_code_binoculars_14b_temp09_20260520T042205]:
-Worker worker_code_binoculars_14b_temp09_20260520T042205 已完成（status=done），请审查 Agent 的处理结果。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "source": "system"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1404 · 2026-05-20T04:49:02.478224+00:00_
-
-called mcp__agent-ml-research__read_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
-
-```json
-{
-  "project": "recursive_gen_depth_est",
-  "fields": "['exp_id', 'status', 'updated_at', 'conclusion', 'metrics', 'hypothesis']",
-  "limit": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "tool_args": {
-    "project": "recursive_gen_depth_est",
-    "fields": "['exp_id', 'status', 'updated_at', 'conclusion', 'metrics', 'hypothesis']",
-    "limit": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1405 · 2026-05-20T04:49:03.031095+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen25_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T04:23:37.012Z\", \"hypothesis\": \"Recursive generation depth signal persists at 14B scale under temperature sampling (τ=0.9), achieving RF 4-class accuracy above 25% baseline and comparable to scale_002 nucleus (54.05%). Validates Claim 2: Atlas spans 3 strategies at 14B. Directly addresses Dream worst review M3 \\\"14B too narrow\\\".\", \"metrics\": {\"rf_4class_acc\": 0.505, \"rf_4class_ci\": [0.4976, 0.5124], \"lr_4class_acc\": 0.4865, \"lr_4class_ci\": [0.4801, 0.4938], \"rf_3class_no_d0_acc\": 0.5244, \"rf_3class_ci\": [0.5161, 0.5323], \"rf_d0v1_auc\": 0.6318, \"rf_d0v2_auc\": 0.9178, \"rf_d0v3_auc\": 0.9584, \"rf_d1v2_auc\": 0.7259, \"rf_d1v3_auc\": 0.8447, \"rf_d2v3_auc\": 0.6184, \"lr_d0v1_auc\": 0.5637, \"lr_d1v2_auc\": 0.7318, \"lr_d2v3_auc\": 0.615, \"top5_features\": [\"p90_ppl\", \"skew_ppl\", \"kurt_ppl\", \"p90_surprisal\", \"var_surprisal\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.9}, \"conclusion\": \"success\"}, \"feature_ablation_merged_001\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T20:32:19.174Z\", \"hypothesis\": \"Merging our 19 statistical features with 11 Binoculars cross-perplexity features (30 total) should reveal whether the two feature sets provide complementary depth signal. If merged RF >80%, the cross-model transfer signal from Binoculars adds value beyond our features (answers reviewer \\\"why not merge?\\\"). If merged RF ≈ 78%, signal is saturated and both feature sets are redundant — depth information ceiling is ~78% on these features.\", \"conclusion\": \"success\", \"metrics\": {\"9cell_mean_acc\": 82.6, \"pythia_nucleus\": 83.47, \"pythia_temp09\": 81.53, \"pythia_topk50\": 71.18, \"olmo_nucleus\": 84.2, \"olmo_temp09\": 88.31, \"olmo_topk50\": 78.36, \"gpt2xl_nucleus\": 88.83, \"gpt2xl_temp09\": 88.45, \"gpt2xl_topk50\": 79.09, \"delta_vs_baseline
-…[truncated 2712 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "elapsed_ms": 552
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1406 · 2026-05-20T04:49:10.362436+00:00_
-
-called mcp__agent-ml-research__read_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
-
-```json
-{
-  "filters": "{'status': 'RUNNING'}",
-  "project": "recursive_gen_depth_est",
-  "fields": "['*']"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "tool_args": {
-    "filters": "{'status': 'RUNNING'}",
-    "project": "recursive_gen_depth_est",
-    "fields": "['*']"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1407 · 2026-05-20T04:49:10.814486+00:00_
-
-called mcp__agent-ml-research__read_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
-
-```json
-{
-  "filters": "{'status': 'PREPARING'}",
-  "project": "recursive_gen_depth_est",
-  "fields": "['exp_id', 'status', 'updated_at', 'hypothesis']"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "tool_args": {
-    "filters": "{'status': 'PREPARING'}",
-    "project": "recursive_gen_depth_est",
-    "fields": "['exp_id', 'status', 'updated_at', 'hypothesis']"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1408 · 2026-05-20T04:49:10.916069+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen25_14b_topk50\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T02:55:17.726Z\", \"updated_at\": \"2026-05-19T05:34:39.977Z\", \"hypothesis\": \"Recursive generation depth signal persists at 14B scale under top-k sampling (k=50), achieving RF 4-class accuracy above 25% baseline. Top-k typically yields lowest accuracy across strategies; if signal persists even here, 14B scale-generality claim is robust. Directly addresses Dream worst review M3.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_topk50.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"pid\": 787051, \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": \"5000 samples per depth d0-d3\", \"model_name\": \"Qwen2.5-14B\", \"seed\": 42, \"log_path\": \"~/runs/recursive_gen_depth_est/qwen25_14b_topk50.log\", \"note\": \"Restarted after GPU fix: original PID 776750 on cuda:0 due to hardcoded CUDA_VISIBLE_DEVICES. Fixed and resubmitted to cuda:1.\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4915}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "elapsed_ms": 553
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1409 · 2026-05-20T04:49:11.419363+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"experiments\": {\"accum_v2_mix25\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T18:10:28.915Z\"}, \"accum_v2_mix50\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T18:10:27.750Z\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.555}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "elapsed_ms": 604
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1410 · 2026-05-20T04:49:18.048705+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts -name \"*bino*14b*\" -type f"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts -name \"*bino*14b*\" -type f"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1411 · 2026-05-20T04:49:18.249870+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/depth_3.jsonl"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/depth_3.jsonl"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1412 · 2026-05-20T04:49:20.536179+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.44}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 2487
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1413 · 2026-05-20T04:49:21.791606+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"4651 /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/depth_3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 3541
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1414 · 2026-05-20T04:49:27.672571+00:00_
-
-called Glob
-
-<details open><summary>🔧 Tool call — Glob</summary>
-
-```json
-{
-  "pattern": "**/scripts/*bino*14b*",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "Glob",
-  "tool_args": {
-    "pattern": "**/scripts/*bino*14b*",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1415 · 2026-05-20T04:49:28.174909+00:00_
-
-No files found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "Glob",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1416 · 2026-05-20T04:49:28.777865+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"*bino*\" -newer /root/autodl-tmp/recursive_gen_depth_est/results/qwen25_14b_temp09/summary.json -type f"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"*bino*\" -newer /root/autodl-tmp/recursive_gen_depth_est/results/qwen25_14b_temp09/summary.json -type f"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1417 · 2026-05-20T04:49:29.531276+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/pythia_nucleus_bino_features.npz\\n/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_temp09.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 753
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1418 · 2026-05-20T04:49:34.001050+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_temp09.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_temp09.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1419 · 2026-05-20T04:49:34.755914+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2943,\\n      \\\"4class_acc_std\\\": 0.0029,\\n      \\\"d1d3_bal_acc\\\": 0.3211,\\n      \\\"d1d3_bal_acc_std\\\": 0.021\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.2883,\\n      \\\"4class_acc_std\\\": 0.0038,\\n      \\\"d1d3_bal_acc\\\": 0.3844,\\n      \\\"d1d3_bal_acc_std\\\": 0.0051\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.3644,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.2595,\\n      \\\"d1d3_bal_acc_std\\\": 0.0078\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.2917,\\n      \\\"4class_acc_std\\\": 0.0063,\\n      \\\"d1d3_bal_acc\\\": 0.2779,\\n      \\\"d1d3_bal_acc_std\\\": 0.0087\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.4252,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.3717,\\n      \\\"d1d3_bal_acc_std\\\": 0.0076\\n    }\\n  },\\n  \\\"__9cell_average__\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2943,\\n      \\\"4class_acc_std\\\": 0.0029,\\n      \\\"d1d3_bal_acc\\\": 0.3211,\\n      \\\"d1d3_bal_acc_std\\\": 0.021\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.2883,\\n      \\\"4class_acc_std\\\": 0.0038,\\n      \\\"d1d3_bal_acc\\\": 0.3844,\\n      \\\"d1d3_bal_acc_std\\\": 0.0051\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.3644,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.2595,\\n      \\\"d1d3_bal_acc_std\\\": 0.0078\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.2917,\\n      \\\"4class_acc_std\\\": 0.0063,\\n      \\\"d1d3_bal_acc\\\": 0.2779,\\n      \\\"d1d3_bal_acc_std\\\": 0.0087\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.4252,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.3717,\\n      \\\"d1d3_bal_acc_
-…[truncated 952 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 754
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1420 · 2026-05-20T04:50:11.028085+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "## 审查报告 — worker_code_binoculars_14b_temp09\n\n**结论**: WARNING\n\n### 结果核实\n\nWorker 在 gpu-6000pro-2 上运行了 Binoculars cross-perplexity 分析（observer=Pythia-1.4B, performer=Pythia-410M），对 14B temp09 数据提取 11 个 Binoculars 特征并做 5-fold RF 分类。\n\n**结果**：\n| 校准方法 | 4-class Acc | d1-d3 Bal Acc |\n|---------|------------|--------------|\n| RF_multi (11-feat) | 42.52% | 37.17% |\n| threshold | 36.44% | 25.95% |\n| equal_width | 29.43% | 32.11% |\n| CORAL | 28.83% | 38.44% |\n| RF_single | 29.17% | 27.79% |\n\n**对比**：\n- 14B self-ref 19-feat RF: 50.5% → **高于 Binoculars 8 pp**\n- 1-1.5B Binoculars RF_multi: 78.1% → **14B 下降 35.6 pp**\n\n### 发现\n\n- [severity: warning] **JSON 结构误导**：`__9cell_average__` 的值与 `pythia_nucleus` 完全相同——实际只评估了 1 个 cell 而非 9 个。这个命名在代码中应该修复，避免后续引用时误以为是 9-cell 平均。\n\n- [severity: info] **Cross-scale Binoculars 信号大幅衰减**（42.5% vs 78.1%，-35.6 pp）。Observer（Pythia-1.4B）与 generator（Qwen2.5-14B）存在 10× scale gap，cross-perplexity 特征在跨尺度场景下失效。这是预期的——Binoculars 设计用于匹配尺度的 binary detection。\n\n- [severity: info] **Self-reference 优势**：14B 下 self-ref 19-feat (50.5%) 胜过 Binoculars (42.5%) 8 pp。在 1-1.5B 下两者近乎相当（78.4% vs 78.1%）。这表明 depth-specific statistical features 比 cross-model detection features 在跨尺度场景更鲁棒——可作为论文 Discussion 的一个亮点。\n\n- [severity: info] **Binoculars 仍高于 chance**：42.5% > 25%（1.7× chance）。cross-perplexity 信号并非完全消失，只是大幅衰减。\n\n### topk50 进度\n4651/5000 (93%)，预计 ~30min 完成 d3 生成。",
-  "project": "recursive_gen_depth_est"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "## 审查报告 — worker_code_binoculars_14b_temp09\n\n**结论**: WARNING\n\n### 结果核实\n\nWorker 在 gpu-6000pro-2 上运行了 Binoculars cross-perplexity 分析（observer=Pythia-1.4B, performer=Pythia-410M），对 14B temp09 数据提取 11 个 Binoculars 特征并做 5-fold RF 分类。\n\n**结果**：\n| 校准方法 | 4-class Acc | d1-d3 Bal Acc |\n|---------|------------|--------------|\n| RF_multi (11-feat) | 42.52% | 37.17% |\n| threshold | 36.44% | 25.95% |\n| equal_width | 29.43% | 32.11% |\n| CORAL | 28.83% | 38.44% |\n| RF_single | 29.17% | 27.79% |\n\n**对比**：\n- 14B self-ref 19-feat RF: 50.5% → **高于 Binoculars 8 pp**\n- 1-1.5B Binoculars RF_multi: 78.1% → **14B 下降 35.6 pp**\n\n### 发现\n\n- [severity: warning] **JSON 结构误导**：`__9cell_average__` 的值与 `pythia_nucleus` 完全相同——实际只评估了 1 个 cell 而非 9 个。这个命名在代码中应该修复，避免后续引用时误以为是 9-cell 平均。\n\n- [severity: info] **Cross-scale Binoculars 信号大幅衰减**（42.5% vs 78.1%，-35.6 pp）。Observer（Pythia-1.4B）与 generator（Qwen2.5-14B）存在 10× scale gap，cross-perplexity 特征在跨尺度场景下失效。这是预期的——Binoculars 设计用于匹配尺度的 binary detection。\n\n- [severity: info] **Self-reference 优势**：14B 下 self-ref 19-feat (50.5%) 胜过 Binoculars (42.5%) 8 pp。在 1-1.5B 下两者近乎相当（78.4% vs 78.1%）。这表明 depth-specific statistical features 比 cross-model detection features 在跨尺度场景更鲁棒——可作为论文 Discussion 的一个亮点。\n\n- [severity: info] **Binoculars 仍高于 chance**：42.5% > 25%（1.7× chance）。cross-perplexity 信号并非完全消失，只是大幅衰减。\n\n### topk50 进度\n4651/5000 (93%)，预计 ~30min 完成 d3 生成。",
-    "project": "recursive_gen_depth_est"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1421 · 2026-05-20T04:50:15.246300+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 4218
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 1422 · 2026-05-20T04:50:20.361530+00:00_
-
-审查完毕。核心发现：Binoculars 在 14B cross-scale 下大幅衰减（42.5% vs 78.1%），self-reference features 更鲁棒（50.5%）。JSON 结构有命名误导需修复。topk50 约 30 分钟后完成 d3 生成。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer"
-}
-```
-
-</details>
-
----
-
-
 ## Round 67
 
-## Round 67
-
-8 recorded events
-
-
-### User
-
-_source line 1423 · 2026-05-20T05:22:18.347834+00:00_
-
-[System 触发审查]:
-Binoculars 14B cross-scale 结果的论文叙事影响评估：
-
-**数据**：
-- 1-1.5B: 19-feat 78.4% ≈ Binoculars 78.1%（匹配）
-- 14B: 19-feat 50.5% >> Binoculars 42.5%（+8pp 优势）
-- Merged: 1-1.5B +4.2pp → 14B +2.4pp（互补效应减弱）
-
-**我的解读**：这对论文叙事是**利好**，不是风险：
-
-1. **Self-reference features 跨尺度更鲁棒**：Binoculars 用 1.4B observer 对 14B generator，10× scale gap 导致 cross-ppl 信号大幅衰减（-35.6pp）。而我们的 self-reference 19-feat 衰减更温和（-27.9pp）。这给了 19-feat 方法独立于 Binoculars 的实质性优势——不依赖特定 observer/performer 模型对，跨尺度更鲁棒。
-
-2. **回应 Attack 3 的额外弹药**："为什么不直接用 Binoculars？"——因为 Binoculars 在跨尺度场景下显著退化，而我们的 self-reference features 保持更强信号。
-
-3. **强化"multi-channel"叙事**：cross-model divergence 通道在 14B 下大幅衰减，而 model-specific distributional 通道相对稳健。这验证了两通道的独立性。
-
-请评估：
-1. 这个解读是否准确？
-2. 论文 Discussion 需要怎么写这个 cross-scale finding？
-3. rebuttal W12 (scale) 和 W13 (Binoculars) 怎么整合这个数据？
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "source": "system"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 1424 · 2026-05-20T05:22:56.893047+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"*merged*14b*\" -type f"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"*merged*14b*\" -type f"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1425 · 2026-05-20T05:22:58.450472+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/merged_ablation_14b_temp09.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1557
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1426 · 2026-05-20T05:23:02.293170+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "gpu-6000pro-2",
-  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/merged_ablation_14b_temp09.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "gpu-6000pro-2",
-    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/merged_ablation_14b_temp09.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1427 · 2026-05-20T05:23:02.997189+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"stat_only_19\\\": {\\n    \\\"4class_acc\\\": 0.5183,\\n    \\\"4class_acc_std\\\": 0.0069,\\n    \\\"d1d3_bal_acc\\\": 0.4559,\\n    \\\"d1d3_bal_acc_std\\\": 0.0083\\n  },\\n  \\\"bino_only_11\\\": {\\n    \\\"4class_acc\\\": 0.4258,\\n    \\\"4class_acc_std\\\": 0.0049,\\n    \\\"d1d3_bal_acc\\\": 0.3724,\\n    \\\"d1d3_bal_acc_std\\\": 0.0071\\n  },\\n  \\\"merged_30\\\": {\\n    \\\"4class_acc\\\": 0.5419,\\n    \\\"4class_acc_std\\\": 0.0093,\\n    \\\"d1d3_bal_acc\\\": 0.477,\\n    \\\"d1d3_bal_acc_std\\\": 0.012\\n  },\\n  \\\"bino_single\\\": {\\n    \\\"4class_acc\\\": 0.2917,\\n    \\\"4class_acc_std\\\": 0.0063,\\n    \\\"d1d3_bal_acc\\\": 0.2779,\\n    \\\"d1d3_bal_acc_std\\\": 0.0087\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"stat_features\\\": [\\n      \\\"mean_ppl\\\",\\n      \\\"var_ppl\\\",\\n      \\\"median_ppl\\\",\\n      \\\"p75_ppl\\\",\\n      \\\"p90_ppl\\\",\\n      \\\"skew_ppl\\\",\\n      \\\"kurt_ppl\\\",\\n      \\\"mean_surprisal\\\",\\n      \\\"var_surprisal\\\",\\n      \\\"median_surprisal\\\",\\n      \\\"p75_surprisal\\\",\\n      \\\"p90_surprisal\\\",\\n      \\\"type_token_ratio\\\",\\n      \\\"hapax_ratio\\\",\\n      \\\"bigram_entropy\\\",\\n      \\\"trigram_entropy\\\",\\n      \\\"rep_2gram\\\",\\n      \\\"rep_3gram\\\",\\n      \\\"rep_4gram\\\"\\n    ],\\n    \\\"bino_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"stat_path\\\": \\\"data/qwen25_14b_temp09/features_self_ref.jsonl\\\",\\n    \\\"bino_npz_path\\\": \\\"results/pythia_nucleus_bino_features.npz\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 
-…[truncated 65 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 704
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1428 · 2026-05-20T05:23:57.280717+00:00_
+_source line 1398 · 2026-05-20T05:23:57.280717+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1199,7 +44,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1429 · 2026-05-20T05:24:01.236406+00:00_
+_source line 1399 · 2026-05-20T05:24:01.236406+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -1221,7 +66,7 @@ _source line 1429 · 2026-05-20T05:24:01.236406+00:00_
 
 ### Assistant
 
-_source line 1430 · 2026-05-20T05:24:07.680342+00:00_
+_source line 1400 · 2026-05-20T05:24:07.680342+00:00_
 
 核心结论：Director 的解读方向正确但需要 confound 处理。关键风险是把 self-reference 的 matched-scale 优势错误归因为特征设计优势——审稿人会抓住 Binoculars observer 的 10× scale gap 质疑对比公平性。建议用 "practical deployment advantage" 框架而非 "inherent robustness" 框架。
 
@@ -1248,7 +93,7 @@ _source line 1430 · 2026-05-20T05:24:07.680342+00:00_
 
 ### User
 
-_source line 1431 · 2026-05-20T05:24:31.977461+00:00_
+_source line 1401 · 2026-05-20T05:24:31.977461+00:00_
 
 [系统通知 — worker_done:worker_fix_binoculars_14b_json_naming_20260520T052230]:
 Worker worker_fix_binoculars_14b_json_naming_20260520T052230 已完成（status=done），请审查 Agent 的处理结果。
@@ -1270,7 +115,7 @@ Worker worker_fix_binoculars_14b_json_naming_20260520T052230 已完成（status=
 
 ### Tool call
 
-_source line 1432 · 2026-05-20T05:24:40.517055+00:00_
+_source line 1402 · 2026-05-20T05:24:40.517055+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1306,7 +151,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1433 · 2026-05-20T05:24:42.275927+00:00_
+_source line 1403 · 2026-05-20T05:24:42.275927+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2943,\\n      \\\"4class_acc_std\\\": 0.0029,\\n      \\\"d1d3_bal_acc\\\": 0.3211,\\n      \\\"d1d3_bal_acc_std\\\": 0.021\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.2883,\\n      \\\"4class_acc_std\\\": 0.0038,\\n      \\\"d1d3_bal_acc\\\": 0.3844,\\n      \\\"d1d3_bal_acc_std\\\": 0.0051\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.3644,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.2595,\\n      \\\"d1d3_bal_acc_std\\\": 0.0078\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.2917,\\n      \\\"4class_acc_std\\\": 0.0063,\\n      \\\"d1d3_bal_acc\\\": 0.2779,\\n      \\\"d1d3_bal_acc_std\\\": 0.0087\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.4252,\\n      \\\"4class_acc_std\\\": 0.006,\\n      \\\"d1d3_bal_acc\\\": 0.3717,\\n      \\\"d1d3_bal_acc_std\\\": 0.0076\\n    }\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"observer\\\": \\\"/root/autodl-tmp/models/pythia-1.4b\\\",\\n    \\\"performer\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\",\\n    \\\"max_samples_per_depth\\\": \\\"all\\\",\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"multi_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"cell_times_sec\\\": {\\n      \\\"pythia_nucleus\\\": 608.4\\n    },\\n    \\\"total_time_sec\\\": 608.4\\n  },\\n  \\\"__1cell_average__\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2943,\\n      \\\"4class_acc_std\\\": 0.0029,\\n  
 …[truncated 952 chars]
@@ -1329,7 +174,7 @@ _source line 1433 · 2026-05-20T05:24:42.275927+00:00_
 
 ### Tool call
 
-_source line 1434 · 2026-05-20T05:24:50.460775+00:00_
+_source line 1404 · 2026-05-20T05:24:50.460775+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1365,7 +210,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1435 · 2026-05-20T05:24:54.339605+00:00_
+_source line 1405 · 2026-05-20T05:24:54.339605+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -1387,7 +232,7 @@ _source line 1435 · 2026-05-20T05:24:54.339605+00:00_
 
 ### Assistant
 
-_source line 1436 · 2026-05-20T05:24:57.488185+00:00_
+_source line 1406 · 2026-05-20T05:24:57.488185+00:00_
 
 修复确认：`__9cell_average__` → `__1cell_average__`，数值不变。命名问题已解决。
 
@@ -1414,7 +259,7 @@ _source line 1436 · 2026-05-20T05:24:57.488185+00:00_
 
 ### User
 
-_source line 1437 · 2026-05-20T05:31:19.047938+00:00_
+_source line 1407 · 2026-05-20T05:31:19.047938+00:00_
 
 [系统通知 — cron:on_complete:qwen25_14b_topk50]:
 实验 qwen25_14b_topk50 complete，请审查。
@@ -1436,7 +281,7 @@ _source line 1437 · 2026-05-20T05:31:19.047938+00:00_
 
 ### Tool call
 
-_source line 1438 · 2026-05-20T05:31:30.163740+00:00_
+_source line 1408 · 2026-05-20T05:31:30.163740+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1474,7 +319,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1439 · 2026-05-20T05:31:30.567688+00:00_
+_source line 1409 · 2026-05-20T05:31:30.567688+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1510,7 +355,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1440 · 2026-05-20T05:31:30.819346+00:00_
+_source line 1410 · 2026-05-20T05:31:30.819346+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen25_14b_topk50\": {\"status\": \"ANALYZING\", \"updated_at\": \"2026-05-20T05:31:14.035Z\"}, \"binoculars_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:26:33.886Z\", \"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"stat_only_19feat_4class_ablation\": 0.5183, \"stat_only_19feat_4class_aligned\": 0.505, \"merged_30feat_4class\": 0.5419, \"bino_only_11feat_d1d3_bal\": 0.3724, \"stat_only_19feat_d1d3_bal\": 0.4559, \"merged_30feat_d1d3_bal\": 0.477, \"merged_delta_vs_main_pipeline\": 3.7, \"note\": \"stat_only aligned to main pipeline (50.5%) per 方案A; ablation CV value was 51.83%\"}, \"conclusion\": \"success\"}, \"qwen25_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T04:23:37.012Z\", \"metrics\": {\"rf_4class_acc\": 0.505, \"rf_4class_ci\": [0.4976, 0.5124], \"lr_4class_acc\": 0.4865, \"lr_4class_ci\": [0.4801, 0.4938], \"rf_3class_no_d0_acc\": 0.5244, \"rf_3class_ci\": [0.5161, 0.5323], \"rf_d0v1_auc\": 0.6318, \"rf_d0v2_auc\": 0.9178, \"rf_d0v3_auc\": 0.9584, \"rf_d1v2_auc\": 0.7259, \"rf_d1v3_auc\": 0.8447, \"rf_d2v3_auc\": 0.6184, \"lr_d0v1_auc\": 0.5637, \"lr_d1v2_auc\": 0.7318, \"lr_d2v3_auc\": 0.615, \"top5_features\": [\"p90_ppl\", \"skew_ppl\", \"kurt_ppl\", \"p90_surprisal\", \"var_surprisal\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.9}, \"conclusion\": \"success\"}}, \"count\": 3, \"total\": 138, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6232}}"}
 
@@ -1532,7 +377,7 @@ _source line 1440 · 2026-05-20T05:31:30.819346+00:00_
 
 ### Tool result
 
-_source line 1441 · 2026-05-20T05:31:33.572104+00:00_
+_source line 1411 · 2026-05-20T05:31:33.572104+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Qwen2.5-14B FP16 Top-k k=50 ===\\n=== Started at Tue May 19 12:59:31 CST 2026 ===\\n=== CUDA_VISIBLE_DEVICES=1 ===\\n============================================================\\n============================================================\\nFeatures done: 20000 samples -> /root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/features_self_ref.jsonl\\n  20000 samples, 19 features, classes=[0, 1, 2, 3]\\n  RF 5-fold CV (4-class d0-d3)...\\n  RF acc=0.4793 CI=[0.4726, 0.4859]\\n  Top-5: ['kurt_ppl', 'skew_ppl', 'var_surprisal', 'type_token_ratio', 'hapax_ratio']\\n  LR 5-fold CV (4-class)...\\n  LR acc=0.4395 CI=[0.4323, 0.4465]\\n  RF 5-fold CV (3-class d1/d2/d3)...\\n  3-class acc=0.5164 CI=[0.5083, 0.5239]\\n============================================================\\nDONE in 24.5h\\nRF 4-class: 0.4793 [0.4726, 0.4859]\\nLR 4-class: 0.4395 [0.4323, 0.4465]\\nRF 3-class (no d0): 0.5164\\nTop features: ['kurt_ppl', 'skew_ppl', 'var_surprisal', 'type_token_ratio', 'hapax_ratio']\\nd1v2 AUC: 0.6868\\n============================================================\\n[Wed May 20 13:29:40 CST 2026] === Pipeline complete ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.77}}"}
 
@@ -1554,7 +399,7 @@ _source line 1441 · 2026-05-20T05:31:33.572104+00:00_
 
 ### Tool call
 
-_source line 1442 · 2026-05-20T05:31:40.392374+00:00_
+_source line 1412 · 2026-05-20T05:31:40.392374+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1590,7 +435,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1443 · 2026-05-20T05:31:41.547055+00:00_
+_source line 1413 · 2026-05-20T05:31:41.547055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n  \\\"precision\\\": \\\"FP16\\\",\\n  \\\"reference\\\": \\\"self (Qwen2.5-14B)\\\",\\n  \\\"samples_per_depth\\\": 5000,\\n  \\\"num_folds\\\": 5,\\n  \\\"rf_4class\\\": {\\n    \\\"acc\\\": 0.4793,\\n    \\\"ci_95\\\": [\\n      0.4726,\\n      0.4859\\n    ],\\n    \\\"pairwise_auc\\\": {\\n      \\\"d0v1\\\": 0.5607,\\n      \\\"d0v2\\\": 0.8481,\\n      \\\"d0v3\\\": 0.9253,\\n      \\\"d1v2\\\": 0.6868,\\n      \\\"d1v3\\\": 0.7935,\\n      \\\"d2v3\\\": 0.6788\\n    },\\n    \\\"top5_features\\\": [\\n      \\\"kurt_ppl\\\",\\n      \\\"skew_ppl\\\",\\n      \\\"var_surprisal\\\",\\n      \\\"type_token_ratio\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"feature_importance\\\": {\\n      \\\"kurt_ppl\\\": 0.08126313710663868,\\n      \\\"skew_ppl\\\": 0.07855744922924086,\\n      \\\"var_surprisal\\\": 0.07472004628865066,\\n      \\\"type_token_ratio\\\": 0.06978688465615689,\\n      \\\"hapax_ratio\\\": 0.06694267040307739,\\n      \\\"p90_surprisal\\\": 0.06613547942356905,\\n      \\\"trigram_entropy\\\": 0.0612750965207574,\\n      \\\"bigram_entropy\\\": 0.05839236712799142,\\n      \\\"median_surprisal\\\": 0.053489115242141706,\\n      \\\"median_ppl\\\": 0.05338333620272283\\n    }\\n  },\\n  \\\"lr_4class\\\": {\\n    \\\"acc\\\": 0.4395,\\n    \\\"ci_95\\\": [\\n      0.4323,\\n      0.4465\\n    ],\\n    \\\"pairwise_auc\\\": {\\n      \\\"d0v1\\\": 0.5066,\\n      \\\"d0v2\\\": 0.8415,\\n      \\\"d0v3\\\": 0.9055,\\n      \\\"d1v2\\\": 0.68,\\n      \\\"d1v3\\\": 0.7676,\\n      \\\"d2v3\\\": 0.6171\\n    }\\n  },\\n  \\\"rf_3class_no_d0\\\": {\\n    \\\"acc\\\": 0.5164,\\n    \\\"ci_95\\\": [\\n      0.5083,\\n      0.5239\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
 
@@ -1612,7 +457,7 @@ _source line 1443 · 2026-05-20T05:31:41.547055+00:00_
 
 ### Tool call
 
-_source line 1444 · 2026-05-20T05:31:41.647864+00:00_
+_source line 1414 · 2026-05-20T05:31:41.647864+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1648,7 +493,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1445 · 2026-05-20T05:31:43.054199+00:00_
+_source line 1415 · 2026-05-20T05:31:43.054199+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.38}}"}
 
@@ -1670,7 +515,7 @@ _source line 1445 · 2026-05-20T05:31:43.054199+00:00_
 
 ### Tool call
 
-_source line 1446 · 2026-05-20T05:32:28.392815+00:00_
+_source line 1416 · 2026-05-20T05:32:28.392815+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1706,7 +551,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1447 · 2026-05-20T05:32:32.636068+00:00_
+_source line 1417 · 2026-05-20T05:32:32.636068+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -1728,7 +573,7 @@ _source line 1447 · 2026-05-20T05:32:32.636068+00:00_
 
 ### Tool call
 
-_source line 1448 · 2026-05-20T05:32:42.547662+00:00_
+_source line 1418 · 2026-05-20T05:32:42.547662+00:00_
 
 called ScheduleWakeup
 
@@ -1766,7 +611,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 1449 · 2026-05-20T05:32:42.648955+00:00_
+_source line 1419 · 2026-05-20T05:32:42.648955+00:00_
 
 Next wakeup scheduled for 06:03:00 (in 1817s).
 
@@ -1788,7 +633,7 @@ Next wakeup scheduled for 06:03:00 (in 1817s).
 
 ### Assistant
 
-_source line 1450 · 2026-05-20T05:32:46.119071+00:00_
+_source line 1420 · 2026-05-20T05:32:46.119071+00:00_
 
 14B 三策略全部完成并审查通过。topk50 = 47.93%（最弱但仍 1.92× chance），三策略均值 50.83%。三个策略产生不同 AUC 模式，强化了论文的 strategy-specific degradation trajectory 论述。等待 Agent 更新 registry 和填充 rebuttal TODO。
 
@@ -1815,7 +660,7 @@ _source line 1450 · 2026-05-20T05:32:46.119071+00:00_
 
 ### User
 
-_source line 1451 · 2026-05-20T05:35:04.488200+00:00_
+_source line 1421 · 2026-05-20T05:35:04.488200+00:00_
 
 [系统通知 — worker_done:worker_analysis_qwen25_14b_topk50_20260520T053249]:
 Worker worker_analysis_qwen25_14b_topk50_20260520T053249 已完成（status=done），请审查 Agent 的处理结果。
@@ -1837,7 +682,7 @@ Worker worker_analysis_qwen25_14b_topk50_20260520T053249 已完成（status=done
 
 ### Tool call
 
-_source line 1452 · 2026-05-20T05:35:18.208741+00:00_
+_source line 1422 · 2026-05-20T05:35:18.208741+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1875,7 +720,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1453 · 2026-05-20T05:35:18.862743+00:00_
+_source line 1423 · 2026-05-20T05:35:18.862743+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen25_14b_topk50\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:34:38.500Z\", \"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}, \"conclusion\": \"success\"}, \"binoculars_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:26:33.886Z\", \"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"stat_only_19feat_4class_ablation\": 0.5183, \"stat_only_19feat_4class_aligned\": 0.505, \"merged_30feat_4class\": 0.5419, \"bino_only_11feat_d1d3_bal\": 0.3724, \"stat_only_19feat_d1d3_bal\": 0.4559, \"merged_30feat_d1d3_bal\": 0.477, \"merged_delta_vs_main_pipeline\": 3.7, \"note\": \"stat_only aligned to main pipeline (50.5%) per 方案A; ablation CV value was 51.83%\"}, \"conclusion\": \"success\"}, \"qwen25_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T04:23:37.012Z\", \"metrics\": {\"rf_4class_acc\": 0.505, \"rf_4class_ci\": [0.4976, 0.5124], \"lr_4class_acc\": 0.4865, \"lr_4class_ci\": [0.4801, 0.4938], \"rf_3class_no_d0_acc\": 0.5244, \"rf_3class_ci\": [0.5161, 0.5323], \"rf_d0v1_auc\": 0.6318, \"rf_d0v2_auc\": 0.9178, \"rf_d0v3_auc\": 0.9584, \"rf_d1v2_auc\": 0.7259, \"rf_d1v3_auc\": 0.8447, \"rf_d2v3_auc\": 0.6184, \"lr_d0v1_auc\": 0.5637, \"lr_d1v2_auc\": 0.7318, \"lr_d2v3_auc\": 0.615, \"top5_features\": [\"p90_ppl\", \"skew_ppl\", \"kurt_ppl\", \"p90_surprisal\", \"var_surprisal\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\"
 …[truncated 154 chars]
@@ -1898,7 +743,7 @@ _source line 1453 · 2026-05-20T05:35:18.862743+00:00_
 
 ### Tool call
 
-_source line 1454 · 2026-05-20T05:35:44.151086+00:00_
+_source line 1424 · 2026-05-20T05:35:44.151086+00:00_
 
 called Glob
 
@@ -1934,7 +779,7 @@ called Glob
 
 ### Tool result
 
-_source line 1455 · 2026-05-20T05:35:44.302909+00:00_
+_source line 1425 · 2026-05-20T05:35:44.302909+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_analysis.md
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_analysis_b7a903.md
@@ -1957,7 +802,7 @@ _source line 1455 · 2026-05-20T05:35:44.302909+00:00_
 
 ### Tool call
 
-_source line 1456 · 2026-05-20T05:35:48.574474+00:00_
+_source line 1426 · 2026-05-20T05:35:48.574474+00:00_
 
 called Read
 
@@ -1991,7 +836,7 @@ called Read
 
 ### Tool result
 
-_source line 1457 · 2026-05-20T05:35:48.625403+00:00_
+_source line 1427 · 2026-05-20T05:35:48.625403+00:00_
 
 1	# Experiment Analysis: qwen25_14b_topk50
 2	
@@ -2066,7 +911,7 @@ _source line 1457 · 2026-05-20T05:35:48.625403+00:00_
 
 ### Tool call
 
-_source line 1458 · 2026-05-20T05:36:13.787596+00:00_
+_source line 1428 · 2026-05-20T05:36:13.787596+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2102,7 +947,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1459 · 2026-05-20T05:36:17.753228+00:00_
+_source line 1429 · 2026-05-20T05:36:17.753228+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -2124,7 +969,7 @@ _source line 1459 · 2026-05-20T05:36:17.753228+00:00_
 
 ### Assistant
 
-_source line 1460 · 2026-05-20T05:36:21.670738+00:00_
+_source line 1430 · 2026-05-20T05:36:21.670738+00:00_
 
 14B 三策略全部审查通过。当前等待 Agent 完成 rebuttal/paper 更新后审查文本。
 
@@ -2151,7 +996,7 @@ _source line 1460 · 2026-05-20T05:36:21.670738+00:00_
 
 ### User
 
-_source line 1461 · 2026-05-20T05:45:07.328502+00:00_
+_source line 1431 · 2026-05-20T05:45:07.328502+00:00_
 
 [系统通知 — worker_done:worker_eval_binoculars_14b_topk50_recovery_20260520T054202]:
 Worker worker_eval_binoculars_14b_topk50_recovery_20260520T054202 已完成（status=done），请审查 Agent 的处理结果。
@@ -2173,7 +1018,7 @@ Worker worker_eval_binoculars_14b_topk50_recovery_20260520T054202 已完成（st
 
 ### Tool call
 
-_source line 1462 · 2026-05-20T05:45:16.388069+00:00_
+_source line 1432 · 2026-05-20T05:45:16.388069+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2209,7 +1054,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1463 · 2026-05-20T05:45:16.791399+00:00_
+_source line 1433 · 2026-05-20T05:45:16.791399+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2245,7 +1090,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1464 · 2026-05-20T05:45:18.147948+00:00_
+_source line 1434 · 2026-05-20T05:45:18.147948+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_topk50.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.74}}"}
 
@@ -2267,7 +1112,7 @@ _source line 1464 · 2026-05-20T05:45:18.147948+00:00_
 
 ### Tool result
 
-_source line 1465 · 2026-05-20T05:45:19.002560+00:00_
+_source line 1435 · 2026-05-20T05:45:19.002560+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/recursive_gen_depth_est/results/merged_ablation_14b_topk50.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.82}}"}
 
@@ -2289,7 +1134,7 @@ _source line 1465 · 2026-05-20T05:45:19.002560+00:00_
 
 ### Tool call
 
-_source line 1466 · 2026-05-20T05:45:29.865543+00:00_
+_source line 1436 · 2026-05-20T05:45:29.865543+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2325,7 +1170,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1467 · 2026-05-20T05:45:30.674118+00:00_
+_source line 1437 · 2026-05-20T05:45:30.674118+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
 
@@ -2347,7 +1192,7 @@ _source line 1467 · 2026-05-20T05:45:30.674118+00:00_
 
 ### Tool call
 
-_source line 1468 · 2026-05-20T05:45:30.825967+00:00_
+_source line 1438 · 2026-05-20T05:45:30.825967+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2385,7 +1230,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1469 · 2026-05-20T05:45:31.379309+00:00_
+_source line 1439 · 2026-05-20T05:45:31.379309+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen25_14b_topk50\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:34:38.500Z\", \"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}, \"conclusion\": \"success\"}, \"binoculars_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:26:33.886Z\", \"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"stat_only_19feat_4class_ablation\": 0.5183, \"stat_only_19feat_4class_aligned\": 0.505, \"merged_30feat_4class\": 0.5419, \"bino_only_11feat_d1d3_bal\": 0.3724, \"stat_only_19feat_d1d3_bal\": 0.4559, \"merged_30feat_d1d3_bal\": 0.477, \"merged_delta_vs_main_pipeline\": 3.7, \"note\": \"stat_only aligned to main pipeline (50.5%) per 方案A; ablation CV value was 51.83%\"}, \"conclusion\": \"success\"}, \"qwen25_14b_temp09\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T04:23:37.012Z\", \"metrics\": {\"rf_4class_acc\": 0.505, \"rf_4class_ci\": [0.4976, 0.5124], \"lr_4class_acc\": 0.4865, \"lr_4class_ci\": [0.4801, 0.4938], \"rf_3class_no_d0_acc\": 0.5244, \"rf_3class_ci\": [0.5161, 0.5323], \"rf_d0v1_auc\": 0.6318, \"rf_d0v2_auc\": 0.9178, \"rf_d0v3_auc\": 0.9584, \"rf_d1v2_auc\": 0.7259, \"rf_d1v3_auc\": 0.8447, \"rf_d2v3_auc\": 0.6184, \"lr_d0v1_auc\": 0.5637, \"lr_d1v2_auc\": 0.7318, \"lr_d2v3_auc\": 0.615, \"top5_features\": [\"p90_ppl\", \"skew_ppl\", \"kurt_ppl\", \"p90_surprisal\", \"var_surprisal\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\"
 …[truncated 1020 chars]
@@ -2408,7 +1253,7 @@ _source line 1469 · 2026-05-20T05:45:31.379309+00:00_
 
 ### Tool call
 
-_source line 1470 · 2026-05-20T05:45:41.894586+00:00_
+_source line 1440 · 2026-05-20T05:45:41.894586+00:00_
 
 called Glob
 
@@ -2444,7 +1289,7 @@ called Glob
 
 ### Tool result
 
-_source line 1471 · 2026-05-20T05:45:42.045621+00:00_
+_source line 1441 · 2026-05-20T05:45:42.045621+00:00_
 
 No files found
 
@@ -2466,7 +1311,7 @@ No files found
 
 ### Tool call
 
-_source line 1472 · 2026-05-20T05:45:42.297052+00:00_
+_source line 1442 · 2026-05-20T05:45:42.297052+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2502,7 +1347,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1473 · 2026-05-20T05:45:43.002605+00:00_
+_source line 1443 · 2026-05-20T05:45:43.002605+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
 
@@ -2524,7 +1369,7 @@ _source line 1473 · 2026-05-20T05:45:43.002605+00:00_
 
 ### Tool call
 
-_source line 1474 · 2026-05-20T05:45:51.297312+00:00_
+_source line 1444 · 2026-05-20T05:45:51.297312+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2560,7 +1405,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1475 · 2026-05-20T05:45:51.749817+00:00_
+_source line 1445 · 2026-05-20T05:45:51.749817+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2596,7 +1441,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1476 · 2026-05-20T05:45:52.060290+00:00_
+_source line 1446 · 2026-05-20T05:45:52.060290+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
 
@@ -2618,7 +1463,7 @@ _source line 1476 · 2026-05-20T05:45:52.060290+00:00_
 
 ### Tool result
 
-_source line 1477 · 2026-05-20T05:45:52.914032+00:00_
+_source line 1447 · 2026-05-20T05:45:52.914032+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x  2 root root   34 May 20 13:29 .\\ndrwxr-xr-x 80 root root 8192 May 20 13:37 ..\\n-rw-r--r--  1 root root 1329 May 20 13:29 summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
 
@@ -2640,7 +1485,7 @@ _source line 1477 · 2026-05-20T05:45:52.914032+00:00_
 
 ### Tool call
 
-_source line 1478 · 2026-05-20T05:46:08.693247+00:00_
+_source line 1448 · 2026-05-20T05:46:08.693247+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2676,7 +1521,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1479 · 2026-05-20T05:46:12.866094+00:00_
+_source line 1449 · 2026-05-20T05:46:12.866094+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -2698,7 +1543,7 @@ _source line 1479 · 2026-05-20T05:46:12.866094+00:00_
 
 ### Assistant
 
-_source line 1480 · 2026-05-20T05:46:15.965437+00:00_
+_source line 1450 · 2026-05-20T05:46:15.965437+00:00_
 
 Worker 完成但未产出任何 Binoculars topk50 结果文件——远程服务器和本地 artifacts 均无。
 
@@ -2725,7 +1570,7 @@ Worker 完成但未产出任何 Binoculars topk50 结果文件——远程服务
 
 ### User
 
-_source line 1481 · 2026-05-20T05:51:08.845854+00:00_
+_source line 1451 · 2026-05-20T05:51:08.845854+00:00_
 
 [系统通知 — worker_done:worker_eval_binoculars_14b_topk50_20260520T053504]:
 Worker worker_eval_binoculars_14b_topk50_20260520T053504 已完成（status=done），请审查 Agent 的处理结果。
@@ -2747,7 +1592,7 @@ Worker worker_eval_binoculars_14b_topk50_20260520T053504 已完成（status=done
 
 ### Tool call
 
-_source line 1482 · 2026-05-20T05:51:20.426151+00:00_
+_source line 1452 · 2026-05-20T05:51:20.426151+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2783,7 +1628,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1483 · 2026-05-20T05:51:20.727695+00:00_
+_source line 1453 · 2026-05-20T05:51:20.727695+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2819,7 +1664,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1484 · 2026-05-20T05:51:22.133648+00:00_
+_source line 1454 · 2026-05-20T05:51:22.133648+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_topk50/binoculars_14b_topk50.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
 
@@ -2841,7 +1686,7 @@ _source line 1484 · 2026-05-20T05:51:22.133648+00:00_
 
 ### Tool result
 
-_source line 1485 · 2026-05-20T05:51:23.038095+00:00_
+_source line 1455 · 2026-05-20T05:51:23.038095+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_topk50/binoculars_14b_topk50.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/merged_ablation_14b_topk50.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
 
@@ -2863,7 +1708,7 @@ _source line 1485 · 2026-05-20T05:51:23.038095+00:00_
 
 ### Tool call
 
-_source line 1486 · 2026-05-20T05:51:35.191336+00:00_
+_source line 1456 · 2026-05-20T05:51:35.191336+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2899,7 +1744,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1487 · 2026-05-20T05:51:35.996356+00:00_
+_source line 1457 · 2026-05-20T05:51:35.996356+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2613,\\n      \\\"4class_acc_std\\\": 0.0048,\\n      \\\"d1d3_bal_acc\\\": 0.3065,\\n      \\\"d1d3_bal_acc_std\\\": 0.0152\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.2447,\\n      \\\"4class_acc_std\\\": 0.0035,\\n      \\\"d1d3_bal_acc\\\": 0.3263,\\n      \\\"d1d3_bal_acc_std\\\": 0.0046\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.2843,\\n      \\\"4class_acc_std\\\": 0.0068,\\n      \\\"d1d3_bal_acc\\\": 0.2495,\\n      \\\"d1d3_bal_acc_std\\\": 0.008\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.2523,\\n      \\\"4class_acc_std\\\": 0.0048,\\n      \\\"d1d3_bal_acc\\\": 0.2521,\\n      \\\"d1d3_bal_acc_std\\\": 0.0095\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.3768,\\n      \\\"4class_acc_std\\\": 0.0071,\\n      \\\"d1d3_bal_acc\\\": 0.3386,\\n      \\\"d1d3_bal_acc_std\\\": 0.0075\\n    }\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"observer\\\": \\\"/root/autodl-tmp/models/pythia-1.4b\\\",\\n    \\\"performer\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\",\\n    \\\"max_samples_per_depth\\\": \\\"all\\\",\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"multi_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"cell_times_sec\\\": {\\n      \\\"pythia_nucleus\\\": 407.3\\n    },\\n    \\\"total_time_sec\\\": 407.3\\n  },\\n  \\\"__1cell_average__\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.2613,\\n      \\\"4class_acc_std\\\": 0.0048,\\n
 …[truncated 956 chars]
@@ -2922,7 +1767,7 @@ _source line 1487 · 2026-05-20T05:51:35.996356+00:00_
 
 ### Tool call
 
-_source line 1488 · 2026-05-20T05:51:36.499577+00:00_
+_source line 1458 · 2026-05-20T05:51:36.499577+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2958,7 +1803,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1489 · 2026-05-20T05:51:37.265405+00:00_
+_source line 1459 · 2026-05-20T05:51:37.265405+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"stat_only_19\\\": {\\n    \\\"4class_acc\\\": 0.4884,\\n    \\\"4class_acc_std\\\": 0.0082,\\n    \\\"d1d3_bal_acc\\\": 0.4345,\\n    \\\"d1d3_bal_acc_std\\\": 0.0091\\n  },\\n  \\\"bino_only_11\\\": {\\n    \\\"4class_acc\\\": 0.3774,\\n    \\\"4class_acc_std\\\": 0.009,\\n    \\\"d1d3_bal_acc\\\": 0.3402,\\n    \\\"d1d3_bal_acc_std\\\": 0.0097\\n  },\\n  \\\"merged_30\\\": {\\n    \\\"4class_acc\\\": 0.5149,\\n    \\\"4class_acc_std\\\": 0.0053,\\n    \\\"d1d3_bal_acc\\\": 0.4637,\\n    \\\"d1d3_bal_acc_std\\\": 0.0042\\n  },\\n  \\\"bino_single\\\": {\\n    \\\"4class_acc\\\": 0.2523,\\n    \\\"4class_acc_std\\\": 0.0048,\\n    \\\"d1d3_bal_acc\\\": 0.2521,\\n    \\\"d1d3_bal_acc_std\\\": 0.0095\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"stat_features\\\": [\\n      \\\"mean_ppl\\\",\\n      \\\"var_ppl\\\",\\n      \\\"median_ppl\\\",\\n      \\\"p75_ppl\\\",\\n      \\\"p90_ppl\\\",\\n      \\\"skew_ppl\\\",\\n      \\\"kurt_ppl\\\",\\n      \\\"mean_surprisal\\\",\\n      \\\"var_surprisal\\\",\\n      \\\"median_surprisal\\\",\\n      \\\"p75_surprisal\\\",\\n      \\\"p90_surprisal\\\",\\n      \\\"type_token_ratio\\\",\\n      \\\"hapax_ratio\\\",\\n      \\\"bigram_entropy\\\",\\n      \\\"trigram_entropy\\\",\\n      \\\"rep_2gram\\\",\\n      \\\"rep_3gram\\\",\\n      \\\"rep_4gram\\\"\\n    ],\\n    \\\"bino_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"stat_path\\\": \\\"data/qwen25_14b_topk50/features_self_ref.jsonl\\\",\\n    \\\"bino_npz_path\\\": \\\"results/binoculars_14b_topk50/pythia_nucleus_bino_features.npz\\\"\\n  }\\n}\", \"stderr\": 
 …[truncated 88 chars]
@@ -2981,7 +1826,7 @@ _source line 1489 · 2026-05-20T05:51:37.265405+00:00_
 
 ### Tool call
 
-_source line 1490 · 2026-05-20T05:52:13.375098+00:00_
+_source line 1460 · 2026-05-20T05:52:13.375098+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3017,7 +1862,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1491 · 2026-05-20T05:52:17.189212+00:00_
+_source line 1461 · 2026-05-20T05:52:17.189212+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -3039,7 +1884,7 @@ _source line 1491 · 2026-05-20T05:52:17.189212+00:00_
 
 ### Assistant
 
-_source line 1492 · 2026-05-20T05:52:22.663774+00:00_
+_source line 1462 · 2026-05-20T05:52:22.663774+00:00_
 
 14B Binoculars topk50 审查通过。两策略结果模式一致：cross-scale Binoculars 大幅衰减，merged 互补效应 ~+3.6-3.7pp 稳定但低于 1-1.5B 的 +4.2pp。14B 实验全线审查完毕。
 
@@ -3066,7 +1911,7 @@ _source line 1492 · 2026-05-20T05:52:22.663774+00:00_
 
 ### User
 
-_source line 1493 · 2026-05-20T05:52:23.202042+00:00_
+_source line 1463 · 2026-05-20T05:52:23.202042+00:00_
 
 [系统通知 — worker_done:worker_eval_binoculars_14b_topk50_check_20260520T054700]:
 Worker worker_eval_binoculars_14b_topk50_check_20260520T054700 已完成（status=done），请审查 Agent 的处理结果。
@@ -3088,7 +1933,7 @@ Worker worker_eval_binoculars_14b_topk50_check_20260520T054700 已完成（statu
 
 ### Tool call
 
-_source line 1494 · 2026-05-20T05:52:34.687047+00:00_
+_source line 1464 · 2026-05-20T05:52:34.687047+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3126,7 +1971,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1495 · 2026-05-20T05:52:35.189799+00:00_
+_source line 1465 · 2026-05-20T05:52:35.189799+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"binoculars_14b_topk50\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:50:42.415Z\", \"metrics\": {\"binoculars_baseline\": {\"RF_multi_11feat\": {\"4class_acc\": 0.3768, \"4class_acc_std\": 0.0071, \"d1d3_bal_acc\": 0.3386, \"d1d3_bal_acc_std\": 0.0075}, \"equal_width\": {\"4class_acc\": 0.2613, \"d1d3_bal_acc\": 0.3065}, \"coral\": {\"4class_acc\": 0.2447, \"d1d3_bal_acc\": 0.3263}, \"threshold\": {\"4class_acc\": 0.2843, \"d1d3_bal_acc\": 0.2495}, \"RF_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"merged_ablation\": {\"stat_only_19feat\": {\"4class_acc\": 0.4884, \"4class_acc_std\": 0.0082, \"d1d3_bal_acc\": 0.4345, \"d1d3_bal_acc_std\": 0.0091}, \"bino_only_11feat\": {\"4class_acc\": 0.3774, \"4class_acc_std\": 0.009, \"d1d3_bal_acc\": 0.3402, \"d1d3_bal_acc_std\": 0.0097}, \"merged_30feat\": {\"4class_acc\": 0.5149, \"4class_acc_std\": 0.0053, \"d1d3_bal_acc\": 0.4637, \"d1d3_bal_acc_std\": 0.0042}, \"bino_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"baseline_alignment_plan_A\": {\"main_pipeline_stat_only\": 0.4793, \"merged_30feat\": 0.5149, \"delta\": 0.0356, \"note\": \"stat_only aligned to main pipeline (47.93%) per 方案A\"}}, \"conclusion\": \"success\"}, \"qwen25_14b_topk50\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T05:34:38.500Z\", \"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}, \"conclusion\": \"success\"}, \"binoculars_14b_temp09\": {\"status\": \"D
 …[truncated 1817 chars]
@@ -3149,7 +1994,7 @@ _source line 1495 · 2026-05-20T05:52:35.189799+00:00_
 
 ### Tool call
 
-_source line 1496 · 2026-05-20T05:52:45.456786+00:00_
+_source line 1466 · 2026-05-20T05:52:45.456786+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3185,7 +2030,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1497 · 2026-05-20T05:52:49.326175+00:00_
+_source line 1467 · 2026-05-20T05:52:49.326175+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -3207,7 +2052,7 @@ _source line 1497 · 2026-05-20T05:52:49.326175+00:00_
 
 ### Assistant
 
-_source line 1498 · 2026-05-20T05:52:52.728596+00:00_
+_source line 1468 · 2026-05-20T05:52:52.728596+00:00_
 
 Registry 新增 `binoculars_14b_topk50` (DONE, conclusion=success)。Metrics 与我已验证的 JSON 文件完全一致，方案A alignment 正确使用 main pipeline 47.93% 作为 baseline（delta=+3.56pp）。
 
@@ -3234,7 +2079,7 @@ Registry 新增 `binoculars_14b_topk50` (DONE, conclusion=success)。Metrics 与
 
 ### User
 
-_source line 1499 · 2026-05-20T06:56:37.030304+00:00_
+_source line 1469 · 2026-05-20T06:56:37.030304+00:00_
 
 [System 触发审查]:
 Round 14 审稿报告处理 — 请独立审视我的逐条 Action Matrix，判断方案可行性、有无遗漏、技术细节是否合理。
@@ -3345,7 +2190,7 @@ C4（压页）vs W6（加深 Discussion）vs M9（加概览图）——三者不
 
 ### Tool call
 
-_source line 1500 · 2026-05-20T06:56:57.523031+00:00_
+_source line 1470 · 2026-05-20T06:56:57.523031+00:00_
 
 called Agent
 
@@ -3383,7 +2228,7 @@ called Agent
 
 ### Tool call
 
-_source line 1501 · 2026-05-20T06:57:03.653215+00:00_
+_source line 1471 · 2026-05-20T06:57:03.653215+00:00_
 
 called Bash
 
@@ -3417,7 +2262,7 @@ called Bash
 
 ### Tool result
 
-_source line 1502 · 2026-05-20T06:57:03.653692+00:00_
+_source line 1472 · 2026-05-20T06:57:03.653692+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex
@@ -3456,7 +2301,7 @@ _source line 1502 · 2026-05-20T06:57:03.653692+00:00_
 
 ### Tool call
 
-_source line 1503 · 2026-05-20T06:57:03.654005+00:00_
+_source line 1473 · 2026-05-20T06:57:03.654005+00:00_
 
 called Grep
 
@@ -3496,7 +2341,7 @@ called Grep
 
 ### Tool result
 
-_source line 1504 · 2026-05-20T06:57:03.654396+00:00_
+_source line 1474 · 2026-05-20T06:57:03.654396+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/classifier_comparison/classifier_comparison_table.tex:36:Two-Stage Pipeline: strategy identification followed by strategy-specific RF classifiers (\S\ref{sec:exp:transfer}).
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260517T075852/best/paper.tex:36:[Omitted long matching line]
@@ -3526,7 +2371,7 @@ _source line 1504 · 2026-05-20T06:57:03.654396+00:00_
 
 ### Tool call
 
-_source line 1505 · 2026-05-20T06:57:03.654647+00:00_
+_source line 1475 · 2026-05-20T06:57:03.654647+00:00_
 
 called Grep
 
@@ -3566,7 +2411,7 @@ called Grep
 
 ### Tool result
 
-_source line 1506 · 2026-05-20T06:57:03.654854+00:00_
+_source line 1476 · 2026-05-20T06:57:03.654854+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/worst/paper.tex:267:\caption{6-class depth estimation accuracy across methods. DCOL ranks first but does not significantly outperform CORAL ($p=0.12$, McNemar's test). The 2--3~pp spread among top methods (DCOL, feature RF, CORAL, CE) is consistent with a signal bottleneck rather than a methodology bottleneck.}
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:10:RF, XGBoost, and LightGBM on the same 19 features converge within 0.4\,pp per cell (a feature-determined ceiling); on Pythia nucleus, CORAL \cite{coral2020} (78.1\%) and DivEye \cite{diveye2026} (78.2\%) match RF within 0.6\,pp ($p>0.05$).
@@ -3589,7 +2434,7 @@ _source line 1506 · 2026-05-20T06:57:03.654854+00:00_
 
 ### Tool call
 
-_source line 1507 · 2026-05-20T06:57:03.656207+00:00_
+_source line 1477 · 2026-05-20T06:57:03.656207+00:00_
 
 called Grep
 
@@ -3627,7 +2472,7 @@ called Grep
 
 ### Tool result
 
-_source line 1508 · 2026-05-20T06:57:03.656494+00:00_
+_source line 1478 · 2026-05-20T06:57:03.656494+00:00_
 
 &lt;persisted-output>
 Output too large (57KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01LnEo6FbCiWPuydHFCdmjqA.txt
@@ -3661,7 +2506,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1509 · 2026-05-20T06:57:03.656807+00:00_
+_source line 1479 · 2026-05-20T06:57:03.656807+00:00_
 
 called Grep
 
@@ -3699,7 +2544,7 @@ called Grep
 
 ### Tool call
 
-_source line 1510 · 2026-05-20T06:57:03.775054+00:00_
+_source line 1480 · 2026-05-20T06:57:03.775054+00:00_
 
 called Agent
 
@@ -3737,7 +2582,7 @@ called Agent
 
 ### Tool result
 
-_source line 1511 · 2026-05-20T06:57:03.931534+00:00_
+_source line 1481 · 2026-05-20T06:57:03.931534+00:00_
 
 &lt;persisted-output>
 Output too large (56.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01DKmDBxCCzzf3iLEoU2gXzD.txt
@@ -3772,7 +2617,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1512 · 2026-05-20T06:57:03.982224+00:00_
+_source line 1482 · 2026-05-20T06:57:03.982224+00:00_
 
 called Grep
 
@@ -3812,7 +2657,7 @@ called Grep
 
 ### Tool result
 
-_source line 1513 · 2026-05-20T06:57:03.982659+00:00_
+_source line 1483 · 2026-05-20T06:57:03.982659+00:00_
 
 &lt;persisted-output>
 Output too large (54.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01ASd1EYLpWDRwzc3YSQ7D8F.txt
@@ -3848,7 +2693,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1514 · 2026-05-20T06:57:05.598638+00:00_
+_source line 1484 · 2026-05-20T06:57:05.598638+00:00_
 
 called Bash
 
@@ -3882,7 +2727,7 @@ called Bash
 
 ### Tool result
 
-_source line 1515 · 2026-05-20T06:57:05.649428+00:00_
+_source line 1485 · 2026-05-20T06:57:05.649428+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex
@@ -3916,7 +2761,7 @@ _source line 1515 · 2026-05-20T06:57:05.649428+00:00_
 
 ### Tool call
 
-_source line 1516 · 2026-05-20T06:57:06.101637+00:00_
+_source line 1486 · 2026-05-20T06:57:06.101637+00:00_
 
 called Read
 
@@ -3952,7 +2797,7 @@ called Read
 
 ### Tool result
 
-_source line 1517 · 2026-05-20T06:57:06.504092+00:00_
+_source line 1487 · 2026-05-20T06:57:06.504092+00:00_
 
 1	dreams:
 2	  dream_20260514T140607:
@@ -4025,7 +2870,7 @@ _source line 1517 · 2026-05-20T06:57:06.504092+00:00_
 
 ### Tool call
 
-_source line 1518 · 2026-05-20T06:57:06.705257+00:00_
+_source line 1488 · 2026-05-20T06:57:06.705257+00:00_
 
 called Read
 
@@ -4061,7 +2906,7 @@ called Read
 
 ### Tool result
 
-_source line 1519 · 2026-05-20T06:57:06.906597+00:00_
+_source line 1489 · 2026-05-20T06:57:06.906597+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -4104,7 +2949,7 @@ _source line 1519 · 2026-05-20T06:57:06.906597+00:00_
 
 ### Tool call
 
-_source line 1520 · 2026-05-20T06:57:07.057722+00:00_
+_source line 1490 · 2026-05-20T06:57:07.057722+00:00_
 
 called Grep
 
@@ -4142,7 +2987,7 @@ called Grep
 
 ### Tool result
 
-_source line 1521 · 2026-05-20T06:57:07.209476+00:00_
+_source line 1491 · 2026-05-20T06:57:07.209476+00:00_
 
 &lt;persisted-output>
 Output too large (53.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_0191Qe7XbZbMNph5kvCEVjGK.txt
@@ -4178,7 +3023,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1522 · 2026-05-20T06:57:07.561248+00:00_
+_source line 1492 · 2026-05-20T06:57:07.561248+00:00_
 
 called Bash
 
@@ -4212,7 +3057,7 @@ called Bash
 
 ### Tool result
 
-_source line 1523 · 2026-05-20T06:57:07.612227+00:00_
+_source line 1493 · 2026-05-20T06:57:07.612227+00:00_
 
 Pages:           25
 
@@ -4234,7 +3079,7 @@ Pages:           25
 
 ### Tool call
 
-_source line 1524 · 2026-05-20T06:57:09.171098+00:00_
+_source line 1494 · 2026-05-20T06:57:09.171098+00:00_
 
 called Bash
 
@@ -4268,7 +3113,7 @@ called Bash
 
 ### Tool result
 
-_source line 1525 · 2026-05-20T06:57:09.272062+00:00_
+_source line 1495 · 2026-05-20T06:57:09.272062+00:00_
 
 total 1160
 drwxr-xr-x 2 ubuntu ubuntu   4096 May 15 10:17 .
@@ -4305,7 +3150,7 @@ drwxr-xr-x 3 ubuntu ubuntu   4096 May 15 06:42 ..
 
 ### Tool call
 
-_source line 1526 · 2026-05-20T06:57:09.473296+00:00_
+_source line 1496 · 2026-05-20T06:57:09.473296+00:00_
 
 called Read
 
@@ -4343,7 +3188,7 @@ called Read
 
 ### Tool result
 
-_source line 1527 · 2026-05-20T06:57:09.674600+00:00_
+_source line 1497 · 2026-05-20T06:57:09.674600+00:00_
 
 850	\midrule
 851	AUC d0v1 & 0.916 \\
@@ -4393,7 +3238,7 @@ _source line 1527 · 2026-05-20T06:57:09.674600+00:00_
 
 ### Tool call
 
-_source line 1528 · 2026-05-20T06:57:10.126830+00:00_
+_source line 1498 · 2026-05-20T06:57:10.126830+00:00_
 
 called Grep
 
@@ -4433,7 +3278,7 @@ called Grep
 
 ### Tool result
 
-_source line 1529 · 2026-05-20T06:57:10.328059+00:00_
+_source line 1499 · 2026-05-20T06:57:10.328059+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.txt-579-           0.8                                                         T=0.80    sal risk: temperature depth-N features approxi-          541
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.txt-580-                                                                       T=0.75    mate nucleus/top-k depth-(N +1) features, caus-          542
@@ -4465,7 +3310,7 @@ _source line 1529 · 2026-05-20T06:57:10.328059+00:00_
 
 ### Tool call
 
-_source line 1530 · 2026-05-20T06:57:10.530092+00:00_
+_source line 1500 · 2026-05-20T06:57:10.530092+00:00_
 
 called Grep
 
@@ -4505,7 +3350,7 @@ called Grep
 
 ### Tool result
 
-_source line 1531 · 2026-05-20T06:57:10.833847+00:00_
+_source line 1501 · 2026-05-20T06:57:10.833847+00:00_
 
 &lt;persisted-output>
 Output too large (47.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01GzUu19gjYuk252L5k2Vm5c.txt
@@ -4540,7 +3385,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1532 · 2026-05-20T06:57:11.436845+00:00_
+_source line 1502 · 2026-05-20T06:57:11.436845+00:00_
 
 called Grep
 
@@ -4580,7 +3425,7 @@ called Grep
 
 ### Tool result
 
-_source line 1533 · 2026-05-20T06:57:11.638165+00:00_
+_source line 1503 · 2026-05-20T06:57:11.638165+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.txt-727-642   in Appendix A.13). Cross-model chains (84.75%),             tains a strategy-invariant floor of 67.6%, suggesting   690
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.txt-728-
@@ -4615,7 +3460,7 @@ _source line 1533 · 2026-05-20T06:57:11.638165+00:00_
 
 ### Tool call
 
-_source line 1534 · 2026-05-20T06:57:12.090535+00:00_
+_source line 1504 · 2026-05-20T06:57:12.090535+00:00_
 
 called Grep
 
@@ -4655,7 +3500,7 @@ called Grep
 
 ### Tool result
 
-_source line 1535 · 2026-05-20T06:57:12.291809+00:00_
+_source line 1505 · 2026-05-20T06:57:12.291809+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-27-\BOOKMARK [2][-]{subsection.B.5}{\376\377\000D\000C\000O\000L\000\040\000I\000t\000e\000r\000a\000t\000i\000o\000n\000\040\000D\000e\000t\000a\000i\000l\000s}{appendix.B}% 27
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-28-\BOOKMARK [2][-]{subsection.B.6}{\376\377\000Z\000e\000r\000o\000-\000S\000h\000o\000t\000\040\000L\000L\000M\000\040\000P\000r\000o\000m\000p\000t\000\040\000T\000e\000m\000p\000l\000a\000t\000e}{appendix.B}% 28
@@ -4686,7 +3531,7 @@ _source line 1535 · 2026-05-20T06:57:12.291809+00:00_
 
 ### Tool call
 
-_source line 1536 · 2026-05-20T06:57:12.543343+00:00_
+_source line 1506 · 2026-05-20T06:57:12.543343+00:00_
 
 called Grep
 
@@ -4726,7 +3571,7 @@ called Grep
 
 ### Tool result
 
-_source line 1537 · 2026-05-20T06:57:12.744670+00:00_
+_source line 1507 · 2026-05-20T06:57:12.744670+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-31-\BOOKMARK [2][-]{subsection.B.9}{\376\377\000E\000n\000d\000-\000t\000o\000-\000E\000n\000d\000\040\000L\000e\000a\000r\000n\000i\000n\000g}{appendix.B}% 31
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-32-\BOOKMARK [2][-]{subsection.B.10}{\376\377\000D\000o\000m\000a\000i\000n\000\040\000B\000i\000a\000s\000\040\000A\000n\000a\000l\000y\000s\000i\000s}{appendix.B}% 32
@@ -4758,7 +3603,7 @@ _source line 1537 · 2026-05-20T06:57:12.744670+00:00_
 
 ### Tool call
 
-_source line 1538 · 2026-05-20T06:57:12.895903+00:00_
+_source line 1508 · 2026-05-20T06:57:12.895903+00:00_
 
 called Grep
 
@@ -4798,7 +3643,7 @@ called Grep
 
 ### Tool result
 
-_source line 1539 · 2026-05-20T06:57:12.896391+00:00_
+_source line 1509 · 2026-05-20T06:57:12.896391+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-42-\BOOKMARK [2][-]{subsection.B.20}{\376\377\000L\000e\000a\000r\000n\000e\000d\000\040\000E\000s\000t\000i\000m\000a\000t\000o\000r\000\040\000C\000o\000m\000p\000a\000r\000i\000s\000o\000n}{appendix.B}% 42
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.out-43-\BOOKMARK [2][-]{subsection.B.21}{\376\377\000I\000n\000s\000t\000r\000u\000c\000t\000i\000o\000n\000-\000T\000u\000n\000e\000d\000\040\000M\000o\000d\000e\000l\000\040\000a\000t\000\040\0001\000.\0005\000B\000\040\000S\000c\000a\000l\000e}{appendix.B}% 43
@@ -4829,7 +3674,7 @@ _source line 1539 · 2026-05-20T06:57:12.896391+00:00_
 
 ### Tool call
 
-_source line 1540 · 2026-05-20T06:57:13.248326+00:00_
+_source line 1510 · 2026-05-20T06:57:13.248326+00:00_
 
 called Grep
 
@@ -4869,7 +3714,7 @@ called Grep
 
 ### Tool result
 
-_source line 1541 · 2026-05-20T06:57:13.550835+00:00_
+_source line 1511 · 2026-05-20T06:57:13.550835+00:00_
 
 &lt;persisted-output>
 Output too large (43.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01Jfp5pQLGsCw3VGKW1JRAUY.txt
@@ -4904,7 +3749,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1542 · 2026-05-20T06:57:13.601729+00:00_
+_source line 1512 · 2026-05-20T06:57:13.601729+00:00_
 
 called Grep
 
@@ -4944,7 +3789,7 @@ called Grep
 
 ### Tool result
 
-_source line 1543 · 2026-05-20T06:57:13.853406+00:00_
+_source line 1513 · 2026-05-20T06:57:13.853406+00:00_
 
 &lt;persisted-output>
 Output too large (39.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-reviewer-2647e3b4/c3d895c8-8417-4ec9-8d44-c18f604a54ad/tool-results/toolu_01ApStPjiEpM8ufab24YNCjd.txt
@@ -4984,7 +3829,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1544 · 2026-05-20T06:57:15.663814+00:00_
+_source line 1514 · 2026-05-20T06:57:15.663814+00:00_
 
 called Grep
 
@@ -5024,7 +3869,7 @@ called Grep
 
 ### Tool result
 
-_source line 1545 · 2026-05-20T06:57:15.714625+00:00_
+_source line 1515 · 2026-05-20T06:57:15.714625+00:00_
 
 106-Cross-strategy transfer yields 59.1\% four-class (d1--d3: 45.9\%, chance = 33\%), 7\,pp below cross-model transfer.
 107-This gap is itself an empirical finding: different decoding strategies induce structurally distinct degradation trajectories in feature space, not merely noisier versions of the same trajectory.
@@ -5052,7 +3897,7 @@ _source line 1545 · 2026-05-20T06:57:15.714625+00:00_
 
 ### Tool call
 
-_source line 1546 · 2026-05-20T06:57:16.017093+00:00_
+_source line 1516 · 2026-05-20T06:57:16.017093+00:00_
 
 called Bash
 
@@ -5086,7 +3931,7 @@ called Bash
 
 ### Tool result
 
-_source line 1547 · 2026-05-20T06:57:16.419842+00:00_
+_source line 1517 · 2026-05-20T06:57:16.419842+00:00_
 
       - p90_ppl
       - p90_ppl (0.208)
@@ -5127,7 +3972,7 @@ _source line 1547 · 2026-05-20T06:57:16.419842+00:00_
 
 ### Tool call
 
-_source line 1548 · 2026-05-20T06:57:16.420422+00:00_
+_source line 1518 · 2026-05-20T06:57:16.420422+00:00_
 
 called Bash
 
@@ -5161,7 +4006,7 @@ called Bash
 
 ### Tool result
 
-_source line 1549 · 2026-05-20T06:57:16.772154+00:00_
+_source line 1519 · 2026-05-20T06:57:16.772154+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/task_context/history/agent/loop_7_1778871305.md:- **项目核心结论**：19 维手工特征 RF 在 3×3 矩阵上 69.6%-85.4%，远超 end-to-end transformer（DeBERTa 58.3%, RoBERTa 59.5%）和 zero-shot LLM（36.2%）。关键发现：transformer 和 RF 关注几乎相反的特征（Spearman ρ≈-0.47），perplexity 分布统计量（p90_ppl, var_surprisal）是 RF 的核心信号但 transformer 编码不了
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/task_context/history/agent/loop_10_1778890665.md:- N2 Dual Backbone 已完成：DeBERTa 58.3% / RoBERTa 59.5%，远低于 RF 78.2%，feature overlap Spearman ρ=-0.484
@@ -5191,7 +4036,7 @@ _source line 1549 · 2026-05-20T06:57:16.772154+00:00_
 
 ### Tool call
 
-_source line 1550 · 2026-05-20T06:57:16.822964+00:00_
+_source line 1520 · 2026-05-20T06:57:16.822964+00:00_
 
 called Bash
 
@@ -5225,7 +4070,7 @@ called Bash
 
 ### Tool result
 
-_source line 1551 · 2026-05-20T06:57:16.873712+00:00_
+_source line 1521 · 2026-05-20T06:57:16.873712+00:00_
 
 24:本文将递归生成深度估计形式化为序数分类任务，构建了涵盖 3 个模型家族（Pythia-1.4B, OLMo-1B, GPT-2 XL）× 3 种解码策略 × 4 个深度的 180K 样本 benchmark。基于 19 个统计特征的 Random Forest 分类器在 in-distribution 设定下达到 59–82% 四类准确率（d1-d3 balanced: 58.9–81.5%），并提出 Effective Discriminable Depth (EDD) 指标量化相邻深度的可判别性。论文系统分析了跨模型（66.4%, d1-d3: 55.4%）、跨策略（59.1%, d1-d3: 45.9%）和跨规模（7-14B）的泛化性能，发现 perplexity tail 特征族（p90_ppl, kurtosis_ppl）和 surprisal variance 在所有 9 个实验单元中占主导地位。
 101:核心方法是标准 RF（200 trees, 5-fold CV）+ 19 个标准统计特征。论文诚实定位为 "task formalization and systematic empirical characterization"。R1 指出 passage-level distributional aggregation（p90_ppl, var_surprisal, kurtosis_ppl）区别于 token-level 方法（GLTR, DetectGPT），是非 trivial 的特征工程选择。更关键的是，RF 大幅优于 neural 方法（Appendix B.7: PLM [CLS] representations yield negative R² for var_surprisal and p90_ppl）——"perplexity tail statistics are not linearly accessible in pretrained representation space" 可成为有价值的 insight，但未在主文充分展开。
@@ -5250,7 +4095,7 @@ _source line 1551 · 2026-05-20T06:57:16.873712+00:00_
 
 ### Tool call
 
-_source line 1552 · 2026-05-20T06:57:17.878512+00:00_
+_source line 1522 · 2026-05-20T06:57:17.878512+00:00_
 
 called Grep
 
@@ -5292,7 +4137,7 @@ called Grep
 
 ### Tool result
 
-_source line 1553 · 2026-05-20T06:57:17.929214+00:00_
+_source line 1523 · 2026-05-20T06:57:17.929214+00:00_
 
 352-However, the primary comparison (RF-filtered vs.\ unfiltered, $p > 0.4$) is non-significant; the significant RF-vs-random contrasts ($p < 0.02$) involve multiple pairwise comparisons that were not corrected for multiplicity.
 353-
@@ -5324,7 +4169,7 @@ _source line 1553 · 2026-05-20T06:57:17.929214+00:00_
 
 ### Tool call
 
-_source line 1554 · 2026-05-20T06:57:19.337085+00:00_
+_source line 1524 · 2026-05-20T06:57:19.337085+00:00_
 
 called Read
 
@@ -5360,7 +4205,7 @@ called Read
 
 ### Tool call
 
-_source line 1555 · 2026-05-20T06:57:19.791147+00:00_
+_source line 1525 · 2026-05-20T06:57:19.791147+00:00_
 
 called Grep
 
@@ -5402,7 +4247,7 @@ called Grep
 
 ### Tool result
 
-_source line 1556 · 2026-05-20T06:57:19.791796+00:00_
+_source line 1526 · 2026-05-20T06:57:19.791796+00:00_
 
 1	---
 2	round: 11
@@ -5467,7 +4312,7 @@ _source line 1556 · 2026-05-20T06:57:19.791796+00:00_
 
 ### Tool call
 
-_source line 1557 · 2026-05-20T06:57:19.793164+00:00_
+_source line 1527 · 2026-05-20T06:57:19.793164+00:00_
 
 called Bash
 
@@ -5501,7 +4346,7 @@ called Bash
 
 ### Tool result
 
-_source line 1558 · 2026-05-20T06:57:19.893805+00:00_
+_source line 1528 · 2026-05-20T06:57:19.893805+00:00_
 
 642-
 643-Two caveats apply: (1) self-reference evaluation may inflate or deflate accuracy relative to cross-reference evaluation (cf.\ \S\ref{app:ref_ablation}); (2) a single instruction-tuned model does not establish the generality of the feature shift across architectures or instruction-tuning recipes.
@@ -5529,7 +4374,7 @@ _source line 1558 · 2026-05-20T06:57:19.893805+00:00_
 
 ### Tool result
 
-_source line 1559 · 2026-05-20T06:57:19.994664+00:00_
+_source line 1529 · 2026-05-20T06:57:19.994664+00:00_
 
 19:Binoculars \cite{binoculars2024}, calibrated with an 11-feature RF on per-token cross-perplexity scores, matches our pipeline within 0.3\,pp (78.1\% vs.\ 78.4\%, $p{>}0.05$); 6 of 11 Binoculars features overlap with 6 of our 19 (both capture mean-level perplexity displacement), and merging all 30 features yields 82.6\% (+4.2\,pp; Appendix~\ref{app:feature_ablation_bino}).
 27:\caption{Ordinal depth estimation: method comparison. RF mean across 9 atlas cells (5-fold CV, 200 trees); DeBERTa-v3 range across 3 tested cells; DetectGPT: 9/9 cells; Binoculars: observer=Pythia-1.4B, performer=Pythia-410M, 9/9 cells. Chance = 25\% (4-class) / 33.3\% (d1--d3).}
@@ -5554,7 +4399,7 @@ _source line 1559 · 2026-05-20T06:57:19.994664+00:00_
 
 ### Tool call
 
-_source line 1560 · 2026-05-20T06:57:20.045338+00:00_
+_source line 1530 · 2026-05-20T06:57:20.045338+00:00_
 
 called Read
 
@@ -5592,7 +4437,7 @@ called Read
 
 ### Tool result
 
-_source line 1561 · 2026-05-20T06:57:20.095964+00:00_
+_source line 1531 · 2026-05-20T06:57:20.095964+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -5635,7 +4480,7 @@ _source line 1561 · 2026-05-20T06:57:20.095964+00:00_
 
 ### Tool call
 
-_source line 1562 · 2026-05-20T06:57:22.055779+00:00_
+_source line 1532 · 2026-05-20T06:57:22.055779+00:00_
 
 called Read
 
@@ -5673,7 +4518,7 @@ called Read
 
 ### Tool result
 
-_source line 1563 · 2026-05-20T06:57:22.257043+00:00_
+_source line 1533 · 2026-05-20T06:57:22.257043+00:00_
 
 354	\subsection{Reference Model Ablation}
 355	\label{app:ref_ablation}
@@ -5724,7 +4569,7 @@ _source line 1563 · 2026-05-20T06:57:22.257043+00:00_
 
 ### Tool call
 
-_source line 1564 · 2026-05-20T06:57:22.307598+00:00_
+_source line 1534 · 2026-05-20T06:57:22.307598+00:00_
 
 called Read
 
@@ -5762,7 +4607,7 @@ called Read
 
 ### Tool result
 
-_source line 1565 · 2026-05-20T06:57:22.358169+00:00_
+_source line 1535 · 2026-05-20T06:57:22.358169+00:00_
 
 645	\subsection{Downstream Fine-Tuning Probe}
 646	\label{app:downstream}
@@ -5803,7 +4648,7 @@ _source line 1565 · 2026-05-20T06:57:22.358169+00:00_
 
 ### Tool call
 
-_source line 1566 · 2026-05-20T06:57:22.911063+00:00_
+_source line 1536 · 2026-05-20T06:57:22.911063+00:00_
 
 called Bash
 
@@ -5837,7 +4682,7 @@ called Bash
 
 ### Tool result
 
-_source line 1567 · 2026-05-20T06:57:23.313277+00:00_
+_source line 1537 · 2026-05-20T06:57:23.313277+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex:569:The 5-class RF exploits non-adjacent depth contrasts (particularly d0-vs-d4 and d2-vs-d4) to achieve 80.5\% accuracy, the highest among all three families, while the dedicated binary d3-vs-d4 classifier (AUC 0.765) is restricted to adjacent-depth features.
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/task_context/history/reviewer/loop_11.md:12:- ensemble_reference_001 的 d1v2_auc=0.9989 是错误指标（实际计算 d0-vs-rest），论文不得引用
@@ -5865,7 +4710,7 @@ _source line 1567 · 2026-05-20T06:57:23.313277+00:00_
 
 ### Tool call
 
-_source line 1568 · 2026-05-20T06:57:23.313773+00:00_
+_source line 1538 · 2026-05-20T06:57:23.313773+00:00_
 
 called Bash
 
@@ -5899,7 +4744,7 @@ called Bash
 
 ### Tool result
 
-_source line 1569 · 2026-05-20T06:57:23.715836+00:00_
+_source line 1539 · 2026-05-20T06:57:23.715836+00:00_
 
         d0v1: 0.9927
         d0v2: 0.9983
@@ -5950,7 +4795,7 @@ _source line 1569 · 2026-05-20T06:57:23.715836+00:00_
 
 ### Tool call
 
-_source line 1570 · 2026-05-20T06:57:23.779821+00:00_
+_source line 1540 · 2026-05-20T06:57:23.779821+00:00_
 
 called Bash
 
@@ -5984,7 +4829,7 @@ called Bash
 
 ### Tool result
 
-_source line 1571 · 2026-05-20T06:57:23.830495+00:00_
+_source line 1541 · 2026-05-20T06:57:23.830495+00:00_
 
 145:**M3. Perturbation-based baselines 适配不充分** [R1-W6, R2 AGREE]
 146:DetectGPT（28.8%）和 Min-K% Prob（33.2%）从 binary 改造为 ordinal，低性能可能反映适配方法局限。Min-K% augmented feature set +0.48pp 且排名 #3 说明确实携带互补信号。建议 Table 4 注明 "adapted from binary detection"，增加 binary d0-vs-d1+ sanity check。
@@ -6007,7 +4852,7 @@ _source line 1571 · 2026-05-20T06:57:23.830495+00:00_
 
 ### Tool call
 
-_source line 1572 · 2026-05-20T06:57:26.758549+00:00_
+_source line 1542 · 2026-05-20T06:57:26.758549+00:00_
 
 called Bash
 
@@ -6041,7 +4886,7 @@ called Bash
 
 ### Tool result
 
-_source line 1573 · 2026-05-20T06:57:26.809240+00:00_
+_source line 1543 · 2026-05-20T06:57:26.809240+00:00_
 
 (Bash completed with no output)
 
@@ -6063,7 +4908,7 @@ _source line 1573 · 2026-05-20T06:57:26.809240+00:00_
 
 ### Tool call
 
-_source line 1574 · 2026-05-20T06:57:26.860310+00:00_
+_source line 1544 · 2026-05-20T06:57:26.860310+00:00_
 
 called Bash
 
@@ -6097,7 +4942,7 @@ called Bash
 
 ### Tool result
 
-_source line 1575 · 2026-05-20T06:57:27.012669+00:00_
+_source line 1545 · 2026-05-20T06:57:27.012669+00:00_
 
       wall_clock_seconds: 1455.4
       gpu_hours: 0.4
@@ -6158,7 +5003,7 @@ _source line 1575 · 2026-05-20T06:57:27.012669+00:00_
 
 ### Tool call
 
-_source line 1576 · 2026-05-20T06:57:29.525126+00:00_
+_source line 1546 · 2026-05-20T06:57:29.525126+00:00_
 
 called Bash
 
@@ -6192,7 +5037,7 @@ called Bash
 
 ### Tool result
 
-_source line 1577 · 2026-05-20T06:57:29.575810+00:00_
+_source line 1547 · 2026-05-20T06:57:29.575810+00:00_
 
   baseline_battery_001:
     status: DONE
@@ -6262,7 +5107,7 @@ _source line 1577 · 2026-05-20T06:57:29.575810+00:00_
 
 ### Tool call
 
-_source line 1578 · 2026-05-20T06:57:32.288086+00:00_
+_source line 1548 · 2026-05-20T06:57:32.288086+00:00_
 
 called Bash
 
@@ -6296,7 +5141,7 @@ called Bash
 
 ### Tool result
 
-_source line 1579 · 2026-05-20T06:57:32.388968+00:00_
+_source line 1549 · 2026-05-20T06:57:32.388968+00:00_
 
 9:**Task validity and scope.** Effective Discriminable Depth (EDD) reaches depth 3 in 7 of 9 settings at threshold T=0.75 (`edd_threshold_sensitivity_001`). Depth extension confirms d3v4 AUC at 0.727–0.975 across three models (Pythia 0.789, GPT-2 XL 0.727, OLMo 0.975), with d4v5 uniformly below 0.70 (`d4_extension`). The ordinal structure is real: adjacent-pair AUC decreases monotonically (d0v1=0.998, d1v2=0.861, d2v3=0.801), each pair remaining above chance.
 39:**Response.** Adjacent-pair AUC values across the 3x3 benchmark (`baseline_battery_001`) reveal an ordinal structure that binary classification collapses: d0v1 AUC=0.998 (trivial), d1v2 AUC=0.861, d2v3 AUC=0.801. The d0-vs-rest boundary is near-perfect, but the d1-vs-d2 and d2-vs-d3 boundaries carry meaningful discrimination that a binary label discards. This monotonically decreasing but persistently significant pairwise structure is the empirical basis for ordinal formulation.
@@ -6319,7 +5164,7 @@ _source line 1579 · 2026-05-20T06:57:32.388968+00:00_
 
 ### Tool result
 
-_source line 1580 · 2026-05-20T06:57:37.567201+00:00_
+_source line 1550 · 2026-05-20T06:57:37.567201+00:00_
 
 Perfect! Now I have all the information. Let me compile the comprehensive report.
 
@@ -6391,7 +5236,7 @@ Plus 3 Python source files for figure generation.
 
 ### Tool result
 
-_source line 1581 · 2026-05-20T06:57:53.035222+00:00_
+_source line 1551 · 2026-05-20T06:57:53.035222+00:00_
 
 Perfect! Now I have all the information I need. Let me compile a comprehensive report:
 
@@ -6453,7 +5298,7 @@ Binoculars [...], calibrated with an 11-feature RF on per-token cross-perplexity
 
 ### Tool call
 
-_source line 1582 · 2026-05-20T06:58:35.712628+00:00_
+_source line 1552 · 2026-05-20T06:58:35.712628+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6493,7 +5338,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1583 · 2026-05-20T06:58:36.215163+00:00_
+_source line 1553 · 2026-05-20T06:58:36.215163+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"binoculars_14b_topk50\": {\"metrics\": {\"binoculars_baseline\": {\"RF_multi_11feat\": {\"4class_acc\": 0.3768, \"4class_acc_std\": 0.0071, \"d1d3_bal_acc\": 0.3386, \"d1d3_bal_acc_std\": 0.0075}, \"equal_width\": {\"4class_acc\": 0.2613, \"d1d3_bal_acc\": 0.3065}, \"coral\": {\"4class_acc\": 0.2447, \"d1d3_bal_acc\": 0.3263}, \"threshold\": {\"4class_acc\": 0.2843, \"d1d3_bal_acc\": 0.2495}, \"RF_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"merged_ablation\": {\"stat_only_19feat\": {\"4class_acc\": 0.4884, \"4class_acc_std\": 0.0082, \"d1d3_bal_acc\": 0.4345, \"d1d3_bal_acc_std\": 0.0091}, \"bino_only_11feat\": {\"4class_acc\": 0.3774, \"4class_acc_std\": 0.009, \"d1d3_bal_acc\": 0.3402, \"d1d3_bal_acc_std\": 0.0097}, \"merged_30feat\": {\"4class_acc\": 0.5149, \"4class_acc_std\": 0.0053, \"d1d3_bal_acc\": 0.4637, \"d1d3_bal_acc_std\": 0.0042}, \"bino_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"baseline_alignment_plan_A\": {\"main_pipeline_stat_only\": 0.4793, \"merged_30feat\": 0.5149, \"delta\": 0.0356, \"note\": \"stat_only aligned to main pipeline (47.93%) per 方案A\"}}}, \"qwen25_14b_topk50\": {\"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}}, \"binoculars_14b_temp09\": {\"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"stat_only_19feat_4class_ablation\": 0.5183, \"stat_only_19feat_4class_aligned\": 0.505, \"merged_30feat_4class\": 0.5419, \"
 …[truncated 1331 chars]
@@ -6516,7 +5361,7 @@ _source line 1583 · 2026-05-20T06:58:36.215163+00:00_
 
 ### Tool call
 
-_source line 1584 · 2026-05-20T06:58:41.889647+00:00_
+_source line 1554 · 2026-05-20T06:58:41.889647+00:00_
 
 called Grep
 
@@ -6560,7 +5405,7 @@ called Grep
 
 ### Tool result
 
-_source line 1585 · 2026-05-20T06:58:41.991292+00:00_
+_source line 1555 · 2026-05-20T06:58:41.991292+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/registry.yaml-6328-    completed_at: '2026-05-19T07:31:10.929Z'
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/registry.yaml-6329-    notes: 'INVALIDATED: feature-space mixing error (not real accumulation). Replaced
@@ -6598,7 +5443,7 @@ _source line 1585 · 2026-05-20T06:58:41.991292+00:00_
 
 ### Tool call
 
-_source line 1586 · 2026-05-20T07:01:10.949313+00:00_
+_source line 1556 · 2026-05-20T07:01:10.949313+00:00_
 
 called ToolSearch
 
@@ -6634,7 +5479,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1587 · 2026-05-20T07:01:10.999945+00:00_
+_source line 1557 · 2026-05-20T07:01:10.999945+00:00_
 
 
 
@@ -6656,7 +5501,7 @@ _source line 1587 · 2026-05-20T07:01:10.999945+00:00_
 
 ### Tool call
 
-_source line 1588 · 2026-05-20T07:01:14.567657+00:00_
+_source line 1558 · 2026-05-20T07:01:14.567657+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6694,7 +5539,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1589 · 2026-05-20T07:01:14.921082+00:00_
+_source line 1559 · 2026-05-20T07:01:14.921082+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6732,7 +5577,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1590 · 2026-05-20T07:01:15.073048+00:00_
+_source line 1560 · 2026-05-20T07:01:15.073048+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.473}}"}
 
@@ -6754,7 +5599,7 @@ _source line 1590 · 2026-05-20T07:01:15.073048+00:00_
 
 ### Tool result
 
-_source line 1591 · 2026-05-20T07:01:15.525063+00:00_
+_source line 1561 · 2026-05-20T07:01:15.525063+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4687}}"}
 
@@ -6776,7 +5621,7 @@ _source line 1591 · 2026-05-20T07:01:15.525063+00:00_
 
 ### Tool call
 
-_source line 1592 · 2026-05-20T07:01:20.202923+00:00_
+_source line 1562 · 2026-05-20T07:01:20.202923+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6814,7 +5659,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1593 · 2026-05-20T07:01:20.756445+00:00_
+_source line 1563 · 2026-05-20T07:01:20.756445+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"binoculars_14b_topk50\": {\"status\": \"DONE\", \"metrics\": {\"binoculars_baseline\": {\"RF_multi_11feat\": {\"4class_acc\": 0.3768, \"4class_acc_std\": 0.0071, \"d1d3_bal_acc\": 0.3386, \"d1d3_bal_acc_std\": 0.0075}, \"equal_width\": {\"4class_acc\": 0.2613, \"d1d3_bal_acc\": 0.3065}, \"coral\": {\"4class_acc\": 0.2447, \"d1d3_bal_acc\": 0.3263}, \"threshold\": {\"4class_acc\": 0.2843, \"d1d3_bal_acc\": 0.2495}, \"RF_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"merged_ablation\": {\"stat_only_19feat\": {\"4class_acc\": 0.4884, \"4class_acc_std\": 0.0082, \"d1d3_bal_acc\": 0.4345, \"d1d3_bal_acc_std\": 0.0091}, \"bino_only_11feat\": {\"4class_acc\": 0.3774, \"4class_acc_std\": 0.009, \"d1d3_bal_acc\": 0.3402, \"d1d3_bal_acc_std\": 0.0097}, \"merged_30feat\": {\"4class_acc\": 0.5149, \"4class_acc_std\": 0.0053, \"d1d3_bal_acc\": 0.4637, \"d1d3_bal_acc_std\": 0.0042}, \"bino_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"baseline_alignment_plan_A\": {\"main_pipeline_stat_only\": 0.4793, \"merged_30feat\": 0.5149, \"delta\": 0.0356, \"note\": \"stat_only aligned to main pipeline (47.93%) per 方案A\"}}, \"conclusion\": \"success\"}, \"qwen25_14b_topk50\": {\"status\": \"DONE\", \"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}, \"conclusion\": \"success\"}, \"binoculars_14b_temp09\": {\"status\": \"DONE\", \"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"
 …[truncated 13199 chars]
@@ -6837,7 +5682,7 @@ _source line 1593 · 2026-05-20T07:01:20.756445+00:00_
 
 ### Tool call
 
-_source line 1594 · 2026-05-20T07:02:32.987265+00:00_
+_source line 1564 · 2026-05-20T07:02:32.987265+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6873,7 +5718,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1595 · 2026-05-20T07:02:37.413444+00:00_
+_source line 1565 · 2026-05-20T07:02:37.413444+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -6895,7 +5740,7 @@ _source line 1595 · 2026-05-20T07:02:37.413444+00:00_
 
 ### Assistant
 
-_source line 1596 · 2026-05-20T07:02:43.804854+00:00_
+_source line 1566 · 2026-05-20T07:02:43.804854+00:00_
 
 审查报告已发送。核心发现：
 
@@ -6927,7 +5772,7 @@ _source line 1596 · 2026-05-20T07:02:43.804854+00:00_
 
 ### User
 
-_source line 1597 · 2026-05-20T07:09:20.566029+00:00_
+_source line 1567 · 2026-05-20T07:09:20.566029+00:00_
 
 [系统通知 — worker_done:worker_paper_missing_refs_and_bib_fixes_20260520T070535]:
 Worker worker_paper_missing_refs_and_bib_fixes_20260520T070535 已完成（status=done），请审查 Agent 的处理结果。
@@ -6949,7 +5794,7 @@ Worker worker_paper_missing_refs_and_bib_fixes_20260520T070535 已完成（statu
 
 ### Tool call
 
-_source line 1598 · 2026-05-20T07:09:29.502345+00:00_
+_source line 1568 · 2026-05-20T07:09:29.502345+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6987,7 +5832,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1599 · 2026-05-20T07:09:30.305590+00:00_
+_source line 1569 · 2026-05-20T07:09:30.305590+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5123}}"}
 
@@ -7009,7 +5854,7 @@ _source line 1599 · 2026-05-20T07:09:30.305590+00:00_
 
 ### Tool call
 
-_source line 1600 · 2026-05-20T07:09:35.235701+00:00_
+_source line 1570 · 2026-05-20T07:09:35.235701+00:00_
 
 called Agent
 
@@ -7047,7 +5892,7 @@ called Agent
 
 ### Tool call
 
-_source line 1601 · 2026-05-20T07:09:37.600282+00:00_
+_source line 1571 · 2026-05-20T07:09:37.600282+00:00_
 
 called Bash
 
@@ -7081,7 +5926,7 @@ called Bash
 
 ### Tool result
 
-_source line 1602 · 2026-05-20T07:09:37.853688+00:00_
+_source line 1572 · 2026-05-20T07:09:37.853688+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 5.7K May 19 09:10 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex
 -rw-r--r-- 1 ubuntu ubuntu 29K May 20 07:08 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib
@@ -7117,7 +5962,7 @@ _source line 1602 · 2026-05-20T07:09:37.853688+00:00_
 
 ### Tool call
 
-_source line 1603 · 2026-05-20T07:09:39.866100+00:00_
+_source line 1573 · 2026-05-20T07:09:39.866100+00:00_
 
 called Read
 
@@ -7155,7 +6000,7 @@ called Read
 
 ### Tool result
 
-_source line 1604 · 2026-05-20T07:09:39.866540+00:00_
+_source line 1574 · 2026-05-20T07:09:39.866540+00:00_
 
 &lt;tool_use_error>InputValidationError: [
   {
@@ -7188,7 +6033,7 @@ _source line 1604 · 2026-05-20T07:09:39.866540+00:00_
 
 ### Tool call
 
-_source line 1605 · 2026-05-20T07:09:40.669654+00:00_
+_source line 1575 · 2026-05-20T07:09:40.669654+00:00_
 
 called Grep
 
@@ -7226,7 +6071,7 @@ called Grep
 
 ### Tool result
 
-_source line 1606 · 2026-05-20T07:09:40.921218+00:00_
+_source line 1576 · 2026-05-20T07:09:40.921218+00:00_
 
 No matches found
 
@@ -7248,7 +6093,7 @@ No matches found
 
 ### Tool call
 
-_source line 1607 · 2026-05-20T07:09:41.172716+00:00_
+_source line 1577 · 2026-05-20T07:09:41.172716+00:00_
 
 called Grep
 
@@ -7288,7 +6133,7 @@ called Grep
 
 ### Tool result
 
-_source line 1608 · 2026-05-20T07:09:41.424046+00:00_
+_source line 1578 · 2026-05-20T07:09:41.424046+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:7:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex:5:[Omitted long matching line]
@@ -7311,7 +6156,7 @@ _source line 1608 · 2026-05-20T07:09:41.424046+00:00_
 
 ### Tool call
 
-_source line 1609 · 2026-05-20T07:09:41.424526+00:00_
+_source line 1579 · 2026-05-20T07:09:41.424526+00:00_
 
 called Read
 
@@ -7345,7 +6190,7 @@ called Read
 
 ### Tool result
 
-_source line 1610 · 2026-05-20T07:09:41.424842+00:00_
+_source line 1580 · 2026-05-20T07:09:41.424842+00:00_
 
 1	This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
 2	Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
@@ -7419,7 +6264,7 @@ _source line 1610 · 2026-05-20T07:09:41.424842+00:00_
 
 ### Tool call
 
-_source line 1611 · 2026-05-20T07:09:43.232437+00:00_
+_source line 1581 · 2026-05-20T07:09:43.232437+00:00_
 
 called Bash
 
@@ -7453,7 +6298,7 @@ called Bash
 
 ### Tool result
 
-_source line 1612 · 2026-05-20T07:09:43.483821+00:00_
+_source line 1582 · 2026-05-20T07:09:43.483821+00:00_
 
 @inproceedings{shi2024_minkprob,
   author    = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},
@@ -7518,7 +6363,7 @@ _source line 1612 · 2026-05-20T07:09:43.483821+00:00_
 
 ### Tool call
 
-_source line 1613 · 2026-05-20T07:09:43.484251+00:00_
+_source line 1583 · 2026-05-20T07:09:43.484251+00:00_
 
 called Read
 
@@ -7554,7 +6399,7 @@ called Read
 
 ### Tool result
 
-_source line 1614 · 2026-05-20T07:09:44.137274+00:00_
+_source line 1584 · 2026-05-20T07:09:44.137274+00:00_
 
 1	% ============================================================
 2	% Model Collapse Theory
@@ -7622,7 +6467,7 @@ _source line 1614 · 2026-05-20T07:09:44.137274+00:00_
 
 ### Tool call
 
-_source line 1615 · 2026-05-20T07:09:44.137806+00:00_
+_source line 1585 · 2026-05-20T07:09:44.137806+00:00_
 
 called Bash
 
@@ -7656,7 +6501,7 @@ called Bash
 
 ### Tool result
 
-_source line 1616 · 2026-05-20T07:09:44.339069+00:00_
+_source line 1586 · 2026-05-20T07:09:44.339069+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex:5:All experiments use full-replacement recursive chains, where each depth fully replaces the prior training corpus. Real-world contamination typically involves accumulation, where synthetic and human data co-exist at unknown proportions across iterations \cite{gerstgrasser2024_accumulate}. Under accumulation, depth signal should attenuate because each generation retains human-originated distributional properties. Our results therefore represent an upper bound on feature separability; extending the framework to accumulation settings, where depth becomes a continuous mixing parameter, is a priority for future work.
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:7:Mitigation \cite{gerstgrasser2024_accumulate,drayson2025_detection_prevents_collapse,yi2026_escaping_collapse,falahati2026_curated,wenzek2020_ccnet}, data scaling under constraint \cite{muennighoff2023scaling}, non-monotonic dynamics \cite{bakshi2026_collapse_improvement}, convergence analysis \cite{marchi2024_heat_death,wang2026_contamination,knowledge_collapse2025,dohmatob2024_demystified}, and diversity decline \cite{guo2024curious,briesch2024selfconsuming,padmakumar2024diversity,sigma2026_spectral,synthetic_eggs2026} are active areas.
@@ -7679,7 +6524,7 @@ _source line 1616 · 2026-05-20T07:09:44.339069+00:00_
 
 ### Tool call
 
-_source line 1617 · 2026-05-20T07:09:44.389847+00:00_
+_source line 1587 · 2026-05-20T07:09:44.389847+00:00_
 
 called Read
 
@@ -7715,7 +6560,7 @@ called Read
 
 ### Tool result
 
-_source line 1618 · 2026-05-20T07:09:44.391574+00:00_
+_source line 1588 · 2026-05-20T07:09:44.391574+00:00_
 
 1	This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.5.2)  20 MAY 2026 06:03
 2	entering extended mode
@@ -7783,7 +6628,7 @@ _source line 1618 · 2026-05-20T07:09:44.391574+00:00_
 
 ### Tool call
 
-_source line 1619 · 2026-05-20T07:09:47.303667+00:00_
+_source line 1589 · 2026-05-20T07:09:47.303667+00:00_
 
 called Bash
 
@@ -7817,7 +6662,7 @@ called Bash
 
 ### Tool result
 
-_source line 1620 · 2026-05-20T07:09:47.404664+00:00_
+_source line 1590 · 2026-05-20T07:09:47.404664+00:00_
 
 LaTeX Info: Redefining \cite on input line 694.
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
@@ -7846,7 +6691,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ### Tool call
 
-_source line 1621 · 2026-05-20T07:09:47.455366+00:00_
+_source line 1591 · 2026-05-20T07:09:47.455366+00:00_
 
 called Bash
 
@@ -7880,7 +6725,7 @@ called Bash
 
 ### Tool result
 
-_source line 1622 · 2026-05-20T07:09:47.657079+00:00_
+_source line 1592 · 2026-05-20T07:09:47.657079+00:00_
 
 680 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib
 
@@ -7902,7 +6747,7 @@ _source line 1622 · 2026-05-20T07:09:47.657079+00:00_
 
 ### Tool call
 
-_source line 1623 · 2026-05-20T07:09:47.707821+00:00_
+_source line 1593 · 2026-05-20T07:09:47.707821+00:00_
 
 called Bash
 
@@ -7936,7 +6781,7 @@ called Bash
 
 ### Tool result
 
-_source line 1624 · 2026-05-20T07:09:47.759805+00:00_
+_source line 1594 · 2026-05-20T07:09:47.759805+00:00_
 
 @inproceedings{kazdan2025_collapse_or_thrive,
 @inproceedings{suresh2025_rate_collapse,
@@ -7977,7 +6822,7 @@ _source line 1624 · 2026-05-20T07:09:47.759805+00:00_
 
 ### Tool call
 
-_source line 1625 · 2026-05-20T07:09:50.021525+00:00_
+_source line 1595 · 2026-05-20T07:09:50.021525+00:00_
 
 called Bash
 
@@ -8011,7 +6856,7 @@ called Bash
 
 ### Tool call
 
-_source line 1626 · 2026-05-20T07:09:50.072229+00:00_
+_source line 1596 · 2026-05-20T07:09:50.072229+00:00_
 
 called Bash
 
@@ -8045,7 +6890,7 @@ called Bash
 
 ### Tool result
 
-_source line 1627 · 2026-05-20T07:09:50.223140+00:00_
+_source line 1597 · 2026-05-20T07:09:50.223140+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 76K May 20 06:03 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.aux
 -rw-r--r-- 1 ubuntu ubuntu 29K May 20 07:08 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib
@@ -8068,7 +6913,7 @@ _source line 1627 · 2026-05-20T07:09:50.223140+00:00_
 
 ### Tool result
 
-_source line 1628 · 2026-05-20T07:09:50.223460+00:00_
+_source line 1598 · 2026-05-20T07:09:50.223460+00:00_
 
 73
 
@@ -8090,7 +6935,7 @@ _source line 1628 · 2026-05-20T07:09:50.223460+00:00_
 
 ### Tool call
 
-_source line 1629 · 2026-05-20T07:09:50.273997+00:00_
+_source line 1599 · 2026-05-20T07:09:50.273997+00:00_
 
 called Bash
 
@@ -8124,7 +6969,7 @@ called Bash
 
 ### Tool result
 
-_source line 1630 · 2026-05-20T07:09:50.324841+00:00_
+_source line 1600 · 2026-05-20T07:09:50.324841+00:00_
 
 % ============================================================
 % Model Collapse Theory
@@ -8175,7 +7020,7 @@ _source line 1630 · 2026-05-20T07:09:50.324841+00:00_
 
 ### Tool call
 
-_source line 1631 · 2026-05-20T07:09:52.184257+00:00_
+_source line 1601 · 2026-05-20T07:09:52.184257+00:00_
 
 called Bash
 
@@ -8209,7 +7054,7 @@ called Bash
 
 ### Tool result
 
-_source line 1632 · 2026-05-20T07:09:52.588086+00:00_
+_source line 1602 · 2026-05-20T07:09:52.588086+00:00_
 
       6 \cite{binoculars2024}
       4 \cite{shumailov2024_nature}
@@ -8250,7 +7095,7 @@ _source line 1632 · 2026-05-20T07:09:52.588086+00:00_
 
 ### Tool call
 
-_source line 1633 · 2026-05-20T07:09:52.588527+00:00_
+_source line 1603 · 2026-05-20T07:09:52.588527+00:00_
 
 called Bash
 
@@ -8284,7 +7129,7 @@ called Bash
 
 ### Tool result
 
-_source line 1634 · 2026-05-20T07:09:52.841081+00:00_
+_source line 1604 · 2026-05-20T07:09:52.841081+00:00_
 
 @inproceedings{gerstgrasser2024_accumulate,
   author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},
@@ -8316,7 +7161,7 @@ _source line 1634 · 2026-05-20T07:09:52.841081+00:00_
 
 ### Tool call
 
-_source line 1635 · 2026-05-20T07:09:52.841560+00:00_
+_source line 1605 · 2026-05-20T07:09:52.841560+00:00_
 
 called Bash
 
@@ -8350,7 +7195,7 @@ called Bash
 
 ### Tool result
 
-_source line 1636 · 2026-05-20T07:09:52.892117+00:00_
+_source line 1606 · 2026-05-20T07:09:52.892117+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 1.6K May 20 05:56 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex
 -rw-r--r-- 1 ubuntu ubuntu  11K May 19 09:09 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex
@@ -8382,7 +7227,7 @@ _source line 1636 · 2026-05-20T07:09:52.892117+00:00_
 
 ### Tool call
 
-_source line 1637 · 2026-05-20T07:09:55.452292+00:00_
+_source line 1607 · 2026-05-20T07:09:55.452292+00:00_
 
 called Bash
 
@@ -8416,7 +7261,7 @@ called Bash
 
 ### Tool result
 
-_source line 1638 · 2026-05-20T07:09:55.653918+00:00_
+_source line 1608 · 2026-05-20T07:09:55.653918+00:00_
 
 87
 
@@ -8438,7 +7283,7 @@ _source line 1638 · 2026-05-20T07:09:55.653918+00:00_
 
 ### Tool call
 
-_source line 1639 · 2026-05-20T07:09:55.654492+00:00_
+_source line 1609 · 2026-05-20T07:09:55.654492+00:00_
 
 called Bash
 
@@ -8472,7 +7317,7 @@ called Bash
 
 ### Tool result
 
-_source line 1640 · 2026-05-20T07:09:55.805409+00:00_
+_source line 1610 · 2026-05-20T07:09:55.805409+00:00_
 
 \bibdata{references}
 
@@ -8494,7 +7339,7 @@ _source line 1640 · 2026-05-20T07:09:55.805409+00:00_
 
 ### Tool call
 
-_source line 1641 · 2026-05-20T07:09:55.856167+00:00_
+_source line 1611 · 2026-05-20T07:09:55.856167+00:00_
 
 called Bash
 
@@ -8528,7 +7373,7 @@ called Bash
 
 ### Tool result
 
-_source line 1642 · 2026-05-20T07:09:55.906865+00:00_
+_source line 1612 · 2026-05-20T07:09:55.906865+00:00_
 
 ublic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
@@ -8568,7 +7413,7 @@ PDF statistics:
 
 ### Tool call
 
-_source line 1643 · 2026-05-20T07:09:57.759677+00:00_
+_source line 1613 · 2026-05-20T07:09:57.759677+00:00_
 
 called Bash
 
@@ -8602,7 +7447,7 @@ called Bash
 
 ### Tool result
 
-_source line 1644 · 2026-05-20T07:09:57.860609+00:00_
+_source line 1614 · 2026-05-20T07:09:57.860609+00:00_
 
 Modify: 2026-05-20 07:08:49.766765717 +0000
 Change: 2026-05-20 07:08:49.769765746 +0000
@@ -8625,7 +7470,7 @@ Change: 2026-05-20 07:08:49.769765746 +0000
 
 ### Tool call
 
-_source line 1645 · 2026-05-20T07:09:57.911498+00:00_
+_source line 1615 · 2026-05-20T07:09:57.911498+00:00_
 
 called Bash
 
@@ -8659,7 +7504,7 @@ called Bash
 
 ### Tool result
 
-_source line 1646 · 2026-05-20T07:09:57.912670+00:00_
+_source line 1616 · 2026-05-20T07:09:57.912670+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.pdf: PDF document, version 1.7
 
@@ -8681,7 +7526,7 @@ _source line 1646 · 2026-05-20T07:09:57.912670+00:00_
 
 ### Tool result
 
-_source line 1647 · 2026-05-20T07:10:06.156827+00:00_
+_source line 1617 · 2026-05-20T07:10:06.156827+00:00_
 
 Perfect! Let me compile a comprehensive summary of my findings.
 
@@ -8752,7 +7597,7 @@ The references.bib file was significantly updated on **May 20 at 07:08** (today)
 
 ### Tool call
 
-_source line 1648 · 2026-05-20T07:10:19.017492+00:00_
+_source line 1618 · 2026-05-20T07:10:19.017492+00:00_
 
 called Grep
 
@@ -8794,7 +7639,7 @@ called Grep
 
 ### Tool call
 
-_source line 1649 · 2026-05-20T07:10:19.017971+00:00_
+_source line 1619 · 2026-05-20T07:10:19.017971+00:00_
 
 called Read
 
@@ -8828,7 +7673,7 @@ called Read
 
 ### Tool result
 
-_source line 1650 · 2026-05-20T07:10:19.071178+00:00_
+_source line 1620 · 2026-05-20T07:10:19.071178+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related}
@@ -8859,7 +7704,7 @@ _source line 1650 · 2026-05-20T07:10:19.071178+00:00_
 
 ### Tool result
 
-_source line 1651 · 2026-05-20T07:10:19.071915+00:00_
+_source line 1621 · 2026-05-20T07:10:19.071915+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:5:Recursive training on model outputs erodes distributional tails \cite{shumailov2024_nature}, an effect formalized as exponential tail decay via scaling laws \cite{dohmatob2024_tale_of_tails,seddik2024synthetic} and extended to autophagous loops in the MAD framework \cite{alemohammad2024_mad}.
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:7:[Omitted long matching line]
@@ -8888,7 +7733,7 @@ _source line 1651 · 2026-05-20T07:10:19.071915+00:00_
 
 ### Tool call
 
-_source line 1652 · 2026-05-20T07:10:36.920941+00:00_
+_source line 1622 · 2026-05-20T07:10:36.920941+00:00_
 
 called ToolSearch
 
@@ -8924,7 +7769,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1653 · 2026-05-20T07:10:36.922660+00:00_
+_source line 1623 · 2026-05-20T07:10:36.922660+00:00_
 
 
 
@@ -8946,7 +7791,7 @@ _source line 1653 · 2026-05-20T07:10:36.922660+00:00_
 
 ### Tool call
 
-_source line 1654 · 2026-05-20T07:10:42.352413+00:00_
+_source line 1624 · 2026-05-20T07:10:42.352413+00:00_
 
 called Grep
 
@@ -8990,7 +7835,7 @@ called Grep
 
 ### Tool result
 
-_source line 1655 · 2026-05-20T07:10:42.854752+00:00_
+_source line 1625 · 2026-05-20T07:10:42.854752+00:00_
 
 No matches found
 
@@ -9012,7 +7857,7 @@ No matches found
 
 ### Tool call
 
-_source line 1656 · 2026-05-20T07:10:43.708164+00:00_
+_source line 1626 · 2026-05-20T07:10:43.708164+00:00_
 
 called Grep
 
@@ -9056,7 +7901,7 @@ called Grep
 
 ### Tool result
 
-_source line 1657 · 2026-05-20T07:10:43.808966+00:00_
+_source line 1627 · 2026-05-20T07:10:43.808966+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.blg:49:warning$ -- 0
 
@@ -9078,7 +7923,7 @@ _source line 1657 · 2026-05-20T07:10:43.808966+00:00_
 
 ### Tool call
 
-_source line 1658 · 2026-05-20T07:10:58.736992+00:00_
+_source line 1628 · 2026-05-20T07:10:58.736992+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9114,7 +7959,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1659 · 2026-05-20T07:11:02.811171+00:00_
+_source line 1629 · 2026-05-20T07:11:02.811171+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -9136,7 +7981,7 @@ _source line 1659 · 2026-05-20T07:11:02.811171+00:00_
 
 ### Assistant
 
-_source line 1660 · 2026-05-20T07:11:05.863116+00:00_
+_source line 1630 · 2026-05-20T07:11:05.863116+00:00_
 
 Worker 引用修复审查完成，PASS。编译零警告，建议投稿前做一次 reference-audit 验证 2026 年引用真实性。
 
@@ -9163,7 +8008,7 @@ Worker 引用修复审查完成，PASS。编译零警告，建议投稿前做一
 
 ### User
 
-_source line 1661 · 2026-05-20T07:50:28.285606+00:00_
+_source line 1631 · 2026-05-20T07:50:28.285606+00:00_
 
 [System 触发审查]:
 Round 14 审稿全部写作修复已完成。请验收以下修复是否正确落地：
@@ -9209,7 +8054,7 @@ Round 14 审稿全部写作修复已完成。请验收以下修复是否正确�
 
 ### Tool call
 
-_source line 1662 · 2026-05-20T07:50:44.994905+00:00_
+_source line 1632 · 2026-05-20T07:50:44.994905+00:00_
 
 called Read
 
@@ -9243,7 +8088,7 @@ called Read
 
 ### Tool result
 
-_source line 1663 · 2026-05-20T07:50:44.995285+00:00_
+_source line 1633 · 2026-05-20T07:50:44.995285+00:00_
 
 1	\begin{abstract}
 2	As language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises, yet no method estimates how many such iterations a text has undergone.
@@ -9272,7 +8117,7 @@ _source line 1663 · 2026-05-20T07:50:44.995285+00:00_
 
 ### Tool call
 
-_source line 1664 · 2026-05-20T07:50:45.197090+00:00_
+_source line 1634 · 2026-05-20T07:50:45.197090+00:00_
 
 called Read
 
@@ -9306,7 +8151,7 @@ called Read
 
 ### Tool result
 
-_source line 1665 · 2026-05-20T07:50:45.197707+00:00_
+_source line 1635 · 2026-05-20T07:50:45.197707+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -9341,7 +8186,7 @@ _source line 1665 · 2026-05-20T07:50:45.197707+00:00_
 
 ### Tool call
 
-_source line 1666 · 2026-05-20T07:50:45.198103+00:00_
+_source line 1636 · 2026-05-20T07:50:45.198103+00:00_
 
 called Read
 
@@ -9375,7 +8220,7 @@ called Read
 
 ### Tool result
 
-_source line 1667 · 2026-05-20T07:50:45.198643+00:00_
+_source line 1637 · 2026-05-20T07:50:45.198643+00:00_
 
 1	\section{The Depth Degradation Atlas}
 2	\label{sec:atlas}
@@ -9418,7 +8263,7 @@ _source line 1667 · 2026-05-20T07:50:45.198643+00:00_
 
 ### Tool call
 
-_source line 1668 · 2026-05-20T07:50:45.249567+00:00_
+_source line 1638 · 2026-05-20T07:50:45.249567+00:00_
 
 called Read
 
@@ -9452,7 +8297,7 @@ called Read
 
 ### Tool result
 
-_source line 1669 · 2026-05-20T07:50:45.250276+00:00_
+_source line 1639 · 2026-05-20T07:50:45.250276+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -9496,7 +8341,7 @@ _source line 1669 · 2026-05-20T07:50:45.250276+00:00_
 
 ### Tool call
 
-_source line 1670 · 2026-05-20T07:50:45.250662+00:00_
+_source line 1640 · 2026-05-20T07:50:45.250662+00:00_
 
 called Read
 
@@ -9530,7 +8375,7 @@ called Read
 
 ### Tool result
 
-_source line 1671 · 2026-05-20T07:50:45.252138+00:00_
+_source line 1641 · 2026-05-20T07:50:45.252138+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -9567,7 +8412,7 @@ _source line 1671 · 2026-05-20T07:50:45.252138+00:00_
 
 ### Tool call
 
-_source line 1672 · 2026-05-20T07:50:45.252456+00:00_
+_source line 1642 · 2026-05-20T07:50:45.252456+00:00_
 
 called Read
 
@@ -9601,7 +8446,7 @@ called Read
 
 ### Tool result
 
-_source line 1673 · 2026-05-20T07:50:45.605859+00:00_
+_source line 1643 · 2026-05-20T07:50:45.605859+00:00_
 
 1	\section{Discussion and Conclusion}
 2	\label{sec:discussion}
@@ -9630,7 +8475,7 @@ _source line 1673 · 2026-05-20T07:50:45.605859+00:00_
 
 ### Tool call
 
-_source line 1674 · 2026-05-20T07:51:01.048853+00:00_
+_source line 1644 · 2026-05-20T07:51:01.048853+00:00_
 
 called Read
 
@@ -9664,7 +8509,7 @@ called Read
 
 ### Tool call
 
-_source line 1675 · 2026-05-20T07:51:01.049304+00:00_
+_source line 1645 · 2026-05-20T07:51:01.049304+00:00_
 
 called Read
 
@@ -9698,7 +8543,7 @@ called Read
 
 ### Tool result
 
-_source line 1676 · 2026-05-20T07:51:01.051715+00:00_
+_source line 1646 · 2026-05-20T07:51:01.051715+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -9720,7 +8565,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool result
 
-_source line 1677 · 2026-05-20T07:51:01.052118+00:00_
+_source line 1647 · 2026-05-20T07:51:01.052118+00:00_
 
 1	\subsection{Theoretical Grounding}
 2	\label{sec:method:theory}
@@ -9762,7 +8607,7 @@ _source line 1677 · 2026-05-20T07:51:01.052118+00:00_
 
 ### Tool call
 
-_source line 1678 · 2026-05-20T07:51:01.052431+00:00_
+_source line 1648 · 2026-05-20T07:51:01.052431+00:00_
 
 called Read
 
@@ -9796,7 +8641,7 @@ called Read
 
 ### Tool result
 
-_source line 1679 · 2026-05-20T07:51:01.103105+00:00_
+_source line 1649 · 2026-05-20T07:51:01.103105+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -9847,7 +8692,7 @@ _source line 1679 · 2026-05-20T07:51:01.103105+00:00_
 
 ### Tool call
 
-_source line 1680 · 2026-05-20T07:52:08.611279+00:00_
+_source line 1650 · 2026-05-20T07:52:08.611279+00:00_
 
 called Grep
 
@@ -9889,7 +8734,7 @@ called Grep
 
 ### Tool result
 
-_source line 1681 · 2026-05-20T07:52:09.063643+00:00_
+_source line 1651 · 2026-05-20T07:52:09.063643+00:00_
 
 154:This extends the strategy-specificity finding: even within a single decoding family, the feature space is temperature-specific; strategy-conditioned classifiers are therefore necessary.
 302:\subsection{Downstream Curation PoC (Inconclusive)}
@@ -9914,7 +8759,7 @@ _source line 1681 · 2026-05-20T07:52:09.063643+00:00_
 
 ### Tool call
 
-_source line 1682 · 2026-05-20T07:52:09.515984+00:00_
+_source line 1652 · 2026-05-20T07:52:09.515984+00:00_
 
 called Grep
 
@@ -9956,7 +8801,7 @@ called Grep
 
 ### Tool result
 
-_source line 1683 · 2026-05-20T07:52:10.470194+00:00_
+_source line 1653 · 2026-05-20T07:52:10.470194+00:00_
 
 682:@book{hosmer2000,
 683:  author    = {Hosmer, David W. and Lemeshow, Stanley},
@@ -9979,7 +8824,7 @@ _source line 1683 · 2026-05-20T07:52:10.470194+00:00_
 
 ### Tool call
 
-_source line 1684 · 2026-05-20T07:52:10.923093+00:00_
+_source line 1654 · 2026-05-20T07:52:10.923093+00:00_
 
 called Grep
 
@@ -10021,7 +8866,7 @@ called Grep
 
 ### Tool result
 
-_source line 1685 · 2026-05-20T07:52:11.980810+00:00_
+_source line 1655 · 2026-05-20T07:52:11.980810+00:00_
 
 252:LOGO mean accuracy is 72.1\% (range 59.5--81.6\%), matching standard CV (72.0\%) within noise (before fix: 64.0\%, reflecting the depth--group confound).
 257:Depth prediction accuracy averages 72.0\%; seed-group prediction averages 10.2\%, indistinguishable from chance (before fix: 20.8\%, inflated by the depth--group confound).
@@ -10054,7 +8899,7 @@ _source line 1685 · 2026-05-20T07:52:11.980810+00:00_
 
 ### Tool call
 
-_source line 1686 · 2026-05-20T07:52:12.687990+00:00_
+_source line 1656 · 2026-05-20T07:52:12.687990+00:00_
 
 called Grep
 
@@ -10098,7 +8943,7 @@ called Grep
 
 ### Tool result
 
-_source line 1687 · 2026-05-20T07:52:12.738743+00:00_
+_source line 1657 · 2026-05-20T07:52:12.738743+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:7:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:8:\citet{kazdan2025_collapse_or_thrive} systematically compare training workflows and show that data accumulation avoids collapse while pure replacement does not; \citet{suresh2025_rate_collapse} characterize the rate of collapse for fundamental distributions under recursive maximum-likelihood estimation.
@@ -10125,7 +8970,7 @@ _source line 1687 · 2026-05-20T07:52:12.738743+00:00_
 
 ### Tool call
 
-_source line 1688 · 2026-05-20T07:52:24.589166+00:00_
+_source line 1658 · 2026-05-20T07:52:24.589166+00:00_
 
 called Read
 
@@ -10163,7 +9008,7 @@ called Read
 
 ### Tool call
 
-_source line 1689 · 2026-05-20T07:52:24.589611+00:00_
+_source line 1659 · 2026-05-20T07:52:24.589611+00:00_
 
 called Read
 
@@ -10201,7 +9046,7 @@ called Read
 
 ### Tool call
 
-_source line 1690 · 2026-05-20T07:52:24.589840+00:00_
+_source line 1660 · 2026-05-20T07:52:24.589840+00:00_
 
 called Read
 
@@ -10235,7 +9080,7 @@ called Read
 
 ### Tool result
 
-_source line 1691 · 2026-05-20T07:52:24.640318+00:00_
+_source line 1661 · 2026-05-20T07:52:24.640318+00:00_
 
 290	On C4, FPR varies sharply: OLMo (4.7\%) vs.\ Pythia (20.2\%) and GPT-2~XL (22.4\%).
 291	C4 misclassifications concentrate in template and SEO content with elevated repetition features (\texttt{rep\_3gram} $+$37\%, \texttt{rep\_4gram} $+$75\% vs.\ correctly classified d0 passages), rather than in random noise.
@@ -10273,7 +9118,7 @@ _source line 1691 · 2026-05-20T07:52:24.640318+00:00_
 
 ### Tool result
 
-_source line 1692 · 2026-05-20T07:52:24.640780+00:00_
+_source line 1662 · 2026-05-20T07:52:24.640780+00:00_
 
 860	\end{tabular}
 861	\end{table}
@@ -10318,7 +9163,7 @@ _source line 1692 · 2026-05-20T07:52:24.640780+00:00_
 
 ### Tool result
 
-_source line 1693 · 2026-05-20T07:52:24.641044+00:00_
+_source line 1663 · 2026-05-20T07:52:24.641044+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -10340,7 +9185,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 1694 · 2026-05-20T07:52:37.683233+00:00_
+_source line 1664 · 2026-05-20T07:52:37.683233+00:00_
 
 called Read
 
@@ -10378,7 +9223,7 @@ called Read
 
 ### Tool call
 
-_source line 1695 · 2026-05-20T07:52:37.683730+00:00_
+_source line 1665 · 2026-05-20T07:52:37.683730+00:00_
 
 called Grep
 
@@ -10420,7 +9265,7 @@ called Grep
 
 ### Tool result
 
-_source line 1696 · 2026-05-20T07:52:37.684087+00:00_
+_source line 1666 · 2026-05-20T07:52:37.684087+00:00_
 
 640	The top-5 features shift substantially: \texttt{surprisal\_range}, \texttt{surprisal\_position\_corr}, \texttt{prob\_std}, \texttt{surprisal\_first\_half\_minus\_second}, and \texttt{surprisal\_std} replace the perplexity tail statistics (\texttt{p90\_ppl}, \texttt{var\_surprisal}) that dominate in base models.
 641	This feature shift suggests instruction tuning compresses the perplexity distribution (reducing tail discriminability) while preserving positional and range-based surprisal patterns.
@@ -10471,7 +9316,7 @@ _source line 1696 · 2026-05-20T07:52:37.684087+00:00_
 
 ### Tool result
 
-_source line 1697 · 2026-05-20T07:52:37.684437+00:00_
+_source line 1667 · 2026-05-20T07:52:37.684437+00:00_
 
 38:\subsection{Top-$k$ Feature Trajectories}
 46:\subsection{Permutation Importance}
@@ -10521,7 +9366,7 @@ _source line 1697 · 2026-05-20T07:52:37.684437+00:00_
 
 ### Tool call
 
-_source line 1698 · 2026-05-20T07:54:08.225162+00:00_
+_source line 1668 · 2026-05-20T07:54:08.225162+00:00_
 
 called Grep
 
@@ -10563,7 +9408,7 @@ called Grep
 
 ### Tool call
 
-_source line 1699 · 2026-05-20T07:54:08.225610+00:00_
+_source line 1669 · 2026-05-20T07:54:08.225610+00:00_
 
 called Read
 
@@ -10599,7 +9444,7 @@ called Read
 
 ### Tool result
 
-_source line 1700 · 2026-05-20T07:54:08.276101+00:00_
+_source line 1670 · 2026-05-20T07:54:08.276101+00:00_
 
 808:\paragraph{Cross-scale Binoculars ablation (14B).}
 809:We evaluate Binoculars cross-scale on two representative strategies (temperature, top-$k$); the nucleus cell was used for the main 14B pipeline and its GPU hours were allocated to generation rather than Binoculars evaluation.
@@ -10625,7 +9470,7 @@ _source line 1700 · 2026-05-20T07:54:08.276101+00:00_
 
 ### Tool result
 
-_source line 1701 · 2026-05-20T07:54:08.529242+00:00_
+_source line 1671 · 2026-05-20T07:54:08.529242+00:00_
 
 PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.pdf (497.7KB)
 
@@ -10647,7 +9492,7 @@ PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_051
 
 ### Tool call
 
-_source line 1702 · 2026-05-20T07:56:06.322332+00:00_
+_source line 1672 · 2026-05-20T07:56:06.322332+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10683,7 +9528,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1703 · 2026-05-20T07:56:10.591556+00:00_
+_source line 1673 · 2026-05-20T07:56:10.591556+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -10705,7 +9550,7 @@ _source line 1703 · 2026-05-20T07:56:10.591556+00:00_
 
 ### Assistant
 
-_source line 1704 · 2026-05-20T07:56:15.617216+00:00_
+_source line 1674 · 2026-05-20T07:56:15.617216+00:00_
 
 验收报告已发送。14 项中 11 项 PASS，3 项 FAIL：
 
@@ -10738,7 +9583,7 @@ _source line 1704 · 2026-05-20T07:56:15.617216+00:00_
 
 ### User
 
-_source line 1705 · 2026-05-20T08:52:24.129906+00:00_
+_source line 1675 · 2026-05-20T08:52:24.129906+00:00_
 
 [System 触发审查]:
 Round 15 Fresh Review: 3.0 Findings（与 R14 一致）。用户已明确"实验结束就收掉了"。以下是最终 Action Matrix，请审视可行性和遗漏。
@@ -10830,7 +9675,7 @@ Round 15 Fresh Review: 3.0 Findings（与 R14 一致）。用户已明确"实验
 
 ### Tool call
 
-_source line 1706 · 2026-05-20T08:52:41.547061+00:00_
+_source line 1676 · 2026-05-20T08:52:41.547061+00:00_
 
 called ToolSearch
 
@@ -10866,7 +9711,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1707 · 2026-05-20T08:52:41.547519+00:00_
+_source line 1677 · 2026-05-20T08:52:41.547519+00:00_
 
 
 
@@ -10888,7 +9733,7 @@ _source line 1707 · 2026-05-20T08:52:41.547519+00:00_
 
 ### Tool call
 
-_source line 1708 · 2026-05-20T08:52:45.213956+00:00_
+_source line 1678 · 2026-05-20T08:52:45.213956+00:00_
 
 called WebSearch
 
@@ -10922,7 +9767,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1709 · 2026-05-20T08:52:51.450929+00:00_
+_source line 1679 · 2026-05-20T08:52:51.450929+00:00_
 
 Web search results for query: "arXiv 2603.11228 "Markovian Generation Chains" ICLR 2026"
 
@@ -10959,7 +9804,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool call
 
-_source line 1710 · 2026-05-20T08:54:23.300729+00:00_
+_source line 1680 · 2026-05-20T08:54:23.300729+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10995,7 +9840,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1711 · 2026-05-20T08:54:27.619594+00:00_
+_source line 1681 · 2026-05-20T08:54:27.619594+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -11017,7 +9862,7 @@ _source line 1711 · 2026-05-20T08:54:27.619594+00:00_
 
 ### Assistant
 
-_source line 1712 · 2026-05-20T08:54:31.978753+00:00_
+_source line 1682 · 2026-05-20T08:54:31.978753+00:00_
 
 审查完成。核心发现：C3 排除 Pythia 的"conservative estimate"策略有逻辑陷阱（6-cell mean 80.3% 反而比 9-cell 78.4% 高），建议保持当前 9-cell mean + caveat 做法。MR1 论文确认真实存在。C4 页数溢出仍是必修项。
 
@@ -11044,7 +9889,7 @@ _source line 1712 · 2026-05-20T08:54:31.978753+00:00_
 
 ### User
 
-_source line 1713 · 2026-05-20T09:22:46.811298+00:00_
+_source line 1683 · 2026-05-20T09:22:46.811298+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -11065,7 +9910,7 @@ _source line 1713 · 2026-05-20T09:22:46.811298+00:00_
 
 ### Tool call
 
-_source line 1714 · 2026-05-20T09:22:56.496206+00:00_
+_source line 1684 · 2026-05-20T09:22:56.496206+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11103,7 +9948,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1715 · 2026-05-20T09:22:56.802791+00:00_
+_source line 1685 · 2026-05-20T09:22:56.802791+00:00_
 
 called ToolSearch
 
@@ -11139,7 +9984,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1716 · 2026-05-20T09:22:57.104398+00:00_
+_source line 1686 · 2026-05-20T09:22:57.104398+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5839}}"}
 
@@ -11161,7 +10006,7 @@ _source line 1716 · 2026-05-20T09:22:57.104398+00:00_
 
 ### Tool result
 
-_source line 1717 · 2026-05-20T09:22:57.104896+00:00_
+_source line 1687 · 2026-05-20T09:22:57.104896+00:00_
 
 
 
@@ -11183,7 +10028,7 @@ _source line 1717 · 2026-05-20T09:22:57.104896+00:00_
 
 ### Tool call
 
-_source line 1718 · 2026-05-20T09:23:00.122421+00:00_
+_source line 1688 · 2026-05-20T09:23:00.122421+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -11221,7 +10066,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1719 · 2026-05-20T09:23:00.175123+00:00_
+_source line 1689 · 2026-05-20T09:23:00.175123+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- accum_v2_mix25（准备中）\\n- accum_v2_mix50（准备中）\\n\\n## 近期结论\\n- **binoculars_14b_topk50** (success): Binoculars cross-perplexity features provide complementary signal at 14B scale under top-k sampling when merged with 19 statistical features. Tests whether the merged feature gain (~+3.7pp at temp09) holds under the weakest decoding strategy. ← 基于 qwen25_14b_topk50\\n  [binoculars_14b_topk50_results](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/binoculars_14b_topk50/report/binoculars_14b_topk50_results.md)\\n- **qwen25_14b_topk50** (success): Recursive generation depth signal persists at 14B scale under top-k sampling (k=50), achieving RF 4-class accuracy above 25% baseline. Top-k typically yields lowest accuracy across strategies; if signal persists even here, 14B scale-generality claim is robust. Directly addresses Dream worst review M3.\\n  [qwen25_14b_topk50_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_analysis_b7a903.md) | [qwen25_14b_topk50_results](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_results.md)\\n- **binoculars_14b_temp09** (success): Binoculars cross-perplexity features provide complementary signal at 14B scale when merged with 19 statistical features, yielding accuracy above stat-only baseline. Tests whether cross-model divergence channel persists at larger scale. ← 基于 qwen25_14b_temp09\\n\\n## 趋势\\n成功 84 / 负向 13 / 失败 16 / 共 137\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ngpu-6000pro-2: 无 GPU 信息\\nwestd-48862: 无 GPU 信息\\n\\n## 告警\\n- mvp_pipeline_001: 已被终止 — unknown\\n- mvp_pipeline_002: 已被终止 — unknown\\n- mvp_pipeline_003: 已被终止 — un
 …[truncated 1733 chars]
@@ -11244,7 +10089,7 @@ _source line 1719 · 2026-05-20T09:23:00.175123+00:00_
 
 ### Assistant
 
-_source line 1720 · 2026-05-20T09:23:08.539162+00:00_
+_source line 1690 · 2026-05-20T09:23:08.539162+00:00_
 
 状态确认：无 RUNNING 实验，项目处于论文最终修改阶段。与服务重启前一致，无新审查项。
 
@@ -11271,7 +10116,7 @@ _source line 1720 · 2026-05-20T09:23:08.539162+00:00_
 
 ### User
 
-_source line 1721 · 2026-05-20T11:06:35.059844+00:00_
+_source line 1691 · 2026-05-20T11:06:35.059844+00:00_
 
 [系统通知 — worker_done:worker_ops_data-migration-probe_20260520T110456]:
 Worker worker_ops_data-migration-probe_20260520T110456 已完成（status=done），请审查 Agent 的处理结果。
@@ -11293,7 +10138,7 @@ Worker worker_ops_data-migration-probe_20260520T110456 已完成（status=done�
 
 ### Tool call
 
-_source line 1722 · 2026-05-20T11:06:45.709557+00:00_
+_source line 1692 · 2026-05-20T11:06:45.709557+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11333,7 +10178,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1723 · 2026-05-20T11:06:46.312790+00:00_
+_source line 1693 · 2026-05-20T11:06:46.312790+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6048}}"}
 
@@ -11355,7 +10200,7 @@ _source line 1723 · 2026-05-20T11:06:46.312790+00:00_
 
 ### Assistant
 
-_source line 1724 · 2026-05-20T11:06:55.643314+00:00_
+_source line 1694 · 2026-05-20T11:06:55.643314+00:00_
 
 这是一个运维（ops）类 worker（data-migration-probe），非实验类任务。Registry 无对应条目，当前也没有 RUNNING 实验。
 
@@ -11384,7 +10229,7 @@ _source line 1724 · 2026-05-20T11:06:55.643314+00:00_
 
 ### User
 
-_source line 1725 · 2026-05-20T11:33:38.230266+00:00_
+_source line 1695 · 2026-05-20T11:33:38.230266+00:00_
 
 [系统通知 — worker_done:worker_ops_migration-status-check_20260520T113205]:
 Worker worker_ops_migration-status-check_20260520T113205 已完成（status=done），请审查 Agent 的处理结果。
@@ -11406,7 +10251,7 @@ Worker worker_ops_migration-status-check_20260520T113205 已完成（status=done
 
 ### Assistant
 
-_source line 1726 · 2026-05-20T11:33:45.190747+00:00_
+_source line 1696 · 2026-05-20T11:33:45.190747+00:00_
 
 These are ops/infrastructure workers (data migration probe, migration status check), not experiment workers. No experiment registry entries, no scientific conclusions to review. Nothing to audit.
 
@@ -11433,7 +10278,7 @@ These are ops/infrastructure workers (data migration probe, migration status che
 
 ### User
 
-_source line 1727 · 2026-05-20T12:19:50.528974+00:00_
+_source line 1697 · 2026-05-20T12:19:50.528974+00:00_
 
 [系统通知 — worker_done:worker_ops_data-migration-execute_20260520T110813]:
 Worker worker_ops_data-migration-execute_20260520T110813 已完成（status=done），请审查 Agent 的处理结果。
@@ -11455,7 +10300,7 @@ Worker worker_ops_data-migration-execute_20260520T110813 已完成（status=done
 
 ### Assistant
 
-_source line 1728 · 2026-05-20T12:20:01.421185+00:00_
+_source line 1698 · 2026-05-20T12:20:01.421185+00:00_
 
 No response requested.
 
@@ -11482,7 +10327,7 @@ No response requested.
 
 ### User
 
-_source line 1729 · 2026-05-20T12:24:52.038930+00:00_
+_source line 1699 · 2026-05-20T12:24:52.038930+00:00_
 
 [系统通知 — worker_done:worker_ops_migration-final-verify_20260520T122010]:
 Worker worker_ops_migration-final-verify_20260520T122010 已完成（status=done），请审查 Agent 的处理结果。
@@ -11504,7 +10349,7 @@ Worker worker_ops_migration-final-verify_20260520T122010 已完成（status=done
 
 ### Assistant
 
-_source line 1730 · 2026-05-20T12:25:03.877430+00:00_
+_source line 1700 · 2026-05-20T12:25:03.877430+00:00_
 
 No response requested.
 
@@ -11531,7 +10376,7 @@ No response requested.
 
 ### User
 
-_source line 1731 · 2026-05-20T13:12:01.478250+00:00_
+_source line 1701 · 2026-05-20T13:12:01.478250+00:00_
 
 [系统通知 — worker_done:worker_ops_gpu-check_20260520T131105]:
 Worker worker_ops_gpu-check_20260520T131105 已完成（status=done），请审查 Agent 的处理结果。
@@ -11553,7 +10398,7 @@ Worker worker_ops_gpu-check_20260520T131105 已完成（status=done），请审�
 
 ### Assistant
 
-_source line 1732 · 2026-05-20T13:12:15.036706+00:00_
+_source line 1702 · 2026-05-20T13:12:15.036706+00:00_
 
 No response requested.
 
@@ -11580,7 +10425,7 @@ No response requested.
 
 ### User
 
-_source line 1733 · 2026-05-20T13:49:47.479441+00:00_
+_source line 1703 · 2026-05-20T13:49:47.479441+00:00_
 
 [System 触发审查]:
 论文投稿前终审请求。论文已完成 R14+R15 两轮 Fresh Review（均 3.0 Findings），所有写作修复到位，编译通过 8 页。
@@ -11612,7 +10457,7 @@ _source line 1733 · 2026-05-20T13:49:47.479441+00:00_
 
 ### Tool call
 
-_source line 1734 · 2026-05-20T13:50:03.981288+00:00_
+_source line 1704 · 2026-05-20T13:50:03.981288+00:00_
 
 called Read
 
@@ -11646,7 +10491,7 @@ called Read
 
 ### Tool result
 
-_source line 1735 · 2026-05-20T13:50:04.233834+00:00_
+_source line 1705 · 2026-05-20T13:50:04.233834+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4.
 
@@ -11668,7 +10513,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1736 · 2026-05-20T13:50:04.234227+00:00_
+_source line 1706 · 2026-05-20T13:50:04.234227+00:00_
 
 called Read
 
@@ -11702,7 +10547,7 @@ called Read
 
 ### Tool result
 
-_source line 1737 · 2026-05-20T13:50:04.736867+00:00_
+_source line 1707 · 2026-05-20T13:50:04.736867+00:00_
 
 1	\begin{abstract}
 2	As language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises, yet no method estimates how many such iterations a text has undergone.
@@ -11732,7 +10577,7 @@ _source line 1737 · 2026-05-20T13:50:04.736867+00:00_
 
 ### Tool call
 
-_source line 1738 · 2026-05-20T13:50:04.787764+00:00_
+_source line 1708 · 2026-05-20T13:50:04.787764+00:00_
 
 called Read
 
@@ -11766,7 +10611,7 @@ called Read
 
 ### Tool result
 
-_source line 1739 · 2026-05-20T13:50:05.290666+00:00_
+_source line 1709 · 2026-05-20T13:50:05.290666+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -11801,7 +10646,7 @@ _source line 1739 · 2026-05-20T13:50:05.290666+00:00_
 
 ### Tool call
 
-_source line 1740 · 2026-05-20T13:50:05.341427+00:00_
+_source line 1710 · 2026-05-20T13:50:05.341427+00:00_
 
 called Read
 
@@ -11835,7 +10680,7 @@ called Read
 
 ### Tool result
 
-_source line 1741 · 2026-05-20T13:50:05.392075+00:00_
+_source line 1711 · 2026-05-20T13:50:05.392075+00:00_
 
 1	\section{Discussion and Conclusion}
 2	\label{sec:discussion}
@@ -11862,7 +10707,7 @@ _source line 1741 · 2026-05-20T13:50:05.392075+00:00_
 
 ### Tool call
 
-_source line 1742 · 2026-05-20T13:50:19.378080+00:00_
+_source line 1712 · 2026-05-20T13:50:19.378080+00:00_
 
 called Read
 
@@ -11896,7 +10741,7 @@ called Read
 
 ### Tool call
 
-_source line 1743 · 2026-05-20T13:50:19.378567+00:00_
+_source line 1713 · 2026-05-20T13:50:19.378567+00:00_
 
 called Read
 
@@ -11930,7 +10775,7 @@ called Read
 
 ### Tool call
 
-_source line 1744 · 2026-05-20T13:50:19.378779+00:00_
+_source line 1714 · 2026-05-20T13:50:19.378779+00:00_
 
 called Read
 
@@ -11964,7 +10809,7 @@ called Read
 
 ### Tool call
 
-_source line 1745 · 2026-05-20T13:50:19.378979+00:00_
+_source line 1715 · 2026-05-20T13:50:19.378979+00:00_
 
 called Read
 
@@ -11998,7 +10843,7 @@ called Read
 
 ### Tool call
 
-_source line 1746 · 2026-05-20T13:50:19.379220+00:00_
+_source line 1716 · 2026-05-20T13:50:19.379220+00:00_
 
 called Read
 
@@ -12032,7 +10877,7 @@ called Read
 
 ### Tool call
 
-_source line 1747 · 2026-05-20T13:50:19.379441+00:00_
+_source line 1717 · 2026-05-20T13:50:19.379441+00:00_
 
 called Read
 
@@ -12066,7 +10911,7 @@ called Read
 
 ### Tool result
 
-_source line 1748 · 2026-05-20T13:50:19.379781+00:00_
+_source line 1718 · 2026-05-20T13:50:19.379781+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related}
@@ -12097,7 +10942,7 @@ _source line 1748 · 2026-05-20T13:50:19.379781+00:00_
 
 ### Tool result
 
-_source line 1749 · 2026-05-20T13:50:19.380273+00:00_
+_source line 1719 · 2026-05-20T13:50:19.380273+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -12148,7 +10993,7 @@ _source line 1749 · 2026-05-20T13:50:19.380273+00:00_
 
 ### Tool result
 
-_source line 1750 · 2026-05-20T13:50:19.380629+00:00_
+_source line 1720 · 2026-05-20T13:50:19.380629+00:00_
 
 1	\subsection{Theoretical Grounding}
 2	\label{sec:method:theory}
@@ -12190,7 +11035,7 @@ _source line 1750 · 2026-05-20T13:50:19.380629+00:00_
 
 ### Tool result
 
-_source line 1751 · 2026-05-20T13:50:19.431380+00:00_
+_source line 1721 · 2026-05-20T13:50:19.431380+00:00_
 
 1	\section{The Depth Degradation Atlas}
 2	\label{sec:atlas}
@@ -12233,7 +11078,7 @@ _source line 1751 · 2026-05-20T13:50:19.431380+00:00_
 
 ### Tool result
 
-_source line 1752 · 2026-05-20T13:50:19.432046+00:00_
+_source line 1722 · 2026-05-20T13:50:19.432046+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -12281,7 +11126,7 @@ _source line 1752 · 2026-05-20T13:50:19.432046+00:00_
 
 ### Tool result
 
-_source line 1753 · 2026-05-20T13:50:19.432509+00:00_
+_source line 1723 · 2026-05-20T13:50:19.432509+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -12318,7 +11163,7 @@ _source line 1753 · 2026-05-20T13:50:19.432509+00:00_
 
 ### Tool call
 
-_source line 1754 · 2026-05-20T13:53:02.539201+00:00_
+_source line 1724 · 2026-05-20T13:53:02.539201+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12354,7 +11199,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1755 · 2026-05-20T13:53:06.810129+00:00_
+_source line 1725 · 2026-05-20T13:53:06.810129+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -12376,7 +11221,7 @@ _source line 1755 · 2026-05-20T13:53:06.810129+00:00_
 
 ### Assistant
 
-_source line 1756 · 2026-05-20T13:53:10.159515+00:00_
+_source line 1726 · 2026-05-20T13:53:10.159515+00:00_
 
 全篇读完。组合终审意见。
 
@@ -12403,7 +11248,7 @@ _source line 1756 · 2026-05-20T13:53:10.159515+00:00_
 
 ### User
 
-_source line 1757 · 2026-05-20T14:22:07.986140+00:00_
+_source line 1727 · 2026-05-20T14:22:07.986140+00:00_
 
 [System 触发审查]:
 ## R16 审稿报告独立审查请求
@@ -12464,7 +11309,7 @@ _source line 1757 · 2026-05-20T14:22:07.986140+00:00_
 
 ### Tool call
 
-_source line 1758 · 2026-05-20T14:23:25.686825+00:00_
+_source line 1728 · 2026-05-20T14:23:25.686825+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12500,7 +11345,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1759 · 2026-05-20T14:23:29.551827+00:00_
+_source line 1729 · 2026-05-20T14:23:29.551827+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -12529,7 +11374,7 @@ _source line 1759 · 2026-05-20T14:23:29.551827+00:00_
 
 ### User
 
-_source line 1760 · 2026-05-20T15:08:32.701659+00:00_
+_source line 1730 · 2026-05-20T15:08:32.701659+00:00_
 
 [System 触发审查]:
 ## R16 修改后终审——叙事一致性检查
@@ -12572,7 +11417,7 @@ Paper Agent 刚完成 R16 审稿报告的 8 项写作修改。这些是论文核
 
 ### Tool call
 
-_source line 1761 · 2026-05-20T15:08:39.707847+00:00_
+_source line 1731 · 2026-05-20T15:08:39.707847+00:00_
 
 called Read
 
@@ -12606,7 +11451,7 @@ called Read
 
 ### Tool result
 
-_source line 1762 · 2026-05-20T15:08:41.114625+00:00_
+_source line 1732 · 2026-05-20T15:08:41.114625+00:00_
 
 1	\begin{abstract}
 2	As language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises, yet no method estimates how many such iterations a text has undergone.
@@ -12635,7 +11480,7 @@ _source line 1762 · 2026-05-20T15:08:41.114625+00:00_
 
 ### Tool call
 
-_source line 1763 · 2026-05-20T15:08:41.215580+00:00_
+_source line 1733 · 2026-05-20T15:08:41.215580+00:00_
 
 called Read
 
@@ -12669,7 +11514,7 @@ called Read
 
 ### Tool call
 
-_source line 1764 · 2026-05-20T15:08:41.216253+00:00_
+_source line 1734 · 2026-05-20T15:08:41.216253+00:00_
 
 called Read
 
@@ -12703,7 +11548,7 @@ called Read
 
 ### Tool result
 
-_source line 1765 · 2026-05-20T15:08:41.216547+00:00_
+_source line 1735 · 2026-05-20T15:08:41.216547+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -12737,7 +11582,7 @@ _source line 1765 · 2026-05-20T15:08:41.216547+00:00_
 
 ### Tool result
 
-_source line 1766 · 2026-05-20T15:08:41.618675+00:00_
+_source line 1736 · 2026-05-20T15:08:41.618675+00:00_
 
 1	\section{Discussion and Conclusion}
 2	\label{sec:discussion}
@@ -12775,7 +11620,7 @@ _source line 1766 · 2026-05-20T15:08:41.618675+00:00_
 
 ### Tool call
 
-_source line 1767 · 2026-05-20T15:08:41.769867+00:00_
+_source line 1737 · 2026-05-20T15:08:41.769867+00:00_
 
 called Read
 
@@ -12813,7 +11658,7 @@ called Read
 
 ### Tool result
 
-_source line 1768 · 2026-05-20T15:08:41.820693+00:00_
+_source line 1738 · 2026-05-20T15:08:41.820693+00:00_
 
 85	\subsection{Cross-Strategy Transfer}
 86	\label{sec:gen:crossstrategy}
@@ -12867,7 +11712,7 @@ _source line 1768 · 2026-05-20T15:08:41.820693+00:00_
 
 ### Tool call
 
-_source line 1769 · 2026-05-20T15:08:47.247727+00:00_
+_source line 1739 · 2026-05-20T15:08:47.247727+00:00_
 
 called Read
 
@@ -12905,7 +11750,7 @@ called Read
 
 ### Tool result
 
-_source line 1770 · 2026-05-20T15:08:47.298547+00:00_
+_source line 1740 · 2026-05-20T15:08:47.298547+00:00_
 
 41	%% ----------------------------------------------------------------
 42	\subsection{Feature Consistency Across the Grid}
@@ -12940,7 +11785,7 @@ _source line 1770 · 2026-05-20T15:08:47.298547+00:00_
 
 ### Tool call
 
-_source line 1771 · 2026-05-20T15:08:48.054093+00:00_
+_source line 1741 · 2026-05-20T15:08:48.054093+00:00_
 
 called Read
 
@@ -12978,7 +11823,7 @@ called Read
 
 ### Tool result
 
-_source line 1772 · 2026-05-20T15:08:48.106147+00:00_
+_source line 1742 · 2026-05-20T15:08:48.106147+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -13024,7 +11869,7 @@ _source line 1772 · 2026-05-20T15:08:48.106147+00:00_
 
 ### Tool call
 
-_source line 1773 · 2026-05-20T15:10:27.204008+00:00_
+_source line 1743 · 2026-05-20T15:10:27.204008+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13060,7 +11905,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1774 · 2026-05-20T15:10:31.171463+00:00_
+_source line 1744 · 2026-05-20T15:10:31.171463+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -13089,7 +11934,7 @@ _source line 1774 · 2026-05-20T15:10:31.171463+00:00_
 
 ### User
 
-_source line 1775 · 2026-05-20T16:51:08.396961+00:00_
+_source line 1745 · 2026-05-20T16:51:08.396961+00:00_
 
 [System 触发审查]:
 ## 蒸馏结果 × 论文叙事——最终质量检查
@@ -13133,7 +11978,7 @@ _source line 1775 · 2026-05-20T16:51:08.396961+00:00_
 
 ### Tool call
 
-_source line 1776 · 2026-05-20T16:51:20.241682+00:00_
+_source line 1746 · 2026-05-20T16:51:20.241682+00:00_
 
 called Grep
 
@@ -13173,7 +12018,7 @@ called Grep
 
 ### Tool result
 
-_source line 1777 · 2026-05-20T16:51:20.744786+00:00_
+_source line 1747 · 2026-05-20T16:51:20.744786+00:00_
 
 13:[Omitted long matching line]
 15:M4-SemEval \cite{wang2024_m4_semeval}, MAGE \cite{li2024_mage}, and the PAN 2026 shared tasks \cite{bevendorff2026_pan} benchmark detection across domains, models, and adversarial conditions; RAID \cite{dugan2024_raid} targets binary detection across diverse attack vectors rather than ordinal depth estimation, making direct protocol adoption inapplicable to our task.
@@ -13197,7 +12042,7 @@ _source line 1777 · 2026-05-20T16:51:20.744786+00:00_
 
 ### Tool call
 
-_source line 1778 · 2026-05-20T16:51:21.347656+00:00_
+_source line 1748 · 2026-05-20T16:51:21.347656+00:00_
 
 called Grep
 
@@ -13239,7 +12084,7 @@ called Grep
 
 ### Tool result
 
-_source line 1779 · 2026-05-20T16:51:21.450098+00:00_
+_source line 1749 · 2026-05-20T16:51:21.450098+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:13:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:15:M4-SemEval \cite{wang2024_m4_semeval}, MAGE \cite{li2024_mage}, and the PAN 2026 shared tasks \cite{bevendorff2026_pan} benchmark detection across domains, models, and adversarial conditions; RAID \cite{dugan2024_raid} targets binary detection across diverse attack vectors rather than ordinal depth estimation, making direct protocol adoption inapplicable to our task.
@@ -13263,7 +12108,7 @@ _source line 1779 · 2026-05-20T16:51:21.450098+00:00_
 
 ### Tool call
 
-_source line 1780 · 2026-05-20T16:51:28.179784+00:00_
+_source line 1750 · 2026-05-20T16:51:28.179784+00:00_
 
 called Grep
 
@@ -13309,7 +12154,7 @@ called Grep
 
 ### Tool result
 
-_source line 1781 · 2026-05-20T16:51:28.230530+00:00_
+_source line 1751 · 2026-05-20T16:51:28.230530+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex:13:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex:46:We extract a feature vector $\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\S\ref{sec:atlas:features}) shows the top 5 achieve 97.6\% of full-set performance, and variance inflation analysis reveals VIF${>}$10 for 14--16 features; effective independent dimensionality is ${\approx}$4--5.
@@ -13334,7 +12179,7 @@ _source line 1781 · 2026-05-20T16:51:28.230530+00:00_
 
 ### Tool call
 
-_source line 1782 · 2026-05-20T16:51:37.736970+00:00_
+_source line 1752 · 2026-05-20T16:51:37.736970+00:00_
 
 called Read
 
@@ -13372,7 +12217,7 @@ called Read
 
 ### Tool result
 
-_source line 1783 · 2026-05-20T16:51:37.788108+00:00_
+_source line 1753 · 2026-05-20T16:51:37.788108+00:00_
 
 10	All assume depth is known a priori; we address the inverse problem of estimating depth from text alone.
 11	
@@ -13403,7 +12248,7 @@ _source line 1783 · 2026-05-20T16:51:37.788108+00:00_
 
 ### Tool call
 
-_source line 1784 · 2026-05-20T16:52:03.406105+00:00_
+_source line 1754 · 2026-05-20T16:52:03.406105+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13439,7 +12284,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1785 · 2026-05-20T16:52:07.532002+00:00_
+_source line 1755 · 2026-05-20T16:52:07.532002+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -13468,7 +12313,7 @@ _source line 1785 · 2026-05-20T16:52:07.532002+00:00_
 
 ### User
 
-_source line 1786 · 2026-05-20T20:02:48.973190+00:00_
+_source line 1756 · 2026-05-20T20:02:48.973190+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：更新为项目收尾状态——论文定稿，等用户确认投稿/归档），请审查研究方向和计划的合理性。
@@ -13490,7 +12335,7 @@ _source line 1786 · 2026-05-20T20:02:48.973190+00:00_
 
 ### Tool call
 
-_source line 1787 · 2026-05-20T20:03:00.773484+00:00_
+_source line 1757 · 2026-05-20T20:03:00.773484+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -13528,7 +12373,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1788 · 2026-05-20T20:03:00.874344+00:00_
+_source line 1758 · 2026-05-20T20:03:00.874344+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\", \"content\": \"# recursive_gen_depth_est — Research Dashboard\\n\\n> 最后更新: 2026-05-20 20:02 UTC | 更新原因: 更新为项目收尾状态——论文定稿，等用户确认投稿/归档\\n\\n## 核心方向\\nOrdinal generation depth estimation：给定文本，估计其经历了多少轮递归生成（d0-d3）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**项目收尾 — 论文定稿完成，等用户确认投稿/归档**\\n\\n## 当前进展\\n- **核心矩阵 9/9**：69-86% 4-class (mean 78.4%)；d1-d3: 59-82%\\n- **14B Cross-Scale 完成**：3 策略全覆盖，EDD₀.₇₀=0，accuracy 2× chance（50.8%）\\n- **Binoculars 收敛验证**：78.1% vs 78.4% (p>0.05)；Merged-30 82.6% (+4.2pp)\\n- **Membership Inference Baselines 完成**：DetectGPT 28.8% / Min-K% 33.2% / Binoculars threshold 69.8%\\n- **DeBERTa/RoBERTa-DCOL**：neural << RF，simple features beat neural\\n- **Accumulation v3**：mix25 70.1% / mix50 69.1%（full-replacement ceiling 84.2%）\\n- **R16 Fresh Review 3.0 Findings**：3 critical 全部修复（14B EDD=0 reframe / novelty 降调 / cross-strategy scope）\\n- **蒸馏独立验证**：25 篇论文确认 \\\"No paper estimates recursive generation depth\\\" novelty gap\\n- **论文编译通过**：25 页无 warning，8 页主文 + unlimited refs + limitations\\n\\n## 收尾状态\\n- 论文定稿 ✅（R16 修改 + Reviewer 终审 PASS + 蒸馏验证）\\n- review_issues.yaml 更新 ✅（N1-N3 resolved, W2/W6-W8 wont_fix with reasons）\\n- 蒸馏完成 ✅（research + writing skills 生成）\\n- 审稿申请已提交 ⏳（apr_20260520T135843_ifm3 待用户确认）\\n- **等用户决定**：提交 ARR / 跳过内审直接投 / 归档\\n\\n## GPU 预算\\n- gpu-6000pro-2: 项目配置 1× RTX PRO 6000 (cuda:0)\\n- 无 RUNNING 实验\\n- 用户明确指示不做新实验\\n\\n## 评分预期\\n- R16 评分：3.0 Findings\\n- 修改后预期：~3.0-3.5（Findings 接收有把握）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D050 | 2026-05-20 | D050: 14B 三策略全部完成 — nucleus 54.05% / temp09 50.5%  | qwen25_14b_topk50, qwen25_14b_temp09, qwen25_14b_scale_002, binoculars_14b_temp09 |\\n| D049 | 2026-05-19 | D049: Feature ablation 确认 6 core ppl features 是 ba | feature_ablation_overlap_001, binoculars_ordinal_baseline_001 |\\n| D048 | 2026-05-19 | D048: Binocul
 …[truncated 1131 chars]
@@ -13551,7 +12396,7 @@ _source line 1788 · 2026-05-20T20:03:00.874344+00:00_
 
 ### Tool call
 
-_source line 1789 · 2026-05-20T20:03:09.359052+00:00_
+_source line 1759 · 2026-05-20T20:03:09.359052+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13587,7 +12432,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1790 · 2026-05-20T20:03:13.127984+00:00_
+_source line 1760 · 2026-05-20T20:03:13.127984+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -13609,7 +12454,7 @@ _source line 1790 · 2026-05-20T20:03:13.127984+00:00_
 
 ### Assistant
 
-_source line 1791 · 2026-05-20T20:03:16.207227+00:00_
+_source line 1761 · 2026-05-20T20:03:16.207227+00:00_
 
 ROADMAP 状态准确，与实际项目进展一致。无异议。
 
@@ -13636,7 +12481,7 @@ ROADMAP 状态准确，与实际项目进展一致。无异议。
 
 ### User
 
-_source line 1792 · 2026-05-21T06:53:35.435724+00:00_
+_source line 1762 · 2026-05-21T06:53:35.435724+00:00_
 
 [System 触发审查]:
 ## R17 审稿报告 + Director Action Matrix — 请独立审视
@@ -13776,7 +12621,7 @@ _source line 1792 · 2026-05-21T06:53:35.435724+00:00_
 
 ### Tool call
 
-_source line 1793 · 2026-05-21T06:55:22.311862+00:00_
+_source line 1763 · 2026-05-21T06:55:22.311862+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13812,7 +12657,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1794 · 2026-05-21T06:55:26.630535+00:00_
+_source line 1764 · 2026-05-21T06:55:26.630535+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -13841,7 +12686,7 @@ _source line 1794 · 2026-05-21T06:55:26.630535+00:00_
 
 ### User
 
-_source line 1795 · 2026-05-21T07:11:13.815850+00:00_
+_source line 1765 · 2026-05-21T07:11:13.815850+00:00_
 
 [系统通知 — worker_done:worker_exp_accum_discovery_20260521T070711]:
 Worker worker_exp_accum_discovery_20260521T070711 已完成（status=done），请审查 Agent 的处理结果。
@@ -13863,7 +12708,7 @@ Worker worker_exp_accum_discovery_20260521T070711 已完成（status=done），�
 
 ### Tool call
 
-_source line 1796 · 2026-05-21T07:11:23.449026+00:00_
+_source line 1766 · 2026-05-21T07:11:23.449026+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13903,7 +12748,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1797 · 2026-05-21T07:11:24.154917+00:00_
+_source line 1767 · 2026-05-21T07:11:24.154917+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"binoculars_14b_topk50\": {\"status\": \"DONE\", \"metrics\": {\"binoculars_baseline\": {\"RF_multi_11feat\": {\"4class_acc\": 0.3768, \"4class_acc_std\": 0.0071, \"d1d3_bal_acc\": 0.3386, \"d1d3_bal_acc_std\": 0.0075}, \"equal_width\": {\"4class_acc\": 0.2613, \"d1d3_bal_acc\": 0.3065}, \"coral\": {\"4class_acc\": 0.2447, \"d1d3_bal_acc\": 0.3263}, \"threshold\": {\"4class_acc\": 0.2843, \"d1d3_bal_acc\": 0.2495}, \"RF_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"merged_ablation\": {\"stat_only_19feat\": {\"4class_acc\": 0.4884, \"4class_acc_std\": 0.0082, \"d1d3_bal_acc\": 0.4345, \"d1d3_bal_acc_std\": 0.0091}, \"bino_only_11feat\": {\"4class_acc\": 0.3774, \"4class_acc_std\": 0.009, \"d1d3_bal_acc\": 0.3402, \"d1d3_bal_acc_std\": 0.0097}, \"merged_30feat\": {\"4class_acc\": 0.5149, \"4class_acc_std\": 0.0053, \"d1d3_bal_acc\": 0.4637, \"d1d3_bal_acc_std\": 0.0042}, \"bino_single\": {\"4class_acc\": 0.2523, \"d1d3_bal_acc\": 0.2521}}, \"baseline_alignment_plan_A\": {\"main_pipeline_stat_only\": 0.4793, \"merged_30feat\": 0.5149, \"delta\": 0.0356, \"note\": \"stat_only aligned to main pipeline (47.93%) per 方案A\"}}, \"conclusion\": \"success\"}, \"qwen25_14b_topk50\": {\"status\": \"DONE\", \"metrics\": {\"rf_4class_acc\": 0.4793, \"rf_4class_ci\": [0.4726, 0.4859], \"lr_4class_acc\": 0.4395, \"lr_4class_ci\": [0.4323, 0.4465], \"rf_3class_no_d0_acc\": 0.5164, \"rf_3class_ci\": [0.5083, 0.5239], \"rf_d0v1_auc\": 0.5607, \"rf_d0v2_auc\": 0.8481, \"rf_d0v3_auc\": 0.9253, \"rf_d1v2_auc\": 0.6868, \"rf_d1v3_auc\": 0.7935, \"rf_d2v3_auc\": 0.6788, \"top5_features\": [\"kurt_ppl\", \"skew_ppl\", \"var_surprisal\", \"type_token_ratio\", \"hapax_ratio\"], \"samples_per_depth\": 5000, \"num_features\": 19, \"runtime_hours\": 24.5}, \"conclusion\": \"success\"}, \"binoculars_14b_temp09\": {\"status\": \"DONE\", \"metrics\": {\"bino_single_4class\": 0.2917, \"bino_only_11feat_4class\": 0.4258, \"
 …[truncated 1587 chars]
@@ -13926,7 +12771,7 @@ _source line 1797 · 2026-05-21T07:11:24.154917+00:00_
 
 ### Tool call
 
-_source line 1798 · 2026-05-21T07:11:32.351249+00:00_
+_source line 1768 · 2026-05-21T07:11:32.351249+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13966,7 +12811,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1799 · 2026-05-21T07:11:33.860726+00:00_
+_source line 1769 · 2026-05-21T07:11:33.860726+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"fpr_coverage_001\": {\"status\": \"RUNNING\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5573}}"}
 
@@ -13988,7 +12833,7 @@ _source line 1799 · 2026-05-21T07:11:33.860726+00:00_
 
 ### Tool call
 
-_source line 1800 · 2026-05-21T07:11:34.063022+00:00_
+_source line 1770 · 2026-05-21T07:11:34.063022+00:00_
 
 called Grep
 
@@ -14030,7 +12875,7 @@ called Grep
 
 ### Tool result
 
-_source line 1801 · 2026-05-21T07:11:34.163934+00:00_
+_source line 1771 · 2026-05-21T07:11:34.163934+00:00_
 
 No files found
 
@@ -14052,7 +12897,7 @@ No files found
 
 ### Tool call
 
-_source line 1802 · 2026-05-21T07:11:44.245701+00:00_
+_source line 1772 · 2026-05-21T07:11:44.245701+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14090,7 +12935,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1803 · 2026-05-21T07:11:44.852558+00:00_
+_source line 1773 · 2026-05-21T07:11:44.852558+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6154}}"}
 
@@ -14112,7 +12957,7 @@ _source line 1803 · 2026-05-21T07:11:44.852558+00:00_
 
 ### Tool call
 
-_source line 1804 · 2026-05-21T07:11:52.000063+00:00_
+_source line 1774 · 2026-05-21T07:11:52.000063+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14148,7 +12993,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1805 · 2026-05-21T07:11:53.657419+00:00_
+_source line 1775 · 2026-05-21T07:11:53.657419+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
 
@@ -14170,7 +13015,7 @@ _source line 1805 · 2026-05-21T07:11:53.657419+00:00_
 
 ### Assistant
 
-_source line 1806 · 2026-05-21T07:12:02.790763+00:00_
+_source line 1776 · 2026-05-21T07:12:02.790763+00:00_
 
 GPU 无活跃进程（0 MiB memory used），fpr_coverage_001 可能是 CPU-only 计算（threshold sweep）。accum_discovery worker 未注册新实验，可能只是发现了已有 accum_v3 数据。
 
@@ -14199,7 +13044,7 @@ GPU 无活跃进程（0 MiB memory used），fpr_coverage_001 可能是 CPU-only
 
 ### User
 
-_source line 1807 · 2026-05-21T07:13:23.005845+00:00_
+_source line 1777 · 2026-05-21T07:13:23.005845+00:00_
 
 [系统通知 — worker_done:worker_exp_conditional_pi_001_20260521T070638]:
 Worker worker_exp_conditional_pi_001_20260521T070638 已完成（status=done），请审查 Agent 的处理结果。
@@ -14221,7 +13066,7 @@ Worker worker_exp_conditional_pi_001_20260521T070638 已完成（status=done）�
 
 ### Tool call
 
-_source line 1808 · 2026-05-21T07:13:30.366497+00:00_
+_source line 1778 · 2026-05-21T07:13:30.366497+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14259,7 +13104,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1809 · 2026-05-21T07:13:30.919055+00:00_
+_source line 1779 · 2026-05-21T07:13:30.919055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"conditional_pi_001\": {\"status\": \"ANALYZING\"}, \"fpr_coverage_001\": {\"status\": \"DONE\", \"metrics\": {\"c4_5k_base_fpr\": 0.202, \"c4_10k_base_fpr\": 0.34, \"c4_5k_t070_fpr\": 0.014, \"c4_5k_t070_coverage\": 0.752, \"c4_10k_t070_fpr\": 0.035, \"c4_10k_t070_coverage\": 0.645, \"c4_5k_t075_fpr\": 0.004, \"c4_5k_t075_coverage\": 0.734, \"c4_10k_t075_fpr\": 0.004, \"c4_10k_t075_coverage\": 0.615, \"ctrl_t070_bal_acc_d1d3\": 0.858, \"ctrl_t075_bal_acc_d1d3\": 0.869}, \"conclusion\": \"success\"}, \"14b_cross_ref_001\": {\"status\": \"RUNNING\"}}, \"count\": 3, \"total\": 144, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5187}}"}
 
@@ -14281,7 +13126,7 @@ _source line 1809 · 2026-05-21T07:13:30.919055+00:00_
 
 ### Assistant
 
-_source line 1810 · 2026-05-21T07:13:50.171328+00:00_
+_source line 1780 · 2026-05-21T07:13:50.171328+00:00_
 
 3 个新实验在推进中：`conditional_pi_001`（ANALYZING）、`fpr_coverage_001`（DONE）、`14b_cross_ref_001`（RUNNING）。`conditional_pi_001` 还在分析阶段，等完成后一并审查。
 
@@ -14310,7 +13155,7 @@ _source line 1810 · 2026-05-21T07:13:50.171328+00:00_
 
 ### User
 
-_source line 1811 · 2026-05-21T07:13:50.749144+00:00_
+_source line 1781 · 2026-05-21T07:13:50.749144+00:00_
 
 [系统通知 — worker_done:worker_exp_fpr_coverage_001_20260521T070655]:
 Worker worker_exp_fpr_coverage_001_20260521T070655 已完成（status=done），请审查 Agent 的处理结果。
@@ -14332,7 +13177,7 @@ Worker worker_exp_fpr_coverage_001_20260521T070655 已完成（status=done），
 
 ### Tool call
 
-_source line 1812 · 2026-05-21T07:14:21.781934+00:00_
+_source line 1782 · 2026-05-21T07:14:21.781934+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14368,7 +13213,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1813 · 2026-05-21T07:14:26.151286+00:00_
+_source line 1783 · 2026-05-21T07:14:26.151286+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -14397,7 +13242,7 @@ _source line 1813 · 2026-05-21T07:14:26.151286+00:00_
 
 ### User
 
-_source line 1814 · 2026-05-21T07:25:11.043242+00:00_
+_source line 1784 · 2026-05-21T07:25:11.043242+00:00_
 
 [系统通知 — worker_done:worker_exp_14b_cross_ref_001_20260521T070619]:
 Worker worker_exp_14b_cross_ref_001_20260521T070619 已完成（status=done），请审查 Agent 的处理结果。
@@ -14419,7 +13264,7 @@ Worker worker_exp_14b_cross_ref_001_20260521T070619 已完成（status=done）�
 
 ### Tool call
 
-_source line 1815 · 2026-05-21T07:25:17.317051+00:00_
+_source line 1785 · 2026-05-21T07:25:17.317051+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14457,7 +13302,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1816 · 2026-05-21T07:25:17.970142+00:00_
+_source line 1786 · 2026-05-21T07:25:17.970142+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6268}}"}
 
@@ -14479,7 +13324,7 @@ _source line 1816 · 2026-05-21T07:25:17.970142+00:00_
 
 ### Tool call
 
-_source line 1817 · 2026-05-21T07:25:21.792659+00:00_
+_source line 1787 · 2026-05-21T07:25:21.792659+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14517,7 +13362,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1818 · 2026-05-21T07:25:22.550355+00:00_
+_source line 1788 · 2026-05-21T07:25:22.550355+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"14b_cross_ref_001\": {\"status\": \"DONE\", \"metrics\": {\"nucleus\": {\"cross_ref_4class_acc\": 0.4497, \"self_ref_4class_acc\": 0.5405, \"delta\": -0.0908, \"d1d3_bal_acc\": 0.3947, \"per_class_recall\": {\"d0\": 0.5918, \"d1\": 0.333, \"d2\": 0.5, \"d3\": 0.3511}, \"pairwise_auc\": {\"d0v1\": 0.7016, \"d0v2\": 0.8829, \"d0v3\": 0.927, \"d1v2\": 0.7308, \"d1v3\": 0.809, \"d2v3\": 0.5987}, \"edd_T070\": 2}, \"temp09\": {\"cross_ref_4class_acc\": 0.4633, \"self_ref_4class_acc\": 0.505, \"delta\": -0.0417, \"d1d3_bal_acc\": 0.4029, \"per_class_recall\": {\"d0\": 0.6446, \"d1\": 0.327, \"d2\": 0.347, \"d3\": 0.5346}, \"pairwise_auc\": {\"d0v1\": 0.7392, \"d0v2\": 0.9087, \"d0v3\": 0.9451, \"d1v2\": 0.7238, \"d1v3\": 0.8207, \"d2v3\": 0.6145}, \"edd_T070\": 2}, \"topk50\": {\"cross_ref_4class_acc\": 0.4085, \"self_ref_4class_acc\": 0.4793, \"delta\": -0.0708, \"d1d3_bal_acc\": 0.3527, \"per_class_recall\": {\"d0\": 0.576, \"d1\": 0.258, \"d2\": 0.3664, \"d3\": 0.4336}, \"pairwise_auc\": {\"d0v1\": 0.699, \"d0v2\": 0.861, \"d0v3\": 0.8823, \"d1v2\": 0.681, \"d1v3\": 0.728, \"d2v3\": 0.5415}, \"edd_T070\": 0}, \"avg_cross_ref_acc\": 0.4405, \"avg_self_ref_acc\": 0.5083, \"avg_delta\": -0.0678, \"total_time_sec\": 619.1, \"reference_model\": \"Pythia-1.4B\", \"n_features\": 19, \"rf_config\": \"200 trees, 5-fold CV, seed=42\"}, \"conclusion\": \"success\"}, \"conditional_pi_001\": {\"status\": \"ANALYZING\"}, \"fpr_coverage_001\": {\"status\": \"DONE\", \"metrics\": {\"c4_5k_base_fpr\": 0.202, \"c4_10k_base_fpr\": 0.34, \"c4_5k_t070_fpr\": 0.014, \"c4_5k_t070_coverage\": 0.752, \"c4_10k_t070_fpr\": 0.035, \"c4_10k_t070_coverage\": 0.645, \"c4_5k_t075_fpr\": 0.004, \"c4_5k_t075_coverage\": 0.734, \"c4_10k_t075_fpr\": 0.004, \"c4_10k_t075_coverage\": 0.615, \"ctrl_t070_bal_acc_d1d3\": 0.858, \"ctrl_t075_bal_acc_d1d3\": 0.869}, \"conclusion\": \"success\"}, \"accum_olmo_temp_001\": {\"status\": \"PREPARING\"}, \"
 …[truncated 168 chars]
@@ -14540,7 +13385,7 @@ _source line 1818 · 2026-05-21T07:25:22.550355+00:00_
 
 ### Tool call
 
-_source line 1819 · 2026-05-21T07:26:19.702112+00:00_
+_source line 1789 · 2026-05-21T07:26:19.702112+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14576,7 +13421,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1820 · 2026-05-21T07:26:24.833746+00:00_
+_source line 1790 · 2026-05-21T07:26:24.833746+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -14598,7 +13443,7 @@ _source line 1820 · 2026-05-21T07:26:24.833746+00:00_
 
 ### Assistant
 
-_source line 1821 · 2026-05-21T07:26:27.385100+00:00_
+_source line 1791 · 2026-05-21T07:26:27.385100+00:00_
 
 这个实验结果非常关键——直接改变了 14B 的叙事。
 
@@ -14625,7 +13470,7 @@ _source line 1821 · 2026-05-21T07:26:27.385100+00:00_
 
 ### User
 
-_source line 1822 · 2026-05-21T07:27:12.982990+00:00_
+_source line 1792 · 2026-05-21T07:27:12.982990+00:00_
 
 [系统通知 — worker_done:worker_exp_accum_pythia_nuc_001_20260521T072324]:
 Worker worker_exp_accum_pythia_nuc_001_20260521T072324 已完成（status=done），请审查 Agent 的处理结果。
@@ -14647,7 +13492,7 @@ Worker worker_exp_accum_pythia_nuc_001_20260521T072324 已完成（status=done�
 
 ### Tool call
 
-_source line 1823 · 2026-05-21T07:27:19.597085+00:00_
+_source line 1793 · 2026-05-21T07:27:19.597085+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14685,7 +13530,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1824 · 2026-05-21T07:27:20.151687+00:00_
+_source line 1794 · 2026-05-21T07:27:20.151687+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5547}}"}
 
@@ -14707,7 +13552,7 @@ _source line 1824 · 2026-05-21T07:27:20.151687+00:00_
 
 ### Tool call
 
-_source line 1825 · 2026-05-21T07:27:24.723998+00:00_
+_source line 1795 · 2026-05-21T07:27:24.723998+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14745,7 +13590,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1826 · 2026-05-21T07:27:25.680761+00:00_
+_source line 1796 · 2026-05-21T07:27:25.680761+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"accum_pythia_nuc_001\": {\"status\": \"ANALYZING\"}, \"14b_cross_ref_001\": {\"status\": \"DONE\", \"metrics\": {\"nucleus\": {\"cross_ref_4class_acc\": 0.4497, \"self_ref_4class_acc\": 0.5405, \"delta\": -0.0908, \"d1d3_bal_acc\": 0.3947, \"per_class_recall\": {\"d0\": 0.5918, \"d1\": 0.333, \"d2\": 0.5, \"d3\": 0.3511}, \"pairwise_auc\": {\"d0v1\": 0.7016, \"d0v2\": 0.8829, \"d0v3\": 0.927, \"d1v2\": 0.7308, \"d1v3\": 0.809, \"d2v3\": 0.5987}, \"edd_T070\": 2}, \"temp09\": {\"cross_ref_4class_acc\": 0.4633, \"self_ref_4class_acc\": 0.505, \"delta\": -0.0417, \"d1d3_bal_acc\": 0.4029, \"per_class_recall\": {\"d0\": 0.6446, \"d1\": 0.327, \"d2\": 0.347, \"d3\": 0.5346}, \"pairwise_auc\": {\"d0v1\": 0.7392, \"d0v2\": 0.9087, \"d0v3\": 0.9451, \"d1v2\": 0.7238, \"d1v3\": 0.8207, \"d2v3\": 0.6145}, \"edd_T070\": 2}, \"topk50\": {\"cross_ref_4class_acc\": 0.4085, \"self_ref_4class_acc\": 0.4793, \"delta\": -0.0708, \"d1d3_bal_acc\": 0.3527, \"per_class_recall\": {\"d0\": 0.576, \"d1\": 0.258, \"d2\": 0.3664, \"d3\": 0.4336}, \"pairwise_auc\": {\"d0v1\": 0.699, \"d0v2\": 0.861, \"d0v3\": 0.8823, \"d1v2\": 0.681, \"d1v3\": 0.728, \"d2v3\": 0.5415}, \"edd_T070\": 0}, \"avg_cross_ref_acc\": 0.4405, \"avg_self_ref_acc\": 0.5083, \"avg_delta\": -0.0678, \"total_time_sec\": 619.1, \"reference_model\": \"Pythia-1.4B\", \"n_features\": 19, \"rf_config\": \"200 trees, 5-fold CV, seed=42\"}, \"conclusion\": \"success\"}, \"conditional_pi_001\": {\"status\": \"ANALYZING\"}, \"fpr_coverage_001\": {\"status\": \"DONE\", \"metrics\": {\"c4_5k_base_fpr\": 0.202, \"c4_10k_base_fpr\": 0.34, \"c4_5k_t070_fpr\": 0.014, \"c4_5k_t070_coverage\": 0.752, \"c4_10k_t070_fpr\": 0.035, \"c4_10k_t070_coverage\": 0.645, \"c4_5k_t075_fpr\": 0.004, \"c4_5k_t075_coverage\": 0.734, \"c4_10k_t075_fpr\": 0.004, \"c4_10k_t075_coverage\": 0.615, \"ctrl_t070_bal_acc_d1d3\": 0.858, \"ctrl_t075_bal_acc_d1d3\": 0.869}, \"conclusion\": \"success\"}, \
 …[truncated 168 chars]
@@ -14768,7 +13613,7 @@ _source line 1826 · 2026-05-21T07:27:25.680761+00:00_
 
 ### Assistant
 
-_source line 1827 · 2026-05-21T07:27:29.836496+00:00_
+_source line 1797 · 2026-05-21T07:27:29.836496+00:00_
 
 accum_pythia_nuc_001 状态 ANALYZING，尚无 metrics。等实验分析完成后审查。
 
@@ -14795,7 +13640,7 @@ accum_pythia_nuc_001 状态 ANALYZING，尚无 metrics。等实验分析完成�
 
 ### User
 
-_source line 1828 · 2026-05-21T07:31:43.961482+00:00_
+_source line 1798 · 2026-05-21T07:31:43.961482+00:00_
 
 [系统通知 — worker_done:worker_exp_accum_olmo_temp_001_20260521T072723]:
 Worker worker_exp_accum_olmo_temp_001_20260521T072723 已完成（status=done），请审查 Agent 的处理结果。
@@ -14817,7 +13662,7 @@ Worker worker_exp_accum_olmo_temp_001_20260521T072723 已完成（status=done）
 
 ### Tool call
 
-_source line 1829 · 2026-05-21T07:31:51.463998+00:00_
+_source line 1799 · 2026-05-21T07:31:51.463998+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14855,7 +13700,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1830 · 2026-05-21T07:31:52.069280+00:00_
+_source line 1800 · 2026-05-21T07:31:52.069280+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"accum_olmo_temp_001\": {\"status\": \"ANALYZING\"}, \"accum_pythia_nuc_001\": {\"status\": \"ANALYZING\"}, \"14b_cross_ref_001\": {\"status\": \"DONE\", \"metrics\": {\"nucleus\": {\"cross_ref_4class_acc\": 0.4497, \"self_ref_4class_acc\": 0.5405, \"delta\": -0.0908, \"d1d3_bal_acc\": 0.3947, \"per_class_recall\": {\"d0\": 0.5918, \"d1\": 0.333, \"d2\": 0.5, \"d3\": 0.3511}, \"pairwise_auc\": {\"d0v1\": 0.7016, \"d0v2\": 0.8829, \"d0v3\": 0.927, \"d1v2\": 0.7308, \"d1v3\": 0.809, \"d2v3\": 0.5987}, \"edd_T070\": 2}, \"temp09\": {\"cross_ref_4class_acc\": 0.4633, \"self_ref_4class_acc\": 0.505, \"delta\": -0.0417, \"d1d3_bal_acc\": 0.4029, \"per_class_recall\": {\"d0\": 0.6446, \"d1\": 0.327, \"d2\": 0.347, \"d3\": 0.5346}, \"pairwise_auc\": {\"d0v1\": 0.7392, \"d0v2\": 0.9087, \"d0v3\": 0.9451, \"d1v2\": 0.7238, \"d1v3\": 0.8207, \"d2v3\": 0.6145}, \"edd_T070\": 2}, \"topk50\": {\"cross_ref_4class_acc\": 0.4085, \"self_ref_4class_acc\": 0.4793, \"delta\": -0.0708, \"d1d3_bal_acc\": 0.3527, \"per_class_recall\": {\"d0\": 0.576, \"d1\": 0.258, \"d2\": 0.3664, \"d3\": 0.4336}, \"pairwise_auc\": {\"d0v1\": 0.699, \"d0v2\": 0.861, \"d0v3\": 0.8823, \"d1v2\": 0.681, \"d1v3\": 0.728, \"d2v3\": 0.5415}, \"edd_T070\": 0}, \"avg_cross_ref_acc\": 0.4405, \"avg_self_ref_acc\": 0.5083, \"avg_delta\": -0.0678, \"total_time_sec\": 619.1, \"reference_model\": \"Pythia-1.4B\", \"n_features\": 19, \"rf_config\": \"200 trees, 5-fold CV, seed=42\"}, \"conclusion\": \"success\"}, \"conditional_pi_001\": {\"status\": \"ANALYZING\"}, \"fpr_coverage_001\": {\"status\": \"DONE\", \"metrics\": {\"c4_5k_base_fpr\": 0.202, \"c4_10k_base_fpr\": 0.34, \"c4_5k_t070_fpr\": 0.014, \"c4_5k_t070_coverage\": 0.752, \"c4_10k_t070_fpr\": 0.035, \"c4_10k_t070_coverage\": 0.645, \"c4_5k_t075_fpr\": 0.004, \"c4_5k_t075_coverage\": 0.734, \"c4_10k_t075_fpr\": 0.004, \"c4_10k_t075_coverage\": 0.615, \"ctrl_t070_bal_acc_d1d3\": 0.858, \"ctrl_t075_b
 …[truncated 1354 chars]
@@ -14878,7 +13723,7 @@ _source line 1830 · 2026-05-21T07:31:52.069280+00:00_
 
 ### Assistant
 
-_source line 1831 · 2026-05-21T07:31:56.227551+00:00_
+_source line 1801 · 2026-05-21T07:31:56.227551+00:00_
 
 accum_olmo_temp_001 和 accum_pythia_nuc_001 都还在 ANALYZING 状态，metrics 尚未写入 registry。等分析完成后再审查。
 
@@ -14905,7 +13750,7 @@ accum_olmo_temp_001 和 accum_pythia_nuc_001 都还在 ANALYZING 状态，metric
 
 ### User
 
-_source line 1832 · 2026-05-21T11:40:15.602723+00:00_
+_source line 1802 · 2026-05-21T11:40:15.602723+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -14987,7 +13832,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1833 · 2026-05-21T11:41:08.589245+00:00_
+_source line 1803 · 2026-05-21T11:41:08.589245+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

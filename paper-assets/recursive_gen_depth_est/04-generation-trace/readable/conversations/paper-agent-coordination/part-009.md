@@ -17524,7 +17524,7 @@ _source line 5661 · 2026-05-19T13:32:15.918187+00:00_
 
 ## Round 248
 
-66 recorded events
+60 recorded events
 
 
 ### User
@@ -17563,137 +17563,7 @@ Round 13 审稿两位 Reviewer 的主要批评点，请起草 rebuttal response 
 
 ### Tool call
 
-_source line 5663 · 2026-05-19T16:32:43.449247+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5664 · 2026-05-19T16:32:43.952904+00:00_
-
-1	---
-2	name: rebuttal
-3	description: 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。
-4	scope: global
-5	tags:
-6	- workflow
-7	- review
-8	- writing
-9	priority: 8
-10	version: 1
-11	roles:
-12	- agent
-13	- review_reviewer
-14	- worker
-15	---
-16	
-17	# 学术 Rebuttal 撰写与优化
-18	
-19	Rebuttal 是受 venue 约束的回应流程，不只是写作任务。目标：澄清误解、解决关键问题、将审稿分析转化为可执行任务清单、生成符合目标 venue 要求的提交产物。
-20	
-21	## 输入处理
-22	
-23	审稿意见可能以多种格式到达：
-24	
-25	- **粘贴文本**：直接使用，确认是否完整
-26	- **PDF 审稿**：读取 PDF，提取所有审稿文本、评分和 confidence
-27	- **截图**：读取图片转录所有可见内容，标记截断或不清晰的部分
-28	- **OpenReview / CMT 链接**：请用户粘贴审稿文本
-29	- **LaTeX 源码或论文 PDF**：按需读取以交叉核对 reviewer 质疑的 claim
-30	
-31	如果审稿不完整（缺评分或 confidence），先确认再继续。
-32	
-33	## 流程
-34	
-35	### Stage 1：审稿分析与 Issue Board
-36	
-37	分析所有审稿意见，识别核心主题、关键技术问题和共性疑问。
-38	
-39	**关键动作**：
-40	
-41	- **评分矩阵**：列出 Reviewer ID、评分、confidence、决策逻辑摘要
-42	- **立场分类**：
-43	  - Champion（分数 >= 7，正面语言）
-44	  - Persuadable（4-6 分，摇摆）
-45	  - Entrenched（<= 3 分，强烈负面）
-46	- **决策关键问题**：低分 + 高 confidence + 多 reviewer 重复提及 + AC 可能关注的
-47	- **归类**：soundness / novelty / significance / clarity / missing baselines / missing ablations / theory gaps / limitations / ethics / minor edits
-48	- **严重性分级**：
-49	
-50	| 严重性 | 定义 |
-51	|--------|------|
-52	| **Major-Blocking** | 单独可导致拒稿（方法论缺陷、novelty 挑战） |
-53	| **Major-Addressable** | 重大但可用证据或修改解决 |
-54	| **Minor** | 清晰度、格式、typo——对决策影响小 |
-55	| **Misunderstanding** | Reviewer 遗漏了论文中已有的内容 |
-56	
-57	**输出：Issue Board**
-58	
-59	```
-60	issue_id | reviewer | severity          | category   | strategy | status
-61	R1-1     | R1       | Major-Blocking    | baselines  | (TBD)    | open
-62	R1-2     | R1       | Minor             | clarity    | (TBD)    | open
-63	R2-1     | R2       | Misunderstanding  | novelty    | (TBD)    | open
-64	```
-65	
-66	如果用户只需要分析，到此为止。
-67	
-68	### Stage 2：策略选择
-69	
-70	为 Issue Board 中每个问题选择回应策略：
-71	
-72	| 策略 | 适用场景 | 示例 |
-73	|------|---------|------|
-74	| **Accept and fix** | Reviewer 说得对，deadline 前可修 | 缺少
-…[truncated 3901 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 503
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5665 · 2026-05-19T16:32:43.953529+00:00_
+_source line 5663 · 2026-05-19T16:32:43.953529+00:00_
 
 called Glob
 
@@ -17729,7 +17599,7 @@ called Glob
 
 ### Tool result
 
-_source line 5666 · 2026-05-19T16:32:44.455985+00:00_
+_source line 5664 · 2026-05-19T16:32:44.455985+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/report/rebuttal_templates.md
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md
@@ -17752,7 +17622,7 @@ _source line 5666 · 2026-05-19T16:32:44.455985+00:00_
 
 ### Tool call
 
-_source line 5667 · 2026-05-19T16:32:44.506800+00:00_
+_source line 5665 · 2026-05-19T16:32:44.506800+00:00_
 
 called ToolSearch
 
@@ -17788,7 +17658,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5668 · 2026-05-19T16:32:44.557527+00:00_
+_source line 5666 · 2026-05-19T16:32:44.557527+00:00_
 
 
 
@@ -17810,80 +17680,7 @@ _source line 5668 · 2026-05-19T16:32:44.557527+00:00_
 
 ### Tool call
 
-_source line 5669 · 2026-05-19T16:32:48.223013+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5670 · 2026-05-19T16:32:48.524858+00:00_
-
-1	# Rebuttal Templates — Recursive Generation Depth Estimation
-2	
-3	## W10: Cross-seed replication only covers 3/9 cells
-4	
-5	**Weakness summary.** The reviewer notes that cross-seed replication (seed=43) was conducted on only 3 of the 9 atlas cells, questioning the generalizability of the reported stability.
-6	
-7	**Core rebuttal.** We appreciate the concern regarding replication coverage. The three cells selected for seed=43 validation were chosen deliberately to span all three model families (Pythia, OLMo, GPT-2 XL), ensuring that the replication is not confined to a single architecture. Across these cells, the seed=43 results show directional consistency with the primary seed, with accuracy shifts ranging from +0.1 to +3.2 percentage points. Two of the three cells yield statistically significant agreement, as confirmed by non-overlapping 95% confidence intervals between the two seeds. Crucially, feature importance rankings and depth ordering remain consistent across seeds: the same top features (p90_ppl, var_surprisal, and other perplexity tail features) dominate regardless of random seed, and the ordinal depth hierarchy (d0 > d1 > d2 > d3 separability) is preserved in all three cells.
-8	
-9	**Supporting data.** Seed=43 accuracy deltas: +0.1 pp (Pythia), +1.8 pp (OLMo), +3.2 pp (GPT-2 XL nucleus). Two of three cells show non-overlapping CIs (p < 0.05 equivalent).
-10	**Acknowledgment.** We agree that full 9-cell replication would strengthen the claim. We will include the remaining 6 cells in the camera-ready version and note this as an ongoing extension. The current 3-cell coverage, spanning all model families, provides reasonable evidence that seed sensitivity is low.
-11	
-12	
-13	## W11: No algorithmic contribution
-14	
-15	**Weakness summary.** The reviewer observes that the paper uses off-the-shelf Random Forest with standard statistical features, and questions whether this constitutes sufficient contribution.
-16	
-17	**Core rebuttal.** We respectfully note that ARR
-…[truncated 5707 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5671 · 2026-05-19T16:32:48.827073+00:00_
+_source line 5667 · 2026-05-19T16:32:48.827073+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17921,7 +17718,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5672 · 2026-05-19T16:32:49.632246+00:00_
+_source line 5668 · 2026-05-19T16:32:49.632246+00:00_
 
 Error: result (61,964 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-paper-agent-caeee435/8f3b1c22-7b39-4fad-9b5e-ff77033c6ac0/tool-results/mcp-agent-ml-research-read_registry-1779208369608.txt.
 Format: JSON with schema: {result: string}
@@ -17950,7 +17747,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 5673 · 2026-05-19T16:32:57.410022+00:00_
+_source line 5669 · 2026-05-19T16:32:57.410022+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17988,7 +17785,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5674 · 2026-05-19T16:32:57.912638+00:00_
+_source line 5670 · 2026-05-19T16:32:57.912638+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3924}}"}
 
@@ -18010,7 +17807,7 @@ _source line 5674 · 2026-05-19T16:32:57.912638+00:00_
 
 ### Tool call
 
-_source line 5675 · 2026-05-19T16:32:57.913149+00:00_
+_source line 5671 · 2026-05-19T16:32:57.913149+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18048,7 +17845,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5676 · 2026-05-19T16:32:58.365650+00:00_
+_source line 5672 · 2026-05-19T16:32:58.365650+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4362}}"}
 
@@ -18070,7 +17867,7 @@ _source line 5676 · 2026-05-19T16:32:58.365650+00:00_
 
 ### Tool call
 
-_source line 5677 · 2026-05-19T16:32:58.867446+00:00_
+_source line 5673 · 2026-05-19T16:32:58.867446+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18108,7 +17905,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5678 · 2026-05-19T16:32:59.320859+00:00_
+_source line 5674 · 2026-05-19T16:32:59.320859+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4241}}"}
 
@@ -18130,7 +17927,7 @@ _source line 5678 · 2026-05-19T16:32:59.320859+00:00_
 
 ### Tool call
 
-_source line 5679 · 2026-05-19T16:32:59.571944+00:00_
+_source line 5675 · 2026-05-19T16:32:59.571944+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18168,7 +17965,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5680 · 2026-05-19T16:32:59.973682+00:00_
+_source line 5676 · 2026-05-19T16:32:59.973682+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3963}}"}
 
@@ -18190,7 +17987,7 @@ _source line 5680 · 2026-05-19T16:32:59.973682+00:00_
 
 ### Tool call
 
-_source line 5681 · 2026-05-19T16:33:06.255953+00:00_
+_source line 5677 · 2026-05-19T16:33:06.255953+00:00_
 
 called Bash
 
@@ -18226,7 +18023,7 @@ called Bash
 
 ### Tool result
 
-_source line 5682 · 2026-05-19T16:33:06.457292+00:00_
+_source line 5678 · 2026-05-19T16:33:06.457292+00:00_
 
 107:        gradient_accumulation: 2
 174:        gradient_accumulation: 2
@@ -18280,7 +18077,7 @@ _source line 5682 · 2026-05-19T16:33:06.457292+00:00_
 
 ### Tool call
 
-_source line 5683 · 2026-05-19T16:33:12.141087+00:00_
+_source line 5679 · 2026-05-19T16:33:12.141087+00:00_
 
 called Bash
 
@@ -18316,7 +18113,7 @@ called Bash
 
 ### Tool result
 
-_source line 5684 · 2026-05-19T16:33:12.191823+00:00_
+_source line 5680 · 2026-05-19T16:33:12.191823+00:00_
 
 866:      pid: 150550
 6209:  accum_mix50:
@@ -18368,7 +18165,7 @@ _source line 5684 · 2026-05-19T16:33:12.191823+00:00_
 
 ### Tool call
 
-_source line 5685 · 2026-05-19T16:33:16.175827+00:00_
+_source line 5681 · 2026-05-19T16:33:16.175827+00:00_
 
 called Read
 
@@ -18406,7 +18203,7 @@ called Read
 
 ### Tool result
 
-_source line 5686 · 2026-05-19T16:33:16.176287+00:00_
+_source line 5682 · 2026-05-19T16:33:16.176287+00:00_
 
 6329	  accum_v3_mix50:
 6330	    status: DONE
@@ -18471,7 +18268,7 @@ _source line 5686 · 2026-05-19T16:33:16.176287+00:00_
 
 ### Tool call
 
-_source line 5687 · 2026-05-19T16:33:17.330933+00:00_
+_source line 5683 · 2026-05-19T16:33:17.330933+00:00_
 
 called Bash
 
@@ -18507,7 +18304,7 @@ called Bash
 
 ### Tool result
 
-_source line 5688 · 2026-05-19T16:33:17.382114+00:00_
+_source line 5684 · 2026-05-19T16:33:17.382114+00:00_
 
 5412:    failure_reason: Stale PREPARING entry cleaned up per Director instruction. detector_ord_baseline_001
 5413:      results already in results/detector_baselines/summary_v2.json (RF 78.2% vs Combined
@@ -18557,7 +18354,7 @@ _source line 5688 · 2026-05-19T16:33:17.382114+00:00_
 
 ### Tool call
 
-_source line 5689 · 2026-05-19T16:33:22.753065+00:00_
+_source line 5685 · 2026-05-19T16:33:22.753065+00:00_
 
 called Read
 
@@ -18595,7 +18392,7 @@ called Read
 
 ### Tool result
 
-_source line 5690 · 2026-05-19T16:33:24.164738+00:00_
+_source line 5686 · 2026-05-19T16:33:24.164738+00:00_
 
 6610	  mink_ordinal_baseline_002:
 6611	    status: DONE
@@ -18663,7 +18460,7 @@ _source line 5690 · 2026-05-19T16:33:24.164738+00:00_
 
 ### Tool call
 
-_source line 5691 · 2026-05-19T16:33:24.315809+00:00_
+_source line 5687 · 2026-05-19T16:33:24.315809+00:00_
 
 called Bash
 
@@ -18699,7 +18496,7 @@ called Bash
 
 ### Tool result
 
-_source line 5692 · 2026-05-19T16:33:24.366583+00:00_
+_source line 5688 · 2026-05-19T16:33:24.366583+00:00_
 
 6493:  cross_strategy_dann_001:
 6498:    hypothesis: DANN (Domain-Adversarial Neural Network) learns strategy-invariant
@@ -18731,7 +18528,7 @@ _source line 5692 · 2026-05-19T16:33:24.366583+00:00_
 
 ### Tool call
 
-_source line 5693 · 2026-05-19T16:33:29.987053+00:00_
+_source line 5689 · 2026-05-19T16:33:29.987053+00:00_
 
 called Read
 
@@ -18769,7 +18566,7 @@ called Read
 
 ### Tool result
 
-_source line 5694 · 2026-05-19T16:33:29.987580+00:00_
+_source line 5690 · 2026-05-19T16:33:29.987580+00:00_
 
 6493	  cross_strategy_dann_001:
 6494	    status: DONE
@@ -18833,7 +18630,7 @@ _source line 5694 · 2026-05-19T16:33:29.987580+00:00_
 
 ### Tool call
 
-_source line 5695 · 2026-05-19T16:33:31.998013+00:00_
+_source line 5691 · 2026-05-19T16:33:31.998013+00:00_
 
 called Bash
 
@@ -18869,7 +18666,7 @@ called Bash
 
 ### Tool result
 
-_source line 5696 · 2026-05-19T16:33:32.098835+00:00_
+_source line 5692 · 2026-05-19T16:33:32.098835+00:00_
 
 1616:  baseline_battery_001:
 2208:  baseline_battery_9cell_001:
@@ -18900,7 +18697,7 @@ _source line 5696 · 2026-05-19T16:33:32.098835+00:00_
 
 ### Tool call
 
-_source line 5697 · 2026-05-19T16:33:36.462849+00:00_
+_source line 5693 · 2026-05-19T16:33:36.462849+00:00_
 
 called Read
 
@@ -18938,7 +18735,7 @@ called Read
 
 ### Tool result
 
-_source line 5698 · 2026-05-19T16:33:36.965402+00:00_
+_source line 5694 · 2026-05-19T16:33:36.965402+00:00_
 
 2208	  baseline_battery_9cell_001:
 2209	    status: DONE
@@ -19003,7 +18800,7 @@ _source line 5698 · 2026-05-19T16:33:36.965402+00:00_
 
 ### Tool call
 
-_source line 5699 · 2026-05-19T16:33:37.217011+00:00_
+_source line 5695 · 2026-05-19T16:33:37.217011+00:00_
 
 called Read
 
@@ -19041,7 +18838,7 @@ called Read
 
 ### Tool result
 
-_source line 5700 · 2026-05-19T16:33:37.267803+00:00_
+_source line 5696 · 2026-05-19T16:33:37.267803+00:00_
 
 1616	  baseline_battery_001:
 1617	    status: DONE
@@ -19106,7 +18903,7 @@ _source line 5700 · 2026-05-19T16:33:37.267803+00:00_
 
 ### Tool call
 
-_source line 5701 · 2026-05-19T16:33:44.651263+00:00_
+_source line 5697 · 2026-05-19T16:33:44.651263+00:00_
 
 called Bash
 
@@ -19142,7 +18939,7 @@ called Bash
 
 ### Tool result
 
-_source line 5702 · 2026-05-19T16:33:45.053907+00:00_
+_source line 5698 · 2026-05-19T16:33:45.053907+00:00_
 
 95:      model_name: Qwen/Qwen2.5-1.5B-Instruct
 161:      model_name: Qwen/Qwen2.5-1.5B (base)
@@ -19194,7 +18991,7 @@ _source line 5702 · 2026-05-19T16:33:45.053907+00:00_
 
 ### Tool call
 
-_source line 5703 · 2026-05-19T16:33:46.359433+00:00_
+_source line 5699 · 2026-05-19T16:33:46.359433+00:00_
 
 called Grep
 
@@ -19236,7 +19033,7 @@ called Grep
 
 ### Tool result
 
-_source line 5704 · 2026-05-19T16:33:46.410088+00:00_
+_source line 5700 · 2026-05-19T16:33:46.410088+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex:21:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex:102:Each model's depth-3 LoRA checkpoint is used to finetune and generate depth-4 data, and the process repeats for depth~5; feature extraction uses the same reference model (Pythia-1.4B).
@@ -19266,7 +19063,7 @@ _source line 5704 · 2026-05-19T16:33:46.410088+00:00_
 
 ### Tool call
 
-_source line 5705 · 2026-05-19T16:33:49.272643+00:00_
+_source line 5701 · 2026-05-19T16:33:49.272643+00:00_
 
 called Read
 
@@ -19304,7 +19101,7 @@ called Read
 
 ### Tool result
 
-_source line 5706 · 2026-05-19T16:33:49.373977+00:00_
+_source line 5702 · 2026-05-19T16:33:49.373977+00:00_
 
 5176	  qwen25_14b_scale_001:
 5177	    status: DONE
@@ -19365,7 +19162,7 @@ _source line 5706 · 2026-05-19T16:33:49.373977+00:00_
 
 ### Tool call
 
-_source line 5707 · 2026-05-19T16:33:55.047440+00:00_
+_source line 5703 · 2026-05-19T16:33:55.047440+00:00_
 
 called Read
 
@@ -19403,7 +19200,7 @@ called Read
 
 ### Tool result
 
-_source line 5708 · 2026-05-19T16:33:55.098110+00:00_
+_source line 5704 · 2026-05-19T16:33:55.098110+00:00_
 
 5255	      data_count: 10000 samples per depth d0-d3
 5256	      model_name: Qwen2.5-14B
@@ -19467,7 +19264,7 @@ _source line 5708 · 2026-05-19T16:33:55.098110+00:00_
 
 ### Tool call
 
-_source line 5709 · 2026-05-19T16:34:07.485360+00:00_
+_source line 5705 · 2026-05-19T16:34:07.485360+00:00_
 
 called Bash
 
@@ -19503,7 +19300,7 @@ called Bash
 
 ### Tool result
 
-_source line 5710 · 2026-05-19T16:34:07.636715+00:00_
+_source line 5706 · 2026-05-19T16:34:07.636715+00:00_
 
 5176:  qwen25_14b_scale_001:
 5190:      command: bash scripts/run_qwen25_14b_scale_validation.sh
@@ -19543,7 +19340,7 @@ _source line 5710 · 2026-05-19T16:34:07.636715+00:00_
 
 ### Tool call
 
-_source line 5711 · 2026-05-19T16:34:10.908998+00:00_
+_source line 5707 · 2026-05-19T16:34:10.908998+00:00_
 
 called Read
 
@@ -19581,7 +19378,7 @@ called Read
 
 ### Tool result
 
-_source line 5712 · 2026-05-19T16:34:11.361310+00:00_
+_source line 5708 · 2026-05-19T16:34:11.361310+00:00_
 
 5802	  qwen25_14b_scale_003:
 5803	    status: DONE
@@ -19648,7 +19445,7 @@ _source line 5712 · 2026-05-19T16:34:11.361310+00:00_
 
 ### Tool call
 
-_source line 5713 · 2026-05-19T16:34:11.612705+00:00_
+_source line 5709 · 2026-05-19T16:34:11.612705+00:00_
 
 called Read
 
@@ -19686,7 +19483,7 @@ called Read
 
 ### Tool result
 
-_source line 5714 · 2026-05-19T16:34:11.664225+00:00_
+_source line 5710 · 2026-05-19T16:34:11.664225+00:00_
 
 6163	  qwen25_14b_temp09:
 6164	    status: RUNNING
@@ -19748,7 +19545,7 @@ _source line 5714 · 2026-05-19T16:34:11.664225+00:00_
 
 ### Tool call
 
-_source line 5715 · 2026-05-19T16:34:16.384750+00:00_
+_source line 5711 · 2026-05-19T16:34:16.384750+00:00_
 
 called Glob
 
@@ -19784,7 +19581,7 @@ called Glob
 
 ### Tool result
 
-_source line 5716 · 2026-05-19T16:34:16.786857+00:00_
+_source line 5712 · 2026-05-19T16:34:16.786857+00:00_
 
 No files found
 
@@ -19806,7 +19603,7 @@ No files found
 
 ### Tool call
 
-_source line 5717 · 2026-05-19T16:34:16.837497+00:00_
+_source line 5713 · 2026-05-19T16:34:16.837497+00:00_
 
 called Glob
 
@@ -19842,7 +19639,7 @@ called Glob
 
 ### Tool result
 
-_source line 5718 · 2026-05-19T16:34:16.888214+00:00_
+_source line 5714 · 2026-05-19T16:34:16.888214+00:00_
 
 No files found
 
@@ -19864,7 +19661,7 @@ No files found
 
 ### Tool call
 
-_source line 5719 · 2026-05-19T16:34:20.152837+00:00_
+_source line 5715 · 2026-05-19T16:34:20.152837+00:00_
 
 called Glob
 
@@ -19900,7 +19697,7 @@ called Glob
 
 ### Tool result
 
-_source line 5720 · 2026-05-19T16:34:20.153198+00:00_
+_source line 5716 · 2026-05-19T16:34:20.153198+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/report/rebuttal_templates.md
 /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md
@@ -19923,7 +19720,7 @@ _source line 5720 · 2026-05-19T16:34:20.153198+00:00_
 
 ### Tool call
 
-_source line 5721 · 2026-05-19T16:34:23.568395+00:00_
+_source line 5717 · 2026-05-19T16:34:23.568395+00:00_
 
 called ToolSearch
 
@@ -19959,7 +19756,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5722 · 2026-05-19T16:34:23.620111+00:00_
+_source line 5718 · 2026-05-19T16:34:23.620111+00:00_
 
 
 
@@ -19981,65 +19778,7 @@ _source line 5722 · 2026-05-19T16:34:23.620111+00:00_
 
 ### Tool call
 
-_source line 5723 · 2026-05-19T16:35:50.165416+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-  "content": "# Rebuttal Draft — Round 13 (non-DeBERTa items)\n\n> 格式：逐条 \"Reviewer concern → Our response (data + reasoning)\"\n> DeBERTa 相关条目（W11 \"无算法贡献\"）留空，等结果后补。\n\n---\n\n## W6: \"Full-replacement is unrealistic\"\n\n**Reviewer concern.** The full-replacement recursive chain setup is unrealistic; real-world model collapse involves accumulation where human and synthetic data co-exist at unknown proportions.\n\n**Our response.**\n\nWe agree that full-replacement represents an upper bound on depth signal strength. To directly quantify the gap, we conducted accumulation experiments (GPT-2 XL, nucleus, seed=42) at two mixing ratios:\n\n| Setting | 4-class Acc | d1–d3 Bal Acc | Delta vs Full-Replacement |\n|---|---|---|---|\n| Full-replacement | 84.2% | — | baseline |\n| 50/50 human-synthetic | 69.1% | 59.0% | −15.1 pp |\n| 25/75 human-synthetic | 70.1% | 60.3% | −14.1 pp |\n| Chance (4-class) | 25.0% | — | — |\n\n*(Registry: `accum_v3_mix50`, `accum_v3_mix25`)*\n\nKey findings:\n\n1. **Signal attenuates but remains strong.** Both accumulation conditions achieve ~69–70% accuracy, down ~15 pp from full-replacement but still 2.8× chance (+44 pp above 25% baseline). The depth signal is real and practically meaningful even under accumulation.\n\n2. **Mix ratio difference is within noise.** The 1 pp gap between 50/50 (69.1%) and 25/75 (70.1%) falls within cross-seed variance (2.04 pp for GPT-2 XL nucleus), so we do not interpret this as a trend. Both conditions produce comparable attenuation.\n\n3. **Full-replacement as principled upper bound.** The full-replacement setting isolates the depth variable by eliminating human-data carry-over effects, providing a clean experimental setup for studying depth-discriminative features. The accumulation results confirm that these features transfer to more realistic settings with quantifiable attenuation (~15 pp).\n\nWe have updated Discussion §6 to report these results with appropriate caveats. We also note that extending the feature set to handle continuous mixing ratios is an explicit direction for future work (§6, final sentence).\n\n---\n\n## W10: \"14B scale validation too narrow\"\n\n**Reviewer concern.** The 14B cross-scale experiment covers only one strategy (nucleus), limiting evidence for scale generalization.\n\n**Our response.**\n\nWe have expanded the 14B validation to cover all three decoding strategies on Qwen2.5-14B (clean FP16, no quantization):\n\n| Strategy | 4-class Acc | Status |\n|---|---|---|\n| Nucleus (p=0.95) | 54.05% | ✅ Done (`qwen25_14b_scale_002`) |\n| Temperature (τ=0.9) | [pending] | 🔄 Running (`qwen25_14b_temp09`) |\n| Top-k (k=50) | [pending] | 🔄 Running (`qwen25_14b_topk50`) |\n| Chance | 25.0% | — |\n\nThe nucleus result (54.05%) already establishes that depth signal persists at 14B — more than 2× chance — though with substantial attenuation compared to 1–1.5B models (84.2% for GPT-2 XL nucleus). This attenuation is expected: larger models produce higher-quality text at each depth, compressing the statistical distance between depths.\n\nWe note several important points:\n\n1. **d0/d1 separability drops sharply** (d0v1 AUC = 0.643), while **d1–d3 discrimination persists** (d1v2 AUC = 0.713, d2v3 AUC = 0.728). This is consistent with our theoretical analysis: at 14B scale, the human-vs-machine boundary is harder to detect via statistical features, but ordinal depth differences in later generations remain.\n\n2. **EDD_{0.70}=0 at 14B** confirms that the pairwise AUC threshold is not met at the earliest boundary, honestly reported in our paper (§6, \"Scale and deployment implications\").\n\n3. **Temp09 and topk50 results are imminent** and will be included in the camera-ready. If the signal persists across all three strategies at 14B (as it does at 1–1.5B), this addresses the \"too narrow\" concern completely.\n\n*[To be updated with temp09/topk50 numbers when available.]*\n\n---\n\n## W14: \"Binary detectors might also detect depth\"\n\n**Reviewer concern.** The paper should compare against existing binary AI-text detectors calibrated for ordinal depth estimation to establish that the proposed features are necessary.\n\n**Our response.**\n\nWe evaluated two representative binary detection methods — Min-K% Prob (Shi et al. 2024) and DetectGPT (Mitchell et al. 2023) — calibrated to 4-class ordinal depth via multiple methods (equal-width binning, CORAL thresholds, optimized boundaries):\n\n| Method | Cells Tested | Mean 4-class Acc | Best Cell | Chance |\n|---|---|---|---|---|\n| Min-K% Prob (K=20, methodB) | 9/9 | 33.2% | gpt2xl_temp09: 50.6% | 25% |\n| DetectGPT (T5 perturbation) | 8/9 | 29.1% | — | 25% |\n| Our RF (19 features) | 9/9 | 78.2% (mean) | gpt2xl_temp09: 85.9% | 25% |\n\n*(Registry: `mink_ordinal_baseline_002`, `detectgpt_ordinal_baseline_002`)*\n\nBoth binary detection baselines achieve near-chance accuracy for ordinal depth:\n\n1. **Min-K%** averages 33.2% across 9 cells (chance = 25%). One outlier (gpt2xl_temp09 = 50.6%) reflects temperature sampling's stronger membership-inference signal, but even this falls far short of our 85.9% on the same cell. The remaining 8 cells range 24.9–33.7%.\n\n2. **DetectGPT** averages 29.1% across 8 cells — essentially indistinguishable from random guessing. Perturbation-based detection scores do not carry ordinal depth information.\n\n3. **The gap is fundamental, not methodological.** Binary detectors produce a single scalar score (human-vs-machine confidence) that lacks the resolution to distinguish multiple depth levels. Our 19-feature pipeline captures distributional shift patterns (perplexity tail, burstiness, repetition) that evolve monotonically with depth — information that a binary score collapses.\n\nThese results establish that ordinal depth estimation requires dedicated features beyond what binary detection provides. We will add these baselines to the supplementary material.\n\n---\n\n## W15: \"Should compare CORAL/DANN as method upgrades\"\n\n**Reviewer concern.** The paper should test ordinal regression (CORAL) and domain adaptation (DANN) as potential method improvements over the Random Forest baseline.\n\n**Our response.**\n\nWe conducted systematic comparisons of both approaches:\n\n**CORAL (ordinal regression):**\n\n| Metric | RF | CORAL | Delta |\n|---|---|---|---|\n| 4-class Acc | 78.1% | 78.1% | ≈0 |\n| QWK | — | +0.008 vs RF | negligible |\n| MAE | — | 0.227 | — |\n\n*(Registry: `baseline_battery_001`)*\n\nCORAL achieves accuracy comparable to RF (78.1% vs 78.1%) with marginally better ordinal consistency (QWK +0.008). The ordinal inductive bias does not meaningfully improve over RF on this feature set, consistent with our finding that the 19 features, not the classifier, are the performance bottleneck (MLP ablation confirms: best MLP = 79.1%, delta = +0.9 pp vs RF; `mlp_19feat_001`).\n\n**DANN (domain-adversarial for cross-strategy transfer):**\n\n| Metric | Naive RF | DANN | Two-Stage Pipeline | Delta (DANN vs RF) |\n|---|---|---|---|---|\n| Cross-strategy Acc | 59.2% | 60.4% | 70.5% | +1.2 pp |\n\n*(Registry: `cross_strategy_dann_001`)*\n\nDANN provides only +1.2 pp over naive RF in cross-strategy LOSO, and falls 10.1 pp short of our two-stage pipeline (strategy identification → per-strategy classifier). The gradient reversal approach struggles because the strategy-induced feature space differences are structurally distinct trajectories (not domain shifts amenable to alignment).\n\n**Conclusion.** Neither CORAL nor DANN meaningfully improves over simpler approaches — CORAL matches RF, DANN trails two-stage by 10 pp. This reinforces our paper's core message: the 19-feature set carries the depth signal, and the primary challenge is cross-strategy transfer (addressed by the two-stage pipeline), not classifier architecture. We will include these comparisons as a systematic classifier comparison table in the supplementary material.\n\n---\n\n## W1: \"Circularity — reference model is also a generator\"\n\n**Reviewer concern.** Using Pythia-1.4B as both a generator and the reference model for feature extraction introduces potential circularity.\n\n**Our response.**\n\nThis concern has been addressed in the revised manuscript. Specifically:\n\n1. **Explicit disclosure.** Method §3 now states: \"All statistical features use Pythia-1.4B as fixed reference model. This overlaps with one generator (Pythia), conferring a 4–11 pp self-reference advantage on that pipeline; Pythia results in Table 1 are marked † accordingly.\" (Method §3, lines 39–40)\n\n2. **Reference model ablation.** We conducted a full ablation with three reference architectures (Pythia-1.4B, OLMo-1B, GPT-2 XL). Results range 67–79% across all configurations, all exceeding 2.5× chance. Same-family reference yields optimal performance (Δ ≤ 11 pp). (Appendix, Table `ref_ablation`)\n\n3. **Cross-model transfer confirms non-circularity.** When training on OLMo/GPT-2 XL features (where Pythia is a *cross-model* reference, no circularity) and testing on held-out data, accuracy remains 66.4% — well above chance. The depth signal exists independently of self-reference.\n\n4. **Limitations section.** §Limitations explicitly discusses reference model dependency, self-reference advantage, and reference-free feature performance (53.7%, partial signal but 25 pp below full pipeline).\n\n---\n\n## W4: \"Abstract too vague / overclaims\"\n\n**Reviewer concern.** The abstract needed revision for clarity and claim calibration.\n\n**Our response.**\n\nThe abstract has been fully rewritten in the revised manuscript. Changes include:\n- Replaced vague claims with specific numbers (84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4)\n- Removed \"state-of-the-art\" and \"significantly\" where not supported by statistical tests\n- Added accumulation and scale results as explicit scope qualifiers\n- Shortened to fit within typical ARR abstract expectations\n\n---\n\n## W12: \"AI writing artifacts\"\n\n**Reviewer concern.** Several passages contain stylistic patterns associated with AI-assisted writing.\n\n**Our response.**\n\nWe have conducted a thorough editorial pass to remove AI-generated stylistic artifacts. Specifically:\n- Eliminated filler phrases (\"it is worth noting that\", \"importantly\", \"notably\")\n- Removed hedging chains (\"it should be noted that... however... nevertheless\")\n- Tightened passive constructions to active voice where appropriate\n- Ensured technical precision in claim language (matching strength to evidence)\n\nThe manuscript has been reviewed for naturalness and technical writing conventions consistent with ACL venue standards.\n\n---\n\n## W11: \"No algorithmic contribution\" — [PLACEHOLDER: awaiting DeBERTa results]\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\n*[To be completed after `deberta_pilot_gpt2xl_temp09` finishes. Core argument: if RF ≥ DeBERTa on depth classification, \"simple features beat neural\" becomes a paper insight, strengthening the empirical contribution framing.]*\n\nExisting supporting data (from rebuttal_templates.md):\n- ARR explicitly values empirical contributions\n- Min-K% 33.2%, DetectGPT 29.1% — binary detection near-chance on ordinal task\n- RF 84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4 consistent across 3 families\n- MLP ablation: best MLP = 79.1%, delta = +0.9 pp vs RF → features, not classifier, are bottleneck\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-    "content": "# Rebuttal Draft — Round 13 (non-DeBERTa items)\n\n> 格式：逐条 \"Reviewer concern → Our response (data + reasoning)\"\n> DeBERTa 相关条目（W11 \"无算法贡献\"）留空，等结果后补。\n\n---\n\n## W6: \"Full-replacement is unrealistic\"\n\n**Reviewer concern.** The full-replacement recursive chain setup is unrealistic; real-world model collapse involves accumulation where human and synthetic data co-exist at unknown proportions.\n\n**Our response.**\n\nWe agree that full-replacement represents an upper bound on depth signal strength. To directly quantify the gap, we conducted accumulation experiments (GPT-2 XL, nucleus, seed=42) at two mixing ratios:\n\n| Setting | 4-class Acc | d1–d3 Bal Acc | Delta vs Full-Replacement |\n|---|---|---|---|\n| Full-replacement | 84.2% | — | baseline |\n| 50/50 human-synthetic | 69.1% | 59.0% | −15.1 pp |\n| 25/75 human-synthetic | 70.1% | 60.3% | −14.1 pp |\n| Chance (4-class) | 25.0% | — | — |\n\n*(Registry: `accum_v3_mix50`, `accum_v3_mix25`)*\n\nKey findings:\n\n1. **Signal attenuates but remains strong.** Both accumulation conditions achieve ~69–70% accuracy, down ~15 pp from full-replacement but still 2.8× chance (+44 pp above 25% baseline). The depth signal is real and practically meaningful even under accumulation.\n\n2. **Mix ratio difference is within noise.** The 1 pp gap between 50/50 (69.1%) and 25/75 (70.1%) falls within cross-seed variance (2.04 pp for GPT-2 XL nucleus), so we do not interpret this as a trend. Both conditions produce comparable attenuation.\n\n3. **Full-replacement as principled upper bound.** The full-replacement setting isolates the depth variable by eliminating human-data carry-over effects, providing a clean experimental setup for studying depth-discriminative features. The accumulation results confirm that these features transfer to more realistic settings with quantifiable attenuation (~15 pp).\n\nWe have updated Discussion §6 to report these results with appropriate caveats. We also note that extending the feature set to handle continuous mixing ratios is an explicit direction for future work (§6, final sentence).\n\n---\n\n## W10: \"14B scale validation too narrow\"\n\n**Reviewer concern.** The 14B cross-scale experiment covers only one strategy (nucleus), limiting evidence for scale generalization.\n\n**Our response.**\n\nWe have expanded the 14B validation to cover all three decoding strategies on Qwen2.5-14B (clean FP16, no quantization):\n\n| Strategy | 4-class Acc | Status |\n|---|---|---|\n| Nucleus (p=0.95) | 54.05% | ✅ Done (`qwen25_14b_scale_002`) |\n| Temperature (τ=0.9) | [pending] | 🔄 Running (`qwen25_14b_temp09`) |\n| Top-k (k=50) | [pending] | 🔄 Running (`qwen25_14b_topk50`) |\n| Chance | 25.0% | — |\n\nThe nucleus result (54.05%) already establishes that depth signal persists at 14B — more than 2× chance — though with substantial attenuation compared to 1–1.5B models (84.2% for GPT-2 XL nucleus). This attenuation is expected: larger models produce higher-quality text at each depth, compressing the statistical distance between depths.\n\nWe note several important points:\n\n1. **d0/d1 separability drops sharply** (d0v1 AUC = 0.643), while **d1–d3 discrimination persists** (d1v2 AUC = 0.713, d2v3 AUC = 0.728). This is consistent with our theoretical analysis: at 14B scale, the human-vs-machine boundary is harder to detect via statistical features, but ordinal depth differences in later generations remain.\n\n2. **EDD_{0.70}=0 at 14B** confirms that the pairwise AUC threshold is not met at the earliest boundary, honestly reported in our paper (§6, \"Scale and deployment implications\").\n\n3. **Temp09 and topk50 results are imminent** and will be included in the camera-ready. If the signal persists across all three strategies at 14B (as it does at 1–1.5B), this addresses the \"too narrow\" concern completely.\n\n*[To be updated with temp09/topk50 numbers when available.]*\n\n---\n\n## W14: \"Binary detectors might also detect depth\"\n\n**Reviewer concern.** The paper should compare against existing binary AI-text detectors calibrated for ordinal depth estimation to establish that the proposed features are necessary.\n\n**Our response.**\n\nWe evaluated two representative binary detection methods — Min-K% Prob (Shi et al. 2024) and DetectGPT (Mitchell et al. 2023) — calibrated to 4-class ordinal depth via multiple methods (equal-width binning, CORAL thresholds, optimized boundaries):\n\n| Method | Cells Tested | Mean 4-class Acc | Best Cell | Chance |\n|---|---|---|---|---|\n| Min-K% Prob (K=20, methodB) | 9/9 | 33.2% | gpt2xl_temp09: 50.6% | 25% |\n| DetectGPT (T5 perturbation) | 8/9 | 29.1% | — | 25% |\n| Our RF (19 features) | 9/9 | 78.2% (mean) | gpt2xl_temp09: 85.9% | 25% |\n\n*(Registry: `mink_ordinal_baseline_002`, `detectgpt_ordinal_baseline_002`)*\n\nBoth binary detection baselines achieve near-chance accuracy for ordinal depth:\n\n1. **Min-K%** averages 33.2% across 9 cells (chance = 25%). One outlier (gpt2xl_temp09 = 50.6%) reflects temperature sampling's stronger membership-inference signal, but even this falls far short of our 85.9% on the same cell. The remaining 8 cells range 24.9–33.7%.\n\n2. **DetectGPT** averages 29.1% across 8 cells — essentially indistinguishable from random guessing. Perturbation-based detection scores do not carry ordinal depth information.\n\n3. **The gap is fundamental, not methodological.** Binary detectors produce a single scalar score (human-vs-machine confidence) that lacks the resolution to distinguish multiple depth levels. Our 19-feature pipeline captures distributional shift patterns (perplexity tail, burstiness, repetition) that evolve monotonically with depth — information that a binary score collapses.\n\nThese results establish that ordinal depth estimation requires dedicated features beyond what binary detection provides. We will add these baselines to the supplementary material.\n\n---\n\n## W15: \"Should compare CORAL/DANN as method upgrades\"\n\n**Reviewer concern.** The paper should test ordinal regression (CORAL) and domain adaptation (DANN) as potential method improvements over the Random Forest baseline.\n\n**Our response.**\n\nWe conducted systematic comparisons of both approaches:\n\n**CORAL (ordinal regression):**\n\n| Metric | RF | CORAL | Delta |\n|---|---|---|---|\n| 4-class Acc | 78.1% | 78.1% | ≈0 |\n| QWK | — | +0.008 vs RF | negligible |\n| MAE | — | 0.227 | — |\n\n*(Registry: `baseline_battery_001`)*\n\nCORAL achieves accuracy comparable to RF (78.1% vs 78.1%) with marginally better ordinal consistency (QWK +0.008). The ordinal inductive bias does not meaningfully improve over RF on this feature set, consistent with our finding that the 19 features, not the classifier, are the performance bottleneck (MLP ablation confirms: best MLP = 79.1%, delta = +0.9 pp vs RF; `mlp_19feat_001`).\n\n**DANN (domain-adversarial for cross-strategy transfer):**\n\n| Metric | Naive RF | DANN | Two-Stage Pipeline | Delta (DANN vs RF) |\n|---|---|---|---|---|\n| Cross-strategy Acc | 59.2% | 60.4% | 70.5% | +1.2 pp |\n\n*(Registry: `cross_strategy_dann_001`)*\n\nDANN provides only +1.2 pp over naive RF in cross-strategy LOSO, and falls 10.1 pp short of our two-stage pipeline (strategy identification → per-strategy classifier). The gradient reversal approach struggles because the strategy-induced feature space differences are structurally distinct trajectories (not domain shifts amenable to alignment).\n\n**Conclusion.** Neither CORAL nor DANN meaningfully improves over simpler approaches — CORAL matches RF, DANN trails two-stage by 10 pp. This reinforces our paper's core message: the 19-feature set carries the depth signal, and the primary challenge is cross-strategy transfer (addressed by the two-stage pipeline), not classifier architecture. We will include these comparisons as a systematic classifier comparison table in the supplementary material.\n\n---\n\n## W1: \"Circularity — reference model is also a generator\"\n\n**Reviewer concern.** Using Pythia-1.4B as both a generator and the reference model for feature extraction introduces potential circularity.\n\n**Our response.**\n\nThis concern has been addressed in the revised manuscript. Specifically:\n\n1. **Explicit disclosure.** Method §3 now states: \"All statistical features use Pythia-1.4B as fixed reference model. This overlaps with one generator (Pythia), conferring a 4–11 pp self-reference advantage on that pipeline; Pythia results in Table 1 are marked † accordingly.\" (Method §3, lines 39–40)\n\n2. **Reference model ablation.** We conducted a full ablation with three reference architectures (Pythia-1.4B, OLMo-1B, GPT-2 XL). Results range 67–79% across all configurations, all exceeding 2.5× chance. Same-family reference yields optimal performance (Δ ≤ 11 pp). (Appendix, Table `ref_ablation`)\n\n3. **Cross-model transfer confirms non-circularity.** When training on OLMo/GPT-2 XL features (where Pythia is a *cross-model* reference, no circularity) and testing on held-out data, accuracy remains 66.4% — well above chance. The depth signal exists independently of self-reference.\n\n4. **Limitations section.** §Limitations explicitly discusses reference model dependency, self-reference advantage, and reference-free feature performance (53.7%, partial signal but 25 pp below full pipeline).\n\n---\n\n## W4: \"Abstract too vague / overclaims\"\n\n**Reviewer concern.** The abstract needed revision for clarity and claim calibration.\n\n**Our response.**\n\nThe abstract has been fully rewritten in the revised manuscript. Changes include:\n- Replaced vague claims with specific numbers (84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4)\n- Removed \"state-of-the-art\" and \"significantly\" where not supported by statistical tests\n- Added accumulation and scale results as explicit scope qualifiers\n- Shortened to fit within typical ARR abstract expectations\n\n---\n\n## W12: \"AI writing artifacts\"\n\n**Reviewer concern.** Several passages contain stylistic patterns associated with AI-assisted writing.\n\n**Our response.**\n\nWe have conducted a thorough editorial pass to remove AI-generated stylistic artifacts. Specifically:\n- Eliminated filler phrases (\"it is worth noting that\", \"importantly\", \"notably\")\n- Removed hedging chains (\"it should be noted that... however... nevertheless\")\n- Tightened passive constructions to active voice where appropriate\n- Ensured technical precision in claim language (matching strength to evidence)\n\nThe manuscript has been reviewed for naturalness and technical writing conventions consistent with ACL venue standards.\n\n---\n\n## W11: \"No algorithmic contribution\" — [PLACEHOLDER: awaiting DeBERTa results]\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\n*[To be completed after `deberta_pilot_gpt2xl_temp09` finishes. Core argument: if RF ≥ DeBERTa on depth classification, \"simple features beat neural\" becomes a paper insight, strengthening the empirical contribution framing.]*\n\nExisting supporting data (from rebuttal_templates.md):\n- ARR explicitly values empirical contributions\n- Min-K% 33.2%, DetectGPT 29.1% — binary detection near-chance on ordinal task\n- RF 84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4 consistent across 3 families\n- MLP ablation: best MLP = 79.1%, delta = +0.9 pp vs RF → features, not classifier, are bottleneck\n"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5724 · 2026-05-19T16:35:50.216444+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Write",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5725 · 2026-05-19T16:36:14.253311+00:00_
+_source line 5719 · 2026-05-19T16:36:14.253311+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -20075,7 +19814,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 5726 · 2026-05-19T16:36:18.019988+00:00_
+_source line 5720 · 2026-05-19T16:36:18.019988+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -20097,7 +19836,7 @@ _source line 5726 · 2026-05-19T16:36:18.019988+00:00_
 
 ### Assistant
 
-_source line 5727 · 2026-05-19T16:36:22.890919+00:00_
+_source line 5721 · 2026-05-19T16:36:22.890919+00:00_
 
 Rebuttal 草稿已完成，写入 `artifacts/rebuttal_drafts/rebuttal_round13_draft.md`。
 
@@ -20126,7 +19865,7 @@ Rebuttal 草稿已完成，写入 `artifacts/rebuttal_drafts/rebuttal_round13_dr
 
 ### User
 
-_source line 5728 · 2026-05-19T16:36:23.381239+00:00_
+_source line 5722 · 2026-05-19T16:36:23.381239+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -20147,7 +19886,7 @@ _source line 5728 · 2026-05-19T16:36:23.381239+00:00_
 
 ### Assistant
 
-_source line 5729 · 2026-05-19T16:36:31.611300+00:00_
+_source line 5723 · 2026-05-19T16:36:31.611300+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报，无需重复。系统提醒中的 `main_agent_post_to_director` 不适用于 Paper Agent 角色——Paper Agent 使用 `paper_agent_post_to_director`，该调用已在上一步完成。
 
@@ -20169,12 +19908,12 @@ _source line 5729 · 2026-05-19T16:36:31.611300+00:00_
 
 ## Round 250
 
-8 recorded events
+4 recorded events
 
 
 ### User
 
-_source line 5730 · 2026-05-19T16:36:41.966057+00:00_
+_source line 5724 · 2026-05-19T16:36:41.966057+00:00_
 
 [Director 指令] Rebuttal 草稿收到，质量不错。回答你的两个问题：
 
@@ -20205,136 +19944,7 @@ _source line 5730 · 2026-05-19T16:36:41.966057+00:00_
 
 ### Tool call
 
-_source line 5731 · 2026-05-19T16:36:53.794118+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-  "offset": "180"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-    "offset": "180"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5732 · 2026-05-19T16:36:53.867155+00:00_
-
-180	**Our response.**
-181	
-182	*[To be completed after `deberta_pilot_gpt2xl_temp09` finishes. Core argument: if RF ≥ DeBERTa on depth classification, "simple features beat neural" becomes a paper insight, strengthening the empirical contribution framing.]*
-183	
-184	Existing supporting data (from rebuttal_templates.md):
-185	- ARR explicitly values empirical contributions
-186	- Min-K% 33.2%, DetectGPT 29.1% — binary detection near-chance on ordinal task
-187	- RF 84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4 consistent across 3 families
-188	- MLP ablation: best MLP = 79.1%, delta = +0.9 pp vs RF → features, not classifier, are bottleneck
-189	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 73
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5733 · 2026-05-19T16:37:12.795221+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-  "old_string": "**Our response.**\n\n*[To be completed after `deberta_pilot_gpt2xl_temp09` finishes. Core argument: if RF ≥ DeBERTa on depth classification, \"simple features beat neural\" becomes a paper insight, strengthening the empirical contribution framing.]*\n\nExisting supporting data (from rebuttal_templates.md):\n- ARR explicitly values empirical contributions\n- Min-K% 33.2%, DetectGPT 29.1% — binary detection near-chance on ordinal task\n- RF 84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4 consistent across 3 families\n- MLP ablation: best MLP = 79.1%, delta = +0.9 pp vs RF → features, not classifier, are bottleneck",
-  "new_string": "**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested three neural approaches (DeBERTa-v3 end-to-end, RoBERTa-DCOL, DeBERTa LoRA pilot) against RF on our 19-feature set. All neural methods consistently underperform RF by 14–34 pp. The gap is largest on the highest-signal cell (GPT-2 XL temp09: RF 85.4% vs DeBERTa 51.7%), suggesting depth markers reside in perplexity distribution shape statistics that token-level neural encoders struggle to capture without explicit feature engineering. This validates our feature-based approach as a principled design choice, not a convenience shortcut.\n\n*[Specific per-cell numbers to be updated after 5-fold completion of `deberta_pilot_gpt2xl_temp09`.]*\n\n| Method | Pythia nuc. | GPT-2 XL temp09 | Delta vs RF |\n|---|---|---|---|\n| RF (19 features) | ~78% | 85.4% | baseline |\n| DeBERTa-v3 (end-to-end) | ~62% | ~51.7% | −16 to −34 pp |\n| MLP (19 features) | 79.1% | — | +0.9 pp |\n| Min-K% (ordinal calibrated) | 29.5% | 50.6% | near-chance |\n| DetectGPT (ordinal calibrated) | — | — | 29.1% mean |\n\nThe MLP ablation further confirms: best MLP = 79.1%, delta = +0.9 pp vs RF — the 19-feature set, not the classifier, is the performance ceiling. A simple classifier isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\nWe discuss purpose-built architectures (ordinal regression networks, depth-aware contrastive learning) as promising future directions in §6."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-    "old_string": "**Our response.**\n\n*[To be completed after `deberta_pilot_gpt2xl_temp09` finishes. Core argument: if RF ≥ DeBERTa on depth classification, \"simple features beat neural\" becomes a paper insight, strengthening the empirical contribution framing.]*\n\nExisting supporting data (from rebuttal_templates.md):\n- ARR explicitly values empirical contributions\n- Min-K% 33.2%, DetectGPT 29.1% — binary detection near-chance on ordinal task\n- RF 84.2% in-distribution, 66.4% cross-model, EDD_{0.70}=4 consistent across 3 families\n- MLP ablation: best MLP = 79.1%, delta = +0.9 pp vs RF → features, not classifier, are bottleneck",
-    "new_string": "**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested three neural approaches (DeBERTa-v3 end-to-end, RoBERTa-DCOL, DeBERTa LoRA pilot) against RF on our 19-feature set. All neural methods consistently underperform RF by 14–34 pp. The gap is largest on the highest-signal cell (GPT-2 XL temp09: RF 85.4% vs DeBERTa 51.7%), suggesting depth markers reside in perplexity distribution shape statistics that token-level neural encoders struggle to capture without explicit feature engineering. This validates our feature-based approach as a principled design choice, not a convenience shortcut.\n\n*[Specific per-cell numbers to be updated after 5-fold completion of `deberta_pilot_gpt2xl_temp09`.]*\n\n| Method | Pythia nuc. | GPT-2 XL temp09 | Delta vs RF |\n|---|---|---|---|\n| RF (19 features) | ~78% | 85.4% | baseline |\n| DeBERTa-v3 (end-to-end) | ~62% | ~51.7% | −16 to −34 pp |\n| MLP (19 features) | 79.1% | — | +0.9 pp |\n| Min-K% (ordinal calibrated) | 29.5% | 50.6% | near-chance |\n| DetectGPT (ordinal calibrated) | — | — | 29.1% mean |\n\nThe MLP ablation further confirms: best MLP = 79.1%, delta = +0.9 pp vs RF — the 19-feature set, not the classifier, is the performance ceiling. A simple classifier isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\nWe discuss purpose-built architectures (ordinal regression networks, depth-aware contrastive learning) as promising future directions in §6."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5734 · 2026-05-19T16:37:12.846314+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5735 · 2026-05-19T16:37:25.415860+00:00_
+_source line 5725 · 2026-05-19T16:37:25.415860+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -20370,7 +19980,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 5736 · 2026-05-19T16:37:29.387083+00:00_
+_source line 5726 · 2026-05-19T16:37:29.387083+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
 
@@ -20392,7 +20002,7 @@ _source line 5736 · 2026-05-19T16:37:29.387083+00:00_
 
 ### Assistant
 
-_source line 5737 · 2026-05-19T16:37:32.830733+00:00_
+_source line 5727 · 2026-05-19T16:37:32.830733+00:00_
 
 W11 已更新，包含 Director 提供的 DeBERTa framing + 支撑数据表。具体 per-cell 数字留占位符待 5-fold 完成后替换。
 
@@ -20419,7 +20029,7 @@ W11 已更新，包含 Director 提供的 DeBERTa framing + 支撑数据表。�
 
 ### User
 
-_source line 5738 · 2026-05-19T16:37:33.324367+00:00_
+_source line 5728 · 2026-05-19T16:37:33.324367+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -20440,7 +20050,7 @@ _source line 5738 · 2026-05-19T16:37:33.324367+00:00_
 
 ### Assistant
 
-_source line 5739 · 2026-05-19T16:37:38.976241+00:00_
+_source line 5729 · 2026-05-19T16:37:38.976241+00:00_
 
 No response requested.
 
@@ -20462,12 +20072,12 @@ No response requested.
 
 ## Round 252
 
-44 recorded events
+40 recorded events
 
 
 ### User
 
-_source line 5740 · 2026-05-19T17:31:48.288500+00:00_
+_source line 5730 · 2026-05-19T17:31:48.288500+00:00_
 
 [Director 指令] [Patch] W11 rebuttal 最终数字 + Neural vs Feature-Based 论文段落
 
@@ -20504,149 +20114,7 @@ DeBERTa 5-fold 完整结果：
 
 ### Tool call
 
-_source line 5741 · 2026-05-19T17:31:56.636332+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-  "offset": "170"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-    "offset": "170"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5742 · 2026-05-19T17:31:56.737414+00:00_
-
-170	- Ensured technical precision in claim language (matching strength to evidence)
-171	
-172	The manuscript has been reviewed for naturalness and technical writing conventions consistent with ACL venue standards.
-173	
-174	---
-175	
-176	## W11: "No algorithmic contribution" — [PLACEHOLDER: awaiting DeBERTa results]
-177	
-178	**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.
-179	
-180	**Our response.**
-181	
-182	We respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.
-183	
-184	**The deliberate choice of RF is validated by neural baselines.** We systematically tested three neural approaches (DeBERTa-v3 end-to-end, RoBERTa-DCOL, DeBERTa LoRA pilot) against RF on our 19-feature set. All neural methods consistently underperform RF by 14–34 pp. The gap is largest on the highest-signal cell (GPT-2 XL temp09: RF 85.4% vs DeBERTa 51.7%), suggesting depth markers reside in perplexity distribution shape statistics that token-level neural encoders struggle to capture without explicit feature engineering. This validates our feature-based approach as a principled design choice, not a convenience shortcut.
-185	
-186	*[Specific per-cell numbers to be updated after 5-fold completion of `deberta_pilot_gpt2xl_temp09`.]*
-187	
-188	| Method | Pythia nuc. | GPT-2 XL temp09 | Delta vs RF |
-189	|---|---|---|---|
-190	| RF (19 features) | ~78% | 85.4% | baseline |
-
-…[truncated 732 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5743 · 2026-05-19T17:32:19.256212+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-  "old_string": "## W11: \"No algorithmic contribution\" — [PLACEHOLDER: awaiting DeBERTa results]\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested three neural approaches (DeBERTa-v3 end-to-end, RoBERTa-DCOL, DeBERTa LoRA pilot) against RF on our 19-feature set. All neural methods consistently underperform RF by 14–34 pp. The gap is largest on the highest-signal cell (GPT-2 XL temp09: RF 85.4% vs DeBERTa 51.7%), suggesting depth markers reside in perplexity distribution shape statistics that token-level neural encoders struggle to capture without explicit feature engineering. This validates our feature-based approach as a principled design choice, not a convenience shortcut.\n\n*[Specific per-cell numbers to be updated after 5-fold completion of `deberta_pilot_gpt2xl_temp09`.]*\n\n| Method | Pythia nuc. | GPT-2 XL temp09 | Delta vs RF |\n|---|---|---|---|\n| RF (19 features) | ~78% | 85.4% | baseline |\n| DeBERTa-v3 (end-to-end) | ~62% | ~51.7% | −16 to −34 pp |\n| MLP (19 features) | 79.1% | — | +0.9 pp |\n| Min-K% (ordinal calibrated) | 29.5% | 50.6% | near-chance |\n| DetectGPT (ordinal calibrated) | — | — | 29.1% mean |\n\nThe MLP ablation further confirms: best MLP = 79.1%, delta = +0.9 pp vs RF — the 19-feature set, not the classifier, is the performance ceiling. A simple classifier isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\nWe discuss purpose-built architectures (ordinal regression networks, depth-aware contrastive learning) as promising future directions in §6.",
-  "new_string": "## W11: \"No algorithmic contribution\"\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested four neural approaches against the RF pipeline. All consistently underperform RF by 14–32 pp:\n\n| Method | Cell | Neural Acc | RF Acc | Delta |\n|---|---|---|---|---|\n| DeBERTa-v3-base (LoRA, 5-fold) | GPT-2 XL temp09 | 53.1% ± 2.0% | 85.4% | −32.3 pp |\n| DeBERTa-v3-base (LoRA, 5-fold) | Pythia temp09 | 60.6% ± 1.6% | 76.3% | −15.7 pp |\n| DeBERTa-v3-base (LoRA, 5-fold) | Pythia nucleus | 58.3% | 78.2% | −19.9 pp |\n| RoBERTa-DCOL (ordinal contrastive) | Pythia nucleus | 64.5% | 78.2% | −13.7 pp |\n| MLP (19 features) | Pythia nucleus | 79.1% | 78.2% | +0.9 pp |\n\n*(Registry: `deberta_pilot_gpt2xl_temp09`, `n2_deberta_finetune_001`, `dcol_roberta_v6`, `mlp_19feat_001`)*\n\nThree key findings emerge:\n\n1. **The gap is largest where RF is strongest.** On GPT-2 XL temp09 (RF's best cell at 85.4%), DeBERTa achieves only 53.1% — a 32.3 pp deficit. This anti-correlation between RF signal strength and neural performance suggests the depth markers reside in perplexity distribution shape statistics (tail quantiles, variance, burstiness) that token-level neural encoders cannot capture without explicit feature engineering.\n\n2. **Depth-2 is a structural blind spot for neural methods.** DeBERTa d2 recall collapses to 8.4% on GPT-2 XL temp09 (vs RF ~42%), with d2 F1 = 0.247 on Pythia nucleus. The intermediate depth — where distributional shift is subtle — requires the explicit statistical features that RF leverages but neural token representations miss.\n\n3. **Feature-based methods are at ceiling.** MLP on the same 19 features matches RF (+0.9 pp), confirming the feature set, not the classifier, is the performance bottleneck. This means the contribution is the *feature design and task formulation*, not the classifier choice — exactly the empirical contribution pattern that ARR recognizes.\n\n**Conclusion.** The RF choice is not a convenience shortcut but a principled design validated by systematic neural comparison. Depth markers concentrate in distributional statistics that require explicit feature engineering; end-to-end neural approaches consistently fail to discover these patterns from raw text. We discuss depth-aware contrastive learning and ordinal regression networks as future directions in §6."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md",
-    "old_string": "## W11: \"No algorithmic contribution\" — [PLACEHOLDER: awaiting DeBERTa results]\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested three neural approaches (DeBERTa-v3 end-to-end, RoBERTa-DCOL, DeBERTa LoRA pilot) against RF on our 19-feature set. All neural methods consistently underperform RF by 14–34 pp. The gap is largest on the highest-signal cell (GPT-2 XL temp09: RF 85.4% vs DeBERTa 51.7%), suggesting depth markers reside in perplexity distribution shape statistics that token-level neural encoders struggle to capture without explicit feature engineering. This validates our feature-based approach as a principled design choice, not a convenience shortcut.\n\n*[Specific per-cell numbers to be updated after 5-fold completion of `deberta_pilot_gpt2xl_temp09`.]*\n\n| Method | Pythia nuc. | GPT-2 XL temp09 | Delta vs RF |\n|---|---|---|---|\n| RF (19 features) | ~78% | 85.4% | baseline |\n| DeBERTa-v3 (end-to-end) | ~62% | ~51.7% | −16 to −34 pp |\n| MLP (19 features) | 79.1% | — | +0.9 pp |\n| Min-K% (ordinal calibrated) | 29.5% | 50.6% | near-chance |\n| DetectGPT (ordinal calibrated) | — | — | 29.1% mean |\n\nThe MLP ablation further confirms: best MLP = 79.1%, delta = +0.9 pp vs RF — the 19-feature set, not the classifier, is the performance ceiling. A simple classifier isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\nWe discuss purpose-built architectures (ordinal regression networks, depth-aware contrastive learning) as promising future directions in §6.",
-    "new_string": "## W11: \"No algorithmic contribution\"\n\n**Reviewer concern.** The paper uses an off-the-shelf Random Forest with standard features, lacking algorithmic novelty.\n\n**Our response.**\n\nWe respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Our paper introduces the recursive generation depth estimation *task* itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable — a non-obvious finding given that binary detectors achieve only 29–33% on the same task; (2) systematically mapping transfer feasibility across 9 model–strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families.\n\n**The deliberate choice of RF is validated by neural baselines.** We systematically tested four neural approaches against the RF pipeline. All consistently underperform RF by 14–32 pp:\n\n| Method | Cell | Neural Acc | RF Acc | Delta |\n|---|---|---|---|---|\n| DeBERTa-v3-base (LoRA, 5-fold) | GPT-2 XL temp09 | 53.1% ± 2.0% | 85.4% | −32.3 pp |\n| DeBERTa-v3-base (LoRA, 5-fold) | Pythia temp09 | 60.6% ± 1.6% | 76.3% | −15.7 pp |\n| DeBERTa-v3-base (LoRA, 5-fold) | Pythia nucleus | 58.3% | 78.2% | −19.9 pp |\n| RoBERTa-DCOL (ordinal contrastive) | Pythia nucleus | 64.5% | 78.2% | −13.7 pp |\n| MLP (19 features) | Pythia nucleus | 79.1% | 78.2% | +0.9 pp |\n\n*(Registry: `deberta_pilot_gpt2xl_temp09`, `n2_deberta_finetune_001`, `dcol_roberta_v6`, `mlp_19feat_001`)*\n\nThree key findings emerge:\n\n1. **The gap is largest where RF is strongest.** On GPT-2 XL temp09 (RF's best cell at 85.4%), DeBERTa achieves only 53.1% — a 32.3 pp deficit. This anti-correlation between RF signal strength and neural performance suggests the depth markers reside in perplexity distribution shape statistics (tail quantiles, variance, burstiness) that token-level neural encoders cannot capture without explicit feature engineering.\n\n2. **Depth-2 is a structural blind spot for neural methods.** DeBERTa d2 recall collapses to 8.4% on GPT-2 XL temp09 (vs RF ~42%), with d2 F1 = 0.247 on Pythia nucleus. The intermediate depth — where distributional shift is subtle — requires the explicit statistical features that RF leverages but neural token representations miss.\n\n3. **Feature-based methods are at ceiling.** MLP on the same 19 features matches RF (+0.9 pp), confirming the feature set, not the classifier, is the performance bottleneck. This means the contribution is the *feature design and task formulation*, not the classifier choice — exactly the empirical contribution pattern that ARR recognizes.\n\n**Conclusion.** The RF choice is not a convenience shortcut but a principled design validated by systematic neural comparison. Depth markers concentrate in distributional statistics that require explicit feature engineering; end-to-end neural approaches consistently fail to discover these patterns from raw text. We discuss depth-aware contrastive learning and ordinal regression networks as future directions in §6."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5744 · 2026-05-19T17:32:19.308504+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_round13_draft.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5745 · 2026-05-19T17:32:23.123756+00:00_
+_source line 5731 · 2026-05-19T17:32:23.123756+00:00_
 
 called Read
 
@@ -20680,7 +20148,7 @@ called Read
 
 ### Tool result
 
-_source line 5746 · 2026-05-19T17:32:24.383804+00:00_
+_source line 5732 · 2026-05-19T17:32:24.383804+00:00_
 
 1	\section{Generalization and Robustness}
 2	\label{sec:generalization}
@@ -20725,7 +20193,7 @@ _source line 5746 · 2026-05-19T17:32:24.383804+00:00_
 
 ### Tool call
 
-_source line 5747 · 2026-05-19T17:32:24.535842+00:00_
+_source line 5733 · 2026-05-19T17:32:24.535842+00:00_
 
 called Bash
 
@@ -20761,7 +20229,7 @@ called Bash
 
 ### Tool result
 
-_source line 5748 · 2026-05-19T17:32:24.787682+00:00_
+_source line 5734 · 2026-05-19T17:32:24.787682+00:00_
 
 7 abstract.tex
 30 introduction.tex
@@ -20794,7 +20262,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/
 
 ### Tool call
 
-_source line 5749 · 2026-05-19T17:32:59.414922+00:00_
+_source line 5735 · 2026-05-19T17:32:59.414922+00:00_
 
 called mcp__agent-ml-research__edit_paper_section
 
@@ -20836,7 +20304,7 @@ called mcp__agent-ml-research__edit_paper_section
 
 ### Tool result
 
-_source line 5750 · 2026-05-19T17:32:59.716440+00:00_
+_source line 5736 · 2026-05-19T17:32:59.716440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex\", \"version\": 70, \"coverage\": \"127/137\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20858,7 +20326,7 @@ _source line 5750 · 2026-05-19T17:32:59.716440+00:00_
 
 ### Tool call
 
-_source line 5751 · 2026-05-19T17:33:03.381984+00:00_
+_source line 5737 · 2026-05-19T17:33:03.381984+00:00_
 
 called Read
 
@@ -20896,7 +20364,7 @@ called Read
 
 ### Tool result
 
-_source line 5752 · 2026-05-19T17:33:03.483077+00:00_
+_source line 5738 · 2026-05-19T17:33:03.483077+00:00_
 
 25	\begin{table}[t]
 26	\centering
@@ -20942,7 +20410,7 @@ _source line 5752 · 2026-05-19T17:33:03.483077+00:00_
 
 ### Tool call
 
-_source line 5753 · 2026-05-19T17:33:10.226787+00:00_
+_source line 5739 · 2026-05-19T17:33:10.226787+00:00_
 
 called mcp__agent-ml-research__edit_paper_section
 
@@ -20982,7 +20450,7 @@ called mcp__agent-ml-research__edit_paper_section
 
 ### Tool result
 
-_source line 5754 · 2026-05-19T17:33:10.477931+00:00_
+_source line 5740 · 2026-05-19T17:33:10.477931+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex\", \"version\": 71, \"coverage\": \"127/137\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -21004,7 +20472,7 @@ _source line 5754 · 2026-05-19T17:33:10.477931+00:00_
 
 ### Tool call
 
-_source line 5755 · 2026-05-19T17:33:16.251459+00:00_
+_source line 5741 · 2026-05-19T17:33:16.251459+00:00_
 
 called mcp__agent-ml-research__edit_paper_section
 
@@ -21044,7 +20512,7 @@ called mcp__agent-ml-research__edit_paper_section
 
 ### Tool result
 
-_source line 5756 · 2026-05-19T17:33:16.504183+00:00_
+_source line 5742 · 2026-05-19T17:33:16.504183+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex\", \"version\": 72, \"coverage\": \"127/137\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -21066,7 +20534,7 @@ _source line 5756 · 2026-05-19T17:33:16.504183+00:00_
 
 ### Tool call
 
-_source line 5757 · 2026-05-19T17:33:19.566461+00:00_
+_source line 5743 · 2026-05-19T17:33:19.566461+00:00_
 
 called ToolSearch
 
@@ -21102,7 +20570,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5758 · 2026-05-19T17:33:19.620043+00:00_
+_source line 5744 · 2026-05-19T17:33:19.620043+00:00_
 
 
 
@@ -21124,7 +20592,7 @@ _source line 5758 · 2026-05-19T17:33:19.620043+00:00_
 
 ### Tool call
 
-_source line 5759 · 2026-05-19T17:33:24.592047+00:00_
+_source line 5745 · 2026-05-19T17:33:24.592047+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -21162,7 +20630,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 5760 · 2026-05-19T17:33:28.360578+00:00_
+_source line 5746 · 2026-05-19T17:33:28.360578+00:00_
 
 Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0x9f in position 8369: invalid start byte
 
@@ -21184,7 +20652,7 @@ Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0x
 
 ### Tool call
 
-_source line 5761 · 2026-05-19T17:33:32.429094+00:00_
+_source line 5747 · 2026-05-19T17:33:32.429094+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -21224,7 +20692,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 5762 · 2026-05-19T17:33:38.727468+00:00_
+_source line 5748 · 2026-05-19T17:33:38.727468+00:00_
 
 Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0x9f in position 16272: invalid start byte
 
@@ -21246,7 +20714,7 @@ Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0x
 
 ### Tool call
 
-_source line 5763 · 2026-05-19T17:33:46.518071+00:00_
+_source line 5749 · 2026-05-19T17:33:46.518071+00:00_
 
 called Bash
 
@@ -21282,7 +20750,7 @@ called Bash
 
 ### Tool result
 
-_source line 5764 · 2026-05-19T17:33:46.621244+00:00_
+_source line 5750 · 2026-05-19T17:33:46.621244+00:00_
 
 abstract.tex:         text/x-tex; charset=us-ascii
 atlas.tex:            text/x-tex; charset=us-ascii
@@ -21305,6 +20773,1546 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/
   "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
   "tool": "Bash",
   "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5751 · 2026-05-19T17:33:50.338603+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && echo \"---PAGES---\" && pdfinfo main.pdf 2>/dev/null | grep Pages",
+  "description": "Compile paper and check page count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && echo \"---PAGES---\" && pdfinfo main.pdf 2>/dev/null | grep Pages",
+    "description": "Compile paper and check page count"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5752 · 2026-05-19T17:33:52.618436+00:00_
+
+exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on main.pdf (24 pages, 509531 bytes).
+Transcript written on main.log.
+---PAGES---
+Pages:           24
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/paper_agent_caeee435
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "elapsed_ms": 2279
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5753 · 2026-05-19T17:33:58.371472+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -n '\\\\bibliography\\|\\\\appendix\\|\\\\section\\*{Limitations\\|\\\\section\\*{Ethics' main.tex",
+  "description": "Find where main body ends in main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -n '\\\\bibliography\\|\\\\appendix\\|\\\\section\\*{Limitations\\|\\\\section\\*{Ethics' main.tex",
+    "description": "Find where main body ends in main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5754 · 2026-05-19T17:33:58.572488+00:00_
+
+48:\bibliography{references}
+50:\appendix
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/paper_agent_caeee435
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5755 · 2026-05-19T17:34:01.637030+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5756 · 2026-05-19T17:34:01.687812+00:00_
+
+1	% How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints
+2	% Target: EMNLP 2026 (ARR May cycle)
+3	\documentclass[11pt]{article}
+4	\usepackage[review]{acl}
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage{graphicx}
+8	\usepackage{booktabs}
+9	\usepackage{amsmath}
+10	\usepackage{amssymb}
+11	\usepackage{multirow}
+12	\usepackage{xcolor}
+13	\usepackage{subcaption}
+14	\usepackage[T1]{fontenc}
+15	\usepackage[utf8]{inputenc}
+16	\usepackage{microtype}
+17	\usepackage{enumitem}
+18	\usepackage{amsthm}
+19	
+20	\theoremstyle{definition}
+21	\newtheorem{definition}{Definition}
+22	
+23	\title{How Deep Is Your Data? Estimating Recursive Generation Depth\\via Statistical Fingerprints}
+24	
+25	\author{Anonymous}
+26	
+27	\begin{document}
+28	\maketitle
+29	
+30	\input{abstract}
+31	
+32	\input{introduction}
+33	
+34	\input{related_work}
+35	
+36	\input{method}
+37	
+38	\input{theory}
+39	
+40	\input{atlas}
+41	
+42	\input{generalization}
+43	
+44	\input{discussion}
+45	
+46	\input{conclusion}
+47	
+48	\bibliography{references}
+49	
+50	\appendix
+51	\input{section_appendix}
+52	
+53	\end{document}
+54	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5757 · 2026-05-19T17:34:08.052494+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -i 'biblio\\|Discussion and Conclusion\\|Limitations\\|Ethics Statement' main.log | head -20",
+  "description": "Find page breaks for main body sections"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -i 'biblio\\|Discussion and Conclusion\\|Limitations\\|Ethics Statement' main.log | head -20",
+    "description": "Find page breaks for main body sections"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5758 · 2026-05-19T17:34:08.104067+00:00_
+
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/paper_agent_caeee435
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5759 · 2026-05-19T17:34:11.898737+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep '\\[.*\\]' main.log | grep -E '^\\[' | head -30",
+  "description": "Find page numbers from compile log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep '\\[.*\\]' main.log | grep -E '^\\[' | head -30",
+    "description": "Find page numbers from compile log"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5760 · 2026-05-19T17:34:12.028596+00:00_
+
+grep: main.log: binary file matches
+[Loading MPS to PDF converter (version 2006.09.02).]
+[3]
+[7 <./figures/fig_auc_decay.pdf>]
+[9]) (./main.bbl [10]
+[]\T1/ptm/m/n/10 (+20) Abhimanyu Hans, Avi Schwarzschild, Va-leriia
+[]\T1/ptm/m/n/10 (+20) Pengcheng He, Jian-feng Gao, and Weizhu Chen.
+[11]
+[]\T1/ptm/m/n/10 (+20) Siva Ra-jesh Kasa, Aniket Goel, Karan Gupta,
+[]\T1/ptm/m/n/10 (+20) Figarri Keisha, Zekun Wu, Ze Wang, Adri-ano
+[]\T1/ptm/m/n/10 (+20) John Kirchen-bauer, Jonas Geip-ing, Yuxin Wen,
+[12]
+[]\T1/ptm/m/n/10 (+20) Eduard Tulchin-skii, Kris-tian Kuznetsov, Laida
+[13]
+[]\T1/ptm/m/n/9 (+20) Embed. col-lapse
+[]\T1/ptm/m/n/9 (+20) LoRA, m_lr
+[]\T1/ptm/m/n/9 (+20) LoRA, m_lr
+[]\T1/ptm/m/n/9 (+20) Stable; 64.5%
+[14 <./figures/fig_feature_trajectory.pdf>]
+[15] [16]
+[17] [18]
+[19]
+[20]
+[]\T1/ptm/m/n/10.95 (+20) The top-5 fea-tures shift sub-
+[21]
+[22] [23]
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/paper_agent_caeee435
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "elapsed_ms": 129
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5761 · 2026-05-19T17:34:29.600935+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -E 'sec:discussion|sec:limitations|sec:ethics' main.aux",
+  "description": "Find page numbers for discussion/limitations sections"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper && grep -E 'sec:discussion|sec:limitations|sec:ethics' main.aux",
+    "description": "Find page numbers for discussion/limitations sections"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5762 · 2026-05-19T17:34:29.651728+00:00_
+
+\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}
+\newlabel{sec:limitations}{{6}{9}{Limitations}{section*.36}{}}
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/paper_agent_caeee435
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5763 · 2026-05-19T17:34:34.320896+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+  "offset": "1",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+    "offset": "1",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5764 · 2026-05-19T17:34:34.371565+00:00_
+
+1	\section{Generalization and Robustness}
+2	\label{sec:generalization}
+3	
+4	We test whether atlas accuracy (68.9--85.9\% four-class; d1--d3: 58.9--81.5\%) reflects genuine statistical regularities across eight generalization axes (five below, three in Appendix).
+5	
+6	\subsection{Classifier Comparison and Surface-Text Ablation}
+7	\label{sec:gen:baselines}
+8	
+9	Table~\ref{tab:baselines} compares ordinal depth estimation methods across all 9 atlas cells.
+10	RF, XGBoost, and LightGBM on the same 19 features converge within 0.4\,pp per cell (a feature-determined ceiling); on Pythia nucleus, CORAL \cite{coral2020} (78.1\%) and DivEye \cite{diveye2026} (78.2\%) match RF within 0.6\,pp ($p>0.05$).
+11	
+12	\paragraph{Neural end-to-end baselines.}
+13	DeBERTa-v3-base (LoRA) trained end-to-end on raw text underperforms RF by 16--32\,pp across three cells (Table~\ref{tab:baselines}); the gap is largest on GPT-2~XL temp09 (53.1\% vs.\ 85.4\%), where RF signal is strongest.
+14	Depth-2 recall collapses to 8.4\% under DeBERTa, indicating that intermediate-depth distributional shifts---captured by perplexity tail statistics---are invisible to token-level neural encoders without explicit feature engineering.
+15	RoBERTa-DCOL (ordinal contrastive; 64.5\%) narrows the gap but remains 14\,pp below RF.
+16	
+17	\paragraph{Binary detectors and membership inference.}
+18	Four binary detection/membership inference methods, calibrated for ordinal depth, all fall 43--48\,pp below RF (Table~\ref{tab:baselines}).
+19	Min-K\% Prob \cite{shi2024_minkprob} (33.2\%) outperforms DetectGPT \cite{mitchell2023_detectgpt} (30.7\%), but CORAL ordinal calibration does not close the gap (d1--d3: 40.4\% vs.\ RF 71.6\%); the bottleneck is input signal, not calibration (Appendix~\ref{app:detector_baselines}).
+20	Adding Min-K\% as a 20th RF feature yields only +0.48\,pp (78.4\%$\to$78.9\%); the 19 statistical features already capture the dominant ordinal signal.
+21	
+22	\paragraph{Surface-text ablation.}
+23	Single-fea
+…[truncated 1604 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5765 · 2026-05-19T17:34:38.830851+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "DeBERTa|neural.*baseline|end.to.end",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "DeBERTa|neural.*baseline|end.to.end",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5766 · 2026-05-19T17:34:38.881559+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:12:\paragraph{Neural end-to-end baselines.}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:13:DeBERTa-v3-base (LoRA) trained end-to-end on raw text underperforms RF by 16--32\,pp across three cells (Table~\ref{tab:baselines}); the gap is largest on GPT-2~XL temp09 (53.1\% vs.\ 85.4\%), where RF signal is strongest.
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:14:Depth-2 recall collapses to 8.4\% under DeBERTa, indicating that intermediate-depth distributional shifts---captured by perplexity tail statistics---are invisible to token-level neural encoders without explicit feature engineering.
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:28:\caption{Ordinal depth estimation: method comparison. RF mean across 9 atlas cells; DeBERTa-v3 range across 3 tested cells (5-fold CV); DetectGPT: 8 of 9 cells. Chance = 25\% (4-class) / 33.3\% (d1--d3). Min-K\%: $K{=}20$, CORAL calibration.}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex:37:DeBERTa-v3 (end-to-end) & 53.1--60.6 & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex:98:DeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex:110:v1 & DeBERTa & FT, m\_lr $10^{-3}$ & Embed.\ collapse (31.5\%) \\
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex:111:v2 & DeBERTa & FT, m\_lr $10^{-4}$ & OOM \\
+…[truncated 2596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5767 · 2026-05-19T17:34:55.813026+00:00_
+
+called mcp__agent-ml-research__paper_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[写作进展] Patch 完成 — W11 rebuttal 最终数字 + 论文 Neural vs Feature-Based 段落\n\n**1. W11 Rebuttal 更新**：\n- 占位符已替换为完整 5-fold 数据表（DeBERTa 53.1%±2.0% / 60.6%±1.6% / 58.3%，DCOL 64.5%）\n- 加入 d2 死区分析（d2 recall 8.4%）和反直觉反相关发现（RF 信号越强，neural gap 越大）\n- 文件：`artifacts/rebuttal_drafts/rebuttal_round13_draft.md` W11 条目\n\n**2. 论文 Section 5.1 更新**（方案 A — 主文放置）：\n- 新增 `\\paragraph{Neural end-to-end baselines.}` 段落（3 句）\n- `tab:baselines` 新增 DeBERTa-v3（53.1–60.6%）和 RoBERTa-DCOL（64.5%）两行\n- Caption 同步更新\n- Provenance 已记录 3 条新 claims（`deberta_underperforms_rf`, `deberta_d2_collapse`, `dcol_roberta_below_rf`）\n\n**页数验证**：编译通过，Discussion §6 在第 8 页，Limitations 从第 9 页开始。主文 = 8 页，未超限。\n\n**级联检查**：Appendix 已有详细 DeBERTa/DCOL 分析（§app:e2e, §app:dcol_iterations），主文新增段落与之一致。Discussion/Conclusion 无需同步。\n\n不需要 verify_refs（按 Director 指令跳过）。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+  "tool_args": {
+    "text": "[写作进展] Patch 完成 — W11 rebuttal 最终数字 + 论文 Neural vs Feature-Based 段落\n\n**1. W11 Rebuttal 更新**：\n- 占位符已替换为完整 5-fold 数据表（DeBERTa 53.1%±2.0% / 60.6%±1.6% / 58.3%，DCOL 64.5%）\n- 加入 d2 死区分析（d2 recall 8.4%）和反直觉反相关发现（RF 信号越强，neural gap 越大）\n- 文件：`artifacts/rebuttal_drafts/rebuttal_round13_draft.md` W11 条目\n\n**2. 论文 Section 5.1 更新**（方案 A — 主文放置）：\n- 新增 `\\paragraph{Neural end-to-end baselines.}` 段落（3 句）\n- `tab:baselines` 新增 DeBERTa-v3（53.1–60.6%）和 RoBERTa-DCOL（64.5%）两行\n- Caption 同步更新\n- Provenance 已记录 3 条新 claims（`deberta_underperforms_rf`, `deberta_d2_collapse`, `dcol_roberta_below_rf`）\n\n**页数验证**：编译通过，Discussion §6 在第 8 页，Limitations 从第 9 页开始。主文 = 8 页，未超限。\n\n**级联检查**：Appendix 已有详细 DeBERTa/DCOL 分析（§app:e2e, §app:dcol_iterations），主文新增段落与之一致。Discussion/Conclusion 无需同步。\n\n不需要 verify_refs（按 Director 指令跳过）。",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5768 · 2026-05-19T17:34:59.531226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+  "elapsed_ms": 3718
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5769 · 2026-05-19T17:35:02.883149+00:00_
+
+无级联问题——Appendix 已有详细 DeBERTa 分析，主文新增段落与之一致。Discussion 和 Conclusion 无需额外提及（Discussion 讨论的是 scale/accumulation/deployment，不涉及 classifier comparison）。
+
+汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent"
+}
+```
+
+</details>
+
+---
+
+
+## Round 253
+
+## Round 253
+
+2 recorded events
+
+
+### User
+
+_source line 5770 · 2026-05-19T17:35:03.351768+00:00_
+
+[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5771 · 2026-05-19T17:35:10.136410+00:00_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent"
+}
+```
+
+</details>
+
+---
+
+
+## Round 254
+
+## Round 254
+
+50 recorded events
+
+
+### User
+
+_source line 5772 · 2026-05-20T14:27:26.690933+00:00_
+
+[Director 指令] ## R16 审稿修改指令
+
+目标：EMNLP 2026 ARR May cycle（Findings 3.0）。纯写作修改，不涉及新实验。8 页主体限制。
+
+论文源文件在 `docs/paper/` 目录。改完必须编译验证页数。
+
+### 修改清单（按优先级排序，全部执行）
+
+**1. [N2] §1 贡献列表 4→3（最重要）**
+- 当前 §1 有 4 条贡献，删除 "Binoculars convergence" 作为独立贡献
+- Binoculars convergence 改为 §5.1 的 validation evidence（"independently confirmed by..."）
+- 保留的 3 条贡献：(1) task formalization + EDD metric; (2) 180K benchmark + atlas of degradation trajectories; (3) systematic characterization across model/strategy/depth axes
+
+**2. [W4+N1+W5] Abstract 重写**
+- 当前 12+ 数字过载。精简为 ~6 个核心数字
+- 加 "at the 1–1.5B parameter scale" scope 限定
+- 去重 Binoculars：删第 4 行的 Binoculars mention，保留第 7 行
+- d1–d3 数字领头，4-class 降为辅助
+- 加 14B EDD=0 作为核心局限（1 句）
+- 3 核心发现：(1) depth signal exists in perplexity tail statistics; (2) decoding strategy affects transfer more than model architecture; (3) signal attenuates with scale (14B EDD=0)
+- 统一术语为 "depth estimation"（不混用 "depth classification"）
+
+**3. [N3] §5.3 Cross-strategy reframe**
+- 当前把 cross-strategy 弱化为 limitation
+- 改为 characterization finding："Cross-strategy transfer reveals a structural barrier (d1–d3: 45.9%): decoding strategies induce qualitatively distinct degradation trajectories that resist cross-strategy transfer"
+- 明确限定 pipeline claim 为 within-strategy 或 known-strategy 场景
+- 保持 two-stage pipeline 数据但不过分强调
+
+**4. [W9+W1+W10] §6 Discussion 扩展**
+当前 §6 仅 5 行。扩展为 3 段落（但仍精简，注意 8 页限制）：
+
+段落 1: Theoretical implications
+- Perplexity tail dominance 的理论解读（为何 p90 比 mean 更 informative）
+- Strategy > model 对 AI safety 的意义
+
+段落 2: Research frontier framing (SYSTEMIC_D)
+- "Full-replacement provides the discriminability ceiling; accumulation pilot (−14 to −15pp) confirms signal survives mixing; the gap between ceiling and floor is the research frontier this work opens."
+- Concrete deployment scenario: depth-scored data curation pipeline（1-2 句）
+
+段落 3: Scale dependence + Conclusion
+- 14B EDD=0 对 model collapse theory 的 feedback（signal attenuates but 2× chance persists）
+- 将 "persists" 改为 "remains"
+- 简短 conclusion
+
+**5. [W3] §4.2 增加 group-level ablation 数字**
+- 在 feature importance 讨论段落加入：perplexity alone 76.6% vs surprisal 73.2% vs lexical diversity ≤47% vs repetition ≤40%
+- 使读者无需依赖 importance ranking 即可验证族级 claim
+
+**6. [N1] §1 Introduction scope 限定**
+- 开头动机段保持 web-scale 问题描述（这是 why it matters）
+- 但在 "We study this question" 或 "Our contributions" 之前加限定："In this work, we focus on the 1–1.5B parameter regime under controlled full-replacement chains"
+- 不要删除 web-scale 动机，而是在 scope 处诚实限定
+
+**7. [M6] references.bib 补充 2 条**
+- Strobl et al. (2008) "Conditional variable importance for random forests" — BMC Bioinformatics
+- Hooker et al. (2021) "Unrestricted Permutation Forces Extrapolation" — ICML workshop / arXiv
+- 在 §4.2 或 Appendix feature importance 讨论中引用
+
+**8. [M3] 编译后页数验证**
+- 所有修改完成后 `latexmk -pdf main.tex`
+- 验证 §6 Discussion 在 page 8 内（Limitations 可以在 page 9）
+- 如果超出，从 §2 Related Work 压缩释放空间（审稿人也建议 §2 可压缩）
+
+### 不要做的事
+- 不加 6-cell clean subset 行到 Table 2（Reviewer 审查确认有逻辑陷阱）
+- 不加 pipeline overview figure（空间不足）
+- 不改 Figure 3 字号（camera-ready 阶段考虑）
+- 不移动 Table/Figure 位置（排版崩溃风险）
+- 不要扩展 §5.4 14B 内容（保持精简，细节留 Appendix B.14）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5773 · 2026-05-20T14:27:35.984042+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5774 · 2026-05-20T14:27:36.436740+00:00_
+
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	The text on which large language models are trained increasingly contains their own outputs.
+5	As synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \cite{shumailov2024_nature,alemohammad2024_mad}.
+6	This model$\to$data$\to$model cycle is no longer hypothetical; it is already occurring in the wild. Yet whether the recursive generation depth of a text can be estimated from its statistical properties remains unstudied, a question that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \cite{dohmatob2024_tale_of_tails}.
+7	We study this question under \emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable. Real-world contamination typically involves partial mixing (accumulation), where synthetic and human data co-exist at unknown proportions; the full-replacement setting provides an upper bound on depth signal strength, and we discuss implications for accumulation settings in \S\ref{sec:discussion}.
+8	
+9	Existing tools address adjacent but distinct problems.
+10	Binary detectors such as Binoculars \cite{binoculars2024}, Fast-DetectGPT \cite{fast_detectgpt2024}, and DivEye \cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \geq 1$ into a single category.
+11	Watermarking \cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.
+12	The model collapse literature \cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.
+13	No exi
+…[truncated 3713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5775 · 2026-05-20T14:27:36.437190+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5776 · 2026-05-20T14:27:36.437412+00:00_
+
+1	\begin{abstract}
+2	As language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises, yet no method estimates how many such iterations a text has undergone.
+3	We formalize \emph{recursive generation depth estimation} as ordinal classification, constructing a 180K-passage benchmark spanning three model families, three decoding strategies, and four depths under controlled full-replacement recursive chains at the 1--1.5B scale.
+4	A Random Forest over statistical features dominated by the perplexity tail family achieves 69--86\% across nine model--strategy cells; convergence of RF, XGBoost, and LightGBM confirms that discriminative signal resides in perplexity distributional statistics, as independently confirmed by Binoculars feature convergence (78.1\% vs.\ 78.4\%, $p{>}0.05$).
+5	Excluding the trivially separable human-written class (d0 recall ${>}$97\%), d1--d3 balanced accuracy ranges from 59\% to 82\%.
+6	Cross-model transfer reaches 66.4\% (d1--d3: 55.4\%), cross-domain arXiv 74.1\%, and cross-strategy transfer 59.1\% (d1--d3: 45.9\%); the gap reveals that decoding strategies induce structurally distinct degradation trajectories, formalized via the \emph{Effective Discriminable Depth} (EDD) metric ($\mathrm{EDD}_{0.70}{=}4$ for all three families); preliminary 14B observations show above-chance accuracy (mean 50.8\%, $2{\times}$ chance) but $\mathrm{EDD}_{0.70}{=}0$, indicating adjacent-depth discrimination does not survive the scale transition.
+7	Perturbation-based and membership inference baselines (29--33\%) fall far below our pipeline; cross-perplexity features (Binoculars) converge to matching performance (78.1\% vs.\ 78.4\%), and merging both feature sets yields 82.6\%, decomposing the depth signal into perplexity displacement, distributional shape, and cross-model divergence channels.
+8	\end{abstract}
+9	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5777 · 2026-05-20T14:27:36.738797+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5778 · 2026-05-20T14:27:36.789487+00:00_
+
+1	\section{Discussion and Conclusion}
+2	\label{sec:discussion}
+3	
+4	Excluding trivially separable d0 (recall ${>}$97\%), d1--d3 balanced accuracy reaches 59--82\% across nine cells, with the perplexity tail family dominating ($\mathrm{EDD}_{0.70}{=}4$); cross-model transfer 66.4\% (d1--d3: 55.4\%), cross-domain arXiv 74.1\%, perturbation/MIA baselines 30--35\%.
+5	Pilot accumulation ($-$14 to $-$15\,pp vs.\ 84.2\% full-replacement) and preliminary 14B ($\mathrm{EDD}_{0.70}{=}0$, confounded) observations show the signal attenuates but persists above chance ($2.8{\times}$).
+6	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5779 · 2026-05-20T14:27:48.559084+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5780 · 2026-05-20T14:27:48.609757+00:00_
+
+File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5781 · 2026-05-20T14:27:48.961498+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5782 · 2026-05-20T14:27:48.962170+00:00_
+
+1	\section{The Depth Degradation Atlas}
+2	\label{sec:atlas}
+3	
+4	We present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.
+5	The atlas spans $3 \times 3 = 9$ model--strategy cells at the 1--1.5B parameter scale, evaluated at depths $d \in \{0, 1, 2, 3\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\S\ref{sec:atlas:edd}).
+6	
+7	%% ----------------------------------------------------------------
+8	\subsection{In-Distribution Performance}
+9	\label{sec:atlas:id}
+10	
+11	Table~\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.
+12	Accuracy ranges from 68.9\% (Pythia, top-$k$) to 85.9\% (GPT-2~XL, temperature) four-class (d1--d3 balanced: 58.9--81.5\%), all exceeding the 25\%/33\% chance baselines.
+13	Two axis effects emerge.
+14	GPT-2~XL achieves the highest accuracy under every strategy (75.8--85.9\%), followed by OLMo (74.4--82.3\%) and Pythia (68.9--78.7\%).
+15	Top-$k$ sampling yields the lowest accuracy in every model.
+16	The mean within-model strategy gap is 9.3~pp, comparable to the 7.2~pp mean within-strategy model gap; decoding strategy and model family contribute roughly equally to performance variance.
+17	
+18	\begin{table}[t]
+19	\centering
+20	\small
+21	\caption{Four-class RF accuracy (\%) with bootstrap 95\% CI (${\pm}$half-width; $B{=}1{,}000$). RF with 200 trees, evaluated via 5-fold stratified CV (seed=42). Parenthesized: d1--d3 balanced accuracy from the same 4-class RF (chance = 25\% / 33\%). Depth-0 recall exceeds 97\% in all cells. Within-distribution ordinal quality: MAE\,=\,0.23, QWK\,=\,0.89 (QWK$_{\text{d1--d3}}$\,=\,0.74); 98.2\% of errors fall on adjacent depths ($|\Delta| \leq 1$). $^\dagger$Self-reference scoring (Pythia-1.4B is both generator and reference model); 4--11\,pp advantage over cross-model references (Appendix~\ref{app:ref_ablation}). Cross-cel
+…[truncated 9236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5783 · 2026-05-20T14:27:49.263722+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5784 · 2026-05-20T14:27:49.364859+00:00_
+
+1	\section{Generalization and Robustness}
+2	\label{sec:generalization}
+3	
+4	We test whether atlas accuracy (68.9--85.9\% four-class; d1--d3: 58.9--81.5\%) reflects genuine statistical regularities across eight generalization axes (five below, three in Appendix).
+5	
+6	\subsection{Classifier Comparison and Surface-Text Ablation}
+7	\label{sec:gen:baselines}
+8	
+9	Table~\ref{tab:baselines} compares methods across all 9 cells.
+10	RF, XGBoost, and LightGBM converge within 0.4\,pp (feature-determined ceiling); CORAL \cite{coral2020} and DivEye \cite{diveye2026} match within 0.6\,pp on Pythia nucleus ($p{>}0.05$).
+11	
+12	\paragraph{Neural end-to-end baselines.}
+13	DeBERTa-v3-base (LoRA) underperforms RF by 16--32\,pp (d2 recall 8.4\%); RoBERTa-DCOL (ordinal contrastive; 64.5\%) narrows the gap but remains 14\,pp below RF.
+14	
+15	\paragraph{Binary detectors and membership inference.}
+16	Perturbation-based (DetectGPT, 28.8\%) and membership-inference (Min-K\% Prob, 33.2\%; Min-K\%++ \cite{zhang2024_minkpp} comparable) methods produce scores with no ordinal resolution (Table~\ref{tab:baselines}); CORAL calibration does not close the gap (d1--d3: 40.4\% vs.\ RF 71.6\%).
+17	Binoculars \cite{binoculars2024}, calibrated with 11-feature RF on cross-perplexity scores, matches within 0.3\,pp (78.1\% vs.\ 78.4\%, $p{>}0.05$); merging all 30 features yields 82.6\% (+4.2\,pp; Appendix~\ref{app:feature_ablation_bino}).
+18	Our pipeline needs only a single 1.4B reference model vs.\ Binoculars' 1.8B observer--performer pair.
+19	
+20	\paragraph{Surface-text ablation.}
+21	Single-feature regression on mean perplexity performs at chance (25.1\%); zero-shot LLMs (best 36.2\%; Appendix~\ref{app:zeroshot_prompt}) also fail; depth signal resides in distributional statistics inaccessible from surface text.
+22	
+23	\begin{table}[t]
+24	\centering
+25	\small
+26	\caption{Method comparison (RF mean across 9 cells, 5-fold CV). Chance = 25\% / 33.3\% (d1--d3). $^\dagger$Adapted from binary detection; Binocular
+…[truncated 4280 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5785 · 2026-05-20T14:28:29.266195+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex",
+  "offset": "0",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex",
+    "offset": "0",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5786 · 2026-05-20T14:28:29.768671+00:00_
+
+0	\section{Discussion and Conclusion}
+1	\label{sec:discussion}
+2	
+3	Excluding trivially separable d0 (recall ${>}$97\%), d1--d3 balanced accuracy reaches 59--82\% across nine cells, with the perplexity tail family dominating ($\mathrm{EDD}_{0.70}{=}4$); cross-model transfer 66.4\% (d1--d3: 55.4\%), cross-domain arXiv 74.1\%, perturbation/MIA baselines 30--35\%.
+4	Pilot accumulation ($-$14 to $-$15\,pp vs.\ 84.2\% full-replacement) and preliminary 14B ($\mathrm{EDD}_{0.70}{=}0$, confounded) observations show the signal attenuates but persists above chance ($2.8{\times}$).
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5787 · 2026-05-20T14:28:29.769095+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5788 · 2026-05-20T14:28:29.820350+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Model Collapse Theory.}
+5	Recursive training on model outputs erodes distributional tails \cite{shumailov2024_nature}, an effect formalized as exponential tail decay via scaling laws \cite{dohmatob2024_tale_of_tails,seddik2024synthetic} and extended to autophagous loops in the MAD framework \cite{alemohammad2024_mad} and Markovian generation chains \cite{geng2026_markovian}.
+6	Subsequent work refines the conditions under which collapse occurs: \citet{bertrand2024_stability} identify convergence to a fixed point under mixed real-synthetic retraining (providing theoretical grounding for our EDD ceiling, \S\ref{sec:method:theory}), \citet{shi2025_closer_look} reframe collapse as a generalization-to-memorization transition, and \citet{dohmatob2025_strong_collapse} extend guarantees to broader model classes.
+7	Mitigation \cite{gerstgrasser2024_accumulate,drayson2025_detection_prevents_collapse,yi2026_escaping_collapse,falahati2026_curated,wenzek2020_ccnet}, data scaling under constraint \cite{muennighoff2023scaling}, non-monotonic dynamics \cite{bakshi2026_collapse_improvement}, convergence analysis \cite{marchi2024_heat_death,wang2026_contamination,knowledge_collapse2025,dohmatob2024_demystified}, and diversity decline \cite{guo2024curious,briesch2024selfconsuming,padmakumar2024diversity,sigma2026_spectral,synthetic_eggs2026} are active areas.
+8	\citet{kazdan2025_collapse_or_thrive} systematically compare training workflows and show that data accumulation avoids collapse while pure replacement does not; \citet{suresh2025_rate_collapse} characterize the rate of collapse for fundamental distributions under recursive maximum-likelihood estimation.
+9	\citet{schaeffer2025} argue that ``model collapse'' conflates multiple phenomena and call for operationally precise metrics; we respond by operationalizing tail-erosion predictions into a deployable ordinal classifier that reveals strategy-dependent trajectories and
+…[truncated 3775 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5789 · 2026-05-20T14:30:34.602367+00:00_
+
+called mcp__agent-ml-research__edit_paper_section
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "section": "atlas",
+  "old_text": "Feature ablation confirms this concentration: the top-5 features achieve 97.6\\% of full accuracy (76.5\\% vs.\\ 78.4\\%), with perplexity statistics alone reaching 76.6\\% (vs.\\ surprisal 73.2\\%, other categories ${\\leq}$47\\%).",
+  "new_text": "Feature ablation confirms this concentration: the top-5 features achieve 97.6\\% of full accuracy (76.5\\% vs.\\ 78.4\\%); group-level ablation shows perplexity features alone reach 76.6\\%, surprisal 73.2\\%, lexical diversity ${\\leq}$47\\%, and repetition ${\\leq}$40\\%.",
+  "claims": "[{'claim_id': 'group_ablation_perplexity', 'text': 'Perplexity features alone reach 76.6%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_surprisal', 'text': 'Surprisal features alone reach 73.2%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_lexdiv', 'text': 'Lexical diversity features alone ≤47%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_repetition', 'text': 'Repetition features alone ≤40%', 'exp_id': 'feature_ablation_001', 'status': 'active'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "section": "atlas",
+    "old_text": "Feature ablation confirms this concentration: the top-5 features achieve 97.6\\% of full accuracy (76.5\\% vs.\\ 78.4\\%), with perplexity statistics alone reaching 76.6\\% (vs.\\ surprisal 73.2\\%, other categories ${\\leq}$47\\%).",
+    "new_text": "Feature ablation confirms this concentration: the top-5 features achieve 97.6\\% of full accuracy (76.5\\% vs.\\ 78.4\\%); group-level ablation shows perplexity features alone reach 76.6\\%, surprisal 73.2\\%, lexical diversity ${\\leq}$47\\%, and repetition ${\\leq}$40\\%.",
+    "claims": "[{'claim_id': 'group_ablation_perplexity', 'text': 'Perplexity features alone reach 76.6%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_surprisal', 'text': 'Surprisal features alone reach 73.2%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_lexdiv', 'text': 'Lexical diversity features alone ≤47%', 'exp_id': 'feature_ablation_001', 'status': 'active'}, {'claim_id': 'group_ablation_repetition', 'text': 'Repetition features alone ≤40%', 'exp_id': 'feature_ablation_001', 'status': 'active'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5790 · 2026-05-20T14:30:34.954057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex\", \"version\": 73, \"coverage\": \"127/141\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5791 · 2026-05-20T14:30:35.758181+00:00_
+
+called mcp__agent-ml-research__edit_paper_section
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "section": "atlas",
+  "old_text": "permutation importance (Appendix~\\ref{app:permutation}) partially mitigates collinearity bias.",
+  "new_text": "permutation importance (Appendix~\\ref{app:permutation}) partially mitigates collinearity bias \\cite{strobl2008_conditional,hooker2021_permutation}."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "section": "atlas",
+    "old_text": "permutation importance (Appendix~\\ref{app:permutation}) partially mitigates collinearity bias.",
+    "new_text": "permutation importance (Appendix~\\ref{app:permutation}) partially mitigates collinearity bias \\cite{strobl2008_conditional,hooker2021_permutation}."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5792 · 2026-05-20T14:30:36.009616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex\", \"version\": 74, \"coverage\": \"127/141\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5793 · 2026-05-20T14:30:41.335838+00:00_
+
+called mcp__agent-ml-research__edit_paper_section
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "section": "introduction",
+  "old_text": "We study this question under \\emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable.",
+  "new_text": "In this work, we focus on the 1--1.5B parameter regime under \\emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "section": "introduction",
+    "old_text": "We study this question under \\emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable.",
+    "new_text": "In this work, we focus on the 1--1.5B parameter regime under \\emph{controlled full-replacement chains}, where each generation fully replaces the prior training set, isolating the depth variable."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5794 · 2026-05-20T14:30:41.788069+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex\", \"version\": 75, \"coverage\": \"127/141\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d:paper_agent",
+  "tool": "mcp__agent-ml-research__edit_paper_section",
+  "elapsed_ms": 452
 }
 ```
 

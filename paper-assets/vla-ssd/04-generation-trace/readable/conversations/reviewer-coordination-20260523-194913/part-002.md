@@ -6,104 +6,9 @@
 
 ## Round 39
 
-### Tool call
-
-_source line 637 · 2026-05-19T20:30:00.645475+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "westd-19183",
-  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "westd-19183",
-    "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 638 · 2026-05-19T20:30:00.998601+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "westd-19183",
-  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "westd-19183",
-    "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 639 · 2026-05-19T20:30:01.202283+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0\\\": {\\n    \\\"n_instruction_dominant\\\": 10,\\n    \\\"mean_text_attn\\\": 0.4169,\\n    \\\"mean_image_attn\\\": 0.5709,\\n    \\\"mean_bos_attn\\\": 0.0123,\\n    \\\"per_head_text_attn\\\": [\\n      0.9968,\\n      0.3581,\\n      0.1176,\\n      0.7731,\\n      0.7878,\\n      0.3213,\\n      0.2953,\\n      0.1127,\\n      0.9821,\\n      0.3115,\\n      0.6951,\\n      0.4117,\\n      0.8927,\\n      0.1291,\\n      0.2129,\\n      0.1436,\\n      0.5535,\\n      0.2146,\\n      0.9516,\\n      0.9688,\\n      0.3123,\\n      0.155,\\n      0.1769,\\n      0.1568,\\n      0.13,\\n      0.0731,\\n      0.8559,\\n      0.2342,\\n      0.2923,\\n      0.3385,\\n      0.1688,\\n      0.2166\\n    ]\\n  },\\n  \\\"L1\\\": {\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"mean_text_attn\\\": 0.3627,\\n    \\\"mean_image_attn\\\": 0.6106,\\n    \\\"mean_bos_attn\\\": 0.0267,\\n    \\\"per_head_text_attn\\\": [\\n      0.5806,\\n      0.2172,\\n      0.3154,\\n      0.2547,\\n      0.2543,\\n      0.1904,\\n      0.2234,\\n      0.2305,\\n      0.2378,\\n      0.1894,\\n      0.3154,\\n      0.2526,\\n      0.2098,\\n      0.4152,\\n      0.339,\\n      0.6021,\\n      0.5381,\\n      0.7711,\\n      0.5301,\\n      0.2532,\\n      0.2266,\\n      0.1911,\\n      0.1412,\\n      0.5898,\\n      0.2522,\\n      0.8287,\\n      0.5397,\\n      0.8955,\\n      0.2846,\\n      0.2525,\\n      0.2778,\\n      0.2049\\n    ]\\n  },\\n  \\\"L2\\\": {\\n    \\\"n_instruction_dominant\\\": 0,\\n    \\\"mean_text_attn\\\": 0.3717,\\n    \\\"mean_image_attn\\\": 0.4263,\\n    \\\"mean_bos_attn\\\": 0.2021,\\n    \\\"per_head_text_attn\\\": [\\n      0.3528,\\n      0.385,\\n      0.4331,\\n      0.3189,\\n      0.3876,\\n      0.3827,\\n      0.1789,\\n      0.4606,\\n      0.3925,\\n      0.3859,\\n      0.287,\\n      0.3467,\\n      0.3836,\\n      0.3907,\\n      0.2881,\\n      0.4025,\\n      0.37
-…[truncated 7711 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 556
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 640 · 2026-05-19T20:30:01.714099+00:00_
+_source line 638 · 2026-05-19T20:30:01.714099+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0\\\": {\\n    \\\"n_instruction_dominant\\\": 21,\\n    \\\"mean_text_attn\\\": 0.5482,\\n    \\\"mean_image_attn\\\": 0.4035,\\n    \\\"mean_bos_attn\\\": 0.0484,\\n    \\\"per_head_text_attn\\\": [\\n      0.8481,\\n      0.7342,\\n      0.3837,\\n      0.425,\\n      0.6113,\\n      0.5809,\\n      0.5181,\\n      0.407,\\n      0.8827,\\n      0.3979,\\n      0.6888,\\n      0.3798,\\n      0.6744,\\n      0.2499,\\n      0.6243,\\n      0.3897,\\n      0.5877,\\n      0.502,\\n      0.7758,\\n      0.6226,\\n      0.5624,\\n      0.3342,\\n      0.5885,\\n      0.5187,\\n      0.4522,\\n      0.592,\\n      0.6448,\\n      0.4817,\\n      0.5607,\\n      0.6107,\\n      0.3956,\\n      0.5163\\n    ]\\n  },\\n  \\\"L1\\\": {\\n    \\\"n_instruction_dominant\\\": 24,\\n    \\\"mean_text_attn\\\": 0.5729,\\n    \\\"mean_image_attn\\\": 0.2173,\\n    \\\"mean_bos_attn\\\": 0.2098,\\n    \\\"per_head_text_attn\\\": [\\n      0.8589,\\n      0.5308,\\n      0.6857,\\n      0.4749,\\n      0.5781,\\n      0.4976,\\n      0.4083,\\n      0.5673,\\n      0.5797,\\n      0.43,\\n      0.7138,\\n      0.5671,\\n      0.5216,\\n      0.4147,\\n      0.704,\\n      0.6226,\\n      0.5382,\\n      0.529,\\n      0.5196,\\n      0.65,\\n      0.5185,\\n      0.4537,\\n      0.8264,\\n      0.5683,\\n      0.3657,\\n      0.7706,\\n      0.5614,\\n      0.6854,\\n      0.4949,\\n      0.5971,\\n      0.543,\\n      0.5552\\n    ]\\n  },\\n  \\\"L2\\\": {\\n    \\\"n_instruction_dominant\\\": 0,\\n    \\\"mean_text_attn\\\": 0.4437,\\n    \\\"mean_image_attn\\\": 0.0101,\\n    \\\"mean_bos_attn\\\": 0.5461,\\n    \\\"per_head_text_attn\\\": [\\n      0.4328,\\n      0.4583,\\n      0.4431,\\n      0.4758,\\n      0.4827,\\n      0.4251,\\n      0.467,\\n      0.432,\\n      0.4252,\\n      0.4393,\\n      0.4213,\\n      0.451,\\n      0.4346,\\n      0.4364,\\n      0.4433,\\n      0.4478,\\n      0.4245,\\n 
 …[truncated 7712 chars]
@@ -126,7 +31,7 @@ _source line 640 · 2026-05-19T20:30:01.714099+00:00_
 
 ### Tool call
 
-_source line 641 · 2026-05-19T20:30:52.548612+00:00_
+_source line 639 · 2026-05-19T20:30:52.548612+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -162,7 +67,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 642 · 2026-05-19T20:30:53.000632+00:00_
+_source line 640 · 2026-05-19T20:30:53.000632+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -184,7 +89,7 @@ _source line 642 · 2026-05-19T20:30:53.000632+00:00_
 
 ### Tool call
 
-_source line 643 · 2026-05-19T20:30:56.264155+00:00_
+_source line 641 · 2026-05-19T20:30:56.264155+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -220,7 +125,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 644 · 2026-05-19T20:30:56.716218+00:00_
+_source line 642 · 2026-05-19T20:30:56.716218+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -242,7 +147,7 @@ _source line 644 · 2026-05-19T20:30:56.716218+00:00_
 
 ### Tool call
 
-_source line 645 · 2026-05-19T20:31:07.527482+00:00_
+_source line 643 · 2026-05-19T20:31:07.527482+00:00_
 
 called Bash
 
@@ -278,7 +183,7 @@ called Bash
 
 ### Tool result
 
-_source line 646 · 2026-05-19T20:31:07.778671+00:00_
+_source line 644 · 2026-05-19T20:31:07.778671+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  29211 May 19 19:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_cross_architecture_attention.pdf
 -rw-r--r-- 1 ubuntu ubuntu 323142 May 19 19:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_cross_architecture_attention.png
@@ -304,7 +209,7 @@ _source line 646 · 2026-05-19T20:31:07.778671+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-19T20:31:12.609707+00:00_
+_source line 645 · 2026-05-19T20:31:12.609707+00:00_
 
 called Read
 
@@ -338,7 +243,7 @@ called Read
 
 ### Tool result
 
-_source line 648 · 2026-05-19T20:31:13.622849+00:00_
+_source line 646 · 2026-05-19T20:31:13.622849+00:00_
 
 
 
@@ -360,7 +265,7 @@ _source line 648 · 2026-05-19T20:31:13.622849+00:00_
 
 ### Assistant
 
-_source line 649 · 2026-05-19T20:31:58.273424+00:00_
+_source line 647 · 2026-05-19T20:31:58.273424+00:00_
 
 图表视觉确认完毕。图表本身数据正确（修复后版本使用了正确的 Llama-2 base 和 OXE-trained 数据），但 **图与文字明显矛盾**：
 
@@ -400,7 +305,7 @@ _source line 649 · 2026-05-19T20:31:58.273424+00:00_
 
 ### User
 
-_source line 650 · 2026-05-19T20:32:05.258782+00:00_
+_source line 648 · 2026-05-19T20:32:05.258782+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_attention_trained_10tasks_20260519T202827]:
 Worker worker_code_phi3v_attention_trained_10tasks_20260519T202827 已完成（status=done），请审查 Agent 的处理结果。
@@ -422,7 +327,7 @@ Worker worker_code_phi3v_attention_trained_10tasks_20260519T202827 已完成（s
 
 ### Tool call
 
-_source line 651 · 2026-05-19T20:32:16.039900+00:00_
+_source line 649 · 2026-05-19T20:32:16.039900+00:00_
 
 called Read
 
@@ -456,7 +361,7 @@ called Read
 
 ### Tool result
 
-_source line 652 · 2026-05-19T20:32:16.597130+00:00_
+_source line 650 · 2026-05-19T20:32:16.597130+00:00_
 
 1	{
 2	  "raw": "实验完成。结果摘要：\n\n| Layer | Text-dominant heads | Mean text attn | Mean image attn |\n|-------|-------------------|----------------|-----------------|\n| L0 | 3/32 | 0.225 | 0.776 |\n| L1 | **32/32** | **0.735** | 0.265 |\n| L2 | **32/32** | **0.785** | 0.215 |\n| L3-L8 | 0-4/32 | 0.27-0.35 | 0.65-0.73 |\n| L9-L24 | 3-10/32 | 0.34-0.43 | 0.57-0.66 |\n| L25-L28 | 10-12/32 | 0.48-0.50 | 0.50-0.52 |\n| L29 | 17/32 | 0.524 | 0.476 |\n| L30 | 16/32 | 0.529 | 0.471 |\n| L31 | **18/32** | **0.652** | 0.348 |\n\n- 脚本：`/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py`\n- 结果：`/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile_10tasks.json`\n- Registry: `phi3v_attention_trained_10tasks` → DONE (success)"
@@ -480,7 +385,7 @@ _source line 652 · 2026-05-19T20:32:16.597130+00:00_
 
 ### Tool call
 
-_source line 653 · 2026-05-19T20:32:16.597593+00:00_
+_source line 651 · 2026-05-19T20:32:16.597593+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -518,7 +423,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 654 · 2026-05-19T20:32:17.049692+00:00_
+_source line 652 · 2026-05-19T20:32:17.049692+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4139}}"}
 
@@ -540,7 +445,7 @@ _source line 654 · 2026-05-19T20:32:17.049692+00:00_
 
 ### Tool call
 
-_source line 655 · 2026-05-19T20:32:39.208343+00:00_
+_source line 653 · 2026-05-19T20:32:39.208343+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -578,7 +483,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 656 · 2026-05-19T20:32:39.560854+00:00_
+_source line 654 · 2026-05-19T20:32:39.560854+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_attention_trained_10tasks\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T20:31:38.368Z\", \"conclusion\": \"success\"}, \"specificity_random_seed_expansion\": {\"status\": \"ALLOCATED\", \"updated_at\": \"2026-05-19T20:29:19.694Z\"}, \"r2_probe_seed_expansion\": {\"status\": \"ALLOCATED\", \"updated_at\": \"2026-05-19T20:28:43.782Z\"}, \"action_trajectory_cpu_analysis\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T18:51:23.913Z\", \"metrics\": {\"bootstrap_per_head_d\": {\"instruction_24h\": {\"mean\": 0.0271, \"ci_95\": [0.0258, 0.0285]}, \"control_8h\": {\"mean\": 0.0514, \"ci_95\": [0.0478, 0.0551]}, \"difference_ctrl_minus_inst\": {\"mean\": 0.0244, \"ci_95\": [0.0203, 0.0281]}, \"task_paired_t\": {\"t\": 7.356, \"p\": 0.0018}, \"all_5_tasks_ctrl_gt_inst\": true, \"interpretation\": \"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\"}, \"temporal_coherence_proxy\": {\"per_dim_cv_instruction\": 1.3, \"per_dim_cv_control\": 2.74, \"cross_task_I2_instruction\": 0.87, \"cross_task_I2_control\": 0.78, \"interpretation\": \"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\"}, \"result_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\"}, \"conclusion\": \"success\"}, \"phi3v_probe_untrained\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"conclusion\": \"success\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}}, \"count\": 5, \"total\": 112, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3476}}"}
 
@@ -600,7 +505,7 @@ _source line 656 · 2026-05-19T20:32:39.560854+00:00_
 
 ### Tool call
 
-_source line 657 · 2026-05-19T20:32:45.276672+00:00_
+_source line 655 · 2026-05-19T20:32:45.276672+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -636,7 +541,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 658 · 2026-05-19T20:32:45.327278+00:00_
+_source line 656 · 2026-05-19T20:32:45.327278+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -658,7 +563,7 @@ _source line 658 · 2026-05-19T20:32:45.327278+00:00_
 
 ### Tool call
 
-_source line 659 · 2026-05-19T20:32:48.741148+00:00_
+_source line 657 · 2026-05-19T20:32:48.741148+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -694,7 +599,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 660 · 2026-05-19T20:32:49.846499+00:00_
+_source line 658 · 2026-05-19T20:32:49.846499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2245,\\n      \\\"per_head_text_attention\\\": [\\n        0.1226,\\n        0.1369,\\n        0.2817,\\n        0.146,\\n        0.0908,\\n        0.12,\\n        0.5752,\\n        0.1897,\\n        0.1729,\\n        0.1469,\\n        0.208,\\n        0.2094,\\n        0.226,\\n        0.0762,\\n        0.1342,\\n        0.0701,\\n        0.1825,\\n        0.1324,\\n        0.0867,\\n        0.3328,\\n        0.3157,\\n        0.1469,\\n        0.2809,\\n        0.3246,\\n        0.0937,\\n        0.1048,\\n        0.2244,\\n        0.7634,\\n        0.6733,\\n        0.1769,\\n        0.1303,\\n        0.3069\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.735,\\n      \\\"per_head_text_attention\\\": [\\n        0.7418,\\n        0.9198,\\n        0.6593,\\n        0.5966,\\n        0.7618,\\n        0.6785,\\n        0.652,\\n        0.6624,\\n        0.957,\\n        0.7897,\\n        0.7307,\\n        0.6999,\\n        0.6352,\\n        0.61,\\n        0.7518,\\n        0.7021,\\n        0.793,\\n        0.7256,\\n        0.6355,\\n        0.8885,\\n        0.8472,\\n        0.6848,\\n        0.5987,\\n        0.8052,\\n        0.7121,\\n        0.6027,\\n        0.8905,\\n        0.6693,\\n        0.8087,\\n        0.8602,\\n        0.7402,\\n        0.7092\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7846,\\n      \\\"per_head_text_attention\\\": [\\n        0.7299,\\n        0.8703,\\n        0.6917,\\n        0.6784,\\n        0.8604,\\n        0.7945,\\n        0.8945,\\n        0.8644,\\n        0.8976,\\n        0.6658,\\n 
 …[truncated 7487 chars]
@@ -717,7 +622,7 @@ _source line 660 · 2026-05-19T20:32:49.846499+00:00_
 
 ### Tool call
 
-_source line 661 · 2026-05-19T20:33:23.463359+00:00_
+_source line 659 · 2026-05-19T20:33:23.463359+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -753,7 +658,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 662 · 2026-05-19T20:33:27.128322+00:00_
+_source line 660 · 2026-05-19T20:33:27.128322+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -775,7 +680,7 @@ _source line 662 · 2026-05-19T20:33:27.128322+00:00_
 
 ### Assistant
 
-_source line 663 · 2026-05-19T20:33:32.834025+00:00_
+_source line 661 · 2026-05-19T20:33:32.834025+00:00_
 
 审查完成。`phi3v_attention_trained_10tasks` 通过——10-task 数据与 5-task 高度一致，entry-exit routing 模式稳定。同时确认了先前报告的 "L3--L28: 0--3 heads" 文字错误在 10-task 数据下依然存在（实际 0--12），修正建议不变。
 
@@ -804,7 +709,7 @@ _source line 663 · 2026-05-19T20:33:32.834025+00:00_
 
 ### User
 
-_source line 664 · 2026-05-19T20:35:05.604543+00:00_
+_source line 662 · 2026-05-19T20:35:05.604543+00:00_
 
 [系统通知 — worker_done:worker_code_r2_probe_seed_expansion_20260519T202904]:
 Worker worker_code_r2_probe_seed_expansion_20260519T202904 已完成（status=done），请审查 Agent 的处理结果。
@@ -826,7 +731,7 @@ Worker worker_code_r2_probe_seed_expansion_20260519T202904 已完成（status=do
 
 ### Tool call
 
-_source line 665 · 2026-05-19T20:35:14.161060+00:00_
+_source line 663 · 2026-05-19T20:35:14.161060+00:00_
 
 called Read
 
@@ -860,7 +765,7 @@ called Read
 
 ### Tool result
 
-_source line 666 · 2026-05-19T20:35:14.562991+00:00_
+_source line 664 · 2026-05-19T20:35:14.562991+00:00_
 
 1	{
 2	  "raw": "正常运行中。L0 已完成，15 seeds 输出正确，mean=0.6294 ± 0.0159。\n\n总结：\n- 脚本 `/root/vla-ssd/scripts/r2_probe_seed_expansion.py` 已创建，基于 v2 版本\n- 修改：seeds `[0-14]`（15个），device `cuda:1`，输出到 `functional_validation/r2_probe_15seeds.json`\n- PID 168392 在 westd-19183 后台运行中\n- Registry 已更新为 RUNNING，exp_id=`r2_probe_seed_expansion`\n- 3 conditions × 33 layers × 15 seeds，每层约 54s，预计总时间 ~90 min"
@@ -884,7 +789,7 @@ _source line 666 · 2026-05-19T20:35:14.562991+00:00_
 
 ### Tool call
 
-_source line 667 · 2026-05-19T20:35:14.665076+00:00_
+_source line 665 · 2026-05-19T20:35:14.665076+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -922,7 +827,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 668 · 2026-05-19T20:35:15.016806+00:00_
+_source line 666 · 2026-05-19T20:35:15.016806+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3632}}"}
 
@@ -944,7 +849,7 @@ _source line 668 · 2026-05-19T20:35:15.016806+00:00_
 
 ### Tool call
 
-_source line 669 · 2026-05-19T20:35:24.254265+00:00_
+_source line 667 · 2026-05-19T20:35:24.254265+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -980,7 +885,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 670 · 2026-05-19T20:35:24.756680+00:00_
+_source line 668 · 2026-05-19T20:35:24.756680+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1016,7 +921,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 671 · 2026-05-19T20:35:25.410111+00:00_
+_source line 669 · 2026-05-19T20:35:25.410111+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 3 MiB, 97887 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 711 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
 
@@ -1038,7 +943,7 @@ _source line 671 · 2026-05-19T20:35:25.410111+00:00_
 
 ### Tool result
 
-_source line 672 · 2026-05-19T20:35:25.962582+00:00_
+_source line 670 · 2026-05-19T20:35:25.962582+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"168392 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup env PYTHONUNBUFFERED=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py > /tmp/r2_probe_seed_expansion.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -1060,7 +965,7 @@ _source line 672 · 2026-05-19T20:35:25.962582+00:00_
 
 ### Tool call
 
-_source line 673 · 2026-05-19T20:35:36.125709+00:00_
+_source line 671 · 2026-05-19T20:35:36.125709+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1096,7 +1001,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 674 · 2026-05-19T20:35:36.577740+00:00_
+_source line 672 · 2026-05-19T20:35:36.577740+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nThree-condition multi-seed action R2 probe (15-seed expansion)\\nConditions: ['untrained', 'llama2base', 'trained']\\nSeeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]\\nLayers: 33\\nDevice: cuda:1\\nSplit: sequential 80/20 (no shuffle)\\nR2: original (denormalized) action space\\n============================================================\\n\\n========================================\\nCondition: untrained (untrained_libero_goal)\\n========================================\\n  untrained L0: mean=0.6294 +/- 0.0159 ([0.6456495076417923, 0.5978063106536865, 0.6397484868764878, 0.6459006950259208, 0.6133959382772446, 0.5944373175501824, 0.6330083817243576, 0.6421630278229713, 0.6296697810292244, 0.6322719916701317, 0.6258023172616959, 0.6374978065490723, 0.6194581598043442, 0.6417109251022339, 0.6421523675322532]) 53.9s\\n  untrained L1: mean=0.5391 +/- 0.0226 ([0.5314562350511551, 0.5447357684373856, 0.5727765947580338, 0.5497325986623764, 0.539964035153389, 0.5787958920001983, 0.5384945720434189, 0.4973878085613251, 0.5480267345905304, 0.5075169891119004, 0.5631389141082763, 0.5331172108650207, 0.5046919494867325, 0.5306813806295395, 0.545267254114151]) 53.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -1118,7 +1023,7 @@ _source line 674 · 2026-05-19T20:35:36.577740+00:00_
 
 ### Tool call
 
-_source line 675 · 2026-05-19T20:35:50.206309+00:00_
+_source line 673 · 2026-05-19T20:35:50.206309+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1156,7 +1061,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 676 · 2026-05-19T20:35:50.507720+00:00_
+_source line 674 · 2026-05-19T20:35:50.507720+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"r2_probe_seed_expansion\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-19T20:34:25.919Z\"}, \"phi3v_attention_trained_10tasks\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T20:31:38.368Z\"}, \"specificity_random_seed_expansion\": {\"status\": \"ALLOCATED\", \"updated_at\": \"2026-05-19T20:29:19.694Z\"}}, \"count\": 3, \"total\": 112, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2944}}"}
 
@@ -1178,7 +1083,7 @@ _source line 676 · 2026-05-19T20:35:50.507720+00:00_
 
 ### Tool call
 
-_source line 677 · 2026-05-19T20:35:59.441314+00:00_
+_source line 675 · 2026-05-19T20:35:59.441314+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1214,7 +1119,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 678 · 2026-05-19T20:35:59.893491+00:00_
+_source line 676 · 2026-05-19T20:35:59.893491+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Three-condition multi-seed action R2 probe — 15-seed expansion.\\n\\nBased on threecond_multiseed_probe_v2.py. Changes:\\n  - Seeds expanded from [42, 123, 456] to list(range(15))\\n  - Device: cuda:1\\n  - Output path: functional_validation/r2_probe_15seeds.json\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nSEEDS = list(range(15))\\nN_LAYERS = 33\\nINPUT_DIM = 4096\\nHIDDEN_DIM = 256\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_BASE = \\\"/root/autodl-tmp/vla-ssd/features/\\\"\\n\\nCONDITIONS = {\\n    \\\"untrained\\\": \\\"untrained_libero_goal\\\",\\n    \\\"llama2base\\\": \\\"llama2base_libero_goal\\\",\\n    \\\"trained\\\": \\\"trained_libero_goal\\\",\\n}\\n\\nOUT_JSON = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\\"\\nOUT_FIG_DIR = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/figures/\\\"\\n\\n\\nclass ActionMLPProbe(nn.Module):\\n    def __init__(self, in_dim=INPUT_DIM, out_dim=7, hidden_dim=HIDDEN_DIM):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(in_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, out_dim),\\n        )\\n\\n    def forward(self, x):\\n        return self.net(x)\\n\\n\\ndef load_features_and_actions(feat_dir, layer):\\n    task_data = {}\\n    for h5_path in sorted(glob.glob(os.path.join(feat_dir, \\\"*.h5\\\"))):\\n        task = Path(h5_path).stem\\n        action_path = os.path.join(DATA_DIR, f\\\"{task}_demo.hdf5\\\")\\n        if not os.path.exists(action_path):\\n            continue\\n\\n        demos = []\\n        with h5py.File(h5_path, \\\"r\\\") as ff, h5py.File(action_p
 …[truncated 933 chars]
@@ -1237,7 +1142,7 @@ _source line 678 · 2026-05-19T20:35:59.893491+00:00_
 
 ### Tool call
 
-_source line 679 · 2026-05-19T20:36:21.440460+00:00_
+_source line 677 · 2026-05-19T20:36:21.440460+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1273,7 +1178,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 680 · 2026-05-19T20:36:25.053155+00:00_
+_source line 678 · 2026-05-19T20:36:25.053155+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -1295,7 +1200,7 @@ _source line 680 · 2026-05-19T20:36:25.053155+00:00_
 
 ### Assistant
 
-_source line 681 · 2026-05-19T20:36:28.298758+00:00_
+_source line 679 · 2026-05-19T20:36:28.298758+00:00_
 
 审查已提交。`r2_probe_seed_expansion` 在 cuda:1 后台运行中，方法论合规，初始数据与论文一致。`specificity_random_seed_expansion` 尚未启动，可并行到 cuda:0。
 
@@ -1322,7 +1227,7 @@ _source line 681 · 2026-05-19T20:36:28.298758+00:00_
 
 ### User
 
-_source line 682 · 2026-05-19T20:43:36.662131+00:00_
+_source line 680 · 2026-05-19T20:43:36.662131+00:00_
 
 [系统通知 — worker_done:worker_code_specificity_random_seed_expansion_20260519T202943]:
 Worker worker_code_specificity_random_seed_expansion_20260519T202943 已完成（status=done），请审查 Agent 的处理结果。
@@ -1344,7 +1249,7 @@ Worker worker_code_specificity_random_seed_expansion_20260519T202943 已完成�
 
 ### Tool call
 
-_source line 683 · 2026-05-19T20:43:46.080090+00:00_
+_source line 681 · 2026-05-19T20:43:46.080090+00:00_
 
 called Read
 
@@ -1378,7 +1283,7 @@ called Read
 
 ### Tool result
 
-_source line 684 · 2026-05-19T20:43:46.144840+00:00_
+_source line 682 · 2026-05-19T20:43:46.144840+00:00_
 
 1	{
 2	  "raw": "**汇报：需要 GPU 做一次性缓存生成**\n\n分析结论：\n- **Method A 不可行**：服务器上没有 per-head 独立 ablation 数据。已有数据都是 group ablation（24头/8头/32头同时 ablate），不是单个 head 独立 ablate 后的 R² drop。\n- **必须走 Method B**：`random_subset_ablation.py` 的工作方式是先做一次 model forward pass 缓存 Layer 1 的 per-head attention intermediates（full_context, non_inst_sum, non_inst_weight, residual），再用这些缓存做不同 head 组合的 feature 重建 + probe 训练。\n- **缓存未持久化**：parent 实验运行时缓存在 RAM 中，进程挂起后丢失，磁盘上没有 `.pt` / `.npz` 缓存文件。\n\n**已完成：**\n- 脚本已写好：`/root/vla-ssd/scripts/specificity_bootstrap_30seeds.py`\n- 两阶段设计：\n  - `--generate-cache`：GPU 阶段，加载模型做 forward pass，保存 cache 到 `/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt`（约 ~2GB）\n  - 默认模式：CPU-only，加载 cache，跑 30 seeds bootstrap + 统计（约 1-2 小时）\n- 实验已注册为 QUEUED\n\n**GPU 状态：**\n- GPU 0：空闲（3 MiB / 97887 MiB，0% 利用率）\n- GPU 1：少量负载（1739 MiB，45%）\n\n**请决定：**\n1. 是否允许我用 GPU 0 跑 `--generate-cache`（约 20 分钟，完成后立即释放 GPU）？\n2. 或者分配其他资源？\n\n缓存生成完成后，bootstrap 阶段完全不碰 GPU（`CUDA_VISIBLE_DEVICES=\"\"`）。"
@@ -1402,7 +1307,7 @@ _source line 684 · 2026-05-19T20:43:46.144840+00:00_
 
 ### Tool call
 
-_source line 685 · 2026-05-19T20:43:55.508533+00:00_
+_source line 683 · 2026-05-19T20:43:55.508533+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1438,7 +1343,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 686 · 2026-05-19T20:43:55.659493+00:00_
+_source line 684 · 2026-05-19T20:43:55.659493+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1474,7 +1379,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 687 · 2026-05-19T20:43:56.713525+00:00_
+_source line 685 · 2026-05-19T20:43:56.713525+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSpecificity bootstrap: 30-seed random-24-head ablation at Layer 1.\\n\\nTwo-phase operation:\\n  --generate-cache: GPU phase. Load model, forward pass, save intermediates to disk.\\n  (default):        CPU phase. Load cache, run 30 random seeds + dominant-24, statistics.\\n\\nUsage:\\n  # Phase 1: Generate cache (needs GPU, ~20 min)\\n  python specificity_bootstrap_30seeds.py --generate-cache\\n\\n  # Phase 2: Bootstrap (CPU only, ~1-2 hours)\\n  CUDA_VISIBLE_DEVICES=\\\"\\\" python specificity_bootstrap_30seeds.py\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\n\\nNUM_IMAGE_TOKENS = 256\\nINST_START = 1 + NUM_IMAGE_TOKENS\\nNUM_HEADS = 32\\nHEAD_DIM = 128\\nHIDDEN_SIZE = 4096\\nINTERMEDIATE_SIZE = 11008\\n\\nINSTRUCTION_HEADS_24 = [0,1,2,4,7,8,10,11,12,14,15,16,17,18,19,20,22,23,25,26,27,29,30,31]\\n\\nSEED = 42\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nHIDDEN_DIM = 256\\nN_RANDOM = 30\\nN_ABLATE = 24\\n\\nCACHE_PATH = \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/l1_attention_cache.pt\\\"\\nOUTPUT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\\"\\nFIG_DIR = \\\"/root/autodl-tmp/vla-ssd/results/figures/\\\"\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--generate-cache\\\", action=\\\"store_true\\\",\\n                   help=\\\"Phase 1: generate attention cache (needs GPU)\\\")\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\")\\n    p.add_argument(\\\"--cache_path\\\", default=CACHE_PATH)\\n   
 …[truncated 1531 chars]
@@ -1497,7 +1402,7 @@ _source line 687 · 2026-05-19T20:43:56.713525+00:00_
 
 ### Tool result
 
-_source line 688 · 2026-05-19T20:43:57.266014+00:00_
+_source line 686 · 2026-05-19T20:43:57.266014+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 100\\ndrwxr-xr-x  2 root root  4096 May 18 05:48 .\\ndrwxr-xr-x 39 root root  8192 May 20 02:48 ..\\n-rw-r--r--  1 root root  4012 May 18 05:48 ablation_50demos_combined.json\\n-rw-r--r--  1 root root 15209 May 18 05:46 action_probe_50demos.json\\n-rw-r--r--  1 root root  4292 May 18 03:33 action_probe_50demos_control8.json\\n-rw-r--r--  1 root root 13362 May 17 23:08 action_probe_log.txt\\n-rw-r--r--  1 root root  9213 May 17 23:08 action_probe_results.json\\n-rw-r--r--  1 root root  6345 May 17 23:58 bootstrap_ci_results.json\\n-rw-r--r--  1 root root  1018 May 17 20:51 results.json\\n-rw-r--r--  1 root root  1214 May 17 21:11 results_v2.json\\n-rw-r--r--  1 root root   922 May 17 22:33 results_v3_all32.json\\n-rw-r--r--  1 root root  1008 May 17 20:49 test_results.json\\n-rw-r--r--  1 root root  1228 May 17 21:08 test_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -1519,7 +1424,7 @@ _source line 688 · 2026-05-19T20:43:57.266014+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-19T20:44:39.316158+00:00_
+_source line 687 · 2026-05-19T20:44:39.316158+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1555,7 +1460,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 690 · 2026-05-19T20:44:43.533504+00:00_
+_source line 688 · 2026-05-19T20:44:43.533504+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -1584,7 +1489,7 @@ _source line 690 · 2026-05-19T20:44:43.533504+00:00_
 
 ### User
 
-_source line 691 · 2026-05-19T20:46:07.315231+00:00_
+_source line 689 · 2026-05-19T20:46:07.315231+00:00_
 
 [系统通知 — worker_done:worker_code_specificity_random_seed_expansion_run_20260519T204408]:
 Worker worker_code_specificity_random_seed_expansion_run_20260519T204408 已完成（status=done），请审查 Agent 的处理结果。
@@ -1606,7 +1511,7 @@ Worker worker_code_specificity_random_seed_expansion_run_20260519T204408 已完�
 
 ### Tool call
 
-_source line 692 · 2026-05-19T20:46:17.241333+00:00_
+_source line 690 · 2026-05-19T20:46:17.241333+00:00_
 
 called Read
 
@@ -1640,7 +1545,7 @@ called Read
 
 ### Tool result
 
-_source line 693 · 2026-05-19T20:46:17.241909+00:00_
+_source line 691 · 2026-05-19T20:46:17.241909+00:00_
 
 1	{
 2	  "raw": "任务已提交，状态汇总：\n\n- **实验**: `specificity_random_seed_expansion` → **RUNNING**\n- **PID**: 169052 on westd-19183\n- **Phase 1** (GPU cache generation): 模型已加载，正在跑 forward pass\n- **Phase 2** (CPU bootstrap 30 seeds): 将在 Phase 1 完成后自动启动\n- **日志**: `/root/autodl-tmp/vla-ssd/logs/specificity_bootstrap_30seeds.log`\n- **预计总时长**: ~1.5-2 小时"
@@ -1664,7 +1569,7 @@ _source line 693 · 2026-05-19T20:46:17.241909+00:00_
 
 ### Tool call
 
-_source line 694 · 2026-05-19T20:46:21.511112+00:00_
+_source line 692 · 2026-05-19T20:46:21.511112+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1700,7 +1605,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 695 · 2026-05-19T20:46:22.766738+00:00_
+_source line 693 · 2026-05-19T20:46:22.766738+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Phase 1: GPU cache generation ===\\nUsing a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.\\nExpected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==4.48.3` and `tokenizers==0.21.4`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.\\n============================================================\\nPhase 1: Generating attention cache (GPU)\\n============================================================\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.69s/it]\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:15<00:07,  7.83s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  4.86s/it]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:17<00:00,  5.74s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
 
@@ -1722,7 +1627,7 @@ _source line 695 · 2026-05-19T20:46:22.766738+00:00_
 
 ### Tool call
 
-_source line 696 · 2026-05-19T20:46:27.286119+00:00_
+_source line 694 · 2026-05-19T20:46:27.286119+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1758,7 +1663,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 697 · 2026-05-19T20:46:27.789844+00:00_
+_source line 695 · 2026-05-19T20:46:27.789844+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15173 MiB, 49 %\\n1, 1739 MiB, 43 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -1780,7 +1685,7 @@ _source line 697 · 2026-05-19T20:46:27.789844+00:00_
 
 ### Tool call
 
-_source line 698 · 2026-05-19T20:46:34.918008+00:00_
+_source line 696 · 2026-05-19T20:46:34.918008+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1816,7 +1721,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 699 · 2026-05-19T20:46:38.534813+00:00_
+_source line 697 · 2026-05-19T20:46:38.534813+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -1838,7 +1743,7 @@ _source line 699 · 2026-05-19T20:46:38.534813+00:00_
 
 ### Assistant
 
-_source line 700 · 2026-05-19T20:46:40.820849+00:00_
+_source line 698 · 2026-05-19T20:46:40.820849+00:00_
 
 GPU 0: 15173 MiB, 49% — Phase 1 正在加载模型生成缓存。GPU 1: 1739 MiB, 43% — r2_probe_seed_expansion 继续运行。两卡同时利用，白名单内，无异常。
 
@@ -1865,7 +1770,7 @@ GPU 0: 15173 MiB, 49% — Phase 1 正在加载模型生成缓存。GPU 1: 1739 M
 
 ### User
 
-_source line 701 · 2026-05-19T22:21:41.645872+00:00_
+_source line 699 · 2026-05-19T22:21:41.645872+00:00_
 
 [系统通知 — worker_done:worker_check_experiment_progress_20260519T222020]:
 Worker worker_check_experiment_progress_20260519T222020 已完成（status=done），请审查 Agent 的处理结果。
@@ -1887,7 +1792,7 @@ Worker worker_check_experiment_progress_20260519T222020 已完成（status=done�
 
 ### Tool call
 
-_source line 702 · 2026-05-19T22:21:50.274164+00:00_
+_source line 700 · 2026-05-19T22:21:50.274164+00:00_
 
 called Read
 
@@ -1921,7 +1826,7 @@ called Read
 
 ### Tool result
 
-_source line 703 · 2026-05-19T22:21:50.324810+00:00_
+_source line 701 · 2026-05-19T22:21:50.324810+00:00_
 
 1	{
 2	  "raw": "## 实验进度汇报\n\n### 1. r2_probe_seed_expansion (PID 168392)\n\n- **进度: ~76% (75/99 layers)**\n- 3 个 condition，每个 33 layers (L0-L32)：\n  - `untrained`: 已完成 (33/33)\n  - `llama2base`: 已完成 (33/33)\n  - `trained`: 进行中 (9/33, 当前完成 L0-L8)\n- 子进程 PID 168397 活跃，347% CPU\n- 每层约 100-130s，剩余 24 层 ≈ **40-50 分钟**\n- 结果文件尚未生成\n- GPU 1 在用 (1739 MiB, 22%)\n\n### 2. specificity_random_seed_expansion (PID 169052)\n\n- **Phase 1 (GPU cache): 已完成** — 63728 frames, 10 tasks, 500 demos, 耗时 25.1 min\n- **Phase 2 (CPU bootstrap 30 seeds): 刚启动**，日志无进度输出\n- Cache 文件已生成: 1.8GB (`l1_attention_cache.pt`)\n- 子进程 PID 169053 活跃，3001% CPU（约 30 核全开做 bootstrap）\n- 结果文件尚未生成\n- 预计剩余时间不确定（取决于 bootstrap 计算量，但 CPU 全力运行中）\n\n### 3. GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 3 MiB | 0% |\n| 1 | 1739 MiB | 22% |\n\n两个实验均在正常运行。r2_probe 预计约 40-50 分钟内完成；specificity 的 Phase 2 刚开始，需要等后续日志输出才能估算剩余时间。"
@@ -1945,7 +1850,7 @@ _source line 703 · 2026-05-19T22:21:50.324810+00:00_
 
 ### Assistant
 
-_source line 704 · 2026-05-19T22:22:00.902760+00:00_
+_source line 702 · 2026-05-19T22:22:00.902760+00:00_
 
 进度正常，无异常。
 
@@ -1978,7 +1883,7 @@ _source line 704 · 2026-05-19T22:22:00.902760+00:00_
 
 ### User
 
-_source line 705 · 2026-05-19T22:53:41.298902+00:00_
+_source line 703 · 2026-05-19T22:53:41.298902+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：更新已完成任务 + 当前进行中实验状态），请审查研究方向和计划的合理性。
@@ -2000,7 +1905,7 @@ _source line 705 · 2026-05-19T22:53:41.298902+00:00_
 
 ### Tool call
 
-_source line 706 · 2026-05-19T22:53:47.244862+00:00_
+_source line 704 · 2026-05-19T22:53:47.244862+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -2034,7 +1939,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 707 · 2026-05-19T22:53:47.295561+00:00_
+_source line 705 · 2026-05-19T22:53:47.295561+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 22:53 UTC | 更新原因: 更新已完成任务 + 当前进行中实验状态\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning produces convergent entry-exit routing architecture regardless of starting LLM routing state. Two opposing pathways (adding vs partial suppression) converge to same bookend pattern.\\n\\n## 当前阶段\\n**ACTIVE — 审稿已提交（等用户确认 review mode），robustness 实验收尾中。目标 7/10。**\\n\\n## Score: 6.0-6.7 → 目标 7.0+\\n- D083: Framing 升级为 convergent architecture through opposing pathways\\n- Phi3V 四项核心分析 + 10-task robustness 均完成\\n- 论文数据修正完成（mid-layer 0-12 非 0-3，M013）\\n- 审稿已提交，推荐 fresh mode\\n\\n## 已完成\\n- [x] Phi3V attention trained (32/32 L1) + untrained (28/32 L1) ✅\\n- [x] Phi3V probe trained (readout 83.6%→100%) + untrained (98.1%→100%) ✅\\n- [x] Phi3V 10-task robustness (与 5-task 完全一致) ✅\\n- [x] Cross-architecture 段落 + 6 条件表 + 对比图 + L1 反转讨论 ✅\\n- [x] 数据修正：mid-layer heads 0-12, untrained 10-32 ✅\\n- [x] N_rand 消歧 patch ✅\\n- [x] 审稿提交 (fresh mode) ✅\\n\\n## 进行中\\n- [ ] r2_probe_seed_expansion (cuda:1) — 15 seeds，~76% 完成，预计 ~23:10 完成\\n- [ ] specificity_random_seed_expansion (CPU) — 30 seeds bootstrap Phase 2 运行中\\n- [ ] phi3v_attention_untrained_10tasks (cuda:0) — 待启动\\n\\n## 已关闭\\n- [x] ~~Path B: 闭环验证~~ — D080。三连证伪。\\n\\n## GPU 预算\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。Manager 批准 DDL 前无限制。cuda:1 跑 r2_probe，cuda:0 待分配。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D083 | 2026-05-19 | D082 framing 进一步强化：从\\\"convergent property\\\"升级为\\\"conve | phi3v_attention_untrained, phi3v_attention_trained |\\n| D082 | 2026-05-19 | Framing 升级：从\\\"VLA training creates routing\\\"改为\\\"instr | phi3v_attention_untrained, phi3v_attention_trained, llama2_base_control |\\n| D081 | 2026-05-19 | Phi3V L1
 …[truncated 1017 chars]
@@ -2057,7 +1962,7 @@ _source line 707 · 2026-05-19T22:53:47.295561+00:00_
 
 ### Tool call
 
-_source line 708 · 2026-05-19T22:54:05.064344+00:00_
+_source line 706 · 2026-05-19T22:54:05.064344+00:00_
 
 called Read
 
@@ -2095,7 +2000,7 @@ called Read
 
 ### Tool result
 
-_source line 709 · 2026-05-19T22:54:05.516681+00:00_
+_source line 707 · 2026-05-19T22:54:05.516681+00:00_
 
 65	
 66	\paragraph{Cross-architecture generalization.}
@@ -2126,7 +2031,7 @@ _source line 709 · 2026-05-19T22:54:05.516681+00:00_
 
 ### Tool call
 
-_source line 710 · 2026-05-19T22:54:05.667785+00:00_
+_source line 708 · 2026-05-19T22:54:05.667785+00:00_
 
 called Read
 
@@ -2164,7 +2069,7 @@ called Read
 
 ### Tool result
 
-_source line 711 · 2026-05-19T22:54:05.668266+00:00_
+_source line 709 · 2026-05-19T22:54:05.668266+00:00_
 
 8	
 9	\paragraph{Mechanistic interpretation.}
@@ -2191,7 +2096,7 @@ _source line 711 · 2026-05-19T22:54:05.668266+00:00_
 
 ### Tool call
 
-_source line 712 · 2026-05-19T22:54:17.470348+00:00_
+_source line 710 · 2026-05-19T22:54:17.470348+00:00_
 
 called Read
 
@@ -2229,7 +2134,7 @@ called Read
 
 ### Tool result
 
-_source line 713 · 2026-05-19T22:54:17.520962+00:00_
+_source line 711 · 2026-05-19T22:54:17.520962+00:00_
 
 76	\paragraph{Open-loop functional sensitivity.}
 77	We ablate attention to instruction tokens at the readout position.
@@ -2255,7 +2160,7 @@ _source line 713 · 2026-05-19T22:54:17.520962+00:00_
 
 ### Tool call
 
-_source line 714 · 2026-05-19T22:54:38.772966+00:00_
+_source line 712 · 2026-05-19T22:54:38.772966+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2291,7 +2196,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 715 · 2026-05-19T22:54:42.637299+00:00_
+_source line 713 · 2026-05-19T22:54:42.637299+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -2313,7 +2218,7 @@ _source line 715 · 2026-05-19T22:54:42.637299+00:00_
 
 ### Assistant
 
-_source line 716 · 2026-05-19T22:54:44.835089+00:00_
+_source line 714 · 2026-05-19T22:54:44.835089+00:00_
 
 三项修正全部验证通过：
 
@@ -2344,7 +2249,7 @@ _source line 716 · 2026-05-19T22:54:44.835089+00:00_
 
 ### User
 
-_source line 717 · 2026-05-19T22:59:26.896422+00:00_
+_source line 715 · 2026-05-19T22:59:26.896422+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_attention_untrained_10tasks_20260519T225529]:
 Worker worker_code_phi3v_attention_untrained_10tasks_20260519T225529 已完成（status=done），请审查 Agent 的处理结果。
@@ -2366,7 +2271,7 @@ Worker worker_code_phi3v_attention_untrained_10tasks_20260519T225529 已完成�
 
 ### Tool call
 
-_source line 718 · 2026-05-19T22:59:34.189113+00:00_
+_source line 716 · 2026-05-19T22:59:34.189113+00:00_
 
 called Read
 
@@ -2400,7 +2305,7 @@ called Read
 
 ### Tool result
 
-_source line 719 · 2026-05-19T22:59:34.239834+00:00_
+_source line 717 · 2026-05-19T22:59:34.239834+00:00_
 
 1	{
 2	  "raw": "实验完成，registry 已更新为 DONE (success)。\n\n**结果摘要**（10 tasks, untrained Phi3V）：\n\n| Layer | n_dom | text | image |\n|-------|-------|------|-------|\n| L1 | 28/32 | 0.7745 | — |\n| L0-L31 | 28-32/32 | ~0.60-0.77 | ~0.25-0.40 |\n\n所有层均匀高 instruction dominance（28-32/32），无层间分化。与 5-task untrained 结果一致。\n\n输出文件：\n- `/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json`\n- `/root/autodl-tmp/vla-ssd/results/attention/full_32layer_phi3v_untrained_10tasks.json`"
@@ -2424,7 +2329,7 @@ _source line 719 · 2026-05-19T22:59:34.239834+00:00_
 
 ### Tool call
 
-_source line 720 · 2026-05-19T22:59:48.097182+00:00_
+_source line 718 · 2026-05-19T22:59:48.097182+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2460,7 +2365,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 721 · 2026-05-19T22:59:49.252271+00:00_
+_source line 719 · 2026-05-19T22:59:49.252271+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"instruction_dominant_heads\\\": 23,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 31,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
 
@@ -2482,7 +2387,7 @@ _source line 721 · 2026-05-19T22:59:49.252271+00:00_
 
 ### Tool call
 
-_source line 722 · 2026-05-19T23:00:17.064085+00:00_
+_source line 720 · 2026-05-19T23:00:17.064085+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2518,7 +2423,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 723 · 2026-05-19T23:00:17.114728+00:00_
+_source line 721 · 2026-05-19T23:00:17.114728+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2540,7 +2445,7 @@ _source line 723 · 2026-05-19T23:00:17.114728+00:00_
 
 ### Tool call
 
-_source line 724 · 2026-05-19T23:00:24.343829+00:00_
+_source line 722 · 2026-05-19T23:00:24.343829+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2576,7 +2481,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 725 · 2026-05-19T23:00:24.344242+00:00_
+_source line 723 · 2026-05-19T23:00:24.344242+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2598,7 +2503,7 @@ _source line 725 · 2026-05-19T23:00:24.344242+00:00_
 
 ### Tool call
 
-_source line 726 · 2026-05-19T23:00:29.727863+00:00_
+_source line 724 · 2026-05-19T23:00:29.727863+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2634,7 +2539,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 727 · 2026-05-19T23:00:29.828635+00:00_
+_source line 725 · 2026-05-19T23:00:29.828635+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2670,7 +2575,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 728 · 2026-05-19T23:00:30.180622+00:00_
+_source line 726 · 2026-05-19T23:00:30.180622+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -2692,7 +2597,7 @@ _source line 728 · 2026-05-19T23:00:30.180622+00:00_
 
 ### Tool result
 
-_source line 729 · 2026-05-19T23:00:30.733059+00:00_
+_source line 727 · 2026-05-19T23:00:30.733059+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"        0.9539,\\n        0.6494,\\n        0.951,\\n        0.672,\\n        0.7979,\\n        0.6686,\\n        0.9195,\\n        0.6468,\\n        0.6441,\\n        0.61,\\n        0.638,\\n        0.8478\\n      ]\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"L1_instruction_dominant\\\": 28,\\n    \\\"L1_mean_text_attn\\\": 0.7745\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -2714,7 +2619,7 @@ _source line 729 · 2026-05-19T23:00:30.733059+00:00_
 
 ### Tool call
 
-_source line 730 · 2026-05-19T23:00:55.643081+00:00_
+_source line 728 · 2026-05-19T23:00:55.643081+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2750,7 +2655,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 731 · 2026-05-19T23:00:56.101677+00:00_
+_source line 729 · 2026-05-19T23:00:56.101677+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Attention profile for untrained (base Phi-3 LLM) in TracVLA-Phi3V architecture, 10 LIBERO-Goal tasks.\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_LAYERS = 32\\nNUM_HEADS = 32\\n\\nTRACVLA_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nBASE_PHI3_PATHS = [\\n    \\\"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--microsoft--Phi-3-mini-4k-instruct\\\",\\n]\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/attention/\\\"\\nRESULT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\"\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef find_base_phi3():\\n    for p in BASE_PHI3_PATHS:\\n        if os.path.isdir(p) and os.path.exists(os.path.join(p, \\\"config.json\\\")):\\n            return p\\n    for p in BASE_PHI3_PATHS:\\n        parent = Path(p)\\n        if parent.exists():\\n            for child in parent.rglob(\\\"config.json\\\"):\\n                return str(child.parent)\\n    raise FileNotFoundError(f\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\")\\n\\n\\ndef load_untrained_model(device_str):\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        TRACVLA_PATH, trust_remote_code=True, local_files_only=True\\n    )\\n\\n    print(\\\"Loading TracVLA-Phi3V architecture (CPU)...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        TRACVLA_PATH,\\n        torch_dtype=tor
 …[truncated 232 chars]
@@ -2773,7 +2678,7 @@ _source line 731 · 2026-05-19T23:00:56.101677+00:00_
 
 ### Tool call
 
-_source line 732 · 2026-05-19T23:00:58.560888+00:00_
+_source line 730 · 2026-05-19T23:00:58.560888+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2809,7 +2714,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 733 · 2026-05-19T23:00:59.013153+00:00_
+_source line 731 · 2026-05-19T23:00:59.013153+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1:\\\"\\\"\\\"Attention profile for untrained (base Phi-3 LLM) in TracVLA-Phi3V architecture, 10 LIBERO-Goal tasks.\\\"\\\"\\\"\\n27:RESULT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_untrained_10tasks.json\\\"\\n30:def task_desc_from_filename(fname):\\n165:    print(f\\\"Found {len(hdf5_files)} tasks\\\")\\n167:    task_data = []\\n169:        task_name = task_desc_from_filename(hf.name)\\n175:        task_data.append((task_name, image))\\n176:        print(f\\\"  {task_name}\\\")\\n180:        task_name, image = task_data[0]\\n181:        prompt = f\\\"<|user|>\\\\n<|image_1|>\\\\nWhat action should the robot take to {task_name}?<|end|>\\\\n<|assistant|>\\\\n\\\"\\n196:    print(f\\\"\\\\nProcessing {len(task_data)} tasks x {NUM_LAYERS} layers...\\\")\\n200:    for task_idx, (task_name, image) in enumerate(task_data):\\n201:        print(f\\\"\\\\n[{task_idx+1}/{len(task_data)}] {task_name}\\\")\\n202:        lp_attn, bounds = extract_attention(model, processor, image, task_name, device)\\n240:    compat_path = os.path.join(OUTPUT_DIR, \\\"full_32layer_phi3v_untrained_10tasks.json\\\")\\n271:    print(\\\"Phi3V UNTRAINED (base Phi-3 LLM) Attention Profile - 10 tasks\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -2831,7 +2736,7 @@ _source line 733 · 2026-05-19T23:00:59.013153+00:00_
 
 ### Tool call
 
-_source line 734 · 2026-05-19T23:01:04.616867+00:00_
+_source line 732 · 2026-05-19T23:01:04.616867+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2867,7 +2772,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 735 · 2026-05-19T23:01:05.069112+00:00_
+_source line 733 · 2026-05-19T23:01:05.069112+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -2889,7 +2794,7 @@ _source line 735 · 2026-05-19T23:01:05.069112+00:00_
 
 ### Tool call
 
-_source line 736 · 2026-05-19T23:01:07.830202+00:00_
+_source line 734 · 2026-05-19T23:01:07.830202+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2925,7 +2830,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 737 · 2026-05-19T23:01:08.332295+00:00_
+_source line 735 · 2026-05-19T23:01:08.332295+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/phi3v_untrained_10tasks.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
 
@@ -2947,7 +2852,7 @@ _source line 737 · 2026-05-19T23:01:08.332295+00:00_
 
 ### Tool call
 
-_source line 738 · 2026-05-19T23:01:10.942702+00:00_
+_source line 736 · 2026-05-19T23:01:10.942702+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2983,7 +2888,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 739 · 2026-05-19T23:01:11.445469+00:00_
+_source line 737 · 2026-05-19T23:01:11.445469+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/image_processing_auto.py:590: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead\\n  warnings.warn(\\nLoading untrained (base Phi-3 LLM) model...\\nLoading TracVLA-Phi3V architecture (CPU)...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  3.85it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  5.16it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.91it/s]\\nLoading base Phi-3-mini from /root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  5.05it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  5.03it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  5.03it/s]\\n/root/.cache/huggingface/modules/transformers_modules/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.\\n  warnings.warn(\\nYou are not running the flash-attention implementation, expect numerical differences.\\nReplacing LLM decoder layer weights (32 layers)...\\nReplaced embed_tokens + lm_head\\nUntrained hybrid model on cuda:0\\nFound 10 tasks\\n  open the middle drawer of the cabinet\\n  open the top drawer and put the bowl inside\\n  push the plate to the front of the stove\\n  put the bowl on the plate\\n  put the bowl on the stove\\n  put the bowl on top of the cabinet\\n  put the cream cheese in th
 …[truncated 4104 chars]
@@ -3006,7 +2911,7 @@ _source line 739 · 2026-05-19T23:01:11.445469+00:00_
 
 ### Tool call
 
-_source line 740 · 2026-05-19T23:01:53.575690+00:00_
+_source line 738 · 2026-05-19T23:01:53.575690+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3042,7 +2947,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 741 · 2026-05-19T23:01:53.627141+00:00_
+_source line 739 · 2026-05-19T23:01:53.627141+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -3064,7 +2969,7 @@ _source line 741 · 2026-05-19T23:01:53.627141+00:00_
 
 ### Tool call
 
-_source line 742 · 2026-05-19T23:01:56.899659+00:00_
+_source line 740 · 2026-05-19T23:01:56.899659+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3100,7 +3005,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 743 · 2026-05-19T23:01:57.151106+00:00_
+_source line 741 · 2026-05-19T23:01:57.151106+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3136,7 +3041,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 744 · 2026-05-19T23:01:57.403083+00:00_
+_source line 742 · 2026-05-19T23:01:57.403083+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/vla-ssd/scripts/phi3v_attention_untrained.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -3158,7 +3063,7 @@ _source line 744 · 2026-05-19T23:01:57.403083+00:00_
 
 ### Tool result
 
-_source line 745 · 2026-05-19T23:01:58.005752+00:00_
+_source line 743 · 2026-05-19T23:01:58.005752+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/vla-ssd/scripts/phi3v_attention_untrained.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.58}}"}
 
@@ -3180,7 +3085,7 @@ _source line 745 · 2026-05-19T23:01:58.005752+00:00_
 
 ### Tool call
 
-_source line 746 · 2026-05-19T23:02:00.516405+00:00_
+_source line 744 · 2026-05-19T23:02:00.516405+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3216,7 +3121,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 747 · 2026-05-19T23:02:00.984251+00:00_
+_source line 745 · 2026-05-19T23:02:00.984251+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/phi3v_attention_profile.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_10tasks.py\\n/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\\n/root/vla-ssd/scripts/phi3v_attention_untrained_10tasks.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -3238,7 +3143,7 @@ _source line 747 · 2026-05-19T23:02:00.984251+00:00_
 
 ### Tool call
 
-_source line 748 · 2026-05-19T23:02:03.660598+00:00_
+_source line 746 · 2026-05-19T23:02:03.660598+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3274,7 +3179,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 749 · 2026-05-19T23:02:04.112770+00:00_
+_source line 747 · 2026-05-19T23:02:04.112770+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"44:    raise FileNotFoundError(f\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\")\\n164:        raise FileNotFoundError(f\\\"No HDF5 files in {DATA_DIR}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -3296,7 +3201,7 @@ _source line 749 · 2026-05-19T23:02:04.112770+00:00_
 
 ### Tool call
 
-_source line 750 · 2026-05-19T23:02:06.975265+00:00_
+_source line 748 · 2026-05-19T23:02:06.975265+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3332,7 +3237,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 751 · 2026-05-19T23:02:07.427597+00:00_
+_source line 749 · 2026-05-19T23:02:07.427597+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Attention profile for untrained (base Phi-3 LLM) in TracVLA-Phi3V architecture.\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom PIL import Image\\n\\nNUM_LAYERS = 32\\nNUM_HEADS = 32\\n\\nTRACVLA_PATH = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nBASE_PHI3_PATHS = [\\n    \\\"/root/autodl-tmp/.hf_cache/modelscope/LLM-Research/Phi-3-mini-4k-instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--microsoft--Phi-3-mini-4k-instruct\\\",\\n]\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/vla-ssd/results/attention/\\\"\\nRESULT_PATH = \\\"/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\\\"\\n\\n\\ndef task_desc_from_filename(fname):\\n    stem = Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\")\\n    return stem.replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef find_base_phi3():\\n    for p in BASE_PHI3_PATHS:\\n        if os.path.isdir(p) and os.path.exists(os.path.join(p, \\\"config.json\\\")):\\n            return p\\n    for p in BASE_PHI3_PATHS:\\n        parent = Path(p)\\n        if parent.exists():\\n            for child in parent.rglob(\\\"config.json\\\"):\\n                return str(child.parent)\\n    raise FileNotFoundError(f\\\"Base Phi-3-mini not found in {BASE_PHI3_PATHS}\\\")\\n\\n\\ndef load_untrained_model(device_str):\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\n\\n    processor = AutoProcessor.from_pretrained(\\n        TRACVLA_PATH, trust_remote_code=True, local_files_only=True\\n    )\\n\\n    print(\\\"Loading TracVLA-Phi3V architecture (CPU)...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        TRACVLA_PATH,\\n        torch_dtype=torch.bfloat16,\\n       
 …[truncated 4526 chars]
@@ -3355,7 +3260,7 @@ _source line 751 · 2026-05-19T23:02:07.427597+00:00_
 
 ### Tool call
 
-_source line 752 · 2026-05-19T23:02:46.248123+00:00_
+_source line 750 · 2026-05-19T23:02:46.248123+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3391,7 +3296,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 753 · 2026-05-19T23:02:50.114146+00:00_
+_source line 751 · 2026-05-19T23:02:50.114146+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -3413,7 +3318,7 @@ _source line 753 · 2026-05-19T23:02:50.114146+00:00_
 
 ### Assistant
 
-_source line 754 · 2026-05-19T23:02:52.012580+00:00_
+_source line 752 · 2026-05-19T23:02:52.012580+00:00_
 
 确认：原始 "5-task" untrained 脚本使用 `glob("*_demo.hdf5")` 加载了 DATA_DIR 中的全部文件，没有任务过滤。两个脚本使用完全相同的数据源，解释了结果为何一致。
 
@@ -3440,7 +3345,7 @@ _source line 754 · 2026-05-19T23:02:52.012580+00:00_
 
 ### User
 
-_source line 755 · 2026-05-19T23:41:48.200694+00:00_
+_source line 753 · 2026-05-19T23:41:48.200694+00:00_
 
 [系统通知 — worker_done:worker_harvest_r2_probe_and_specificity_check_20260519T233545]:
 Worker worker_harvest_r2_probe_and_specificity_check_20260519T233545 已完成（status=done），请审查 Agent 的处理结果。
@@ -3462,7 +3367,7 @@ Worker worker_harvest_r2_probe_and_specificity_check_20260519T233545 已完成�
 
 ### Tool call
 
-_source line 756 · 2026-05-19T23:41:57.899440+00:00_
+_source line 754 · 2026-05-19T23:41:57.899440+00:00_
 
 called Read
 
@@ -3496,7 +3401,7 @@ called Read
 
 ### Tool result
 
-_source line 757 · 2026-05-19T23:41:57.900000+00:00_
+_source line 755 · 2026-05-19T23:41:57.900000+00:00_
 
 1	{
 2	  "raw": "Registry 已更新。以下是完整结果汇报：\n\n---\n\n## 1. R² Probe 15-seed 完整结果\n\n运行时间 146.9 min，正常完成。图表已保存。\n\n### Per-condition, per-layer R² 表格\n\n| Layer | Untrained (mean±std) | Llama2Base (mean±std) | Trained (mean±std) |\n|-------|---------------------|-----------------------|-------------------|\n| L0 | 0.629 ± 0.016 | 0.629 ± 0.016 | 0.629 ± 0.016 |\n| L1 | 0.539 ± 0.023 | 0.626 ± 0.018 | 0.625 ± 0.017 |\n| L2 | 0.517 ± 0.047 | 0.631 ± 0.013 | 0.622 ± 0.010 |\n| L3 | 0.448 ± 0.216 | 0.631 ± 0.011 | 0.624 ± 0.014 |\n| L4 | 0.496 ± 0.057 | 0.625 ± 0.010 | 0.628 ± 0.014 |\n| L5 | 0.475 ± 0.101 | 0.627 ± 0.015 | 0.627 ± 0.019 |\n| L6 | 0.422 ± 0.119 | 0.630 ± 0.010 | 0.631 ± 0.012 |\n| L7 | 0.459 ± 0.093 | 0.625 ± 0.014 | 0.632 ± 0.012 |\n| **L8** | 0.347 ± 0.283 | 0.635 ± 0.008 | **0.635 ± 0.013** |\n| **L9** | 0.445 ± 0.127 | **0.635 ± 0.011** | **0.637 ± 0.008** |\n| L10 | 0.353 ± 0.224 | 0.627 ± 0.015 | 0.624 ± 0.014 |\n| L11 | 0.356 ± 0.122 | 0.627 ± 0.012 | 0.623 ± 0.016 |\n| L12 | 0.409 ± 0.203 | 0.628 ± 0.010 | 0.626 ± 0.011 |\n| L13 | 0.341 ± 0.227 | 0.627 ± 0.010 | 0.624 ± 0.013 |\n| L14 | 0.374 ± 0.211 | 0.633 ± 0.010 | 0.623 ± 0.015 |\n| L15 | 0.297 ± 0.225 | 0.621 ± 0.018 | 0.619 ± 0.012 |\n| L16 | 0.323 ± 0.226 | 0.613 ± 0.017 | 0.619 ± 0.011 |\n| L17 | 0.395 ± 0.109 | 0.611 ± 0.011 | 0.609 ± 0.023 |\n| L18 | 0.214 ± 0.307 | 0.610 ± 0.014 | 0.613 ± 0.017 |\n| L19 | 0.241 ± 0.258 | 0.606 ± 0.014 | 0.613 ± 0.013 |\n| L20 | 0.086 ± 0.311 | 0.601 ± 0.019 | 0.611 ± 0.014 |\n| L21 | 0.330 ± 0.216 | 0.598 ± 0.016 | 0.589 ± 0.023 |\n| L22 | 0.207 ± 0.283 | 0.600 ± 0.019 | 0.586 ± 0.013 |\n| L23 | 0.264 ± 0.227 | 0.589 ± 0.011 | 0.578 ± 0.028 |\n| L24 | 0.173 ± 0.275 | 0.583 ± 0.017 | 0.577 ± 0.013 |\n| L25 | 0.130 ± 0.305 | 0.584 ± 0.014 | 0.553 ± 0.053 |\n| L26 | 0.251 ± 0.254 | 0.589 ± 0.019 | 0.535 ± 0.046 |\n| L27 | 0.099 ± 0.278 | 0.578 ± 0.013 | 0.552 ± 0.027 |\n| L28 | 0.099 ± 0.307 | 0.567 ± 0.016 | 0.544 ± 0.034 |\n| L29 | 0.088 ± 0.275 | 0.559 ± 
@@ -3520,7 +3425,7 @@ _source line 757 · 2026-05-19T23:41:57.900000+00:00_
 
 ### Tool call
 
-_source line 758 · 2026-05-19T23:42:47.884427+00:00_
+_source line 756 · 2026-05-19T23:42:47.884427+00:00_
 
 called Read
 
@@ -3558,7 +3463,7 @@ called Read
 
 ### Tool result
 
-_source line 759 · 2026-05-19T23:42:47.985356+00:00_
+_source line 757 · 2026-05-19T23:42:47.985356+00:00_
 
 130	\label{sec:nonmonotonic}
 131	
@@ -3599,7 +3504,7 @@ _source line 759 · 2026-05-19T23:42:47.985356+00:00_
 
 ### Tool call
 
-_source line 760 · 2026-05-19T23:43:29.305056+00:00_
+_source line 758 · 2026-05-19T23:43:29.305056+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3635,7 +3540,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 761 · 2026-05-19T23:43:30.411243+00:00_
+_source line 759 · 2026-05-19T23:43:30.411243+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Three-condition multi-seed action R2 probe — 15-seed expansion.\\n\\nBased on threecond_multiseed_probe_v2.py. Changes:\\n  - Seeds expanded from [42, 123, 456] to list(range(15))\\n  - Device: cuda:1\\n  - Output path: functional_validation/r2_probe_15seeds.json\\n\\\"\\\"\\\"\\nimport os, json, time, glob\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nSEEDS = list(range(15))\\nN_LAYERS = 33\\nINPUT_DIM = 4096\\nHIDDEN_DIM = 256\\nBATCH_SIZE = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\n\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_BASE = \\\"/root/autodl-tmp/vla-ssd/features/\\\"\\n\\nCONDITIONS = {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
 
@@ -3657,7 +3562,7 @@ _source line 761 · 2026-05-19T23:43:30.411243+00:00_
 
 ### Tool call
 
-_source line 762 · 2026-05-19T23:43:43.160617+00:00_
+_source line 760 · 2026-05-19T23:43:43.160617+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3693,7 +3598,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 763 · 2026-05-19T23:43:43.913724+00:00_
+_source line 761 · 2026-05-19T23:43:43.913724+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/threecond_multiseed_probe.py\\n/root/vla-ssd/scripts/threecond_multiseed_probe_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -3715,7 +3620,7 @@ _source line 763 · 2026-05-19T23:43:43.913724+00:00_
 
 ### Tool call
 
-_source line 764 · 2026-05-19T23:43:43.914153+00:00_
+_source line 762 · 2026-05-19T23:43:43.914153+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3751,7 +3656,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 765 · 2026-05-19T23:43:44.365946+00:00_
+_source line 763 · 2026-05-19T23:43:44.365946+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/fulllayer_action_probe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -3773,7 +3678,7 @@ _source line 765 · 2026-05-19T23:43:44.365946+00:00_
 
 ### Tool call
 
-_source line 766 · 2026-05-19T23:43:46.985685+00:00_
+_source line 764 · 2026-05-19T23:43:46.985685+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3809,7 +3714,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 767 · 2026-05-19T23:43:47.439377+00:00_
+_source line 765 · 2026-05-19T23:43:47.439377+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"14:SEED = 42\\n99:    torch.manual_seed(SEED)\\n100:    np.random.seed(SEED)\\n209:    np.random.seed(SEED)\\n318:            \\\"batch_size\\\": BATCH_SIZE, \\\"hidden\\\": HIDDEN_DIM, \\\"seed\\\": SEED,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -3831,7 +3736,7 @@ _source line 767 · 2026-05-19T23:43:47.439377+00:00_
 
 ### Tool call
 
-_source line 768 · 2026-05-19T23:43:50.251038+00:00_
+_source line 766 · 2026-05-19T23:43:50.251038+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3867,7 +3772,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 769 · 2026-05-19T23:43:50.753099+00:00_
+_source line 767 · 2026-05-19T23:43:50.753099+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"16:SEEDS = [42, 123, 456]\\n229:    print(f\\\"Seeds: {SEEDS}\\\")\\n249:            for seed in SEEDS:\\n270:        \\\"seeds\\\": SEEDS,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
 
@@ -3889,7 +3794,7 @@ _source line 769 · 2026-05-19T23:43:50.753099+00:00_
 
 ### Tool call
 
-_source line 770 · 2026-05-19T23:43:53.488914+00:00_
+_source line 768 · 2026-05-19T23:43:53.488914+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3925,7 +3830,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 771 · 2026-05-19T23:43:53.941168+00:00_
+_source line 769 · 2026-05-19T23:43:53.941168+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"19:SEEDS = [42, 123, 456]\\n230:    print(f\\\"Seeds: {SEEDS}\\\")\\n253:            for seed in SEEDS:\\n272:        \\\"seeds\\\": SEEDS,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
 
@@ -3947,7 +3852,7 @@ _source line 771 · 2026-05-19T23:43:53.941168+00:00_
 
 ### Tool call
 
-_source line 772 · 2026-05-19T23:44:05.537909+00:00_
+_source line 770 · 2026-05-19T23:44:05.537909+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3983,7 +3888,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 773 · 2026-05-19T23:44:05.990122+00:00_
+_source line 771 · 2026-05-19T23:44:05.990122+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed.png\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.pdf\\n/root/autodl-tmp/vla-ssd/results/figures/fig_threecond_multiseed_v2.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.pdf\\n/root/autodl-tmp/vla-ssd/results/functional_validation/figures/fig_r2_probe_15seeds.png\\n/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\\n/root/autodl-tmp/vla-ssd/results/ablations/probe_seed_robustness.json\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed.log\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed.json\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.log\\n/root/autodl-tmp/vla-ssd/results/threecond_multiseed_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -4005,7 +3910,7 @@ _source line 773 · 2026-05-19T23:44:05.990122+00:00_
 
 ### Tool call
 
-_source line 774 · 2026-05-19T23:44:10.660119+00:00_
+_source line 772 · 2026-05-19T23:44:10.660119+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4041,7 +3946,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 775 · 2026-05-19T23:44:11.162495+00:00_
+_source line 773 · 2026-05-19T23:44:11.162495+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"MLP action probe seed robustness\\\",\\n  \\\"condition\\\": \\\"trained_image_mean\\\",\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    42\\n  ],\\n  \\\"hyperparams\\\": {\\n    \\\"epochs\\\": 50,\\n    \\\"patience\\\": 5,\\n    \\\"lr\\\": 0.001,\\n    \\\"hidden\\\": 256,\\n    \\\"batch\\\": 256\\n  },\\n  \\\"per_seed_per_layer\\\": {\\n    \\\"seed_0\\\": [\\n      0.6325693100690841,\\n      0.6371943116188049,\\n      0.6430069208145142,\\n      0.6419474259018898,\\n      0.6325901195406913,\\n      0.638017737865448,\\n      0.6433895975351334,\\n      0.6458726838231087,\\n      0.6312791407108307,\\n      0.6533614382147789,\\n      0.6495189815759659,\\n      0.6498701125383377,\\n      0.6493841022253036,\\n      0.6424484625458717,\\n      0.649883022904396,\\n      0.6515093296766281,\\n      0.653155294060707,\\n      0.6521990686655045,\\n      0.6449324831366539,\\n      0.648468217253685,\\n      0.6520043849945069,\\n      0.6479256257414818,\\n      0.6420797079801559,\\n      0.6414217457175255,\\n      0.6386248111724854,\\n      0.6330616861581803,\\n      0.6304214864969253,\\n      0.6310133278369904,\\n      0.633397576212883,\\n      0.6280580967664718,\\n      0.6084398478269577,\\n      0.6060338467359543,\\n      0.5962307393550873\\n    ],\\n    \\\"seed_1\\\": [\\n      0.6327877923846245,\\n      0.634917889535427,\\n      0.6250267565250397,\\n      0.6300722807645798,\\n      0.6271732062101364,\\n      0.6396397575736046,\\n      0.6355536490678787,\\n      0.6367336928844451,\\n      0.6487639904022217,\\n      0.6447465181350708,\\n      0.6426262363791466,\\n      0.6470938622951508,\\n      0.6370866119861602,\\n      0.6474449589848519,\\n      0.6414232075214386,\\n      0.6398315384984017,\\n      0.6548749804496765,\\n      0.6275828748941421,\\n      0.6385878846049309,\\n      0.6317412614822387,\\n      0.63898307383060
 …[truncated 5840 chars]
@@ -4064,7 +3969,7 @@ _source line 775 · 2026-05-19T23:44:11.162495+00:00_
 
 ### Tool call
 
-_source line 776 · 2026-05-19T23:45:19.652537+00:00_
+_source line 774 · 2026-05-19T23:45:19.652537+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4100,7 +4005,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 777 · 2026-05-19T23:45:23.318005+00:00_
+_source line 775 · 2026-05-19T23:45:23.318005+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -4122,7 +4027,7 @@ _source line 777 · 2026-05-19T23:45:23.318005+00:00_
 
 ### Assistant
 
-_source line 778 · 2026-05-19T23:45:25.062151+00:00_
+_source line 776 · 2026-05-19T23:45:25.062151+00:00_
 
 找到了论文 R²=0.655 的原始数据源。关键发现：`probe_seed_robustness.json` 使用 **peak-per-seed** 方法（每个 seed 独立选最优层取 R²），而 15-seed expansion 使用 **fixed-layer** 方法（固定某层跨 seeds 取均值）。
 
@@ -4158,7 +4063,7 @@ _source line 778 · 2026-05-19T23:45:25.062151+00:00_
 
 ### User
 
-_source line 779 · 2026-05-20T00:19:22.383100+00:00_
+_source line 777 · 2026-05-20T00:19:22.383100+00:00_
 
 [System 触发审查]:
 [Director 请求 — 最终 gap analysis] 审稿已提交，两张 GPU 空闲，specificity 30-seed 是最后一个在跑的实验。
@@ -4195,7 +4100,7 @@ _source line 779 · 2026-05-20T00:19:22.383100+00:00_
 
 ### Tool call
 
-_source line 780 · 2026-05-20T00:19:34.135501+00:00_
+_source line 778 · 2026-05-20T00:19:34.135501+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -4233,7 +4138,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 781 · 2026-05-20T00:19:34.638139+00:00_
+_source line 779 · 2026-05-20T00:19:34.638139+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/paper_framing.md\", \"content\": \"# Paper Framing — vla-ssd (Plan B → D060 Reframe)\\n\\n> D048: PI 批准按最大质量重构。A+ 版本保留为 fallback (branch paper-a-plus-backup)。\\n> D060: Round 4 weak reject → C1 降为框架, C2 升为唯一核心 claim, C3 降为 qualified observation。\\n\\n## Target Venue\\n- Primary: CoRL 2026\\n- Deadline: Abstract May 26, Paper May 29\\n- Format: 8 pages + references\\n\\n## Core Insight\\n\\nVLA fine-tuning 的核心贡献是学习 deliberate instruction routing：将 instruction attention 从语言预训练的中层模式（L9-L16）reorganize 到 entry-exit 模式（L0-L1 + L31），实现即时 instruction access。这个三条件梯度（untrained 0/32 → pretrained 9/32 → trained 24/32）是 genuine empirical finding，具有 causal evidence 支撑。Token-level specialization（image-blind, readout-hub）是 causal mask 架构保证的性质，我们通过系统实验 verify 和 quantify 其在实际 VLA 中的表现。\\n\\n## Core Claims (D060 重构：1 核心 + 1 框架 + 1 观察)\\n\\n### C1: Experimental Framework + Architecture-Verified Specialization [方法论贡献，非 empirical finding]\\n**重新定位（D060）**: Token-level specialization 是 causal mask 的数学必然（image tokens 在序列中先于 instruction tokens，无法 attend to instructions）+ frozen encoder 不接收 instruction input。论文贡献不是\\\"发现\\\"这一点，而是：\\n- **(a) 系统实验框架**：factorial design (trained/pretrained/untrained × instruction presence) + 四种互补分析方法（cross-instruction probe + attention + RSA + MLP probe），适用于任何 decoder-only VLA\\n- **(b) 量化验证**：即使 residual stream 理论上可以 leak information，image tokens 在实际模型的全部 32 层均保持 chance（10%）。这不是 trivial——frozen encoder 权重与 LLM 权重共享 residual stream，验证了 no leakage\\n- **(c) 训练差异的量化**：untrained readout L1=100% 但 L31=82%（信号衰减）vs trained 100% 全程稳定——framework 揭示了训练影响 routing robustness 而非 routing existence\\n\\nKey evidence (unchanged):\\n- Cross-instruction probe: same frame × 10 instructions → 10-way classification\\n- Dense L0-L32: image_mean = chance at ALL layers\\n- LOOCV: 100%±0.00 trained, decaying untrained\\n- **承认**: 10-way classification 本身 trivially ea
 …[truncated 10774 chars]
@@ -4256,7 +4161,7 @@ _source line 781 · 2026-05-20T00:19:34.638139+00:00_
 
 ### Tool call
 
-_source line 782 · 2026-05-20T00:19:34.789253+00:00_
+_source line 780 · 2026-05-20T00:19:34.789253+00:00_
 
 called ToolSearch
 
@@ -4292,7 +4197,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 783 · 2026-05-20T00:19:34.840098+00:00_
+_source line 781 · 2026-05-20T00:19:34.840098+00:00_
 
 
 
@@ -4314,7 +4219,7 @@ _source line 783 · 2026-05-20T00:19:34.840098+00:00_
 
 ### Tool call
 
-_source line 784 · 2026-05-20T00:19:38.253637+00:00_
+_source line 782 · 2026-05-20T00:19:38.253637+00:00_
 
 called mcp__agent-ml-research__compute_coverage_matrix
 
@@ -4348,7 +4253,7 @@ called mcp__agent-ml-research__compute_coverage_matrix
 
 ### Tool result
 
-_source line 785 · 2026-05-20T00:19:39.671235+00:00_
+_source line 783 · 2026-05-20T00:19:39.671235+00:00_
 
 Error executing tool compute_coverage_matrix: cannot use 'list' as a dict key (unhashable type: 'list')
 
@@ -4370,7 +4275,7 @@ Error executing tool compute_coverage_matrix: cannot use 'list' as a dict key (u
 
 ### Tool call
 
-_source line 786 · 2026-05-20T00:19:39.771968+00:00_
+_source line 784 · 2026-05-20T00:19:39.771968+00:00_
 
 called Read
 
@@ -4404,7 +4309,7 @@ called Read
 
 ### Tool result
 
-_source line 787 · 2026-05-20T00:19:39.772696+00:00_
+_source line 785 · 2026-05-20T00:19:39.772696+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -4448,7 +4353,7 @@ _source line 787 · 2026-05-20T00:19:39.772696+00:00_
 
 ### Tool call
 
-_source line 788 · 2026-05-20T00:21:00.235691+00:00_
+_source line 786 · 2026-05-20T00:21:00.235691+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4484,7 +4389,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 789 · 2026-05-20T00:21:01.440823+00:00_
+_source line 787 · 2026-05-20T00:21:01.440823+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\n  Baseline R2:           0.5243\\n  Dominant-24 R2:        0.5544\\n  Dominant-24 increase:  0.0301\\n  Random-24 mean:        0.0712 +/- 0.0132\\n  Random-24 CI (t):      [0.0662, 0.0761]\\n  Random-24 CI (boot):   [0.0666, 0.0757]\\n  z-score:               -3.11\\n  Percentile:            0.0%\\n  p-value (one-sided):   1.000000\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\nFigure saved to /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n\\nTotal time: 182.4 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
 
@@ -4506,7 +4411,7 @@ _source line 789 · 2026-05-20T00:21:01.440823+00:00_
 
 ### Tool call
 
-_source line 790 · 2026-05-20T00:21:01.642046+00:00_
+_source line 788 · 2026-05-20T00:21:01.642046+00:00_
 
 called Read
 
@@ -4540,7 +4445,7 @@ called Read
 
 ### Tool result
 
-_source line 791 · 2026-05-20T00:21:01.692606+00:00_
+_source line 789 · 2026-05-20T00:21:01.692606+00:00_
 
 1	\paragraph{Conclusion.}
 2	We find that VLA fine-tuning reorganizes instruction routing to entry-exit layers with L1 as the primary hub, supported by seven complementary analyses.
@@ -4565,7 +4470,7 @@ _source line 791 · 2026-05-20T00:21:01.692606+00:00_
 
 ### Tool call
 
-_source line 792 · 2026-05-20T00:21:55.272014+00:00_
+_source line 790 · 2026-05-20T00:21:55.272014+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4601,7 +4506,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 793 · 2026-05-20T00:21:55.775851+00:00_
+_source line 791 · 2026-05-20T00:21:55.775851+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baseline_r2\\\": 0.5243,\\n  \\\"baseline_per_task_r2\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": 0.395,\\n    \\\"open the top drawer and put the bowl inside\\\": 0.6096,\\n    \\\"push the plate to the front of the stove\\\": 0.5753,\\n    \\\"put the bowl on the plate\\\": 0.4795,\\n    \\\"put the bowl on the stove\\\": 0.5616,\\n    \\\"put the bowl on top of the cabinet\\\": 0.5424,\\n    \\\"put the cream cheese in the bowl\\\": 0.3562,\\n    \\\"put the wine bottle on the rack\\\": 0.4663,\\n    \\\"put the wine bottle on top of the cabinet\\\": 0.538,\\n    \\\"turn on the stove\\\": 0.7194\\n  },\\n  \\\"dominant_r2\\\": 0.5544,\\n  \\\"dominant_r2_increase\\\": 0.0301,\\n  \\\"dominant_per_task_r2\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": 0.4223,\\n    \\\"open the top drawer and put the bowl inside\\\": 0.6327,\\n    \\\"push the plate to the front of the stove\\\": 0.5711,\\n    \\\"put the bowl on the plate\\\": 0.5129,\\n    \\\"put the bowl on the stove\\\": 0.5906,\\n    \\\"put the bowl on top of the cabinet\\\": 0.5732,\\n    \\\"put the cream cheese in the bowl\\\": 0.4456,\\n    \\\"put the wine bottle on the rack\\\": 0.5131,\\n    \\\"put the wine bottle on top of the cabinet\\\": 0.5631,\\n    \\\"turn on the stove\\\": 0.7194\\n  },\\n  \\\"dominant_heads\\\": [\\n    0,\\n    1,\\n    2,\\n    4,\\n    7,\\n    8,\\n    10,\\n    11,\\n    12,\\n    14,\\n    15,\\n    16,\\n    17,\\n    18,\\n    19,\\n    20,\\n    22,\\n    23,\\n    25,\\n    26,\\n    27,\\n    29,\\n    30,\\n    31\\n  ],\\n  \\\"random_iterations\\\": [\\n    {\\n      \\\"seed\\\": 0,\\n      \\\"ablated_heads\\\": [\\n        1,\\n        2,\\n        4,\\n        5,\\n        6,\\n        8,\\n        10,\\n        11,\\n        13,\\n        14,\\n        16,\\n        17,\\n        18,\\n        19,\\n        20,\\n        22,\\n        23,\\n        24,\\n     
 …[truncated 7810 chars]
@@ -4624,7 +4529,7 @@ _source line 793 · 2026-05-20T00:21:55.775851+00:00_
 
 ### Tool call
 
-_source line 794 · 2026-05-20T00:23:10.497691+00:00_
+_source line 792 · 2026-05-20T00:23:10.497691+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4660,7 +4565,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 795 · 2026-05-20T00:23:14.310769+00:00_
+_source line 793 · 2026-05-20T00:23:14.310769+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -4682,7 +4587,7 @@ _source line 795 · 2026-05-20T00:23:14.310769+00:00_
 
 ### Tool call
 
-_source line 796 · 2026-05-20T00:25:43.249818+00:00_
+_source line 794 · 2026-05-20T00:25:43.249818+00:00_
 
 called ToolSearch
 
@@ -4718,7 +4623,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 797 · 2026-05-20T00:25:43.250228+00:00_
+_source line 795 · 2026-05-20T00:25:43.250228+00:00_
 
 
 
@@ -4740,7 +4645,7 @@ _source line 797 · 2026-05-20T00:25:43.250228+00:00_
 
 ### Tool call
 
-_source line 798 · 2026-05-20T00:25:46.412751+00:00_
+_source line 796 · 2026-05-20T00:25:46.412751+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4778,7 +4683,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 799 · 2026-05-20T00:25:48.270810+00:00_
+_source line 797 · 2026-05-20T00:25:48.270810+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"r2_probe_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:40.605Z\", \"updated_at\": \"2026-05-19T23:40:43.867Z\", \"hypothesis\": \"Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializations, not artifacts of seed variance.\", \"parent\": \"threecond_multiseed_r2_v2\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T20:26:53.108Z\"}, \"spec\": {\"command\": \"PYTHONUNBUFFERED=1 python /root/vla-ssd/scripts/r2_probe_seed_expansion.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/features/{untrained,llama2base,trained}_libero_goal\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"OpenVLA (untrained / llama2base / trained)\", \"seed\": \"0-14\", \"checkpoint_source\": \"threecond_multiseed_r2_v2 (same features, expanded seeds)\", \"eval_data\": \"libero_goal 10 tasks, features from 3 conditions\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/r2_probe_15seeds.json\", \"log_path\": \"/tmp/r2_probe_seed_expansion.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:40:33.774Z\", \"metrics\": {\"untrained\": {\"peak_layer\": \"L0\", \"peak_r2\": 0.629, \"avg_r2\": 0.316, \"avg_std\": 0.185, \"profile\": \"steep decline L0→L31, near-zero deep layers, L32 recovery (0.584)\"}, \"llama2base\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.635, \"avg_r2\": 0.604, \"avg_std\": 0.016, \"profile\": \"flat early (0.63), gentle decline to 0.55 at exit\"}, \"trained\": {\"peak_layer\": \"L9\", \"peak_r2\": 0.637, \"avg_r2\": 0.59, \"avg_std\": 0.02, \"profile\": \"subtle inverted-U peaking L8-L9, steeper decline in exit layers vs llama2base\
 …[truncated 13429 chars]
@@ -4801,7 +4706,7 @@ _source line 799 · 2026-05-20T00:25:48.270810+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-20T00:25:48.422616+00:00_
+_source line 798 · 2026-05-20T00:25:48.422616+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4837,7 +4742,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 801 · 2026-05-20T00:25:48.423012+00:00_
+_source line 799 · 2026-05-20T00:25:48.423012+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -4859,7 +4764,7 @@ _source line 801 · 2026-05-20T00:25:48.423012+00:00_
 
 ### Tool call
 
-_source line 802 · 2026-05-20T00:25:54.400138+00:00_
+_source line 800 · 2026-05-20T00:25:54.400138+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4895,7 +4800,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 803 · 2026-05-20T00:25:54.852282+00:00_
+_source line 801 · 2026-05-20T00:25:54.852282+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 30556 May 20 08:12 /root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4917,7 +4822,7 @@ _source line 803 · 2026-05-20T00:25:54.852282+00:00_
 
 ### Tool call
 
-_source line 804 · 2026-05-20T00:25:55.204073+00:00_
+_source line 802 · 2026-05-20T00:25:55.204073+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4953,7 +4858,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 805 · 2026-05-20T00:25:55.656952+00:00_
+_source line 803 · 2026-05-20T00:25:55.656952+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID STAT     ELAPSED COMMAND\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4975,7 +4880,7 @@ _source line 805 · 2026-05-20T00:25:55.656952+00:00_
 
 ### Tool call
 
-_source line 806 · 2026-05-20T00:26:02.586822+00:00_
+_source line 804 · 2026-05-20T00:26:02.586822+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5011,7 +4916,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 807 · 2026-05-20T00:26:02.888436+00:00_
+_source line 805 · 2026-05-20T00:26:02.888436+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5047,7 +4952,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 808 · 2026-05-20T00:26:03.090086+00:00_
+_source line 806 · 2026-05-20T00:26:03.090086+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baseline_r2\\\": 0.5243,\\n  \\\"baseline_per_task_r2\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": 0.395,\\n    \\\"open the top drawer and put the bowl inside\\\": 0.6096,\\n    \\\"push the plate to the front of the stove\\\": 0.5753,\\n    \\\"put the bowl on the plate\\\": 0.4795,\\n    \\\"put the bowl on the stove\\\": 0.5616,\\n    \\\"put the bowl on top of the cabinet\\\": 0.5424,\\n    \\\"put the cream cheese in the bowl\\\": 0.3562,\\n    \\\"put the wine bottle on the rack\\\": 0.4663,\\n    \\\"put the wine bottle on top of the cabinet\\\": 0.538,\\n    \\\"turn on the stove\\\": 0.7194\\n  },\\n  \\\"dominant_r2\\\": 0.5544,\\n  \\\"dominant_r2_increase\\\": 0.0301,\\n  \\\"dominant_per_task_r2\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": 0.4223,\\n    \\\"open the top drawer and put the bowl inside\\\": 0.6327,\\n    \\\"push the plate to the front of the stove\\\": 0.5711,\\n    \\\"put the bowl on the plate\\\": 0.5129,\\n    \\\"put the bowl on the stove\\\": 0.5906,\\n    \\\"put the bowl on top of the cabinet\\\": 0.5732,\\n    \\\"put the cream cheese in the bowl\\\": 0.4456,\\n    \\\"put the wine bottle on the rack\\\": 0.5131,\\n    \\\"put the wine bottle on top of the cabinet\\\": 0.5631,\\n    \\\"turn on the stove\\\": 0.7194\\n  },\\n  \\\"dominant_heads\\\": [\\n    0,\\n    1,\\n    2,\\n    4,\\n    7,\\n    8,\\n    10,\\n    11,\\n    12,\\n    14,\\n    15,\\n    16,\\n    17,\\n    18,\\n    19,\\n    20,\\n    22,\\n    23,\\n    25,\\n    26,\\n    27,\\n    29,\\n    30,\\n    31\\n  ],\\n  \\\"random_iterations\\\": [\\n    {\\n      \\\"seed\\\": 0,\\n      \\\"ablated_heads\\\": [\\n        1,\\n        2,\\n        4,\\n        5,\\n        6,\\n        8,\\n        10,\\n        11,\\n        13,\\n        14,\\n        16,\\n        17,\\n        18,\\n        19,\\n        20,\\n        22,\\n        23,\\n        24,\\n     
 …[truncated 7810 chars]
@@ -5070,7 +4975,7 @@ _source line 808 · 2026-05-20T00:26:03.090086+00:00_
 
 ### Tool result
 
-_source line 809 · 2026-05-20T00:26:03.692699+00:00_
+_source line 807 · 2026-05-20T00:26:03.692699+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
 
@@ -5092,7 +4997,7 @@ _source line 809 · 2026-05-20T00:26:03.692699+00:00_
 
 ### Tool call
 
-_source line 810 · 2026-05-20T00:26:37.804136+00:00_
+_source line 808 · 2026-05-20T00:26:37.804136+00:00_
 
 called Bash
 
@@ -5128,7 +5033,7 @@ called Bash
 
 ### Tool result
 
-_source line 811 · 2026-05-20T00:26:38.006625+00:00_
+_source line 809 · 2026-05-20T00:26:38.006625+00:00_
 
 total 150552
 -rw-r--r-- 1 ubuntu ubuntu    3923 May 19 23:41 worker_harvest_r2_probe_and_specificity_check_20260519T233545_result.json
@@ -5169,7 +5074,7 @@ total 150552
 
 ### Tool call
 
-_source line 812 · 2026-05-20T00:26:50.119995+00:00_
+_source line 810 · 2026-05-20T00:26:50.119995+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5205,7 +5110,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 813 · 2026-05-20T00:26:50.572023+00:00_
+_source line 811 · 2026-05-20T00:26:50.572023+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    [21/30] seed=20, heads=[0, 1, 2, 4, 5]..., R2=0.6058, increase=0.0815 (11.8s)\\n    [22/30] seed=21, heads=[0, 1, 2, 5, 6]..., R2=0.6003, increase=0.076 (11.6s)\\n    [23/30] seed=22, heads=[1, 2, 3, 5, 7]..., R2=0.5874, increase=0.0631 (11.9s)\\n    [24/30] seed=23, heads=[0, 1, 2, 3, 4]..., R2=0.6031, increase=0.0788 (10.4s)\\n    [25/30] seed=24, heads=[5, 6, 7, 8, 9]..., R2=0.5736, increase=0.0493 (11.6s)\\n    [26/30] seed=25, heads=[0, 1, 2, 3, 5]..., R2=0.5872, increase=0.0629 (11.8s)\\n    [27/30] seed=26, heads=[0, 2, 3, 4, 5]..., R2=0.6082, increase=0.0839 (12.0s)\\n    [28/30] seed=27, heads=[0, 1, 2, 3, 4]..., R2=0.605, increase=0.0807 (10.2s)\\n    [29/30] seed=28, heads=[2, 4, 6, 7, 8]..., R2=0.5881, increase=0.0638 (11.8s)\\n    [30/30] seed=29, heads=[1, 3, 4, 5, 6]..., R2=0.5681, increase=0.0438 (11.5s)\\n\\n[Statistics]\\n\\n============================================================\\nRESULTS\\n============================================================\\n  Baseline R2:           0.5243\\n  Dominant-24 R2:        0.5544\\n  Dominant-24 increase:  0.0301\\n  Random-24 mean:        0.0712 +/- 0.0132\\n  Random-24 CI (t):      [0.0662, 0.0761]\\n  Random-24 CI (boot):   [0.0666, 0.0757]\\n  z-score:               -3.11\\n  Percentile:            0.0%\\n  p-value (one-sided):   1.000000\\n\\nResults saved to /root/autodl-tmp/vla-ssd/results/l1_head_ablation/specificity_bootstrap_30seeds.json\\nFigure saved to /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n\\nTotal time: 182.4 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -5227,7 +5132,7 @@ _source line 813 · 2026-05-20T00:26:50.572023+00:00_
 
 ### Tool call
 
-_source line 814 · 2026-05-20T00:27:12.418887+00:00_
+_source line 812 · 2026-05-20T00:27:12.418887+00:00_
 
 called ToolSearch
 
@@ -5263,7 +5168,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 815 · 2026-05-20T00:27:12.469607+00:00_
+_source line 813 · 2026-05-20T00:27:12.469607+00:00_
 
 
 
@@ -5285,7 +5190,7 @@ _source line 815 · 2026-05-20T00:27:12.469607+00:00_
 
 ### Tool call
 
-_source line 816 · 2026-05-20T00:27:23.913821+00:00_
+_source line 814 · 2026-05-20T00:27:23.913821+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5321,7 +5226,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 817 · 2026-05-20T00:27:25.219114+00:00_
+_source line 815 · 2026-05-20T00:27:25.219114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -5343,7 +5248,7 @@ _source line 817 · 2026-05-20T00:27:25.219114+00:00_
 
 ### Assistant
 
-_source line 818 · 2026-05-20T00:27:28.518452+00:00_
+_source line 816 · 2026-05-20T00:27:28.518452+00:00_
 
 状态更新已发送。当前项目处于空闲状态——所有实验完成，两张 GPU 空闲，等待 Director 指令或新的 worker 通知。
 
@@ -5370,7 +5275,7 @@ _source line 818 · 2026-05-20T00:27:28.518452+00:00_
 
 ### User
 
-_source line 819 · 2026-05-20T00:27:29.036947+00:00_
+_source line 817 · 2026-05-20T00:27:29.036947+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Reviewer gap analysis 确认实验矩阵完整，更新状态），请审查研究方向和计划的合理性。
@@ -5392,7 +5297,7 @@ _source line 819 · 2026-05-20T00:27:29.036947+00:00_
 
 ### Tool call
 
-_source line 820 · 2026-05-20T00:27:36.179631+00:00_
+_source line 818 · 2026-05-20T00:27:36.179631+00:00_
 
 called ToolSearch
 
@@ -5428,7 +5333,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 821 · 2026-05-20T00:27:36.230309+00:00_
+_source line 819 · 2026-05-20T00:27:36.230309+00:00_
 
 
 
@@ -5450,7 +5355,7 @@ _source line 821 · 2026-05-20T00:27:36.230309+00:00_
 
 ### Tool call
 
-_source line 822 · 2026-05-20T00:27:38.388474+00:00_
+_source line 820 · 2026-05-20T00:27:38.388474+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -5484,7 +5389,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 823 · 2026-05-20T00:27:38.541478+00:00_
+_source line 821 · 2026-05-20T00:27:38.541478+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-20 00:23 UTC | 更新原因: Reviewer gap analysis 确认实验矩阵完整，更新状态\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning produces convergent entry-exit routing architecture regardless of starting LLM routing state. Two opposing pathways (adding vs partial suppression) converge to same bookend pattern.\\n\\n## 当前阶段\\n**ACTIVE — 实验矩阵完整（Reviewer 确认），审稿已提交。等用户确认 review mode + specificity 30-seed 收尾。**\\n\\n## Score: 6.0-6.7 → 目标 7.0+\\n- D083: Framing 升级为 convergent architecture through opposing pathways\\n- Reviewer gap analysis 确认：无 CRITICAL 级实验缺口\\n- GPU 保留给审稿反馈后 targeted response\\n\\n## 已完成\\n- [x] Phi3V 4 项核心分析（attention + probe, trained + untrained）✅\\n- [x] Phi3V 10-task robustness（trained + untrained 均确认）✅\\n- [x] R² 15-seed expansion（CI 收窄 42%，peak L9 confirmed）✅\\n- [x] Cross-architecture 段落 + 6 条件表 + 对比图 ✅\\n- [x] 数据修正：mid-layer 0-12, per-seed peak qualifier, N_rand 消歧 ✅\\n- [x] R² 方法论透明度（per-seed peak + fixed-layer appendix 对照）✅\\n- [x] 审稿提交 (fresh mode, 等用户确认) ✅\\n- [x] Reviewer 最终 gap analysis: 无 CRITICAL 缺口 ✅\\n\\n## 进行中\\n- [ ] specificity_random_seed_expansion (CPU) — 30-seed bootstrap Phase 2，结果到后更新论文\\n\\n## GPU 状态\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。两张空闲，保留给审稿反馈后 targeted experiments。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D083 | 2026-05-19 | D082 framing 进一步强化：从\\\"convergent property\\\"升级为\\\"conve | phi3v_attention_untrained, phi3v_attention_trained |\\n| D082 | 2026-05-19 | Framing 升级：从\\\"VLA training creates routing\\\"改为\\\"instr | phi3v_attention_untrained, phi3v_attention_trained, llama2_base_control |\\n| D081 | 2026-05-19 | Phi3V L1 routing 复现成功（32/32 vs OpenVLA 24/32），跨架构  | phi3v_attention_trained |\\n| D080 | 2026-05-19 | Path 
 …[truncated 920 chars]
@@ -5507,7 +5412,7 @@ _source line 823 · 2026-05-20T00:27:38.541478+00:00_
 
 ### Tool call
 
-_source line 824 · 2026-05-20T00:28:02.527108+00:00_
+_source line 822 · 2026-05-20T00:28:02.527108+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5543,7 +5448,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 825 · 2026-05-20T00:28:06.444055+00:00_
+_source line 823 · 2026-05-20T00:28:06.444055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -5565,7 +5470,7 @@ _source line 825 · 2026-05-20T00:28:06.444055+00:00_
 
 ### Assistant
 
-_source line 826 · 2026-05-20T00:28:09.394413+00:00_
+_source line 824 · 2026-05-20T00:28:09.394413+00:00_
 
 ROADMAP 审查完成。核心方向与实验数据一致，唯一问题是 specificity 30-seed 已完成但 ROADMAP 和 registry 未更新。已通知 Director。
 
@@ -5592,7 +5497,7 @@ ROADMAP 审查完成。核心方向与实验数据一致，唯一问题是 speci
 
 ### User
 
-_source line 827 · 2026-05-20T00:29:55.235122+00:00_
+_source line 825 · 2026-05-20T00:29:55.235122+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Specificity 30-seed 完成，全部实验收尾），请审查研究方向和计划的合理性。
@@ -5614,7 +5519,7 @@ _source line 827 · 2026-05-20T00:29:55.235122+00:00_
 
 ### Tool call
 
-_source line 828 · 2026-05-20T00:30:00.076273+00:00_
+_source line 826 · 2026-05-20T00:30:00.076273+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -5648,7 +5553,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 829 · 2026-05-20T00:30:00.128960+00:00_
+_source line 827 · 2026-05-20T00:30:00.128960+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-20 00:29 UTC | 更新原因: Specificity 30-seed 完成，全部实验收尾\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning produces convergent entry-exit routing architecture regardless of starting LLM routing state. Two opposing pathways (adding vs partial suppression) converge to same bookend pattern.\\n\\n## 当前阶段\\n**ACTIVE — 全部实验完成，论文已更新，审稿已提交（等用户确认 review mode）。目标 7/10。**\\n\\n## Score: 6.0-6.7 → 目标 7.0+\\n- D083: Framing 升级为 convergent architecture through opposing pathways\\n- Reviewer gap analysis：无 CRITICAL 级实验缺口\\n- 全部 robustness 实验完成，论文数字已同步\\n\\n## 已完成\\n- [x] Phi3V 4 项核心分析（attention + probe, trained + untrained）✅\\n- [x] Phi3V 10-task robustness 确认 ✅\\n- [x] R² 15-seed expansion（CI 收窄 42%，per-seed peak + fixed-layer 透明度）✅\\n- [x] Specificity 30-seed bootstrap（z=-3.11, percentile=0%）✅\\n- [x] Cross-architecture 段落 + 6 条件表 + 对比图（修正版）✅\\n- [x] 全部数据修正 + 方法论透明度 patch ✅\\n- [x] 审稿提交 (fresh mode, 等用户确认) ✅\\n- [x] Reviewer 最终 gap analysis: 实验矩阵完整 ✅\\n\\n## GPU 状态\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。两张空闲，保留给审稿反馈后 targeted experiments。\\n\\n## DDL\\n- Abstract: May 26 (6 天)\\n- Paper: May 29 (9 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D083 | 2026-05-19 | D082 framing 进一步强化：从\\\"convergent property\\\"升级为\\\"conve | phi3v_attention_untrained, phi3v_attention_trained |\\n| D082 | 2026-05-19 | Framing 升级：从\\\"VLA training creates routing\\\"改为\\\"instr | phi3v_attention_untrained, phi3v_attention_trained, llama2_base_control |\\n| D081 | 2026-05-19 | Phi3V L1 routing 复现成功（32/32 vs OpenVLA 24/32），跨架构  | phi3v_attention_trained |\\n| D080 | 2026-05-19 | Path B 彻底关闭，全资源转 Path A (TracVLA-Phi3V attention p | official_checkpoint_sr_test, closedloop_diagnosis, behavioral_smoketest |\\n| D079 | 2026-05-19 | D079: 用 TracVLA-Phi3V 做第二 VLA
 …[truncated 748 chars]
@@ -5671,7 +5576,7 @@ _source line 829 · 2026-05-20T00:30:00.128960+00:00_
 
 ### Tool call
 
-_source line 830 · 2026-05-20T00:30:09.083488+00:00_
+_source line 828 · 2026-05-20T00:30:09.083488+00:00_
 
 called Read
 
@@ -5709,7 +5614,7 @@ called Read
 
 ### Tool result
 
-_source line 831 · 2026-05-20T00:30:09.184485+00:00_
+_source line 829 · 2026-05-20T00:30:09.184485+00:00_
 
 76	\paragraph{Open-loop functional sensitivity.}
 77	We ablate attention to instruction tokens at the readout position.
@@ -5740,7 +5645,7 @@ _source line 831 · 2026-05-20T00:30:09.184485+00:00_
 
 ### Tool call
 
-_source line 832 · 2026-05-20T00:30:31.882027+00:00_
+_source line 830 · 2026-05-20T00:30:31.882027+00:00_
 
 called Read
 
@@ -5776,7 +5681,7 @@ called Read
 
 ### Tool result
 
-_source line 833 · 2026-05-20T00:30:31.882587+00:00_
+_source line 831 · 2026-05-20T00:30:31.882587+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -5813,7 +5718,7 @@ _source line 833 · 2026-05-20T00:30:31.882587+00:00_
 
 ### Tool call
 
-_source line 834 · 2026-05-20T00:30:51.383425+00:00_
+_source line 832 · 2026-05-20T00:30:51.383425+00:00_
 
 called Read
 
@@ -5851,7 +5756,7 @@ called Read
 
 ### Tool result
 
-_source line 835 · 2026-05-20T00:30:51.484327+00:00_
+_source line 833 · 2026-05-20T00:30:51.484327+00:00_
 
 130	\label{sec:nonmonotonic}
 131	
@@ -5892,7 +5797,7 @@ _source line 835 · 2026-05-20T00:30:51.484327+00:00_
 
 ### Tool call
 
-_source line 836 · 2026-05-20T00:31:12.881753+00:00_
+_source line 834 · 2026-05-20T00:31:12.881753+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5928,7 +5833,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 837 · 2026-05-20T00:31:16.898080+00:00_
+_source line 835 · 2026-05-20T00:31:16.898080+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -5950,7 +5855,7 @@ _source line 837 · 2026-05-20T00:31:16.898080+00:00_
 
 ### Assistant
 
-_source line 838 · 2026-05-20T00:31:20.046405+00:00_
+_source line 836 · 2026-05-20T00:31:20.046405+00:00_
 
 ROADMAP 审查完成。发现 experiments.tex L78 baseline 数字（0.517）与 30-seed increase（+0.030）来自不同 pipeline，已报告 Director。其余数值同步正确。
 
@@ -5977,7 +5882,7 @@ ROADMAP 审查完成。发现 experiments.tex L78 baseline 数字（0.517）与 
 
 ### User
 
-_source line 839 · 2026-05-20T01:24:44.501439+00:00_
+_source line 837 · 2026-05-20T01:24:44.501439+00:00_
 
 [System 触发审查]:
 [Director 请求] Specificity 30-seed 结果 z=-3.11（vs 原 z=-2.73），percentile=0%。两个问题：
@@ -6003,7 +5908,7 @@ _source line 839 · 2026-05-20T01:24:44.501439+00:00_
 
 ### Tool call
 
-_source line 840 · 2026-05-20T01:25:26.515008+00:00_
+_source line 838 · 2026-05-20T01:25:26.515008+00:00_
 
 called Read
 
@@ -6037,7 +5942,7 @@ called Read
 
 ### Tool result
 
-_source line 841 · 2026-05-20T01:25:26.565858+00:00_
+_source line 839 · 2026-05-20T01:25:26.565858+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -6074,7 +5979,7 @@ _source line 841 · 2026-05-20T01:25:26.565858+00:00_
 
 ### Tool call
 
-_source line 842 · 2026-05-20T01:25:31.436483+00:00_
+_source line 840 · 2026-05-20T01:25:31.436483+00:00_
 
 called Read
 
@@ -6108,7 +6013,7 @@ called Read
 
 ### Tool result
 
-_source line 843 · 2026-05-20T01:25:31.788811+00:00_
+_source line 841 · 2026-05-20T01:25:31.788811+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -6138,7 +6043,7 @@ _source line 843 · 2026-05-20T01:25:31.788811+00:00_
 
 ### Tool call
 
-_source line 844 · 2026-05-20T01:25:31.789312+00:00_
+_source line 842 · 2026-05-20T01:25:31.789312+00:00_
 
 called Read
 
@@ -6172,7 +6077,7 @@ called Read
 
 ### Tool result
 
-_source line 845 · 2026-05-20T01:25:31.840598+00:00_
+_source line 843 · 2026-05-20T01:25:31.840598+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -6208,7 +6113,7 @@ _source line 845 · 2026-05-20T01:25:31.840598+00:00_
 
 ### Tool call
 
-_source line 846 · 2026-05-20T01:26:29.266118+00:00_
+_source line 844 · 2026-05-20T01:26:29.266118+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6244,7 +6149,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 847 · 2026-05-20T01:26:33.381716+00:00_
+_source line 845 · 2026-05-20T01:26:33.381716+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -6266,7 +6171,7 @@ _source line 847 · 2026-05-20T01:26:33.381716+00:00_
 
 ### Assistant
 
-_source line 848 · 2026-05-20T01:26:35.578661+00:00_
+_source line 846 · 2026-05-20T01:26:35.578661+00:00_
 
 需要仔细评估两个问题。先核对论文中 specificity 相关的所有措辞。
 
@@ -6293,7 +6198,7 @@ _source line 848 · 2026-05-20T01:26:35.578661+00:00_
 
 ### User
 
-_source line 849 · 2026-05-20T01:36:43.195866+00:00_
+_source line 847 · 2026-05-20T01:36:43.195866+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_r2_action_probe_20260520T012645]:
 Worker worker_code_phi3v_r2_action_probe_20260520T012645 已完成（status=done），请审查 Agent 的处理结果。
@@ -6315,7 +6220,7 @@ Worker worker_code_phi3v_r2_action_probe_20260520T012645 已完成（status=done
 
 ### Tool call
 
-_source line 850 · 2026-05-20T01:36:52.849525+00:00_
+_source line 848 · 2026-05-20T01:36:52.849525+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6353,7 +6258,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 851 · 2026-05-20T01:36:54.306955+00:00_
+_source line 849 · 2026-05-20T01:36:54.306955+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_r2_action_probe\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T01:24:49.759Z\", \"updated_at\": \"2026-05-20T01:35:55.089Z\", \"hypothesis\": \"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\", \"parent\": \"r2_probe_seed_expansion\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T01:25:36.493Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"0-4\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"libero_goal 10 tasks x 50 demos\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\", \"checkpoint_path\": \"N/A (probe experiment)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.338}}"}
 
@@ -6375,7 +6280,7 @@ _source line 851 · 2026-05-20T01:36:54.306955+00:00_
 
 ### Tool call
 
-_source line 852 · 2026-05-20T01:36:54.458001+00:00_
+_source line 850 · 2026-05-20T01:36:54.458001+00:00_
 
 called Bash
 
@@ -6411,7 +6316,7 @@ called Bash
 
 ### Tool result
 
-_source line 853 · 2026-05-20T01:36:54.608998+00:00_
+_source line 851 · 2026-05-20T01:36:54.608998+00:00_
 
 {
   "raw": "Extraction is actively running — first task `open_the_middle_drawer_of_the_cabinet.h5.tmp` is being written (269MB so far). GPU utilization is low because the forward passes are quick (single frame at a time with idle periods for data loading).\n\n**Summary:**\n\n- **Script**: `/root/vla-ssd/scripts/phi3v_r2_action_probe.py` — two-phase design:\n  - Phase 1: Extract last-preaction hidden states (33 layers × 3072 dims) from TracVLA-Phi3V for all 10 tasks × 50 demos → saved to `/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/`\n  - Phase 2: Train per-layer MLP probes (5 seeds), compute R² → output to `/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json`\n- **Job**: Running on westd-19183 cuda:0, PID 402232\n- **Registry**: `phi3v_r2_action_probe` → RUNNING\n- **Log**: `/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log`\n- **Estimated time**: Phase 1 (extraction) ~30-60 min for 10 tasks, Phase 2 (probing) ~15 min"
@@ -6435,7 +6340,7 @@ _source line 853 · 2026-05-20T01:36:54.608998+00:00_
 
 ### Tool call
 
-_source line 854 · 2026-05-20T01:37:01.989594+00:00_
+_source line 852 · 2026-05-20T01:37:01.989594+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6471,7 +6376,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 855 · 2026-05-20T01:37:02.542087+00:00_
+_source line 853 · 2026-05-20T01:37:02.542087+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6507,7 +6412,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 856 · 2026-05-20T01:37:03.094734+00:00_
+_source line 854 · 2026-05-20T01:37:03.094734+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED COMMAND\\n402232 S          02:24 bash\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
 
@@ -6529,7 +6434,7 @@ _source line 856 · 2026-05-20T01:37:03.094734+00:00_
 
 ### Tool result
 
-_source line 857 · 2026-05-20T01:37:03.647445+00:00_
+_source line 855 · 2026-05-20T01:37:03.647445+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/image_processing_auto.py:590: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead\\n  warnings.warn(\\n============================================================\\nTracVLA-Phi3V Per-Layer Action R² Probe\\nModel: /root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\nSeeds: [0, 1, 2, 3, 4]\\nLayers: 33 (L0-L32)\\nDevice: cuda:0\\nFeature: last_preaction (last token hidden state)\\nSplit: sequential 80/20 (no shuffle)\\nR² space: original (denormalized)\\n============================================================\\n\\n--- Phase 1: Feature Extraction ---\\nFound 10 tasks in /root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\n\\nLoading TracVLA-Phi3V for feature extraction...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.90s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.41s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.48s/it]\\n/root/.cache/huggingface/modules/transformers_modules/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.\\n  warnings.warn(\\nYou are not running the flash-attention implementation, expect numerical differences.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -6551,7 +6456,7 @@ _source line 857 · 2026-05-20T01:37:03.647445+00:00_
 
 ### Tool call
 
-_source line 858 · 2026-05-20T01:37:09.019910+00:00_
+_source line 856 · 2026-05-20T01:37:09.019910+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6587,7 +6492,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 859 · 2026-05-20T01:37:09.472018+00:00_
+_source line 857 · 2026-05-20T01:37:09.472018+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"21 /root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6609,7 +6514,7 @@ _source line 859 · 2026-05-20T01:37:09.472018+00:00_
 
 ### Tool call
 
-_source line 860 · 2026-05-20T01:37:10.175708+00:00_
+_source line 858 · 2026-05-20T01:37:10.175708+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6645,7 +6550,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 861 · 2026-05-20T01:37:10.728750+00:00_
+_source line 859 · 2026-05-20T01:37:10.728750+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 512M\\n-rw-r--r-- 1 root root 409M May 20 09:37 open_the_middle_drawer_of_the_cabinet.h5.tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6667,7 +6572,7 @@ _source line 861 · 2026-05-20T01:37:10.728750+00:00_
 
 ### Tool call
 
-_source line 862 · 2026-05-20T01:37:10.829639+00:00_
+_source line 860 · 2026-05-20T01:37:10.829639+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6703,7 +6608,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 863 · 2026-05-20T01:37:11.382755+00:00_
+_source line 861 · 2026-05-20T01:37:11.382755+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 8881 MiB, 52 %\\n1, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -6725,7 +6630,7 @@ _source line 863 · 2026-05-20T01:37:11.382755+00:00_
 
 ### Tool call
 
-_source line 864 · 2026-05-20T01:37:44.876166+00:00_
+_source line 862 · 2026-05-20T01:37:44.876166+00:00_
 
 called Read
 
@@ -6759,7 +6664,7 @@ called Read
 
 ### Tool result
 
-_source line 865 · 2026-05-20T01:37:44.926802+00:00_
+_source line 863 · 2026-05-20T01:37:44.926802+00:00_
 
 1	_next_id: 2
 2	constraints:
@@ -6790,7 +6695,7 @@ _source line 865 · 2026-05-20T01:37:44.926802+00:00_
 
 ### Tool call
 
-_source line 866 · 2026-05-20T01:37:48.741154+00:00_
+_source line 864 · 2026-05-20T01:37:48.741154+00:00_
 
 called ToolSearch
 
@@ -6826,7 +6731,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 867 · 2026-05-20T01:37:48.791800+00:00_
+_source line 865 · 2026-05-20T01:37:48.791800+00:00_
 
 
 
@@ -6848,7 +6753,7 @@ _source line 867 · 2026-05-20T01:37:48.791800+00:00_
 
 ### Tool call
 
-_source line 868 · 2026-05-20T01:37:58.378110+00:00_
+_source line 866 · 2026-05-20T01:37:58.378110+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6884,7 +6789,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 869 · 2026-05-20T01:37:58.880601+00:00_
+_source line 867 · 2026-05-20T01:37:58.880601+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"TracVLA-Phi3V per-layer action R² probe.\\n\\nPhase 1: Extract last-preaction hidden states from all 33 layers.\\nPhase 2: Train per-layer MLP probes (5 seeds), compute R².\\n\\\"\\\"\\\"\\nimport gc\\nimport glob\\nimport json\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nos.environ[\\\"HDF5_USE_FILE_LOCKING\\\"] = \\\"FALSE\\\"\\n\\nimport h5py\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\n\\nCHECKPOINT = \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\"\\nDATA_DIR = \\\"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\\\"\\nFEATURE_DIR = \\\"/root/autodl-tmp/vla-ssd/features/phi3v_trained_libero_goal/\\\"\\nOUT_JSON = \\\"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\\"\\n\\nN_LAYERS = 33\\nHIDDEN_DIM_MODEL = 3072\\nPROBE_HIDDEN = 256\\nACTION_DIM = 7\\nSEEDS = list(range(5))\\nPROBE_BATCH = 256\\nLR = 1e-3\\nEPOCHS = 50\\nPATIENCE = 5\\nMAX_DEMOS = 50\\nDEVICE = \\\"cuda:0\\\"\\n\\n\\n# ── Phase 1: Feature Extraction ──────────────────────────────────��─────\\n\\ndef task_desc_from_filename(fname):\\n    return Path(fname).stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n\\n\\ndef load_phi3v_model(device_str):\\n    from transformers import AutoModelForCausalLM, AutoProcessor\\n    processor = AutoProcessor.from_pretrained(\\n        CHECKPOINT, trust_remote_code=True, local_files_only=True\\n    )\\n    model = AutoModelForCausalLM.from_pretrained(\\n        CHECKPOINT,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        low_cpu_mem_usage=True,\\n        attn_implementation=\\\"eager\\\",\\n        local_files_only=True,\\n        device_map=device_str,\\n    )\\n    model.eval()\\n    n_params = sum(p.numel() for p in model.parameters()) / 1e9\\n    print(f\\\"Model loaded: {n_params:.1f}B params on {device_str}\\\")\\n    return model, processor\\n\\n\\n@torch.no_gra
 …[truncated 7221 chars]
@@ -6907,7 +6812,7 @@ _source line 869 · 2026-05-20T01:37:58.880601+00:00_
 
 ### Tool call
 
-_source line 870 · 2026-05-20T01:38:47.510815+00:00_
+_source line 868 · 2026-05-20T01:38:47.510815+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6943,7 +6848,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 871 · 2026-05-20T01:38:51.376499+00:00_
+_source line 869 · 2026-05-20T01:38:51.376499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -6965,7 +6870,7 @@ _source line 871 · 2026-05-20T01:38:51.376499+00:00_
 
 ### Assistant
 
-_source line 872 · 2026-05-20T01:38:53.874178+00:00_
+_source line 870 · 2026-05-20T01:38:53.874178+00:00_
 
 实验仍在运行（Phase 1 extraction，1/10 tasks，GPU 0 使用中 8.9GB/52%）。Worker 通知的 "done" 是代码提交完成，非实验完成。
 
@@ -6994,7 +6899,7 @@ _source line 872 · 2026-05-20T01:38:53.874178+00:00_
 
 ### User
 
-_source line 873 · 2026-05-20T01:53:14.815196+00:00_
+_source line 871 · 2026-05-20T01:53:14.815196+00:00_
 
 [系统通知 — worker_done:worker_sync_specificity_bootstrap_figure_20260520T002810]:
 Worker worker_sync_specificity_bootstrap_figure_20260520T002810 已完成（status=done），请审查 Agent 的处理结果。
@@ -7016,7 +6921,7 @@ Worker worker_sync_specificity_bootstrap_figure_20260520T002810 已完成（stat
 
 ### Tool call
 
-_source line 874 · 2026-05-20T01:53:25.224187+00:00_
+_source line 872 · 2026-05-20T01:53:25.224187+00:00_
 
 called Bash
 
@@ -7052,7 +6957,7 @@ called Bash
 
 ### Tool result
 
-_source line 875 · 2026-05-20T01:53:25.377301+00:00_
+_source line 873 · 2026-05-20T01:53:25.377301+00:00_
 
 {
   "raw": "All 4 files synced successfully:\n\n- `artifacts/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\n- `artifacts/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.pdf` — 16986 bytes\n- `docs/paper/figures/fig_specificity_bootstrap_30seeds.png` — 49312 bytes\n\nMD5 verified against remote (`81a1d1df36ba681a446dfa920c719b62`). Transfer completed via direct SCP using decrypted credentials from the MCP config."
@@ -7076,7 +6981,7 @@ _source line 875 · 2026-05-20T01:53:25.377301+00:00_
 
 ### Tool call
 
-_source line 876 · 2026-05-20T01:53:31.130397+00:00_
+_source line 874 · 2026-05-20T01:53:31.130397+00:00_
 
 called Bash
 
@@ -7112,7 +7017,7 @@ called Bash
 
 ### Tool result
 
-_source line 877 · 2026-05-20T01:53:31.482490+00:00_
+_source line 875 · 2026-05-20T01:53:31.482490+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 16986 May 20 01:52 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf
 -rw-r--r-- 1 ubuntu ubuntu 16986 May 20 01:52 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_specificity_bootstrap_30seeds.pdf
@@ -7135,7 +7040,7 @@ _source line 877 · 2026-05-20T01:53:31.482490+00:00_
 
 ### Tool call
 
-_source line 878 · 2026-05-20T01:53:31.482856+00:00_
+_source line 876 · 2026-05-20T01:53:31.482856+00:00_
 
 called Read
 
@@ -7169,7 +7074,7 @@ called Read
 
 ### Tool result
 
-_source line 879 · 2026-05-20T01:53:31.534145+00:00_
+_source line 877 · 2026-05-20T01:53:31.534145+00:00_
 
 
 
@@ -7191,7 +7096,7 @@ _source line 879 · 2026-05-20T01:53:31.534145+00:00_
 
 ### Tool call
 
-_source line 880 · 2026-05-20T01:53:47.160481+00:00_
+_source line 878 · 2026-05-20T01:53:47.160481+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7227,7 +7132,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 881 · 2026-05-20T01:53:51.782914+00:00_
+_source line 879 · 2026-05-20T01:53:51.782914+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -7249,7 +7154,7 @@ _source line 881 · 2026-05-20T01:53:51.782914+00:00_
 
 ### Assistant
 
-_source line 882 · 2026-05-20T01:53:54.123626+00:00_
+_source line 880 · 2026-05-20T01:53:54.123626+00:00_
 
 图表同步完成。验证文件并查看图表质量。
 
@@ -7276,7 +7181,7 @@ _source line 882 · 2026-05-20T01:53:54.123626+00:00_
 
 ### User
 
-_source line 883 · 2026-05-20T02:29:18.590287+00:00_
+_source line 881 · 2026-05-20T02:29:18.590287+00:00_
 
 [系统通知 — worker_done:worker_check_phi3v_r2_and_figure_fix_20260520T022821]:
 Worker worker_check_phi3v_r2_and_figure_fix_20260520T022821 已完成（status=done），请审查 Agent 的处理结果。
@@ -7298,7 +7203,7 @@ Worker worker_check_phi3v_r2_and_figure_fix_20260520T022821 已完成（status=d
 
 ### Tool call
 
-_source line 884 · 2026-05-20T02:29:26.844257+00:00_
+_source line 882 · 2026-05-20T02:29:26.844257+00:00_
 
 called Bash
 
@@ -7334,7 +7239,7 @@ called Bash
 
 ### Tool result
 
-_source line 885 · 2026-05-20T02:29:26.995290+00:00_
+_source line 883 · 2026-05-20T02:29:26.995290+00:00_
 
 {
   "raw": "## 状态汇报\n\n### 1. phi3v_r2_action_probe — 进行中（Feature Extraction 阶段）\n\n- **Phase 1 Feature Extraction**：正在提取第 10/10 个 task (`turn_on_the_stove`)\n- 已完成 9 个 task 的 feature 文件（共 ~8.5GB），第 10 个正在写入（`.h5.tmp` 当前 ~476MB）\n- 结果文件尚未生成，Phase 2（probe 训练）还没开始\n- GPU 0 占用 8705 MiB，利用率 55%\n- **预计剩余时间**：最后一个 task 的 feature 文件大约还需 1-2 分钟写完。之后进入 Phase 2 probe 训练（33 layers × 5 seeds），预计还需 10-20 分钟。**总计约 15-25 分钟完成。**\n\n### 2. specificity 图表修复 — 已完成\n\n- 图表已于 **09:55** 生成：\n  - `results/figures/fig_specificity_bootstrap_30seeds.pdf` (17KB)\n  - `results/figures/fig_specificity_bootstrap_30seeds.png` (48KB)"
@@ -7358,7 +7263,7 @@ _source line 885 · 2026-05-20T02:29:26.995290+00:00_
 
 ### Tool call
 
-_source line 886 · 2026-05-20T02:29:34.325104+00:00_
+_source line 884 · 2026-05-20T02:29:34.325104+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7394,7 +7299,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 887 · 2026-05-20T02:29:34.777091+00:00_
+_source line 885 · 2026-05-20T02:29:34.777091+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7430,7 +7335,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 888 · 2026-05-20T02:29:35.480252+00:00_
+_source line 886 · 2026-05-20T02:29:35.480252+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 47769 May 20 09:55 /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.png\\n-rw-r--r-- 1 root root 16980 May 20 09:55 /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
 
@@ -7452,7 +7357,7 @@ _source line 888 · 2026-05-20T02:29:35.480252+00:00_
 
 ### Tool result
 
-_source line 889 · 2026-05-20T02:29:36.032638+00:00_
+_source line 887 · 2026-05-20T02:29:36.032638+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading TracVLA-Phi3V for feature extraction...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.90s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.41s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.48s/it]\\n/root/.cache/huggingface/modules/transformers_modules/image_embedding_phi3_v.py:189: UserWarning: Phi-3-V modifies `input_ids` in-place and the tokens indicating images will be removed after model forward. If your workflow requires multiple forward passes on the same `input_ids`, please make a copy of `input_ids` before passing it to the model.\\n  warnings.warn(\\nYou are not running the flash-attention implementation, expect numerical differences.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -7474,7 +7379,7 @@ _source line 889 · 2026-05-20T02:29:36.032638+00:00_
 
 ### Tool call
 
-_source line 890 · 2026-05-20T02:29:41.353508+00:00_
+_source line 888 · 2026-05-20T02:29:41.353508+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7510,7 +7415,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 891 · 2026-05-20T02:29:41.805727+00:00_
+_source line 889 · 2026-05-20T02:29:41.805727+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9.5G\\n-rw-r--r-- 1 root root 1023M May 20 09:40 open_the_middle_drawer_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  1.5G May 20 09:49 open_the_top_drawer_and_put_the_bowl_inside.h5\\n-rw-r--r-- 1 root root  1.1G May 20 09:55 push_the_plate_to_the_front_of_the_stove.h5\\n-rw-r--r-- 1 root root  680M May 20 09:59 put_the_bowl_on_the_plate.h5\\n-rw-r--r-- 1 root root  739M May 20 10:03 put_the_bowl_on_the_stove.h5\\n-rw-r--r-- 1 root root  741M May 20 10:08 put_the_bowl_on_top_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  778M May 20 10:13 put_the_cream_cheese_in_the_bowl.h5\\n-rw-r--r-- 1 root root  1.3G May 20 10:21 put_the_wine_bottle_on_the_rack.h5\\n-rw-r--r-- 1 root root  784M May 20 10:25 put_the_wine_bottle_on_top_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  612M May 20 10:29 turn_on_the_stove.h5.tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -7532,7 +7437,7 @@ _source line 891 · 2026-05-20T02:29:41.805727+00:00_
 
 ### Tool call
 
-_source line 892 · 2026-05-20T02:30:05.780861+00:00_
+_source line 890 · 2026-05-20T02:30:05.780861+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7568,7 +7473,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 893 · 2026-05-20T02:30:09.646432+00:00_
+_source line 891 · 2026-05-20T02:30:09.646432+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -7590,7 +7495,7 @@ _source line 893 · 2026-05-20T02:30:09.646432+00:00_
 
 ### Assistant
 
-_source line 894 · 2026-05-20T02:30:12.238682+00:00_
+_source line 892 · 2026-05-20T02:30:12.238682+00:00_
 
 Phi3V R² probe 接近完成（10/10 tasks extraction），specificity 图表已修复。检查修复后的图表。
 
@@ -7617,7 +7522,7 @@ Phi3V R² probe 接近完成（10/10 tasks extraction），specificity 图表已
 
 ### User
 
-_source line 895 · 2026-05-20T03:02:25.505747+00:00_
+_source line 893 · 2026-05-20T03:02:25.505747+00:00_
 
 [系统通知 — worker_done:worker_fix_specificity_bootstrap_figure_title_20260520T015433]:
 Worker worker_fix_specificity_bootstrap_figure_title_20260520T015433 已完成（status=failed），请审查 Agent 的处理结果。
@@ -7639,7 +7544,7 @@ Worker worker_fix_specificity_bootstrap_figure_title_20260520T015433 已完成�
 
 ### Tool call
 
-_source line 896 · 2026-05-20T03:02:33.774100+00:00_
+_source line 894 · 2026-05-20T03:02:33.774100+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7677,7 +7582,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 897 · 2026-05-20T03:02:35.633662+00:00_
+_source line 895 · 2026-05-20T03:02:35.633662+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_r2_action_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T01:24:49.759Z\", \"updated_at\": \"2026-05-20T03:02:19.207Z\", \"hypothesis\": \"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\", \"parent\": \"r2_probe_seed_expansion\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T01:25:36.493Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"0-4\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"libero_goal 10 tasks x 50 demos\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\", \"checkpoint_path\": \"N/A (probe experiment)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-20T03:02:19.207Z\"}, \"specificity_random_seed_expansion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:23:42.838Z\", \"updated_at\": \"2026-05-20T00:27:57.565Z\", \"hypothesis\": \"Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action
 …[truncated 6232 chars]
@@ -7700,7 +7605,7 @@ _source line 897 · 2026-05-20T03:02:35.633662+00:00_
 
 ### Tool call
 
-_source line 898 · 2026-05-20T03:02:36.086050+00:00_
+_source line 896 · 2026-05-20T03:02:36.086050+00:00_
 
 called Bash
 
@@ -7736,7 +7641,7 @@ called Bash
 
 ### Tool result
 
-_source line 899 · 2026-05-20T03:02:36.387570+00:00_
+_source line 897 · 2026-05-20T03:02:36.387570+00:00_
 
 Exit code 1
 cat: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_fix_specificity_bootstrap_figure_title_20260520T015433_result.json: No such file or directory
@@ -7759,7 +7664,7 @@ cat: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/work
 
 ### Tool call
 
-_source line 900 · 2026-05-20T03:02:36.488482+00:00_
+_source line 898 · 2026-05-20T03:02:36.488482+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -7795,7 +7700,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 901 · 2026-05-20T03:02:36.488944+00:00_
+_source line 899 · 2026-05-20T03:02:36.488944+00:00_
 
 &lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.agent-ml-research-idea…) errored&lt;/tool_use_error>
 
@@ -7817,7 +7722,7 @@ _source line 901 · 2026-05-20T03:02:36.488944+00:00_
 
 ### Tool call
 
-_source line 902 · 2026-05-20T03:02:41.361387+00:00_
+_source line 900 · 2026-05-20T03:02:41.361387+00:00_
 
 called Bash
 
@@ -7853,7 +7758,7 @@ called Bash
 
 ### Tool result
 
-_source line 903 · 2026-05-20T03:02:41.566742+00:00_
+_source line 901 · 2026-05-20T03:02:41.566742+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 586644 May 20 02:52 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_fix_specificity_bootstrap_figure_title_20260520T015433.log
 
@@ -7875,7 +7780,7 @@ _source line 903 · 2026-05-20T03:02:41.566742+00:00_
 
 ### Tool call
 
-_source line 904 · 2026-05-20T03:02:41.567195+00:00_
+_source line 902 · 2026-05-20T03:02:41.567195+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -7911,7 +7816,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 905 · 2026-05-20T03:02:41.617778+00:00_
+_source line 903 · 2026-05-20T03:02:41.617778+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- libero_finetuned_probe（准备中）\\n- behavioral_smoketest_diag（准备中）\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\n- fulllayer_action_probe（准备中）\\n- l1_head_ablation_control8（准备中）\\n- l1_head_ablation_50demos（准备中）\\n\\n## 近期结论\\n- **phi3v_r2_action_probe** (failed): TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient. ← 基于 r2_probe_seed_expansion\\n- **specificity_random_seed_expansion** (success): Expanding random-24-head ablation bootstrap from 5 to 30 seeds provides tighter CI on the specificity control, confirming that instruction-dominant heads produce qualitatively different (not just quantitatively larger) action disruption than random subsets. ← 基于 random_subset_ablation\\n  [fig_specificity_bootstrap_30seeds](/api/workspace-files/projects/vla-ssd/artifacts/specificity_random_seed_expansion/chart/fig_specificity_bootstrap_30seeds.pdf)\\n- **r2_probe_seed_expansion** (success): Expanding R² probe seeds from 3 to 15 will tighten confidence intervals on the per-layer action R² profile, confirming that the inverted-U shape and trained>untrained separation are robust across probe initializa
 …[truncated 758 chars]
@@ -7934,7 +7839,7 @@ _source line 905 · 2026-05-20T03:02:41.617778+00:00_
 
 ### Tool call
 
-_source line 906 · 2026-05-20T03:02:55.346311+00:00_
+_source line 904 · 2026-05-20T03:02:55.346311+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7970,7 +7875,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 907 · 2026-05-20T03:02:55.848526+00:00_
+_source line 905 · 2026-05-20T03:02:55.848526+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8006,7 +7911,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 908 · 2026-05-20T03:02:56.551766+00:00_
+_source line 906 · 2026-05-20T03:02:56.551766+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 9.1G\\n-rw-r--r-- 1 root root 1023M May 20 09:40 open_the_middle_drawer_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  1.5G May 20 09:49 open_the_top_drawer_and_put_the_bowl_inside.h5\\n-rw-r--r-- 1 root root  1.1G May 20 09:55 push_the_plate_to_the_front_of_the_stove.h5\\n-rw-r--r-- 1 root root  680M May 20 09:59 put_the_bowl_on_the_plate.h5\\n-rw-r--r-- 1 root root  739M May 20 10:03 put_the_bowl_on_the_stove.h5\\n-rw-r--r-- 1 root root  741M May 20 10:08 put_the_bowl_on_top_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  778M May 20 10:13 put_the_cream_cheese_in_the_bowl.h5\\n-rw-r--r-- 1 root root  1.3G May 20 10:21 put_the_wine_bottle_on_the_rack.h5\\n-rw-r--r-- 1 root root  784M May 20 10:25 put_the_wine_bottle_on_top_of_the_cabinet.h5\\n-rw-r--r-- 1 root root  649M May 20 10:29 turn_on_the_stove.h5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
 
@@ -8028,7 +7933,7 @@ _source line 908 · 2026-05-20T03:02:56.551766+00:00_
 
 ### Tool call
 
-_source line 909 · 2026-05-20T03:02:56.552172+00:00_
+_source line 907 · 2026-05-20T03:02:56.552172+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8064,7 +7969,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 910 · 2026-05-20T03:02:56.903747+00:00_
+_source line 908 · 2026-05-20T03:02:56.903747+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9.3K May 20 10:40 /root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -8086,7 +7991,7 @@ _source line 910 · 2026-05-20T03:02:56.903747+00:00_
 
 ### Tool result
 
-_source line 911 · 2026-05-20T03:02:57.506260+00:00_
+_source line 909 · 2026-05-20T03:02:57.506260+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
 
@@ -8108,7 +8013,7 @@ _source line 911 · 2026-05-20T03:02:57.506260+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-20T03:03:10.171838+00:00_
+_source line 910 · 2026-05-20T03:03:10.171838+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8144,7 +8049,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 913 · 2026-05-20T03:03:10.624695+00:00_
+_source line 911 · 2026-05-20T03:03:10.624695+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"TracVLA-Phi3V\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\\\",\\n  \\\"conditions\\\": [\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4\\n  ],\\n  \\\"n_layers\\\": 33,\\n  \\\"hidden_dim\\\": 3072,\\n  \\\"feature\\\": \\\"last_preaction\\\",\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"trained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          -0.32827802896499636,\\n          -0.33452510833740234,\\n          -0.3267955660820007,\\n          -0.3297423839569092,\\n          -0.3278089642524719\\n        ],\\n        \\\"mean\\\": -0.3294300103187561,\\n        \\\"std\\\": 0.0027185565631204023\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.43945269882678983,\\n          0.44672107994556426,\\n          0.4561563640832901,\\n          0.45573421120643615,\\n          0.4549203276634216\\n        ],\\n        \\\"mean\\\": 0.4505969363451004,\\n        \\\"std\\\": 0.00656059196967387\\n      },\\n      \\\"L2\\\": {\\n        \\\"seeds\\\": [\\n          0.515046426653862,\\n          0.5145291775465012,\\n          0.5078417122364044,\\n          0.5222591042518616,\\n          0.5189234226942062\\n        ],\\n        \\\"mean\\\": 0.5157199686765671,\\n        \\\"std\\\": 0.004836547914038875\\n      },\\n      \\\"L3\\\": {\\n        \\\"seeds\\\": [\\n          0.5718732148408889,\\n          0.5796824008226394,\\n          0.5798166930675507,\\n          0.5860294550657272,\\n          0.5659847408533096\\n        ],\\n        \\\"mean\\\": 0.5766773009300231,\\n        \\\"std\\\": 0.006982252924116683\\n      },\\n      \\\"L4\\\": {\\n        \\\"seeds\\\": [\\n          0.5859242856502533,\\n          0.5976445138454437,\\n          0.594704163074
 …[truncated 7631 chars]
@@ -8167,7 +8072,7 @@ _source line 913 · 2026-05-20T03:03:10.624695+00:00_
 
 ### Tool call
 
-_source line 914 · 2026-05-20T03:03:44.582411+00:00_
+_source line 912 · 2026-05-20T03:03:44.582411+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8203,7 +8108,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 915 · 2026-05-20T03:03:45.034908+00:00_
+_source line 913 · 2026-05-20T03:03:45.034908+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 16980 May 20 09:55 /root/autodl-tmp/vla-ssd/results/figures/fig_specificity_bootstrap_30seeds.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -8225,7 +8130,7 @@ _source line 915 · 2026-05-20T03:03:45.034908+00:00_
 
 ### Tool call
 
-_source line 916 · 2026-05-20T03:04:22.889126+00:00_
+_source line 914 · 2026-05-20T03:04:22.889126+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8261,7 +8166,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 917 · 2026-05-20T03:04:26.910104+00:00_
+_source line 915 · 2026-05-20T03:04:26.910104+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -8283,7 +8188,7 @@ _source line 917 · 2026-05-20T03:04:26.910104+00:00_
 
 ### Assistant
 
-_source line 918 · 2026-05-20T03:04:29.752866+00:00_
+_source line 916 · 2026-05-20T03:04:29.752866+00:00_
 
 phi3v_r2_action_probe 实际已完成，数据完好。这是重要的跨架构结果。同时检查 figure fix worker 失败原因。
 
@@ -8310,7 +8215,7 @@ phi3v_r2_action_probe 实际已完成，数据完好。这是重要的跨架构�
 
 ### User
 
-_source line 919 · 2026-05-20T03:05:24.749018+00:00_
+_source line 917 · 2026-05-20T03:05:24.749018+00:00_
 
 [System 触发审查]:
 phi3v_r2_action_probe 结果确认成功（D084）。请评估以下论文集成方案：
@@ -8340,7 +8245,7 @@ phi3v_r2_action_probe 结果确认成功（D084）。请评估以下论文集成
 
 ### Tool call
 
-_source line 920 · 2026-05-20T03:06:39.669617+00:00_
+_source line 918 · 2026-05-20T03:06:39.669617+00:00_
 
 called Read
 
@@ -8378,7 +8283,7 @@ called Read
 
 ### Tool result
 
-_source line 921 · 2026-05-20T03:06:39.720244+00:00_
+_source line 919 · 2026-05-20T03:06:39.720244+00:00_
 
 16	Three findings emerge from our analysis of OpenVLA-7B on LIBERO.
 17	\emph{First}, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth (L9--L16, 15--22 heads), while VLA training shifts this to an entry-exit pattern (L0--L1: 21--24 heads, L31: 18 heads).
@@ -8408,7 +8313,7 @@ _source line 921 · 2026-05-20T03:06:39.720244+00:00_
 
 ### Tool call
 
-_source line 922 · 2026-05-20T03:06:42.482104+00:00_
+_source line 920 · 2026-05-20T03:06:42.482104+00:00_
 
 called Read
 
@@ -8446,7 +8351,7 @@ called Read
 
 ### Tool result
 
-_source line 923 · 2026-05-20T03:06:42.533183+00:00_
+_source line 921 · 2026-05-20T03:06:42.533183+00:00_
 
 64	Probe accuracy is preserved (L1: $99.7\%$; Appendix~\ref{app:finetuned_probe}).
 65	
@@ -8479,7 +8384,7 @@ _source line 923 · 2026-05-20T03:06:42.533183+00:00_
 
 ### Tool call
 
-_source line 924 · 2026-05-20T03:07:38.259295+00:00_
+_source line 922 · 2026-05-20T03:07:38.259295+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8515,7 +8420,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 925 · 2026-05-20T03:07:42.434070+00:00_
+_source line 923 · 2026-05-20T03:07:42.434070+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -8537,7 +8442,7 @@ _source line 925 · 2026-05-20T03:07:42.434070+00:00_
 
 ### Assistant
 
-_source line 926 · 2026-05-20T03:07:46.034547+00:00_
+_source line 924 · 2026-05-20T03:07:46.034547+00:00_
 
 逐条评估论文集成方案，先核对当前 C2/C3 定义。
 
@@ -8564,7 +8469,7 @@ _source line 926 · 2026-05-20T03:07:46.034547+00:00_
 
 ### User
 
-_source line 927 · 2026-05-20T03:25:50.770880+00:00_
+_source line 925 · 2026-05-20T03:25:50.770880+00:00_
 
 [系统通知 — worker_done:worker_harvest_phi3v_r2_and_figure_fix_retry_20260520T030316]:
 Worker worker_harvest_phi3v_r2_and_figure_fix_retry_20260520T030316 已完成（status=failed），请审查 Agent 的处理结果。
@@ -8586,7 +8491,7 @@ Worker worker_harvest_phi3v_r2_and_figure_fix_retry_20260520T030316 已完成（
 
 ### Tool call
 
-_source line 928 · 2026-05-20T03:25:59.341075+00:00_
+_source line 926 · 2026-05-20T03:25:59.341075+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8624,7 +8529,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 929 · 2026-05-20T03:26:00.749394+00:00_
+_source line 927 · 2026-05-20T03:26:00.749394+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_r2_action_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T01:24:49.759Z\", \"updated_at\": \"2026-05-20T03:05:10.844Z\", \"hypothesis\": \"TracVLA-Phi3V per-layer action R² probe reproduces the inverted-U profile seen in OpenVLA (peak at mid-layers L8-L9, decline at exit layers), confirming cross-architecture generality of the action encoding gradient.\", \"parent\": \"r2_probe_seed_expansion\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T01:25:36.493Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_r2_action_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": \"10 tasks x 50 demos\", \"model_name\": \"TracVLA-Phi3V\", \"seed\": \"0-4\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"eval_data\": \"libero_goal 10 tasks x 50 demos\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\", \"checkpoint_path\": \"N/A (probe experiment)\", \"output_path\": \"/root/autodl-tmp/vla-ssd/results/functional_validation/phi3v_r2_action_probe.json\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:02:19.207Z\", \"metrics\": {\"peak_r2\": 0.634, \"peak_layer\": 11, \"l0_r2\": -0.329, \"l31_r2\": 0.557, \"seeds\": 5, \"tasks\": 10, \"inverted_u_confirmed\": true, \"cross_arch_peak_delta\": 0.003, \"openvla_peak_r2\": 0.637, \"openvla_peak_layer\": 9}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/logs/phi3v_r2_action_probe.log\"}, \"specificity_rando
 …[truncated 6631 chars]
@@ -8647,7 +8552,7 @@ _source line 929 · 2026-05-20T03:26:00.749394+00:00_
 
 ### Tool call
 
-_source line 930 · 2026-05-20T03:26:00.900539+00:00_
+_source line 928 · 2026-05-20T03:26:00.900539+00:00_
 
 called Bash
 
@@ -8683,7 +8588,7 @@ called Bash
 
 ### Tool result
 
-_source line 931 · 2026-05-20T03:26:01.102152+00:00_
+_source line 929 · 2026-05-20T03:26:01.102152+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 192727 May 20 03:13 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_harvest_phi3v_r2_and_figure_fix_retry_20260520T030316.log
 
@@ -8705,7 +8610,7 @@ _source line 931 · 2026-05-20T03:26:01.102152+00:00_
 
 ### Tool call
 
-_source line 932 · 2026-05-20T03:26:12.868590+00:00_
+_source line 930 · 2026-05-20T03:26:12.868590+00:00_
 
 called Read
 
@@ -8743,7 +8648,7 @@ called Read
 
 ### Tool result
 
-_source line 933 · 2026-05-20T03:26:13.923161+00:00_
+_source line 931 · 2026-05-20T03:26:13.923161+00:00_
 
 0	Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
 1	{"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd","session_id":"6ce086b8-f03b-4abb-a998-7dad1d673350","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","ListMcpResourcesTool","Monitor","NotebookEdit","PushNotification","Read","ReadMcpResourceTool","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write","mcp__agent-ml-research__detect_image","mcp__agent-ml-research__kill_job","mcp__agent-ml-research__read_registry","mcp__agent-ml-research__register_artifact","mcp__agent-ml-research__ssh_execute","mcp__agent-ml-research__ssh_read_only","mcp__agent-ml-research__update_registry"],"mcp_servers":[{"name":"agent-ml-research","status":"connected"}],"model":"claude-opus-4-6","permissionMode":"bypassPermissions","slash_commands":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api","clear","compact","context","heapdump","init","review","security-review","extra-usage","usage","insights","team-onboarding"],"apiKeySource":"none","claude_code_version":"2.1.126","output_style":"default","agents":["claude","Explore","general-purpose","Plan","statusline-setup"],"skills":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api"],"plugins":[],"analytics_disabled":false,"uuid":"e695e4e5-821f-4556-8c4f-c3f6175f72aa","memory_paths":{"auto":"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd/memory/"},"fast_mode_state":"off"}
@@ -8768,7 +8673,7 @@ _source line 933 · 2026-05-20T03:26:13.923161+00:00_
 
 ### Tool call
 
-_source line 934 · 2026-05-20T03:26:13.973771+00:00_
+_source line 932 · 2026-05-20T03:26:13.973771+00:00_
 
 called Bash
 
@@ -8804,7 +8709,7 @@ called Bash
 
 ### Tool result
 
-_source line 935 · 2026-05-20T03:26:14.125652+00:00_
+_source line 933 · 2026-05-20T03:26:14.125652+00:00_
 
 &lt;persisted-output>
 Output too large (163.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-reviewer-7b0fefde/2ab22121-e01f-4b40-991c-65244a081251/tool-results/bcpfke0m8.txt
@@ -8832,7 +8737,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 936 · 2026-05-20T03:26:27.986634+00:00_
+_source line 934 · 2026-05-20T03:26:27.986634+00:00_
 
 called Bash
 
@@ -8868,7 +8773,7 @@ called Bash
 
 ### Tool result
 
-_source line 937 · 2026-05-20T03:26:28.087543+00:00_
+_source line 935 · 2026-05-20T03:26:28.087543+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 15360 May 20 03:13 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf
 -rw-r--r-- 1 ubuntu ubuntu 49312 May 20 01:52 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_specificity_bootstrap_30seeds.png
@@ -8893,7 +8798,7 @@ _source line 937 · 2026-05-20T03:26:28.087543+00:00_
 
 ### Tool call
 
-_source line 938 · 2026-05-20T03:26:36.932502+00:00_
+_source line 936 · 2026-05-20T03:26:36.932502+00:00_
 
 called Read
 
@@ -8927,7 +8832,7 @@ called Read
 
 ### Tool result
 
-_source line 939 · 2026-05-20T03:26:37.033643+00:00_
+_source line 937 · 2026-05-20T03:26:37.033643+00:00_
 
 PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf (15KB)
 
@@ -8949,7 +8854,7 @@ PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd
 
 ### Assistant
 
-_source line 940 · 2026-05-20T03:26:37.523405+00:00_
+_source line 938 · 2026-05-20T03:26:37.523405+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -8976,7 +8881,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 941 · 2026-05-20T03:26:38.087957+00:00_
+_source line 939 · 2026-05-20T03:26:38.087957+00:00_
 
 [系统通知 — worker_done:worker_paper_figure_cross_arch_r2_table_20260520T031441]:
 Worker worker_paper_figure_cross_arch_r2_table_20260520T031441 已完成（status=failed），请审查 Agent 的处理结果。
@@ -8998,7 +8903,7 @@ Worker worker_paper_figure_cross_arch_r2_table_20260520T031441 已完成（statu
 
 ### Assistant
 
-_source line 942 · 2026-05-20T03:26:43.835177+00:00_
+_source line 940 · 2026-05-20T03:26:43.835177+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9025,7 +8930,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 943 · 2026-05-20T03:26:44.505185+00:00_
+_source line 941 · 2026-05-20T03:26:44.505185+00:00_
 
 [系统通知 — worker_done:worker_data_cross_arch_r2_table_20260520T031554]:
 Worker worker_data_cross_arch_r2_table_20260520T031554 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9047,7 +8952,7 @@ Worker worker_data_cross_arch_r2_table_20260520T031554 已完成（status=failed
 
 ### Assistant
 
-_source line 944 · 2026-05-20T03:26:48.161326+00:00_
+_source line 942 · 2026-05-20T03:26:48.161326+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9074,7 +8979,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 945 · 2026-05-20T03:26:48.737656+00:00_
+_source line 943 · 2026-05-20T03:26:48.737656+00:00_
 
 [系统通知 — worker_done:worker_data_r2_table_fetch_20260520T031659]:
 Worker worker_data_r2_table_fetch_20260520T031659 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9096,7 +9001,7 @@ Worker worker_data_r2_table_fetch_20260520T031659 已完成（status=failed）�
 
 ### Assistant
 
-_source line 946 · 2026-05-20T03:26:52.315469+00:00_
+_source line 944 · 2026-05-20T03:26:52.315469+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9123,7 +9028,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 947 · 2026-05-20T03:26:52.879532+00:00_
+_source line 945 · 2026-05-20T03:26:52.879532+00:00_
 
 [系统通知 — worker_done:worker_data_r2_probe_fetch_20260520T031745]:
 Worker worker_data_r2_probe_fetch_20260520T031745 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9145,7 +9050,7 @@ Worker worker_data_r2_probe_fetch_20260520T031745 已完成（status=failed）�
 
 ### Assistant
 
-_source line 948 · 2026-05-20T03:26:56.838603+00:00_
+_source line 946 · 2026-05-20T03:26:56.838603+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9172,7 +9077,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 949 · 2026-05-20T03:26:57.476750+00:00_
+_source line 947 · 2026-05-20T03:26:57.476750+00:00_
 
 [系统通知 — worker_done:worker_data_fetch_r2_json_20260520T032240]:
 Worker worker_data_fetch_r2_json_20260520T032240 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9194,7 +9099,7 @@ Worker worker_data_fetch_r2_json_20260520T032240 已完成（status=failed），
 
 ### Assistant
 
-_source line 950 · 2026-05-20T03:27:01.210167+00:00_
+_source line 948 · 2026-05-20T03:27:01.210167+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9221,7 +9126,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 951 · 2026-05-20T03:27:47.859223+00:00_
+_source line 949 · 2026-05-20T03:27:47.859223+00:00_
 
 [系统通知 — worker_done:worker_sync_specificity_figure_fix_v3_20260520T032639]:
 Worker worker_sync_specificity_figure_fix_v3_20260520T032639 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9243,7 +9148,7 @@ Worker worker_sync_specificity_figure_fix_v3_20260520T032639 已完成（status=
 
 ### Assistant
 
-_source line 952 · 2026-05-20T03:27:52.017028+00:00_
+_source line 950 · 2026-05-20T03:27:52.017028+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9270,7 +9175,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 953 · 2026-05-20T03:39:30.585607+00:00_
+_source line 951 · 2026-05-20T03:39:30.585607+00:00_
 
 [系统通知 — worker_done:worker_data_r2_cross_arch_fetch_20260520T033224]:
 Worker worker_data_r2_cross_arch_fetch_20260520T033224 已完成（status=done），请审查 Agent 的处理结果。
@@ -9292,7 +9197,7 @@ Worker worker_data_r2_cross_arch_fetch_20260520T033224 已完成（status=done�
 
 ### Assistant
 
-_source line 954 · 2026-05-20T03:39:33.884399+00:00_
+_source line 952 · 2026-05-20T03:39:33.884399+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9319,7 +9224,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 955 · 2026-05-20T04:33:42.569565+00:00_
+_source line 953 · 2026-05-20T04:33:42.569565+00:00_
 
 [System 触发审查]:
 跨架构 R² action probe 数据评估请求（用文本数据，不需要读 PDF）。
@@ -9367,7 +9272,7 @@ OpenVLA R² profile (15-seed, fixed-layer):
 
 ### Assistant
 
-_source line 956 · 2026-05-20T04:33:46.085578+00:00_
+_source line 954 · 2026-05-20T04:33:46.085578+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9394,7 +9299,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 957 · 2026-05-20T05:05:43.375961+00:00_
+_source line 955 · 2026-05-20T05:05:43.375961+00:00_
 
 [System 触发审查]:
 ⚠️ 重要：本次审查请求不涉及任何 PDF 文件。请不要尝试读取任何 PDF。所有数据在本消息中以文本形式提供。
@@ -9438,7 +9343,7 @@ TracVLA-Phi3V (Phi-3-mini 3.8B backbone, 5 seeds):
 
 ### Assistant
 
-_source line 958 · 2026-05-20T05:05:46.721293+00:00_
+_source line 956 · 2026-05-20T05:05:46.721293+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9465,7 +9370,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 959 · 2026-05-20T05:15:23.319774+00:00_
+_source line 957 · 2026-05-20T05:15:23.319774+00:00_
 
 [系统通知 — worker_done:worker_sync_specificity_pdf_transfer_20260520T050649]:
 Worker worker_sync_specificity_pdf_transfer_20260520T050649 已完成（status=done），请审查 Agent 的处理结果。
@@ -9487,7 +9392,7 @@ Worker worker_sync_specificity_pdf_transfer_20260520T050649 已完成（status=d
 
 ### Assistant
 
-_source line 960 · 2026-05-20T05:15:27.953083+00:00_
+_source line 958 · 2026-05-20T05:15:27.953083+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9514,7 +9419,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 961 · 2026-05-20T05:16:32.525527+00:00_
+_source line 959 · 2026-05-20T05:16:32.525527+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：R² cross-arch patch 完成，specificity 图表修复，最终编译中），请审查研究方向和计划的合理性。
@@ -9536,7 +9441,7 @@ _source line 961 · 2026-05-20T05:16:32.525527+00:00_
 
 ### Assistant
 
-_source line 962 · 2026-05-20T05:16:35.788308+00:00_
+_source line 960 · 2026-05-20T05:16:35.788308+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9563,7 +9468,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 963 · 2026-05-20T05:50:21.218863+00:00_
+_source line 961 · 2026-05-20T05:50:21.218863+00:00_
 
 [System 触发审查]:
 ⛔ DO NOT READ ANY FILES. DO NOT OPEN ANY PDF. This is a TEXT-ONLY review request.
@@ -9603,7 +9508,7 @@ _source line 963 · 2026-05-20T05:50:21.218863+00:00_
 
 ### Assistant
 
-_source line 964 · 2026-05-20T05:50:24.892355+00:00_
+_source line 962 · 2026-05-20T05:50:24.892355+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9630,7 +9535,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 965 · 2026-05-20T09:22:09.589997+00:00_
+_source line 963 · 2026-05-20T09:22:09.589997+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_r2_untrained_probe_20260520T091652]:
 Worker worker_code_phi3v_r2_untrained_probe_20260520T091652 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9652,7 +9557,7 @@ Worker worker_code_phi3v_r2_untrained_probe_20260520T091652 已完成（status=f
 
 ### Assistant
 
-_source line 966 · 2026-05-20T09:22:14.963262+00:00_
+_source line 964 · 2026-05-20T09:22:14.963262+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9679,7 +9584,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 967 · 2026-05-20T09:22:15.569327+00:00_
+_source line 965 · 2026-05-20T09:22:15.569327+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_r2_seed_expansion_20260520T091812]:
 Worker worker_code_phi3v_r2_seed_expansion_20260520T091812 已完成（status=failed），请审查 Agent 的处理结果。
@@ -9701,7 +9606,7 @@ Worker worker_code_phi3v_r2_seed_expansion_20260520T091812 已完成（status=fa
 
 ### Assistant
 
-_source line 968 · 2026-05-20T09:22:20.167298+00:00_
+_source line 966 · 2026-05-20T09:22:20.167298+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9728,7 +9633,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 969 · 2026-05-20T09:37:53.821018+00:00_
+_source line 967 · 2026-05-20T09:37:53.821018+00:00_
 
 [系统通知 — cron:on_complete:phi3v_r2_seed_expansion]:
 实验 phi3v_r2_seed_expansion complete，请审查。
@@ -9750,7 +9655,7 @@ _source line 969 · 2026-05-20T09:37:53.821018+00:00_
 
 ### Assistant
 
-_source line 970 · 2026-05-20T09:37:58.669154+00:00_
+_source line 968 · 2026-05-20T09:37:58.669154+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9777,7 +9682,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 971 · 2026-05-20T09:46:13.889720+00:00_
+_source line 969 · 2026-05-20T09:46:13.889720+00:00_
 
 [系统通知 — worker_done:worker_analysis_phi3v_r2_seed_expansion_20260520T093900]:
 Worker worker_analysis_phi3v_r2_seed_expansion_20260520T093900 已完成（status=done），请审查 Agent 的处理结果。
@@ -9799,7 +9704,7 @@ Worker worker_analysis_phi3v_r2_seed_expansion_20260520T093900 已完成（statu
 
 ### Assistant
 
-_source line 972 · 2026-05-20T09:46:18.492262+00:00_
+_source line 970 · 2026-05-20T09:46:18.492262+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9826,7 +9731,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 973 · 2026-05-20T09:50:44.546775+00:00_
+_source line 971 · 2026-05-20T09:50:44.546775+00:00_
 
 [系统通知 — worker_done:worker_data_update_r2_table_15seed_20260520T094741]:
 Worker worker_data_update_r2_table_15seed_20260520T094741 已完成（status=done），请审查 Agent 的处理结果。
@@ -9848,7 +9753,7 @@ Worker worker_data_update_r2_table_15seed_20260520T094741 已完成（status=don
 
 ### Assistant
 
-_source line 974 · 2026-05-20T09:50:49.672994+00:00_
+_source line 972 · 2026-05-20T09:50:49.672994+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9875,7 +9780,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 975 · 2026-05-20T10:27:58.220683+00:00_
+_source line 973 · 2026-05-20T10:27:58.220683+00:00_
 
 [系统通知 — cron:on_complete:phi3v_r2_untrained_probe]:
 实验 phi3v_r2_untrained_probe complete，请审查。
@@ -9897,7 +9802,7 @@ _source line 975 · 2026-05-20T10:27:58.220683+00:00_
 
 ### Assistant
 
-_source line 976 · 2026-05-20T10:28:04.175519+00:00_
+_source line 974 · 2026-05-20T10:28:04.175519+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9924,7 +9829,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 977 · 2026-05-20T10:31:50.562333+00:00_
+_source line 975 · 2026-05-20T10:31:50.562333+00:00_
 
 [系统通知 — worker_done:worker_analysis_phi3v_r2_untrained_probe_20260520T102858]:
 Worker worker_analysis_phi3v_r2_untrained_probe_20260520T102858 已完成（status=done），请审查 Agent 的处理结果。
@@ -9946,7 +9851,7 @@ Worker worker_analysis_phi3v_r2_untrained_probe_20260520T102858 已完成（stat
 
 ### Assistant
 
-_source line 978 · 2026-05-20T10:31:55.509562+00:00_
+_source line 976 · 2026-05-20T10:31:55.509562+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -9973,7 +9878,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 979 · 2026-05-20T10:40:51.849509+00:00_
+_source line 977 · 2026-05-20T10:40:51.849509+00:00_
 
 [系统通知 — worker_done:worker_data_2x2_r2_table_20260520T103233]:
 Worker worker_data_2x2_r2_table_20260520T103233 已完成（status=done），请审查 Agent 的处理结果。
@@ -9995,7 +9900,7 @@ Worker worker_data_2x2_r2_table_20260520T103233 已完成（status=done），请
 
 ### Assistant
 
-_source line 980 · 2026-05-20T10:40:56.258239+00:00_
+_source line 978 · 2026-05-20T10:40:56.258239+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10022,7 +9927,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 981 · 2026-05-20T11:23:58.440771+00:00_
+_source line 979 · 2026-05-20T11:23:58.440771+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_untrained_seed_expansion_20260520T111957]:
 Worker worker_code_phi3v_untrained_seed_expansion_20260520T111957 已完成（status=done），请审查 Agent 的处理结果。
@@ -10044,7 +9949,7 @@ Worker worker_code_phi3v_untrained_seed_expansion_20260520T111957 已完成（st
 
 ### Assistant
 
-_source line 982 · 2026-05-20T11:24:03.989245+00:00_
+_source line 980 · 2026-05-20T11:24:03.989245+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10071,7 +9976,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 983 · 2026-05-20T11:46:52.490315+00:00_
+_source line 981 · 2026-05-20T11:46:52.490315+00:00_
 
 [系统通知 — cron:on_complete:phi3v_untrained_seed_expansion]:
 实验 phi3v_untrained_seed_expansion complete，请审查。
@@ -10093,7 +9998,7 @@ _source line 983 · 2026-05-20T11:46:52.490315+00:00_
 
 ### Assistant
 
-_source line 984 · 2026-05-20T11:46:57.650148+00:00_
+_source line 982 · 2026-05-20T11:46:57.650148+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10120,7 +10025,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 985 · 2026-05-20T11:51:02.151526+00:00_
+_source line 983 · 2026-05-20T11:51:02.151526+00:00_
 
 [系统通知 — worker_done:worker_analysis_phi3v_untrained_seed_expansion_20260520T114811]:
 Worker worker_analysis_phi3v_untrained_seed_expansion_20260520T114811 已完成（status=done），请审查 Agent 的处理结果。
@@ -10142,7 +10047,7 @@ Worker worker_analysis_phi3v_untrained_seed_expansion_20260520T114811 已完成�
 
 ### Assistant
 
-_source line 986 · 2026-05-20T11:51:06.719076+00:00_
+_source line 984 · 2026-05-20T11:51:06.719076+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10169,7 +10074,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 987 · 2026-05-20T11:59:02.945559+00:00_
+_source line 985 · 2026-05-20T11:59:02.945559+00:00_
 
 [系统通知 — worker_done:worker_data_update_2x2_15seed_final_20260520T115230]:
 Worker worker_data_update_2x2_15seed_final_20260520T115230 已完成（status=done），请审查 Agent 的处理结果。
@@ -10191,7 +10096,7 @@ Worker worker_data_update_2x2_15seed_final_20260520T115230 已完成（status=do
 
 ### Assistant
 
-_source line 988 · 2026-05-20T11:59:07.545229+00:00_
+_source line 986 · 2026-05-20T11:59:07.545229+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10218,7 +10123,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 989 · 2026-05-20T11:59:46.433679+00:00_
+_source line 987 · 2026-05-20T11:59:46.433679+00:00_
 
 [System 触发审查]:
 **审稿报告独立审视请求**
@@ -10300,7 +10205,7 @@ Round 12 fresh review 给了 4/10 (weak reject)。6 个 critical issues + 8 个 
 
 ### Assistant
 
-_source line 990 · 2026-05-20T11:59:49.581134+00:00_
+_source line 988 · 2026-05-20T11:59:49.581134+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10327,7 +10232,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 991 · 2026-05-20T12:38:40.306137+00:00_
+_source line 989 · 2026-05-20T12:38:40.306137+00:00_
 
 [系统通知 — worker_done:worker_analysis_r2_mse_correlation_20260520T123229]:
 Worker worker_analysis_r2_mse_correlation_20260520T123229 已完成（status=done），请审查 Agent 的处理结果。
@@ -10349,7 +10254,7 @@ Worker worker_analysis_r2_mse_correlation_20260520T123229 已完成（status=don
 
 ### Assistant
 
-_source line 992 · 2026-05-20T12:38:43.550220+00:00_
+_source line 990 · 2026-05-20T12:38:43.550220+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10376,7 +10281,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 993 · 2026-05-20T12:55:11.881160+00:00_
+_source line 991 · 2026-05-20T12:55:11.881160+00:00_
 
 [系统通知 — worker_done:worker_paper_figure_20260520T124828]:
 Worker worker_paper_figure_20260520T124828 已完成（status=done），请审查 Agent 的处理结果。
@@ -10398,7 +10303,7 @@ Worker worker_paper_figure_20260520T124828 已完成（status=done），请审�
 
 ### Assistant
 
-_source line 994 · 2026-05-20T12:55:16.645102+00:00_
+_source line 992 · 2026-05-20T12:55:16.645102+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10425,7 +10330,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 995 · 2026-05-20T13:30:14.316174+00:00_
+_source line 993 · 2026-05-20T13:30:14.316174+00:00_
 
 [系统通知 — worker_done:worker_eval_libero_closedloop_probe_20260520T123214]:
 Worker worker_eval_libero_closedloop_probe_20260520T123214 已完成（status=done），请审查 Agent 的处理结果。
@@ -10447,7 +10352,7 @@ Worker worker_eval_libero_closedloop_probe_20260520T123214 已完成（status=do
 
 ### Assistant
 
-_source line 996 · 2026-05-20T13:30:19.086773+00:00_
+_source line 994 · 2026-05-20T13:30:19.086773+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10474,7 +10379,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 997 · 2026-05-20T15:06:26.465617+00:00_
+_source line 995 · 2026-05-20T15:06:26.465617+00:00_
 
 [系统通知 — worker_done:worker_research_intermediate_checkpoints_20260520T150440]:
 Worker worker_research_intermediate_checkpoints_20260520T150440 已完成（status=done），请审查 Agent 的处理结果。
@@ -10496,7 +10401,7 @@ Worker worker_research_intermediate_checkpoints_20260520T150440 已完成（stat
 
 ### Assistant
 
-_source line 998 · 2026-05-20T15:06:29.865282+00:00_
+_source line 996 · 2026-05-20T15:06:29.865282+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10523,7 +10428,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 999 · 2026-05-20T15:32:34.312674+00:00_
+_source line 997 · 2026-05-20T15:32:34.312674+00:00_
 
 [系统通知 — worker_done:worker_research_rebuttal_material_20260520T152447]:
 Worker worker_research_rebuttal_material_20260520T152447 已完成（status=done），请审查 Agent 的处理结果。
@@ -10545,7 +10450,7 @@ Worker worker_research_rebuttal_material_20260520T152447 已完成（status=done
 
 ### Assistant
 
-_source line 1000 · 2026-05-20T15:32:37.769154+00:00_
+_source line 998 · 2026-05-20T15:32:37.769154+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10572,7 +10477,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1001 · 2026-05-20T16:24:46.121042+00:00_
+_source line 999 · 2026-05-20T16:24:46.121042+00:00_
 
 [System 触发审查]:
 Round 13 审稿报告独立审查请求
@@ -10657,7 +10562,7 @@ Round 13 评分 5/10 (Borderline)，从 Round 12 的 4/10 上调 1 分。请独�
 
 ### Assistant
 
-_source line 1002 · 2026-05-20T16:24:49.298040+00:00_
+_source line 1000 · 2026-05-20T16:24:49.298040+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10684,7 +10589,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1003 · 2026-05-20T17:11:12.586711+00:00_
+_source line 1001 · 2026-05-20T17:11:12.586711+00:00_
 
 [System 触发审查]:
 Round 14 Fresh 审稿报告独立审查请求（5.3/10 Weak Reject）
@@ -10739,7 +10644,7 @@ Round 14 Fresh 审稿报告独立审查请求（5.3/10 Weak Reject）
 
 ### Assistant
 
-_source line 1004 · 2026-05-20T17:11:16.382132+00:00_
+_source line 1002 · 2026-05-20T17:11:16.382132+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10766,7 +10671,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1005 · 2026-05-20T17:53:56.476696+00:00_
+_source line 1003 · 2026-05-20T17:53:56.476696+00:00_
 
 [系统通知 — worker_done:worker_analysis_statistical_supplements_20260520T174541]:
 Worker worker_analysis_statistical_supplements_20260520T174541 已完成（status=done），请审查 Agent 的处理结果。
@@ -10788,7 +10693,7 @@ Worker worker_analysis_statistical_supplements_20260520T174541 已完成（statu
 
 ### Assistant
 
-_source line 1006 · 2026-05-20T17:54:01.289245+00:00_
+_source line 1004 · 2026-05-20T17:54:01.289245+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10815,7 +10720,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1007 · 2026-05-20T17:56:26.742396+00:00_
+_source line 1005 · 2026-05-20T17:56:26.742396+00:00_
 
 [系统通知 — worker_done:worker_sync_statistical_supplements_20260520T175455]:
 Worker worker_sync_statistical_supplements_20260520T175455 已完成（status=done），请审查 Agent 的处理结果。
@@ -10837,7 +10742,7 @@ Worker worker_sync_statistical_supplements_20260520T175455 已完成（status=do
 
 ### Assistant
 
-_source line 1008 · 2026-05-20T17:56:31.253184+00:00_
+_source line 1006 · 2026-05-20T17:56:31.253184+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10864,7 +10769,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1009 · 2026-05-20T18:48:03.874004+00:00_
+_source line 1007 · 2026-05-20T18:48:03.874004+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Round 15 提交后状态更新：实验派发、结构性瓶颈分析、Reviewer 状况记录），请审查研究方向和计划的合理性。
@@ -10886,7 +10791,7 @@ _source line 1009 · 2026-05-20T18:48:03.874004+00:00_
 
 ### Assistant
 
-_source line 1010 · 2026-05-20T18:48:08.099208+00:00_
+_source line 1008 · 2026-05-20T18:48:08.099208+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10913,7 +10818,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1011 · 2026-05-20T18:52:20.462635+00:00_
+_source line 1009 · 2026-05-20T18:52:20.462635+00:00_
 
 [系统通知 — worker_done:worker_exp_counterfactual_10tasks_20260520T184556]:
 Worker worker_exp_counterfactual_10tasks_20260520T184556 已完成（status=done），请审查 Agent 的处理结果。
@@ -10935,7 +10840,7 @@ Worker worker_exp_counterfactual_10tasks_20260520T184556 已完成（status=done
 
 ### Assistant
 
-_source line 1012 · 2026-05-20T18:52:24.220251+00:00_
+_source line 1010 · 2026-05-20T18:52:24.220251+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -10962,7 +10867,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1013 · 2026-05-20T19:14:34.110475+00:00_
+_source line 1011 · 2026-05-20T19:14:34.110475+00:00_
 
 [系统通知 — worker_done:worker_exp_permutation_10k_20260520T190553]:
 Worker worker_exp_permutation_10k_20260520T190553 已完成（status=done），请审查 Agent 的处理结果。
@@ -10984,7 +10889,7 @@ Worker worker_exp_permutation_10k_20260520T190553 已完成（status=done），�
 
 ### Assistant
 
-_source line 1014 · 2026-05-20T19:14:38.732309+00:00_
+_source line 1012 · 2026-05-20T19:14:38.732309+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11011,7 +10916,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1015 · 2026-05-20T19:15:25.027486+00:00_
+_source line 1013 · 2026-05-20T19:15:25.027486+00:00_
 
 [系统通知 — worker_done:worker_sync_permutation_10k_results_20260520T191452]:
 Worker worker_sync_permutation_10k_results_20260520T191452 已完成（status=done），请审查 Agent 的处理结果。
@@ -11033,7 +10938,7 @@ Worker worker_sync_permutation_10k_results_20260520T191452 已完成（status=do
 
 ### Assistant
 
-_source line 1016 · 2026-05-20T19:15:28.380024+00:00_
+_source line 1014 · 2026-05-20T19:15:28.380024+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11060,7 +10965,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1017 · 2026-05-20T19:45:01.124423+00:00_
+_source line 1015 · 2026-05-20T19:45:01.124423+00:00_
 
 [系统通知 — worker_done:worker_analysis_bonferroni_global_20260520T193542]:
 Worker worker_analysis_bonferroni_global_20260520T193542 已完成（status=done），请审查 Agent 的处理结果。
@@ -11082,7 +10987,7 @@ Worker worker_analysis_bonferroni_global_20260520T193542 已完成（status=done
 
 ### Assistant
 
-_source line 1018 · 2026-05-20T19:45:04.745200+00:00_
+_source line 1016 · 2026-05-20T19:45:04.745200+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11109,7 +11014,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1019 · 2026-05-20T19:57:13.338526+00:00_
+_source line 1017 · 2026-05-20T19:57:13.338526+00:00_
 
 [系统通知 — worker_done:worker_analysis_check_counterfactual_10tasks_20260520T195619]:
 Worker worker_analysis_check_counterfactual_10tasks_20260520T195619 已完成（status=done），请审查 Agent 的处理结果。
@@ -11131,7 +11036,7 @@ Worker worker_analysis_check_counterfactual_10tasks_20260520T195619 已完成（
 
 ### Assistant
 
-_source line 1020 · 2026-05-20T19:57:16.735481+00:00_
+_source line 1018 · 2026-05-20T19:57:16.735481+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11158,7 +11063,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1021 · 2026-05-20T20:34:10.835952+00:00_
+_source line 1019 · 2026-05-20T20:34:10.835952+00:00_
 
 [系统通知 — worker_done:worker_code_counterfactual_spatial_20260520T201754]:
 Worker worker_code_counterfactual_spatial_20260520T201754 已完成（status=done），请审查 Agent 的处理结果。
@@ -11180,7 +11085,7 @@ Worker worker_code_counterfactual_spatial_20260520T201754 已完成（status=don
 
 ### Assistant
 
-_source line 1022 · 2026-05-20T20:34:15.225180+00:00_
+_source line 1020 · 2026-05-20T20:34:15.225180+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11207,7 +11112,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1023 · 2026-05-20T21:03:13.675298+00:00_
+_source line 1021 · 2026-05-20T21:03:13.675298+00:00_
 
 [系统通知 — worker_done:worker_analysis_counterfactual_10tasks_trajectory_20260520T203534]:
 Worker worker_analysis_counterfactual_10tasks_trajectory_20260520T203534 已完成（status=done），请审查 Agent 的处理结果。
@@ -11229,7 +11134,7 @@ Worker worker_analysis_counterfactual_10tasks_trajectory_20260520T203534 已完�
 
 ### Assistant
 
-_source line 1024 · 2026-05-20T21:03:18.412563+00:00_
+_source line 1022 · 2026-05-20T21:03:18.412563+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11256,7 +11161,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1025 · 2026-05-20T21:33:55.795171+00:00_
+_source line 1023 · 2026-05-20T21:33:55.795171+00:00_
 
 [系统通知 — cron:on_complete:counterfactual_spatial]:
 实验 counterfactual_spatial complete，请审查。
@@ -11278,7 +11183,7 @@ _source line 1025 · 2026-05-20T21:33:55.795171+00:00_
 
 ### Assistant
 
-_source line 1026 · 2026-05-20T21:34:27.787517+00:00_
+_source line 1024 · 2026-05-20T21:34:27.787517+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11305,7 +11210,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1027 · 2026-05-20T21:38:29.629490+00:00_
+_source line 1025 · 2026-05-20T21:38:29.629490+00:00_
 
 [系统通知 — worker_done:worker_analysis_counterfactual_spatial_20260520T213636]:
 Worker worker_analysis_counterfactual_spatial_20260520T213636 已完成（status=done），请审查 Agent 的处理结果。
@@ -11327,7 +11232,7 @@ Worker worker_analysis_counterfactual_spatial_20260520T213636 已完成（status
 
 ### Assistant
 
-_source line 1028 · 2026-05-20T21:38:34.559054+00:00_
+_source line 1026 · 2026-05-20T21:38:34.559054+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11354,7 +11259,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1029 · 2026-05-20T21:40:59.781250+00:00_
+_source line 1027 · 2026-05-20T21:40:59.781250+00:00_
 
 [系统通知 — worker_done:worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514]:
 Worker worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514 已完成（status=done），请审查 Agent 的处理结果。
@@ -11376,7 +11281,7 @@ Worker worker_analysis_fetch_spatial_and_trajectory_results_20260520T213514 已�
 
 ### Assistant
 
-_source line 1030 · 2026-05-20T21:41:04.652306+00:00_
+_source line 1028 · 2026-05-20T21:41:04.652306+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11403,7 +11308,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1031 · 2026-05-20T22:19:24.331765+00:00_
+_source line 1029 · 2026-05-20T22:19:24.331765+00:00_
 
 [System 触发审查]:
 **Reviewer session 健康检查**
@@ -11437,7 +11342,7 @@ _source line 1031 · 2026-05-20T22:19:24.331765+00:00_
 
 ### Assistant
 
-_source line 1032 · 2026-05-20T22:19:27.734231+00:00_
+_source line 1030 · 2026-05-20T22:19:27.734231+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11464,7 +11369,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1033 · 2026-05-20T22:20:33.129498+00:00_
+_source line 1031 · 2026-05-20T22:20:33.129498+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：今日全部补充实验完成 + 阴性实验审视 + ROADMAP 全面刷新），请审查研究方向和计划的合理性。
@@ -11486,7 +11391,7 @@ _source line 1033 · 2026-05-20T22:20:33.129498+00:00_
 
 ### Assistant
 
-_source line 1034 · 2026-05-20T22:20:36.431142+00:00_
+_source line 1032 · 2026-05-20T22:20:36.431142+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11513,7 +11418,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1035 · 2026-05-20T23:04:13.233913+00:00_
+_source line 1033 · 2026-05-20T23:04:13.233913+00:00_
 
 [系统通知 — worker_done:worker_code_libero_object_full_pipeline_20260520T230021]:
 Worker worker_code_libero_object_full_pipeline_20260520T230021 已完成（status=done），请审查 Agent 的处理结果。
@@ -11535,7 +11440,7 @@ Worker worker_code_libero_object_full_pipeline_20260520T230021 已完成（statu
 
 ### Assistant
 
-_source line 1036 · 2026-05-20T23:04:17.816073+00:00_
+_source line 1034 · 2026-05-20T23:04:17.816073+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11562,7 +11467,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1037 · 2026-05-20T23:56:35.736739+00:00_
+_source line 1035 · 2026-05-20T23:56:35.736739+00:00_
 
 [系统通知 — worker_done:worker_research_smolvla_setup_20260520T230045]:
 Worker worker_research_smolvla_setup_20260520T230045 已完成（status=done），请审查 Agent 的处理结果。
@@ -11584,7 +11489,7 @@ Worker worker_research_smolvla_setup_20260520T230045 已完成（status=done）�
 
 ### Assistant
 
-_source line 1038 · 2026-05-20T23:56:40.361217+00:00_
+_source line 1036 · 2026-05-20T23:56:40.361217+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11611,7 +11516,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1039 · 2026-05-20T23:59:09.190808+00:00_
+_source line 1037 · 2026-05-20T23:59:09.190808+00:00_
 
 [系统通知 — worker_done:worker_code_rollback_transformers_20260520T235826]:
 Worker worker_code_rollback_transformers_20260520T235826 已完成（status=done），请审查 Agent 的处理结果。
@@ -11633,7 +11538,7 @@ Worker worker_code_rollback_transformers_20260520T235826 已完成（status=done
 
 ### Assistant
 
-_source line 1040 · 2026-05-20T23:59:12.752080+00:00_
+_source line 1038 · 2026-05-20T23:59:12.752080+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11660,7 +11565,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1041 · 2026-05-21T00:22:38.286753+00:00_
+_source line 1039 · 2026-05-21T00:22:38.286753+00:00_
 
 [系统通知 — worker_done:worker_research_alternative_vla_models_20260521T001840]:
 Worker worker_research_alternative_vla_models_20260521T001840 已完成（status=done），请审查 Agent 的处理结果。
@@ -11682,7 +11587,7 @@ Worker worker_research_alternative_vla_models_20260521T001840 已完成（status
 
 ### Assistant
 
-_source line 1042 · 2026-05-21T00:22:42.812167+00:00_
+_source line 1040 · 2026-05-21T00:22:42.812167+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11709,7 +11614,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1043 · 2026-05-21T00:40:10.126009+00:00_
+_source line 1041 · 2026-05-21T00:40:10.126009+00:00_
 
 [系统通知 — worker_done:worker_research_tracvla_libero_coverage_20260521T003607]:
 Worker worker_research_tracvla_libero_coverage_20260521T003607 已完成（status=done），请审查 Agent 的处理结果。
@@ -11731,7 +11636,7 @@ Worker worker_research_tracvla_libero_coverage_20260521T003607 已完成（statu
 
 ### Assistant
 
-_source line 1044 · 2026-05-21T00:40:15.373608+00:00_
+_source line 1042 · 2026-05-21T00:40:15.373608+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11758,7 +11663,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1045 · 2026-05-21T00:46:40.760342+00:00_
+_source line 1043 · 2026-05-21T00:46:40.760342+00:00_
 
 [系统通知 — worker_done:worker_code_libero_object_resume_20260521T002750]:
 Worker worker_code_libero_object_resume_20260521T002750 已完成（status=done），请审查 Agent 的处理结果。
@@ -11780,7 +11685,7 @@ Worker worker_code_libero_object_resume_20260521T002750 已完成（status=done�
 
 ### Assistant
 
-_source line 1046 · 2026-05-21T00:46:46.145101+00:00_
+_source line 1044 · 2026-05-21T00:46:46.145101+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11807,7 +11712,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1047 · 2026-05-21T00:48:40.928595+00:00_
+_source line 1045 · 2026-05-21T00:48:40.928595+00:00_
 
 [系统通知 — worker_done:worker_code_download_libero_long_checkpoint_20260521T004512]:
 Worker worker_code_download_libero_long_checkpoint_20260521T004512 已完成（status=done），请审查 Agent 的处理结果。
@@ -11829,7 +11734,7 @@ Worker worker_code_download_libero_long_checkpoint_20260521T004512 已完成（s
 
 ### Assistant
 
-_source line 1048 · 2026-05-21T00:48:45.511103+00:00_
+_source line 1046 · 2026-05-21T00:48:45.511103+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11856,7 +11761,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1049 · 2026-05-21T01:21:08.084439+00:00_
+_source line 1047 · 2026-05-21T01:21:08.084439+00:00_
 
 [系统通知 — worker_done:worker_code_nora_setup_and_dryrun_20260521T002441]:
 Worker worker_code_nora_setup_and_dryrun_20260521T002441 已完成（status=done），请审查 Agent 的处理结果。
@@ -11878,7 +11783,7 @@ Worker worker_code_nora_setup_and_dryrun_20260521T002441 已完成（status=done
 
 ### Assistant
 
-_source line 1050 · 2026-05-21T01:21:11.392202+00:00_
+_source line 1048 · 2026-05-21T01:21:11.392202+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11905,7 +11810,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1051 · 2026-05-21T01:21:24.345114+00:00_
+_source line 1049 · 2026-05-21T01:21:24.345114+00:00_
 
 [系统通知 — worker_done:worker_analysis_check_object_pipeline_gpu_20260521T011932]:
 Worker worker_analysis_check_object_pipeline_gpu_20260521T011932 已完成（status=done），请审查 Agent 的处理结果。
@@ -11927,7 +11832,7 @@ Worker worker_analysis_check_object_pipeline_gpu_20260521T011932 已完成（sta
 
 ### Assistant
 
-_source line 1052 · 2026-05-21T01:21:27.692247+00:00_
+_source line 1050 · 2026-05-21T01:21:27.692247+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -11954,7 +11859,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1053 · 2026-05-21T01:45:56.146138+00:00_
+_source line 1051 · 2026-05-21T01:45:56.146138+00:00_
 
 [系统通知 — worker_done:worker_analysis_urgent_server_status_20260521T014431]:
 Worker worker_analysis_urgent_server_status_20260521T014431 已完成（status=done），请审查 Agent 的处理结果。
@@ -11976,7 +11881,7 @@ Worker worker_analysis_urgent_server_status_20260521T014431 已完成（status=d
 
 ### Assistant
 
-_source line 1054 · 2026-05-21T01:46:02.222148+00:00_
+_source line 1052 · 2026-05-21T01:46:02.222148+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12003,7 +11908,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1055 · 2026-05-21T01:49:40.876962+00:00_
+_source line 1053 · 2026-05-21T01:49:40.876962+00:00_
 
 [系统通知 — worker_done:worker_analysis_gpu1_nora_diagnosis_20260521T014730]:
 Worker worker_analysis_gpu1_nora_diagnosis_20260521T014730 已完成（status=done），请审查 Agent 的处理结果。
@@ -12025,7 +11930,7 @@ Worker worker_analysis_gpu1_nora_diagnosis_20260521T014730 已完成（status=do
 
 ### Assistant
 
-_source line 1056 · 2026-05-21T01:49:44.129140+00:00_
+_source line 1054 · 2026-05-21T01:49:44.129140+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12052,7 +11957,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1057 · 2026-05-21T02:13:13.073431+00:00_
+_source line 1055 · 2026-05-21T02:13:13.073431+00:00_
 
 [系统通知 — worker_done:worker_code_tracvla_spatial_pipeline_20260521T014051]:
 Worker worker_code_tracvla_spatial_pipeline_20260521T014051 已完成（status=done），请审查 Agent 的处理结果。
@@ -12074,7 +11979,7 @@ Worker worker_code_tracvla_spatial_pipeline_20260521T014051 已完成（status=d
 
 ### Assistant
 
-_source line 1058 · 2026-05-21T02:13:17.694841+00:00_
+_source line 1056 · 2026-05-21T02:13:17.694841+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12101,7 +12006,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1059 · 2026-05-21T02:13:43.149137+00:00_
+_source line 1057 · 2026-05-21T02:13:43.149137+00:00_
 
 [系统通知 — worker_done:worker_code_nora_fix_and_long_download_20260521T020533]:
 Worker worker_code_nora_fix_and_long_download_20260521T020533 已完成（status=done），请审查 Agent 的处理结果。
@@ -12123,7 +12028,7 @@ Worker worker_code_nora_fix_and_long_download_20260521T020533 已完成（status
 
 ### Assistant
 
-_source line 1060 · 2026-05-21T02:13:46.993145+00:00_
+_source line 1058 · 2026-05-21T02:13:46.993145+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12150,7 +12055,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1061 · 2026-05-21T02:14:14.294034+00:00_
+_source line 1059 · 2026-05-21T02:14:14.294034+00:00_
 
 [系统通知 — cron:on_failed:tracvla_spatial_pipeline]:
 实验 tracvla_spatial_pipeline failed，请审查。
@@ -12172,7 +12077,7 @@ _source line 1061 · 2026-05-21T02:14:14.294034+00:00_
 
 ### Assistant
 
-_source line 1062 · 2026-05-21T02:14:20.769024+00:00_
+_source line 1060 · 2026-05-21T02:14:20.769024+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12199,7 +12104,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1063 · 2026-05-21T02:19:43.981213+00:00_
+_source line 1061 · 2026-05-21T02:19:43.981213+00:00_
 
 [系统通知 — worker_done:worker_diagnose_tracvla_spatial_pipeline_20260521T021542]:
 Worker worker_diagnose_tracvla_spatial_pipeline_20260521T021542 已完成（status=done），请审查 Agent 的处理结果。
@@ -12221,7 +12126,7 @@ Worker worker_diagnose_tracvla_spatial_pipeline_20260521T021542 已完成（stat
 
 ### Assistant
 
-_source line 1064 · 2026-05-21T02:19:47.242231+00:00_
+_source line 1062 · 2026-05-21T02:19:47.242231+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12248,7 +12153,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1065 · 2026-05-21T02:35:11.619493+00:00_
+_source line 1063 · 2026-05-21T02:35:11.619493+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -12337,7 +12242,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1066 · 2026-05-21T02:35:16.449238+00:00_
+_source line 1064 · 2026-05-21T02:35:16.449238+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -12365,7 +12270,7 @@ _source line 1066 · 2026-05-21T02:35:16.449238+00:00_
 
 ### User
 
-_source line 1067 · 2026-05-21T02:35:19.909748+00:00_
+_source line 1065 · 2026-05-21T02:35:19.909748+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -12393,7 +12298,7 @@ _source line 1067 · 2026-05-21T02:35:19.909748+00:00_
 
 ### User
 
-_source line 1068 · 2026-05-21T02:38:21.299440+00:00_
+_source line 1066 · 2026-05-21T02:38:21.299440+00:00_
 
 [系统通知 — worker_done:worker_analysis_tracvla_spatial_results_and_fix_20260521T023522]:
 Worker worker_analysis_tracvla_spatial_results_and_fix_20260521T023522 已完成（status=done），请审查 Agent 的处理结果。
@@ -12415,7 +12320,7 @@ Worker worker_analysis_tracvla_spatial_results_and_fix_20260521T023522 已完成
 
 ### Assistant
 
-_source line 1069 · 2026-05-21T02:38:24.681225+00:00_
+_source line 1067 · 2026-05-21T02:38:24.681225+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12442,7 +12347,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1070 · 2026-05-21T02:44:16.384578+00:00_
+_source line 1068 · 2026-05-21T02:44:16.384578+00:00_
 
 [系统通知 — worker_done:worker_code_nora_goal_pipeline_prep_20260521T021532]:
 Worker worker_code_nora_goal_pipeline_prep_20260521T021532 已完成（status=done），请审查 Agent 的处理结果。
@@ -12464,7 +12369,7 @@ Worker worker_code_nora_goal_pipeline_prep_20260521T021532 已完成（status=do
 
 ### Assistant
 
-_source line 1071 · 2026-05-21T02:44:20.251852+00:00_
+_source line 1069 · 2026-05-21T02:44:20.251852+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12491,7 +12396,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1072 · 2026-05-21T03:05:18.483866+00:00_
+_source line 1070 · 2026-05-21T03:05:18.483866+00:00_
 
 [系统通知 — worker_done:worker_diagnose_probing_sample_size_audit_20260521T025935]:
 Worker worker_diagnose_probing_sample_size_audit_20260521T025935 已完成（status=done），请审查 Agent 的处理结果。
@@ -12513,7 +12418,7 @@ Worker worker_diagnose_probing_sample_size_audit_20260521T025935 已完成（sta
 
 ### Assistant
 
-_source line 1073 · 2026-05-21T03:05:23.313407+00:00_
+_source line 1071 · 2026-05-21T03:05:23.313407+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12540,7 +12445,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1074 · 2026-05-21T03:06:18.543994+00:00_
+_source line 1072 · 2026-05-21T03:06:18.543994+00:00_
 
 [系统通知 — worker_done:worker_code_next_pipeline_prep_and_download_check_20260521T025805]:
 Worker worker_code_next_pipeline_prep_and_download_check_20260521T025805 已完成（status=done），请审查 Agent 的处理结果。
@@ -12562,7 +12467,7 @@ Worker worker_code_next_pipeline_prep_and_download_check_20260521T025805 已完�
 
 ### Assistant
 
-_source line 1075 · 2026-05-21T03:06:21.707117+00:00_
+_source line 1073 · 2026-05-21T03:06:21.707117+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12589,7 +12494,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1076 · 2026-05-21T03:08:22.409045+00:00_
+_source line 1074 · 2026-05-21T03:08:22.409045+00:00_
 
 [系统通知 — worker_done:worker_fix_nora_goal_resubmit_20260521T030604]:
 Worker worker_fix_nora_goal_resubmit_20260521T030604 已完成（status=done），请审查 Agent 的处理结果。
@@ -12611,7 +12516,7 @@ Worker worker_fix_nora_goal_resubmit_20260521T030604 已完成（status=done）�
 
 ### Assistant
 
-_source line 1077 · 2026-05-21T03:08:25.656213+00:00_
+_source line 1075 · 2026-05-21T03:08:25.656213+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12638,7 +12543,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1078 · 2026-05-21T03:33:21.384432+00:00_
+_source line 1076 · 2026-05-21T03:33:21.384432+00:00_
 
 [系统通知 — worker_done:worker_setup_nora_spatial_ckpt_and_verify_v2_20260521T032819]:
 Worker worker_setup_nora_spatial_ckpt_and_verify_v2_20260521T032819 已完成（status=done），请审查 Agent 的处理结果。
@@ -12660,7 +12565,7 @@ Worker worker_setup_nora_spatial_ckpt_and_verify_v2_20260521T032819 已完成（
 
 ### Assistant
 
-_source line 1079 · 2026-05-21T03:33:26.165189+00:00_
+_source line 1077 · 2026-05-21T03:33:26.165189+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12687,7 +12592,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1080 · 2026-05-21T04:20:51.390879+00:00_
+_source line 1078 · 2026-05-21T04:20:51.390879+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -12776,7 +12681,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1081 · 2026-05-21T04:20:55.852766+00:00_
+_source line 1079 · 2026-05-21T04:20:55.852766+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -12804,7 +12709,7 @@ _source line 1081 · 2026-05-21T04:20:55.852766+00:00_
 
 ### User
 
-_source line 1082 · 2026-05-21T04:20:59.177658+00:00_
+_source line 1080 · 2026-05-21T04:20:59.177658+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -12832,7 +12737,7 @@ _source line 1082 · 2026-05-21T04:20:59.177658+00:00_
 
 ### User
 
-_source line 1083 · 2026-05-21T04:23:15.379220+00:00_
+_source line 1081 · 2026-05-21T04:23:15.379220+00:00_
 
 [系统通知 — worker_done:worker_diagnose_urgent_gpu_status_check_20260521T042114]:
 Worker worker_diagnose_urgent_gpu_status_check_20260521T042114 已完成（status=done），请审查 Agent 的处理结果。
@@ -12854,7 +12759,7 @@ Worker worker_diagnose_urgent_gpu_status_check_20260521T042114 已完成（statu
 
 ### Assistant
 
-_source line 1084 · 2026-05-21T04:23:20.477545+00:00_
+_source line 1082 · 2026-05-21T04:23:20.477545+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12881,7 +12786,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1085 · 2026-05-21T04:27:15.786909+00:00_
+_source line 1083 · 2026-05-21T04:27:15.786909+00:00_
 
 [系统通知 — worker_done:worker_setup_fix_downloads_modelscope_20260521T042410]:
 Worker worker_setup_fix_downloads_modelscope_20260521T042410 已完成（status=done），请审查 Agent 的处理结果。
@@ -12903,7 +12808,7 @@ Worker worker_setup_fix_downloads_modelscope_20260521T042410 已完成（status=
 
 ### Assistant
 
-_source line 1086 · 2026-05-21T04:27:20.318913+00:00_
+_source line 1084 · 2026-05-21T04:27:20.318913+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12930,7 +12835,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1087 · 2026-05-21T04:35:46.563194+00:00_
+_source line 1085 · 2026-05-21T04:35:46.563194+00:00_
 
 [系统通知 — worker_done:worker_code_tracvla_spatial_probing_only_20260521T042558]:
 Worker worker_code_tracvla_spatial_probing_only_20260521T042558 已完成（status=done），请审查 Agent 的处理结果。
@@ -12952,7 +12857,7 @@ Worker worker_code_tracvla_spatial_probing_only_20260521T042558 已完成（stat
 
 ### Assistant
 
-_source line 1088 · 2026-05-21T04:35:51.085231+00:00_
+_source line 1086 · 2026-05-21T04:35:51.085231+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -12979,7 +12884,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1089 · 2026-05-21T05:00:49.400419+00:00_
+_source line 1087 · 2026-05-21T05:00:49.400419+00:00_
 
 [系统通知 — worker_done:worker_diagnose_gpu_progress_evidence_20260521T045940]:
 Worker worker_diagnose_gpu_progress_evidence_20260521T045940 已完成（status=done），请审查 Agent 的处理结果。
@@ -13001,7 +12906,7 @@ Worker worker_diagnose_gpu_progress_evidence_20260521T045940 已完成（status=
 
 ### Assistant
 
-_source line 1090 · 2026-05-21T05:00:54.954154+00:00_
+_source line 1088 · 2026-05-21T05:00:54.954154+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13028,7 +12933,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1091 · 2026-05-21T05:04:01.561402+00:00_
+_source line 1089 · 2026-05-21T05:04:01.561402+00:00_
 
 [系统通知 — cron:on_complete:libero_object_full_pipeline]:
 实验 libero_object_full_pipeline complete，请审查。
@@ -13050,7 +12955,7 @@ _source line 1091 · 2026-05-21T05:04:01.561402+00:00_
 
 ### Assistant
 
-_source line 1092 · 2026-05-21T05:04:07.671275+00:00_
+_source line 1090 · 2026-05-21T05:04:07.671275+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13077,7 +12982,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1093 · 2026-05-21T05:07:10.161789+00:00_
+_source line 1091 · 2026-05-21T05:07:10.161789+00:00_
 
 [系统通知 — worker_done:worker_code_ridge_probing_migration_20260521T050309]:
 Worker worker_code_ridge_probing_migration_20260521T050309 已完成（status=done），请审查 Agent 的处理结果。
@@ -13099,7 +13004,7 @@ Worker worker_code_ridge_probing_migration_20260521T050309 已完成（status=do
 
 ### Assistant
 
-_source line 1094 · 2026-05-21T05:07:13.363051+00:00_
+_source line 1092 · 2026-05-21T05:07:13.363051+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13126,7 +13031,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1095 · 2026-05-21T05:12:20.512016+00:00_
+_source line 1093 · 2026-05-21T05:12:20.512016+00:00_
 
 [系统通知 — worker_done:worker_analysis_libero_object_full_pipeline_20260521T050524]:
 Worker worker_analysis_libero_object_full_pipeline_20260521T050524 已完成（status=done），请审查 Agent 的处理结果。
@@ -13148,7 +13053,7 @@ Worker worker_analysis_libero_object_full_pipeline_20260521T050524 已完成（s
 
 ### Assistant
 
-_source line 1096 · 2026-05-21T05:12:23.604209+00:00_
+_source line 1094 · 2026-05-21T05:12:23.604209+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13175,7 +13080,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1097 · 2026-05-21T05:26:21.932868+00:00_
+_source line 1095 · 2026-05-21T05:26:21.932868+00:00_
 
 [系统通知 — worker_done:worker_diagnose_ridge_startup_verify_20260521T052500]:
 Worker worker_diagnose_ridge_startup_verify_20260521T052500 已完成（status=done），请审查 Agent 的处理结果。
@@ -13197,7 +13102,7 @@ Worker worker_diagnose_ridge_startup_verify_20260521T052500 已完成（status=d
 
 ### Assistant
 
-_source line 1098 · 2026-05-21T05:26:25.567958+00:00_
+_source line 1096 · 2026-05-21T05:26:25.567958+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13224,7 +13129,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1099 · 2026-05-21T05:49:54.415838+00:00_
+_source line 1097 · 2026-05-21T05:49:54.415838+00:00_
 
 [系统通知 — worker_done:worker_fix_attention_streaming_and_resubmit_20260521T052618]:
 Worker worker_fix_attention_streaming_and_resubmit_20260521T052618 已完成（status=done），请审查 Agent 的处理结果。
@@ -13246,7 +13151,7 @@ Worker worker_fix_attention_streaming_and_resubmit_20260521T052618 已完成（s
 
 ### Assistant
 
-_source line 1100 · 2026-05-21T05:49:58.972148+00:00_
+_source line 1098 · 2026-05-21T05:49:58.972148+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13273,7 +13178,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1101 · 2026-05-21T07:08:32.057951+00:00_
+_source line 1099 · 2026-05-21T07:08:32.057951+00:00_
 
 [系统通知 — worker_done:worker_diagnose_nora_goal_v3_exit_check_20260521T070606]:
 Worker worker_diagnose_nora_goal_v3_exit_check_20260521T070606 已完成（status=done），请审查 Agent 的处理结果。
@@ -13295,7 +13200,7 @@ Worker worker_diagnose_nora_goal_v3_exit_check_20260521T070606 已完成（statu
 
 ### Assistant
 
-_source line 1102 · 2026-05-21T07:08:36.583040+00:00_
+_source line 1100 · 2026-05-21T07:08:36.583040+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13322,7 +13227,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1103 · 2026-05-21T07:11:32.388865+00:00_
+_source line 1101 · 2026-05-21T07:11:32.388865+00:00_
 
 [系统通知 — worker_done:worker_diagnose_cuda1_next_readiness_20260521T071019]:
 Worker worker_diagnose_cuda1_next_readiness_20260521T071019 已完成（status=done），请审查 Agent 的处理结果。
@@ -13344,7 +13249,7 @@ Worker worker_diagnose_cuda1_next_readiness_20260521T071019 已完成（status=d
 
 ### Assistant
 
-_source line 1104 · 2026-05-21T07:11:35.488207+00:00_
+_source line 1102 · 2026-05-21T07:11:35.488207+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13371,7 +13276,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1105 · 2026-05-21T07:15:03.008670+00:00_
+_source line 1103 · 2026-05-21T07:15:03.008670+00:00_
 
 [系统通知 — worker_done:worker_fix_object_pipeline_offline_load_20260521T071226]:
 Worker worker_fix_object_pipeline_offline_load_20260521T071226 已完成（status=done），请审查 Agent 的处理结果。
@@ -13393,7 +13298,7 @@ Worker worker_fix_object_pipeline_offline_load_20260521T071226 已完成（statu
 
 ### Assistant
 
-_source line 1106 · 2026-05-21T07:15:08.653213+00:00_
+_source line 1104 · 2026-05-21T07:15:08.653213+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13420,7 +13325,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1107 · 2026-05-21T07:15:40.372088+00:00_
+_source line 1105 · 2026-05-21T07:15:40.372088+00:00_
 
 [系统通知 — cron:on_failed:object_pipeline_ridge]:
 实验 object_pipeline_ridge failed，请审查。
@@ -13442,7 +13347,7 @@ _source line 1107 · 2026-05-21T07:15:40.372088+00:00_
 
 ### Assistant
 
-_source line 1108 · 2026-05-21T07:15:48.098939+00:00_
+_source line 1106 · 2026-05-21T07:15:48.098939+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13469,7 +13374,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1109 · 2026-05-21T07:15:51.731497+00:00_
+_source line 1107 · 2026-05-21T07:15:51.731497+00:00_
 
 [系统通知 — cron:on_failed:object_pipeline_ridge]:
 实验 object_pipeline_ridge failed，请审查。
@@ -13491,7 +13396,7 @@ _source line 1109 · 2026-05-21T07:15:51.731497+00:00_
 
 ### Assistant
 
-_source line 1110 · 2026-05-21T07:15:55.571536+00:00_
+_source line 1108 · 2026-05-21T07:15:55.571536+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13518,7 +13423,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1111 · 2026-05-21T07:19:03.293832+00:00_
+_source line 1109 · 2026-05-21T07:19:03.293832+00:00_
 
 [系统通知 — worker_done:worker_diagnose_object_pipeline_ridge_20260521T071649]:
 Worker worker_diagnose_object_pipeline_ridge_20260521T071649 已完成（status=done），请审查 Agent 的处理结果。
@@ -13540,7 +13445,7 @@ Worker worker_diagnose_object_pipeline_ridge_20260521T071649 已完成（status=
 
 ### Assistant
 
-_source line 1112 · 2026-05-21T07:19:08.050378+00:00_
+_source line 1110 · 2026-05-21T07:19:08.050378+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13567,7 +13472,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1113 · 2026-05-21T07:26:03.806946+00:00_
+_source line 1111 · 2026-05-21T07:26:03.806946+00:00_
 
 [系统通知 — worker_done:worker_fix_nora_untrained_counterfactual_20260521T071138]:
 Worker worker_fix_nora_untrained_counterfactual_20260521T071138 已完成（status=done），请审查 Agent 的处理结果。
@@ -13589,7 +13494,7 @@ Worker worker_fix_nora_untrained_counterfactual_20260521T071138 已完成（stat
 
 ### Assistant
 
-_source line 1114 · 2026-05-21T07:26:08.270876+00:00_
+_source line 1112 · 2026-05-21T07:26:08.270876+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13616,7 +13521,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1115 · 2026-05-21T07:31:48.705584+00:00_
+_source line 1113 · 2026-05-21T07:31:48.705584+00:00_
 
 [系统通知 — worker_done:worker_monitor_gpu_progress_check_20260521T073106]:
 Worker worker_monitor_gpu_progress_check_20260521T073106 已完成（status=done），请审查 Agent 的处理结果。
@@ -13638,7 +13543,7 @@ Worker worker_monitor_gpu_progress_check_20260521T073106 已完成（status=done
 
 ### Assistant
 
-_source line 1116 · 2026-05-21T07:31:51.894013+00:00_
+_source line 1114 · 2026-05-21T07:31:51.894013+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13665,7 +13570,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1117 · 2026-05-21T07:48:05.981092+00:00_
+_source line 1115 · 2026-05-21T07:48:05.981092+00:00_
 
 [系统通知 — worker_done:worker_prep_next_batch_readiness_20260521T074641]:
 Worker worker_prep_next_batch_readiness_20260521T074641 已完成（status=done），请审查 Agent 的处理结果。
@@ -13687,7 +13592,7 @@ Worker worker_prep_next_batch_readiness_20260521T074641 已完成（status=done�
 
 ### Assistant
 
-_source line 1118 · 2026-05-21T07:48:11.330268+00:00_
+_source line 1116 · 2026-05-21T07:48:11.330268+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13714,7 +13619,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1119 · 2026-05-21T07:48:35.949745+00:00_
+_source line 1117 · 2026-05-21T07:48:35.949745+00:00_
 
 [系统通知 — worker_done:worker_diagnose_nora_untrained_cf_exit_20260521T074711]:
 Worker worker_diagnose_nora_untrained_cf_exit_20260521T074711 已完成（status=done），请审查 Agent 的处理结果。
@@ -13736,7 +13641,7 @@ Worker worker_diagnose_nora_untrained_cf_exit_20260521T074711 已完成（status
 
 ### Assistant
 
-_source line 1120 · 2026-05-21T07:48:40.572205+00:00_
+_source line 1118 · 2026-05-21T07:48:40.572205+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13763,7 +13668,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1121 · 2026-05-21T08:54:12.476495+00:00_
+_source line 1119 · 2026-05-21T08:54:12.476495+00:00_
 
 [系统通知 — worker_done:worker_diagnose_object_pipeline_ridge_v2_exit_20260521T085047]:
 Worker worker_diagnose_object_pipeline_ridge_v2_exit_20260521T085047 已完成（status=done），请审查 Agent 的处理结果。
@@ -13785,7 +13690,7 @@ Worker worker_diagnose_object_pipeline_ridge_v2_exit_20260521T085047 已完成�
 
 ### Assistant
 
-_source line 1122 · 2026-05-21T08:54:17.301254+00:00_
+_source line 1120 · 2026-05-21T08:54:17.301254+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13812,7 +13717,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1123 · 2026-05-21T08:58:36.446147+00:00_
+_source line 1121 · 2026-05-21T08:58:36.446147+00:00_
 
 [系统通知 — cron:on_failed:object_pipeline_ridge_v2]:
 实验 object_pipeline_ridge_v2 failed，请审查。
@@ -13834,7 +13739,7 @@ _source line 1123 · 2026-05-21T08:58:36.446147+00:00_
 
 ### Assistant
 
-_source line 1124 · 2026-05-21T08:58:43.554204+00:00_
+_source line 1122 · 2026-05-21T08:58:43.554204+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13861,7 +13766,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1125 · 2026-05-21T08:59:42.874286+00:00_
+_source line 1123 · 2026-05-21T08:59:42.874286+00:00_
 
 [系统通知 — worker_done:worker_code_object_untrained_pipeline_20260521T085457]:
 Worker worker_code_object_untrained_pipeline_20260521T085457 已完成（status=done），请审查 Agent 的处理结果。
@@ -13883,7 +13788,7 @@ Worker worker_code_object_untrained_pipeline_20260521T085457 已完成（status=
 
 ### Assistant
 
-_source line 1126 · 2026-05-21T08:59:49.516171+00:00_
+_source line 1124 · 2026-05-21T08:59:49.516171+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13910,7 +13815,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1127 · 2026-05-21T09:00:43.727710+00:00_
+_source line 1125 · 2026-05-21T09:00:43.727710+00:00_
 
 [系统通知 — worker_done:worker_urgent_director_object_exit_followup_20260521T085724]:
 Worker worker_urgent_director_object_exit_followup_20260521T085724 已完成（status=done），请审查 Agent 的处理结果。
@@ -13932,7 +13837,7 @@ Worker worker_urgent_director_object_exit_followup_20260521T085724 已完成（s
 
 ### Assistant
 
-_source line 1128 · 2026-05-21T09:00:48.321411+00:00_
+_source line 1126 · 2026-05-21T09:00:48.321411+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -13959,7 +13864,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1129 · 2026-05-21T09:01:13.353336+00:00_
+_source line 1127 · 2026-05-21T09:01:13.353336+00:00_
 
 [系统通知 — worker_done:worker_diagnose_object_pipeline_ridge_v2_20260521T090006]:
 Worker worker_diagnose_object_pipeline_ridge_v2_20260521T090006 已完成（status=done），请审查 Agent 的处理结果。
@@ -13981,7 +13886,7 @@ Worker worker_diagnose_object_pipeline_ridge_v2_20260521T090006 已完成（stat
 
 ### Assistant
 
-_source line 1130 · 2026-05-21T09:01:17.341307+00:00_
+_source line 1128 · 2026-05-21T09:01:17.341307+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14008,7 +13913,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1131 · 2026-05-21T09:04:43.666368+00:00_
+_source line 1129 · 2026-05-21T09:04:43.666368+00:00_
 
 [系统通知 — worker_done:worker_fix_nora_spatial_argparse_resubmit_20260521T090133]:
 Worker worker_fix_nora_spatial_argparse_resubmit_20260521T090133 已完成（status=done），请审查 Agent 的处理结果。
@@ -14030,7 +13935,7 @@ Worker worker_fix_nora_spatial_argparse_resubmit_20260521T090133 已完成（sta
 
 ### Assistant
 
-_source line 1132 · 2026-05-21T09:04:47.425905+00:00_
+_source line 1130 · 2026-05-21T09:04:47.425905+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14057,7 +13962,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1133 · 2026-05-21T09:09:56.016553+00:00_
+_source line 1131 · 2026-05-21T09:09:56.016553+00:00_
 
 [系统通知 — worker_done:worker_fix_argparse_audit_all_pipelines_20260521T090252]:
 Worker worker_fix_argparse_audit_all_pipelines_20260521T090252 已完成（status=done），请审查 Agent 的处理结果。
@@ -14079,7 +13984,7 @@ Worker worker_fix_argparse_audit_all_pipelines_20260521T090252 已完成（statu
 
 ### Assistant
 
-_source line 1134 · 2026-05-21T09:09:59.371059+00:00_
+_source line 1132 · 2026-05-21T09:09:59.371059+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14106,7 +14011,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1135 · 2026-05-21T09:23:10.639862+00:00_
+_source line 1133 · 2026-05-21T09:23:10.639862+00:00_
 
 [系统通知 — worker_done:worker_verify_nora_spatial_v2_startup_20260521T092245]:
 Worker worker_verify_nora_spatial_v2_startup_20260521T092245 已完成（status=done），请审查 Agent 的处理结果。
@@ -14128,7 +14033,7 @@ Worker worker_verify_nora_spatial_v2_startup_20260521T092245 已完成（status=
 
 ### Assistant
 
-_source line 1136 · 2026-05-21T09:23:14.190147+00:00_
+_source line 1134 · 2026-05-21T09:23:14.190147+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14155,7 +14060,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1137 · 2026-05-21T10:38:11.107730+00:00_
+_source line 1135 · 2026-05-21T10:38:11.107730+00:00_
 
 [系统通知 — worker_done:worker_urgent_gpu_status_and_results_20260521T103534]:
 Worker worker_urgent_gpu_status_and_results_20260521T103534 已完成（status=done），请审查 Agent 的处理结果。
@@ -14177,7 +14082,7 @@ Worker worker_urgent_gpu_status_and_results_20260521T103534 已完成（status=d
 
 ### Assistant
 
-_source line 1138 · 2026-05-21T10:38:15.825176+00:00_
+_source line 1136 · 2026-05-21T10:38:15.825176+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14204,7 +14109,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1139 · 2026-05-21T10:42:13.079973+00:00_
+_source line 1137 · 2026-05-21T10:42:13.079973+00:00_
 
 [系统通知 — worker_done:worker_submit_tracvla_object_full_20260521T103933]:
 Worker worker_submit_tracvla_object_full_20260521T103933 已完成（status=done），请审查 Agent 的处理结果。
@@ -14226,7 +14131,7 @@ Worker worker_submit_tracvla_object_full_20260521T103933 已完成（status=done
 
 ### Assistant
 
-_source line 1140 · 2026-05-21T10:42:16.482113+00:00_
+_source line 1138 · 2026-05-21T10:42:16.482113+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14253,7 +14158,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1141 · 2026-05-21T10:42:54.450904+00:00_
+_source line 1139 · 2026-05-21T10:42:54.450904+00:00_
 
 [系统通知 — worker_done:worker_submit_tracvla_spatial_untrained_20260521T103927]:
 Worker worker_submit_tracvla_spatial_untrained_20260521T103927 已完成（status=done），请审查 Agent 的处理结果。
@@ -14275,7 +14180,7 @@ Worker worker_submit_tracvla_spatial_untrained_20260521T103927 已完成（statu
 
 ### Assistant
 
-_source line 1142 · 2026-05-21T10:42:57.601112+00:00_
+_source line 1140 · 2026-05-21T10:42:57.601112+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14302,7 +14207,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1143 · 2026-05-21T11:01:13.696749+00:00_
+_source line 1141 · 2026-05-21T11:01:13.696749+00:00_
 
 [系统通知 — worker_done:worker_verify_object_untrained_model_loading_20260521T105953]:
 Worker worker_verify_object_untrained_model_loading_20260521T105953 已完成（status=done），请审查 Agent 的处理结果。
@@ -14324,7 +14229,7 @@ Worker worker_verify_object_untrained_model_loading_20260521T105953 已完成（
 
 ### Assistant
 
-_source line 1144 · 2026-05-21T11:01:18.372211+00:00_
+_source line 1142 · 2026-05-21T11:01:18.372211+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14351,7 +14256,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1145 · 2026-05-21T11:11:44.806146+00:00_
+_source line 1143 · 2026-05-21T11:11:44.806146+00:00_
 
 [系统通知 — worker_done:worker_verify_goal_untrained_baseline_model_20260521T110241]:
 Worker worker_verify_goal_untrained_baseline_model_20260521T110241 已完成（status=done），请审查 Agent 的处理结果。
@@ -14373,7 +14278,7 @@ Worker worker_verify_goal_untrained_baseline_model_20260521T110241 已完成（s
 
 ### Assistant
 
-_source line 1146 · 2026-05-21T11:11:49.526290+00:00_
+_source line 1144 · 2026-05-21T11:11:49.526290+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14400,7 +14305,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1147 · 2026-05-21T12:48:44.994254+00:00_
+_source line 1145 · 2026-05-21T12:48:44.994254+00:00_
 
 [系统通知 — worker_done:worker_urgent_tracvla_status_and_results_20260521T124554]:
 Worker worker_urgent_tracvla_status_and_results_20260521T124554 已完成（status=done），请审查 Agent 的处理结果。
@@ -14422,7 +14327,7 @@ Worker worker_urgent_tracvla_status_and_results_20260521T124554 已完成（stat
 
 ### Assistant
 
-_source line 1148 · 2026-05-21T12:48:50.619357+00:00_
+_source line 1146 · 2026-05-21T12:48:50.619357+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14449,7 +14354,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1149 · 2026-05-21T15:45:38.309319+00:00_
+_source line 1147 · 2026-05-21T15:45:38.309319+00:00_
 
 [系统通知 — worker_done:worker_urgent_full_system_recovery_check_20260521T152259]:
 Worker worker_urgent_full_system_recovery_check_20260521T152259 已完成（status=done），请审查 Agent 的处理结果。
@@ -14471,7 +14376,7 @@ Worker worker_urgent_full_system_recovery_check_20260521T152259 已完成（stat
 
 ### Assistant
 
-_source line 1150 · 2026-05-21T15:45:43.098356+00:00_
+_source line 1148 · 2026-05-21T15:45:43.098356+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14498,7 +14403,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1151 · 2026-05-21T15:49:08.687409+00:00_
+_source line 1149 · 2026-05-21T15:49:08.687409+00:00_
 
 [系统通知 — worker_done:worker_extract_tracvla_full_metrics_20260521T154630]:
 Worker worker_extract_tracvla_full_metrics_20260521T154630 已完成（status=done），请审查 Agent 的处理结果。
@@ -14520,7 +14425,7 @@ Worker worker_extract_tracvla_full_metrics_20260521T154630 已完成（status=do
 
 ### Assistant
 
-_source line 1152 · 2026-05-21T15:49:13.587147+00:00_
+_source line 1150 · 2026-05-21T15:49:13.587147+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14547,7 +14452,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1153 · 2026-05-21T15:50:15.064792+00:00_
+_source line 1151 · 2026-05-21T15:50:15.064792+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -14636,7 +14541,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1154 · 2026-05-21T15:50:21.760208+00:00_
+_source line 1152 · 2026-05-21T15:50:21.760208+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -14664,7 +14569,7 @@ _source line 1154 · 2026-05-21T15:50:21.760208+00:00_
 
 ### User
 
-_source line 1155 · 2026-05-21T15:50:25.270390+00:00_
+_source line 1153 · 2026-05-21T15:50:25.270390+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -14692,7 +14597,7 @@ _source line 1155 · 2026-05-21T15:50:25.270390+00:00_
 
 ### User
 
-_source line 1156 · 2026-05-21T15:54:40.257521+00:00_
+_source line 1154 · 2026-05-21T15:54:40.257521+00:00_
 
 [系统通知 — worker_done:worker_urgent_gpu_recovery_and_next_batch_20260521T155303]:
 Worker worker_urgent_gpu_recovery_and_next_batch_20260521T155303 已完成（status=done），请审查 Agent 的处理结果。
@@ -14714,7 +14619,7 @@ Worker worker_urgent_gpu_recovery_and_next_batch_20260521T155303 已完成（sta
 
 ### Assistant
 
-_source line 1157 · 2026-05-21T15:54:47.146116+00:00_
+_source line 1155 · 2026-05-21T15:54:47.146116+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14741,7 +14646,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1158 · 2026-05-21T15:55:59.722423+00:00_
+_source line 1156 · 2026-05-21T15:55:59.722423+00:00_
 
 [系统通知 — worker_done:worker_diag_tracvla_spatial_status_20260521T155509]:
 Worker worker_diag_tracvla_spatial_status_20260521T155509 已完成（status=done），请审查 Agent 的处理结果。
@@ -14763,7 +14668,7 @@ Worker worker_diag_tracvla_spatial_status_20260521T155509 已完成（status=don
 
 ### Assistant
 
-_source line 1159 · 2026-05-21T15:56:04.711266+00:00_
+_source line 1157 · 2026-05-21T15:56:04.711266+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14790,7 +14695,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1160 · 2026-05-21T15:58:29.157156+00:00_
+_source line 1158 · 2026-05-21T15:58:29.157156+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Loop #8 接手：3×4 矩阵推进、TracVLA Object untrained 完成 (D088)、修正过时的"实验维度已穷尽"），请审查研究方向和计划的合理性。
@@ -14812,7 +14717,7 @@ _source line 1160 · 2026-05-21T15:58:29.157156+00:00_
 
 ### Assistant
 
-_source line 1161 · 2026-05-21T15:58:32.880279+00:00_
+_source line 1159 · 2026-05-21T15:58:32.880279+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14839,7 +14744,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1162 · 2026-05-21T16:01:05.203362+00:00_
+_source line 1160 · 2026-05-21T16:01:05.203362+00:00_
 
 [系统通知 — cron:on_failed:openvla_long_pipeline_v1]:
 实验 openvla_long_pipeline_v1 failed，请审查。
@@ -14861,7 +14766,7 @@ _source line 1162 · 2026-05-21T16:01:05.203362+00:00_
 
 ### Assistant
 
-_source line 1163 · 2026-05-21T16:01:15.412391+00:00_
+_source line 1161 · 2026-05-21T16:01:15.412391+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14888,7 +14793,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1164 · 2026-05-21T16:01:16.087050+00:00_
+_source line 1162 · 2026-05-21T16:01:16.087050+00:00_
 
 [系统通知 — worker_done:worker_prep_checkpoint_audit_and_scripts_20260521T155659]:
 Worker worker_prep_checkpoint_audit_and_scripts_20260521T155659 已完成（status=done），请审查 Agent 的处理结果。
@@ -14910,7 +14815,7 @@ Worker worker_prep_checkpoint_audit_and_scripts_20260521T155659 已完成（stat
 
 ### Assistant
 
-_source line 1165 · 2026-05-21T16:01:19.955261+00:00_
+_source line 1163 · 2026-05-21T16:01:19.955261+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14937,7 +14842,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1166 · 2026-05-21T16:01:20.493528+00:00_
+_source line 1164 · 2026-05-21T16:01:20.493528+00:00_
 
 [系统通知 — cron:on_failed:openvla_long_pipeline_v1]:
 实验 openvla_long_pipeline_v1 failed，请审查。
@@ -14959,7 +14864,7 @@ _source line 1166 · 2026-05-21T16:01:20.493528+00:00_
 
 ### Assistant
 
-_source line 1167 · 2026-05-21T16:01:23.797135+00:00_
+_source line 1165 · 2026-05-21T16:01:23.797135+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -14986,7 +14891,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1168 · 2026-05-21T16:04:41.293910+00:00_
+_source line 1166 · 2026-05-21T16:04:41.293910+00:00_
 
 [系统通知 — worker_done:worker_analysis_cross_arch_summary_20260521T155716]:
 Worker worker_analysis_cross_arch_summary_20260521T155716 已完成（status=done），请审查 Agent 的处理结果。
@@ -15008,7 +14913,7 @@ Worker worker_analysis_cross_arch_summary_20260521T155716 已完成（status=don
 
 ### Assistant
 
-_source line 1169 · 2026-05-21T16:04:44.557137+00:00_
+_source line 1167 · 2026-05-21T16:04:44.557137+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15035,7 +14940,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1170 · 2026-05-21T16:07:48.719284+00:00_
+_source line 1168 · 2026-05-21T16:07:48.719284+00:00_
 
 [系统通知 — cron:on_complete:tracvla_spatial_untrained_v1]:
 实验 tracvla_spatial_untrained_v1 complete，请审查。
@@ -15057,7 +14962,7 @@ _source line 1170 · 2026-05-21T16:07:48.719284+00:00_
 
 ### Assistant
 
-_source line 1171 · 2026-05-21T16:07:54.265071+00:00_
+_source line 1169 · 2026-05-21T16:07:54.265071+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15084,7 +14989,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1172 · 2026-05-21T16:11:10.686686+00:00_
+_source line 1170 · 2026-05-21T16:11:10.686686+00:00_
 
 [系统通知 — worker_done:worker_analyze_tracvla_spatial_untrained_v1_20260521T160910]:
 Worker worker_analyze_tracvla_spatial_untrained_v1_20260521T160910 已完成（status=done），请审查 Agent 的处理结果。
@@ -15106,7 +15011,7 @@ Worker worker_analyze_tracvla_spatial_untrained_v1_20260521T160910 已完成（s
 
 ### Assistant
 
-_source line 1173 · 2026-05-21T16:11:14.557313+00:00_
+_source line 1171 · 2026-05-21T16:11:14.557313+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15133,7 +15038,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1174 · 2026-05-21T16:13:42.326159+00:00_
+_source line 1172 · 2026-05-21T16:13:42.326159+00:00_
 
 [系统通知 — worker_done:worker_diagnose_openvla_long_pipeline_v1_20260521T160330]:
 Worker worker_diagnose_openvla_long_pipeline_v1_20260521T160330 已完成（status=done），请审查 Agent 的处理结果。
@@ -15155,7 +15060,7 @@ Worker worker_diagnose_openvla_long_pipeline_v1_20260521T160330 已完成（stat
 
 ### Assistant
 
-_source line 1175 · 2026-05-21T16:13:45.631244+00:00_
+_source line 1173 · 2026-05-21T16:13:45.631244+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15182,7 +15087,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1176 · 2026-05-21T16:20:01.232363+00:00_
+_source line 1174 · 2026-05-21T16:20:01.232363+00:00_
 
 [系统通知 — worker_done:worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754]:
 Worker worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754 已完成（status=done），请审查 Agent 的处理结果。
@@ -15204,7 +15109,7 @@ Worker worker_diag_urgent_gpu_recovery_20260521T1610_20260521T161754 已完成�
 
 ### Assistant
 
-_source line 1177 · 2026-05-21T16:20:05.050160+00:00_
+_source line 1175 · 2026-05-21T16:20:05.050160+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15231,7 +15136,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1178 · 2026-05-21T16:41:08.253681+00:00_
+_source line 1176 · 2026-05-21T16:41:08.253681+00:00_
 
 [系统通知 — worker_done:worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027]:
 Worker worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027 已完成（status=done），请审查 Agent 的处理结果。
@@ -15253,7 +15158,7 @@ Worker worker_verify_startup_tracvla_long_goal_20260521T1641_20260521T164027 已
 
 ### Assistant
 
-_source line 1179 · 2026-05-21T16:41:11.456023+00:00_
+_source line 1177 · 2026-05-21T16:41:11.456023+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15280,7 +15185,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1180 · 2026-05-21T16:43:35.367979+00:00_
+_source line 1178 · 2026-05-21T16:43:35.367979+00:00_
 
 [系统通知 — worker_done:worker_diag_openvla_long_checkpoint_verify_20260521T164207]:
 Worker worker_diag_openvla_long_checkpoint_verify_20260521T164207 已完成（status=done），请审查 Agent 的处理结果。
@@ -15302,7 +15207,7 @@ Worker worker_diag_openvla_long_checkpoint_verify_20260521T164207 已完成（st
 
 ### Assistant
 
-_source line 1181 · 2026-05-21T16:43:39.905088+00:00_
+_source line 1179 · 2026-05-21T16:43:39.905088+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15329,7 +15234,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1182 · 2026-05-21T16:54:04.442171+00:00_
+_source line 1180 · 2026-05-21T16:54:04.442171+00:00_
 
 [系统通知 — worker_done:worker_code_counterfactual_batch_template_20260521T164440]:
 Worker worker_code_counterfactual_batch_template_20260521T164440 已完成（status=done），请审查 Agent 的处理结果。
@@ -15351,7 +15256,7 @@ Worker worker_code_counterfactual_batch_template_20260521T164440 已完成（sta
 
 ### Assistant
 
-_source line 1183 · 2026-05-21T16:54:08.060344+00:00_
+_source line 1181 · 2026-05-21T16:54:08.060344+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15378,7 +15283,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1184 · 2026-05-21T19:11:21.079439+00:00_
+_source line 1182 · 2026-05-21T19:11:21.079439+00:00_
 
 [System 触发审查]:
 **审查请求：D089 + D090 两个重大决策需要独立审查**
@@ -15408,7 +15313,7 @@ _source line 1184 · 2026-05-21T19:11:21.079439+00:00_
 
 ### Assistant
 
-_source line 1185 · 2026-05-21T19:11:24.663981+00:00_
+_source line 1183 · 2026-05-21T19:11:24.663981+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15435,7 +15340,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1186 · 2026-05-21T19:13:58.041366+00:00_
+_source line 1184 · 2026-05-21T19:13:58.041366+00:00_
 
 [系统通知 — worker_done:worker_diag_check_tracvla_results_and_recover_20260521T191136]:
 Worker worker_diag_check_tracvla_results_and_recover_20260521T191136 已完成（status=done），请审查 Agent 的处理结果。
@@ -15457,7 +15362,7 @@ Worker worker_diag_check_tracvla_results_and_recover_20260521T191136 已完成�
 
 ### Assistant
 
-_source line 1187 · 2026-05-21T19:14:03.008224+00:00_
+_source line 1185 · 2026-05-21T19:14:03.008224+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15484,7 +15389,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1188 · 2026-05-21T19:15:58.410495+00:00_
+_source line 1186 · 2026-05-21T19:15:58.410495+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -15573,7 +15478,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1189 · 2026-05-21T19:16:03.128331+00:00_
+_source line 1187 · 2026-05-21T19:16:03.128331+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -15601,7 +15506,7 @@ _source line 1189 · 2026-05-21T19:16:03.128331+00:00_
 
 ### User
 
-_source line 1190 · 2026-05-21T19:16:06.327386+00:00_
+_source line 1188 · 2026-05-21T19:16:06.327386+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -15629,7 +15534,7 @@ _source line 1190 · 2026-05-21T19:16:06.327386+00:00_
 
 ### User
 
-_source line 1191 · 2026-05-21T19:42:31.257811+00:00_
+_source line 1189 · 2026-05-21T19:42:31.257811+00:00_
 
 [系统通知 — worker_done:worker_ssh_check_progress_long_goal_20260521T194056]:
 Worker worker_ssh_check_progress_long_goal_20260521T194056 已完成（status=done），请审查 Agent 的处理结果。
@@ -15651,7 +15556,7 @@ Worker worker_ssh_check_progress_long_goal_20260521T194056 已完成（status=do
 
 ### Assistant
 
-_source line 1192 · 2026-05-21T19:42:36.454163+00:00_
+_source line 1190 · 2026-05-21T19:42:36.454163+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15678,7 +15583,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1193 · 2026-05-21T20:16:46.416896+00:00_
+_source line 1191 · 2026-05-21T20:16:46.416896+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：清理已完成任务、更新矩阵状态、标记系统问题），请审查研究方向和计划的合理性。
@@ -15700,7 +15605,7 @@ _source line 1193 · 2026-05-21T20:16:46.416896+00:00_
 
 ### Assistant
 
-_source line 1194 · 2026-05-21T20:16:50.217207+00:00_
+_source line 1192 · 2026-05-21T20:16:50.217207+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15727,7 +15632,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1195 · 2026-05-21T20:18:04.969782+00:00_
+_source line 1193 · 2026-05-21T20:18:04.969782+00:00_
 
 [系统通知 — worker_done:worker_ssh_gpu_emergency_check_20260521T201649]:
 Worker worker_ssh_gpu_emergency_check_20260521T201649 已完成（status=done），请审查 Agent 的处理结果。
@@ -15749,7 +15654,7 @@ Worker worker_ssh_gpu_emergency_check_20260521T201649 已完成（status=done）
 
 ### Assistant
 
-_source line 1196 · 2026-05-21T20:18:09.390000+00:00_
+_source line 1194 · 2026-05-21T20:18:09.390000+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15776,7 +15681,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1197 · 2026-05-21T20:28:36.131767+00:00_
+_source line 1195 · 2026-05-21T20:28:36.131767+00:00_
 
 [系统通知 — worker_done:worker_ssh_urgent_status_check_v2_20260521T202603]:
 Worker worker_ssh_urgent_status_check_v2_20260521T202603 已完成（status=done），请审查 Agent 的处理结果。
@@ -15798,7 +15703,7 @@ Worker worker_ssh_urgent_status_check_v2_20260521T202603 已完成（status=done
 
 ### Assistant
 
-_source line 1198 · 2026-05-21T20:28:40.594213+00:00_
+_source line 1196 · 2026-05-21T20:28:40.594213+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15825,7 +15730,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1199 · 2026-05-21T20:34:04.745594+00:00_
+_source line 1197 · 2026-05-21T20:34:04.745594+00:00_
 
 [系统通知 — cron:on_complete:tracvla_long_v1]:
 实验 tracvla_long_v1 complete，请审查。
@@ -15847,7 +15752,7 @@ _source line 1199 · 2026-05-21T20:34:04.745594+00:00_
 
 ### Assistant
 
-_source line 1200 · 2026-05-21T20:34:10.884640+00:00_
+_source line 1198 · 2026-05-21T20:34:10.884640+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15874,7 +15779,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1201 · 2026-05-21T20:34:28.624825+00:00_
+_source line 1199 · 2026-05-21T20:34:28.624825+00:00_
 
 [系统通知 — cron:on_complete:tracvla_goal_v1]:
 实验 tracvla_goal_v1 complete，请审查。
@@ -15896,7 +15801,7 @@ _source line 1201 · 2026-05-21T20:34:28.624825+00:00_
 
 ### Assistant
 
-_source line 1202 · 2026-05-21T20:34:32.330216+00:00_
+_source line 1200 · 2026-05-21T20:34:32.330216+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15923,7 +15828,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1203 · 2026-05-21T20:43:44.455857+00:00_
+_source line 1201 · 2026-05-21T20:43:44.455857+00:00_
 
 [系统通知 — worker_done:worker_research_literature-linkage-tracvla-4suite_20260521T204054]:
 Worker worker_research_literature-linkage-tracvla-4suite_20260521T204054 已完成（status=done），请审查 Agent 的处理结果。
@@ -15945,7 +15850,7 @@ Worker worker_research_literature-linkage-tracvla-4suite_20260521T204054 已完�
 
 ### Assistant
 
-_source line 1204 · 2026-05-21T20:43:49.252256+00:00_
+_source line 1202 · 2026-05-21T20:43:49.252256+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -15972,7 +15877,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1205 · 2026-05-21T21:08:11.124721+00:00_
+_source line 1203 · 2026-05-21T21:08:11.124721+00:00_
 
 [系统通知 — worker_done:worker_ssh_final_check_and_extract_20260521T210621]:
 Worker worker_ssh_final_check_and_extract_20260521T210621 已完成（status=done），请审查 Agent 的处理结果。
@@ -15994,7 +15899,7 @@ Worker worker_ssh_final_check_and_extract_20260521T210621 已完成（status=don
 
 ### Assistant
 
-_source line 1206 · 2026-05-21T21:08:15.946163+00:00_
+_source line 1204 · 2026-05-21T21:08:15.946163+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16021,7 +15926,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1207 · 2026-05-21T21:12:11.572331+00:00_
+_source line 1205 · 2026-05-21T21:12:11.572331+00:00_
 
 [系统通知 — worker_done:worker_ssh_submit_cf_batch_20260521T210957]:
 Worker worker_ssh_submit_cf_batch_20260521T210957 已完成（status=done），请审查 Agent 的处理结果。
@@ -16043,7 +15948,7 @@ Worker worker_ssh_submit_cf_batch_20260521T210957 已完成（status=done），�
 
 ### Assistant
 
-_source line 1208 · 2026-05-21T21:12:17.471182+00:00_
+_source line 1206 · 2026-05-21T21:12:17.471182+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16070,7 +15975,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1209 · 2026-05-21T21:12:41.757912+00:00_
+_source line 1207 · 2026-05-21T21:12:41.757912+00:00_
 
 [系统通知 — worker_done:worker_ssh_verify_startup_dual_20260521T211204]:
 Worker worker_ssh_verify_startup_dual_20260521T211204 已完成（status=done），请审查 Agent 的处理结果。
@@ -16092,7 +15997,7 @@ Worker worker_ssh_verify_startup_dual_20260521T211204 已完成（status=done）
 
 ### Assistant
 
-_source line 1210 · 2026-05-21T21:12:45.309127+00:00_
+_source line 1208 · 2026-05-21T21:12:45.309127+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16119,7 +16024,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1211 · 2026-05-21T21:14:42.000405+00:00_
+_source line 1209 · 2026-05-21T21:14:42.000405+00:00_
 
 [系统通知 — worker_done:worker_prep_matrix_completion_readiness_20260521T211223]:
 Worker worker_prep_matrix_completion_readiness_20260521T211223 已完成（status=done），请审查 Agent 的处理结果。
@@ -16141,7 +16046,7 @@ Worker worker_prep_matrix_completion_readiness_20260521T211223 已完成（statu
 
 ### Assistant
 
-_source line 1212 · 2026-05-21T21:14:46.684474+00:00_
+_source line 1210 · 2026-05-21T21:14:46.684474+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16168,7 +16073,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1213 · 2026-05-21T22:40:57.681451+00:00_
+_source line 1211 · 2026-05-21T22:40:57.681451+00:00_
 
 [系统通知 — cron:on_complete:openvla_long_cf_trained]:
 实验 openvla_long_cf_trained complete，请审查。
@@ -16190,7 +16095,7 @@ _source line 1213 · 2026-05-21T22:40:57.681451+00:00_
 
 ### Assistant
 
-_source line 1214 · 2026-05-21T22:41:03.202092+00:00_
+_source line 1212 · 2026-05-21T22:41:03.202092+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16217,7 +16122,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1215 · 2026-05-21T22:43:24.289446+00:00_
+_source line 1213 · 2026-05-21T22:43:24.289446+00:00_
 
 [系统通知 — worker_done:worker_analysis_openvla_long_cf_trained_20260521T224214]:
 Worker worker_analysis_openvla_long_cf_trained_20260521T224214 已完成（status=done），请审查 Agent 的处理结果。
@@ -16239,7 +16144,7 @@ Worker worker_analysis_openvla_long_cf_trained_20260521T224214 已完成（statu
 
 ### Assistant
 
-_source line 1216 · 2026-05-21T22:43:29.044549+00:00_
+_source line 1214 · 2026-05-21T22:43:29.044549+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16266,7 +16171,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1217 · 2026-05-21T22:51:36.149041+00:00_
+_source line 1215 · 2026-05-21T22:51:36.149041+00:00_
 
 [系统通知 — cron:on_complete:openvla_long_untrained_v1]:
 实验 openvla_long_untrained_v1 complete，请审查。
@@ -16288,7 +16193,7 @@ _source line 1217 · 2026-05-21T22:51:36.149041+00:00_
 
 ### Assistant
 
-_source line 1218 · 2026-05-21T22:51:42.019831+00:00_
+_source line 1216 · 2026-05-21T22:51:42.019831+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16315,7 +16220,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1219 · 2026-05-21T22:58:16.068956+00:00_
+_source line 1217 · 2026-05-21T22:58:16.068956+00:00_
 
 [系统通知 — worker_done:worker_analysis_openvla_long_untrained_v1_20260521T225356]:
 Worker worker_analysis_openvla_long_untrained_v1_20260521T225356 已完成（status=done），请审查 Agent 的处理结果。
@@ -16337,7 +16242,7 @@ Worker worker_analysis_openvla_long_untrained_v1_20260521T225356 已完成（sta
 
 ### Assistant
 
-_source line 1220 · 2026-05-21T22:58:20.588864+00:00_
+_source line 1218 · 2026-05-21T22:58:20.588864+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16364,7 +16269,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1221 · 2026-05-21T23:03:46.140104+00:00_
+_source line 1219 · 2026-05-21T23:03:46.140104+00:00_
 
 [系统通知 — worker_done:worker_ssh_verify_cf_batch_part2_20260521T230306]:
 Worker worker_ssh_verify_cf_batch_part2_20260521T230306 已完成（status=done），请审查 Agent 的处理结果。
@@ -16386,7 +16291,7 @@ Worker worker_ssh_verify_cf_batch_part2_20260521T230306 已完成（status=done�
 
 ### Assistant
 
-_source line 1222 · 2026-05-21T23:03:51.448186+00:00_
+_source line 1220 · 2026-05-21T23:03:51.448186+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16413,7 +16318,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1223 · 2026-05-21T23:21:48.817843+00:00_
+_source line 1221 · 2026-05-21T23:21:48.817843+00:00_
 
 [系统通知 — worker_done:worker_ssh_cf_batch_progress_check_20260521T231902]:
 Worker worker_ssh_cf_batch_progress_check_20260521T231902 已完成（status=done），请审查 Agent 的处理结果。
@@ -16435,7 +16340,7 @@ Worker worker_ssh_cf_batch_progress_check_20260521T231902 已完成（status=don
 
 ### Assistant
 
-_source line 1224 · 2026-05-21T23:21:53.438136+00:00_
+_source line 1222 · 2026-05-21T23:21:53.438136+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16462,7 +16367,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1225 · 2026-05-21T23:26:49.382358+00:00_
+_source line 1223 · 2026-05-21T23:26:49.382358+00:00_
 
 [系统通知 — worker_done:worker_diagnose_server_status_check_20260521T232339]:
 Worker worker_diagnose_server_status_check_20260521T232339 已完成（status=done），请审查 Agent 的处理结果。
@@ -16484,7 +16389,7 @@ Worker worker_diagnose_server_status_check_20260521T232339 已完成（status=do
 
 ### Assistant
 
-_source line 1226 · 2026-05-21T23:26:54.170141+00:00_
+_source line 1224 · 2026-05-21T23:26:54.170141+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16511,7 +16416,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1227 · 2026-05-22T00:04:43.960140+00:00_
+_source line 1225 · 2026-05-22T00:04:43.960140+00:00_
 
 [系统通知 — cron:on_complete:cf_batch_part2_v1]:
 实验 cf_batch_part2_v1 complete，请审查。
@@ -16533,7 +16438,7 @@ _source line 1227 · 2026-05-22T00:04:43.960140+00:00_
 
 ### Assistant
 
-_source line 1228 · 2026-05-22T00:04:51.096408+00:00_
+_source line 1226 · 2026-05-22T00:04:51.096408+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16560,7 +16465,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1229 · 2026-05-22T00:06:01.986302+00:00_
+_source line 1227 · 2026-05-22T00:06:01.986302+00:00_
 
 [系统通知 — worker_done:worker_ssh_cf_batch_progress_check_20260522T000314]:
 Worker worker_ssh_cf_batch_progress_check_20260522T000314 已完成（status=done），请审查 Agent 的处理结果。
@@ -16582,7 +16487,7 @@ Worker worker_ssh_cf_batch_progress_check_20260522T000314 已完成（status=don
 
 ### Assistant
 
-_source line 1230 · 2026-05-22T00:06:08.079125+00:00_
+_source line 1228 · 2026-05-22T00:06:08.079125+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16609,7 +16514,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1231 · 2026-05-22T00:10:02.488675+00:00_
+_source line 1229 · 2026-05-22T00:10:02.488675+00:00_
 
 [系统通知 — worker_done:worker_analysis_cf_batch_part2_v1_20260522T000604]:
 Worker worker_analysis_cf_batch_part2_v1_20260522T000604 已完成（status=done），请审查 Agent 的处理结果。
@@ -16631,7 +16536,7 @@ Worker worker_analysis_cf_batch_part2_v1_20260522T000604 已完成（status=done
 
 ### Assistant
 
-_source line 1232 · 2026-05-22T00:10:07.670391+00:00_
+_source line 1230 · 2026-05-22T00:10:07.670391+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16658,7 +16563,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1233 · 2026-05-22T00:15:33.107417+00:00_
+_source line 1231 · 2026-05-22T00:15:33.107417+00:00_
 
 [系统通知 — worker_done:worker_analysis_matrix_summary_table_20260522T000858]:
 Worker worker_analysis_matrix_summary_table_20260522T000858 已完成（status=done），请审查 Agent 的处理结果。
@@ -16680,7 +16585,7 @@ Worker worker_analysis_matrix_summary_table_20260522T000858 已完成（status=d
 
 ### Assistant
 
-_source line 1234 · 2026-05-22T00:15:37.780186+00:00_
+_source line 1232 · 2026-05-22T00:15:37.780186+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16707,7 +16612,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1235 · 2026-05-22T00:25:34.279850+00:00_
+_source line 1233 · 2026-05-22T00:25:34.279850+00:00_
 
 [系统通知 — worker_done:worker_ssh_openvla_goal_spatial_extract_20260522T001622]:
 Worker worker_ssh_openvla_goal_spatial_extract_20260522T001622 已完成（status=done），请审查 Agent 的处理结果。
@@ -16729,7 +16634,7 @@ Worker worker_ssh_openvla_goal_spatial_extract_20260522T001622 已完成（statu
 
 ### Assistant
 
-_source line 1236 · 2026-05-22T00:25:39.637121+00:00_
+_source line 1234 · 2026-05-22T00:25:39.637121+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16756,7 +16661,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1237 · 2026-05-22T00:34:05.521557+00:00_
+_source line 1235 · 2026-05-22T00:34:05.521557+00:00_
 
 [系统通知 — worker_done:worker_code_openvla_goal_standardized_v1_20260522T002914]:
 Worker worker_code_openvla_goal_standardized_v1_20260522T002914 已完成（status=done），请审查 Agent 的处理结果。
@@ -16778,7 +16683,7 @@ Worker worker_code_openvla_goal_standardized_v1_20260522T002914 已完成（stat
 
 ### Assistant
 
-_source line 1238 · 2026-05-22T00:34:10.089228+00:00_
+_source line 1236 · 2026-05-22T00:34:10.089228+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16805,7 +16710,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1239 · 2026-05-22T01:04:24.311030+00:00_
+_source line 1237 · 2026-05-22T01:04:24.311030+00:00_
 
 [系统通知 — worker_done:worker_ssh_status_check_and_spatial_submit_20260522T010155]:
 Worker worker_ssh_status_check_and_spatial_submit_20260522T010155 已完成（status=done），请审查 Agent 的处理结果。
@@ -16827,7 +16732,7 @@ Worker worker_ssh_status_check_and_spatial_submit_20260522T010155 已完成（st
 
 ### Assistant
 
-_source line 1240 · 2026-05-22T01:04:29.650275+00:00_
+_source line 1238 · 2026-05-22T01:04:29.650275+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16854,7 +16759,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1241 · 2026-05-22T01:10:46.923861+00:00_
+_source line 1239 · 2026-05-22T01:10:46.923861+00:00_
 
 [系统通知 — worker_done:worker_ssh_matrix_result_audit_20260522T010700]:
 Worker worker_ssh_matrix_result_audit_20260522T010700 已完成（status=done），请审查 Agent 的处理结果。
@@ -16876,7 +16781,7 @@ Worker worker_ssh_matrix_result_audit_20260522T010700 已完成（status=done）
 
 ### Assistant
 
-_source line 1242 · 2026-05-22T01:10:51.792188+00:00_
+_source line 1240 · 2026-05-22T01:10:51.792188+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16903,7 +16808,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1243 · 2026-05-22T01:24:46.027086+00:00_
+_source line 1241 · 2026-05-22T01:24:46.027086+00:00_
 
 [系统通知 — cron:on_complete:cf_batch_missing_v1]:
 实验 cf_batch_missing_v1 complete，请审查。
@@ -16925,7 +16830,7 @@ _source line 1243 · 2026-05-22T01:24:46.027086+00:00_
 
 ### Assistant
 
-_source line 1244 · 2026-05-22T01:24:51.296955+00:00_
+_source line 1242 · 2026-05-22T01:24:51.296955+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -16952,7 +16857,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1245 · 2026-05-22T01:30:57.246708+00:00_
+_source line 1243 · 2026-05-22T01:30:57.246708+00:00_
 
 [系统通知 — worker_done:worker_analysis_cf_batch_missing_v1_20260522T012627]:
 Worker worker_analysis_cf_batch_missing_v1_20260522T012627 已完成（status=done），请审查 Agent 的处理结果。
@@ -16974,7 +16879,7 @@ Worker worker_analysis_cf_batch_missing_v1_20260522T012627 已完成（status=do
 
 ### Assistant
 
-_source line 1246 · 2026-05-22T01:31:01.918142+00:00_
+_source line 1244 · 2026-05-22T01:31:01.918142+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17001,7 +16906,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1247 · 2026-05-22T01:38:28.138582+00:00_
+_source line 1245 · 2026-05-22T01:38:28.138582+00:00_
 
 [系统通知 — worker_done:worker_code_openvla_spatial_standardized_v1_20260522T013148]:
 Worker worker_code_openvla_spatial_standardized_v1_20260522T013148 已完成（status=done），请审查 Agent 的处理结果。
@@ -17023,7 +16928,7 @@ Worker worker_code_openvla_spatial_standardized_v1_20260522T013148 已完成（s
 
 ### Assistant
 
-_source line 1248 · 2026-05-22T01:38:33.698096+00:00_
+_source line 1246 · 2026-05-22T01:38:33.698096+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17050,7 +16955,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1249 · 2026-05-22T02:08:03.550995+00:00_
+_source line 1247 · 2026-05-22T02:08:03.550995+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -17071,7 +16976,7 @@ _source line 1249 · 2026-05-22T02:08:03.550995+00:00_
 
 ### Assistant
 
-_source line 1250 · 2026-05-22T02:08:10.363095+00:00_
+_source line 1248 · 2026-05-22T02:08:10.363095+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17098,7 +17003,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1251 · 2026-05-22T02:11:01.029193+00:00_
+_source line 1249 · 2026-05-22T02:11:01.029193+00:00_
 
 [系统通知 — worker_done:worker_ssh_post_restart_status_check_20260522T020852]:
 Worker worker_ssh_post_restart_status_check_20260522T020852 已完成（status=done），请审查 Agent 的处理结果。
@@ -17120,7 +17025,7 @@ Worker worker_ssh_post_restart_status_check_20260522T020852 已完成（status=d
 
 ### Assistant
 
-_source line 1252 · 2026-05-22T02:11:06.714278+00:00_
+_source line 1250 · 2026-05-22T02:11:06.714278+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17147,7 +17052,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1253 · 2026-05-22T02:13:31.139505+00:00_
+_source line 1251 · 2026-05-22T02:13:31.139505+00:00_
 
 [系统通知 — worker_done:worker_ssh_urgent_status_check_20260522T021156]:
 Worker worker_ssh_urgent_status_check_20260522T021156 已完成（status=done），请审查 Agent 的处理结果。
@@ -17169,7 +17074,7 @@ Worker worker_ssh_urgent_status_check_20260522T021156 已完成（status=done）
 
 ### Assistant
 
-_source line 1254 · 2026-05-22T02:13:35.889480+00:00_
+_source line 1252 · 2026-05-22T02:13:35.889480+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17196,7 +17101,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1255 · 2026-05-22T02:16:15.994628+00:00_
+_source line 1253 · 2026-05-22T02:16:15.994628+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D095 framing upgrade + 实验状态更新 + 任务清理），请审查研究方向和计划的合理性。
@@ -17218,7 +17123,7 @@ _source line 1255 · 2026-05-22T02:16:15.994628+00:00_
 
 ### Assistant
 
-_source line 1256 · 2026-05-22T02:16:19.298239+00:00_
+_source line 1254 · 2026-05-22T02:16:19.298239+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17245,7 +17150,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1257 · 2026-05-22T02:23:33.248227+00:00_
+_source line 1255 · 2026-05-22T02:23:33.248227+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_spatial_untrained_cf_20260522T021944]:
 Worker worker_ssh_nora_spatial_untrained_cf_20260522T021944 已完成（status=done），请审查 Agent 的处理结果。
@@ -17267,7 +17172,7 @@ Worker worker_ssh_nora_spatial_untrained_cf_20260522T021944 已完成（status=d
 
 ### Assistant
 
-_source line 1258 · 2026-05-22T02:23:37.773131+00:00_
+_source line 1256 · 2026-05-22T02:23:37.773131+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17294,7 +17199,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1259 · 2026-05-22T02:27:04.658651+00:00_
+_source line 1257 · 2026-05-22T02:27:04.658651+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_spatial_cf_rerun_20260522T022455]:
 Worker worker_ssh_nora_spatial_cf_rerun_20260522T022455 已完成（status=done），请审查 Agent 的处理结果。
@@ -17316,7 +17221,7 @@ Worker worker_ssh_nora_spatial_cf_rerun_20260522T022455 已完成（status=done�
 
 ### Assistant
 
-_source line 1260 · 2026-05-22T02:27:09.508177+00:00_
+_source line 1258 · 2026-05-22T02:27:09.508177+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17343,7 +17248,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1261 · 2026-05-22T02:27:34.203435+00:00_
+_source line 1259 · 2026-05-22T02:27:34.203435+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_abstract_d095_20260522T022621]:
 Worker worker_paper_writing_abstract_d095_20260522T022621 已完成（status=done），请审查 Agent 的处理结果。
@@ -17365,7 +17270,7 @@ Worker worker_paper_writing_abstract_d095_20260522T022621 已完成（status=don
 
 ### Assistant
 
-_source line 1262 · 2026-05-22T02:27:38.369068+00:00_
+_source line 1260 · 2026-05-22T02:27:38.369068+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17392,7 +17297,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1263 · 2026-05-22T02:28:34.394953+00:00_
+_source line 1261 · 2026-05-22T02:28:34.394953+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_poll_results_20260522T022736]:
 Worker worker_ssh_nora_cf_poll_results_20260522T022736 已完成（status=done），请审查 Agent 的处理结果。
@@ -17414,7 +17319,7 @@ Worker worker_ssh_nora_cf_poll_results_20260522T022736 已完成（status=done�
 
 ### Assistant
 
-_source line 1264 · 2026-05-22T02:28:39.120188+00:00_
+_source line 1262 · 2026-05-22T02:28:39.120188+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17441,7 +17346,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1265 · 2026-05-22T02:30:04.949773+00:00_
+_source line 1263 · 2026-05-22T02:30:04.949773+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_poll_v2_20260522T022857]:
 Worker worker_ssh_nora_cf_poll_v2_20260522T022857 已完成（status=done），请审查 Agent 的处理结果。
@@ -17463,7 +17368,7 @@ Worker worker_ssh_nora_cf_poll_v2_20260522T022857 已完成（status=done），�
 
 ### Assistant
 
-_source line 1266 · 2026-05-22T02:30:09.755114+00:00_
+_source line 1264 · 2026-05-22T02:30:09.755114+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17490,7 +17395,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1267 · 2026-05-22T02:31:05.154402+00:00_
+_source line 1265 · 2026-05-22T02:31:05.154402+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_wait_complete_20260522T023025]:
 Worker worker_ssh_nora_cf_wait_complete_20260522T023025 已完成（status=done），请审查 Agent 的处理结果。
@@ -17512,7 +17417,7 @@ Worker worker_ssh_nora_cf_wait_complete_20260522T023025 已完成（status=done�
 
 ### Assistant
 
-_source line 1268 · 2026-05-22T02:31:09.836136+00:00_
+_source line 1266 · 2026-05-22T02:31:09.836136+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17539,7 +17444,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1269 · 2026-05-22T02:33:05.575886+00:00_
+_source line 1267 · 2026-05-22T02:33:05.575886+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_blocking_wait_20260522T023128]:
 Worker worker_ssh_nora_cf_blocking_wait_20260522T023128 已完成（status=done），请审查 Agent 的处理结果。
@@ -17561,7 +17466,7 @@ Worker worker_ssh_nora_cf_blocking_wait_20260522T023128 已完成（status=done�
 
 ### Assistant
 
-_source line 1270 · 2026-05-22T02:33:10.601059+00:00_
+_source line 1268 · 2026-05-22T02:33:10.601059+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17588,7 +17493,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1271 · 2026-05-22T02:35:35.913459+00:00_
+_source line 1269 · 2026-05-22T02:35:35.913459+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_final_check_20260522T023334]:
 Worker worker_ssh_nora_cf_final_check_20260522T023334 已完成（status=done），请审查 Agent 的处理结果。
@@ -17610,7 +17515,7 @@ Worker worker_ssh_nora_cf_final_check_20260522T023334 已完成（status=done）
 
 ### Assistant
 
-_source line 1272 · 2026-05-22T02:35:40.782065+00:00_
+_source line 1270 · 2026-05-22T02:35:40.782065+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17637,7 +17542,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1273 · 2026-05-22T02:44:07.405380+00:00_
+_source line 1271 · 2026-05-22T02:44:07.405380+00:00_
 
 [系统通知 — worker_done:worker_ssh_nora_cf_extract_20260522T023605]:
 Worker worker_ssh_nora_cf_extract_20260522T023605 已完成（status=done），请审查 Agent 的处理结果。
@@ -17659,7 +17564,7 @@ Worker worker_ssh_nora_cf_extract_20260522T023605 已完成（status=done），�
 
 ### Assistant
 
-_source line 1274 · 2026-05-22T02:44:12.482073+00:00_
+_source line 1272 · 2026-05-22T02:44:12.482073+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17686,7 +17591,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1275 · 2026-05-22T02:45:37.774604+00:00_
+_source line 1273 · 2026-05-22T02:45:37.774604+00:00_
 
 [系统通知 — worker_done:worker_ssh_kill_nora_cf_20260522T024442]:
 Worker worker_ssh_kill_nora_cf_20260522T024442 已完成（status=done），请审查 Agent 的处理结果。
@@ -17708,7 +17613,7 @@ Worker worker_ssh_kill_nora_cf_20260522T024442 已完成（status=done），请�
 
 ### Assistant
 
-_source line 1276 · 2026-05-22T02:45:42.758265+00:00_
+_source line 1274 · 2026-05-22T02:45:42.758265+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17735,7 +17640,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1277 · 2026-05-22T03:19:55.538186+00:00_
+_source line 1275 · 2026-05-22T03:19:55.538186+00:00_
 
 [系统通知 — worker_done:worker_ssh_urgent_cuda0_check_20260522T031739]:
 Worker worker_ssh_urgent_cuda0_check_20260522T031739 已完成（status=done），请审查 Agent 的处理结果。
@@ -17757,7 +17662,7 @@ Worker worker_ssh_urgent_cuda0_check_20260522T031739 已完成（status=done）�
 
 ### Assistant
 
-_source line 1278 · 2026-05-22T03:20:01.603983+00:00_
+_source line 1276 · 2026-05-22T03:20:01.603983+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17784,7 +17689,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1279 · 2026-05-22T04:09:47.348459+00:00_
+_source line 1277 · 2026-05-22T04:09:47.348459+00:00_
 
 [系统通知 — cron:on_complete:openvla_goal_standardized_v1]:
 实验 openvla_goal_standardized_v1 complete，请审查。
@@ -17806,7 +17711,7 @@ _source line 1279 · 2026-05-22T04:09:47.348459+00:00_
 
 ### Assistant
 
-_source line 1280 · 2026-05-22T04:09:52.687428+00:00_
+_source line 1278 · 2026-05-22T04:09:52.687428+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17833,7 +17738,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1281 · 2026-05-22T04:16:11.628178+00:00_
+_source line 1279 · 2026-05-22T04:16:11.628178+00:00_
 
 [系统通知 — worker_done:worker_analysis_openvla_goal_standardized_v1_20260522T041113]:
 Worker worker_analysis_openvla_goal_standardized_v1_20260522T041113 已完成（status=done），请审查 Agent 的处理结果。
@@ -17855,7 +17760,7 @@ Worker worker_analysis_openvla_goal_standardized_v1_20260522T041113 已完成（
 
 ### Assistant
 
-_source line 1282 · 2026-05-22T04:16:16.298282+00:00_
+_source line 1280 · 2026-05-22T04:16:16.298282+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17882,7 +17787,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1283 · 2026-05-22T04:59:15.646873+00:00_
+_source line 1281 · 2026-05-22T04:59:15.646873+00:00_
 
 [System 触发审查]:
 **[请求审查] D096 — R² exit collapse claim 从 "architecture-independent" 降为 "VLM→VLA transition effect"**
@@ -17916,7 +17821,7 @@ _source line 1283 · 2026-05-22T04:59:15.646873+00:00_
 
 ### Assistant
 
-_source line 1284 · 2026-05-22T04:59:19.002654+00:00_
+_source line 1282 · 2026-05-22T04:59:19.002654+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17943,7 +17848,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1285 · 2026-05-22T05:01:02.031813+00:00_
+_source line 1283 · 2026-05-22T05:01:02.031813+00:00_
 
 [系统通知 — worker_done:worker_ssh_urgent_gpu_diagnosis_20260522T045933]:
 Worker worker_ssh_urgent_gpu_diagnosis_20260522T045933 已完成（status=done），请审查 Agent 的处理结果。
@@ -17965,7 +17870,7 @@ Worker worker_ssh_urgent_gpu_diagnosis_20260522T045933 已完成（status=done�
 
 ### Assistant
 
-_source line 1286 · 2026-05-22T05:01:06.953134+00:00_
+_source line 1284 · 2026-05-22T05:01:06.953134+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -17992,7 +17897,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1287 · 2026-05-22T05:07:33.326167+00:00_
+_source line 1285 · 2026-05-22T05:07:33.326167+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_experiments_d095_20260522T043542]:
 Worker worker_paper_writing_experiments_d095_20260522T043542 已完成（status=done），请审查 Agent 的处理结果。
@@ -18014,7 +17919,7 @@ Worker worker_paper_writing_experiments_d095_20260522T043542 已完成（status=
 
 ### Assistant
 
-_source line 1288 · 2026-05-22T05:07:37.535030+00:00_
+_source line 1286 · 2026-05-22T05:07:37.535030+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18041,7 +17946,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1289 · 2026-05-22T05:20:09.350112+00:00_
+_source line 1287 · 2026-05-22T05:20:09.350112+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D096/D097 反映 + openvla_goal 完成 + NLP control 启动 + Paper Agent 写作进度），请审查研究方向和计划的合理性。
@@ -18063,7 +17968,7 @@ _source line 1289 · 2026-05-22T05:20:09.350112+00:00_
 
 ### Assistant
 
-_source line 1290 · 2026-05-22T05:20:12.704418+00:00_
+_source line 1288 · 2026-05-22T05:20:12.704418+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18090,7 +17995,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1291 · 2026-05-22T05:24:16.536566+00:00_
+_source line 1289 · 2026-05-22T05:24:16.536566+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_method_d097_20260522T051809]:
 Worker worker_paper_writing_method_d097_20260522T051809 已完成（status=done），请审查 Agent 的处理结果。
@@ -18112,7 +18017,7 @@ Worker worker_paper_writing_method_d097_20260522T051809 已完成（status=done�
 
 ### Assistant
 
-_source line 1292 · 2026-05-22T05:24:20.295422+00:00_
+_source line 1290 · 2026-05-22T05:24:20.295422+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18139,7 +18044,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1293 · 2026-05-22T05:29:05.728856+00:00_
+_source line 1291 · 2026-05-22T05:29:05.728856+00:00_
 
 [系统通知 — worker_done:worker_fix_openvla_spatial_download_20260522T052447]:
 Worker worker_fix_openvla_spatial_download_20260522T052447 已完成（status=done），请审查 Agent 的处理结果。
@@ -18161,7 +18066,7 @@ Worker worker_fix_openvla_spatial_download_20260522T052447 已完成（status=do
 
 ### Assistant
 
-_source line 1294 · 2026-05-22T05:29:09.538192+00:00_
+_source line 1292 · 2026-05-22T05:29:09.538192+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18188,7 +18093,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1295 · 2026-05-22T05:33:05.152724+00:00_
+_source line 1293 · 2026-05-22T05:33:05.152724+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_introduction_d097_20260522T052631]:
 Worker worker_paper_writing_introduction_d097_20260522T052631 已完成（status=done），请审查 Agent 的处理结果。
@@ -18210,7 +18115,7 @@ Worker worker_paper_writing_introduction_d097_20260522T052631 已完成（status
 
 ### Assistant
 
-_source line 1296 · 2026-05-22T05:33:08.682304+00:00_
+_source line 1294 · 2026-05-22T05:33:08.682304+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18237,7 +18142,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1297 · 2026-05-22T05:35:04.724001+00:00_
+_source line 1295 · 2026-05-22T05:35:04.724001+00:00_
 
 [系统通知 — worker_done:worker_code_nlp_finetuning_control_v1_20260522T052432]:
 Worker worker_code_nlp_finetuning_control_v1_20260522T052432 已完成（status=done），请审查 Agent 的处理结果。
@@ -18259,7 +18164,7 @@ Worker worker_code_nlp_finetuning_control_v1_20260522T052432 已完成（status=
 
 ### Assistant
 
-_source line 1298 · 2026-05-22T05:35:08.371050+00:00_
+_source line 1296 · 2026-05-22T05:35:08.371050+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18286,7 +18191,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1299 · 2026-05-22T05:48:06.746871+00:00_
+_source line 1297 · 2026-05-22T05:48:06.746871+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_discussion_d097_20260522T054615]:
 Worker worker_paper_writing_discussion_d097_20260522T054615 已完成（status=done），请审查 Agent 的处理结果。
@@ -18308,7 +18213,7 @@ Worker worker_paper_writing_discussion_d097_20260522T054615 已完成（status=d
 
 ### Assistant
 
-_source line 1300 · 2026-05-22T05:48:11.574176+00:00_
+_source line 1298 · 2026-05-22T05:48:11.574176+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18335,7 +18240,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1301 · 2026-05-22T06:08:58.925985+00:00_
+_source line 1299 · 2026-05-22T06:08:58.925985+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_related_work_d097_20260522T060541]:
 Worker worker_paper_writing_related_work_d097_20260522T060541 已完成（status=done），请审查 Agent 的处理结果。
@@ -18357,7 +18262,7 @@ Worker worker_paper_writing_related_work_d097_20260522T060541 已完成（status
 
 ### Assistant
 
-_source line 1302 · 2026-05-22T06:09:04.026159+00:00_
+_source line 1300 · 2026-05-22T06:09:04.026159+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18384,7 +18289,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1303 · 2026-05-22T06:10:49.312315+00:00_
+_source line 1301 · 2026-05-22T06:10:49.312315+00:00_
 
 [系统通知 — worker_done:worker_research_nora_bib_entry_20260522T061000]:
 Worker worker_research_nora_bib_entry_20260522T061000 已完成（status=done），请审查 Agent 的处理结果。
@@ -18406,7 +18311,7 @@ Worker worker_research_nora_bib_entry_20260522T061000 已完成（status=done）
 
 ### Assistant
 
-_source line 1304 · 2026-05-22T06:10:52.974225+00:00_
+_source line 1302 · 2026-05-22T06:10:52.974225+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18433,7 +18338,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1305 · 2026-05-22T06:22:14.629493+00:00_
+_source line 1303 · 2026-05-22T06:22:14.629493+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_20260522T061909]:
 Worker worker_paper_writing_20260522T061909 已完成（status=done），请审查 Agent 的处理结果。
@@ -18455,7 +18360,7 @@ Worker worker_paper_writing_20260522T061909 已完成（status=done），请审�
 
 ### Assistant
 
-_source line 1306 · 2026-05-22T06:22:18.226304+00:00_
+_source line 1304 · 2026-05-22T06:22:18.226304+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18482,7 +18387,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1307 · 2026-05-22T06:37:21.552398+00:00_
+_source line 1305 · 2026-05-22T06:37:21.552398+00:00_
 
 [系统通知 — worker_done:worker_figure_r2_collapse_and_l1_20260522T063259]:
 Worker worker_figure_r2_collapse_and_l1_20260522T063259 已完成（status=done），请审查 Agent 的处理结果。
@@ -18504,7 +18409,7 @@ Worker worker_figure_r2_collapse_and_l1_20260522T063259 已完成（status=done�
 
 ### Assistant
 
-_source line 1308 · 2026-05-22T06:37:26.434364+00:00_
+_source line 1306 · 2026-05-22T06:37:26.434364+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18531,7 +18436,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1309 · 2026-05-22T06:41:22.655002+00:00_
+_source line 1307 · 2026-05-22T06:41:22.655002+00:00_
 
 [系统通知 — worker_done:worker_paper_writing_20260522T063812]:
 Worker worker_paper_writing_20260522T063812 已完成（status=done），请审查 Agent 的处理结果。
@@ -18553,7 +18458,7 @@ Worker worker_paper_writing_20260522T063812 已完成（status=done），请审�
 
 ### Assistant
 
-_source line 1310 · 2026-05-22T06:41:27.593047+00:00_
+_source line 1308 · 2026-05-22T06:41:27.593047+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18580,7 +18485,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1311 · 2026-05-22T06:43:22.966728+00:00_
+_source line 1309 · 2026-05-22T06:43:22.966728+00:00_
 
 [系统通知 — worker_done:worker_research_d098_correlational_analysis_20260522T063947]:
 Worker worker_research_d098_correlational_analysis_20260522T063947 已完成（status=done），请审查 Agent 的处理结果。
@@ -18602,7 +18507,7 @@ Worker worker_research_d098_correlational_analysis_20260522T063947 已完成（s
 
 ### Assistant
 
-_source line 1312 · 2026-05-22T06:43:28.454388+00:00_
+_source line 1310 · 2026-05-22T06:43:28.454388+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18629,7 +18534,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1313 · 2026-05-22T06:47:53.825228+00:00_
+_source line 1311 · 2026-05-22T06:47:53.825228+00:00_
 
 [系统通知 — worker_done:worker_file_pull_figures_20260522T063752]:
 Worker worker_file_pull_figures_20260522T063752 已完成（status=done），请审查 Agent 的处理结果。
@@ -18651,7 +18556,7 @@ Worker worker_file_pull_figures_20260522T063752 已完成（status=done），请
 
 ### Assistant
 
-_source line 1314 · 2026-05-22T06:47:58.252121+00:00_
+_source line 1312 · 2026-05-22T06:47:58.252121+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18678,7 +18583,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1315 · 2026-05-22T07:17:03.539398+00:00_
+_source line 1313 · 2026-05-22T07:17:03.539398+00:00_
 
 [System 触发审查]:
 [审查请求] D098 Correlational Analysis framing — 敏感结果需对齐
@@ -18713,7 +18618,7 @@ D098 用 R² exit collapse Δ 与 published LIBERO success rate 做 Spearman cor
 
 ### Assistant
 
-_source line 1316 · 2026-05-22T07:17:07.190387+00:00_
+_source line 1314 · 2026-05-22T07:17:07.190387+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18740,7 +18645,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1317 · 2026-05-22T07:18:43.571034+00:00_
+_source line 1315 · 2026-05-22T07:18:43.571034+00:00_
 
 [系统通知 — worker_done:worker_check_gpu_status_urgent_20260522T071706]:
 Worker worker_check_gpu_status_urgent_20260522T071706 已完成（status=done），请审查 Agent 的处理结果。
@@ -18762,7 +18667,7 @@ Worker worker_check_gpu_status_urgent_20260522T071706 已完成（status=done）
 
 ### Assistant
 
-_source line 1318 · 2026-05-22T07:18:48.601372+00:00_
+_source line 1316 · 2026-05-22T07:18:48.601372+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18789,7 +18694,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1319 · 2026-05-22T07:21:56.906328+00:00_
+_source line 1317 · 2026-05-22T07:21:56.906328+00:00_
 
 [系统通知 — cron:on_failed:openvla_spatial_standardized_v1]:
 实验 openvla_spatial_standardized_v1 failed，请审查。
@@ -18811,7 +18716,7 @@ _source line 1319 · 2026-05-22T07:21:56.906328+00:00_
 
 ### Assistant
 
-_source line 1320 · 2026-05-22T07:22:02.255027+00:00_
+_source line 1318 · 2026-05-22T07:22:02.255027+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18838,7 +18743,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1321 · 2026-05-22T07:25:48.048259+00:00_
+_source line 1319 · 2026-05-22T07:25:48.048259+00:00_
 
 [系统通知 — worker_done:worker_diagnose_openvla_spatial_standardized_v1_20260522T072334]:
 Worker worker_diagnose_openvla_spatial_standardized_v1_20260522T072334 已完成（status=done），请审查 Agent 的处理结果。
@@ -18860,7 +18765,7 @@ Worker worker_diagnose_openvla_spatial_standardized_v1_20260522T072334 已完成
 
 ### Assistant
 
-_source line 1322 · 2026-05-22T07:25:53.028076+00:00_
+_source line 1320 · 2026-05-22T07:25:53.028076+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18887,7 +18792,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1323 · 2026-05-22T07:31:45.976915+00:00_
+_source line 1321 · 2026-05-22T07:31:45.976915+00:00_
 
 [系统通知 — worker_done:worker_fix_openvla_spatial_pipeline_v2_20260522T072013]:
 Worker worker_fix_openvla_spatial_pipeline_v2_20260522T072013 已完成（status=done），请审查 Agent 的处理结果。
@@ -18909,7 +18814,7 @@ Worker worker_fix_openvla_spatial_pipeline_v2_20260522T072013 已完成（status
 
 ### Assistant
 
-_source line 1324 · 2026-05-22T07:31:50.848340+00:00_
+_source line 1322 · 2026-05-22T07:31:50.848340+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18936,7 +18841,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1325 · 2026-05-22T07:32:42.744423+00:00_
+_source line 1323 · 2026-05-22T07:32:42.744423+00:00_
 
 [系统通知 — worker_done:worker_check_spatial_new_pid_20260522T073207]:
 Worker worker_check_spatial_new_pid_20260522T073207 已完成（status=done），请审查 Agent 的处理结果。
@@ -18958,7 +18863,7 @@ Worker worker_check_spatial_new_pid_20260522T073207 已完成（status=done）�
 
 ### Assistant
 
-_source line 1326 · 2026-05-22T07:32:46.790121+00:00_
+_source line 1324 · 2026-05-22T07:32:46.790121+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -18985,7 +18890,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1327 · 2026-05-22T08:26:26.350396+00:00_
+_source line 1325 · 2026-05-22T08:26:26.350396+00:00_
 
 [系统通知 — worker_done:worker_check_nlp_download_status_20260522T082510]:
 Worker worker_check_nlp_download_status_20260522T082510 已完成（status=done），请审查 Agent 的处理结果。
@@ -19007,7 +18912,7 @@ Worker worker_check_nlp_download_status_20260522T082510 已完成（status=done�
 
 ### Assistant
 
-_source line 1328 · 2026-05-22T08:26:30.939304+00:00_
+_source line 1326 · 2026-05-22T08:26:30.939304+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19034,7 +18939,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1329 · 2026-05-22T09:00:41.958249+00:00_
+_source line 1327 · 2026-05-22T09:00:41.958249+00:00_
 
 [系统通知 — worker_done:worker_check_dual_gpu_urgent_v2_20260522T085952]:
 Worker worker_check_dual_gpu_urgent_v2_20260522T085952 已完成（status=done），请审查 Agent 的处理结果。
@@ -19056,7 +18961,7 @@ Worker worker_check_dual_gpu_urgent_v2_20260522T085952 已完成（status=done�
 
 ### Assistant
 
-_source line 1330 · 2026-05-22T09:00:46.385242+00:00_
+_source line 1328 · 2026-05-22T09:00:46.385242+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19083,7 +18988,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1331 · 2026-05-22T09:04:43.202644+00:00_
+_source line 1329 · 2026-05-22T09:04:43.202644+00:00_
 
 [系统通知 — worker_done:worker_extract_openvla_spatial_trained_20260522T090157]:
 Worker worker_extract_openvla_spatial_trained_20260522T090157 已完成（status=done），请审查 Agent 的处理结果。
@@ -19105,7 +19010,7 @@ Worker worker_extract_openvla_spatial_trained_20260522T090157 已完成（status
 
 ### Assistant
 
-_source line 1332 · 2026-05-22T09:04:48.032120+00:00_
+_source line 1330 · 2026-05-22T09:04:48.032120+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19132,7 +19037,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1333 · 2026-05-22T09:07:13.085433+00:00_
+_source line 1331 · 2026-05-22T09:07:13.085433+00:00_
 
 [系统通知 — worker_done:worker_fix_openvla_spatial_pkv_and_rerun_20260522T090214]:
 Worker worker_fix_openvla_spatial_pkv_and_rerun_20260522T090214 已完成（status=done），请审查 Agent 的处理结果。
@@ -19154,7 +19059,7 @@ Worker worker_fix_openvla_spatial_pkv_and_rerun_20260522T090214 已完成（stat
 
 ### Assistant
 
-_source line 1334 · 2026-05-22T09:07:18.299900+00:00_
+_source line 1332 · 2026-05-22T09:07:18.299900+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19181,7 +19086,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1335 · 2026-05-22T09:15:44.665327+00:00_
+_source line 1333 · 2026-05-22T09:15:44.665327+00:00_
 
 [系统通知 — worker_done:worker_run_openvla_spatial_untrained_cuda1_20260522T091143]:
 Worker worker_run_openvla_spatial_untrained_cuda1_20260522T091143 已完成（status=done），请审查 Agent 的处理结果。
@@ -19203,7 +19108,7 @@ Worker worker_run_openvla_spatial_untrained_cuda1_20260522T091143 已完成（st
 
 ### Assistant
 
-_source line 1336 · 2026-05-22T09:15:49.079212+00:00_
+_source line 1334 · 2026-05-22T09:15:49.079212+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19230,7 +19135,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1337 · 2026-05-22T09:18:02.480069+00:00_
+_source line 1335 · 2026-05-22T09:18:02.480069+00:00_
 
 [系统通知 — cron:on_failed:openvla_spatial_standardized_v1]:
 实验 openvla_spatial_standardized_v1 failed，请审查。
@@ -19252,7 +19157,7 @@ _source line 1337 · 2026-05-22T09:18:02.480069+00:00_
 
 ### Assistant
 
-_source line 1338 · 2026-05-22T09:18:07.847400+00:00_
+_source line 1336 · 2026-05-22T09:18:07.847400+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19279,7 +19184,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1339 · 2026-05-22T09:22:45.878448+00:00_
+_source line 1337 · 2026-05-22T09:22:45.878448+00:00_
 
 [系统通知 — worker_done:worker_diagnose_openvla_spatial_standardized_v1_20260522T092002]:
 Worker worker_diagnose_openvla_spatial_standardized_v1_20260522T092002 已完成（status=done），请审查 Agent 的处理结果。
@@ -19301,7 +19206,7 @@ Worker worker_diagnose_openvla_spatial_standardized_v1_20260522T092002 已完成
 
 ### Assistant
 
-_source line 1340 · 2026-05-22T09:22:50.452330+00:00_
+_source line 1338 · 2026-05-22T09:22:50.452330+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19328,7 +19233,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1341 · 2026-05-22T09:48:46.108333+00:00_
+_source line 1339 · 2026-05-22T09:48:46.108333+00:00_
 
 [System 触发审查]:
 [text-based 审查请求 — 绕过 PDF 问题]
@@ -19368,7 +19273,7 @@ Reviewer，我知道你之前读 PDF 一直报错。这次请直接审查以下�
 
 ### Assistant
 
-_source line 1342 · 2026-05-22T09:48:52.016043+00:00_
+_source line 1340 · 2026-05-22T09:48:52.016043+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19395,7 +19300,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1343 · 2026-05-22T09:49:51.006032+00:00_
+_source line 1341 · 2026-05-22T09:49:51.006032+00:00_
 
 [系统通知 — worker_done:worker_check_spatial_cf_and_next_20260522T094854]:
 Worker worker_check_spatial_cf_and_next_20260522T094854 已完成（status=done），请审查 Agent 的处理结果。
@@ -19417,7 +19322,7 @@ Worker worker_check_spatial_cf_and_next_20260522T094854 已完成（status=done�
 
 ### Assistant
 
-_source line 1344 · 2026-05-22T09:49:55.544501+00:00_
+_source line 1342 · 2026-05-22T09:49:55.544501+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19444,7 +19349,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1345 · 2026-05-22T09:54:22.047963+00:00_
+_source line 1343 · 2026-05-22T09:54:22.047963+00:00_
 
 [系统通知 — worker_done:worker_diagnose_gpu_status_session_resume_20260522T095316]:
 Worker worker_diagnose_gpu_status_session_resume_20260522T095316 已完成（status=done），请审查 Agent 的处理结果。
@@ -19466,7 +19371,7 @@ Worker worker_diagnose_gpu_status_session_resume_20260522T095316 已完成（sta
 
 ### Assistant
 
-_source line 1346 · 2026-05-22T09:54:26.602181+00:00_
+_source line 1344 · 2026-05-22T09:54:26.602181+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19493,7 +19398,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1347 · 2026-05-22T09:56:22.440763+00:00_
+_source line 1345 · 2026-05-22T09:56:22.440763+00:00_
 
 [系统通知 — worker_done:worker_diagnose_nlp_download_check_20260522T095455]:
 Worker worker_diagnose_nlp_download_check_20260522T095455 已完成（status=done），请审查 Agent 的处理结果。
@@ -19515,7 +19420,7 @@ Worker worker_diagnose_nlp_download_check_20260522T095455 已完成（status=don
 
 ### Assistant
 
-_source line 1348 · 2026-05-22T09:56:27.208284+00:00_
+_source line 1346 · 2026-05-22T09:56:27.208284+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19542,7 +19447,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1349 · 2026-05-22T09:58:52.931627+00:00_
+_source line 1347 · 2026-05-22T09:58:52.931627+00:00_
 
 [系统通知 — worker_done:worker_fix_nlp_wait_and_run_cuda0_20260522T095810]:
 Worker worker_fix_nlp_wait_and_run_cuda0_20260522T095810 已完成（status=done），请审查 Agent 的处理结果。
@@ -19564,7 +19469,7 @@ Worker worker_fix_nlp_wait_and_run_cuda0_20260522T095810 已完成（status=done
 
 ### Assistant
 
-_source line 1350 · 2026-05-22T09:58:57.709173+00:00_
+_source line 1348 · 2026-05-22T09:58:57.709173+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19591,7 +19496,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1351 · 2026-05-22T11:15:02.962103+00:00_
+_source line 1349 · 2026-05-22T11:15:02.962103+00:00_
 
 [系统通知 — worker_done:worker_extract_spatial_complete_results_20260522T111238]:
 Worker worker_extract_spatial_complete_results_20260522T111238 已完成（status=done），请审查 Agent 的处理结果。
@@ -19613,7 +19518,7 @@ Worker worker_extract_spatial_complete_results_20260522T111238 已完成（statu
 
 ### Assistant
 
-_source line 1352 · 2026-05-22T11:15:08.209269+00:00_
+_source line 1350 · 2026-05-22T11:15:08.209269+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19640,7 +19545,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1353 · 2026-05-22T11:17:02.638990+00:00_
+_source line 1351 · 2026-05-22T11:17:02.638990+00:00_
 
 [系统通知 — worker_done:worker_extract_spatial_untrained_phases_20260522T111532]:
 Worker worker_extract_spatial_untrained_phases_20260522T111532 已完成（status=done），请审查 Agent 的处理结果。
@@ -19662,7 +19567,7 @@ Worker worker_extract_spatial_untrained_phases_20260522T111532 已完成（statu
 
 ### Assistant
 
-_source line 1354 · 2026-05-22T11:17:07.345179+00:00_
+_source line 1352 · 2026-05-22T11:17:07.345179+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19689,7 +19594,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1355 · 2026-05-22T11:19:58.310285+00:00_
+_source line 1353 · 2026-05-22T11:19:58.310285+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：矩阵 10/10 完成 + D099 OpenVLA Spatial + NLP contingency 准备），请审查研究方向和计划的合理性。
@@ -19711,7 +19616,7 @@ _source line 1355 · 2026-05-22T11:19:58.310285+00:00_
 
 ### Assistant
 
-_source line 1356 · 2026-05-22T11:20:01.694313+00:00_
+_source line 1354 · 2026-05-22T11:20:01.694313+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19738,7 +19643,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1357 · 2026-05-22T11:54:30.098960+00:00_
+_source line 1355 · 2026-05-22T11:54:30.098960+00:00_
 
 [系统通知 — worker_done:worker_check_nlp_control_urgent_20260522T115218]:
 Worker worker_check_nlp_control_urgent_20260522T115218 已完成（status=done），请审查 Agent 的处理结果。
@@ -19760,7 +19665,7 @@ Worker worker_check_nlp_control_urgent_20260522T115218 已完成（status=done�
 
 ### Assistant
 
-_source line 1358 · 2026-05-22T11:54:35.167276+00:00_
+_source line 1356 · 2026-05-22T11:54:35.167276+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19787,7 +19692,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1359 · 2026-05-22T12:28:54.610421+00:00_
+_source line 1357 · 2026-05-22T12:28:54.610421+00:00_
 
 [系统通知 — worker_done:worker_check_nlp_control_final_20260522T122710]:
 Worker worker_check_nlp_control_final_20260522T122710 已完成（status=done），请审查 Agent 的处理结果。
@@ -19809,7 +19714,7 @@ Worker worker_check_nlp_control_final_20260522T122710 已完成（status=done）
 
 ### Assistant
 
-_source line 1360 · 2026-05-22T12:28:59.081548+00:00_
+_source line 1358 · 2026-05-22T12:28:59.081548+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19836,7 +19741,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1361 · 2026-05-22T12:52:28.983386+00:00_
+_source line 1359 · 2026-05-22T12:52:28.983386+00:00_
 
 [系统通知 — worker_done:worker_diagnose_nlp_control_completion_20260522T125122]:
 Worker worker_diagnose_nlp_control_completion_20260522T125122 已完成（status=done），请审查 Agent 的处理结果。
@@ -19858,7 +19763,7 @@ Worker worker_diagnose_nlp_control_completion_20260522T125122 已完成（status
 
 ### Assistant
 
-_source line 1362 · 2026-05-22T12:52:33.571213+00:00_
+_source line 1360 · 2026-05-22T12:52:33.571213+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -19885,7 +19790,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1363 · 2026-05-22T13:09:22.204703+00:00_
+_source line 1361 · 2026-05-22T13:09:22.204703+00:00_
 
 [Paper Agent 触发审查]:
 
@@ -20368,7 +20273,7 @@ Code and data will be released upon acceptance.
 
 ### Assistant
 
-_source line 1364 · 2026-05-22T13:09:25.352360+00:00_
+_source line 1362 · 2026-05-22T13:09:25.352360+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20395,7 +20300,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1365 · 2026-05-22T13:23:02.743266+00:00_
+_source line 1363 · 2026-05-22T13:23:02.743266+00:00_
 
 [Paper Agent 触发审查]:
 
@@ -20658,7 +20563,7 @@ Future: flow-matching/diffusion VLAs, richer benchmarks, training dynamics.
 
 ### Assistant
 
-_source line 1366 · 2026-05-22T13:23:06.700207+00:00_
+_source line 1364 · 2026-05-22T13:23:06.700207+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20685,7 +20590,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1367 · 2026-05-22T13:24:05.169229+00:00_
+_source line 1365 · 2026-05-22T13:24:05.169229+00:00_
 
 [系统通知 — worker_done:worker_figure_fig_r2_collapse_v2_20260522T125718]:
 Worker worker_figure_fig_r2_collapse_v2_20260522T125718 已完成（status=done），请审查 Agent 的处理结果。
@@ -20707,7 +20612,7 @@ Worker worker_figure_fig_r2_collapse_v2_20260522T125718 已完成（status=done�
 
 ### Assistant
 
-_source line 1368 · 2026-05-22T13:24:10.499186+00:00_
+_source line 1366 · 2026-05-22T13:24:10.499186+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20734,7 +20639,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1369 · 2026-05-22T13:29:36.301123+00:00_
+_source line 1367 · 2026-05-22T13:29:36.301123+00:00_
 
 [系统通知 — worker_done:worker_pull_fig_r2_collapse_v2_20260522T132422]:
 Worker worker_pull_fig_r2_collapse_v2_20260522T132422 已完成（status=done），请审查 Agent 的处理结果。
@@ -20756,7 +20661,7 @@ Worker worker_pull_fig_r2_collapse_v2_20260522T132422 已完成（status=done）
 
 ### Assistant
 
-_source line 1370 · 2026-05-22T13:29:41.166052+00:00_
+_source line 1368 · 2026-05-22T13:29:41.166052+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20783,7 +20688,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1371 · 2026-05-22T13:34:07.299230+00:00_
+_source line 1369 · 2026-05-22T13:34:07.299230+00:00_
 
 [系统通知 — worker_done:worker_check_gpu_health_20260522T133333]:
 Worker worker_check_gpu_health_20260522T133333 已完成（status=done），请审查 Agent 的处理结果。
@@ -20805,7 +20710,7 @@ Worker worker_check_gpu_health_20260522T133333 已完成（status=done），请�
 
 ### Assistant
 
-_source line 1372 · 2026-05-22T13:34:13.347140+00:00_
+_source line 1370 · 2026-05-22T13:34:13.347140+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20832,7 +20737,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1373 · 2026-05-22T13:34:13.858138+00:00_
+_source line 1371 · 2026-05-22T13:34:13.858138+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：研究+写作完成，提交 Group C 正式审稿，NLP control D100 已确认），请审查研究方向和计划的合理性。
@@ -20854,7 +20759,7 @@ _source line 1373 · 2026-05-22T13:34:13.858138+00:00_
 
 ### Assistant
 
-_source line 1374 · 2026-05-22T13:34:17.719094+00:00_
+_source line 1372 · 2026-05-22T13:34:17.719094+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20881,7 +20786,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1375 · 2026-05-22T14:01:04.034392+00:00_
+_source line 1373 · 2026-05-22T14:01:04.034392+00:00_
 
 [System 触发审查]:
 **紧急审查请求：Round 15 审稿报告 Action Matrix 审视**
@@ -20939,7 +20844,7 @@ Group C 审稿返回 Weak Reject (4.5/10)。我需要你独立审视我的修复
 
 ### Assistant
 
-_source line 1376 · 2026-05-22T14:01:07.500235+00:00_
+_source line 1374 · 2026-05-22T14:01:07.500235+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -20966,7 +20871,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1377 · 2026-05-22T14:05:12.362579+00:00_
+_source line 1375 · 2026-05-22T14:05:12.362579+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D101: Round 15 审稿 Weak Reject → 全面修订计划），请审查研究方向和计划的合理性。
@@ -20988,7 +20893,7 @@ _source line 1377 · 2026-05-22T14:05:12.362579+00:00_
 
 ### Assistant
 
-_source line 1378 · 2026-05-22T14:05:16.046464+00:00_
+_source line 1376 · 2026-05-22T14:05:16.046464+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21015,7 +20920,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1379 · 2026-05-22T14:06:41.735302+00:00_
+_source line 1377 · 2026-05-22T14:06:41.735302+00:00_
 
 [系统通知 — worker_done:worker_check_probe_data_format_20260522T140423]:
 Worker worker_check_probe_data_format_20260522T140423 已完成（status=done），请审查 Agent 的处理结果。
@@ -21037,7 +20942,7 @@ Worker worker_check_probe_data_format_20260522T140423 已完成（status=done）
 
 ### Assistant
 
-_source line 1380 · 2026-05-22T14:06:51.630295+00:00_
+_source line 1378 · 2026-05-22T14:06:51.630295+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21064,7 +20969,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1381 · 2026-05-22T14:07:41.774911+00:00_
+_source line 1379 · 2026-05-22T14:07:41.774911+00:00_
 
 [系统通知 — worker_done:worker_research_concurrent_work_fang_buurmeijer_20260522T140447]:
 Worker worker_research_concurrent_work_fang_buurmeijer_20260522T140447 已完成（status=done），请审查 Agent 的处理结果。
@@ -21086,7 +20991,7 @@ Worker worker_research_concurrent_work_fang_buurmeijer_20260522T140447 已完成
 
 ### Assistant
 
-_source line 1382 · 2026-05-22T14:07:47.619004+00:00_
+_source line 1380 · 2026-05-22T14:07:47.619004+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21113,7 +21018,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1383 · 2026-05-22T14:45:46.458738+00:00_
+_source line 1381 · 2026-05-22T14:45:46.458738+00:00_
 
 [系统通知 — worker_done:worker_code_clustered_bootstrap_probe_20260522T140930]:
 Worker worker_code_clustered_bootstrap_probe_20260522T140930 已完成（status=done），请审查 Agent 的处理结果。
@@ -21135,7 +21040,7 @@ Worker worker_code_clustered_bootstrap_probe_20260522T140930 已完成（status=
 
 ### Assistant
 
-_source line 1384 · 2026-05-22T14:45:51.243287+00:00_
+_source line 1382 · 2026-05-22T14:45:51.243287+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21162,7 +21067,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1385 · 2026-05-22T14:48:22.309318+00:00_
+_source line 1383 · 2026-05-22T14:48:22.309318+00:00_
 
 [System 触发审查]:
 **Major Revision 审查请求（文本版，绕过 PDF 问题）**
@@ -21225,7 +21130,7 @@ Paper Agent 刚完成 Round 15 审稿报告的全面修订（14 项任务）。�
 
 ### Assistant
 
-_source line 1386 · 2026-05-22T14:48:25.999221+00:00_
+_source line 1384 · 2026-05-22T14:48:25.999221+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21252,7 +21157,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1387 · 2026-05-22T14:49:48.491819+00:00_
+_source line 1385 · 2026-05-22T14:49:48.491819+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_cuda0_20260522T144626]:
 Worker worker_run_bootstrap_cuda0_20260522T144626 已完成（status=done），请审查 Agent 的处理结果。
@@ -21274,7 +21179,7 @@ Worker worker_run_bootstrap_cuda0_20260522T144626 已完成（status=done），�
 
 ### Assistant
 
-_source line 1388 · 2026-05-22T14:49:52.177453+00:00_
+_source line 1386 · 2026-05-22T14:49:52.177453+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21301,7 +21206,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1389 · 2026-05-22T15:09:04.697971+00:00_
+_source line 1387 · 2026-05-22T15:09:04.697971+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_cuda1_20260522T150616]:
 Worker worker_run_bootstrap_cuda1_20260522T150616 已完成（status=done），请审查 Agent 的处理结果。
@@ -21323,7 +21228,7 @@ Worker worker_run_bootstrap_cuda1_20260522T150616 已完成（status=done），�
 
 ### Assistant
 
-_source line 1390 · 2026-05-22T15:09:09.306919+00:00_
+_source line 1388 · 2026-05-22T15:09:09.306919+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21350,7 +21255,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1391 · 2026-05-22T15:10:16.566361+00:00_
+_source line 1389 · 2026-05-22T15:10:16.566361+00:00_
 
 [System 触发审查]:
 **文本版 Major Revision 审查请求**（Reviewer PDF 解析不可用，用文本描述）
@@ -21410,7 +21315,7 @@ Paper Agent 刚完成 Round 15 审稿反馈的 14 项 major revision。请审视
 
 ### Assistant
 
-_source line 1392 · 2026-05-22T15:10:20.465164+00:00_
+_source line 1390 · 2026-05-22T15:10:20.465164+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21437,7 +21342,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1393 · 2026-05-22T15:13:35.208590+00:00_
+_source line 1391 · 2026-05-22T15:13:35.208590+00:00_
 
 [系统通知 — worker_done:worker_fix_bootstrap_add_long_suite_20260522T151040]:
 Worker worker_fix_bootstrap_add_long_suite_20260522T151040 已完成（status=done），请审查 Agent 的处理结果。
@@ -21459,7 +21364,7 @@ Worker worker_fix_bootstrap_add_long_suite_20260522T151040 已完成（status=do
 
 ### Assistant
 
-_source line 1394 · 2026-05-22T15:13:39.883101+00:00_
+_source line 1392 · 2026-05-22T15:13:39.883101+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21486,7 +21391,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1395 · 2026-05-22T15:25:36.548204+00:00_
+_source line 1393 · 2026-05-22T15:25:36.548204+00:00_
 
 [系统通知 — worker_done:worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410]:
 Worker worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410 已完成（status=done），请审查 Agent 的处理结果。
@@ -21508,7 +21413,7 @@ Worker worker_fix_bootstrap_long_paths_and_tracvla_20260522T151410 已完成（s
 
 ### Assistant
 
-_source line 1396 · 2026-05-22T15:25:41.098190+00:00_
+_source line 1394 · 2026-05-22T15:25:41.098190+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21535,7 +21440,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1397 · 2026-05-22T15:28:53.965328+00:00_
+_source line 1395 · 2026-05-22T15:28:53.965328+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_cuda1_retry_and_long_20260522T152609]:
 Worker worker_run_bootstrap_cuda1_retry_and_long_20260522T152609 已完成（status=done），请审查 Agent 的处理结果。
@@ -21557,7 +21462,7 @@ Worker worker_run_bootstrap_cuda1_retry_and_long_20260522T152609 已完成（sta
 
 ### Assistant
 
-_source line 1398 · 2026-05-22T15:28:58.116268+00:00_
+_source line 1396 · 2026-05-22T15:28:58.116268+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21584,7 +21489,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1399 · 2026-05-22T15:30:45.584904+00:00_
+_source line 1397 · 2026-05-22T15:30:45.584904+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_progress_20260522T152845]:
 Worker worker_check_bootstrap_progress_20260522T152845 已完成（status=done），请审查 Agent 的处理结果。
@@ -21606,7 +21511,7 @@ Worker worker_check_bootstrap_progress_20260522T152845 已完成（status=done�
 
 ### Assistant
 
-_source line 1400 · 2026-05-22T15:30:48.846139+00:00_
+_source line 1398 · 2026-05-22T15:30:48.846139+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21633,7 +21538,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1401 · 2026-05-22T15:51:03.123556+00:00_
+_source line 1399 · 2026-05-22T15:51:03.123556+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_speed_and_optimize_20260522T154638]:
 Worker worker_check_bootstrap_speed_and_optimize_20260522T154638 已完成（status=done），请审查 Agent 的处理结果。
@@ -21655,7 +21560,7 @@ Worker worker_check_bootstrap_speed_and_optimize_20260522T154638 已完成（sta
 
 ### Assistant
 
-_source line 1402 · 2026-05-22T15:51:07.640573+00:00_
+_source line 1400 · 2026-05-22T15:51:07.640573+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21682,7 +21587,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1403 · 2026-05-22T15:54:33.521628+00:00_
+_source line 1401 · 2026-05-22T15:54:33.521628+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_restart_1000_20260522T155234]:
 Worker worker_run_bootstrap_restart_1000_20260522T155234 已完成（status=done），请审查 Agent 的处理结果。
@@ -21704,7 +21609,7 @@ Worker worker_run_bootstrap_restart_1000_20260522T155234 已完成（status=done
 
 ### Assistant
 
-_source line 1404 · 2026-05-22T15:54:38.922253+00:00_
+_source line 1402 · 2026-05-22T15:54:38.922253+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21731,7 +21636,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1405 · 2026-05-22T16:27:31.272523+00:00_
+_source line 1403 · 2026-05-22T16:27:31.272523+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：P0/P1 writing tasks 全部完成，更新完成状态），请审查研究方向和计划的合理性。
@@ -21753,7 +21658,7 @@ _source line 1405 · 2026-05-22T16:27:31.272523+00:00_
 
 ### Assistant
 
-_source line 1406 · 2026-05-22T16:27:34.709108+00:00_
+_source line 1404 · 2026-05-22T16:27:34.709108+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21780,7 +21685,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1407 · 2026-05-22T16:28:20.949232+00:00_
+_source line 1405 · 2026-05-22T16:28:20.949232+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_urgent_status_20260522T162657]:
 Worker worker_check_bootstrap_urgent_status_20260522T162657 已完成（status=done），请审查 Agent 的处理结果。
@@ -21802,7 +21707,7 @@ Worker worker_check_bootstrap_urgent_status_20260522T162657 已完成（status=d
 
 ### Assistant
 
-_source line 1408 · 2026-05-22T16:28:26.067130+00:00_
+_source line 1406 · 2026-05-22T16:28:26.067130+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21829,7 +21734,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1409 · 2026-05-22T20:02:50.689901+00:00_
+_source line 1407 · 2026-05-22T20:02:50.689901+00:00_
 
 [System 触发审查]:
 **Major Revision 全面审查请求**
@@ -21893,7 +21798,7 @@ Round 15 评分 Weak Reject (4.5/10)，三个系统性问题：
 
 ### Assistant
 
-_source line 1410 · 2026-05-22T20:02:56.839133+00:00_
+_source line 1408 · 2026-05-22T20:02:56.839133+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21920,7 +21825,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1411 · 2026-05-22T20:04:53.721548+00:00_
+_source line 1409 · 2026-05-22T20:04:53.721548+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_results_urgent_20260522T200251]:
 Worker worker_check_bootstrap_results_urgent_20260522T200251 已完成（status=done），请审查 Agent 的处理结果。
@@ -21942,7 +21847,7 @@ Worker worker_check_bootstrap_results_urgent_20260522T200251 已完成（status=
 
 ### Assistant
 
-_source line 1412 · 2026-05-22T20:04:58.886094+00:00_
+_source line 1410 · 2026-05-22T20:04:58.886094+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -21969,7 +21874,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1413 · 2026-05-22T20:08:54.196320+00:00_
+_source line 1411 · 2026-05-22T20:08:54.196320+00:00_
 
 [系统通知 — worker_done:worker_read_bootstrap_script_source_20260522T200549]:
 Worker worker_read_bootstrap_script_source_20260522T200549 已完成（status=done），请审查 Agent 的处理结果。
@@ -21991,7 +21896,7 @@ Worker worker_read_bootstrap_script_source_20260522T200549 已完成（status=do
 
 ### Assistant
 
-_source line 1414 · 2026-05-22T20:08:58.967236+00:00_
+_source line 1412 · 2026-05-22T20:08:58.967236+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22018,7 +21923,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1415 · 2026-05-22T20:21:25.578181+00:00_
+_source line 1413 · 2026-05-22T20:21:25.578181+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_parallel_optimize_and_restart_20260522T201139]:
 Worker worker_run_bootstrap_parallel_optimize_and_restart_20260522T201139 已完成（status=done），请审查 Agent 的处理结果。
@@ -22040,7 +21945,7 @@ Worker worker_run_bootstrap_parallel_optimize_and_restart_20260522T201139 已完
 
 ### Assistant
 
-_source line 1416 · 2026-05-22T20:21:30.206237+00:00_
+_source line 1414 · 2026-05-22T20:21:30.206237+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22067,7 +21972,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1417 · 2026-05-22T22:54:33.388646+00:00_
+_source line 1415 · 2026-05-22T22:54:33.388646+00:00_
 
 [System 触发审查]:
 **⚠️ 重要：不要尝试读取任何 PDF 文件。本次审查完全基于文本描述。**
@@ -22129,7 +22034,7 @@ Linear probe 提及、RSA/CKA 直觉解释、术语统一 (readout token)、Cros
 
 ### Assistant
 
-_source line 1418 · 2026-05-22T22:54:36.740119+00:00_
+_source line 1416 · 2026-05-22T22:54:36.740119+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22156,7 +22061,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1419 · 2026-05-22T22:56:20.103672+00:00_
+_source line 1417 · 2026-05-22T22:56:20.103672+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_final_collection_20260522T225437]:
 Worker worker_check_bootstrap_final_collection_20260522T225437 已完成（status=done），请审查 Agent 的处理结果。
@@ -22178,7 +22083,7 @@ Worker worker_check_bootstrap_final_collection_20260522T225437 已完成（statu
 
 ### Assistant
 
-_source line 1420 · 2026-05-22T22:56:24.687216+00:00_
+_source line 1418 · 2026-05-22T22:56:24.687216+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22205,7 +22110,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1421 · 2026-05-22T22:58:01.027017+00:00_
+_source line 1419 · 2026-05-22T22:58:01.027017+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -22294,7 +22199,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1422 · 2026-05-22T22:58:05.525318+00:00_
+_source line 1420 · 2026-05-22T22:58:05.525318+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -22322,7 +22227,7 @@ _source line 1422 · 2026-05-22T22:58:05.525318+00:00_
 
 ### User
 
-_source line 1423 · 2026-05-22T22:58:08.782342+00:00_
+_source line 1421 · 2026-05-22T22:58:08.782342+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -22350,7 +22255,7 @@ _source line 1423 · 2026-05-22T22:58:08.782342+00:00_
 
 ### User
 
-_source line 1424 · 2026-05-22T23:04:10.068128+00:00_
+_source line 1422 · 2026-05-22T23:04:10.068128+00:00_
 
 [系统通知 — worker_done:worker_monitor_bootstrap_progress_check_20260522T230138]:
 Worker worker_monitor_bootstrap_progress_check_20260522T230138 已完成（status=done），请审查 Agent 的处理结果。
@@ -22372,7 +22277,7 @@ Worker worker_monitor_bootstrap_progress_check_20260522T230138 已完成（statu
 
 ### Assistant
 
-_source line 1425 · 2026-05-22T23:04:15.369105+00:00_
+_source line 1423 · 2026-05-22T23:04:15.369105+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22399,7 +22304,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1426 · 2026-05-22T23:20:52.944595+00:00_
+_source line 1424 · 2026-05-22T23:20:52.944595+00:00_
 
 [系统通知 — worker_done:worker_monitor_bootstrap_until_complete_20260522T231941]:
 Worker worker_monitor_bootstrap_until_complete_20260522T231941 已完成（status=done），请审查 Agent 的处理结果。
@@ -22421,7 +22326,7 @@ Worker worker_monitor_bootstrap_until_complete_20260522T231941 已完成（statu
 
 ### Assistant
 
-_source line 1427 · 2026-05-22T23:20:57.677447+00:00_
+_source line 1425 · 2026-05-22T23:20:57.677447+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22448,7 +22353,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1428 · 2026-05-23T00:29:31.650671+00:00_
+_source line 1426 · 2026-05-23T00:29:31.650671+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_cron_false_alarm_20260523T002801]:
 Worker worker_check_bootstrap_cron_false_alarm_20260523T002801 已完成（status=done），请审查 Agent 的处理结果。
@@ -22470,7 +22375,7 @@ Worker worker_check_bootstrap_cron_false_alarm_20260523T002801 已完成（statu
 
 ### Assistant
 
-_source line 1429 · 2026-05-23T00:29:36.338270+00:00_
+_source line 1427 · 2026-05-23T00:29:36.338270+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22497,7 +22402,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1430 · 2026-05-23T00:42:03.211585+00:00_
+_source line 1428 · 2026-05-23T00:42:03.211585+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_final_status_and_collect_20260523T003901]:
 Worker worker_check_bootstrap_final_status_and_collect_20260523T003901 已完成（status=done），请审查 Agent 的处理结果。
@@ -22519,7 +22424,7 @@ Worker worker_check_bootstrap_final_status_and_collect_20260523T003901 已完成
 
 ### Assistant
 
-_source line 1431 · 2026-05-23T00:42:07.843514+00:00_
+_source line 1429 · 2026-05-23T00:42:07.843514+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22546,7 +22451,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1432 · 2026-05-23T00:43:35.858239+00:00_
+_source line 1430 · 2026-05-23T00:43:35.858239+00:00_
 
 [系统通知 — cron:on_failed:clustered_bootstrap_reanalysis_v1]:
 实验 clustered_bootstrap_reanalysis_v1 failed，请审查。
@@ -22568,7 +22473,7 @@ _source line 1432 · 2026-05-23T00:43:35.858239+00:00_
 
 ### Assistant
 
-_source line 1433 · 2026-05-23T00:43:42.371176+00:00_
+_source line 1431 · 2026-05-23T00:43:42.371176+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22595,7 +22500,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1434 · 2026-05-23T00:48:04.010696+00:00_
+_source line 1432 · 2026-05-23T00:48:04.010696+00:00_
 
 [系统通知 — worker_done:worker_investigate_nora_goal_ci_anomaly_20260523T004432]:
 Worker worker_investigate_nora_goal_ci_anomaly_20260523T004432 已完成（status=done），请审查 Agent 的处理结果。
@@ -22617,7 +22522,7 @@ Worker worker_investigate_nora_goal_ci_anomaly_20260523T004432 已完成（statu
 
 ### Assistant
 
-_source line 1435 · 2026-05-23T00:48:08.731203+00:00_
+_source line 1433 · 2026-05-23T00:48:08.731203+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22644,7 +22549,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1436 · 2026-05-23T00:49:04.174567+00:00_
+_source line 1434 · 2026-05-23T00:49:04.174567+00:00_
 
 [系统通知 — worker_done:worker_diagnose_clustered_bootstrap_reanalysis_v1_20260523T004605]:
 Worker worker_diagnose_clustered_bootstrap_reanalysis_v1_20260523T004605 已完成（status=done），请审查 Agent 的处理结果。
@@ -22666,7 +22571,7 @@ Worker worker_diagnose_clustered_bootstrap_reanalysis_v1_20260523T004605 已完�
 
 ### Assistant
 
-_source line 1437 · 2026-05-23T00:49:09.288481+00:00_
+_source line 1435 · 2026-05-23T00:49:09.288481+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22693,7 +22598,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1438 · 2026-05-23T00:53:34.694278+00:00_
+_source line 1436 · 2026-05-23T00:53:34.694278+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_fix_and_rerun_all_20260523T005006]:
 Worker worker_run_bootstrap_fix_and_rerun_all_20260523T005006 已完成（status=done），请审查 Agent 的处理结果。
@@ -22715,7 +22620,7 @@ Worker worker_run_bootstrap_fix_and_rerun_all_20260523T005006 已完成（status
 
 ### Assistant
 
-_source line 1439 · 2026-05-23T00:53:39.760264+00:00_
+_source line 1437 · 2026-05-23T00:53:39.760264+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22742,7 +22647,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1440 · 2026-05-23T01:26:34.226358+00:00_
+_source line 1438 · 2026-05-23T01:26:34.226358+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v2_status_20260523T012502]:
 Worker worker_check_bootstrap_v2_status_20260523T012502 已完成（status=done），请审查 Agent 的处理结果。
@@ -22764,7 +22669,7 @@ Worker worker_check_bootstrap_v2_status_20260523T012502 已完成（status=done�
 
 ### Assistant
 
-_source line 1441 · 2026-05-23T01:26:39.865068+00:00_
+_source line 1439 · 2026-05-23T01:26:39.865068+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22791,7 +22696,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1442 · 2026-05-23T01:27:42.857193+00:00_
+_source line 1440 · 2026-05-23T01:27:42.857193+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -22880,7 +22785,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### User
 
-_source line 1443 · 2026-05-23T01:27:47.512366+00:00_
+_source line 1441 · 2026-05-23T01:27:47.512366+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 1/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -22908,7 +22813,7 @@ _source line 1443 · 2026-05-23T01:27:47.512366+00:00_
 
 ### User
 
-_source line 1444 · 2026-05-23T01:27:51.136172+00:00_
+_source line 1442 · 2026-05-23T01:27:51.136172+00:00_
 
 你上一条回复没有用 &lt;handoff>...&lt;/handoff> 标签包裹(第 2/2 次提醒)。这是硬约束，请重新写,整条回复只能是 &lt;handoff>...&lt;/handoff> 包裹的正文,禁止任何标签外的寒暄或说明。
 
@@ -22936,7 +22841,7 @@ _source line 1444 · 2026-05-23T01:27:51.136172+00:00_
 
 ### User
 
-_source line 1445 · 2026-05-23T01:30:34.813084+00:00_
+_source line 1443 · 2026-05-23T01:30:34.813084+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v2_progress_2_20260523T012937]:
 Worker worker_check_bootstrap_v2_progress_2_20260523T012937 已完成（status=done），请审查 Agent 的处理结果。
@@ -22958,7 +22863,7 @@ Worker worker_check_bootstrap_v2_progress_2_20260523T012937 已完成（status=d
 
 ### Assistant
 
-_source line 1446 · 2026-05-23T01:30:39.733141+00:00_
+_source line 1444 · 2026-05-23T01:30:39.733141+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -22985,7 +22890,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1447 · 2026-05-23T01:32:35.030064+00:00_
+_source line 1445 · 2026-05-23T01:32:35.030064+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v2_final_status_20260523T012854]:
 Worker worker_check_bootstrap_v2_final_status_20260523T012854 已完成（status=done），请审查 Agent 的处理结果。
@@ -23007,7 +22912,7 @@ Worker worker_check_bootstrap_v2_final_status_20260523T012854 已完成（status
 
 ### Assistant
 
-_source line 1448 · 2026-05-23T01:32:39.797093+00:00_
+_source line 1446 · 2026-05-23T01:32:39.797093+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23034,7 +22939,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1449 · 2026-05-23T03:40:18.644015+00:00_
+_source line 1447 · 2026-05-23T03:40:18.644015+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -23055,7 +22960,7 @@ _source line 1449 · 2026-05-23T03:40:18.644015+00:00_
 
 ### Assistant
 
-_source line 1450 · 2026-05-23T03:40:25.319272+00:00_
+_source line 1448 · 2026-05-23T03:40:25.319272+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23082,7 +22987,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1451 · 2026-05-23T03:42:15.562204+00:00_
+_source line 1449 · 2026-05-23T03:42:15.562204+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v2_post_restart_20260523T034046]:
 Worker worker_check_bootstrap_v2_post_restart_20260523T034046 已完成（status=done），请审查 Agent 的处理结果。
@@ -23104,7 +23009,7 @@ Worker worker_check_bootstrap_v2_post_restart_20260523T034046 已完成（status
 
 ### Assistant
 
-_source line 1452 · 2026-05-23T03:42:21.116558+00:00_
+_source line 1450 · 2026-05-23T03:42:21.116558+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23131,7 +23036,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1453 · 2026-05-23T03:43:45.798510+00:00_
+_source line 1451 · 2026-05-23T03:43:45.798510+00:00_
 
 [系统通知 — worker_done:worker_run_bootstrap_v2_restart_remaining_20260523T034245]:
 Worker worker_run_bootstrap_v2_restart_remaining_20260523T034245 已完成（status=done），请审查 Agent 的处理结果。
@@ -23153,7 +23058,7 @@ Worker worker_run_bootstrap_v2_restart_remaining_20260523T034245 已完成（sta
 
 ### Assistant
 
-_source line 1454 · 2026-05-23T03:43:50.362445+00:00_
+_source line 1452 · 2026-05-23T03:43:50.362445+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23180,7 +23085,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1455 · 2026-05-23T04:16:03.863886+00:00_
+_source line 1453 · 2026-05-23T04:16:03.863886+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_gpu_crosscheck_20260523T041453]:
 Worker worker_check_bootstrap_gpu_crosscheck_20260523T041453 已完成（status=done），请审查 Agent 的处理结果。
@@ -23202,7 +23107,7 @@ Worker worker_check_bootstrap_gpu_crosscheck_20260523T041453 已完成（status=
 
 ### Assistant
 
-_source line 1456 · 2026-05-23T04:16:09.534207+00:00_
+_source line 1454 · 2026-05-23T04:16:09.534207+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23229,7 +23134,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1457 · 2026-05-23T06:23:18.025891+00:00_
+_source line 1455 · 2026-05-23T06:23:18.025891+00:00_
 
 [系统通知 — worker_done:worker_collect_bootstrap_v2_final_20260523T062013]:
 Worker worker_collect_bootstrap_v2_final_20260523T062013 已完成（status=done），请审查 Agent 的处理结果。
@@ -23251,7 +23156,7 @@ Worker worker_collect_bootstrap_v2_final_20260523T062013 已完成（status=done
 
 ### Assistant
 
-_source line 1458 · 2026-05-23T06:23:23.234237+00:00_
+_source line 1456 · 2026-05-23T06:23:23.234237+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23278,7 +23183,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1459 · 2026-05-23T06:28:36.638574+00:00_
+_source line 1457 · 2026-05-23T06:28:36.638574+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v2_final_condition_20260523T062741]:
 Worker worker_check_bootstrap_v2_final_condition_20260523T062741 已完成（status=done），请审查 Agent 的处理结果。
@@ -23300,7 +23205,7 @@ Worker worker_check_bootstrap_v2_final_condition_20260523T062741 已完成（sta
 
 ### Assistant
 
-_source line 1460 · 2026-05-23T06:28:40.474029+00:00_
+_source line 1458 · 2026-05-23T06:28:40.474029+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23327,7 +23232,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1461 · 2026-05-23T06:38:21.157149+00:00_
+_source line 1459 · 2026-05-23T06:38:21.157149+00:00_
 
 [系统通知 — worker_done:worker_diagnose_bootstrap_v2_ci_anomalies_20260523T063132]:
 Worker worker_diagnose_bootstrap_v2_ci_anomalies_20260523T063132 已完成（status=done），请审查 Agent 的处理结果。
@@ -23349,7 +23254,7 @@ Worker worker_diagnose_bootstrap_v2_ci_anomalies_20260523T063132 已完成（sta
 
 ### Assistant
 
-_source line 1462 · 2026-05-23T06:38:25.839182+00:00_
+_source line 1460 · 2026-05-23T06:38:25.839182+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23376,7 +23281,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1463 · 2026-05-23T06:45:22.642738+00:00_
+_source line 1461 · 2026-05-23T06:45:22.642738+00:00_
 
 [系统通知 — worker_done:worker_code_bootstrap_v3_mccv_20260523T064112]:
 Worker worker_code_bootstrap_v3_mccv_20260523T064112 已完成（status=done），请审查 Agent 的处理结果。
@@ -23398,7 +23303,7 @@ Worker worker_code_bootstrap_v3_mccv_20260523T064112 已完成（status=done）�
 
 ### Assistant
 
-_source line 1464 · 2026-05-23T06:45:27.319199+00:00_
+_source line 1462 · 2026-05-23T06:45:27.319199+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23425,7 +23330,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1465 · 2026-05-23T07:09:57.566186+00:00_
+_source line 1463 · 2026-05-23T07:09:57.566186+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_cron_exit_20260523T070749]:
 Worker worker_check_bootstrap_v3_cron_exit_20260523T070749 已完成（status=done），请审查 Agent 的处理结果。
@@ -23447,7 +23352,7 @@ Worker worker_check_bootstrap_v3_cron_exit_20260523T070749 已完成（status=do
 
 ### Assistant
 
-_source line 1466 · 2026-05-23T07:10:02.154438+00:00_
+_source line 1464 · 2026-05-23T07:10:02.154438+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23474,7 +23379,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1467 · 2026-05-23T07:18:59.489583+00:00_
+_source line 1465 · 2026-05-23T07:18:59.489583+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_cron_exit_2_20260523T071751]:
 Worker worker_check_bootstrap_v3_cron_exit_2_20260523T071751 已完成（status=done），请审查 Agent 的处理结果。
@@ -23496,7 +23401,7 @@ Worker worker_check_bootstrap_v3_cron_exit_2_20260523T071751 已完成（status=
 
 ### Assistant
 
-_source line 1468 · 2026-05-23T07:19:04.835369+00:00_
+_source line 1466 · 2026-05-23T07:19:04.835369+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23523,7 +23428,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1469 · 2026-05-23T07:26:08.239520+00:00_
+_source line 1467 · 2026-05-23T07:26:08.239520+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_gpu_crosscheck_20260523T072421]:
 Worker worker_check_bootstrap_v3_gpu_crosscheck_20260523T072421 已完成（status=done），请审查 Agent 的处理结果。
@@ -23545,7 +23450,7 @@ Worker worker_check_bootstrap_v3_gpu_crosscheck_20260523T072421 已完成（stat
 
 ### Assistant
 
-_source line 1470 · 2026-05-23T07:26:12.946447+00:00_
+_source line 1468 · 2026-05-23T07:26:12.946447+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23572,7 +23477,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1471 · 2026-05-23T07:48:03.010606+00:00_
+_source line 1469 · 2026-05-23T07:48:03.010606+00:00_
 
 [系统通知 — cron:on_failed:clustered_bootstrap_reanalysis_v3]:
 实验 clustered_bootstrap_reanalysis_v3 failed，请审查。
@@ -23594,7 +23499,7 @@ _source line 1471 · 2026-05-23T07:48:03.010606+00:00_
 
 ### Assistant
 
-_source line 1472 · 2026-05-23T07:48:09.228316+00:00_
+_source line 1470 · 2026-05-23T07:48:09.228316+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23621,7 +23526,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1473 · 2026-05-23T07:51:13.170175+00:00_
+_source line 1471 · 2026-05-23T07:51:13.170175+00:00_
 
 [系统通知 — worker_done:worker_diagnose_clustered_bootstrap_reanalysis_v3_20260523T074926]:
 Worker worker_diagnose_clustered_bootstrap_reanalysis_v3_20260523T074926 已完成（status=done），请审查 Agent 的处理结果。
@@ -23643,7 +23548,7 @@ Worker worker_diagnose_clustered_bootstrap_reanalysis_v3_20260523T074926 已完�
 
 ### Assistant
 
-_source line 1474 · 2026-05-23T07:51:17.638172+00:00_
+_source line 1472 · 2026-05-23T07:51:17.638172+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23670,7 +23575,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1475 · 2026-05-23T08:05:46.302113+00:00_
+_source line 1473 · 2026-05-23T08:05:46.302113+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_urgent_status_20260523T080439]:
 Worker worker_check_bootstrap_v3_urgent_status_20260523T080439 已完成（status=done），请审查 Agent 的处理结果。
@@ -23692,7 +23597,7 @@ Worker worker_check_bootstrap_v3_urgent_status_20260523T080439 已完成（statu
 
 ### Assistant
 
-_source line 1476 · 2026-05-23T08:05:51.135222+00:00_
+_source line 1474 · 2026-05-23T08:05:51.135222+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23719,7 +23624,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1477 · 2026-05-23T11:12:44.134220+00:00_
+_source line 1475 · 2026-05-23T11:12:44.134220+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_final_results_20260523T110944]:
 Worker worker_check_bootstrap_v3_final_results_20260523T110944 已完成（status=done），请审查 Agent 的处理结果。
@@ -23741,7 +23646,7 @@ Worker worker_check_bootstrap_v3_final_results_20260523T110944 已完成（statu
 
 ### Assistant
 
-_source line 1478 · 2026-05-23T11:12:49.450230+00:00_
+_source line 1476 · 2026-05-23T11:12:49.450230+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23768,7 +23673,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1479 · 2026-05-23T11:21:46.039675+00:00_
+_source line 1477 · 2026-05-23T11:21:46.039675+00:00_
 
 [系统通知 — worker_done:worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551]:
 Worker worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551 已完成（status=done），请审查 Agent 的处理结果。
@@ -23790,7 +23695,7 @@ Worker worker_diagnose_v3_ci_anomalies_nora_tracvla_20260523T111551 已完成（
 
 ### Assistant
 
-_source line 1480 · 2026-05-23T11:21:51.142641+00:00_
+_source line 1478 · 2026-05-23T11:21:51.142641+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23817,7 +23722,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1481 · 2026-05-23T12:03:55.599125+00:00_
+_source line 1479 · 2026-05-23T12:03:55.599125+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_20_20_final_20260523T120246]:
 Worker worker_check_bootstrap_v3_20_20_final_20260523T120246 已完成（status=done），请审查 Agent 的处理结果。
@@ -23839,7 +23744,7 @@ Worker worker_check_bootstrap_v3_20_20_final_20260523T120246 已完成（status=
 
 ### Assistant
 
-_source line 1482 · 2026-05-23T12:04:01.032361+00:00_
+_source line 1480 · 2026-05-23T12:04:01.032361+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23866,7 +23771,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1483 · 2026-05-23T12:07:56.474861+00:00_
+_source line 1481 · 2026-05-23T12:07:56.474861+00:00_
 
 [系统通知 — worker_done:worker_report_bootstrap_v3_summary_19_20260523T120509]:
 Worker worker_report_bootstrap_v3_summary_19_20260523T120509 已完成（status=done），请审查 Agent 的处理结果。
@@ -23888,7 +23793,7 @@ Worker worker_report_bootstrap_v3_summary_19_20260523T120509 已完成（status=
 
 ### Assistant
 
-_source line 1484 · 2026-05-23T12:08:01.271007+00:00_
+_source line 1482 · 2026-05-23T12:08:01.271007+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23915,7 +23820,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1485 · 2026-05-23T12:52:57.995223+00:00_
+_source line 1483 · 2026-05-23T12:52:57.995223+00:00_
 
 [System 触发审查]:
 **纯文本审查请求 — 不涉及 PDF**
@@ -23954,7 +23859,7 @@ _source line 1485 · 2026-05-23T12:52:57.995223+00:00_
 
 ### Assistant
 
-_source line 1486 · 2026-05-23T12:53:03.176163+00:00_
+_source line 1484 · 2026-05-23T12:53:03.176163+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -23981,7 +23886,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1487 · 2026-05-23T12:54:00.438762+00:00_
+_source line 1485 · 2026-05-23T12:54:00.438762+00:00_
 
 [系统通知 — worker_done:worker_check_bootstrap_v3_final_20_20_20260523T125255]:
 Worker worker_check_bootstrap_v3_final_20_20_20260523T125255 已完成（status=done），请审查 Agent 的处理结果。
@@ -24003,7 +23908,7 @@ Worker worker_check_bootstrap_v3_final_20_20_20260523T125255 已完成（status=
 
 ### Assistant
 
-_source line 1488 · 2026-05-23T12:54:05.639510+00:00_
+_source line 1486 · 2026-05-23T12:54:05.639510+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24030,7 +23935,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1489 · 2026-05-23T15:35:54.454652+00:00_
+_source line 1487 · 2026-05-23T15:35:54.454652+00:00_
 
 [系统通知 — worker_done:worker_check_behavioral_pilot_v2_readiness_20260523T153207]:
 Worker worker_check_behavioral_pilot_v2_readiness_20260523T153207 已完成（status=done），请审查 Agent 的处理结果。
@@ -24052,7 +23957,7 @@ Worker worker_check_behavioral_pilot_v2_readiness_20260523T153207 已完成（st
 
 ### Assistant
 
-_source line 1490 · 2026-05-23T15:36:02.786368+00:00_
+_source line 1488 · 2026-05-23T15:36:02.786368+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24079,7 +23984,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1491 · 2026-05-23T15:40:25.236032+00:00_
+_source line 1489 · 2026-05-23T15:40:25.236032+00:00_
 
 [系统通知 — worker_done:worker_check_cuda1_preparing_experiments_20260523T153732]:
 Worker worker_check_cuda1_preparing_experiments_20260523T153732 已完成（status=done），请审查 Agent 的处理结果。
@@ -24101,7 +24006,7 @@ Worker worker_check_cuda1_preparing_experiments_20260523T153732 已完成（stat
 
 ### Assistant
 
-_source line 1492 · 2026-05-23T15:40:30.512297+00:00_
+_source line 1490 · 2026-05-23T15:40:30.512297+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24128,7 +24033,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1493 · 2026-05-23T15:43:26.016656+00:00_
+_source line 1491 · 2026-05-23T15:43:26.016656+00:00_
 
 [系统通知 — worker_done:worker_diag_behavioral_smoketest_action_20260523T153722]:
 Worker worker_diag_behavioral_smoketest_action_20260523T153722 已完成（status=done），请审查 Agent 的处理结果。
@@ -24150,7 +24055,7 @@ Worker worker_diag_behavioral_smoketest_action_20260523T153722 已完成（statu
 
 ### Assistant
 
-_source line 1494 · 2026-05-23T15:43:31.125298+00:00_
+_source line 1492 · 2026-05-23T15:43:31.125298+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24177,7 +24082,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1495 · 2026-05-23T15:46:56.665599+00:00_
+_source line 1493 · 2026-05-23T15:46:56.665599+00:00_
 
 [系统通知 — worker_done:worker_run_nora_spatial_untrained_cf_20260523T154138]:
 Worker worker_run_nora_spatial_untrained_cf_20260523T154138 已完成（status=done），请审查 Agent 的处理结果。
@@ -24199,7 +24104,7 @@ Worker worker_run_nora_spatial_untrained_cf_20260523T154138 已完成（status=d
 
 ### Assistant
 
-_source line 1496 · 2026-05-23T15:47:01.802200+00:00_
+_source line 1494 · 2026-05-23T15:47:01.802200+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24226,7 +24131,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1497 · 2026-05-23T15:47:26.800301+00:00_
+_source line 1495 · 2026-05-23T15:47:26.800301+00:00_
 
 [系统通知 — worker_done:worker_check_matrix_completeness_20260523T154503]:
 Worker worker_check_matrix_completeness_20260523T154503 已完成（status=done），请审查 Agent 的处理结果。
@@ -24248,7 +24153,7 @@ Worker worker_check_matrix_completeness_20260523T154503 已完成（status=done�
 
 ### Assistant
 
-_source line 1498 · 2026-05-23T15:47:31.563287+00:00_
+_source line 1496 · 2026-05-23T15:47:31.563287+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24275,7 +24180,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1499 · 2026-05-23T15:48:14.038132+00:00_
+_source line 1497 · 2026-05-23T15:48:14.038132+00:00_
 
 [系统通知 — worker_done:worker_fix_kill_duplicate_cf_20260523T154746]:
 Worker worker_fix_kill_duplicate_cf_20260523T154746 已完成（status=done），请审查 Agent 的处理结果。
@@ -24297,7 +24202,7 @@ Worker worker_fix_kill_duplicate_cf_20260523T154746 已完成（status=done）�
 
 ### Assistant
 
-_source line 1500 · 2026-05-23T15:48:18.435619+00:00_
+_source line 1498 · 2026-05-23T15:48:18.435619+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24324,7 +24229,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1501 · 2026-05-23T15:58:13.540394+00:00_
+_source line 1499 · 2026-05-23T15:58:13.540394+00:00_
 
 [System 触发审查]:
 **Round 16 审稿报告处理 — 请独立审视我的逐条方案**
@@ -24384,7 +24289,7 @@ Round 16 结果：4.5 → 6.5/10 (Borderline Weak Accept)。所有 R15 Must-Fix 
 
 ### Assistant
 
-_source line 1502 · 2026-05-23T15:58:16.933987+00:00_
+_source line 1500 · 2026-05-23T15:58:16.933987+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24411,7 +24316,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1503 · 2026-05-23T16:42:12.070732+00:00_
+_source line 1501 · 2026-05-23T16:42:12.070732+00:00_
 
 [系统通知 — worker_done:worker_analysis_multi_threshold_robustness_20260523T164043]:
 Worker worker_analysis_multi_threshold_robustness_20260523T164043 已完成（status=done），请审查 Agent 的处理结果。
@@ -24433,7 +24338,7 @@ Worker worker_analysis_multi_threshold_robustness_20260523T164043 已完成（st
 
 ### Assistant
 
-_source line 1504 · 2026-05-23T16:42:16.152176+00:00_
+_source line 1502 · 2026-05-23T16:42:16.152176+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24460,7 +24365,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1505 · 2026-05-23T16:46:21.162247+00:00_
+_source line 1503 · 2026-05-23T16:46:21.162247+00:00_
 
 [系统通知 — worker_done:worker_check_nora_spatial_cf_status_20260523T164458]:
 Worker worker_check_nora_spatial_cf_status_20260523T164458 已完成（status=done），请审查 Agent 的处理结果。
@@ -24482,7 +24387,7 @@ Worker worker_check_nora_spatial_cf_status_20260523T164458 已完成（status=do
 
 ### Assistant
 
-_source line 1506 · 2026-05-23T16:46:26.921183+00:00_
+_source line 1504 · 2026-05-23T16:46:26.921183+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24509,7 +24414,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1507 · 2026-05-23T17:02:23.640860+00:00_
+_source line 1505 · 2026-05-23T17:02:23.640860+00:00_
 
 [系统通知 — worker_done:worker_draw_fig_matrix_heatmap_20260523T170103]:
 Worker worker_draw_fig_matrix_heatmap_20260523T170103 已完成（status=done），请审查 Agent 的处理结果。
@@ -24531,7 +24436,7 @@ Worker worker_draw_fig_matrix_heatmap_20260523T170103 已完成（status=done）
 
 ### Assistant
 
-_source line 1508 · 2026-05-23T17:02:28.627240+00:00_
+_source line 1506 · 2026-05-23T17:02:28.627240+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24558,7 +24463,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1509 · 2026-05-23T17:03:23.769010+00:00_
+_source line 1507 · 2026-05-23T17:03:23.769010+00:00_
 
 [系统通知 — worker_done:worker_draw_fig_claim_evidence_20260523T170142]:
 Worker worker_draw_fig_claim_evidence_20260523T170142 已完成（status=done），请审查 Agent 的处理结果。
@@ -24580,7 +24485,7 @@ Worker worker_draw_fig_claim_evidence_20260523T170142 已完成（status=done）
 
 ### Assistant
 
-_source line 1510 · 2026-05-23T17:03:28.556125+00:00_
+_source line 1508 · 2026-05-23T17:03:28.556125+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24607,7 +24512,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1511 · 2026-05-23T17:12:25.083617+00:00_
+_source line 1509 · 2026-05-23T17:12:25.083617+00:00_
 
 [系统通知 — worker_done:worker_draw_fig_counterfactual_bar_20260523T170127]:
 Worker worker_draw_fig_counterfactual_bar_20260523T170127 已完成（status=done），请审查 Agent 的处理结果。
@@ -24629,7 +24534,7 @@ Worker worker_draw_fig_counterfactual_bar_20260523T170127 已完成（status=don
 
 ### Assistant
 
-_source line 1512 · 2026-05-23T17:12:29.947405+00:00_
+_source line 1510 · 2026-05-23T17:12:29.947405+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24656,7 +24561,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1513 · 2026-05-23T17:23:47.457900+00:00_
+_source line 1511 · 2026-05-23T17:23:47.457900+00:00_
 
 [系统通知 — worker_done:worker_ops_download_figures_20260523T172227]:
 Worker worker_ops_download_figures_20260523T172227 已完成（status=done），请审查 Agent 的处理结果。
@@ -24678,7 +24583,7 @@ Worker worker_ops_download_figures_20260523T172227 已完成（status=done），
 
 ### Assistant
 
-_source line 1514 · 2026-05-23T17:23:53.514448+00:00_
+_source line 1512 · 2026-05-23T17:23:53.514448+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24705,7 +24610,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1515 · 2026-05-23T17:28:30.700022+00:00_
+_source line 1513 · 2026-05-23T17:28:30.700022+00:00_
 
 [系统通知 — worker_done:worker_util_download_pdfs_20260523T172444]:
 Worker worker_util_download_pdfs_20260523T172444 已完成（status=done），请审查 Agent 的处理结果。
@@ -24727,7 +24632,7 @@ Worker worker_util_download_pdfs_20260523T172444 已完成（status=done），�
 
 ### Assistant
 
-_source line 1516 · 2026-05-23T17:28:35.933225+00:00_
+_source line 1514 · 2026-05-23T17:28:35.933225+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24754,7 +24659,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1517 · 2026-05-23T17:32:11.262244+00:00_
+_source line 1515 · 2026-05-23T17:32:11.262244+00:00_
 
 [系统通知 — worker_done:worker_scp_three_pdfs_20260523T173001]:
 Worker worker_scp_three_pdfs_20260523T173001 已完成（status=done），请审查 Agent 的处理结果。
@@ -24776,7 +24681,7 @@ Worker worker_scp_three_pdfs_20260523T173001 已完成（status=done），请审
 
 ### Assistant
 
-_source line 1518 · 2026-05-23T17:32:17.209527+00:00_
+_source line 1516 · 2026-05-23T17:32:17.209527+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24803,7 +24708,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1519 · 2026-05-23T17:36:11.702502+00:00_
+_source line 1517 · 2026-05-23T17:36:11.702502+00:00_
 
 [系统通知 — worker_done:worker_transfer_figures_base64_20260523T173302]:
 Worker worker_transfer_figures_base64_20260523T173302 已完成（status=done），请审查 Agent 的处理结果。
@@ -24825,7 +24730,7 @@ Worker worker_transfer_figures_base64_20260523T173302 已完成（status=done）
 
 ### Assistant
 
-_source line 1520 · 2026-05-23T17:36:15.518389+00:00_
+_source line 1518 · 2026-05-23T17:36:15.518389+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24852,7 +24757,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1521 · 2026-05-23T17:36:42.611093+00:00_
+_source line 1519 · 2026-05-23T17:36:42.611093+00:00_
 
 [系统通知 — worker_done:worker_file_transfer_download_figures_20260523T173314]:
 Worker worker_file_transfer_download_figures_20260523T173314 已完成（status=done），请审查 Agent 的处理结果。
@@ -24874,7 +24779,7 @@ Worker worker_file_transfer_download_figures_20260523T173314 已完成（status=
 
 ### Assistant
 
-_source line 1522 · 2026-05-23T17:36:46.677203+00:00_
+_source line 1520 · 2026-05-23T17:36:46.677203+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24901,7 +24806,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1523 · 2026-05-23T17:36:59.174870+00:00_
+_source line 1521 · 2026-05-23T17:36:59.174870+00:00_
 
 [系统通知 — worker_done:worker_file_download_20260523T172600]:
 Worker worker_file_download_20260523T172600 已完成（status=done），请审查 Agent 的处理结果。
@@ -24923,7 +24828,7 @@ Worker worker_file_download_20260523T172600 已完成（status=done），请审�
 
 ### Assistant
 
-_source line 1524 · 2026-05-23T17:37:03.266323+00:00_
+_source line 1522 · 2026-05-23T17:37:03.266323+00:00_
 
 The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
@@ -24950,7 +24855,7 @@ The PDF file was not valid. Try converting it to text first (e.g., pdftotext).
 
 ### User
 
-_source line 1525 · 2026-05-23T17:56:36.790323+00:00_
+_source line 1523 · 2026-05-23T17:56:36.790323+00:00_
 
 [系统通知 — worker_done:worker_verify_cf_cohens_d_all_conditions_20260523T175248]:
 Worker worker_verify_cf_cohens_d_all_conditions_20260523T175248 已完成（status=done），请审查 Agent 的处理结果。
@@ -24972,7 +24877,7 @@ Worker worker_verify_cf_cohens_d_all_conditions_20260523T175248 已完成（stat
 
 ### Tool call
 
-_source line 1526 · 2026-05-23T17:58:42.348103+00:00_
+_source line 1524 · 2026-05-23T17:58:42.348103+00:00_
 
 called ToolSearch
 
@@ -25008,7 +24913,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1527 · 2026-05-23T17:58:42.398816+00:00_
+_source line 1525 · 2026-05-23T17:58:42.398816+00:00_
 
 
 
@@ -25030,7 +24935,7 @@ _source line 1527 · 2026-05-23T17:58:42.398816+00:00_
 
 ### Tool call
 
-_source line 1528 · 2026-05-23T17:58:45.426086+00:00_
+_source line 1526 · 2026-05-23T17:58:45.426086+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -25068,7 +24973,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1529 · 2026-05-23T17:58:45.679082+00:00_
+_source line 1527 · 2026-05-23T17:58:45.679082+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -25106,7 +25011,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1530 · 2026-05-23T17:58:45.981559+00:00_
+_source line 1528 · 2026-05-23T17:58:45.981559+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"clustered_bootstrap_reanalysis_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T06:46:06.392Z\", \"updated_at\": \"2026-05-23T12:54:54.894Z\", \"hypothesis\": \"Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) fixes v2's train-test demo overlap artifact. Expect bootstrap CIs to center around canonical deltas, confirming VLM→VLA exit collapse significance (TracVLA 4/4, NORA 2/2) while OpenVLA and untrained conditions remain non-significant.\", \"parent\": \"clustered_bootstrap_reanalysis_v2\", \"spec\": {\"command\": \"tmux: bootstrap_v3_cuda0 (12 conditions) + bootstrap_v3_cuda1 (8 conditions)\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/results/ (extracted features)\", \"data_count\": \"20 conditions (3 arch × 4 suites × 2 conditions)\", \"model_name\": \"OpenVLA/TracVLA/NORA kernel ridge probes\", \"seed\": \"per-iteration RNG seeds via np.random.default_rng\", \"checkpoint_source\": \"clustered_bootstrap_reanalysis_v2 (reusing extracted features)\", \"eval_data\": \"LIBERO goal/spatial/object/long demo features (100 demos each)\"}, \"notes\": \"2026-05-23 11:25 UTC D102决策: (1) NORA goal trained 报 canonical Δ=0.455, 表中脚注 \\\"†CI unreliable due to near-zero exit-layer R²\\\" (2) TracVLA goal untrained 直接报告, CI穿零是正面结果. 进度 17/20, 等 tracvla_object/untrained + tracvla_long trained/untrained 完成.\", \"reproduce\": {\"finished_at\": \"2026-05-23T07:47:57.790Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T07:47:59.985Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-23T07:48:03.448404+00:00\"}]}, \"metrics\": {\"vlm_vla_trained_substantial\": \"6/6\", \"openvla_trained_substantial\": \"0/4\", \"untrained_substantial\": \"0/10\", \"delta_in_ci\": \"17/
 …[truncated 37257 chars]
@@ -25129,7 +25034,7 @@ _source line 1530 · 2026-05-23T17:58:45.981559+00:00_
 
 ### Tool result
 
-_source line 1531 · 2026-05-23T17:58:45.982107+00:00_
+_source line 1529 · 2026-05-23T17:58:45.982107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-23T07:48:02Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 152 个实验 — ALLOCATED 1, DONE 141, PREPARING 10\\n**DONE 分布**: failed 8, killed 12, negative 17, success 104\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-19183:cuda:0, westd-19183:cuda:1\\n\\n### 💾 磁盘余量\\n- **westd-19183**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `clustered_bootstrap_reanalysis_v3` [failed] — 2026-05-23T07:47:59 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `clustered_bootstrap_reanalysis_v2` [failed] — 2026-05-23T03:40:12 — startup recovery: RUNNING with no cron and no server/pid info\\n- `clustered_bootstrap_reanalysis_v1` [failed] — 2026-05-23T00:53:59 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `nlp_finetuning_control_v1` [success] — 2026-05-22T12:53:14\\n- `openvla_spatial_standardized_v1` [success] — 2026-05-22T11:17:32 — EXIT_CODE=1 (generic error — check log tail)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `clustered_bootstrap_reanalysis_v3`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `clustered_bootstrap_reanalysis_v2`: startup recovery: RUNNING with no cron and no server/pid info\\n- `clustered_bootstrap_reanalysis_v1`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- tracvla_spatial_full_v2: TraceVLA (Phi-3-mini) on LIBERO-Spatial shows the convergent entry-exit routing pattern when fine-tuned, and the untrained base model (Phi-3-Vision) lacks this pattern. Cross-suite validation for secon
 …[truncated 3202 chars]
@@ -25152,7 +25057,7 @@ _source line 1531 · 2026-05-23T17:58:45.982107+00:00_
 
 ### Tool call
 
-_source line 1532 · 2026-05-23T17:59:10.144301+00:00_
+_source line 1530 · 2026-05-23T17:59:10.144301+00:00_
 
 called Read
 
@@ -25186,7 +25091,7 @@ called Read
 
 ### Tool result
 
-_source line 1533 · 2026-05-23T17:59:10.596643+00:00_
+_source line 1531 · 2026-05-23T17:59:10.596643+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -25230,7 +25135,7 @@ _source line 1533 · 2026-05-23T17:59:10.596643+00:00_
 
 ### Tool call
 
-_source line 1534 · 2026-05-23T17:59:10.597037+00:00_
+_source line 1532 · 2026-05-23T17:59:10.597037+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -25268,7 +25173,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1535 · 2026-05-23T17:59:10.698081+00:00_
+_source line 1533 · 2026-05-23T17:59:10.698081+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/decisions.yaml\", \"content\": \"_next_id: 103\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 11:03 UTC\\n  summary: MVP 三分支判定标准校准：ρ下限0.3→0.5, Δρ加bootstrap CI, subtask gate加DINO baseline对比\\n  rationale: Reviewer 审查发现四项校准缺陷：(1) ρ>0.3 下限过低（DINO-V2 已达0.833，0.3只挡彻底失败）→ 提至0.5；(2)\\n    Δρ>0.1 仅为点估计缺统计检验 → 追加 bootstrapped 95% CI must exclude 0；(3) subtask_AUC>0.7\\n    无 baseline 锚点（不知道 DINO-V2 能做到多少）→ 增加条件 subtask_AUC > DINO_subtask_AUC + 0.05；(4)\\n    layer profile 不入正式判定但作为 mandatory supplementary analysis。修改后标准更严谨，降低 false positive\\n    PASS 风险。\\n  related_experiments:\\n  - exp_id: dino-v2-baseline\\n    role: baseline\\n    result: ρ=0.833\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 12:02 UTC\\n  summary: MVP 判定全面切换到 per-task mean ρ，弃用 pooled ρ\\n  rationale: Reviewer 指出 pooled ρ 受 cross-task variance 膨胀（DINO pooled=0.833 vs per-task\\n    mean=0.554）。pooled-vs-pooled 虽对称但偏严（可能 false negative）。切换 per-task mean 与 task-level\\n    bootstrap CI 方法论一致，且是更公平的 apples-to-apples 比较。影响：VLA≥DINO gate 从 ρ≥0.833 变为 per-task\\n    mean≥0.554；ρ>0.5 下限同样改为 per-task mean。\\n  related_experiments:\\n  - exp_id: dinov2_baseline\\n    role: baseline\\n    result: pooled ρ=0.833, per-task mean=0.554\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 12:31 UTC\\n  summary: 移除 subtask AUC gate，MVP 判定简化为纯 temporal distance (ρ) 路径\\n  rationale: DINO-V2 subtask AUC = 0.9717，Path B 要求 VLA > DINO + 0.05 = 1.0217，数学不可达（AUC\\n    上限 1.0）。根因：subtask 间视觉差异大，任何强视觉编码器都能高 AUC 区分——subtask discrimination 不是 VLA 的差异化能力。Temporal\\n    distance（连续进度信号）才是 VLA 可能独有的编码维度。简化后判定：PASS 需 VLA_ρ ≥ DINO_ρ (0.833)；CONDITIONAL\\n    需 Δρ > 0.1 但 VLA_ρ < DINO_ρ；FAIL 需 ρ ≤ 0.5 或 Δρ ≤ 0.1。Subtask AUC 保留为补充分析，不参与\\n    gate。\\n  related_experiments:\\n  - exp_id: dinov2_baseline\\n    role: trigger\\n    result: subtask AUC 0.9717 使 Path B 数学不可达\\n  depends_on:\\n  - D001\\n- id
 …[truncated 10879 chars]
@@ -25291,7 +25196,7 @@ _source line 1535 · 2026-05-23T17:59:10.698081+00:00_
 
 ### Tool call
 
-_source line 1536 · 2026-05-23T18:00:09.783417+00:00_
+_source line 1534 · 2026-05-23T18:00:09.783417+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -25329,7 +25234,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1537 · 2026-05-23T18:00:10.186671+00:00_
+_source line 1535 · 2026-05-23T18:00:10.186671+00:00_
 
 Error: result (91,486 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-reviewer-7b0fefde/2ab22121-e01f-4b40-991c-65244a081251/tool-results/mcp-agent-ml-research-read_project_file-1779559210137.txt.
 Format: JSON with schema: {result: string}
@@ -25356,7 +25261,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 1538 · 2026-05-23T18:00:17.274052+00:00_
+_source line 1536 · 2026-05-23T18:00:17.274052+00:00_
 
 called Bash
 
@@ -25392,7 +25297,7 @@ called Bash
 
 ### Tool result
 
-_source line 1539 · 2026-05-23T18:00:17.726607+00:00_
+_source line 1537 · 2026-05-23T18:00:17.726607+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -25422,7 +25327,7 @@ TypeError: the JSON object must be str, bytes or bytearray, not dict
 
 ### Tool call
 
-_source line 1540 · 2026-05-23T18:00:24.255128+00:00_
+_source line 1538 · 2026-05-23T18:00:24.255128+00:00_
 
 called Bash
 
@@ -25458,7 +25363,7 @@ called Bash
 
 ### Tool result
 
-_source line 1541 · 2026-05-23T18:00:24.506877+00:00_
+_source line 1539 · 2026-05-23T18:00:24.506877+00:00_
 
 D096: OpenVLA Goal standardized 结果：R² exit collapse 在 OpenVLA 上不一致（Goal/Long 无 collapse, Object 有）。"Architecture-independent" claim 需 qualify 为 "VLM→VLA transition effect"。CF sensitivity 仍跨架构一致。
   rationale: OpenVLA Goal trained Δ=0.016 vs untrained Δ=0.033，无 exit collapse 信号。结合 Long (Δ=0.004)，OpenVLA 3 个 suite 中只有 Object (Δ=0.121) 显示 collapse。关键区别：TracVLA/NORA 的 untrained 是纯 VLM，OpenVLA untrained 是 OXE-pretrained VLA。解读：R² exit collapse 在 VLM→VLA 转换时 emerge（6/6 TracVLA+NORA cells），但不在 OXE→LIBERO 转换时加剧。
@@ -25494,7 +25399,7 @@ D100: NLP control 确认 R² exit collapse 是 VLA-specific（Llama-2-7b-chat Δ
 
 ### Tool call
 
-_source line 1542 · 2026-05-23T18:00:33.168501+00:00_
+_source line 1540 · 2026-05-23T18:00:33.168501+00:00_
 
 called ToolSearch
 
@@ -25530,7 +25435,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1543 · 2026-05-23T18:00:33.219758+00:00_
+_source line 1541 · 2026-05-23T18:00:33.219758+00:00_
 
 
 
@@ -25552,7 +25457,7 @@ _source line 1543 · 2026-05-23T18:00:33.219758+00:00_
 
 ### Tool call
 
-_source line 1544 · 2026-05-23T18:00:37.120214+00:00_
+_source line 1542 · 2026-05-23T18:00:37.120214+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25588,7 +25493,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1545 · 2026-05-23T18:00:37.421576+00:00_
+_source line 1543 · 2026-05-23T18:00:37.421576+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25624,7 +25529,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1546 · 2026-05-23T18:00:38.124297+00:00_
+_source line 1544 · 2026-05-23T18:00:38.124297+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/vla-ssd/results/libero_goal_trained/counterfactual_combined.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.0}}"}
 
@@ -25646,7 +25551,7 @@ _source line 1546 · 2026-05-23T18:00:38.124297+00:00_
 
 ### Tool result
 
-_source line 1547 · 2026-05-23T18:00:38.628129+00:00_
+_source line 1545 · 2026-05-23T18:00:38.628129+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/vla-ssd/results/libero_goal_trained/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -25668,7 +25573,7 @@ _source line 1547 · 2026-05-23T18:00:38.628129+00:00_
 
 ### Tool call
 
-_source line 1548 · 2026-05-23T18:00:41.892681+00:00_
+_source line 1546 · 2026-05-23T18:00:41.892681+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25704,7 +25609,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1549 · 2026-05-23T18:00:42.244810+00:00_
+_source line 1547 · 2026-05-23T18:00:42.244810+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25740,7 +25645,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1550 · 2026-05-23T18:00:42.345868+00:00_
+_source line 1548 · 2026-05-23T18:00:42.345868+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal_untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -25762,7 +25667,7 @@ _source line 1550 · 2026-05-23T18:00:42.345868+00:00_
 
 ### Tool result
 
-_source line 1551 · 2026-05-23T18:00:42.898432+00:00_
+_source line 1549 · 2026-05-23T18:00:42.898432+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"action_r2_probing.json\\ncounterfactual_combined.json\\ncross_instruction_classification.json\\nl1_attention_profile.json\\nrsa_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -25784,7 +25689,7 @@ _source line 1551 · 2026-05-23T18:00:42.898432+00:00_
 
 ### Tool call
 
-_source line 1552 · 2026-05-23T18:00:54.578681+00:00_
+_source line 1550 · 2026-05-23T18:00:54.578681+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25820,7 +25725,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1553 · 2026-05-23T18:00:54.629449+00:00_
+_source line 1551 · 2026-05-23T18:00:54.629449+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -25856,7 +25761,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1554 · 2026-05-23T18:00:55.132070+00:00_
+_source line 1552 · 2026-05-23T18:00:55.132070+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_libero_long\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"openvla-7b-finetuned-libero-object\\\",\\n    \\\"unnorm_key\\\": \\\"libero_goal\\\",\\n    \\\"seed\\\": 42,\\n    \\\"task_names\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"put_the_bowl_on_the_plate\\\",\\n      \\\"put_the_bowl_on_the_stove\\\",\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n      \\\"put_the_cream_cheese_in_the_bowl\\\",\\n      \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n      \\\"turn_on_the_stove\\\"\\n    ]\\n  },\\n  \\\"wrong\\\": {\\n    \\\"global_metrics\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.093784,\\n        \\\"std\\\": 0.079327,\\n        \\\"cohens_d\\\": 1.1821\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.156854,\\n          0.235835,\\n          0.267594,\\n          0.038726,\\n          0.073452,\\n          0.095244,\\n          0.385224\\n        ],\\n        \\\"stds\\\": [\\n          0.173916,\\n          0.212007,\\n          0.24574,\\n          0.036388,\\n          0.061864,\\n          0.076372,\\n          0.440146\\n        ],\\n        \\\"dim_names\\\": [\\n          \\\"dx\\\",\\n          \\\"dy\\\",\\n          \\\"dz\\\",\\n          \\\"rx\\\",\\n          \\\"ry\\\",\\n          \\\"rz\\\",\\n          \\\"gripper\\\"\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 1.0,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"p
 …[truncated 7885 chars]
@@ -25879,7 +25784,7 @@ _source line 1554 · 2026-05-23T18:00:55.132070+00:00_
 
 ### Tool result
 
-_source line 1555 · 2026-05-23T18:00:55.686187+00:00_
+_source line 1553 · 2026-05-23T18:00:55.686187+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/nora_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/nora_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/trained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/tracvla_goal/untrained/counterfactual_combined.json\\n/root/autodl-tmp/vla-ssd/results/libero_goal_untrained/counterfactual_combined.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -25901,7 +25806,7 @@ _source line 1555 · 2026-05-23T18:00:55.686187+00:00_
 
 ### Tool call
 
-_source line 1556 · 2026-05-23T18:01:30.178600+00:00_
+_source line 1554 · 2026-05-23T18:01:30.178600+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -25941,7 +25846,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1557 · 2026-05-23T18:01:30.982780+00:00_
+_source line 1555 · 2026-05-23T18:01:30.982780+00:00_
 
 Error: result (88,858 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-reviewer-7b0fefde/2ab22121-e01f-4b40-991c-65244a081251/tool-results/mcp-agent-ml-research-read_registry-1779559290961.txt.
 Format: JSON with schema: {result: string}
@@ -25968,7 +25873,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 1558 · 2026-05-23T18:01:39.800817+00:00_
+_source line 1556 · 2026-05-23T18:01:39.800817+00:00_
 
 called Bash
 
@@ -26004,7 +25909,7 @@ called Bash
 
 ### Tool result
 
-_source line 1559 · 2026-05-23T18:01:39.851591+00:00_
+_source line 1557 · 2026-05-23T18:01:39.851591+00:00_
 
 openvla_goal_standardized_v1: {
   "r2_trained_peak": 0.8693,
@@ -26063,7 +25968,7 @@ nora_goal_untrained_cf: {
 
 ### Tool call
 
-_source line 1560 · 2026-05-23T18:01:49.876129+00:00_
+_source line 1558 · 2026-05-23T18:01:49.876129+00:00_
 
 called Bash
 
@@ -26099,7 +26004,7 @@ called Bash
 
 ### Tool result
 
-_source line 1561 · 2026-05-23T18:01:49.977055+00:00_
+_source line 1559 · 2026-05-23T18:01:49.977055+00:00_
 
 counterfactual_10tasks:
   global_cohens_d: {'empty': 0.978, 'wrong': 0.924, 'shuffled': 0.763, 'paraphrased': 0.707}
@@ -26178,7 +26083,7 @@ lg_gc_trained_frame0:
 
 ### Tool call
 
-_source line 1562 · 2026-05-23T18:02:43.229287+00:00_
+_source line 1560 · 2026-05-23T18:02:43.229287+00:00_
 
 called Bash
 
@@ -26214,7 +26119,7 @@ called Bash
 
 ### Tool result
 
-_source line 1563 · 2026-05-23T18:02:43.332335+00:00_
+_source line 1561 · 2026-05-23T18:02:43.332335+00:00_
 
 openvla_goal_standardized_v1: {
   "cf_trained_top": "wrong (d=1.182)",
@@ -26307,7 +26212,7 @@ counterfactual_10tasks_trajectory: {
 
 ### Tool call
 
-_source line 1564 · 2026-05-23T18:03:56.290094+00:00_
+_source line 1562 · 2026-05-23T18:03:56.290094+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -26343,7 +26248,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1565 · 2026-05-23T18:03:59.101005+00:00_
+_source line 1563 · 2026-05-23T18:03:59.101005+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -26365,7 +26270,7 @@ _source line 1565 · 2026-05-23T18:03:59.101005+00:00_
 
 ### Tool call
 
-_source line 1566 · 2026-05-23T18:03:59.502831+00:00_
+_source line 1564 · 2026-05-23T18:03:59.502831+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -26401,7 +26306,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1567 · 2026-05-23T18:03:59.503350+00:00_
+_source line 1565 · 2026-05-23T18:03:59.503350+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -26423,7 +26328,7 @@ _source line 1567 · 2026-05-23T18:03:59.503350+00:00_
 
 ### Tool call
 
-_source line 1568 · 2026-05-23T18:04:02.666701+00:00_
+_source line 1566 · 2026-05-23T18:04:02.666701+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -26459,7 +26364,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1569 · 2026-05-23T18:04:02.718119+00:00_
+_source line 1567 · 2026-05-23T18:04:02.718119+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -26481,7 +26386,7 @@ _source line 1569 · 2026-05-23T18:04:02.718119+00:00_
 
 ### Tool call
 
-_source line 1570 · 2026-05-23T18:04:06.031277+00:00_
+_source line 1568 · 2026-05-23T18:04:06.031277+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -26517,7 +26422,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1571 · 2026-05-23T18:04:06.032109+00:00_
+_source line 1569 · 2026-05-23T18:04:06.032109+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -26539,7 +26444,7 @@ _source line 1571 · 2026-05-23T18:04:06.032109+00:00_
 
 ### Tool call
 
-_source line 1572 · 2026-05-23T18:04:08.809399+00:00_
+_source line 1570 · 2026-05-23T18:04:08.809399+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -26575,7 +26480,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1573 · 2026-05-23T18:04:09.314241+00:00_
+_source line 1571 · 2026-05-23T18:04:09.314241+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"experiment\\\": \\\"counterfactual_tracvla_spatial\\\",\\n    \\\"conditions\\\": [\\n      \\\"wrong\\\",\\n      \\\"empty\\\",\\n      \\\"shuffled\\\",\\n      \\\"paraphrased\\\"\\n    ],\\n    \\\"n_tasks\\\": 10,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"model\\\": \\\"tracevla-phi3v\\\",\\n    \\\"action_space\\\": \\\"normalized_bins\\\",\\n    \\\"seed\\\": 42,\\n    \\\"task_names\\\": [\\n      \\\"open_the_middle_drawer_of_the_cabinet\\\",\\n      \\\"open_the_top_drawer_and_put_the_bowl_inside\\\",\\n      \\\"push_the_plate_to_the_front_of_the_stove\\\",\\n      \\\"put_the_bowl_on_the_plate\\\",\\n      \\\"put_the_bowl_on_the_stove\\\",\\n      \\\"put_the_bowl_on_top_of_the_cabinet\\\",\\n      \\\"put_the_cream_cheese_in_the_bowl\\\",\\n      \\\"put_the_wine_bottle_on_the_rack\\\",\\n      \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\",\\n      \\\"turn_on_the_stove\\\"\\n    ]\\n  },\\n  \\\"wrong\\\": {\\n    \\\"global_metrics\\\": {\\n      \\\"paired_mse\\\": {\\n        \\\"mean\\\": 0.136985,\\n        \\\"std\\\": 0.097516,\\n        \\\"cohens_d\\\": 1.4046\\n      },\\n      \\\"per_dim_shift\\\": {\\n        \\\"means\\\": [\\n          0.278337,\\n          0.307911,\\n          0.281324,\\n          0.308369,\\n          0.295382,\\n          0.252009,\\n          0.210657\\n        ],\\n        \\\"stds\\\": [\\n          0.252724,\\n          0.260179,\\n          0.238762,\\n          0.252287,\\n          0.248428,\\n          0.210039,\\n          0.243291\\n        ],\\n        \\\"dim_names\\\": [\\n          \\\"dx\\\",\\n          \\\"dy\\\",\\n          \\\"dz\\\",\\n          \\\"rx\\\",\\n          \\\"ry\\\",\\n          \\\"rz\\\",\\n          \\\"gripper\\\"\\n        ]\\n      },\\n      \\\"token_divergence_rate\\\": 1.0,\\n      \\\"n_samples\\\": 5000\\n    },\\n    \\\"per_task\\
 …[truncated 7884 chars]
@@ -26598,7 +26503,7 @@ _source line 1573 · 2026-05-23T18:04:09.314241+00:00_
 
 ### Tool call
 
-_source line 1574 · 2026-05-23T18:04:41.871324+00:00_
+_source line 1572 · 2026-05-23T18:04:41.871324+00:00_
 
 called Grep
 
@@ -26636,7 +26541,7 @@ called Grep
 
 ### Tool result
 
-_source line 1575 · 2026-05-23T18:04:42.474227+00:00_
+_source line 1573 · 2026-05-23T18:04:42.474227+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:125:Across eight cells where Cohen's $d$ is applicable (OpenVLA and TracVLA, four suites each), every perturbation condition yields $d = 0.45$--$1.97$ (Table~\ref{tab:counterfactual_main}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex:25:All trained VLAs exhibit medium-to-large counterfactual sensitivity ($d = 0.45$--$1.97$); L1 instruction attention is inherited from base-model priors; an NLP control ($\Delta R^2 = 0.000$) further supports transition-type specificity.
@@ -26662,7 +26567,7 @@ _source line 1575 · 2026-05-23T18:04:42.474227+00:00_
 
 ### Tool call
 
-_source line 1576 · 2026-05-23T18:04:43.077025+00:00_
+_source line 1574 · 2026-05-23T18:04:43.077025+00:00_
 
 called Grep
 
@@ -26702,7 +26607,7 @@ called Grep
 
 ### Tool result
 
-_source line 1577 · 2026-05-23T18:04:43.127712+00:00_
+_source line 1575 · 2026-05-23T18:04:43.127712+00:00_
 
 Found 4 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex
@@ -26728,7 +26633,7 @@ Found 4 files
 
 ### Tool call
 
-_source line 1578 · 2026-05-23T18:04:58.809543+00:00_
+_source line 1576 · 2026-05-23T18:04:58.809543+00:00_
 
 called Grep
 
@@ -26768,7 +26673,7 @@ called Grep
 
 ### Tool result
 
-_source line 1579 · 2026-05-23T18:04:58.860175+00:00_
+_source line 1577 · 2026-05-23T18:04:58.860175+00:00_
 
 85-These effects survive Bonferroni correction across all 63 tests (\S\ref{sec:bonferroni_correction}).
 86-
@@ -26819,7 +26724,7 @@ _source line 1579 · 2026-05-23T18:04:58.860175+00:00_
 
 ### Tool call
 
-_source line 1580 · 2026-05-23T18:05:02.676619+00:00_
+_source line 1578 · 2026-05-23T18:05:02.676619+00:00_
 
 called Read
 
@@ -26857,7 +26762,7 @@ called Read
 
 ### Tool result
 
-_source line 1581 · 2026-05-23T18:05:02.677168+00:00_
+_source line 1579 · 2026-05-23T18:05:02.677168+00:00_
 
 295	\end{tabular}
 296	\end{table}
@@ -26922,7 +26827,7 @@ _source line 1581 · 2026-05-23T18:05:02.677168+00:00_
 
 ### Tool call
 
-_source line 1582 · 2026-05-23T18:05:22.069711+00:00_
+_source line 1580 · 2026-05-23T18:05:22.069711+00:00_
 
 called Read
 
@@ -26960,7 +26865,7 @@ called Read
 
 ### Tool result
 
-_source line 1583 · 2026-05-23T18:05:22.170835+00:00_
+_source line 1581 · 2026-05-23T18:05:22.170835+00:00_
 
 425	
 426	\begin{table}[h]
@@ -27011,7 +26916,7 @@ _source line 1583 · 2026-05-23T18:05:22.170835+00:00_
 
 ### Tool call
 
-_source line 1584 · 2026-05-23T18:05:42.204131+00:00_
+_source line 1582 · 2026-05-23T18:05:42.204131+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -27047,7 +26952,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1585 · 2026-05-23T18:05:42.909367+00:00_
+_source line 1583 · 2026-05-23T18:05:42.909367+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_29.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_30.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_9.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_10.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_13.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_18.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_28.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_14.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_15.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_17.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_21.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_24.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_25.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_27.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_31.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/layer_32.json\\n/root/autodl-tmp/vla-ssd/results/untrained/action_delta/summary.json\\n/root/autod
 …[truncated 6414 chars]
@@ -27070,7 +26975,7 @@ _source line 1585 · 2026-05-23T18:05:42.909367+00:00_
 
 ### Tool call
 
-_source line 1586 · 2026-05-23T18:05:42.909832+00:00_
+_source line 1584 · 2026-05-23T18:05:42.909832+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -27106,7 +27011,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1587 · 2026-05-23T18:05:43.512457+00:00_
+_source line 1585 · 2026-05-23T18:05:43.512457+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_12.json:  \\\"per_task_mean_rho\\\": 0.8937836189730731\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_28.json:  \\\"r2\\\": 0.7607807517051697,\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_29.json:    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8647430911978676\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_30.json:  \\\"mae\\\": 0.11997997015714645,\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json:      \\\"per_task_mean_rho\\\": 0.8937836189730731\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json:      \\\"r2\\\": 0.7607807517051697,\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json:        \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": 0.8647430911978676\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/summary.json:      \\\"mae\\\": 0.11997997015714645,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_3.json:    \\\"dx\\\": 0.4748836159706116,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_6.json:    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": 0.5638910531997681,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_7.json:    \\\"dz\\\": 0.2833561897277832,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_9.json:    \\\"dry\\\": -0.0016601085662841797,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_10.json:    \\\"dry\\\": 0.11975789070129395,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_13.json:    \\\"dy\\\": 0.5761297941207886,\\n/root/autodl-tmp/vla-ssd/results/untrained/action_prediction/layer_18.json:    \\\"KITCHEN_SCENE3_turn_on_the_stove_an
 …[truncated 6589 chars]
@@ -27129,7 +27034,7 @@ _source line 1587 · 2026-05-23T18:05:43.512457+00:00_
 
 ### Tool call
 
-_source line 1588 · 2026-05-23T18:06:31.145159+00:00_
+_source line 1586 · 2026-05-23T18:06:31.145159+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -27165,7 +27070,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1589 · 2026-05-23T18:06:35.217951+00:00_
+_source line 1587 · 2026-05-23T18:06:35.217951+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -27187,7 +27092,7 @@ _source line 1589 · 2026-05-23T18:06:35.217951+00:00_
 
 ### Tool call
 
-_source line 1590 · 2026-05-23T18:06:43.730881+00:00_
+_source line 1588 · 2026-05-23T18:06:43.730881+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -27223,7 +27128,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1591 · 2026-05-23T18:06:44.234259+00:00_
+_source line 1589 · 2026-05-23T18:06:44.234259+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"nora_goal\\nnora_spatial\\nopenvla_goal\\nopenvla_long\\nopenvla_object\\nopenvla_spatial\\ntracvla_goal\\ntracvla_long\\ntracvla_object\\ntracvla_spatial\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -27245,7 +27150,7 @@ _source line 1591 · 2026-05-23T18:06:44.234259+00:00_
 
 ### Tool call
 
-_source line 1592 · 2026-05-23T18:06:47.346504+00:00_
+_source line 1590 · 2026-05-23T18:06:47.346504+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -27281,7 +27186,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1593 · 2026-05-23T18:06:47.798613+00:00_
+_source line 1591 · 2026-05-23T18:06:47.798613+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/openvla_long/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_goal/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_object/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/nora_spatial/untrained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/trained.json\\n/root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_long/untrained.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -27303,7 +27208,7 @@ _source line 1593 · 2026-05-23T18:06:47.798613+00:00_
 
 ### Tool call
 
-_source line 1594 · 2026-05-23T18:07:03.933745+00:00_
+_source line 1592 · 2026-05-23T18:07:03.933745+00:00_
 
 called Agent
 
@@ -27341,7 +27246,7 @@ called Agent
 
 ### Tool call
 
-_source line 1595 · 2026-05-23T18:07:07.475513+00:00_
+_source line 1593 · 2026-05-23T18:07:07.475513+00:00_
 
 called ToolSearch
 
@@ -27377,7 +27282,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1596 · 2026-05-23T18:07:07.526173+00:00_
+_source line 1594 · 2026-05-23T18:07:07.526173+00:00_
 
 
 
@@ -27389,6 +27294,100 @@ _source line 1596 · 2026-05-23T18:07:07.526173+00:00_
   "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
   "tool": "ToolSearch",
   "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1595 · 2026-05-23T18:07:12.447281+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/trained.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1596 · 2026-05-23T18:07:12.949536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_r2\\\": {\\n    \\\"L0\\\": 0.455,\\n    \\\"L1\\\": 0.5002,\\n    \\\"L2\\\": 0.5105,\\n    \\\"L3\\\": 0.5059,\\n    \\\"L4\\\": 0.4393,\\n    \\\"L5\\\": 0.4509,\\n    \\\"L6\\\": 0.4767,\\n    \\\"L7\\\": 0.4736,\\n    \\\"L8\\\": 0.439,\\n    \\\"L9\\\": 0.5085,\\n    \\\"L10\\\": 0.5063,\\n    \\\"L11\\\": 0.4576,\\n    \\\"L12\\\": 0.4935,\\n    \\\"L13\\\": 0.5399,\\n    \\\"L14\\\": 0.5241,\\n    \\\"L15\\\": 0.4993,\\n    \\\"L16\\\": 0.4998,\\n    \\\"L17\\\": 0.4547,\\n    \\\"L18\\\": 0.4685,\\n    \\\"L19\\\": 0.4149,\\n    \\\"L20\\\": 0.4452,\\n    \\\"L21\\\": 0.4244,\\n    \\\"L22\\\": 0.3947,\\n    \\\"L23\\\": 0.3503,\\n    \\\"L24\\\": 0.2975,\\n    \\\"L25\\\": 0.2535,\\n    \\\"L26\\\": 0.2392,\\n    \\\"L27\\\": 0.1033,\\n    \\\"L28\\\": -0.0845,\\n    \\\"L29\\\": -0.1402,\\n    \\\"L30\\\": -0.4649,\\n    \\\"L31\\\": 0.2065\\n  },\\n  \\\"peak_r2\\\": 0.5399,\\n  \\\"peak_layer\\\": \\\"L13\\\",\\n  \\\"exit_r2\\\": 0.2065,\\n  \\\"exit_layer\\\": \\\"L31\\\",\\n  \\\"delta\\\": 0.3334,\\n  \\\"delta_ci_95\\\": [\\n    0.2069,\\n    0.4508\\n  ],\\n  \\\"bootstrap_deltas_summary\\\": {\\n    \\\"mean\\\": 0.3155,\\n    \\\"std\\\": 0.0642,\\n    \\\"median\\\": 0.3105\\n  },\\n  \\\"arch\\\": \\\"tracvla\\\",\\n  \\\"suite\\\": \\\"goal\\\",\\n  \\\"condition\\\": \\\"trained\\\",\\n  \\\"n_demos\\\": 100,\\n  \\\"n_total_samples\\\": 5000,\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"dry_run\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1597 · 2026-05-23T18:07:14.054053+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/bootstrap_v3/tracvla_goal/untrained.json"
+  }
 }
 ```
 

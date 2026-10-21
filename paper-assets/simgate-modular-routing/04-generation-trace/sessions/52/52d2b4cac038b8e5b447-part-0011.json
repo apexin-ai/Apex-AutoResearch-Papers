@@ -3341,82 +3341,6 @@
         },
         {
           "source_line": 1973,
-          "timestamp": "2026-05-20T12:03:11.950314+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_writing_rebuttal-update_20260520T120013_result.json"
-            }
-          },
-          "id": "event-001973"
-        },
-        {
-          "source_line": 1974,
-          "timestamp": "2026-05-20T12:03:12.001169+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"raw\": \"已更新 Response #1。在 ALFWorld 证据 (1) 中加入了 Llama-3.1-8B cross-model 数据、Qwen2.5-7B 一致性总结，以及 Gemma-2-9B-it 的 TBD 占位符。其余内容未变。\"\n3\t}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001974"
-        },
-        {
-          "source_line": 1975,
-          "timestamp": "2026-05-20T12:03:16.074224+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md"
-            }
-          },
-          "id": "event-001975"
-        },
-        {
-          "source_line": 1976,
-          "timestamp": "2026-05-20T12:03:16.124970+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# ARR Author Response Drafts — EMNLP 2026\n2\t\n3\tPrepared 2026-05-20. Three predicted attack points with pre-drafted responses.\n4\t\n5\t## Response #1: Single-Environment Generalization (Attack probability: 90%)\n6\t\n7\tWe thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.\n8\t\n9\tThree lines of evidence support framework applicability beyond ScienceWorld: (1) **ALFWorld** (§3.4): the framework successfully diagnoses a qualitatively different mechanism—information asymmetry from admissible-action access (94.6% det-preferred, 0% death)—without any modification, demonstrating that the diagnostic procedure generalizes even when the dominant signal differs. Cross-model ALFWorld replication (Llama-3.1-8B, 135 games) confirms 100% directional consistency (16/16 non-tie labels favor deterministic, 95% CI for det-preferred: [6.7%, 17.8%]). Combined with Qwen2.5-7B's 25.9% det-preferred (also 100% directional consistency), both models diagnose information asymmetry—not death—as the routing mechanism in ALFWorld, without framework modification. [TBD: Gemma-2-9B-it ScienceWorld cross-model results pending] (2) **MATH** (§3.4): the framework correctly identifies the absence of routing signal (p=0.81), a useful null result. (3) **MiniHack/Crafter** (§5): the framework correctly diagnoses two boundary conditions (no death mechanism; universal death without asymmetry). These are not failures—they are the framework performing its diagnostic function on environments where routing signal is absent or unexploitable.\n10\t\n11\tWithin ScienceWorld, extended validation on 5 excluded task types (n=100; Appendix S) yields DAF=0.991, confirming that task exclusion does not bias toward de\n…[truncated 3001 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001976"
-        },
-        {
-          "source_line": 1977,
           "timestamp": "2026-05-20T12:03:36.373223+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3434,10 +3358,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-001977"
+          "id": "event-001973"
         },
         {
-          "source_line": 1978,
+          "source_line": 1974,
           "timestamp": "2026-05-20T12:03:41.760476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3452,10 +3376,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 5387
           },
-          "id": "event-001978"
+          "id": "event-001974"
         },
         {
-          "source_line": 1979,
+          "source_line": 1975,
           "timestamp": "2026-05-20T12:03:49.395702+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3468,7 +3392,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer"
           },
-          "id": "event-001979"
+          "id": "event-001975"
         }
       ]
     },
@@ -3476,7 +3400,7 @@
       "number": 86,
       "messages": [
         {
-          "source_line": 1980,
+          "source_line": 1976,
           "timestamp": "2026-05-20T12:04:53.727352+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3489,6 +3413,82 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
             "source": "system"
+          },
+          "id": "event-001976"
+        },
+        {
+          "source_line": 1977,
+          "timestamp": "2026-05-20T12:05:02.880772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_research_related-work-check_20260520T120005_result.json"
+            }
+          },
+          "id": "event-001977"
+        },
+        {
+          "source_line": 1978,
+          "timestamp": "2026-05-20T12:05:02.932407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"搜索完毕，以下是整理后的结果。\\n\\n---\\n\\n## 2025-2026 年可能遗漏的相关工作\\n\\n### Tier 1: Direct Competitor — 必须引用\\n\\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\\n|---|------|-----------|------|--------|\\n| 1 | **[Budget-Aware Agentic Routing via Boundary-Guided Training](https://arxiv.org/abs/2602.21227)** | Feb 2026, arXiv | **Direct competitor** | 最直接的竞争者：同样做 episode-level agent routing（step-wise model selection），明确指出 agentic routing 是 path-dependent + sparse terminal feedback 问题，用 boundary policies 构建 difficulty taxonomy。区别：他们优化 cost-performance frontier，我们做 diagnostic analysis 揭示 routing signal 来源。 |\\n| 2 | **[Abstract Counterfactuals for Language Model Agents](https://arxiv.org/abs/2506.02946)** (Pona et al.) | NeurIPS 2025 Poster | **Direct competitor** | 同样将 counterfactual 方法用于 LM agent，提出 action-level abstract counterfactuals。区别：他们做 token→action 的 abstraction layer 用于解释，我们做 episode-level diagnostic 揭示 routing signal 的组成（DAF）。 |\\n| 3 | **[Verified Critical Step Optimization for LLM Agents](https://arxiv.org/abs/2602.03412)** (Li et al.) | Feb 2026, arXiv | **Direct competitor** | 用 counterfactual 思路识别 critical steps（alternative actions flip failure→success），与我们的 counterfactual diagnostic 精神一致。区别：他们用于 post-training（DPO），我们用于 routing signal 分析。 |\\n| 4 | **[AXIS: Integrating Counterfactual Simulations with Language Models for Explaining Multi-Agent Behaviour](https://arxiv.org/abs/2505.17801)** (Gyevnar et al.) | May 2025, arXiv | **Method component** | LLM 通过 what-if 查询 simulator 生成 counterfactual 解释 agent 行为，与我们的 counterfactual diagnostic framework 方法论相关。 |\\n\\n### Tier 2: 高度相关 — 强烈建议引用\\n\\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\\n|---|------|-----------|------|--------|\\n| 5 | **[EvoRoute: Experience-Driven Self-Routing LLM Agent Systems](https://arxiv.org/abs/2601.02695)** | Jan 2026, arXiv | Method component | 动态 agent routing，用 experience 做 Pareto-optimal model selection，在 GAIA 上降低 80% cost。与我们的 routing 主题直接相关。 |\\n| 6 | **[SALT: Step-level Advantage Assignment for Long-horizon Agents\n…[truncated 4682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001978"
+        },
+        {
+          "source_line": 1979,
+          "timestamp": "2026-05-20T12:05:18.945809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-001979"
+        },
+        {
+          "source_line": 1980,
+          "timestamp": "2026-05-20T12:05:18.997339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Tool Use and External Computation in LLMs.}\n4\tA growing body of work augments language models with external tools \\citep{tool-learning-survey-2024}, spanning several functional categories.\n5\t\\emph{Self-supervised} approaches learn tool invocation from loss signals: Toolformer \\cite{toolformer-2023} inserts API calls filtered by perplexity reduction; ToolACE \\cite{toolace-2025} curates synthetic data for function-calling accuracy.\n6\t\\emph{Token-level} methods embed tools into the model vocabulary: ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens resolved at inference.\n7\t\\emph{Task-level} decomposition routes subtasks to specialized modules: ART \\cite{art-2023} generates tool-augmented programs; Chameleon \\cite{chameleon-2023} composes heterogeneous modules per subtask.\n8\t\\emph{RL-based} methods learn routing policies from reward: ReTool \\cite{retool-2025} discovers when code execution is preferable to chain-of-thought.\n9\tAll focus on \\emph{learning to use tools}; we ask a prior question: \\emph{what signal drives the routing decision?}\n10\tConcurrent work examines \\emph{when} to invoke tools: \\citet{tool-overuse-illusion-2026} find tool overuse correlates with model uncertainty; \\citet{when2tool-2026} show tool-call decisions are encoded in hidden states; \\citet{tool-use-tax-2026} quantify a ``tool-use tax''; \\citet{to-call-or-not-2026} propose a necessity-utility-affordability framework. Our decomposition provides environment-grounded evidence: in ScienceWorld, 78.9\\% of routing labels trace to catastrophic-failure prevention.\n11\t\n12\t\\paragraph{Adaptive Computation and Routing.}\n13\tAdaptive routing traces back to learned halting policies \\citep{graves2016act}. In the LLM era, CogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \\cit\n…[truncated 2363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
           },
           "id": "event-001980"
         }

@@ -21,10 +21,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ssh prepare 14b inference v2 | 60 | 0 | [Read transcript](ssh-prepare-14b-inference-v2.md) | [JSON](../../sessions/b6/b666acc2e6078250517b.json) |
 | ssh cleanup 5090 old checkpoints | 37 | 0 | [Read transcript](ssh-cleanup-5090-old-checkpoints.md) | [JSON](../../sessions/8f/8f49a378bcfe1dd28902.json) |
 | ssh check training progress both | 64 | 0 | [Read transcript](ssh-check-training-progress-both.md) | [JSON](../../sessions/c1/c12632e44f1377cb8110.json) |
-| research draft response letter outline — Extract a concise summary of all experiments from the registry JSON file at: /home/ubuntu/.claude-ac | 49 | 1 | [Read transcript](research-draft-response-letter-outline.md) | [JSON](../../sessions/ce/ceff4a58156af969d949.json) |
 | research prepare supplementary inventory — Parse the experiment registry JSON file at: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--ag | 197 | 2 | [Read transcript](research-prepare-supplementary-inventory.md) | [JSON](../../sessions/97/978a414c385d6fce18e2.json) |
 | ssh fetch training configs | 121 | 0 | [Read transcript](ssh-fetch-training-configs.md) | [JSON](../../sessions/75/75e7258f3af0001936a9.json) |
-| research fix response letter | 27 | 0 | [Read transcript](research-fix-response-letter.md) | [JSON](../../sessions/af/af79950507428720c80f.json) |
 | ssh check 7b fk signal | 60 | 0 | [Read transcript](ssh-check-7b-fk-signal.md) | [JSON](../../sessions/cb/cb1f844720c9aa0ddc89.json) |
 | ssh verify 7b fk correct data | 44 | 0 | [Read transcript](ssh-verify-7b-fk-correct-data.md) | [JSON](../../sessions/ee/ee8ac43a649ed218bae0.json) |
 | ssh dgec vc construction — This session is being continued from a previous conversation that ran out of context. The summary be | 253 | 1 | [Read transcript](ssh-dgec-vc-construction.md) | [JSON](../../sessions/13/1329620e509448e8061f.json) |

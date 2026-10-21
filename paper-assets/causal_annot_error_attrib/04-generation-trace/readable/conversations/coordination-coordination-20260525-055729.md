@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 8,034
+- **Events:** 7,990
 - **Recorded user turns:** 196
-- **Tool calls:** 3,845
+- **Tool calls:** 3,823
 - **Original source:** `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_20260525T055729_473667.jsonl`
 - **Structured JSON:** [`51171fdab9751d74b501.json`](../../sessions/51/51171fdab9751d74b501.json)
 
@@ -20,4 +20,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](coordination-coordination-20260525-055729/part-001.md) · [Part 2](coordination-coordination-20260525-055729/part-002.md) · [Part 3](coordination-coordination-20260525-055729/part-003.md) · [Part 4](coordination-coordination-20260525-055729/part-004.md) · [Part 5](coordination-coordination-20260525-055729/part-005.md) · [Part 6](coordination-coordination-20260525-055729/part-006.md) · [Part 7](coordination-coordination-20260525-055729/part-007.md) · [Part 8](coordination-coordination-20260525-055729/part-008.md) · [Part 9](coordination-coordination-20260525-055729/part-009.md) · [Part 10](coordination-coordination-20260525-055729/part-010.md) · [Part 11](coordination-coordination-20260525-055729/part-011.md) · [Part 12](coordination-coordination-20260525-055729/part-012.md) · [Part 13](coordination-coordination-20260525-055729/part-013.md) · [Part 14](coordination-coordination-20260525-055729/part-014.md)
+[Part 1](coordination-coordination-20260525-055729/part-001.md) · [Part 2](coordination-coordination-20260525-055729/part-002.md) · [Part 3](coordination-coordination-20260525-055729/part-003.md) · [Part 4](coordination-coordination-20260525-055729/part-004.md) · [Part 5](coordination-coordination-20260525-055729/part-005.md) · [Part 6](coordination-coordination-20260525-055729/part-006.md) · [Part 7](coordination-coordination-20260525-055729/part-007.md) · [Part 8](coordination-coordination-20260525-055729/part-008.md) · [Part 9](coordination-coordination-20260525-055729/part-009.md) · [Part 10](coordination-coordination-20260525-055729/part-010.md) · [Part 11](coordination-coordination-20260525-055729/part-011.md) · [Part 12](coordination-coordination-20260525-055729/part-012.md) · [Part 13](coordination-coordination-20260525-055729/part-013.md)

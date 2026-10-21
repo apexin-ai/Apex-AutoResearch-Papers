@@ -4,597 +4,11 @@
 
 [← Part 10](part-010.md) · [Transcript overview](../coordination-coordination-20260521-175748.md) · [Structured JSON](../../../sessions/b9/b9b998528d0a5e47b6a3.json)
 
-## Round 405
-
-### Tool result
-
-_source line 6133 · 2026-05-21T15:30:58.642479+00:00_
-
-1	% Decoding Strategy Robustness — placeholder pending experiment results
-2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
-3	we repeat the generation chain experiment under two alternative decoding strategies:
-4	greedy decoding ($\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\tau{=}0.7$).
-5	All eight generators spanning five architectural families produce ${\sim}$1{,}000 chains of depth 0--4 per strategy,
-6	yielding ${\sim}$5{,}000 texts per generator--strategy combination.
-7	
-8	Table~\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\ gen-2+) for the three shape features across strategies;
-9	Table~\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.
-10	
-11	\begin{table}[ht]
-12	\centering
-13	\small
-14	\caption{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator.
-15	Values below 0.20 indicate negligible drift.
-16	Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}
-17	\label{tab:decoding-shape}
-18	\resizebox{\linewidth}{!}{%
-19	\begin{tabular}{ll ccc ccc ccc}
-20	\toprule
-21	& & \multicolumn{3}{c}{entropy\_max} & \multicolumn{3}{c}{entropy\_min} & \multicolumn{3}{c}{tail\_decay} \\
-22	\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
-23	Family & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\
-24	\midrule
-25	Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\
-26	        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\
-27	OLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\
-28	Qwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\
-29	        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\
-30	        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\
-31	Llama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.0
-…[truncated 4949 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6134 · 2026-05-21T15:31:24.600749+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
-  "limit": "35"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
-    "limit": "35"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6135 · 2026-05-21T15:31:24.902479+00:00_
-
-1	% Decoding Strategy Robustness — placeholder pending experiment results
-2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
-3	we repeat the generation chain experiment under two alternative decoding strategies:
-4	greedy decoding ($\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\tau{=}0.7$).
-5	All eight generators spanning five architectural families produce ${\sim}$1{,}000 chains of depth 0--4 per strategy,
-6	yielding ${\sim}$5{,}000 texts per generator--strategy combination.
-7	
-8	Table~\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\ gen-2+) for the three shape features across strategies;
-9	Table~\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.
-10	
-11	\begin{table}[ht]
-12	\centering
-13	\small
-14	\caption{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator.
-15	Values below 0.20 indicate negligible drift.
-16	Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}
-17	\label{tab:decoding-shape}
-18	\resizebox{\linewidth}{!}{%
-19	\begin{tabular}{ll ccc ccc ccc}
-20	\toprule
-21	& & \multicolumn{3}{c}{entropy\_max} & \multicolumn{3}{c}{entropy\_min} & \multicolumn{3}{c}{tail\_decay} \\
-22	\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
-23	Family & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\
-24	\midrule
-25	Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\
-26	        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\
-27	OLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\
-28	Qwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\
-29	        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\
-30	        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\
-31	Llama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.0
-…[truncated 392 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6136 · 2026-05-21T15:31:44.649868+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "[资源] GPU 4/4 饱和 | Worker 0 | Watcher ×2 运行中\n\n## appendix_decoding_strategy.tex 表格填充完成\n\n两个表格已更新（docs/ + artifacts/ 同步）：\n- **Nucleus**: 8/8 generator 全部填入（从服务器 features_8gen.csv 计算）\n- **Greedy**: 6/8 填入（缺 Qwen3-0.6B, Qwen3-8B）\n- **Top-k**: 3/8 填入（缺 5 个）\n- Mean 行标注 N/8 基数\n- 结论文本（Version A/B/C）未修改\n\n### 重要发现：Nucleus 基线数据揭示 Pythia 固有不稳定\n\n填入 Nucleus 列后发现：\n| Generator | Nuc. entropy_max | 判定 |\n|-----------|-----------------|------|\n| Pythia-2.8B | **0.25** | > 0.20 |\n| Pythia-1B | **0.21** | > 0.20 |\n| OLMo-2-1B | 0.06 | PASS |\n| 其余 5 gen | 0.00-0.04 | PASS |\n\n**Pythia 在 nucleus 下 entropy_max 就已经超 0.20**。这意味着：\n1. Pythia top-k entropy_max 0.27/0.26 不是 top-k 引入的退化——它在 nucleus 下就不稳定（0.25/0.21）\n2. top-k 的真正退化体现在 **TTR/hapax 降到 0.41/0.34**（nucleus 下 Pythia 仍然 0.77-0.80）\n3. **Greedy 反而比 nucleus 更稳定**：greedy shape mean = 0.07/0.04/0.06 vs nucleus 0.08/0.04/0.13\n\n### 对 Version C 结论的影响\nVersion C 说 \"top-k partially attenuates the partition\" 基本正确，但需要补充：\n- 不应说 \"top-k elevates shape d\"——Pythia entropy_max 在 nucleus 下就高\n- 真正的 top-k 效应是 **lexical diversity 特征 (TTR, hapax) 的压缩**\n- Greedy 是最干净的 decoding strategy（优于 nucleus）\n\n等 16/16 数据齐全后可定稿 Version C。",
-  "project": "gen-depth-fingerprint"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 4/4 饱和 | Worker 0 | Watcher ×2 运行中\n\n## appendix_decoding_strategy.tex 表格填充完成\n\n两个表格已更新（docs/ + artifacts/ 同步）：\n- **Nucleus**: 8/8 generator 全部填入（从服务器 features_8gen.csv 计算）\n- **Greedy**: 6/8 填入（缺 Qwen3-0.6B, Qwen3-8B）\n- **Top-k**: 3/8 填入（缺 5 个）\n- Mean 行标注 N/8 基数\n- 结论文本（Version A/B/C）未修改\n\n### 重要发现：Nucleus 基线数据揭示 Pythia 固有不稳定\n\n填入 Nucleus 列后发现：\n| Generator | Nuc. entropy_max | 判定 |\n|-----------|-----------------|------|\n| Pythia-2.8B | **0.25** | > 0.20 |\n| Pythia-1B | **0.21** | > 0.20 |\n| OLMo-2-1B | 0.06 | PASS |\n| 其余 5 gen | 0.00-0.04 | PASS |\n\n**Pythia 在 nucleus 下 entropy_max 就已经超 0.20**。这意味着：\n1. Pythia top-k entropy_max 0.27/0.26 不是 top-k 引入的退化——它在 nucleus 下就不稳定（0.25/0.21）\n2. top-k 的真正退化体现在 **TTR/hapax 降到 0.41/0.34**（nucleus 下 Pythia 仍然 0.77-0.80）\n3. **Greedy 反而比 nucleus 更稳定**：greedy shape mean = 0.07/0.04/0.06 vs nucleus 0.08/0.04/0.13\n\n### 对 Version C 结论的影响\nVersion C 说 \"top-k partially attenuates the partition\" 基本正确，但需要补充：\n- 不应说 \"top-k elevates shape d\"——Pythia entropy_max 在 nucleus 下就高\n- 真正的 top-k 效应是 **lexical diversity 特征 (TTR, hapax) 的压缩**\n- Greedy 是最干净的 decoding strategy（优于 nucleus）\n\n等 16/16 数据齐全后可定稿 Version C。",
-    "project": "gen-depth-fingerprint"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6137 · 2026-05-21T15:31:48.155105+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3505
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 6138 · 2026-05-21T15:31:50.656466+00:00_
-
-两份文件一致。注意到 Nucleus 数据中的重要发现——Pythia 在 nucleus 下 entropy_max 也偏高（2.8B=0.25, 1B=0.21），这说明 Pythia entropy_max 不稳定是模型固有特性，不是 top-k 独有问题。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
-}
-```
-
-</details>
-
----
-
-
-## Round 406
-
-## Round 406
-
-4 recorded events
-
-
-### User
-
-_source line 6139 · 2026-05-21T15:31:51.283509+00:00_
-
-[CRON 需要判断] 实验 **exp_062_decoding_strategy_shape** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
-
-请派 Worker SSH 到 bjb2-18868 检查日志 `/tmp/gen_qwen_greedy.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_062_decoding_strategy_shape')` 清除监控。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "source": "cron"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6140 · 2026-05-21T15:32:21.263950+00:00_
-
-called mcp__agent-ml-research__spawn_worker
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
-
-````json
-{
-  "task_type": "diagnosis:exp062_cron_exit_check",
-  "project": "gen-depth-fingerprint",
-  "task_prompt": "## 任务：诊断 exp_062 cron 告警 — 进程退出\n\n服务器：bjb2-18868\n项目路径：/root/gen-depth-fingerprint/\n\n### 背景\nexp_062_decoding_strategy_shape 的 cron 监控到注册进程退出。这个实验是 8 generator × {greedy, topk} 的 generation chain，分布在 cuda:0-3 上。注册的 PID 344399 是 qwen3-1.7b 进程，之前在跑 topk（预计 ~23:26 完成）。进程退出可能是正常完成。\n\n### 检查步骤（全部 ssh_read_only）\n\n1. **检查 cron 提到的日志**：\n```bash\ntail -30 /tmp/gen_qwen_greedy.log 2>/dev/null\n```\n\n2. **检查 PID 344399 是否还在**：\n```bash\nps -p 344399 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"PID_344399_DEAD\"\n```\n\n3. **检查 qwen3-1.7b topk 数据是否完成**：\n```bash\nwc -l /root/gen-depth-fingerprint/data/chains_qwen3-1.7b_topk/*.jsonl 2>/dev/null | tail -1\nls -la /root/gen-depth-fingerprint/data/chains_qwen3-1.7b_topk/ 2>/dev/null | tail -5\n```\n\n4. **检查 Qwen3-8B watcher 是否已触发**（cuda:1 空闲后 watcher 应自动启动 Qwen3-8B）：\n```bash\nps -p 356867 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"WATCHER_DEAD\"\ncat /tmp/qwen8b_watcher.log 2>/dev/null | tail -20\ncat /tmp/gen_qwen8b_decoding.log 2>/dev/null | tail -10\nps aux | grep qwen3-8b | grep -v grep\n```\n\n5. **全 GPU 状态**：\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null\nps aux | grep generate_chain | grep -v grep\n```\n\n6. **其他 combo 状态快速检查**：\n```bash\ncd /root/gen-depth-fingerprint/data && for model in qwen3-0.6b qwen3-1.7b llama-3.2-3b mistral-7b-v0.3 qwen3-8b; do for strat in greedy topk; do dir=\"chains_${model}_${strat}\"; if [ -d \"$dir\" ]; then count=$(ls \"$dir\"/*.jsonl 2>/dev/null | wc -l); last=$(ls -t \"$dir\"/*.jsonl 2>/dev/null | head -1); if [ -n \"$last\" ]; then mtime=$(stat -c %Y \"$last\" 2>/dev/null); now=$(date +%s); age=$(( (now - mtime) / 60 )); echo \"${model}_${strat}: ${count} files, last_mod ${age}min ago\"; else echo \"${model}_${strat}: 0 files\"; fi; else echo \"${model}_${strat}: NOT_STARTED\"; fi; done; done\n```\n\n### 产出\n写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/exp062_cron_exit_diagnosis.txt`\n\n简明结论：\n- PID 344399 退出原因（正常完成 / 异常退出）\n- qwen3-1.7b topk 数据是否完整\n- Qwen3-8B watcher 是否已成功接管 cuda:1\n- 其他 GPU 进程状态\n- 建议：删除 cron（实验仍在多 GPU 运行）还是标记 DONE\n",
-  "tool_groups": "['ssh']"
-}
-````
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-````json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__spawn_worker",
-  "tool_args": {
-    "task_type": "diagnosis:exp062_cron_exit_check",
-    "project": "gen-depth-fingerprint",
-    "task_prompt": "## 任务：诊断 exp_062 cron 告警 — 进程退出\n\n服务器：bjb2-18868\n项目路径：/root/gen-depth-fingerprint/\n\n### 背景\nexp_062_decoding_strategy_shape 的 cron 监控到注册进程退出。这个实验是 8 generator × {greedy, topk} 的 generation chain，分布在 cuda:0-3 上。注册的 PID 344399 是 qwen3-1.7b 进程，之前在跑 topk（预计 ~23:26 完成）。进程退出可能是正常完成。\n\n### 检查步骤（全部 ssh_read_only）\n\n1. **检查 cron 提到的日志**：\n```bash\ntail -30 /tmp/gen_qwen_greedy.log 2>/dev/null\n```\n\n2. **检查 PID 344399 是否还在**：\n```bash\nps -p 344399 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"PID_344399_DEAD\"\n```\n\n3. **检查 qwen3-1.7b topk 数据是否完成**：\n```bash\nwc -l /root/gen-depth-fingerprint/data/chains_qwen3-1.7b_topk/*.jsonl 2>/dev/null | tail -1\nls -la /root/gen-depth-fingerprint/data/chains_qwen3-1.7b_topk/ 2>/dev/null | tail -5\n```\n\n4. **检查 Qwen3-8B watcher 是否已触发**（cuda:1 空闲后 watcher 应自动启动 Qwen3-8B）：\n```bash\nps -p 356867 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"WATCHER_DEAD\"\ncat /tmp/qwen8b_watcher.log 2>/dev/null | tail -20\ncat /tmp/gen_qwen8b_decoding.log 2>/dev/null | tail -10\nps aux | grep qwen3-8b | grep -v grep\n```\n\n5. **全 GPU 状态**：\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null\nps aux | grep generate_chain | grep -v grep\n```\n\n6. **其他 combo 状态快速检查**：\n```bash\ncd /root/gen-depth-fingerprint/data && for model in qwen3-0.6b qwen3-1.7b llama-3.2-3b mistral-7b-v0.3 qwen3-8b; do for strat in greedy topk; do dir=\"chains_${model}_${strat}\"; if [ -d \"$dir\" ]; then count=$(ls \"$dir\"/*.jsonl 2>/dev/null | wc -l); last=$(ls -t \"$dir\"/*.jsonl 2>/dev/null | head -1); if [ -n \"$last\" ]; then mtime=$(stat -c %Y \"$last\" 2>/dev/null); now=$(date +%s); age=$(( (now - mtime) / 60 )); echo \"${model}_${strat}: ${count} files, last_mod ${age}min ago\"; else echo \"${model}_${strat}: 0 files\"; fi; else echo \"${model}_${strat}: NOT_STARTED\"; fi; done; done\n```\n\n### 产出\n写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/exp062_cron_exit_diagnosis.txt`\n\n简明结论：\n- PID 344399 退出原因（正常完成 / 异常退出）\n- qwen3-1.7b topk 数据是否完整\n- Qwen3-8B watcher 是否已成功接管 cuda:1\n- 其他 GPU 进程状态\n- 建议：删除 cron（实验仍在多 GPU 运行）还是标记 DONE\n",
-    "tool_groups": "['ssh']"
-  }
-}
-````
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6141 · 2026-05-21T15:32:27.602753+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_cron_exit_check_20260521T153221\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_diagnosis_exp062_cron_exit_check_20260521T153221.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnosis_exp062_cron_exit_check_20260521T153221 started. Use get_worker_status('worker_diagnosis_exp062_cron_exit_check_20260521T153221') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__spawn_worker",
-  "elapsed_ms": 6338
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 6142 · 2026-05-21T15:32:32.323889+00:00_
-
-Cron 检测到注册 PID 退出——可能是 cuda:1 上 qwen3-1.7b topk 完成（预期行为）。派 Worker 诊断。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
-}
-```
-
-</details>
-
----
-
-
-## Round 407
-
-## Round 407
-
-2 recorded events
-
-
-### User
-
-_source line 6143 · 2026-05-21T15:32:32.328775+00:00_
-
-[CRON 需要判断] 实验 **exp_062_decoding_strategy_shape** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
-
-请派 Worker SSH 到 bjb2-18868 检查日志 `/tmp/gen_qwen_greedy.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_062_decoding_strategy_shape')` 清除监控。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "source": "cron"
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 6144 · 2026-05-21T15:32:38.894751+00:00_
-
-重复告警，已有 Worker (worker_diagnosis_exp062_cron_exit_check) 正在诊断，等待其完成。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
-}
-```
-
-</details>
-
----
-
-
 ## Round 408
 
-## Round 408
-
-30 recorded events
-
-
-### User
-
-_source line 6145 · 2026-05-21T15:34:12.760779+00:00_
-
-[WORKER DONE] Worker worker_diagnosis_exp062_cron_exit_check_20260521T153221 已完成（status=done）。用 `get_worker_status('worker_diagnosis_exp062_cron_exit_check_20260521T153221')` 读取结果，然后处理。
-
-- worker_id: worker_diagnosis_exp062_cron_exit_check_20260521T153221
-- project: gen-depth-fingerprint
-- status: done
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "source": "worker:done"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 6146 · 2026-05-21T15:34:20.279838+00:00_
-
-called mcp__agent-ml-research__get_worker_status
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
-
-```json
-{
-  "worker_id": "worker_diagnosis_exp062_cron_exit_check_20260521T153221"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__get_worker_status",
-  "tool_args": {
-    "worker_id": "worker_diagnosis_exp062_cron_exit_check_20260521T153221"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6147 · 2026-05-21T15:34:20.380526+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_cron_exit_check_20260521T153221\", \"status\": \"done\", \"task_type\": \"diagnosis:exp062_cron_exit_check\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T15:32:21.914864+00:00\", \"ended_at\": \"2026-05-21T15:34:11.116123+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"诊断完成。\\n\\n**结论：PID 344399 (qwen3-1.7b) 正常完成退出。** greedy 和 topk 均 100% 跑完（4864 + 4624 条记录），日志末尾 \\\"All strategies complete.\\\"。\\n\\nQwen3-8B watcher 已在 23:22 成功检测到 cuda:1 空闲并启动 qwen3-8b generation（PID 369104，当前 greedy 4%）。4 个 GPU 全部在跑：\\n\\n| GPU | Model | Phase | Progress |\\n|-----|-------|-------|----------|\\n| 0 | llama-3.2-3b | topk | 82% |\\n| 1 | qwen3-8b | greedy | 4% |\\n| 2 | mistral-7b-v0.3 | topk | 56% |\\n| 3 | qwen3-0.6b | greedy+topk | running |\\n\\n**建议：删除该 cron（监控对象已完成），如需继续监控改为跟踪 qwen3-8b PID 369104。**\"}}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "mcp__agent-ml-research__get_worker_status",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6148 · 2026-05-21T15:34:27.760832+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron",
-  "max_results": "2"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron",
-    "max_results": "2"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6149 · 2026-05-21T15:34:27.811439+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6150 · 2026-05-21T15:34:31.327667+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__reconcile_crons",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__reconcile_crons",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6151 · 2026-05-21T15:34:31.678895+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-  "tool": "ToolSearch",
-  "elapsed_ms": 351
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6152 · 2026-05-21T15:34:34.039408+00:00_
+_source line 6136 · 2026-05-21T15:34:34.039408+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -623,7 +37,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 6153 · 2026-05-21T15:34:35.948761+00:00_
+_source line 6137 · 2026-05-21T15:34:35.948761+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_062_decoding_strategy_shape\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -645,7 +59,7 @@ _source line 6153 · 2026-05-21T15:34:35.948761+00:00_
 
 ### Tool call
 
-_source line 6154 · 2026-05-21T15:34:43.338054+00:00_
+_source line 6138 · 2026-05-21T15:34:43.338054+00:00_
 
 called ToolSearch
 
@@ -681,7 +95,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6155 · 2026-05-21T15:34:43.338382+00:00_
+_source line 6139 · 2026-05-21T15:34:43.338382+00:00_
 
 No matching deferred tools found
 
@@ -703,7 +117,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 6156 · 2026-05-21T15:34:47.053893+00:00_
+_source line 6140 · 2026-05-21T15:34:47.053893+00:00_
 
 called ToolSearch
 
@@ -739,7 +153,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6157 · 2026-05-21T15:34:47.154544+00:00_
+_source line 6141 · 2026-05-21T15:34:47.154544+00:00_
 
 
 
@@ -761,7 +175,7 @@ _source line 6157 · 2026-05-21T15:34:47.154544+00:00_
 
 ### Tool call
 
-_source line 6158 · 2026-05-21T15:34:52.981892+00:00_
+_source line 6142 · 2026-05-21T15:34:52.981892+00:00_
 
 called mcp__agent-ml-research__register_cron
 
@@ -805,7 +219,7 @@ called mcp__agent-ml-research__register_cron
 
 ### Tool result
 
-_source line 6159 · 2026-05-21T15:34:53.434667+00:00_
+_source line 6143 · 2026-05-21T15:34:53.434667+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Cron for 'exp_062_decoding_strategy_shape' already registered. Delete it first.\", \"metadata\": {}}"}
 
@@ -827,7 +241,7 @@ _source line 6159 · 2026-05-21T15:34:53.434667+00:00_
 
 ### Tool call
 
-_source line 6160 · 2026-05-21T15:35:08.245151+00:00_
+_source line 6144 · 2026-05-21T15:35:08.245151+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -867,7 +281,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6161 · 2026-05-21T15:35:13.941519+00:00_
+_source line 6145 · 2026-05-21T15:35:13.941519+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp062_extract_qwen17b_topk_20260521T153508\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_analysis_exp062_extract_qwen17b_topk_20260521T153508.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp062_extract_qwen17b_topk_20260521T153508 started. Use get_worker_status('worker_analysis_exp062_extract_qwen17b_topk_20260521T153508') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -889,7 +303,7 @@ _source line 6161 · 2026-05-21T15:35:13.941519+00:00_
 
 ### Tool call
 
-_source line 6162 · 2026-05-21T15:35:18.505954+00:00_
+_source line 6146 · 2026-05-21T15:35:18.505954+00:00_
 
 called ToolSearch
 
@@ -925,7 +339,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6163 · 2026-05-21T15:35:18.556601+00:00_
+_source line 6147 · 2026-05-21T15:35:18.556601+00:00_
 
 
 
@@ -947,7 +361,7 @@ _source line 6163 · 2026-05-21T15:35:18.556601+00:00_
 
 ### Tool call
 
-_source line 6164 · 2026-05-21T15:35:26.402384+00:00_
+_source line 6148 · 2026-05-21T15:35:26.402384+00:00_
 
 called ToolSearch
 
@@ -983,7 +397,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6165 · 2026-05-21T15:35:26.452950+00:00_
+_source line 6149 · 2026-05-21T15:35:26.452950+00:00_
 
 
 
@@ -1005,7 +419,7 @@ _source line 6165 · 2026-05-21T15:35:26.452950+00:00_
 
 ### Tool call
 
-_source line 6166 · 2026-05-21T15:35:32.627403+00:00_
+_source line 6150 · 2026-05-21T15:35:32.627403+00:00_
 
 called Glob
 
@@ -1041,7 +455,7 @@ called Glob
 
 ### Tool result
 
-_source line 6167 · 2026-05-21T15:35:32.878650+00:00_
+_source line 6151 · 2026-05-21T15:35:32.878650+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/crons.yaml
 
@@ -1063,7 +477,7 @@ _source line 6167 · 2026-05-21T15:35:32.878650+00:00_
 
 ### Tool call
 
-_source line 6168 · 2026-05-21T15:35:32.879081+00:00_
+_source line 6152 · 2026-05-21T15:35:32.879081+00:00_
 
 called Glob
 
@@ -1099,7 +513,7 @@ called Glob
 
 ### Tool result
 
-_source line 6169 · 2026-05-21T15:35:32.979733+00:00_
+_source line 6153 · 2026-05-21T15:35:32.979733+00:00_
 
 No files found
 
@@ -1121,7 +535,7 @@ No files found
 
 ### Tool call
 
-_source line 6170 · 2026-05-21T15:35:35.790731+00:00_
+_source line 6154 · 2026-05-21T15:35:35.790731+00:00_
 
 called Read
 
@@ -1155,7 +569,7 @@ called Read
 
 ### Tool result
 
-_source line 6171 · 2026-05-21T15:35:35.791328+00:00_
+_source line 6155 · 2026-05-21T15:35:35.791328+00:00_
 
 1	active_crons:
 2	- _no_signal_miss_count: 3
@@ -1244,7 +658,7 @@ _source line 6171 · 2026-05-21T15:35:35.791328+00:00_
 
 ### Tool call
 
-_source line 6172 · 2026-05-21T15:35:45.386386+00:00_
+_source line 6156 · 2026-05-21T15:35:45.386386+00:00_
 
 called Edit
 
@@ -1284,7 +698,7 @@ called Edit
 
 ### Tool result
 
-_source line 6173 · 2026-05-21T15:35:45.386922+00:00_
+_source line 6157 · 2026-05-21T15:35:45.386922+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/crons.yaml has been updated successfully.
 
@@ -1306,7 +720,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/crons.yaml has b
 
 ### Assistant
 
-_source line 6174 · 2026-05-21T15:35:49.212954+00:00_
+_source line 6158 · 2026-05-21T15:35:49.212954+00:00_
 
 Cron 已更新：PID 344399 → 369104 (qwen3-8b)，log → gen_qwen8b_decoding.log，miss count 清零。等待 qwen3-1.7b topk 特征提取 Worker 完成。
 
@@ -1333,7 +747,7 @@ Cron 已更新：PID 344399 → 369104 (qwen3-8b)，log → gen_qwen8b_decoding.
 
 ### User
 
-_source line 6175 · 2026-05-21T15:39:13.362665+00:00_
+_source line 6159 · 2026-05-21T15:39:13.362665+00:00_
 
 [WORKER DONE] Worker worker_analysis_exp062_extract_qwen17b_topk_20260521T153508 已完成（status=done）。用 `get_worker_status('worker_analysis_exp062_extract_qwen17b_topk_20260521T153508')` 读取结果，然后处理。
 
@@ -1358,7 +772,7 @@ _source line 6175 · 2026-05-21T15:39:13.362665+00:00_
 
 ### Tool call
 
-_source line 6176 · 2026-05-21T15:39:20.261013+00:00_
+_source line 6160 · 2026-05-21T15:39:20.261013+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -1392,7 +806,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6177 · 2026-05-21T15:39:20.361944+00:00_
+_source line 6161 · 2026-05-21T15:39:20.361944+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp062_extract_qwen17b_topk_20260521T153508\", \"status\": \"done\", \"task_type\": \"analysis:exp062_extract_qwen17b_topk\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T15:35:08.836432+00:00\", \"ended_at\": \"2026-05-21T15:39:11.737934+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个文件已更新完成。\\n\\n**Qwen3-1.7B top-k 结果**（gen1=988, gen2+=2640）：\\n\\n| Feature | Cohen's d |\\n|---------|-----------|\\n| entropy_mean | 0.985 |\\n| entropy_std | 0.316 |\\n| entropy_max | 0.031 |\\n| entropy_min | 0.029 |\\n| tail_decay | 0.139 |\\n| TTR | 0.845 |\\n| hapax_ratio | 0.795 |\\n\\n**Shape=YES, Drift=YES** — 这是目前 4 个 top-k 模型中唯一同时通过两项的。Qwen3-1.7B 在 top-k 采样下仍保留了完整的 depth fingerprint 信号，d_mean=0.99 接近其 greedy 的 1.03，衰减极小。\\n\\n进度更新至 10/16 combos（greedy ×6, top-k ×4）。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -1414,7 +828,7 @@ _source line 6177 · 2026-05-21T15:39:20.361944+00:00_
 
 ### Tool call
 
-_source line 6178 · 2026-05-21T15:39:32.252108+00:00_
+_source line 6162 · 2026-05-21T15:39:32.252108+00:00_
 
 called Read
 
@@ -1450,7 +864,7 @@ called Read
 
 ### Tool result
 
-_source line 6179 · 2026-05-21T15:39:32.302799+00:00_
+_source line 6163 · 2026-05-21T15:39:32.302799+00:00_
 
 1	% Decoding Strategy Robustness — placeholder pending experiment results
 2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
@@ -1503,7 +917,7 @@ _source line 6179 · 2026-05-21T15:39:32.302799+00:00_
 
 ### Tool call
 
-_source line 6180 · 2026-05-21T15:39:36.721918+00:00_
+_source line 6164 · 2026-05-21T15:39:36.721918+00:00_
 
 called Edit
 
@@ -1543,7 +957,7 @@ called Edit
 
 ### Tool result
 
-_source line 6181 · 2026-05-21T15:39:36.772570+00:00_
+_source line 6165 · 2026-05-21T15:39:36.772570+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -1565,7 +979,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6182 · 2026-05-21T15:39:41.290961+00:00_
+_source line 6166 · 2026-05-21T15:39:41.290961+00:00_
 
 called Read
 
@@ -1603,7 +1017,7 @@ called Read
 
 ### Tool result
 
-_source line 6183 · 2026-05-21T15:39:41.341522+00:00_
+_source line 6167 · 2026-05-21T15:39:41.341522+00:00_
 
 33	\midrule
 34	\multicolumn{2}{l}{\textbf{Mean}} & \textbf{0.08}$^{8/8}$ & \textbf{0.07}$^{6/8}$ & \textbf{0.18}$^{3/8}$ & \textbf{0.04}$^{8/8}$ & \textbf{0.04}$^{6/8}$ & \textbf{0.03}$^{3/8}$ & \textbf{0.13}$^{8/8}$ & \textbf{0.06}$^{6/8}$ & \textbf{0.17}$^{3/8}$ \\
@@ -1654,7 +1068,7 @@ _source line 6183 · 2026-05-21T15:39:41.341522+00:00_
 
 ### Tool call
 
-_source line 6184 · 2026-05-21T15:39:55.228562+00:00_
+_source line 6168 · 2026-05-21T15:39:55.228562+00:00_
 
 called Edit
 
@@ -1694,7 +1108,7 @@ called Edit
 
 ### Tool result
 
-_source line 6185 · 2026-05-21T15:39:55.283826+00:00_
+_source line 6169 · 2026-05-21T15:39:55.283826+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -1716,7 +1130,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6186 · 2026-05-21T15:39:59.933050+00:00_
+_source line 6170 · 2026-05-21T15:39:59.933050+00:00_
 
 called Edit
 
@@ -1756,7 +1170,7 @@ called Edit
 
 ### Tool result
 
-_source line 6187 · 2026-05-21T15:39:59.983598+00:00_
+_source line 6171 · 2026-05-21T15:39:59.983598+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -1778,7 +1192,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6188 · 2026-05-21T15:40:08.012760+00:00_
+_source line 6172 · 2026-05-21T15:40:08.012760+00:00_
 
 called Edit
 
@@ -1818,7 +1232,7 @@ called Edit
 
 ### Tool result
 
-_source line 6189 · 2026-05-21T15:40:08.063681+00:00_
+_source line 6173 · 2026-05-21T15:40:08.063681+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -1840,7 +1254,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6190 · 2026-05-21T15:40:13.154909+00:00_
+_source line 6174 · 2026-05-21T15:40:13.154909+00:00_
 
 called Bash
 
@@ -1876,7 +1290,7 @@ called Bash
 
 ### Tool result
 
-_source line 6191 · 2026-05-21T15:40:13.357267+00:00_
+_source line 6175 · 2026-05-21T15:40:13.357267+00:00_
 
 (Bash completed with no output)
 
@@ -1898,7 +1312,7 @@ _source line 6191 · 2026-05-21T15:40:13.357267+00:00_
 
 ### Tool call
 
-_source line 6192 · 2026-05-21T15:40:35.060457+00:00_
+_source line 6176 · 2026-05-21T15:40:35.060457+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -1934,7 +1348,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6193 · 2026-05-21T15:40:38.473636+00:00_
+_source line 6177 · 2026-05-21T15:40:38.473636+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -1956,7 +1370,7 @@ _source line 6193 · 2026-05-21T15:40:38.473636+00:00_
 
 ### Assistant
 
-_source line 6194 · 2026-05-21T15:40:41.008264+00:00_
+_source line 6178 · 2026-05-21T15:40:41.008264+00:00_
 
 Now sync to artifacts copy.
 
@@ -1983,7 +1397,7 @@ Now sync to artifacts copy.
 
 ### User
 
-_source line 6195 · 2026-05-21T16:12:26.251032+00:00_
+_source line 6179 · 2026-05-21T16:12:26.251032+00:00_
 
 [Director 指令] GPU 利用率检查：System 报告有卡空闲。
 
@@ -2011,7 +1425,7 @@ _source line 6195 · 2026-05-21T16:12:26.251032+00:00_
 
 ### Tool call
 
-_source line 6196 · 2026-05-21T16:12:52.268307+00:00_
+_source line 6180 · 2026-05-21T16:12:52.268307+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2051,7 +1465,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6197 · 2026-05-21T16:12:57.839825+00:00_
+_source line 6181 · 2026-05-21T16:12:57.839825+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_gpu_util_fix_20260521T161252\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_diagnosis_exp062_gpu_util_fix_20260521T161252.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnosis_exp062_gpu_util_fix_20260521T161252 started. Use get_worker_status('worker_diagnosis_exp062_gpu_util_fix_20260521T161252') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2080,7 +1494,7 @@ _source line 6197 · 2026-05-21T16:12:57.839825+00:00_
 
 ### User
 
-_source line 6198 · 2026-05-21T16:18:35.167594+00:00_
+_source line 6182 · 2026-05-21T16:18:35.167594+00:00_
 
 [WORKER DONE] Worker worker_diagnosis_exp062_gpu_util_fix_20260521T161252 已完成（status=done）。用 `get_worker_status('worker_diagnosis_exp062_gpu_util_fix_20260521T161252')` 读取结果，然后处理。
 
@@ -2105,7 +1519,7 @@ _source line 6198 · 2026-05-21T16:18:35.167594+00:00_
 
 ### Tool call
 
-_source line 6199 · 2026-05-21T16:18:42.200855+00:00_
+_source line 6183 · 2026-05-21T16:18:42.200855+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2139,7 +1553,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6200 · 2026-05-21T16:18:42.252051+00:00_
+_source line 6184 · 2026-05-21T16:18:42.252051+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_gpu_util_fix_20260521T161252\", \"status\": \"done\", \"task_type\": \"diagnosis:exp062_gpu_util_fix\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T16:12:52.880188+00:00\", \"ended_at\": \"2026-05-21T16:18:33.475184+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"状态汇总：\\n\\n**已完成操作：**\\n- cuda:0 上提取了 `llama-3.2-3b-topk` 和 `qwen3-0.6b-greedy` 的特征（之前 chain 已完成但无 features CSV）\\n- 部署了 `feature_watcher.sh`（PID 372588），自动监控剩余 3 个 chain 进程完成后在 cuda:0 上提取特征\\n\\n**当前状态：**\\n\\n| GPU | 任务 | 进度 |\\n|-----|------|------|\\n| 0 | Feature watcher（等待中） | — |\\n| 1 | Qwen3-8B greedy+topk | 958/~4900 (20%) |\\n| 2 | Mistral-7B topk | 3721/~4600 (81%) |\\n| 3 | Qwen3-0.6B topk | 651/~4600 (14%) |\\n\\n**进度：** 14/16 combo 已有 features CSV。剩余 4 个 chain（3 running + 1 queued）由 watcher 自动处理，预计全部完成时间 ~08:00 CST May 22。\\n\\n报告已写入 `artifacts/_project/analysis/exp062_gpu_util_status.txt`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2161,7 +1575,7 @@ _source line 6200 · 2026-05-21T16:18:42.252051+00:00_
 
 ### Tool call
 
-_source line 6201 · 2026-05-21T16:18:46.116857+00:00_
+_source line 6185 · 2026-05-21T16:18:46.116857+00:00_
 
 called Read
 
@@ -2195,7 +1609,7 @@ called Read
 
 ### Tool result
 
-_source line 6202 · 2026-05-21T16:18:46.217776+00:00_
+_source line 6186 · 2026-05-21T16:18:46.217776+00:00_
 
 1	exp062 GPU Utilization & Feature Extraction Status
 2	===================================================
@@ -2247,7 +1661,7 @@ _source line 6202 · 2026-05-21T16:18:46.217776+00:00_
 
 ### Tool call
 
-_source line 6203 · 2026-05-21T16:19:06.825713+00:00_
+_source line 6187 · 2026-05-21T16:19:06.825713+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2287,7 +1701,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6204 · 2026-05-21T16:19:12.400541+00:00_
+_source line 6188 · 2026-05-21T16:19:12.400541+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp062_cohens_d_batch4_20260521T161907\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_analysis_exp062_cohens_d_batch4_20260521T161907.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp062_cohens_d_batch4_20260521T161907 started. Use get_worker_status('worker_analysis_exp062_cohens_d_batch4_20260521T161907') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2309,7 +1723,7 @@ _source line 6204 · 2026-05-21T16:19:12.400541+00:00_
 
 ### Tool call
 
-_source line 6205 · 2026-05-21T16:19:26.657639+00:00_
+_source line 6189 · 2026-05-21T16:19:26.657639+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2345,7 +1759,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6206 · 2026-05-21T16:19:27.962538+00:00_
+_source line 6190 · 2026-05-21T16:19:27.962538+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -2367,7 +1781,7 @@ _source line 6206 · 2026-05-21T16:19:27.962538+00:00_
 
 ### Assistant
 
-_source line 6207 · 2026-05-21T16:19:30.247393+00:00_
+_source line 6191 · 2026-05-21T16:19:30.247393+00:00_
 
 12/16 chain 完成，14/16 features 已提取。2 个新提取的 combo 需要计算 Cohen's d。
 
@@ -2394,7 +1808,7 @@ _source line 6207 · 2026-05-21T16:19:30.247393+00:00_
 
 ### User
 
-_source line 6208 · 2026-05-21T16:22:05.556497+00:00_
+_source line 6192 · 2026-05-21T16:22:05.556497+00:00_
 
 [WORKER DONE] Worker worker_analysis_exp062_cohens_d_batch4_20260521T161907 已完成（status=done）。用 `get_worker_status('worker_analysis_exp062_cohens_d_batch4_20260521T161907')` 读取结果，然后处理。
 
@@ -2419,7 +1833,7 @@ _source line 6208 · 2026-05-21T16:22:05.556497+00:00_
 
 ### Tool call
 
-_source line 6209 · 2026-05-21T16:22:12.884718+00:00_
+_source line 6193 · 2026-05-21T16:22:12.884718+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2453,7 +1867,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6210 · 2026-05-21T16:22:12.985567+00:00_
+_source line 6194 · 2026-05-21T16:22:12.985567+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp062_cohens_d_batch4_20260521T161907\", \"status\": \"done\", \"task_type\": \"analysis:exp062_cohens_d_batch4\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T16:19:07.435655+00:00\", \"ended_at\": \"2026-05-21T16:22:03.911878+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。结果汇总：\\n\\n| Combo | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay | TTR | hapax_ratio | Shape | Drift |\\n|---|---|---|---|---|---|---|---|---|---|\\n| llama-3.2-3b topk | 0.77 | 0.21 | 0.08 | 0.03 | 0.20 | 0.73 | 0.71 | YES | YES |\\n| qwen3-0.6b greedy | 0.82 | 0.72 | 0.09 | 0.02 | 0.03 | 0.51 | **0.46** | YES | **NO** |\\n\\nqwen3-0.6b greedy 的 hapax_ratio=0.46 差 0.04 没过 drift 阈值，是 greedy 策略下首个 drift 未通过的 combo。两个文件均已更新至 12/16 combos。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2475,7 +1889,7 @@ _source line 6210 · 2026-05-21T16:22:12.985567+00:00_
 
 ### Tool call
 
-_source line 6211 · 2026-05-21T16:22:27.394927+00:00_
+_source line 6195 · 2026-05-21T16:22:27.394927+00:00_
 
 called Read
 
@@ -2509,7 +1923,7 @@ called Read
 
 ### Tool result
 
-_source line 6212 · 2026-05-21T16:22:27.395540+00:00_
+_source line 6196 · 2026-05-21T16:22:27.395540+00:00_
 
 1	% Decoding Strategy Robustness — placeholder pending experiment results
 2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
@@ -2562,7 +1976,7 @@ _source line 6212 · 2026-05-21T16:22:27.395540+00:00_
 
 ### Tool call
 
-_source line 6213 · 2026-05-21T16:22:45.737179+00:00_
+_source line 6197 · 2026-05-21T16:22:45.737179+00:00_
 
 called Edit
 
@@ -2602,7 +2016,7 @@ called Edit
 
 ### Tool result
 
-_source line 6214 · 2026-05-21T16:22:45.787931+00:00_
+_source line 6198 · 2026-05-21T16:22:45.787931+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2624,7 +2038,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6215 · 2026-05-21T16:22:50.204257+00:00_
+_source line 6199 · 2026-05-21T16:22:50.204257+00:00_
 
 called Edit
 
@@ -2664,7 +2078,7 @@ called Edit
 
 ### Tool result
 
-_source line 6216 · 2026-05-21T16:22:50.255769+00:00_
+_source line 6200 · 2026-05-21T16:22:50.255769+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2686,7 +2100,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6217 · 2026-05-21T16:22:56.682827+00:00_
+_source line 6201 · 2026-05-21T16:22:56.682827+00:00_
 
 called Edit
 
@@ -2726,7 +2140,7 @@ called Edit
 
 ### Tool result
 
-_source line 6218 · 2026-05-21T16:22:56.733599+00:00_
+_source line 6202 · 2026-05-21T16:22:56.733599+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2748,7 +2162,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6219 · 2026-05-21T16:23:01.615524+00:00_
+_source line 6203 · 2026-05-21T16:23:01.615524+00:00_
 
 called Edit
 
@@ -2788,7 +2202,7 @@ called Edit
 
 ### Tool result
 
-_source line 6220 · 2026-05-21T16:23:01.666142+00:00_
+_source line 6204 · 2026-05-21T16:23:01.666142+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2810,7 +2224,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6221 · 2026-05-21T16:23:08.631767+00:00_
+_source line 6205 · 2026-05-21T16:23:08.631767+00:00_
 
 called Edit
 
@@ -2850,7 +2264,7 @@ called Edit
 
 ### Tool result
 
-_source line 6222 · 2026-05-21T16:23:08.637889+00:00_
+_source line 6206 · 2026-05-21T16:23:08.637889+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2872,7 +2286,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6223 · 2026-05-21T16:23:15.899679+00:00_
+_source line 6207 · 2026-05-21T16:23:15.899679+00:00_
 
 called Edit
 
@@ -2912,7 +2326,7 @@ called Edit
 
 ### Tool result
 
-_source line 6224 · 2026-05-21T16:23:15.950368+00:00_
+_source line 6208 · 2026-05-21T16:23:15.950368+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -2934,7 +2348,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6225 · 2026-05-21T16:23:20.319927+00:00_
+_source line 6209 · 2026-05-21T16:23:20.319927+00:00_
 
 called Bash
 
@@ -2970,7 +2384,7 @@ called Bash
 
 ### Tool result
 
-_source line 6226 · 2026-05-21T16:23:20.420694+00:00_
+_source line 6210 · 2026-05-21T16:23:20.420694+00:00_
 
 (Bash completed with no output)
 
@@ -2992,7 +2406,7 @@ _source line 6226 · 2026-05-21T16:23:20.420694+00:00_
 
 ### Tool call
 
-_source line 6227 · 2026-05-21T16:23:40.574497+00:00_
+_source line 6211 · 2026-05-21T16:23:40.574497+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3028,7 +2442,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6228 · 2026-05-21T16:23:44.037327+00:00_
+_source line 6212 · 2026-05-21T16:23:44.037327+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -3050,7 +2464,7 @@ _source line 6228 · 2026-05-21T16:23:44.037327+00:00_
 
 ### Assistant
 
-_source line 6229 · 2026-05-21T16:23:46.777094+00:00_
+_source line 6213 · 2026-05-21T16:23:46.777094+00:00_
 
 Sync to artifacts.
 
@@ -3077,7 +2491,7 @@ Sync to artifacts.
 
 ### User
 
-_source line 6230 · 2026-05-21T17:05:45.232905+00:00_
+_source line 6214 · 2026-05-21T17:05:45.232905+00:00_
 
 [Director 指令] exp_062 还剩 4 个 combo（Qwen3-0.6B topk, Qwen3-8B greedy+topk, Mistral topk）。你已 idle 41 分钟。
 
@@ -3106,7 +2520,7 @@ DDL 5月25日，不能空等。
 
 ### Tool call
 
-_source line 6231 · 2026-05-21T17:06:20.652015+00:00_
+_source line 6215 · 2026-05-21T17:06:20.652015+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3146,7 +2560,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6232 · 2026-05-21T17:06:26.462888+00:00_
+_source line 6216 · 2026-05-21T17:06:26.462888+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_final4_status_20260521T170621\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_diagnosis_exp062_final4_status_20260521T170621.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnosis_exp062_final4_status_20260521T170621 started. Use get_worker_status('worker_diagnosis_exp062_final4_status_20260521T170621') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3175,7 +2589,7 @@ _source line 6232 · 2026-05-21T17:06:26.462888+00:00_
 
 ### User
 
-_source line 6233 · 2026-05-21T17:12:12.138123+00:00_
+_source line 6217 · 2026-05-21T17:12:12.138123+00:00_
 
 [WORKER DONE] Worker worker_diagnosis_exp062_final4_status_20260521T170621 已完成（status=done）。用 `get_worker_status('worker_diagnosis_exp062_final4_status_20260521T170621')` 读取结果，然后处理。
 
@@ -3200,7 +2614,7 @@ _source line 6233 · 2026-05-21T17:12:12.138123+00:00_
 
 ### Tool call
 
-_source line 6234 · 2026-05-21T17:12:23.901281+00:00_
+_source line 6218 · 2026-05-21T17:12:23.901281+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3234,7 +2648,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6235 · 2026-05-21T17:12:24.002240+00:00_
+_source line 6219 · 2026-05-21T17:12:24.002240+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnosis_exp062_final4_status_20260521T170621\", \"status\": \"done\", \"task_type\": \"diagnosis:exp062_final4_status\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T17:06:21.482438+00:00\", \"ended_at\": \"2026-05-21T17:12:10.504710+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"状态汇总：\\n\\n**1. Mistral-7B topk — DONE ✓**\\n- 4851 chains, features 已提取, Cohen's d 已计算\\n- **Shape=PASS** (entropy_max=0.064, entropy_min=0.013, tail_decay=0.123)\\n- **Drift=PASS** (entropy_mean=0.697, TTR=0.644, hapax=0.668)\\n- Mistral-7B 在 top-k 下仍保留完整 depth fingerprint，与 LLaMA 和 Qwen3-1.7B 一致\\n\\n**2. Qwen3-0.6B topk — 运行中 (40%)**\\n- 1956/~4850 行，GPU 3 上运行，ETA ~05:00-06:00 CST\\n\\n**3. Qwen3-8B greedy — 运行中 (38%)**\\n- 1833/~4850 行，GPU 1 上运行，ETA ~04:00 CST\\n\\n**4. Qwen3-8B topk — 排队中**\\n- greedy 完成后自动启动，ETA ~08:00-09:00 CST\\n\\nFeature watcher 工作正常，已完成 Mistral 提取，正在等待后续 combo。\\n\\n**进度：13/16 combos 有 Cohen's d，最后 3 个预计 ~09:00 CST 全部完成。**\\n\\n已更新文件：\\n- `exp062_final4_status.txt` — 完整状态报告\\n- `decoding_cohens_d_all.txt` — 添加 Mistral-7B top-k 行（13/16）\\n- `exp062_cohens_d_summary.txt` — 添加 Mistral-7B top-k 摘要\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3256,7 +2670,7 @@ _source line 6235 · 2026-05-21T17:12:24.002240+00:00_
 
 ### Tool call
 
-_source line 6236 · 2026-05-21T17:12:37.259797+00:00_
+_source line 6220 · 2026-05-21T17:12:37.259797+00:00_
 
 called Edit
 
@@ -3296,7 +2710,7 @@ called Edit
 
 ### Tool result
 
-_source line 6237 · 2026-05-21T17:12:37.260353+00:00_
+_source line 6221 · 2026-05-21T17:12:37.260353+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -3318,7 +2732,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6238 · 2026-05-21T17:12:42.541631+00:00_
+_source line 6222 · 2026-05-21T17:12:42.541631+00:00_
 
 called Edit
 
@@ -3358,7 +2772,7 @@ called Edit
 
 ### Tool result
 
-_source line 6239 · 2026-05-21T17:12:42.592655+00:00_
+_source line 6223 · 2026-05-21T17:12:42.592655+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -3380,7 +2794,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6240 · 2026-05-21T17:12:46.512756+00:00_
+_source line 6224 · 2026-05-21T17:12:46.512756+00:00_
 
 called Read
 
@@ -3418,7 +2832,7 @@ called Read
 
 ### Tool result
 
-_source line 6241 · 2026-05-21T17:12:46.613636+00:00_
+_source line 6225 · 2026-05-21T17:12:46.613636+00:00_
 
 24	\midrule
 25	Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\
@@ -3451,7 +2865,7 @@ _source line 6241 · 2026-05-21T17:12:46.613636+00:00_
 
 ### Tool call
 
-_source line 6242 · 2026-05-21T17:12:57.915537+00:00_
+_source line 6226 · 2026-05-21T17:12:57.915537+00:00_
 
 called Edit
 
@@ -3491,7 +2905,7 @@ called Edit
 
 ### Tool result
 
-_source line 6243 · 2026-05-21T17:12:57.966132+00:00_
+_source line 6227 · 2026-05-21T17:12:57.966132+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -3513,7 +2927,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6244 · 2026-05-21T17:13:06.552715+00:00_
+_source line 6228 · 2026-05-21T17:13:06.552715+00:00_
 
 called Edit
 
@@ -3553,7 +2967,7 @@ called Edit
 
 ### Tool result
 
-_source line 6245 · 2026-05-21T17:13:06.603374+00:00_
+_source line 6229 · 2026-05-21T17:13:06.603374+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
 
@@ -3575,7 +2989,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 6246 · 2026-05-21T17:13:10.749024+00:00_
+_source line 6230 · 2026-05-21T17:13:10.749024+00:00_
 
 called Bash
 
@@ -3611,7 +3025,7 @@ called Bash
 
 ### Tool result
 
-_source line 6247 · 2026-05-21T17:13:10.899826+00:00_
+_source line 6231 · 2026-05-21T17:13:10.899826+00:00_
 
 (Bash completed with no output)
 
@@ -3633,7 +3047,7 @@ _source line 6247 · 2026-05-21T17:13:10.899826+00:00_
 
 ### Tool call
 
-_source line 6248 · 2026-05-21T17:13:28.613585+00:00_
+_source line 6232 · 2026-05-21T17:13:28.613585+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3669,7 +3083,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6249 · 2026-05-21T17:13:32.025758+00:00_
+_source line 6233 · 2026-05-21T17:13:32.025758+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -3691,7 +3105,7 @@ _source line 6249 · 2026-05-21T17:13:32.025758+00:00_
 
 ### Assistant
 
-_source line 6250 · 2026-05-21T17:13:35.224744+00:00_
+_source line 6234 · 2026-05-21T17:13:35.224744+00:00_
 
 Now update mean rows. Shape top-k (6/8):
 
@@ -3718,7 +3132,7 @@ Now update mean rows. Shape top-k (6/8):
 
 ### User
 
-_source line 6251 · 2026-05-21T17:14:17.178421+00:00_
+_source line 6235 · 2026-05-21T17:14:17.178421+00:00_
 
 [Director 指令] 1 GPU idle 不可接受。Qwen3-8B topk 不依赖 greedy 结果（独立 chain），立即在空闲 GPU 上启动，不要排队等。
 
@@ -3743,7 +3157,7 @@ _source line 6251 · 2026-05-21T17:14:17.178421+00:00_
 
 ### Tool call
 
-_source line 6252 · 2026-05-21T17:14:43.048178+00:00_
+_source line 6236 · 2026-05-21T17:14:43.048178+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3783,7 +3197,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6253 · 2026-05-21T17:14:49.674020+00:00_
+_source line 6237 · 2026-05-21T17:14:49.674020+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp062_launch_qwen8b_topk_20260521T171443\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_ops_exp062_launch_qwen8b_topk_20260521T171443.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp062_launch_qwen8b_topk_20260521T171443 started. Use get_worker_status('worker_ops_exp062_launch_qwen8b_topk_20260521T171443') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3812,7 +3226,7 @@ _source line 6253 · 2026-05-21T17:14:49.674020+00:00_
 
 ### User
 
-_source line 6254 · 2026-05-21T17:14:55.204984+00:00_
+_source line 6238 · 2026-05-21T17:14:55.204984+00:00_
 
 [Director 指令] 追问：watcher 进程为什么占 cuda:0？watcher 只做 feature extraction 触发，应该跑在 CPU 上，不需要占 GPU。
 
@@ -3838,7 +3252,7 @@ _source line 6254 · 2026-05-21T17:14:55.204984+00:00_
 
 ### Tool call
 
-_source line 6255 · 2026-05-21T17:15:10.609903+00:00_
+_source line 6239 · 2026-05-21T17:15:10.609903+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3874,7 +3288,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6256 · 2026-05-21T17:15:10.660801+00:00_
+_source line 6240 · 2026-05-21T17:15:10.660801+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp062_launch_qwen8b_topk_20260521T171443\", \"status\": \"running\", \"task_type\": \"ops:exp062_launch_qwen8b_topk\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T17:14:43.666212+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"GPU 0 和 GPU 2 空闲。查看运行中的进程和脚本格式。\", \"turn_count\": 10}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3896,7 +3310,7 @@ _source line 6256 · 2026-05-21T17:15:10.660801+00:00_
 
 ### Tool call
 
-_source line 6257 · 2026-05-21T17:15:19.402459+00:00_
+_source line 6241 · 2026-05-21T17:15:19.402459+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3932,7 +3346,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6258 · 2026-05-21T17:15:22.865620+00:00_
+_source line 6242 · 2026-05-21T17:15:22.865620+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -3954,7 +3368,7 @@ _source line 6258 · 2026-05-21T17:15:22.865620+00:00_
 
 ### Assistant
 
-_source line 6259 · 2026-05-21T17:15:25.465517+00:00_
+_source line 6243 · 2026-05-21T17:15:25.465517+00:00_
 
 Worker 正在执行（turn 10，已确认 GPU 0 和 GPU 2 空闲，正在准备启动）。
 
@@ -3983,7 +3397,7 @@ Director 说的对——feature watcher 是 bash 脚本轮询 nvidia-smi，只�
 
 ### User
 
-_source line 6260 · 2026-05-21T17:21:13.295406+00:00_
+_source line 6244 · 2026-05-21T17:21:13.295406+00:00_
 
 [WORKER DONE] Worker worker_ops_exp062_launch_qwen8b_topk_20260521T171443 已完成（status=done）。用 `get_worker_status('worker_ops_exp062_launch_qwen8b_topk_20260521T171443')` 读取结果，然后处理。
 
@@ -4008,7 +3422,7 @@ _source line 6260 · 2026-05-21T17:21:13.295406+00:00_
 
 ### Tool call
 
-_source line 6261 · 2026-05-21T17:21:21.177718+00:00_
+_source line 6245 · 2026-05-21T17:21:21.177718+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4042,7 +3456,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6262 · 2026-05-21T17:21:21.279985+00:00_
+_source line 6246 · 2026-05-21T17:21:21.279985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp062_launch_qwen8b_topk_20260521T171443\", \"status\": \"done\", \"task_type\": \"ops:exp062_launch_qwen8b_topk\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T17:14:43.666212+00:00\", \"ended_at\": \"2026-05-21T17:21:11.630878+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n- **Qwen3-8B topk** 已在 **GPU 0** 启动，PID 375795，预计 ~4.7h\\n- **防重复 watcher** PID 376120 已部署：监控 GPU 1 greedy 完成后自动 kill 该进程，阻止其进入 topk 阶段，greedy 数据不受影响\\n- 产出记录写入 `artifacts/_project/analysis/exp062_qwen8b_topk_launch.txt`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4064,7 +3478,7 @@ _source line 6262 · 2026-05-21T17:21:21.279985+00:00_
 
 ### Tool call
 
-_source line 6263 · 2026-05-21T17:21:30.477318+00:00_
+_source line 6247 · 2026-05-21T17:21:30.477318+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4100,7 +3514,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6264 · 2026-05-21T17:21:33.939771+00:00_
+_source line 6248 · 2026-05-21T17:21:33.939771+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\"}, \"error\": \"\"}"}
 
@@ -4122,7 +3536,7 @@ _source line 6264 · 2026-05-21T17:21:33.939771+00:00_
 
 ### Tool call
 
-_source line 6265 · 2026-05-21T17:24:05.189351+00:00_
+_source line 6249 · 2026-05-21T17:24:05.189351+00:00_
 
 called ToolSearch
 
@@ -4158,7 +3572,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6266 · 2026-05-21T17:24:05.189709+00:00_
+_source line 6250 · 2026-05-21T17:24:05.189709+00:00_
 
 
 
@@ -4180,7 +3594,7 @@ _source line 6266 · 2026-05-21T17:24:05.189709+00:00_
 
 ### Tool call
 
-_source line 6267 · 2026-05-21T17:24:09.706529+00:00_
+_source line 6251 · 2026-05-21T17:24:09.706529+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4218,7 +3632,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 6268 · 2026-05-21T17:24:09.706955+00:00_
+_source line 6252 · 2026-05-21T17:24:09.706955+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -4247,7 +3661,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 6269 · 2026-05-21T17:24:09.857688+00:00_
+_source line 6253 · 2026-05-21T17:24:09.857688+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_062_decoding_strategy_shape\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:44:08.944Z\", \"updated_at\": \"2026-05-21T06:44:22.269Z\", \"hypothesis\": \"DDR shape stability (entropy_max, entropy_min, tail_decay near-stationary with d<0.15) holds under greedy (temperature=0) and top-k (k=50, τ=0.7) decoding, not just nucleus sampling — verifying the DDR decomposition is decoding-strategy-agnostic\", \"spec\": {\"command\": \"python generate_chain_decoding.py --model {pythia-2.8b,olmo-2-1b,qwen3-1.7b} --decoding {greedy,topk}\", \"server\": \"bjb2-18868\", \"data_path\": \"/root/gen-depth-fingerprint/data/seeds_1000.txt\", \"data_count\": 1000, \"model_name\": \"pythia-2.8b, olmo-2-1b, qwen3-1.7b\", \"seed\": 42, \"gpu\": \"cuda:0,1\", \"script_path\": \"/root/gen-depth-fingerprint/generate_chain_decoding.py\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1681}}"}
 
@@ -4269,7 +3683,7 @@ _source line 6269 · 2026-05-21T17:24:09.857688+00:00_
 
 ### Tool result
 
-_source line 6270 · 2026-05-21T17:24:11.664114+00:00_
+_source line 6254 · 2026-05-21T17:24:11.664114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_062_decoding_strategy_shape\", \"success\": true, \"actions\": [\"Job still running (pid=369104)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -4291,7 +3705,7 @@ _source line 6270 · 2026-05-21T17:24:11.664114+00:00_
 
 ### Tool call
 
-_source line 6271 · 2026-05-21T17:24:20.864012+00:00_
+_source line 6255 · 2026-05-21T17:24:20.864012+00:00_
 
 called ToolSearch
 
@@ -4327,7 +3741,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6272 · 2026-05-21T17:24:20.914646+00:00_
+_source line 6256 · 2026-05-21T17:24:20.914646+00:00_
 
 
 
@@ -4349,7 +3763,7 @@ _source line 6272 · 2026-05-21T17:24:20.914646+00:00_
 
 ### Tool call
 
-_source line 6273 · 2026-05-21T17:24:23.926119+00:00_
+_source line 6257 · 2026-05-21T17:24:23.926119+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -4383,7 +3797,7 @@ called mcp__agent-ml-research__get_gpu_health
 
 ### Tool result
 
-_source line 6274 · 2026-05-21T17:24:24.077416+00:00_
+_source line 6258 · 2026-05-21T17:24:24.077416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {\"bjb2-18868\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4405,7 +3819,7 @@ _source line 6274 · 2026-05-21T17:24:24.077416+00:00_
 
 ### Tool call
 
-_source line 6275 · 2026-05-21T17:24:39.835739+00:00_
+_source line 6259 · 2026-05-21T17:24:39.835739+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4445,7 +3859,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6276 · 2026-05-21T17:24:43.269036+00:00_
+_source line 6260 · 2026-05-21T17:24:43.269036+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_exp062-status-check_20260521T172440\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_ssh_exp062-status-check_20260521T172440.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_exp062-status-check_20260521T172440 started. Use get_worker_status('worker_ssh_exp062-status-check_20260521T172440') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4467,7 +3881,7 @@ _source line 6276 · 2026-05-21T17:24:43.269036+00:00_
 
 ### Assistant
 
-_source line 6277 · 2026-05-21T17:24:45.669591+00:00_
+_source line 6261 · 2026-05-21T17:24:45.669591+00:00_
 
 Worker dispatched to check server status. Waiting for callback.
 
@@ -4494,7 +3908,7 @@ Worker dispatched to check server status. Waiting for callback.
 
 ### User
 
-_source line 6278 · 2026-05-21T17:26:43.924769+00:00_
+_source line 6262 · 2026-05-21T17:26:43.924769+00:00_
 
 [WORKER DONE] Worker worker_ssh_exp062-status-check_20260521T172440 已完成（status=done）。用 `get_worker_status('worker_ssh_exp062-status-check_20260521T172440')` 读取结果，然后处理。
 
@@ -4519,7 +3933,7 @@ _source line 6278 · 2026-05-21T17:26:43.924769+00:00_
 
 ### Tool call
 
-_source line 6279 · 2026-05-21T17:26:50.816064+00:00_
+_source line 6263 · 2026-05-21T17:26:50.816064+00:00_
 
 called ToolSearch
 
@@ -4555,7 +3969,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6280 · 2026-05-21T17:26:50.916824+00:00_
+_source line 6264 · 2026-05-21T17:26:50.916824+00:00_
 
 
 
@@ -4577,7 +3991,7 @@ _source line 6280 · 2026-05-21T17:26:50.916824+00:00_
 
 ### Tool call
 
-_source line 6281 · 2026-05-21T17:26:53.379721+00:00_
+_source line 6265 · 2026-05-21T17:26:53.379721+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4611,7 +4025,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6282 · 2026-05-21T17:26:53.480384+00:00_
+_source line 6266 · 2026-05-21T17:26:53.480384+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_exp062-status-check_20260521T172440\", \"status\": \"done\", \"task_type\": \"ssh:exp062-status-check\", \"project\": \"gen-depth-fingerprint\", \"started_at\": \"2026-05-21T17:24:40.457558+00:00\", \"ended_at\": \"2026-05-21T17:26:42.330545+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## exp062 Decoding Strategy Status\\n\\n### GPU Utilization\\n\\n| GPU | Util | Mem Used / Total |\\n|-----|------|-----------------|\\n| 0 | 77% | 16.1 / 31.8 GB |\\n| 1 | 77% | 16.1 / 31.8 GB |\\n| 2 | 0% | 0 / 31.8 GB |\\n| 3 | 33% | 1.8 / 31.8 GB |\\n\\n### Generation Progress\\n\\nOutput files are in `data/&lt;model>-&lt;strategy>/generations_shard0.jsonl`, not `chains_decoding/`.\\n\\n| Combo | PID | Status | Lines | Est % (~4980 target) | ETA |\\n|-------|-----|--------|-------|------|-----|\\n| **qwen3-8b greedy** | 369104 | ALIVE (2h) | 2,159 | **43%** | ~2.6h remaining (~18s/it) |\\n| **qwen3-8b topk** | 375795 | ALIVE (5min) | 106 | **2%** | just started |\\n| **qwen3-0.6b greedy** | 357811 | ALIVE (5h) | 4,872 | **~98%** (done) | greedy finished, now running topk |\\n| **qwen3-0.6b topk** | 357811 | (same PID) | 2,420 | **49%** | in progress |\\n\\nPID 357811 runs `--strategies greedy topk` sequentially — greedy is essentially complete (4872 lines), now working through topk (2420 lines, ~49%).\\n\\nPID 369104 also runs `--strategies greedy topk` — still on greedy phase (458/996 seeds per log). PID 375795 is a separate topk-only process (106 lines, just started).\\n\\n### Feature CSVs\\n\\n| Combo | Exists? |\\n|-------|---------|\\n| qwen3-0.6b-greedy | **YES** (already extracted) |\\n| qwen3-0.6b-topk | No |\\n| qwen3-8b-greedy | No |\\n| qwen3-8b-topk | No |\\n| mistral-7b-v0.3-topk | **YES** (just extracted by watcher) |\\n\\n### Watchers\\n\\n- **PID 372588** (feature watcher): ALIVE (1.1h). Just finished extracting `mistral-7b-v0.3-topk` features. Now waiting o
 …[truncated 607 chars]
@@ -4634,7 +4048,7 @@ _source line 6282 · 2026-05-21T17:26:53.480384+00:00_
 
 ### Tool call
 
-_source line 6283 · 2026-05-21T17:28:01.094512+00:00_
+_source line 6267 · 2026-05-21T17:28:01.094512+00:00_
 
 called ScheduleWakeup
 
@@ -4672,7 +4086,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 6284 · 2026-05-21T17:28:01.195373+00:00_
+_source line 6268 · 2026-05-21T17:28:01.195373+00:00_
 
 Next wakeup scheduled for 17:32:00 (in 239s).
 
@@ -4694,7 +4108,7 @@ Next wakeup scheduled for 17:32:00 (in 239s).
 
 ### Assistant
 
-_source line 6285 · 2026-05-21T17:28:03.794540+00:00_
+_source line 6269 · 2026-05-21T17:28:03.794540+00:00_
 
 Pipeline status update:
 
@@ -4734,7 +4148,7 @@ Pipeline healthy, all watchers alive. Qwen3-0.6B topk and Qwen3-8B greedy should
 
 ### User
 
-_source line 6286 · 2026-05-21T17:57:08.232271+00:00_
+_source line 6270 · 2026-05-21T17:57:08.232271+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -4816,7 +4230,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 6287 · 2026-05-21T17:57:48.598737+00:00_
+_source line 6271 · 2026-05-21T17:57:48.598737+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

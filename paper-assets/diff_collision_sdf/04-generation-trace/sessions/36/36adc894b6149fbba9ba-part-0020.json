@@ -3,1357 +3,10 @@
   "session_id": "36adc894b6149fbba9ba",
   "rounds": [
     {
-      "number": 129,
-      "messages": [
-        {
-          "source_line": 3421,
-          "timestamp": "2026-05-29T21:08:05.087089+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780088817009.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\n\n# Show the top-level keys and structure\nif isinstance(inner, dict):\n    print('Top-level keys:', list(inner.keys()))\n    for k, v in inner.items():\n        if isinstance(v, dict):\n            print(f'  {k}: dict with {len(v)} keys')\n            if len(v) <= 10:\n                for kk in v:\n                    print(f'    - {kk}')\n        elif isinstance(v, list):\n            print(f'  {k}: list with {len(v)} items')\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\" 2>&1",
-              "description": "Inspect top-level structure of registry"
-            }
-          },
-          "id": "event-003421"
-        },
-        {
-          "source_line": 3422,
-          "timestamp": "2026-05-29T21:08:05.187943+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Top-level keys: ['success', 'data', 'error', 'metadata']\n  success: bool = True\n  data: dict with 4 keys\n    - experiments\n    - count\n    - total\n    - baseline\n  error: NoneType = None\n  metadata: dict with 1 keys\n    - elapsed_seconds"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-003422"
-        },
-        {
-          "source_line": 3423,
-          "timestamp": "2026-05-29T21:08:10.108693+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780088817009.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\ndata = inner['data']\nexperiments = data['experiments']\n\nprint(f'count={data[\\\"count\\\"]}, total={data[\\\"total\\\"]}')\nprint(f'Type of experiments: {type(experiments).__name__}')\n\nif isinstance(experiments, list):\n    print(f'Number of experiments: {len(experiments)}')\n    for exp in experiments:\n        eid = exp.get('exp_id', exp.get('id', 'UNKNOWN'))\n        print(f'  {eid}')\nelif isinstance(experiments, dict):\n    print(f'Number of experiments: {len(experiments)}')\n    for eid in sorted(experiments.keys()):\n        print(f'  {eid}')\n\" 2>&1",
-              "description": "List all experiment IDs"
-            }
-          },
-          "id": "event-003423"
-        },
-        {
-          "source_line": 3424,
-          "timestamp": "2026-05-29T21:08:10.159392+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "count=136, total=136\nType of experiments: dict\nNumber of experiments: 136\n  a1_lora_object_pudding_s0\n  a1_lora_spatial_bowl_s0\n  a1_sdf_object_pudding_s0\n  a1_sdf_spatial_bowl_s0\n  a1_sdf_spatial_bowl_s0_v2\n  a1_sdf_spatial_bowl_s0_v3\n  a3_gradient_object_pudding_s0\n  a3_gradient_spatial_bowl_s0\n  analysis_threshold_sensitivity\n  baseline_lora_object_pudding_s0\n  baseline_lora_spatial_bowl_s0\n  baseline_object_pudding_s0\n  baseline_object_pudding_s0_v2\n  baseline_spatial_bowl_s0\n  baseline_spatial_bowl_s0_v2\n  baseline_spatial_bowl_s1\n  baseline_spatial_bowl_s1_v2\n  eval_a1_lora_object_v11\n  eval_a1_lora_object_v11_rerun\n  eval_a1_lora_spatial_v11\n  eval_a3_object_m024fix_v11\n  eval_a3_object_pudding_no_refine\n  eval_a3_object_pudding_refine\n  eval_a3_spatial_force_refine_v11\n  eval_a3_spatial_m024fix_v11\n  eval_a3_v10a_refine\n  eval_a3_v11_object\n  eval_baseline_fullft_spatial_v11\n  eval_baseline_v11_object\n  eval_early_signal_s0_l1_20k\n  eval_early_signal_s1_l1_20k\n  eval_lora_baseline_30k_s0\n  eval_lora_baseline_30k_s0_reeval\n  eval_lora_baseline_30k_s0_v2\n  eval_lora_baseline_30k_s1\n  eval_lora_baseline_30k_s1_v2\n  eval_lora_baseline_30k_s2\n  eval_lora_baseline_object_v11\n  eval_lora_baseline_spatial_v11\n  eval_lora_s2_30k_v2\n  eval_multiseed_lora_s0_eseed0\n  eval_multiseed_lora_s0_eseed123\n  eval_multiseed_lora_s0_eseed42\n  eval_multiseed_lora_s0_eseed99\n  eval_multiseed_lora_s1_eseed0\n  eval_multiseed_lora_s1_eseed99\n  eval_multiseed_sdf_l01_s0_eseed0\n  eval_multiseed_sdf_l01_s0_eseed123\n  eval_multiseed_sdf_l01_s0_eseed256\n  eval_multiseed_sdf_l01_s0_eseed42\n  eval_multiseed_sdf_l01_s0_eseed99\n  eval_oracle_pi05_lora_s0\n  eval_phase2_18k_s2\n  eval_phase2_lambda0_s2\n  eval_pi05_a1_30k_s0_l005\n  eval_pi05_a1_30k_s0_l005_r4\n  eval_pi05_a1_30k_s0_l01\n  eval_pi05_a1_30k_s0_l01_disp\n  eval_pi05_a1_30k_s0_l01_high\n  eval_pi05_a1_30k_s1_l005\n  eval_pi05_a1_30k_s1_l005_disp\n  eval_pi05_a1_30k_s1_l005_v2\n  eval_pi05_a1_30k_s1_l005_v3\n  eval_pi05_a1_30k_s1_l01\n  eval_p\n…[truncated 2151 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-003424"
-        },
-        {
-          "source_line": 3425,
-          "timestamp": "2026-05-29T21:08:32.226823+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780088817009.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\ndef print_exp(eid, exp):\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', 'N/A')\n    metrics = exp.get('metrics', {})\n    plan_id = exp.get('plan_id', 'N/A')\n    hypothesis = exp.get('hypothesis', '')\n    print(f'  exp_id: {eid}')\n    print(f'    status: {status}, conclusion: {conclusion}, plan_id: {plan_id}')\n    if metrics:\n        # Focus on CAR/TSR and key metrics\n        relevant = {}\n        for k, v in metrics.items():\n            kl = k.lower()\n            if any(x in kl for x in ['car', 'tsr', 'collision', 'success', 'spl', 'reward']):\n                relevant[k] = v\n        if relevant:\n            print(f'    key metrics: {json.dumps(relevant)}')\n        else:\n            # Show all metrics if none match car/tsr\n            print(f'    metrics: {json.dumps(metrics)}')\n    if hypothesis:\n        print(f'    hypothesis: {hypothesis[:120]}')\n    print()\n\n# Category 1: LoRA baseline eval - eval_lora or reeval_lora with conclusion=success\nprint('='*70)\nprint('CATEGORY 1: LoRA baseline eval experiments (plan_003)')\nprint('  Filter: exp_id contains \"eval_lora\" or \"reeval_lora\"')\nprint('='*70)\ncat1 = []\nfor eid, exp in sorted(experiments.items()):\n    if 'eval_lora' in eid or 'reeval_lora' in eid:\n        cat1.append(eid)\n        print_exp(eid, exp)\nprint(f'  [Total matches: {len(cat1)}]')\nprint()\n\n# Category 2: Phase 2 lambda=0 training\nprint('='*70)\nprint('CATEGORY 2: Phase 2 λ=0 training (plan_005)')\nprint('  Filter: exp_id contains \"phase2_lambda0\" or \"train_phase2\"')\nprint('='*70)\ncat2 = []\nfor eid, exp in sorted(experiments.items()):\n    if 'phase2_lambda0' in eid or 'train_phase2' in eid:\n        cat2.append(eid)\n        print_exp(eid, exp)\nprint(f'  [Total matches: {len(cat2)}]')\nprint()\n\n# Category 3: Phase 2 eval\nprint('='*70)\nprint('CATEGORY 3: Phase 2 eval (plan_006)')\nprint('  Filter: exp_id contains \"eval_phase2\"')\nprint('='*70)\ncat3 = []\nfor eid, exp in sorted(experiments.items()):\n    if 'eval_phase2' in eid:\n        cat3.append(eid)\n        print_exp(eid, exp)\nprint(f'  [Total matches: {len(cat3)}]')\nprint()\n\n# Category 4: spatial_bowl eval\nprint('='*70)\nprint('CATEGORY 4: spatial_bowl eval (plan_008)')\nprint('  Filter: exp_id contains \"eval_spatial\" or (\"spatial_bowl\" and \"eval\")')\nprint('='*70)\ncat4 = []\nfor eid, exp in sorted(experiments.items()):\n    if 'eval_spatial' in eid or ('spatial_bowl' in eid and 'eval' in eid):\n        cat4.append(eid)\n        print_exp(eid, exp)\nprint(f'  [Total matches: {len(cat4)}]')\nprint()\n\n# Category 5: Lambda=0.1 eval - eval_pi05_a1_30k with l01_high or similar\nprint('='*70)\nprint('CATEGORY 5: Lambda=0.1 eval (plan_010)')\nprint('  Filter: exp_id contains \"eval_pi05_a1_30k\" AND \"l01\"')\nprint('='*70)\ncat5 = []\nfor eid, exp in sorted(experiments.items()):\n    if 'eval_pi05_a1_30k' in eid and 'l01' in eid:\n        cat5.append(eid)\n        print_exp(eid, exp)\nprint(f'  [Total matches: {len(cat5)}]')\n\nPYEOF\n",
-              "description": "Extract detailed experiment info for all 5 categories",
-              "timeout": "30000"
-            }
-          },
-          "id": "event-003425"
-        },
-        {
-          "source_line": 3426,
-          "timestamp": "2026-05-29T21:08:32.327884+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "======================================================================\nCATEGORY 1: LoRA baseline eval experiments (plan_003)\n  Filter: exp_id contains \"eval_lora\" or \"reeval_lora\"\n======================================================================\n  exp_id: eval_lora_baseline_30k_s0\n    status: DONE, conclusion: failed, plan_id: N/A\n    hypothesis: LoRA baseline (no SDF) 30K eval on object_pudding seed 0: expects CAR ≈ Pi0.5 baseline (~27%), confirming ColliForce CAR\n\n  exp_id: eval_lora_baseline_30k_s0_reeval\n    status: DONE, conclusion: success, plan_id: N/A\n    key metrics: {\"TSR\": 51.5, \"CAR\": 56.5}\n    hypothesis: Re-eval LoRA-only s0 (30K) with fixed eval_safelibero.py (180° image rotation added). If TSR remains ~6-8%, catastrophic\n\n  exp_id: eval_lora_baseline_30k_s0_v2\n    status: DONE, conclusion: success, plan_id: N/A\n    key metrics: {\"avg_TSR\": 8.5, \"avg_CAR\": 54.5, \"dfCAR_100mm\": 54.5}\n    hypothesis: LoRA baseline (no SDF) 30K eval on object_pudding seed 0 (v2, base env fix): expects CAR ≈ Pi0.5 baseline (~27%), confir\n\n  exp_id: eval_lora_baseline_30k_s1\n    status: DONE, conclusion: failed, plan_id: N/A\n    hypothesis: LoRA baseline (no SDF) 30K eval on object_pudding seed 1: second seed for LoRA-only attribution. Same expected outcome a\n\n  exp_id: eval_lora_baseline_30k_s1_v2\n    status: DONE, conclusion: success, plan_id: N/A\n    key metrics: {\"avg_TSR\": 4, \"avg_CAR\": 56, \"dfCAR_100mm\": 56}\n    hypothesis: LoRA baseline (no SDF) 30K eval on object_pudding seed 1 (v2, base env fix): second seed for LoRA-only attribution. Pair\n\n  exp_id: eval_lora_baseline_30k_s2\n    status: DONE, conclusion: killed, plan_id: N/A\n    hypothesis: LoRA-only seed2 30K eval on safelibero_object. Completes 3-seed LoRA-only baseline (s0=57%, s1=52.5%). Required for null\n\n  exp_id: eval_lora_baseline_object_v11\n    status: DONE, conclusion: negative, plan_id: N/A\n    key metrics: {\"TSR\": 0, \"CAR_avg\": 82, \"CAR_task0\": 96, \"CAR_task1\": 46, \"CAR_task2\": 98, \"CAR_task3\": 8\n…[truncated 11436 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 101
-          },
-          "id": "event-003426"
-        },
-        {
-          "source_line": 3427,
-          "timestamp": "2026-05-29T21:09:01.742795+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Here are the results, grouped by category:\n\n---\n\n## Category 1: LoRA baseline eval (plan_003) — 11 matches\n\n| exp_id | status | conclusion | CAR | TSR |\n|--------|--------|-----------|-----|-----|\n| `eval_lora_baseline_30k_s0` | DONE | **failed** | — | — |\n| `eval_lora_baseline_30k_s0_reeval` | DONE | **success** | 56.5 | 51.5 |\n| `eval_lora_baseline_30k_s0_v2` | DONE | **success** | 54.5 | 8.5 |\n| `eval_lora_baseline_30k_s1` | DONE | **failed** | — | — |\n| `eval_lora_baseline_30k_s1_v2` | DONE | **success** | 56 | 4 |\n| `eval_lora_baseline_30k_s2` | DONE | **killed** | — | — |\n| `eval_lora_baseline_object_v11` | DONE | **negative** | 82 (avg) | 0 |\n| `eval_lora_baseline_spatial_v11` | DONE | **negative** | 0 (avg) | 0 |\n| `eval_lora_s2_30k_v2` | DONE | **success** | 55% (0.55) | 51.5% (0.515) |\n| `reeval_lora_s0_30k_v2` | DONE | **success** | 57 | 46 |\n| `reeval_lora_s1_30k` | DONE | **success** | 52.5 | 51.5 |\n\n**Success-only (6):** `eval_lora_baseline_30k_s0_reeval`, `eval_lora_baseline_30k_s0_v2`, `eval_lora_baseline_30k_s1_v2`, `eval_lora_s2_30k_v2`, `reeval_lora_s0_30k_v2`, `reeval_lora_s1_30k`\n\n---\n\n## Category 2: Phase 2 λ=0 training (plan_005) — 9 matches\n\n| exp_id | status | conclusion | notes |\n|--------|--------|-----------|-------|\n| `train_pi05_phase2_lambda0_s0` | DONE | **killed** | — |\n| `train_pi05_phase2_lambda0_s2` | DONE | **success** | final_loss_action=0.0113, 10K steps, 12.88h |\n| `train_phase2_lambda0_s2_v2` | DONE | **failed** | — |\n| `train_phase2_lambda0_s2_v3` | DONE | **failed** | — |\n| `train_phase2_lambda0_s2_v4` | DONE | **failed** | — |\n| `train_phase2_lambda0_extra_seed` | DONE | **success** | Stage 1 seed0 |\n| `train_phase2_lambda0_extra_seed_v2` | DONE | **killed** | — |\n| `train_phase2_lambda0_extra_seed_v3` | DONE | **killed** | — |\n| `eval_phase2_lambda0_s2` | DONE | **success** | TSR=53.5, CAR=57.5 (also in Cat 3) |\n\n---\n\n## Category 3: Phase 2 eval (plan_006) — 2 matches\n\n| exp_id | status | conclusion | CAR | TSR | displace\n…[truncated 2027 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Agent",
-            "elapsed_ms": 109324
-          },
-          "id": "event-003427"
-        },
-        {
-          "source_line": 3428,
-          "timestamp": "2026-05-29T21:09:28.425935+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf -name \"experiment_plan.yaml\" -maxdepth 2 2>/dev/null",
-              "description": "Find experiment_plan.yaml"
-            }
-          },
-          "id": "event-003428"
-        },
-        {
-          "source_line": 3429,
-          "timestamp": "2026-05-29T21:09:28.476631+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-003429"
-        },
-        {
-          "source_line": 3430,
-          "timestamp": "2026-05-29T21:09:30.684475+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml"
-            }
-          },
-          "id": "event-003430"
-        },
-        {
-          "source_line": 3431,
-          "timestamp": "2026-05-29T21:09:30.685078+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 1\n4\t  description: 'A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实\n5\t    EE displacement 验证 Claim 1 的 fake safety 定量数据'\n6\t  priority: P0\n7\t  gpu_budget_hours: 1\n8\t  deps: []\n9\t  registry_id: null\n10\t  status: cancelled\n11\t  notes: 旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\n12\t- id: plan_002\n13\t  claim: 1\n14\t  description: 'OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path\n15\t    safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes'\n16\t  priority: P0\n17\t  gpu_budget_hours: 5\n18\t  deps: []\n19\t  registry_id: null\n20\t  status: blocked\n21\t  notes: 模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\n22\t- id: plan_003\n23\t  claim: 3\n24\t  description: 'LoRA baseline eval (2 seeds): 训练完成后立即 eval，确定 LoRA-only CAR。决定 SDF\n25\t    的归因强度——是 SDF 贡献还是 LoRA capacity 贡献'\n26\t  priority: P0\n27\t  gpu_budget_hours: 20\n28\t  deps:\n29\t  - plan_004\n30\t  registry_id: null\n31\t  status: planned\n32\t  notes: LoRA 训练 ETA ~09:30 UTC May 26, eval 紧跟其后\n33\t- id: plan_004\n34\t  claim: 3\n35\t  description: 'LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 +\n36\t    LoRA only (无 SDF loss) 训练到 30K'\n37\t  priority: P0\n38\t  gpu_budget_hours: 40\n39\t  deps: []\n40\t  registry_id: train_pi05_lora_baseline_s0\n41\t  status: running\n42\t  notes: step 26000/30000, ETA ~09:30 UTC\n43\t- id: plan_005\n44\t  claim: 3\n45\t  description: 'Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with\n46\t    λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance'\n47\t  priority: P0\n48\t  gpu_budget_hours: 30\n49\t  deps: []\n50\t  registry_id: null\n51\t  status: running\n52\t  notes: '成功条件: TSR≥40% + CAR≥40% → 升级为 two-phase strategy claim'\n53\t- id: plan_006\n54\t  claim: 3\n55\t  description: 'Phase 2 λ=0 eval: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement'\n56\t  priority: P0\n57\t  gpu_budget_hours: 10\n58\t  deps:\n59\t  - plan_005\n60\t  registry_id: null\n61\t  status: planned\n62\t- id: pla\n…[truncated 2975 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-003431"
-        },
-        {
-          "source_line": 3432,
-          "timestamp": "2026-05-29T21:09:55.153490+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_003\n  claim: 3\n  description: 'LoRA baseline eval (2 seeds): 训练完成后立即 eval，确定 LoRA-only CAR。决定 SDF\n    的归因强度——是 SDF 贡献还是 LoRA capacity 贡献'\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - plan_004\n  registry_id: null\n  status: planned\n  notes: LoRA 训练 ETA ~09:30 UTC May 26, eval 紧跟其后",
-              "new_string": "- id: plan_003\n  claim: 3\n  description: 'LoRA baseline eval (3 seeds): 训练完成后 eval，确定 LoRA-only CAR。决定 SDF\n    的归因强度——是 SDF 贡献还是 LoRA capacity 贡献'\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - plan_004\n  registry_id: reeval_lora_s0_30k_v2\n  status: done\n  notes: '3-seed canonical: reeval_lora_s0_30k_v2 (CAR=57,TSR=46), reeval_lora_s1_30k (CAR=52.5,TSR=51.5), eval_lora_s2_30k_v2 (CAR=55,TSR=51.5). Mean CAR=54.83±2.25'"
-            }
-          },
-          "id": "event-003432"
-        },
-        {
-          "source_line": 3433,
-          "timestamp": "2026-05-29T21:09:55.204306+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003433"
-        },
-        {
-          "source_line": 3434,
-          "timestamp": "2026-05-29T21:10:01.778031+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_004\n  claim: 3\n  description: 'LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 +\n    LoRA only (无 SDF loss) 训练到 30K'\n  priority: P0\n  gpu_budget_hours: 40\n  deps: []\n  registry_id: train_pi05_lora_baseline_s0\n  status: running\n  notes: step 26000/30000, ETA ~09:30 UTC",
-              "new_string": "- id: plan_004\n  claim: 3\n  description: 'LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 +\n    LoRA only (无 SDF loss) 训练到 30K'\n  priority: P0\n  gpu_budget_hours: 40\n  deps: []\n  registry_id: train_pi05_lora_baseline_s0\n  status: done\n  notes: 'Completed. s0+s1 trained to 30K on westd-45947'"
-            }
-          },
-          "id": "event-003434"
-        },
-        {
-          "source_line": 3435,
-          "timestamp": "2026-05-29T21:10:01.829718+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-003435"
-        },
-        {
-          "source_line": 3436,
-          "timestamp": "2026-05-29T21:10:09.507134+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_005\n  claim: 3\n  description: 'Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with\n    λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance'\n  priority: P0\n  gpu_budget_hours: 30\n  deps: []\n  registry_id: null\n  status: running\n  notes: '成功条件: TSR≥40% + CAR≥40% → 升级为 two-phase strategy claim'",
-              "new_string": "- id: plan_005\n  claim: 3\n  description: 'Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with\n    λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance'\n  priority: P0\n  gpu_budget_hours: 30\n  deps: []\n  registry_id: train_pi05_phase2_lambda0_s2\n  status: done\n  notes: 'Completed. final_loss_action=0.0113, 10K steps, 12.88h'"
-            }
-          },
-          "id": "event-003436"
-        },
-        {
-          "source_line": 3437,
-          "timestamp": "2026-05-29T21:10:09.557899+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003437"
-        },
-        {
-          "source_line": 3438,
-          "timestamp": "2026-05-29T21:10:16.030763+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_006\n  claim: 3\n  description: 'Phase 2 λ=0 eval: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement'\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_005\n  registry_id: null\n  status: planned",
-              "new_string": "- id: plan_006\n  claim: 3\n  description: 'Phase 2 λ=0 eval: Phase 2 训练完成后 eval，提取 TSR/CAR/EE displacement'\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - plan_005\n  registry_id: eval_phase2_lambda0_s2\n  status: done\n  notes: 'CAR=57.5%, TSR=53.5%, disp=0.3841. Per-task: t0(56/30), t1(74/76), t2(74/42), t3(26/66)'"
-            }
-          },
-          "id": "event-003438"
-        },
-        {
-          "source_line": 3439,
-          "timestamp": "2026-05-29T21:10:16.081512+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003439"
-        },
-        {
-          "source_line": 3440,
-          "timestamp": "2026-05-29T21:10:24.441931+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_007\n  claim: 3\n  description: 'spatial_bowl A1 训练 (seed0, λ=0.005): 跨场景泛化验证——SDF 效果是否仅限 object_pudding\n    还是跨 scene 一致'\n  priority: P1\n  gpu_budget_hours: 34\n  deps: []\n  registry_id: train_pi05_a1_spatial_bowl_s0_l005\n  status: running\n  notes: Step 11329/30000, ~24h remaining",
-              "new_string": "- id: plan_007\n  claim: 3\n  description: 'spatial_bowl A1 训练 (seed0, λ=0.005): 跨场景泛化验证——SDF 效果是否仅限 object_pudding\n    还是跨 scene 一致'\n  priority: P1\n  gpu_budget_hours: 34\n  deps: []\n  registry_id: train_pi05_a1_spatial_bowl_s0_l005\n  status: done\n  notes: 'Completed 30K steps. best_loss=0.01063 at step 28000'"
-            }
-          },
-          "id": "event-003440"
-        },
-        {
-          "source_line": 3441,
-          "timestamp": "2026-05-29T21:10:24.492614+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003441"
-        },
-        {
-          "source_line": 3442,
-          "timestamp": "2026-05-29T21:10:31.417567+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_008\n  claim: 3\n  description: 'spatial_bowl eval: 训练完成后 eval，验证跨场景 CAR/TSR pattern'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_007\n  registry_id: null\n  status: planned",
-              "new_string": "- id: plan_008\n  claim: 3\n  description: 'spatial_bowl eval: 训练完成后 eval，验证跨场景 CAR/TSR pattern'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_007\n  registry_id: eval_spatial_bowl_sdf_s0_l005_30k\n  status: done\n  notes: 'SDF eval: CAR=11.5%,TSR=51.5% (negative). LoRA ctrl: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%. SDF无显著CAR增益'"
-            }
-          },
-          "id": "event-003442"
-        },
-        {
-          "source_line": 3443,
-          "timestamp": "2026-05-29T21:10:31.468187+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003443"
-        },
-        {
-          "source_line": 3444,
-          "timestamp": "2026-05-29T21:10:38.894854+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_009\n  claim: 3\n  description: 'Lambda=0.1 bracket training (2 seeds): 构建 4-point lambda 曲线 (0/LoRA,\n    0.005, 0.01, 0.1)，支持 dose-dependent safety claim'\n  priority: P1\n  gpu_budget_hours: 68\n  deps: []\n  registry_id: train_pi05_a1_obj_s0_l01_high\n  status: running\n  notes: 2 seeds (s0+s1) on westd-35807 GPU 1+2, ~22h remaining",
-              "new_string": "- id: plan_009\n  claim: 3\n  description: 'Lambda=0.1 bracket training (2 seeds): 构建 4-point lambda 曲线 (0/LoRA,\n    0.005, 0.01, 0.1)，支持 dose-dependent safety claim'\n  priority: P1\n  gpu_budget_hours: 68\n  deps: []\n  registry_id: train_pi05_a1_obj_s0_l01_high\n  status: done\n  notes: 'Completed. 3 seeds (s0+s1+s2) trained to 30K'"
-            }
-          },
-          "id": "event-003444"
-        },
-        {
-          "source_line": 3445,
-          "timestamp": "2026-05-29T21:10:38.995700+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-003445"
-        },
-        {
-          "source_line": 3446,
-          "timestamp": "2026-05-29T21:10:47.774945+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_010\n  claim: 3\n  description: 'Lambda=0.1 eval: 如果训练完成，eval 验证 lambda 递增是否 monotonic 提升 CAR'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_009\n  registry_id: null\n  status: planned",
-              "new_string": "- id: plan_010\n  claim: 3\n  description: 'Lambda=0.1 eval: 如果训练完成，eval 验证 lambda 递增是否 monotonic 提升 CAR'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_009\n  registry_id: eval_pi05_a1_30k_s0_l01_high\n  status: done\n  notes: '3-seed: s0(CAR=58,TSR=47), s1(CAR=58.5,TSR=49), s2(CAR=54.5,TSR=54.5). Mean CAR=57.00%. Also: eval_pi05_a1_30k_s1_l01_high, eval_pi05_a1_30k_s2_l01_high'"
-            }
-          },
-          "id": "event-003446"
-        },
-        {
-          "source_line": 3447,
-          "timestamp": "2026-05-29T21:10:47.825676+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-003447"
-        },
-        {
-          "source_line": 3448,
-          "timestamp": "2026-05-29T21:10:57.024812+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_013\n  claim: 3\n  description: 'LoRA baseline seed2: 第三个 LoRA-only 种子，使 SDF 归因对比有 3v3 seeds 的统计严格性'\n  priority: P1\n  gpu_budget_hours: 20\n  deps:\n  - plan_004\n  registry_id: train_pi05_lora_baseline_s2\n  status: planned\n  notes: Dream worst-case 指出 2-seed LoRA vs 3-seed SDF 无法 claim 'statistically indistinguishable'",
-              "new_string": "- id: plan_013\n  claim: 3\n  description: 'LoRA baseline seed2: 第三个 LoRA-only 种子，使 SDF 归因对比有 3v3 seeds 的统计严格性'\n  priority: P1\n  gpu_budget_hours: 20\n  deps:\n  - plan_004\n  registry_id: train_pi05_lora_baseline_s2\n  status: done\n  notes: 'train failed but eval completed via eval_lora_s2_30k_v2 (CAR=55%,TSR=51.5%). 3-seed LoRA eval achieved'"
-            }
-          },
-          "id": "event-003448"
-        },
-        {
-          "source_line": 3449,
-          "timestamp": "2026-05-29T21:10:57.025390+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-003449"
-        },
-        {
-          "source_line": 3450,
-          "timestamp": "2026-05-29T21:11:03.798783+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "- id: plan_015\n  claim: 3\n  description: 'spatial_bowl LoRA-only control: 在 spatial_bowl 场景训练 LoRA-only (无 SDF)，完成跨场景归因'\n  priority: P1\n  gpu_budget_hours: 34\n  deps:\n  - plan_007\n  registry_id: train_spatial_bowl_lora_control_s0\n  status: planned\n  notes: 'Dream worst-case: 无 LoRA control 则 spatial_bowl +9pp 无法归因 SDF'",
-              "new_string": "- id: plan_015\n  claim: 3\n  description: 'spatial_bowl LoRA-only control: 在 spatial_bowl 场景训练 LoRA-only (无 SDF)，完成跨场景归因'\n  priority: P1\n  gpu_budget_hours: 34\n  deps:\n  - plan_007\n  registry_id: train_spatial_bowl_lora_control_s0\n  status: done\n  notes: 'Completed. Eval: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%'"
-            }
-          },
-          "id": "event-003450"
-        },
-        {
-          "source_line": 3451,
-          "timestamp": "2026-05-29T21:11:03.899791+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-003451"
-        },
-        {
-          "source_line": 3452,
-          "timestamp": "2026-05-29T21:11:07.662761+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "offset": "140"
-            }
-          },
-          "id": "event-003452"
-        },
-        {
-          "source_line": 3453,
-          "timestamp": "2026-05-29T21:11:07.763761+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "140\t  deps: []\n141\t  registry_id: analysis_threshold_sensitivity\n142\t  status: done\n143\t  notes: 'threshold_sensitivity.csv 已产出。Dream 三档均要求。δ∈[2mm, 200mm] dfCAR 完全不变'\n144\t- id: plan_015\n145\t  claim: 3\n146\t  description: 'spatial_bowl LoRA-only control: 在 spatial_bowl 场景训练 LoRA-only (无 SDF)，完成跨场景归因'\n147\t  priority: P1\n148\t  gpu_budget_hours: 34\n149\t  deps:\n150\t  - plan_007\n151\t  registry_id: train_spatial_bowl_lora_control_s0\n152\t  status: done\n153\t  notes: 'Completed. Eval: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%'\n154\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-003453"
-        },
-        {
-          "source_line": 3454,
-          "timestamp": "2026-05-29T21:11:29.174824+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml",
-              "old_string": "  registry_id: train_spatial_bowl_lora_control_s0\n  status: done\n  notes: 'Completed. Eval: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%'",
-              "new_string": "  registry_id: train_spatial_bowl_lora_control_s0\n  status: done\n  notes: 'Completed. Eval: eval_spatial_bowl_lora_ctrl_s0_v2 CAR=12%,TSR=49%'\n- id: plan_016\n  claim: 1\n  description: 'Pi0.5 baseline 追加 2 seeds: 当前仅 1 seed (CAR=28.5%,TSR=71.5%)，Claim 1 最薄弱环节。追加 seed1+seed2 验证 baseline CAR/TSR 稳定性'\n  priority: P0\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: null\n  status: planned\n  notes: 'D049 #1 优先。eval-only (baseline checkpoint 已有)，每 seed ~5h'\n- id: plan_017\n  claim: 3\n  description: 'Demo collision-free 标注: MuJoCo 回放 200 demos，标注 collision-free/containing，确定自然 cf rate 用于 curation 分层'\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  registry_id: null\n  status: planned\n  notes: 'CPU-only ~10min。脚本已完成: artifacts/scripts/demo_collision_label.py (art_20260529_c18a72)'\n- id: plan_018\n  claim: 3\n  description: 'Demo curation training 多 ratio: 5 curation levels × 3 seeds + L4-SDF 对照 = 18 runs，验证 collision-free ratio → CAR 单调关系'\n  priority: P0\n  gpu_budget_hours: 756\n  deps:\n  - plan_017\n  registry_id: null\n  status: planned\n  notes: 'R3 正向贡献。方案已审批: artifacts/demo_curation_proposal.md。分层网格待标注结果确认'\n- id: plan_019\n  claim: 1\n  description: 'OpenVLA zero-shot eval: 第 3 model family 上验证 action collapse / fake safety 现象'\n  priority: P1\n  gpu_budget_hours: 5\n  deps: []\n  registry_id: null\n  status: planned\n  notes: 'R1 generalizability。需先修复模型下载问题'\n- id: plan_020\n  claim: 1\n  description: 'RoboCasa benchmark: 3 PnP tasks 跨 benchmark 验证 dfCAR 和 action collapse。Pi0.5 LoRA fine-tune + eval'\n  priority: P1\n  gpu_budget_hours: 378\n  deps: []\n  registry_id: null\n  status: planned\n  notes: 'R1 跨 benchmark。脚本已完成: robocasa_eval.py (art_20260529_01c907) + robocasa_finetune_config.py (art_20260529_701acf)'"
-            }
-          },
-          "id": "event-003454"
-        },
-        {
-          "source_line": 3455,
-          "timestamp": "2026-05-29T21:11:29.175294+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-003455"
-        },
-        {
-          "source_line": 3456,
-          "timestamp": "2026-05-29T21:11:33.039371+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__compute_coverage_matrix"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
-            "tool_args": {
-              "project": "diff_collision_sdf"
-            }
-          },
-          "id": "event-003456"
-        },
-        {
-          "source_line": 3457,
-          "timestamp": "2026-05-29T21:11:33.442647+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [1, 3], \\\"matrix\\\": {\\\"1\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim 1 的 fake safety 定量数据\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"notes\\\": \\\"旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"notes\\\": \\\"模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\\\"}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Claim 1 术语验证完成后，决定是否需要 full A1 re-eval (800ep with fixed script) 还是 50ep sanity check 足够\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\", \\\"notes\\\": \\\"已有 800ep obstacle displacement + TSR=0% 双证据，无需重跑\\\"}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"dfCAR threshold sensitivity analysis (CPU-only): 在 δ={2mm, 5mm, 10mm, 20mm, 50mm, 100mm} 上计算 filtered CAR/FSR，展示 threshold robustness\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"registry_id\\\": \\\"analysis_threshold_sensitivity\\\", \\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"threshold_sensitivity.csv 已产出。Dream 三档均要求。δ∈[2mm, 200mm] dfCAR 完全不变\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dfCAR_stable_range_mm\\\": \\\"[2, 200]\\\", \\\"n_models\\\": 8, \\\"n_thresholds\\\": 8, \\\"n_active_equals_n_total_at_200mm\\\": true, \\\"max_dfCAR_variation_2_to_200mm\\\": 0, \\\"min_displacement_m\\\": 0.271, \\\"conclusion\\\": \\\"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below thresho\n…[truncated 8940 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
-            "elapsed_ms": 403
-          },
-          "id": "event-003457"
-        },
-        {
-          "source_line": 3458,
-          "timestamp": "2026-05-29T21:12:16.551886+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "text": "[资源] GPU 0/2 (均离线) | Worker 0 | 磁盘: 不可达\n\n## experiment_plan.yaml 更新完成\n\n### 已完成的链接修复 (5 entries)\n| Plan | Registry ID | Status | Key Metrics |\n|------|-------------|--------|-------------|\n| plan_003 (LoRA eval) | reeval_lora_s0_30k_v2 | ✅ done | 3-seed mean CAR=54.83±2.25 |\n| plan_005 (Phase2 λ=0 train) | train_pi05_phase2_lambda0_s2 | ✅ done | loss=0.0113 |\n| plan_006 (Phase2 eval) | eval_phase2_lambda0_s2 | ✅ done | CAR=57.5%, TSR=53.5% |\n| plan_008 (spatial eval) | eval_spatial_bowl_sdf_s0_l005_30k | ✅ done (neg) | CAR=11.5%, TSR=51.5% |\n| plan_010 (λ=0.1 eval) | eval_pi05_a1_30k_s0_l01_high | ✅ done | 3-seed mean CAR=57.00% |\n\n同步更新了 plan_004/007/009/013/015 的 status: running → done。\n\n### 新增 ICRA 条目 (5 entries)\n| Plan | Claim | Priority | GPU Budget | Description |\n|------|-------|----------|------------|-------------|\n| plan_016 | 1 | P0 | 10h | Pi0.5 baseline +2 seeds |\n| plan_017 | 3 | P0 | 0 (CPU) | Demo collision-free 标注 |\n| plan_018 | 3 | P0 | 756h | Demo curation training 多 ratio |\n| plan_019 | 1 | P1 | 5h | OpenVLA zero-shot eval |\n| plan_020 | 1 | P1 | 378h | RoboCasa benchmark |\n\n### Coverage Matrix 验证结果\n| Claim | Before | After | Detail |\n|-------|--------|-------|--------|\n| Claim 1 | 25% | 14.3% (1/7) | 分母+3 (新 planned 条目)，实际 done 不变 |\n| Claim 3 | **36.4%** | **61.5%** (8/13) | +6 done 链接修复 |\n| Overall | — | 45.0% (9/20) | |\n\n**Claim 1 覆盖率注意**：plan_001/011 虽标记 cancelled 但系统无 registry_id 计为 planned，建议后续给 cancelled 条目分配 dummy registry_id 或在系统层面支持 cancelled 状态过滤。实际 Claim 1 核心证据（800ep A1 data + dfCAR threshold + baseline eval）已在论文中，只是未全部通过 plan 系统追踪。"
-            }
-          },
-          "id": "event-003458"
-        },
-        {
-          "source_line": 3459,
-          "timestamp": "2026-05-29T21:12:19.462334+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "elapsed_ms": 2910
-          },
-          "id": "event-003459"
-        },
-        {
-          "source_line": 3460,
-          "timestamp": "2026-05-29T21:12:21.265885+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "Coverage matrix 结果：\n\n| Claim | Before | After | Done/Total |\n|-------|--------|-------|------------|\n| Claim 1 | 25% | 14.3% | 1/7 |\n| Claim 3 | 36.4% | **61.5%** | 8/13 |\n| Overall | — | 45.0% | 9/20 |\n\nClaim 3 大幅提升（8 个 done 被正确链接）。Claim 1 因新增 3 个 planned 条目（plan_016/019/020）扩大了分母，显示为 14.3%，但实际已完成的 plan_014 (dfCAR threshold) 链接正确。plan_001/011 标记为 cancelled 但系统因无 registry_id 仍计为 planned。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
-          },
-          "id": "event-003460"
-        }
-      ]
-    },
-    {
       "number": 130,
       "messages": [
         {
-          "source_line": 3461,
-          "timestamp": "2026-05-30T02:04:08.406070+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] [Director 指令] 服务器恢复执行 checklist\n\n编写一份服务器恢复后的执行 checklist，保存为 `artifacts/recovery_checklist.md`，注册为 artifact。要求零调试、6/1 恢复后立即可执行。\n\n**内容**：\n\n1. **连接验证**（两台服务器）\n   - SSH 连接测试命令\n   - GPU 健康检查（nvidia-smi + torch.cuda 验证）\n   - 磁盘空间确认\n   - conda/venv 环境验证\n\n2. **D049 #1: Pi0.5 baseline +2 seeds**（10 GPU-hrs，最高优先）\n   - 完整的 eval 命令（两个新 seed，参考已有 baseline eval 的参数）\n   - 预期输出路径\n   - 预计耗时\n\n3. **D049 #2: Demo collision-free 标注**（CPU 10min）\n   - `demo_collision_label.py` 的完整执行命令\n   - 输出路径\n   - 标注完成后的汇报格式（cf rate + per-task breakdown）\n\n4. **D049 #3-6 的前置准备**\n   - 各实验的代码/数据/模型依赖是否已部署到服务器\n   - 哪些需要从本地 sync 到远程\n\n5. **故障处理**\n   - SSH 超时 / GPU 异常 / 磁盘满的应对方案\n\n确保所有命令可以 copy-paste 直接执行。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "source": "director"
-          },
-          "id": "event-003461"
-        },
-        {
-          "source_line": 3462,
-          "timestamp": "2026-05-30T02:04:20.973538+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "filters": "{'exp_id': 'eval_pi05_baseline_object'}",
-              "fields": "['*']"
-            }
-          },
-          "id": "event-003462"
-        },
-        {
-          "source_line": 3463,
-          "timestamp": "2026-05-30T02:04:21.478603+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3797}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 505
-          },
-          "id": "event-003463"
-        },
-        {
-          "source_line": 3464,
-          "timestamp": "2026-05-30T02:04:21.579466+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "file": "memory.md",
-              "max_chars": "12000"
-            }
-          },
-          "id": "event-003464"
-        },
-        {
-          "source_line": 3465,
-          "timestamp": "2026-05-30T02:04:21.680115+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## Fig 5 数据更新 (2026-05-27)\\\\n- λ=0 现在有 3 seeds: s0=57%, s1=52.5%, s2=55% → CAR 54.83±2.26%\\\\n- λ=0.1 只有 2 seeds: s0=58%, s1=58.5% → CAR 58.25±0.35% (s2 training)\\\\n\\\\n## CoRL 2026 提交要求 (2026-05-28)\\\\n- **平台**: OpenReview (https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference)\\\\n- **DDL**: Abstract 2026-05-25, Full Paper 2026-05-29\\\\n- **会议**: 2026-11-09 ~ 11-12, Austin, TX\\\\n- **页数**: 正文 8 页（含 Limitations），Acknowledgments/References/Appendix 不计入\\\\n- **模板**: `\\\\\\\\usepackage{corl_2026}`（submission），`\\\\\\\\usepackage[final]{corl_2026}`（camera-ready 9 页）\\\\n- **附录**: 放在同一 PDF 末尾，不另交文件\\\\n- **Supplementary**: 通过 OpenReview 上传单个 zip（可含代码/数据，不含视频）\\\\n- **视频**: 鼓励提交，≤250MB / ~3分钟，必须外部托管（YouTube 等），PMLR 不允许视频在 supplementary 中\\\\n- **代码/数据**: 鼓励提供链接，写在论文正文中\\\\n- **AI 声明**: 提交时必须简要说明 LLM/生成式 AI 使用情况\\\\n- **审稿**: 每位有 3+ 篇投稿的作者必须同意担任审稿人，否则可能 desk-reject\\\\n- **匿名**: 提交阶段必须匿名\\\\n\\\\n### 当前 PDF 状态\\\\n- main.pdf: 18 页（正文 8 页 + References 2 页 + Appendix 8 页）\\\\n- ⚠️ Limitations 段末尾溢出 ~2 行到第 9 页，需要修剪\\\\n- 已匿名，使用 submission 模式模板\\\\n- paper_switch.py --verify 全部通过\\\\n\\\", \\\"total_chars\\\": 1024, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 100
-          },
-          "id": "event-003465"
-        },
-        {
-          "source_line": 3466,
-          "timestamp": "2026-05-30T02:04:28.506623+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/mcp-agent-ml-research-read_registry-1780088817009.txt 2>/dev/null | python3 -c \"\nimport sys, json\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find baseline eval experiments\nfor exp in exps:\n    eid = exp.get('exp_id','')\n    if 'baseline' in eid and 'eval' in eid and 'pi05' in eid:\n        print(json.dumps({k: exp.get(k) for k in ['exp_id','status','conclusion','hypothesis','spec','metrics']}, indent=2))\n\" 2>/dev/null || echo \"File not found, trying alternative\"",
-              "description": "Find Pi0.5 baseline eval experiments from registry dump"
-            }
-          },
-          "id": "event-003466"
-        },
-        {
-          "source_line": 3467,
-          "timestamp": "2026-05-30T02:04:28.809099+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File not found, trying alternative"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 302
-          },
-          "id": "event-003467"
-        },
-        {
-          "source_line": 3468,
-          "timestamp": "2026-05-30T02:04:31.744834+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "filters": "{'conclusion': 'success'}",
-              "fields": "['exp_id', 'spec', 'metrics']",
-              "limit": "5"
-            }
-          },
-          "id": "event-003468"
-        },
-        {
-          "source_line": 3469,
-          "timestamp": "2026-05-30T02:04:32.198916+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_oracle_pi05_lora_s0\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_safelibero.py --true_oracle --adaptive_alpha --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --n_episodes 40 --seed 7 --suite safelibero_object\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"data_path\\\": \\\"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"pi05_lora_baseline_object_pudding_seed0\\\", \\\"seed\\\": 7, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\\\", \\\"eval_data\\\": \\\"safelibero_object level II\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"failure_reason\\\": \\\"Worker context exhausted before eval launched\\\"}, \\\"metrics\\\": {\\\"avg_TSR\\\": 0.506, \\\"avg_CAR\\\": 0.519, \\\"per_task\\\": {\\\"orange_juice\\\": {\\\"TSR\\\": 0.25, \\\"CAR\\\": 0.5, \\\"smoothness\\\": 0.000786, \\\"max_disp\\\": 0.0513}, \\\"chocolate_pudding\\\": {\\\"TSR\\\": 0.9, \\\"CAR\\\": 0.75, \\\"smoothness\\\": 0.000776, \\\"max_disp\\\": 0.047}, \\\"milk\\\": {\\\"TSR\\\": 0.275, \\\"CAR\\\": 0.7, \\\"smoothness\\\": 0.000574, \\\"max_disp\\\": 0.0388}, \\\"bbq_sauce\\\": {\\\"TSR\\\": 0.6, \\\"CAR\\\": 0.125, \\\"smoothness\\\": 0.000618, \\\"max_disp\\\": 0.0944}}, \\\"suite\\\": \\\"safelibero_object\\\", \\\"eval_seed\\\": 7, \\\"n_episodes\\\": 40, \\\"true_oracle\\\": true, \\\"adaptive_alpha\\\": true, \\\"refine_alpha\\\": 0.01, \\\"refine_margin\\\": 0.05, \\\"collision_threshold\\\": 0.001}}, \\\"eval_multiseed_sdf_l01_s0_eseed99\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval completed\\\", \\\"server\\\": \\\"westd-35807\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"85399\\\", \\\"log_path\\\": \\\"~/runs/diff_collision_sdf/eval_multiseed_sdf_l01_s0_eseed99.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T09:11:32.469Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"safelibero_object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"a1_sdf_pi05_object_pudding_seed0_l01\\\", \\\"seed\\\": 99, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp\n…[truncated 3010 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 454
-          },
-          "id": "event-003469"
-        },
-        {
-          "source_line": 3470,
-          "timestamp": "2026-05-30T02:04:42.686017+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Find baseline eval spec details",
-              "subagent_type": "general-purpose",
-              "prompt": "I need to find specific experiment details from a project registry. Use the MCP tool `read_registry` with project=\"diff_collision_sdf\" to search for experiments.\n\nFind these specific experiments:\n1. The Pi0.5 baseline (no LoRA, no SDF) eval on safelibero_object that got CAR=28.5%, TSR=71.5%. Search for exp_ids containing \"baseline\" or \"pi05_base\" or \"reeval_baseline\". Use fields=[\"*\"] and try different filter patterns.\n\n2. The existing successful eval that uses eval_pi05_safelibero.py on the baseline model.\n\nI need the full `spec` field (especially the `command` used for evaluation) and the server it ran on.\n\nReturn: the exp_id, the full command that was used, the server, the checkpoint path, and eval parameters (seed, n_episodes, suite)."
-            }
-          },
-          "id": "event-003470"
-        },
-        {
-          "source_line": 3471,
-          "timestamp": "2026-05-30T02:04:47.352247+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
-              "max_results": "4"
-            }
-          },
-          "id": "event-003471"
-        },
-        {
-          "source_line": 3472,
-          "timestamp": "2026-05-30T02:04:47.453092+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "ToolSearch",
-            "elapsed_ms": 100
-          },
-          "id": "event-003472"
-        },
-        {
-          "source_line": 3473,
-          "timestamp": "2026-05-30T02:04:51.166288+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "fields": "['*']",
-              "limit": "0"
-            }
-          },
-          "id": "event-003473"
-        },
-        {
-          "source_line": 3474,
-          "timestamp": "2026-05-30T02:04:51.216961+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__reconcile_crons"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__reconcile_crons"
-          },
-          "id": "event-003474"
-        },
-        {
-          "source_line": 3475,
-          "timestamp": "2026-05-30T02:04:51.669893+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "diff_collision_sdf",
-              "file": "report.md"
-            }
-          },
-          "id": "event-003475"
-        },
-        {
-          "source_line": 3476,
-          "timestamp": "2026-05-30T02:04:51.971314+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Error: result (231,438 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 805
-          },
-          "id": "event-003476"
-        },
-        {
-          "source_line": 3477,
-          "timestamp": "2026-05-30T02:04:51.971795+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_roadmap"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_roadmap",
-            "tool_args": {
-              "project": "diff_collision_sdf"
-            }
-          },
-          "id": "event-003477"
-        },
-        {
-          "source_line": 3478,
-          "timestamp": "2026-05-30T02:04:52.072695+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__reconcile_crons",
-            "elapsed_ms": 855
-          },
-          "id": "event-003478"
-        },
-        {
-          "source_line": 3479,
-          "timestamp": "2026-05-30T02:04:52.073583+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 137 个实验 — DONE 136, PREPARING 1\\\\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\\\\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-35807**: ❌ 连接失败\\\\n- **westd-45947**: ❌ 连接失败\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 o\\\\n- `train_pi05_a1_obj_s3_l01_v2` [failed] — 2026-05-29T11:41:43 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 o\\\\n- `train_pi05_a1_obj_s3_l01` [failed] — 2026-05-29T04:44:32 — Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at \\\\n- `train_pi05_lora_baseline_s3` [failed] — 2026-05-29T04:02:03 — LeRobot dataset API incompatibility: torch.stack() received HF Column instead of\\\\n- `eval_oracle_pi05_lora_s0` [success] — 2026-05-29T01:34:39\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `train_pi05_lora_baseline_s3_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 on 36.103.198.204\\\\n- `train_pi05_a1_obj_s3_l01_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204\\\\n- `train_pi05_a1_obj_s3_l01`: Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-29\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- eval_oracle_pi05\n…[truncated 3218 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 403
-          },
-          "id": "event-003479"
-        },
-        {
-          "source_line": 3480,
-          "timestamp": "2026-05-30T02:04:52.073987+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\\\", \\\"content\\\": \\\"# diff_collision_sdf — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-29 23:49 UTC | 更新原因: Offensive 论文升级完成，更新真实状态\\\\n\\\\n## 核心方向\\\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Post-DDL，ICRA 2027 准备（DDL ~Sep 2026，~3.5 月窗口）\\\\n- **CoRL 2026**: DDL 已过（M067），用户提交状态待确认\\\\n- **论文**: ICRA 双栏 6+1 页，6 项 offensive 升级完成（positioning、practical implications、系统性排除表、两 regime 结构、eval-seed robustness、demo curation 钩子），Reviewer 最终验证中\\\\n- **代码全部就绪**: Demo curation 标注 + RoboCasa eval + fine-tune config 三件套\\\\n- **通信阻塞**: Feishu API 月配额耗尽，6/1 重置\\\\n\\\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\\\n\\\\n| 模型 | Seeds | CAR | TSR | SSR |\\\\n|------|-------|-----|-----|-----|\\\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\\\n| Pi0.5 LoRA oracle | 1 | 51.9% | 50.6% | — |\\\\n\\\\n## 服务器恢复后 Ablation 优先级（D049）\\\\n\\\\n| # | Ablation | 成本 | 防御目标 |\\\\n|---|----------|------|----------|\\\\n| **1** | Pi0.5 baseline +2 seeds | 10 GPU-hrs | Claim 1 基准稳定性 |\\\\n| **2** | Demo collision-free 标注 | CPU 10min | P0 demo curation 前置 |\\\\n| **3** | Demo curation training 多 ratio | 756 GPU-hrs | R3 正向贡献 |\\\\n| **4** | OpenVLA zero-shot eval | 5 GPU-hrs | R1 generalizability |\\\\n| **5** | seed3 λ=0.1 重启 | 40 GPU-hrs | 统计功效 |\\\\n| **6** | RoboCasa benchmark | 378 GPU-hrs | R1 跨 benchmark |\\\\n\\\\n## 基础设施\\\\n- **westd-35807/45947**: 离线（已向 Manager 报告，无回复，Feishu 配额耗尽无法跟进）\\\\n- **Feishu API**: 6/1 重置\\\\n- 137 实验：136 DONE + 1 PREPARING\\\\n\\\\n## 近期任务\\\\n- [x] Demo curation 标注脚本 + RoboCasa eval + config\\\\n- [x] ICRA 双栏格式转换 + 6 项 offensive 升级\\\\n- [x] paper_framing.md D049 补强\\\\n- [x] experiment_plan.yaml registry_id\n…[truncated 1557 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "mcp__agent-ml-research__read_roadmap",
-            "elapsed_ms": 102
-          },
-          "id": "event-003480"
-        },
-        {
-          "source_line": 3481,
-          "timestamp": "2026-05-30T02:05:08.302298+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\n# The result field is a JSON string itself\nregistry = json.loads(data['result'])\nexperiments = registry.get('data', registry) if isinstance(registry, dict) else registry\n\n# Search for baseline/pi05_base/reeval_baseline experiments\nkeywords = ['baseline', 'pi05_base', 'reeval_baseline', 'reeval']\nif isinstance(experiments, dict):\n    for exp_id, exp in experiments.items():\n        if any(kw in exp_id.lower() for kw in keywords):\n            # Check if it has CAR ~28.5 or mentions safelibero_object\n            metrics = exp.get('metrics', {})\n            spec = exp.get('spec', {})\n            command = spec.get('command', '') if spec else ''\n            conclusion = exp.get('conclusion', '')\n            status = exp.get('status', '')\n            car = metrics.get('CAR', metrics.get('car', ''))\n            tsr = metrics.get('TSR', metrics.get('tsr', ''))\n            print(f'=== {exp_id} ===')\n            print(f'  status={status}, conclusion={conclusion}')\n            print(f'  CAR={car}, TSR={tsr}')\n            print(f'  metrics={json.dumps(metrics, indent=2)[:500]}')\n            print(f'  spec={json.dumps(spec, indent=2)[:1000] if spec else \\\"None\\\"}')\n            print(f'  server={exp.get(\\\"server\\\", \\\"\\\")}')\n            print()\nelif isinstance(experiments, list):\n    for exp in experiments:\n        exp_id = exp.get('exp_id', '')\n        if any(kw in exp_id.lower() for kw in keywords):\n            metrics = exp.get('metrics', {})\n            spec = exp.get('spec', {})\n            print(f'=== {exp_id} ===')\n            print(f'  status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n            print(f'  metrics={json.dumps(metrics, indent=2)[:500]}')\n            print(f'  spec={json.dumps(spec, indent=2)[:1000] if spec else \\\"None\\\"}')\n            print(f'  server={exp.get(\\\"server\\\", \\\"\\\")}')\n            print()\n\"\n",
-              "description": "Search registry JSON for baseline/reeval experiments"
-            }
-          },
-          "id": "event-003481"
-        },
-        {
-          "source_line": 3482,
-          "timestamp": "2026-05-30T02:05:08.605257+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    metrics = exp.get('metrics', {})\n              ^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 302
-          },
-          "id": "event-003482"
-        },
-        {
-          "source_line": 3483,
-          "timestamp": "2026-05-30T02:05:15.330999+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry_str = data['result']\nregistry = json.loads(registry_str)\n# Explore structure\nif isinstance(registry, dict):\n    print('Top keys:', list(registry.keys())[:10])\n    d = registry.get('data', registry)\n    if isinstance(d, dict):\n        print('Data keys (first 20):', list(d.keys())[:20])\n        print('Total experiments:', len(d))\n        # Check first entry structure\n        first_key = list(d.keys())[0]\n        first_val = d[first_key]\n        if first_val is not None:\n            print('First entry keys:', list(first_val.keys()) if isinstance(first_val, dict) else type(first_val))\n    elif isinstance(d, list):\n        print('Data is list, len:', len(d))\n        print('First entry:', d[0] if d else 'empty')\n\"\n",
-              "description": "Explore registry JSON structure"
-            }
-          },
-          "id": "event-003483"
-        },
-        {
-          "source_line": 3484,
-          "timestamp": "2026-05-30T02:05:15.431840+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Top keys: ['success', 'data', 'error', 'metadata']\nData keys (first 20): ['experiments', 'count', 'total', 'baseline']\nTotal experiments: 4\nFirst entry keys: ['train_pi05_lora_baseline_s3_v2', 'train_pi05_a1_obj_s3_l01_v2', 'train_pi05_a1_obj_s3_l01', 'train_pi05_lora_baseline_s3', 'eval_oracle_pi05_lora_s0', 'eval_oracle_pi05_lora_s0_r1', 'train_phase2_lambda0_s2_v4', 'eval_multiseed_lora_s1_eseed99', 'eval_multiseed_lora_s1_eseed0', 'eval_multiseed_sdf_l01_s0_eseed99', 'eval_multiseed_sdf_l01_s0_eseed0', 'eval_multiseed_lora_s0_eseed99', 'eval_multiseed_lora_s0_eseed0', 'eval_multiseed_lora_s0_eseed42', 'eval_multiseed_lora_s0_eseed123', 'eval_multiseed_sdf_l01_s0_eseed42', 'eval_multiseed_sdf_l01_s0_eseed123', 'eval_multiseed_sdf_l01_s0_eseed256', 'eval_spatial_bowl_lora_ctrl_s0_v2', 'eval_spatial_bowl_lora_ctrl_s0', 'eval_phase2_18k_s2', 'eval_spatial_bowl_sdf_s0_l005_30k', 'eval_pi05_a1_30k_s2_l01_high', 'train_pi05_a1_obj_s2_l01_high', 'eval_pi05_a1_best_s0_l005', 'train_phase2_lambda0_extra_seed', 'train_spatial_bowl_lora_control_s0', 'eval_lora_s2_30k_v2', 'train_phase2_lambda0_extra_seed_v3', 'train_phase2_lambda0_s2_v3', 'train_phase2_lambda0_extra_seed_v2', 'eval_lora_baseline_30k_s2', 'train_pi05_lora_baseline_s2_resume', 'train_phase2_lambda0_s2_v2', 'eval_pi05_a1_30k_s1_l01_high', 'reeval_lora_s0_30k_v2', 'eval_pi05_a1_30k_s0_l01_high', 'train_pi05_a1_obj_s1_l01_high', 'train_pi05_a1_obj_s0_l01_high', 'eval_stepwise_s0_l1_28k', 'eval_stepwise_s0_l1_24k_v2', 'eval_stepwise_s0_l1_24k', 'eval_stepwise_s0_l1_26k_v2', 'eval_stepwise_s0_l1_26k', 'eval_spatial_sdf_s0_l005_30k', 'eval_stepwise_s1_l1_22k', 'train_pi05_lora_baseline_s2', 'eval_stepwise_s0_l1_22k', 'eval_stepwise_s0_l1_16k', 'eval_early_signal_s1_l1_20k', 'eval_early_signal_s0_l1_20k', 'train_pi05_a1_spatial_bowl_s0_l005', 'analysis_threshold_sensitivity', 'reeval_sdf_s2_l005_30k', 'reeval_sdf_s2_l01_30k', 'reeval_sdf_s1_l01_30k', 'reeval_sdf_s1_l005_30k', 'eval_lora_baseline_30k_s0_reeval', 'ree\n…[truncated 2403 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-003484"
-        },
-        {
-          "source_line": 3485,
-          "timestamp": "2026-05-30T02:05:31.704199+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt\"\ncat \"$REGFILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# Search for baseline-related experiments with CAR ~28.5 or safelibero\ntargets = []\nkeywords = ['baseline', 'pi05_base', 'reeval_baseline', 'reeval', 'safelibero']\nfor exp_id, exp in experiments.items():\n    if exp is None:\n        continue\n    if any(kw in exp_id.lower() for kw in keywords):\n        targets.append(exp_id)\n    # Also check metrics for CAR=28.5\n    metrics = exp.get('metrics', {}) or {}\n    car = metrics.get('CAR', metrics.get('car', None))\n    if car is not None:\n        try:\n            if abs(float(car) - 28.5) < 1.0 or abs(float(car) - 0.285) < 0.01:\n                if exp_id not in targets:\n                    targets.append(exp_id)\n        except:\n            pass\n\nprint(f'Found {len(targets)} matching experiments:')\nfor exp_id in sorted(targets):\n    exp = experiments[exp_id]\n    if exp is None:\n        print(f'  {exp_id}: None')\n        continue\n    metrics = exp.get('metrics', {}) or {}\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    car = metrics.get('CAR', metrics.get('car', ''))\n    tsr = metrics.get('TSR', metrics.get('tsr', ''))\n    print(f'  {exp_id}: status={status}, conclusion={conclusion}, CAR={car}, TSR={tsr}')\n\"\n",
-              "description": "Find experiments matching baseline/reeval/safelibero keywords or CAR~28.5"
-            }
-          },
-          "id": "event-003485"
-        },
-        {
-          "source_line": 3486,
-          "timestamp": "2026-05-30T02:05:31.855585+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Found 37 matching experiments:\n  baseline_lora_object_pudding_s0: status=DONE, conclusion=success, CAR=, TSR=\n  baseline_lora_spatial_bowl_s0: status=DONE, conclusion=success, CAR=, TSR=\n  baseline_object_pudding_s0: status=DONE, conclusion=failed, CAR=, TSR=\n  baseline_object_pudding_s0_v2: status=DONE, conclusion=success, CAR=, TSR=\n  baseline_spatial_bowl_s0: status=DONE, conclusion=failed, CAR=, TSR=\n  baseline_spatial_bowl_s0_v2: status=DONE, conclusion=success, CAR=, TSR=\n  baseline_spatial_bowl_s1: status=DONE, conclusion=failed, CAR=, TSR=\n  baseline_spatial_bowl_s1_v2: status=DONE, conclusion=failed, CAR=, TSR=\n  eval_baseline_fullft_spatial_v11: status=DONE, conclusion=negative, CAR=, TSR=\n  eval_baseline_v11_object: status=DONE, conclusion=negative, CAR=, TSR=0.5\n  eval_lora_baseline_30k_s0: status=DONE, conclusion=failed, CAR=, TSR=\n  eval_lora_baseline_30k_s0_reeval: status=DONE, conclusion=success, CAR=56.5, TSR=51.5\n  eval_lora_baseline_30k_s0_v2: status=DONE, conclusion=success, CAR=, TSR=\n  eval_lora_baseline_30k_s1: status=DONE, conclusion=failed, CAR=, TSR=\n  eval_lora_baseline_30k_s1_v2: status=DONE, conclusion=success, CAR=, TSR=\n  eval_lora_baseline_30k_s2: status=DONE, conclusion=killed, CAR=, TSR=\n  eval_lora_baseline_object_v11: status=DONE, conclusion=negative, CAR=, TSR=0\n  eval_lora_baseline_spatial_v11: status=DONE, conclusion=negative, CAR=, TSR=0\n  eval_pi05_baseline_reeval_disp: status=DONE, conclusion=success, CAR=, TSR=\n  eval_pi05_safelibero_object_v11: status=DONE, conclusion=negative, CAR=, TSR=\n  eval_pi05_safelibero_object_v11_s1: status=DONE, conclusion=success, CAR=0.25, TSR=0.76\n  eval_pi05_safelibero_object_v11_s2: status=DONE, conclusion=success, CAR=0.275, TSR=0.75\n  eval_pi05_safelibero_spatial_v11: status=DONE, conclusion=negative, CAR=, TSR=\n  reeval_lora_s0_30k_v2: status=DONE, conclusion=success, CAR=57, TSR=46\n  reeval_lora_s1_30k: status=DONE, conclusion=success, CAR=52.5, TSR=51.5\n  reeval_sdf_s0_l005_30k: status=\n…[truncated 880 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 151
-          },
-          "id": "event-003486"
-        },
-        {
-          "source_line": 3487,
-          "timestamp": "2026-05-30T02:05:45.806073+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt\"\ncat \"$REGFILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# Get full details for the most likely candidates for CAR=28.5% baseline\ncandidates = [\n    'eval_pi05_safelibero_object_v11',\n    'eval_pi05_safelibero_object_v11_s1',\n    'eval_pi05_safelibero_object_v11_s2',\n    'eval_pi05_baseline_reeval_disp',\n    'eval_baseline_v11_object',\n    'eval_lora_baseline_object_v11',\n]\n\nfor exp_id in candidates:\n    exp = experiments.get(exp_id)\n    if exp is None:\n        print(f'=== {exp_id} === None')\n        continue\n    print(f'=== {exp_id} ===')\n    print(json.dumps(exp, indent=2, ensure_ascii=False))\n    print()\n\"\n",
-              "description": "Get full details of candidate baseline experiments"
-            }
-          },
-          "id": "event-003487"
-        },
-        {
-          "source_line": 3488,
-          "timestamp": "2026-05-30T02:05:45.906983+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "=== eval_pi05_safelibero_object_v11 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T21:10:20.936Z\",\n  \"updated_at\": \"2026-05-22T21:42:06.925Z\",\n  \"hypothesis\": \"Pi0.5 as a stronger base VLA model may have better implicit obstacle avoidance due to superior visual understanding and trajectory planning, resulting in higher CAR than baseline models on SafeLIBERO object suite.\",\n  \"spec\": {\n    \"command\": \"python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level II --n_episodes 50 --output_path /root/autodl-tmp/eval_results/pi05_safelibero_object_v11.json\",\n    \"server\": \"westd-45947\",\n    \"data_path\": \"SafeLIBERO safelibero_object Level II (4 tasks x 50 episodes = 200 total)\",\n    \"data_count\": 200,\n    \"model_name\": \"pi05_libero (openpi checkpoint)\",\n    \"seed\": 7,\n    \"checkpoint_source\": \"/root/autodl-tmp/openpi_weights/pi05_libero/\",\n    \"eval_data\": \"safelibero_object Level II\",\n    \"log_path\": \"/root/autodl-tmp/eval_results/eval_pi05_safelibero_object_v11.log\",\n    \"checkpoint_path\": \"/root/autodl-tmp/openpi_weights/pi05_libero/\"\n  },\n  \"reproduce\": {},\n  \"failure_reason\": null,\n  \"conclusion\": \"negative\",\n  \"completed_at\": null,\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-22T21:33:37.477631+00:00\",\n        \"note\": \"M016 cron false alarm - process still running, reverted to RUNNING\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"overall_TSR\": 0.73,\n    \"overall_CAR\": 0.28,\n    \"overall_avg_disp\": 0.1508,\n    \"real_safe_rate\": 0.005,\n    \"fake_safe_rate\": 0.982,\n    \"task0_TSR\": 0.64,\n    \"task0_CAR\": 0.06,\n    \"task1_TSR\": 0.86,\n    \"task1_CAR\": 0.56,\n    \"task2_TSR\": 0.66,\n    \"task2_CAR\": 0.16,\n    \"task3_TSR\": 0.76,\n    \"task3_CAR\": 0.34,\n    \"n_episodes\": 200\n  },\n  \"notes\": \"Pi0.5 has LOWER collision avoidance than baseline (CAR=28.0% vs baseline 83%, A1 91.5%). Real safe rate is only 0.5% (1/200) — nearly all safe episodes are fake (98.2%). \n…[truncated 8946 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-003488"
-        },
-        {
-          "source_line": 3489,
+          "source_line": 3421,
           "timestamp": "2026-05-30T02:05:59.555643+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1371,10 +24,10 @@
               "description": "Get full details of LoRA reeval experiments"
             }
           },
-          "id": "event-003489"
+          "id": "event-003421"
         },
         {
-          "source_line": 3490,
+          "source_line": 3422,
           "timestamp": "2026-05-30T02:05:59.606358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1389,10 +42,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003490"
+          "id": "event-003422"
         },
         {
-          "source_line": 3491,
+          "source_line": 3423,
           "timestamp": "2026-05-30T02:06:22.840716+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1407,10 +60,10 @@
             "tool": "Agent",
             "elapsed_ms": 100154
           },
-          "id": "event-003491"
+          "id": "event-003423"
         },
         {
-          "source_line": 3492,
+          "source_line": 3424,
           "timestamp": "2026-05-30T02:08:19.917237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1428,10 +81,10 @@
               "content": "# Server Recovery Execution Checklist\n\nGenerated: 2026-05-30\nTarget: 6/1 恢复后零调试立即执行\nServers: westd-35807 (4× GPU), westd-45947 (2× GPU)\n\n---\n\n## Phase 0: 连接验证（两台服务器各执行一次）\n\n### 0.1 SSH 连接测试\n\n```bash\n# westd-35807\nssh westd-35807 \"echo 'OK: westd-35807 connected' && uptime\"\n\n# westd-45947\nssh westd-45947 \"echo 'OK: westd-45947 connected' && uptime\"\n```\n\n**如果连接失败**: AutoDL 重启后端口可能变化。去 AutoDL 控制台查新端口，更新 `~/.ssh/config`。\n\n### 0.2 GPU 健康检查\n\n```bash\nssh westd-35807 \"nvidia-smi --query-gpu=name,memory.total,memory.used,temperature.gpu --format=csv,noheader\"\nssh westd-45947 \"nvidia-smi --query-gpu=name,memory.total,memory.used,temperature.gpu --format=csv,noheader\"\n```\n\n预期: RTX PRO 6000 (96GB) × 4 (35807) / × 2 (45947), 温度 < 85°C, memory.used 接近 0。\n\n### 0.3 PyTorch CUDA 验证\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\nimport torch\nprint(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\nfor i in range(torch.cuda.device_count()):\n    print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')\n\\\"\"\n```\n\n同理对 westd-45947 执行。\n\n### 0.4 磁盘空间确认\n\n```bash\nssh westd-35807 \"df -h /root/autodl-tmp && du -sh /root/autodl-tmp/checkpoints /root/autodl-tmp/eval_results /root/colliforce-vla/data 2>/dev/null\"\nssh westd-45947 \"df -h /root/autodl-tmp && du -sh /root/autodl-tmp/checkpoints /root/autodl-tmp/eval_results /root/colliforce-vla/data 2>/dev/null\"\n```\n\n**红线**: /root/autodl-tmp 可用空间 < 20GB 则需先清理再跑实验。westd-45947 上次磁盘满 (250G/250G) 需特别关注。\n\n### 0.5 Conda 环境 + 项目代码验证\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  which python && python --version && \\\n  cd /root/colliforce-vla && git log --oneline -3 && \\\n  python -c 'import robosuite; print(f\\\"robosuite={robosuite.__version__}\\\")' && \\\n  python -c 'from libero.libero.benchmark import get_benchmark; print(\\\"LIBERO OK\\\")'\"\n```\n\n同理对 westd-45947 执行。如 git log 落后则需 `git pull`。\n\n---\n\n## Phase 1: D049 #1 — Pi0.5 Baseline +2 Seeds (最高优先)\n\n**目标**: 给当前仅 1 seed 的 Pi0.5 baseline 追加 2 个 eval seed，验证 Claim 1 基准稳定性。\n**Server**: westd-35807 (有 4 GPU，可并行 2 eval)\n**预计耗时**: ~2.5h per eval seed, 并行跑 ~2.5h 总计\n**GPU 占用**: cuda:0, cuda:1\n\n### 1.1 参考: 已有 baseline eval 命令 (eval_pi05_baseline_reeval_disp)\n\n```bash\n# 已完成的 baseline eval (CAR=28.5%, TSR=71.5%):\n# server: westd-45947, GPU: cuda:1\n# python scripts/eval_safelibero.py \\\n#   --default_policy --config_name pi05_libero --suite safelibero_object \\\n#   --pi05 --seed 0 --gpu 1 --n_episodes 200\n```\n\n### 1.2 Eval Seed 42 (cuda:0)\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  cd /root/colliforce-vla && \\\n  export WANDB_MODE=disabled && export MUJOCO_GL=egl && \\\n  nohup python scripts/eval_safelibero.py \\\n    --default_policy \\\n    --config_name pi05_libero \\\n    --suite safelibero_object \\\n    --pi05 \\\n    --seed 42 \\\n    --gpu 0 \\\n    --n_episodes 200 \\\n    --save_dir /root/autodl-tmp/eval_results \\\n    > /root/runs/diff_collision_sdf/eval_pi05_baseline_seed42.log 2>&1 &\n  echo \\$!\"\n```\n\n### 1.3 Eval Seed 99 (cuda:1)\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  cd /root/colliforce-vla && \\\n  export WANDB_MODE=disabled && export MUJOCO_GL=egl && \\\n  nohup python scripts/eval_safelibero.py \\\n    --default_policy \\\n    --config_name pi05_libero \\\n    --suite safelibero_object \\\n    --pi05 \\\n    --seed 99 \\\n    --gpu 1 \\\n    --n_episodes 200 \\\n    --save_dir /root/autodl-tmp/eval_results \\\n    > /root/runs/diff_collision_sdf/eval_pi05_baseline_seed99.log 2>&1 &\n  echo \\$!\"\n```\n\n### 1.4 预期输出路径\n\n```\n/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_default_seed42.json\n/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_default_seed99.json\n```\n\n### 1.5 完成后提取指标\n\n```bash\nssh westd-35807 \"python3 -c \\\"\nimport json\nfor seed in [42, 99]:\n    path = f'/root/autodl-tmp/eval_results/eval_safelibero_object_all_levelII_default_seed{seed}.json'\n    try:\n        with open(path) as f:\n            data = json.load(f)\n        results = data['results']\n        tsr = sum(r['TSR'] for r in results) / len(results)\n        car = sum(r['CAR'] for r in results) / len(results)\n        print(f'Seed {seed}: CAR={car*100:.1f}%, TSR={tsr*100:.1f}%')\n    except Exception as e:\n        print(f'Seed {seed}: ERROR - {e}')\n\\\"\"\n```\n\n### 1.6 汇报格式\n\n```\nPi0.5 Baseline (3 seeds): CAR=X.X%±Y.Y%, TSR=X.X%±Y.Y%\n  seed0:  CAR=28.5%, TSR=71.5%  (existing)\n  seed42: CAR=__._%, TSR=__.__%\n  seed99: CAR=__._%, TSR=__.__%\n```\n\n---\n\n## Phase 2: D049 #2 — Demo Collision-Free 标注 (CPU-only, 10min)\n\n**目标**: 标注 200 demos 的 collision-free/containing 状态，确定自然 cf rate。\n**Server**: westd-35807 或 westd-45947 (任一台, CPU-only 不占 GPU)\n**预计耗时**: ~5-10 分钟\n\n### 2.1 Sync 标注脚本到服务器\n\n```bash\n# 本地路径\nLOCAL_SCRIPT=\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/scripts/demo_collision_label.py\"\n\n# 复制到服务器\nscp $LOCAL_SCRIPT westd-35807:/root/colliforce-vla/scripts/demo_collision_label.py\n```\n\n### 2.2 执行标注\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  cd /root/colliforce-vla && \\\n  export MUJOCO_GL=egl && \\\n  python scripts/demo_collision_label.py \\\n    --suite safelibero_object \\\n    --safety_level II \\\n    --output_dir /root/autodl-tmp/demo_labels\"\n```\n\n### 2.3 预期输出路径\n\n```\n/root/autodl-tmp/demo_labels/collision_labels_safelibero_object_levelII.json\n/root/autodl-tmp/demo_labels/collision_label_summary_safelibero_object_levelII.json\n```\n\n### 2.4 提取关键数据\n\n```bash\nssh westd-35807 \"python3 -c \\\"\nimport json\nwith open('/root/autodl-tmp/demo_labels/collision_label_summary_safelibero_object_levelII.json') as f:\n    data = json.load(f)\nprint(f'Overall CF rate: {data[\\\"overall_cf_rate\\\"]*100:.1f}%')\nprint(f'Total demos: {data[\\\"total_demos\\\"]}')\nprint()\nfor t in data['per_task']:\n    print(f'Task {t[\\\"task_id\\\"]} ({t[\\\"task_name\\\"]}):')\n    print(f'  CF: {t[\\\"n_cf\\\"]}/{t[\\\"n_cf\\\"]+t[\\\"n_cc\\\"]} ({t[\\\"cf_rate\\\"]*100:.1f}%)')\n    print(f'  CF indices: {t[\\\"cf_episode_indices\\\"]}')\n\\\"\"\n```\n\n### 2.5 汇报格式\n\n```\nDemo Collision Labeling Complete:\n  Overall: X/200 collision-free (XX.X%)\n  Per-task:\n    Task 0 (orange_juice):    XX/50 CF (XX.X%)\n    Task 1 (chocolate_pudding): XX/50 CF (XX.X%)\n    Task 2 (milk):            XX/50 CF (XX.X%)\n    Task 3 (bbq_sauce):       XX/50 CF (XX.X%)\n\n推荐分层网格: L0=XX%, L1=25%, L2=50%, L3=75%, L4=100%\n(如果自然 cf rate > 80%，需调整分层点位)\n```\n\n---\n\n## Phase 3: D049 #3-6 前置准备检查\n\n### 3.1 代码/脚本部署状态\n\n| 脚本 | 本地路径 | 服务器状态 | 需要 Sync |\n|------|---------|-----------|----------|\n| demo_collision_label.py | artifacts/scripts/ | ❌ 未部署 | ✅ Phase 2.1 中 sync |\n| robocasa_eval.py | artifacts/scripts/ | ❌ 未部署 | 待 Phase 4 |\n| robocasa_finetune_config.py | artifacts/scripts/ | ❌ 未部署 | 待 Phase 4 |\n| eval_safelibero.py | supplementary/code/eval/ | ✅ 已在服务器 | — |\n| train_pi05_lora_baseline.py | supplementary/code/training/ | ✅ 已在服务器 | — |\n| train_a1_sdf_aux_pi05.py | supplementary/code/training/ | ✅ 已在服务器 | — |\n\n### 3.2 数据/模型依赖\n\n| 依赖 | 路径 | 服务器 | 状态 |\n|------|------|--------|------|\n| Pi0.5 pretrained weights | /root/autodl-tmp/openpi_weights/pi05_libero/ | 两台 | ✅ 已有 |\n| SafeLIBERO demo HDF5 | /root/colliforce-vla/data/ | 两台 | ✅ 已有 |\n| SDF ground truth | /root/colliforce-vla/data/sdf_gt_object_chocolate.npz | 两台 | ✅ 已有 |\n| LoRA checkpoints (s0-s2) | /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/ | 两台 | ✅ 已有 |\n| LeRobot dataset (safelibero_object) | /root/colliforce-vla/data/safelibero_object/ | 两台 | ✅ 已有 |\n| RoboCasa package | — | 两台 | ❌ 需安装 |\n| RoboCasa demo data | — | — | ❌ 需下载 |\n| OpenVLA model weights | — | — | ❌ 需重新下载 (之前损坏) |\n\n### 3.3 Demo Curation Training (plan_018, 756 GPU-hrs) 前置\n\n标注完成后需要:\n1. 根据实际 cf rate 确定 5 个 curation levels\n2. 为每个 level 创建 curated dataset (HF push 或本地 episode index filter)\n3. 每个 level × 3 seeds × 30K steps = 18 training runs\n\n```bash\n# 批量 sync 脚本到服务器\nscp artifacts/scripts/demo_collision_label.py westd-35807:/root/colliforce-vla/scripts/\nscp artifacts/scripts/robocasa_eval.py westd-35807:/root/colliforce-vla/scripts/\nscp artifacts/scripts/robocasa_finetune_config.py westd-35807:/root/colliforce-vla/scripts/\n```\n\n### 3.4 Seed3 λ=0.1 重启 (plan 在 registry 中已有)\n\n```bash\n# westd-45947:cuda:0 — SDF λ=0.1 seed3\nssh westd-45947 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  cd /root/colliforce-vla && \\\n  python scripts/train_a1_sdf_aux_pi05.py \\\n    --scene object_pudding \\\n    --seed 3 \\\n    --gpu 0 \\\n    --lambda_sdf 0.1 \\\n    --num_train_steps 30000 \\\n    --exp_name a1_sdf_pi05_object_pudding_seed3_l01_high\"\n```\n\n**注意**: westd-45947 上次因磁盘满 crash。执行前必须确认 `/root/autodl-tmp` 可用空间 > 50GB。如不足：\n```bash\n# 清理已确认不需要的 checkpoint (failed/killed 实验)\nssh westd-45947 \"du -sh /root/autodl-tmp/checkpoints/*/  | sort -rh | head -10\"\n```\n\n### 3.5 RoboCasa 环境搭建 (plan_020, 需 Director 批准后执行)\n\n```bash\nssh westd-35807 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  source /etc/network_turbo && \\\n  pip install robocasa robosuite && \\\n  python -c 'import robocasa; print(f\\\"robocasa={robocasa.__version__}\\\")'\"\n```\n\nRoboCasa 需要下载 kitchen assets (~2GB), 首次 import 时自动下载。\n\n---\n\n## Phase 4: 故障处理\n\n### 4.1 SSH 连接超时\n\n```\n错误: ssh: connect to host XXX port XXXXX: Connection refused\n```\n\n**原因**: AutoDL 实例重启后端口变化。\n**处理**:\n1. 登录 AutoDL 控制台 (autodl.com)\n2. 找到实例，查看新 SSH 端口\n3. 更新 `~/.ssh/config` 中对应 Host 的 Port\n4. 重试连接\n\n### 4.2 GPU 异常\n\n```\n错误: CUDA error: out of memory / CUDA driver version is insufficient\n```\n\n**处理**:\n```bash\n# 检查是否有残留进程\nssh westd-35807 \"nvidia-smi | grep python\"\n\n# 如有残留，kill 掉\nssh westd-35807 \"nvidia-smi --query-compute-apps=pid --format=csv,noheader | xargs -I{} kill -9 {}\"\n\n# 如果 CUDA driver 报错，需要重启实例\n```\n\n### 4.3 磁盘满\n\n```\n错误: OSError: [Errno 28] No space left on device\n```\n\n**westd-45947 高风险** (上次 250G/250G 满盘)\n\n**安全清理顺序**:\n```bash\n# 1. 检查空间分布\nssh westd-45947 \"du -sh /root/autodl-tmp/*/ 2>/dev/null | sort -rh | head -20\"\n\n# 2. 清理 pip cache\nssh westd-45947 \"pip cache purge\"\n\n# 3. 清理 HF cache (大模型缓存)\nssh westd-45947 \"du -sh /root/autodl-tmp/.hf_cache/ 2>/dev/null\"\n\n# 4. 清理 failed 实验的 checkpoint (逐个确认)\n# ⚠️ 只删 conclusion=failed/killed 且无 parent 依赖的 checkpoint\n# ⚠️ 禁止删除 conclusion=success 的 checkpoint\n```\n\n**禁止操作**:\n- `rm -rf /root/autodl-tmp/checkpoints/` (会删除所有 checkpoint)\n- 删除 success 实验的 checkpoint/log\n- 删除其他项目的文件\n- 大规模清理 (>50GB) 前未经 Director 批准\n\n### 4.4 LeRobot Dataset API 不兼容\n\n上次 seed3 训练因 LeRobot API 变化失败 (`torch.stack() received HF Column`)。\n\n**已知 fix** (4 patches, 已在 westd-45947 验证):\n```bash\n# 检查 patch 是否已应用\nssh westd-35807 \"grep -c 'PATCHED' /root/miniconda3/lib/python*/site-packages/lerobot/common/datasets/lerobot_dataset.py 2>/dev/null || echo 'NO_PATCH'\"\n```\n\n如未 patch，需重新应用。Patch 内容在 train_pi05_lora_baseline_s3 的 registry notes 中。\n\n### 4.5 Eval 脚本 Rotation Bug\n\n确认使用的 eval 脚本包含 180° 相机旋转修复:\n```bash\nssh westd-35807 \"grep -c 'rotate\\|flip\\|180' /root/colliforce-vla/scripts/eval_safelibero.py\"\n```\n\n如果输出 0，需要 sync 修复版本。\n\n---\n\n## 执行时间线\n\n| 时间 | 操作 | Server | GPU |\n|------|------|--------|-----|\n| T+0 | Phase 0: 连接验证 (两台) | both | — |\n| T+5min | Phase 2: Demo 标注 (CPU) | 35807 | — |\n| T+5min | Phase 1: Baseline eval seed42+99 (并行) | 35807 | cuda:0,1 |\n| T+15min | Phase 2 完成, 汇报 cf rate | — | — |\n| T+15min | Phase 3: Sync 脚本到服务器 | both | — |\n| T+2.5h | Phase 1 完成, 汇报 3-seed baseline | — | — |\n| T+2.5h | 服务器就绪, 等 Director 决策下一步 | — | — |\n\n**Phase 1 和 Phase 2 可同时启动** — eval 用 cuda:0,1, 标注用 CPU, 互不干扰。\n"
             }
           },
-          "id": "event-003492"
+          "id": "event-003424"
         },
         {
-          "source_line": 3493,
+          "source_line": 3425,
           "timestamp": "2026-05-30T02:08:19.968479+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1446,10 +99,10 @@
             "tool": "Write",
             "elapsed_ms": 51
           },
-          "id": "event-003493"
+          "id": "event-003425"
         },
         {
-          "source_line": 3494,
+          "source_line": 3426,
           "timestamp": "2026-05-30T02:08:28.398744+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1471,10 +124,10 @@
               "tags": "['recovery', 'checklist', 'D049', 'ICRA']"
             }
           },
-          "id": "event-003494"
+          "id": "event-003426"
         },
         {
-          "source_line": 3495,
+          "source_line": 3427,
           "timestamp": "2026-05-30T02:08:28.599904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1489,10 +142,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 201
           },
-          "id": "event-003495"
+          "id": "event-003427"
         },
         {
-          "source_line": 3496,
+          "source_line": 3428,
           "timestamp": "2026-05-30T02:08:49.245604+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1510,10 +163,10 @@
               "text": "[资源] GPU 0/2 (均离线) | Worker 0 | 磁盘: 不可达\n\n## experiment_plan.yaml 更新 + Recovery Checklist 完成\n\n### 1. experiment_plan.yaml 更新结果\n\n**链接修复** (5 entries):\n- plan_003 → `reeval_lora_s0_30k_v2` (3-seed LoRA eval, CAR=54.83±2.25)\n- plan_005 → `train_pi05_phase2_lambda0_s2` (Phase2 train done)\n- plan_006 → `eval_phase2_lambda0_s2` (CAR=57.5%, TSR=53.5%)\n- plan_008 → `eval_spatial_bowl_sdf_s0_l005_30k` (CAR=11.5%, negative)\n- plan_010 → `eval_pi05_a1_30k_s0_l01_high` (3-seed λ=0.1, CAR=57.00%)\n\n**状态同步**: plan_004/007/009/013/015 从 running/planned → done\n\n**新增 ICRA 条目**: plan_016-020 (baseline seeds / demo label / curation / OpenVLA / RoboCasa)\n\n**Coverage Matrix**:\n- Claim 1: 14.3% (1/7) — 分母扩大因新增 3 planned\n- Claim 3: **61.5%** (8/13) — 从 36.4% 大幅提升\n- Overall: 45.0% (9/20)\n\n### 2. Recovery Checklist (art_20260530_cb35b7)\n\n`artifacts/recovery_checklist.md` — 所有命令 copy-paste 可执行：\n\n- **Phase 0**: SSH + GPU + 磁盘 + 环境验证（两台服务器）\n- **Phase 1**: Pi0.5 baseline eval seed42+99（westd-35807 cuda:0,1 并行, ~2.5h）\n- **Phase 2**: Demo collision labeling（CPU-only, ~10min, 同时启动）\n- **Phase 3**: D049 #3-6 前置准备（脚本 sync + 依赖检查）\n- **Phase 4**: SSH/GPU/磁盘/LeRobot API 故障处理方案\n\n关键: Phase 1 和 Phase 2 同时启动，T+2.5h 完成两项最高优先任务。"
             }
           },
-          "id": "event-003496"
+          "id": "event-003428"
         },
         {
-          "source_line": 3497,
+          "source_line": 3429,
           "timestamp": "2026-05-30T02:08:52.308327+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1528,10 +181,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3062
           },
-          "id": "event-003497"
+          "id": "event-003429"
         },
         {
-          "source_line": 3498,
+          "source_line": 3430,
           "timestamp": "2026-05-30T02:08:54.450911+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1544,7 +197,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-003498"
+          "id": "event-003430"
         }
       ]
     },
@@ -1552,7 +205,7 @@
       "number": 131,
       "messages": [
         {
-          "source_line": 3499,
+          "source_line": 3431,
           "timestamp": "2026-05-30T02:13:14.905141+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1566,10 +219,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-003499"
+          "id": "event-003431"
         },
         {
-          "source_line": 3500,
+          "source_line": 3432,
           "timestamp": "2026-05-30T02:13:21.359309+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1587,10 +240,10 @@
               "offset": "170"
             }
           },
-          "id": "event-003500"
+          "id": "event-003432"
         },
         {
-          "source_line": 3501,
+          "source_line": 3433,
           "timestamp": "2026-05-30T02:13:21.410669+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1605,10 +258,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-003501"
+          "id": "event-003433"
         },
         {
-          "source_line": 3502,
+          "source_line": 3434,
           "timestamp": "2026-05-30T02:13:29.440126+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1627,10 +280,10 @@
               "prompt": "Use the MCP tool `read_registry` with project=\"diff_collision_sdf\" to look up these 5 experiments. Use fields=[\"*\"] for each.\n\n1. exp_id filter: oracle_true_gt_adaptive_alpha_v11\n2. exp_id filter: oracle_true_gt_fixed_alpha_v11  \n3. exp_id filter: oracle_true_gt_feature_v11\n4. exp_id filter: eval_oracle_pi05_lora_s0\n5. exp_id filter: eval_oracle_pi05_lora_s0_r1\n\nFor each, report: exp_id, status, conclusion, hypothesis (first 80 chars), and key metrics (CAR, TSR). If the experiment doesn't exist with that exact ID, try partial matches (e.g., search without _v11 suffix).\n\nReturn a compact table with the results."
             }
           },
-          "id": "event-003502"
+          "id": "event-003434"
         },
         {
-          "source_line": 3503,
+          "source_line": 3435,
           "timestamp": "2026-05-30T02:13:33.251896+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1648,10 +301,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-003503"
+          "id": "event-003435"
         },
         {
-          "source_line": 3504,
+          "source_line": 3436,
           "timestamp": "2026-05-30T02:13:33.252342+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1666,10 +319,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-003504"
+          "id": "event-003436"
         },
         {
-          "source_line": 3505,
+          "source_line": 3437,
           "timestamp": "2026-05-30T02:13:39.927810+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1688,10 +341,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-003505"
+          "id": "event-003437"
         },
         {
-          "source_line": 3506,
+          "source_line": 3438,
           "timestamp": "2026-05-30T02:13:40.329645+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1706,10 +359,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 401
           },
-          "id": "event-003506"
+          "id": "event-003438"
         },
         {
-          "source_line": 3507,
+          "source_line": 3439,
           "timestamp": "2026-05-30T02:13:40.831844+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1728,10 +381,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-003507"
+          "id": "event-003439"
         },
         {
-          "source_line": 3508,
+          "source_line": 3440,
           "timestamp": "2026-05-30T02:13:41.337282+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1746,10 +399,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 505
           },
-          "id": "event-003508"
+          "id": "event-003440"
         },
         {
-          "source_line": 3509,
+          "source_line": 3441,
           "timestamp": "2026-05-30T02:13:41.337735+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1768,10 +421,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-003509"
+          "id": "event-003441"
         },
         {
-          "source_line": 3510,
+          "source_line": 3442,
           "timestamp": "2026-05-30T02:13:41.789615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1786,10 +439,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 451
           },
-          "id": "event-003510"
+          "id": "event-003442"
         },
         {
-          "source_line": 3511,
+          "source_line": 3443,
           "timestamp": "2026-05-30T02:13:42.743340+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1808,10 +461,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-003511"
+          "id": "event-003443"
         },
         {
-          "source_line": 3512,
+          "source_line": 3444,
           "timestamp": "2026-05-30T02:13:43.195294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1826,10 +479,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 451
           },
-          "id": "event-003512"
+          "id": "event-003444"
         },
         {
-          "source_line": 3513,
+          "source_line": 3445,
           "timestamp": "2026-05-30T02:13:43.296769+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1848,10 +501,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-003513"
+          "id": "event-003445"
         },
         {
-          "source_line": 3514,
+          "source_line": 3446,
           "timestamp": "2026-05-30T02:13:43.648388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1866,10 +519,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 351
           },
-          "id": "event-003514"
+          "id": "event-003446"
         },
         {
-          "source_line": 3515,
+          "source_line": 3447,
           "timestamp": "2026-05-30T02:13:49.821177+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1888,10 +541,10 @@
               "limit": "0"
             }
           },
-          "id": "event-003515"
+          "id": "event-003447"
         },
         {
-          "source_line": 3516,
+          "source_line": 3448,
           "timestamp": "2026-05-30T02:13:50.775856+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1906,10 +559,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 954
           },
-          "id": "event-003516"
+          "id": "event-003448"
         },
         {
-          "source_line": 3517,
+          "source_line": 3449,
           "timestamp": "2026-05-30T02:14:01.682850+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1927,10 +580,10 @@
               "description": "Search registry for partial matches on all 5 experiment IDs"
             }
           },
-          "id": "event-003517"
+          "id": "event-003449"
         },
         {
-          "source_line": 3518,
+          "source_line": 3450,
           "timestamp": "2026-05-30T02:14:01.909835+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1945,10 +598,10 @@
             "tool": "Bash",
             "elapsed_ms": 226
           },
-          "id": "event-003518"
+          "id": "event-003450"
         },
         {
-          "source_line": 3519,
+          "source_line": 3451,
           "timestamp": "2026-05-30T02:14:13.149814+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1966,10 +619,10 @@
               "description": "Extract avg_CAR and avg_TSR metrics for all matched experiments"
             }
           },
-          "id": "event-003519"
+          "id": "event-003451"
         },
         {
-          "source_line": 3520,
+          "source_line": 3452,
           "timestamp": "2026-05-30T02:14:13.200471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1984,10 +637,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003520"
+          "id": "event-003452"
         },
         {
-          "source_line": 3521,
+          "source_line": 3453,
           "timestamp": "2026-05-30T02:14:24.592318+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2002,10 +655,10 @@
             "tool": "Agent",
             "elapsed_ms": 55152
           },
-          "id": "event-003521"
+          "id": "event-003453"
         },
         {
-          "source_line": 3522,
+          "source_line": 3454,
           "timestamp": "2026-05-30T02:14:40.774795+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2025,10 +678,10 @@
               "new_string": "  notes: 'R1 跨 benchmark。脚本已完成: robocasa_eval.py (art_20260529_01c907) + robocasa_finetune_config.py (art_20260529_701acf)'\n- id: plan_021\n  claim: 2\n  description: 'Oracle adaptive-alpha SDF refinement eval: 在 Pi0 A1 baseline 上用 true GT SDF + adaptive alpha 做 inference-time refinement，验证 EE-only oracle 仍 counterproductive'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: oracle_true_gt_adaptive_alpha_v11\n  status: done\n  notes: 'CAR=75%,TSR=0%. Oracle 提高 CAR 但完全摧毁 TSR，证明 EE-only SDF refinement counterproductive'\n- id: plan_022\n  claim: 2\n  description: 'Oracle fixed-alpha SDF refinement eval: conservative fixed alpha=0.005 仍然 counterproductive (CAR↑ TSR→0)'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: oracle_true_gt_fixed_alpha_v11\n  status: done\n  notes: 'CAR=73.1%,TSR=0%. 即使极保守的 alpha 也 TSR=0%，排除 hyperparameter 过激解释'\n- id: plan_023\n  claim: 2\n  description: 'Oracle feature-space SDF refinement eval: GT SDF gradient 通过 suffix_out → action_out_proj，测试 feature-space 梯度路径'\n  priority: P0\n  gpu_budget_hours: 2\n  deps: []\n  registry_id: oracle_true_gt_feature_v11\n  status: done\n  notes: 'CAR=76.9%,TSR=0%. Feature-space oracle 同样 counterproductive'\n- id: plan_024\n  claim: 2\n  description: 'Pi0.5 LoRA oracle-adaptive eval: 在非 action-collapsed Pi0.5 LoRA 上验证 EE-only oracle refinement 仍 counterproductive (CAR 从 54.83→51.9%)'\n  priority: P0\n  gpu_budget_hours: 3\n  deps: []\n  registry_id: eval_oracle_pi05_lora_s0\n  status: done\n  notes: 'CAR=51.9%,TSR=50.6%. 在无 action collapse 模型上 EE-only refinement 仍降低 CAR，证明 counterproductive 效果是结构性的'"
             }
           },
-          "id": "event-003522"
+          "id": "event-003454"
         },
         {
-          "source_line": 3523,
+          "source_line": 3455,
           "timestamp": "2026-05-30T02:14:40.775287+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2043,10 +696,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-003523"
+          "id": "event-003455"
         },
         {
-          "source_line": 3524,
+          "source_line": 3456,
           "timestamp": "2026-05-30T02:14:44.738031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2066,10 +719,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003524"
+          "id": "event-003456"
         },
         {
-          "source_line": 3525,
+          "source_line": 3457,
           "timestamp": "2026-05-30T02:14:45.091744+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2084,10 +737,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 353
           },
-          "id": "event-003525"
+          "id": "event-003457"
         },
         {
-          "source_line": 3526,
+          "source_line": 3458,
           "timestamp": "2026-05-30T02:14:47.851742+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2107,10 +760,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003526"
+          "id": "event-003458"
         },
         {
-          "source_line": 3527,
+          "source_line": 3459,
           "timestamp": "2026-05-30T02:14:48.504176+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2125,10 +778,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 652
           },
-          "id": "event-003527"
+          "id": "event-003459"
         },
         {
-          "source_line": 3528,
+          "source_line": 3460,
           "timestamp": "2026-05-30T02:14:52.117626+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2148,10 +801,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003528"
+          "id": "event-003460"
         },
         {
-          "source_line": 3529,
+          "source_line": 3461,
           "timestamp": "2026-05-30T02:14:52.720345+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2166,10 +819,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 602
           },
-          "id": "event-003529"
+          "id": "event-003461"
         },
         {
-          "source_line": 3530,
+          "source_line": 3462,
           "timestamp": "2026-05-30T02:14:55.079333+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2186,10 +839,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003530"
+          "id": "event-003462"
         },
         {
-          "source_line": 3531,
+          "source_line": 3463,
           "timestamp": "2026-05-30T02:14:55.432186+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2204,10 +857,10 @@
             "tool": "mcp__agent-ml-research__compute_coverage_matrix",
             "elapsed_ms": 352
           },
-          "id": "event-003531"
+          "id": "event-003463"
         },
         {
-          "source_line": 3532,
+          "source_line": 3464,
           "timestamp": "2026-05-30T02:17:10.748337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2225,10 +878,10 @@
               "max_results": "4"
             }
           },
-          "id": "event-003532"
+          "id": "event-003464"
         },
         {
-          "source_line": 3533,
+          "source_line": 3465,
           "timestamp": "2026-05-30T02:17:10.748721+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2243,10 +896,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-003533"
+          "id": "event-003465"
         },
         {
-          "source_line": 3534,
+          "source_line": 3466,
           "timestamp": "2026-05-30T02:17:13.257646+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2263,10 +916,10 @@
               "filters": "{'status': 'RUNNING'}"
             }
           },
-          "id": "event-003534"
+          "id": "event-003466"
         },
         {
-          "source_line": 3535,
+          "source_line": 3467,
           "timestamp": "2026-05-30T02:17:13.759744+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2281,10 +934,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 502
           },
-          "id": "event-003535"
+          "id": "event-003467"
         },
         {
-          "source_line": 3536,
+          "source_line": 3468,
           "timestamp": "2026-05-30T02:17:13.760152+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2301,10 +954,10 @@
               "filters": "{'status': 'PREPARING'}"
             }
           },
-          "id": "event-003536"
+          "id": "event-003468"
         },
         {
-          "source_line": 3537,
+          "source_line": 3469,
           "timestamp": "2026-05-30T02:17:13.760383+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2318,10 +971,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-003537"
+          "id": "event-003469"
         },
         {
-          "source_line": 3538,
+          "source_line": 3470,
           "timestamp": "2026-05-30T02:17:14.212253+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2336,10 +989,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 452
           },
-          "id": "event-003538"
+          "id": "event-003470"
         },
         {
-          "source_line": 3539,
+          "source_line": 3471,
           "timestamp": "2026-05-30T02:17:14.212647+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2354,10 +1007,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 452
           },
-          "id": "event-003539"
+          "id": "event-003471"
         },
         {
-          "source_line": 3540,
+          "source_line": 3472,
           "timestamp": "2026-05-30T02:17:14.313260+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2375,10 +1028,10 @@
               "file": "report.md"
             }
           },
-          "id": "event-003540"
+          "id": "event-003472"
         },
         {
-          "source_line": 3541,
+          "source_line": 3473,
           "timestamp": "2026-05-30T02:17:14.364226+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2393,10 +1046,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-003541"
+          "id": "event-003473"
         },
         {
-          "source_line": 3542,
+          "source_line": 3474,
           "timestamp": "2026-05-30T02:17:26.055922+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2413,10 +1066,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003542"
+          "id": "event-003474"
         },
         {
-          "source_line": 3543,
+          "source_line": 3475,
           "timestamp": "2026-05-30T02:17:26.106662+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2431,10 +1084,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 50
           },
-          "id": "event-003543"
+          "id": "event-003475"
         },
         {
-          "source_line": 3544,
+          "source_line": 3476,
           "timestamp": "2026-05-30T02:17:40.134354+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2452,10 +1105,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-003544"
+          "id": "event-003476"
         },
         {
-          "source_line": 3545,
+          "source_line": 3477,
           "timestamp": "2026-05-30T02:17:40.185613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2470,10 +1123,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-003545"
+          "id": "event-003477"
         },
         {
-          "source_line": 3546,
+          "source_line": 3478,
           "timestamp": "2026-05-30T02:18:03.510947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2491,10 +1144,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-003546"
+          "id": "event-003478"
         },
         {
-          "source_line": 3547,
+          "source_line": 3479,
           "timestamp": "2026-05-30T02:18:06.622867+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2509,10 +1162,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3111
           },
-          "id": "event-003547"
+          "id": "event-003479"
         },
         {
-          "source_line": 3548,
+          "source_line": 3480,
           "timestamp": "2026-05-30T02:18:13.932326+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2525,7 +1178,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-003548"
+          "id": "event-003480"
         }
       ]
     }

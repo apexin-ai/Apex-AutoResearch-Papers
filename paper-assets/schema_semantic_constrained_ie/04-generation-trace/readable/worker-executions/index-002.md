@@ -57,16 +57,16 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | build paper recompile v2 | 36 | 0 | [Read transcript](build-paper-recompile-v2.md) | [JSON](../../sessions/a2/a2406ca6741e4ffa4a87.json) |
 | debug llama full s1 mt6144 crash | 27 | 0 | [Read transcript](debug-llama-full-s1-mt6144-crash.md) | [JSON](../../sessions/67/673ac01c48175faa1245.json) |
 | diag llama docred full s1 mt6144 | 71 | 0 | [Read transcript](diag-llama-docred-full-s1-mt6144.md) | [JSON](../../sessions/17/175431bd4b745cebbd49.json) |
-| analysis w2 rectangularity 20260515T085632 retry1 | 90 | 0 | [Read transcript](analysis-w2-rectangularity-20260515t085632-retry1.md) | [JSON](../../sessions/f2/f2d633f93ffd52e961ba.json) |
-| analysis w4 table inconsistency 20260515T085646 retry1 | 173 | 0 | [Read transcript](analysis-w4-table-inconsistency-20260515t085646-retry1.md) | [JSON](../../sessions/9f/9f2e4d90360006d6f9fe.json) |
-| analysis w3 runtime extraction 20260515T085658 retry1 | 31 | 0 | [Read transcript](analysis-w3-runtime-extraction-20260515t085658-retry1.md) | [JSON](../../sessions/ec/ecdd06a42ae7b37fa507.json) |
-| analysis w9 llama tokenizer firsttoken 20260515T085711 retry2 | 50 | 0 | [Read transcript](analysis-w9-llama-tokenizer-firsttoken-20260515t085711-retry2.md) | [JSON](../../sessions/3b/3b399226f77ba26c84fd.json) |
-| analysis w9 llama tokenizer firsttoken 20260515T085711 retry1 | 31 | 0 | [Read transcript](analysis-w9-llama-tokenizer-firsttoken-20260515t085711-retry1.md) | [JSON](../../sessions/32/32e18dbf30ccbaa83596.json) |
-| analysis q7 cf conflict distribution 20260515T085725 retry1 | 88 | 0 | [Read transcript](analysis-q7-cf-conflict-distribution-20260515t085725-retry1.md) | [JSON](../../sessions/23/23707c31bc0f3bbdd451.json) |
+| analysis w2 rectangularity 20260515T085632 retry1 | 88 | 0 | [Read transcript](analysis-w2-rectangularity-20260515t085632-retry1.md) | [JSON](../../sessions/f2/f2d633f93ffd52e961ba.json) |
+| analysis w4 table inconsistency 20260515T085646 retry1 | 171 | 0 | [Read transcript](analysis-w4-table-inconsistency-20260515t085646-retry1.md) | [JSON](../../sessions/9f/9f2e4d90360006d6f9fe.json) |
+| analysis w3 runtime extraction 20260515T085658 retry1 | 29 | 0 | [Read transcript](analysis-w3-runtime-extraction-20260515t085658-retry1.md) | [JSON](../../sessions/ec/ecdd06a42ae7b37fa507.json) |
+| analysis w9 llama tokenizer firsttoken 20260515T085711 retry2 | 46 | 0 | [Read transcript](analysis-w9-llama-tokenizer-firsttoken-20260515t085711-retry2.md) | [JSON](../../sessions/3b/3b399226f77ba26c84fd.json) |
+| analysis w9 llama tokenizer firsttoken 20260515T085711 retry1 | 29 | 0 | [Read transcript](analysis-w9-llama-tokenizer-firsttoken-20260515t085711-retry1.md) | [JSON](../../sessions/32/32e18dbf30ccbaa83596.json) |
+| analysis q7 cf conflict distribution 20260515T085725 retry1 | 86 | 0 | [Read transcript](analysis-q7-cf-conflict-distribution-20260515t085725-retry1.md) | [JSON](../../sessions/23/23707c31bc0f3bbdd451.json) |
 | eval w4 schema v2 recheck 20260515T091628 retry1 | 36 | 0 | [Read transcript](eval-w4-schema-v2-recheck-20260515t091628-retry1.md) | [JSON](../../sessions/ff/ff697cb8c873cf9c6409.json) |
 | check p1 maxtoken progress 20260515T093937 retry1 | 20 | 0 | [Read transcript](check-p1-maxtoken-progress-20260515t093937-retry1.md) | [JSON](../../sessions/39/39ed48d49c47046cbbc6.json) |
 | code w1 cf registry consistent fallback 20260515T095943 retry1 | 121 | 0 | [Read transcript](code-w1-cf-registry-consistent-fallback-20260515t095943-retry1.md) | [JSON](../../sessions/b4/b4a334b8b5f93bc330bd.json) |
-| analysis q8 fp paired analysis 20260515T110950 retry1 | 45 | 0 | [Read transcript](analysis-q8-fp-paired-analysis-20260515t110950-retry1.md) | [JSON](../../sessions/12/120c0bcc872d3cff913b.json) |
+| analysis q8 fp paired analysis 20260515T110950 retry1 | 43 | 0 | [Read transcript](analysis-q8-fp-paired-analysis-20260515t110950-retry1.md) | [JSON](../../sessions/12/120c0bcc872d3cff913b.json) |
 | check mt6144 progress v2 20260515T112358 retry1 | 30 | 0 | [Read transcript](check-mt6144-progress-v2-20260515t112358-retry1.md) | [JSON](../../sessions/e8/e89f37a6bd280a62a96f.json) |
 | verify cf fallback dryrun 20260515T113020 retry1 | 88 | 0 | [Read transcript](verify-cf-fallback-dryrun-20260515t113020-retry1.md) | [JSON](../../sessions/b5/b5f995b13d8dc7ead017.json) |
 | dryrun w1 cf fallback 20260515T131645 retry1 | 117 | 0 | [Read transcript](dryrun-w1-cf-fallback-20260515t131645-retry1.md) | [JSON](../../sessions/65/65679d4fd2692ddf246a.json) |

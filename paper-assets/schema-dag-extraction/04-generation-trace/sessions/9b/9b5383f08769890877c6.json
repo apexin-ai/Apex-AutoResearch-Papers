@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_m1_gemini_leverage_20260522T091146.log",
     "occurrence": 1,
-    "bytes": 648716,
-    "sha256": "73ff2509c58097ee6f5108e858f74b904349238434ad1321680bf8eac6a082de"
+    "bytes": 625090,
+    "sha256": "19c84444c4bb8f091e8fb0157cf5495cf5040890546ccb0b438d27a63468a469"
   },
   "statistics": {
-    "messages": 289,
+    "messages": 287,
     "user_turns": 1,
-    "tool_calls": 107,
+    "tool_calls": 106,
     "roles": {
       "log": 1,
       "system": 35,
       "record": 1,
       "assistant": 36,
-      "tool_call": 107,
-      "tool_result": 107,
+      "tool_call": 106,
+      "tool_result": 106,
       "user": 1,
       "result": 1
     },
@@ -44,7 +44,7 @@
     {
       "number": 1,
       "boundary": "recorded_user_message",
-      "message_count": 255,
+      "message_count": 253,
       "chunks": [
         {
           "path": "9b5383f08769890877c6-part-0001.json",
@@ -52,7 +52,7 @@
         },
         {
           "path": "9b5383f08769890877c6-part-0002.json",
-          "message_count": 109
+          "message_count": 107
         }
       ]
     }

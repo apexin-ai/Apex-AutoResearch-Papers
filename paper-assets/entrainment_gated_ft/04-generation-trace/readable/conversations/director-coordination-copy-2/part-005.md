@@ -8,7 +8,7 @@
 
 ### Assistant
 
-_source line 1280 · 2026-05-22T17:27:52.219973+00:00_
+_source line 1274 · 2026-05-22T17:27:52.219973+00:00_
 
 交叉分享已派发，等待两位 Reviewer 的逐条回应。
 
@@ -35,7 +35,7 @@ _source line 1280 · 2026-05-22T17:27:52.219973+00:00_
 
 ### User
 
-_source line 1281 · 2026-05-22T17:27:54.722747+00:00_
+_source line 1275 · 2026-05-22T17:27:54.722747+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -59,7 +59,7 @@ _source line 1281 · 2026-05-22T17:27:54.722747+00:00_
 
 ### Assistant
 
-_source line 1282 · 2026-05-22T17:27:59.333041+00:00_
+_source line 1276 · 2026-05-22T17:27:59.333041+00:00_
 
 No response requested.
 
@@ -86,7 +86,7 @@ No response requested.
 
 ### User
 
-_source line 1283 · 2026-05-22T17:28:41.029868+00:00_
+_source line 1277 · 2026-05-22T17:28:41.029868+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
@@ -197,7 +197,7 @@ Overall 评分：R2 和我均给 3.0（Findings），一致。
 
 ### Assistant
 
-_source line 1284 · 2026-05-22T17:28:46.452110+00:00_
+_source line 1278 · 2026-05-22T17:28:46.452110+00:00_
 
 No response requested.
 
@@ -224,7 +224,7 @@ No response requested.
 
 ### User
 
-_source line 1285 · 2026-05-22T17:28:50.928188+00:00_
+_source line 1279 · 2026-05-22T17:28:50.928188+00:00_
 
 [Reviewer 1 审稿结果]:
 已完成对 Reviewer 2 的逐条交叉回应并提交给 Director。
@@ -253,7 +253,7 @@ _source line 1285 · 2026-05-22T17:28:50.928188+00:00_
 
 ### Assistant
 
-_source line 1286 · 2026-05-22T17:28:55.647145+00:00_
+_source line 1280 · 2026-05-22T17:28:55.647145+00:00_
 
 No response requested.
 
@@ -280,7 +280,7 @@ No response requested.
 
 ### User
 
-_source line 1287 · 2026-05-22T17:29:57.509244+00:00_
+_source line 1281 · 2026-05-22T17:29:57.509244+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 对 Reviewer 1 审稿意见的交叉回应
@@ -326,7 +326,7 @@ R1 与 R2 核心判断高度一致：Overall 3.0, Findings。独立识别出相�
 
 ### Tool call
 
-_source line 1288 · 2026-05-22T17:30:19.386801+00:00_
+_source line 1282 · 2026-05-22T17:30:19.386801+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -360,7 +360,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 1289 · 2026-05-22T17:30:19.889089+00:00_
+_source line 1283 · 2026-05-22T17:30:19.889089+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-22T17:17:37.186579+00:00\", \"completed_at\": \"2026-05-22T17:20:37.120950+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1\", \"message\": \"首页无视觉锚点——整页纯文本（Title/Abstract/Introduction）。Figure 1 出现在第2页顶部，尚可接受，但审稿人打开论文第一眼没有任何图表支撑认知锚定\"}, {\"severity\": \"warning\", \"dimension\": \"pages 3-5\", \"message\": \"连续3页纯文本（Related Work + Method + Statistical Methods + Experiments开头），无任何display item（figure/table/display equation）。Method部分缺少方法概览图或算法框，审稿人在这段区间容易失去视觉节奏\"}, {\"severity\": \"warning\", \"dimension\": \"pages 1-8\", \"message\": \"主体正文8页仅含3个display items（Figure 1 + Table 1 + Table 2）。作为实证分析类论文，display item密度偏低（通常8-9页期望5-8个）。大量分析结论以纯文本呈现，缺少结果可视化（如heatmap、bar chart、confusion pattern图等）\"}, {\"severity\": \"critical\", \"dimension\": \"page 22\", \"message\": \"末页几乎全空——仅顶部1行文字（\\\"cific to the original architecture triple.\\\"）加页码，其余>95%为空白。应将此行合并到第21页或调整appendix排版消除孤行\"}, {\"severity\": \"warning\", \"dimension\": \"pages 1-8\", \"message\": \"全文仅2个figure（Figure 1在主体p2，Figure 2在附录p12），视觉传达严重依赖表格。审稿人快速浏览时难以从纯表格中提取核心message，建议至少在主体中增加1个结果可视化图（如per-example divergence的heatmap或architecture对比图）\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1两个子图（line plots）清晰可读，caption自包含，能传达核心convergence趋势。但子图尺寸偏小（约占左栏1/3高度），axis label和legend字号接近可读下限\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1使用booktabs风格，无竖线，Ratio列加粗标注最优值，格式规范。脚注标注清晰。列数较多但未溢出栏宽\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Table 2格式规范，booktabs风格，数值精度统一。表格尺寸适中\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"主体正文在第8页结束（Conclusion + Limitations），符合ACL 8页限制。末页内容填充充足（>90%）\"}, {\"severity\": \"info\", \"dimension\": \"pages 9-10\", \"message\": \"参考文献格式统一，无[?]未解析引用，无明显overfull。编号连续\"}, {\"severity\": \"info\", \"dimension\": \"pages 11-21\", \"message\": \"附录含大量小表格（Table 3-30），均使用booktabs风格，格式一致。
 …[truncated 387 chars]
@@ -383,7 +383,7 @@ _source line 1289 · 2026-05-22T17:30:19.889089+00:00_
 
 ### Tool call
 
-_source line 1290 · 2026-05-22T17:30:19.889450+00:00_
+_source line 1284 · 2026-05-22T17:30:19.889450+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -417,7 +417,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1291 · 2026-05-22T17:30:20.993693+00:00_
+_source line 1285 · 2026-05-22T17:30:20.993693+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -439,7 +439,7 @@ _source line 1291 · 2026-05-22T17:30:20.993693+00:00_
 
 ### Tool call
 
-_source line 1292 · 2026-05-22T17:30:21.094431+00:00_
+_source line 1286 · 2026-05-22T17:30:21.094431+00:00_
 
 called Read
 
@@ -473,7 +473,7 @@ called Read
 
 ### Tool result
 
-_source line 1293 · 2026-05-22T17:30:21.195528+00:00_
+_source line 1287 · 2026-05-22T17:30:21.195528+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -542,7 +542,7 @@ _source line 1293 · 2026-05-22T17:30:21.195528+00:00_
 
 ### Tool call
 
-_source line 1294 · 2026-05-22T17:33:40.424243+00:00_
+_source line 1288 · 2026-05-22T17:33:40.424243+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -578,7 +578,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1295 · 2026-05-22T17:33:40.526245+00:00_
+_source line 1289 · 2026-05-22T17:33:40.526245+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml\", \"bytes\": 19469}, \"error\": \"\"}"}
 
@@ -600,7 +600,7 @@ _source line 1295 · 2026-05-22T17:33:40.526245+00:00_
 
 ### Tool call
 
-_source line 1296 · 2026-05-22T17:36:03.766971+00:00_
+_source line 1290 · 2026-05-22T17:36:03.766971+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -642,7 +642,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1297 · 2026-05-22T17:36:07.732531+00:00_
+_source line 1291 · 2026-05-22T17:36:07.732531+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -664,7 +664,7 @@ _source line 1297 · 2026-05-22T17:36:07.732531+00:00_
 
 ### Assistant
 
-_source line 1298 · 2026-05-22T17:36:19.437269+00:00_
+_source line 1292 · 2026-05-22T17:36:19.437269+00:00_
 
 ---
 
@@ -702,7 +702,7 @@ _source line 1298 · 2026-05-22T17:36:19.437269+00:00_
 
 ### User
 
-_source line 1299 · 2026-05-22T17:36:21.930448+00:00_
+_source line 1293 · 2026-05-22T17:36:21.930448+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交。
@@ -726,7 +726,7 @@ _source line 1299 · 2026-05-22T17:36:21.930448+00:00_
 
 ### Assistant
 
-_source line 1300 · 2026-05-22T17:36:36.284036+00:00_
+_source line 1294 · 2026-05-22T17:36:36.284036+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -763,7 +763,7 @@ _source line 1300 · 2026-05-22T17:36:36.284036+00:00_
 
 ### User
 
-_source line 1301 · 2026-05-23T13:09:50.103696+00:00_
+_source line 1295 · 2026-05-23T13:09:50.103696+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -794,7 +794,7 @@ _source line 1301 · 2026-05-23T13:09:50.103696+00:00_
 
 ### Tool call
 
-_source line 1302 · 2026-05-23T13:09:56.055611+00:00_
+_source line 1296 · 2026-05-23T13:09:56.055611+00:00_
 
 called Read
 
@@ -828,7 +828,7 @@ called Read
 
 ### Tool result
 
-_source line 1303 · 2026-05-23T13:09:56.056361+00:00_
+_source line 1297 · 2026-05-23T13:09:56.056361+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -918,7 +918,7 @@ _source line 1303 · 2026-05-23T13:09:56.056361+00:00_
 
 ### Tool call
 
-_source line 1304 · 2026-05-23T13:10:03.608279+00:00_
+_source line 1298 · 2026-05-23T13:10:03.608279+00:00_
 
 called ToolSearch
 
@@ -954,7 +954,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1305 · 2026-05-23T13:10:03.608682+00:00_
+_source line 1299 · 2026-05-23T13:10:03.608682+00:00_
 
 
 
@@ -976,7 +976,7 @@ _source line 1305 · 2026-05-23T13:10:03.608682+00:00_
 
 ### Tool call
 
-_source line 1306 · 2026-05-23T13:10:08.477231+00:00_
+_source line 1300 · 2026-05-23T13:10:08.477231+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -1010,7 +1010,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1307 · 2026-05-23T13:10:10.334718+00:00_
+_source line 1301 · 2026-05-23T13:10:10.334718+00:00_
 
 {"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2v2**: PREPARING (killed) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp-005-eval: Cross-architecture per-example Jaccard (helped/hurt) remains ≤0.10 when expanding from 3 architectures (GDN/RetNet/HGRN2) to 6 (adding GLA/DeltaNet/HGRN), with 15 pairwise comparisons and 720 permutations providing dramatically stronger statistical power.（等待人工审批）\n- exp-005-pure-v5（准备中）\n- exp-005-pure-v4（准备中）\n- exp-005-pure-v3（准备中）\n- exp-005-batch（准备中）\n- exp-005-hgrn-chain（准备中）\n- exp-005: Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.（准备中）\n- exp-005-p1-eval-v5（准备中）\n- exp-005-p1-eval-v4（准备中）\n- exp-005-dn-eval（准备中）\n- …另有 9 项\n\n## 近期结论\n- **exp-005-gla-pure** (success): GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\n- **e4-pythia-seed-calibration** (success): Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显
 …[truncated 1051 chars]
@@ -1033,7 +1033,7 @@ _source line 1307 · 2026-05-23T13:10:10.334718+00:00_
 
 ### Tool call
 
-_source line 1308 · 2026-05-23T13:10:10.888793+00:00_
+_source line 1302 · 2026-05-23T13:10:10.888793+00:00_
 
 called Bash
 
@@ -1069,7 +1069,7 @@ called Bash
 
 ### Tool result
 
-_source line 1309 · 2026-05-23T13:10:11.842550+00:00_
+_source line 1303 · 2026-05-23T13:10:11.842550+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 3245 May 23 12:25 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex
 FILE_EXISTS
@@ -1092,7 +1092,7 @@ FILE_EXISTS
 
 ### Tool call
 
-_source line 1310 · 2026-05-23T13:10:12.294853+00:00_
+_source line 1304 · 2026-05-23T13:10:12.294853+00:00_
 
 called Bash
 
@@ -1128,7 +1128,7 @@ called Bash
 
 ### Tool result
 
-_source line 1311 · 2026-05-23T13:10:12.999829+00:00_
+_source line 1305 · 2026-05-23T13:10:12.999829+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 526812 May 23 12:42 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_16/submitted.pdf
 PDF_EXISTS
@@ -1151,7 +1151,7 @@ PDF_EXISTS
 
 ### Tool call
 
-_source line 1312 · 2026-05-23T13:10:13.050512+00:00_
+_source line 1306 · 2026-05-23T13:10:13.050512+00:00_
 
 called ToolSearch
 
@@ -1187,7 +1187,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1313 · 2026-05-23T13:10:13.050932+00:00_
+_source line 1307 · 2026-05-23T13:10:13.050932+00:00_
 
 
 
@@ -1209,7 +1209,7 @@ _source line 1313 · 2026-05-23T13:10:13.050932+00:00_
 
 ### Tool call
 
-_source line 1314 · 2026-05-23T13:10:22.274970+00:00_
+_source line 1308 · 2026-05-23T13:10:22.274970+00:00_
 
 called WebSearch
 
@@ -1243,7 +1243,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1315 · 2026-05-23T13:10:23.781095+00:00_
+_source line 1309 · 2026-05-23T13:10:23.781095+00:00_
 
 called WebSearch
 
@@ -1277,7 +1277,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1316 · 2026-05-23T13:10:24.082634+00:00_
+_source line 1310 · 2026-05-23T13:10:24.082634+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1315,7 +1315,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1317 · 2026-05-23T13:10:29.904756+00:00_
+_source line 1311 · 2026-05-23T13:10:29.904756+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 author guidelines page limit template"
 
@@ -1353,7 +1353,7 @@ There is an official Overleaf template, and this template has a [review] setting
 
 ### Tool result
 
-_source line 1318 · 2026-05-23T13:10:31.815911+00:00_
+_source line 1312 · 2026-05-23T13:10:31.815911+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers submission guidelines ARR"
 
@@ -1386,7 +1386,7 @@ The ARR submission deadline for long and short papers is May 25, 2026, with a re
 
 ### Tool result
 
-_source line 1319 · 2026-05-23T13:10:31.866577+00:00_
+_source line 1313 · 2026-05-23T13:10:31.866577+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'review_issues.yaml'\", \"metadata\": {}}"}
 
@@ -1408,7 +1408,7 @@ _source line 1319 · 2026-05-23T13:10:31.866577+00:00_
 
 ### Tool call
 
-_source line 1320 · 2026-05-23T13:10:42.595986+00:00_
+_source line 1314 · 2026-05-23T13:10:42.595986+00:00_
 
 called ToolSearch
 
@@ -1444,7 +1444,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1321 · 2026-05-23T13:10:42.596340+00:00_
+_source line 1315 · 2026-05-23T13:10:42.596340+00:00_
 
 No matching deferred tools found
 
@@ -1466,7 +1466,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1322 · 2026-05-23T13:10:50.855709+00:00_
+_source line 1316 · 2026-05-23T13:10:50.855709+00:00_
 
 called Read
 
@@ -1500,7 +1500,7 @@ called Read
 
 ### Tool result
 
-_source line 1323 · 2026-05-23T13:10:51.508925+00:00_
+_source line 1317 · 2026-05-23T13:10:51.508925+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -1565,7 +1565,7 @@ _source line 1323 · 2026-05-23T13:10:51.508925+00:00_
 
 ### Tool call
 
-_source line 1324 · 2026-05-23T13:10:51.509374+00:00_
+_source line 1318 · 2026-05-23T13:10:51.509374+00:00_
 
 called Read
 
@@ -1599,7 +1599,7 @@ called Read
 
 ### Tool result
 
-_source line 1325 · 2026-05-23T13:10:51.559938+00:00_
+_source line 1319 · 2026-05-23T13:10:51.559938+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1661,7 +1661,7 @@ _source line 1325 · 2026-05-23T13:10:51.559938+00:00_
 
 ### Tool call
 
-_source line 1326 · 2026-05-23T13:11:08.622967+00:00_
+_source line 1320 · 2026-05-23T13:11:08.622967+00:00_
 
 called Glob
 
@@ -1697,7 +1697,7 @@ called Glob
 
 ### Tool result
 
-_source line 1327 · 2026-05-23T13:11:08.874310+00:00_
+_source line 1321 · 2026-05-23T13:11:08.874310+00:00_
 
 No files found
 
@@ -1719,7 +1719,7 @@ No files found
 
 ### Tool call
 
-_source line 1328 · 2026-05-23T13:11:08.874712+00:00_
+_source line 1322 · 2026-05-23T13:11:08.874712+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -1753,7 +1753,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1329 · 2026-05-23T13:11:09.075846+00:00_
+_source line 1323 · 2026-05-23T13:11:09.075846+00:00_
 
 {"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2v2**: PREPARING (killed) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp-005-eval: Cross-architecture per-example Jaccard (helped/hurt) remains ≤0.10 when expanding from 3 architectures (GDN/RetNet/HGRN2) to 6 (adding GLA/DeltaNet/HGRN), with 15 pairwise comparisons and 720 permutations providing dramatically stronger statistical power.（等待人工审批）\n- exp-005-pure-v5（准备中）\n- exp-005-pure-v4（准备中）\n- exp-005-pure-v3（准备中）\n- exp-005-batch（准备中）\n- exp-005-hgrn-chain（准备中）\n- exp-005: Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.（准备中）\n- exp-005-p1-eval-v5（准备中）\n- exp-005-p1-eval-v4（准备中）\n- exp-005-dn-eval（准备中）\n- …另有 9 项\n\n## 近期结论\n- **exp-005-gla-pure** (success): GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\n- **e4-pythia-seed-calibration** (success): Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显
 …[truncated 1051 chars]
@@ -1776,7 +1776,7 @@ _source line 1329 · 2026-05-23T13:11:09.075846+00:00_
 
 ### Tool call
 
-_source line 1330 · 2026-05-23T13:11:14.471035+00:00_
+_source line 1324 · 2026-05-23T13:11:14.471035+00:00_
 
 called Glob
 
@@ -1812,7 +1812,7 @@ called Glob
 
 ### Tool result
 
-_source line 1331 · 2026-05-23T13:11:15.174182+00:00_
+_source line 1325 · 2026-05-23T13:11:15.174182+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex
@@ -1839,7 +1839,7 @@ _source line 1331 · 2026-05-23T13:11:15.174182+00:00_
 
 ### Tool call
 
-_source line 1332 · 2026-05-23T13:11:15.325225+00:00_
+_source line 1326 · 2026-05-23T13:11:15.325225+00:00_
 
 called Bash
 
@@ -1875,7 +1875,7 @@ called Bash
 
 ### Tool result
 
-_source line 1333 · 2026-05-23T13:11:15.375961+00:00_
+_source line 1327 · 2026-05-23T13:11:15.375961+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/arr_checklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex
@@ -1906,7 +1906,7 @@ _source line 1333 · 2026-05-23T13:11:15.375961+00:00_
 
 ### Tool call
 
-_source line 1334 · 2026-05-23T13:11:20.194055+00:00_
+_source line 1328 · 2026-05-23T13:11:20.194055+00:00_
 
 called Read
 
@@ -1940,7 +1940,7 @@ called Read
 
 ### Tool result
 
-_source line 1335 · 2026-05-23T13:11:20.545796+00:00_
+_source line 1329 · 2026-05-23T13:11:20.545796+00:00_
 
 1	\section{Introduction}
 2	
@@ -1969,7 +1969,7 @@ _source line 1335 · 2026-05-23T13:11:20.545796+00:00_
 
 ### Tool call
 
-_source line 1336 · 2026-05-23T13:11:20.696759+00:00_
+_source line 1330 · 2026-05-23T13:11:20.696759+00:00_
 
 called Read
 
@@ -2003,7 +2003,7 @@ called Read
 
 ### Tool result
 
-_source line 1337 · 2026-05-23T13:11:20.998337+00:00_
+_source line 1331 · 2026-05-23T13:11:20.998337+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -2036,7 +2036,7 @@ _source line 1337 · 2026-05-23T13:11:20.998337+00:00_
 
 ### Tool call
 
-_source line 1338 · 2026-05-23T13:11:21.049114+00:00_
+_source line 1332 · 2026-05-23T13:11:21.049114+00:00_
 
 called Read
 
@@ -2070,7 +2070,7 @@ called Read
 
 ### Tool result
 
-_source line 1339 · 2026-05-23T13:11:21.150074+00:00_
+_source line 1333 · 2026-05-23T13:11:21.150074+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -2119,7 +2119,7 @@ _source line 1339 · 2026-05-23T13:11:21.150074+00:00_
 
 ### Tool call
 
-_source line 1340 · 2026-05-23T13:11:21.953480+00:00_
+_source line 1334 · 2026-05-23T13:11:21.953480+00:00_
 
 called Read
 
@@ -2153,7 +2153,7 @@ called Read
 
 ### Tool result
 
-_source line 1341 · 2026-05-23T13:11:22.455607+00:00_
+_source line 1335 · 2026-05-23T13:11:22.455607+00:00_
 
 1	\section{Related Work}
 2	
@@ -2185,7 +2185,7 @@ _source line 1341 · 2026-05-23T13:11:22.455607+00:00_
 
 ### Tool call
 
-_source line 1342 · 2026-05-23T13:11:22.456076+00:00_
+_source line 1336 · 2026-05-23T13:11:22.456076+00:00_
 
 called Read
 
@@ -2219,7 +2219,7 @@ called Read
 
 ### Tool result
 
-_source line 1343 · 2026-05-23T13:11:22.707244+00:00_
+_source line 1337 · 2026-05-23T13:11:22.707244+00:00_
 
 1	\section{Conclusion}
 2	
@@ -2246,7 +2246,7 @@ _source line 1343 · 2026-05-23T13:11:22.707244+00:00_
 
 ### Tool call
 
-_source line 1344 · 2026-05-23T13:11:22.707628+00:00_
+_source line 1338 · 2026-05-23T13:11:22.707628+00:00_
 
 called Read
 
@@ -2280,7 +2280,7 @@ called Read
 
 ### Tool result
 
-_source line 1345 · 2026-05-23T13:11:23.010042+00:00_
+_source line 1339 · 2026-05-23T13:11:23.010042+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -2318,7 +2318,7 @@ _source line 1345 · 2026-05-23T13:11:23.010042+00:00_
 
 ### Tool call
 
-_source line 1346 · 2026-05-23T13:11:29.936189+00:00_
+_source line 1340 · 2026-05-23T13:11:29.936189+00:00_
 
 called Read
 
@@ -2354,7 +2354,7 @@ called Read
 
 ### Tool result
 
-_source line 1347 · 2026-05-23T13:11:29.987616+00:00_
+_source line 1341 · 2026-05-23T13:11:29.987616+00:00_
 
 &lt;system-reminder>Warning: the file exists but is shorter than the provided offset (772). The file has 772 lines.&lt;/system-reminder>
 
@@ -2376,7 +2376,7 @@ _source line 1347 · 2026-05-23T13:11:29.987616+00:00_
 
 ### Tool call
 
-_source line 1348 · 2026-05-23T13:11:57.720841+00:00_
+_source line 1342 · 2026-05-23T13:11:57.720841+00:00_
 
 called Bash
 
@@ -2412,7 +2412,7 @@ called Bash
 
 ### Tool result
 
-_source line 1349 · 2026-05-23T13:11:57.771486+00:00_
+_source line 1343 · 2026-05-23T13:11:57.771486+00:00_
 
 (Bash completed with no output)
 
@@ -2434,7 +2434,7 @@ _source line 1349 · 2026-05-23T13:11:57.771486+00:00_
 
 ### Tool call
 
-_source line 1350 · 2026-05-23T13:12:00.803929+00:00_
+_source line 1344 · 2026-05-23T13:12:00.803929+00:00_
 
 called Bash
 
@@ -2470,7 +2470,7 @@ called Bash
 
 ### Tool result
 
-_source line 1351 · 2026-05-23T13:12:00.904806+00:00_
+_source line 1345 · 2026-05-23T13:12:00.904806+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/fontTools/misc/configTools.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/fontTools/misc/__pycache__/configTools.cpython-314.pyc
@@ -2498,7 +2498,7 @@ _source line 1351 · 2026-05-23T13:12:00.904806+00:00_
 
 ### Tool call
 
-_source line 1352 · 2026-05-23T13:12:05.371186+00:00_
+_source line 1346 · 2026-05-23T13:12:05.371186+00:00_
 
 called Grep
 
@@ -2538,7 +2538,7 @@ called Grep
 
 ### Tool result
 
-_source line 1353 · 2026-05-23T13:12:05.472065+00:00_
+_source line 1347 · 2026-05-23T13:12:05.472065+00:00_
 
 No files found
 
@@ -2560,7 +2560,7 @@ No files found
 
 ### Tool call
 
-_source line 1354 · 2026-05-23T13:12:06.425697+00:00_
+_source line 1348 · 2026-05-23T13:12:06.425697+00:00_
 
 called Grep
 
@@ -2600,7 +2600,7 @@ called Grep
 
 ### Tool result
 
-_source line 1355 · 2026-05-23T13:12:06.527272+00:00_
+_source line 1349 · 2026-05-23T13:12:06.527272+00:00_
 
 No files found
 
@@ -2622,7 +2622,7 @@ No files found
 
 ### Tool call
 
-_source line 1356 · 2026-05-23T13:12:10.592437+00:00_
+_source line 1350 · 2026-05-23T13:12:10.592437+00:00_
 
 called Glob
 
@@ -2658,7 +2658,7 @@ called Glob
 
 ### Tool result
 
-_source line 1357 · 2026-05-23T13:12:10.994097+00:00_
+_source line 1351 · 2026-05-23T13:12:10.994097+00:00_
 
 No files found
 
@@ -2680,7 +2680,7 @@ No files found
 
 ### Tool call
 
-_source line 1358 · 2026-05-23T13:12:11.145766+00:00_
+_source line 1352 · 2026-05-23T13:12:11.145766+00:00_
 
 called Glob
 
@@ -2716,7 +2716,7 @@ called Glob
 
 ### Tool result
 
-_source line 1359 · 2026-05-23T13:12:11.196415+00:00_
+_source line 1353 · 2026-05-23T13:12:11.196415+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/config/projects/entrainment_gated_ft.yaml
 
@@ -2738,7 +2738,7 @@ _source line 1359 · 2026-05-23T13:12:11.196415+00:00_
 
 ### Tool call
 
-_source line 1360 · 2026-05-23T13:12:13.505024+00:00_
+_source line 1354 · 2026-05-23T13:12:13.505024+00:00_
 
 called Read
 
@@ -2772,7 +2772,7 @@ called Read
 
 ### Tool result
 
-_source line 1361 · 2026-05-23T13:12:13.605822+00:00_
+_source line 1355 · 2026-05-23T13:12:13.605822+00:00_
 
 1	execution:
 2	  account: root
@@ -2819,7 +2819,7 @@ _source line 1361 · 2026-05-23T13:12:13.605822+00:00_
 
 ### Tool call
 
-_source line 1362 · 2026-05-23T13:12:36.955499+00:00_
+_source line 1356 · 2026-05-23T13:12:36.955499+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -2855,7 +2855,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1363 · 2026-05-23T13:12:57.616210+00:00_
+_source line 1357 · 2026-05-23T13:12:57.616210+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2877,7 +2877,7 @@ _source line 1363 · 2026-05-23T13:12:57.616210+00:00_
 
 ### Tool call
 
-_source line 1364 · 2026-05-23T13:12:57.719699+00:00_
+_source line 1358 · 2026-05-23T13:12:57.719699+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2915,7 +2915,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1365 · 2026-05-23T13:13:15.425184+00:00_
+_source line 1359 · 2026-05-23T13:13:15.425184+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -2937,7 +2937,7 @@ _source line 1365 · 2026-05-23T13:13:15.425184+00:00_
 
 ### Tool call
 
-_source line 1366 · 2026-05-23T13:13:15.576132+00:00_
+_source line 1360 · 2026-05-23T13:13:15.576132+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2975,7 +2975,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1367 · 2026-05-23T13:13:17.087026+00:00_
+_source line 1361 · 2026-05-23T13:13:17.087026+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -2997,7 +2997,7 @@ _source line 1367 · 2026-05-23T13:13:17.087026+00:00_
 
 ### Assistant
 
-_source line 1368 · 2026-05-23T13:13:33.488737+00:00_
+_source line 1362 · 2026-05-23T13:13:33.488737+00:00_
 
 Round 16 圆桌审稿已启动：
 
@@ -3033,7 +3033,7 @@ Round 16 圆桌审稿已启动：
 
 ### User
 
-_source line 1369 · 2026-05-23T13:19:56.426889+00:00_
+_source line 1363 · 2026-05-23T13:19:56.426889+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 审稿意见 — 方法严谨性 + 实验设计 + 统计分析
@@ -3197,7 +3197,7 @@ _source line 1369 · 2026-05-23T13:19:56.426889+00:00_
 
 ### Assistant
 
-_source line 1370 · 2026-05-23T13:20:07.516417+00:00_
+_source line 1364 · 2026-05-23T13:20:07.516417+00:00_
 
 Reviewer 1 审稿意见已收到（评分 3.5 / Borderline Conference）。核心关切：(1) Pythia 70M seed calibration 三重 mismatch；(2) aggregate convergence 证据不足以支撑 decoupling narrative。
 
@@ -3226,7 +3226,7 @@ Reviewer 1 审稿意见已收到（评分 3.5 / Borderline Conference）。核�
 
 ### User
 
-_source line 1371 · 2026-05-23T13:20:19.884043+00:00_
+_source line 1365 · 2026-05-23T13:20:19.884043+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿完成。已向 Review Director 提交完整审稿意见，核心评判：
@@ -3256,7 +3256,7 @@ _source line 1371 · 2026-05-23T13:20:19.884043+00:00_
 
 ### Assistant
 
-_source line 1372 · 2026-05-23T13:20:29.725945+00:00_
+_source line 1366 · 2026-05-23T13:20:29.725945+00:00_
 
 Reviewer 1 审稿意见已收到。等待 Reviewer 2 完成后进入交叉分享环节。
 
@@ -3283,7 +3283,7 @@ Reviewer 1 审稿意见已收到。等待 Reviewer 2 完成后进入交叉分享
 
 ### User
 
-_source line 1373 · 2026-05-23T13:22:04.846809+00:00_
+_source line 1367 · 2026-05-23T13:22:04.846809+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 审稿意见：Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures
@@ -3418,7 +3418,7 @@ _source line 1373 · 2026-05-23T13:22:04.846809+00:00_
 
 ### Tool call
 
-_source line 1374 · 2026-05-23T13:22:49.113899+00:00_
+_source line 1368 · 2026-05-23T13:22:49.113899+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -3456,7 +3456,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1375 · 2026-05-23T13:23:22.740263+00:00_
+_source line 1369 · 2026-05-23T13:23:22.740263+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -3478,7 +3478,7 @@ _source line 1375 · 2026-05-23T13:23:22.740263+00:00_
 
 ### Tool call
 
-_source line 1376 · 2026-05-23T13:23:22.892017+00:00_
+_source line 1370 · 2026-05-23T13:23:22.892017+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -3516,7 +3516,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1377 · 2026-05-23T13:23:24.303208+00:00_
+_source line 1371 · 2026-05-23T13:23:24.303208+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -3538,7 +3538,7 @@ _source line 1377 · 2026-05-23T13:23:24.303208+00:00_
 
 ### Assistant
 
-_source line 1378 · 2026-05-23T13:23:29.604128+00:00_
+_source line 1372 · 2026-05-23T13:23:29.604128+00:00_
 
 交叉分享已发送。等待两位 Reviewer 的 [AGREE]/[REBUT] 回应。
 
@@ -3565,7 +3565,7 @@ _source line 1378 · 2026-05-23T13:23:29.604128+00:00_
 
 ### User
 
-_source line 1379 · 2026-05-23T13:23:32.139718+00:00_
+_source line 1373 · 2026-05-23T13:23:32.139718+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -3589,7 +3589,7 @@ _source line 1379 · 2026-05-23T13:23:32.139718+00:00_
 
 ### Assistant
 
-_source line 1380 · 2026-05-23T13:23:36.609127+00:00_
+_source line 1374 · 2026-05-23T13:23:36.609127+00:00_
 
 No response requested.
 
@@ -3616,7 +3616,7 @@ No response requested.
 
 ### User
 
-_source line 1381 · 2026-05-23T13:25:00.871784+00:00_
+_source line 1375 · 2026-05-23T13:25:00.871784+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
@@ -3761,7 +3761,7 @@ R2 和我的评估在以下方面 **一致**：
 
 ### Assistant
 
-_source line 1382 · 2026-05-23T13:25:06.165836+00:00_
+_source line 1376 · 2026-05-23T13:25:06.165836+00:00_
 
 No response requested.
 
@@ -3788,7 +3788,7 @@ No response requested.
 
 ### User
 
-_source line 1383 · 2026-05-23T13:25:08.758138+00:00_
+_source line 1377 · 2026-05-23T13:25:08.758138+00:00_
 
 [Reviewer 1 审稿结果]:
 对 Reviewer 2 全部意见的逐条回应已提交给 Review Director。
@@ -3812,7 +3812,7 @@ _source line 1383 · 2026-05-23T13:25:08.758138+00:00_
 
 ### Assistant
 
-_source line 1384 · 2026-05-23T13:25:21.670054+00:00_
+_source line 1378 · 2026-05-23T13:25:21.670054+00:00_
 
 Reviewer 1 的交叉回应已收到。等待 Reviewer 2 对 Reviewer 1 的交叉回应。
 
@@ -3839,7 +3839,7 @@ Reviewer 1 的交叉回应已收到。等待 Reviewer 2 对 Reviewer 1 的交叉
 
 ### User
 
-_source line 1385 · 2026-05-23T13:26:04.021385+00:00_
+_source line 1379 · 2026-05-23T13:26:04.021385+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 对 Reviewer 1 审稿意见的逐条回应
@@ -3969,7 +3969,7 @@ BCa CI [-1.0, -0.7] 并未出现在 Abstract 中。Abstract 的原文（main.tex
 
 ### Tool call
 
-_source line 1386 · 2026-05-23T13:26:36.841383+00:00_
+_source line 1380 · 2026-05-23T13:26:36.841383+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -4003,7 +4003,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 1387 · 2026-05-23T13:26:37.092595+00:00_
+_source line 1381 · 2026-05-23T13:26:37.092595+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T13:12:40.654761+00:00\", \"completed_at\": \"2026-05-23T13:15:24.001295+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"pages 3-5\", \"message\": \"连续 3 页纯文本（Related Work → Method 3.1-3.5 → Statistical Methods），无任何 figure/table/equation 穿插。审稿人在这段区域容易失去注意力。建议在 Method 部分插入一个方法流程示意图或关键公式的 display math，或将 Table 1 提前至 Section 3 附近以打破纯文字节奏\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"首页无 display item，但 Figure 1 出现在第 2 页顶部（首次引用后的合理位置），作为视觉锚点时机可接受。Figure 1 用多面板折线图展示 aggregate convergence vs per-example divergence 的核心发现，信息传达清晰，caption 自包含\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"Title/Author/Abstract 排版整洁，符合 ACL 双栏模板。Abstract 篇幅看起来接近 200 words 上限，建议确认未超标\"}, {\"severity\": \"info\", \"dimension\": \"pages 6-8\", \"message\": \"视觉节奏恢复良好：Table 1（p6 全宽）→ Table 2 + Figure 2（p7）→ Figure 3（p8 顶部）+ Conclusion + Limitations，信息密度高且分布均匀\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1 使用 booktabs 风格，最优值加粗标注，格式专业。脚注标记（†）清晰。列数和宽度与全宽排版匹配\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Table 2 格式简洁，Figure 2 散点图标记和图例可读。两个 display items 在同一页配合得当\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"Figure 3 双热力图（LAMBADA + ARC-Easy）并排，单元格内标注数值，蓝色渐变色阶清晰。色盲友好（单色渐变）。Caption 解释了阈值含义\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"主正文（含 Conclusion）在第 8 页结束，Limitations 从第 8 页底部开始延续到第 9 页。符合 EMNLP 2026 的 8 页正文限制（Limitations 不计页数）\"}, {\"severity\": \"info\", \"dimension\": \"page 9\", \"message\": \"References 从第 9 页中部开始，格式统一，无 [?] 未解析引用，编号连续\"}, {\"severity\": \"info\", \"dimension\": \"pages 11-21\", \"message\": \"Appendix 包含 Tables 3-30（共 28 个表），无任何 appendix figure。表格密度极高但格式一致（booktabs 风格）。部分小表（如 Tables 4-6、Tables 9-10）体量较小，若合并可节省空间\"}, {\"severity\": \"info\", \"dimension\": \"page 21\", \"message\": \"末页（Appendix 最后一页）Table 30 + Secti
 …[truncated 577 chars]
@@ -4026,7 +4026,7 @@ _source line 1387 · 2026-05-23T13:26:37.092595+00:00_
 
 ### Tool call
 
-_source line 1388 · 2026-05-23T13:26:37.093049+00:00_
+_source line 1382 · 2026-05-23T13:26:37.093049+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -4060,7 +4060,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1389 · 2026-05-23T13:26:37.243839+00:00_
+_source line 1383 · 2026-05-23T13:26:37.243839+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4082,7 +4082,7 @@ _source line 1389 · 2026-05-23T13:26:37.243839+00:00_
 
 ### Tool call
 
-_source line 1390 · 2026-05-23T13:28:23.489395+00:00_
+_source line 1384 · 2026-05-23T13:28:23.489395+00:00_
 
 called Read
 
@@ -4116,7 +4116,7 @@ called Read
 
 ### Tool result
 
-_source line 1391 · 2026-05-23T13:28:23.591610+00:00_
+_source line 1385 · 2026-05-23T13:28:23.591610+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -4181,7 +4181,7 @@ _source line 1391 · 2026-05-23T13:28:23.591610+00:00_
 
 ### Tool call
 
-_source line 1392 · 2026-05-23T13:31:17.525058+00:00_
+_source line 1386 · 2026-05-23T13:31:17.525058+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -4217,7 +4217,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1393 · 2026-05-23T13:31:17.628251+00:00_
+_source line 1387 · 2026-05-23T13:31:17.628251+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml\", \"bytes\": 16934}, \"error\": \"\"}"}
 
@@ -4239,7 +4239,7 @@ _source line 1393 · 2026-05-23T13:31:17.628251+00:00_
 
 ### Tool call
 
-_source line 1394 · 2026-05-23T13:33:58.265123+00:00_
+_source line 1388 · 2026-05-23T13:33:58.265123+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -4283,7 +4283,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1395 · 2026-05-23T13:34:02.480730+00:00_
+_source line 1389 · 2026-05-23T13:34:02.480730+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4305,7 +4305,7 @@ _source line 1395 · 2026-05-23T13:34:02.480730+00:00_
 
 ### Assistant
 
-_source line 1396 · 2026-05-23T13:34:13.983484+00:00_
+_source line 1390 · 2026-05-23T13:34:13.983484+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -4342,7 +4342,7 @@ _source line 1396 · 2026-05-23T13:34:13.983484+00:00_
 
 ### User
 
-_source line 1397 · 2026-05-23T13:34:16.824005+00:00_
+_source line 1391 · 2026-05-23T13:34:16.824005+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交。总结：
@@ -4372,7 +4372,7 @@ _source line 1397 · 2026-05-23T13:34:16.824005+00:00_
 
 ### Assistant
 
-_source line 1398 · 2026-05-23T13:34:29.744537+00:00_
+_source line 1392 · 2026-05-23T13:34:29.744537+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -4407,7 +4407,7 @@ _source line 1398 · 2026-05-23T13:34:29.744537+00:00_
 
 ### User
 
-_source line 1399 · 2026-05-23T14:26:34.778880+00:00_
+_source line 1393 · 2026-05-23T14:26:34.778880+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -4438,7 +4438,7 @@ _source line 1399 · 2026-05-23T14:26:34.778880+00:00_
 
 ### Tool call
 
-_source line 1400 · 2026-05-23T14:26:40.011890+00:00_
+_source line 1394 · 2026-05-23T14:26:40.011890+00:00_
 
 called Read
 
@@ -4472,7 +4472,7 @@ called Read
 
 ### Tool result
 
-_source line 1401 · 2026-05-23T14:26:40.163142+00:00_
+_source line 1395 · 2026-05-23T14:26:40.163142+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -4562,7 +4562,7 @@ _source line 1401 · 2026-05-23T14:26:40.163142+00:00_
 
 ### Tool call
 
-_source line 1402 · 2026-05-23T14:26:47.742514+00:00_
+_source line 1396 · 2026-05-23T14:26:47.742514+00:00_
 
 called ToolSearch
 
@@ -4598,7 +4598,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1403 · 2026-05-23T14:26:47.793160+00:00_
+_source line 1397 · 2026-05-23T14:26:47.793160+00:00_
 
 
 
@@ -4620,7 +4620,7 @@ _source line 1403 · 2026-05-23T14:26:47.793160+00:00_
 
 ### Tool call
 
-_source line 1404 · 2026-05-23T14:26:51.908975+00:00_
+_source line 1398 · 2026-05-23T14:26:51.908975+00:00_
 
 called ToolSearch
 
@@ -4656,7 +4656,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1405 · 2026-05-23T14:26:51.959527+00:00_
+_source line 1399 · 2026-05-23T14:26:51.959527+00:00_
 
 
 
@@ -4678,7 +4678,7 @@ _source line 1405 · 2026-05-23T14:26:51.959527+00:00_
 
 ### Tool call
 
-_source line 1406 · 2026-05-23T14:26:55.222231+00:00_
+_source line 1400 · 2026-05-23T14:26:55.222231+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -4712,7 +4712,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1407 · 2026-05-23T14:26:56.629000+00:00_
+_source line 1401 · 2026-05-23T14:26:56.629000+00:00_
 
 {"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2v2**: PREPARING (killed) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp-005-eval: Cross-architecture per-example Jaccard (helped/hurt) remains ≤0.10 when expanding from 3 architectures (GDN/RetNet/HGRN2) to 6 (adding GLA/DeltaNet/HGRN), with 15 pairwise comparisons and 720 permutations providing dramatically stronger statistical power.（等待人工审批）\n- exp-005-pure-v5（准备中）\n- exp-005-pure-v4（准备中）\n- exp-005-pure-v3（准备中）\n- exp-005-batch（准备中）\n- exp-005-hgrn-chain（准备中）\n- exp-005: Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.（准备中）\n- exp-005-p1-eval-v5（准备中）\n- exp-005-p1-eval-v4（准备中）\n- exp-005-dn-eval（准备中）\n- …另有 9 项\n\n## 近期结论\n- **exp-005-gla-pure** (success): GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\n- **e4-pythia-seed-calibration** (success): Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显
 …[truncated 1051 chars]
@@ -4735,7 +4735,7 @@ _source line 1407 · 2026-05-23T14:26:56.629000+00:00_
 
 ### Tool call
 
-_source line 1408 · 2026-05-23T14:26:57.231602+00:00_
+_source line 1402 · 2026-05-23T14:26:57.231602+00:00_
 
 called Read
 
@@ -4771,7 +4771,7 @@ called Read
 
 ### Tool result
 
-_source line 1409 · 2026-05-23T14:26:57.232087+00:00_
+_source line 1403 · 2026-05-23T14:26:57.232087+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -4832,7 +4832,7 @@ _source line 1409 · 2026-05-23T14:26:57.232087+00:00_
 
 ### Tool call
 
-_source line 1410 · 2026-05-23T14:26:58.337247+00:00_
+_source line 1404 · 2026-05-23T14:26:58.337247+00:00_
 
 called WebSearch
 
@@ -4868,7 +4868,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1411 · 2026-05-23T14:27:05.684504+00:00_
+_source line 1405 · 2026-05-23T14:27:05.684504+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers ACL Rolling Review submission deadline author guidelines"
 
@@ -4899,7 +4899,7 @@ EMNLP 2
 
 ### Tool call
 
-_source line 1412 · 2026-05-23T14:27:12.036445+00:00_
+_source line 1406 · 2026-05-23T14:27:12.036445+00:00_
 
 called WebSearch
 
@@ -4935,7 +4935,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1413 · 2026-05-23T14:27:14.448405+00:00_
+_source line 1407 · 2026-05-23T14:27:14.448405+00:00_
 
 called Glob
 
@@ -4971,7 +4971,7 @@ called Glob
 
 ### Tool result
 
-_source line 1414 · 2026-05-23T14:27:15.202812+00:00_
+_source line 1408 · 2026-05-23T14:27:15.202812+00:00_
 
 No files found
 
@@ -4993,7 +4993,7 @@ No files found
 
 ### Tool call
 
-_source line 1415 · 2026-05-23T14:27:15.203210+00:00_
+_source line 1409 · 2026-05-23T14:27:15.203210+00:00_
 
 called Read
 
@@ -5029,7 +5029,7 @@ called Read
 
 ### Tool result
 
-_source line 1416 · 2026-05-23T14:27:15.405955+00:00_
+_source line 1410 · 2026-05-23T14:27:15.405955+00:00_
 
 PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/submitted.pdf (553.9KB)
 
@@ -5051,7 +5051,7 @@ PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool result
 
-_source line 1417 · 2026-05-23T14:27:20.677885+00:00_
+_source line 1411 · 2026-05-23T14:27:20.677885+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission deadlines June cycle paper format requirements page limit"
 
@@ -5080,7 +5080,7 @@ Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review plat
 
 ### Tool call
 
-_source line 1418 · 2026-05-23T14:27:26.348395+00:00_
+_source line 1412 · 2026-05-23T14:27:26.348395+00:00_
 
 called ToolSearch
 
@@ -5116,7 +5116,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1419 · 2026-05-23T14:27:26.398998+00:00_
+_source line 1413 · 2026-05-23T14:27:26.398998+00:00_
 
 
 
@@ -5138,7 +5138,7 @@ _source line 1419 · 2026-05-23T14:27:26.398998+00:00_
 
 ### Tool call
 
-_source line 1420 · 2026-05-23T14:27:33.976690+00:00_
+_source line 1414 · 2026-05-23T14:27:33.976690+00:00_
 
 called TodoWrite
 
@@ -5172,7 +5172,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1421 · 2026-05-23T14:27:33.977079+00:00_
+_source line 1415 · 2026-05-23T14:27:33.977079+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -5194,7 +5194,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1422 · 2026-05-23T14:27:42.629788+00:00_
+_source line 1416 · 2026-05-23T14:27:42.629788+00:00_
 
 called Glob
 
@@ -5230,7 +5230,7 @@ called Glob
 
 ### Tool result
 
-_source line 1423 · 2026-05-23T14:27:42.981409+00:00_
+_source line 1417 · 2026-05-23T14:27:42.981409+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex
@@ -5257,7 +5257,7 @@ _source line 1423 · 2026-05-23T14:27:42.981409+00:00_
 
 ### Tool call
 
-_source line 1424 · 2026-05-23T14:27:43.132302+00:00_
+_source line 1418 · 2026-05-23T14:27:43.132302+00:00_
 
 called Glob
 
@@ -5293,7 +5293,7 @@ called Glob
 
 ### Tool result
 
-_source line 1425 · 2026-05-23T14:27:44.086258+00:00_
+_source line 1419 · 2026-05-23T14:27:44.086258+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex
@@ -5324,7 +5324,7 @@ _source line 1425 · 2026-05-23T14:27:44.086258+00:00_
 
 ### Tool call
 
-_source line 1426 · 2026-05-23T14:27:45.040793+00:00_
+_source line 1420 · 2026-05-23T14:27:45.040793+00:00_
 
 called Read
 
@@ -5360,7 +5360,7 @@ called Read
 
 ### Tool result
 
-_source line 1427 · 2026-05-23T14:27:45.492653+00:00_
+_source line 1421 · 2026-05-23T14:27:45.492653+00:00_
 
 PDF pages extracted: 6 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/submitted.pdf (553.9KB)
 
@@ -5382,7 +5382,7 @@ PDF pages extracted: 6 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1428 · 2026-05-23T14:27:45.549823+00:00_
+_source line 1422 · 2026-05-23T14:27:45.549823+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5420,7 +5420,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1429 · 2026-05-23T14:27:45.650837+00:00_
+_source line 1423 · 2026-05-23T14:27:45.650837+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/decisions.yaml\", \"content\": \"_next_id: 40\\ndecisions:\\n- id: D001\\n  date: 2026-05-18 07:24 UTC\\n  summary: MVP Direct variant 340M 全模型 random-chance → 先跑 log-prob 评估，同时查 1.3B 模型可用性\\n  rationale: 16 个模型（含 Transformer baseline）在 depth 1-5 上全部 ~10% accuracy。根因：340M 模型无法通过\\n    generation 完成 in-context function lookup（输出\\\"1998/1999\\\"而非执行查找）。Transformer ceiling\\n    0% → ROADMAP 的 ceiling≥50% 过滤器触发，无 eligible depth。核心理论未被证伪，只是 340M+generation\\n    这个探针失效。下一步：(1) log-prob 评估（30min，测 internal representation 差异），(2) 并行查 1.3B 模型可用性。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-18 09:50 UTC\\n  summary: 1.3B 也无 function composition ICL 能力，MVP 从 synthetic task 双轨 pivot：7B task\\n    validation + 1.3B standard benchmarks\\n  rationale: 两轮实验（340M generation+logprob, 1.3B generation+logprob）一致确认 Ye et al.\\n    的 L-FuncComp 对 Wang et al. base models 不可行——Transformer baseline 自身也只有 random-chance，无法建立\\n    ceiling。根因：pretrained base models 在 ≤1.3B 规模未习得 arbitrary lookup table 的 ICL 能力。核心理论未被证伪，但\\n    synthetic task 作为 probe 在此 scale 下失效。Pivot 方案：(1) 7B Instruct 快速验证 task design\\n    是否本身有问题，(2) 在已有 1.3B hybrid 模型上跑 standard benchmarks（LAMBADA/HellaSwag/ARC/MMLU）检测架构差异信号——如果\\n    attention ratio 对不同难度 benchmark 的影响不同，MVP 仍可 pass，且论文更有 practical relevance。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-18 09:54 UTC\\n  summary: 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整）\\n  rationale: 'IDEA_BRIEF 要求 \\\"composition depth must be derivable from task structure\\n    alone, not from empirical performance\\\"。在 Track 1 benchmark 结果出来前锁定每个 task 的 depth\\n    赋值，防止 post-hoc rationalization。赋值基于 task 的计算结构分析：depth 1 = 单步模式匹配/句法判断（无需跨 context\\n    组合信息）；depth 2 = 需要检索 + 单步推理组合；depth 3 = 需要多步推理链或跨多个 context 片段组合。\\n\\n\\n    预注册赋值：\\n\\n    - Depth 1: lambada_ope
 …[truncated 3543 chars]
@@ -5443,7 +5443,7 @@ _source line 1429 · 2026-05-23T14:27:45.650837+00:00_
 
 ### Tool call
 
-_source line 1430 · 2026-05-23T14:27:58.599803+00:00_
+_source line 1424 · 2026-05-23T14:27:58.599803+00:00_
 
 called Read
 
@@ -5479,7 +5479,7 @@ called Read
 
 ### Tool result
 
-_source line 1431 · 2026-05-23T14:27:59.051679+00:00_
+_source line 1425 · 2026-05-23T14:27:59.051679+00:00_
 
 PDF pages extracted: 6 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_17/submitted.pdf (553.9KB)
 
@@ -5501,7 +5501,7 @@ PDF pages extracted: 6 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1432 · 2026-05-23T14:27:59.511649+00:00_
+_source line 1426 · 2026-05-23T14:27:59.511649+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5539,7 +5539,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1433 · 2026-05-23T14:28:00.465819+00:00_
+_source line 1427 · 2026-05-23T14:28:00.465819+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'entrainment_gated_ft'.\", \"metadata\": {}}"}
 
@@ -5561,7 +5561,7 @@ _source line 1433 · 2026-05-23T14:28:00.465819+00:00_
 
 ### Tool call
 
-_source line 1434 · 2026-05-23T14:28:00.917837+00:00_
+_source line 1428 · 2026-05-23T14:28:00.917837+00:00_
 
 called Bash
 
@@ -5597,7 +5597,7 @@ called Bash
 
 ### Tool result
 
-_source line 1435 · 2026-05-23T14:28:01.420559+00:00_
+_source line 1429 · 2026-05-23T14:28:01.420559+00:00_
 
 - id: "R5-W1"
   summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -5662,7 +5662,7 @@ _source line 1435 · 2026-05-23T14:28:01.420559+00:00_
 
 ### Tool call
 
-_source line 1436 · 2026-05-23T14:28:01.672018+00:00_
+_source line 1430 · 2026-05-23T14:28:01.672018+00:00_
 
 called WebSearch
 
@@ -5698,7 +5698,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1437 · 2026-05-23T14:28:15.274814+00:00_
+_source line 1431 · 2026-05-23T14:28:15.274814+00:00_
 
 Web search results for query: "EMNLP 2026 commitment deadline ARR June 2026 cycle dates"
 
@@ -5729,7 +5729,7 @@ Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{
 
 ### Tool call
 
-_source line 1438 · 2026-05-23T14:28:44.717779+00:00_
+_source line 1432 · 2026-05-23T14:28:44.717779+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -5763,7 +5763,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1439 · 2026-05-23T14:28:47.527901+00:00_
+_source line 1433 · 2026-05-23T14:28:47.527901+00:00_
 
 {"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2v2**: PREPARING (killed) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp-005-eval: Cross-architecture per-example Jaccard (helped/hurt) remains ≤0.10 when expanding from 3 architectures (GDN/RetNet/HGRN2) to 6 (adding GLA/DeltaNet/HGRN), with 15 pairwise comparisons and 720 permutations providing dramatically stronger statistical power.（等待人工审批）\n- exp-005-pure-v5（准备中）\n- exp-005-pure-v4（准备中）\n- exp-005-pure-v3（准备中）\n- exp-005-batch（准备中）\n- exp-005-hgrn-chain（准备中）\n- exp-005: Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.（准备中）\n- exp-005-p1-eval-v5（准备中）\n- exp-005-p1-eval-v4（准备中）\n- exp-005-dn-eval（准备中）\n- …另有 9 项\n\n## 近期结论\n- **exp-005-gla-pure** (success): GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\n- **e4-pythia-seed-calibration** (success): Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显
 …[truncated 1051 chars]
@@ -5786,7 +5786,7 @@ _source line 1439 · 2026-05-23T14:28:47.527901+00:00_
 
 ### Tool call
 
-_source line 1440 · 2026-05-23T14:28:47.829829+00:00_
+_source line 1434 · 2026-05-23T14:28:47.829829+00:00_
 
 called Bash
 
@@ -5822,7 +5822,7 @@ called Bash
 
 ### Tool result
 
-_source line 1441 · 2026-05-23T14:28:47.930706+00:00_
+_source line 1435 · 2026-05-23T14:28:47.930706+00:00_
 
 NOT_FOUND_IN_AGENT
 NOT_FOUND_IN_ROOT
@@ -5845,7 +5845,7 @@ NOT_FOUND_IN_ROOT
 
 ### Tool call
 
-_source line 1442 · 2026-05-23T14:28:56.814951+00:00_
+_source line 1436 · 2026-05-23T14:28:56.814951+00:00_
 
 called Bash
 
@@ -5881,7 +5881,7 @@ called Bash
 
 ### Tool result
 
-_source line 1443 · 2026-05-23T14:28:56.915819+00:00_
+_source line 1437 · 2026-05-23T14:28:56.915819+00:00_
 
 ---
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/fontTools/misc/configTools.py
@@ -5910,7 +5910,7 @@ _source line 1443 · 2026-05-23T14:28:56.915819+00:00_
 
 ### Tool call
 
-_source line 1444 · 2026-05-23T14:29:01.482824+00:00_
+_source line 1438 · 2026-05-23T14:29:01.482824+00:00_
 
 called Bash
 
@@ -5946,7 +5946,7 @@ called Bash
 
 ### Tool result
 
-_source line 1445 · 2026-05-23T14:29:01.533484+00:00_
+_source line 1439 · 2026-05-23T14:29:01.533484+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/workspace.yaml
 
@@ -5968,7 +5968,7 @@ _source line 1445 · 2026-05-23T14:29:01.533484+00:00_
 
 ### Tool call
 
-_source line 1446 · 2026-05-23T14:29:05.222873+00:00_
+_source line 1440 · 2026-05-23T14:29:05.222873+00:00_
 
 called Bash
 
@@ -6004,7 +6004,7 @@ called Bash
 
 ### Tool result
 
-_source line 1447 · 2026-05-23T14:29:05.273498+00:00_
+_source line 1441 · 2026-05-23T14:29:05.273498+00:00_
 
 NOT_FOUND
 
@@ -6026,7 +6026,7 @@ NOT_FOUND
 
 ### Tool call
 
-_source line 1448 · 2026-05-23T14:29:48.374588+00:00_
+_source line 1442 · 2026-05-23T14:29:48.374588+00:00_
 
 called TodoWrite
 
@@ -6060,7 +6060,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1449 · 2026-05-23T14:29:48.425350+00:00_
+_source line 1443 · 2026-05-23T14:29:48.425350+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -6082,7 +6082,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1450 · 2026-05-23T14:29:54.097765+00:00_
+_source line 1444 · 2026-05-23T14:29:54.097765+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -6118,7 +6118,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1451 · 2026-05-23T14:30:17.662857+00:00_
+_source line 1445 · 2026-05-23T14:30:17.662857+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6140,7 +6140,7 @@ _source line 1451 · 2026-05-23T14:30:17.662857+00:00_
 
 ### Tool call
 
-_source line 1452 · 2026-05-23T14:30:17.865035+00:00_
+_source line 1446 · 2026-05-23T14:30:17.865035+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -6180,7 +6180,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1453 · 2026-05-23T14:30:35.196396+00:00_
+_source line 1447 · 2026-05-23T14:30:35.196396+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -6202,7 +6202,7 @@ _source line 1453 · 2026-05-23T14:30:35.196396+00:00_
 
 ### Tool call
 
-_source line 1454 · 2026-05-23T14:30:35.314960+00:00_
+_source line 1448 · 2026-05-23T14:30:35.314960+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -6242,7 +6242,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1455 · 2026-05-23T14:30:36.798255+00:00_
+_source line 1449 · 2026-05-23T14:30:36.798255+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -6264,7 +6264,7 @@ _source line 1455 · 2026-05-23T14:30:36.798255+00:00_
 
 ### Tool call
 
-_source line 1456 · 2026-05-23T14:30:46.741484+00:00_
+_source line 1450 · 2026-05-23T14:30:46.741484+00:00_
 
 called TodoWrite
 
@@ -6298,7 +6298,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1457 · 2026-05-23T14:30:46.843077+00:00_
+_source line 1451 · 2026-05-23T14:30:46.843077+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -6320,7 +6320,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Assistant
 
-_source line 1458 · 2026-05-23T14:30:58.678623+00:00_
+_source line 1452 · 2026-05-23T14:30:58.678623+00:00_
 
 已完成初始化：
 - ✅ 视觉审查 Agent 已派发（fire-and-forget）
@@ -6353,7 +6353,7 @@ _source line 1458 · 2026-05-23T14:30:58.678623+00:00_
 
 ### User
 
-_source line 1459 · 2026-05-23T14:36:43.540063+00:00_
+_source line 1453 · 2026-05-23T14:36:43.540063+00:00_
 
 [Reviewer 2 审稿意见]:
 
@@ -6533,7 +6533,7 @@ _source line 1459 · 2026-05-23T14:36:43.540063+00:00_
 
 ### Assistant
 
-_source line 1460 · 2026-05-23T14:36:56.990875+00:00_
+_source line 1454 · 2026-05-23T14:36:56.990875+00:00_
 
 Reviewer 2 报告已收到。评分 3.5（Borderline Conference），核心关切：新颖性不足（ecological fallacy 的已知实例）+ routing 贡献薄弱。等待 Reviewer 1 报告。
 
@@ -6560,7 +6560,7 @@ Reviewer 2 报告已收到。评分 3.5（Borderline Conference），核心关�
 
 ### User
 
-_source line 1461 · 2026-05-23T14:37:03.800420+00:00_
+_source line 1455 · 2026-05-23T14:37:03.800420+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -6589,7 +6589,7 @@ _source line 1461 · 2026-05-23T14:37:03.800420+00:00_
 
 ### Assistant
 
-_source line 1462 · 2026-05-23T14:37:09.841801+00:00_
+_source line 1456 · 2026-05-23T14:37:09.841801+00:00_
 
 Reviewer 2 报告已收到。等待 Reviewer 1 报告。
 
@@ -6616,7 +6616,7 @@ Reviewer 2 报告已收到。等待 Reviewer 1 报告。
 
 ### User
 
-_source line 1463 · 2026-05-23T14:38:22.776690+00:00_
+_source line 1457 · 2026-05-23T14:38:22.776690+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 审稿报告
@@ -6773,7 +6773,7 @@ _source line 1463 · 2026-05-23T14:38:22.776690+00:00_
 
 ### Tool call
 
-_source line 1464 · 2026-05-23T14:38:43.141512+00:00_
+_source line 1458 · 2026-05-23T14:38:43.141512+00:00_
 
 called TodoWrite
 
@@ -6807,7 +6807,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1465 · 2026-05-23T14:38:43.192238+00:00_
+_source line 1459 · 2026-05-23T14:38:43.192238+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -6829,7 +6829,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1466 · 2026-05-23T14:39:20.810547+00:00_
+_source line 1460 · 2026-05-23T14:39:20.810547+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -6869,7 +6869,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1467 · 2026-05-23T14:39:58.290460+00:00_
+_source line 1461 · 2026-05-23T14:39:58.290460+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -6891,7 +6891,7 @@ _source line 1467 · 2026-05-23T14:39:58.290460+00:00_
 
 ### Tool call
 
-_source line 1468 · 2026-05-23T14:39:58.541800+00:00_
+_source line 1462 · 2026-05-23T14:39:58.541800+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -6931,7 +6931,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1469 · 2026-05-23T14:39:59.902814+00:00_
+_source line 1463 · 2026-05-23T14:39:59.902814+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -6953,7 +6953,7 @@ _source line 1469 · 2026-05-23T14:39:59.902814+00:00_
 
 ### Assistant
 
-_source line 1470 · 2026-05-23T14:40:03.608477+00:00_
+_source line 1464 · 2026-05-23T14:40:03.608477+00:00_
 
 交叉分享已派发。等待两位 Reviewer 逐条回应。
 
@@ -6980,7 +6980,7 @@ _source line 1470 · 2026-05-23T14:40:03.608477+00:00_
 
 ### User
 
-_source line 1471 · 2026-05-23T14:40:06.196735+00:00_
+_source line 1465 · 2026-05-23T14:40:06.196735+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿完成。报告已提交至 Review Director，核心评价：
@@ -7007,7 +7007,7 @@ _source line 1471 · 2026-05-23T14:40:06.196735+00:00_
 
 ### Assistant
 
-_source line 1472 · 2026-05-23T14:40:12.306093+00:00_
+_source line 1466 · 2026-05-23T14:40:12.306093+00:00_
 
 No response requested.
 
@@ -7034,7 +7034,7 @@ No response requested.
 
 ### User
 
-_source line 1473 · 2026-05-23T14:41:41.380349+00:00_
+_source line 1467 · 2026-05-23T14:41:41.380349+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 对 Reviewer 2 的交叉回应
@@ -7154,7 +7154,7 @@ R2 将论文的核心发现简化为 ecological fallacy 的 domain transfer，�
 
 ### Assistant
 
-_source line 1474 · 2026-05-23T14:41:53.024916+00:00_
+_source line 1468 · 2026-05-23T14:41:53.024916+00:00_
 
 Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
@@ -7181,7 +7181,7 @@ Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
 ### User
 
-_source line 1475 · 2026-05-23T14:41:54.001249+00:00_
+_source line 1469 · 2026-05-23T14:41:54.001249+00:00_
 
 [Reviewer 2 审稿意见]:
 
@@ -7296,7 +7296,7 @@ R1 给出 Overall 3.0（Findings），Soundness 2.5/5。我给出 3.5（Borderli
 
 ### Tool call
 
-_source line 1476 · 2026-05-23T14:42:33.969192+00:00_
+_source line 1470 · 2026-05-23T14:42:33.969192+00:00_
 
 called TodoWrite
 
@@ -7330,7 +7330,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1477 · 2026-05-23T14:42:34.019930+00:00_
+_source line 1471 · 2026-05-23T14:42:34.019930+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -7352,7 +7352,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1478 · 2026-05-23T14:42:38.510815+00:00_
+_source line 1472 · 2026-05-23T14:42:38.510815+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -7386,7 +7386,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 1479 · 2026-05-23T14:42:38.652953+00:00_
+_source line 1473 · 2026-05-23T14:42:38.652953+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T14:29:57.527901+00:00\", \"completed_at\": \"2026-05-23T14:33:38.996127+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"pages 3-5\", \"message\": \"连续 3 页纯文本（Related Work → Method § 3.1-3.5 → Results § 4.1 开头），无任何 display item 穿插。整个 Method section（~2.5 页）缺少实验设置概览图或 model zoo 汇总表来打破阅读单调感。审稿人在此段落容易失去注意力\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"3 个 figure（Figure 3 heatmap + Figure 4 线图 + Figure 5 柱状图）挤在同一页，加上正文和 Limitations section，版面拥挤。Figure 4 和 Figure 5 各占约 1/4 页，尺寸偏小\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 作为首个视觉锚点效果好——两面板清晰展示 aggregate convergence vs. per-example divergence 的核心对比，Caption 自包含\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"Figure 3（heatmap）和 Figure 5（bar chart）内的文字标签在打印尺寸下可能偏小难读，建议检查 ≥8pt 字号要求\"}, {\"severity\": \"info\", \"dimension\": \"pages 6-8\", \"message\": \"主文 display items 集中在后 1/3（pages 2, 6, 7, 8 有全部 7 个，pages 1, 3, 4, 5 为零），节奏前松后紧\"}, {\"severity\": \"info\", \"dimension\": \"page 22\", \"message\": \"Appendix 末页仅 ~20% 内容，大面积空白。对审稿印象无实质影响但略显不精致\"}, {\"severity\": \"info\", \"dimension\": \"pages 13-21\", \"message\": \"Appendix 含约 25 个表格分布在 9 页中，密度极高但编号清晰、booktabs 风格统一\"}, {\"severity\": \"info\", \"dimension\": \"pages 6-7\", \"message\": \"Table 1 和 Table 2 使用 booktabs 风格，关键值加粗，格式规范\"}, {\"severity\": \"info\", \"dimension\": \"pages 9-10\", \"message\": \"参考文献格式统一，无 [?] 未解析引用，无可见 overfull hbox\"}], \"counts\": {\"critical\": 0, \"warning\": 2, \"info\": 7}}, \"error\": null, \"metadata\": {}}"}
 
@@ -7408,7 +7408,7 @@ _source line 1479 · 2026-05-23T14:42:38.652953+00:00_
 
 ### Tool call
 
-_source line 1480 · 2026-05-23T14:42:47.049867+00:00_
+_source line 1474 · 2026-05-23T14:42:47.049867+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -7442,7 +7442,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1481 · 2026-05-23T14:42:47.150721+00:00_
+_source line 1475 · 2026-05-23T14:42:47.150721+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7464,7 +7464,7 @@ _source line 1481 · 2026-05-23T14:42:47.150721+00:00_
 
 ### Tool call
 
-_source line 1482 · 2026-05-23T14:46:13.969162+00:00_
+_source line 1476 · 2026-05-23T14:46:13.969162+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -7500,7 +7500,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1483 · 2026-05-23T14:46:14.070364+00:00_
+_source line 1477 · 2026-05-23T14:46:14.070364+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml\", \"bytes\": 19695}, \"error\": \"\"}"}
 
@@ -7522,7 +7522,7 @@ _source line 1483 · 2026-05-23T14:46:14.070364+00:00_
 
 ### Tool call
 
-_source line 1484 · 2026-05-23T14:49:11.120184+00:00_
+_source line 1478 · 2026-05-23T14:49:11.120184+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -7566,7 +7566,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1485 · 2026-05-23T14:49:15.186966+00:00_
+_source line 1479 · 2026-05-23T14:49:15.186966+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -7588,7 +7588,7 @@ _source line 1485 · 2026-05-23T14:49:15.186966+00:00_
 
 ### Tool call
 
-_source line 1486 · 2026-05-23T14:49:28.989304+00:00_
+_source line 1480 · 2026-05-23T14:49:28.989304+00:00_
 
 called TodoWrite
 
@@ -7622,7 +7622,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1487 · 2026-05-23T14:49:28.989898+00:00_
+_source line 1481 · 2026-05-23T14:49:28.989898+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -7644,7 +7644,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Assistant
 
-_source line 1488 · 2026-05-23T14:49:39.089835+00:00_
+_source line 1482 · 2026-05-23T14:49:39.089835+00:00_
 
 审稿圆桌会议完成。
 
@@ -7682,7 +7682,7 @@ _source line 1488 · 2026-05-23T14:49:39.089835+00:00_
 
 ### User
 
-_source line 1489 · 2026-05-23T14:49:41.635012+00:00_
+_source line 1483 · 2026-05-23T14:49:41.635012+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿交叉回应已提交。对 R1 的 3 条 Must-Fix 和 5 条 Should-Fix 全部标注了 [AGREE]，但对 N2（GDN confound）补充了 nuance——该 confound 主要威胁 convergence claim 而非 per-example divergence 的核心发现。对 W4（预注册）和 W5（340M 限制）认为严重性低于 R1 的定位。总体认为 R1 的 3.0 和我的 3.5 评分差异主要来自对 convergence vs. divergence 两个 claim 的 soundness 权重不同。
@@ -7704,7 +7704,7 @@ _source line 1489 · 2026-05-23T14:49:41.635012+00:00_
 
 ### Assistant
 
-_source line 1490 · 2026-05-23T14:49:57.742925+00:00_
+_source line 1484 · 2026-05-23T14:49:57.742925+00:00_
 
 审稿流程已全部完成。
 
@@ -7742,7 +7742,7 @@ _source line 1490 · 2026-05-23T14:49:57.742925+00:00_
 
 ### User
 
-_source line 1491 · 2026-05-24T11:55:20.500048+00:00_
+_source line 1485 · 2026-05-24T11:55:20.500048+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -7773,7 +7773,7 @@ _source line 1491 · 2026-05-24T11:55:20.500048+00:00_
 
 ### Tool call
 
-_source line 1492 · 2026-05-24T11:55:26.298674+00:00_
+_source line 1486 · 2026-05-24T11:55:26.298674+00:00_
 
 called Read
 
@@ -7807,7 +7807,7 @@ called Read
 
 ### Tool result
 
-_source line 1493 · 2026-05-24T11:55:26.349746+00:00_
+_source line 1487 · 2026-05-24T11:55:26.349746+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -7897,7 +7897,7 @@ _source line 1493 · 2026-05-24T11:55:26.349746+00:00_
 
 ### Tool call
 
-_source line 1494 · 2026-05-24T11:55:35.433329+00:00_
+_source line 1488 · 2026-05-24T11:55:35.433329+00:00_
 
 called ToolSearch
 
@@ -7933,7 +7933,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1495 · 2026-05-24T11:55:35.483940+00:00_
+_source line 1489 · 2026-05-24T11:55:35.483940+00:00_
 
 
 
@@ -7955,7 +7955,7 @@ _source line 1495 · 2026-05-24T11:55:35.483940+00:00_
 
 ### Tool call
 
-_source line 1496 · 2026-05-24T11:55:42.559696+00:00_
+_source line 1490 · 2026-05-24T11:55:42.559696+00:00_
 
 called ToolSearch
 
@@ -7991,7 +7991,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1497 · 2026-05-24T11:55:42.610365+00:00_
+_source line 1491 · 2026-05-24T11:55:42.610365+00:00_
 
 No matching deferred tools found
 
@@ -8013,7 +8013,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1498 · 2026-05-24T11:55:51.541045+00:00_
+_source line 1492 · 2026-05-24T11:55:51.541045+00:00_
 
 called TodoWrite
 
@@ -8047,7 +8047,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1499 · 2026-05-24T11:55:51.593835+00:00_
+_source line 1493 · 2026-05-24T11:55:51.593835+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -8069,7 +8069,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1500 · 2026-05-24T11:55:55.665930+00:00_
+_source line 1494 · 2026-05-24T11:55:55.665930+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -8103,7 +8103,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1501 · 2026-05-24T11:55:56.870833+00:00_
+_source line 1495 · 2026-05-24T11:55:56.870833+00:00_
 
 {"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-arc-easy-eval**: DONE (success) — \n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-24\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp-005-pure-v4** (killed): —\n- **exp-005-pure-v3** (killed): —\n- **exp-005-hgrn-chain** (killed): —\n\n## 趋势\n成功 16 / 负向 4 / 失败 3 / 共 46\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestb-48145: 无 GPU 信息\n\n## 告警\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\n- exp-003-p2v2: 已被终止 — unknown\n- exp-004: 训练失败 — unknown\n- exp-005-eval: 已被终止 — unknown\n- exp-005-p1-v4: 已被终止 — unknown\n- exp-005-gla-eval: 训练失败 — unknown\n- exp-005-gla: 已被终止 — unknown\n- exp-005-deltanet: 已被终止 — unknown\n- exp-005-dn-eval: 已被终止 — unknown\n- exp-005-pure-eval: 已被终止 — unknown\n- exp-005-p1-eval: 已被终止 — unknown\n- exp-005-p1-eval-v2: 已被终止 — unknown\n- exp-005-p1-eval-v3: 已被终止 — unknown\n- exp-005-p1-eval-v4: 已被终止 — unknown\n- exp-005-p1-eval-v5: 已被终止 — unknown\n- exp-005-hgrn-chain: 已被终止 — unknown\n- exp-005-batch: 训练失败 — unknown\n- exp-005-pure-v3: 已被终止 — unknown\n- exp-005-pure-v4: 已被终止 — unknown\n- exp-005-pure-v5: 已被终止 — unknown\n- exp-005-pure-v6: 已被终止 — unknown\n- exp-005-pure-v7: 已被终止 — unknown\n- exp-005-pure-v8: 已被终止 — unknown\n- exp-005-pure-v9: 已被终止 — unknown\n- exp-005-pure-v10: 已被终止 — unknown\n- exp-005-pure-baselines: 已被终止 — unknown"}
 
@@ -8125,7 +8125,7 @@ _source line 1501 · 2026-05-24T11:55:56.870833+00:00_
 
 ### Tool call
 
-_source line 1502 · 2026-05-24T11:55:57.222440+00:00_
+_source line 1496 · 2026-05-24T11:55:57.222440+00:00_
 
 called Read
 
@@ -8161,7 +8161,7 @@ called Read
 
 ### Tool result
 
-_source line 1503 · 2026-05-24T11:55:57.222894+00:00_
+_source line 1497 · 2026-05-24T11:55:57.222894+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -8222,7 +8222,7 @@ _source line 1503 · 2026-05-24T11:55:57.222894+00:00_
 
 ### Tool call
 
-_source line 1504 · 2026-05-24T11:55:57.674826+00:00_
+_source line 1498 · 2026-05-24T11:55:57.674826+00:00_
 
 called WebSearch
 
@@ -8256,7 +8256,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1505 · 2026-05-24T11:56:03.046231+00:00_
+_source line 1499 · 2026-05-24T11:56:03.046231+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org"
 
@@ -8283,7 +8283,7 @@ Based on the search results, I found information about EMNLP 2026, though the re
 
 ### Tool call
 
-_source line 1506 · 2026-05-24T11:56:08.115541+00:00_
+_source line 1500 · 2026-05-24T11:56:08.115541+00:00_
 
 called WebSearch
 
@@ -8317,7 +8317,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1507 · 2026-05-24T11:56:08.417026+00:00_
+_source line 1501 · 2026-05-24T11:56:08.417026+00:00_
 
 called WebSearch
 
@@ -8351,7 +8351,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1508 · 2026-05-24T11:56:13.985393+00:00_
+_source line 1502 · 2026-05-24T11:56:13.985393+00:00_
 
 Web search results for query: "EMNLP 2026 main conference call for papers submission deadline ARR commitment"
 
@@ -8382,7 +8382,7 @@ The ARR submission
 
 ### Tool result
 
-_source line 1509 · 2026-05-24T11:56:14.688257+00:00_
+_source line 1503 · 2026-05-24T11:56:14.688257+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission cycle deadlines page limit guidelines"
 
@@ -8417,7 +8417,7 @@ The search results mention page limits in the context of specific conferences us
 
 ### Tool call
 
-_source line 1510 · 2026-05-24T11:56:18.281123+00:00_
+_source line 1504 · 2026-05-24T11:56:18.281123+00:00_
 
 called WebSearch
 
@@ -8451,7 +8451,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1511 · 2026-05-24T11:56:18.582486+00:00_
+_source line 1505 · 2026-05-24T11:56:18.582486+00:00_
 
 called WebSearch
 
@@ -8485,7 +8485,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1512 · 2026-05-24T11:56:24.834884+00:00_
+_source line 1506 · 2026-05-24T11:56:24.834884+00:00_
 
 Web search results for query: "site:aclrollingreview.org cfp 2026 long paper page limit short paper template"
 
@@ -8526,7 +8526,7 @@ REMINDER: You MUST include the sources above
 
 ### Tool result
 
-_source line 1513 · 2026-05-24T11:56:25.086254+00:00_
+_source line 1507 · 2026-05-24T11:56:25.086254+00:00_
 
 Web search results for query: "site:2026.emnlp.org call for papers page limit anonymity template"
 
@@ -8561,7 +8561,7 @@ For the industry track specifically, Industry Track papers cannot exceed 6 pages
 
 ### Tool call
 
-_source line 1514 · 2026-05-24T11:56:43.037598+00:00_
+_source line 1508 · 2026-05-24T11:56:43.037598+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -8597,7 +8597,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1515 · 2026-05-24T11:56:44.442835+00:00_
+_source line 1509 · 2026-05-24T11:56:44.442835+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'config.yaml'\", \"metadata\": {}}"}
 
@@ -8619,7 +8619,7 @@ _source line 1515 · 2026-05-24T11:56:44.442835+00:00_
 
 ### Tool call
 
-_source line 1516 · 2026-05-24T11:56:44.443163+00:00_
+_source line 1510 · 2026-05-24T11:56:44.443163+00:00_
 
 called Read
 
@@ -8653,7 +8653,7 @@ called Read
 
 ### Tool result
 
-_source line 1517 · 2026-05-24T11:56:45.429928+00:00_
+_source line 1511 · 2026-05-24T11:56:45.429928+00:00_
 
 1	\section{Introduction}
 2	
@@ -8682,7 +8682,7 @@ _source line 1517 · 2026-05-24T11:56:45.429928+00:00_
 
 ### Tool call
 
-_source line 1518 · 2026-05-24T11:56:45.430262+00:00_
+_source line 1512 · 2026-05-24T11:56:45.430262+00:00_
 
 called Read
 
@@ -8716,7 +8716,7 @@ called Read
 
 ### Tool result
 
-_source line 1519 · 2026-05-24T11:56:45.882090+00:00_
+_source line 1513 · 2026-05-24T11:56:45.882090+00:00_
 
 1	\section{Related Work}
 2	
@@ -8745,7 +8745,7 @@ _source line 1519 · 2026-05-24T11:56:45.882090+00:00_
 
 ### Tool call
 
-_source line 1520 · 2026-05-24T11:56:45.932660+00:00_
+_source line 1514 · 2026-05-24T11:56:45.932660+00:00_
 
 called Read
 
@@ -8779,7 +8779,7 @@ called Read
 
 ### Tool result
 
-_source line 1521 · 2026-05-24T11:56:46.384770+00:00_
+_source line 1515 · 2026-05-24T11:56:46.384770+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -8812,7 +8812,7 @@ _source line 1521 · 2026-05-24T11:56:46.384770+00:00_
 
 ### Tool call
 
-_source line 1522 · 2026-05-24T11:56:46.385134+00:00_
+_source line 1516 · 2026-05-24T11:56:46.385134+00:00_
 
 called Read
 
@@ -8846,7 +8846,7 @@ called Read
 
 ### Tool result
 
-_source line 1523 · 2026-05-24T11:56:46.837088+00:00_
+_source line 1517 · 2026-05-24T11:56:46.837088+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -8895,7 +8895,7 @@ _source line 1523 · 2026-05-24T11:56:46.837088+00:00_
 
 ### Tool call
 
-_source line 1524 · 2026-05-24T11:56:46.887667+00:00_
+_source line 1518 · 2026-05-24T11:56:46.887667+00:00_
 
 called Read
 
@@ -8929,7 +8929,7 @@ called Read
 
 ### Tool result
 
-_source line 1525 · 2026-05-24T11:56:47.439964+00:00_
+_source line 1519 · 2026-05-24T11:56:47.439964+00:00_
 
 1	\vspace{-2pt}
 2	\section{Conclusion}
@@ -8957,7 +8957,7 @@ _source line 1525 · 2026-05-24T11:56:47.439964+00:00_
 
 ### Tool call
 
-_source line 1526 · 2026-05-24T11:56:47.440317+00:00_
+_source line 1520 · 2026-05-24T11:56:47.440317+00:00_
 
 called Read
 
@@ -8991,7 +8991,7 @@ called Read
 
 ### Tool result
 
-_source line 1527 · 2026-05-24T11:56:48.043957+00:00_
+_source line 1521 · 2026-05-24T11:56:48.043957+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -9029,7 +9029,7 @@ _source line 1527 · 2026-05-24T11:56:48.043957+00:00_
 
 ### Tool call
 
-_source line 1528 · 2026-05-24T11:56:48.194813+00:00_
+_source line 1522 · 2026-05-24T11:56:48.194813+00:00_
 
 called Read
 
@@ -9063,7 +9063,7 @@ called Read
 
 ### Tool result
 
-_source line 1529 · 2026-05-24T11:56:48.496511+00:00_
+_source line 1523 · 2026-05-24T11:56:48.496511+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -9135,7 +9135,7 @@ _source line 1529 · 2026-05-24T11:56:48.496511+00:00_
 
 ### Tool call
 
-_source line 1530 · 2026-05-24T11:57:19.245457+00:00_
+_source line 1524 · 2026-05-24T11:57:19.245457+00:00_
 
 called ToolSearch
 
@@ -9171,7 +9171,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1531 · 2026-05-24T11:57:19.346233+00:00_
+_source line 1525 · 2026-05-24T11:57:19.346233+00:00_
 
 No matching deferred tools found
 
@@ -9193,7 +9193,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1532 · 2026-05-24T11:57:23.816565+00:00_
+_source line 1526 · 2026-05-24T11:57:23.816565+00:00_
 
 called ToolSearch
 
@@ -9229,7 +9229,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1533 · 2026-05-24T11:57:23.917285+00:00_
+_source line 1527 · 2026-05-24T11:57:23.917285+00:00_
 
 
 
@@ -9251,7 +9251,7 @@ _source line 1533 · 2026-05-24T11:57:23.917285+00:00_
 
 ### Tool call
 
-_source line 1534 · 2026-05-24T11:57:28.662742+00:00_
+_source line 1528 · 2026-05-24T11:57:28.662742+00:00_
 
 called Read
 
@@ -9287,7 +9287,7 @@ called Read
 
 ### Tool result
 
-_source line 1535 · 2026-05-24T11:57:28.913911+00:00_
+_source line 1529 · 2026-05-24T11:57:28.913911+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5.
 
@@ -9309,7 +9309,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1536 · 2026-05-24T11:57:28.964557+00:00_
+_source line 1530 · 2026-05-24T11:57:28.964557+00:00_
 
 called Read
 
@@ -9343,7 +9343,7 @@ called Read
 
 ### Tool result
 
-_source line 1537 · 2026-05-24T11:57:29.015862+00:00_
+_source line 1531 · 2026-05-24T11:57:29.015862+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -9414,7 +9414,7 @@ _source line 1537 · 2026-05-24T11:57:29.015862+00:00_
 
 ### Tool call
 
-_source line 1538 · 2026-05-24T11:57:34.384963+00:00_
+_source line 1532 · 2026-05-24T11:57:34.384963+00:00_
 
 called Glob
 
@@ -9450,7 +9450,7 @@ called Glob
 
 ### Tool result
 
-_source line 1539 · 2026-05-24T11:57:34.435501+00:00_
+_source line 1533 · 2026-05-24T11:57:34.435501+00:00_
 
 No files found
 
@@ -9472,7 +9472,7 @@ No files found
 
 ### Tool call
 
-_source line 1540 · 2026-05-24T11:57:36.693822+00:00_
+_source line 1534 · 2026-05-24T11:57:36.693822+00:00_
 
 called Glob
 
@@ -9508,7 +9508,7 @@ called Glob
 
 ### Tool result
 
-_source line 1541 · 2026-05-24T11:57:36.694294+00:00_
+_source line 1535 · 2026-05-24T11:57:36.694294+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/pip/_internal/configuration.py
@@ -9536,7 +9536,7 @@ _source line 1541 · 2026-05-24T11:57:36.694294+00:00_
 
 ### Tool call
 
-_source line 1542 · 2026-05-24T11:57:39.805505+00:00_
+_source line 1536 · 2026-05-24T11:57:39.805505+00:00_
 
 called Glob
 
@@ -9572,7 +9572,7 @@ called Glob
 
 ### Tool result
 
-_source line 1543 · 2026-05-24T11:57:39.906315+00:00_
+_source line 1537 · 2026-05-24T11:57:39.906315+00:00_
 
 No files found
 
@@ -9594,7 +9594,7 @@ No files found
 
 ### Tool call
 
-_source line 1544 · 2026-05-24T11:57:42.465917+00:00_
+_source line 1538 · 2026-05-24T11:57:42.465917+00:00_
 
 called Bash
 
@@ -9630,7 +9630,7 @@ called Bash
 
 ### Tool result
 
-_source line 1545 · 2026-05-24T11:57:42.616858+00:00_
+_source line 1539 · 2026-05-24T11:57:42.616858+00:00_
 
 Exit code 2
 ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/agent/': No such file or directory
@@ -9653,7 +9653,7 @@ ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entr
 
 ### Tool call
 
-_source line 1546 · 2026-05-24T11:57:48.061114+00:00_
+_source line 1540 · 2026-05-24T11:57:48.061114+00:00_
 
 called Bash
 
@@ -9689,7 +9689,7 @@ called Bash
 
 ### Tool result
 
-_source line 1547 · 2026-05-24T11:57:48.111882+00:00_
+_source line 1541 · 2026-05-24T11:57:48.111882+00:00_
 
 approvals.yaml
 backend.yaml
@@ -9759,7 +9759,7 @@ mcp_config_wo
 
 ### Tool call
 
-_source line 1548 · 2026-05-24T11:57:51.423598+00:00_
+_source line 1542 · 2026-05-24T11:57:51.423598+00:00_
 
 called Bash
 
@@ -9795,7 +9795,7 @@ called Bash
 
 ### Tool result
 
-_source line 1549 · 2026-05-24T11:57:51.474356+00:00_
+_source line 1543 · 2026-05-24T11:57:51.474356+00:00_
 
 AGENTS.md
 ROADMAP.lock
@@ -9846,7 +9846,7 @@ registry.lock
 
 ### Tool call
 
-_source line 1550 · 2026-05-24T11:57:53.889648+00:00_
+_source line 1544 · 2026-05-24T11:57:53.889648+00:00_
 
 called Bash
 
@@ -9882,7 +9882,7 @@ called Bash
 
 ### Tool result
 
-_source line 1551 · 2026-05-24T11:57:53.990422+00:00_
+_source line 1545 · 2026-05-24T11:57:53.990422+00:00_
 
 docs
 dream_registry.lock
@@ -9923,7 +9923,7 @@ writing_plan.yaml
 
 ### Tool call
 
-_source line 1552 · 2026-05-24T11:57:56.700143+00:00_
+_source line 1546 · 2026-05-24T11:57:56.700143+00:00_
 
 called Bash
 
@@ -9959,7 +9959,7 @@ called Bash
 
 ### Tool result
 
-_source line 1553 · 2026-05-24T11:57:57.051852+00:00_
+_source line 1547 · 2026-05-24T11:57:57.051852+00:00_
 
 (Bash completed with no output)
 
@@ -9981,7 +9981,7 @@ _source line 1553 · 2026-05-24T11:57:57.051852+00:00_
 
 ### Tool call
 
-_source line 1554 · 2026-05-24T11:58:02.579431+00:00_
+_source line 1548 · 2026-05-24T11:58:02.579431+00:00_
 
 called Bash
 
@@ -10017,7 +10017,7 @@ called Bash
 
 ### Tool result
 
-_source line 1555 · 2026-05-24T11:58:02.680278+00:00_
+_source line 1549 · 2026-05-24T11:58:02.680278+00:00_
 
 NOT_FOUND
 
@@ -10039,7 +10039,7 @@ NOT_FOUND
 
 ### Tool call
 
-_source line 1556 · 2026-05-24T11:58:40.614119+00:00_
+_source line 1550 · 2026-05-24T11:58:40.614119+00:00_
 
 called TodoWrite
 
@@ -10073,7 +10073,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1557 · 2026-05-24T11:58:40.714933+00:00_
+_source line 1551 · 2026-05-24T11:58:40.714933+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -10095,7 +10095,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1558 · 2026-05-24T11:58:46.507999+00:00_
+_source line 1552 · 2026-05-24T11:58:46.507999+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -10131,7 +10131,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1559 · 2026-05-24T11:59:05.495979+00:00_
+_source line 1553 · 2026-05-24T11:59:05.495979+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10153,7 +10153,7 @@ _source line 1559 · 2026-05-24T11:59:05.495979+00:00_
 
 ### Tool call
 
-_source line 1560 · 2026-05-24T11:59:05.546537+00:00_
+_source line 1554 · 2026-05-24T11:59:05.546537+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10191,7 +10191,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1561 · 2026-05-24T11:59:19.778018+00:00_
+_source line 1555 · 2026-05-24T11:59:19.778018+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -10213,7 +10213,7 @@ _source line 1561 · 2026-05-24T11:59:19.778018+00:00_
 
 ### Tool call
 
-_source line 1562 · 2026-05-24T11:59:19.831478+00:00_
+_source line 1556 · 2026-05-24T11:59:19.831478+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10251,7 +10251,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1563 · 2026-05-24T11:59:21.528854+00:00_
+_source line 1557 · 2026-05-24T11:59:21.528854+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -10273,7 +10273,7 @@ _source line 1563 · 2026-05-24T11:59:21.528854+00:00_
 
 ### Tool call
 
-_source line 1564 · 2026-05-24T11:59:29.409153+00:00_
+_source line 1558 · 2026-05-24T11:59:29.409153+00:00_
 
 called TodoWrite
 
@@ -10307,7 +10307,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1565 · 2026-05-24T11:59:29.463062+00:00_
+_source line 1559 · 2026-05-24T11:59:29.463062+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -10329,7 +10329,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Assistant
 
-_source line 1566 · 2026-05-24T11:59:33.727112+00:00_
+_source line 1560 · 2026-05-24T11:59:33.727112+00:00_
 
 已派发：
 - ✅ 视觉审查 Agent（fire-and-forget，不阻塞）
@@ -10361,7 +10361,7 @@ _source line 1566 · 2026-05-24T11:59:33.727112+00:00_
 
 ### User
 
-_source line 1567 · 2026-05-24T12:04:03.570056+00:00_
+_source line 1561 · 2026-05-24T12:04:03.570056+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -10510,7 +10510,7 @@ _source line 1567 · 2026-05-24T12:04:03.570056+00:00_
 
 ### Assistant
 
-_source line 1568 · 2026-05-24T12:04:20.318090+00:00_
+_source line 1562 · 2026-05-24T12:04:20.318090+00:00_
 
 Reviewer 1 审稿已收到。记录核心发现：
 
@@ -10552,7 +10552,7 @@ Reviewer 1 审稿已收到。记录核心发现：
 
 ### User
 
-_source line 1569 · 2026-05-24T12:04:26.859600+00:00_
+_source line 1563 · 2026-05-24T12:04:26.859600+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -10585,7 +10585,7 @@ _source line 1569 · 2026-05-24T12:04:26.859600+00:00_
 
 ### Assistant
 
-_source line 1570 · 2026-05-24T12:04:32.831051+00:00_
+_source line 1564 · 2026-05-24T12:04:32.831051+00:00_
 
 Reviewer 1 审稿已收到。等待 Reviewer 2 完成审稿后进入交叉分享环节。
 
@@ -10612,7 +10612,7 @@ Reviewer 1 审稿已收到。等待 Reviewer 2 完成审稿后进入交叉分享
 
 ### User
 
-_source line 1571 · 2026-05-24T12:04:58.168814+00:00_
+_source line 1565 · 2026-05-24T12:04:58.168814+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 审稿报告：Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures
@@ -10795,7 +10795,7 @@ _source line 1571 · 2026-05-24T12:04:58.168814+00:00_
 
 ### Tool call
 
-_source line 1572 · 2026-05-24T12:05:22.192077+00:00_
+_source line 1566 · 2026-05-24T12:05:22.192077+00:00_
 
 called TodoWrite
 
@@ -10829,7 +10829,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1573 · 2026-05-24T12:05:22.192555+00:00_
+_source line 1567 · 2026-05-24T12:05:22.192555+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -10851,7 +10851,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1574 · 2026-05-24T12:05:55.131966+00:00_
+_source line 1568 · 2026-05-24T12:05:55.131966+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10889,7 +10889,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1575 · 2026-05-24T12:06:24.180309+00:00_
+_source line 1569 · 2026-05-24T12:06:24.180309+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -10911,7 +10911,7 @@ _source line 1575 · 2026-05-24T12:06:24.180309+00:00_
 
 ### Tool call
 
-_source line 1576 · 2026-05-24T12:06:24.784230+00:00_
+_source line 1570 · 2026-05-24T12:06:24.784230+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10949,7 +10949,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1577 · 2026-05-24T12:06:26.142866+00:00_
+_source line 1571 · 2026-05-24T12:06:26.142866+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -10971,7 +10971,7 @@ _source line 1577 · 2026-05-24T12:06:26.142866+00:00_
 
 ### Assistant
 
-_source line 1578 · 2026-05-24T12:06:28.478039+00:00_
+_source line 1572 · 2026-05-24T12:06:28.478039+00:00_
 
 交叉分享已发出，等待两位 Reviewer 的逐条回应。
 
@@ -10998,7 +10998,7 @@ _source line 1578 · 2026-05-24T12:06:28.478039+00:00_
 
 ### User
 
-_source line 1579 · 2026-05-24T12:06:30.993716+00:00_
+_source line 1573 · 2026-05-24T12:06:30.993716+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -11028,7 +11028,7 @@ _source line 1579 · 2026-05-24T12:06:30.993716+00:00_
 
 ### Assistant
 
-_source line 1580 · 2026-05-24T12:06:34.848994+00:00_
+_source line 1574 · 2026-05-24T12:06:34.848994+00:00_
 
 No response requested.
 
@@ -11055,7 +11055,7 @@ No response requested.
 
 ### User
 
-_source line 1581 · 2026-05-24T12:07:46.233624+00:00_
+_source line 1575 · 2026-05-24T12:07:46.233624+00:00_
 
 [Reviewer 1 审稿结果]:
 ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
@@ -11159,7 +11159,7 @@ Breiman (2001) "Two Cultures" 与本文关联较弱——本文不涉及 statist
 
 ### Assistant
 
-_source line 1582 · 2026-05-24T12:07:58.065950+00:00_
+_source line 1576 · 2026-05-24T12:07:58.065950+00:00_
 
 Reviewer 1 的交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
@@ -11186,7 +11186,7 @@ Reviewer 1 的交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
 ### User
 
-_source line 1583 · 2026-05-24T12:08:53.051320+00:00_
+_source line 1577 · 2026-05-24T12:08:53.051320+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 对 Reviewer 1 的逐条回应
@@ -11325,7 +11325,7 @@ R1 和我（R2）的审稿意见高度一致：
 
 ### Tool call
 
-_source line 1584 · 2026-05-24T12:09:25.184707+00:00_
+_source line 1578 · 2026-05-24T12:09:25.184707+00:00_
 
 called TodoWrite
 
@@ -11359,7 +11359,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 1585 · 2026-05-24T12:09:25.235457+00:00_
+_source line 1579 · 2026-05-24T12:09:25.235457+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -11381,7 +11381,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 1586 · 2026-05-24T12:09:28.899275+00:00_
+_source line 1580 · 2026-05-24T12:09:28.899275+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -11415,7 +11415,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 1587 · 2026-05-24T12:09:29.000103+00:00_
+_source line 1581 · 2026-05-24T12:09:29.000103+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-24T11:58:49.881241+00:00\", \"completed_at\": \"2026-05-24T12:02:10.841962+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 3-4\", \"message\": \"连续 2 页纯文本（Method 3.1–3.5），无任何 display item（figure/table/equation）。Method 部分描述了 convergence metrics、per-example decomposition 等定量概念，至少应有 1-2 个公式以 display math 形式呈现，打破视觉单调性并帮助审稿人锚定关键定义\"}, {\"severity\": \"warning\", \"dimension\": \"page 6-7\", \"message\": \"Display items 分布严重不均：page 6 有 3 个（Table 1, Table 2, Figure 3），page 7 有 3 个（Figure 4, 5, 6），共 6 个 display items 集中在 2 页。与 pages 3-4 的纯文本形成强烈对比，审稿人会感到节奏突变\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 5（Cross-benchmark Jaccard saturation）和 Figure 6（Jaccard hierarchy）均为单栏宽度且挤在页面底部，内部文字（axis labels、legend）偏小，在打印或低分辨率屏幕上可读性受影响。建议考虑合并为一个双栏 figure* 或增大单图尺寸\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 作为全文首个视觉锚点出现在第 2 页顶部，位置合理。4 个子图（a-d）传达了核心 message（aggregate variance 下降但 per-example overlap 稳定）。Caption 自包含性良好\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"Title/Author/Abstract 排版整洁，符合 ACL 匿名投稿模板。Abstract 长度适中\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2（bar chart）出现在 Section 4 Experiments 开头同页，float 位置合理。颜色区分度良好（蓝/红/绿/黄），但建议确认色盲友好性（红绿同时出现）\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1 和 Table 2 使用 booktabs 风格（水平线、无竖线），最优值加粗标注，格式规范\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 4（Pairwise Jaccard heatmap）使用 figure* 全宽展示，对于 5 架构×2 组的热力图矩阵是正确的选择\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"主正文在第 8 页结束（Conclusion + Limitations + Code and Data Availability + References 开头），符合 EMNLP 2026 的 8 页正文限制。Limitations 简洁覆盖 3 个点，合规\"}, {\"severity\": \"info\", \"dimension\": \"page 9-10\", \"message\": \"References 格式一致，无 [?] 未解析引用，无明显 overfull hbox\"}, {\"severity\
 …[truncated 444 chars]

@@ -7,45 +7,6 @@
       "messages": [
         {
           "source_line": 2701,
-          "timestamp": "2026-05-25T21:15:27.222348+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"# 项目 simgate-modular-routing 概况\\n\\n## 实验状态 (123 个)\\n\\n- **plan-001b-fnlt-v2**: DONE (success) — \\n- **plan-001b-gpu0-v4**: DONE (killed) — \\n- **plan-001b-gpu0-v3**: DONE (failed) — \\n- **plan-001b-gpu1-extra**: DONE (failed) — \\n- **plan-001b-gpu1**: DONE (success) — \\n- **plan-001b-gpu0-v2**: DONE (failed) — \\n- **plan-011-rule-based**: DONE (success) — \\n- **plan-001b-gpu0**: DONE (failed) — \\n- **research-prescreening-gpu0**: DONE (killed) — \\n- **research-prescreening-gpu1**: DONE (success) — \\n- **research-boil-v3-gpu1**: DONE (success) — \\n- **mvp-p1-gpu0**: DONE (killed) — \\n- **mvp-p1-gpu1-v2**: DONE (killed) — \\n- **mvp-p1-gpu1-vllm**: DONE (killed) — \\n- **mvp-p1-gpu1**: DONE (killed) — \\n\\n## 最新报告\\n# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| alfworld-llama-cross-model | Llama-3.1-8B on ALFWorld will show information asymmetry (not death) as the dominant routing mechanism, consistent with Qwen2.5-7B findings (25.9% det-preferred, DAF=0%), confirming the framework diagnoses environment-specific mechanisms regardless of model family. | — | — | — |\\n| gemma-scienceworld-cross-model | Gemma-2-9B-it on ScienceWorld will show death dominance (DAF > 80%) consistent with Qwen2.5-7B (90.4%) and Llama-3.1-8B (88.2%), extending the cross-model-family evidence from 2 to 3 independent model families and strengthening the claim that death avoidance dominates routing signal regardless of model architecture. | — | — | — |\\n\\n## 待处理\\n- llama-70b-cross-model: Llama-3.1-70B-Instruct on ScienceWorld will show death dominance (DAF>80%) consistent with Qwen2.5-72B (DAF=92.4%), extending the cross-model scaling evidence from 1 to 2 independent 70B-class model families and upgrading C3 (scaling) from single-model probe to cross-model-at-scale validation.（准备中）\\n\\n## 近期结论\\n- **llama-70b-episodes** (success): Llama-3.1-70B-Instruct-AWQ on ScienceWorld will show dea\n…[truncated 1780 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
-            "tool": "mcp__agent-ml-research__director_get_project_overview",
-            "elapsed_ms": 403
-          },
-          "id": "event-002701"
-        },
-        {
-          "source_line": 2702,
-          "timestamp": "2026-05-25T21:15:54.619179+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__dispatch_visual_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
-            "tool": "mcp__agent-ml-research__dispatch_visual_check",
-            "tool_args": {
-              "project": "simgate-modular-routing",
-              "review_chat_id": "oc_0b622d6038b969b96148ee8a163a1a0c"
-            }
-          },
-          "id": "event-002702"
-        },
-        {
-          "source_line": 2703,
           "timestamp": "2026-05-25T21:15:55.071214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -62,10 +23,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002703"
+          "id": "event-002701"
         },
         {
-          "source_line": 2704,
+          "source_line": 2702,
           "timestamp": "2026-05-25T21:15:55.523236+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -83,10 +44,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002704"
+          "id": "event-002702"
         },
         {
-          "source_line": 2705,
+          "source_line": 2703,
           "timestamp": "2026-05-25T21:15:58.388047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -101,10 +62,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 3768
           },
-          "id": "event-002705"
+          "id": "event-002703"
         },
         {
-          "source_line": 2706,
+          "source_line": 2704,
           "timestamp": "2026-05-25T21:15:58.438979+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -119,10 +80,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 3367
           },
-          "id": "event-002706"
+          "id": "event-002704"
         },
         {
-          "source_line": 2707,
+          "source_line": 2705,
           "timestamp": "2026-05-25T21:15:58.439504+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -137,10 +98,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 2916
           },
-          "id": "event-002707"
+          "id": "event-002705"
         },
         {
-          "source_line": 2708,
+          "source_line": 2706,
           "timestamp": "2026-05-25T21:16:07.731202+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -157,10 +118,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-002708"
+          "id": "event-002706"
         },
         {
-          "source_line": 2709,
+          "source_line": 2707,
           "timestamp": "2026-05-25T21:16:07.832693+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -175,10 +136,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-002709"
+          "id": "event-002707"
         },
         {
-          "source_line": 2710,
+          "source_line": 2708,
           "timestamp": "2026-05-25T21:16:57.930275+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -198,10 +159,10 @@
               "text": "## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验有效性）\n\n### 论文信息\n- **标题**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n- **论文路径**: `projects/simgate-modular-routing/docs/paper/main.tex`\n- **PDF 路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/submitted.pdf`\n\n### 目标 Venue\n- **EMNLP 2026**（通过 ARR 统一审稿）\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板，long paper 正文 8 页限制（不含 references、limitations、ethical considerations）\n- **匿名**: double-blind（论文不得包含作者信息，self-reference 需匿名化）\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n### 你的审查侧重：方法严谨性 + 实验有效性\n\n重点评估以下方面：\n\n1. **方法论**:\n   - DAF（Death Avoidance Factor）公式的推导是否严谨？分解假设是否成立？\n   - Episode-level counterfactual labeling 的设计是否合理？是否存在 circularity？\n   - DAF 对 penalty P 的单调依赖——论文如何处理这一问题？是否充分？\n   - \"Counterfactual\" 术语的使用是否与因果推断文献一致？\n\n2. **统计检验**:\n   - Bootstrap CI 的使用是否恰当？K=11 cluster 下的推断可靠性如何？\n   - 样本量（245 episodes, per-task n=20-40）是否足够支撑结论？\n   - 多重比较问题是否被处理？\n   - Cross-model 一致性的统计意义如何评估？\n\n3. **实验设计**:\n   - 11/30 task types 选择是否引入 selection bias？Anti-cherry-picking analysis 是否充分？\n   - Deterministic strategy 的 oracle privilege 是否使 death avoidance finding 接近 tautology？\n   - Cross-environment probes（MATH, ALFWorld）的深度和覆盖是否足够？\n   - Agent improvement baselines（Retry, Reflexion, 72B scaling）的设计是否公平？\n   - Router training 的 negative result 是否被充分论证？\n\n4. **格式合规**:\n   - 正文是否在 8 页限制内？\n   - 匿名是否合规（无作者信息、无去匿名化线索）？\n   - Limitations section 是否存在？\n\n请按 Strengths / Weaknesses / Questions / Missing References / Overall Assessment 结构输出审稿意见。每个 Weakness 标注严重程度（critical / warning / info）。给出 Overall Assessment 评分（用 EMNLP 2026 ARR 标准）和置信度（1-5）。"
             }
           },
-          "id": "event-002710"
+          "id": "event-002708"
         },
         {
-          "source_line": 2711,
+          "source_line": 2709,
           "timestamp": "2026-05-25T21:17:15.784900+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -216,10 +177,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 17854
           },
-          "id": "event-002711"
+          "id": "event-002709"
         },
         {
-          "source_line": 2712,
+          "source_line": 2710,
           "timestamp": "2026-05-25T21:17:15.885603+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -239,10 +200,10 @@
               "text": "## Round 1 审稿任务 — Reviewer 2（新颖性 + 完整性 + 写作质量）\n\n### 论文信息\n- **标题**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n- **论文路径**: `projects/simgate-modular-routing/docs/paper/main.tex`\n- **PDF 路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/submitted.pdf`\n\n### 目标 Venue\n- **EMNLP 2026**（通过 ARR 统一审稿）\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板，long paper 正文 8 页限制（不含 references、limitations、ethical considerations）\n- **匿名**: double-blind（论文不得包含作者信息，self-reference 需匿名化）\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n### 你的审查侧重：新颖性 + 完整性 + 写作质量\n\n重点评估以下方面：\n\n1. **新颖性与贡献定位**:\n   - 论文的核心贡献（counterfactual diagnostic framework + death dominance finding）对 EMNLP 社区的价值如何？\n   - 这是 Conference 级别还是 Findings 级别的贡献？\n   - 核心发现（death avoidance dominates routing）是否存在 triviality 风险——给定 deterministic strategy 有 oracle access，这个结论是否不够非直觉？\n   - 与 concurrent work（CogRouter, ARES, MTRouter, Budget-Aware Routing）的差异化定位是否清晰？\n\n2. **Related Work 覆盖**:\n   - Tool-augmented agents、adaptive routing、counterfactual methods、safe RL 四个方向的覆盖是否全面？\n   - 是否遗漏重要的相关工作？特别关注：risk-sensitive RL / CVaR optimization、agent safety evaluation、early exit / adaptive computation\n   - 与最近的 agent routing 工作的对比是否充分？\n\n3. **写作质量**:\n   - Abstract 是否在 200 词以内？信息密度是否合理？\n   - Introduction 的叙事逻辑是否清晰？是否有效建立了研究动机？\n   - Discussion 的深度是否足够？是否讨论了核心发现的条件和边界？\n   - 各章节之间是否有重复内容？\n   - 术语使用是否一致（特别是 \"counterfactual\"、\"deterministic\"、\"computation mode\" 等关键术语）？\n\n4. **论证完整性**:\n   - 核心 claim 是否在正文中得到充分支撑，还是过度依赖 Appendix？\n   - Appendix 数量和正文-Appendix 信息分配是否合理？\n   - Limitations section 是否存在且覆盖关键局限？是否符合 EMNLP 2026 要求（mandatory, 放在正文中，只需要覆盖 3 个点左右，不需要过长）？\n   - Conclusion 是否恰当总结贡献且不过度 claim？\n\n请按 Strengths / Weaknesses / Questions / Missing References / Overall Assessment 结构输出审稿意见。每个 Weakness 标注严重程度（critical / warning / info）。给出 Overall Assessment 评分（用 EMNLP 2026 ARR 标准）和置信度（1-5）。"
             }
           },
-          "id": "event-002712"
+          "id": "event-002710"
         },
         {
-          "source_line": 2713,
+          "source_line": 2711,
           "timestamp": "2026-05-25T21:17:17.196471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -257,10 +218,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1310
           },
-          "id": "event-002713"
+          "id": "event-002711"
         },
         {
-          "source_line": 2714,
+          "source_line": 2712,
           "timestamp": "2026-05-25T21:17:30.219449+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -273,7 +234,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002714"
+          "id": "event-002712"
         }
       ]
     },
@@ -281,7 +242,7 @@
       "number": 224,
       "messages": [
         {
-          "source_line": 2715,
+          "source_line": 2713,
           "timestamp": "2026-05-25T21:23:11.756299+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -295,10 +256,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002715"
+          "id": "event-002713"
         },
         {
-          "source_line": 2716,
+          "source_line": 2714,
           "timestamp": "2026-05-25T21:23:24.667379+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -311,7 +272,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002716"
+          "id": "event-002714"
         }
       ]
     },
@@ -319,7 +280,7 @@
       "number": 225,
       "messages": [
         {
-          "source_line": 2717,
+          "source_line": 2715,
           "timestamp": "2026-05-25T21:23:28.911894+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -333,10 +294,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002717"
+          "id": "event-002715"
         },
         {
-          "source_line": 2718,
+          "source_line": 2716,
           "timestamp": "2026-05-25T21:23:36.443569+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -349,7 +310,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002718"
+          "id": "event-002716"
         }
       ]
     },
@@ -357,7 +318,7 @@
       "number": 226,
       "messages": [
         {
-          "source_line": 2719,
+          "source_line": 2717,
           "timestamp": "2026-05-25T21:24:21.872625+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -371,10 +332,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002719"
+          "id": "event-002717"
         },
         {
-          "source_line": 2720,
+          "source_line": 2718,
           "timestamp": "2026-05-25T21:24:51.321645+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -394,10 +355,10 @@
               "text": "## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验有效性）\n\n### 论文信息\n- **标题**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n- **论文路径**: `projects/simgate-modular-routing/docs/paper/main.tex`\n- **PDF 路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/submitted.pdf`\n\n### 目标 Venue\n- **EMNLP 2026**（通过 ARR 统一审稿）\n- **截止日期**: 2026-05-25\n- **格式**: ACL 模板，long paper 正文 8 页限制（不含 references、limitations、ethical considerations）\n- **匿名**: double-blind（论文不得包含作者信息，self-reference 需匿名化）\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n### 你的审查侧重：方法严谨性 + 实验有效性\n\n重点评估以下方面：\n\n1. **方法论**:\n   - DAF（Death Avoidance Factor）公式的推导是否严谨？分解假设是否成立？\n   - Episode-level counterfactual labeling 的设计是否合理？是否存在 circularity？\n   - DAF 对 penalty P 的单调依赖——论文如何处理这一问题？是否充分？\n   - \"Counterfactual\" 术语的使用是否与因果推断文献一致？\n\n2. **统计检验**:\n   - Bootstrap CI 的使用是否恰当？K=11 cluster 下的推断可靠性如何？\n   - 样本量（245 episodes, per-task n=20-40）是否足够支撑结论？\n   - 多重比较问题是否被处理？\n   - Cross-model 一致性的统计意义如何评估？\n\n3. **实验设计**:\n   - 11/30 task types 选择是否引入 selection bias？Anti-cherry-picking analysis 是否充分？\n   - Deterministic strategy 的 oracle privilege 是否使 death avoidance finding 接近 tautology？\n   - Cross-environment probes（MATH, ALFWorld）的深度和覆盖是否足够？\n   - Agent improvement baselines（Retry, Reflexion, 72B scaling）的设计是否公平？\n   - Router training 的 negative result 是否被充分论证？\n\n4. **格式合规**:\n   - 正文是否在 8 页限制内？\n   - 匿名是否合规（无作者信息、无去匿名化线索）？\n   - Limitations section 是否存在？\n\n请按 Strengths / Weaknesses / Questions / Missing References / Overall Assessment 结构输出审稿意见。每个 Weakness 标注严重程度（critical / warning / info）。给出 Overall Assessment 评分（用 EMNLP 2026 ARR 标准）和置信度（1-5）。"
             }
           },
-          "id": "event-002720"
+          "id": "event-002718"
         },
         {
-          "source_line": 2721,
+          "source_line": 2719,
           "timestamp": "2026-05-25T21:24:55.094494+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -412,10 +373,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 3772
           },
-          "id": "event-002721"
+          "id": "event-002719"
         },
         {
-          "source_line": 2722,
+          "source_line": 2720,
           "timestamp": "2026-05-25T21:24:58.404374+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -428,7 +389,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002722"
+          "id": "event-002720"
         }
       ]
     },
@@ -436,7 +397,7 @@
       "number": 227,
       "messages": [
         {
-          "source_line": 2723,
+          "source_line": 2721,
           "timestamp": "2026-05-25T21:30:37.113346+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -450,10 +411,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002723"
+          "id": "event-002721"
         },
         {
-          "source_line": 2724,
+          "source_line": 2722,
           "timestamp": "2026-05-25T21:31:21.684621+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -473,10 +434,10 @@
               "text": "## Step 2 — 交叉分享：Reviewer 1 的完整审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应每个 Weakness/Question：\n- **[AGREE]**：同意并简要说明理由\n- **[REBUT]**：反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n### Reviewer 1 评分\n**Overall**: 3.5 (Borderline Conference), Confidence 4/5\n**Soundness 3/5, Excitement 3.5/5, Reproducibility 4/5**\n\n### Reviewer 1 Strengths\nS1. \"先诊断再路由\"范式具有方法论价值。\nS2. 实验设计的 paired structure 干净。\nS3. 诚实报告 negative result。\nS4. Appendix 的分析深度令人印象深刻。\nS5. Practitioner decision framework（Table 6, App R）有实际价值。\n\n### Reviewer 1 Must-Fix (Critical)\n\n**W1** [critical] DAF 对 penalty P 的单调机械依赖——核心发现缺乏参数无关的稳健性\n- DAF = δP/(δP + Δ_nd)。P 从 0→500 时 DAF 从 7.4%→97.9%。P=0 时 DAF 仅 7.4%。标题中 \"dominant\" 是在特定 P 值下的结论。\n- 建议：正文承认 P-dependence；提出 P-invariant 替代指标（如 ΔDR=28.7pp）；重新框架为 \"death asymmetry 是最大的 routing-relevant 信号组件\"。\n\n**W2** [critical] Deterministic strategy 的 oracle 特权使 death avoidance 发现接近 tautology\n- Deterministic strategy 通过 privileged env access 直接读取 simulator state，death rate 16.3% vs internal 42.9%。\"routing signal 主要来自 death asymmetry\" 部分等价于 \"oracle access 帮助避免 death\"。\n- 建议：增加 non-oracle deterministic baseline 分离 oracle effect；或论证为什么 practitioners 仍在构建复杂 router。\n\n**W3** [critical] K=11 cluster bootstrap 的统计推断可靠性不足\n- K=11 远低于推荐的 K≥20-50。未应用多重比较校正。Appendix D 的 sign test/permutation test 在 K=11 下分辨力有限。\n- 建议：扩大 K；报告 permutation-based CI；讨论多重比较。\n\n### Reviewer 1 Should-Fix (Warning)\n\n**W4** [warning] \"Counterfactual\" 术语使用与因果推断文献不完全一致——更接近 paired comparison / crossover design。\n**W5** [warning] Cross-environment probes 只验证了极端情况（全有/全无 death），缺乏中间验证。\n**W6** [warning] Router 负面结果可能反映训练不足而非信号缺失（LoRA rank=8, 245 episodes）。\n**W7** [warning] Anti-cherry-picking analysis 的盲区：如果全部 30 tasks 都 death-dominated，问题在 ScienceWorld 本身。\n\n### Reviewer 1 Minor\n\nW8. Spearman ρ=0.586 vs Pearson r=0.97，r 可能受极端值驱动。\nW9. Eq.(4) 近似缺 worst-case bound。\nW10. Abstract \"708-scale\" 疑为排版错误。\n\n### Reviewer 1 Questions\n\nQ1. 如果用 ΔDR 本身作为 routing signal 度量（P-invariant），核心结论是否改变？\nQ2. 是否尝试过 non-oracle deterministic baseline？\nQ3. 请澄清 Table 12 和 §4.5 两个 evaluation protocol 的区别。\nQ4. 如何判断 P=100 不是 arbitrarily high value？\n\n### Reviewer 1 Missing References\n- Uesato et al., 2022 (process/outcome-based feedback)\n- Lightman et al., 2023 (process reward models)\n- Snell et al., 2024 (scaling test-time compute)\n\n---\n\n请对以上每个 W1-W10 和 Q1-Q4 逐条回应 [AGREE] 或 [REBUT]。"
             }
           },
-          "id": "event-002724"
+          "id": "event-002722"
         },
         {
-          "source_line": 2725,
+          "source_line": 2723,
           "timestamp": "2026-05-25T21:31:46.546480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -491,10 +452,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 24861
           },
-          "id": "event-002725"
+          "id": "event-002723"
         },
         {
-          "source_line": 2726,
+          "source_line": 2724,
           "timestamp": "2026-05-25T21:31:46.697573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -514,10 +475,10 @@
               "text": "## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见\n\n以下是 Reviewer 2 的完整审稿原文。请逐条回应每个 Weakness/Question：\n- **[AGREE]**：同意并简要说明理由\n- **[REBUT]**：反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n### Reviewer 2 评分\n**Overall**: 3.0 (Findings), Confidence 4/5\n**Soundness 4/5, Excitement 2/5, Reproducibility 4/5**\n\n### Reviewer 2 Strengths\nS1. 框架设计简洁而有力（DAF 定义, Algorithm 1）。\nS2. 统计验证极其充分（Bootstrap CI, LOO, seed robustness, correlation robustness）。\nS3. Practitioner Decision Framework（Table 6, Appendix R）有实际应用价值。\nS4. 写作质量整体优秀，Abstract ~170 词，叙事逻辑流畅。\nS5. Double-blind 合规，格式合规。\n\n### Reviewer 2 Must-Fix (Critical)\n\n**N1** [critical] 核心发现的 Triviality 风险未充分回应\n- Deterministic strategy 有 privileged env feedback（§3.1），internal 仅靠 chain-of-thought。death asymmetry 主导路由信号在很大程度上是实验设计的结构性后果。\n- DAF 在 P=0 时为 0，P=100 时为 90.4%——\"death dominance\" 部分是惩罚参数的函数。\n- 建议：正面论证非 triviality；增加 graded failure 环境分析；从 \"discover death dominance\" 转向 \"provide framework that quantifies it\"。\n\n**N2** [critical] Cross-Environment Probes 过于初步\n- MATH 仅 N=795 的 label 分布，ALFWorld 仅 135 games，两者未做与 ScienceWorld 同等深度的分解。\n- MATH 的 \"no routing signal\" 可能因 deterministic strategy 设计不当。\n- 建议：ALFWorld 做完整 DAF 分解；讨论 MATH deterministic strategy 合理性；降低泛化性 claim。\n\n### Reviewer 2 Should-Fix (Warning)\n\n**W1** [warning] 附录体量异常（14 页/22 节），正文-附录信息分配需重新审视。关键分析（penalty sensitivity App K, failure mode App N, grounding ablation App O）被放入附录。\n**W2** [warning] 与 Concurrent Work 差异化定位不够锐利——仅用一句话概括差异。\n**W3** [warning] \"Counterfactual\" 术语使用范围可进一步澄清——更接近 paired controlled comparison。\n**W4** [warning] Router Training（§4.6）结论跳跃——router 表现差可能有多种原因（特征不够、数据不足、容量不够）。\n\n### Reviewer 2 Minor\n- Figure 1 可读性：78.9% 标注与 DAF=90.4% 关系未在图注说明。\n- Table 2 D/I/N 列标题不够直观。\n- §4.3 Agent Improvement 未报告 intervention 对 DAF 本身的影响。\n- Appendix V AI 使用声明合规。\n\n### Reviewer 2 Missing References\n1. Risk-sensitive RL / CVaR：Tamar et al. (2015), Dabney et al. (2018)\n2. Adaptive computation / early exit：Universal Transformers (Dehghani 2019), CALM (Schuster 2022)\n3. Agent failure taxonomy：Kambhampati et al. (2024), Valmeekam et al. (2023)\n\n---\n\n请对以上每个 N1-N2、W1-W4 和 Minor/Missing References 逐条回应 [AGREE] 或 [REBUT]。"
             }
           },
-          "id": "event-002726"
+          "id": "event-002724"
         },
         {
-          "source_line": 2727,
+          "source_line": 2725,
           "timestamp": "2026-05-25T21:31:48.028217+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -532,10 +493,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1330
           },
-          "id": "event-002727"
+          "id": "event-002725"
         },
         {
-          "source_line": 2728,
+          "source_line": 2726,
           "timestamp": "2026-05-25T21:31:50.981440+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -548,7 +509,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002728"
+          "id": "event-002726"
         }
       ]
     },
@@ -556,7 +517,7 @@
       "number": 228,
       "messages": [
         {
-          "source_line": 2729,
+          "source_line": 2727,
           "timestamp": "2026-05-25T21:31:53.477764+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -570,10 +531,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002729"
+          "id": "event-002727"
         },
         {
-          "source_line": 2730,
+          "source_line": 2728,
           "timestamp": "2026-05-25T21:31:57.828667+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -586,7 +547,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002730"
+          "id": "event-002728"
         }
       ]
     },
@@ -594,7 +555,7 @@
       "number": 229,
       "messages": [
         {
-          "source_line": 2731,
+          "source_line": 2729,
           "timestamp": "2026-05-25T21:33:21.842611+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -608,10 +569,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002731"
+          "id": "event-002729"
         },
         {
-          "source_line": 2732,
+          "source_line": 2730,
           "timestamp": "2026-05-25T21:34:09.933618+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -629,10 +590,10 @@
               "max_results": "6"
             }
           },
-          "id": "event-002732"
+          "id": "event-002730"
         },
         {
-          "source_line": 2733,
+          "source_line": 2731,
           "timestamp": "2026-05-25T21:34:09.986132+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -647,10 +608,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 52
           },
-          "id": "event-002733"
+          "id": "event-002731"
         },
         {
-          "source_line": 2734,
+          "source_line": 2732,
           "timestamp": "2026-05-25T21:34:12.195183+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -668,10 +629,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-002734"
+          "id": "event-002732"
         },
         {
-          "source_line": 2735,
+          "source_line": 2733,
           "timestamp": "2026-05-25T21:34:12.245831+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -686,10 +647,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002735"
+          "id": "event-002733"
         },
         {
-          "source_line": 2736,
+          "source_line": 2734,
           "timestamp": "2026-05-25T21:34:15.257939+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -707,10 +668,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-002736"
+          "id": "event-002734"
         },
         {
-          "source_line": 2737,
+          "source_line": 2735,
           "timestamp": "2026-05-25T21:34:15.308607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -725,10 +686,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002737"
+          "id": "event-002735"
         },
         {
-          "source_line": 2738,
+          "source_line": 2736,
           "timestamp": "2026-05-25T21:34:17.367128+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -746,10 +707,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-002738"
+          "id": "event-002736"
         },
         {
-          "source_line": 2739,
+          "source_line": 2737,
           "timestamp": "2026-05-25T21:34:17.467888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -764,10 +725,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002739"
+          "id": "event-002737"
         },
         {
-          "source_line": 2740,
+          "source_line": 2738,
           "timestamp": "2026-05-25T21:34:26.404715+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -785,10 +746,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-002740"
+          "id": "event-002738"
         },
         {
-          "source_line": 2741,
+          "source_line": 2739,
           "timestamp": "2026-05-25T21:34:26.405124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -803,10 +764,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002741"
+          "id": "event-002739"
         },
         {
-          "source_line": 2742,
+          "source_line": 2740,
           "timestamp": "2026-05-25T21:34:26.806690+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -824,10 +785,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-002742"
+          "id": "event-002740"
         },
         {
-          "source_line": 2743,
+          "source_line": 2741,
           "timestamp": "2026-05-25T21:34:26.857358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -842,10 +803,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002743"
+          "id": "event-002741"
         },
         {
-          "source_line": 2744,
+          "source_line": 2742,
           "timestamp": "2026-05-25T21:34:35.541967+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -862,10 +823,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002744"
+          "id": "event-002742"
         },
         {
-          "source_line": 2745,
+          "source_line": 2743,
           "timestamp": "2026-05-25T21:34:35.542466+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -882,10 +843,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002745"
+          "id": "event-002743"
         },
         {
-          "source_line": 2746,
+          "source_line": 2744,
           "timestamp": "2026-05-25T21:34:35.593269+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -900,10 +861,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 51
           },
-          "id": "event-002746"
+          "id": "event-002744"
         },
         {
-          "source_line": 2747,
+          "source_line": 2745,
           "timestamp": "2026-05-25T21:34:35.593888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -918,10 +879,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 51
           },
-          "id": "event-002747"
+          "id": "event-002745"
         },
         {
-          "source_line": 2748,
+          "source_line": 2746,
           "timestamp": "2026-05-25T21:35:00.050223+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -934,7 +895,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002748"
+          "id": "event-002746"
         }
       ]
     },
@@ -942,7 +903,7 @@
       "number": 230,
       "messages": [
         {
-          "source_line": 2749,
+          "source_line": 2747,
           "timestamp": "2026-05-25T21:35:01.345826+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -956,10 +917,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002749"
+          "id": "event-002747"
         },
         {
-          "source_line": 2750,
+          "source_line": 2748,
           "timestamp": "2026-05-25T21:35:22.730944+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -977,10 +938,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002750"
+          "id": "event-002748"
         },
         {
-          "source_line": 2751,
+          "source_line": 2749,
           "timestamp": "2026-05-25T21:35:22.781665+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -995,10 +956,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002751"
+          "id": "event-002749"
         },
         {
-          "source_line": 2752,
+          "source_line": 2750,
           "timestamp": "2026-05-25T21:35:25.844759+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1016,10 +977,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-002752"
+          "id": "event-002750"
         },
         {
-          "source_line": 2753,
+          "source_line": 2751,
           "timestamp": "2026-05-25T21:35:25.896592+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1034,10 +995,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-002753"
+          "id": "event-002751"
         },
         {
-          "source_line": 2754,
+          "source_line": 2752,
           "timestamp": "2026-05-25T21:35:32.273031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1054,10 +1015,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-002754"
+          "id": "event-002752"
         },
         {
-          "source_line": 2755,
+          "source_line": 2753,
           "timestamp": "2026-05-25T21:35:33.278490+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1072,10 +1033,10 @@
             "tool": "Read",
             "elapsed_ms": 1005
           },
-          "id": "event-002755"
+          "id": "event-002753"
         },
         {
-          "source_line": 2756,
+          "source_line": 2754,
           "timestamp": "2026-05-25T21:35:33.280541+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1092,10 +1053,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002756"
+          "id": "event-002754"
         },
         {
-          "source_line": 2757,
+          "source_line": 2755,
           "timestamp": "2026-05-25T21:35:33.331712+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1110,10 +1071,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002757"
+          "id": "event-002755"
         },
         {
-          "source_line": 2758,
+          "source_line": 2756,
           "timestamp": "2026-05-25T21:46:24.943328+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1131,10 +1092,10 @@
               "issues_yaml": "# Round 32 Review Issues — Fresh review (2 reviewers: R1 方法严谨性+实验设计, R2 新颖性+完整性+写作)\n# Updated after cross-response convergence. Prior rounds' resolved/wont_fix issues carried over.\n\n# =============================================\n# Carried-over resolved issues (from prior rounds)\n# =============================================\n\n- id: \"R13-W1\"\n  summary: \"正文篇幅严重不足 long paper 要求\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"正文已扩展至 8 页\"\n  resolution_round: 14\n\n- id: \"R13-W2\"\n  summary: \"Router 训练实验存在多个 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"1.7B dip 有可检验假说，augmentation 术语修正，N 统一\"\n  resolution_round: 15\n\n- id: \"R13-W3\"\n  summary: \"Episode-level label → step-level training 的 mislabeling 未被量化\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"Limitations 和 Appendix B 已充分量化\"\n  resolution_round: 14\n\n- id: \"R13-W4\"\n  summary: \"SCI 方法贡献与实际使用不成比例\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"SCI 已降级到 Appendix A\"\n  resolution_round: 14\n\n- id: \"R13-W7\"\n  summary: \"Router negative results 解释不完整\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Router 实验定位为 diagnostic probe\"\n  resolution_round: 15\n\n- id: \"R13-m2\"\n  summary: \"Figure 3 仅含 ScienceWorld 和 MATH，缺少 ALFWorld\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 16\n  resolution: \"Figure 3 已移除，数据在 Table 2 和正文中完整呈现\"\n  resolution_round: 16\n\n- id: \"R13-m3\"\n  summary: \"Reference 格式不统一 + orphan entries\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Orphan entries 清理完毕，格式统一\"\n  resolution_round: 15\n\n- id: \"R14-W2\"\n  summary: \"Concurrent work 讨论过于压缩\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Concurrent work 展开讨论，各有明确 positioning\"\n  resolution_round: 15\n\n- id: \"R14-W3\"\n  summary: \"Selection bias from prescreening 11/30 task types\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Anti-cherry-picking analysis 到位\"\n  resolution_round: 15\n\n- id: \"R14-M1\"\n  summary: \"Table 2 caption 'Single seed' 需澄清\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Caption 已修正\"\n  resolution_round: 15\n\n- id: \"R14-M2\"\n  summary: \"Limitations section 组织松散\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"三个 paragraph headers 结构清晰\"\n  resolution_round: 15\n\n- id: \"R14-M3\"\n  summary: \"Appendix F minority-class diversity caveat 应在正文提及\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 16\n  resolution: \"§3.7 和 Appendix F 均明确提及\"\n  resolution_round: 16\n\n- id: \"R13-N2\"\n  summary: \"统计推断可靠性不足：cluster bootstrap K=11 CI 反常收窄\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Wild cluster CI 修正且降级为 sensitivity analysis；non-clustered bootstrap 为主推断\"\n  resolution_round: 24\n\n- id: \"R13-W5\"\n  summary: \"Abstract 数字堆砌\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 30\n  resolution: \"R30 移除 Cohen's d，精简至 4 个统计量，168 词\"\n  resolution_round: 30\n\n- id: \"R13-W6\"\n  summary: \"Safe RL 和 LLM agent failure mode 相关引用覆盖不足\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Ng 1999, Northcutt 2021, DivideMix 已添加\"\n  resolution_round: 24\n\n- id: \"R14-W1\"\n  summary: \"核心发现存在 obvious-in-hindsight triviality 风险\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 24\n  resolution: \"§5 Non-triviality 段有效回应 novelty 质疑\"\n  resolution_round: 24\n\n- id: \"R15-N1\"\n  summary: \"'Structural' claim 推断基础不足\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Discussion 已弱化为 'robust under tested interventions'\"\n  resolution_round: 16\n\n- id: \"R15-N3\"\n  summary: \"Contribution 1 'any environment' generalizability claim 过宽\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Contribution 1 措辞已收窄\"\n  resolution_round: 16\n\n- id: \"R15-W1\"\n  summary: \"§3.7 Augmentation scaling 措辞易误读为 data scaling\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"§3.7 明确标注为 paraphrase-based augmentation\"\n  resolution_round: 16\n\n- id: \"R15-W3\"\n  summary: \"72B 缺完整 DAF decomposition\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"72B DAF decomposition 完整呈现\"\n  resolution_round: 16\n\n- id: \"R17-W4\"\n  summary: \"Related Work 第一段论文罗列\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 17\n  resolution: \"§4 已按功能类别重组\"\n  resolution_round: 19\n\n- id: \"R17-W1\"\n  summary: \"Pure-strategy 设计高估 death asymmetry 对 realistic routing 的影响\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"Limitations 新增 pure-strategy upper bound 段落\"\n  resolution_round: 24\n\n- id: \"R17-W3\"\n  summary: \"Data scaling 'structural failure' 措辞\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"术语全局修正为 text augmentation\"\n  resolution_round: 24\n\n- id: \"R17-N2\"\n  summary: \"penalty-independent 表述误导\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"P-invariance 适用范围明确量化\"\n  resolution_round: 24\n\n- id: \"R18-N1\"\n  summary: \"Episode→step granularity gap 削弱框架实用性\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"4B router 结论 qualified；完整统计处理\"\n  resolution_round: 24\n\n- id: \"R18-W1\"\n  summary: \"Router 实验 confounds\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Router claim 从绝对否定改为有条件否定\"\n  resolution_round: 24\n\n- id: \"R18-W2\"\n  summary: \"Agent improvement 实验统计功效不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"措辞软化 + effect size detection threshold 完整报告\"\n  resolution_round: 24\n\n- id: \"R20-N2\"\n  summary: \"4B router episode-level 59.0% 与 non-learnability 结论矛盾\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R18-N1 解决\"\n  resolution_round: 24\n\n- id: \"R20-N3\"\n  summary: \"'Structurally determined' overclaim\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"'structurally determined' → 'empirically dominated'\"\n  resolution_round: 24\n\n- id: \"R20-W2\"\n  summary: \"Per-task n=20 不显著问题\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Per-task 结果标注为 exploratory\"\n  resolution_round: 24\n\n- id: \"R17-M1\"\n  summary: \"Orphan bib entries + Webb 年份\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"清理完毕\"\n  resolution_round: 24\n\n- id: \"R19-M2\"\n  summary: \"Missing references: Altman, Mihatsch, Natarajan\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"所有缺失引用已补充\"\n  resolution_round: 24\n\n- id: \"R18-M3\"\n  summary: \"Appendix 缺索引\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Appendix Overview 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M4\"\n  summary: \"§3.1 术语首次出现未定义\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"术语已修正并定义\"\n  resolution_round: 24\n\n- id: \"R18-M5\"\n  summary: \"Appendix N failure categories 缺 agreement 声明\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Single annotator caveat 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M2\"\n  summary: \"100% internal deaths 来自 single action pattern\"\n  category: framing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"§5 已讨论\"\n  resolution_round: 24\n\n- id: \"R20-M1\"\n  summary: \"Orphan bib entries\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R17-M1 解决\"\n  resolution_round: 24\n\n- id: \"R15-N2\"\n  summary: \"跨环境模态定义不一致\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"交叉引用指向 §2.1 operationalization\"\n  resolution_round: 24\n\n- id: \"R15-W2\"\n  summary: \"Oracle margin vs mislabeling 逻辑层级\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"Appendix B 加 circularity caveat\"\n  resolution_round: 24\n\n- id: \"R20-W1\"\n  summary: \"Noisy label learning 讨论深度不足\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"引用已补全；8 页限制无法展开\"\n  resolution_round: 24\n\n- id: \"R18-M1\"\n  summary: \"'modality' 术语歧义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"修正为 computation modes\"\n  resolution_round: 24\n\n- id: \"R17-N1\"\n  summary: \"78.9% label fraction binary per-task structure\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"§3.1 binary structure 讨论充分\"\n  resolution_round: 24\n\n- id: \"R16-W1\"\n  summary: \"72B vs 7B DAF 对比基于不同 task population\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"72B decomposition 完整报告\"\n  resolution_round: 24\n\n- id: \"R16-W2\"\n  summary: \"Router 1.7B non-monotonic dip\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"被 R20-N2 取代并解决\"\n  resolution_round: 24\n\n- id: \"R16-W3\"\n  summary: \"signal_reversal.pdf 未被引用\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"Appendix L 已引用\"\n  resolution_round: 24\n\n- id: \"R19-W1\"\n  summary: \"缺 penalty magnitude 实验验证\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"P-invariance by design 论证覆盖\"\n  resolution_round: 24\n\n- id: \"R19-N1\"\n  summary: \"Framework vs finding 定位不清\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 27\n  resolution: \"统一为 empirical analysis + reusable diagnostic methodology\"\n  resolution_round: 27\n\n- id: \"R26-N3\"\n  summary: \"Strawman framing\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"R27 验收确认修复完好\"\n  resolution_round: 27\n\n- id: \"R28-M2\"\n  summary: \"Pages 7-8 纯文本无 display item\"\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 28\n  last_seen_round: 31\n  resolution: \"8 页限制下无法插入 display item\"\n  resolution_round: 28\n  mentions:\n    - round: 31\n      source: \"Visual Check\"\n      note: \"R31 视觉审查再次标记 pages 7-8 纯文本无 figure/table，建议加 summary bar chart\"\n\n- id: \"R28-M4\"\n  summary: \"Figure 2 仅 11 点无 task name label\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 28\n  last_seen_round: 29\n  resolution: \"Figure 2 已缩至 0.38\\\\textwidth\"\n  resolution_round: 28\n\n- id: \"R20-N1\"\n  summary: \"正文超出 8 页限制\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 30\n  resolution: \"R30 确认正文 ≤8 页\"\n  resolution_round: 30\n\n- id: \"R29-N1\"\n  summary: \"正文超出 8 页限制（复发）\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 30\n  resolution: \"R30 确认正文 ≤8 页\"\n  resolution_round: 30\n\n- id: \"R27-N2\"\n  summary: \"DAF=90.4% framing 过度突出\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 30\n  resolution: \"R30: Intro 重构——降低 DAF 权重，突出 oracle degeneracy 96.3%、72B 5 int-pref、Reflexion DAF>100%。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R27-N3\"\n  summary: \"Deterministic strategy 实为 oracle access，跨环境含义不统一\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 30\n  resolution: \"R30: §2.1 加 umbrella term（privileged-information strategy）；Discussion 加 Δ_nd=2.84 oracle privilege 回应 + ALFWorld DAF=0% 对照。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R27-N4\"\n  summary: \"环境覆盖过窄\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 15\n  last_seen_round: 32\n  resolution: \"结构性限制。Limitations/hedging 已到位。Conclusion 加 future work。\"\n  resolution_round: 30\n  mentions:\n    - round: 31\n      source: \"R1-W1, R2-W3\"\n      note: \"R31 fresh review 再次将单一主环境标记为 critical——两位 Reviewer 共识认为需要至少第二个 death-dominated 环境验证\"\n    - round: 32\n      source: \"R1-W5, R2-N2\"\n      note: \"R32 fresh review 两位 Reviewer 再次共识 [AGREE x2]：cross-env probes 仅覆盖极端（ScienceWorld/MATH/ALFWorld），缺中间验证（DAF 30-60%）\"\n\n- id: \"R27-W1\"\n  summary: \"Router negative result framing\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 30\n  resolution: \"R30: §3.5 title → 'Inconclusive Results'，正文 'inconclusive under current data regime'。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R27-W2\"\n  summary: \"Actionability 有限，Decision Framework 被埋\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 25\n  last_seen_round: 30\n  resolution: \"R30: Discussion 合并 oracle degeneracy 96.3% + Decision Framework 摘要 + action-level filter。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R27-W4\"\n  summary: \"Excluded tasks prescreening 样本量小\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 32\n  resolution: \"Anti-cherry-picking analysis 已到位。全 30 task types 列为 future work。\"\n  resolution_round: 30\n  mentions:\n    - round: 32\n      source: \"R1-W7 (R2 partial rebut)\"\n      note: \"R32 R1 质疑全 30 tasks 可能都是 death-dominated。R2 反驳 cherry-picking 指控（排除子集 ΔDR 更高）但同意 scope 限制。Director 判断：cherry-picking 不成立，但 scope 限制真实——回归 R27-N4。\"\n\n- id: \"R27-W5\"\n  summary: \"K=11 cluster bootstrap CI\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 30\n  resolution: \"R2 rebut 有效。论文已自我限定。\"\n  resolution_round: 30\n\n- id: \"R28-N1\"\n  summary: \"Episode-level vs step-level 粒度失配\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R29-R30 均未再提及，prior fix 有效\"\n  resolution_round: 30\n\n- id: \"R28-W1\"\n  summary: \"72B scaling 仅做 probe\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R30: 降级 'preliminary probe' + DAF CI [86.1%, 97.9%] + 修正 5 int-pref (非 0)。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R28-W2\"\n  summary: \"'Death' 术语限制 generality\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R29-R30 均未再提及\"\n  resolution_round: 30\n\n- id: \"R28-M1\"\n  summary: \"Missing references: hallucination detection, early exit\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R30: SelfCheckGPT + Kadavath 2022 + DeeBERT + PABEE 已加入 §4。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R28-M3\"\n  summary: \"Introduction/Discussion/Conclusion 重复度高\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R30: Discussion 压缩 3→2 段去重；Conclusion 扩展含 future work 且无与 Intro 重复。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R28-M5\"\n  summary: \"Related Work 缺 non-agent adaptive computation\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 28\n  last_seen_round: 30\n  resolution: \"R30: DeeBERT + PABEE early exit positioning 句已加入 §4。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R29-W1\"\n  summary: \"Non-death 21.1% routing signal 来源未分析\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"R30: Appendix U 加系统分析（三分类 + Table）+ §3.1 摘要句。诚实承认 20 个 labels 全部来自 find-non-living-thing。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R29-W2\"\n  summary: \"单一 death mechanism (focus on) 限制 generalizability\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"R30: Limitations 加 grounding ablation 定量估算 (+26.6pp→~+8pp) + future work。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R29-M1\"\n  summary: \"Missing references: FrugalGPT, AutoMix 等\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 30\n  resolution: \"R29 已添加。R30 确认存在。\"\n  resolution_round: 30\n\n- id: \"R16-N1\"\n  summary: \"核心发现 novelty/excitement deficit\"\n  category: framing\n  severity: critical\n  status: wont_fix\n  first_raised_round: 16\n  last_seen_round: 32\n  resolution: \"结构性——单一环境 + diagnostic contribution type。Findings 定位合理。\"\n  resolution_round: 30\n  mentions:\n    - round: 31\n      source: \"R2-W3\"\n      note: \"R31 再次标记 contribution type 对 Main Conference 偏弱，两位 Reviewer 共识 3.0 Findings\"\n    - round: 32\n      source: \"R1 Excitement 3.5/5, R2 Excitement 2/5\"\n      note: \"R32 两位 Reviewer 再次分歧：R1 认为诊断范式有方法论价值（3.5），R2 认为 oracle+P-dep 叠加后 novelty 受损严重（3.0）。Director 综合 3.0 Findings。\"\n\n- id: \"R30-W1\"\n  summary: \"'Deterministic' 术语跨环境含义不一致\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 30\n  resolution: \"§2.1 加 umbrella term 括号说明（privileged-information strategy + 三环境 operationalizations）。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R30-W2\"\n  summary: \"Abstract 数字过密，Cohen's d 不适合 abstract\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 30\n  resolution: \"移除 d=3.02，精简至 4 个统计量，168 词。Reviewer 验收 PASS。\"\n  resolution_round: 30\n\n- id: \"R30-W3\"\n  summary: \"Grounding ablation 后未重新收集 counterfactual 计算 DAF\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 30\n  last_seen_round: 32\n  resolution: \"DDL 前不可行。Limitations 加定量估算 (+26.6pp→~+8pp) + future work。\"\n  resolution_round: 30\n  mentions:\n    - round: 31\n      source: \"R1-Q5, R2-Q5\"\n      note: \"R31 两位 Reviewer 均追问 grounding ablation 后 DAF 是否仍成立\"\n    - round: 32\n      source: \"R1, R2\"\n      note: \"R32 两位 Reviewer 再次在 Questions 中提及。仍为结构性限制。\"\n\n# =============================================\n# R31 issues (from prior round, updated with R32 status)\n# =============================================\n\n- id: \"R31-N1\"\n  summary: \"单一主环境 + diagnostic-only 定位限制 Main Conference 级别\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W1, R2-W1, R2-W3\"\n      note: \"[AGREE x2] 两位 Reviewer 共识：核心实证发现仅在 ScienceWorld 验证，cross-env probes 反证了 generalizability，contribution type 更适合 Findings。映射到历史 R27-N4（环境覆盖过窄）和 R16-N1（novelty deficit），属结构性限制。\"\n    - round: 32\n      source: \"R1-W1/W2, R2-N1/N2\"\n      note: \"R32 两位 Reviewer 再次独立识别相同问题。交叉回应全部 [AGREE]。R1 补充 scope 问题：如果全部 30 tasks 都是 death-dominated，发现仅关于 ScienceWorld。\"\n\n- id: \"R31-N2\"\n  summary: \"Oracle privilege 使 death avoidance 发现接近 tautology\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W2\"\n      note: \"Deterministic 策略 = simulator forking（极强 oracle），death avoidance 本质上 = oracle prevents irreversible errors。真正非直觉的洞见是 Δ_nd≈2.84（non-death gap 极小），但论文将此作为 DAF 副产品而非核心发现呈现。映射到历史 R27-N3，R30 已加 umbrella term 和 Δ_nd 讨论，但 R31 fresh reviewer 认为仍不够突出。\"\n    - round: 32\n      source: \"R1-W2, R2-N1 cross-response\"\n      note: \"R32 [AGREE x2]。R2 补充：non-oracle deterministic baseline 是分离 oracle effect 与 strategy effect 的关键控制实验。如果 non-oracle det 的 death rate 接近 internal（~42.9%），则 death asymmetry 主要来自 oracle access。\"\n\n- id: \"R31-W1\"\n  summary: \"DAF 对 P 的单调依赖需更谨慎处理——headline 应用 label fraction\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W4, R2-W2\"\n      note: \"[AGREE x2] DAF=δP/(δP+Δ_nd) 随 P 单调递增是数学事实。论文已在 §2.4 承认并以 label fraction 为 primary，但 Abstract/Intro/Conclusion 仍多处突出 DAF=90.4%。建议进一步降低 DAF 在 headline 位置的权重。映射到历史 R27-N2（DAF framing 过度突出），R30 已部分修复。\"\n    - round: 32\n      source: \"R1-W1, R2-N1 cross-response\"\n      note: \"R32 [AGREE x2]。R2 补充数学论证：DAF 公式在 P→∞ 时 DAF→1 是数学必然而非经验发现。R1 建议 ΔDR=28.7pp 作为 P-invariant 替代指标，R2 同意。\"\n\n- id: \"R31-W2\"\n  summary: \"K=11 cluster bootstrap 推断——应以非参数检验为主\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W3\"\n      note: \"论文建议读者依赖非聚类 bootstrap CI 但同时承认 within-cluster correlation 存在——逻辑不自洽。建议将 permutation test / sign test 作为主要推断依据。映射到历史 R13-N2 和 R27-W5，prior rounds resolved 但 fresh reviewer 认为 messaging 仍有改进空间。\"\n    - round: 32\n      source: \"R2 cross-response [REBUT]\"\n      note: \"R2 反驳：论文核心推断使用 episode-level bootstrap（N=245），cluster bootstrap 仅为 sensitivity analysis。论文在 Appendix E 已主动承认 K=11 局限。补充统计检验（LOO, sign test, permutation p=0.002）支撑充分。Director 判断：R2 rebut 有效，维持 warning 非 critical。\"\n\n- id: \"R31-W3\"\n  summary: \"Episode→step 粒度错配限制框架实用性\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W5\"\n      note: \"框架产出 episode-level labels 但 routing 需 step-level 决策。88% uninformative steps。实用价值收窄为 sanity check。映射到历史 R18-N1 和 R28-N1，prior rounds resolved 但 R31 fresh reviewer 认为仍需更明确定位。\"\n    - round: 32\n      source: \"R1-W5, R2-N2\"\n      note: \"R32 交叉回应中 R1 和 R2 均认为 cross-env probes 过于初步，ALFWorld 缺完整 DAF 分解，episode→step gap 仍未充分解决。\"\n\n- id: \"R31-W4\"\n  summary: \"72B probe 缺 cross-model replication at scale\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-W6\"\n      note: \"7-9B 有三个模型族，但 72B 仅 Qwen2.5-72B 一个数据点。Intro 将 72B 与三个模型族并列可能高估 robustness。映射到历史 R28-W1，R30 已降级 'preliminary probe'。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 交叉回应中未被重点讨论，但 R1 在 W6 中再次提及 capacity scaling 不足。维持 warning。\"\n\n- id: \"R31-W5\"\n  summary: \"Appendix 过多（21 个, 15 页）正文依赖过重\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-W4\"\n      note: \"核心 claim 的支撑证据分散在 Appendix（K, M, Q, R），读者无法仅通过正文评估贡献。\"\n    - round: 32\n      source: \"R1 cross-response [AGREE]\"\n      note: \"R32 R1 同意。特别强调 Appendix K（P sensitivity）直接关系核心 claim 稳健性，应在正文讨论，而非藏在附录。\"\n\n- id: \"R31-W6\"\n  summary: \"Related Work 缺 risk-sensitive RL / CVaR 文献\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-W5\"\n      note: \"CVaR optimization（Chow 2015, Tamar 2015）直接处理 trajectory-level catastrophic risk，与 death avoidance 高度相关。§4 未讨论。\"\n    - round: 32\n      source: \"R1 cross-response [AGREE]\"\n      note: \"R1 同意 risk-sensitive RL 引用必要性。Dabney 2018 也应补充。Agent failure taxonomy（Kambhampati 2024, Valmeekam 2023）也获共识。\"\n\n- id: \"R31-W7\"\n  summary: \"'Counterfactual' 术语使用松散\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-W6\"\n      note: \"方法更接近 matched-seed A/B testing 而非 Pearl (2009) structural counterfactual。需要在 §2.1 明确定义。\"\n    - round: 32\n      source: \"R1 [AGREE], R2 [AGREE] cross-response\"\n      note: \"R32 [AGREE x2]。两位 Reviewer 共识：用法不算错误但与因果推断标准用法有偏差。建议 §3 开头加简短定位声明即可消除歧义。\"\n\n- id: \"R31-W8\"\n  summary: \"Discussion section 过薄（~0.5 page，仅 2 个话题）\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-W8\"\n      note: \"缺条件分析（when does death avoidance dominate?）和与 concurrent work 的对话。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 交叉回应中隐含：R2 建议 P/max_score 条件分析应在 Discussion 展开。\"\n\n- id: \"R31-M1\"\n  summary: \"Abstract 信息密度仍偏高\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-M1\"\n      note: \"前 2 句 6+ 数值。映射到历史 R13-W5（R30 resolved），fresh reviewer 仍感觉偏密。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 未在交叉回应中重点讨论。维持 info。\"\n\n- id: \"R31-M2\"\n  summary: \"Figure 1 配色偏素，Figure 2 axis label 偏小\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R2-M2, Visual Check\"\n      note: \"Figure 1 灰/米色为主缺对比度；Figure 2 legend 约 6-7pt 偏小。\"\n    - round: 32\n      source: \"Visual Check\"\n      note: \"R32 视觉审查再次确认 Figure 2 axis label ≤6pt，Figure 4 文字标签也偏小。\"\n\n- id: \"R31-M3\"\n  summary: \"RTX 5090 硬件可能泄露作者身份\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-M6\"\n      note: \"如果 RTX 5090 尚未公开发售，使用此硬件可能违反 double-blind。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 交叉回应中未讨论。维持 info。\"\n\n- id: \"R31-M4\"\n  summary: \"SCI 在正文仅出现一次，与 Method 中的显著度不匹配\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-M5\"\n      note: \"SCI 列为框架三大组件之一但正文只用了一次。映射到历史 R13-W4（已降级到 Appendix），但 R31 认为 Method §2 中仍 over-prominent。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 交叉回应中未讨论。维持 info。\"\n\n- id: \"R31-M5\"\n  summary: \"Limitations 章节偏长（~1.5 页, 5 段）\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-M1\"\n      note: \"内容全部是必要讨论，但对 ARR mandatory limitations 来说偏长。\"\n    - round: 32\n      source: \"cross-response\"\n      note: \"R32 交叉回应中未讨论。维持 info。\"\n\n- id: \"R31-M6\"\n  summary: \"Missing references: AgentGym, OSWorld, Trial-and-Error, CVaR\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 31\n  last_seen_round: 32\n  mentions:\n    - round: 31\n      source: \"R1-R1/R2/R3, R2-R1/R2\"\n      note: \"AgentGym (Xi 2024), OSWorld (Xie 2024), Trial-and-Error (Wang 2024), Chow 2015 CVaR, Tamar 2015 CVaR\"\n    - round: 32\n      source: \"R1, R2 cross-response\"\n      note: \"R32 交叉回应扩展缺失引用列表：+Uesato 2022 (process vs outcome), +Lightman 2023 (PRM), +Snell 2024 (scaling test-time compute), +Dabney 2018 (IQN), +Kambhampati 2024, +Valmeekam 2023 (agent failure taxonomy)。\"\n\n# =============================================\n# R32 新发现（交叉回应中首次出现或独立识别）\n# =============================================\n\n- id: \"R32-W1\"\n  summary: \"Router 训练负面结果过度推断——应区分 signal absence 与 learnability failure\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1-W6, R2-W4\"\n      note: \"[AGREE x2] LoRA rank=8, 245 episodes, Qwen2.5-7B 单一配置。Appendix P capacity scaling 显示 4B 时 episode-level accuracy 才勉强超过 random。R2 列出三个替代假设：特征表示不够、数据不足、评估天花板。结论应从 'no signal' 改为 'signal not learnable with this setup'。\"\n\n- id: \"R32-W2\"\n  summary: \"Spearman ρ=0.586 vs Pearson r=0.97 巨大差异未报告\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1-W8, R2 [AGREE]\"\n      note: \"正文 Figure 3 突出 r=0.97 ('near-perfect') 但 Appendix D 的 ρ=0.586 远低。Pearson r 对极端值敏感，K=11 中少数高 death rate 任务可能驱动膨胀。ρ=0.586 显著但远不能称为 near-perfect。正文应同时报告两个系数。\"\n\n- id: \"R32-M1\"\n  summary: \"'708-scale' 疑为排版错误（应为 '70B-scale'）\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1-W10, R2 [AGREE]\"\n      note: \"Abstract 'three model families (7B-708B) at 708-scale' 中最大模型为 Qwen2.5-72B。708 可能是 70B 或 70.8B 的排版错误。\"\n\n- id: \"R32-M2\"\n  summary: \"Table 2 D/I/N 列标题不直观\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1, R2 [AGREE]\"\n      note: \"需查 caption 才能理解 D/I/N 含义。建议改为 Det/Int/NoPref 或加表头脚注。\"\n\n- id: \"R32-M3\"\n  summary: \"§4.3 未报告 Retry/Reflexion intervention 对 DAF 的影响\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1 cross-response, R2 [AGREE]\"\n      note: \"Table 1 报告了 Retry (43.5%) 和 Reflexion (31.4%) 的 death rate，但未报告 DAF 是否同步变化。无论结果如何都有信息量——加强或暴露 death avoidance 作为 routing signal 的稳健性。\"\n\n- id: \"R32-M4\"\n  summary: \"Eq.(4) 近似缺 worst-case bound\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"R1-W9, R2 [AGREE]\"\n      note: \"残差 0.23（占 Δ_tot 的 0.8%）虽小，但正式给出 bound（如基于 death-conditional score 分布 range）会强化论证严谨性。\"\n\n- id: \"R32-M5\"\n  summary: \"Pages 5 和 7 display item 密度过高\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 32\n  last_seen_round: 32\n  mentions:\n    - round: 32\n      source: \"Visual Check\"\n      note: \"Page 5: 4 个 display items（Figure 3 + Figure 4 + Table 1 + Table 2）；Page 7: 3 个（Figure 5 + Figure 6 + Table 5）。连续形成图表密集带。建议将 Table 2 移至 page 6。\""
             }
           },
-          "id": "event-002758"
+          "id": "event-002756"
         },
         {
-          "source_line": 2759,
+          "source_line": 2757,
           "timestamp": "2026-05-25T21:46:25.105284+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1149,10 +1110,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 161
           },
-          "id": "event-002759"
+          "id": "event-002757"
         },
         {
-          "source_line": 2760,
+          "source_line": 2758,
           "timestamp": "2026-05-25T21:49:29.349331+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1174,10 +1135,10 @@
               "review_chat_id": "oc_0b622d6038b969b96148ee8a163a1a0c"
             }
           },
-          "id": "event-002760"
+          "id": "event-002758"
         },
         {
-          "source_line": 2761,
+          "source_line": 2759,
           "timestamp": "2026-05-25T21:49:33.365575+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1192,10 +1153,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 4016
           },
-          "id": "event-002761"
+          "id": "event-002759"
         },
         {
-          "source_line": 2762,
+          "source_line": 2760,
           "timestamp": "2026-05-25T21:49:56.072340+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1208,7 +1169,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002762"
+          "id": "event-002760"
         }
       ]
     }

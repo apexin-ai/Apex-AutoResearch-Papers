@@ -95,7 +95,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis holm bonferroni 5seed — I need to extract metrics from a registry JSON file for 5 specific SciERC experiments. The file is a | 76 | 1 | [Read transcript](analysis-holm-bonferroni-5seed.md) | [JSON](../../sessions/28/287d181a9f8a53a169ec.json) |
 | paper holm esj update | 163 | 0 | [Read transcript](paper-holm-esj-update.md) | [JSON](../../sessions/9e/9e2feb11321c75911dbc.json) |
 | paper fig bound — Search the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_i | 118 | 1 | [Read transcript](paper-fig-bound.md) | [JSON](../../sessions/f8/f8bd95a2c305862de37f.json) |
-| paper r41 response draft | 37 | 0 | [Read transcript](paper-r41-response-draft.md) | [JSON](../../sessions/3f/3fad2c7f68a6eceb2f41.json) |
 | status n16 n32 check | 64 | 0 | [Read transcript](status-n16-n32-check.md) | [JSON](../../sessions/6d/6d5aa803506ad2909d83.json) |
 | status n16 progress check | 64 | 0 | [Read transcript](status-n16-progress-check.md) | [JSON](../../sessions/86/860edf69bc936c0a108e.json) |
 | analysis n16 mv delta | 85 | 0 | [Read transcript](analysis-n16-mv-delta.md) | [JSON](../../sessions/42/4212979ec18ae1ed0fd4.json) |
@@ -104,7 +103,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | check n32 progress | 40 | 0 | [Read transcript](check-n32-progress.md) | [JSON](../../sessions/e2/e231072738206760e458.json) |
 | check n32 progress v2 | 68 | 0 | [Read transcript](check-n32-progress-v2.md) | [JSON](../../sessions/f5/f54dfede4533f4db2dae.json) |
 | paper freeform integration | 131 | 0 | [Read transcript](paper-freeform-integration.md) | [JSON](../../sessions/5f/5fc817f6cc6a92531684.json) |
-| paper r42 response letter | 70 | 0 | [Read transcript](paper-r42-response-letter.md) | [JSON](../../sessions/6e/6e0a12aa39e068b916d1.json) |
 | code n32 analysis prep | 225 | 0 | [Read transcript](code-n32-analysis-prep.md) | [JSON](../../sessions/fb/fb5d29eec3e1d101f1d4.json) |
 | code n32 fix deploy | 100 | 0 | [Read transcript](code-n32-fix-deploy.md) | [JSON](../../sessions/08/0824feff79b1fc47a188.json) |
 | analysis q4 degen inverse scaling | 94 | 0 | [Read transcript](analysis-q4-degen-inverse-scaling.md) | [JSON](../../sessions/20/204f610706400d62decd.json) |
@@ -136,11 +134,10 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | audit appendix numbers — You're auditing numbers in a research paper's appendix table `tab:multiseed` against the experiment  | 945 | 4 | [Read transcript](audit-appendix-numbers.md) | [JSON](../../sessions/2f/2ff42e3d1b679c96cf9b.json) |
 | analysis scierc 5seed construction v2 | 30 | 0 | [Read transcript](analysis-scierc-5seed-construction-v2.md) | [JSON](../../sessions/ba/ba3cb93dffe3e26d7606.json) |
 | ssh fewnerd mf4v2 s123 v4 | 86 | 0 | [Read transcript](ssh-fewnerd-mf4v2-s123-v4.md) | [JSON](../../sessions/30/3013590f17c3e59c5305.json) |
-| analysis fewnerd 3epoch construction | 60 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction.md) | [JSON](../../sessions/7f/7fb868e86ccaf1ac5e45.json) |
-| analysis conll 2seed construction | 31 | 0 | [Read transcript](analysis-conll-2seed-construction.md) | [JSON](../../sessions/6c/6ceeada5474c68bb51f3.json) |
-| analysis fewnerd 5epoch construction | 66 | 0 | [Read transcript](analysis-fewnerd-5epoch-construction.md) | [JSON](../../sessions/7d/7d9ce85e11ea51b3eb2a.json) |
-| analysis fewnerd 3epoch construction v2 | 82 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction-v2.md) | [JSON](../../sessions/b5/b5d9a04a107330bc6494.json) |
-| paper rebuttal letter draft | 18 | 0 | [Read transcript](paper-rebuttal-letter-draft.md) | [JSON](../../sessions/9e/9ee787633c71e74b748d.json) |
+| analysis fewnerd 3epoch construction | 58 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction.md) | [JSON](../../sessions/7f/7fb868e86ccaf1ac5e45.json) |
+| analysis conll 2seed construction | 29 | 0 | [Read transcript](analysis-conll-2seed-construction.md) | [JSON](../../sessions/6c/6ceeada5474c68bb51f3.json) |
+| analysis fewnerd 5epoch construction | 64 | 0 | [Read transcript](analysis-fewnerd-5epoch-construction.md) | [JSON](../../sessions/7d/7d9ce85e11ea51b3eb2a.json) |
+| analysis fewnerd 3epoch construction v2 | 80 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction-v2.md) | [JSON](../../sessions/b5/b5d9a04a107330bc6494.json) |
 | ops registry check s123 | 49 | 0 | [Read transcript](ops-registry-check-s123.md) | [JSON](../../sessions/1c/1c40ed0c9097f164d601.json) |
 | analysis scierc metric verification | 94 | 0 | [Read transcript](analysis-scierc-metric-verification.md) | [JSON](../../sessions/5c/5c1cc325b54506f81e75.json) |
 | analysis fewnerd micro f1 construction | 170 | 0 | [Read transcript](analysis-fewnerd-micro-f1-construction.md) | [JSON](../../sessions/71/71d9d13a76cfe7c7ad7f.json) |

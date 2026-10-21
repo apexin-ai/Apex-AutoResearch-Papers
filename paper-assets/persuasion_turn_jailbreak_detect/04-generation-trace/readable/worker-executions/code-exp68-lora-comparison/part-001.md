@@ -8,7 +8,7 @@
 
 ## Before a recorded user message
 
-394 recorded events
+392 recorded events
 
 
 ### Log line

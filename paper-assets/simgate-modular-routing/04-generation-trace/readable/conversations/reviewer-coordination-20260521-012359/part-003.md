@@ -20962,7 +20962,7 @@ Gemma 中间数据分析完成（4 个 included tasks, 59 episodes）。现在�
 
 ## Round 85
 
-8 recorded events
+4 recorded events
 
 
 ### User
@@ -20989,132 +20989,7 @@ Worker worker_writing_rebuttal-update_20260520T120013 已完成（status=done）
 
 ### Tool call
 
-_source line 1973 · 2026-05-20T12:03:11.950314+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_writing_rebuttal-update_20260520T120013_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_writing_rebuttal-update_20260520T120013_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1974 · 2026-05-20T12:03:12.001169+00:00_
-
-1	{
-2	  "raw": "已更新 Response #1。在 ALFWorld 证据 (1) 中加入了 Llama-3.1-8B cross-model 数据、Qwen2.5-7B 一致性总结，以及 Gemma-2-9B-it 的 TBD 占位符。其余内容未变。"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1975 · 2026-05-20T12:03:16.074224+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1976 · 2026-05-20T12:03:16.124970+00:00_
-
-1	# ARR Author Response Drafts — EMNLP 2026
-2	
-3	Prepared 2026-05-20. Three predicted attack points with pre-drafted responses.
-4	
-5	## Response #1: Single-Environment Generalization (Attack probability: 90%)
-6	
-7	We thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.
-8	
-9	Three lines of evidence support framework applicability beyond ScienceWorld: (1) **ALFWorld** (§3.4): the framework successfully diagnoses a qualitatively different mechanism—information asymmetry from admissible-action access (94.6% det-preferred, 0% death)—without any modification, demonstrating that the diagnostic procedure generalizes even when the dominant signal differs. Cross-model ALFWorld replication (Llama-3.1-8B, 135 games) confirms 100% directional consistency (16/16 non-tie labels favor deterministic, 95% CI for det-preferred: [6.7%, 17.8%]). Combined with Qwen2.5-7B's 25.9% det-preferred (also 100% directional consistency), both models diagnose information asymmetry—not death—as the routing mechanism in ALFWorld, without framework modification. [TBD: Gemma-2-9B-it ScienceWorld cross-model results pending] (2) **MATH** (§3.4): the framework correctly identifies the absence of routing signal (p=0.81), a useful null result. (3) **MiniHack/Crafter** (§5): the framework correctly diagnoses two boundary conditions (no death mechanism; universal death without asymmetry). These are not failures—they are the framework performing its diagnostic function on environments where routing signal is absent or unexploitable.
-10	
-11	Within ScienceWorld, extended validation on 5 excluded task types (n=100; Appendix S) yields DAF=0.991, confirming that task exclusion does not bias toward de
-…[truncated 3001 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1977 · 2026-05-20T12:03:36.373223+00:00_
+_source line 1973 · 2026-05-20T12:03:36.373223+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21150,7 +21025,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1978 · 2026-05-20T12:03:41.760476+00:00_
+_source line 1974 · 2026-05-20T12:03:41.760476+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -21172,7 +21047,7 @@ _source line 1978 · 2026-05-20T12:03:41.760476+00:00_
 
 ### Assistant
 
-_source line 1979 · 2026-05-20T12:03:49.395702+00:00_
+_source line 1975 · 2026-05-20T12:03:49.395702+00:00_
 
 发现一个事实错误和一处过时表述。
 
@@ -21199,7 +21074,7 @@ _source line 1979 · 2026-05-20T12:03:49.395702+00:00_
 
 ### User
 
-_source line 1980 · 2026-05-20T12:04:53.727352+00:00_
+_source line 1976 · 2026-05-20T12:04:53.727352+00:00_
 
 [系统通知 — worker_done:worker_research_related-work-check_20260520T120005]:
 Worker worker_research_related-work-check_20260520T120005 已完成（status=done），请审查 Agent 的处理结果。
@@ -21221,7 +21096,7 @@ Worker worker_research_related-work-check_20260520T120005 已完成（status=don
 
 ### Tool call
 
-_source line 1981 · 2026-05-20T12:05:02.880772+00:00_
+_source line 1977 · 2026-05-20T12:05:02.880772+00:00_
 
 called Read
 
@@ -21255,7 +21130,7 @@ called Read
 
 ### Tool result
 
-_source line 1982 · 2026-05-20T12:05:02.932407+00:00_
+_source line 1978 · 2026-05-20T12:05:02.932407+00:00_
 
 1	{
 2	  "raw": "搜索完毕，以下是整理后的结果。\n\n---\n\n## 2025-2026 年可能遗漏的相关工作\n\n### Tier 1: Direct Competitor — 必须引用\n\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\n|---|------|-----------|------|--------|\n| 1 | **[Budget-Aware Agentic Routing via Boundary-Guided Training](https://arxiv.org/abs/2602.21227)** | Feb 2026, arXiv | **Direct competitor** | 最直接的竞争者：同样做 episode-level agent routing（step-wise model selection），明确指出 agentic routing 是 path-dependent + sparse terminal feedback 问题，用 boundary policies 构建 difficulty taxonomy。区别：他们优化 cost-performance frontier，我们做 diagnostic analysis 揭示 routing signal 来源。 |\n| 2 | **[Abstract Counterfactuals for Language Model Agents](https://arxiv.org/abs/2506.02946)** (Pona et al.) | NeurIPS 2025 Poster | **Direct competitor** | 同样将 counterfactual 方法用于 LM agent，提出 action-level abstract counterfactuals。区别：他们做 token→action 的 abstraction layer 用于解释，我们做 episode-level diagnostic 揭示 routing signal 的组成（DAF）。 |\n| 3 | **[Verified Critical Step Optimization for LLM Agents](https://arxiv.org/abs/2602.03412)** (Li et al.) | Feb 2026, arXiv | **Direct competitor** | 用 counterfactual 思路识别 critical steps（alternative actions flip failure→success），与我们的 counterfactual diagnostic 精神一致。区别：他们用于 post-training（DPO），我们用于 routing signal 分析。 |\n| 4 | **[AXIS: Integrating Counterfactual Simulations with Language Models for Explaining Multi-Agent Behaviour](https://arxiv.org/abs/2505.17801)** (Gyevnar et al.) | May 2025, arXiv | **Method component** | LLM 通过 what-if 查询 simulator 生成 counterfactual 解释 agent 行为，与我们的 counterfactual diagnostic framework 方法论相关。 |\n\n### Tier 2: 高度相关 — 强烈建议引用\n\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\n|---|------|-----------|------|--------|\n| 5 | **[EvoRoute: Experience-Driven Self-Routing LLM Agent Systems](https://arxiv.org/abs/2601.02695)** | Jan 2026, arXiv | Method component | 动态 agent routing，用 experience 做 Pareto-optimal model selection，在 GAIA 上降低 80% cost。与我们的 routing 主题直接相关。 |\n| 6 | **[SALT: Step-level Advantage Assignment for Long-horizon Agents
@@ -21279,7 +21154,7 @@ _source line 1982 · 2026-05-20T12:05:02.932407+00:00_
 
 ### Tool call
 
-_source line 1983 · 2026-05-20T12:05:18.945809+00:00_
+_source line 1979 · 2026-05-20T12:05:18.945809+00:00_
 
 called Read
 
@@ -21313,7 +21188,7 @@ called Read
 
 ### Tool result
 
-_source line 1984 · 2026-05-20T12:05:18.997339+00:00_
+_source line 1980 · 2026-05-20T12:05:18.997339+00:00_
 
 1	\section{Related Work}
 2	
@@ -21348,7 +21223,7 @@ _source line 1984 · 2026-05-20T12:05:18.997339+00:00_
 
 ### Tool call
 
-_source line 1985 · 2026-05-20T12:06:06.792230+00:00_
+_source line 1981 · 2026-05-20T12:06:06.792230+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21384,7 +21259,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1986 · 2026-05-20T12:06:11.868779+00:00_
+_source line 1982 · 2026-05-20T12:06:11.868779+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -21406,7 +21281,7 @@ _source line 1986 · 2026-05-20T12:06:11.868779+00:00_
 
 ### Assistant
 
-_source line 1987 · 2026-05-20T12:06:15.020133+00:00_
+_source line 1983 · 2026-05-20T12:06:15.020133+00:00_
 
 Related Work 有显著遗漏。但引用必须先验证真实性——LLM 搜索易产生幻觉引用。
 
@@ -21433,7 +21308,7 @@ Related Work 有显著遗漏。但引用必须先验证真实性——LLM 搜索
 
 ### User
 
-_source line 1988 · 2026-05-20T12:11:26.841574+00:00_
+_source line 1984 · 2026-05-20T12:11:26.841574+00:00_
 
 [系统通知 — worker_done:worker_code_bootstrap-ci-script_20260520T120423]:
 Worker worker_code_bootstrap-ci-script_20260520T120423 已完成（status=done），请审查 Agent 的处理结果。
@@ -21455,7 +21330,7 @@ Worker worker_code_bootstrap-ci-script_20260520T120423 已完成（status=done�
 
 ### Tool call
 
-_source line 1989 · 2026-05-20T12:11:34.629250+00:00_
+_source line 1985 · 2026-05-20T12:11:34.629250+00:00_
 
 called Read
 
@@ -21489,7 +21364,7 @@ called Read
 
 ### Tool result
 
-_source line 1990 · 2026-05-20T12:11:34.679798+00:00_
+_source line 1986 · 2026-05-20T12:11:34.679798+00:00_
 
 1	{
 2	  "raw": "运行完毕。结果汇总：\n\n## Aggregate Results (B=10000, seed=42)\n\n| Model | Int DR [95% CI] | Det DR [95% CI] | ΔDR [95% CI] | DAF [95% CI] |\n|---|---|---|---|---|\n| **Qwen2.5-7B** (245 eps) | 42.9% [36.7, 49.0] | 16.3% [11.8, 21.2] | +26.5 [20.4, 32.7] | 90.4% [81.3, 99.1] |\n| **Llama-3.1-8B** (220 eps) | 41.4% [35.0, 47.7] | 11.4% [7.3, 15.9] | +30.0 [23.6, 36.4] | 88.2% [80.2, 95.1] |\n\n**验证点对齐情况**：\n- Qwen int_DR = 42.9% ✓, DAF = 90.4% ✓\n- Llama int_DR = 41.4% ✓, det_DR = 11.4% ✓, ΔDR = 30.0pp ✓, DAF = 88.2% ✓\n\n**注意**：Qwen det_DR 实际为 **16.3%**（40/245），与你给的\"≈4.5%\"有较大差异。数据确认过——`plan_c` 11 个 task、245 个有效 episode（排除了 30 个 `always_deep_internal` 的），逐 task det death 都在 10-25%。如果你的 4.5% 来源于不同数据子集或不同定义，需要核实。\n\n输出文件：\n- `results/cross_model_bootstrap_cis.json` — 完整数值\n- `results/cross_model_bootstrap_cis.tex` — LaTeX tabular，可直接插入 Appendix M"
@@ -21513,7 +21388,7 @@ _source line 1990 · 2026-05-20T12:11:34.679798+00:00_
 
 ### Tool call
 
-_source line 1991 · 2026-05-20T12:12:03.014707+00:00_
+_source line 1987 · 2026-05-20T12:12:03.014707+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21549,7 +21424,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1992 · 2026-05-20T12:12:07.695416+00:00_
+_source line 1988 · 2026-05-20T12:12:07.695416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -21571,7 +21446,7 @@ _source line 1992 · 2026-05-20T12:12:07.695416+00:00_
 
 ### Assistant
 
-_source line 1993 · 2026-05-20T12:12:11.154187+00:00_
+_source line 1989 · 2026-05-20T12:12:11.154187+00:00_
 
 Bootstrap CIs 统计合理性验证。
 
@@ -21600,7 +21475,7 @@ Bootstrap CIs 统计合理性验证。
 
 ### User
 
-_source line 1994 · 2026-05-20T12:12:11.678049+00:00_
+_source line 1990 · 2026-05-20T12:12:11.678049+00:00_
 
 [系统通知 — worker_done:worker_check_gemma-dual-gpu-progress_20260520T120939]:
 Worker worker_check_gemma-dual-gpu-progress_20260520T120939 已完成（status=done），请审查 Agent 的处理结果。
@@ -21622,7 +21497,7 @@ Worker worker_check_gemma-dual-gpu-progress_20260520T120939 已完成（status=d
 
 ### Tool call
 
-_source line 1995 · 2026-05-20T12:12:18.387107+00:00_
+_source line 1991 · 2026-05-20T12:12:18.387107+00:00_
 
 called Read
 
@@ -21656,7 +21531,7 @@ called Read
 
 ### Tool result
 
-_source line 1996 · 2026-05-20T12:12:18.387735+00:00_
+_source line 1992 · 2026-05-20T12:12:18.387735+00:00_
 
 1	{
 2	  "raw": "## Gemma 双卡并行实验进度报告\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | 温度 | 功耗 |\n|-----|------|---------|--------|------|------|\n| cuda:0 | RTX 5090 | 26383 / 32607 MiB (81%) | 0%* | 47°C | 285W |\n| cuda:1 | RTX 5090 | 26383 / 32607 MiB (81%) | 0%* | 42°C | 62W |\n\n*利用率 0% 是 `nvidia-smi` 瞬时采样，两张卡都有 VLLM::EngineCore 常驻，推理是突发式的。\n\n### 2. 各 task 完成情况\n\n| Task | Episodes | 状态 |\n|------|----------|------|\n| boil | 20/20 | ✅ 完成（早期运行） |\n| identify-life-stages-1 | 20/20 | ✅ 完成（GPU 1） |\n| freeze | 20/20 | ✅ 完成（GPU 1） |\n| lifespan-longest-lived-then-shortest-lived | 14/20 | 🔄 GPU 0 进行中 |\n| grow-fruit | 10/20 | 🔄 GPU 1 进行中 |\n| melt | 2/20 | ⚠️ 仅 2 条（早期残留，不在当前脚本中） |\n| identify-life-stages-2 | 0/20 | ⏳ 排队（GPU 1） |\n| measure-melting-point-unknown-substance | 0/20 | ⏳ 排队（GPU 1） |\n| lifespan-longest-lived | 0/20 | ⏳ 排队（GPU 1） |\n| chemistry-mix | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| inclined-plane-determine-angle | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| find-animal | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n| find-non-living-thing | 0/20 | ⏳ 排队（GPU 0 + GPU 1） |\n\n### 3. 当前运行任务\n\n- **cuda:0** (`gemma-gpu0`, 19:12 启动): `lifespan-longest-lived-then-shortest-lived` — 14/20 episodes\n- **cuda:1** (`gemma-11tasks`, 16:44 启动): `grow-fruit` — 10/20 episodes\n\n两张卡都在正常推理，tmux 输出有持续的 VLLM prompt 处理日志，Java ScienceWorld 进程活跃。\n\n### 4. 崩溃迹象\n\n无。两个进程运行正常，VLLM 引擎已加载，无报错。`melt` 只有 2 条数据且不在当前脚本任务列表里，应该是更早的残留数据，不影响当前运行。\n\n### 5. 预估剩余时间\n\nGPU 1 从 16:44 开始，3.5 小时完成 ~50 episodes，速率 ~14 ep/hr：\n- 剩余 170 episodes（10 grow-fruit + 8×20 排队任务）→ **~12 小时**\n\nGPU 0 从 19:12 开始，58 分钟完成 14 episodes，速率类似：\n- 剩余 86 episodes（6 lifespan + 4×20 排队任务）→ **~6 小时**\n\n注意：GPU 0 和 GPU 1 的脚本在后 5 个 task 上有重叠（lifespan-longest-lived-then-shortest-lived, chemistry-mix, inclined-plane-determine-angle, find-animal, find-non-living-thing），会产生重复数据收集。如果这不是有意的，可以考虑调整。"
@@ -21680,7 +21555,7 @@ _source line 1996 · 2026-05-20T12:12:18.387735+00:00_
 
 ### Assistant
 
-_source line 1997 · 2026-05-20T12:12:39.847493+00:00_
+_source line 1993 · 2026-05-20T12:12:39.847493+00:00_
 
 Gemma 双卡稳定运行，无崩溃。进度符合预期。
 
@@ -21711,7 +21586,7 @@ Task 重叠问题值得注意但非紧急——GPU 0 的 5 个 task 与 GPU 1 �
 
 ### User
 
-_source line 1998 · 2026-05-20T12:12:40.362615+00:00_
+_source line 1994 · 2026-05-20T12:12:40.362615+00:00_
 
 [系统通知 — worker_done:worker_check_paper-polish_20260520T120959]:
 Worker worker_check_paper-polish_20260520T120959 已完成（status=done），请审查 Agent 的处理结果。
@@ -21733,7 +21608,7 @@ Worker worker_check_paper-polish_20260520T120959 已完成（status=done），�
 
 ### Tool call
 
-_source line 1999 · 2026-05-20T12:12:47.099167+00:00_
+_source line 1995 · 2026-05-20T12:12:47.099167+00:00_
 
 called Read
 
@@ -21767,7 +21642,7 @@ called Read
 
 ### Tool result
 
-_source line 2000 · 2026-05-20T12:12:47.149977+00:00_
+_source line 1996 · 2026-05-20T12:12:47.149977+00:00_
 
 1	{
 2	  "raw": "数据齐了，汇总如下：\n\n---\n\n## 检查结果\n\n### 1. Responsible NLP Checklist — **缺失**\n\n论文目录中不存在 checklist 文件（`checklist.tex` / `responsible_nlp_checklist.tex`），`main.tex` 中也没有引用任何 checklist。**ARR/EMNLP 2026 要求提交 Responsible NLP Research Checklist，这是必填项。**\n\n### 2. 编译状态 — **成功，无错误**\n\n| 项目 | 结果 |\n|------|------|\n| LaTeX errors (`!`) | **0** |\n| Undefined references | **0** |\n| LaTeX Warnings | **4** — 全部是 `'h' float specifier changed to 'ht'` |\n| Overfull hbox | **1** — 34.25pt too wide (lines 317–326，threshold routing 表格) |\n| Underfull hbox | ~20 (cosmetic) |\n\n### 3. 页数 — 15 页总计\n\n- **正文 (abstract–conclusion)**: 8 页（恰好压线，满足 EMNLP 8 页限制）\n- Limitations + Ethics: ~1 页\n- References: ~1 页\n- Appendix: ~5 页\n\n### 4. 需修复问题\n\n| 优先级 | 问题 | 说明 |\n|--------|------|------|\n| **Critical** | 缺少 Responsible NLP Research Checklist | ARR 投稿必填，需创建并填写 |\n| Minor | 4× float specifier warning | Appendix 中的 `[h]` 改为 `[t]` 或 `[ht]` |\n| Minor | 1× Overfull hbox (34.25pt) | Threshold routing 表格过宽，需 `\\resizebox` 或调整列宽 |"
@@ -21791,7 +21666,7 @@ _source line 2000 · 2026-05-20T12:12:47.149977+00:00_
 
 ### Tool call
 
-_source line 2001 · 2026-05-20T12:12:59.484773+00:00_
+_source line 1997 · 2026-05-20T12:12:59.484773+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21827,7 +21702,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 2002 · 2026-05-20T12:13:04.485741+00:00_
+_source line 1998 · 2026-05-20T12:13:04.485741+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -21856,7 +21731,7 @@ _source line 2002 · 2026-05-20T12:13:04.485741+00:00_
 
 ### User
 
-_source line 2003 · 2026-05-20T12:17:26.505858+00:00_
+_source line 1999 · 2026-05-20T12:17:26.505858+00:00_
 
 [系统通知 — worker_done:worker_writing_responsible-nlp-checklist_20260520T121353]:
 Worker worker_writing_responsible-nlp-checklist_20260520T121353 已完成（status=done），请审查 Agent 的处理结果。
@@ -21878,7 +21753,7 @@ Worker worker_writing_responsible-nlp-checklist_20260520T121353 已完成（stat
 
 ### Tool call
 
-_source line 2004 · 2026-05-20T12:17:34.016356+00:00_
+_source line 2000 · 2026-05-20T12:17:34.016356+00:00_
 
 called Read
 
@@ -21912,7 +21787,7 @@ called Read
 
 ### Tool result
 
-_source line 2005 · 2026-05-20T12:17:34.117197+00:00_
+_source line 2001 · 2026-05-20T12:17:34.117197+00:00_
 
 1	{
 2	  "raw": "编译成功，0 errors，16 页。\n\n---\n\n## 产出汇报\n\n### 1. Checklist 文件\n`/root/autodl-tmp/simgate-modular-routing/docs/paper/responsible_nlp_checklist.tex`\n\n包含 ARR 标准格式的以下 sections：\n- **A.** Limitations — Yes, 引用 Limitations section\n- **B.** Potential risks — Yes, 引用 Ethics Statement\n- **C.** Claims in abstract/intro — Yes\n- **D1–D5.** Scientific artifacts — Yes（ScienceWorld/ALFWorld/MATH, 四个模型, 公开许可, 无 PII, 代码将发布）\n- **E1–E5.** Computational experiments — Yes（参数量, 样本数, 评估指标含 DAF, 使用 HF Transformers/PyTorch, 4 seeds 可复现）\n- **F.** Human participants — No\n- **G.** AI assistants — Yes（代码开发和论文撰写，全部经作者审核）\n- **H.** Computational budget — ~300–400 GPU-hours, RTX 5090×2 + RTX PRO 6000×4, ~40–55 kg CO₂eq\n\n### 2. main.tex 修改\n- Line 16: 添加 `\\usepackage{enumitem}`（支持 checklist 的 enumerate label 语法）\n- Line 333 (`\\end{document}` 前): 添加 `\\input{responsible_nlp_checklist}`\n\n### 3. 编译结果\n- **Errors: 0**\n- **页数: 16 页**（checklist 不计入正文 8 页限制）"
@@ -21936,7 +21811,7 @@ _source line 2005 · 2026-05-20T12:17:34.117197+00:00_
 
 ### Tool call
 
-_source line 2006 · 2026-05-20T12:17:51.607204+00:00_
+_source line 2002 · 2026-05-20T12:17:51.607204+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -21972,7 +21847,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 2007 · 2026-05-20T12:17:55.100826+00:00_
+_source line 2003 · 2026-05-20T12:17:55.100826+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Yes. Random seeds are reported (4 seeds per router configuration), environment versions are specified, and all experiments use deterministic episode sampling. Code and data will be released upon acceptance.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.46}}"}
 
@@ -21994,7 +21869,7 @@ _source line 2007 · 2026-05-20T12:17:55.100826+00:00_
 
 ### Tool call
 
-_source line 2008 · 2026-05-20T12:18:12.445194+00:00_
+_source line 2004 · 2026-05-20T12:18:12.445194+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -22030,7 +21905,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 2009 · 2026-05-20T12:18:16.368188+00:00_
+_source line 2005 · 2026-05-20T12:18:16.368188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -22052,7 +21927,7 @@ _source line 2009 · 2026-05-20T12:18:16.368188+00:00_
 
 ### Assistant
 
-_source line 2010 · 2026-05-20T12:18:19.163711+00:00_
+_source line 2006 · 2026-05-20T12:18:19.163711+00:00_
 
 Checklist 已创建。需要验证一个关键声明——Worker 报告中提到 "4 seeds 可复现"，但此前所有实验都使用 seed=42（单 seed）。
 
@@ -22079,7 +21954,7 @@ Checklist 已创建。需要验证一个关键声明——Worker 报告中提到
 
 ### User
 
-_source line 2011 · 2026-05-20T12:18:44.186813+00:00_
+_source line 2007 · 2026-05-20T12:18:44.186813+00:00_
 
 [System 触发审查]:
 论文修改质量审查——Paper Agent 刚完成多项 patch，请验证：
@@ -22098,6 +21973,101 @@ _source line 2011 · 2026-05-20T12:18:44.186813+00:00_
   "recorded_role": "user",
   "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
   "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2008 · 2026-05-20T12:18:51.118397+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2009 · 2026-05-20T12:18:51.169093+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2010 · 2026-05-20T12:18:56.144293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Discussion}\\n\\\\label{sec:discussion}\\n\\n\\\\paragraph{Cross-environment evidence.}\\nThe framework generates testable predictions beyond ScienceWorld. The MATH null ($p = 0.81$) validates the prediction that removing catastrophic failure eliminates routing signal; ALFWorld identifies information asymmetry as an alternative mechanism (\\\\S\\\\ref{sec:cross-env}). True quantitative DAF replication requires a second catastrophic-failure environment (e.g., NetHack~\\\\citep{nethack-2020}, Crafter~\\\\citep{crafter-2022}).\\n\\n\\\\paragraph{Penalty sensitivity and correlation structure.}\\nThe $r = 0.97$ correlation is specific to catastrophic death ($P{=}100$); defining failure as any non-positive score yields $r = -0.13$ ($p = 0.70$). As shown in \\\\S\\\\ref{sec:death-decomp}, this correlation follows algebraically from death dominance when $P$ is constant; larger models with lower death rates would reduce DAF. This prediction assumes models above a minimum capability threshold; preliminary evidence (Qwen2.5-0.5B, $N{=}15$) suggests very weak models may exhibit low death rates not from avoidance ability but from inability to reach dangerous states.\\n\\n\\\\paragraph{Implications for router design.}\\nDeath avoidance dominance (78.9\\\\% of non-tie labels, DAF $= 90.4\\\\%$ at $P{=}100$) reframes modality routing as a \\\\emph{safety} problem, closer to a conservative default policy than to cost-quality optimization~\\\\citep{garcia2015comprehensive, cogrouter-2026}. The underlying failure mechanism is state hallucination: the internal strategy predicts that an action succeeded when the environment state did not change. These prediction errors compound across steps and ultimately trigger death. The deterministic strategy eliminates these compounding observation errors, while action-selection errors (16.3\\\\% deterministic death rate) remain comparatively rare. The 86:9 label imbalance explains
+…[truncated 851 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 5025
 }
 ```
 

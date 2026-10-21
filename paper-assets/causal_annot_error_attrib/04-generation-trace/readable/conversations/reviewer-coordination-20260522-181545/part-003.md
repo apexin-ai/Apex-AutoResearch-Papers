@@ -8,253 +8,7 @@
 
 ### Tool result
 
-_source line 1252 · 2026-05-22T15:19:30.353195+00:00_
-
-320	At $C{=}I$: each $A^*{=}j$ group has $A{=}j$ a.s., so $\delta_j=f(j)-f(j)=0$ and $B=0$.
-321	At $C$ uniform: $\delta_j=\tau_{\mathrm{ind}}$ for all $j$ and $B=\tau_{\mathrm{ind}}$.
-322	
-323	\emph{Sign preservation.}
-324	When $\operatorname{Cov}(g(A),f(A))>0$ (the indirect effect reinforces the direct effect, i.e., $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have the same sign), the bias $B(C)\geq 0$ cannot oppose $\tau_{\mathrm{dir}}$, so sign is preserved trivially.
-325	
-326	When $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have opposite signs but $|\tau_{\mathrm{ind}}|<|\tau_{\mathrm{dir}}|$ (i.e., $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$), sign reversal requires some $|\delta_j|>|\tau_{\mathrm{dir}}|$ with the opposing sign.
-327	Since each $\delta_j$ is a difference of weighted averages of $f$ values (with weights $P(A{=}k\mid T{=}t,A^*{=}j)$), and $B(C)$ is a convex combination of $\delta_j$, the bound $|B(C)|\leq\max_j|\delta_j|$ holds.
-328	We verify numerically that $\max_j|\delta_j|\leq|\tau_{\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.
-329	\end{proof}
-330	
-331	\paragraph{Verification for paper parameters ($K{=}3$).}
-332	With $\tau_{\mathrm{dir}}{=}0.5$, $\boldsymbol{\gamma}{=}(0,0,0)$, $\boldsymbol{\delta}{=}(0,0.8,{-}0.6)$, $\boldsymbol{\beta}{=}(0,1.0,{-}0.5)$:
-333	
-334	$\tau_{\mathrm{ind}}=\mathbb{E}[f(A)\mid T{=}1]-\mathbb{E}[f(A)\mid T{=}0]=0.351$ (computed from the softmax class probabilities).
-335	$\tau_{\mathrm{total}}=0.5+0.351=0.851>0$.
-336	Since $\tau_{\mathrm{dir}}{>}0$ and $\tau_{\mathrm{total}}{>}0$, sign preservation holds for all $C$.
-337	
-338	\paragraph{Mediation monotonicity (proportional effects).}
-339	\label{par:med_monotone}
-340	
-341	Under the interpolation $C(\delta)=(1{-}\delta)I+\delta C_0$, we prove $|B(C(\delta))|$ is non-decreasing in $\delta$ when the mediator's effect on $Y$ is proportional to its informativeness abou
-…[truncated 3702 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1253 · 2026-05-22T15:19:30.654735+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "offset": "55",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "offset": "55",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1254 · 2026-05-22T15:19:30.705531+00:00_
-
-55	
-56	\paragraph{Instrumental variable ($A$ = instrument).}
-57	The Wald estimator~\cite{angrist_imbens1995} $\hat{\tau}_{\text{IV}} = \hat{\text{cov}}(A^*, Y) / \hat{\text{cov}}(A^*, X)$ has $C$ in the denominator. Misclassification can drive first-stage coefficients toward zero or reverse their sign, causing the ratio estimator to diverge or flip. Under random Dirichlet matrices, 52.6\% produce sign reversal, making IV the most fragile topology.
-58	
-59	\paragraph{Structural sign-flip guarantee.}
-60	\begin{proposition}[Sign preservation---analytic results]
-61	\label{prop:signflip}
-62	Under non-differential misclassification with $C_{kk} > 0$ for all $k$:
-63	\emph{(a)}~Confounding preserves sign when $\operatorname{sign}(\tau) = \operatorname{sign}(\tau {+} B_{\mathrm{OV}})$, where $B_{\mathrm{OV}} {=} \operatorname{Cov}(g(A),f(A))/\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\ref{app:confounding}).
-64	\emph{(b)}~Collider preserves sign when $|\tau| > \sqrt{\operatorname{Var}(g)\operatorname{Var}(h)}/\mathbb{E}[\operatorname{Var}(T{\mid}A)]$ (Berkson attenuation; Appendix~\ref{app:collider}).
-65	\emph{(c)}~Exposure can produce sign reversal for $K {\geq} 3$, even with $C_{kk} {>} 0.5$ (counterexample in Appendix~\ref{app:exposure}).
-66	\end{proposition}
-67	
-68	\paragraph{Empirical Finding 1} (Mediation, M-bias, front-door).
-69	Sign preservation holds under topology-specific conditions: mediation requires $\operatorname{sign}(\tau_{\mathrm{dir}}) {=} \operatorname{sign}(\tau_{\mathrm{total}})$; front-door requires $\operatorname{sign}(\lambda\alpha_U) {=} \operatorname{sign}(\lambda\alpha_U {+} \operatorname{Cov}(T,f(A)))$; M-bias is attenuating for all $C$. Verified across 100{,}000 random matrices with zero violations (Appendix~\ref{app:conditions}); analytic proofs for general $K$ remain open.
-70	
-71	These conditions involve true DGP parameters, which in practice must be estimated. The ASV framework (§\ref{sec:asv}) provides a com
-…[truncated 5118 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1255 · 2026-05-22T15:19:35.675708+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "200",
-  "limit": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "200",
-    "limit": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1256 · 2026-05-22T15:19:36.178327+00:00_
-
-200	  &\leq \mathbb{E}\bigl[\sqrt{\operatorname{Var}(g\mid A^*)\,\operatorname{Var}(f\mid A^*)}\bigr]\\
-201	  &\leq \sqrt{\mathbb{E}[\operatorname{Var}(g\mid A^*)]\;\mathbb{E}[\operatorname{Var}(f\mid A^*)]}\\
-202	  &\leq \sqrt{\operatorname{Var}(g(A))\;\operatorname{Var}(f(A))},
-203	\end{align*}
-204	where the last step uses $\mathbb{E}[\operatorname{Var}(X\mid Y)]\leq\operatorname{Var}(X)$ (law of total variance).
-205	
-206	\emph{Step 2: Conclude.}
-207	The bias satisfies
-208	\[
-209	  |B(C)| = \frac{|R(C)|}{D(C)} \leq \frac{\sqrt{\operatorname{Var}(g)\,\operatorname{Var}(f)}}{\sigma_T^2} = \bar{B}.
-210	\]
-211	When $|\tau|>\bar{B}$, the bias cannot cancel $\tau$, so $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ for all $C$.
-212	\end{proof}
-213	
-214	\paragraph{Relationship to the omitted-variable condition.}
-215	A weaker (necessary) condition for sign preservation is $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ where $\tau_{\mathrm{OV}}=\tau+\operatorname{Cov}(g,f)/\operatorname{Var}(T)$.
-216	If this fails, then $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform noise) already flips the sign.
-217	The rigorous sufficient condition $|\tau|>\bar{B}$ implies the weaker condition, since $|B_{\mathrm{OV}}|=|\operatorname{Cov}(g,f)|/\operatorname{Var}(T)\leq\bar{B}$ by Cauchy--Schwarz and $\operatorname{Var}(T)\geq\sigma_T^2$.
-218	
-219	\paragraph{Verification for paper parameters ($K{=}3$).}
-220	With $\tau{=}2.0$, $\boldsymbol{\alpha}{=}(1.5,{-}1.0)$, $\boldsymbol{\beta}^{(A)}{=}(1.0,{-}0.5)$, $\sigma_T{=}1.0$, $\mathbf{p}{=}(0.40,0.35,0.25)$:
-221	\begin{align*}
-222	  \operatorname{Var}(g) &= \sum_k p_k\alpha_k^2 - \bigl(\textstyle\sum_k p_k\alpha_k\bigr)^2 = 0.962,\\
-223	  \operatorname{Var}(f) &= \sum_k p_k(\beta_k^{(A)})^2 - \bigl(\textstyle\sum_k p_k\beta_k^{(A)}\bigr)^2 = 0.362,\\
-224	  \bar{B} &= \sqrt{0.962\times 0.362}\;/\;1.0^2 = 0.590.
-225	\end{align*}
-226	Since $|\tau|{=}2.0 > \bar{B}{=}0.590$, sign preservation 
-…[truncated 4626 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1257 · 2026-05-22T15:19:36.429896+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "38",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "38",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1258 · 2026-05-22T15:19:36.530835+00:00_
+_source line 1252 · 2026-05-22T15:19:36.530835+00:00_
 
 38	  \label{eq:bias_decomp}
 39	\end{equation}
@@ -320,7 +74,7 @@ _source line 1258 · 2026-05-22T15:19:36.530835+00:00_
 
 ### Tool call
 
-_source line 1259 · 2026-05-22T15:21:59.308769+00:00_
+_source line 1253 · 2026-05-22T15:21:59.308769+00:00_
 
 called Read
 
@@ -358,7 +112,7 @@ called Read
 
 ### Tool result
 
-_source line 1260 · 2026-05-22T15:21:59.409869+00:00_
+_source line 1254 · 2026-05-22T15:21:59.409869+00:00_
 
 232	\subsection{Proof of Theorem~\ref{thm:monotone} (Confounding Monotonicity)}
 233	\label{app:monotonicity_proof}
@@ -401,7 +155,7 @@ _source line 1260 · 2026-05-22T15:21:59.409869+00:00_
 
 ### Tool call
 
-_source line 1261 · 2026-05-22T15:22:05.196285+00:00_
+_source line 1255 · 2026-05-22T15:22:05.196285+00:00_
 
 called ToolSearch
 
@@ -437,7 +191,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1262 · 2026-05-22T15:22:05.248138+00:00_
+_source line 1256 · 2026-05-22T15:22:05.248138+00:00_
 
 
 
@@ -459,7 +213,7 @@ _source line 1262 · 2026-05-22T15:22:05.248138+00:00_
 
 ### Tool call
 
-_source line 1263 · 2026-05-22T15:23:02.542481+00:00_
+_source line 1257 · 2026-05-22T15:23:02.542481+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -495,7 +249,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1264 · 2026-05-22T15:23:06.408401+00:00_
+_source line 1258 · 2026-05-22T15:23:06.408401+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -517,7 +271,7 @@ _source line 1264 · 2026-05-22T15:23:06.408401+00:00_
 
 ### Assistant
 
-_source line 1265 · 2026-05-22T15:23:15.748711+00:00_
+_source line 1259 · 2026-05-22T15:23:15.748711+00:00_
 
 审查已提交。核心发现：
 
@@ -554,7 +308,7 @@ _source line 1265 · 2026-05-22T15:23:15.748711+00:00_
 
 ### User
 
-_source line 1266 · 2026-05-22T15:26:20.547991+00:00_
+_source line 1260 · 2026-05-22T15:26:20.547991+00:00_
 
 [系统通知 — worker_done:worker_paper_terminology_fixes_w4w5w8w10w12_20260522T152203]:
 Worker worker_paper_terminology_fixes_w4w5w8w10w12_20260522T152203 已完成（status=done），请审查 Agent 的处理结果。
@@ -576,7 +330,7 @@ Worker worker_paper_terminology_fixes_w4w5w8w10w12_20260522T152203 已完成（s
 
 ### Tool call
 
-_source line 1267 · 2026-05-22T15:26:37.488797+00:00_
+_source line 1261 · 2026-05-22T15:26:37.488797+00:00_
 
 called Bash
 
@@ -612,7 +366,7 @@ called Bash
 
 ### Tool result
 
-_source line 1268 · 2026-05-22T15:26:37.995217+00:00_
+_source line 1262 · 2026-05-22T15:26:37.995217+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -639,7 +393,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1269 · 2026-05-22T15:26:42.722151+00:00_
+_source line 1263 · 2026-05-22T15:26:42.722151+00:00_
 
 called Bash
 
@@ -675,7 +429,7 @@ called Bash
 
 ### Tool result
 
-_source line 1270 · 2026-05-22T15:26:42.928774+00:00_
+_source line 1264 · 2026-05-22T15:26:42.928774+00:00_
 
  artifacts/ppi_empirical_validation.json | 4076 ++++++++++++++++---------------
  docs/paper/abstract.tex                 |    2 +-
@@ -715,7 +469,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1271 · 2026-05-22T15:26:46.246210+00:00_
+_source line 1265 · 2026-05-22T15:26:46.246210+00:00_
 
 called Bash
 
@@ -751,7 +505,7 @@ called Bash
 
 ### Tool result
 
-_source line 1272 · 2026-05-22T15:26:46.451760+00:00_
+_source line 1266 · 2026-05-22T15:26:46.451760+00:00_
 
 diff --git a/docs/paper/method.tex b/docs/paper/method.tex
 index 2f3f456..5c53b97 100644
@@ -792,7 +546,7 @@ index 2f3f456..5c53b97 100644
 
 ### Tool call
 
-_source line 1273 · 2026-05-22T15:26:50.351341+00:00_
+_source line 1267 · 2026-05-22T15:26:50.351341+00:00_
 
 called Bash
 
@@ -828,7 +582,7 @@ called Bash
 
 ### Tool result
 
-_source line 1274 · 2026-05-22T15:26:50.893564+00:00_
+_source line 1268 · 2026-05-22T15:26:50.893564+00:00_
 
 diff --git a/docs/paper/conclusion.tex b/docs/paper/conclusion.tex
 index a021954..0795685 100644
@@ -864,7 +618,7 @@ index a021954..0795685 100644
 
 ### Tool call
 
-_source line 1275 · 2026-05-22T15:26:55.416077+00:00_
+_source line 1269 · 2026-05-22T15:26:55.416077+00:00_
 
 called Bash
 
@@ -900,7 +654,7 @@ called Bash
 
 ### Tool result
 
-_source line 1276 · 2026-05-22T15:26:56.322223+00:00_
+_source line 1270 · 2026-05-22T15:26:56.322223+00:00_
 
 +}
 +
@@ -981,7 +735,7 @@ _source line 1276 · 2026-05-22T15:26:56.322223+00:00_
 
 ### Tool call
 
-_source line 1277 · 2026-05-22T15:26:56.373338+00:00_
+_source line 1271 · 2026-05-22T15:26:56.373338+00:00_
 
 called Bash
 
@@ -1017,7 +771,7 @@ called Bash
 
 ### Tool result
 
-_source line 1278 · 2026-05-22T15:26:56.626744+00:00_
+_source line 1272 · 2026-05-22T15:26:56.626744+00:00_
 
 diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
 index 539bb8b..1ca9a2f 100644
@@ -1047,7 +801,7 @@ index 539bb8b..1ca9a2f 100644
 
 ### Tool call
 
-_source line 1279 · 2026-05-22T15:27:24.994616+00:00_
+_source line 1273 · 2026-05-22T15:27:24.994616+00:00_
 
 called Grep
 
@@ -1087,7 +841,7 @@ called Grep
 
 ### Tool result
 
-_source line 1280 · 2026-05-22T15:27:25.445575+00:00_
+_source line 1274 · 2026-05-22T15:27:25.445575+00:00_
 
 No matches found
 
@@ -1109,7 +863,7 @@ No matches found
 
 ### Tool call
 
-_source line 1281 · 2026-05-22T15:27:25.504352+00:00_
+_source line 1275 · 2026-05-22T15:27:25.504352+00:00_
 
 called Grep
 
@@ -1149,7 +903,7 @@ called Grep
 
 ### Tool result
 
-_source line 1282 · 2026-05-22T15:27:25.563376+00:00_
+_source line 1276 · 2026-05-22T15:27:25.563376+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:829:[Omitted long matching line]
 
@@ -1171,7 +925,7 @@ _source line 1282 · 2026-05-22T15:27:25.563376+00:00_
 
 ### Tool call
 
-_source line 1283 · 2026-05-22T15:27:28.596309+00:00_
+_source line 1277 · 2026-05-22T15:27:28.596309+00:00_
 
 called Read
 
@@ -1205,7 +959,7 @@ called Read
 
 ### Tool result
 
-_source line 1284 · 2026-05-22T15:27:28.647038+00:00_
+_source line 1278 · 2026-05-22T15:27:28.647038+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -1235,7 +989,7 @@ _source line 1284 · 2026-05-22T15:27:28.647038+00:00_
 
 ### Tool call
 
-_source line 1285 · 2026-05-22T15:27:52.134294+00:00_
+_source line 1279 · 2026-05-22T15:27:52.134294+00:00_
 
 called Bash
 
@@ -1271,7 +1025,7 @@ called Bash
 
 ### Tool result
 
-_source line 1286 · 2026-05-22T15:27:52.435863+00:00_
+_source line 1280 · 2026-05-22T15:27:52.435863+00:00_
 
 318
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
@@ -1294,7 +1048,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1287 · 2026-05-22T15:27:56.771247+00:00_
+_source line 1281 · 2026-05-22T15:27:56.771247+00:00_
 
 called Bash
 
@@ -1330,7 +1084,7 @@ called Bash
 
 ### Tool result
 
-_source line 1288 · 2026-05-22T15:27:57.073888+00:00_
+_source line 1282 · 2026-05-22T15:27:57.073888+00:00_
 
 Limitations word count (rough): 208
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
@@ -1353,7 +1107,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1289 · 2026-05-22T15:28:19.754087+00:00_
+_source line 1283 · 2026-05-22T15:28:19.754087+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1389,7 +1143,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1290 · 2026-05-22T15:28:29.781781+00:00_
+_source line 1284 · 2026-05-22T15:28:29.781781+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -1411,7 +1165,7 @@ _source line 1290 · 2026-05-22T15:28:29.781781+00:00_
 
 ### Assistant
 
-_source line 1291 · 2026-05-22T15:28:35.157394+00:00_
+_source line 1285 · 2026-05-22T15:28:35.157394+00:00_
 
 审查已提交。W4/W5/W8/W10/W12 整体 PASS，两个 warning：Limitations 段落偏长（~208 词/8 个点 vs 用户规则的 ~3 个点），以及 proof sketch 中 DPI 引用待 W1 修复时同步清理。
 
@@ -1438,7 +1192,7 @@ _source line 1291 · 2026-05-22T15:28:35.157394+00:00_
 
 ### User
 
-_source line 1292 · 2026-05-22T15:28:35.751653+00:00_
+_source line 1286 · 2026-05-22T15:28:35.751653+00:00_
 
 [系统通知 — worker_done:worker_math_lambda_bound_w3_20260522T152106]:
 Worker worker_math_lambda_bound_w3_20260522T152106 已完成（status=done），请审查 Agent 的处理结果。
@@ -1460,7 +1214,7 @@ Worker worker_math_lambda_bound_w3_20260522T152106 已完成（status=done），
 
 ### Tool call
 
-_source line 1293 · 2026-05-22T15:28:51.533343+00:00_
+_source line 1287 · 2026-05-22T15:28:51.533343+00:00_
 
 called Bash
 
@@ -1496,7 +1250,7 @@ called Bash
 
 ### Tool result
 
-_source line 1294 · 2026-05-22T15:28:52.136570+00:00_
+_source line 1288 · 2026-05-22T15:28:52.136570+00:00_
 
 diff --git a/docs/paper/method.tex b/docs/paper/method.tex
 index 2f3f456..5c53b97 100644
@@ -1537,7 +1291,7 @@ index 2f3f456..5c53b97 100644
 
 ### Tool call
 
-_source line 1295 · 2026-05-22T15:28:58.815427+00:00_
+_source line 1289 · 2026-05-22T15:28:58.815427+00:00_
 
 called Bash
 
@@ -1573,7 +1327,7 @@ called Bash
 
 ### Tool result
 
-_source line 1296 · 2026-05-22T15:28:59.220365+00:00_
+_source line 1290 · 2026-05-22T15:28:59.220365+00:00_
 
 diff --git a/docs/paper/appendix_proofs.tex b/docs/paper/appendix_proofs.tex
 index 2f2dcc7..02761c1 100644
@@ -1614,7 +1368,7 @@ index 2f2dcc7..02761c1 100644
 
 ### Tool call
 
-_source line 1297 · 2026-05-22T15:29:42.913342+00:00_
+_source line 1291 · 2026-05-22T15:29:42.913342+00:00_
 
 called Glob
 
@@ -1650,7 +1404,7 @@ called Glob
 
 ### Tool result
 
-_source line 1298 · 2026-05-22T15:29:43.064310+00:00_
+_source line 1292 · 2026-05-22T15:29:43.064310+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/intermediate/verify_lambda_bound.py
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/verify_lambda_bound.py
@@ -1674,7 +1428,7 @@ _source line 1298 · 2026-05-22T15:29:43.064310+00:00_
 
 ### Tool call
 
-_source line 1299 · 2026-05-22T15:29:45.728228+00:00_
+_source line 1293 · 2026-05-22T15:29:45.728228+00:00_
 
 called Read
 
@@ -1708,7 +1462,7 @@ called Read
 
 ### Tool result
 
-_source line 1300 · 2026-05-22T15:29:45.831510+00:00_
+_source line 1294 · 2026-05-22T15:29:45.831510+00:00_
 
 1	{
 2	  "per_K": {
@@ -1768,7 +1522,7 @@ _source line 1300 · 2026-05-22T15:29:45.831510+00:00_
 
 ### Tool call
 
-_source line 1301 · 2026-05-22T15:30:06.763391+00:00_
+_source line 1295 · 2026-05-22T15:30:06.763391+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1804,7 +1558,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1302 · 2026-05-22T15:30:16.664081+00:00_
+_source line 1296 · 2026-05-22T15:30:16.664081+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -1826,7 +1580,7 @@ _source line 1302 · 2026-05-22T15:30:16.664081+00:00_
 
 ### Assistant
 
-_source line 1303 · 2026-05-22T15:30:19.212651+00:00_
+_source line 1297 · 2026-05-22T15:30:19.212651+00:00_
 
 让我检查 λ bound 的数值验证结果。
 
@@ -1853,7 +1607,7 @@ _source line 1303 · 2026-05-22T15:30:19.212651+00:00_
 
 ### User
 
-_source line 1304 · 2026-05-22T15:30:19.802936+00:00_
+_source line 1298 · 2026-05-22T15:30:19.802936+00:00_
 
 [系统通知 — worker_done:worker_paper_new_citations_r4mr_20260522T152222]:
 Worker worker_paper_new_citations_r4mr_20260522T152222 已完成（status=done），请审查 Agent 的处理结果。
@@ -1875,7 +1629,7 @@ Worker worker_paper_new_citations_r4mr_20260522T152222 已完成（status=done�
 
 ### Tool call
 
-_source line 1305 · 2026-05-22T15:30:35.507501+00:00_
+_source line 1299 · 2026-05-22T15:30:35.507501+00:00_
 
 called Bash
 
@@ -1911,7 +1665,7 @@ called Bash
 
 ### Tool result
 
-_source line 1306 · 2026-05-22T15:30:36.013367+00:00_
+_source line 1300 · 2026-05-22T15:30:36.013367+00:00_
 
  docs/paper/references.bib   | 192 +++++++++++++++++++++++++++-----------------
  docs/paper/related_work.tex |   6 +-
@@ -1936,7 +1690,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1307 · 2026-05-22T15:30:39.187559+00:00_
+_source line 1301 · 2026-05-22T15:30:39.187559+00:00_
 
 called Read
 
@@ -1970,7 +1724,7 @@ called Read
 
 ### Tool result
 
-_source line 1308 · 2026-05-22T15:30:39.303145+00:00_
+_source line 1302 · 2026-05-22T15:30:39.303145+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -2000,7 +1754,7 @@ _source line 1308 · 2026-05-22T15:30:39.303145+00:00_
 
 ### Tool call
 
-_source line 1309 · 2026-05-22T15:30:46.505524+00:00_
+_source line 1303 · 2026-05-22T15:30:46.505524+00:00_
 
 called Grep
 
@@ -2040,7 +1794,7 @@ called Grep
 
 ### Tool result
 
-_source line 1310 · 2026-05-22T15:30:46.557077+00:00_
+_source line 1304 · 2026-05-22T15:30:46.557077+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]
@@ -2064,7 +1818,7 @@ _source line 1310 · 2026-05-22T15:30:46.557077+00:00_
 
 ### Assistant
 
-_source line 1311 · 2026-05-22T15:30:52.082739+00:00_
+_source line 1305 · 2026-05-22T15:30:52.082739+00:00_
 
 所有 5 篇新引用在 related_work.tex 正确位置被引用（imai_keele_yamamoto2010, buonaccorsi2010, blackwell_honaker_king2017, valeri_vanderweele2013, pangakis_wolken_fasching2023），另外 cinelli2020making 和 richardson1993bayesian 也分别在 related_work 和 experiments 中被引用。
 
@@ -2093,7 +1847,7 @@ _source line 1311 · 2026-05-22T15:30:52.082739+00:00_
 
 ### User
 
-_source line 1312 · 2026-05-22T15:48:51.919532+00:00_
+_source line 1306 · 2026-05-22T15:48:51.919532+00:00_
 
 [系统通知 — worker_done:worker_math_epsilon_sensitivity_w9_20260522T152145]:
 Worker worker_math_epsilon_sensitivity_w9_20260522T152145 已完成（status=done），请审查 Agent 的处理结果。
@@ -2115,7 +1869,7 @@ Worker worker_math_epsilon_sensitivity_w9_20260522T152145 已完成（status=don
 
 ### Tool call
 
-_source line 1313 · 2026-05-22T15:49:05.017377+00:00_
+_source line 1307 · 2026-05-22T15:49:05.017377+00:00_
 
 called Glob
 
@@ -2151,7 +1905,7 @@ called Glob
 
 ### Tool result
 
-_source line 1314 · 2026-05-22T15:49:05.121293+00:00_
+_source line 1308 · 2026-05-22T15:49:05.121293+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_epsilon_tau_sensitivity.py
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/__pycache__/exp_d_epsilon_tau_sensitivity.cpython-314.pyc
@@ -2177,7 +1931,7 @@ _source line 1314 · 2026-05-22T15:49:05.121293+00:00_
 
 ### Tool call
 
-_source line 1315 · 2026-05-22T15:49:07.939847+00:00_
+_source line 1309 · 2026-05-22T15:49:07.939847+00:00_
 
 called Read
 
@@ -2211,7 +1965,7 @@ called Read
 
 ### Tool result
 
-_source line 1316 · 2026-05-22T15:49:08.297453+00:00_
+_source line 1310 · 2026-05-22T15:49:08.297453+00:00_
 
 1	{
 2	  "tau_values": [
@@ -2305,7 +2059,7 @@ _source line 1316 · 2026-05-22T15:49:08.297453+00:00_
 
 ### Tool call
 
-_source line 1317 · 2026-05-22T15:50:28.991787+00:00_
+_source line 1311 · 2026-05-22T15:50:28.991787+00:00_
 
 called Bash
 
@@ -2341,7 +2095,7 @@ called Bash
 
 ### Tool result
 
-_source line 1318 · 2026-05-22T15:50:29.293867+00:00_
+_source line 1312 · 2026-05-22T15:50:29.293867+00:00_
 
 +
 +\emph{Step 1: Decompose $T$ via the mediator.}
@@ -2396,7 +2150,7 @@ _source line 1318 · 2026-05-22T15:50:29.293867+00:00_
 
 ### Tool call
 
-_source line 1319 · 2026-05-22T15:52:37.057417+00:00_
+_source line 1313 · 2026-05-22T15:52:37.057417+00:00_
 
 called Grep
 
@@ -2438,7 +2192,7 @@ called Grep
 
 ### Tool result
 
-_source line 1320 · 2026-05-22T15:52:37.510988+00:00_
+_source line 1314 · 2026-05-22T15:52:37.510988+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:[Omitted long matching line]
@@ -2471,7 +2225,7 @@ _source line 1320 · 2026-05-22T15:52:37.510988+00:00_
 
 ### Tool call
 
-_source line 1321 · 2026-05-22T15:52:38.115351+00:00_
+_source line 1315 · 2026-05-22T15:52:38.115351+00:00_
 
 called Grep
 
@@ -2513,7 +2267,7 @@ called Grep
 
 ### Tool result
 
-_source line 1322 · 2026-05-22T15:52:38.217386+00:00_
+_source line 1316 · 2026-05-22T15:52:38.217386+00:00_
 
 404:\emph{Proportional case.} Step~4 of the mediation derivation gives $B(C)=\lambda_0\,V_W(C)/(V_W(C)+\sigma_\varepsilon^2)$; the rank-one limit $V_W{\to}V$ yields $\tau_{\mathrm{ind}}=\lambda_0\,V/(V+\sigma_\varepsilon^2)$. Both quantities carry $\operatorname{sign}(\lambda_0)$, establishing~(a). The ratio
 451:Unlike confounding, $\varepsilon_Y$ is not independent of $A$ (since $A$ depends on $Y=\tau T+\varepsilon_Y$), so Lemma~\ref{lem:bias_decomp} does not apply directly.
@@ -2545,7 +2299,7 @@ _source line 1322 · 2026-05-22T15:52:38.217386+00:00_
 
 ### Tool call
 
-_source line 1323 · 2026-05-22T15:52:41.680205+00:00_
+_source line 1317 · 2026-05-22T15:52:41.680205+00:00_
 
 called Read
 
@@ -2583,7 +2337,7 @@ called Read
 
 ### Tool result
 
-_source line 1324 · 2026-05-22T15:52:42.132532+00:00_
+_source line 1318 · 2026-05-22T15:52:42.132532+00:00_
 
 975	
 976	For HumAID ($K{=}10$, 56 scenarios), 55.4\% are flagged as magnitude-ASV-unsafe---IV, mediation, front-door, and exposure all trigger, while confounding, collider, and M-bias remain below 10\% bias (Figure~\ref{fig:asv_heatmap}). For CivilComments ($K{=}2$), 100\% of scenarios are ASV-unsafe despite $F_1$ ranging from $0.69$ (7B) to $0.82$ (frontier).
@@ -2618,7 +2372,7 @@ _source line 1324 · 2026-05-22T15:52:42.132532+00:00_
 
 ### Tool call
 
-_source line 1325 · 2026-05-22T15:52:42.133028+00:00_
+_source line 1319 · 2026-05-22T15:52:42.133028+00:00_
 
 called Read
 
@@ -2656,7 +2410,7 @@ called Read
 
 ### Tool result
 
-_source line 1326 · 2026-05-22T15:52:42.184883+00:00_
+_source line 1320 · 2026-05-22T15:52:42.184883+00:00_
 
 88	\end{theorem}
 89	
@@ -2690,7 +2444,7 @@ _source line 1326 · 2026-05-22T15:52:42.184883+00:00_
 
 ### Tool call
 
-_source line 1327 · 2026-05-22T15:53:06.550763+00:00_
+_source line 1321 · 2026-05-22T15:53:06.550763+00:00_
 
 called Read
 
@@ -2726,7 +2480,7 @@ called Read
 
 ### Tool result
 
-_source line 1328 · 2026-05-22T15:53:06.601795+00:00_
+_source line 1322 · 2026-05-22T15:53:06.601795+00:00_
 
 1	{
 2	  "tau_values": [
@@ -2820,7 +2574,7 @@ _source line 1328 · 2026-05-22T15:53:06.601795+00:00_
 
 ### Tool call
 
-_source line 1329 · 2026-05-22T15:53:10.215913+00:00_
+_source line 1323 · 2026-05-22T15:53:10.215913+00:00_
 
 called Grep
 
@@ -2862,7 +2616,7 @@ called Grep
 
 ### Tool result
 
-_source line 1330 · 2026-05-22T15:53:10.266788+00:00_
+_source line 1324 · 2026-05-22T15:53:10.266788+00:00_
 
 13:    "exposure",
 14-    "mbias",
@@ -2948,7 +2702,7 @@ _source line 1330 · 2026-05-22T15:53:10.266788+00:00_
 
 ### Tool call
 
-_source line 1331 · 2026-05-22T15:53:13.078044+00:00_
+_source line 1325 · 2026-05-22T15:53:13.078044+00:00_
 
 called Read
 
@@ -2986,7 +2740,7 @@ called Read
 
 ### Tool result
 
-_source line 1332 · 2026-05-22T15:53:13.129038+00:00_
+_source line 1326 · 2026-05-22T15:53:13.129038+00:00_
 
 566	    "exposure": {
 567	      "tau_0.1": {
@@ -3065,7 +2819,7 @@ _source line 1332 · 2026-05-22T15:53:13.129038+00:00_
 
 ### Tool call
 
-_source line 1333 · 2026-05-22T15:54:04.250577+00:00_
+_source line 1327 · 2026-05-22T15:54:04.250577+00:00_
 
 called Grep
 
@@ -3107,7 +2861,7 @@ called Grep
 
 ### Tool result
 
-_source line 1334 · 2026-05-22T15:54:04.302369+00:00_
+_source line 1328 · 2026-05-22T15:54:04.302369+00:00_
 
 11:    "mediation",
 12-    "collider",
@@ -3142,7 +2896,7 @@ _source line 1334 · 2026-05-22T15:54:04.302369+00:00_
 
 ### Tool call
 
-_source line 1335 · 2026-05-22T15:54:07.315227+00:00_
+_source line 1329 · 2026-05-22T15:54:07.315227+00:00_
 
 called Read
 
@@ -3180,7 +2934,7 @@ called Read
 
 ### Tool result
 
-_source line 1336 · 2026-05-22T15:54:07.315922+00:00_
+_source line 1330 · 2026-05-22T15:54:07.315922+00:00_
 
 212	    "mediation": {
 213	      "tau_0.1": {
@@ -3259,7 +3013,7 @@ _source line 1336 · 2026-05-22T15:54:07.315922+00:00_
 
 ### Tool call
 
-_source line 1337 · 2026-05-22T15:55:04.062364+00:00_
+_source line 1331 · 2026-05-22T15:55:04.062364+00:00_
 
 called ToolSearch
 
@@ -3295,7 +3049,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1338 · 2026-05-22T15:55:04.164510+00:00_
+_source line 1332 · 2026-05-22T15:55:04.164510+00:00_
 
 
 
@@ -3317,7 +3071,7 @@ _source line 1338 · 2026-05-22T15:55:04.164510+00:00_
 
 ### Tool call
 
-_source line 1339 · 2026-05-22T15:55:31.949052+00:00_
+_source line 1333 · 2026-05-22T15:55:31.949052+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3353,7 +3107,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1340 · 2026-05-22T15:55:37.271367+00:00_
+_source line 1334 · 2026-05-22T15:55:37.271367+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -3375,7 +3129,7 @@ _source line 1340 · 2026-05-22T15:55:37.271367+00:00_
 
 ### Assistant
 
-_source line 1341 · 2026-05-22T15:55:45.508048+00:00_
+_source line 1335 · 2026-05-22T15:55:45.508048+00:00_
 
 W9 审查已提交。核心发现：
 
@@ -3410,7 +3164,7 @@ W9 审查已提交。核心发现：
 
 ### User
 
-_source line 1342 · 2026-05-22T15:55:46.009368+00:00_
+_source line 1336 · 2026-05-22T15:55:46.009368+00:00_
 
 [系统通知 — worker_done:worker_math_w3_lambda_corrected_20260522T152717]:
 Worker worker_math_w3_lambda_corrected_20260522T152717 已完成（status=done），请审查 Agent 的处理结果。
@@ -3432,7 +3186,7 @@ Worker worker_math_w3_lambda_corrected_20260522T152717 已完成（status=done�
 
 ### Tool call
 
-_source line 1343 · 2026-05-22T15:56:02.852884+00:00_
+_source line 1337 · 2026-05-22T15:56:02.852884+00:00_
 
 called ToolSearch
 
@@ -3468,7 +3222,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1344 · 2026-05-22T15:56:02.853410+00:00_
+_source line 1338 · 2026-05-22T15:56:02.853410+00:00_
 
 
 
@@ -3490,7 +3244,7 @@ _source line 1344 · 2026-05-22T15:56:02.853410+00:00_
 
 ### Tool call
 
-_source line 1345 · 2026-05-22T15:56:06.620501+00:00_
+_source line 1339 · 2026-05-22T15:56:06.620501+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3528,7 +3282,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1346 · 2026-05-22T15:56:06.824415+00:00_
+_source line 1340 · 2026-05-22T15:56:06.824415+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 13140 chars]
@@ -3551,7 +3305,7 @@ _source line 1346 · 2026-05-22T15:56:06.824415+00:00_
 
 ### Tool call
 
-_source line 1347 · 2026-05-22T15:56:14.318357+00:00_
+_source line 1341 · 2026-05-22T15:56:14.318357+00:00_
 
 called Bash
 
@@ -3587,7 +3341,7 @@ called Bash
 
 ### Tool result
 
-_source line 1348 · 2026-05-22T15:56:14.771747+00:00_
+_source line 1342 · 2026-05-22T15:56:14.771747+00:00_
 
 diff --git a/docs/paper/method.tex b/docs/paper/method.tex
 index 2f3f456..2ef7db6 100644
@@ -3628,7 +3382,7 @@ index 2f3f456..2ef7db6 100644
 
 ### Tool call
 
-_source line 1349 · 2026-05-22T15:56:14.876372+00:00_
+_source line 1343 · 2026-05-22T15:56:14.876372+00:00_
 
 called Bash
 
@@ -3664,7 +3418,7 @@ called Bash
 
 ### Tool result
 
-_source line 1350 · 2026-05-22T15:56:15.027783+00:00_
+_source line 1344 · 2026-05-22T15:56:15.027783+00:00_
 
 &lt;persisted-output>
 Output too large (31.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib--claude-sessions-reviewer-15d8e49e/8bc69155-8f9e-4c11-b39a-4ba9e528bab0/tool-results/bxb1cec90.txt
@@ -3706,7 +3460,7 @@ index 2f2dcc7..c6687f0 100644
 
 ### Tool call
 
-_source line 1351 · 2026-05-22T15:56:19.701896+00:00_
+_source line 1345 · 2026-05-22T15:56:19.701896+00:00_
 
 called Read
 
@@ -3744,7 +3498,7 @@ called Read
 
 ### Tool result
 
-_source line 1352 · 2026-05-22T15:56:19.753882+00:00_
+_source line 1346 · 2026-05-22T15:56:19.753882+00:00_
 
 0	diff --git a/docs/paper/appendix_proofs.tex b/docs/paper/appendix_proofs.tex
 1	index 2f2dcc7..c6687f0 100644
@@ -3785,7 +3539,7 @@ _source line 1352 · 2026-05-22T15:56:19.753882+00:00_
 
 ### Tool call
 
-_source line 1353 · 2026-05-22T15:56:26.893110+00:00_
+_source line 1347 · 2026-05-22T15:56:26.893110+00:00_
 
 called Read
 
@@ -3823,7 +3577,7 @@ called Read
 
 ### Tool result
 
-_source line 1354 · 2026-05-22T15:56:26.944775+00:00_
+_source line 1348 · 2026-05-22T15:56:26.944775+00:00_
 
 199	 
 200	@@ -803,3 +908,158 @@ $\varepsilon$ & Sign-Flip (\%) & Amplification (\%) & Any Violation (\%) \\
@@ -3869,7 +3623,7 @@ _source line 1354 · 2026-05-22T15:56:26.944775+00:00_
 
 ### Tool call
 
-_source line 1355 · 2026-05-22T15:58:23.995903+00:00_
+_source line 1349 · 2026-05-22T15:58:23.995903+00:00_
 
 called Read
 
@@ -3907,7 +3661,7 @@ called Read
 
 ### Tool result
 
-_source line 1356 · 2026-05-22T15:58:24.397927+00:00_
+_source line 1350 · 2026-05-22T15:58:24.397927+00:00_
 
 38	
 39	\paragraph{Mediation ($A$ = mediator).}
@@ -3938,7 +3692,7 @@ _source line 1356 · 2026-05-22T15:58:24.397927+00:00_
 
 ### Tool call
 
-_source line 1357 · 2026-05-22T15:58:24.700021+00:00_
+_source line 1351 · 2026-05-22T15:58:24.700021+00:00_
 
 called Read
 
@@ -3976,7 +3730,7 @@ called Read
 
 ### Tool result
 
-_source line 1358 · 2026-05-22T15:58:24.751955+00:00_
+_source line 1352 · 2026-05-22T15:58:24.751955+00:00_
 
 335	$\tau_{\mathrm{total}}=0.5+0.351=0.851>0$.
 336	Since $\tau_{\mathrm{dir}}{>}0$ and $\tau_{\mathrm{total}}{>}0$, sign preservation holds for all $C$.
@@ -4017,7 +3771,7 @@ _source line 1358 · 2026-05-22T15:58:24.751955+00:00_
 
 ### Tool call
 
-_source line 1359 · 2026-05-22T15:59:31.044382+00:00_
+_source line 1353 · 2026-05-22T15:59:31.044382+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4053,7 +3807,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1360 · 2026-05-22T15:59:39.039624+00:00_
+_source line 1354 · 2026-05-22T15:59:39.039624+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -4075,7 +3829,7 @@ _source line 1360 · 2026-05-22T15:59:39.039624+00:00_
 
 ### Assistant
 
-_source line 1361 · 2026-05-22T15:59:43.848451+00:00_
+_source line 1355 · 2026-05-22T15:59:43.848451+00:00_
 
 W3 corrected 审查完毕。核心数学正确（Proposition、mediation 单调性证明、λ_V 诊断量均验证通过），主要问题是 method.tex 中 λ ∈ [0,1] 的条件表述混淆了 proportional effects 和 sign preservation 两个独立条件——appendix 正确但主文不精确，标 warning。
 
@@ -4102,7 +3856,7 @@ W3 corrected 审查完毕。核心数学正确（Proposition、mediation 单调�
 
 ### User
 
-_source line 1362 · 2026-05-22T16:35:55.941110+00:00_
+_source line 1356 · 2026-05-22T16:35:55.941110+00:00_
 
 [System 触发审查]:
 请做两项审查：
@@ -4141,7 +3895,7 @@ _source line 1362 · 2026-05-22T16:35:55.941110+00:00_
 
 ### Tool call
 
-_source line 1363 · 2026-05-22T16:36:13.098459+00:00_
+_source line 1357 · 2026-05-22T16:36:13.098459+00:00_
 
 called Read
 
@@ -4179,7 +3933,7 @@ called Read
 
 ### Tool result
 
-_source line 1364 · 2026-05-22T16:36:13.600983+00:00_
+_source line 1358 · 2026-05-22T16:36:13.600983+00:00_
 
 88	\end{theorem}
 89	
@@ -4211,7 +3965,7 @@ _source line 1364 · 2026-05-22T16:36:13.600983+00:00_
 
 ### Tool call
 
-_source line 1365 · 2026-05-22T16:36:13.601552+00:00_
+_source line 1359 · 2026-05-22T16:36:13.601552+00:00_
 
 called Read
 
@@ -4245,7 +3999,7 @@ called Read
 
 ### Tool result
 
-_source line 1366 · 2026-05-22T16:36:14.109856+00:00_
+_source line 1360 · 2026-05-22T16:36:14.109856+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy (diagonal ${\geq}\,0.7$), the sign reversal rate is 2.1\%, exclusively in secondary coefficients---the primary treatment effect never reverses in any of 23 empirical LLM configurations. We introduce Annotation Sensitivity Values (ASVs) revealing a vulnerability spectrum from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -4270,7 +4024,7 @@ _source line 1366 · 2026-05-22T16:36:14.109856+00:00_
 
 ### Tool call
 
-_source line 1367 · 2026-05-22T16:36:14.110368+00:00_
+_source line 1361 · 2026-05-22T16:36:14.110368+00:00_
 
 called Read
 
@@ -4304,7 +4058,7 @@ called Read
 
 ### Tool result
 
-_source line 1368 · 2026-05-22T16:36:14.211185+00:00_
+_source line 1362 · 2026-05-22T16:36:14.211185+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -4332,7 +4086,7 @@ _source line 1368 · 2026-05-22T16:36:14.211185+00:00_
 
 ### Tool call
 
-_source line 1369 · 2026-05-22T16:36:17.348353+00:00_
+_source line 1363 · 2026-05-22T16:36:17.348353+00:00_
 
 called Read
 
@@ -4366,7 +4120,7 @@ called Read
 
 ### Tool result
 
-_source line 1370 · 2026-05-22T16:36:17.754573+00:00_
+_source line 1364 · 2026-05-22T16:36:17.754573+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -4408,7 +4162,7 @@ _source line 1370 · 2026-05-22T16:36:17.754573+00:00_
 
 ### Tool call
 
-_source line 1371 · 2026-05-22T16:36:17.755097+00:00_
+_source line 1365 · 2026-05-22T16:36:17.755097+00:00_
 
 called Read
 
@@ -4442,7 +4196,7 @@ called Read
 
 ### Tool result
 
-_source line 1372 · 2026-05-22T16:36:18.219427+00:00_
+_source line 1366 · 2026-05-22T16:36:18.219427+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -4472,7 +4226,7 @@ _source line 1372 · 2026-05-22T16:36:18.219427+00:00_
 
 ### Tool call
 
-_source line 1373 · 2026-05-22T16:36:18.392378+00:00_
+_source line 1367 · 2026-05-22T16:36:18.392378+00:00_
 
 called Read
 
@@ -4510,7 +4264,7 @@ called Read
 
 ### Tool result
 
-_source line 1374 · 2026-05-22T16:36:18.448328+00:00_
+_source line 1368 · 2026-05-22T16:36:18.448328+00:00_
 
 0	\section{Method}
 1	\label{sec:method}
@@ -4556,7 +4310,7 @@ _source line 1374 · 2026-05-22T16:36:18.448328+00:00_
 
 ### Tool call
 
-_source line 1375 · 2026-05-22T16:37:22.605596+00:00_
+_source line 1369 · 2026-05-22T16:37:22.605596+00:00_
 
 called Grep
 
@@ -4596,7 +4350,7 @@ called Grep
 
 ### Tool result
 
-_source line 1376 · 2026-05-22T16:37:23.061575+00:00_
+_source line 1370 · 2026-05-22T16:37:23.061575+00:00_
 
 No matches found
 
@@ -4618,7 +4372,7 @@ No matches found
 
 ### Tool call
 
-_source line 1377 · 2026-05-22T16:37:24.096336+00:00_
+_source line 1371 · 2026-05-22T16:37:24.096336+00:00_
 
 called Grep
 
@@ -4660,7 +4414,7 @@ called Grep
 
 ### Tool result
 
-_source line 1378 · 2026-05-22T16:37:24.553387+00:00_
+_source line 1372 · 2026-05-22T16:37:24.553387+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:[Omitted long matching line]
@@ -4687,7 +4441,7 @@ _source line 1378 · 2026-05-22T16:37:24.553387+00:00_
 
 ### Tool call
 
-_source line 1379 · 2026-05-22T16:37:25.280402+00:00_
+_source line 1373 · 2026-05-22T16:37:25.280402+00:00_
 
 called Grep
 
@@ -4729,7 +4483,7 @@ called Grep
 
 ### Tool result
 
-_source line 1380 · 2026-05-22T16:37:25.399382+00:00_
+_source line 1374 · 2026-05-22T16:37:25.399382+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1016:[Omitted long matching line]
@@ -4752,7 +4506,7 @@ _source line 1380 · 2026-05-22T16:37:25.399382+00:00_
 
 ### Tool call
 
-_source line 1381 · 2026-05-22T16:37:29.956792+00:00_
+_source line 1375 · 2026-05-22T16:37:29.956792+00:00_
 
 called Grep
 
@@ -4796,7 +4550,7 @@ called Grep
 
 ### Tool result
 
-_source line 1382 · 2026-05-22T16:37:30.361859+00:00_
+_source line 1376 · 2026-05-22T16:37:30.361859+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-55-\paragraph{Envelope monotonicity.}
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:[Omitted long matching line]
@@ -4824,7 +4578,7 @@ _source line 1382 · 2026-05-22T16:37:30.361859+00:00_
 
 ### Tool call
 
-_source line 1383 · 2026-05-22T16:37:30.863690+00:00_
+_source line 1377 · 2026-05-22T16:37:30.863690+00:00_
 
 called Grep
 
@@ -4866,7 +4620,7 @@ called Grep
 
 ### Tool result
 
-_source line 1384 · 2026-05-22T16:37:31.819361+00:00_
+_source line 1378 · 2026-05-22T16:37:31.819361+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:737:Exposure & --- & --- & 83.4\%$^*$ & --- \\
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:811:    \STATE $R \gets \textsc{High}$ \COMMENT{Exposure, IV: sign reversal 83.4\% / 52.6\%}
@@ -4895,7 +4649,7 @@ _source line 1384 · 2026-05-22T16:37:31.819361+00:00_
 
 ### Tool call
 
-_source line 1385 · 2026-05-22T16:37:32.325132+00:00_
+_source line 1379 · 2026-05-22T16:37:32.325132+00:00_
 
 called Grep
 
@@ -4937,7 +4691,7 @@ called Grep
 
 ### Tool result
 
-_source line 1386 · 2026-05-22T16:37:32.427611+00:00_
+_source line 1380 · 2026-05-22T16:37:32.427611+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:45:where $\lambda(C) \in [0,1]$ under proportional effects (Appendix~\ref{app:proof}, Proposition~\ref{prop:lambda_bound}), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:81:[Omitted long matching line]
@@ -4966,7 +4720,7 @@ _source line 1386 · 2026-05-22T16:37:32.427611+00:00_
 
 ### Tool call
 
-_source line 1387 · 2026-05-22T16:37:36.856394+00:00_
+_source line 1381 · 2026-05-22T16:37:36.856394+00:00_
 
 called Read
 
@@ -5004,7 +4758,7 @@ called Read
 
 ### Tool result
 
-_source line 1388 · 2026-05-22T16:37:37.460397+00:00_
+_source line 1382 · 2026-05-22T16:37:37.460397+00:00_
 
 54	
 55	\paragraph{Envelope monotonicity.}
@@ -5030,7 +4784,7 @@ _source line 1388 · 2026-05-22T16:37:37.460397+00:00_
 
 ### Tool call
 
-_source line 1389 · 2026-05-22T16:37:37.614330+00:00_
+_source line 1383 · 2026-05-22T16:37:37.614330+00:00_
 
 called Read
 
@@ -5068,7 +4822,7 @@ called Read
 
 ### Tool result
 
-_source line 1390 · 2026-05-22T16:37:37.867385+00:00_
+_source line 1384 · 2026-05-22T16:37:37.867385+00:00_
 
 1014	\end{table}
 1015	
@@ -5094,7 +4848,7 @@ _source line 1390 · 2026-05-22T16:37:37.867385+00:00_
 
 ### Tool call
 
-_source line 1391 · 2026-05-22T16:37:38.222913+00:00_
+_source line 1385 · 2026-05-22T16:37:38.222913+00:00_
 
 called Read
 
@@ -5132,7 +4886,7 @@ called Read
 
 ### Tool result
 
-_source line 1392 · 2026-05-22T16:37:38.273680+00:00_
+_source line 1386 · 2026-05-22T16:37:38.273680+00:00_
 
 75	\subsection{Annotation Sensitivity Values}
 76	\label{sec:asv}
@@ -5163,7 +4917,7 @@ _source line 1392 · 2026-05-22T16:37:38.273680+00:00_
 
 ### Tool call
 
-_source line 1393 · 2026-05-22T16:39:01.136309+00:00_
+_source line 1387 · 2026-05-22T16:39:01.136309+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5199,7 +4953,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1394 · 2026-05-22T16:39:19.250627+00:00_
+_source line 1388 · 2026-05-22T16:39:19.250627+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -5221,7 +4975,7 @@ _source line 1394 · 2026-05-22T16:39:19.250627+00:00_
 
 ### Assistant
 
-_source line 1395 · 2026-05-22T16:39:25.891739+00:00_
+_source line 1389 · 2026-05-22T16:39:25.891739+00:00_
 
 审查已提交。核心发现：
 
@@ -5253,7 +5007,7 @@ _source line 1395 · 2026-05-22T16:39:25.891739+00:00_
 
 ### User
 
-_source line 1396 · 2026-05-22T16:46:43.077314+00:00_
+_source line 1390 · 2026-05-22T16:46:43.077314+00:00_
 
 [System 触发审查]:
 快速确认：你上一轮报告中发现的 5 个问题（P0-P2），我已全部修正：
@@ -5284,7 +5038,7 @@ _source line 1396 · 2026-05-22T16:46:43.077314+00:00_
 
 ### Tool call
 
-_source line 1397 · 2026-05-22T16:47:01.897404+00:00_
+_source line 1391 · 2026-05-22T16:47:01.897404+00:00_
 
 called Read
 
@@ -5322,7 +5076,7 @@ called Read
 
 ### Tool result
 
-_source line 1398 · 2026-05-22T16:47:02.355240+00:00_
+_source line 1392 · 2026-05-22T16:47:02.355240+00:00_
 
 90	\emph{Proof sketch.} Both topologies reduce to $B(C(\delta)) {=} \lambda V_W(\delta)/(V_W(\delta) {+} \sigma^2)$ where $V_W(\delta) {=} \operatorname{Var}(g) {-} V_B(\delta)$, $V_B(\delta) {=} \operatorname{Var}(\mathbb{E}[g{\mid}A^*_\delta])$, and $\sigma^2$ is a topology-specific constant ($\sigma_T^2$ for confounding, $\mathbb{E}[\operatorname{Var}(T{\mid}A)]$ for mediation). Under $C(\delta) = (1{-}\delta)I + \delta C_0$, each conditional expectation $\mathbb{E}[g{\mid}A^*_\delta{=}j]$ is a ratio of linear functions of $\delta$, and $V_B(\delta)$ is a rational function whose derivative is non-positive: for $K{=}2$, $dV_B/d\delta < 0$ by direct differentiation; for general $K$, non-positivity is verified algebraically and numerically with zero violations across 10{,}000 random $C_0$ matrices (Appendix~\ref{app:monotonicity_proof}). Since $V_W = \operatorname{Var}(g) - V_B$ is non-decreasing and $x/(x{+}c)$ is increasing for $c{>}0$, $|B|$ is non-decreasing (full proofs in Appendix~\ref{app:monotonicity_proof} and~\ref{par:med_monotone}).
 91	
@@ -5349,7 +5103,7 @@ _source line 1398 · 2026-05-22T16:47:02.355240+00:00_
 
 ### Tool call
 
-_source line 1399 · 2026-05-22T16:47:02.405967+00:00_
+_source line 1393 · 2026-05-22T16:47:02.405967+00:00_
 
 called Read
 
@@ -5387,7 +5141,7 @@ called Read
 
 ### Tool result
 
-_source line 1400 · 2026-05-22T16:47:02.510387+00:00_
+_source line 1394 · 2026-05-22T16:47:02.510387+00:00_
 
 53	\label{sec:asv_results}
 54	
@@ -5416,7 +5170,7 @@ _source line 1400 · 2026-05-22T16:47:02.510387+00:00_
 
 ### Tool call
 
-_source line 1401 · 2026-05-22T16:47:50.298335+00:00_
+_source line 1395 · 2026-05-22T16:47:50.298335+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5452,7 +5206,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1402 · 2026-05-22T16:48:07.429029+00:00_
+_source line 1396 · 2026-05-22T16:48:07.429029+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -5474,7 +5228,7 @@ _source line 1402 · 2026-05-22T16:48:07.429029+00:00_
 
 ### Assistant
 
-_source line 1403 · 2026-05-22T16:48:11.984729+00:00_
+_source line 1397 · 2026-05-22T16:48:11.984729+00:00_
 
 全部 5 项修正确认通过，无新增问题。Conjecture 1 和 experiments.tex 现在与附录数据一致。
 
@@ -5501,7 +5255,7 @@ _source line 1403 · 2026-05-22T16:48:11.984729+00:00_
 
 ### User
 
-_source line 1404 · 2026-05-22T17:16:32.595946+00:00_
+_source line 1398 · 2026-05-22T17:16:32.595946+00:00_
 
 [System 触发审查]:
 Round 5 审稿报告逐条处理方案，请独立审视可行性和遗漏。
@@ -5607,7 +5361,7 @@ Round 5 审稿报告逐条处理方案，请独立审视可行性和遗漏。
 
 ### Tool call
 
-_source line 1405 · 2026-05-22T17:16:50.595753+00:00_
+_source line 1399 · 2026-05-22T17:16:50.595753+00:00_
 
 called Read
 
@@ -5645,7 +5399,7 @@ called Read
 
 ### Tool result
 
-_source line 1406 · 2026-05-22T17:16:51.053942+00:00_
+_source line 1400 · 2026-05-22T17:16:51.053942+00:00_
 
 82	\paragraph{Three ASV types.}
 83	We define three complementary measures: (1)~\textbf{Magnitude ASV} $\delta^*_{\text{mag}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta)) - \tau| > \epsilon\}$---analogous to E-values; (2)~\textbf{Significance ASV} $\delta^*_{\text{sig}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta))| < z_{\alpha/2} \cdot SE(N)\}$---relevant for attenuating topologies; (3)~\textbf{Sign-flip ASV} $\delta^*_{\text{sf}} = \min\{\delta : \text{sign}(\hat{\tau}) \neq \text{sign}(\tau)\}$---exposure and IV only. The significance ASV depends on $N$ through $SE(N)$, exhibiting a sharp phase transition at a critical $N^*$ below which all rejections are blocked.
@@ -5678,7 +5432,7 @@ _source line 1406 · 2026-05-22T17:16:51.053942+00:00_
 
 ### Tool call
 
-_source line 1407 · 2026-05-22T17:16:51.606473+00:00_
+_source line 1401 · 2026-05-22T17:16:51.606473+00:00_
 
 called Read
 
@@ -5716,7 +5470,7 @@ called Read
 
 ### Tool result
 
-_source line 1408 · 2026-05-22T17:16:52.013097+00:00_
+_source line 1402 · 2026-05-22T17:16:52.013097+00:00_
 
 28	\end{equation}
 29	where $Z = [X, \text{dummies}(A^*)]$, $\boldsymbol{\beta}$ contains the true coefficients, and the target parameter $\tau$ is the coefficient on $X$. Misclassification produces residual confounding that monotonically approaches the omitted variable bias, but the sign of $\hat{\tau}$ is preserved: $\tau_{\text{sign\_flip}} = 0$ structurally.\footnote{This result is consistent with \citet{brenner1993}, who showed that the adjusted estimate with misclassified polytomous confounders can be biased toward or away from the null. Both findings hold simultaneously: misclassification degrades confounding control, producing residual bias whose magnitude can exceed the correctly adjusted estimate (amplification), but the treatment effect sign is never reversed. The distinction is between \emph{sign reversal} ($\text{sign}(\hat{\tau}) \neq \text{sign}(\tau)$, which we show never occurs) and \emph{amplification} ($|\hat{\tau}| > |\tau|$, which occurs universally in this topology).}
@@ -5748,7 +5502,7 @@ _source line 1408 · 2026-05-22T17:16:52.013097+00:00_
 
 ### Tool call
 
-_source line 1409 · 2026-05-22T17:16:52.114519+00:00_
+_source line 1403 · 2026-05-22T17:16:52.114519+00:00_
 
 called Read
 
@@ -5786,7 +5540,7 @@ called Read
 
 ### Tool result
 
-_source line 1410 · 2026-05-22T17:16:52.165242+00:00_
+_source line 1404 · 2026-05-22T17:16:52.165242+00:00_
 
 28	All structural patterns persist at $K{=}5,7$ (Appendix~\ref{sec:cross_k_robustness}).
 29	
@@ -5829,7 +5583,7 @@ _source line 1410 · 2026-05-22T17:16:52.165242+00:00_
 
 ### Tool call
 
-_source line 1411 · 2026-05-22T17:16:55.887476+00:00_
+_source line 1405 · 2026-05-22T17:16:55.887476+00:00_
 
 called Read
 
@@ -5867,7 +5621,7 @@ called Read
 
 ### Tool result
 
-_source line 1412 · 2026-05-22T17:16:56.341393+00:00_
+_source line 1406 · 2026-05-22T17:16:56.341393+00:00_
 
 92	The key quantity $V_B(\delta) = \sum_j N_j(\delta)^2/q_j(\delta) - \bar{g}^2$ is a sum of perspective functions of $x^2$, hence \emph{convex} in $\delta$.
 93	Its derivative satisfies $V_B'(0) = -\sum_{j\neq k}(C_0)_{jk}\,p_k\,(g_j{-}g_k)^2 \leq 0$ (always).
@@ -5898,7 +5652,7 @@ _source line 1412 · 2026-05-22T17:16:56.341393+00:00_
 
 ### Tool call
 
-_source line 1413 · 2026-05-22T17:16:57.045682+00:00_
+_source line 1407 · 2026-05-22T17:16:57.045682+00:00_
 
 called Grep
 
@@ -5940,7 +5694,7 @@ called Grep
 
 ### Tool result
 
-_source line 1414 · 2026-05-22T17:16:57.096388+00:00_
+_source line 1408 · 2026-05-22T17:16:57.096388+00:00_
 
 233-\label{app:monotonicity_proof}
 234-
@@ -5991,7 +5745,7 @@ _source line 1414 · 2026-05-22T17:16:57.096388+00:00_
 
 ### Tool call
 
-_source line 1415 · 2026-05-22T17:19:35.265108+00:00_
+_source line 1409 · 2026-05-22T17:19:35.265108+00:00_
 
 called Read
 
@@ -6029,7 +5783,7 @@ called Read
 
 ### Tool result
 
-_source line 1416 · 2026-05-22T17:19:35.518784+00:00_
+_source line 1410 · 2026-05-22T17:19:35.518784+00:00_
 
 238	\paragraph{Proportional case ($f=\lambda g$).}
 239	From Proposition~\ref{prop:conf_prop}, $B(C)=\lambda V_W/(V_W+\sigma_T^2)$ where $V_W=\operatorname{Var}(g)-V_B$ and $V_B(\delta)=\operatorname{Var}(\mathbb{E}[g(A)\mid A^*_\delta])$.
@@ -6085,7 +5839,7 @@ _source line 1416 · 2026-05-22T17:19:35.518784+00:00_
 
 ### Tool call
 
-_source line 1417 · 2026-05-22T17:20:54.518487+00:00_
+_source line 1411 · 2026-05-22T17:20:54.518487+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6121,7 +5875,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1418 · 2026-05-22T17:21:06.623733+00:00_
+_source line 1412 · 2026-05-22T17:21:06.623733+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -6143,7 +5897,7 @@ _source line 1418 · 2026-05-22T17:21:06.623733+00:00_
 
 ### Tool call
 
-_source line 1419 · 2026-05-22T17:21:21.318329+00:00_
+_source line 1413 · 2026-05-22T17:21:21.318329+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6179,7 +5933,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1420 · 2026-05-22T17:21:22.786516+00:00_
+_source line 1414 · 2026-05-22T17:21:22.786516+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -6201,7 +5955,7 @@ _source line 1420 · 2026-05-22T17:21:22.786516+00:00_
 
 ### Assistant
 
-_source line 1421 · 2026-05-22T17:21:30.636030+00:00_
+_source line 1415 · 2026-05-22T17:21:30.636030+00:00_
 
 审查完成。核心发现：
 
@@ -6234,7 +5988,7 @@ _source line 1421 · 2026-05-22T17:21:30.636030+00:00_
 
 ### User
 
-_source line 1422 · 2026-05-22T17:26:40.332495+00:00_
+_source line 1416 · 2026-05-22T17:26:40.332495+00:00_
 
 [系统通知 — worker_done:worker_paper_missing_refs_r5_20260522T172225]:
 Worker worker_paper_missing_refs_r5_20260522T172225 已完成（status=done），请审查 Agent 的处理结果。
@@ -6256,7 +6010,7 @@ Worker worker_paper_missing_refs_r5_20260522T172225 已完成（status=done）�
 
 ### Tool call
 
-_source line 1423 · 2026-05-22T17:26:59.939981+00:00_
+_source line 1417 · 2026-05-22T17:26:59.939981+00:00_
 
 called Bash
 
@@ -6292,7 +6046,7 @@ called Bash
 
 ### Tool result
 
-_source line 1424 · 2026-05-22T17:27:00.750901+00:00_
+_source line 1418 · 2026-05-22T17:27:00.750901+00:00_
 
 diff --git a/docs/paper/references.bib b/docs/paper/references.bib
 index 49c0de9..7705f94 100644
@@ -6370,7 +6124,7 @@ index 49c0de9..7705f94 100644
 
 ### Tool call
 
-_source line 1425 · 2026-05-22T17:27:04.223339+00:00_
+_source line 1419 · 2026-05-22T17:27:04.223339+00:00_
 
 called Bash
 
@@ -6406,7 +6160,7 @@ called Bash
 
 ### Tool result
 
-_source line 1426 · 2026-05-22T17:27:04.576878+00:00_
+_source line 1420 · 2026-05-22T17:27:04.576878+00:00_
 
 diff --git a/docs/paper/related_work.tex b/docs/paper/related_work.tex
 index 2cdb02f..1ca9523 100644
@@ -6441,7 +6195,7 @@ index 2cdb02f..1ca9523 100644
 
 ### Tool call
 
-_source line 1427 · 2026-05-22T17:27:22.212607+00:00_
+_source line 1421 · 2026-05-22T17:27:22.212607+00:00_
 
 called Grep
 
@@ -6483,7 +6237,7 @@ called Grep
 
 ### Tool result
 
-_source line 1428 · 2026-05-22T17:27:22.716507+00:00_
+_source line 1422 · 2026-05-22T17:27:22.716507+00:00_
 
 No matches found
 
@@ -6505,7 +6259,7 @@ No matches found
 
 ### Tool call
 
-_source line 1429 · 2026-05-22T17:27:23.321390+00:00_
+_source line 1423 · 2026-05-22T17:27:23.321390+00:00_
 
 called Grep
 
@@ -6547,7 +6301,7 @@ called Grep
 
 ### Tool result
 
-_source line 1430 · 2026-05-22T17:27:23.629501+00:00_
+_source line 1424 · 2026-05-22T17:27:23.629501+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]
@@ -6570,7 +6324,7 @@ _source line 1430 · 2026-05-22T17:27:23.629501+00:00_
 
 ### Tool call
 
-_source line 1431 · 2026-05-22T17:27:34.269807+00:00_
+_source line 1425 · 2026-05-22T17:27:34.269807+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6606,7 +6360,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1432 · 2026-05-22T17:27:56.231196+00:00_
+_source line 1426 · 2026-05-22T17:27:56.231196+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -6635,7 +6389,7 @@ _source line 1432 · 2026-05-22T17:27:56.231196+00:00_
 
 ### User
 
-_source line 1433 · 2026-05-22T17:43:44.650969+00:00_
+_source line 1427 · 2026-05-22T17:43:44.650969+00:00_
 
 [系统通知 — worker_done:worker_exp_fwl_logistic_w4_20260522T172212]:
 Worker worker_exp_fwl_logistic_w4_20260522T172212 已完成（status=done），请审查 Agent 的处理结果。
@@ -6657,7 +6411,7 @@ Worker worker_exp_fwl_logistic_w4_20260522T172212 已完成（status=done），�
 
 ### Tool call
 
-_source line 1434 · 2026-05-22T17:44:03.178330+00:00_
+_source line 1428 · 2026-05-22T17:44:03.178330+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6697,7 +6451,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1435 · 2026-05-22T17:44:04.089089+00:00_
+_source line 1429 · 2026-05-22T17:44:04.089089+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 4611 chars]
@@ -6720,7 +6474,7 @@ _source line 1435 · 2026-05-22T17:44:04.089089+00:00_
 
 ### Tool call
 
-_source line 1436 · 2026-05-22T17:44:04.290645+00:00_
+_source line 1430 · 2026-05-22T17:44:04.290645+00:00_
 
 called Bash
 
@@ -6756,7 +6510,7 @@ called Bash
 
 ### Tool result
 
-_source line 1437 · 2026-05-22T17:44:04.955120+00:00_
+_source line 1431 · 2026-05-22T17:44:04.955120+00:00_
 
 diff --git a/docs/paper/appendix_proofs.tex b/docs/paper/appendix_proofs.tex
 index 2f2dcc7..a2f451d 100644
@@ -6797,7 +6551,7 @@ index 2f2dcc7..a2f451d 100644
 
 ### Tool call
 
-_source line 1438 · 2026-05-22T17:46:44.703480+00:00_
+_source line 1432 · 2026-05-22T17:46:44.703480+00:00_
 
 called Grep
 
@@ -6833,7 +6587,7 @@ called Grep
 
 ### Tool result
 
-_source line 1439 · 2026-05-22T17:46:45.206700+00:00_
+_source line 1433 · 2026-05-22T17:46:45.206700+00:00_
 
 Found 10 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml
@@ -6865,7 +6619,7 @@ Found 10 files
 
 ### Tool call
 
-_source line 1440 · 2026-05-22T17:46:46.165554+00:00_
+_source line 1434 · 2026-05-22T17:46:46.165554+00:00_
 
 called Grep
 
@@ -6905,7 +6659,7 @@ called Grep
 
 ### Tool result
 
-_source line 1441 · 2026-05-22T17:46:46.617198+00:00_
+_source line 1435 · 2026-05-22T17:46:46.617198+00:00_
 
 849:\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\ref{sec:logistic_dgp}).}
 898:\paragraph{FWL breakdown under logistic regression.}
@@ -6932,7 +6686,7 @@ _source line 1441 · 2026-05-22T17:46:46.617198+00:00_
 
 ### Tool call
 
-_source line 1442 · 2026-05-22T17:46:46.769212+00:00_
+_source line 1436 · 2026-05-22T17:46:46.769212+00:00_
 
 called Grep
 
@@ -6968,7 +6722,7 @@ called Grep
 
 ### Tool result
 
-_source line 1443 · 2026-05-22T17:46:46.870033+00:00_
+_source line 1437 · 2026-05-22T17:46:46.870033+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.aux
@@ -6993,7 +6747,7 @@ Found 3 files
 
 ### Tool call
 
-_source line 1444 · 2026-05-22T17:46:51.001111+00:00_
+_source line 1438 · 2026-05-22T17:46:51.001111+00:00_
 
 called Read
 
@@ -7027,7 +6781,7 @@ called Read
 
 ### Tool result
 
-_source line 1445 · 2026-05-22T17:46:51.912554+00:00_
+_source line 1439 · 2026-05-22T17:46:51.912554+00:00_
 
 1	Loaded 6 VAST K=3 CMs: ['deepseek_zero-shot', 'llama4_few-shot-3', 'llama4_few-shot-5', 'llama4_zero-shot', 'qwen2.5-7b_few-shot-3', 'qwen2.5-7b_few-shot-5']
 2	Computing oracle logistic tau (N=2M)...
@@ -7071,7 +6825,7 @@ _source line 1445 · 2026-05-22T17:46:51.912554+00:00_
 
 ### Tool call
 
-_source line 1446 · 2026-05-22T17:46:52.064070+00:00_
+_source line 1440 · 2026-05-22T17:46:52.064070+00:00_
 
 called Read
 
@@ -7109,7 +6863,7 @@ called Read
 
 ### Tool result
 
-_source line 1447 · 2026-05-22T17:46:52.470486+00:00_
+_source line 1441 · 2026-05-22T17:46:52.470486+00:00_
 
 895	
 896	For the four topologies where $A$ enters as a covariate (confounding, mediation, collider, M-bias), the regression is $Y = \tau T + \boldsymbol{\gamma}^\top \mathbf{D}^* + \varepsilon$, where $\mathbf{D}^*$ is the $N \times (K{-}1)$ dummy matrix for $A^*$. Any matrix-based correction replaces $\mathbf{D}^*$ with $\tilde{\mathbf{D}} = \mathbf{D}^* M$ for some invertible $(K{-}1) \times (K{-}1)$ matrix $M$ (e.g., $M = C^{-1}$ for plug-in, or $M = (C^\top C)^{-1} C^\top$ for MLE). By the Frisch--Waugh--Lovell theorem~\cite{lovell1963}, $\hat{\tau}$ depends only on the residual of $T$ projected off $\operatorname{col}(\mathbf{D}^*)$. Since $\operatorname{col}(\mathbf{D}^* M) = \operatorname{col}(\mathbf{D}^*)$ for invertible $M$, the projection is unchanged and $\hat{\tau}(\tilde{\mathbf{D}}) = \hat{\tau}(\mathbf{D}^*)$ exactly. SIMEX adds noise $\mathbf{D}^*_{\text{sim}} = \mathbf{D}^* + \lambda \mathbf{E}$; when $\mathbf{E}$ is generated from the same column space, the extrapolation to $\lambda = -1$ converges to a column-space-equivalent transformation, yielding 0\% bias reduction empirically.
@@ -7137,7 +6891,7 @@ _source line 1447 · 2026-05-22T17:46:52.470486+00:00_
 
 ### Tool call
 
-_source line 1448 · 2026-05-22T17:46:52.723745+00:00_
+_source line 1442 · 2026-05-22T17:46:52.723745+00:00_
 
 called Read
 
@@ -7171,7 +6925,7 @@ called Read
 
 ### Tool result
 
-_source line 1449 · 2026-05-22T17:46:52.875944+00:00_
+_source line 1443 · 2026-05-22T17:46:52.875944+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -7260,7 +7014,7 @@ _source line 1449 · 2026-05-22T17:46:52.875944+00:00_
 
 ### Tool call
 
-_source line 1450 · 2026-05-22T17:46:59.117477+00:00_
+_source line 1444 · 2026-05-22T17:46:59.117477+00:00_
 
 called Read
 
@@ -7298,7 +7052,7 @@ called Read
 
 ### Tool result
 
-_source line 1451 · 2026-05-22T17:47:00.076370+00:00_
+_source line 1445 · 2026-05-22T17:47:00.076370+00:00_
 
 90	\subsection{Correction Guidance}
 91	\label{sec:correction}
@@ -7330,7 +7084,7 @@ _source line 1451 · 2026-05-22T17:47:00.076370+00:00_
 
 ### Tool call
 
-_source line 1452 · 2026-05-22T17:47:00.783359+00:00_
+_source line 1446 · 2026-05-22T17:47:00.783359+00:00_
 
 called Grep
 
@@ -7370,7 +7124,7 @@ called Grep
 
 ### Tool result
 
-_source line 1453 · 2026-05-22T17:47:00.934358+00:00_
+_source line 1447 · 2026-05-22T17:47:00.934358+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:96:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:858:    \STATE $R \gets \textsc{Low}$ \COMMENT{$|\text{bias}| < 0.04$ for all $C$}
@@ -7395,7 +7149,7 @@ _source line 1453 · 2026-05-22T17:47:00.934358+00:00_
 
 ### Tool call
 
-_source line 1454 · 2026-05-22T17:47:28.286362+00:00_
+_source line 1448 · 2026-05-22T17:47:28.286362+00:00_
 
 called ToolSearch
 
@@ -7431,7 +7185,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1455 · 2026-05-22T17:47:28.501586+00:00_
+_source line 1449 · 2026-05-22T17:47:28.501586+00:00_
 
 
 
@@ -7453,7 +7207,7 @@ _source line 1455 · 2026-05-22T17:47:28.501586+00:00_
 
 ### Tool call
 
-_source line 1456 · 2026-05-22T17:47:51.464755+00:00_
+_source line 1450 · 2026-05-22T17:47:51.464755+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7489,7 +7243,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1457 · 2026-05-22T17:48:03.465880+00:00_
+_source line 1451 · 2026-05-22T17:48:03.465880+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -7511,7 +7265,7 @@ _source line 1457 · 2026-05-22T17:48:03.465880+00:00_
 
 ### Assistant
 
-_source line 1458 · 2026-05-22T17:48:07.843808+00:00_
+_source line 1452 · 2026-05-22T17:48:07.843808+00:00_
 
 FWL logistic 实验审查完成，PASS。OLS 下 FWL 精确成立（10⁻¹⁵），logistic 下形式上破缺但 bias reduction 仅 -0.04%（方向不一致），"practically useless" 结论可靠。数据在日志、appendix 表格、主文三处完全一致。
 
@@ -7538,7 +7292,7 @@ FWL logistic 实验审查完成，PASS。OLS 下 FWL 精确成立（10⁻¹⁵�
 
 ### User
 
-_source line 1459 · 2026-05-22T18:02:22.554141+00:00_
+_source line 1453 · 2026-05-22T18:02:22.554141+00:00_
 
 [System 触发审查]:
 ## Round 6 审稿报告 Action Matrix — 请审查可行性
@@ -7687,7 +7441,7 @@ Abstract 已经没有 "structural property"（上轮已改为 "consistent with t
 
 ### Tool call
 
-_source line 1460 · 2026-05-22T18:02:39.043756+00:00_
+_source line 1454 · 2026-05-22T18:02:39.043756+00:00_
 
 called Read
 
@@ -7721,7 +7475,7 @@ called Read
 
 ### Tool result
 
-_source line 1461 · 2026-05-22T18:02:39.901857+00:00_
+_source line 1455 · 2026-05-22T18:02:39.901857+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -7759,7 +7513,7 @@ _source line 1461 · 2026-05-22T18:02:39.901857+00:00_
 
 ### Tool call
 
-_source line 1462 · 2026-05-22T18:02:40.053626+00:00_
+_source line 1456 · 2026-05-22T18:02:40.053626+00:00_
 
 called Read
 
@@ -7797,7 +7551,7 @@ called Read
 
 ### Tool result
 
-_source line 1463 · 2026-05-22T18:02:40.860205+00:00_
+_source line 1457 · 2026-05-22T18:02:40.860205+00:00_
 
 220	With $\tau{=}2.0$, $\boldsymbol{\alpha}{=}(1.5,{-}1.0)$, $\boldsymbol{\beta}^{(A)}{=}(1.0,{-}0.5)$, $\sigma_T{=}1.0$, $\mathbf{p}{=}(0.40,0.35,0.25)$:
 221	\begin{align*}
@@ -7836,7 +7590,7 @@ _source line 1463 · 2026-05-22T18:02:40.860205+00:00_
 
 ### Tool call
 
-_source line 1464 · 2026-05-22T18:02:40.964335+00:00_
+_source line 1458 · 2026-05-22T18:02:40.964335+00:00_
 
 called Read
 
@@ -7874,7 +7628,7 @@ called Read
 
 ### Tool result
 
-_source line 1465 · 2026-05-22T18:02:40.964931+00:00_
+_source line 1459 · 2026-05-22T18:02:40.964931+00:00_
 
 830	Exposure & $-$44.8 & $-$89.0 & $-$59.5 & \underline{$-$9.8} & \textbf{75.5} \\
 831	IV & $-$40.4 & $-$58.7 & $-$206.1 & \underline{59.4} & \textbf{79.4} \\
@@ -7934,7 +7688,7 @@ _source line 1465 · 2026-05-22T18:02:40.964931+00:00_
 
 ### Tool call
 
-_source line 1466 · 2026-05-22T18:04:04.175997+00:00_
+_source line 1460 · 2026-05-22T18:04:04.175997+00:00_
 
 called Grep
 
@@ -7976,7 +7730,7 @@ called Grep
 
 ### Tool result
 
-_source line 1467 · 2026-05-22T18:04:04.529848+00:00_
+_source line 1461 · 2026-05-22T18:04:04.529848+00:00_
 
 966-[Omitted long context line]
 967-
@@ -8012,7 +7766,7 @@ _source line 1467 · 2026-05-22T18:04:04.529848+00:00_
 
 ### Tool call
 
-_source line 1468 · 2026-05-22T18:04:05.790486+00:00_
+_source line 1462 · 2026-05-22T18:04:05.790486+00:00_
 
 called Grep
 
@@ -8054,7 +7808,7 @@ called Grep
 
 ### Tool result
 
-_source line 1469 · 2026-05-22T18:04:05.991690+00:00_
+_source line 1463 · 2026-05-22T18:04:05.991690+00:00_
 
 299-A $K{=}2$ counterexample ($C_0$ the permutation matrix, $(C_0)_{jj}{=}0$) shows the diagonal condition is necessary: $V_B(\delta)=(\delta{-}\tfrac{1}{2})^2$ increases on $(\tfrac{1}{2},1]$.
 300-
@@ -8096,7 +7850,7 @@ _source line 1469 · 2026-05-22T18:04:05.991690+00:00_
 
 ### Tool call
 
-_source line 1470 · 2026-05-22T18:04:06.646037+00:00_
+_source line 1464 · 2026-05-22T18:04:06.646037+00:00_
 
 called Grep
 
@@ -8138,7 +7892,7 @@ called Grep
 
 ### Tool result
 
-_source line 1471 · 2026-05-22T18:04:06.747186+00:00_
+_source line 1465 · 2026-05-22T18:04:06.747186+00:00_
 
 No matches found
 
@@ -8160,7 +7914,7 @@ No matches found
 
 ### Tool call
 
-_source line 1472 · 2026-05-22T18:04:21.538323+00:00_
+_source line 1466 · 2026-05-22T18:04:21.538323+00:00_
 
 called Read
 
@@ -8198,7 +7952,7 @@ called Read
 
 ### Tool call
 
-_source line 1473 · 2026-05-22T18:04:21.590345+00:00_
+_source line 1467 · 2026-05-22T18:04:21.590345+00:00_
 
 called Read
 
@@ -8236,7 +7990,7 @@ called Read
 
 ### Tool result
 
-_source line 1474 · 2026-05-22T18:04:21.590876+00:00_
+_source line 1468 · 2026-05-22T18:04:21.590876+00:00_
 
 299	A $K{=}2$ counterexample ($C_0$ the permutation matrix, $(C_0)_{jj}{=}0$) shows the diagonal condition is necessary: $V_B(\delta)=(\delta{-}\tfrac{1}{2})^2$ increases on $(\tfrac{1}{2},1]$.
 300	
@@ -8288,7 +8042,7 @@ _source line 1474 · 2026-05-22T18:04:21.590876+00:00_
 
 ### Tool result
 
-_source line 1475 · 2026-05-22T18:04:21.642500+00:00_
+_source line 1469 · 2026-05-22T18:04:21.642500+00:00_
 
 960	$d \geq 0.7$   & 100.0\% & 0.0\%  & 100.0\% & $2.4\times$ \\
 961	$d \geq 0.9$   & 100.0\% & 0.0\%  & 100.0\% & $1.2\times$ \\
@@ -8341,7 +8095,7 @@ _source line 1475 · 2026-05-22T18:04:21.642500+00:00_
 
 ### Tool call
 
-_source line 1476 · 2026-05-22T18:05:40.540580+00:00_
+_source line 1470 · 2026-05-22T18:05:40.540580+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8377,7 +8131,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1477 · 2026-05-22T18:05:52.143975+00:00_
+_source line 1471 · 2026-05-22T18:05:52.143975+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -8399,7 +8153,7 @@ _source line 1477 · 2026-05-22T18:05:52.143975+00:00_
 
 ### Assistant
 
-_source line 1478 · 2026-05-22T18:05:58.389837+00:00_
+_source line 1472 · 2026-05-22T18:05:58.389837+00:00_
 
 审查已发送。关键发现：
 
@@ -8431,7 +8185,7 @@ _source line 1478 · 2026-05-22T18:05:58.389837+00:00_
 
 ### User
 
-_source line 1479 · 2026-05-22T18:12:27.451924+00:00_
+_source line 1473 · 2026-05-22T18:12:27.451924+00:00_
 
 [系统通知 — worker_done:worker_paper_missing_refs_r6_20260522T180857]:
 Worker worker_paper_missing_refs_r6_20260522T180857 已完成（status=done），请审查 Agent 的处理结果。
@@ -8453,7 +8207,7 @@ Worker worker_paper_missing_refs_r6_20260522T180857 已完成（status=done）�
 
 ### Tool call
 
-_source line 1480 · 2026-05-22T18:12:54.035660+00:00_
+_source line 1474 · 2026-05-22T18:12:54.035660+00:00_
 
 called Bash
 
@@ -8489,7 +8243,7 @@ called Bash
 
 ### Tool result
 
-_source line 1481 · 2026-05-22T18:12:54.944432+00:00_
+_source line 1475 · 2026-05-22T18:12:54.944432+00:00_
 
 artifacts/ppi_empirical_validation.json
 docs/paper/abstract.tex
@@ -8528,7 +8282,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1482 · 2026-05-22T18:12:55.851877+00:00_
+_source line 1476 · 2026-05-22T18:12:55.851877+00:00_
 
 called Grep
 
@@ -8570,7 +8324,7 @@ called Grep
 
 ### Tool result
 
-_source line 1483 · 2026-05-22T18:12:56.006349+00:00_
+_source line 1477 · 2026-05-22T18:12:56.006349+00:00_
 
 218:@article{neuhaus1999,
 220:  author  = {Neuhaus, John M.},
@@ -8600,7 +8354,7 @@ _source line 1483 · 2026-05-22T18:12:56.006349+00:00_
 
 ### Tool call
 
-_source line 1484 · 2026-05-22T18:13:03.747529+00:00_
+_source line 1478 · 2026-05-22T18:13:03.747529+00:00_
 
 called Read
 
@@ -8638,7 +8392,7 @@ called Read
 
 ### Tool result
 
-_source line 1485 · 2026-05-22T18:13:04.253203+00:00_
+_source line 1479 · 2026-05-22T18:13:04.253203+00:00_
 
 218	@article{neuhaus1999,
 219	  title   = {Bias and Efficiency Loss Due to Misclassified Responses in Binary Regression},
@@ -8699,7 +8453,7 @@ _source line 1485 · 2026-05-22T18:13:04.253203+00:00_
 
 ### Tool call
 
-_source line 1486 · 2026-05-22T18:13:04.705560+00:00_
+_source line 1480 · 2026-05-22T18:13:04.705560+00:00_
 
 called Read
 
@@ -8737,7 +8491,7 @@ called Read
 
 ### Tool result
 
-_source line 1487 · 2026-05-22T18:13:05.159006+00:00_
+_source line 1481 · 2026-05-22T18:13:05.159006+00:00_
 
 370	  doi     = {10.1073/pnas.2322083121},
 371	}
@@ -8778,7 +8532,7 @@ _source line 1487 · 2026-05-22T18:13:05.159006+00:00_
 
 ### Tool call
 
-_source line 1488 · 2026-05-22T18:13:05.866045+00:00_
+_source line 1482 · 2026-05-22T18:13:05.866045+00:00_
 
 called Grep
 
@@ -8820,7 +8574,7 @@ called Grep
 
 ### Tool result
 
-_source line 1489 · 2026-05-22T18:13:06.019240+00:00_
+_source line 1483 · 2026-05-22T18:13:06.019240+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]
@@ -8843,7 +8597,7 @@ _source line 1489 · 2026-05-22T18:13:06.019240+00:00_
 
 ### Tool call
 
-_source line 1490 · 2026-05-22T18:13:09.487403+00:00_
+_source line 1484 · 2026-05-22T18:13:09.487403+00:00_
 
 called Read
 
@@ -8877,7 +8631,7 @@ called Read
 
 ### Tool result
 
-_source line 1491 · 2026-05-22T18:13:09.538151+00:00_
+_source line 1485 · 2026-05-22T18:13:09.538151+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -8907,7 +8661,7 @@ _source line 1491 · 2026-05-22T18:13:09.538151+00:00_
 
 ### Tool call
 
-_source line 1492 · 2026-05-22T18:13:25.726263+00:00_
+_source line 1486 · 2026-05-22T18:13:25.726263+00:00_
 
 called Grep
 
@@ -8949,7 +8703,7 @@ called Grep
 
 ### Tool result
 
-_source line 1493 · 2026-05-22T18:13:26.178469+00:00_
+_source line 1487 · 2026-05-22T18:13:26.178469+00:00_
 
 No matches found
 
@@ -8971,7 +8725,7 @@ No matches found
 
 ### Tool call
 
-_source line 1494 · 2026-05-22T18:13:26.534070+00:00_
+_source line 1488 · 2026-05-22T18:13:26.534070+00:00_
 
 called Grep
 
@@ -9013,7 +8767,7 @@ called Grep
 
 ### Tool result
 
-_source line 1495 · 2026-05-22T18:13:26.584783+00:00_
+_source line 1489 · 2026-05-22T18:13:26.584783+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:11:[Omitted long matching line]
@@ -9036,7 +8790,7 @@ _source line 1495 · 2026-05-22T18:13:26.584783+00:00_
 
 ### Tool call
 
-_source line 1496 · 2026-05-22T18:13:34.639009+00:00_
+_source line 1490 · 2026-05-22T18:13:34.639009+00:00_
 
 called Read
 
@@ -9072,7 +8826,7 @@ called Read
 
 ### Tool result
 
-_source line 1497 · 2026-05-22T18:13:34.739881+00:00_
+_source line 1491 · 2026-05-22T18:13:34.739881+00:00_
 
 1	This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
 2	Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
@@ -9123,7 +8877,7 @@ _source line 1497 · 2026-05-22T18:13:34.739881+00:00_
 
 ### Tool call
 
-_source line 1498 · 2026-05-22T18:13:52.602531+00:00_
+_source line 1492 · 2026-05-22T18:13:52.602531+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9159,7 +8913,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1499 · 2026-05-22T18:14:02.463469+00:00_
+_source line 1493 · 2026-05-22T18:14:02.463469+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -9181,7 +8935,7 @@ _source line 1499 · 2026-05-22T18:14:02.463469+00:00_
 
 ### Assistant
 
-_source line 1500 · 2026-05-22T18:14:04.931392+00:00_
+_source line 1494 · 2026-05-22T18:14:04.931392+00:00_
 
 BibTeX 无错误/警告。47 个条目全部解析成功。
 
@@ -9210,7 +8964,7 @@ BibTeX 无错误/警告。47 个条目全部解析成功。
 
 ### User
 
-_source line 1501 · 2026-05-22T18:14:52.365553+00:00_
+_source line 1495 · 2026-05-22T18:14:52.365553+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -9292,7 +9046,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1502 · 2026-05-22T18:15:45.496086+00:00_
+_source line 1496 · 2026-05-22T18:15:45.496086+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 116
+- **Events:** 112
 - **Recorded user turns:** 0
-- **Tool calls:** 44
+- **Tool calls:** 42
 - **Original source:** `logs/workers/worker_paper_r2_data_fix_URGENT_20260522T084608.log`
 - **Structured JSON:** [`f203bc87a6642e96c864.json`](../../sessions/f2/f203bc87a6642e96c864.json)
 

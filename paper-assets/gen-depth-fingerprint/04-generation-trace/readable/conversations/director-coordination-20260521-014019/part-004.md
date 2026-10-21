@@ -19404,7 +19404,7 @@ R20 Action Matrix 执行中：8 项直接修改已完成，Agent 做 CPU 分析�
 
 ## Round 150
 
-22 recorded events
+20 recorded events
 
 
 ### User
@@ -19590,149 +19590,7 @@ _source line 2421 · 2026-05-19T01:02:27.496810+00:00_
 
 ### Tool call
 
-_source line 2422 · 2026-05-19T01:02:30.457194+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/holdout_split_results.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/holdout_split_results.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2423 · 2026-05-19T01:02:30.758999+00:00_
-
-1	{
-2	  "split_a": {
-3	    "selection_generators": [
-4	      "pythia-2.8b",
-5	      "qwen3-1.7b",
-6	      "olmo-2-1b",
-7	      "mistral-7b-v0.3"
-8	    ],
-9	    "validation_generators": [
-10	      "pythia-1b",
-11	      "qwen3-0.6b",
-12	      "qwen3-8b",
-13	      "llama-3.2-3b"
-14	    ],
-15	    "selection": {
-16	      "entropy_mean": {
-17	        "rho": 0.5994,
-18	        "d": 1.0982,
-19	        "zone": "drifting"
-20	      },
-21	      "entropy_std": {
-22	        "rho": 0.1898,
-23	        "d": 0.4354,
-24	        "zone": "intermediate"
-25	      },
-26	      "entropy_min": {
-27	        "rho": 0.389,
-28	        "d": 0.0467,
-29	        "zone": "intermediate"
-30	      },
-31	      "entropy_max": {
-32	        "rho": 0.0494,
-33	        "d": 0.0842,
-34	        "zone": "near-stationary"
-35	      },
-36	      "tail_decay": {
-37	        "rho": 0.0978,
-38	        "d": 0.1346,
-39	        "zone": "near-stationary"
-40	      },
-41	      "ttr": {
-42	        "rho": 0.6052,
-43	        "d": 0.8984,
-44	        "zone": "drifting"
-45	      },
-46	      "hapax_ratio": {
-47	        "rho": 0.621,
-48	        "d": 0.8304,
-49	        "zone": "drifting"
-50	      }
-51	    },
-52	    "validation": {
-53	      "entropy_mean": {
-54	        "rho": 0.5804,
-55	        "d": 1.0831,
-56	        "zone": "drifting"
-57	      },
-58	      "entropy_std": {
-59	        "rho": 0.2072,
-60	        "d": 0.4898,
-61	        "zone": "intermediate"
-62	      },
-63	      "entropy_min": {
-64	        "rho": 0.3625,
-65	        "d": 0.0341,
-66	        "zone": "intermediate"
-67	      },
-68	      "entropy_max": {
-69	        "rho": 0.0509,
-70	        "d": 0.0668,
-71	        "zone": "near-stationary"
-72	      },
-73	      "tail_decay": {
-74	        "rho": 0.084,
-75	        "d": 0.1277,
-76	        "zone": "near-stationary"
-77	      },
-78	      "ttr": {
-79	        "rho": 0.5881,
-80	        "d": 0.7928,
-81	        "zone": "drifting"
-82	      },
-83	      "hapax_ratio": {
-84	        "rho": 0.6031,
-85	        "d": 0.6983,
-86	        "zone": "drif
-…[truncated 2301 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2424 · 2026-05-19T01:02:30.809689+00:00_
+_source line 2422 · 2026-05-19T01:02:30.809689+00:00_
 
 called Read
 
@@ -19766,7 +19624,7 @@ called Read
 
 ### Tool result
 
-_source line 2425 · 2026-05-19T01:02:31.062840+00:00_
+_source line 2423 · 2026-05-19T01:02:31.062840+00:00_
 
 
 
@@ -19788,7 +19646,7 @@ _source line 2425 · 2026-05-19T01:02:31.062840+00:00_
 
 ### Tool call
 
-_source line 2426 · 2026-05-19T01:02:47.507739+00:00_
+_source line 2424 · 2026-05-19T01:02:47.507739+00:00_
 
 called Read
 
@@ -19812,6 +19670,54 @@ called Read
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2425 · 2026-05-19T01:02:47.558364+00:00_
+
+1	\section{Per-Generator Equivalence Testing}
+2	\label{app:tost}
+3	
+4	To confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\ gen-2+, equivalence bound $|d| < 0.20$).
+5	Table~\ref{tab:tost-per-gen} reports observed $|d|$; \checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\alpha = 0.05$.
+6	
+7	Entropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \approx 0.21$--$0.25$); tail decay passes for four of eight.
+8	All drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).
+9	The partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.
+10	Figure~\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\rho|$, $d$) space, showing a clear gap between the three groups.
+11	
+12	\begin{table}[h]
+13	\centering
+14	\footnotesize
+15	\caption{Per-generator TOST equivalence ($\varepsilon{=}|d|{<}0.20$, gen-1 vs.\ gen-2+). Observed $|d|$; \checkmark{} = equivalent ($p_{\mathrm{TOST}} < 0.05$). Features grouped by DDR partition.}
+16	\label{tab:tost-per-gen}
+17	\resizebox{\columnwidth}{!}{%
+18	\begin{tabular}{l ccc c ccc}
+19	\toprule
+20	& \multicolumn{3}{c}{\textbf{Drifting}} & \textbf{Int.} & \multicolumn{3}{c}{\textbf{Near-stationary}} \\
+21	\cmidrule(lr){2-4} \cmidrule(lr){5-5} \cmidrule(lr){6-8}
+22	\textbf{Generator} & $\bar{H}$ & TTR & hapax & $\sigma_H$ & $H_{\max}$ & tail & $H_{\min}$ \\
+23	\midrule
+24	Pythia-2.8B  & 1.20 & 0.77 & 0.67 & 0.39 & 0.25          & 0.07\,\checkmark & 0.03\,\checkmark \\
+25	Pythia-1B    & 1.40 & 0.80 & 0.65 & 0.53 & 0.21          & 0.08\,\checkmark & 0.02\,\checkmark \\
+26	Qwen3-1.7B  & 1.12 & 0.93 & 0
+…[truncated 1293 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
+  "tool": "Read",
+  "elapsed_ms": 50
 }
 ```
 

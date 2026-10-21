@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/feishu_group_oc_6551c2d0ac89db1b3b9e56f77fcf912d_paper_agent.jsonl",
     "occurrence": 1,
-    "bytes": 7171971,
-    "sha256": "f01fc49b486f698ed68e3c36b66db1da6e51663a39debcf6f700361f279733de"
+    "bytes": 7167517,
+    "sha256": "264f65a9925d8cbdb611479f0f1811a5e934022ce970972b85d7ba6205d3e6cb"
   },
   "statistics": {
-    "messages": 8763,
+    "messages": 8757,
     "user_turns": 430,
-    "tool_calls": 3962,
+    "tool_calls": 3959,
     "roles": {
       "user": 430,
-      "tool_call": 3962,
-      "tool_result": 3956,
+      "tool_call": 3959,
+      "tool_result": 3953,
       "assistant": 415
     },
     "unparsed_lines_preserved": 0,
@@ -4711,11 +4711,11 @@
     {
       "number": 411,
       "boundary": "recorded_user_message",
-      "message_count": 36,
+      "message_count": 30,
       "chunks": [
         {
           "path": "506a14079e43eb61147d-part-0046.json",
-          "message_count": 36
+          "message_count": 30
         }
       ]
     },
@@ -4781,11 +4781,11 @@
       "chunks": [
         {
           "path": "506a14079e43eb61147d-part-0046.json",
-          "message_count": 49
+          "message_count": 55
         },
         {
           "path": "506a14079e43eb61147d-part-0047.json",
-          "message_count": 33
+          "message_count": 27
         }
       ]
     },
@@ -4829,11 +4829,11 @@
       "chunks": [
         {
           "path": "506a14079e43eb61147d-part-0047.json",
-          "message_count": 103
+          "message_count": 109
         },
         {
           "path": "506a14079e43eb61147d-part-0048.json",
-          "message_count": 57
+          "message_count": 51
         }
       ]
     },
@@ -4899,11 +4899,11 @@
       "chunks": [
         {
           "path": "506a14079e43eb61147d-part-0048.json",
-          "message_count": 21
+          "message_count": 27
         },
         {
           "path": "506a14079e43eb61147d-part-0049.json",
-          "message_count": 31
+          "message_count": 25
         }
       ]
     },

@@ -49,7 +49,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis prove cegis check and confirmation bias | 1 | 0 | [Read transcript](analysis-prove-cegis-check-and-confirmation-bias.md) | [JSON](../../sessions/13/130b353441d69f23b5bb.json) |
 | analysis push a v2 capability gap 7point | 1 | 0 | [Read transcript](analysis-push-a-v2-capability-gap-7point.md) | [JSON](../../sessions/5d/5d9de8487ba2ab4d2637.json) |
 | analysis push a v3 capability gap 8point | 1 | 0 | [Read transcript](analysis-push-a-v3-capability-gap-8point.md) | [JSON](../../sessions/ef/ef3718ed15f847423b0d.json) |
-| analysis q5 q6 review answers | 1 | 0 | [Read transcript](analysis-q5-q6-review-answers.md) | [JSON](../../sessions/1d/1da8a000efd438d0aae7.json) |
 | analysis qwen14b kappa from exp001 | 1 | 0 | [Read transcript](analysis-qwen14b-kappa-from-exp001.md) | [JSON](../../sessions/ae/ae2e98988212b801a6c7.json) |
 | analysis qwen14b oracle check | 1 | 0 | [Read transcript](analysis-qwen14b-oracle-check.md) | [JSON](../../sessions/9f/9fb135f454138c21069e.json) |
 | analysis qwen14b pw canonical | 1 | 0 | [Read transcript](analysis-qwen14b-pw-canonical.md) | [JSON](../../sessions/f0/f0ffeda03b36146e9446.json) |

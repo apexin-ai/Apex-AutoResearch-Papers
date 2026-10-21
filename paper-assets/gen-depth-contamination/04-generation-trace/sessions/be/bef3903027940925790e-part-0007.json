@@ -1415,161 +1415,6 @@
         },
         {
           "source_line": 1153,
-          "timestamp": "2026-05-15T11:30:06.557317+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json"
-            }
-          },
-          "id": "event-001153"
-        },
-        {
-          "source_line": 1154,
-          "timestamp": "2026-05-15T11:30:06.809815+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"mmlu\": {\n3\t    \"pairwise_comparisons\": [\n4\t      {\n5\t        \"pair\": [\n6\t          \"binary-ours\",\n7\t          \"dsir\"\n8\t        ],\n9\t        \"mean_diff\": 0.007235436547500362,\n10\t        \"t_stat\": 24.598249063205415,\n11\t        \"raw_p\": 1.6209310233228965e-05,\n12\t        \"cohens_d\": 11.000671406559567,\n13\t        \"corrected_p\": 0.00024313965349843447,\n14\t        \"significant\": true\n15\t      },\n16\t      {\n17\t        \"pair\": [\n18\t          \"binary-ours\",\n19\t          \"binary-drayson\"\n20\t        ],\n21\t        \"mean_diff\": 0.0028058681099558448,\n22\t        \"t_stat\": 17.515436444289804,\n23\t        \"raw_p\": 6.238619313918888e-05,\n24\t        \"cohens_d\": 7.833141309001842,\n25\t        \"corrected_p\": 0.0008734067039486444,\n26\t        \"significant\": true\n27\t      },\n28\t      {\n29\t        \"pair\": [\n30\t          \"binary-ours\",\n31\t          \"no-filter\"\n32\t        ],\n33\t        \"mean_diff\": 0.007662726107392115,\n34\t        \"t_stat\": 13.593055060087883,\n35\t        \"raw_p\": 0.00016957959325503732,\n36\t        \"cohens_d\": 6.0789990272508,\n37\t        \"corrected_p\": 0.0022045347123154854,\n38\t        \"significant\": true\n39\t      },\n40\t      {\n41\t        \"pair\": [\n42\t          \"binary-drayson\",\n43\t          \"dsir\"\n44\t        ],\n45\t        \"mean_diff\": 0.004429568437544518,\n46\t        \"t_stat\": 12.607532539957875,\n47\t        \"raw_p\": 0.00022784095885562328,\n48\t        \"cohens_d\": 5.6382599575772785,\n49\t        \"corrected_p\": 0.0027340915062674795,\n50\t        \"significant\": true\n51\t      },\n52\t      {\n53\t        \"pair\": [\n54\t          \"binary-ours\",\n55\t          \"graduated_a0.9\"\n56\t        ],\n57\t        \"mean_diff\": 0.0049565588947443565,\n58\t        \"t_stat\": 8.556802169125492,\n59\t        \"raw_p\": 0.0010241458708119772,\n60\t        \"cohens_d\": 3.8267182640364505,\n61\t        \"corrected_p\": 0.011265604578931748,\n62\t        \"significant\": true\n63\t      },\n64\t      {\n65\t        \"pair\": [\n66\t          \"binary-drayson\",\n67\t          \"no-filter\"\n68\t        ],\n69\t        \"mean_diff\": 0.00485\n…[truncated 44050 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 252
-          },
-          "id": "event-001154"
-        },
-        {
-          "source_line": 1155,
-          "timestamp": "2026-05-15T11:32:12.549430+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-              "limit": "200"
-            }
-          },
-          "id": "event-001155"
-        },
-        {
-          "source_line": 1156,
-          "timestamp": "2026-05-15T11:32:13.152115+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"mmlu\": {\n3\t    \"pairwise_comparisons\": [\n4\t      {\n5\t        \"pair\": [\n6\t          \"binary-ours\",\n7\t          \"dsir\"\n8\t        ],\n9\t        \"mean_diff\": 0.007235436547500362,\n10\t        \"t_stat\": 24.598249063205415,\n11\t        \"raw_p\": 1.6209310233228965e-05,\n12\t        \"cohens_d\": 11.000671406559567,\n13\t        \"corrected_p\": 0.00024313965349843447,\n14\t        \"significant\": true\n15\t      },\n16\t      {\n17\t        \"pair\": [\n18\t          \"binary-ours\",\n19\t          \"binary-drayson\"\n20\t        ],\n21\t        \"mean_diff\": 0.0028058681099558448,\n22\t        \"t_stat\": 17.515436444289804,\n23\t        \"raw_p\": 6.238619313918888e-05,\n24\t        \"cohens_d\": 7.833141309001842,\n25\t        \"corrected_p\": 0.0008734067039486444,\n26\t        \"significant\": true\n27\t      },\n28\t      {\n29\t        \"pair\": [\n30\t          \"binary-ours\",\n31\t          \"no-filter\"\n32\t        ],\n33\t        \"mean_diff\": 0.007662726107392115,\n34\t        \"t_stat\": 13.593055060087883,\n35\t        \"raw_p\": 0.00016957959325503732,\n36\t        \"cohens_d\": 6.0789990272508,\n37\t        \"corrected_p\": 0.0022045347123154854,\n38\t        \"significant\": true\n39\t      },\n40\t      {\n41\t        \"pair\": [\n42\t          \"binary-drayson\",\n43\t          \"dsir\"\n44\t        ],\n45\t        \"mean_diff\": 0.004429568437544518,\n46\t        \"t_stat\": 12.607532539957875,\n47\t        \"raw_p\": 0.00022784095885562328,\n48\t        \"cohens_d\": 5.6382599575772785,\n49\t        \"corrected_p\": 0.0027340915062674795,\n50\t        \"significant\": true\n51\t      },\n52\t      {\n53\t        \"pair\": [\n54\t          \"binary-ours\",\n55\t          \"graduated_a0.9\"\n56\t        ],\n57\t        \"mean_diff\": 0.0049565588947443565,\n58\t        \"t_stat\": 8.556802169125492,\n59\t        \"raw_p\": 0.0010241458708119772,\n60\t        \"cohens_d\": 3.8267182640364505,\n61\t        \"corrected_p\": 0.011265604578931748,\n62\t        \"significant\": true\n63\t      },\n64\t      {\n65\t        \"pair\": [\n66\t          \"binary-drayson\",\n67\t          \"no-filter\"\n68\t        ],\n69\t        \"mean_diff\": 0.00485\n…[truncated 4036 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 602
-          },
-          "id": "event-001156"
-        },
-        {
-          "source_line": 1157,
-          "timestamp": "2026-05-15T11:32:13.253341+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar.json"
-            }
-          },
-          "id": "event-001157"
-        },
-        {
-          "source_line": 1158,
-          "timestamp": "2026-05-15T11:32:13.304311+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001158"
-        },
-        {
-          "source_line": 1159,
-          "timestamp": "2026-05-15T11:32:16.567001+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-              "offset": "200",
-              "limit": "200"
-            }
-          },
-          "id": "event-001159"
-        },
-        {
-          "source_line": 1160,
-          "timestamp": "2026-05-15T11:32:16.868659+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "200\t        \"cohens_d\": 8.980868554878203,\n201\t        \"corrected_p\": 0.0005443568241118204,\n202\t        \"significant\": true\n203\t      },\n204\t      {\n205\t        \"pair\": [\n206\t          \"binary-ours\",\n207\t          \"dsir\"\n208\t        ],\n209\t        \"mean_diff\": 0.007070304720175269,\n210\t        \"t_stat\": 18.90813926584121,\n211\t        \"raw_p\": 4.6078767183328965e-05,\n212\t        \"cohens_d\": 8.455976945290782,\n213\t        \"corrected_p\": 0.0006451027405666055,\n214\t        \"significant\": true\n215\t      },\n216\t      {\n217\t        \"pair\": [\n218\t          \"surprisal\",\n219\t          \"graduated_a0.9\"\n220\t        ],\n221\t        \"mean_diff\": -0.006054570802628945,\n222\t        \"t_stat\": -13.78972003344619,\n223\t        \"raw_p\": 0.00016027100933589872,\n224\t        \"cohens_d\": -6.166950277095271,\n225\t        \"corrected_p\": 0.0020835231213666835,\n226\t        \"significant\": true\n227\t      },\n228\t      {\n229\t        \"pair\": [\n230\t          \"binary-ours\",\n231\t          \"surprisal\"\n232\t        ],\n233\t        \"mean_diff\": 0.006054570802628945,\n234\t        \"t_stat\": 13.65000295403501,\n235\t        \"raw_p\": 0.00016681640096500788,\n236\t        \"cohens_d\": 6.104466899659044,\n237\t        \"corrected_p\": 0.0020017968115800945,\n238\t        \"significant\": true\n239\t      },\n240\t      {\n241\t        \"pair\": [\n242\t          \"binary-drayson\",\n243\t          \"dsir\"\n244\t        ],\n245\t        \"mean_diff\": 0.006014738099980099,\n246\t        \"t_stat\": 12.16299147904681,\n247\t        \"raw_p\": 0.00026222122214236693,\n248\t        \"cohens_d\": 5.439455151379875,\n249\t        \"corrected_p\": 0.0028844334435660364,\n250\t        \"significant\": true\n251\t      },\n252\t      {\n253\t        \"pair\": [\n254\t          \"binary-ours\",\n255\t          \"no-filter\"\n256\t        ],\n257\t        \"mean_diff\": 0.006373232423819974,\n258\t        \"t_stat\": 10.681512417298325,\n259\t        \"raw_p\": 0.0004351718159107605,\n260\t        \"cohens_d\": 4.776917573517431,\n261\t        \"corrected_p\": 0.004351718159107605,\n262\t        \"significant\": true\n26\n…[truncated 3994 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 301
-          },
-          "id": "event-001160"
-        },
-        {
-          "source_line": 1161,
           "timestamp": "2026-05-15T11:32:16.871287+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1587,10 +1432,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts"
             }
           },
-          "id": "event-001161"
+          "id": "event-001153"
         },
         {
-          "source_line": 1162,
+          "source_line": 1154,
           "timestamp": "2026-05-15T11:32:16.971989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1605,48 +1450,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-001162"
+          "id": "event-001154"
         },
         {
-          "source_line": 1163,
-          "timestamp": "2026-05-15T11:32:19.682961+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_obd_n500_v2.json"
-            }
-          },
-          "id": "event-001163"
-        },
-        {
-          "source_line": 1164,
-          "timestamp": "2026-05-15T11:32:19.733580+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"obd_n500_accuracy\": 0.38,\n3\t  \"obd_n500_ci_lower\": 0.34,\n4\t  \"obd_n500_ci_upper\": 0.424,\n5\t  \"n_bootstrap\": 1000,\n6\t  \"n_samples\": 500,\n7\t  \"sample_source\": \"exp011_samples.jsonl (same as LLM baseline)\",\n8\t  \"gpt55_n500_accuracy\": 0.332,\n9\t  \"claude_n500_accuracy\": 0.331,\n10\t  \"obd_full_accuracy\": 0.3856,\n11\t  \"obd_full_n\": 30000,\n12\t  \"method\": \"OBD-LightGBM out-of-fold predictions, same 500 samples as exp-011\",\n13\t  \"obd_hyperparams\": {\n14\t    \"n_estimators\": 200,\n15\t    \"max_depth\": 6,\n16\t    \"learning_rate\": 0.05,\n17\t    \"num_leaves\": 31,\n18\t    \"n_binary_classifiers\": 5,\n19\t    \"n_folds\": 5\n20\t  },\n21\t  \"per_depth_accuracy\": {\n22\t    \"0\": 0.96,\n23\t    \"1\": 0.39,\n24\t    \"2\": 0.14,\n25\t    \"3\": 0.19,\n26\t    \"4\": 0.22\n27\t  },\n28\t  \"conclusion\": \"OBD at N=500 achieves 38.0% [34.0%, 42.4%], above LLM baselines (GPT-5.5: 33.2%, Claude: 33.1%)\"\n29\t}\n30\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001164"
-        },
-        {
-          "source_line": 1165,
+          "source_line": 1155,
           "timestamp": "2026-05-15T11:32:23.348063+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1664,10 +1471,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts"
             }
           },
-          "id": "event-001165"
+          "id": "event-001155"
         },
         {
-          "source_line": 1166,
+          "source_line": 1156,
           "timestamp": "2026-05-15T11:32:23.800211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1682,10 +1489,10 @@
             "tool": "Glob",
             "elapsed_ms": 452
           },
-          "id": "event-001166"
+          "id": "event-001156"
         },
         {
-          "source_line": 1167,
+          "source_line": 1157,
           "timestamp": "2026-05-15T11:32:24.051593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1704,10 +1511,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-001167"
+          "id": "event-001157"
         },
         {
-          "source_line": 1168,
+          "source_line": 1158,
           "timestamp": "2026-05-15T11:32:24.252971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1722,10 +1529,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-001168"
+          "id": "event-001158"
         },
         {
-          "source_line": 1169,
+          "source_line": 1159,
           "timestamp": "2026-05-15T11:32:27.768487+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1745,10 +1552,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001169"
+          "id": "event-001159"
         },
         {
-          "source_line": 1170,
+          "source_line": 1160,
           "timestamp": "2026-05-15T11:32:27.870122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1763,10 +1570,10 @@
             "tool": "Grep",
             "elapsed_ms": 101
           },
-          "id": "event-001170"
+          "id": "event-001160"
         },
         {
-          "source_line": 1171,
+          "source_line": 1161,
           "timestamp": "2026-05-15T11:32:31.283969+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1783,10 +1590,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_D_mcnemar_20260515T112338_result.json"
             }
           },
-          "id": "event-001171"
+          "id": "event-001161"
         },
         {
-          "source_line": 1172,
+          "source_line": 1162,
           "timestamp": "2026-05-15T11:32:31.334668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1801,10 +1608,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001172"
+          "id": "event-001162"
         },
         {
-          "source_line": 1173,
+          "source_line": 1163,
           "timestamp": "2026-05-15T11:32:33.845551+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1821,10 +1628,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_D_mcnemar.json"
             }
           },
-          "id": "event-001173"
+          "id": "event-001163"
         },
         {
-          "source_line": 1174,
+          "source_line": 1164,
           "timestamp": "2026-05-15T11:32:33.946490+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1839,10 +1646,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001174"
+          "id": "event-001164"
         },
         {
-          "source_line": 1175,
+          "source_line": 1165,
           "timestamp": "2026-05-15T11:32:40.020691+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1860,10 +1667,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001175"
+          "id": "event-001165"
         },
         {
-          "source_line": 1176,
+          "source_line": 1166,
           "timestamp": "2026-05-15T11:32:40.071469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1878,10 +1685,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001176"
+          "id": "event-001166"
         },
         {
-          "source_line": 1177,
+          "source_line": 1167,
           "timestamp": "2026-05-15T11:32:42.631565+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1899,10 +1706,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-001177"
+          "id": "event-001167"
         },
         {
-          "source_line": 1178,
+          "source_line": 1168,
           "timestamp": "2026-05-15T11:32:42.732357+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1917,10 +1724,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 100
           },
-          "id": "event-001178"
+          "id": "event-001168"
         },
         {
-          "source_line": 1179,
+          "source_line": 1169,
           "timestamp": "2026-05-15T11:33:19.866012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1938,10 +1745,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-001179"
+          "id": "event-001169"
         },
         {
-          "source_line": 1180,
+          "source_line": 1170,
           "timestamp": "2026-05-15T11:33:23.479830+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1956,10 +1763,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3613
           },
-          "id": "event-001180"
+          "id": "event-001170"
         },
         {
-          "source_line": 1181,
+          "source_line": 1171,
           "timestamp": "2026-05-15T11:33:28.553627+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1972,7 +1779,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001181"
+          "id": "event-001171"
         }
       ]
     },
@@ -1980,7 +1787,7 @@
       "number": 65,
       "messages": [
         {
-          "source_line": 1182,
+          "source_line": 1172,
           "timestamp": "2026-05-15T11:33:29.037814+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1994,10 +1801,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-001182"
+          "id": "event-001172"
         },
         {
-          "source_line": 1183,
+          "source_line": 1173,
           "timestamp": "2026-05-15T11:33:35.000320+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2015,10 +1822,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001183"
+          "id": "event-001173"
         },
         {
-          "source_line": 1184,
+          "source_line": 1174,
           "timestamp": "2026-05-15T11:33:35.065058+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2033,10 +1840,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 64
           },
-          "id": "event-001184"
+          "id": "event-001174"
         },
         {
-          "source_line": 1185,
+          "source_line": 1175,
           "timestamp": "2026-05-15T11:33:39.634590+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2053,10 +1860,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py"
             }
           },
-          "id": "event-001185"
+          "id": "event-001175"
         },
         {
-          "source_line": 1186,
+          "source_line": 1176,
           "timestamp": "2026-05-15T11:33:40.086919+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2071,10 +1878,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001186"
+          "id": "event-001176"
         },
         {
-          "source_line": 1187,
+          "source_line": 1177,
           "timestamp": "2026-05-15T11:33:40.590766+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2092,10 +1899,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts"
             }
           },
-          "id": "event-001187"
+          "id": "event-001177"
         },
         {
-          "source_line": 1188,
+          "source_line": 1178,
           "timestamp": "2026-05-15T11:33:40.893168+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2110,10 +1917,10 @@
             "tool": "Glob",
             "elapsed_ms": 302
           },
-          "id": "event-001188"
+          "id": "event-001178"
         },
         {
-          "source_line": 1189,
+          "source_line": 1179,
           "timestamp": "2026-05-15T11:33:40.945874+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2131,10 +1938,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
             }
           },
-          "id": "event-001189"
+          "id": "event-001179"
         },
         {
-          "source_line": 1190,
+          "source_line": 1180,
           "timestamp": "2026-05-15T11:33:40.996565+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2149,10 +1956,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-001190"
+          "id": "event-001180"
         },
         {
-          "source_line": 1191,
+          "source_line": 1181,
           "timestamp": "2026-05-15T11:33:45.925691+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2169,10 +1976,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py"
             }
           },
-          "id": "event-001191"
+          "id": "event-001181"
         },
         {
-          "source_line": 1192,
+          "source_line": 1182,
           "timestamp": "2026-05-15T11:33:46.026815+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2187,10 +1994,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-001192"
+          "id": "event-001182"
         },
         {
-          "source_line": 1193,
+          "source_line": 1183,
           "timestamp": "2026-05-15T11:33:58.757544+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2209,10 +2016,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001193"
+          "id": "event-001183"
         },
         {
-          "source_line": 1194,
+          "source_line": 1184,
           "timestamp": "2026-05-15T11:33:58.858435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2227,10 +2034,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 100
           },
-          "id": "event-001194"
+          "id": "event-001184"
         },
         {
-          "source_line": 1195,
+          "source_line": 1185,
           "timestamp": "2026-05-15T11:34:01.870219+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2249,10 +2056,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001195"
+          "id": "event-001185"
         },
         {
-          "source_line": 1196,
+          "source_line": 1186,
           "timestamp": "2026-05-15T11:34:01.921055+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2267,10 +2074,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 50
           },
-          "id": "event-001196"
+          "id": "event-001186"
         },
         {
-          "source_line": 1197,
+          "source_line": 1187,
           "timestamp": "2026-05-15T11:34:30.950641+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2291,10 +2098,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-001197"
+          "id": "event-001187"
         },
         {
-          "source_line": 1198,
+          "source_line": 1188,
           "timestamp": "2026-05-15T11:34:36.523982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2309,10 +2116,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5573
           },
-          "id": "event-001198"
+          "id": "event-001188"
         },
         {
-          "source_line": 1199,
+          "source_line": 1189,
           "timestamp": "2026-05-15T11:34:41.338574+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2325,7 +2132,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001199"
+          "id": "event-001189"
         }
       ]
     },
@@ -2333,7 +2140,7 @@
       "number": 66,
       "messages": [
         {
-          "source_line": 1200,
+          "source_line": 1190,
           "timestamp": "2026-05-15T11:34:41.344708+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2347,10 +2154,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-001200"
+          "id": "event-001190"
         },
         {
-          "source_line": 1201,
+          "source_line": 1191,
           "timestamp": "2026-05-15T11:34:52.593083+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2368,10 +2175,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001201"
+          "id": "event-001191"
         },
         {
-          "source_line": 1202,
+          "source_line": 1192,
           "timestamp": "2026-05-15T11:34:52.643674+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2386,10 +2193,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001202"
+          "id": "event-001192"
         },
         {
-          "source_line": 1203,
+          "source_line": 1193,
           "timestamp": "2026-05-15T11:34:55.384772+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2407,10 +2214,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-001203"
+          "id": "event-001193"
         },
         {
-          "source_line": 1204,
+          "source_line": 1194,
           "timestamp": "2026-05-15T11:34:55.486043+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2425,10 +2232,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 101
           },
-          "id": "event-001204"
+          "id": "event-001194"
         },
         {
-          "source_line": 1205,
+          "source_line": 1195,
           "timestamp": "2026-05-15T11:35:48.800017+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2449,10 +2256,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-001205"
+          "id": "event-001195"
         },
         {
-          "source_line": 1206,
+          "source_line": 1196,
           "timestamp": "2026-05-15T11:35:54.496813+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2467,10 +2274,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5696
           },
-          "id": "event-001206"
+          "id": "event-001196"
         },
         {
-          "source_line": 1207,
+          "source_line": 1197,
           "timestamp": "2026-05-15T11:36:01.302877+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2483,7 +2290,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001207"
+          "id": "event-001197"
         }
       ]
     },
@@ -2491,7 +2298,7 @@
       "number": 67,
       "messages": [
         {
-          "source_line": 1208,
+          "source_line": 1198,
           "timestamp": "2026-05-15T11:36:01.310593+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2505,10 +2312,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-001208"
+          "id": "event-001198"
         },
         {
-          "source_line": 1209,
+          "source_line": 1199,
           "timestamp": "2026-05-15T11:36:11.968059+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2526,10 +2333,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001209"
+          "id": "event-001199"
         },
         {
-          "source_line": 1210,
+          "source_line": 1200,
           "timestamp": "2026-05-15T11:36:12.019561+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2544,10 +2351,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-001210"
+          "id": "event-001200"
         },
         {
-          "source_line": 1211,
+          "source_line": 1201,
           "timestamp": "2026-05-15T11:36:16.938967+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2565,10 +2372,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001211"
+          "id": "event-001201"
         },
         {
-          "source_line": 1212,
+          "source_line": 1202,
           "timestamp": "2026-05-15T11:36:17.039827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2583,10 +2390,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-001212"
+          "id": "event-001202"
         },
         {
-          "source_line": 1213,
+          "source_line": 1203,
           "timestamp": "2026-05-15T11:36:20.101595+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2604,10 +2411,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-001213"
+          "id": "event-001203"
         },
         {
-          "source_line": 1214,
+          "source_line": 1204,
           "timestamp": "2026-05-15T11:36:20.202497+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2622,10 +2429,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-001214"
+          "id": "event-001204"
         },
         {
-          "source_line": 1215,
+          "source_line": 1205,
           "timestamp": "2026-05-15T11:36:22.912442+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2639,10 +2446,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "tool": "CronList"
           },
-          "id": "event-001215"
+          "id": "event-001205"
         },
         {
-          "source_line": 1216,
+          "source_line": 1206,
           "timestamp": "2026-05-15T11:36:23.013326+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2657,10 +2464,10 @@
             "tool": "CronList",
             "elapsed_ms": 100
           },
-          "id": "event-001216"
+          "id": "event-001206"
         },
         {
-          "source_line": 1217,
+          "source_line": 1207,
           "timestamp": "2026-05-15T11:36:26.411211+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2673,7 +2480,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001217"
+          "id": "event-001207"
         }
       ]
     },
@@ -2681,7 +2488,7 @@
       "number": 68,
       "messages": [
         {
-          "source_line": 1218,
+          "source_line": 1208,
           "timestamp": "2026-05-15T11:36:26.415320+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2695,10 +2502,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001218"
+          "id": "event-001208"
         },
         {
-          "source_line": 1219,
+          "source_line": 1209,
           "timestamp": "2026-05-15T11:36:31.868644+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2715,10 +2522,10 @@
               "worker_id": "worker_paper_exp_A_crossscorer_table_20260515T112213"
             }
           },
-          "id": "event-001219"
+          "id": "event-001209"
         },
         {
-          "source_line": 1220,
+          "source_line": 1210,
           "timestamp": "2026-05-15T11:36:31.919372+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2733,10 +2540,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-001220"
+          "id": "event-001210"
         },
         {
-          "source_line": 1221,
+          "source_line": 1211,
           "timestamp": "2026-05-15T11:36:35.937400+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2755,10 +2562,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001221"
+          "id": "event-001211"
         },
         {
-          "source_line": 1222,
+          "source_line": 1212,
           "timestamp": "2026-05-15T11:36:35.988627+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2773,10 +2580,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-001222"
+          "id": "event-001212"
         },
         {
-          "source_line": 1223,
+          "source_line": 1213,
           "timestamp": "2026-05-15T11:36:39.639222+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2789,7 +2596,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001223"
+          "id": "event-001213"
         }
       ]
     },
@@ -2797,7 +2604,7 @@
       "number": 69,
       "messages": [
         {
-          "source_line": 1224,
+          "source_line": 1214,
           "timestamp": "2026-05-15T11:36:40.223725+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2811,10 +2618,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001224"
+          "id": "event-001214"
         },
         {
-          "source_line": 1225,
+          "source_line": 1215,
           "timestamp": "2026-05-15T11:36:46.613885+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2831,10 +2638,10 @@
               "worker_id": "worker_code_exp_D_mcnemar_20260515T112338"
             }
           },
-          "id": "event-001225"
+          "id": "event-001215"
         },
         {
-          "source_line": 1226,
+          "source_line": 1216,
           "timestamp": "2026-05-15T11:36:46.665236+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2849,10 +2656,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 51
           },
-          "id": "event-001226"
+          "id": "event-001216"
         },
         {
-          "source_line": 1227,
+          "source_line": 1217,
           "timestamp": "2026-05-15T11:36:51.203441+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2865,7 +2672,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001227"
+          "id": "event-001217"
         }
       ]
     },
@@ -2873,7 +2680,7 @@
       "number": 70,
       "messages": [
         {
-          "source_line": 1228,
+          "source_line": 1218,
           "timestamp": "2026-05-15T11:36:51.786655+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2887,10 +2694,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001228"
+          "id": "event-001218"
         },
         {
-          "source_line": 1229,
+          "source_line": 1219,
           "timestamp": "2026-05-15T11:36:58.543077+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2907,10 +2714,10 @@
               "worker_id": "worker_data_pull_rebuttal_artifacts_20260515T112159"
             }
           },
-          "id": "event-001229"
+          "id": "event-001219"
         },
         {
-          "source_line": 1230,
+          "source_line": 1220,
           "timestamp": "2026-05-15T11:36:58.597135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2925,10 +2732,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 54
           },
-          "id": "event-001230"
+          "id": "event-001220"
         },
         {
-          "source_line": 1231,
+          "source_line": 1221,
           "timestamp": "2026-05-15T11:37:02.703482+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2941,7 +2748,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001231"
+          "id": "event-001221"
         }
       ]
     },
@@ -2949,7 +2756,7 @@
       "number": 71,
       "messages": [
         {
-          "source_line": 1232,
+          "source_line": 1222,
           "timestamp": "2026-05-15T11:37:56.938882+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2963,10 +2770,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001232"
+          "id": "event-001222"
         },
         {
-          "source_line": 1233,
+          "source_line": 1223,
           "timestamp": "2026-05-15T11:38:04.506852+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2983,10 +2790,10 @@
               "worker_id": "worker_code_exp_D_mcnemar_fixed_20260515T113431"
             }
           },
-          "id": "event-001233"
+          "id": "event-001223"
         },
         {
-          "source_line": 1234,
+          "source_line": 1224,
           "timestamp": "2026-05-15T11:38:04.557539+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3001,10 +2808,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-001234"
+          "id": "event-001224"
         },
         {
-          "source_line": 1235,
+          "source_line": 1225,
           "timestamp": "2026-05-15T11:38:15.902904+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3022,10 +2829,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-001235"
+          "id": "event-001225"
         },
         {
-          "source_line": 1236,
+          "source_line": 1226,
           "timestamp": "2026-05-15T11:38:15.955006+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3040,10 +2847,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 52
           },
-          "id": "event-001236"
+          "id": "event-001226"
         },
         {
-          "source_line": 1237,
+          "source_line": 1227,
           "timestamp": "2026-05-15T11:38:18.937248+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3056,7 +2863,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001237"
+          "id": "event-001227"
         }
       ]
     },
@@ -3064,7 +2871,7 @@
       "number": 72,
       "messages": [
         {
-          "source_line": 1238,
+          "source_line": 1228,
           "timestamp": "2026-05-15T11:40:31.918434+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3078,10 +2885,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-001238"
+          "id": "event-001228"
         },
         {
-          "source_line": 1239,
+          "source_line": 1229,
           "timestamp": "2026-05-15T11:40:40.538983+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3099,10 +2906,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-001239"
+          "id": "event-001229"
         },
         {
-          "source_line": 1240,
+          "source_line": 1230,
           "timestamp": "2026-05-15T11:40:40.589668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3117,10 +2924,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-001240"
+          "id": "event-001230"
         },
         {
-          "source_line": 1241,
+          "source_line": 1231,
           "timestamp": "2026-05-15T11:41:28.399058+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3141,10 +2948,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-001241"
+          "id": "event-001231"
         },
         {
-          "source_line": 1242,
+          "source_line": 1232,
           "timestamp": "2026-05-15T11:41:34.023973+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3159,10 +2966,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5624
           },
-          "id": "event-001242"
+          "id": "event-001232"
         },
         {
-          "source_line": 1243,
+          "source_line": 1233,
           "timestamp": "2026-05-15T11:41:38.732023+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3175,7 +2982,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001243"
+          "id": "event-001233"
         }
       ]
     },
@@ -3183,7 +2990,7 @@
       "number": 73,
       "messages": [
         {
-          "source_line": 1244,
+          "source_line": 1234,
           "timestamp": "2026-05-15T11:41:38.738359+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3197,10 +3004,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001244"
+          "id": "event-001234"
         },
         {
-          "source_line": 1245,
+          "source_line": 1235,
           "timestamp": "2026-05-15T11:41:48.690593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3217,10 +3024,10 @@
               "worker_id": "worker_code_exp_D_comprehensive_20260515T113549"
             }
           },
-          "id": "event-001245"
+          "id": "event-001235"
         },
         {
-          "source_line": 1246,
+          "source_line": 1236,
           "timestamp": "2026-05-15T11:41:48.793135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3235,10 +3042,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-001246"
+          "id": "event-001236"
         },
         {
-          "source_line": 1247,
+          "source_line": 1237,
           "timestamp": "2026-05-15T11:41:57.393049+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3251,7 +3058,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001247"
+          "id": "event-001237"
         }
       ]
     },
@@ -3259,7 +3066,7 @@
       "number": 74,
       "messages": [
         {
-          "source_line": 1248,
+          "source_line": 1238,
           "timestamp": "2026-05-15T11:45:57.288557+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3273,10 +3080,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-001248"
+          "id": "event-001238"
         },
         {
-          "source_line": 1249,
+          "source_line": 1239,
           "timestamp": "2026-05-15T11:46:03.750977+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3293,10 +3100,10 @@
               "worker_id": "worker_code_exp_D_final_20260515T114128"
             }
           },
-          "id": "event-001249"
+          "id": "event-001239"
         },
         {
-          "source_line": 1250,
+          "source_line": 1240,
           "timestamp": "2026-05-15T11:46:03.804036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3311,48 +3118,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 53
           },
-          "id": "event-001250"
+          "id": "event-001240"
         },
         {
-          "source_line": 1251,
-          "timestamp": "2026-05-15T11:46:13.134803+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_final.json"
-            }
-          },
-          "id": "event-001251"
-        },
-        {
-          "source_line": 1252,
-          "timestamp": "2026-05-15T11:46:13.185557+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"method\": \"OBD-LightGBM OOF 6-class argmax (v2 logic), random_state=42, no capping, no prob merge\",\n3\t  \"primary_seed\": 42,\n4\t  \"n_samples\": 500,\n5\t  \"obd_accuracy\": 0.38,\n6\t  \"obd_accuracy_bootstrap_ci\": [\n7\t    0.34,\n8\t    0.422\n9\t  ],\n10\t  \"per_depth_accuracy\": {\n11\t    \"0\": 0.96,\n12\t    \"1\": 0.39,\n13\t    \"2\": 0.14,\n14\t    \"3\": 0.19,\n15\t    \"4\": 0.22\n16\t  },\n17\t  \"obd_full_accuracy_6class\": 0.3856,\n18\t  \"obd_vs_gpt55\": {\n19\t    \"accuracy_obd\": 0.38,\n20\t    \"accuracy_llm\": 0.332,\n21\t    \"accuracy_diff\": 0.048,\n22\t    \"contingency_table\": {\n23\t      \"a\": 91,\n24\t      \"b\": 99,\n25\t      \"c\": 75,\n26\t      \"d\": 235\n27\t    },\n28\t    \"mcnemar_p\": 0.080927,\n29\t    \"bootstrap_ci_lower\": -0.004,\n30\t    \"bootstrap_ci_upper\": 0.1,\n31\t    \"bootstrap_n\": 10000,\n32\t    \"ci_includes_zero\": true\n33\t  },\n34\t  \"obd_vs_claude\": {\n35\t    \"accuracy_obd\": 0.38,\n36\t    \"accuracy_llm\": 0.33,\n37\t    \"accuracy_diff\": 0.05,\n38\t    \"contingency_table\": {\n39\t      \"a\": 90,\n40\t      \"b\": 100,\n41\t      \"c\": 75,\n42\t      \"d\": 235\n43\t    },\n44\t    \"mcnemar_p\": 0.069337,\n45\t    \"bootstrap_ci_lower\": 0.0,\n46\t    \"bootstrap_ci_upper\": 0.102,\n47\t    \"bootstrap_n\": 10000,\n48\t    \"ci_includes_zero\": true\n49\t  },\n50\t  \"multi_seed\": {\n51\t    \"seeds\": [\n52\t      42,\n53\t      123,\n54\t      456,\n55\t      789,\n56\t      2024\n57\t    ],\n58\t    \"accuracies\": [\n59\t      0.38,\n60\t      0.38,\n61\t      0.38,\n62\t      0.38,\n63\t      0.38\n64\t    ],\n65\t    \"mean\": 0.38,\n66\t    \"std\": 0.0\n67\t  },\n68\t  \"sensitivity_comparison\": {\n69\t    \"v2_no_seed\": 0.38,\n70\t    \"capping_no_seed\": 0.436,\n71\t    \"prob_merge_seed42\": 0.444,\n72\t    \"v2_logic_seed42\": \"THIS RUN\"\n73\t  }\n74\t}\n75\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001252"
-        },
-        {
-          "source_line": 1253,
+          "source_line": 1241,
           "timestamp": "2026-05-15T11:46:16.901726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3370,10 +3139,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001253"
+          "id": "event-001241"
         },
         {
-          "source_line": 1254,
+          "source_line": 1242,
           "timestamp": "2026-05-15T11:46:16.952430+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3388,10 +3157,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001254"
+          "id": "event-001242"
         },
         {
-          "source_line": 1255,
+          "source_line": 1243,
           "timestamp": "2026-05-15T11:46:23.528730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3411,10 +3180,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-001255"
+          "id": "event-001243"
         },
         {
-          "source_line": 1256,
+          "source_line": 1244,
           "timestamp": "2026-05-15T11:46:23.730572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3429,10 +3198,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 201
           },
-          "id": "event-001256"
+          "id": "event-001244"
         },
         {
-          "source_line": 1257,
+          "source_line": 1245,
           "timestamp": "2026-05-15T11:46:48.235936+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3450,10 +3219,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-001257"
+          "id": "event-001245"
         },
         {
-          "source_line": 1258,
+          "source_line": 1246,
           "timestamp": "2026-05-15T11:46:53.379764+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3468,10 +3237,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 5143
           },
-          "id": "event-001258"
+          "id": "event-001246"
         },
         {
-          "source_line": 1259,
+          "source_line": 1247,
           "timestamp": "2026-05-15T11:46:55.612569+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3484,7 +3253,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-001259"
+          "id": "event-001247"
         }
       ]
     },
@@ -3492,7 +3261,7 @@
       "number": 75,
       "messages": [
         {
-          "source_line": 1260,
+          "source_line": 1248,
           "timestamp": "2026-05-15T12:26:53.614459+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3505,6 +3274,247 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-15T12:27:05.305433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "limit": "0",
+              "fields": "['status', 'conclusion', 'hypothesis']"
+            }
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-15T12:27:05.858072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_D_obd_n500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_E_paired_stats\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_C_permutation_10k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"10K permutation resamples 替换 500 resamples，验证 p-value 精度（FR-11 Warning）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_B_14d_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_A_alt_scorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_004_7b_crossscale\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\\\"}, \\\"exp_015_neural_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_graduated_filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_003_decoding_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"解码策略调控 K*：不同 top_p/\n…[truncated 1654 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-001250"
+        },
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-15T12:27:05.858470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-15T12:27:05.908950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-15T12:27:11.782596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'exp_A_alt_scorer'}"
+            }
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-15T12:27:12.303431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0831}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 520
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-15T12:27:12.773938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'exp_B_14d_ablation'}"
+            }
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-15T12:27:13.294691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.181}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 520
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-15T12:27:13.295123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'exp_C_permutation_10k'}"
+            }
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-15T12:27:13.696607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0776}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-15T12:27:14.199654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'exp_E_paired_stats'}"
+            }
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-15T12:27:14.300500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "gen-depth-contamination"
+            }
           },
           "id": "event-001260"
         }

@@ -15,7 +15,7 @@ For a quick review on GitHub, start with the readable Markdown pages. Each page 
 | Task result records | 282 |
 | Context and loop notes | 5 |
 
-**76,491 recorded messages/events · 2,055 recorded user-message boundaries · 30,623 tool-call records.**
+**76,469 recorded messages/events · 2,055 recorded user-message boundaries · 30,612 tool-call records.**
 
 A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
 

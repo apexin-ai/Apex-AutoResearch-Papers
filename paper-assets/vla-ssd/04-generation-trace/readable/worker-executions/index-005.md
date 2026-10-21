@@ -123,10 +123,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code probe seed robustness — This session is being continued from a previous conversation that ran out of context. The summary be | 644 | 1 | [Read transcript](code-probe-seed-robustness.md) | [JSON](../../sessions/ae/ae0692e22ad974d6fa84.json) |
 | code bootstrap ci delta r2 | 140 | 0 | [Read transcript](code-bootstrap-ci-delta-r2.md) | [JSON](../../sessions/0c/0c6b588b70b33baad240.json) |
 | research related work check 202526 | 78 | 0 | [Read transcript](research-related-work-check-202526.md) | [JSON](../../sessions/16/16c6d6e8cee8fdd0539b.json) |
-| paper anticipated rebuttal v1 | 53 | 0 | [Read transcript](paper-anticipated-rebuttal-v1.md) | [JSON](../../sessions/18/189f8c5143c5367b261c.json) |
 | paper number consistency check | 114 | 0 | [Read transcript](paper-number-consistency-check.md) | [JSON](../../sessions/98/9880acf19423089f86e0.json) |
 | paper figure3 figure4 fix | 73 | 0 | [Read transcript](paper-figure3-figure4-fix.md) | [JSON](../../sessions/d9/d9f2ee079bf1a18a0a30.json) |
-| paper rebuttal v2 | 11 | 0 | [Read transcript](paper-rebuttal-v2.md) | [JSON](../../sessions/e7/e7e9b264b7fa009a8c17.json) |
 | code fix type3 fonts — Task: Transfer 11 PDF files from a remote server (westd-19183) to a local directory using base64 enc | 1,612 | 1 | [Read transcript](code-fix-type3-fonts.md) | [JSON](../../sessions/64/645c6bb2445cd2f570e2.json) |
 | code action head decoding — This session is being continued from a previous conversation that ran out of context. The summary be | 750 | 3 | [Read transcript](code-action-head-decoding.md) | [JSON](../../sessions/29/29890be6bd4a7cdb1658.json) |
 | code action head decoding untrained | 157 | 0 | [Read transcript](code-action-head-decoding-untrained.md) | [JSON](../../sessions/85/8535102b2d01639bfadd.json) |

@@ -16,7 +16,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | exec pairwise scoring 32b | 59 | 0 | [Read transcript](exec-pairwise-scoring-32b.md) | [JSON](../../sessions/b3/b37ad9e2ca2e069a8a7f.json) |
 | exp verbosity 32b steps3to7 | 111 | 0 | [Read transcript](exp-verbosity-32b-steps3to7.md) | [JSON](../../sessions/68/683f9bd1923ee0251207.json) |
 | ops kill vllm | 5 | 0 | [Read transcript](ops-kill-vllm.md) | [JSON](../../sessions/54/54b9977e6e99e1884dda.json) |
-| Paper Agent coordination — [Director 指令] **[Partial Draft] 启动 Intro + Figure 1 设计 — EMNLP 2026 ARR** API 等待窗口，先推进不依赖完整实验数据的写作。  | 6,939 | 321 | [Read transcript](paper-agent-coordination.md) | [JSON](../../sessions/d0/d0b83187a59df9ff7664.json) |
+| Paper Agent coordination — [Director 指令] **[Partial Draft] 启动 Intro + Figure 1 设计 — EMNLP 2026 ARR** API 等待窗口，先推进不依赖完整实验数据的写作。  | 6,937 | 321 | [Read transcript](paper-agent-coordination.md) | [JSON](../../sessions/d0/d0b83187a59df9ff7664.json) |
 | paper writing introduction | 21 | 0 | [Read transcript](paper-writing-introduction.md) | [JSON](../../sessions/7e/7e10d5db84c2460ebcf5.json) |
 | code register nli only gating | 259 | 0 | [Read transcript](code-register-nli-only-gating.md) | [JSON](../../sessions/8b/8b9c61aedaa9fb8d8534.json) |
 | paper writing | 23 | 0 | [Read transcript](paper-writing.md) | [JSON](../../sessions/b6/b61627ebe2d23ddea65a.json) |
@@ -50,7 +50,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code bt model diagnostics | 25 | 0 | [Read transcript](code-bt-model-diagnostics.md) | [JSON](../../sessions/53/5339c6ef10a41017d32e.json) |
 | code originality minimal subset | 39 | 0 | [Read transcript](code-originality-minimal-subset.md) | [JSON](../../sessions/e4/e4e41da5634b362c8b4d.json) |
 | code cf vs dr qwen32b | 61 | 0 | [Read transcript](code-cf-vs-dr-qwen32b.md) | [JSON](../../sessions/a4/a477ec1b6bd5e0e18210.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无本地 GPU 分配（纯 API 实验 | 932 | 91 | [Read transcript](director-coordination-20260522-182957.md) | [JSON](../../sessions/b7/b7d231640182a2ab7b9e.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无本地 GPU 分配（纯 API 实验 | 930 | 91 | [Read transcript](director-coordination-20260522-182957.md) | [JSON](../../sessions/b7/b7d231640182a2ab7b9e.json) |
 | Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 分配：cuda:0,1 = Qw | 3,052 | 148 | [Read transcript](coordination-coordination-20260525-061331.md) | [JSON](../../sessions/43/43ad69658e71d6e38757.json) |
 | analysis tost delta | 21 | 0 | [Read transcript](analysis-tost-delta.md) | [JSON](../../sessions/0c/0c4d16f417845da37aa7.json) |
 | analysis verbosity bt split | 75 | 0 | [Read transcript](analysis-verbosity-bt-split.md) | [JSON](../../sessions/fe/fee66f7732f14811935d.json) |

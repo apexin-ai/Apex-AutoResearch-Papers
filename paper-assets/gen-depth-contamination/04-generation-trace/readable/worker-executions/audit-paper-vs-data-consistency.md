@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 181
+- **Events:** 173
 - **Recorded user turns:** 0
-- **Tool calls:** 74
+- **Tool calls:** 70
 - **Original source:** `logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log`
 - **Structured JSON:** [`d22f1530dcb5dc3a4209.json`](../../sessions/d2/d22f1530dcb5dc3a4209.json)
 
 ## Before a recorded user message
 
-181 recorded events
+173 recorded events
 
 ### Log line
 
@@ -7705,994 +7705,6 @@ SSH 连接暂时中断。先读取本地关键文件，稍后重试 SSH。
 
 _source line 138_
 
-<details open><summary>🔧 Tool call — Read · `toolu_013HtEECYo9aNruADNk12sFj`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/pythia_qwen_rw/results.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "3645a93f-c043-4fec-8e98-82423742ec12",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_015VfY9LLy7mDskwvTwf8y6d",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3983,
-      "cache_read_input_tokens": 98226,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3983
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 139_
-
-<details open><summary>🔧 Tool call — Read · `toolu_01XWHhqjVhQUES5RRQoBVarV`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/pythia_qwen_cont/results.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "4651abe6-e5bc-413d-aedb-ad2f2e8fa19f",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_015VfY9LLy7mDskwvTwf8y6d",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3983,
-      "cache_read_input_tokens": 98226,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3983
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 140 · 2026-05-18T05:11:04.839Z_
-
-<details><summary>↩ Tool result · `toolu_013HtEECYo9aNruADNk12sFj`</summary>
-
-```text
-1	{
-2	  "scorer": "pythia-1.4b",
-3	  "data_dir": "/root/autodl-tmp/gen-depth-contamination/data",
-4	  "k_star": 2,
-5	  "pairwise_auc": {
-6	    "0v1": 0.9923,
-7	    "1v2": 0.7012,
-8	    "2v3": 0.587,
-9	    "3v4": 0.5487,
-10	    "4v5": 0.5285
-11	  },
-12	  "pairwise_auc_folds": {
-13	    "0v1": [
-14	      0.993,
-15	      0.9922,
-16	      0.993,
-17	      0.991,
-18	      0.9924
-19	    ],
-20	    "1v2": [
-21	      0.713,
-22	      0.7034,
-23	      0.696,
-24	      0.7004,
-25	      0.6933
-26	    ],
-27	    "2v3": [
-28	      0.5756,
-29	      0.5979,
-30	      0.5823,
-31	      0.6026,
-32	      0.5764
-33	    ],
-34	    "3v4": [
-35	      0.5526,
-36	      0.5452,
-37	      0.5447,
-38	      0.5581,
-39	      0.5428
-40	    ],
-41	    "4v5": [
-42	      0.5338,
-43	      0.5296,
-44	      0.5269,
-45	      0.5255,
-46	      0.5267
-47	    ]
-48	  },
-49	  "ordinal_mae": 1.0061,
-50	  "ordinal_accuracy": 0.4166,
-51	  "feature_importance": [
-52	    {
-53	      "feature": "freq_entropy",
-54	      "importance": 8924.0
-55	    },
-56	    {
-57	      "feature": "surp_mean",
-58	      "importance": 8830.8
-59	    },
-60	    {
-61	      "feature": "hapax_ratio",
-62	      "importance": 8614.2
-63	    },
-64	    {
-65	      "feature": "surp_skew",
-66	      "importance": 8095.2
-67	    },
-68	    {
-69	      "feature": "surp_d1_mean",
-70	      "importance": 7995.2
-71	    },
-72	    {
-73	      "feature": "surp_d1_skew",
-74	      "importance": 7878.0
-75	    },
-76	    {
-77	      "feature": "surp_d2_mean",
-78	      "importance": 7867.0
-79	    },
-80	    {
-81	      "feature": "freq_kurtosis",
-82	      "importance": 7716.4
-83	    },
-84	    {
-85	      "feature": "surp_std",
-86	      "importance": 7664.4
-87	    },
-88	    {
-89	      "feature": "surp_kurt",
-90	      "importance": 7561.8
-91	    }
-92	  ],
-93	  "feature_importance_all": [
-94	    {
-95	      "feature": "freq_entropy",
-96	      "importance": 8924.0
-97	    },
-98	    {
-99	      "feature": "surp_mean",
-100	      "importance": 8830.8
-101	    },
-102	    {
-103	      "feature": "hapax_ratio",
-104	      "importance": 8614.2
-105	    },
-106	    {
-107	      "feature": "surp_skew",
-108	      "importance": 8095.2
-109	    },
-110	    {
-111	      "feature": "surp_d1_mean",
-112	      "importance": 7995.2
-113	    },
-114	    {
-115	      "feature": "surp_d1_skew",
-116	      "importance": 7878.0
-117	    },
-118	    {
-119	      "feature": "surp_d2_mean",
-120	      "importance": 7867.0
-121	    },
-122	    {
-123	      "feature": "freq_kurtosis",
-124	      "importance": 7716.4
-125	    },
-126	    {
-127	      "feature": "surp_std",
-128	      "importance": 7664.4
-129	    },
-130	    {
-131	      "feature": "surp_kurt",
-132	      "importance": 7561.8
-133	    },
-134	    {
-135	      "feature": "low_freq_ratio",
-136	      "importance": 7002.6
-137	    },
-138	    {
-139	      "feature": "ttr",
-140	      "importance": 6602.6
-141	    },
-142	    {
-143	      "feature": "surp_d1_std",
-144	      "importance": 5755.6
-145	    },
-146	    {
-147	      "feature": "surp_d2_std",
-148	      "importance": 5679.2
-149	    },
-150	    {
-151	      "feature": "self_bleu",
-152	      "importance": 3578.4
-153	    }
-154	  ],
-155	  "spearman_rho_vs_baseline": 0.9056,
-156	  "spearman_pval": 0.0
-157	}
-158	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "5548b31e-0750-42f8-a1c0-f762e2f54ed6",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/pythia_qwen_rw/results.json",
-      "content": "{\n  \"scorer\": \"pythia-1.4b\",\n  \"data_dir\": \"/root/autodl-tmp/gen-depth-contamination/data\",\n  \"k_star\": 2,\n  \"pairwise_auc\": {\n    \"0v1\": 0.9923,\n    \"1v2\": 0.7012,\n    \"2v3\": 0.587,\n    \"3v4\": 0.5487,\n    \"4v5\": 0.5285\n  },\n  \"pairwise_auc_folds\": {\n    \"0v1\": [\n      0.993,\n      0.9922,\n      0.993,\n      0.991,\n      0.9924\n    ],\n    \"1v2\": [\n      0.713,\n      0.7034,\n      0.696,\n      0.7004,\n      0.6933\n    ],\n    \"2v3\": [\n      0.5756,\n      0.5979,\n      0.5823,\n      0.6026,\n      0.5764\n    ],\n    \"3v4\": [\n      0.5526,\n      0.5452,\n      0.5447,\n      0.5581,\n      0.5428\n    ],\n    \"4v5\": [\n      0.5338,\n      0.5296,\n      0.5269,\n      0.5255,\n      0.5267\n    ]\n  },\n  \"ordinal_mae\": 1.0061,\n  \"ordinal_accuracy\": 0.4166,\n  \"feature_importance\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8924.0\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8830.8\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 8614.2\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 8095.2\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7995.2\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7878.0\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7867.0\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7716.4\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7664.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7561.8\n    }\n  ],\n  \"feature_importance_all\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8924.0\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8830.8\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 8614.2\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 8095.2\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7995.2\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7878.0\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7867.0\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7716.4\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7664.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7561.8\n    },\n    {\n      \"feature\": \"low_freq_ratio\",\n      \"importance\": 7002.6\n    },\n    {\n      \"feature\": \"ttr\",\n      \"importance\": 6602.6\n    },\n    {\n      \"feature\": \"surp_d1_std\",\n      \"importance\": 5755.6\n    },\n    {\n      \"feature\": \"surp_d2_std\",\n      \"importance\": 5679.2\n    },\n    {\n      \"feature\": \"self_bleu\",\n      \"importance\": 3578.4\n    }\n  ],\n  \"spearman_rho_vs_baseline\": 0.9056,\n  \"spearman_pval\": 0.0\n}\n",
-      "numLines": 158,
-      "startLine": 1,
-      "totalLines": 158
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 141 · 2026-05-18T05:11:04.842Z_
-
-<details><summary>↩ Tool result · `toolu_01XWHhqjVhQUES5RRQoBVarV`</summary>
-
-```text
-1	{
-2	  "scorer": "pythia-1.4b",
-3	  "data_dir": "/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont",
-4	  "k_star": 1,
-5	  "pairwise_auc": {
-6	    "0v1": 0.99,
-7	    "1v2": 0.5923,
-8	    "2v3": 0.551,
-9	    "3v4": 0.5425,
-10	    "4v5": 0.5328
-11	  },
-12	  "pairwise_auc_folds": {
-13	    "0v1": [
-14	      0.9917,
-15	      0.9895,
-16	      0.9912,
-17	      0.9899,
-18	      0.9875
-19	    ],
-20	    "1v2": [
-21	      0.5781,
-22	      0.5842,
-23	      0.6077,
-24	      0.5965,
-25	      0.5953
-26	    ],
-27	    "2v3": [
-28	      0.5477,
-29	      0.5376,
-30	      0.5578,
-31	      0.5547,
-32	      0.5574
-33	    ],
-34	    "3v4": [
-35	      0.5397,
-36	      0.539,
-37	      0.5554,
-38	      0.5424,
-39	      0.5361
-40	    ],
-41	    "4v5": [
-42	      0.5407,
-43	      0.5314,
-44	      0.5317,
-45	      0.539,
-46	      0.5212
-47	    ]
-48	  },
-49	  "ordinal_mae": 1.216,
-50	  "ordinal_accuracy": 0.3714,
-51	  "feature_importance": [
-52	    {
-53	      "feature": "freq_entropy",
-54	      "importance": 8843.0
-55	    },
-56	    {
-57	      "feature": "surp_mean",
-58	      "importance": 8181.4
-59	    },
-60	    {
-61	      "feature": "surp_d1_skew",
-62	      "importance": 7993.0
-63	    },
-64	    {
-65	      "feature": "surp_std",
-66	      "importance": 7951.8
-67	    },
-68	    {
-69	      "feature": "surp_d2_mean",
-70	      "importance": 7796.8
-71	    },
-72	    {
-73	      "feature": "surp_d1_mean",
-74	      "importance": 7629.4
-75	    },
-76	    {
-77	      "feature": "freq_kurtosis",
-78	      "importance": 7604.4
-79	    },
-80	    {
-81	      "feature": "surp_kurt",
-82	      "importance": 7525.2
-83	    },
-84	    {
-85	      "feature": "surp_skew",
-86	      "importance": 7456.4
-87	    },
-88	    {
-89	      "feature": "hapax_ratio",
-90	      "importance": 7192.6
-91	    }
-92	  ],
-93	  "feature_importance_all": [
-94	    {
-95	      "feature": "freq_entropy",
-96	      "importance": 8843.0
-97	    },
-98	    {
-99	      "feature": "surp_mean",
-100	      "importance": 8181.4
-101	    },
-102	    {
-103	      "feature": "surp_d1_skew",
-104	      "importance": 7993.0
-105	    },
-106	    {
-107	      "feature": "surp_std",
-108	      "importance": 7951.8
-109	    },
-110	    {
-111	      "feature": "surp_d2_mean",
-112	      "importance": 7796.8
-113	    },
-114	    {
-115	      "feature": "surp_d1_mean",
-116	      "importance": 7629.4
-117	    },
-118	    {
-119	      "feature": "freq_kurtosis",
-120	      "importance": 7604.4
-121	    },
-122	    {
-123	      "feature": "surp_kurt",
-124	      "importance": 7525.2
-125	    },
-126	    {
-127	      "feature": "surp_skew",
-128	      "importance": 7456.4
-129	    },
-130	    {
-131	      "feature": "hapax_ratio",
-132	      "importance": 7192.6
-133	    },
-134	    {
-135	      "feature": "ttr",
-136	      "importance": 7091.6
-137	    },
-138	    {
-139	      "feature": "low_freq_ratio",
-140	      "importance": 6634.6
-141	    },
-142	    {
-143	      "feature": "surp_d1_std",
-144	      "importance": 5923.6
-145	    },
-146	    {
-147	      "feature": "surp_d2_std",
-148	      "importance": 5631.6
-149	    },
-150	    {
-151	      "feature": "self_bleu",
-152	      "importance": 4558.6
-153	    }
-154	  ],
-155	  "spearman_rho_vs_baseline": 0.942,
-156	  "spearman_pval": 0.0
-157	}
-158	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "31593c5f-cabc-47f7-9cfa-3d05d51432c1",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/pythia_qwen_cont/results.json",
-      "content": "{\n  \"scorer\": \"pythia-1.4b\",\n  \"data_dir\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\",\n  \"k_star\": 1,\n  \"pairwise_auc\": {\n    \"0v1\": 0.99,\n    \"1v2\": 0.5923,\n    \"2v3\": 0.551,\n    \"3v4\": 0.5425,\n    \"4v5\": 0.5328\n  },\n  \"pairwise_auc_folds\": {\n    \"0v1\": [\n      0.9917,\n      0.9895,\n      0.9912,\n      0.9899,\n      0.9875\n    ],\n    \"1v2\": [\n      0.5781,\n      0.5842,\n      0.6077,\n      0.5965,\n      0.5953\n    ],\n    \"2v3\": [\n      0.5477,\n      0.5376,\n      0.5578,\n      0.5547,\n      0.5574\n    ],\n    \"3v4\": [\n      0.5397,\n      0.539,\n      0.5554,\n      0.5424,\n      0.5361\n    ],\n    \"4v5\": [\n      0.5407,\n      0.5314,\n      0.5317,\n      0.539,\n      0.5212\n    ]\n  },\n  \"ordinal_mae\": 1.216,\n  \"ordinal_accuracy\": 0.3714,\n  \"feature_importance\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8843.0\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8181.4\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7993.0\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7951.8\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7796.8\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7629.4\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7604.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7525.2\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7456.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 7192.6\n    }\n  ],\n  \"feature_importance_all\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8843.0\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8181.4\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7993.0\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7951.8\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7796.8\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7629.4\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7604.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7525.2\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7456.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 7192.6\n    },\n    {\n      \"feature\": \"ttr\",\n      \"importance\": 7091.6\n    },\n    {\n      \"feature\": \"low_freq_ratio\",\n      \"importance\": 6634.6\n    },\n    {\n      \"feature\": \"surp_d1_std\",\n      \"importance\": 5923.6\n    },\n    {\n      \"feature\": \"surp_d2_std\",\n      \"importance\": 5631.6\n    },\n    {\n      \"feature\": \"self_bleu\",\n      \"importance\": 4558.6\n    }\n  ],\n  \"spearman_rho_vs_baseline\": 0.942,\n  \"spearman_pval\": 0.0\n}\n",
-      "numLines": 158,
-      "startLine": 1,
-      "totalLines": 158
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 142_
-
-<details open><summary>🔧 Tool call — Read · `toolu_01Eri3BPJpnjQDsypDwHZECs`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/olmo_qwen_rw/results.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "6bf7051c-2a39-4646-9921-0ad17411b0c4",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_015VfY9LLy7mDskwvTwf8y6d",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3983,
-      "cache_read_input_tokens": 98226,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3983
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 143 · 2026-05-18T05:11:05.227Z_
-
-<details><summary>↩ Tool result · `toolu_01Eri3BPJpnjQDsypDwHZECs`</summary>
-
-```text
-1	{
-2	  "scorer": "OLMo-1B-hf",
-3	  "data_dir": "/root/autodl-tmp/gen-depth-contamination/data",
-4	  "k_star": 2,
-5	  "pairwise_auc": {
-6	    "0v1": 0.9918,
-7	    "1v2": 0.6947,
-8	    "2v3": 0.5814,
-9	    "3v4": 0.5366,
-10	    "4v5": 0.5316
-11	  },
-12	  "pairwise_auc_folds": {
-13	    "0v1": [
-14	      0.9916,
-15	      0.9917,
-16	      0.9926,
-17	      0.9906,
-18	      0.9925
-19	    ],
-20	    "1v2": [
-21	      0.6989,
-22	      0.6901,
-23	      0.6984,
-24	      0.693,
-25	      0.6932
-26	    ],
-27	    "2v3": [
-28	      0.5766,
-29	      0.5766,
-30	      0.5936,
-31	      0.5871,
-32	      0.5729
-33	    ],
-34	    "3v4": [
-35	      0.56,
-36	      0.534,
-37	      0.5277,
-38	      0.527,
-39	      0.5344
-40	    ],
-41	    "4v5": [
-42	      0.521,
-43	      0.5291,
-44	      0.5332,
-45	      0.5362,
-46	      0.5387
-47	    ]
-48	  },
-49	  "ordinal_mae": 1.0159,
-50	  "ordinal_accuracy": 0.4127,
-51	  "feature_importance": [
-52	    {
-53	      "feature": "freq_entropy",
-54	      "importance": 9094.4
-55	    },
-56	    {
-57	      "feature": "hapax_ratio",
-58	      "importance": 8738.8
-59	    },
-60	    {
-61	      "feature": "surp_mean",
-62	      "importance": 8294.8
-63	    },
-64	    {
-65	      "feature": "surp_d1_mean",
-66	      "importance": 8154.0
-67	    },
-68	    {
-69	      "feature": "surp_skew",
-70	      "importance": 7932.2
-71	    },
-72	    {
-73	      "feature": "surp_d1_skew",
-74	      "importance": 7931.0
-75	    },
-76	    {
-77	      "feature": "freq_kurtosis",
-78	      "importance": 7896.6
-79	    },
-80	    {
-81	      "feature": "surp_d2_mean",
-82	      "importance": 7799.4
-83	    },
-84	    {
-85	      "feature": "surp_kurt",
-86	      "importance": 7721.4
-87	    },
-88	    {
-89	      "feature": "surp_std",
-90	      "importance": 7306.8
-91	    }
-92	  ],
-93	  "feature_importance_all": [
-94	    {
-95	      "feature": "freq_entropy",
-96	      "importance": 9094.4
-97	    },
-98	    {
-99	      "feature": "hapax_ratio",
-100	      "importance": 8738.8
-101	    },
-102	    {
-103	      "feature": "surp_mean",
-104	      "importance": 8294.8
-105	    },
-106	    {
-107	      "feature": "surp_d1_mean",
-108	      "importance": 8154.0
-109	    },
-110	    {
-111	      "feature": "surp_skew",
-112	      "importance": 7932.2
-113	    },
-114	    {
-115	      "feature": "surp_d1_skew",
-116	      "importance": 7931.0
-117	    },
-118	    {
-119	      "feature": "freq_kurtosis",
-120	      "importance": 7896.6
-121	    },
-122	    {
-123	      "feature": "surp_d2_mean",
-124	      "importance": 7799.4
-125	    },
-126	    {
-127	      "feature": "surp_kurt",
-128	      "importance": 7721.4
-129	    },
-130	    {
-131	      "feature": "surp_std",
-132	      "importance": 7306.8
-133	    },
-134	    {
-135	      "feature": "low_freq_ratio",
-136	      "importance": 6883.4
-137	    },
-138	    {
-139	      "feature": "ttr",
-140	      "importance": 6588.2
-141	    },
-142	    {
-143	      "feature": "surp_d1_std",
-144	      "importance": 5647.2
-145	    },
-146	    {
-147	      "feature": "surp_d2_std",
-148	      "importance": 5579.8
-149	    },
-150	    {
-151	      "feature": "self_bleu",
-152	      "importance": 3726.2
-153	    }
-154	  ],
-155	  "spearman_rho_vs_baseline": 0.9202,
-156	  "spearman_pval": 0.0
-157	}
-158	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "58f2d294-2593-42c5-a0b6-0e30e131b3c2",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/olmo_qwen_rw/results.json",
-      "content": "{\n  \"scorer\": \"OLMo-1B-hf\",\n  \"data_dir\": \"/root/autodl-tmp/gen-depth-contamination/data\",\n  \"k_star\": 2,\n  \"pairwise_auc\": {\n    \"0v1\": 0.9918,\n    \"1v2\": 0.6947,\n    \"2v3\": 0.5814,\n    \"3v4\": 0.5366,\n    \"4v5\": 0.5316\n  },\n  \"pairwise_auc_folds\": {\n    \"0v1\": [\n      0.9916,\n      0.9917,\n      0.9926,\n      0.9906,\n      0.9925\n    ],\n    \"1v2\": [\n      0.6989,\n      0.6901,\n      0.6984,\n      0.693,\n      0.6932\n    ],\n    \"2v3\": [\n      0.5766,\n      0.5766,\n      0.5936,\n      0.5871,\n      0.5729\n    ],\n    \"3v4\": [\n      0.56,\n      0.534,\n      0.5277,\n      0.527,\n      0.5344\n    ],\n    \"4v5\": [\n      0.521,\n      0.5291,\n      0.5332,\n      0.5362,\n      0.5387\n    ]\n  },\n  \"ordinal_mae\": 1.0159,\n  \"ordinal_accuracy\": 0.4127,\n  \"feature_importance\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 9094.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 8738.8\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8294.8\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 8154.0\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7932.2\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7931.0\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7896.6\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7799.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7721.4\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7306.8\n    }\n  ],\n  \"feature_importance_all\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 9094.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 8738.8\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 8294.8\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 8154.0\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7932.2\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 7931.0\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7896.6\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7799.4\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7721.4\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7306.8\n    },\n    {\n      \"feature\": \"low_freq_ratio\",\n      \"importance\": 6883.4\n    },\n    {\n      \"feature\": \"ttr\",\n      \"importance\": 6588.2\n    },\n    {\n      \"feature\": \"surp_d1_std\",\n      \"importance\": 5647.2\n    },\n    {\n      \"feature\": \"surp_d2_std\",\n      \"importance\": 5579.8\n    },\n    {\n      \"feature\": \"self_bleu\",\n      \"importance\": 3726.2\n    }\n  ],\n  \"spearman_rho_vs_baseline\": 0.9202,\n  \"spearman_pval\": 0.0\n}\n",
-      "numLines": 158,
-      "startLine": 1,
-      "totalLines": 158
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 144_
-
-<details open><summary>🔧 Tool call — Read · `toolu_013E5fgU42tvhmdB8x2JJgAv`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/olmo_qwen_cont/results.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "0c9cb1c6-0bf7-4009-842e-190a89f620ef",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_015VfY9LLy7mDskwvTwf8y6d",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3983,
-      "cache_read_input_tokens": 98226,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3983
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 145 · 2026-05-18T05:11:05.932Z_
-
-<details><summary>↩ Tool result · `toolu_013E5fgU42tvhmdB8x2JJgAv`</summary>
-
-```text
-1	{
-2	  "scorer": "OLMo-1B-hf",
-3	  "data_dir": "/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont",
-4	  "k_star": 1,
-5	  "pairwise_auc": {
-6	    "0v1": 0.989,
-7	    "1v2": 0.5858,
-8	    "2v3": 0.5436,
-9	    "3v4": 0.5318,
-10	    "4v5": 0.5266
-11	  },
-12	  "pairwise_auc_folds": {
-13	    "0v1": [
-14	      0.9904,
-15	      0.9858,
-16	      0.9919,
-17	      0.9886,
-18	      0.9882
-19	    ],
-20	    "1v2": [
-21	      0.5655,
-22	      0.5772,
-23	      0.6038,
-24	      0.5955,
-25	      0.5869
-26	    ],
-27	    "2v3": [
-28	      0.5345,
-29	      0.5529,
-30	      0.5569,
-31	      0.5315,
-32	      0.5423
-33	    ],
-34	    "3v4": [
-35	      0.5331,
-36	      0.5394,
-37	      0.5242,
-38	      0.5318,
-39	      0.5305
-40	    ],
-41	    "4v5": [
-42	      0.532,
-43	      0.5155,
-44	      0.5373,
-45	      0.5215,
-46	      0.5264
-47	    ]
-48	  },
-49	  "ordinal_mae": 1.2285,
-50	  "ordinal_accuracy": 0.3678,
-51	  "feature_importance": [
-52	    {
-53	      "feature": "freq_entropy",
-54	      "importance": 8715.0
-55	    },
-56	    {
-57	      "feature": "surp_d1_skew",
-58	      "importance": 8020.8
-59	    },
-60	    {
-61	      "feature": "surp_mean",
-62	      "importance": 7938.0
-63	    },
-64	    {
-65	      "feature": "surp_d1_mean",
-66	      "importance": 7936.2
-67	    },
-68	    {
-69	      "feature": "surp_std",
-70	      "importance": 7928.2
-71	    },
-72	    {
-73	      "feature": "surp_d2_mean",
-74	      "importance": 7738.2
-75	    },
-76	    {
-77	      "feature": "surp_kurt",
-78	      "importance": 7586.6
-79	    },
-80	    {
-81	      "feature": "surp_skew",
-82	      "importance": 7525.6
-83	    },
-84	    {
-85	      "feature": "freq_kurtosis",
-86	      "importance": 7455.4
-87	    },
-88	    {
-89	      "feature": "hapax_ratio",
-90	      "importance": 7210.8
-91	    }
-92	  ],
-93	  "feature_importance_all": [
-94	    {
-95	      "feature": "freq_entropy",
-96	      "importance": 8715.0
-97	    },
-98	    {
-99	      "feature": "surp_d1_skew",
-100	      "importance": 8020.8
-101	    },
-102	    {
-103	      "feature": "surp_mean",
-104	      "importance": 7938.0
-105	    },
-106	    {
-107	      "feature": "surp_d1_mean",
-108	      "importance": 7936.2
-109	    },
-110	    {
-111	      "feature": "surp_std",
-112	      "importance": 7928.2
-113	    },
-114	    {
-115	      "feature": "surp_d2_mean",
-116	      "importance": 7738.2
-117	    },
-118	    {
-119	      "feature": "surp_kurt",
-120	      "importance": 7586.6
-121	    },
-122	    {
-123	      "feature": "surp_skew",
-124	      "importance": 7525.6
-125	    },
-126	    {
-127	      "feature": "freq_kurtosis",
-128	      "importance": 7455.4
-129	    },
-130	    {
-131	      "feature": "hapax_ratio",
-132	      "importance": 7210.8
-133	    },
-134	    {
-135	      "feature": "ttr",
-136	      "importance": 6951.8
-137	    },
-138	    {
-139	      "feature": "low_freq_ratio",
-140	      "importance": 6676.2
-141	    },
-142	    {
-143	      "feature": "surp_d1_std",
-144	      "importance": 5987.4
-145	    },
-146	    {
-147	      "feature": "surp_d2_std",
-148	      "importance": 5579.2
-149	    },
-150	    {
-151	      "feature": "self_bleu",
-152	      "importance": 4408.0
-153	    }
-154	  ],
-155	  "spearman_rho_vs_baseline": 0.902,
-156	  "spearman_pval": 0.0
-157	}
-158	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "cf587149-807e-4b6b-883d-9e4758ec089e",
-  "uuid": "7931825a-245f-4982-9265-a87384cb6dbc",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_A/olmo_qwen_cont/results.json",
-      "content": "{\n  \"scorer\": \"OLMo-1B-hf\",\n  \"data_dir\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\",\n  \"k_star\": 1,\n  \"pairwise_auc\": {\n    \"0v1\": 0.989,\n    \"1v2\": 0.5858,\n    \"2v3\": 0.5436,\n    \"3v4\": 0.5318,\n    \"4v5\": 0.5266\n  },\n  \"pairwise_auc_folds\": {\n    \"0v1\": [\n      0.9904,\n      0.9858,\n      0.9919,\n      0.9886,\n      0.9882\n    ],\n    \"1v2\": [\n      0.5655,\n      0.5772,\n      0.6038,\n      0.5955,\n      0.5869\n    ],\n    \"2v3\": [\n      0.5345,\n      0.5529,\n      0.5569,\n      0.5315,\n      0.5423\n    ],\n    \"3v4\": [\n      0.5331,\n      0.5394,\n      0.5242,\n      0.5318,\n      0.5305\n    ],\n    \"4v5\": [\n      0.532,\n      0.5155,\n      0.5373,\n      0.5215,\n      0.5264\n    ]\n  },\n  \"ordinal_mae\": 1.2285,\n  \"ordinal_accuracy\": 0.3678,\n  \"feature_importance\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8715.0\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 8020.8\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 7938.0\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7936.2\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7928.2\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7738.2\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7586.6\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7525.6\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7455.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 7210.8\n    }\n  ],\n  \"feature_importance_all\": [\n    {\n      \"feature\": \"freq_entropy\",\n      \"importance\": 8715.0\n    },\n    {\n      \"feature\": \"surp_d1_skew\",\n      \"importance\": 8020.8\n    },\n    {\n      \"feature\": \"surp_mean\",\n      \"importance\": 7938.0\n    },\n    {\n      \"feature\": \"surp_d1_mean\",\n      \"importance\": 7936.2\n    },\n    {\n      \"feature\": \"surp_std\",\n      \"importance\": 7928.2\n    },\n    {\n      \"feature\": \"surp_d2_mean\",\n      \"importance\": 7738.2\n    },\n    {\n      \"feature\": \"surp_kurt\",\n      \"importance\": 7586.6\n    },\n    {\n      \"feature\": \"surp_skew\",\n      \"importance\": 7525.6\n    },\n    {\n      \"feature\": \"freq_kurtosis\",\n      \"importance\": 7455.4\n    },\n    {\n      \"feature\": \"hapax_ratio\",\n      \"importance\": 7210.8\n    },\n    {\n      \"feature\": \"ttr\",\n      \"importance\": 6951.8\n    },\n    {\n      \"feature\": \"low_freq_ratio\",\n      \"importance\": 6676.2\n    },\n    {\n      \"feature\": \"surp_d1_std\",\n      \"importance\": 5987.4\n    },\n    {\n      \"feature\": \"surp_d2_std\",\n      \"importance\": 5579.2\n    },\n    {\n      \"feature\": \"self_bleu\",\n      \"importance\": 4408.0\n    }\n  ],\n  \"spearman_rho_vs_baseline\": 0.902,\n  \"spearman_pval\": 0.0\n}\n",
-      "numLines": 158,
-      "startLine": 1,
-      "totalLines": 158
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 146_
-
 <details open><summary>🔧 Tool call — Read · `toolu_01R1QoBj2ubyqdqWCrX4x4HU`</summary>
 
 ```json
@@ -8743,7 +7755,7 @@ _source line 146_
 
 ### Tool call
 
-_source line 147_
+_source line 139_
 
 <details open><summary>🔧 Tool call — Read · `toolu_01E3Kmi77wdevYwKYDa2GzRH`</summary>
 
@@ -8795,7 +7807,7 @@ _source line 147_
 
 ### Tool result
 
-_source line 148 · 2026-05-18T05:11:06.832Z_
+_source line 140 · 2026-05-18T05:11:06.832Z_
 
 <details><summary>↩ Tool result · `toolu_01R1QoBj2ubyqdqWCrX4x4HU`</summary>
 
@@ -9327,7 +8339,7 @@ _source line 148 · 2026-05-18T05:11:06.832Z_
 
 ### Tool result
 
-_source line 149 · 2026-05-18T05:11:06.834Z_
+_source line 141 · 2026-05-18T05:11:06.834Z_
 
 <details><summary>↩ Tool result · `toolu_01E3Kmi77wdevYwKYDa2GzRH`</summary>
 
@@ -9393,7 +8405,7 @@ _source line 149 · 2026-05-18T05:11:06.834Z_
 
 ### Assistant
 
-_source line 150_
+_source line 142_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -9521,7 +8533,7 @@ Looking at the cross-scorer correlation table, all the ρ values—0.906, 0.920,
 
 ### Assistant
 
-_source line 151_
+_source line 143_
 
 关键 cross-scorer 数据已确认一致。继续验证剩余数据点。重试 SSH 读取 JSD 和其他文件。
 
@@ -9565,7 +8577,7 @@ _source line 151_
 
 ### Tool call
 
-_source line 152_
+_source line 144_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LGuG41x2j1SbmX3ihhmKHt`</summary>
 
@@ -9619,7 +8631,7 @@ _source line 152_
 
 ### Tool result
 
-_source line 153 · 2026-05-18T05:13:58.885Z_
+_source line 145 · 2026-05-18T05:13:58.885Z_
 
 <details><summary>↩ Tool result · `toolu_01LGuG41x2j1SbmX3ihhmKHt`</summary>
 
@@ -9653,7 +8665,7 @@ _source line 153 · 2026-05-18T05:13:58.885Z_
 
 ### Tool call
 
-_source line 154_
+_source line 146_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YWVYa7MvJsHQyYQpBbhwcK`</summary>
 
@@ -9707,7 +8719,7 @@ _source line 154_
 
 ### Tool result
 
-_source line 155 · 2026-05-18T05:13:59.747Z_
+_source line 147 · 2026-05-18T05:13:59.747Z_
 
 <details><summary>↩ Tool result · `toolu_01YWVYa7MvJsHQyYQpBbhwcK`</summary>
 
@@ -9741,7 +8753,7 @@ _source line 155 · 2026-05-18T05:13:59.747Z_
 
 ### Tool call
 
-_source line 156_
+_source line 148_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Skun7ePKQrsBrp1JwjdsN`</summary>
 
@@ -9795,7 +8807,7 @@ _source line 156_
 
 ### Tool result
 
-_source line 157 · 2026-05-18T05:14:00.749Z_
+_source line 149 · 2026-05-18T05:14:00.749Z_
 
 <details><summary>↩ Tool result · `toolu_011Skun7ePKQrsBrp1JwjdsN`</summary>
 
@@ -9829,7 +8841,7 @@ _source line 157 · 2026-05-18T05:14:00.749Z_
 
 ### Tool call
 
-_source line 158_
+_source line 150_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F4LBajS2xQJURqBzS6mTtc`</summary>
 
@@ -9883,7 +8895,7 @@ _source line 158_
 
 ### Tool result
 
-_source line 159 · 2026-05-18T05:14:01.346Z_
+_source line 151 · 2026-05-18T05:14:01.346Z_
 
 <details><summary>↩ Tool result · `toolu_01F4LBajS2xQJURqBzS6mTtc`</summary>
 
@@ -9917,7 +8929,7 @@ _source line 159 · 2026-05-18T05:14:01.346Z_
 
 ### Assistant
 
-_source line 160_
+_source line 152_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -9969,7 +8981,7 @@ Let me also look for JSD data and Mistral cross-scorer data in local artifacts.
 
 ### Assistant
 
-_source line 161_
+_source line 153_
 
 SSH 暂时不可用，先在本地查找 JSD 和 Mistral cross-scorer 数据。
 
@@ -10013,7 +9025,7 @@ SSH 暂时不可用，先在本地查找 JSD 和 Mistral cross-scorer 数据。
 
 ### Tool call
 
-_source line 162_
+_source line 154_
 
 <details open><summary>🔧 Tool call — Glob · `toolu_01DzMw5C4LZCvW4jTfNAiN2e`</summary>
 
@@ -10066,7 +9078,7 @@ _source line 162_
 
 ### Tool result
 
-_source line 163 · 2026-05-18T05:14:08.003Z_
+_source line 155 · 2026-05-18T05:14:08.003Z_
 
 <details><summary>↩ Tool result · `toolu_01DzMw5C4LZCvW4jTfNAiN2e`</summary>
 
@@ -10106,7 +9118,7 @@ artifacts/_project/report/jsd_decay_analysis_summary.md
 
 ### Tool call
 
-_source line 164_
+_source line 156_
 
 <details open><summary>🔧 Tool call — Glob · `toolu_01DvX6F6WrVKHXeod4rFZqnC`</summary>
 
@@ -10159,7 +9171,7 @@ _source line 164_
 
 ### Tool result
 
-_source line 165 · 2026-05-18T05:14:08.343Z_
+_source line 157 · 2026-05-18T05:14:08.343Z_
 
 <details><summary>↩ Tool result · `toolu_01DvX6F6WrVKHXeod4rFZqnC`</summary>
 
@@ -10197,7 +9209,7 @@ artifacts/exp_wiki_mistral7b/report/exp_wiki_mistral7b_analysis_fb1be7.md
 
 ### Tool call
 
-_source line 166_
+_source line 158_
 
 <details open><summary>🔧 Tool call — Glob · `toolu_01ALY1LxgxEfMcSYDf7g9Tdk`</summary>
 
@@ -10250,7 +9262,7 @@ _source line 166_
 
 ### Tool result
 
-_source line 167 · 2026-05-18T05:14:09.345Z_
+_source line 159 · 2026-05-18T05:14:09.345Z_
 
 <details><summary>↩ Tool result · `toolu_01ALY1LxgxEfMcSYDf7g9Tdk`</summary>
 
@@ -10284,7 +9296,7 @@ No files found
 
 ### Tool call
 
-_source line 168_
+_source line 160_
 
 <details open><summary>🔧 Tool call — Glob · `toolu_019WzyPbPpnuN5roNDnEiCcT`</summary>
 
@@ -10337,7 +9349,7 @@ _source line 168_
 
 ### Tool result
 
-_source line 169 · 2026-05-18T05:14:09.823Z_
+_source line 161 · 2026-05-18T05:14:09.823Z_
 
 <details><summary>↩ Tool result · `toolu_019WzyPbPpnuN5roNDnEiCcT`</summary>
 
@@ -10387,7 +9399,7 @@ artifacts/exp_arXiv_qwen7b_crossscorer/report/exp_arXiv_qwen7b_crossscorer_analy
 
 ### Tool call
 
-_source line 170_
+_source line 162_
 
 <details open><summary>🔧 Tool call — Read · `toolu_01Ma4mvcgTpBTRRsykrcx4gM`</summary>
 
@@ -10439,7 +9451,7 @@ _source line 170_
 
 ### Tool result
 
-_source line 171 · 2026-05-18T05:14:12.894Z_
+_source line 163 · 2026-05-18T05:14:12.894Z_
 
 <details><summary>↩ Tool result · `toolu_01Ma4mvcgTpBTRRsykrcx4gM`</summary>
 
@@ -10508,7 +9520,7 @@ _source line 171 · 2026-05-18T05:14:12.894Z_
 
 ### Tool call
 
-_source line 172_
+_source line 164_
 
 <details open><summary>🔧 Tool call — Read · `toolu_01VJhURsHFXokaqtGmWbFkYs`</summary>
 
@@ -10560,7 +9572,7 @@ _source line 172_
 
 ### Tool result
 
-_source line 173 · 2026-05-18T05:14:13.426Z_
+_source line 165 · 2026-05-18T05:14:13.426Z_
 
 <details><summary>↩ Tool result · `toolu_01VJhURsHFXokaqtGmWbFkYs`</summary>
 
@@ -10677,7 +9689,7 @@ _source line 173 · 2026-05-18T05:14:13.426Z_
 
 ### Assistant
 
-_source line 174_
+_source line 166_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -10745,7 +9757,7 @@ Looking at what's confirmed to be consistent, the main C4 4-model AUC table matc
 
 ### Assistant
 
-_source line 175_
+_source line 167_
 
 已收集足够数据进行审计。现在编写数值一致性报告。
 
@@ -10789,7 +9801,7 @@ _source line 175_
 
 ### Tool call
 
-_source line 176_
+_source line 168_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_012xXFWVtJ1fnTQsE6Uy5S5T`</summary>
 
@@ -10842,7 +9854,7 @@ _source line 176_
 
 ### Tool result
 
-_source line 177 · 2026-05-18T05:15:02.857Z_
+_source line 169 · 2026-05-18T05:15:02.857Z_
 
 <details><summary>↩ Tool result · `toolu_012xXFWVtJ1fnTQsE6Uy5S5T`</summary>
 
@@ -10877,7 +9889,7 @@ _source line 177 · 2026-05-18T05:15:02.857Z_
 
 ### Tool call
 
-_source line 178_
+_source line 170_
 
 <details open><summary>🔧 Tool call — Write · `toolu_01KtSy1spd8wp4Vth1cffFcG`</summary>
 
@@ -10930,7 +9942,7 @@ _source line 178_
 
 ### Tool result
 
-_source line 179 · 2026-05-18T05:16:45.350Z_
+_source line 171 · 2026-05-18T05:16:45.350Z_
 
 <details><summary>↩ Tool result · `toolu_01KtSy1spd8wp4Vth1cffFcG`</summary>
 
@@ -10966,7 +9978,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/pr
 
 ### Assistant
 
-_source line 180_
+_source line 172_
 
 审计报告已写入 `artifacts/paper_audit/numerical_consistency_report.md`。
 
@@ -11022,7 +10034,7 @@ _source line 180_
 
 ### Task result
 
-_source line 181_
+_source line 173_
 
 审计报告已写入 `artifacts/paper_audit/numerical_consistency_report.md`。
 

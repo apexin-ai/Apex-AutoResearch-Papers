@@ -1,17 +1,17 @@
 {
   "project": "irt_equated_bench_regen",
-  "code_count": 92,
+  "code_count": 91,
   "data_count": 348,
   "env_count": 0,
   "tex_count": 15,
   "bib_count": 1,
   "review_count": 0,
   "validation_count": 8,
-  "chat_count": 58,
-  "worker_count": 318,
-  "trace_count": 380,
-  "trace_bytes": 74027265,
-  "maintenance_count": 10,
+  "chat_count": 57,
+  "worker_count": 308,
+  "trace_count": 369,
+  "trace_bytes": 72819317,
+  "maintenance_count": 9,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -61,14 +61,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "58 conversations; 318 worker logs/results; 380 source files",
+      "evidence": "57 conversations; 308 worker logs/results; 369 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "92 code/configuration files; 0 environment manifests",
+      "evidence": "91 code/configuration files; 0 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
@@ -89,7 +89,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "10 project documentation files; 0 license files",
+      "evidence": "9 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

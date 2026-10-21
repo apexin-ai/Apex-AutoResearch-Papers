@@ -1,4 +1,4 @@
-# Project coordination (archived snapshot) — Part 2 of 14
+# Project coordination (archived snapshot) — Part 2 of 13
 
 **Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Conversation logs
 

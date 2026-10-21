@@ -1437,137 +1437,7 @@ _source line 2113 · 2026-05-25T19:43:33.333157+00:00_
 
 ### Tool call
 
-_source line 2114 · 2026-05-25T19:43:33.333513+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2115 · 2026-05-25T19:43:33.534685+00:00_
-
-1	{
-2	  "pythia-1b": {
-3	    "entropy_mean": -0.712,
-4	    "entropy_std": -0.2414,
-5	    "entropy_min": -0.5051,
-6	    "entropy_max": 0.0048,
-7	    "tail_decay": 0.0904,
-8	    "ttr": -0.6568,
-9	    "hapax_ratio": -0.6741
-10	  },
-11	  "pythia-2.8b": {
-12	    "entropy_mean": -0.6754,
-13	    "entropy_std": -0.153,
-14	    "entropy_min": -0.4797,
-15	    "entropy_max": -0.0351,
-16	    "tail_decay": 0.0633,
-17	    "ttr": -0.6333,
-18	    "hapax_ratio": -0.6553
-19	  },
-20	  "olmo-2-1b": {
-21	    "entropy_mean": -0.6386,
-22	    "entropy_std": -0.2958,
-23	    "entropy_min": -0.3874,
-24	    "entropy_max": 0.0672,
-25	    "tail_decay": -0.1411,
-26	    "ttr": -0.6996,
-27	    "hapax_ratio": -0.7124
-28	  },
-29	  "qwen3-0.6b": {
-30	    "entropy_mean": -0.5656,
-31	    "entropy_std": -0.2294,
-32	    "entropy_min": -0.3587,
-33	    "entropy_max": 0.0857,
-34	    "tail_decay": -0.0902,
-35	    "ttr": -0.6111,
-36	    "hapax_ratio": -0.6273
-37	  },
-38	  "qwen3-1.7b": {
-39	    "entropy_mean": -0.6022,
-40	    "entropy_std": -0.1882,
-41	    "entropy_min": -0.4062,
-42	    "entropy_max": 0.0884,
-43	    "tail_decay": -0.0698,
-44	    "ttr": -0.6523,
-45	    "hapax_ratio": -0.6696
-46	  },
-47	  "qwen3-8b": {
-48	    "entropy_mean": -0.4754,
-49	    "entropy_std": -0.0755,
-50	    "entropy_min": -0.3029,
-51	    "entropy_max": 0.0946,
-52	    "tail_decay": -0.0894,
-53	    "ttr": -0.5419,
-54	    "hapax_ratio": -0.5578
-55	  },
-56	  "llama-3.2-3b": {
-57	    "entropy_mean": -0.5687,
-58	    "entropy_std": -0.2826,
-59	    "entropy_min": -0.2834,
-60	    "entropy_max": -0.0187,
-61	    "tail_decay": -0.066,
-62	    "ttr": -0.5425,
-63	    "hapax_ratio": -0.5532
-64	  },
-65	  "mistral-7b-v0.3": {
-66	    "entropy_mean": -0.4814,
-67	    "entropy_std": -0.1222,
-68	    "entropy_min": -0.2826,
-69	    "entropy_max": 0.007,
-70	    "tail_decay": -0.1169,
-71	    "ttr": -0.4354,
-72	    "hapax_ratio": -0.4466
-73	  }
-74	}
-75	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2116 · 2026-05-25T19:43:33.585361+00:00_
+_source line 2114 · 2026-05-25T19:43:33.585361+00:00_
 
 called Read
 
@@ -1601,7 +1471,7 @@ called Read
 
 ### Tool result
 
-_source line 2117 · 2026-05-25T19:43:33.636021+00:00_
+_source line 2115 · 2026-05-25T19:43:33.636021+00:00_
 
 1	SILHOUETTE AUDIT RESULTS — 2026-05-21
 2	======================================================================
@@ -1664,7 +1534,7 @@ _source line 2117 · 2026-05-25T19:43:33.636021+00:00_
 
 ### Tool call
 
-_source line 2118 · 2026-05-25T19:43:34.740597+00:00_
+_source line 2116 · 2026-05-25T19:43:34.740597+00:00_
 
 called Read
 
@@ -1698,7 +1568,7 @@ called Read
 
 ### Tool result
 
-_source line 2119 · 2026-05-25T19:43:34.740961+00:00_
+_source line 2117 · 2026-05-25T19:43:34.740961+00:00_
 
 1	{
 2	  "experiment": "9gen_logo",
@@ -1798,7 +1668,7 @@ _source line 2119 · 2026-05-25T19:43:34.740961+00:00_
 
 ### Tool call
 
-_source line 2120 · 2026-05-25T19:43:34.941985+00:00_
+_source line 2118 · 2026-05-25T19:43:34.941985+00:00_
 
 called Read
 
@@ -1832,7 +1702,7 @@ called Read
 
 ### Tool result
 
-_source line 2121 · 2026-05-25T19:43:35.193201+00:00_
+_source line 2119 · 2026-05-25T19:43:35.193201+00:00_
 
 1	{
 2	  "split_a": {
@@ -1940,7 +1810,7 @@ _source line 2121 · 2026-05-25T19:43:35.193201+00:00_
 
 ### Tool call
 
-_source line 2122 · 2026-05-25T19:43:35.444481+00:00_
+_source line 2120 · 2026-05-25T19:43:35.444481+00:00_
 
 called Read
 
@@ -1974,7 +1844,7 @@ called Read
 
 ### Tool call
 
-_source line 2123 · 2026-05-25T19:43:35.746060+00:00_
+_source line 2121 · 2026-05-25T19:43:35.746060+00:00_
 
 called Read
 
@@ -2008,7 +1878,7 @@ called Read
 
 ### Tool result
 
-_source line 2124 · 2026-05-25T19:43:35.796603+00:00_
+_source line 2122 · 2026-05-25T19:43:35.796603+00:00_
 
 1	{
 2	  "A_drifting": {
@@ -2112,7 +1982,7 @@ _source line 2124 · 2026-05-25T19:43:35.796603+00:00_
 
 ### Tool result
 
-_source line 2125 · 2026-05-25T19:43:35.897539+00:00_
+_source line 2123 · 2026-05-25T19:43:35.897539+00:00_
 
 1	#!/usr/bin/env python3
 2	# Anonymous submission — EMNLP 2026 ARR
@@ -2186,7 +2056,7 @@ _source line 2125 · 2026-05-25T19:43:35.897539+00:00_
 
 ### Tool call
 
-_source line 2126 · 2026-05-25T19:43:36.400239+00:00_
+_source line 2124 · 2026-05-25T19:43:36.400239+00:00_
 
 called Glob
 
@@ -2222,7 +2092,7 @@ called Glob
 
 ### Tool result
 
-_source line 2127 · 2026-05-25T19:43:36.859692+00:00_
+_source line 2125 · 2026-05-25T19:43:36.859692+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/scripts/lofo_ablation.py
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/eval_8gen_sampling_ablation.py
@@ -2253,7 +2123,7 @@ _source line 2127 · 2026-05-25T19:43:36.859692+00:00_
 
 ### Tool call
 
-_source line 2128 · 2026-05-25T19:43:36.860004+00:00_
+_source line 2126 · 2026-05-25T19:43:36.860004+00:00_
 
 called Glob
 
@@ -2289,7 +2159,7 @@ called Glob
 
 ### Tool result
 
-_source line 2129 · 2026-05-25T19:43:36.860154+00:00_
+_source line 2127 · 2026-05-25T19:43:36.860154+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/group_ablation_sensitivity.py
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/group_ablation_results.json
@@ -2312,7 +2182,7 @@ _source line 2129 · 2026-05-25T19:43:36.860154+00:00_
 
 ### Tool call
 
-_source line 2130 · 2026-05-25T19:43:40.192629+00:00_
+_source line 2128 · 2026-05-25T19:43:40.192629+00:00_
 
 called Glob
 
@@ -2348,7 +2218,7 @@ called Glob
 
 ### Tool result
 
-_source line 2131 · 2026-05-25T19:43:40.293880+00:00_
+_source line 2129 · 2026-05-25T19:43:40.293880+00:00_
 
 No files found
 
@@ -2370,7 +2240,7 @@ No files found
 
 ### Tool call
 
-_source line 2132 · 2026-05-25T19:43:40.294183+00:00_
+_source line 2130 · 2026-05-25T19:43:40.294183+00:00_
 
 called Glob
 
@@ -2406,7 +2276,7 @@ called Glob
 
 ### Tool result
 
-_source line 2133 · 2026-05-25T19:43:40.394780+00:00_
+_source line 2131 · 2026-05-25T19:43:40.394780+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/ddr_causal_permutation.json
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/permutation_test_ddr_results.txt
@@ -2429,7 +2299,7 @@ _source line 2133 · 2026-05-25T19:43:40.394780+00:00_
 
 ### Tool call
 
-_source line 2134 · 2026-05-25T19:43:41.600997+00:00_
+_source line 2132 · 2026-05-25T19:43:41.600997+00:00_
 
 called Read
 
@@ -2463,7 +2333,7 @@ called Read
 
 ### Tool result
 
-_source line 2135 · 2026-05-25T19:43:42.056350+00:00_
+_source line 2133 · 2026-05-25T19:43:42.056350+00:00_
 
 1	"""Group ablation (LOGO) + XGBoost hyperparameter sensitivity."""
 2	
@@ -2540,7 +2410,7 @@ _source line 2135 · 2026-05-25T19:43:42.056350+00:00_
 
 ### Tool call
 
-_source line 2136 · 2026-05-25T19:43:42.056725+00:00_
+_source line 2134 · 2026-05-25T19:43:42.056725+00:00_
 
 called Grep
 
@@ -2580,7 +2450,7 @@ called Grep
 
 ### Tool result
 
-_source line 2137 · 2026-05-25T19:43:42.513025+00:00_
+_source line 2135 · 2026-05-25T19:43:42.513025+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/tost_multi_margin.json
@@ -2603,7 +2473,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 2138 · 2026-05-25T19:43:42.513411+00:00_
+_source line 2136 · 2026-05-25T19:43:42.513411+00:00_
 
 called Read
 
@@ -2637,7 +2507,7 @@ called Read
 
 ### Tool result
 
-_source line 2139 · 2026-05-25T19:43:42.966911+00:00_
+_source line 2137 · 2026-05-25T19:43:42.966911+00:00_
 
 1	{
 2	  "A_drifting": {
@@ -2741,7 +2611,7 @@ _source line 2139 · 2026-05-25T19:43:42.966911+00:00_
 
 ### Tool call
 
-_source line 2140 · 2026-05-25T19:43:43.017546+00:00_
+_source line 2138 · 2026-05-25T19:43:43.017546+00:00_
 
 called Glob
 
@@ -2777,7 +2647,7 @@ called Glob
 
 ### Tool result
 
-_source line 2141 · 2026-05-25T19:43:43.450193+00:00_
+_source line 2139 · 2026-05-25T19:43:43.450193+00:00_
 
 No files found
 
@@ -2799,7 +2669,7 @@ No files found
 
 ### Tool call
 
-_source line 2142 · 2026-05-25T19:43:43.450478+00:00_
+_source line 2140 · 2026-05-25T19:43:43.450478+00:00_
 
 called Grep
 
@@ -2839,7 +2709,7 @@ called Grep
 
 ### Tool result
 
-_source line 2143 · 2026-05-25T19:43:43.907624+00:00_
+_source line 2141 · 2026-05-25T19:43:43.907624+00:00_
 
 Found 95 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex
@@ -2878,7 +2748,7 @@ Found 95 files
 
 ### Tool call
 
-_source line 2144 · 2026-05-25T19:43:44.460333+00:00_
+_source line 2142 · 2026-05-25T19:43:44.460333+00:00_
 
 called Grep
 
@@ -2918,7 +2788,7 @@ called Grep
 
 ### Tool result
 
-_source line 2145 · 2026-05-25T19:43:44.511166+00:00_
+_source line 2143 · 2026-05-25T19:43:44.511166+00:00_
 
 Found 136 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex
@@ -2958,7 +2828,7 @@ Found 136 files
 
 ### Tool call
 
-_source line 2146 · 2026-05-25T19:43:50.486570+00:00_
+_source line 2144 · 2026-05-25T19:43:50.486570+00:00_
 
 called Read
 
@@ -2992,7 +2862,7 @@ called Read
 
 ### Tool result
 
-_source line 2147 · 2026-05-25T19:43:50.943411+00:00_
+_source line 2145 · 2026-05-25T19:43:50.943411+00:00_
 
 1	Permutation Test: DDR 3/1/3 Partition Significance
 2	===================================================
@@ -3042,7 +2912,7 @@ _source line 2147 · 2026-05-25T19:43:50.943411+00:00_
 
 ### Tool call
 
-_source line 2148 · 2026-05-25T19:43:51.913367+00:00_
+_source line 2146 · 2026-05-25T19:43:51.913367+00:00_
 
 called Grep
 
@@ -3082,7 +2952,7 @@ called Grep
 
 ### Tool result
 
-_source line 2149 · 2026-05-25T19:43:52.473261+00:00_
+_source line 2147 · 2026-05-25T19:43:52.473261+00:00_
 
 5:by comparing Spearman correlations, entropy drift, and LOGO classification
 15:from scipy.stats import spearmanr
@@ -3113,7 +2983,7 @@ _source line 2149 · 2026-05-25T19:43:52.473261+00:00_
 
 ### Tool call
 
-_source line 2150 · 2026-05-25T19:43:52.523750+00:00_
+_source line 2148 · 2026-05-25T19:43:52.523750+00:00_
 
 called Glob
 
@@ -3149,7 +3019,7 @@ called Glob
 
 ### Tool result
 
-_source line 2151 · 2026-05-25T19:43:53.013593+00:00_
+_source line 2149 · 2026-05-25T19:43:53.013593+00:00_
 
 No files found
 
@@ -3171,7 +3041,7 @@ No files found
 
 ### Tool call
 
-_source line 2152 · 2026-05-25T19:43:53.013884+00:00_
+_source line 2150 · 2026-05-25T19:43:53.013884+00:00_
 
 called Read
 
@@ -3205,7 +3075,7 @@ called Read
 
 ### Tool result
 
-_source line 2153 · 2026-05-25T19:43:53.495236+00:00_
+_source line 2151 · 2026-05-25T19:43:53.495236+00:00_
 
 1	%% NOTE: this standalone file is NOT \input'd by main.tex; the inline table in results.tex is authoritative.
 2	\begin{table}[t]
@@ -3251,7 +3121,7 @@ _source line 2153 · 2026-05-25T19:43:53.495236+00:00_
 
 ### Tool call
 
-_source line 2154 · 2026-05-25T19:43:53.495533+00:00_
+_source line 2152 · 2026-05-25T19:43:53.495533+00:00_
 
 called Read
 
@@ -3285,7 +3155,7 @@ called Read
 
 ### Tool result
 
-_source line 2155 · 2026-05-25T19:43:53.646325+00:00_
+_source line 2153 · 2026-05-25T19:43:53.646325+00:00_
 
 1	\begin{table}[t]
 2	\centering
@@ -3324,7 +3194,7 @@ _source line 2155 · 2026-05-25T19:43:53.646325+00:00_
 
 ### Tool call
 
-_source line 2156 · 2026-05-25T19:43:53.646700+00:00_
+_source line 2154 · 2026-05-25T19:43:53.646700+00:00_
 
 called Read
 
@@ -3358,7 +3228,7 @@ called Read
 
 ### Tool result
 
-_source line 2157 · 2026-05-25T19:43:53.697225+00:00_
+_source line 2155 · 2026-05-25T19:43:53.697225+00:00_
 
 1	# Anonymous submission — EMNLP 2026 ARR
 2	"""
@@ -3442,7 +3312,7 @@ _source line 2157 · 2026-05-25T19:43:53.697225+00:00_
 
 ### Tool call
 
-_source line 2158 · 2026-05-25T19:43:55.572254+00:00_
+_source line 2156 · 2026-05-25T19:43:55.572254+00:00_
 
 called Glob
 
@@ -3478,7 +3348,7 @@ called Glob
 
 ### Tool result
 
-_source line 2159 · 2026-05-25T19:43:56.110683+00:00_
+_source line 2157 · 2026-05-25T19:43:56.110683+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/eval_8gen_baselines_pooled.py
 
@@ -3500,7 +3370,7 @@ _source line 2159 · 2026-05-25T19:43:56.110683+00:00_
 
 ### Tool call
 
-_source line 2160 · 2026-05-25T19:43:56.362805+00:00_
+_source line 2158 · 2026-05-25T19:43:56.362805+00:00_
 
 called Grep
 
@@ -3538,7 +3408,7 @@ called Grep
 
 ### Tool result
 
-_source line 2161 · 2026-05-25T19:43:56.842505+00:00_
+_source line 2159 · 2026-05-25T19:43:56.842505+00:00_
 
 Found 10 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex
@@ -3570,7 +3440,7 @@ Found 10 files
 
 ### Tool call
 
-_source line 2162 · 2026-05-25T19:43:56.842824+00:00_
+_source line 2160 · 2026-05-25T19:43:56.842824+00:00_
 
 called Glob
 
@@ -3606,7 +3476,7 @@ called Glob
 
 ### Tool call
 
-_source line 2163 · 2026-05-25T19:43:57.327792+00:00_
+_source line 2161 · 2026-05-25T19:43:57.327792+00:00_
 
 called Grep
 
@@ -3644,7 +3514,7 @@ called Grep
 
 ### Tool result
 
-_source line 2164 · 2026-05-25T19:43:57.795613+00:00_
+_source line 2162 · 2026-05-25T19:43:57.795613+00:00_
 
 No files found
 
@@ -3666,7 +3536,7 @@ No files found
 
 ### Tool result
 
-_source line 2165 · 2026-05-25T19:43:57.795905+00:00_
+_source line 2163 · 2026-05-25T19:43:57.795905+00:00_
 
 Found 20 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex
@@ -3706,7 +3576,7 @@ Found 20 files
 
 ### Tool call
 
-_source line 2166 · 2026-05-25T19:43:57.796095+00:00_
+_source line 2164 · 2026-05-25T19:43:57.796095+00:00_
 
 called Read
 
@@ -3742,7 +3612,7 @@ called Read
 
 ### Tool result
 
-_source line 2167 · 2026-05-25T19:43:58.262570+00:00_
+_source line 2165 · 2026-05-25T19:43:58.262570+00:00_
 
 1	"""
 2	cross_ref_analysis.py — Cross-family reference model analysis.
@@ -3813,7 +3683,7 @@ _source line 2167 · 2026-05-25T19:43:58.262570+00:00_
 
 ### Tool call
 
-_source line 2168 · 2026-05-25T19:43:58.413435+00:00_
+_source line 2166 · 2026-05-25T19:43:58.413435+00:00_
 
 called Grep
 
@@ -3853,7 +3723,7 @@ called Grep
 
 ### Tool result
 
-_source line 2169 · 2026-05-25T19:43:58.883997+00:00_
+_source line 2167 · 2026-05-25T19:43:58.883997+00:00_
 
 Found 24 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/group_ablation_results.json
@@ -3891,7 +3761,7 @@ Found 24 files
 
 ### Tool call
 
-_source line 2170 · 2026-05-25T19:44:00.139702+00:00_
+_source line 2168 · 2026-05-25T19:44:00.139702+00:00_
 
 called Read
 
@@ -3925,7 +3795,7 @@ called Read
 
 ### Tool result
 
-_source line 2171 · 2026-05-25T19:44:00.583974+00:00_
+_source line 2169 · 2026-05-25T19:44:00.583974+00:00_
 
 1	# Anonymous submission — EMNLP 2026 ARR
 2	import json, os
@@ -3996,7 +3866,7 @@ _source line 2171 · 2026-05-25T19:44:00.583974+00:00_
 
 ### Tool call
 
-_source line 2172 · 2026-05-25T19:44:00.584291+00:00_
+_source line 2170 · 2026-05-25T19:44:00.584291+00:00_
 
 called Read
 
@@ -4030,7 +3900,7 @@ called Read
 
 ### Tool result
 
-_source line 2173 · 2026-05-25T19:44:01.287435+00:00_
+_source line 2171 · 2026-05-25T19:44:01.287435+00:00_
 
 1	{
 2	  "dataset": "8gen",
@@ -4152,7 +4022,7 @@ _source line 2173 · 2026-05-25T19:44:01.287435+00:00_
 
 ### Tool call
 
-_source line 2174 · 2026-05-25T19:44:01.538706+00:00_
+_source line 2172 · 2026-05-25T19:44:01.538706+00:00_
 
 called Read
 
@@ -4186,7 +4056,7 @@ called Read
 
 ### Tool result
 
-_source line 2175 · 2026-05-25T19:44:01.589292+00:00_
+_source line 2173 · 2026-05-25T19:44:01.589292+00:00_
 
 1	This appendix presents feature ablation results supporting the complementarity analysis in \S\ref{sec:results-differential}.
 2	
@@ -4228,7 +4098,7 @@ _source line 2175 · 2026-05-25T19:44:01.589292+00:00_
 
 ### Tool call
 
-_source line 2176 · 2026-05-25T19:44:01.891137+00:00_
+_source line 2174 · 2026-05-25T19:44:01.891137+00:00_
 
 called Read
 
@@ -4262,7 +4132,7 @@ called Read
 
 ### Tool call
 
-_source line 2177 · 2026-05-25T19:44:02.042162+00:00_
+_source line 2175 · 2026-05-25T19:44:02.042162+00:00_
 
 called Grep
 
@@ -4302,7 +4172,7 @@ called Grep
 
 ### Tool result
 
-_source line 2178 · 2026-05-25T19:44:02.659953+00:00_
+_source line 2176 · 2026-05-25T19:44:02.659953+00:00_
 
 1	exp062 Cohen's d summary — 15/16 combos (gen-1 vs gen-2+)
 2	=========================================================
@@ -4348,7 +4218,7 @@ _source line 2178 · 2026-05-25T19:44:02.659953+00:00_
 
 ### Tool result
 
-_source line 2179 · 2026-05-25T19:44:03.463987+00:00_
+_source line 2177 · 2026-05-25T19:44:03.463987+00:00_
 
 14:\looseness=-1 The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}); cross-generator F1 spread of 9.1\,pp captures generator selection uncertainty.
 15:This 3-class metric is inflated by shared gen-0 seeds (per-class gen-0 F1\,$\approx$\,0.94; \S\ref{sec:generation}); we therefore report \textbf{leak-free binary F1} (gen-1 vs.\ gen-2+)\,=\,0.694 (CI [0.688, 0.700]) throughout, excluding gen-0 entirely.
@@ -4379,7 +4249,7 @@ _source line 2179 · 2026-05-25T19:44:03.463987+00:00_
 
 ### Tool call
 
-_source line 2180 · 2026-05-25T19:44:03.816800+00:00_
+_source line 2178 · 2026-05-25T19:44:03.816800+00:00_
 
 called Grep
 
@@ -4419,7 +4289,7 @@ called Grep
 
 ### Tool call
 
-_source line 2181 · 2026-05-25T19:44:03.918733+00:00_
+_source line 2179 · 2026-05-25T19:44:03.918733+00:00_
 
 called Bash
 
@@ -4455,7 +4325,7 @@ called Bash
 
 ### Tool result
 
-_source line 2182 · 2026-05-25T19:44:04.355592+00:00_
+_source line 2180 · 2026-05-25T19:44:04.355592+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex
@@ -4480,7 +4350,7 @@ Found 3 files
 
 ### Tool result
 
-_source line 2183 · 2026-05-25T19:44:04.406134+00:00_
+_source line 2181 · 2026-05-25T19:44:04.406134+00:00_
 
 no results dir in supplement/code
 
@@ -4502,7 +4372,7 @@ no results dir in supplement/code
 
 ### Tool call
 
-_source line 2184 · 2026-05-25T19:44:04.908853+00:00_
+_source line 2182 · 2026-05-25T19:44:04.908853+00:00_
 
 called Grep
 
@@ -4542,7 +4412,7 @@ called Grep
 
 ### Tool result
 
-_source line 2185 · 2026-05-25T19:44:05.405936+00:00_
+_source line 2183 · 2026-05-25T19:44:05.405936+00:00_
 
 Found 18 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex
@@ -4581,7 +4451,7 @@ Found 18 files
 
 ### Tool call
 
-_source line 2186 · 2026-05-25T19:44:05.406269+00:00_
+_source line 2184 · 2026-05-25T19:44:05.406269+00:00_
 
 called Grep
 
@@ -4623,7 +4493,7 @@ called Grep
 
 ### Tool result
 
-_source line 2187 · 2026-05-25T19:44:05.406445+00:00_
+_source line 2185 · 2026-05-25T19:44:05.406445+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/seed_demeaning_logo.md:7:**Method**: For every (model_name, seed_id) group, compute Δfeature = feature(depth_k) - feature(depth_0). Drop depth-0 rows (Δ=0, would leak). Run standard 8-gen LOGO binary eval with XGBoost (same hyperparams as eval_8gen_logo.py).
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/data/README.md:69:python eval_8gen_logo.py
@@ -4656,7 +4526,7 @@ _source line 2187 · 2026-05-25T19:44:05.406445+00:00_
 
 ### Tool call
 
-_source line 2188 · 2026-05-25T19:44:13.658661+00:00_
+_source line 2186 · 2026-05-25T19:44:13.658661+00:00_
 
 called Read
 
@@ -4692,7 +4562,7 @@ called Read
 
 ### Tool call
 
-_source line 2189 · 2026-05-25T19:44:14.139087+00:00_
+_source line 2187 · 2026-05-25T19:44:14.139087+00:00_
 
 called Read
 
@@ -4726,7 +4596,7 @@ called Read
 
 ### Tool result
 
-_source line 2190 · 2026-05-25T19:44:14.139635+00:00_
+_source line 2188 · 2026-05-25T19:44:14.139635+00:00_
 
 1	\section{Results}
 2	\label{sec:results}
@@ -4769,7 +4639,7 @@ _source line 2190 · 2026-05-25T19:44:14.139635+00:00_
 
 ### Tool call
 
-_source line 2191 · 2026-05-25T19:44:14.140011+00:00_
+_source line 2189 · 2026-05-25T19:44:14.140011+00:00_
 
 called Read
 
@@ -4803,7 +4673,7 @@ called Read
 
 ### Tool result
 
-_source line 2192 · 2026-05-25T19:44:14.140204+00:00_
+_source line 2190 · 2026-05-25T19:44:14.140204+00:00_
 
 1	\begin{table}[t]
 2	\centering
@@ -4847,7 +4717,7 @@ _source line 2192 · 2026-05-25T19:44:14.140204+00:00_
 
 ### Tool result
 
-_source line 2193 · 2026-05-25T19:44:14.993609+00:00_
+_source line 2191 · 2026-05-25T19:44:14.993609+00:00_
 
 1	\begin{table}[t]
 2	\centering
@@ -4886,7 +4756,7 @@ _source line 2193 · 2026-05-25T19:44:14.993609+00:00_
 
 ### Tool call
 
-_source line 2194 · 2026-05-25T19:44:15.446762+00:00_
+_source line 2192 · 2026-05-25T19:44:15.446762+00:00_
 
 called Grep
 
@@ -4924,7 +4794,7 @@ called Grep
 
 ### Tool call
 
-_source line 2195 · 2026-05-25T19:44:15.919235+00:00_
+_source line 2193 · 2026-05-25T19:44:15.919235+00:00_
 
 called Read
 
@@ -4960,7 +4830,7 @@ called Read
 
 ### Tool result
 
-_source line 2196 · 2026-05-25T19:44:16.387660+00:00_
+_source line 2194 · 2026-05-25T19:44:16.387660+00:00_
 
 1	\section{Results}
 2	\label{sec:results}
@@ -5003,7 +4873,7 @@ _source line 2196 · 2026-05-25T19:44:16.387660+00:00_
 
 ### Tool call
 
-_source line 2197 · 2026-05-25T19:44:16.387984+00:00_
+_source line 2195 · 2026-05-25T19:44:16.387984+00:00_
 
 called Read
 
@@ -5037,7 +4907,7 @@ called Read
 
 ### Tool result
 
-_source line 2198 · 2026-05-25T19:44:16.488534+00:00_
+_source line 2196 · 2026-05-25T19:44:16.488534+00:00_
 
 Found 42 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex
@@ -5077,7 +4947,7 @@ Found 42 files
 
 ### Tool result
 
-_source line 2199 · 2026-05-25T19:44:16.539260+00:00_
+_source line 2197 · 2026-05-25T19:44:16.539260+00:00_
 
 1	\section{Independent-Seed Control}
 2	\label{app:seed-control}
@@ -5133,7 +5003,7 @@ _source line 2199 · 2026-05-25T19:44:16.539260+00:00_
 
 ### Tool call
 
-_source line 2200 · 2026-05-25T19:44:16.539662+00:00_
+_source line 2198 · 2026-05-25T19:44:16.539662+00:00_
 
 called Read
 
@@ -5167,7 +5037,7 @@ called Read
 
 ### Tool call
 
-_source line 2201 · 2026-05-25T19:44:16.690632+00:00_
+_source line 2199 · 2026-05-25T19:44:16.690632+00:00_
 
 called Grep
 
@@ -5205,7 +5075,7 @@ called Grep
 
 ### Tool result
 
-_source line 2202 · 2026-05-25T19:44:17.165245+00:00_
+_source line 2200 · 2026-05-25T19:44:17.165245+00:00_
 
 1	% Appendix — Length Confound Analysis
 2	% Data source: 8-generator LOGO corpus (37,058 samples)
@@ -5251,7 +5121,7 @@ _source line 2202 · 2026-05-25T19:44:17.165245+00:00_
 
 ### Tool result
 
-_source line 2203 · 2026-05-25T19:44:17.165626+00:00_
+_source line 2201 · 2026-05-25T19:44:17.165626+00:00_
 
 Found 72 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex
@@ -5291,7 +5161,7 @@ Found 72 files
 
 ### Tool call
 
-_source line 2204 · 2026-05-25T19:44:19.875014+00:00_
+_source line 2202 · 2026-05-25T19:44:19.875014+00:00_
 
 called Read
 
@@ -5325,7 +5195,7 @@ called Read
 
 ### Tool result
 
-_source line 2205 · 2026-05-25T19:44:20.831990+00:00_
+_source line 2203 · 2026-05-25T19:44:20.831990+00:00_
 
 1	To assess whether depth signal extends beyond handcrafted features, we fine-tune a pretrained language model end-to-end as a depth classifier using QLoRA \cite{qlora}.
 2	
@@ -5376,7 +5246,7 @@ _source line 2205 · 2026-05-25T19:44:20.831990+00:00_
 
 ### Tool call
 
-_source line 2206 · 2026-05-25T19:44:20.832377+00:00_
+_source line 2204 · 2026-05-25T19:44:20.832377+00:00_
 
 called Read
 
@@ -5410,7 +5280,7 @@ called Read
 
 ### Tool call
 
-_source line 2207 · 2026-05-25T19:44:20.983046+00:00_
+_source line 2205 · 2026-05-25T19:44:20.983046+00:00_
 
 called Read
 
@@ -5446,7 +5316,7 @@ called Read
 
 ### Tool result
 
-_source line 2208 · 2026-05-25T19:44:21.284537+00:00_
+_source line 2206 · 2026-05-25T19:44:21.284537+00:00_
 
 1	To assess whether the DDR three-way partition generalizes beyond the default temperature ($\tau{=}0.7$), we computed per-feature Cohen's $d$ (generation~1 vs.\ generation~2+) at $\tau \in \{0.5, 0.7, 0.9\}$ for all four generators in the temperature ablation (12 conditions total; Table~\ref{tab:ddr-temp-stability}).
 2	
@@ -5494,7 +5364,7 @@ _source line 2208 · 2026-05-25T19:44:21.284537+00:00_
 
 ### Tool call
 
-_source line 2209 · 2026-05-25T19:44:21.284918+00:00_
+_source line 2207 · 2026-05-25T19:44:21.284918+00:00_
 
 called Read
 
@@ -5530,7 +5400,7 @@ called Read
 
 ### Tool result
 
-_source line 2210 · 2026-05-25T19:44:21.335353+00:00_
+_source line 2208 · 2026-05-25T19:44:21.335353+00:00_
 
 1	\section{Results}
 2	\label{sec:results}
@@ -5573,7 +5443,7 @@ _source line 2210 · 2026-05-25T19:44:21.335353+00:00_
 
 ### Tool result
 
-_source line 2211 · 2026-05-25T19:44:21.988400+00:00_
+_source line 2209 · 2026-05-25T19:44:21.988400+00:00_
 
 1	\begin{figure}[t]
 2	\centering
@@ -5626,7 +5496,7 @@ _source line 2211 · 2026-05-25T19:44:21.988400+00:00_
 
 ### Tool call
 
-_source line 2212 · 2026-05-25T19:44:22.289965+00:00_
+_source line 2210 · 2026-05-25T19:44:22.289965+00:00_
 
 called Grep
 
@@ -5664,7 +5534,7 @@ called Grep
 
 ### Tool result
 
-_source line 2213 · 2026-05-25T19:44:22.753520+00:00_
+_source line 2211 · 2026-05-25T19:44:22.753520+00:00_
 
 45:OLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\
 47:Qwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\
@@ -5691,7 +5561,7 @@ _source line 2213 · 2026-05-25T19:44:22.753520+00:00_
 
 ### Tool call
 
-_source line 2214 · 2026-05-25T19:44:23.406446+00:00_
+_source line 2212 · 2026-05-25T19:44:23.406446+00:00_
 
 called Bash
 
@@ -5727,7 +5597,7 @@ called Bash
 
 ### Tool result
 
-_source line 2215 · 2026-05-25T19:44:24.325872+00:00_
+_source line 2213 · 2026-05-25T19:44:24.325872+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/eval_8gen_logo.py
 
@@ -5749,7 +5619,7 @@ _source line 2215 · 2026-05-25T19:44:24.325872+00:00_
 
 ### Tool call
 
-_source line 2216 · 2026-05-25T19:44:24.326244+00:00_
+_source line 2214 · 2026-05-25T19:44:24.326244+00:00_
 
 called Read
 
@@ -5783,7 +5653,7 @@ called Read
 
 ### Tool result
 
-_source line 2217 · 2026-05-25T19:44:25.315335+00:00_
+_source line 2215 · 2026-05-25T19:44:25.315335+00:00_
 
 1	# 5-Gen LOGO Binary Eval
 2	
@@ -5823,7 +5693,7 @@ _source line 2217 · 2026-05-25T19:44:25.315335+00:00_
 
 ### Tool call
 
-_source line 2218 · 2026-05-25T19:44:25.911906+00:00_
+_source line 2216 · 2026-05-25T19:44:25.911906+00:00_
 
 called Grep
 
@@ -5863,7 +5733,7 @@ called Grep
 
 ### Tool result
 
-_source line 2219 · 2026-05-25T19:44:26.353537+00:00_
+_source line 2217 · 2026-05-25T19:44:26.353537+00:00_
 
 19:\looseness=-1 Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.830 (95\% CI [.818, .841]; Appendix~\ref{app:cross-model-detail}) under 5-generator LOGO.\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\,=\,1{,}000).}
 20:Single-generator transfer confirms the signal is not a mixed-chain artifact (mean transfer F1\,=\,0.810, Figure~\ref{fig:transfer-heatmap}; full $8{\times}8$ matrix: Appendix~\ref{app:transfer}; LOFO\,=\,0.686); analysis of variance (ANOVA) confirms generator identity contributes ${<}1$\% of feature variance ($\eta^2_{\text{gen}} \leq 0.009$; Appendix~\ref{app:cross-model-detail}).
@@ -5886,7 +5756,7 @@ _source line 2219 · 2026-05-25T19:44:26.353537+00:00_
 
 ### Tool call
 
-_source line 2220 · 2026-05-25T19:44:29.366040+00:00_
+_source line 2218 · 2026-05-25T19:44:29.366040+00:00_
 
 called Read
 
@@ -5924,7 +5794,7 @@ called Read
 
 ### Tool call
 
-_source line 2221 · 2026-05-25T19:44:30.043319+00:00_
+_source line 2219 · 2026-05-25T19:44:30.043319+00:00_
 
 called Grep
 
@@ -5964,7 +5834,7 @@ called Grep
 
 ### Tool result
 
-_source line 2222 · 2026-05-25T19:44:30.510397+00:00_
+_source line 2220 · 2026-05-25T19:44:30.510397+00:00_
 
 80	\label{fig:baseline-ci}
 81	\end{figure}
@@ -6002,7 +5872,7 @@ _source line 2222 · 2026-05-25T19:44:30.510397+00:00_
 
 ### Tool result
 
-_source line 2223 · 2026-05-25T19:44:30.611115+00:00_
+_source line 2221 · 2026-05-25T19:44:30.611115+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:12:gen-0   & 0.921 & 0.948 & 0.935 & [.923, .946] \\
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:13:gen-1   & 0.737 & 0.803 & 0.768 & [.748, .788] \\
@@ -6030,7 +5900,7 @@ _source line 2223 · 2026-05-25T19:44:30.611115+00:00_
 
 ### Tool call
 
-_source line 2224 · 2026-05-25T19:44:31.314053+00:00_
+_source line 2222 · 2026-05-25T19:44:31.314053+00:00_
 
 called Grep
 
@@ -6068,7 +5938,7 @@ called Grep
 
 ### Tool result
 
-_source line 2225 · 2026-05-25T19:44:31.816217+00:00_
+_source line 2223 · 2026-05-25T19:44:31.816217+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex:69:Cohen's $d$ values are 86.0 (full vs.\ random) and 119.7 (full vs.\ depth 0--1).
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex:86:Binary F1 drops from 0.692 to 0.647 ($-$4.5\,pp, 6.5\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\,pp, 9.7\% relative).
@@ -6100,7 +5970,7 @@ _source line 2225 · 2026-05-25T19:44:31.816217+00:00_
 
 ### Tool call
 
-_source line 2226 · 2026-05-25T19:44:32.469143+00:00_
+_source line 2224 · 2026-05-25T19:44:32.469143+00:00_
 
 called Grep
 
@@ -6142,7 +6012,7 @@ called Grep
 
 ### Tool call
 
-_source line 2227 · 2026-05-25T19:44:32.620182+00:00_
+_source line 2225 · 2026-05-25T19:44:32.620182+00:00_
 
 called Grep
 
@@ -6182,7 +6052,7 @@ called Grep
 
 ### Tool result
 
-_source line 2228 · 2026-05-25T19:44:32.670849+00:00_
+_source line 2226 · 2026-05-25T19:44:32.670849+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:1:This appendix reports per-generator breakdowns for the cross-model chain evaluation described in \S\ref{sec:results-classification}.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex:22:A two-way ANOVA (generator $\times$ depth) on cross-model chain features ($n{=}3{,}778$, depths 1--4) confirms that generator identity contributes negligible variance: partial $\eta^2_{\text{gen}} < 1\%$ for all seven features (range 0.05\%--0.90\%, mean 0.37\%), while depth accounts for 15.3\%--29.9\% of variance in drifting features.
@@ -6211,7 +6081,7 @@ _source line 2228 · 2026-05-25T19:44:32.670849+00:00_
 
 ### Tool result
 
-_source line 2229 · 2026-05-25T19:44:33.123214+00:00_
+_source line 2227 · 2026-05-25T19:44:33.123214+00:00_
 
 15:FEATURES = ["entropy_mean", "entropy_std", "entropy_min", "entropy_max", "tail_decay", "ttr", "hapax_ratio"]
 
@@ -6233,7 +6103,7 @@ _source line 2229 · 2026-05-25T19:44:33.123214+00:00_
 
 ### Tool call
 
-_source line 2230 · 2026-05-25T19:44:33.224094+00:00_
+_source line 2228 · 2026-05-25T19:44:33.224094+00:00_
 
 called Glob
 
@@ -6269,7 +6139,7 @@ called Glob
 
 ### Tool result
 
-_source line 2231 · 2026-05-25T19:44:33.678128+00:00_
+_source line 2229 · 2026-05-25T19:44:33.678128+00:00_
 
 No files found
 
@@ -6291,7 +6161,7 @@ No files found
 
 ### Tool call
 
-_source line 2232 · 2026-05-25T19:44:34.431765+00:00_
+_source line 2230 · 2026-05-25T19:44:34.431765+00:00_
 
 called Read
 
@@ -6325,7 +6195,7 @@ called Read
 
 ### Tool result
 
-_source line 2233 · 2026-05-25T19:44:34.900532+00:00_
+_source line 2231 · 2026-05-25T19:44:34.900532+00:00_
 
 1	This appendix reports per-generator breakdowns for the cross-model chain evaluation described in \S\ref{sec:results-classification}.
 2	
@@ -6371,7 +6241,7 @@ _source line 2233 · 2026-05-25T19:44:34.900532+00:00_
 
 ### Tool call
 
-_source line 2234 · 2026-05-25T19:44:34.900880+00:00_
+_source line 2232 · 2026-05-25T19:44:34.900880+00:00_
 
 called Read
 
@@ -6407,7 +6277,7 @@ called Read
 
 ### Tool result
 
-_source line 2235 · 2026-05-25T19:44:34.951396+00:00_
+_source line 2233 · 2026-05-25T19:44:34.951396+00:00_
 
 1	"""
 2	cross_model_logo.py -- LOGO evaluation for cross-model chain data.
@@ -6488,7 +6358,7 @@ _source line 2235 · 2026-05-25T19:44:34.951396+00:00_
 
 ### Tool call
 
-_source line 2236 · 2026-05-25T19:44:37.663739+00:00_
+_source line 2234 · 2026-05-25T19:44:37.663739+00:00_
 
 called Read
 
@@ -6524,7 +6394,7 @@ called Read
 
 ### Tool result
 
-_source line 2237 · 2026-05-25T19:44:38.115677+00:00_
+_source line 2235 · 2026-05-25T19:44:38.115677+00:00_
 
 1	# Anonymous submission — EMNLP 2026 ARR
 2	"""
@@ -6595,7 +6465,7 @@ _source line 2237 · 2026-05-25T19:44:38.115677+00:00_
 
 ### Tool call
 
-_source line 2238 · 2026-05-25T19:44:38.216397+00:00_
+_source line 2236 · 2026-05-25T19:44:38.216397+00:00_
 
 called Read
 
@@ -6629,7 +6499,7 @@ called Read
 
 ### Tool call
 
-_source line 2239 · 2026-05-25T19:44:38.267079+00:00_
+_source line 2237 · 2026-05-25T19:44:38.267079+00:00_
 
 called Read
 
@@ -6667,7 +6537,7 @@ called Read
 
 ### Tool result
 
-_source line 2240 · 2026-05-25T19:44:38.317634+00:00_
+_source line 2238 · 2026-05-25T19:44:38.317634+00:00_
 
 60	\label{fig:confusion-heatmap}
 61	\end{figure}
@@ -6728,7 +6598,7 @@ _source line 2240 · 2026-05-25T19:44:38.317634+00:00_
 
 ### Tool result
 
-_source line 2241 · 2026-05-25T19:44:38.970704+00:00_
+_source line 2239 · 2026-05-25T19:44:38.970704+00:00_
 
 1	\subsection{Variance Decomposition}
 2	\label{app:variance-decomposition}
@@ -6784,7 +6654,7 @@ _source line 2241 · 2026-05-25T19:44:38.970704+00:00_
 
 ### Tool call
 
-_source line 2242 · 2026-05-25T19:44:40.211954+00:00_
+_source line 2240 · 2026-05-25T19:44:40.211954+00:00_
 
 called Grep
 
@@ -6826,7 +6696,7 @@ called Grep
 
 ### Tool result
 
-_source line 2243 · 2026-05-25T19:44:40.681734+00:00_
+_source line 2241 · 2026-05-25T19:44:40.681734+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/chart/fig_convergence_dynamics_caption.tex:2:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex:19:Entropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \approx 0.21$--$0.25$); tail decay passes for four of eight.
@@ -6852,7 +6722,7 @@ _source line 2243 · 2026-05-25T19:44:40.681734+00:00_
 
 ### Tool call
 
-_source line 2244 · 2026-05-25T19:44:42.088118+00:00_
+_source line 2242 · 2026-05-25T19:44:42.088118+00:00_
 
 called Read
 
@@ -6886,7 +6756,7 @@ called Read
 
 ### Tool result
 
-_source line 2245 · 2026-05-25T19:44:43.501064+00:00_
+_source line 2243 · 2026-05-25T19:44:43.501064+00:00_
 
 1	We evaluate depth profiling under three prompt types using Pythia-2.8B. Each uses 995 seeds $\times$ 5 depths. The exact templates are:
 2	
@@ -6921,7 +6791,7 @@ _source line 2245 · 2026-05-25T19:44:43.501064+00:00_
 
 ### Tool call
 
-_source line 2246 · 2026-05-25T19:44:44.003276+00:00_
+_source line 2244 · 2026-05-25T19:44:44.003276+00:00_
 
 called Grep
 
@@ -6961,7 +6831,7 @@ called Grep
 
 ### Tool result
 
-_source line 2247 · 2026-05-25T19:44:44.459282+00:00_
+_source line 2245 · 2026-05-25T19:44:44.459282+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_correlation.tex:26:TTR and hapax ratio are near-perfectly correlated ($r=0.97$), and both correlate strongly with mean entropy ($r=0.86$ and $0.81$).
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:65:TTR and hapax ratio are strongly correlated ($r = 0.97$); both are retained for marginal LOFO gains.
@@ -6985,7 +6855,7 @@ _source line 2247 · 2026-05-25T19:44:44.459282+00:00_
 
 ### Tool call
 
-_source line 2248 · 2026-05-25T19:44:46.066481+00:00_
+_source line 2246 · 2026-05-25T19:44:46.066481+00:00_
 
 called Grep
 
@@ -7025,7 +6895,7 @@ called Grep
 
 ### Tool result
 
-_source line 2249 · 2026-05-25T19:44:46.619378+00:00_
+_source line 2247 · 2026-05-25T19:44:46.619378+00:00_
 
 Found 29 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex
@@ -7064,7 +6934,7 @@ Found 29 files
 
 ### Tool call
 
-_source line 2250 · 2026-05-25T19:44:46.669975+00:00_
+_source line 2248 · 2026-05-25T19:44:46.669975+00:00_
 
 called Glob
 
@@ -7100,7 +6970,7 @@ called Glob
 
 ### Tool result
 
-_source line 2251 · 2026-05-25T19:44:47.143206+00:00_
+_source line 2249 · 2026-05-25T19:44:47.143206+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/tost_multi_margin.json
 
@@ -7122,7 +6992,7 @@ _source line 2251 · 2026-05-25T19:44:47.143206+00:00_
 
 ### Tool call
 
-_source line 2252 · 2026-05-25T19:44:50.156891+00:00_
+_source line 2250 · 2026-05-25T19:44:50.156891+00:00_
 
 called Bash
 
@@ -7158,7 +7028,7 @@ called Bash
 
 ### Tool result
 
-_source line 2253 · 2026-05-25T19:44:50.636667+00:00_
+_source line 2251 · 2026-05-25T19:44:50.636667+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/cross_model_anova.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex
@@ -7183,41 +7053,7 @@ _source line 2253 · 2026-05-25T19:44:50.636667+00:00_
 
 ### Tool call
 
-_source line 2254 · 2026-05-25T19:44:50.636957+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/tost_per_generator.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/tost_per_generator.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2255 · 2026-05-25T19:44:51.079678+00:00_
+_source line 2252 · 2026-05-25T19:44:51.079678+00:00_
 
 called Grep
 
@@ -7259,66 +7095,9 @@ called Grep
 ---
 
 
-### Tool result
-
-_source line 2256 · 2026-05-25T19:44:51.538625+00:00_
-
-1	{
-2	  "equivalence_bound_d": 0.2,
-3	  "per_generator": {
-4	    "llama-3.2-3b": {
-5	      "n_gen1": 984, "n_gen2p": 2701,
-6	      "features": {
-7	        "entropy_max": {"observed_d": 0.0081, "p_tost": 1.34e-07, "equivalent": true},
-8	        "tail_decay": {"observed_d": 0.188, "p_tost": 0.374, "equivalent": false},
-9	        "entropy_min": {"observed_d": 0.0067, "p_tost": 1.11e-07, "equivalent": true},
-10	        "entropy_mean": {"observed_d": 1.1476, "p_tost": 1.0, "equivalent": false},
-11	        "ttr": {"observed_d": 1.0372, "p_tost": 1.0, "equivalent": false},
-12	        "hapax_ratio": {"observed_d": 0.9833, "p_tost": 1.0, "equivalent": false},
-13	        "entropy_std": {"observed_d": 0.4984, "p_tost": 1.0, "equivalent": false}
-14	      }
-15	    },
-16	    "mistral-7b-v0.3": {
-17	      "n_gen1": 994, "n_gen2p": 2859,
-18	      "features": {
-19	        "entropy_max": {"observed_d": -0.004, "p_tost": 5.39e-08, "equivalent": true},
-20	        "tail_decay": {"observed_d": 0.1604, "p_tost": 0.141, "equivalent": false},
-21	        "entropy_min": {"observed_d": -0.0377, "p_tost": 5.40e-06, "equivalent": true},
-22	        "entropy_mean": {"observed_d": 0.8922, "p_tost": 1.0, "equivalent": false},
-23	        "ttr": {"observed_d": 0.8198, "p_tost": 1.0, "equivalent": false},
-24	        "hapax_ratio": {"observed_d": 0.8207, "p_tost": 1.0, "equivalent": false},
-25	        "entropy_std": {"observed_d": 0.2292, "p_tost": 0.786, "equivalent": false}
-26	      }
-27	    },
-28	    "olmo-2-1b": {
-29	      "n_gen1": 988, "n_gen2p": 2730,
-30	      "features": {
-31	        "entropy_max": {"observed_d": 0.0601, "p_tost": 8.33e-05, "equivalent": true},
-32	        "tail_decay": {"observed_d": 0.223, "p_tost": 0.732, "equivalent": false},
-33	        "entropy_min": {"observed_d": 0.0682, "p_tost": 1.95e-04, "equivalent": true},
-34	        "entropy_mean": {"observed_d": 1.1887, "p_tost": 1.0, "equivalent": false},
-35	        "ttr": {"observed_d": 1.0766, "p_tost": 1.0, "equivalent": false},
-…[truncated 3767 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "elapsed_ms": 901
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 2257 · 2026-05-25T19:44:51.538961+00:00_
+_source line 2253 · 2026-05-25T19:44:51.538961+00:00_
 
 called Read
 
@@ -7354,7 +7133,7 @@ called Read
 
 ### Tool result
 
-_source line 2258 · 2026-05-25T19:44:52.015781+00:00_
+_source line 2254 · 2026-05-25T19:44:52.015781+00:00_
 
 1	Cohen's d: gen-1 vs gen-2+ — All Decoding Strategy Results (15/16 combos)
 2	===========================================================================
@@ -7393,7 +7172,7 @@ _source line 2258 · 2026-05-25T19:44:52.015781+00:00_
 
 ### Tool result
 
-_source line 2259 · 2026-05-25T19:44:52.016108+00:00_
+_source line 2255 · 2026-05-25T19:44:52.016108+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/roc_auc_baselines.md:13:| Combined (4-Det + 7-Feature) | 0.7127 | 0.8304 | [0.8248, 0.8358] |
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/roc_auc_baselines.md:19:- Combined (all 11 features) reaches 0.830, the best overall.
@@ -7424,7 +7203,7 @@ _source line 2259 · 2026-05-25T19:44:52.016108+00:00_
 
 ### Tool call
 
-_source line 2260 · 2026-05-25T19:44:52.016307+00:00_
+_source line 2256 · 2026-05-25T19:44:52.016307+00:00_
 
 called Grep
 
@@ -7462,7 +7241,7 @@ called Grep
 
 ### Tool result
 
-_source line 2261 · 2026-05-25T19:44:52.492377+00:00_
+_source line 2257 · 2026-05-25T19:44:52.492377+00:00_
 
 No files found
 
@@ -7484,7 +7263,7 @@ No files found
 
 ### Tool call
 
-_source line 2262 · 2026-05-25T19:44:52.523690+00:00_
+_source line 2258 · 2026-05-25T19:44:52.523690+00:00_
 
 called Glob
 
@@ -7520,7 +7299,7 @@ called Glob
 
 ### Tool result
 
-_source line 2263 · 2026-05-25T19:44:53.064821+00:00_
+_source line 2259 · 2026-05-25T19:44:53.064821+00:00_
 
 No files found
 
@@ -7542,7 +7321,7 @@ No files found
 
 ### Tool call
 
-_source line 2264 · 2026-05-25T19:44:53.065132+00:00_
+_source line 2260 · 2026-05-25T19:44:53.065132+00:00_
 
 called Grep
 
@@ -7580,7 +7359,7 @@ called Grep
 
 ### Tool result
 
-_source line 2265 · 2026-05-25T19:44:53.523673+00:00_
+_source line 2261 · 2026-05-25T19:44:53.523673+00:00_
 
 No files found
 
@@ -7602,7 +7381,7 @@ No files found
 
 ### Tool call
 
-_source line 2266 · 2026-05-25T19:44:56.004709+00:00_
+_source line 2262 · 2026-05-25T19:44:56.004709+00:00_
 
 called Glob
 
@@ -7638,7 +7417,7 @@ called Glob
 
 ### Tool result
 
-_source line 2267 · 2026-05-25T19:44:56.580797+00:00_
+_source line 2263 · 2026-05-25T19:44:56.580797+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/tost_multi_margin.json
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/cross_model_chains_per_class.json
@@ -7663,7 +7442,7 @@ _source line 2267 · 2026-05-25T19:44:56.580797+00:00_
 
 ### Tool call
 
-_source line 2268 · 2026-05-25T19:44:56.581236+00:00_
+_source line 2264 · 2026-05-25T19:44:56.581236+00:00_
 
 called Read
 
@@ -7697,7 +7476,7 @@ called Read
 
 ### Tool result
 
-_source line 2269 · 2026-05-25T19:44:57.069255+00:00_
+_source line 2265 · 2026-05-25T19:44:57.069255+00:00_
 
 1	\looseness=-1 We complement the permutation importance analysis (\S\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\Delta$ is the change relative to the full 7-feature ensemble (F1\,=\,0.789).
 2	
@@ -7749,7 +7528,7 @@ _source line 2269 · 2026-05-25T19:44:57.069255+00:00_
 
 ### Tool call
 
-_source line 2270 · 2026-05-25T19:44:57.069772+00:00_
+_source line 2266 · 2026-05-25T19:44:57.069772+00:00_
 
 called Read
 
@@ -7785,7 +7564,7 @@ called Read
 
 ### Tool result
 
-_source line 2271 · 2026-05-25T19:44:57.070136+00:00_
+_source line 2267 · 2026-05-25T19:44:57.070136+00:00_
 
 80	        train_gen0_parts = [gen0_folds[j] for j in range(n_gens) if j != i]
 81	        train_gen0 = pd.concat(train_gen0_parts, ignore_index=True)
@@ -7856,123 +7635,7 @@ _source line 2271 · 2026-05-25T19:44:57.070136+00:00_
 
 ### Tool call
 
-_source line 2272 · 2026-05-25T19:44:57.120619+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/report/rebuttal_w1_crossmodel_cv.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/report/rebuttal_w1_crossmodel_cv.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2273 · 2026-05-25T19:44:57.171174+00:00_
-
-1	# Cross-model CV 方式修复报告
-2	
-3	## 问题
-4	
-5	审稿指出：cross-model chain binary F1=0.764 使用 sample-level 5-fold StratifiedKFold CV，与主表的 generator-level held-out (LOGO) 设计矛盾。
-6	
-7	## 分析
-8	
-9	代码确认：`cross_model_chains.py` 的 `phase_evaluate()` 在全局 balance 后做 5-fold StratifiedKFold，样本随机分配到各 fold，同一 generator 的样本可能同时出现在 train/test，确实是 sample-level CV。
-10	
-11	## 修复方案
-12	
-13	实现 LOGO（leave-one-generator-out）评估。Cross-model chain 数据中每个 depth 1-4 样本有 `generator_at_depth` 标签，记录该样本由哪个 generator 生成：
-14	
-15	- **5 个 generator**: olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b
-16	- **LOGO 分 fold 方式**: 每 fold 持出一个 generator 的所有 depth 1-4 样本
-17	- **Depth-0 (wikipedia)**: 均分到 5 个 fold（depth-0 是人类文本，不关联特定 generator）
-18	- **每 fold 训练集**: balance 至最小类别数量
-19	
-20	脚本: `scripts/cross_model_logo.py`
-21	
-22	## 结果
-23	
-24	### LOGO 总体
-25	
-26	| 指标 | 原 5-fold CV | LOGO | Delta | 95% Bootstrap CI |
-27	|------|-------------|------|-------|-----------------|
-28	| 3-class macro F1 | 0.809 | **0.789** | -0.020 | [0.777, 0.800] |
-29	| Binary F1 (gen-1 vs gen-2+) | 0.764 | **0.830** | +0.066 | [0.818, 0.841] |
-30	
-31	### Per-generator LOGO
-32	
-33	| Generator | 3-class F1 | Binary F1 | n_test |
-34	|-----------|-----------|-----------|--------|
-35	| olmo-2-1b | 0.768 | 0.810 | 982 |
-36	| pythia-1b | 0.810 | 0.832 | 928 |
-37	| pythia-2.8b | 0.791 | 0.819 | 950 |
-38	| qwen3-0.6b | 0.780 | 0.815 | 968 |
-39	| qwen3-1.7b | 0.795 | 0.871 | 945 |
-40	
-41	### Per-class 指标 (LOGO pooled)
-42	
-43	| Class | Precision | Recall | F1 |
-44	|-------|-----------|--------|-----|
-45	| gen-0 | 0.881 | 0.953 | 0.916 |
-46	| gen-1 | 0.523 | 0.766 | 0.622 |
-47	| gen-2+ | 0.929 | 0.749 | 0.829 |
-48	
-49	### Confusion Matrix (LOGO pooled)
-50	
-51	```
-52	           Pred gen-0  Pred gen-1  Pred gen-2+
-53	True gen-0       948         44           3
-54	True gen-1        74        757         157
-55	True gen-2+       54        647        2089
-56	```
-57	
-58	## 解读
-59	
-60	1. **3-class macro F1 下降 0.02**: 符合预期——LOGO 比 sample-level CV 更严格，训练时完全未见 
-…[truncated 740 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2274 · 2026-05-25T19:45:00.586064+00:00_
+_source line 2268 · 2026-05-25T19:45:00.586064+00:00_
 
 called Grep
 
@@ -8014,7 +7677,7 @@ called Grep
 
 ### Tool result
 
-_source line 2275 · 2026-05-25T19:45:01.610977+00:00_
+_source line 2269 · 2026-05-25T19:45:01.610977+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:182:To verify that the DDR partition is robust to this heteroscedasticity, we supplement pooled Cohen's $d$ with Glass's $\Delta$ (using the gen-1 standard deviation as denominator) and Cliff's $\delta$ (a non-parametric ordinal effect size; Table~\ref{tab:effect-sizes}).
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex:206:\noindent Effect sizes in Table~\ref{tab:effect-sizes} are computed on the binary task (gen-1 vs.\ gen-2+); the main text (\S\ref{sec:results-differential}) reports 3-class pooled $d$ values (e.g., hapax ratio $d{=}0.74$), which are slightly larger because the gen-0/gen-1 contrast contributes additional separation.
@@ -8041,7 +7704,7 @@ _source line 2275 · 2026-05-25T19:45:01.610977+00:00_
 
 ### Tool call
 
-_source line 2276 · 2026-05-25T19:45:02.063274+00:00_
+_source line 2270 · 2026-05-25T19:45:02.063274+00:00_
 
 called Grep
 
@@ -8081,7 +7744,7 @@ called Grep
 
 ### Tool result
 
-_source line 2277 · 2026-05-25T19:45:02.113904+00:00_
+_source line 2271 · 2026-05-25T19:45:02.113904+00:00_
 
 Found 47 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex
@@ -8119,7 +7782,7 @@ Found 47 files
 
 ### Tool call
 
-_source line 2278 · 2026-05-25T19:45:04.022599+00:00_
+_source line 2272 · 2026-05-25T19:45:04.022599+00:00_
 
 called Grep
 
@@ -8159,7 +7822,7 @@ called Grep
 
 ### Tool result
 
-_source line 2279 · 2026-05-25T19:45:04.273724+00:00_
+_source line 2273 · 2026-05-25T19:45:04.273724+00:00_
 
 101:[Omitted long matching line]
 
@@ -8181,7 +7844,7 @@ _source line 2279 · 2026-05-25T19:45:04.273724+00:00_
 
 ### Tool call
 
-_source line 2280 · 2026-05-25T19:45:04.274061+00:00_
+_source line 2274 · 2026-05-25T19:45:04.274061+00:00_
 
 called Read
 
@@ -8215,7 +7878,7 @@ called Read
 
 ### Tool result
 
-_source line 2281 · 2026-05-25T19:45:04.745770+00:00_
+_source line 2275 · 2026-05-25T19:45:04.745770+00:00_
 
 1	We evaluate depth profiling under three prompt types using Pythia-2.8B. Each uses 995 seeds $\times$ 5 depths. The exact templates are:
 2	
@@ -8250,7 +7913,7 @@ _source line 2281 · 2026-05-25T19:45:04.745770+00:00_
 
 ### Tool call
 
-_source line 2282 · 2026-05-25T19:45:05.348896+00:00_
+_source line 2276 · 2026-05-25T19:45:05.348896+00:00_
 
 called Read
 
@@ -8288,7 +7951,7 @@ called Read
 
 ### Tool result
 
-_source line 2283 · 2026-05-25T19:45:05.449660+00:00_
+_source line 2277 · 2026-05-25T19:45:05.449660+00:00_
 
 180	
 181	Levene tests reject equal variance between gen-1 and gen-2+ for drifting features ($p < 10^{-10}$; variance ratios 1.86--2.21).
@@ -8340,7 +8003,7 @@ _source line 2283 · 2026-05-25T19:45:05.449660+00:00_
 
 ### Tool call
 
-_source line 2284 · 2026-05-25T19:45:07.809779+00:00_
+_source line 2278 · 2026-05-25T19:45:07.809779+00:00_
 
 called Grep
 
@@ -8384,7 +8047,7 @@ called Grep
 
 ### Tool result
 
-_source line 2285 · 2026-05-25T19:45:21.767434+00:00_
+_source line 2279 · 2026-05-25T19:45:21.767434+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/group_ablation_results.json:90:        "f1_binary": 0.6869
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/skewness_kurtosis_ablation.txt:6:  existing 7-feature set using LOGO classification, LOFO importance,
@@ -8416,7 +8079,7 @@ _source line 2285 · 2026-05-25T19:45:21.767434+00:00_
 
 ### Tool call
 
-_source line 2286 · 2026-05-25T19:45:22.169517+00:00_
+_source line 2280 · 2026-05-25T19:45:22.169517+00:00_
 
 called Bash
 
@@ -8452,7 +8115,7 @@ called Bash
 
 ### Tool result
 
-_source line 2287 · 2026-05-25T19:45:22.641669+00:00_
+_source line 2281 · 2026-05-25T19:45:22.641669+00:00_
 
 Cross-family transfer (train/test from different families):
   N cells: 48
@@ -8489,7 +8152,7 @@ Family-level LOFO (train on other families, test on held-out family):
 
 ### Tool call
 
-_source line 2288 · 2026-05-25T19:45:22.641990+00:00_
+_source line 2282 · 2026-05-25T19:45:22.641990+00:00_
 
 called Grep
 
@@ -8529,7 +8192,7 @@ called Grep
 
 ### Tool result
 
-_source line 2289 · 2026-05-25T19:45:23.073223+00:00_
+_source line 2283 · 2026-05-25T19:45:23.073223+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/gen1_subclass_analysis.md:10:| OLMo-2-1B | 1.0B | 988 | 0.6077 | 0.1549 | 0.3388 | 0.6889 |
 
@@ -8551,7 +8214,7 @@ _source line 2289 · 2026-05-25T19:45:23.073223+00:00_
 
 ### Tool call
 
-_source line 2290 · 2026-05-25T19:45:23.073508+00:00_
+_source line 2284 · 2026-05-25T19:45:23.073508+00:00_
 
 called Glob
 
@@ -8587,7 +8250,7 @@ called Glob
 
 ### Tool result
 
-_source line 2291 · 2026-05-25T19:45:23.531013+00:00_
+_source line 2285 · 2026-05-25T19:45:23.531013+00:00_
 
 No files found
 
@@ -8609,7 +8272,7 @@ No files found
 
 ### Tool call
 
-_source line 2292 · 2026-05-25T19:45:23.882633+00:00_
+_source line 2286 · 2026-05-25T19:45:23.882633+00:00_
 
 called Grep
 
@@ -8647,7 +8310,7 @@ called Grep
 
 ### Tool result
 
-_source line 2293 · 2026-05-25T19:45:24.350267+00:00_
+_source line 2287 · 2026-05-25T19:45:24.350267+00:00_
 
 Found 5 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/README.md
@@ -8674,7 +8337,7 @@ Found 5 files
 
 ### Tool call
 
-_source line 2294 · 2026-05-25T19:45:27.586636+00:00_
+_source line 2288 · 2026-05-25T19:45:27.586636+00:00_
 
 called Grep
 
@@ -8714,7 +8377,7 @@ called Grep
 
 ### Tool result
 
-_source line 2295 · 2026-05-25T19:45:27.637138+00:00_
+_source line 2289 · 2026-05-25T19:45:27.637138+00:00_
 
 34:           "tail_decay", "ttr", "hapax_ratio"]
 259:    surf_feats = ens_feats + ["ttr", "hapax_ratio"]
@@ -8740,7 +8403,7 @@ _source line 2295 · 2026-05-25T19:45:27.637138+00:00_
 
 ### Tool call
 
-_source line 2296 · 2026-05-25T19:45:28.691780+00:00_
+_source line 2290 · 2026-05-25T19:45:28.691780+00:00_
 
 called Grep
 
@@ -8782,7 +8445,7 @@ called Grep
 
 ### Tool result
 
-_source line 2297 · 2026-05-25T19:45:29.244359+00:00_
+_source line 2291 · 2026-05-25T19:45:29.244359+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:37:\looseness=-1 These span a 13$\times$ parameter range (0.6B--8B) across five architectures; Qwen's overrepresentation (3/8) is a limitation mitigated by LOFO (F1\,=\,0.686; \S\ref{sec:results-classification}).
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex:72:LOGO does not isolate family-level effects; \textbf{Leave-One-Family-Out (LOFO)} addresses this by holding out entire model families (binary F1\,=\,0.686; \S\ref{sec:results-classification}).
@@ -8807,7 +8470,7 @@ _source line 2297 · 2026-05-25T19:45:29.244359+00:00_
 
 ### Tool call
 
-_source line 2298 · 2026-05-25T19:45:29.696530+00:00_
+_source line 2292 · 2026-05-25T19:45:29.696530+00:00_
 
 called Grep
 
@@ -8847,7 +8510,7 @@ called Grep
 
 ### Tool result
 
-_source line 2299 · 2026-05-25T19:45:29.747130+00:00_
+_source line 2293 · 2026-05-25T19:45:29.747130+00:00_
 
 No matches found
 
@@ -8869,7 +8532,7 @@ No matches found
 
 ### Tool call
 
-_source line 2300 · 2026-05-25T19:45:34.315794+00:00_
+_source line 2294 · 2026-05-25T19:45:34.315794+00:00_
 
 called Grep
 
@@ -8909,7 +8572,7 @@ called Grep
 
 ### Tool result
 
-_source line 2301 · 2026-05-25T19:45:34.818258+00:00_
+_source line 2295 · 2026-05-25T19:45:34.818258+00:00_
 
 No files found
 
@@ -8931,7 +8594,7 @@ No files found
 
 ### Tool call
 
-_source line 2302 · 2026-05-25T19:45:35.671891+00:00_
+_source line 2296 · 2026-05-25T19:45:35.671891+00:00_
 
 called Grep
 
@@ -8973,7 +8636,7 @@ called Grep
 
 ### Tool result
 
-_source line 2303 · 2026-05-25T19:45:35.722455+00:00_
+_source line 2297 · 2026-05-25T19:45:35.722455+00:00_
 
 No matches found
 
@@ -8995,7 +8658,7 @@ No matches found
 
 ### Tool call
 
-_source line 2304 · 2026-05-25T19:45:35.823301+00:00_
+_source line 2298 · 2026-05-25T19:45:35.823301+00:00_
 
 called Grep
 
@@ -9035,7 +8698,7 @@ called Grep
 
 ### Tool result
 
-_source line 2305 · 2026-05-25T19:45:35.873861+00:00_
+_source line 2299 · 2026-05-25T19:45:35.873861+00:00_
 
 Found 6 files
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_instruct.tex
@@ -9063,7 +8726,7 @@ Found 6 files
 
 ### Tool call
 
-_source line 2306 · 2026-05-25T19:45:38.987268+00:00_
+_source line 2300 · 2026-05-25T19:45:38.987268+00:00_
 
 called Read
 
@@ -9099,7 +8762,7 @@ called Read
 
 ### Tool result
 
-_source line 2307 · 2026-05-25T19:45:39.465621+00:00_
+_source line 2301 · 2026-05-25T19:45:39.465621+00:00_
 
 1	# Paper Audit Report
 2	
@@ -9181,7 +8844,7 @@ _source line 2307 · 2026-05-25T19:45:39.465621+00:00_
 
 ### Tool call
 
-_source line 2308 · 2026-05-25T19:45:40.297569+00:00_
+_source line 2302 · 2026-05-25T19:45:40.297569+00:00_
 
 called Grep
 
@@ -9223,7 +8886,7 @@ called Grep
 
 ### Tool result
 
-_source line 2309 · 2026-05-25T19:45:40.737728+00:00_
+_source line 2303 · 2026-05-25T19:45:40.737728+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/README.md:122:| `scripts/lofo_ablation.py` | Leave-one-feature-out ablation (Appendix F) |
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/code/scripts/lofo_ablation.py:60:        "lofo_results": results,
@@ -9248,7 +8911,7 @@ _source line 2309 · 2026-05-25T19:45:40.737728+00:00_
 
 ### Tool call
 
-_source line 2310 · 2026-05-25T19:45:40.738012+00:00_
+_source line 2304 · 2026-05-25T19:45:40.738012+00:00_
 
 called Read
 
@@ -9282,7 +8945,7 @@ called Read
 
 ### Tool result
 
-_source line 2311 · 2026-05-25T19:45:41.213090+00:00_
+_source line 2305 · 2026-05-25T19:45:41.213090+00:00_
 
 1	Table~\ref{tab:gen-subsets} summarizes the generator subsets used across experiments.
 2	
@@ -9330,7 +8993,7 @@ _source line 2311 · 2026-05-25T19:45:41.213090+00:00_
 
 ### Tool call
 
-_source line 2312 · 2026-05-25T19:45:44.624738+00:00_
+_source line 2306 · 2026-05-25T19:45:44.624738+00:00_
 
 called Grep
 
@@ -9370,7 +9033,7 @@ called Grep
 
 ### Tool result
 
-_source line 2313 · 2026-05-25T19:45:45.064687+00:00_
+_source line 2307 · 2026-05-25T19:45:45.064687+00:00_
 
 117:7-feature (ours)      & 7 & 0.774 & 0.705 & \textbf{9.7} \\
 130:\looseness=-1 The 7-feature ensemble matches the 4-detector+surface ensemble on binary F1 (0.705 vs.\ 0.708; Figure~\ref{fig:baseline-ci}) at ${\sim}2.4\times$ lower cost, though the latter leads by 2.1\,pp on 3-class F1 (0.795 vs.\ 0.774); both surpass individual detectors by 3.0--16.6\,pp.
@@ -9393,7 +9056,7 @@ _source line 2313 · 2026-05-25T19:45:45.064687+00:00_
 
 ### Tool call
 
-_source line 2314 · 2026-05-25T19:45:45.265887+00:00_
+_source line 2308 · 2026-05-25T19:45:45.265887+00:00_
 
 called Read
 
@@ -9429,7 +9092,7 @@ called Read
 
 ### Tool result
 
-_source line 2315 · 2026-05-25T19:45:46.112643+00:00_
+_source line 2309 · 2026-05-25T19:45:46.112643+00:00_
 
 1	"""Group ablation (LOGO) + XGBoost hyperparameter sensitivity."""
 2	
@@ -9500,7 +9163,7 @@ _source line 2315 · 2026-05-25T19:45:46.112643+00:00_
 
 ### Tool call
 
-_source line 2316 · 2026-05-25T19:45:46.313777+00:00_
+_source line 2310 · 2026-05-25T19:45:46.313777+00:00_
 
 called Grep
 
@@ -9540,7 +9203,7 @@ called Grep
 
 ### Tool result
 
-_source line 2317 · 2026-05-25T19:45:46.804429+00:00_
+_source line 2311 · 2026-05-25T19:45:46.804429+00:00_
 
 No matches found
 
@@ -9562,7 +9225,7 @@ No matches found
 
 ### Tool call
 
-_source line 2318 · 2026-05-25T19:45:50.220820+00:00_
+_source line 2312 · 2026-05-25T19:45:50.220820+00:00_
 
 called Grep
 
@@ -9606,7 +9269,7 @@ called Grep
 
 ### Tool result
 
-_source line 2319 · 2026-05-25T19:45:50.271332+00:00_
+_source line 2313 · 2026-05-25T19:45:50.271332+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/bootstrap_seed_variance.md:26:| llama-3.2-3b | 0.6863 | 0.0033 | 0.6834 | 0.6926 |
 
@@ -9628,7 +9291,7 @@ _source line 2319 · 2026-05-25T19:45:50.271332+00:00_
 
 ### Tool result
 
-_source line 2320 · 2026-05-25T19:45:50.322046+00:00_
+_source line 2314 · 2026-05-25T19:45:50.322046+00:00_
 
 Now I have all the data needed. Let me read the effect-size table values from `silhouette_final_determination.txt` Test 7 to understand the mapping:
 
@@ -9684,7 +9347,7 @@ The paper states the main text uses "3-class pooled d values (e.g., hapax ratio 
 
 ### Tool call
 
-_source line 2321 · 2026-05-25T19:45:50.523279+00:00_
+_source line 2315 · 2026-05-25T19:45:50.523279+00:00_
 
 called Glob
 
@@ -9720,7 +9383,7 @@ called Glob
 
 ### Tool result
 
-_source line 2322 · 2026-05-25T19:45:51.025000+00:00_
+_source line 2316 · 2026-05-25T19:45:51.025000+00:00_
 
 No files found
 
@@ -9742,7 +9405,7 @@ No files found
 
 ### Tool call
 
-_source line 2323 · 2026-05-25T19:45:53.482719+00:00_
+_source line 2317 · 2026-05-25T19:45:53.482719+00:00_
 
 called Glob
 
@@ -9778,7 +9441,7 @@ called Glob
 
 ### Tool result
 
-_source line 2324 · 2026-05-25T19:45:53.633671+00:00_
+_source line 2318 · 2026-05-25T19:45:53.633671+00:00_
 
 No files found
 
@@ -9800,7 +9463,7 @@ No files found
 
 ### Tool call
 
-_source line 2325 · 2026-05-25T19:45:58.880940+00:00_
+_source line 2319 · 2026-05-25T19:45:58.880940+00:00_
 
 called Read
 
@@ -9836,7 +9499,7 @@ called Read
 
 ### Tool result
 
-_source line 2326 · 2026-05-25T19:45:59.373415+00:00_
+_source line 2320 · 2026-05-25T19:45:59.373415+00:00_
 
 1	# 论文全文数字一致性审计报告
 2	
@@ -9886,7 +9549,7 @@ _source line 2326 · 2026-05-25T19:45:59.373415+00:00_
 
 ### Tool call
 
-_source line 2327 · 2026-05-25T19:46:16.064343+00:00_
+_source line 2321 · 2026-05-25T19:46:16.064343+00:00_
 
 called Bash
 
@@ -9922,7 +9585,7 @@ called Bash
 
 ### Tool result
 
-_source line 2328 · 2026-05-25T19:46:16.539610+00:00_
+_source line 2322 · 2026-05-25T19:46:16.539610+00:00_
 
 Pythia: avg binary F1 = 0.7210
 Qwen: avg binary F1 = 0.6973
@@ -9968,7 +9631,7 @@ Overall family-level mean of C_all7 binary: 0.6796
 
 ### Tool call
 
-_source line 2329 · 2026-05-25T19:46:22.914627+00:00_
+_source line 2323 · 2026-05-25T19:46:22.914627+00:00_
 
 called Read
 
@@ -10002,7 +9665,7 @@ called Read
 
 ### Tool result
 
-_source line 2330 · 2026-05-25T19:46:23.364444+00:00_
+_source line 2324 · 2026-05-25T19:46:23.364444+00:00_
 
 1	To isolate the depth signal from generator identity, we train a binary classifier (gen-1 vs.\ gen-2+) on each of the eight generators independently and evaluate on all others.
 2	Table~\ref{tab:transfer} reports the full 8$\times$8 transfer matrix; Figure~\ref{fig:transfer-heatmap} (main text) visualizes it as a heatmap.
@@ -10047,7 +9710,7 @@ _source line 2330 · 2026-05-25T19:46:23.364444+00:00_
 
 ### Tool call
 
-_source line 2331 · 2026-05-25T19:46:24.268419+00:00_
+_source line 2325 · 2026-05-25T19:46:24.268419+00:00_
 
 called Grep
 
@@ -10089,7 +9752,7 @@ called Grep
 
 ### Tool result
 
-_source line 2332 · 2026-05-25T19:46:24.706177+00:00_
+_source line 2326 · 2026-05-25T19:46:24.706177+00:00_
 
 No matches found
 
@@ -10111,7 +9774,7 @@ No matches found
 
 ### Tool call
 
-_source line 2333 · 2026-05-25T19:46:29.905503+00:00_
+_source line 2327 · 2026-05-25T19:46:29.905503+00:00_
 
 called Grep
 
@@ -10155,7 +9818,7 @@ called Grep
 
 ### Tool result
 
-_source line 2334 · 2026-05-25T19:46:35.122984+00:00_
+_source line 2328 · 2026-05-25T19:46:35.122984+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table1.tex:10:\textbf{Held-out Generator} & \textbf{Family} & \textbf{Params} & \textbf{Macro-F1} & \textbf{95\% CI} \\
 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/seeds/creative_seed_500.jsonl:3:[Omitted long matching line]
@@ -10188,7 +9851,7 @@ _source line 2334 · 2026-05-25T19:46:35.122984+00:00_
 
 ### Tool call
 
-_source line 2335 · 2026-05-25T19:46:35.273896+00:00_
+_source line 2329 · 2026-05-25T19:46:35.273896+00:00_
 
 called Bash
 
@@ -10224,7 +9887,7 @@ called Bash
 
 ### Tool result
 
-_source line 2336 · 2026-05-25T19:46:35.730177+00:00_
+_source line 2330 · 2026-05-25T19:46:35.730177+00:00_
 
 Mean off-diagonal F1: 0.8100
 Std: 0.0494
@@ -10248,7 +9911,7 @@ Bootstrap 95% CI: [0.796, 0.822]
 
 ### Tool call
 
-_source line 2337 · 2026-05-25T19:46:40.369150+00:00_
+_source line 2331 · 2026-05-25T19:46:40.369150+00:00_
 
 called Read
 
@@ -10282,7 +9945,7 @@ called Read
 
 ### Tool result
 
-_source line 2338 · 2026-05-25T19:46:40.833807+00:00_
+_source line 2332 · 2026-05-25T19:46:40.833807+00:00_
 
 1	{
 2	  "config": {
@@ -10379,7 +10042,7 @@ _source line 2338 · 2026-05-25T19:46:40.833807+00:00_
 
 ### Tool call
 
-_source line 2339 · 2026-05-25T19:46:46.357615+00:00_
+_source line 2333 · 2026-05-25T19:46:46.357615+00:00_
 
 called Grep
 
@@ -10419,7 +10082,7 @@ called Grep
 
 ### Tool result
 
-_source line 2340 · 2026-05-25T19:46:52.227270+00:00_
+_source line 2334 · 2026-05-25T19:46:52.227270+00:00_
 
 This is an older audit (from the 6-gen era, before the paper was updated to 8-gen). The current paper has been updated to 8-gen LOGO. Let me now compile the full report.
 
@@ -10481,7 +10144,7 @@ The JSON says `full_baseline_f1: 0.7707` (10-fold, 8-gen), but the paper reports
 
 ### Tool result
 
-_source line 2341 · 2026-05-25T19:46:52.678893+00:00_
+_source line 2335 · 2026-05-25T19:46:52.678893+00:00_
 
 No matches found
 
@@ -10503,7 +10166,7 @@ No matches found
 
 ### Tool call
 
-_source line 2342 · 2026-05-25T19:46:53.180667+00:00_
+_source line 2336 · 2026-05-25T19:46:53.180667+00:00_
 
 called Bash
 
@@ -10539,7 +10202,7 @@ called Bash
 
 ### Tool result
 
-_source line 2343 · 2026-05-25T19:46:53.735982+00:00_
+_source line 2337 · 2026-05-25T19:46:53.735982+00:00_
 
 full_baseline_f1 (10-fold CV 3-class): 0.7707
 full_baseline_std: 0.0081
@@ -10562,7 +10225,7 @@ full_baseline_std: 0.0081
 
 ### Tool call
 
-_source line 2344 · 2026-05-25T19:46:53.786641+00:00_
+_source line 2338 · 2026-05-25T19:46:53.786641+00:00_
 
 called Read
 
@@ -10598,7 +10261,7 @@ called Read
 
 ### Tool result
 
-_source line 2345 · 2026-05-25T19:46:54.242216+00:00_
+_source line 2339 · 2026-05-25T19:46:54.242216+00:00_
 
 1	# Anonymous submission — EMNLP 2026 ARR
 2	"""8gen_length_confound.py -- Text Length Confound Control for 8-gen LOGO."""
@@ -10676,7 +10339,7 @@ _source line 2345 · 2026-05-25T19:46:54.242216+00:00_
 
 ### Tool result
 
-_source line 2346 · 2026-05-25T19:47:56.181463+00:00_
+_source line 2340 · 2026-05-25T19:47:56.181463+00:00_
 
 I now have a comprehensive picture. Let me compile the final report.
 
@@ -10730,7 +10393,7 @@ Mean of these 8 values = (0.724+0.718+0.709+0.697+0.695+0.692+0.691+0.633)/8 = *
 
 ### Tool call
 
-_source line 2347 · 2026-05-25T19:48:34.041792+00:00_
+_source line 2341 · 2026-05-25T19:48:34.041792+00:00_
 
 called Bash
 
@@ -10766,7 +10429,7 @@ called Bash
 
 ### Tool result
 
-_source line 2348 · 2026-05-25T19:48:34.575893+00:00_
+_source line 2342 · 2026-05-25T19:48:34.575893+00:00_
 
 Dataset rows: 37058
 Models: ['llama-3.2-3b', 'mistral-7b-v0.3', 'olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']
@@ -10824,7 +10487,7 @@ Group ablation results:
 
 ### Tool call
 
-_source line 2349 · 2026-05-25T19:48:43.205131+00:00_
+_source line 2343 · 2026-05-25T19:48:43.205131+00:00_
 
 called Bash
 
@@ -10860,7 +10523,7 @@ called Bash
 
 ### Tool result
 
-_source line 2350 · 2026-05-25T19:48:43.306019+00:00_
+_source line 2344 · 2026-05-25T19:48:43.306019+00:00_
 
 8gen_lofo_results.json (2695 bytes)
 cross_model_chains_per_class.json (2042 bytes)
@@ -10892,7 +10555,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2351 · 2026-05-25T19:48:51.036679+00:00_
+_source line 2345 · 2026-05-25T19:48:51.036679+00:00_
 
 called Bash
 
@@ -10928,7 +10591,7 @@ called Bash
 
 ### Tool result
 
-_source line 2352 · 2026-05-25T19:48:51.087465+00:00_
+_source line 2346 · 2026-05-25T19:48:51.087465+00:00_
 
 === cross_model_chains_per_class.json ===
   experiment: cross_model_chains_per_class
@@ -10964,7 +10627,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2353 · 2026-05-25T19:50:34.958035+00:00_
+_source line 2347 · 2026-05-25T19:50:34.958035+00:00_
 
 called Bash
 
@@ -11000,7 +10663,7 @@ called Bash
 
 ### Tool result
 
-_source line 2354 · 2026-05-25T19:50:36.164026+00:00_
+_source line 2348 · 2026-05-25T19:50:36.164026+00:00_
 
 === Spearman correlations (pooled across all models) ===
   entropy_mean: rho=-0.5978
@@ -11047,7 +10710,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2355 · 2026-05-25T19:50:58.326969+00:00_
+_source line 2349 · 2026-05-25T19:50:58.326969+00:00_
 
 called Bash
 
@@ -11083,7 +10746,7 @@ called Bash
 
 ### Tool result
 
-_source line 2356 · 2026-05-25T19:50:58.728623+00:00_
+_source line 2350 · 2026-05-25T19:50:58.728623+00:00_
 
 === ANOVA table ===
         feature  eta2_depth  eta2_generator  eta2_interaction  eta2_residual  eta2_sum
@@ -11118,7 +10781,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2357 · 2026-05-25T19:51:07.311750+00:00_
+_source line 2351 · 2026-05-25T19:51:07.311750+00:00_
 
 called Bash
 
@@ -11154,7 +10817,7 @@ called Bash
 
 ### Tool result
 
-_source line 2358 · 2026-05-25T19:51:07.663303+00:00_
+_source line 2352 · 2026-05-25T19:51:07.663303+00:00_
 
 Generator identity eta2 for all features:
   entropy_mean: eta2_gen = 0.022120
@@ -11189,7 +10852,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2359 · 2026-05-25T19:51:23.031490+00:00_
+_source line 2353 · 2026-05-25T19:51:23.031490+00:00_
 
 called Bash
 
@@ -11225,7 +10888,7 @@ called Bash
 
 ### Tool result
 
-_source line 2360 · 2026-05-25T19:51:23.433788+00:00_
+_source line 2354 · 2026-05-25T19:51:23.433788+00:00_
 
 === cross_model_anova.csv ===
         feature  eta2_depth     F_depth        p_depth  eta2_generator  F_generator   p_generator  eta2_interaction  F_interaction  p_interaction  eta2_depth_oneway  F_depth_oneway  p_depth_oneway
@@ -11256,7 +10919,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2361 · 2026-05-25T19:52:35.730747+00:00_
+_source line 2355 · 2026-05-25T19:52:35.730747+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11290,7 +10953,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2362 · 2026-05-25T19:52:39.111839+00:00_
+_source line 2356 · 2026-05-25T19:52:39.111839+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11312,7 +10975,7 @@ _source line 2362 · 2026-05-25T19:52:39.111839+00:00_
 
 ### Tool call
 
-_source line 2363 · 2026-05-25T19:54:26.076488+00:00_
+_source line 2357 · 2026-05-25T19:54:26.076488+00:00_
 
 called Read
 
@@ -11350,7 +11013,7 @@ called Read
 
 ### Tool result
 
-_source line 2364 · 2026-05-25T19:54:26.549611+00:00_
+_source line 2358 · 2026-05-25T19:54:26.549611+00:00_
 
 85	Entropy min and tail decay are \emph{boundary features}: entropy min is near-stationary for gen-1/gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1; tail decay passes two one-sided tests (TOST) equivalence (Appendix~\ref{app:tost}) for only 4/8 generators (per-generator $|d|{=}0.07$--$0.22$).
 86	\paragraph{Validation.}
@@ -11386,7 +11049,7 @@ _source line 2364 · 2026-05-25T19:54:26.549611+00:00_
 
 ### Tool call
 
-_source line 2365 · 2026-05-25T19:54:30.405472+00:00_
+_source line 2359 · 2026-05-25T19:54:30.405472+00:00_
 
 called Edit
 
@@ -11426,7 +11089,7 @@ called Edit
 
 ### Tool result
 
-_source line 2366 · 2026-05-25T19:54:30.865852+00:00_
+_source line 2360 · 2026-05-25T19:54:30.865852+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
 
@@ -11448,7 +11111,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fing
 
 ### Tool call
 
-_source line 2367 · 2026-05-25T19:54:34.681654+00:00_
+_source line 2361 · 2026-05-25T19:54:34.681654+00:00_
 
 called Bash
 
@@ -11482,7 +11145,7 @@ called Bash
 
 ### Tool result
 
-_source line 2368 · 2026-05-25T19:54:36.889650+00:00_
+_source line 2362 · 2026-05-25T19:54:36.889650+00:00_
 
 mf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
@@ -11509,7 +11172,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2369 · 2026-05-25T19:54:41.499867+00:00_
+_source line 2363 · 2026-05-25T19:54:41.499867+00:00_
 
 called Bash
 
@@ -11543,7 +11206,7 @@ called Bash
 
 ### Tool result
 
-_source line 2370 · 2026-05-25T19:54:41.801199+00:00_
+_source line 2364 · 2026-05-25T19:54:41.801199+00:00_
 
 1729:Conclusion
 2644:Conclusion. Length accounts for approximately
@@ -11567,7 +11230,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2371 · 2026-05-25T19:54:45.469420+00:00_
+_source line 2365 · 2026-05-25T19:54:45.469420+00:00_
 
 called Bash
 
@@ -11601,7 +11264,7 @@ called Bash
 
 ### Tool result
 
-_source line 2372 · 2026-05-25T19:54:45.570312+00:00_
+_source line 2366 · 2026-05-25T19:54:45.570312+00:00_
 
 (a) Drifting + intermediate
 
@@ -11652,7 +11315,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2373 · 2026-05-25T19:54:51.193241+00:00_
+_source line 2367 · 2026-05-25T19:54:51.193241+00:00_
 
 called Bash
 
@@ -11686,7 +11349,7 @@ called Bash
 
 ### Tool result
 
-_source line 2374 · 2026-05-25T19:54:51.294053+00:00_
+_source line 2368 · 2026-05-25T19:54:51.294053+00:00_
 
 1
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/director_98a1947f
@@ -11709,7 +11372,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2375 · 2026-05-25T19:54:54.608263+00:00_
+_source line 2369 · 2026-05-25T19:54:54.608263+00:00_
 
 called Bash
 
@@ -11743,7 +11406,7 @@ called Bash
 
 ### Tool result
 
-_source line 2376 · 2026-05-25T19:54:54.709127+00:00_
+_source line 2370 · 2026-05-25T19:54:54.709127+00:00_
 
 543
 
@@ -11770,7 +11433,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/
 
 ### Tool call
 
-_source line 2377 · 2026-05-25T19:54:59.642133+00:00_
+_source line 2371 · 2026-05-25T19:54:59.642133+00:00_
 
 called ToolSearch
 
@@ -11806,7 +11469,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2378 · 2026-05-25T19:55:00.151673+00:00_
+_source line 2372 · 2026-05-25T19:55:00.151673+00:00_
 
 
 
@@ -11828,7 +11491,7 @@ _source line 2378 · 2026-05-25T19:55:00.151673+00:00_
 
 ### Tool call
 
-_source line 2379 · 2026-05-25T19:55:05.173900+00:00_
+_source line 2373 · 2026-05-25T19:55:05.173900+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11862,7 +11525,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2380 · 2026-05-25T19:55:05.782989+00:00_
+_source line 2374 · 2026-05-25T19:55:05.782989+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11884,7 +11547,7 @@ _source line 2380 · 2026-05-25T19:55:05.782989+00:00_
 
 ### Assistant
 
-_source line 2381 · 2026-05-25T19:55:09.702170+00:00_
+_source line 2375 · 2026-05-25T19:55:09.702170+00:00_
 
 已完成修复并通知用户。改动：`results.tex` 第90行 F1=0.773→0.771，与源数据对齐。编译正常，8页限制保持。
 
@@ -11911,7 +11574,7 @@ _source line 2381 · 2026-05-25T19:55:09.702170+00:00_
 
 ### User
 
-_source line 2382 · 2026-05-25T19:55:10.214416+00:00_
+_source line 2376 · 2026-05-25T19:55:10.214416+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -11993,7 +11656,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 2383 · 2026-05-25T19:55:45.954284+00:00_
+_source line 2377 · 2026-05-25T19:55:45.954284+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

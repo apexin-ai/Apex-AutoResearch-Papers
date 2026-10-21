@@ -6,519 +6,9 @@
 
 ## Round 76
 
-### Tool result
-
-_source line 1310 · 2026-05-15T12:29:34.723945+00:00_
-
-1	\section{Related Work}
-2	\label{sec:related_work}
-3	
-4	\paragraph{Model collapse and recursive degradation.}
-5	The theory of model collapse establishes that iterative training on model outputs causes irreversible tail-distribution degradation~\cite{shumailov2024collapse}, convergence to fixed points~\cite{alemohammad2024selfconsuming}, and predictable tail probability loss~\cite{dohmatob2024model}.
-6	Schaeffer et al.~\cite{schaeffer2025position} organized eight definitions of collapse; our $\Kstar$ aligns with their Family~B (collapsing variance, mode entanglement).
-7	Kazdan et al.~\cite{kazdan2025collapse} distinguished replace and accumulate regimes; our prompt-chain operates in the replace regime, making $\Kempirical = 2$ a conservative lower bound.
-8	However, this literature characterizes macro dynamics of retrain-chains but provides no per-text depth estimation tool---the gap our framework addresses.
-9	
-10	\paragraph{Beyond binary detection.}
-11	Binary detection methods---DetectGPT~\cite{mitchell2023detectgpt}, Fast-DetectGPT~\citep{bao2024fast}, Binoculars~\cite{hans2024binoculars}, DivEye~\cite{basani2026diveye}, Min-K\%++~\cite{zhang2024minkpp}, CoDeC~\cite{zawalski2026codec}---achieve strong human-vs.-machine separation.
-12	DivEye's surprisal diversity features overlap with our \texttt{surp\_*} subset but optimize for binary boundaries.
-13	Robustness concerns arise under paraphrasing~\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\cite{hao2025rewrite}---both relevant to our rewrite-mode analysis.
-14	Recent work extends beyond binary labels to collaboration degree~\cite{cheng2025beyond} and contamination type hierarchies~\cite{mehta2025beyond}, but no method addresses recursive generation depth: the question is not \emph{whether} a text is synthetic, but \emph{how many times} it has been recursively generated.
-15	
-16	\paragraph{Data selection and curation.}
-17	DSIR~\cite{xie2023dsir}, D4~\cite{tirumala2023d4}, and DoReMi~\cite{
-…[truncated 1319 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 1311 · 2026-05-15T12:29:34.774717+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1312 · 2026-05-15T12:29:34.826987+00:00_
-
-1	\section{Introduction}
-2	\label{sec:introduction}
-3	
-4	Web-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.
-5	Estimates suggest that a substantial fraction of online text is machine-generated~\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.
-6	When models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\cite{shumailov2024collapse, dohmatob2024model}.
-7	This degradation arises in both \emph{retrain-chains} (iteratively training on model outputs) and \emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\ref{sec:extended_limitations}).
-8	Yet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.
-9	
-10	The gap cuts across three communities.
-11	Binary detection methods~\cite{basani2026diveye, zhang2024minkpp, zawalski2026codec} produce no depth estimate.
-12	The model collapse literature~\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} characterizes recursive degradation at the macro level but provides no per-text depth estimation tool.
-13	Data selection methods~\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.
-14	No existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.
-15	
-16	The Data Processing Inequality guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\Kstar$.
-17	We empirically measure $\Kempirical$---the maximum depth at which a classifier reliably distinguishes adjacent generati
-…[truncated 1756 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1313 · 2026-05-15T12:29:35.278964+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -name \"resources.yaml\" -o -name \"*config*.yaml\" 2>/dev/null | head -5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -name \"resources.yaml\" -o -name \"*config*.yaml\" 2>/dev/null | head -5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1314 · 2026-05-15T12:29:35.329662+00:00_
-
-(Bash completed with no output)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1315 · 2026-05-15T12:29:37.288031+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "grep -r \"import.*binoculars\\|from.*binoculars\\|import.*diveye\\|from.*diveye\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination --include=\"*.py\" 2>/dev/null"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "grep -r \"import.*binoculars\\|from.*binoculars\\|import.*diveye\\|from.*diveye\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination --include=\"*.py\" 2>/dev/null"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1316 · 2026-05-15T12:29:37.389021+00:00_
-
-(Bash completed with no output)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1317 · 2026-05-15T12:29:39.298029+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1318 · 2026-05-15T12:29:39.348720+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1319 · 2026-05-15T12:29:39.550009+00:00_
-
-1	"""
-2	MVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)
-3	
-4	Generates recursive depth chains from C4 seed data using Qwen2.5-1.5B,
-5	extracts statistical features, and runs distinguishability analysis.
-6	
-7	Input:  C4 validation split (streamed from HuggingFace)
-8	Output: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt
-9	
-10	Key deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm
-11	"""
-12	
-13	import argparse
-14	import json
-15	import logging
-16	import math
-17	import os
-18	import sys
-19	from collections import Counter
-20	from pathlib import Path
-21	
-22	import numpy as np
-23	import torch
-24	from scipy import stats
-25	from tqdm import tqdm
-26	
-27	logging.basicConfig(
-28	    level=logging.INFO,
-29	    format="%(asctime)s [%(levelname)s] %(message)s",
-30	    datefmt="%H:%M:%S",
-31	)
-32	log = logging.getLogger(__name__)
-33	
-34	
-35	# ---------------------------------------------------------------------------
-36	# Utility: simple 4-gram BLEU (no nltk dependency)
-37	# ---------------------------------------------------------------------------
-38	
-39	def ngrams(tokens, n):
-40	    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
-41	
-42	
-43	def simple_bleu(candidate_tokens, reference_tokens, max_n=4):
-44	    """Compute sentence-level BLEU up to max_n grams with brevity penalty."""
-45	    if len(candidate_tokens) == 0:
-46	        return 0.0
-47	    precisions = []
-48	    for n in range(1, max_n + 1):
-49	        cand_ngrams = ngrams(candidate_tokens, n)
-50	        ref_ngrams = ngrams(reference_tokens, n)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1320 · 2026-05-15T12:29:39.600668+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "head -50 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "head -50 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1321 · 2026-05-15T12:29:39.751729+00:00_
-
-total 208
-drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 11:27 .
-drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 11:46 ..
-drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 08:42 __pycache__
--rw-r--r--  1 ubuntu ubuntu 15973 May 14 08:42 analyze_exp006.py
--rw-r--r--  1 ubuntu ubuntu  2114 May 15 11:27 draw_kstar_theta.py
--rw-r--r--  1 ubuntu ubuntu  4096 May 15 08:12 draw_pipeline_figure.py
--rw-r--r--  1 ubuntu ubuntu 17868 May 14 06:05 exp006_analyze_results.py
--rw-r--r--  1 ubuntu ubuntu  8389 May 14 06:05 exp006_fill_discussion.py
--rw-r--r--  1 ubuntu ubuntu  5951 May 15 10:25 exp_B_14d_ablation.py
--rw-r--r--  1 ubuntu ubuntu  7851 May 15 11:25 exp_D_mcnemar.py
--rw-r--r--  1 ubuntu ubuntu  7547 May 15 10:46 exp_D_obd_n500_v2.py
--rw-r--r--  1 ubuntu ubuntu  6840 May 15 10:44 exp_E_paired_stats.py
--rw-r--r--  1 ubuntu ubuntu  6238 May 13 21:02 plot_exp003_decoding_ablation.py
--rw-r--r--  1 ubuntu ubuntu 11844 May 12 20:53 run_cross_transfer.py
--rw-r--r--  1 ubuntu ubuntu  1755 May 12 20:40 run_exp003_ablation.sh
--rw-r--r--  1 ubuntu ubuntu 22650 May 13 23:49 run_exp009_dose_response.py
--rw-r--r--  1 ubuntu ubuntu  9855 May 13 06:42 run_exp013_cross_transfer.py
--rw-r--r--  1 ubuntu ubuntu 20478 May 14 03:06 run_exp015_neural_probe.py
--rw-r--r--  1 ubuntu ubuntu 26209 May 12 20:42 run_pipeline.py
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "elapsed_ms": 453
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1322 · 2026-05-15T12:29:39.902797+00:00_
-
-"""exp009 Dose-Response — graduated vs binary filtering at varying synthetic injection ratios.
-
-Measures downstream LM quality (MMLU/HellaSwag) after continued pretraining on data
-with 10%/30%/50% synthetic injection, filtered by graduated vs binary-ours strategies.
-Fixed dataset size (default 5000) across all ratios ensures training cost parity.
-
-Input:  data/ directory (features.csv + depth_*.jsonl, same as exp-006)
-        Qwen2.5-1.5B-Instruct base model (local path or HF hub)
-Output: outputs/exp009/r&lt;ratio>_&lt;strategy>_s&lt;seed>/eval_results.json  (per-run)
-        outputs/exp009/analysis.json                                   (paired t-tests)
-
-Usage:
-    # Dry-run: 1 seed, 200 samples, 10 training steps, hellaswag-only eval (limit=20)
-    python run_exp009_dose_response.py --dry-run
-
-    # Full experiment (30 runs)
-    python run_exp009_dose_response.py
-
-    # Single config
-    python run_exp009_dose_response.py --ratios 0.3 --strategies graduated --seeds 42
-
-    # Analyze existing results only
-    python run_exp009_dose_response.py --analyze-only
-
-Dependencies: torch, transformers, peft, lightgbm, lm_eval, numpy, pandas, scipy
-"""
-
-import argparse
-import json
-import os
-import sys
-import time
-import traceback
-from collections import defaultdict
-
-import numpy as np
-import pandas as pd
-import torch
-from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    DataCollatorForLanguageModeling,
-    Trainer,
-    TrainingArguments,
-    set_seed,
-)
-from peft import LoraConfig, get_peft_model, TaskType
-from scipy import stats
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Bash",
-  "elapsed_ms": 302
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1323 · 2026-05-15T12:29:39.953408+00:00_
+_source line 1311 · 2026-05-15T12:29:39.953408+00:00_
 
 called Bash
 
@@ -552,7 +42,7 @@ called Bash
 
 ### Tool result
 
-_source line 1324 · 2026-05-15T12:29:40.004022+00:00_
+_source line 1312 · 2026-05-15T12:29:40.004022+00:00_
 
 #!/usr/bin/env python3
 """exp-003 decoding ablation: 4-config pairwise AUC grouped bar chart + summary table.
@@ -622,7 +112,7 @@ def load_data():
 
 ### Tool call
 
-_source line 1325 · 2026-05-15T12:29:42.162359+00:00_
+_source line 1313 · 2026-05-15T12:29:42.162359+00:00_
 
 called Bash
 
@@ -656,7 +146,7 @@ called Bash
 
 ### Tool result
 
-_source line 1326 · 2026-05-15T12:29:42.264623+00:00_
+_source line 1314 · 2026-05-15T12:29:42.264623+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib
 
@@ -678,7 +168,7 @@ _source line 1326 · 2026-05-15T12:29:42.264623+00:00_
 
 ### Tool call
 
-_source line 1327 · 2026-05-15T12:29:42.418869+00:00_
+_source line 1315 · 2026-05-15T12:29:42.418869+00:00_
 
 called Bash
 
@@ -712,7 +202,7 @@ called Bash
 
 ### Tool result
 
-_source line 1328 · 2026-05-15T12:29:42.519670+00:00_
+_source line 1316 · 2026-05-15T12:29:42.519670+00:00_
 
 (Bash completed with no output)
 
@@ -734,7 +224,7 @@ _source line 1328 · 2026-05-15T12:29:42.519670+00:00_
 
 ### Tool call
 
-_source line 1329 · 2026-05-15T12:29:43.674400+00:00_
+_source line 1317 · 2026-05-15T12:29:43.674400+00:00_
 
 called Read
 
@@ -768,7 +258,7 @@ called Read
 
 ### Tool result
 
-_source line 1330 · 2026-05-15T12:29:43.775286+00:00_
+_source line 1318 · 2026-05-15T12:29:43.775286+00:00_
 
 1	# Memory — gen-depth-contamination
 2	
@@ -825,7 +315,7 @@ _source line 1330 · 2026-05-15T12:29:43.775286+00:00_
 
 ### Tool call
 
-_source line 1331 · 2026-05-15T12:29:45.935494+00:00_
+_source line 1319 · 2026-05-15T12:29:45.935494+00:00_
 
 called Bash
 
@@ -859,7 +349,7 @@ called Bash
 
 ### Tool result
 
-_source line 1332 · 2026-05-15T12:29:45.986170+00:00_
+_source line 1320 · 2026-05-15T12:29:45.986170+00:00_
 
   mvp_pilot_sat_v1:
     status: DONE
@@ -937,7 +427,7 @@ _source line 1332 · 2026-05-15T12:29:45.986170+00:00_
 
 ### Tool call
 
-_source line 1333 · 2026-05-15T12:29:46.538723+00:00_
+_source line 1321 · 2026-05-15T12:29:46.538723+00:00_
 
 called Read
 
@@ -973,7 +463,7 @@ called Read
 
 ### Tool result
 
-_source line 1334 · 2026-05-15T12:29:46.848627+00:00_
+_source line 1322 · 2026-05-15T12:29:46.848627+00:00_
 
 1	\section{Extended Discussion}
 2	\label{sec:extended_discussion}
@@ -1018,7 +508,7 @@ _source line 1334 · 2026-05-15T12:29:46.848627+00:00_
 
 ### Tool call
 
-_source line 1335 · 2026-05-15T12:29:46.999895+00:00_
+_source line 1323 · 2026-05-15T12:29:46.999895+00:00_
 
 called Bash
 
@@ -1052,7 +542,7 @@ called Bash
 
 ### Tool result
 
-_source line 1336 · 2026-05-15T12:29:47.050605+00:00_
+_source line 1324 · 2026-05-15T12:29:47.050605+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/claim_routes.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/figure_plan.md
@@ -1088,7 +578,7 @@ _source line 1336 · 2026-05-15T12:29:47.050605+00:00_
 
 ### Tool call
 
-_source line 1337 · 2026-05-15T12:29:48.004656+00:00_
+_source line 1325 · 2026-05-15T12:29:48.004656+00:00_
 
 called Read
 
@@ -1124,7 +614,7 @@ called Read
 
 ### Tool result
 
-_source line 1338 · 2026-05-15T12:29:48.055627+00:00_
+_source line 1326 · 2026-05-15T12:29:48.055627+00:00_
 
 1	"""
 2	MVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)
@@ -1207,7 +697,7 @@ _source line 1338 · 2026-05-15T12:29:48.055627+00:00_
 
 ### Tool call
 
-_source line 1339 · 2026-05-15T12:29:48.909874+00:00_
+_source line 1327 · 2026-05-15T12:29:48.909874+00:00_
 
 called Read
 
@@ -1243,7 +733,7 @@ called Read
 
 ### Tool result
 
-_source line 1340 · 2026-05-15T12:29:49.161680+00:00_
+_source line 1328 · 2026-05-15T12:29:49.161680+00:00_
 
 1	# Idea Brief: How Deep Is Your Fake? Estimating Generational Depth of Recursive Synthetic Text for Quality-Aware Data Curation
 2	
@@ -1286,7 +776,7 @@ _source line 1340 · 2026-05-15T12:29:49.161680+00:00_
 
 ### Tool call
 
-_source line 1341 · 2026-05-15T12:29:50.115956+00:00_
+_source line 1329 · 2026-05-15T12:29:50.115956+00:00_
 
 called Bash
 
@@ -1320,7 +810,7 @@ called Bash
 
 ### Tool result
 
-_source line 1342 · 2026-05-15T12:29:50.166984+00:00_
+_source line 1330 · 2026-05-15T12:29:50.166984+00:00_
 
 5:extracts statistical features, and runs distinguishability analysis.
 8:Output: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt
@@ -1361,7 +851,7 @@ _source line 1342 · 2026-05-15T12:29:50.166984+00:00_
 
 ### Tool call
 
-_source line 1343 · 2026-05-15T12:29:51.573090+00:00_
+_source line 1331 · 2026-05-15T12:29:51.573090+00:00_
 
 called Bash
 
@@ -1395,7 +885,7 @@ called Bash
 
 ### Tool result
 
-_source line 1344 · 2026-05-15T12:29:51.623812+00:00_
+_source line 1332 · 2026-05-15T12:29:51.623812+00:00_
 
 39:@article{basani2026diveye,
 40:  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},
@@ -1420,7 +910,7 @@ _source line 1344 · 2026-05-15T12:29:51.623812+00:00_
 
 ### Tool call
 
-_source line 1345 · 2026-05-15T12:29:52.328203+00:00_
+_source line 1333 · 2026-05-15T12:29:52.328203+00:00_
 
 called Read
 
@@ -1458,7 +948,7 @@ called Read
 
 ### Tool result
 
-_source line 1346 · 2026-05-15T12:29:52.378967+00:00_
+_source line 1334 · 2026-05-15T12:29:52.378967+00:00_
 
 366	def extract_all_features(model, tokenizer, data_dir: Path, max_depth: int, batch_size: int):
 367	    """Extract features for all depths and save to features.csv."""
@@ -1529,7 +1019,7 @@ _source line 1346 · 2026-05-15T12:29:52.378967+00:00_
 
 ### Tool call
 
-_source line 1347 · 2026-05-15T12:29:53.484358+00:00_
+_source line 1335 · 2026-05-15T12:29:53.484358+00:00_
 
 called Bash
 
@@ -1563,7 +1053,7 @@ called Bash
 
 ### Tool result
 
-_source line 1348 · 2026-05-15T12:29:53.585245+00:00_
+_source line 1336 · 2026-05-15T12:29:53.585245+00:00_
 
 (Bash completed with no output)
 
@@ -1585,7 +1075,7 @@ _source line 1348 · 2026-05-15T12:29:53.585245+00:00_
 
 ### Tool call
 
-_source line 1349 · 2026-05-15T12:29:54.839981+00:00_
+_source line 1337 · 2026-05-15T12:29:54.839981+00:00_
 
 called Bash
 
@@ -1619,7 +1109,7 @@ called Bash
 
 ### Tool result
 
-_source line 1350 · 2026-05-15T12:29:55.093938+00:00_
+_source line 1338 · 2026-05-15T12:29:55.093938+00:00_
 
 356:SURPRISAL_COLS = [
 361:VOCAB_COLS = ["ttr", "hapax_ratio", "self_bleu"]
@@ -1651,7 +1141,7 @@ _source line 1350 · 2026-05-15T12:29:55.093938+00:00_
 
 ### Tool call
 
-_source line 1351 · 2026-05-15T12:29:56.453306+00:00_
+_source line 1339 · 2026-05-15T12:29:56.453306+00:00_
 
 called Bash
 
@@ -1685,7 +1175,7 @@ called Bash
 
 ### Tool result
 
-_source line 1352 · 2026-05-15T12:29:56.504019+00:00_
+_source line 1340 · 2026-05-15T12:29:56.504019+00:00_
 
 total 260
 drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 11:46 .
@@ -1736,7 +1226,7 @@ drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 11:27 scripts
 
 ### Tool call
 
-_source line 1353 · 2026-05-15T12:29:56.805846+00:00_
+_source line 1341 · 2026-05-15T12:29:56.805846+00:00_
 
 called Read
 
@@ -1774,7 +1264,7 @@ called Read
 
 ### Tool result
 
-_source line 1354 · 2026-05-15T12:29:56.856507+00:00_
+_source line 1342 · 2026-05-15T12:29:56.856507+00:00_
 
 356	SURPRISAL_COLS = [
 357	    "surp_mean", "surp_std", "surp_skew", "surp_kurt",
@@ -1810,7 +1300,7 @@ _source line 1354 · 2026-05-15T12:29:56.856507+00:00_
 
 ### Tool call
 
-_source line 1355 · 2026-05-15T12:29:58.917972+00:00_
+_source line 1343 · 2026-05-15T12:29:58.917972+00:00_
 
 called Bash
 
@@ -1844,7 +1334,7 @@ called Bash
 
 ### Tool result
 
-_source line 1356 · 2026-05-15T12:29:58.968501+00:00_
+_source line 1344 · 2026-05-15T12:29:58.968501+00:00_
 
 39:@article{basani2026diveye,
 40:  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},
@@ -1876,7 +1366,7 @@ _source line 1356 · 2026-05-15T12:29:58.968501+00:00_
 
 ### Tool call
 
-_source line 1357 · 2026-05-15T12:30:00.632863+00:00_
+_source line 1345 · 2026-05-15T12:30:00.632863+00:00_
 
 called Read
 
@@ -1912,7 +1402,7 @@ called Read
 
 ### Tool result
 
-_source line 1358 · 2026-05-15T12:30:00.633309+00:00_
+_source line 1346 · 2026-05-15T12:30:00.633309+00:00_
 
 1	"""EXP-A: Alternative Scorer Validation (Reviewer FR-2)
 2	
@@ -1993,7 +1483,7 @@ _source line 1358 · 2026-05-15T12:30:00.633309+00:00_
 
 ### Tool call
 
-_source line 1359 · 2026-05-15T12:30:01.034975+00:00_
+_source line 1347 · 2026-05-15T12:30:01.034975+00:00_
 
 called Bash
 
@@ -2027,7 +1517,7 @@ called Bash
 
 ### Tool call
 
-_source line 1360 · 2026-05-15T12:30:01.088805+00:00_
+_source line 1348 · 2026-05-15T12:30:01.088805+00:00_
 
 called Read
 
@@ -2061,7 +1551,7 @@ called Read
 
 ### Tool result
 
-_source line 1361 · 2026-05-15T12:30:01.139547+00:00_
+_source line 1349 · 2026-05-15T12:30:01.139547+00:00_
 
 1	% === References for gen-depth-contamination ===
 2	% Source: literature_map.yaml — verified 2026-05-15
@@ -2133,7 +1623,7 @@ _source line 1361 · 2026-05-15T12:30:01.139547+00:00_
 
 ### Tool result
 
-_source line 1362 · 2026-05-15T12:30:01.140053+00:00_
+_source line 1350 · 2026-05-15T12:30:01.140053+00:00_
 
 total 208
 drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 11:27 .
@@ -2174,7 +1664,7 @@ drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 08:42 __pycache__
 
 ### Tool call
 
-_source line 1363 · 2026-05-15T12:30:03.305099+00:00_
+_source line 1351 · 2026-05-15T12:30:03.305099+00:00_
 
 called Read
 
@@ -2210,7 +1700,7 @@ called Read
 
 ### Tool result
 
-_source line 1364 · 2026-05-15T12:30:03.305573+00:00_
+_source line 1352 · 2026-05-15T12:30:03.305573+00:00_
 
 1	train_model,test_model,accuracy,mae,kendall_tau_b,mean_pairwise_auc
 2	Qwen-rewrite,Qwen-rewrite,0.4229,0.9836,0.5518,0.6214
@@ -2241,7 +1731,7 @@ _source line 1364 · 2026-05-15T12:30:03.305573+00:00_
 
 ### Tool call
 
-_source line 1365 · 2026-05-15T12:30:03.909008+00:00_
+_source line 1353 · 2026-05-15T12:30:03.909008+00:00_
 
 called Bash
 
@@ -2275,7 +1765,7 @@ called Bash
 
 ### Tool result
 
-_source line 1366 · 2026-05-15T12:30:04.060068+00:00_
+_source line 1354 · 2026-05-15T12:30:04.060068+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/gpu_optimization_report.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/gpu_optimization_report.txt
@@ -2298,7 +1788,7 @@ _source line 1366 · 2026-05-15T12:30:04.060068+00:00_
 
 ### Tool call
 
-_source line 1367 · 2026-05-15T12:30:05.465983+00:00_
+_source line 1355 · 2026-05-15T12:30:05.465983+00:00_
 
 called Bash
 
@@ -2332,7 +1822,7 @@ called Bash
 
 ### Tool result
 
-_source line 1368 · 2026-05-15T12:30:05.516698+00:00_
+_source line 1356 · 2026-05-15T12:30:05.516698+00:00_
 
 8:Output: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt
 72:    """Download C4 validation, truncate to max_tokens, save as depth_0.jsonl."""
@@ -2383,7 +1873,7 @@ _source line 1368 · 2026-05-15T12:30:05.516698+00:00_
 
 ### Tool call
 
-_source line 1369 · 2026-05-15T12:30:07.223936+00:00_
+_source line 1357 · 2026-05-15T12:30:07.223936+00:00_
 
 called Read
 
@@ -2419,7 +1909,7 @@ called Read
 
 ### Tool result
 
-_source line 1370 · 2026-05-15T12:30:07.274585+00:00_
+_source line 1358 · 2026-05-15T12:30:07.274585+00:00_
 
 1	"""EXP-A: Alternative Scorer Validation (Reviewer FR-2)
 2	
@@ -2504,7 +1994,7 @@ _source line 1370 · 2026-05-15T12:30:07.274585+00:00_
 
 ### Tool call
 
-_source line 1371 · 2026-05-15T12:30:11.339986+00:00_
+_source line 1359 · 2026-05-15T12:30:11.339986+00:00_
 
 called Bash
 
@@ -2538,7 +2028,7 @@ called Bash
 
 ### Tool result
 
-_source line 1372 · 2026-05-15T12:30:11.390616+00:00_
+_source line 1360 · 2026-05-15T12:30:11.390616+00:00_
 
 5:existing features.csv, retrain OBD-LightGBM, and compute K* / pairwise AUC.
 38:def load_jsonl(path: Path):
@@ -2572,7 +2062,7 @@ _source line 1372 · 2026-05-15T12:30:11.390616+00:00_
 
 ### Tool call
 
-_source line 1373 · 2026-05-15T12:30:12.947240+00:00_
+_source line 1361 · 2026-05-15T12:30:12.947240+00:00_
 
 called Read
 
@@ -2610,7 +2100,7 @@ called Read
 
 ### Tool result
 
-_source line 1374 · 2026-05-15T12:30:12.998017+00:00_
+_source line 1362 · 2026-05-15T12:30:12.998017+00:00_
 
 245	        torch_dtype=torch.float16,
 246	        device_map=args.device,
@@ -2680,7 +2170,7 @@ _source line 1374 · 2026-05-15T12:30:12.998017+00:00_
 
 ### Tool result
 
-_source line 1375 · 2026-05-15T12:30:15.457835+00:00_
+_source line 1363 · 2026-05-15T12:30:15.457835+00:00_
 
 Based on my comprehensive search of the codebase, here's what I found regarding DivEye and Binoculars:
 
@@ -2749,7 +2239,7 @@ The project uses **conceptual
 
 ### Tool call
 
-_source line 1376 · 2026-05-15T12:30:16.512211+00:00_
+_source line 1364 · 2026-05-15T12:30:16.512211+00:00_
 
 called Read
 
@@ -2785,7 +2275,7 @@ called Read
 
 ### Tool result
 
-_source line 1377 · 2026-05-15T12:30:16.562859+00:00_
+_source line 1365 · 2026-05-15T12:30:16.562859+00:00_
 
 1	"""
 2	exp-013: Cross-model transfer matrix for depth classifiers.
@@ -2864,7 +2354,7 @@ _source line 1377 · 2026-05-15T12:30:16.562859+00:00_
 
 ### Tool call
 
-_source line 1378 · 2026-05-15T12:30:19.512378+00:00_
+_source line 1366 · 2026-05-15T12:30:19.512378+00:00_
 
 called Bash
 
@@ -2898,7 +2388,7 @@ called Bash
 
 ### Tool result
 
-_source line 1379 · 2026-05-15T12:30:19.563034+00:00_
+_source line 1367 · 2026-05-15T12:30:19.563034+00:00_
 
 total 4.0K
 -rw-r--r-- 1 ubuntu ubuntu 2.3K May 13 06:19 exp005_4model_tau_matrix.json
@@ -2921,7 +2411,7 @@ total 4.0K
 
 ### Tool call
 
-_source line 1380 · 2026-05-15T12:30:22.328316+00:00_
+_source line 1368 · 2026-05-15T12:30:22.328316+00:00_
 
 called Bash
 
@@ -2955,7 +2445,7 @@ called Bash
 
 ### Tool result
 
-_source line 1381 · 2026-05-15T12:30:22.681253+00:00_
+_source line 1369 · 2026-05-15T12:30:22.681253+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/task_context/agent.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/task_context/reviewer.md
@@ -2989,7 +2479,7 @@ _source line 1381 · 2026-05-15T12:30:22.681253+00:00_
 
 ### Tool call
 
-_source line 1382 · 2026-05-15T12:30:24.136997+00:00_
+_source line 1370 · 2026-05-15T12:30:24.136997+00:00_
 
 called Read
 
@@ -3023,7 +2513,7 @@ called Read
 
 ### Tool result
 
-_source line 1383 · 2026-05-15T12:30:24.137508+00:00_
+_source line 1371 · 2026-05-15T12:30:24.137508+00:00_
 
 1	# exp-015 Neural Probe Script
 2	
@@ -3069,7 +2559,7 @@ _source line 1383 · 2026-05-15T12:30:24.137508+00:00_
 
 ### Tool call
 
-_source line 1384 · 2026-05-15T12:30:26.303992+00:00_
+_source line 1372 · 2026-05-15T12:30:26.303992+00:00_
 
 called Bash
 
@@ -3103,7 +2593,7 @@ called Bash
 
 ### Tool result
 
-_source line 1385 · 2026-05-15T12:30:26.354629+00:00_
+_source line 1373 · 2026-05-15T12:30:26.354629+00:00_
 
 (Bash completed with no output)
 
@@ -3125,7 +2615,7 @@ _source line 1385 · 2026-05-15T12:30:26.354629+00:00_
 
 ### Tool call
 
-_source line 1386 · 2026-05-15T12:30:28.665388+00:00_
+_source line 1374 · 2026-05-15T12:30:28.665388+00:00_
 
 called Bash
 
@@ -3159,7 +2649,7 @@ called Bash
 
 ### Tool result
 
-_source line 1387 · 2026-05-15T12:30:28.767153+00:00_
+_source line 1375 · 2026-05-15T12:30:28.767153+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp003_ablation.sh
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/run_exp_A.sh
@@ -3183,7 +2673,7 @@ _source line 1387 · 2026-05-15T12:30:28.767153+00:00_
 
 ### Tool call
 
-_source line 1388 · 2026-05-15T12:30:30.575063+00:00_
+_source line 1376 · 2026-05-15T12:30:30.575063+00:00_
 
 called Read
 
@@ -3217,7 +2707,7 @@ called Read
 
 ### Tool result
 
-_source line 1389 · 2026-05-15T12:30:30.575568+00:00_
+_source line 1377 · 2026-05-15T12:30:30.575568+00:00_
 
 1	#!/bin/bash
 2	set -e
@@ -3286,7 +2776,7 @@ _source line 1389 · 2026-05-15T12:30:30.575568+00:00_
 
 ### Tool result
 
-_source line 1390 · 2026-05-15T12:30:46.747500+00:00_
+_source line 1378 · 2026-05-15T12:30:46.747500+00:00_
 
 Perfect! Now I have a comprehensive understanding. Let me create a final summary by gathering all the information I've found.
 
@@ -3349,7 +2839,7 @@ Schema: `doc_id, depth, surp_mean, surp_std, surp_skew, surp_kurt, surp_d1_mean,
 
 ### Tool call
 
-_source line 1391 · 2026-05-15T12:31:54.632148+00:00_
+_source line 1379 · 2026-05-15T12:31:54.632148+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3391,7 +2881,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1392 · 2026-05-15T12:32:00.359010+00:00_
+_source line 1380 · 2026-05-15T12:32:00.359010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_012_prep_20260515T123155\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_012_prep_20260515T123155.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_012_prep_20260515T123155 started. Use get_worker_status('worker_code_exp_012_prep_20260515T123155') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3413,7 +2903,7 @@ _source line 1392 · 2026-05-15T12:32:00.359010+00:00_
 
 ### Tool call
 
-_source line 1393 · 2026-05-15T12:32:09.397588+00:00_
+_source line 1381 · 2026-05-15T12:32:09.397588+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3455,7 +2945,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1394 · 2026-05-15T12:32:09.749752+00:00_
+_source line 1382 · 2026-05-15T12:32:09.749752+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_012_binary_confidence\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:32:09.468Z\", \"updated_at\": \"2026-05-15T12:32:09.468Z\", \"spec\": {\"hypothesis\": \"Binary detector confidence (Binoculars/log-perplexity) 与 true depth 的 Spearman ρ 是否显著？如果 ρ 低，直接支撑 binary confidence ≠ depth estimation 论点\", \"server\": \"westc-26893\", \"data_path\": \"data/ + data_exp001_pythia/ + data_exp002_olmo/ + data_exp017_qwen_cont/\", \"data_count\": \"4×6×5000 = 120000 texts\", \"model_name\": \"Binoculars: observer+performer pair; Log-PPL: Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"note\": \"Queued after exp-004 7B completes. Code prepared and dry-run verified.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3451}}"}
 
@@ -3477,7 +2967,7 @@ _source line 1394 · 2026-05-15T12:32:09.749752+00:00_
 
 ### Tool call
 
-_source line 1395 · 2026-05-15T12:32:29.198270+00:00_
+_source line 1383 · 2026-05-15T12:32:29.198270+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3513,7 +3003,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1396 · 2026-05-15T12:32:30.403294+00:00_
+_source line 1384 · 2026-05-15T12:32:30.403294+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -3535,7 +3025,7 @@ _source line 1396 · 2026-05-15T12:32:30.403294+00:00_
 
 ### Assistant
 
-_source line 1397 · 2026-05-15T12:32:33.452659+00:00_
+_source line 1385 · 2026-05-15T12:32:33.452659+00:00_
 
 Worker 已派出准备 exp-012 代码。同时在 registry 中预创建 exp-012 条目。
 
@@ -3562,7 +3052,7 @@ Worker 已派出准备 exp-012 代码。同时在 registry 中预创建 exp-012 
 
 ### User
 
-_source line 1398 · 2026-05-15T12:32:34.243506+00:00_
+_source line 1386 · 2026-05-15T12:32:34.243506+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -3644,7 +3134,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1399 · 2026-05-15T12:33:28.323042+00:00_
+_source line 1387 · 2026-05-15T12:33:28.323042+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

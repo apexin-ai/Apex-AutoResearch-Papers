@@ -3136,7 +3136,7 @@ _source line 3705 · 2026-05-20T03:25:01.501672+00:00_
 
 ## Round 174
 
-14 recorded events
+12 recorded events
 
 
 ### User
@@ -3163,63 +3163,7 @@ Worker worker_analysis_confidence-margin-rebuttal_20260520T032853 已完成（st
 
 ### Tool call
 
-_source line 3707 · 2026-05-20T03:29:26.107926+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_confidence-margin-rebuttal_20260520T032853_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_confidence-margin-rebuttal_20260520T032853_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3708 · 2026-05-20T03:29:26.208724+00:00_
-
-File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/reviewer_0d633edb.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3709 · 2026-05-20T03:29:29.175181+00:00_
+_source line 3707 · 2026-05-20T03:29:29.175181+00:00_
 
 called Glob
 
@@ -3255,7 +3199,7 @@ called Glob
 
 ### Tool result
 
-_source line 3710 · 2026-05-20T03:29:29.225840+00:00_
+_source line 3708 · 2026-05-20T03:29:29.225840+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_confidence-margin-rebuttal_20260520T032853.log
 
@@ -3277,7 +3221,7 @@ _source line 3710 · 2026-05-20T03:29:29.225840+00:00_
 
 ### Tool call
 
-_source line 3711 · 2026-05-20T03:29:32.741130+00:00_
+_source line 3709 · 2026-05-20T03:29:32.741130+00:00_
 
 called Read
 
@@ -3311,7 +3255,7 @@ called Read
 
 ### Tool result
 
-_source line 3712 · 2026-05-20T03:29:32.792045+00:00_
+_source line 3710 · 2026-05-20T03:29:32.792045+00:00_
 
 1	Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
 2	{"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft","session_id":"30db6b97-ff1b-4faa-8cc9-a33aef2af250","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","ListMcpResourcesTool","Monitor","NotebookEdit","PushNotification","Read","ReadMcpResourceTool","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write","mcp__agent-ml-research__append_idea","mcp__agent-ml-research__detect_image","mcp__agent-ml-research__kill_job","mcp__agent-ml-research__read_project_file","mcp__agent-ml-research__read_registry","mcp__agent-ml-research__register_artifact","mcp__agent-ml-research__save_project_file","mcp__agent-ml-research__ssh_execute","mcp__agent-ml-research__ssh_read_only","mcp__agent-ml-research__update_registry"],"mcp_servers":[{"name":"agent-ml-research","status":"connected"}],"model":"claude-opus-4-6","permissionMode":"bypassPermissions","slash_commands":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api","clear","compact","context","heapdump","init","review","security-review","extra-usage","usage","insights","team-onboarding"],"apiKeySource":"none","claude_code_version":"2.1.126","output_style":"default","agents":["claude","Explore","general-purpose","Plan","statusline-setup"],"skills":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api"],"plugins":[],"analytics_disabled":false,"uuid":"c3ca89ff-c6f4-436f-8cda-9a75d30aee35","memory_paths":{"auto":"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"},"fast_mo
@@ -3335,7 +3279,7 @@ _source line 3712 · 2026-05-20T03:29:32.792045+00:00_
 
 ### Tool call
 
-_source line 3713 · 2026-05-20T03:29:37.560626+00:00_
+_source line 3711 · 2026-05-20T03:29:37.560626+00:00_
 
 called Read
 
@@ -3373,7 +3317,7 @@ called Read
 
 ### Tool result
 
-_source line 3714 · 2026-05-20T03:29:37.561134+00:00_
+_source line 3712 · 2026-05-20T03:29:37.561134+00:00_
 
 &lt;system-reminder>Warning: the file exists but is shorter than the provided offset (8). The file has 8 lines.&lt;/system-reminder>
 
@@ -3395,7 +3339,7 @@ _source line 3714 · 2026-05-20T03:29:37.561134+00:00_
 
 ### Tool call
 
-_source line 3715 · 2026-05-20T03:29:46.307827+00:00_
+_source line 3713 · 2026-05-20T03:29:46.307827+00:00_
 
 called ToolSearch
 
@@ -3431,7 +3375,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3716 · 2026-05-20T03:29:46.358443+00:00_
+_source line 3714 · 2026-05-20T03:29:46.358443+00:00_
 
 
 
@@ -3453,7 +3397,7 @@ _source line 3716 · 2026-05-20T03:29:46.358443+00:00_
 
 ### Tool call
 
-_source line 3717 · 2026-05-20T03:29:53.988809+00:00_
+_source line 3715 · 2026-05-20T03:29:53.988809+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3489,7 +3433,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3718 · 2026-05-20T03:29:57.853258+00:00_
+_source line 3716 · 2026-05-20T03:29:57.853258+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3511,7 +3455,7 @@ _source line 3718 · 2026-05-20T03:29:57.853258+00:00_
 
 ### Assistant
 
-_source line 3719 · 2026-05-20T03:30:00.193112+00:00_
+_source line 3717 · 2026-05-20T03:30:00.193112+00:00_
 
 已向 Director 报告。Worker 在初始化阶段即失败，无实质产出。该任务为 P2 rebuttal 储备，不影响当前论文状态。
 
@@ -3533,12 +3477,12 @@ _source line 3719 · 2026-05-20T03:30:00.193112+00:00_
 
 ## Round 175
 
-8 recorded events
+6 recorded events
 
 
 ### User
 
-_source line 3720 · 2026-05-20T03:33:35.346698+00:00_
+_source line 3718 · 2026-05-20T03:33:35.346698+00:00_
 
 [系统通知 — worker_done:worker_analysis_confidence-margin-rebuttal-v2_20260520T033050]:
 Worker worker_analysis_confidence-margin-rebuttal-v2_20260520T033050 已完成（status=done），请审查 Agent 的处理结果。
@@ -3560,65 +3504,7 @@ Worker worker_analysis_confidence-margin-rebuttal-v2_20260520T033050 已完成�
 
 ### Tool call
 
-_source line 3721 · 2026-05-20T03:33:40.951852+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_confidence-margin-rebuttal-v2_20260520T033050_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_confidence-margin-rebuttal-v2_20260520T033050_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3722 · 2026-05-20T03:33:41.002459+00:00_
-
-1	{
-2	  "raw": "分析完成。核心发现：\n\n**Borderline 假说被反转**——三个架构一致显示 hurt 样本（而非 helped 样本）集中在 decision boundary 附近：\n\n| Arch | Helped margin (mean) | Hurt margin (mean) | Cohen's d | p |\n|------|---------------------|--------------------|-----------|----|\n| GDN (h12-1) | 2.46 | 1.05 | 1.45 | 5.6e-100 |\n| RetNet (h3-1) | 2.48 | 1.29 | 1.39 | 5.0e-77 |\n| HGRN2 (h3-1) | 2.50 | 1.48 | 1.22 | 4.9e-63 |\n\n解读：\n- **Helped 样本**：pure model 以高 confidence 犯错（margin ~2.5）→ attention 纠正了\"自信的错误\"\n- **Hurt 样本**：pure model 勉强答对（margin ~1.0-1.5）→ attention 扰乱了 borderline-correct 的预测\n- 效应量极大（Cohen's d > 1.2），与之前 surface features/perplexity 无信号形成对比\n- **Rebuttal 价值**：attention 的 per-example 效应并非完全 opaque——confidence margin 是强预测信号，只是这个信号方向与直觉相反\n\n结果已存入 `artifacts/paper_data/confidence_margin_analysis.json` 并注册。"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3723 · 2026-05-20T03:33:52.381246+00:00_
+_source line 3719 · 2026-05-20T03:33:52.381246+00:00_
 
 called Read
 
@@ -3652,7 +3538,7 @@ called Read
 
 ### Tool result
 
-_source line 3724 · 2026-05-20T03:33:52.431917+00:00_
+_source line 3720 · 2026-05-20T03:33:52.431917+00:00_
 
 1	{
 2	  "analysis": "confidence_margin",
@@ -3719,7 +3605,7 @@ _source line 3724 · 2026-05-20T03:33:52.431917+00:00_
 
 ### Tool call
 
-_source line 3725 · 2026-05-20T03:35:12.535655+00:00_
+_source line 3721 · 2026-05-20T03:35:12.535655+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3755,7 +3641,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3726 · 2026-05-20T03:35:16.447147+00:00_
+_source line 3722 · 2026-05-20T03:35:16.447147+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3777,7 +3663,7 @@ _source line 3726 · 2026-05-20T03:35:16.447147+00:00_
 
 ### Assistant
 
-_source line 3727 · 2026-05-20T03:35:19.791196+00:00_
+_source line 3723 · 2026-05-20T03:35:19.791196+00:00_
 
 已向 Director 报告。核心问题：confidence margin 分析的跨类别对比（helped=pure-wrong vs hurt=pure-right）存在定义性混淆，Cohen's d 被膨胀。如要用于 rebuttal 需补做类内对照（hurt vs stayed-right, helped vs stayed-wrong）。
 
@@ -3804,7 +3690,7 @@ _source line 3727 · 2026-05-20T03:35:19.791196+00:00_
 
 ### User
 
-_source line 3728 · 2026-05-20T03:56:51.159013+00:00_
+_source line 3724 · 2026-05-20T03:56:51.159013+00:00_
 
 [系统通知 — worker_done:worker_analysis_confidence-margin-within-category_20260520T035123]:
 Worker worker_analysis_confidence-margin-within-category_20260520T035123 已完成（status=done），请审查 Agent 的处理结果。
@@ -3826,7 +3712,7 @@ Worker worker_analysis_confidence-margin-within-category_20260520T035123 已完�
 
 ### Tool call
 
-_source line 3729 · 2026-05-20T03:56:59.171809+00:00_
+_source line 3725 · 2026-05-20T03:56:59.171809+00:00_
 
 called Read
 
@@ -3860,7 +3746,7 @@ called Read
 
 ### Tool result
 
-_source line 3730 · 2026-05-20T03:56:59.222470+00:00_
+_source line 3726 · 2026-05-20T03:56:59.222470+00:00_
 
 1	{
 2	  "raw": "分析完成。结果摘要：\n\n**结论：`within_category_significant`** — 类内对照消除定义性混淆后，confidence margin 仍然显著预测 attention 效果。\n\n### Control 1: Pure-correct 内部（hurt vs stayed-right）\n\n| 架构 | hurt n | stayed-right n | hurt mean |loglik| | stayed-right mean |loglik| | Cohen's d | p |\n|------|--------|----------------|-----------|-----------|-----------|---|\n| GDN | 519 | 2281 | 1.049 | 0.576 | 0.87 | 1.4e-66 |\n| RetNet | 497 | 2169 | 1.293 | 0.785 | 0.83 | 5.6e-60 |\n| HGRN2 | 392 | 2102 | 1.481 | 0.899 | 0.92 | 8.4e-55 |\n\nHurt 样本的 |loglik| 显著更高（target 概率更低 = 勉强答对），确认弱正确答案更容易被 attention 翻转。\n\n### Control 2: Pure-wrong 内部（helped vs stayed-wrong）\n\n| 架构 | helped n | stayed-wrong n | helped mean |loglik| | stayed-wrong mean |loglik| | Cohen's d | p |\n|------|----------|----------------|-------------|-------------|-----------|---|\n| GDN | 480 | 1873 | 2.459 | 4.189 | -0.75 | 1.9e-67 |\n| RetNet | 420 | 2067 | 2.478 | 4.103 | -0.73 | 1.8e-60 |\n| HGRN2 | 548 | 2111 | 2.500 | 4.112 | -0.77 | 1.1e-81 |\n\nHelped 样本的 |loglik| 显著更低（target 概率更高 = 差一点就对），确认 near-miss 错误答案更容易被 attention 拯救。\n\n两个对照组在 3 个架构上方向完全一致、效应量大（|d| = 0.73–0.92），原始 across-category 效应不是定义性 artifact。"
@@ -3884,7 +3770,7 @@ _source line 3730 · 2026-05-20T03:56:59.222470+00:00_
 
 ### Tool call
 
-_source line 3731 · 2026-05-20T03:57:38.270719+00:00_
+_source line 3727 · 2026-05-20T03:57:38.270719+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3920,7 +3806,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3732 · 2026-05-20T03:57:41.886822+00:00_
+_source line 3728 · 2026-05-20T03:57:41.886822+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3942,7 +3828,7 @@ _source line 3732 · 2026-05-20T03:57:41.886822+00:00_
 
 ### Assistant
 
-_source line 3733 · 2026-05-20T03:57:43.602780+00:00_
+_source line 3729 · 2026-05-20T03:57:43.602780+00:00_
 
 样本总数验证：
 
@@ -3975,7 +3861,7 @@ _source line 3733 · 2026-05-20T03:57:43.602780+00:00_
 
 ### User
 
-_source line 3734 · 2026-05-20T04:30:36.882807+00:00_
+_source line 3730 · 2026-05-20T04:30:36.882807+00:00_
 
 [System 触发审查]:
 **决策复审请求：Confidence margin 类内对照结果是否应写入论文？**
@@ -4023,7 +3909,7 @@ D012 决定将 confidence margin 分析保留为 rebuttal 储备。但结果强�
 
 ### Tool call
 
-_source line 3735 · 2026-05-20T04:31:20.967757+00:00_
+_source line 3731 · 2026-05-20T04:31:20.967757+00:00_
 
 called Read
 
@@ -4061,7 +3947,7 @@ called Read
 
 ### Tool result
 
-_source line 3736 · 2026-05-20T04:31:21.018543+00:00_
+_source line 3732 · 2026-05-20T04:31:21.018543+00:00_
 
 50	
 51	\subsection{Per-Example Divergence}\label{ssec:per_example}
@@ -4091,7 +3977,7 @@ _source line 3736 · 2026-05-20T04:31:21.018543+00:00_
 
 ### Tool call
 
-_source line 3737 · 2026-05-20T04:32:18.189251+00:00_
+_source line 3733 · 2026-05-20T04:32:18.189251+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4127,7 +4013,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3738 · 2026-05-20T04:32:21.908799+00:00_
+_source line 3734 · 2026-05-20T04:32:21.908799+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4149,7 +4035,7 @@ _source line 3738 · 2026-05-20T04:32:21.908799+00:00_
 
 ### Assistant
 
-_source line 3739 · 2026-05-20T04:32:26.478977+00:00_
+_source line 3735 · 2026-05-20T04:32:26.478977+00:00_
 
 已提交评估。核心建议：如果提交窗口仍开放，用一句主文 + Appendix I 写入，消除审稿人可轻易发现的分析漏洞。如果已锁定，保留为 rebuttal 首选弹药。
 
@@ -4176,7 +4062,7 @@ _source line 3739 · 2026-05-20T04:32:26.478977+00:00_
 
 ### User
 
-_source line 3740 · 2026-05-20T04:36:46.210420+00:00_
+_source line 3736 · 2026-05-20T04:36:46.210420+00:00_
 
 [系统通知 — worker_done:worker_paper_appendix-i-confidence-margin_20260520T043352]:
 Worker worker_paper_appendix-i-confidence-margin_20260520T043352 已完成（status=done），请审查 Agent 的处理结果。
@@ -4198,7 +4084,7 @@ Worker worker_paper_appendix-i-confidence-margin_20260520T043352 已完成（sta
 
 ### Tool call
 
-_source line 3741 · 2026-05-20T04:36:53.630673+00:00_
+_source line 3737 · 2026-05-20T04:36:53.630673+00:00_
 
 called Read
 
@@ -4232,7 +4118,7 @@ called Read
 
 ### Tool result
 
-_source line 3742 · 2026-05-20T04:36:53.631126+00:00_
+_source line 3738 · 2026-05-20T04:36:53.631126+00:00_
 
 1	{
 2	  "raw": "Conclusion 在第 8 页结束，主文 ≤ 8 页，符合限制。\n\n编译验证完成：\n- 主文 8 页（§1-§5 + Limitations + Ethics），符合 EMNLP 8 页限制\n- References 第 9 页起，Appendix 第 10 页起\n- 总计 14 页\n- 无 undefined reference（`app:confidence_margin`、`tab:cm_c1`、`tab:cm_c2` 均正确解析）\n- 无编译 error"
@@ -4256,7 +4142,7 @@ _source line 3742 · 2026-05-20T04:36:53.631126+00:00_
 
 ### Tool call
 
-_source line 3743 · 2026-05-20T04:36:56.693362+00:00_
+_source line 3739 · 2026-05-20T04:36:56.693362+00:00_
 
 called Read
 
@@ -4294,7 +4180,7 @@ called Read
 
 ### Tool result
 
-_source line 3744 · 2026-05-20T04:36:57.546782+00:00_
+_source line 3740 · 2026-05-20T04:36:57.546782+00:00_
 
 55	Table~\ref{tab:per_example} reports the results. Each architecture displays a distinct profile of per-example changes. GDN experiences a net loss of 153 examples (462 helped, 615 hurt), RetNet a net loss of 69 (426 helped, 495 hurt), and HGRN2 a net gain of 153 (548 helped, 395 hurt). The directional asymmetry is notable: HGRN2 is the only architecture for which attention produces a net benefit at the per-example level, while GDN and RetNet both lose more examples than they gain. Pairwise Jaccard similarity between any two architectures' affected sets is low: mean pairwise $\bar{J}$ reaches at most $0.104$ for helped sets and $0.096$ for hurt sets, indicating that approximately 90\% of each union set is non-shared. While overlap exceeds the independence baseline ($J_{\text{null}} \approx 0.05$), consistent with the structured cross-architecture patterns detected by the Kruskal--Wallis test below, the dominant pattern remains architecture-specific divergence. Permutation tests confirm that all pairwise Jaccard indices significantly exceed the independence baseline ($z > 5.9$, $p < .0001$; Appendix~\ref{app:jaccard_permutation}).
 56	
@@ -4319,7 +4205,7 @@ _source line 3744 · 2026-05-20T04:36:57.546782+00:00_
 
 ### Tool call
 
-_source line 3745 · 2026-05-20T04:36:57.748802+00:00_
+_source line 3741 · 2026-05-20T04:36:57.748802+00:00_
 
 called Read
 
@@ -4357,7 +4243,7 @@ called Read
 
 ### Tool result
 
-_source line 3746 · 2026-05-20T04:36:57.799470+00:00_
+_source line 3742 · 2026-05-20T04:36:57.799470+00:00_
 
 275	\end{table}
 276	
@@ -4398,7 +4284,7 @@ _source line 3746 · 2026-05-20T04:36:57.799470+00:00_
 
 ### Tool call
 
-_source line 3747 · 2026-05-20T04:37:47.082289+00:00_
+_source line 3743 · 2026-05-20T04:37:47.082289+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4434,7 +4320,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3748 · 2026-05-20T04:37:50.748280+00:00_
+_source line 3744 · 2026-05-20T04:37:50.748280+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4456,7 +4342,7 @@ _source line 3748 · 2026-05-20T04:37:50.748280+00:00_
 
 ### Assistant
 
-_source line 3749 · 2026-05-20T04:37:52.521455+00:00_
+_source line 3745 · 2026-05-20T04:37:52.521455+00:00_
 
 数据与源文件交叉验证完成。发现一个数值错误。
 
@@ -4483,7 +4369,7 @@ _source line 3749 · 2026-05-20T04:37:52.521455+00:00_
 
 ### User
 
-_source line 3750 · 2026-05-20T04:39:46.982184+00:00_
+_source line 3746 · 2026-05-20T04:39:46.982184+00:00_
 
 [系统通知 — worker_done:worker_paper_fix-appendix-i-overfull_20260520T043817]:
 Worker worker_paper_fix-appendix-i-overfull_20260520T043817 已完成（status=done），请审查 Agent 的处理结果。
@@ -4505,7 +4391,7 @@ Worker worker_paper_fix-appendix-i-overfull_20260520T043817 已完成（status=d
 
 ### Tool call
 
-_source line 3751 · 2026-05-20T04:39:54.801806+00:00_
+_source line 3747 · 2026-05-20T04:39:54.801806+00:00_
 
 called Read
 
@@ -4539,7 +4425,7 @@ called Read
 
 ### Tool result
 
-_source line 3752 · 2026-05-20T04:39:54.802222+00:00_
+_source line 3748 · 2026-05-20T04:39:54.802222+00:00_
 
 1	{
 2	  "raw": "All checks pass:\n\n- **0 overfull hbox warnings** in the entire document (both tables fixed)\n- **No undefined references**\n- **14 pages total** — main text stays within limits (appendix pages don't count toward the 8-page limit)"
@@ -4563,7 +4449,7 @@ _source line 3752 · 2026-05-20T04:39:54.802222+00:00_
 
 ### Tool call
 
-_source line 3753 · 2026-05-20T04:39:58.065916+00:00_
+_source line 3749 · 2026-05-20T04:39:58.065916+00:00_
 
 called Grep
 
@@ -4601,7 +4487,7 @@ called Grep
 
 ### Tool result
 
-_source line 3754 · 2026-05-20T04:39:58.116557+00:00_
+_source line 3750 · 2026-05-20T04:39:58.116557+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:57:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:288:This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.
@@ -4624,7 +4510,7 @@ _source line 3754 · 2026-05-20T04:39:58.116557+00:00_
 
 ### Tool call
 
-_source line 3755 · 2026-05-20T04:40:00.678471+00:00_
+_source line 3751 · 2026-05-20T04:40:00.678471+00:00_
 
 called Grep
 
@@ -4662,7 +4548,7 @@ called Grep
 
 ### Tool result
 
-_source line 3756 · 2026-05-20T04:40:00.729095+00:00_
+_source line 3752 · 2026-05-20T04:40:00.729095+00:00_
 
 No matches found
 
@@ -4684,7 +4570,7 @@ No matches found
 
 ### Assistant
 
-_source line 3757 · 2026-05-20T04:40:04.025581+00:00_
+_source line 3753 · 2026-05-20T04:40:04.025581+00:00_
 
 Appendix 已改为 `$p < 10^{-54}$` ✓，experiments.tex 中不再有 `10^{-55}` ✓。p-value bound 错误已修正。overfull hbox 也已修复。无需进一步操作。
 
@@ -4711,7 +4597,7 @@ Appendix 已改为 `$p < 10^{-54}$` ✓，experiments.tex 中不再有 `10^{-55}
 
 ### User
 
-_source line 3758 · 2026-05-20T04:46:08.311916+00:00_
+_source line 3754 · 2026-05-20T04:46:08.311916+00:00_
 
 [System 触发审查]:
 审稿报告独立审查请求 — Overall 3.0 (Findings)
@@ -4844,7 +4730,7 @@ VW-3 (Page 14半空): 低优先级，内容自然增长会填充。
 
 ### Tool call
 
-_source line 3759 · 2026-05-20T04:48:28.870414+00:00_
+_source line 3755 · 2026-05-20T04:48:28.870414+00:00_
 
 called Agent
 
@@ -4882,7 +4768,7 @@ called Agent
 
 ### Tool call
 
-_source line 3760 · 2026-05-20T04:48:29.172053+00:00_
+_source line 3756 · 2026-05-20T04:48:29.172053+00:00_
 
 called Read
 
@@ -4916,7 +4802,7 @@ called Read
 
 ### Tool result
 
-_source line 3761 · 2026-05-20T04:48:29.272798+00:00_
+_source line 3757 · 2026-05-20T04:48:29.272798+00:00_
 
 1	attention_ratio,cross_arch_std,jaccard_helped,jaccard_hurt,net_asymmetry
 2	0.0000,0.024047,,,
@@ -4944,7 +4830,7 @@ _source line 3761 · 2026-05-20T04:48:29.272798+00:00_
 
 ### Tool call
 
-_source line 3762 · 2026-05-20T04:48:30.577940+00:00_
+_source line 3758 · 2026-05-20T04:48:30.577940+00:00_
 
 called Read
 
@@ -4978,7 +4864,7 @@ called Read
 
 ### Tool result
 
-_source line 3763 · 2026-05-20T04:48:30.628704+00:00_
+_source line 3759 · 2026-05-20T04:48:30.628704+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -5057,7 +4943,7 @@ _source line 3763 · 2026-05-20T04:48:30.628704+00:00_
 
 ### Tool call
 
-_source line 3764 · 2026-05-20T04:48:34.343434+00:00_
+_source line 3760 · 2026-05-20T04:48:34.343434+00:00_
 
 called Grep
 
@@ -5095,7 +4981,7 @@ called Grep
 
 ### Tool result
 
-_source line 3765 · 2026-05-20T04:48:34.544506+00:00_
+_source line 3761 · 2026-05-20T04:48:34.544506+00:00_
 
 No matches found
 
@@ -5117,7 +5003,7 @@ No matches found
 
 ### Tool call
 
-_source line 3766 · 2026-05-20T04:48:34.795732+00:00_
+_source line 3762 · 2026-05-20T04:48:34.795732+00:00_
 
 called Grep
 
@@ -5155,7 +5041,7 @@ called Grep
 
 ### Tool result
 
-_source line 3767 · 2026-05-20T04:48:34.846275+00:00_
+_source line 3763 · 2026-05-20T04:48:34.846275+00:00_
 
 No matches found
 
@@ -5177,7 +5063,7 @@ No matches found
 
 ### Tool result
 
-_source line 3768 · 2026-05-20T04:48:40.366585+00:00_
+_source line 3764 · 2026-05-20T04:48:40.366585+00:00_
 
 Based on my search of the references.bib file, here are my findings:
 
@@ -5228,7 +5114,7 @@ The file contains 247 lines and is organized into 6 sections:
 
 ### Tool call
 
-_source line 3769 · 2026-05-20T04:48:44.682462+00:00_
+_source line 3765 · 2026-05-20T04:48:44.682462+00:00_
 
 called Read
 
@@ -5262,7 +5148,7 @@ called Read
 
 ### Tool result
 
-_source line 3770 · 2026-05-20T04:48:44.733156+00:00_
+_source line 3766 · 2026-05-20T04:48:44.733156+00:00_
 
 1	arch,helped_count,hurt_count,net_effect,pairwise_jaccard_helped,pairwise_jaccard_hurt
 2	GDN,462,615,-153,0.096,0.096
@@ -5288,7 +5174,7 @@ _source line 3770 · 2026-05-20T04:48:44.733156+00:00_
 
 ### Tool call
 
-_source line 3771 · 2026-05-20T04:49:05.331282+00:00_
+_source line 3767 · 2026-05-20T04:49:05.331282+00:00_
 
 called Grep
 
@@ -5326,7 +5212,7 @@ called Grep
 
 ### Tool result
 
-_source line 3772 · 2026-05-20T04:49:05.382992+00:00_
+_source line 3768 · 2026-05-20T04:49:05.382992+00:00_
 
 Found 79 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_reports/round_1.md
@@ -5364,7 +5250,7 @@ Found 79 files
 
 ### Tool call
 
-_source line 3773 · 2026-05-20T04:49:07.591765+00:00_
+_source line 3769 · 2026-05-20T04:49:07.591765+00:00_
 
 called ToolSearch
 
@@ -5400,7 +5286,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3774 · 2026-05-20T04:49:07.642342+00:00_
+_source line 3770 · 2026-05-20T04:49:07.642342+00:00_
 
 
 
@@ -5422,7 +5308,7 @@ _source line 3774 · 2026-05-20T04:49:07.642342+00:00_
 
 ### Tool call
 
-_source line 3775 · 2026-05-20T04:49:10.904930+00:00_
+_source line 3771 · 2026-05-20T04:49:10.904930+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5458,7 +5344,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3776 · 2026-05-20T04:49:10.955670+00:00_
+_source line 3772 · 2026-05-20T04:49:10.955670+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -5480,7 +5366,7 @@ _source line 3776 · 2026-05-20T04:49:10.955670+00:00_
 
 ### Tool call
 
-_source line 3777 · 2026-05-20T04:49:10.956118+00:00_
+_source line 3773 · 2026-05-20T04:49:10.956118+00:00_
 
 called ToolSearch
 
@@ -5516,7 +5402,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3778 · 2026-05-20T04:49:11.056782+00:00_
+_source line 3774 · 2026-05-20T04:49:11.056782+00:00_
 
 
 
@@ -5538,7 +5424,7 @@ _source line 3778 · 2026-05-20T04:49:11.056782+00:00_
 
 ### Tool call
 
-_source line 3779 · 2026-05-20T04:49:13.516557+00:00_
+_source line 3775 · 2026-05-20T04:49:13.516557+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5574,7 +5460,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3780 · 2026-05-20T04:49:14.872143+00:00_
+_source line 3776 · 2026-05-20T04:49:14.872143+00:00_
 
 called WebSearch
 
@@ -5608,7 +5494,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 3781 · 2026-05-20T04:49:15.274423+00:00_
+_source line 3777 · 2026-05-20T04:49:15.274423+00:00_
 
 called WebSearch
 
@@ -5642,7 +5528,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 3782 · 2026-05-20T04:49:15.475650+00:00_
+_source line 3778 · 2026-05-20T04:49:15.475650+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/entrainment_gated_ft/attention_analysis_summary.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.96}}"}
 
@@ -5664,7 +5550,7 @@ _source line 3782 · 2026-05-20T04:49:15.475650+00:00_
 
 ### Tool result
 
-_source line 3783 · 2026-05-20T04:49:21.064006+00:00_
+_source line 3779 · 2026-05-20T04:49:21.064006+00:00_
 
 Web search results for query: "Watson-Daniels 2023 "predictive multiplicity" probabilistic classification"
 
@@ -5695,7 +5581,7 @@ The paper presents a framework for measuring predictive multiplicity in probabil
 
 ### Tool result
 
-_source line 3784 · 2026-05-20T04:49:23.372586+00:00_
+_source line 3780 · 2026-05-20T04:49:23.372586+00:00_
 
 Web search results for query: "Basu 2025 "When Does Content-Based Routing Work" hybrid architecture paper"
 
@@ -5733,7 +5619,7 @@ REMINDER: You MUST include the sou
 
 ### Tool call
 
-_source line 3785 · 2026-05-20T04:49:25.982658+00:00_
+_source line 3781 · 2026-05-20T04:49:25.982658+00:00_
 
 called WebSearch
 
@@ -5767,7 +5653,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 3786 · 2026-05-20T04:49:26.986595+00:00_
+_source line 3782 · 2026-05-20T04:49:26.986595+00:00_
 
 called WebSearch
 
@@ -5801,7 +5687,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 3787 · 2026-05-20T04:49:28.393380+00:00_
+_source line 3783 · 2026-05-20T04:49:28.393380+00:00_
 
 called WebSearch
 
@@ -5835,7 +5721,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 3788 · 2026-05-20T04:49:29.648273+00:00_
+_source line 3784 · 2026-05-20T04:49:29.648273+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5871,7 +5757,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3789 · 2026-05-20T04:49:31.756275+00:00_
+_source line 3785 · 2026-05-20T04:49:31.756275+00:00_
 
 Web search results for query: "Marx 2020 "Predictive Multiplicity in Classification" ICML"
 
@@ -5904,7 +5790,7 @@ They apply their tools to measure
 
 ### Tool result
 
-_source line 3790 · 2026-05-20T04:49:32.710213+00:00_
+_source line 3786 · 2026-05-20T04:49:32.710213+00:00_
 
 Web search results for query: "Hsu Calmon 2022 "Rashomon Capacity" predictive multiplicity metric NeurIPS"
 
@@ -5935,7 +5821,7 @@ The paper addresses predictive multiplicity, which occurs when classification mo
 
 ### Tool result
 
-_source line 3791 · 2026-05-20T04:49:35.019248+00:00_
+_source line 3787 · 2026-05-20T04:49:35.019248+00:00_
 
 Web search results for query: "Waleffe 2024 "empirical study Mamba-based language models" hybrid architecture"
 
@@ -5967,7 +5853,7 @@ While pure SSMs match or exceed Transformers on many tasks, they lag behind Tran
 
 ### Tool result
 
-_source line 3792 · 2026-05-20T04:49:35.772501+00:00_
+_source line 3788 · 2026-05-20T04:49:35.772501+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/attention_weights/gdn_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/retnet_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
 
@@ -5989,7 +5875,7 @@ _source line 3792 · 2026-05-20T04:49:35.772501+00:00_
 
 ### Tool call
 
-_source line 3793 · 2026-05-20T04:49:38.682805+00:00_
+_source line 3789 · 2026-05-20T04:49:38.682805+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6025,7 +5911,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3794 · 2026-05-20T04:49:39.436245+00:00_
+_source line 3790 · 2026-05-20T04:49:39.436245+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"arch,layer_idx,group,mean_entropy,std_entropy,mean_max_attn_val,mean_last_5_mass,mean_first_5_mass,n_samples\\ngdn,2,helped,4.394559720700437,0.184508986419178,0.02348189411402143,0.06365099592029527,0.06523030915915422,462\\ngdn,2,hurt,4.393485515219409,0.1727964105887409,0.02317359845690629,0.06350282408903742,0.06488011087730099,615\\ngdn,2,neutral,4.396558930649549,0.18311196131360752,0.02355249780366313,0.0633988200120618,0.06527310989166939,4076\\ngdn,5,helped,3.6010646028927975,0.5941786159657946,0.1736243652732684,0.0710206766045728,0.18008284073562897,462\\ngdn,5,hurt,3.5860152378814614,0.6033959870837692,0.1779084962308104,0.06725097712971793,0.18640450823832516,615\\ngdn,5,neutral,3.608466786807458,0.5792849528180212,0.1738761546568302,0.0700065276623117,0.18383864558067908,4076\\ngdn,8,helped,1.847617606491302,0.9279531434563245,0.6161602994999587,0.04035449999063333,0.6100398291699141,462\\ngdn,8,hurt,1.8399339334456235,0.933983785537619,0.6196896011252108,0.04062491158591411,0.6149467191957051,615\\ngdn,8,neutral,1.8086962416384555,0.9302392247687187,0.6289283918690141,0.041442675016453705,0.6247455482492251,4076\\ngdn,11,helped,2.018211780692495,0.9586334723018645,0.5488524477126568,0.04985507262902938,0.5085614812404466,462\\ngdn,11,hurt,2.0625331004021494,0.9526942798222408,0.5392928333301854,0.049914335975881796,0.5024391093769603,615\\ngdn,11,neutral,2.008804778372003,0.9591878979731151,0.5525425769128426,0.05290279224109665,0.5187224356641961,4076\\ngdn,14,helped,2.0560244326443198,0.9449408769367733,0.535328987937469,0.038051298101709104,0.47626881646095554,462\\ngdn,14,hurt,2.039870152134889,0.9460910958085309,0.5407862576326673,0.03787666694029365,0.4811960835078417,615\\ngdn,14,neutral,2.0122246728610294,0.947085138005666,0.5499578859556856,0.039313301731492396,0.4956166349566164,4076\\ngdn,17,helped,1.6291024885023504,0.9986151461090979,0.641537528360581,0.05009599848359446,0.6122550962
 …[truncated 6338 chars]
@@ -6048,7 +5934,7 @@ _source line 3794 · 2026-05-20T04:49:39.436245+00:00_
 
 ### Tool call
 
-_source line 3795 · 2026-05-20T04:51:19.652888+00:00_
+_source line 3791 · 2026-05-20T04:51:19.652888+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6084,7 +5970,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3796 · 2026-05-20T04:51:23.215851+00:00_
+_source line 3792 · 2026-05-20T04:51:23.215851+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6106,7 +5992,7 @@ _source line 3796 · 2026-05-20T04:51:23.215851+00:00_
 
 ### Assistant
 
-_source line 3797 · 2026-05-20T04:51:24.921206+00:00_
+_source line 3793 · 2026-05-20T04:51:24.921206+00:00_
 
 所有验证完成。现在提交综合审查。
 
@@ -6133,7 +6019,7 @@ _source line 3797 · 2026-05-20T04:51:24.921206+00:00_
 
 ### User
 
-_source line 3798 · 2026-05-20T04:58:51.486754+00:00_
+_source line 3794 · 2026-05-20T04:58:51.486754+00:00_
 
 [系统通知 — worker_done:worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441]:
 Worker worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441 已完成（status=done），请审查 Agent 的处理结果。
@@ -6155,7 +6041,7 @@ Worker worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441 已完成（
 
 ### Tool call
 
-_source line 3799 · 2026-05-20T04:59:00.186936+00:00_
+_source line 3795 · 2026-05-20T04:59:00.186936+00:00_
 
 called Read
 
@@ -6189,7 +6075,7 @@ called Read
 
 ### Tool result
 
-_source line 3800 · 2026-05-20T04:59:00.187589+00:00_
+_source line 3796 · 2026-05-20T04:59:00.187589+00:00_
 
 1	{
 2	  "raw": "分析完成。核心结果：\n\n**Cross-arch σ（LAMBADA accuracy，RetNet vs HGRN2）**\n\n| Ratio | RetNet | HGRN2 | σ |\n|-------|--------|-------|---|\n| pure | 0.5166 | 0.4842 | **0.0162** |\n| h24-1 | 0.5152 | 0.5003 | 0.0075 |\n| h12-1 | 0.5071 | 0.5030 | **0.0020** |\n| h6-1 | 0.4972 | 0.5088 | 0.0058 |\n| h3-1 | 0.5032 | 0.5139 | 0.0053 |\n\nσ 非严格单调（h12-1 处达最小值 0.002 后轻微回弹），但 pure→h24-1→h12-1 前三步单调递减，且所有 hybrid σ ≤ 0.0075，较 pure 的 0.0162 至少降 54%。Spearman ρ = -0.7。\n\n**Per-example Jaccard（RetNet-HGRN2）**\n\n所有 4 个 hybrid ratio 的 helped/hurt Jaccard 均在 0.085-0.108 范围内浮动（helped range = 0.022, hurt range = 0.010），确认 saturation。\n\n**结论：`decoupling_holds_without_GDN`** — 排除 GDN 后，两个信号（σ 收敛 + Jaccard 饱和）均成立。对 MF-3（GDN confound）攻击面的最强回应：decoupling 不依赖有 16-head confound 的 GDN。\n\n唯一需注意的是 σ 非完美单调（论文中可表述为 \"converges\" 而非 \"monotonically decreases\"），但趋势清晰。"
@@ -6213,7 +6099,7 @@ _source line 3800 · 2026-05-20T04:59:00.187589+00:00_
 
 ### Tool call
 
-_source line 3801 · 2026-05-20T04:59:32.586094+00:00_
+_source line 3797 · 2026-05-20T04:59:32.586094+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6249,7 +6135,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3802 · 2026-05-20T04:59:36.204153+00:00_
+_source line 3798 · 2026-05-20T04:59:36.204153+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6271,7 +6157,7 @@ _source line 3802 · 2026-05-20T04:59:36.204153+00:00_
 
 ### Assistant
 
-_source line 3803 · 2026-05-20T04:59:38.301617+00:00_
+_source line 3799 · 2026-05-20T04:59:38.301617+00:00_
 
 数据交叉验证——检查个别精度值。
 
@@ -6303,7 +6189,7 @@ Jaccard 参照：null permutation 结果中 RetNet-HGRN2 at h3-1 helped=0.108, h
 
 ### User
 
-_source line 3804 · 2026-05-20T05:00:21.903384+00:00_
+_source line 3800 · 2026-05-20T05:00:21.903384+00:00_
 
 [系统通知 — worker_done:worker_analysis_jaccard-upper-bound_20260520T045417]:
 Worker worker_analysis_jaccard-upper-bound_20260520T045417 已完成（status=done），请审查 Agent 的处理结果。
@@ -6325,7 +6211,7 @@ Worker worker_analysis_jaccard-upper-bound_20260520T045417 已完成（status=do
 
 ### Tool call
 
-_source line 3805 · 2026-05-20T05:00:28.560065+00:00_
+_source line 3801 · 2026-05-20T05:00:28.560065+00:00_
 
 called Read
 
@@ -6359,7 +6245,7 @@ called Read
 
 ### Tool result
 
-_source line 3806 · 2026-05-20T05:00:28.610688+00:00_
+_source line 3802 · 2026-05-20T05:00:28.610688+00:00_
 
 1	{
 2	  "raw": "完成。核心结果：\n\n| 指标 | Helped | Hurt |\n|------|--------|------|\n| **J_obs 范围** | 0.086–0.108 | 0.070–0.116 |\n| **J_max 范围** | 0.777–0.988 | 0.642–0.930 |\n| **J_null 范围** | 0.042–0.050 | 0.043–0.056 |\n| **Normalized ES 范围** | [0.047, 0.081] | [0.031, 0.077] |\n| **Mean J_obs/J_max** | — | 11.1% |\n\n**Saturation trend**（mean norm_ES by ratio）:\n- Helped: 0.0518 → 0.0573 → 0.0596 → 0.0658（单调递增，CV=0.086）\n- Hurt: 0.0512 → 0.0406 → 0.0680 → 0.0617（非单调，CV=0.188）\n\n**J_null 验证**：analytical 与 10k permutation 差异 < 0.0001，验证通过。\n\n**关键论点**：J_obs ~0.09 看似低，但 J_max 受集合大小不对称约束（平均仅 ~0.85），J_null ~0.05。Normalized ES 在所有 ratio 上一致高于 chance，helped set 的 norm_ES 随 attention ratio 单调上升——floor effect 是几何天花板的产物，非信号缺失。"
@@ -6383,7 +6269,7 @@ _source line 3806 · 2026-05-20T05:00:28.610688+00:00_
 
 ### Tool call
 
-_source line 3807 · 2026-05-20T05:01:02.353758+00:00_
+_source line 3803 · 2026-05-20T05:01:02.353758+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6419,7 +6305,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3808 · 2026-05-20T05:01:06.446303+00:00_
+_source line 3804 · 2026-05-20T05:01:06.446303+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6441,7 +6327,7 @@ _source line 3808 · 2026-05-20T05:01:06.446303+00:00_
 
 ### Assistant
 
-_source line 3809 · 2026-05-20T05:01:09.308318+00:00_
+_source line 3805 · 2026-05-20T05:01:09.308318+00:00_
 
 结果与我的独立计算一致。验证关键数字。
 
@@ -6474,7 +6360,7 @@ J_null: worker 报告 0.042-0.050 (helped)，与 null permutation test (J_null�
 
 ### User
 
-_source line 3810 · 2026-05-20T05:24:02.957218+00:00_
+_source line 3806 · 2026-05-20T05:24:02.957218+00:00_
 
 [System 触发审查]:
 审稿回应修改后论文快速一致性检查
@@ -6509,7 +6395,7 @@ _source line 3810 · 2026-05-20T05:24:02.957218+00:00_
 
 ### Tool call
 
-_source line 3811 · 2026-05-20T05:24:10.195706+00:00_
+_source line 3807 · 2026-05-20T05:24:10.195706+00:00_
 
 called Read
 
@@ -6543,7 +6429,7 @@ called Read
 
 ### Tool result
 
-_source line 3812 · 2026-05-20T05:24:10.998717+00:00_
+_source line 3808 · 2026-05-20T05:24:10.998717+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -6574,7 +6460,7 @@ _source line 3812 · 2026-05-20T05:24:10.998717+00:00_
 
 ### Tool call
 
-_source line 3813 · 2026-05-20T05:24:11.149666+00:00_
+_source line 3809 · 2026-05-20T05:24:11.149666+00:00_
 
 called Read
 
@@ -6608,7 +6494,7 @@ called Read
 
 ### Tool result
 
-_source line 3814 · 2026-05-20T05:24:11.552936+00:00_
+_source line 3810 · 2026-05-20T05:24:11.552936+00:00_
 
 1	\section{Introduction}
 2	
@@ -6635,7 +6521,7 @@ _source line 3814 · 2026-05-20T05:24:11.552936+00:00_
 
 ### Tool call
 
-_source line 3815 · 2026-05-20T05:24:11.553490+00:00_
+_source line 3811 · 2026-05-20T05:24:11.553490+00:00_
 
 called Read
 
@@ -6669,7 +6555,7 @@ called Read
 
 ### Tool result
 
-_source line 3816 · 2026-05-20T05:24:11.654295+00:00_
+_source line 3812 · 2026-05-20T05:24:11.654295+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -6704,7 +6590,7 @@ _source line 3816 · 2026-05-20T05:24:11.654295+00:00_
 
 ### Tool call
 
-_source line 3817 · 2026-05-20T05:24:11.704925+00:00_
+_source line 3813 · 2026-05-20T05:24:11.704925+00:00_
 
 called Read
 
@@ -6738,7 +6624,7 @@ called Read
 
 ### Tool result
 
-_source line 3818 · 2026-05-20T05:24:11.755669+00:00_
+_source line 3814 · 2026-05-20T05:24:11.755669+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -6784,7 +6670,7 @@ _source line 3818 · 2026-05-20T05:24:11.755669+00:00_
 
 ### Tool call
 
-_source line 3819 · 2026-05-20T05:24:16.825191+00:00_
+_source line 3815 · 2026-05-20T05:24:16.825191+00:00_
 
 called Read
 
@@ -6818,7 +6704,7 @@ called Read
 
 ### Tool result
 
-_source line 3820 · 2026-05-20T05:24:17.327382+00:00_
+_source line 3816 · 2026-05-20T05:24:17.327382+00:00_
 
 1	\section{Related Work}
 2	
@@ -6847,7 +6733,7 @@ _source line 3820 · 2026-05-20T05:24:17.327382+00:00_
 
 ### Tool call
 
-_source line 3821 · 2026-05-20T05:24:17.378458+00:00_
+_source line 3817 · 2026-05-20T05:24:17.378458+00:00_
 
 called Read
 
@@ -6881,7 +6767,7 @@ called Read
 
 ### Tool result
 
-_source line 3822 · 2026-05-20T05:24:17.781813+00:00_
+_source line 3818 · 2026-05-20T05:24:17.781813+00:00_
 
 1	\section{Conclusion}
 2	
@@ -6906,7 +6792,7 @@ _source line 3822 · 2026-05-20T05:24:17.781813+00:00_
 
 ### Tool call
 
-_source line 3823 · 2026-05-20T05:24:17.982870+00:00_
+_source line 3819 · 2026-05-20T05:24:17.982870+00:00_
 
 called Read
 
@@ -6944,7 +6830,7 @@ called Read
 
 ### Tool result
 
-_source line 3824 · 2026-05-20T05:24:18.035791+00:00_
+_source line 3820 · 2026-05-20T05:24:18.035791+00:00_
 
 0	% Appendix sections for the paper.
 1	
@@ -6986,7 +6872,7 @@ _source line 3824 · 2026-05-20T05:24:18.035791+00:00_
 
 ### Tool call
 
-_source line 3825 · 2026-05-20T05:25:09.078572+00:00_
+_source line 3821 · 2026-05-20T05:25:09.078572+00:00_
 
 called Read
 
@@ -7020,7 +6906,7 @@ called Read
 
 ### Tool result
 
-_source line 3826 · 2026-05-20T05:25:10.032955+00:00_
+_source line 3822 · 2026-05-20T05:25:10.032955+00:00_
 
 1	{
 2	  "analysis": "jaccard_upper_bound",
@@ -7105,7 +6991,7 @@ _source line 3826 · 2026-05-20T05:25:10.032955+00:00_
 
 ### Tool call
 
-_source line 3827 · 2026-05-20T05:25:10.033305+00:00_
+_source line 3823 · 2026-05-20T05:25:10.033305+00:00_
 
 called Read
 
@@ -7139,7 +7025,7 @@ called Read
 
 ### Tool result
 
-_source line 3828 · 2026-05-20T05:25:10.485317+00:00_
+_source line 3824 · 2026-05-20T05:25:10.485317+00:00_
 
 1	{
 2	  "analysis": "retnet_hgrn2_only_decoupling",
@@ -7214,7 +7100,7 @@ _source line 3828 · 2026-05-20T05:25:10.485317+00:00_
 
 ### Tool call
 
-_source line 3829 · 2026-05-20T05:25:10.636347+00:00_
+_source line 3825 · 2026-05-20T05:25:10.636347+00:00_
 
 called Read
 
@@ -7252,7 +7138,7 @@ called Read
 
 ### Tool result
 
-_source line 3830 · 2026-05-20T05:25:10.687860+00:00_
+_source line 3826 · 2026-05-20T05:25:10.687860+00:00_
 
 28	\subsection{GDN Exclusion Sensitivity}
 29	
@@ -7300,7 +7186,7 @@ _source line 3830 · 2026-05-20T05:25:10.687860+00:00_
 
 ### Tool call
 
-_source line 3831 · 2026-05-20T05:26:17.807452+00:00_
+_source line 3827 · 2026-05-20T05:26:17.807452+00:00_
 
 called Grep
 
@@ -7340,7 +7226,7 @@ called Grep
 
 ### Tool result
 
-_source line 3832 · 2026-05-20T05:26:18.259585+00:00_
+_source line 3828 · 2026-05-20T05:26:18.259585+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:55:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:180:Table~\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.
@@ -7366,7 +7252,7 @@ _source line 3832 · 2026-05-20T05:26:18.259585+00:00_
 
 ### Tool call
 
-_source line 3833 · 2026-05-20T05:26:18.761971+00:00_
+_source line 3829 · 2026-05-20T05:26:18.761971+00:00_
 
 called Grep
 
@@ -7406,7 +7292,7 @@ called Grep
 
 ### Tool result
 
-_source line 3834 · 2026-05-20T05:26:19.465299+00:00_
+_source line 3830 · 2026-05-20T05:26:19.465299+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex:10:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex:13:[Omitted long matching line]
@@ -7432,7 +7318,7 @@ _source line 3834 · 2026-05-20T05:26:19.465299+00:00_
 
 ### Tool call
 
-_source line 3835 · 2026-05-20T05:26:19.816909+00:00_
+_source line 3831 · 2026-05-20T05:26:19.816909+00:00_
 
 called Grep
 
@@ -7472,7 +7358,7 @@ called Grep
 
 ### Tool result
 
-_source line 3836 · 2026-05-20T05:26:19.817242+00:00_
+_source line 3832 · 2026-05-20T05:26:19.817242+00:00_
 
 No matches found
 
@@ -7494,7 +7380,7 @@ No matches found
 
 ### Tool call
 
-_source line 3837 · 2026-05-20T05:26:20.720836+00:00_
+_source line 3833 · 2026-05-20T05:26:20.720836+00:00_
 
 called Grep
 
@@ -7534,7 +7420,7 @@ called Grep
 
 ### Tool result
 
-_source line 3838 · 2026-05-20T05:26:20.771584+00:00_
+_source line 3834 · 2026-05-20T05:26:20.771584+00:00_
 
 No matches found
 
@@ -7556,7 +7442,7 @@ No matches found
 
 ### Tool call
 
-_source line 3839 · 2026-05-20T05:26:21.575822+00:00_
+_source line 3835 · 2026-05-20T05:26:21.575822+00:00_
 
 called Grep
 
@@ -7596,7 +7482,7 @@ called Grep
 
 ### Tool result
 
-_source line 3840 · 2026-05-20T05:26:21.576282+00:00_
+_source line 3836 · 2026-05-20T05:26:21.576282+00:00_
 
 No matches found
 
@@ -7618,7 +7504,7 @@ No matches found
 
 ### Tool call
 
-_source line 3841 · 2026-05-20T05:27:21.519844+00:00_
+_source line 3837 · 2026-05-20T05:27:21.519844+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7654,7 +7540,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3842 · 2026-05-20T05:27:25.234625+00:00_
+_source line 3838 · 2026-05-20T05:27:25.234625+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -7676,7 +7562,7 @@ _source line 3842 · 2026-05-20T05:27:25.234625+00:00_
 
 ### Assistant
 
-_source line 3843 · 2026-05-20T05:27:28.062102+00:00_
+_source line 3839 · 2026-05-20T05:27:28.062102+00:00_
 
 所有数据收集完成。提交一致性检查报告。
 
@@ -7703,7 +7589,7 @@ _source line 3843 · 2026-05-20T05:27:28.062102+00:00_
 
 ### User
 
-_source line 3844 · 2026-05-20T05:27:28.605668+00:00_
+_source line 3840 · 2026-05-20T05:27:28.605668+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Round 1 审稿回应全部完成，提交 Round 2 审稿），请审查研究方向和计划的合理性。
@@ -7725,7 +7611,7 @@ _source line 3844 · 2026-05-20T05:27:28.605668+00:00_
 
 ### Tool call
 
-_source line 3845 · 2026-05-20T05:27:34.992900+00:00_
+_source line 3841 · 2026-05-20T05:27:34.992900+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -7759,7 +7645,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 3846 · 2026-05-20T05:27:35.093858+00:00_
+_source line 3842 · 2026-05-20T05:27:35.093858+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 05:24 UTC | 更新原因: Round 1 审稿回应全部完成，提交 Round 2 审稿\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Review Round 2 — 审稿回应修改完成，已提交第二轮审稿 (apr_20260520T052415_b4dn)**\\n\\n### Round 1 审稿结果\\n- Overall 3.0 (Findings)，5 Must-Fix + 6 Should-Fix\\n- 3 个系统性问题：统计证据链方法论 / 论文 scope 超出证据 / 概念定位与新颖性\\n\\n### Round 1 回应（全部已执行）\\n- ✅ MF-1: CI→complementary characterization, pre-registered→confirmatory\\n- ✅ MF-2: Jaccard normalized ES (5-7%) — floor effect 转为正面证据\\n- ✅ MF-3: RetNet-HGRN2 only decoupling (σ↓54%, J saturate) + GDN confound 扩展到 §4.5\\n- ✅ MF-4: 标题缩窄 \\\"Task-Specific Convergence and Per-Example Predictive Multiplicity\\\"\\n- ✅ MF-5: 5 篇新引用 (Marx, Watson-Daniels, Hsu&Calmon, Waleffe, Basu)\\n- ✅ SF-1~5: scale 降级 / entropy 分架构 / practical implications / pre-registration 语言\\n- 预期提分：3.0 → 3.4-3.55 (Borderline Conference)\\n\\n### 论文状态\\n- 新标题 + predictive multiplicity 主框架\\n- 主文 8 页 + Appendix A-J（共 15 页），0 critical warnings\\n- 3 Claims 全部有实验支撑，28 claims Tier 1\\n\\n### 实验完成度\\n- 成功 8 / 阴性 4 / 失败 1 / 取消 2\\n- 新增计算分析：jaccard_upper_bound.json, retnet_hgrn2_only_decoupling.json\\n\\n## 近期任务\\n- [ ] 等待用户审批 Round 2 审稿模式卡片\\n- [ ] Reviewer 一致性检查回复\\n- [ ] Round 2 审稿反馈后决策下一步\\n- [ ] paper_framing.md 需更新（predictive multiplicity 主框架 + 新标题）\\n\\n## GPU 预算\\nwestb-48145: 1× GPU 已分配，当前空闲（审稿等待期）\\n\\n## 审稿回溯·系统性问题\\n1. [SYSTEMIC] 统计证据链方法论 — CI 降级为 complementary，区分 n_arch vs n_examples\\n2. [SYSTEMIC] 论文 scope 超出证据 — 标题 + abstract/intro reframe，task-specificity AS finding\\n3. [SYSTEMIC] 概念定位与新颖性 — predictive multiplicity 取代 underspecification 主框架\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|
 …[truncated 1046 chars]
@@ -7782,7 +7668,7 @@ _source line 3846 · 2026-05-20T05:27:35.093858+00:00_
 
 ### Tool call
 
-_source line 3847 · 2026-05-20T05:27:57.402822+00:00_
+_source line 3843 · 2026-05-20T05:27:57.402822+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7818,7 +7704,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3848 · 2026-05-20T05:28:01.069162+00:00_
+_source line 3844 · 2026-05-20T05:28:01.069162+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -7847,7 +7733,7 @@ _source line 3848 · 2026-05-20T05:28:01.069162+00:00_
 
 ### User
 
-_source line 3849 · 2026-05-20T06:01:30.604903+00:00_
+_source line 3845 · 2026-05-20T06:01:30.604903+00:00_
 
 [System 触发审查]:
 Round 2 审稿报告独立审查请求 — Overall 仍 3.0，分数未动
@@ -7955,7 +7841,7 @@ Round 1 全部修改后分数不变。需要你独立评估我的策略判断和
 
 ### Tool call
 
-_source line 3850 · 2026-05-20T06:02:00.427590+00:00_
+_source line 3846 · 2026-05-20T06:02:00.427590+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7991,7 +7877,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3851 · 2026-05-20T06:02:00.428039+00:00_
+_source line 3847 · 2026-05-20T06:02:00.428039+00:00_
 
 called WebSearch
 
@@ -8025,7 +7911,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 3852 · 2026-05-20T06:02:00.428252+00:00_
+_source line 3848 · 2026-05-20T06:02:00.428252+00:00_
 
 called WebSearch
 
@@ -8059,7 +7945,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 3853 · 2026-05-20T06:02:02.938262+00:00_
+_source line 3849 · 2026-05-20T06:02:02.938262+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"}
 
@@ -8081,7 +7967,7 @@ _source line 3853 · 2026-05-20T06:02:02.938262+00:00_
 
 ### Tool result
 
-_source line 3854 · 2026-05-20T06:02:07.900290+00:00_
+_source line 3850 · 2026-05-20T06:02:07.900290+00:00_
 
 Web search results for query: "Fehlauer EMNLP 2025 convergence divergence seed variation NLP"
 
@@ -8116,7 +8002,7 @@ The paper is available on the ACL Anthology at: https://aclanthology.org/2025.em
 
 ### Tool result
 
-_source line 3855 · 2026-05-20T06:02:09.006903+00:00_
+_source line 3851 · 2026-05-20T06:02:09.006903+00:00_
 
 Web search results for query: "Sellam MultiBERTs ICLR 2022 "BERT Reproductions for Robustness Analysis""
 
@@ -8152,7 +8038,7 @@ The paper introduces MultiBERTs, a set of 25 BERT-Base checkpoints, trained with
 
 ### Tool call
 
-_source line 3856 · 2026-05-20T06:02:15.230524+00:00_
+_source line 3852 · 2026-05-20T06:02:15.230524+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8188,7 +8074,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3857 · 2026-05-20T06:02:17.539287+00:00_
+_source line 3853 · 2026-05-20T06:02:17.539287+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n/root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.28}}"}
 
@@ -8210,7 +8096,7 @@ _source line 3857 · 2026-05-20T06:02:17.539287+00:00_
 
 ### Tool call
 
-_source line 3858 · 2026-05-20T06:02:20.852460+00:00_
+_source line 3854 · 2026-05-20T06:02:20.852460+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8246,7 +8132,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3859 · 2026-05-20T06:02:21.656008+00:00_
+_source line 3855 · 2026-05-20T06:02:21.656008+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T17-58-59.437801.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/results_2026-05-18T18-04-21.775324.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/results_2026-05-18T18-09-55.701549.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-06-58.522842.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/results_2026-05-18T18-13-40.854538.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-17-00.154753.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-17-29.870669.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-24-24.830994.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-32-25.835998.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T18-35-10.595719.json\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/results_2026-05-18T19-47-30.065126.json\
 …[truncated 5799 chars]
@@ -8269,7 +8155,7 @@ _source line 3859 · 2026-05-20T06:02:21.656008+00:00_
 
 ### Tool call
 
-_source line 3860 · 2026-05-20T06:02:27.556586+00:00_
+_source line 3856 · 2026-05-20T06:02:27.556586+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8305,7 +8191,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3861 · 2026-05-20T06:02:28.159286+00:00_
+_source line 3857 · 2026-05-20T06:02:28.159286+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8341,7 +8227,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3862 · 2026-05-20T06:02:28.411269+00:00_
+_source line 3858 · 2026-05-20T06:02:28.411269+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n1.3B-100B-GatedDeltaNet-pure.json\\n1.3B-100B-GatedDeltaNet-pure.log\\n1.3B-100B-GatedDeltaNet-pure_final.log\\n1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n1.3B-100B-GatedDeltaNet-pure_results.json\\n1.3B-100B-HGRN2-hybrid-12-1.json\\n1.3B-100B-HGRN2-hybrid-24-1.json\\n1.3B-100B-HGRN2-hybrid-3-1.json\\n1.3B-100B-HGRN2-hybrid-6-1.json\\n1.3B-100B-HGRN2-pure.json\\n1.3B-100B-RetNet-hybrid-12-1.json\\n1.3B-100B-RetNet-hybrid-24-1.json\\n1.3B-100B-RetNet-hybrid-3-1.json\\n1.3B-100B-RetNet-hybrid-6-1.json\\n1.3B-100B-RetNet-pure.json\\n1.3B-100B-RetNet-pure_final.log\\n1.3B-100B-RetNet-pure_results.json\\n1.3b\\n340m\\ndebug\\neval_all.log\\neval_h24.log\\neval_remaining.log\\nexp007\\nexp011\\nfigures\\ngdn_pure_validation.log\\nhgrn2_debug.log\\nhgrn2_debug_lambada.log\\nmultiseed\\nremaining.log\\nretnet_hybrid12_eval.log\\nretnet_pure.log\\nretnet_pure_final.log\\nretnet_pure_v2.log\\nretnet_redownload_eval.log\\nretnet_reeval.log\\nsummary_all_1.3b.csv\\ntransformer_1.3B_baseline.json\\ntransformer_1.3B_baseline_final.log\\nvalidation.log\\nvalidation2.log\\nxstorycloze\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
 
@@ -8363,7 +8249,7 @@ _source line 3862 · 2026-05-20T06:02:28.411269+00:00_
 
 ### Tool result
 
-_source line 3863 · 2026-05-20T06:02:30.569694+00:00_
+_source line 3859 · 2026-05-20T06:02:30.569694+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean\\n/root/entrainment_gated_ft/lm_eval_clean/340m\\n/root/entrainment_gated_ft/lm_eval_clean/debug\\n/root/entrainment_gated_ft/lm_eval_clean/multiseed\\n/root/entrainment_gated_ft/lm_eval_clean/figures\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b\\n/root/entrainment_gated_ft/lm_eval_clean/exp011\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze\\n/root/entrainment_gated_ft/lm_eval_clean/exp007\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.15}}"}
 
@@ -8385,7 +8271,7 @@ _source line 3863 · 2026-05-20T06:02:30.569694+00:00_
 
 ### Tool call
 
-_source line 3864 · 2026-05-20T06:02:33.931986+00:00_
+_source line 3860 · 2026-05-20T06:02:33.931986+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8421,7 +8307,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3865 · 2026-05-20T06:02:35.453085+00:00_
+_source line 3861 · 2026-05-20T06:02:35.453085+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"name\\\": \\\"lambada_openai\\\",\\n      \\\"alias\\\": \\\"lambada_openai\\\",\\n      \\\"sample_len\\\": 5153,\\n      \\\"perplexity,none\\\": 8.259574763727228,\\n      \\\"perplexity_stderr,none\\\": 0.2658602088360047,\\n      \\\"acc,none\\\": 0.5429846691247817,\\n      \\\"acc_stderr,none\\\": 0.006940188097931681\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.46464847639912366,\\n      \\\"acc_stderr,none\\\": 0.0049772940247781615,\\n      \\\"acc_norm,none\\\": 0.6080462059350727,\\n      \\\"acc_norm_stderr,none\\\": 0.004871887422893928\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6077348066298343,\\n      \\\"acc_stderr,none\\\": 0.013722400462000807\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"name\\\": \\\"arc_easy\\\",\\n      \\\"alias\\\": \\\"arc_easy\\\",\\n      \\\"sample_len\\\": 2376,\\n      \\\"acc,none\\\": 0.7125420875420876,\\n      \\\"acc_stderr,none\\\": 0.009286682281593562,\\n      \\\"acc_norm,none\\\": 0.6418350168350169,\\n      \\\"acc_norm_stderr,none\\\": 0.009838331651452002\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.371160409556314,\\n      \\\"acc_stderr,none\\\": 0.01411797190114269,\\n      \\\"acc_norm,none\\\": 0.3924914675767918,\\n      \\\"acc_norm_stderr,none\\\": 0.014269634635670669\\n    },\\n    \\\"mmlu_abstract_algebra\\\": {\\n      \\\"name\\\": \\\"mmlu_abstract_algebra\\\",\\n      \\\"alias\\\": \\\"abstract_algebra\\\",\\n      \\\"sample_len\\\": 100,\\n     
 …[truncated 131 chars]
@@ -8444,7 +8330,7 @@ _source line 3865 · 2026-05-20T06:02:35.453085+00:00_
 
 ### Tool call
 
-_source line 3866 · 2026-05-20T06:04:05.682475+00:00_
+_source line 3862 · 2026-05-20T06:04:05.682475+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8480,7 +8366,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3867 · 2026-05-20T06:04:09.496809+00:00_
+_source line 3863 · 2026-05-20T06:04:09.496809+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -8502,7 +8388,7 @@ _source line 3867 · 2026-05-20T06:04:09.496809+00:00_
 
 ### Assistant
 
-_source line 3868 · 2026-05-20T06:04:12.541841+00:00_
+_source line 3864 · 2026-05-20T06:04:12.541841+00:00_
 
 关键发现：服务器上只有 aggregate results.json 文件，**没有 per-example correctness 数据**（无 log_samples 目录，仅 LAMBADA 有 per-example csv）。ARC-Easy/MMLU per-example 分析需要重新跑 eval。
 
@@ -8531,7 +8417,7 @@ _source line 3868 · 2026-05-20T06:04:12.541841+00:00_
 
 ### User
 
-_source line 3869 · 2026-05-20T06:09:08.338932+00:00_
+_source line 3865 · 2026-05-20T06:09:08.338932+00:00_
 
 [系统通知 — worker_done:worker_eval_arc-easy-per-example-setup_20260520T060613]:
 Worker worker_eval_arc-easy-per-example-setup_20260520T060613 已完成（status=done），请审查 Agent 的处理结果。
@@ -8553,7 +8439,7 @@ Worker worker_eval_arc-easy-per-example-setup_20260520T060613 已完成（status
 
 ### Tool call
 
-_source line 3870 · 2026-05-20T06:09:22.523069+00:00_
+_source line 3866 · 2026-05-20T06:09:22.523069+00:00_
 
 called Read
 
@@ -8587,7 +8473,7 @@ called Read
 
 ### Tool result
 
-_source line 3871 · 2026-05-20T06:09:22.523593+00:00_
+_source line 3867 · 2026-05-20T06:09:22.523593+00:00_
 
 1	{
 2	  "raw": "任务已成功启动，第一个模型 (GatedDeltaNet-pure) 正在加载权重，`allow_neg_eigval=True` 已注入。\n\n**汇总：**\n- 15 个模型全部位于 `/root/autodl-tmp/models_1.3b/`，完整无缺\n- 无现有 ARC-Easy per-example 数据，需全部重跑\n- Batch 脚本 `run_arc_easy_all.sh` 已部署，每个模型输出到独立目录 `arc_easy/{model_name}/`，包含 `samples/arc_easy.jsonl`\n- 实验 `exp-arc-easy-eval` 已提交（PID 620603，tmux session），parent=exp-001，timeout 8h\n- Cron 系统自动监控，完成后回调"
@@ -8611,7 +8497,7 @@ _source line 3871 · 2026-05-20T06:09:22.523593+00:00_
 
 ### Tool call
 
-_source line 3872 · 2026-05-20T06:09:31.171248+00:00_
+_source line 3868 · 2026-05-20T06:09:31.171248+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8647,7 +8533,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3873 · 2026-05-20T06:09:31.497565+00:00_
+_source line 3869 · 2026-05-20T06:09:31.497565+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8683,7 +8569,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3874 · 2026-05-20T06:09:35.599229+00:00_
+_source line 3870 · 2026-05-20T06:09:35.599229+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"620603 bash -c rm -f /tmp/agent-ml-exit/exp-arc-easy-eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/entrainment_gated_ft/exp-arc-easy-eval.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-arc-easy-eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/entrainment_gated_ft && export CUDA_VISIBLE_DEVICES=0 && timeout 28800 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"'; } > ~/runs/entrainment_gated_ft/exp-arc-easy-eval.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.41}}"}
 
@@ -8705,7 +8591,7 @@ _source line 3874 · 2026-05-20T06:09:35.599229+00:00_
 
 ### Tool result
 
-_source line 3875 · 2026-05-20T06:09:35.650050+00:00_
+_source line 3871 · 2026-05-20T06:09:35.650050+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0488}}"}
 
@@ -8727,7 +8613,7 @@ _source line 3875 · 2026-05-20T06:09:35.650050+00:00_
 
 ### Tool call
 
-_source line 3876 · 2026-05-20T06:09:42.415884+00:00_
+_source line 3872 · 2026-05-20T06:09:42.415884+00:00_
 
 called ToolSearch
 
@@ -8763,7 +8649,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3877 · 2026-05-20T06:09:42.467824+00:00_
+_source line 3873 · 2026-05-20T06:09:42.467824+00:00_
 
 
 
@@ -8785,7 +8671,7 @@ _source line 3877 · 2026-05-20T06:09:42.467824+00:00_
 
 ### Tool call
 
-_source line 3878 · 2026-05-20T06:09:46.182173+00:00_
+_source line 3874 · 2026-05-20T06:09:46.182173+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -8819,7 +8705,7 @@ called mcp__agent-ml-research__get_gpu_health
 
 ### Tool result
 
-_source line 3879 · 2026-05-20T06:09:46.634223+00:00_
+_source line 3875 · 2026-05-20T06:09:46.634223+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {\"westb-48145\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8841,7 +8727,7 @@ _source line 3879 · 2026-05-20T06:09:46.634223+00:00_
 
 ### Tool call
 
-_source line 3880 · 2026-05-20T06:09:46.634629+00:00_
+_source line 3876 · 2026-05-20T06:09:46.634629+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8877,7 +8763,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3881 · 2026-05-20T06:09:48.291957+00:00_
+_source line 3877 · 2026-05-20T06:09:48.291957+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"=== 14:08:46 Evaluating 1.3B-100B-GatedDeltaNet-pure ===\\nmodel_type=gated_deltanet, tie_word_embeddings=False\\n[fix] allow_neg_eigval=True\\n\\rLoading weights:   0%|          | 0/435 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 9/435 [00:00<00:14, 29.98it/s]\\rLoading weights:  10%|█         | 45/435 [00:00<00:03, 110.09it/s]\\rLoading weights:  14%|█▎        | 59/435 [00:00<00:03, 96.99it/s] \\rLoading weights:  16%|█▋        | 71/435 [00:00<00:03, 100.35it/s]\\rLoading weights:  20%|██        | 87/435 [00:00<00:03, 114.03it/s]\\rLoading weights:  23%|██▎       | 100/435 [00:01<00:03, 95.41it/s]\\rLoading weights:  26%|██▌       | 111/435 [00:01<00:03, 96.81it/s]\\rLoading weights:  28%|██▊       | 123/435 [00:01<00:03, 84.36it/s]\\rLoading weights:  31%|███▏      | 137/435 [00:01<00:03, 96.08it/s]\\rLoading weights:  34%|███▍      | 148/435 [00:01<00:02, 98.87it/s]\\rLoading weights:  37%|███▋      | 159/435 [00:01<00:03, 82.12it/s]\\rLoading weights:  41%|████      | 177/435 [00:01<00:03, 84.77it/s]\\rLoading weights:  44%|████▍     | 193/435 [00:02<00:02, 98.79it/s]\\rLoading weights:  48%|████▊     | 207/435 [00:02<00:02, 106.99it/s]\\rLoading weights:  50%|█████     | 219/435 [00:02<00:02, 90.29it/s] \\rLoading weights:  53%|█████▎    | 231/435 [00:02<00:02, 96.26it/s]\\rLoading weights:  57%|█████▋    | 247/435 [00:02<00:01, 105.90it/s]\\rLoading weights:  61%|██████▏   | 267/435 [00:02<00:01, 110.52it/s]\\rLoading weights:  64%|██████▍   | 279/435 [00:02<00:01, 109.79it/s]\\rLoading weights:  67%|██████▋   | 291/435 [00:03<00:01, 91.74it/s] \\rLoading weights:  70%|██████▉   | 303/435 [00:03<00:01, 97.33it/s]\\rLoading weights:  74%|███████▍  | 322/435 [00:03<00:01, 97.51it/s]\\rLoading weights:  78%|███████▊  | 340/435 [00:03<00:01, 79.26it/s]\\rLoading weights:  80%|████████  | 350/435 [00:03<00:01, 81.17it/s]\\rLoading weights:  83%|████████▎ | 359/435 [00:03<00:01, 70.20it/s]\\rLoading w
 …[truncated 1323 chars]
@@ -8900,7 +8786,7 @@ _source line 3881 · 2026-05-20T06:09:48.291957+00:00_
 
 ### Tool call
 
-_source line 3882 · 2026-05-20T06:09:57.930262+00:00_
+_source line 3878 · 2026-05-20T06:09:57.930262+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8936,7 +8822,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3883 · 2026-05-20T06:09:57.980979+00:00_
+_source line 3879 · 2026-05-20T06:09:57.980979+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-arc-easy-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T06:08:50.691Z\", \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\"}, \"exp-005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-20T03:28:05.796Z\", \"hypothesis\": \"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0449}}"}
 
@@ -8958,7 +8844,7 @@ _source line 3883 · 2026-05-20T06:09:57.980979+00:00_
 
 ### Tool call
 
-_source line 3884 · 2026-05-20T06:10:13.430667+00:00_
+_source line 3880 · 2026-05-20T06:10:13.430667+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8994,7 +8880,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3885 · 2026-05-20T06:10:17.244843+00:00_
+_source line 3881 · 2026-05-20T06:10:17.244843+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -9016,7 +8902,7 @@ _source line 3885 · 2026-05-20T06:10:17.244843+00:00_
 
 ### Assistant
 
-_source line 3886 · 2026-05-20T06:10:19.641006+00:00_
+_source line 3882 · 2026-05-20T06:10:19.641006+00:00_
 
 验证实验启动状态和 GPU 资源合规性。
 
@@ -9043,7 +8929,7 @@ _source line 3886 · 2026-05-20T06:10:19.641006+00:00_
 
 ### User
 
-_source line 3887 · 2026-05-20T09:19:08.743541+00:00_
+_source line 3883 · 2026-05-20T09:19:08.743541+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -9064,7 +8950,7 @@ _source line 3887 · 2026-05-20T09:19:08.743541+00:00_
 
 ### Tool call
 
-_source line 3888 · 2026-05-20T09:19:20.196783+00:00_
+_source line 3884 · 2026-05-20T09:19:20.196783+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9100,7 +8986,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3889 · 2026-05-20T09:19:20.598220+00:00_
+_source line 3885 · 2026-05-20T09:19:20.598220+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0513}}"}
 
@@ -9122,7 +9008,7 @@ _source line 3889 · 2026-05-20T09:19:20.598220+00:00_
 
 ### Tool call
 
-_source line 3890 · 2026-05-20T09:19:20.598622+00:00_
+_source line 3886 · 2026-05-20T09:19:20.598622+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9158,7 +9044,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3891 · 2026-05-20T09:19:20.699610+00:00_
+_source line 3887 · 2026-05-20T09:19:20.699610+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-arc-easy-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T06:08:50.691Z\", \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\"}, \"exp-005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-20T03:28:05.796Z\", \"hypothesis\": \"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0493}}"}
 
@@ -9180,7 +9066,7 @@ _source line 3891 · 2026-05-20T09:19:20.699610+00:00_
 
 ### Tool call
 
-_source line 3892 · 2026-05-20T09:19:24.716799+00:00_
+_source line 3888 · 2026-05-20T09:19:24.716799+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9216,7 +9102,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3893 · 2026-05-20T09:19:26.728651+00:00_
+_source line 3889 · 2026-05-20T09:19:26.728651+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID S     ELAPSED CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.02}}"}
 
@@ -9238,7 +9124,7 @@ _source line 3893 · 2026-05-20T09:19:26.728651+00:00_
 
 ### Tool call
 
-_source line 3894 · 2026-05-20T09:19:30.443664+00:00_
+_source line 3890 · 2026-05-20T09:19:30.443664+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9274,7 +9160,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3895 · 2026-05-20T09:19:31.196483+00:00_
+_source line 3891 · 2026-05-20T09:19:31.196483+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/entrainment_gated_ft/arc_easy/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.79}}"}
 
@@ -9296,7 +9182,7 @@ _source line 3895 · 2026-05-20T09:19:31.196483+00:00_
 
 ### Tool call
 
-_source line 3896 · 2026-05-20T09:19:34.623630+00:00_
+_source line 3892 · 2026-05-20T09:19:34.623630+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9332,7 +9218,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3897 · 2026-05-20T09:19:36.129449+00:00_
+_source line 3893 · 2026-05-20T09:19:36.129449+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
 
@@ -9354,7 +9240,7 @@ _source line 3897 · 2026-05-20T09:19:36.129449+00:00_
 
 ### Tool call
 
-_source line 3898 · 2026-05-20T09:19:43.104973+00:00_
+_source line 3894 · 2026-05-20T09:19:43.104973+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9390,7 +9276,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3899 · 2026-05-20T09:19:43.556983+00:00_
+_source line 3895 · 2026-05-20T09:19:43.556983+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9426,7 +9312,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3900 · 2026-05-20T09:19:44.310525+00:00_
+_source line 3896 · 2026-05-20T09:19:44.310525+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-12-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-6-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/samples/arc_easy.jsonl\\n    2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/samples/arc_easy.jsonl\\n   35640 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
 
@@ -9448,7 +9334,7 @@ _source line 3900 · 2026-05-20T09:19:44.310525+00:00_
 
 ### Tool result
 
-_source line 3901 · 2026-05-20T09:19:45.264038+00:00_
+_source line 3897 · 2026-05-20T09:19:45.264038+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"id\\\": \\\"Mercury_417466\\\", \\\"question\\\": \\\"Which statement best explains why photosynthesis is the foundation of most food webs?\\\", \\\"choices\\\": {\\\"text\\\": [\\\"Sunlight is the source of energy for nearly all ecosystems.\\\", \\\"Most ecosystems are found on land instead of in water.\\\", \\\"Carbon dioxide is more available than other gases.\\\", \\\"The producers in all ecosystems are plants.\\\"], \\\"label\\\": [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]}, \\\"answerKey\\\": \\\"A\\\"}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Sunlight is the source of energy for nearly all ecosystems.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Most ecosystems are found on land instead of in water.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Carbon dioxide is more available than other gases.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" The producers in all ecosystems are plants.\\\"]], \\\"resps\\\": [[[-20.5, false]], [[-29.0, false]], [[-23.875, false]], [[-23.375, false]]], \\\"filtered_resps\\\": [[-20.5, false], [-29.0, false], [-23.875, false], [-23.375, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"b91fe1a8fdc40a80b9364f6256ac729d010ba076b02e75a362c2cf7ad3303bdf\\\", \\\"prompt_hash\\\": \\\"f804da9f5e214341d08d56228bb255177a0e5740f82e61b45887fcb5dc5c08ce\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0, \\\"acc_norm\\\": 1.0}\\n\", \"stderr\": \"\", \"return
 …[truncated 73 chars]
@@ -9471,7 +9357,7 @@ _source line 3901 · 2026-05-20T09:19:45.264038+00:00_
 
 ### Assistant
 
-_source line 3902 · 2026-05-20T09:20:48.873788+00:00_
+_source line 3898 · 2026-05-20T09:20:48.873788+00:00_
 
 进程已结束但 **15 个 ARC-Easy per-example 文件全部生成**。验证数据完整性。
 
@@ -9498,7 +9384,7 @@ _source line 3902 · 2026-05-20T09:20:48.873788+00:00_
 
 ### User
 
-_source line 3903 · 2026-05-20T09:20:56.712016+00:00_
+_source line 3899 · 2026-05-20T09:20:56.712016+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -9519,7 +9405,7 @@ _source line 3903 · 2026-05-20T09:20:56.712016+00:00_
 
 ### Tool call
 
-_source line 3904 · 2026-05-20T09:23:51.311786+00:00_
+_source line 3900 · 2026-05-20T09:23:51.311786+00:00_
 
 called ToolSearch
 
@@ -9555,7 +9441,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3905 · 2026-05-20T09:23:51.513168+00:00_
+_source line 3901 · 2026-05-20T09:23:51.513168+00:00_
 
 
 
@@ -9577,7 +9463,7 @@ _source line 3905 · 2026-05-20T09:23:51.513168+00:00_
 
 ### Tool call
 
-_source line 3906 · 2026-05-20T09:23:55.654806+00:00_
+_source line 3902 · 2026-05-20T09:23:55.654806+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9615,7 +9501,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3907 · 2026-05-20T09:23:56.587053+00:00_
+_source line 3903 · 2026-05-20T09:23:56.587053+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-arc-easy-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T06:08:50.691Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\"}, \"exp-005\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-20T03:28:05.796Z\", \"hypothesis\": \"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"exp-007\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:08:19.724Z\", \"updated_at\": \"2026-05-19T18:53:42.640Z\", \"hypothesis\": \"340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\", \"pa
 …[truncated 17766 chars]
@@ -9638,7 +9524,7 @@ _source line 3907 · 2026-05-20T09:23:56.587053+00:00_
 
 ### Tool call
 
-_source line 3908 · 2026-05-20T09:23:56.837847+00:00_
+_source line 3904 · 2026-05-20T09:23:56.837847+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9674,7 +9560,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3909 · 2026-05-20T09:23:59.046848+00:00_
+_source line 3905 · 2026-05-20T09:23:59.046848+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 340\\ndrwxr-xr-x 17 root root  4096 May 20 14:37 .\\ndrwxr-xr-x 11 root root  4096 May 20 14:08 ..\\ndrwxr-xr-x  3 root root    81 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1\\n-rw-r--r--  1 root root 25170 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    81 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1\\n-rw-r--r--  1 root root 25587 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1\\n-rw-r--r--  1 root root 21587 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1\\n-rw-r--r--  1 root root 24490 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:10 1.3B-100B-GatedDeltaNet-pure\\n-rw-r--r--  1 root root 25528 May 20 14:10 1.3B-100B-GatedDeltaNet-pure_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1\\n-rw-r--r--  1 root root 17873 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1\\n-rw-r--r--  1 root root 17937 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1\\n-rw-r--r--  1 root root 17650 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1\\n-rw-r--r--  1 root root 17614 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    66 May 20 14:31 1.3B-100B-HGRN2-pure\\n-rw-r--r--  1 root root 18405 May 20 14:31 1.3B-100B-HGRN2-pure_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1\\n-rw-r--r--  1 root root 20285 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1\\n-rw-r--r--  
 …[truncated 628 chars]
@@ -9697,7 +9583,7 @@ _source line 3909 · 2026-05-20T09:23:59.046848+00:00_
 
 ### Tool call
 
-_source line 3910 · 2026-05-20T09:24:06.227941+00:00_
+_source line 3906 · 2026-05-20T09:24:06.227941+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9733,7 +9619,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3911 · 2026-05-20T09:24:06.680253+00:00_
+_source line 3907 · 2026-05-20T09:24:06.680253+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9755,7 +9641,7 @@ _source line 3911 · 2026-05-20T09:24:06.680253+00:00_
 
 ### Tool call
 
-_source line 3912 · 2026-05-20T09:24:06.680661+00:00_
+_source line 3908 · 2026-05-20T09:24:06.680661+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9791,7 +9677,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3913 · 2026-05-20T09:24:07.541756+00:00_
+_source line 3909 · 2026-05-20T09:24:07.541756+00:00_
 
 called Glob
 
@@ -9827,7 +9713,7 @@ called Glob
 
 ### Tool result
 
-_source line 3914 · 2026-05-20T09:24:07.592468+00:00_
+_source line 3910 · 2026-05-20T09:24:07.592468+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
 
@@ -9849,7 +9735,7 @@ _source line 3914 · 2026-05-20T09:24:07.592468+00:00_
 
 ### Tool result
 
-_source line 3915 · 2026-05-20T09:24:07.592886+00:00_
+_source line 3911 · 2026-05-20T09:24:07.592886+00:00_
 
 No files found
 
@@ -9871,7 +9757,7 @@ No files found
 
 ### Tool call
 
-_source line 3916 · 2026-05-20T09:24:10.954099+00:00_
+_source line 3912 · 2026-05-20T09:24:10.954099+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9907,7 +9793,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3917 · 2026-05-20T09:24:11.456000+00:00_
+_source line 3913 · 2026-05-20T09:24:11.456000+00:00_
 
 called Glob
 
@@ -9943,7 +9829,7 @@ called Glob
 
 ### Tool result
 
-_source line 3918 · 2026-05-20T09:24:11.707820+00:00_
+_source line 3914 · 2026-05-20T09:24:11.707820+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.png\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.pdf\\n/root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\n/root/entrainment_gated_ft/analysis/within_arch_stability.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
 
@@ -9965,7 +9851,7 @@ _source line 3918 · 2026-05-20T09:24:11.707820+00:00_
 
 ### Tool result
 
-_source line 3919 · 2026-05-20T09:24:11.758554+00:00_
+_source line 3915 · 2026-05-20T09:24:11.758554+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_wang-models-survey_20260518T045105.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_wang-models-survey_20260518T045105_result.json
@@ -10001,7 +9887,7 @@ _source line 3919 · 2026-05-20T09:24:11.758554+00:00_
 
 ### Tool call
 
-_source line 3920 · 2026-05-20T09:24:19.286531+00:00_
+_source line 3916 · 2026-05-20T09:24:19.286531+00:00_
 
 called Read
 
@@ -10037,7 +9923,7 @@ called Read
 
 ### Tool result
 
-_source line 3921 · 2026-05-20T09:24:19.740497+00:00_
+_source line 3917 · 2026-05-20T09:24:19.740497+00:00_
 
 1	Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
 2	{"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft","session_id":"381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","ListMcpResourcesTool","Monitor","NotebookEdit","PushNotification","Read","ReadMcpResourceTool","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write","mcp__agent-ml-research__detect_image","mcp__agent-ml-research__kill_job","mcp__agent-ml-research__read_registry","mcp__agent-ml-research__register_artifact","mcp__agent-ml-research__ssh_execute","mcp__agent-ml-research__ssh_read_only","mcp__agent-ml-research__update_registry"],"mcp_servers":[{"name":"agent-ml-research","status":"connected"}],"model":"claude-opus-4-6","permissionMode":"bypassPermissions","slash_commands":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api","clear","compact","context","heapdump","init","review","security-review","extra-usage","usage","insights","team-onboarding"],"apiKeySource":"none","claude_code_version":"2.1.126","output_style":"default","agents":["claude","Explore","general-purpose","Plan","statusline-setup"],"skills":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api"],"plugins":[],"analytics_disabled":false,"uuid":"69a48fdf-3f72-4006-a0d4-e0fa80081b39","memory_paths":{"auto":"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"},"fast_mode_state":"off"}
@@ -10062,7 +9948,7 @@ _source line 3921 · 2026-05-20T09:24:19.740497+00:00_
 
 ### Tool call
 
-_source line 3922 · 2026-05-20T09:24:19.891601+00:00_
+_source line 3918 · 2026-05-20T09:24:19.891601+00:00_
 
 called Glob
 
@@ -10098,7 +9984,7 @@ called Glob
 
 ### Tool result
 
-_source line 3923 · 2026-05-20T09:24:19.992473+00:00_
+_source line 3919 · 2026-05-20T09:24:19.992473+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_arch-extension-check_20260520T010550.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_arch-extension-check_20260520T010550_result.json
@@ -10133,7 +10019,7 @@ _source line 3923 · 2026-05-20T09:24:19.992473+00:00_
 
 ### Tool call
 
-_source line 3924 · 2026-05-20T09:24:30.450075+00:00_
+_source line 3920 · 2026-05-20T09:24:30.450075+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10169,7 +10055,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3925 · 2026-05-20T09:24:31.203422+00:00_
+_source line 3921 · 2026-05-20T09:24:31.203422+00:00_
 
 called Read
 
@@ -10207,7 +10093,7 @@ called Read
 
 ### Tool result
 
-_source line 3926 · 2026-05-20T09:24:31.254107+00:00_
+_source line 3922 · 2026-05-20T09:24:31.254107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
 
@@ -10229,7 +10115,7 @@ _source line 3926 · 2026-05-20T09:24:31.254107+00:00_
 
 ### Tool result
 
-_source line 3927 · 2026-05-20T09:24:31.557058+00:00_
+_source line 3923 · 2026-05-20T09:24:31.557058+00:00_
 
 20	{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01CoekDoaD666iKkZe9FQfvF","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_0113ZDy5AUCimteyr14gbHG9","name":"mcp__agent-ml-research__ssh_execute","input":{"server":"westb-48145","command":"for d in /root/entrainment_gated_ft/lm_eval_clean/arc_easy/*/; do name=$(basename \"$d\"); if [ -f \"$d/results.json\" ]; then echo \"DONE: $name\"; else results=$(find \"$d\" -name \"results*.json\" 2>/dev/null | head -1); if [ -n \"$results\" ]; then echo \"DONE(alt): $name -> $results\"; else echo \"MISSING: $name\"; fi; fi; done","account":"root","warn":true},"caller":{"type":"direct"}}],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":1861,"cache_read_input_tokens":26823,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":1861},"output_tokens":8,"service_tier":"standard","inference_geo":"not_available"},"diagnostics":null,"context_management":null},"parent_tool_use_id":null,"session_id":"381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56","uuid":"a9f62d88-9773-4724-8008-3642f955fabc"}
 21	{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_0113ZDy5AUCimteyr14gbHG9","type":"tool_result","content":"{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"MISSING: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-pure\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-12-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-24-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-3-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-6-1\\\\nMISSING: 1.3B-100B-HGRN2-pure\\\\nMISSING: 1.3B-100B-RetNet-hybrid-12-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-24-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-3-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-6-1\\\\nMISSING: 1.3B-100B-RetNet-pur
@@ -10253,7 +10139,7 @@ _source line 3927 · 2026-05-20T09:24:31.557058+00:00_
 
 ### Tool call
 
-_source line 3928 · 2026-05-20T09:24:45.463100+00:00_
+_source line 3924 · 2026-05-20T09:24:45.463100+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10289,7 +10175,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3929 · 2026-05-20T09:24:46.868127+00:00_
+_source line 3925 · 2026-05-20T09:24:46.868127+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"id\\\": \\\"Mercury_417466\\\", \\\"question\\\": \\\"Which statement best explains why photosynthesis is the foundation of most food webs?\\\", \\\"choices\\\": {\\\"text\\\": [\\\"Sunlight is the source of energy for nearly all ecosystems.\\\", \\\"Most ecosystems are found on land instead of in water.\\\", \\\"Carbon dioxide is more available than other gases.\\\", \\\"The producers in all ecosystems are plants.\\\"], \\\"label\\\": [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]}, \\\"answerKey\\\": \\\"A\\\"}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Sunlight is the source of energy for nearly all ecosystems.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Most ecosystems are found on land instead of in water.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Carbon dioxide is more available than other gases.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" The producers in all ecosystems are plants.\\\"]], \\\"resps\\\": [[[-20.5, false]], [[-29.0, false]], [[-23.875, false]], [[-23.375, false]]], \\\"filtered_resps\\\": [[-20.5, false], [-29.0, false], [-23.875, false], [-23.375, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"b91fe1a8fdc40a80b9364f6256ac729d010ba076b02e75a362c2cf7ad3303bdf\\\", \\\"prompt_hash\\\": \\\"f804da9f5e214341d08d56228bb255177a0e5740f82e61b45887fcb5dc5c08ce\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0, \\\"acc_norm\\\": 1.0}\\n{\\\"doc_id\\\": 1, \\\"doc\\\
 …[truncated 3478 chars]
@@ -10312,7 +10198,7 @@ _source line 3929 · 2026-05-20T09:24:46.868127+00:00_
 
 ### Tool call
 
-_source line 3930 · 2026-05-20T09:24:46.918745+00:00_
+_source line 3926 · 2026-05-20T09:24:46.918745+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10348,7 +10234,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3931 · 2026-05-20T09:24:47.320691+00:00_
+_source line 3927 · 2026-05-20T09:24:47.320691+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10384,7 +10270,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3932 · 2026-05-20T09:24:47.672569+00:00_
+_source line 3928 · 2026-05-20T09:24:47.672569+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
 
@@ -10406,7 +10292,7 @@ _source line 3932 · 2026-05-20T09:24:47.672569+00:00_
 
 ### Tool result
 
-_source line 3933 · 2026-05-20T09:24:48.526794+00:00_
+_source line 3929 · 2026-05-20T09:24:48.526794+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"2376 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
 
@@ -10428,7 +10314,7 @@ _source line 3933 · 2026-05-20T09:24:48.526794+00:00_
 
 ### Tool call
 
-_source line 3934 · 2026-05-20T09:25:14.994819+00:00_
+_source line 3930 · 2026-05-20T09:25:14.994819+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10464,7 +10350,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3935 · 2026-05-20T09:25:19.287164+00:00_
+_source line 3931 · 2026-05-20T09:25:19.287164+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -10486,7 +10372,7 @@ _source line 3935 · 2026-05-20T09:25:19.287164+00:00_
 
 ### Assistant
 
-_source line 3936 · 2026-05-20T09:25:24.792979+00:00_
+_source line 3932 · 2026-05-20T09:25:24.792979+00:00_
 
 报告已发送。当前状态：ARC-Easy 数据完整可用（15/15 模型 × 2376 例），GPU 空闲等待分析任务。等待 Agent 启动 per-example 分析（Jaccard + normalized ES + Marx metrics），这是 Round 2 评分提升的关键路径。
 
@@ -10517,7 +10403,7 @@ _source line 3936 · 2026-05-20T09:25:24.792979+00:00_
 
 ### User
 
-_source line 3937 · 2026-05-20T09:25:54.527562+00:00_
+_source line 3933 · 2026-05-20T09:25:54.527562+00:00_
 
 [系统通知 — worker_done:worker_eval_arc-easy-recovery_20260520T092339]:
 Worker worker_eval_arc-easy-recovery_20260520T092339 已完成（status=done），请审查 Agent 的处理结果。
@@ -10539,7 +10425,7 @@ Worker worker_eval_arc-easy-recovery_20260520T092339 已完成（status=done）�
 
 ### Tool call
 
-_source line 3938 · 2026-05-20T09:26:03.431007+00:00_
+_source line 3934 · 2026-05-20T09:26:03.431007+00:00_
 
 called Glob
 
@@ -10575,7 +10461,7 @@ called Glob
 
 ### Tool result
 
-_source line 3939 · 2026-05-20T09:26:03.481809+00:00_
+_source line 3935 · 2026-05-20T09:26:03.481809+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_eval_arc-easy-recovery_20260520T092339_result.json
 
@@ -10597,7 +10483,7 @@ _source line 3939 · 2026-05-20T09:26:03.481809+00:00_
 
 ### Tool call
 
-_source line 3940 · 2026-05-20T09:26:06.393548+00:00_
+_source line 3936 · 2026-05-20T09:26:06.393548+00:00_
 
 called Read
 
@@ -10631,7 +10517,7 @@ called Read
 
 ### Tool result
 
-_source line 3941 · 2026-05-20T09:26:06.394077+00:00_
+_source line 3937 · 2026-05-20T09:26:06.394077+00:00_
 
 1	{
 2	  "raw": "**已完成模型：15/15**\n缺失模型列表：无\n恢复操作：无需恢复（服务器重启前已全部跑完）\n\n结果汇总（acc / acc_norm）：\n\n| 模型 | acc | acc_norm |\n|------|-----|----------|\n| **GatedDeltaNet-pure** | 0.7121 | 0.6414 |\n| GatedDeltaNet-h24-1 | 0.7092 | 0.6305 |\n| GatedDeltaNet-h12-1 | 0.6995 | 0.6292 |\n| GatedDeltaNet-h6-1 | 0.7176 | 0.6574 |\n| GatedDeltaNet-h3-1 | 0.7083 | 0.6486 |\n| **RetNet-pure** | 0.7130 | 0.6486 |\n| RetNet-h24-1 | 0.7088 | 0.6431 |\n| RetNet-h12-1 | 0.7201 | 0.6553 |\n| RetNet-h6-1 | 0.7180 | 0.6582 |\n| RetNet-h3-1 | 0.6961 | 0.6444 |\n| **HGRN2-pure** | 0.7130 | 0.6646 |\n| HGRN2-h24-1 | 0.7302 | 0.6785 |\n| HGRN2-h12-1 | 0.7332 | 0.6688 |\n| **HGRN2-h6-1** | **0.7412** | 0.6696 |\n| HGRN2-h3-1 | 0.7205 | 0.6435 |\n\n结果路径：`/root/entrainment_gated_ft/lm_eval_clean/arc_easy/`（每个模型目录含 `.json` 结果和 `samples/arc_easy.jsonl`）。Registry 已更新为 DONE/success。"
@@ -10655,7 +10541,7 @@ _source line 3941 · 2026-05-20T09:26:06.394077+00:00_
 
 ### Assistant
 
-_source line 3942 · 2026-05-20T09:26:43.036176+00:00_
+_source line 3938 · 2026-05-20T09:26:43.036176+00:00_
 
 Recovery worker 确认 15/15 模型完成，registry 已更新为 DONE。
 
@@ -10696,7 +10582,7 @@ ARC-Easy 的 pure 模型几乎一致（σ≈0.0005），添加 attention 反而*
 
 ### User
 
-_source line 3943 · 2026-05-20T09:28:23.881252+00:00_
+_source line 3939 · 2026-05-20T09:28:23.881252+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Round 2 review received (3.0), ARC-Easy eval dispatched, review_issues synced），请审查研究方向和计划的合理性。
@@ -10718,7 +10604,7 @@ _source line 3943 · 2026-05-20T09:28:23.881252+00:00_
 
 ### Tool call
 
-_source line 3944 · 2026-05-20T09:28:33.056947+00:00_
+_source line 3940 · 2026-05-20T09:28:33.056947+00:00_
 
 called ToolSearch
 
@@ -10754,7 +10640,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3945 · 2026-05-20T09:28:33.109821+00:00_
+_source line 3941 · 2026-05-20T09:28:33.109821+00:00_
 
 
 
@@ -10776,7 +10662,7 @@ _source line 3945 · 2026-05-20T09:28:33.109821+00:00_
 
 ### Tool call
 
-_source line 3946 · 2026-05-20T09:28:35.670833+00:00_
+_source line 3942 · 2026-05-20T09:28:35.670833+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -10810,7 +10696,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 3947 · 2026-05-20T09:28:35.671252+00:00_
+_source line 3943 · 2026-05-20T09:28:35.671252+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 09:28 UTC | 更新原因: Round 2 review received (3.0), ARC-Easy eval dispatched, review_issues synced\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Round 2 审稿结果已收 → ARC-Easy per-example 分析进行中**\\n\\n### Round 2 审稿结果\\n- Overall 3.0 (Findings)，与 Round 1 持平\\n- 原因：Round 1 修改全是防守性（修弱点），未扩展证据；标题升级 \\\"Predictive Multiplicity\\\" 但未引入 formal metrics 创造新 expectation gap\\n- **唯一提分路径 (D015)**：扩展 per-example 到 ARC-Easy + formal multiplicity metrics (ambiguity/discrepancy)\\n\\n### Round 2 回应进度\\n- ✅ BH correction note added (adj-p=0.102, identical to Bonferroni)\\n- ✅ Fehlauer et al. + Sellam et al. refs added\\n- ✅ \\\"nearly disjoint\\\" → \\\"low overlap\\\" (all locations)\\n- ✅ Attention overreach wording fixed\\n- ✅ \\\"We characterize\\\" → \\\"We observe\\\" (intro scale bullet)\\n- ✅ review_issues.yaml synced: 6 resolved, 9 remaining\\n- 🔄 ARC-Easy eval: 15 models with --log_samples on westb-48145 (PID 620603, dispatched ~5h ago, checking status)\\n- ⏳ Formal multiplicity metrics (ambiguity/discrepancy) — after ARC-Easy eval\\n- ⏳ Paper rewrite with ARC-Easy results — after analysis\\n- ⏳ Title decision — depends on ARC-Easy outcome\\n- ⏳ n=3 bootstrap heuristic acknowledgment (R1-N2)\\n- ⏳ GDN confound text promotion to main text (R1-N4)\\n\\n### 升级假设 (D015)\\n\\\"Per-example divergence is universal across task types. What is task-specific is not the divergence (always present) but the aggregate convergence (only on retrieval tasks).\\\"\\n- 如果 ARC-Easy 的 Jaccard 也低且 saturate → 重大 narrative 升级，有望 3.5+\\n- 如果不符合 → 加 \\\"Evidence from LAMBADA\\\" scope qualifier，仍提交但预期上限 3.0-3.25\\n\\
 …[truncated 2114 chars]
@@ -10833,7 +10719,7 @@ _source line 3947 · 2026-05-20T09:28:35.671252+00:00_
 
 ### Tool call
 
-_source line 3948 · 2026-05-20T09:29:04.540762+00:00_
+_source line 3944 · 2026-05-20T09:29:04.540762+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10869,7 +10755,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3949 · 2026-05-20T09:29:09.125745+00:00_
+_source line 3945 · 2026-05-20T09:29:09.125745+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -10891,7 +10777,7 @@ _source line 3949 · 2026-05-20T09:29:09.125745+00:00_
 
 ### Assistant
 
-_source line 3950 · 2026-05-20T09:29:13.057235+00:00_
+_source line 3946 · 2026-05-20T09:29:13.057235+00:00_
 
 ROADMAP 审查已提交。方向合理、时间线充足，但标记了 2 处事实过期（ARC-Easy eval 已完成而非进行中、GPU 空闲）和 1 处遗漏跟踪（§4.3 hurt normalized ES 数值错误）。
 
@@ -10918,7 +10804,7 @@ ROADMAP 审查已提交。方向合理、时间线充足，但标记了 2 处事
 
 ### User
 
-_source line 3951 · 2026-05-20T09:36:00.214549+00:00_
+_source line 3947 · 2026-05-20T09:36:00.214549+00:00_
 
 [系统通知 — worker_done:worker_analysis_arc-easy-per-example-full_20260520T092702]:
 Worker worker_analysis_arc-easy-per-example-full_20260520T092702 已完成（status=done），请审查 Agent 的处理结果。
@@ -10940,7 +10826,7 @@ Worker worker_analysis_arc-easy-per-example-full_20260520T092702 已完成（sta
 
 ### Tool call
 
-_source line 3952 · 2026-05-20T09:36:06.698929+00:00_
+_source line 3948 · 2026-05-20T09:36:06.698929+00:00_
 
 called Read
 
@@ -10974,7 +10860,7 @@ called Read
 
 ### Tool result
 
-_source line 3953 · 2026-05-20T09:36:06.799756+00:00_
+_source line 3949 · 2026-05-20T09:36:06.799756+00:00_
 
 1	{
 2	  "raw": "三个 artifacts 全部注册完成。以下是关键结果摘要：\n\n### A. Per-Example Classification (ARC-Easy, N=2376)\n\n| Arch | Ratio | Helped | Hurt | Net |\n|------|-------|--------|------|-----|\n| GDN | h24-1 | 178 | 185 | **-7** |\n| GDN | h12-1 | 176 | 206 | **-30** |\n| GDN | h6-1 | 170 | 157 | **+13** |\n| GDN | h3-1 | 171 | 180 | **-9** |\n| RetNet | h24-1 | 158 | 168 | **-10** |\n| RetNet | h12-1 | 163 | 146 | **+17** |\n| RetNet | h6-1 | 159 | 147 | **+12** |\n| RetNet | h3-1 | 144 | 184 | **-40** |\n| HGRN2 | h24-1 | 160 | 119 | **+41** |\n| HGRN2 | h12-1 | 159 | 111 | **+48** |\n| HGRN2 | h6-1 | 185 | 118 | **+67** |\n| HGRN2 | h3-1 | 164 | 146 | **+18** |\n\nHGRN2 在所有 ratio 下 attention 层都有正向 net effect；GDN/RetNet 混合。\n\n### B-C. Jaccard + Null Model\n\n所有 24 个 Jaccard 比较均显著高于 null model（22/24 p<0.001，2/24 p<0.01）。Normalized ES 范围 0.035–0.135，说明跨架构 helped/hurt 重叠虽然显著但绝对幅度低——不同架构倾向于在不同样本上受 attention 影响。\n\n### D. Convergence σ\n\nmean σ 在 pure(0.0964) → h24-1(0.1067) → h12-1(0.1052) → h6-1(0.0948) → h3-1(0.0990) 之间无单调趋势。Spearman ρ=-0.20, p=0.78 (ns)——attention ratio 与跨架构分歧无显著线性关系。\n\n### E. Multiplicity Metrics\n\n| Benchmark | Ratio | α (ambiguity) | δ (discrepancy) |\n|-----------|-------|---------------|-----------------|\n| ARC-Easy | pure | 0.205 | 2.55 |\n| ARC-Easy | h24-1 | 0.226 | 2.98 |\n| ARC-Easy | h12-1 | 0.223 | 3.12 |\n| ARC-Easy | h6-1 | 0.201 | 2.32 |\n| ARC-Easy | h3-1 | 0.210 | 2.66 |\n| LAMBADA | pure | 0.307 | 0.61 |\n| LAMBADA | h24-1 | 0.300 | 0.58 |\n| LAMBADA | h12-1 | 0.316 | 0.55 |\n| LAMBADA | h6-1 | 0.294 | 0.53 |\n| LAMBADA | h3-1 | 0.296 | 0.55 |\n\nLAMBADA 的 α 高于 ARC-Easy（~0.30 vs ~0.21），但 δ 低得多（~0.55 vs ~2.7），说明 LAMBADA 上架构间分歧更频繁，但一致正确时 confidence 更接近。ARC-Easy 上 h12-1 的 δ 最高（3.12），表明该 ratio 下即使都答对，3 个架构的 confidence 差异最大。"
@@ -10998,7 +10884,7 @@ _source line 3953 · 2026-05-20T09:36:06.799756+00:00_
 
 ### Tool call
 
-_source line 3954 · 2026-05-20T09:36:28.136055+00:00_
+_source line 3950 · 2026-05-20T09:36:28.136055+00:00_
 
 called Glob
 
@@ -11034,7 +10920,7 @@ called Glob
 
 ### Tool call
 
-_source line 3955 · 2026-05-20T09:36:28.136481+00:00_
+_source line 3951 · 2026-05-20T09:36:28.136481+00:00_
 
 called Glob
 
@@ -11070,7 +10956,7 @@ called Glob
 
 ### Tool result
 
-_source line 3956 · 2026-05-20T09:36:28.187001+00:00_
+_source line 3952 · 2026-05-20T09:36:28.187001+00:00_
 
 No files found
 
@@ -11092,7 +10978,7 @@ No files found
 
 ### Tool result
 
-_source line 3957 · 2026-05-20T09:36:28.187455+00:00_
+_source line 3953 · 2026-05-20T09:36:28.187455+00:00_
 
 No files found
 
@@ -11114,7 +11000,7 @@ No files found
 
 ### Tool call
 
-_source line 3958 · 2026-05-20T09:36:31.149727+00:00_
+_source line 3954 · 2026-05-20T09:36:31.149727+00:00_
 
 called Glob
 
@@ -11150,7 +11036,7 @@ called Glob
 
 ### Tool result
 
-_source line 3959 · 2026-05-20T09:36:31.601287+00:00_
+_source line 3955 · 2026-05-20T09:36:31.601287+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/report/wang_7b_search_results.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/wang_7b_search_results.md
@@ -11179,7 +11065,7 @@ _source line 3959 · 2026-05-20T09:36:31.601287+00:00_
 
 ### Tool call
 
-_source line 3960 · 2026-05-20T09:36:31.702021+00:00_
+_source line 3956 · 2026-05-20T09:36:31.702021+00:00_
 
 called Glob
 
@@ -11215,7 +11101,7 @@ called Glob
 
 ### Tool result
 
-_source line 3961 · 2026-05-20T09:36:31.752554+00:00_
+_source line 3957 · 2026-05-20T09:36:31.752554+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/formal_multiplicity_metrics.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/formal_multiplicity_metrics.json
@@ -11238,7 +11124,7 @@ _source line 3961 · 2026-05-20T09:36:31.752554+00:00_
 
 ### Tool call
 
-_source line 3962 · 2026-05-20T09:36:35.015783+00:00_
+_source line 3958 · 2026-05-20T09:36:35.015783+00:00_
 
 called Read
 
@@ -11272,7 +11158,7 @@ called Read
 
 ### Tool result
 
-_source line 3963 · 2026-05-20T09:36:35.417860+00:00_
+_source line 3959 · 2026-05-20T09:36:35.417860+00:00_
 
 1	{
 2	  "benchmark": "arc_easy",
@@ -11316,7 +11202,7 @@ _source line 3963 · 2026-05-20T09:36:35.417860+00:00_
 
 ### Tool call
 
-_source line 3964 · 2026-05-20T09:36:35.468457+00:00_
+_source line 3960 · 2026-05-20T09:36:35.468457+00:00_
 
 called Read
 
@@ -11350,7 +11236,7 @@ called Read
 
 ### Tool result
 
-_source line 3965 · 2026-05-20T09:36:35.519179+00:00_
+_source line 3961 · 2026-05-20T09:36:35.519179+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -11389,7 +11275,7 @@ _source line 3965 · 2026-05-20T09:36:35.519179+00:00_
 
 ### Tool call
 
-_source line 3966 · 2026-05-20T09:37:19.515801+00:00_
+_source line 3962 · 2026-05-20T09:37:19.515801+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11425,7 +11311,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3967 · 2026-05-20T09:37:21.473488+00:00_
+_source line 3963 · 2026-05-20T09:37:21.473488+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"}
 
@@ -11447,7 +11333,7 @@ _source line 3967 · 2026-05-20T09:37:21.473488+00:00_
 
 ### Tool call
 
-_source line 3968 · 2026-05-20T09:37:24.986070+00:00_
+_source line 3964 · 2026-05-20T09:37:24.986070+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11483,7 +11369,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3969 · 2026-05-20T09:37:25.747383+00:00_
+_source line 3965 · 2026-05-20T09:37:25.747383+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/formal_multiplicity_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
 
@@ -11505,7 +11391,7 @@ _source line 3969 · 2026-05-20T09:37:25.747383+00:00_
 
 ### Tool call
 
-_source line 3970 · 2026-05-20T09:37:29.312585+00:00_
+_source line 3966 · 2026-05-20T09:37:29.312585+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11541,7 +11427,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3971 · 2026-05-20T09:37:30.115708+00:00_
+_source line 3967 · 2026-05-20T09:37:30.115708+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/per_example_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
 
@@ -11563,7 +11449,7 @@ _source line 3971 · 2026-05-20T09:37:30.115708+00:00_
 
 ### Tool call
 
-_source line 3972 · 2026-05-20T09:37:33.376620+00:00_
+_source line 3968 · 2026-05-20T09:37:33.376620+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11599,7 +11485,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3973 · 2026-05-20T09:37:33.427205+00:00_
+_source line 3969 · 2026-05-20T09:37:33.427205+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -11621,7 +11507,7 @@ _source line 3973 · 2026-05-20T09:37:33.427205+00:00_
 
 ### Tool call
 
-_source line 3974 · 2026-05-20T09:37:37.389231+00:00_
+_source line 3970 · 2026-05-20T09:37:37.389231+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11657,7 +11543,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 3975 · 2026-05-20T09:37:37.891774+00:00_
+_source line 3971 · 2026-05-20T09:37:37.891774+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11693,7 +11579,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3976 · 2026-05-20T09:37:38.202573+00:00_
+_source line 3972 · 2026-05-20T09:37:38.202573+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"249:            \\\"discrepancy_delta_mean\\\": round(delta, 6) if delta is not None else None,\\n250:            \\\"discrepancy_delta_std\\\": round(delta_std, 6) if delta_std is not None else None,\\n251:            \\\"discrepancy_delta_median\\\": round(delta_median, 6) if delta_median is not None else None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
 
@@ -11715,7 +11601,7 @@ _source line 3976 · 2026-05-20T09:37:38.202573+00:00_
 
 ### Tool result
 
-_source line 3977 · 2026-05-20T09:37:39.056040+00:00_
+_source line 3973 · 2026-05-20T09:37:39.056040+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"248:            \\\"ambiguity_alpha\\\": round(alpha, 6),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
 
@@ -11737,7 +11623,7 @@ _source line 3977 · 2026-05-20T09:37:39.056040+00:00_
 
 ### Tool call
 
-_source line 3978 · 2026-05-20T09:37:42.017078+00:00_
+_source line 3974 · 2026-05-20T09:37:42.017078+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11773,7 +11659,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 3979 · 2026-05-20T09:37:42.820685+00:00_
+_source line 3975 · 2026-05-20T09:37:42.820685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Full per-example analysis for ARC-Easy + LAMBADA (Parts A-F).\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom itertools import permutations as iterperms\\n\\nnp.random.seed(42)\\n\\nARCHS = [\\\"GDN\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nHYBRID_RATIOS = [\\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nN_PERM = 10000\\nOUT_DIR = \\\"/root/entrainment_gated_ft\\\"\\n\\n# === Paths ===\\nARC_BASE = \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\"\\nARC_ARCH_MAP = {\\\"GDN\\\": \\\"GatedDeltaNet\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\n\\ndef arc_path(arch, ratio):\\n    a = ARC_ARCH_MAP[arch]\\n    if ratio == \\\"pure\\\":\\n        return f\\\"{ARC_BASE}/1.3B-100B-{a}-pure/samples/arc_easy.jsonl\\\"\\n    num = ratio.split(\\\"-\\\")[0][1:]\\n    return f\\\"{ARC_BASE}/1.3B-100B-{a}-hybrid-{num}-1/samples/arc_easy.jsonl\\\"\\n\\nLAMB_EXP = \\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\\\"\\nLAMB_EXTRA = \\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b\\\"\\n\\ndef lambada_path(arch, ratio):\\n    if arch == \\\"GDN\\\" and ratio in [\\\"h24-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]:\\n        return f\\\"{LAMB_EXTRA}/GDN-{ratio}-logsamples/samples/lambada_openai.jsonl\\\"\\n    name = {\\\"GDN\\\": \\\"GDN\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}[arch]\\n    return f\\\"{LAMB_EXP}/{name}-{ratio}/samples/lambada_openai.jsonl\\\"\\n\\ndef load_jsonl(path):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            data.append(json.loads(line))\\n    return data\\n\\n# === Load ===\\nprint(\\\"Loading data...\\\")\\narc_data = {}\\nlambada_raw = {}\\nfor arch in ARCHS:\\n    for ra
 …[truncated 7471 chars]
@@ -11796,7 +11682,7 @@ _source line 3979 · 2026-05-20T09:37:42.820685+00:00_
 
 ### Tool call
 
-_source line 3980 · 2026-05-20T09:38:56.699159+00:00_
+_source line 3976 · 2026-05-20T09:38:56.699159+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11832,7 +11718,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3981 · 2026-05-20T09:39:00.363805+00:00_
+_source line 3977 · 2026-05-20T09:39:00.363805+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -11854,7 +11740,7 @@ _source line 3981 · 2026-05-20T09:39:00.363805+00:00_
 
 ### Assistant
 
-_source line 3982 · 2026-05-20T09:39:02.912157+00:00_
+_source line 3978 · 2026-05-20T09:39:02.912157+00:00_
 
 代码逻辑已读完。独立验证关键计算。
 
@@ -11894,7 +11780,7 @@ _source line 3982 · 2026-05-20T09:39:02.912157+00:00_
 
 ### User
 
-_source line 3983 · 2026-05-20T09:50:41.061597+00:00_
+_source line 3979 · 2026-05-20T09:50:41.061597+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D016: ARC-Easy confirms universal multiplicity — paper rewrite dispatched），请审查研究方向和计划的合理性。
@@ -11916,7 +11802,7 @@ _source line 3983 · 2026-05-20T09:50:41.061597+00:00_
 
 ### Tool call
 
-_source line 3984 · 2026-05-20T09:50:48.742532+00:00_
+_source line 3980 · 2026-05-20T09:50:48.742532+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -11950,7 +11836,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 3985 · 2026-05-20T09:50:48.793281+00:00_
+_source line 3981 · 2026-05-20T09:50:48.793281+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 09:50 UTC | 更新原因: D016: ARC-Easy confirms universal multiplicity — paper rewrite dispatched\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**D016 — ARC-Easy 确认 per-example multiplicity 是 universal 属性，Paper Agent 正在执行重大论文修改**\\n\\n### Round 2 审稿 (3.0) → Round 3 准备中\\n- 核心突破：ARC-Easy (N=2376) 上无 aggregate convergence (ρ=-0.20, ns) 但 per-example divergence 显著 (α≈0.21, 24/24 Jaccard p<0.01)\\n- Narrative 升级：\\\"per-example multiplicity 跨 task universal，aggregate convergence 是 task-specific\\\"\\n- 预期提分：3.0 → 3.5+ (Borderline Conference → Conference)\\n\\n### 已完成\\n- ✅ ARC-Easy evaluation 15/15 models complete\\n- ✅ Per-example Jaccard analysis (helped 0.067-0.117, hurt 0.079-0.134)\\n- ✅ Formal multiplicity metrics: ARC-Easy α≈0.21, LAMBADA α≈0.30\\n- ✅ Round 2 wording fixes (BH, refs, \\\"low overlap\\\", attention overreach, \\\"We observe\\\")\\n- ✅ review_issues.yaml synced (6 resolved)\\n- ✅ D016 logged\\n\\n### 进行中\\n- 🔄 Paper Agent: 重大修改 (Abstract/Intro/§4/Conclusion/Limitations 全更新)\\n- ⏳ δ metric caveat: 论文中标注为 \\\"confidence discrepancy\\\" 非 Marx 原始定义\\n\\n### Round 3 提交前剩余\\n- [ ] Paper Agent 完成修改 + 编译通过 (8 页)\\n- [ ] n=3 bootstrap heuristic acknowledgment (R1-N2)\\n- [ ] GDN confound text promotion (R1-N4)\\n- [ ] 提交 Round 3 审稿 (mode=continue)\\n\\n### Issue 解决进展\\n- **Addressed by ARC-Easy**: R2-N1 (single benchmark), R2-N2 (formal metrics), W-multiplicity-formal, W-contribution-boundary, W-title\\n- **Still pending**: R1-N1 (power ceiling, structural), R1-N2 (n=3 bootstrap), R1-N4 (GDN confound text)\\n- **Resolved (6)**: R1-N3, R2-N3, W-scale, W-preregistration, W-entro
 …[truncated 1426 chars]
@@ -11973,7 +11859,7 @@ _source line 3985 · 2026-05-20T09:50:48.793281+00:00_
 
 ### Tool call
 
-_source line 3986 · 2026-05-20T09:51:19.134783+00:00_
+_source line 3982 · 2026-05-20T09:51:19.134783+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12009,7 +11895,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 3987 · 2026-05-20T09:51:22.848652+00:00_
+_source line 3983 · 2026-05-20T09:51:22.848652+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -12031,7 +11917,7 @@ _source line 3987 · 2026-05-20T09:51:22.848652+00:00_
 
 ### Assistant
 
-_source line 3988 · 2026-05-20T09:51:25.135312+00:00_
+_source line 3984 · 2026-05-20T09:51:25.135312+00:00_
 
 ROADMAP 方向合理，D016 有数据支撑。两个小问题。
 
@@ -12058,7 +11944,7 @@ ROADMAP 方向合理，D016 有数据支撑。两个小问题。
 
 ### User
 
-_source line 3989 · 2026-05-20T10:05:19.420958+00:00_
+_source line 3985 · 2026-05-20T10:05:19.420958+00:00_
 
 [System 触发审查]:
 Round 3 提交前一致性检查。Paper Agent 完成 ARC-Easy per-example + formal multiplicity metrics 重大修改后，Director 修了 3 处：
@@ -12092,7 +11978,7 @@ Round 3 提交前一致性检查。Paper Agent 完成 ARC-Easy per-example + for
 
 ### Tool call
 
-_source line 3990 · 2026-05-20T10:05:27.328826+00:00_
+_source line 3986 · 2026-05-20T10:05:27.328826+00:00_
 
 called Read
 
@@ -12126,7 +12012,7 @@ called Read
 
 ### Tool result
 
-_source line 3991 · 2026-05-20T10:05:28.281703+00:00_
+_source line 3987 · 2026-05-20T10:05:28.281703+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/reviewer_0d633edb.
 
@@ -12148,7 +12034,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 3992 · 2026-05-20T10:05:28.282184+00:00_
+_source line 3988 · 2026-05-20T10:05:28.282184+00:00_
 
 called Read
 
@@ -12182,7 +12068,7 @@ called Read
 
 ### Tool result
 
-_source line 3993 · 2026-05-20T10:05:28.633978+00:00_
+_source line 3989 · 2026-05-20T10:05:28.633978+00:00_
 
 1	\section{Introduction}
 2	
@@ -12209,7 +12095,7 @@ _source line 3993 · 2026-05-20T10:05:28.633978+00:00_
 
 ### Tool call
 
-_source line 3994 · 2026-05-20T10:05:28.937322+00:00_
+_source line 3990 · 2026-05-20T10:05:28.937322+00:00_
 
 called Read
 
@@ -12243,7 +12129,7 @@ called Read
 
 ### Tool result
 
-_source line 3995 · 2026-05-20T10:05:29.090977+00:00_
+_source line 3991 · 2026-05-20T10:05:29.090977+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -12274,7 +12160,7 @@ _source line 3995 · 2026-05-20T10:05:29.090977+00:00_
 
 ### Tool call
 
-_source line 3996 · 2026-05-20T10:06:03.618386+00:00_
+_source line 3992 · 2026-05-20T10:06:03.618386+00:00_
 
 called Read
 
@@ -12308,7 +12194,7 @@ called Read
 
 ### Tool result
 
-_source line 3997 · 2026-05-20T10:06:04.020623+00:00_
+_source line 3993 · 2026-05-20T10:06:04.020623+00:00_
 
 1	\section{Conclusion}
 2	
@@ -12333,7 +12219,7 @@ _source line 3997 · 2026-05-20T10:06:04.020623+00:00_
 
 ### Tool call
 
-_source line 3998 · 2026-05-20T10:06:04.522563+00:00_
+_source line 3994 · 2026-05-20T10:06:04.522563+00:00_
 
 called Read
 
@@ -12369,7 +12255,7 @@ called Read
 
 ### Tool result
 
-_source line 3999 · 2026-05-20T10:06:04.923874+00:00_
+_source line 3995 · 2026-05-20T10:06:04.923874+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -12415,7 +12301,7 @@ _source line 3999 · 2026-05-20T10:06:04.923874+00:00_
 
 ### Tool call
 
-_source line 4000 · 2026-05-20T10:06:04.974469+00:00_
+_source line 3996 · 2026-05-20T10:06:04.974469+00:00_
 
 called Read
 
@@ -12449,7 +12335,7 @@ called Read
 
 ### Tool result
 
-_source line 4001 · 2026-05-20T10:06:05.327565+00:00_
+_source line 3997 · 2026-05-20T10:06:05.327565+00:00_
 
 1	{
 2	  "analysis": "jaccard_upper_bound",
@@ -12534,7 +12420,7 @@ _source line 4001 · 2026-05-20T10:06:05.327565+00:00_
 
 ### Tool call
 
-_source line 4002 · 2026-05-20T10:07:13.617333+00:00_
+_source line 3998 · 2026-05-20T10:07:13.617333+00:00_
 
 called Read
 
@@ -12568,7 +12454,7 @@ called Read
 
 ### Tool result
 
-_source line 4003 · 2026-05-20T10:07:14.069668+00:00_
+_source line 3999 · 2026-05-20T10:07:14.069668+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -12603,7 +12489,7 @@ _source line 4003 · 2026-05-20T10:07:14.069668+00:00_
 
 ### Tool call
 
-_source line 4004 · 2026-05-20T10:07:14.120413+00:00_
+_source line 4000 · 2026-05-20T10:07:14.120413+00:00_
 
 called Read
 
@@ -12639,7 +12525,7 @@ called Read
 
 ### Tool result
 
-_source line 4005 · 2026-05-20T10:07:14.171319+00:00_
+_source line 4001 · 2026-05-20T10:07:14.171319+00:00_
 
 37	\section*{Limitations}
 38	
@@ -12674,7 +12560,7 @@ _source line 4005 · 2026-05-20T10:07:14.171319+00:00_
 
 ### Tool call
 
-_source line 4006 · 2026-05-20T10:07:59.325800+00:00_
+_source line 4002 · 2026-05-20T10:07:59.325800+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12710,7 +12596,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4007 · 2026-05-20T10:08:03.008815+00:00_
+_source line 4003 · 2026-05-20T10:08:03.008815+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -12732,7 +12618,7 @@ _source line 4007 · 2026-05-20T10:08:03.008815+00:00_
 
 ### Assistant
 
-_source line 4008 · 2026-05-20T10:08:05.680498+00:00_
+_source line 4004 · 2026-05-20T10:08:05.680498+00:00_
 
 全面一致性检查完成。
 
@@ -12759,7 +12645,7 @@ _source line 4008 · 2026-05-20T10:08:05.680498+00:00_
 
 ### User
 
-_source line 4009 · 2026-05-20T10:08:06.251702+00:00_
+_source line 4005 · 2026-05-20T10:08:06.251702+00:00_
 
 [System 触发审查]:
 **Round 3 提交前一致性检查（重大修改后）**
@@ -12816,7 +12702,7 @@ _source line 4009 · 2026-05-20T10:08:06.251702+00:00_
 
 ### Tool call
 
-_source line 4010 · 2026-05-20T10:08:20.370152+00:00_
+_source line 4006 · 2026-05-20T10:08:20.370152+00:00_
 
 called Grep
 
@@ -12856,7 +12742,7 @@ called Grep
 
 ### Tool result
 
-_source line 4011 · 2026-05-20T10:08:20.873121+00:00_
+_source line 4007 · 2026-05-20T10:08:20.873121+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:41:\paragraph{Statistical power.} With only $n = 5$ attention ratios, the minimum achievable two-tailed $p$-value under an exact permutation test is approximately 0.008. This ceiling limits our ability to detect weak convergence effects and contributes to the Bonferroni-adjusted $p = .100$ for LAMBADA not reaching conventional significance. We report confidence intervals as a complementary characterization to partially address this constraint.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:9:[Omitted long matching line]
@@ -12881,7 +12767,7 @@ _source line 4011 · 2026-05-20T10:08:20.873121+00:00_
 
 ### Tool call
 
-_source line 4012 · 2026-05-20T10:08:21.325006+00:00_
+_source line 4008 · 2026-05-20T10:08:21.325006+00:00_
 
 called Grep
 
@@ -12921,7 +12807,7 @@ called Grep
 
 ### Tool result
 
-_source line 4013 · 2026-05-20T10:08:21.879814+00:00_
+_source line 4009 · 2026-05-20T10:08:21.879814+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:49:This contrast is a preliminary observation from two data points (not a scaling law) that scale may facilitate complete equalization. Despite the aggregate divergence, mean pairwise Jaccard similarity is similar at both scales (340M: $J = 0.094$ helped, $0.090$ hurt; 1.3B: $0.100$, $0.093$), extending the decoupling observation (\S\ref{ssec:decoupling}) to the scale dimension.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:16:[Omitted long matching line]
@@ -12945,7 +12831,7 @@ _source line 4013 · 2026-05-20T10:08:21.879814+00:00_
 
 ### Tool call
 
-_source line 4014 · 2026-05-20T10:08:21.933810+00:00_
+_source line 4010 · 2026-05-20T10:08:21.933810+00:00_
 
 called Grep
 
@@ -12985,7 +12871,7 @@ called Grep
 
 ### Tool result
 
-_source line 4015 · 2026-05-20T10:08:21.985335+00:00_
+_source line 4011 · 2026-05-20T10:08:21.985335+00:00_
 
 No matches found
 
@@ -13007,7 +12893,7 @@ No matches found
 
 ### Tool call
 
-_source line 4016 · 2026-05-20T10:08:25.501340+00:00_
+_source line 4012 · 2026-05-20T10:08:25.501340+00:00_
 
 called Grep
 
@@ -13047,7 +12933,7 @@ called Grep
 
 ### Tool result
 
-_source line 4017 · 2026-05-20T10:08:25.953283+00:00_
+_source line 4013 · 2026-05-20T10:08:25.953283+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex:48:[Omitted long matching line]
 
@@ -13069,7 +12955,7 @@ _source line 4017 · 2026-05-20T10:08:25.953283+00:00_
 
 ### Tool call
 
-_source line 4018 · 2026-05-20T10:08:26.455273+00:00_
+_source line 4014 · 2026-05-20T10:08:26.455273+00:00_
 
 called Grep
 
@@ -13109,7 +12995,7 @@ called Grep
 
 ### Tool result
 
-_source line 4019 · 2026-05-20T10:08:26.907450+00:00_
+_source line 4015 · 2026-05-20T10:08:26.907450+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:86:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:104:GDN and HGRN2 show negligible entropy differences ($|\Delta H| \leq 0.002$). RetNet's $\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.
@@ -13132,7 +13018,7 @@ _source line 4019 · 2026-05-20T10:08:26.907450+00:00_
 
 ### Tool call
 
-_source line 4020 · 2026-05-20T10:08:27.460035+00:00_
+_source line 4016 · 2026-05-20T10:08:27.460035+00:00_
 
 called Grep
 
@@ -13172,7 +13058,7 @@ called Grep
 
 ### Tool result
 
-_source line 4021 · 2026-05-20T10:08:27.510813+00:00_
+_source line 4017 · 2026-05-20T10:08:27.510813+00:00_
 
 No matches found
 
@@ -13194,7 +13080,7 @@ No matches found
 
 ### Tool call
 
-_source line 4022 · 2026-05-20T10:08:31.074123+00:00_
+_source line 4018 · 2026-05-20T10:08:31.074123+00:00_
 
 called Grep
 
@@ -13234,7 +13120,7 @@ called Grep
 
 ### Tool result
 
-_source line 4023 · 2026-05-20T10:08:31.526174+00:00_
+_source line 4019 · 2026-05-20T10:08:31.526174+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:59:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:65:\label{tab:multiplicity}
@@ -13260,7 +13146,7 @@ _source line 4023 · 2026-05-20T10:08:31.526174+00:00_
 
 ### Tool call
 
-_source line 4024 · 2026-05-20T10:08:32.028447+00:00_
+_source line 4020 · 2026-05-20T10:08:32.028447+00:00_
 
 called Grep
 
@@ -13300,7 +13186,7 @@ called Grep
 
 ### Tool result
 
-_source line 4025 · 2026-05-20T10:08:32.480484+00:00_
+_source line 4021 · 2026-05-20T10:08:32.480484+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:3:[Omitted long matching line]
 
@@ -13322,7 +13208,7 @@ _source line 4025 · 2026-05-20T10:08:32.480484+00:00_
 
 ### Tool call
 
-_source line 4026 · 2026-05-20T10:08:33.174157+00:00_
+_source line 4022 · 2026-05-20T10:08:33.174157+00:00_
 
 called Grep
 
@@ -13364,7 +13250,7 @@ called Grep
 
 ### Tool result
 
-_source line 4027 · 2026-05-20T10:08:33.225816+00:00_
+_source line 4023 · 2026-05-20T10:08:33.225816+00:00_
 
 No matches found
 
@@ -13386,7 +13272,7 @@ No matches found
 
 ### Tool call
 
-_source line 4028 · 2026-05-20T10:08:37.090161+00:00_
+_source line 4024 · 2026-05-20T10:08:37.090161+00:00_
 
 called Grep
 
@@ -13430,7 +13316,7 @@ called Grep
 
 ### Tool result
 
-_source line 4029 · 2026-05-20T10:08:37.542452+00:00_
+_source line 4025 · 2026-05-20T10:08:37.542452+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:24:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex:13:[Omitted long matching line]
@@ -13460,7 +13346,7 @@ _source line 4029 · 2026-05-20T10:08:37.542452+00:00_
 
 ### Tool call
 
-_source line 4030 · 2026-05-20T10:08:37.994019+00:00_
+_source line 4026 · 2026-05-20T10:08:37.994019+00:00_
 
 called Grep
 
@@ -13500,7 +13386,7 @@ called Grep
 
 ### Tool result
 
-_source line 4031 · 2026-05-20T10:08:38.044553+00:00_
+_source line 4027 · 2026-05-20T10:08:38.044553+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:55:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:180:Table~\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.
@@ -13526,7 +13412,7 @@ _source line 4031 · 2026-05-20T10:08:38.044553+00:00_
 
 ### Tool call
 
-_source line 4032 · 2026-05-20T10:08:59.194783+00:00_
+_source line 4028 · 2026-05-20T10:08:59.194783+00:00_
 
 called Glob
 
@@ -13562,7 +13448,7 @@ called Glob
 
 ### Tool result
 
-_source line 4033 · 2026-05-20T10:08:59.245425+00:00_
+_source line 4029 · 2026-05-20T10:08:59.245425+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.log
 
@@ -13584,7 +13470,7 @@ _source line 4033 · 2026-05-20T10:08:59.245425+00:00_
 
 ### Tool call
 
-_source line 4034 · 2026-05-20T10:09:03.135569+00:00_
+_source line 4030 · 2026-05-20T10:09:03.135569+00:00_
 
 called Grep
 
@@ -13626,7 +13512,7 @@ called Grep
 
 ### Tool result
 
-_source line 4035 · 2026-05-20T10:09:03.186150+00:00_
+_source line 4031 · 2026-05-20T10:09:03.186150+00:00_
 
 549:Underfull \hbox (badness 1902) in paragraph at lines 16--17
 559:Underfull \hbox (badness 1389) in paragraph at lines 7--8
@@ -13662,7 +13548,7 @@ _source line 4035 · 2026-05-20T10:09:03.186150+00:00_
 
 ### Tool call
 
-_source line 4036 · 2026-05-20T10:09:08.356122+00:00_
+_source line 4032 · 2026-05-20T10:09:08.356122+00:00_
 
 called Grep
 
@@ -13702,7 +13588,7 @@ called Grep
 
 ### Tool result
 
-_source line 4037 · 2026-05-20T10:09:08.758025+00:00_
+_source line 4033 · 2026-05-20T10:09:08.758025+00:00_
 
 No matches found
 
@@ -13724,7 +13610,7 @@ No matches found
 
 ### Tool call
 
-_source line 4038 · 2026-05-20T10:09:09.360543+00:00_
+_source line 4034 · 2026-05-20T10:09:09.360543+00:00_
 
 called Grep
 
@@ -13764,7 +13650,7 @@ called Grep
 
 ### Tool result
 
-_source line 4039 · 2026-05-20T10:09:09.411208+00:00_
+_source line 4035 · 2026-05-20T10:09:09.411208+00:00_
 
 No matches found
 
@@ -13786,7 +13672,7 @@ No matches found
 
 ### Tool call
 
-_source line 4040 · 2026-05-20T10:09:13.224490+00:00_
+_source line 4036 · 2026-05-20T10:09:13.224490+00:00_
 
 called Grep
 
@@ -13828,7 +13714,7 @@ called Grep
 
 ### Tool result
 
-_source line 4041 · 2026-05-20T10:09:13.325274+00:00_
+_source line 4037 · 2026-05-20T10:09:13.325274+00:00_
 
 No matches found
 
@@ -13850,7 +13736,7 @@ No matches found
 
 ### Tool call
 
-_source line 4042 · 2026-05-20T10:09:16.636085+00:00_
+_source line 4038 · 2026-05-20T10:09:16.636085+00:00_
 
 called Grep
 
@@ -13892,7 +13778,7 @@ called Grep
 
 ### Tool result
 
-_source line 4043 · 2026-05-20T10:09:16.686597+00:00_
+_source line 4039 · 2026-05-20T10:09:16.686597+00:00_
 
 3:[Omitted long matching line]
 86:[Omitted long matching line]
@@ -13915,7 +13801,7 @@ _source line 4043 · 2026-05-20T10:09:16.686597+00:00_
 
 ### Tool call
 
-_source line 4044 · 2026-05-20T10:09:49.504937+00:00_
+_source line 4040 · 2026-05-20T10:09:49.504937+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13951,7 +13837,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4045 · 2026-05-20T10:09:53.597788+00:00_
+_source line 4041 · 2026-05-20T10:09:53.597788+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -13973,7 +13859,7 @@ _source line 4045 · 2026-05-20T10:09:53.597788+00:00_
 
 ### Assistant
 
-_source line 4046 · 2026-05-20T10:10:00.073616+00:00_
+_source line 4042 · 2026-05-20T10:10:00.073616+00:00_
 
 所有检查项已完成。这次涵盖了 Director 请求的全部 5 大类。
 
@@ -14000,7 +13886,7 @@ _source line 4046 · 2026-05-20T10:10:00.073616+00:00_
 
 ### User
 
-_source line 4047 · 2026-05-20T10:37:32.470974+00:00_
+_source line 4043 · 2026-05-20T10:37:32.470974+00:00_
 
 [System 触发审查]:
 **Round 3 审稿报告处理 — 请独立审查 Action Matrix**
@@ -14063,7 +13949,7 @@ E. **BIB 问题**：damour2022underspecification 年份——JMLR 2022 vs arXiv 
 
 ### Tool call
 
-_source line 4048 · 2026-05-20T10:37:43.001769+00:00_
+_source line 4044 · 2026-05-20T10:37:43.001769+00:00_
 
 called Agent
 
@@ -14101,7 +13987,7 @@ called Agent
 
 ### Tool call
 
-_source line 4049 · 2026-05-20T10:37:46.368907+00:00_
+_source line 4045 · 2026-05-20T10:37:46.368907+00:00_
 
 called Bash
 
@@ -14135,7 +14021,7 @@ called Bash
 
 ### Tool result
 
-_source line 4050 · 2026-05-20T10:37:46.369359+00:00_
+_source line 4046 · 2026-05-20T10:37:46.369359+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib
 
@@ -14157,7 +14043,7 @@ _source line 4050 · 2026-05-20T10:37:46.369359+00:00_
 
 ### Tool call
 
-_source line 4051 · 2026-05-20T10:37:46.419988+00:00_
+_source line 4047 · 2026-05-20T10:37:46.419988+00:00_
 
 called Read
 
@@ -14191,7 +14077,7 @@ called Read
 
 ### Tool result
 
-_source line 4052 · 2026-05-20T10:37:46.520820+00:00_
+_source line 4048 · 2026-05-20T10:37:46.520820+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -14268,7 +14154,7 @@ _source line 4052 · 2026-05-20T10:37:46.520820+00:00_
 
 ### Tool call
 
-_source line 4053 · 2026-05-20T10:37:46.521381+00:00_
+_source line 4049 · 2026-05-20T10:37:46.521381+00:00_
 
 called Agent
 
@@ -14306,7 +14192,7 @@ called Agent
 
 ### Tool call
 
-_source line 4054 · 2026-05-20T10:37:47.926487+00:00_
+_source line 4050 · 2026-05-20T10:37:47.926487+00:00_
 
 called WebSearch
 
@@ -14340,7 +14226,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 4055 · 2026-05-20T10:37:47.926896+00:00_
+_source line 4051 · 2026-05-20T10:37:47.926896+00:00_
 
 called WebSearch
 
@@ -14374,7 +14260,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 4056 · 2026-05-20T10:37:48.127568+00:00_
+_source line 4052 · 2026-05-20T10:37:48.127568+00:00_
 
 called WebSearch
 
@@ -14408,7 +14294,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 4057 · 2026-05-20T10:37:49.784951+00:00_
+_source line 4053 · 2026-05-20T10:37:49.784951+00:00_
 
 Perfect! I found both entries in the references.bib file. Here are the full bib entries you requested:
 
@@ -14455,7 +14341,7 @@ Both entries are located in `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/pro
 
 ### Tool result
 
-_source line 4058 · 2026-05-20T10:37:53.497423+00:00_
+_source line 4054 · 2026-05-20T10:37:53.497423+00:00_
 
 Web search results for query: "Wang hybrid model zoo GatedDeltaNet RetNet HGRN2 arXiv"
 
@@ -14497,7 +14383,7 @@ REMINDER: You MUST include the sources above
 
 ### Tool result
 
-_source line 4059 · 2026-05-20T10:37:53.949266+00:00_
+_source line 4055 · 2026-05-20T10:37:53.949266+00:00_
 
 Web search results for query: "arXiv 2603.25450"
 
@@ -14528,7 +14414,7 @@ The authors propose a solution using "cross-model disagreement as a correctness 
 
 ### Tool result
 
-_source line 4060 · 2026-05-20T10:37:54.000485+00:00_
+_source line 4056 · 2026-05-20T10:37:54.000485+00:00_
 
 Web search results for query: "arXiv 2507.06457"
 
@@ -14559,7 +14445,7 @@ While linear models often suffer from limited recall performance, leading to hyb
 
 ### Tool call
 
-_source line 4061 · 2026-05-20T10:37:55.907480+00:00_
+_source line 4057 · 2026-05-20T10:37:55.907480+00:00_
 
 called WebSearch
 
@@ -14593,7 +14479,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 4062 · 2026-05-20T10:37:56.058395+00:00_
+_source line 4058 · 2026-05-20T10:37:56.058395+00:00_
 
 called WebSearch
 
@@ -14627,7 +14513,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 4063 · 2026-05-20T10:38:02.529297+00:00_
+_source line 4059 · 2026-05-20T10:38:02.529297+00:00_
 
 Web search results for query: "Wang "A Systematic Analysis of Hybrid Linear Attention" arXiv"
 
@@ -14664,7 +14550,7 @@ I found the paper you're looking for. Here are the key details:
 
 ### Tool result
 
-_source line 4064 · 2026-05-20T10:38:02.981098+00:00_
+_source line 4060 · 2026-05-20T10:38:02.981098+00:00_
 
 Web search results for query: ""hybrid model zoo" Wang arXiv 2024 2025"
 
@@ -14707,7 +14593,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 4065 · 2026-05-20T10:38:08.703773+00:00_
+_source line 4061 · 2026-05-20T10:38:08.703773+00:00_
 
 Perfect! Now I have all the information needed. Here's my report:
 
@@ -14755,7 +14641,7 @@ Sources:
 
 ### Tool call
 
-_source line 4066 · 2026-05-20T10:38:44.382046+00:00_
+_source line 4062 · 2026-05-20T10:38:44.382046+00:00_
 
 called ToolSearch
 
@@ -14791,7 +14677,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4067 · 2026-05-20T10:38:44.382494+00:00_
+_source line 4063 · 2026-05-20T10:38:44.382494+00:00_
 
 
 
@@ -14813,7 +14699,7 @@ _source line 4067 · 2026-05-20T10:38:44.382494+00:00_
 
 ### Tool call
 
-_source line 4068 · 2026-05-20T10:38:47.593982+00:00_
+_source line 4064 · 2026-05-20T10:38:47.593982+00:00_
 
 called WebSearch
 
@@ -14847,7 +14733,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 4069 · 2026-05-20T10:38:47.995906+00:00_
+_source line 4065 · 2026-05-20T10:38:47.995906+00:00_
 
 called WebSearch
 
@@ -14881,7 +14767,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 4070 · 2026-05-20T10:38:52.512177+00:00_
+_source line 4066 · 2026-05-20T10:38:52.512177+00:00_
 
 Web search results for query: "ACL Rolling Review ARR 2026 submission deadlines EMNLP 2026 commitment deadline"
 
@@ -14920,7 +14806,7 @@ After submission, authors must complete the author registration form by May 27, 
 
 ### Tool result
 
-_source line 4071 · 2026-05-20T10:38:54.619765+00:00_
+_source line 4067 · 2026-05-20T10:38:54.619765+00:00_
 
 Web search results for query: "arXiv 2507.06457 "Systematic Analysis of Hybrid Linear Attention" Wang authors"
 
@@ -14955,7 +14841,7 @@ I found the paper you're looking for! Here's the information about arXiv 2507.06
 
 ### Tool call
 
-_source line 4072 · 2026-05-20T10:41:31.633953+00:00_
+_source line 4068 · 2026-05-20T10:41:31.633953+00:00_
 
 called ToolSearch
 
@@ -14991,7 +14877,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4073 · 2026-05-20T10:41:31.684631+00:00_
+_source line 4069 · 2026-05-20T10:41:31.684631+00:00_
 
 
 
@@ -15013,7 +14899,7 @@ _source line 4073 · 2026-05-20T10:41:31.684631+00:00_
 
 ### Tool call
 
-_source line 4074 · 2026-05-20T10:42:16.565282+00:00_
+_source line 4070 · 2026-05-20T10:42:16.565282+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15049,7 +14935,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4075 · 2026-05-20T10:42:20.230624+00:00_
+_source line 4071 · 2026-05-20T10:42:20.230624+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -15071,7 +14957,7 @@ _source line 4075 · 2026-05-20T10:42:20.230624+00:00_
 
 ### Assistant
 
-_source line 4076 · 2026-05-20T10:42:25.569698+00:00_
+_source line 4072 · 2026-05-20T10:42:25.569698+00:00_
 
 审查报告已发送至 Director。核心发现：
 
@@ -15104,7 +14990,7 @@ _source line 4076 · 2026-05-20T10:42:25.569698+00:00_
 
 ### User
 
-_source line 4077 · 2026-05-20T10:43:24.158899+00:00_
+_source line 4073 · 2026-05-20T10:43:24.158899+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D017: Deadline correction May 25 + Round 3 sprint plan），请审查研究方向和计划的合理性。
@@ -15126,7 +15012,7 @@ _source line 4077 · 2026-05-20T10:43:24.158899+00:00_
 
 ### Tool call
 
-_source line 4078 · 2026-05-20T10:43:31.293866+00:00_
+_source line 4074 · 2026-05-20T10:43:31.293866+00:00_
 
 called ToolSearch
 
@@ -15162,7 +15048,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4079 · 2026-05-20T10:43:31.344555+00:00_
+_source line 4075 · 2026-05-20T10:43:31.344555+00:00_
 
 
 
@@ -15184,7 +15070,7 @@ _source line 4079 · 2026-05-20T10:43:31.344555+00:00_
 
 ### Tool call
 
-_source line 4080 · 2026-05-20T10:43:33.955521+00:00_
+_source line 4076 · 2026-05-20T10:43:33.955521+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -15218,7 +15104,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4081 · 2026-05-20T10:43:34.006195+00:00_
+_source line 4077 · 2026-05-20T10:43:34.006195+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 10:43 UTC | 更新原因: D017: Deadline correction May 25 + Round 3 sprint plan\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**D017 — 5-Day Sprint: May 25 ARR 截止，冲刺 Findings 接收**\\n\\n### ⚠️ DEADLINE CORRECTION\\n- **实际截止: 2026-05-25 (ARR May cycle)**，不是之前以为的 June 15\\n- EMNLP 2026 要求 ARR May cycle，2026 年无 June cycle\\n- 剩余 5 天\\n\\n### Round 3 审稿 (3.0) → 修复冲刺中\\n- 审稿人共识：Findings (3.0) 可接收，Conference (4.0) 需更多实验/方法创新\\n- 策略：修复 desk rejection 风险 + 弱化 overclaim → 稳固 Findings\\n\\n### Sprint 任务\\n- [x] W-CITE: wang2025hybrid bib 修复（标题/作者）\\n- [ ] W-CHECKLIST: ARR Responsible NLP Checklist（Paper Agent 执行中）\\n- [ ] W-OVERCLAIM: Abstract/Title/Intro framing 弱化（Paper Agent 执行中）\\n- [ ] W-GENERAL: \\\"general property\\\" → 更保守措辞（Paper Agent 执行中）\\n- [ ] W-GDN: §4.5 GDN confound 关键数据正文化（Paper Agent 执行中）\\n- [ ] W-REFS: 5 篇遗漏引用验证（Agent 执行中）\\n- [ ] Q1: p-value rounding 脚注解释\\n- [ ] Q5: Single checkpoint limitation\\n- [ ] 最终编译 + Round 4 审稿\\n\\n### 已完成（本项目全程）\\n- ✅ 10 benchmark aggregate convergence 分析\\n- ✅ LAMBADA per-example decomposition (N=5153, α≈0.30)\\n- ✅ ARC-Easy per-example 分析 (N=2376, α≈0.21, 24/24 Jaccard significant)\\n- ✅ Formal multiplicity metrics (Marx 2020 ambiguity)\\n- ✅ 3 轮审稿迭代（Round 1→2→3 均 3.0）\\n- ✅ wang2025hybrid bib 修复\\n\\n## 论文状态\\n- 标题（待改）: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures: Evidence from Two Benchmarks and Three Backbones\\\"\\n- 证据: LAMBADA + ARC-Easy 双 benchmark, 3 architectures, 5 ratios, 2 scales\\n- Target: **EMNLP 2026 via ARR May (deadline May 25, 5 days)**\\n- 目标评分: 3.0 Findings（稳固接收）\\n\\n## GPU 预算\\nwestb-48145: 1× 
 …[truncated 1072 chars]
@@ -15241,7 +15127,7 @@ _source line 4081 · 2026-05-20T10:43:34.006195+00:00_
 
 ### Tool call
 
-_source line 4082 · 2026-05-20T10:43:54.136102+00:00_
+_source line 4078 · 2026-05-20T10:43:54.136102+00:00_
 
 called Read
 
@@ -15275,7 +15161,7 @@ called Read
 
 ### Tool result
 
-_source line 4083 · 2026-05-20T10:43:54.237095+00:00_
+_source line 4079 · 2026-05-20T10:43:54.237095+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -15350,7 +15236,7 @@ _source line 4083 · 2026-05-20T10:43:54.237095+00:00_
 
 ### Tool call
 
-_source line 4084 · 2026-05-20T10:44:23.913726+00:00_
+_source line 4080 · 2026-05-20T10:44:23.913726+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15386,7 +15272,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4085 · 2026-05-20T10:44:27.993408+00:00_
+_source line 4081 · 2026-05-20T10:44:27.993408+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -15408,7 +15294,7 @@ _source line 4085 · 2026-05-20T10:44:27.993408+00:00_
 
 ### Assistant
 
-_source line 4086 · 2026-05-20T10:44:31.700510+00:00_
+_source line 4082 · 2026-05-20T10:44:31.700510+00:00_
 
 已提交 D017 ROADMAP 审查。核心发现：sprint 任务缺少 ARR Author Response Letter（warning 级），其余策略调整合理。等待后续通知。
 
@@ -15435,7 +15321,7 @@ _source line 4086 · 2026-05-20T10:44:31.700510+00:00_
 
 ### User
 
-_source line 4087 · 2026-05-20T10:45:13.018541+00:00_
+_source line 4083 · 2026-05-20T10:45:13.018541+00:00_
 
 [系统通知 — worker_done:worker_research_citation-verification_20260520T104340]:
 Worker worker_research_citation-verification_20260520T104340 已完成（status=done），请审查 Agent 的处理结果。
@@ -15457,7 +15343,7 @@ Worker worker_research_citation-verification_20260520T104340 已完成（status=
 
 ### Tool call
 
-_source line 4088 · 2026-05-20T10:45:19.832801+00:00_
+_source line 4084 · 2026-05-20T10:45:19.832801+00:00_
 
 called ToolSearch
 
@@ -15493,7 +15379,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4089 · 2026-05-20T10:45:19.883401+00:00_
+_source line 4085 · 2026-05-20T10:45:19.883401+00:00_
 
 
 
@@ -15515,7 +15401,7 @@ _source line 4089 · 2026-05-20T10:45:19.883401+00:00_
 
 ### Tool call
 
-_source line 4090 · 2026-05-20T10:45:23.199774+00:00_
+_source line 4086 · 2026-05-20T10:45:23.199774+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15553,7 +15439,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4091 · 2026-05-20T10:45:23.300525+00:00_
+_source line 4087 · 2026-05-20T10:45:23.300525+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0529}}"}
 
@@ -15575,7 +15461,7 @@ _source line 4091 · 2026-05-20T10:45:23.300525+00:00_
 
 ### Tool call
 
-_source line 4092 · 2026-05-20T10:45:26.964195+00:00_
+_source line 4088 · 2026-05-20T10:45:26.964195+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15613,7 +15499,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4093 · 2026-05-20T10:45:27.115691+00:00_
+_source line 4089 · 2026-05-20T10:45:27.115691+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"spec\": {\"command\": \"Python analysis on westb-48145 (CPU)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"data_count\": 2376, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (15 models)\", \"seed\": \"N/A (deterministic eval)\", \"checkpoint_source\": \"exp-arc-easy-eval\", \"eval_data\": \"ARC-Easy (2376 samples)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"completed_at\": \"2026-05-20T10:06:01.194Z\", \"metrics\": {\"benchmark\": \"arc_easy\", \"n_samples\": 2376, \"convergence\": {\"spearman_rho\": -0.2, \"p_exact\": 0.783, \"significant\": false}, \"jaccard_range\": {\"helped\": [0.067, 0.117], \"hurt\": [0.079, 0.134]}, \"normalized_ES_range\": [0.035, 0.135], \"all_24_jaccard_above_null\": true, \"multiplicity_arc_easy\": {\"alpha_range\": [0.201, 0.226], \"delta_range\": [2.32, 3.12]}, \"multiplicity_lambada\": {\"alpha_range\": [0.294, 0.316], \"delta_range\": [0.53, 0.61]}, \"claim\": \"Claim 3: per-example predictive multiplicity is general\", \"artifacts\": [\"arc_easy_per_example.json\", \"arc_easy_jaccard_analysis.json\", \"formal_multiplicity_metrics.json\"]}}, \"exp-arc-easy-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:46:49
 …[truncated 7717 chars]
@@ -15636,7 +15522,7 @@ _source line 4093 · 2026-05-20T10:45:27.115691+00:00_
 
 ### Tool call
 
-_source line 4094 · 2026-05-20T10:45:35.165302+00:00_
+_source line 4090 · 2026-05-20T10:45:35.165302+00:00_
 
 called Glob
 
@@ -15672,7 +15558,7 @@ called Glob
 
 ### Tool result
 
-_source line 4095 · 2026-05-20T10:45:35.918142+00:00_
+_source line 4091 · 2026-05-20T10:45:35.918142+00:00_
 
 No files found
 
@@ -15694,7 +15580,7 @@ No files found
 
 ### Tool call
 
-_source line 4096 · 2026-05-20T10:45:35.918464+00:00_
+_source line 4092 · 2026-05-20T10:45:35.918464+00:00_
 
 called Read
 
@@ -15730,7 +15616,7 @@ called Read
 
 ### Tool result
 
-_source line 4097 · 2026-05-20T10:45:35.968850+00:00_
+_source line 4093 · 2026-05-20T10:45:35.968850+00:00_
 
 280	% Benchmarks and Evaluation
 281	% ============================================================
@@ -15776,7 +15662,7 @@ _source line 4097 · 2026-05-20T10:45:35.968850+00:00_
 
 ### Tool call
 
-_source line 4098 · 2026-05-20T10:45:39.777092+00:00_
+_source line 4094 · 2026-05-20T10:45:39.777092+00:00_
 
 called Glob
 
@@ -15812,7 +15698,7 @@ called Glob
 
 ### Tool result
 
-_source line 4099 · 2026-05-20T10:45:40.180167+00:00_
+_source line 4095 · 2026-05-20T10:45:40.180167+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T143201/worst/references.bib
 
@@ -15834,7 +15720,7 @@ _source line 4099 · 2026-05-20T10:45:40.180167+00:00_
 
 ### Tool call
 
-_source line 4100 · 2026-05-20T10:45:40.180617+00:00_
+_source line 4096 · 2026-05-20T10:45:40.180617+00:00_
 
 called Glob
 
@@ -15870,7 +15756,7 @@ called Glob
 
 ### Tool result
 
-_source line 4101 · 2026-05-20T10:45:40.232394+00:00_
+_source line 4097 · 2026-05-20T10:45:40.232394+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T143201/worst/references.bib
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib
@@ -15893,7 +15779,7 @@ _source line 4101 · 2026-05-20T10:45:40.232394+00:00_
 
 ### Tool call
 
-_source line 4102 · 2026-05-20T10:45:57.626660+00:00_
+_source line 4098 · 2026-05-20T10:45:57.626660+00:00_
 
 called Grep
 
@@ -15933,7 +15819,7 @@ called Grep
 
 ### Tool result
 
-_source line 4103 · 2026-05-20T10:45:57.627150+00:00_
+_source line 4099 · 2026-05-20T10:45:57.627150+00:00_
 
 No matches found
 
@@ -15955,7 +15841,7 @@ No matches found
 
 ### Tool call
 
-_source line 4104 · 2026-05-20T10:46:00.888435+00:00_
+_source line 4100 · 2026-05-20T10:46:00.888435+00:00_
 
 called Grep
 
@@ -15995,7 +15881,7 @@ called Grep
 
 ### Tool result
 
-_source line 4105 · 2026-05-20T10:46:00.939093+00:00_
+_source line 4101 · 2026-05-20T10:46:00.939093+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:24:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:55:This work analyzes publicly available pretrained language models from the model zoo of \citet{wang2025hybrid}. No new data collection, human subjects research, or model training is involved. We identify per-example behavioral differences across architectures, which may inform practitioners about the limitations of aggregate benchmark comparisons but does not introduce new risks.
@@ -16029,7 +15915,7 @@ _source line 4105 · 2026-05-20T10:46:00.939093+00:00_
 
 ### Tool call
 
-_source line 4106 · 2026-05-20T10:46:15.269089+00:00_
+_source line 4102 · 2026-05-20T10:46:15.269089+00:00_
 
 called Read
 
@@ -16063,7 +15949,7 @@ called Read
 
 ### Tool result
 
-_source line 4107 · 2026-05-20T10:46:15.319802+00:00_
+_source line 4103 · 2026-05-20T10:46:15.319802+00:00_
 
 1	\section*{Responsible NLP Research Checklist}
 2	
@@ -16115,7 +16001,7 @@ _source line 4107 · 2026-05-20T10:46:15.319802+00:00_
 
 ### Tool call
 
-_source line 4108 · 2026-05-20T10:46:41.255875+00:00_
+_source line 4104 · 2026-05-20T10:46:41.255875+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16151,7 +16037,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4109 · 2026-05-20T10:46:45.444725+00:00_
+_source line 4105 · 2026-05-20T10:46:45.444725+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -16173,7 +16059,7 @@ _source line 4109 · 2026-05-20T10:46:45.444725+00:00_
 
 ### Assistant
 
-_source line 4110 · 2026-05-20T10:46:47.835801+00:00_
+_source line 4106 · 2026-05-20T10:46:47.835801+00:00_
 
 ARR checklist 已创建，citation verification worker 完成但 bib 尚未集成新引用。审查要点准备完毕。
 
@@ -16200,7 +16086,7 @@ ARR checklist 已创建，citation verification worker 完成但 bib 尚未集�
 
 ### User
 
-_source line 4111 · 2026-05-20T10:46:48.353859+00:00_
+_source line 4107 · 2026-05-20T10:46:48.353859+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D017: Add Author Response Letter + refined sprint task list per Reviewer feedback），请审查研究方向和计划的合理性。
@@ -16222,7 +16108,7 @@ _source line 4111 · 2026-05-20T10:46:48.353859+00:00_
 
 ### Tool call
 
-_source line 4112 · 2026-05-20T10:46:54.614303+00:00_
+_source line 4108 · 2026-05-20T10:46:54.614303+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -16256,7 +16142,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4113 · 2026-05-20T10:46:54.665073+00:00_
+_source line 4109 · 2026-05-20T10:46:54.665073+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 10:46 UTC | 更新原因: D017: Add Author Response Letter + refined sprint task list per Reviewer feedback\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**D017 — 5-Day Sprint: May 25 ARR 截止，冲刺 Findings 接收**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle)\\n- EMNLP 2026 要求 ARR May cycle，2026 年无 June cycle\\n- 剩余 5 天，纯写作冲刺\\n\\n### 策略\\n- 审稿人共识：Findings (3.0) 可接收，Conference (4.0) 需新实验/方法创新（5天内不可能）\\n- 目标：修复 desk rejection 风险 + 弱化 overclaim → 稳固 Findings 接收\\n- 已砍项：新指标开发(#3)、attention ablation(#5)、更多 benchmark(#9)\\n\\n### Sprint 任务\\n- [x] W-CITE: wang2025hybrid bib 修复（标题/作者）— Director 直接修复\\n- [ ] W-CHECKLIST: ARR Responsible NLP Checklist — Paper Agent\\n- [ ] W-OVERCLAIM: Abstract/Title/Intro framing 弱化 — Paper Agent\\n- [ ] W-GENERAL: \\\"general property\\\" → 更保守措辞 — Paper Agent\\n- [ ] W-GDN: §4.5 扩展（GDN confound 正文化）— Paper Agent\\n- [ ] R3-POWER: 结构性设计约束在 Method/Limitations 承认 — Paper Agent\\n- [ ] Q1: p-value rounding 脚注 — Paper Agent\\n- [ ] Q5: Single checkpoint limitation — Paper Agent\\n- [ ] W-REFS: 5 篇遗漏引用验证 — Agent（执行中）\\n- [ ] W-ZOO: Model zoo trade-off 讨论 — Paper Agent\\n- [ ] Author Response Letter — Paper Agent（Patch 完成后）\\n- [ ] 最终编译 + Round 4 审稿\\n\\n### 执行状态\\n- 🔄 Paper Agent: P0-P4 Patch 执行中（Checklist + Framing + GDN + Q1/Q5）\\n- 🔄 Agent: 引用验证中（5 篇 + damour year 确认）\\n- ⏳ Author Response: 排队，等 Patch 完成\\n\\n## 论文状态\\n- 标题（待改）: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures: Evidence from Two Benchmarks and Three Backbones\\\"\\n- Target: **EMNLP 2026 via ARR May (deadline May 25)**\\n- 目标评分: 3.0 Findings\\n\\n## GPU 预算\\nwestb-48145: 1× 
 …[truncated 1072 chars]
@@ -16279,7 +16165,7 @@ _source line 4113 · 2026-05-20T10:46:54.665073+00:00_
 
 ### Tool call
 
-_source line 4114 · 2026-05-20T10:47:07.710811+00:00_
+_source line 4110 · 2026-05-20T10:47:07.710811+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16315,7 +16201,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4115 · 2026-05-20T10:47:12.399093+00:00_
+_source line 4111 · 2026-05-20T10:47:12.399093+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -16344,7 +16230,7 @@ _source line 4115 · 2026-05-20T10:47:12.399093+00:00_
 
 ### User
 
-_source line 4116 · 2026-05-20T11:29:54.084967+00:00_
+_source line 4112 · 2026-05-20T11:29:54.084967+00:00_
 
 [System 触发审查]:
 请做一次 **claim-evidence 对齐审查**。
@@ -16376,7 +16262,7 @@ Round 3 做了大量 framing 弱化（title 去 convergence、abstract 加 adjus
 
 ### Tool call
 
-_source line 4117 · 2026-05-20T11:30:02.852816+00:00_
+_source line 4113 · 2026-05-20T11:30:02.852816+00:00_
 
 called Read
 
@@ -16410,7 +16296,7 @@ called Read
 
 ### Tool result
 
-_source line 4118 · 2026-05-20T11:30:03.880927+00:00_
+_source line 4114 · 2026-05-20T11:30:03.880927+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -16457,7 +16343,7 @@ _source line 4118 · 2026-05-20T11:30:03.880927+00:00_
 
 ### Tool call
 
-_source line 4119 · 2026-05-20T11:30:03.897437+00:00_
+_source line 4115 · 2026-05-20T11:30:03.897437+00:00_
 
 called Read
 
@@ -16491,7 +16377,7 @@ called Read
 
 ### Tool result
 
-_source line 4120 · 2026-05-20T11:30:04.048516+00:00_
+_source line 4116 · 2026-05-20T11:30:04.048516+00:00_
 
 1	\section{Introduction}
 2	
@@ -16518,7 +16404,7 @@ _source line 4120 · 2026-05-20T11:30:04.048516+00:00_
 
 ### Tool call
 
-_source line 4121 · 2026-05-20T11:30:04.048947+00:00_
+_source line 4117 · 2026-05-20T11:30:04.048947+00:00_
 
 called Read
 
@@ -16552,7 +16438,7 @@ called Read
 
 ### Tool result
 
-_source line 4122 · 2026-05-20T11:30:04.099598+00:00_
+_source line 4118 · 2026-05-20T11:30:04.099598+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -16583,7 +16469,7 @@ _source line 4122 · 2026-05-20T11:30:04.099598+00:00_
 
 ### Tool call
 
-_source line 4123 · 2026-05-20T11:30:09.065844+00:00_
+_source line 4119 · 2026-05-20T11:30:09.065844+00:00_
 
 called Read
 
@@ -16617,7 +16503,7 @@ called Read
 
 ### Tool result
 
-_source line 4124 · 2026-05-20T11:30:09.467934+00:00_
+_source line 4120 · 2026-05-20T11:30:09.467934+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -16659,7 +16545,7 @@ _source line 4124 · 2026-05-20T11:30:09.467934+00:00_
 
 ### Tool call
 
-_source line 4125 · 2026-05-20T11:30:09.468301+00:00_
+_source line 4121 · 2026-05-20T11:30:09.468301+00:00_
 
 called Read
 
@@ -16693,7 +16579,7 @@ called Read
 
 ### Tool result
 
-_source line 4126 · 2026-05-20T11:30:09.518840+00:00_
+_source line 4122 · 2026-05-20T11:30:09.518840+00:00_
 
 1	\section{Conclusion}
 2	
@@ -16718,7 +16604,7 @@ _source line 4126 · 2026-05-20T11:30:09.518840+00:00_
 
 ### Tool call
 
-_source line 4127 · 2026-05-20T11:32:10.547534+00:00_
+_source line 4123 · 2026-05-20T11:32:10.547534+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16754,7 +16640,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4128 · 2026-05-20T11:32:14.260765+00:00_
+_source line 4124 · 2026-05-20T11:32:14.260765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -16776,7 +16662,7 @@ _source line 4128 · 2026-05-20T11:32:14.260765+00:00_
 
 ### Assistant
 
-_source line 4129 · 2026-05-20T11:32:19.838210+00:00_
+_source line 4125 · 2026-05-20T11:32:19.838210+00:00_
 
 审查已发送。核心发现：
 
@@ -16809,7 +16695,7 @@ _source line 4129 · 2026-05-20T11:32:19.838210+00:00_
 
 ### User
 
-_source line 4130 · 2026-05-20T11:48:42.974058+00:00_
+_source line 4126 · 2026-05-20T11:48:42.974058+00:00_
 
 [系统通知 — worker_done:worker_eval_boolq-hellaswag-probe_20260520T113034]:
 Worker worker_eval_boolq-hellaswag-probe_20260520T113034 已完成（status=done），请审查 Agent 的处理结果。
@@ -16831,7 +16717,7 @@ Worker worker_eval_boolq-hellaswag-probe_20260520T113034 已完成（status=done
 
 ### Tool call
 
-_source line 4131 · 2026-05-20T11:48:50.339021+00:00_
+_source line 4127 · 2026-05-20T11:48:50.339021+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16869,7 +16755,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4132 · 2026-05-20T11:48:50.389840+00:00_
+_source line 4128 · 2026-05-20T11:48:50.389840+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0579}}"}
 
@@ -16891,7 +16777,7 @@ _source line 4132 · 2026-05-20T11:48:50.389840+00:00_
 
 ### Tool call
 
-_source line 4133 · 2026-05-20T11:48:54.655286+00:00_
+_source line 4129 · 2026-05-20T11:48:54.655286+00:00_
 
 called ToolSearch
 
@@ -16927,7 +16813,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4134 · 2026-05-20T11:48:54.706098+00:00_
+_source line 4130 · 2026-05-20T11:48:54.706098+00:00_
 
 
 
@@ -16949,7 +16835,7 @@ _source line 4134 · 2026-05-20T11:48:54.706098+00:00_
 
 ### Tool call
 
-_source line 4135 · 2026-05-20T11:48:59.782652+00:00_
+_source line 4131 · 2026-05-20T11:48:59.782652+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -16985,7 +16871,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4136 · 2026-05-20T11:49:00.435809+00:00_
+_source line 4132 · 2026-05-20T11:49:00.435809+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17021,7 +16907,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4137 · 2026-05-20T11:49:01.790935+00:00_
+_source line 4133 · 2026-05-20T11:49:01.790935+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1689704\\ndrwxr-xr-x 13 root root      4096 May 20 19:37 .\\ndrwxr-xr-x 11 root root      4096 May 20 19:32 ..\\n-rw-r--r--  1 root root 132179538 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r--  1 root root    271099 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n-rw-r--r--  1 root root     14282 May 18 22:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n-rw-r--r--  1 root root     14289 May 18 22:00 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n-rw-r--r--  1 root root     14300 May 18 22:07 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n-rw-r--r--  1 root root 132160102 May 18 21:45 1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r--  1 root root      5444 May 18 21:38 1.3B-100B-GatedDeltaNet-pure.log\\n-rw-r--r--  1 root root    246441 May 18 21:45 1.3B-100B-GatedDeltaNet-pure_final.log\\n-rw-r--r--  1 root root   7929496 May 18 21:17 1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n-rw-r--r--  1 root root       286 May 18 21:22 1.3B-100B-GatedDeltaNet-pure_results.json\\n-rw-r--r--  1 root root 132153710 May 19 00:15 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r--  1 root root 132165547 May 19 00:24 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r--  1 root root 132168839 May 19 00:51 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r--  1 root root 132176544 May 19 01:04 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r--  1 root root 132172054 May 19 02:37 1.3B-100B-HGRN2-pure.json\\n-rw-r--r--  1 root root 132168964 May 18 23:27 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r--  1 root root 132159737 May 18 23:30 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r--  1 root root 132165204 May 19 00:41 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r--  1 root root 132160156 May 19 00:34 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r--  1 root root 132175098 May 18 23:15 1.3B-100B-RetNet-pure.json\\n-rw-r--r--  1 root root    344046 May 18 22:04 1.3B-100B-RetNet-pure_final.log\\n-rw-r--r--  1 root r
 …[truncated 2116 chars]
@@ -17044,7 +16930,7 @@ _source line 4137 · 2026-05-20T11:49:01.790935+00:00_
 
 ### Tool result
 
-_source line 4138 · 2026-05-20T11:49:02.644499+00:00_
+_source line 4134 · 2026-05-20T11:49:02.644499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-pure/samples/boolq.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/boolq.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
 
@@ -17066,7 +16952,7 @@ _source line 4138 · 2026-05-20T11:49:02.644499+00:00_
 
 ### Tool call
 
-_source line 4139 · 2026-05-20T11:49:10.422790+00:00_
+_source line 4135 · 2026-05-20T11:49:10.422790+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17102,7 +16988,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4140 · 2026-05-20T11:49:10.724165+00:00_
+_source line 4136 · 2026-05-20T11:49:10.724165+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17138,7 +17024,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4141 · 2026-05-20T11:49:11.252957+00:00_
+_source line 4137 · 2026-05-20T11:49:11.252957+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root  144 May 20 19:44 .\\ndrwxr-xr-x 13 root root 4096 May 20 19:37 ..\\ndrwxr-xr-x  3 root root   81 May 20 19:44 1.3B-100B-GatedDeltaNet-hybrid-12-1\\ndrwxr-xr-x  3 root root   81 May 20 19:39 1.3B-100B-GatedDeltaNet-hybrid-24-1\\ndrwxr-xr-x  3 root root   74 May 20 19:34 1.3B-100B-GatedDeltaNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
 
@@ -17160,7 +17046,7 @@ _source line 4141 · 2026-05-20T11:49:11.252957+00:00_
 
 ### Tool call
 
-_source line 4142 · 2026-05-20T11:49:11.405223+00:00_
+_source line 4138 · 2026-05-20T11:49:11.405223+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17196,7 +17082,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4143 · 2026-05-20T11:49:12.007716+00:00_
+_source line 4139 · 2026-05-20T11:49:12.007716+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root  144 May 20 19:47 .\\ndrwxr-xr-x 13 root root 4096 May 20 19:37 ..\\ndrwxr-xr-x  3 root root   81 May 20 19:47 1.3B-100B-GatedDeltaNet-hybrid-12-1\\ndrwxr-xr-x  3 root root   81 May 20 19:42 1.3B-100B-GatedDeltaNet-hybrid-24-1\\ndrwxr-xr-x  3 root root   74 May 20 19:37 1.3B-100B-GatedDeltaNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
 
@@ -17218,7 +17104,7 @@ _source line 4143 · 2026-05-20T11:49:12.007716+00:00_
 
 ### Tool result
 
-_source line 4144 · 2026-05-20T11:49:13.115077+00:00_
+_source line 4140 · 2026-05-20T11:49:13.115077+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0%|          | 0/10042 [00:00<?, ?it/s]\\r  2%|▏         | 206/10042 [00:00<00:04, 2056.09it/s]\\r  4%|▍         | 416/10042 [00:00<00:04, 2080.60it/s]\\r  6%|▋         | 628/10042 [00:00<00:04, 2097.21it/s]\\r  8%|▊         | 842/10042 [00:00<00:04, 2111.73it/s]\\r 10%|█         | 1054/10042 [00:00<00:04, 2098.68it/s]\\r 13%|█▎        | 1269/10042 [00:00<00:04, 2115.91it/s]\\r 15%|█▍        | 1481/10042 [00:00<00:04, 2115.22it/s]\\r 17%|█▋        | 1693/10042 [00:00<00:03, 2110.00it/s]\\r 19%|█▉        | 1905/10042 [00:00<00:03, 2103.87it/s]\\r 21%|██        | 2120/10042 [00:01<00:03, 2117.81it/s]\\r 23%|██▎       | 2332/10042 [00:01<00:03, 2110.32it/s]\\r 25%|██▌       | 2545/10042 [00:01<00:03, 2115.94it/s]\\r 27%|██▋       | 2757/10042 [00:01<00:03, 2107.96it/s]\\r 30%|██▉       | 2968/10042 [00:01<00:03, 2101.58it/s]\\r 32%|███▏      | 3183/10042 [00:01<00:03, 2114.24it/s]\\r 34%|███▍      | 3395/10042 [00:01<00:03, 2102.92it/s]\\r 36%|███▌      | 3608/10042 [00:01<00:03, 2108.44it/s]\\r 38%|███▊      | 3819/10042 [00:01<00:02, 2104.96it/s]\\r 40%|████      | 4030/10042 [00:01<00:02, 2082.94it/s]\\r 42%|████▏     | 4239/10042 [00:02<00:02, 2083.85it/s]\\r 44%|████▍     | 4452/10042 [00:02<00:02, 2097.52it/s]\\r 46%|████▋     | 4662/10042 [00:02<00:02, 2098.06it/s]\\r 49%|████▊     | 4872/10042 [00:02<00:02, 2084.07it/s]\\r 51%|█████     | 5086/10042 [00:02<00:02, 2098.39it/s]\\r 53%|█████▎    | 5300/10042 [00:02<00:02, 2109.28it/s]\\r 55%|█████▍    | 5511/10042 [00:02<00:02, 2099.03it/s]\\r 57%|█████▋    | 5721/10042 [00:02<00:02, 2090.51it/s]\\r 59%|█████▉    | 5934/10042 [00:02<00:01, 2100.70it/s]\\r 61%|██████    | 6145/10042 [00:02<00:01, 2091.27it/s]\\r 63%|██████▎   | 6358/10042 [00:03<00:01, 2100.73it/s]\\r 65%|██████▌   | 6569/10042 [00:03<00:01, 2085.90it/s]\\r 67%|██████���   | 6778/10042 [00:03<00:01, 2082.59it/s]\\r 70%|██████▉   | 6992/10042 [00:03<00:01, 2099.21it/s]\\r 72%|███████▏  | 7
 …[truncated 6466 chars]
@@ -17241,7 +17127,7 @@ _source line 4144 · 2026-05-20T11:49:13.115077+00:00_
 
 ### Tool call
 
-_source line 4145 · 2026-05-20T11:49:24.612730+00:00_
+_source line 4141 · 2026-05-20T11:49:24.612730+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17277,7 +17163,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4146 · 2026-05-20T11:49:25.064741+00:00_
+_source line 4142 · 2026-05-20T11:49:25.064741+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17313,7 +17199,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4147 · 2026-05-20T11:49:25.365885+00:00_
+_source line 4143 · 2026-05-20T11:49:25.365885+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.75}}"}
 
@@ -17335,7 +17221,7 @@ _source line 4147 · 2026-05-20T11:49:25.365885+00:00_
 
 ### Tool result
 
-_source line 4148 · 2026-05-20T11:49:26.219023+00:00_
+_source line 4144 · 2026-05-20T11:49:26.219023+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-pure/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
 
@@ -17357,7 +17243,7 @@ _source line 4148 · 2026-05-20T11:49:26.219023+00:00_
 
 ### Tool call
 
-_source line 4149 · 2026-05-20T11:49:29.633935+00:00_
+_source line 4145 · 2026-05-20T11:49:29.633935+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17393,7 +17279,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4150 · 2026-05-20T11:49:30.437584+00:00_
+_source line 4146 · 2026-05-20T11:49:30.437584+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"question\\\": \\\"does ethanol take more energy make that produces\\\", \\\"passage\\\": \\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\", \\\"idx\\\": 0, \\\"label\\\": 0}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the ene
 …[truncated 3218 chars]
@@ -17416,7 +17302,7 @@ _source line 4150 · 2026-05-20T11:49:30.437584+00:00_
 
 ### Tool call
 
-_source line 4151 · 2026-05-20T11:49:30.588577+00:00_
+_source line 4147 · 2026-05-20T11:49:30.588577+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17452,7 +17338,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4152 · 2026-05-20T11:49:31.290959+00:00_
+_source line 4148 · 2026-05-20T11:49:31.290959+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17488,7 +17374,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4153 · 2026-05-20T11:49:31.391660+00:00_
+_source line 4149 · 2026-05-20T11:49:31.391660+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
 
@@ -17510,7 +17396,7 @@ _source line 4153 · 2026-05-20T11:49:31.391660+00:00_
 
 ### Tool result
 
-_source line 4154 · 2026-05-20T11:49:32.245949+00:00_
+_source line 4150 · 2026-05-20T11:49:32.245949+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
 
@@ -17532,7 +17418,7 @@ _source line 4154 · 2026-05-20T11:49:32.245949+00:00_
 
 ### Tool call
 
-_source line 4155 · 2026-05-20T11:49:47.222226+00:00_
+_source line 4151 · 2026-05-20T11:49:47.222226+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17568,7 +17454,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4156 · 2026-05-20T11:49:47.724279+00:00_
+_source line 4152 · 2026-05-20T11:49:47.724279+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17604,7 +17490,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4157 · 2026-05-20T11:49:47.975609+00:00_
+_source line 4153 · 2026-05-20T11:49:47.975609+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
 
@@ -17626,7 +17512,7 @@ _source line 4157 · 2026-05-20T11:49:47.975609+00:00_
 
 ### Tool result
 
-_source line 4158 · 2026-05-20T11:49:48.026256+00:00_
+_source line 4154 · 2026-05-20T11:49:48.026256+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -17648,7 +17534,7 @@ _source line 4158 · 2026-05-20T11:49:48.026256+00:00_
 
 ### Tool call
 
-_source line 4159 · 2026-05-20T11:49:51.739608+00:00_
+_source line 4155 · 2026-05-20T11:49:51.739608+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17684,7 +17570,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4160 · 2026-05-20T11:49:52.041153+00:00_
+_source line 4156 · 2026-05-20T11:49:52.041153+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17720,7 +17606,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4161 · 2026-05-20T11:49:52.493820+00:00_
+_source line 4157 · 2026-05-20T11:49:52.493820+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"19:34:24 DONE: 1.3B-100B-GatedDeltaNet-pure boolq\\n19:37:35 DONE: 1.3B-100B-GatedDeltaNet-pure hellaswag\\n19:39:33 DONE: 1.3B-100B-GatedDeltaNet-hybrid-24-1 boolq\\n19:42:44 DONE: 1.3B-100B-GatedDeltaNet-hybrid-24-1 hellaswag\\n19:44:41 DONE: 1.3B-100B-GatedDeltaNet-hybrid-12-1 boolq\\n19:47:52 DONE: 1.3B-100B-GatedDeltaNet-hybrid-12-1 hellaswag\\n19:49:48 DONE: 1.3B-100B-GatedDeltaNet-hybrid-6-1 boolq\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
 
@@ -17742,7 +17628,7 @@ _source line 4161 · 2026-05-20T11:49:52.493820+00:00_
 
 ### Tool result
 
-_source line 4162 · 2026-05-20T11:49:53.397841+00:00_
+_source line 4158 · 2026-05-20T11:49:53.397841+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"19:32:21 RUNNING: 1.3B-100B-GatedDeltaNet-pure boolq\\n19:34:24 RUNNING: 1.3B-100B-GatedDeltaNet-pure hellaswag\\n19:37:35 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-24-1 boolq\\n19:39:33 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-24-1 hellaswag\\n19:42:44 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-12-1 boolq\\n19:44:41 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-12-1 hellaswag\\n19:47:52 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-6-1 boolq\\n19:49:48 RUNNING: 1.3B-100B-GatedDeltaNet-hybrid-6-1 hellaswag\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
 
@@ -17764,7 +17650,7 @@ _source line 4162 · 2026-05-20T11:49:53.397841+00:00_
 
 ### Tool call
 
-_source line 4163 · 2026-05-20T11:50:08.760771+00:00_
+_source line 4159 · 2026-05-20T11:50:08.760771+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17800,7 +17686,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4164 · 2026-05-20T11:50:08.761112+00:00_
+_source line 4160 · 2026-05-20T11:50:08.761112+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17836,7 +17722,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4165 · 2026-05-20T11:50:09.514088+00:00_
+_source line 4161 · 2026-05-20T11:50:09.514088+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.74}}"}
 
@@ -17858,7 +17744,7 @@ _source line 4165 · 2026-05-20T11:50:09.514088+00:00_
 
 ### Tool result
 
-_source line 4166 · 2026-05-20T11:50:10.318706+00:00_
+_source line 4162 · 2026-05-20T11:50:10.318706+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.84}}"}
 
@@ -17880,7 +17766,7 @@ _source line 4166 · 2026-05-20T11:50:10.318706+00:00_
 
 ### Tool call
 
-_source line 4167 · 2026-05-20T11:50:13.017794+00:00_
+_source line 4163 · 2026-05-20T11:50:13.017794+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17916,7 +17802,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4168 · 2026-05-20T11:50:13.791060+00:00_
+_source line 4164 · 2026-05-20T11:50:13.791060+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"19:32:21 RUNNING: 1.3B-100B-GatedDeltaNet-pure boolq\\nmodel_type=gated_deltanet, tie_word_embeddings=False\\n[fix] allow_neg_eigval=True\\n\\rLoading weights:   0%|          | 0/435 [00:00<?, ?it/s]\\rLoading weights:   7%|▋         | 31/435 [00:00<00:02, 192.75it/s]\\rLoading weights:  12%|█▏        | 51/435 [00:00<00:02, 131.88it/s]\\rLoading weights:  16%|█▌        | 69/435 [00:00<00:02, 144.29it/s]\\rLoading weights:  20%|█▉        | 85/435 [00:00<00:02, 148.52it/s]\\rLoading weights:  23%|██▎       | 101/435 [00:00<00:02, 114.73it/s]\\rLoading weights:  26%|██▌       | 114/435 [00:00<00:02, 113.62it/s]\\rLoading weights:  29%|██▉       | 127/435 [00:01<00:03, 100.53it/s]\\rLoading weights:  33%|███▎      | 142/435 [00:01<00:02, 111.64it/s]\\rLoading weights:  36%|███▌      | 157/435 [00:01<00:02, 120.04it/s]\\rLoading weights:  39%|███▉      | 170/435 [00:01<00:02, 122.26it/s]\\rLoading weights:  42%|████▏     | 183/435 [00:01<00:02, 100.44it/s]\\rLoading weights:  45%|████▌     | 197/435 [00:01<00:02, 107.50it/s]\\rLoading weights:  49%|████▉     | 215/435 [00:01<00:02, 101.05it/s]\\rLoading weights:  54%|█████▎    | 233/435 [00:01<00:01, 115.38it/s]\\rLoading weights:  58%|█████▊    | 251/435 [00:02<00:01, 108.04it/s]\\rLoading weights:  61%|██████▏   | 267/435 [00:02<00:01, 99.15it/s] \\rLoading weights:  66%|██████▌   | 286/435 [00:02<00:01, 115.77it/s]\\rLoading weights:  69%|██████▊   | 299/435 [00:02<00:01, 118.35it/s]\\rLoading weights:  72%|███████▏  | 312/435 [00:02<00:01, 119.32it/s]\\rLoading weights:  75%|███████▍  | 325/435 [00:02<00:01, 98.54it/s] \\rLoading weights:  81%|████████  | 353/435 [00:02<00:00, 139.40it/s]\\rLoading weights:  95%|█████████▍| 413/435 [00:04<00:00, 64.49it/s] \\rLoading weights:  98%|█████████▊| 426/435 [00:04<00:00, 69.85it/s]\\rLoading weights: 100%|██████████| 435/435 [00:04<00:00, 97.51it/s]\\n[transformers] \\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\u001b
 …[truncated 1710 chars]
@@ -17939,7 +17825,7 @@ _source line 4168 · 2026-05-20T11:50:13.791060+00:00_
 
 ### Tool call
 
-_source line 4169 · 2026-05-20T11:50:21.021468+00:00_
+_source line 4165 · 2026-05-20T11:50:21.021468+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17975,7 +17861,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4170 · 2026-05-20T11:50:21.123203+00:00_
+_source line 4166 · 2026-05-20T11:50:21.123203+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -17997,7 +17883,7 @@ _source line 4170 · 2026-05-20T11:50:21.123203+00:00_
 
 ### Tool call
 
-_source line 4171 · 2026-05-20T11:50:24.435974+00:00_
+_source line 4167 · 2026-05-20T11:50:24.435974+00:00_
 
 called ToolSearch
 
@@ -18033,7 +17919,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4172 · 2026-05-20T11:50:24.486526+00:00_
+_source line 4168 · 2026-05-20T11:50:24.486526+00:00_
 
 
 
@@ -18055,7 +17941,7 @@ _source line 4172 · 2026-05-20T11:50:24.486526+00:00_
 
 ### Tool call
 
-_source line 4173 · 2026-05-20T11:50:27.247063+00:00_
+_source line 4169 · 2026-05-20T11:50:27.247063+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -18089,7 +17975,7 @@ called mcp__agent-ml-research__get_gpu_health
 
 ### Tool result
 
-_source line 4174 · 2026-05-20T11:50:27.247626+00:00_
+_source line 4170 · 2026-05-20T11:50:27.247626+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {\"westb-48145\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -18111,7 +17997,7 @@ _source line 4174 · 2026-05-20T11:50:27.247626+00:00_
 
 ### Tool call
 
-_source line 4175 · 2026-05-20T11:50:30.710462+00:00_
+_source line 4171 · 2026-05-20T11:50:30.710462+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18147,7 +18033,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4176 · 2026-05-20T11:50:31.062321+00:00_
+_source line 4172 · 2026-05-20T11:50:31.062321+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18183,7 +18069,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4177 · 2026-05-20T11:50:31.464096+00:00_
+_source line 4173 · 2026-05-20T11:50:31.464096+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-pure/samples\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-12-1\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-6-1\\n/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
 
@@ -18205,7 +18091,7 @@ _source line 4177 · 2026-05-20T11:50:31.464096+00:00_
 
 ### Tool result
 
-_source line 4178 · 2026-05-20T11:50:32.317329+00:00_
+_source line 4174 · 2026-05-20T11:50:32.317329+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/hellaswag\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
 
@@ -18227,7 +18113,7 @@ _source line 4178 · 2026-05-20T11:50:32.317329+00:00_
 
 ### Tool call
 
-_source line 4179 · 2026-05-20T11:51:02.202858+00:00_
+_source line 4175 · 2026-05-20T11:51:02.202858+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18263,7 +18149,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4180 · 2026-05-20T11:51:05.916075+00:00_
+_source line 4176 · 2026-05-20T11:51:05.916075+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -18285,7 +18171,7 @@ _source line 4180 · 2026-05-20T11:51:05.916075+00:00_
 
 ### Assistant
 
-_source line 4181 · 2026-05-20T11:51:08.214311+00:00_
+_source line 4177 · 2026-05-20T11:51:08.214311+00:00_
 
 Probe worker 审查完毕。BoolQ/HellaSwag eval 正在服务器上继续运行。
 
@@ -18312,7 +18198,7 @@ Probe worker 审查完毕。BoolQ/HellaSwag eval 正在服务器上继续运行�
 
 ### User
 
-_source line 4182 · 2026-05-20T12:47:55.697284+00:00_
+_source line 4178 · 2026-05-20T12:47:55.697284+00:00_
 
 [系统通知 — cron:on_complete:exp-boolq-hellaswag-eval]:
 实验 exp-boolq-hellaswag-eval complete，请审查。
@@ -18334,7 +18220,7 @@ _source line 4182 · 2026-05-20T12:47:55.697284+00:00_
 
 ### Tool call
 
-_source line 4183 · 2026-05-20T12:48:05.816933+00:00_
+_source line 4179 · 2026-05-20T12:48:05.816933+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18372,7 +18258,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4184 · 2026-05-20T12:48:05.917833+00:00_
+_source line 4180 · 2026-05-20T12:48:05.917833+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0593}}"}
 
@@ -18394,7 +18280,7 @@ _source line 4184 · 2026-05-20T12:48:05.917833+00:00_
 
 ### Tool call
 
-_source line 4185 · 2026-05-20T12:48:09.934555+00:00_
+_source line 4181 · 2026-05-20T12:48:09.934555+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18432,7 +18318,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4186 · 2026-05-20T12:48:09.985430+00:00_
+_source line 4182 · 2026-05-20T12:48:09.985430+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T12:47:53.740Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}}, \"exp-015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"spec\": {\"command\": \"Python analysis on westb-48145 (CPU)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"data_count\": 2376, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (15 models)\", \"seed\": \"N/A (deterministic eval)\", \"checkpoint_source\": \"exp-arc-easy-eval\", \"eval_data\": \"ARC-Easy (2376 samples)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gate
 …[truncated 3035 chars]
@@ -18455,7 +18341,7 @@ _source line 4186 · 2026-05-20T12:48:09.985430+00:00_
 
 ### Tool call
 
-_source line 4187 · 2026-05-20T12:48:16.310157+00:00_
+_source line 4183 · 2026-05-20T12:48:16.310157+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18491,7 +18377,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4188 · 2026-05-20T12:48:16.611590+00:00_
+_source line 4184 · 2026-05-20T12:48:16.611590+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18527,7 +18413,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4189 · 2026-05-20T12:48:18.570006+00:00_
+_source line 4185 · 2026-05-20T12:48:18.570006+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"}
 
@@ -18549,7 +18435,7 @@ _source line 4189 · 2026-05-20T12:48:18.570006+00:00_
 
 ### Tool result
 
-_source line 4190 · 2026-05-20T12:48:19.774855+00:00_
+_source line 4186 · 2026-05-20T12:48:19.774855+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
 
@@ -18571,7 +18457,7 @@ _source line 4190 · 2026-05-20T12:48:19.774855+00:00_
 
 ### Tool call
 
-_source line 4191 · 2026-05-20T12:48:24.892918+00:00_
+_source line 4187 · 2026-05-20T12:48:24.892918+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18607,7 +18493,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4192 · 2026-05-20T12:48:25.312824+00:00_
+_source line 4188 · 2026-05-20T12:48:25.312824+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -18629,7 +18515,7 @@ _source line 4192 · 2026-05-20T12:48:25.312824+00:00_
 
 ### Tool call
 
-_source line 4193 · 2026-05-20T12:48:25.413718+00:00_
+_source line 4189 · 2026-05-20T12:48:25.413718+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18665,7 +18551,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4194 · 2026-05-20T12:48:25.464332+00:00_
+_source line 4190 · 2026-05-20T12:48:25.464332+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -18687,7 +18573,7 @@ _source line 4194 · 2026-05-20T12:48:25.464332+00:00_
 
 ### Tool call
 
-_source line 4195 · 2026-05-20T12:48:29.085237+00:00_
+_source line 4191 · 2026-05-20T12:48:29.085237+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18723,7 +18609,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4196 · 2026-05-20T12:48:30.941518+00:00_
+_source line 4192 · 2026-05-20T12:48:30.941518+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-RetNet-pure/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
 
@@ -18745,7 +18631,7 @@ _source line 4196 · 2026-05-20T12:48:30.941518+00:00_
 
 ### Tool call
 
-_source line 4197 · 2026-05-20T12:48:31.092383+00:00_
+_source line 4193 · 2026-05-20T12:48:31.092383+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18781,7 +18667,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4198 · 2026-05-20T12:48:31.142953+00:00_
+_source line 4194 · 2026-05-20T12:48:31.142953+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18817,7 +18703,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4199 · 2026-05-20T12:48:32.146551+00:00_
+_source line 4195 · 2026-05-20T12:48:32.146551+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18853,7 +18739,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4200 · 2026-05-20T12:48:32.598499+00:00_
+_source line 4196 · 2026-05-20T12:48:32.598499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-HGRN2-hybrid-3-1/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
 
@@ -18875,7 +18761,7 @@ _source line 4200 · 2026-05-20T12:48:32.598499+00:00_
 
 ### Tool result
 
-_source line 4201 · 2026-05-20T12:48:33.853301+00:00_
+_source line 4197 · 2026-05-20T12:48:33.853301+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
 
@@ -18897,7 +18783,7 @@ _source line 4201 · 2026-05-20T12:48:33.853301+00:00_
 
 ### Tool result
 
-_source line 4202 · 2026-05-20T12:48:35.811977+00:00_
+_source line 4198 · 2026-05-20T12:48:35.811977+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.98}}"}
 
@@ -18919,7 +18805,7 @@ _source line 4202 · 2026-05-20T12:48:35.811977+00:00_
 
 ### Tool call
 
-_source line 4203 · 2026-05-20T12:48:41.831805+00:00_
+_source line 4199 · 2026-05-20T12:48:41.831805+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18955,7 +18841,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4204 · 2026-05-20T12:48:42.233699+00:00_
+_source line 4200 · 2026-05-20T12:48:42.233699+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18991,7 +18877,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4205 · 2026-05-20T12:48:43.037228+00:00_
+_source line 4201 · 2026-05-20T12:48:43.037228+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  boolq: acc,none=0.5847\\n  boolq: acc,none=0.4887\\n  boolq: acc,none=0.6349\\n  boolq: acc,none=0.5697\\n  boolq: acc,none=0.6223\\n  boolq: acc,none=0.6113\\n  boolq: acc,none=0.6040\\n  boolq: acc,none=0.6058\\n  boolq: acc,none=0.6220\\n  boolq: acc,none=0.5813\\n  boolq: acc,none=0.5737\\n  boolq: acc,none=0.6092\\n  boolq: acc,none=0.6089\\n  boolq: acc,none=0.6174\\n  boolq: acc,none=0.6358\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
 
@@ -19013,7 +18899,7 @@ _source line 4205 · 2026-05-20T12:48:43.037228+00:00_
 
 ### Tool result
 
-_source line 4206 · 2026-05-20T12:48:44.291985+00:00_
+_source line 4202 · 2026-05-20T12:48:44.291985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  hellaswag: acc,none=0.4641, acc_norm,none=0.6076\\n  hellaswag: acc,none=0.4600, acc_norm,none=0.5974\\n  hellaswag: acc,none=0.4627, acc_norm,none=0.6101\\n  hellaswag: acc,none=0.4633, acc_norm,none=0.6056\\n  hellaswag: acc,none=0.4584, acc_norm,none=0.6032\\n  hellaswag: acc,none=0.4421, acc_norm,none=0.5798\\n  hellaswag: acc,none=0.4446, acc_norm,none=0.5824\\n  hellaswag: acc,none=0.4475, acc_norm,none=0.5882\\n  hellaswag: acc,none=0.4520, acc_norm,none=0.5849\\n  hellaswag: acc,none=0.4454, acc_norm,none=0.5777\\n  hellaswag: acc,none=0.4563, acc_norm,none=0.5990\\n  hellaswag: acc,none=0.4579, acc_norm,none=0.6020\\n  hellaswag: acc,none=0.4635, acc_norm,none=0.6066\\n  hellaswag: acc,none=0.4607, acc_norm,none=0.6062\\n  hellaswag: acc,none=0.4600, acc_norm,none=0.6040\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
 
@@ -19035,7 +18921,7 @@ _source line 4206 · 2026-05-20T12:48:44.291985+00:00_
 
 ### Tool call
 
-_source line 4207 · 2026-05-20T12:49:03.345136+00:00_
+_source line 4203 · 2026-05-20T12:49:03.345136+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19071,7 +18957,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4208 · 2026-05-20T12:49:04.098236+00:00_
+_source line 4204 · 2026-05-20T12:49:04.098236+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nModel: 1.3B-100B-GatedDeltaNet-pure\\n============================================================\\n  boolq: acc,none=0.5847\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\n============================================================\\n  boolq: acc,none=0.4887\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\n============================================================\\n  boolq: acc,none=0.6349\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\n============================================================\\n  boolq: acc,none=0.5697\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\n============================================================\\n  boolq: acc,none=0.6223\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-pure\\n============================================================\\n  boolq: acc,none=0.6113\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-24-1\\n============================================================\\n  boolq: acc,none=0.6040\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-12-1\\n============================================================\\n  boolq: acc,none=0.6058\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-6-1\\n============================================================\\n  boolq: acc,none=0.6220\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-3-1\\n============================================================\\
 …[truncated 1098 chars]
@@ -19094,7 +18980,7 @@ _source line 4208 · 2026-05-20T12:49:04.098236+00:00_
 
 ### Tool call
 
-_source line 4209 · 2026-05-20T12:49:34.467535+00:00_
+_source line 4205 · 2026-05-20T12:49:34.467535+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19130,7 +19016,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4210 · 2026-05-20T12:49:35.571363+00:00_
+_source line 4206 · 2026-05-20T12:49:35.571363+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nModel: 1.3B-100B-GatedDeltaNet-pure\\n============================================================\\n  hellaswag: acc,none=0.4641, acc_norm,none=0.6076\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\n============================================================\\n  hellaswag: acc,none=0.4600, acc_norm,none=0.5974\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\n============================================================\\n  hellaswag: acc,none=0.4627, acc_norm,none=0.6101\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\n============================================================\\n  hellaswag: acc,none=0.4633, acc_norm,none=0.6056\\n--\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\n============================================================\\n  hellaswag: acc,none=0.4584, acc_norm,none=0.6032\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-pure\\n============================================================\\n  hellaswag: acc,none=0.4421, acc_norm,none=0.5798\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-24-1\\n============================================================\\n  hellaswag: acc,none=0.4446, acc_norm,none=0.5824\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-12-1\\n============================================================\\n  hellaswag: acc,none=0.4475, acc_norm,none=0.5882\\n--\\n============================================================\\nModel: 1.3B-100B-RetNet-hybrid-6-1\\n=================================================
 …[truncated 1487 chars]
@@ -19153,7 +19039,7 @@ _source line 4210 · 2026-05-20T12:49:35.571363+00:00_
 
 ### Tool call
 
-_source line 4211 · 2026-05-20T12:50:12.406088+00:00_
+_source line 4207 · 2026-05-20T12:50:12.406088+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19189,7 +19075,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4212 · 2026-05-20T12:50:16.069094+00:00_
+_source line 4208 · 2026-05-20T12:50:16.069094+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -19211,7 +19097,7 @@ _source line 4212 · 2026-05-20T12:50:16.069094+00:00_
 
 ### Assistant
 
-_source line 4213 · 2026-05-20T12:50:18.324888+00:00_
+_source line 4209 · 2026-05-20T12:50:18.324888+00:00_
 
 数据完整，15/15 模型两个 benchmark 全部完成。发现一个需要关注的数据异常。
 
@@ -19238,7 +19124,7 @@ _source line 4213 · 2026-05-20T12:50:18.324888+00:00_
 
 ### User
 
-_source line 4214 · 2026-05-20T12:52:27.830306+00:00_
+_source line 4210 · 2026-05-20T12:52:27.830306+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-boolq-hellaswag-eval_20260520T124927]:
 Worker worker_analysis_exp-boolq-hellaswag-eval_20260520T124927 已完成（status=done），请审查 Agent 的处理结果。
@@ -19260,7 +19146,7 @@ Worker worker_analysis_exp-boolq-hellaswag-eval_20260520T124927 已完成（stat
 
 ### Tool call
 
-_source line 4215 · 2026-05-20T12:52:36.107796+00:00_
+_source line 4211 · 2026-05-20T12:52:36.107796+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19298,7 +19184,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4216 · 2026-05-20T12:52:36.258813+00:00_
+_source line 4212 · 2026-05-20T12:52:36.258813+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1}}"}
 
@@ -19320,7 +19206,7 @@ _source line 4216 · 2026-05-20T12:52:36.258813+00:00_
 
 ### Tool call
 
-_source line 4217 · 2026-05-20T12:52:40.976351+00:00_
+_source line 4213 · 2026-05-20T12:52:40.976351+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19358,7 +19244,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4218 · 2026-05-20T12:52:41.027384+00:00_
+_source line 4214 · 2026-05-20T12:52:41.027384+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T12:47:53.740Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}}, \"exp-015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"spec\": {\"command\": \"Python analysis on westb-48145 (CPU)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"data_count\": 2376, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (15 models)\", \"seed\": \"N/A (deterministic eval)\", \"checkpoint_source\": \"exp-arc-easy-eval\", \"eval_data\": \"ARC-Easy (2376 samples)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gate
 …[truncated 5770 chars]
@@ -19381,7 +19267,7 @@ _source line 4218 · 2026-05-20T12:52:41.027384+00:00_
 
 ### Tool call
 
-_source line 4219 · 2026-05-20T12:52:46.548817+00:00_
+_source line 4215 · 2026-05-20T12:52:46.548817+00:00_
 
 called Glob
 
@@ -19417,7 +19303,7 @@ called Glob
 
 ### Tool result
 
-_source line 4220 · 2026-05-20T12:52:46.950573+00:00_
+_source line 4216 · 2026-05-20T12:52:46.950573+00:00_
 
 No files found
 
@@ -19439,7 +19325,7 @@ No files found
 
 ### Tool call
 
-_source line 4221 · 2026-05-20T12:52:47.001273+00:00_
+_source line 4217 · 2026-05-20T12:52:47.001273+00:00_
 
 called Glob
 
@@ -19475,7 +19361,7 @@ called Glob
 
 ### Tool result
 
-_source line 4222 · 2026-05-20T12:52:47.052809+00:00_
+_source line 4218 · 2026-05-20T12:52:47.052809+00:00_
 
 No files found
 
@@ -19497,7 +19383,7 @@ No files found
 
 ### Tool call
 
-_source line 4223 · 2026-05-20T12:52:51.418813+00:00_
+_source line 4219 · 2026-05-20T12:52:51.418813+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19533,7 +19419,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4224 · 2026-05-20T12:52:53.476117+00:00_
+_source line 4220 · 2026-05-20T12:52:53.476117+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"}
 
@@ -19555,7 +19441,7 @@ _source line 4224 · 2026-05-20T12:52:53.476117+00:00_
 
 ### Tool call
 
-_source line 4225 · 2026-05-20T12:52:58.171302+00:00_
+_source line 4221 · 2026-05-20T12:52:58.171302+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19591,7 +19477,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 4226 · 2026-05-20T12:52:58.523059+00:00_
+_source line 4222 · 2026-05-20T12:52:58.523059+00:00_
 
 called Glob
 
@@ -19627,7 +19513,7 @@ called Glob
 
 ### Tool result
 
-_source line 4227 · 2026-05-20T12:52:58.924743+00:00_
+_source line 4223 · 2026-05-20T12:52:58.924743+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
 
@@ -19649,7 +19535,7 @@ _source line 4227 · 2026-05-20T12:52:58.924743+00:00_
 
 ### Tool result
 
-_source line 4228 · 2026-05-20T12:52:58.975477+00:00_
+_source line 4224 · 2026-05-20T12:52:58.975477+00:00_
 
 No files found
 
@@ -19671,7 +19557,7 @@ No files found
 
 ### Tool call
 
-_source line 4229 · 2026-05-20T12:53:09.276072+00:00_
+_source line 4225 · 2026-05-20T12:53:09.276072+00:00_
 
 called Glob
 
@@ -19707,7 +19593,7 @@ called Glob
 
 ### Tool result
 
-_source line 4230 · 2026-05-20T12:53:09.677941+00:00_
+_source line 4226 · 2026-05-20T12:53:09.677941+00:00_
 
 No files found
 
@@ -19729,7 +19615,7 @@ No files found
 
 ### Tool call
 
-_source line 4231 · 2026-05-20T12:53:09.879017+00:00_
+_source line 4227 · 2026-05-20T12:53:09.879017+00:00_
 
 called Glob
 
@@ -19765,7 +19651,7 @@ called Glob
 
 ### Tool result
 
-_source line 4232 · 2026-05-20T12:53:09.929792+00:00_
+_source line 4228 · 2026-05-20T12:53:09.929792+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/formal_multiplicity_metrics.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/formal_multiplicity_metrics.json
@@ -19788,7 +19674,7 @@ _source line 4232 · 2026-05-20T12:53:09.929792+00:00_
 
 ### Tool call
 
-_source line 4233 · 2026-05-20T12:53:13.292481+00:00_
+_source line 4229 · 2026-05-20T12:53:13.292481+00:00_
 
 called Read
 
@@ -19824,7 +19710,7 @@ called Read
 
 ### Tool result
 
-_source line 4234 · 2026-05-20T12:53:13.343159+00:00_
+_source line 4230 · 2026-05-20T12:53:13.343159+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -19863,7 +19749,7 @@ _source line 4234 · 2026-05-20T12:53:13.343159+00:00_
 
 ### Tool call
 
-_source line 4235 · 2026-05-20T12:53:19.667114+00:00_
+_source line 4231 · 2026-05-20T12:53:19.667114+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19899,7 +19785,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4236 · 2026-05-20T12:53:20.470802+00:00_
+_source line 4232 · 2026-05-20T12:53:20.470802+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
 
@@ -19921,7 +19807,7 @@ _source line 4236 · 2026-05-20T12:53:20.470802+00:00_
 
 ### Tool call
 
-_source line 4237 · 2026-05-20T12:53:24.134802+00:00_
+_source line 4233 · 2026-05-20T12:53:24.134802+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -19957,7 +19843,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 4238 · 2026-05-20T12:53:24.938098+00:00_
+_source line 4234 · 2026-05-20T12:53:24.938098+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
 
@@ -19979,7 +19865,7 @@ _source line 4238 · 2026-05-20T12:53:24.938098+00:00_
 
 ### Tool call
 
-_source line 4239 · 2026-05-20T12:53:28.062027+00:00_
+_source line 4235 · 2026-05-20T12:53:28.062027+00:00_
 
 called Glob
 
@@ -20015,7 +19901,7 @@ called Glob
 
 ### Tool result
 
-_source line 4240 · 2026-05-20T12:53:28.112525+00:00_
+_source line 4236 · 2026-05-20T12:53:28.112525+00:00_
 
 No files found
 
@@ -20037,7 +19923,7 @@ No files found
 
 ### Tool call
 
-_source line 4241 · 2026-05-20T12:53:31.624927+00:00_
+_source line 4237 · 2026-05-20T12:53:31.624927+00:00_
 
 called Glob
 
@@ -20073,7 +19959,7 @@ called Glob
 
 ### Tool result
 
-_source line 4242 · 2026-05-20T12:53:31.625392+00:00_
+_source line 4238 · 2026-05-20T12:53:31.625392+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T125419/best/experiment_data.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/best/experiment_data.json
@@ -20109,7 +19995,7 @@ _source line 4242 · 2026-05-20T12:53:31.625392+00:00_
 
 ### Tool call
 
-_source line 4243 · 2026-05-20T12:53:50.444905+00:00_
+_source line 4239 · 2026-05-20T12:53:50.444905+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -20145,7 +20031,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4244 · 2026-05-20T12:53:54.007490+00:00_
+_source line 4240 · 2026-05-20T12:53:54.007490+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -20174,7 +20060,7 @@ _source line 4244 · 2026-05-20T12:53:54.007490+00:00_
 
 ### User
 
-_source line 4245 · 2026-05-20T13:04:00.896560+00:00_
+_source line 4241 · 2026-05-20T13:04:00.896560+00:00_
 
 [系统通知 — worker_done:worker_analysis_boolq-hellaswag-v2_20260520T125546]:
 Worker worker_analysis_boolq-hellaswag-v2_20260520T125546 已完成（status=done），请审查 Agent 的处理结果。
@@ -20196,7 +20082,7 @@ Worker worker_analysis_boolq-hellaswag-v2_20260520T125546 已完成（status=don
 
 ### Tool call
 
-_source line 4246 · 2026-05-20T13:04:14.046500+00:00_
+_source line 4242 · 2026-05-20T13:04:14.046500+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -20234,7 +20120,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4247 · 2026-05-20T13:04:14.549098+00:00_
+_source line 4243 · 2026-05-20T13:04:14.549098+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T12:47:53.740Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}}, \"exp-015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"spec\": {\"command\": \"Python analysis on westb-48145 (CPU)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"data_count\": 2376, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (15 models)\", \"seed\": \"N/A (deterministic eval)\", \"checkpoint_source\": \"exp-arc-easy-eval\", \"eval_data\": \"ARC-Easy (2376 samples)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gate
 …[truncated 3035 chars]
@@ -20257,7 +20143,7 @@ _source line 4247 · 2026-05-20T13:04:14.549098+00:00_
 
 ### Tool call
 
-_source line 4248 · 2026-05-20T13:04:14.649903+00:00_
+_source line 4244 · 2026-05-20T13:04:14.649903+00:00_
 
 called Glob
 
@@ -20293,7 +20179,7 @@ called Glob
 
 ### Tool result
 
-_source line 4249 · 2026-05-20T13:04:14.951691+00:00_
+_source line 4245 · 2026-05-20T13:04:14.951691+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/boolq_per_example.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_per_example.json
@@ -20318,7 +20204,7 @@ _source line 4249 · 2026-05-20T13:04:14.951691+00:00_
 
 ### Tool call
 
-_source line 4250 · 2026-05-20T13:04:15.002273+00:00_
+_source line 4246 · 2026-05-20T13:04:15.002273+00:00_
 
 called Glob
 
@@ -20354,7 +20240,7 @@ called Glob
 
 ### Tool result
 
-_source line 4251 · 2026-05-20T13:04:15.053834+00:00_
+_source line 4247 · 2026-05-20T13:04:15.053834+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_per_example.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json
@@ -20379,7 +20265,7 @@ _source line 4251 · 2026-05-20T13:04:15.053834+00:00_
 
 ### Tool call
 
-_source line 4252 · 2026-05-20T13:04:26.931921+00:00_
+_source line 4248 · 2026-05-20T13:04:26.931921+00:00_
 
 called Read
 
@@ -20413,7 +20299,7 @@ called Read
 
 ### Tool result
 
-_source line 4253 · 2026-05-20T13:04:27.283836+00:00_
+_source line 4249 · 2026-05-20T13:04:27.283836+00:00_
 
 1	{
 2	  "benchmark": "boolq",
@@ -20506,7 +20392,7 @@ _source line 4253 · 2026-05-20T13:04:27.283836+00:00_
 
 ### Tool call
 
-_source line 4254 · 2026-05-20T13:04:27.334442+00:00_
+_source line 4250 · 2026-05-20T13:04:27.334442+00:00_
 
 called Read
 
@@ -20529,6 +20415,243 @@ called Read
   "tool": "Read",
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_jaccard_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 4251 · 2026-05-20T13:04:27.385314+00:00_
+
+1	{
+2	  "benchmark": "hellaswag",
+3	  "n_samples": 10042,
+4	  "arch_pairs": [
+5	    "GDN-RetNet",
+6	    "GDN-HGRN2",
+7	    "RetNet-HGRN2"
+8	  ],
+9	  "jaccard_analysis": {
+10	    "h24-1": {
+11	      "GDN-RetNet_helped": {
+12	        "J_obs": 0.0605,
+13	        "J_null": 0.016,
+14	        "J_max": 0.9905,
+15	        "normalized_ES": 0.0457,
+16	        "p_value_permutation": 0.0,
+17	        "n_permutations": 10000,
+18	        "sizes": [317, 314]
+19	      },
+20	      "GDN-RetNet_hurt": {
+21	        "J_obs": 0.0892,
+22	        "J_null": 0.0162,
+23	        "J_max": 0.8073,
+24	        "normalized_ES": 0.0923,
+25	        "p_value_permutation": 0.0,
+26	        "n_permutations": 10000,
+27	        "sizes": [358, 289]
+28	      },
+29	      "GDN-HGRN2_helped": {
+30	        "J_obs": 0.0942,
+31	        "J_null": 0.0152,
+32	        "J_max": 0.9054,
+33	        "normalized_ES": 0.0887,
+34	        "p_value_permutation": 0.0,
+35	        "n_permutations": 10000,
+36	        "sizes": [317, 287]
+37	      },
+38	      "GDN-HGRN2_hurt": {
+39	        "J_obs": 0.0771,
+40	        "J_null": 0.0156,
+41	        "J_max": 0.757,
+42	        "normalized_ES": 0.0829,
+43	        "p_value_permutation": 0.0,
+44	        "n_permutations": 10000,
+45	        "sizes": [358, 271]
+46	      },
+47	      "RetNet-HGRN2_helped": {
+48	        "J_obs": 0.0967,
+49	        "J_null": 0.0152,
+50	        "J_max": 0.914,
+51	        "normalized_ES": 0.0907,
+52	        "p_value_permutation": 0.0,
+53	        "n_permutations": 10000,
+54	        "sizes": [314, 287]
+55	      },
+56	      "RetNet-HGRN2_hurt": {
+57	        "J_obs": 0.0874,
+58	        "J_null": 0.0141,
+59	        "J_max": 0.9377,
+60	        "normalized_ES": 0.0793,
+61	        "p_value_permutation": 0.0,
+62	        "n_permutations": 10000,
+63	        "sizes": [289, 271]
+64	      }
+65	    },
+66	    "h12-1": {
+67	      "GDN-RetNet_helped": {
+68	        "J_obs": 0.076,
+69	        "J_null": 0.0164,
+70	        "J_max": 0.8815,
+71	        "normalized_ES": 0.0689,
+72	        "p
+…[truncated 4907 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 4252 · 2026-05-20T13:04:33.499442+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_per_example.json",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_per_example.json",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 4253 · 2026-05-20T13:04:33.952205+00:00_
+
+1	{
+2	  "benchmark": "boolq",
+3	  "n_samples": 3270,
+4	  "architectures": [
+5	    "GDN",
+6	    "RetNet",
+7	    "HGRN2"
+8	  ],
+9	  "ratios": [
+10	    "pure",
+11	    "h24-1",
+12	    "h12-1",
+13	    "h6-1",
+14	    "h3-1"
+15	  ],
+16	  "per_example_classification": {
+17	    "GDN": {
+18	      "h24-1": {
+19	        "n_helped": 406,
+20	        "n_hurt": 720,
+21	        "n_stayed_right": 1192,
+22	        "n_stayed_wrong": 952,
+23	        "net_effect": -314,
+24	        "pct_helped": 12.42,
+25	        "pct_hurt": 22.02
+26	      },
+27	      "h12-1": {
+28	        "n_helped": 605,
+29	        "n_hurt": 441,
+30	        "n_stayed_right": 1471,
+31	        "n_stayed_wrong": 753,
+32	        "net_effect": 164,
+33	        "pct_helped": 18.5,
+34	        "pct_hurt": 13.49
+35	      },
+36	      "h6-1": {
+37	        "n_helped": 477,
+38	        "n_hurt": 526,
+39	        "n_stayed_right": 1386,
+40	        "n_stayed_wrong": 881,
+41	        "net_effect": -49,
+42	        "pct_helped": 14.59,
+43	        "pct_hurt": 16.09
+44	      },
+45	      "h3-1": {
+46	        "n_helped": 554,
+47	        "n_hurt": 431,
+48	        "n_stayed_right": 1481,
+49	        "n_stayed_wrong": 804,
+50	        "net_effect": 123,
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 4254 · 2026-05-20T13:04:34.103755+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json",
+    "limit": "50"
   }
 }
 ```

@@ -3208,44 +3208,6 @@
         },
         {
           "source_line": 1245,
-          "timestamp": "2026-05-18T15:18:10.519343+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/tost_per_generator.json"
-            }
-          },
-          "id": "event-001245"
-        },
-        {
-          "source_line": 1246,
-          "timestamp": "2026-05-18T15:18:10.870907+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"equivalence_bound_d\": 0.2,\n3\t  \"per_generator\": {\n4\t    \"llama-3.2-3b\": {\n5\t      \"n_gen1\": 984, \"n_gen2p\": 2701,\n6\t      \"features\": {\n7\t        \"entropy_max\": {\"observed_d\": 0.0081, \"p_tost\": 1.34e-07, \"equivalent\": true},\n8\t        \"tail_decay\": {\"observed_d\": 0.188, \"p_tost\": 0.374, \"equivalent\": false},\n9\t        \"entropy_min\": {\"observed_d\": 0.0067, \"p_tost\": 1.11e-07, \"equivalent\": true},\n10\t        \"entropy_mean\": {\"observed_d\": 1.1476, \"p_tost\": 1.0, \"equivalent\": false},\n11\t        \"ttr\": {\"observed_d\": 1.0372, \"p_tost\": 1.0, \"equivalent\": false},\n12\t        \"hapax_ratio\": {\"observed_d\": 0.9833, \"p_tost\": 1.0, \"equivalent\": false},\n13\t        \"entropy_std\": {\"observed_d\": 0.4984, \"p_tost\": 1.0, \"equivalent\": false}\n14\t      }\n15\t    },\n16\t    \"mistral-7b-v0.3\": {\n17\t      \"n_gen1\": 994, \"n_gen2p\": 2859,\n18\t      \"features\": {\n19\t        \"entropy_max\": {\"observed_d\": -0.004, \"p_tost\": 5.39e-08, \"equivalent\": true},\n20\t        \"tail_decay\": {\"observed_d\": 0.1604, \"p_tost\": 0.141, \"equivalent\": false},\n21\t        \"entropy_min\": {\"observed_d\": -0.0377, \"p_tost\": 5.40e-06, \"equivalent\": true},\n22\t        \"entropy_mean\": {\"observed_d\": 0.8922, \"p_tost\": 1.0, \"equivalent\": false},\n23\t        \"ttr\": {\"observed_d\": 0.8198, \"p_tost\": 1.0, \"equivalent\": false},\n24\t        \"hapax_ratio\": {\"observed_d\": 0.8207, \"p_tost\": 1.0, \"equivalent\": false},\n25\t        \"entropy_std\": {\"observed_d\": 0.2292, \"p_tost\": 0.786, \"equivalent\": false}\n26\t      }\n27\t    },\n28\t    \"olmo-2-1b\": {\n29\t      \"n_gen1\": 988, \"n_gen2p\": 2730,\n30\t      \"features\": {\n31\t        \"entropy_max\": {\"observed_d\": 0.0601, \"p_tost\": 8.33e-05, \"equivalent\": true},\n32\t        \"tail_decay\": {\"observed_d\": 0.223, \"p_tost\": 0.732, \"equivalent\": false},\n33\t        \"entropy_min\": {\"observed_d\": 0.0682, \"p_tost\": 1.95e-04, \"equivalent\": true},\n34\t        \"entropy_mean\": {\"observed_d\": 1.1887, \"p_tost\": 1.0, \"equivalent\": false},\n35\t        \"ttr\": {\"observed_d\": 1.0766, \"p_tost\": 1.0, \"equivalent\": false},\n…[truncated 3767 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "elapsed_ms": 351
-          },
-          "id": "event-001246"
-        },
-        {
-          "source_line": 1247,
           "timestamp": "2026-05-18T15:18:10.871257+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3262,10 +3224,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/tost_multi_margin.json"
             }
           },
-          "id": "event-001247"
+          "id": "event-001245"
         },
         {
-          "source_line": 1248,
+          "source_line": 1246,
           "timestamp": "2026-05-18T15:18:10.921675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3280,10 +3242,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001248"
+          "id": "event-001246"
         },
         {
-          "source_line": 1249,
+          "source_line": 1247,
           "timestamp": "2026-05-18T15:19:02.528723+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3301,10 +3263,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
             }
           },
-          "id": "event-001249"
+          "id": "event-001247"
         },
         {
-          "source_line": 1250,
+          "source_line": 1248,
           "timestamp": "2026-05-18T15:19:02.579351+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3319,10 +3281,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-001250"
+          "id": "event-001248"
         },
         {
-          "source_line": 1251,
+          "source_line": 1249,
           "timestamp": "2026-05-18T15:19:05.992302+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3340,10 +3302,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal"
             }
           },
-          "id": "event-001251"
+          "id": "event-001249"
         },
         {
-          "source_line": 1252,
+          "source_line": 1250,
           "timestamp": "2026-05-18T15:19:06.043135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3358,10 +3320,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001252"
+          "id": "event-001250"
         },
         {
-          "source_line": 1253,
+          "source_line": 1251,
           "timestamp": "2026-05-18T15:19:09.557925+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3379,10 +3341,10 @@
               "description": "List rebuttal directory contents"
             }
           },
-          "id": "event-001253"
+          "id": "event-001251"
         },
         {
-          "source_line": 1254,
+          "source_line": 1252,
           "timestamp": "2026-05-18T15:19:09.658700+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3397,10 +3359,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001254"
+          "id": "event-001252"
         },
         {
-          "source_line": 1255,
+          "source_line": 1253,
           "timestamp": "2026-05-18T15:19:13.895416+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3419,10 +3381,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001255"
+          "id": "event-001253"
         },
         {
-          "source_line": 1256,
+          "source_line": 1254,
           "timestamp": "2026-05-18T15:19:13.946073+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3437,10 +3399,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-001256"
+          "id": "event-001254"
         },
         {
-          "source_line": 1257,
+          "source_line": 1255,
           "timestamp": "2026-05-18T15:19:17.862162+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3458,10 +3420,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001257"
+          "id": "event-001255"
         },
         {
-          "source_line": 1258,
+          "source_line": 1256,
           "timestamp": "2026-05-18T15:19:17.912731+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3476,10 +3438,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001258"
+          "id": "event-001256"
         },
         {
-          "source_line": 1259,
+          "source_line": 1257,
           "timestamp": "2026-05-18T15:19:21.527062+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3498,10 +3460,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001259"
+          "id": "event-001257"
         },
         {
-          "source_line": 1260,
+          "source_line": 1258,
           "timestamp": "2026-05-18T15:19:21.678010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3515,6 +3477,47 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 150
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-18T15:19:25.140757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['name', 'hypothesis', 'metrics', 'conclusion']",
+              "limit": "10"
+            }
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-18T15:19:25.292670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_050_temp_curve_t09\\\": {\\\"hypothesis\\\": \\\"DDR signal at t=0.9 degrades relative to t=0.7 but less severely than t=1.0, establishing monotonic temperature sensitivity\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"records\\\": 4536, \\\"model\\\": \\\"pythia-2.8b\\\", \\\"temperature\\\": 0.9, \\\"top_p\\\": 0.9, \\\"within_cv_binary_f1\\\": 0.5821, \\\"within_cv_binary_ci\\\": [0.5655, 0.5985], \\\"logo_binary_f1\\\": 0.4804, \\\"logo_binary_ci\\\": [0.4645, 0.4976], \\\"entropy_mean_rho\\\": -0.3016, \\\"delta_vs_t07_cv\\\": -0.157, \\\"delta_vs_t07_logo\\\": -0.259}}, \\\"exp_049_temp_curve_t05\\\": {\\\"hypothesis\\\": \\\"DDR signal at t=0.5 should be stronger than t=0.7 (less randomness preserves more distributional structure)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"records\\\": 4708, \\\"skipped\\\": 113, \\\"seeds\\\": 995, \\\"model\\\": \\\"pythia-2.8b\\\", \\\"temperature\\\": 0.5, \\\"top_p\\\": 0.9, \\\"within_cv_binary_f1\\\": 0.8432, \\\"within_cv_binary_ci\\\": [0.8301, 0.8558], \\\"logo_binary_f1\\\": 0.8136, \\\"logo_binary_ci\\\": [0.7984, 0.8282], \\\"entropy_mean_rho\\\": -0.5844}}, \\\"exp_051_independent_seed\\\": {\\\"hypothesis\\\": \\\"Cross-generator depth classification with non-overlapping seeds achieves comparable F1 to shared-seed LOGO, ruling out topic fingerprint leakage\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pythia_to_olmo_binary_f1\\\": 0.6945, \\\"pythia_to_olmo_ci\\\": [0.6727, 0.7167], \\\"olmo_to_pythia_binary_f1\\\": 0.666, \\\"olmo_to_pythia_ci\\\": [0.6429, 0.6893], \\\"avg_binary_f1\\\": 0.6803, \\\"shared_seed_logo_ref\\\": 0.694, \\\"delta_vs_shared\\\": -0.014}}, \\\"exp_048_cross_temp_transfer\\\": {\\\"hypothesis\\\": \\\"Cross-temperature transfer: XGBoost 7-feature classifier trained at one sampling temperature (t=0.7 or t=1.0) maintains depth discrimination when tested at a different temperature, demonstrating deployment robustness to unknown decoding parameters\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"6gen_logo\\\": {\\\"within_0.7_binary\\\": 0.9471, \\\"within_0.7_3class\\\": 0.788\n…[truncated 4597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
           },
           "id": "event-001260"
         }

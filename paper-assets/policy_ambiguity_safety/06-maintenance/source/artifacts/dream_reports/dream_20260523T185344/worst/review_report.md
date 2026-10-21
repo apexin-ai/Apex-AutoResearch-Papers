@@ -187,17 +187,6 @@ Comparing against the review context (imagined experiment list):
 
 **Coverage**: 13/13 experiments represented. The paper covers all planned experiments. The reframing (C5 demoted to exploratory appendix, systematic nocuity as Discussion observation, title pivoted to measurement framing) is consistent with the narrative guidance for this tier.
 
-### Rebuttal Opportunities
-
-The strongest rebuttal arguments available to the authors:
-1. **Perturbation control trump card**: "Our causal design provides the strongest evidence in the literature that ambiguity — not surface variation — drives safety violations. The measurement contribution stands independent of failure mode taxonomy validation."
-2. **Length confound addressable**: A length-matched subset analysis could resolve R1's primary concern. If +34pp holds for short-difference pairs, the confound is neutralized.
-3. **SOPBench attenuation expected**: "Rule-based verifier captures a strict subset of violations. Directional replication in 3/5 models is consistent with a real but domain-modulated effect."
-4. **Systematic nocuity can be foregrounded**: With additional analysis (by type, clause properties), this could be elevated from Discussion observation to a contribution.
-
-
----
-
 ## 引用验证结果
 
 **统计**: 63 篇文献 / 86 处引用 / 在线验证 63/63 篇

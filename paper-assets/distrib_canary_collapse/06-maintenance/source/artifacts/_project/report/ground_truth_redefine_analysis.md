@@ -89,10 +89,6 @@ Both FN pairs fail because TY and permutation Granger are non-significant (0/4 s
 
 The new definition is more inclusive (8 vs 4 pairs) because the old consensus requirement was overly conservative — TY's low power at T=11 excluded pairs with genuine causal structure. The 25% FNR reflects TY/permutation Granger's known limitations on short time series, not flaws in the reference pairs.
 
-## Key Takeaway for Rebuttal
-
-The ground truth is now defined entirely by **observable physical quantities** (drift magnitudes and temporal ordering) with zero reliance on inferential statistics. The reference set is robust to threshold choice (invariant across 2×–5×). The resulting FNR of 25% is driven by two pairs where Granger-type methods lack power at T=11, which is independently documented and expected.
-
 ## Data sources
 - α=1.0: results/mvp/rep_{42,43,44,45}/all_metrics.json
 - α=0.0: results/alpha_sweep/a000_s42/all_metrics.json

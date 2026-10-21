@@ -4,7 +4,7 @@ These pages are the easiest way to review **What Can IRT Person-Fit Statistics R
 
 | Source kind | Browse |
 |---|---|
-| Conversation logs (117) | [Page 1](conversations/index-001.md) |
-| Worker execution logs (322) | [Page 1](worker-executions/index-001.md) · [Page 2](worker-executions/index-002.md) · [Page 3](worker-executions/index-003.md) |
-| Task result records (276) | [Page 1](task-results/index-001.md) · [Page 2](task-results/index-002.md) |
+| Conversation logs (116) | [Page 1](conversations/index-001.md) |
+| Worker execution logs (315) | [Page 1](worker-executions/index-001.md) · [Page 2](worker-executions/index-002.md) · [Page 3](worker-executions/index-003.md) |
+| Task result records (269) | [Page 1](task-results/index-001.md) · [Page 2](task-results/index-002.md) |
 | Context and loop notes (11) | [Page 1](context-notes/index-001.md) |

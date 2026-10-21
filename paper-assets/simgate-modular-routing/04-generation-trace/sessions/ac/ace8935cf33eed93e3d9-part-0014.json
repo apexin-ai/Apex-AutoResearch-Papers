@@ -3431,45 +3431,6 @@
         },
         {
           "source_line": 2517,
-          "timestamp": "2026-05-20T02:33:17.975446+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md",
-              "content": "# ARR Author Response Drafts — EMNLP 2026\n\nPrepared 2026-05-20. Three predicted attack points with pre-drafted responses.\n\n## Response #1: Single-Environment Generalization (Attack probability: 90%)\n\nWe thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.\n\nThree lines of evidence support framework applicability beyond ScienceWorld: (1) **ALFWorld** (§3.4): the framework successfully diagnoses a qualitatively different mechanism—information asymmetry from admissible-action access (94.6% det-preferred, 0% death)—without any modification, demonstrating that the diagnostic procedure generalizes even when the dominant signal differs. (2) **MATH** (§3.4): the framework correctly identifies the absence of routing signal (p=0.81), a useful null result. (3) **MiniHack/Crafter** (§5): the framework correctly diagnoses two boundary conditions (no death mechanism; universal death without asymmetry). These are not failures—they are the framework performing its diagnostic function on environments where routing signal is absent or unexploitable.\n\nWithin ScienceWorld, extended validation on 5 excluded task types (n=100; Appendix S) yields DAF=0.991, confirming that task exclusion does not bias toward death-prone tasks.\n\n## Response #2: Non-triviality / Novelty (Attack probability: 70%)\n\nWe thank the reviewer for this important observation. While the *direction* of death dominance may appear predictable given ScienceWorld's −100 penalty, three empirically verified predictions were not obvious a priori:\n\n**(1) Intervention resistance across scales.** Qwen2.5-72B (10× parameters, independently collected at 72B for both strategies) reduces death rate to 30.6% but DAF *increases* to 92.4% (vs 7B's 90.4%). Scaling makes agents safer but does not reduce death dominance—a non-trivial outcome since one might expect larger models to diversify the signal beyond death avoidance.\n\n**(2) Self-correction overcompensation.** Reflexion (N=3) yields DAF>100%: after self-correction, the internal strategy *outperforms* deterministic on non-death episodes (Δ_nd=−0.47), meaning death avoidance more than fully accounts for the entire performance gap. The routing signal is not merely death-dominated—it is *exclusively* death-driven after self-correction.\n\n**(3) Inverted-U vulnerability.** A 0.5B model shows *reduced* death rate (13.3%) because it is too weak to reach dangerous states, suggesting capability and vulnerability are non-monotonically related.\n\nThese findings collectively show that death dominance is *resistant to reasonable interventions*—a conclusion that requires the precise quantification our framework provides.\n\n## Response #3: Actionability / Practical Impact (Attack probability: 60%)\n\nWe thank the reviewer for this important observation. The practical contribution operates at the **meta-level**: before committing to router development in any new environment, practitioners can run our three-stage diagnostic pilot (Appendix R) using ~50 episodes (~2 GPU-hours) to answer: *Does routing signal exist? What drives it? Is a learned router worth building?*\n\nThis meta-question has concrete value. Our router training consumed ~200 GPU-hours without exceeding the always-deterministic baseline—an outcome the 50-episode pilot correctly predicted for all four tested conditions (always-deterministic, always-internal, random, trained router). The framework's diagnostic power lies not in building better routers, but in **determining whether router development is warranted** before investing in it.\n\nThe framework also provides deployment guidance: when DAF≈1 (as in ScienceWorld), always-deterministic is provably near-optimal (96.3% of oracle decisions match it), eliminating the need for runtime routing overhead entirely. When DAF≈0 (as in MATH), neither strategy dominates and routing has no value. The diagnostic thus converts an open-ended engineering question (\"should we build a router?\") into a quantitative decision with clear thresholds.\n\nWe acknowledge that our current validation covers one primary environment; applying the pilot procedure to additional environments remains important future work.\n"
-            }
-          },
-          "id": "event-002517"
-        },
-        {
-          "source_line": 2518,
-          "timestamp": "2026-05-20T02:33:17.976119+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director",
-            "tool": "Write",
-            "elapsed_ms": 0
-          },
-          "id": "event-002518"
-        },
-        {
-          "source_line": 2519,
           "timestamp": "2026-05-20T02:33:30.805221+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3486,10 +3447,10 @@
               "text": "提交前全部准备完成：\n\n**论文**：编译通过，22 页，主文 ≤ 8 页，0 critical warnings。最新写作优化堵住 3 个主要攻击面（non-triviality 重构、meta-methodology pitch、hedge 收紧、ALFWorld 扩充）。\n\n**实验**：113 个实验完成（含 extended-task-validation 5/5 tasks, DAF=0.991）。Reviewer 评估后确认无高 ROI 新实验——NetHack 在 internal/deterministic 自然二分上就有根本问题（70-80% 失败概率），不值得 deadline 前冒险。\n\n**Rebuttal 模板**：3 个预测攻击点的 author response 已准备（单环境泛化性 / non-triviality / actionability），存 `artifacts/rebuttal_drafts.md`。\n\nReviewer 评估当前 Overall 3.5（Borderline Conference），bottleneck 是 Significance。写作改进 + rebuttal 准备是现阶段最高 ROI 行动，已全部完成。\n\n**等你确认启动 ARR 提交流程。** GPU westb 2 卡保留到提交后以防万一。"
             }
           },
-          "id": "event-002519"
+          "id": "event-002517"
         },
         {
-          "source_line": 2520,
+          "source_line": 2518,
           "timestamp": "2026-05-20T02:33:34.271222+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3503,6 +3464,44 @@
             "session": "feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director",
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3465
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-20T02:33:36.453195+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Rebuttal 模板已保存。论文和 rebuttal 全部就绪。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director"
+          },
+          "id": "event-002519"
+        }
+      ]
+    },
+    {
+      "number": 426,
+      "messages": [
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-20T03:02:19.217566+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知] 服务重启，自动恢复 ralph loop。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director",
+            "source": "system:restart_recovery"
           },
           "id": "event-002520"
         }

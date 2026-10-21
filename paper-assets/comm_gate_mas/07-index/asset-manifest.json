@@ -1,7 +1,7 @@
 {
   "project": "comm_gate_mas",
-  "code_count": 690,
-  "data_count": 1308,
+  "code_count": 689,
+  "data_count": 1286,
   "env_count": 4,
   "tex_count": 111,
   "bib_count": 4,
@@ -11,7 +11,7 @@
   "worker_count": 0,
   "trace_count": 148,
   "trace_bytes": 528108,
-  "maintenance_count": 96,
+  "maintenance_count": 92,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -95,14 +95,14 @@
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "690 code/configuration files; 4 environment manifests",
+      "evidence": "689 code/configuration files; 4 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
     {
       "name": "Experiments and environment",
       "status": "Partial",
-      "evidence": "1308 data/result files",
+      "evidence": "1286 data/result files",
       "gap": "Original data permissions and completeness require project-specific review.",
       "path": "03-experiments/"
     },
@@ -116,7 +116,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "96 project documentation files; 0 license files",
+      "evidence": "92 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

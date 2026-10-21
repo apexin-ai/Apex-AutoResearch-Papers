@@ -7,44 +7,6 @@
       "messages": [
         {
           "source_line": 1441,
-          "timestamp": "2026-05-25T09:15:16.511736+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"queued\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-            "tool": "mcp__agent-ml-research__director_post_to_manager",
-            "elapsed_ms": 634
-          },
-          "id": "event-001441"
-        },
-        {
-          "source_line": 1442,
-          "timestamp": "2026-05-25T09:15:18.670092+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__director_reply_to_user"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-            "tool": "mcp__agent-ml-research__director_reply_to_user",
-            "tool_args": {
-              "text": "收到，已通知 Manager 释放 1 张 GPU，保留 1 张用于审稿应急。"
-            }
-          },
-          "id": "event-001442"
-        },
-        {
-          "source_line": 1443,
           "timestamp": "2026-05-25T09:15:21.898466+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -59,7 +21,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3228
           },
-          "id": "event-001443"
+          "id": "event-001441"
         }
       ]
     },
@@ -67,7 +29,7 @@
       "number": 178,
       "messages": [
         {
-          "source_line": 1444,
+          "source_line": 1442,
           "timestamp": "2026-05-25T10:04:04.515768+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -81,10 +43,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001444"
+          "id": "event-001442"
         },
         {
-          "source_line": 1445,
+          "source_line": 1443,
           "timestamp": "2026-05-25T10:04:10.127820+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -101,10 +63,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-001445"
+          "id": "event-001443"
         },
         {
-          "source_line": 1446,
+          "source_line": 1444,
           "timestamp": "2026-05-25T10:04:10.179131+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -119,7 +81,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 51
           },
-          "id": "event-001446"
+          "id": "event-001444"
         }
       ]
     },
@@ -127,7 +89,7 @@
       "number": 179,
       "messages": [
         {
-          "source_line": 1447,
+          "source_line": 1445,
           "timestamp": "2026-05-25T11:57:43.299301+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -141,10 +103,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001447"
+          "id": "event-001445"
         },
         {
-          "source_line": 1448,
+          "source_line": 1446,
           "timestamp": "2026-05-25T11:57:55.025884+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -163,10 +125,10 @@
               "detail": "RESET_REVIEWER 已成功调用多次(ralph_respond 均返回 success)，系统可能未同步。论文 v11 终稿已完成+上传+Reviewer PASS。GPU 1 张保留用于审稿应急（rebuttal 期间可能需要补实验），当前无可执行实验。Abstract DDL: 用户说\"不用等我回 OpenReview\"，表明用户自己处理提交，Plan B placeholder 不再需要。等用户进一步指示或 context health check 触发 RESET"
             }
           },
-          "id": "event-001448"
+          "id": "event-001446"
         },
         {
-          "source_line": 1449,
+          "source_line": 1447,
           "timestamp": "2026-05-25T11:57:55.729323+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -181,7 +143,7 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 703
           },
-          "id": "event-001449"
+          "id": "event-001447"
         }
       ]
     },
@@ -189,7 +151,7 @@
       "number": 180,
       "messages": [
         {
-          "source_line": 1450,
+          "source_line": 1448,
           "timestamp": "2026-05-25T12:04:48.163503+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -203,10 +165,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001450"
+          "id": "event-001448"
         },
         {
-          "source_line": 1451,
+          "source_line": 1449,
           "timestamp": "2026-05-25T12:04:54.929934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -223,10 +185,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-001451"
+          "id": "event-001449"
         },
         {
-          "source_line": 1452,
+          "source_line": 1450,
           "timestamp": "2026-05-25T12:04:55.030801+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -241,7 +203,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-001452"
+          "id": "event-001450"
         }
       ]
     },
@@ -249,7 +211,7 @@
       "number": 181,
       "messages": [
         {
-          "source_line": 1453,
+          "source_line": 1451,
           "timestamp": "2026-05-25T12:12:18.224058+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -263,10 +225,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "feishu:oc_a1d032cbe70bdd2058438e67e0d57613"
           },
-          "id": "event-001453"
+          "id": "event-001451"
         },
         {
-          "source_line": 1454,
+          "source_line": 1452,
           "timestamp": "2026-05-25T12:12:27.900598+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -283,10 +245,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
             }
           },
-          "id": "event-001454"
+          "id": "event-001452"
         },
         {
-          "source_line": 1455,
+          "source_line": 1453,
           "timestamp": "2026-05-25T12:12:28.454643+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -301,10 +263,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-001455"
+          "id": "event-001453"
         },
         {
-          "source_line": 1456,
+          "source_line": 1454,
           "timestamp": "2026-05-25T12:12:29.107302+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -324,10 +286,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001456"
+          "id": "event-001454"
         },
         {
-          "source_line": 1457,
+          "source_line": 1455,
           "timestamp": "2026-05-25T12:12:29.632716+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -342,10 +304,10 @@
             "tool": "Grep",
             "elapsed_ms": 525
           },
-          "id": "event-001457"
+          "id": "event-001455"
         },
         {
-          "source_line": 1458,
+          "source_line": 1456,
           "timestamp": "2026-05-25T12:12:36.110112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -362,10 +324,10 @@
               "text": "**Title**\nInstruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis\n\n**Abstract**\nWhen vision-language models are fine-tuned for robotic action prediction, which representational changes reflect training and which are inherited from the pretrained backbone? We conduct a cross-architecture representational analysis of three VLAs (OpenVLA, TracVLA, and NORA) across four LIBERO task suites, comparing trained and reference checkpoints. Using layer-wise action probes, attention profiling, and counterfactual instruction perturbations, we find that the two tested VLM-to-VLA transitions exhibit pronounced peak-to-exit reductions in action-probe decodability, whereas the tested VLA-to-VLA transition shows only small fluctuations. An NLP finetuning control on each of the three backbone families (ΔR² = 0.000) is consistent with exit collapse being specific to action-oriented training rather than generic fine-tuning. Trained action-producing VLAs show medium-to-large sensitivity to instruction perturbations (d = 0.45–1.52), while L1 instruction-dominant attention largely pre-exists in the pretrained backbones. These results provide a cross-architecture characterization of instruction-related representations in action-finetuned VLAs and clarify which observed patterns are training-associated versus inherited from reference models.\n\n**Primary Keyword**\nLearning representations for robotic perception and control"
             }
           },
-          "id": "event-001458"
+          "id": "event-001456"
         },
         {
-          "source_line": 1459,
+          "source_line": 1457,
           "timestamp": "2026-05-25T12:12:39.068613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -380,7 +342,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2958
           },
-          "id": "event-001459"
+          "id": "event-001457"
         }
       ]
     },
@@ -388,7 +350,7 @@
       "number": 182,
       "messages": [
         {
-          "source_line": 1460,
+          "source_line": 1458,
           "timestamp": "2026-05-25T13:58:35.356080+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -402,10 +364,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001460"
+          "id": "event-001458"
         },
         {
-          "source_line": 1461,
+          "source_line": 1459,
           "timestamp": "2026-05-25T13:58:45.083723+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -424,10 +386,10 @@
               "detail": "RESET_BOTH 已在 12:04 的 RESET REQUEST 中批准(ralph_respond 返回 success)，等系统触发 WRITE HANDOFF。用户 12:12 请求 Title/Abstract/Primary Keyword 已回复，用户正在 OpenReview 操作提交，等用户下一步指示。重置后新 session 会与新 Reviewer 重新评估是否有 ablation 可跑"
             }
           },
-          "id": "event-001461"
+          "id": "event-001459"
         },
         {
-          "source_line": 1462,
+          "source_line": 1460,
           "timestamp": "2026-05-25T13:58:45.789638+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -442,7 +404,7 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 705
           },
-          "id": "event-001462"
+          "id": "event-001460"
         }
       ]
     },
@@ -450,7 +412,7 @@
       "number": 183,
       "messages": [
         {
-          "source_line": 1463,
+          "source_line": 1461,
           "timestamp": "2026-05-25T14:05:40.219270+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -464,10 +426,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001463"
+          "id": "event-001461"
         },
         {
-          "source_line": 1464,
+          "source_line": 1462,
           "timestamp": "2026-05-25T14:05:45.174748+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -484,10 +446,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-001464"
+          "id": "event-001462"
         },
         {
-          "source_line": 1465,
+          "source_line": 1463,
           "timestamp": "2026-05-25T14:05:45.275614+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -502,7 +464,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-001465"
+          "id": "event-001463"
         }
       ]
     },
@@ -510,7 +472,7 @@
       "number": 184,
       "messages": [
         {
-          "source_line": 1466,
+          "source_line": 1464,
           "timestamp": "2026-05-25T14:36:30.269590+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -524,10 +486,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001466"
+          "id": "event-001464"
         },
         {
-          "source_line": 1467,
+          "source_line": 1465,
           "timestamp": "2026-05-25T14:36:41.901552+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -545,10 +507,10 @@
               "detail": "RESET_BOTH 已通过 ralph_respond 调用 2 次且均返回 success，但系统未触发 WRITE HANDOFF 流程，导致 session 无法实际重置。这不是我未响应——是 RESET 流程卡住了。需要运维排查 ralph_respond 返回 success 但未触发后续 WRITE HANDOFF 的原因。我的 context 101 条/26h 确实需要重置，但我无法自行触发 handoff"
             }
           },
-          "id": "event-001467"
+          "id": "event-001465"
         },
         {
-          "source_line": 1468,
+          "source_line": 1466,
           "timestamp": "2026-05-25T14:36:43.256955+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -563,7 +525,7 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 1355
           },
-          "id": "event-001468"
+          "id": "event-001466"
         }
       ]
     },
@@ -571,7 +533,7 @@
       "number": 185,
       "messages": [
         {
-          "source_line": 1469,
+          "source_line": 1467,
           "timestamp": "2026-05-25T15:07:24.801650+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -585,10 +547,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001469"
+          "id": "event-001467"
         },
         {
-          "source_line": 1470,
+          "source_line": 1468,
           "timestamp": "2026-05-25T15:07:35.386628+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -607,10 +569,10 @@
               "detail": "不再等 RESET，在当前 context 直接行动：(1) 立即派 Agent 与新 Reviewer 评估是否有 1-2 个 ablation 能提升中稿率——聚焦把 correlational claim 推向更 solid 的支撑；(2) 向用户确认 OpenReview abstract 提交进展；(3) 让 Agent 做 abstract 格式检查（CoRL plain text 要求、字符限制等）"
             }
           },
-          "id": "event-001470"
+          "id": "event-001468"
         },
         {
-          "source_line": 1471,
+          "source_line": 1469,
           "timestamp": "2026-05-25T15:07:36.040374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -625,10 +587,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 653
           },
-          "id": "event-001471"
+          "id": "event-001469"
         },
         {
-          "source_line": 1472,
+          "source_line": 1470,
           "timestamp": "2026-05-25T15:07:50.497105+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -646,10 +608,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001472"
+          "id": "event-001470"
         },
         {
-          "source_line": 1473,
+          "source_line": 1471,
           "timestamp": "2026-05-25T15:07:54.487108+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -664,10 +626,10 @@
             "tool": "mcp__agent-ml-research__post_to_reviewer",
             "elapsed_ms": 3989
           },
-          "id": "event-001473"
+          "id": "event-001471"
         },
         {
-          "source_line": 1474,
+          "source_line": 1472,
           "timestamp": "2026-05-25T15:07:58.358751+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -684,10 +646,10 @@
               "text": "OpenReview abstract 提交进展如何？DDL 5/26 11:59 UTC（约 21 小时后）。如果操作上有任何问题告诉我。"
             }
           },
-          "id": "event-001474"
+          "id": "event-001472"
         },
         {
-          "source_line": 1475,
+          "source_line": 1473,
           "timestamp": "2026-05-25T15:07:58.961220+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -702,7 +664,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 602
           },
-          "id": "event-001475"
+          "id": "event-001473"
         }
       ]
     },
@@ -710,7 +672,7 @@
       "number": 186,
       "messages": [
         {
-          "source_line": 1476,
+          "source_line": 1474,
           "timestamp": "2026-05-25T15:15:10.972624+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -724,10 +686,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "reviewer"
           },
-          "id": "event-001476"
+          "id": "event-001474"
         },
         {
-          "source_line": 1477,
+          "source_line": 1475,
           "timestamp": "2026-05-25T15:15:21.236569+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -740,7 +702,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-001477"
+          "id": "event-001475"
         }
       ]
     },
@@ -748,7 +710,7 @@
       "number": 187,
       "messages": [
         {
-          "source_line": 1478,
+          "source_line": 1476,
           "timestamp": "2026-05-25T15:46:16.082009+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -762,10 +724,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001478"
+          "id": "event-001476"
         },
         {
-          "source_line": 1479,
+          "source_line": 1477,
           "timestamp": "2026-05-25T15:46:29.924052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -784,10 +746,10 @@
               "detail": "Reviewer 独立评估已完成：逐项分析 17 个 negative、behavioral ρ、VLA→VLA 解释、纯数据分析，结论是\"无 GPU 实验值得跑，边际收益均 <1%\"。我独立判断同意——核心瓶颈是 behavioral n=9 和闭环 infra 不可行，不是实验设计问题。论文 v11 已经过 2 轮精读+19 处改进+3 个 caveat 恢复，narrative 已优化到位。中稿率 47-62% 是分析型论文在 CoRL 的合理区间。GPU 释放：用户明确说保留 1 张，已通知 Manager 释放另 1 张，保留的 1 张用于 rebuttal 应急。等用户回复 OpenReview 提交进展或 WRITE HANDOFF 触发"
             }
           },
-          "id": "event-001479"
+          "id": "event-001477"
         },
         {
-          "source_line": 1480,
+          "source_line": 1478,
           "timestamp": "2026-05-25T15:46:30.627191+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -802,7 +764,7 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 703
           },
-          "id": "event-001480"
+          "id": "event-001478"
         }
       ]
     },
@@ -810,7 +772,7 @@
       "number": 188,
       "messages": [
         {
-          "source_line": 1481,
+          "source_line": 1479,
           "timestamp": "2026-05-25T16:15:35.683265+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -824,10 +786,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001481"
+          "id": "event-001479"
         },
         {
-          "source_line": 1482,
+          "source_line": 1480,
           "timestamp": "2026-05-25T16:15:40.694352+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -844,10 +806,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-001482"
+          "id": "event-001480"
         },
         {
-          "source_line": 1483,
+          "source_line": 1481,
           "timestamp": "2026-05-25T16:15:40.745303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -862,7 +824,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 50
           },
-          "id": "event-001483"
+          "id": "event-001481"
         }
       ]
     },
@@ -870,7 +832,7 @@
       "number": 189,
       "messages": [
         {
-          "source_line": 1484,
+          "source_line": 1482,
           "timestamp": "2026-05-25T17:47:09.802158+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -884,10 +846,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001484"
+          "id": "event-001482"
         },
         {
-          "source_line": 1485,
+          "source_line": 1483,
           "timestamp": "2026-05-25T17:47:22.586196+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -906,10 +868,10 @@
               "detail": "停止等待，立即行动：(1) 派 Agent 做 supplementary 材料扩充——per-task ΔR² breakdown table + probe learning curve 图放 appendix，Reviewer 说边际但有总比没有；(2) 派 Agent 检查 abstract 格式（CoRL plain text 要求、字符限制）确保用户随时可提交；(3) RESET_BOTH 已调 ralph_respond 3 次均 success 但未触发 handoff，继续等系统侧处理"
             }
           },
-          "id": "event-001485"
+          "id": "event-001483"
         },
         {
-          "source_line": 1486,
+          "source_line": 1484,
           "timestamp": "2026-05-25T17:47:23.188834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -924,10 +886,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 602
           },
-          "id": "event-001486"
+          "id": "event-001484"
         },
         {
-          "source_line": 1487,
+          "source_line": 1485,
           "timestamp": "2026-05-25T17:47:35.488797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -945,10 +907,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-001487"
+          "id": "event-001485"
         },
         {
-          "source_line": 1488,
+          "source_line": 1486,
           "timestamp": "2026-05-25T17:47:39.187153+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -963,7 +925,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3698
           },
-          "id": "event-001488"
+          "id": "event-001486"
         }
       ]
     },
@@ -971,7 +933,7 @@
       "number": 190,
       "messages": [
         {
-          "source_line": 1489,
+          "source_line": 1487,
           "timestamp": "2026-05-25T17:50:58.823358+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -985,10 +947,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "agent"
           },
-          "id": "event-001489"
+          "id": "event-001487"
         },
         {
-          "source_line": 1490,
+          "source_line": 1488,
           "timestamp": "2026-05-25T17:51:18.831099+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1005,10 +967,10 @@
               "text": "OpenReview 提交用的 plain-text abstract（已去掉 LaTeX 公式符号）：\n\n---\n\nWhen vision-language models are fine-tuned for robotic action prediction, which representational changes reflect training and which are inherited from the pretrained backbone? We conduct a cross-architecture representational analysis of three VLAs (OpenVLA, TracVLA, and NORA) across four LIBERO task suites, comparing trained and reference checkpoints. Using layer-wise action probes, attention profiling, and counterfactual instruction perturbations, we find that the two tested VLM-to-VLA transitions exhibit pronounced peak-to-exit reductions in action-probe decodability, whereas the tested VLA-to-VLA transition shows only small fluctuations. An NLP finetuning control on each of the three backbone families (ΔR² = 0.000) is consistent with exit collapse being specific to action-oriented training rather than generic fine-tuning. Trained action-producing VLAs show medium-to-large sensitivity to instruction perturbations (d = 0.45–1.52), while L1 instruction-dominant attention largely pre-exists in the pretrained backbones. These results provide a cross-architecture characterization of instruction-related representations in action-finetuned VLAs and clarify which observed patterns are training-associated versus inherited from reference models.\n\n---\n\n154 词，符合 CoRL 250 词限制。3 处 LaTeX 公式已转为 Unicode（ΔR²、d）。"
             }
           },
-          "id": "event-001490"
+          "id": "event-001488"
         },
         {
-          "source_line": 1491,
+          "source_line": 1489,
           "timestamp": "2026-05-25T17:51:21.795109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1023,10 +985,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2964
           },
-          "id": "event-001491"
+          "id": "event-001489"
         },
         {
-          "source_line": 1492,
+          "source_line": 1490,
           "timestamp": "2026-05-25T17:51:25.446426+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1039,7 +1001,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-001492"
+          "id": "event-001490"
         }
       ]
     },
@@ -1047,7 +1009,7 @@
       "number": 191,
       "messages": [
         {
-          "source_line": 1493,
+          "source_line": 1491,
           "timestamp": "2026-05-25T18:16:29.413306+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1061,10 +1023,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001493"
+          "id": "event-001491"
         },
         {
-          "source_line": 1494,
+          "source_line": 1492,
           "timestamp": "2026-05-25T18:16:34.568859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1081,10 +1043,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-001494"
+          "id": "event-001492"
         },
         {
-          "source_line": 1495,
+          "source_line": 1493,
           "timestamp": "2026-05-25T18:16:34.620233+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1099,7 +1061,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 51
           },
-          "id": "event-001495"
+          "id": "event-001493"
         }
       ]
     },
@@ -1107,7 +1069,7 @@
       "number": 192,
       "messages": [
         {
-          "source_line": 1496,
+          "source_line": 1494,
           "timestamp": "2026-05-25T18:47:42.430565+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1121,10 +1083,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:keepalive"
           },
-          "id": "event-001496"
+          "id": "event-001494"
         },
         {
-          "source_line": 1497,
+          "source_line": 1495,
           "timestamp": "2026-05-25T18:47:51.349310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1143,10 +1105,10 @@
               "detail": "论文 v11 终稿完成，plain-text abstract 已发给用户。用户明确说\"不用等我回 OpenReview\"表示自己处理提交。RESET_BOTH 已第 4 次调用 ralph_respond 返回 success，handoff 未触发属系统侧问题。GPU 释放已通知 Manager，执行取决于 Manager 侧。当前无可执行任务——等用户回复或 WRITE HANDOFF 触发"
             }
           },
-          "id": "event-001497"
+          "id": "event-001495"
         },
         {
-          "source_line": 1498,
+          "source_line": 1496,
           "timestamp": "2026-05-25T18:47:52.003164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1161,7 +1123,7 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 653
           },
-          "id": "event-001498"
+          "id": "event-001496"
         }
       ]
     },
@@ -1169,7 +1131,7 @@
       "number": 193,
       "messages": [
         {
-          "source_line": 1499,
+          "source_line": 1497,
           "timestamp": "2026-05-25T19:13:59.564677+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1183,10 +1145,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001499"
+          "id": "event-001497"
         },
         {
-          "source_line": 1500,
+          "source_line": 1498,
           "timestamp": "2026-05-25T19:14:06.472734+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1203,10 +1165,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-001500"
+          "id": "event-001498"
         },
         {
-          "source_line": 1501,
+          "source_line": 1499,
           "timestamp": "2026-05-25T19:14:06.573504+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1221,7 +1183,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-001501"
+          "id": "event-001499"
         }
       ]
     },
@@ -1229,7 +1191,7 @@
       "number": 194,
       "messages": [
         {
-          "source_line": 1502,
+          "source_line": 1500,
           "timestamp": "2026-05-25T19:14:08.673520+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1243,10 +1205,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001502"
+          "id": "event-001500"
         },
         {
-          "source_line": 1503,
+          "source_line": 1501,
           "timestamp": "2026-05-25T19:14:14.184658+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1263,10 +1225,10 @@
               "decision": "RESET_NOW"
             }
           },
-          "id": "event-001503"
+          "id": "event-001501"
         },
         {
-          "source_line": 1504,
+          "source_line": 1502,
           "timestamp": "2026-05-25T19:14:14.286127+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1281,7 +1243,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 101
           },
-          "id": "event-001504"
+          "id": "event-001502"
         }
       ]
     },
@@ -1289,7 +1251,7 @@
       "number": 195,
       "messages": [
         {
-          "source_line": 1505,
+          "source_line": 1503,
           "timestamp": "2026-05-25T19:14:16.462807+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1303,10 +1265,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-001505"
+          "id": "event-001503"
         },
         {
-          "source_line": 1506,
+          "source_line": 1504,
           "timestamp": "2026-05-25T19:15:00.318609+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1319,7 +1281,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-001506"
+          "id": "event-001504"
         }
       ]
     }

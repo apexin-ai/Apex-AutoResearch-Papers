@@ -1,16 +1,16 @@
 {
   "project": "symb_invariant_consensus",
-  "code_count": 625,
+  "code_count": 624,
   "data_count": 1219,
   "env_count": 0,
   "tex_count": 55,
   "bib_count": 3,
   "review_count": 22,
   "validation_count": 27,
-  "chat_count": 465,
-  "worker_count": 2103,
-  "trace_count": 2623,
-  "trace_bytes": 736081354,
+  "chat_count": 464,
+  "worker_count": 2101,
+  "trace_count": 2620,
+  "trace_bytes": 735043347,
   "maintenance_count": 143,
   "provenance_count": 1,
   "submission_count": 0,
@@ -136,14 +136,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "465 conversations; 2103 worker logs/results; 2623 source files",
+      "evidence": "464 conversations; 2101 worker logs/results; 2620 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "625 code/configuration files; 0 environment manifests",
+      "evidence": "624 code/configuration files; 0 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },

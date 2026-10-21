@@ -7,451 +7,6 @@
       "messages": [
         {
           "source_line": 11521,
-          "timestamp": "2026-05-22T08:15:33.458512+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 51
-          },
-          "id": "event-011521"
-        },
-        {
-          "source_line": 11522,
-          "timestamp": "2026-05-22T08:15:37.284984+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "^@",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "output_mode": "content",
-              "head_limit": "5"
-            }
-          },
-          "id": "event-011522"
-        },
-        {
-          "source_line": 11523,
-          "timestamp": "2026-05-22T08:15:37.335625+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "6:@inproceedings{ye2024satlm,\n16:@inproceedings{gao2023pal,\n23:@article{chen2023program,\n30:@inproceedings{lyu2023faithful,\n39:@book{condorcet1785,\n\n[Showing results with pagination = limit: 5]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-011523"
-        },
-        {
-          "source_line": 11524,
-          "timestamp": "2026-05-22T08:15:40.754506+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "offset": "1",
-              "limit": "5"
-            }
-          },
-          "id": "event-011524"
-        },
-        {
-          "source_line": 11525,
-          "timestamp": "2026-05-22T08:15:40.855416+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% References for SICA paper\n2\t% Generated from literature_map.yaml — 2026-05-17\n3\t\n4\t%%% SAT-Based Reasoning %%%\n5\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-011525"
-        },
-        {
-          "source_line": 11526,
-          "timestamp": "2026-05-22T08:15:46.530101+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "offset": "1",
-              "limit": "3"
-            }
-          },
-          "id": "event-011526"
-        },
-        {
-          "source_line": 11527,
-          "timestamp": "2026-05-22T08:15:46.580808+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% References for SICA paper\n2\t% Generated from literature_map.yaml — 2026-05-17\n3\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-011527"
-        },
-        {
-          "source_line": 11528,
-          "timestamp": "2026-05-22T08:15:53.512095+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "madaan2023",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "output_mode": "content",
-              "context": "10"
-            }
-          },
-          "id": "event-011528"
-        },
-        {
-          "source_line": 11529,
-          "timestamp": "2026-05-22T08:15:53.562790+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "269-  year={2024}\n270-}\n271-\n272-@inproceedings{weng2023selfverification,\n273-  title={Large Language Models are Better Reasoners with Self-Verification},\n274-  author={Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun},\n275-  booktitle={Findings of EMNLP},\n276-  year={2023}\n277-}\n278-\n279:@inproceedings{madaan2023selfrefine,\n280-  title={Self-Refine: Iterative Refinement with Self-Feedback},\n281-  author={Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and others},\n282-  booktitle={NeurIPS},\n283-  year={2023}\n284-}\n285-\n286-@inproceedings{gou2024critic,\n287-  title={{CRITIC}: Large Language Models Can Self-Correct with Tool-Interactive Critiquing},\n288-  author={Gou, Zhibin and Shao, Zhihong and Gong, Yeyun and Shen, Yelong and Yang, Yujiu and Huang, Minlie and Duan, Nan and Chen, Weizhu},\n289-  booktitle={ICLR},"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-011529"
-        },
-        {
-          "source_line": 11530,
-          "timestamp": "2026-05-22T08:15:59.537691+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "old_string": "@inproceedings{madaan2023selfrefine,",
-              "new_string": "@article{dhuliawala2023chainofverification,\n  title={Chain-of-Verification Reduces Hallucination in Large Language Models},\n  author={Dhuliawala, Shehzaad and Komeili, Mojtaba and Xu, Jing and Raileanu, Roberta and Li, Xian and Celikyilmaz, Asli and Weston, Jason},\n  journal={arXiv preprint arXiv:2309.11495},\n  year={2023}\n}\n\n@inproceedings{madaan2023selfrefine,"
-            }
-          },
-          "id": "event-011530"
-        },
-        {
-          "source_line": 11531,
-          "timestamp": "2026-05-22T08:15:59.538378+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-011531"
-        },
-        {
-          "source_line": 11532,
-          "timestamp": "2026-05-22T08:16:03.538052+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "symb_invariant_consensus",
-              "max_pages": "8",
-              "preview": "False"
-            }
-          },
-          "id": "event-011532"
-        },
-        {
-          "source_line": 11533,
-          "timestamp": "2026-05-22T08:16:06.451382+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": false, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": false, \\\"pdf_path\\\": null, \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Overfull \\\\\\\\hbox (7.22363pt too wide) in paragraph at lines 871--887\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1097) in paragraph at lines 893--894\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Three-verifier BH cor-rec-tion.[] \\\\\\\\T1/ptm/m/n/10.95 \\\\n(+20) Ta-ble [][]26[][] ap-\\\\n []\\\\n\\\\n[22]\\\\n<figures/capability_gap_scatter.pdf, id=1210, 268.57716pt x 206.07094pt>\\\\nFile: figures/capability_gap_scatter.pdf Graphic file (type pdf)\\\\n<use figures/capability_gap_scatter.pdf>\\\\nPackage pdftex.def Info: figures/capability_gap_scatter.pdf  used on input line\\\\n 918.\\\\n(pdftex.def)             Requested size: 170.88692pt x 131.12085pt.\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1735) in paragraph at lines 923--924\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ($\\\\\\\\OML/cmm/m/it/10.95 n[]\\\\\\\\OT1/cmr/m/n/10.95 600$\\\\\\\\T1/ptm\\\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (62.06534pt too wide) in paragraph at lines 938--963\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 999--1007\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1042--1059\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1066--1081\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\n! LaTeX Error: Counter too large.\\\\n\\\\nSee the LaTeX manual or LaTeX Companion for explanation.\\\\nType  H <return>  for immediate help.\\\\n ..\n…[truncated 10588 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 2913
-          },
-          "id": "event-011533"
-        },
-        {
-          "source_line": 11534,
-          "timestamp": "2026-05-22T08:16:17.665741+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "^\\\\section\\{",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-011534"
-        },
-        {
-          "source_line": 11535,
-          "timestamp": "2026-05-22T08:16:17.766646+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1:\\section{Regime Scatter Plot}\n11:\\section{Prompt Templates}\n157:\\section{Z3 MaxSAT Evaluation Pseudocode}\n201:\\section{Capability-Accuracy Constraint Diagnostics}\n267:\\section{Statistical Power Analysis}\n291:\\section{Bootstrap Confidence Intervals}\n315:\\section{Case Studies: Discordant Predictions}\n359:\\section{ProofWriter Oracle Per-Subtype Analysis}\n387:\\section{Constraint Ablation Details}\n409:\\section{Remediation Strategy Details}\n455:\\section{Additional Intervention Results}\n496:\\section{Extraction Error Taxonomy}\n505:\\section{Hyperparameter Sensitivity}\n530:\\section{Entropy Decomposition}\n564:\\section{Failure Mode Analysis}\n577:\\section{Cross-Model Confirmation Bias}\n634:\\section{Independence-Accuracy Scatter Plot}\n701:\\section{Cross-Model Kappa Analysis}\n727:\\section{Cross-Model Process-Level Independence}\n751:\\section{Constraint Quality Across Methods}\n773:\\section{Error Categorization of Method-Level Interventions}\n785:\\section{TOST Equivalence Tests}\n863:\\section{Multi-Verifier NLI Results}\n913:\\section{Capability Gap Data Points}\n991:\\section{Single-Trace and Aggregation Statistics}\n1088:\\section{Individual Intervention Significance}\n1093:\\section{Extended Discussion}\n1105:\\section{Extended Limitations}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 100
-          },
-          "id": "event-011535"
-        },
-        {
-          "source_line": 11536,
-          "timestamp": "2026-05-22T08:16:42.926193+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
-              "old_string": "\\section{Individual Intervention Significance}\n\\label{app:intervention-individual}\n\nOf the 27 training-free remediation strategies (Figure~\\ref{fig:interventions-summary}), the two largest positive effects are Cross-model Qwen3$\\to$Mistral ($+0.98$\\,pp) and Generational ($+0.49$\\,pp); neither approaches statistical significance ($p > 0.5$ for both). The largest negative effects are LLM-Debate ($-18.6$\\,pp, $p < 0.001$) and Contrastive Scoring ($-9.3$\\,pp, $p < 0.001$). After BH correction across all 27 comparisons, only these two negative results remain significant. No strategy produces a significant positive effect under any correction procedure.\n\n\\section{Extended Discussion}\n\\label{app:extended-discussion}",
-              "new_string": "\\paragraph{Individual intervention significance.}\n\\label{app:intervention-individual}\nOf the 27 training-free remediation strategies (Figure~\\ref{fig:interventions-summary}), the two largest positive effects are Cross-model Qwen3$\\to$Mistral ($+0.98$\\,pp) and Generational ($+0.49$\\,pp); neither approaches statistical significance ($p > 0.5$ for both). The largest negative effects are LLM-Debate ($-18.6$\\,pp, $p < 0.001$) and Contrastive Scoring ($-9.3$\\,pp, $p < 0.001$). After BH correction across all 27 comparisons, only these two negative results remain significant. No strategy produces a significant positive effect under any correction procedure.\n\n\\section{Extended Discussion}\n\\label{app:extended-discussion}"
-            }
-          },
-          "id": "event-011536"
-        },
-        {
-          "source_line": 11537,
-          "timestamp": "2026-05-22T08:16:42.977414+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-011537"
-        },
-        {
-          "source_line": 11538,
-          "timestamp": "2026-05-22T08:17:25.290654+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
-              "old_string": "\\section{Extended Discussion}\n\\label{app:extended-discussion}\n\n\\paragraph{SCB versus CoT unfaithfulness.}\nSCB is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}. CoT unfaithfulness concerns whether stated reasoning reflects actual computation; SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution. Even if traces were perfectly faithful, self-extraction would still inherit the distributional bias---the constraint $P(\\text{answer\\_A})$ reflects vote share, not logical validity. The shuffle control (\\S\\ref{sec:confirmation-bias}) confirms this: randomizing constraint--answer associations preserves BR, showing the bias is in the trace-count distribution, not in extraction-specific errors. However, if traces are unfaithful, the mirage may be worse than our measurements suggest, because constraints would reflect not the model's reasoning but its post-hoc rationalization.\n\n\\paragraph{Implications for neuro-symbolic practitioners.}\nOur results do not imply that neuro-symbolic methods are inherently flawed---they imply that \\emph{self-extracted} constraints cannot provide independent verification. Practitioners should: (1)~use specification-generation approaches (e.g., SatLM \\citep{ye2024satlm}, Logic-LM \\citep{pan2023logiclm}) that formalize the problem \\emph{before} generating candidate answers, avoiding the extraction bottleneck; (2)~employ external verifiers from a different architecture family when post-hoc verification is needed, as our cross-architecture NLI results demonstrate (\\S\\ref{sec:cross-arch}); (3)~monitor $K_\\text{eff}$, BR, and $C_0$ as early-warning diagnostics---$K_\\text{eff} \\leq 1.3$ or $C_0 < 5\\%$ signals that symbolic aggregation will degenerate to majority voting. Trained constraint extractors, which could learn to produce genuinely discriminative constraints, represent the most promising direction: our oracle controls show a ceiling of $+29.90$\\,pp that self-extraction captures only ${\\sim}$12\\% of.\n\n\\paragraph{Test-time scaling implications.}\nVote diversity decreases with model capability: $K_\\text{eff}$ drops from 3.62 (Mistral-7B on ProofWriter) to 1.09 (Qwen3-14B thinking mode). This creates a fundamental tension for o1/R1-style scaling \\citep{guo2025deepseekr1}: longer reasoning chains produce more coherent but less diverse traces, reducing the marginal value of additional samples. Our Process-$\\kappa$ analysis (\\S\\ref{sec:process-kappa}) reveals that this homogenization operates at the reasoning-process level, not just answer level---traces that disagree on final answers still share 69\\% of their reasoning structure. Cross-architecture ensembles offer a path forward, but the capability-gap condition (\\S\\ref{sec:cross-arch}) implies that the verifier must be genuinely complementary, not just different.\n\n\\section{Extended Limitations}\n\\label{app:limitations-extended}",
-              "new_string": "\\section{Extended Discussion and Limitations}\n\\label{app:extended-discussion}\n\\label{app:limitations-extended}\n\n\\paragraph{SCB versus CoT unfaithfulness.}\nSCB is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}. CoT unfaithfulness concerns whether stated reasoning reflects actual computation; SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution. Even if traces were perfectly faithful, self-extraction would still inherit the distributional bias---the constraint $P(\\text{answer\\_A})$ reflects vote share, not logical validity. The shuffle control (\\S\\ref{sec:confirmation-bias}) confirms this: randomizing constraint--answer associations preserves BR, showing the bias is in the trace-count distribution, not in extraction-specific errors. However, if traces are unfaithful, the mirage may be worse than our measurements suggest, because constraints would reflect not the model's reasoning but its post-hoc rationalization.\n\n\\paragraph{Implications for neuro-symbolic practitioners.}\nOur results do not imply that neuro-symbolic methods are inherently flawed---they imply that \\emph{self-extracted} constraints cannot provide independent verification. Practitioners should: (1)~use specification-generation approaches (e.g., SatLM \\citep{ye2024satlm}, Logic-LM \\citep{pan2023logiclm}) that formalize the problem \\emph{before} generating candidate answers, avoiding the extraction bottleneck; (2)~employ external verifiers from a different architecture family when post-hoc verification is needed, as our cross-architecture NLI results demonstrate (\\S\\ref{sec:cross-arch}); (3)~monitor $K_\\text{eff}$, BR, and $C_0$ as early-warning diagnostics---$K_\\text{eff} \\leq 1.3$ or $C_0 < 5\\%$ signals that symbolic aggregation will degenerate to majority voting. Trained constraint extractors, which could learn to produce genuinely discriminative constraints, represent the most promising direction: our oracle controls show a ceiling of $+29.90$\\,pp that self-extraction captures only ${\\sim}$12\\% of.\n\n\\paragraph{Test-time scaling implications.}\nVote diversity decreases with model capability: $K_\\text{eff}$ drops from 3.62 (Mistral-7B on ProofWriter) to 1.09 (Qwen3-14B thinking mode). This creates a fundamental tension for o1/R1-style scaling \\citep{guo2025deepseekr1}: longer reasoning chains produce more coherent but less diverse traces, reducing the marginal value of additional samples. Our Process-$\\kappa$ analysis (\\S\\ref{sec:process-kappa}) reveals that this homogenization operates at the reasoning-process level, not just answer level---traces that disagree on final answers still share 69\\% of their reasoning structure. Cross-architecture ensembles offer a path forward, but the capability-gap condition (\\S\\ref{sec:cross-arch}) implies that the verifier must be genuinely complementary, not just different.\n\n\\paragraph{Extended limitations.}"
-            }
-          },
-          "id": "event-011538"
-        },
-        {
-          "source_line": 11539,
-          "timestamp": "2026-05-22T08:17:25.342146+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-011539"
-        },
-        {
-          "source_line": 11540,
-          "timestamp": "2026-05-22T08:17:47.684723+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "input\\{diagnosis",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-011540"
-        },
-        {
-          "source_line": 11541,
-          "timestamp": "2026-05-22T08:17:47.735555+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-011541"
-        },
-        {
-          "source_line": 11542,
-          "timestamp": "2026-05-22T08:17:55.928341+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "symb_invariant_consensus",
-              "max_pages": "8",
-              "preview": "False"
-            }
-          },
-          "id": "event-011542"
-        },
-        {
-          "source_line": 11543,
           "timestamp": "2026-05-22T08:18:07.686501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -466,10 +21,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 11758
           },
-          "id": "event-011543"
+          "id": "event-011521"
         },
         {
-          "source_line": 11544,
+          "source_line": 11522,
           "timestamp": "2026-05-22T08:18:17.181009+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -489,10 +44,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011544"
+          "id": "event-011522"
         },
         {
-          "source_line": 11545,
+          "source_line": 11523,
           "timestamp": "2026-05-22T08:18:17.885590+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -507,10 +62,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 704
           },
-          "id": "event-011545"
+          "id": "event-011523"
         },
         {
-          "source_line": 11546,
+          "source_line": 11524,
           "timestamp": "2026-05-22T08:18:22.507739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -527,10 +82,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-011546"
+          "id": "event-011524"
         },
         {
-          "source_line": 11547,
+          "source_line": 11525,
           "timestamp": "2026-05-22T08:18:23.010389+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -547,10 +102,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011547"
+          "id": "event-011525"
         },
         {
-          "source_line": 11548,
+          "source_line": 11526,
           "timestamp": "2026-05-22T08:18:23.415696+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -565,10 +120,10 @@
             "tool": "Read",
             "elapsed_ms": 907
           },
-          "id": "event-011548"
+          "id": "event-011526"
         },
         {
-          "source_line": 11549,
+          "source_line": 11527,
           "timestamp": "2026-05-22T08:18:23.416148+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -585,10 +140,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011549"
+          "id": "event-011527"
         },
         {
-          "source_line": 11550,
+          "source_line": 11528,
           "timestamp": "2026-05-22T08:18:24.121732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -603,10 +158,10 @@
             "tool": "Read",
             "elapsed_ms": 1111
           },
-          "id": "event-011550"
+          "id": "event-011528"
         },
         {
-          "source_line": 11551,
+          "source_line": 11529,
           "timestamp": "2026-05-22T08:18:24.424158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -621,10 +176,10 @@
             "tool": "Read",
             "elapsed_ms": 1008
           },
-          "id": "event-011551"
+          "id": "event-011529"
         },
         {
-          "source_line": 11552,
+          "source_line": 11530,
           "timestamp": "2026-05-22T08:20:26.441414+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -643,10 +198,10 @@
               "limit": "8"
             }
           },
-          "id": "event-011552"
+          "id": "event-011530"
         },
         {
-          "source_line": 11553,
+          "source_line": 11531,
           "timestamp": "2026-05-22T08:20:26.492016+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -661,10 +216,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-011553"
+          "id": "event-011531"
         },
         {
-          "source_line": 11554,
+          "source_line": 11532,
           "timestamp": "2026-05-22T08:20:30.911909+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -684,10 +239,10 @@
               "new_string": "\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}"
             }
           },
-          "id": "event-011554"
+          "id": "event-011532"
         },
         {
-          "source_line": 11555,
+          "source_line": 11533,
           "timestamp": "2026-05-22T08:20:30.912469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -702,10 +257,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-011555"
+          "id": "event-011533"
         },
         {
-          "source_line": 11556,
+          "source_line": 11534,
           "timestamp": "2026-05-22T08:20:34.121388+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -723,10 +278,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-011556"
+          "id": "event-011534"
         },
         {
-          "source_line": 11557,
+          "source_line": 11535,
           "timestamp": "2026-05-22T08:20:34.377983+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -741,10 +296,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 256
           },
-          "id": "event-011557"
+          "id": "event-011535"
         },
         {
-          "source_line": 11558,
+          "source_line": 11536,
           "timestamp": "2026-05-22T08:20:37.238592+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -763,10 +318,10 @@
               "preview": "False"
             }
           },
-          "id": "event-011558"
+          "id": "event-011536"
         },
         {
-          "source_line": 11559,
+          "source_line": 11537,
           "timestamp": "2026-05-22T08:20:44.373338+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -781,10 +336,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 7134
           },
-          "id": "event-011559"
+          "id": "event-011537"
         },
         {
-          "source_line": 11560,
+          "source_line": 11538,
           "timestamp": "2026-05-22T08:20:51.223868+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -802,10 +357,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-011560"
+          "id": "event-011538"
         },
         {
-          "source_line": 11561,
+          "source_line": 11539,
           "timestamp": "2026-05-22T08:20:51.324687+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -820,10 +375,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-011561"
+          "id": "event-011539"
         },
         {
-          "source_line": 11562,
+          "source_line": 11540,
           "timestamp": "2026-05-22T08:20:55.790994+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -843,10 +398,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011562"
+          "id": "event-011540"
         },
         {
-          "source_line": 11563,
+          "source_line": 11541,
           "timestamp": "2026-05-22T08:20:56.244435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -861,10 +416,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 453
           },
-          "id": "event-011563"
+          "id": "event-011541"
         },
         {
-          "source_line": 11564,
+          "source_line": 11542,
           "timestamp": "2026-05-22T08:20:59.314653+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -881,10 +436,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-011564"
+          "id": "event-011542"
         },
         {
-          "source_line": 11565,
+          "source_line": 11543,
           "timestamp": "2026-05-22T08:20:59.668248+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -901,10 +456,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011565"
+          "id": "event-011543"
         },
         {
-          "source_line": 11566,
+          "source_line": 11544,
           "timestamp": "2026-05-22T08:21:00.122367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -921,10 +476,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011566"
+          "id": "event-011544"
         },
         {
-          "source_line": 11567,
+          "source_line": 11545,
           "timestamp": "2026-05-22T08:21:00.173818+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -939,10 +494,10 @@
             "tool": "Read",
             "elapsed_ms": 859
           },
-          "id": "event-011567"
+          "id": "event-011545"
         },
         {
-          "source_line": 11568,
+          "source_line": 11546,
           "timestamp": "2026-05-22T08:21:00.928737+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -957,10 +512,10 @@
             "tool": "Read",
             "elapsed_ms": 1260
           },
-          "id": "event-011568"
+          "id": "event-011546"
         },
         {
-          "source_line": 11569,
+          "source_line": 11547,
           "timestamp": "2026-05-22T08:21:01.131609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -975,10 +530,10 @@
             "tool": "Read",
             "elapsed_ms": 1009
           },
-          "id": "event-011569"
+          "id": "event-011547"
         },
         {
-          "source_line": 11570,
+          "source_line": 11548,
           "timestamp": "2026-05-22T08:21:12.675046+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -996,10 +551,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-011570"
+          "id": "event-011548"
         },
         {
-          "source_line": 11571,
+          "source_line": 11549,
           "timestamp": "2026-05-22T08:21:12.725625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1014,10 +569,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-011571"
+          "id": "event-011549"
         },
         {
-          "source_line": 11572,
+          "source_line": 11550,
           "timestamp": "2026-05-22T08:21:15.995099+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1034,10 +589,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images"
             }
           },
-          "id": "event-011572"
+          "id": "event-011550"
         },
         {
-          "source_line": 11573,
+          "source_line": 11551,
           "timestamp": "2026-05-22T08:21:16.045731+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1052,10 +607,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-011573"
+          "id": "event-011551"
         },
         {
-          "source_line": 11574,
+          "source_line": 11552,
           "timestamp": "2026-05-22T08:21:47.693647+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1073,10 +628,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-011574"
+          "id": "event-011552"
         },
         {
-          "source_line": 11575,
+          "source_line": 11553,
           "timestamp": "2026-05-22T08:21:51.561101+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1091,10 +646,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3867
           },
-          "id": "event-011575"
+          "id": "event-011553"
         },
         {
-          "source_line": 11576,
+          "source_line": 11554,
           "timestamp": "2026-05-22T08:21:55.887410+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1107,7 +662,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-011576"
+          "id": "event-011554"
         }
       ]
     },
@@ -1115,7 +670,7 @@
       "number": 467,
       "messages": [
         {
-          "source_line": 11577,
+          "source_line": 11555,
           "timestamp": "2026-05-22T08:21:56.469156+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1129,10 +684,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-011577"
+          "id": "event-011555"
         },
         {
-          "source_line": 11578,
+          "source_line": 11556,
           "timestamp": "2026-05-22T08:22:07.273811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1150,10 +705,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-011578"
+          "id": "event-011556"
         },
         {
-          "source_line": 11579,
+          "source_line": 11557,
           "timestamp": "2026-05-22T08:22:07.324439+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1168,10 +723,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-011579"
+          "id": "event-011557"
         },
         {
-          "source_line": 11580,
+          "source_line": 11558,
           "timestamp": "2026-05-22T08:22:10.638375+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1190,10 +745,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-011580"
+          "id": "event-011558"
         },
         {
-          "source_line": 11581,
+          "source_line": 11559,
           "timestamp": "2026-05-22T08:22:11.140548+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1208,10 +763,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 502
           },
-          "id": "event-011581"
+          "id": "event-011559"
         },
         {
-          "source_line": 11582,
+          "source_line": 11560,
           "timestamp": "2026-05-22T08:22:15.509695+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1230,10 +785,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-011582"
+          "id": "event-011560"
         },
         {
-          "source_line": 11583,
+          "source_line": 11561,
           "timestamp": "2026-05-22T08:22:16.012666+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1248,10 +803,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 502
           },
-          "id": "event-011583"
+          "id": "event-011561"
         },
         {
-          "source_line": 11584,
+          "source_line": 11562,
           "timestamp": "2026-05-22T08:22:18.774586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1270,10 +825,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-011584"
+          "id": "event-011562"
         },
         {
-          "source_line": 11585,
+          "source_line": 11563,
           "timestamp": "2026-05-22T08:22:19.228378+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1288,10 +843,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 453
           },
-          "id": "event-011585"
+          "id": "event-011563"
         },
         {
-          "source_line": 11586,
+          "source_line": 11564,
           "timestamp": "2026-05-22T08:22:30.093087+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1310,10 +865,10 @@
               "limit": "30"
             }
           },
-          "id": "event-011586"
+          "id": "event-011564"
         },
         {
-          "source_line": 11587,
+          "source_line": 11565,
           "timestamp": "2026-05-22T08:22:30.997228+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1328,10 +883,10 @@
             "tool": "Read",
             "elapsed_ms": 904
           },
-          "id": "event-011587"
+          "id": "event-011565"
         },
         {
-          "source_line": 11588,
+          "source_line": 11566,
           "timestamp": "2026-05-22T08:22:30.997613+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1350,10 +905,10 @@
               "limit": "30"
             }
           },
-          "id": "event-011588"
+          "id": "event-011566"
         },
         {
-          "source_line": 11589,
+          "source_line": 11567,
           "timestamp": "2026-05-22T08:22:31.049101+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1368,10 +923,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-011589"
+          "id": "event-011567"
         },
         {
-          "source_line": 11590,
+          "source_line": 11568,
           "timestamp": "2026-05-22T08:22:38.281093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1391,10 +946,10 @@
               "-n": "True"
             }
           },
-          "id": "event-011590"
+          "id": "event-011568"
         },
         {
-          "source_line": 11591,
+          "source_line": 11569,
           "timestamp": "2026-05-22T08:22:38.281574+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1409,10 +964,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-011591"
+          "id": "event-011569"
         },
         {
-          "source_line": 11592,
+          "source_line": 11570,
           "timestamp": "2026-05-22T08:22:41.380072+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1431,10 +986,10 @@
               "limit": "40"
             }
           },
-          "id": "event-011592"
+          "id": "event-011570"
         },
         {
-          "source_line": 11593,
+          "source_line": 11571,
           "timestamp": "2026-05-22T08:22:41.430726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1449,10 +1004,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-011593"
+          "id": "event-011571"
         },
         {
-          "source_line": 11594,
+          "source_line": 11572,
           "timestamp": "2026-05-22T08:23:06.297973+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1472,10 +1027,10 @@
               "new_string": "99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is insensitive to the constraint weight $\\alpha$: across $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$, MAX-SAT and count-only agree on $\\geq$99\\% of instances for both high-BR and moderate-BR conditions (Appendix Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This pattern generalizes"
             }
           },
-          "id": "event-011594"
+          "id": "event-011572"
         },
         {
-          "source_line": 11595,
+          "source_line": 11573,
           "timestamp": "2026-05-22T08:23:06.499612+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1490,10 +1045,10 @@
             "tool": "Edit",
             "elapsed_ms": 201
           },
-          "id": "event-011595"
+          "id": "event-011573"
         },
         {
-          "source_line": 11596,
+          "source_line": 11574,
           "timestamp": "2026-05-22T08:23:12.876417+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1513,10 +1068,10 @@
               "new_string": "\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MAX-SAT vs.\\ count-only agreement across constraint weight $\\alpha$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\\times$, seed 42); Qwen2.5-14B (BR $= 3.93\\times$, seed 123). Agreement $\\geq 99\\%$ at all $\\alpha$, confirming vacuity is weight-insensitive.}\n\\label{tab:alpha-ablation}\n\\begin{tabular}{@{}crr@{}}\n\\toprule\n$\\alpha$ & Mistral Agr.\\ (\\%) & Qwen2.5 Agr.\\ (\\%) \\\\\n\\midrule\n0.1 & 100 & 100 \\\\\n0.3 & 100 & 100 \\\\\n0.5 & 100 & 100 \\\\\n0.7 & 99 & 100 \\\\\n0.9 & 99 & 100 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Remediation Strategy Details}\n\\label{app:remediation}"
             }
           },
-          "id": "event-011596"
+          "id": "event-011574"
         },
         {
-          "source_line": 11597,
+          "source_line": 11575,
           "timestamp": "2026-05-22T08:23:12.877585+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1531,11 +1086,445 @@
             "tool": "Edit",
             "elapsed_ms": 1
           },
+          "id": "event-011575"
+        },
+        {
+          "source_line": 11576,
+          "timestamp": "2026-05-22T08:23:17.047047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-011576"
+        },
+        {
+          "source_line": 11577,
+          "timestamp": "2026-05-22T08:23:22.317124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] [26\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34935 strings out of 469438\\\\n 666110 string characters out of 5468411\\\\n 1502349 words of memory out of 5000000\\\\n 62165 multiletter control sequences out of 15000+600000\\\\n 732714 words of font info for 466 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2011s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share\\\\n/texlive\n…[truncated 10257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5270
+          },
+          "id": "event-011577"
+        },
+        {
+          "source_line": 11578,
+          "timestamp": "2026-05-22T08:23:30.903043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
+              "project": "symb_invariant_consensus",
+              "pages": "7-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-011578"
+        },
+        {
+          "source_line": 11579,
+          "timestamp": "2026-05-22T08:23:31.405437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 523.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 503.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 533.6}], \\\"total_pages\\\": 26, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 502
+          },
+          "id": "event-011579"
+        },
+        {
+          "source_line": 11580,
+          "timestamp": "2026-05-22T08:23:34.568996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-011580"
+        },
+        {
+          "source_line": 11581,
+          "timestamp": "2026-05-22T08:23:35.073063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-011581"
+        },
+        {
+          "source_line": 11582,
+          "timestamp": "2026-05-22T08:23:35.224805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-011582"
+        },
+        {
+          "source_line": 11583,
+          "timestamp": "2026-05-22T08:23:35.816796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 743
+          },
+          "id": "event-011583"
+        },
+        {
+          "source_line": 11584,
+          "timestamp": "2026-05-22T08:23:58.523049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "This vacuity is insensitive to the constraint weight $\\alpha$: across $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$, MAX-SAT and count-only agree on $\\geq$99\\% of instances for both high-BR and moderate-BR conditions (Appendix Table~\\ref{tab:alpha-ablation}).",
+              "new_string": "This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ for both high- and moderate-BR conditions (Table~\\ref{tab:alpha-ablation})."
+            }
+          },
+          "id": "event-011584"
+        },
+        {
+          "source_line": 11585,
+          "timestamp": "2026-05-22T08:23:58.624051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-011585"
+        },
+        {
+          "source_line": 11586,
+          "timestamp": "2026-05-22T08:24:02.299543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-011586"
+        },
+        {
+          "source_line": 11587,
+          "timestamp": "2026-05-22T08:24:07.874673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\nUnderfull \\\\\\\\hbox (badness 1735) in paragraph at lines 941--942\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ($\\\\\\\\OML/cmm/m/it/10.95 n[]\\\\\\\\OT1/cmr/m/n/10.95 600$\\\\\\\\T1/ptm\\\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (62.06534pt too wide) in paragraph at lines 956--981\\\\n [][] \\\\n []\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34935 strings out of 469438\\\\n 666115 string characters out of 5468411\\\\n 1522349 words of memory out of 5000000\\\\n 62163 multiletter control sequences out of 15000+600000\\\\n 732939 words of font info for 468 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2029s stack positions out of 10000i,1000n,20000p,200000b,2000\n…[truncated 10861 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5575
+          },
+          "id": "event-011587"
+        },
+        {
+          "source_line": 11588,
+          "timestamp": "2026-05-22T08:24:14.303641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
+              "project": "symb_invariant_consensus",
+              "pages": "8-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-011588"
+        },
+        {
+          "source_line": 11589,
+          "timestamp": "2026-05-22T08:24:14.605263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 514.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.2}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 301
+          },
+          "id": "event-011589"
+        },
+        {
+          "source_line": 11590,
+          "timestamp": "2026-05-22T08:24:18.120634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-011590"
+        },
+        {
+          "source_line": 11591,
+          "timestamp": "2026-05-22T08:24:18.321987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-011591"
+        },
+        {
+          "source_line": 11592,
+          "timestamp": "2026-05-22T08:24:19.027014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-011592"
+        },
+        {
+          "source_line": 11593,
+          "timestamp": "2026-05-22T08:24:19.329120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1007
+          },
+          "id": "event-011593"
+        },
+        {
+          "source_line": 11594,
+          "timestamp": "2026-05-22T08:25:04.171835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-011594"
+        },
+        {
+          "source_line": 11595,
+          "timestamp": "2026-05-22T08:25:04.172327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-2mm}\n2\t\\section{Discussion and Conclusion}\n3\t\\label{sec:discussion}\n4\t\\label{sec:conclusion}\n5\t\n6\t\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models (Table~\\ref{tab:frontier-scb}) show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, a shuffle control confirms this reflects trace-count distributions, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator, because encoder-only and decoder-only models have structurally different error profiles. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion of implications for neuro-symbolic practitioners, test-time scaling, and the relationship between SCB and CoT unfaithfulness appears in Appendix~\\ref{app:extended-discussion}.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-011595"
+        },
+        {
+          "source_line": 11596,
+          "timestamp": "2026-05-22T08:25:14.063294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models (Table~\\ref{tab:frontier-scb}) show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, a shuffle control confirms this reflects trace-count distributions, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator, because encoder-only and decoder-only models have structurally different error profiles. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion of implications for neuro-symbolic practitioners, test-time scaling, and the relationship between SCB and CoT unfaithfulness appears in Appendix~\\ref{app:extended-discussion}.",
+              "new_string": "\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion appears in Appendix~\\ref{app:extended-discussion}."
+            }
+          },
+          "id": "event-011596"
+        },
+        {
+          "source_line": 11597,
+          "timestamp": "2026-05-22T08:25:14.114118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
           "id": "event-011597"
         },
         {
           "source_line": 11598,
-          "timestamp": "2026-05-22T08:23:17.047047+00:00",
+          "timestamp": "2026-05-22T08:25:18.482239+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -1557,440 +1546,6 @@
         },
         {
           "source_line": 11599,
-          "timestamp": "2026-05-22T08:23:22.317124+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\" [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] [26\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34935 strings out of 469438\\\\n 666110 string characters out of 5468411\\\\n 1502349 words of memory out of 5000000\\\\n 62165 multiletter control sequences out of 15000+600000\\\\n 732714 words of font info for 466 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2011s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share\\\\n/texlive\n…[truncated 10257 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 5270
-          },
-          "id": "event-011599"
-        },
-        {
-          "source_line": 11600,
-          "timestamp": "2026-05-22T08:23:30.903043+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__pdf_to_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "tool_args": {
-              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
-              "project": "symb_invariant_consensus",
-              "pages": "7-9",
-              "dpi": "150"
-            }
-          },
-          "id": "event-011600"
-        },
-        {
-          "source_line": 11601,
-          "timestamp": "2026-05-22T08:23:31.405437+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 523.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 503.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 533.6}], \\\"total_pages\\\": 26, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 502
-          },
-          "id": "event-011601"
-        },
-        {
-          "source_line": 11602,
-          "timestamp": "2026-05-22T08:23:34.568996+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-011602"
-        },
-        {
-          "source_line": 11603,
-          "timestamp": "2026-05-22T08:23:35.073063+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-011603"
-        },
-        {
-          "source_line": 11604,
-          "timestamp": "2026-05-22T08:23:35.224805+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 655
-          },
-          "id": "event-011604"
-        },
-        {
-          "source_line": 11605,
-          "timestamp": "2026-05-22T08:23:35.816796+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 743
-          },
-          "id": "event-011605"
-        },
-        {
-          "source_line": 11606,
-          "timestamp": "2026-05-22T08:23:58.523049+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
-              "old_string": "This vacuity is insensitive to the constraint weight $\\alpha$: across $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$, MAX-SAT and count-only agree on $\\geq$99\\% of instances for both high-BR and moderate-BR conditions (Appendix Table~\\ref{tab:alpha-ablation}).",
-              "new_string": "This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ for both high- and moderate-BR conditions (Table~\\ref{tab:alpha-ablation})."
-            }
-          },
-          "id": "event-011606"
-        },
-        {
-          "source_line": 11607,
-          "timestamp": "2026-05-22T08:23:58.624051+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-011607"
-        },
-        {
-          "source_line": 11608,
-          "timestamp": "2026-05-22T08:24:02.299543+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "symb_invariant_consensus",
-              "max_pages": "8",
-              "preview": "False"
-            }
-          },
-          "id": "event-011608"
-        },
-        {
-          "source_line": 11609,
-          "timestamp": "2026-05-22T08:24:07.874673+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\nUnderfull \\\\\\\\hbox (badness 1735) in paragraph at lines 941--942\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ($\\\\\\\\OML/cmm/m/it/10.95 n[]\\\\\\\\OT1/cmr/m/n/10.95 600$\\\\\\\\T1/ptm\\\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (62.06534pt too wide) in paragraph at lines 956--981\\\\n [][] \\\\n []\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34935 strings out of 469438\\\\n 666115 string characters out of 5468411\\\\n 1522349 words of memory out of 5000000\\\\n 62163 multiletter control sequences out of 15000+600000\\\\n 732939 words of font info for 468 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2029s stack positions out of 10000i,1000n,20000p,200000b,2000\n…[truncated 10861 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 5575
-          },
-          "id": "event-011609"
-        },
-        {
-          "source_line": 11610,
-          "timestamp": "2026-05-22T08:24:14.303641+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__pdf_to_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "tool_args": {
-              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
-              "project": "symb_invariant_consensus",
-              "pages": "8-9",
-              "dpi": "150"
-            }
-          },
-          "id": "event-011610"
-        },
-        {
-          "source_line": 11611,
-          "timestamp": "2026-05-22T08:24:14.605263+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 514.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 535.2}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 301
-          },
-          "id": "event-011611"
-        },
-        {
-          "source_line": 11612,
-          "timestamp": "2026-05-22T08:24:18.120634+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-011612"
-        },
-        {
-          "source_line": 11613,
-          "timestamp": "2026-05-22T08:24:18.321987+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-011613"
-        },
-        {
-          "source_line": 11614,
-          "timestamp": "2026-05-22T08:24:19.027014+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 906
-          },
-          "id": "event-011614"
-        },
-        {
-          "source_line": 11615,
-          "timestamp": "2026-05-22T08:24:19.329120+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 1007
-          },
-          "id": "event-011615"
-        },
-        {
-          "source_line": 11616,
-          "timestamp": "2026-05-22T08:25:04.171835+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-011616"
-        },
-        {
-          "source_line": 11617,
-          "timestamp": "2026-05-22T08:25:04.172327+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\vspace{-2mm}\n2\t\\section{Discussion and Conclusion}\n3\t\\label{sec:discussion}\n4\t\\label{sec:conclusion}\n5\t\n6\t\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models (Table~\\ref{tab:frontier-scb}) show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, a shuffle control confirms this reflects trace-count distributions, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator, because encoder-only and decoder-only models have structurally different error profiles. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion of implications for neuro-symbolic practitioners, test-time scaling, and the relationship between SCB and CoT unfaithfulness appears in Appendix~\\ref{app:extended-discussion}.\n7\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-011617"
-        },
-        {
-          "source_line": 11618,
-          "timestamp": "2026-05-22T08:25:14.063294+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
-              "old_string": "\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models (Table~\\ref{tab:frontier-scb}) show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, a shuffle control confirms this reflects trace-count distributions, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator, because encoder-only and decoder-only models have structurally different error profiles. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion of implications for neuro-symbolic practitioners, test-time scaling, and the relationship between SCB and CoT unfaithfulness appears in Appendix~\\ref{app:extended-discussion}.",
-              "new_string": "\\looseness=-1 Symbolic confirmation bias is structural: bias ratios of $1.66$--$4.97\\times$ across nine models show that extraction and generation share distributional biases \\citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems---rendering the formal layer vacuous despite being provably sound. Vote diversity is low ($K_{\\text{eff}} = 1.20$--$3.62$ for $K = 12$), intensifying with capability ($K_{\\text{eff}} = 1.09$ for Qwen3 thinking), and all 27 training-free interventions cluster at $\\kappa \\geq 0.40$, confirming a same-model ceiling. Cross-architecture NLI escapes this ceiling ($p = 0.003$) when the verifier exceeds the generator. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict when self-verification will fail; extended discussion appears in Appendix~\\ref{app:extended-discussion}."
-            }
-          },
-          "id": "event-011618"
-        },
-        {
-          "source_line": 11619,
-          "timestamp": "2026-05-22T08:25:14.114118+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-011619"
-        },
-        {
-          "source_line": 11620,
-          "timestamp": "2026-05-22T08:25:18.482239+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "symb_invariant_consensus",
-              "max_pages": "8",
-              "preview": "False"
-            }
-          },
-          "id": "event-011620"
-        },
-        {
-          "source_line": 11621,
           "timestamp": "2026-05-22T08:25:24.105019+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2005,10 +1560,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5622
           },
-          "id": "event-011621"
+          "id": "event-011599"
         },
         {
-          "source_line": 11622,
+          "source_line": 11600,
           "timestamp": "2026-05-22T08:25:31.544481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2028,10 +1583,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011622"
+          "id": "event-011600"
         },
         {
-          "source_line": 11623,
+          "source_line": 11601,
           "timestamp": "2026-05-22T08:25:31.795969+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2046,10 +1601,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 251
           },
-          "id": "event-011623"
+          "id": "event-011601"
         },
         {
-          "source_line": 11624,
+          "source_line": 11602,
           "timestamp": "2026-05-22T08:25:34.630823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2066,10 +1621,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011624"
+          "id": "event-011602"
         },
         {
-          "source_line": 11625,
+          "source_line": 11603,
           "timestamp": "2026-05-22T08:25:35.284613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2084,10 +1639,10 @@
             "tool": "Read",
             "elapsed_ms": 653
           },
-          "id": "event-011625"
+          "id": "event-011603"
         },
         {
-          "source_line": 11626,
+          "source_line": 11604,
           "timestamp": "2026-05-22T08:25:55.079993+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2107,10 +1662,10 @@
               "new_string": "\\enlargethispage{2\\baselineskip}\n\\vspace{-2mm}\n\\section{Discussion and Conclusion}"
             }
           },
-          "id": "event-011626"
+          "id": "event-011604"
         },
         {
-          "source_line": 11627,
+          "source_line": 11605,
           "timestamp": "2026-05-22T08:25:55.130630+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2125,10 +1680,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-011627"
+          "id": "event-011605"
         },
         {
-          "source_line": 11628,
+          "source_line": 11606,
           "timestamp": "2026-05-22T08:25:58.394003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2147,10 +1702,10 @@
               "preview": "False"
             }
           },
-          "id": "event-011628"
+          "id": "event-011606"
         },
         {
-          "source_line": 11629,
+          "source_line": 11607,
           "timestamp": "2026-05-22T08:26:04.369136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2165,10 +1720,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5975
           },
-          "id": "event-011629"
+          "id": "event-011607"
         },
         {
-          "source_line": 11630,
+          "source_line": 11608,
           "timestamp": "2026-05-22T08:26:11.066348+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2188,10 +1743,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011630"
+          "id": "event-011608"
         },
         {
-          "source_line": 11631,
+          "source_line": 11609,
           "timestamp": "2026-05-22T08:26:11.368285+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2206,10 +1761,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-011631"
+          "id": "event-011609"
         },
         {
-          "source_line": 11632,
+          "source_line": 11610,
           "timestamp": "2026-05-22T08:26:15.959361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2226,10 +1781,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011632"
+          "id": "event-011610"
         },
         {
-          "source_line": 11633,
+          "source_line": 11611,
           "timestamp": "2026-05-22T08:26:16.562729+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2244,10 +1799,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-011633"
+          "id": "event-011611"
         },
         {
-          "source_line": 11634,
+          "source_line": 11612,
           "timestamp": "2026-05-22T08:26:26.130065+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2264,10 +1819,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011634"
+          "id": "event-011612"
         },
         {
-          "source_line": 11635,
+          "source_line": 11613,
           "timestamp": "2026-05-22T08:26:26.734448+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2282,10 +1837,10 @@
             "tool": "Read",
             "elapsed_ms": 604
           },
-          "id": "event-011635"
+          "id": "event-011613"
         },
         {
-          "source_line": 11636,
+          "source_line": 11614,
           "timestamp": "2026-05-22T08:26:57.025344+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2305,10 +1860,10 @@
               "new_string": "\\enlargethispage{6\\baselineskip}\n\\vspace{-2mm}"
             }
           },
-          "id": "event-011636"
+          "id": "event-011614"
         },
         {
-          "source_line": 11637,
+          "source_line": 11615,
           "timestamp": "2026-05-22T08:26:57.076113+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2323,10 +1878,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-011637"
+          "id": "event-011615"
         },
         {
-          "source_line": 11638,
+          "source_line": 11616,
           "timestamp": "2026-05-22T08:27:00.992481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2345,10 +1900,10 @@
               "preview": "False"
             }
           },
-          "id": "event-011638"
+          "id": "event-011616"
         },
         {
-          "source_line": 11639,
+          "source_line": 11617,
           "timestamp": "2026-05-22T08:27:06.851976+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2363,10 +1918,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5859
           },
-          "id": "event-011639"
+          "id": "event-011617"
         },
         {
-          "source_line": 11640,
+          "source_line": 11618,
           "timestamp": "2026-05-22T08:27:12.087750+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2386,10 +1941,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011640"
+          "id": "event-011618"
         },
         {
-          "source_line": 11641,
+          "source_line": 11619,
           "timestamp": "2026-05-22T08:27:12.451673+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2404,10 +1959,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 363
           },
-          "id": "event-011641"
+          "id": "event-011619"
         },
         {
-          "source_line": 11642,
+          "source_line": 11620,
           "timestamp": "2026-05-22T08:27:15.617026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2424,10 +1979,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011642"
+          "id": "event-011620"
         },
         {
-          "source_line": 11643,
+          "source_line": 11621,
           "timestamp": "2026-05-22T08:27:16.272431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2442,10 +1997,10 @@
             "tool": "Read",
             "elapsed_ms": 655
           },
-          "id": "event-011643"
+          "id": "event-011621"
         },
         {
-          "source_line": 11644,
+          "source_line": 11622,
           "timestamp": "2026-05-22T08:27:26.620493+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2462,10 +2017,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011644"
+          "id": "event-011622"
         },
         {
-          "source_line": 11645,
+          "source_line": 11623,
           "timestamp": "2026-05-22T08:27:27.173737+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2480,10 +2035,10 @@
             "tool": "Read",
             "elapsed_ms": 553
           },
-          "id": "event-011645"
+          "id": "event-011623"
         },
         {
-          "source_line": 11646,
+          "source_line": 11624,
           "timestamp": "2026-05-22T08:28:09.899066+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2503,10 +2058,10 @@
               "new_string": "\\looseness=-1 SCB is structural: BR $1.66$--$4.97\\times$ across nine models, MAX-SAT identical to count-only on 94.4\\% of problems, vote diversity collapsed ($K_{\\text{eff}} = 1.20$--$3.62$, $K{=}12$; $1.09$ for Qwen3 thinking), and all 27 interventions at $\\kappa \\geq 0.40$---a same-model ceiling \\citep{huang2024selfcorrect, stechly2025selfverification}. Cross-architecture NLI escapes when the verifier exceeds the generator ($p = 0.003$). Three diagnostics ($K_\\text{eff}$, BR, $C_0$) predict self-verification failure; extended discussion in Appendix~\\ref{app:extended-discussion}."
             }
           },
-          "id": "event-011646"
+          "id": "event-011624"
         },
         {
-          "source_line": 11647,
+          "source_line": 11625,
           "timestamp": "2026-05-22T08:28:09.949699+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2521,10 +2076,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-011647"
+          "id": "event-011625"
         },
         {
-          "source_line": 11648,
+          "source_line": 11626,
           "timestamp": "2026-05-22T08:28:14.026866+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2543,10 +2098,10 @@
               "preview": "False"
             }
           },
-          "id": "event-011648"
+          "id": "event-011626"
         },
         {
-          "source_line": 11649,
+          "source_line": 11627,
           "timestamp": "2026-05-22T08:28:22.056460+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2561,10 +2116,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 8029
           },
-          "id": "event-011649"
+          "id": "event-011627"
         },
         {
-          "source_line": 11650,
+          "source_line": 11628,
           "timestamp": "2026-05-22T08:28:27.734663+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2584,10 +2139,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011650"
+          "id": "event-011628"
         },
         {
-          "source_line": 11651,
+          "source_line": 11629,
           "timestamp": "2026-05-22T08:28:28.037950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2602,10 +2157,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 303
           },
-          "id": "event-011651"
+          "id": "event-011629"
         },
         {
-          "source_line": 11652,
+          "source_line": 11630,
           "timestamp": "2026-05-22T08:28:31.000602+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2622,10 +2177,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011652"
+          "id": "event-011630"
         },
         {
-          "source_line": 11653,
+          "source_line": 11631,
           "timestamp": "2026-05-22T08:28:31.554128+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2640,10 +2195,10 @@
             "tool": "Read",
             "elapsed_ms": 553
           },
-          "id": "event-011653"
+          "id": "event-011631"
         },
         {
-          "source_line": 11654,
+          "source_line": 11632,
           "timestamp": "2026-05-22T08:28:39.212731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2660,10 +2215,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011654"
+          "id": "event-011632"
         },
         {
-          "source_line": 11655,
+          "source_line": 11633,
           "timestamp": "2026-05-22T08:28:39.816905+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2678,10 +2233,10 @@
             "tool": "Read",
             "elapsed_ms": 604
           },
-          "id": "event-011655"
+          "id": "event-011633"
         },
         {
-          "source_line": 11656,
+          "source_line": 11634,
           "timestamp": "2026-05-22T08:29:00.252098+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2701,10 +2256,10 @@
               "new_string": "\\looseness=-1 SCB is structural: BR $1.66$--$4.97\\times$ across nine models, MAX-SAT identical to count-only on 94.4\\% of problems, vote diversity collapsed ($K_{\\text{eff}} = 1.20$--$3.62$, $K{=}12$), and all 27 interventions at $\\kappa \\geq 0.40$ \\citep{huang2024selfcorrect, stechly2025selfverification}. Cross-architecture NLI escapes when the verifier exceeds the generator ($p = 0.003$); diagnostics ($K_\\text{eff}$, BR, $C_0$) predict failure (Appendix~\\ref{app:extended-discussion})."
             }
           },
-          "id": "event-011656"
+          "id": "event-011634"
         },
         {
-          "source_line": 11657,
+          "source_line": 11635,
           "timestamp": "2026-05-22T08:29:00.302980+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2719,10 +2274,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-011657"
+          "id": "event-011635"
         },
         {
-          "source_line": 11658,
+          "source_line": 11636,
           "timestamp": "2026-05-22T08:29:04.522064+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2741,10 +2296,10 @@
               "preview": "False"
             }
           },
-          "id": "event-011658"
+          "id": "event-011636"
         },
         {
-          "source_line": 11659,
+          "source_line": 11637,
           "timestamp": "2026-05-22T08:29:09.783206+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2759,10 +2314,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5261
           },
-          "id": "event-011659"
+          "id": "event-011637"
         },
         {
-          "source_line": 11660,
+          "source_line": 11638,
           "timestamp": "2026-05-22T08:29:20.985591+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2782,10 +2337,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-011660"
+          "id": "event-011638"
         },
         {
-          "source_line": 11661,
+          "source_line": 11639,
           "timestamp": "2026-05-22T08:29:21.287403+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2800,10 +2355,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-011661"
+          "id": "event-011639"
         },
         {
-          "source_line": 11662,
+          "source_line": 11640,
           "timestamp": "2026-05-22T08:29:24.550893+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2820,10 +2375,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-011662"
+          "id": "event-011640"
         },
         {
-          "source_line": 11663,
+          "source_line": 11641,
           "timestamp": "2026-05-22T08:29:25.154333+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2838,10 +2393,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-011663"
+          "id": "event-011641"
         },
         {
-          "source_line": 11664,
+          "source_line": 11642,
           "timestamp": "2026-05-22T08:29:31.114928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2858,10 +2413,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-011664"
+          "id": "event-011642"
         },
         {
-          "source_line": 11665,
+          "source_line": 11643,
           "timestamp": "2026-05-22T08:29:31.718215+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2876,10 +2431,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-011665"
+          "id": "event-011643"
         },
         {
-          "source_line": 11666,
+          "source_line": 11644,
           "timestamp": "2026-05-22T08:29:43.747781+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2896,10 +2451,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images"
             }
           },
-          "id": "event-011666"
+          "id": "event-011644"
         },
         {
-          "source_line": 11667,
+          "source_line": 11645,
           "timestamp": "2026-05-22T08:29:43.798469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2914,10 +2469,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-011667"
+          "id": "event-011645"
         },
         {
-          "source_line": 11668,
+          "source_line": 11646,
           "timestamp": "2026-05-22T08:30:04.990397+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2935,10 +2490,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-011668"
+          "id": "event-011646"
         },
         {
-          "source_line": 11669,
+          "source_line": 11647,
           "timestamp": "2026-05-22T08:30:09.203581+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2953,10 +2508,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4213
           },
-          "id": "event-011669"
+          "id": "event-011647"
         },
         {
-          "source_line": 11670,
+          "source_line": 11648,
           "timestamp": "2026-05-22T08:30:13.666507+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2969,7 +2524,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-011670"
+          "id": "event-011648"
         }
       ]
     },
@@ -2977,7 +2532,7 @@
       "number": 468,
       "messages": [
         {
-          "source_line": 11671,
+          "source_line": 11649,
           "timestamp": "2026-05-22T08:30:14.302910+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2991,10 +2546,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "system"
           },
-          "id": "event-011671"
+          "id": "event-011649"
         },
         {
-          "source_line": 11672,
+          "source_line": 11650,
           "timestamp": "2026-05-22T08:30:25.408529+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3007,7 +2562,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-011672"
+          "id": "event-011650"
         }
       ]
     },
@@ -3015,7 +2570,7 @@
       "number": 469,
       "messages": [
         {
-          "source_line": 11673,
+          "source_line": 11651,
           "timestamp": "2026-05-22T08:30:25.992120+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3029,10 +2584,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "system"
           },
-          "id": "event-011673"
+          "id": "event-011651"
         },
         {
-          "source_line": 11674,
+          "source_line": 11652,
           "timestamp": "2026-05-22T08:30:34.189243+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3045,7 +2600,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-011674"
+          "id": "event-011652"
         }
       ]
     },
@@ -3053,7 +2608,7 @@
       "number": 470,
       "messages": [
         {
-          "source_line": 11675,
+          "source_line": 11653,
           "timestamp": "2026-05-22T09:44:20.690086+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3067,10 +2622,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-011675"
+          "id": "event-011653"
         },
         {
-          "source_line": 11676,
+          "source_line": 11654,
           "timestamp": "2026-05-22T09:44:38.396279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3087,10 +2642,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-011676"
+          "id": "event-011654"
         },
         {
-          "source_line": 11677,
+          "source_line": 11655,
           "timestamp": "2026-05-22T09:44:38.748067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3105,10 +2660,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-011677"
+          "id": "event-011655"
         },
         {
-          "source_line": 11678,
+          "source_line": 11656,
           "timestamp": "2026-05-22T09:44:38.798722+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3125,10 +2680,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
             }
           },
-          "id": "event-011678"
+          "id": "event-011656"
         },
         {
-          "source_line": 11679,
+          "source_line": 11657,
           "timestamp": "2026-05-22T09:44:38.849436+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3143,10 +2698,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-011679"
+          "id": "event-011657"
         },
         {
-          "source_line": 11680,
+          "source_line": 11658,
           "timestamp": "2026-05-22T09:44:48.542546+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3166,10 +2721,10 @@
               "-n": "True"
             }
           },
-          "id": "event-011680"
+          "id": "event-011658"
         },
         {
-          "source_line": 11681,
+          "source_line": 11659,
           "timestamp": "2026-05-22T09:44:48.593144+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3184,10 +2739,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-011681"
+          "id": "event-011659"
         },
         {
-          "source_line": 11682,
+          "source_line": 11660,
           "timestamp": "2026-05-22T09:44:51.907866+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3206,10 +2761,10 @@
               "limit": "80"
             }
           },
-          "id": "event-011682"
+          "id": "event-011660"
         },
         {
-          "source_line": 11683,
+          "source_line": 11661,
           "timestamp": "2026-05-22T09:44:51.908465+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3224,10 +2779,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-011683"
+          "id": "event-011661"
         },
         {
-          "source_line": 11684,
+          "source_line": 11662,
           "timestamp": "2026-05-22T09:47:53.486586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3247,10 +2802,10 @@
               "new_string": "\\paragraph{Why it works.}\n\\looseness=-1 Three conditions jointly enable the escape---structural independence, positive capability gap, and task-verifier alignment---expanded as design principles in \\S\\ref{sec:discussion}. Per-label analysis confirms NLI and SC excel on complementary labels (Appendix~\\ref{app:multi-nli}); all three NLI architectures produce gains at $w \\geq 3$."
             }
           },
-          "id": "event-011684"
+          "id": "event-011662"
         },
         {
-          "source_line": 11685,
+          "source_line": 11663,
           "timestamp": "2026-05-22T09:47:53.487206+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3265,10 +2820,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-011685"
+          "id": "event-011663"
         },
         {
-          "source_line": 11686,
+          "source_line": 11664,
           "timestamp": "2026-05-22T09:48:11.036979+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3288,10 +2843,10 @@
               "new_string": "\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 46-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); stronger generators show no improvement. The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}, Appendix~\\ref{app:capability-gap}). A $2{\\times}2$ generator${\\times}$extractor matrix confirms BR $> 1$ in all eight cells ($1.94$--$2.70$; Appendix~\\ref{app:2x2})."
             }
           },
-          "id": "event-011686"
+          "id": "event-011664"
         },
         {
-          "source_line": 11687,
+          "source_line": 11665,
           "timestamp": "2026-05-22T09:48:11.087787+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3306,10 +2861,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-011687"
+          "id": "event-011665"
         },
         {
-          "source_line": 11688,
+          "source_line": 11666,
           "timestamp": "2026-05-22T09:48:32.002280+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3329,10 +2884,10 @@
               "new_string": "\\paragraph{Disagreement-Routed Cascade.}\n\\looseness=-1 DRC invokes NLI only below consensus threshold $\\tau$, recovering 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost ($\\tau{=}0.7$; Table~\\ref{tab:drc}). Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability gap. Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}."
             }
           },
-          "id": "event-011688"
+          "id": "event-011666"
         },
         {
-          "source_line": 11689,
+          "source_line": 11667,
           "timestamp": "2026-05-22T09:48:32.153344+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3347,10 +2902,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-011689"
+          "id": "event-011667"
         },
         {
-          "source_line": 11690,
+          "source_line": 11668,
           "timestamp": "2026-05-22T09:48:58.124242+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3368,10 +2923,10 @@
               "content": "\\enlargethispage{4\\baselineskip}\n\\vspace{-2mm}\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\label{sec:conclusion}\n\n\\paragraph{Practitioner decision framework.}\n\\looseness=-1 Three zero-cost diagnostics predict self-verification failure before deployment. $K_\\text{eff} \\leq 1.3$ signals that symbolic aggregation collapses to majority voting (Qwen2.5-14B FOLIO: $K_\\text{eff} = 1.20$, $\\Delta = -0.98$\\,pp). SC $< 40\\%$ means constraints amplify errors rather than correct them (Mistral-7B PW: $\\Delta = -2.83$\\,pp). $C_0 < 5\\%$ indicates near-unanimous traces, rendering all aggregation moot. Only the intermediate regime (SC $\\sim$50--60\\%, $K_\\text{eff} > 1.8$) offers marginal gain potential; practitioners should compute these metrics before investing in symbolic reasoning infrastructure.\n\n\\paragraph{SCB beyond SICA.}\n\\looseness=-1 SCB extends to any method extracting structured representations from a model's own outputs---self-verification \\citep{huang2024selfcorrect}, self-refinement \\citep{madaan2023selfrefine}, and chain-of-verification \\citep{dhuliawala2023chainofverification} all face the same distributional prior. Our debate control ($\\kappa = 0.15$, $-18.6$\\,pp) confirms that breaking within-model correlation sacrifices accuracy: independence and quality are at odds under same-model constraints. Any pipeline that asks a model to critique, verify, or formalize its own reasoning risks inheriting SCB.\n\n\\paragraph{Design principles for escaping SCB.}\n\\looseness=-1 The cross-architecture escape (\\S\\ref{sec:cross-arch}) identifies three necessary conditions for effective post-hoc verification: (i)~\\emph{structural independence}---the verifier must not share architecture or training data with the generator; (ii)~\\emph{positive capability gap}---the verifier's independence-adjusted contribution must exceed the generator's SC; (iii)~\\emph{task-verifier alignment}---the verification paradigm must match the task structure. These explain why 27 same-model interventions fail ($\\kappa \\geq 0.40$) while a 406M encoder-only model succeeds ($+11.00$\\,pp). Future systems should prioritize structural complementarity over raw capability; trained extractors capturing $>$12\\% of the oracle ceiling ($+29.90$\\,pp) represent the most promising direction (Appendix~\\ref{app:extended-discussion}).\n\n\\looseness=-1 In summary, formal self-verification creates a \\emph{symbolic mirage}: provably sound machinery that adds no information beyond majority voting. The path forward lies in structurally independent external verification, guided by the $K_\\text{eff}$, BR, and $C_0$ diagnostics introduced here.\n"
             }
           },
-          "id": "event-011690"
+          "id": "event-011668"
         },
         {
-          "source_line": 11691,
+          "source_line": 11669,
           "timestamp": "2026-05-22T09:48:58.325652+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3386,11 +2941,451 @@
             "tool": "Write",
             "elapsed_ms": 201
           },
+          "id": "event-011669"
+        },
+        {
+          "source_line": 11670,
+          "timestamp": "2026-05-22T09:49:06.034160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-011670"
+        },
+        {
+          "source_line": 11671,
+          "timestamp": "2026-05-22T09:49:11.661781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [24])\\\\n[25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34936 strings out of 469438\\\\n 666095 string characters out of 5468411\\\\n 1556349 words of memory out of 5000000\\\\n 62160 multiletter control sequences out of 15000+600000\\\\n 733164 words of font info for 470 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2041s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/share/texlive/texmf-dist/\n…[truncated 10903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 5627
+          },
+          "id": "event-011671"
+        },
+        {
+          "source_line": 11672,
+          "timestamp": "2026-05-22T09:49:23.511938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
+              "project": "symb_invariant_consensus",
+              "pages": "8-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-011672"
+        },
+        {
+          "source_line": 11673,
+          "timestamp": "2026-05-22T09:49:23.914428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.4}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.0}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 402
+          },
+          "id": "event-011673"
+        },
+        {
+          "source_line": 11674,
+          "timestamp": "2026-05-22T09:49:27.780630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-011674"
+        },
+        {
+          "source_line": 11675,
+          "timestamp": "2026-05-22T09:49:28.132567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-011675"
+        },
+        {
+          "source_line": 11676,
+          "timestamp": "2026-05-22T09:49:28.738192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 957
+          },
+          "id": "event-011676"
+        },
+        {
+          "source_line": 11677,
+          "timestamp": "2026-05-22T09:49:29.090837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 958
+          },
+          "id": "event-011677"
+        },
+        {
+          "source_line": 11678,
+          "timestamp": "2026-05-22T09:50:01.177127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "\\enlargethispage{4\\baselineskip}\n\\vspace{-2mm}",
+              "new_string": "\\enlargethispage{8\\baselineskip}\n\\vspace{-2mm}"
+            }
+          },
+          "id": "event-011678"
+        },
+        {
+          "source_line": 11679,
+          "timestamp": "2026-05-22T09:50:01.227808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011679"
+        },
+        {
+          "source_line": 11680,
+          "timestamp": "2026-05-22T09:50:13.181111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "\\looseness=-1 Three zero-cost diagnostics predict self-verification failure before deployment. $K_\\text{eff} \\leq 1.3$ signals that symbolic aggregation collapses to majority voting (Qwen2.5-14B FOLIO: $K_\\text{eff} = 1.20$, $\\Delta = -0.98$\\,pp). SC $< 40\\%$ means constraints amplify errors rather than correct them (Mistral-7B PW: $\\Delta = -2.83$\\,pp). $C_0 < 5\\%$ indicates near-unanimous traces, rendering all aggregation moot. Only the intermediate regime (SC $\\sim$50--60\\%, $K_\\text{eff} > 1.8$) offers marginal gain potential; practitioners should compute these metrics before investing in symbolic reasoning infrastructure.",
+              "new_string": "\\looseness=-1 Three zero-cost diagnostics predict self-verification failure before deployment. $K_\\text{eff} \\leq 1.3$: symbolic aggregation collapses to majority voting ($\\Delta = -0.98$\\,pp). SC $< 40\\%$: constraints amplify errors ($\\Delta = -2.83$\\,pp). $C_0 < 5\\%$: near-unanimous traces render aggregation moot. Only the intermediate regime (SC $\\sim$50--60\\%, $K_\\text{eff} > 1.8$) offers marginal gain; practitioners should compute these before investing in symbolic reasoning."
+            }
+          },
+          "id": "event-011680"
+        },
+        {
+          "source_line": 11681,
+          "timestamp": "2026-05-22T09:50:13.232133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-011681"
+        },
+        {
+          "source_line": 11682,
+          "timestamp": "2026-05-22T09:50:23.182912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "\\looseness=-1 The cross-architecture escape (\\S\\ref{sec:cross-arch}) identifies three necessary conditions for effective post-hoc verification: (i)~\\emph{structural independence}---the verifier must not share architecture or training data with the generator; (ii)~\\emph{positive capability gap}---the verifier's independence-adjusted contribution must exceed the generator's SC; (iii)~\\emph{task-verifier alignment}---the verification paradigm must match the task structure. These explain why 27 same-model interventions fail ($\\kappa \\geq 0.40$) while a 406M encoder-only model succeeds ($+11.00$\\,pp). Future systems should prioritize structural complementarity over raw capability; trained extractors capturing $>$12\\% of the oracle ceiling ($+29.90$\\,pp) represent the most promising direction (Appendix~\\ref{app:extended-discussion}).",
+              "new_string": "\\looseness=-1 The cross-architecture escape (\\S\\ref{sec:cross-arch}) identifies three necessary conditions: (i)~\\emph{structural independence}---no shared architecture or training data; (ii)~\\emph{positive capability gap}---the verifier's adjusted contribution exceeds the generator's SC; (iii)~\\emph{task-verifier alignment}---the verification paradigm matches task structure. These explain why 27 same-model interventions fail ($\\kappa \\geq 0.40$) while a 406M encoder succeeds ($+11.00$\\,pp). Trained extractors capturing $>$12\\% of the oracle ceiling ($+29.90$\\,pp) are the most promising direction (Appendix~\\ref{app:extended-discussion})."
+            }
+          },
+          "id": "event-011682"
+        },
+        {
+          "source_line": 11683,
+          "timestamp": "2026-05-22T09:50:23.183509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-011683"
+        },
+        {
+          "source_line": 11684,
+          "timestamp": "2026-05-22T09:50:26.852414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-011684"
+        },
+        {
+          "source_line": 11685,
+          "timestamp": "2026-05-22T09:50:33.128993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Overfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34930 strings out of 469438\\\\n 666038 string characters out of 5468411\\\\n 1633349 words of memory out of 5000000\\\\n 62160 multiletter control sequences out of 15000+600000\\\\n 732714 words of font info for 466 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2063s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/\n…[truncated 11498 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6276
+          },
+          "id": "event-011685"
+        },
+        {
+          "source_line": 11686,
+          "timestamp": "2026-05-22T09:50:39.321233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
+              "project": "symb_invariant_consensus",
+              "pages": "8-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-011686"
+        },
+        {
+          "source_line": 11687,
+          "timestamp": "2026-05-22T09:50:39.673459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.7}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.5}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 352
+          },
+          "id": "event-011687"
+        },
+        {
+          "source_line": 11688,
+          "timestamp": "2026-05-22T09:50:43.294340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-011688"
+        },
+        {
+          "source_line": 11689,
+          "timestamp": "2026-05-22T09:50:43.998699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 704
+          },
+          "id": "event-011689"
+        },
+        {
+          "source_line": 11690,
+          "timestamp": "2026-05-22T09:51:03.510114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "Trained extractors capturing $>$12\\% of the oracle ceiling ($+29.90$\\,pp) are the most promising direction (Appendix~\\ref{app:extended-discussion}).\n\n\\looseness=-1 In summary, formal self-verification creates a \\emph{symbolic mirage}: provably sound machinery that adds no information beyond majority voting. The path forward lies in structurally independent external verification, guided by the $K_\\text{eff}$, BR, and $C_0$ diagnostics introduced here.",
+              "new_string": "Trained extractors capturing $>$12\\% of the oracle ceiling ($+29.90$\\,pp) are the most promising direction (Appendix~\\ref{app:extended-discussion}). Formal self-verification creates a \\emph{symbolic mirage}---provably sound machinery adding no information beyond majority voting---and the path forward lies in structurally independent verification, guided by $K_\\text{eff}$, BR, and $C_0$."
+            }
+          },
+          "id": "event-011690"
+        },
+        {
+          "source_line": 11691,
+          "timestamp": "2026-05-22T09:51:03.561122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
           "id": "event-011691"
         },
         {
           "source_line": 11692,
-          "timestamp": "2026-05-22T09:49:06.034160+00:00",
+          "timestamp": "2026-05-22T09:51:07.466286+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3412,25 +3407,25 @@
         },
         {
           "source_line": 11693,
-          "timestamp": "2026-05-22T09:49:11.661781+00:00",
+          "timestamp": "2026-05-22T09:51:14.454811+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n [24])\\\\n[25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34936 strings out of 469438\\\\n 666095 string characters out of 5468411\\\\n 1556349 words of memory out of 5000000\\\\n 62160 multiletter control sequences out of 15000+600000\\\\n 733164 words of font info for 470 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2041s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/share/texlive/texmf-dist/\n…[truncated 10903 chars]"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Overfull \\\\\\\\hbox (32.9245pt too wide) in paragraph at lines 1017--1025\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[23 <./figures/capability_gap_scatter.pdf>]\\\\nOverfull \\\\\\\\hbox (32.62286pt too wide) in paragraph at lines 1060--1077\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (67.51375pt too wide) in paragraph at lines 1084--1099\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1902) in paragraph at lines 1108--1109\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Qwen3$\\\\\\\\OMS/cmsy/m/n/10.95 !$\\\\\\\\T1/ptm/m/n/10.95 (+20) Mis\\\\ntral ($\\\\\\\\OT1/cmr/m/n/10.95 +0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 98$\\\\\\\\T1/ptm/\\\\nm/n/10.95 (+20) pp) and Gen-er-a-tional\\\\n []\\\\n\\\\n[24]) [25] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 0CFE1B31C1717A58537A15C28C99DF05;8587.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 34930 strings out of 469438\\\\n 666038 string characters out of 5468411\\\\n 1633349 words of memory out of 5000000\\\\n 62160 multiletter control sequences out of 15000+600000\\\\n 732714 words of font info for 466 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 98i,17n,108p,1959b,2063s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\\\nr/\n…[truncated 11703 chars]"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 5627
+            "elapsed_ms": 6988
           },
           "id": "event-011693"
         },
         {
           "source_line": 11694,
-          "timestamp": "2026-05-22T09:49:23.511938+00:00",
+          "timestamp": "2026-05-22T09:51:20.087594+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3445,7 +3440,7 @@
             "tool_args": {
               "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf",
               "project": "symb_invariant_consensus",
-              "pages": "8-9",
+              "pages": "9",
               "dpi": "150"
             }
           },
@@ -3453,45 +3448,25 @@
         },
         {
           "source_line": 11695,
-          "timestamp": "2026-05-22T09:49:23.914428+00:00",
+          "timestamp": "2026-05-22T09:51:20.238622+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.4}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.0}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 523.0}], \\\"total_pages\\\": 25, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 402
+            "elapsed_ms": 151
           },
           "id": "event-011695"
         },
         {
           "source_line": 11696,
-          "timestamp": "2026-05-22T09:49:27.780630+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-011696"
-        },
-        {
-          "source_line": 11697,
-          "timestamp": "2026-05-22T09:49:28.132567+00:00",
+          "timestamp": "2026-05-22T09:51:26.220985+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3507,47 +3482,29 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
+          "id": "event-011696"
+        },
+        {
+          "source_line": 11697,
+          "timestamp": "2026-05-22T09:51:26.878045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 657
+          },
           "id": "event-011697"
         },
         {
           "source_line": 11698,
-          "timestamp": "2026-05-22T09:49:28.738192+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 957
-          },
-          "id": "event-011698"
-        },
-        {
-          "source_line": 11699,
-          "timestamp": "2026-05-22T09:49:29.090837+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 958
-          },
-          "id": "event-011699"
-        },
-        {
-          "source_line": 11700,
-          "timestamp": "2026-05-22T09:50:01.177127+00:00",
+          "timestamp": "2026-05-22T09:51:52.740301+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3562,8 +3519,49 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
-              "old_string": "\\enlargethispage{4\\baselineskip}\n\\vspace{-2mm}",
-              "new_string": "\\enlargethispage{8\\baselineskip}\n\\vspace{-2mm}"
+              "old_string": "\\enlargethispage{8\\baselineskip}\n\\vspace{-2mm}",
+              "new_string": "\\enlargethispage{8\\baselineskip}\n\\vspace{-4mm}"
+            }
+          },
+          "id": "event-011698"
+        },
+        {
+          "source_line": 11699,
+          "timestamp": "2026-05-22T09:51:52.790940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-011699"
+        },
+        {
+          "source_line": 11700,
+          "timestamp": "2026-05-22T09:51:57.411724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex",
+              "old_string": "Our debate control ($\\kappa = 0.15$, $-18.6$\\,pp) confirms that breaking within-model correlation sacrifices accuracy: independence and quality are at odds under same-model constraints. Any pipeline that asks a model to critique, verify, or formalize its own reasoning risks inheriting SCB.",
+              "new_string": "Our debate control ($\\kappa = 0.15$, $-18.6$\\,pp) confirms that independence and quality are at odds under same-model constraints."
             }
           },
           "id": "event-011700"

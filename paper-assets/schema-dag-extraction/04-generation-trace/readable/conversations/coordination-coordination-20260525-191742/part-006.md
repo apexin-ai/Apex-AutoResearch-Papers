@@ -8,1100 +8,7 @@
 
 ### Tool result
 
-_source line 3350 · 2026-05-19T12:09:44.867172+00:00_
-
-42	\item \textbf{Effect size and statistical design.} Pairwise SCS explains 1.3--1.7\% of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\times$ BCS interaction is bounded under the linear specification (TOST $p = 0.003$ at $\pm 3$\,pp on FewRel; DocRED inconclusive, Appendix~\ref{sec:appendix_factorial}) but inconclusive on the logit scale ($p = 0.209$). DocRED count curves use 5 batches per level due to higher per-batch evaluation cost; factorial analyses should be interpreted with this power constraint in mind. BCS-controlled experiments use a single seed with greedy decoding; the residual SD of 0.88\,pp (Appendix~\ref{app:variance-decomposition}) supports robustness but precise magnitudes may vary.
-43	
-44	\item \textbf{Task format dependency.} BCS batch-level prediction is demonstrated only under RE's forced-choice classification format. An unconstrained decoding ablation ($n = 25$) confirms this: removing the enum constraint eliminates the BCS--accuracy correlation ($\rho = -0.14$, $p = 0.49$), establishing that the batch-level signal is specific to forced-choice RE. NER exact-match evaluation conflates boundary and type errors, and relaxed matching may yield different confusability effect sizes.
-45	
-46	\item \textbf{Causal mechanism.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway. A post-hoc renaming experiment (Appendix~\ref{app:renaming}) confirms this concern: replacing high-SCS labels with semantically distinct paraphrases reduced pairwise embedding similarity but decreased accuracy by 3--9\,pp, as label unfamiliarity introduced errors that outweighed any confusability reduction.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3351 · 2026-05-19T12:09:45.371252+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
-  "offset": "54",
-  "limit": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
-    "offset": "54",
-    "limit": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3352 · 2026-05-19T12:09:45.823675+00:00_
-
-54	\]
-55	
-56	We use two embeddings to provide complementary perspectives: Qwen3 captures the extraction model's own type representations (self-similarity), while MiniLM provides an independent general-purpose baseline. Cross-embedding consistency holds on all datasets (Appendix~\ref{sec:appendix_bcs_sensitivity}); the independent MiniLM consistently yields equal or stronger correlations, confirming that our Qwen3-based estimates are conservative. Specifically, we compute SCS with: (1)~Qwen3-32B \cite{qwen3-2025} hidden-state representations (5{,}120-d) and (2)~all-MiniLM-L6-v2 \cite{minilm-2020,sentence-bert-2019}, a 384-dimensional general-purpose sentence encoder. Few-NERD uses Qwen3 embeddings because its 66 fine-grained types include same-category pairs (e.g., ``person-artist'' vs.\ ``person-actor'') that MiniLM's 384-d space does not separate well; a cross-embedding check confirms directional consistency (MiniLM $r = 0.172$, Qwen3 $r = 0.138$; Appendix~\ref{sec:appendix_bcs_sensitivity}). SCS uses name-only embeddings as a practical simplification. We validate this choice empirically: name+definition SCS yields equivalent predictive accuracy ($\Delta r$: $-0.023$ to $+0.035$; Appendix~\ref{app:scs-ablation}), and for MAVEN/FewRel prompts that use type names without definitions, name-only SCS directly matches prompt content. We use MiniLM as the primary embedding for BCS computation because sentence-transformers are specifically trained for semantic similarity \cite{sentence-bert-2019}; a cross-embedding sensitivity check using Qwen3-32B causal-LM hidden states confirms directional consistency but with compressed BCS range (std${}\,=\,0.034$ vs.\ MiniLM std${}\,=\,0.081$), consistent with known autoregressive anisotropy \cite{ethayarajh-contextual-2019}.
-57	
-58	\paragraph{SCS as a lightweight proxy.}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3353 · 2026-05-19T12:09:46.326406+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-  "offset": "47",
-  "limit": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-    "offset": "47",
-    "limit": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3354 · 2026-05-19T12:09:46.377178+00:00_
-
-47	The correlations are statistically significant but modest: $r^2 \approx 1.3\text{--}1.7\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\rho = 0.144\text{--}0.227$ across all pairs, strengthening to $\rho = 0.27\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).
-48	
-49	The remaining variance likely reflects entity frequency, prompt position \cite{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest (1.3--1.7\%), correlated type pairs within batches compound this signal: batch-level BCS explains 22--53\% of accuracy variance (\S\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\ Qwen3 $r = 0.138$; Appendix), indicating that shared-representation bias is conservative rather than inflationary. SCS also outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent) on pairwise confusion prediction (Appendix~\ref{app:scs-baselines}). Appendix~\ref{app:error-analysis} lists the most confusable type pairs and provides concrete confusion examples.
-50	
-51	\subsection{BCS-Controlled Experiments}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3355 · 2026-05-19T12:09:46.729191+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-  "offset": "68",
-  "limit": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-    "offset": "68",
-    "limit": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3356 · 2026-05-19T12:09:46.779764+00:00_
-
-68	
-69	\paragraph{Cross-model validation.}
-70	The effect replicates on Meta-Llama-3.1-8B-Instruct: BCS gaps of $-$27.1\,pp (count 8) and $-$23.9\,pp (count 16), reaching 77--87\% of Qwen3-32B's gap. Both models converge to $\approx$51\% under high confusability, suggesting a task-inherent difficulty floor (Table~\ref{tab:cross_model_bcs}). Dimension~1 replicates fully on Llama-3.1-8B (\S\ref{sec:count_curves}); Dimension~2 replicates on RE but shows floor effects on 8B NER (Limitations, item~1). Llama-3.1-70B-Instruct (FP8) and Gemini 2.5 Flash (API) confirm directional consistency across scales and families (Appendix~\ref{sec:appendix_cross_model_70b}, \ref{sec:appendix_cross_model_gemini}).
-71	
-72	\paragraph{Prompt sensitivity.}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3357 · 2026-05-19T12:10:01.941011+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
-  "old_string": "the independent MiniLM consistently yields equal or stronger correlations, confirming that our Qwen3-based estimates are conservative.",
-  "new_string": "the independent MiniLM consistently yields equal or stronger correlations, which confirms that our Qwen3-based estimates are conservative."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
-    "old_string": "the independent MiniLM consistently yields equal or stronger correlations, confirming that our Qwen3-based estimates are conservative.",
-    "new_string": "the independent MiniLM consistently yields equal or stronger correlations, which confirms that our Qwen3-based estimates are conservative."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3358 · 2026-05-19T12:10:02.343491+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 402
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3359 · 2026-05-19T12:10:03.298224+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-  "old_string": "indicating that shared-representation bias is conservative rather than inflationary.",
-  "new_string": "which indicates that shared-representation bias is conservative rather than inflationary."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-    "old_string": "indicating that shared-representation bias is conservative rather than inflationary.",
-    "new_string": "which indicates that shared-representation bias is conservative rather than inflationary."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3360 · 2026-05-19T12:10:03.701143+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 402
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3361 · 2026-05-19T12:10:04.253819+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-  "old_string": "suggesting a task-inherent difficulty floor (Table~\\ref{tab:cross_model_bcs}).",
-  "new_string": "which suggests a task-inherent difficulty floor (Table~\\ref{tab:cross_model_bcs})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-    "old_string": "suggesting a task-inherent difficulty floor (Table~\\ref{tab:cross_model_bcs}).",
-    "new_string": "which suggests a task-inherent difficulty floor (Table~\\ref{tab:cross_model_bcs})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3362 · 2026-05-19T12:10:04.656101+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 402
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3363 · 2026-05-19T12:10:05.661555+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
-  "old_string": "reducing surface-level embedding similarity by 0.20 did not reduce confusion, suggesting that the underlying conceptual similarity persists regardless of label choice.",
-  "new_string": "reducing surface-level embedding similarity by 0.20 did not reduce confusion, which suggests that the underlying conceptual similarity persists regardless of label choice."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
-    "old_string": "reducing surface-level embedding similarity by 0.20 did not reduce confusion, suggesting that the underlying conceptual similarity persists regardless of label choice.",
-    "new_string": "reducing surface-level embedding similarity by 0.20 did not reduce confusion, which suggests that the underlying conceptual similarity persists regardless of label choice."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3364 · 2026-05-19T12:10:06.116291+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 454
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3365 · 2026-05-19T12:10:06.719212+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "old_string": "establishing that the batch-level signal is specific to forced-choice RE.",
-  "new_string": "which establishes that the batch-level signal is specific to forced-choice RE."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "old_string": "establishing that the batch-level signal is specific to forced-choice RE.",
-    "new_string": "which establishes that the batch-level signal is specific to forced-choice RE."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3366 · 2026-05-19T12:10:06.770449+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3367 · 2026-05-19T12:10:11.297818+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "offset": "425",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "offset": "425",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3368 · 2026-05-19T12:10:11.750447+00:00_
-
-425	
-426	\paragraph{Held-out validation.}
-427	\label{app:scs-heldout-validation}
-428	From the 80-type confusion matrix, we extract the $\binom{16}{2} = 120$ pairs among the 16 validation-origin types (fully disjoint from the 64 training-pool types). The SCS--confusion Spearman correlation remains positive and significant ($\rho = 0.216$, $p = 0.018$), nearly identical to the full 80-type pool ($\rho = 0.218$, $p < 10^{-34}$, $n = 3{,}160$ pairs), ruling out training-set contamination as the driver of the observed relationship.
-429	
-430	\section{Pair-to-Batch Aggregation Simulation}
-431	\label{app:aggregation-sim}
-432	
-433	The following simulation provides an illustrative explanatory model for how pair-level effects aggregate to batch-level variance. It is not the evidence base for our claims; the observed batch-level $R^2 = 0.218$ (\S\ref{sec:practical_magnitude}) is a direct empirical measurement independent of this simulation.
-434	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3369 · 2026-05-19T12:10:12.303536+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "offset": "455",
-  "limit": "20"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "offset": "455",
-    "limit": "20"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3370 · 2026-05-19T12:10:12.655668+00:00_
-
-455	\small
-456	\resizebox{\columnwidth}{!}{%
-457	\begin{tabular}{llrr}
-458	\toprule
-459	\textbf{Dataset} & \textbf{Metric} & \textbf{Spearman $\rho$} & \textbf{$p$} \\
-460	\midrule
-461	FewRel & SCS (embedding) & \textbf{0.218} & $2.2 \times 10^{-35}$ \\
-462	(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $5.4 \times 10^{-8}$ \\
-463	& WordNet Wu-Palmer & 0.073 & $4.3 \times 10^{-5}$ \\
-464	& Levenshtein & 0.016 & 0.363 (n.s.) \\
-465	\midrule
-466	Few-NERD & SCS (embedding) & \textbf{0.166} & $1.5 \times 10^{-13}$ \\
-467	(1{,}953 pairs) & Levenshtein & 0.152 & $1.4 \times 10^{-11}$ \\
-468	& Same-parent (prefix) & 0.146 & $7.8 \times 10^{-11}$ \\
-469	& WordNet Wu-Palmer & 0.054 & 0.070 (n.s.)$^\dagger$ \\
-470	\bottomrule
-471	\end{tabular}}
-472	\caption{Pairwise confusion prediction: SCS vs.\ simple baselines. Spearman $\rho$ between each metric and the empirical confusion rate. SCS outperforms all baselines on FewRel; the margin is smaller on Few-NERD, where hierarchical naming conventions provide partial signal to string-based metrics. $^\dagger$42\% of pairs lack WordNet coverage.}
-473	\label{tab:scs_baselines}
-474	\end{table}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 352
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3371 · 2026-05-19T12:10:12.756605+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "offset": "483",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "offset": "483",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3372 · 2026-05-19T12:10:12.857469+00:00_
-
-483	\text{acc} = \beta_0 + \beta_{\text{BCS}} \!\cdot\! \text{BCS} + \beta_{\text{orig}} \!\cdot\! \text{train\_origin\_ratio} + \varepsilon
-484	\end{equation*}}
-485	
-486	\paragraph{Results.}  The BCS partial effect is unchanged after controlling for split-origin: $\beta_{\text{BCS}} = -0.416$, $p < 10^{-16}$ (vs.\ $\beta = -0.412$, $p < 10^{-16}$ without the covariate).  Train-origin ratio is not independently significant ($\beta_{\text{origin}} = -0.057$, $p = 0.245$), and $\Delta R^2 = 0.005$.  The BCS--accuracy relationship is therefore not confounded by differential pre-training exposure at the batch level.
-487	
-488	Pairwise SCS distributions do not differ significantly between train-origin (64 types, mean\,=\,0.880) and val-origin (16 types, mean\,=\,0.874) subsets (Mann-Whitney $p = 0.754$, Cohen's $d = 0.081$); the train/val split does not introduce systematic confusability bias.
-489	
-490	\section{Cross-Seed Variance Decomposition}
-491	\label{app:variance-decomposition}
-492	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3373 · 2026-05-19T12:10:27.240832+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "old_string": "$p < 10^{-34}$, $n = 3{,}160$ pairs",
-  "new_string": "$p < 0.001$, $n = 3{,}160$ pairs"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "old_string": "$p < 10^{-34}$, $n = 3{,}160$ pairs",
-    "new_string": "$p < 0.001$, $n = 3{,}160$ pairs"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3374 · 2026-05-19T12:10:27.693485+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3375 · 2026-05-19T12:10:29.652927+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "old_string": "FewRel & SCS (embedding) & \\textbf{0.218} & $2.2 \\times 10^{-35}$ \\\\\n(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $5.4 \\times 10^{-8}$ \\\\\n& WordNet Wu-Palmer & 0.073 & $4.3 \\times 10^{-5}$ \\\\",
-  "new_string": "FewRel & SCS (embedding) & \\textbf{0.218} & $< 0.001$ \\\\\n(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $< 0.001$ \\\\\n& WordNet Wu-Palmer & 0.073 & $< 0.001$ \\\\"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "old_string": "FewRel & SCS (embedding) & \\textbf{0.218} & $2.2 \\times 10^{-35}$ \\\\\n(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $5.4 \\times 10^{-8}$ \\\\\n& WordNet Wu-Palmer & 0.073 & $4.3 \\times 10^{-5}$ \\\\",
-    "new_string": "FewRel & SCS (embedding) & \\textbf{0.218} & $< 0.001$ \\\\\n(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $< 0.001$ \\\\\n& WordNet Wu-Palmer & 0.073 & $< 0.001$ \\\\"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3376 · 2026-05-19T12:10:30.056175+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 403
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3377 · 2026-05-19T12:10:31.965422+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "old_string": "Few-NERD & SCS (embedding) & \\textbf{0.166} & $1.5 \\times 10^{-13}$ \\\\\n(1{,}953 pairs) & Levenshtein & 0.152 & $1.4 \\times 10^{-11}$ \\\\\n& Same-parent (prefix) & 0.146 & $7.8 \\times 10^{-11}$ \\\\",
-  "new_string": "Few-NERD & SCS (embedding) & \\textbf{0.166} & $< 0.001$ \\\\\n(1{,}953 pairs) & Levenshtein & 0.152 & $< 0.001$ \\\\\n& Same-parent (prefix) & 0.146 & $< 0.001$ \\\\"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "old_string": "Few-NERD & SCS (embedding) & \\textbf{0.166} & $1.5 \\times 10^{-13}$ \\\\\n(1{,}953 pairs) & Levenshtein & 0.152 & $1.4 \\times 10^{-11}$ \\\\\n& Same-parent (prefix) & 0.146 & $7.8 \\times 10^{-11}$ \\\\",
-    "new_string": "Few-NERD & SCS (embedding) & \\textbf{0.166} & $< 0.001$ \\\\\n(1{,}953 pairs) & Levenshtein & 0.152 & $< 0.001$ \\\\\n& Same-parent (prefix) & 0.146 & $< 0.001$ \\\\"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3378 · 2026-05-19T12:10:32.520281+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 554
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3379 · 2026-05-19T12:10:33.173337+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "True",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-  "old_string": "$p < 10^{-16}$",
-  "new_string": "$p < 0.001$"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "True",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-    "old_string": "$p < 10^{-16}$",
-    "new_string": "$p < 0.001$"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3380 · 2026-05-19T12:10:33.225191+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated. All occurrences were successfully replaced.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3381 · 2026-05-19T12:10:37.494310+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-  "old_string": "($R^2 = 0.525$ at count 16, $n = 35$; 95\\% CI [0.27, 0.73])",
-  "new_string": "($R^2 = 0.525$ at count 16; $n = 35$, 95\\% CI [0.27, 0.73])"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-    "old_string": "($R^2 = 0.525$ at count 16, $n = 35$; 95\\% CI [0.27, 0.73])",
-    "new_string": "($R^2 = 0.525$ at count 16; $n = 35$, 95\\% CI [0.27, 0.73])"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3382 · 2026-05-19T12:10:37.695678+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3383 · 2026-05-19T12:10:48.362031+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
-  "offset": "1",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
-    "offset": "1",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3384 · 2026-05-19T12:10:48.362487+00:00_
+_source line 3376 · 2026-05-19T12:10:48.362487+00:00_
 
 1	@inproceedings{dubey-2018-pairwise-confusion,
 2	  author    = {Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil},
@@ -1132,7 +39,7 @@ _source line 3384 · 2026-05-19T12:10:48.362487+00:00_
 
 ### Tool call
 
-_source line 3385 · 2026-05-19T12:10:53.788831+00:00_
+_source line 3377 · 2026-05-19T12:10:53.788831+00:00_
 
 called Edit
 
@@ -1172,7 +79,7 @@ called Edit
 
 ### Tool result
 
-_source line 3386 · 2026-05-19T12:10:53.865215+00:00_
+_source line 3378 · 2026-05-19T12:10:53.865215+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib has been updated successfully.
 
@@ -1194,7 +101,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3387 · 2026-05-19T12:10:57.598088+00:00_
+_source line 3379 · 2026-05-19T12:10:57.598088+00:00_
 
 called Read
 
@@ -1228,7 +135,7 @@ called Read
 
 ### Tool result
 
-_source line 3388 · 2026-05-19T12:10:57.598601+00:00_
+_source line 3380 · 2026-05-19T12:10:57.598601+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -1258,7 +165,7 @@ _source line 3388 · 2026-05-19T12:10:57.598601+00:00_
 
 ### Tool call
 
-_source line 3389 · 2026-05-19T12:11:05.872764+00:00_
+_source line 3381 · 2026-05-19T12:11:05.872764+00:00_
 
 called Edit
 
@@ -1298,7 +205,7 @@ called Edit
 
 ### Tool result
 
-_source line 3390 · 2026-05-19T12:11:05.923642+00:00_
+_source line 3382 · 2026-05-19T12:11:05.923642+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully.
 
@@ -1320,7 +227,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3391 · 2026-05-19T12:11:10.396805+00:00_
+_source line 3383 · 2026-05-19T12:11:10.396805+00:00_
 
 called Grep
 
@@ -1362,7 +269,7 @@ called Grep
 
 ### Tool result
 
-_source line 3392 · 2026-05-19T12:11:10.447391+00:00_
+_source line 3384 · 2026-05-19T12:11:10.447391+00:00_
 
 No matches found
 
@@ -1384,7 +291,7 @@ No matches found
 
 ### Tool call
 
-_source line 3393 · 2026-05-19T12:11:14.767771+00:00_
+_source line 3385 · 2026-05-19T12:11:14.767771+00:00_
 
 called Bash
 
@@ -1422,7 +329,7 @@ called Bash
 
 ### Tool result
 
-_source line 3394 · 2026-05-19T12:11:20.493391+00:00_
+_source line 3386 · 2026-05-19T12:11:20.493391+00:00_
 
 s/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
@@ -1473,7 +380,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3395 · 2026-05-19T12:11:25.883076+00:00_
+_source line 3387 · 2026-05-19T12:11:25.883076+00:00_
 
 called Bash
 
@@ -1509,7 +416,7 @@ called Bash
 
 ### Tool result
 
-_source line 3396 · 2026-05-19T12:11:26.034003+00:00_
+_source line 3388 · 2026-05-19T12:11:26.034003+00:00_
 
 0
 2
@@ -1536,7 +443,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3397 · 2026-05-19T12:11:33.517074+00:00_
+_source line 3389 · 2026-05-19T12:11:33.517074+00:00_
 
 called Bash
 
@@ -1574,7 +481,7 @@ called Bash
 
 ### Tool result
 
-_source line 3398 · 2026-05-19T12:11:38.240752+00:00_
+_source line 3390 · 2026-05-19T12:11:38.240752+00:00_
 
 Warning--can't use both volume and number fields in guo-2021-label-confusion
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -1597,7 +504,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3399 · 2026-05-19T12:11:44.468685+00:00_
+_source line 3391 · 2026-05-19T12:11:44.468685+00:00_
 
 called Bash
 
@@ -1633,7 +540,7 @@ called Bash
 
 ### Tool result
 
-_source line 3400 · 2026-05-19T12:11:44.569907+00:00_
+_source line 3392 · 2026-05-19T12:11:44.569907+00:00_
 
 Exit code 1
 0
@@ -1656,7 +563,7 @@ Exit code 1
 
 ### Tool call
 
-_source line 3401 · 2026-05-19T12:11:56.689041+00:00_
+_source line 3393 · 2026-05-19T12:11:56.689041+00:00_
 
 called Bash
 
@@ -1692,7 +599,7 @@ called Bash
 
 ### Tool result
 
-_source line 3402 · 2026-05-19T12:11:56.990748+00:00_
+_source line 3394 · 2026-05-19T12:11:56.990748+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
 
@@ -1714,7 +621,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3403 · 2026-05-19T12:12:04.410478+00:00_
+_source line 3395 · 2026-05-19T12:12:04.410478+00:00_
 
 called Bash
 
@@ -1750,7 +657,7 @@ called Bash
 
 ### Tool result
 
-_source line 3404 · 2026-05-19T12:12:04.712129+00:00_
+_source line 3396 · 2026-05-19T12:12:04.712129+00:00_
 
 Page 7: but shows floor effects on 8B NER (Limitations,
 Page 9: Limitations
@@ -1778,7 +685,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3405 · 2026-05-19T12:12:22.551081+00:00_
+_source line 3397 · 2026-05-19T12:12:22.551081+00:00_
 
 called Read
 
@@ -1816,7 +723,7 @@ called Read
 
 ### Tool result
 
-_source line 3406 · 2026-05-19T12:12:22.652274+00:00_
+_source line 3398 · 2026-05-19T12:12:22.652274+00:00_
 
 54	\]
 55	
@@ -1845,7 +752,7 @@ _source line 3406 · 2026-05-19T12:12:22.652274+00:00_
 
 ### Tool call
 
-_source line 3407 · 2026-05-19T12:12:54.621978+00:00_
+_source line 3399 · 2026-05-19T12:12:54.621978+00:00_
 
 called Edit
 
@@ -1885,7 +792,7 @@ called Edit
 
 ### Tool result
 
-_source line 3408 · 2026-05-19T12:12:54.622657+00:00_
+_source line 3400 · 2026-05-19T12:12:54.622657+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
 
@@ -1907,7 +814,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3409 · 2026-05-19T12:12:59.522070+00:00_
+_source line 3401 · 2026-05-19T12:12:59.522070+00:00_
 
 called Edit
 
@@ -1947,7 +854,7 @@ called Edit
 
 ### Tool result
 
-_source line 3410 · 2026-05-19T12:12:59.572788+00:00_
+_source line 3402 · 2026-05-19T12:12:59.572788+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -1969,7 +876,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3411 · 2026-05-19T12:13:03.089005+00:00_
+_source line 3403 · 2026-05-19T12:13:03.089005+00:00_
 
 called Read
 
@@ -2007,7 +914,7 @@ called Read
 
 ### Tool result
 
-_source line 3412 · 2026-05-19T12:13:03.089556+00:00_
+_source line 3404 · 2026-05-19T12:13:03.089556+00:00_
 
 47	The correlations are statistically significant but modest: $r^2 \approx 1.3\text{--}1.7\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\rho = 0.144\text{--}0.227$ across all pairs, strengthening to $\rho = 0.27\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).
 48	
@@ -2034,7 +941,7 @@ _source line 3412 · 2026-05-19T12:13:03.089556+00:00_
 
 ### Tool call
 
-_source line 3413 · 2026-05-19T12:13:10.068161+00:00_
+_source line 3405 · 2026-05-19T12:13:10.068161+00:00_
 
 called Edit
 
@@ -2074,7 +981,7 @@ called Edit
 
 ### Tool result
 
-_source line 3414 · 2026-05-19T12:13:10.121040+00:00_
+_source line 3406 · 2026-05-19T12:13:10.121040+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -2096,7 +1003,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3415 · 2026-05-19T12:13:16.199998+00:00_
+_source line 3407 · 2026-05-19T12:13:16.199998+00:00_
 
 called Bash
 
@@ -2134,7 +1041,7 @@ called Bash
 
 ### Tool result
 
-_source line 3416 · 2026-05-19T12:13:19.415396+00:00_
+_source line 3408 · 2026-05-19T12:13:19.415396+00:00_
 
 Page 9: Limitations
 Page 9: Conclusion
@@ -2160,7 +1067,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3417 · 2026-05-19T12:13:26.953980+00:00_
+_source line 3409 · 2026-05-19T12:13:26.953980+00:00_
 
 called Bash
 
@@ -2196,7 +1103,7 @@ called Bash
 
 ### Tool result
 
-_source line 3418 · 2026-05-19T12:13:27.256059+00:00_
+_source line 3410 · 2026-05-19T12:13:27.256059+00:00_
 
 === END OF PAGE 8 ===
 654
@@ -2251,7 +1158,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3419 · 2026-05-19T12:13:33.839967+00:00_
+_source line 3411 · 2026-05-19T12:13:33.839967+00:00_
 
 called Read
 
@@ -2285,7 +1192,7 @@ called Read
 
 ### Tool result
 
-_source line 3420 · 2026-05-19T12:13:34.292295+00:00_
+_source line 3412 · 2026-05-19T12:13:34.292295+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -2321,7 +1228,7 @@ _source line 3420 · 2026-05-19T12:13:34.292295+00:00_
 
 ### Tool call
 
-_source line 3421 · 2026-05-19T12:13:34.343030+00:00_
+_source line 3413 · 2026-05-19T12:13:34.343030+00:00_
 
 called Read
 
@@ -2355,7 +1262,7 @@ called Read
 
 ### Tool result
 
-_source line 3422 · 2026-05-19T12:13:34.393657+00:00_
+_source line 3414 · 2026-05-19T12:13:34.393657+00:00_
 
 1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
 2	\label{sec:sdgd}
@@ -2387,7 +1294,7 @@ _source line 3422 · 2026-05-19T12:13:34.393657+00:00_
 
 ### Tool call
 
-_source line 3423 · 2026-05-19T12:13:44.835798+00:00_
+_source line 3415 · 2026-05-19T12:13:44.835798+00:00_
 
 called Read
 
@@ -2425,7 +1332,7 @@ called Read
 
 ### Tool result
 
-_source line 3424 · 2026-05-19T12:13:44.886555+00:00_
+_source line 3416 · 2026-05-19T12:13:44.886555+00:00_
 
 85	Error taxonomy decomposition (Table~\ref{tab:error_taxonomy} and Figure~\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\rho = 1.0$ ($p < 0.001$) for NER and $\rho = 0.954$ ($p < 0.001$) for RE. In NER, missed rates are higher (43--65\%) and non-monotonic; confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\text{--}27.5\times$ more confusion than low-BCS batches.
 86	
@@ -2455,7 +1362,7 @@ _source line 3424 · 2026-05-19T12:13:44.886555+00:00_
 
 ### Tool call
 
-_source line 3425 · 2026-05-19T12:14:07.317067+00:00_
+_source line 3417 · 2026-05-19T12:14:07.317067+00:00_
 
 called Edit
 
@@ -2495,7 +1402,7 @@ called Edit
 
 ### Tool result
 
-_source line 3426 · 2026-05-19T12:14:07.368203+00:00_
+_source line 3418 · 2026-05-19T12:14:07.368203+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -2517,7 +1424,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3427 · 2026-05-19T12:14:14.849541+00:00_
+_source line 3419 · 2026-05-19T12:14:14.849541+00:00_
 
 called Edit
 
@@ -2557,7 +1464,7 @@ called Edit
 
 ### Tool result
 
-_source line 3428 · 2026-05-19T12:14:14.900270+00:00_
+_source line 3420 · 2026-05-19T12:14:14.900270+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -2579,7 +1486,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3429 · 2026-05-19T12:14:20.726035+00:00_
+_source line 3421 · 2026-05-19T12:14:20.726035+00:00_
 
 called Edit
 
@@ -2619,7 +1526,7 @@ called Edit
 
 ### Tool result
 
-_source line 3430 · 2026-05-19T12:14:20.977466+00:00_
+_source line 3422 · 2026-05-19T12:14:20.977466+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -2641,7 +1548,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3431 · 2026-05-19T12:14:27.057056+00:00_
+_source line 3423 · 2026-05-19T12:14:27.057056+00:00_
 
 called Bash
 
@@ -2679,7 +1586,7 @@ called Bash
 
 ### Tool result
 
-_source line 3432 · 2026-05-19T12:14:29.969263+00:00_
+_source line 3424 · 2026-05-19T12:14:29.969263+00:00_
 
 Page 8: Conclusion
 Page 9: Limitations
@@ -2704,7 +1611,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3433 · 2026-05-19T12:14:36.748204+00:00_
+_source line 3425 · 2026-05-19T12:14:36.748204+00:00_
 
 called Bash
 
@@ -2740,7 +1647,7 @@ called Bash
 
 ### Tool result
 
-_source line 3434 · 2026-05-19T12:14:36.849188+00:00_
+_source line 3426 · 2026-05-19T12:14:36.849188+00:00_
 
 Exit code 1
 0
@@ -2763,7 +1670,7 @@ Exit code 1
 
 ### Tool call
 
-_source line 3435 · 2026-05-19T12:14:47.292339+00:00_
+_source line 3427 · 2026-05-19T12:14:47.292339+00:00_
 
 called Bash
 
@@ -2799,7 +1706,7 @@ called Bash
 
 ### Tool result
 
-_source line 3436 · 2026-05-19T12:14:47.393172+00:00_
+_source line 3428 · 2026-05-19T12:14:47.393172+00:00_
 
 Cited: 71, Bib entries: 71
 Missing from bib: none
@@ -2824,7 +1731,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3437 · 2026-05-19T12:15:13.789343+00:00_
+_source line 3429 · 2026-05-19T12:15:13.789343+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2860,7 +1767,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3438 · 2026-05-19T12:15:17.757381+00:00_
+_source line 3430 · 2026-05-19T12:15:17.757381+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -2882,7 +1789,7 @@ _source line 3438 · 2026-05-19T12:15:17.757381+00:00_
 
 ### Assistant
 
-_source line 3439 · 2026-05-19T12:15:22.125096+00:00_
+_source line 3431 · 2026-05-19T12:15:22.125096+00:00_
 
 R21 修复 8 项全部完成，编译通过。等待 DocRED expanded 实验结果回来后进行第二批修改（Abstract 数字更新）。
 
@@ -2909,7 +1816,7 @@ R21 修复 8 项全部完成，编译通过。等待 DocRED expanded 实验结�
 
 ### User
 
-_source line 3440 · 2026-05-19T12:18:46.878599+00:00_
+_source line 3432 · 2026-05-19T12:18:46.878599+00:00_
 
 [Director 指令] **1 项数据不一致修复（Reviewer #36 flagged）**
 
@@ -2936,7 +1843,7 @@ Discussion 中 DocRED R² = 0.51 不正确。Results §4.3 报 0.525，Limitatio
 
 ### Tool call
 
-_source line 3441 · 2026-05-19T12:18:53.681660+00:00_
+_source line 3433 · 2026-05-19T12:18:53.681660+00:00_
 
 called Edit
 
@@ -2976,7 +1883,7 @@ called Edit
 
 ### Tool result
 
-_source line 3442 · 2026-05-19T12:18:53.732481+00:00_
+_source line 3434 · 2026-05-19T12:18:53.732481+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -2998,7 +1905,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3443 · 2026-05-19T12:19:01.613017+00:00_
+_source line 3435 · 2026-05-19T12:19:01.613017+00:00_
 
 called Bash
 
@@ -3036,7 +1943,7 @@ called Bash
 
 ### Tool result
 
-_source line 3444 · 2026-05-19T12:19:03.424915+00:00_
+_source line 3436 · 2026-05-19T12:19:03.424915+00:00_
 
 0
 
@@ -3058,7 +1965,7 @@ _source line 3444 · 2026-05-19T12:19:03.424915+00:00_
 
 ### Tool call
 
-_source line 3445 · 2026-05-19T12:19:08.448057+00:00_
+_source line 3437 · 2026-05-19T12:19:08.448057+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3094,7 +2001,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3446 · 2026-05-19T12:19:12.616586+00:00_
+_source line 3438 · 2026-05-19T12:19:12.616586+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -3123,7 +2030,7 @@ _source line 3446 · 2026-05-19T12:19:12.616586+00:00_
 
 ### User
 
-_source line 3447 · 2026-05-19T12:44:29.694858+00:00_
+_source line 3439 · 2026-05-19T12:44:29.694858+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -3144,7 +2051,7 @@ _source line 3447 · 2026-05-19T12:44:29.694858+00:00_
 
 ### Tool call
 
-_source line 3448 · 2026-05-19T12:44:48.052507+00:00_
+_source line 3440 · 2026-05-19T12:44:48.052507+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3182,7 +2089,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 3449 · 2026-05-19T12:44:48.053013+00:00_
+_source line 3441 · 2026-05-19T12:44:48.053013+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -3211,7 +2118,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3450 · 2026-05-19T12:44:48.257907+00:00_
+_source line 3442 · 2026-05-19T12:44:48.257907+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_docred_bcs_expanded\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T12:44:23.943Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"spec\": {\"command\": \"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 470, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T12:44:23.943Z\"}, \"exp_sdgd_zero_maven\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T11:58:13.713Z\", \"hypothesis\": \"Merge amplification (precision collapse in decompose+merge pipeline) is a structural problem that generalizes from NER to event detection. On MAVEN (168 event types), SDGD-zero and random_batch decomposition will both show lower F1 than single-pass baseline, with precision degradation as the primary cause, confirming this is not NER-specific.\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU su
 …[truncated 18410 chars]
@@ -3234,7 +2141,7 @@ _source line 3450 · 2026-05-19T12:44:48.257907+00:00_
 
 ### Tool result
 
-_source line 3451 · 2026-05-19T12:44:48.311799+00:00_
+_source line 3443 · 2026-05-19T12:44:48.311799+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -3256,7 +2163,7 @@ _source line 3451 · 2026-05-19T12:44:48.311799+00:00_
 
 ### Tool call
 
-_source line 3452 · 2026-05-19T12:44:59.410825+00:00_
+_source line 3444 · 2026-05-19T12:44:59.410825+00:00_
 
 called ToolSearch
 
@@ -3292,7 +2199,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3453 · 2026-05-19T12:44:59.512006+00:00_
+_source line 3445 · 2026-05-19T12:44:59.512006+00:00_
 
 
 
@@ -3314,7 +2221,7 @@ _source line 3453 · 2026-05-19T12:44:59.512006+00:00_
 
 ### Tool call
 
-_source line 3454 · 2026-05-19T12:45:12.327397+00:00_
+_source line 3446 · 2026-05-19T12:45:12.327397+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3354,7 +2261,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3455 · 2026-05-19T12:45:18.354315+00:00_
+_source line 3447 · 2026-05-19T12:45:18.354315+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_docred_bcs_expanded_20260519T124512\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp_docred_bcs_expanded_20260519T124512.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp_docred_bcs_expanded_20260519T124512 started. Use get_worker_status('worker_diagnose_exp_docred_bcs_expanded_20260519T124512') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3376,7 +2283,7 @@ _source line 3455 · 2026-05-19T12:45:18.354315+00:00_
 
 ### Assistant
 
-_source line 3456 · 2026-05-19T12:45:21.851696+00:00_
+_source line 3448 · 2026-05-19T12:45:21.851696+00:00_
 
 Worker 已派出诊断 exp_docred_bcs_expanded 状态。等待回调。
 
@@ -3403,7 +2310,7 @@ Worker 已派出诊断 exp_docred_bcs_expanded 状态。等待回调。
 
 ### User
 
-_source line 3457 · 2026-05-19T12:46:57.147955+00:00_
+_source line 3449 · 2026-05-19T12:46:57.147955+00:00_
 
 [WORKER DONE] Worker worker_diagnose_exp_docred_bcs_expanded_20260519T124512 已完成（status=done）。用 `get_worker_status('worker_diagnose_exp_docred_bcs_expanded_20260519T124512')` 读取结果，然后处理。
 
@@ -3428,7 +2335,7 @@ _source line 3457 · 2026-05-19T12:46:57.147955+00:00_
 
 ### Tool call
 
-_source line 3458 · 2026-05-19T12:47:08.322518+00:00_
+_source line 3450 · 2026-05-19T12:47:08.322518+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3462,7 +2369,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3459 · 2026-05-19T12:47:08.474199+00:00_
+_source line 3451 · 2026-05-19T12:47:08.474199+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_docred_bcs_expanded_20260519T124512\", \"status\": \"done\", \"task_type\": \"diagnose:exp_docred_bcs_expanded\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T12:45:12.999311+00:00\", \"ended_at\": \"2026-05-19T12:46:55.095294+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"诊断结果：\\n\\n**进度**: 完成 6/40 新 batches（batch 7 正在推理时被 kill）。日志显示 batch 1-6 的 accuracy 在 0.42-0.47 之间。\\n\\n**无法 resume**: \\n- 脚本**不支持断点恢复**——没有 resume/checkpoint 逻辑\\n- `run_incremental_inference` 将所有新 batch 结果累积在内存中的 `all_results` 列表，只在全部 40 个 batch 跑完后一次性写入 `all_predictions.json`\\n- 输出目录只有 `preprocess_config.json`（686KB）和 `run.log`（23KB），没有中间结果文件\\n- 已完成的 6 个 batch 的推理结果**全部丢失**\\n\\n**可复用的部分**: \\n- `preprocess_config.json` 仍在，包含 batch 配置和样本数据，preprocess 阶段不需要重跑\\n- 旧实验 `exp_docred_confusability` 的 predictions 仍可复用（脚本设计就是增量的，从那里加载已有 BCS predictions）\\n\\n**GPU 状态**: RTX PRO 6000 (98GB), 0% 利用率，完全空闲可用。\\n\\n**建议**: 直接用 `--stage infer` 重跑推理阶段（跳过 preprocess），40 个 batch 全部重跑。每个 batch 约 3-4 秒推理，加上模型加载 ~40 秒，总计约 3-4 分钟。或者，可以先给脚本加 per-batch checkpoint 逻辑再跑，避免下次中断又白跑。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3484,7 +2391,7 @@ _source line 3459 · 2026-05-19T12:47:08.474199+00:00_
 
 ### Tool call
 
-_source line 3460 · 2026-05-19T12:47:26.033251+00:00_
+_source line 3452 · 2026-05-19T12:47:26.033251+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3524,7 +2431,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3461 · 2026-05-19T12:47:26.284987+00:00_
+_source line 3453 · 2026-05-19T12:47:26.284987+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → QUEUED. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.2497}}"}
 
@@ -3546,7 +2453,7 @@ _source line 3461 · 2026-05-19T12:47:26.284987+00:00_
 
 ### Tool call
 
-_source line 3462 · 2026-05-19T12:47:31.442191+00:00_
+_source line 3454 · 2026-05-19T12:47:31.442191+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3586,7 +2493,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3463 · 2026-05-19T12:47:32.300183+00:00_
+_source line 3455 · 2026-05-19T12:47:32.300183+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T12:47:31.621Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8424}}"}
 
@@ -3608,7 +2515,7 @@ _source line 3463 · 2026-05-19T12:47:32.300183+00:00_
 
 ### Tool call
 
-_source line 3464 · 2026-05-19T12:47:36.567991+00:00_
+_source line 3456 · 2026-05-19T12:47:36.567991+00:00_
 
 called mcp__agent-ml-research__submit_training_job
 
@@ -3652,7 +2559,7 @@ called mcp__agent-ml-research__submit_training_job
 
 ### Tool result
 
-_source line 3465 · 2026-05-19T12:47:38.526351+00:00_
+_source line 3457 · 2026-05-19T12:47:38.526351+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"pid\": \"607854\", \"log_file\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"cqa1-38874\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"exp_docred_bcs_expanded\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
 
@@ -3674,7 +2581,7 @@ _source line 3465 · 2026-05-19T12:47:38.526351+00:00_
 
 ### Assistant
 
-_source line 3466 · 2026-05-19T12:47:41.931563+00:00_
+_source line 3458 · 2026-05-19T12:47:41.931563+00:00_
 
 已重新提交（PID=607854），预计 3-4 分钟完成。等 cron 回调。
 
@@ -3701,7 +2608,7 @@ _source line 3466 · 2026-05-19T12:47:41.931563+00:00_
 
 ### User
 
-_source line 3467 · 2026-05-19T12:47:42.611705+00:00_
+_source line 3459 · 2026-05-19T12:47:42.611705+00:00_
 
 [Director 指令] **exp_docred_bcs_expanded 崩溃 — 清理 + 重新排期**
 
@@ -3735,7 +2642,7 @@ DocRED expanded 实验 vLLM 引擎崩溃，7/40 batches 后停止，无数据保
 
 ### Tool call
 
-_source line 3468 · 2026-05-19T12:48:03.888974+00:00_
+_source line 3460 · 2026-05-19T12:48:03.888974+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3775,7 +2682,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3469 · 2026-05-19T12:48:10.126417+00:00_
+_source line 3461 · 2026-05-19T12:48:10.126417+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_cleanup_and_submit_maven_20260519T124804\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_cleanup_and_submit_maven_20260519T124804.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_cleanup_and_submit_maven_20260519T124804 started. Use get_worker_status('worker_ops_cleanup_and_submit_maven_20260519T124804') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3797,7 +2704,7 @@ _source line 3469 · 2026-05-19T12:48:10.126417+00:00_
 
 ### Tool call
 
-_source line 3470 · 2026-05-19T12:48:18.863098+00:00_
+_source line 3462 · 2026-05-19T12:48:18.863098+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3840,7 +2747,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### User
 
-_source line 3471 · 2026-05-19T13:07:43.478776+00:00_
+_source line 3463 · 2026-05-19T13:07:43.478776+00:00_
 
 [Director 指令] **⚠️ 最高优先级：GPU 被孤儿进程锁死，两次清理都失败了。**
 
@@ -3885,7 +2792,7 @@ nvidia-smi
 
 ### Tool call
 
-_source line 3472 · 2026-05-19T13:07:51.883026+00:00_
+_source line 3464 · 2026-05-19T13:07:51.883026+00:00_
 
 called ToolSearch
 
@@ -3921,7 +2828,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3473 · 2026-05-19T13:07:52.034272+00:00_
+_source line 3465 · 2026-05-19T13:07:52.034272+00:00_
 
 
 
@@ -3943,7 +2850,7 @@ _source line 3473 · 2026-05-19T13:07:52.034272+00:00_
 
 ### Tool call
 
-_source line 3474 · 2026-05-19T13:07:57.407021+00:00_
+_source line 3466 · 2026-05-19T13:07:57.407021+00:00_
 
 called ToolSearch
 
@@ -3979,7 +2886,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3475 · 2026-05-19T13:07:57.909591+00:00_
+_source line 3467 · 2026-05-19T13:07:57.909591+00:00_
 
 
 
@@ -4001,7 +2908,7 @@ _source line 3475 · 2026-05-19T13:07:57.909591+00:00_
 
 ### Tool call
 
-_source line 3476 · 2026-05-19T13:08:06.751024+00:00_
+_source line 3468 · 2026-05-19T13:08:06.751024+00:00_
 
 called Bash
 
@@ -4039,7 +2946,7 @@ called Bash
 
 ### Tool result
 
-_source line 3477 · 2026-05-19T13:08:06.904194+00:00_
+_source line 3469 · 2026-05-19T13:08:06.904194+00:00_
 
 Exit code 255
 ssh: Could not resolve hostname cqa1-38874: Temporary failure in name resolution
@@ -4062,7 +2969,7 @@ ssh: Could not resolve hostname cqa1-38874: Temporary failure in name resolution
 
 ### Tool call
 
-_source line 3478 · 2026-05-19T13:08:10.370055+00:00_
+_source line 3470 · 2026-05-19T13:08:10.370055+00:00_
 
 called Bash
 
@@ -4098,7 +3005,7 @@ called Bash
 
 ### Tool result
 
-_source line 3479 · 2026-05-19T13:08:10.471012+00:00_
+_source line 3471 · 2026-05-19T13:08:10.471012+00:00_
 
 not found in ssh config
 
@@ -4120,7 +3027,7 @@ not found in ssh config
 
 ### Tool call
 
-_source line 3480 · 2026-05-19T13:08:13.088615+00:00_
+_source line 3472 · 2026-05-19T13:08:13.088615+00:00_
 
 called Bash
 
@@ -4156,7 +3063,7 @@ called Bash
 
 ### Tool result
 
-_source line 3481 · 2026-05-19T13:08:13.189692+00:00_
+_source line 3473 · 2026-05-19T13:08:13.189692+00:00_
 
 Host github.com
     HostName github.com
@@ -4183,7 +3090,7 @@ Host github.com
 
 ### Tool call
 
-_source line 3482 · 2026-05-19T13:08:19.772616+00:00_
+_source line 3474 · 2026-05-19T13:08:19.772616+00:00_
 
 called ToolSearch
 
@@ -4219,7 +3126,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3483 · 2026-05-19T13:08:19.873481+00:00_
+_source line 3475 · 2026-05-19T13:08:19.873481+00:00_
 
 
 
@@ -4241,7 +3148,7 @@ _source line 3483 · 2026-05-19T13:08:19.873481+00:00_
 
 ### Tool call
 
-_source line 3484 · 2026-05-19T13:08:24.745025+00:00_
+_source line 3476 · 2026-05-19T13:08:24.745025+00:00_
 
 called mcp__agent-ml-research__kill_job
 
@@ -4279,7 +3186,7 @@ called mcp__agent-ml-research__kill_job
 
 ### Tool result
 
-_source line 3485 · 2026-05-19T13:08:26.557216+00:00_
+_source line 3477 · 2026-05-19T13:08:26.557216+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"pid\": \"608246\", \"reason\": \"Orphan vLLM EngineCore process locking 89348 MiB GPU memory after OOM crash\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"}
 
@@ -4301,7 +3208,7 @@ _source line 3485 · 2026-05-19T13:08:26.557216+00:00_
 
 ### Tool call
 
-_source line 3486 · 2026-05-19T13:08:29.531147+00:00_
+_source line 3478 · 2026-05-19T13:08:29.531147+00:00_
 
 called ToolSearch
 
@@ -4337,7 +3244,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3487 · 2026-05-19T13:08:29.581749+00:00_
+_source line 3479 · 2026-05-19T13:08:29.581749+00:00_
 
 
 
@@ -4359,7 +3266,7 @@ _source line 3487 · 2026-05-19T13:08:29.581749+00:00_
 
 ### Tool call
 
-_source line 3488 · 2026-05-19T13:08:32.194294+00:00_
+_source line 3480 · 2026-05-19T13:08:32.194294+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -4393,7 +3300,7 @@ called mcp__agent-ml-research__get_gpu_health
 
 ### Tool result
 
-_source line 3489 · 2026-05-19T13:08:32.244991+00:00_
+_source line 3481 · 2026-05-19T13:08:32.244991+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {\"cqa1-38874\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4415,7 +3322,7 @@ _source line 3489 · 2026-05-19T13:08:32.244991+00:00_
 
 ### Tool call
 
-_source line 3490 · 2026-05-19T13:08:53.022815+00:00_
+_source line 3482 · 2026-05-19T13:08:53.022815+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4455,7 +3362,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3491 · 2026-05-19T13:08:58.957149+00:00_
+_source line 3483 · 2026-05-19T13:08:58.957149+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_verify_gpu_submit_maven_20260519T130853\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_verify_gpu_submit_maven_20260519T130853.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_verify_gpu_submit_maven_20260519T130853 started. Use get_worker_status('worker_ops_verify_gpu_submit_maven_20260519T130853') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4477,7 +3384,7 @@ _source line 3491 · 2026-05-19T13:08:58.957149+00:00_
 
 ### Assistant
 
-_source line 3492 · 2026-05-19T13:09:01.444802+00:00_
+_source line 3484 · 2026-05-19T13:09:01.444802+00:00_
 
 缓存过期。派 Worker 确认 GPU 释放并提交 MAVEN。
 
@@ -4504,7 +3411,7 @@ _source line 3492 · 2026-05-19T13:09:01.444802+00:00_
 
 ### User
 
-_source line 3493 · 2026-05-19T13:10:02.463329+00:00_
+_source line 3485 · 2026-05-19T13:10:02.463329+00:00_
 
 [WORKER DONE] Worker worker_ops_verify_gpu_submit_maven_20260519T130853 已完成（status=failed）。用 `get_worker_status('worker_ops_verify_gpu_submit_maven_20260519T130853')` 读取结果，然后处理。
 
@@ -4529,7 +3436,7 @@ _source line 3493 · 2026-05-19T13:10:02.463329+00:00_
 
 ### Tool call
 
-_source line 3494 · 2026-05-19T13:10:16.935245+00:00_
+_source line 3486 · 2026-05-19T13:10:16.935245+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4563,7 +3470,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3495 · 2026-05-19T13:10:16.986126+00:00_
+_source line 3487 · 2026-05-19T13:10:16.986126+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_verify_gpu_submit_maven_20260519T130853\", \"status\": \"failed\", \"task_type\": \"ops:verify_gpu_submit_maven\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:08:53.721957+00:00\", \"ended_at\": \"2026-05-19T13:09:53.226478+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4585,7 +3492,7 @@ _source line 3495 · 2026-05-19T13:10:16.986126+00:00_
 
 ### Tool call
 
-_source line 3496 · 2026-05-19T13:10:22.660514+00:00_
+_source line 3488 · 2026-05-19T13:10:22.660514+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -4614,7 +3521,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3497 · 2026-05-19T13:10:23.114437+00:00_
+_source line 3489 · 2026-05-19T13:10:23.114437+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -4636,7 +3543,7 @@ _source line 3497 · 2026-05-19T13:10:23.114437+00:00_
 
 ### Tool call
 
-_source line 3498 · 2026-05-19T13:10:23.215350+00:00_
+_source line 3490 · 2026-05-19T13:10:23.215350+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4674,7 +3581,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3499 · 2026-05-19T13:10:23.517008+00:00_
+_source line 3491 · 2026-05-19T13:10:23.517008+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_sdgd_zero_maven\": {\"status\": \"DONE\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\", \"conclusion\": \"failed\"}, \"exp_docred_bcs_expanded\": {\"status\": \"PREPARING\", \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}, \"exp_unconstrained_decoding_ablation\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_multiseed_bcs_re\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_gemini_flash_cross_model\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"notes\": \"Gemini 2.5 Flash count curve via local API call. Count 1-32 complete (25 batches each), count 64 partial (11/25). Data at artifacts/exp_gemini_flash/part1/count_curve_analysis.json. Count 80 and part2 BCS not yet collected.\"}}, \"count\": 5, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2846}}"}
 
@@ -4696,7 +3603,7 @@ _source line 3499 · 2026-05-19T13:10:23.517008+00:00_
 
 ### Tool call
 
-_source line 3500 · 2026-05-19T13:10:31.055392+00:00_
+_source line 3492 · 2026-05-19T13:10:31.055392+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4736,7 +3643,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3501 · 2026-05-19T13:10:32.016390+00:00_
+_source line 3493 · 2026-05-19T13:10:32.016390+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:10:31.239Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9733}}"}
 
@@ -4758,7 +3665,7 @@ _source line 3501 · 2026-05-19T13:10:32.016390+00:00_
 
 ### Tool call
 
-_source line 3502 · 2026-05-19T13:10:44.376045+00:00_
+_source line 3494 · 2026-05-19T13:10:44.376045+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4798,7 +3705,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3503 · 2026-05-19T13:10:50.922997+00:00_
+_source line 3495 · 2026-05-19T13:10:50.922997+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_gpu_check_submit_maven_r2_20260519T131045\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_gpu_check_submit_maven_r2_20260519T131045.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_gpu_check_submit_maven_r2_20260519T131045 started. Use get_worker_status('worker_ops_gpu_check_submit_maven_r2_20260519T131045') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4820,7 +3727,7 @@ _source line 3503 · 2026-05-19T13:10:50.922997+00:00_
 
 ### Assistant
 
-_source line 3504 · 2026-05-19T13:10:53.156899+00:00_
+_source line 3496 · 2026-05-19T13:10:53.156899+00:00_
 
 exp_sdgd_zero_maven 被误标 DONE/failed（上一个 worker 失败导致）。重置并重新提交。
 
@@ -4847,7 +3754,7 @@ exp_sdgd_zero_maven 被误标 DONE/failed（上一个 worker 失败导致）。�
 
 ### User
 
-_source line 3505 · 2026-05-19T13:11:08.661646+00:00_
+_source line 3497 · 2026-05-19T13:11:08.661646+00:00_
 
 [Director 指令] **GPU 已释放（0 MiB used）— 立即提交 exp_sdgd_zero_maven**
 
@@ -4878,7 +3785,7 @@ GPU cuda:0 已完全释放（98 GiB free）。三次 worker 都没成功提交�
 
 ### Tool call
 
-_source line 3506 · 2026-05-19T13:11:16.842961+00:00_
+_source line 3498 · 2026-05-19T13:11:16.842961+00:00_
 
 called mcp__agent-ml-research__submit_training_job
 
@@ -4922,7 +3829,7 @@ called mcp__agent-ml-research__submit_training_job
 
 ### Tool result
 
-_source line 3507 · 2026-05-19T13:11:18.956414+00:00_
+_source line 3499 · 2026-05-19T13:11:18.956414+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"pid\": \"610111\", \"log_file\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"cqa1-38874\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"exp_sdgd_zero_maven\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"}
 
@@ -4944,7 +3851,7 @@ _source line 3507 · 2026-05-19T13:11:18.956414+00:00_
 
 ### Tool call
 
-_source line 3508 · 2026-05-19T13:11:22.671570+00:00_
+_source line 3500 · 2026-05-19T13:11:22.671570+00:00_
 
 called mcp__agent-ml-research__check_job_status
 
@@ -4980,7 +3887,7 @@ called mcp__agent-ml-research__check_job_status
 
 ### Tool result
 
-_source line 3509 · 2026-05-19T13:11:23.325044+00:00_
+_source line 3501 · 2026-05-19T13:11:23.325044+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"running\", \"running\": true, \"pid\": \"610111\", \"detection\": \"ps\", \"process_state\": \"Ss+\", \"elapsed_time\": \"00:05\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
 
@@ -5002,7 +3909,7 @@ _source line 3509 · 2026-05-19T13:11:23.325044+00:00_
 
 ### Tool call
 
-_source line 3510 · 2026-05-19T13:11:31.077560+00:00_
+_source line 3502 · 2026-05-19T13:11:31.077560+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5038,7 +3945,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3511 · 2026-05-19T13:11:35.151023+00:00_
+_source line 3503 · 2026-05-19T13:11:35.151023+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -5060,7 +3967,7 @@ _source line 3511 · 2026-05-19T13:11:35.151023+00:00_
 
 ### Assistant
 
-_source line 3512 · 2026-05-19T13:11:37.590709+00:00_
+_source line 3504 · 2026-05-19T13:11:37.590709+00:00_
 
 进程 running（5 秒）。
 
@@ -5087,7 +3994,7 @@ _source line 3512 · 2026-05-19T13:11:37.590709+00:00_
 
 ### User
 
-_source line 3513 · 2026-05-19T13:12:33.217218+00:00_
+_source line 3505 · 2026-05-19T13:12:33.217218+00:00_
 
 [WORKER DONE] Worker worker_ops_gpu_check_submit_maven_r2_20260519T131045 已完成（status=done）。用 `get_worker_status('worker_ops_gpu_check_submit_maven_r2_20260519T131045')` 读取结果，然后处理。
 
@@ -5112,7 +4019,7 @@ _source line 3513 · 2026-05-19T13:12:33.217218+00:00_
 
 ### Tool call
 
-_source line 3514 · 2026-05-19T13:12:41.427010+00:00_
+_source line 3506 · 2026-05-19T13:12:41.427010+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5146,7 +4053,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3515 · 2026-05-19T13:12:41.529102+00:00_
+_source line 3507 · 2026-05-19T13:12:41.529102+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_gpu_check_submit_maven_r2_20260519T131045\", \"status\": \"done\", \"task_type\": \"ops:gpu_check_submit_maven_r2\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:10:45.360567+00:00\", \"ended_at\": \"2026-05-19T13:12:31.392071+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部完成：\\n\\n- **GPU**: RTX PRO 6000 (98GB) 空闲，无进程占用\\n- **Tmux**: 残留 session 已清理\\n- **实验已启动**: `exp_sdgd_zero_maven` 在 tmux 中运行，vLLM 正在加载 Qwen3-32B-FP8\\n- **日志确认**: 168 event types、1000 samples 已加载，模型初始化中\\n- **Registry**: notes 已更新\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5168,7 +4075,7 @@ _source line 3515 · 2026-05-19T13:12:41.529102+00:00_
 
 ### Assistant
 
-_source line 3516 · 2026-05-19T13:12:46.135178+00:00_
+_source line 3508 · 2026-05-19T13:12:46.135178+00:00_
 
 Worker 确认了 GPU 空闲并看到 vLLM 正在加载。实验已由我直接通过 `submit_training_job` 提交成功（PID=610111），Worker 的提交是冗余的但不冲突（同一个 tmux session name 会复用）。无需额外操作。
 
@@ -5195,7 +4102,7 @@ Worker 确认了 GPU 空闲并看到 vLLM 正在加载。实验已由我直接�
 
 ### User
 
-_source line 3517 · 2026-05-19T13:47:53.707127+00:00_
+_source line 3509 · 2026-05-19T13:47:53.707127+00:00_
 
 [Director 指令] 紧急确认两件事：
 
@@ -5229,7 +4136,7 @@ GPU 不能空着，确认完 MAVEN 状态后，如果 GPU 空闲且 MAVEN 不需
 
 ### Tool call
 
-_source line 3518 · 2026-05-19T13:48:08.349868+00:00_
+_source line 3510 · 2026-05-19T13:48:08.349868+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5269,7 +4176,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3519 · 2026-05-19T13:48:14.581622+00:00_
+_source line 3511 · 2026-05-19T13:48:14.581622+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_maven_status_20260519T134808\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_check_maven_status_20260519T134808.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_maven_status_20260519T134808 started. Use get_worker_status('worker_ops_check_maven_status_20260519T134808') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5298,7 +4205,7 @@ _source line 3519 · 2026-05-19T13:48:14.581622+00:00_
 
 ### User
 
-_source line 3520 · 2026-05-19T13:49:39.731716+00:00_
+_source line 3512 · 2026-05-19T13:49:39.731716+00:00_
 
 [WORKER DONE] Worker worker_ops_check_maven_status_20260519T134808 已完成（status=done）。用 `get_worker_status('worker_ops_check_maven_status_20260519T134808')` 读取结果，然后处理。
 
@@ -5323,7 +4230,7 @@ _source line 3520 · 2026-05-19T13:49:39.731716+00:00_
 
 ### Tool call
 
-_source line 3521 · 2026-05-19T13:49:47.181483+00:00_
+_source line 3513 · 2026-05-19T13:49:47.181483+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5357,7 +4264,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3522 · 2026-05-19T13:49:47.232317+00:00_
+_source line 3514 · 2026-05-19T13:49:47.232317+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_maven_status_20260519T134808\", \"status\": \"done\", \"task_type\": \"ops:check_maven_status\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:48:09.126221+00:00\", \"ended_at\": \"2026-05-19T13:49:37.833618+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 状态汇报\\n\\n### 进程：RUNNING\\nPID 610111 仍在运行，正在执行第 3 个 random_batch seed（seed44 推测），当前在 Batch 16/18，rendering prompts 阶段。\\n\\n### GPU：忙\\nNVIDIA RTX PRO 6000 Black (98GB), 已用 94.2GB/97.9GB, VLLM::EngineCore 占用。\\n\\n### 实验进度：进行中（4/5+ arms 已完成）\\n\\n已完成的 arms 及 metrics（gold_count = 2491）：\\n\\n| Arm | Precision | Recall | F1 | Pred Count | Latency |\\n|-----|-----------|--------|----|------------|---------|\\n| **single_pass** | **0.2866** | 0.1618 | **0.2068** | 1,406 | 56s |\\n| sdgd_zero (18 batches) | 0.0911 | **0.1907** | 0.1233 | 5,212 | 522s |\\n| random_batch_s42 (18 batches) | 0.0898 | 0.1517 | 0.1129 | 4,208 | 538s |\\n| random_batch_s43 (18 batches) | 0.0829 | 0.1975 | 0.1168 | 5,936 | 552s |\\n\\n### SDGD Zero 图分解统计\\n- 168 nodes, 2110 edges, 18 colors\\n- τ = 0.319, k = 1.0\\n- Batch sizes: [39, 20, 16, 12, 12, 10, 10, 8, 8, 6, 6, 6, 5, 4, 2, 2, 1, 1]\\n- Merge expansion ratio: 1.006（几乎无重复预测）\\n\\n### 关键发现\\n**single_pass 全面优于 sdgd_zero 和 random_batch**。分解后 recall 有提升（+2.9pp），但 precision 崩溃（0.287→0.091），pred_count 膨胀 3.7 倍（1406→5212），F1 反而下降 8.4pp。random_batch 表现更差，说明不是 DAG 分解的问题，而是多批次推理本身导致 over-prediction。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5379,7 +4286,7 @@ _source line 3522 · 2026-05-19T13:49:47.232317+00:00_
 
 ### Tool call
 
-_source line 3523 · 2026-05-19T13:50:00.440030+00:00_
+_source line 3515 · 2026-05-19T13:50:00.440030+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -5419,7 +4326,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3524 · 2026-05-19T13:50:00.944093+00:00_
+_source line 3516 · 2026-05-19T13:50:00.944093+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:50:00.727Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4704}}"}
 
@@ -5441,7 +4348,7 @@ _source line 3524 · 2026-05-19T13:50:00.944093+00:00_
 
 ### Tool call
 
-_source line 3525 · 2026-05-19T13:50:12.904887+00:00_
+_source line 3517 · 2026-05-19T13:50:12.904887+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5477,7 +4384,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3526 · 2026-05-19T13:50:16.776411+00:00_
+_source line 3518 · 2026-05-19T13:50:16.776411+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -5499,7 +4406,7 @@ _source line 3526 · 2026-05-19T13:50:16.776411+00:00_
 
 ### Assistant
 
-_source line 3527 · 2026-05-19T13:50:19.516180+00:00_
+_source line 3519 · 2026-05-19T13:50:19.516180+00:00_
 
 MAVEN SDGD 实验仍在运行（最后 1 个 seed），但已有 4/5 arms 的结果。结果明确：**merge amplification 跨任务复现**。
 
@@ -5526,7 +4433,7 @@ MAVEN SDGD 实验仍在运行（最后 1 个 seed），但已有 4/5 arms 的结
 
 ### User
 
-_source line 3528 · 2026-05-19T13:51:05.496538+00:00_
+_source line 3520 · 2026-05-19T13:51:05.496538+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -5547,7 +4454,7 @@ _source line 3528 · 2026-05-19T13:51:05.496538+00:00_
 
 ### Tool call
 
-_source line 3529 · 2026-05-19T13:51:13.269161+00:00_
+_source line 3521 · 2026-05-19T13:51:13.269161+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -5576,7 +4483,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3530 · 2026-05-19T13:51:13.720993+00:00_
+_source line 3522 · 2026-05-19T13:51:13.720993+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -5598,7 +4505,7 @@ _source line 3530 · 2026-05-19T13:51:13.720993+00:00_
 
 ### Tool call
 
-_source line 3531 · 2026-05-19T13:51:13.871908+00:00_
+_source line 3523 · 2026-05-19T13:51:13.871908+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5636,7 +4543,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3532 · 2026-05-19T13:51:14.123994+00:00_
+_source line 3524 · 2026-05-19T13:51:14.123994+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2408}}"}
 
@@ -5658,7 +4565,7 @@ _source line 3532 · 2026-05-19T13:51:14.123994+00:00_
 
 ### Tool call
 
-_source line 3533 · 2026-05-19T13:51:17.319135+00:00_
+_source line 3525 · 2026-05-19T13:51:17.319135+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5696,7 +4603,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3534 · 2026-05-19T13:51:17.570398+00:00_
+_source line 3526 · 2026-05-19T13:51:17.570398+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_sdgd_zero_maven\": {\"status\": \"PREPARING\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_docred_bcs_expanded\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}, \"exp_unconstrained_decoding_ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"542072\", \"log_path\": \"~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log\", \"submitted_at\": \"2026-05-18T10:21:03.700Z\", \"submitted
 …[truncated 277 chars]
@@ -5719,7 +4626,7 @@ _source line 3534 · 2026-05-19T13:51:17.570398+00:00_
 
 ### Tool call
 
-_source line 3535 · 2026-05-19T13:51:23.696263+00:00_
+_source line 3527 · 2026-05-19T13:51:23.696263+00:00_
 
 called mcp__agent-ml-research__check_job_status
 
@@ -5755,7 +4662,7 @@ called mcp__agent-ml-research__check_job_status
 
 ### Tool result
 
-_source line 3536 · 2026-05-19T13:51:25.202248+00:00_
+_source line 3528 · 2026-05-19T13:51:25.202248+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_found\", \"running\": false, \"pid\": \"610111\", \"detection\": \"ps\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
 
@@ -5777,7 +4684,7 @@ _source line 3536 · 2026-05-19T13:51:25.202248+00:00_
 
 ### Tool call
 
-_source line 3537 · 2026-05-19T13:51:37.921887+00:00_
+_source line 3529 · 2026-05-19T13:51:37.921887+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5817,7 +4724,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3538 · 2026-05-19T13:51:44.507612+00:00_
+_source line 3530 · 2026-05-19T13:51:44.507612+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_maven_results_20260519T135138\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_check_maven_results_20260519T135138.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_maven_results_20260519T135138 started. Use get_worker_status('worker_ops_check_maven_results_20260519T135138') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5839,7 +4746,7 @@ _source line 3538 · 2026-05-19T13:51:44.507612+00:00_
 
 ### Assistant
 
-_source line 3539 · 2026-05-19T13:51:48.068502+00:00_
+_source line 3531 · 2026-05-19T13:51:48.068502+00:00_
 
 进程已死。检查是否在死前完成并写了结果。
 
@@ -5866,7 +4773,7 @@ _source line 3539 · 2026-05-19T13:51:48.068502+00:00_
 
 ### User
 
-_source line 3540 · 2026-05-19T13:51:48.081270+00:00_
+_source line 3532 · 2026-05-19T13:51:48.081270+00:00_
 
 [Director 指令] 服务器重启，exp_sdgd_zero_maven PID 610111 可能被杀。4/5 arms 已完成，数据应在磁盘上。执行以下步骤：
 
@@ -5900,7 +4807,7 @@ _source line 3540 · 2026-05-19T13:51:48.081270+00:00_
 
 ### Tool call
 
-_source line 3541 · 2026-05-19T13:51:54.446794+00:00_
+_source line 3533 · 2026-05-19T13:51:54.446794+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5936,7 +4843,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3542 · 2026-05-19T13:51:54.547767+00:00_
+_source line 3534 · 2026-05-19T13:51:54.547767+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_maven_results_20260519T135138\", \"status\": \"running\", \"task_type\": \"ops:check_maven_results\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:51:38.578156+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\"], \"last_text\": \"\", \"turn_count\": 2}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5958,7 +4865,7 @@ _source line 3542 · 2026-05-19T13:51:54.547767+00:00_
 
 ### Assistant
 
-_source line 3543 · 2026-05-19T13:52:00.010651+00:00_
+_source line 3535 · 2026-05-19T13:52:00.010651+00:00_
 
 已有 Worker 在检查 MAVEN 结果（worker_ops_check_maven_results），等待其完成后立即按 Director 指令处理（补跑/汇总/启动 DocRED）。
 
@@ -5985,7 +4892,7 @@ _source line 3543 · 2026-05-19T13:52:00.010651+00:00_
 
 ### User
 
-_source line 3544 · 2026-05-19T13:52:32.353802+00:00_
+_source line 3536 · 2026-05-19T13:52:32.353802+00:00_
 
 [WORKER DONE] Worker worker_ops_check_maven_results_20260519T135138 已完成（status=done）。用 `get_worker_status('worker_ops_check_maven_results_20260519T135138')` 读取结果，然后处理。
 
@@ -6010,7 +4917,7 @@ _source line 3544 · 2026-05-19T13:52:32.353802+00:00_
 
 ### Tool call
 
-_source line 3545 · 2026-05-19T13:52:38.843248+00:00_
+_source line 3537 · 2026-05-19T13:52:38.843248+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6044,7 +4951,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3546 · 2026-05-19T13:52:38.944206+00:00_
+_source line 3538 · 2026-05-19T13:52:38.944206+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_maven_results_20260519T135138\", \"status\": \"done\", \"task_type\": \"ops:check_maven_results\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:51:38.578156+00:00\", \"ended_at\": \"2026-05-19T13:52:30.751805+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 结果汇总\\n\\n**实验完整完成。** 5 个 arm 全部跑完，summary.json 包含所有结果。EXIT_CODE=129（SIGHUP，进程被杀但数据已写完）。\\n\\n### MAVEN SDGD-zero 三臂对比（168 types, 1000 samples, Qwen3-32B-FP8）\\n\\n| Mode | Precision | Recall | F1 |\\n|------|-----------|--------|----|\\n| single_pass | 0.2866 | 0.1618 | **0.2068** |\\n| sdgd_zero | 0.0911 | 0.1907 | 0.1233 |\\n| random_batch (avg 3 seeds) | 0.0820 | 0.1769 | 0.1114 |\\n\\n- SDGD vs SP: F1 -0.084, recall +0.029, precision -0.196\\n- SDGD vs Random Batch: F1 +0.012（SDGD 略优于随机分批）\\n- SDGD merge: 5242 raw → 5212 merged（去重极少，tau=0.319）\\n\\n### GPU 状态\\nRTX PRO 6000 Black (98GB) — **完全空闲**，0MB 显存占用，无运行进程。\\n\\n### 结论\\n不需要重跑。所有 5 个 arm（single_pass + sdgd_zero + random_batch×3 seeds）数据完整。MAVEN 上 SDGD-zero 的表现不如 single_pass（F1 差 8.4 个点），但比 random batch 略好 1.2 个点，说明 DAG 分批有微弱优势但不足以弥补 168 types 分批带来的 precision 损失。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6066,7 +4973,7 @@ _source line 3546 · 2026-05-19T13:52:38.944206+00:00_
 
 ### Tool call
 
-_source line 3547 · 2026-05-19T13:52:49.998603+00:00_
+_source line 3539 · 2026-05-19T13:52:49.998603+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6108,7 +5015,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3548 · 2026-05-19T13:52:50.301285+00:00_
+_source line 3540 · 2026-05-19T13:52:50.301285+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2671}}"}
 
@@ -6130,7 +5037,7 @@ _source line 3548 · 2026-05-19T13:52:50.301285+00:00_
 
 ### Tool call
 
-_source line 3549 · 2026-05-19T13:52:53.667532+00:00_
+_source line 3541 · 2026-05-19T13:52:53.667532+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6170,7 +5077,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3550 · 2026-05-19T13:52:54.522041+00:00_
+_source line 3542 · 2026-05-19T13:52:54.522041+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:52:53.852Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8475}}"}
 
@@ -6192,7 +5099,7 @@ _source line 3550 · 2026-05-19T13:52:54.522041+00:00_
 
 ### Tool call
 
-_source line 3551 · 2026-05-19T13:52:58.992120+00:00_
+_source line 3543 · 2026-05-19T13:52:58.992120+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6234,7 +5141,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3552 · 2026-05-19T13:52:59.795386+00:00_
+_source line 3544 · 2026-05-19T13:52:59.795386+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:52:59.204Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7755}}"}
 
@@ -6256,7 +5163,7 @@ _source line 3552 · 2026-05-19T13:52:59.795386+00:00_
 
 ### Tool call
 
-_source line 3553 · 2026-05-19T13:53:03.819411+00:00_
+_source line 3545 · 2026-05-19T13:53:03.819411+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6296,7 +5203,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3554 · 2026-05-19T13:53:04.363082+00:00_
+_source line 3546 · 2026-05-19T13:53:04.363082+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:53:04.141Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5321}}"}
 
@@ -6318,7 +5225,7 @@ _source line 3554 · 2026-05-19T13:53:04.363082+00:00_
 
 ### Tool call
 
-_source line 3555 · 2026-05-19T13:53:11.143380+00:00_
+_source line 3547 · 2026-05-19T13:53:11.143380+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6358,7 +5265,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3556 · 2026-05-19T13:53:11.546484+00:00_
+_source line 3548 · 2026-05-19T13:53:11.546484+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:53:11.364Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"single_pass\": {\"precision\": 0.2866, \"recall\": 0.1618, \"f1\": 0.2068, \"pred_count
 …[truncated 418 chars]
@@ -6381,7 +5288,7 @@ _source line 3556 · 2026-05-19T13:53:11.546484+00:00_
 
 ### Tool call
 
-_source line 3557 · 2026-05-19T13:53:15.216362+00:00_
+_source line 3549 · 2026-05-19T13:53:15.216362+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6421,7 +5328,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3558 · 2026-05-19T13:53:16.073684+00:00_
+_source line 3550 · 2026-05-19T13:53:16.073684+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:53:15.439Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"single_pass\": {\"precision\": 0.2866, \"recall\": 0.1618, \"f1\": 0.2068, \"pred_count
 …[truncated 503 chars]
@@ -6444,7 +5351,7 @@ _source line 3558 · 2026-05-19T13:53:16.073684+00:00_
 
 ### Tool call
 
-_source line 3559 · 2026-05-19T13:53:16.074213+00:00_
+_source line 3551 · 2026-05-19T13:53:16.074213+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6484,7 +5391,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3560 · 2026-05-19T13:53:16.527248+00:00_
+_source line 3552 · 2026-05-19T13:53:16.527248+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:53:16.339Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"single_pass\": {\"precision\": 0.2866, \"recall\": 0.1618, \"f1\": 0.2068, \"pred_count
 …[truncated 575 chars]
@@ -6507,7 +5414,7 @@ _source line 3560 · 2026-05-19T13:53:16.527248+00:00_
 
 ### Tool call
 
-_source line 3561 · 2026-05-19T13:55:28.114365+00:00_
+_source line 3553 · 2026-05-19T13:55:28.114365+00:00_
 
 called ToolSearch
 
@@ -6543,7 +5450,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3562 · 2026-05-19T13:55:28.165016+00:00_
+_source line 3554 · 2026-05-19T13:55:28.165016+00:00_
 
 
 
@@ -6565,7 +5472,7 @@ _source line 3562 · 2026-05-19T13:55:28.165016+00:00_
 
 ### Tool call
 
-_source line 3563 · 2026-05-19T13:55:39.043007+00:00_
+_source line 3555 · 2026-05-19T13:55:39.043007+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6601,7 +5508,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 3564 · 2026-05-19T13:55:39.043336+00:00_
+_source line 3556 · 2026-05-19T13:55:39.043336+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -6630,7 +5537,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3565 · 2026-05-19T13:55:39.598571+00:00_
+_source line 3557 · 2026-05-19T13:55:39.598571+00:00_
 
 Error: result (111,685 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/53538666-2b02-4fd7-92e6-e56440366f9d/tool-results/mcp-agent-ml-research-read_registry-1779198939544.txt.
 Format: JSON with schema: {result: string}
@@ -6659,7 +5566,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 3566 · 2026-05-19T13:55:39.649342+00:00_
+_source line 3558 · 2026-05-19T13:55:39.649342+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -6695,7 +5602,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3567 · 2026-05-19T13:55:39.750233+00:00_
+_source line 3559 · 2026-05-19T13:55:39.750233+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -6717,7 +5624,7 @@ _source line 3567 · 2026-05-19T13:55:39.750233+00:00_
 
 ### Tool result
 
-_source line 3568 · 2026-05-19T13:55:39.750777+00:00_
+_source line 3560 · 2026-05-19T13:55:39.750777+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_sdgd_zero_maven | SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection. | — | — | — |\\n\\n## 待处理\\n- exp_docred_bcs_expanded: Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.（准备中）\\n- prompt_sensitivity（准备中）\\n- prompt_sensitivity_dry4（准备中）\\n- prompt_sensitivity_dry3（准备中）\\n- prompt_sensitivity_dry2（准备中）\\n- prompt_sensitivity_dry（准备中）\\n- exp_aggregation_monte_carlo（准备中）\\n- exp_scs_name_def_ablation（准备中）\\n- exp_fewrel_contamination_check（准备中）\\n- exp017_gpt4o_mini_fewrel（准备中）\\n- …另有 3 项\\n\\n## 近期结论\\n- **exp_unconstrained_decoding_ablation** (success): The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion. ← 基于 exp_fewrel_formal_80rel\\n  [u
 …[truncated 1878 chars]
@@ -6740,7 +5647,7 @@ _source line 3568 · 2026-05-19T13:55:39.750777+00:00_
 
 ### Tool call
 
-_source line 3569 · 2026-05-19T13:55:44.171352+00:00_
+_source line 3561 · 2026-05-19T13:55:44.171352+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6778,7 +5685,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3570 · 2026-05-19T13:55:44.573213+00:00_
+_source line 3562 · 2026-05-19T13:55:44.573213+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1939}}"}
 
@@ -6800,7 +5707,7 @@ _source line 3570 · 2026-05-19T13:55:44.573213+00:00_
 
 ### Tool call
 
-_source line 3571 · 2026-05-19T13:55:44.573650+00:00_
+_source line 3563 · 2026-05-19T13:55:44.573650+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6838,7 +5745,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3572 · 2026-05-19T13:55:44.824978+00:00_
+_source line 3564 · 2026-05-19T13:55:44.824978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2108}}"}
 
@@ -6860,7 +5767,7 @@ _source line 3572 · 2026-05-19T13:55:44.824978+00:00_
 
 ### Tool call
 
-_source line 3573 · 2026-05-19T13:55:50.001558+00:00_
+_source line 3565 · 2026-05-19T13:55:50.001558+00:00_
 
 called Bash
 
@@ -6896,7 +5803,7 @@ called Bash
 
 ### Tool result
 
-_source line 3574 · 2026-05-19T13:55:50.153348+00:00_
+_source line 3566 · 2026-05-19T13:55:50.153348+00:00_
 
 3006:  exp_docred_bcs_expanded:
 3029:      log_path: ~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log
@@ -6924,7 +5831,7 @@ _source line 3574 · 2026-05-19T13:55:50.153348+00:00_
 
 ### Tool call
 
-_source line 3575 · 2026-05-19T13:55:53.266554+00:00_
+_source line 3567 · 2026-05-19T13:55:53.266554+00:00_
 
 called Read
 
@@ -6962,7 +5869,7 @@ called Read
 
 ### Tool result
 
-_source line 3576 · 2026-05-19T13:55:53.267066+00:00_
+_source line 3568 · 2026-05-19T13:55:53.267066+00:00_
 
 3006	  exp_docred_bcs_expanded:
 3007	    status: PREPARING
@@ -7023,7 +5930,7 @@ _source line 3576 · 2026-05-19T13:55:53.267066+00:00_
 
 ### Tool call
 
-_source line 3577 · 2026-05-19T13:56:03.733297+00:00_
+_source line 3569 · 2026-05-19T13:56:03.733297+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7063,7 +5970,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3578 · 2026-05-19T13:56:04.637227+00:00_
+_source line 3570 · 2026-05-19T13:56:04.637227+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T13:56:03.963Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42, \"wall_clock_seconds\": 2685.4, \"gpu_hours\": 0.75}, \"conclusion\": \"success\", \"metrics\": {\"single_pass\": {\"precision\": 0.2866
 …[truncated 676 chars]
@@ -7086,7 +5993,7 @@ _source line 3578 · 2026-05-19T13:56:04.637227+00:00_
 
 ### Tool call
 
-_source line 3579 · 2026-05-19T13:56:11.451121+00:00_
+_source line 3571 · 2026-05-19T13:56:11.451121+00:00_
 
 called ToolSearch
 
@@ -7122,7 +6029,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3580 · 2026-05-19T13:56:11.552075+00:00_
+_source line 3572 · 2026-05-19T13:56:11.552075+00:00_
 
 
 
@@ -7144,7 +6051,7 @@ _source line 3580 · 2026-05-19T13:56:11.552075+00:00_
 
 ### Tool call
 
-_source line 3581 · 2026-05-19T13:56:14.414469+00:00_
+_source line 3573 · 2026-05-19T13:56:14.414469+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -7180,7 +6087,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 3582 · 2026-05-19T13:56:14.515438+00:00_
+_source line 3574 · 2026-05-19T13:56:14.515438+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"schema-dag-extraction\", \"section\": \"execution\", \"config\": {\"execution\": {\"project_path\": \"/root/schema-dag-extraction\", \"servers\": [{\"account\": \"root\", \"server\": \"cqa1-38874\"}, {\"account\": \"root\", \"server\": \"westd-24295\"}]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -7202,7 +6109,7 @@ _source line 3582 · 2026-05-19T13:56:14.515438+00:00_
 
 ### Tool call
 
-_source line 3583 · 2026-05-19T13:56:18.287438+00:00_
+_source line 3575 · 2026-05-19T13:56:18.287438+00:00_
 
 called ToolSearch
 
@@ -7238,7 +6145,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3584 · 2026-05-19T13:56:18.388227+00:00_
+_source line 3576 · 2026-05-19T13:56:18.388227+00:00_
 
 
 
@@ -7260,7 +6167,7 @@ _source line 3584 · 2026-05-19T13:56:18.388227+00:00_
 
 ### Tool call
 
-_source line 3585 · 2026-05-19T13:56:20.898689+00:00_
+_source line 3577 · 2026-05-19T13:56:20.898689+00:00_
 
 called mcp__agent-ml-research__get_project_resource_usage
 
@@ -7294,7 +6201,7 @@ called mcp__agent-ml-research__get_project_resource_usage
 
 ### Tool result
 
-_source line 3586 · 2026-05-19T13:56:21.200370+00:00_
+_source line 3578 · 2026-05-19T13:56:21.200370+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7316,7 +6223,7 @@ _source line 3586 · 2026-05-19T13:56:21.200370+00:00_
 
 ### Tool call
 
-_source line 3587 · 2026-05-19T13:56:42.324090+00:00_
+_source line 3579 · 2026-05-19T13:56:42.324090+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7352,7 +6259,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3588 · 2026-05-19T13:57:00.002665+00:00_
+_source line 3580 · 2026-05-19T13:57:00.002665+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -7374,7 +6281,7 @@ _source line 3588 · 2026-05-19T13:57:00.002665+00:00_
 
 ### Tool call
 
-_source line 3589 · 2026-05-19T13:57:00.153876+00:00_
+_source line 3581 · 2026-05-19T13:57:00.153876+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -7414,7 +6321,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3590 · 2026-05-19T13:57:04.023674+00:00_
+_source line 3582 · 2026-05-19T13:57:04.023674+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_submit_docred_bcs_expanded_r3_20260519T135700\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_submit_docred_bcs_expanded_r3_20260519T135700.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_submit_docred_bcs_expanded_r3_20260519T135700 started. Use get_worker_status('worker_ops_submit_docred_bcs_expanded_r3_20260519T135700') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7436,7 +6343,7 @@ _source line 3590 · 2026-05-19T13:57:04.023674+00:00_
 
 ### Tool call
 
-_source line 3591 · 2026-05-19T13:57:08.343545+00:00_
+_source line 3583 · 2026-05-19T13:57:08.343545+00:00_
 
 called ToolSearch
 
@@ -7472,7 +6379,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3592 · 2026-05-19T13:57:08.394491+00:00_
+_source line 3584 · 2026-05-19T13:57:08.394491+00:00_
 
 
 
@@ -7494,7 +6401,7 @@ _source line 3592 · 2026-05-19T13:57:08.394491+00:00_
 
 ### Tool call
 
-_source line 3593 · 2026-05-19T13:57:11.811757+00:00_
+_source line 3585 · 2026-05-19T13:57:11.811757+00:00_
 
 called Read
 
@@ -7528,7 +6435,7 @@ called Read
 
 ### Tool result
 
-_source line 3594 · 2026-05-19T13:57:11.862540+00:00_
+_source line 3586 · 2026-05-19T13:57:11.862540+00:00_
 
 1	# Handover — 2026-05-19
 2	
@@ -7575,7 +6482,7 @@ _source line 3594 · 2026-05-19T13:57:11.862540+00:00_
 
 ### Tool call
 
-_source line 3595 · 2026-05-19T13:57:20.863143+00:00_
+_source line 3587 · 2026-05-19T13:57:20.863143+00:00_
 
 called Edit
 
@@ -7615,7 +6522,7 @@ called Edit
 
 ### Tool result
 
-_source line 3596 · 2026-05-19T13:57:20.914156+00:00_
+_source line 3588 · 2026-05-19T13:57:20.914156+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md has been updated successfully.
 
@@ -7637,7 +6544,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3597 · 2026-05-19T13:57:26.887160+00:00_
+_source line 3589 · 2026-05-19T13:57:26.887160+00:00_
 
 called Edit
 
@@ -7677,7 +6584,7 @@ called Edit
 
 ### Tool result
 
-_source line 3598 · 2026-05-19T13:57:26.988055+00:00_
+_source line 3590 · 2026-05-19T13:57:26.988055+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md has been updated successfully.
 
@@ -7699,7 +6606,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3599 · 2026-05-19T13:57:31.643150+00:00_
+_source line 3591 · 2026-05-19T13:57:31.643150+00:00_
 
 called Read
 
@@ -7733,7 +6640,7 @@ called Read
 
 ### Tool result
 
-_source line 3600 · 2026-05-19T13:57:31.693814+00:00_
+_source line 3592 · 2026-05-19T13:57:31.693814+00:00_
 
 1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
 2	\label{sec:sdgd}
@@ -7765,7 +6672,7 @@ _source line 3600 · 2026-05-19T13:57:31.693814+00:00_
 
 ### Tool call
 
-_source line 3601 · 2026-05-19T13:57:55.047754+00:00_
+_source line 3593 · 2026-05-19T13:57:55.047754+00:00_
 
 called Edit
 
@@ -7805,7 +6712,7 @@ called Edit
 
 ### Tool result
 
-_source line 3602 · 2026-05-19T13:57:55.098696+00:00_
+_source line 3594 · 2026-05-19T13:57:55.098696+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully.
 
@@ -7827,7 +6734,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3603 · 2026-05-19T13:57:59.568062+00:00_
+_source line 3595 · 2026-05-19T13:57:59.568062+00:00_
 
 called Bash
 
@@ -7865,7 +6772,7 @@ called Bash
 
 ### Tool result
 
-_source line 3604 · 2026-05-19T13:58:03.418080+00:00_
+_source line 3596 · 2026-05-19T13:58:03.418080+00:00_
 
 ts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
@@ -7906,7 +6813,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3605 · 2026-05-19T13:58:11.365687+00:00_
+_source line 3597 · 2026-05-19T13:58:11.365687+00:00_
 
 called Bash
 
@@ -7942,7 +6849,7 @@ called Bash
 
 ### Tool result
 
-_source line 3606 · 2026-05-19T13:58:11.667219+00:00_
+_source line 3598 · 2026-05-19T13:58:11.667219+00:00_
 
 Page 9 first content: 672
 Total pages: 9
@@ -7974,7 +6881,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3607 · 2026-05-19T13:58:24.114763+00:00_
+_source line 3599 · 2026-05-19T13:58:24.114763+00:00_
 
 called Bash
 
@@ -8010,7 +6917,7 @@ called Bash
 
 ### Tool result
 
-_source line 3608 · 2026-05-19T13:58:24.466380+00:00_
+_source line 3600 · 2026-05-19T13:58:24.466380+00:00_
 
 P7: item 1). Llama-3.1-70B-Instruct (FP8) and Gemini 2.5 Flash (API) confirm directional consistency
 P7: across scales and families (Appendix S, T).
@@ -8063,7 +6970,7 @@ P7: no predictive signal (§4.3), preventing clean dimension separation; the fac
 
 ### Tool call
 
-_source line 3609 · 2026-05-19T13:58:29.136063+00:00_
+_source line 3601 · 2026-05-19T13:58:29.136063+00:00_
 
 called Bash
 
@@ -8099,7 +7006,7 @@ called Bash
 
 ### Tool result
 
-_source line 3610 · 2026-05-19T13:58:29.437671+00:00_
+_source line 3602 · 2026-05-19T13:58:29.437671+00:00_
 
 P8: (a) Few-NERD NER
 P8: Share (%)
@@ -8169,7 +7076,7 @@ P8: n = 450). RE’s forced-choice format
 
 ### Tool call
 
-_source line 3611 · 2026-05-19T13:58:33.799053+00:00_
+_source line 3603 · 2026-05-19T13:58:33.799053+00:00_
 
 called Bash
 
@@ -8205,7 +7112,7 @@ called Bash
 
 ### Tool result
 
-_source line 3612 · 2026-05-19T13:58:34.151318+00:00_
+_source line 3604 · 2026-05-19T13:58:34.151318+00:00_
 
 P9: Schema-associated degradation in training-free
 P9: LLM extraction operates along two dimensions:
@@ -8258,7 +7165,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3613 · 2026-05-19T13:59:23.059233+00:00_
+_source line 3605 · 2026-05-19T13:59:23.059233+00:00_
 
 called Edit
 
@@ -8298,7 +7205,7 @@ called Edit
 
 ### Tool result
 
-_source line 3614 · 2026-05-19T13:59:23.110141+00:00_
+_source line 3606 · 2026-05-19T13:59:23.110141+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully.
 
@@ -8320,7 +7227,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3615 · 2026-05-19T13:59:28.029220+00:00_
+_source line 3607 · 2026-05-19T13:59:28.029220+00:00_
 
 called Edit
 
@@ -8360,7 +7267,7 @@ called Edit
 
 ### Tool result
 
-_source line 3616 · 2026-05-19T13:59:28.029730+00:00_
+_source line 3608 · 2026-05-19T13:59:28.029730+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -8382,7 +7289,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3617 · 2026-05-19T13:59:34.118040+00:00_
+_source line 3609 · 2026-05-19T13:59:34.118040+00:00_
 
 called Edit
 
@@ -8422,7 +7329,7 @@ called Edit
 
 ### Tool result
 
-_source line 3618 · 2026-05-19T13:59:34.168787+00:00_
+_source line 3610 · 2026-05-19T13:59:34.168787+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -8444,7 +7351,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3619 · 2026-05-19T13:59:37.633088+00:00_
+_source line 3611 · 2026-05-19T13:59:37.633088+00:00_
 
 called Bash
 
@@ -8482,7 +7389,7 @@ called Bash
 
 ### Tool result
 
-_source line 3620 · 2026-05-19T13:59:41.007169+00:00_
+_source line 3612 · 2026-05-19T13:59:41.007169+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -8508,7 +7415,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3621 · 2026-05-19T13:59:46.133749+00:00_
+_source line 3613 · 2026-05-19T13:59:46.133749+00:00_
 
 called Bash
 
@@ -8544,7 +7451,7 @@ called Bash
 
 ### Tool result
 
-_source line 3622 · 2026-05-19T13:59:46.587956+00:00_
+_source line 3614 · 2026-05-19T13:59:46.587956+00:00_
 
 Conclusion found on page 8
 P9 first: tural (+4.3 pp under 5-shot; Appendix U). Schema
@@ -8568,7 +7475,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3623 · 2026-05-19T13:59:53.027622+00:00_
+_source line 3615 · 2026-05-19T13:59:53.027622+00:00_
 
 called Bash
 
@@ -8604,7 +7511,7 @@ called Bash
 
 ### Tool result
 
-_source line 3624 · 2026-05-19T13:59:53.582059+00:00_
+_source line 3616 · 2026-05-19T13:59:53.582059+00:00_
 
 P9: tural (+4.3 pp under 5-shot; Appendix U). Schema
 P9: decomposition fails due to merge amplification
@@ -8641,7 +7548,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3625 · 2026-05-19T14:00:32.930386+00:00_
+_source line 3617 · 2026-05-19T14:00:32.930386+00:00_
 
 called Edit
 
@@ -8681,7 +7588,7 @@ called Edit
 
 ### Tool result
 
-_source line 3626 · 2026-05-19T14:00:32.981199+00:00_
+_source line 3618 · 2026-05-19T14:00:32.981199+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully.
 
@@ -8703,7 +7610,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3627 · 2026-05-19T14:00:39.910286+00:00_
+_source line 3619 · 2026-05-19T14:00:39.910286+00:00_
 
 called Edit
 
@@ -8743,7 +7650,7 @@ called Edit
 
 ### Tool result
 
-_source line 3628 · 2026-05-19T14:00:39.960979+00:00_
+_source line 3620 · 2026-05-19T14:00:39.960979+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -8765,7 +7672,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3629 · 2026-05-19T14:00:44.430207+00:00_
+_source line 3621 · 2026-05-19T14:00:44.430207+00:00_
 
 called Bash
 
@@ -8803,7 +7710,7 @@ called Bash
 
 ### Tool result
 
-_source line 3630 · 2026-05-19T14:00:48.150418+00:00_
+_source line 3622 · 2026-05-19T14:00:48.150418+00:00_
 
   ./references.bib
 Latexmk: All targets (main.pdf) are up-to-date
@@ -8827,7 +7734,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3631 · 2026-05-19T14:00:54.277376+00:00_
+_source line 3623 · 2026-05-19T14:00:54.277376+00:00_
 
 called Bash
 
@@ -8863,7 +7770,7 @@ called Bash
 
 ### Tool result
 
-_source line 3632 · 2026-05-19T14:00:54.631585+00:00_
+_source line 3624 · 2026-05-19T14:00:54.631585+00:00_
 
 P9 first line: Limitations
 Limitations starts on page 9
@@ -8887,7 +7794,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3633 · 2026-05-19T14:01:00.873214+00:00_
+_source line 3625 · 2026-05-19T14:01:00.873214+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -8923,7 +7830,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3634 · 2026-05-19T14:01:00.974210+00:00_
+_source line 3626 · 2026-05-19T14:01:00.974210+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_submit_docred_bcs_expanded_r3_20260519T135700\", \"status\": \"running\", \"task_type\": \"ops:submit_docred_bcs_expanded_r3\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:57:00.963051+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"Patch applied. Let me verify the changes and dry-run test.\", \"turn_count\": 6}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8945,7 +7852,7 @@ _source line 3634 · 2026-05-19T14:01:00.974210+00:00_
 
 ### Tool call
 
-_source line 3635 · 2026-05-19T14:01:07.680152+00:00_
+_source line 3627 · 2026-05-19T14:01:07.680152+00:00_
 
 called Read
 
@@ -8979,7 +7886,7 @@ called Read
 
 ### Tool result
 
-_source line 3636 · 2026-05-19T14:01:07.730835+00:00_
+_source line 3628 · 2026-05-19T14:01:07.730835+00:00_
 
 1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
 2	\label{sec:sdgd}
@@ -9014,7 +7921,7 @@ _source line 3636 · 2026-05-19T14:01:07.730835+00:00_
 
 ### Assistant
 
-_source line 3637 · 2026-05-19T14:01:14.659176+00:00_
+_source line 3629 · 2026-05-19T14:01:14.659176+00:00_
 
 论文内容完整。当前状态：
 
@@ -9047,7 +7954,7 @@ _source line 3637 · 2026-05-19T14:01:14.659176+00:00_
 
 ### User
 
-_source line 3638 · 2026-05-19T14:01:15.288819+00:00_
+_source line 3630 · 2026-05-19T14:01:15.288819+00:00_
 
 [Director 指令] 两个补充实验均已完成，Reviewer 独立核实数据正确。以下是综合任务，按顺序执行：
 
@@ -9124,7 +8031,7 @@ _source line 3638 · 2026-05-19T14:01:15.288819+00:00_
 
 ### Tool call
 
-_source line 3639 · 2026-05-19T14:01:57.111681+00:00_
+_source line 3631 · 2026-05-19T14:01:57.111681+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9164,7 +8071,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3640 · 2026-05-19T14:01:57.664261+00:00_
+_source line 3632 · 2026-05-19T14:01:57.664261+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T14:01:57.323Z\", \"hypothesis\": \"SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\", \"notes\": \"Merge amplification confirmed on MAVEN ED (168 types, 18 batches). SDGD pred inflation 3.7x, precision collapse -68% (0.287→0.091). Cross-task structural problem (NER+ED). single_pass F1=0.207 > sdgd_zero F1=0.123 > random_batch avg F1=0.111.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42, \"wall_clock_seconds\": 2685.4, \"gpu_hours\": 0.75}, \"conclusion\": \"success\", \"metrics\": {\"single_pass\": {\"precision\": 0.2866, \"recall\": 0.1618, \"
 …[truncated 601 chars]
@@ -9187,7 +8094,7 @@ _source line 3640 · 2026-05-19T14:01:57.664261+00:00_
 
 ### Tool call
 
-_source line 3641 · 2026-05-19T14:01:57.714850+00:00_
+_source line 3633 · 2026-05-19T14:01:57.714850+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9227,7 +8134,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3642 · 2026-05-19T14:01:58.517825+00:00_
+_source line 3634 · 2026-05-19T14:01:58.517825+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:01:57.890Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7883}}"}
 
@@ -9249,7 +8156,7 @@ _source line 3642 · 2026-05-19T14:01:58.517825+00:00_
 
 ### Tool call
 
-_source line 3643 · 2026-05-19T14:02:03.848083+00:00_
+_source line 3635 · 2026-05-19T14:02:03.848083+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9289,7 +8196,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3644 · 2026-05-19T14:02:04.701922+00:00_
+_source line 3636 · 2026-05-19T14:02:04.701922+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:04.045Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8441}}"}
 
@@ -9311,7 +8218,7 @@ _source line 3644 · 2026-05-19T14:02:04.701922+00:00_
 
 ### Tool call
 
-_source line 3645 · 2026-05-19T14:02:11.012085+00:00_
+_source line 3637 · 2026-05-19T14:02:11.012085+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9353,7 +8260,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3646 · 2026-05-19T14:02:11.866332+00:00_
+_source line 3638 · 2026-05-19T14:02:11.866332+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:11.253Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8191}}"}
 
@@ -9375,7 +8282,7 @@ _source line 3646 · 2026-05-19T14:02:11.866332+00:00_
 
 ### Tool call
 
-_source line 3647 · 2026-05-19T14:02:16.301280+00:00_
+_source line 3639 · 2026-05-19T14:02:16.301280+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9415,7 +8322,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3648 · 2026-05-19T14:02:16.753922+00:00_
+_source line 3640 · 2026-05-19T14:02:16.753922+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:16.520Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3794}}"}
 
@@ -9437,7 +8344,7 @@ _source line 3648 · 2026-05-19T14:02:16.753922+00:00_
 
 ### Tool call
 
-_source line 3649 · 2026-05-19T14:02:19.615642+00:00_
+_source line 3641 · 2026-05-19T14:02:19.615642+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9477,7 +8384,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3650 · 2026-05-19T14:02:23.330265+00:00_
+_source line 3642 · 2026-05-19T14:02:23.330265+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:19.795Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"notes\": \"vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved.\", \"conclusion\": \"success\", \"metrics\": {\"count16\": {\"BCS_effect_pp\": -25.04, \"spearman_r\": -0.762, \"n_batches\": 55}, \"count32\": {\"BCS_effect_pp\": -15.65, \"spearman_r\": -0.693, \"n_batches\": 55}, \"interaction\": {\"estimate_pp\": -9.39, \"CI_95\": [-12.91, -5.95], \"direction\": \"sub-additive\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.349}}"}
 
@@ -9499,7 +8406,7 @@ _source line 3650 · 2026-05-19T14:02:23.330265+00:00_
 
 ### Tool call
 
-_source line 3651 · 2026-05-19T14:02:23.380852+00:00_
+_source line 3643 · 2026-05-19T14:02:23.380852+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9539,7 +8446,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3652 · 2026-05-19T14:02:23.782754+00:00_
+_source line 3644 · 2026-05-19T14:02:23.782754+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:23.590Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"notes\": \"Expanded from n=5 to n=15/condition (6 conditions, all 15/15/25 batches done). Interaction is genuine sub-additive: -9.39pp CI[-12.91,-5.95], direction reversed from original +5.7pp. BCS effect weakens with count (25pp at count16 → 16pp at count32), consistent with ceiling/floor compression. Cross-task: FewRel additive vs DocRED sub-additive.\", \"conclusion\": \"success\", \"metrics\": {\"count16\": {\"BCS_effect_pp\": -25.04, \"spearman_r\": -0.762, \"n_batches\": 55}, \"count32\": {\"BCS_ef
 …[truncated 233 chars]
@@ -9562,7 +8469,7 @@ _source line 3652 · 2026-05-19T14:02:23.782754+00:00_
 
 ### Tool call
 
-_source line 3653 · 2026-05-19T14:02:29.607017+00:00_
+_source line 3645 · 2026-05-19T14:02:29.607017+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9602,7 +8509,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3654 · 2026-05-19T14:02:30.059513+00:00_
+_source line 3646 · 2026-05-19T14:02:30.059513+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.2018}}"}
 
@@ -9624,7 +8531,7 @@ _source line 3654 · 2026-05-19T14:02:30.059513+00:00_
 
 ### Tool call
 
-_source line 3655 · 2026-05-19T14:02:30.312022+00:00_
+_source line 3647 · 2026-05-19T14:02:30.312022+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9664,7 +8571,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3656 · 2026-05-19T14:02:30.664225+00:00_
+_source line 3648 · 2026-05-19T14:02:30.664225+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:30.499Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42}, \"notes\": \"Expanded from n=5 to n=15/condition (6 conditions, all 15/15/25 batches done). Interaction is genuine sub-additive: -9.39pp CI[-12.91,-5.95], direction reversed from original +5.7pp. BCS effect weakens with count (25pp at count16 → 16pp at count32), consistent with ceiling/floor compression. Cross-task: FewRel additive vs DocRED sub-additive.\", \"conclusion\": \"success\", \"metrics\": {\"count16\": {\"BCS_effect_pp\": -25.04, \"spearman_r\": -0.762, \"n_batches\": 55}, \"count32\": {\"BCS_ef
 …[truncated 322 chars]
@@ -9687,7 +8594,7 @@ _source line 3656 · 2026-05-19T14:02:30.664225+00:00_
 
 ### Tool call
 
-_source line 3657 · 2026-05-19T14:02:34.183735+00:00_
+_source line 3649 · 2026-05-19T14:02:34.183735+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9727,7 +8634,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3658 · 2026-05-19T14:02:34.988165+00:00_
+_source line 3650 · 2026-05-19T14:02:34.988165+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_docred_bcs_expanded\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:10.862Z\", \"updated_at\": \"2026-05-19T14:02:34.359Z\", \"hypothesis\": \"Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"completed_at\": \"2026-05-19T12:44:23.943Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_docred_bcs_expanded.py --stage all\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"607854\", \"log_path\": \"~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log\", \"submitted_at\": \"2026-05-19T12:47:38.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/docred/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42, \"wall_clock_seconds\": 4496.2, \"gpu_hours\": 1.25}, \"notes\": \"Expanded from n=5 to n=15/condition (6 conditions, all 15/15/25 batches done). Interaction is genuine sub-additive: -9.39pp CI[-12.91,-5.95], direction reversed from original +5.7pp. BCS effect weakens with count (25pp at count16 → 16pp at count32), consistent with ceiling/floor compression. Cross-task: FewRel additive vs DocRED sub-additive.\", \"conclusion\": \"success\", \"metrics\": {\"count16\": {\"BCS_effect_pp\": -25.04, \"spearman_r\": 
 …[truncated 423 chars]
@@ -9750,7 +8657,7 @@ _source line 3658 · 2026-05-19T14:02:34.988165+00:00_
 
 ### Tool call
 
-_source line 3659 · 2026-05-19T14:02:56.530320+00:00_
+_source line 3651 · 2026-05-19T14:02:56.530320+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -9790,7 +8697,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3660 · 2026-05-19T14:03:02.563352+00:00_
+_source line 3652 · 2026-05-19T14:03:02.563352+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_docred_bcs_r2_20260519T140257\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_docred_bcs_r2_20260519T140257.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_docred_bcs_r2_20260519T140257 started. Use get_worker_status('worker_analysis_docred_bcs_r2_20260519T140257') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -9812,7 +8719,7 @@ _source line 3660 · 2026-05-19T14:03:02.563352+00:00_
 
 ### Tool call
 
-_source line 3661 · 2026-05-19T14:03:18.354654+00:00_
+_source line 3653 · 2026-05-19T14:03:18.354654+00:00_
 
 called Read
 
@@ -9850,7 +8757,7 @@ called Read
 
 ### Tool result
 
-_source line 3662 · 2026-05-19T14:03:18.406429+00:00_
+_source line 3654 · 2026-05-19T14:03:18.406429+00:00_
 
 75	\subsection{Multi-Dimensional Degradation}
 76	\label{sec:multi_channel}
@@ -9885,7 +8792,7 @@ _source line 3662 · 2026-05-19T14:03:18.406429+00:00_
 
 ### Tool call
 
-_source line 3663 · 2026-05-19T14:03:41.578780+00:00_
+_source line 3655 · 2026-05-19T14:03:41.578780+00:00_
 
 called Edit
 
@@ -9925,7 +8832,7 @@ called Edit
 
 ### Tool result
 
-_source line 3664 · 2026-05-19T14:03:41.630080+00:00_
+_source line 3656 · 2026-05-19T14:03:41.630080+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -9947,7 +8854,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3665 · 2026-05-19T14:03:44.793330+00:00_
+_source line 3657 · 2026-05-19T14:03:44.793330+00:00_
 
 called Read
 
@@ -9981,7 +8888,7 @@ called Read
 
 ### Tool result
 
-_source line 3666 · 2026-05-19T14:03:44.844540+00:00_
+_source line 3658 · 2026-05-19T14:03:44.844540+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -10017,7 +8924,7 @@ _source line 3666 · 2026-05-19T14:03:44.844540+00:00_
 
 ### Tool call
 
-_source line 3667 · 2026-05-19T14:04:06.707943+00:00_
+_source line 3659 · 2026-05-19T14:04:06.707943+00:00_
 
 called Edit
 
@@ -10057,7 +8964,7 @@ called Edit
 
 ### Tool result
 
-_source line 3668 · 2026-05-19T14:04:06.758625+00:00_
+_source line 3660 · 2026-05-19T14:04:06.758625+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -10079,7 +8986,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3669 · 2026-05-19T14:04:10.355690+00:00_
+_source line 3661 · 2026-05-19T14:04:10.355690+00:00_
 
 called Edit
 
@@ -10119,7 +9026,7 @@ called Edit
 
 ### Tool result
 
-_source line 3670 · 2026-05-19T14:04:10.406683+00:00_
+_source line 3662 · 2026-05-19T14:04:10.406683+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -10141,7 +9048,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3671 · 2026-05-19T14:04:14.472087+00:00_
+_source line 3663 · 2026-05-19T14:04:14.472087+00:00_
 
 called Bash
 
@@ -10179,7 +9086,7 @@ called Bash
 
 ### Tool result
 
-_source line 3672 · 2026-05-19T14:04:18.199312+00:00_
+_source line 3664 · 2026-05-19T14:04:18.199312+00:00_
 
   ./references.bib
 Latexmk: All targets (main.pdf) are up-to-date
@@ -10203,7 +9110,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3673 · 2026-05-19T14:04:25.275515+00:00_
+_source line 3665 · 2026-05-19T14:04:25.275515+00:00_
 
 called Bash
 
@@ -10239,7 +9146,7 @@ called Bash
 
 ### Tool result
 
-_source line 3674 · 2026-05-19T14:04:25.577419+00:00_
+_source line 3666 · 2026-05-19T14:04:25.577419+00:00_
 
 P9 first: related type substitution, with bounded interaction
 Limitations header on page 9
@@ -10263,7 +9170,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3675 · 2026-05-19T14:04:43.855904+00:00_
+_source line 3667 · 2026-05-19T14:04:43.855904+00:00_
 
 called Edit
 
@@ -10303,7 +9210,7 @@ called Edit
 
 ### Tool result
 
-_source line 3676 · 2026-05-19T14:04:43.906636+00:00_
+_source line 3668 · 2026-05-19T14:04:43.906636+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -10325,7 +9232,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3677 · 2026-05-19T14:04:47.228608+00:00_
+_source line 3669 · 2026-05-19T14:04:47.228608+00:00_
 
 called Bash
 
@@ -10363,7 +9270,7 @@ called Bash
 
 ### Tool result
 
-_source line 3678 · 2026-05-19T14:04:50.594990+00:00_
+_source line 3670 · 2026-05-19T14:04:50.594990+00:00_
 
   ./references.bib
 Latexmk: All targets (main.pdf) are up-to-date
@@ -10387,7 +9294,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3679 · 2026-05-19T14:04:55.063489+00:00_
+_source line 3671 · 2026-05-19T14:04:55.063489+00:00_
 
 called Bash
 
@@ -10423,7 +9330,7 @@ called Bash
 
 ### Tool result
 
-_source line 3680 · 2026-05-19T14:04:55.365152+00:00_
+_source line 3672 · 2026-05-19T14:04:55.365152+00:00_
 
 P9 first: related type substitution—combining additively in
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -10446,7 +9353,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3681 · 2026-05-19T14:05:12.266279+00:00_
+_source line 3673 · 2026-05-19T14:05:12.266279+00:00_
 
 called Edit
 
@@ -10486,7 +9393,7 @@ called Edit
 
 ### Tool result
 
-_source line 3682 · 2026-05-19T14:05:12.317098+00:00_
+_source line 3674 · 2026-05-19T14:05:12.317098+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -10508,7 +9415,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3683 · 2026-05-19T14:05:17.186232+00:00_
+_source line 3675 · 2026-05-19T14:05:17.186232+00:00_
 
 called Edit
 
@@ -10548,7 +9455,7 @@ called Edit
 
 ### Tool result
 
-_source line 3684 · 2026-05-19T14:05:17.236948+00:00_
+_source line 3676 · 2026-05-19T14:05:17.236948+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -10570,7 +9477,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3685 · 2026-05-19T14:05:21.805371+00:00_
+_source line 3677 · 2026-05-19T14:05:21.805371+00:00_
 
 called Bash
 
@@ -10608,7 +9515,7 @@ called Bash
 
 ### Tool result
 
-_source line 3686 · 2026-05-19T14:05:25.116594+00:00_
+_source line 3678 · 2026-05-19T14:05:25.116594+00:00_
 
   ./references.bib
 Latexmk: All targets (main.pdf) are up-to-date
@@ -10632,7 +9539,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3687 · 2026-05-19T14:05:33.113576+00:00_
+_source line 3679 · 2026-05-19T14:05:33.113576+00:00_
 
 called Bash
 
@@ -10668,7 +9575,7 @@ called Bash
 
 ### Tool result
 
-_source line 3688 · 2026-05-19T14:05:33.434623+00:00_
+_source line 3680 · 2026-05-19T14:05:33.434623+00:00_
 
 P9 first: Limitations
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -10691,7 +9598,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3689 · 2026-05-19T14:05:40.318043+00:00_
+_source line 3681 · 2026-05-19T14:05:40.318043+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -10729,7 +9636,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3690 · 2026-05-19T14:05:40.369114+00:00_
+_source line 3682 · 2026-05-19T14:05:40.369114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (2 claims) — Revised per D019\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through channels with bounded association -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass baseline 0.445. Merge amplification is an intrinsic challenge of schema decomposition that merge strategies (union+dedup, confidence-gated) cannot resolve. **Discussed as negative result + future work direction** — \\\"why naive decomposition fails\\\" is its
 …[truncated 10256 chars]
@@ -10752,7 +9659,7 @@ _source line 3690 · 2026-05-19T14:05:40.369114+00:00_
 
 ### Tool call
 
-_source line 3691 · 2026-05-19T14:06:26.775506+00:00_
+_source line 3683 · 2026-05-19T14:06:26.775506+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -10790,7 +9697,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 3692 · 2026-05-19T14:06:26.776247+00:00_
+_source line 3684 · 2026-05-19T14:06:26.776247+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -10812,7 +9719,7 @@ _source line 3692 · 2026-05-19T14:06:26.776247+00:00_
 
 ### Tool call
 
-_source line 3693 · 2026-05-19T14:06:32.299999+00:00_
+_source line 3685 · 2026-05-19T14:06:32.299999+00:00_
 
 called Grep
 
@@ -10852,7 +9759,7 @@ called Grep
 
 ### Tool result
 
-_source line 3694 · 2026-05-19T14:06:32.350669+00:00_
+_source line 3686 · 2026-05-19T14:06:32.350669+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:42:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:181:[Omitted long matching line]
@@ -10877,7 +9784,7 @@ _source line 3694 · 2026-05-19T14:06:32.350669+00:00_
 
 ### Tool call
 
-_source line 3695 · 2026-05-19T14:06:35.932191+00:00_
+_source line 3687 · 2026-05-19T14:06:35.932191+00:00_
 
 called Grep
 
@@ -10919,7 +9826,7 @@ called Grep
 
 ### Tool result
 
-_source line 3696 · 2026-05-19T14:06:36.083270+00:00_
+_source line 3688 · 2026-05-19T14:06:36.083270+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:42:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:87:[Omitted long matching line]
@@ -10942,7 +9849,7 @@ _source line 3696 · 2026-05-19T14:06:36.083270+00:00_
 
 ### Tool call
 
-_source line 3697 · 2026-05-19T14:06:39.401344+00:00_
+_source line 3689 · 2026-05-19T14:06:39.401344+00:00_
 
 called Read
 
@@ -10980,7 +9887,7 @@ called Read
 
 ### Tool result
 
-_source line 3698 · 2026-05-19T14:06:39.454159+00:00_
+_source line 3690 · 2026-05-19T14:06:39.454159+00:00_
 
 35	
 36	\input{discussion}
@@ -11014,7 +9921,7 @@ _source line 3698 · 2026-05-19T14:06:39.454159+00:00_
 
 ### Tool call
 
-_source line 3699 · 2026-05-19T14:06:55.128487+00:00_
+_source line 3691 · 2026-05-19T14:06:55.128487+00:00_
 
 called Edit
 
@@ -11054,7 +9961,7 @@ called Edit
 
 ### Tool result
 
-_source line 3700 · 2026-05-19T14:06:55.180051+00:00_
+_source line 3692 · 2026-05-19T14:06:55.180051+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -11076,7 +9983,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3701 · 2026-05-19T14:07:01.717107+00:00_
+_source line 3693 · 2026-05-19T14:07:01.717107+00:00_
 
 called Grep
 
@@ -11118,7 +10025,7 @@ called Grep
 
 ### Tool result
 
-_source line 3702 · 2026-05-19T14:07:01.768096+00:00_
+_source line 3694 · 2026-05-19T14:07:01.768096+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:12:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:42:[Omitted long matching line]
@@ -11149,7 +10056,7 @@ _source line 3702 · 2026-05-19T14:07:01.768096+00:00_
 
 ### Tool call
 
-_source line 3703 · 2026-05-19T14:07:16.194104+00:00_
+_source line 3695 · 2026-05-19T14:07:16.194104+00:00_
 
 called Read
 
@@ -11183,7 +10090,7 @@ called Read
 
 ### Tool result
 
-_source line 3704 · 2026-05-19T14:07:16.244823+00:00_
+_source line 3696 · 2026-05-19T14:07:16.244823+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -11213,7 +10120,7 @@ _source line 3704 · 2026-05-19T14:07:16.244823+00:00_
 
 ### Tool call
 
-_source line 3705 · 2026-05-19T14:07:21.013413+00:00_
+_source line 3697 · 2026-05-19T14:07:21.013413+00:00_
 
 called Edit
 
@@ -11253,7 +10160,7 @@ called Edit
 
 ### Tool result
 
-_source line 3706 · 2026-05-19T14:07:21.064369+00:00_
+_source line 3698 · 2026-05-19T14:07:21.064369+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
 
@@ -11275,7 +10182,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3707 · 2026-05-19T14:07:25.934700+00:00_
+_source line 3699 · 2026-05-19T14:07:25.934700+00:00_
 
 called Edit
 
@@ -11315,7 +10222,7 @@ called Edit
 
 ### Tool result
 
-_source line 3708 · 2026-05-19T14:07:25.985379+00:00_
+_source line 3700 · 2026-05-19T14:07:25.985379+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
 
@@ -11337,7 +10244,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3709 · 2026-05-19T14:07:31.359229+00:00_
+_source line 3701 · 2026-05-19T14:07:31.359229+00:00_
 
 called Edit
 
@@ -11377,7 +10284,7 @@ called Edit
 
 ### Tool result
 
-_source line 3710 · 2026-05-19T14:07:31.410080+00:00_
+_source line 3702 · 2026-05-19T14:07:31.410080+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
 
@@ -11399,7 +10306,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3711 · 2026-05-19T14:07:38.471487+00:00_
+_source line 3703 · 2026-05-19T14:07:38.471487+00:00_
 
 called Read
 
@@ -11433,7 +10340,7 @@ called Read
 
 ### Tool result
 
-_source line 3712 · 2026-05-19T14:07:38.575033+00:00_
+_source line 3704 · 2026-05-19T14:07:38.575033+00:00_
 
 1	\begin{abstract}
 2	Training-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: type count and type confusability. We present what is, to our knowledge, the first controlled study isolating these factors across NER, RE, and event detection on four datasets; the analysis reveals task-dependent effect structures. We quantify confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS). Degradation operates along two dimensions: count-related recall decline (up to $-$49\,pp for document-level RE) dominates confusability-related type substitution, though typical batches yield modest ${\sim}$2\,pp gaps. BCS explains 22--53\% of cross-batch RE accuracy variance under RE's forced-choice format but shows no batch-level signal for NER, where errors scatter across missed entities and boundary failures. Few-shot demonstrations widen the confusability gap (+4.3\,pp under 5-shot). Schema decomposition fails due to merge amplification (NER) and routing failure (RE). Pairwise confusability is a schema-structural property: count effects replicate across model scales and architectures (8B to proprietary); batch-level BCS prediction has been verified on open-weight models. Effects persist under varied prompt designs.
@@ -11458,7 +10365,7 @@ _source line 3712 · 2026-05-19T14:07:38.575033+00:00_
 
 ### Tool call
 
-_source line 3713 · 2026-05-19T14:07:46.059971+00:00_
+_source line 3705 · 2026-05-19T14:07:46.059971+00:00_
 
 called Edit
 
@@ -11498,7 +10405,7 @@ called Edit
 
 ### Tool result
 
-_source line 3714 · 2026-05-19T14:07:46.060485+00:00_
+_source line 3706 · 2026-05-19T14:07:46.060485+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully.
 
@@ -11520,7 +10427,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3715 · 2026-05-19T14:07:49.929419+00:00_
+_source line 3707 · 2026-05-19T14:07:49.929419+00:00_
 
 called Read
 
@@ -11558,7 +10465,7 @@ called Read
 
 ### Tool result
 
-_source line 3716 · 2026-05-19T14:07:49.981147+00:00_
+_source line 3708 · 2026-05-19T14:07:49.981147+00:00_
 
 170	\midrule
 171	Single-pass (no decomposition) & 50.4\% & --- \\
@@ -11597,7 +10504,7 @@ _source line 3716 · 2026-05-19T14:07:49.981147+00:00_
 
 ### Tool call
 
-_source line 3717 · 2026-05-19T14:08:05.342414+00:00_
+_source line 3709 · 2026-05-19T14:08:05.342414+00:00_
 
 called Edit
 
@@ -11637,7 +10544,7 @@ called Edit
 
 ### Tool result
 
-_source line 3718 · 2026-05-19T14:08:05.443723+00:00_
+_source line 3710 · 2026-05-19T14:08:05.443723+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -11659,7 +10566,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3719 · 2026-05-19T14:08:10.300595+00:00_
+_source line 3711 · 2026-05-19T14:08:10.300595+00:00_
 
 called Read
 
@@ -11697,7 +10604,7 @@ called Read
 
 ### Tool result
 
-_source line 3720 · 2026-05-19T14:08:10.401531+00:00_
+_source line 3712 · 2026-05-19T14:08:10.401531+00:00_
 
 57	
 58	\paragraph{Document-level RE (DocRED).}
@@ -11733,7 +10640,7 @@ _source line 3720 · 2026-05-19T14:08:10.401531+00:00_
 
 ### Tool call
 
-_source line 3721 · 2026-05-19T14:08:20.246472+00:00_
+_source line 3713 · 2026-05-19T14:08:20.246472+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -11769,7 +10676,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3722 · 2026-05-19T14:08:20.347310+00:00_
+_source line 3714 · 2026-05-19T14:08:20.347310+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_docred_bcs_r2_20260519T140257\", \"status\": \"done\", \"task_type\": \"analysis:docred_bcs_r2\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T14:02:57.139565+00:00\", \"ended_at\": \"2026-05-19T14:06:25.933247+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"结果已保存到 `r2_analysis.json`。汇总：\\n\\n### Per count level (n=55 each)\\n\\n| Metric | count_16 | count_32 |\\n|--------|----------|----------|\\n| **R²** | **0.6528** | **0.6135** |\\n| R² 95% CI | [0.5272, 0.7661] | [0.4662, 0.7482] |\\n| Pearson r | −0.808 (p=8.9e-14) | −0.783 (p=1.6e-12) |\\n| Spearman ρ | −0.762 (p=1.4e-11) | −0.693 (p=4.6e-09) |\\n| Slope | −0.7317 | −0.6296 |\\n| Intercept | 0.9775 | 0.8558 |\\n\\n### Pooled (n=110)\\n- R² (BCS only) = 0.5779, CI [0.4629, 0.6838]\\n- R² (BCS + count covariate) = 0.6784\\n- Semi-partial R² of BCS = 0.5676\\n\\n### vs. original\\n- Original count_16: R² = 0.525, n=35, CI [0.27, 0.73]\\n- Expanded count_16: R² = **0.6528**, n=55, CI [0.53, 0.77] — 更高且 CI 更窄\\n\\n### 论文引用\\n**R² = 0.61–0.65 (61–65%)**，替代原来的 \\\"22–53%\\\"。原来那个范围对应的是旧实验（n=35, R²=0.525 是 count_16 的，其他 count levels 的 R² 更低），expanded 实验两个 count level 都稳定在 61–65%。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -11791,7 +10698,7 @@ _source line 3722 · 2026-05-19T14:08:20.347310+00:00_
 
 ### Tool call
 
-_source line 3723 · 2026-05-19T14:08:50.916803+00:00_
+_source line 3715 · 2026-05-19T14:08:50.916803+00:00_
 
 called Edit
 
@@ -11831,7 +10738,7 @@ called Edit
 
 ### Tool result
 
-_source line 3724 · 2026-05-19T14:08:50.967448+00:00_
+_source line 3716 · 2026-05-19T14:08:50.967448+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated. All occurrences were successfully replaced.
 
@@ -11853,7 +10760,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3725 · 2026-05-19T14:08:55.141001+00:00_
+_source line 3717 · 2026-05-19T14:08:55.141001+00:00_
 
 called Edit
 
@@ -11893,7 +10800,7 @@ called Edit
 
 ### Tool result
 
-_source line 3726 · 2026-05-19T14:08:55.192070+00:00_
+_source line 3718 · 2026-05-19T14:08:55.192070+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated. All occurrences were successfully replaced.
 
@@ -11915,7 +10822,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3727 · 2026-05-19T14:09:02.030821+00:00_
+_source line 3719 · 2026-05-19T14:09:02.030821+00:00_
 
 called Edit
 
@@ -11955,7 +10862,7 @@ called Edit
 
 ### Tool result
 
-_source line 3728 · 2026-05-19T14:09:02.081967+00:00_
+_source line 3720 · 2026-05-19T14:09:02.081967+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated. All occurrences were successfully replaced.
 
@@ -11977,7 +10884,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3729 · 2026-05-19T14:09:05.923016+00:00_
+_source line 3721 · 2026-05-19T14:09:05.923016+00:00_
 
 called Edit
 
@@ -12017,7 +10924,7 @@ called Edit
 
 ### Tool result
 
-_source line 3730 · 2026-05-19T14:09:05.974073+00:00_
+_source line 3722 · 2026-05-19T14:09:05.974073+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated. All occurrences were successfully replaced.
 
@@ -12039,7 +10946,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3731 · 2026-05-19T14:09:17.504680+00:00_
+_source line 3723 · 2026-05-19T14:09:17.504680+00:00_
 
 called Edit
 
@@ -12079,7 +10986,7 @@ called Edit
 
 ### Tool result
 
-_source line 3732 · 2026-05-19T14:09:17.505423+00:00_
+_source line 3724 · 2026-05-19T14:09:17.505423+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -12101,7 +11008,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3733 · 2026-05-19T14:09:21.974000+00:00_
+_source line 3725 · 2026-05-19T14:09:21.974000+00:00_
 
 called Edit
 
@@ -12141,7 +11048,7 @@ called Edit
 
 ### Tool result
 
-_source line 3734 · 2026-05-19T14:09:22.024993+00:00_
+_source line 3726 · 2026-05-19T14:09:22.024993+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -12163,7 +11070,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3735 · 2026-05-19T14:09:26.795032+00:00_
+_source line 3727 · 2026-05-19T14:09:26.795032+00:00_
 
 called Edit
 
@@ -12203,7 +11110,7 @@ called Edit
 
 ### Tool result
 
-_source line 3736 · 2026-05-19T14:09:26.845771+00:00_
+_source line 3728 · 2026-05-19T14:09:26.845771+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -12225,7 +11132,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3737 · 2026-05-19T14:09:31.013375+00:00_
+_source line 3729 · 2026-05-19T14:09:31.013375+00:00_
 
 called Read
 
@@ -12263,7 +11170,7 @@ called Read
 
 ### Tool result
 
-_source line 3738 · 2026-05-19T14:09:31.064106+00:00_
+_source line 3730 · 2026-05-19T14:09:31.064106+00:00_
 
 46	\item \textbf{Causal mechanism.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway. A post-hoc renaming experiment (Appendix~\ref{app:renaming}) confirms this concern: replacing high-SCS labels with semantically distinct paraphrases reduced pairwise embedding similarity but decreased accuracy by 3--9\,pp, as label unfamiliarity introduced errors that outweighed any confusability reduction.
 47	
@@ -12292,7 +11199,7 @@ _source line 3738 · 2026-05-19T14:09:31.064106+00:00_
 
 ### Tool call
 
-_source line 3739 · 2026-05-19T14:09:35.953137+00:00_
+_source line 3731 · 2026-05-19T14:09:35.953137+00:00_
 
 called Edit
 
@@ -12332,7 +11239,7 @@ called Edit
 
 ### Tool result
 
-_source line 3740 · 2026-05-19T14:09:36.004458+00:00_
+_source line 3732 · 2026-05-19T14:09:36.004458+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -12354,7 +11261,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3741 · 2026-05-19T14:09:40.523212+00:00_
+_source line 3733 · 2026-05-19T14:09:40.523212+00:00_
 
 called Grep
 
@@ -12396,7 +11303,7 @@ called Grep
 
 ### Tool result
 
-_source line 3742 · 2026-05-19T14:09:40.573934+00:00_
+_source line 3734 · 2026-05-19T14:09:40.573934+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:59:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:33:DocRED & RE (doc.) & 96 & 1{,}000 & Cross & 0.53--0.73 & MiniLM \\
@@ -12427,7 +11334,7 @@ _source line 3742 · 2026-05-19T14:09:40.573934+00:00_
 
 ### Tool call
 
-_source line 3743 · 2026-05-19T14:09:49.067716+00:00_
+_source line 3735 · 2026-05-19T14:09:49.067716+00:00_
 
 called Read
 
@@ -12465,7 +11372,7 @@ called Read
 
 ### Tool result
 
-_source line 3744 · 2026-05-19T14:09:49.119656+00:00_
+_source line 3736 · 2026-05-19T14:09:49.119656+00:00_
 
 12	\paragraph{SCS novelty.} SCS shares its formal definition (pairwise cosine similarity of type name embeddings) with the partitioning criterion in LLM-PEE~\cite{llm-pee-2025}. While LLM-PEE uses this criterion for engineering optimization (minimizing cross-batch confusion during decomposition), our work uses the same metric for scientific analysis (isolating confusability's contribution to degradation under controlled conditions). The use of embedding distance for type discrimination has parallels in metric learning \citep{snell2017prototypical} and zero-shot classification \citep{yin-2019-zero-shot-bench}. Our contribution is the controlled experimental framework that isolates confusability's predictive relationship with extraction degradation; the modest pairwise $r^2$ (1.3--1.7\%) compounds at the batch level to explain 22--53\% of cross-batch RE variance (\S\ref{sec:bcs_controlled}). Our centrality confound (\S\ref{sec:centrality_confound}) connects to representation degeneration \cite{gao-repr-degen-2019,ethayarajh-contextual-2019}: local clusters can be isotropic \cite{cai-isotropy-clusters-2021}, explaining why MAVEN's single-ontology types conflate confusability with centrality.
 13	
@@ -12488,7 +11395,7 @@ _source line 3744 · 2026-05-19T14:09:49.119656+00:00_
 
 ### Tool call
 
-_source line 3745 · 2026-05-19T14:09:53.086073+00:00_
+_source line 3737 · 2026-05-19T14:09:53.086073+00:00_
 
 called Edit
 
@@ -12528,7 +11435,7 @@ called Edit
 
 ### Tool result
 
-_source line 3746 · 2026-05-19T14:09:53.137444+00:00_
+_source line 3738 · 2026-05-19T14:09:53.137444+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully.
 
@@ -12550,7 +11457,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3747 · 2026-05-19T14:09:56.553219+00:00_
+_source line 3739 · 2026-05-19T14:09:56.553219+00:00_
 
 called Read
 
@@ -12588,7 +11495,7 @@ called Read
 
 ### Tool result
 
-_source line 3748 · 2026-05-19T14:09:56.604003+00:00_
+_source line 3740 · 2026-05-19T14:09:56.604003+00:00_
 
 288	
 289	\paragraph{NER (Few-NERD).}
@@ -12614,7 +11521,7 @@ _source line 3748 · 2026-05-19T14:09:56.604003+00:00_
 
 ### Tool call
 
-_source line 3749 · 2026-05-19T14:10:00.922812+00:00_
+_source line 3741 · 2026-05-19T14:10:00.922812+00:00_
 
 called Grep
 
@@ -12656,7 +11563,7 @@ called Grep
 
 ### Tool result
 
-_source line 3750 · 2026-05-19T14:10:00.973437+00:00_
+_source line 3742 · 2026-05-19T14:10:00.973437+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:370:DocRED regressions (\S\ref{sec:bcs_controlled}) use OLS on $n = 35$ batches (5 high-BCS + 5 low-BCS + 25 random) with one predictor. At count 16, adjusted $R^2 = 0.511$ (unadjusted: 0.525; 95\% CI via Fisher $z$-transformation: [0.27, 0.73]); at count 32, adjusted $R^2 = 0.426$ (unadjusted: 0.443; CI: [0.18, 0.67]). The small shrinkage ($\Delta R^2 \leq 0.02$) indicates the unadjusted values are not inflated by the predictor-to-sample ratio.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:59:[Omitted long matching line]
@@ -12679,7 +11586,7 @@ _source line 3750 · 2026-05-19T14:10:00.973437+00:00_
 
 ### Tool call
 
-_source line 3751 · 2026-05-19T14:10:12.267978+00:00_
+_source line 3743 · 2026-05-19T14:10:12.267978+00:00_
 
 called Read
 
@@ -12717,7 +11624,7 @@ called Read
 
 ### Tool result
 
-_source line 3752 · 2026-05-19T14:10:12.321215+00:00_
+_source line 3744 · 2026-05-19T14:10:12.321215+00:00_
 
 368	
 369	\paragraph{Adjusted $R^2$ and confidence intervals.}
@@ -12743,7 +11650,7 @@ _source line 3752 · 2026-05-19T14:10:12.321215+00:00_
 
 ### Tool call
 
-_source line 3753 · 2026-05-19T14:10:19.050676+00:00_
+_source line 3745 · 2026-05-19T14:10:19.050676+00:00_
 
 called Edit
 
@@ -12783,7 +11690,7 @@ called Edit
 
 ### Tool result
 
-_source line 3754 · 2026-05-19T14:10:19.102466+00:00_
+_source line 3746 · 2026-05-19T14:10:19.102466+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -12805,7 +11712,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3755 · 2026-05-19T14:10:24.173029+00:00_
+_source line 3747 · 2026-05-19T14:10:24.173029+00:00_
 
 called Read
 
@@ -12839,7 +11746,7 @@ called Read
 
 ### Tool result
 
-_source line 3756 · 2026-05-19T14:10:24.173530+00:00_
+_source line 3748 · 2026-05-19T14:10:24.173530+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -12875,7 +11782,7 @@ _source line 3756 · 2026-05-19T14:10:24.173530+00:00_
 
 ### Tool call
 
-_source line 3757 · 2026-05-19T14:10:33.567569+00:00_
+_source line 3749 · 2026-05-19T14:10:33.567569+00:00_
 
 called Grep
 
@@ -12917,7 +11824,7 @@ called Grep
 
 ### Tool result
 
-_source line 3758 · 2026-05-19T14:10:33.618387+00:00_
+_source line 3750 · 2026-05-19T14:10:33.618387+00:00_
 
 No matches found
 
@@ -12939,7 +11846,7 @@ No matches found
 
 ### Tool call
 
-_source line 3759 · 2026-05-19T14:10:38.200474+00:00_
+_source line 3751 · 2026-05-19T14:10:38.200474+00:00_
 
 called Bash
 
@@ -12977,7 +11884,7 @@ called Bash
 
 ### Tool result
 
-_source line 3760 · 2026-05-19T14:10:41.665050+00:00_
+_source line 3752 · 2026-05-19T14:10:41.665050+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -13003,7 +11910,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3761 · 2026-05-19T14:10:48.046692+00:00_
+_source line 3753 · 2026-05-19T14:10:48.046692+00:00_
 
 called Bash
 
@@ -13039,7 +11946,7 @@ called Bash
 
 ### Tool result
 
-_source line 3762 · 2026-05-19T14:10:48.348542+00:00_
+_source line 3754 · 2026-05-19T14:10:48.348542+00:00_
 
 P9 first: additively in sentence-level RE and sub-additively
 Total pages: 26
@@ -13063,7 +11970,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3763 · 2026-05-19T14:10:57.988508+00:00_
+_source line 3755 · 2026-05-19T14:10:57.988508+00:00_
 
 called Bash
 
@@ -13099,7 +12006,7 @@ called Bash
 
 ### Tool result
 
-_source line 3764 · 2026-05-19T14:10:58.291125+00:00_
+_source line 3756 · 2026-05-19T14:10:58.291125+00:00_
 
 === PAGE 8 TAIL ===
   (1) flag type pairs with SCS > 0.85 for targeted
@@ -13143,7 +12050,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3765 · 2026-05-19T14:11:31.535791+00:00_
+_source line 3757 · 2026-05-19T14:11:31.535791+00:00_
 
 called Edit
 
@@ -13183,7 +12090,7 @@ called Edit
 
 ### Tool result
 
-_source line 3766 · 2026-05-19T14:11:31.586568+00:00_
+_source line 3758 · 2026-05-19T14:11:31.586568+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -13205,7 +12112,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3767 · 2026-05-19T14:11:36.514881+00:00_
+_source line 3759 · 2026-05-19T14:11:36.514881+00:00_
 
 called Edit
 
@@ -13245,7 +12152,7 @@ called Edit
 
 ### Tool result
 
-_source line 3768 · 2026-05-19T14:11:36.515379+00:00_
+_source line 3760 · 2026-05-19T14:11:36.515379+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -13267,7 +12174,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3769 · 2026-05-19T14:11:40.833559+00:00_
+_source line 3761 · 2026-05-19T14:11:40.833559+00:00_
 
 called Bash
 
@@ -13305,7 +12212,7 @@ called Bash
 
 ### Tool result
 
-_source line 3770 · 2026-05-19T14:11:44.095966+00:00_
+_source line 3762 · 2026-05-19T14:11:44.095966+00:00_
 
   ./references.bib
 Latexmk: All targets (main.pdf) are up-to-date
@@ -13329,7 +12236,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3771 · 2026-05-19T14:11:50.475520+00:00_
+_source line 3763 · 2026-05-19T14:11:50.475520+00:00_
 
 called Bash
 
@@ -13365,7 +12272,7 @@ called Bash
 
 ### Tool result
 
-_source line 3772 · 2026-05-19T14:11:50.828024+00:00_
+_source line 3764 · 2026-05-19T14:11:50.828024+00:00_
 
 P9 first: 2.5 Flash (API). Dimension 1 has been validated
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -13388,7 +12295,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3773 · 2026-05-19T14:12:01.780014+00:00_
+_source line 3765 · 2026-05-19T14:12:01.780014+00:00_
 
 called Grep
 
@@ -13430,7 +12337,7 @@ called Grep
 
 ### Tool result
 
-_source line 3774 · 2026-05-19T14:12:01.880937+00:00_
+_source line 3766 · 2026-05-19T14:12:01.880937+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:123:Single-pass extraction achieves F1\,=\,0.445 (P\,=\,0.563, R\,=\,0.368). SDGD obtains F1\,=\,0.251 (P\,=\,0.210, R\,=\,0.314), a 44\% relative drop. Random batching reaches F1\,=\,0.320 (P\,=\,0.249, R\,=\,0.446), and per-type extraction yields F1\,=\,0.292 (P\,=\,0.194, R\,=\,0.586). Every decomposition mode falls below the single-pass baseline (Table~\ref{tab:sdgd_results}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:133:single\_pass & 1 & 0.563 & 0.368 & 0.445 \\
@@ -13460,7 +12367,7 @@ _source line 3774 · 2026-05-19T14:12:01.880937+00:00_
 
 ### Tool call
 
-_source line 3775 · 2026-05-19T14:12:08.370772+00:00_
+_source line 3767 · 2026-05-19T14:12:08.370772+00:00_
 
 called Bash
 
@@ -13496,7 +12403,7 @@ called Bash
 
 ### Tool result
 
-_source line 3776 · 2026-05-19T14:12:08.422190+00:00_
+_source line 3768 · 2026-05-19T14:12:08.422190+00:00_
 
 === 22-65 refs ===
 abstract.tex:2:Training-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: type count and type confusability. We present what is, to our knowledge, the first controlled study isolating these factors across NER, RE, and event detection on four datasets; the analysis reveals task-dependent effect structures. We quantify confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS). Degradation operates along two dimensions: count-related recall decline (up to $-$49\,pp for document-level RE) dominates confusability-related type substitution, though typical batches yield modest ${\sim}$2\,pp gaps. BCS explains 22--65\% of cross-batch RE accuracy variance under RE's forced-choice format but shows no batch-level signal for NER, where errors scatter across missed entities and boundary failures. Few-shot demonstrations widen the confusability gap (+4.3\,pp under 5-shot). Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE). Pairwise confusability is a schema-structural property: count effects replicate across model scales and architectures (8B to proprietary); batch-level BCS prediction has been verified on open-weight models. Effects persist under varied prompt designs.
@@ -13522,7 +12429,7 @@ related_work.tex:12:\paragraph{SCS novelty.} SCS shares its formal definition (p
 
 ### Tool call
 
-_source line 3777 · 2026-05-19T14:12:33.547760+00:00_
+_source line 3769 · 2026-05-19T14:12:33.547760+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -13558,7 +12465,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3778 · 2026-05-19T14:12:34.871742+00:00_
+_source line 3770 · 2026-05-19T14:12:34.871742+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -13580,7 +12487,7 @@ _source line 3778 · 2026-05-19T14:12:34.871742+00:00_
 
 ### Tool call
 
-_source line 3779 · 2026-05-19T14:12:44.169010+00:00_
+_source line 3771 · 2026-05-19T14:12:44.169010+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -13618,7 +12525,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3780 · 2026-05-19T14:12:44.370500+00:00_
+_source line 3772 · 2026-05-19T14:12:44.370500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"content\": \"# Memory — schema-dag-extraction\\n\\n## exp_schema_intervention: renaming 不是有效干预手段 (2026-05-17, negative)\\n- Renaming 降低两组 accuracy：high-BCS -8.83pp, low-BCS -2.96pp (both p<0.001)\\n- Interaction 显著 (-5.88pp, p<0.001)：high-BCS 受损更大，但方向是 renaming 损害而非改善\\n- 根因：LLM 对 original type names 有 strong prior，renaming 引入 label unfamiliarity confound\\n- Solo sanity check 11/12 通过，但 multi-type batch 中 compound effect 出现 (r=-0.625)\\n- **教训**：post-hoc renaming 无法分离 SCS 降低效果与 label unfamiliarity，不可用作因果干预\\n- D059 (Greedy auto-renaming) 基于相同逻辑，也已停止\\n\\n## TUM proxy 不是运行中的服务 (2026-05-17)\\n- TUM 是飞书 key 收集机制，不是 API proxy server\\n- localhost:8001 没有进程监听\\n- `tum_` 前缀的 token 不是有效的 Google/OpenAI API key\\n- 本机能直连 Google API（需要真实 Gemini key, 格式 AIza...）\\n- **教训**：API 实验前必须先验证 (a) proxy 是否运行 (b) key 格式是否匹配目标 API\\n\\n## Q3 held-out validation: FewRel val-origin SCS-confusion (2026-05-17, CORRECTED)\\n- 从 80-type confusion matrix 提取 16 val-origin types 的 C(16,2)=120 pairs\\n- 16 val types 与 64 train types PIDs 完全不重叠\\n- Val-only Spearman ρ = 0.216, p = 0.018 (显著)\\n- All-80 Spearman ρ = 0.218, p = 2.2e-35\\n- Val-only 与全集几乎一致，排除 training-set contamination\\n- Nonzero subset: val ρ = 0.600 (n=11, p=0.051), all-80 ρ = 0.128 (n=272, p=0.035)\\n- Top confused val pairs: child↔mother (500, SCS=0.84), child↔spouse (100, SCS=0.71), member of↔part of (100, SCS=0.90)\\n- 数据源: `/root/schema-dag-extraction/artifacts/q3_val_scs_confusion/q3_val_scs_confusion.json`\\n- **教训**: 第一个 Q3 worker 做错了（做了 SCS 分布对比而非 confusion correlation），第二个 worker 才做对\\n\\n## 跨模型 appendix 数据必须同 seed 同批次 (2026-05-17)\\n- d051 Qwen3 FewRel 有 3 seeds (s42/s123/s456)，每个 seed 不同的 960 samples 和 batch compositions\\n- 70B 只有 s42。论文 appendix 曾错用三 seed 平均值与 70B s42 并列\\n- **修正**: 统一用 s42 单 seed（确保同 samples 同 batches）\\n- 数据源: `artifacts/d051_fewrel_n25_s42/count_cur
 …[truncated 2033 chars]
@@ -13641,7 +12548,7 @@ _source line 3780 · 2026-05-19T14:12:44.370500+00:00_
 
 ### Tool call
 
-_source line 3781 · 2026-05-19T14:13:11.370242+00:00_
+_source line 3773 · 2026-05-19T14:13:11.370242+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -13679,7 +12586,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 3782 · 2026-05-19T14:13:11.421052+00:00_
+_source line 3774 · 2026-05-19T14:13:11.421052+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -13701,7 +12608,7 @@ _source line 3782 · 2026-05-19T14:13:11.421052+00:00_
 
 ### Assistant
 
-_source line 3783 · 2026-05-19T14:13:19.897226+00:00_
+_source line 3775 · 2026-05-19T14:13:19.897226+00:00_
 
 全部任务完成：
 
@@ -13735,7 +12642,7 @@ _source line 3783 · 2026-05-19T14:13:19.897226+00:00_
 
 ### User
 
-_source line 3784 · 2026-05-19T14:13:20.430882+00:00_
+_source line 3776 · 2026-05-19T14:13:20.430882+00:00_
 
 [Director 指令] **⚠️ 紧急修正：DocRED sub-additive interaction 的论文表述**
 
@@ -13792,7 +12699,7 @@ Reviewer 发现重要 confound：BCS range restriction。
 
 ### Tool call
 
-_source line 3785 · 2026-05-19T14:13:36.289188+00:00_
+_source line 3777 · 2026-05-19T14:13:36.289188+00:00_
 
 called Read
 
@@ -13830,7 +12737,7 @@ called Read
 
 ### Tool result
 
-_source line 3786 · 2026-05-19T14:13:36.792441+00:00_
+_source line 3778 · 2026-05-19T14:13:36.792441+00:00_
 
 85	Error taxonomy decomposition (Table~\ref{tab:error_taxonomy} and Figure~\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS: $\rho = 1.0$ ($p < 0.001$) for NER and $\rho = 0.954$ ($p < 0.001$) for RE. In NER, missed rates are higher (43--65\%) and non-monotonic; confusable types impair entity detection itself. Extreme-BCS batches produce $9.9\text{--}27.5\times$ more confusion than low-BCS batches.
 86	
@@ -13857,7 +12764,7 @@ _source line 3786 · 2026-05-19T14:13:36.792441+00:00_
 
 ### Tool call
 
-_source line 3787 · 2026-05-19T14:13:36.793000+00:00_
+_source line 3779 · 2026-05-19T14:13:36.793000+00:00_
 
 called Read
 
@@ -13891,7 +12798,7 @@ called Read
 
 ### Tool result
 
-_source line 3788 · 2026-05-19T14:13:37.245393+00:00_
+_source line 3780 · 2026-05-19T14:13:37.245393+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -13927,7 +12834,7 @@ _source line 3788 · 2026-05-19T14:13:37.245393+00:00_
 
 ### Tool call
 
-_source line 3789 · 2026-05-19T14:13:37.798255+00:00_
+_source line 3781 · 2026-05-19T14:13:37.798255+00:00_
 
 called Read
 
@@ -13965,7 +12872,7 @@ called Read
 
 ### Tool result
 
-_source line 3790 · 2026-05-19T14:13:38.250998+00:00_
+_source line 3782 · 2026-05-19T14:13:38.250998+00:00_
 
 14	Our experiments yield four findings:
 15	(1)~Degradation operates along two dimensions: count-related recall decline (up to $-$49\,pp for document-level RE) and confusability-related type substitution (modest in typical batches), with count as the dominant factor (\S\ref{sec:count_curves}, \S\ref{sec:multi_channel}). The two dimensions combine additively in sentence-level RE (bounded at $\pm 3$\,pp, TOST $p = 0.003$) but sub-additively in document-level RE ($-$9.4\,pp, 95\% CI [$-$12.9, $-$6.0]).
@@ -13992,7 +12899,7 @@ _source line 3790 · 2026-05-19T14:13:38.250998+00:00_
 
 ### Tool call
 
-_source line 3791 · 2026-05-19T14:13:38.502931+00:00_
+_source line 3783 · 2026-05-19T14:13:38.502931+00:00_
 
 called Read
 
@@ -14030,7 +12937,7 @@ called Read
 
 ### Tool result
 
-_source line 3792 · 2026-05-19T14:13:38.554222+00:00_
+_source line 3784 · 2026-05-19T14:13:38.554222+00:00_
 
 40	\item \textbf{Model coverage.} Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B, 70B-Instruct (FP8), and Gemini 2.5 Flash (API). Dimension~1 has been validated across all four models including a proprietary one; Dimension~2 has been verified only on open-weight models and was not robustly detectable on NER at 8B scale, likely due to floor effects. Gemini 2.5 Flash count-64 results are partial (11/25 batches) due to API quota exhaustion. Dimension~2 (BCS) has not been validated on proprietary models at the batch level.
 41	
@@ -14059,7 +12966,7 @@ _source line 3792 · 2026-05-19T14:13:38.554222+00:00_
 
 ### Tool call
 
-_source line 3793 · 2026-05-19T14:13:49.653429+00:00_
+_source line 3785 · 2026-05-19T14:13:49.653429+00:00_
 
 called Read
 
@@ -14097,7 +13004,7 @@ called Read
 
 ### Tool result
 
-_source line 3794 · 2026-05-19T14:13:49.653929+00:00_
+_source line 3786 · 2026-05-19T14:13:49.653929+00:00_
 
 207	
 208	\paragraph{DocRED factorial (expanded).}
@@ -14123,7 +13030,7 @@ _source line 3794 · 2026-05-19T14:13:49.653929+00:00_
 
 ### Tool call
 
-_source line 3795 · 2026-05-19T14:13:49.654782+00:00_
+_source line 3787 · 2026-05-19T14:13:49.654782+00:00_
 
 called Read
 
@@ -14157,7 +13064,7 @@ called Read
 
 ### Tool result
 
-_source line 3796 · 2026-05-19T14:13:49.956415+00:00_
+_source line 3788 · 2026-05-19T14:13:49.956415+00:00_
 
 1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
 2	\label{sec:sdgd}
@@ -14192,7 +13099,7 @@ _source line 3796 · 2026-05-19T14:13:49.956415+00:00_
 
 ### Tool call
 
-_source line 3797 · 2026-05-19T14:13:50.007336+00:00_
+_source line 3789 · 2026-05-19T14:13:50.007336+00:00_
 
 called Read
 
@@ -14226,7 +13133,7 @@ called Read
 
 ### Tool result
 
-_source line 3798 · 2026-05-19T14:13:50.058780+00:00_
+_source line 3790 · 2026-05-19T14:13:50.058780+00:00_
 
 1	\begin{abstract}
 2	Training-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: type count and type confusability. We present what is, to our knowledge, the first controlled study isolating these factors across NER, RE, and event detection on four datasets; the analysis reveals task-dependent effect structures. We quantify confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS). Degradation operates along two dimensions: count-related recall decline (up to $-$49\,pp for document-level RE) dominates confusability-related type substitution, though typical batches yield modest ${\sim}$2\,pp gaps. BCS explains 22--65\% of cross-batch RE accuracy variance under RE's forced-choice format but shows no batch-level signal for NER, where errors scatter across missed entities and boundary failures. Few-shot demonstrations widen the confusability gap (+4.3\,pp under 5-shot). Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE). Pairwise confusability is a schema-structural property: count effects replicate across model scales and architectures (8B to proprietary); batch-level BCS prediction has been verified on open-weight models. Effects persist under varied prompt designs.
@@ -14251,7 +13158,7 @@ _source line 3798 · 2026-05-19T14:13:50.058780+00:00_
 
 ### Tool call
 
-_source line 3799 · 2026-05-19T14:14:30.429994+00:00_
+_source line 3791 · 2026-05-19T14:14:30.429994+00:00_
 
 called Edit
 
@@ -14291,7 +13198,7 @@ called Edit
 
 ### Tool result
 
-_source line 3800 · 2026-05-19T14:14:30.933153+00:00_
+_source line 3792 · 2026-05-19T14:14:30.933153+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -14313,7 +13220,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3801 · 2026-05-19T14:14:32.841388+00:00_
+_source line 3793 · 2026-05-19T14:14:32.841388+00:00_
 
 called Edit
 
@@ -14353,7 +13260,7 @@ called Edit
 
 ### Tool result
 
-_source line 3802 · 2026-05-19T14:14:33.293697+00:00_
+_source line 3794 · 2026-05-19T14:14:33.293697+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
 
@@ -14375,7 +13282,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3803 · 2026-05-19T14:14:34.708040+00:00_
+_source line 3795 · 2026-05-19T14:14:34.708040+00:00_
 
 called Edit
 
@@ -14415,7 +13322,7 @@ called Edit
 
 ### Tool result
 
-_source line 3804 · 2026-05-19T14:14:34.712439+00:00_
+_source line 3796 · 2026-05-19T14:14:34.712439+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -14437,7 +13344,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3805 · 2026-05-19T14:14:36.621739+00:00_
+_source line 3797 · 2026-05-19T14:14:36.621739+00:00_
 
 called Edit
 
@@ -14477,7 +13384,7 @@ called Edit
 
 ### Tool result
 
-_source line 3806 · 2026-05-19T14:14:37.074075+00:00_
+_source line 3798 · 2026-05-19T14:14:37.074075+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -14499,7 +13406,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3807 · 2026-05-19T14:14:39.433657+00:00_
+_source line 3799 · 2026-05-19T14:14:39.433657+00:00_
 
 called Edit
 
@@ -14539,7 +13446,7 @@ called Edit
 
 ### Tool result
 
-_source line 3808 · 2026-05-19T14:14:39.936595+00:00_
+_source line 3800 · 2026-05-19T14:14:39.936595+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -14561,7 +13468,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3809 · 2026-05-19T14:14:44.455581+00:00_
+_source line 3801 · 2026-05-19T14:14:44.455581+00:00_
 
 called Edit
 
@@ -14601,7 +13508,7 @@ called Edit
 
 ### Tool result
 
-_source line 3810 · 2026-05-19T14:14:44.507999+00:00_
+_source line 3802 · 2026-05-19T14:14:44.507999+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -14623,7 +13530,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3811 · 2026-05-19T14:16:46.275078+00:00_
+_source line 3803 · 2026-05-19T14:16:46.275078+00:00_
 
 called ToolSearch
 
@@ -14659,7 +13566,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3812 · 2026-05-19T14:16:46.325651+00:00_
+_source line 3804 · 2026-05-19T14:16:46.325651+00:00_
 
 
 
@@ -14681,7 +13588,7 @@ _source line 3812 · 2026-05-19T14:16:46.325651+00:00_
 
 ### Tool call
 
-_source line 3813 · 2026-05-19T14:16:49.592048+00:00_
+_source line 3805 · 2026-05-19T14:16:49.592048+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -14719,7 +13626,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3814 · 2026-05-19T14:16:50.044871+00:00_
+_source line 3806 · 2026-05-19T14:16:50.044871+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (2 claims) — Revised per D019\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. The signal is strongest and most robust at the **type-pair level** (pairwise SCS → confusion), validated across NER (Few-NERD), RE (FewRel), and ED (MAVEN with MiniLM). Per-type aggregation (mean BCS) introduces a centrality confound in semantically homogeneous schemas. The effect amplifies with schema complexity (3.4× between 16-type and 80-type schemas). Evidence required: (a) significant pairwise SCS-confusion correlation on >=2 datasets, (b) BCS-controlled accuracy gap on FewRel, (c) >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through distinct channels -- count causes entity omission (recall decline), while confusability causes type confusion errors (correct spans labeled with wrong types). The channels combine additively in sentence-level RE (bounded interaction, TOST p=0.003 at ±3pp) and sub-additively in document-level RE (interaction=-9.4pp, CI[-12.9,-6.0]; BCS effect weakens from -25pp at count 16 to -16pp at count 32, consistent with floor compression). Cross-task validated: NER IntraSub ρ=1.0, RE IntraSub ρ=0.954. Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n~~3. **SDGD Effectiveness**~~ — **DROPPED (D019)**: SDGD-zero v1 F1=0.251, v2 F1=0.241, both far below single-pass b
 …[truncated 10825 chars]
@@ -14742,7 +13649,7 @@ _source line 3814 · 2026-05-19T14:16:50.044871+00:00_
 
 ### Tool call
 
-_source line 3815 · 2026-05-19T14:16:51.300467+00:00_
+_source line 3807 · 2026-05-19T14:16:51.300467+00:00_
 
 called Grep
 
@@ -14782,7 +13689,7 @@ called Grep
 
 ### Tool result
 
-_source line 3816 · 2026-05-19T14:16:51.451511+00:00_
+_source line 3808 · 2026-05-19T14:16:51.451511+00:00_
 
 No matches found
 
@@ -14804,7 +13711,7 @@ No matches found
 
 ### Tool call
 
-_source line 3817 · 2026-05-19T14:16:52.204978+00:00_
+_source line 3809 · 2026-05-19T14:16:52.204978+00:00_
 
 called Grep
 
@@ -14844,7 +13751,7 @@ called Grep
 
 ### Tool result
 
-_source line 3818 · 2026-05-19T14:16:52.255558+00:00_
+_source line 3810 · 2026-05-19T14:16:52.255558+00:00_
 
 No matches found
 
@@ -14866,7 +13773,7 @@ No matches found
 
 ### Tool call
 
-_source line 3819 · 2026-05-19T14:17:00.991458+00:00_
+_source line 3811 · 2026-05-19T14:17:00.991458+00:00_
 
 called Read
 
@@ -14900,7 +13807,7 @@ called Read
 
 ### Tool result
 
-_source line 3820 · 2026-05-19T14:17:01.042101+00:00_
+_source line 3812 · 2026-05-19T14:17:01.042101+00:00_
 
 1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
 2	\label{sec:sdgd}
@@ -14935,7 +13842,7 @@ _source line 3820 · 2026-05-19T14:17:01.042101+00:00_
 
 ### Tool call
 
-_source line 3821 · 2026-05-19T14:18:20.640283+00:00_
+_source line 3813 · 2026-05-19T14:18:20.640283+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -14973,7 +13880,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 3822 · 2026-05-19T14:18:20.741556+00:00_
+_source line 3814 · 2026-05-19T14:18:20.741556+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -14995,7 +13902,7 @@ _source line 3822 · 2026-05-19T14:18:20.741556+00:00_
 
 ### Tool call
 
-_source line 3823 · 2026-05-19T14:18:28.825369+00:00_
+_source line 3815 · 2026-05-19T14:18:28.825369+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -15035,7 +13942,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3824 · 2026-05-19T14:18:29.277650+00:00_
+_source line 3816 · 2026-05-19T14:18:29.277650+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_sdgd_zero_maven\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T11:42:11.715Z\", \"updated_at\": \"2026-05-19T14:18:29.061Z\", \"hypothesis\": \"Merge amplification (precision collapse from multi-pass extraction) generalizes from NER to event detection: SDGD-zero on MAVEN's 168 FrameNet-derived event types will exhibit the same prediction inflation and precision collapse pattern observed in Few-NERD NER, confirming merge amplification as a cross-task structural barrier in span-based IE decomposition.\", \"notes\": \"Merge amplification confirmed on MAVEN ED (168 types, 18 batches). SDGD pred inflation 3.7x, precision collapse -68% (0.287→0.091). Cross-task structural problem (NER+ED). single_pass F1=0.207 > sdgd_zero F1=0.123 > random_batch avg F1=0.111.\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-19T13:09:56.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0.\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"610111\", \"log_path\": \"~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log\", \"submitted_at\": \"2026-05-19T13:11:18.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/maven/\", \"data_count\": 1000, \"model_name\": \"qwen3-32b-fp8\", \"seed\": 42, \"
 …[truncated 759 chars]
@@ -15058,7 +13965,7 @@ _source line 3824 · 2026-05-19T14:18:29.277650+00:00_
 
 ### Tool call
 
-_source line 3825 · 2026-05-19T14:18:30.282042+00:00_
+_source line 3817 · 2026-05-19T14:18:30.282042+00:00_
 
 called Grep
 
@@ -15098,7 +14005,7 @@ called Grep
 
 ### Tool result
 
-_source line 3826 · 2026-05-19T14:18:31.288197+00:00_
+_source line 3818 · 2026-05-19T14:18:31.288197+00:00_
 
 &lt;persisted-output>
 Output too large (20.3KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/53538666-2b02-4fd7-92e6-e56440366f9d/tool-results/toolu_01JbFsjssRHAsB5okbyK9Khc.txt
@@ -15131,7 +14038,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3827 · 2026-05-19T14:18:31.338782+00:00_
+_source line 3819 · 2026-05-19T14:18:31.338782+00:00_
 
 called Bash
 
@@ -15169,7 +14076,7 @@ called Bash
 
 ### Tool result
 
-_source line 3828 · 2026-05-19T14:18:34.650906+00:00_
+_source line 3820 · 2026-05-19T14:18:34.650906+00:00_
 
 ts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
@@ -15210,7 +14117,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3829 · 2026-05-19T14:18:43.955049+00:00_
+_source line 3821 · 2026-05-19T14:18:43.955049+00:00_
 
 called Bash
 
@@ -15246,7 +14153,7 @@ called Bash
 
 ### Tool result
 
-_source line 3830 · 2026-05-19T14:18:44.256908+00:00_
+_source line 3822 · 2026-05-19T14:18:44.256908+00:00_
 
 1621:Limitations
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -15269,7 +14176,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3831 · 2026-05-19T14:18:47.873680+00:00_
+_source line 3823 · 2026-05-19T14:18:47.873680+00:00_
 
 called Bash
 
@@ -15305,7 +14212,7 @@ called Bash
 
 ### Tool result
 
-_source line 3832 · 2026-05-19T14:18:48.024714+00:00_
+_source line 3824 · 2026-05-19T14:18:48.024714+00:00_
 
 replicate across scales (8B–70B) and families.
 Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE).
@@ -15337,7 +14244,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3833 · 2026-05-19T14:18:56.408964+00:00_
+_source line 3825 · 2026-05-19T14:18:56.408964+00:00_
 
 called Bash
 
@@ -15373,7 +14280,7 @@ called Bash
 
 ### Tool result
 
-_source line 3834 · 2026-05-19T14:18:56.911951+00:00_
+_source line 3826 · 2026-05-19T14:18:56.911951+00:00_
 
 3:
 4:
@@ -15438,7 +14345,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3835 · 2026-05-19T14:19:03.439459+00:00_
+_source line 3827 · 2026-05-19T14:19:03.439459+00:00_
 
 called Bash
 
@@ -15474,7 +14381,7 @@ called Bash
 
 ### Tool result
 
-_source line 3836 · 2026-05-19T14:19:03.490280+00:00_
+_source line 3828 · 2026-05-19T14:19:03.490280+00:00_
 
 === Page 8 last 10 lines ===
 
@@ -15519,7 +14426,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3837 · 2026-05-19T14:19:07.972051+00:00_
+_source line 3829 · 2026-05-19T14:19:07.972051+00:00_
 
 called Bash
 
@@ -15555,7 +14462,7 @@ called Bash
 
 ### Tool result
 
-_source line 3838 · 2026-05-19T14:19:08.273649+00:00_
+_source line 3830 · 2026-05-19T14:19:08.273649+00:00_
 
 === Page 8 last 15 lines ===
 '632   (§4.1) reflects a dual-task burden: partial schemas                             replicate across scales (8B–70B) and families.                             663'
@@ -15600,7 +14507,7 @@ _source line 3838 · 2026-05-19T14:19:08.273649+00:00_
 
 ### Tool call
 
-_source line 3839 · 2026-05-19T14:19:31.308041+00:00_
+_source line 3831 · 2026-05-19T14:19:31.308041+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15636,7 +14543,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3840 · 2026-05-19T14:19:35.076249+00:00_
+_source line 3832 · 2026-05-19T14:19:35.076249+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -15658,7 +14565,7 @@ _source line 3840 · 2026-05-19T14:19:35.076249+00:00_
 
 ### Assistant
 
-_source line 3841 · 2026-05-19T14:19:41.473167+00:00_
+_source line 3833 · 2026-05-19T14:19:41.473167+00:00_
 
 Director Round 3 全部 5 项修正已完成并汇报：
 
@@ -15692,7 +14599,7 @@ Director Round 3 全部 5 项修正已完成并汇报：
 
 ### User
 
-_source line 3842 · 2026-05-19T14:19:41.483137+00:00_
+_source line 3834 · 2026-05-19T14:19:41.483137+00:00_
 
 [WORKER DONE] Worker worker_ops_submit_docred_bcs_expanded_r3_20260519T135700 已完成（status=done）。用 `get_worker_status('worker_ops_submit_docred_bcs_expanded_r3_20260519T135700')` 读取结果，然后处理。
 
@@ -15717,7 +14624,7 @@ _source line 3842 · 2026-05-19T14:19:41.483137+00:00_
 
 ### Tool call
 
-_source line 3843 · 2026-05-19T14:19:47.541027+00:00_
+_source line 3835 · 2026-05-19T14:19:47.541027+00:00_
 
 called ToolSearch
 
@@ -15753,7 +14660,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3844 · 2026-05-19T14:19:47.591792+00:00_
+_source line 3836 · 2026-05-19T14:19:47.591792+00:00_
 
 
 
@@ -15775,7 +14682,7 @@ _source line 3844 · 2026-05-19T14:19:47.591792+00:00_
 
 ### Tool call
 
-_source line 3845 · 2026-05-19T14:19:51.106422+00:00_
+_source line 3837 · 2026-05-19T14:19:51.106422+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15809,7 +14716,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3846 · 2026-05-19T14:19:51.157263+00:00_
+_source line 3838 · 2026-05-19T14:19:51.157263+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_submit_docred_bcs_expanded_r3_20260519T135700\", \"status\": \"done\", \"task_type\": \"ops:submit_docred_bcs_expanded_r3\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T13:57:00.963051+00:00\", \"ended_at\": \"2026-05-19T14:04:02.918199+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"实验 `exp_docred_bcs_expanded` **已经完成且结果完整**：\\n\\n- 110 个 batch 全部有结果（包括 40 个新 extreme batches, idx>=5）\\n- Registry 状态: DONE (success)，有完整 metrics\\n- BCS effect: count_16 = -25.04pp, count_32 = -15.65pp, interaction = -9.39pp CI[-12.91, -5.95]\\n\\n脚本的 OOM 防护和断点续跑改造已完成（`max_model_len=8192`, `gpu_memory_utilization=0.85`, JSONL checkpoint），但无需重新提交——数据已经齐了。\\n\\n要重跑吗？\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15831,7 +14738,7 @@ _source line 3846 · 2026-05-19T14:19:51.157263+00:00_
 
 ### Assistant
 
-_source line 3847 · 2026-05-19T14:19:55.826473+00:00_
+_source line 3839 · 2026-05-19T14:19:55.826473+00:00_
 
 Worker 确认 exp_docred_bcs_expanded 实验数据完整（110 batches），无需额外操作。这个 Worker 是之前 session 遗留的——实验早已完成，Worker 只是确认了状态。所有 Round 2 + Round 3 任务已全部完成。
 
@@ -15858,7 +14765,7 @@ Worker 确认 exp_docred_bcs_expanded 实验数据完整（110 batches），无�
 
 ### User
 
-_source line 3848 · 2026-05-19T14:19:56.452143+00:00_
+_source line 3840 · 2026-05-19T14:19:56.452143+00:00_
 
 [WORKER DONE] Worker worker_analysis_docred_bcs_r2_20260519T140257 已完成（status=done）。用 `get_worker_status('worker_analysis_docred_bcs_r2_20260519T140257')` 读取结果，然后处理。
 
@@ -15883,7 +14790,7 @@ _source line 3848 · 2026-05-19T14:19:56.452143+00:00_
 
 ### Tool call
 
-_source line 3849 · 2026-05-19T14:20:02.315606+00:00_
+_source line 3841 · 2026-05-19T14:20:02.315606+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15917,7 +14824,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3850 · 2026-05-19T14:20:02.466871+00:00_
+_source line 3842 · 2026-05-19T14:20:02.466871+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_docred_bcs_r2_20260519T140257\", \"status\": \"done\", \"task_type\": \"analysis:docred_bcs_r2\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-19T14:02:57.139565+00:00\", \"ended_at\": \"2026-05-19T14:06:25.933247+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"结果已保存到 `r2_analysis.json`。汇总：\\n\\n### Per count level (n=55 each)\\n\\n| Metric | count_16 | count_32 |\\n|--------|----------|----------|\\n| **R²** | **0.6528** | **0.6135** |\\n| R² 95% CI | [0.5272, 0.7661] | [0.4662, 0.7482] |\\n| Pearson r | −0.808 (p=8.9e-14) | −0.783 (p=1.6e-12) |\\n| Spearman ρ | −0.762 (p=1.4e-11) | −0.693 (p=4.6e-09) |\\n| Slope | −0.7317 | −0.6296 |\\n| Intercept | 0.9775 | 0.8558 |\\n\\n### Pooled (n=110)\\n- R² (BCS only) = 0.5779, CI [0.4629, 0.6838]\\n- R² (BCS + count covariate) = 0.6784\\n- Semi-partial R² of BCS = 0.5676\\n\\n### vs. original\\n- Original count_16: R² = 0.525, n=35, CI [0.27, 0.73]\\n- Expanded count_16: R² = **0.6528**, n=55, CI [0.53, 0.77] — 更高且 CI 更窄\\n\\n### 论文引用\\n**R² = 0.61–0.65 (61–65%)**，替代原来的 \\\"22–53%\\\"。原来那个范围对应的是旧实验（n=35, R²=0.525 是 count_16 的，其他 count levels 的 R² 更低），expanded 实验两个 count level 都稳定在 61–65%。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15939,7 +14846,7 @@ _source line 3850 · 2026-05-19T14:20:02.466871+00:00_
 
 ### Assistant
 
-_source line 3851 · 2026-05-19T14:20:07.480623+00:00_
+_source line 3843 · 2026-05-19T14:20:07.480623+00:00_
 
 这两个 Worker 都是之前 Round 2 期间派出的，实验和分析结果已在 Round 2/3 的论文更新中全部采纳（R² 0.61–0.65 已写入所有 .tex 文件，registry 已更新为 DONE/success）。无需额外操作。
 
@@ -15966,7 +14873,7 @@ _source line 3851 · 2026-05-19T14:20:07.480623+00:00_
 
 ### User
 
-_source line 3852 · 2026-05-19T14:20:08.125011+00:00_
+_source line 3844 · 2026-05-19T14:20:08.125011+00:00_
 
 [Director 指令] **补充：R² 数字修正**
 
@@ -15997,7 +14904,7 @@ _source line 3852 · 2026-05-19T14:20:08.125011+00:00_
 
 ### Tool call
 
-_source line 3853 · 2026-05-19T14:20:18.785859+00:00_
+_source line 3845 · 2026-05-19T14:20:18.785859+00:00_
 
 called Grep
 
@@ -16037,7 +14944,7 @@ called Grep
 
 ### Tool result
 
-_source line 3854 · 2026-05-19T14:20:18.838096+00:00_
+_source line 3846 · 2026-05-19T14:20:18.838096+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:12:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.bbl:179:\newblock \href {https://dl.acm.org/doi/10.1145/3600006.3613165} {Efficient
@@ -16068,7 +14975,7 @@ _source line 3854 · 2026-05-19T14:20:18.838096+00:00_
 
 ### Tool call
 
-_source line 3855 · 2026-05-19T14:20:22.703936+00:00_
+_source line 3847 · 2026-05-19T14:20:22.703936+00:00_
 
 called Read
 
@@ -16102,7 +15009,7 @@ called Read
 
 ### Tool result
 
-_source line 3856 · 2026-05-19T14:20:23.105786+00:00_
+_source line 3848 · 2026-05-19T14:20:23.105786+00:00_
 
 1	\begin{abstract}
 2	Training-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: type count and type confusability. We present what is, to our knowledge, the first controlled study isolating these factors across NER, RE, and event detection on four datasets; the analysis reveals task-dependent effect structures. We quantify confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS). Degradation operates along two dimensions: count-related recall decline (up to $-$49\,pp for document-level RE) dominates confusability-related type substitution, though typical batches yield modest ${\sim}$2\,pp gaps. BCS explains 22--65\% of cross-batch RE accuracy variance under RE's forced-choice format but shows no batch-level signal for NER, where errors scatter across missed entities and boundary failures. Few-shot demonstrations widen the confusability gap (+4.3\,pp under 5-shot). Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE). Pairwise confusability is a schema-structural property: count effects replicate across model scales and architectures (8B to proprietary); batch-level BCS prediction has been verified on open-weight models. Effects persist under varied prompt designs.
@@ -16127,7 +15034,7 @@ _source line 3856 · 2026-05-19T14:20:23.105786+00:00_
 
 ### Tool call
 
-_source line 3857 · 2026-05-19T14:20:23.156477+00:00_
+_source line 3849 · 2026-05-19T14:20:23.156477+00:00_
 
 called Read
 
@@ -16161,7 +15068,7 @@ called Read
 
 ### Tool result
 
-_source line 3858 · 2026-05-19T14:20:23.608626+00:00_
+_source line 3850 · 2026-05-19T14:20:23.608626+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -16197,7 +15104,7 @@ _source line 3858 · 2026-05-19T14:20:23.608626+00:00_
 
 ### Tool call
 
-_source line 3859 · 2026-05-19T14:20:23.760410+00:00_
+_source line 3851 · 2026-05-19T14:20:23.760410+00:00_
 
 called Read
 
@@ -16235,7 +15142,7 @@ called Read
 
 ### Tool result
 
-_source line 3860 · 2026-05-19T14:20:23.811087+00:00_
+_source line 3852 · 2026-05-19T14:20:23.811087+00:00_
 
 49	The remaining variance reflects entity frequency, prompt position \cite{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal: batch-level BCS explains 22--65\% of accuracy variance (\S\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\ Qwen3 $r = 0.138$; Appendix), which indicates that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\ref{app:scs-baselines}). Appendix~\ref{app:error-analysis} lists the most confusable type pairs with concrete examples.
 50	
@@ -16268,7 +15175,7 @@ _source line 3860 · 2026-05-19T14:20:23.811087+00:00_
 
 ### Tool call
 
-_source line 3861 · 2026-05-19T14:20:35.005371+00:00_
+_source line 3853 · 2026-05-19T14:20:35.005371+00:00_
 
 called Grep
 
@@ -16310,7 +15217,7 @@ called Grep
 
 ### Tool result
 
-_source line 3862 · 2026-05-19T14:20:35.508102+00:00_
+_source line 3854 · 2026-05-19T14:20:35.508102+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:12:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:48:\item \textbf{Data contamination.} FewRel (2018) may appear in pretraining corpora, but train-origin relations show numerically lower accuracy than val-origin ($-8.8$\,pp, n.s.), opposite to the contamination hypothesis. DocRED (2019) provides a lower-contamination-risk replication with consistent slopes ($R^2 = 0.61\text{--}0.65$; Appendix~\ref{app:split-origin}).
@@ -16339,7 +15246,7 @@ _source line 3862 · 2026-05-19T14:20:35.508102+00:00_
 
 ### Tool call
 
-_source line 3863 · 2026-05-19T14:20:35.508459+00:00_
+_source line 3855 · 2026-05-19T14:20:35.508459+00:00_
 
 called Read
 
@@ -16377,7 +15284,7 @@ called Read
 
 ### Tool result
 
-_source line 3864 · 2026-05-19T14:20:35.609066+00:00_
+_source line 3856 · 2026-05-19T14:20:35.609066+00:00_
 
 160	\toprule
 161	\textbf{Strategy} & \textbf{Accuracy} & \textbf{$\Delta$ vs.\ Single-Pass} \\
@@ -16423,7 +15330,7 @@ _source line 3864 · 2026-05-19T14:20:35.609066+00:00_
 
 ### Tool call
 
-_source line 3865 · 2026-05-19T14:20:59.663552+00:00_
+_source line 3857 · 2026-05-19T14:20:59.663552+00:00_
 
 called Read
 
@@ -16461,7 +15368,7 @@ called Read
 
 ### Tool call
 
-_source line 3866 · 2026-05-19T14:20:59.664141+00:00_
+_source line 3858 · 2026-05-19T14:20:59.664141+00:00_
 
 called Read
 
@@ -16499,7 +15406,7 @@ called Read
 
 ### Tool call
 
-_source line 3867 · 2026-05-19T14:20:59.715015+00:00_
+_source line 3859 · 2026-05-19T14:20:59.715015+00:00_
 
 called Read
 
@@ -16537,7 +15444,7 @@ called Read
 
 ### Tool result
 
-_source line 3868 · 2026-05-19T14:20:59.715493+00:00_
+_source line 3860 · 2026-05-19T14:20:59.715493+00:00_
 
 65	\paragraph{Practical magnitude.}
 66	\label{sec:practical_magnitude}
@@ -16563,7 +15470,7 @@ _source line 3868 · 2026-05-19T14:20:59.715493+00:00_
 
 ### Tool result
 
-_source line 3869 · 2026-05-19T14:20:59.766078+00:00_
+_source line 3861 · 2026-05-19T14:20:59.766078+00:00_
 
 10	\paragraph{Schema complexity in dialogue and IE.} The Schema-Guided Dialogue dataset~\cite{rastogi2020towards} and SGD-X~\cite{lee2022sgd} document performance degradation with schema linguistic variation. \citet{li2023evaluating} observe count-dependent degradation in ChatGPT IE. Prompt order sensitivity \cite{lu2022fantastically} and label ordering effects are well documented; our prompt-variant experiments (\S\ref{sec:appendix_prompt_variants}) control for such artifacts. \citet{volkanovska2025ner} categorize LLM NER errors including type confusion. The relationship between label similarity and confusion has precedent: pairwise confusion regularization improves fine-grained visual recognition \citep{dubey-2018-pairwise-confusion}, correlated label noise captures inter-class confusability \citep{collier-2021-correlated-noise}, hierarchical classification suffers sibling confusion \citep{deng-2010-imagenet}, and label confusion matrices improve text classification \citep{guo-2021-label-confusion,zhou-2025-rethinking,muller2019when,peterson2019human}. Hierarchical label sets \citep{novack-2023-chils}, enriched type descriptions \citep{cocchieri-2025-zeroner}, and universal entity taxonomies \citep{yang2025beyond} address related problems but are orthogonal to confusability-aware batching.
 11	
@@ -16588,7 +15495,7 @@ _source line 3869 · 2026-05-19T14:20:59.766078+00:00_
 
 ### Tool result
 
-_source line 3870 · 2026-05-19T14:20:59.766477+00:00_
+_source line 3862 · 2026-05-19T14:20:59.766477+00:00_
 
 40	\item \textbf{Model coverage.} Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B, 70B-Instruct (FP8), and Gemini 2.5 Flash (API). Dimension~1 has been validated across all four models including a proprietary one; Dimension~2 has been verified only on open-weight models and was not robustly detectable on NER at 8B scale, likely due to floor effects. Gemini 2.5 Flash count-64 results are partial (11/25 batches) due to API quota exhaustion. Dimension~2 (BCS) has not been validated on proprietary models at the batch level.
 41	
@@ -16617,7 +15524,7 @@ _source line 3870 · 2026-05-19T14:20:59.766477+00:00_
 
 ### Tool call
 
-_source line 3871 · 2026-05-19T14:21:09.771368+00:00_
+_source line 3863 · 2026-05-19T14:21:09.771368+00:00_
 
 called Edit
 
@@ -16657,7 +15564,7 @@ called Edit
 
 ### Tool result
 
-_source line 3872 · 2026-05-19T14:21:10.223512+00:00_
+_source line 3864 · 2026-05-19T14:21:10.223512+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully.
 
@@ -16679,7 +15586,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3873 · 2026-05-19T14:21:10.675803+00:00_
+_source line 3865 · 2026-05-19T14:21:10.675803+00:00_
 
 called Edit
 
@@ -16719,7 +15626,7 @@ called Edit
 
 ### Tool result
 
-_source line 3874 · 2026-05-19T14:21:11.128163+00:00_
+_source line 3866 · 2026-05-19T14:21:11.128163+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -16741,7 +15648,7 @@ _source line 3874 · 2026-05-19T14:21:11.128163+00:00_
 
 ### Tool call
 
-_source line 3875 · 2026-05-19T14:21:11.680875+00:00_
+_source line 3867 · 2026-05-19T14:21:11.680875+00:00_
 
 called Edit
 
@@ -16781,7 +15688,7 @@ called Edit
 
 ### Tool result
 
-_source line 3876 · 2026-05-19T14:21:12.114780+00:00_
+_source line 3868 · 2026-05-19T14:21:12.114780+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex has been updated successfully.
 
@@ -16803,7 +15710,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3877 · 2026-05-19T14:21:13.018583+00:00_
+_source line 3869 · 2026-05-19T14:21:13.018583+00:00_
 
 called Edit
 
@@ -16843,7 +15750,7 @@ called Edit
 
 ### Tool result
 
-_source line 3878 · 2026-05-19T14:21:13.520885+00:00_
+_source line 3870 · 2026-05-19T14:21:13.520885+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -16865,7 +15772,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3879 · 2026-05-19T14:21:13.721965+00:00_
+_source line 3871 · 2026-05-19T14:21:13.721965+00:00_
 
 called Edit
 
@@ -16905,7 +15812,7 @@ called Edit
 
 ### Tool result
 
-_source line 3880 · 2026-05-19T14:21:13.822759+00:00_
+_source line 3872 · 2026-05-19T14:21:13.822759+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
 
@@ -16927,7 +15834,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3881 · 2026-05-19T14:21:16.935775+00:00_
+_source line 3873 · 2026-05-19T14:21:16.935775+00:00_
 
 called Read
 
@@ -16965,7 +15872,7 @@ called Read
 
 ### Tool result
 
-_source line 3882 · 2026-05-19T14:21:16.986512+00:00_
+_source line 3874 · 2026-05-19T14:21:16.986512+00:00_
 
 20	Our contributions are:
 21	\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]
@@ -16992,7 +15899,7 @@ _source line 3882 · 2026-05-19T14:21:16.986512+00:00_
 
 ### Tool call
 
-_source line 3883 · 2026-05-19T14:21:21.504974+00:00_
+_source line 3875 · 2026-05-19T14:21:21.504974+00:00_
 
 called Edit
 
@@ -17032,7 +15939,7 @@ called Edit
 
 ### Tool result
 
-_source line 3884 · 2026-05-19T14:21:21.607091+00:00_
+_source line 3876 · 2026-05-19T14:21:21.607091+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
 
@@ -17054,7 +15961,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3885 · 2026-05-19T14:21:28.286408+00:00_
+_source line 3877 · 2026-05-19T14:21:28.286408+00:00_
 
 called Edit
 
@@ -17094,7 +16001,7 @@ called Edit
 
 ### Tool result
 
-_source line 3886 · 2026-05-19T14:21:28.789326+00:00_
+_source line 3878 · 2026-05-19T14:21:28.789326+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -17116,7 +16023,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3887 · 2026-05-19T14:21:29.693164+00:00_
+_source line 3879 · 2026-05-19T14:21:29.693164+00:00_
 
 called Edit
 
@@ -17156,7 +16063,7 @@ called Edit
 
 ### Tool result
 
-_source line 3888 · 2026-05-19T14:21:30.145676+00:00_
+_source line 3880 · 2026-05-19T14:21:30.145676+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -17178,7 +16085,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3889 · 2026-05-19T14:21:33.459176+00:00_
+_source line 3881 · 2026-05-19T14:21:33.459176+00:00_
 
 called Edit
 
@@ -17218,7 +16125,7 @@ called Edit
 
 ### Tool result
 
-_source line 3890 · 2026-05-19T14:21:33.911462+00:00_
+_source line 3882 · 2026-05-19T14:21:33.911462+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -17240,7 +16147,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3891 · 2026-05-19T14:21:34.765356+00:00_
+_source line 3883 · 2026-05-19T14:21:34.765356+00:00_
 
 called Edit
 
@@ -17280,7 +16187,7 @@ called Edit
 
 ### Tool result
 
-_source line 3892 · 2026-05-19T14:21:34.816142+00:00_
+_source line 3884 · 2026-05-19T14:21:34.816142+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -17302,7 +16209,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3893 · 2026-05-19T14:21:39.345746+00:00_
+_source line 3885 · 2026-05-19T14:21:39.345746+00:00_
 
 called Edit
 
@@ -17342,7 +16249,7 @@ called Edit
 
 ### Tool result
 
-_source line 3894 · 2026-05-19T14:21:39.397060+00:00_
+_source line 3886 · 2026-05-19T14:21:39.397060+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
 
@@ -17364,7 +16271,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3895 · 2026-05-19T14:21:43.366042+00:00_
+_source line 3887 · 2026-05-19T14:21:43.366042+00:00_
 
 called Bash
 
@@ -17402,7 +16309,7 @@ called Bash
 
 ### Tool result
 
-_source line 3896 · 2026-05-19T14:21:46.831057+00:00_
+_source line 3888 · 2026-05-19T14:21:46.831057+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -17428,7 +16335,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3897 · 2026-05-19T14:21:52.456127+00:00_
+_source line 3889 · 2026-05-19T14:21:52.456127+00:00_
 
 called Bash
 
@@ -17464,7 +16371,7 @@ called Bash
 
 ### Tool result
 
-_source line 3898 · 2026-05-19T14:21:52.757787+00:00_
+_source line 3890 · 2026-05-19T14:21:52.757787+00:00_
 
 === Page 8 last 5 lines ===
 665
@@ -17499,7 +16406,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3899 · 2026-05-19T14:21:59.937063+00:00_
+_source line 3891 · 2026-05-19T14:21:59.937063+00:00_
 
 called Bash
 
@@ -17535,7 +16442,7 @@ called Bash
 
 ### Tool result
 
-_source line 3900 · 2026-05-19T14:22:00.289004+00:00_
+_source line 3892 · 2026-05-19T14:22:00.289004+00:00_
 
 === Page 8 last 8 lines ===
                                                                                       Limitations                                                                667
@@ -17573,7 +16480,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3901 · 2026-05-19T14:22:05.767761+00:00_
+_source line 3893 · 2026-05-19T14:22:05.767761+00:00_
 
 called Grep
 
@@ -17613,7 +16520,7 @@ called Grep
 
 ### Tool result
 
-_source line 3902 · 2026-05-19T14:22:05.818453+00:00_
+_source line 3894 · 2026-05-19T14:22:05.818453+00:00_
 
 No matches found
 
@@ -17635,7 +16542,7 @@ No matches found
 
 ### Tool call
 
-_source line 3903 · 2026-05-19T14:22:31.450467+00:00_
+_source line 3895 · 2026-05-19T14:22:31.450467+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -17671,7 +16578,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3904 · 2026-05-19T14:22:35.265715+00:00_
+_source line 3896 · 2026-05-19T14:22:35.265715+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\"}, \"error\": \"\"}"}
 
@@ -17693,7 +16600,7 @@ _source line 3904 · 2026-05-19T14:22:35.265715+00:00_
 
 ### Assistant
 
-_source line 3905 · 2026-05-19T14:22:39.753764+00:00_
+_source line 3897 · 2026-05-19T14:22:39.753764+00:00_
 
 R² 修正完成。10 处 "22-65%"/"61-65%" 全部改为 pooled "22-58%"/"58%"，DocRED 段落以 pooled R²=0.578 (n=110, CI [0.46, 0.68]) 为 headline，per-count 保留为括号内细节。PDF 编译通过，8 页正文约束满足。
 
@@ -17720,7 +16627,7 @@ R² 修正完成。10 处 "22-65%"/"61-65%" 全部改为 pooled "22-58%"/"58%"�
 
 ### User
 
-_source line 3906 · 2026-05-19T14:32:32.101442+00:00_
+_source line 3898 · 2026-05-19T14:32:32.101442+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -17741,7 +16648,7 @@ _source line 3906 · 2026-05-19T14:32:32.101442+00:00_
 
 ### Tool call
 
-_source line 3907 · 2026-05-19T14:32:47.365346+00:00_
+_source line 3899 · 2026-05-19T14:32:47.365346+00:00_
 
 called ToolSearch
 
@@ -17777,7 +16684,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3908 · 2026-05-19T14:32:48.068769+00:00_
+_source line 3900 · 2026-05-19T14:32:48.068769+00:00_
 
 
 
@@ -17799,7 +16706,7 @@ _source line 3908 · 2026-05-19T14:32:48.068769+00:00_
 
 ### Tool call
 
-_source line 3909 · 2026-05-19T14:32:52.217579+00:00_
+_source line 3901 · 2026-05-19T14:32:52.217579+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17835,7 +16742,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 3910 · 2026-05-19T14:32:52.218121+00:00_
+_source line 3902 · 2026-05-19T14:32:52.218121+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -17864,7 +16771,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 3911 · 2026-05-19T14:32:52.720413+00:00_
+_source line 3903 · 2026-05-19T14:32:52.720413+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -17900,7 +16807,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 3912 · 2026-05-19T14:32:53.172679+00:00_
+_source line 3904 · 2026-05-19T14:32:53.172679+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -17936,7 +16843,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3913 · 2026-05-19T14:32:53.274440+00:00_
+_source line 3905 · 2026-05-19T14:32:53.274440+00:00_
 
 Error: result (64,947 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/53538666-2b02-4fd7-92e6-e56440366f9d/tool-results/mcp-agent-ml-research-read_registry-1779201173158.txt.
 Format: JSON with schema: {result: string}
@@ -17965,7 +16872,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool result
 
-_source line 3914 · 2026-05-19T14:32:53.274947+00:00_
+_source line 3906 · 2026-05-19T14:32:53.274947+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -17987,7 +16894,7 @@ _source line 3914 · 2026-05-19T14:32:53.274947+00:00_
 
 ### Tool result
 
-_source line 3915 · 2026-05-19T14:32:53.275428+00:00_
+_source line 3907 · 2026-05-19T14:32:53.275428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- prompt_sensitivity（准备中）\\n- prompt_sensitivity_dry4（准备中）\\n- prompt_sensitivity_dry3（准备中）\\n- prompt_sensitivity_dry2（准备中）\\n- prompt_sensitivity_dry（准备中）\\n- exp_aggregation_monte_carlo（准备中）\\n- exp_scs_name_def_ablation（准备中）\\n- exp_fewrel_contamination_check（准备中）\\n- exp017_gpt4o_mini_fewrel（准备中）\\n- exp_cross_embedding_sensitivity（准备中）\\n- …另有 2 项\\n\\n## 近期结论\\n- **exp_docred_bcs_expanded** (success): Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.\\n- **exp_sdgd_zero_maven** (success): SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.\\n- **exp_unconstrained_decoding_ablation** (success): The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion. ← 基于 exp_fewrel_formal_80rel\\n  [unconstrained_decoding_ab
 …[truncated 969 chars]
@@ -18010,7 +16917,7 @@ _source line 3915 · 2026-05-19T14:32:53.275428+00:00_
 
 ### Tool result
 
-_source line 3916 · 2026-05-19T14:32:53.275815+00:00_
+_source line 3908 · 2026-05-19T14:32:53.275815+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-19 04:25 UTC | 更新原因: v8 final confirmed by Reviewer — writing-level improvements exhausted, structural limitations acknowledged\\n\\n## 核心方向\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level specific, format-dependent via error channeling)。详见 paper_framing.md。\\n\\n## 当前阶段：Final Submission（DDL 2026-05-25）\\n\\n**论文状态 v8 (final)**：Reviewer 系统性审查全部 PASS，writing-level 改进空间已穷尽。\\n- Acceptance likelihood: 3.0 (Findings, 45%), 3.5 (Borderline Conference, 25%)\\n- Structural 限制（效应量 r²=1.3% + 无可行方案 + SCS novelty）不可通过写作改善\\n- Thoroughness 5.0/5 是明确加分项\\n\\n**v4→v8 增量汇总**：\\n- v5: DocRED factorial TOST 主动披露（additivity 限定为 sentence-level RE）\\n- v6: NER U-shape 假说恢复 + Limitations FewRel 限定\\n- v7: Few-shot appendix 交叉引用 + bib 匿名清理\\n- v8: Practical Implications 扩展为 4 条 actionable recommendations\\n\\n**实验状态**：62 个实验，49 completed，33 成功。Reviewer 三次独立确认 cuda:0 无高 ROI 实验可跑。\\n\\n**提交前检查（全部完成）**：\\n- [x] Claim-evidence 强度审查 — 4/4 Strong/Adequate\\n- [x] 阴性结果叙事审查 — 8/8 妥善处理\\n- [x] 6 维度系统性审查 — 全部 PASS\\n- [x] v8 压缩验证 — 无信息丢失\\n- [x] Writing-level 改进评估 — 已穷尽\\n- [x] Camera-ready 预准备 — 4 份材料\\n- [x] Rebuttal template + 8 条 talking points\\n- [x] Submission metadata\\n- [ ] **用户审阅 PDF 确认** ← 唯一阻塞项\\n- [ ] **ARR 提交**\\n\\n## GPU 预算\\n- cqa1-38874 cuda:0：空闲（Reviewer 三次确认无高 ROI 实验）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D063 | 2026-05-19 | D063: 补充 2 个低风险实验：DocRED BCS 扩样本量 + SDGD-zero MAVE | exp_docred_confusability, exp008_sdgd_v2_fewnerd |\\n| D062 | 2026-05-19 | D062: 不做 contrastive definitions 实验，v9 为最终实验版本 | — |\\n| D061 | 2026-05-19 | v9 写作冻结：scope re-scoping 完成，写作层面提分空间归零 | — |\\n| D060 | 2026-05-18 | D060: Gem
 …[truncated 807 chars]
@@ -18033,7 +16940,7 @@ _source line 3916 · 2026-05-19T14:32:53.275815+00:00_
 
 ### Assistant
 
-_source line 3917 · 2026-05-19T14:33:03.425523+00:00_
+_source line 3909 · 2026-05-19T14:33:03.425523+00:00_
 
 初始化完成。状态概览：
 - 0 个活跃 cron，0 个运行中实验
@@ -18065,7 +16972,7 @@ _source line 3917 · 2026-05-19T14:33:03.425523+00:00_
 
 ### User
 
-_source line 3918 · 2026-05-19T14:57:32.057013+00:00_
+_source line 3910 · 2026-05-19T14:57:32.057013+00:00_
 
 [Director 指令] 用户反馈两个 Figure 排版问题，立即修复：
 
@@ -18108,7 +17015,7 @@ Figure 2（error taxonomy decomposition图）需要两个改动：
 
 ### Tool call
 
-_source line 3919 · 2026-05-19T14:57:41.655942+00:00_
+_source line 3911 · 2026-05-19T14:57:41.655942+00:00_
 
 called Grep
 
@@ -18150,7 +17057,7 @@ called Grep
 
 ### Tool result
 
-_source line 3920 · 2026-05-19T14:57:42.058169+00:00_
+_source line 3912 · 2026-05-19T14:57:42.058169+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:13:\includegraphics[width=\linewidth]{../../figures/paper/fig_count_curves.pdf}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:18:\includegraphics[width=\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}
@@ -18174,7 +17081,7 @@ _source line 3920 · 2026-05-19T14:57:42.058169+00:00_
 
 ### Tool call
 
-_source line 3921 · 2026-05-19T14:57:42.610997+00:00_
+_source line 3913 · 2026-05-19T14:57:42.610997+00:00_
 
 called Glob
 
@@ -18210,7 +17117,7 @@ called Glob
 
 ### Tool result
 
-_source line 3922 · 2026-05-19T14:57:42.914407+00:00_
+_source line 3914 · 2026-05-19T14:57:42.914407+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/chart/fig_error_taxonomy.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_error_taxonomy.py
@@ -18237,7 +17144,7 @@ _source line 3922 · 2026-05-19T14:57:42.914407+00:00_
 
 ### Tool call
 
-_source line 3923 · 2026-05-19T14:57:42.914768+00:00_
+_source line 3915 · 2026-05-19T14:57:42.914768+00:00_
 
 called Glob
 
@@ -18273,7 +17180,7 @@ called Glob
 
 ### Tool result
 
-_source line 3924 · 2026-05-19T14:57:42.965269+00:00_
+_source line 3916 · 2026-05-19T14:57:42.965269+00:00_
 
 No files found
 
@@ -18295,7 +17202,7 @@ No files found
 
 ### Tool call
 
-_source line 3925 · 2026-05-19T14:57:47.031488+00:00_
+_source line 3917 · 2026-05-19T14:57:47.031488+00:00_
 
 called Grep
 
@@ -18337,7 +17244,7 @@ called Grep
 
 ### Tool result
 
-_source line 3926 · 2026-05-19T14:57:47.483735+00:00_
+_source line 3918 · 2026-05-19T14:57:47.483735+00:00_
 
 No matches found
 
@@ -18359,7 +17266,7 @@ No matches found
 
 ### Tool call
 
-_source line 3927 · 2026-05-19T14:57:47.986036+00:00_
+_source line 3919 · 2026-05-19T14:57:47.986036+00:00_
 
 called Read
 
@@ -18397,7 +17304,7 @@ called Read
 
 ### Tool result
 
-_source line 3928 · 2026-05-19T14:57:48.036896+00:00_
+_source line 3920 · 2026-05-19T14:57:48.036896+00:00_
 
 1	\section{Results}
 2	\label{sec:results}
@@ -18443,7 +17350,7 @@ _source line 3928 · 2026-05-19T14:57:48.036896+00:00_
 
 ### Tool call
 
-_source line 3929 · 2026-05-19T14:57:48.891554+00:00_
+_source line 3921 · 2026-05-19T14:57:48.891554+00:00_
 
 called Read
 
@@ -18481,7 +17388,7 @@ called Read
 
 ### Tool result
 
-_source line 3930 · 2026-05-19T14:57:49.293604+00:00_
+_source line 3922 · 2026-05-19T14:57:49.293604+00:00_
 
 75	\subsection{Multi-Dimensional Degradation}
 76	\label{sec:multi_channel}
@@ -18516,7 +17423,7 @@ _source line 3930 · 2026-05-19T14:57:49.293604+00:00_
 
 ### Tool call
 
-_source line 3931 · 2026-05-19T14:57:49.294078+00:00_
+_source line 3923 · 2026-05-19T14:57:49.294078+00:00_
 
 called Read
 
@@ -18550,7 +17457,7 @@ called Read
 
 ### Tool result
 
-_source line 3932 · 2026-05-19T14:57:49.394897+00:00_
+_source line 3924 · 2026-05-19T14:57:49.394897+00:00_
 
 1	#!/usr/bin/env python3
 2	"""Figure 2: Error Taxonomy — dual-panel line plots.
@@ -18627,7 +17534,7 @@ _source line 3932 · 2026-05-19T14:57:49.394897+00:00_
 
 ### Tool call
 
-_source line 3933 · 2026-05-19T14:57:58.280708+00:00_
+_source line 3925 · 2026-05-19T14:57:58.280708+00:00_
 
 called Grep
 
@@ -18669,7 +17576,7 @@ called Grep
 
 ### Tool result
 
-_source line 3934 · 2026-05-19T14:57:58.331337+00:00_
+_source line 3926 · 2026-05-19T14:57:58.331337+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:21:\label{fig:main_results}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:24:[Omitted long matching line]
@@ -18694,7 +17601,7 @@ _source line 3934 · 2026-05-19T14:57:58.331337+00:00_
 
 ### Tool call
 
-_source line 3935 · 2026-05-19T14:58:04.716897+00:00_
+_source line 3927 · 2026-05-19T14:58:04.716897+00:00_
 
 called Bash
 
@@ -18730,7 +17637,7 @@ called Bash
 
 ### Tool result
 
-_source line 3936 · 2026-05-19T14:58:05.069167+00:00_
+_source line 3928 · 2026-05-19T14:58:05.069167+00:00_
 
 Page 5, line 50: 404   4.1    Count-Degradation Curves                             guity, and definition quality. Whi
 Page 5, line 51: 405   Figure 1a shows RE accuracy declines monoton-               modest, correlated type pairs with
@@ -18759,7 +17666,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3937 · 2026-05-19T14:58:24.393563+00:00_
+_source line 3929 · 2026-05-19T14:58:24.393563+00:00_
 
 called Read
 
@@ -18797,7 +17704,7 @@ called Read
 
 ### Tool result
 
-_source line 3938 · 2026-05-19T14:58:24.444281+00:00_
+_source line 3930 · 2026-05-19T14:58:24.444281+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -18848,7 +17755,7 @@ _source line 3938 · 2026-05-19T14:58:24.444281+00:00_
 
 ### Tool call
 
-_source line 3939 · 2026-05-19T14:58:27.306149+00:00_
+_source line 3931 · 2026-05-19T14:58:27.306149+00:00_
 
 called Read
 
@@ -18884,7 +17791,7 @@ called Read
 
 ### Tool result
 
-_source line 3940 · 2026-05-19T14:58:28.109580+00:00_
+_source line 3932 · 2026-05-19T14:58:28.109580+00:00_
 
 1	\section{Experimental Setup}
 2	\label{sec:experimental_setup}
@@ -18910,7 +17817,7 @@ _source line 3940 · 2026-05-19T14:58:28.109580+00:00_
 
 ### Tool call
 
-_source line 3941 · 2026-05-19T14:58:28.161633+00:00_
+_source line 3933 · 2026-05-19T14:58:28.161633+00:00_
 
 called Bash
 
@@ -18946,7 +17853,7 @@ called Bash
 
 ### Tool result
 
-_source line 3942 · 2026-05-19T14:58:28.212337+00:00_
+_source line 3934 · 2026-05-19T14:58:28.212337+00:00_
 
 82 experimental_setup.tex
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -18969,7 +17876,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3943 · 2026-05-19T14:58:31.536079+00:00_
+_source line 3935 · 2026-05-19T14:58:31.536079+00:00_
 
 called Read
 
@@ -19007,7 +17914,7 @@ called Read
 
 ### Tool result
 
-_source line 3944 · 2026-05-19T14:58:31.586787+00:00_
+_source line 3936 · 2026-05-19T14:58:31.586787+00:00_
 
 70	\paragraph{Experiment 2: BCS-Controlled.}
 71	We fix type count and vary BCS to isolate confusability from schema size. For each count level, we construct one low-BCS batch, one high-BCS batch, and 25 random batches (27 total). We evaluate on Few-NERD (count$\,\in\{6, 12\}$), FewRel (count$\,\in\{8, 16\}$, both 16-relation (pilot) and 80-relation pools), and DocRED (count$\,\in\{16, 32\}$). Within-pool 16-relation subsets from the 80-relation pool isolate confusability from pool composition. MAVEN results are reported separately due to a centrality confound (\S\ref{sec:centrality_confound}).
@@ -19042,7 +17949,7 @@ _source line 3944 · 2026-05-19T14:58:31.586787+00:00_
 
 ### Tool call
 
-_source line 3945 · 2026-05-19T14:59:01.480303+00:00_
+_source line 3937 · 2026-05-19T14:59:01.480303+00:00_
 
 called Edit
 
@@ -19082,7 +17989,7 @@ called Edit
 
 ### Tool result
 
-_source line 3946 · 2026-05-19T14:59:01.885088+00:00_
+_source line 3938 · 2026-05-19T14:59:01.885088+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_error_taxonomy_v2.py has been updated successfully.
 
@@ -19104,7 +18011,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3947 · 2026-05-19T14:59:06.653207+00:00_
+_source line 3939 · 2026-05-19T14:59:06.653207+00:00_
 
 called Edit
 
@@ -19144,7 +18051,7 @@ called Edit
 
 ### Tool result
 
-_source line 3948 · 2026-05-19T14:59:06.703959+00:00_
+_source line 3940 · 2026-05-19T14:59:06.703959+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_error_taxonomy_v2.py has been updated successfully.
 
@@ -19166,7 +18073,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3949 · 2026-05-19T14:59:10.720357+00:00_
+_source line 3941 · 2026-05-19T14:59:10.720357+00:00_
 
 called Bash
 
@@ -19202,7 +18109,7 @@ called Bash
 
 ### Tool result
 
-_source line 3950 · 2026-05-19T14:59:12.528993+00:00_
+_source line 3942 · 2026-05-19T14:59:12.528993+00:00_
 
 Saved: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_error_taxonomy.pdf
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
@@ -19225,7 +18132,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3951 · 2026-05-19T14:59:24.626236+00:00_
+_source line 3943 · 2026-05-19T14:59:24.626236+00:00_
 
 called Edit
 
@@ -19265,7 +18172,7 @@ called Edit
 
 ### Tool result
 
-_source line 3952 · 2026-05-19T14:59:24.626814+00:00_
+_source line 3944 · 2026-05-19T14:59:24.626814+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -19287,7 +18194,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3953 · 2026-05-19T14:59:28.191198+00:00_
+_source line 3945 · 2026-05-19T14:59:28.191198+00:00_
 
 called Read
 
@@ -19325,7 +18232,7 @@ called Read
 
 ### Tool result
 
-_source line 3954 · 2026-05-19T14:59:28.241991+00:00_
+_source line 3946 · 2026-05-19T14:59:28.241991+00:00_
 
 79	\subsection{Model and Inference}
 80	\label{sec:model}
@@ -19351,7 +18258,7 @@ _source line 3954 · 2026-05-19T14:59:28.241991+00:00_
 
 ### Tool call
 
-_source line 3955 · 2026-05-19T14:59:38.741689+00:00_
+_source line 3947 · 2026-05-19T14:59:38.741689+00:00_
 
 called Edit
 
@@ -19391,7 +18298,7 @@ called Edit
 
 ### Tool result
 
-_source line 3956 · 2026-05-19T14:59:38.842721+00:00_
+_source line 3948 · 2026-05-19T14:59:38.842721+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
 
@@ -19413,7 +18320,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3957 · 2026-05-19T14:59:43.060943+00:00_
+_source line 3949 · 2026-05-19T14:59:43.060943+00:00_
 
 called Read
 
@@ -19451,7 +18358,7 @@ called Read
 
 ### Tool result
 
-_source line 3958 · 2026-05-19T14:59:43.114112+00:00_
+_source line 3950 · 2026-05-19T14:59:43.114112+00:00_
 
 35	
 36	\subsection{BCS-Controlled Experiments}
@@ -19491,7 +18398,7 @@ _source line 3958 · 2026-05-19T14:59:43.114112+00:00_
 
 ### Tool call
 
-_source line 3959 · 2026-05-19T14:59:48.587978+00:00_
+_source line 3951 · 2026-05-19T14:59:48.587978+00:00_
 
 called Edit
 
@@ -19531,7 +18438,7 @@ called Edit
 
 ### Tool result
 
-_source line 3960 · 2026-05-19T14:59:48.588524+00:00_
+_source line 3952 · 2026-05-19T14:59:48.588524+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -19553,7 +18460,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3961 · 2026-05-19T14:59:53.459750+00:00_
+_source line 3953 · 2026-05-19T14:59:53.459750+00:00_
 
 called Edit
 
@@ -19593,7 +18500,7 @@ called Edit
 
 ### Tool result
 
-_source line 3962 · 2026-05-19T14:59:53.511018+00:00_
+_source line 3954 · 2026-05-19T14:59:53.511018+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
 
@@ -19615,7 +18522,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3963 · 2026-05-19T14:59:57.627692+00:00_
+_source line 3955 · 2026-05-19T14:59:57.627692+00:00_
 
 called Bash
 
@@ -19653,7 +18560,7 @@ called Bash
 
 ### Tool result
 
-_source line 3964 · 2026-05-19T15:00:01.670061+00:00_
+_source line 3956 · 2026-05-19T15:00:01.670061+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -19679,7 +18586,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects
 
 ### Tool call
 
-_source line 3965 · 2026-05-19T15:00:08.162049+00:00_
+_source line 3957 · 2026-05-19T15:00:08.162049+00:00_
 
 called Bash
 
@@ -19715,7 +18622,7 @@ called Bash
 
 ### Tool result
 
-_source line 3966 · 2026-05-19T15:00:08.515254+00:00_
+_source line 3958 · 2026-05-19T15:00:08.515254+00:00_
 
 Page 1, line 39: 022           strations widen the confusability gap (+4.3 pp             2025; Shrimal et al., 2025) conflate two factor
 Page 2, line 16: 091   dominant factor (§4.1, §4.4). The two dimensions            rectional encoders (Zaratiana et al., 2024, 2025),    
@@ -19753,7 +18660,7 @@ Page 6, line 72: 478   count level): BCS gap −25.0 pp at count 16
 
 ### Tool call
 
-_source line 3967 · 2026-05-19T15:00:24.246830+00:00_
+_source line 3959 · 2026-05-19T15:00:24.246830+00:00_
 
 called Read
 
@@ -19791,7 +18698,7 @@ called Read
 
 ### Tool result
 
-_source line 3968 · 2026-05-19T15:00:24.298092+00:00_
+_source line 3960 · 2026-05-19T15:00:24.298092+00:00_
 
 1	\section{Experimental Setup}
 2	\label{sec:experimental_setup}
@@ -19827,7 +18734,7 @@ _source line 3968 · 2026-05-19T15:00:24.298092+00:00_
 
 ### Tool call
 
-_source line 3969 · 2026-05-19T15:00:34.213130+00:00_
+_source line 3961 · 2026-05-19T15:00:34.213130+00:00_
 
 called Edit
 
@@ -19867,7 +18774,7 @@ called Edit
 
 ### Tool result
 
-_source line 3970 · 2026-05-19T15:00:34.263947+00:00_
+_source line 3962 · 2026-05-19T15:00:34.263947+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
 
@@ -19889,7 +18796,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-ex
 
 ### Tool call
 
-_source line 3971 · 2026-05-19T15:00:37.610669+00:00_
+_source line 3963 · 2026-05-19T15:00:37.610669+00:00_
 
 called Read
 
@@ -19927,7 +18834,7 @@ called Read
 
 ### Tool result
 
-_source line 3972 · 2026-05-19T15:00:37.761893+00:00_
+_source line 3964 · 2026-05-19T15:00:37.761893+00:00_
 
 88	\subsection{Evaluation Metrics}
 89	\label{sec:metrics}
@@ -19958,6 +18865,887 @@ _source line 3972 · 2026-05-19T15:00:37.761893+00:00_
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Read",
   "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3965 · 2026-05-19T15:00:42.583189+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$.\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering",
+  "new_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$.\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering",
+    "new_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3966 · 2026-05-19T15:00:42.684467+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3967 · 2026-05-19T15:00:46.304594+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "offset": "97",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "offset": "97",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3968 · 2026-05-19T15:00:46.405495+00:00_
+
+97	We use Qwen3-32B-FP8 \cite{qwen3-2025} served via vLLM v0.20.2 \cite{vllm-2023} on a single NVIDIA RTX PRO 6000 GPU (96\,GB) with greedy decoding (temperature${}\,=\,0$, seed 42). Two NER/ED prompt versions are evaluated: v1 requests character offsets (evaluated via text matching); v2 adds format constraints that double precision with minimal recall loss. RE uses a single prompt version throughout. Both versions produce consistent degradation patterns; we report both where applicable to quantify formatting sensitivity \cite{sclar-sensitivity-2024} (templates in Appendix~\ref{sec:appendix_prompts}). Cross-model validation uses Meta-Llama-3.1-70B-Instruct (FP8) and Meta-Llama-3.1-8B-Instruct \cite{llama3-2024}. All experiments use single-seed evaluation with greedy decoding, which substantially reduces model-level randomness (residual SD = 0.88\,pp at count 80 under greedy decoding, likely attributable to FP8 quantization non-determinism); bootstrap CIs capture the remaining sampling variance from batch composition. Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$.
+98	\includegraphics[width=\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}
+99	\end{minipage}
+100	\caption{\textbf{(a)} Count-degradation curves. Error bars: $\pm 1$\,SD across 3 seeds $\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}
+101	\label{fig:main_results}
+102	\end{figure*}
+103	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3969 · 2026-05-19T15:00:52.739786+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$.\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}",
+  "new_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$.\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}",
+    "new_string": "Pair-level CIs use percentile bootstrap ($B{=}10{,}000$); batch-level CIs use $B{=}1{,}000$."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3970 · 2026-05-19T15:00:52.790610+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3971 · 2026-05-19T15:00:57.015973+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Error|Warning.*float|Rerun|Output written|up-to-date\" | head -10",
+  "description": "Compile and check for errors",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Error|Warning.*float|Rerun|Output written|up-to-date\" | head -10",
+    "description": "Compile and check for errors",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3972 · 2026-05-19T15:01:00.732937+00:00_
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Output written on main.pdf (25 pages, 462791 bytes).
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 3716
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3973 · 2026-05-19T15:01:04.270034+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "Second compile pass for cross-references",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "description": "Second compile pass for cross-references",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3974 · 2026-05-19T15:01:04.471218+00:00_
+
+Latexmk: Nothing to do for 'main.tex'.
+Latexmk: All targets (main.pdf) are up-to-date
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3975 · 2026-05-19T15:01:10.061449+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\nfor i, p in enumerate(pages[:10], 1):\n    lines = p.strip().split('\\n')\n    for j, l in enumerate(lines):\n        if any(k in l for k in ['Figure 1', 'Figure 2', '4.1', '4.4', 'Multi-Dimensional', 'Limitations']):\n            print(f'Page {i}: {l.strip()[:130]}')\n\"",
+  "description": "Verify figure positions in new PDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\nfor i, p in enumerate(pages[:10], 1):\n    lines = p.strip().split('\\n')\n    for j, l in enumerate(lines):\n        if any(k in l for k in ['Figure 1', 'Figure 2', '4.1', '4.4', 'Multi-Dimensional', 'Limitations']):\n            print(f'Page {i}: {l.strip()[:130]}')\n\"",
+    "description": "Verify figure positions in new PDF"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3976 · 2026-05-19T15:01:10.464063+00:00_
+
+Page 2: 091   dominant factor (§4.1, §4.4). The two dimensions            rectional encoders (Zaratiana et al., 2024, 2025),        138
+Page 2: 116      RE, and event detection (§4.1, §4.2, §4.3).              our §5 analysis identifies as the fundamental bot-        164
+Page 2: 121      significant pairwise effects (§4.3, §4.4).
+Page 4: Figure 1: (a) Count-degradation curves. Error bars: ±1 SD across 3 seeds × 25 batches. RE declines monotonically;
+Page 5: 358   low-BCS batch, one high-BCS batch, and 25 ran-                    4.1    Count-Degradation Curves                        404
+Page 5: 360   (count ∈ {6, 12}), FewRel (count ∈ {8, 16}, both                  Figure 1a shows RE accuracy declines monoton-          405
+Page 6: 460   isolate this effect. FewRel’s balanced design (700                            3.1-8B (§4.1); Dimension 2 replicates on RE   
+Page 6: 461   instances per type) eliminates type frequency as a                            but shows floor effects on 8B NER (Limitations
+Page 7: Figure 2: Error taxonomy decomposition. IntraSub scales monotonically with BCS in both tasks. RE missed rates
+Page 7: 518   n = 450; §4.4). The effect holds across four struc-                             relation strengths remain comparable (ρ ≈ −0
+Page 7: 522   4.4                 Multi-Dimensional Degradation
+Page 8: 586   requires no span reconciliation across passes.              (§4.1) reflects a dual-task burden: partial schemas    633
+Page 8: Limitations                                            667
+Page 9: 696      (Appendix Q) supports robustness but precise                   Yes. The Limitations section (after §7) dis-         743
+Page 10: 796       sive content?                                                throughout §4.1–4.5. Permutation tests are        843
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3977 · 2026-05-19T15:01:38.158940+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "offset": "55",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "offset": "55",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3978 · 2026-05-19T15:01:38.209596+00:00_
+
+55	
+56	\subsection{Schema Confusability Score (SCS)}
+57	\label{sec:scs}
+58	
+59	We define the Schema Confusability Score (SCS) to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\text{name}(t)$, an embedding function $\text{embed}(\cdot)$ maps the type name to a vector representation. The \textbf{pairwise SCS} between types $t_i$ and $t_j$ is:
+60	{\small
+61	\[
+62	\text{SCS}(t_i, t_j) = \cos\bigl(\text{embed}(\text{name}(t_i)),\; \text{embed}(\text{name}(t_j))\bigr)
+63	\]
+64	}
+65	
+66	For a batch of types $B = \{t_1, \ldots, t_k\}$, the \textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:
+67	\[
+68	\text{BCS}(B) = \frac{1}{\binom{k}{2}} \sum_{i < j,\; t_i, t_j \in B} \text{SCS}(t_i, t_j)
+69	\]
+70	
+71	We use two embeddings to provide complementary perspectives: Qwen3 captures the extraction model's own type representations (self-similarity), while MiniLM provides an independent general-purpose baseline. Cross-embedding consistency holds on all datasets (Appendix~\ref{sec:appendix_bcs_sensitivity}); MiniLM consistently yields equal or stronger correlations, which confirms that Qwen3-based estimates are conservative. We compute SCS with: (1)~Qwen3-32B \cite{qwen3-2025} hidden-state representations (5{,}120-d) and (2)~all-MiniLM-L6-v2 \cite{minilm-2020,sentence-bert-2019}, a 384-d sentence encoder. Few-NERD uses Qwen3 because its fine-grained same-category pairs (e.g., ``person-artist'' vs.\ ``person-actor'') require the higher-dimensional space. MiniLM is the primary BCS embedding because sentence-transformers are trained for semantic similarity \cite{sentence-bert-2019}; Qwen3 causal-LM states show compressed BCS range (std${}\,=\,0.034$ vs.\ MiniLM std${}\,=\,0.081$), consistent with autoregressive anisotropy \cite{ethayarajh-contextual-2019}. Name-only SCS yields equivalent predictive accuracy to name+definition ($\Delta r$: $-0.023$ to $+0.035$; Appendix~\ref{app:scs-ablation}).
+72	
+73	\paragraph{SCS as 
+…[truncated 2401 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3979 · 2026-05-19T15:01:52.093211+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "\\section{Experimental Setup}\n\\label{sec:experimental_setup}\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}\n\nWe evaluate how prompt schema size",
+  "new_string": "\\section{Experimental Setup}\n\\label{sec:experimental_setup}\n\nWe evaluate how prompt schema size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "\\section{Experimental Setup}\n\\label{sec:experimental_setup}\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}\n\nWe evaluate how prompt schema size",
+    "new_string": "\\section{Experimental Setup}\n\\label{sec:experimental_setup}\n\nWe evaluate how prompt schema size"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3980 · 2026-05-19T15:01:52.144148+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3981 · 2026-05-19T15:01:58.222263+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "\\subsection{Experimental Design}\n\\label{sec:exp_design}",
+  "new_string": "\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}\n\n\\subsection{Experimental Design}\n\\label{sec:exp_design}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "\\subsection{Experimental Design}\n\\label{sec:exp_design}",
+    "new_string": "\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n\\end{minipage}\n\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n\\end{minipage}\n\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Hollow markers: full-schema (no sampling variance). \\textbf{(b)} BCS-controlled FewRel accuracy. Slopes are consistent across the independent and within-pool 16-relation conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps.}\n\\label{fig:main_results}\n\\end{figure*}\n\n\\subsection{Experimental Design}\n\\label{sec:exp_design}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3982 · 2026-05-19T15:01:58.273118+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3983 · 2026-05-19T15:02:04.161299+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|up-to-date\" | head -3",
+  "description": "Compile paper",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|up-to-date\" | head -3",
+    "description": "Compile paper",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3984 · 2026-05-19T15:02:08.081720+00:00_
+
+Output written on main.pdf (25 pages, 462357 bytes).
+Output written on main.pdf (25 pages, 462267 bytes).
+Latexmk: All targets (main.pdf) are up-to-date
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 3920
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3985 · 2026-05-19T15:02:14.266218+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\nfor i, p in enumerate(pages[:10], 1):\n    lines = p.strip().split('\\n')\n    for j, l in enumerate(lines):\n        if any(k in l for k in ['Figure 1', 'Figure 2', 'Figure 1a shows', '4.1    Count', '4.4    Multi', 'Limitations']):\n            print(f'Page {i}: {l.strip()[:140]}')\n\"",
+  "description": "Check figure positions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\nfor i, p in enumerate(pages[:10], 1):\n    lines = p.strip().split('\\n')\n    for j, l in enumerate(lines):\n        if any(k in l for k in ['Figure 1', 'Figure 2', 'Figure 1a shows', '4.1    Count', '4.4    Multi', 'Limitations']):\n            print(f'Page {i}: {l.strip()[:140]}')\n\"",
+    "description": "Check figure positions"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3986 · 2026-05-19T15:02:14.568850+00:00_
+
+Page 5: Figure 1: (a) Count-degradation curves. Error bars: ±1 SD across 3 seeds × 25 batches. RE declines monotonically;
+Page 5: 375   rect event type.                                                               Figure 1a shows RE accuracy declines monoton-          
+Page 6: 459   alongside count. We fix type count and vary BCS to                            but shows floor effects on 8B NER (Limitations,         
+Page 7: Figure 2: Error taxonomy decomposition. IntraSub scales monotonically with BCS in both tasks. RE missed rates
+Page 8: Limitations                                            667
+Page 9: 696      (Appendix Q) supports robustness but precise                   Yes. The Limitations section (after §7) dis-         743
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3987 · 2026-05-19T15:02:18.992518+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_error_taxonomy.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_error_taxonomy.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3988 · 2026-05-19T15:02:19.246037+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3989 · 2026-05-19T15:02:27.236752+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\np8 = pages[7].strip().split('\\n')\nprint('=== Page 8 last 5 lines ===')\nfor l in p8[-5:]:\n    print(l)\n\"",
+  "description": "Verify page 8 ends with Limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\np8 = pages[7].strip().split('\\n')\nprint('=== Page 8 last 5 lines ===')\nfor l in p8[-5:]:\n    print(l)\n\"",
+    "description": "Verify page 8 ends with Limitations"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 3990 · 2026-05-19T15:02:27.538888+00:00_
+
+=== Page 8 last 5 lines ===
+621   pairwise R2 is 1.3%; conditional on nonzero con-               Qwen3-32B with cross-model validation on            669
+622   fusion, R2 rises to 7%. Correlated aggregation                 Llama-3.1-8B, 70B-Instruct (FP8), and Gemini        670
+
+
+                                                              8
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 3991 · 2026-05-19T15:02:32.848109+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\n# find where Limitations starts\nfor i, p in enumerate(pages[:10], 1):\n    if 'Limitations' in p:\n        lines = p.strip().split('\\n')\n        for j, l in enumerate(lines):\n            if 'Limitations' in l:\n                print(f'Page {i}, line {j}: {l.strip()[:100]}')\n                break\n        break\n\"",
+  "description": "Find Limitations section page"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -layout main.pdf - 2>/dev/null | python3 -c \"\nimport sys\ntext = sys.stdin.read()\npages = text.split('\\x0c')\n# find where Limitations starts\nfor i, p in enumerate(pages[:10], 1):\n    if 'Limitations' in p:\n        lines = p.strip().split('\\n')\n        for j, l in enumerate(lines):\n            if 'Limitations' in l:\n                print(f'Page {i}, line {j}: {l.strip()[:100]}')\n                break\n        break\n\"",
+    "description": "Find Limitations section page"
+  }
 }
 ```
 

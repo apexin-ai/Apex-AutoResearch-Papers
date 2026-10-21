@@ -58,12 +58,11 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code exp004 7b crossscale | 137 | 0 | [Read transcript](code-exp004-7b-crossscale.md) | [JSON](../../sessions/7d/7d7e178d9215d823103e.json) |
 | paper kstar theta figure | 27 | 0 | [Read transcript](paper-kstar-theta-figure.md) | [JSON](../../sessions/20/206b19c0397f859ed882.json) |
 | diagnose exp A final check | 39 | 0 | [Read transcript](diagnose-exp-a-final-check.md) | [JSON](../../sessions/47/47b9c41dad87927c181c.json) |
-| data pull rebuttal artifacts | 124 | 0 | [Read transcript](data-pull-rebuttal-artifacts.md) | [JSON](../../sessions/11/118c433e83f5bcabfc7f.json) |
 | paper exp A crossscorer table | 14 | 0 | [Read transcript](paper-exp-a-crossscorer-table.md) | [JSON](../../sessions/8b/8b84e70b6a5057206761.json) |
 | code exp D mcnemar | 47 | 0 | [Read transcript](code-exp-d-mcnemar.md) | [JSON](../../sessions/08/08838c9a44d0cc85f06b.json) |
-| code exp D mcnemar fixed | 41 | 0 | [Read transcript](code-exp-d-mcnemar-fixed.md) | [JSON](../../sessions/1e/1eaae8110ab0e8a130af.json) |
-| code exp D comprehensive | 72 | 0 | [Read transcript](code-exp-d-comprehensive.md) | [JSON](../../sessions/2f/2f00fa2947c7d5cd7e23.json) |
-| code exp D final | 99 | 0 | [Read transcript](code-exp-d-final.md) | [JSON](../../sessions/88/88ef76bb3935aadac348.json) |
+| code exp D mcnemar fixed | 39 | 0 | [Read transcript](code-exp-d-mcnemar-fixed.md) | [JSON](../../sessions/1e/1eaae8110ab0e8a130af.json) |
+| code exp D comprehensive | 70 | 0 | [Read transcript](code-exp-d-comprehensive.md) | [JSON](../../sessions/2f/2f00fa2947c7d5cd7e23.json) |
+| code exp D final | 97 | 0 | [Read transcript](code-exp-d-final.md) | [JSON](../../sessions/88/88ef76bb3935aadac348.json) |
 | code exp 012 prep | 61 | 0 | [Read transcript](code-exp-012-prep.md) | [JSON](../../sessions/ec/ec6c0b093e4ca0ce8e3c.json) |
 | code exp004 analysis prep | 59 | 0 | [Read transcript](code-exp004-analysis-prep.md) | [JSON](../../sessions/fc/fcd9157dc596a39f307a.json) |
 | figure kstar theta curve | 22 | 0 | [Read transcript](figure-kstar-theta-curve.md) | [JSON](../../sessions/ad/ad3a6ed841950b11a850.json) |
@@ -79,7 +78,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper figure kstar theta download | 33 | 0 | [Read transcript](paper-figure-kstar-theta-download.md) | [JSON](../../sessions/12/125f6fd50f30adf628bb.json) |
 | code fix exp E holm bonferroni | 41 | 0 | [Read transcript](code-fix-exp-e-holm-bonferroni.md) | [JSON](../../sessions/88/88defe8a1728b5efa933.json) |
 | read exp E pvalues | 16 | 0 | [Read transcript](read-exp-e-pvalues.md) | [JSON](../../sessions/89/89f6d338492abf09564a.json) |
-| audit rebuttal artifacts | 27 | 0 | [Read transcript](audit-rebuttal-artifacts.md) | [JSON](../../sessions/68/686dd891baeddcfa745a.json) |
 | check exp004 progress | 38 | 0 | [Read transcript](check-exp004-progress.md) | [JSON](../../sessions/4b/4bc5de9d5309b1c0986f.json) |
 | code exp 012 script verify | 630 | 0 | [Read transcript](code-exp-012-script-verify.md) | [JSON](../../sessions/0c/0c5b246de340aa0981b4.json) |
 | cleanup exp D mcnemar | 13 | 0 | [Read transcript](cleanup-exp-d-mcnemar.md) | [JSON](../../sessions/fa/fa8ebe4ceb085d0a9a6c.json) |

@@ -6,177 +6,9 @@
 
 ## Round 332
 
-### Tool result
-
-_source line 3813 · 2026-05-19T22:24:01.637478+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T22:24:00.637Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2517}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 1306
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3814 · 2026-05-19T22:24:02.842234+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-19T22:24:01.902Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1879}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 2057
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 3815 · 2026-05-19T22:24:06.205337+00:00_
-
-called mcp__agent-ml-research__update_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
-
-```json
-{
-  "exp_id": "exp_deberta_c4_1b5",
-  "field": "status",
-  "value": "ALLOCATED",
-  "project": "gen-depth-contamination"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "tool_args": {
-    "exp_id": "exp_deberta_c4_1b5",
-    "field": "status",
-    "value": "ALLOCATED",
-    "project": "gen-depth-contamination"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3816 · 2026-05-19T22:24:06.556869+00:00_
-
-called mcp__agent-ml-research__update_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
-
-```json
-{
-  "exp_id": "exp_deberta_cross_transfer_wiki",
-  "field": "status",
-  "value": "ALLOCATED",
-  "project": "gen-depth-contamination"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "tool_args": {
-    "exp_id": "exp_deberta_cross_transfer_wiki",
-    "field": "status",
-    "value": "ALLOCATED",
-    "project": "gen-depth-contamination"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3817 · 2026-05-19T22:24:07.460400+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T22:24:06.496Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2425}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 1255
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3818 · 2026-05-19T22:24:08.664751+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-19T22:24:07.729Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2137}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 2107
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3819 · 2026-05-19T22:24:15.507358+00:00_
+_source line 3815 · 2026-05-19T22:24:15.507358+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -218,7 +50,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3820 · 2026-05-19T22:24:17.414363+00:00_
+_source line 3816 · 2026-05-19T22:24:17.414363+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T22:24:15.777Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0\", \"pid\": \"255066\", \"data_path\": \"/root/gen-depth-contamination/data/exp016_qwen_base/\", \"data_count\": \"TBD\", \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2511}}"}
 
@@ -240,7 +72,7 @@ _source line 3820 · 2026-05-19T22:24:17.414363+00:00_
 
 ### Tool call
 
-_source line 3821 · 2026-05-19T22:24:17.565971+00:00_
+_source line 3817 · 2026-05-19T22:24:17.565971+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -282,7 +114,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3822 · 2026-05-19T22:24:18.772628+00:00_
+_source line 3818 · 2026-05-19T22:24:18.772628+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-19T22:24:17.842Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1836}}"}
 
@@ -304,7 +136,7 @@ _source line 3822 · 2026-05-19T22:24:18.772628+00:00_
 
 ### Tool call
 
-_source line 3823 · 2026-05-19T22:25:07.445767+00:00_
+_source line 3819 · 2026-05-19T22:25:07.445767+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -340,7 +172,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3824 · 2026-05-19T22:25:10.908634+00:00_
+_source line 3820 · 2026-05-19T22:25:10.908634+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -362,7 +194,7 @@ _source line 3824 · 2026-05-19T22:25:10.908634+00:00_
 
 ### Tool call
 
-_source line 3825 · 2026-05-19T22:25:24.640958+00:00_
+_source line 3821 · 2026-05-19T22:25:24.640958+00:00_
 
 called ToolSearch
 
@@ -398,7 +230,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3826 · 2026-05-19T22:25:24.691621+00:00_
+_source line 3822 · 2026-05-19T22:25:24.691621+00:00_
 
 
 
@@ -420,7 +252,7 @@ _source line 3826 · 2026-05-19T22:25:24.691621+00:00_
 
 ### Tool call
 
-_source line 3827 · 2026-05-19T22:25:27.451899+00:00_
+_source line 3823 · 2026-05-19T22:25:27.451899+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -458,7 +290,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3828 · 2026-05-19T22:25:27.502643+00:00_
+_source line 3824 · 2026-05-19T22:25:27.502643+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 决策与经验\\n\\n### Code Cross-Scorer: K*=2 Scorer-Independent (2026-05-19)\\n- **exp_code_qwen1b5_pythia_scorer**: Pythia-1.4B scorer 下 Qwen Code 文本 K*=2（与 Qwen self-scorer 一致）\\n- 1v2 AUC: 0.7197 (Pythia) vs 0.7382 (Qwen)，Δ=-0.019（Pythia 特征提取稍弱但远超 θ=0.60）\\n- 2v3: 0.5308 vs 0.5300，几乎无变化\\n- **结论**: D060 Wikipedia scorer confound 不影响 Code domain（Code 1v2 AUC 远离阈值）\\n- **Scorer confound 影响规律**: 仅在 AUC 极接近 θ 时翻转 K*（Wikipedia 1v2~0.59-0.61），AUC 远离 θ 时 scorer 选择不影响 K* 判定\\n\\n### M011: 实验启动必须 nvidia-smi 验证 (2026-05-19)\\n- **问题**: exp_code_qwen7b 3 次报告\\\"已启动\\\"但实际未运行，cuda:1 空转 9 小时\\n- **根因**: (1) cqa1 无法访问 huggingface.co，datasets.load_dataset 触发 httpx client closed (2) 提交后未验证 GPU 实际占用\\n- **硬规则**: 所有实验提交后必须立即 `nvidia-smi` 确认目标 GPU 有进程 + 显存占用 > 0。如果 0% util / 0 MiB，说明没启动成功，不要回报\\\"已启动\\\"\\n- **修复 pattern**: cqa1 需要 `HF_ENDPOINT=https://hf-mirror.com` 环境变量；数据文件直接复制而非下载\\n\\n### Pythia Code K*=1 — 跨模型一致性部分否定 (2026-05-19)\\n- **结果**: Pythia-1.4B code domain K*=1 (1v2 AUC=0.5983, 0.17pp below θ=0.60)\\n- 3/5 folds ≥ θ (0.601, 0.600, 0.602)，但 mean 未达标\\n- Qwen Code K*=2 (AUC=0.7382) vs Pythia K*=1 → code K* 不完全 domain-governed\\n- **解释**: Pythia 的 code 能力弱（The Pile 训练，code 比例低），第一代即严重退化\\n- **Framing 影响**: \\\"domain sets ceiling, model competency determines if ceiling is reached\\\"\\n\\n### Retrain-Chain K*=7 跨模型确认 (2026-05-19)\\n- **Qwen2.5-1.5B**: K*≥7, 6v7 AUC=0.641 [0.633, 0.649]\\n- **Pythia-1.4B**: K*=7, 6v7 AUC=0.634 [0.628, 0.641]\\n- 两个架构（GPT-NeoX vs Qwen）retrain K* 完全一致\\n- AUC 衰减形态相似：~0.98 → ~0.63-0.64, 6v7 收敛到相同水平\\n- Pythia 中间 depth AUC 稍高（1v2: 0.947 vs 0.900），可能因更小模型每代漂移更大\\n- **论文 claim**: \\\"retrain K* 由 protocol (LoRA fine-tune on own output) 决定，不由模型架构决定\\\"\\n- **文献支撑**: Bertrand et al. (ICLR 2024) 的理论框架解释了跨模型收敛性\\n\\n### Bootstrap CI 数据泄漏教训 (2026-05-18
 …[truncated 3345 chars]
@@ -481,7 +313,7 @@ _source line 3828 · 2026-05-19T22:25:27.502643+00:00_
 
 ### Tool call
 
-_source line 3829 · 2026-05-19T22:26:07.179086+00:00_
+_source line 3825 · 2026-05-19T22:26:07.179086+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -519,7 +351,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 3830 · 2026-05-19T22:26:07.180669+00:00_
+_source line 3826 · 2026-05-19T22:26:07.180669+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -541,7 +373,7 @@ _source line 3830 · 2026-05-19T22:26:07.180669+00:00_
 
 ### Assistant
 
-_source line 3831 · 2026-05-19T22:26:16.758675+00:00_
+_source line 3827 · 2026-05-19T22:26:16.758675+00:00_
 
 已完成所有任务：
 
@@ -575,7 +407,7 @@ Registry 和 memory.md 已更新。汇报已发送 Director。当前等待 cross
 
 ### User
 
-_source line 3832 · 2026-05-19T22:26:17.219057+00:00_
+_source line 3828 · 2026-05-19T22:26:17.219057+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_upperbound** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -598,7 +430,7 @@ _source line 3832 · 2026-05-19T22:26:17.219057+00:00_
 
 ### Tool call
 
-_source line 3833 · 2026-05-19T22:26:28.066030+00:00_
+_source line 3829 · 2026-05-19T22:26:28.066030+00:00_
 
 called ToolSearch
 
@@ -634,7 +466,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3834 · 2026-05-19T22:26:28.066476+00:00_
+_source line 3830 · 2026-05-19T22:26:28.066476+00:00_
 
 
 
@@ -656,7 +488,7 @@ _source line 3834 · 2026-05-19T22:26:28.066476+00:00_
 
 ### Tool call
 
-_source line 3835 · 2026-05-19T22:26:32.184110+00:00_
+_source line 3831 · 2026-05-19T22:26:32.184110+00:00_
 
 called ToolSearch
 
@@ -692,7 +524,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3836 · 2026-05-19T22:26:32.284917+00:00_
+_source line 3832 · 2026-05-19T22:26:32.284917+00:00_
 
 
 
@@ -714,7 +546,7 @@ _source line 3836 · 2026-05-19T22:26:32.284917+00:00_
 
 ### Tool call
 
-_source line 3837 · 2026-05-19T22:26:39.662975+00:00_
+_source line 3833 · 2026-05-19T22:26:39.662975+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -743,7 +575,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3838 · 2026-05-19T22:26:44.991125+00:00_
+_source line 3834 · 2026-05-19T22:26:44.991125+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"success\": true, \"actions\": [\"Job still running (pid=208306)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"success\": true, \"actions\": [\"Job still running (pid=208307)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"success\": true, \"actions\": [\"Job still running (pid=208308)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -765,7 +597,7 @@ _source line 3838 · 2026-05-19T22:26:44.991125+00:00_
 
 ### Assistant
 
-_source line 3839 · 2026-05-19T22:26:52.062140+00:00_
+_source line 3835 · 2026-05-19T22:26:52.062140+00:00_
 
 exp_deberta_upperbound 的 cron 已自动清除（不在 active crons 中了）。剩余 3 个 cross-transfer cron 仍在监控（PIDs 208306/208307/208308 存活）。无需额外操作。
 
@@ -792,7 +624,7 @@ exp_deberta_upperbound 的 cron 已自动清除（不在 active crons 中了）�
 
 ### User
 
-_source line 3840 · 2026-05-19T22:26:52.068534+00:00_
+_source line 3836 · 2026-05-19T22:26:52.068534+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_upperbound** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -815,7 +647,7 @@ _source line 3840 · 2026-05-19T22:26:52.068534+00:00_
 
 ### Assistant
 
-_source line 3841 · 2026-05-19T22:26:58.631116+00:00_
+_source line 3837 · 2026-05-19T22:26:58.631116+00:00_
 
 重复回调，已处理。exp_deberta_upperbound 在之前的 Worker (deberta-wiki-cron-resolve) 中已确认 5/5 完成，registry 已为 DONE/success。上一次 reconcile_crons 只剩 3 个 cross-transfer cron，exp_deberta_upperbound 的 cron 已不存在。无需操作。
 
@@ -842,7 +674,7 @@ _source line 3841 · 2026-05-19T22:26:58.631116+00:00_
 
 ### User
 
-_source line 3842 · 2026-05-19T22:26:58.637353+00:00_
+_source line 3838 · 2026-05-19T22:26:58.637353+00:00_
 
 [WORKER DONE] Worker worker_infra_deberta-wiki-cron-resolve_20260519T215745 已完成（status=done）。用 `get_worker_status('worker_infra_deberta-wiki-cron-resolve_20260519T215745')` 读取结果，然后处理。
 
@@ -867,7 +699,7 @@ _source line 3842 · 2026-05-19T22:26:58.637353+00:00_
 
 ### Assistant
 
-_source line 3843 · 2026-05-19T22:27:07.356249+00:00_
+_source line 3839 · 2026-05-19T22:27:07.356249+00:00_
 
 这个 Worker 的结果我已在 session 初始化时读取并处理过了：
 
@@ -902,7 +734,7 @@ _source line 3843 · 2026-05-19T22:27:07.356249+00:00_
 
 ### User
 
-_source line 3844 · 2026-05-19T22:27:07.919584+00:00_
+_source line 3840 · 2026-05-19T22:27:07.919584+00:00_
 
 [WORKER DONE] Worker worker_infra_cqa1-recovery-status_20260519T215644 已完成（status=done）。用 `get_worker_status('worker_infra_cqa1-recovery-status_20260519T215644')` 读取结果，然后处理。
 
@@ -927,7 +759,7 @@ _source line 3844 · 2026-05-19T22:27:07.919584+00:00_
 
 ### Assistant
 
-_source line 3845 · 2026-05-19T22:27:18.763329+00:00_
+_source line 3841 · 2026-05-19T22:27:18.763329+00:00_
 
 这两个 Worker 的结果已在之前的汇报中处理完毕。无需重复操作。
 
@@ -964,7 +796,7 @@ _source line 3845 · 2026-05-19T22:27:18.763329+00:00_
 
 ### User
 
-_source line 3846 · 2026-05-19T22:27:19.297837+00:00_
+_source line 3842 · 2026-05-19T22:27:19.297837+00:00_
 
 [WORKER DONE] Worker worker_bugfix_wiki-kstar-obd-baseline_20260519T215703 已完成（status=done）。用 `get_worker_status('worker_bugfix_wiki-kstar-obd-baseline_20260519T215703')` 读取结果，然后处理。
 
@@ -989,7 +821,7 @@ _source line 3846 · 2026-05-19T22:27:19.297837+00:00_
 
 ### Assistant
 
-_source line 3847 · 2026-05-19T22:27:25.008058+00:00_
+_source line 3843 · 2026-05-19T22:27:25.008058+00:00_
 
 这三个 Worker 的结果已在之前处理完毕（registry 已更新，已向 Director 汇报）。无需重复操作。
 
@@ -1016,7 +848,7 @@ _source line 3847 · 2026-05-19T22:27:25.008058+00:00_
 
 ### User
 
-_source line 3848 · 2026-05-19T22:27:25.532274+00:00_
+_source line 3844 · 2026-05-19T22:27:25.532274+00:00_
 
 [WORKER DONE] Worker worker_bugfix_cqa1-kstar-script-fix_20260519T220505 已完成（status=done）。用 `get_worker_status('worker_bugfix_cqa1-kstar-script-fix_20260519T220505')` 读取结果，然后处理。
 
@@ -1041,7 +873,7 @@ _source line 3848 · 2026-05-19T22:27:25.532274+00:00_
 
 ### Assistant
 
-_source line 3849 · 2026-05-19T22:27:36.216222+00:00_
+_source line 3845 · 2026-05-19T22:27:36.216222+00:00_
 
 这些 Worker 的结果我之前都已经读取并处理完毕：
 
@@ -1075,7 +907,7 @@ _source line 3849 · 2026-05-19T22:27:36.216222+00:00_
 
 ### User
 
-_source line 3850 · 2026-05-19T22:27:36.786415+00:00_
+_source line 3846 · 2026-05-19T22:27:36.786415+00:00_
 
 [Director 指令] **westd 双卡空闲，安排任务：**
 
@@ -1104,7 +936,7 @@ cqa1 上 qwen_rw C4 1.5B DeBERTa 继续跑，完成后立即汇报。
 
 ### Tool call
 
-_source line 3851 · 2026-05-19T22:28:22.953965+00:00_
+_source line 3847 · 2026-05-19T22:28:22.953965+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -1144,7 +976,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 3852 · 2026-05-19T22:28:24.008408+00:00_
+_source line 3848 · 2026-05-19T22:28:24.008408+00:00_
 
 called mcp__agent-ml-research__register_cron
 
@@ -1188,7 +1020,7 @@ called mcp__agent-ml-research__register_cron
 
 ### Tool result
 
-_source line 3853 · 2026-05-19T22:28:28.625906+00:00_
+_source line 3849 · 2026-05-19T22:28:28.625906+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_32b-deberta-6class_20260519T222823\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_exp_32b-deberta-6class_20260519T222823.log\", \"setup_data\": {}, \"message\": \"Worker worker_exp_32b-deberta-6class_20260519T222823 started. Use get_worker_status('worker_exp_32b-deberta-6class_20260519T222823') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -1210,7 +1042,7 @@ _source line 3853 · 2026-05-19T22:28:28.625906+00:00_
 
 ### Tool result
 
-_source line 3854 · 2026-05-19T22:28:28.776804+00:00_
+_source line 3850 · 2026-05-19T22:28:28.776804+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"server\": \"cqa1-22115\", \"pid\": \"255066\", \"wandb_run_id\": null, \"log_path\": \"/root/gen-depth-contamination/results/deberta_c4_1b5_qwen_rw.log\", \"interval_seconds\": 180, \"project\": \"gen-depth-contamination\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-19T22:28:28.651Z\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -1232,7 +1064,7 @@ _source line 3854 · 2026-05-19T22:28:28.776804+00:00_
 
 ### Tool call
 
-_source line 3855 · 2026-05-19T22:28:45.141754+00:00_
+_source line 3851 · 2026-05-19T22:28:45.141754+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -1268,7 +1100,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3856 · 2026-05-19T22:28:46.240239+00:00_
+_source line 3852 · 2026-05-19T22:28:46.240239+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -1290,7 +1122,7 @@ _source line 3856 · 2026-05-19T22:28:46.240239+00:00_
 
 ### Assistant
 
-_source line 3857 · 2026-05-19T22:28:51.206084+00:00_
+_source line 3853 · 2026-05-19T22:28:51.206084+00:00_
 
 已向 Director 汇报。当前状态：
 - **cqa1**: 4 GPU 全忙（cuda:0 C4-1.5B, cuda:1-3 cross-transfer）
@@ -1321,7 +1153,7 @@ _source line 3857 · 2026-05-19T22:28:51.206084+00:00_
 
 ### User
 
-_source line 3858 · 2026-05-19T22:30:45.111911+00:00_
+_source line 3854 · 2026-05-19T22:30:45.111911+00:00_
 
 [WORKER DONE] Worker worker_exp_32b-deberta-6class_20260519T222823 已完成（status=done）。用 `get_worker_status('worker_exp_32b-deberta-6class_20260519T222823')` 读取结果，然后处理。
 
@@ -1346,7 +1178,7 @@ _source line 3858 · 2026-05-19T22:30:45.111911+00:00_
 
 ### Tool call
 
-_source line 3859 · 2026-05-19T22:30:52.973791+00:00_
+_source line 3855 · 2026-05-19T22:30:52.973791+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -1380,7 +1212,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3860 · 2026-05-19T22:30:53.024535+00:00_
+_source line 3856 · 2026-05-19T22:30:53.024535+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_32b-deberta-6class_20260519T222823\", \"status\": \"done\", \"task_type\": \"exp:32b-deberta-6class\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T22:28:23.615409+00:00\", \"ended_at\": \"2026-05-19T22:30:43.193385+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"训练已正常启动。\\n\\n**汇报：**\\n\\n| 项目 | 详情 |\\n|------|------|\\n| **数据路径** | `/root/autodl-tmp/gen-depth-contamination/data/exp_32b_c4/` |\\n| **Depth 文件** | depth_0.jsonl ~ depth_5.jsonl（6 个全部存在） |\\n| **样本数** | 30,000（6 class × 5,000 docs） |\\n| **num_classes** | 6（depth 0-5），之前是 5（0-4） |\\n| **GPU** | cuda:0，PID 139848，13.9GB 显存，94% 利用率 |\\n| **cuda:1** | 空闲（3MiB） |\\n| **K\\\\* 索引** | 已确认 1-indexed |\\n| **Tmux session** | `deberta_32b_6class` |\\n| **日志** | `logs/deberta_32b_6class.log` |\\n| **当前进度** | Fold 1/5 训练中 |\\n| **预计时长** | 之前 5-class 跑了 40 min，6-class 样本多 20%，预计 ~50 min |\\n| **结果输出** | `results/exp_deberta_c4/exp_32b_c4_results.json`（会覆盖旧的 5-class 结果） |\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -1402,7 +1234,7 @@ _source line 3860 · 2026-05-19T22:30:53.024535+00:00_
 
 ### Tool call
 
-_source line 3861 · 2026-05-19T22:31:06.076332+00:00_
+_source line 3857 · 2026-05-19T22:31:06.076332+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1442,7 +1274,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3862 · 2026-05-19T22:31:06.882009+00:00_
+_source line 3858 · 2026-05-19T22:31:06.882009+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_32b_c4_6class\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T22:31:06.464Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6151}}"}
 
@@ -1464,7 +1296,7 @@ _source line 3862 · 2026-05-19T22:31:06.882009+00:00_
 
 ### Tool call
 
-_source line 3863 · 2026-05-19T22:31:07.033023+00:00_
+_source line 3859 · 2026-05-19T22:31:07.033023+00:00_
 
 called mcp__agent-ml-research__register_cron
 
@@ -1508,7 +1340,7 @@ called mcp__agent-ml-research__register_cron
 
 ### Tool result
 
-_source line 3864 · 2026-05-19T22:31:07.183956+00:00_
+_source line 3860 · 2026-05-19T22:31:07.183956+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"exp_32b_c4_6class\", \"server\": \"westd-42896\", \"pid\": \"139848\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log\", \"interval_seconds\": 180, \"project\": \"gen-depth-contamination\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-19T22:31:07.067Z\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -1530,7 +1362,7 @@ _source line 3864 · 2026-05-19T22:31:07.183956+00:00_
 
 ### Tool call
 
-_source line 3865 · 2026-05-19T22:31:13.826478+00:00_
+_source line 3861 · 2026-05-19T22:31:13.826478+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1572,7 +1404,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3866 · 2026-05-19T22:31:14.177711+00:00_
+_source line 3862 · 2026-05-19T22:31:14.177711+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3461}}"}
 
@@ -1594,7 +1426,7 @@ _source line 3866 · 2026-05-19T22:31:14.177711+00:00_
 
 ### Tool call
 
-_source line 3867 · 2026-05-19T22:31:17.841702+00:00_
+_source line 3863 · 2026-05-19T22:31:17.841702+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1634,7 +1466,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3868 · 2026-05-19T22:31:19.463484+00:00_
+_source line 3864 · 2026-05-19T22:31:19.463484+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_32b_c4_6class\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T22:31:18.157Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5747}}"}
 
@@ -1656,7 +1488,7 @@ _source line 3868 · 2026-05-19T22:31:19.463484+00:00_
 
 ### Tool call
 
-_source line 3869 · 2026-05-19T22:31:22.272964+00:00_
+_source line 3865 · 2026-05-19T22:31:22.272964+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1696,7 +1528,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3870 · 2026-05-19T22:31:23.528753+00:00_
+_source line 3866 · 2026-05-19T22:31:23.528753+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_32b_c4_6class\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T22:31:22.570Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2387}}"}
 
@@ -1718,7 +1550,7 @@ _source line 3870 · 2026-05-19T22:31:23.528753+00:00_
 
 ### Tool call
 
-_source line 3871 · 2026-05-19T22:31:26.289921+00:00_
+_source line 3867 · 2026-05-19T22:31:26.289921+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1758,7 +1590,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3872 · 2026-05-19T22:31:27.545836+00:00_
+_source line 3868 · 2026-05-19T22:31:27.545836+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_32b_c4_6class\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T22:31:26.598Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2154}}"}
 
@@ -1780,7 +1612,7 @@ _source line 3872 · 2026-05-19T22:31:27.545836+00:00_
 
 ### Tool call
 
-_source line 3873 · 2026-05-19T22:31:33.368613+00:00_
+_source line 3869 · 2026-05-19T22:31:33.368613+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -1822,7 +1654,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3874 · 2026-05-19T22:31:34.574020+00:00_
+_source line 3870 · 2026-05-19T22:31:34.574020+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_32b_c4_6class\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T22:31:33.671Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\", \"spec\": {\"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"command\": \"python scripts/run_deberta_c4.py --config 32b --num_classes 6 --gpu 0\", \"pid\": \"139848\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_32b_c4/\", \"data_count\": 30000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"note\": \"6-class rerun replacing 5-class exp_32b_c4, adds depth_5 for complete 4v5 pair\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1905}}"}
 
@@ -1844,7 +1676,7 @@ _source line 3874 · 2026-05-19T22:31:34.574020+00:00_
 
 ### Assistant
 
-_source line 3875 · 2026-05-19T22:31:38.936592+00:00_
+_source line 3871 · 2026-05-19T22:31:38.936592+00:00_
 
 32B 6-class 已注册 RUNNING + cron 监控。westd cuda:0 在跑 (PID 139848, ETA ~50min)，cuda:1 空闲待命。cqa1 C4 1.5B qwen_rw 也有 cron 监控。等两个实验完成回调后继续推进。
 
@@ -1871,7 +1703,7 @@ _source line 3875 · 2026-05-19T22:31:38.936592+00:00_
 
 ### User
 
-_source line 3876 · 2026-05-19T23:00:03.568207+00:00_
+_source line 3872 · 2026-05-19T23:00:03.568207+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_c4_1b5** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -1894,7 +1726,7 @@ _source line 3876 · 2026-05-19T23:00:03.568207+00:00_
 
 ### Tool call
 
-_source line 3877 · 2026-05-19T23:00:26.472687+00:00_
+_source line 3873 · 2026-05-19T23:00:26.472687+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -1934,7 +1766,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3878 · 2026-05-19T23:00:32.460979+00:00_
+_source line 3874 · 2026-05-19T23:00:32.460979+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_c4-1b5-qwen-rw-check_20260519T230027\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_c4-1b5-qwen-rw-check_20260519T230027.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_c4-1b5-qwen-rw-check_20260519T230027 started. Use get_worker_status('worker_analysis_c4-1b5-qwen-rw-check_20260519T230027') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -1956,7 +1788,7 @@ _source line 3878 · 2026-05-19T23:00:32.460979+00:00_
 
 ### Assistant
 
-_source line 3879 · 2026-05-19T23:00:37.664093+00:00_
+_source line 3875 · 2026-05-19T23:00:37.664093+00:00_
 
 Worker 派出检查 qwen_rw 结果 + GPU 状态。等回调后决定 pythia_greedy / qwen_cont256 的部署位置（westd cuda:1 vs cqa1 cuda:0）。
 
@@ -1983,7 +1815,7 @@ Worker 派出检查 qwen_rw 结果 + GPU 状态。等回调后决定 pythia_gree
 
 ### User
 
-_source line 3880 · 2026-05-19T23:00:46.340591+00:00_
+_source line 3876 · 2026-05-19T23:00:46.340591+00:00_
 
 [Director 指令] **westd cuda:1 空闲，安排任务：**
 
@@ -2012,7 +1844,7 @@ westd cuda:0 在跑 32B 6-class DeBERTa。cuda:1 也利用起来：
 
 ### Tool call
 
-_source line 3881 · 2026-05-19T23:01:04.944368+00:00_
+_source line 3877 · 2026-05-19T23:01:04.944368+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2048,7 +1880,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3882 · 2026-05-19T23:01:04.996017+00:00_
+_source line 3878 · 2026-05-19T23:01:04.996017+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_c4-1b5-qwen-rw-check_20260519T230027\", \"status\": \"running\", \"task_type\": \"analysis:c4-1b5-qwen-rw-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:00:27.181022+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"找到文件在 `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/`。读取日志和 JSON 结果，同时检查 cross-transfer 进度。\", \"turn_count\": 13}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2070,7 +1902,7 @@ _source line 3882 · 2026-05-19T23:01:04.996017+00:00_
 
 ### Tool call
 
-_source line 3883 · 2026-05-19T23:01:38.264331+00:00_
+_source line 3879 · 2026-05-19T23:01:38.264331+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2110,7 +1942,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3884 · 2026-05-19T23:01:44.444515+00:00_
+_source line 3880 · 2026-05-19T23:01:44.444515+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_westd-c4-1b5-rsync-launch_20260519T230138\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_exp_westd-c4-1b5-rsync-launch_20260519T230138.log\", \"setup_data\": {}, \"message\": \"Worker worker_exp_westd-c4-1b5-rsync-launch_20260519T230138 started. Use get_worker_status('worker_exp_westd-c4-1b5-rsync-launch_20260519T230138') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2132,7 +1964,7 @@ _source line 3884 · 2026-05-19T23:01:44.444515+00:00_
 
 ### Tool call
 
-_source line 3885 · 2026-05-19T23:01:54.596250+00:00_
+_source line 3881 · 2026-05-19T23:01:54.596250+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2168,7 +2000,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3886 · 2026-05-19T23:01:55.800539+00:00_
+_source line 3882 · 2026-05-19T23:01:55.800539+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -2190,7 +2022,7 @@ _source line 3886 · 2026-05-19T23:01:55.800539+00:00_
 
 ### Assistant
 
-_source line 3887 · 2026-05-19T23:01:57.786480+00:00_
+_source line 3883 · 2026-05-19T23:01:57.786480+00:00_
 
 已派出。当前 Worker 池 = 2（qwen_rw 分析 + westd rsync/launch）。向 Director 确认。
 
@@ -2217,7 +2049,7 @@ _source line 3887 · 2026-05-19T23:01:57.786480+00:00_
 
 ### User
 
-_source line 3888 · 2026-05-19T23:01:58.279009+00:00_
+_source line 3884 · 2026-05-19T23:01:58.279009+00:00_
 
 [WORKER DONE] Worker worker_analysis_c4-1b5-qwen-rw-check_20260519T230027 已完成（status=done）。用 `get_worker_status('worker_analysis_c4-1b5-qwen-rw-check_20260519T230027')` 读取结果，然后处理。
 
@@ -2242,7 +2074,7 @@ _source line 3888 · 2026-05-19T23:01:58.279009+00:00_
 
 ### Tool call
 
-_source line 3889 · 2026-05-19T23:02:05.341028+00:00_
+_source line 3885 · 2026-05-19T23:02:05.341028+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2276,7 +2108,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3890 · 2026-05-19T23:02:05.393890+00:00_
+_source line 3886 · 2026-05-19T23:02:05.393890+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_c4-1b5-qwen-rw-check_20260519T230027\", \"status\": \"done\", \"task_type\": \"analysis:c4-1b5-qwen-rw-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:00:27.181022+00:00\", \"ended_at\": \"2026-05-19T23:01:32.452397+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 汇总报告\\n\\n### qwen_rw 实验：已完成\\n\\n**K\\\\* = 2**（theta=0.6），训练耗时 3441s (~57min)。\\n\\n| Pair | DeBERTa AUC | 95% CI | OBD Baseline | Delta |\\n|------|------------|--------|-------------|-------|\\n| 0v1 | **0.9923** | [0.9907, 0.9937] | 0.987 | +0.0053 |\\n| 1v2 | **0.7052** | [0.6977, 0.7129] | 0.6262 | **+0.0790** |\\n| 2v3 | 0.5988 | [0.5905, 0.6063] | 0.5496 | +0.0492 |\\n| 3v4 | 0.5698 | [0.5626, 0.5774] | 0.5294 | +0.0404 |\\n| 4v5 | 0.5475 | [0.5404, 0.5542] | 0.5182 | +0.0293 |\\n\\n- 0v1 和 1v2 的 CI lower 均 > 0.6（theta），K\\\\*=2\\n- DeBERTa 在所有 pair 上均优于 OBD baseline，1v2 提升最大（+7.9pp）\\n\\n### GPU 状态\\n\\n| GPU | 利用率 | 显存占用 |\\n|-----|-------|---------|\\n| 0 | **0% 空闲** | 0 / 24564 MiB |\\n| 1 | 98% | 23337 / 24564 MiB |\\n| 2 | 97% | 23337 / 24564 MiB |\\n| 3 | 97% | 23221 / 24564 MiB |\\n\\n### Cross-transfer 进度\\n\\n3 个 GPU 都在跑 DeBERTa cross-transfer（PID 208306/208307/208308），已产出 6 个 JSON 结果。当前进度：\\n- **GPU1**: Ep 2 step 400/1500（第2轮早期）\\n- **GPU2**: Ep 3 step 800/1500（第3轮过半）\\n- **GPU3**: Ep 1 step 1200/1500（第1轮末期）\\n\\n每个 GPU 跑多个 train→test 组合，按每组 ~10min 估算，还需若干小时完成全部组合。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2298,7 +2130,7 @@ _source line 3890 · 2026-05-19T23:02:05.393890+00:00_
 
 ### Tool call
 
-_source line 3891 · 2026-05-19T23:02:24.620954+00:00_
+_source line 3887 · 2026-05-19T23:02:24.620954+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -2338,7 +2170,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3892 · 2026-05-19T23:02:24.972819+00:00_
+_source line 3888 · 2026-05-19T23:02:24.972819+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2374,7 +2206,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3893 · 2026-05-19T23:02:25.274428+00:00_
+_source line 3889 · 2026-05-19T23:02:25.274428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T23:02:24.986Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0\", \"pid\": \"255066\", \"data_path\": \"/root/gen-depth-contamination/data/exp016_qwen_base/\", \"data_count\": \"TBD\", \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"training_time_s\": 3441, \"key_finding\": \"C4 1.5B DeBERTa K*=2 = OBD K*=2 on same data. DeBERTa +7.9pp on 1v2 but cannot extend K* boundary. Confirms intrinsic boundary on C4.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6169}}"}
 
@@ -2396,7 +2228,7 @@ _source line 3893 · 2026-05-19T23:02:25.274428+00:00_
 
 ### Tool result
 
-_source line 3894 · 2026-05-19T23:02:25.325297+00:00_
+_source line 3890 · 2026-05-19T23:02:25.325297+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_westd-c4-1b5-rsync-launch_20260519T230138\", \"status\": \"running\", \"task_type\": \"exp:westd-c4-1b5-rsync-launch\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:01:39.037304+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\"], \"last_text\": \"先同时检查两台服务器的状态。\", \"turn_count\": 3}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2418,7 +2250,7 @@ _source line 3894 · 2026-05-19T23:02:25.325297+00:00_
 
 ### Tool call
 
-_source line 3895 · 2026-05-19T23:02:50.367204+00:00_
+_source line 3891 · 2026-05-19T23:02:50.367204+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2458,7 +2290,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3896 · 2026-05-19T23:02:56.297997+00:00_
+_source line 3892 · 2026-05-19T23:02:56.297997+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250.log\", \"setup_data\": {}, \"message\": \"Worker worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250 started. Use get_worker_status('worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2480,7 +2312,7 @@ _source line 3896 · 2026-05-19T23:02:56.297997+00:00_
 
 ### Tool call
 
-_source line 3897 · 2026-05-19T23:03:10.530715+00:00_
+_source line 3893 · 2026-05-19T23:03:10.530715+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2516,7 +2348,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Assistant
 
-_source line 3898 · 2026-05-19T23:21:58.693063+00:00_
+_source line 3894 · 2026-05-19T23:21:58.693063+00:00_
 
 向 Director 汇报 qwen_rw 结果。
 
@@ -2543,7 +2375,7 @@ _source line 3898 · 2026-05-19T23:21:58.693063+00:00_
 
 ### User
 
-_source line 3899 · 2026-05-19T23:21:59.226978+00:00_
+_source line 3895 · 2026-05-19T23:21:59.226978+00:00_
 
 [Director 指令] **重复运行修复**：pythia_greedy 同时在 cqa1 cuda:0 和 westd cuda:1 跑，浪费资源。
 
@@ -2571,7 +2403,7 @@ _source line 3899 · 2026-05-19T23:21:59.226978+00:00_
 
 ### Tool call
 
-_source line 3900 · 2026-05-19T23:22:10.856473+00:00_
+_source line 3896 · 2026-05-19T23:22:10.856473+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2607,7 +2439,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3901 · 2026-05-19T23:22:10.907378+00:00_
+_source line 3897 · 2026-05-19T23:22:10.907378+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250\", \"status\": \"done\", \"task_type\": \"exp:cqa1-c4-1b5-pythia-greedy\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:02:51.058021+00:00\", \"ended_at\": \"2026-05-19T23:06:17.449703+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"训练已正常运行：\\n\\n- **cuda:0**: 99% 利用率，19629 MiB 显存占用\\n- **cuda:1/2/3**: 不受影响，cross-transfer 继续运行\\n- **tmux session**: `deberta_c4_1b5_pythia`\\n- **日志**: `/root/autodl-tmp/gen-depth-contamination/logs/deberta_c4_1b5_pythia.log`\\n- **config**: pythia_greedy, 5-fold GroupKFold, 30000 samples (5000 docs x 6 depths)\\n\\n第一次启动因 `transformers` 尝试在线查 adapter config 而崩溃（AutoDL 网络不通），加 `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 后解决。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2629,7 +2461,7 @@ _source line 3901 · 2026-05-19T23:22:10.907378+00:00_
 
 ### Tool call
 
-_source line 3902 · 2026-05-19T23:22:23.011009+00:00_
+_source line 3898 · 2026-05-19T23:22:23.011009+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2669,7 +2501,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3903 · 2026-05-19T23:22:28.934687+00:00_
+_source line 3899 · 2026-05-19T23:22:28.934687+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223.log\", \"setup_data\": {}, \"message\": \"Worker worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223 started. Use get_worker_status('worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2691,7 +2523,7 @@ _source line 3903 · 2026-05-19T23:22:28.934687+00:00_
 
 ### Tool call
 
-_source line 3904 · 2026-05-19T23:22:39.542812+00:00_
+_source line 3900 · 2026-05-19T23:22:39.542812+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -2731,7 +2563,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Assistant
 
-_source line 3905 · 2026-05-19T23:41:59.444325+00:00_
+_source line 3901 · 2026-05-19T23:41:59.444325+00:00_
 
 同时更新 registry：qwen_rw 标记 DONE，记录 metrics。
 
@@ -2758,7 +2590,7 @@ _source line 3905 · 2026-05-19T23:41:59.444325+00:00_
 
 ### User
 
-_source line 3906 · 2026-05-19T23:41:59.458509+00:00_
+_source line 3902 · 2026-05-19T23:41:59.458509+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_c4_1b5** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -2781,7 +2613,7 @@ _source line 3906 · 2026-05-19T23:41:59.458509+00:00_
 
 ### Tool call
 
-_source line 3907 · 2026-05-19T23:42:15.685975+00:00_
+_source line 3903 · 2026-05-19T23:42:15.685975+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -2821,7 +2653,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3908 · 2026-05-19T23:42:16.391420+00:00_
+_source line 3904 · 2026-05-19T23:42:16.391420+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -2861,7 +2693,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3909 · 2026-05-19T23:42:16.442239+00:00_
+_source line 3905 · 2026-05-19T23:42:16.442239+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T23:42:16.070Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0\", \"pid\": \"255066\", \"data_path\": \"/root/gen-depth-contamination/data/exp016_qwen_base/\", \"data_count\": \"TBD\", \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"key_finding\": \"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T23:12:26.218Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:12:26.966Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:12:34.928421+00:00\"}]}, \"notes\": \"Cron 误判为 failed（脚本不用 W&B），实际完成。K*=2 confirmed on C4 1.5B data = OB
 …[truncated 190 chars]
@@ -2884,7 +2716,7 @@ _source line 3909 · 2026-05-19T23:42:16.442239+00:00_
 
 ### Tool result
 
-_source line 3910 · 2026-05-19T23:42:17.095168+00:00_
+_source line 3906 · 2026-05-19T23:42:17.095168+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T23:42:16.799Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0\", \"pid\": \"255066\", \"data_path\": \"/root/gen-depth-contamination/data/exp016_qwen_base/\", \"data_count\": \"TBD\", \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"key_finding\": \"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T23:12:26.218Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:12:26.966Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:12:34.928421+00:00\"}]}, \"notes\": \"Cron 误判为 failed（脚本不用 W&B），实际完成。K*=2 confirmed on C4 1.5B data = OB
 …[truncated 190 chars]
@@ -2907,7 +2739,7 @@ _source line 3910 · 2026-05-19T23:42:17.095168+00:00_
 
 ### Tool call
 
-_source line 3911 · 2026-05-19T23:42:34.478994+00:00_
+_source line 3907 · 2026-05-19T23:42:34.478994+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2943,7 +2775,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3912 · 2026-05-19T23:42:38.696538+00:00_
+_source line 3908 · 2026-05-19T23:42:38.696538+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -2965,7 +2797,7 @@ _source line 3912 · 2026-05-19T23:42:38.696538+00:00_
 
 ### Assistant
 
-_source line 3913 · 2026-05-19T23:42:40.879753+00:00_
+_source line 3909 · 2026-05-19T23:42:40.879753+00:00_
 
 Registry 更新完成：exp_deberta_c4_1b5 → DONE/success (K\*=2)。Cron 已通过 status=DONE 自动失效。
 
@@ -2994,7 +2826,7 @@ Registry 更新完成：exp_deberta_c4_1b5 → DONE/success (K\*=2)。Cron 已�
 
 ### User
 
-_source line 3914 · 2026-05-19T23:42:40.913518+00:00_
+_source line 3910 · 2026-05-19T23:42:40.913518+00:00_
 
 [Director 指令] **数据不一致调查（Reviewer #3）**：
 
@@ -3024,7 +2856,7 @@ DeBERTa 14B 和 LightGBM 32B 数据都一致，仅 LightGBM 14B 的 2v3/3v4 不�
 
 ### Tool call
 
-_source line 3915 · 2026-05-19T23:43:12.871042+00:00_
+_source line 3911 · 2026-05-19T23:43:12.871042+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3064,7 +2896,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3916 · 2026-05-19T23:43:19.707707+00:00_
+_source line 3912 · 2026-05-19T23:43:19.707707+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_audit_lgbm-14b-data-mismatch_20260519T234313\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log\", \"setup_data\": {}, \"message\": \"Worker worker_audit_lgbm-14b-data-mismatch_20260519T234313 started. Use get_worker_status('worker_audit_lgbm-14b-data-mismatch_20260519T234313') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3086,7 +2918,7 @@ _source line 3916 · 2026-05-19T23:43:19.707707+00:00_
 
 ### Tool call
 
-_source line 3917 · 2026-05-19T23:43:23.832104+00:00_
+_source line 3913 · 2026-05-19T23:43:23.832104+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3122,7 +2954,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool call
 
-_source line 3918 · 2026-05-19T23:43:25.390432+00:00_
+_source line 3914 · 2026-05-19T23:43:25.390432+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3158,7 +2990,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Assistant
 
-_source line 3919 · 2026-05-20T00:02:41.498107+00:00_
+_source line 3915 · 2026-05-20T00:02:41.498107+00:00_
 
 Worker 已派出调查 LightGBM 14B 数据不一致。同时检查 kill/replace Worker 状态。
 
@@ -3185,7 +3017,7 @@ Worker 已派出调查 LightGBM 14B 数据不一致。同时检查 kill/replace 
 
 ### User
 
-_source line 3920 · 2026-05-20T00:02:41.985047+00:00_
+_source line 3916 · 2026-05-20T00:02:41.985047+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_c4_1b5** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -3208,7 +3040,7 @@ _source line 3920 · 2026-05-20T00:02:41.985047+00:00_
 
 ### Assistant
 
-_source line 3921 · 2026-05-20T00:12:50.275143+00:00_
+_source line 3917 · 2026-05-20T00:12:50.275143+00:00_
 
 已处理。exp_deberta_c4_1b5 (qwen_rw) 已在 registry 中标记为 DONE/success（K\*=2）。Cron 重复触发，无需再操作。
 
@@ -3235,7 +3067,7 @@ _source line 3921 · 2026-05-20T00:12:50.275143+00:00_
 
 ### User
 
-_source line 3922 · 2026-05-20T00:12:50.282097+00:00_
+_source line 3918 · 2026-05-20T00:12:50.282097+00:00_
 
 [WORKER DONE] Worker worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250 已完成（status=done）。用 `get_worker_status('worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250')` 读取结果，然后处理。
 
@@ -3260,7 +3092,7 @@ _source line 3922 · 2026-05-20T00:12:50.282097+00:00_
 
 ### Assistant
 
-_source line 3923 · 2026-05-20T00:12:56.247366+00:00_
+_source line 3919 · 2026-05-20T00:12:56.247366+00:00_
 
 No response requested.
 
@@ -3287,7 +3119,7 @@ No response requested.
 
 ### User
 
-_source line 3924 · 2026-05-20T00:12:56.805270+00:00_
+_source line 3920 · 2026-05-20T00:12:56.805270+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_c4_1b5** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -3310,7 +3142,7 @@ _source line 3924 · 2026-05-20T00:12:56.805270+00:00_
 
 ### Tool call
 
-_source line 3925 · 2026-05-20T00:13:04.156973+00:00_
+_source line 3921 · 2026-05-20T00:13:04.156973+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -3339,7 +3171,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3926 · 2026-05-20T00:13:10.184737+00:00_
+_source line 3922 · 2026-05-20T00:13:10.184737+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"success\": true, \"actions\": [\"Job still running (pid=208306)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"success\": true, \"actions\": [\"Job still running (pid=208307)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"success\": true, \"actions\": [\"Job still running (pid=208308)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -3361,7 +3193,7 @@ _source line 3926 · 2026-05-20T00:13:10.184737+00:00_
 
 ### Assistant
 
-_source line 3927 · 2026-05-20T00:13:15.196349+00:00_
+_source line 3923 · 2026-05-20T00:13:15.196349+00:00_
 
 exp_deberta_c4_1b5 cron 已清除（不再出现），cross-transfer 3 个进程仍在运行。
 
@@ -3388,7 +3220,7 @@ exp_deberta_c4_1b5 cron 已清除（不再出现），cross-transfer 3 个进程
 
 ### User
 
-_source line 3928 · 2026-05-20T00:13:15.203365+00:00_
+_source line 3924 · 2026-05-20T00:13:15.203365+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_c4_1b5** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -3411,7 +3243,7 @@ _source line 3928 · 2026-05-20T00:13:15.203365+00:00_
 
 ### Tool call
 
-_source line 3929 · 2026-05-20T00:13:23.118545+00:00_
+_source line 3925 · 2026-05-20T00:13:23.118545+00:00_
 
 called ToolSearch
 
@@ -3447,7 +3279,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3930 · 2026-05-20T00:13:23.220017+00:00_
+_source line 3926 · 2026-05-20T00:13:23.220017+00:00_
 
 
 
@@ -3469,7 +3301,7 @@ _source line 3930 · 2026-05-20T00:13:23.220017+00:00_
 
 ### Tool call
 
-_source line 3931 · 2026-05-20T00:13:28.412009+00:00_
+_source line 3927 · 2026-05-20T00:13:28.412009+00:00_
 
 called ToolSearch
 
@@ -3505,7 +3337,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3932 · 2026-05-20T00:13:28.462690+00:00_
+_source line 3928 · 2026-05-20T00:13:28.462690+00:00_
 
 
 
@@ -3527,7 +3359,7 @@ _source line 3932 · 2026-05-20T00:13:28.462690+00:00_
 
 ### Tool call
 
-_source line 3933 · 2026-05-20T00:13:30.732395+00:00_
+_source line 3929 · 2026-05-20T00:13:30.732395+00:00_
 
 called CronList
 
@@ -3556,7 +3388,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3934 · 2026-05-20T00:13:30.833945+00:00_
+_source line 3930 · 2026-05-20T00:13:30.833945+00:00_
 
 No scheduled jobs.
 
@@ -3578,7 +3410,7 @@ No scheduled jobs.
 
 ### Assistant
 
-_source line 3935 · 2026-05-20T00:13:37.711185+00:00_
+_source line 3931 · 2026-05-20T00:13:37.711185+00:00_
 
 不是 CronCreate 类型。reconcile_crons 已确认只有 3 个 cross-transfer cron 活跃，exp_deberta_c4_1b5 cron 不在列表中。这些是 stale 回调（cron 已清除但排队中的消息仍在投递），直接忽略。
 
@@ -3605,7 +3437,7 @@ _source line 3935 · 2026-05-20T00:13:37.711185+00:00_
 
 ### User
 
-_source line 3936 · 2026-05-20T00:13:37.718354+00:00_
+_source line 3932 · 2026-05-20T00:13:37.718354+00:00_
 
 [WORKER DONE] Worker worker_exp_westd-c4-1b5-rsync-launch_20260519T230138 已完成（status=done）。用 `get_worker_status('worker_exp_westd-c4-1b5-rsync-launch_20260519T230138')` 读取结果，然后处理。
 
@@ -3630,7 +3462,7 @@ _source line 3936 · 2026-05-20T00:13:37.718354+00:00_
 
 ### Tool call
 
-_source line 3937 · 2026-05-20T00:13:43.855252+00:00_
+_source line 3933 · 2026-05-20T00:13:43.855252+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3664,7 +3496,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3938 · 2026-05-20T00:13:43.956731+00:00_
+_source line 3934 · 2026-05-20T00:13:43.956731+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_westd-c4-1b5-rsync-launch_20260519T230138\", \"status\": \"done\", \"task_type\": \"exp:westd-c4-1b5-rsync-launch\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:01:39.037304+00:00\", \"ended_at\": \"2026-05-19T23:12:04.889582+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"训练正常。汇报如下：\\n\\n**已完成：**\\n- 数据从 cqa1 rsync 到 westd（`data_exp020_pythia_greedy` 39MB + `data/exp_021_length_256` 33MB + OBD baseline 结果 + 脚本）\\n- DeBERTa-v3-base 模型缓存同步（357MB）\\n- 修复脚本 `--gpu` 参数 bug（原来硬编码 `cuda:0`）\\n- 添加 `HF_HUB_OFFLINE=1` 避免网络重试延迟\\n\\n**当前状态：**\\n- `deberta_c4_1b5_pythia` — **正在 westd cuda:1 训练**，Fold 0 Epoch 1 进行中（GPU 95%, 33.7GB VRAM）\\n  - 5-fold × 3 epochs，30000 samples\\n- `deberta_c4_1b5_qwen` — **排队等待中**，pythia 完成后自动启动 `qwen_cont256`\\n- `deberta_32b_6class` — cuda:0 原有任务未受影响\\n\\n**tmux sessions：**\\n| Session | Config | GPU | Status |\\n|---------|--------|-----|--------|\\n| `deberta_c4_1b5_pythia` | pythia_greedy | cuda:1 | 训练中 |\\n| `deberta_c4_1b5_qwen` | qwen_cont256 | cuda:1 | 排队中 |\\n| `deberta_32b_6class` | (原有) | cuda:0 | 不变 |\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3686,7 +3518,7 @@ _source line 3938 · 2026-05-20T00:13:43.956731+00:00_
 
 ### Tool call
 
-_source line 3939 · 2026-05-20T00:13:57.549864+00:00_
+_source line 3935 · 2026-05-20T00:13:57.549864+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3722,7 +3554,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3940 · 2026-05-20T00:13:57.602019+00:00_
+_source line 3936 · 2026-05-20T00:13:57.602019+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223\", \"status\": \"done\", \"task_type\": \"exp:cqa1-kill-pythia-start-qwen-cont\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:22:23.724589+00:00\", \"ended_at\": \"2026-05-19T23:23:59.498108+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n| GPU | 利用率 | 显存 | 任务 |\\n|-----|--------|------|------|\\n| cuda:0 | 97% | 19639 MiB | **qwen_cont256** (新启动) |\\n| cuda:1 | 97% | 22825 MiB | cross-transfer (未动) |\\n| cuda:2 | 97% | 20555 MiB | cross-transfer (未动) |\\n| cuda:3 | 96% | 19389 MiB | cross-transfer (未动) |\\n\\n- tmux session: `deberta_c4_1b5_qwen_cont`\\n- 日志: `logs/deberta_c4_1b5_qwen_cont.log`\\n- 数据: `data/exp_021_length_256/`（depth_0~5.jsonl）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3744,7 +3576,7 @@ _source line 3940 · 2026-05-20T00:13:57.602019+00:00_
 
 ### Tool call
 
-_source line 3941 · 2026-05-20T00:14:05.600715+00:00_
+_source line 3937 · 2026-05-20T00:14:05.600715+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3784,7 +3616,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3942 · 2026-05-20T00:14:07.360923+00:00_
+_source line 3938 · 2026-05-20T00:14:07.360923+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_pythia\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:05.964Z\", \"updated_at\": \"2026-05-20T00:14:05.964Z\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6338}}"}
 
@@ -3806,7 +3638,7 @@ _source line 3942 · 2026-05-20T00:14:07.360923+00:00_
 
 ### Tool call
 
-_source line 3943 · 2026-05-20T00:14:07.361363+00:00_
+_source line 3939 · 2026-05-20T00:14:07.361363+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3846,7 +3678,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3944 · 2026-05-20T00:14:08.170940+00:00_
+_source line 3940 · 2026-05-20T00:14:08.170940+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:14:07.803Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7639}}"}
 
@@ -3868,7 +3700,7 @@ _source line 3944 · 2026-05-20T00:14:08.170940+00:00_
 
 ### Tool call
 
-_source line 3945 · 2026-05-20T00:14:11.738758+00:00_
+_source line 3941 · 2026-05-20T00:14:11.738758+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3908,7 +3740,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3946 · 2026-05-20T00:14:12.391514+00:00_
+_source line 3942 · 2026-05-20T00:14:12.391514+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3948,7 +3780,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3947 · 2026-05-20T00:14:13.096568+00:00_
+_source line 3943 · 2026-05-20T00:14:13.096568+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_pythia\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:05.964Z\", \"updated_at\": \"2026-05-20T00:14:12.052Z\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3613}}"}
 
@@ -3970,7 +3802,7 @@ _source line 3947 · 2026-05-20T00:14:13.096568+00:00_
 
 ### Tool result
 
-_source line 3948 · 2026-05-20T00:14:14.452001+00:00_
+_source line 3944 · 2026-05-20T00:14:14.452001+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:14:13.474Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3419}}"}
 
@@ -3992,7 +3824,7 @@ _source line 3948 · 2026-05-20T00:14:14.452001+00:00_
 
 ### Tool call
 
-_source line 3949 · 2026-05-20T00:14:18.271976+00:00_
+_source line 3945 · 2026-05-20T00:14:18.271976+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4032,7 +3864,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3950 · 2026-05-20T00:14:18.824631+00:00_
+_source line 3946 · 2026-05-20T00:14:18.824631+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4072,7 +3904,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3951 · 2026-05-20T00:14:19.803953+00:00_
+_source line 3947 · 2026-05-20T00:14:19.803953+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_pythia\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:05.964Z\", \"updated_at\": \"2026-05-20T00:14:18.644Z\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5069}}"}
 
@@ -4094,7 +3926,7 @@ _source line 3951 · 2026-05-20T00:14:19.803953+00:00_
 
 ### Tool result
 
-_source line 3952 · 2026-05-20T00:14:21.365099+00:00_
+_source line 3948 · 2026-05-20T00:14:21.365099+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:14:20.174Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5495}}"}
 
@@ -4116,7 +3948,7 @@ _source line 3952 · 2026-05-20T00:14:21.365099+00:00_
 
 ### Tool call
 
-_source line 3953 · 2026-05-20T00:14:24.590938+00:00_
+_source line 3949 · 2026-05-20T00:14:24.590938+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4156,7 +3988,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3954 · 2026-05-20T00:14:25.093111+00:00_
+_source line 3950 · 2026-05-20T00:14:25.093111+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4196,7 +4028,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3955 · 2026-05-20T00:14:26.047982+00:00_
+_source line 3951 · 2026-05-20T00:14:26.047982+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_pythia\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:05.964Z\", \"updated_at\": \"2026-05-20T00:14:24.965Z\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4381}}"}
 
@@ -4218,7 +4050,7 @@ _source line 3955 · 2026-05-20T00:14:26.047982+00:00_
 
 ### Tool result
 
-_source line 3956 · 2026-05-20T00:14:27.403738+00:00_
+_source line 3952 · 2026-05-20T00:14:27.403738+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:14:26.416Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3232}}"}
 
@@ -4240,7 +4072,7 @@ _source line 3956 · 2026-05-20T00:14:27.403738+00:00_
 
 ### Tool call
 
-_source line 3957 · 2026-05-20T00:14:33.794224+00:00_
+_source line 3953 · 2026-05-20T00:14:33.794224+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4282,7 +4114,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3958 · 2026-05-20T00:14:35.601629+00:00_
+_source line 3954 · 2026-05-20T00:14:35.601629+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_pythia\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:05.964Z\", \"updated_at\": \"2026-05-20T00:14:34.172Z\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\", \"spec\": {\"server\": \"westd-42896\", \"gpu\": [\"cuda:1\"], \"command\": \"python scripts/run_deberta_c4_1b5.py --config pythia_greedy --gpu 1\", \"pid\": \"TBD\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/\", \"data_count\": 30000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4442}}"}
 
@@ -4304,7 +4136,7 @@ _source line 3958 · 2026-05-20T00:14:35.601629+00:00_
 
 ### Tool call
 
-_source line 3959 · 2026-05-20T00:14:35.702991+00:00_
+_source line 3955 · 2026-05-20T00:14:35.702991+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -4346,7 +4178,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3960 · 2026-05-20T00:14:37.160331+00:00_
+_source line 3956 · 2026-05-20T00:14:37.160331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:14:36.027Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"python scripts/run_deberta_c4_1b5.py --config qwen_cont256 --gpu 0\", \"pid\": \"TBD\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_021_length_256/\", \"data_count\": 30000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4611}}"}
 
@@ -4368,7 +4200,7 @@ _source line 3960 · 2026-05-20T00:14:37.160331+00:00_
 
 ### Assistant
 
-_source line 3961 · 2026-05-20T00:14:41.113661+00:00_
+_source line 3957 · 2026-05-20T00:14:41.113661+00:00_
 
 Registry 注册完成。6 个 GPU 全满，4 个实验并行运行。等待 14B 数据不一致调查 Worker 和实验完成回调。
 
@@ -4395,7 +4227,7 @@ Registry 注册完成。6 个 GPU 全满，4 个实验并行运行。等待 14B 
 
 ### User
 
-_source line 3962 · 2026-05-20T00:14:41.670324+00:00_
+_source line 3958 · 2026-05-20T00:14:41.670324+00:00_
 
 [WORKER DONE] Worker worker_diagnose_exp_deberta_c4_1b5_20260519T231400 已完成（status=done）。用 `get_worker_status('worker_diagnose_exp_deberta_c4_1b5_20260519T231400')` 读取结果，然后处理。
 
@@ -4420,7 +4252,7 @@ _source line 3962 · 2026-05-20T00:14:41.670324+00:00_
 
 ### Tool call
 
-_source line 3963 · 2026-05-20T00:14:50.552300+00:00_
+_source line 3959 · 2026-05-20T00:14:50.552300+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4454,7 +4286,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3964 · 2026-05-20T00:14:50.653310+00:00_
+_source line 3960 · 2026-05-20T00:14:50.653310+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_deberta_c4_1b5_20260519T231400\", \"status\": \"done\", \"task_type\": \"diagnose:exp_deberta_c4_1b5\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:14:00.993104+00:00\", \"ended_at\": \"2026-05-19T23:16:07.100465+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"诊断完成。\\n\\n**结论：exp_deberta_c4_1b5 正常完成，应将状态从 \\\"failed\\\" 改为 \\\"success\\\"。**\\n\\n关键证据：\\n- 日志最后一行是 `Done.`，3 个 epoch 全部跑完，无任何错误\\n- 结果文件齐全（JSON metrics + OOF predictions + log）\\n- K*=2，DeBERTa 在所有 pair 上均优于 OBD baseline（delta +0.005 到 +0.079）\\n- 误判原因：cron 监控依赖 W&B sentinel，但该实验未使用 W&B\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4476,7 +4308,7 @@ _source line 3964 · 2026-05-20T00:14:50.653310+00:00_
 
 ### Assistant
 
-_source line 3965 · 2026-05-20T00:14:54.358095+00:00_
+_source line 3961 · 2026-05-20T00:14:54.358095+00:00_
 
 确认与之前分析一致——exp_deberta_c4_1b5 正常完成，cron 因无 W&B 而误判 failed。Registry 已在之前修正为 DONE/success，无需额外操作。
 
@@ -4503,7 +4335,7 @@ _source line 3965 · 2026-05-20T00:14:54.358095+00:00_
 
 ### User
 
-_source line 3966 · 2026-05-20T00:14:54.919162+00:00_
+_source line 3962 · 2026-05-20T00:14:54.919162+00:00_
 
 [CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -4526,7 +4358,7 @@ _source line 3966 · 2026-05-20T00:14:54.919162+00:00_
 
 ### Tool call
 
-_source line 3967 · 2026-05-20T00:15:11.411138+00:00_
+_source line 3963 · 2026-05-20T00:15:11.411138+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4566,7 +4398,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3968 · 2026-05-20T00:15:17.940373+00:00_
+_source line 3964 · 2026-05-20T00:15:17.940373+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_32b-6class-check_20260520T001512\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_32b-6class-check_20260520T001512.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_32b-6class-check_20260520T001512 started. Use get_worker_status('worker_analysis_32b-6class-check_20260520T001512') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4588,7 +4420,7 @@ _source line 3968 · 2026-05-20T00:15:17.940373+00:00_
 
 ### Assistant
 
-_source line 3969 · 2026-05-20T00:15:21.452384+00:00_
+_source line 3965 · 2026-05-20T00:15:21.452384+00:00_
 
 Worker 已派出检查 32B 6-class 结果。westd cuda:0 释放后，可用于其他任务。
 
@@ -4615,7 +4447,7 @@ Worker 已派出检查 32B 6-class 结果。westd cuda:0 释放后，可用于�
 
 ### User
 
-_source line 3970 · 2026-05-20T00:15:21.464033+00:00_
+_source line 3966 · 2026-05-20T00:15:21.464033+00:00_
 
 [Director 指令] Cross-transfer 中间结果收到。两个修复：
 
@@ -4646,7 +4478,7 @@ _source line 3970 · 2026-05-20T00:15:21.464033+00:00_
 
 ### Assistant
 
-_source line 3971 · 2026-05-20T00:15:33.995595+00:00_
+_source line 3967 · 2026-05-20T00:15:33.995595+00:00_
 
 收到。cross-transfer 旧 JSON K* 修正已记录，等 12 对全部完成后统一汇报。
 
@@ -4675,7 +4507,7 @@ _source line 3971 · 2026-05-20T00:15:33.995595+00:00_
 
 ### User
 
-_source line 3972 · 2026-05-20T00:15:34.487163+00:00_
+_source line 3968 · 2026-05-20T00:15:34.487163+00:00_
 
 [WORKER DONE] Worker worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223 已完成（status=done）。用 `get_worker_status('worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223')` 读取结果，然后处理。
 
@@ -4700,7 +4532,7 @@ _source line 3972 · 2026-05-20T00:15:34.487163+00:00_
 
 ### Assistant
 
-_source line 3973 · 2026-05-20T00:15:40.932065+00:00_
+_source line 3969 · 2026-05-20T00:15:40.932065+00:00_
 
 No response requested.
 
@@ -4727,7 +4559,7 @@ No response requested.
 
 ### User
 
-_source line 3974 · 2026-05-20T00:15:41.513889+00:00_
+_source line 3970 · 2026-05-20T00:15:41.513889+00:00_
 
 [CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -4750,7 +4582,7 @@ _source line 3974 · 2026-05-20T00:15:41.513889+00:00_
 
 ### Assistant
 
-_source line 3975 · 2026-05-20T00:15:48.523174+00:00_
+_source line 3971 · 2026-05-20T00:15:48.523174+00:00_
 
 已派 Worker 处理中（worker_analysis_32b-6class-check），等待结果。
 
@@ -4777,7 +4609,7 @@ _source line 3975 · 2026-05-20T00:15:48.523174+00:00_
 
 ### User
 
-_source line 3976 · 2026-05-20T00:15:48.535079+00:00_
+_source line 3972 · 2026-05-20T00:15:48.535079+00:00_
 
 [CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -4800,7 +4632,7 @@ _source line 3976 · 2026-05-20T00:15:48.535079+00:00_
 
 ### Assistant
 
-_source line 3977 · 2026-05-20T00:15:55.573371+00:00_
+_source line 3973 · 2026-05-20T00:15:55.573371+00:00_
 
 No response requested.
 
@@ -4827,7 +4659,7 @@ No response requested.
 
 ### User
 
-_source line 3978 · 2026-05-20T00:15:55.580488+00:00_
+_source line 3974 · 2026-05-20T00:15:55.580488+00:00_
 
 [CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -4850,7 +4682,7 @@ _source line 3978 · 2026-05-20T00:15:55.580488+00:00_
 
 ### Assistant
 
-_source line 3979 · 2026-05-20T00:16:01.332815+00:00_
+_source line 3975 · 2026-05-20T00:16:01.332815+00:00_
 
 No response requested.
 
@@ -4877,7 +4709,7 @@ No response requested.
 
 ### User
 
-_source line 3980 · 2026-05-20T00:16:01.341983+00:00_
+_source line 3976 · 2026-05-20T00:16:01.341983+00:00_
 
 [Director 指令] C4 1.5B qwen_rw DeBERTa K*=2 确认。
 
@@ -4908,7 +4740,7 @@ _source line 3980 · 2026-05-20T00:16:01.341983+00:00_
 
 ### Tool call
 
-_source line 3981 · 2026-05-20T00:16:13.339978+00:00_
+_source line 3977 · 2026-05-20T00:16:13.339978+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4942,7 +4774,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3982 · 2026-05-20T00:16:13.742669+00:00_
+_source line 3978 · 2026-05-20T00:16:13.742669+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_32b-6class-check_20260520T001512\", \"status\": \"running\", \"task_type\": \"analysis:32b-6class-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:15:12.333205+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4964,7 +4796,7 @@ _source line 3982 · 2026-05-20T00:16:13.742669+00:00_
 
 ### Tool call
 
-_source line 3983 · 2026-05-20T00:16:13.743182+00:00_
+_source line 3979 · 2026-05-20T00:16:13.743182+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4998,7 +4830,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3984 · 2026-05-20T00:16:13.794121+00:00_
+_source line 3980 · 2026-05-20T00:16:13.794121+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_audit_lgbm-14b-data-mismatch_20260519T234313\", \"status\": \"done\", \"task_type\": \"audit:lgbm-14b-data-mismatch\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-19T23:43:14.101654+00:00\", \"ended_at\": \"2026-05-19T23:53:42.139565+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"调查完成。以下是完整报告。\\n\\n---\\n\\n## 调查报告: Table 4 LightGBM 14B 数据不匹配\\n\\n### 1. Table 4 中 .572/.537 的来源\\n\\n**文件**: `docs/paper/experiments_c1.tex` L142\\n```\\nLightGBM (14B)  & .960 & .621 & .572 & .537 & --- \\\\\\\\\\n```\\n\\n无法找到任何单一实验同时产出 2v3=.572 和 3v4=.537。唯一接近的匹配:\\n- `exp_021_length_512`（长度消融实验，非14B实验）的 2v3=0.5721 → 恰好匹配 .572\\n- 但其 3v4=0.530，不匹配 .537\\n\\n**结论**: .572/.537 不对应任何已知实验结果，最可能是 paper-writing agent 的转录错误或幻觉。\\n\\n### 2. 实际结果文件\\n\\n**文件路径**: `/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json`（cqa1, May 18 17:47）\\n\\n```json\\n{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.96,     // Table: .960 ✓\\n    \\\"1v2\\\": 0.6211,   // Table: .621 ✓\\n    \\\"2v3\\\": 0.5494,   // Table: .572 ✗ (差 +2.3pp)\\n    \\\"3v4\\\": 0.5243,   // Table: .537 ✗ (差 +1.3pp)\\n    \\\"4v5\\\": 0.5152    // Table: --- (未报告)\\n  }\\n}\\n```\\n\\n`bootstrap_ci_results.json` 确认: 2v3 point_estimate=0.5494 (CI: 0.5392–0.5594), 3v4=0.5243 (CI: 0.514–0.5346)\\n\\n### 3. Registry 确认\\n\\nRegistry `exp_14b_c4` metrics 完全吻合服务器文件:\\n- `pairwise_auc.2v3`: 0.5494\\n- `pairwise_auc.3v4`: 0.5243\\n- `k_star`: 2\\n- 服务器: westd-42896, completed May 18\\n\\n只存在一份 14B 结果，无多版本。\\n\\n### 4. 交叉验证\\n\\n| 数据源 | 0v1 | 1v2 | 2v3 | 3v4 |\\n|--------|-----|-----|-----|-----|\\n| Table 4 (LaTeX) | .960 | .621 | **.572** | **.537** |\\n| pairwise_auc.json | 0.96 | 0.6211 | **0.5494** | **0.5243** |\\n| Registry metrics | 0.9598 | 0.621 | **0.5494** | **0.5243** |\\n| bootstrap CI point est. | 0.9598 | 0.621 | **0.5494** | **0.5243** |\\n\\nDeBERTa 14B (`exp_deberta_c4
 …[truncated 453 chars]
@@ -5021,7 +4853,7 @@ _source line 3984 · 2026-05-20T00:16:13.794121+00:00_
 
 ### Tool call
 
-_source line 3985 · 2026-05-20T00:16:34.085118+00:00_
+_source line 3981 · 2026-05-20T00:16:34.085118+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5061,7 +4893,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3986 · 2026-05-20T00:16:40.724543+00:00_
+_source line 3982 · 2026-05-20T00:16:40.724543+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_c4-1b5-status-check_20260520T001634\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_c4-1b5-status-check_20260520T001634.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_c4-1b5-status-check_20260520T001634 started. Use get_worker_status('worker_infra_c4-1b5-status-check_20260520T001634') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5083,7 +4915,7 @@ _source line 3986 · 2026-05-20T00:16:40.724543+00:00_
 
 ### Tool call
 
-_source line 3987 · 2026-05-20T00:16:53.403970+00:00_
+_source line 3983 · 2026-05-20T00:16:53.403970+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5119,7 +4951,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Assistant
 
-_source line 3988 · 2026-05-20T00:36:01.683977+00:00_
+_source line 3984 · 2026-05-20T00:36:01.683977+00:00_
 
 先汇报 LightGBM 14B 审计结果给 Director。
 
@@ -5146,7 +4978,7 @@ _source line 3988 · 2026-05-20T00:36:01.683977+00:00_
 
 ### User
 
-_source line 3989 · 2026-05-20T00:36:02.171027+00:00_
+_source line 3985 · 2026-05-20T00:36:02.171027+00:00_
 
 [WORKER DONE] Worker worker_audit_lgbm-14b-data-mismatch_20260519T234313 已完成（status=done）。用 `get_worker_status('worker_audit_lgbm-14b-data-mismatch_20260519T234313')` 读取结果，然后处理。
 
@@ -5171,7 +5003,7 @@ _source line 3989 · 2026-05-20T00:36:02.171027+00:00_
 
 ### Tool call
 
-_source line 3990 · 2026-05-20T00:36:18.878215+00:00_
+_source line 3986 · 2026-05-20T00:36:18.878215+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5207,7 +5039,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3991 · 2026-05-20T00:36:22.895106+00:00_
+_source line 3987 · 2026-05-20T00:36:22.895106+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -5229,7 +5061,7 @@ _source line 3991 · 2026-05-20T00:36:22.895106+00:00_
 
 ### Assistant
 
-_source line 3992 · 2026-05-20T00:36:25.444003+00:00_
+_source line 3988 · 2026-05-20T00:36:25.444003+00:00_
 
 已读取过此 Worker 结果。向 Director 汇报审计结论和当前状态。
 
@@ -5256,7 +5088,7 @@ _source line 3992 · 2026-05-20T00:36:25.444003+00:00_
 
 ### User
 
-_source line 3993 · 2026-05-20T00:36:26.057088+00:00_
+_source line 3989 · 2026-05-20T00:36:26.057088+00:00_
 
 [WORKER DONE] Worker worker_analysis_32b-6class-check_20260520T001512 已完成（status=done）。用 `get_worker_status('worker_analysis_32b-6class-check_20260520T001512')` 读取结果，然后处理。
 
@@ -5281,7 +5113,7 @@ _source line 3993 · 2026-05-20T00:36:26.057088+00:00_
 
 ### Tool call
 
-_source line 3994 · 2026-05-20T00:36:32.736952+00:00_
+_source line 3990 · 2026-05-20T00:36:32.736952+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5315,7 +5147,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3995 · 2026-05-20T00:36:32.787869+00:00_
+_source line 3991 · 2026-05-20T00:36:32.787869+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_32b-6class-check_20260520T001512\", \"status\": \"done\", \"task_type\": \"analysis:32b-6class-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:15:12.333205+00:00\", \"ended_at\": \"2026-05-20T00:16:19.612283+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Registry 已更新为 DONE/success。\\n\\n## 结果汇总\\n\\n**K\\\\* = 2**（1-indexed，与 5-class 一致，θ=0.60）\\n\\n### Pairwise AUC 对比（6-class vs 5-class）\\n\\n| Pair | 6-class AUC | 95% CI | 5-class AUC | Δ |\\n|------|------------|--------|-------------|------|\\n| 0v1 | **0.9923** | [0.9910, 0.9936] | 0.9575 | +0.0348 |\\n| 1v2 | **0.6945** | [0.6864, 0.7026] | 0.6183 | +0.0762 |\\n| 2v3 | **0.5978** | [0.5898, 0.6058] | 0.5454 | +0.0524 |\\n| 3v4 | **0.5669** | [0.5590, 0.5746] | — | new |\\n| 4v5 | **0.5426** | [0.5351, 0.5501] | — | new |\\n\\n### 要点\\n\\n- **K\\\\* 不变**：6-class 下 K\\\\*=2，与 5-class 完全一致。2v3 AUC=0.5978 刚好低于 θ=0.60 阈值，是分界点。\\n- **所有已有 pair AUC 均上升**：6-class 重跑后 0v1/1v2/2v3 全部比 5-class 高，可能因为 6-class 分类器在更多类别上训练提供了更好的表征。\\n- **Signal decay 模式清晰**：0v1 (0.992) → 1v2 (0.695) → 2v3 (0.598) → 3v4 (0.567) → 4v5 (0.543)，单调递减趋向 0.5（随机水平）。\\n- **4v5 F1 极低（0.26）**：几乎无法区分 depth 4 和 depth 5，AUC 也仅 0.5426，确认深层生成文本的可区分性趋于消失。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5337,7 +5169,7 @@ _source line 3995 · 2026-05-20T00:36:32.787869+00:00_
 
 ### Tool call
 
-_source line 3996 · 2026-05-20T00:36:49.598982+00:00_
+_source line 3992 · 2026-05-20T00:36:49.598982+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5373,7 +5205,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3997 · 2026-05-20T00:36:53.703072+00:00_
+_source line 3993 · 2026-05-20T00:36:53.703072+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -5395,7 +5227,7 @@ _source line 3997 · 2026-05-20T00:36:53.703072+00:00_
 
 ### Assistant
 
-_source line 3998 · 2026-05-20T00:36:56.143529+00:00_
+_source line 3994 · 2026-05-20T00:36:56.143529+00:00_
 
 32B 6-class 完成：**K\*=2 不变，4v5 pair 已补全（AUC=0.5426）**。Table 不再需要标 "—"。
 
@@ -5422,7 +5254,7 @@ _source line 3998 · 2026-05-20T00:36:56.143529+00:00_
 
 ### User
 
-_source line 3999 · 2026-05-20T00:36:56.817682+00:00_
+_source line 3995 · 2026-05-20T00:36:56.817682+00:00_
 
 [WORKER DONE] Worker worker_infra_c4-1b5-status-check_20260520T001634 已完成（status=done）。用 `get_worker_status('worker_infra_c4-1b5-status-check_20260520T001634')` 读取结果，然后处理。
 
@@ -5447,7 +5279,7 @@ _source line 3999 · 2026-05-20T00:36:56.817682+00:00_
 
 ### Tool call
 
-_source line 4000 · 2026-05-20T00:37:03.771972+00:00_
+_source line 3996 · 2026-05-20T00:37:03.771972+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5481,7 +5313,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4001 · 2026-05-20T00:37:03.873003+00:00_
+_source line 3997 · 2026-05-20T00:37:03.873003+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_c4-1b5-status-check_20260520T001634\", \"status\": \"done\", \"task_type\": \"infra:c4-1b5-status-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:16:34.897012+00:00\", \"ended_at\": \"2026-05-20T00:19:25.118452+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Registry 更新完成。汇总：\\n\\n## 结果\\n\\n### 1. westd-42896: `exp_deberta_c4_1b5_pythia` (pythia_greedy) — **已完成 ✓**\\n\\n| Pair | DeBERTa AUC | 95% CI | OBD Baseline | Δ |\\n|------|------------|--------|-------------|---|\\n| 0v1 | **0.9998** | [0.9996, 0.9999] | 0.9992 | +0.06pp |\\n| 1v2 | **0.9284** | [0.9230, 0.9331] | 0.8838 | **+4.5pp** |\\n| 2v3 | 0.5419 | [0.5354, 0.5486] | 0.5342 | +0.8pp |\\n| 3v4 | 0.5163 | [0.5090, 0.5237] | 0.5228 | -0.7pp |\\n| 4v5 | 0.5098 | [0.5037, 0.5160] | 0.5162 | -0.6pp |\\n\\n**K\\\\* = 2** (θ=0.6)，与 qwen_rw 一致。pythia_greedy 的 1v2 AUC 显著高于 qwen_rw (0.9284 vs 0.7052)，greedy decoding 产生的文本更容易区分，但 K* boundary 不变。\\n\\n### 2. cqa1-22115: `exp_deberta_c4_1b5_qwen_cont` (qwen_cont256) — **进行中**\\n\\n- **进度**: Fold 4/5 (最后一个fold), Epoch 3/3, step 600/1500\\n- **GPU**: GPU 0/1/3 均 ~98-99% 利用率\\n- **预计剩余**: ~3-5 分钟完成最后 900 steps + 评估\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5503,7 +5335,7 @@ _source line 4001 · 2026-05-20T00:37:03.873003+00:00_
 
 ### Tool call
 
-_source line 4002 · 2026-05-20T00:37:24.613947+00:00_
+_source line 3998 · 2026-05-20T00:37:24.613947+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5543,7 +5375,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4003 · 2026-05-20T00:37:31.545045+00:00_
+_source line 3999 · 2026-05-20T00:37:31.545045+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725 started. Use get_worker_status('worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5565,7 +5397,7 @@ _source line 4003 · 2026-05-20T00:37:31.545045+00:00_
 
 ### Tool call
 
-_source line 4004 · 2026-05-20T00:37:44.023988+00:00_
+_source line 4000 · 2026-05-20T00:37:44.023988+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5601,7 +5433,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4005 · 2026-05-20T00:37:45.179192+00:00_
+_source line 4001 · 2026-05-20T00:37:45.179192+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -5623,7 +5455,7 @@ _source line 4005 · 2026-05-20T00:37:45.179192+00:00_
 
 ### Assistant
 
-_source line 4006 · 2026-05-20T00:37:47.508188+00:00_
+_source line 4002 · 2026-05-20T00:37:47.508188+00:00_
 
 向 Director 汇报 pythia_greedy 结果。
 
@@ -5650,7 +5482,7 @@ _source line 4006 · 2026-05-20T00:37:47.508188+00:00_
 
 ### User
 
-_source line 4007 · 2026-05-20T00:37:48.065597+00:00_
+_source line 4003 · 2026-05-20T00:37:48.065597+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5673,7 +5505,7 @@ _source line 4007 · 2026-05-20T00:37:48.065597+00:00_
 
 ### Tool call
 
-_source line 4008 · 2026-05-20T00:38:12.507764+00:00_
+_source line 4004 · 2026-05-20T00:38:12.507764+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5713,7 +5545,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4009 · 2026-05-20T00:38:18.899953+00:00_
+_source line 4005 · 2026-05-20T00:38:18.899953+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_cross-transfer-completion-check_20260520T003813.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_cross-transfer-completion-check_20260520T003813 started. Use get_worker_status('worker_analysis_cross-transfer-completion-check_20260520T003813') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5735,7 +5567,7 @@ _source line 4009 · 2026-05-20T00:38:18.899953+00:00_
 
 ### Assistant
 
-_source line 4010 · 2026-05-20T00:38:21.383730+00:00_
+_source line 4006 · 2026-05-20T00:38:21.383730+00:00_
 
 Cross-transfer GPU1 进程退出。一次性检查全部 3 个 GPU 的 cross-transfer 状态。
 
@@ -5762,7 +5594,7 @@ Cross-transfer GPU1 进程退出。一次性检查全部 3 个 GPU 的 cross-tra
 
 ### User
 
-_source line 4011 · 2026-05-20T00:38:21.395019+00:00_
+_source line 4007 · 2026-05-20T00:38:21.395019+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5785,7 +5617,7 @@ _source line 4011 · 2026-05-20T00:38:21.395019+00:00_
 
 ### Assistant
 
-_source line 4012 · 2026-05-20T00:38:27.617314+00:00_
+_source line 4008 · 2026-05-20T00:38:27.617314+00:00_
 
 No response requested.
 
@@ -5812,7 +5644,7 @@ No response requested.
 
 ### User
 
-_source line 4013 · 2026-05-20T00:38:27.634563+00:00_
+_source line 4009 · 2026-05-20T00:38:27.634563+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5835,7 +5667,7 @@ _source line 4013 · 2026-05-20T00:38:27.634563+00:00_
 
 ### Assistant
 
-_source line 4014 · 2026-05-20T00:38:34.185387+00:00_
+_source line 4010 · 2026-05-20T00:38:34.185387+00:00_
 
 No response requested.
 
@@ -5862,7 +5694,7 @@ No response requested.
 
 ### User
 
-_source line 4015 · 2026-05-20T00:38:34.192660+00:00_
+_source line 4011 · 2026-05-20T00:38:34.192660+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5885,7 +5717,7 @@ _source line 4015 · 2026-05-20T00:38:34.192660+00:00_
 
 ### Assistant
 
-_source line 4016 · 2026-05-20T00:38:39.783942+00:00_
+_source line 4012 · 2026-05-20T00:38:39.783942+00:00_
 
 No response requested.
 
@@ -5912,7 +5744,7 @@ No response requested.
 
 ### User
 
-_source line 4017 · 2026-05-20T00:38:39.790725+00:00_
+_source line 4013 · 2026-05-20T00:38:39.790725+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5935,7 +5767,7 @@ _source line 4017 · 2026-05-20T00:38:39.790725+00:00_
 
 ### Assistant
 
-_source line 4018 · 2026-05-20T00:38:45.375235+00:00_
+_source line 4014 · 2026-05-20T00:38:45.375235+00:00_
 
 No response requested.
 
@@ -5962,7 +5794,7 @@ No response requested.
 
 ### User
 
-_source line 4019 · 2026-05-20T00:38:45.383067+00:00_
+_source line 4015 · 2026-05-20T00:38:45.383067+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -5985,7 +5817,7 @@ _source line 4019 · 2026-05-20T00:38:45.383067+00:00_
 
 ### Assistant
 
-_source line 4020 · 2026-05-20T00:38:51.413279+00:00_
+_source line 4016 · 2026-05-20T00:38:51.413279+00:00_
 
 No response requested.
 
@@ -6012,7 +5844,7 @@ No response requested.
 
 ### User
 
-_source line 4021 · 2026-05-20T00:38:51.420703+00:00_
+_source line 4017 · 2026-05-20T00:38:51.420703+00:00_
 
 [WORKER DONE] Worker worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725 已完成（status=done）。用 `get_worker_status('worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725')` 读取结果，然后处理。
 
@@ -6037,7 +5869,7 @@ _source line 4021 · 2026-05-20T00:38:51.420703+00:00_
 
 ### Tool call
 
-_source line 4022 · 2026-05-20T00:38:57.661057+00:00_
+_source line 4018 · 2026-05-20T00:38:57.661057+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6071,7 +5903,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4023 · 2026-05-20T00:38:57.762030+00:00_
+_source line 4019 · 2026-05-20T00:38:57.762030+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725\", \"status\": \"done\", \"task_type\": \"infra:kill-westd-qwen-cont-duplicate\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:37:25.528060+00:00\", \"ended_at\": \"2026-05-20T00:38:24.056181+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"westd-42896 当前状态：\\n\\n- **tmux**: 无任何 session\\n- **deberta_c4_1b5 进程**: 无\\n- **cuda:0**: 空闲（0% utilization, 0 MiB）\\n- **cuda:1**: 空闲（0% utilization, 0 MiB）\\n\\nqwen_cont256 没有在 westd 上运行，两块 GPU 均已空闲，无需 kill。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6093,7 +5925,7 @@ _source line 4023 · 2026-05-20T00:38:57.762030+00:00_
 
 ### Assistant
 
-_source line 4024 · 2026-05-20T00:39:02.018167+00:00_
+_source line 4020 · 2026-05-20T00:39:02.018167+00:00_
 
 westd 双卡均已空闲。qwen_cont256 未在 westd 上启动（tmux chain 可能没被配置）。等待 cross-transfer 检查 Worker 完成。
 
@@ -6120,7 +5952,7 @@ westd 双卡均已空闲。qwen_cont256 未在 westd 上启动（tmux chain 可�
 
 ### User
 
-_source line 4025 · 2026-05-20T00:40:13.877832+00:00_
+_source line 4021 · 2026-05-20T00:40:13.877832+00:00_
 
 [Director 指令] 紧急状态检查——两个 running 实验可能已完成但未更新 registry：
 
@@ -6158,7 +5990,7 @@ _source line 4025 · 2026-05-20T00:40:13.877832+00:00_
 
 ### Tool call
 
-_source line 4026 · 2026-05-20T00:40:23.626706+00:00_
+_source line 4022 · 2026-05-20T00:40:23.626706+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6194,7 +6026,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4027 · 2026-05-20T00:40:23.729167+00:00_
+_source line 4023 · 2026-05-20T00:40:23.729167+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"running\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"GPU1 log shows it completed successfully. Let me check the other GPU logs and the launch script to see the pair assignments.\", \"turn_count\": 12}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6216,7 +6048,7 @@ _source line 4027 · 2026-05-20T00:40:23.729167+00:00_
 
 ### Tool call
 
-_source line 4028 · 2026-05-20T00:40:38.010554+00:00_
+_source line 4024 · 2026-05-20T00:40:38.010554+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -6256,7 +6088,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4029 · 2026-05-20T00:40:45.015752+00:00_
+_source line 4025 · 2026-05-20T00:40:45.015752+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_urgent-status-check_20260520T004038\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_urgent-status-check_20260520T004038.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_urgent-status-check_20260520T004038 started. Use get_worker_status('worker_infra_urgent-status-check_20260520T004038') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6278,7 +6110,7 @@ _source line 4029 · 2026-05-20T00:40:45.015752+00:00_
 
 ### Assistant
 
-_source line 4030 · 2026-05-20T00:40:47.651950+00:00_
+_source line 4026 · 2026-05-20T00:40:47.651950+00:00_
 
 Cross-transfer Worker 在运行（turn 12，GPU1 已确认完成）。派另一个 Worker 检查 qwen_cont256 + westd GPU 状态。
 
@@ -6305,7 +6137,7 @@ Cross-transfer Worker 在运行（turn 12，GPU1 已确认完成）。派另一�
 
 ### User
 
-_source line 4031 · 2026-05-20T00:41:29.502403+00:00_
+_source line 4027 · 2026-05-20T00:41:29.502403+00:00_
 
 [Director 指令] 两个任务：
 
@@ -6337,7 +6169,7 @@ westd cuda:0 和 cuda:1 即将空闲。检查：
 
 ### Tool call
 
-_source line 4032 · 2026-05-20T00:41:38.704080+00:00_
+_source line 4028 · 2026-05-20T00:41:38.704080+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6373,7 +6205,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4033 · 2026-05-20T00:41:39.107790+00:00_
+_source line 4029 · 2026-05-20T00:41:39.107790+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_urgent-status-check_20260520T004038\", \"status\": \"running\", \"task_type\": \"infra:urgent-status-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:40:38.988140+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"update_registry\"], \"last_text\": \"实验已完成，更新 registry。\", \"turn_count\": 22}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6395,7 +6227,7 @@ _source line 4033 · 2026-05-20T00:41:39.107790+00:00_
 
 ### Tool call
 
-_source line 4034 · 2026-05-20T00:41:39.108254+00:00_
+_source line 4030 · 2026-05-20T00:41:39.108254+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6431,7 +6263,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4035 · 2026-05-20T00:41:39.209194+00:00_
+_source line 4031 · 2026-05-20T00:41:39.209194+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"running\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"All 3 GPUs completed successfully. GPU3 ran mistral7b pairs instead of qwen7b↔llama8b — 2 pairs are missing. Let me check the K* computation logic.\", \"turn_count\": 13}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6453,7 +6285,7 @@ _source line 4035 · 2026-05-20T00:41:39.209194+00:00_
 
 ### Assistant
 
-_source line 4036 · 2026-05-20T00:41:48.696328+00:00_
+_source line 4032 · 2026-05-20T00:41:48.696328+00:00_
 
 两个 Worker 都在最后阶段：
 - qwen_cont256 已完成，正在更新 registry
@@ -6484,7 +6316,7 @@ _source line 4036 · 2026-05-20T00:41:48.696328+00:00_
 
 ### User
 
-_source line 4037 · 2026-05-20T00:42:26.815690+00:00_
+_source line 4033 · 2026-05-20T00:42:26.815690+00:00_
 
 [WORKER DONE] Worker worker_infra_urgent-status-check_20260520T004038 已完成（status=done）。用 `get_worker_status('worker_infra_urgent-status-check_20260520T004038')` 读取结果，然后处理。
 
@@ -6509,7 +6341,7 @@ _source line 4037 · 2026-05-20T00:42:26.815690+00:00_
 
 ### Tool call
 
-_source line 4038 · 2026-05-20T00:42:35.230515+00:00_
+_source line 4034 · 2026-05-20T00:42:35.230515+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6543,7 +6375,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4039 · 2026-05-20T00:42:35.331980+00:00_
+_source line 4035 · 2026-05-20T00:42:35.331980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_urgent-status-check_20260520T004038\", \"status\": \"done\", \"task_type\": \"infra:urgent-status-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:40:38.988140+00:00\", \"ended_at\": \"2026-05-20T00:42:24.900479+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Registry 已更新。汇总如下：\\n\\n---\\n\\n## 状态汇总\\n\\n### qwen_cont256: **已完成** (success)\\n| Pair | DeBERTa AUC | OBD Baseline | Delta |\\n|------|------------|--------------|-------|\\n| 0v1 | 0.9955 [0.9944, 0.9965] | 0.9914 | +0.0041 |\\n| 1v2 | 0.7194 [0.7120, 0.7273] | 0.6282 | +0.0912 |\\n| 2v3 | 0.5954 [0.5870, 0.6028] | 0.5556 | +0.0398 |\\n| 3v4 | 0.5689 [0.5613, 0.5766] | 0.5298 | +0.0391 |\\n| 4v5 | 0.5502 [0.5431, 0.5577] | 0.5137 | +0.0365 |\\n\\n**K\\\\* = 2** (theta=0.6)，假设确认：boundary 在 continuation 生成策略下保持一致。\\n\\n### cqa1 (4× 24GB GPU)\\n- GPU 0-3: **全部空闲**（0% 利用率，0 MiB 显存占用）\\n- 仅有一个 CPU 进程 `lofo_importance.py` 在运行（未占用 GPU）\\n\\n### westd (2× 98GB GPU)\\n- GPU 0-1: **全部空闲**（0% 利用率，0 MiB 显存占用）\\n- 有一个 `modelscope snapshot_download` 进程在下载 deberta-v3-base（CPU only）\\n\\n### 空闲 GPU 总览\\n- **cqa1**: GPU 0, 1, 2, 3（4× 24GB）\\n- **westd**: GPU 0, 1（2× 98GB）\\n- **共 6 块 GPU 空闲**\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6565,7 +6397,7 @@ _source line 4039 · 2026-05-20T00:42:35.331980+00:00_
 
 ### Tool call
 
-_source line 4040 · 2026-05-20T00:42:43.755831+00:00_
+_source line 4036 · 2026-05-20T00:42:43.755831+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6601,7 +6433,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4041 · 2026-05-20T00:42:43.806976+00:00_
+_source line 4037 · 2026-05-20T00:42:43.806976+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"running\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"Now I have the complete picture. Let me verify the K* indexing issue by checking which 3 JSONs have incorrect (0-indexed) values.\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6623,7 +6455,7 @@ _source line 4041 · 2026-05-20T00:42:43.806976+00:00_
 
 ### Tool call
 
-_source line 4042 · 2026-05-20T00:43:03.378945+00:00_
+_source line 4038 · 2026-05-20T00:43:03.378945+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -6659,7 +6491,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4043 · 2026-05-20T00:43:07.752859+00:00_
+_source line 4039 · 2026-05-20T00:43:07.752859+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -6681,7 +6513,7 @@ _source line 4043 · 2026-05-20T00:43:07.752859+00:00_
 
 ### Assistant
 
-_source line 4044 · 2026-05-20T00:43:10.503851+00:00_
+_source line 4040 · 2026-05-20T00:43:10.503851+00:00_
 
 Cross-transfer Worker 还在分析中（turn 11，正在验证 K* 索引）。先向 Director 汇报 C4 1.5B 完整结果和 GPU 状态，cross-transfer 分析出来后补充。
 
@@ -6708,7 +6540,7 @@ Cross-transfer Worker 还在分析中（turn 11，正在验证 K* 索引）。�
 
 ### User
 
-_source line 4045 · 2026-05-20T00:43:11.094893+00:00_
+_source line 4041 · 2026-05-20T00:43:11.094893+00:00_
 
 [Director 指令] 三个任务，按优先级排：
 
@@ -6744,7 +6576,7 @@ exp_deberta_cross_transfer_wiki 12/12 完成。更新 registry 为 success，记
 
 ### Tool call
 
-_source line 4046 · 2026-05-20T00:43:19.839115+00:00_
+_source line 4042 · 2026-05-20T00:43:19.839115+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6778,7 +6610,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4047 · 2026-05-20T00:43:19.940850+00:00_
+_source line 4043 · 2026-05-20T00:43:19.940850+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"running\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6800,7 +6632,7 @@ _source line 4047 · 2026-05-20T00:43:19.940850+00:00_
 
 ### Tool call
 
-_source line 4048 · 2026-05-20T00:43:37.737632+00:00_
+_source line 4044 · 2026-05-20T00:43:37.737632+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -6840,7 +6672,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 4049 · 2026-05-20T00:43:42.681103+00:00_
+_source line 4045 · 2026-05-20T00:43:42.681103+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6880,7 +6712,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4050 · 2026-05-20T00:43:43.350193+00:00_
+_source line 4046 · 2026-05-20T00:43:43.350193+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -6920,7 +6752,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4051 · 2026-05-20T00:43:44.176641+00:00_
+_source line 4047 · 2026-05-20T00:43:44.176641+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338.log\", \"setup_data\": {}, \"message\": \"Worker worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338 started. Use get_worker_status('worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6942,7 +6774,7 @@ _source line 4051 · 2026-05-20T00:43:44.176641+00:00_
 
 ### Tool result
 
-_source line 4052 · 2026-05-20T00:43:44.832060+00:00_
+_source line 4048 · 2026-05-20T00:43:44.832060+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_c4_1b5_qwen_cont\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:07.803Z\", \"updated_at\": \"2026-05-20T00:43:44.526Z\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"python scripts/run_deberta_c4_1b5.py --config qwen_cont256 --gpu 0\", \"pid\": \"TBD\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_021_length_256/\", \"data_count\": 30000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_cont256_oof.npz\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/deberta_c4_1b5_qwen_cont.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T00:41:45.752Z\", \"metrics\": {\"config\": \"qwen_cont256\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9955, \"1v2\": 0.7194, \"2v3\": 0.5954, \"3v4\": 0.5689, \"4v5\": 0.5502}, \"ci_95\": {\"0v1\": [0.9944, 0.9965], \"1v2\": [0.712, 0.7273], \"2v3\": [0.587, 0.6028], \"3v4\": [0.5613, 0.5766], \"4v5\": [0.5431, 0.5577]}, \"obd_baseline\": {\"0v1\": 0.9914, \"1v2\": 0.6282, \"2v3\": 0.5556, \"3v4\": 0.5298, \"4v5\": 0.5137}, \"delta_vs_obd\": {\"1v2\": 0.0912}, \"key_finding\": \"C4 1.5B qwen_cont256 K*=2, boundary holds across continuation generation strategy.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6484}}"}
 
@@ -6964,7 +6796,7 @@ _source line 4052 · 2026-05-20T00:43:44.832060+00:00_
 
 ### Tool result
 
-_source line 4053 · 2026-05-20T00:43:45.862992+00:00_
+_source line 4049 · 2026-05-20T00:43:45.862992+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:43:45.390Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0441}}"}
 
@@ -6986,7 +6818,7 @@ _source line 4053 · 2026-05-20T00:43:45.862992+00:00_
 
 ### Tool call
 
-_source line 4054 · 2026-05-20T00:43:57.146156+00:00_
+_source line 4050 · 2026-05-20T00:43:57.146156+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7026,7 +6858,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4055 · 2026-05-20T00:43:58.100091+00:00_
+_source line 4051 · 2026-05-20T00:43:58.100091+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:43:57.670Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"total_pairs\": 12, \"completed_pairs\": 12, \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 8, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"pattern\": \"All X→OLMo transfers yield K*=1 (OLMo wiki generation near-indistinguishable at depth 1+). DeBERTa cross-transfer mostly K*=2, one pair reaches K*=3.\", \"note\": \"3 old JSONs (pythia→olmo, olmo→qwen7b, olmo→llama8b) K* +1 fix in progress\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.956}}"}
 
@@ -7048,7 +6880,7 @@ _source line 4055 · 2026-05-20T00:43:58.100091+00:00_
 
 ### Tool call
 
-_source line 4056 · 2026-05-20T00:43:58.152996+00:00_
+_source line 4052 · 2026-05-20T00:43:58.152996+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7088,7 +6920,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4057 · 2026-05-20T00:43:59.309578+00:00_
+_source line 4053 · 2026-05-20T00:43:59.309578+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:43:58.837Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"total_pairs\": 12, \"completed_pairs\": 12, \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 8, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"pattern\": \"All X→OLMo transfers yield K*=1 (OLMo wiki generation near-indistinguishable at depth 1+). DeBERTa cross-transfer mostly K*=2, one pair reaches K*=3.\", \"note\": \"3 old JSONs (pythia→olmo, olmo→qwen7b, olmo→llama8b) K* +1 fix in progress\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1219}}"}
 
@@ -7110,7 +6942,7 @@ _source line 4057 · 2026-05-20T00:43:59.309578+00:00_
 
 ### Tool call
 
-_source line 4058 · 2026-05-20T00:44:05.160373+00:00_
+_source line 4054 · 2026-05-20T00:44:05.160373+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7150,7 +6982,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4059 · 2026-05-20T00:44:06.169375+00:00_
+_source line 4055 · 2026-05-20T00:44:06.169375+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:44:05.801Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"total_pairs\": 12, \"completed_pairs\": 12, \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 8, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"pattern\": \"All X→OLMo transfers yield K*=1 (OLMo wiki generation near-indistinguishable at depth 1+). DeBERTa cross-transfer mostly K*=2, one pair reaches K*=3.\", \"note\": \"3 old JSONs (pythia→olmo, olmo→qwen7b, olmo→llama8b) K* +1 fix in progress\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.962}}"}
 
@@ -7172,7 +7004,7 @@ _source line 4059 · 2026-05-20T00:44:06.169375+00:00_
 
 ### Tool call
 
-_source line 4060 · 2026-05-20T00:44:09.243217+00:00_
+_source line 4056 · 2026-05-20T00:44:09.243217+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7212,7 +7044,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4061 · 2026-05-20T00:44:11.002932+00:00_
+_source line 4057 · 2026-05-20T00:44:11.002932+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:44:09.678Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"total_pairs\": 12, \"completed_pairs\": 12, \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 8, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"pattern\": \"All X→OLMo transfers yield K*=1 (OLMo wiki generation near-indistinguishable at depth 1+). DeBERTa cross-transfer mostly K*=2, one pair reaches K*=3.\", \"note\": \"3 old JSONs (pythia→olmo, olmo→qwen7b, olmo→llama8b) K* +1 fix in progress\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"completed_at\": \"2026-05-20T00:44:09.679Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
 
@@ -7234,7 +7066,7 @@ _source line 4061 · 2026-05-20T00:44:11.002932+00:00_
 
 ### Assistant
 
-_source line 4062 · 2026-05-20T00:44:15.650895+00:00_
+_source line 4058 · 2026-05-20T00:44:15.650895+00:00_
 
 三个任务状态：
 - 任务 1: Worker 执行中（JSON K* fix）
@@ -7266,7 +7098,7 @@ _source line 4062 · 2026-05-20T00:44:15.650895+00:00_
 
 ### User
 
-_source line 4063 · 2026-05-20T00:44:16.392831+00:00_
+_source line 4059 · 2026-05-20T00:44:16.392831+00:00_
 
 [WORKER DONE] Worker worker_analysis_cross-transfer-completion-check_20260520T003813 已完成（status=done）。用 `get_worker_status('worker_analysis_cross-transfer-completion-check_20260520T003813')` 读取结果，然后处理。
 
@@ -7291,7 +7123,7 @@ _source line 4063 · 2026-05-20T00:44:16.392831+00:00_
 
 ### Tool call
 
-_source line 4064 · 2026-05-20T00:44:25.489023+00:00_
+_source line 4060 · 2026-05-20T00:44:25.489023+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -7325,7 +7157,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4065 · 2026-05-20T00:44:25.590425+00:00_
+_source line 4061 · 2026-05-20T00:44:25.590425+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"status\": \"done\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": \"2026-05-20T00:43:25.092899+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All data collected. Here's the complete status report:\\n\\n---\\n\\n## DeBERTa Cross-Transfer Status\\n\\n### Processes\\nAll 3 PIDs (208306/208307/208308) exited. All 4 GPUs idle (0%, 0 MiB). No tmux sessions.\\n\\n### GPU Assignments (all completed successfully)\\n| GPU | Pairs Run |\\n|---|---|\\n| GPU1 | pythia↔olmo, pythia↔qwen7b |\\n| GPU2 | olmo↔qwen7b, pythia→llama8b, llama8b→pythia |\\n| GPU3 | olmo↔llama8b, **pythia↔mistral7b** (wrong pairs) |\\n\\n### Coverage: 10/12 expected pairs complete\\n\\n**Missing 2 pairs** (GPU3 ran mistral7b pairs instead):\\n- `wiki_qwen7b → wiki_llama8b`\\n- `wiki_llama8b → wiki_qwen7b`\\n\\n**Extra 2 pairs** (bonus, not in expected 4-model set):\\n- `wiki_pythia → wiki_mistral7b` (K\\\\*=2)\\n- `wiki_mistral7b → wiki_pythia` (K\\\\*=2)\\n\\n### K\\\\* Indexing: 3 JSONs need +1 correction\\n\\nNone of the 12 JSONs have the `kstar_indexing` field. 3 are still 0-indexed:\\n\\n| File | Current K\\\\* | Corrected K\\\\* (1-indexed) |\\n|---|---|---|\\n| `wiki_pythia__to__wiki_olmo` | 0 | **1** |\\n| `wiki_olmo__to__wiki_qwen7b` | 1 | **2** |\\n| `wiki_olmo__to__wiki_llama8b` | 1 | **2** |\\n\\nRemaining 7 JSONs already have correct 1-indexed values.\\n\\n### Cross-Transfer Matrix (corrected K\\\\*, 1-indexed)\\n\\n| Train ↓ \\\\ Test → | pythia | olmo | qwen7b | llama8b |\\n|---|---|---|---|---|\\n| **pythia** | — | K\\\\*=1 | K\\\\*=3 | K\\\\*=2 |\\n| **olmo** | K\\\\*=1 | — | K\\\\*=2 | K\\\\*=2 |\\n| **qwen7b** | K\\\\*=2 | K\\\\*=1 | — | ❌ missing |\\n| **llama8b** | K\\\\*=2 | K\\\\*=1 | ❌ missi
 …[truncated 310 chars]
@@ -7348,7 +7180,7 @@ _source line 4065 · 2026-05-20T00:44:25.590425+00:00_
 
 ### Tool call
 
-_source line 4066 · 2026-05-20T00:44:48.663764+00:00_
+_source line 4062 · 2026-05-20T00:44:48.663764+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -7388,7 +7220,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4067 · 2026-05-20T00:44:55.198017+00:00_
+_source line 4063 · 2026-05-20T00:44:55.198017+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449.log\", \"setup_data\": {}, \"message\": \"Worker worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449 started. Use get_worker_status('worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7410,7 +7242,7 @@ _source line 4067 · 2026-05-20T00:44:55.198017+00:00_
 
 ### Tool call
 
-_source line 4068 · 2026-05-20T00:45:03.371976+00:00_
+_source line 4064 · 2026-05-20T00:45:03.371976+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7450,7 +7282,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4069 · 2026-05-20T00:45:04.476978+00:00_
+_source line 4065 · 2026-05-20T00:45:04.476978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_wiki\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-20T00:45:03.982Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"total_pairs_expected\": 12, \"completed_pairs\": 10, \"missing_pairs\": [\"qwen7b→llama8b\", \"llama8b→qwen7b\"], \"bonus_pairs\": [\"pythia→mistral7b (K*=2)\", \"mistral7b→pythia (K*=2)\"], \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 5, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"kstar_2_pairs\": [\"olmo→qwen7b\", \"olmo→llama8b\", \"qwen7b→pythia\", \"llama8b→pythia\", \"pythia→llama8b\"], \"pattern\": \"All X→OLMo = K*=1. pythia→qwen7b highest at K*=3. GPU3 ran mistral7b pairs instead of expected qwen7b↔llama8b, causing 2 missing pairs.\", \"json_kstar_fix\": \"3 JSONs fixed +1 (pythia→olmo 0→1, olmo→qwen7b 1→2, olmo→llama8b 1→2)\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"completed_at\": \"2026-05-20T00:44:09.679Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0654}}"}
 
@@ -7472,7 +7304,7 @@ _source line 4069 · 2026-05-20T00:45:04.476978+00:00_
 
 ### Tool call
 
-_source line 4070 · 2026-05-20T00:45:17.824550+00:00_
+_source line 4066 · 2026-05-20T00:45:17.824550+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7508,7 +7340,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4071 · 2026-05-20T00:45:19.081303+00:00_
+_source line 4067 · 2026-05-20T00:45:19.081303+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -7530,7 +7362,7 @@ _source line 4071 · 2026-05-20T00:45:19.081303+00:00_
 
 ### Assistant
 
-_source line 4072 · 2026-05-20T00:45:21.865362+00:00_
+_source line 4068 · 2026-05-20T00:45:21.865362+00:00_
 
 更新 registry 修正 cross-transfer 信息（10/12，不是 12/12），向 Director 报告。
 
@@ -7557,7 +7389,7 @@ _source line 4072 · 2026-05-20T00:45:21.865362+00:00_
 
 ### User
 
-_source line 4073 · 2026-05-20T00:45:22.482336+00:00_
+_source line 4069 · 2026-05-20T00:45:22.482336+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -7580,7 +7412,7 @@ _source line 4073 · 2026-05-20T00:45:22.482336+00:00_
 
 ### Tool call
 
-_source line 4074 · 2026-05-20T00:45:40.162469+00:00_
+_source line 4070 · 2026-05-20T00:45:40.162469+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -7609,7 +7441,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 4075 · 2026-05-20T00:45:46.359739+00:00_
+_source line 4071 · 2026-05-20T00:45:46.359739+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 4/5)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 4/5)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 4/5)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -7631,7 +7463,7 @@ _source line 4075 · 2026-05-20T00:45:46.359739+00:00_
 
 ### Tool call
 
-_source line 4076 · 2026-05-20T00:45:55.182830+00:00_
+_source line 4072 · 2026-05-20T00:45:55.182830+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7671,7 +7503,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4077 · 2026-05-20T00:45:56.681609+00:00_
+_source line 4073 · 2026-05-20T00:45:56.681609+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:45:55.753Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9669}}"}
 
@@ -7693,7 +7525,7 @@ _source line 4077 · 2026-05-20T00:45:56.681609+00:00_
 
 ### Tool call
 
-_source line 4078 · 2026-05-20T00:45:56.682102+00:00_
+_source line 4074 · 2026-05-20T00:45:56.682102+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7733,7 +7565,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4079 · 2026-05-20T00:45:57.962795+00:00_
+_source line 4075 · 2026-05-20T00:45:57.962795+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:45:57.106Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7801}}"}
 
@@ -7755,7 +7587,7 @@ _source line 4079 · 2026-05-20T00:45:57.962795+00:00_
 
 ### Tool call
 
-_source line 4080 · 2026-05-20T00:45:58.014006+00:00_
+_source line 4076 · 2026-05-20T00:45:58.014006+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7795,7 +7627,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4081 · 2026-05-20T00:45:59.269893+00:00_
+_source line 4077 · 2026-05-20T00:45:59.269893+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:45:58.698Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2395}}"}
 
@@ -7817,7 +7649,7 @@ _source line 4081 · 2026-05-20T00:45:59.269893+00:00_
 
 ### Tool call
 
-_source line 4082 · 2026-05-20T00:46:03.346347+00:00_
+_source line 4078 · 2026-05-20T00:46:03.346347+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7857,7 +7689,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4083 · 2026-05-20T00:46:04.253024+00:00_
+_source line 4079 · 2026-05-20T00:46:04.253024+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:46:03.766Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8144}}"}
 
@@ -7879,7 +7711,7 @@ _source line 4083 · 2026-05-20T00:46:04.253024+00:00_
 
 ### Tool call
 
-_source line 4084 · 2026-05-20T00:46:04.306055+00:00_
+_source line 4080 · 2026-05-20T00:46:04.306055+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7919,7 +7751,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4085 · 2026-05-20T00:46:04.758474+00:00_
+_source line 4081 · 2026-05-20T00:46:04.758474+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7959,7 +7791,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4086 · 2026-05-20T00:46:05.060047+00:00_
+_source line 4082 · 2026-05-20T00:46:05.060047+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:46:04.716Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7369}}"}
 
@@ -7981,7 +7813,7 @@ _source line 4086 · 2026-05-20T00:46:05.060047+00:00_
 
 ### Tool result
 
-_source line 4087 · 2026-05-20T00:46:05.714483+00:00_
+_source line 4083 · 2026-05-20T00:46:05.714483+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:46:05.416Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6788}}"}
 
@@ -8003,7 +7835,7 @@ _source line 4087 · 2026-05-20T00:46:05.714483+00:00_
 
 ### Tool call
 
-_source line 4088 · 2026-05-20T00:46:10.690347+00:00_
+_source line 4084 · 2026-05-20T00:46:10.690347+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8043,7 +7875,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4089 · 2026-05-20T00:46:11.143597+00:00_
+_source line 4085 · 2026-05-20T00:46:11.143597+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4123}}"}
 
@@ -8065,7 +7897,7 @@ _source line 4089 · 2026-05-20T00:46:11.143597+00:00_
 
 ### Tool call
 
-_source line 4090 · 2026-05-20T00:46:11.597054+00:00_
+_source line 4086 · 2026-05-20T00:46:11.597054+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8105,7 +7937,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4091 · 2026-05-20T00:46:12.202162+00:00_
+_source line 4087 · 2026-05-20T00:46:12.202162+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4661}}"}
 
@@ -8127,7 +7959,7 @@ _source line 4091 · 2026-05-20T00:46:12.202162+00:00_
 
 ### Tool call
 
-_source line 4092 · 2026-05-20T00:46:12.252895+00:00_
+_source line 4088 · 2026-05-20T00:46:12.252895+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8167,7 +7999,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4093 · 2026-05-20T00:46:12.655982+00:00_
+_source line 4089 · 2026-05-20T00:46:12.655982+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4184}}"}
 
@@ -8189,7 +8021,7 @@ _source line 4093 · 2026-05-20T00:46:12.655982+00:00_
 
 ### Assistant
 
-_source line 4094 · 2026-05-20T00:46:21.465012+00:00_
+_source line 4090 · 2026-05-20T00:46:21.465012+00:00_
 
 Cron 系统不支持跳过状态到 DONE。这些回调是噪音——cross-transfer 已确认完成并更新了主 registry。后续忽略这些重复 cron 回调。
 
@@ -8216,7 +8048,7 @@ Cron 系统不支持跳过状态到 DONE。这些回调是噪音——cross-tran
 
 ### User
 
-_source line 4095 · 2026-05-20T00:46:21.472252+00:00_
+_source line 4091 · 2026-05-20T00:46:21.472252+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -8239,7 +8071,7 @@ _source line 4095 · 2026-05-20T00:46:21.472252+00:00_
 
 ### Assistant
 
-_source line 4096 · 2026-05-20T00:46:28.541524+00:00_
+_source line 4092 · 2026-05-20T00:46:28.541524+00:00_
 
 No response requested.
 
@@ -8266,7 +8098,7 @@ No response requested.
 
 ### User
 
-_source line 4097 · 2026-05-20T00:46:28.552717+00:00_
+_source line 4093 · 2026-05-20T00:46:28.552717+00:00_
 
 [CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -8289,7 +8121,7 @@ _source line 4097 · 2026-05-20T00:46:28.552717+00:00_
 
 ### Tool call
 
-_source line 4098 · 2026-05-20T00:46:48.220981+00:00_
+_source line 4094 · 2026-05-20T00:46:48.220981+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8329,7 +8161,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4099 · 2026-05-20T00:46:48.975601+00:00_
+_source line 4095 · 2026-05-20T00:46:48.975601+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:46:48.662Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7138}}"}
 
@@ -8351,7 +8183,7 @@ _source line 4099 · 2026-05-20T00:46:48.975601+00:00_
 
 ### Tool call
 
-_source line 4100 · 2026-05-20T00:46:54.752944+00:00_
+_source line 4096 · 2026-05-20T00:46:54.752944+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8391,7 +8223,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4101 · 2026-05-20T00:46:55.205943+00:00_
+_source line 4097 · 2026-05-20T00:46:55.205943+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3468}}"}
 
@@ -8413,7 +8245,7 @@ _source line 4101 · 2026-05-20T00:46:55.205943+00:00_
 
 ### Tool call
 
-_source line 4102 · 2026-05-20T00:46:55.206368+00:00_
+_source line 4098 · 2026-05-20T00:46:55.206368+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8453,7 +8285,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4103 · 2026-05-20T00:46:55.658165+00:00_
+_source line 4099 · 2026-05-20T00:46:55.658165+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4176}}"}
 
@@ -8475,7 +8307,7 @@ _source line 4103 · 2026-05-20T00:46:55.658165+00:00_
 
 ### Tool call
 
-_source line 4104 · 2026-05-20T00:46:55.988931+00:00_
+_source line 4100 · 2026-05-20T00:46:55.988931+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8515,7 +8347,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4105 · 2026-05-20T00:46:56.343231+00:00_
+_source line 4101 · 2026-05-20T00:46:56.343231+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.359}}"}
 
@@ -8537,7 +8369,7 @@ _source line 4105 · 2026-05-20T00:46:56.343231+00:00_
 
 ### Tool call
 
-_source line 4106 · 2026-05-20T00:47:02.527067+00:00_
+_source line 4102 · 2026-05-20T00:47:02.527067+00:00_
 
 called Bash
 
@@ -8573,7 +8405,7 @@ called Bash
 
 ### Tool result
 
-_source line 4107 · 2026-05-20T00:47:02.829792+00:00_
+_source line 4103 · 2026-05-20T00:47:02.829792+00:00_
 
 exp_deberta_cross_transfer_gpu1 -> PENDING
 exp_deberta_cross_transfer_gpu1 -> QUEUED
@@ -8606,7 +8438,7 @@ exp_deberta_cross_transfer_gpu3 -> RUNNING
 
 ### Tool call
 
-_source line 4108 · 2026-05-20T00:47:06.197711+00:00_
+_source line 4104 · 2026-05-20T00:47:06.197711+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8646,7 +8478,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4109 · 2026-05-20T00:47:07.102500+00:00_
+_source line 4105 · 2026-05-20T00:47:07.102500+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8686,7 +8518,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4110 · 2026-05-20T00:47:07.458634+00:00_
+_source line 4106 · 2026-05-20T00:47:07.458634+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8726,7 +8558,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4111 · 2026-05-20T00:47:08.010765+00:00_
+_source line 4107 · 2026-05-20T00:47:08.010765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:47:06.622Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8119}}"}
 
@@ -8748,7 +8580,7 @@ _source line 4111 · 2026-05-20T00:47:08.010765+00:00_
 
 ### Tool result
 
-_source line 4112 · 2026-05-20T00:47:09.516984+00:00_
+_source line 4108 · 2026-05-20T00:47:09.516984+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:47:08.422Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4695}}"}
 
@@ -8770,7 +8602,7 @@ _source line 4112 · 2026-05-20T00:47:09.516984+00:00_
 
 ### Tool result
 
-_source line 4113 · 2026-05-20T00:47:11.322324+00:00_
+_source line 4109 · 2026-05-20T00:47:11.322324+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:47:09.895Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7963}}"}
 
@@ -8792,7 +8624,7 @@ _source line 4113 · 2026-05-20T00:47:11.322324+00:00_
 
 ### Tool call
 
-_source line 4114 · 2026-05-20T00:47:15.253984+00:00_
+_source line 4110 · 2026-05-20T00:47:15.253984+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8832,7 +8664,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4115 · 2026-05-20T00:47:15.706981+00:00_
+_source line 4111 · 2026-05-20T00:47:15.706981+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8872,7 +8704,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4116 · 2026-05-20T00:47:16.461995+00:00_
+_source line 4112 · 2026-05-20T00:47:16.461995+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8912,7 +8744,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4117 · 2026-05-20T00:47:17.014388+00:00_
+_source line 4113 · 2026-05-20T00:47:17.014388+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:47:15.747Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7702}}"}
 
@@ -8934,7 +8766,7 @@ _source line 4117 · 2026-05-20T00:47:17.014388+00:00_
 
 ### Tool result
 
-_source line 4118 · 2026-05-20T00:47:18.528211+00:00_
+_source line 4114 · 2026-05-20T00:47:18.528211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:47:17.378Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
 
@@ -8956,7 +8788,7 @@ _source line 4118 · 2026-05-20T00:47:18.528211+00:00_
 
 ### Tool result
 
-_source line 4119 · 2026-05-20T00:47:20.465274+00:00_
+_source line 4115 · 2026-05-20T00:47:20.465274+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:47:18.894Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9286}}"}
 
@@ -8978,7 +8810,7 @@ _source line 4119 · 2026-05-20T00:47:20.465274+00:00_
 
 ### Tool call
 
-_source line 4120 · 2026-05-20T00:47:24.912036+00:00_
+_source line 4116 · 2026-05-20T00:47:24.912036+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9018,7 +8850,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4121 · 2026-05-20T00:47:25.364068+00:00_
+_source line 4117 · 2026-05-20T00:47:25.364068+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9058,7 +8890,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4122 · 2026-05-20T00:47:26.145171+00:00_
+_source line 4118 · 2026-05-20T00:47:26.145171+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9098,7 +8930,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4123 · 2026-05-20T00:47:26.547588+00:00_
+_source line 4119 · 2026-05-20T00:47:26.547588+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:47:25.255Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
 
@@ -9120,7 +8952,7 @@ _source line 4123 · 2026-05-20T00:47:26.547588+00:00_
 
 ### Tool result
 
-_source line 4124 · 2026-05-20T00:47:28.671974+00:00_
+_source line 4120 · 2026-05-20T00:47:28.671974+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:47:26.994Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0552}}"}
 
@@ -9142,7 +8974,7 @@ _source line 4124 · 2026-05-20T00:47:28.671974+00:00_
 
 ### Tool result
 
-_source line 4125 · 2026-05-20T00:47:31.084349+00:00_
+_source line 4121 · 2026-05-20T00:47:31.084349+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:47:29.357Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4152}}"}
 
@@ -9164,7 +8996,7 @@ _source line 4125 · 2026-05-20T00:47:31.084349+00:00_
 
 ### Tool call
 
-_source line 4126 · 2026-05-20T00:47:36.722956+00:00_
+_source line 4122 · 2026-05-20T00:47:36.722956+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9206,7 +9038,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4127 · 2026-05-20T00:47:38.754377+00:00_
+_source line 4123 · 2026-05-20T00:47:38.754377+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9248,7 +9080,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4128 · 2026-05-20T00:47:39.459110+00:00_
+_source line 4124 · 2026-05-20T00:47:39.459110+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:47:37.265Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208306\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6385}}"}
 
@@ -9270,7 +9102,7 @@ _source line 4128 · 2026-05-20T00:47:39.459110+00:00_
 
 ### Tool call
 
-_source line 4129 · 2026-05-20T00:47:40.011081+00:00_
+_source line 4125 · 2026-05-20T00:47:40.011081+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9312,7 +9144,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4130 · 2026-05-20T00:47:41.821997+00:00_
+_source line 4126 · 2026-05-20T00:47:41.821997+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:47:39.997Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208307\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3875}}"}
 
@@ -9334,7 +9166,7 @@ _source line 4130 · 2026-05-20T00:47:41.821997+00:00_
 
 ### Tool result
 
-_source line 4131 · 2026-05-20T00:47:43.378209+00:00_
+_source line 4127 · 2026-05-20T00:47:43.378209+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:47:42.172Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5528}}"}
 
@@ -9356,7 +9188,7 @@ _source line 4131 · 2026-05-20T00:47:43.378209+00:00_
 
 ### Tool call
 
-_source line 4132 · 2026-05-20T00:47:47.549679+00:00_
+_source line 4128 · 2026-05-20T00:47:47.549679+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9396,7 +9228,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4133 · 2026-05-20T00:47:48.011482+00:00_
+_source line 4129 · 2026-05-20T00:47:48.011482+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.4369}}"}
 
@@ -9418,7 +9250,7 @@ _source line 4133 · 2026-05-20T00:47:48.011482+00:00_
 
 ### Tool call
 
-_source line 4134 · 2026-05-20T00:47:48.516915+00:00_
+_source line 4130 · 2026-05-20T00:47:48.516915+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9458,7 +9290,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4135 · 2026-05-20T00:47:48.969292+00:00_
+_source line 4131 · 2026-05-20T00:47:48.969292+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.4195}}"}
 
@@ -9480,7 +9312,7 @@ _source line 4135 · 2026-05-20T00:47:48.969292+00:00_
 
 ### Tool call
 
-_source line 4136 · 2026-05-20T00:47:49.170591+00:00_
+_source line 4132 · 2026-05-20T00:47:49.170591+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9520,7 +9352,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4137 · 2026-05-20T00:47:49.572470+00:00_
+_source line 4133 · 2026-05-20T00:47:49.572470+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.4029}}"}
 
@@ -9542,7 +9374,7 @@ _source line 4137 · 2026-05-20T00:47:49.572470+00:00_
 
 ### Tool call
 
-_source line 4138 · 2026-05-20T00:47:53.640921+00:00_
+_source line 4134 · 2026-05-20T00:47:53.640921+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9582,7 +9414,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4139 · 2026-05-20T00:47:54.746136+00:00_
+_source line 4135 · 2026-05-20T00:47:54.746136+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:47:53.942Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208306\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5571}}"}
 
@@ -9604,7 +9436,7 @@ _source line 4139 · 2026-05-20T00:47:54.746136+00:00_
 
 ### Tool call
 
-_source line 4140 · 2026-05-20T00:47:54.746568+00:00_
+_source line 4136 · 2026-05-20T00:47:54.746568+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9644,7 +9476,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4141 · 2026-05-20T00:47:55.451985+00:00_
+_source line 4137 · 2026-05-20T00:47:55.451985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:47:55.142Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208307\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6603}}"}
 
@@ -9666,7 +9498,7 @@ _source line 4141 · 2026-05-20T00:47:55.451985+00:00_
 
 ### Tool call
 
-_source line 4142 · 2026-05-20T00:47:55.452419+00:00_
+_source line 4138 · 2026-05-20T00:47:55.452419+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9706,7 +9538,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4143 · 2026-05-20T00:47:56.171476+00:00_
+_source line 4139 · 2026-05-20T00:47:56.171476+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:47:55.845Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6721}}"}
 
@@ -9728,7 +9560,7 @@ _source line 4143 · 2026-05-20T00:47:56.171476+00:00_
 
 ### Tool call
 
-_source line 4144 · 2026-05-20T00:47:59.836883+00:00_
+_source line 4140 · 2026-05-20T00:47:59.836883+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9768,7 +9600,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4145 · 2026-05-20T00:48:00.740600+00:00_
+_source line 4141 · 2026-05-20T00:48:00.740600+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:48:00.153Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208306\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu1.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6256}}"}
 
@@ -9790,7 +9622,7 @@ _source line 4145 · 2026-05-20T00:48:00.740600+00:00_
 
 ### Tool call
 
-_source line 4146 · 2026-05-20T00:48:00.741073+00:00_
+_source line 4142 · 2026-05-20T00:48:00.741073+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9830,7 +9662,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4147 · 2026-05-20T00:48:01.599428+00:00_
+_source line 4143 · 2026-05-20T00:48:01.599428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:48:01.143Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208307\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7183}}"}
 
@@ -9852,7 +9684,7 @@ _source line 4147 · 2026-05-20T00:48:01.599428+00:00_
 
 ### Tool call
 
-_source line 4148 · 2026-05-20T00:48:01.652114+00:00_
+_source line 4144 · 2026-05-20T00:48:01.652114+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9892,7 +9724,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4149 · 2026-05-20T00:48:02.405749+00:00_
+_source line 4145 · 2026-05-20T00:48:02.405749+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:48:02.082Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7456}}"}
 
@@ -9914,7 +9746,7 @@ _source line 4149 · 2026-05-20T00:48:02.405749+00:00_
 
 ### Tool call
 
-_source line 4150 · 2026-05-20T00:50:00.500159+00:00_
+_source line 4146 · 2026-05-20T00:50:00.500159+00:00_
 
 called ToolSearch
 
@@ -9950,7 +9782,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4151 · 2026-05-20T00:50:00.500645+00:00_
+_source line 4147 · 2026-05-20T00:50:00.500645+00:00_
 
 
 
@@ -9972,7 +9804,7 @@ _source line 4151 · 2026-05-20T00:50:00.500645+00:00_
 
 ### Tool call
 
-_source line 4152 · 2026-05-20T00:50:04.123926+00:00_
+_source line 4148 · 2026-05-20T00:50:04.123926+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10010,7 +9842,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 4153 · 2026-05-20T00:50:04.124351+00:00_
+_source line 4149 · 2026-05-20T00:50:04.124351+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -10039,7 +9871,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 4154 · 2026-05-20T00:50:04.626524+00:00_
+_source line 4150 · 2026-05-20T00:50:04.626524+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -10075,7 +9907,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 4155 · 2026-05-20T00:50:05.033452+00:00_
+_source line 4151 · 2026-05-20T00:50:05.033452+00:00_
 
 Error: result (197,435 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/6234f45a-c7b8-456d-a1ca-73680bd3339d/tool-results/mcp-agent-ml-research-read_registry-1779238204786.txt.
 Format: JSON with schema: {result: string}
@@ -10102,7 +9934,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 4156 · 2026-05-20T00:50:05.033947+00:00_
+_source line 4152 · 2026-05-20T00:50:05.033947+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -10138,7 +9970,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool call
 
-_source line 4157 · 2026-05-20T00:50:05.335409+00:00_
+_source line 4153 · 2026-05-20T00:50:05.335409+00:00_
 
 called mcp__agent-ml-research__get_project_resource_usage
 
@@ -10172,7 +10004,7 @@ called mcp__agent-ml-research__get_project_resource_usage
 
 ### Tool result
 
-_source line 4158 · 2026-05-20T00:50:37.377887+00:00_
+_source line 4154 · 2026-05-20T00:50:37.377887+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"success\": true, \"actions\": [\"Process dead 5× with no signal → auto-resolved DONE(failed)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"success\": true, \"actions\": [\"Process dead 5× with no signal → auto-resolved DONE(failed)\"]}, {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"success\": true, \"actions\": [\"Process dead 5× with no signal → auto-resolved DONE(failed)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -10194,7 +10026,7 @@ _source line 4158 · 2026-05-20T00:50:37.377887+00:00_
 
 ### Tool result
 
-_source line 4159 · 2026-05-20T00:50:37.480120+00:00_
+_source line 4155 · 2026-05-20T00:50:37.480120+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T00:50:35Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 93 个实验 — DONE 90, PREPARING 3\\n**DONE 分布**: failed 13, negative 10, success 67\\n\\n### GPU 占用\\n- **分配**: 4 张 — cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n- **空闲（分配了没跑）**: cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n\\n### 💾 磁盘余量\\n- **cqa1-22115**:\\n  - `/autodl-pub`: 374G/7.0T 可用（已用 95%） ⚠️\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\n- **westd-42896**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_deberta_cross_transfer_gpu3` [failed] — 2026-05-20T00:50:32 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu2` [failed] — 2026-05-20T00:50:22 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu1` [failed] — 2026-05-20T00:50:09 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_wiki` [success] — 2026-05-20T00:45:03\\n- `exp_deberta_c4_1b5_qwen_cont` [success] — 2026-05-20T00:43:44\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_deberta_cross_transfer_gpu3`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu1`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- 7
 …[truncated 2021 chars]
@@ -10217,7 +10049,7 @@ _source line 4159 · 2026-05-20T00:50:37.480120+00:00_
 
 ### Tool result
 
-_source line 4160 · 2026-05-20T00:50:37.582959+00:00_
+_source line 4156 · 2026-05-20T00:50:37.582959+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -10239,7 +10071,7 @@ _source line 4160 · 2026-05-20T00:50:37.582959+00:00_
 
 ### Tool result
 
-_source line 4161 · 2026-05-20T00:50:38.285430+00:00_
+_source line 4157 · 2026-05-20T00:50:38.285430+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10261,7 +10093,7 @@ _source line 4161 · 2026-05-20T00:50:38.285430+00:00_
 
 ### Tool call
 
-_source line 4162 · 2026-05-20T00:51:03.992482+00:00_
+_source line 4158 · 2026-05-20T00:51:03.992482+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -10297,7 +10129,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 4163 · 2026-05-20T00:51:04.094031+00:00_
+_source line 4159 · 2026-05-20T00:51:04.094031+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725\", \"task_type\": \"infra:kill-westd-qwen-cont-duplicate\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-20T00:37:25.528060+00:00\", \"ended_at\": \"2026-05-20T00:38:24.056181+00:00\"}, {\"worker_id\": \"worker_analysis_cross-transfer-completion-check_20260520T003813\", \"task_type\": \"analysis:cross-transfer-completion-check\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-20T00:38:13.348217+00:00\", \"ended_at\": \"2026-05-20T00:43:25.092899+00:00\"}, {\"worker_id\": \"worker_infra_urgent-status-check_20260520T004038\", \"task_type\": \"infra:urgent-status-check\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-20T00:40:38.988140+00:00\", \"ended_at\": \"2026-05-20T00:42:24.900479+00:00\"}, {\"worker_id\": \"worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338\", \"task_type\": \"bugfix:cross-transfer-kstar-json-fix\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-20T00:43:38.588058+00:00\", \"ended_at\": \"2026-05-20T00:44:55.453174+00:00\"}, {\"worker_id\": \"worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449\", \"task_type\": \"bugfix:cross-transfer-json-kstar-fix\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-20T00:44:49.404062+00:00\", \"ended_at\": \"2026-05-20T00:45:55.685936+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
 
@@ -10319,7 +10151,7 @@ _source line 4163 · 2026-05-20T00:51:04.094031+00:00_
 
 ### Tool call
 
-_source line 4164 · 2026-05-20T00:51:04.144746+00:00_
+_source line 4160 · 2026-05-20T00:51:04.144746+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -10355,7 +10187,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 4165 · 2026-05-20T00:51:04.195519+00:00_
+_source line 4161 · 2026-05-20T00:51:04.195519+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-19 10:55 UTC\\n\\n> 最后更新: 2026-05-19 ~11:00 UTC | 更新原因: Dream 分析完成 (D081) + 冲刺计划确认\\n\\n## 核心方向\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded 且 domain-governed（domain ceiling + model competence 框架, D076）。4 domains, 5+ architecture families, retrain-chain K*=7 vs prompt-chain K*=2。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Code domain 验证 3/5 完成，Mistral/Qwen-7B 今晚到齐\\n- **Framing**: Plan C + Dream D081 结构性修复完成（DPI 降级, C3 降级, θ regime, Qwen 披露, novelty positioning）— Reviewer 验证全部 PASS\\n- **论文状态**: 正文 ≤ 8 页，0 em-dash，0 undefined citations\\n- **实验**: 57 success / 10 negative / 10 failures / 82 total\\n- **Dream**: dream_20260519T090934 done — best=borderline accept, median=3.5, worst=3.0\\n\\n## 运行中实验\\n\\n| 实验 | GPU | 预计完成 |\\n|------|-----|---------|\\n| exp_code_mistral7b | cqa1 cuda:3 | ~May 19 19:00 UTC |\\n| exp_code_qwen7b | cqa1 cuda:1 | ~May 19 20:00-21:00 UTC |\\n| exp_32b_c4 | westd cuda:1 | ~May 20 05:00 UTC |\\n\\n## Code Domain 结果追踪\\n\\n| 模型 | K* | 1v2 AUC | 状态 |\\n|------|-----|---------|------|\\n| Qwen-1.5B | 2 | 0.7382 | ✅ Done + cross-scorer validated (D079) |\\n| LLaMA-8B | 2 | 0.7394 | ✅ Done, cross-family confirmed (D080) |\\n| Pythia-1.4B | 1 | 0.5983 | ✅ Done (competence-limited) |\\n| Mistral-7B | ? | — | RUNNING ~19:00 UTC |\\n| Qwen-7B | ? | — | RUNNING ~20:00-21:00 UTC |\\n\\n## 冲刺计划 (DDL May 25)\\n\\n### 已完成\\n- [x] P1-P5 Dream 结构性修复（Paper Agent, Reviewer PASS）\\n- [x] W1-W3 pre-review warnings 修复\\n- [x] Pythia CI 补全\\n- [x] Appendix -ing phrase 清理\\n- [x] 架构族计数验证（5 families correct）\\n- [x] Scenario 预案文档\\n\\n### 进行中（不依赖实验）\\n- [ ] #6 Conclusion 扩展（1句→3-4句，需从 Discussion 压空间）\\n- [ ] #7 引用扩充（~11→25-30篇，补 data-centric AI / model collapse / MGT detection / benchmark）\\n\\n### 等实验结
 …[truncated 2098 chars]
@@ -10378,7 +10210,7 @@ _source line 4165 · 2026-05-20T00:51:04.195519+00:00_
 
 ### Tool call
 
-_source line 4166 · 2026-05-20T00:51:23.946113+00:00_
+_source line 4162 · 2026-05-20T00:51:23.946113+00:00_
 
 called ToolSearch
 
@@ -10414,7 +10246,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4167 · 2026-05-20T00:51:23.996854+00:00_
+_source line 4163 · 2026-05-20T00:51:23.996854+00:00_
 
 
 
@@ -10436,7 +10268,7 @@ _source line 4167 · 2026-05-20T00:51:23.996854+00:00_
 
 ### Tool call
 
-_source line 4168 · 2026-05-20T00:51:26.781972+00:00_
+_source line 4164 · 2026-05-20T00:51:26.781972+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -10470,7 +10302,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4169 · 2026-05-20T00:51:26.832685+00:00_
+_source line 4165 · 2026-05-20T00:51:26.832685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449\", \"status\": \"done\", \"task_type\": \"bugfix:cross-transfer-json-kstar-fix\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:44:49.404062+00:00\", \"ended_at\": \"2026-05-20T00:45:55.685936+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"**修复已经生效。** 所有 12 个 JSON 当前状态：\\n\\n| 文件 | kstar | kstar_indexing |\\n|------|-------|---------------|\\n| wiki_llama8b__to__wiki_olmo | 1 | 1-indexed |\\n| wiki_llama8b__to__wiki_pythia | 2 | 1-indexed |\\n| wiki_mistral7b__to__wiki_pythia | 2 | 1-indexed |\\n| **wiki_olmo__to__wiki_llama8b** | **2** ✓ | 1-indexed |\\n| wiki_olmo__to__wiki_pythia | 1 | 1-indexed |\\n| **wiki_olmo__to__wiki_qwen7b** | **2** ✓ | 1-indexed |\\n| wiki_pythia__to__wiki_llama8b | 2 | 1-indexed |\\n| wiki_pythia__to__wiki_mistral7b | 2 | 1-indexed |\\n| **wiki_pythia__to__wiki_olmo** | **1** ✓ | 1-indexed |\\n| wiki_pythia__to__wiki_qwen7b | 3 | 1-indexed |\\n| wiki_qwen7b__to__wiki_olmo | 1 | 1-indexed |\\n| wiki_qwen7b__to__wiki_pythia | 2 | 1-indexed |\\n\\n3 个目标文件 kstar 值均已是修正后的目标值，全部 12 个 JSON 都已有 `kstar_indexing: \\\"1-indexed\\\"` 字段。无需再次修改。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10492,7 +10324,7 @@ _source line 4169 · 2026-05-20T00:51:26.832685+00:00_
 
 ### Tool call
 
-_source line 4170 · 2026-05-20T00:51:38.162354+00:00_
+_source line 4166 · 2026-05-20T00:51:38.162354+00:00_
 
 called Bash
 
@@ -10528,7 +10360,7 @@ called Bash
 
 ### Tool result
 
-_source line 4171 · 2026-05-20T00:51:38.464020+00:00_
+_source line 4167 · 2026-05-20T00:51:38.464020+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -10555,7 +10387,7 @@ AttributeError: 'str' object has no attribute 'get'
 
 ### Tool call
 
-_source line 4172 · 2026-05-20T00:51:46.851994+00:00_
+_source line 4168 · 2026-05-20T00:51:46.851994+00:00_
 
 called Bash
 
@@ -10591,7 +10423,7 @@ called Bash
 
 ### Tool result
 
-_source line 4173 · 2026-05-20T00:51:47.103881+00:00_
+_source line 4169 · 2026-05-20T00:51:47.103881+00:00_
 
 &lt;class 'dict'>
 exp_deberta_cross_transfer_gpu1: status=RUNNING, conclusion=success
@@ -10622,7 +10454,7 @@ exp_32b_c4_6class: status=DONE, conclusion=success
 
 ### Tool call
 
-_source line 4174 · 2026-05-20T00:51:53.487933+00:00_
+_source line 4170 · 2026-05-20T00:51:53.487933+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10660,7 +10492,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4175 · 2026-05-20T00:51:53.840649+00:00_
+_source line 4171 · 2026-05-20T00:51:53.840649+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3667}}"}
 
@@ -10682,7 +10514,7 @@ _source line 4175 · 2026-05-20T00:51:53.840649+00:00_
 
 ### Tool call
 
-_source line 4176 · 2026-05-20T00:51:56.905098+00:00_
+_source line 4172 · 2026-05-20T00:51:56.905098+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10720,7 +10552,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4177 · 2026-05-20T00:51:57.329766+00:00_
+_source line 4173 · 2026-05-20T00:51:57.329766+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4145}}"}
 
@@ -10742,7 +10574,7 @@ _source line 4177 · 2026-05-20T00:51:57.329766+00:00_
 
 ### Tool call
 
-_source line 4178 · 2026-05-20T00:52:00.944936+00:00_
+_source line 4174 · 2026-05-20T00:52:00.944936+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10782,7 +10614,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4179 · 2026-05-20T00:52:01.348412+00:00_
+_source line 4175 · 2026-05-20T00:52:01.348412+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_cross_transfer_gpu3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_deberta_cross_transfer_gpu2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_deberta_cross_transfer_gpu1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_deberta_cross_transfer_wiki\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_deberta_c4_1b5_qwen_cont\": {\"status\": \"DONE\", \"conclusion\": \"success\"}}, \"count\": 5, \"total\": 90, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3843}}"}
 
@@ -10804,7 +10636,7 @@ _source line 4179 · 2026-05-20T00:52:01.348412+00:00_
 
 ### Tool call
 
-_source line 4180 · 2026-05-20T00:52:14.960400+00:00_
+_source line 4176 · 2026-05-20T00:52:14.960400+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10844,7 +10676,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4181 · 2026-05-20T00:52:15.916003+00:00_
+_source line 4177 · 2026-05-20T00:52:15.916003+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:55.753Z\", \"updated_at\": \"2026-05-20T00:52:15.283Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208306\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu1.log\", \"reproduce\": {\"finished_at\": \"2026-05-20T00:50:07.180Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-20T00:50:09.496Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:50:17.409046+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8024}}"}
 
@@ -10866,7 +10698,7 @@ _source line 4181 · 2026-05-20T00:52:15.916003+00:00_
 
 ### Tool call
 
-_source line 4182 · 2026-05-20T00:52:15.916474+00:00_
+_source line 4178 · 2026-05-20T00:52:15.916474+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10906,7 +10738,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4183 · 2026-05-20T00:52:16.519482+00:00_
+_source line 4179 · 2026-05-20T00:52:16.519482+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10946,7 +10778,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4184 · 2026-05-20T00:52:16.621124+00:00_
+_source line 4180 · 2026-05-20T00:52:16.621124+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:57.106Z\", \"updated_at\": \"2026-05-20T00:52:16.211Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208307\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu2.log\", \"reproduce\": {\"finished_at\": \"2026-05-20T00:50:20.459Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-20T00:50:22.410Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:50:27.489708+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7086}}"}
 
@@ -10968,7 +10800,7 @@ _source line 4184 · 2026-05-20T00:52:16.621124+00:00_
 
 ### Tool result
 
-_source line 4185 · 2026-05-20T00:52:17.324010+00:00_
+_source line 4181 · 2026-05-20T00:52:17.324010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_cross_transfer_gpu3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:45:58.698Z\", \"updated_at\": \"2026-05-20T00:52:16.950Z\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\", \"conclusion\": \"success\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py\", \"pid\": \"208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log\", \"reproduce\": {\"finished_at\": \"2026-05-20T00:50:30.198Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-20T00:50:32.377Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:50:36.649085+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7028}}"}
 
@@ -10990,7 +10822,7 @@ _source line 4185 · 2026-05-20T00:52:17.324010+00:00_
 
 ### Tool call
 
-_source line 4186 · 2026-05-20T00:52:36.213143+00:00_
+_source line 4182 · 2026-05-20T00:52:36.213143+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11028,7 +10860,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4187 · 2026-05-20T00:52:36.665649+00:00_
+_source line 4183 · 2026-05-20T00:52:36.665649+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"7b-cross-transfer\": {\"status\": \"PREPARING\", \"conclusion\": \"failed\"}, \"exp_olmo_retrain_v2\": {\"status\": \"PREPARING\", \"hypothesis\": \"OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4201}}"}
 
@@ -11050,7 +10882,7 @@ _source line 4187 · 2026-05-20T00:52:36.665649+00:00_
 
 ### Tool call
 
-_source line 4188 · 2026-05-20T00:53:01.436923+00:00_
+_source line 4184 · 2026-05-20T00:53:01.436923+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11086,7 +10918,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4189 · 2026-05-20T00:53:02.693396+00:00_
+_source line 4185 · 2026-05-20T00:53:02.693396+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -11108,7 +10940,7 @@ _source line 4189 · 2026-05-20T00:53:02.693396+00:00_
 
 ### Assistant
 
-_source line 4190 · 2026-05-20T00:53:07.516687+00:00_
+_source line 4186 · 2026-05-20T00:53:07.516687+00:00_
 
 三个任务完成，已向 Director 汇报。当前状态：
 - 所有 93 个实验到 DONE（67 success / 10 negative / 13 failed）
@@ -11140,7 +10972,7 @@ _source line 4190 · 2026-05-20T00:53:07.516687+00:00_
 
 ### User
 
-_source line 4191 · 2026-05-20T00:53:07.524686+00:00_
+_source line 4187 · 2026-05-20T00:53:07.524686+00:00_
 
 [WORKER DONE] Worker worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338 已完成（status=done）。用 `get_worker_status('worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338')` 读取结果，然后处理。
 
@@ -11165,7 +10997,7 @@ _source line 4191 · 2026-05-20T00:53:07.524686+00:00_
 
 ### Tool call
 
-_source line 4192 · 2026-05-20T00:53:13.890950+00:00_
+_source line 4188 · 2026-05-20T00:53:13.890950+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -11199,7 +11031,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4193 · 2026-05-20T00:53:13.942130+00:00_
+_source line 4189 · 2026-05-20T00:53:13.942130+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_bugfix_cross-transfer-kstar-json-fix_20260520T004338\", \"status\": \"done\", \"task_type\": \"bugfix:cross-transfer-kstar-json-fix\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:43:38.588058+00:00\", \"ended_at\": \"2026-05-20T00:44:55.453174+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部完成。修改前后对比：\\n\\n| 文件 (train→test) | 修改前 kstar | 修改后 kstar | kstar_indexing |\\n|---|---|---|---|\\n| **pythia→olmo** | **0** | **1** ✓ | 1-indexed ✓ |\\n| **olmo→qwen7b** | **1** | **2** ✓ | 1-indexed ✓ |\\n| **olmo→llama8b** | **1** | **2** ✓ | 1-indexed ✓ |\\n| llama8b→olmo | 1 | 1 (不变) | 1-indexed ✓ |\\n| llama8b→pythia | 2 | 2 (不变) | 1-indexed ✓ |\\n| mistral7b→pythia | 2 | 2 (不变) | 1-indexed ✓ |\\n| olmo→pythia | 1 | 1 (不变) | 1-indexed ✓ |\\n| pythia→llama8b | 2 | 2 (不变) | 1-indexed ✓ |\\n| pythia→mistral7b | 2 | 2 (不变) | 1-indexed ✓ |\\n| pythia→qwen7b | 3 | 3 (不变) | 1-indexed ✓ |\\n| qwen7b→olmo | 1 | 1 (不变) | 1-indexed ✓ |\\n| qwen7b→pythia | 2 | 2 (不变) | 1-indexed ✓ |\\n\\n3 个目标文件 kstar 已修正，全部 12 个文件均已标记 `\\\"kstar_indexing\\\": \\\"1-indexed\\\"`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -11221,7 +11053,7 @@ _source line 4193 · 2026-05-20T00:53:13.942130+00:00_
 
 ### Tool call
 
-_source line 4194 · 2026-05-20T00:53:21.280956+00:00_
+_source line 4190 · 2026-05-20T00:53:21.280956+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -11250,7 +11082,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 4195 · 2026-05-20T00:53:21.733077+00:00_
+_source line 4191 · 2026-05-20T00:53:21.733077+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -11272,7 +11104,7 @@ _source line 4195 · 2026-05-20T00:53:21.733077+00:00_
 
 ### Tool call
 
-_source line 4196 · 2026-05-20T00:53:21.733482+00:00_
+_source line 4192 · 2026-05-20T00:53:21.733482+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -11308,7 +11140,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 4197 · 2026-05-20T00:53:21.784165+00:00_
+_source line 4193 · 2026-05-20T00:53:21.784165+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T00:50:35Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 93 个实验 — DONE 90, PREPARING 3\\n**DONE 分布**: failed 13, negative 10, success 67\\n\\n### GPU 占用\\n- **分配**: 4 张 — cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n- **空闲（分配了没跑）**: cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n\\n### 💾 磁盘余量\\n- **cqa1-22115**:\\n  - `/autodl-pub`: 374G/7.0T 可用（已用 95%） ⚠️\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\n- **westd-42896**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_deberta_cross_transfer_gpu3` [failed] — 2026-05-20T00:50:32 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu2` [failed] — 2026-05-20T00:50:22 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu1` [failed] — 2026-05-20T00:50:09 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_wiki` [success] — 2026-05-20T00:45:03\\n- `exp_deberta_c4_1b5_qwen_cont` [success] — 2026-05-20T00:43:44\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_deberta_cross_transfer_gpu3`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_deberta_cross_transfer_gpu1`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- 7
 …[truncated 2021 chars]
@@ -11331,7 +11163,7 @@ _source line 4197 · 2026-05-20T00:53:21.784165+00:00_
 
 ### Tool call
 
-_source line 4198 · 2026-05-20T00:53:48.867123+00:00_
+_source line 4194 · 2026-05-20T00:53:48.867123+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11367,7 +11199,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4199 · 2026-05-20T00:53:52.884643+00:00_
+_source line 4195 · 2026-05-20T00:53:52.884643+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -11389,7 +11221,7 @@ _source line 4199 · 2026-05-20T00:53:52.884643+00:00_
 
 ### Assistant
 
-_source line 4200 · 2026-05-20T00:53:56.039325+00:00_
+_source line 4196 · 2026-05-20T00:53:56.039325+00:00_
 
 三个任务完成，已向 Director 汇报。当前状态：cqa1 4 卡空闲、0 Worker，等 Director 下一步分配。
 
@@ -11416,7 +11248,7 @@ _source line 4200 · 2026-05-20T00:53:56.039325+00:00_
 
 ### User
 
-_source line 4201 · 2026-05-20T00:53:56.617599+00:00_
+_source line 4197 · 2026-05-20T00:53:56.617599+00:00_
 
 [Director 指令] 三个任务：
 
@@ -11453,7 +11285,7 @@ westd cuda:0-1 暂时 hold，等 Round 15 审稿报告回来后分配。
 
 ### Tool call
 
-_source line 4202 · 2026-05-20T00:54:31.920667+00:00_
+_source line 4198 · 2026-05-20T00:54:31.920667+00:00_
 
 called ToolSearch
 
@@ -11489,7 +11321,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4203 · 2026-05-20T00:54:32.022343+00:00_
+_source line 4199 · 2026-05-20T00:54:32.022343+00:00_
 
 
 
@@ -11511,7 +11343,7 @@ _source line 4203 · 2026-05-20T00:54:32.022343+00:00_
 
 ### Tool call
 
-_source line 4204 · 2026-05-20T00:54:54.987708+00:00_
+_source line 4200 · 2026-05-20T00:54:54.987708+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -11553,7 +11385,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4205 · 2026-05-20T00:55:01.433118+00:00_
+_source line 4201 · 2026-05-20T00:55:01.433118+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_cross-transfer-missing-pairs_20260520T005455\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_experiment_cross-transfer-missing-pairs_20260520T005455.log\", \"setup_data\": {}, \"message\": \"Worker worker_experiment_cross-transfer-missing-pairs_20260520T005455 started. Use get_worker_status('worker_experiment_cross-transfer-missing-pairs_20260520T005455') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11575,7 +11407,7 @@ _source line 4205 · 2026-05-20T00:55:01.433118+00:00_
 
 ### Tool call
 
-_source line 4206 · 2026-05-20T00:55:40.591845+00:00_
+_source line 4202 · 2026-05-20T00:55:40.591845+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11611,7 +11443,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Assistant
 
-_source line 4207 · 2026-05-20T01:13:56.970255+00:00_
+_source line 4203 · 2026-05-20T01:13:56.970255+00:00_
 
 Worker 已派发补跑 2 对 cross-transfer pairs（cqa1 cuda:0/1）。现在向 Director 汇报完整状态。
 
@@ -11638,7 +11470,7 @@ Worker 已派发补跑 2 对 cross-transfer pairs（cqa1 cuda:0/1）。现在向
 
 ### User
 
-_source line 4208 · 2026-05-20T01:13:57.778564+00:00_
+_source line 4204 · 2026-05-20T01:13:57.778564+00:00_
 
 [WORKER DONE] Worker worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449 已完成（status=done）。用 `get_worker_status('worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449')` 读取结果，然后处理。
 
@@ -11663,7 +11495,7 @@ _source line 4208 · 2026-05-20T01:13:57.778564+00:00_
 
 ### Assistant
 
-_source line 4209 · 2026-05-20T01:14:05.385079+00:00_
+_source line 4205 · 2026-05-20T01:14:05.385079+00:00_
 
 已处理过该 Worker 的结果——12 个 JSON K* 修复已确认完成。这是重复回调，无需再次处理。
 
@@ -11690,7 +11522,7 @@ _source line 4209 · 2026-05-20T01:14:05.385079+00:00_
 
 ### User
 
-_source line 4210 · 2026-05-20T01:14:06.038764+00:00_
+_source line 4206 · 2026-05-20T01:14:06.038764+00:00_
 
 [WORKER DONE] Worker worker_experiment_cross-transfer-missing-pairs_20260520T005455 已完成（status=done）。用 `get_worker_status('worker_experiment_cross-transfer-missing-pairs_20260520T005455')` 读取结果，然后处理。
 
@@ -11715,7 +11547,7 @@ _source line 4210 · 2026-05-20T01:14:06.038764+00:00_
 
 ### Tool call
 
-_source line 4211 · 2026-05-20T01:14:12.108529+00:00_
+_source line 4207 · 2026-05-20T01:14:12.108529+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -11749,7 +11581,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4212 · 2026-05-20T01:14:12.159320+00:00_
+_source line 4208 · 2026-05-20T01:14:12.159320+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_cross-transfer-missing-pairs_20260520T005455\", \"status\": \"done\", \"task_type\": \"experiment:cross-transfer-missing-pairs\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T00:54:55.797536+00:00\", \"ended_at\": \"2026-05-20T00:56:05.549665+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个任务均已启动并运行中。\\n\\n| 实验 | exp_id | PID | GPU | 命令 |\\n|------|--------|-----|-----|------|\\n| qwen7b→llama8b | `exp_cross_transfer_qwen7b_to_llama8b` | 270054 | cuda:0 | `python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0` |\\n| llama8b→qwen7b | `exp_cross_transfer_llama8b_to_qwen7b` | 270133 | cuda:1 | `python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1` |\\n\\n日志文件：\\n- `~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log`\\n- `~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log`\\n\\n预计约 25 分钟完成，结果会写入 `results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json` 和 `wiki_llama8b__to__wiki_qwen7b.json`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -11771,7 +11603,7 @@ _source line 4212 · 2026-05-20T01:14:12.159320+00:00_
 
 ### Tool call
 
-_source line 4213 · 2026-05-20T01:14:19.595503+00:00_
+_source line 4209 · 2026-05-20T01:14:19.595503+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11809,7 +11641,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4214 · 2026-05-20T01:14:19.998592+00:00_
+_source line 4210 · 2026-05-20T01:14:19.998592+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3799}}"}
 
@@ -11831,7 +11663,7 @@ _source line 4214 · 2026-05-20T01:14:19.998592+00:00_
 
 ### Tool call
 
-_source line 4215 · 2026-05-20T01:14:25.375655+00:00_
+_source line 4211 · 2026-05-20T01:14:25.375655+00:00_
 
 called Bash
 
@@ -11867,7 +11699,7 @@ called Bash
 
 ### Tool result
 
-_source line 4216 · 2026-05-20T01:14:25.980181+00:00_
+_source line 4212 · 2026-05-20T01:14:25.980181+00:00_
 
 exp_cross_transfer_qwen7b_to_llama8b: status=PREPARING, hypothesis=NONE
 exp_cross_transfer_llama8b_to_qwen7b: status=PREPARING, hypothesis=NONE
@@ -11890,7 +11722,7 @@ exp_cross_transfer_llama8b_to_qwen7b: status=PREPARING, hypothesis=NONE
 
 ### Tool call
 
-_source line 4217 · 2026-05-20T01:14:36.687956+00:00_
+_source line 4213 · 2026-05-20T01:14:36.687956+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11930,7 +11762,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4218 · 2026-05-20T01:14:37.592791+00:00_
+_source line 4214 · 2026-05-20T01:14:37.592791+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T01:14:37.098Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6945}}"}
 
@@ -11952,7 +11784,7 @@ _source line 4218 · 2026-05-20T01:14:37.592791+00:00_
 
 ### Tool call
 
-_source line 4219 · 2026-05-20T01:14:37.593251+00:00_
+_source line 4215 · 2026-05-20T01:14:37.593251+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11992,7 +11824,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4220 · 2026-05-20T01:14:38.296133+00:00_
+_source line 4216 · 2026-05-20T01:14:38.296133+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T01:14:38.000Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6961}}"}
 
@@ -12014,7 +11846,7 @@ _source line 4220 · 2026-05-20T01:14:38.296133+00:00_
 
 ### Tool call
 
-_source line 4221 · 2026-05-20T01:14:42.615968+00:00_
+_source line 4217 · 2026-05-20T01:14:42.615968+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12054,7 +11886,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4222 · 2026-05-20T01:14:43.068317+00:00_
+_source line 4218 · 2026-05-20T01:14:43.068317+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12094,7 +11926,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4223 · 2026-05-20T01:14:44.022841+00:00_
+_source line 4219 · 2026-05-20T01:14:44.022841+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T01:14:42.963Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4188}}"}
 
@@ -12116,7 +11948,7 @@ _source line 4223 · 2026-05-20T01:14:44.022841+00:00_
 
 ### Tool result
 
-_source line 4224 · 2026-05-20T01:14:45.479918+00:00_
+_source line 4220 · 2026-05-20T01:14:45.479918+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T01:14:44.430Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4171}}"}
 
@@ -12138,7 +11970,7 @@ _source line 4224 · 2026-05-20T01:14:45.479918+00:00_
 
 ### Tool call
 
-_source line 4225 · 2026-05-20T01:14:48.996694+00:00_
+_source line 4221 · 2026-05-20T01:14:48.996694+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12178,7 +12010,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4226 · 2026-05-20T01:14:49.448793+00:00_
+_source line 4222 · 2026-05-20T01:14:49.448793+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12218,7 +12050,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4227 · 2026-05-20T01:14:50.353979+00:00_
+_source line 4223 · 2026-05-20T01:14:50.353979+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T01:14:49.295Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3864}}"}
 
@@ -12240,7 +12072,7 @@ _source line 4227 · 2026-05-20T01:14:50.353979+00:00_
 
 ### Tool result
 
-_source line 4228 · 2026-05-20T01:14:51.820070+00:00_
+_source line 4224 · 2026-05-20T01:14:51.820070+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T01:14:50.732Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.411}}"}
 
@@ -12262,7 +12094,7 @@ _source line 4228 · 2026-05-20T01:14:51.820070+00:00_
 
 ### Tool call
 
-_source line 4229 · 2026-05-20T01:14:55.486116+00:00_
+_source line 4225 · 2026-05-20T01:14:55.486116+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12302,7 +12134,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4230 · 2026-05-20T01:14:55.989950+00:00_
+_source line 4226 · 2026-05-20T01:14:55.989950+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12342,7 +12174,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4231 · 2026-05-20T01:14:56.844951+00:00_
+_source line 4227 · 2026-05-20T01:14:56.844951+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T01:14:55.828Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3685}}"}
 
@@ -12364,7 +12196,7 @@ _source line 4231 · 2026-05-20T01:14:56.844951+00:00_
 
 ### Tool result
 
-_source line 4232 · 2026-05-20T01:14:58.352951+00:00_
+_source line 4228 · 2026-05-20T01:14:58.352951+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T01:14:57.234Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4661}}"}
 
@@ -12386,7 +12218,7 @@ _source line 4232 · 2026-05-20T01:14:58.352951+00:00_
 
 ### Tool call
 
-_source line 4233 · 2026-05-20T01:15:03.545703+00:00_
+_source line 4229 · 2026-05-20T01:15:03.545703+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12428,7 +12260,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4234 · 2026-05-20T01:15:07.110606+00:00_
+_source line 4230 · 2026-05-20T01:15:07.110606+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T01:15:03.905Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3974}}"}
 
@@ -12450,7 +12282,7 @@ _source line 4234 · 2026-05-20T01:15:07.110606+00:00_
 
 ### Tool call
 
-_source line 4235 · 2026-05-20T01:15:07.613900+00:00_
+_source line 4231 · 2026-05-20T01:15:07.613900+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12492,7 +12324,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4236 · 2026-05-20T01:15:09.070763+00:00_
+_source line 4232 · 2026-05-20T01:15:09.070763+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T01:15:07.965Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4213}}"}
 
@@ -12514,7 +12346,7 @@ _source line 4236 · 2026-05-20T01:15:09.070763+00:00_
 
 ### Tool call
 
-_source line 4237 · 2026-05-20T01:15:25.793891+00:00_
+_source line 4233 · 2026-05-20T01:15:25.793891+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -12550,7 +12382,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4238 · 2026-05-20T01:15:29.762265+00:00_
+_source line 4234 · 2026-05-20T01:15:29.762265+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -12572,7 +12404,7 @@ _source line 4238 · 2026-05-20T01:15:29.762265+00:00_
 
 ### Assistant
 
-_source line 4239 · 2026-05-20T01:15:33.880585+00:00_
+_source line 4235 · 2026-05-20T01:15:33.880585+00:00_
 
 三个任务均已处理完毕：Task 1 两对 cross-transfer pairs 已在 cqa1 cuda:0/1 运行（~25min 完成），Task 2/3 确认上轮已完成。等 cron 回调处理实验结果。
 
@@ -12599,7 +12431,7 @@ _source line 4239 · 2026-05-20T01:15:33.880585+00:00_
 
 ### User
 
-_source line 4240 · 2026-05-20T02:56:17.550520+00:00_
+_source line 4236 · 2026-05-20T02:56:17.550520+00:00_
 
 [Director 指令] **紧急：检查 2 对 cross-transfer 结果**
 
@@ -12631,7 +12463,7 @@ cqa1 cuda:0 (qwen7b→llama8b) 和 cuda:1 (llama8b→qwen7b) 已空闲超过 25 
 
 ### Tool call
 
-_source line 4241 · 2026-05-20T02:56:39.923473+00:00_
+_source line 4237 · 2026-05-20T02:56:39.923473+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -12671,7 +12503,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4242 · 2026-05-20T02:56:46.643687+00:00_
+_source line 4238 · 2026-05-20T02:56:46.643687+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-final-check_20260520T025640\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_cross-transfer-final-check_20260520T025640.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_cross-transfer-final-check_20260520T025640 started. Use get_worker_status('worker_analysis_cross-transfer-final-check_20260520T025640') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12693,7 +12525,7 @@ _source line 4242 · 2026-05-20T02:56:46.643687+00:00_
 
 ### Assistant
 
-_source line 4243 · 2026-05-20T02:56:49.532152+00:00_
+_source line 4239 · 2026-05-20T02:56:49.532152+00:00_
 
 Worker 已派发检查 cqa1 cross-transfer 结果，等回调。
 
@@ -12720,7 +12552,7 @@ Worker 已派发检查 cqa1 cross-transfer 结果，等回调。
 
 ### User
 
-_source line 4244 · 2026-05-20T02:59:15.666859+00:00_
+_source line 4240 · 2026-05-20T02:59:15.666859+00:00_
 
 [WORKER DONE] Worker worker_analysis_cross-transfer-final-check_20260520T025640 已完成（status=done）。用 `get_worker_status('worker_analysis_cross-transfer-final-check_20260520T025640')` 读取结果，然后处理。
 
@@ -12745,7 +12577,7 @@ _source line 4244 · 2026-05-20T02:59:15.666859+00:00_
 
 ### Tool call
 
-_source line 4245 · 2026-05-20T02:59:22.464969+00:00_
+_source line 4241 · 2026-05-20T02:59:22.464969+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -12779,7 +12611,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4246 · 2026-05-20T02:59:22.566039+00:00_
+_source line 4242 · 2026-05-20T02:59:22.566039+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-final-check_20260520T025640\", \"status\": \"done\", \"task_type\": \"analysis:cross-transfer-final-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T02:56:40.711358+00:00\", \"ended_at\": \"2026-05-20T02:59:13.702129+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部数据已收集。以下是汇总。\\n\\n---\\n\\n## 1. 新实验结果\\n\\n### wiki_qwen7b → wiki_llama8b (完成)\\n\\n| Pair | AUC | 95% CI | ci_lower > θ |\\n|------|-----|--------|-------------|\\n| 0v1 | 0.9998 | [0.9995, 1.0000] | ✓ |\\n| 1v2 | 0.7384 | [0.7308, 0.7464] | ✓ |\\n| 2v3 | 0.6278 | [0.6196, 0.6357] | ✓ |\\n| 3v4 | 0.5870 | [0.5795, 0.5941] | ✗ |\\n| 4v5 | 0.5519 | [0.5451, 0.5589] | ✗ |\\n\\n**K\\\\* = 3**, kstar_indexing = **MISSING**（JSON 中无此字段）, elapsed = 3621s\\n\\n### wiki_llama8b → wiki_qwen7b (崩溃)\\n\\n```\\nAssertionError: Invalid device id\\n```\\n脚本用 `--gpu 1` 启动，但 `cuda:1` 不可用。需用 `--gpu 0` 重跑。\\n\\n---\\n\\n## 2. 完整 13/14 对矩阵（按 train_model 分组）\\n\\n| # | Train → Test | K\\\\* | 0v1 AUC | 1v2 AUC | 2v3 AUC | 3v4 AUC | 4v5 AUC | indexing |\\n|---|-------------|-----|---------|---------|---------|---------|---------|----------|\\n| | **llama8b trains** | | | | | | | |\\n| 1 | llama8b → olmo | 1 | 0.9999 | 0.4984 | 0.4886 | 0.4999 | 0.4971 | 1-indexed |\\n| 2 | llama8b → pythia | 2 | 0.9998 | 0.6800 | 0.5958 | 0.5538 | 0.5502 | 1-indexed |\\n| 3 | llama8b → qwen7b | — | **崩溃，待重跑** | | | | | |\\n| | **mistral7b trains** | | | | | | | |\\n| 4 | mistral7b → pythia | 2 | 0.9999 | 0.6602 | 0.5746 | 0.5434 | 0.5393 | 1-indexed |\\n| | **olmo trains** | | | | | | | |\\n| 5 | olmo → llama8b | 2 | 0.9770 | 0.6439 | 0.5683 | 0.5424 | 0.5226 | 1-indexed |\\n| 6 | olmo → pythia | 1 | 0.9324 | 0.5864 | 0.5247 | 0.5066 | 0.5164 | 1-indexed |\\n| 7 | olmo → qwen7b | 2 | 0.9822 | 0.6331 | 0.5457 | 0.5310 | 0.5119 | 1-indexed |\\n| | **pythia trains** | | | | | | | |\\n
 …[truncated 1075 chars]
@@ -12802,7 +12634,7 @@ _source line 4246 · 2026-05-20T02:59:22.566039+00:00_
 
 ### Tool call
 
-_source line 4247 · 2026-05-20T02:59:40.651441+00:00_
+_source line 4243 · 2026-05-20T02:59:40.651441+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12842,7 +12674,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4248 · 2026-05-20T02:59:41.003513+00:00_
+_source line 4244 · 2026-05-20T02:59:41.003513+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12882,7 +12714,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4249 · 2026-05-20T02:59:41.455656+00:00_
+_source line 4245 · 2026-05-20T02:59:41.455656+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T02:59:41.118Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.774}}"}
 
@@ -12904,7 +12736,7 @@ _source line 4249 · 2026-05-20T02:59:41.455656+00:00_
 
 ### Tool result
 
-_source line 4250 · 2026-05-20T02:59:42.209927+00:00_
+_source line 4246 · 2026-05-20T02:59:42.209927+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T02:59:41.826Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7668}}"}
 
@@ -12926,7 +12758,7 @@ _source line 4250 · 2026-05-20T02:59:42.209927+00:00_
 
 ### Tool call
 
-_source line 4251 · 2026-05-20T02:59:45.915549+00:00_
+_source line 4247 · 2026-05-20T02:59:45.915549+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -12966,7 +12798,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4252 · 2026-05-20T02:59:47.181203+00:00_
+_source line 4248 · 2026-05-20T02:59:47.181203+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T02:59:46.536Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0687}}"}
 
@@ -12988,7 +12820,7 @@ _source line 4252 · 2026-05-20T02:59:47.181203+00:00_
 
 ### Tool call
 
-_source line 4253 · 2026-05-20T02:59:47.304443+00:00_
+_source line 4249 · 2026-05-20T02:59:47.304443+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13028,7 +12860,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4254 · 2026-05-20T02:59:48.009623+00:00_
+_source line 4250 · 2026-05-20T02:59:48.009623+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T02:59:47.694Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"conclusion\": \"failed\", \"failure_reason\": \"AssertionError: Invalid device id — --gpu 1 used but CUDA_VISIBLE_DEVICES only exposed 1 device. Need --gpu 0.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6803}}"}
 
@@ -13050,7 +12882,7 @@ _source line 4254 · 2026-05-20T02:59:48.009623+00:00_
 
 ### Tool call
 
-_source line 4255 · 2026-05-20T02:59:54.604177+00:00_
+_source line 4251 · 2026-05-20T02:59:54.604177+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13090,7 +12922,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4256 · 2026-05-20T02:59:55.056215+00:00_
+_source line 4252 · 2026-05-20T02:59:55.056215+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13130,7 +12962,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4257 · 2026-05-20T02:59:55.257450+00:00_
+_source line 4253 · 2026-05-20T02:59:55.257450+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T02:59:54.950Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"metrics\": {\"kstar\": 3, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.7384, \"2v3\": 0.6278, \"3v4\": 0.587, \"4v5\": 0.5519}, \"elapsed_s\": 3621}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5993}}"}
 
@@ -13152,7 +12984,7 @@ _source line 4257 · 2026-05-20T02:59:55.257450+00:00_
 
 ### Tool result
 
-_source line 4258 · 2026-05-20T02:59:55.910463+00:00_
+_source line 4254 · 2026-05-20T02:59:55.910463+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T02:59:55.609Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"metrics\": {\"kstar\": 3, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.7384, \"2v3\": 0.6278, \"3v4\": 0.587, \"4v5\": 0.5519}, \"elapsed_s\": 3621}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6422}}"}
 
@@ -13174,7 +13006,7 @@ _source line 4258 · 2026-05-20T02:59:55.910463+00:00_
 
 ### Tool call
 
-_source line 4259 · 2026-05-20T02:59:59.074423+00:00_
+_source line 4255 · 2026-05-20T02:59:59.074423+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13214,7 +13046,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4260 · 2026-05-20T03:00:00.632172+00:00_
+_source line 4256 · 2026-05-20T03:00:00.632172+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_qwen7b_to_llama8b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:49.779Z\", \"updated_at\": \"2026-05-20T02:59:59.419Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"270054\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"submitted_at\": \"2026-05-20T00:55:49.362Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_qwen7b/ + wiki_llama8b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"wall_clock_seconds\": 7450.1, \"gpu_hours\": 2.07}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log\", \"metrics\": {\"kstar\": 3, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.7384, \"2v3\": 0.6278, \"3v4\": 0.587, \"4v5\": 0.5519}, \"elapsed_s\": 3621}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T02:59:59.419Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5296}}"}
 
@@ -13236,7 +13068,7 @@ _source line 4260 · 2026-05-20T03:00:00.632172+00:00_
 
 ### Tool call
 
-_source line 4261 · 2026-05-20T03:00:04.994837+00:00_
+_source line 4257 · 2026-05-20T03:00:04.994837+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13276,7 +13108,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4262 · 2026-05-20T03:00:05.800056+00:00_
+_source line 4258 · 2026-05-20T03:00:05.800056+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T03:00:05.475Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"conclusion\": \"failed\", \"failure_reason\": \"AssertionError: Invalid device id — --gpu 1 used but CUDA_VISIBLE_DEVICES only exposed 1 device. Need --gpu 0.\", \"checkpoint_path\": \"N/A - crashed before producing output\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7943}}"}
 
@@ -13298,7 +13130,7 @@ _source line 4262 · 2026-05-20T03:00:05.800056+00:00_
 
 ### Tool call
 
-_source line 4263 · 2026-05-20T03:00:08.918937+00:00_
+_source line 4259 · 2026-05-20T03:00:08.918937+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13338,7 +13170,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4264 · 2026-05-20T03:00:09.924145+00:00_
+_source line 4260 · 2026-05-20T03:00:09.924145+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T03:00:09.527Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"conclusion\": \"failed\", \"failure_reason\": \"AssertionError: Invalid device id — --gpu 1 used but CUDA_VISIBLE_DEVICES only exposed 1 device. Need --gpu 0.\", \"checkpoint_path\": \"N/A - crashed before producing output\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0012}}"}
 
@@ -13360,7 +13192,7 @@ _source line 4264 · 2026-05-20T03:00:09.924145+00:00_
 
 ### Tool call
 
-_source line 4265 · 2026-05-20T03:00:13.090204+00:00_
+_source line 4261 · 2026-05-20T03:00:13.090204+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13400,7 +13232,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4266 · 2026-05-20T03:00:15.810003+00:00_
+_source line 4262 · 2026-05-20T03:00:15.810003+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:55:51.478Z\", \"updated_at\": \"2026-05-20T03:00:13.595Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"270133\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"submitted_at\": \"2026-05-20T00:55:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"wall_clock_seconds\": 7462.5, \"gpu_hours\": 2.07}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"conclusion\": \"failed\", \"failure_reason\": \"AssertionError: Invalid device id — --gpu 1 used but CUDA_VISIBLE_DEVICES only exposed 1 device. Need --gpu 0.\", \"checkpoint_path\": \"N/A - crashed before producing output\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log\", \"completed_at\": \"2026-05-20T03:00:13.596Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7153}}"}
 
@@ -13422,7 +13254,7 @@ _source line 4266 · 2026-05-20T03:00:15.810003+00:00_
 
 ### Tool call
 
-_source line 4267 · 2026-05-20T03:00:34.206513+00:00_
+_source line 4263 · 2026-05-20T03:00:34.206513+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -13464,7 +13296,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4268 · 2026-05-20T03:00:41.256982+00:00_
+_source line 4264 · 2026-05-20T03:00:41.256982+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034.log\", \"setup_data\": {}, \"message\": \"Worker worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034 started. Use get_worker_status('worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13486,7 +13318,7 @@ _source line 4268 · 2026-05-20T03:00:41.256982+00:00_
 
 ### Tool call
 
-_source line 4269 · 2026-05-20T03:01:04.587359+00:00_
+_source line 4265 · 2026-05-20T03:01:04.587359+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -13522,7 +13354,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4270 · 2026-05-20T03:01:06.505338+00:00_
+_source line 4266 · 2026-05-20T03:01:06.505338+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -13544,7 +13376,7 @@ _source line 4270 · 2026-05-20T03:01:06.505338+00:00_
 
 ### Assistant
 
-_source line 4271 · 2026-05-20T03:01:09.628471+00:00_
+_source line 4267 · 2026-05-20T03:01:09.628471+00:00_
 
 已向 Director 汇报 13/14 矩阵中间结果。等待 llama8b→qwen7b 重跑 Worker 回调（~25 min）。
 
@@ -13571,7 +13403,7 @@ _source line 4271 · 2026-05-20T03:01:09.628471+00:00_
 
 ### User
 
-_source line 4272 · 2026-05-20T03:01:10.384640+00:00_
+_source line 4268 · 2026-05-20T03:01:10.384640+00:00_
 
 [Director 指令] 两个立即任务：
 
@@ -13600,7 +13432,7 @@ _source line 4272 · 2026-05-20T03:01:10.384640+00:00_
 
 ### Tool call
 
-_source line 4273 · 2026-05-20T03:01:21.676499+00:00_
+_source line 4269 · 2026-05-20T03:01:21.676499+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -13634,7 +13466,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4274 · 2026-05-20T03:01:21.727974+00:00_
+_source line 4270 · 2026-05-20T03:01:21.727974+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034\", \"status\": \"running\", \"task_type\": \"experiment:cross-transfer-llama8b-to-qwen7b-rerun\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:00:35.017204+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -13656,7 +13488,7 @@ _source line 4274 · 2026-05-20T03:01:21.727974+00:00_
 
 ### Assistant
 
-_source line 4275 · 2026-05-20T03:01:26.136651+00:00_
+_source line 4271 · 2026-05-20T03:01:26.136651+00:00_
 
 Worker 仍在运行中，正在执行：
 - **任务 1**：llama8b→qwen7b 重跑（`--gpu 0` on cuda:0，exp_cross_transfer_llama8b_to_qwen7b_v2）
@@ -13687,7 +13519,7 @@ Worker 仍在运行中，正在执行：
 
 ### User
 
-_source line 4276 · 2026-05-20T03:01:46.436882+00:00_
+_source line 4272 · 2026-05-20T03:01:46.436882+00:00_
 
 [WORKER DONE] Worker worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034 已完成（status=done）。用 `get_worker_status('worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034')` 读取结果，然后处理。
 
@@ -13712,7 +13544,7 @@ _source line 4276 · 2026-05-20T03:01:46.436882+00:00_
 
 ### Tool call
 
-_source line 4277 · 2026-05-20T03:01:54.077329+00:00_
+_source line 4273 · 2026-05-20T03:01:54.077329+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -13746,7 +13578,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4278 · 2026-05-20T03:01:54.129053+00:00_
+_source line 4274 · 2026-05-20T03:01:54.129053+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_cross-transfer-llama8b-to-qwen7b-rerun_20260520T030034\", \"status\": \"done\", \"task_type\": \"experiment:cross-transfer-llama8b-to-qwen7b-rerun\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:00:35.017204+00:00\", \"ended_at\": \"2026-05-20T03:01:44.432330+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部完成。\\n\\n**Part A** — `kstar_indexing: \\\"1-indexed\\\"` 已写入 `wiki_qwen7b__to__wiki_llama8b.json`，验证通过。\\n\\n**Part B** — 训练任务已提交：\\n- **exp_id**: `exp_cross_transfer_llama8b_to_qwen7b_v2`\\n- **PID**: 275361\\n- **tmux session**: `exp_cross_transfer_llama8b_to_qwen7b_v2`\\n- **日志**: `~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log`\\n- **GPU**: cuda:0，`--gpu 0`\\n- **命令**: `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -13768,7 +13600,7 @@ _source line 4278 · 2026-05-20T03:01:54.129053+00:00_
 
 ### Tool call
 
-_source line 4279 · 2026-05-20T03:02:02.575108+00:00_
+_source line 4275 · 2026-05-20T03:02:02.575108+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13808,7 +13640,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4280 · 2026-05-20T03:02:03.386033+00:00_
+_source line 4276 · 2026-05-20T03:02:03.386033+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:03.046Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8203}}"}
 
@@ -13830,7 +13662,7 @@ _source line 4280 · 2026-05-20T03:02:03.386033+00:00_
 
 ### Tool call
 
-_source line 4281 · 2026-05-20T03:02:07.459943+00:00_
+_source line 4277 · 2026-05-20T03:02:07.459943+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13870,7 +13702,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4282 · 2026-05-20T03:02:08.214791+00:00_
+_source line 4278 · 2026-05-20T03:02:08.214791+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:07.889Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"parent\": \"exp_cross_transfer_llama8b_to_qwen7b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7106}}"}
 
@@ -13892,7 +13724,7 @@ _source line 4282 · 2026-05-20T03:02:08.214791+00:00_
 
 ### Tool call
 
-_source line 4283 · 2026-05-20T03:02:11.483952+00:00_
+_source line 4279 · 2026-05-20T03:02:11.483952+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13932,7 +13764,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4284 · 2026-05-20T03:02:12.941980+00:00_
+_source line 4280 · 2026-05-20T03:02:12.941980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:11.854Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"parent\": \"exp_cross_transfer_llama8b_to_qwen7b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4763}}"}
 
@@ -13954,7 +13786,7 @@ _source line 4284 · 2026-05-20T03:02:12.941980+00:00_
 
 ### Tool call
 
-_source line 4285 · 2026-05-20T03:02:15.921607+00:00_
+_source line 4281 · 2026-05-20T03:02:15.921607+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -13994,7 +13826,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4286 · 2026-05-20T03:02:17.485044+00:00_
+_source line 4282 · 2026-05-20T03:02:17.485044+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:16.331Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"parent\": \"exp_cross_transfer_llama8b_to_qwen7b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5799}}"}
 
@@ -14016,7 +13848,7 @@ _source line 4286 · 2026-05-20T03:02:17.485044+00:00_
 
 ### Tool call
 
-_source line 4287 · 2026-05-20T03:02:20.453529+00:00_
+_source line 4283 · 2026-05-20T03:02:20.453529+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -14056,7 +13888,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4288 · 2026-05-20T03:02:22.213137+00:00_
+_source line 4284 · 2026-05-20T03:02:22.213137+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:20.879Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"parent\": \"exp_cross_transfer_llama8b_to_qwen7b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7415}}"}
 
@@ -14078,7 +13910,7 @@ _source line 4288 · 2026-05-20T03:02:22.213137+00:00_
 
 ### Assistant
 
-_source line 4289 · 2026-05-20T03:02:24.830378+00:00_
+_source line 4285 · 2026-05-20T03:02:24.830378+00:00_
 
 JSON 修复完成，重跑已提交 (PID 275361)。推进 v2 实验的 registry 状态。
 
@@ -14105,7 +13937,7 @@ JSON 修复完成，重跑已提交 (PID 275361)。推进 v2 实验的 registry 
 
 ### User
 
-_source line 4290 · 2026-05-20T03:02:33.005278+00:00_
+_source line 4286 · 2026-05-20T03:02:33.005278+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -14126,7 +13958,7 @@ _source line 4290 · 2026-05-20T03:02:33.005278+00:00_
 
 ### Tool call
 
-_source line 4291 · 2026-05-20T03:02:44.058977+00:00_
+_source line 4287 · 2026-05-20T03:02:44.058977+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -14168,7 +14000,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4292 · 2026-05-20T03:02:44.561926+00:00_
+_source line 4288 · 2026-05-20T03:02:44.561926+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.5121}}"}
 
@@ -14190,7 +14022,7 @@ _source line 4292 · 2026-05-20T03:02:44.561926+00:00_
 
 ### Tool call
 
-_source line 4293 · 2026-05-20T03:02:50.188953+00:00_
+_source line 4289 · 2026-05-20T03:02:50.188953+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -14232,7 +14064,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4294 · 2026-05-20T03:02:51.998213+00:00_
+_source line 4290 · 2026-05-20T03:02:51.998213+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:01:09.441Z\", \"updated_at\": \"2026-05-20T03:02:50.624Z\", \"spec\": {\"command\": \"python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"275361\", \"log_path\": \"~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b_v2.log\", \"submitted_at\": \"2026-05-20T03:01:08.673Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/wiki_llama8b/ + wiki_qwen7b/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"checkpoint_source\": \"trained from scratch (cross-transfer rerun of crashed v1)\", \"eval_data\": \"wiki_qwen7b depth 0-5, 20000 samples\"}, \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"parent\": \"exp_cross_transfer_llama8b_to_qwen7b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7802}}"}
 
@@ -14254,7 +14086,7 @@ _source line 4294 · 2026-05-20T03:02:51.998213+00:00_
 
 ### Tool call
 
-_source line 4295 · 2026-05-20T03:02:55.716252+00:00_
+_source line 4291 · 2026-05-20T03:02:55.716252+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -14283,7 +14115,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 4296 · 2026-05-20T03:02:56.120510+00:00_
+_source line 4292 · 2026-05-20T03:02:56.120510+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -14305,7 +14137,7 @@ _source line 4296 · 2026-05-20T03:02:56.120510+00:00_
 
 ### Tool call
 
-_source line 4297 · 2026-05-20T03:02:56.120944+00:00_
+_source line 4293 · 2026-05-20T03:02:56.120944+00:00_
 
 called mcp__agent-ml-research__get_project_resource_usage
 
@@ -14339,7 +14171,7 @@ called mcp__agent-ml-research__get_project_resource_usage
 
 ### Tool result
 
-_source line 4298 · 2026-05-20T03:02:56.673422+00:00_
+_source line 4294 · 2026-05-20T03:02:56.673422+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 1 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14361,7 +14193,7 @@ _source line 4298 · 2026-05-20T03:02:56.673422+00:00_
 
 ### Tool call
 
-_source line 4299 · 2026-05-20T03:02:56.724018+00:00_
+_source line 4295 · 2026-05-20T03:02:56.724018+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -14397,7 +14229,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 4300 · 2026-05-20T03:02:56.774797+00:00_
+_source line 4296 · 2026-05-20T03:02:56.774797+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_cross_transfer_llama8b_to_qwen7b_v2 | Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error. | — | — | — |\\n\\n## 待处理\\n- 7b-cross-transfer（准备中）\\n- exp_olmo_retrain_v2: OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_cross_transfer_llama8b_to_qwen7b** (failed): Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\n- **exp_cross_transfer_qwen7b_to_llama8b** (success): Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\n- **exp_deberta_cross_transfer_gpu3** (success): Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8
 …[truncated 734 chars]
@@ -14420,7 +14252,7 @@ _source line 4300 · 2026-05-20T03:02:56.774797+00:00_
 
 ### Tool call
 
-_source line 4301 · 2026-05-20T03:03:11.591606+00:00_
+_source line 4297 · 2026-05-20T03:03:11.591606+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -14456,7 +14288,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4302 · 2026-05-20T03:03:16.757314+00:00_
+_source line 4298 · 2026-05-20T03:03:16.757314+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -14478,7 +14310,7 @@ _source line 4302 · 2026-05-20T03:03:16.757314+00:00_
 
 ### Assistant
 
-_source line 4303 · 2026-05-20T03:03:19.058604+00:00_
+_source line 4299 · 2026-05-20T03:03:19.058604+00:00_
 
 Session 初始化完成。exp_cross_transfer_llama8b_to_qwen7b_v2 在 cqa1 cuda:0 运行中（~23 min 剩余）。向 Director 汇报恢复状态。
 
@@ -14505,7 +14337,7 @@ Session 初始化完成。exp_cross_transfer_llama8b_to_qwen7b_v2 在 cqa1 cuda:
 
 ### User
 
-_source line 4304 · 2026-05-20T03:03:19.074807+00:00_
+_source line 4300 · 2026-05-20T03:03:19.074807+00:00_
 
 [Director 指令] 服务重启后状态检查。立即执行：
 
@@ -14540,7 +14372,7 @@ _source line 4304 · 2026-05-20T03:03:19.074807+00:00_
 
 ### Tool call
 
-_source line 4305 · 2026-05-20T03:03:26.035495+00:00_
+_source line 4301 · 2026-05-20T03:03:26.035495+00:00_
 
 called ToolSearch
 
@@ -14576,7 +14408,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4306 · 2026-05-20T03:03:26.035977+00:00_
+_source line 4302 · 2026-05-20T03:03:26.035977+00:00_
 
 
 
@@ -14598,7 +14430,7 @@ _source line 4306 · 2026-05-20T03:03:26.035977+00:00_
 
 ### Tool call
 
-_source line 4307 · 2026-05-20T03:03:31.860314+00:00_
+_source line 4303 · 2026-05-20T03:03:31.860314+00:00_
 
 called mcp__agent-ml-research__check_job_status
 
@@ -14634,7 +14466,7 @@ called mcp__agent-ml-research__check_job_status
 
 ### Tool result
 
-_source line 4308 · 2026-05-20T03:03:46.977368+00:00_
+_source line 4304 · 2026-05-20T03:03:46.977368+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"running\", \"running\": true, \"pid\": \"275361\", \"detection\": \"ps\", \"process_state\": \"Ss+\", \"elapsed_time\": \"02:24\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
 
@@ -14656,7 +14488,7 @@ _source line 4308 · 2026-05-20T03:03:46.977368+00:00_
 
 ### Tool call
 
-_source line 4309 · 2026-05-20T03:03:51.600957+00:00_
+_source line 4305 · 2026-05-20T03:03:51.600957+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -14696,7 +14528,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4310 · 2026-05-20T03:03:58.032353+00:00_
+_source line 4306 · 2026-05-20T03:03:58.032353+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-v2-check_20260520T030352\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_cross-transfer-v2-check_20260520T030352.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_cross-transfer-v2-check_20260520T030352 started. Use get_worker_status('worker_analysis_cross-transfer-v2-check_20260520T030352') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14718,7 +14550,7 @@ _source line 4310 · 2026-05-20T03:03:58.032353+00:00_
 
 ### Tool call
 
-_source line 4311 · 2026-05-20T03:04:04.252768+00:00_
+_source line 4307 · 2026-05-20T03:04:04.252768+00:00_
 
 called ToolSearch
 
@@ -14754,7 +14586,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4312 · 2026-05-20T03:04:04.303769+00:00_
+_source line 4308 · 2026-05-20T03:04:04.303769+00:00_
 
 
 
@@ -14776,7 +14608,7 @@ _source line 4312 · 2026-05-20T03:04:04.303769+00:00_
 
 ### Tool call
 
-_source line 4313 · 2026-05-20T03:04:13.581858+00:00_
+_source line 4309 · 2026-05-20T03:04:13.581858+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -14812,7 +14644,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 4314 · 2026-05-20T03:04:13.632552+00:00_
+_source line 4310 · 2026-05-20T03:04:13.632552+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -14834,7 +14666,7 @@ _source line 4314 · 2026-05-20T03:04:13.632552+00:00_
 
 ### Tool call
 
-_source line 4315 · 2026-05-20T03:04:18.719939+00:00_
+_source line 4311 · 2026-05-20T03:04:18.719939+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14872,7 +14704,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4316 · 2026-05-20T03:04:19.224127+00:00_
+_source line 4312 · 2026-05-20T03:04:19.224127+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4795}}"}
 
@@ -14894,7 +14726,7 @@ _source line 4316 · 2026-05-20T03:04:19.224127+00:00_
 
 ### Assistant
 
-_source line 4317 · 2026-05-20T03:04:27.847028+00:00_
+_source line 4313 · 2026-05-20T03:04:27.847028+00:00_
 
 没有 PENDING 的实验或 Worker 审批。`apr_20260520T012442_4tww` 可能是飞书审批卡——我没有工具查询飞书审批卡状态，将在汇报中说明。等 Worker 返回结果。
 
@@ -14921,7 +14753,7 @@ _source line 4317 · 2026-05-20T03:04:27.847028+00:00_
 
 ### User
 
-_source line 4318 · 2026-05-20T03:05:30.361899+00:00_
+_source line 4314 · 2026-05-20T03:05:30.361899+00:00_
 
 [WORKER DONE] Worker worker_analysis_cross-transfer-v2-check_20260520T030352 已完成（status=done）。用 `get_worker_status('worker_analysis_cross-transfer-v2-check_20260520T030352')` 读取结果，然后处理。
 
@@ -14946,7 +14778,7 @@ _source line 4318 · 2026-05-20T03:05:30.361899+00:00_
 
 ### Tool call
 
-_source line 4319 · 2026-05-20T03:05:37.881976+00:00_
+_source line 4315 · 2026-05-20T03:05:37.881976+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -14980,7 +14812,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4320 · 2026-05-20T03:05:37.983628+00:00_
+_source line 4316 · 2026-05-20T03:05:37.983628+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_cross-transfer-v2-check_20260520T030352\", \"status\": \"done\", \"task_type\": \"analysis:cross-transfer-v2-check\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:03:52.400306+00:00\", \"ended_at\": \"2026-05-20T03:05:28.515499+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All 13 JSON 已读取，日志也确认 v2 实验正在跑。汇总如下：\\n\\n---\\n\\n## 1. v2 实验状态：**运行中**\\n\\nPID 275361 存活，已运行 3h06m。当前进度：**Fold 0, Epoch 1, step 1000/1500**（共 5 folds × 3 epochs）。预计还需约 2.5-3 小时。\\n\\n---\\n\\n## 2. 完整 14 对矩阵（1-indexed K*, θ=0.6）\\n\\n| # | Train → Test | K* | 0v1 AUC | 1v2 AUC | 2v3 AUC | 3v4 AUC | 4v5 AUC |\\n|---|---|---|---|---|---|---|---|\\n| 1 | llama8b → olmo | **1** | 0.9999 [.9997,.9999] | 0.4984 [.4872,.5097] | 0.4886 | 0.4999 | 0.4971 |\\n| 2 | llama8b → pythia | **2** | 0.9998 [.9996,.9999] | 0.6800 [.6712,.6886] | 0.5958 [.5873,.6038] | 0.5538 | 0.5502 |\\n| 3 | mistral7b → pythia | **2** | 0.9999 [.9998,.9999] | 0.6602 [.6515,.6687] | 0.5746 [.5659,.5833] | 0.5434 | 0.5393 |\\n| 4 | olmo → llama8b | **2** | 0.9770 [.9746,.9792] | 0.6439 [.6355,.6530] | 0.5683 [.5581,.5770] | 0.5424 | 0.5226 |\\n| 5 | olmo → pythia | **1** | 0.9324 [.9282,.9369] | 0.5864 [.5774,.5961] | 0.5247 | 0.5066 | 0.5164 |\\n| 6 | olmo → qwen7b | **2** | 0.9822 [.9801,.9840] | 0.6331 [.6246,.6423] | 0.5457 [.5364,.5547] | 0.5310 | 0.5119 |\\n| 7 | pythia → llama8b | **2** | 0.9999 [.9999,1.0] | 0.6994 [.6915,.7076] | 0.6073 [.5992,.6154] | 0.5819 | 0.5473 |\\n| 8 | pythia → mistral7b | **2** | 0.9999 [.9999,1.0] | 0.6931 [.6850,.7018] | 0.6013 [.5936,.6085] | 0.5607 | 0.5496 |\\n| 9 | pythia → olmo | **1** | 0.9998 [.9996,.9999] | 0.4871 [.4761,.4982] | 0.4907 | 0.4970 | 0.4980 |\\n| 10 | pythia → qwen7b | **3** | 0.9999 [.9996,1.0] | 0.7010 [.6931,.7090] | 0.6095 [.6017,.6167] | 0.5684 [.5613,.5763] | 0.5466 |\\n| 11 | qwen7b → llama8b | **3** | 0.9998 [.9995,1.
 …[truncated 1180 chars]
@@ -15003,7 +14835,7 @@ _source line 4320 · 2026-05-20T03:05:37.983628+00:00_
 
 ### Tool call
 
-_source line 4321 · 2026-05-20T03:06:03.681443+00:00_
+_source line 4317 · 2026-05-20T03:06:03.681443+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15039,7 +14871,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4322 · 2026-05-20T03:06:08.354075+00:00_
+_source line 4318 · 2026-05-20T03:06:08.354075+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -15061,7 +14893,7 @@ _source line 4322 · 2026-05-20T03:06:08.354075+00:00_
 
 ### Assistant
 
-_source line 4323 · 2026-05-20T03:06:10.911934+00:00_
+_source line 4319 · 2026-05-20T03:06:10.911934+00:00_
 
 v2 仍在运行（Fold 0/5），预计还需 ~2.5-3h。13/14 矩阵完整。向 Director 汇报。
 
@@ -15088,7 +14920,7 @@ v2 仍在运行（Fold 0/5），预计还需 ~2.5-3h。13/14 矩阵完整。向 
 
 ### User
 
-_source line 4324 · 2026-05-20T03:07:31.855398+00:00_
+_source line 4320 · 2026-05-20T03:07:31.855398+00:00_
 
 [Director 指令] cqa1 cuda:1-3 空闲。两个任务：
 
@@ -15119,7 +14951,7 @@ arXiv OBD K\*=3。如果 DeBERTa 在 arXiv 上推到 K\*=4，这直接验证 dom
 
 ### Tool call
 
-_source line 4325 · 2026-05-20T03:07:54.140302+00:00_
+_source line 4321 · 2026-05-20T03:07:54.140302+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -15159,7 +14991,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4326 · 2026-05-20T03:08:00.986086+00:00_
+_source line 4322 · 2026-05-20T03:08:00.986086+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_check-arxiv-code-data_20260520T030754\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_check-arxiv-code-data_20260520T030754.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_check-arxiv-code-data_20260520T030754 started. Use get_worker_status('worker_analysis_check-arxiv-code-data_20260520T030754') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15181,7 +15013,7 @@ _source line 4326 · 2026-05-20T03:08:00.986086+00:00_
 
 ### Assistant
 
-_source line 4327 · 2026-05-20T03:08:04.143479+00:00_
+_source line 4323 · 2026-05-20T03:08:04.143479+00:00_
 
 Worker 派出检查 arXiv/Code 数据。等回调后决定是否启动 arXiv DeBERTa 实验。
 
@@ -15208,7 +15040,7 @@ Worker 派出检查 arXiv/Code 数据。等回调后决定是否启动 arXiv DeB
 
 ### User
 
-_source line 4328 · 2026-05-20T03:09:31.227730+00:00_
+_source line 4324 · 2026-05-20T03:09:31.227730+00:00_
 
 [WORKER DONE] Worker worker_analysis_check-arxiv-code-data_20260520T030754 已完成（status=done）。用 `get_worker_status('worker_analysis_check-arxiv-code-data_20260520T030754')` 读取结果，然后处理。
 
@@ -15233,7 +15065,7 @@ _source line 4328 · 2026-05-20T03:09:31.227730+00:00_
 
 ### Tool call
 
-_source line 4329 · 2026-05-20T03:09:36.856619+00:00_
+_source line 4325 · 2026-05-20T03:09:36.856619+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15267,7 +15099,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4330 · 2026-05-20T03:09:36.957627+00:00_
+_source line 4326 · 2026-05-20T03:09:36.957627+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_check-arxiv-code-data_20260520T030754\", \"status\": \"done\", \"task_type\": \"analysis:check-arxiv-code-data\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:07:55.032853+00:00\", \"ended_at\": \"2026-05-20T03:09:29.493087+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"汇总报告如下：\\n\\n---\\n\\n## 1. arXiv depth chain 数据\\n\\n**存在，数据充足。** 共有以下目录（均在 `/root/autodl-tmp/gen-depth-contamination/data/`）：\\n\\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\\n|------|------------|--------|-----------|\\n| `exp_024_arxiv` | Qwen-1.5B (原始) | 13,200 | depth 0-5 (6级) |\\n| `exp_025_pythia_arxiv` | Pythia-1.4B | 13,200 | depth 0-5 |\\n| `exp_arXiv_llama8b` | LLaMA-8B | 13,200 | depth 0-5 |\\n| `exp_arXiv_mistral7b` | Mistral-7B | 13,200 | depth 0-5 |\\n| `exp_arXiv_olmo` | OLMo | 13,200 | depth 0-5 |\\n| `exp_arXiv_qwen7b` | Qwen-7B | 13,200 | depth 0-5 |\\n| `exp_arXiv_llama8b_crossscorer` | LLaMA-8B (cross) | 13,200 | depth 0-5 |\\n| `exp_arXiv_mistral7b_crossscorer` | Mistral-7B (cross) | 13,200 | depth 0-5 |\\n| `exp_arXiv_qwen1b5_crossscorer` | Qwen-1.5B (cross) | 13,200 | depth 0-5 |\\n| `exp_arXiv_qwen7b_crossscorer` | Qwen-7B (cross) | 13,200 | depth 0-5 |\\n\\n每个 depth 级别 2,200 样本（13,200 / 6 = 2,200）。OBD K*=3 的生成链，depth 0 为 seed。\\n\\n## 2. Code depth chain 数据\\n\\n**存在，数据充足。** \\n\\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\\n|------|------------|--------|-----------|\\n| `exp_code_pythia1b4` | Pythia-1.4B | 33,000 | depth 0-5 |\\n| `exp_code_llama8b` | LLaMA-8B | 33,000 | depth 0-5 |\\n| `exp_code_mistral7b` | Mistral-7B | 33,000 | depth 0-5 |\\n| `exp_code_qwen1b5` | Qwen-1.5B | 33,000 | depth 0-5 |\\n| `exp_code_qwen7b` | Qwen-7B | 33,000 | depth 0-5 |\\n| `exp_code_qwen1b5_pythia_scorer` | Qwen-1.5B (Pythia cross) | 33,000 | depth 0-5 |\\n| `code_python_seed` | Seed 数据 | - | - |\\n\\n每个 depth 级别 5,500 样本（33,000 / 6）。Code domain 样本量大于 arXiv（
 …[truncated 1203 chars]
@@ -15290,7 +15122,7 @@ _source line 4330 · 2026-05-20T03:09:36.957627+00:00_
 
 ### Tool call
 
-_source line 4331 · 2026-05-20T03:10:14.608678+00:00_
+_source line 4327 · 2026-05-20T03:10:14.608678+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -15332,7 +15164,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4332 · 2026-05-20T03:10:21.913285+00:00_
+_source line 4328 · 2026-05-20T03:10:21.913285+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_arxiv-deberta-upperbound_20260520T031015\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_experiment_arxiv-deberta-upperbound_20260520T031015.log\", \"setup_data\": {}, \"message\": \"Worker worker_experiment_arxiv-deberta-upperbound_20260520T031015 started. Use get_worker_status('worker_experiment_arxiv-deberta-upperbound_20260520T031015') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15354,7 +15186,7 @@ _source line 4332 · 2026-05-20T03:10:21.913285+00:00_
 
 ### Tool call
 
-_source line 4333 · 2026-05-20T03:10:38.278001+00:00_
+_source line 4329 · 2026-05-20T03:10:38.278001+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15390,7 +15222,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4334 · 2026-05-20T03:24:20.878489+00:00_
+_source line 4330 · 2026-05-20T03:24:20.878489+00:00_
 
 MCP error -32000: Connection closed
 
@@ -15412,7 +15244,7 @@ MCP error -32000: Connection closed
 
 ### Assistant
 
-_source line 4335 · 2026-05-20T03:24:21.297288+00:00_
+_source line 4331 · 2026-05-20T03:24:21.297288+00:00_
 
 Worker 已派发。向 Director 汇报数据探查结果和任务进展。
 
@@ -15439,7 +15271,7 @@ Worker 已派发。向 Director 汇报数据探查结果和任务进展。
 
 ### User
 
-_source line 4336 · 2026-05-20T03:24:25.305100+00:00_
+_source line 4332 · 2026-05-20T03:24:25.305100+00:00_
 
 [WORKER DONE] Worker worker_experiment_arxiv-deberta-upperbound_20260520T031015 已完成（status=done）。用 `get_worker_status('worker_experiment_arxiv-deberta-upperbound_20260520T031015')` 读取结果，然后处理。
 
@@ -15464,7 +15296,7 @@ _source line 4336 · 2026-05-20T03:24:25.305100+00:00_
 
 ### Tool call
 
-_source line 4337 · 2026-05-20T03:24:36.035432+00:00_
+_source line 4333 · 2026-05-20T03:24:36.035432+00:00_
 
 called ToolSearch
 
@@ -15500,7 +15332,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4338 · 2026-05-20T03:24:36.086208+00:00_
+_source line 4334 · 2026-05-20T03:24:36.086208+00:00_
 
 
 
@@ -15522,7 +15354,7 @@ _source line 4338 · 2026-05-20T03:24:36.086208+00:00_
 
 ### Tool call
 
-_source line 4339 · 2026-05-20T03:24:39.652956+00:00_
+_source line 4335 · 2026-05-20T03:24:39.652956+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15556,7 +15388,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 4340 · 2026-05-20T03:24:39.653393+00:00_
+_source line 4336 · 2026-05-20T03:24:39.653393+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -15585,7 +15417,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 4341 · 2026-05-20T03:24:41.168666+00:00_
+_source line 4337 · 2026-05-20T03:24:41.168666+00:00_
 
 Error: result (101,543 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/b4f28b19-7e42-49bb-b77e-6e903acdba00/tool-results/mcp-agent-ml-research-read_registry-1779247480303.txt.
 Format: JSON with schema: {result: string}
@@ -15612,7 +15444,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool result
 
-_source line 4342 · 2026-05-20T03:24:41.169174+00:00_
+_source line 4338 · 2026-05-20T03:24:41.169174+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -15634,7 +15466,7 @@ _source line 4342 · 2026-05-20T03:24:41.169174+00:00_
 
 ### Tool call
 
-_source line 4343 · 2026-05-20T03:24:41.323280+00:00_
+_source line 4339 · 2026-05-20T03:24:41.323280+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15668,7 +15500,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4344 · 2026-05-20T03:24:41.424244+00:00_
+_source line 4340 · 2026-05-20T03:24:41.424244+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_experiment_arxiv-deberta-upperbound_20260520T031015\", \"status\": \"done\", \"task_type\": \"experiment:arxiv-deberta-upperbound\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:10:15.693433+00:00\", \"ended_at\": \"2026-05-20T03:12:28.996483+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"启动成功，已加载 13200 samples，正在 tokenize。\\n\\n**实验信息汇总：**\\n\\n| 项 | 值 |\\n|---|---|\\n| exp_id | `exp_deberta_arxiv_qwen1b5` |\\n| PID | 276481 |\\n| GPU | cuda:1 (RTX 4090 D) |\\n| 脚本 | `scripts/run_deberta_arxiv.py` |\\n| 日志 | `~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log` |\\n| 数据 | 13200 samples (2200 docs × 6 depths), arXiv domain, Qwen-1.5B scorer |\\n| 超参 | 5-fold GroupKFold, 3 epochs, BS=16, grad_accum=2, LR=2e-5, N_BOOT=10000, θ=0.60 |\\n| 输出 | `results/exp_deberta_arxiv/arxiv_qwen1b5.json` |\\n\\n**与 wiki 版本的差异：**\\n- `EXPERIMENTS` 指向 `data/exp_024_arxiv/`\\n- `N_BOOT` 从 1000 改为 10000（更精确的 CI 估计）\\n- `load_obd` 通过 `OBD_MAP` 加载 `results/exp_024_arxiv/pairwise_auc.json` 作为 baseline\\n- 输出到 `results/exp_deberta_arxiv/`\\n\\n**预计耗时：** wiki 版本 5 个实验跑完的时间参考，单个 arXiv 实验（13200 samples × 5 folds × 3 epochs + 10000 bootstrap）预计 30-60 分钟。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15690,7 +15522,7 @@ _source line 4344 · 2026-05-20T03:24:41.424244+00:00_
 
 ### Tool call
 
-_source line 4345 · 2026-05-20T03:24:41.575695+00:00_
+_source line 4341 · 2026-05-20T03:24:41.575695+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -15726,7 +15558,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 4346 · 2026-05-20T03:24:41.576104+00:00_
+_source line 4342 · 2026-05-20T03:24:41.576104+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -15760,7 +15592,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4347 · 2026-05-20T03:24:41.676915+00:00_
+_source line 4343 · 2026-05-20T03:24:41.676915+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_cross_transfer_llama8b_to_qwen7b_v2 | Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error. | — | — | — |\\n\\n## 待处理\\n- 7b-cross-transfer（准备中）\\n- exp_olmo_retrain_v2: OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_cross_transfer_llama8b_to_qwen7b** (failed): Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\n- **exp_cross_transfer_qwen7b_to_llama8b** (success): Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\n- **exp_deberta_cross_transfer_gpu3** (success): Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8
 …[truncated 734 chars]
@@ -15783,7 +15615,7 @@ _source line 4347 · 2026-05-20T03:24:41.676915+00:00_
 
 ### Tool result
 
-_source line 4348 · 2026-05-20T03:24:41.677461+00:00_
+_source line 4344 · 2026-05-20T03:24:41.677461+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:10 UTC | 更新原因: Reviewer WARNING: arXiv DeBERTa 标为 P0 关键缺口 + 阶段从\\\"完成\\\"改为\\\"收尾\\\"\\n\\n## 核心方向\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded 且 domain-governed（domain ceiling + model competence 框架）。4 domains, 5+ architecture families, retrain-chain K*≥4 vs prompt-chain K*=2-3。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 收尾 + 审稿迭代\\n- **实验**: 70 success / 10 negative / 13 failures / 93 total\\n- **DeBERTa upper-bound**: C4 1.5B/14B/32B 三个 scale 全部 K*=2，与 OBD 一致 → representation-independent boundary on C4\\n- **Wiki DeBERTa**: K*=3（vs OBD K*≤2），域×分类器交互效应\\n- **DeBERTa wiki cross-transfer**: 13/14 对完成，2 对 K*=3（pythia→qwen7b, qwen7b→llama8b），OLMo 坍缩确认\\n- **32B scale**: Qwen-32B K*=2（DeBERTa+OBD），scale invariance confirmed\\n- **Code domain**: 5/5 模型完成，K*=2（Pythia K*=1 competence-limited）\\n- **关键缺口**: arXiv DeBERTa 未跑——如果 K*=3 则 representation-independent 全域成立；如果 K*>3 则需调整 framing\\n- **论文**: 正文 ≤8 页，Table 4 数据修正完成，DeBERTa 结果+cross-transfer matrix 已写入\\n- **审稿**: Round 16 已提交待用户审批\\n\\n## 运行中实验\\n\\n| 实验 | GPU | 预计完成 |\\n|------|-----|---------|\\n| llama8b→qwen7b cross-transfer v2 | cqa1 cuda:0 | ~May 20 08:00 UTC |\\n| arXiv DeBERTa（待确认数据可用性）| cqa1 cuda:1 | 部署中 |\\n\\n## 近期任务（按优先级）\\n- [ ] **P0** arXiv DeBERTa — 关键 gap，提交前必须补（Reviewer WARNING）\\n- [ ] llama8b→qwen7b 完成后更新 cross-transfer matrix（14/14）\\n- [ ] paper_framing 更新：DeBERTa upper-bound + cross-transfer + domain×classifier 发现\\n- [ ] Round 16 审稿报告处理\\n- [ ] 论文写作收尾：Conclusion 扩展、引用扩充\\n- [ ] 最终 submit\\n\\n## GPU 预算\\n- **cqa1**: 4 张 RTX 4090D 24GB — cuda:0 cross-transfer running, cuda:1 arXiv DeBERTa (pending), cuda:2-3 空闲\\n- **westd**: 已不在分配列表\\n- 剩余实验需求 <2 GPU-hours，资源充足\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|-
 …[truncated 1398 chars]
@@ -15806,7 +15638,7 @@ _source line 4348 · 2026-05-20T03:24:41.677461+00:00_
 
 ### Tool call
 
-_source line 4349 · 2026-05-20T03:25:06.330987+00:00_
+_source line 4345 · 2026-05-20T03:25:06.330987+00:00_
 
 called Bash
 
@@ -15842,7 +15674,7 @@ called Bash
 
 ### Tool result
 
-_source line 4350 · 2026-05-20T03:25:07.292265+00:00_
+_source line 4346 · 2026-05-20T03:25:07.292265+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -15869,7 +15701,7 @@ AttributeError: 'str' object has no attribute 'get'
 
 ### Tool call
 
-_source line 4351 · 2026-05-20T03:25:07.342978+00:00_
+_source line 4347 · 2026-05-20T03:25:07.342978+00:00_
 
 called ToolSearch
 
@@ -15905,7 +15737,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4352 · 2026-05-20T03:25:07.343437+00:00_
+_source line 4348 · 2026-05-20T03:25:07.343437+00:00_
 
 &lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
 
@@ -15927,7 +15759,7 @@ _source line 4352 · 2026-05-20T03:25:07.343437+00:00_
 
 ### Tool call
 
-_source line 4353 · 2026-05-20T03:25:16.339989+00:00_
+_source line 4349 · 2026-05-20T03:25:16.339989+00:00_
 
 called Bash
 
@@ -15963,7 +15795,7 @@ called Bash
 
 ### Tool result
 
-_source line 4354 · 2026-05-20T03:25:16.440905+00:00_
+_source line 4350 · 2026-05-20T03:25:16.440905+00:00_
 
 (Bash completed with no output)
 
@@ -15985,7 +15817,7 @@ _source line 4354 · 2026-05-20T03:25:16.440905+00:00_
 
 ### Tool call
 
-_source line 4355 · 2026-05-20T03:25:23.927035+00:00_
+_source line 4351 · 2026-05-20T03:25:23.927035+00:00_
 
 called Bash
 
@@ -16021,7 +15853,7 @@ called Bash
 
 ### Tool result
 
-_source line 4356 · 2026-05-20T03:25:24.028153+00:00_
+_source line 4352 · 2026-05-20T03:25:24.028153+00:00_
 
 type: dict
 keys count: 4
@@ -16044,7 +15876,7 @@ keys count: 4
 
 ### Tool call
 
-_source line 4357 · 2026-05-20T03:25:31.290339+00:00_
+_source line 4353 · 2026-05-20T03:25:31.290339+00:00_
 
 called Bash
 
@@ -16080,7 +15912,7 @@ called Bash
 
 ### Tool result
 
-_source line 4358 · 2026-05-20T03:25:31.391396+00:00_
+_source line 4354 · 2026-05-20T03:25:31.391396+00:00_
 
 keys: ['experiments', 'count', 'total', 'baseline']
 inner type: dict
@@ -16104,7 +15936,7 @@ inner keys: ['experiments', 'count', 'total', 'baseline']
 
 ### Tool call
 
-_source line 4359 · 2026-05-20T03:25:35.963217+00:00_
+_source line 4355 · 2026-05-20T03:25:35.963217+00:00_
 
 called Bash
 
@@ -16140,7 +15972,7 @@ called Bash
 
 ### Tool result
 
-_source line 4360 · 2026-05-20T03:25:36.064217+00:00_
+_source line 4356 · 2026-05-20T03:25:36.064217+00:00_
 
 experiments type: dict len: 97
 "exp_deberta_arxiv_qwen1b5"
@@ -16186,7 +16018,7 @@ experiments type: dict len: 97
 
 ### Tool call
 
-_source line 4361 · 2026-05-20T03:25:41.038946+00:00_
+_source line 4357 · 2026-05-20T03:25:41.038946+00:00_
 
 called Bash
 
@@ -16222,7 +16054,7 @@ called Bash
 
 ### Tool result
 
-_source line 4362 · 2026-05-20T03:25:41.199984+00:00_
+_source line 4358 · 2026-05-20T03:25:41.199984+00:00_
 
 {
   "status": "PREPARING",
@@ -16248,7 +16080,7 @@ _source line 4362 · 2026-05-20T03:25:41.199984+00:00_
 
 ### Tool call
 
-_source line 4363 · 2026-05-20T03:25:54.171947+00:00_
+_source line 4359 · 2026-05-20T03:25:54.171947+00:00_
 
 called ToolSearch
 
@@ -16284,7 +16116,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4364 · 2026-05-20T03:25:54.222795+00:00_
+_source line 4360 · 2026-05-20T03:25:54.222795+00:00_
 
 
 
@@ -16306,7 +16138,7 @@ _source line 4364 · 2026-05-20T03:25:54.222795+00:00_
 
 ### Tool call
 
-_source line 4365 · 2026-05-20T03:26:12.215944+00:00_
+_source line 4361 · 2026-05-20T03:26:12.215944+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16346,7 +16178,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4366 · 2026-05-20T03:26:12.669285+00:00_
+_source line 4362 · 2026-05-20T03:26:12.669285+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -16382,7 +16214,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 4367 · 2026-05-20T03:26:19.852188+00:00_
+_source line 4363 · 2026-05-20T03:26:19.852188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:26:12.623Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6941}}"}
 
@@ -16404,7 +16236,7 @@ _source line 4367 · 2026-05-20T03:26:19.852188+00:00_
 
 ### Tool result
 
-_source line 4368 · 2026-05-20T03:26:19.852590+00:00_
+_source line 4364 · 2026-05-20T03:26:19.852590+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -16426,7 +16258,7 @@ _source line 4368 · 2026-05-20T03:26:19.852590+00:00_
 
 ### Tool call
 
-_source line 4369 · 2026-05-20T03:26:20.053838+00:00_
+_source line 4365 · 2026-05-20T03:26:20.053838+00:00_
 
 called Bash
 
@@ -16462,7 +16294,7 @@ called Bash
 
 ### Tool result
 
-_source line 4370 · 2026-05-20T03:26:20.204887+00:00_
+_source line 4366 · 2026-05-20T03:26:20.204887+00:00_
 
 {
   "status": "RUNNING",
@@ -16490,7 +16322,7 @@ _source line 4370 · 2026-05-20T03:26:20.204887+00:00_
 
 ### Tool call
 
-_source line 4371 · 2026-05-20T03:26:41.839984+00:00_
+_source line 4367 · 2026-05-20T03:26:41.839984+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16532,7 +16364,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4372 · 2026-05-20T03:26:42.243007+00:00_
+_source line 4368 · 2026-05-20T03:26:42.243007+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3771}}"}
 
@@ -16554,7 +16386,7 @@ _source line 4372 · 2026-05-20T03:26:42.243007+00:00_
 
 ### Tool call
 
-_source line 4373 · 2026-05-20T03:26:42.896387+00:00_
+_source line 4369 · 2026-05-20T03:26:42.896387+00:00_
 
 called mcp__agent-ml-research__register_cron
 
@@ -16598,7 +16430,7 @@ called mcp__agent-ml-research__register_cron
 
 ### Tool result
 
-_source line 4374 · 2026-05-20T03:26:43.047528+00:00_
+_source line 4370 · 2026-05-20T03:26:43.047528+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"server\": \"cqa1-22115\", \"pid\": \"276481\", \"wandb_run_id\": null, \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"interval_seconds\": 120, \"project\": \"gen-depth-contamination\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-20T03:26:42.909Z\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -16620,7 +16452,7 @@ _source line 4374 · 2026-05-20T03:26:43.047528+00:00_
 
 ### Tool call
 
-_source line 4375 · 2026-05-20T03:26:51.300938+00:00_
+_source line 4371 · 2026-05-20T03:26:51.300938+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16660,7 +16492,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4376 · 2026-05-20T03:26:53.263395+00:00_
+_source line 4372 · 2026-05-20T03:26:53.263395+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:26:52.013Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9305}}"}
 
@@ -16682,7 +16514,7 @@ _source line 4376 · 2026-05-20T03:26:53.263395+00:00_
 
 ### Tool call
 
-_source line 4377 · 2026-05-20T03:26:55.724402+00:00_
+_source line 4373 · 2026-05-20T03:26:55.724402+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16722,7 +16554,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4378 · 2026-05-20T03:26:57.334343+00:00_
+_source line 4374 · 2026-05-20T03:26:57.334343+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:26:56.131Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6004}}"}
 
@@ -16744,7 +16576,7 @@ _source line 4378 · 2026-05-20T03:26:57.334343+00:00_
 
 ### Tool call
 
-_source line 4379 · 2026-05-20T03:27:03.722805+00:00_
+_source line 4375 · 2026-05-20T03:27:03.722805+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16786,7 +16618,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4380 · 2026-05-20T03:27:05.281350+00:00_
+_source line 4376 · 2026-05-20T03:27:05.281350+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:27:04.115Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"DeBERTa-v3-base\", \"seed\": \"5-fold GroupKFold\", \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"grad_accum\": 2, \"lr\": \"2e-5\", \"n_boot\": 10000, \"threshold\": 0.6}}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5791}}"}
 
@@ -16808,7 +16640,7 @@ _source line 4380 · 2026-05-20T03:27:05.281350+00:00_
 
 ### Tool call
 
-_source line 4381 · 2026-05-20T03:27:23.864400+00:00_
+_source line 4377 · 2026-05-20T03:27:23.864400+00:00_
 
 called Read
 
@@ -16842,7 +16674,7 @@ called Read
 
 ### Tool result
 
-_source line 4382 · 2026-05-20T03:27:25.019876+00:00_
+_source line 4378 · 2026-05-20T03:27:25.019876+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55.
 
@@ -16864,7 +16696,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 4383 · 2026-05-20T03:27:25.673445+00:00_
+_source line 4379 · 2026-05-20T03:27:25.673445+00:00_
 
 called ToolSearch
 
@@ -16900,7 +16732,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4384 · 2026-05-20T03:27:25.673926+00:00_
+_source line 4380 · 2026-05-20T03:27:25.673926+00:00_
 
 
 
@@ -16922,7 +16754,7 @@ _source line 4384 · 2026-05-20T03:27:25.673926+00:00_
 
 ### Tool call
 
-_source line 4385 · 2026-05-20T03:27:29.497448+00:00_
+_source line 4381 · 2026-05-20T03:27:29.497448+00:00_
 
 called Glob
 
@@ -16958,7 +16790,7 @@ called Glob
 
 ### Tool call
 
-_source line 4386 · 2026-05-20T03:27:29.749984+00:00_
+_source line 4382 · 2026-05-20T03:27:29.749984+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -16994,7 +16826,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 4387 · 2026-05-20T03:27:29.800665+00:00_
+_source line 4383 · 2026-05-20T03:27:29.800665+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
 
@@ -17016,7 +16848,7 @@ _source line 4387 · 2026-05-20T03:27:29.800665+00:00_
 
 ### Tool result
 
-_source line 4388 · 2026-05-20T03:27:29.801116+00:00_
+_source line 4384 · 2026-05-20T03:27:29.801116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\", \"autodl-4090d:cuda:1\", \"autodl-4090d:cuda:2\", \"autodl-4090d:cuda:3\", \"westd-42896:cuda:0\", \"westd-42896:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"cqa1-22115\", \"westd-42896\"]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17038,7 +16870,7 @@ _source line 4388 · 2026-05-20T03:27:29.801116+00:00_
 
 ### Tool call
 
-_source line 4389 · 2026-05-20T03:27:31.780597+00:00_
+_source line 4385 · 2026-05-20T03:27:31.780597+00:00_
 
 called Read
 
@@ -17072,7 +16904,7 @@ called Read
 
 ### Tool result
 
-_source line 4390 · 2026-05-20T03:27:31.791322+00:00_
+_source line 4386 · 2026-05-20T03:27:31.791322+00:00_
 
 1	---
 2	name: resource-saturation
@@ -17143,7 +16975,7 @@ _source line 4390 · 2026-05-20T03:27:31.791322+00:00_
 
 ### Assistant
 
-_source line 4391 · 2026-05-20T03:27:45.875221+00:00_
+_source line 4387 · 2026-05-20T03:27:45.875221+00:00_
 
 Registry 已更新到 RUNNING，cron 已注册。现在更新 report.md 并准备向 Director 汇报。先读 resource-saturation skill。
 
@@ -17170,7 +17002,7 @@ Registry 已更新到 RUNNING，cron 已注册。现在更新 report.md 并准�
 
 ### User
 
-_source line 4392 · 2026-05-20T03:27:54.545132+00:00_
+_source line 4388 · 2026-05-20T03:27:54.545132+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -17191,7 +17023,7 @@ _source line 4392 · 2026-05-20T03:27:54.545132+00:00_
 
 ### Tool call
 
-_source line 4393 · 2026-05-20T03:28:07.119230+00:00_
+_source line 4389 · 2026-05-20T03:28:07.119230+00:00_
 
 called ToolSearch
 
@@ -17227,7 +17059,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4394 · 2026-05-20T03:28:07.170317+00:00_
+_source line 4390 · 2026-05-20T03:28:07.170317+00:00_
 
 
 
@@ -17249,7 +17081,7 @@ _source line 4394 · 2026-05-20T03:28:07.170317+00:00_
 
 ### Tool call
 
-_source line 4395 · 2026-05-20T03:28:10.440272+00:00_
+_source line 4391 · 2026-05-20T03:28:10.440272+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17285,7 +17117,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 4396 · 2026-05-20T03:28:10.440790+00:00_
+_source line 4392 · 2026-05-20T03:28:10.440790+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -17314,7 +17146,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 4397 · 2026-05-20T03:28:11.045664+00:00_
+_source line 4393 · 2026-05-20T03:28:11.045664+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -17350,7 +17182,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 4398 · 2026-05-20T03:28:11.096292+00:00_
+_source line 4394 · 2026-05-20T03:28:11.096292+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -17384,7 +17216,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4399 · 2026-05-20T03:28:11.302541+00:00_
+_source line 4395 · 2026-05-20T03:28:11.302541+00:00_
 
 Error: result (101,766 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/24af3608-8c48-4875-b6b7-9830b26af622/tool-results/mcp-agent-ml-research-read_registry-1779247691256.txt.
 Format: JSON with schema: {result: string}
@@ -17411,7 +17243,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool result
 
-_source line 4400 · 2026-05-20T03:28:11.353957+00:00_
+_source line 4396 · 2026-05-20T03:28:11.353957+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"success\": true, \"actions\": [\"Skipped (created 88s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -17433,7 +17265,7 @@ _source line 4400 · 2026-05-20T03:28:11.353957+00:00_
 
 ### Tool result
 
-_source line 4401 · 2026-05-20T03:28:11.406122+00:00_
+_source line 4397 · 2026-05-20T03:28:11.406122+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_deberta_arxiv_qwen1b5 | DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3). | — | — | — |\\n| exp_cross_transfer_llama8b_to_qwen7b_v2 | Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error. | — | — | — |\\n\\n## 待处理\\n- 7b-cross-transfer（准备中）\\n- exp_olmo_retrain_v2: OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_cross_transfer_llama8b_to_qwen7b** (failed): Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\n- **exp_cross_transfer_qwen7b_to_llama8b** (success): Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing wh
 …[truncated 984 chars]
@@ -17456,7 +17288,7 @@ _source line 4401 · 2026-05-20T03:28:11.406122+00:00_
 
 ### Tool result
 
-_source line 4402 · 2026-05-20T03:28:11.406700+00:00_
+_source line 4398 · 2026-05-20T03:28:11.406700+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:10 UTC | 更新原因: Reviewer WARNING: arXiv DeBERTa 标为 P0 关键缺口 + 阶段从\\\"完成\\\"改为\\\"收尾\\\"\\n\\n## 核心方向\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded 且 domain-governed（domain ceiling + model competence 框架）。4 domains, 5+ architecture families, retrain-chain K*≥4 vs prompt-chain K*=2-3。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 收尾 + 审稿迭代\\n- **实验**: 70 success / 10 negative / 13 failures / 93 total\\n- **DeBERTa upper-bound**: C4 1.5B/14B/32B 三个 scale 全部 K*=2，与 OBD 一致 → representation-independent boundary on C4\\n- **Wiki DeBERTa**: K*=3（vs OBD K*≤2），域×分类器交互效应\\n- **DeBERTa wiki cross-transfer**: 13/14 对完成，2 对 K*=3（pythia→qwen7b, qwen7b→llama8b），OLMo 坍缩确认\\n- **32B scale**: Qwen-32B K*=2（DeBERTa+OBD），scale invariance confirmed\\n- **Code domain**: 5/5 模型完成，K*=2（Pythia K*=1 competence-limited）\\n- **关键缺口**: arXiv DeBERTa 未跑——如果 K*=3 则 representation-independent 全域成立；如果 K*>3 则需调整 framing\\n- **论文**: 正文 ≤8 页，Table 4 数据修正完成，DeBERTa 结果+cross-transfer matrix 已写入\\n- **审稿**: Round 16 已提交待用户审批\\n\\n## 运行中实验\\n\\n| 实验 | GPU | 预计完成 |\\n|------|-----|---------|\\n| llama8b→qwen7b cross-transfer v2 | cqa1 cuda:0 | ~May 20 08:00 UTC |\\n| arXiv DeBERTa（待确认数据可用性）| cqa1 cuda:1 | 部署中 |\\n\\n## 近期任务（按优先级）\\n- [ ] **P0** arXiv DeBERTa — 关键 gap，提交前必须补（Reviewer WARNING）\\n- [ ] llama8b→qwen7b 完成后更新 cross-transfer matrix（14/14）\\n- [ ] paper_framing 更新：DeBERTa upper-bound + cross-transfer + domain×classifier 发现\\n- [ ] Round 16 审稿报告处理\\n- [ ] 论文写作收尾：Conclusion 扩展、引用扩充\\n- [ ] 最终 submit\\n\\n## GPU 预算\\n- **cqa1**: 4 张 RTX 4090D 24GB — cuda:0 cross-transfer running, cuda:1 arXiv DeBERTa (pending), cuda:2-3 空闲\\n- **westd**: 已不在分配列表\\n- 剩余实验需求 <2 GPU-hours，资源充足\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|-
 …[truncated 1398 chars]
@@ -17479,7 +17311,7 @@ _source line 4402 · 2026-05-20T03:28:11.406700+00:00_
 
 ### Tool call
 
-_source line 4403 · 2026-05-20T03:28:22.747709+00:00_
+_source line 4399 · 2026-05-20T03:28:22.747709+00:00_
 
 called Bash
 
@@ -17515,7 +17347,7 @@ called Bash
 
 ### Tool result
 
-_source line 4404 · 2026-05-20T03:28:23.252798+00:00_
+_source line 4400 · 2026-05-20T03:28:23.252798+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -17542,7 +17374,7 @@ AttributeError: 'str' object has no attribute 'get'
 
 ### Tool call
 
-_source line 4405 · 2026-05-20T03:28:28.879855+00:00_
+_source line 4401 · 2026-05-20T03:28:28.879855+00:00_
 
 called Bash
 
@@ -17578,7 +17410,7 @@ called Bash
 
 ### Tool result
 
-_source line 4406 · 2026-05-20T03:28:28.980642+00:00_
+_source line 4402 · 2026-05-20T03:28:28.980642+00:00_
 
 &lt;class 'dict'>
 {'exp_deberta_arxiv_qwen1b5': {'status': 'RUNNING', 'created_at': '2026-05-20T03:12:10.106Z', 'updated_at': '2026-05-20T03:27:04.115Z', 'hypothesis': 'DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).'}, 'exp_cross_transfer_llama8b_to_qwen7b_v2': {'status': 'RUNNING', 'created_at': '2026-05-20T03:01:09.441Z', 'updated_at': '2026-05-20T03:02:50.
@@ -17601,7 +17433,7 @@ _source line 4406 · 2026-05-20T03:28:28.980642+00:00_
 
 ### Tool call
 
-_source line 4407 · 2026-05-20T03:28:35.223395+00:00_
+_source line 4403 · 2026-05-20T03:28:35.223395+00:00_
 
 called Bash
 
@@ -17637,7 +17469,7 @@ called Bash
 
 ### Tool result
 
-_source line 4408 · 2026-05-20T03:28:35.325126+00:00_
+_source line 4404 · 2026-05-20T03:28:35.325126+00:00_
 
 exp_deberta_arxiv_qwen1b5: status=RUNNING
   hypothesis: DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4
@@ -17674,7 +17506,7 @@ Conclusion counts: {'—': 2, 'failed': 12, 'success': 71, 'negative': 10, 'kill
 
 ### Tool call
 
-_source line 4409 · 2026-05-20T03:28:43.110667+00:00_
+_source line 4405 · 2026-05-20T03:28:43.110667+00:00_
 
 called ToolSearch
 
@@ -17710,7 +17542,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4410 · 2026-05-20T03:28:43.111077+00:00_
+_source line 4406 · 2026-05-20T03:28:43.111077+00:00_
 
 
 
@@ -17732,7 +17564,7 @@ _source line 4410 · 2026-05-20T03:28:43.111077+00:00_
 
 ### Tool call
 
-_source line 4411 · 2026-05-20T03:28:43.613548+00:00_
+_source line 4407 · 2026-05-20T03:28:43.613548+00:00_
 
 called Read
 
@@ -17766,7 +17598,7 @@ called Read
 
 ### Tool result
 
-_source line 4412 · 2026-05-20T03:28:43.664617+00:00_
+_source line 4408 · 2026-05-20T03:28:43.664617+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55.
 
@@ -17788,7 +17620,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 4413 · 2026-05-20T03:28:46.476427+00:00_
+_source line 4409 · 2026-05-20T03:28:46.476427+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -17824,7 +17656,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 4414 · 2026-05-20T03:28:46.929935+00:00_
+_source line 4410 · 2026-05-20T03:28:46.929935+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -17846,7 +17678,7 @@ _source line 4414 · 2026-05-20T03:28:46.929935+00:00_
 
 ### Tool call
 
-_source line 4415 · 2026-05-20T03:28:46.930335+00:00_
+_source line 4411 · 2026-05-20T03:28:46.930335+00:00_
 
 called mcp__agent-ml-research__get_project_resource_usage
 
@@ -17880,7 +17712,7 @@ called mcp__agent-ml-research__get_project_resource_usage
 
 ### Tool result
 
-_source line 4416 · 2026-05-20T03:28:47.432709+00:00_
+_source line 4412 · 2026-05-20T03:28:47.432709+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\"}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_deberta_arxiv_qwen1b5\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:2\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"cqa1-22115\", \"gpu_id\": \"cuda:3\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp_cross_transfer_llama8b_to_qwen7b_v2\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 2 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17902,7 +17734,7 @@ _source line 4416 · 2026-05-20T03:28:47.432709+00:00_
 
 ### Tool call
 
-_source line 4417 · 2026-05-20T03:28:47.433214+00:00_
+_source line 4413 · 2026-05-20T03:28:47.433214+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -17938,7 +17770,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 4418 · 2026-05-20T03:28:48.036373+00:00_
+_source line 4414 · 2026-05-20T03:28:48.036373+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\", \"autodl-4090d:cuda:1\", \"autodl-4090d:cuda:2\", \"autodl-4090d:cuda:3\", \"westd-42896:cuda:0\", \"westd-42896:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"cqa1-22115\", \"westd-42896\"]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17960,7 +17792,7 @@ _source line 4418 · 2026-05-20T03:28:48.036373+00:00_
 
 ### Tool call
 
-_source line 4419 · 2026-05-20T03:28:48.086986+00:00_
+_source line 4415 · 2026-05-20T03:28:48.086986+00:00_
 
 called Glob
 
@@ -17996,7 +17828,7 @@ called Glob
 
 ### Tool result
 
-_source line 4420 · 2026-05-20T03:28:48.187871+00:00_
+_source line 4416 · 2026-05-20T03:28:48.187871+00:00_
 
 No files found
 
@@ -18018,7 +17850,7 @@ No files found
 
 ### Tool call
 
-_source line 4421 · 2026-05-20T03:29:10.617533+00:00_
+_source line 4417 · 2026-05-20T03:29:10.617533+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18054,7 +17886,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4422 · 2026-05-20T03:29:15.046372+00:00_
+_source line 4418 · 2026-05-20T03:29:15.046372+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -18076,7 +17908,7 @@ _source line 4422 · 2026-05-20T03:29:15.046372+00:00_
 
 ### Assistant
 
-_source line 4423 · 2026-05-20T03:29:20.582675+00:00_
+_source line 4419 · 2026-05-20T03:29:20.582675+00:00_
 
 已完成 session-start 初始化，向 Director 汇报了重启状态。
 
@@ -18111,7 +17943,7 @@ _source line 4423 · 2026-05-20T03:29:20.582675+00:00_
 
 ### User
 
-_source line 4424 · 2026-05-20T03:29:20.590485+00:00_
+_source line 4420 · 2026-05-20T03:29:20.590485+00:00_
 
 [Director 指令] 服务重启后状态检查，按优先级：
 
@@ -18140,7 +17972,7 @@ _source line 4424 · 2026-05-20T03:29:20.590485+00:00_
 
 ### Tool call
 
-_source line 4425 · 2026-05-20T03:29:37.746972+00:00_
+_source line 4421 · 2026-05-20T03:29:37.746972+00:00_
 
 called ToolSearch
 
@@ -18176,7 +18008,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4426 · 2026-05-20T03:29:37.797734+00:00_
+_source line 4422 · 2026-05-20T03:29:37.797734+00:00_
 
 
 
@@ -18198,7 +18030,7 @@ _source line 4426 · 2026-05-20T03:29:37.797734+00:00_
 
 ### Tool call
 
-_source line 4427 · 2026-05-20T03:29:52.951180+00:00_
+_source line 4423 · 2026-05-20T03:29:52.951180+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -18238,7 +18070,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4428 · 2026-05-20T03:29:59.853294+00:00_
+_source line 4424 · 2026-05-20T03:29:59.853294+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_status-check_cqa1-all_20260520T032953\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_status-check_cqa1-all_20260520T032953.log\", \"setup_data\": {}, \"message\": \"Worker worker_status-check_cqa1-all_20260520T032953 started. Use get_worker_status('worker_status-check_cqa1-all_20260520T032953') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18260,7 +18092,7 @@ _source line 4428 · 2026-05-20T03:29:59.853294+00:00_
 
 ### Assistant
 
-_source line 4429 · 2026-05-20T03:30:03.306308+00:00_
+_source line 4425 · 2026-05-20T03:30:03.306308+00:00_
 
 已派 Worker 检查 cqa1 上全部三项状态（cross-transfer v2 结果、arXiv DeBERTa 进度、nvidia-smi 4 卡状态）。Worker 完成后系统会回调，届时整合结果汇报 Director。
 
@@ -18287,7 +18119,7 @@ _source line 4429 · 2026-05-20T03:30:03.306308+00:00_
 
 ### User
 
-_source line 4430 · 2026-05-20T03:32:52.412991+00:00_
+_source line 4426 · 2026-05-20T03:32:52.412991+00:00_
 
 [WORKER DONE] Worker worker_status-check_cqa1-all_20260520T032953 已完成（status=done）。用 `get_worker_status('worker_status-check_cqa1-all_20260520T032953')` 读取结果，然后处理。
 
@@ -18312,7 +18144,7 @@ _source line 4430 · 2026-05-20T03:32:52.412991+00:00_
 
 ### Tool call
 
-_source line 4431 · 2026-05-20T03:32:59.089598+00:00_
+_source line 4427 · 2026-05-20T03:32:59.089598+00:00_
 
 called ToolSearch
 
@@ -18348,7 +18180,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4432 · 2026-05-20T03:32:59.140946+00:00_
+_source line 4428 · 2026-05-20T03:32:59.140946+00:00_
 
 
 
@@ -18370,7 +18202,7 @@ _source line 4432 · 2026-05-20T03:32:59.140946+00:00_
 
 ### Tool call
 
-_source line 4433 · 2026-05-20T03:33:01.703047+00:00_
+_source line 4429 · 2026-05-20T03:33:01.703047+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -18404,7 +18236,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4434 · 2026-05-20T03:33:01.753944+00:00_
+_source line 4430 · 2026-05-20T03:33:01.753944+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_status-check_cqa1-all_20260520T032953\", \"status\": \"done\", \"task_type\": \"status-check:cqa1-all\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:29:53.983978+00:00\", \"ended_at\": \"2026-05-20T03:32:50.476293+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"```\\n### 1. exp_cross_transfer_llama8b_to_qwen7b_v2\\n状态: 运行中 (PID 275366, cuda:0)\\n命令: python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\\n进度: 5-fold CV, Fold 2/5 进行中, Epoch 2 step 1200/1500\\n      Fold 0-1 已完成, 每 fold ~12min\\n预计完成: ~12:00 CST (约 28 分钟后)\\n\\n### 2. exp_deberta_arxiv_qwen1b5\\n状态: 运行中 (PID 276486, cuda:1)\\n命令: python scripts/run_deberta_arxiv.py\\n数据可用性: 是, 13200 samples (2200 docs × 6 depths), 加载成功\\n进度: 5-fold CV, Fold 3/5 进行中, Epoch 1 step 200/660\\n      Fold 0-2 已完成, 每 fold ~6.5min\\n预计完成: ~11:45 CST (约 13 分钟后)\\n\\n### 3. GPU 状态 (nvidia-smi)\\ncuda:0 - RTX 4090 D | 20613/24564 MiB | 96% util | PID 275366 (cross_transfer llama8b→qwen7b)\\ncuda:1 - RTX 4090 D | 18173/24564 MiB | 97% util | PID 276486 (deberta arxiv qwen1b5)\\ncuda:2 - RTX 4090 D | 0/24564 MiB     | 0% util  | 空闲\\ncuda:3 - RTX 4090 D | 0/24564 MiB     | 0% util  | 空闲\\n```\\n\\n两个实验在服务重启后均已重新启动并正常运行，cuda:2/3 空闲可用。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -18426,7 +18258,7 @@ _source line 4434 · 2026-05-20T03:33:01.753944+00:00_
 
 ### Tool call
 
-_source line 4435 · 2026-05-20T03:33:15.698730+00:00_
+_source line 4431 · 2026-05-20T03:33:15.698730+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18462,7 +18294,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4436 · 2026-05-20T03:33:20.124447+00:00_
+_source line 4432 · 2026-05-20T03:33:20.124447+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -18484,7 +18316,7 @@ _source line 4436 · 2026-05-20T03:33:20.124447+00:00_
 
 ### Assistant
 
-_source line 4437 · 2026-05-20T03:33:22.973018+00:00_
+_source line 4433 · 2026-05-20T03:33:22.973018+00:00_
 
 已汇报 Director。两个实验正常运行：arXiv DeBERTa（P0）约 13 分钟完成，cross-transfer v2 约 28 分钟完成。等待 cron 回调。
 
@@ -18511,7 +18343,7 @@ _source line 4437 · 2026-05-20T03:33:22.973018+00:00_
 
 ### User
 
-_source line 4438 · 2026-05-20T03:33:51.450152+00:00_
+_source line 4434 · 2026-05-20T03:33:51.450152+00:00_
 
 [Director 指令] **cuda:2 任务：Code domain DeBERTa**
 
@@ -18540,7 +18372,7 @@ cuda:3 暂 hold。
 
 ### Tool call
 
-_source line 4439 · 2026-05-20T03:34:14.167803+00:00_
+_source line 4435 · 2026-05-20T03:34:14.167803+00:00_
 
 called ToolSearch
 
@@ -18576,7 +18408,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4440 · 2026-05-20T03:34:14.218589+00:00_
+_source line 4436 · 2026-05-20T03:34:14.218589+00:00_
 
 
 
@@ -18598,7 +18430,7 @@ _source line 4440 · 2026-05-20T03:34:14.218589+00:00_
 
 ### Tool call
 
-_source line 4441 · 2026-05-20T03:34:20.551547+00:00_
+_source line 4437 · 2026-05-20T03:34:20.551547+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -18638,7 +18470,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4442 · 2026-05-20T03:34:21.011865+00:00_
+_source line 4438 · 2026-05-20T03:34:21.011865+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -18678,7 +18510,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4443 · 2026-05-20T03:34:22.418534+00:00_
+_source line 4439 · 2026-05-20T03:34:22.418534+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T03:34:21.140Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8453}}"}
 
@@ -18700,7 +18532,7 @@ _source line 4443 · 2026-05-20T03:34:22.418534+00:00_
 
 ### Tool result
 
-_source line 4444 · 2026-05-20T03:34:23.071646+00:00_
+_source line 4440 · 2026-05-20T03:34:23.071646+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T03:34:22.763Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6571}}"}
 
@@ -18722,7 +18554,7 @@ _source line 4444 · 2026-05-20T03:34:23.071646+00:00_
 
 ### Tool call
 
-_source line 4445 · 2026-05-20T03:34:39.882618+00:00_
+_source line 4441 · 2026-05-20T03:34:39.882618+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -18762,7 +18594,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4446 · 2026-05-20T03:34:46.632505+00:00_
+_source line 4442 · 2026-05-20T03:34:46.632505+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_deberta_code_qwen1b5_20260520T033440\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_deberta_code_qwen1b5_20260520T033440.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_deberta_code_qwen1b5_20260520T033440 started. Use get_worker_status('worker_code_exp_deberta_code_qwen1b5_20260520T033440') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18784,7 +18616,7 @@ _source line 4446 · 2026-05-20T03:34:46.632505+00:00_
 
 ### Assistant
 
-_source line 4447 · 2026-05-20T03:34:49.818261+00:00_
+_source line 4443 · 2026-05-20T03:34:49.818261+00:00_
 
 Worker 已派出检查 Code domain 数据并准备启动命令。arXiv DeBERTa 的 cron 监控已就绪，完成时会自动回调。等待两个回调。
 
@@ -18811,7 +18643,7 @@ Worker 已派出检查 Code domain 数据并准备启动命令。arXiv DeBERTa �
 
 ### User
 
-_source line 4448 · 2026-05-20T03:36:23.235696+00:00_
+_source line 4444 · 2026-05-20T03:36:23.235696+00:00_
 
 [WORKER DONE] Worker worker_code_exp_deberta_code_qwen1b5_20260520T033440 已完成（status=done）。用 `get_worker_status('worker_code_exp_deberta_code_qwen1b5_20260520T033440')` 读取结果，然后处理。
 
@@ -18836,7 +18668,7 @@ _source line 4448 · 2026-05-20T03:36:23.235696+00:00_
 
 ### Tool call
 
-_source line 4449 · 2026-05-20T03:36:30.285051+00:00_
+_source line 4445 · 2026-05-20T03:36:30.285051+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -18870,7 +18702,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4450 · 2026-05-20T03:36:30.536980+00:00_
+_source line 4446 · 2026-05-20T03:36:30.536980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_deberta_code_qwen1b5_20260520T033440\", \"status\": \"done\", \"task_type\": \"code:exp_deberta_code_qwen1b5\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:34:40.742614+00:00\", \"ended_at\": \"2026-05-20T03:36:21.261827+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"所有信息收集完毕。汇总结果：\\n\\n## 数据状况\\n\\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/`\\n- **文件**: depth_0.jsonl ~ depth_5.jsonl（6 个 depth），每个 5,500 samples，共 **33,000 samples**\\n- **格式**: `{\\\"text\\\": \\\"...\\\", \\\"doc_id\\\": \\\"code_py_0\\\"}` — 与 arXiv/C4 格式一致，可直接使用\\n- **OBD baseline**: `/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/pairwise_auc.json`\\n  - OBD K\\\\*=2（0v1=0.9388, 1v2=0.7382, 2v3=0.53 < θ=0.60）\\n\\n## 脚本分析\\n\\n现有脚本（`run_deberta_arxiv.py`, `run_deberta_c4_1b5.py`）都是独立脚本，数据路径/结果目录/OBD路径全部硬编码。需要创建 `run_deberta_code.py`，基于 arXiv 模板修改以下配置：\\n\\n| 参数 | 值 |\\n|------|-----|\\n| EXPERIMENTS | `{\\\"code_qwen1b5\\\": DATA_DIR / \\\"exp_code_qwen1b5\\\"}` |\\n| RESULTS_DIR | `ROOT / \\\"results\\\" / \\\"exp_deberta_code_qwen1b5\\\"` |\\n| OBD_MAP | `{\\\"code_qwen1b5\\\": ROOT / \\\"results\\\" / \\\"exp_code_qwen1b5\\\" / \\\"pairwise_auc.json\\\"}` |\\n\\n其余超参（MAX_LEN=512, EPOCHS=3, BS=16, LR=2e-5, N_BOOT=10000, THETA=0.60）与 arXiv 完全一致。\\n\\n## 需要先创建脚本\\n\\n需要在服务器上创建 `/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py`。脚本与 `run_deberta_arxiv.py` 完全相同，只改三个路径常量。\\n\\n## 推荐启动命令\\n\\n```bash\\nbash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=2 python scripts/run_deberta_code.py'\\n```\\n\\n使用 `CUDA_VISIBLE_DEVICES=2` 让脚本中的 `cuda:0` 映射到物理 GPU 2，无需修改脚本内部设备逻辑。\\n\\n**下一步**: 需要主 Agent 先通过 `ssh_execute` 创建脚本文件，然后通过 `submit_training_job` 提交训练。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -18892,7 +18724,7 @@ _source line 4450 · 2026-05-20T03:36:30.536980+00:00_
 
 ### Tool call
 
-_source line 4451 · 2026-05-20T03:36:47.924332+00:00_
+_source line 4447 · 2026-05-20T03:36:47.924332+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -18932,7 +18764,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4452 · 2026-05-20T03:36:54.314985+00:00_
+_source line 4448 · 2026-05-20T03:36:54.314985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_create_deberta_code_script_20260520T033648\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_create_deberta_code_script_20260520T033648.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_create_deberta_code_script_20260520T033648 started. Use get_worker_status('worker_code_create_deberta_code_script_20260520T033648') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18954,7 +18786,7 @@ _source line 4452 · 2026-05-20T03:36:54.314985+00:00_
 
 ### Assistant
 
-_source line 4453 · 2026-05-20T03:36:57.921618+00:00_
+_source line 4449 · 2026-05-20T03:36:57.921618+00:00_
 
 Worker 已派出创建脚本。等待完成后立即 `submit_training_job` 提交到 cuda:2。同时 arXiv DeBERTa 的 cron 监控已激活，完成即回调。
 
@@ -18981,7 +18813,7 @@ Worker 已派出创建脚本。等待完成后立即 `submit_training_job` 提�
 
 ### User
 
-_source line 4454 · 2026-05-20T03:37:53.572269+00:00_
+_source line 4450 · 2026-05-20T03:37:53.572269+00:00_
 
 [WORKER DONE] Worker worker_code_create_deberta_code_script_20260520T033648 已完成（status=done）。用 `get_worker_status('worker_code_create_deberta_code_script_20260520T033648')` 读取结果，然后处理。
 
@@ -19006,7 +18838,7 @@ _source line 4454 · 2026-05-20T03:37:53.572269+00:00_
 
 ### Tool call
 
-_source line 4455 · 2026-05-20T03:38:02.575951+00:00_
+_source line 4451 · 2026-05-20T03:38:02.575951+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -19040,7 +18872,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4456 · 2026-05-20T03:38:02.785004+00:00_
+_source line 4452 · 2026-05-20T03:38:02.785004+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_create_deberta_code_script_20260520T033648\", \"status\": \"done\", \"task_type\": \"code:create_deberta_code_script\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:36:48.724093+00:00\", \"ended_at\": \"2026-05-20T03:37:51.577940+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"脚本已创建并验证完成。\\n\\n**关键配置行：**\\n- L28: `RESULTS_DIR = ROOT / \\\"results\\\" / \\\"exp_deberta_code_qwen1b5\\\"`\\n- L30-32: `EXPERIMENTS = {\\\"code_qwen1b5\\\": DATA_DIR / \\\"exp_code_qwen1b5\\\"}`\\n- L34-36: `OBD_MAP = {\\\"code_qwen1b5\\\": ROOT / \\\"results\\\" / \\\"exp_code_qwen1b5\\\" / \\\"pairwise_auc.json\\\"}`\\n\\n**语法验证：** `SYNTAX_OK`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -19062,7 +18894,7 @@ _source line 4456 · 2026-05-20T03:38:02.785004+00:00_
 
 ### Tool call
 
-_source line 4457 · 2026-05-20T03:38:09.610193+00:00_
+_source line 4453 · 2026-05-20T03:38:09.610193+00:00_
 
 called mcp__agent-ml-research__submit_training_job
 
@@ -19104,7 +18936,7 @@ called mcp__agent-ml-research__submit_training_job
 
 ### Tool result
 
-_source line 4458 · 2026-05-20T03:38:11.924270+00:00_
+_source line 4454 · 2026-05-20T03:38:11.924270+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"pid\": \"278541\", \"log_file\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"exp_deberta_code_qwen1b5\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.28}}"}
 
@@ -19126,7 +18958,7 @@ _source line 4458 · 2026-05-20T03:38:11.924270+00:00_
 
 ### Tool call
 
-_source line 4459 · 2026-05-20T03:38:17.461693+00:00_
+_source line 4455 · 2026-05-20T03:38:17.461693+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19168,7 +19000,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4460 · 2026-05-20T03:38:17.916065+00:00_
+_source line 4456 · 2026-05-20T03:38:17.916065+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4326}}"}
 
@@ -19190,7 +19022,7 @@ _source line 4460 · 2026-05-20T03:38:17.916065+00:00_
 
 ### Tool call
 
-_source line 4461 · 2026-05-20T03:38:20.783642+00:00_
+_source line 4457 · 2026-05-20T03:38:20.783642+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19230,7 +19062,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4462 · 2026-05-20T03:38:23.288678+00:00_
+_source line 4458 · 2026-05-20T03:38:23.288678+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T03:38:21.298Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_deberta_code.py'\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"278541\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:38:11.188Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4843}}"}
 
@@ -19252,7 +19084,7 @@ _source line 4462 · 2026-05-20T03:38:23.288678+00:00_
 
 ### Tool call
 
-_source line 4463 · 2026-05-20T03:38:26.655104+00:00_
+_source line 4459 · 2026-05-20T03:38:26.655104+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19292,7 +19124,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4464 · 2026-05-20T03:38:28.413730+00:00_
+_source line 4460 · 2026-05-20T03:38:28.413730+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T03:38:27.130Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_deberta_code.py'\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"278541\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:38:11.188Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7451}}"}
 
@@ -19314,7 +19146,7 @@ _source line 4464 · 2026-05-20T03:38:28.413730+00:00_
 
 ### Tool call
 
-_source line 4465 · 2026-05-20T03:38:32.407217+00:00_
+_source line 4461 · 2026-05-20T03:38:32.407217+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19356,7 +19188,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4466 · 2026-05-20T03:38:34.373982+00:00_
+_source line 4462 · 2026-05-20T03:38:34.373982+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T03:38:32.882Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_deberta_code.py'\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"278541\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:38:11.188Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/\", \"data_count\": 33000, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9429}}"}
 
@@ -19378,7 +19210,7 @@ _source line 4466 · 2026-05-20T03:38:34.373982+00:00_
 
 ### Tool call
 
-_source line 4467 · 2026-05-20T03:38:46.805318+00:00_
+_source line 4463 · 2026-05-20T03:38:46.805318+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -19414,7 +19246,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4468 · 2026-05-20T03:38:51.553340+00:00_
+_source line 4464 · 2026-05-20T03:38:51.553340+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -19436,7 +19268,7 @@ _source line 4468 · 2026-05-20T03:38:51.553340+00:00_
 
 ### Assistant
 
-_source line 4469 · 2026-05-20T03:38:55.228826+00:00_
+_source line 4465 · 2026-05-20T03:38:55.228826+00:00_
 
 已完成 Director 指令：
 - cuda:0: cross-transfer v2 运行中
@@ -19469,7 +19301,7 @@ _source line 4469 · 2026-05-20T03:38:55.228826+00:00_
 
 ### User
 
-_source line 4470 · 2026-05-20T03:48:55.990656+00:00_
+_source line 4466 · 2026-05-20T03:48:55.990656+00:00_
 
 [WORKER DONE] Worker worker_analysis_exp_deberta_arxiv_qwen1b5_20260520T034706 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_deberta_arxiv_qwen1b5_20260520T034706')` 读取结果，然后处理。
 
@@ -19494,7 +19326,7 @@ _source line 4470 · 2026-05-20T03:48:55.990656+00:00_
 
 ### Tool call
 
-_source line 4471 · 2026-05-20T03:49:02.779894+00:00_
+_source line 4467 · 2026-05-20T03:49:02.779894+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -19528,7 +19360,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 4472 · 2026-05-20T03:49:02.882623+00:00_
+_source line 4468 · 2026-05-20T03:49:02.882623+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_deberta_arxiv_qwen1b5_20260520T034706\", \"status\": \"done\", \"task_type\": \"analysis:exp_deberta_arxiv_qwen1b5\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:47:06.351114+00:00\", \"ended_at\": \"2026-05-20T03:48:54.130371+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"```\\nRESULT:\\n- K*: 4 (NOT 3 as hypothesized)\\n- conclusion: NEGATIVE — DeBERTa K*=4 ≠ OBD K*=3, representation-independence claim fails for arXiv\\n- metrics:\\n  - 0v1: AUC=0.9997 [0.9992, 1.0000] (OBD=0.9948, Δ+0.005)\\n  - 1v2: AUC=0.9214 [0.9143, 0.9285] (OBD=0.8581, Δ+0.063)\\n  - 2v3: AUC=0.7446 [0.7333, 0.7559] (OBD=0.6436, Δ+0.101)\\n  - 3v4: AUC=0.6238 [0.6127, 0.6349] (OBD=0.5440, Δ+0.080) ← pivotal pair\\n  - 4v5: AUC=0.5771 [0.5659, 0.5882] (OBD=0.5299, Δ+0.047)\\n- checkpoint_path: N/A (OOF predictions only, no model saved)\\n- log_path: ~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\\n```\\n\\n关键发现：3v4 pair 是分歧点。DeBERTa 的 CI_lower=0.6127 仅比阈值 0.6 高 0.0127，属于 borderline。建议做 θ 敏感性分析（θ=0.62 即可恢复 K*=3），或将 arXiv 作为 \\\"approximate representation-independence\\\" 的 nuance 讨论。详细分析已写入 `artifacts/analysis_exp_deberta_arxiv_qwen1b5.md`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -19550,7 +19382,7 @@ _source line 4472 · 2026-05-20T03:49:02.882623+00:00_
 
 ### Tool call
 
-_source line 4473 · 2026-05-20T03:49:29.720911+00:00_
+_source line 4469 · 2026-05-20T03:49:29.720911+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19590,7 +19422,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4474 · 2026-05-20T03:49:31.131144+00:00_
+_source line 4470 · 2026-05-20T03:49:31.131144+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:49:30.202Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"DeBERTa-v3-base\", \"seed\": \"5-fold GroupKFold\", \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"grad_accum\": 2, \"lr\": \"2e-5\", \"n_boot\": 10000, \"threshold\": 0.6}}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:45:52.617Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:45:57.340301+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8379}}"}
 
@@ -19612,7 +19444,7 @@ _source line 4474 · 2026-05-20T03:49:31.131144+00:00_
 
 ### Tool call
 
-_source line 4475 · 2026-05-20T03:49:31.182065+00:00_
+_source line 4471 · 2026-05-20T03:49:31.182065+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19652,7 +19484,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4476 · 2026-05-20T03:49:31.986283+00:00_
+_source line 4472 · 2026-05-20T03:49:31.986283+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:49:31.667Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"DeBERTa-v3-base\", \"seed\": \"5-fold GroupKFold\", \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"grad_accum\": 2, \"lr\": \"2e-5\", \"n_boot\": 10000, \"threshold\": 0.6}}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:45:52.617Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:45:57.340301+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 4, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.9214, \"2v3_auc\": 0.7446, \"3v4_auc\": 0.6238, \"4v5_auc\": 0.5771, \"3v4_ci_lower\": 0.6127, \"3v4_ci_upper\": 0.6349, \"theta\": 0.6}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7766}}"}
 
@@ -19674,7 +19506,7 @@ _source line 4476 · 2026-05-20T03:49:31.986283+00:00_
 
 ### Tool call
 
-_source line 4477 · 2026-05-20T03:49:36.966861+00:00_
+_source line 4473 · 2026-05-20T03:49:36.966861+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -19716,7 +19548,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 4478 · 2026-05-20T03:49:37.420121+00:00_
+_source line 4474 · 2026-05-20T03:49:37.420121+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -19754,7 +19586,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 4479 · 2026-05-20T03:49:38.677398+00:00_
+_source line 4475 · 2026-05-20T03:49:38.677398+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:49:37.411Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"DeBERTa-v3-base\", \"seed\": \"5-fold GroupKFold\", \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"grad_accum\": 2, \"lr\": \"2e-5\", \"n_boot\": 10000, \"threshold\": 0.6}, \"checkpoint_path\": \"N/A (OOF predictions only)\", \"wall_clock_seconds\": 2247.8, \"gpu_hours\": 0.62}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:45:52.617Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:45:57.340301+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 4, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.9214, \"2v3_auc\": 0.7446, \"3v4_auc\": 0.6238, \"4v5_auc\": 0.5771, \"3v4_ci_lower\": 0.6127, \"3v4_ci_upper\": 0.6349, \"theta\": 0.6}, \"completed_at\": \"2026-05-20T03:49:37.411Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7179}}"}
 
@@ -19776,7 +19608,7 @@ _source line 4479 · 2026-05-20T03:49:38.677398+00:00_
 
 ### Tool result
 
-_source line 4480 · 2026-05-20T03:49:38.678169+00:00_
+_source line 4476 · 2026-05-20T03:49:38.678169+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-contamination\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\n\\n## Canonical Experimental Condition\\n\\n**Continuation mode 是 cross-model 结论的基础。**\\n\\n> \\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\"\\n\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\n|-----------|-------------|-------------|---------|\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\n\\n**原则**：\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\n- mvp-001 (Qwen-rewrite) 定位为 \\\"pilot study demonstrating feasibility\\\"，后续用 continuation mode rigorously validate\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\n\\n## Core Claims (2+1 结构, updated D049/D050)\\n\\n### Primary: C1' (K* Characterization — Domain-Dependent Bounded Saturation)\\n首次系统测量递归合成文本的 generational discrimination boundary K*，demonstrating that K* is low-bounded and domain-dependent, with a two-tier ceiling structure: model-free features yield K*∈{1,2,3}, while neural classifiers extend to K*=4 on structured domains。\\n\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 9 model configurations（5 architecture families, 1B-14B）、4 source domains（C4, Wikipedia, arXiv, Code
 …[truncated 4466 chars]
@@ -19799,7 +19631,7 @@ _source line 4480 · 2026-05-20T03:49:38.678169+00:00_
 
 ### Tool call
 
-_source line 4481 · 2026-05-20T03:49:52.050966+00:00_
+_source line 4477 · 2026-05-20T03:49:52.050966+00:00_
 
 called ToolSearch
 
@@ -19835,7 +19667,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4482 · 2026-05-20T03:49:52.102151+00:00_
+_source line 4478 · 2026-05-20T03:49:52.102151+00:00_
 
 
 
@@ -19857,7 +19689,7 @@ _source line 4482 · 2026-05-20T03:49:52.102151+00:00_
 
 ### Tool call
 
-_source line 4483 · 2026-05-20T03:50:15.489051+00:00_
+_source line 4479 · 2026-05-20T03:50:15.489051+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -19893,7 +19725,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4484 · 2026-05-20T03:50:20.023310+00:00_
+_source line 4480 · 2026-05-20T03:50:20.023310+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -19915,7 +19747,7 @@ _source line 4484 · 2026-05-20T03:50:20.023310+00:00_
 
 ### Assistant
 
-_source line 4485 · 2026-05-20T03:50:23.129924+00:00_
+_source line 4481 · 2026-05-20T03:50:23.129924+00:00_
 
 已向 Director 汇报 P0 结果。等待 Director 决策，同时 cuda:0（cross-transfer v2）和 cuda:2（Code DeBERTa）继续运行。
 
@@ -19942,7 +19774,7 @@ _source line 4485 · 2026-05-20T03:50:23.129924+00:00_
 
 ### User
 
-_source line 4486 · 2026-05-20T03:50:23.800325+00:00_
+_source line 4482 · 2026-05-20T03:50:23.800325+00:00_
 
 [Director 指令] arXiv DeBERTa 实验完成，K*=4（P0 critical，首次观测 K*>3）。
 
@@ -19974,7 +19806,7 @@ exp_deberta_arxiv 标记 DONE/success，结论：K*=4, 3v4 AUC=0.6238, ci_lower=
 
 ### Tool call
 
-_source line 4487 · 2026-05-20T03:50:37.540374+00:00_
+_source line 4483 · 2026-05-20T03:50:37.540374+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -20014,7 +19846,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 4488 · 2026-05-20T03:50:49.387750+00:00_
+_source line 4484 · 2026-05-20T03:50:49.387750+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_arxiv_qwen1b5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:12:10.106Z\", \"updated_at\": \"2026-05-20T03:50:38.093Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"276481\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"submitted_at\": \"2026-05-20T03:12:09.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"DeBERTa-v3-base\", \"seed\": \"5-fold GroupKFold\", \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"grad_accum\": 2, \"lr\": \"2e-5\", \"n_boot\": 10000, \"threshold\": 0.6}, \"checkpoint_path\": \"N/A (OOF predictions only)\", \"wall_clock_seconds\": 2247.8, \"gpu_hours\": 0.62}, \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:45:52.617Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:45:57.340301+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 4, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.9214, \"2v3_auc\": 0.7446, \"3v4_auc\": 0.6238, \"4v5_auc\": 0.5771, \"3v4_ci_lower\": 0.6127, \"3v4_ci_upper\": 0.6349, \"theta\": 0.6}, \"completed_at\": \"2026-05-20T03:49:37.411Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.142}}"}
 
@@ -20036,7 +19868,7 @@ _source line 4488 · 2026-05-20T03:50:49.387750+00:00_
 
 ### Tool call
 
-_source line 4489 · 2026-05-20T03:50:49.892969+00:00_
+_source line 4485 · 2026-05-20T03:50:49.892969+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -20076,7 +19908,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4490 · 2026-05-20T03:50:58.090162+00:00_
+_source line 4486 · 2026-05-20T03:50:58.090162+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_arxiv_deberta_json_20260520T035050\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_check_arxiv_deberta_json_20260520T035050.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_arxiv_deberta_json_20260520T035050 started. Use get_worker_status('worker_check_arxiv_deberta_json_20260520T035050') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20098,7 +19930,7 @@ _source line 4490 · 2026-05-20T03:50:58.090162+00:00_
 
 ### Tool call
 
-_source line 4491 · 2026-05-20T03:50:58.293571+00:00_
+_source line 4487 · 2026-05-20T03:50:58.293571+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -20138,7 +19970,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 4492 · 2026-05-20T03:51:01.568403+00:00_
+_source line 4488 · 2026-05-20T03:51:01.568403+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_cuda0_cuda2_progress_20260520T035058\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_check_cuda0_cuda2_progress_20260520T035058.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_cuda0_cuda2_progress_20260520T035058 started. Use get_worker_status('worker_check_cuda0_cuda2_progress_20260520T035058') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20160,7 +19992,7 @@ _source line 4492 · 2026-05-20T03:51:01.568403+00:00_
 
 ### Assistant
 
-_source line 4493 · 2026-05-20T03:51:05.413430+00:00_
+_source line 4489 · 2026-05-20T03:51:05.413430+00:00_
 
 任务 1 完成：exp_deberta_arxiv_qwen1b5 已更新为 DONE/success（K*=4）。两个 Worker 并行执行任务 2（JSON 检查）和任务 3（进度检查），等待回调。
 
@@ -20187,7 +20019,7 @@ _source line 4493 · 2026-05-20T03:51:05.413430+00:00_
 
 ### User
 
-_source line 4494 · 2026-05-20T03:51:05.954117+00:00_
+_source line 4490 · 2026-05-20T03:51:05.954117+00:00_
 
 [Director 指令] 确认：
 
@@ -20215,7 +20047,7 @@ _source line 4494 · 2026-05-20T03:51:05.954117+00:00_
 
 ### Tool call
 
-_source line 4495 · 2026-05-20T03:51:35.118691+00:00_
+_source line 4491 · 2026-05-20T03:51:35.118691+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -20247,6 +20079,195 @@ called mcp__agent-ml-research__spawn_worker
   }
 }
 ````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 4492 · 2026-05-20T03:51:41.955983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_theta_sensitivity_arxiv_20260520T035135\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_theta_sensitivity_arxiv_20260520T035135.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_theta_sensitivity_arxiv_20260520T035135 started. Use get_worker_status('worker_analysis_theta_sensitivity_arxiv_20260520T035135') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6837
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 4493 · 2026-05-20T03:51:45.747191+00:00_
+
+3 个 Worker 并行运行中：
+- `check:arxiv_deberta_json` — 确认/生成 arXiv DeBERTa 输出 JSON
+- `check:cuda0_cuda2_progress` — cuda:0/cuda:2 实验进度
+- `analysis:theta_sensitivity_arxiv` — θ 敏感性分析
+
+等待回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+}
+```
+
+</details>
+
+---
+
+
+## Round 401
+
+## Round 401
+
+4 recorded events
+
+
+### User
+
+_source line 4494 · 2026-05-20T03:51:56.605253+00:00_
+
+[WORKER DONE] Worker worker_check_arxiv_deberta_json_20260520T035050 已完成（status=done）。用 `get_worker_status('worker_check_arxiv_deberta_json_20260520T035050')` 读取结果，然后处理。
+
+- worker_id: worker_check_arxiv_deberta_json_20260520T035050
+- project: gen-depth-contamination
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "source": "worker:done"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 4495 · 2026-05-20T03:52:03.624940+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_check_arxiv_deberta_json_20260520T035050"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_check_arxiv_deberta_json_20260520T035050"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 4496 · 2026-05-20T03:52:03.725911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_arxiv_deberta_json_20260520T035050\", \"status\": \"done\", \"task_type\": \"check:arxiv_deberta_json\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T03:50:51.052535+00:00\", \"ended_at\": \"2026-05-20T03:51:54.805300+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"JSON 文件存在且格式正确。汇报：\\n\\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_arxiv/arxiv_qwen1b5.json`\\n  （注意：实际路径是 `exp_deberta_arxiv/` 下而非 `exp_deberta_arxiv_qwen1b5/`）\\n- **状态**: 已存在，脚本自动生成，无需新建\\n- **格式检查**:\\n  - K* = 4, theta = 0.6\\n  - 5 对 pairwise AUC 均含 `auc`, `ci_lower`, `ci_upper`，还额外包含 `ci_lower_above_theta`, `boot_mean`, `boot_std`\\n  - 包含 OBD baseline 对比数据\\n  - 缺少 `kstar_indexing` 字段（但从 key 命名 `0v1`...`4v5` 可推断是 0-indexed depth pair）\\n  - 缺少 `domain` 和 `generator` 字段（但 `experiment` 字段 `arxiv_qwen1b5` 隐含了这些信息）\\n\\n内容与日志输出完全一致，数据完整可用。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 4497 · 2026-05-20T03:52:10.458648+00:00_
+
+arXiv DeBERTa JSON 已存在且格式正确，路径 `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_arxiv/arxiv_qwen1b5.json`。数据完整，包含 bootstrap CI 和 OBD baseline 对比。缺少 `kstar_indexing` 等元数据字段但不影响使用。
+
+等待另外两个 Worker（cuda:0/cuda:2 进度检查 + θ 敏感性分析）返回。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+}
+```
+
+</details>
+
+---
+
+
+## Round 402
+
+## Round 402
+
+8 recorded events
+
+
+### User
+
+_source line 4498 · 2026-05-20T03:52:26.758740+00:00_
+
+[WORKER DONE] Worker worker_check_cuda0_cuda2_progress_20260520T035058 已完成（status=done）。用 `get_worker_status('worker_check_cuda0_cuda2_progress_20260520T035058')` 读取结果，然后处理。
+
+- worker_id: worker_check_cuda0_cuda2_progress_20260520T035058
+- project: gen-depth-contamination
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "source": "worker:done"
+}
+```
 
 </details>
 

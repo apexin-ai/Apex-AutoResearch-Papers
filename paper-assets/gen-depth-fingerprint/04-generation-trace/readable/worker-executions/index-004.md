@@ -25,7 +25,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | compute tost d020 | 17 | 0 | [Read transcript](compute-tost-d020-copy-2.md) | [JSON](../../sessions/37/3747b405572614c6780c.json) |
 | exp temp curve expansion gpu01 | 138 | 0 | [Read transcript](exp-temp-curve-expansion-gpu01.md) | [JSON](../../sessions/4e/4e402d2be10540553799.json) |
 | exp instruct analysis gpu2 | 83 | 0 | [Read transcript](exp-instruct-analysis-gpu2.md) | [JSON](../../sessions/e0/e07a00357aa010ce7d98.json) |
-| exp gpu3 rebuttal prep | 39 | 0 | [Read transcript](exp-gpu3-rebuttal-prep.md) | [JSON](../../sessions/05/05ed81ae97dd7a2812e8.json) |
 | diag temp gen status check | 51 | 0 | [Read transcript](diag-temp-gen-status-check.md) | [JSON](../../sessions/9c/9c70d61c1992ae982227.json) |
 | code temp pipeline monitor | 122 | 0 | [Read transcript](code-temp-pipeline-monitor.md) | [JSON](../../sessions/9a/9af7d093e0a09e1032db.json) |
 | diag temp progress check v2 | 47 | 0 | [Read transcript](diag-temp-progress-check-v2.md) | [JSON](../../sessions/65/657457d3d28c7c34222e.json) |
@@ -39,7 +38,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | diag olmo t05 dedup and monitor | 64 | 0 | [Read transcript](diag-olmo-t05-dedup-and-monitor.md) | [JSON](../../sessions/28/2893a52b7e3d22dbae5d.json) |
 | fix delete bad eval and verify | 31 | 0 | [Read transcript](fix-delete-bad-eval-and-verify.md) | [JSON](../../sessions/39/39f214ac2506cd2b611b.json) |
 | diag qwen t09 final check | 20 | 0 | [Read transcript](diag-qwen-t09-final-check.md) | [JSON](../../sessions/b0/b0c857650d32903739ce.json) |
-| analysis holdout split validation | 62 | 0 | [Read transcript](analysis-holdout-split-validation.md) | [JSON](../../sessions/35/35181246dcdba720cbb7.json) |
+| analysis holdout split validation | 58 | 0 | [Read transcript](analysis-holdout-split-validation.md) | [JSON](../../sessions/35/35181246dcdba720cbb7.json) |
 | research emnlp2026 submission prep | 59 | 1 | [Read transcript](research-emnlp2026-submission-prep.md) | [JSON](../../sessions/d0/d0223d5eff79301c9499.json) |
 | analysis transfer ablation B | 41 | 0 | [Read transcript](analysis-transfer-ablation-b.md) | [JSON](../../sessions/34/34ff59f139474fa11e15.json) |
 | analysis qlora instruct prep A | 112 | 0 | [Read transcript](analysis-qlora-instruct-prep-a.md) | [JSON](../../sessions/37/375aa1d92206c249d4a0.json) |
@@ -73,10 +72,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | prep mistral instruct download | 660 | 0 | [Read transcript](prep-mistral-instruct-download.md) | [JSON](../../sessions/6c/6ca88aa4a47b5fa65af4.json) |
 | prep mistral instruct dl v2 | 51 | 0 | [Read transcript](prep-mistral-instruct-dl-v2.md) | [JSON](../../sessions/b2/b2184fc78e26a6f918f8.json) |
 | prep check tost instruct scripts | 61 | 0 | [Read transcript](prep-check-tost-instruct-scripts.md) | [JSON](../../sessions/98/98722321b957ed216b49.json) |
-| rebuttal w1 crossmodel cv | 20 | 0 | [Read transcript](rebuttal-w1-crossmodel-cv.md) | [JSON](../../sessions/e6/e6504d42900b3d5b2ee3.json) |
-| rebuttal w3 mistral instruct pipeline | 16 | 0 | [Read transcript](rebuttal-w3-mistral-instruct-pipeline.md) | [JSON](../../sessions/7d/7d250d1e650f1e854759.json) |
-| rebuttal w1 crossmodel cv v2 — Search the paper LaTeX files in /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-f | 112 | 1 | [Read transcript](rebuttal-w1-crossmodel-cv-v2.md) | [JSON](../../sessions/75/7553e3a2a4d88665d0ad.json) |
-| rebuttal w3 mistral instruct v2 | 339 | 0 | [Read transcript](rebuttal-w3-mistral-instruct-v2.md) | [JSON](../../sessions/3f/3f6f4cac314d0ce2bf22.json) |
 | paper regen fig2 framework | 69 | 0 | [Read transcript](paper-regen-fig2-framework.md) | [JSON](../../sessions/0e/0e4823175cb0c2316f82.json) |
 | paper regen fig2 v2 | 63 | 0 | [Read transcript](paper-regen-fig2-v2.md) | [JSON](../../sessions/38/38145407ee18ebcaf70d.json) |
 | paper check bootstrap n | 25 | 0 | [Read transcript](paper-check-bootstrap-n.md) | [JSON](../../sessions/e5/e53f89c3f58dd7473975.json) |

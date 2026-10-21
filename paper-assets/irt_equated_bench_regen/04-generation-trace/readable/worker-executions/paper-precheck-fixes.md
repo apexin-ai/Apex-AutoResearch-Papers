@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 44
+- **Events:** 36
 - **Recorded user turns:** 0
-- **Tool calls:** 16
+- **Tool calls:** 12
 - **Original source:** `logs/workers/worker_paper_precheck_fixes_20260523T042706.log`
 - **Structured JSON:** [`157531c458594945dbc4.json`](../../sessions/15/157531c458594945dbc4.json)
 
 ## Before a recorded user message
 
-44 recorded events
+36 recorded events
 
 ### Log line
 
@@ -546,123 +546,9 @@ _source line 11_
 
 ---
 
-### Tool call
-
-_source line 12_
-
-<details open><summary>🔧 Tool call — Read · `toolu_01X6FY2FyeYLSWAW4QSfecdL`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "e74d39fe-4b0d-4d25-a879-77d14140ce81",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01HYshR2uGRHHEneWStViBSe",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 711,
-      "cache_read_input_tokens": 25505,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 711
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
 ### Tool result
 
-_source line 13 · 2026-05-23T04:27:32.134Z_
-
-<details><summary>↩ Tool result · `toolu_01X6FY2FyeYLSWAW4QSfecdL`</summary>
-
-```text
-1	# Rebuttal Talking Points (prepared 2026-05-23)
-2	
-3	## B1 (Q3): Difficulty-dependent contamination defense
-4	**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。
-5	**Defense**: "We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability."
-6	**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.
-7	**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.
-8	
-9	## B5 (Q6): ≥500 threshold
-10	**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？
-11	**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。
-12	**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。
-13	
-14	## B8: Size-stratified DEFF
-15	**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？
-16	**Defense**: 没有单一"正确"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。
-17	
-18	## Negative results framing
-19	| Result | Framing | Strength |
-20	|--------|---------|----------|
-21	| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |
-22	| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |
-23	| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |
-24	| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |
-25	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "6b5165fc-4a5c-4a04-9d2a-b0f48b63dcfd",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-      "content": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-      "numLines": 25,
-      "startLine": 1,
-      "totalLines": 25
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 14 · 2026-05-23T04:27:32.237Z_
+_source line 12 · 2026-05-23T04:27:32.237Z_
 
 <details><summary>↩ Tool result · `toolu_015Lv2kVLvKADczRVrmXddCJ`</summary>
 
@@ -1398,7 +1284,7 @@ _source line 14 · 2026-05-23T04:27:32.237Z_
 
 ### Assistant
 
-_source line 15_
+_source line 13_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1465,7 +1351,7 @@ Now I'll proceed with removing all these entries and updating the relevant secti
 
 ### Assistant
 
-_source line 16_
+_source line 14_
 
 All 7 entries confirmed unused; `kim2019fpc` is referenced and will be kept. Now making all edits.
 
@@ -1509,7 +1395,7 @@ All 7 entries confirmed unused; `kim2019fpc` is referenced and will be kept. Now
 
 ### Tool call
 
-_source line 17_
+_source line 15_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_015zsuNfTYMmUb6weg4Q2tTG`</summary>
 
@@ -1564,7 +1450,7 @@ _source line 17_
 
 ### Tool result
 
-_source line 18 · 2026-05-23T04:27:46.828Z_
+_source line 16 · 2026-05-23T04:27:46.828Z_
 
 <details><summary>↩ Tool result · `toolu_015zsuNfTYMmUb6weg4Q2tTG`</summary>
 
@@ -1625,7 +1511,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 19_
+_source line 17_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_01Qh5Uf3TP56Zijs8x6XT7qr`</summary>
 
@@ -1680,7 +1566,7 @@ _source line 19_
 
 ### Tool result
 
-_source line 20 · 2026-05-23T04:27:49.700Z_
+_source line 18 · 2026-05-23T04:27:49.700Z_
 
 <details><summary>↩ Tool result · `toolu_01Qh5Uf3TP56Zijs8x6XT7qr`</summary>
 
@@ -1742,7 +1628,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 21_
+_source line 19_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_017ParKBGfvUFgajpYzSDbo3`</summary>
 
@@ -1797,7 +1683,7 @@ _source line 21_
 
 ### Tool result
 
-_source line 22 · 2026-05-23T04:27:54.961Z_
+_source line 20 · 2026-05-23T04:27:54.961Z_
 
 <details><summary>↩ Tool result · `toolu_017ParKBGfvUFgajpYzSDbo3`</summary>
 
@@ -1857,7 +1743,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 23_
+_source line 21_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_01JekRZDq1PMsGbucS5i9eZ6`</summary>
 
@@ -1912,7 +1798,7 @@ _source line 23_
 
 ### Tool result
 
-_source line 24 · 2026-05-23T04:27:55.055Z_
+_source line 22 · 2026-05-23T04:27:55.055Z_
 
 <details><summary>↩ Tool result · `toolu_01JekRZDq1PMsGbucS5i9eZ6`</summary>
 
@@ -1974,7 +1860,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 25_
+_source line 23_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_01BhvLA2LGUZzCjrpHxYMw7F`</summary>
 
@@ -2029,7 +1915,7 @@ _source line 25_
 
 ### Tool result
 
-_source line 26 · 2026-05-23T04:27:56.914Z_
+_source line 24 · 2026-05-23T04:27:56.914Z_
 
 <details><summary>↩ Tool result · `toolu_01BhvLA2LGUZzCjrpHxYMw7F`</summary>
 
@@ -2089,7 +1975,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 27_
+_source line 25_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_01Evb41hcKyoEi3mMb8Z6L6s`</summary>
 
@@ -2144,7 +2030,7 @@ _source line 27_
 
 ### Tool result
 
-_source line 28 · 2026-05-23T04:27:59.316Z_
+_source line 26 · 2026-05-23T04:27:59.316Z_
 
 <details><summary>↩ Tool result · `toolu_01Evb41hcKyoEi3mMb8Z6L6s`</summary>
 
@@ -2205,7 +2091,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Tool call
 
-_source line 29_
+_source line 27_
 
 <details open><summary>🔧 Tool call — Edit · `toolu_01CH2k1YPk4tjhkeE49UNqyC`</summary>
 
@@ -2260,7 +2146,7 @@ _source line 29_
 
 ### Tool result
 
-_source line 30 · 2026-05-23T04:28:01.595Z_
+_source line 28 · 2026-05-23T04:28:01.595Z_
 
 <details><summary>↩ Tool result · `toolu_01CH2k1YPk4tjhkeE49UNqyC`</summary>
 
@@ -2323,7 +2209,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_be
 
 ### Assistant
 
-_source line 31_
+_source line 29_
 
 Now update the three sections in rebuttal_talking_points.md.
 
@@ -2365,339 +2251,9 @@ Now update the three sections in rebuttal_talking_points.md.
 
 ---
 
-### Tool call
-
-_source line 32_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_01RZiETcXjypRwS4FTHuD2NY`</summary>
-
-```json
-{
-  "replace_all": false,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-  "old_string": "**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.",
-  "new_string": "**Defense**: \"We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts).\""
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "910a80b6-3a42-4d27-85b9-29263f3e5884",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01Pnxjz6z5LMio24z6EWmNES",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3668,
-      "cache_read_input_tokens": 38648,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3668
-      },
-      "output_tokens": 2,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 33 · 2026-05-23T04:28:21.121Z_
-
-<details><summary>↩ Tool result · `toolu_01RZiETcXjypRwS4FTHuD2NY`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md has been updated successfully.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "c0e33dd0-443d-4b80-89de-bf5b07c3b9fc",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-    "oldString": "**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.",
-    "newString": "**Defense**: \"We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts).\"",
-    "originalFile": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-    "structuredPatch": [
-      {
-        "oldStart": 2,
-        "oldLines": 9,
-        "newStart": 2,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " ## B1 (Q3): Difficulty-dependent contamination defense",
-          " **审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。",
-          "-**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"",
-          "-**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.",
-          "-**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.",
-          "+**Defense**: \"We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts).\"",
-          " ",
-          " ## B5 (Q6): ≥500 threshold",
-          " **审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？"
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": false
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 34_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_014gUBaJPigvA22kXLqPyGrm`</summary>
-
-```json
-{
-  "replace_all": false,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-  "old_string": "**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。",
-  "new_string": "**Defense**: \"K=3 and K=5 yield near-identical power: TPR difference < 0.02 across all 30 conditions (within Monte Carlo noise). At N ≥ 80, K=3 achieves TPR = 0.454–0.571, AUC = 0.905 at N = 100 (Table 5). Smaller corpora can therefore use fewer strata with no power loss, confirmed empirically rather than assumed from prior literature.\""
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "44fd7e67-62fc-40b1-880a-390ca5db20be",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01Pnxjz6z5LMio24z6EWmNES",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3668,
-      "cache_read_input_tokens": 38648,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3668
-      },
-      "output_tokens": 2,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 35 · 2026-05-23T04:28:30.386Z_
-
-<details><summary>↩ Tool result · `toolu_014gUBaJPigvA22kXLqPyGrm`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md has been updated successfully.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "9e1500c4-3fc2-4106-9de7-eb598e0044b2",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-    "oldString": "**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。",
-    "newString": "**Defense**: \"K=3 and K=5 yield near-identical power: TPR difference < 0.02 across all 30 conditions (within Monte Carlo noise). At N ≥ 80, K=3 achieves TPR = 0.454–0.571, AUC = 0.905 at N = 100 (Table 5). Smaller corpora can therefore use fewer strata with no power loss, confirmed empirically rather than assumed from prior literature.\"",
-    "originalFile": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts).\"\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-    "structuredPatch": [
-      {
-        "oldStart": 6,
-        "oldLines": 8,
-        "newStart": 6,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " ## B5 (Q6): ≥500 threshold",
-          " **审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？",
-          "-**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。",
-          "-**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.905。详见 Tab k3_power + §5.2。",
-          "+**Defense**: \"K=3 and K=5 yield near-identical power: TPR difference < 0.02 across all 30 conditions (within Monte Carlo noise). At N ≥ 80, K=3 achieves TPR = 0.454–0.571, AUC = 0.905 at N = 100 (Table 5). Smaller corpora can therefore use fewer strata with no power loss, confirmed empirically rather than assumed from prior literature.\"",
-          " ",
-          " ## B8: Size-stratified DEFF",
-          " **审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？"
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": false
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 36_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_01TG2WsFG5aHq3hLMTcf3j21`</summary>
-
-```json
-{
-  "replace_all": false,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-  "old_string": "**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。",
-  "new_string": "**Defense**: \"Table A.3 provides size-stratified DEFF: tier-level ICC decreases monotonically from 0.246 (2–10 members) to 0.082 (>200 members), confirming that mega-families drive the weighted estimate's conservatism. At small family sizes DEFF correction has negligible impact (Adj. C% = 31.3%); the 13.5% lower bound is driven entirely by the two mega-families. This empirical size–ICC gradient directly undermines the homogeneity assumption underlying the weighted-mean variant, supporting the simple-mean estimate (~29%) as the more appropriate correction.\""
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "461f77cd-4c42-4bd9-b54b-cf79c3460a3b",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01Pnxjz6z5LMio24z6EWmNES",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 3668,
-      "cache_read_input_tokens": 38648,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 3668
-      },
-      "output_tokens": 2,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 37 · 2026-05-23T04:28:38.679Z_
-
-<details><summary>↩ Tool result · `toolu_01TG2WsFG5aHq3hLMTcf3j21`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md has been updated successfully.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "0677d5c3-1b0d-4218-8c7d-265a85492e23",
-  "uuid": "c8bd2b3f-115b-4418-870e-00b4fb37b453",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-    "oldString": "**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。",
-    "newString": "**Defense**: \"Table A.3 provides size-stratified DEFF: tier-level ICC decreases monotonically from 0.246 (2–10 members) to 0.082 (>200 members), confirming that mega-families drive the weighted estimate's conservatism. At small family sizes DEFF correction has negligible impact (Adj. C% = 31.3%); the 13.5% lower bound is driven entirely by the two mega-families. This empirical size–ICC gradient directly undermines the homogeneity assumption underlying the weighted-mean variant, supporting the simple-mean estimate (~29%) as the more appropriate correction.\"",
-    "originalFile": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts).\"\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: \"K=3 and K=5 yield near-identical power: TPR difference < 0.02 across all 30 conditions (within Monte Carlo noise). At N ≥ 80, K=3 achieves TPR = 0.454–0.571, AUC = 0.905 at N = 100 (Table 5). Smaller corpora can therefore use fewer strata with no power loss, confirmed empirically rather than assumed from prior literature.\"\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-    "structuredPatch": [
-      {
-        "oldStart": 10,
-        "oldLines": 7,
-        "newStart": 10,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " ## B8: Size-stratified DEFF",
-          " **审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？",
-          "-**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。",
-          "+**Defense**: \"Table A.3 provides size-stratified DEFF: tier-level ICC decreases monotonically from 0.246 (2–10 members) to 0.082 (>200 members), confirming that mega-families drive the weighted estimate's conservatism. At small family sizes DEFF correction has negligible impact (Adj. C% = 31.3%); the 13.5% lower bound is driven entirely by the two mega-families. This empirical size–ICC gradient directly undermines the homogeneity assumption underlying the weighted-mean variant, supporting the simple-mean estimate (~29%) as the more appropriate correction.\"",
-          " ",
-          " ## Negative results framing",
-          " | Result | Framing | Strength |"
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": false
-  }
-}
-```
-
-</details>
-
----
-
 ### Assistant
 
-_source line 38_
+_source line 30_
 
 Edits done. Now commit and compile.
 
@@ -2741,7 +2297,7 @@ Edits done. Now commit and compile.
 
 ### Tool call
 
-_source line 39_
+_source line 31_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01FweCLp6titF9iwcWANy3bi`</summary>
 
@@ -2794,7 +2350,7 @@ _source line 39_
 
 ### Tool result
 
-_source line 40 · 2026-05-23T04:28:42.811Z_
+_source line 32 · 2026-05-23T04:28:42.811Z_
 
 <details><summary>↩ Tool result · `toolu_01FweCLp6titF9iwcWANy3bi`</summary>
 
@@ -2843,7 +2399,7 @@ After doing this, you may fix the identity used for this commit with:
 
 ### Tool call
 
-_source line 41_
+_source line 33_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01HyhoV9fuAGWqTw8QMZJe45`</summary>
 
@@ -2897,7 +2453,7 @@ _source line 41_
 
 ### Tool result
 
-_source line 42 · 2026-05-23T04:28:45.881Z_
+_source line 34 · 2026-05-23T04:28:45.881Z_
 
 <details><summary>↩ Tool result · `toolu_01HyhoV9fuAGWqTw8QMZJe45`</summary>
 
@@ -2950,7 +2506,7 @@ Latexmk: All targets (main.pdf) are up-to-date
 
 ### Assistant
 
-_source line 43_
+_source line 35_
 
 编译成功，无错误。
 
@@ -2999,7 +2555,7 @@ _source line 43_
 
 ### Task result
 
-_source line 44_
+_source line 36_
 
 编译成功，无错误。
 

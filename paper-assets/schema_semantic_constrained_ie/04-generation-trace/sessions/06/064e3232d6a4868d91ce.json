@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_08c152bc06b6b60d10dd15b4d91ab1f1_20260515T115029_823112.jsonl",
     "occurrence": 1,
-    "bytes": 364100,
-    "sha256": "b51f36ffebe4ea65d0edcf3b108c84eebec60964c9ade3ca394e06eb2d0ac452"
+    "bytes": 360982,
+    "sha256": "75226b1101b0c1bceff00170a1a18a0670858477de2baa7739b4515c4249c2a2"
   },
   "statistics": {
-    "messages": 402,
+    "messages": 400,
     "user_turns": 31,
-    "tool_calls": 179,
+    "tool_calls": 178,
     "roles": {
       "user": 31,
-      "tool_call": 179,
-      "tool_result": 167,
+      "tool_call": 178,
+      "tool_result": 166,
       "assistant": 25
     },
     "unparsed_lines_preserved": 0,
@@ -7591,44 +7591,6 @@
         },
         {
           "source_line": 380,
-          "timestamp": "2026-05-15T11:48:01.323740+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md"
-            }
-          },
-          "id": "event-000380"
-        },
-        {
-          "source_line": 381,
-          "timestamp": "2026-05-15T11:48:01.375140+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# W4: Table 1 vs Table 3 DocRED Unconstrained 数据不一致 — 根因报告\n2\t\n3\t**调研日期**: 2026-05-15\n4\t**服务器**: westd-16980\n5\t**项目代码**: `/root/schema_semantic_constrained_ie/`\n6\t\n7\t---\n8\t\n9\t## 1. 审稿人观察的数字差异\n10\t\n11\t| 表 | 章节 | DR | RV | ET | CF |\n12\t|---|---|---|---|---|---|\n13\t| Table 1 (`tab:prompt_comparison`) | §5.1 / `section3_violation_landscape.tex` | **18.7** | **28.9** | **7.5** | 0.1 |\n14\t| Table 3 (`tab:cross-model`) | §5.2 / `section5_crossmodel_draft.tex` | **18.46** | **29.66** | **2.48** | 0.10 |\n15\t\n16\t两个表都标注为同一实验 (`phase0_docred_unconstrained` ↔ `phase2_docred_unconstrained`)，使用同一模型 (Qwen3-8B)。\n17\t\n18\t---\n19\t\n20\t## 2. 关键发现\n21\t\n22\t### 2.1 Prompt 完全一致 ✅\n23\t\n24\t`run_extraction_docred.py:91 build_prompt(document_text, relation_list_str, schema_informed=False)` 是项目里唯一的 prompt 构造函数。Phase 0 unconstrained 与 Phase 2 unconstrained **调用的是同一个函数 + 同一个 `schema_informed=False` 参数**，没有任何 prompt 差异。所以差异不来自 prompt。\n25\t\n26\t### 2.2 输入 JSONL 完全一致 ✅\n27\t\n28\t服务器上当前只有 **一个** DocRED unconstrained 推理输出文件：\n29\t\n30\t```\n31\t/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl\n32\t  size = 10,503,924 bytes\n33\t  mtime = 2026-05-14 21:09:47\n34\t  lines = 998 docs\n35\t```\n36\t\n37\t所有 4 个相关的 violation report 都基于这同一个文件，可由共同字段验证：\n38\t- `total_documents=998, documents_checked=986, parse_failures=12`\n39\t- `total_triples_extracted=17497, total_entities_extracted=20171`\n40\t- 都报告 `domain_range_violations=3230`, `relation_vocabulary_violations=5189`\n41\t\n42\t所以差异 **不来自不同的推理输出**。\n43\t\n44\t### 2.3 差异完全来自 checker 版本 ✅\n45\t\n46\t`violation_checker_docred.py` 有两个版本：\n47\t\n48\t| 版本 | 行 | ET 计数逻辑 | 别名归一 |\n49\t|---|---|---|---|\n50\t| **v1** (`.bak` / `.bak2`) | 99-135 | triple-count: 每个 entity 在 `entities` 列表中算一次，在 relation 的 head 中算一次，tail 中算一次 | 只有 `.upper()` |\n51\t| **v2** (当前 `violation_checker_docred.py`) | 109-148 | unique-count: 用 `(text.lower().strip(), normalized_type)` 去重，每个 unique entity 只算一次违规 | `ENTITY_TYPE_ALIASES` 映射 `PERSON→PER, ORGANIZATION→ORG, ...` |\n52\t\n53\t注意：v2 的 docstring 显式说明了「`v2: ET violation\n…[truncated 5984 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-000381"
-        },
-        {
-          "source_line": 382,
           "timestamp": "2026-05-15T11:48:31.912608+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7646,10 +7608,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000382"
+          "id": "event-000380"
         },
         {
-          "source_line": 383,
+          "source_line": 381,
           "timestamp": "2026-05-15T11:48:32.165349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7664,10 +7626,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 252
           },
-          "id": "event-000383"
+          "id": "event-000381"
         },
         {
-          "source_line": 384,
+          "source_line": 382,
           "timestamp": "2026-05-15T11:48:39.340847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7689,10 +7651,10 @@
               "tags": "['w1', 'cf-fallback', 'dryrun', 'rebuttal']"
             }
           },
-          "id": "event-000384"
+          "id": "event-000382"
         },
         {
-          "source_line": 385,
+          "source_line": 383,
           "timestamp": "2026-05-15T11:48:40.138994+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7707,10 +7669,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 798
           },
-          "id": "event-000385"
+          "id": "event-000383"
         },
         {
-          "source_line": 386,
+          "source_line": 384,
           "timestamp": "2026-05-15T11:48:40.191844+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7728,10 +7690,10 @@
               "description": "Check if W4 artifacts directory exists"
             }
           },
-          "id": "event-000386"
+          "id": "event-000384"
         },
         {
-          "source_line": 387,
+          "source_line": 385,
           "timestamp": "2026-05-15T11:48:40.344773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7746,10 +7708,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-000387"
+          "id": "event-000385"
         },
         {
-          "source_line": 388,
+          "source_line": 386,
           "timestamp": "2026-05-15T11:48:44.261890+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7767,10 +7729,10 @@
               "description": "Create W4 artifacts directory"
             }
           },
-          "id": "event-000388"
+          "id": "event-000386"
         },
         {
-          "source_line": 389,
+          "source_line": 387,
           "timestamp": "2026-05-15T11:48:44.312721+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7785,10 +7747,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-000389"
+          "id": "event-000387"
         },
         {
-          "source_line": 390,
+          "source_line": 388,
           "timestamp": "2026-05-15T11:49:00.631285+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7806,10 +7768,10 @@
               "content": "{\n  \"metadata\": {\n    \"description\": \"W4 Table 1 DocRED violation rates — unified v2 checker (fixed_20260514_v2: strip + alias + unique_et)\",\n    \"source_jsonl\": \"outputs/docred_unconstrained.jsonl + outputs/raw_outputs_docred_schema.jsonl\",\n    \"checker_version\": \"fixed_20260514_v2\",\n    \"dataset\": \"DocRED dev.json (998 docs)\",\n    \"model\": \"Qwen3-8B\",\n    \"date\": \"2026-05-15\",\n    \"note\": \"ET is the only metric affected by v1→v2 transition (unique entity dedup + alias normalization). DR/RV/CF unchanged.\"\n  },\n  \"rows\": [\n    {\n      \"dataset\": \"DocRED\",\n      \"mode\": \"Unconstrained\",\n      \"checker_version\": \"v2\",\n      \"violations\": {\n        \"DR\": {\"count\": 3230, \"rate\": 18.46, \"denominator\": \"total_triples\"},\n        \"RV\": {\"count\": 5189, \"rate\": 29.66, \"denominator\": \"total_triples\"},\n        \"ET\": {\"count\": 500, \"rate\": 2.48, \"denominator\": \"total_entities_unique\"},\n        \"CF\": {\"count\": 17, \"rate\": 0.10, \"denominator\": \"total_triples\"}\n      },\n      \"extraction_stats\": {\n        \"total_documents\": 998,\n        \"documents_checked\": 986,\n        \"parse_failures\": 12,\n        \"total_triples\": 17497,\n        \"total_entities\": 20171\n      },\n      \"exp_id\": \"phase2_docred_unconstrained\"\n    },\n    {\n      \"dataset\": \"DocRED\",\n      \"mode\": \"Schema-informed\",\n      \"checker_version\": \"v2\",\n      \"violations\": {\n        \"DR\": {\"count\": null, \"rate\": 12.84, \"denominator\": \"total_triples\", \"note\": \"unchanged from v1\"},\n        \"RV\": {\"count\": null, \"rate\": 18.41, \"denominator\": \"total_triples\", \"note\": \"unchanged from v1\"},\n        \"ET\": {\"count\": null, \"rate\": 0.19, \"denominator\": \"total_entities_unique\", \"note\": \"v1 was 0.61%, v2 dedup reduced to 0.19%\"},\n        \"CF\": {\"count\": null, \"rate\": 0.15, \"denominator\": \"total_triples\", \"note\": \"unchanged from v1\"}\n      },\n      \"exp_id\": \"phase0_docred_schema\"\n    }\n  ],\n  \"v1_vs_v2_comparison\": {\n    \"unconstrained\": {\n      \"ET_v1\": 8.18,\n      \"ET_v2\": 2.48,\n      \"ET_delta\": -5.70,\n      \"note\": \"v1 triple-counts each entity appearance; v2 deduplicates by (text.lower().strip(), normalized_type)\"\n    },\n    \"schema_informed\": {\n      \"ET_v1\": 0.61,\n      \"ET_v2\": 0.19,\n      \"ET_delta\": -0.42,\n      \"note\": \"Same v1→v2 dedup logic, smaller absolute change due to fewer violations\"\n    }\n  }\n}\n"
             }
           },
-          "id": "event-000390"
+          "id": "event-000388"
         },
         {
-          "source_line": 391,
+          "source_line": 389,
           "timestamp": "2026-05-15T11:49:01.535443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7824,10 +7786,10 @@
             "tool": "Write",
             "elapsed_ms": 904
           },
-          "id": "event-000391"
+          "id": "event-000389"
         },
         {
-          "source_line": 392,
+          "source_line": 390,
           "timestamp": "2026-05-15T11:49:03.544207+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7845,10 +7807,10 @@
               "content": "dataset,mode,checker_version,DR_rate,RV_rate,ET_rate,CF_rate,exp_id,note\nDocRED,Unconstrained,v2,18.46,29.66,2.48,0.10,phase2_docred_unconstrained,\nDocRED,Schema-informed,v2,12.84,18.41,0.19,0.15,phase0_docred_schema,ET v1→v2: 0.61→0.19\nDocRED,Unconstrained,v1,18.46,29.66,8.18,0.10,phase2_docred_unconstrained,v1 triple-count ET\nDocRED,Schema-informed,v1,12.84,18.41,0.61,0.15,phase0_docred_schema,v1 triple-count ET\n"
             }
           },
-          "id": "event-000392"
+          "id": "event-000390"
         },
         {
-          "source_line": 393,
+          "source_line": 391,
           "timestamp": "2026-05-15T11:49:03.645278+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7863,10 +7825,10 @@
             "tool": "Write",
             "elapsed_ms": 101
           },
-          "id": "event-000393"
+          "id": "event-000391"
         },
         {
-          "source_line": 394,
+          "source_line": 392,
           "timestamp": "2026-05-15T11:49:08.420703+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7888,10 +7850,10 @@
               "tags": "['w4', 'rebuttal', 'violation-checker', 'v2']"
             }
           },
-          "id": "event-000394"
+          "id": "event-000392"
         },
         {
-          "source_line": 395,
+          "source_line": 393,
           "timestamp": "2026-05-15T11:49:08.471486+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7906,10 +7868,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 50
           },
-          "id": "event-000395"
+          "id": "event-000393"
         },
         {
-          "source_line": 396,
+          "source_line": 394,
           "timestamp": "2026-05-15T11:49:18.672706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7927,10 +7889,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000396"
+          "id": "event-000394"
         },
         {
-          "source_line": 397,
+          "source_line": 395,
           "timestamp": "2026-05-15T11:49:18.773545+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7945,10 +7907,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-000397"
+          "id": "event-000395"
         },
         {
-          "source_line": 398,
+          "source_line": 396,
           "timestamp": "2026-05-15T11:49:38.576865+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -7966,10 +7928,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-000398"
+          "id": "event-000396"
         },
         {
-          "source_line": 399,
+          "source_line": 397,
           "timestamp": "2026-05-15T11:49:42.528755+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -7984,10 +7946,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3951
           },
-          "id": "event-000399"
+          "id": "event-000397"
         },
         {
-          "source_line": 400,
+          "source_line": 398,
           "timestamp": "2026-05-15T11:49:46.691116+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -8000,17 +7962,17 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
           },
-          "id": "event-000400"
+          "id": "event-000398"
         }
       ],
-      "message_count": 34
+      "message_count": 32
     },
     {
       "number": 31,
       "boundary": "recorded_user_message",
       "messages": [
         {
-          "source_line": 401,
+          "source_line": 399,
           "timestamp": "2026-05-15T11:49:47.535212+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -8024,10 +7986,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
             "source": "system:ralph_loop"
           },
-          "id": "event-000401"
+          "id": "event-000399"
         },
         {
-          "source_line": 402,
+          "source_line": 400,
           "timestamp": "2026-05-15T11:50:29.821283+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -8040,7 +8002,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1"
           },
-          "id": "event-000402"
+          "id": "event-000400"
         }
       ],
       "message_count": 2

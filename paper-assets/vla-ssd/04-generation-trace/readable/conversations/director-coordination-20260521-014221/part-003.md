@@ -4,170 +4,11 @@
 
 [← Part 2](part-002.md) · [Transcript overview](../director-coordination-20260521-014221.md) · [Structured JSON](../../../sessions/a9/a914d2a5b44fb2f25be9.json)
 
-## Round 210
-
-### Tool result
-
-_source line 1315 · 2026-05-20T17:59:40.270129+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6feb267980a0b1647e3332a3556\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-  "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
-  "elapsed_ms": 3770
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 1316 · 2026-05-20T17:59:54.922197+00:00_
-
-Paper Agent 在处理最后一批修复。等完成后编译 final PDF，准备重新提交 fresh 审稿。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
-}
-```
-
-</details>
-
----
-
-
 ## Round 211
-
-## Round 211
-
-44 recorded events
-
-
-### User
-
-_source line 1317 · 2026-05-20T18:05:01.731287+00:00_
-
-[Paper Agent 回复]:
-[写作进展] Patch — 最后一批修复 (Round 14) 完成
-
-编译通过，0 critical warnings，32 页总计，主体 8 页合规（第 8 页 Discussion + Limitations + Conclusion，第 9 页起 References）。
-
-**逐项 diff：**
-
-### 1. W-SF3 缺失引用
-**新增 2 篇 + 正文引用**：
-- `aghajanyan2021intrinsic`（ACL 2021）+ `kumar2022finetuning`（ICLR 2022）加入 bib
-- Related Work §VLA 段新增合并句："Fine-tuning operates in a low intrinsic dimension~[Aghajanyan] and can distort pretrained features~[Kumar]; our per-layer analysis reveals where restructuring concentrates and finds VLA training primarily redistributes rather than distorts, with image geometry largely preserved (Δ ≤ 1.7%)."
-
-**Bib 更新检查**：
-- kim2024_openvla → 已是 @inproceedings CoRL 2024 PMLR ✓
-- karamcheti2024 → 已是 @inproceedings ICML 2024 PMLR ✓
-- touvron2023_llama2 → arXiv 保留（Director 指定）✓
-- black2024_pi0 → 仍为 arXiv（未找到正式发表版本）
-
-### 2. W-SF4 单 checkpoint 限制
-Discussion Limitations 新增："Llama-2's 9/32 pretrained instruction-dominant heads may reflect text bias (+15-head delta isolates fine-tuning); we analyze only the final checkpoint, preventing characterization of routing emergence dynamics."（与 text bias 句合并以节省空间）
-
-### 3. W-SF6 Figure 1 位置
-✓ 确认 Figure 1 (teaser) 在 page 1 顶部，含 architecture overview + 32-layer attention profile。
-
-**页数管理**：新增内容需要空间补偿——Related Work VLA analysis 段从 7 句压缩为 3 句（保留所有引用），Limitations 从 5 句压缩为 3 句（合并同类项）。净效果：+2 引用 +1 limitation 句，0 净增行数。
-
-**Round 14 全部修复完成。**
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-  "source": "paper_agent"
-}
-```
-
-</details>
-
----
-
 
 ### Tool call
 
-_source line 1318 · 2026-05-20T18:05:20.384557+00:00_
-
-called mcp__agent-ml-research__paper_compile_and_check
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
-
-```json
-{
-  "project": "vla-ssd",
-  "max_pages": "8",
-  "min_pages": "7",
-  "preview": "False"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "tool_args": {
-    "project": "vla-ssd",
-    "max_pages": "8",
-    "min_pages": "7",
-    "preview": "False"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1319 · 2026-05-20T18:05:20.586057+00:00_
-
-{"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `superscript' on input line 717.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 717.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[28]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 835.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `\\\\times' on input line 835.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 835.\\n\\n\\nUnderfull \\\\vbox (badness 1033) has occurred while \\\\output is active []\\n\\n [29]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[30])\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [31]\\n[32] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: E4AF95BCB29698C16D0B5194EE4FCCA2;12824.\\n ) \\nHere is how much of TeX's memory you used:\\n 14045 strings out of 469438\\n 223667 string characters out of 5468411\\n 706028 words of memory out of 5000000\\n 42267 multiletter control sequences out of 15000+600000\\n 669693 words of font info for 90 fonts, out of 8000000 for 9000\\n 59 h
-…[truncated 5224 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1320 · 2026-05-20T18:07:51.284124+00:00_
+_source line 1318 · 2026-05-20T18:07:51.284124+00:00_
 
 called ToolSearch
 
@@ -203,7 +44,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1321 · 2026-05-20T18:07:51.334829+00:00_
+_source line 1319 · 2026-05-20T18:07:51.334829+00:00_
 
 No matching deferred tools found
 
@@ -225,7 +66,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1322 · 2026-05-20T18:07:53.644715+00:00_
+_source line 1320 · 2026-05-20T18:07:53.644715+00:00_
 
 called ToolSearch
 
@@ -261,7 +102,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1323 · 2026-05-20T18:07:53.695320+00:00_
+_source line 1321 · 2026-05-20T18:07:53.695320+00:00_
 
 No matching deferred tools found
 
@@ -283,7 +124,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1324 · 2026-05-20T18:07:56.408127+00:00_
+_source line 1322 · 2026-05-20T18:07:56.408127+00:00_
 
 called ToolSearch
 
@@ -319,7 +160,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1325 · 2026-05-20T18:07:56.458815+00:00_
+_source line 1323 · 2026-05-20T18:07:56.458815+00:00_
 
 
 
@@ -341,7 +182,7 @@ _source line 1325 · 2026-05-20T18:07:56.458815+00:00_
 
 ### Tool call
 
-_source line 1326 · 2026-05-20T18:07:59.521619+00:00_
+_source line 1324 · 2026-05-20T18:07:59.521619+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -375,7 +216,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool call
 
-_source line 1327 · 2026-05-20T18:07:59.523860+00:00_
+_source line 1325 · 2026-05-20T18:07:59.523860+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -409,7 +250,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 1328 · 2026-05-20T18:07:59.574352+00:00_
+_source line 1326 · 2026-05-20T18:07:59.574352+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":672}"}
 
@@ -431,7 +272,7 @@ _source line 1328 · 2026-05-20T18:07:59.574352+00:00_
 
 ### Tool result
 
-_source line 1329 · 2026-05-20T18:08:00.230463+00:00_
+_source line 1327 · 2026-05-20T18:08:00.230463+00:00_
 
 {"result":"**项目**: `vla-ssd`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-19183 (connect.westd.seetacloud.com)\n✓ 代码路径  /root/vla-ssd\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 87 条记录\n**论文溯源**: 覆盖率 109/114\n\n── 📊 研究进度 ──\n实验: 117 个 (待处理 7 | 完成 110 | 成功 84)\n\n  mvp2_action_dino        DONE (success)\n  mvp2_action_untrained   DONE (success)\n  mvp2_action_trained     DONE (success)\n  mvp_controlb_untrained  DONE (success)\n  mvp_controlb_trained    DONE (success)\n  mvp_001                 DONE (negative)\n  mvp_probe_untrained     DONE (success)\n  mvp_probe_trained       DONE (negative)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- libero_finetuned_probe（准备中）\n- behavioral_smoketest_diag（准备中）\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional"}
 
@@ -453,7 +294,7 @@ _source line 1329 · 2026-05-20T18:08:00.230463+00:00_
 
 ### Tool call
 
-_source line 1330 · 2026-05-20T18:08:04.554190+00:00_
+_source line 1328 · 2026-05-20T18:08:04.554190+00:00_
 
 called ToolSearch
 
@@ -489,7 +330,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1331 · 2026-05-20T18:08:04.604828+00:00_
+_source line 1329 · 2026-05-20T18:08:04.604828+00:00_
 
 No matching deferred tools found
 
@@ -511,7 +352,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1332 · 2026-05-20T18:08:08.721121+00:00_
+_source line 1330 · 2026-05-20T18:08:08.721121+00:00_
 
 called ToolSearch
 
@@ -547,7 +388,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1333 · 2026-05-20T18:08:08.771819+00:00_
+_source line 1331 · 2026-05-20T18:08:08.771819+00:00_
 
 
 
@@ -569,7 +410,7 @@ _source line 1333 · 2026-05-20T18:08:08.771819+00:00_
 
 ### Tool call
 
-_source line 1334 · 2026-05-20T18:08:12.637106+00:00_
+_source line 1332 · 2026-05-20T18:08:12.637106+00:00_
 
 called ToolSearch
 
@@ -605,7 +446,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1335 · 2026-05-20T18:08:12.637592+00:00_
+_source line 1333 · 2026-05-20T18:08:12.637592+00:00_
 
 No matching deferred tools found
 
@@ -627,7 +468,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1336 · 2026-05-20T18:08:13.039274+00:00_
+_source line 1334 · 2026-05-20T18:08:13.039274+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -663,7 +504,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1337 · 2026-05-20T18:08:13.190430+00:00_
+_source line 1335 · 2026-05-20T18:08:13.190430+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `superscript' on input line 717.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 717.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[28]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 835.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `\\\\times' on input line 835.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 835.\\n\\n\\nUnderfull \\\\vbox (badness 1033) has occurred while \\\\output is active []\\n\\n [29]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[30])\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [31]\\n[32] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: E4AF95BCB29698C16D0B5194EE4FCCA2;12824.\\n ) \\nHere is how much of TeX's memory you used:\\n 14045 strings out of 469438\\n 223667 string characters out of 5468411\\n 706028 words of memory out of 5000000\\n 42267 multiletter control sequences out of 15000+600000\\n 669693 words of font info for 90 fonts, out of 8000000 for 9000\\n 59 hy
 …[truncated 5179 chars]
@@ -686,7 +527,7 @@ _source line 1337 · 2026-05-20T18:08:13.190430+00:00_
 
 ### Tool call
 
-_source line 1338 · 2026-05-20T18:08:16.806122+00:00_
+_source line 1336 · 2026-05-20T18:08:16.806122+00:00_
 
 called ToolSearch
 
@@ -722,7 +563,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1339 · 2026-05-20T18:08:16.856810+00:00_
+_source line 1337 · 2026-05-20T18:08:16.856810+00:00_
 
 No matching deferred tools found
 
@@ -744,7 +585,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1340 · 2026-05-20T18:08:20.724673+00:00_
+_source line 1338 · 2026-05-20T18:08:20.724673+00:00_
 
 called ToolSearch
 
@@ -780,7 +621,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1341 · 2026-05-20T18:08:20.825533+00:00_
+_source line 1339 · 2026-05-20T18:08:20.825533+00:00_
 
 
 
@@ -802,7 +643,7 @@ _source line 1341 · 2026-05-20T18:08:20.825533+00:00_
 
 ### Tool call
 
-_source line 1342 · 2026-05-20T18:08:32.372872+00:00_
+_source line 1340 · 2026-05-20T18:08:32.372872+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -852,7 +693,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1343 · 2026-05-20T18:08:37.443518+00:00_
+_source line 1341 · 2026-05-20T18:08:37.443518+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"PDF 文件不存在: projects/vla-ssd/docs/paper/main.pdf。请先编译论文再提交审稿。\"}"}
 
@@ -874,7 +715,7 @@ _source line 1343 · 2026-05-20T18:08:37.443518+00:00_
 
 ### Tool call
 
-_source line 1344 · 2026-05-20T18:08:37.496137+00:00_
+_source line 1342 · 2026-05-20T18:08:37.496137+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -908,7 +749,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1345 · 2026-05-20T18:08:40.400073+00:00_
+_source line 1343 · 2026-05-20T18:08:40.400073+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -930,7 +771,7 @@ _source line 1345 · 2026-05-20T18:08:40.400073+00:00_
 
 ### Tool call
 
-_source line 1346 · 2026-05-20T18:08:47.055130+00:00_
+_source line 1344 · 2026-05-20T18:08:47.055130+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -980,7 +821,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1347 · 2026-05-20T18:08:49.914712+00:00_
+_source line 1345 · 2026-05-20T18:08:49.914712+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260520T180847_pn78\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -1002,7 +843,7 @@ _source line 1347 · 2026-05-20T18:08:49.914712+00:00_
 
 ### Tool call
 
-_source line 1348 · 2026-05-20T18:08:53.781136+00:00_
+_source line 1346 · 2026-05-20T18:08:53.781136+00:00_
 
 called ToolSearch
 
@@ -1038,7 +879,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1349 · 2026-05-20T18:08:53.882108+00:00_
+_source line 1347 · 2026-05-20T18:08:53.882108+00:00_
 
 No matching deferred tools found
 
@@ -1060,7 +901,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1350 · 2026-05-20T18:08:56.241712+00:00_
+_source line 1348 · 2026-05-20T18:08:56.241712+00:00_
 
 called ToolSearch
 
@@ -1096,7 +937,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1351 · 2026-05-20T18:08:56.292392+00:00_
+_source line 1349 · 2026-05-20T18:08:56.292392+00:00_
 
 
 
@@ -1118,7 +959,7 @@ _source line 1351 · 2026-05-20T18:08:56.292392+00:00_
 
 ### Tool call
 
-_source line 1352 · 2026-05-20T18:09:00.463849+00:00_
+_source line 1350 · 2026-05-20T18:09:00.463849+00:00_
 
 called ToolSearch
 
@@ -1154,7 +995,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1353 · 2026-05-20T18:09:00.665114+00:00_
+_source line 1351 · 2026-05-20T18:09:00.665114+00:00_
 
 No matching deferred tools found
 
@@ -1176,7 +1017,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1354 · 2026-05-20T18:09:04.032801+00:00_
+_source line 1352 · 2026-05-20T18:09:04.032801+00:00_
 
 called ToolSearch
 
@@ -1212,7 +1053,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1355 · 2026-05-20T18:09:04.083474+00:00_
+_source line 1353 · 2026-05-20T18:09:04.083474+00:00_
 
 
 
@@ -1234,7 +1075,7 @@ _source line 1355 · 2026-05-20T18:09:04.083474+00:00_
 
 ### Tool call
 
-_source line 1356 · 2026-05-20T18:09:06.895637+00:00_
+_source line 1354 · 2026-05-20T18:09:06.895637+00:00_
 
 called Read
 
@@ -1268,7 +1109,7 @@ called Read
 
 ### Tool result
 
-_source line 1357 · 2026-05-20T18:09:06.946789+00:00_
+_source line 1355 · 2026-05-20T18:09:06.946789+00:00_
 
 1	issues:
 2	- id: R1-N1-old
@@ -1366,7 +1207,7 @@ _source line 1357 · 2026-05-20T18:09:06.946789+00:00_
 
 ### Tool call
 
-_source line 1358 · 2026-05-20T18:13:01.168556+00:00_
+_source line 1356 · 2026-05-20T18:13:01.168556+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -1402,7 +1243,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1359 · 2026-05-20T18:13:01.323392+00:00_
+_source line 1357 · 2026-05-20T18:13:01.323392+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/review_issues.yaml\", \"bytes\": 26305}, \"error\": \"\"}"}
 
@@ -1424,7 +1265,7 @@ _source line 1359 · 2026-05-20T18:13:01.323392+00:00_
 
 ### Assistant
 
-_source line 1360 · 2026-05-20T18:13:09.954877+00:00_
+_source line 1358 · 2026-05-20T18:13:09.954877+00:00_
 
 Review issues tracker 已同步完成。Round 14 的 19 项修改中：
 - 13 项已标记 `in_progress`（修改已应用，待 Round 15 reviewer 验证）
@@ -1456,7 +1297,7 @@ Round 15 fresh 审稿已提交，等待审批卡片确认后启动。
 
 ### User
 
-_source line 1361 · 2026-05-20T18:44:29.040259+00:00_
+_source line 1359 · 2026-05-20T18:44:29.040259+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -1500,7 +1341,7 @@ _source line 1361 · 2026-05-20T18:44:29.040259+00:00_
 
 ### Tool call
 
-_source line 1362 · 2026-05-20T18:44:53.074220+00:00_
+_source line 1360 · 2026-05-20T18:44:53.074220+00:00_
 
 called ToolSearch
 
@@ -1536,7 +1377,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1363 · 2026-05-20T18:44:53.124799+00:00_
+_source line 1361 · 2026-05-20T18:44:53.124799+00:00_
 
 No matching deferred tools found
 
@@ -1558,7 +1399,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1364 · 2026-05-20T18:44:55.785679+00:00_
+_source line 1362 · 2026-05-20T18:44:55.785679+00:00_
 
 called ToolSearch
 
@@ -1594,7 +1435,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1365 · 2026-05-20T18:44:55.837102+00:00_
+_source line 1363 · 2026-05-20T18:44:55.837102+00:00_
 
 
 
@@ -1616,7 +1457,7 @@ _source line 1365 · 2026-05-20T18:44:55.837102+00:00_
 
 ### Tool call
 
-_source line 1366 · 2026-05-20T18:45:03.346080+00:00_
+_source line 1364 · 2026-05-20T18:45:03.346080+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -1654,7 +1495,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 1367 · 2026-05-20T18:45:04.000888+00:00_
+_source line 1365 · 2026-05-20T18:45:04.000888+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -1676,7 +1517,7 @@ _source line 1367 · 2026-05-20T18:45:04.000888+00:00_
 
 ### Tool call
 
-_source line 1368 · 2026-05-20T18:45:08.618076+00:00_
+_source line 1366 · 2026-05-20T18:45:08.618076+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -1710,7 +1551,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1369 · 2026-05-20T18:45:08.668683+00:00_
+_source line 1367 · 2026-05-20T18:45:08.668683+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":2901}"}
 
@@ -1732,7 +1573,7 @@ _source line 1369 · 2026-05-20T18:45:08.668683+00:00_
 
 ### Tool call
 
-_source line 1370 · 2026-05-20T18:45:20.716304+00:00_
+_source line 1368 · 2026-05-20T18:45:20.716304+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -1768,7 +1609,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1371 · 2026-05-20T18:45:26.391841+00:00_
+_source line 1369 · 2026-05-20T18:45:26.391841+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd45afa0ca4b2604d7a8a08d07\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -1790,7 +1631,7 @@ _source line 1371 · 2026-05-20T18:45:26.391841+00:00_
 
 ### Tool call
 
-_source line 1372 · 2026-05-20T18:45:26.844715+00:00_
+_source line 1370 · 2026-05-20T18:45:26.844715+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -1826,7 +1667,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1373 · 2026-05-20T18:45:31.712174+00:00_
+_source line 1371 · 2026-05-20T18:45:31.712174+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd45ab9a4a0b16bdef7f9e0b7a\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -1848,7 +1689,7 @@ _source line 1373 · 2026-05-20T18:45:31.712174+00:00_
 
 ### Tool call
 
-_source line 1374 · 2026-05-20T18:45:31.914093+00:00_
+_source line 1372 · 2026-05-20T18:45:31.914093+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -1884,7 +1725,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 1375 · 2026-05-20T18:45:31.964705+00:00_
+_source line 1373 · 2026-05-20T18:45:31.964705+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -1906,7 +1747,7 @@ _source line 1375 · 2026-05-20T18:45:31.964705+00:00_
 
 ### Tool call
 
-_source line 1376 · 2026-05-20T18:45:36.382164+00:00_
+_source line 1374 · 2026-05-20T18:45:36.382164+00:00_
 
 called Read
 
@@ -1940,7 +1781,7 @@ called Read
 
 ### Tool result
 
-_source line 1377 · 2026-05-20T18:45:36.432866+00:00_
+_source line 1375 · 2026-05-20T18:45:36.432866+00:00_
 
 1	\vspace{-2pt}
 2	\section{Discussion}
@@ -1975,7 +1816,7 @@ _source line 1377 · 2026-05-20T18:45:36.432866+00:00_
 
 ### Tool call
 
-_source line 1378 · 2026-05-20T18:45:39.466355+00:00_
+_source line 1376 · 2026-05-20T18:45:39.466355+00:00_
 
 called Read
 
@@ -2011,7 +1852,7 @@ called Read
 
 ### Tool result
 
-_source line 1379 · 2026-05-20T18:45:39.517005+00:00_
+_source line 1377 · 2026-05-20T18:45:39.517005+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -2054,7 +1895,7 @@ _source line 1379 · 2026-05-20T18:45:39.517005+00:00_
 
 ### Tool call
 
-_source line 1380 · 2026-05-20T18:45:42.527963+00:00_
+_source line 1378 · 2026-05-20T18:45:42.527963+00:00_
 
 called Read
 
@@ -2092,7 +1933,7 @@ called Read
 
 ### Tool result
 
-_source line 1381 · 2026-05-20T18:45:42.578716+00:00_
+_source line 1379 · 2026-05-20T18:45:42.578716+00:00_
 
 50	
 51	\paragraph{Redistribution across depth.}
@@ -2132,7 +1973,7 @@ _source line 1381 · 2026-05-20T18:45:42.578716+00:00_
 
 ### Tool call
 
-_source line 1382 · 2026-05-20T18:46:48.267786+00:00_
+_source line 1380 · 2026-05-20T18:46:48.267786+00:00_
 
 called ToolSearch
 
@@ -2168,7 +2009,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1383 · 2026-05-20T18:46:48.318497+00:00_
+_source line 1381 · 2026-05-20T18:46:48.318497+00:00_
 
 No matching deferred tools found
 
@@ -2190,7 +2031,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1384 · 2026-05-20T18:46:51.128584+00:00_
+_source line 1382 · 2026-05-20T18:46:51.128584+00:00_
 
 called ToolSearch
 
@@ -2226,7 +2067,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1385 · 2026-05-20T18:46:51.179108+00:00_
+_source line 1383 · 2026-05-20T18:46:51.179108+00:00_
 
 
 
@@ -2248,7 +2089,7 @@ _source line 1385 · 2026-05-20T18:46:51.179108+00:00_
 
 ### Tool call
 
-_source line 1386 · 2026-05-20T18:46:56.098039+00:00_
+_source line 1384 · 2026-05-20T18:46:56.098039+00:00_
 
 called Grep
 
@@ -2290,7 +2131,7 @@ called Grep
 
 ### Tool result
 
-_source line 1387 · 2026-05-20T18:46:56.148670+00:00_
+_source line 1385 · 2026-05-20T18:46:56.148670+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/decisions.yaml:1389:    (C-1 multi-model + C-2 closed-loop) pending user decision on GPU expansion.'
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/decisions.yaml:1391:    + no closed-loop) + 11 Warning. Text-only fixes → 5.5-6.0; +C-2 → 6.5-7.0; +C-1+C-2
@@ -2326,7 +2167,7 @@ _source line 1387 · 2026-05-20T18:46:56.148670+00:00_
 
 ### Tool call
 
-_source line 1388 · 2026-05-20T18:46:59.935288+00:00_
+_source line 1386 · 2026-05-20T18:46:59.935288+00:00_
 
 called Grep
 
@@ -2366,7 +2207,7 @@ called Grep
 
 ### Tool result
 
-_source line 1389 · 2026-05-20T18:46:59.986387+00:00_
+_source line 1387 · 2026-05-20T18:46:59.986387+00:00_
 
 1634-    from architecture effect. This directly addresses R9-N1 (single model) and strengthens
 1635-    C2/C3 claims.
@@ -2418,7 +2259,7 @@ _source line 1389 · 2026-05-20T18:46:59.986387+00:00_
 
 ### Tool call
 
-_source line 1390 · 2026-05-20T18:47:31.327667+00:00_
+_source line 1388 · 2026-05-20T18:47:31.327667+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -2452,7 +2293,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1391 · 2026-05-20T18:47:31.428761+00:00_
+_source line 1389 · 2026-05-20T18:47:31.428761+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-20 05:16 UTC | 更新原因: R² cross-arch patch 完成，specificity 图表修复，最终编译中\\n\\n## 核心方向\\nVLA 微调如何重组 instruction routing（attention head specialization）——从单模型观察升级为跨架构收敛性质。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 完成 + 审稿进行中（Group C）\\n- **实验**: 81 success / 16 negative / 0 failed / 107 total\\n- **跨架构验证**: C1 token specialization + C2 entry-exit routing + R² inverted-U profile 全部双架构（OpenVLA + TracVLA-Phi3V）复现\\n- **关键数据**: Peak R² 0.637 (L9, OpenVLA) vs 0.634 (L11, Phi3V), Δ=0.003\\n- **论文**: R² cross-arch patch 完成（D085），最终编译中\\n- **Specificity 图表**: p-value 修复完成（z=-3.11, percentile=0%）\\n- **审稿**: 已提交 Group C，等用户确认 review mode\\n- **Provenance**: 91/96 coverage\\n\\n## 近期任务\\n- [x] phi3v_r2_action_probe 结果收割 + registry 修正（误标 failed → success）\\n- [x] R² 跨架构数据拉取（JSON + LaTeX table）\\n- [x] Specificity 图表 p-value 修复同步\\n- [x] Paper Agent R² cross-arch patch（§4.2 + Discussion + Abstract + Intro + Appendix Table 24）\\n- [ ] 最终编译确认（Paper Agent 执行中）\\n- [ ] 用户确认 review mode → Group C 启动审稿\\n- [ ] 审稿反馈后 targeted experiments（GPU 保留）\\n\\n## GPU 预算\\nwestd-19183: 2× GPU 分配，当前全部空闲。保留给审稿反馈后 targeted experiments。\\nReviewer gap analysis 结论：实验矩阵完整，无 CRITICAL 缺口。\\n\\n## DDL\\n- Abstract: 2026-05-26（6天）\\n- Paper: 2026-05-29（9天）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D087 | 2026-05-20 | Closed-loop behavioral validation confirmed infeas | phi3v_r2_untrained_probe, phi3v_r2_seed_expansion |\\n| D086 | 2026-05-20 | Phi3V untrained probe confirms inverted-U is train | phi3v_r2_untrained_probe, phi3v_r2_seed_expansion, phi3v_r2_action_probe |\\n| D085 | 2026-05-20 | R² 跨架构结果集成方案：强化 C2（consistent across architectures | phi3v_r2_action_probe, r2_probe_seed_expansion |\\n| D084 | 2026-05-20 | C3 geometry claim 升级为跨架构性质：Phi3V inverted-U R² pro
 …[truncated 891 chars]
@@ -2475,7 +2316,7 @@ _source line 1391 · 2026-05-20T18:47:31.428761+00:00_
 
 ### Tool call
 
-_source line 1392 · 2026-05-20T18:47:34.188944+00:00_
+_source line 1390 · 2026-05-20T18:47:34.188944+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -2509,7 +2350,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 1393 · 2026-05-20T18:47:34.289767+00:00_
+_source line 1391 · 2026-05-20T18:47:34.289767+00:00_
 
 Error executing tool update_roadmap: 1 validation error for update_roadmapArguments
 content
@@ -2534,7 +2375,7 @@ content
 
 ### Tool call
 
-_source line 1394 · 2026-05-20T18:47:37.303185+00:00_
+_source line 1392 · 2026-05-20T18:47:37.303185+00:00_
 
 called ToolSearch
 
@@ -2570,7 +2411,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1395 · 2026-05-20T18:47:37.705098+00:00_
+_source line 1393 · 2026-05-20T18:47:37.705098+00:00_
 
 No matching deferred tools found
 
@@ -2592,7 +2433,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1396 · 2026-05-20T18:47:41.069624+00:00_
+_source line 1394 · 2026-05-20T18:47:41.069624+00:00_
 
 called ToolSearch
 
@@ -2628,7 +2469,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1397 · 2026-05-20T18:47:41.170280+00:00_
+_source line 1395 · 2026-05-20T18:47:41.170280+00:00_
 
 
 
@@ -2650,7 +2491,7 @@ _source line 1397 · 2026-05-20T18:47:41.170280+00:00_
 
 ### Tool call
 
-_source line 1398 · 2026-05-20T18:48:03.235240+00:00_
+_source line 1396 · 2026-05-20T18:48:03.235240+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -2688,7 +2529,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 1399 · 2026-05-20T18:48:04.094121+00:00_
+_source line 1397 · 2026-05-20T18:48:04.094121+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"lines\": 60, \"reason\": \"Round 15 提交后状态更新：实验派发、结构性瓶颈分析、Reviewer 状况记录\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2710,7 +2551,7 @@ _source line 1399 · 2026-05-20T18:48:04.094121+00:00_
 
 ### Assistant
 
-_source line 1400 · 2026-05-20T18:48:08.657722+00:00_
+_source line 1398 · 2026-05-20T18:48:08.657722+00:00_
 
 ROADMAP 已更新。当前状态总结：
 
@@ -2745,7 +2586,7 @@ ROADMAP 已更新。当前状态总结：
 
 ### User
 
-_source line 1401 · 2026-05-20T18:48:10.164019+00:00_
+_source line 1399 · 2026-05-20T18:48:10.164019+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch — 3 个 info 级修复 完成
@@ -2787,7 +2628,7 @@ _source line 1401 · 2026-05-20T18:48:10.164019+00:00_
 
 ### Assistant
 
-_source line 1402 · 2026-05-20T18:48:21.187333+00:00_
+_source line 1400 · 2026-05-20T18:48:21.187333+00:00_
 
 三个 info 修复确认到位。等 Agent 的 counterfactual 10-task 和 permutation 10K 结果。
 
@@ -2814,7 +2655,7 @@ _source line 1402 · 2026-05-20T18:48:21.187333+00:00_
 
 ### User
 
-_source line 1403 · 2026-05-20T19:05:26.689072+00:00_
+_source line 1401 · 2026-05-20T19:05:26.689072+00:00_
 
 [Main Agent 执行出错]: Agent 未返回任何回复，请重试。
 
@@ -2835,7 +2676,7 @@ _source line 1403 · 2026-05-20T19:05:26.689072+00:00_
 
 ### Tool call
 
-_source line 1404 · 2026-05-20T19:05:32.903167+00:00_
+_source line 1402 · 2026-05-20T19:05:32.903167+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -2869,7 +2710,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1405 · 2026-05-20T19:05:32.953770+00:00_
+_source line 1403 · 2026-05-20T19:05:32.953770+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_exp_counterfactual_10tasks_20260520T184556 已完成（status=done）。用 `get_worker_status('worker_exp\"},\"pending\":[],\"idle_seconds\":8}"}
 
@@ -2891,7 +2732,7 @@ _source line 1405 · 2026-05-20T19:05:32.953770+00:00_
 
 ### Assistant
 
-_source line 1406 · 2026-05-20T19:05:40.842282+00:00_
+_source line 1404 · 2026-05-20T19:05:40.842282+00:00_
 
 Agent 正在处理 counterfactual 10-task worker 完成回调，不中断。等待结果。
 
@@ -2918,7 +2759,7 @@ Agent 正在处理 counterfactual 10-task worker 完成回调，不中断。等�
 
 ### User
 
-_source line 1407 · 2026-05-20T19:06:10.388392+00:00_
+_source line 1405 · 2026-05-20T19:06:10.388392+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/2 (cuda:0 counterfactual 10tasks ~60min, cuda:1 permutation 10k 刚派出) | Worker 2 (GPU 2 / CPU 0)
@@ -2952,7 +2793,7 @@ _source line 1407 · 2026-05-20T19:06:10.388392+00:00_
 
 ### Assistant
 
-_source line 1408 · 2026-05-20T19:06:16.641378+00:00_
+_source line 1406 · 2026-05-20T19:06:16.641378+00:00_
 
 GPU 满载，两个实验并行运行。等结果回来。
 
@@ -2979,7 +2820,7 @@ GPU 满载，两个实验并行运行。等结果回来。
 
 ### User
 
-_source line 1409 · 2026-05-20T19:34:55.026043+00:00_
+_source line 1407 · 2026-05-20T19:34:55.026043+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/1 (cuda:0 counterfactual 10tasks 仍在跑, cuda:1 空闲) | Worker 0
@@ -3019,7 +2860,7 @@ Counterfactual 10-task 实验仍在 cuda:0 运行中（tmux alive），等 cron 
 
 ### Tool call
 
-_source line 1410 · 2026-05-20T19:35:10.507095+00:00_
+_source line 1408 · 2026-05-20T19:35:10.507095+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -3055,7 +2896,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1411 · 2026-05-20T19:35:15.630881+00:00_
+_source line 1409 · 2026-05-20T19:35:15.630881+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd481da84a0b2927b0834eb371\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -3077,7 +2918,7 @@ _source line 1411 · 2026-05-20T19:35:15.630881+00:00_
 
 ### Tool call
 
-_source line 1412 · 2026-05-20T19:35:15.783326+00:00_
+_source line 1410 · 2026-05-20T19:35:15.783326+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -3113,7 +2954,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1413 · 2026-05-20T19:35:17.301105+00:00_
+_source line 1411 · 2026-05-20T19:35:17.301105+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd4818f78a0b280ad2faf64acf\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -3135,7 +2976,7 @@ _source line 1413 · 2026-05-20T19:35:17.301105+00:00_
 
 ### Assistant
 
-_source line 1414 · 2026-05-20T19:35:20.454212+00:00_
+_source line 1412 · 2026-05-20T19:35:20.454212+00:00_
 
 Paper Agent 更新 permutation 数字，Agent 做 Bonferroni 全局校正。等待 counterfactual 10-task 和两个新任务的结果。
 
@@ -3162,7 +3003,7 @@ Paper Agent 更新 permutation 数字，Agent 做 Bonferroni 全局校正。等�
 
 ### User
 
-_source line 1415 · 2026-05-20T19:35:50.990608+00:00_
+_source line 1413 · 2026-05-20T19:35:50.990608+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch — Permutation test 1K→10K 完成
@@ -3195,7 +3036,7 @@ _source line 1415 · 2026-05-20T19:35:50.990608+00:00_
 
 ### Assistant
 
-_source line 1416 · 2026-05-20T19:35:59.955017+00:00_
+_source line 1414 · 2026-05-20T19:35:59.955017+00:00_
 
 No response requested.
 
@@ -3222,7 +3063,7 @@ No response requested.
 
 ### User
 
-_source line 1417 · 2026-05-20T19:55:19.814842+00:00_
+_source line 1415 · 2026-05-20T19:55:19.814842+00:00_
 
 [Main Agent 执行出错]: Agent 未返回任何回复，请重试。
 
@@ -3243,7 +3084,7 @@ _source line 1417 · 2026-05-20T19:55:19.814842+00:00_
 
 ### Tool call
 
-_source line 1418 · 2026-05-20T19:55:25.867863+00:00_
+_source line 1416 · 2026-05-20T19:55:25.867863+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -3277,7 +3118,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1419 · 2026-05-20T19:55:25.968691+00:00_
+_source line 1417 · 2026-05-20T19:55:25.968691+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_analysis_bonferroni_global_20260520T193542 已完成（status=done）。用 `get_worker_status('worker_ana\"},\"pending\":[],\"idle_seconds\":8}"}
 
@@ -3299,7 +3140,7 @@ _source line 1419 · 2026-05-20T19:55:25.968691+00:00_
 
 ### Assistant
 
-_source line 1420 · 2026-05-20T19:55:28.612214+00:00_
+_source line 1418 · 2026-05-20T19:55:28.612214+00:00_
 
 Agent 正在处理 Bonferroni worker 完成回调，等待回复。
 
@@ -3326,7 +3167,7 @@ Agent 正在处理 Bonferroni worker 完成回调，等待回复。
 
 ### User
 
-_source line 1421 · 2026-05-20T20:16:29.773339+00:00_
+_source line 1419 · 2026-05-20T20:16:29.773339+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0, cuda:1 均空闲 ⚠️) | Worker 1 (GPU 0 / CPU 1 sync) | 磁盘: westd-19183 未检查
@@ -3384,7 +3225,7 @@ _source line 1421 · 2026-05-20T20:16:29.773339+00:00_
 
 ### Tool call
 
-_source line 1422 · 2026-05-20T20:17:15.291356+00:00_
+_source line 1420 · 2026-05-20T20:17:15.291356+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -3420,7 +3261,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1423 · 2026-05-20T20:17:21.475122+00:00_
+_source line 1421 · 2026-05-20T20:17:21.475122+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd5222cd4a0b2025f8b78e510b\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -3442,7 +3283,7 @@ _source line 1423 · 2026-05-20T20:17:21.475122+00:00_
 
 ### Tool call
 
-_source line 1424 · 2026-05-20T20:17:21.627433+00:00_
+_source line 1422 · 2026-05-20T20:17:21.627433+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -3478,7 +3319,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1425 · 2026-05-20T20:17:22.993114+00:00_
+_source line 1423 · 2026-05-20T20:17:22.993114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd523edc0a4b16a5d9b1a08cf8\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -3500,7 +3341,7 @@ _source line 1425 · 2026-05-20T20:17:22.993114+00:00_
 
 ### Tool call
 
-_source line 1426 · 2026-05-20T20:17:30.811803+00:00_
+_source line 1424 · 2026-05-20T20:17:30.811803+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -3534,7 +3375,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1427 · 2026-05-20T20:17:31.464918+00:00_
+_source line 1425 · 2026-05-20T20:17:31.464918+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -3556,7 +3397,7 @@ _source line 1427 · 2026-05-20T20:17:31.464918+00:00_
 
 ### Assistant
 
-_source line 1428 · 2026-05-20T20:17:33.917232+00:00_
+_source line 1426 · 2026-05-20T20:17:33.917232+00:00_
 
 两个实验都完成了，结果很好。Counterfactual 10-task 消除 cherry-picking 顾虑，Bonferroni 全局校正核心结论全部保留。
 
@@ -3585,7 +3426,7 @@ _source line 1428 · 2026-05-20T20:17:33.917232+00:00_
 
 ### User
 
-_source line 1429 · 2026-05-20T20:22:48.554418+00:00_
+_source line 1427 · 2026-05-20T20:22:48.554418+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch 完成 — 整合 3 项新数据
@@ -3625,7 +3466,7 @@ _source line 1429 · 2026-05-20T20:22:48.554418+00:00_
 
 ### Assistant
 
-_source line 1430 · 2026-05-20T20:23:00.011422+00:00_
+_source line 1428 · 2026-05-20T20:23:00.011422+00:00_
 
 Paper Agent 整合完成。注意到 Appendix trajectory-level d 值仍为 3-task 数据——如果 Agent 有 10-task trajectory 数据会后续补。
 
@@ -3654,7 +3495,7 @@ Paper Agent 整合完成。注意到 Appendix trajectory-level d 值仍为 3-tas
 
 ### User
 
-_source line 1431 · 2026-05-20T20:34:50.656257+00:00_
+_source line 1429 · 2026-05-20T20:34:50.656257+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/1 (cuda:0 counterfactual_spatial RUNNING, cuda:1 空闲 ⚠️) | Worker 0 (GPU 0 / CPU 0)
@@ -3687,7 +3528,7 @@ LIBERO-Spatial counterfactual 分析已在 cuda:0 启动，预计 ~1h 完成。
 
 ### Tool call
 
-_source line 1432 · 2026-05-20T20:35:06.963470+00:00_
+_source line 1430 · 2026-05-20T20:35:06.963470+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -3723,7 +3564,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1433 · 2026-05-20T20:35:10.682723+00:00_
+_source line 1431 · 2026-05-20T20:35:10.682723+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd5e116dca4b165ca1f9e99292\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -3745,7 +3586,7 @@ _source line 1433 · 2026-05-20T20:35:10.682723+00:00_
 
 ### Assistant
 
-_source line 1434 · 2026-05-20T20:35:13.131318+00:00_
+_source line 1432 · 2026-05-20T20:35:13.131318+00:00_
 
 Paper Agent 提到 appendix trajectory-level counterfactual d 值还是 3-task 的。让 Agent 用 cuda:1 补算。
 
@@ -3772,7 +3613,7 @@ Paper Agent 提到 appendix trajectory-level counterfactual d 值还是 3-task �
 
 ### User
 
-_source line 1435 · 2026-05-20T21:03:49.231862+00:00_
+_source line 1433 · 2026-05-20T21:03:49.231862+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/2 (cuda:0 counterfactual_spatial, cuda:1 trajectory_aggregate) | Worker 0 (GPU 0 / CPU 0)
@@ -3804,7 +3645,7 @@ Worker 发现 10-task counterfactual 结果没有保留 per-timestep raw represe
 
 ### Assistant
 
-_source line 1436 · 2026-05-20T21:03:54.520265+00:00_
+_source line 1434 · 2026-05-20T21:03:54.520265+00:00_
 
 No response requested.
 
@@ -3831,7 +3672,7 @@ No response requested.
 
 ### User
 
-_source line 1437 · 2026-05-20T21:34:29.287813+00:00_
+_source line 1435 · 2026-05-20T21:34:29.287813+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3875,7 +3716,7 @@ _source line 1437 · 2026-05-20T21:34:29.287813+00:00_
 
 ### Tool call
 
-_source line 1438 · 2026-05-20T21:34:39.174840+00:00_
+_source line 1436 · 2026-05-20T21:34:39.174840+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3913,7 +3754,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 1439 · 2026-05-20T21:34:39.778115+00:00_
+_source line 1437 · 2026-05-20T21:34:39.778115+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 5, \"next_nudge_in_minutes\": 30}"}
 
@@ -3935,7 +3776,7 @@ _source line 1439 · 2026-05-20T21:34:39.778115+00:00_
 
 ### Tool call
 
-_source line 1440 · 2026-05-20T21:34:42.291384+00:00_
+_source line 1438 · 2026-05-20T21:34:42.291384+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -3969,7 +3810,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1441 · 2026-05-20T21:34:42.342035+00:00_
+_source line 1439 · 2026-05-20T21:34:42.342035+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":1794}"}
 
@@ -3991,7 +3832,7 @@ _source line 1441 · 2026-05-20T21:34:42.342035+00:00_
 
 ### Tool call
 
-_source line 1442 · 2026-05-20T21:34:50.478144+00:00_
+_source line 1440 · 2026-05-20T21:34:50.478144+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -4027,7 +3868,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1443 · 2026-05-20T21:34:54.559411+00:00_
+_source line 1441 · 2026-05-20T21:34:54.559411+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd6c115eca0b11ce4ef5076ddb\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -4049,7 +3890,7 @@ _source line 1443 · 2026-05-20T21:34:54.559411+00:00_
 
 ### Assistant
 
-_source line 1444 · 2026-05-20T21:34:56.993376+00:00_
+_source line 1442 · 2026-05-20T21:34:56.993376+00:00_
 
 Agent 空闲 30 分钟——两个实验确实已完成但结果没被处理。立即要求汇报。
 
@@ -4076,7 +3917,7 @@ Agent 空闲 30 分钟——两个实验确实已完成但结果没被处理。�
 
 ### User
 
-_source line 1445 · 2026-05-20T21:41:43.562416+00:00_
+_source line 1443 · 2026-05-20T21:41:43.562416+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0, cuda:1 均空闲) | Worker 0 (GPU 0 / CPU 0)
@@ -4136,7 +3977,7 @@ Token-level d 仅为 trajectory-level 的 18-33%（mean inflation ×3.8）。App
 
 ### Tool call
 
-_source line 1446 · 2026-05-20T21:42:15.420017+00:00_
+_source line 1444 · 2026-05-20T21:42:15.420017+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -4172,7 +4013,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1447 · 2026-05-20T21:42:19.489107+00:00_
+_source line 1445 · 2026-05-20T21:42:19.489107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd6e56958a4b246872c5da5a5b\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -4194,7 +4035,7 @@ _source line 1447 · 2026-05-20T21:42:19.489107+00:00_
 
 ### Tool call
 
-_source line 1448 · 2026-05-20T21:42:19.641467+00:00_
+_source line 1446 · 2026-05-20T21:42:19.641467+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -4228,7 +4069,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1449 · 2026-05-20T21:42:20.249182+00:00_
+_source line 1447 · 2026-05-20T21:42:20.249182+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -4250,7 +4091,7 @@ _source line 1449 · 2026-05-20T21:42:20.249182+00:00_
 
 ### Assistant
 
-_source line 1450 · 2026-05-20T21:42:25.910409+00:00_
+_source line 1448 · 2026-05-20T21:42:25.910409+00:00_
 
 GPU 目前都空闲。评估剩余可做的实验——核心结构性问题（closed-loop、scope fit）无法通过 GPU 实验解决。已完成的补充分析覆盖了所有可操作的 reviewer concern（counterfactual 10-task + Spatial、permutation 10K、Bonferroni、trajectory d）。
 
@@ -4279,7 +4120,7 @@ GPU 目前都空闲。评估剩余可做的实验——核心结构性问题（c
 
 ### User
 
-_source line 1451 · 2026-05-20T21:43:39.517071+00:00_
+_source line 1449 · 2026-05-20T21:43:39.517071+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 现在的实验在哪些benchmark上开展
 
@@ -4300,7 +4141,7 @@ _source line 1451 · 2026-05-20T21:43:39.517071+00:00_
 
 ### Tool call
 
-_source line 1452 · 2026-05-20T21:43:55.868093+00:00_
+_source line 1450 · 2026-05-20T21:43:55.868093+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -4334,7 +4175,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1453 · 2026-05-20T21:43:58.961599+00:00_
+_source line 1451 · 2026-05-20T21:43:58.961599+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -4363,7 +4204,7 @@ _source line 1453 · 2026-05-20T21:43:58.961599+00:00_
 
 ### User
 
-_source line 1454 · 2026-05-20T21:46:12.564227+00:00_
+_source line 1452 · 2026-05-20T21:46:12.564227+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch 完成 — LIBERO-Spatial counterfactual + trajectory-level d
@@ -4401,7 +4242,7 @@ _source line 1454 · 2026-05-20T21:46:12.564227+00:00_
 
 ### Tool call
 
-_source line 1455 · 2026-05-20T21:46:28.281486+00:00_
+_source line 1453 · 2026-05-20T21:46:28.281486+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -4437,7 +4278,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1456 · 2026-05-20T21:46:32.105725+00:00_
+_source line 1454 · 2026-05-20T21:46:32.105725+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd6f5bf8ca8b11bf92f89bc449\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -4459,7 +4300,7 @@ _source line 1456 · 2026-05-20T21:46:32.105725+00:00_
 
 ### Assistant
 
-_source line 1457 · 2026-05-20T21:46:34.489508+00:00_
+_source line 1455 · 2026-05-20T21:46:34.489508+00:00_
 
 Paper Agent 漏了 Spatial CV 值。Agent 已经报告了：wrong=0.093, paraphrased=0.128, shuffled=0.166, empty=0.185。
 
@@ -4486,7 +4327,7 @@ Paper Agent 漏了 Spatial CV 值。Agent 已经报告了：wrong=0.093, paraphr
 
 ### User
 
-_source line 1458 · 2026-05-20T21:47:02.979334+00:00_
+_source line 1456 · 2026-05-20T21:47:02.979334+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch 完成 — Spatial counterfactual CV 值
@@ -4512,7 +4353,7 @@ Appendix Table counterfactual_spatial 已补充 CV 列：empty 0.185, wrong 0.09
 
 ### Assistant
 
-_source line 1459 · 2026-05-20T21:47:09.788829+00:00_
+_source line 1457 · 2026-05-20T21:47:09.788829+00:00_
 
 No response requested.
 
@@ -4539,7 +4380,7 @@ No response requested.
 
 ### User
 
-_source line 1460 · 2026-05-20T22:18:39.156628+00:00_
+_source line 1458 · 2026-05-20T22:18:39.156628+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -4583,7 +4424,7 @@ _source line 1460 · 2026-05-20T22:18:39.156628+00:00_
 
 ### Tool call
 
-_source line 1461 · 2026-05-20T22:18:54.008117+00:00_
+_source line 1459 · 2026-05-20T22:18:54.008117+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -4621,7 +4462,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 1462 · 2026-05-20T22:18:54.611378+00:00_
+_source line 1460 · 2026-05-20T22:18:54.611378+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -4643,7 +4484,7 @@ _source line 1462 · 2026-05-20T22:18:54.611378+00:00_
 
 ### Tool call
 
-_source line 1463 · 2026-05-20T22:19:01.242122+00:00_
+_source line 1461 · 2026-05-20T22:19:01.242122+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4679,7 +4520,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1464 · 2026-05-20T22:19:01.501551+00:00_
+_source line 1462 · 2026-05-20T22:19:01.501551+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `superscript' on input line 743.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 743.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\vbox (badness 4595) has occurred while \\\\output is active []\\n\\n [28 <./figures/fig_multi_layer_attn.pdf>]\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [29]\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 861.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `\\\\times' on input line 861.\\n\\n\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\n(hyperref)                removing `math shift' on input line 861.\\n\\n[30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[31])\\nUnderfull \\\\vbox (badness 1755) has occurred while \\\\output is active []\\n\\n [32]\\n[33] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 98523910F95C585D7F704051905AC49A;13364.\\n ) \\nHere is how much of TeX's memory you used:\\n 14054 strings out of 469438\\n 223839 string characters out of 5468411\\n 709572 words of memory out of 5000000\\n 42272 multiletter control sequences out of 15000+600000\\n 66969
 …[truncated 5668 chars]
@@ -4702,7 +4543,7 @@ _source line 1464 · 2026-05-20T22:19:01.501551+00:00_
 
 ### Tool call
 
-_source line 1465 · 2026-05-20T22:19:05.870408+00:00_
+_source line 1463 · 2026-05-20T22:19:05.870408+00:00_
 
 called ToolSearch
 
@@ -4738,7 +4579,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1466 · 2026-05-20T22:19:05.971272+00:00_
+_source line 1464 · 2026-05-20T22:19:05.971272+00:00_
 
 No matching deferred tools found
 
@@ -4760,7 +4601,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1467 · 2026-05-20T22:19:11.307942+00:00_
+_source line 1465 · 2026-05-20T22:19:11.307942+00:00_
 
 called ToolSearch
 
@@ -4796,7 +4637,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1468 · 2026-05-20T22:19:11.359105+00:00_
+_source line 1466 · 2026-05-20T22:19:11.359105+00:00_
 
 
 
@@ -4818,7 +4659,7 @@ _source line 1468 · 2026-05-20T22:19:11.359105+00:00_
 
 ### Tool call
 
-_source line 1469 · 2026-05-20T22:19:20.746630+00:00_
+_source line 1467 · 2026-05-20T22:19:20.746630+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -4854,7 +4695,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 1470 · 2026-05-20T22:19:24.515147+00:00_
+_source line 1468 · 2026-05-20T22:19:24.515147+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer\"}, \"error\": \"\"}"}
 
@@ -4876,7 +4717,7 @@ _source line 1470 · 2026-05-20T22:19:24.515147+00:00_
 
 ### Tool call
 
-_source line 1471 · 2026-05-20T22:19:29.345517+00:00_
+_source line 1469 · 2026-05-20T22:19:29.345517+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -4910,7 +4751,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1472 · 2026-05-20T22:19:29.697236+00:00_
+_source line 1470 · 2026-05-20T22:19:29.697236+00:00_
 
 {"result":"# 项目 vla-ssd 概况\n\n## 实验状态 (121 个)\n\n- **lg_extract_untrained_r2**: DONE (killed) — \n- **lg_extract_trained_r2**: DONE (killed) — \n- **lg_extract_untrained_r1**: DONE (killed) — \n- **lg_extract_trained_r1**: DONE (killed) — \n- **mvp2_delta_dino**: DONE (success) — \n- **mvp2_delta_untrained**: DONE (success) — \n- **mvp2_delta_trained**: DONE (success) — \n- **mvp2_action_dino**: DONE (success) — \n- **mvp2_action_untrained**: DONE (success) — \n- **mvp2_action_trained**: DONE (success) — \n- **mvp_controlb_untrained**: DONE (success) — \n- **mvp_controlb_trained**: DONE (success) — \n- **mvp_001**: DONE (negative) — \n- **mvp_probe_untrained**: DONE (success) — \n- **mvp_probe_trained**: DONE (negative) — \n\n## 最新报告\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- libero_finetuned_probe（准备中）\n- behavioral_smoketest_diag（准备中）\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\n- fulllayer_action_probe（准备中）\n- l1_head_ablation_control8（准备中）\n- l1_head_ablation_50demos（准备中）\n\n## 近期结论\n- **counterfactual_10tasks_trajectory** (success): Trajectory-level aggregation of 10-task counterfactual results will show amplified Cohen's d compared to token-level, as consistent per-timestep effects compound at the demo/trajectory level (bootstrap B=10000). ← 基于 counterfactual_10tasks\n- **counterfactual_spatial** (success): Counterfactual instruction sensitivity extends beyond task-level semantics to spatial relationship terms: replacing spatial preposit
 …[truncated 1265 chars]
@@ -4933,7 +4774,7 @@ _source line 1472 · 2026-05-20T22:19:29.697236+00:00_
 
 ### Tool call
 
-_source line 1473 · 2026-05-20T22:19:35.519984+00:00_
+_source line 1471 · 2026-05-20T22:19:35.519984+00:00_
 
 called Grep
 
@@ -4977,7 +4818,7 @@ called Grep
 
 ### Tool result
 
-_source line 1474 · 2026-05-20T22:19:35.570551+00:00_
+_source line 1472 · 2026-05-20T22:19:35.570551+00:00_
 
 &lt;tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/agent. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/director_62a591ad.&lt;/tool_use_error>
 
@@ -4999,7 +4840,7 @@ _source line 1474 · 2026-05-20T22:19:35.570551+00:00_
 
 ### Tool call
 
-_source line 1475 · 2026-05-20T22:19:39.535408+00:00_
+_source line 1473 · 2026-05-20T22:19:39.535408+00:00_
 
 called Grep
 
@@ -5043,7 +4884,7 @@ called Grep
 
 ### Tool result
 
-_source line 1476 · 2026-05-20T22:19:39.586370+00:00_
+_source line 1474 · 2026-05-20T22:19:39.586370+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml-30-      tmux_sessions:
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml-31-      - openvla-trained-extract
@@ -5087,7 +4928,7 @@ _source line 1476 · 2026-05-20T22:19:39.586370+00:00_
 
 ### Tool call
 
-_source line 1477 · 2026-05-20T22:20:32.465777+00:00_
+_source line 1475 · 2026-05-20T22:20:32.465777+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -5125,7 +4966,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 1478 · 2026-05-20T22:20:33.329235+00:00_
+_source line 1476 · 2026-05-20T22:20:33.329235+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"lines\": 70, \"reason\": \"今日全部补充实验完成 + 阴性实验审视 + ROADMAP 全面刷新\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5147,7 +4988,7 @@ _source line 1478 · 2026-05-20T22:20:33.329235+00:00_
 
 ### Assistant
 
-_source line 1479 · 2026-05-20T22:20:36.231005+00:00_
+_source line 1477 · 2026-05-20T22:20:36.231005+00:00_
 
 16 个阴性实验分析完成。分为 3 类：
 
@@ -5189,7 +5030,7 @@ _source line 1479 · 2026-05-20T22:20:36.231005+00:00_
 
 ### User
 
-_source line 1480 · 2026-05-20T22:38:39.548540+00:00_
+_source line 1478 · 2026-05-20T22:38:39.548540+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 如果要扩展要选什么benchmark
 
@@ -5210,7 +5051,7 @@ _source line 1480 · 2026-05-20T22:38:39.548540+00:00_
 
 ### Tool call
 
-_source line 1481 · 2026-05-20T22:39:16.549086+00:00_
+_source line 1479 · 2026-05-20T22:39:16.549086+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -5244,7 +5085,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1482 · 2026-05-20T22:39:19.541068+00:00_
+_source line 1480 · 2026-05-20T22:39:19.541068+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -5273,7 +5114,7 @@ _source line 1482 · 2026-05-20T22:39:19.541068+00:00_
 
 ### User
 
-_source line 1483 · 2026-05-20T22:41:41.913651+00:00_
+_source line 1481 · 2026-05-20T22:41:41.913651+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: calvin是不是要下载很大数据
 
@@ -5294,7 +5135,7 @@ _source line 1483 · 2026-05-20T22:41:41.913651+00:00_
 
 ### Tool call
 
-_source line 1484 · 2026-05-20T22:41:51.487469+00:00_
+_source line 1482 · 2026-05-20T22:41:51.487469+00:00_
 
 called Agent
 
@@ -5332,7 +5173,7 @@ called Agent
 
 ### Tool call
 
-_source line 1485 · 2026-05-20T22:41:56.191616+00:00_
+_source line 1483 · 2026-05-20T22:41:56.191616+00:00_
 
 called WebSearch
 
@@ -5366,7 +5207,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1486 · 2026-05-20T22:41:56.720739+00:00_
+_source line 1484 · 2026-05-20T22:41:56.720739+00:00_
 
 called WebSearch
 
@@ -5400,7 +5241,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1487 · 2026-05-20T22:41:56.923147+00:00_
+_source line 1485 · 2026-05-20T22:41:56.923147+00:00_
 
 called WebSearch
 
@@ -5434,7 +5275,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1488 · 2026-05-20T22:41:56.973888+00:00_
+_source line 1486 · 2026-05-20T22:41:56.973888+00:00_
 
 called WebSearch
 
@@ -5468,7 +5309,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1489 · 2026-05-20T22:42:01.041543+00:00_
+_source line 1487 · 2026-05-20T22:42:01.041543+00:00_
 
 Web search results for query: "CALVIN benchmark dataset download size GB splits"
 
@@ -5510,7 +5351,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1490 · 2026-05-20T22:42:01.594149+00:00_
+_source line 1488 · 2026-05-20T22:42:01.594149+00:00_
 
 Web search results for query: "CALVIN dataset debug split smaller subset"
 
@@ -5543,7 +5384,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1491 · 2026-05-20T22:42:08.773676+00:00_
+_source line 1489 · 2026-05-20T22:42:08.773676+00:00_
 
 Web search results for query: "OpenVLA fine-tuned CALVIN pre-trained checkpoint"
 
@@ -5578,7 +5419,7 @@ For teams starting new OpenVLA projects today, OFT is the recommended fine-tuni
 
 ### Tool result
 
-_source line 1492 · 2026-05-20T22:42:13.925237+00:00_
+_source line 1490 · 2026-05-20T22:42:13.925237+00:00_
 
 Web search results for query: "VLA Vision Language Action CALVIN benchmark model checkpoint"
 
@@ -5623,7 +5464,7 @@ Several state-of-the-art VLA models have been evaluated on CALVIN:
 
 ### Tool result
 
-_source line 1493 · 2026-05-20T22:42:25.924754+00:00_
+_source line 1491 · 2026-05-20T22:42:25.924754+00:00_
 
 Based on my web search, here's comprehensive information about the CALVIN benchmark dataset and VLA checkpoints:
 
@@ -5690,7 +5531,7 @@ Several state-of-the-art VLA models have been evaluated on CALVIN:
 
 ### Tool call
 
-_source line 1494 · 2026-05-20T22:42:40.187128+00:00_
+_source line 1492 · 2026-05-20T22:42:40.187128+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -5724,7 +5565,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1495 · 2026-05-20T22:42:43.310595+00:00_
+_source line 1493 · 2026-05-20T22:42:43.310595+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -5753,7 +5594,7 @@ _source line 1495 · 2026-05-20T22:42:43.310595+00:00_
 
 ### User
 
-_source line 1496 · 2026-05-20T22:49:01.629180+00:00_
+_source line 1494 · 2026-05-20T22:49:01.629180+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 你再看看有没有别的benchmark可以直接用 有finetune参数的
 
@@ -5774,7 +5615,7 @@ _source line 1496 · 2026-05-20T22:49:01.629180+00:00_
 
 ### Tool call
 
-_source line 1497 · 2026-05-20T22:49:13.242772+00:00_
+_source line 1495 · 2026-05-20T22:49:13.242772+00:00_
 
 called Agent
 
@@ -5812,7 +5653,7 @@ called Agent
 
 ### Tool call
 
-_source line 1498 · 2026-05-20T22:49:15.092149+00:00_
+_source line 1496 · 2026-05-20T22:49:15.092149+00:00_
 
 called Bash
 
@@ -5846,7 +5687,7 @@ called Bash
 
 ### Tool result
 
-_source line 1499 · 2026-05-20T22:49:15.610196+00:00_
+_source line 1497 · 2026-05-20T22:49:15.610196+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/IDEA_BRIEF.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/dream_registry.yaml
@@ -5884,7 +5725,7 @@ _source line 1499 · 2026-05-20T22:49:15.610196+00:00_
 
 ### Tool call
 
-_source line 1500 · 2026-05-20T22:49:17.417529+00:00_
+_source line 1498 · 2026-05-20T22:49:17.417529+00:00_
 
 called Read
 
@@ -5918,7 +5759,7 @@ called Read
 
 ### Tool result
 
-_source line 1501 · 2026-05-20T22:49:17.904206+00:00_
+_source line 1499 · 2026-05-20T22:49:17.904206+00:00_
 
 1	# Idea Brief: VLA-SSD: Do VLAs Know Which Demonstrations Are Good? Self-Referential Quality Scoring from Pretrained Representations
 2	
@@ -5955,7 +5796,7 @@ _source line 1501 · 2026-05-20T22:49:17.904206+00:00_
 
 ### Tool call
 
-_source line 1502 · 2026-05-20T22:49:20.966965+00:00_
+_source line 1500 · 2026-05-20T22:49:20.966965+00:00_
 
 called WebSearch
 
@@ -5989,7 +5830,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1503 · 2026-05-20T22:49:21.452116+00:00_
+_source line 1501 · 2026-05-20T22:49:21.452116+00:00_
 
 called WebSearch
 
@@ -6023,7 +5864,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1504 · 2026-05-20T22:49:21.553052+00:00_
+_source line 1502 · 2026-05-20T22:49:21.553052+00:00_
 
 called WebSearch
 
@@ -6057,7 +5898,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1505 · 2026-05-20T22:49:21.804291+00:00_
+_source line 1503 · 2026-05-20T22:49:21.804291+00:00_
 
 called WebSearch
 
@@ -6091,7 +5932,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1506 · 2026-05-20T22:49:29.283574+00:00_
+_source line 1504 · 2026-05-20T22:49:29.283574+00:00_
 
 Web search results for query: ""VLA" "decoder-only" benchmark fine-tuned checkpoint public 2024 2025 2026"
 
@@ -6123,7 +5964,7 @@ VLABench's preview version was released on 2024/12/25, showcasing most of the de
 
 ### Tool result
 
-_source line 1507 · 2026-05-20T22:49:29.685638+00:00_
+_source line 1505 · 2026-05-20T22:49:29.685638+00:00_
 
 Web search results for query: "OpenVLA fine-tuned checkpoints HuggingFace benchmarks RoboMimic ALOHA"
 
@@ -6158,7 +5999,7 @@ OpenVLA provides example scripts for fine-tuning models f
 
 ### Tool result
 
-_source line 1508 · 2026-05-20T22:49:30.489781+00:00_
+_source line 1506 · 2026-05-20T22:49:30.489781+00:00_
 
 Web search results for query: "OpenVLA 7B fine-tuned variants different tasks benchmarks"
 
@@ -6196,7 +6037,7 @@ Several fine-tuned variants have been developed:
 
 ### Tool result
 
-_source line 1509 · 2026-05-20T22:49:33.373701+00:00_
+_source line 1507 · 2026-05-20T22:49:33.373701+00:00_
 
 Web search results for query: "RT-2-X Octo VLA public checkpoints evaluation dataset download"
 
@@ -6235,7 +6076,7 @@ OpenVLA uses a dataset of 970k robot manipulation trajectories from the Open X-E
 
 ### Tool call
 
-_source line 1510 · 2026-05-20T22:49:35.683989+00:00_
+_source line 1508 · 2026-05-20T22:49:35.683989+00:00_
 
 called WebSearch
 
@@ -6269,7 +6110,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1511 · 2026-05-20T22:49:35.935310+00:00_
+_source line 1509 · 2026-05-20T22:49:35.935310+00:00_
 
 called WebSearch
 
@@ -6303,7 +6144,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1512 · 2026-05-20T22:49:36.188539+00:00_
+_source line 1510 · 2026-05-20T22:49:36.188539+00:00_
 
 called WebSearch
 
@@ -6337,7 +6178,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1513 · 2026-05-20T22:49:36.490527+00:00_
+_source line 1511 · 2026-05-20T22:49:36.490527+00:00_
 
 called WebSearch
 
@@ -6371,7 +6212,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1514 · 2026-05-20T22:49:43.131019+00:00_
+_source line 1512 · 2026-05-20T22:49:43.131019+00:00_
 
 Web search results for query: "OpenVLA RoboMimic fine-tuned checkpoint public HuggingFace"
 
@@ -6404,7 +6245,7 @@ The search results show several publicly available fine-tuned OpenVLA checkpoint
 
 ### Tool result
 
-_source line 1515 · 2026-05-20T22:49:43.583252+00:00_
+_source line 1513 · 2026-05-20T22:49:43.583252+00:00_
 
 Web search results for query: ""ALOHA" VLA fine-tuned checkpoint download OpenVLA"
 
@@ -6437,7 +6278,7 @@ The Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chun
 
 ### Tool result
 
-_source line 1516 · 2026-05-20T22:49:43.884948+00:00_
+_source line 1514 · 2026-05-20T22:49:43.884948+00:00_
 
 Web search results for query: "VLA benchmarks public fine-tuned models ManiSkill Gym-Robotics"
 
@@ -6470,7 +6311,7 @@ RLinf-VLA supports diverse VLA architectures (e.g., Op
 
 ### Tool result
 
-_source line 1517 · 2026-05-20T22:49:45.541893+00:00_
+_source line 1515 · 2026-05-20T22:49:45.541893+00:00_
 
 Web search results for query: "SimplerEnv VLA checkpoint download π0 OpenVLA"
 
@@ -6503,7 +6344,7 @@ Based on the search results, I found relevant information about SimplerEnv, VLA 
 
 ### Tool call
 
-_source line 1518 · 2026-05-20T22:49:48.203671+00:00_
+_source line 1516 · 2026-05-20T22:49:48.203671+00:00_
 
 called WebSearch
 
@@ -6537,7 +6378,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1519 · 2026-05-20T22:49:48.505584+00:00_
+_source line 1517 · 2026-05-20T22:49:48.505584+00:00_
 
 called WebSearch
 
@@ -6571,7 +6412,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1520 · 2026-05-20T22:49:48.957775+00:00_
+_source line 1518 · 2026-05-20T22:49:48.957775+00:00_
 
 called WebSearch
 
@@ -6605,7 +6446,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1521 · 2026-05-20T22:49:49.058608+00:00_
+_source line 1519 · 2026-05-20T22:49:49.058608+00:00_
 
 called WebSearch
 
@@ -6639,7 +6480,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1522 · 2026-05-20T22:49:54.283319+00:00_
+_source line 1520 · 2026-05-20T22:49:54.283319+00:00_
 
 Web search results for query: "VLA fine-tuned "DROID" OR "BridgeData" OR "RLDS" public checkpoint"
 
@@ -6670,7 +6511,7 @@ Datasets can be converted
 
 ### Tool result
 
-_source line 1523 · 2026-05-20T22:49:54.384596+00:00_
+_source line 1521 · 2026-05-20T22:49:54.384596+00:00_
 
 Web search results for query: ""RoboMimic" VLA checkpoint fine-tuned download dataset"
 
@@ -6711,7 +6552,7 @@ The search results primarily focus on OpenVLA fine-tuning procedures and RoboMim
 
 ### Tool result
 
-_source line 1524 · 2026-05-20T22:49:56.883540+00:00_
+_source line 1522 · 2026-05-20T22:49:56.883540+00:00_
 
 Web search results for query: "OpenVLA Octo π0 "OXE" benchmark different datasets public checkpoints"
 
@@ -6746,7 +6587,7 @@ OpenVLA provides full instructions and configurations for training models on (ar
 
 ### Tool result
 
-_source line 1525 · 2026-05-20T22:49:57.887665+00:00_
+_source line 1523 · 2026-05-20T22:49:57.887665+00:00_
 
 Web search results for query: "VLA "object navigation" OR "manipulation task" fine-tuned model public release"
 
@@ -6783,7 +6624,7 @@ LLaVA-VLA extends the action space to unify navigation and manipulatio
 
 ### Tool call
 
-_source line 1526 · 2026-05-20T22:50:10.446764+00:00_
+_source line 1524 · 2026-05-20T22:50:10.446764+00:00_
 
 called WebSearch
 
@@ -6817,7 +6658,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1527 · 2026-05-20T22:50:10.716703+00:00_
+_source line 1525 · 2026-05-20T22:50:10.716703+00:00_
 
 called WebSearch
 
@@ -6851,7 +6692,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1528 · 2026-05-20T22:50:10.918025+00:00_
+_source line 1526 · 2026-05-20T22:50:10.918025+00:00_
 
 called WebSearch
 
@@ -6885,7 +6726,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1529 · 2026-05-20T22:50:11.219624+00:00_
+_source line 1527 · 2026-05-20T22:50:11.219624+00:00_
 
 called WebSearch
 
@@ -6919,7 +6760,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1530 · 2026-05-20T22:50:17.193785+00:00_
+_source line 1528 · 2026-05-20T22:50:17.193785+00:00_
 
 Web search results for query: "RoboMimic MultiTask VLA evaluation data size benchmark"
 
@@ -6952,7 +6793,7 @@ Additionally, related multitask VLA evaluation benchmarks are mentioned, such as
 
 ### Tool result
 
-_source line 1531 · 2026-05-20T22:50:18.298503+00:00_
+_source line 1529 · 2026-05-20T22:50:18.298503+00:00_
 
 Web search results for query: ""Calvin" benchmark VLA checkpoint download dataset evaluation"
 
@@ -6983,7 +6824,7 @@ CALVIN (Composing Actions from Language and Vision) is a large-scale, open-sourc
 
 ### Tool result
 
-_source line 1532 · 2026-05-20T22:50:19.051989+00:00_
+_source line 1530 · 2026-05-20T22:50:19.051989+00:00_
 
 Web search results for query: "VLA "Pick and Place" OR "PandaArm" benchmark fine-tuned public model 2024 2025"
 
@@ -7018,7 +6859,7 @@ Recent VLAs developed include RT-2, OpenVLA, Octo, π₀, and GEN-0. The researc
 
 ### Tool result
 
-_source line 1533 · 2026-05-20T22:50:19.956024+00:00_
+_source line 1531 · 2026-05-20T22:50:19.956024+00:00_
 
 Web search results for query: "VLA benchmark "WidowX" OR "Google Robot" evaluation data download public"
 
@@ -7051,7 +6892,7 @@ There are policy inference scripts available to reproduce Google Robot and Widow
 
 ### Tool call
 
-_source line 1534 · 2026-05-20T22:50:22.115046+00:00_
+_source line 1532 · 2026-05-20T22:50:22.115046+00:00_
 
 called WebSearch
 
@@ -7085,7 +6926,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1535 · 2026-05-20T22:50:22.868296+00:00_
+_source line 1533 · 2026-05-20T22:50:22.868296+00:00_
 
 called WebSearch
 
@@ -7119,7 +6960,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1536 · 2026-05-20T22:50:22.868740+00:00_
+_source line 1534 · 2026-05-20T22:50:22.868740+00:00_
 
 called WebSearch
 
@@ -7153,7 +6994,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1537 · 2026-05-20T22:50:29.545111+00:00_
+_source line 1535 · 2026-05-20T22:50:29.545111+00:00_
 
 Web search results for query: "VLA RoboMimic Can OR Square fine-tuned checkpoint public 2025"
 
@@ -7190,7 +7031,7 @@ If you're looking for a specific publicly released checkpoint, I'd recommend:
 
 ### Tool result
 
-_source line 1538 · 2026-05-20T22:50:29.746439+00:00_
+_source line 1536 · 2026-05-20T22:50:29.746439+00:00_
 
 Web search results for query: ""Instruction following" VLA fine-tuned checkpoint "non-LIBERO" benchmark"
 
@@ -7227,7 +7068,7 @@ Fine-tuned VLAs show improved language following and task execution compared to 
 
 ### Tool result
 
-_source line 1539 · 2026-05-20T22:50:39.566115+00:00_
+_source line 1537 · 2026-05-20T22:50:39.566115+00:00_
 
 Web search results for query: "site:huggingface.co openvla fine-tuned benchmark"
 
@@ -7262,7 +7103,7 @@ OpenVLA-OFT (Optimized Fine-Tuning) integrates parallel decoding and action chun
 
 ### Tool call
 
-_source line 1540 · 2026-05-20T22:50:41.979771+00:00_
+_source line 1538 · 2026-05-20T22:50:41.979771+00:00_
 
 called WebSearch
 
@@ -7296,7 +7137,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1541 · 2026-05-20T22:50:42.331792+00:00_
+_source line 1539 · 2026-05-20T22:50:42.331792+00:00_
 
 called WebSearch
 
@@ -7330,7 +7171,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1542 · 2026-05-20T22:50:42.482866+00:00_
+_source line 1540 · 2026-05-20T22:50:42.482866+00:00_
 
 called WebSearch
 
@@ -7364,7 +7205,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1543 · 2026-05-20T22:50:49.508989+00:00_
+_source line 1541 · 2026-05-20T22:50:49.508989+00:00_
 
 Web search results for query: "DLow BEHAVIOR benchmark VLA model checkpoint public release"
 
@@ -7401,7 +7242,7 @@ However, to get more specific information about the DLow BEHAVIOR benchmark and 
 
 ### Tool result
 
-_source line 1544 · 2026-05-20T22:50:49.760537+00:00_
+_source line 1542 · 2026-05-20T22:50:49.760537+00:00_
 
 Web search results for query: "language instruction VLA complexity measurement "action space" benchmark"
 
@@ -7440,7 +7281,7 @@ Several important benchmarks have been developed:
 
 ### Tool result
 
-_source line 1545 · 2026-05-20T22:50:57.464054+00:00_
+_source line 1543 · 2026-05-20T22:50:57.464054+00:00_
 
 Web search results for query: ""BridgeData" V2 VLA fine-tuned model checkpoint download evaluation set"
 
@@ -7479,7 +7320,7 @@ BridgeData V2 evaluation is typically reported as in-distribution success rate o
 
 ### Tool call
 
-_source line 1546 · 2026-05-20T22:50:59.723617+00:00_
+_source line 1544 · 2026-05-20T22:50:59.723617+00:00_
 
 called WebSearch
 
@@ -7513,7 +7354,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1547 · 2026-05-20T22:50:59.975006+00:00_
+_source line 1545 · 2026-05-20T22:50:59.975006+00:00_
 
 called WebSearch
 
@@ -7547,7 +7388,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1548 · 2026-05-20T22:51:00.428030+00:00_
+_source line 1546 · 2026-05-20T22:51:00.428030+00:00_
 
 called WebSearch
 
@@ -7581,7 +7422,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1549 · 2026-05-20T22:51:08.143985+00:00_
+_source line 1547 · 2026-05-20T22:51:08.143985+00:00_
 
 Web search results for query: ""openvla" OR "π0" "RoboMimic" benchmark fine-tuned OR checkpoint"
 
@@ -7620,7 +7461,7 @@ OpenVLA supports controlling multiple robots out of the box and can be quickly a
 
 ### Tool result
 
-_source line 1550 · 2026-05-20T22:51:12.368522+00:00_
+_source line 1548 · 2026-05-20T22:51:12.368522+00:00_
 
 Web search results for query: "VLA model "evaluation" "download" benchmark -LIBERO 2024 2025 2026"
 
@@ -7651,7 +7492,7 @@ Here are the search results for VLA model evaluation, download, and benchmark re
 
 ### Tool result
 
-_source line 1551 · 2026-05-20T22:51:18.290894+00:00_
+_source line 1549 · 2026-05-20T22:51:18.290894+00:00_
 
 Web search results for query: ""Octo" VLA fine-tuned RoboMimic OR BridgeData OR ALOHA checkpoint"
 
@@ -7686,7 +7527,7 @@ The Octo model is pretra
 
 ### Tool result
 
-_source line 1552 · 2026-05-20T22:51:38.757324+00:00_
+_source line 1550 · 2026-05-20T22:51:38.757324+00:00_
 
 Based on my comprehensive search, I can now provide you with a detailed report on publicly available VLA checkpoints and benchmarks. Here's what I found:
 
@@ -7749,7 +7590,7 @@ After extensive searching, the landscape shows that **most publicly released fin
 
 ### Tool call
 
-_source line 1553 · 2026-05-20T22:52:09.986877+00:00_
+_source line 1551 · 2026-05-20T22:52:09.986877+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -7783,7 +7624,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1554 · 2026-05-20T22:52:13.376294+00:00_
+_source line 1552 · 2026-05-20T22:52:13.376294+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -7812,7 +7653,7 @@ _source line 1554 · 2026-05-20T22:52:13.376294+00:00_
 
 ### User
 
-_source line 1555 · 2026-05-20T22:54:58.102543+00:00_
+_source line 1553 · 2026-05-20T22:54:58.102543+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 可以扩展libero到全套件。不要局限于goal 同时现在是不是只局限于几个vla而已 可以尝试扩展一个模型
 
@@ -7833,7 +7674,7 @@ _source line 1555 · 2026-05-20T22:54:58.102543+00:00_
 
 ### Tool call
 
-_source line 1556 · 2026-05-20T22:55:25.511863+00:00_
+_source line 1554 · 2026-05-20T22:55:25.511863+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -7867,7 +7708,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1557 · 2026-05-20T22:55:28.848880+00:00_
+_source line 1555 · 2026-05-20T22:55:28.848880+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -7889,7 +7730,7 @@ _source line 1557 · 2026-05-20T22:55:28.848880+00:00_
 
 ### Tool call
 
-_source line 1558 · 2026-05-20T22:55:38.587547+00:00_
+_source line 1556 · 2026-05-20T22:55:38.587547+00:00_
 
 called Agent
 
@@ -7927,7 +7768,7 @@ called Agent
 
 ### Tool call
 
-_source line 1559 · 2026-05-20T22:55:40.980124+00:00_
+_source line 1557 · 2026-05-20T22:55:40.980124+00:00_
 
 called Bash
 
@@ -7961,7 +7802,7 @@ called Bash
 
 ### Tool result
 
-_source line 1560 · 2026-05-20T22:55:41.456072+00:00_
+_source line 1558 · 2026-05-20T22:55:41.456072+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/AGENTS.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/idea_generator/ideas.yaml
@@ -8002,7 +7843,7 @@ _source line 1560 · 2026-05-20T22:55:41.456072+00:00_
 
 ### Tool call
 
-_source line 1561 · 2026-05-20T22:55:43.062802+00:00_
+_source line 1559 · 2026-05-20T22:55:43.062802+00:00_
 
 called Read
 
@@ -8036,7 +7877,7 @@ called Read
 
 ### Tool call
 
-_source line 1562 · 2026-05-20T22:55:43.550886+00:00_
+_source line 1560 · 2026-05-20T22:55:43.550886+00:00_
 
 called Read
 
@@ -8070,7 +7911,7 @@ called Read
 
 ### Tool result
 
-_source line 1563 · 2026-05-20T22:55:43.551462+00:00_
+_source line 1561 · 2026-05-20T22:55:43.551462+00:00_
 
 1	---
 2	loop: 5
@@ -8136,7 +7977,7 @@ _source line 1563 · 2026-05-20T22:55:43.551462+00:00_
 
 ### Tool result
 
-_source line 1564 · 2026-05-20T22:55:43.551884+00:00_
+_source line 1562 · 2026-05-20T22:55:43.551884+00:00_
 
 1	# Idea Brief: VLA-SSD: Do VLAs Know Which Demonstrations Are Good? Self-Referential Quality Scoring from Pretrained Representations
 2	
@@ -8173,7 +8014,7 @@ _source line 1564 · 2026-05-20T22:55:43.551884+00:00_
 
 ### Tool call
 
-_source line 1565 · 2026-05-20T22:55:45.358833+00:00_
+_source line 1563 · 2026-05-20T22:55:45.358833+00:00_
 
 called WebSearch
 
@@ -8207,7 +8048,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1566 · 2026-05-20T22:55:45.835997+00:00_
+_source line 1564 · 2026-05-20T22:55:45.835997+00:00_
 
 called WebSearch
 
@@ -8241,7 +8082,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1567 · 2026-05-20T22:55:46.238038+00:00_
+_source line 1565 · 2026-05-20T22:55:46.238038+00:00_
 
 called WebSearch
 
@@ -8275,7 +8116,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1568 · 2026-05-20T22:55:46.439294+00:00_
+_source line 1566 · 2026-05-20T22:55:46.439294+00:00_
 
 called WebSearch
 
@@ -8309,7 +8150,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1569 · 2026-05-20T22:55:53.969735+00:00_
+_source line 1567 · 2026-05-20T22:55:53.969735+00:00_
 
 Web search results for query: "CogACT SpatialVLA HPT VLA models 2024 HuggingFace"
 
@@ -8346,7 +8187,7 @@ CogACT offers two main model variants available on HuggingFace:
 
 ### Tool result
 
-_source line 1570 · 2026-05-20T22:55:55.024332+00:00_
+_source line 1568 · 2026-05-20T22:55:55.024332+00:00_
 
 Web search results for query: "Qwen-VL LLaVA VLA robotics action models LIBERO benchmark"
 
@@ -8383,7 +8224,7 @@ Qwen-2.5-VL-3B is used as a backbone in models like NORA, chosen for its strong 
 
 ### Tool result
 
-_source line 1571 · 2026-05-20T22:55:57.835506+00:00_
+_source line 1569 · 2026-05-20T22:55:57.835506+00:00_
 
 Web search results for query: "Vision Language Action VLA models LIBERO causal decoder 2024 2025"
 
@@ -8420,7 +8261,7 @@ A hybrid-attention decoder design employs causal attention for generating the se
 
 ### Tool result
 
-_source line 1572 · 2026-05-20T22:56:03.469211+00:00_
+_source line 1570 · 2026-05-20T22:56:03.469211+00:00_
 
 Web search results for query: "OpenVLA TraceVLA RoboMamba VLA causal autoregressive action tokens"
 
@@ -8456,7 +8297,7 @@ OpenVLA operates under an autoregressive next-token prediction loss, processing 
 
 ### Tool call
 
-_source line 1573 · 2026-05-20T22:56:06.582127+00:00_
+_source line 1571 · 2026-05-20T22:56:06.582127+00:00_
 
 called WebSearch
 
@@ -8490,7 +8331,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1574 · 2026-05-20T22:56:06.883807+00:00_
+_source line 1572 · 2026-05-20T22:56:06.883807+00:00_
 
 called WebSearch
 
@@ -8524,7 +8365,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1575 · 2026-05-20T22:56:07.084974+00:00_
+_source line 1573 · 2026-05-20T22:56:07.084974+00:00_
 
 called WebSearch
 
@@ -8558,7 +8399,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1576 · 2026-05-20T22:56:07.336376+00:00_
+_source line 1574 · 2026-05-20T22:56:07.336376+00:00_
 
 called WebSearch
 
@@ -8592,7 +8433,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1577 · 2026-05-20T22:56:13.722854+00:00_
+_source line 1575 · 2026-05-20T22:56:13.722854+00:00_
 
 Web search results for query: "VQ-VLA vector quantized action decoder VLA models 2025"
 
@@ -8627,7 +8468,7 @@ The action to
 
 ### Tool result
 
-_source line 1578 · 2026-05-20T22:56:14.275588+00:00_
+_source line 1576 · 2026-05-20T22:56:14.275588+00:00_
 
 Web search results for query: "AR-VLA "autoregressive action expert" vision language action 2025"
 
@@ -8666,7 +8507,7 @@ This structure addresses the frequency mismatch between fast control and slow re
 
 ### Tool result
 
-_source line 1579 · 2026-05-20T22:56:14.426714+00:00_
+_source line 1577 · 2026-05-20T22:56:14.426714+00:00_
 
 Web search results for query: "SmolVLA OpenPi VLA models HuggingFace weights LIBERO"
 
@@ -8697,7 +8538,7 @@ SmolVLA is a 450M parameter vision-language-action model designed for affordable
 
 ### Tool result
 
-_source line 1580 · 2026-05-20T22:56:14.778410+00:00_
+_source line 1578 · 2026-05-20T22:56:14.778410+00:00_
 
 Web search results for query: ""FASTer" neural action tokenization VLA 2024 2025"
 
@@ -8730,7 +8571,7 @@ FASTer is a unified framework for efficient and generalizable robot learning tha
 
 ### Tool call
 
-_source line 1581 · 2026-05-20T22:56:26.728362+00:00_
+_source line 1579 · 2026-05-20T22:56:26.728362+00:00_
 
 called WebSearch
 
@@ -8764,7 +8605,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1582 · 2026-05-20T22:56:27.131337+00:00_
+_source line 1580 · 2026-05-20T22:56:27.131337+00:00_
 
 called WebSearch
 
@@ -8798,7 +8639,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1583 · 2026-05-20T22:56:27.533259+00:00_
+_source line 1581 · 2026-05-20T22:56:27.533259+00:00_
 
 called WebSearch
 
@@ -8832,7 +8673,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1584 · 2026-05-20T22:56:27.684298+00:00_
+_source line 1582 · 2026-05-20T22:56:27.684298+00:00_
 
 called WebSearch
 
@@ -8866,7 +8707,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1585 · 2026-05-20T22:56:34.389155+00:00_
+_source line 1583 · 2026-05-20T22:56:34.389155+00:00_
 
 Web search results for query: ""π0" "pi0" VLA flow matching architecture diffusion"
 
@@ -8901,7 +8742,7 @@ The key innovation of π0 involves its use of flow matching: π0 forego discrete
 
 ### Tool result
 
-_source line 1586 · 2026-05-20T22:56:34.490162+00:00_
+_source line 1584 · 2026-05-20T22:56:34.490162+00:00_
 
 Web search results for query: "Octo VLA diffusion policy architecture robotics"
 
@@ -8936,7 +8777,7 @@ Octo encodes text instructions and image observations respectively with a langua
 
 ### Tool result
 
-_source line 1587 · 2026-05-20T22:56:34.942294+00:00_
+_source line 1585 · 2026-05-20T22:56:34.942294+00:00_
 
 Web search results for query: "NORA VLA model Qwen action fine-tuning HuggingFace"
 
@@ -8971,7 +8812,7 @@ NORA is trained on 970k real-world robot demonstrations and equipped with the FA
 
 ### Tool result
 
-_source line 1588 · 2026-05-20T22:56:44.290110+00:00_
+_source line 1586 · 2026-05-20T22:56:44.290110+00:00_
 
 Web search results for query: "RoboMamba VLA robotic vision language action 2024 2025"
 
@@ -9004,7 +8845,7 @@ The model integrates a vision encoder with Mamba, aligning visual tokens with la
 
 ### Tool call
 
-_source line 1589 · 2026-05-20T22:56:46.649798+00:00_
+_source line 1587 · 2026-05-20T22:56:46.649798+00:00_
 
 called WebSearch
 
@@ -9038,7 +8879,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1590 · 2026-05-20T22:56:47.403115+00:00_
+_source line 1588 · 2026-05-20T22:56:47.403115+00:00_
 
 called WebSearch
 
@@ -9072,7 +8913,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1591 · 2026-05-20T22:56:47.403483+00:00_
+_source line 1589 · 2026-05-20T22:56:47.403483+00:00_
 
 called WebSearch
 
@@ -9106,7 +8947,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1592 · 2026-05-20T22:56:48.006054+00:00_
+_source line 1590 · 2026-05-20T22:56:48.006054+00:00_
 
 called WebSearch
 
@@ -9140,7 +8981,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1593 · 2026-05-20T22:56:54.781765+00:00_
+_source line 1591 · 2026-05-20T22:56:54.781765+00:00_
 
 Web search results for query: "OpenVLA Llama-2 backbone causal autoregressive action decoder"
 
@@ -9175,7 +9016,7 @@ The model processes inputs as a sequence of tokens—vision (patch-as-token), la
 
 ### Tool result
 
-_source line 1594 · 2026-05-20T22:56:54.832450+00:00_
+_source line 1592 · 2026-05-20T22:56:54.832450+00:00_
 
 Web search results for query: ""causal decoder" VLA autoregressive robotics action tokens 2024 2025"
 
@@ -9213,7 +9054,7 @@ Recent VLA systems augment vision–language backbones with diffusion or flow-ma
 
 ### Tool result
 
-_source line 1595 · 2026-05-20T22:57:01.381498+00:00_
+_source line 1593 · 2026-05-20T22:57:01.381498+00:00_
 
 Web search results for query: "FAST FASTer action tokenization autoregressive VLA LIBERO benchmark"
 
@@ -9248,7 +9089,7 @@ FASTer is a unified framework for efficient and generalizable robot learning tha
 
 ### Tool result
 
-_source line 1596 · 2026-05-20T22:57:04.144971+00:00_
+_source line 1594 · 2026-05-20T22:57:04.144971+00:00_
 
 Web search results for query: "TraceVLA Phi-3-V architecture causal decoder action generation"
 
@@ -9287,7 +9128,7 @@ The approach involves encoding a robot's recent state–action trajectory as an 
 
 ### Tool call
 
-_source line 1597 · 2026-05-20T22:57:06.306188+00:00_
+_source line 1595 · 2026-05-20T22:57:06.306188+00:00_
 
 called WebSearch
 
@@ -9321,7 +9162,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1598 · 2026-05-20T22:57:06.457140+00:00_
+_source line 1596 · 2026-05-20T22:57:06.457140+00:00_
 
 called WebSearch
 
@@ -9355,7 +9196,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1599 · 2026-05-20T22:57:06.909302+00:00_
+_source line 1597 · 2026-05-20T22:57:06.909302+00:00_
 
 called WebSearch
 
@@ -9389,7 +9230,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1600 · 2026-05-20T22:57:06.960163+00:00_
+_source line 1598 · 2026-05-20T22:57:06.960163+00:00_
 
 called WebSearch
 
@@ -9423,7 +9264,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1601 · 2026-05-20T22:57:13.750491+00:00_
+_source line 1599 · 2026-05-20T22:57:13.750491+00:00_
 
 Web search results for query: "HuggingFace VLA models LIBERO checkpoint fine-tuned openvla tracevla"
 
@@ -9458,7 +9299,7 @@ TraceVLA is a new model developed by finetuning OpenVLA on a collected dataset o
 
 ### Tool result
 
-_source line 1602 · 2026-05-20T22:57:13.801107+00:00_
+_source line 1600 · 2026-05-20T22:57:13.801107+00:00_
 
 Web search results for query: "Latent reasoning VLA vision language action 2025"
 
@@ -9498,7 +9339,7 @@ Fast-ThinkAct improves on previous reasoning VLAs by learning compact continuous
 
 ### Tool result
 
-_source line 1603 · 2026-05-20T22:57:14.102963+00:00_
+_source line 1601 · 2026-05-20T22:57:14.102963+00:00_
 
 Web search results for query: "Vision-Language-Action models survey action tokenization decoder 2025"
 
@@ -9533,7 +9374,7 @@ VLA models can be unified under a single framework where vision and language inp
 
 ### Tool result
 
-_source line 1604 · 2026-05-20T22:57:20.427211+00:00_
+_source line 1602 · 2026-05-20T22:57:20.427211+00:00_
 
 Web search results for query: ""MiniVLA" Stanford vision language action model"
 
@@ -9572,7 +9413,7 @@ Vision-language-action models integrate vision, language and actions, and given 
 
 ### Tool call
 
-_source line 1605 · 2026-05-20T22:57:23.990988+00:00_
+_source line 1603 · 2026-05-20T22:57:23.990988+00:00_
 
 called WebSearch
 
@@ -9606,7 +9447,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1606 · 2026-05-20T22:57:24.041647+00:00_
+_source line 1604 · 2026-05-20T22:57:24.041647+00:00_
 
 called WebSearch
 
@@ -9640,7 +9481,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1607 · 2026-05-20T22:57:24.594073+00:00_
+_source line 1605 · 2026-05-20T22:57:24.594073+00:00_
 
 called WebSearch
 
@@ -9674,7 +9515,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1608 · 2026-05-20T22:57:24.745109+00:00_
+_source line 1606 · 2026-05-20T22:57:24.745109+00:00_
 
 called WebSearch
 
@@ -9708,7 +9549,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1609 · 2026-05-20T22:57:30.149281+00:00_
+_source line 1607 · 2026-05-20T22:57:30.149281+00:00_
 
 Web search results for query: "Pinocchio VLA model robotics vision language action"
 
@@ -9743,7 +9584,7 @@ A VLA takes in a camera
 
 ### Tool result
 
-_source line 1610 · 2026-05-20T22:57:30.451088+00:00_
+_source line 1608 · 2026-05-20T22:57:30.451088+00:00_
 
 Web search results for query: "GR00T GR1M MLLM vision language action robotics causal decoder"
 
@@ -9780,7 +9621,7 @@ The search results mention "gr1_arms_only"
 
 ### Tool result
 
-_source line 1611 · 2026-05-20T22:57:30.752666+00:00_
+_source line 1609 · 2026-05-20T22:57:30.752666+00:00_
 
 Web search results for query: "DeepThinkVLA action decoder reasoning capability 2025"
 
@@ -9815,7 +9656,7 @@ The model features a hybrid-attention decoder that generates sequential CoT with
 
 ### Tool result
 
-_source line 1612 · 2026-05-20T22:57:31.757013+00:00_
+_source line 1610 · 2026-05-20T22:57:31.757013+00:00_
 
 Web search results for query: ""NORA-1.5" action VLA preference rewards 2025"
 
@@ -9846,7 +9687,7 @@ NORA-1.5 is a VLA model built from the pre-trained NORA backbone by adding to it
 
 ### Tool call
 
-_source line 1613 · 2026-05-20T22:57:34.618530+00:00_
+_source line 1611 · 2026-05-20T22:57:34.618530+00:00_
 
 called WebSearch
 
@@ -9880,7 +9721,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1614 · 2026-05-20T22:57:35.070662+00:00_
+_source line 1612 · 2026-05-20T22:57:35.070662+00:00_
 
 called WebSearch
 
@@ -9914,7 +9755,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1615 · 2026-05-20T22:57:35.322077+00:00_
+_source line 1613 · 2026-05-20T22:57:35.322077+00:00_
 
 called WebSearch
 
@@ -9948,7 +9789,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1616 · 2026-05-20T22:57:41.093578+00:00_
+_source line 1614 · 2026-05-20T22:57:41.093578+00:00_
 
 Web search results for query: "site:huggingface.co openvla moojink declare-lab nora"
 
@@ -9979,7 +9820,7 @@ NORA-1.5 is a Vision-Language-Action (VLA) model that improves generalization an
 
 ### Tool result
 
-_source line 1617 · 2026-05-20T22:57:41.400284+00:00_
+_source line 1615 · 2026-05-20T22:57:41.400284+00:00_
 
 Web search results for query: "site:huggingface.co VLA LIBERO causal autoregressive action"
 
@@ -10012,7 +9853,7 @@ I found several relevant results from Hugging Face and related papers about VLA 
 
 ### Tool result
 
-_source line 1618 · 2026-05-20T22:57:41.701819+00:00_
+_source line 1616 · 2026-05-20T22:57:41.701819+00:00_
 
 Web search results for query: ""openvla-7b-libero" OR "tracevla-libero" OR "smolvla-libero" HuggingFace fine-tuned"
 
@@ -10047,7 +9888,7 @@ OpenVLA was fine-tuned via LoRA (r=32) on four LIBERO task suites independently:
 
 ### Tool call
 
-_source line 1619 · 2026-05-20T22:57:44.362503+00:00_
+_source line 1617 · 2026-05-20T22:57:44.362503+00:00_
 
 called WebSearch
 
@@ -10081,7 +9922,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1620 · 2026-05-20T22:57:47.274448+00:00_
+_source line 1618 · 2026-05-20T22:57:47.274448+00:00_
 
 called WebSearch
 
@@ -10115,7 +9956,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1621 · 2026-05-20T22:57:47.274782+00:00_
+_source line 1619 · 2026-05-20T22:57:47.274782+00:00_
 
 called WebSearch
 
@@ -10149,7 +9990,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1622 · 2026-05-20T22:57:54.702595+00:00_
+_source line 1620 · 2026-05-20T22:57:54.702595+00:00_
 
 Web search results for query: "TraceVLA HuggingFace LIBERO checkpoint phi3v fine-tuned robotics"
 
@@ -10188,7 +10029,7 @@ The T
 
 ### Tool result
 
-_source line 1623 · 2026-05-20T22:58:01.959121+00:00_
+_source line 1621 · 2026-05-20T22:58:01.959121+00:00_
 
 Web search results for query: ""WorldVLA" autoregressive action world model LIBERO robotics"
 
@@ -10223,7 +10064,7 @@ The world model component learns environmental physics by predicting future imag
 
 ### Tool result
 
-_source line 1624 · 2026-05-20T22:58:02.863157+00:00_
+_source line 1622 · 2026-05-20T22:58:02.863157+00:00_
 
 Web search results for query: "UniVLA unified vision language action LIBERO causal autoregressive"
 
@@ -10262,7 +10103,7 @@ UniVLA uses an autoregressive, Markov chain-based sequence modeling approach whe
 
 ### Tool result
 
-_source line 1625 · 2026-05-20T22:58:27.831076+00:00_
+_source line 1623 · 2026-05-20T22:58:27.831076+00:00_
 
 Perfect! Now I have comprehensive information. Let me compile the final report based on all my research.
 
@@ -10322,7 +10163,7 @@ Based on my systematic search, I've identified the causal-decoder VLA landscape.
 
 ### Tool call
 
-_source line 1626 · 2026-05-20T22:58:48.910083+00:00_
+_source line 1624 · 2026-05-20T22:58:48.910083+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -10356,7 +10197,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1627 · 2026-05-20T22:58:49.498271+00:00_
+_source line 1625 · 2026-05-20T22:58:49.498271+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -10385,7 +10226,7 @@ _source line 1627 · 2026-05-20T22:58:49.498271+00:00_
 
 ### User
 
-_source line 1628 · 2026-05-20T22:58:54.598562+00:00_
+_source line 1626 · 2026-05-20T22:58:54.598562+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 补全libero全配置 同时再依据我们的方法扩展一个模型 以更充分验证
 
@@ -10406,7 +10247,7 @@ _source line 1628 · 2026-05-20T22:58:54.598562+00:00_
 
 ### Tool call
 
-_source line 1629 · 2026-05-20T22:59:22.621579+00:00_
+_source line 1627 · 2026-05-20T22:59:22.621579+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -10440,7 +10281,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1630 · 2026-05-20T22:59:23.086264+00:00_
+_source line 1628 · 2026-05-20T22:59:23.086264+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":4270}"}
 
@@ -10462,7 +10303,7 @@ _source line 1630 · 2026-05-20T22:59:23.086264+00:00_
 
 ### Tool call
 
-_source line 1631 · 2026-05-20T22:59:46.285345+00:00_
+_source line 1629 · 2026-05-20T22:59:46.285345+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -10498,7 +10339,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1632 · 2026-05-20T22:59:50.105254+00:00_
+_source line 1630 · 2026-05-20T22:59:50.105254+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd7809cf4a0b4bd58b84f8cb2a\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -10520,7 +10361,7 @@ _source line 1632 · 2026-05-20T22:59:50.105254+00:00_
 
 ### Tool call
 
-_source line 1633 · 2026-05-20T22:59:58.129284+00:00_
+_source line 1631 · 2026-05-20T22:59:58.129284+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -10554,7 +10395,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1634 · 2026-05-20T22:59:58.759074+00:00_
+_source line 1632 · 2026-05-20T22:59:58.759074+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -10576,7 +10417,7 @@ _source line 1634 · 2026-05-20T22:59:58.759074+00:00_
 
 ### Assistant
 
-_source line 1635 · 2026-05-20T23:00:00.960130+00:00_
+_source line 1633 · 2026-05-20T23:00:00.960130+00:00_
 
 Agent 空闲。立即派发。
 
@@ -10603,7 +10444,7 @@ Agent 空闲。立即派发。
 
 ### User
 
-_source line 1636 · 2026-05-20T23:01:02.472450+00:00_
+_source line 1634 · 2026-05-20T23:01:02.472450+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (等待 Worker 准备后提交) | Worker 2 (GPU 0 / CPU 2)
@@ -10644,7 +10485,7 @@ Worker `smolvla_setup` 正在：
 
 ### Assistant
 
-_source line 1637 · 2026-05-20T23:01:09.346745+00:00_
+_source line 1635 · 2026-05-20T23:01:09.346745+00:00_
 
 No response requested.
 
@@ -10671,7 +10512,7 @@ No response requested.
 
 ### User
 
-_source line 1638 · 2026-05-20T23:04:50.608905+00:00_
+_source line 1636 · 2026-05-20T23:04:50.608905+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0 等待磁盘清理, cuda:1 SmolVLA Worker 运行中) | Worker 1 (GPU 0 / CPU 1)
@@ -10719,7 +10560,7 @@ westd-19183 仅剩 **4.1GB** 可用，需要 ~25GB（checkpoint 14GB + data 6GB 
 
 ### Tool call
 
-_source line 1639 · 2026-05-20T23:05:03.295629+00:00_
+_source line 1637 · 2026-05-20T23:05:03.295629+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -10755,7 +10596,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1640 · 2026-05-20T23:05:07.484120+00:00_
+_source line 1638 · 2026-05-20T23:05:07.484120+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd7aceaaca0b2e6b8ed68805d1\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -10784,7 +10625,7 @@ _source line 1640 · 2026-05-20T23:05:07.484120+00:00_
 
 ### User
 
-_source line 1641 · 2026-05-20T23:36:03.669314+00:00_
+_source line 1639 · 2026-05-20T23:36:03.669314+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -10828,7 +10669,7 @@ _source line 1641 · 2026-05-20T23:36:03.669314+00:00_
 
 ### Tool call
 
-_source line 1642 · 2026-05-20T23:36:13.615776+00:00_
+_source line 1640 · 2026-05-20T23:36:13.615776+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -10862,7 +10703,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1643 · 2026-05-20T23:36:13.817963+00:00_
+_source line 1641 · 2026-05-20T23:36:13.817963+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":1820}"}
 
@@ -10884,7 +10725,7 @@ _source line 1643 · 2026-05-20T23:36:13.817963+00:00_
 
 ### Tool call
 
-_source line 1644 · 2026-05-20T23:36:23.756697+00:00_
+_source line 1642 · 2026-05-20T23:36:23.756697+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -10922,7 +10763,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 1645 · 2026-05-20T23:36:24.460700+00:00_
+_source line 1643 · 2026-05-20T23:36:24.460700+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 5, \"next_nudge_in_minutes\": 30}"}
 
@@ -10944,7 +10785,7 @@ _source line 1645 · 2026-05-20T23:36:24.460700+00:00_
 
 ### Tool call
 
-_source line 1646 · 2026-05-20T23:36:38.030067+00:00_
+_source line 1644 · 2026-05-20T23:36:38.030067+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -10980,7 +10821,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1647 · 2026-05-20T23:36:42.102110+00:00_
+_source line 1645 · 2026-05-20T23:36:42.102110+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd0165c2538b34c40f44ef1378\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -11009,7 +10850,7 @@ _source line 1647 · 2026-05-20T23:36:42.102110+00:00_
 
 ### User
 
-_source line 1648 · 2026-05-20T23:37:12.325908+00:00_
+_source line 1646 · 2026-05-20T23:37:12.325908+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (两个 Worker 都在下载 checkpoint，尚未提交 GPU 任务) | Worker 2 (GPU 0 / CPU 2)
@@ -11052,7 +10893,7 @@ _source line 1648 · 2026-05-20T23:37:12.325908+00:00_
 
 ### Tool call
 
-_source line 1649 · 2026-05-20T23:37:30.939269+00:00_
+_source line 1647 · 2026-05-20T23:37:30.939269+00:00_
 
 called Read
 
@@ -11088,7 +10929,7 @@ called Read
 
 ### Tool result
 
-_source line 1650 · 2026-05-20T23:37:30.990215+00:00_
+_source line 1648 · 2026-05-20T23:37:30.990215+00:00_
 
 1	# Paper Framing — vla-ssd (Plan B → D060 Reframe)
 2	
@@ -11139,7 +10980,7 @@ _source line 1650 · 2026-05-20T23:37:30.990215+00:00_
 
 ### Tool call
 
-_source line 1651 · 2026-05-20T23:37:35.867272+00:00_
+_source line 1649 · 2026-05-20T23:37:35.867272+00:00_
 
 called Read
 
@@ -11177,7 +11018,7 @@ called Read
 
 ### Tool result
 
-_source line 1652 · 2026-05-20T23:37:35.918167+00:00_
+_source line 1650 · 2026-05-20T23:37:35.918167+00:00_
 
 60	- VLA-specific contributions: (1) temporal reorganization from mid-peak to bookend, (2) immediacy (L1: 80.2→99.6%), (3) head dedication (9→25 at L1)
 61	- **Per-token normalization**: 38.2x text/image ratio (trained instr-dom) vs 1.5x (untrained) — eliminates token-count confound
@@ -11220,7 +11061,7 @@ _source line 1652 · 2026-05-20T23:37:35.918167+00:00_
 
 ### Assistant
 
-_source line 1653 · 2026-05-20T23:37:56.481613+00:00_
+_source line 1651 · 2026-05-20T23:37:56.481613+00:00_
 
 等待 Agent 汇报的同时，已完成扩展后论文叙事升级的初步规划。
 
@@ -11258,7 +11099,7 @@ _source line 1653 · 2026-05-20T23:37:56.481613+00:00_
 
 ### User
 
-_source line 1654 · 2026-05-20T23:57:18.204328+00:00_
+_source line 1652 · 2026-05-20T23:57:18.204328+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0 Object checkpoint 下载中, cuda:1 空闲) | Worker 1 (GPU 0 / CPU 1 Object)
@@ -11317,7 +11158,7 @@ cuda:1 现在空闲，等待审批。
 
 ### Tool call
 
-_source line 1655 · 2026-05-20T23:58:07.472648+00:00_
+_source line 1653 · 2026-05-20T23:58:07.472648+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -11353,7 +11194,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1656 · 2026-05-20T23:58:11.492582+00:00_
+_source line 1654 · 2026-05-20T23:58:11.492582+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd0e7ea88a8b260dd0cf79f630\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -11375,7 +11216,7 @@ _source line 1656 · 2026-05-20T23:58:11.492582+00:00_
 
 ### Tool call
 
-_source line 1657 · 2026-05-20T23:58:18.739491+00:00_
+_source line 1655 · 2026-05-20T23:58:18.739491+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11409,7 +11250,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1658 · 2026-05-20T23:58:19.392194+00:00_
+_source line 1656 · 2026-05-20T23:58:19.392194+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11431,7 +11272,7 @@ _source line 1658 · 2026-05-20T23:58:19.392194+00:00_
 
 ### Assistant
 
-_source line 1659 · 2026-05-20T23:58:22.338891+00:00_
+_source line 1657 · 2026-05-20T23:58:22.338891+00:00_
 
 SmolVLA **不适用**。两个致命问题：
 
@@ -11463,7 +11304,7 @@ SmolVLA **不适用**。两个致命问题：
 
 ### User
 
-_source line 1660 · 2026-05-21T00:18:13.789512+00:00_
+_source line 1658 · 2026-05-21T00:18:13.789512+00:00_
 
 [Main Agent 执行出错]: Agent 未返回任何回复，请重试。
 
@@ -11484,7 +11325,7 @@ _source line 1660 · 2026-05-21T00:18:13.789512+00:00_
 
 ### Tool call
 
-_source line 1661 · 2026-05-21T00:18:22.907518+00:00_
+_source line 1659 · 2026-05-21T00:18:22.907518+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -11518,7 +11359,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1662 · 2026-05-21T00:18:23.009230+00:00_
+_source line 1660 · 2026-05-21T00:18:23.009230+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_rollback_transformers_20260520T235826 已完成（status=done）。用 `get_worker_status('worker_cod\"},\"pending\":[],\"idle_seconds\":11}"}
 
@@ -11540,7 +11381,7 @@ _source line 1662 · 2026-05-21T00:18:23.009230+00:00_
 
 ### Assistant
 
-_source line 1663 · 2026-05-21T00:18:25.960272+00:00_
+_source line 1661 · 2026-05-21T00:18:25.960272+00:00_
 
 Agent 在处理 transformers 回滚的 worker done 回调。等它处理完。
 
@@ -11567,7 +11408,7 @@ Agent 在处理 transformers 回滚的 worker done 回调。等它处理完。
 
 ### User
 
-_source line 1664 · 2026-05-21T00:23:12.022523+00:00_
+_source line 1662 · 2026-05-21T00:23:12.022523+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0 Object checkpoint 下载中, cuda:1 空闲待命) | Worker 1 (GPU 0 / CPU 1 Object)
@@ -11637,7 +11478,7 @@ _source line 1664 · 2026-05-21T00:23:12.022523+00:00_
 
 ### Tool call
 
-_source line 1665 · 2026-05-21T00:23:53.281649+00:00_
+_source line 1663 · 2026-05-21T00:23:53.281649+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -11673,7 +11514,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1666 · 2026-05-21T00:23:57.751126+00:00_
+_source line 1664 · 2026-05-21T00:23:57.751126+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd1470724b0b24965ccfdc8e76\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -11695,7 +11536,7 @@ _source line 1666 · 2026-05-21T00:23:57.751126+00:00_
 
 ### Assistant
 
-_source line 1667 · 2026-05-21T00:24:00.350076+00:00_
+_source line 1665 · 2026-05-21T00:24:00.350076+00:00_
 
 **选 NORA**。三个完全不同的 LLM 家族（Llama-2 / Phi-3 / Qwen2.5）是最强的跨架构论证。FAST+ tokenizer 差异不影响我们的分析——我们看的是 LLM hidden states 和 attention patterns，不是 action 输出格式。
 
@@ -11722,7 +11563,7 @@ _source line 1667 · 2026-05-21T00:24:00.350076+00:00_
 
 ### User
 
-_source line 1668 · 2026-05-21T00:24:58.030268+00:00_
+_source line 1666 · 2026-05-21T00:24:58.030268+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0 Object 下载中, cuda:1 NORA setup Worker) | Worker 2 (GPU 0 / CPU 2)
@@ -11755,7 +11596,7 @@ LIBERO-Object Worker 仍在 cuda:0 下载 checkpoint（~1MB/s，HuggingFace 限�
 
 ### Assistant
 
-_source line 1669 · 2026-05-21T00:25:03.518603+00:00_
+_source line 1667 · 2026-05-21T00:25:03.518603+00:00_
 
 No response requested.
 
@@ -11782,7 +11623,7 @@ No response requested.
 
 ### User
 
-_source line 1670 · 2026-05-21T00:31:49.205813+00:00_
+_source line 1668 · 2026-05-21T00:31:49.205813+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: smolvla不行的话换nora试试？
 
@@ -11803,7 +11644,7 @@ _source line 1670 · 2026-05-21T00:31:49.205813+00:00_
 
 ### Tool call
 
-_source line 1671 · 2026-05-21T00:31:59.596264+00:00_
+_source line 1669 · 2026-05-21T00:31:59.596264+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11837,7 +11678,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1672 · 2026-05-21T00:32:03.315365+00:00_
+_source line 1670 · 2026-05-21T00:32:03.315365+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11866,7 +11707,7 @@ _source line 1672 · 2026-05-21T00:32:03.315365+00:00_
 
 ### User
 
-_source line 1673 · 2026-05-21T00:35:01.235110+00:00_
+_source line 1671 · 2026-05-21T00:35:01.235110+00:00_
 
 [飞书用户 吴俊豪 (ou_5bbf8153e5ca1b4ad60193ad9cd5a930)]: 请注意所有通过了初步验证的都要完整测libero所有套件
 
@@ -11887,7 +11728,7 @@ _source line 1673 · 2026-05-21T00:35:01.235110+00:00_
 
 ### Tool call
 
-_source line 1674 · 2026-05-21T00:35:12.169241+00:00_
+_source line 1672 · 2026-05-21T00:35:12.169241+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11921,7 +11762,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1675 · 2026-05-21T00:35:15.467497+00:00_
+_source line 1673 · 2026-05-21T00:35:15.467497+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11943,7 +11784,7 @@ _source line 1675 · 2026-05-21T00:35:15.467497+00:00_
 
 ### Tool call
 
-_source line 1676 · 2026-05-21T00:35:28.771361+00:00_
+_source line 1674 · 2026-05-21T00:35:28.771361+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -11977,7 +11818,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1677 · 2026-05-21T00:35:29.315008+00:00_
+_source line 1675 · 2026-05-21T00:35:29.315008+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":450}"}
 
@@ -11999,7 +11840,7 @@ _source line 1677 · 2026-05-21T00:35:29.315008+00:00_
 
 ### Tool call
 
-_source line 1678 · 2026-05-21T00:35:40.424295+00:00_
+_source line 1676 · 2026-05-21T00:35:40.424295+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -12035,7 +11876,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1679 · 2026-05-21T00:35:41.902121+00:00_
+_source line 1677 · 2026-05-21T00:35:41.902121+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd17b00e4acb2f1db3ddc8067c\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -12064,7 +11905,7 @@ _source line 1679 · 2026-05-21T00:35:41.902121+00:00_
 
 ### User
 
-_source line 1680 · 2026-05-21T00:40:42.453745+00:00_
+_source line 1678 · 2026-05-21T00:40:42.453745+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (cuda:0 Object resume Worker, cuda:1 NORA setup Worker) | Worker 2 (GPU 0 / CPU 2)
@@ -12113,7 +11954,7 @@ TraceVLA 行无阻塞，GPU 空出来就能铺。请确认是否批准直接用�
 
 ### Tool call
 
-_source line 1681 · 2026-05-21T00:43:02.350564+00:00_
+_source line 1679 · 2026-05-21T00:43:02.350564+00:00_
 
 called ToolSearch
 
@@ -12149,7 +11990,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1682 · 2026-05-21T00:43:02.351265+00:00_
+_source line 1680 · 2026-05-21T00:43:02.351265+00:00_
 
 No matching deferred tools found
 
@@ -12171,7 +12012,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1683 · 2026-05-21T00:43:07.671210+00:00_
+_source line 1681 · 2026-05-21T00:43:07.671210+00:00_
 
 called ToolSearch
 
@@ -12207,7 +12048,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1684 · 2026-05-21T00:43:07.721816+00:00_
+_source line 1682 · 2026-05-21T00:43:07.721816+00:00_
 
 No matching deferred tools found
 
@@ -12229,7 +12070,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1685 · 2026-05-21T00:43:11.104407+00:00_
+_source line 1683 · 2026-05-21T00:43:11.104407+00:00_
 
 called ToolSearch
 
@@ -12265,7 +12106,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1686 · 2026-05-21T00:43:11.155017+00:00_
+_source line 1684 · 2026-05-21T00:43:11.155017+00:00_
 
 
 
@@ -12287,7 +12128,7 @@ _source line 1686 · 2026-05-21T00:43:11.155017+00:00_
 
 ### Tool call
 
-_source line 1687 · 2026-05-21T00:43:13.614774+00:00_
+_source line 1685 · 2026-05-21T00:43:13.614774+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -12321,7 +12162,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1688 · 2026-05-21T00:43:13.866078+00:00_
+_source line 1686 · 2026-05-21T00:43:13.866078+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":149}"}
 
@@ -12343,7 +12184,7 @@ _source line 1688 · 2026-05-21T00:43:13.866078+00:00_
 
 ### Tool call
 
-_source line 1689 · 2026-05-21T00:43:13.866511+00:00_
+_source line 1687 · 2026-05-21T00:43:13.866511+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -12377,7 +12218,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 1690 · 2026-05-21T00:43:14.570915+00:00_
+_source line 1688 · 2026-05-21T00:43:14.570915+00:00_
 
 {"result":"**项目**: `vla-ssd`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-19183 (connect.westd.seetacloud.com)\n✓ 代码路径  /root/vla-ssd\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 87 条记录\n**论文溯源**: 覆盖率 109/114\n\n── 📊 研究进度 ──\n实验: 121 个 (待处理 7 | 完成 114 | 成功 88)\n\n  mvp2_action_dino        DONE (success)\n  mvp2_action_untrained   DONE (success)\n  mvp2_action_trained     DONE (success)\n  mvp_controlb_untrained  DONE (success)\n  mvp_controlb_trained    DONE (success)\n  mvp_001                 DONE (negative)\n  mvp_probe_untrained     DONE (success)\n  mvp_probe_trained       DONE (negative)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- libero_finetuned_probe（准备中）\n- behavioral_smoketest_diag（准备中）\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional"}
 
@@ -12399,7 +12240,7 @@ _source line 1690 · 2026-05-21T00:43:14.570915+00:00_
 
 ### Tool call
 
-_source line 1691 · 2026-05-21T00:43:20.846049+00:00_
+_source line 1689 · 2026-05-21T00:43:20.846049+00:00_
 
 called ToolSearch
 
@@ -12435,7 +12276,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1692 · 2026-05-21T00:43:20.846389+00:00_
+_source line 1690 · 2026-05-21T00:43:20.846389+00:00_
 
 No matching deferred tools found
 
@@ -12457,7 +12298,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1693 · 2026-05-21T00:43:36.211117+00:00_
+_source line 1691 · 2026-05-21T00:43:36.211117+00:00_
 
 called ToolSearch
 
@@ -12493,7 +12334,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1694 · 2026-05-21T00:43:36.512856+00:00_
+_source line 1692 · 2026-05-21T00:43:36.512856+00:00_
 
 
 
@@ -12515,7 +12356,7 @@ _source line 1694 · 2026-05-21T00:43:36.512856+00:00_
 
 ### Tool call
 
-_source line 1695 · 2026-05-21T00:43:39.542467+00:00_
+_source line 1693 · 2026-05-21T00:43:39.542467+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -12549,7 +12390,7 @@ called mcp__agent-ml-research__get_gpu_health
 
 ### Tool result
 
-_source line 1696 · 2026-05-21T00:43:39.593125+00:00_
+_source line 1694 · 2026-05-21T00:43:39.593125+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {\"westd-19183\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -12571,7 +12412,7 @@ _source line 1696 · 2026-05-21T00:43:39.593125+00:00_
 
 ### Tool call
 
-_source line 1697 · 2026-05-21T00:44:01.915155+00:00_
+_source line 1695 · 2026-05-21T00:44:01.915155+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -12607,7 +12448,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1698 · 2026-05-21T00:44:06.592137+00:00_
+_source line 1696 · 2026-05-21T00:44:06.592137+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd11b9510bcb3e8b25c1bae8b7\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -12629,7 +12470,7 @@ _source line 1698 · 2026-05-21T00:44:06.592137+00:00_
 
 ### Tool call
 
-_source line 1699 · 2026-05-21T00:44:09.385115+00:00_
+_source line 1697 · 2026-05-21T00:44:09.385115+00:00_
 
 called ToolSearch
 
@@ -12665,7 +12506,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1700 · 2026-05-21T00:44:09.385694+00:00_
+_source line 1698 · 2026-05-21T00:44:09.385694+00:00_
 
 No matching deferred tools found
 
@@ -12687,7 +12528,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1701 · 2026-05-21T00:44:11.795113+00:00_
+_source line 1699 · 2026-05-21T00:44:11.795113+00:00_
 
 called ToolSearch
 
@@ -12723,7 +12564,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1702 · 2026-05-21T00:44:11.845707+00:00_
+_source line 1700 · 2026-05-21T00:44:11.845707+00:00_
 
 
 
@@ -12745,7 +12586,7 @@ _source line 1702 · 2026-05-21T00:44:11.845707+00:00_
 
 ### Tool call
 
-_source line 1703 · 2026-05-21T00:44:20.779807+00:00_
+_source line 1701 · 2026-05-21T00:44:20.779807+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -12779,7 +12620,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1704 · 2026-05-21T00:44:21.483237+00:00_
+_source line 1702 · 2026-05-21T00:44:21.483237+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -12801,7 +12642,7 @@ _source line 1704 · 2026-05-21T00:44:21.483237+00:00_
 
 ### Assistant
 
-_source line 1705 · 2026-05-21T00:44:24.231659+00:00_
+_source line 1703 · 2026-05-21T00:44:24.231659+00:00_
 
 指令已发出，Agent 空闲状态会立即开始处理。等待 Agent 汇报各条线进展。
 
@@ -12828,7 +12669,7 @@ _source line 1705 · 2026-05-21T00:44:24.231659+00:00_
 
 ### User
 
-_source line 1706 · 2026-05-21T00:44:36.863130+00:00_
+_source line 1704 · 2026-05-21T00:44:36.863130+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/0 (两个 Worker 都在准备阶段，尚未提交 GPU 任务) | Worker 2 (GPU 0 / CPU 2)
@@ -12874,7 +12715,7 @@ TraceVLA Spatial/Object/Long: 哪张卡先空出来先跑
 
 ### Tool call
 
-_source line 1707 · 2026-05-21T00:44:49.363955+00:00_
+_source line 1705 · 2026-05-21T00:44:49.363955+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -12910,7 +12751,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1708 · 2026-05-21T00:44:53.484272+00:00_
+_source line 1706 · 2026-05-21T00:44:53.484272+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd1168bdcbcb1137c57dc08357\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -12932,7 +12773,7 @@ _source line 1708 · 2026-05-21T00:44:53.484272+00:00_
 
 ### Assistant
 
-_source line 1709 · 2026-05-21T00:44:56.946994+00:00_
+_source line 1707 · 2026-05-21T00:44:56.946994+00:00_
 
 NORA 下载瓶颈和 Long checkpoint 下载时机两个问题已指令 Agent 处理。等 Agent 回复确认执行情况。
 
@@ -12959,7 +12800,7 @@ NORA 下载瓶颈和 Long checkpoint 下载时机两个问题已指令 Agent 处
 
 ### User
 
-_source line 1710 · 2026-05-21T00:47:17.229877+00:00_
+_source line 1708 · 2026-05-21T00:47:17.229877+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/1 (cuda:0 libero_object_full_pipeline RUNNING, cuda:1 NORA 下载中) | Worker 2 (GPU 0 / CPU 2 NORA+Long下载)
@@ -12994,7 +12835,7 @@ Object 结果到达后立即汇报。
 
 ### Assistant
 
-_source line 1711 · 2026-05-21T00:47:23.243252+00:00_
+_source line 1709 · 2026-05-21T00:47:23.243252+00:00_
 
 Object pipeline 已上 GPU，Long checkpoint 在并行下载。进展符合预期，等结果回调。
 
@@ -13021,7 +12862,7 @@ Object pipeline 已上 GPU，Long checkpoint 在并行下载。进展符合预�
 
 ### User
 
-_source line 1712 · 2026-05-21T01:18:37.583309+00:00_
+_source line 1710 · 2026-05-21T01:18:37.583309+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -13063,7 +12904,7 @@ _source line 1712 · 2026-05-21T01:18:37.583309+00:00_
 
 ### Tool call
 
-_source line 1713 · 2026-05-21T01:18:42.847275+00:00_
+_source line 1711 · 2026-05-21T01:18:42.847275+00:00_
 
 called ToolSearch
 
@@ -13099,7 +12940,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1714 · 2026-05-21T01:18:42.898024+00:00_
+_source line 1712 · 2026-05-21T01:18:42.898024+00:00_
 
 No matching deferred tools found
 
@@ -13121,7 +12962,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1715 · 2026-05-21T01:18:46.764604+00:00_
+_source line 1713 · 2026-05-21T01:18:46.764604+00:00_
 
 called ToolSearch
 
@@ -13157,7 +12998,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1716 · 2026-05-21T01:18:46.816116+00:00_
+_source line 1714 · 2026-05-21T01:18:46.816116+00:00_
 
 
 
@@ -13179,7 +13020,7 @@ _source line 1716 · 2026-05-21T01:18:46.816116+00:00_
 
 ### Tool call
 
-_source line 1717 · 2026-05-21T01:18:57.259613+00:00_
+_source line 1715 · 2026-05-21T01:18:57.259613+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -13217,7 +13058,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 1718 · 2026-05-21T01:18:58.012844+00:00_
+_source line 1716 · 2026-05-21T01:18:58.012844+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -13239,7 +13080,7 @@ _source line 1718 · 2026-05-21T01:18:58.012844+00:00_
 
 ### Tool call
 
-_source line 1719 · 2026-05-21T01:19:13.239712+00:00_
+_source line 1717 · 2026-05-21T01:19:13.239712+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -13275,7 +13116,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1720 · 2026-05-21T01:19:17.357059+00:00_
+_source line 1718 · 2026-05-21T01:19:17.357059+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd197898ca4b14d87f00aea18f\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -13297,7 +13138,7 @@ _source line 1720 · 2026-05-21T01:19:17.357059+00:00_
 
 ### Tool call
 
-_source line 1721 · 2026-05-21T01:19:26.199125+00:00_
+_source line 1719 · 2026-05-21T01:19:26.199125+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -13333,7 +13174,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 1722 · 2026-05-21T01:19:26.301207+00:00_
+_source line 1720 · 2026-05-21T01:19:26.301207+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -13355,7 +13196,7 @@ _source line 1722 · 2026-05-21T01:19:26.301207+00:00_
 
 ### Assistant
 
-_source line 1723 · 2026-05-21T01:19:30.152532+00:00_
+_source line 1721 · 2026-05-21T01:19:30.152532+00:00_
 
 已完成三个行动：
 - 派 Agent 检查 cuda:0 实际 GPU 利用率 + cuda:1 立即跑 TraceVLA 不等 NORA 下载
@@ -13384,7 +13225,7 @@ _source line 1723 · 2026-05-21T01:19:30.152532+00:00_
 
 ### User
 
-_source line 1724 · 2026-05-21T01:39:19.705306+00:00_
+_source line 1722 · 2026-05-21T01:39:19.705306+00:00_
 
 [Main Agent 执行出错]: Agent 未返回任何回复，请重试。
 
@@ -13405,7 +13246,7 @@ _source line 1724 · 2026-05-21T01:39:19.705306+00:00_
 
 ### Tool call
 
-_source line 1725 · 2026-05-21T01:39:28.029019+00:00_
+_source line 1723 · 2026-05-21T01:39:28.029019+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -13439,7 +13280,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1726 · 2026-05-21T01:39:28.079755+00:00_
+_source line 1724 · 2026-05-21T01:39:28.079755+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_nora_setup_and_dryrun_20260521T002441 已完成（status=done）。用 `get_worker_status('worker_cod\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_analysis_check_object_pipeline_gpu_20260521T011932 已完成（status=done）。用 `get_worker_status('wo\",\"queued_at\":1779326484.513416}],\"idle_seconds\":10}"}
 
@@ -13461,7 +13302,7 @@ _source line 1726 · 2026-05-21T01:39:28.079755+00:00_
 
 ### Assistant
 
-_source line 1727 · 2026-05-21T01:39:33.490262+00:00_
+_source line 1725 · 2026-05-21T01:39:33.490262+00:00_
 
 Agent 正在处理两个 Worker 回调（NORA setup 完成 + Object pipeline GPU 检查完成），队列深度 1，活跃中。超时是因为同时处理多个回调，不是真的故障。等 Agent 处理完后会自动回复。
 
@@ -13488,7 +13329,7 @@ Agent 正在处理两个 Worker 回调（NORA setup 完成 + Object pipeline GPU
 
 ### User
 
-_source line 1728 · 2026-05-21T01:39:51.039345+00:00_
+_source line 1726 · 2026-05-21T01:39:51.039345+00:00_
 
 [RESET REQUEST] Main Agent 达到硬限
   触发原因：idle 960min
@@ -13519,7 +13360,7 @@ _source line 1728 · 2026-05-21T01:39:51.039345+00:00_
 
 ### Tool call
 
-_source line 1729 · 2026-05-21T01:40:13.357991+00:00_
+_source line 1727 · 2026-05-21T01:40:13.357991+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -13553,7 +13394,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 1730 · 2026-05-21T01:40:13.509127+00:00_
+_source line 1728 · 2026-05-21T01:40:13.509127+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_BOTH\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -13582,7 +13423,7 @@ _source line 1730 · 2026-05-21T01:40:13.509127+00:00_
 
 ### User
 
-_source line 1731 · 2026-05-21T01:41:14.951738+00:00_
+_source line 1729 · 2026-05-21T01:41:14.951738+00:00_
 
 [Agent 回复]:
 [资源] GPU 2/1 (cuda:0 Object pipeline Phase 2 probing, cuda:1 TraceVLA-Spatial 准备中) | Worker 2 (GPU 0 / CPU 2)
@@ -13627,7 +13468,7 @@ Worker 正在准备 TraceVLA-Phi3V LIBERO-Spatial 全套 pipeline（attention �
 
 ### Assistant
 
-_source line 1732 · 2026-05-21T01:41:26.408450+00:00_
+_source line 1730 · 2026-05-21T01:41:26.408450+00:00_
 
 No response requested.
 
@@ -13654,7 +13495,7 @@ No response requested.
 
 ### User
 
-_source line 1733 · 2026-05-21T01:41:27.007879+00:00_
+_source line 1731 · 2026-05-21T01:41:27.007879+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -13736,7 +13577,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1734 · 2026-05-21T01:42:21.096299+00:00_
+_source line 1732 · 2026-05-21T01:42:21.096299+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

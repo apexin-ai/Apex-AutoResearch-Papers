@@ -143,7 +143,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | fix llama seed789 sync | 57 | 0 | [Read transcript](fix-llama-seed789-sync.md) | [JSON](../../sessions/34/3402697dcc08b5597894.json) |
 | fix unified id fix patch | 173 | 0 | [Read transcript](fix-unified-id-fix-patch.md) | [JSON](../../sessions/0d/0d26520db7e0c056c8a1.json) |
 | fix regenerate figures final | 69 | 0 | [Read transcript](fix-regenerate-figures-final.md) | [JSON](../../sessions/b2/b21f83208be5551b413a.json) |
-| verify br residual check | 29 | 0 | [Read transcript](verify-br-residual-check.md) | [JSON](../../sessions/76/76e825958eb40180ad98.json) |
+| verify br residual check | 27 | 0 | [Read transcript](verify-br-residual-check.md) | [JSON](../../sessions/76/76e825958eb40180ad98.json) |
 | fix canonical recompute ft drc | 253 | 0 | [Read transcript](fix-canonical-recompute-ft-drc.md) | [JSON](../../sessions/b0/b0dc09c6c8f2ba534a70.json) |
 | fix kappa s789 mistral | 67 | 0 | [Read transcript](fix-kappa-s789-mistral.md) | [JSON](../../sessions/18/18262ec17a6253681378.json) |
 | fix scatter regen final2 | 26 | 0 | [Read transcript](fix-scatter-regen-final2.md) | [JSON](../../sessions/51/51efcf4cc5f3c1163135.json) |

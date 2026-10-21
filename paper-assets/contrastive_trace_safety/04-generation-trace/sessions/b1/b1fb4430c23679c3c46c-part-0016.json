@@ -3348,44 +3348,6 @@
         },
         {
           "source_line": 2870,
-          "timestamp": "2026-05-24T05:00:33.325206+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_60d666c5df9f6fd550342b33963e2ded",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/rebuttal_prep.md"
-            }
-          },
-          "id": "event-002870"
-        },
-        {
-          "source_line": 2871,
-          "timestamp": "2026-05-24T05:00:34.580743+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Preparation: Anticipated Reviewer Questions\n2\t\n3\tPaper: *Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models*\n4\tTarget: EMNLP 2026 (ARR May 25)\n5\t\n6\t---\n7\t\n8\t## Q1: Hyperparameter Overfitting\n9\t\n10\t**Reviewer wording:** \"The paper optimizes layer and window size per model. How do we know this isn't overfitting to specific hyperparameter configurations? The search space (layer x window x model) seems large enough to find spurious results.\"\n11\t\n12\t**Core response:**\n13\tThe balanced accuracy landscape over layers is flat near the optimum: Table A3 (app:layer_sweep, tab:joint_layer_w) shows that for QwQ-32B, L63 is near-optimal at W=3-5 and layers within +/-5 of the selected layer vary by <2pp BA. This is not a sharp peak that could reflect overfitting. We further validate layer selection stability with 5-fold cross-validation on 32B models (app:hyperparameter_robustness, tab:fold_ba_layers): for R1-32B the dominant layer is selected in 13/20 folds under LOO-CV, and for QwQ-32B in 13/19 folds, confirming robustness to validation set composition. BCa bootstrap confidence intervals (app:holm_bonferroni, tab:holm_bonferroni) quantify uncertainty: all 4 model-level HB tests pass at 384d precision, with effect sizes (+15-24pp precision) far exceeding the minimum detectable effect (app:power_analysis, tab:power_analysis: MDE 6.7-9.5pp at 80% power).\n14\t\n15\t**Supporting references:**\n16\t- app:layer_sweep, tab:joint_layer_w (joint layer x window grid)\n17\t- app:hyperparameter_robustness, tab:fold_ba_layers (5-fold CV layer stability)\n18\t- app:holm_bonferroni, tab:holm_bonferroni (4/4 model-level HB correction)\n19\t- app:power_analysis, tab:power_analysis (post-hoc MDE)\n20\t- app:ba_layer_comparison, tab:ba_layer_results (BA-optimal layers yield 14/16 HB, refuting circularity)\n21\t\n22\t---\n23\t\n24\t## Q2: Single Dataset\n25\t\n26\t**Reviewer wording:** \"All experiments are conducted on a single dataset (HarmThoughts). This severely limits the general\n…[truncated 10149 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_60d666c5df9f6fd550342b33963e2ded",
-            "tool": "Read",
-            "elapsed_ms": 1255
-          },
-          "id": "event-002871"
-        },
-        {
-          "source_line": 2872,
           "timestamp": "2026-05-24T05:00:34.731778+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3403,10 +3365,10 @@
               "description": "List all appendix sections and labels"
             }
           },
-          "id": "event-002872"
+          "id": "event-002870"
         },
         {
-          "source_line": 2873,
+          "source_line": 2871,
           "timestamp": "2026-05-24T05:00:34.883807+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3421,10 +3383,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-002873"
+          "id": "event-002871"
         },
         {
-          "source_line": 2874,
+          "source_line": 2872,
           "timestamp": "2026-05-24T05:00:41.372415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3442,10 +3404,10 @@
               "description": "Extract all appendix labels"
             }
           },
-          "id": "event-002874"
+          "id": "event-002872"
         },
         {
-          "source_line": 2875,
+          "source_line": 2873,
           "timestamp": "2026-05-24T05:00:41.513875+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3460,10 +3422,10 @@
             "tool": "Bash",
             "elapsed_ms": 141
           },
-          "id": "event-002875"
+          "id": "event-002873"
         },
         {
-          "source_line": 2876,
+          "source_line": 2874,
           "timestamp": "2026-05-24T05:00:44.236578+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3481,10 +3443,10 @@
               "description": "Extract appendix section labels"
             }
           },
-          "id": "event-002876"
+          "id": "event-002874"
         },
         {
-          "source_line": 2877,
+          "source_line": 2875,
           "timestamp": "2026-05-24T05:00:44.337448+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3499,10 +3461,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002877"
+          "id": "event-002875"
         },
         {
-          "source_line": 2878,
+          "source_line": 2876,
           "timestamp": "2026-05-24T05:00:50.562809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3520,10 +3482,10 @@
               "description": "Find appendix labels with no main text reference"
             }
           },
-          "id": "event-002878"
+          "id": "event-002876"
         },
         {
-          "source_line": 2879,
+          "source_line": 2877,
           "timestamp": "2026-05-24T05:00:50.814091+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3538,10 +3500,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-002879"
+          "id": "event-002877"
         },
         {
-          "source_line": 2880,
+          "source_line": 2878,
           "timestamp": "2026-05-24T05:00:57.337915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3557,6 +3519,45 @@
             "tool_args": {
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections && for label in app:advbench_cp app:auroc_layer app:bug app:cp_perturbation app:deployment_operating_points app:ensemble app:hyperparameter_robustness app:k_ablation app:r18b_full_layer app:text_window app:threshold_sensitivity app:window_ablation sec:oracle; do\n  # Check if referenced from appendix itself or from appendix TOC\n  acount=$(grep -c \"$label\" appendix.tex 2>/dev/null)\n  # The label definition counts as 1, so need >1 for internal ref\n  if [ \"$acount\" -le 1 ]; then\n    echo \"ORPHAN: $label (only label def, no internal ref)\"\n  else\n    echo \"INTERNAL_REF: $label (${acount} occurrences in appendix)\"\n  fi\ndone",
               "description": "Check if unreferenced labels have appendix-internal refs"
+            }
+          },
+          "id": "event-002878"
+        },
+        {
+          "source_line": 2879,
+          "timestamp": "2026-05-24T05:00:57.438912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ORPHAN: app:advbench_cp (only label def, no internal ref)\nORPHAN: app:auroc_layer (only label def, no internal ref)\nINTERNAL_REF: app:bug (2 occurrences in appendix)\nINTERNAL_REF: app:cp_perturbation (2 occurrences in appendix)\nINTERNAL_REF: app:deployment_operating_points (2 occurrences in appendix)\nORPHAN: app:ensemble (only label def, no internal ref)\nINTERNAL_REF: app:hyperparameter_robustness (2 occurrences in appendix)\nINTERNAL_REF: app:k_ablation (2 occurrences in appendix)\nORPHAN: app:r18b_full_layer (only label def, no internal ref)\nINTERNAL_REF: app:text_window (2 occurrences in appendix)\nINTERNAL_REF: app:threshold_sensitivity (2 occurrences in appendix)\nINTERNAL_REF: app:window_ablation (3 occurrences in appendix)\nINTERNAL_REF: sec:oracle (2 occurrences in appendix)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/agent_d5cc4f1f"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_60d666c5df9f6fd550342b33963e2ded",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002879"
+        },
+        {
+          "source_line": 2880,
+          "timestamp": "2026-05-24T05:01:09.335165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_60d666c5df9f6fd550342b33963e2ded",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections && grep -n \"r18b_full_layer\\|tab:ensemble\\|tab:k_ablation\\|tab:window_full\\|cp_perturbation\\|tab:cp_perturbation\\|auroc_layer\\|advbench_cp\\|deployment_operating\" introduction.tex method.tex experiments.tex discussion.tex limitations.tex 2>/dev/null",
+              "description": "Check if table-level refs exist for orphaned sections"
             }
           },
           "id": "event-002880"

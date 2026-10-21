@@ -4,96 +4,11 @@
 
 [← Part 1](part-001.md) · [Transcript overview](../reviewer-coordination-20260517-081447.md) · [Structured JSON](../../../sessions/c1/c1b6d6d9fd255466e178.json)
 
-## Round 40
-
-### Tool call
-
-_source line 690 · 2026-05-17T04:14:51.660171+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] plan_006 partial data + cuda:1 空窗利用评估\n\n## Q1: plan_006 gen 0-17 数据能否做 early-phase time-series 分析？\n\n**结论：数据已不存在，问题无效。**\n\n`results/extended_20gen/s42/` 目录在远程服务器上已被删除。当前 results/ 下只有：alpha_sweep/、alpha_sweep_analysis/、detrending/、analysis/、rebuttal/。mvp/ 目录也不存在（虽然 registry 记录了 mvp_v4_rep42-45 的结果，原始 gen 数据已清理）。\n\nRegistry 注释 \"D034 决定不恢复，T=18 数据已足够\" 是当时做出的决策，但数据本身已在后续清理中丢失。\n\n## Q2: cuda:1 是否有低成本 GPU 工作可做？\n\n**结论：无。建议 idle。**\n\n逐项排除：\n- **GPT-2m 新 α 点**（最有价值的扩展）：gen_wiki_gpt2m_a025_s42 花了 10.22h → 3.5h 不够\n- **Pythia 新 α 点（0.10/0.60）**：每个 ~4.5h，刚好超出窗口，且论文 5-level dose-response 已完整，增量边际\n- **额外 seed 在已有 α**：α=1.0 已 4 seeds（足够），α=0.75 已 3 seeds，α=0.25 已 3 seeds（含 GPT-2m）。都不需要加\n- **T=20 长链实验**：12h+，远超窗口\n- **Robustness 分析**（bootstrap CI、effect size）：纯 CPU 任务，不需要 GPU\n\n论文当前证据已足够支撑核心 claims。a050_s44（cuda:0）是唯一有意义的剩余训练实验。强行找 GPU 工作是\"为跑而跑\"。\n\n## Q3: Agent 两个 minor 建议是否需要 GPU？\n\n**均不需要 GPU：**\n\n1. **plan_006 Discussion 加一句话**：纯写作任务。且鉴于 plan_006 数据已丢失、该实验在论文中未被引用（所有数据引用来自 alpha_sweep 和 mvp_v4），加这句话的前提已不成立。除非要泛泛提及\"longer time series as future work\"（已在 limitations.tex line 20 覆盖）。\n\n2. **TY pooling as future work**：如果是\"写一句 future work\"→ 写作任务。如果是\"实际计算 pooled TY 统计量\"→ CPU 分析任务（读 existing 5method_leadlag.json, 跨 seed 聚合 TY Wald 统计量）。均不需 GPU。且 C003 约束明确禁止引用 α≤0.50 TY 显著率，TY pooling 的适用范围只有 α≥0.75，3 seeds 的 TY 结果已在 Table 2 中（FNR=33.3%），pooling 不会改变结论。\n\n**总结：让 cuda:1 idle。等 a050_s44 完成后做 5-method analysis（CPU 任务）更有价值。**",
-  "project": "distrib_canary_collapse"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] plan_006 partial data + cuda:1 空窗利用评估\n\n## Q1: plan_006 gen 0-17 数据能否做 early-phase time-series 分析？\n\n**结论：数据已不存在，问题无效。**\n\n`results/extended_20gen/s42/` 目录在远程服务器上已被删除。当前 results/ 下只有：alpha_sweep/、alpha_sweep_analysis/、detrending/、analysis/、rebuttal/。mvp/ 目录也不存在（虽然 registry 记录了 mvp_v4_rep42-45 的结果，原始 gen 数据已清理）。\n\nRegistry 注释 \"D034 决定不恢复，T=18 数据已足够\" 是当时做出的决策，但数据本身已在后续清理中丢失。\n\n## Q2: cuda:1 是否有低成本 GPU 工作可做？\n\n**结论：无。建议 idle。**\n\n逐项排除：\n- **GPT-2m 新 α 点**（最有价值的扩展）：gen_wiki_gpt2m_a025_s42 花了 10.22h → 3.5h 不够\n- **Pythia 新 α 点（0.10/0.60）**：每个 ~4.5h，刚好超出窗口，且论文 5-level dose-response 已完整，增量边际\n- **额外 seed 在已有 α**：α=1.0 已 4 seeds（足够），α=0.75 已 3 seeds，α=0.25 已 3 seeds（含 GPT-2m）。都不需要加\n- **T=20 长链实验**：12h+，远超窗口\n- **Robustness 分析**（bootstrap CI、effect size）：纯 CPU 任务，不需要 GPU\n\n论文当前证据已足够支撑核心 claims。a050_s44（cuda:0）是唯一有意义的剩余训练实验。强行找 GPU 工作是\"为跑而跑\"。\n\n## Q3: Agent 两个 minor 建议是否需要 GPU？\n\n**均不需要 GPU：**\n\n1. **plan_006 Discussion 加一句话**：纯写作任务。且鉴于 plan_006 数据已丢失、该实验在论文中未被引用（所有数据引用来自 alpha_sweep 和 mvp_v4），加这句话的前提已不成立。除非要泛泛提及\"longer time series as future work\"（已在 limitations.tex line 20 覆盖）。\n\n2. **TY pooling as future work**：如果是\"写一句 future work\"→ 写作任务。如果是\"实际计算 pooled TY 统计量\"→ CPU 分析任务（读 existing 5method_leadlag.json, 跨 seed 聚合 TY Wald 统计量）。均不需 GPU。且 C003 约束明确禁止引用 α≤0.50 TY 显著率，TY pooling 的适用范围只有 α≥0.75，3 seeds 的 TY 结果已在 Table 2 中（FNR=33.3%），pooling 不会改变结论。\n\n**总结：让 cuda:1 idle。等 a050_s44 完成后做 5-method analysis（CPU 任务）更有价值。**",
-    "project": "distrib_canary_collapse"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 691 · 2026-05-17T04:14:55.122883+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 3462
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 692 · 2026-05-17T04:15:03.301281+00:00_
-
-已向 Director 提交评估。核心结论：plan_006 数据已从磁盘删除（无法分析），cuda:1 在 3.5h 窗口内无有意义的 GPU 实验可做（所有候选要么超时要么不需 GPU），两个 minor 建议均为纯写作/CPU 任务。建议 idle 等 a050_s44 完成。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_1f489e32588225ae3672d716b94662a8:reviewer"
-}
-```
-
-</details>
-
----
-
-
 ## Round 41
-
-## Round 41
-
-4 recorded events
-
 
 ### User
 
-_source line 693 · 2026-05-17T04:15:03.767569+00:00_
+_source line 689 · 2026-05-17T04:15:03.767569+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：修正"运行中:无"不一致 + 补充 Appendix C/rebuttal/两版叙事里程碑），请审查研究方向和计划的合理性。
@@ -115,7 +30,7 @@ _source line 693 · 2026-05-17T04:15:03.767569+00:00_
 
 ### Tool call
 
-_source line 694 · 2026-05-17T04:15:15.056880+00:00_
+_source line 690 · 2026-05-17T04:15:15.056880+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -149,7 +64,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 695 · 2026-05-17T04:15:15.107549+00:00_
+_source line 691 · 2026-05-17T04:15:15.107549+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 04:12 UTC | 更新原因: 修正\\\"运行中:无\\\"不一致 + 补充 Appendix C/rebuttal/两版叙事里程碑\\n\\n> **阶段**: Round 2 提交待审批（含 D052 修正）+ a050_s44 运行中\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D052**: α=0.50 confirmed seed-dependent boundary (s42=0/8, s43=6/8)，regime boundary 重定义\\n- ✅ **Paper 7 文件更新**: boundary α≈0.25–0.50, Table 2 footnote, discussion seed effect 段\\n- ✅ **regime_map.pdf v2**: Null → Boundary → Transitional → Confirmatory\\n- ✅ **Round 2 重新提交** (apr_20260516T204821_ea5t, pending user approval)\\n- ✅ **Appendix C**: n_perm stability + FDR sensitivity robustness checks\\n- ✅ **Rebuttal 素材**: 5 talking points + n_perm stability JSON + FDR sensitivity\\n- ✅ **两版叙事预写**: artifacts/a050_s44_draft_versions.tex (VERSION A/B)\\n\\n## 正在运行\\n| exp_id | GPU | 进度 | 预计完成 |\\n|--------|-----|------|----------|\\n| alpha_sweep_a050_s44 | cuda:0 | gen 5/11 | ~07:00 UTC |\\n\\n## 近期任务\\n- [ ] a050_s44 完成后选 VERSION A/B 更新论文\\n- [ ] Provenance 修复映射错误（78%→目标 90%+）\\n- [ ] 评估 cuda:1 空窗利用（等 Reviewer 建议）\\n\\n## 完整 Dose-Response (统一管线, D052 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/16 | 2 | Sub-threshold |\\n| 0.50 | 0/8–6/8 | 2 (→3 pending s44) | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — cuda:0 occupied, cuda:1 idle\\n- **累计**: ~45h\\n\\n## 硬约束\\n- C003: 禁止引用 α≤0.50 TY Granger 显著率\\n- C004: 禁止未确认状态下 kill 运行中进程/rm -rf 实验目录\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n|
 …[truncated 1344 chars]
@@ -172,7 +87,7 @@ _source line 695 · 2026-05-17T04:15:15.107549+00:00_
 
 ### Assistant
 
-_source line 696 · 2026-05-17T04:15:36.999853+00:00_
+_source line 692 · 2026-05-17T04:15:36.999853+00:00_
 
 ROADMAP 更新合理，无异议。修正内容准确反映当前状态：
 
@@ -205,7 +120,7 @@ ROADMAP 更新合理，无异议。修正内容准确反映当前状态：
 
 ### User
 
-_source line 697 · 2026-05-17T05:00:17.882683+00:00_
+_source line 693 · 2026-05-17T05:00:17.882683+00:00_
 
 [System 触发审查]:
 论文质量深度审查——从 borderline-to-accept 推向 accept。
@@ -243,7 +158,7 @@ _source line 697 · 2026-05-17T05:00:17.882683+00:00_
 
 ### Tool call
 
-_source line 698 · 2026-05-17T05:00:30.116872+00:00_
+_source line 694 · 2026-05-17T05:00:30.116872+00:00_
 
 called Read
 
@@ -277,7 +192,7 @@ called Read
 
 ### Tool result
 
-_source line 699 · 2026-05-17T05:00:30.267930+00:00_
+_source line 695 · 2026-05-17T05:00:30.267930+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -313,7 +228,7 @@ _source line 699 · 2026-05-17T05:00:30.267930+00:00_
 
 ### Tool call
 
-_source line 700 · 2026-05-17T05:00:30.669746+00:00_
+_source line 696 · 2026-05-17T05:00:30.669746+00:00_
 
 called Read
 
@@ -347,7 +262,7 @@ called Read
 
 ### Tool result
 
-_source line 701 · 2026-05-17T05:00:30.921387+00:00_
+_source line 697 · 2026-05-17T05:00:30.921387+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -386,7 +301,7 @@ _source line 701 · 2026-05-17T05:00:30.921387+00:00_
 
 ### Tool call
 
-_source line 702 · 2026-05-17T05:00:38.147682+00:00_
+_source line 698 · 2026-05-17T05:00:38.147682+00:00_
 
 called Read
 
@@ -420,7 +335,7 @@ called Read
 
 ### Tool result
 
-_source line 703 · 2026-05-17T05:00:38.198462+00:00_
+_source line 699 · 2026-05-17T05:00:38.198462+00:00_
 
 1	\section{Discussion}\label{sec:discussion}
 2	
@@ -457,7 +372,7 @@ _source line 703 · 2026-05-17T05:00:38.198462+00:00_
 
 ### Tool call
 
-_source line 704 · 2026-05-17T05:00:38.399560+00:00_
+_source line 700 · 2026-05-17T05:00:38.399560+00:00_
 
 called Read
 
@@ -491,7 +406,7 @@ called Read
 
 ### Tool result
 
-_source line 705 · 2026-05-17T05:00:38.450166+00:00_
+_source line 701 · 2026-05-17T05:00:38.450166+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -528,7 +443,7 @@ _source line 705 · 2026-05-17T05:00:38.450166+00:00_
 
 ### Tool call
 
-_source line 706 · 2026-05-17T05:00:43.719580+00:00_
+_source line 702 · 2026-05-17T05:00:43.719580+00:00_
 
 called Glob
 
@@ -562,7 +477,7 @@ called Glob
 
 ### Tool result
 
-_source line 707 · 2026-05-17T05:00:43.820349+00:00_
+_source line 703 · 2026-05-17T05:00:43.820349+00:00_
 
 No files found
 
@@ -584,7 +499,7 @@ No files found
 
 ### Tool call
 
-_source line 708 · 2026-05-17T05:00:49.559725+00:00_
+_source line 704 · 2026-05-17T05:00:49.559725+00:00_
 
 called Glob
 
@@ -618,7 +533,7 @@ called Glob
 
 ### Tool result
 
-_source line 709 · 2026-05-17T05:00:49.560067+00:00_
+_source line 705 · 2026-05-17T05:00:49.560067+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ethics.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex
@@ -651,7 +566,7 @@ _source line 709 · 2026-05-17T05:00:49.560067+00:00_
 
 ### Tool call
 
-_source line 710 · 2026-05-17T05:00:54.376953+00:00_
+_source line 706 · 2026-05-17T05:00:54.376953+00:00_
 
 called Read
 
@@ -685,7 +600,7 @@ called Read
 
 ### Tool result
 
-_source line 711 · 2026-05-17T05:00:54.427685+00:00_
+_source line 707 · 2026-05-17T05:00:54.427685+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -728,7 +643,7 @@ _source line 711 · 2026-05-17T05:00:54.427685+00:00_
 
 ### Tool call
 
-_source line 712 · 2026-05-17T05:02:40.948132+00:00_
+_source line 708 · 2026-05-17T05:02:40.948132+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -764,7 +679,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 713 · 2026-05-17T05:02:44.411444+00:00_
+_source line 709 · 2026-05-17T05:02:44.411444+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -786,7 +701,7 @@ _source line 713 · 2026-05-17T05:02:44.411444+00:00_
 
 ### Assistant
 
-_source line 714 · 2026-05-17T05:02:51.654464+00:00_
+_source line 710 · 2026-05-17T05:02:51.654464+00:00_
 
 审查完成。5 个改进建议已提交，按优先级排序：Introduction 开头紧迫感 > Contribution 2 novelty framing > dose-response 数字墙 > Related Work 缺口 > run-on sentence。全部为纯写作任务，不需 GPU，可并行于 a050_s44。
 
@@ -813,7 +728,7 @@ _source line 714 · 2026-05-17T05:02:51.654464+00:00_
 
 ### User
 
-_source line 715 · 2026-05-17T05:09:04.576951+00:00_
+_source line 711 · 2026-05-17T05:09:04.576951+00:00_
 
 [System 触发审查]:
 快速验证 Paper Agent 刚完成的 5 项写作打磨。请重点检查：
@@ -843,7 +758,7 @@ _source line 715 · 2026-05-17T05:09:04.576951+00:00_
 
 ### Tool call
 
-_source line 716 · 2026-05-17T05:09:15.629442+00:00_
+_source line 712 · 2026-05-17T05:09:15.629442+00:00_
 
 called Read
 
@@ -877,7 +792,7 @@ called Read
 
 ### Tool result
 
-_source line 717 · 2026-05-17T05:09:15.780525+00:00_
+_source line 713 · 2026-05-17T05:09:15.780525+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -913,7 +828,7 @@ _source line 717 · 2026-05-17T05:09:15.780525+00:00_
 
 ### Tool call
 
-_source line 718 · 2026-05-17T05:09:21.451024+00:00_
+_source line 714 · 2026-05-17T05:09:21.451024+00:00_
 
 called Read
 
@@ -947,7 +862,7 @@ called Read
 
 ### Tool result
 
-_source line 719 · 2026-05-17T05:09:21.853020+00:00_
+_source line 715 · 2026-05-17T05:09:21.853020+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -982,7 +897,7 @@ _source line 719 · 2026-05-17T05:09:21.853020+00:00_
 
 ### Tool call
 
-_source line 720 · 2026-05-17T05:09:22.054128+00:00_
+_source line 716 · 2026-05-17T05:09:22.054128+00:00_
 
 called Read
 
@@ -1020,7 +935,7 @@ called Read
 
 ### Tool result
 
-_source line 721 · 2026-05-17T05:09:22.104792+00:00_
+_source line 717 · 2026-05-17T05:09:22.104792+00:00_
 
 120	
 121	
@@ -1059,7 +974,7 @@ _source line 721 · 2026-05-17T05:09:22.104792+00:00_
 
 ### Tool call
 
-_source line 722 · 2026-05-17T05:10:58.798652+00:00_
+_source line 718 · 2026-05-17T05:10:58.798652+00:00_
 
 called Read
 
@@ -1097,7 +1012,7 @@ called Read
 
 ### Tool result
 
-_source line 723 · 2026-05-17T05:10:59.200664+00:00_
+_source line 719 · 2026-05-17T05:10:59.200664+00:00_
 
 66	
 67	\paragraph{Practical guidance.}
@@ -1134,7 +1049,7 @@ _source line 723 · 2026-05-17T05:10:59.200664+00:00_
 
 ### Tool call
 
-_source line 724 · 2026-05-17T05:10:59.201019+00:00_
+_source line 720 · 2026-05-17T05:10:59.201019+00:00_
 
 called Read
 
@@ -1168,7 +1083,7 @@ called Read
 
 ### Tool result
 
-_source line 725 · 2026-05-17T05:10:59.251471+00:00_
+_source line 721 · 2026-05-17T05:10:59.251471+00:00_
 
 1	\begin{abstract}
 2	We show that lead-lag conclusions in iterative model collapse are fragile: method choice alone inflates spurious-signal rates to at least 62.5\% (inter-method $\kappa{=}0.091$--$0.185$), approaching 100\% in low-contamination regimes ($\alpha{\leq}0.50$).
@@ -1195,7 +1110,7 @@ _source line 725 · 2026-05-17T05:10:59.251471+00:00_
 
 ### Tool call
 
-_source line 726 · 2026-05-17T05:12:01.504637+00:00_
+_source line 722 · 2026-05-17T05:12:01.504637+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1231,7 +1146,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 727 · 2026-05-17T05:12:05.017980+00:00_
+_source line 723 · 2026-05-17T05:12:05.017980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -1253,7 +1168,7 @@ _source line 727 · 2026-05-17T05:12:05.017980+00:00_
 
 ### Assistant
 
-_source line 728 · 2026-05-17T05:12:12.099155+00:00_
+_source line 724 · 2026-05-17T05:12:12.099155+00:00_
 
 审查完成。5 项打磨中 4 项通过，发现 1 处 critical 数值矛盾：Introduction line 44 和 method.tex line 71 的 K=3 FPR=50% 与同文件 Table 4 / §3.3 的 37.5% 冲突。已报告 Director，建议修复后即可确认改动为正向提升。
 
@@ -1280,7 +1195,7 @@ _source line 728 · 2026-05-17T05:12:12.099155+00:00_
 
 ### User
 
-_source line 729 · 2026-05-17T05:12:12.549675+00:00_
+_source line 725 · 2026-05-17T05:12:12.549675+00:00_
 
 [系统通知 — worker_done:worker_ssh_latex_compile_check_20260517T050924]:
 Worker worker_ssh_latex_compile_check_20260517T050924 已完成（status=done），请审查 Agent 的处理结果。
@@ -1302,7 +1217,7 @@ Worker worker_ssh_latex_compile_check_20260517T050924 已完成（status=done）
 
 ### Tool call
 
-_source line 730 · 2026-05-17T05:12:20.635618+00:00_
+_source line 726 · 2026-05-17T05:12:20.635618+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1338,7 +1253,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 731 · 2026-05-17T05:12:21.788773+00:00_
+_source line 727 · 2026-05-17T05:12:21.788773+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 10 root root  169 May 17 12:51 .\\ndrwxr-xr-x 14 root root 4096 May 17 10:07 ..\\n-rw-r--r--  1 root root  399 May 17 10:07 config.json\\ndrwxr-xr-x  3 root root   60 May 17 10:23 gen_0\\ndrwxr-xr-x  5 root root  101 May 17 10:44 gen_1\\ndrwxr-xr-x  5 root root  101 May 17 11:09 gen_2\\ndrwxr-xr-x  5 root root  101 May 17 11:35 gen_3\\ndrwxr-xr-x  5 root root  101 May 17 12:01 gen_4\\ndrwxr-xr-x  5 root root  101 May 17 12:26 gen_5\\ndrwxr-xr-x  5 root root  101 May 17 12:51 gen_6\\ndrwxr-xr-x  4 root root   55 May 17 13:10 gen_7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
 
@@ -1360,7 +1275,7 @@ _source line 731 · 2026-05-17T05:12:21.788773+00:00_
 
 ### Tool call
 
-_source line 732 · 2026-05-17T05:12:36.945782+00:00_
+_source line 728 · 2026-05-17T05:12:36.945782+00:00_
 
 called ScheduleWakeup
 
@@ -1398,7 +1313,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 733 · 2026-05-17T05:12:37.047475+00:00_
+_source line 729 · 2026-05-17T05:12:37.047475+00:00_
 
 Next wakeup scheduled for 06:13:00 (in 3623s) (clamped to 3600s from your requested value).
 
@@ -1420,7 +1335,7 @@ Next wakeup scheduled for 06:13:00 (in 3623s) (clamped to 3600s from your reques
 
 ### Assistant
 
-_source line 734 · 2026-05-17T05:12:40.999880+00:00_
+_source line 730 · 2026-05-17T05:12:40.999880+00:00_
 
 LaTeX compile check worker 完成——常规编译验证，无需额外审查。a050_s44 进度正常：gen_7/10，预计 ~1.5h 后完成（~06:50 UTC）。
 
@@ -1447,7 +1362,7 @@ LaTeX compile check worker 完成——常规编译验证，无需额外审查�
 
 ### User
 
-_source line 735 · 2026-05-17T05:12:49.409943+00:00_
+_source line 731 · 2026-05-17T05:12:49.409943+00:00_
 
 [系统通知 — worker_done:worker_ssh_sync_and_compile_latex_20260517T051133]:
 Worker worker_ssh_sync_and_compile_latex_20260517T051133 已完成（status=done），请审查 Agent 的处理结果。
@@ -1469,7 +1384,7 @@ Worker worker_ssh_sync_and_compile_latex_20260517T051133 已完成（status=done
 
 ### Assistant
 
-_source line 736 · 2026-05-17T05:12:58.724434+00:00_
+_source line 732 · 2026-05-17T05:12:58.724434+00:00_
 
 例行 LaTeX 同步+编译 worker，无需审查。a050_s44 仍在运行（gen 7-8/10），等完成后审查。
 
@@ -1496,7 +1411,7 @@ _source line 736 · 2026-05-17T05:12:58.724434+00:00_
 
 ### User
 
-_source line 737 · 2026-05-17T05:45:24.984793+00:00_
+_source line 733 · 2026-05-17T05:45:24.984793+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：标记已完成任务 + 关闭 cuda:1 评估（Reviewer 确认无可跑实验）+ 更新 a050_s44 进度 + 补写作打磨里程碑），请审查研究方向和计划的合理性。
@@ -1518,7 +1433,7 @@ _source line 737 · 2026-05-17T05:45:24.984793+00:00_
 
 ### Tool call
 
-_source line 738 · 2026-05-17T05:45:33.557420+00:00_
+_source line 734 · 2026-05-17T05:45:33.557420+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -1552,7 +1467,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 739 · 2026-05-17T05:45:33.608064+00:00_
+_source line 735 · 2026-05-17T05:45:33.608064+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 05:45 UTC | 更新原因: 标记已完成任务 + 关闭 cuda:1 评估（Reviewer 确认无可跑实验）+ 更新 a050_s44 进度 + 补写作打磨里程碑\\n\\n> **阶段**: Round 2 提交待审批（含 D052 修正）+ a050_s44 运行中\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D052**: α=0.50 confirmed seed-dependent boundary (s42=0/8, s43=6/8)\\n- ✅ **Round 2 重新提交** (apr_20260516T204821_ea5t, pending user approval)\\n- ✅ **Appendix C**: n_perm stability + FDR sensitivity robustness checks\\n- ✅ **Rebuttal 素材**: 5 talking points + n_perm stability JSON + FDR sensitivity\\n- ✅ **两版叙事预写**: artifacts/a050_s44_draft_versions.tex (VERSION A/B)\\n- ✅ **写作打磨 5 项**: Intro 重写(紧迫感)、Contribution 2 framing(K=4/5+Shapley)、dose-response 叙事重组、Related Work 补 training dynamics、run-on 拆分\\n- ✅ **Provenance 89%** (65/73 claims, all claim-level 100%)\\n- ✅ **K=3 FPR 数字矛盾修复** (50%→37.5% 统一)\\n\\n## 正在运行\\n| exp_id | GPU | 进度 | 预计完成 |\\n|--------|-----|------|----------|\\n| alpha_sweep_a050_s44 | cuda:0 | gen 8/11 | ~05:30 UTC |\\n\\n## 近期任务\\n- [ ] a050_s44 完成后选 VERSION A/B 更新论文\\n- [x] ~~Provenance 修复映射错误~~（89%, claim-level 100%）\\n- [x] ~~cuda:1 空窗利用评估~~（Reviewer 结论：无 ROI 正向 GPU 实验可跑——plan_006 数据已删、GPT-2m 10h 超窗口、α 点已完整）\\n\\n## 完整 Dose-Response (统一管线, D052 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/16 | 2 | Sub-threshold |\\n| 0.50 | 0/8–6/8 | 2 (→3 pending s44) | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — cuda:0 occupied (a050_s44), cuda:1 idle (no viable experiment, Reviewer confirme
 …[truncated 1539 chars]
@@ -1575,7 +1490,7 @@ _source line 739 · 2026-05-17T05:45:33.608064+00:00_
 
 ### Assistant
 
-_source line 740 · 2026-05-17T05:45:44.809535+00:00_
+_source line 736 · 2026-05-17T05:45:44.809535+00:00_
 
 ROADMAP 更新合理，无异议。K=3 FPR 修复已标记完成，cuda:1 评估已关闭，写作打磨里程碑记录完整。唯一剩余 action item 是 a050_s44 完成后选版更新论文。
 
@@ -1602,7 +1517,7 @@ ROADMAP 更新合理，无异议。K=3 FPR 修复已标记完成，cuda:1 评估
 
 ### User
 
-_source line 741 · 2026-05-17T06:34:46.126943+00:00_
+_source line 737 · 2026-05-17T06:34:46.126943+00:00_
 
 [系统通知 — cron:on_complete:alpha_sweep_a050_s44]:
 实验 alpha_sweep_a050_s44 complete，请审查。
@@ -1624,7 +1539,7 @@ _source line 741 · 2026-05-17T06:34:46.126943+00:00_
 
 ### Tool call
 
-_source line 742 · 2026-05-17T06:34:57.468649+00:00_
+_source line 738 · 2026-05-17T06:34:57.468649+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1660,7 +1575,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 743 · 2026-05-17T06:34:58.171534+00:00_
+_source line 739 · 2026-05-17T06:34:58.171534+00:00_
 
 called mcp__agent-ml-research__tail_training_logs
 
@@ -1700,7 +1615,7 @@ called mcp__agent-ml-research__tail_training_logs
 
 ### Tool result
 
-_source line 744 · 2026-05-17T06:34:58.723970+00:00_
+_source line 740 · 2026-05-17T06:34:58.723970+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
 
@@ -1722,7 +1637,7 @@ _source line 744 · 2026-05-17T06:34:58.723970+00:00_
 
 ### Tool result
 
-_source line 745 · 2026-05-17T06:34:59.476859+00:00_
+_source line 741 · 2026-05-17T06:34:59.476859+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"lines\": [\"64%|██████▍   | 3200/5000 [03:22<01:53, 15.89it/s]\\r 64%|██████▍   | 3202/5000 [03:22<01:53, 15.88it/s]\\r 64%|██████▍   | 3204/5000 [03:22<01:53, 15.89it/s]\\r 64%|██████▍   | 3206/5000 [03:22<01:53, 15.87it/s]\\r 64%|██████▍   | 3208/5000 [03:22<01:52, 15.87it/s]\\r 64%|██████▍   | 3210/5000 [03:22<01:52, 15.87it/s]\\r 64%|██████▍   | 3212/5000 [03:22<01:52, 15.87it/s]\\r 64%|██████▍   | 3214/5000 [03:23<01:52, 15.85it/s]\\r 64%|██████▍   | 3216/5000 [03:23<01:52, 15.82it/s]\\r 64%|██████▍   | 3218/5000 [03:23<01:52, 15.82it/s]\\r 64%|██████▍   | 3220/5000 [03:23<01:52, 15.84it/s]\\r 64%|██████▍   | 3222/5000 [03:23<01:52, 15.84it/s]\\r 64%|██████▍   | 3224/5000 [03:23<01:52, 15.85it/s]\\r 65%|██████▍   | 3226/5000 [03:23<01:51, 15.87it/s]\\r 65%|██████▍   | 3228/5000 [03:23<01:51, 15.87it/s]\\r 65%|█���████▍   | 3230/5000 [03:24<01:51, 15.86it/s]\\r 65%|██████▍   | 3232/5000 [03:24<01:51, 15.86it/s]\\r 65%|██████▍   | 3234/5000 [03:24<01:51, 15.86it/s]\\r 65%|██████▍   | 3236/5000 [03:24<01:51, 15.87it/s]\\r 65%|██████▍   | 3238/5000 [03:24<01:50, 15.88it/s]\\r 65%|██████▍   | 3240/5000 [03:24<01:50, 15.88it/s]\\r 65%|██████▍   | 3242/5000 [03:24<01:50, 15.87it/s]\\r 65%|██████▍   | 3244/5000 [03:24<01:50, 15.87it/s]\\r 65%|██████▍   | 3246/5000 [03:25<01:50, 15.87it/s]\\r 65%|██████▍   | 3248/5000 [03:25<01:50, 15.88it/s]\\r 65%|██████▌   | 3250/5000 [03:25<01:50, 15.88it/s]\\r 65%|██████▌   | 3252/5000 [03:25<01:50, 15.89it/s]\\r 65%|██████▌   | 3254/5000 [03:25<01:49, 15.87it/s]\\r 65%|██████▌   | 3256/5000 [03:25<01:49, 15.89it/s]\\r 65%|██████▌   | 3258/5000 [03:25<01:49, 15.89it/s]\\r 65%|████��█▌   | 3260/5000 [03:25<01:49, 15.89it/s]\\r 65%|██████▌   | 3262/5000 [03:26<01:49, 15.88it/s]\\r 65%|██████▌   | 3264/5000 [03:26<01:49, 15.86it/s]\\r 65%|██████▌   | 3266/5000 [03:26<01:49, 15.83it/s]\\r 65%|██████▌   | 3268/5000 [03:26<01:49, 15.84it/s]\\r 65%|██████▌   | 3270/5000 [03:26<01:49, 15.85it/s]\
 …[truncated 6586 chars]
@@ -1745,7 +1660,7 @@ _source line 745 · 2026-05-17T06:34:59.476859+00:00_
 
 ### Tool call
 
-_source line 746 · 2026-05-17T06:35:11.527426+00:00_
+_source line 742 · 2026-05-17T06:35:11.527426+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1781,7 +1696,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 747 · 2026-05-17T06:35:11.828578+00:00_
+_source line 743 · 2026-05-17T06:35:11.828578+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1817,7 +1732,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 748 · 2026-05-17T06:35:12.029660+00:00_
+_source line 744 · 2026-05-17T06:35:12.029660+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2341948700181407,\\n    \\\"self_bleu\\\": 0.011024683423681741,\\n    \\\"distinct_1\\\": 0.09808801064406446,\\n    \\\"distinct_2\\\": 0.5132353786640604,\\n    \\\"distinct_3\\\": 0.8057672722494169,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"mauve\\\": 0.02953861796475695,\\n    \\\"generation\\\": 0\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.523693323220406,\\n    \\\"self_bleu\\\": 0.010031830626628888,\\n    \\\"distinct_1\\\": 0.0976259850341037,\\n    \\\"distinct_2\\\": 0.5126441348597349,\\n    \\\"distinct_3\\\": 0.8040991341489662,\\n    \\\"ece\\\": 0.06595122465175865,\\n    \\\"effective_rank\\\": 57.915879021991344,\\n    \\\"perplexity\\\": 22.653100711726214,\\n    \\\"mauve\\\": 0.03189722578287753,\\n    \\\"generation\\\": 1\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5167987768334332,\\n    \\\"self_bleu\\\": 0.01212609365813591,\\n    \\\"distinct_1\\\": 0.0815546875,\\n    \\\"distinct_2\\\": 0.4317299353901202,\\n    \\\"distinct_3\\\": 0.7155268051063298,\\n    \\\"ece\\\": 0.08093738085624923,\\n    \\\"effective_rank\\\": 63.17099361247223,\\n    \\\"perplexity\\\": 25.67622621538115,\\n    \\\"mauve\\\": 0.03271965450602442,\\n    \\\"generation\\\": 2\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5348843320243915,\\n    \\\"self_bleu\\\": 0.011818560739129222,\\n    \\\"distinct_1\\\": 0.0756640625,\\n    \\\"distinct_2\\\": 0.38779990468675535,\\n    \\\"distinct_3\\\": 0.6497523398803107,\\n    \\\"ece\\\": 0.08889455749878605,\\n    \\\"effective_rank\\\": 64.65313729634941,\\n    \\\"perplexity\\\": 27.372904932848716,\\n    \\\"mauve\\\": 0.030710636574615688,\\n    \\\"generation\\\": 3\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.5374696584059335,\\n    \\\"self_bleu\\\": 0.01247281270590767,\\n    \\\"distinct_1\\\": 0.07034375,\\n  
 …[truncated 3071 chars]
@@ -1840,7 +1755,7 @@ _source line 748 · 2026-05-17T06:35:12.029660+00:00_
 
 ### Tool result
 
-_source line 749 · 2026-05-17T06:35:12.531440+00:00_
+_source line 745 · 2026-05-17T06:35:12.531440+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -1862,7 +1777,7 @@ _source line 749 · 2026-05-17T06:35:12.531440+00:00_
 
 ### Tool call
 
-_source line 750 · 2026-05-17T06:35:59.061089+00:00_
+_source line 746 · 2026-05-17T06:35:59.061089+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1898,7 +1813,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 751 · 2026-05-17T06:36:02.626610+00:00_
+_source line 747 · 2026-05-17T06:36:02.626610+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -1920,7 +1835,7 @@ _source line 751 · 2026-05-17T06:36:02.626610+00:00_
 
 ### Assistant
 
-_source line 752 · 2026-05-17T06:36:08.688812+00:00_
+_source line 748 · 2026-05-17T06:36:08.688812+00:00_
 
 已向 Director 报告。a050_s44 原始轨迹显示明确的 entropy-leads-diversity 模式（gen 1 entropy -22% vs distinct_1 -0.5%），预测 PermG 将接近 s43 (6/8)。等待 Agent 执行 5-method analysis 以确认。
 
@@ -1947,7 +1862,7 @@ _source line 752 · 2026-05-17T06:36:08.688812+00:00_
 
 ### User
 
-_source line 753 · 2026-05-17T06:40:15.760678+00:00_
+_source line 749 · 2026-05-17T06:40:15.760678+00:00_
 
 [系统通知 — worker_done:worker_ssh_a050_s44_5method_20260517T063654]:
 Worker worker_ssh_a050_s44_5method_20260517T063654 已完成（status=done），请审查 Agent 的处理结果。
@@ -1969,7 +1884,7 @@ Worker worker_ssh_a050_s44_5method_20260517T063654 已完成（status=done），
 
 ### Tool call
 
-_source line 754 · 2026-05-17T06:40:25.123782+00:00_
+_source line 750 · 2026-05-17T06:40:25.123782+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2005,7 +1920,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 755 · 2026-05-17T06:40:26.327978+00:00_
+_source line 751 · 2026-05-17T06:40:26.327978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 0.5,\\n  \\\"seed\\\": 44,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": -0.9282,\\n          \\\"p_value\\\": 0.000875,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.744,\\n              \\\"p\\\": 0.089935\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.6846,\\n              \\\"p\\\": 0.089722\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.7043,\\n              \\\"p\\\": 0.051133\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.646,\\n              \\\"p\\\": 0.060149\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7045,\\n              \\\"p\\\": 0.022929\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4357,\\n              \\\"p\\\": 0.180428\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8704,\\n              \\\"p\\\": 0.001053\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8998,\\n 
 …[truncated 8558 chars]
@@ -2028,7 +1943,7 @@ _source line 755 · 2026-05-17T06:40:26.327978+00:00_
 
 ### Tool call
 
-_source line 756 · 2026-05-17T06:41:24.590423+00:00_
+_source line 752 · 2026-05-17T06:41:24.590423+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2064,7 +1979,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 757 · 2026-05-17T06:41:28.203331+00:00_
+_source line 753 · 2026-05-17T06:41:28.203331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -2093,7 +2008,7 @@ _source line 757 · 2026-05-17T06:41:28.203331+00:00_
 
 ### User
 
-_source line 758 · 2026-05-17T06:41:36.476326+00:00_
+_source line 754 · 2026-05-17T06:41:36.476326+00:00_
 
 [系统通知 — worker_done:worker_analysis_alpha_sweep_a050_s44_20260517T063620]:
 Worker worker_analysis_alpha_sweep_a050_s44_20260517T063620 已完成（status=done），请审查 Agent 的处理结果。
@@ -2115,7 +2030,7 @@ Worker worker_analysis_alpha_sweep_a050_s44_20260517T063620 已完成（status=d
 
 ### Assistant
 
-_source line 759 · 2026-05-17T06:41:45.640408+00:00_
+_source line 755 · 2026-05-17T06:41:45.640408+00:00_
 
 已在上一轮审查中覆盖（同一分析任务的重复通知）。5-method 结果已完整审查并报告 Director。
 
@@ -2142,7 +2057,7 @@ _source line 759 · 2026-05-17T06:41:45.640408+00:00_
 
 ### User
 
-_source line 760 · 2026-05-17T06:43:25.843066+00:00_
+_source line 756 · 2026-05-17T06:43:25.843066+00:00_
 
 [System 触发审查]:
 数据冲突预审：Worker A (family=8) vs Worker B (可能 family=4) 的 a050 三 seed 结果不一致。
@@ -2171,7 +2086,7 @@ Worker B: s42=4/8, s43=7/8, s44=4/8
 
 ### Tool call
 
-_source line 761 · 2026-05-17T06:43:34.321115+00:00_
+_source line 757 · 2026-05-17T06:43:34.321115+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2207,7 +2122,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 762 · 2026-05-17T06:43:35.677729+00:00_
+_source line 758 · 2026-05-17T06:43:35.677729+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alpha\\\": 0.5,\\n  \\\"seed\\\": 44,\\n  \\\"n_generations\\\": 11,\\n  \\\"data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44\\\",\\n  \\\"methods\\\": [\\n    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n    \\\"n_perm\\\": 5000,\\n    \\\"fdr_alpha\\\": 0.05,\\n    \\\"threshold_criterion\\\": \\\"3x_sigma_drift\\\"\\n  },\\n  \\\"pairs\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"forward\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 3,\\n          \\\"r\\\": -0.9282,\\n          \\\"p_value\\\": 0.000875,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n            {\\n              \\\"lag\\\": -5,\\n              \\\"r\\\": 0.744,\\n              \\\"p\\\": 0.089935\\n            },\\n            {\\n              \\\"lag\\\": -4,\\n              \\\"r\\\": 0.6846,\\n              \\\"p\\\": 0.089722\\n            },\\n            {\\n              \\\"lag\\\": -3,\\n              \\\"r\\\": 0.7043,\\n              \\\"p\\\": 0.051133\\n            },\\n            {\\n              \\\"lag\\\": -2,\\n              \\\"r\\\": 0.646,\\n              \\\"p\\\": 0.060149\\n            },\\n            {\\n              \\\"lag\\\": -1,\\n              \\\"r\\\": 0.7045,\\n              \\\"p\\\": 0.022929\\n            },\\n            {\\n              \\\"lag\\\": 0,\\n              \\\"r\\\": 0.4357,\\n              \\\"p\\\": 0.180428\\n            },\\n            {\\n              \\\"lag\\\": 1,\\n              \\\"r\\\": -0.8704,\\n              \\\"p\\\": 0.001053\\n            },\\n            {\\n              \\\"lag\\\": 2,\\n              \\\"r\\\": -0.8998,\\n 
 …[truncated 8558 chars]
@@ -2230,7 +2145,7 @@ _source line 762 · 2026-05-17T06:43:35.677729+00:00_
 
 ### Tool call
 
-_source line 763 · 2026-05-17T06:43:45.066295+00:00_
+_source line 759 · 2026-05-17T06:43:45.066295+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2266,7 +2181,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 764 · 2026-05-17T06:43:45.518029+00:00_
+_source line 760 · 2026-05-17T06:43:45.518029+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"perm_granger_fdr_forward_sig\\\": 0,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 8,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -2288,7 +2203,7 @@ _source line 764 · 2026-05-17T06:43:45.518029+00:00_
 
 ### Tool call
 
-_source line 765 · 2026-05-17T06:43:45.518474+00:00_
+_source line 761 · 2026-05-17T06:43:45.518474+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2324,7 +2239,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 766 · 2026-05-17T06:43:46.020929+00:00_
+_source line 762 · 2026-05-17T06:43:46.020929+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"perm_granger_fdr_forward_sig\\\": 6,\\n    \\\"perm_granger_fdr_reverse_sig\\\": 0,\\n    \\\"diff_xcorr_fdr_forward_sig\\\": 6,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
 
@@ -2346,7 +2261,7 @@ _source line 766 · 2026-05-17T06:43:46.020929+00:00_
 
 ### Tool call
 
-_source line 767 · 2026-05-17T06:44:17.833157+00:00_
+_source line 763 · 2026-05-17T06:44:17.833157+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2382,7 +2297,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 768 · 2026-05-17T06:44:18.285422+00:00_
+_source line 764 · 2026-05-17T06:44:18.285422+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n  \\\"config\\\": {\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 127.4778,\\n          \\\"p_value\\\": 0.094981,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.9994,\\n          \\\"p_value\\\": 0.216957,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 35.7532,\\n          \\\"p_value\\\": 0.097381,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.2353,\\n          \\\"p_value\\\": 0.314337,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 12.4289,\\n          \\\"p_value\\\": 0.096381,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.2636,\\n          \\\"p_value\\\": 0.635073,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 12.1381,\\n          \\\"p_value\\\": 0.075185,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 4.1618,\\n          \\\"p_value\\\": 0.102979,\\n          \\\"significant\\\": false,\\n--\\n        },\\n        \\\"perm_granger\\\": {\\n          \\\"method\\\": \\\"perm_gra
 …[truncated 2000 chars]
@@ -2405,7 +2320,7 @@ _source line 768 · 2026-05-17T06:44:18.285422+00:00_
 
 ### Tool call
 
-_source line 769 · 2026-05-17T06:45:09.779139+00:00_
+_source line 765 · 2026-05-17T06:45:09.779139+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2441,7 +2356,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 770 · 2026-05-17T06:45:13.295124+00:00_
+_source line 766 · 2026-05-17T06:45:13.295124+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -2463,7 +2378,7 @@ _source line 770 · 2026-05-17T06:45:13.295124+00:00_
 
 ### Tool call
 
-_source line 771 · 2026-05-17T06:47:14.881091+00:00_
+_source line 767 · 2026-05-17T06:47:14.881091+00:00_
 
 called Read
 
@@ -2501,7 +2416,7 @@ called Read
 
 ### Tool result
 
-_source line 772 · 2026-05-17T06:47:14.931870+00:00_
+_source line 768 · 2026-05-17T06:47:14.931870+00:00_
 
 140	\paragraph{Granger-precedence detectability.}
 141	Despite ubiquitous drift, causal detectability is sharply regime-dependent (Figure~\ref{fig:regime_map}).
@@ -2534,7 +2449,7 @@ _source line 772 · 2026-05-17T06:47:14.931870+00:00_
 
 ### Tool call
 
-_source line 773 · 2026-05-17T06:47:16.588969+00:00_
+_source line 769 · 2026-05-17T06:47:16.588969+00:00_
 
 called Read
 
@@ -2572,7 +2487,7 @@ called Read
 
 ### Tool result
 
-_source line 774 · 2026-05-17T06:47:17.040963+00:00_
+_source line 770 · 2026-05-17T06:47:17.040963+00:00_
 
 22	Using Pythia-410M across five contamination levels ($\alpha \in \{0.00, 0.25, 0.50, 0.75, 1.00\}$) and up to four random seeds, we expose three methodological pitfalls that undermine naive lead-lag analysis:
 23	\begin{enumerate}
@@ -2603,7 +2518,7 @@ _source line 774 · 2026-05-17T06:47:17.040963+00:00_
 
 ### Tool call
 
-_source line 775 · 2026-05-17T06:47:22.015586+00:00_
+_source line 771 · 2026-05-17T06:47:22.015586+00:00_
 
 called Read
 
@@ -2641,7 +2556,7 @@ called Read
 
 ### Tool result
 
-_source line 776 · 2026-05-17T06:47:22.166540+00:00_
+_source line 772 · 2026-05-17T06:47:22.166540+00:00_
 
 26	    \item \textbf{Regime dependence.} Permutation Granger tests find 24/24 canary$\to$diversity pairs FDR-significant at full synthetic replacement ($\alpha{=}1.0$) but 0/24 at $\alpha{\leq}0.25$ (three seeds), with seed-dependent onset at $\alpha{=}0.50$ (0/8--6/8, three seeds), demonstrating that detectability depends sharply on both contamination level and training stochasticity.
 27	\end{enumerate}
@@ -2665,7 +2580,7 @@ _source line 776 · 2026-05-17T06:47:22.166540+00:00_
 
 ### Tool call
 
-_source line 777 · 2026-05-17T06:47:22.166864+00:00_
+_source line 773 · 2026-05-17T06:47:22.166864+00:00_
 
 called Read
 
@@ -2699,7 +2614,7 @@ called Read
 
 ### Tool result
 
-_source line 778 · 2026-05-17T06:47:22.217327+00:00_
+_source line 774 · 2026-05-17T06:47:22.217327+00:00_
 
 1	\begin{abstract}
 2	We show that lead-lag conclusions in iterative model collapse are fragile: method choice alone inflates spurious-signal rates to at least 62.5\% (inter-method $\kappa{=}0.091$--$0.185$), approaching 100\% in low-contamination regimes ($\alpha{\leq}0.50$).
@@ -2726,7 +2641,7 @@ _source line 778 · 2026-05-17T06:47:22.217327+00:00_
 
 ### Tool call
 
-_source line 779 · 2026-05-17T06:47:40.984060+00:00_
+_source line 775 · 2026-05-17T06:47:40.984060+00:00_
 
 called Read
 
@@ -2764,7 +2679,7 @@ called Read
 
 ### Tool result
 
-_source line 780 · 2026-05-17T06:47:40.984435+00:00_
+_source line 776 · 2026-05-17T06:47:40.984435+00:00_
 
 69	Table~\ref{tab:practical_guidance} provides four recommended tiers, calibrated against our experimental controls (\S\ref{sec:calibration}).
 70	Tier~3 ($K{\geq}4/5$, $S{\geq}3/4$) achieves the best trade-off in our setting: zero false positives while recovering all six reference pairs.
@@ -2790,7 +2705,7 @@ _source line 780 · 2026-05-17T06:47:40.984435+00:00_
 
 ### Tool call
 
-_source line 781 · 2026-05-17T06:47:40.984630+00:00_
+_source line 777 · 2026-05-17T06:47:40.984630+00:00_
 
 called Read
 
@@ -2828,7 +2743,7 @@ called Read
 
 ### Tool result
 
-_source line 782 · 2026-05-17T06:47:41.035063+00:00_
+_source line 778 · 2026-05-17T06:47:41.035063+00:00_
 
 42	    These results demonstrate that single-method, single-regime analyses---the current norm in this literature---are unreliable.
 43	
@@ -2857,7 +2772,7 @@ _source line 782 · 2026-05-17T06:47:41.035063+00:00_
 
 ### Tool call
 
-_source line 783 · 2026-05-17T06:47:59.008783+00:00_
+_source line 779 · 2026-05-17T06:47:59.008783+00:00_
 
 called Read
 
@@ -2895,7 +2810,7 @@ called Read
 
 ### Tool call
 
-_source line 784 · 2026-05-17T06:47:59.059403+00:00_
+_source line 780 · 2026-05-17T06:47:59.059403+00:00_
 
 called Read
 
@@ -2929,7 +2844,7 @@ called Read
 
 ### Tool result
 
-_source line 785 · 2026-05-17T06:47:59.059728+00:00_
+_source line 781 · 2026-05-17T06:47:59.059728+00:00_
 
 27	\paragraph{Pitfall 3: Regime dependence.}
 28	Even after fixing the statistical method, the contamination level~$\alpha$ determines whether a lead-lag relationship is detectable.
@@ -2955,7 +2870,7 @@ _source line 785 · 2026-05-17T06:47:59.059728+00:00_
 
 ### Tool result
 
-_source line 786 · 2026-05-17T06:47:59.059912+00:00_
+_source line 782 · 2026-05-17T06:47:59.059912+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -2992,7 +2907,7 @@ _source line 786 · 2026-05-17T06:47:59.059912+00:00_
 
 ### Tool call
 
-_source line 787 · 2026-05-17T06:48:35.250134+00:00_
+_source line 783 · 2026-05-17T06:48:35.250134+00:00_
 
 called ToolSearch
 
@@ -3028,7 +2943,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 788 · 2026-05-17T06:48:35.300826+00:00_
+_source line 784 · 2026-05-17T06:48:35.300826+00:00_
 
 
 
@@ -3050,7 +2965,7 @@ _source line 788 · 2026-05-17T06:48:35.300826+00:00_
 
 ### Tool call
 
-_source line 789 · 2026-05-17T06:48:39.365886+00:00_
+_source line 785 · 2026-05-17T06:48:39.365886+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -3084,7 +2999,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 790 · 2026-05-17T06:48:39.416600+00:00_
+_source line 786 · 2026-05-17T06:48:39.416600+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 05:45 UTC | 更新原因: 标记已完成任务 + 关闭 cuda:1 评估（Reviewer 确认无可跑实验）+ 更新 a050_s44 进度 + 补写作打磨里程碑\\n\\n> **阶段**: Round 2 提交待审批（含 D052 修正）+ a050_s44 运行中\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D052**: α=0.50 confirmed seed-dependent boundary (s42=0/8, s43=6/8)\\n- ✅ **Round 2 重新提交** (apr_20260516T204821_ea5t, pending user approval)\\n- ✅ **Appendix C**: n_perm stability + FDR sensitivity robustness checks\\n- ✅ **Rebuttal 素材**: 5 talking points + n_perm stability JSON + FDR sensitivity\\n- ✅ **两版叙事预写**: artifacts/a050_s44_draft_versions.tex (VERSION A/B)\\n- ✅ **写作打磨 5 项**: Intro 重写(紧迫感)、Contribution 2 framing(K=4/5+Shapley)、dose-response 叙事重组、Related Work 补 training dynamics、run-on 拆分\\n- ✅ **Provenance 89%** (65/73 claims, all claim-level 100%)\\n- ✅ **K=3 FPR 数字矛盾修复** (50%→37.5% 统一)\\n\\n## 正在运行\\n| exp_id | GPU | 进度 | 预计完成 |\\n|--------|-----|------|----------|\\n| alpha_sweep_a050_s44 | cuda:0 | gen 8/11 | ~05:30 UTC |\\n\\n## 近期任务\\n- [ ] a050_s44 完成后选 VERSION A/B 更新论文\\n- [x] ~~Provenance 修复映射错误~~（89%, claim-level 100%）\\n- [x] ~~cuda:1 空窗利用评估~~（Reviewer 结论：无 ROI 正向 GPU 实验可跑——plan_006 数据已删、GPT-2m 10h 超窗口、α 点已完整）\\n\\n## 完整 Dose-Response (统一管线, D052 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/16 | 2 | Sub-threshold |\\n| 0.50 | 0/8–6/8 | 2 (→3 pending s44) | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — cuda:0 occupied (a050_s44), cuda:1 idle (no viable experiment, Reviewer confirme
 …[truncated 1593 chars]
@@ -3107,7 +3022,7 @@ _source line 790 · 2026-05-17T06:48:39.416600+00:00_
 
 ### Tool call
 
-_source line 791 · 2026-05-17T06:50:02.742920+00:00_
+_source line 787 · 2026-05-17T06:50:02.742920+00:00_
 
 called Read
 
@@ -3145,7 +3060,7 @@ called Read
 
 ### Tool result
 
-_source line 792 · 2026-05-17T06:50:02.743486+00:00_
+_source line 788 · 2026-05-17T06:50:02.743486+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -3184,7 +3099,7 @@ _source line 792 · 2026-05-17T06:50:02.743486+00:00_
 
 ### Tool call
 
-_source line 793 · 2026-05-17T06:50:02.743788+00:00_
+_source line 789 · 2026-05-17T06:50:02.743788+00:00_
 
 called Bash
 
@@ -3220,7 +3135,7 @@ called Bash
 
 ### Tool result
 
-_source line 794 · 2026-05-17T06:50:02.945394+00:00_
+_source line 790 · 2026-05-17T06:50:02.945394+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 29005 May 17 06:45 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex
 -rw-r--r-- 1 ubuntu ubuntu 13202 May 17 06:44 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex
@@ -3251,7 +3166,7 @@ _source line 794 · 2026-05-17T06:50:02.945394+00:00_
 
 ### Tool call
 
-_source line 795 · 2026-05-17T06:50:37.873015+00:00_
+_source line 791 · 2026-05-17T06:50:37.873015+00:00_
 
 called ToolSearch
 
@@ -3287,7 +3202,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 796 · 2026-05-17T06:50:37.873491+00:00_
+_source line 792 · 2026-05-17T06:50:37.873491+00:00_
 
 
 
@@ -3309,7 +3224,7 @@ _source line 796 · 2026-05-17T06:50:37.873491+00:00_
 
 ### Tool call
 
-_source line 797 · 2026-05-17T06:50:56.952925+00:00_
+_source line 793 · 2026-05-17T06:50:56.952925+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3345,7 +3260,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 798 · 2026-05-17T06:50:58.107082+00:00_
+_source line 794 · 2026-05-17T06:50:58.107082+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -3367,7 +3282,7 @@ _source line 798 · 2026-05-17T06:50:58.107082+00:00_
 
 ### Tool call
 
-_source line 799 · 2026-05-17T06:51:09.807851+00:00_
+_source line 795 · 2026-05-17T06:51:09.807851+00:00_
 
 called Grep
 
@@ -3405,7 +3320,7 @@ called Grep
 
 ### Tool call
 
-_source line 800 · 2026-05-17T06:51:09.808388+00:00_
+_source line 796 · 2026-05-17T06:51:09.808388+00:00_
 
 called Grep
 
@@ -3445,7 +3360,7 @@ called Grep
 
 ### Tool result
 
-_source line 801 · 2026-05-17T06:51:09.808707+00:00_
+_source line 797 · 2026-05-17T06:51:09.808707+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:136:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:143:At $\alpha{=}0.75$ (3~seeds), permutation Granger finds 19/24 forward-direction pairs FDR-significant with 0/24 reverse, confirming directional asymmetry; however, method-level consensus varies by seed (Tier~3 pairs: 4, 3, and 1 across seeds), placing this regime in a transitional detection state.
@@ -3473,7 +3388,7 @@ _source line 801 · 2026-05-17T06:51:09.808707+00:00_
 
 ### Tool result
 
-_source line 802 · 2026-05-17T06:51:09.859319+00:00_
+_source line 798 · 2026-05-17T06:51:09.859319+00:00_
 
 15:The $\alpha{=}1.0$ condition uses four random seeds $\{42, 43, 44, 45\}$; $\alpha{=}0.00$, $\alpha{=}0.25$, and $\alpha{=}0.75$ each use three seeds $\{42, 43, 44\}$; $\alpha{=}0.50$ uses three seeds $\{42, 43, 44\}$.
 33:\caption{Metric drift (\%, generation~0$\to$10) for Pythia-410M across contamination levels. Diversity collapse occurs at all $\alpha$ levels, with the strongest decline at moderate contamination ($\alpha{=}0.25$: distinct-1 $-40.3{\pm}0.3\%$) rather than full replacement ($\alpha{=}1.0$: $-27.8{\pm}1.6\%$). $\alpha{=}0.00$, $\alpha{=}0.25$, $\alpha{=}0.75$: 3-seed mean${\pm}$std (seeds 42, 43, 44); $\alpha{=}1.0$: 4-seed mean${\pm}$std (seeds 42, 43, 44, 45); $\alpha{=}0.50$: seed~42.}
@@ -3499,7 +3414,7 @@ _source line 802 · 2026-05-17T06:51:09.859319+00:00_
 
 ### Tool call
 
-_source line 803 · 2026-05-17T06:51:23.371619+00:00_
+_source line 799 · 2026-05-17T06:51:23.371619+00:00_
 
 called Read
 
@@ -3537,7 +3452,7 @@ called Read
 
 ### Tool result
 
-_source line 804 · 2026-05-17T06:51:23.422316+00:00_
+_source line 800 · 2026-05-17T06:51:23.422316+00:00_
 
 30	\begin{table}[t]
 31	\centering
@@ -3573,7 +3488,7 @@ _source line 804 · 2026-05-17T06:51:23.422316+00:00_
 
 ### Tool call
 
-_source line 805 · 2026-05-17T06:51:23.422720+00:00_
+_source line 801 · 2026-05-17T06:51:23.422720+00:00_
 
 called Read
 
@@ -3611,7 +3526,7 @@ called Read
 
 ### Tool result
 
-_source line 806 · 2026-05-17T06:51:23.473226+00:00_
+_source line 802 · 2026-05-17T06:51:23.473226+00:00_
 
 133	\begin{figure}[t]
 134	\centering
@@ -3639,7 +3554,7 @@ _source line 806 · 2026-05-17T06:51:23.473226+00:00_
 
 ### Tool call
 
-_source line 807 · 2026-05-17T06:51:51.214799+00:00_
+_source line 803 · 2026-05-17T06:51:51.214799+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3675,7 +3590,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 808 · 2026-05-17T06:51:52.375984+00:00_
+_source line 804 · 2026-05-17T06:51:52.375984+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -3697,7 +3612,7 @@ _source line 808 · 2026-05-17T06:51:52.375984+00:00_
 
 ### Tool call
 
-_source line 809 · 2026-05-17T06:52:00.153925+00:00_
+_source line 805 · 2026-05-17T06:52:00.153925+00:00_
 
 called Grep
 
@@ -3737,7 +3652,7 @@ called Grep
 
 ### Tool result
 
-_source line 810 · 2026-05-17T06:52:00.605797+00:00_
+_source line 806 · 2026-05-17T06:52:00.605797+00:00_
 
 11:All FPR and FNR calibration results reported in this work are specific to our experimental setup: Pythia-410M~\cite{biderman2023pythia}, a WikiText-103 subset, $T{=}10$ generation cycles, and five contamination levels ($\alpha \in \{0.0, 0.25, 0.50, 0.75, 1.0\}$).
 53:At $\alpha{\leq}0.25$, where early warning would be most valuable, the canary signal is undetectable by any method tested; at $\alpha{=}0.50$, detectability is seed-dependent (0/8--6/8, 3~seeds, median 3/8), marking the onset boundary where ECE outperforms token entropy as the more sensitive canary.
@@ -3761,7 +3676,7 @@ _source line 810 · 2026-05-17T06:52:00.605797+00:00_
 
 ### Tool call
 
-_source line 811 · 2026-05-17T06:52:00.706489+00:00_
+_source line 807 · 2026-05-17T06:52:00.706489+00:00_
 
 called Grep
 
@@ -3801,7 +3716,7 @@ called Grep
 
 ### Tool result
 
-_source line 812 · 2026-05-17T06:52:00.757064+00:00_
+_source line 808 · 2026-05-17T06:52:00.757064+00:00_
 
 28:The onset boundary at $\alpha{\approx}0.25$--$0.50$ is characterized with limited resolution (five $\alpha$ levels).
 
@@ -3823,7 +3738,7 @@ _source line 812 · 2026-05-17T06:52:00.757064+00:00_
 
 ### Tool call
 
-_source line 813 · 2026-05-17T06:52:13.908416+00:00_
+_source line 809 · 2026-05-17T06:52:13.908416+00:00_
 
 called Read
 
@@ -3861,7 +3776,7 @@ called Read
 
 ### Tool result
 
-_source line 814 · 2026-05-17T06:52:14.059445+00:00_
+_source line 810 · 2026-05-17T06:52:14.059445+00:00_
 
 100	\label{fig:consensus_heatmap}
 101	\end{figure}
@@ -3902,7 +3817,7 @@ _source line 814 · 2026-05-17T06:52:14.059445+00:00_
 
 ### Assistant
 
-_source line 815 · 2026-05-17T06:52:46.687796+00:00_
+_source line 811 · 2026-05-17T06:52:46.687796+00:00_
 
 审计完成。当前论文状态总结：
 
@@ -3939,7 +3854,7 @@ _source line 815 · 2026-05-17T06:52:46.687796+00:00_
 
 ### User
 
-_source line 816 · 2026-05-17T06:52:47.161198+00:00_
+_source line 812 · 2026-05-17T06:52:47.161198+00:00_
 
 [系统通知 — worker_done:worker_ssh_a050_reconcile_fdr_20260517T064346]:
 Worker worker_ssh_a050_reconcile_fdr_20260517T064346 已完成（status=done），请审查 Agent 的处理结果。
@@ -3961,7 +3876,7 @@ Worker worker_ssh_a050_reconcile_fdr_20260517T064346 已完成（status=done）�
 
 ### Tool call
 
-_source line 817 · 2026-05-17T06:52:57.440287+00:00_
+_source line 813 · 2026-05-17T06:52:57.440287+00:00_
 
 called ToolSearch
 
@@ -3997,7 +3912,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 818 · 2026-05-17T06:52:57.490832+00:00_
+_source line 814 · 2026-05-17T06:52:57.490832+00:00_
 
 
 
@@ -4019,7 +3934,7 @@ _source line 818 · 2026-05-17T06:52:57.490832+00:00_
 
 ### Tool call
 
-_source line 819 · 2026-05-17T06:53:02.124399+00:00_
+_source line 815 · 2026-05-17T06:53:02.124399+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4057,7 +3972,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 820 · 2026-05-17T06:53:02.275876+00:00_
+_source line 816 · 2026-05-17T06:53:02.275876+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"alpha_sweep_a050_s44\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-17T06:40:50.861Z\", \"completed_at\": \"2026-05-16T00:03:52.118Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:34:46.264183+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"submitted_at\": \"2026-05-17T02:07:37.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/gen_10/checkpoint\", \"wall_clock_seconds\": 16393.1, \"gpu_hours\": 4.55}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certific
 …[truncated 12142 chars]
@@ -4080,7 +3995,7 @@ _source line 820 · 2026-05-17T06:53:02.275876+00:00_
 
 ### Tool call
 
-_source line 821 · 2026-05-17T06:53:20.713602+00:00_
+_source line 817 · 2026-05-17T06:53:20.713602+00:00_
 
 called ToolSearch
 
@@ -4116,7 +4031,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 822 · 2026-05-17T06:53:20.814400+00:00_
+_source line 818 · 2026-05-17T06:53:20.814400+00:00_
 
 
 
@@ -4138,7 +4053,7 @@ _source line 822 · 2026-05-17T06:53:20.814400+00:00_
 
 ### Tool call
 
-_source line 823 · 2026-05-17T06:53:25.634436+00:00_
+_source line 819 · 2026-05-17T06:53:25.634436+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4174,7 +4089,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 824 · 2026-05-17T06:53:26.637831+00:00_
+_source line 820 · 2026-05-17T06:53:26.637831+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 68\\n-rw-r--r-- 1 root root 61525 May 17 14:37 5method_leadlag.json\\n-rw-r--r-- 1 root root   699 May 17 14:37 5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
 
@@ -4196,7 +4111,7 @@ _source line 824 · 2026-05-17T06:53:26.637831+00:00_
 
 ### Tool call
 
-_source line 825 · 2026-05-17T06:53:35.123562+00:00_
+_source line 821 · 2026-05-17T06:53:35.123562+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4232,7 +4147,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 826 · 2026-05-17T06:53:35.575418+00:00_
+_source line 822 · 2026-05-17T06:53:35.575418+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4254,7 +4169,7 @@ _source line 826 · 2026-05-17T06:53:35.575418+00:00_
 
 ### Tool call
 
-_source line 827 · 2026-05-17T06:53:35.776450+00:00_
+_source line 823 · 2026-05-17T06:53:35.776450+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4290,7 +4205,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 828 · 2026-05-17T06:53:36.228423+00:00_
+_source line 824 · 2026-05-17T06:53:36.228423+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=0.5, Seed=44, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 0/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 3/8\\n  Diff XCorr (FDR):   6/8\\n  Threshold Onset:    0/8\\n  TY Granger:         0/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [naive, diff]\\n  token_entropy→distinct_2  1/5  [naive]\\n  token_entropy→distinct_3  1/5  [naive]\\n  token_entropy→perplexity  2/5  [naive, diff]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            1/5  [diff]\\n  ece→perplexity            2/5  [diff, perm]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4312,7 +4227,7 @@ _source line 828 · 2026-05-17T06:53:36.228423+00:00_
 
 ### Tool call
 
-_source line 829 · 2026-05-17T06:54:13.366834+00:00_
+_source line 825 · 2026-05-17T06:54:13.366834+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4348,7 +4263,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 830 · 2026-05-17T06:54:13.818610+00:00_
+_source line 826 · 2026-05-17T06:54:13.818610+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=0.5, Seed=43, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 1/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 6/8\\n  Diff XCorr (FDR):   6/8\\n  Threshold Onset:    0/8\\n  TY Granger:         0/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  3/5  [naive, diff, perm]\\n  token_entropy→distinct_2  2/5  [naive, diff]\\n  token_entropy→distinct_3  2/5  [naive, perm]\\n  token_entropy→perplexity  2/5  [naive, diff]\\n  ece→distinct_1            2/5  [diff, perm]\\n  ece→distinct_2            2/5  [diff, perm]\\n  ece→distinct_3            1/5  [perm]\\n  ece→perplexity            2/5  [diff, perm]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4370,7 +4285,7 @@ _source line 830 · 2026-05-17T06:54:13.818610+00:00_
 
 ### Tool call
 
-_source line 831 · 2026-05-17T06:54:36.145731+00:00_
+_source line 827 · 2026-05-17T06:54:36.145731+00:00_
 
 called Read
 
@@ -4408,7 +4323,7 @@ called Read
 
 ### Tool result
 
-_source line 832 · 2026-05-17T06:54:36.146277+00:00_
+_source line 828 · 2026-05-17T06:54:36.146277+00:00_
 
 45	\paragraph{Diversity--calibration dissociation.}
 46	Diversity metrics and calibration metrics respond to synthetic contamination in qualitatively opposite directions across the $\alpha$ spectrum.
@@ -4442,7 +4357,7 @@ _source line 832 · 2026-05-17T06:54:36.146277+00:00_
 
 ### Tool call
 
-_source line 833 · 2026-05-17T06:55:04.285226+00:00_
+_source line 829 · 2026-05-17T06:55:04.285226+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4478,7 +4393,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 834 · 2026-05-17T06:55:04.737889+00:00_
+_source line 830 · 2026-05-17T06:55:04.737889+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"5-Method Lead-Lag Analysis Summary\\nAlpha=0.5, Seed=42, Generations=11\\n============================================================\\n\\nRobust pairs (>=3/5 methods agree): 0/8\\n\\nPer-method forward significance:\\n  Perm Granger (FDR): 0/8\\n  Diff XCorr (FDR):   8/8\\n  Threshold Onset:    0/8\\n  TY Granger:         0/8\\n\\nConsensus detail:\\n  token_entropy→distinct_1  2/5  [naive, diff]\\n  token_entropy→distinct_2  2/5  [naive, diff]\\n  token_entropy→distinct_3  2/5  [naive, diff]\\n  token_entropy→perplexity  2/5  [naive, diff]\\n  ece→distinct_1            1/5  [diff]\\n  ece→distinct_2            1/5  [diff]\\n  ece→distinct_3            1/5  [diff]\\n  ece→perplexity            1/5  [diff]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -4500,7 +4415,7 @@ _source line 834 · 2026-05-17T06:55:04.737889+00:00_
 
 ### Tool call
 
-_source line 835 · 2026-05-17T06:55:41.435780+00:00_
+_source line 831 · 2026-05-17T06:55:41.435780+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4536,7 +4451,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 836 · 2026-05-17T06:55:41.436162+00:00_
+_source line 832 · 2026-05-17T06:55:41.436162+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -4558,7 +4473,7 @@ _source line 836 · 2026-05-17T06:55:41.436162+00:00_
 
 ### Tool call
 
-_source line 837 · 2026-05-17T06:55:46.255217+00:00_
+_source line 833 · 2026-05-17T06:55:46.255217+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4594,7 +4509,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 838 · 2026-05-17T06:55:46.706968+00:00_
+_source line 834 · 2026-05-17T06:55:46.706968+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"naive_xcorr\\\",\\n    \\\"diff_xcorr\\\",\\n    \\\"threshold_onset\\\",\\n    \\\"perm_granger\\\",\\n    \\\"ty_granger\\\"\\n  ],\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.9726,\\n          \\\"p_value\\\": 0.000235,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": -0.9726,\\n          \\\"p_value\\\": 0.000235,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.9792,\\n          \\\"p_value\\\": 0.000118,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": -0.9792,\\n          \\\"p_value\\\": 0.000118,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": -0.9775,\\n          \\\"p_value\\\": 0.000144,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": -0.9775,\\n          \\\"p_value\\\": 0.000144,\\n          \\\"significant\\\": true,\\n          \\\"all_lags\\\": [\\n--\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": -0.9048,\\n          \\\"p_value\\\": 0.00032,\\n          \\\"significant\\\": true
 …[truncated 2490 chars]
@@ -4617,7 +4532,7 @@ _source line 838 · 2026-05-17T06:55:46.706968+00:00_
 
 ### Tool call
 
-_source line 839 · 2026-05-17T06:56:45.872545+00:00_
+_source line 835 · 2026-05-17T06:56:45.872545+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4653,7 +4568,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 840 · 2026-05-17T06:56:49.341446+00:00_
+_source line 836 · 2026-05-17T06:56:49.341446+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -4675,7 +4590,7 @@ _source line 840 · 2026-05-17T06:56:49.341446+00:00_
 
 ### Assistant
 
-_source line 841 · 2026-05-17T06:56:55.558540+00:00_
+_source line 837 · 2026-05-17T06:56:55.558540+00:00_
 
 当前状态：已完成 reconcile worker 审计，确认数据一致。两条待处理 warning 已提交给 Director（method.tex line 30 措辞过时 + Table 1 α=0.50 单种子数据）。等待 Paper Agent VERSION A 补丁落地后进行最终文本审计。
 
@@ -4702,7 +4617,7 @@ _source line 841 · 2026-05-17T06:56:55.558540+00:00_
 
 ### User
 
-_source line 842 · 2026-05-17T06:56:56.030723+00:00_
+_source line 838 · 2026-05-17T06:56:56.030723+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D053 三 seed 完成 + dose-response 表更新 + method.tex 修复进行中），请审查研究方向和计划的合理性。
@@ -4724,7 +4639,7 @@ _source line 842 · 2026-05-17T06:56:56.030723+00:00_
 
 ### Tool call
 
-_source line 843 · 2026-05-17T06:57:03.796188+00:00_
+_source line 839 · 2026-05-17T06:57:03.796188+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -4758,7 +4673,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 844 · 2026-05-17T06:57:03.846926+00:00_
+_source line 840 · 2026-05-17T06:57:03.846926+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 06:51 UTC | 更新原因: D053 三 seed 完成 + dose-response 表更新 + method.tex 修复进行中\\n\\n> **阶段**: Round 2 提交待审批 + D053 论文更新中\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D053**: α=0.50 三 seed 完成 (s42=0/8, s43=6/8, s44=3/8)，stochastic boundary 确认\\n- ✅ **写作打磨 5 项**: Intro 重写、Contribution framing、dose-response 叙事、Related Work、run-on 拆分\\n- ✅ **Provenance 89%** (65/73, claim-level 100%)\\n- ✅ **K=3 FPR 矛盾修复** (37.5% 统一)\\n- ✅ **VERSION B patch**: 三 seed 数据更新到 experiments/intro/discussion\\n- 🔧 **method.tex line 30 修复中**: \\\"unanimously non-significance\\\" 过时表述\\n\\n## 正在运行\\n无 GPU 实验\\n\\n## 近期任务\\n- [ ] method.tex line 30 修复（Paper Agent 执行中）\\n- [ ] 同步 .tex 到远程 + 重新编译验证\\n- [ ] 评估是否需要重新提交 Round 2（内容变化量大于 apr_20260516T204821_ea5t）\\n\\n## 完整 Dose-Response (统一管线, D053 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/16 | 2 | Sub-threshold |\\n| 0.50 | 9/24 (0+6+3) | 3 | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — 均空闲\\n- **累计**: ~48h (含 a050_s44 ~3h)\\n\\n## 硬约束\\n- C003: 禁止引用 α≤0.50 TY Granger 显著率\\n- C004: 禁止未确认状态下 kill 运行中进程/rm -rf 实验目录\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D053 | 2026-05-17 | D053: α=0.50 三 seed 完成——2/3 seeds 有 PermG 信号 (0/8, | alpha_sweep_a050_s44, alpha_sweep_a050_s43, alpha_sweep_a050_s42 |\\n| D052 | 2026-05-16 | D052: α=0.50 confirmed seed-dependent boundary (0/ | alpha_sweep_a050_s42, alpha_sweep_a050_s43 |\\n| D051 | 2026-05-
 …[truncated 1122 chars]
@@ -4781,7 +4696,7 @@ _source line 844 · 2026-05-17T06:57:03.846926+00:00_
 
 ### Tool call
 
-_source line 845 · 2026-05-17T06:57:45.684983+00:00_
+_source line 841 · 2026-05-17T06:57:45.684983+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4817,7 +4732,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 846 · 2026-05-17T06:57:49.308593+00:00_
+_source line 842 · 2026-05-17T06:57:49.308593+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -4839,7 +4754,7 @@ _source line 846 · 2026-05-17T06:57:49.308593+00:00_
 
 ### Assistant
 
-_source line 847 · 2026-05-17T06:57:54.726439+00:00_
+_source line 843 · 2026-05-17T06:57:54.726439+00:00_
 
 ROADMAP 审查完成。变更合理，一项小问题：
 
@@ -4866,7 +4781,7 @@ ROADMAP 审查完成。变更合理，一项小问题：
 
 ### User
 
-_source line 848 · 2026-05-17T06:57:55.189562+00:00_
+_source line 844 · 2026-05-17T06:57:55.189562+00:00_
 
 [系统通知 — worker_done:worker_ssh_a050_table1_metrics_20260517T065312]:
 Worker worker_ssh_a050_table1_metrics_20260517T065312 已完成（status=done），请审查 Agent 的处理结果。
@@ -4888,7 +4803,7 @@ Worker worker_ssh_a050_table1_metrics_20260517T065312 已完成（status=done）
 
 ### Tool call
 
-_source line 849 · 2026-05-17T06:58:05.970576+00:00_
+_source line 845 · 2026-05-17T06:58:05.970576+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4924,7 +4839,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 850 · 2026-05-17T06:58:07.074841+00:00_
+_source line 846 · 2026-05-17T06:58:07.074841+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
 
@@ -4946,7 +4861,7 @@ _source line 850 · 2026-05-17T06:58:07.074841+00:00_
 
 ### Tool call
 
-_source line 851 · 2026-05-17T06:58:15.654726+00:00_
+_source line 847 · 2026-05-17T06:58:15.654726+00:00_
 
 called Read
 
@@ -4984,7 +4899,7 @@ called Read
 
 ### Tool result
 
-_source line 852 · 2026-05-17T06:58:15.705340+00:00_
+_source line 848 · 2026-05-17T06:58:15.705340+00:00_
 
 30	\begin{table}[t]
 31	\centering
@@ -5021,7 +4936,7 @@ _source line 852 · 2026-05-17T06:58:15.705340+00:00_
 
 ### Tool call
 
-_source line 853 · 2026-05-17T06:58:50.549953+00:00_
+_source line 849 · 2026-05-17T06:58:50.549953+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5057,7 +4972,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 854 · 2026-05-17T06:58:53.960514+00:00_
+_source line 850 · 2026-05-17T06:58:53.960514+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -5079,7 +4994,7 @@ _source line 854 · 2026-05-17T06:58:53.960514+00:00_
 
 ### Assistant
 
-_source line 855 · 2026-05-17T06:58:58.121054+00:00_
+_source line 851 · 2026-05-17T06:58:58.121054+00:00_
 
 Table 1 已更新为三种子 mean±std。验证结果：
 
@@ -5113,7 +5028,7 @@ Table 1 已更新为三种子 mean±std。验证结果：
 
 ### User
 
-_source line 856 · 2026-05-17T06:58:58.581150+00:00_
+_source line 852 · 2026-05-17T06:58:58.581150+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：修正 α=0.25 从 0/16(2 seeds) 到 0/24(3 seeds) + 标记所有 Paper Agent 改动完成），请审查研究方向和计划的合理性。
@@ -5135,7 +5050,7 @@ _source line 856 · 2026-05-17T06:58:58.581150+00:00_
 
 ### Tool call
 
-_source line 857 · 2026-05-17T06:59:05.450857+00:00_
+_source line 853 · 2026-05-17T06:59:05.450857+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -5169,7 +5084,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 858 · 2026-05-17T06:59:05.502606+00:00_
+_source line 854 · 2026-05-17T06:59:05.502606+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 06:58 UTC | 更新原因: 修正 α=0.25 从 0/16(2 seeds) 到 0/24(3 seeds) + 标记所有 Paper Agent 改动完成\\n\\n> **阶段**: 论文最终打磨 + 待重新提交 Round 2\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D053**: α=0.50 三 seed 完成 (s42=0/8, s43=6/8, s44=3/8)，stochastic boundary 确认\\n- ✅ **写作打磨 5 项**: Intro 重写、Contribution framing、dose-response 叙事、Related Work、run-on 拆分\\n- ✅ **VERSION B patch**: 三 seed 数据 + ECE canary 分层\\n- ✅ **method.tex line 30 修复**: seed-dependent 描述替换 \\\"unanimously\\\"\\n- ✅ **Table 1 α=0.50 更新**: 3-seed mean±std\\n- ✅ **K=3 FPR 统一**: 37.5%\\n- ✅ **Provenance 89%** (65/73, claim-level 100%)\\n- ✅ **数据冲突 reconcile**: Worker A 裁决确认（Reviewer 铁证）\\n\\n## 正在运行\\n无 GPU 实验\\n\\n## 近期任务\\n- [ ] 最终同步 + 编译验证（Agent 执行中）\\n- [ ] 重新提交 Round 2（内容变化量大于上次提交：a050_s44 + 写作打磨 + method fix）\\n- [ ] 用户反馈：是否加模型扩展泛化性（待回复）\\n\\n## 完整 Dose-Response (统一管线, D053 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/24 | 3 | Sub-threshold |\\n| 0.50 | 9/24 (0+6+3) | 3 | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — 均空闲（实验阶段完结）\\n- **累计**: ~48h\\n\\n## 硬约束\\n- C003: 禁止引用 α≤0.50 TY Granger 显著率\\n- C004: 禁止未确认状态下 kill 运行中进程/rm -rf 实验目录\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D053 | 2026-05-17 | D053: α=0.50 三 seed 完成——2/3 seeds 有 PermG 信号 (0/8, | alpha_sweep_a050_s44, alpha_sweep_a050_s43, alpha_sweep_a050_s42 |\\n| D052 | 2026-05-16 | D052: α=0.50 confirmed seed-dependent boundary (0/ | alpha_
 …[truncated 1183 chars]
@@ -5192,7 +5107,7 @@ _source line 858 · 2026-05-17T06:59:05.502606+00:00_
 
 ### Tool call
 
-_source line 859 · 2026-05-17T06:59:17.006961+00:00_
+_source line 855 · 2026-05-17T06:59:17.006961+00:00_
 
 called Read
 
@@ -5230,7 +5145,7 @@ called Read
 
 ### Tool result
 
-_source line 860 · 2026-05-17T06:59:17.159811+00:00_
+_source line 856 · 2026-05-17T06:59:17.159811+00:00_
 
 27	\paragraph{Pitfall 3: Regime dependence.}
 28	Even after fixing the statistical method, the contamination level~$\alpha$ determines whether a lead-lag relationship is detectable.
@@ -5257,7 +5172,7 @@ _source line 860 · 2026-05-17T06:59:17.159811+00:00_
 
 ### Assistant
 
-_source line 861 · 2026-05-17T06:59:23.977631+00:00_
+_source line 857 · 2026-05-17T06:59:23.977631+00:00_
 
 method.tex line 30 修复已正确应用：不再说 "unanimously find non-significance"，改为按 seed 分层描述（seed 42 无信号 vs 其他 seed 有部分信号），并明确 "seed-dependent divergence" 的风险。
 
@@ -5286,7 +5201,7 @@ ROADMAP 审查通过。所有此前 warning 已解决，α=0.25 已更正为 0/2
 
 ### User
 
-_source line 862 · 2026-05-17T07:01:17.290923+00:00_
+_source line 858 · 2026-05-17T07:01:17.290923+00:00_
 
 [系统通知 — worker_done:worker_ssh_a050_cleanup_and_sync_20260517T064601]:
 Worker worker_ssh_a050_cleanup_and_sync_20260517T064601 已完成（status=done），请审查 Agent 的处理结果。
@@ -5308,7 +5223,7 @@ Worker worker_ssh_a050_cleanup_and_sync_20260517T064601 已完成（status=done�
 
 ### Tool call
 
-_source line 863 · 2026-05-17T07:01:27.313640+00:00_
+_source line 859 · 2026-05-17T07:01:27.313640+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5344,7 +5259,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 864 · 2026-05-17T07:01:28.468144+00:00_
+_source line 860 · 2026-05-17T07:01:28.468144+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 29006 May 17 15:01 /root/autodl-tmp/distrib_canary_collapse/docs/paper/experiments.tex\\n-rw-r--r-- 1 root root  9272 May 17 15:01 /root/autodl-tmp/distrib_canary_collapse/docs/paper/introduction.tex\\n-rw-r--r-- 1 root root  4174 May 17 15:01 /root/autodl-tmp/distrib_canary_collapse/docs/paper/background.tex\\n-rw-r--r-- 1 root root  1128 May 17 14:59 /root/autodl-tmp/distrib_canary_collapse/docs/paper/ethics.tex\\n-rw-r--r-- 1 root root  1135 May 17 14:59 /root/autodl-tmp/distrib_canary_collapse/docs/paper/abstract.tex\\n-rw-r--r-- 1 root root  2017 May 17 14:59 /root/autodl-tmp/distrib_canary_collapse/docs/paper/conclusion.tex\\n-rw-r--r-- 1 root root  3868 May 17 14:59 /root/autodl-tmp/distrib_canary_collapse/docs/paper/limitations.tex\\n-rw-r--r-- 1 root root   842 May 17 14:59 /root/autodl-tmp/distrib_canary_collapse/docs/paper/main.tex\\n-rw-r--r-- 1 root root 13210 May 17 14:57 /root/autodl-tmp/distrib_canary_collapse/docs/paper/method.tex\\n-rw-r--r-- 1 root root 11683 May 17 14:56 /root/autodl-tmp/distrib_canary_collapse/docs/paper/related_work.tex\\n-rw-r--r-- 1 root root  6363 May 17 14:55 /root/autodl-tmp/distrib_canary_collapse/docs/paper/appendix.tex\\n-rw-r--r-- 1 root root 13203 May 17 14:54 /root/autodl-tmp/distrib_canary_collapse/docs/paper/discussion.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
 
@@ -5366,7 +5281,7 @@ _source line 864 · 2026-05-17T07:01:28.468144+00:00_
 
 ### Tool call
 
-_source line 865 · 2026-05-17T07:01:37.850297+00:00_
+_source line 861 · 2026-05-17T07:01:37.850297+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5402,7 +5317,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 866 · 2026-05-17T07:01:38.352457+00:00_
+_source line 862 · 2026-05-17T07:01:38.352457+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 423658 May 17 15:00 /root/autodl-tmp/distrib_canary_collapse/docs/paper/main.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -5424,7 +5339,7 @@ _source line 866 · 2026-05-17T07:01:38.352457+00:00_
 
 ### Tool call
 
-_source line 867 · 2026-05-17T07:01:38.352797+00:00_
+_source line 863 · 2026-05-17T07:01:38.352797+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5460,7 +5375,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 868 · 2026-05-17T07:01:38.854635+00:00_
+_source line 864 · 2026-05-17T07:01:38.854635+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t\\nype1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\nfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\\n/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.\\npfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/u\\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/shar\\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texli\\nve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texliv\\ne/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.\\npfb>\\nOutput written on main.pdf (22 pages, 423658 bytes).\\nPDF statistics:\\n 1007 PDF objects out of 1200 (max. 8388607)\\n 632 compressed objects within 7 object streams\\n 167 named destinations out of 1000 (max. 500000)\\n 60074 words of extra memory for PDF output out of 61914 (max. 10000000)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
 
@@ -5482,7 +5397,7 @@ _source line 868 · 2026-05-17T07:01:38.854635+00:00_
 
 ### Assistant
 
-_source line 869 · 2026-05-17T07:02:05.749612+00:00_
+_source line 865 · 2026-05-17T07:02:05.749612+00:00_
 
 同步和编译成功。远程 main.pdf 生成于 15:00（22 页, 424KB），编译无报错。所有 .tex 文件已同步到远程（最新: experiments.tex/introduction.tex 15:01）。
 
@@ -5511,7 +5426,7 @@ ROADMAP 近期任务 "最终同步 + 编译验证" 可标记完成。剩余待�
 
 ### User
 
-_source line 870 · 2026-05-17T07:06:18.806351+00:00_
+_source line 866 · 2026-05-17T07:06:18.806351+00:00_
 
 [系统通知 — worker_done:worker_ssh_final_sync_compile_20260517T065229]:
 Worker worker_ssh_final_sync_compile_20260517T065229 已完成（status=done），请审查 Agent 的处理结果。
@@ -5533,7 +5448,7 @@ Worker worker_ssh_final_sync_compile_20260517T065229 已完成（status=done）�
 
 ### Tool call
 
-_source line 871 · 2026-05-17T07:06:31.902002+00:00_
+_source line 867 · 2026-05-17T07:06:31.902002+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5569,7 +5484,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 872 · 2026-05-17T07:06:32.253593+00:00_
+_source line 868 · 2026-05-17T07:06:32.253593+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5605,7 +5520,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 873 · 2026-05-17T07:06:33.006643+00:00_
+_source line 869 · 2026-05-17T07:06:33.006643+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/distrib_canary_collapse/docs/paper/main.pdf\\n  Size: 423658    \\tBlocks: 832        IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 20403032371  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-17 09:02:49.671299926 +0800\\nModify: 2026-05-17 15:05:47.330326330 +0800\\nChange: 2026-05-17 15:05:47.330326330 +0800\\n Birth: 2026-05-17 09:02:49.671299926 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
 
@@ -5627,7 +5542,7 @@ _source line 873 · 2026-05-17T07:06:33.006643+00:00_
 
 ### Tool result
 
-_source line 874 · 2026-05-17T07:06:33.508740+00:00_
+_source line 870 · 2026-05-17T07:06:33.508740+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -5649,7 +5564,7 @@ _source line 874 · 2026-05-17T07:06:33.508740+00:00_
 
 ### Tool call
 
-_source line 875 · 2026-05-17T07:06:39.480561+00:00_
+_source line 871 · 2026-05-17T07:06:39.480561+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5685,7 +5600,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 876 · 2026-05-17T07:06:39.932779+00:00_
+_source line 872 · 2026-05-17T07:06:39.932779+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: `h' float specifier changed to `ht'.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -5707,7 +5622,7 @@ _source line 876 · 2026-05-17T07:06:39.932779+00:00_
 
 ### Assistant
 
-_source line 877 · 2026-05-17T07:06:45.837588+00:00_
+_source line 873 · 2026-05-17T07:06:45.837588+00:00_
 
 PDF 重新编译成功（15:05 local, 07:05 UTC），423KB，22 页，唯一 warning 是浮动图表的 `h` → `ht` 位置调整（无害）。同步+编译无问题。
 
@@ -5734,7 +5649,7 @@ PDF 重新编译成功（15:05 local, 07:05 UTC），423KB，22 页，唯一 war
 
 ### User
 
-_source line 878 · 2026-05-17T07:06:46.305920+00:00_
+_source line 874 · 2026-05-17T07:06:46.305920+00:00_
 
 [系统通知 — worker_done:worker_ssh_model_dataset_prep_20260517T070038]:
 Worker worker_ssh_model_dataset_prep_20260517T070038 已完成（status=done），请审查 Agent 的处理结果。
@@ -5756,7 +5671,7 @@ Worker worker_ssh_model_dataset_prep_20260517T070038 已完成（status=done）�
 
 ### Tool call
 
-_source line 879 · 2026-05-17T07:06:57.094011+00:00_
+_source line 875 · 2026-05-17T07:06:57.094011+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5796,7 +5711,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 880 · 2026-05-17T07:06:57.296493+00:00_
+_source line 876 · 2026-05-17T07:06:57.296493+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1724}}"}
 
@@ -5818,7 +5733,7 @@ _source line 880 · 2026-05-17T07:06:57.296493+00:00_
 
 ### Tool call
 
-_source line 881 · 2026-05-17T07:07:08.442819+00:00_
+_source line 877 · 2026-05-17T07:07:08.442819+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5854,7 +5769,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 882 · 2026-05-17T07:07:08.593665+00:00_
+_source line 878 · 2026-05-17T07:07:08.593665+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5890,7 +5805,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 883 · 2026-05-17T07:07:09.597833+00:00_
+_source line 879 · 2026-05-17T07:07:09.597833+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
 
@@ -5912,7 +5827,7 @@ _source line 883 · 2026-05-17T07:07:09.597833+00:00_
 
 ### Tool result
 
-_source line 884 · 2026-05-17T07:07:10.159717+00:00_
+_source line 880 · 2026-05-17T07:07:10.159717+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 5 root root 62 May 15 16:51 c4_5k\\ndrwxr-xr-x 5 root root 62 May 14 13:39 wikitext103_5k\\ndrwxr-xr-x 5 root root 62 May 14 13:39 wikitext103\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -5934,7 +5849,7 @@ _source line 884 · 2026-05-17T07:07:10.159717+00:00_
 
 ### Tool call
 
-_source line 885 · 2026-05-17T07:07:20.308472+00:00_
+_source line 881 · 2026-05-17T07:07:20.308472+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5970,7 +5885,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 886 · 2026-05-17T07:07:20.810349+00:00_
+_source line 882 · 2026-05-17T07:07:20.810349+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 6 root root 85 May 17 15:02 models--facebook--opt-1.3b\\ndrwxr-xr-x 6 root root 85 May 15 16:45 models--gpt2-medium\\ndrwxr-xr-x 6 root root 85 May 15 16:37 datasets--allenai--c4\\ndrwxr-xr-x 6 root root 85 May 14 14:22 models--gpt2-large\\ndrwxr-xr-x 6 root root 85 May 14 13:40 models--EleutherAI--pythia-410m\\ndrwxr-xr-x 6 root root 85 May 14 13:30 datasets--wikitext\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -5992,7 +5907,7 @@ _source line 886 · 2026-05-17T07:07:20.810349+00:00_
 
 ### Tool call
 
-_source line 887 · 2026-05-17T07:07:51.042937+00:00_
+_source line 883 · 2026-05-17T07:07:51.042937+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6028,7 +5943,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 888 · 2026-05-17T07:07:51.508106+00:00_
+_source line 884 · 2026-05-17T07:07:51.508106+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"508M\\t/root/autodl-tmp/.hf_cache/hub/models--facebook--opt-1.3b/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -6050,7 +5965,7 @@ _source line 888 · 2026-05-17T07:07:51.508106+00:00_
 
 ### Tool call
 
-_source line 889 · 2026-05-17T07:08:13.010203+00:00_
+_source line 885 · 2026-05-17T07:08:13.010203+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6086,7 +6001,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 890 · 2026-05-17T07:08:17.386331+00:00_
+_source line 886 · 2026-05-17T07:08:17.386331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -6115,7 +6030,7 @@ _source line 890 · 2026-05-17T07:08:17.386331+00:00_
 
 ### User
 
-_source line 891 · 2026-05-17T07:10:17.805219+00:00_
+_source line 887 · 2026-05-17T07:10:17.805219+00:00_
 
 [系统通知 — worker_done:worker_ssh_fix_a050_json_overwrite_20260517T070755]:
 Worker worker_ssh_fix_a050_json_overwrite_20260517T070755 已完成（status=done），请审查 Agent 的处理结果。
@@ -6137,7 +6052,7 @@ Worker worker_ssh_fix_a050_json_overwrite_20260517T070755 已完成（status=don
 
 ### Tool call
 
-_source line 892 · 2026-05-17T07:10:26.985387+00:00_
+_source line 888 · 2026-05-17T07:10:26.985387+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6173,7 +6088,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 893 · 2026-05-17T07:10:28.090156+00:00_
+_source line 889 · 2026-05-17T07:10:28.090156+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6209,7 +6124,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 894 · 2026-05-17T07:10:28.491682+00:00_
+_source line 890 · 2026-05-17T07:10:28.491682+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 68\\n-rw-r--r-- 1 root root 61525 May 17 14:37 5method_leadlag.json\\n-rw-r--r-- 1 root root   699 May 17 14:37 5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
 
@@ -6231,7 +6146,7 @@ _source line 894 · 2026-05-17T07:10:28.491682+00:00_
 
 ### Tool call
 
-_source line 895 · 2026-05-17T07:10:28.492011+00:00_
+_source line 891 · 2026-05-17T07:10:28.492011+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6267,7 +6182,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 896 · 2026-05-17T07:10:28.642901+00:00_
+_source line 892 · 2026-05-17T07:10:28.642901+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 68\\n-rw-r--r-- 1 root root 61626 May 17 03:57 5method_leadlag.json\\n-rw-r--r-- 1 root root   717 May 17 03:57 5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -6289,7 +6204,7 @@ _source line 896 · 2026-05-17T07:10:28.642901+00:00_
 
 ### Tool result
 
-_source line 897 · 2026-05-17T07:10:29.194660+00:00_
+_source line 893 · 2026-05-17T07:10:29.194660+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 68\\n-rw-r--r-- 1 root root 61534 May 17 04:37 5method_leadlag.json\\n-rw-r--r-- 1 root root   693 May 17 04:37 5method_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -6311,7 +6226,7 @@ _source line 897 · 2026-05-17T07:10:29.194660+00:00_
 
 ### Tool call
 
-_source line 898 · 2026-05-17T07:10:36.771871+00:00_
+_source line 894 · 2026-05-17T07:10:36.771871+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6347,7 +6262,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 899 · 2026-05-17T07:10:37.625113+00:00_
+_source line 895 · 2026-05-17T07:10:37.625113+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6369,7 +6284,7 @@ _source line 899 · 2026-05-17T07:10:37.625113+00:00_
 
 ### Tool call
 
-_source line 900 · 2026-05-17T07:10:37.625528+00:00_
+_source line 896 · 2026-05-17T07:10:37.625528+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6405,7 +6320,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 901 · 2026-05-17T07:10:38.083529+00:00_
+_source line 897 · 2026-05-17T07:10:38.083529+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6427,7 +6342,7 @@ _source line 901 · 2026-05-17T07:10:38.083529+00:00_
 
 ### Tool call
 
-_source line 902 · 2026-05-17T07:10:45.109146+00:00_
+_source line 898 · 2026-05-17T07:10:45.109146+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6463,7 +6378,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 903 · 2026-05-17T07:10:45.561062+00:00_
+_source line 899 · 2026-05-17T07:10:45.561062+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6485,7 +6400,7 @@ _source line 903 · 2026-05-17T07:10:45.561062+00:00_
 
 ### Assistant
 
-_source line 904 · 2026-05-17T07:10:56.997528+00:00_
+_source line 900 · 2026-05-17T07:10:56.997528+00:00_
 
 Worker 未修改任何远程文件。所有 a050 analysis JSON 保持原始时间戳不变（s42: 04:37, s43: 03:57, s44: 14:37）。无新 .py/.json 文件。看起来是验证性检查（确认无覆写问题），无审查发现。
 
@@ -6512,7 +6427,7 @@ Worker 未修改任何远程文件。所有 a050 analysis JSON 保持原始时�
 
 ### User
 
-_source line 905 · 2026-05-17T07:11:17.900745+00:00_
+_source line 901 · 2026-05-17T07:11:17.900745+00:00_
 
 [系统通知 — worker_done:worker_ssh_final_sync_compile_v2_20260517T065732]:
 Worker worker_ssh_final_sync_compile_v2_20260517T065732 已完成（status=done），请审查 Agent 的处理结果。
@@ -6534,7 +6449,7 @@ Worker worker_ssh_final_sync_compile_v2_20260517T065732 已完成（status=done�
 
 ### Tool call
 
-_source line 906 · 2026-05-17T07:11:32.266297+00:00_
+_source line 902 · 2026-05-17T07:11:32.266297+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6570,7 +6485,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 907 · 2026-05-17T07:11:32.868691+00:00_
+_source line 903 · 2026-05-17T07:11:32.868691+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6606,7 +6521,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 908 · 2026-05-17T07:11:33.621535+00:00_
+_source line 904 · 2026-05-17T07:11:33.621535+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/distrib_canary_collapse/docs/paper/main.pdf\\n  Size: 423669    \\tBlocks: 832        IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 20403032371  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-17 09:02:49.671299926 +0800\\nModify: 2026-05-17 15:10:46.469799682 +0800\\nChange: 2026-05-17 15:10:46.469799682 +0800\\n Birth: 2026-05-17 09:02:49.671299926 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
 
@@ -6628,7 +6543,7 @@ _source line 908 · 2026-05-17T07:11:33.621535+00:00_
 
 ### Tool result
 
-_source line 909 · 2026-05-17T07:11:33.621877+00:00_
+_source line 905 · 2026-05-17T07:11:33.621877+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -6650,7 +6565,7 @@ _source line 909 · 2026-05-17T07:11:33.621877+00:00_
 
 ### Tool call
 
-_source line 910 · 2026-05-17T07:11:38.237795+00:00_
+_source line 906 · 2026-05-17T07:11:38.237795+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6686,7 +6601,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 911 · 2026-05-17T07:11:38.690790+00:00_
+_source line 907 · 2026-05-17T07:11:38.690790+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: `h' float specifier changed to `ht'.\\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -6708,7 +6623,7 @@ _source line 911 · 2026-05-17T07:11:38.690790+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-17T07:11:53.910410+00:00_
+_source line 908 · 2026-05-17T07:11:53.910410+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6744,7 +6659,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 913 · 2026-05-17T07:11:57.321296+00:00_
+_source line 909 · 2026-05-17T07:11:57.321296+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -6766,7 +6681,7 @@ _source line 913 · 2026-05-17T07:11:57.321296+00:00_
 
 ### Assistant
 
-_source line 914 · 2026-05-17T07:12:01.322303+00:00_
+_source line 910 · 2026-05-17T07:12:01.322303+00:00_
 
 PDF 重编译成功（15:10 local, 423669 bytes）。有一个需要注意的 warning:
 
@@ -6797,7 +6712,7 @@ PDF 重编译成功（15:10 local, 423669 bytes）。有一个需要注意的 wa
 
 ### User
 
-_source line 915 · 2026-05-17T07:13:18.012226+00:00_
+_source line 911 · 2026-05-17T07:13:18.012226+00:00_
 
 [系统通知 — worker_done:worker_ssh_triple_pass_latex_20260517T071229]:
 Worker worker_ssh_triple_pass_latex_20260517T071229 已完成（status=done），请审查 Agent 的处理结果。
@@ -6819,7 +6734,7 @@ Worker worker_ssh_triple_pass_latex_20260517T071229 已完成（status=done）�
 
 ### Tool call
 
-_source line 916 · 2026-05-17T07:13:33.272217+00:00_
+_source line 912 · 2026-05-17T07:13:33.272217+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6855,7 +6770,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 917 · 2026-05-17T07:13:33.623916+00:00_
+_source line 913 · 2026-05-17T07:13:33.623916+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6891,7 +6806,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 918 · 2026-05-17T07:13:34.276603+00:00_
+_source line 914 · 2026-05-17T07:13:34.276603+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: `h' float specifier changed to `ht'.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
 
@@ -6913,7 +6828,7 @@ _source line 918 · 2026-05-17T07:13:34.276603+00:00_
 
 ### Tool result
 
-_source line 919 · 2026-05-17T07:13:34.778542+00:00_
+_source line 915 · 2026-05-17T07:13:34.778542+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/distrib_canary_collapse/docs/paper/main.pdf\\n  Size: 423669    \\tBlocks: 832        IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 20403032371  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-17 09:02:49.671299926 +0800\\nModify: 2026-05-17 15:12:51.585654271 +0800\\nChange: 2026-05-17 15:12:51.585654271 +0800\\n Birth: 2026-05-17 09:02:49.671299926 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -6935,7 +6850,7 @@ _source line 919 · 2026-05-17T07:13:34.778542+00:00_
 
 ### Assistant
 
-_source line 920 · 2026-05-17T07:13:40.485475+00:00_
+_source line 916 · 2026-05-17T07:13:40.485475+00:00_
 
 Triple-pass 编译完成。"Label(s) may have changed" warning 已消除，仅剩 `'h' float specifier changed to 'ht'`（benign，LaTeX 自动调整浮动位置）。PDF 交叉引用已收敛。此前 warning 已解决。
 
@@ -6962,7 +6877,7 @@ Triple-pass 编译完成。"Label(s) may have changed" warning 已消除，仅�
 
 ### User
 
-_source line 921 · 2026-05-17T07:33:19.480096+00:00_
+_source line 917 · 2026-05-17T07:33:19.480096+00:00_
 
 [系统通知 — worker_done:worker_ssh_launch_generalize_phase2_20260517T071108]:
 Worker worker_ssh_launch_generalize_phase2_20260517T071108 已完成（status=done），请审查 Agent 的处理结果。
@@ -6984,7 +6899,7 @@ Worker worker_ssh_launch_generalize_phase2_20260517T071108 已完成（status=do
 
 ### Tool call
 
-_source line 922 · 2026-05-17T07:33:29.834575+00:00_
+_source line 918 · 2026-05-17T07:33:29.834575+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7024,7 +6939,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 923 · 2026-05-17T07:33:29.935440+00:00_
+_source line 919 · 2026-05-17T07:33:29.935440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1231}}"}
 
@@ -7046,7 +6961,7 @@ _source line 923 · 2026-05-17T07:33:29.935440+00:00_
 
 ### Tool call
 
-_source line 924 · 2026-05-17T07:33:36.106518+00:00_
+_source line 920 · 2026-05-17T07:33:36.106518+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7084,7 +6999,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 925 · 2026-05-17T07:33:36.257500+00:00_
+_source line 921 · 2026-05-17T07:33:36.257500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"generalize_pythia1b_c4_a100_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:24.826Z\", \"updated_at\": \"2026-05-17T07:08:35.791Z\", \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework\"}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:23.938Z\", \"updated_at\": \"2026-05-17T07:08:33.992Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize to OPT-1.3B architecture — different model family at α=1.0 should show same canary→downstream causal pattern as Pythia\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:22.930Z\", \"updated_at\": \"2026-05-17T07:08:32.147Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize across model architectures and data domains — Pythia-410M on WikiText α=1.0 should reproduce canary→downstream Granger signal with perfect directionality\"}}, \"count\": 3, \"total\": 41, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1461}}"}
 
@@ -7106,7 +7021,7 @@ _source line 925 · 2026-05-17T07:33:36.257500+00:00_
 
 ### Tool call
 
-_source line 926 · 2026-05-17T07:34:11.029404+00:00_
+_source line 922 · 2026-05-17T07:34:11.029404+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7142,7 +7057,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 927 · 2026-05-17T07:34:11.481305+00:00_
+_source line 923 · 2026-05-17T07:34:11.481305+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7178,7 +7093,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 928 · 2026-05-17T07:34:12.134096+00:00_
+_source line 924 · 2026-05-17T07:34:12.134096+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1b': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
 
@@ -7200,7 +7115,7 @@ _source line 928 · 2026-05-17T07:34:12.134096+00:00_
 
 ### Tool result
 
-_source line 929 · 2026-05-17T07:34:12.687002+00:00_
+_source line 925 · 2026-05-17T07:34:12.687002+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 12753 MiB, 67 %\\n1, 21329 MiB, 94 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
 
@@ -7222,7 +7137,7 @@ _source line 929 · 2026-05-17T07:34:12.687002+00:00_
 
 ### Tool call
 
-_source line 930 · 2026-05-17T07:34:25.231510+00:00_
+_source line 926 · 2026-05-17T07:34:25.231510+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7258,7 +7173,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 931 · 2026-05-17T07:34:25.683528+00:00_
+_source line 927 · 2026-05-17T07:34:25.683528+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"247554, GPU-2f112a83-7d29-0738-cd52-e0d800c4c6a8, 12744 MiB\\n249384, GPU-11e1e6d6-a221-f6b4-d87f-dc28f84d8c57, 21320 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
 
@@ -7280,7 +7195,7 @@ _source line 931 · 2026-05-17T07:34:25.683528+00:00_
 
 ### Tool call
 
-_source line 932 · 2026-05-17T07:34:30.550911+00:00_
+_source line 928 · 2026-05-17T07:34:30.550911+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7316,7 +7231,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 933 · 2026-05-17T07:34:31.052992+00:00_
+_source line 929 · 2026-05-17T07:34:31.052992+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000-u\\u0000iterative_train.py\\u0000--model_name\\u0000EleutherAI/pythia-410m\\u0000--seed\\u000042\\u0000--data_dir\\u0000data/wikitext103_5k\\u0000--steps_per_gen\\u00005000\\u0000--num_generations\\u000010\\u0000--synthetic_ratio\\u00001.0\\u0000--output_dir\\u0000results/generalize/pythia410m_wiki_a100_s42\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -7338,7 +7253,7 @@ _source line 933 · 2026-05-17T07:34:31.052992+00:00_
 
 ### Tool call
 
-_source line 934 · 2026-05-17T07:34:31.053316+00:00_
+_source line 930 · 2026-05-17T07:34:31.053316+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7374,7 +7289,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 935 · 2026-05-17T07:34:31.555342+00:00_
+_source line 931 · 2026-05-17T07:34:31.555342+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000-u\\u0000iterative_train.py\\u0000--model_name\\u0000facebook/opt-1.3b\\u0000--seed\\u000042\\u0000--data_dir\\u0000data/wikitext103_5k\\u0000--steps_per_gen\\u00005000\\u0000--num_generations\\u000010\\u0000--synthetic_ratio\\u00001.0\\u0000--output_dir\\u0000results/generalize/opt1b_wiki_a100_s42\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
 
@@ -7396,7 +7311,7 @@ _source line 935 · 2026-05-17T07:34:31.555342+00:00_
 
 ### Tool call
 
-_source line 936 · 2026-05-17T07:35:02.391028+00:00_
+_source line 932 · 2026-05-17T07:35:02.391028+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7432,7 +7347,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 937 · 2026-05-17T07:35:05.853426+00:00_
+_source line 933 · 2026-05-17T07:35:05.853426+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -7461,7 +7376,7 @@ _source line 937 · 2026-05-17T07:35:05.853426+00:00_
 
 ### User
 
-_source line 938 · 2026-05-17T07:35:11.559346+00:00_
+_source line 934 · 2026-05-17T07:35:11.559346+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Phase 2 泛化实验启动 + LaTeX 编译确认通过），请审查研究方向和计划的合理性。
@@ -7483,7 +7398,7 @@ _source line 938 · 2026-05-17T07:35:11.559346+00:00_
 
 ### Tool call
 
-_source line 939 · 2026-05-17T07:35:20.779845+00:00_
+_source line 935 · 2026-05-17T07:35:20.779845+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -7517,7 +7432,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 940 · 2026-05-17T07:35:20.830634+00:00_
+_source line 936 · 2026-05-17T07:35:20.830634+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/ROADMAP.md\", \"content\": \"# distrib_canary_collapse — Research Dashboard\\n\\n> 最后更新: 2026-05-17 07:34 UTC | 更新原因: Phase 2 泛化实验启动 + LaTeX 编译确认通过\\n\\n> **阶段**: 泛化实验运行中 + 论文待重新提交 Round 2\\n\\n## 核心方向\\n**D027 reframe**: 方法论陷阱 + 多方法共识框架为主线，canary prediction 为 case study。详见 paper_framing.md。\\n**Target**: EMNLP 2026 main track（D043）\\n\\n## Review Issues 进展\\n**19/19 resolved** ✅ 全部关闭\\n\\n## 最新里程碑\\n- ✅ **D053**: α=0.50 三 seed 完成，stochastic boundary 确认\\n- ✅ **写作打磨 5 项 + method.tex fix + Table 1 三 seed + K=3 FPR 统一**\\n- ✅ **LaTeX 编译通过**: 22 页, 0 errors, cross-references 收敛\\n- ✅ **数据覆写修复 (M001)**: JSON 正确, analyze_alpha_sweep.py 输出隔离\\n- 🚀 **泛化实验 Phase 2 启动**: Pythia-410M + OPT-1.3B 并行运行\\n\\n## 正在运行\\n| exp_id | GPU | Model | 预计完成 |\\n|--------|-----|-------|----------|\\n| generalize_pythia410m_wiki_a100_s42 | cuda:0 | Pythia-410M | ~13:00-15:00 UTC |\\n| generalize_opt1b_wiki_a100_s42 | cuda:1 | OPT-1.3B | ~17:00-22:00 UTC |\\n\\n## 近期任务\\n- [ ] Pythia-410M 完成 → 5-method analysis\\n- [ ] OPT-1.3B 完成 → 5-method analysis\\n- [ ] 两者完成后 → Pythia-1B + C4 实验\\n- [ ] 泛化结果纳入论文（新 Table/paragraph in experiments.tex）\\n- [ ] 重新提交 Round 2\\n\\n## 完整 Dose-Response (统一管线, D053 后)\\n| α | PermG FDR | Seeds | Regime |\\n|---|-----------|-------|--------|\\n| 0.00 | 0/24 | 3 | Null |\\n| 0.25 | 0/24 | 3 | Sub-threshold |\\n| 0.50 | 9/24 (0+6+3) | 3 | **Boundary (seed-dependent)** |\\n| 0.75 | 19/24 | 3 | Transitional |\\n| 1.00 | ~8/8 | 4 | Confirmatory |\\n\\n## 泛化实验设计\\n| Setting | Model | Dataset | α | Purpose |\\n|---------|-------|---------|---|---------|\\n| Phase 2a | Pythia-410M | WikiText | 1.0 | Scale invariance (same family) |\\n| Phase 2b | OPT-1.3B | WikiText | 1.0 | Architecture invariance |\\n| Phase 2c | Pythia-1B | C4 | 1.0 | Domain invariance |\\n\\n## GPU 预算\\n- **分配**: 2× GPU (westd-19828) — 2/2 occupied\\n- **累计**: ~48h + 预计
 …[truncated 1598 chars]
@@ -7540,7 +7455,7 @@ _source line 940 · 2026-05-17T07:35:20.830634+00:00_
 
 ### Assistant
 
-_source line 941 · 2026-05-17T07:35:45.475369+00:00_
+_source line 937 · 2026-05-17T07:35:45.475369+00:00_
 
 ROADMAP 结构清晰，无阻塞问题。
 
@@ -7571,7 +7486,7 @@ ROADMAP 结构清晰，无阻塞问题。
 
 ### User
 
-_source line 942 · 2026-05-17T08:08:33.529383+00:00_
+_source line 938 · 2026-05-17T08:08:33.529383+00:00_
 
 [System 触发审查]:
 论文深度质量审查 Round 2——focus on Discussion + Limitations。
@@ -7608,7 +7523,7 @@ _source line 942 · 2026-05-17T08:08:33.529383+00:00_
 
 ### Tool call
 
-_source line 943 · 2026-05-17T08:08:44.209979+00:00_
+_source line 939 · 2026-05-17T08:08:44.209979+00:00_
 
 called Read
 
@@ -7642,7 +7557,7 @@ called Read
 
 ### Tool result
 
-_source line 944 · 2026-05-17T08:08:44.563817+00:00_
+_source line 940 · 2026-05-17T08:08:44.563817+00:00_
 
 1	\section{Discussion}\label{sec:discussion}
 2	
@@ -7679,7 +7594,7 @@ _source line 944 · 2026-05-17T08:08:44.563817+00:00_
 
 ### Tool call
 
-_source line 945 · 2026-05-17T08:08:44.615422+00:00_
+_source line 941 · 2026-05-17T08:08:44.615422+00:00_
 
 called Read
 
@@ -7713,7 +7628,7 @@ called Read
 
 ### Tool result
 
-_source line 946 · 2026-05-17T08:08:44.666130+00:00_
+_source line 942 · 2026-05-17T08:08:44.666130+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -7759,7 +7674,7 @@ _source line 946 · 2026-05-17T08:08:44.666130+00:00_
 
 ### Tool call
 
-_source line 947 · 2026-05-17T08:09:26.605524+00:00_
+_source line 943 · 2026-05-17T08:09:26.605524+00:00_
 
 called Grep
 
@@ -7799,7 +7714,7 @@ called Grep
 
 ### Tool result
 
-_source line 948 · 2026-05-17T08:09:27.108617+00:00_
+_source line 944 · 2026-05-17T08:09:27.108617+00:00_
 
 No matches found
 
@@ -7821,7 +7736,7 @@ No matches found
 
 ### Tool call
 
-_source line 949 · 2026-05-17T08:09:27.360163+00:00_
+_source line 945 · 2026-05-17T08:09:27.360163+00:00_
 
 called Grep
 
@@ -7861,7 +7776,7 @@ called Grep
 
 ### Tool result
 
-_source line 950 · 2026-05-17T08:09:27.410858+00:00_
+_source line 946 · 2026-05-17T08:09:27.410858+00:00_
 
 5:Bivariate Granger tests cannot exclude confounders: an unobserved process---such as a latent distributional shift in the training data---could independently drive both token entropy and diversity metrics, producing spurious lead-lag associations even when no direct relationship exists.
 13:The consensus framework's structure---multi-method agreement combined with multi-seed replication---is intended to be applicable beyond this specific setting, but the operating thresholds ($K{\geq}4/5$ methods, $S{\geq}3/4$ seeds) are empirically calibrated and may require re-tuning under different conditions.
@@ -7891,7 +7806,7 @@ _source line 950 · 2026-05-17T08:09:27.410858+00:00_
 
 ### Tool call
 
-_source line 951 · 2026-05-17T08:09:42.270090+00:00_
+_source line 947 · 2026-05-17T08:09:42.270090+00:00_
 
 called Grep
 
@@ -7931,7 +7846,7 @@ called Grep
 
 ### Tool result
 
-_source line 952 · 2026-05-17T08:09:42.371073+00:00_
+_source line 948 · 2026-05-17T08:09:42.371073+00:00_
 
 13:Training data is drawn from a single domain (a WikiText-103 subset), and domain-specific distributional properties---vocabulary richness, syntactic complexity, topical diversity---may influence the coupling between canary and downstream metrics.
 19:We omit transfer entropy---a standard nonlinear Granger alternative---because kernel density estimation requires substantially longer time series (typically $T{\geq}100$) than our 10-generation design permits, yielding negligible statistical power at $T{=}10$.
@@ -7956,7 +7871,7 @@ _source line 952 · 2026-05-17T08:09:42.371073+00:00_
 
 ### Tool call
 
-_source line 953 · 2026-05-17T08:09:43.324667+00:00_
+_source line 949 · 2026-05-17T08:09:43.324667+00:00_
 
 called Grep
 
@@ -7996,7 +7911,7 @@ called Grep
 
 ### Tool result
 
-_source line 954 · 2026-05-17T08:09:43.375181+00:00_
+_source line 950 · 2026-05-17T08:09:43.375181+00:00_
 
 No matches found
 
@@ -8018,7 +7933,7 @@ No matches found
 
 ### Tool call
 
-_source line 955 · 2026-05-17T08:09:51.567474+00:00_
+_source line 951 · 2026-05-17T08:09:51.567474+00:00_
 
 called Grep
 
@@ -8058,7 +7973,7 @@ called Grep
 
 ### Tool result
 
-_source line 956 · 2026-05-17T08:09:51.618052+00:00_
+_source line 952 · 2026-05-17T08:09:51.618052+00:00_
 
 38:Effective rank evolves in opposite directions across architectures during iterative training.
 69:This severely constrains degrees of freedom for VAR-based methods and explains the Toda--Yamamoto procedure's poor power in our setting.
@@ -8082,7 +7997,7 @@ _source line 956 · 2026-05-17T08:09:51.618052+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-17T08:10:36.974826+00:00_
+_source line 953 · 2026-05-17T08:10:36.974826+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8118,7 +8033,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 958 · 2026-05-17T08:10:40.538478+00:00_
+_source line 954 · 2026-05-17T08:10:40.538478+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
 
@@ -8147,7 +8062,7 @@ _source line 958 · 2026-05-17T08:10:40.538478+00:00_
 
 ### User
 
-_source line 959 · 2026-05-17T08:13:57.653718+00:00_
+_source line 955 · 2026-05-17T08:13:57.653718+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -8229,7 +8144,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 960 · 2026-05-17T08:14:47.178722+00:00_
+_source line 956 · 2026-05-17T08:14:47.178722+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

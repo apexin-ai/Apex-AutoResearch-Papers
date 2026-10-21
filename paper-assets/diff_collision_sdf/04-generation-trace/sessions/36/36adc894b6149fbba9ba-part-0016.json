@@ -7,124 +7,6 @@
       "messages": [
         {
           "source_line": 2701,
-          "timestamp": "2026-05-29T10:41:42.815873+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex",
-              "old_string": "\\section{Conclusion}\\label{sec:conclusion}\n\nWe tested whether SDF supervision and collision-aware evaluation deliver reliable geometric safety for VLAs. Action collapse renders reported CAR illusory; dfCAR corrects this using only EE position logging (\\S\\ref{sec:dfcar}). EE-only oracle SDF refinement is counterproductive, reducing CAR by 5--10\\,pp as unmonitored links rotate through obstacles (\\S\\ref{sec:ee_only}), and collision-free demonstrations account for nearly all avoidance gains with no statistically significant SDF benefit (\\S\\ref{sec:avoidance_source}).\n\nThese findings carry two broader implications. First, dfCAR provides a lightweight diagnostic that any VLA evaluation pipeline can adopt to screen for action-collapse contamination. Second, point-supervision of a single link is insufficient for articulated robots; genuine geometric safety will require full-body collision representations and cross-architecture validation.",
-              "new_string": "\\section{Conclusion}\\label{sec:conclusion}\n\nWe tested whether SDF supervision and collision-aware evaluation deliver reliable geometric safety for VLAs. Action collapse renders reported CAR illusory; dfCAR corrects this using only EE position logging (\\S\\ref{sec:dfcar}). EE-only oracle SDF refinement is counterproductive, reducing CAR by 5--10\\,pp as unmonitored links rotate through obstacles (\\S\\ref{sec:ee_only}), and collision-free demonstrations account for nearly all avoidance gains with no statistically significant SDF benefit (\\S\\ref{sec:avoidance_source}). More broadly, dfCAR provides a lightweight diagnostic that any VLA pipeline can adopt to screen for action-collapse contamination, and point-supervision of a single link is insufficient for articulated robots; genuine geometric safety will require full-body collision representations and cross-architecture validation."
-            }
-          },
-          "id": "event-002701"
-        },
-        {
-          "source_line": 2702,
-          "timestamp": "2026-05-29T10:41:42.866594+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002702"
-        },
-        {
-          "source_line": 2703,
-          "timestamp": "2026-05-29T10:41:45.928177+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-002703"
-        },
-        {
-          "source_line": 2704,
-          "timestamp": "2026-05-29T10:41:45.928586+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe tested whether SDF supervision and collision-aware evaluation deliver reliable geometric safety for VLAs. Action collapse renders reported CAR illusory; dfCAR corrects this using only EE position logging (\\S\\ref{sec:dfcar}). EE-only oracle SDF refinement is counterproductive, reducing CAR by 5--10\\,pp as unmonitored links rotate through obstacles (\\S\\ref{sec:ee_only}), and collision-free demonstrations account for nearly all avoidance gains with no statistically significant SDF benefit (\\S\\ref{sec:avoidance_source}). More broadly, dfCAR provides a lightweight diagnostic that any VLA pipeline can adopt to screen for action-collapse contamination, and point-supervision of a single link is insufficient for articulated robots; genuine geometric safety will require full-body collision representations and cross-architecture validation.\n4\t\n5\t\\section{Limitations}\\label{sec:limitations}\n6\t\n7\tAll experiments use MuJoCo simulation (SafeLIBERO, two VLA families, four pick-and-place tasks); action collapse is structurally general but untested on other benchmarks or real hardware. dfCAR assumes bimodal displacement separation (Figure~\\ref{fig:displacement}), which may require task-specific calibration when less pronounced. The EE-only SDF null result is specific to auxiliary loss integration and should not be extrapolated to constrained optimization or runtime filtering (Section~\\ref{sec:related}). Oracle refinement uses a single seed per variant ($n{=}1$, 160 episodes). The training ablation ($n{=}3$ seeds; MDE ${\\approx}$ 5.6\\,pp at 80\\% power) cannot rule out a small SDF effect (2--5\\,pp) without larger samples.\n8\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-002704"
-        },
-        {
-          "source_line": 2705,
-          "timestamp": "2026-05-29T10:41:49.360599+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf && python3 artifacts/paper_switch.py --verify 2>&1",
-              "description": "Verify paper_switch anchors"
-            }
-          },
-          "id": "event-002705"
-        },
-        {
-          "source_line": 2706,
-          "timestamp": "2026-05-29T10:41:49.612902+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "--- Scenario B (9 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      lambda+fingerprint fig caption      claim3.tex\n  [OK]      discussion L12 limitation           discussion.tex\n--- Scenario C (10 items) ---\n  [OK]      abstract L5 training                abstract.tex\n  [OK]      abstract L6 conclusion              abstract.tex\n  [OK]      claim3 L3 scope                     claim3.tex\n  [OK]      claim3 L7 caption                   claim3.tex\n  [OK]      claim3 L20 table row                claim3.tex\n  [OK]      claim3 L27 body                     claim3.tex\n  [OK]      claim3 L32-33 dose-response         claim3.tex\n  [OK]      lambda+fingerprint fig caption      claim3.tex\n  [OK]      discussion L3 scope                 discussion.tex\n  [OK]      discussion L12 limitation           discussion.tex\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/agent_e2e2cb9d"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Bash",
-            "elapsed_ms": 252
-          },
-          "id": "event-002706"
-        },
-        {
-          "source_line": 2707,
           "timestamp": "2026-05-29T10:41:54.381630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -143,10 +25,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002707"
+          "id": "event-002701"
         },
         {
-          "source_line": 2708,
+          "source_line": 2702,
           "timestamp": "2026-05-29T10:41:55.692672+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -161,10 +43,10 @@
             "tool": "Bash",
             "elapsed_ms": 1311
           },
-          "id": "event-002708"
+          "id": "event-002702"
         },
         {
-          "source_line": 2709,
+          "source_line": 2703,
           "timestamp": "2026-05-29T10:41:59.255608+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -184,10 +66,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-002709"
+          "id": "event-002703"
         },
         {
-          "source_line": 2710,
+          "source_line": 2704,
           "timestamp": "2026-05-29T10:41:59.557043+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -202,10 +84,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-002710"
+          "id": "event-002704"
         },
         {
-          "source_line": 2711,
+          "source_line": 2705,
           "timestamp": "2026-05-29T10:42:03.571991+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -222,10 +104,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002711"
+          "id": "event-002705"
         },
         {
-          "source_line": 2712,
+          "source_line": 2706,
           "timestamp": "2026-05-29T10:42:03.873549+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -242,10 +124,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-002712"
+          "id": "event-002706"
         },
         {
-          "source_line": 2713,
+          "source_line": 2707,
           "timestamp": "2026-05-29T10:42:03.977479+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -260,10 +142,10 @@
             "tool": "Read",
             "elapsed_ms": 405
           },
-          "id": "event-002713"
+          "id": "event-002707"
         },
         {
-          "source_line": 2714,
+          "source_line": 2708,
           "timestamp": "2026-05-29T10:42:04.283591+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -278,10 +160,10 @@
             "tool": "Read",
             "elapsed_ms": 410
           },
-          "id": "event-002714"
+          "id": "event-002708"
         },
         {
-          "source_line": 2715,
+          "source_line": 2709,
           "timestamp": "2026-05-29T10:42:08.549860+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -298,10 +180,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images"
             }
           },
-          "id": "event-002715"
+          "id": "event-002709"
         },
         {
-          "source_line": 2716,
+          "source_line": 2710,
           "timestamp": "2026-05-29T10:42:08.600392+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -316,10 +198,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-002716"
+          "id": "event-002710"
         },
         {
-          "source_line": 2717,
+          "source_line": 2711,
           "timestamp": "2026-05-29T10:42:19.633656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -337,10 +219,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002717"
+          "id": "event-002711"
         },
         {
-          "source_line": 2718,
+          "source_line": 2712,
           "timestamp": "2026-05-29T10:42:23.247353+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -355,10 +237,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3613
           },
-          "id": "event-002718"
+          "id": "event-002712"
         },
         {
-          "source_line": 2719,
+          "source_line": 2713,
           "timestamp": "2026-05-29T10:42:27.793266+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -371,7 +253,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002719"
+          "id": "event-002713"
         }
       ]
     },
@@ -379,7 +261,7 @@
       "number": 99,
       "messages": [
         {
-          "source_line": 2720,
+          "source_line": 2714,
           "timestamp": "2026-05-29T13:19:05.770204+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -393,10 +275,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002720"
+          "id": "event-002714"
         },
         {
-          "source_line": 2721,
+          "source_line": 2715,
           "timestamp": "2026-05-29T13:19:24.397692+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -414,10 +296,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002721"
+          "id": "event-002715"
         },
         {
-          "source_line": 2722,
+          "source_line": 2716,
           "timestamp": "2026-05-29T13:19:24.448338+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -432,10 +314,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002722"
+          "id": "event-002716"
         },
         {
-          "source_line": 2723,
+          "source_line": 2717,
           "timestamp": "2026-05-29T13:19:28.745205+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -454,10 +336,10 @@
               "limit": "0"
             }
           },
-          "id": "event-002723"
+          "id": "event-002717"
         },
         {
-          "source_line": 2724,
+          "source_line": 2718,
           "timestamp": "2026-05-29T13:19:29.800378+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -472,10 +354,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 1055
           },
-          "id": "event-002724"
+          "id": "event-002718"
         },
         {
-          "source_line": 2725,
+          "source_line": 2719,
           "timestamp": "2026-05-29T13:19:50.379742+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -493,10 +375,10 @@
               "description": "Extract experiment conclusion distribution and negative experiments"
             }
           },
-          "id": "event-002725"
+          "id": "event-002719"
         },
         {
-          "source_line": 2726,
+          "source_line": 2720,
           "timestamp": "2026-05-29T13:19:50.632666+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -511,10 +393,10 @@
             "tool": "Bash",
             "elapsed_ms": 252
           },
-          "id": "event-002726"
+          "id": "event-002720"
         },
         {
-          "source_line": 2727,
+          "source_line": 2721,
           "timestamp": "2026-05-29T13:19:58.384092+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -532,10 +414,10 @@
               "description": "Probe registry structure"
             }
           },
-          "id": "event-002727"
+          "id": "event-002721"
         },
         {
-          "source_line": 2728,
+          "source_line": 2722,
           "timestamp": "2026-05-29T13:19:58.436806+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -550,10 +432,10 @@
             "tool": "Bash",
             "elapsed_ms": 52
           },
-          "id": "event-002728"
+          "id": "event-002722"
         },
         {
-          "source_line": 2729,
+          "source_line": 2723,
           "timestamp": "2026-05-29T13:20:04.456470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -571,10 +453,10 @@
               "description": "Extract negative experiments from registry"
             }
           },
-          "id": "event-002729"
+          "id": "event-002723"
         },
         {
-          "source_line": 2730,
+          "source_line": 2724,
           "timestamp": "2026-05-29T13:20:04.559429+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -589,10 +471,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-002730"
+          "id": "event-002724"
         },
         {
-          "source_line": 2731,
+          "source_line": 2725,
           "timestamp": "2026-05-29T13:20:27.262632+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -613,10 +495,10 @@
               "tools": "['WebSearch', 'register_artifact']"
             }
           },
-          "id": "event-002731"
+          "id": "event-002725"
         },
         {
-          "source_line": 2732,
+          "source_line": 2726,
           "timestamp": "2026-05-29T13:20:38.314602+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -631,10 +513,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 11051
           },
-          "id": "event-002732"
+          "id": "event-002726"
         },
         {
-          "source_line": 2733,
+          "source_line": 2727,
           "timestamp": "2026-05-29T13:20:38.868603+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -655,10 +537,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-002733"
+          "id": "event-002727"
         },
         {
-          "source_line": 2734,
+          "source_line": 2728,
           "timestamp": "2026-05-29T13:21:01.649988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -673,10 +555,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 22781
           },
-          "id": "event-002734"
+          "id": "event-002728"
         },
         {
-          "source_line": 2735,
+          "source_line": 2729,
           "timestamp": "2026-05-29T13:21:01.853103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -697,10 +579,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-002735"
+          "id": "event-002729"
         },
         {
-          "source_line": 2736,
+          "source_line": 2730,
           "timestamp": "2026-05-29T13:21:05.021018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -715,10 +597,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 3167
           },
-          "id": "event-002736"
+          "id": "event-002730"
         },
         {
-          "source_line": 2737,
+          "source_line": 2731,
           "timestamp": "2026-05-29T13:21:17.766496+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -736,10 +618,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002737"
+          "id": "event-002731"
         },
         {
-          "source_line": 2738,
+          "source_line": 2732,
           "timestamp": "2026-05-29T13:21:18.520552+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -754,10 +636,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 754
           },
-          "id": "event-002738"
+          "id": "event-002732"
         },
         {
-          "source_line": 2739,
+          "source_line": 2733,
           "timestamp": "2026-05-29T13:21:21.631053+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -770,7 +652,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002739"
+          "id": "event-002733"
         }
       ]
     },
@@ -778,7 +660,7 @@
       "number": 100,
       "messages": [
         {
-          "source_line": 2740,
+          "source_line": 2734,
           "timestamp": "2026-05-29T13:22:59.352946+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -792,10 +674,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "worker:done"
           },
-          "id": "event-002740"
+          "id": "event-002734"
         },
         {
-          "source_line": 2741,
+          "source_line": 2735,
           "timestamp": "2026-05-29T13:23:06.270647+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -813,10 +695,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002741"
+          "id": "event-002735"
         },
         {
-          "source_line": 2742,
+          "source_line": 2736,
           "timestamp": "2026-05-29T13:23:06.322854+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -831,10 +713,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 52
           },
-          "id": "event-002742"
+          "id": "event-002736"
         },
         {
-          "source_line": 2743,
+          "source_line": 2737,
           "timestamp": "2026-05-29T13:23:08.882186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -851,10 +733,10 @@
               "worker_id": "worker_paper_submission-checklist_20260529T132027"
             }
           },
-          "id": "event-002743"
+          "id": "event-002737"
         },
         {
-          "source_line": 2744,
+          "source_line": 2738,
           "timestamp": "2026-05-29T13:23:08.984760+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -869,10 +751,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-002744"
+          "id": "event-002738"
         },
         {
-          "source_line": 2745,
+          "source_line": 2739,
           "timestamp": "2026-05-29T13:23:14.904606+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -889,10 +771,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission_checklist.md"
             }
           },
-          "id": "event-002745"
+          "id": "event-002739"
         },
         {
-          "source_line": 2746,
+          "source_line": 2740,
           "timestamp": "2026-05-29T13:23:15.055453+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -907,10 +789,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-002746"
+          "id": "event-002740"
         },
         {
-          "source_line": 2747,
+          "source_line": 2741,
           "timestamp": "2026-05-29T13:23:17.902966+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -923,7 +805,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002747"
+          "id": "event-002741"
         }
       ]
     },
@@ -931,7 +813,7 @@
       "number": 101,
       "messages": [
         {
-          "source_line": 2748,
+          "source_line": 2742,
           "timestamp": "2026-05-29T13:24:22.780365+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -945,10 +827,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002748"
+          "id": "event-002742"
         },
         {
-          "source_line": 2749,
+          "source_line": 2743,
           "timestamp": "2026-05-29T13:24:30.781255+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -965,10 +847,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002749"
+          "id": "event-002743"
         },
         {
-          "source_line": 2750,
+          "source_line": 2744,
           "timestamp": "2026-05-29T13:24:30.831916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -983,10 +865,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002750"
+          "id": "event-002744"
         },
         {
-          "source_line": 2751,
+          "source_line": 2745,
           "timestamp": "2026-05-29T13:24:35.449641+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1005,10 +887,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002751"
+          "id": "event-002745"
         },
         {
-          "source_line": 2752,
+          "source_line": 2746,
           "timestamp": "2026-05-29T13:24:36.807518+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1023,10 +905,10 @@
             "tool": "Bash",
             "elapsed_ms": 1357
           },
-          "id": "event-002752"
+          "id": "event-002746"
         },
         {
-          "source_line": 2753,
+          "source_line": 2747,
           "timestamp": "2026-05-29T13:24:40.471438+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1046,10 +928,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-002753"
+          "id": "event-002747"
         },
         {
-          "source_line": 2754,
+          "source_line": 2748,
           "timestamp": "2026-05-29T13:24:40.772921+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1064,10 +946,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-002754"
+          "id": "event-002748"
         },
         {
-          "source_line": 2755,
+          "source_line": 2749,
           "timestamp": "2026-05-29T13:24:44.637370+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1084,10 +966,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002755"
+          "id": "event-002749"
         },
         {
-          "source_line": 2756,
+          "source_line": 2750,
           "timestamp": "2026-05-29T13:24:44.939724+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1104,10 +986,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-002756"
+          "id": "event-002750"
         },
         {
-          "source_line": 2757,
+          "source_line": 2751,
           "timestamp": "2026-05-29T13:24:45.042540+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1122,10 +1004,10 @@
             "tool": "Read",
             "elapsed_ms": 405
           },
-          "id": "event-002757"
+          "id": "event-002751"
         },
         {
-          "source_line": 2758,
+          "source_line": 2752,
           "timestamp": "2026-05-29T13:24:45.395471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1140,10 +1022,10 @@
             "tool": "Read",
             "elapsed_ms": 455
           },
-          "id": "event-002758"
+          "id": "event-002752"
         },
         {
-          "source_line": 2759,
+          "source_line": 2753,
           "timestamp": "2026-05-29T13:25:40.158667+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1163,10 +1045,10 @@
               "new_string": "All experiments use MuJoCo simulation (SafeLIBERO, two VLA families, four tasks); generality to other benchmarks or real hardware is untested. dfCAR requires bimodal displacement separation (Figure~\\ref{fig:displacement}) and may need task-specific $\\tau_d$ calibration. The EE-only null result applies to auxiliary-loss integration, not constrained optimization or runtime filtering (\\S\\ref{sec:related}). Oracle refinement uses one seed per variant ($n{=}1$, 160 episodes). The training ablation ($n{=}3$ seeds; MDE ${\\approx}$ 5.6\\,pp at 80\\% power) cannot rule out a small SDF effect (2--5\\,pp) without larger samples."
             }
           },
-          "id": "event-002759"
+          "id": "event-002753"
         },
         {
-          "source_line": 2760,
+          "source_line": 2754,
           "timestamp": "2026-05-29T13:25:40.209517+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1181,10 +1063,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002760"
+          "id": "event-002754"
         },
         {
-          "source_line": 2761,
+          "source_line": 2755,
           "timestamp": "2026-05-29T13:25:43.924230+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1202,10 +1084,10 @@
               "description": "Verify paper_switch anchors"
             }
           },
-          "id": "event-002761"
+          "id": "event-002755"
         },
         {
-          "source_line": 2762,
+          "source_line": 2756,
           "timestamp": "2026-05-29T13:25:44.125289+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1220,10 +1102,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002762"
+          "id": "event-002756"
         },
         {
-          "source_line": 2763,
+          "source_line": 2757,
           "timestamp": "2026-05-29T13:25:48.140330+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1242,10 +1124,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002763"
+          "id": "event-002757"
         },
         {
-          "source_line": 2764,
+          "source_line": 2758,
           "timestamp": "2026-05-29T13:25:49.346794+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1260,10 +1142,10 @@
             "tool": "Bash",
             "elapsed_ms": 1206
           },
-          "id": "event-002764"
+          "id": "event-002758"
         },
         {
-          "source_line": 2765,
+          "source_line": 2759,
           "timestamp": "2026-05-29T13:25:52.558600+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1283,10 +1165,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-002765"
+          "id": "event-002759"
         },
         {
-          "source_line": 2766,
+          "source_line": 2760,
           "timestamp": "2026-05-29T13:25:52.759711+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1301,10 +1183,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 201
           },
-          "id": "event-002766"
+          "id": "event-002760"
         },
         {
-          "source_line": 2767,
+          "source_line": 2761,
           "timestamp": "2026-05-29T13:25:55.169595+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1321,10 +1203,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002767"
+          "id": "event-002761"
         },
         {
-          "source_line": 2768,
+          "source_line": 2762,
           "timestamp": "2026-05-29T13:25:55.526150+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1339,10 +1221,10 @@
             "tool": "Read",
             "elapsed_ms": 356
           },
-          "id": "event-002768"
+          "id": "event-002762"
         },
         {
-          "source_line": 2769,
+          "source_line": 2763,
           "timestamp": "2026-05-29T13:26:00.114171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1359,10 +1241,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-002769"
+          "id": "event-002763"
         },
         {
-          "source_line": 2770,
+          "source_line": 2764,
           "timestamp": "2026-05-29T13:26:00.678920+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1377,10 +1259,10 @@
             "tool": "Read",
             "elapsed_ms": 564
           },
-          "id": "event-002770"
+          "id": "event-002764"
         },
         {
-          "source_line": 2771,
+          "source_line": 2765,
           "timestamp": "2026-05-29T13:26:05.403799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1397,10 +1279,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_pdf_images"
             }
           },
-          "id": "event-002771"
+          "id": "event-002765"
         },
         {
-          "source_line": 2772,
+          "source_line": 2766,
           "timestamp": "2026-05-29T13:26:05.404269+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1415,10 +1297,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 0
           },
-          "id": "event-002772"
+          "id": "event-002766"
         },
         {
-          "source_line": 2773,
+          "source_line": 2767,
           "timestamp": "2026-05-29T13:26:19.307542+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1436,10 +1318,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002773"
+          "id": "event-002767"
         },
         {
-          "source_line": 2774,
+          "source_line": 2768,
           "timestamp": "2026-05-29T13:26:22.368650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1454,10 +1336,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3061
           },
-          "id": "event-002774"
+          "id": "event-002768"
         },
         {
-          "source_line": 2775,
+          "source_line": 2769,
           "timestamp": "2026-05-29T13:26:25.379325+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1470,7 +1352,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002775"
+          "id": "event-002769"
         }
       ]
     },
@@ -1478,7 +1360,7 @@
       "number": 102,
       "messages": [
         {
-          "source_line": 2776,
+          "source_line": 2770,
           "timestamp": "2026-05-29T13:26:25.607537+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1492,10 +1374,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "worker:done"
           },
-          "id": "event-002776"
+          "id": "event-002770"
         },
         {
-          "source_line": 2777,
+          "source_line": 2771,
           "timestamp": "2026-05-29T13:26:34.361689+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1512,10 +1394,10 @@
               "worker_id": "worker_paper_supplementary-check_20260529T132039"
             }
           },
-          "id": "event-002777"
+          "id": "event-002771"
         },
         {
-          "source_line": 2778,
+          "source_line": 2772,
           "timestamp": "2026-05-29T13:26:34.512628+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1530,10 +1412,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 150
           },
-          "id": "event-002778"
+          "id": "event-002772"
         },
         {
-          "source_line": 2779,
+          "source_line": 2773,
           "timestamp": "2026-05-29T13:26:40.132757+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1550,10 +1432,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_check_report.md"
             }
           },
-          "id": "event-002779"
+          "id": "event-002773"
         },
         {
-          "source_line": 2780,
+          "source_line": 2774,
           "timestamp": "2026-05-29T13:26:40.183370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1568,10 +1450,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002780"
+          "id": "event-002774"
         },
         {
-          "source_line": 2781,
+          "source_line": 2775,
           "timestamp": "2026-05-29T13:26:45.088199+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1584,7 +1466,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002781"
+          "id": "event-002775"
         }
       ]
     },
@@ -1592,7 +1474,7 @@
       "number": 103,
       "messages": [
         {
-          "source_line": 2782,
+          "source_line": 2776,
           "timestamp": "2026-05-29T13:26:45.473408+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1606,10 +1488,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "worker:done"
           },
-          "id": "event-002782"
+          "id": "event-002776"
         },
         {
-          "source_line": 2783,
+          "source_line": 2777,
           "timestamp": "2026-05-29T13:26:51.561982+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1626,10 +1508,10 @@
               "worker_id": "worker_paper_rebuttal-prep_20260529T132102"
             }
           },
-          "id": "event-002783"
+          "id": "event-002777"
         },
         {
-          "source_line": 2784,
+          "source_line": 2778,
           "timestamp": "2026-05-29T13:26:51.662942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1644,88 +1526,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-002784"
+          "id": "event-002778"
         },
         {
-          "source_line": 2785,
-          "timestamp": "2026-05-29T13:26:56.780531+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "limit": "60"
-            }
-          },
-          "id": "event-002785"
-        },
-        {
-          "source_line": 2786,
-          "timestamp": "2026-05-29T13:26:56.831274+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Preparation: Negative Experiment Analysis\n2\t\n3\t## Summary\n4\t- Total negative experiments: 25\n5\t- Method Negative: 8\n6\t- Hyperparameter Sensitivity: 6\n7\t- Scale/Generalization: 5\n8\t- Evaluation Artifact: 3\n9\t- Engineering: 3\n10\t\n11\t---\n12\t\n13\t## Category 1: Method Negative (8 experiments)\n14\t\n15\tCore evidence that the SDF approach — both as auxiliary training loss and as runtime gradient refinement — does not produce real collision avoidance.\n16\t\n17\t### Experiments\n18\t\n19\t| exp_id | hypothesis (short) | key metric |\n20\t|--------|-------------------|------------|\n21\t| eval_early_signal_s0_l1_20k | SDF λ=0.1 seed0 at 20K — early A/B/C signal | CAR=55% (within null 54.5%±2.8) |\n22\t| eval_early_signal_s1_l1_20k | SDF λ=0.1 seed1 at 20K — 2nd seed confirmation | CAR=56% (within null) |\n23\t| eval_stepwise_s1_l1_22k | Cross-seed validation of s0 22K CAR=60.5% anomaly | CAR=56.5% (anomaly was noise) |\n24\t| eval_phase2_18k_s2 | Phase 2 λ=0 after 5K SDF — lasting effect test | CAR ≈ LoRA-only (no lasting effect) |\n25\t| eval_a3_v11_object | A3 gradient refinement on object suite | CAR=74.5% < baseline 83%, refined_count=0 |\n26\t| eval_a3_v10a_refine | A3 v10a with refinement enabled | CAR=79.5%, refined_count=0 |\n27\t| eval_a1_lora_object_v11_rerun | A1 SDF aux loss, 800-episode deep analysis | CAR=91.5% but 99.6% fake safe (frozen) |\n28\t| eval_a1_lora_spatial_v11 | A1 SDF on spatial tasks (arm-body collisions) | CAR=0.8%, all 6 safe eps are frozen |\n29\t\n30\t### Anticipated Questions & Responses\n31\t\n32\t**Q: \"Why does the SDF auxiliary loss not improve collision avoidance at all?\"**\n33\t\n34\tA: We tested SDF auxiliary loss across λ∈{0.005, 0.01, 0.1} — a 20× range — with 3 seeds each. CAR remained statistically indistinguishable from LoRA-only baselines (mean 54.8% vs 54.5%, p>0.1). Stepwise evaluation from 16K to 30K steps shows the SDF signal never emerges during training. The per-task avoidance ordering (chocolate_pudding > milk > orange_juice > bbq_sauce) is identica\n…[truncated 2476 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-002786"
-        },
-        {
-          "source_line": 2787,
-          "timestamp": "2026-05-29T13:27:00.512948+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "offset": "130"
-            }
-          },
-          "id": "event-002787"
-        },
-        {
-          "source_line": 2788,
-          "timestamp": "2026-05-29T13:27:00.613817+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "130\t|--------|-------------------|------------|\n131\t| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |\n132\t| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |\n133\t| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |\n134\t\n135\t### Anticipated Questions & Responses\n136\t\n137\t**Q: \"How do you know the negative results aren't just caused by implementation bugs?\"**\n138\t\n139\tA: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the \"ground-truth\" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivated us to conduct the definitive GT oracle ablation — which confirmed the method-level failure is fundamental, not implementational.\n140\t\n141\t**Q: \"If you found bugs in your evaluation code, how can we trust the remaining results?\"**\n142\t\n143\tA: Each bug discovery triggered a systematic re-evaluation. M024 (coordinate fix) → re-ran A3 eval; M026+M027 → designed true GT oracle experiment series bypassing the learned decoder entirely. Our final results use: (a) ground-truth SDF fields computed offline from known obstacle meshes, (b) verified coordinate transforms with sanity checks, and (c) per-episode displacement logging that independently validates whether collisions occurred. The bug discovery t\n…[truncated 6193 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-002788"
-        },
-        {
-          "source_line": 2789,
+          "source_line": 2779,
           "timestamp": "2026-05-29T13:27:24.395587+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1743,10 +1547,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002789"
+          "id": "event-002779"
         },
         {
-          "source_line": 2790,
+          "source_line": 2780,
           "timestamp": "2026-05-29T13:27:27.620460+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1761,10 +1565,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3224
           },
-          "id": "event-002790"
+          "id": "event-002780"
         },
         {
-          "source_line": 2791,
+          "source_line": 2781,
           "timestamp": "2026-05-29T13:27:32.365199+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1777,7 +1581,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002791"
+          "id": "event-002781"
         }
       ]
     },
@@ -1785,7 +1589,7 @@
       "number": 104,
       "messages": [
         {
-          "source_line": 2792,
+          "source_line": 2782,
           "timestamp": "2026-05-29T13:29:22.934365+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1799,458 +1603,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002792"
+          "id": "event-002782"
         },
         {
-          "source_line": 2793,
-          "timestamp": "2026-05-29T13:29:29.169177+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-            }
-          },
-          "id": "event-002793"
-        },
-        {
-          "source_line": 2794,
-          "timestamp": "2026-05-29T13:29:29.270237+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Preparation: Negative Experiment Analysis\n2\t\n3\t## Summary\n4\t- Total negative experiments: 25\n5\t- Method Negative: 8\n6\t- Hyperparameter Sensitivity: 6\n7\t- Scale/Generalization: 5\n8\t- Evaluation Artifact: 3\n9\t- Engineering: 3\n10\t\n11\t---\n12\t\n13\t## Category 1: Method Negative (8 experiments)\n14\t\n15\tCore evidence that the SDF approach — both as auxiliary training loss and as runtime gradient refinement — does not produce real collision avoidance.\n16\t\n17\t### Experiments\n18\t\n19\t| exp_id | hypothesis (short) | key metric |\n20\t|--------|-------------------|------------|\n21\t| eval_early_signal_s0_l1_20k | SDF λ=0.1 seed0 at 20K — early A/B/C signal | CAR=55% (within null 54.5%±2.8) |\n22\t| eval_early_signal_s1_l1_20k | SDF λ=0.1 seed1 at 20K — 2nd seed confirmation | CAR=56% (within null) |\n23\t| eval_stepwise_s1_l1_22k | Cross-seed validation of s0 22K CAR=60.5% anomaly | CAR=56.5% (anomaly was noise) |\n24\t| eval_phase2_18k_s2 | Phase 2 λ=0 after 5K SDF — lasting effect test | CAR ≈ LoRA-only (no lasting effect) |\n25\t| eval_a3_v11_object | A3 gradient refinement on object suite | CAR=74.5% < baseline 83%, refined_count=0 |\n26\t| eval_a3_v10a_refine | A3 v10a with refinement enabled | CAR=79.5%, refined_count=0 |\n27\t| eval_a1_lora_object_v11_rerun | A1 SDF aux loss, 800-episode deep analysis | CAR=91.5% but 99.6% fake safe (frozen) |\n28\t| eval_a1_lora_spatial_v11 | A1 SDF on spatial tasks (arm-body collisions) | CAR=0.8%, all 6 safe eps are frozen |\n29\t\n30\t### Anticipated Questions & Responses\n31\t\n32\t**Q: \"Why does the SDF auxiliary loss not improve collision avoidance at all?\"**\n33\t\n34\tA: We tested SDF auxiliary loss across λ∈{0.005, 0.01, 0.1} — a 20× range — with 3 seeds each. CAR remained statistically indistinguishable from LoRA-only baselines (mean 54.8% vs 54.5%, p>0.1). Stepwise evaluation from 16K to 30K steps shows the SDF signal never emerges during training. The per-task avoidance ordering (chocolate_pudding > milk > orange_juice > bbq_sauce) is identica\n…[truncated 16914 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-002794"
-        },
-        {
-          "source_line": 2795,
-          "timestamp": "2026-05-29T13:29:52.022886+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "| eval_pi05_safelibero_object_v11 | Pi0.5 stronger base model — implicit avoidance? | CAR=28%, real_safe=0.5%, fake_safe=98.2% |",
-              "new_string": "| eval_pi05_safelibero_object_v11 | Pi0.5 stronger base model — implicit avoidance? | CAR=28.5%, real_safe=0.5%, fake_safe=98.2% |"
-            }
-          },
-          "id": "event-002795"
-        },
-        {
-          "source_line": 2796,
-          "timestamp": "2026-05-29T13:29:52.124058+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-002796"
-        },
-        {
-          "source_line": 2797,
-          "timestamp": "2026-05-29T13:29:57.443826+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "this establishes that SDF gradients are not internalized by the policy network regardless of training duration — they are structurally redundant when the demonstration data already provides collision avoidance signal.",
-              "new_string": "our Phase 2 experiment suggests SDF gradients are not effectively internalized within the tested training schedule — they appear structurally redundant when the demonstration data already provides collision avoidance signal."
-            }
-          },
-          "id": "event-002797"
-        },
-        {
-          "source_line": 2798,
-          "timestamp": "2026-05-29T13:29:57.494657+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002798"
-        },
-        {
-          "source_line": 2799,
-          "timestamp": "2026-05-29T13:30:01.084596+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "While action collapse has been noted anecdotally, no prior work has quantified its impact on safety metrics at scale.",
-              "new_string": "While action collapse has been noted anecdotally, to our knowledge, no prior work has quantified action collapse's impact on safety metrics at the scale tested here."
-            }
-          },
-          "id": "event-002799"
-        },
-        {
-          "source_line": 2800,
-          "timestamp": "2026-05-29T13:30:01.185619+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-002800"
-        },
-        {
-          "source_line": 2801,
-          "timestamp": "2026-05-29T13:30:27.033319+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "## Category 1: Method Negative (8 experiments)",
-              "new_string": "## Category 1: Engineering Rigor (3 experiments)\n\nImplementation bugs that, once identified and fixed, still resulted in negative outcomes — confirming the method-level failure is not caused by engineering errors. The bug discovery→fix→re-eval narrative demonstrates scientific rigor and builds trust in the remaining results.\n\n### Experiments\n\n| exp_id | hypothesis (short) | key metric |\n|--------|-------------------|------------|\n| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |\n| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |\n| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |\n\n### Anticipated Questions & Responses\n\n**Q: \"How do you know the negative results aren't just caused by implementation bugs?\"**\n\nA: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the \"ground-truth\" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivated us to conduct the definitive GT oracle ablation — which confirmed the method-level failure is fundamental, not implementational.\n\n**Q: \"If you found bugs in your evaluation code, how can we trust the remaining results?\"**\n\nA: Each bug discovery triggered a systematic re-evaluation. M024 (coordinate fix) → re-ran A3 eval; M026+M027 → designed true GT oracle experiment series bypassing the learned decoder entirely. Our final results use: (a) ground-truth SDF fields computed offline from known obstacle meshes, (b) verified coordinate transforms with sanity checks, and (c) per-episode displacement logging that independently validates whether collisions occurred. The bug discovery timeline is transparent in our experiment log and demonstrates scientific rigor — these bugs were found, reported, and accounted for, not hidden.\n\n---\n\n## Category 2: Method Negative (8 experiments)"
-            }
-          },
-          "id": "event-002801"
-        },
-        {
-          "source_line": 2802,
-          "timestamp": "2026-05-29T13:30:27.034119+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002802"
-        },
-        {
-          "source_line": 2803,
-          "timestamp": "2026-05-29T13:30:32.792996+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "## Category 2: Hyperparameter Sensitivity (6 experiments)",
-              "new_string": "## Category 3: Hyperparameter Sensitivity (6 experiments)"
-            }
-          },
-          "id": "event-002803"
-        },
-        {
-          "source_line": 2804,
-          "timestamp": "2026-05-29T13:30:32.893898+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-002804"
-        },
-        {
-          "source_line": 2805,
-          "timestamp": "2026-05-29T13:30:40.823078+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "## Category 3: Scale/Generalization (5 experiments)",
-              "new_string": "## Category 4: Scale/Generalization (5 experiments)"
-            }
-          },
-          "id": "event-002805"
-        },
-        {
-          "source_line": 2806,
-          "timestamp": "2026-05-29T13:30:40.873981+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002806"
-        },
-        {
-          "source_line": 2807,
-          "timestamp": "2026-05-29T13:30:44.337617+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "## Category 4: Evaluation Artifact (3 experiments)",
-              "new_string": "## Category 5: Evaluation Artifact (3 experiments)"
-            }
-          },
-          "id": "event-002807"
-        },
-        {
-          "source_line": 2808,
-          "timestamp": "2026-05-29T13:30:44.388549+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002808"
-        },
-        {
-          "source_line": 2809,
-          "timestamp": "2026-05-29T13:31:08.407835+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "## Category 5: Engineering (3 experiments)\n\nImplementation bugs that, once identified and fixed, still resulted in negative outcomes — confirming the method-level failure is not caused by engineering errors.\n\n### Experiments\n\n| exp_id | hypothesis (short) | key metric |\n|--------|-------------------|------------|\n| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |\n| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |\n| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |\n\n### Anticipated Questions & Responses\n\n**Q: \"How do you know the negative results aren't just caused by implementation bugs?\"**\n\nA: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the \"ground-truth\" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivated us to conduct the definitive GT oracle ablation — which confirmed the method-level failure is fundamental, not implementational.\n\n**Q: \"If you found bugs in your evaluation code, how can we trust the remaining results?\"**\n\nA: Each bug discovery triggered a systematic re-evaluation. M024 (coordinate fix) → re-ran A3 eval; M026+M027 → designed true GT oracle experiment series bypassing the learned decoder entirely. Our final results use: (a) ground-truth SDF fields computed offline from known obstacle meshes, (b) verified coordinate transforms with sanity checks, and (c) per-episode displacement logging that independently validates whether collisions occurred. The bug discovery timeline is transparent in our experiment log and demonstrates scientific rigor — these bugs were found, reported, and accounted for, not hidden.\n\n---\n\n## General Anticipated Questions",
-              "new_string": "## General Anticipated Questions"
-            }
-          },
-          "id": "event-002809"
-        },
-        {
-          "source_line": 2810,
-          "timestamp": "2026-05-29T13:31:08.559021+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 151
-          },
-          "id": "event-002810"
-        },
-        {
-          "source_line": 2811,
-          "timestamp": "2026-05-29T13:31:13.427116+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "- Method Negative: 8\n- Hyperparameter Sensitivity: 6\n- Scale/Generalization: 5\n- Evaluation Artifact: 3\n- Engineering: 3",
-              "new_string": "- Engineering Rigor: 3 (trust-building — bug discovery→fix→re-eval)\n- Method Negative: 8\n- Hyperparameter Sensitivity: 6\n- Scale/Generalization: 5\n- Evaluation Artifact: 3"
-            }
-          },
-          "id": "event-002811"
-        },
-        {
-          "source_line": 2812,
-          "timestamp": "2026-05-29T13:31:13.528001+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-002812"
-        },
-        {
-          "source_line": 2813,
-          "timestamp": "2026-05-29T13:31:48.282381+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "A: Full-body SDF requires SDF queries at multiple points along the kinematic chain, which introduces: (a) computational cost scaling linearly with the number of monitored points, (b) the need for accurate forward kinematics within the policy network to obtain link positions, and (c) gradient conflicts when different links receive opposing repulsion directions. Our work identifies this as a promising future direction — by demonstrating that EE-only is fundamentally insufficient, we motivate the investment required for full-body approaches. However, our Claim 3 (SDF is redundant when demonstrations provide avoidance) suggests that even full-body geometric supervision may be unnecessary if the demonstration data is sufficiently rich — this is an open question we leave for future work.",
-              "new_string": "A: Full-body SDF requires SDF queries at multiple points along the kinematic chain, which introduces: (a) computational cost scaling linearly with the number of monitored points, (b) the need for accurate forward kinematics within the policy network to obtain link positions, and (c) gradient conflicts when different links receive opposing repulsion directions. Our work identifies this as a promising future direction — by demonstrating that EE-only is fundamentally insufficient, we motivate the investment required for full-body approaches. However, our Claim 3 (SDF is redundant when demonstrations provide avoidance) suggests that even full-body geometric supervision may be unnecessary if the demonstration data is sufficiently rich — this is an open question we leave for future work.\n\n### Architecture Generalization\n\n**Q: \"Does action collapse affect autoregressive VLAs (RT-2, Octo), or is it specific to diffusion-based models?\"**\n\nA: Action collapse as we observe it — near-zero actions across all timesteps — arises from diffusion denoising collapsing to a single mode near zero, a failure mode documented in flow-matching training instabilities (Dong et al., 2025). Autoregressive VLAs (RT-2, Octo) use discrete token prediction, which has different failure modes (e.g., repeating stop tokens) but could produce analogous inaction artifacts. We tested Pi0 (flow matching), Pi0.5 (flow matching with language-conditioned pretraining), and confirmed OpenVLA (autoregressive) also exhibits near-zero TSR on SafeLIBERO, though we did not conduct the full dfCAR displacement analysis on OpenVLA. The dfCAR metric itself is architecture-agnostic — it filters on EE displacement regardless of how actions are generated — and we recommend its adoption for any VLA evaluation pipeline. Whether autoregressive VLAs exhibit the same bimodal displacement pattern is an empirical question we flag as future work.\n\n### Demonstration Curation Practicality\n\n**Q: \"How practical is curating collision-free demos? Doesn't it require the same geometric knowledge as SDF?\"**\n\nA: There is a fundamental cost asymmetry. Collision-free demonstration curation is an *offline, one-time* process: a human operator or automated filter labels demonstrations as collision-free or not, requiring only binary contact detection (e.g., force sensor threshold, visual inspection, or simulator collision flag). This is available in most data collection pipelines at near-zero marginal cost. In contrast, SDF auxiliary loss requires *online, per-step* computation: at every training step, the policy must query a pre-computed SDF field, compute the signed distance for the current EE position, and backpropagate through the SDF gradient — adding both computational overhead and a dependency on accurate obstacle geometry at training time. Our Claim 3 shows the offline curation alone accounts for ~26pp CAR improvement, while the online SDF computation adds no statistically significant benefit. Practitioners should invest in demonstration quality, not geometric loss engineering.\n\n### dfCAR Bimodal Assumption\n\n**Q: \"What if the bimodal displacement distribution doesn't hold for other robots/tasks?\"**\n\nA: The bimodality arises from task structure, not simulator specifics: manipulation tasks produce either contact-level displacement (<0.1mm, robot frozen or barely moving) or task-completion-level displacement (>100mm, robot actively reaching and grasping). This dichotomy is inherent to pick-and-place — either the robot reaches the object or it does not. We expect similar bimodality in any task with discrete contact events. That said, continuous-contact tasks (e.g., wiping, polishing) may produce a unimodal or multi-modal displacement distribution where the threshold τ_d requires task-specific calibration. We acknowledge this as an explicit limitation in the paper. Importantly, dfCAR's threshold robustness across five orders of magnitude ([2mm, 200mm]) in our experiments suggests that when bimodality exists, the exact threshold choice is not critical — the separation is structural, not marginal."
-            }
-          },
-          "id": "event-002813"
-        },
-        {
-          "source_line": 2814,
-          "timestamp": "2026-05-29T13:31:48.333917+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-002814"
-        },
-        {
-          "source_line": 2815,
+          "source_line": 2783,
           "timestamp": "2026-05-29T13:31:51.798528+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2268,10 +1624,10 @@
               "description": "Check section structure"
             }
           },
-          "id": "event-002815"
+          "id": "event-002783"
         },
         {
-          "source_line": 2816,
+          "source_line": 2784,
           "timestamp": "2026-05-29T13:31:51.949606+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2286,10 +1642,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002816"
+          "id": "event-002784"
         },
         {
-          "source_line": 2817,
+          "source_line": 2785,
           "timestamp": "2026-05-29T13:31:54.559589+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2307,10 +1663,10 @@
               "description": "Check subsection structure"
             }
           },
-          "id": "event-002817"
+          "id": "event-002785"
         },
         {
-          "source_line": 2818,
+          "source_line": 2786,
           "timestamp": "2026-05-29T13:31:54.610175+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2325,10 +1681,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002818"
+          "id": "event-002786"
         },
         {
-          "source_line": 2819,
+          "source_line": 2787,
           "timestamp": "2026-05-29T13:32:10.023496+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2346,10 +1702,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002819"
+          "id": "event-002787"
         },
         {
-          "source_line": 2820,
+          "source_line": 2788,
           "timestamp": "2026-05-29T13:32:13.135607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2364,10 +1720,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3112
           },
-          "id": "event-002820"
+          "id": "event-002788"
         },
         {
-          "source_line": 2821,
+          "source_line": 2789,
           "timestamp": "2026-05-29T13:32:14.985462+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2380,7 +1736,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002821"
+          "id": "event-002789"
         }
       ]
     },
@@ -2388,7 +1744,7 @@
       "number": 105,
       "messages": [
         {
-          "source_line": 2822,
+          "source_line": 2790,
           "timestamp": "2026-05-29T14:03:23.808723+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2402,10 +1758,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002822"
+          "id": "event-002790"
         },
         {
-          "source_line": 2823,
+          "source_line": 2791,
           "timestamp": "2026-05-29T14:03:49.548978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2423,10 +1779,10 @@
               "description": "Check TL;DR character count"
             }
           },
-          "id": "event-002823"
+          "id": "event-002791"
         },
         {
-          "source_line": 2824,
+          "source_line": 2792,
           "timestamp": "2026-05-29T14:03:49.700700+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2441,10 +1797,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002824"
+          "id": "event-002792"
         },
         {
-          "source_line": 2825,
+          "source_line": 2793,
           "timestamp": "2026-05-29T14:04:08.314080+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2465,10 +1821,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-002825"
+          "id": "event-002793"
         },
         {
-          "source_line": 2826,
+          "source_line": 2794,
           "timestamp": "2026-05-29T14:04:14.036635+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2483,10 +1839,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5722
           },
-          "id": "event-002826"
+          "id": "event-002794"
         },
         {
-          "source_line": 2827,
+          "source_line": 2795,
           "timestamp": "2026-05-29T14:04:22.169536+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2504,10 +1860,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002827"
+          "id": "event-002795"
         },
         {
-          "source_line": 2828,
+          "source_line": 2796,
           "timestamp": "2026-05-29T14:23:24.027642+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2520,7 +1876,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002828"
+          "id": "event-002796"
         }
       ]
     },
@@ -2528,7 +1884,7 @@
       "number": 106,
       "messages": [
         {
-          "source_line": 2829,
+          "source_line": 2797,
           "timestamp": "2026-05-29T14:23:24.038304+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2542,10 +1898,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002829"
+          "id": "event-002797"
         },
         {
-          "source_line": 2830,
+          "source_line": 2798,
           "timestamp": "2026-05-29T14:23:29.483228+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2562,10 +1918,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary/README.md"
             }
           },
-          "id": "event-002830"
+          "id": "event-002798"
         },
         {
-          "source_line": 2831,
+          "source_line": 2799,
           "timestamp": "2026-05-29T14:23:29.534771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2580,10 +1936,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002831"
+          "id": "event-002799"
         },
         {
-          "source_line": 2832,
+          "source_line": 2800,
           "timestamp": "2026-05-29T14:23:34.453268+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2601,10 +1957,10 @@
               "limit": "20"
             }
           },
-          "id": "event-002832"
+          "id": "event-002800"
         },
         {
-          "source_line": 2833,
+          "source_line": 2801,
           "timestamp": "2026-05-29T14:23:34.855051+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2619,10 +1975,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-002833"
+          "id": "event-002801"
         },
         {
-          "source_line": 2834,
+          "source_line": 2802,
           "timestamp": "2026-05-29T14:23:34.905738+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2639,10 +1995,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission_checklist.md"
             }
           },
-          "id": "event-002834"
+          "id": "event-002802"
         },
         {
-          "source_line": 2835,
+          "source_line": 2803,
           "timestamp": "2026-05-29T14:23:34.956352+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2657,10 +2013,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002835"
+          "id": "event-002803"
         },
         {
-          "source_line": 2836,
+          "source_line": 2804,
           "timestamp": "2026-05-29T14:23:40.676208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2678,10 +2034,10 @@
               "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
             }
           },
-          "id": "event-002836"
+          "id": "event-002804"
         },
         {
-          "source_line": 2837,
+          "source_line": 2805,
           "timestamp": "2026-05-29T14:23:40.827185+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2696,10 +2052,10 @@
             "tool": "Glob",
             "elapsed_ms": 150
           },
-          "id": "event-002837"
+          "id": "event-002805"
         },
         {
-          "source_line": 2838,
+          "source_line": 2806,
           "timestamp": "2026-05-29T14:23:41.680577+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2717,10 +2073,10 @@
               "description": "Check actual PDF page count"
             }
           },
-          "id": "event-002838"
+          "id": "event-002806"
         },
         {
-          "source_line": 2839,
+          "source_line": 2807,
           "timestamp": "2026-05-29T14:23:41.831564+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2735,10 +2091,10 @@
             "tool": "Bash",
             "elapsed_ms": 150
           },
-          "id": "event-002839"
+          "id": "event-002807"
         },
         {
-          "source_line": 2840,
+          "source_line": 2808,
           "timestamp": "2026-05-29T14:23:43.989685+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2755,10 +2111,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission/openreview_fields.md"
             }
           },
-          "id": "event-002840"
+          "id": "event-002808"
         },
         {
-          "source_line": 2841,
+          "source_line": 2809,
           "timestamp": "2026-05-29T14:23:44.090410+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2773,10 +2129,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002841"
+          "id": "event-002809"
         },
         {
-          "source_line": 2842,
+          "source_line": 2810,
           "timestamp": "2026-05-29T14:23:59.444071+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2796,10 +2152,10 @@
               "new_string": "- Learning rate: 2.5e-5 (Phase 2, LoRA unfrozen)\n- LoRA rank: 32, alpha: 32 (action expert); 16, alpha: 16 (PaliGemma vision encoder)\n- SDF loss weight (lambda_sdf): 0.1 (best), ablated over {0.005, 0.01, 0.1}\n- Training steps: 30,000 (Phase 1: 3,000 warmup, Phase 2: 27,000)\n- Batch size: 32"
             }
           },
-          "id": "event-002842"
+          "id": "event-002810"
         },
         {
-          "source_line": 2843,
+          "source_line": 2811,
           "timestamp": "2026-05-29T14:23:59.494833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2814,10 +2170,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002843"
+          "id": "event-002811"
         },
         {
-          "source_line": 2844,
+          "source_line": 2812,
           "timestamp": "2026-05-29T14:24:06.389902+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2837,10 +2193,10 @@
               "new_string": "  - lambda_sdf default: 0.005 (reduced from 0.1 to avoid action collapse)"
             }
           },
-          "id": "event-002844"
+          "id": "event-002812"
         },
         {
-          "source_line": 2845,
+          "source_line": 2813,
           "timestamp": "2026-05-29T14:24:06.440707+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2855,10 +2211,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002845"
+          "id": "event-002813"
         },
         {
-          "source_line": 2846,
+          "source_line": 2814,
           "timestamp": "2026-05-29T14:24:11.007722+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2878,10 +2234,10 @@
               "new_string": "- `main.pdf` — Full paper with appendix (17 pages: 8-page body + 1-page references + 8-page appendix)"
             }
           },
-          "id": "event-002846"
+          "id": "event-002814"
         },
         {
-          "source_line": 2847,
+          "source_line": 2815,
           "timestamp": "2026-05-29T14:24:11.108726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2896,10 +2252,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002847"
+          "id": "event-002815"
         },
         {
-          "source_line": 2848,
+          "source_line": 2816,
           "timestamp": "2026-05-29T14:24:18.486203+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2919,10 +2275,10 @@
               "new_string": "| 4 | **TL;DR** | ✅ Ready | \"99.6% of collision-free VLA episodes are frozen-robot artifacts; EE-only SDF refinement worsens safety by rotating unmonitored arm links into obstacles; collision-free demonstrations alone drive avoidance gains.\" (211 chars) |"
             }
           },
-          "id": "event-002848"
+          "id": "event-002816"
         },
         {
-          "source_line": 2849,
+          "source_line": 2817,
           "timestamp": "2026-05-29T14:24:18.537225+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2937,10 +2293,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002849"
+          "id": "event-002817"
         },
         {
-          "source_line": 2850,
+          "source_line": 2818,
           "timestamp": "2026-05-29T14:24:24.108021+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2960,10 +2316,10 @@
               "new_string": "| 6 | **Supplementary** | ✅ Ready | `artifacts/supplementary/supplementary.zip` — code archive with README, training/eval scripts, figure generation, analysis tools |"
             }
           },
-          "id": "event-002850"
+          "id": "event-002818"
         },
         {
-          "source_line": 2851,
+          "source_line": 2819,
           "timestamp": "2026-05-29T14:24:24.158679+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2978,10 +2334,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002851"
+          "id": "event-002819"
         },
         {
-          "source_line": 2852,
+          "source_line": 2820,
           "timestamp": "2026-05-29T14:24:28.423966+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3001,10 +2357,10 @@
               "new_string": "| **Supplementary ZIP** | `artifacts/supplementary/supplementary.zip` | ✅ | Code archive with README + training/eval/analysis/figure scripts |"
             }
           },
-          "id": "event-002852"
+          "id": "event-002820"
         },
         {
-          "source_line": 2853,
+          "source_line": 2821,
           "timestamp": "2026-05-29T14:24:28.525682+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3019,10 +2375,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002853"
+          "id": "event-002821"
         },
         {
-          "source_line": 2854,
+          "source_line": 2822,
           "timestamp": "2026-05-29T14:24:35.265656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3042,10 +2398,10 @@
               "new_string": "md5: `36165c45ddaba8cb06df2dcf0113cac7`, 17 pages total (8 main + 1 refs + 8 appendix), 793 KB"
             }
           },
-          "id": "event-002854"
+          "id": "event-002822"
         },
         {
-          "source_line": 2855,
+          "source_line": 2823,
           "timestamp": "2026-05-29T14:24:35.366638+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3060,10 +2416,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002855"
+          "id": "event-002823"
         },
         {
-          "source_line": 2856,
+          "source_line": 2824,
           "timestamp": "2026-05-29T14:24:44.300784+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3081,10 +2437,10 @@
               "description": "Repack supplementary.zip"
             }
           },
-          "id": "event-002856"
+          "id": "event-002824"
         },
         {
-          "source_line": 2857,
+          "source_line": 2825,
           "timestamp": "2026-05-29T14:24:44.401609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3099,10 +2455,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002857"
+          "id": "event-002825"
         },
         {
-          "source_line": 2858,
+          "source_line": 2826,
           "timestamp": "2026-05-29T14:24:57.100612+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3120,10 +2476,10 @@
               "description": "Verify README hyperparameters"
             }
           },
-          "id": "event-002858"
+          "id": "event-002826"
         },
         {
-          "source_line": 2859,
+          "source_line": 2827,
           "timestamp": "2026-05-29T14:24:57.151347+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3138,10 +2494,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002859"
+          "id": "event-002827"
         },
         {
-          "source_line": 2860,
+          "source_line": 2828,
           "timestamp": "2026-05-29T14:25:03.017683+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3159,10 +2515,10 @@
               "description": "Verify M030 removal and page count fix"
             }
           },
-          "id": "event-002860"
+          "id": "event-002828"
         },
         {
-          "source_line": 2861,
+          "source_line": 2829,
           "timestamp": "2026-05-29T14:25:03.068339+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3177,10 +2533,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002861"
+          "id": "event-002829"
         },
         {
-          "source_line": 2862,
+          "source_line": 2830,
           "timestamp": "2026-05-29T14:25:14.877618+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3198,10 +2554,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002862"
+          "id": "event-002830"
         },
         {
-          "source_line": 2863,
+          "source_line": 2831,
           "timestamp": "2026-05-29T14:25:18.041842+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3216,10 +2572,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3164
           },
-          "id": "event-002863"
+          "id": "event-002831"
         },
         {
-          "source_line": 2864,
+          "source_line": 2832,
           "timestamp": "2026-05-29T14:25:21.143402+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3232,7 +2588,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002864"
+          "id": "event-002832"
         }
       ]
     },
@@ -3240,7 +2596,7 @@
       "number": 107,
       "messages": [
         {
-          "source_line": 2865,
+          "source_line": 2833,
           "timestamp": "2026-05-29T14:25:21.166466+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3254,213 +2610,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "director"
           },
-          "id": "event-002865"
+          "id": "event-002833"
         },
         {
-          "source_line": 2866,
-          "timestamp": "2026-05-29T14:25:28.111571+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "offset": "135",
-              "limit": "15"
-            }
-          },
-          "id": "event-002866"
-        },
-        {
-          "source_line": 2867,
-          "timestamp": "2026-05-29T14:25:28.164616+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "135\t### Anticipated Questions & Responses\n136\t\n137\t**Q: \"Action collapse is a well-known problem — what's new about your analysis?\"**\n138\t\n139\tA: While action collapse has been noted anecdotally, to our knowledge, no prior work has quantified action collapse's impact on safety metrics at the scale tested here. We show that in Pi0 fine-tuned models (both full-FT and LoRA), 99.4% of episodes classified as \"collision-free\" exhibit obstacle displacement <0.1mm (median ~5nm) — the robot is frozen, not safe. This inflates CAR from a true ~0.5% to a reported 82–91.5%. Our contribution is (a) demonstrating the magnitude of metric contamination (80+ percentage points of CAR inflation), (b) proposing EE displacement-filtered CAR (dfCAR) as a principled correction, and (c) showing dfCAR is robust to threshold choice (δ∈[2mm, 200mm] produces identical results due to the bimodal displacement distribution: either <0.1mm or >239mm).\n140\t\n141\t**Q: \"The capability-safety anti-correlation with Pi0.5 — isn't that just because more capable robots move more?\"**\n142\t\n143\tA: Exactly — and that is precisely the point. Pi0.5 (TSR=73%, CAR=28%) demonstrates that when a model is capable enough to attempt tasks, it inevitably contacts obstacles because its training data does not teach explicit avoidance. Pi0 (TSR≈0%, CAR=82%) appears \"safer\" only because it is too broken to move. The anti-correlation between capability and apparent safety is a direct consequence of CAR conflating \"unable to collide\" with \"able to avoid.\" We present this as a supporting observation (not a causal claim), but it reinforces why dfCAR is necessary.\n144\t\n145\t---\n146\t\n147\t## General Anticipated Questions\n148\t\n149\t### Statistical Power"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 53
-          },
-          "id": "event-002867"
-        },
-        {
-          "source_line": 2868,
-          "timestamp": "2026-05-29T14:25:31.769646+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "offset": "189",
-              "limit": "15"
-            }
-          },
-          "id": "event-002868"
-        },
-        {
-          "source_line": 2869,
-          "timestamp": "2026-05-29T14:25:31.776127+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "189\tA: Action collapse as we observe it — near-zero actions across all timesteps — arises from diffusion denoising collapsing to a single mode near zero, a failure mode documented in flow-matching training instabilities (Dong et al., 2025). Autoregressive VLAs (RT-2, Octo) use discrete token prediction, which has different failure modes (e.g., repeating stop tokens) but could produce analogous inaction artifacts. We tested Pi0 (flow matching), Pi0.5 (flow matching with language-conditioned pretraining), and confirmed OpenVLA (autoregressive) also exhibits near-zero TSR on SafeLIBERO, though we did not conduct the full dfCAR displacement analysis on OpenVLA. The dfCAR metric itself is architecture-agnostic — it filters on EE displacement regardless of how actions are generated — and we recommend its adoption for any VLA evaluation pipeline. Whether autoregressive VLAs exhibit the same bimodal displacement pattern is an empirical question we flag as future work.\n190\t\n191\t### Demonstration Curation Practicality\n192\t\n193\t**Q: \"How practical is curating collision-free demos? Doesn't it require the same geometric knowledge as SDF?\"**\n194\t\n195\tA: There is a fundamental cost asymmetry. Collision-free demonstration curation is an *offline, one-time* process: a human operator or automated filter labels demonstrations as collision-free or not, requiring only binary contact detection (e.g., force sensor threshold, visual inspection, or simulator collision flag). This is available in most data collection pipelines at near-zero marginal cost. In contrast, SDF auxiliary loss requires *online, per-step* computation: at every training step, the policy must query a pre-computed SDF field, compute the signed distance for the current EE position, and backpropagate through the SDF gradient — adding both computational overhead and a dependency on accurate obstacle geometry at training time. Our Claim 3 shows the offline curation alone accounts for ~26pp CAR improvement, while the online \n…[truncated 1206 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Read",
-            "elapsed_ms": 6
-          },
-          "id": "event-002869"
-        },
-        {
-          "source_line": 2870,
-          "timestamp": "2026-05-29T14:25:35.895994+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "Pi0.5 (TSR=73%, CAR=28%) demonstrates",
-              "new_string": "Pi0.5 (TSR=73%, CAR=28.5%) demonstrates"
-            }
-          },
-          "id": "event-002870"
-        },
-        {
-          "source_line": 2871,
-          "timestamp": "2026-05-29T14:25:35.947842+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-002871"
-        },
-        {
-          "source_line": 2872,
-          "timestamp": "2026-05-29T14:25:41.216554+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "Our Claim 3 shows the offline curation alone accounts for ~26pp CAR improvement, while the online SDF computation adds no statistically significant benefit.",
-              "new_string": "Our Claim 3 shows that LoRA fine-tuning on curated collision-free demos yields 54.83% CAR, while the addition of SDF auxiliary loss provides no statistically significant further gain (p≥0.155)."
-            }
-          },
-          "id": "event-002872"
-        },
-        {
-          "source_line": 2873,
-          "timestamp": "2026-05-29T14:25:41.219987+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 3
-          },
-          "id": "event-002873"
-        },
-        {
-          "source_line": 2874,
-          "timestamp": "2026-05-29T14:25:44.682762+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-              "old_string": "dfCAR's threshold robustness across five orders of magnitude ([2mm, 200mm])",
-              "new_string": "dfCAR's threshold robustness across two orders of magnitude ([2mm, 200mm])"
-            }
-          },
-          "id": "event-002874"
-        },
-        {
-          "source_line": 2875,
-          "timestamp": "2026-05-29T14:25:44.735153+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-            "tool": "Edit",
-            "elapsed_ms": 52
-          },
-          "id": "event-002875"
-        },
-        {
-          "source_line": 2876,
+          "source_line": 2834,
           "timestamp": "2026-05-29T14:25:52.613829+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3478,10 +2631,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-002876"
+          "id": "event-002834"
         },
         {
-          "source_line": 2877,
+          "source_line": 2835,
           "timestamp": "2026-05-29T14:25:55.774544+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3496,10 +2649,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3160
           },
-          "id": "event-002877"
+          "id": "event-002835"
         },
         {
-          "source_line": 2878,
+          "source_line": 2836,
           "timestamp": "2026-05-29T14:25:57.820835+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3512,7 +2665,7 @@
           "metadata": {
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
           },
-          "id": "event-002878"
+          "id": "event-002836"
         }
       ]
     },
@@ -3520,7 +2673,7 @@
       "number": 108,
       "messages": [
         {
-          "source_line": 2879,
+          "source_line": 2837,
           "timestamp": "2026-05-29T14:25:57.830702+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3534,10 +2687,10 @@
             "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
             "source": "worker:done"
           },
-          "id": "event-002879"
+          "id": "event-002837"
         },
         {
-          "source_line": 2880,
+          "source_line": 2838,
           "timestamp": "2026-05-29T14:26:05.026589+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3553,6 +2706,828 @@
             "tool_args": {
               "worker_id": "worker_paper_supplementary-pack_20260529T140408"
             }
+          },
+          "id": "event-002838"
+        },
+        {
+          "source_line": 2839,
+          "timestamp": "2026-05-29T14:26:05.127625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_supplementary-pack_20260529T140408\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper:supplementary-pack\\\", \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"started_at\\\": \\\"2026-05-29T14:04:09.052760+00:00\\\", \\\"ended_at\\\": \\\"2026-05-29T14:08:13.270973+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"打包完成。\\\\n\\\\n**产出**: `artifacts/supplementary/supplementary.zip` (76KB)，已注册为 `art_20260529_db582d`。\\\\n\\\\n**内容**:\\\\n- `README.md` — 复现指南（依赖、数据集、训练/评估命令、超参、图表脚本映射）\\\\n- `code/src/` — 4 个核心 ColliForce 模块（SDF decoder, gradient refiner, data loader, training pipeline）\\\\n- `code/training/` — 4 个训练脚本（A1 hook, A1 pi0.5, LoRA baseline, full-FT baseline）\\\\n- `code/eval/` — 3 个评估脚本（pi0, pi0.5, OpenVLA zero-shot）\\\\n- `code/analysis/` — 3 个分析脚本（dfCAR, 跨 seed 聚合, permutation test）\\\\n- `code/figures/` — 7 个图表脚本 + 1 个 CSV 数据文件（Fig 1/2/3/5 + appendix threshold sensitivity）\\\\n\\\\n**已确认**:\\\\n- 无作者信息、无 `.git`、无 `__pycache__`/`.pyc`\\\\n- 所有硬编码路径已替换为相对路径\\\\n- 附录在 main.pdf 中，无需单独 appendix PDF\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-002839"
+        },
+        {
+          "source_line": 2840,
+          "timestamp": "2026-05-29T14:26:23.488734+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 打包完成。注意：此 Worker 产出的 README 已被后续 Director 紧急修复指令更新（lr/batch size/lambda/LoRA rank 4 项修正 + M030 清除），zip 已重新打包。当前 `supplementary.zip` 是修复后的最终版本，无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002840"
+        }
+      ]
+    },
+    {
+      "number": 109,
+      "messages": [
+        {
+          "source_line": 2841,
+          "timestamp": "2026-05-29T15:01:18.628577+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **Seed3 Restart Plan + Rebuttal 深化**\n\n两台服务器（westd-35807/westd-45947）当前不可达，但需要提前准备好 restart plan。同时利用等待时间深化 rebuttal 准备。\n\n**任务 1: Seed3 Restart Plan（写文档，不执行）**\n准备一份 seed3_restart_plan.md，包含：\n- westd-35807: train_pi05_lora_baseline_s3_v2 的 restart 指令（是否能从某个 checkpoint resume？需要重新 patch LeRobot 吗？）\n- westd-45947: train_pi05_a1_obj_s3_l01_v2 的 restart 指令（step 2000 checkpoint 是否可用？磁盘清理计划？）\n- 两台服务器恢复后的第一步操作清单（端口可能已变）\n\n**任务 2: Per-task Error Case Analysis**\n基于现有 eval 数据，做 per-task CAR breakdown 分析：\n- 哪些 task 在 SDF vs LoRA-only 对比中方差最大？\n- bbq_sauce 的 seed-to-seed 方差分析（为什么 s0=34%→s2=14%？）\n- 每个 task 的 rebuttal 应对要点\n\n输出到 artifacts/per_task_analysis.md。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "director"
+          },
+          "id": "event-002841"
+        },
+        {
+          "source_line": 2842,
+          "timestamp": "2026-05-29T15:01:43.001536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "paper:seed3-restart-plan",
+              "project": "diff_collision_sdf",
+              "task_prompt": "**任务：编写 Seed3 Restart Plan 文档**\n\n产出文件：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/seed3_restart_plan.md`\n\n**背景：** 两台服务器当前不可达，需要提前准备好 restart plan。\n\n**步骤：**\n\n1. 用 `read_registry` 读取以下两个实验的完整信息（fields=[\"*\"]）：\n   - `train_pi05_lora_baseline_s3_v2`（服务器 westd-35807）\n   - `train_pi05_a1_obj_s3_l01_v2`（服务器 westd-45947）\n\n2. 从 registry 提取：\n   - 训练命令（spec.command）\n   - 数据路径、模型路径\n   - 当前状态（DONE/RUNNING/FAILED？）\n   - 是否有 checkpoint_path\n   - 上次记录的 step 数\n   - 已知问题（如 LeRobot patch、磁盘不足等）\n\n3. 同时读取 `read_project_file(file=\"memory.md\")` 查看是否有关于这两台服务器或这两个实验的历史经验/教训\n\n4. 编写 restart plan，格式：\n```markdown\n# Seed3 Restart Plan\n\n## Server: westd-35807\n### Experiment: train_pi05_lora_baseline_s3_v2\n- **Status**: ...\n- **Last checkpoint**: step X at path Y\n- **Resume strategy**: 从 checkpoint resume / 从头重跑\n- **LeRobot patch**: 是否需要重新 patch？具体 patch 内容？\n- **Restart commands**:\n  ```bash\n  # Step 1: 检查端口（AutoDL 重启后端口可能变）\n  # Step 2: 检查环境\n  # Step 3: 检查 checkpoint\n  # Step 4: 启动训练\n  ```\n\n## Server: westd-45947\n### Experiment: train_pi05_a1_obj_s3_l01_v2\n- **Status**: ...\n- **Step 2000 checkpoint**: 是否可用？路径？\n- **磁盘清理计划**: 需要清理什么？预估可释放空间？\n- **Restart commands**: ...\n\n## 恢复后第一步操作清单\n1. 确认 SSH 端口（去 AutoDL 控制台查新端口，更新 ~/.ssh/config）\n2. ssh_read_only 检查环境状态（Python、conda、GPU、磁盘）\n3. 检查 checkpoint 完整性\n4. 确认训练数据和模型权重仍在\n5. 启动训练\n```\n\n5. 用 `register_artifact` 注册产出文件。",
+              "tool_groups": "['knowledge', 'registry']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-002842"
+        },
+        {
+          "source_line": 2843,
+          "timestamp": "2026-05-29T15:02:01.274203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_seed3-restart-plan_20260529T150143\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_paper_seed3-restart-plan_20260529T150143.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_paper_seed3-restart-plan_20260529T150143 started. Use get_worker_status('worker_paper_seed3-restart-plan_20260529T150143') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 18272
+          },
+          "id": "event-002843"
+        },
+        {
+          "source_line": 2844,
+          "timestamp": "2026-05-29T15:02:01.325661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "paper:per-task-analysis",
+              "project": "diff_collision_sdf",
+              "task_prompt": "**任务：Per-task CAR Breakdown 分析，用于 rebuttal 深化**\n\n产出文件：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/per_task_analysis.md`\n\n**背景：** 论文核心 Claim 3 说 SDF 无统计显著效果，collision-free 示范数据驱动 avoidance。Per-task 分析可以支撑这个 claim（per-task ordering 一致 = 数据驱动），也需要解释 seed-to-seed 方差。\n\n**步骤：**\n\n1. 用 `read_registry` 读取所有 conclusion=success 且包含 per-task metrics 的实验（特别关注 Claim 3 相关的训练 ablation 实验）。需要 fields=[\"*\"] 来获取完整 metrics。\n\n2. 从 registry 提取每个 condition（LoRA-only s0/s1/s2, SDF λ=0.005 s0/s1/s2, SDF λ=0.01 s0/s1/s2, SDF λ=0.1 s0/s1/s2）的 per-task CAR 数据。四个 task 是：\n   - orange_juice (task 0)\n   - chocolate_pudding (task 1)  \n   - milk (task 2)\n   - bbq_sauce (task 3)\n\n3. 分析：\n   a) **SDF vs LoRA-only 对比中方差最大的 task**：哪个 task 在加 SDF 后 CAR 变化最大？哪个最稳定？\n   b) **bbq_sauce seed-to-seed 方差**：s0=34% 到 s2=14%（如果数据显示），分析可能原因（场景难度？obstacle 位置？）\n   c) **Per-task ordering 一致性**：是否所有 condition 下 task 排序都相同？（如 chocolate_pudding > milk > orange_juice > bbq_sauce）\n   d) **每个 task 的 rebuttal 要点**\n\n4. 如果 registry 中 per-task 数据不完整，也检查论文的 claim3.tex 和 appendix.tex 中的表格数据：\n   - `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex`\n   - `/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex`\n\n5. 输出分析报告，格式：\n```markdown\n# Per-Task CAR Breakdown Analysis\n\n## Data Summary\n| Condition | Seed | orange_juice | choco_pudding | milk | bbq_sauce | mean |\n|-----------|------|-------------|---------------|------|-----------|------|\n| LoRA-only | s0   | ...         | ...           | ...  | ...       | ...  |\n| ...       | ...  | ...         | ...           | ...  | ...       | ...  |\n\n## Analysis 1: SDF vs LoRA-only Per-Task Variance\n(哪些 task 变化大/小，为什么)\n\n## Analysis 2: bbq_sauce Seed-to-Seed Variance\n(可能原因，rebuttal 应对)\n\n## Analysis 3: Per-Task Ordering Consistency\n(ordering 是否 invariant across conditions)\n\n## Rebuttal Points Per Task\n### orange_juice\n- ...\n### chocolate_pudding\n- ...\n### milk\n- ...\n### bbq_sauce\n- ...\n```\n\n6. 用 `register_artifact` 注册产出文件。",
+              "tool_groups": "['knowledge', 'registry']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-002844"
+        },
+        {
+          "source_line": 2845,
+          "timestamp": "2026-05-29T15:02:04.593112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_per-task-analysis_20260529T150201\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_paper_per-task-analysis_20260529T150201.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_paper_per-task-analysis_20260529T150201 started. Use get_worker_status('worker_paper_per-task-analysis_20260529T150201') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3267
+          },
+          "id": "event-002845"
+        },
+        {
+          "source_line": 2846,
+          "timestamp": "2026-05-29T15:02:20.727243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 2 (CPU 2) | 磁盘: N/A\n\n已派发 2 个并行 Worker：\n1. **seed3-restart-plan** — 从 registry 读取 train_pi05_lora_baseline_s3_v2 和 train_pi05_a1_obj_s3_l01_v2 的完整 spec，编写 restart plan（含 checkpoint resume 策略、LeRobot patch、磁盘清理、端口变更操作清单）→ `artifacts/seed3_restart_plan.md`\n2. **per-task-analysis** — 提取所有 condition × seed 的 per-task CAR 数据，分析 SDF vs LoRA-only 方差最大的 task、bbq_sauce seed-to-seed 方差、per-task ordering 一致性 → `artifacts/per_task_analysis.md`\n\nWorker 完成后汇报。",
+              "project": "diff_collision_sdf"
+            }
+          },
+          "id": "event-002846"
+        },
+        {
+          "source_line": 2847,
+          "timestamp": "2026-05-29T15:21:18.880519+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 个 Worker 已并行派出：\n1. **seed3-restart-plan** — 从 registry 提取两个实验的完整 spec，编写 restart 文档\n2. **per-task-analysis** — 从 registry + 论文提取 per-task CAR 数据，做方差分析和 rebuttal 要点"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002847"
+        }
+      ]
+    },
+    {
+      "number": 110,
+      "messages": [
+        {
+          "source_line": 2848,
+          "timestamp": "2026-05-29T15:21:18.890275+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **Rebuttal Prep 缺口修复（Reviewer 审计结果）**\n\nReviewer 审查 `artifacts/rebuttal_prep.md`，发现 1 个 critical + 3 个 warning 缺口。完成当前任务后立即修复。\n\n**必修 1 [CRITICAL]: 新增 R6 Q&A — TSR Collapse / Catastrophic Forgetting**\n\n在 General Anticipated Questions section 新增：\n\nQ: \"TSR drops from 73% to 50% — isn't your 'collision avoidance' just catastrophic forgetting making the robot too conservative to reach obstacles?\"\n\n回应要点（用数据论证，不要空话）：\n- SSR/TSR ratio 从 Pi0.5 baseline 0.39 提升到 LoRA 0.51-0.60，证明是 safer execution 不是 reduced exposure\n- EE displacement >0.37m + frozen=0% 证明 robot 在主动运动\n- LoRA baseline（无 SDF）的 TSR 崩溃幅度 = SDF 条件（-68.4% vs -68.7%），SDF 不是 TSR 崩溃原因\n- M041 分析：composite mechanism (task semantic forgetting + retained collision avoidance)\n- Fine-tuning on 30K steps of collision-free demos 改变行为模式是 expected（robot learns conservative reaching patterns from safe demonstrations）\n\n**必修 2 [WARNING]: 新增 Per-Task Error Case Q&A**\n\nQ: \"Is the null result driven by BBQ sauce noise masking a real signal on other tasks?\"\n\n回应要点：\n- BBQ sauce λ=0.01 range=20pp（s0=34% vs s2=14%）是整个实验最大单 task 波动\n- 但即使排除 BBQ sauce，剩余 3 tasks 的 SDF vs LoRA 差异同样 <2pp\n- chocolate_pudding 和 milk 在所有条件下 CAR 稳定（68-76% 和 62-74%），per-task null 成立\n- BBQ sauce 高方差反映 task 固有难度（obstacle 位置导致更多必经碰撞路径），不是 SDF 信号\n- 从 supplementary_checklist S1d 提取具体数字支撑\n\n**必修 3 [WARNING]: Phase 2 单 seed 应急策略**\n\n在 Phase 2 Q&A 末尾补充：\n- Phase 2 是 supporting evidence，主证据是多 seed 多 λ flat curve\n- 如审稿人要求补 seeds：每个 seed ~32h 训练，rebuttal 期间完全可行\n- 即使 Phase 2 效应在某个 seed 出现，也无法改变 Claim 3 主证据（3v3 seeds flat curve + per-task fingerprint）\n\n**建议改进 4-6（如有余力）：**\n4. 强化 R2：\"EE-only 限制不 obvious，因为无先验定量证据表明 arm-body 碰撞比例有多高\"\n5. 强化 R4：直接补一句 \"action collapse 的原因可能 trivial，但 80+ pp 的 metric contamination 后果 non-trivial\"\n6. R5 motivation：补 \"SDF 在 motion planning 领域广泛使用，测试其在 VLA fine-tuning 中的有效性是合理的先验假设\""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "director"
+          },
+          "id": "event-002848"
+        },
+        {
+          "source_line": 2849,
+          "timestamp": "2026-05-29T15:22:55.593804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"^### \" /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
+              "description": "Check all subsections"
+            }
+          },
+          "id": "event-002849"
+        },
+        {
+          "source_line": 2850,
+          "timestamp": "2026-05-29T15:22:55.744753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "17:### Experiments\n25:### Anticipated Questions & Responses\n41:### Experiments\n54:### Anticipated Questions & Responses\n74:### Experiments\n85:### Anticipated Questions & Responses\n101:### Experiments\n111:### Anticipated Questions & Responses\n127:### Experiments\n135:### Anticipated Questions & Responses\n149:### Statistical Power\n155:### Real Hardware\n161:### Benchmark Scope\n167:### Positive Contribution\n173:### SDF vs Other Geometric Losses\n179:### Why Not Full-Body SDF?\n185:### Architecture Generalization\n191:### Demonstration Curation Practicality\n197:### dfCAR Bimodal Assumption\n203:### TSR Collapse / Catastrophic Forgetting\n217:### Per-Task Error Case Analysis"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-002850"
+        },
+        {
+          "source_line": 2851,
+          "timestamp": "2026-05-29T15:23:19.262621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 2 (seed3-restart-plan + per-task-analysis 在跑) | 磁盘: N/A\n\n**rebuttal_prep.md 缺口修复完成，3 必修 + 3 建议全部处理：**\n\n**必修：**\n1. ✅ **R6 TSR Collapse / Catastrophic Forgetting** — 新增 Q&A，用 4 条数据线论证非 reduced exposure：SSR/TSR ratio 从 0.39→0.51-0.60、EE displacement >0.37m + frozen=0%、LoRA vs SDF TSR 崩溃幅度相同（-68.4% vs -68.7%）、M041 composite mechanism\n2. ✅ **Per-Task Error Case** — 新增 Q&A，论证 BBQ sauce 方差（20pp range）不掩盖信号：排除 BBQ 后 3 tasks SDF vs LoRA <2pp、chocolate_pudding/milk 稳定 null、BBQ 高方差是 task 难度属性\n3. ✅ **Phase 2 单 seed 应急** — 在 Phase 2 Q&A 末尾补充：Phase 2 是 supporting evidence、每 seed ~32h rebuttal 期间可行、即使出现效应也不改变 3v3 主证据\n\n**建议改进：**\n4. ✅ **R2 EE-only 不 obvious** — 补充\"此前无定量证据表明 arm-body 碰撞在 VLA 操控中的比例\"\n5. ✅ **R4 consequence non-trivial** — 补充\"mechanism 可能 trivial，但 80+ pp metric contamination 后果 non-trivial\"\n6. ✅ **R5 SDF motivation** — 补充\"SDF 在 motion planning 广泛使用，集成到 VLA 是合理先验假设\"\n\n最终 General Q&A：11 个（原 9 + 新增 TSR Collapse + Per-Task Error Case）。",
+              "project": "diff_collision_sdf"
+            }
+          },
+          "id": "event-002851"
+        },
+        {
+          "source_line": 2852,
+          "timestamp": "2026-05-29T15:23:22.424686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3162
+          },
+          "id": "event-002852"
+        },
+        {
+          "source_line": 2853,
+          "timestamp": "2026-05-29T15:23:25.371919+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "11 个 General Q&A 全部到位。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002853"
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "messages": [
+        {
+          "source_line": 2854,
+          "timestamp": "2026-05-29T15:23:25.389936+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_seed3-restart-plan_20260529T150143 已完成（status=done）。用 `get_worker_status('worker_paper_seed3-restart-plan_20260529T150143')` 读取结果，然后处理。\n\n- worker_id: worker_paper_seed3-restart-plan_20260529T150143\n- project: diff_collision_sdf\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "worker:done"
+          },
+          "id": "event-002854"
+        },
+        {
+          "source_line": 2855,
+          "timestamp": "2026-05-29T15:23:32.567256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_seed3-restart-plan_20260529T150143"
+            }
+          },
+          "id": "event-002855"
+        },
+        {
+          "source_line": 2856,
+          "timestamp": "2026-05-29T15:23:32.668931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_seed3-restart-plan_20260529T150143\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper:seed3-restart-plan\\\", \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"started_at\\\": \\\"2026-05-29T15:01:43.768222+00:00\\\", \\\"ended_at\\\": \\\"2026-05-29T15:05:56.141998+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"文档已生成并注册: `artifacts/seed3_restart_plan.md` (art_20260529_0c2a0f)\\\\n\\\\n核心要点:\\\\n- **westd-35807** (lora_baseline_s3_v2): v2 启动后跑了至少 8 steps，可能已跑完（预估 12.5h）。需上线后检查 checkpoint。LeRobot 4 处 patch 需验证\\\\n- **westd-45947** (a1_obj_s3_l01_v2): v1 确认保存 step 2000 checkpoint (11G)，v2 从此 resume 后断连。磁盘 250G 满，需清理 50-90G 再重跑\\\\n- 两台服务器恢复后第一步：更新 SSH 端口 → 检查 checkpoint → 清理磁盘 → tmux 启动训练\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-002856"
+        },
+        {
+          "source_line": 2857,
+          "timestamp": "2026-05-29T15:23:38.460641+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed3 restart plan 已完成。等待 per-task-analysis Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002857"
+        }
+      ]
+    },
+    {
+      "number": 112,
+      "messages": [
+        {
+          "source_line": 2858,
+          "timestamp": "2026-05-29T15:23:38.849208+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_per-task-analysis_20260529T150201 已完成（status=done）。用 `get_worker_status('worker_paper_per-task-analysis_20260529T150201')` 读取结果，然后处理。\n\n- worker_id: worker_paper_per-task-analysis_20260529T150201\n- project: diff_collision_sdf\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "worker:done"
+          },
+          "id": "event-002858"
+        },
+        {
+          "source_line": 2859,
+          "timestamp": "2026-05-29T15:23:44.279603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_per-task-analysis_20260529T150201"
+            }
+          },
+          "id": "event-002859"
+        },
+        {
+          "source_line": 2860,
+          "timestamp": "2026-05-29T15:23:44.380626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_per-task-analysis_20260529T150201\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper:per-task-analysis\\\", \\\"project\\\": \\\"diff_collision_sdf\\\", \\\"started_at\\\": \\\"2026-05-29T15:02:01.755930+00:00\\\", \\\"ended_at\\\": \\\"2026-05-29T15:06:08.528459+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"报告已生成并注册：`art_20260529_a01313`\\\\n\\\\n核心发现：\\\\n\\\\n- **Fingerprint 完全一致**：CP > Milk > OJ > BBQ 排序在 4/4 条件均值和 12/12 seed 中保持（BBQ 最后 100%，CP 最高 83%）\\\\n- **Task identity 解释 94% 的 CAR 方差**，seed/condition 仅占 6%——直接支撑 Claim 3（demonstration-driven）\\\\n- **BBQ 20pp seed 波动（λ=0.01 s0=34→s2=14）**是 n=50 下的 binomial noise（预期 95% CI 宽 ~23pp），且 LoRA-only 和 SDF 条件下方差相当\\\\n- **无任何 task 有显著 SDF 收益**：最大的 Milk delta (+4.2pp) 不到 1σ；BBQ（SDF 最应帮助的 task）仅 +1.8pp\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-002860"
+        },
+        {
+          "source_line": 2861,
+          "timestamp": "2026-05-29T15:23:55.892102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 (全部完成) | 磁盘: N/A\n\n**两个并行任务完成：**\n\n### 1. Seed3 Restart Plan ✅ (`artifacts/seed3_restart_plan.md`)\n- **westd-35807** (lora_baseline_s3_v2): v2 启动后跑了至少 8 steps，可能已跑完（预估 12.5h）。需上线后检查 checkpoint。LeRobot 4 处 patch 需验证\n- **westd-45947** (a1_obj_s3_l01_v2): v1 确认保存 step 2000 checkpoint (11G)，v2 从此 resume 后断连。磁盘 250G 满，需清理 50-90G\n- 恢复后操作清单：更新 SSH 端口 → 检查 checkpoint → 清理磁盘 → tmux 启动训练\n\n### 2. Per-Task CAR Analysis ✅ (`artifacts/per_task_analysis.md`)\n核心发现（直接支撑 Claim 3 rebuttal）：\n- **Fingerprint 完全一致**：CP > Milk > OJ > BBQ 排序在 4/4 条件均值和 12/12 seed 中 100% 保持\n- **Task identity 解释 94% CAR 方差**，seed/condition 仅占 6%——数据驱动 avoidance 的强证据\n- **BBQ 20pp seed 波动**是 n=50 下 binomial noise（预期 95% CI 宽 ~23pp），LoRA-only 和 SDF 方差相当\n- **无任何 task 有显著 SDF 收益**：最大 delta (Milk +4.2pp) 不到 1σ",
+              "project": "diff_collision_sdf"
+            }
+          },
+          "id": "event-002861"
+        },
+        {
+          "source_line": 2862,
+          "timestamp": "2026-05-29T15:23:59.003778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3111
+          },
+          "id": "event-002862"
+        },
+        {
+          "source_line": 2863,
+          "timestamp": "2026-05-29T15:24:01.339236+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Worker 全部完成。汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002863"
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "messages": [
+        {
+          "source_line": 2864,
+          "timestamp": "2026-05-29T15:24:24.575838+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **Supplementary Checklist 数据同步**\n\nReviewer 标注：supplementary_checklist S1d 中 SDF λ=0.1 s0 per-task 数据标为 \"—\"（缺失），但 per_task_analysis.md 已有完整数据（OJ=60, CP=74, Milk=68, BBQ=30，聚合 58.0）。\n\n请同步更新 supplementary_checklist，消除这个不一致。如果 supplementary zip 需要重打包，一并处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "director"
+          },
+          "id": "event-002864"
+        },
+        {
+          "source_line": 2865,
+          "timestamp": "2026-05-29T15:24:31.423591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/supplementary_check*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+            }
+          },
+          "id": "event-002865"
+        },
+        {
+          "source_line": 2866,
+          "timestamp": "2026-05-29T15:24:31.474195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/supplementary_checklist.md\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/supplementary_check_report.md\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_check_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-002866"
+        },
+        {
+          "source_line": 2867,
+          "timestamp": "2026-05-29T15:24:39.495958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "S1d|λ=0.1.*s0|0\\.1.*seed.?0",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-002867"
+        },
+        {
+          "source_line": 2868,
+          "timestamp": "2026-05-29T15:24:39.546571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56:### S1d. Per-Task CAR Breakdown (reeval, all seeds)\n153:### S3b. Stepwise Training Curve for λ=0.1 s0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002868"
+        },
+        {
+          "source_line": 2869,
+          "timestamp": "2026-05-29T15:24:43.109629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md",
+              "offset": "56",
+              "limit": "50"
+            }
+          },
+          "id": "event-002869"
+        },
+        {
+          "source_line": 2870,
+          "timestamp": "2026-05-29T15:24:43.110134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56\t### S1d. Per-Task CAR Breakdown (reeval, all seeds)\n57\t\n58\t**LoRA-only:**\n59\t| Seed | OrangeJuice | ChocoPudding | Milk | BBQSauce |\n60\t|------|-------------|--------------|------|----------|\n61\t| s0 | 68 | 74 | 66 | 20 |\n62\t| s1 | 54 | 68 | 72 | 16 |\n63\t| s2 | 56 | 76 | 62 | 26 |\n64\t\n65\t**SDF λ=0.005:**\n66\t| Seed | OrangeJuice | ChocoPudding | Milk | BBQSauce |\n67\t|------|-------------|--------------|------|----------|\n68\t| s0 | 52 | 74 | 74 | 28 |\n69\t| s1 | 64 | 70 | 68 | 14 |\n70\t| s2 | 46 | 74 | 72 | 18 |\n71\t\n72\t**SDF λ=0.01:**\n73\t| Seed | OrangeJuice | ChocoPudding | Milk | BBQSauce |\n74\t|------|-------------|--------------|------|----------|\n75\t| s0 | 48 | 74 | 72 | 34 |\n76\t| s1 | 60 | 76 | 72 | 22 |\n77\t| s2 | 64 | 68 | 72 | 14 |\n78\t\n79\t**SDF λ=0.1:**\n80\t| Seed | OrangeJuice | ChocoPudding | Milk | BBQSauce |\n81\t|------|-------------|--------------|------|----------|\n82\t| s0 | — | — | — | — |\n83\t| s1 | 66 | 72 | 70 | 26 |\n84\t| s2 | 56 | 76 | 70 | 16 |\n85\t\n86\t**Existing figure:** `fig_pertask_car_fingerprint.png`\n87\t\n88\t---\n89\t\n90\t## S2. Multi-Eval-Seed Robustness (Table)\n91\t\n92\tTests CAR stability across different eval_seed values for LoRA s0 and SDF (lambda=0.1) s0 checkpoints.\n93\t\n94\t### S2a. LoRA-only s0 30K across eval seeds\n95\t\n96\t| eval_seed | avg_CAR | avg_TSR | n_episodes |\n97\t|-----------|---------|---------|------------|\n98\t| 0 | 53.0 | 55.5 | 50 |\n99\t| 7 (default) | 56.5 | 51.5 | 200 |\n100\t| 42 | 56.5 | 46.0 | 50 |\n101\t| 99 | 57.5 | 52.0 | 50 |\n102\t| 123 | 53.0 | 50.5 | 50 |\n103\t\n104\t**Mean CAR = 55.3%, Std = 2.0%**\n105\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002870"
+        },
+        {
+          "source_line": 2871,
+          "timestamp": "2026-05-29T15:24:50.688830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md",
+              "old_string": "| s0 | — | — | — | — |\n| s1 | 66 | 72 | 70 | 26 |\n| s2 | 56 | 76 | 70 | 16 |",
+              "new_string": "| s0 | 60 | 74 | 68 | 30 |\n| s1 | 66 | 72 | 70 | 26 |\n| s2 | 56 | 76 | 70 | 16 |"
+            }
+          },
+          "id": "event-002871"
+        },
+        {
+          "source_line": 2872,
+          "timestamp": "2026-05-29T15:24:50.789686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002872"
+        },
+        {
+          "source_line": 2873,
+          "timestamp": "2026-05-29T15:25:06.130749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**supplementary_checklist S1d 数据已同步。**\n\nSDF λ=0.1 s0 per-task：`— — — —` → `OJ=60, CP=74, Milk=68, BBQ=30`（聚合 58.0，与 registry 一致）。\n\nSupplementary zip 无需重打包（checklist 不在 zip 内）。",
+              "project": "diff_collision_sdf"
+            }
+          },
+          "id": "event-002873"
+        },
+        {
+          "source_line": 2874,
+          "timestamp": "2026-05-29T15:25:09.342823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3212
+          },
+          "id": "event-002874"
+        },
+        {
+          "source_line": 2875,
+          "timestamp": "2026-05-29T15:25:20.359328+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证聚合：(60+74+68+30)/4 = 58.0，与 registry s0 CAR=58.0 一致。\n\nSupplementary zip 不受影响（supplementary_checklist.md 不在 zip 内，zip 只包含 README.md + code/），无需重打包。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
+          },
+          "id": "event-002875"
+        }
+      ]
+    },
+    {
+      "number": 114,
+      "messages": [
+        {
+          "source_line": 2876,
+          "timestamp": "2026-05-29T15:26:12.482005+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **紧急：2 个提交阻塞修复（DDL 今天）**\n\nReviewer 审查发现 2 个 critical 提交阻塞问题，必须立即修复。\n\n**任务 1 [CRITICAL]: Page Overflow 验证与修复**\nsubmission_checklist.md 标注 \"Limitations section last sentence spills onto page 9\"。CoRL 硬性 8 页限制。\n- 先验证当前 v11 PDF 是否确实溢出（编译并检查）\n- 如果溢出：精简 Limitations 尾部 ~2 行，确保第 8 页内结束\n- 如果 checklist 过时（v11 已修复）：更新 checklist 标记为 ✅\n- 修复后重新编译 PDF\n\n**任务 2 [CRITICAL]: Supplementary README 超参错误修复**\nReviewer 标注 3 处 critical 超参错误：\n- learning rate: `5e-5` → 应为 `2.5e-5`\n- batch size: `4` → 应为 `32`  \n- lambda range: `{0, 0.005, 0.05, 0.1}` → 应为 `{0.005, 0.01, 0.1}`\n\n修复后重新打包 supplementary zip。\n\n**任务 3 [INFO]: openreview_fields.md 页数统一**\n写的 \"20 pages\" 与实际 18 页不一致，更正为 18。\n\n三个任务一起做，Worker 可并行。完成后汇报修复结果 + 最终 PDF/zip 路径。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "source": "director"
+          },
+          "id": "event-002876"
+        },
+        {
+          "source_line": 2877,
+          "timestamp": "2026-05-29T15:26:29.550033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper && pdfinfo main.pdf | grep Pages && md5sum main.pdf",
+              "description": "Check current PDF page count and MD5"
+            }
+          },
+          "id": "event-002877"
+        },
+        {
+          "source_line": 2878,
+          "timestamp": "2026-05-29T15:26:30.957281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pages:           17\n36165c45ddaba8cb06df2dcf0113cac7  main.pdf\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/agent_e2e2cb9d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "elapsed_ms": 1407
+          },
+          "id": "event-002878"
+        },
+        {
+          "source_line": 2879,
+          "timestamp": "2026-05-29T15:26:31.459783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"Learning rate\\|Batch size\\|lambda_sdf.*ablat\\|LoRA rank\" /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary/README.md",
+              "description": "Check README hyperparameters"
+            }
+          },
+          "id": "event-002879"
+        },
+        {
+          "source_line": 2880,
+          "timestamp": "2026-05-29T15:26:31.962230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "90:- Learning rate: 2.5e-5 (Phase 2, LoRA unfrozen)\n91:- LoRA rank: 32, alpha: 32 (action expert); 16, alpha: 16 (PaliGemma vision encoder)\n92:- SDF loss weight (lambda_sdf): 0.1 (best), ablated over {0.005, 0.01, 0.1}\n94:- Batch size: 32"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+            "tool": "Bash",
+            "elapsed_ms": 502
           },
           "id": "event-002880"
         }

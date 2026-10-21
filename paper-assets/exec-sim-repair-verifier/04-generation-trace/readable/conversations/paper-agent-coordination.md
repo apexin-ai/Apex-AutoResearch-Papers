@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 7,246
+- **Events:** 7,222
 - **Recorded user turns:** 343
-- **Tool calls:** 3,296
+- **Tool calls:** 3,284
 - **Original source:** `logs/chats/feishu_group_oc_b2cf3b1eba4db851529b6a1a7a34c4e8_paper_agent.jsonl`
 - **Structured JSON:** [`35c21405c6902babfb65.json`](../../sessions/35/35c21405c6902babfb65.json)
 
@@ -20,4 +20,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](paper-agent-coordination/part-001.md) · [Part 2](paper-agent-coordination/part-002.md) · [Part 3](paper-agent-coordination/part-003.md) · [Part 4](paper-agent-coordination/part-004.md) · [Part 5](paper-agent-coordination/part-005.md) · [Part 6](paper-agent-coordination/part-006.md) · [Part 7](paper-agent-coordination/part-007.md) · [Part 8](paper-agent-coordination/part-008.md) · [Part 9](paper-agent-coordination/part-009.md) · [Part 10](paper-agent-coordination/part-010.md) · [Part 11](paper-agent-coordination/part-011.md) · [Part 12](paper-agent-coordination/part-012.md) · [Part 13](paper-agent-coordination/part-013.md)
+[Part 1](paper-agent-coordination/part-001.md) · [Part 2](paper-agent-coordination/part-002.md) · [Part 3](paper-agent-coordination/part-003.md) · [Part 4](paper-agent-coordination/part-004.md) · [Part 5](paper-agent-coordination/part-005.md) · [Part 6](paper-agent-coordination/part-006.md) · [Part 7](paper-agent-coordination/part-007.md) · [Part 8](paper-agent-coordination/part-008.md) · [Part 9](paper-agent-coordination/part-009.md) · [Part 10](paper-agent-coordination/part-010.md) · [Part 11](paper-agent-coordination/part-011.md) · [Part 12](paper-agent-coordination/part-012.md)

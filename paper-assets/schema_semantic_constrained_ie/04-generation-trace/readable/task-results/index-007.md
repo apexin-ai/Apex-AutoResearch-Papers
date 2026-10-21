@@ -25,7 +25,4 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | writing d066 latex table | 1 | 0 | [Read transcript](writing-d066-latex-table.md) | [JSON](../../sessions/bd/bd1f0794198271ab96fa.json) |
 | writing d066 pareto figure | 1 | 0 | [Read transcript](writing-d066-pareto-figure.md) | [JSON](../../sessions/27/27fed84ef085f806f343.json) |
 | writing r16 paper text fixes | 1 | 0 | [Read transcript](writing-r16-paper-text-fixes.md) | [JSON](../../sessions/46/46fe4748351229336897.json) |
-| writing rebuttal beam wording | 1 | 0 | [Read transcript](writing-rebuttal-beam-wording.md) | [JSON](../../sessions/6b/6bd04a835b2b5923a5cc.json) |
-| writing rebuttal draft | 1 | 0 | [Read transcript](writing-rebuttal-draft.md) | [JSON](../../sessions/5e/5e3d4247bfc58e4e1489.json) |
-| writing rebuttal v1 corrections | 1 | 0 | [Read transcript](writing-rebuttal-v1-corrections.md) | [JSON](../../sessions/26/26266672af449bb78bb8.json) |
 | writing sampling results integration | 1 | 0 | [Read transcript](writing-sampling-results-integration.md) | [JSON](../../sessions/18/18767ab7ae1a03b9b16e.json) |

@@ -9,16 +9,16 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/worker_analysis_m1_gemini_leverage_20260522T091146.jsonl",
     "occurrence": 1,
-    "bytes": 189411,
-    "sha256": "44890b317d711934a4266b92595b7526f5969a2dac1943cea9a7c16d13b9e035"
+    "bytes": 186877,
+    "sha256": "d58b1c65b4911c24ce81a8ac5eb104c4533af345a1bc4c750b21bed4514283c3"
   },
   "statistics": {
-    "messages": 215,
+    "messages": 213,
     "user_turns": 0,
-    "tool_calls": 107,
+    "tool_calls": 106,
     "roles": {
-      "tool_call": 107,
-      "tool_result": 107,
+      "tool_call": 106,
+      "tool_result": 106,
       "assistant": 1
     },
     "unparsed_lines_preserved": 0,
@@ -1824,44 +1824,6 @@
         },
         {
           "source_line": 93,
-          "timestamp": "2026-05-22T09:21:23.820808+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_m1_gemini_leverage_20260522T091146",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/rebuttal_talking_points.md"
-            }
-          },
-          "id": "event-000093"
-        },
-        {
-          "source_line": 94,
-          "timestamp": "2026-05-22T09:21:23.821110+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Talking Points — ARR May 2026\n2\t# Prepared: 2026-05-18 | Updated: 2026-05-21 (v23: TP14 RE none evaluation, causal wording softened, Limitations cleaned)\n3\t\n4\t## 1. Novelty: \"SCS not new, findings not surprising\"\n5\tSCS's formal definition matches LLM-PEE's partitioning criterion — acknowledged in Related Work and Limitations. While LLM-PEE uses this criterion for engineering optimization (schema partitioning), our work uses it for scientific analysis: isolating confusability as an independent variable via stratified experimental design. Three findings lacked prior empirical evidence: (a) BCS predicts RE but not NER (task asymmetry); (b) schema decomposition fails due to merge amplification; (c) few-shot widens confusability gap. \"Not surprising in hindsight\" ≠ \"already known.\"\n6\t\n7\t## 2. Effect size: \"r²=1.3% too small, typical batch only 2.2pp\"\n8\tPairwise r²=1.3-1.7% is modest at the pair level, but this is the mechanism-level signal; the primary evidence is batch-level BCS explaining 22% (FewRel, n=100) of cross-batch RE accuracy variance (§4.3). Correlated type pairs within batches compound the pairwise signal (Monte Carlo confirms ~3x amplification). 2.2pp is typical IQR gap; extreme batches (real in production schemas) produce 25pp gap on DocRED (expanded experiment: low_bcs acc=0.672 vs high_bcs acc=0.422 at count=16, Δ=25.04pp [21.90, 28.34]). For 80+ type production schemas, 2.2pp systematic bias accumulates over thousands of extractions. The DocRED expanded experiment (n=55, tripled sample) confirms robust Spearman correlations (r=-0.762 at count=16, r=-0.693 at count=32, both p<0.001).\n9\t\n10\t## 3. Generalizability: \"BCS only works for RE\" / \"NER null untested\"\n11\tTask asymmetry is a core finding (C2), not a limitation. RE errors concentrate in type substitution regardless of output format (paired evidence: constrained vs unconstrained yield identical BCS correlations). NER errors scatter across missed entities, boundary misalignment, and type \n…[truncated 8997 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_m1_gemini_leverage_20260522T091146",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-000094"
-        },
-        {
-          "source_line": 95,
           "timestamp": "2026-05-22T09:21:23.821304+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1882,10 +1844,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-000095"
+          "id": "event-000093"
         },
         {
-          "source_line": 96,
+          "source_line": 94,
           "timestamp": "2026-05-22T09:21:23.821443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1900,10 +1862,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000096"
+          "id": "event-000094"
         },
         {
-          "source_line": 97,
+          "source_line": 95,
           "timestamp": "2026-05-22T09:21:23.821574+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1921,10 +1883,10 @@
               "description": "Find files with Gemini correlation values"
             }
           },
-          "id": "event-000097"
+          "id": "event-000095"
         },
         {
-          "source_line": 98,
+          "source_line": 96,
           "timestamp": "2026-05-22T09:21:23.821703+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1939,10 +1901,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000098"
+          "id": "event-000096"
         },
         {
-          "source_line": 99,
+          "source_line": 97,
           "timestamp": "2026-05-22T09:21:23.821822+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1960,10 +1922,10 @@
               "description": "Find Python scripts that reference Gemini"
             }
           },
-          "id": "event-000099"
+          "id": "event-000097"
         },
         {
-          "source_line": 100,
+          "source_line": 98,
           "timestamp": "2026-05-22T09:21:23.821970+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1978,10 +1940,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000100"
+          "id": "event-000098"
         },
         {
-          "source_line": 101,
+          "source_line": 99,
           "timestamp": "2026-05-22T09:21:23.822103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1998,10 +1960,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py"
             }
           },
-          "id": "event-000101"
+          "id": "event-000099"
         },
         {
-          "source_line": 102,
+          "source_line": 100,
           "timestamp": "2026-05-22T09:21:23.822384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2016,10 +1978,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000102"
+          "id": "event-000100"
         },
         {
-          "source_line": 103,
+          "source_line": 101,
           "timestamp": "2026-05-22T09:21:23.822570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2037,10 +1999,10 @@
               "description": "Check part2 BCS-controlled batch data"
             }
           },
-          "id": "event-000103"
+          "id": "event-000101"
         },
         {
-          "source_line": 104,
+          "source_line": 102,
           "timestamp": "2026-05-22T09:21:23.822717+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2055,10 +2017,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000104"
+          "id": "event-000102"
         },
         {
-          "source_line": 105,
+          "source_line": 103,
           "timestamp": "2026-05-22T09:21:23.822861+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2076,10 +2038,10 @@
               "description": "Check part2 directory and main run log size"
             }
           },
-          "id": "event-000105"
+          "id": "event-000103"
         },
         {
-          "source_line": 106,
+          "source_line": 104,
           "timestamp": "2026-05-22T09:21:23.822993+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2094,10 +2056,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000106"
+          "id": "event-000104"
         },
         {
-          "source_line": 107,
+          "source_line": 105,
           "timestamp": "2026-05-22T09:21:23.823151+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2115,10 +2077,10 @@
               "description": "Count BCS-controlled batch mentions in run.log"
             }
           },
-          "id": "event-000107"
+          "id": "event-000105"
         },
         {
-          "source_line": 108,
+          "source_line": 106,
           "timestamp": "2026-05-22T09:21:23.823273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2133,10 +2095,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000108"
+          "id": "event-000106"
         },
         {
-          "source_line": 109,
+          "source_line": 107,
           "timestamp": "2026-05-22T09:21:23.823676+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2154,10 +2116,10 @@
               "description": "Find BCS-controlled results in run log"
             }
           },
-          "id": "event-000109"
+          "id": "event-000107"
         },
         {
-          "source_line": 110,
+          "source_line": 108,
           "timestamp": "2026-05-22T09:21:23.823977+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2172,10 +2134,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000110"
+          "id": "event-000108"
         },
         {
-          "source_line": 111,
+          "source_line": 109,
           "timestamp": "2026-05-22T09:21:23.824168+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2193,10 +2155,10 @@
               "description": "Find Part 2 execution traces in run.log"
             }
           },
-          "id": "event-000111"
+          "id": "event-000109"
         },
         {
-          "source_line": 112,
+          "source_line": 110,
           "timestamp": "2026-05-22T09:21:23.824307+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2211,10 +2173,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000112"
+          "id": "event-000110"
         },
         {
-          "source_line": 113,
+          "source_line": 111,
           "timestamp": "2026-05-22T09:21:23.824436+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2232,10 +2194,10 @@
               "description": "Check resume logs for BCS-controlled batches"
             }
           },
-          "id": "event-000113"
+          "id": "event-000111"
         },
         {
-          "source_line": 114,
+          "source_line": 112,
           "timestamp": "2026-05-22T09:21:23.824559+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2250,10 +2212,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000114"
+          "id": "event-000112"
         },
         {
-          "source_line": 115,
+          "source_line": 113,
           "timestamp": "2026-05-22T09:21:23.824711+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2271,10 +2233,10 @@
               "description": "Find cross-model and Gemini analysis files"
             }
           },
-          "id": "event-000115"
+          "id": "event-000113"
         },
         {
-          "source_line": 116,
+          "source_line": 114,
           "timestamp": "2026-05-22T09:21:23.824855+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2289,10 +2251,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000116"
+          "id": "event-000114"
         },
         {
-          "source_line": 117,
+          "source_line": 115,
           "timestamp": "2026-05-22T09:21:23.825035+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2313,10 +2275,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-000117"
+          "id": "event-000115"
         },
         {
-          "source_line": 118,
+          "source_line": 116,
           "timestamp": "2026-05-22T09:21:23.825212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2331,10 +2293,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000118"
+          "id": "event-000116"
         },
         {
-          "source_line": 119,
+          "source_line": 117,
           "timestamp": "2026-05-22T09:21:23.825378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2352,10 +2314,10 @@
               "description": "Find LaTeX files with Gemini leverage analysis"
             }
           },
-          "id": "event-000119"
+          "id": "event-000117"
         },
         {
-          "source_line": 120,
+          "source_line": 118,
           "timestamp": "2026-05-22T09:21:23.825503+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2370,10 +2332,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000120"
+          "id": "event-000118"
         },
         {
-          "source_line": 121,
+          "source_line": 119,
           "timestamp": "2026-05-22T09:21:23.825624+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2391,10 +2353,10 @@
               "description": "Find main paper LaTeX files"
             }
           },
-          "id": "event-000121"
+          "id": "event-000119"
         },
         {
-          "source_line": 122,
+          "source_line": 120,
           "timestamp": "2026-05-22T09:21:23.825755+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2409,10 +2371,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000122"
+          "id": "event-000120"
         },
         {
-          "source_line": 123,
+          "source_line": 121,
           "timestamp": "2026-05-22T09:21:23.825925+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2433,10 +2395,10 @@
               "head_limit": "50"
             }
           },
-          "id": "event-000123"
+          "id": "event-000121"
         },
         {
-          "source_line": 124,
+          "source_line": 122,
           "timestamp": "2026-05-22T09:21:23.826053+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2451,10 +2413,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000124"
+          "id": "event-000122"
         },
         {
-          "source_line": 125,
+          "source_line": 123,
           "timestamp": "2026-05-22T09:21:23.826171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2472,10 +2434,10 @@
               "description": "Find LaTeX files mentioning Gemini or leverage"
             }
           },
-          "id": "event-000125"
+          "id": "event-000123"
         },
         {
-          "source_line": 126,
+          "source_line": 124,
           "timestamp": "2026-05-22T09:21:23.826294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2490,10 +2452,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000126"
+          "id": "event-000124"
         },
         {
-          "source_line": 127,
+          "source_line": 125,
           "timestamp": "2026-05-22T09:21:23.826417+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2514,10 +2476,10 @@
               "head_limit": "40"
             }
           },
-          "id": "event-000127"
+          "id": "event-000125"
         },
         {
-          "source_line": 128,
+          "source_line": 126,
           "timestamp": "2026-05-22T09:21:23.826563+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2532,10 +2494,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000128"
+          "id": "event-000126"
         },
         {
-          "source_line": 129,
+          "source_line": 127,
           "timestamp": "2026-05-22T09:21:23.826708+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2554,10 +2516,10 @@
               "limit": "80"
             }
           },
-          "id": "event-000129"
+          "id": "event-000127"
         },
         {
-          "source_line": 130,
+          "source_line": 128,
           "timestamp": "2026-05-22T09:21:23.826892+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2572,10 +2534,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000130"
+          "id": "event-000128"
         },
         {
-          "source_line": 131,
+          "source_line": 129,
           "timestamp": "2026-05-22T09:21:23.827068+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2593,10 +2555,10 @@
               "description": "Find BCS-controlled results files"
             }
           },
-          "id": "event-000131"
+          "id": "event-000129"
         },
         {
-          "source_line": 132,
+          "source_line": 130,
           "timestamp": "2026-05-22T09:21:23.827199+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2611,10 +2573,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000132"
+          "id": "event-000130"
         },
         {
-          "source_line": 133,
+          "source_line": 131,
           "timestamp": "2026-05-22T09:21:23.827321+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2636,10 +2598,10 @@
               "glob": "*.{json,md,log}"
             }
           },
-          "id": "event-000133"
+          "id": "event-000131"
         },
         {
-          "source_line": 134,
+          "source_line": 132,
           "timestamp": "2026-05-22T09:21:23.827451+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2654,10 +2616,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000134"
+          "id": "event-000132"
         },
         {
-          "source_line": 135,
+          "source_line": 133,
           "timestamp": "2026-05-22T09:21:23.827574+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2675,10 +2637,10 @@
               "limit": "100"
             }
           },
-          "id": "event-000135"
+          "id": "event-000133"
         },
         {
-          "source_line": 136,
+          "source_line": 134,
           "timestamp": "2026-05-22T09:21:23.827733+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2693,10 +2655,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000136"
+          "id": "event-000134"
         },
         {
-          "source_line": 137,
+          "source_line": 135,
           "timestamp": "2026-05-22T09:21:23.827937+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2714,10 +2676,10 @@
               "limit": "80"
             }
           },
-          "id": "event-000137"
+          "id": "event-000135"
         },
         {
-          "source_line": 138,
+          "source_line": 136,
           "timestamp": "2026-05-22T09:21:23.828104+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2732,10 +2694,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000138"
+          "id": "event-000136"
         },
         {
-          "source_line": 139,
+          "source_line": 137,
           "timestamp": "2026-05-22T09:21:23.828277+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2753,10 +2715,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-000139"
+          "id": "event-000137"
         },
         {
-          "source_line": 140,
+          "source_line": 138,
           "timestamp": "2026-05-22T09:21:23.828406+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2771,10 +2733,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-000140"
+          "id": "event-000138"
         },
         {
-          "source_line": 141,
+          "source_line": 139,
           "timestamp": "2026-05-22T09:21:23.828559+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2793,10 +2755,10 @@
               "timeout": "15000"
             }
           },
-          "id": "event-000141"
+          "id": "event-000139"
         },
         {
-          "source_line": 142,
+          "source_line": 140,
           "timestamp": "2026-05-22T09:21:23.829215+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2811,10 +2773,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000142"
+          "id": "event-000140"
         },
         {
-          "source_line": 143,
+          "source_line": 141,
           "timestamp": "2026-05-22T09:21:23.829409+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2832,10 +2794,10 @@
               "description": "Check SSH config for cqa1"
             }
           },
-          "id": "event-000143"
+          "id": "event-000141"
         },
         {
-          "source_line": 144,
+          "source_line": 142,
           "timestamp": "2026-05-22T09:21:23.829562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2850,10 +2812,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000144"
+          "id": "event-000142"
         },
         {
-          "source_line": 145,
+          "source_line": 143,
           "timestamp": "2026-05-22T09:21:23.829730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2871,10 +2833,10 @@
               "description": "Check SSH config"
             }
           },
-          "id": "event-000145"
+          "id": "event-000143"
         },
         {
-          "source_line": 146,
+          "source_line": 144,
           "timestamp": "2026-05-22T09:21:23.829947+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2889,10 +2851,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000146"
+          "id": "event-000144"
         },
         {
-          "source_line": 147,
+          "source_line": 145,
           "timestamp": "2026-05-22T09:21:23.830342+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2910,10 +2872,10 @@
               "description": "Check exp_v2_re_n25 directory (count_8 batch source)"
             }
           },
-          "id": "event-000147"
+          "id": "event-000145"
         },
         {
-          "source_line": 148,
+          "source_line": 146,
           "timestamp": "2026-05-22T09:21:23.830632+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2928,10 +2890,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000148"
+          "id": "event-000146"
         },
         {
-          "source_line": 149,
+          "source_line": 147,
           "timestamp": "2026-05-22T09:21:23.830800+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2949,10 +2911,10 @@
               "description": "Get count_16 BCS values from batch_groups.json"
             }
           },
-          "id": "event-000149"
+          "id": "event-000147"
         },
         {
-          "source_line": 150,
+          "source_line": 148,
           "timestamp": "2026-05-22T09:21:23.830974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2967,10 +2929,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000150"
+          "id": "event-000148"
         },
         {
-          "source_line": 151,
+          "source_line": 149,
           "timestamp": "2026-05-22T09:21:23.831106+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2988,10 +2950,10 @@
               "description": "Get count_8 BCS values from batch_groups.json"
             }
           },
-          "id": "event-000151"
+          "id": "event-000149"
         },
         {
-          "source_line": 152,
+          "source_line": 150,
           "timestamp": "2026-05-22T09:21:23.831232+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3006,10 +2968,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000152"
+          "id": "event-000150"
         },
         {
-          "source_line": 153,
+          "source_line": 151,
           "timestamp": "2026-05-22T09:21:23.831372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3027,10 +2989,10 @@
               "description": "Search all log files for Part 2 batch results"
             }
           },
-          "id": "event-000153"
+          "id": "event-000151"
         },
         {
-          "source_line": 154,
+          "source_line": 152,
           "timestamp": "2026-05-22T09:21:23.831532+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3045,10 +3007,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000154"
+          "id": "event-000152"
         },
         {
-          "source_line": 155,
+          "source_line": 153,
           "timestamp": "2026-05-22T09:21:23.831699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3066,10 +3028,10 @@
               "description": "Find Gemini analysis markdown files"
             }
           },
-          "id": "event-000155"
+          "id": "event-000153"
         },
         {
-          "source_line": 156,
+          "source_line": 154,
           "timestamp": "2026-05-22T09:21:23.831988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3084,10 +3046,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000156"
+          "id": "event-000154"
         },
         {
-          "source_line": 157,
+          "source_line": 155,
           "timestamp": "2026-05-22T09:21:23.832129+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3108,10 +3070,10 @@
               "head_limit": "15"
             }
           },
-          "id": "event-000157"
+          "id": "event-000155"
         },
         {
-          "source_line": 158,
+          "source_line": 156,
           "timestamp": "2026-05-22T09:21:23.832271+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3126,10 +3088,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000158"
+          "id": "event-000156"
         },
         {
-          "source_line": 159,
+          "source_line": 157,
           "timestamp": "2026-05-22T09:21:23.832401+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3147,10 +3109,10 @@
               "limit": "80"
             }
           },
-          "id": "event-000159"
+          "id": "event-000157"
         },
         {
-          "source_line": 160,
+          "source_line": 158,
           "timestamp": "2026-05-22T09:21:23.832572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3165,10 +3127,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000160"
+          "id": "event-000158"
         },
         {
-          "source_line": 161,
+          "source_line": 159,
           "timestamp": "2026-05-22T09:21:23.832745+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3189,10 +3151,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-000161"
+          "id": "event-000159"
         },
         {
-          "source_line": 162,
+          "source_line": 160,
           "timestamp": "2026-05-22T09:21:23.832922+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3207,10 +3169,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000162"
+          "id": "event-000160"
         },
         {
-          "source_line": 163,
+          "source_line": 161,
           "timestamp": "2026-05-22T09:21:23.833084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3231,10 +3193,10 @@
               "-C": "3"
             }
           },
-          "id": "event-000163"
+          "id": "event-000161"
         },
         {
-          "source_line": 164,
+          "source_line": 162,
           "timestamp": "2026-05-22T09:21:23.833216+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3249,10 +3211,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-000164"
+          "id": "event-000162"
         },
         {
-          "source_line": 165,
+          "source_line": 163,
           "timestamp": "2026-05-22T09:21:23.833338+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3270,10 +3232,10 @@
               "description": "Find all Gemini JSON files"
             }
           },
-          "id": "event-000165"
+          "id": "event-000163"
         },
         {
-          "source_line": 166,
+          "source_line": 164,
           "timestamp": "2026-05-22T09:21:23.833576+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3288,10 +3250,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000166"
+          "id": "event-000164"
         },
         {
-          "source_line": 167,
+          "source_line": 165,
           "timestamp": "2026-05-22T09:21:23.833972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3309,10 +3271,10 @@
               "limit": "200"
             }
           },
-          "id": "event-000167"
+          "id": "event-000165"
         },
         {
-          "source_line": 168,
+          "source_line": 166,
           "timestamp": "2026-05-22T09:21:23.834124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3327,10 +3289,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000168"
+          "id": "event-000166"
         },
         {
-          "source_line": 169,
+          "source_line": 167,
           "timestamp": "2026-05-22T09:21:23.834274+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3348,10 +3310,10 @@
               "limit": "200"
             }
           },
-          "id": "event-000169"
+          "id": "event-000167"
         },
         {
-          "source_line": 170,
+          "source_line": 168,
           "timestamp": "2026-05-22T09:21:23.835730+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3366,10 +3328,10 @@
             "tool": "Read",
             "elapsed_ms": 1
           },
-          "id": "event-000170"
+          "id": "event-000168"
         },
         {
-          "source_line": 171,
+          "source_line": 169,
           "timestamp": "2026-05-22T09:21:23.835946+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3387,10 +3349,10 @@
               "limit": "200"
             }
           },
-          "id": "event-000171"
+          "id": "event-000169"
         },
         {
-          "source_line": 172,
+          "source_line": 170,
           "timestamp": "2026-05-22T09:21:23.836089+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3405,10 +3367,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000172"
+          "id": "event-000170"
         },
         {
-          "source_line": 173,
+          "source_line": 171,
           "timestamp": "2026-05-22T09:21:23.836220+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3426,10 +3388,10 @@
               "description": "Search for batch-level data in worker result"
             }
           },
-          "id": "event-000173"
+          "id": "event-000171"
         },
         {
-          "source_line": 174,
+          "source_line": 172,
           "timestamp": "2026-05-22T09:21:23.836755+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3444,10 +3406,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000174"
+          "id": "event-000172"
         },
         {
-          "source_line": 175,
+          "source_line": 173,
           "timestamp": "2026-05-22T09:21:23.837158+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3465,10 +3427,10 @@
               "limit": "150"
             }
           },
-          "id": "event-000175"
+          "id": "event-000173"
         },
         {
-          "source_line": 176,
+          "source_line": 174,
           "timestamp": "2026-05-22T09:21:23.837324+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3483,10 +3445,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000176"
+          "id": "event-000174"
         },
         {
-          "source_line": 177,
+          "source_line": 175,
           "timestamp": "2026-05-22T09:21:23.837461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3504,10 +3466,10 @@
               "limit": "150"
             }
           },
-          "id": "event-000177"
+          "id": "event-000175"
         },
         {
-          "source_line": 178,
+          "source_line": 176,
           "timestamp": "2026-05-22T09:21:23.837604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3522,10 +3484,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000178"
+          "id": "event-000176"
         },
         {
-          "source_line": 179,
+          "source_line": 177,
           "timestamp": "2026-05-22T09:21:23.837743+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3543,10 +3505,10 @@
               "limit": "100"
             }
           },
-          "id": "event-000179"
+          "id": "event-000177"
         },
         {
-          "source_line": 180,
+          "source_line": 178,
           "timestamp": "2026-05-22T09:21:23.837916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3561,10 +3523,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000180"
+          "id": "event-000178"
         },
         {
-          "source_line": 181,
+          "source_line": 179,
           "timestamp": "2026-05-22T09:21:23.838082+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3582,10 +3544,10 @@
               "description": "Find batch accuracy data in worker result"
             }
           },
-          "id": "event-000181"
+          "id": "event-000179"
         },
         {
-          "source_line": 182,
+          "source_line": 180,
           "timestamp": "2026-05-22T09:21:23.838224+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3600,10 +3562,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000182"
+          "id": "event-000180"
         },
         {
-          "source_line": 183,
+          "source_line": 181,
           "timestamp": "2026-05-22T09:21:23.838469+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3622,10 +3584,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000183"
+          "id": "event-000181"
         },
         {
-          "source_line": 184,
+          "source_line": 182,
           "timestamp": "2026-05-22T09:21:23.838912+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3640,10 +3602,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000184"
+          "id": "event-000182"
         },
         {
-          "source_line": 185,
+          "source_line": 183,
           "timestamp": "2026-05-22T09:21:23.839208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3661,10 +3623,10 @@
               "description": "Print full final check result"
             }
           },
-          "id": "event-000185"
+          "id": "event-000183"
         },
         {
-          "source_line": 186,
+          "source_line": 184,
           "timestamp": "2026-05-22T09:21:23.839554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3679,10 +3641,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000186"
+          "id": "event-000184"
         },
         {
-          "source_line": 187,
+          "source_line": 185,
           "timestamp": "2026-05-22T09:21:23.839763+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3701,10 +3663,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000187"
+          "id": "event-000185"
         },
         {
-          "source_line": 188,
+          "source_line": 186,
           "timestamp": "2026-05-22T09:21:23.840002+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3719,10 +3681,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000188"
+          "id": "event-000186"
         },
         {
-          "source_line": 189,
+          "source_line": 187,
           "timestamp": "2026-05-22T09:21:23.840161+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3741,10 +3703,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000189"
+          "id": "event-000187"
         },
         {
-          "source_line": 190,
+          "source_line": 188,
           "timestamp": "2026-05-22T09:21:23.840515+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3759,10 +3721,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000190"
+          "id": "event-000188"
         },
         {
-          "source_line": 191,
+          "source_line": 189,
           "timestamp": "2026-05-22T09:21:23.840702+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3781,10 +3743,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000191"
+          "id": "event-000189"
         },
         {
-          "source_line": 192,
+          "source_line": 190,
           "timestamp": "2026-05-22T09:21:23.840983+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3799,10 +3761,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000192"
+          "id": "event-000190"
         },
         {
-          "source_line": 193,
+          "source_line": 191,
           "timestamp": "2026-05-22T09:21:23.841455+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3820,10 +3782,10 @@
               "description": "Get full LOO analysis result"
             }
           },
-          "id": "event-000193"
+          "id": "event-000191"
         },
         {
-          "source_line": 194,
+          "source_line": 192,
           "timestamp": "2026-05-22T09:21:23.841659+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3838,10 +3800,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000194"
+          "id": "event-000192"
         },
         {
-          "source_line": 195,
+          "source_line": 193,
           "timestamp": "2026-05-22T09:21:23.841823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3859,10 +3821,10 @@
               "description": "List all Gemini worker logs"
             }
           },
-          "id": "event-000195"
+          "id": "event-000193"
         },
         {
-          "source_line": 196,
+          "source_line": 194,
           "timestamp": "2026-05-22T09:21:23.842150+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3877,10 +3839,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000196"
+          "id": "event-000194"
         },
         {
-          "source_line": 197,
+          "source_line": 195,
           "timestamp": "2026-05-22T09:21:23.842311+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3898,10 +3860,10 @@
               "description": "Check final worker result for extra data"
             }
           },
-          "id": "event-000197"
+          "id": "event-000195"
         },
         {
-          "source_line": 198,
+          "source_line": 196,
           "timestamp": "2026-05-22T09:21:23.842469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3916,10 +3878,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000198"
+          "id": "event-000196"
         },
         {
-          "source_line": 199,
+          "source_line": 197,
           "timestamp": "2026-05-22T09:21:23.842630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3937,10 +3899,10 @@
               "description": "Find LOO worker full log"
             }
           },
-          "id": "event-000199"
+          "id": "event-000197"
         },
         {
-          "source_line": 200,
+          "source_line": 198,
           "timestamp": "2026-05-22T09:21:23.842902+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3955,10 +3917,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000200"
+          "id": "event-000198"
         },
         {
-          "source_line": 201,
+          "source_line": 199,
           "timestamp": "2026-05-22T09:21:23.843071+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3976,10 +3938,10 @@
               "description": "Find LOO worker log (non-result)"
             }
           },
-          "id": "event-000201"
+          "id": "event-000199"
         },
         {
-          "source_line": 202,
+          "source_line": 200,
           "timestamp": "2026-05-22T09:21:23.843199+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3994,10 +3956,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000202"
+          "id": "event-000200"
         },
         {
-          "source_line": 203,
+          "source_line": 201,
           "timestamp": "2026-05-22T09:21:23.843325+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4015,10 +3977,10 @@
               "description": "Check LOO log size"
             }
           },
-          "id": "event-000203"
+          "id": "event-000201"
         },
         {
-          "source_line": 204,
+          "source_line": 202,
           "timestamp": "2026-05-22T09:21:23.843447+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4033,10 +3995,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000204"
+          "id": "event-000202"
         },
         {
-          "source_line": 205,
+          "source_line": 203,
           "timestamp": "2026-05-22T09:21:23.843570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4055,10 +4017,10 @@
               "timeout": "15000"
             }
           },
-          "id": "event-000205"
+          "id": "event-000203"
         },
         {
-          "source_line": 206,
+          "source_line": 204,
           "timestamp": "2026-05-22T09:21:23.843744+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4073,10 +4035,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000206"
+          "id": "event-000204"
         },
         {
-          "source_line": 207,
+          "source_line": 205,
           "timestamp": "2026-05-22T09:21:23.843954+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4095,10 +4057,10 @@
               "timeout": "15000"
             }
           },
-          "id": "event-000207"
+          "id": "event-000205"
         },
         {
-          "source_line": 208,
+          "source_line": 206,
           "timestamp": "2026-05-22T09:21:23.844140+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4113,10 +4075,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000208"
+          "id": "event-000206"
         },
         {
-          "source_line": 209,
+          "source_line": 207,
           "timestamp": "2026-05-22T09:21:23.844350+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4135,10 +4097,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000209"
+          "id": "event-000207"
         },
         {
-          "source_line": 210,
+          "source_line": 208,
           "timestamp": "2026-05-22T09:21:23.844632+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4153,10 +4115,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000210"
+          "id": "event-000208"
         },
         {
-          "source_line": 211,
+          "source_line": 209,
           "timestamp": "2026-05-22T09:21:23.844906+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4174,10 +4136,10 @@
               "content": "# M1: Gemini 2.5 Flash — Leverage Sensitivity Analysis (Cook's Distance)\n\n**Date**: 2026-05-22  \n**Data**: `exp_gemini_flash/part2/results_incremental.jsonl` (6720 samples, 60 batches)  \n**Batch groups**: count_8 (25 low + 25 high BCS), count_16 (5 low + 5 high BCS)\n\n---\n\n## 1. Count_16 BCS-Controlled (n=10)\n\n### Full Correlation\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.8043** | 0.005 |\n| Spearman ρ | -0.4012 | 0.250 |\n\n### Cook's Distance (threshold = 4/n = 0.400)\n\n| Batch | BCS | Accuracy | Cook's D | Flag |\n|-------|-----|----------|----------|------|\n| count_16_high_4 | **0.9706** | **0.5990** | **0.4904** | LEVERAGE |\n| count_16_high_0 | 0.5814 | 0.6615 | 0.3334 | |\n| count_16_high_2 | 0.5890 | 0.8385 | 0.1017 | |\n| (7 others) | 0.50–0.62 | 0.79–0.84 | <0.05 | |\n\n### Leverage Point Characterization — count_16_high_4\n\n- **BCS = 0.9706**: 11.2σ above the mean of the other 9 batches (mean=0.553, std=0.037). This is an extreme x-outlier — the other 9 batches cluster in [0.50, 0.62].\n- **h_ii = 0.934**: hat value is 4.7× the mean (0.200). This single point captures 93% of the x-axis leverage.\n- **Residual = +0.003**: near-zero residual (acc falls exactly on the regression line). The point is influential not because it deviates from the trend, but because it *defines* the trend.\n- **Why it matters**: Without this point, the remaining 9 batches span only BCS=[0.50, 0.62] — too narrow a range for meaningful correlation.\n\n### Trimmed Correlation (n=9, removing high_4)\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.4173** | 0.264 |\n| Spearman ρ | -0.1757 | 0.651 |\n\n**Conclusion**: count_16 correlation is single-point driven. The claim r=-0.80 is entirely dependent on high_4 (BCS=0.97). Removing it drops Pearson to r=-0.42 (n.s.) and Spearman to ρ=-0.18 (n.s.). This is consistent with the paper's disclosure in Appendix T.\n\n---\n\n## 2. Count_8 BCS-Controlled (n=50)\n\n### Full Correlation\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.8873** | 9.4e-18 |\n| Spearman ρ | **-0.7435** | 6.2e-10 |\n\n### Cook's Distance (threshold = 4/n = 0.080)\n\n| Batch | BCS | Accuracy | Residual | Cook's D | Flag |\n|-------|-----|----------|----------|----------|------|\n| count_8_low_10 | 0.3627 | 0.7917 | -0.1131 | **0.1275** | LEVERAGE |\n| count_8_high_14 | 0.7988 | 0.8229 | +0.0940 | **0.0883** | LEVERAGE |\n| count_8_high_22 | 0.8053 | 0.6458 | -0.0805 | 0.0670 | |\n| count_8_high_8 | 0.7953 | 0.8125 | +0.0821 | 0.0664 | |\n| (46 others) | 0.36–0.81 | 0.65–0.98 | <0.08 | |\n\n### Leverage Point Characterization\n\n**count_8_low_10** (Cook's D = 0.128, 1.6× threshold):\n- BCS=0.363 (typical for low group), but acc=0.792 — well below the low-group mean (0.905). This is a performance outlier: a low-BCS batch that underperformed.\n- h_ii = 0.040 (1.0× mean): no x-leverage. Influential purely from large residual.\n\n**count_8_high_14** (Cook's D = 0.088, 1.1× threshold):\n- BCS=0.799 (typical for high group), but acc=0.823 — well above the high-group mean (0.729). This is a performance outlier: a high-BCS batch that overperformed.\n- h_ii = 0.040 (1.0× mean): no x-leverage. Influential purely from large residual.\n\nBoth leverage points are **residual-driven, not x-driven** — they are accuracy outliers, not BCS outliers. This is fundamentally different from the count_16 case where the leverage comes from an extreme BCS value.\n\n### Trimmed Correlation (n=48, removing 2 leverage points)\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.9127** | 1.7e-19 |\n| Spearman ρ | **-0.7535** | 6.4e-10 |\n\n**Conclusion**: count_8 correlation **strengthens** after removing leverage points (r: -0.887 → -0.913). The BCS-accuracy relationship is robust and not dependent on any single batch.\n\n---\n\n## 3. Pooled Analysis (n=60)\n\n### Full Correlation\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.8690** | 2.3e-19 |\n| Spearman ρ | **-0.8050** | 9.1e-15 |\n\n### Cook's Distance (threshold = 4/n = 0.067)\n\n3 leverage points identified:\n- **count_8_low_10** (D=0.093): accuracy outlier (low-BCS batch underperformed)\n- **count_8_high_14** (D=0.082): accuracy outlier (high-BCS batch overperformed)\n- **count_16_high_0** (D=0.080): accuracy outlier (acc=0.662, large negative residual)\n\nNotably, **count_16_high_4** (BCS=0.97) is NOT flagged as a leverage point in the pooled analysis (D=0.050 < 0.067). Its extreme BCS is diluted by the 50 count_8 batches that provide adequate BCS range.\n\n### Trimmed Correlation (n=57, removing 3)\n\n| Metric | Value | p-value |\n|--------|-------|---------|\n| Pearson r | **-0.9102** | 1.0e-22 |\n| Spearman ρ | **-0.8382** | 4.2e-16 |\n\n---\n\n## 4. Impact on Cross-Model Generalization Claim\n\n### Summary Table\n\n| Analysis | Full r | Full p | Trimmed r | Trimmed p | Trimmed n | Robust? |\n|----------|--------|--------|-----------|-----------|-----------|---------|\n| count_8 | -0.887 | 9.4e-18 | **-0.913** | 1.7e-19 | 48 | **YES** |\n| count_16 | -0.804 | 5.0e-03 | -0.417 | 0.264 | 9 | **NO** |\n| Pooled | -0.869 | 2.3e-19 | **-0.910** | 1.0e-22 | 57 | **YES** |\n\n### Assessment\n\n1. **count_8 claim is robust**: r strengthens from -0.887 to -0.913 after leverage removal. The 2 leverage points are accuracy outliers (not BCS outliers), and their removal tightens the relationship. The Δ=-17.6pp gap (CI [15.1, 20.1]) is the primary Gemini Dim2 evidence and is unaffected.\n\n2. **count_16 claim is fragile**: As the paper correctly discloses, the r=-0.80 is driven by a single point (high_4, BCS=0.97) that is 11.2σ from the BCS mean of the other batches. The remaining 9 batches span only BCS=[0.50, 0.62] — insufficient range for meaningful correlation. This is a design limitation (only 5+5 batches with poor BCS separation), not a contradiction of the BCS effect.\n\n3. **Cross-model generalization**: The overall claim holds. Gemini replicates the BCS-accuracy negative relationship at count_8 (n=50, highly significant, robust to leverage removal). The count_16 fragility is a sample-size and design issue, not evidence against the effect. The paper's framing (count_8 as primary, count_16 as supplementary with caveats) is appropriate.\n\n4. **No additional caveats needed**: The paper already discloses the count_16 leverage issue transparently in Appendix T. The count_8 result (the primary evidence) requires no qualification.\n"
             }
           },
-          "id": "event-000211"
+          "id": "event-000209"
         },
         {
-          "source_line": 212,
+          "source_line": 210,
           "timestamp": "2026-05-22T09:21:23.845370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4192,10 +4154,10 @@
             "tool": "Write",
             "elapsed_ms": 0
           },
-          "id": "event-000212"
+          "id": "event-000210"
         },
         {
-          "source_line": 213,
+          "source_line": 211,
           "timestamp": "2026-05-22T09:21:23.845574+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -4217,10 +4179,10 @@
               "tags": "['gemini', 'leverage', 'cook-distance', 'sensitivity', 'cross-model', 'rebuttal']"
             }
           },
-          "id": "event-000213"
+          "id": "event-000211"
         },
         {
-          "source_line": 214,
+          "source_line": 212,
           "timestamp": "2026-05-22T09:21:23.846085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -4235,10 +4197,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 0
           },
-          "id": "event-000214"
+          "id": "event-000212"
         },
         {
-          "source_line": 215,
+          "source_line": 213,
           "timestamp": "2026-05-22T09:21:23.846285+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -4251,10 +4213,10 @@
           "metadata": {
             "session": "worker_analysis_m1_gemini_leverage_20260522T091146"
           },
-          "id": "event-000215"
+          "id": "event-000213"
         }
       ],
-      "message_count": 215
+      "message_count": 213
     }
   ],
   "readable_path": "readable/conversations/analysis-m1-gemini-leverage.md"

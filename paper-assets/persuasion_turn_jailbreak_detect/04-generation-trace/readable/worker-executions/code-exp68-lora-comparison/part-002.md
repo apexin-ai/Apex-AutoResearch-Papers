@@ -381,96 +381,6 @@ LoRA（仅 0.16% 可训练参数）在 DD OOD 上几乎等同于 full fine-tunin
 
 _source line 360_
 
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XMXNpeG5HFKmNribrA1cZb`</summary>
-
-```json
-{
-  "server": "westd-33183",
-  "command": "cat /root/persuasion_turn_jailbreak_detect/results/rebuttal/lora_comparison/summary.json",
-  "account": "root"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "57ae9570-ef8c-4bb8-b2de-d70f85b68f23",
-  "uuid": "a12256dc-10c3-4f20-8dec-e4c9c8ffa0a4",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01KRNnUVFrPuyaHSkS7UWQE2",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 775,
-      "cache_read_input_tokens": 148465,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 775
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 361 · 2026-05-23T23:36:07.025Z_
-
-<details><summary>↩ Tool result · `toolu_01XMXNpeG5HFKmNribrA1cZb`</summary>
-
-```text
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r16\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9466,\\n    \\\"aa_std\\\": 0.0117,\\n    \\\"dd_seeds\\\": [\\n      0.9902,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9342,\\n      0.9433,\\n      0.9622\\n    ]\\n  },\\n  \\\"r8\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9621,\\n    \\\"aa_std\\\": 0.0133,\\n    \\\"dd_seeds\\\": [\\n      0.9904,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9715,\\n      0.9433,\\n      0.9715\\n    ]\\n  },\\n  \\\"baseline_full_dapt\\\": {\\n    \\\"dd_mean\\\": 0.997,\\n    \\\"dd_std\\\": 0.005,\\n    \\\"aa_mean\\\": 0.972,\\n    \\\"aa_std\\\": 0.026\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "57ae9570-ef8c-4bb8-b2de-d70f85b68f23",
-  "uuid": "0f9ad0a6-2d14-4eb3-a831-140fe1b97c0f",
-  "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"r16\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9466,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0117,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9902,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9342,\\\\n      0.9433,\\\\n      0.9622\\\\n    ]\\\\n  },\\\\n  \\\\\\\"r8\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9621,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0133,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9904,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9715,\\\\n      0.9433,\\\\n      0.9715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"baseline_full_dapt\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.997,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.005,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.972,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.026\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
-    "structuredContent": {
-      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r16\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9466,\\n    \\\"aa_std\\\": 0.0117,\\n    \\\"dd_seeds\\\": [\\n      0.9902,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9342,\\n      0.9433,\\n      0.9622\\n    ]\\n  },\\n  \\\"r8\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9621,\\n    \\\"aa_std\\\": 0.0133,\\n    \\\"dd_seeds\\\": [\\n      0.9904,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9715,\\n      0.9433,\\n      0.9715\\n    ]\\n  },\\n  \\\"baseline_full_dapt\\\": {\\n    \\\"dd_mean\\\": 0.997,\\n    \\\"dd_std\\\": 0.005,\\n    \\\"aa_mean\\\": 0.972,\\n    \\\"aa_std\\\": 0.026\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
-    }
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 362_
-
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Mz7MKxWsZqwABkir6MDEX4`</summary>
 
 ```json
@@ -525,7 +435,7 @@ _source line 362_
 
 ### Tool result
 
-_source line 363 · 2026-05-23T23:36:08.045Z_
+_source line 361 · 2026-05-23T23:36:08.045Z_
 
 <details><summary>↩ Tool result · `toolu_01Mz7MKxWsZqwABkir6MDEX4`</summary>
 
@@ -560,7 +470,7 @@ _source line 363 · 2026-05-23T23:36:08.045Z_
 
 ### Tool call
 
-_source line 364_
+_source line 362_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TYWr4dyP8MUS58FR4V6oSm`</summary>
 
@@ -616,7 +526,7 @@ _source line 364_
 
 ### Tool result
 
-_source line 365 · 2026-05-23T23:36:11.557Z_
+_source line 363 · 2026-05-23T23:36:11.557Z_
 
 <details><summary>↩ Tool result · `toolu_01TYWr4dyP8MUS58FR4V6oSm`</summary>
 
@@ -651,7 +561,7 @@ _source line 365 · 2026-05-23T23:36:11.557Z_
 
 ### Tool call
 
-_source line 366_
+_source line 364_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Ltyxos7pqh1WSfnSkZ2Jvo`</summary>
 
@@ -716,7 +626,7 @@ _source line 366_
 
 ### Tool result
 
-_source line 367 · 2026-05-23T23:36:17.514Z_
+_source line 365 · 2026-05-23T23:36:17.514Z_
 
 <details><summary>↩ Tool result · `toolu_01Ltyxos7pqh1WSfnSkZ2Jvo`</summary>
 
@@ -751,7 +661,7 @@ _source line 367 · 2026-05-23T23:36:17.514Z_
 
 ### Tool call
 
-_source line 368_
+_source line 366_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012c8TP7SZf1H2MrKkN7DQA7`</summary>
 
@@ -807,7 +717,7 @@ _source line 368_
 
 ### Tool call
 
-_source line 369_
+_source line 367_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ETYP719dDcNNqaD3ZZc3PP`</summary>
 
@@ -863,7 +773,7 @@ _source line 369_
 
 ### Tool result
 
-_source line 370 · 2026-05-23T23:36:19.449Z_
+_source line 368 · 2026-05-23T23:36:19.449Z_
 
 <details><summary>↩ Tool result · `toolu_012c8TP7SZf1H2MrKkN7DQA7`</summary>
 
@@ -898,7 +808,7 @@ _source line 370 · 2026-05-23T23:36:19.449Z_
 
 ### Tool result
 
-_source line 371 · 2026-05-23T23:36:20.060Z_
+_source line 369 · 2026-05-23T23:36:20.060Z_
 
 <details><summary>↩ Tool result · `toolu_01ETYP719dDcNNqaD3ZZc3PP`</summary>
 
@@ -933,7 +843,7 @@ _source line 371 · 2026-05-23T23:36:20.060Z_
 
 ### Tool call
 
-_source line 372_
+_source line 370_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ERJVMsdcmH4xh36vfpXmV1`</summary>
 
@@ -989,7 +899,7 @@ _source line 372_
 
 ### Tool result
 
-_source line 373 · 2026-05-23T23:36:28.499Z_
+_source line 371 · 2026-05-23T23:36:28.499Z_
 
 <details><summary>↩ Tool result · `toolu_01ERJVMsdcmH4xh36vfpXmV1`</summary>
 
@@ -1024,7 +934,7 @@ _source line 373 · 2026-05-23T23:36:28.499Z_
 
 ### Tool call
 
-_source line 374_
+_source line 372_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01PgnSS3LL52LhwjULy98vCT`</summary>
 
@@ -1087,7 +997,7 @@ _source line 374_
 
 ### Tool result
 
-_source line 375 · 2026-05-23T23:36:30.956Z_
+_source line 373 · 2026-05-23T23:36:30.956Z_
 
 <details><summary>↩ Tool result · `toolu_01PgnSS3LL52LhwjULy98vCT`</summary>
 
@@ -1122,7 +1032,7 @@ _source line 375 · 2026-05-23T23:36:30.956Z_
 
 ### Assistant
 
-_source line 376_
+_source line 374_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1173,7 +1083,7 @@ The registry is updated to DONE. The artifact registration failed because `sourc
 
 ### Tool call
 
-_source line 377_
+_source line 375_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_017QTaAjANNeWbwfriBvTZCZ`</summary>
 
@@ -1237,7 +1147,7 @@ _source line 377_
 
 ### Tool result
 
-_source line 378 · 2026-05-23T23:36:40.578Z_
+_source line 376 · 2026-05-23T23:36:40.578Z_
 
 <details><summary>↩ Tool result · reported error · `toolu_017QTaAjANNeWbwfriBvTZCZ`</summary>
 
@@ -1270,7 +1180,7 @@ content
 
 ### Tool call
 
-_source line 379_
+_source line 377_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Qf6ksbGSZEqeeTfpp5TPMS`</summary>
 
@@ -1334,7 +1244,7 @@ _source line 379_
 
 ### Tool result
 
-_source line 380 · 2026-05-23T23:36:46.313Z_
+_source line 378 · 2026-05-23T23:36:46.313Z_
 
 <details><summary>↩ Tool result · reported error · `toolu_01Qf6ksbGSZEqeeTfpp5TPMS`</summary>
 
@@ -1367,7 +1277,7 @@ content
 
 ### Tool call
 
-_source line 381_
+_source line 379_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01JsNPpS5mspxmAScbhVN6C3`</summary>
 
@@ -1429,7 +1339,7 @@ _source line 381_
 
 ### Tool result
 
-_source line 382 · 2026-05-23T23:36:51.164Z_
+_source line 380 · 2026-05-23T23:36:51.164Z_
 
 <details><summary>↩ Tool result · `toolu_01JsNPpS5mspxmAScbhVN6C3`</summary>
 
@@ -1464,7 +1374,7 @@ _source line 382 · 2026-05-23T23:36:51.164Z_
 
 ### Tool call
 
-_source line 383_
+_source line 381_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01BiS54UDLX5uTNd4E6koLhW`</summary>
 
@@ -1518,7 +1428,7 @@ _source line 383_
 
 ### Tool result
 
-_source line 384 · 2026-05-23T23:36:54.792Z_
+_source line 382 · 2026-05-23T23:36:54.792Z_
 
 <details><summary>↩ Tool result · `toolu_01BiS54UDLX5uTNd4E6koLhW`</summary>
 
@@ -1554,7 +1464,7 @@ not local
 
 ### Tool call
 
-_source line 385_
+_source line 383_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01LdNmqRTGGmz2iLnoMMuMPp`</summary>
 
@@ -1608,7 +1518,7 @@ _source line 385_
 
 ### Tool result
 
-_source line 386 · 2026-05-23T23:37:01.228Z_
+_source line 384 · 2026-05-23T23:37:01.228Z_
 
 <details><summary>↩ Tool result · `toolu_01LdNmqRTGGmz2iLnoMMuMPp`</summary>
 
@@ -1644,7 +1554,7 @@ Warning: Permanently added '[connect.westd.seetacloud.com]:33183' (ED25519) to t
 
 ### Tool call
 
-_source line 387_
+_source line 385_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01UmrtAX6q4Z2F26GB2YQmEy`</summary>
 
@@ -1707,7 +1617,7 @@ _source line 387_
 
 ### Tool result
 
-_source line 388 · 2026-05-23T23:37:07.044Z_
+_source line 386 · 2026-05-23T23:37:07.044Z_
 
 <details><summary>↩ Tool result · `toolu_01UmrtAX6q4Z2F26GB2YQmEy`</summary>
 
@@ -1742,7 +1652,7 @@ _source line 388 · 2026-05-23T23:37:07.044Z_
 
 ### Assistant
 
-_source line 389_
+_source line 387_
 
 exp68_lora_comparison 实验全部完成。
 
@@ -1803,7 +1713,7 @@ exp68_lora_comparison 实验全部完成。
 
 ### Task result
 
-_source line 390_
+_source line 388_
 
 exp68_lora_comparison 实验全部完成。
 
@@ -1904,7 +1814,7 @@ exp68_lora_comparison 实验全部完成。
 
 ### System
 
-_source line 391_
+_source line 389_
 
 ```json
 {
@@ -1925,7 +1835,7 @@ _source line 391_
 
 ### System
 
-_source line 392_
+_source line 390_
 
 ```json
 {
@@ -1946,7 +1856,7 @@ _source line 392_
 
 ### System
 
-_source line 393_
+_source line 391_
 
 ```json
 {
@@ -1967,7 +1877,7 @@ _source line 393_
 
 ### System
 
-_source line 394_
+_source line 392_
 
 ```json
 {

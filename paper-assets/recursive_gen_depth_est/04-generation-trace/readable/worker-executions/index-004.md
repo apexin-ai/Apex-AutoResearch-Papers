@@ -118,7 +118,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops 14b progress check v2 | 96 | 0 | [Read transcript](ops-14b-progress-check-v2.md) | [JSON](../../sessions/99/99d9939b949c1bcccc08.json) |
 | code accumulation experiment prep | 61 | 0 | [Read transcript](code-accumulation-experiment-prep.md) | [JSON](../../sessions/88/888bfc2dfce0463fa8b7.json) |
 | ops westd connectivity check | 28 | 0 | [Read transcript](ops-westd-connectivity-check.md) | [JSON](../../sessions/7d/7d9439a94f2edb86cbdf.json) |
-| writing rebuttal templates | 10 | 0 | [Read transcript](writing-rebuttal-templates.md) | [JSON](../../sessions/41/4124af9ac49b630c09c0.json) |
 | code accumulation experiment westd | 95 | 0 | [Read transcript](code-accumulation-experiment-westd.md) | [JSON](../../sessions/94/94f6953d9640f4edbd19.json) |
 | code accumulation real pipeline | 206 | 0 | [Read transcript](code-accumulation-real-pipeline.md) | [JSON](../../sessions/c2/c235a2aad50a327978a2.json) |
 | ops sync compile paper d046 | 63 | 0 | [Read transcript](ops-sync-compile-paper-d046.md) | [JSON](../../sessions/e5/e53767981fb47eb40997.json) |

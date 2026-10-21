@@ -212,5 +212,3 @@ All 12 planned experiments are present in the paper:
 
 Coverage is complete. The issue is not missing experiments but weak results across experiments due to low real-world contamination magnitude.
 
-### Key Risk for Rebuttal
-The most difficult question for authors: "If uniform e_i produces the same τ as your full pipeline, and G-MFRM produces the same τ as MFRM, what is the practical contribution beyond a Monte Carlo demonstration of a known statistical phenomenon?" The rebuttal must convincingly argue either (a) the diagnostic outputs are trustworthy despite convergence issues, or (b) the monitoring infrastructure argument has concrete, near-term value.

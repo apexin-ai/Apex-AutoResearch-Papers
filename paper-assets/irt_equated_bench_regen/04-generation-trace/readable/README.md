@@ -4,7 +4,7 @@ These pages are the easiest way to review **Temporal Score Incomparability in LL
 
 | Source kind | Browse |
 |---|---|
-| Conversation logs (58) | [Page 1](conversations/index-001.md) |
-| Worker execution logs (170) | [Page 1](worker-executions/index-001.md) · [Page 2](worker-executions/index-002.md) |
-| Task result records (148) | [Page 1](task-results/index-001.md) |
+| Conversation logs (57) | [Page 1](conversations/index-001.md) |
+| Worker execution logs (165) | [Page 1](worker-executions/index-001.md) · [Page 2](worker-executions/index-002.md) |
+| Task result records (143) | [Page 1](task-results/index-001.md) |
 | Context and loop notes (4) | [Page 1](context-notes/index-001.md) |

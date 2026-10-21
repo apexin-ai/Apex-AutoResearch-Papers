@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_a1d032cbe70bdd2058438e67e0d57613_director_20260525T191500_320584.jsonl",
     "occurrence": 1,
-    "bytes": 1139643,
-    "sha256": "0f963578fda9c031fdc7537880a92d60d6d7cfc19915e97f75f2327a04a109ab"
+    "bytes": 1136553,
+    "sha256": "7139441a94cfac4a2039921bdd414936c80505c7adf2a610b46497e3b9bbdfed"
   },
   "statistics": {
-    "messages": 1506,
+    "messages": 1504,
     "user_turns": 195,
-    "tool_calls": 597,
+    "tool_calls": 596,
     "roles": {
       "user": 195,
-      "tool_call": 597,
-      "tool_result": 597,
+      "tool_call": 596,
+      "tool_result": 596,
       "assistant": 117
     },
     "unparsed_lines_preserved": 0,
@@ -172,11 +172,11 @@
     {
       "number": 14,
       "boundary": "recorded_user_message",
-      "message_count": 22,
+      "message_count": 20,
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0001.json",
-          "message_count": 22
+          "message_count": 20
         }
       ]
     },
@@ -264,11 +264,7 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0001.json",
-          "message_count": 4
-        },
-        {
-          "path": "c55c573039117ff2e1b2-part-0002.json",
-          "message_count": 2
+          "message_count": 6
         }
       ]
     },
@@ -422,11 +418,11 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0002.json",
-          "message_count": 27
+          "message_count": 29
         },
         {
           "path": "c55c573039117ff2e1b2-part-0003.json",
-          "message_count": 139
+          "message_count": 137
         }
       ]
     },
@@ -459,11 +455,11 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0003.json",
-          "message_count": 17
+          "message_count": 19
         },
         {
           "path": "c55c573039117ff2e1b2-part-0004.json",
-          "message_count": 9
+          "message_count": 7
         }
       ]
     },
@@ -617,11 +613,11 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0004.json",
-          "message_count": 8
+          "message_count": 10
         },
         {
           "path": "c55c573039117ff2e1b2-part-0005.json",
-          "message_count": 6
+          "message_count": 4
         }
       ]
     },
@@ -940,11 +936,7 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0005.json",
-          "message_count": 10
-        },
-        {
-          "path": "c55c573039117ff2e1b2-part-0006.json",
-          "message_count": 2
+          "message_count": 12
         }
       ]
     },
@@ -1175,11 +1167,7 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0006.json",
-          "message_count": 4
-        },
-        {
-          "path": "c55c573039117ff2e1b2-part-0007.json",
-          "message_count": 1
+          "message_count": 5
         }
       ]
     },
@@ -1189,8 +1177,12 @@
       "message_count": 5,
       "chunks": [
         {
+          "path": "c55c573039117ff2e1b2-part-0006.json",
+          "message_count": 1
+        },
+        {
           "path": "c55c573039117ff2e1b2-part-0007.json",
-          "message_count": 5
+          "message_count": 4
         }
       ]
     },
@@ -1630,11 +1622,7 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0007.json",
-          "message_count": 1
-        },
-        {
-          "path": "c55c573039117ff2e1b2-part-0008.json",
-          "message_count": 2
+          "message_count": 3
         }
       ]
     },
@@ -1997,11 +1985,11 @@
       "chunks": [
         {
           "path": "c55c573039117ff2e1b2-part-0008.json",
-          "message_count": 4
+          "message_count": 6
         },
         {
           "path": "c55c573039117ff2e1b2-part-0009.json",
-          "message_count": 3
+          "message_count": 1
         }
       ]
     },

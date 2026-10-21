@@ -1,17 +1,17 @@
 {
   "project": "simgate-modular-routing",
-  "code_count": 336,
+  "code_count": 335,
   "data_count": 806,
   "env_count": 1,
   "tex_count": 42,
   "bib_count": 5,
   "review_count": 28,
   "validation_count": 36,
-  "chat_count": 359,
-  "worker_count": 1531,
-  "trace_count": 2025,
-  "trace_bytes": 325274491,
-  "maintenance_count": 184,
+  "chat_count": 358,
+  "worker_count": 1527,
+  "trace_count": 2020,
+  "trace_bytes": 324468604,
+  "maintenance_count": 180,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -79,14 +79,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "359 conversations; 1531 worker logs/results; 2025 source files",
+      "evidence": "358 conversations; 1527 worker logs/results; 2020 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "336 code/configuration files; 1 environment manifests",
+      "evidence": "335 code/configuration files; 1 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
@@ -107,7 +107,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "184 project documentation files; 0 license files",
+      "evidence": "180 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

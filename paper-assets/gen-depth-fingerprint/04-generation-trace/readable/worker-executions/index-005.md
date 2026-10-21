@@ -109,7 +109,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper fix type3 fonts — In the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint, I  | 577 | 2 | [Read transcript](paper-fix-type3-fonts.md) | [JSON](../../sessions/6e/6e99291bc236a0f2b061.json) |
 | paper sync charts verify page | 33 | 0 | [Read transcript](paper-sync-charts-verify-page.md) | [JSON](../../sessions/8d/8d78d1fba4ec3d3a65d5.json) |
 | paper compile conclusion hedge | 26 | 0 | [Read transcript](paper-compile-conclusion-hedge.md) | [JSON](../../sessions/9f/9ff76b49aa2c73623f03.json) |
-| paper fig1 strip plot vertical | 55 | 0 | [Read transcript](paper-fig1-strip-plot-vertical.md) | [JSON](../../sessions/e2/e25dcbe34b9051a12cb0.json) |
+| paper fig1 strip plot vertical | 53 | 0 | [Read transcript](paper-fig1-strip-plot-vertical.md) | [JSON](../../sessions/e2/e25dcbe34b9051a12cb0.json) |
 | paper fig3 pdf regen | 83 | 0 | [Read transcript](paper-fig3-pdf-regen.md) | [JSON](../../sessions/00/00ddb3a60581a13cfe64.json) |
 | paper fig2 entropy min check | 99 | 0 | [Read transcript](paper-fig2-entropy-min-check.md) | [JSON](../../sessions/a6/a6d984b11a3f36ad28a4.json) |
 | paper compile all 3 figures | 38 | 0 | [Read transcript](paper-compile-all-3-figures.md) | [JSON](../../sessions/ab/abd72099057aa11e6626.json) |

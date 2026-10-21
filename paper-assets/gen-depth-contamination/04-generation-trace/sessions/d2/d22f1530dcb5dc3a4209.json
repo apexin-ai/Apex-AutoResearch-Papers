@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log",
     "occurrence": 1,
-    "bytes": 618341,
-    "sha256": "378ab25e9a92205269fb04d3fc55df0f995a0ac43197b4d4283f8f083068c996"
+    "bytes": 585689,
+    "sha256": "1a0d5e73d5ad6aa6b195a1f32b0dd9334654f3025b32c9964f0b9c16be99a392"
   },
   "statistics": {
-    "messages": 181,
+    "messages": 173,
     "user_turns": 0,
-    "tool_calls": 74,
+    "tool_calls": 70,
     "roles": {
       "log": 1,
       "system": 1,
       "record": 1,
       "assistant": 29,
-      "tool_call": 74,
-      "tool_result": 74,
+      "tool_call": 70,
+      "tool_result": 70,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -32,15 +32,11 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 181,
+      "message_count": 173,
       "chunks": [
         {
           "path": "d22f1530dcb5dc3a4209-part-0001.json",
-          "message_count": 177
-        },
-        {
-          "path": "d22f1530dcb5dc3a4209-part-0002.json",
-          "message_count": 4
+          "message_count": 173
         }
       ]
     }

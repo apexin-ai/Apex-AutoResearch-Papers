@@ -3,282 +3,10 @@
   "session_id": "c9e91d976cfc2fdc13b1",
   "rounds": [
     {
-      "number": 181,
-      "messages": [
-        {
-          "source_line": 4861,
-          "timestamp": "2026-05-19T11:49:31.065976+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\np8 = pages[7].strip().split('\\n')\nprint('--- Page 8 last 5 lines ---')\nfor l in p8[-5:]: print(l)\nprint()\np9 = pages[8].strip().split('\\n')\nprint('--- Page 9 first 5 lines ---')\nfor l in p9[:5]: print(l)\n\"",
-              "description": "Compile and recheck page boundary"
-            }
-          },
-          "id": "event-004861"
-        },
-        {
-          "source_line": 4862,
-          "timestamp": "2026-05-19T11:49:32.975746+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "--- Page 8 last 5 lines ---\n624   dataclasses and train models to generate typed               sus and GoLLIE-style encoding are future work.           674\n\n\n\n                                                               8\n\n--- Page 9 first 5 lines ---\n675   Limitations                               726               (Qwen 1.18%, Llama 0.46% on SciERC) traces\n                                                                  to schema-level type ambiguity (G ENERIC↔X)            727\n676   Constraint scope. CF impact is model-\n                                                                  rather than enforcement failure. WikiEvents fine-      728\n677   dependent: for well-calibrated models (Qwen,\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 1909
-          },
-          "id": "event-004862"
-        },
-        {
-          "source_line": 4863,
-          "timestamp": "2026-05-19T11:49:38.402481+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^(! |Output written|.*Error)\" | head -10",
-              "description": "Full compile with bibtex"
-            }
-          },
-          "id": "event-004863"
-        },
-        {
-          "source_line": 4864,
-          "timestamp": "2026-05-19T11:49:43.308496+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: relwork_new_entries.bib\nWarning--can't use both volume and number fields in lou2023usm\n(There was 1 warning)\nOutput written on main.pdf (30 pages, 475109 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 4906
-          },
-          "id": "event-004864"
-        },
-        {
-          "source_line": 4865,
-          "timestamp": "2026-05-19T11:49:46.274772+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && grep -c \"^!\" main.log",
-              "description": "Count LaTeX errors"
-            }
-          },
-          "id": "event-004865"
-        },
-        {
-          "source_line": 4866,
-          "timestamp": "2026-05-19T11:49:46.325556+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "0"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-004866"
-        },
-        {
-          "source_line": 4867,
-          "timestamp": "2026-05-19T11:49:52.206433+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\n# Verify: page 9 starts with Limitations\np9 = pages[8].strip().split('\\n')\nprint('Page 9 starts with:', p9[0].strip()[:60])\n# Check section 7 is fully on page 8\np8 = pages[7]\nif 'Discussion and Conclusion' in p8:\n    print('Section 7 header: on page 8')\nif 'future work' in p8:\n    print('Section 7 ending: on page 8')\n\"",
-              "description": "Final verification of page layout"
-            }
-          },
-          "id": "event-004867"
-        },
-        {
-          "source_line": 4868,
-          "timestamp": "2026-05-19T11:49:52.660366+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Page 9 starts with: 675   Limitations                                           \nSection 7 header: on page 8\nSection 7 ending: on page 8\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 453
-          },
-          "id": "event-004868"
-        },
-        {
-          "source_line": 4869,
-          "timestamp": "2026-05-19T11:49:56.480188+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__paper_agent_post_to_director",
-              "max_results": "1"
-            }
-          },
-          "id": "event-004869"
-        },
-        {
-          "source_line": 4870,
-          "timestamp": "2026-05-19T11:49:56.480578+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "ToolSearch",
-            "elapsed_ms": 0
-          },
-          "id": "event-004870"
-        },
-        {
-          "source_line": 4871,
-          "timestamp": "2026-05-19T11:50:09.560330+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
-            "tool_args": {
-              "text": "[写作进展] TCR Patch 完成\n\n**修改清单：**\n1. **appendix_tcr.tex（新建）**：Post-hoc Type Consistency Resolution 分析附录\n   - 算法描述（4句）：constraint-aware type resolution vs naive majority voting\n   - SciERC 表格（5 configs）：TCR 消除全部 CF，DR 增幅 ≤0.28pp，fundamental conflicts 0-2%\n   - DocRED 表格（5 configs）：zero-shot DR 回归严重（Llama +9.38pp），fundamental conflicts 13-23%；LoRA 下影响极小\n   - 分析段落：TCR 效果与 κ̄ 反相关，beam search 是高 κ̄ 首选，TCR 是低 κ̄ 零成本补充\n   - 数据来源：d065_tcr_pilot registry（10 configs）\n\n2. **main.tex**：添加 `\\input{appendix_tcr}` 到附录列表末尾\n\n3. **section7_conclusion_compressed.tex**：添加 TCR 引用\n   - \"Post-hoc type resolution complements S1 on low-κ̄ schemas (Appendix M); global type consensus and GoLLIE-style encoding are future work.\"\n\n**编译验证：**\n- pdflatex + bibtex：0 errors，1 warning（lou2023usm volume/number，已有）\n- 页数：30 pages，main body 8 pages（§7 结尾在第 8 页，Limitations 从第 9 页开始）\n- 未做引用验证（按指令跳过）",
-              "project": "schema_semantic_constrained_ie"
-            }
-          },
-          "id": "event-004871"
-        },
-        {
-          "source_line": 4872,
-          "timestamp": "2026-05-19T11:50:13.774009+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
-            "elapsed_ms": 4213
-          },
-          "id": "event-004872"
-        },
-        {
-          "source_line": 4873,
-          "timestamp": "2026-05-19T11:50:19.086016+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "TCR Patch 已完成并汇报 Director。\n\n修改总结：\n- 新建 `appendix_tcr.tex`（2 表 + 分析，d065_tcr_pilot 数据）\n- §7 添加 TCR + GoLLIE future work 引用\n- main.tex 添加附录入口\n- 编译通过，0 errors，main body 8 页"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
-          },
-          "id": "event-004873"
-        }
-      ]
-    },
-    {
       "number": 182,
       "messages": [
         {
-          "source_line": 4874,
-          "timestamp": "2026-05-19T11:50:19.596203+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "source": "system"
-          },
-          "id": "event-004874"
-        },
-        {
-          "source_line": 4875,
+          "source_line": 4861,
           "timestamp": "2026-05-19T11:50:25.474142+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -291,7 +19,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004875"
+          "id": "event-004861"
         }
       ]
     },
@@ -299,7 +27,7 @@
       "number": 183,
       "messages": [
         {
-          "source_line": 4876,
+          "source_line": 4862,
           "timestamp": "2026-05-19T14:28:45.501242+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -313,10 +41,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-004876"
+          "id": "event-004862"
         },
         {
-          "source_line": 4877,
+          "source_line": 4863,
           "timestamp": "2026-05-19T14:28:54.111875+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -333,10 +61,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-004877"
+          "id": "event-004863"
         },
         {
-          "source_line": 4878,
+          "source_line": 4864,
           "timestamp": "2026-05-19T14:28:54.112385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -351,10 +79,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-004878"
+          "id": "event-004864"
         },
         {
-          "source_line": 4879,
+          "source_line": 4865,
           "timestamp": "2026-05-19T14:28:58.150546+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -374,10 +102,10 @@
               "new_string": "beam ($k{=}4$) eliminates all violations on SciERC (1.54$\\times$ latency); zero-shot DR drops 76--99\\% for calibrated models."
             }
           },
-          "id": "event-004879"
+          "id": "event-004865"
         },
         {
-          "source_line": 4880,
+          "source_line": 4866,
           "timestamp": "2026-05-19T14:28:58.204105+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -392,10 +120,10 @@
             "tool": "Edit",
             "elapsed_ms": 53
           },
-          "id": "event-004880"
+          "id": "event-004866"
         },
         {
-          "source_line": 4881,
+          "source_line": 4867,
           "timestamp": "2026-05-19T14:29:03.614495+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -413,10 +141,10 @@
               "description": "Full compile and page check"
             }
           },
-          "id": "event-004881"
+          "id": "event-004867"
         },
         {
-          "source_line": 4882,
+          "source_line": 4868,
           "timestamp": "2026-05-19T14:29:08.392904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -431,10 +159,10 @@
             "tool": "Bash",
             "elapsed_ms": 4778
           },
-          "id": "event-004882"
+          "id": "event-004868"
         },
         {
-          "source_line": 4883,
+          "source_line": 4869,
           "timestamp": "2026-05-19T14:29:12.465304+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -452,10 +180,10 @@
               "description": "Check page boundary"
             }
           },
-          "id": "event-004883"
+          "id": "event-004869"
         },
         {
-          "source_line": 4884,
+          "source_line": 4870,
           "timestamp": "2026-05-19T14:29:12.819884+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -470,10 +198,10 @@
             "tool": "Bash",
             "elapsed_ms": 354
           },
-          "id": "event-004884"
+          "id": "event-004870"
         },
         {
-          "source_line": 4885,
+          "source_line": 4871,
           "timestamp": "2026-05-19T14:29:26.300041+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -493,10 +221,10 @@
               "new_string": "DR\\,$\\leq$\\,0.20\\%, CF\\,$\\leq$\\,1.2\\%"
             }
           },
-          "id": "event-004885"
+          "id": "event-004871"
         },
         {
-          "source_line": 4886,
+          "source_line": 4872,
           "timestamp": "2026-05-19T14:29:26.401006+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -511,10 +239,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-004886"
+          "id": "event-004872"
         },
         {
-          "source_line": 4887,
+          "source_line": 4873,
           "timestamp": "2026-05-19T14:29:30.364895+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -532,10 +260,10 @@
               "description": "Recompile and check page boundary"
             }
           },
-          "id": "event-004887"
+          "id": "event-004873"
         },
         {
-          "source_line": 4888,
+          "source_line": 4874,
           "timestamp": "2026-05-19T14:29:33.284996+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -550,10 +278,10 @@
             "tool": "Bash",
             "elapsed_ms": 2920
           },
-          "id": "event-004888"
+          "id": "event-004874"
         },
         {
-          "source_line": 4889,
+          "source_line": 4875,
           "timestamp": "2026-05-19T14:29:40.371064+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -573,10 +301,10 @@
               "new_string": "type consensus and GoLLIE-style encoding are future work."
             }
           },
-          "id": "event-004889"
+          "id": "event-004875"
         },
         {
-          "source_line": 4890,
+          "source_line": 4876,
           "timestamp": "2026-05-19T14:29:40.371625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -591,10 +319,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004890"
+          "id": "event-004876"
         },
         {
-          "source_line": 4891,
+          "source_line": 4877,
           "timestamp": "2026-05-19T14:29:44.342185+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -612,10 +340,10 @@
               "description": "Recompile and check"
             }
           },
-          "id": "event-004891"
+          "id": "event-004877"
         },
         {
-          "source_line": 4892,
+          "source_line": 4878,
           "timestamp": "2026-05-19T14:29:46.405875+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -630,10 +358,10 @@
             "tool": "Bash",
             "elapsed_ms": 2063
           },
-          "id": "event-004892"
+          "id": "event-004878"
         },
         {
-          "source_line": 4893,
+          "source_line": 4879,
           "timestamp": "2026-05-19T14:29:54.662888+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -651,10 +379,10 @@
               "description": "Full compile and error count"
             }
           },
-          "id": "event-004893"
+          "id": "event-004879"
         },
         {
-          "source_line": 4894,
+          "source_line": 4880,
           "timestamp": "2026-05-19T14:30:02.194331+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -669,10 +397,10 @@
             "tool": "Bash",
             "elapsed_ms": 7531
           },
-          "id": "event-004894"
+          "id": "event-004880"
         },
         {
-          "source_line": 4895,
+          "source_line": 4881,
           "timestamp": "2026-05-19T14:30:09.860870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -690,10 +418,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-004895"
+          "id": "event-004881"
         },
         {
-          "source_line": 4896,
+          "source_line": 4882,
           "timestamp": "2026-05-19T14:30:14.136181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -708,10 +436,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4275
           },
-          "id": "event-004896"
+          "id": "event-004882"
         },
         {
-          "source_line": 4897,
+          "source_line": 4883,
           "timestamp": "2026-05-19T14:30:16.325050+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -724,7 +452,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004897"
+          "id": "event-004883"
         }
       ]
     },
@@ -732,7 +460,7 @@
       "number": 184,
       "messages": [
         {
-          "source_line": 4898,
+          "source_line": 4884,
           "timestamp": "2026-05-19T14:30:16.829190+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -746,10 +474,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-004898"
+          "id": "event-004884"
         },
         {
-          "source_line": 4899,
+          "source_line": 4885,
           "timestamp": "2026-05-19T14:30:25.163373+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -762,7 +490,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004899"
+          "id": "event-004885"
         }
       ]
     },
@@ -770,7 +498,7 @@
       "number": 185,
       "messages": [
         {
-          "source_line": 4900,
+          "source_line": 4886,
           "timestamp": "2026-05-19T15:11:42.238968+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -784,10 +512,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-004900"
+          "id": "event-004886"
         },
         {
-          "source_line": 4901,
+          "source_line": 4887,
           "timestamp": "2026-05-19T15:11:56.451118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -804,10 +532,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-004901"
+          "id": "event-004887"
         },
         {
-          "source_line": 4902,
+          "source_line": 4888,
           "timestamp": "2026-05-19T15:11:57.405668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -822,10 +550,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-004902"
+          "id": "event-004888"
         },
         {
-          "source_line": 4903,
+          "source_line": 4889,
           "timestamp": "2026-05-19T15:11:57.506619+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -842,10 +570,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-004903"
+          "id": "event-004889"
         },
         {
-          "source_line": 4904,
+          "source_line": 4890,
           "timestamp": "2026-05-19T15:11:57.908777+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -860,10 +588,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-004904"
+          "id": "event-004890"
         },
         {
-          "source_line": 4905,
+          "source_line": 4891,
           "timestamp": "2026-05-19T15:11:57.909191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -880,10 +608,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-004905"
+          "id": "event-004891"
         },
         {
-          "source_line": 4906,
+          "source_line": 4892,
           "timestamp": "2026-05-19T15:11:58.462182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -898,10 +626,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-004906"
+          "id": "event-004892"
         },
         {
-          "source_line": 4907,
+          "source_line": 4893,
           "timestamp": "2026-05-19T15:11:58.462567+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -918,10 +646,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-004907"
+          "id": "event-004893"
         },
         {
-          "source_line": 4908,
+          "source_line": 4894,
           "timestamp": "2026-05-19T15:11:59.066430+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -936,10 +664,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-004908"
+          "id": "event-004894"
         },
         {
-          "source_line": 4909,
+          "source_line": 4895,
           "timestamp": "2026-05-19T15:11:59.066874+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -956,10 +684,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
             }
           },
-          "id": "event-004909"
+          "id": "event-004895"
         },
         {
-          "source_line": 4910,
+          "source_line": 4896,
           "timestamp": "2026-05-19T15:11:59.167820+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -974,10 +702,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-004910"
+          "id": "event-004896"
         },
         {
-          "source_line": 4911,
+          "source_line": 4897,
           "timestamp": "2026-05-19T15:12:05.644188+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -994,10 +722,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
             }
           },
-          "id": "event-004911"
+          "id": "event-004897"
         },
         {
-          "source_line": 4912,
+          "source_line": 4898,
           "timestamp": "2026-05-19T15:12:06.297464+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1012,10 +740,10 @@
             "tool": "Read",
             "elapsed_ms": 653
           },
-          "id": "event-004912"
+          "id": "event-004898"
         },
         {
-          "source_line": 4913,
+          "source_line": 4899,
           "timestamp": "2026-05-19T15:12:06.297900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1032,10 +760,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
             }
           },
-          "id": "event-004913"
+          "id": "event-004899"
         },
         {
-          "source_line": 4914,
+          "source_line": 4900,
           "timestamp": "2026-05-19T15:12:06.398946+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1050,10 +778,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-004914"
+          "id": "event-004900"
         },
         {
-          "source_line": 4915,
+          "source_line": 4901,
           "timestamp": "2026-05-19T15:15:35.101406+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1073,10 +801,10 @@
               "new_string": "We present OntoCoDec, a framework that compiles IE ontologies into token-level constraints enforced during autoregressive generation.\nThe design is guided by a decidability analysis of IE type constraints.\n\n\\paragraph{Constraint decidability taxonomy.}\n\\label{sec:decidability}\nWe classify IE type constraints into three decidability levels: (1)~\\emph{context-free} (vocabulary membership and JSON structure, decidable by a pushdown automaton without cross-field state); (2)~\\emph{prefix-decidable with state} (domain/range type validity, fully determined at each type-bearing position given the relation type and entity registry from the decoded prefix); (3)~\\emph{non-local} (cross-entity type consistency, which depends on the full output and cannot be enforced by single-pass left-to-right masking).\nOntoCoDec provides formal guarantees for levels 1--2: the grammar layer (\\S\\ref{sec:grammar}) enforces context-free constraints; the semantic layer (\\S\\ref{sec:semantic}) enforces prefix-decidable constraints via a stateful entity registry.\nLevel~3 is addressed by beam search (\\S\\ref{sec:beam-results}) or post-hoc resolution (Appendix~\\ref{app:tcr}).\nUnlike type-constrained code generation where types are statically declared, IE constraints are prefix-decidable rather than context-free: entity types are inferred from free text, the registry is built dynamically, and constraint targets depend on the co-occurring relation type.\nWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and two decoding strategies (\\S\\ref{sec:strategies}); formal analysis of constraint composition is in Section~\\ref{sec:composition}."
             }
           },
-          "id": "event-004915"
+          "id": "event-004901"
         },
         {
-          "source_line": 4916,
+          "source_line": 4902,
           "timestamp": "2026-05-19T15:15:35.152374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1091,10 +819,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004916"
+          "id": "event-004902"
         },
         {
-          "source_line": 4917,
+          "source_line": 4903,
           "timestamp": "2026-05-19T15:15:41.085088+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1114,10 +842,10 @@
               "new_string": "The final mask is $G(t) \\cap S(t)$; when empty, grammar-first fallback applies (\\S\\ref{sec:composition}), embodying the enabling dependency: semantic constraints reduce DR by only 24\\% without grammar-enforced vocabulary."
             }
           },
-          "id": "event-004917"
+          "id": "event-004903"
         },
         {
-          "source_line": 4918,
+          "source_line": 4904,
           "timestamp": "2026-05-19T15:15:41.136079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1132,10 +860,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004918"
+          "id": "event-004904"
         },
         {
-          "source_line": 4919,
+          "source_line": 4905,
           "timestamp": "2026-05-19T15:15:46.862666+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1155,10 +883,10 @@
               "new_string": "\\paragraph{S1: Single-pass decoding.}\nBoth layers are active throughout generation; the entity registry populates during entity decoding and is immediately available for relation-level type checking.\n\n\\paragraph{S2: Two-pass decoding.}\\label{sec:s2}\nA first pass extracts entities; these compile an input-dependent grammar for the second pass.\nS1 achieves higher R-F1 at comparable DR (\\S\\ref{sec:scierc-results}) and is the primary configuration."
             }
           },
-          "id": "event-004919"
+          "id": "event-004905"
         },
         {
-          "source_line": 4920,
+          "source_line": 4906,
           "timestamp": "2026-05-19T15:15:46.963732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1173,10 +901,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-004920"
+          "id": "event-004906"
         },
         {
-          "source_line": 4921,
+          "source_line": 4907,
           "timestamp": "2026-05-19T15:16:06.472604+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1196,10 +924,10 @@
               "new_string": "We propose \\textbf{OntoCoDec}, a framework that formally compiles IE ontologies into composable layers of decoding-time constraints.\nWe classify IE type constraints by decidability: structural validity (vocabulary membership) is context-free; domain/range type validity is prefix-decidable given a stateful entity registry; cross-entity type consistency is non-local.\nThis taxonomy yields a two-layer architecture with formal guarantees at each decidability level: the \\emph{grammar layer} enforces context-free constraints (JSON well-formedness, vocabulary membership) via XGrammar; the \\emph{semantic layer} enforces prefix-decidable constraints (pair-based domain/range) through dynamic logit masking over a runtime entity registry.\nThe layers compose via an \\emph{enabling dependency}: grammar-enforced vocabulary membership is a precondition for semantic domain/range lookups.\nOntoCoDec compiles constraints automatically from any IE ontology, requires no constraint-specific training, and applies to any autoregressive LM.\nWe evaluate two deployment configurations: LoRA + greedy S1 eliminates DR with R-F1 within $\\pm$0.6\\,pp and $+$10\\% latency; LoRA + beam S1 ($k{=}4$) additionally resolves the CF trade-off, achieving zero violations on SciERC (1.54$\\times$ latency).\nZero-shot evaluation across four models (8B--70B) confirms DR drops by 76--99\\% for calibrated models."
             }
           },
-          "id": "event-004921"
+          "id": "event-004907"
         },
         {
-          "source_line": 4922,
+          "source_line": 4908,
           "timestamp": "2026-05-19T15:16:06.473290+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1214,10 +942,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004922"
+          "id": "event-004908"
         },
         {
-          "source_line": 4923,
+          "source_line": 4909,
           "timestamp": "2026-05-19T15:16:20.888716+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1237,10 +965,10 @@
               "new_string": "    \\item A formal ontology-to-constraint compilation framework: we classify IE type constraints by decidability (context-free, prefix-decidable with state, non-local), yielding a two-layer architecture with pair-based sequential enforcement and formal guarantees at each level (\\S\\ref{sec:decidability}). Constraints compile automatically from any IE ontology.\n    \\item An analytical framework for constraint behavior: constraint tightness ($\\bar{\\kappa}$) predicts residual violation rates across 103 relations and determines post-hoc resolution feasibility (Appendix~\\ref{app:tcr}); four violation categories (DR, RV, ET, CF) decompose the violation landscape.\n    \\item Cross-configuration validation: LoRA + greedy S1 achieves DR$\\to$0\\% with R-F1 $\\pm$0.6\\,pp, CF\\,$\\leq$\\,1.2\\%; beam ($k{=}4$) eliminates all violations on SciERC (1.54$\\times$ latency); zero-shot DR drops 76--99\\% across 8B--70B models. The framework extends to event extraction (\\S\\ref{sec:wikievents})."
             }
           },
-          "id": "event-004923"
+          "id": "event-004909"
         },
         {
-          "source_line": 4924,
+          "source_line": 4910,
           "timestamp": "2026-05-19T15:16:20.939563+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1255,10 +983,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004924"
+          "id": "event-004910"
         },
         {
-          "source_line": 4925,
+          "source_line": 4911,
           "timestamp": "2026-05-19T15:16:29.799808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1278,10 +1006,10 @@
               "new_string": "We present \\textsc{OntoCoDec}, a framework that formally compiles Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \\emph{grammar layer} (context-free) guarantees JSON validity and vocabulary membership; a \\emph{semantic layer} (prefix-decidable with state) enforces per-triple domain/range type constraints via a stateful entity registry, with grammar-first fallback when constraints conflict.\nWithout constraints, Large Language Model (LLM) based IE produces systematic domain/range (DR) violations that persist after fine-tuning, with rates predicted by \\emph{constraint tightness} ($\\bar{\\kappa}$) rather than schema or model scale."
             }
           },
-          "id": "event-004925"
+          "id": "event-004911"
         },
         {
-          "source_line": 4926,
+          "source_line": 4912,
           "timestamp": "2026-05-19T15:16:29.850625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1296,10 +1024,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004926"
+          "id": "event-004912"
         },
         {
-          "source_line": 4927,
+          "source_line": 4913,
           "timestamp": "2026-05-19T15:16:38.703262+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1319,10 +1047,10 @@
               "new_string": "Composed with Low-Rank Adaptation (LoRA), \\textsc{OntoCoDec} eliminates DR violations with R-F1 within $\\pm$0.6\\,pp; beam search ($k{=}4$) resolves the cross-field consistency (CF) trade-off, achieving zero violations on SciERC (R-F1 44--46, 1.54$\\times$ latency).\nUnder zero-shot decoding, DR drops by 76--99\\% for calibrated models.\nThe framework extends to event extraction without modification.\n\\textsc{OntoCoDec} compiles constraints automatically from IE ontologies, requires no constraint-specific training, and applies to any autoregressive LM across four models (8B--70B) and three tokenizer families."
             }
           },
-          "id": "event-004927"
+          "id": "event-004913"
         },
         {
-          "source_line": 4928,
+          "source_line": 4914,
           "timestamp": "2026-05-19T15:16:38.703972+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1337,10 +1065,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004928"
+          "id": "event-004914"
         },
         {
-          "source_line": 4929,
+          "source_line": 4915,
           "timestamp": "2026-05-19T15:16:46.892693+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1360,10 +1088,10 @@
               "new_string": "OntoCoDec formally compiles IE ontologies into composable token-level constraints via a decidability-guided architecture: LoRA + greedy S1 achieves DR\\,$\\leq$\\,0.20\\%, CF\\,$\\leq$\\,1.2\\%; beam ($k{=}4$) eliminates all violations on SciERC (1.54$\\times$ latency); zero-shot DR drops 76--99\\% for calibrated models.\nConstraint tightness ($\\bar{\\kappa}$) predicts both residual violation rates and post-hoc resolution feasibility (Appendix~\\ref{app:tcr}); entity-level type consensus and GoLLIE-style encoding are future work."
             }
           },
-          "id": "event-004929"
+          "id": "event-004915"
         },
         {
-          "source_line": 4930,
+          "source_line": 4916,
           "timestamp": "2026-05-19T15:16:46.943375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1378,10 +1106,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004930"
+          "id": "event-004916"
         },
         {
-          "source_line": 4931,
+          "source_line": 4917,
           "timestamp": "2026-05-19T15:16:57.167634+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1399,10 +1127,10 @@
               "description": "Full compile and page boundary check"
             }
           },
-          "id": "event-004931"
+          "id": "event-004917"
         },
         {
-          "source_line": 4932,
+          "source_line": 4918,
           "timestamp": "2026-05-19T15:17:02.346636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1417,10 +1145,10 @@
             "tool": "Bash",
             "elapsed_ms": 5178
           },
-          "id": "event-004932"
+          "id": "event-004918"
         },
         {
-          "source_line": 4933,
+          "source_line": 4919,
           "timestamp": "2026-05-19T15:17:10.891868+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1438,10 +1166,10 @@
               "description": "Check pages 8-9 content"
             }
           },
-          "id": "event-004933"
+          "id": "event-004919"
         },
         {
-          "source_line": 4934,
+          "source_line": 4920,
           "timestamp": "2026-05-19T15:17:11.194526+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1456,10 +1184,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-004934"
+          "id": "event-004920"
         },
         {
-          "source_line": 4935,
+          "source_line": 4921,
           "timestamp": "2026-05-19T15:18:41.442891+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1479,10 +1207,10 @@
               "new_string": "\\paragraph{Constraint decidability taxonomy.}\n\\label{sec:decidability}\nWe classify IE type constraints into three levels: (1)~\\emph{context-free}: vocabulary membership and JSON structure; (2)~\\emph{prefix-decidable with state}: domain/range type validity, determined at each type-bearing position given the decoded relation type and entity registry; (3)~\\emph{non-local}: cross-entity type consistency, which depends on the full output.\nUnlike code generation where types are statically declared, IE constraints fall into level~2: entity types are inferred from text, the registry is built dynamically, and constraint targets depend on the co-occurring relation.\nOntoCoDec guarantees levels 1--2 (grammar and semantic layers, respectively); level~3 is addressed by beam search or post-hoc resolution (Appendix~\\ref{app:tcr}).\nWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and two decoding strategies (\\S\\ref{sec:strategies}); formal analysis of constraint composition is in Section~\\ref{sec:composition}."
             }
           },
-          "id": "event-004935"
+          "id": "event-004921"
         },
         {
-          "source_line": 4936,
+          "source_line": 4922,
           "timestamp": "2026-05-19T15:18:41.493814+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1497,10 +1225,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004936"
+          "id": "event-004922"
         },
         {
-          "source_line": 4937,
+          "source_line": 4923,
           "timestamp": "2026-05-19T15:18:50.336321+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1520,10 +1248,10 @@
               "new_string": "\\paragraph{Sequential type masking.}\nAt a \\textsc{HeadType} position, if $h_j \\in \\mathcal{D}$ and $\\mathcal{D}[h_j] \\in \\operatorname{dom}(r_j)$, the mask allows only the registered type; otherwise it falls back to all domain-valid types $\\operatorname{dom}(r_j)$.\nAt a \\textsc{TailType} position, the mask restricts to $\\operatorname{range}(r_j, \\tau^h_j)$ conditioned on the already-determined head type, further narrowing to the registered type when $t_j \\in \\mathcal{D}$.\nThis sequential check achieves exact pair-based enforcement (\\S\\ref{sec:formulation}), strictly tighter than independent domain/range checking."
             }
           },
-          "id": "event-004937"
+          "id": "event-004923"
         },
         {
-          "source_line": 4938,
+          "source_line": 4924,
           "timestamp": "2026-05-19T15:18:50.387231+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1538,10 +1266,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004938"
+          "id": "event-004924"
         },
         {
-          "source_line": 4939,
+          "source_line": 4925,
           "timestamp": "2026-05-19T15:18:56.900063+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1561,10 +1289,10 @@
               "new_string": "\\paragraph{Tokenizer-agnostic type masking.}\nWe use \\emph{continuation masking} to handle context-dependent tokenizations and prefix-shared types (e.g., \\textsc{Sen}/\\textsc{Sid}/\\textsc{Side} in WikiEvents): a compile-time prefix map identifies valid continuations for each type name, disambiguating over multiple steps across byte-level BPE (Qwen, Llama) and SentencePiece (Mistral)."
             }
           },
-          "id": "event-004939"
+          "id": "event-004925"
         },
         {
-          "source_line": 4940,
+          "source_line": 4926,
           "timestamp": "2026-05-19T15:18:56.900538+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1579,10 +1307,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004940"
+          "id": "event-004926"
         },
         {
-          "source_line": 4941,
+          "source_line": 4927,
           "timestamp": "2026-05-19T15:19:09.614030+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1602,10 +1330,10 @@
               "new_string": "We propose \\textbf{OntoCoDec}, a framework that formally compiles IE ontologies into composable layers of decoding-time constraints.\nA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} enforces context-free constraints (JSON structure, vocabulary membership) via XGrammar; the \\emph{semantic layer} enforces prefix-decidable constraints (pair-based domain/range) through dynamic logit masking over a runtime entity registry, with an \\emph{enabling dependency} between layers.\nOntoCoDec compiles constraints automatically from any IE ontology, requires no constraint-specific training, and applies to any autoregressive LM."
             }
           },
-          "id": "event-004941"
+          "id": "event-004927"
         },
         {
-          "source_line": 4942,
+          "source_line": 4928,
           "timestamp": "2026-05-19T15:19:09.664785+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1620,10 +1348,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004942"
+          "id": "event-004928"
         },
         {
-          "source_line": 4943,
+          "source_line": 4929,
           "timestamp": "2026-05-19T15:19:18.303353+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1641,10 +1369,10 @@
               "description": "Compile and check page boundary after compressions"
             }
           },
-          "id": "event-004943"
+          "id": "event-004929"
         },
         {
-          "source_line": 4944,
+          "source_line": 4930,
           "timestamp": "2026-05-19T15:19:23.180082+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1659,10 +1387,10 @@
             "tool": "Bash",
             "elapsed_ms": 4876
           },
-          "id": "event-004944"
+          "id": "event-004930"
         },
         {
-          "source_line": 4945,
+          "source_line": 4931,
           "timestamp": "2026-05-19T15:19:27.178193+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1679,10 +1407,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-004945"
+          "id": "event-004931"
         },
         {
-          "source_line": 4946,
+          "source_line": 4932,
           "timestamp": "2026-05-19T15:19:27.630057+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1697,10 +1425,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-004946"
+          "id": "event-004932"
         },
         {
-          "source_line": 4947,
+          "source_line": 4933,
           "timestamp": "2026-05-19T15:19:27.630415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1717,10 +1445,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-004947"
+          "id": "event-004933"
         },
         {
-          "source_line": 4948,
+          "source_line": 4934,
           "timestamp": "2026-05-19T15:19:28.132504+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1735,10 +1463,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-004948"
+          "id": "event-004934"
         },
         {
-          "source_line": 4949,
+          "source_line": 4935,
           "timestamp": "2026-05-19T15:19:28.132956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1755,10 +1483,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-004949"
+          "id": "event-004935"
         },
         {
-          "source_line": 4950,
+          "source_line": 4936,
           "timestamp": "2026-05-19T15:19:28.585917+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1773,10 +1501,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-004950"
+          "id": "event-004936"
         },
         {
-          "source_line": 4951,
+          "source_line": 4937,
           "timestamp": "2026-05-19T15:19:28.586456+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1793,10 +1521,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-004951"
+          "id": "event-004937"
         },
         {
-          "source_line": 4952,
+          "source_line": 4938,
           "timestamp": "2026-05-19T15:19:28.687202+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1811,10 +1539,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-004952"
+          "id": "event-004938"
         },
         {
-          "source_line": 4953,
+          "source_line": 4939,
           "timestamp": "2026-05-19T15:19:59.562543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1834,10 +1562,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-004953"
+          "id": "event-004939"
         },
         {
-          "source_line": 4954,
+          "source_line": 4940,
           "timestamp": "2026-05-19T15:19:59.613351+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1852,10 +1580,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-004954"
+          "id": "event-004940"
         },
         {
-          "source_line": 4955,
+          "source_line": 4941,
           "timestamp": "2026-05-19T15:20:11.880727+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1875,10 +1603,10 @@
               "new_string": "compiles constraints automatically from IE ontologies."
             }
           },
-          "id": "event-004955"
+          "id": "event-004941"
         },
         {
-          "source_line": 4956,
+          "source_line": 4942,
           "timestamp": "2026-05-19T15:20:11.931834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1893,10 +1621,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-004956"
+          "id": "event-004942"
         },
         {
-          "source_line": 4957,
+          "source_line": 4943,
           "timestamp": "2026-05-19T15:20:15.146612+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1913,10 +1641,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex"
             }
           },
-          "id": "event-004957"
+          "id": "event-004943"
         },
         {
-          "source_line": 4958,
+          "source_line": 4944,
           "timestamp": "2026-05-19T15:20:15.197515+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1931,10 +1659,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004958"
+          "id": "event-004944"
         },
         {
-          "source_line": 4959,
+          "source_line": 4945,
           "timestamp": "2026-05-19T15:20:18.623985+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1954,10 +1682,10 @@
               "new_string": "compiles constraints automatically from IE ontologies."
             }
           },
-          "id": "event-004959"
+          "id": "event-004945"
         },
         {
-          "source_line": 4960,
+          "source_line": 4946,
           "timestamp": "2026-05-19T15:20:18.676492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1972,10 +1700,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-004960"
+          "id": "event-004946"
         },
         {
-          "source_line": 4961,
+          "source_line": 4947,
           "timestamp": "2026-05-19T15:20:22.392562+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1993,10 +1721,10 @@
               "limit": "110"
             }
           },
-          "id": "event-004961"
+          "id": "event-004947"
         },
         {
-          "source_line": 4962,
+          "source_line": 4948,
           "timestamp": "2026-05-19T15:20:22.443844+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2011,10 +1739,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-004962"
+          "id": "event-004948"
         },
         {
-          "source_line": 4963,
+          "source_line": 4949,
           "timestamp": "2026-05-19T15:20:29.147225+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2034,10 +1762,10 @@
               "new_string": "OntoCoDec provides \\emph{hard} decoding-time enforcement that requires no constraint-specific training, is automatically compiled from IE ontologies, and composable with any of these training-based approaches."
             }
           },
-          "id": "event-004963"
+          "id": "event-004949"
         },
         {
-          "source_line": 4964,
+          "source_line": 4950,
           "timestamp": "2026-05-19T15:20:29.250156+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2052,10 +1780,10 @@
             "tool": "Edit",
             "elapsed_ms": 102
           },
-          "id": "event-004964"
+          "id": "event-004950"
         },
         {
-          "source_line": 4965,
+          "source_line": 4951,
           "timestamp": "2026-05-19T15:20:33.713200+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2075,10 +1803,10 @@
               "new_string": "it is the first system to \\emph{automatically compile} IE ontologies, including domain/range axioms, into token-level semantic masks"
             }
           },
-          "id": "event-004965"
+          "id": "event-004951"
         },
         {
-          "source_line": 4966,
+          "source_line": 4952,
           "timestamp": "2026-05-19T15:20:33.797296+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2093,10 +1821,10 @@
             "tool": "Edit",
             "elapsed_ms": 84
           },
-          "id": "event-004966"
+          "id": "event-004952"
         },
         {
-          "source_line": 4967,
+          "source_line": 4953,
           "timestamp": "2026-05-19T15:20:42.958903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2114,10 +1842,10 @@
               "description": "Final full compile and verification"
             }
           },
-          "id": "event-004967"
+          "id": "event-004953"
         },
         {
-          "source_line": 4968,
+          "source_line": 4954,
           "timestamp": "2026-05-19T15:20:47.982050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2132,10 +1860,10 @@
             "tool": "Bash",
             "elapsed_ms": 5023
           },
-          "id": "event-004968"
+          "id": "event-004954"
         },
         {
-          "source_line": 4969,
+          "source_line": 4955,
           "timestamp": "2026-05-19T15:21:11.024985+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2153,10 +1881,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-004969"
+          "id": "event-004955"
         },
         {
-          "source_line": 4970,
+          "source_line": 4956,
           "timestamp": "2026-05-19T15:21:14.688393+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2171,10 +1899,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3663
           },
-          "id": "event-004970"
+          "id": "event-004956"
         },
         {
-          "source_line": 4971,
+          "source_line": 4957,
           "timestamp": "2026-05-19T15:21:17.895875+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2187,7 +1915,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004971"
+          "id": "event-004957"
         }
       ]
     },
@@ -2195,7 +1923,7 @@
       "number": 186,
       "messages": [
         {
-          "source_line": 4972,
+          "source_line": 4958,
           "timestamp": "2026-05-19T15:21:18.390217+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2209,10 +1937,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-004972"
+          "id": "event-004958"
         },
         {
-          "source_line": 4973,
+          "source_line": 4959,
           "timestamp": "2026-05-19T15:21:25.100249+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2225,7 +1953,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004973"
+          "id": "event-004959"
         }
       ]
     },
@@ -2233,7 +1961,7 @@
       "number": 187,
       "messages": [
         {
-          "source_line": 4974,
+          "source_line": 4960,
           "timestamp": "2026-05-19T17:28:14.215234+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2247,10 +1975,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-004974"
+          "id": "event-004960"
         },
         {
-          "source_line": 4975,
+          "source_line": 4961,
           "timestamp": "2026-05-19T17:28:22.380818+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2268,10 +1996,10 @@
               "limit": "20"
             }
           },
-          "id": "event-004975"
+          "id": "event-004961"
         },
         {
-          "source_line": 4976,
+          "source_line": 4962,
           "timestamp": "2026-05-19T17:28:22.482920+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2286,10 +2014,10 @@
             "tool": "Read",
             "elapsed_ms": 102
           },
-          "id": "event-004976"
+          "id": "event-004962"
         },
         {
-          "source_line": 4977,
+          "source_line": 4963,
           "timestamp": "2026-05-19T17:30:49.119100+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2306,10 +2034,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-004977"
+          "id": "event-004963"
         },
         {
-          "source_line": 4978,
+          "source_line": 4964,
           "timestamp": "2026-05-19T17:30:49.119768+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2324,10 +2052,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-004978"
+          "id": "event-004964"
         },
         {
-          "source_line": 4979,
+          "source_line": 4965,
           "timestamp": "2026-05-19T17:31:19.120606+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2347,10 +2075,10 @@
               "new_string": "OntoCoDec guarantees levels 1--2 (grammar and semantic layers, respectively); level~3 is addressed by beam search or post-hoc resolution (Appendix~\\ref{app:tcr}).\n\n\\smallskip\n\\noindent\\textbf{Proposition 1} (Level 2 $\\not\\subseteq$ Level 1)\\textbf{.}\n\\textit{Domain/range type constraints for IE with unbounded entity sets are not context-free.}\n\n\\smallskip\n\\noindent\\textit{Proof sketch.}\nConsider $\\mathcal{E} = \\{\\tau_A, \\tau_B\\}$ and a relation $r$ with $\\operatorname{dom}(r) = \\{\\tau_A\\}$.\nAn output contains $n$ entities with independently chosen types ($a_i \\in \\{A, B\\}$), followed by a relation referencing head $e_k$ for arbitrary $k \\leq n$.\nValidating the head-type field requires retrieving $\\tau_{a_k}$, the type assigned at position $k$ in the entity list.\nA pushdown automaton accesses its stack in LIFO order; retrieving position $k < n$ requires popping all entries above it, destroying information needed for subsequent lookups.\nSince both $n$ and $k$ are independently unbounded, no PDA can enforce this constraint for all valid outputs.\nOntoCoDec's semantic layer addresses this with a runtime entity registry $\\mathcal{D}$ (a finite map enabling random-access type lookups), operating as a deterministic stateful transducer over the token stream.\\hfill$\\square$\n\\smallskip\n\nWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and two decoding strategies (\\S\\ref{sec:strategies}); formal analysis of constraint composition is in Section~\\ref{sec:composition}."
             }
           },
-          "id": "event-004979"
+          "id": "event-004965"
         },
         {
-          "source_line": 4980,
+          "source_line": 4966,
           "timestamp": "2026-05-19T17:31:19.171798+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2365,10 +2093,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-004980"
+          "id": "event-004966"
         },
         {
-          "source_line": 4981,
+          "source_line": 4967,
           "timestamp": "2026-05-19T17:31:25.738084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2388,10 +2116,10 @@
               "new_string": "The output JSON Schema (\\S\\ref{sec:grammar}) enforces a fixed field ordering (head $\\to$ tail $\\to$ relation $\\to$ head\\_type $\\to$ tail\\_type) via deterministic grammar compilation, ensuring the relation type $r_j$ is known before entity type fields and enabling sequential domain/range lookups (\\S\\ref{sec:dynamic-masking}).\nThe top-level ordering (entities before relations) populates the entity registry (\\S\\ref{sec:entity-registry}) before relation generation; unregistered entities trigger domain-only filtering."
             }
           },
-          "id": "event-004981"
+          "id": "event-004967"
         },
         {
-          "source_line": 4982,
+          "source_line": 4968,
           "timestamp": "2026-05-19T17:31:25.738749+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2406,10 +2134,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004982"
+          "id": "event-004968"
         },
         {
-          "source_line": 4983,
+          "source_line": 4969,
           "timestamp": "2026-05-19T17:31:33.827539+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2429,10 +2157,10 @@
               "new_string": "The decoder enforces this sequentially: $\\tau^h \\in \\operatorname{dom}(r)$ at head position, then $\\tau^t \\in \\operatorname{range}(r, \\tau^h)$ at tail position, achieving exact pair-based enforcement strictly stronger than independent domain/range checks (which over-permit 33--37\\% spurious pairs on SciERC/DocRED; \\S\\ref{sec:rectangularity})."
             }
           },
-          "id": "event-004983"
+          "id": "event-004969"
         },
         {
-          "source_line": 4984,
+          "source_line": 4970,
           "timestamp": "2026-05-19T17:31:33.828203+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2447,10 +2175,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004984"
+          "id": "event-004970"
         },
         {
-          "source_line": 4985,
+          "source_line": 4971,
           "timestamp": "2026-05-19T17:31:45.588397+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2470,10 +2198,10 @@
               "new_string": "A JSON Schema encoding Eq.~\\eqref{eq:output-schema} with \\texttt{enum} constraints ($\\mathcal{E}$, $\\mathcal{R}$) is compiled into a pushdown automaton via XGrammar~\\cite{dong2025xgrammar}.\nAt step $t$, grammar-valid tokens $G(t) \\subseteq V$ pass; all others receive logits $-\\infty$, enforcing structural validity, vocabulary membership ($r_j \\in \\mathcal{R}$, $\\tau_i \\in \\mathcal{E}$), but not domain/range constraints (which depend on entity types within each triple)."
             }
           },
-          "id": "event-004985"
+          "id": "event-004971"
         },
         {
-          "source_line": 4986,
+          "source_line": 4972,
           "timestamp": "2026-05-19T17:31:45.639220+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2488,10 +2216,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004986"
+          "id": "event-004972"
         },
         {
-          "source_line": 4987,
+          "source_line": 4973,
           "timestamp": "2026-05-19T17:31:51.065006+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2511,10 +2239,10 @@
               "new_string": "\\paragraph{Dynamic masking.}\n\\label{sec:dynamic-masking}\nAt type-bearing positions, the processor computes a semantic mask $S(t) \\subseteq V$."
             }
           },
-          "id": "event-004987"
+          "id": "event-004973"
         },
         {
-          "source_line": 4988,
+          "source_line": 4974,
           "timestamp": "2026-05-19T17:31:51.065625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2529,10 +2257,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004988"
+          "id": "event-004974"
         },
         {
-          "source_line": 4989,
+          "source_line": 4975,
           "timestamp": "2026-05-19T17:32:00.234899+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2550,10 +2278,10 @@
               "description": "Compile and check page boundary after proposition + compressions"
             }
           },
-          "id": "event-004989"
+          "id": "event-004975"
         },
         {
-          "source_line": 4990,
+          "source_line": 4976,
           "timestamp": "2026-05-19T17:32:05.949480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2568,10 +2296,10 @@
             "tool": "Bash",
             "elapsed_ms": 5714
           },
-          "id": "event-004990"
+          "id": "event-004976"
         },
         {
-          "source_line": 4991,
+          "source_line": 4977,
           "timestamp": "2026-05-19T17:32:11.931489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2589,10 +2317,10 @@
               "description": "Verify Proposition 1 rendering in PDF"
             }
           },
-          "id": "event-004991"
+          "id": "event-004977"
         },
         {
-          "source_line": 4992,
+          "source_line": 4978,
           "timestamp": "2026-05-19T17:32:12.284009+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2607,10 +2335,10 @@
             "tool": "Bash",
             "elapsed_ms": 352
           },
-          "id": "event-004992"
+          "id": "event-004978"
         },
         {
-          "source_line": 4993,
+          "source_line": 4979,
           "timestamp": "2026-05-19T17:32:17.709339+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2628,10 +2356,10 @@
               "description": "Full Proposition rendering"
             }
           },
-          "id": "event-004993"
+          "id": "event-004979"
         },
         {
-          "source_line": 4994,
+          "source_line": 4980,
           "timestamp": "2026-05-19T17:32:18.115141+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2646,10 +2374,10 @@
             "tool": "Bash",
             "elapsed_ms": 405
           },
-          "id": "event-004994"
+          "id": "event-004980"
         },
         {
-          "source_line": 4995,
+          "source_line": 4981,
           "timestamp": "2026-05-19T17:32:35.579823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2667,10 +2395,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-004995"
+          "id": "event-004981"
         },
         {
-          "source_line": 4996,
+          "source_line": 4982,
           "timestamp": "2026-05-19T17:32:39.494738+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2685,10 +2413,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3914
           },
-          "id": "event-004996"
+          "id": "event-004982"
         },
         {
-          "source_line": 4997,
+          "source_line": 4983,
           "timestamp": "2026-05-19T17:32:42.142258+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2701,7 +2429,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004997"
+          "id": "event-004983"
         }
       ]
     },
@@ -2709,7 +2437,7 @@
       "number": 188,
       "messages": [
         {
-          "source_line": 4998,
+          "source_line": 4984,
           "timestamp": "2026-05-19T17:32:42.622270+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2723,10 +2451,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-004998"
+          "id": "event-004984"
         },
         {
-          "source_line": 4999,
+          "source_line": 4985,
           "timestamp": "2026-05-19T17:32:48.669183+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2739,7 +2467,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-004999"
+          "id": "event-004985"
         }
       ]
     },
@@ -2747,7 +2475,7 @@
       "number": 189,
       "messages": [
         {
-          "source_line": 5000,
+          "source_line": 4986,
           "timestamp": "2026-05-19T17:49:59.032622+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2761,10 +2489,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-005000"
+          "id": "event-004986"
         },
         {
-          "source_line": 5001,
+          "source_line": 4987,
           "timestamp": "2026-05-19T17:50:09.089356+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2782,10 +2510,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-005001"
+          "id": "event-004987"
         },
         {
-          "source_line": 5002,
+          "source_line": 4988,
           "timestamp": "2026-05-19T17:50:12.808993+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2800,7 +2528,7 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3719
           },
-          "id": "event-005002"
+          "id": "event-004988"
         }
       ]
     },
@@ -2808,7 +2536,7 @@
       "number": 190,
       "messages": [
         {
-          "source_line": 5003,
+          "source_line": 4989,
           "timestamp": "2026-05-19T17:50:31.733853+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2822,10 +2550,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-005003"
+          "id": "event-004989"
         },
         {
-          "source_line": 5004,
+          "source_line": 4990,
           "timestamp": "2026-05-19T17:50:41.426951+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2845,10 +2573,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005004"
+          "id": "event-004990"
         },
         {
-          "source_line": 5005,
+          "source_line": 4991,
           "timestamp": "2026-05-19T17:50:41.578863+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2863,10 +2591,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-005005"
+          "id": "event-004991"
         },
         {
-          "source_line": 5006,
+          "source_line": 4992,
           "timestamp": "2026-05-19T17:50:45.747147+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2883,10 +2611,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-005006"
+          "id": "event-004992"
         },
         {
-          "source_line": 5007,
+          "source_line": 4993,
           "timestamp": "2026-05-19T17:50:45.998813+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2901,10 +2629,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-005007"
+          "id": "event-004993"
         },
         {
-          "source_line": 5008,
+          "source_line": 4994,
           "timestamp": "2026-05-19T17:50:46.049454+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2921,10 +2649,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-005008"
+          "id": "event-004994"
         },
         {
-          "source_line": 5009,
+          "source_line": 4995,
           "timestamp": "2026-05-19T17:50:46.049895+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2939,10 +2667,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-005009"
+          "id": "event-004995"
         },
         {
-          "source_line": 5010,
+          "source_line": 4996,
           "timestamp": "2026-05-19T17:50:50.267461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2962,10 +2690,10 @@
               "new_string": "with rates characterized by \\emph{constraint tightness} ($\\bar{\\kappa}$) rather than schema or model scale."
             }
           },
-          "id": "event-005010"
+          "id": "event-004996"
         },
         {
-          "source_line": 5011,
+          "source_line": 4997,
           "timestamp": "2026-05-19T17:50:50.719932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2980,10 +2708,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-005011"
+          "id": "event-004997"
         },
         {
-          "source_line": 5012,
+          "source_line": 4998,
           "timestamp": "2026-05-19T17:50:51.892912+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3003,10 +2731,10 @@
               "new_string": "Constraint tightness ($\\bar{\\kappa}$) characterizes the dataset-level constraint regime, including residual violation rates and post-hoc resolution feasibility (Appendix~\\ref{app:tcr})"
             }
           },
-          "id": "event-005012"
+          "id": "event-004998"
         },
         {
-          "source_line": 5013,
+          "source_line": 4999,
           "timestamp": "2026-05-19T17:50:51.893435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3021,10 +2749,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005013"
+          "id": "event-004999"
         },
         {
-          "source_line": 5014,
+          "source_line": 5000,
           "timestamp": "2026-05-19T17:50:55.458279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3043,10 +2771,10 @@
               "limit": "10"
             }
           },
-          "id": "event-005014"
+          "id": "event-005000"
         },
         {
-          "source_line": 5015,
+          "source_line": 5001,
           "timestamp": "2026-05-19T17:50:55.559077+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3061,10 +2789,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-005015"
+          "id": "event-005001"
         },
         {
-          "source_line": 5016,
+          "source_line": 5002,
           "timestamp": "2026-05-19T17:51:10.879122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3084,10 +2812,10 @@
               "new_string": "constraint tightness ($\\bar{\\kappa}$) characterizes the dataset-level constraint regime across 103 relations and determines post-hoc resolution feasibility"
             }
           },
-          "id": "event-005016"
+          "id": "event-005002"
         },
         {
-          "source_line": 5017,
+          "source_line": 5003,
           "timestamp": "2026-05-19T17:51:10.929869+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3102,10 +2830,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005017"
+          "id": "event-005003"
         },
         {
-          "source_line": 5018,
+          "source_line": 5004,
           "timestamp": "2026-05-19T17:51:13.893849+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3124,10 +2852,10 @@
               "limit": "8"
             }
           },
-          "id": "event-005018"
+          "id": "event-005004"
         },
         {
-          "source_line": 5019,
+          "source_line": 5005,
           "timestamp": "2026-05-19T17:51:13.894360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3142,10 +2870,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-005019"
+          "id": "event-005005"
         },
         {
-          "source_line": 5020,
+          "source_line": 5006,
           "timestamp": "2026-05-19T17:51:17.661177+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3165,10 +2893,10 @@
               "new_string": "$\\bar{\\kappa}$ characterizes not only the decoding-time DR residual regime but also the feasibility of post-hoc type resolution."
             }
           },
-          "id": "event-005020"
+          "id": "event-005006"
         },
         {
-          "source_line": 5021,
+          "source_line": 5007,
           "timestamp": "2026-05-19T17:51:17.762123+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3183,10 +2911,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005021"
+          "id": "event-005007"
         },
         {
-          "source_line": 5022,
+          "source_line": 5008,
           "timestamp": "2026-05-19T17:51:21.900865+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3205,10 +2933,10 @@
               "limit": "10"
             }
           },
-          "id": "event-005022"
+          "id": "event-005008"
         },
         {
-          "source_line": 5023,
+          "source_line": 5009,
           "timestamp": "2026-05-19T17:51:22.002048+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3223,10 +2951,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-005023"
+          "id": "event-005009"
         },
         {
-          "source_line": 5024,
+          "source_line": 5010,
           "timestamp": "2026-05-19T17:51:28.892424+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3245,10 +2973,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005024"
+          "id": "event-005010"
         },
         {
-          "source_line": 5025,
+          "source_line": 5011,
           "timestamp": "2026-05-19T17:51:28.993366+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3263,10 +2991,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-005025"
+          "id": "event-005011"
         },
         {
-          "source_line": 5026,
+          "source_line": 5012,
           "timestamp": "2026-05-19T17:51:33.837973+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3286,10 +3014,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005026"
+          "id": "event-005012"
         },
         {
-          "source_line": 5027,
+          "source_line": 5013,
           "timestamp": "2026-05-19T17:51:33.938848+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3304,10 +3032,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-005027"
+          "id": "event-005013"
         },
         {
-          "source_line": 5028,
+          "source_line": 5014,
           "timestamp": "2026-05-19T17:51:41.049918+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3325,10 +3053,10 @@
               "description": "Full compile and page check"
             }
           },
-          "id": "event-005028"
+          "id": "event-005014"
         },
         {
-          "source_line": 5029,
+          "source_line": 5015,
           "timestamp": "2026-05-19T17:51:46.072336+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3343,10 +3071,10 @@
             "tool": "Bash",
             "elapsed_ms": 5022
           },
-          "id": "event-005029"
+          "id": "event-005015"
         },
         {
-          "source_line": 5030,
+          "source_line": 5016,
           "timestamp": "2026-05-19T17:51:54.681115+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3364,10 +3092,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-005030"
+          "id": "event-005016"
         },
         {
-          "source_line": 5031,
+          "source_line": 5017,
           "timestamp": "2026-05-19T17:51:58.348263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3382,10 +3110,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3667
           },
-          "id": "event-005031"
+          "id": "event-005017"
         },
         {
-          "source_line": 5032,
+          "source_line": 5018,
           "timestamp": "2026-05-19T17:52:00.991227+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3398,7 +3126,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-005032"
+          "id": "event-005018"
         }
       ]
     },
@@ -3406,7 +3134,7 @@
       "number": 191,
       "messages": [
         {
-          "source_line": 5033,
+          "source_line": 5019,
           "timestamp": "2026-05-19T17:52:01.448971+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3420,10 +3148,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-005033"
+          "id": "event-005019"
         },
         {
-          "source_line": 5034,
+          "source_line": 5020,
           "timestamp": "2026-05-19T17:52:07.268559+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3436,7 +3164,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-005034"
+          "id": "event-005020"
         }
       ]
     },
@@ -3444,7 +3172,7 @@
       "number": 192,
       "messages": [
         {
-          "source_line": 5035,
+          "source_line": 5021,
           "timestamp": "2026-05-19T18:04:51.147524+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3458,10 +3186,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-005035"
+          "id": "event-005021"
         },
         {
-          "source_line": 5036,
+          "source_line": 5022,
           "timestamp": "2026-05-19T18:04:57.865963+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3478,10 +3206,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/kappa_dr_case_study.md"
             }
           },
-          "id": "event-005036"
+          "id": "event-005022"
         },
         {
-          "source_line": 5037,
+          "source_line": 5023,
           "timestamp": "2026-05-19T18:04:57.916659+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3496,10 +3224,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005037"
+          "id": "event-005023"
         },
         {
-          "source_line": 5038,
+          "source_line": 5024,
           "timestamp": "2026-05-19T18:05:01.734311+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3517,10 +3245,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
             }
           },
-          "id": "event-005038"
+          "id": "event-005024"
         },
         {
-          "source_line": 5039,
+          "source_line": 5025,
           "timestamp": "2026-05-19T18:05:02.137298+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3535,10 +3263,10 @@
             "tool": "Glob",
             "elapsed_ms": 402
           },
-          "id": "event-005039"
+          "id": "event-005025"
         },
         {
-          "source_line": 5040,
+          "source_line": 5026,
           "timestamp": "2026-05-19T18:05:02.338460+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3554,6 +3282,278 @@
             "tool_args": {
               "pattern": "**/case_study*",
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-005026"
+        },
+        {
+          "source_line": 5027,
+          "timestamp": "2026-05-19T18:05:02.389195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/case_study_kappa_dr.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/case_study_kappa_dr_dddc01.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/figures/case_study_kappa_dr.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-005027"
+        },
+        {
+          "source_line": 5028,
+          "timestamp": "2026-05-19T18:05:07.569513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex"
+            }
+          },
+          "id": "event-005028"
+        },
+        {
+          "source_line": 5029,
+          "timestamp": "2026-05-19T18:05:07.821023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\small\n4\t\\caption{Case study: constraint tightness $\\kappa$ and DR violation rate for selected relations under Qwen-2.5-7B zero-shot greedy decoding (unconstrained). Violation susceptibility is driven by the interaction of constraint tightness and entity type confusability, not tightness alone. All bottom-group relations have $\\kappa \\geq 0.81$ yet DR $= 0$\\%.}\n5\t\\label{tab:kappa-case-study}\n6\t\\begin{tabular}{@{}llccc l@{}}\n7\t\\toprule\n8\t\\textbf{Relation} & \\textbf{Dataset} & $\\kappa$ & \\textbf{DR\\%} & $n$ & \\textbf{Explanation} \\\\\n9\t\\midrule\n10\t\\multicolumn{6}{@{}l}{\\textit{Highest DR violation rate}} \\\\\n11\tbasin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \\textsc{loc}$\\to$\\textsc{loc}; head mistyped as \\textsc{org}/\\textsc{misc} \\\\\n12\tproduct produced     & DocRED & .94 & 67.2 &  61 & Requires \\textsc{org} head; model assigns \\textsc{loc}/\\textsc{per} to producers \\\\\n13\tparticipant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \\textsc{event} type; \\textsc{per}$\\leftrightarrow$event role confusion \\\\\n14\t\\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs (Method$\\leftrightarrow$Task) violate same-type constraint \\\\\n15\t\\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary inflates violations \\\\\n16\t\\midrule\n17\t\\multicolumn{6}{@{}l}{\\textit{High $\\kappa$ with zero violations (DR = 0\\%)}} \\\\\n18\tlyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \\textsc{per}$\\to$\\textsc{misc}; creative roles rarely mistyped \\\\\n19\tplace of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \\textsc{per}$\\to$\\textsc{loc}; high $\\kappa$ but no type confusion \\\\\n20\tplace of death       & DocRED & .89 &  0.0 &  60 & Strong \\textsc{per}$\\to$\\textsc{loc} prior; mirrors place of birth \\\\\n21\tsubsidiary           & DocRED & .86 &  0.0 &   5 & Clear \\textsc{org}$\\to$\\textsc{org} corporate semantics \\\\\n22\tfather               & DocRED & .81 &  0.0 &  69 & Clear \\textsc{per}\n…[truncated 89 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-005029"
+        },
+        {
+          "source_line": 5030,
+          "timestamp": "2026-05-19T18:05:07.871815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/report/case_study_kappa_dr_dddc01.md"
+            }
+          },
+          "id": "event-005030"
+        },
+        {
+          "source_line": 5031,
+          "timestamp": "2026-05-19T18:05:08.425126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Case Study: Constraint Tightness (κ) vs. Domain-Range Violation Rate\n2\t\n3\t**Model**: Qwen-2.5-7B, zero-shot, greedy decoding, unconstrained  \n4\t**Datasets**: SciERC (551 samples) and DocRED (998 documents)  \n5\t**Source files**: `phase2_scierc_unconstrained.jsonl`, `docred_unconstrained.jsonl` (westd-16980)  \n6\t**Violation reports**: `violation_report_scierc_unconstrained_v2.json`, `violation_report_docred_unconstrained_v2.json`\n7\t\n8\t## Schema Summary\n9\t\n10\t| Dataset | Entity Types | \\|E\\|² | Relations |\n11\t|---------|-------------|--------|-----------|\n12\t| SciERC  | Task, Method, Material, Metric, OtherScientificTerm, Generic (6) | 36 | 7 |\n13\t| DocRED  | LOC, MISC, NUM, ORG, PER, TIME (6) | 36 | 96 |\n14\t\n15\tκ(r) = 1 − \\|valid\\_pairs(r)\\| / \\|E\\|²\n16\t\n17\t## Complete Per-Relation Data\n18\t\n19\t### SciERC\n20\t\n21\t| Relation | n | DR violations | DR% | Valid pairs | κ |\n22\t|----------|---|---------------|-----|-------------|-----|\n23\t| Compare | 66 | 28 | 42.42 | 17 | 0.528 |\n24\t| Feature-of | 486 | 163 | 33.54 | 26 | 0.278 |\n25\t| Part-of | 72 | 18 | 25.00 | 21 | 0.417 |\n26\t| Evaluate-for | 133 | 32 | 24.06 | 23 | 0.361 |\n27\t| Hyponym-of | 124 | 18 | 14.52 | 21 | 0.417 |\n28\t| Used-for | 787 | 6 | 0.76 | 35 | 0.028 |\n29\t| Conjunction | 32 | 0 | 0.00 | 25 | 0.306 |\n30\t\n31\t**Totals**: 1,700 triples extracted, 265 DR violations (15.6%)\n32\t\n33\t### DocRED (canonical relations, n ≥ 5)\n34\t\n35\t| Relation (P-code) | Name | n | DR violations | DR% | Valid pairs | κ |\n36\t|--------------------|------|---|---------------|-----|-------------|-----|\n37\t| P35 | head of state | 11 | 11 | 100.00 | 4 | 0.889 |\n38\t| P171 | parent taxon | 6 | 5 | 83.33 | 4 | 0.889 |\n39\t| P172 | ethnic group | 24 | 20 | 83.33 | 7 | 0.806 |\n40\t| P710 | participant | 39 | 32 | 82.05 | 8 | 0.778 |\n41\t| P488 | chairperson | 10 | 8 | 80.00 | 3 | 0.917 |\n42\t| P179 | series | 28 | 21 | 75.00 | 6 | 0.833 |\n43\t| P6 | head of government | 8 | 6 | 75.00 | 4 | 0.889 |\n44\t| P205 | basin country | 63 | 47 | 74.60 | 1 | \n…[truncated 9028 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-005031"
+        },
+        {
+          "source_line": 5032,
+          "timestamp": "2026-05-19T18:05:23.400241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+            }
+          },
+          "id": "event-005032"
+        },
+        {
+          "source_line": 5033,
+          "timestamp": "2026-05-19T18:05:23.451402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\tso a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the enabling dependency (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property guaranteed only by the grammar layer.\n12\t\n13\t\\paragraph{Grammar-First Fallback.}\n14\tWhen $S(t) \\cap G(t) = \\emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n15\tWe enforce a \\emph{grammar-first fallback}: if no semantically valid token survives grammar filtering, semantic masking is skipped and the grammar layer alone controls selection.\n16\tStructural integrity is a hard constraint; a type violation is a soft error detectable by downstream validation.\n17\tAmong type violations, DR and CF differ in severity: a DR violation renders the triple ontologically invalid (the entity type lies outside the relation's domain or range), whereas a CF violation means each triple is individually schema-valid but the same entity receives different type assignments across triples.\n18\t\n19\t\\paragraph{Constraint Tightness.}\n20\tRecall the tightness of relation $r$ (\\S\\ref{sec:bg:ontology}):\\footnote{For symmetric relations, $|\\sigma(r)|$ counts ordered pairs; the normalization $|\\mathcal{E}|^2$ remains appropriate since we evaluate on directed triples.}\n21\t%\n22\t\\begin{equation}\\label{eq:tightness}\n23\t  \\kappa(r) = 1 - \\frac{|\\sigma(r)|}{|\\mathc\n…[truncated 1497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-005033"
+        },
+        {
+          "source_line": 5034,
+          "timestamp": "2026-05-19T18:05:37.962345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex"
+            }
+          },
+          "id": "event-005034"
+        },
+        {
+          "source_line": 5035,
+          "timestamp": "2026-05-19T18:05:38.013904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-005035"
+        },
+        {
+          "source_line": 5036,
+          "timestamp": "2026-05-19T18:05:59.141929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex",
+              "content": "% Appendix: Constraint Tightness Case Study\n% Data source: case_study_kappa_dr_dddc01.md (Qwen-2.5-7B zero-shot unconstrained)\n\n\\section{Constraint Tightness Case Study}\n\\label{app:kappa-case-study}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{2.8pt}\n\\begin{tabular}{@{}llccc l@{}}\n\\toprule\n\\textbf{Relation} & \\textbf{Dataset} & $\\kappa$ & \\textbf{DR\\%} & $n$ & \\textbf{Explanation} \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{Highest DR violation rate}} \\\\\nbasin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \\textsc{loc}$\\to$\\textsc{loc}; head mistyped as \\textsc{org}/\\textsc{misc} \\\\\nproduct produced     & DocRED & .94 & 67.2 &  61 & Requires \\textsc{org} head; model assigns \\textsc{loc}/\\textsc{per} \\\\\nparticipant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \\textsc{event} type; \\textsc{per}$\\leftrightarrow$event confusion \\\\\n\\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs violate same-type constraint \\\\\n\\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary \\\\\n\\midrule\n\\multicolumn{6}{@{}l}{\\textit{High $\\kappa$ with zero violations (DR = 0\\%)}} \\\\\nlyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \\textsc{per}$\\to$\\textsc{misc}; creative roles rarely mistyped \\\\\nplace of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \\textsc{per}$\\to$\\textsc{loc}; no type confusion \\\\\nplace of death       & DocRED & .89 &  0.0 &  60 & Strong \\textsc{per}$\\to$\\textsc{loc} prior; mirrors place of birth \\\\\nsubsidiary           & DocRED & .86 &  0.0 &   5 & Clear \\textsc{org}$\\to$\\textsc{org} corporate semantics \\\\\nfather               & DocRED & .81 &  0.0 &  69 & Clear \\textsc{per}$\\to$\\textsc{per} kinship semantics \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-relation $\\kappa$ vs.\\ DR violation rate (Qwen3-8B, zero-shot, unconstrained).\nHigh $\\kappa$ is necessary but not sufficient for high DR: relations with unambiguous entity types (place of birth, $\\kappa{=}0.92$) have zero violations, while equally tight relations with confusable types (basin country, $\\kappa{=}0.97$) show 74.6\\% DR.}\n\\label{tab:kappa-case-study}\n\\end{table}\n\n\\paragraph{Analysis.}\nThe case study confirms that violation susceptibility is driven by the interaction of constraint tightness and entity type confusability, not tightness alone.\nAmong DocRED relations with $\\kappa \\geq 0.81$, those involving semantically unambiguous type pairs (\\textsc{per}$\\to$\\textsc{loc} for kinship/geographic relations) achieve DR${=}$0\\%, while those requiring the model to distinguish frequently confused types (\\textsc{loc} vs.\\ \\textsc{org}, \\textsc{per} vs.\\ \\textsc{misc}) show DR${>}$50\\%.\nOn SciERC, the highest-DR relation (\\textsc{Compare}, 42.4\\%) has only moderate $\\kappa$ (0.53) but high type confusability across scientific categories.\nThis two-factor pattern motivates constrained decoding: the largest gains come from high-$\\kappa$, confusable-type relations where the model's type uncertainty is channeled into valid pairs.\n"
+            }
+          },
+          "id": "event-005036"
+        },
+        {
+          "source_line": 5037,
+          "timestamp": "2026-05-19T18:05:59.142483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-005037"
+        },
+        {
+          "source_line": 5038,
+          "timestamp": "2026-05-19T18:06:03.109609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+              "offset": "104",
+              "limit": "20"
+            }
+          },
+          "id": "event-005038"
+        },
+        {
+          "source_line": 5039,
+          "timestamp": "2026-05-19T18:06:03.160325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "104\t\\appendix\n105\t\n106\t\\input{appendix_prompts}\n107\t\\input{appendix_related_work}\n108\t\\input{appendix_discussion}\n109\t\\input{appendix_llama_per_relation}\n110\t\\input{appendix_sampling_table}\n111\t\\input{appendix_beam_search}\n112\t\\input{appendix_reproducibility}\n113\t\\input{appendix_doc_length}\n114\t\\input{appendix_prompt_sensitivity}\n115\t\\input{appendix_case_studies}\n116\t\\input{appendix_scalability}\n117\t\\input{appendix_full_ft}\n118\t\\input{appendix_tcr}\n119\t\n120\t\\end{document}\n121\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-005039"
+        },
+        {
+          "source_line": 5040,
+          "timestamp": "2026-05-19T18:06:07.383190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+              "old_string": "\\input{appendix_tcr}\n\n\\end{document}",
+              "new_string": "\\input{appendix_tcr}\n\\input{appendix_kappa_case_study}\n\n\\end{document}"
             }
           },
           "id": "event-005040"

@@ -6,539 +6,9 @@
 
 ## Round 24
 
-### Tool result
-
-_source line 570 · 2026-05-27T08:43:08.638128+00:00_
-
-1	\section{Method}
-2	\label{sec:method}
-3	
-4	We investigate how action-relevant representations are organized across three VLA architectures using complementary probing, attention, and perturbation analyses.
-5	
-6	%------------------------------------------------------------------
-7	\subsection{Architectures and Data}
-8	\label{sec:arch_data}
-9	
-10	We study three VLAs that span distinct backbone families (Table~\ref{tab:arch_overview}).
-11	\textbf{OpenVLA}~\cite{kim2024_openvla,karamcheti2024} chains a frozen DinoSigLIP vision backbone~\cite{zhai2023_siglip,oquab2024_dinov2} (DINOv2 ViT-L/14 + SigLIP-SO400M), an MLP projector, and Llama-2-7B~\cite{touvron2023_llama2} (6.74B parameters, 32 layers, 32 multi-head attention [MHA] heads) for autoregressive 7-D action decoding.
-12	It is pretrained on Open X-Embodiment~\cite{padalkar2023_oxe} (OXE; 970K episodes across multiple robot platforms).
-13	\textbf{TracVLA}~\cite{zheng2024tracevla} pairs a SigLIP encoder with Phi-3-mini~\cite{abdin2024phi3} (3.8B parameters, 32 layers, 32 MHA heads).
-14	TracVLA is trained on an OXE subset with spatial trace conditioning.
-15	\textbf{NORA}~\cite{hung2025nora} uses Qwen2.5-VL-3B ($\sim$3B parameters, 36 layers, grouped-query attention [GQA] with 16 query heads and 2 KV heads) with the native Qwen2.5-VL vision encoder, which processes images at dynamic resolution without a separate projection stage.
-16	
-17	Each architecture is evaluated in trained and reference conditions; we define the \emph{reference checkpoint} as the corresponding pretrained model before LIBERO fine-tuning.
-18	A critical asymmetry distinguishes the reference baselines: the OpenVLA reference is an OXE-pretrained VLA, already fine-tuned for action prediction on 970K episodes, while the TracVLA and NORA references are pure vision-language models (Phi-3-Vision and Qwen2.5-VL) with no action training.
-19	OpenVLA trained-vs-reference comparisons therefore measure a VLA-to-VLA transition; TracVLA and NORA comparisons measur
-…[truncated 4743 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 571 · 2026-05-27T08:43:13.457391+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
-  "offset": "1150",
-  "limit": "30"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex",
-    "offset": "1150",
-    "limit": "30"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 572 · 2026-05-27T08:43:13.558227+00:00_
-
-1150	\centering
-1151	\includegraphics[width=0.55\columnwidth]{figures/fig_training_dynamics.pdf}
-1152	\caption{\textbf{$\Delta R^2$ across training pathways.} Each point is one architecture-suite cell; markers distinguish backbone families. Exit collapse (above dashed line) is confined to VLM-to-VLA transitions and does not intensify during VLA-to-VLA fine-tuning.}
-1153	\label{fig:training_dynamics}
-1154	\end{figure}
-1155	
-1156	\subsection{Extended Practical Implications}
-1157	\label{sec:extended_practical_implications}
-1158	
-1159	The main text identifies three use cases for the entry-exit decomposition; here we elaborate on each.
-1160	
-1161	\paragraph{Checkpoint selection.}
-1162	$\Delta R^2$ provides a probe-based screening signal ($> 0.10$ flags reorganization) requiring only a forward pass and a linear probe.
-1163	Its wall-clock cost scales with model size rather than environment complexity, unlike rollout evaluation which requires physics simulation and multi-step execution.
-1164	Practitioners can rank checkpoints by $\Delta R^2$ and reserve rollout budgets for the top candidates, substantially reducing the number of expensive closed-loop evaluations needed during model selection.
-1165	
-1166	\paragraph{Transfer learning strategy.}
-1167	The flat VLA-to-VLA $\Delta R^2$ profile (\S\ref{sec:r2_collapse}) shows that VLA-to-VLA transitions preserve exit structure, justifying staged pipelines (VLM$\to$VLA$\to$task) that reuse the first-stage action head without re-learning exit representations.
-1168	Inherited L1 routing can further serve as a frozen prior, reducing tunable parameters during domain transfer.
-1169	This suggests that practitioners adapting a general-purpose VLA to a new task suite may benefit from freezing early layers while focusing capacity on mid-to-late layer adaptation.
-1170	
-1171	\paragraph{Mid-layer probe value.}
-1172	Where exit collapse is pronounced, mid-layer representations ($R^2$ peak at L9--L11 across architectures) outperform exit-layer fea
-…[truncated 774 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 573 · 2026-05-27T08:43:49.501480+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__pdf_to_images",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__pdf_to_images",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 574 · 2026-05-27T08:43:49.552081+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 575 · 2026-05-27T08:43:52.765434+00:00_
-
-called mcp__agent-ml-research__pdf_to_images
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
-
-```json
-{
-  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-  "project": "vla-ssd",
-  "pages": "7-8",
-  "dpi": "150"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__pdf_to_images",
-  "tool_args": {
-    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-    "project": "vla-ssd",
-    "pages": "7-8",
-    "dpi": "150"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 576 · 2026-05-27T08:43:53.117229+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 281.4}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 344.7}], \"total_pages\": 43, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__pdf_to_images",
-  "elapsed_ms": 351
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 577 · 2026-05-27T08:43:56.077309+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 578 · 2026-05-27T08:43:56.278451+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 579 · 2026-05-27T08:43:56.481119+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 403
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 580 · 2026-05-27T08:43:56.834088+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 555
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 581 · 2026-05-27T08:44:06.221053+00:00_
-
-called mcp__agent-ml-research__pdf_to_images
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
-
-```json
-{
-  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-  "project": "vla-ssd",
-  "pages": "1,9",
-  "dpi": "150"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__pdf_to_images",
-  "tool_args": {
-    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-    "project": "vla-ssd",
-    "pages": "1,9",
-    "dpi": "150"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 582 · 2026-05-27T08:44:06.422686+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p1.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 279.2}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 348.7}], \"total_pages\": 43, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "mcp__agent-ml-research__pdf_to_images",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 583 · 2026-05-27T08:44:10.388600+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p1.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p1.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 584 · 2026-05-27T08:44:10.539747+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 585 · 2026-05-27T08:44:10.742533+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 353
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 586 · 2026-05-27T08:44:11.095360+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 555
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 587 · 2026-05-27T08:45:54.137194+00:00_
+_source line 575 · 2026-05-27T08:45:54.137194+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -574,7 +44,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 588 · 2026-05-27T08:45:58.227422+00:00_
+_source line 576 · 2026-05-27T08:45:58.227422+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -596,7 +66,7 @@ _source line 588 · 2026-05-27T08:45:58.227422+00:00_
 
 ### Tool call
 
-_source line 589 · 2026-05-27T08:46:01.447357+00:00_
+_source line 577 · 2026-05-27T08:46:01.447357+00:00_
 
 called ToolSearch
 
@@ -632,7 +102,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 590 · 2026-05-27T08:46:01.499174+00:00_
+_source line 578 · 2026-05-27T08:46:01.499174+00:00_
 
 
 
@@ -654,7 +124,7 @@ _source line 590 · 2026-05-27T08:46:01.499174+00:00_
 
 ### Tool call
 
-_source line 591 · 2026-05-27T08:46:05.315095+00:00_
+_source line 579 · 2026-05-27T08:46:05.315095+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -688,7 +158,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 592 · 2026-05-27T08:46:05.315527+00:00_
+_source line 580 · 2026-05-27T08:46:05.315527+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -710,7 +180,7 @@ _source line 592 · 2026-05-27T08:46:05.315527+00:00_
 
 ### Assistant
 
-_source line 593 · 2026-05-27T08:46:08.154156+00:00_
+_source line 581 · 2026-05-27T08:46:08.154156+00:00_
 
 评估已发送。待机等待 Director 回复。
 
@@ -737,7 +207,7 @@ _source line 593 · 2026-05-27T08:46:08.154156+00:00_
 
 ### User
 
-_source line 594 · 2026-05-27T12:13:47.950748+00:00_
+_source line 582 · 2026-05-27T12:13:47.950748+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -819,7 +289,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 595 · 2026-05-27T12:14:35.669112+00:00_
+_source line 583 · 2026-05-27T12:14:35.669112+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

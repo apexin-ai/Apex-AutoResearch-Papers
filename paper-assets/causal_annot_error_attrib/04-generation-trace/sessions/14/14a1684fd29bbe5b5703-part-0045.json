@@ -2424,45 +2424,6 @@
         },
         {
           "source_line": 8044,
-          "timestamp": "2026-05-24T05:00:42.315994+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md",
-              "limit": "100"
-            }
-          },
-          "id": "event-008044"
-        },
-        {
-          "source_line": 8045,
-          "timestamp": "2026-05-24T05:00:42.829773+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal 论点草稿\n2\t\n3\t> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。\n4\t> 基于当前论文版本（23 configs / 161 scenarios / 14 exposure sign flips）。\n5\t\n6\t---\n7\t\n8\t## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）\n9\t\n10\t### Q1.1: \"This is an incremental extension of Brenner (1993).\"\n11\t\n12\t**A:** Brenner (1993) identified the *possibility* of polytomous bias away from the null for a single topology (exposure) but did not characterize sign-flip boundary conditions or analyze non-exposure topologies. Our contribution is not \"K=2 scaled up to K=3\"---it is a demonstration that the *algebraic structure* of the confusion matrix changes qualitatively at K>=3. For K=2, any column-stochastic matrix with C_kk > 0.5 preserves coefficient signs; this is a dimensional property of 2x2 matrices, not a rate condition. At K>=3, the higher-dimensional matrix admits negative effective weights across categories, enabling sign reversal even with all diagonal entries exceeding 0.5. Three results are entirely absent from prior work: (1) the 5-topology structural guarantee map, (2) the ASV sensitivity framework, (3) the FWL invariance negative result.\n13\t\n14\t### Q1.2: \"ASV is just E-value for measurement error.\"\n15\t\n16\t**A:** The intuition is simple: E-value asks *how strong unmeasured confounding must be* to explain away an association; ASV asks *how bad annotation must be* to cross a bias threshold. But the mathematical objects are fundamentally different. E-value (VanderWeele & Ding 2017) operates on risk ratios for a *missing* variable---a scalar sensitivity parameter. ASV operates on confusion matrix eigenstructure for an *observed-but-noisy* variable via the delta parameterization C(delta) = (1-delta)I + delta*C_0. The three ASV variants (magnitude, significance, sign-flip) have no E-value counterpart because E-value does not model multi-class misclassification structure.\n17\t\n18\t### Q1.3: \"The FWL invariance result is obvious.\"\n19\t\n20\t**A:** If it were obvious, we would expect the correction literature to men\n…[truncated 9168 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "elapsed_ms": 513
-          },
-          "id": "event-008045"
-        },
-        {
-          "source_line": 8046,
           "timestamp": "2026-05-24T05:00:44.589378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2479,10 +2440,10 @@
               "command": "grep -r \"\\\\\\\\ref{app:\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/*.tex 2>/dev/null | head -20"
             }
           },
-          "id": "event-008046"
+          "id": "event-008044"
         },
         {
-          "source_line": 8047,
+          "source_line": 8045,
           "timestamp": "2026-05-24T05:00:45.093341+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2497,10 +2458,10 @@
             "tool": "Bash",
             "elapsed_ms": 503
           },
-          "id": "event-008047"
+          "id": "event-008045"
         },
         {
-          "source_line": 8048,
+          "source_line": 8046,
           "timestamp": "2026-05-24T05:00:46.198550+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2517,10 +2478,10 @@
               "command": "wc -l /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/appendix_proofs.tex"
             }
           },
-          "id": "event-008048"
+          "id": "event-008046"
         },
         {
-          "source_line": 8049,
+          "source_line": 8047,
           "timestamp": "2026-05-24T05:00:46.198970+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2535,10 +2496,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-008049"
+          "id": "event-008047"
         },
         {
-          "source_line": 8050,
+          "source_line": 8048,
           "timestamp": "2026-05-24T05:00:47.974664+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2557,10 +2518,10 @@
               "limit": "30"
             }
           },
-          "id": "event-008050"
+          "id": "event-008048"
         },
         {
-          "source_line": 8051,
+          "source_line": 8049,
           "timestamp": "2026-05-24T05:00:48.489830+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2575,10 +2536,10 @@
             "tool": "Read",
             "elapsed_ms": 515
           },
-          "id": "event-008051"
+          "id": "event-008049"
         },
         {
-          "source_line": 8052,
+          "source_line": 8050,
           "timestamp": "2026-05-24T05:00:49.746008+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2595,10 +2556,10 @@
               "command": "grep -n \"^\\\\\\\\label{app:\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/appendix_proofs.tex"
             }
           },
-          "id": "event-008052"
+          "id": "event-008050"
         },
         {
-          "source_line": 8053,
+          "source_line": 8051,
           "timestamp": "2026-05-24T05:00:50.235323+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2613,10 +2574,10 @@
             "tool": "Bash",
             "elapsed_ms": 489
           },
-          "id": "event-008053"
+          "id": "event-008051"
         },
         {
-          "source_line": 8054,
+          "source_line": 8052,
           "timestamp": "2026-05-24T05:01:19.061595+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2631,10 +2592,10 @@
             "tool": "Agent",
             "elapsed_ms": 69536
           },
-          "id": "event-008054"
+          "id": "event-008052"
         },
         {
-          "source_line": 8055,
+          "source_line": 8053,
           "timestamp": "2026-05-24T05:01:29.214311+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2653,10 +2614,10 @@
               "prompt": "I need to find what \"rebuttal preparation\" materials exist for the causal_annot_error_attrib project. Search in:\n\n1. /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ - look for any rebuttal-related files, experiment plans tagged as rebuttal\n2. Read experiment_plan.yaml to find experiments tagged for rebuttal or with priority \"rebuttal\"\n3. Read paper_framing.md for \"Anticipated Reviewer Concerns\" section\n4. Check if there are any artifacts specifically prepared for rebuttal (e.g., extra tables, figures, analyses)\n5. Look in artifacts/ directory for rebuttal-related files\n\nSearch breadth: very thorough"
             }
           },
-          "id": "event-008055"
+          "id": "event-008053"
         },
         {
-          "source_line": 8056,
+          "source_line": 8054,
           "timestamp": "2026-05-24T05:01:29.783369+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2673,10 +2634,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/method.tex"
             }
           },
-          "id": "event-008056"
+          "id": "event-008054"
         },
         {
-          "source_line": 8057,
+          "source_line": 8055,
           "timestamp": "2026-05-24T05:01:30.294918+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2691,10 +2652,10 @@
             "tool": "Read",
             "elapsed_ms": 511
           },
-          "id": "event-008057"
+          "id": "event-008055"
         },
         {
-          "source_line": 8058,
+          "source_line": 8056,
           "timestamp": "2026-05-24T05:01:30.596785+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2711,10 +2672,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib -type f -name \"*rebuttal*\" 2>/dev/null"
             }
           },
-          "id": "event-008058"
+          "id": "event-008056"
         },
         {
-          "source_line": 8059,
+          "source_line": 8057,
           "timestamp": "2026-05-24T05:01:31.094269+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2729,10 +2690,10 @@
             "tool": "Bash",
             "elapsed_ms": 497
           },
-          "id": "event-008059"
+          "id": "event-008057"
         },
         {
-          "source_line": 8060,
+          "source_line": 8058,
           "timestamp": "2026-05-24T05:01:35.867700+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2749,10 +2710,10 @@
               "pattern": "**/causal_annot_error_attrib/**/*rebuttal*"
             }
           },
-          "id": "event-008060"
+          "id": "event-008058"
         },
         {
-          "source_line": 8061,
+          "source_line": 8059,
           "timestamp": "2026-05-24T05:01:36.348390+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2767,10 +2728,10 @@
             "tool": "Glob",
             "elapsed_ms": 480
           },
-          "id": "event-008061"
+          "id": "event-008059"
         },
         {
-          "source_line": 8062,
+          "source_line": 8060,
           "timestamp": "2026-05-24T05:01:36.348651+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2787,10 +2748,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/experiment_plan.yaml"
             }
           },
-          "id": "event-008062"
+          "id": "event-008060"
         },
         {
-          "source_line": 8063,
+          "source_line": 8061,
           "timestamp": "2026-05-24T05:01:36.859371+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2805,10 +2766,10 @@
             "tool": "Read",
             "elapsed_ms": 510
           },
-          "id": "event-008063"
+          "id": "event-008061"
         },
         {
-          "source_line": 8064,
+          "source_line": 8062,
           "timestamp": "2026-05-24T05:01:36.859669+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2825,10 +2786,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper_framing.md"
             }
           },
-          "id": "event-008064"
+          "id": "event-008062"
         },
         {
-          "source_line": 8065,
+          "source_line": 8063,
           "timestamp": "2026-05-24T05:01:36.859934+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2843,86 +2804,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008065"
+          "id": "event-008063"
         },
         {
-          "source_line": 8066,
-          "timestamp": "2026-05-24T05:01:38.668566+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
-            }
-          },
-          "id": "event-008066"
-        },
-        {
-          "source_line": 8067,
-          "timestamp": "2026-05-24T05:01:39.021135+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal 论点草稿\n2\t\n3\t> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。\n4\t> 基于当前论文版本（23 configs / 161 scenarios / 14 exposure sign flips）。\n5\t\n6\t---\n7\t\n8\t## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）\n9\t\n10\t### Q1.1: \"This is an incremental extension of Brenner (1993).\"\n11\t\n12\t**A:** Brenner (1993) identified the *possibility* of polytomous bias away from the null for a single topology (exposure) but did not characterize sign-flip boundary conditions or analyze non-exposure topologies. Our contribution is not \"K=2 scaled up to K=3\"---it is a demonstration that the *algebraic structure* of the confusion matrix changes qualitatively at K>=3. For K=2, any column-stochastic matrix with C_kk > 0.5 preserves coefficient signs; this is a dimensional property of 2x2 matrices, not a rate condition. At K>=3, the higher-dimensional matrix admits negative effective weights across categories, enabling sign reversal even with all diagonal entries exceeding 0.5. Three results are entirely absent from prior work: (1) the 5-topology structural guarantee map, (2) the ASV sensitivity framework, (3) the FWL invariance negative result.\n13\t\n14\t### Q1.2: \"ASV is just E-value for measurement error.\"\n15\t\n16\t**A:** The intuition is simple: E-value asks *how strong unmeasured confounding must be* to explain away an association; ASV asks *how bad annotation must be* to cross a bias threshold. But the mathematical objects are fundamentally different. E-value (VanderWeele & Ding 2017) operates on risk ratios for a *missing* variable---a scalar sensitivity parameter. ASV operates on confusion matrix eigenstructure for an *observed-but-noisy* variable via the delta parameterization C(delta) = (1-delta)I + delta*C_0. The three ASV variants (magnitude, significance, sign-flip) have no E-value counterpart because E-value does not model multi-class misclassification structure.\n17\t\n18\t### Q1.3: \"The FWL invariance result is obvious.\"\n19\t\n20\t**A:** If it were obvious, we would expect the correction literature to men\n…[truncated 10063 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "elapsed_ms": 352
-          },
-          "id": "event-008067"
-        },
-        {
-          "source_line": 8068,
-          "timestamp": "2026-05-24T05:01:39.021726+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/report/rebuttal_draft.md"
-            }
-          },
-          "id": "event-008068"
-        },
-        {
-          "source_line": 8069,
-          "timestamp": "2026-05-24T05:01:39.122440+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal 论点草稿\n2\t\n3\t> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。\n4\t> 基于当前论文版本（20 configs / 140 scenarios / 11 exposure sign flips）。\n5\t\n6\t---\n7\t\n8\t## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）\n9\t\n10\t### Q1.1: \"This is an incremental extension of Brenner (1993).\"\n11\t\n12\t**A:** Brenner (1993) identified the *possibility* of polytomous bias away from the null for a single topology (exposure) but did not quantify it, did not analyze other causal designs, and provided no sensitivity framework. Our contribution is not \"K=2 scaled up to K=3\"---it is a demonstration that the *algebraic structure* of the confusion matrix changes qualitatively at K>=3. For K=2, any column-stochastic matrix with C_kk > 0.5 preserves coefficient signs; this is a dimensional property of 2x2 matrices, not a rate condition. At K>=3, the higher-dimensional matrix admits negative effective weights across categories, enabling sign reversal even with all diagonal entries exceeding 0.5. No prior work characterizes this across causal designs or provides tools to diagnose it.\n13\t\n14\t### Q1.2: \"ASV is just E-value for measurement error.\"\n15\t\n16\t**A:** E-value (VanderWeele & Ding 2017) quantifies the strength of *unmeasured* confounding needed to explain away an observed association---a scalar sensitivity parameter for an unobserved quantity. ASV quantifies the annotation error severity (via the delta parameterization of C(delta) = (1-delta)I + delta*C_0) at which a *measured-with-error* variable crosses a bias threshold. The mathematical objects differ: E-value operates on risk ratios for a missing variable; ASV operates on confusion matrix eigenstructure for an observed-but-noisy variable. The three ASV variants (magnitude, significance, sign-flip) have no E-value counterpart because E-value does not model multi-class misclassification structure.\n17\t\n18\t### Q1.3: \"The FWL invariance result is obvious.\"\n19\t\n20\t**A:** If it were obvious, we would expect the correction literature to mention it. Neither DSL (Egam\n…[truncated 9248 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-008069"
-        },
-        {
-          "source_line": 8070,
+          "source_line": 8064,
           "timestamp": "2026-05-24T05:01:39.173059+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2939,10 +2824,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ | grep -i rebuttal"
             }
           },
-          "id": "event-008070"
+          "id": "event-008064"
         },
         {
-          "source_line": 8071,
+          "source_line": 8065,
           "timestamp": "2026-05-24T05:01:39.721197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2957,10 +2842,10 @@
             "tool": "Bash",
             "elapsed_ms": 548
           },
-          "id": "event-008071"
+          "id": "event-008065"
         },
         {
-          "source_line": 8072,
+          "source_line": 8066,
           "timestamp": "2026-05-24T05:01:41.378820+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2977,10 +2862,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -type f | sort"
             }
           },
-          "id": "event-008072"
+          "id": "event-008066"
         },
         {
-          "source_line": 8073,
+          "source_line": 8067,
           "timestamp": "2026-05-24T05:01:41.630419+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2995,10 +2880,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-008073"
+          "id": "event-008067"
         },
         {
-          "source_line": 8074,
+          "source_line": 8068,
           "timestamp": "2026-05-24T05:01:41.982554+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3018,10 +2903,10 @@
               "head_limit": "100"
             }
           },
-          "id": "event-008074"
+          "id": "event-008068"
         },
         {
-          "source_line": 8075,
+          "source_line": 8069,
           "timestamp": "2026-05-24T05:01:42.472020+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3036,10 +2921,10 @@
             "tool": "Grep",
             "elapsed_ms": 489
           },
-          "id": "event-008075"
+          "id": "event-008069"
         },
         {
-          "source_line": 8076,
+          "source_line": 8070,
           "timestamp": "2026-05-24T05:01:43.627978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3056,10 +2941,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/*.md 2>/dev/null | head -20"
             }
           },
-          "id": "event-008076"
+          "id": "event-008070"
         },
         {
-          "source_line": 8077,
+          "source_line": 8071,
           "timestamp": "2026-05-24T05:01:44.134897+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3074,10 +2959,10 @@
             "tool": "Bash",
             "elapsed_ms": 506
           },
-          "id": "event-008077"
+          "id": "event-008071"
         },
         {
-          "source_line": 8078,
+          "source_line": 8072,
           "timestamp": "2026-05-24T05:01:44.135275+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3094,10 +2979,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib -name \"*.md\" -type f | head -30"
             }
           },
-          "id": "event-008078"
+          "id": "event-008072"
         },
         {
-          "source_line": 8079,
+          "source_line": 8073,
           "timestamp": "2026-05-24T05:01:44.135507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3112,10 +2997,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-008079"
+          "id": "event-008073"
         },
         {
-          "source_line": 8080,
+          "source_line": 8074,
           "timestamp": "2026-05-24T05:01:47.495976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3133,10 +3018,10 @@
               "limit": "300"
             }
           },
-          "id": "event-008080"
+          "id": "event-008074"
         },
         {
-          "source_line": 8081,
+          "source_line": 8075,
           "timestamp": "2026-05-24T05:01:48.003750+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3151,10 +3036,10 @@
             "tool": "Read",
             "elapsed_ms": 507
           },
-          "id": "event-008081"
+          "id": "event-008075"
         },
         {
-          "source_line": 8082,
+          "source_line": 8076,
           "timestamp": "2026-05-24T05:01:48.004080+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3171,10 +3056,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib -name \"*review*\" -o -name \"*issue*\" 2>/dev/null | grep -v \".venv\" | grep -v \"__pycache__\""
             }
           },
-          "id": "event-008082"
+          "id": "event-008076"
         },
         {
-          "source_line": 8083,
+          "source_line": 8077,
           "timestamp": "2026-05-24T05:01:48.521057+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3189,10 +3074,10 @@
             "tool": "Bash",
             "elapsed_ms": 516
           },
-          "id": "event-008083"
+          "id": "event-008077"
         },
         {
-          "source_line": 8084,
+          "source_line": 8078,
           "timestamp": "2026-05-24T05:01:50.379818+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3209,10 +3094,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-008084"
+          "id": "event-008078"
         },
         {
-          "source_line": 8085,
+          "source_line": 8079,
           "timestamp": "2026-05-24T05:01:50.877410+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3229,10 +3114,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_round_* | tail -10"
             }
           },
-          "id": "event-008085"
+          "id": "event-008079"
         },
         {
-          "source_line": 8086,
+          "source_line": 8080,
           "timestamp": "2026-05-24T05:01:51.379190+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3247,10 +3132,10 @@
             "tool": "Bash",
             "elapsed_ms": 501
           },
-          "id": "event-008086"
+          "id": "event-008080"
         },
         {
-          "source_line": 8087,
+          "source_line": 8081,
           "timestamp": "2026-05-24T05:01:51.379885+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3265,10 +3150,10 @@
             "tool": "Read",
             "elapsed_ms": 1000
           },
-          "id": "event-008087"
+          "id": "event-008081"
         },
         {
-          "source_line": 8088,
+          "source_line": 8082,
           "timestamp": "2026-05-24T05:01:53.390413+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3285,10 +3170,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -name \"*.yaml\" -o -name \"*.md\" | grep -E \"(review|rebuttal|response)\" | sort"
             }
           },
-          "id": "event-008088"
+          "id": "event-008082"
         },
         {
-          "source_line": 8089,
+          "source_line": 8083,
           "timestamp": "2026-05-24T05:01:53.541512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3303,10 +3188,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-008089"
+          "id": "event-008083"
         },
         {
-          "source_line": 8090,
+          "source_line": 8084,
           "timestamp": "2026-05-24T05:01:53.592233+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3323,10 +3208,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/ 2>/dev/null | head -20"
             }
           },
-          "id": "event-008090"
+          "id": "event-008084"
         },
         {
-          "source_line": 8091,
+          "source_line": 8085,
           "timestamp": "2026-05-24T05:01:53.592628+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3341,10 +3226,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-008091"
+          "id": "event-008085"
         },
         {
-          "source_line": 8092,
+          "source_line": 8086,
           "timestamp": "2026-05-24T05:01:55.255501+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3362,10 +3247,10 @@
               "limit": "200"
             }
           },
-          "id": "event-008092"
+          "id": "event-008086"
         },
         {
-          "source_line": 8093,
+          "source_line": 8087,
           "timestamp": "2026-05-24T05:01:55.731819+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3380,10 +3265,10 @@
             "tool": "Read",
             "elapsed_ms": 476
           },
-          "id": "event-008093"
+          "id": "event-008087"
         },
         {
-          "source_line": 8094,
+          "source_line": 8088,
           "timestamp": "2026-05-24T05:01:55.732145+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3400,10 +3285,10 @@
               "command": "wc -l /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
             }
           },
-          "id": "event-008094"
+          "id": "event-008088"
         },
         {
-          "source_line": 8095,
+          "source_line": 8089,
           "timestamp": "2026-05-24T05:01:56.249625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3418,10 +3303,10 @@
             "tool": "Bash",
             "elapsed_ms": 517
           },
-          "id": "event-008095"
+          "id": "event-008089"
         },
         {
-          "source_line": 8096,
+          "source_line": 8090,
           "timestamp": "2026-05-24T05:02:15.936489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3436,10 +3321,10 @@
             "tool": "Agent",
             "elapsed_ms": 46722
           },
-          "id": "event-008096"
+          "id": "event-008090"
         },
         {
-          "source_line": 8097,
+          "source_line": 8091,
           "timestamp": "2026-05-24T05:02:29.043986+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3456,10 +3341,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/appendix_proofs.tex"
             }
           },
-          "id": "event-008097"
+          "id": "event-008091"
         },
         {
-          "source_line": 8098,
+          "source_line": 8092,
           "timestamp": "2026-05-24T05:02:29.585836+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3474,10 +3359,10 @@
             "tool": "Read",
             "elapsed_ms": 541
           },
-          "id": "event-008098"
+          "id": "event-008092"
         },
         {
-          "source_line": 8099,
+          "source_line": 8093,
           "timestamp": "2026-05-24T05:02:29.586290+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3494,10 +3379,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/main.tex"
             }
           },
-          "id": "event-008099"
+          "id": "event-008093"
         },
         {
-          "source_line": 8100,
+          "source_line": 8094,
           "timestamp": "2026-05-24T05:02:29.636784+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3511,6 +3396,122 @@
             "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
             "tool": "Read",
             "elapsed_ms": 50
+          },
+          "id": "event-008094"
+        },
+        {
+          "source_line": 8095,
+          "timestamp": "2026-05-24T05:02:37.173249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/experiments.tex"
+            }
+          },
+          "id": "event-008095"
+        },
+        {
+          "source_line": 8096,
+          "timestamp": "2026-05-24T05:02:37.525515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate the multi-class bias taxonomy and ASV framework through analytical derivations validated by Monte Carlo simulation, covering seven canonical DAG topologies under $K{=}3$ non-differential misclassification.\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\tWe study seven DAG topologies where annotation variable $A$ enters at structurally distinct positions: confounding, exposure, mediation, collider, M-bias, front-door, and instrumental variable (IV). For each topology, we sample $K{\\times}K$ confusion matrices from a Dirichlet$(1,1,1)$ prior (each column independently), generating 100{,}000 random matrices per configuration. Each matrix defines a non-differential misclassification mechanism $C_{jk} = P(A^*{=}j \\mid A{=}k)$.\n10\t\n11\tFor every sampled $C$, we compute the analytical probability limit of the causal estimator and validate it against Monte Carlo simulation with $N{=}10{,}000$ samples per replication. ASV experiments use the parameterization $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $\\delta{=}0$ recovers perfect classification and $\\delta{=}1$ yields the reference matrix $C_0$.\n12\t\n13\t\\subsection{Bias Taxonomy}\n14\t\\label{sec:taxonomy_results}\n15\t\n16\t\\paragraph{Theory-MC agreement.}\n17\tAnalytical probability limits match Monte Carlo estimates within 95\\% confidence intervals across all seven topologies and all sampled confusion matrices, confirming the closed-form bias expressions derived in Section~\\ref{sec:method}.\n18\t\n19\t\\paragraph{Exposure DAG: catastrophic sign reversal.}\n20\tUnder the full Dirichlet$(1,1,1)$ prior, 85\\% of $K{=}3$ confusion matrices produce bias that violates the binary ``toward-null'' guarantee. More critically, 83.4\\% of matrices cause \\emph{sign reversal} of at least one coefficient. The two failure modes are distinct: for a coefficient with true value $\\beta_1{=}1.0$, a near-permutation $C$ produces $\\hat{\\gamma}_1{=}{-}0.84$ (sign reversal, magnitude $0.84{\\tim\n…[truncated 14390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-008096"
+        },
+        {
+          "source_line": 8097,
+          "timestamp": "2026-05-24T05:02:37.525950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/conclusion.tex"
+            }
+          },
+          "id": "event-008097"
+        },
+        {
+          "source_line": 8098,
+          "timestamp": "2026-05-24T05:02:37.626705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic characterization of how multi-class annotation errors interact with causal DAG topology. Our bias taxonomy across seven topologies reveals that the classical binary guarantee of bias toward the null breaks for $K \\geq 3$: exposure and IV topologies can produce sign reversal (83.4\\% and 52.6\\% respectively), while five topologies maintain a structural guarantee of no sign flip. The ASV framework provides topology-aware sensitivity diagnostics, revealing a vulnerability spectrum from IV (maximally fragile) to M-bias (immune). Our correction guidance analysis reveals that correction method effectiveness is itself topology-dependent: a Frisch--Waugh--Lovell invariance result proves matrix-based corrections are ineffective for four topologies, while PPI++ achieves 93.8\\% bias reduction at the cost of gold-standard labels. Binarization collapse analysis further demonstrates that simplifying multi-class annotations to binary introduces additional bias varying 147$\\times$ across topologies.\n5\t\n6\t\\paragraph{Limitations.}\n7\tOur closed-form bias expressions are derived for $K{=}3$ and verified numerically at $K{=}5,7$; closed-form expressions for arbitrary $K$ remain open. The analysis assumes non-differential misclassification; differential error (where misclassification rates depend on the outcome) is more realistic for LLM annotators but substantially harder to characterize. Formal sharpness proofs for the monotonicity theorem cover three topologies; the remaining four are validated numerically. The empirical validation with real LLM confusion matrices is in progress.\n8\t\n9\t\\paragraph{Future work.}\n10\tFour directions are immediate. First, extending the framework to differential misclassification, which arises when LLM annotation quality varies with context. Second, incorporating the correlated error structure documented by \\citet{kim_garg2025} into multi-LLM correction strategies. Third, e\n…[truncated 415 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-008098"
+        },
+        {
+          "source_line": 8099,
+          "timestamp": "2026-05-24T05:02:45.414724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper_framing.md",
+              "offset": "70",
+              "limit": "40"
+            }
+          },
+          "id": "event-008099"
+        },
+        {
+          "source_line": 8100,
+          "timestamp": "2026-05-24T05:02:45.866865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\n71\t- **AAAI**: Broad AI audience — emphasize general methodology for \"automated annotation measurement error,\" not LLM-specific. Frame as extending classical measurement error theory to modern automated labeling.\n72\t- **ARR/NAACL**: NLP audience — CSS track is natural fit. May want more empirical NLP experiments. Balance theory with practical LLM annotation scenarios.\n73\t- **Cross-discipline bridge**: Epidemiology (measurement error theory) × NLP (annotation errors). Epi reviewers check proof rigor; NLP reviewers check empirical relevance. Must serve both.\n74\t\n75\t## Anticipated Reviewer Concerns & Planned Responses\n76\t\n77\t1. **\"Trivial extension of binary to multi-class\"** → Brenner (1993) proved direction reversal; our taxonomy provides the first systematic characterization across 7 topologies. Binarizing K-class introduces NEW unpredictable bias (MVP evidence). The complexity jump is structural: binary has 2 free parameters (sensitivity, specificity) → scalar bias; K=5 has 20 free parameters → matrix-valued bias requiring eigendecomposition for interpretation. [Experiments: plan_001, plan_008]\n78\t\n79\t2. **\"Lee & Wood-Doughty (2024) already did categorical\"** → They cover 1 topology (unobserved confounding) on 1 dataset (MIMIC). We cover 7 topologies with systematic taxonomy + ASVs + correction guidance. Their work is a stepping stone; ours is the full framework. [Experiments: plan_001]\n80\t\n81\t3. **\"Why these 7 DAG topologies?\"** → These are the canonical CSS causal designs used by Hernán & Cole (2009) and TeBlunthuis et al. (2024). They cover the major roles an annotated variable can play: exposure (treatment), confounder, mediator, collider, instrument, front-door criterion variable. [Experiments: plan_001]\n82\t\n83\t4. **\"K≥5 expressions aren't actionable\"** → Three interpretability tools: (a) eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar bounds, (c) diagnostic visualizations. [Experiments: plan_002]\n84\t\n85\t5. **\"ASV sharpn\n…[truncated 1186 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director",
+            "tool": "Read",
+            "elapsed_ms": 452
           },
           "id": "event-008100"
         }

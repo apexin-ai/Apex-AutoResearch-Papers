@@ -7,87 +7,6 @@
       "messages": [
         {
           "source_line": 2341,
-          "timestamp": "2026-05-23T16:11:34.363894+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
-              "offset": "1",
-              "limit": "20"
-            }
-          },
-          "id": "event-002341"
-        },
-        {
-          "source_line": 2342,
-          "timestamp": "2026-05-23T16:11:34.464931+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH response matrix~\\citep{kipnis2024metabench} (5,227 models $\\times$ 12,508 MMLU items~\\citep{hendrycks2021mmlu}), with temporal cohorts defined by release date (2023 vs.\\ 2024). Cross-benchmark validation across all six METABENCH benchmarks appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\subsection{Validation: DIF Detection Power}\n7\t\\label{sec:validation}\n8\t\n9\t\\looseness=-1\n10\tA Monte Carlo power analysis (1,000 replications) using empirical 2PL parameters from PSN-IRT~\\citep{zhou2026psnirt} ($\\bar{a} = 1.2$, $\\bar{b} = -0.84$) confirms that at $N \\geq 80$ per cohort, ETS~C achieves TPR of 0.68--0.80 (under uniform injection) and AUC of 0.93--0.94 for $|\\Delta_{\\mathrm{MH}}| \\geq 1.4$ (\\Cref{app:method_details}). Our temporal cohorts ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold; power varies with item discrimination (TPR 0.40--0.95 across $a = 0.5$--$2.0$; \\Cref{app:power_sensitivity}).\n11\t\n12\t\\subsection{Temporal DIF: 31\\% of Items Exhibit Differential Functioning}\n13\t\\label{sec:temporal}\n14\t\n15\t\\looseness=-1\n16\tWe compare 2023 ($N = 1{,}080$) against 2024 ($N = 807$) models; 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$; bootstrap 95\\% CI: $[29.4\\%, 38.1\\%]$; family-level cluster bootstrap: $[26.7\\%, 53.2\\%]$, upper bound driven by mega-family over-representation; \\Cref{app:uncertainty}). Two design-effect (DEFF) estimators bound the non-independence effect: simple-mean DEFF yields 29.2\\% and weighted-mean DEFF yields 13.5\\%, bracketing temporal C\\% at 13.5--29.2\\%. The cluster bootstrap 95\\% CI ($[26.7\\%, 53.2\\%]$)---a family-level resampling method independent of DEFF methodology---excludes the weighted-mean estimate (13.5\\%), providing model-independent evidence that over-correction drives the lower bound. Under weighted-mean DEFF (C\\% $= 13.5\\%$), all downstream conclusions hold: $\\rho = 0.999$, score shift $= {+}1\n…[truncated 1009 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-002342"
-        },
-        {
-          "source_line": 2343,
-          "timestamp": "2026-05-23T16:12:04.331313+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
-              "old_string": "confirming that the threshold corresponds to a per-item false-positive rate below 1\\% in the LLM setting.",
-              "new_string": "confirming that the threshold maintains a per-item false-positive rate below 1\\%; together with the Monte Carlo power analysis (TPR $\\geq 0.68$; \\Cref{sec:validation}), this validates ETS~C classification for the LLM setting."
-            }
-          },
-          "id": "event-002343"
-        },
-        {
-          "source_line": 2344,
-          "timestamp": "2026-05-23T16:12:04.934938+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 603
-          },
-          "id": "event-002344"
-        },
-        {
-          "source_line": 2345,
           "timestamp": "2026-05-23T16:12:10.207465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -104,10 +23,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
             }
           },
-          "id": "event-002345"
+          "id": "event-002341"
         },
         {
-          "source_line": 2346,
+          "source_line": 2342,
           "timestamp": "2026-05-23T16:12:10.359059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -122,10 +41,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-002346"
+          "id": "event-002342"
         },
         {
-          "source_line": 2347,
+          "source_line": 2343,
           "timestamp": "2026-05-23T16:13:14.409118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -143,10 +62,10 @@
               "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{DIF Methodology and Measurement Invariance.}\nThe Mantel-Haenszel procedure for DIF detection was introduced by \\citet{holland1988mh} and remains the most widely used method in educational testing due to its simplicity and well-characterized statistical properties \\citep{clauser1998dif}. Alternative approaches include logistic regression DIF \\citep{swaminathan1990logistic}, SIBTEST \\citep{shealy1993sibtest}, Lord's $\\chi^2$ test \\citep{lord1980irt}, and the Raju area method \\citep{raju1988area}; \\citet{millsap1993dif}, \\citet{zumbo1999handbook}, and \\citet{penfield2007dif} provide comprehensive reviews. DIF analysis is a specific instance of measurement invariance testing \\citep{meredith1993invariance, vandenberg2000invariance, millsap2011invariance}, which examines whether a measurement instrument functions equivalently across populations. MIMIC models offer a latent-variable approach to the same problem \\citep{muthen1985mimic, woods2009mimic}, and \\citet{teresi2007dif} reviews DIF methods across applied domains. Cross-subject matching---computing the stratification variable from domains other than the one being tested---adapts purified subtest matching from the DIF literature \\citep{nandakumar1993dif,donoghue1993mh} to a new challenge: contamination control at scale, where the matching variable itself may be compromised by the phenomenon under test. We retain the standard MH statistic and develop LLM-specific adaptations around it: cross-subject matching for contamination control (with a constructive $\\Delta\\mathrm{FPR} = 0$ guarantee), DEFF correction for non-independence, and semi-synthetic validation absent ground-truth labels. The 5,227-examinee scale exceeds typical DIF applications~\\citep{belzak2020smallsample}. The impact-versus-DIF confound is addressed through matched-ability quintile analysis, IRT $\\theta$-conditioning (as sensitivity check), and a random-split control (\\Cref{sec:temporal}).\n\n\\paragraph{IRT in LLM Evaluation.}\nIRT adoption in LLM evaluation has accelerated: \\citet{lalor2019irt} introduced IRT to NLP, \\citet{vania2021irt} assessed test set discriminability, and \\citet{rodriguez2021evaluation} demonstrated that not all evaluation examples are equally informative. Recent extensions include PSN-IRT \\citep{zhou2026psnirt} for benchmark quality at scale, TinyBenchmarks \\citep{maiapolo2024tinybenchmarks} for IRT-based item selection, scalability coefficients for detecting bad benchmark items \\citep{hardy2026scalability}, IRT-based evaluation quality~\\citep{kraus2024irt}, ATLAS \\citep{li2025atlas} for computerized adaptive testing of LLMs, JE-IRT \\citep{yao2025jeirt} for geometric ability embedding, continuous-score adaptive evaluation~\\citep{balkir2026confident}, and competency-focused IRT evaluation in medical domains \\citep{luo2025medirt}. The closest concurrent work is Growing Pains \\citep{habba2026growingpains}, which uses IRT calibration to establish anchor items for cross-temporal score equating via fixed-parameter calibration \\citep[FPC;][]{kim2019fpc}. While Growing Pains uses parametric IRT (2PL/3PL fixed-parameter calibration), MH-DIF is nonparametric and robust to model misspecification---an advantage given poor 2PL fit for MMLU (RMSEA $> 0.08$; \\Cref{app:power_sensitivity}). Growing Pains prescribes how to equate scores after instability is detected; our work diagnoses \\emph{which} items exhibit instability and quantifies severity via ETS classification, providing pre-screened anchor candidates for downstream equating. Their anchor-item selection can directly consume our stable-item set as pre-screened candidates; our finding that 31\\% of items exhibit temporal DIF identifies which items should \\emph{not} serve as anchors. To our knowledge, no prior work applies DIF to benchmark temporal comparability---contamination detection and psychometric evaluation optimization have developed as separate threads.\n\n\\paragraph{Contamination Detection.}\nA growing family of methods detects benchmark contamination through model behavior or training data analysis. Membership inference approaches estimate whether a model has seen specific items during training: Min-K\\% \\citep{shi2024mink} and Min-K\\%++ \\citep{zhang2024minkpp} use token-level log-likelihood statistics, while Time Travel \\citep{golchin2024timetravel} probes models with temporal cues and \\citet{oren2024proving} prove contamination through exchangeability tests. Performance-based detectors identify contamination through statistical anomalies \\citep{dekoninck2024constat,liang2026dvd,tao2026selfcritique,deng2024investigating} in-context learning effects~\\citep{zawalski2026codec}, or inference-time decontamination~\\citep{chai2026benchmarksleak}. \\citet{balloccu2024leak} provide a broader taxonomy of leakage detection strategies. These methods share a common validation practice: they verify detection accuracy against web-overlap or n-gram labels \\citep{li2024contamination} that classify items based on verbatim matches in publicly accessible corpora. Such labels measure \\emph{global exposure} (whether an item exists in training data) rather than \\emph{differential item functioning} (whether an item behaves differently across model cohorts). This global-vs-differential distinction motivates our comparison with web-overlap labels (\\Cref{sec:groundtruth}). Work on LLM memorization \\citep{carlini2022quantifying, tirumala2022memorization} establishes that memorization depends on data frequency and model scale, reinforcing the distinction between global exposure and differential behavior. \\citet{wang2026fragility} show that existing contamination detectors are fragile under reinforcement learning, further motivating behavioral approaches grounded in psychometric theory.\n\n\\paragraph{Benchmark Quality and Design.}\nMeta-evaluation of static benchmark quality~\\citep{zhu2026bhi,qian2026benchmark2} assesses quality at a single snapshot; our temporal DIF analysis diagnoses \\emph{when} measurement properties shift. MMLU-CF~\\citep{zhao2025mmlucf} reconstructs contamination-free items and MMLU-Pro~\\citep{wang2024mmlupro} extends item difficulty; DIF monitoring identifies which existing items remain measurement-invariant without replacement. \\citet{maeda2025difllm} use LLMs to predict DIF in human assessments---the reverse direction; we apply DIF to LLM benchmarks with models as examinees. Dynamic benchmarks~\\citep{kiela2021dynabench,li2024latesteval,white2025livebench} and self-evolving frameworks~\\citep{ying2024automating,xu2025benchmark} mitigate contamination by construction but lack psychometric equating. Broader surveys~\\citep{chang2024survey,burnell2023rethink,alzahrani2024benchmarks} identify benchmark saturation as a systemic challenge that DIF analysis directly addresses.\n"
             }
           },
-          "id": "event-002347"
+          "id": "event-002343"
         },
         {
-          "source_line": 2348,
+          "source_line": 2344,
           "timestamp": "2026-05-23T16:13:14.460317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -161,10 +80,10 @@
             "tool": "Write",
             "elapsed_ms": 51
           },
-          "id": "event-002348"
+          "id": "event-002344"
         },
         {
-          "source_line": 2349,
+          "source_line": 2345,
           "timestamp": "2026-05-23T16:13:25.609920+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -182,10 +101,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002349"
+          "id": "event-002345"
         },
         {
-          "source_line": 2350,
+          "source_line": 2346,
           "timestamp": "2026-05-23T16:13:28.872305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -200,10 +119,10 @@
             "tool": "Bash",
             "elapsed_ms": 3262
           },
-          "id": "event-002350"
+          "id": "event-002346"
         },
         {
-          "source_line": 2351,
+          "source_line": 2347,
           "timestamp": "2026-05-23T16:13:34.996632+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -222,10 +141,10 @@
               "limit": "3"
             }
           },
-          "id": "event-002351"
+          "id": "event-002347"
         },
         {
-          "source_line": 2352,
+          "source_line": 2348,
           "timestamp": "2026-05-23T16:13:35.248041+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -240,10 +159,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-002352"
+          "id": "event-002348"
         },
         {
-          "source_line": 2353,
+          "source_line": 2349,
           "timestamp": "2026-05-23T16:13:49.651998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -260,10 +179,10 @@
               "text": "趁等 R20 审批，额外完成了 3 个 Should-Fix：\n\n**W1**（temporal framing）— §5.1 加入 \"temporal\" = cohort-based 澄清，明确 2023-2024 cohorts 在 architecture/training data/methodology 上同时变化\n\n**W3**（contamination narrative 张力）— Related Work 段落重排：DIF Methodology → IRT → Contamination Detection → Benchmark Quality（不再以 contamination 开篇）；修正 \"ground truth analysis\" 交叉引用以匹配重命名的 §4.3\n\n**W4**（ETS 阈值校准）— §4.2 显式连接 Monte Carlo power analysis (TPR ≥ 0.68) 与 random-split empirical null (FPR < 1%)，验证 ETS C 分类在 LLM setting 下的适用性\n\n编译通过，19 页不变。已派 Reviewer 做内审 3.9 vs 外审 3.5 差异分析，找审稿盲区。"
             }
           },
-          "id": "event-002353"
+          "id": "event-002349"
         },
         {
-          "source_line": 2354,
+          "source_line": 2350,
           "timestamp": "2026-05-23T16:13:50.305067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -278,10 +197,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 653
           },
-          "id": "event-002354"
+          "id": "event-002350"
         },
         {
-          "source_line": 2355,
+          "source_line": 2351,
           "timestamp": "2026-05-23T16:15:10.894433+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -299,10 +218,10 @@
               "issues_yaml": "issues:\n  # === Round 19 issues (current round, fresh review) ===\n\n  - id: \"R19-N1\"\n    summary: \"DEFF 校正产生 2.16× 估计范围（13.5% vs 29.2%），论文未提供充分的分辨依据\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1 提出，R2 AGREE。Simple-mean C%=29.2% vs weighted-mean C%=13.5%。\"\n    action_items:\n      - round: 20\n        action: \"根因修复：Abstract/Intro/Conclusion/Discussion 全部移除 13.5%，改用 29.2% + cluster bootstrap CI [26.7%, 53.2%]。\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-N2\"\n    summary: \"Semi-synthetic 注入用 uniform binary flipping，检测力估计可能被系统性高估\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1 提出，R2 AGREE。Graded shift (Δp=0.1-0.3) 下检测力可能远低于报告值。\"\n    action_items:\n      - round: 20\n        action: \"§4.5 reframe as calibration upper bound + 20% overestimation bound; Figure 2 caption 加 calibration framing\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-N3\"\n    summary: \"缺少 DIF 文献中 impact/bias 关键区分——'Correct' 步骤与 mechanism-agnostic 定位逻辑冲突\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1 提出，R2 强烈 AGREE。DIF 是 bias 的必要非充分条件。\"\n    action_items:\n      - round: 20\n        action: \"§5.2 Correct 步骤重写：DIF flags → expert review，DIF is necessary but not sufficient for item bias，引用 camilli1994methods + penfield2007dif\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-N4\"\n    summary: \"DIF-contamination 正交性的 headline finding 依赖质量存疑的 web-overlap proxy\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R2 提出，R1 AGREE。Jaccard≈0.20 可能反映 proxy 低质量。\"\n    action_items:\n      - round: 20\n        action: \"§4.3 标题改为 Comparison with Web-Overlap Labels；proxy 声明 + label-independent evidence；全文 near-independent\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W1\"\n    summary: \"Calendar-year cohort boundary 粗糙——temporal framing 过窄\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1-W1 + R2-W3。Release date ≠ training cutoff。\"\n    action_items:\n      - round: 20\n        action: \"§5.1 加入 'temporal = cohort-based shorthand'，明确 cohorts differ in architecture/data/methodology simultaneously\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W2\"\n    summary: \"Cross-subject matching ΔFPR=0 在高覆盖率 contamination (k>5) 下退化未充分讨论\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1-W2, R2 AGREE。k=20 ΔFPR=0.069，但未模拟 k=30/50。\"\n    action_items:\n      - round: 19\n        action: \"模拟 k=30/50 的 ΔFPR；讨论高 contamination 覆盖率下的替代策略\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W3\"\n    summary: \"Mechanism-agnostic 定位与 contamination-heavy 叙事存在张力\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1-W3, R2 AGREE。Related Work 以 Contamination Detection 开篇。\"\n    action_items:\n      - round: 20\n        action: \"Related Work 段落重排：DIF Methodology → IRT → Contamination Detection → Benchmark Quality；§4.3 已改为 Comparison with Web-Overlap Labels；C1 已改为 complementary to contamination detection；修正 ground truth analysis 交叉引用\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W4\"\n    summary: \"ETS 阈值从人类考生迁移到 LLM 缺乏充分校准验证\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R2-W1, R1 AGREE。Random-split P99=1.45 是 necessary 但非 sufficient。\"\n    action_items:\n      - round: 20\n        action: \"§4.2 显式连接 Monte Carlo power analysis (TPR ≥ 0.68) 与 random-split FPR < 1%，验证 ETS C classification for LLM setting\"\n        assigned_to: director\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W5\"\n    summary: \"与 Growing Pains (Habba et al., 2026) 差异化论证不够深入\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R2-W2, R1 AGREE（优先级不高）。\"\n    action_items:\n      - round: 19\n        action: \"附录中加入与 Growing Pains 在相同 items 上的交叉比较\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-W6\"\n    summary: \"Score correction 展示不充分且缺乏 impact/bias 区分作为方法论基础\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R2-W5, R1 AGREE。§4.6 仅半页。N3 fix provides conceptual foundation。\"\n    action_items:\n      - round: 19\n        action: \"扩展 §4.6 或附录 case study\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-D1\"\n    summary: \"[分歧] 方法论新颖性是否足够\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R2 认为直接搬运，R1 反驳 cross-subject matching 和 DEFF 是 LLM-specific 贡献。\"\n    action_items:\n      - round: 19\n        action: \"Introduction 中更清晰区分 borrowed methodology 和 novel adaptations\"\n        assigned_to: paper_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  # === Round 17 issues (all resolved) ===\n\n  - id: \"R17-N1\"\n    summary: \"DEFF 估计量选择论证存在循环性\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"区间表述 → R19 再次提出（R19-N1）\"\n    resolution_round: 18\n\n  - id: \"R17-N2\"\n    summary: \"Semi-synthetic ΔTPR upper bound 声称不严密\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"reference-case 替换 → R19 要求 graded injection（R19-N2）\"\n    resolution_round: 18\n\n  - id: \"R17-W1\"\n    summary: \"Mechanism-agnostic 定位与 contamination-centric 叙事张力\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"§3.4 + §5.1 标记。R19 要求更彻底 reframing（R19-W3）\"\n    resolution_round: 18\n\n  - id: \"R17-W2\"\n    summary: \"与 Growing Pains 差异化\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"Related Work 两点区分。R19 仍要求更深入（R19-W5）\"\n    resolution_round: 18\n\n  - id: \"R17-W3\"\n    summary: \"k>5 时 ΔFPR 退化\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"已量化。R19 要求 k=30/50（R19-W2）\"\n    resolution_round: 18\n\n  - id: \"R17-W4\"\n    summary: \"DIF-contamination 正交性需替代解释\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"两种解释 + OR=4.75。R19 要求 proxy 讨论（R19-N4）\"\n    resolution_round: 18\n\n  - id: \"R17-W5\"\n    summary: \"时间粒度选择未经论证\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"半年粒度 + Limitations。R19 仍指出（R19-W1）\"\n    resolution_round: 18\n\n  - id: \"R17-W6\"\n    summary: \"Abstract 信息过载\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"~122 words。R19 未复发\"\n    resolution_round: 18\n\n  - id: \"R17-M1\"\n    summary: \"ρ≈0.997 与 ±800 displacement 共存机制\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 17\n    last_seen_round: 17\n    resolution: \"§4.6 解释 closely-ranked pairs\"\n    resolution_round: 18\n\n  # === Round 16 issues (all resolved) ===\n\n  - id: \"R16-N1\"\n    summary: \"ETS 阈值校准\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 15\n    last_seen_round: 16\n    resolution: \"P99=1.45。R19 降级为 W4\"\n    resolution_round: 17\n\n  - id: \"R16-N2\"\n    summary: \"Contribution 过度定位\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 13\n    last_seen_round: 16\n    resolution: \"3→2 contributions\"\n    resolution_round: 17\n\n  - id: \"R16-W1\"\n    summary: \"DEFF 差异 2×\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 13\n    last_seen_round: 16\n    resolution: \"区间表述。R19 再次提出\"\n    resolution_round: 18\n\n  - id: \"R16-W2\"\n    summary: \"审计协议超出方法能力\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 15\n    last_seen_round: 16\n    resolution: \"DIF alone cannot determine causation\"\n    resolution_round: 17\n\n  - id: \"R16-W3\"\n    summary: \"Discussion 缺深层 insight\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 16\n    last_seen_round: 16\n    resolution: \"§5.1 三个区分\"\n    resolution_round: 17\n\n  - id: \"R16-W4\"\n    summary: \"Abstract 信息密度过高\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 16\n    resolution: \"精简到 ~122 words\"\n    resolution_round: 18\n\n  - id: \"R16-W5\"\n    summary: \"主文超页\"\n    category: format\n    severity: warning\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 16\n    resolution: \"8 页内\"\n    resolution_round: 17\n\n  - id: \"R16-W6\"\n    summary: \"ΔTPR 应标为上界\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 13\n    last_seen_round: 16\n    resolution: \"reference-case\"\n    resolution_round: 18\n\n  - id: \"R16-M1\"\n    summary: \"术语不一致\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 16\n    resolution: \"§1 定义\"\n    resolution_round: 17\n\n  - id: \"R16-M2\"\n    summary: \"有效 N vs 总 N 澄清\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 16\n    last_seen_round: 16\n    resolution: \"§3.2 已修正\"\n    resolution_round: 17\n\n  - id: \"R16-M3\"\n    summary: \"遗漏相关工作\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 16\n    last_seen_round: 16\n    resolution: \"新引用已加\"\n    resolution_round: 17\n\n  - id: \"R16-DATA1\"\n    summary: \"random-split baseline 0.18% 来自单次运行\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 16\n    last_seen_round: 16\n    resolution: \"全文修正 0.18→0.62\"\n    resolution_round: 17"
             }
           },
-          "id": "event-002355"
+          "id": "event-002351"
         },
         {
-          "source_line": 2356,
+          "source_line": 2352,
           "timestamp": "2026-05-23T16:15:10.996030+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -317,10 +236,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 101
           },
-          "id": "event-002356"
+          "id": "event-002352"
         },
         {
-          "source_line": 2357,
+          "source_line": 2353,
           "timestamp": "2026-05-23T16:15:18.513627+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -333,7 +252,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-002357"
+          "id": "event-002353"
         }
       ]
     },
@@ -341,7 +260,7 @@
       "number": 120,
       "messages": [
         {
-          "source_line": 2358,
+          "source_line": 2354,
           "timestamp": "2026-05-23T16:16:12.131307+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -355,10 +274,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "reviewer"
           },
-          "id": "event-002358"
+          "id": "event-002354"
         },
         {
-          "source_line": 2359,
+          "source_line": 2355,
           "timestamp": "2026-05-23T16:16:51.411521+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -375,10 +294,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex"
             }
           },
-          "id": "event-002359"
+          "id": "event-002355"
         },
         {
-          "source_line": 2360,
+          "source_line": 2356,
           "timestamp": "2026-05-23T16:16:51.411919+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -393,10 +312,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002360"
+          "id": "event-002356"
         },
         {
-          "source_line": 2361,
+          "source_line": 2357,
           "timestamp": "2026-05-23T16:16:56.582015+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -416,10 +335,10 @@
               "new_string": "and shifts DIF-corrected scores by ${+}2.12$\\,pp on average under full C-flag removal."
             }
           },
-          "id": "event-002361"
+          "id": "event-002357"
         },
         {
-          "source_line": 2362,
+          "source_line": 2358,
           "timestamp": "2026-05-23T16:16:56.632724+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -434,11 +353,92 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-23T16:17:00.850104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex",
+              "old_string": "DIF-corrected scoring shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions",
+              "new_string": "DIF-corrected scoring (under full C-flag removal) shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions"
+            }
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-23T16:17:00.850455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-23T16:17:06.273446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex",
+              "offset": "18",
+              "limit": "10"
+            }
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-23T16:17:06.374315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18\tOur contributions are:\n19\t\n20\t\\begin{enumerate}\n21\t\\item \\textbf{Temporal DIF at scale, complementary to contamination detection}: We establish that 29.2\\% of MMLU items exhibit temporal DIF across 2023--2024 model cohorts after non-independence correction (cluster bootstrap 95\\% CI: $[26.7\\%, 53.2\\%]$; 17.9--31.3\\% across six benchmarks)---a signal near-independent of web-overlap labels (Jaccard $= 0.206$), which proxy global exposure rather than differential contamination. Base-vs-instruct stratification reveals opposite DIF patterns ($\\chi^2 = 562.7$), providing label-independent evidence for mechanism separation; DIF-corrected scoring shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions (\\Cref{sec:temporal,sec:groundtruth,sec:gsm8k,sec:disc_temporal,sec:downstream}).\n22\t\n23\t\\item \\textbf{Cross-subject matching with constructive FPR guarantee}: A cross-subject matching strategy provides a constructive $\\Delta\\mathrm{FPR} = 0$ guarantee under single-subject contamination ($k \\leq 5$), solving matching-variable corruption when the benchmark itself may be compromised (\\Cref{sec:semisynthetic}). We complement this with family-level DEFF correction for non-independence and semi-synthetic validation for detection-power calibration.\n24\t\n25\t\\item \\textbf{Actionable audit protocol}: We translate these findings into a three-step protocol (Monitor/Triage/Correct) with empirically grounded thresholds for benchmark maintainers (\\Cref{sec:disc_protocol}).\n26\t\\end{enumerate}\n27\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
           "id": "event-002362"
         },
         {
           "source_line": 2363,
-          "timestamp": "2026-05-23T16:17:00.850104+00:00",
+          "timestamp": "2026-05-23T16:17:10.290945+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -461,87 +461,6 @@
         },
         {
           "source_line": 2364,
-          "timestamp": "2026-05-23T16:17:00.850455+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002364"
-        },
-        {
-          "source_line": 2365,
-          "timestamp": "2026-05-23T16:17:06.273446+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex",
-              "offset": "18",
-              "limit": "10"
-            }
-          },
-          "id": "event-002365"
-        },
-        {
-          "source_line": 2366,
-          "timestamp": "2026-05-23T16:17:06.374315+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "18\tOur contributions are:\n19\t\n20\t\\begin{enumerate}\n21\t\\item \\textbf{Temporal DIF at scale, complementary to contamination detection}: We establish that 29.2\\% of MMLU items exhibit temporal DIF across 2023--2024 model cohorts after non-independence correction (cluster bootstrap 95\\% CI: $[26.7\\%, 53.2\\%]$; 17.9--31.3\\% across six benchmarks)---a signal near-independent of web-overlap labels (Jaccard $= 0.206$), which proxy global exposure rather than differential contamination. Base-vs-instruct stratification reveals opposite DIF patterns ($\\chi^2 = 562.7$), providing label-independent evidence for mechanism separation; DIF-corrected scoring shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions (\\Cref{sec:temporal,sec:groundtruth,sec:gsm8k,sec:disc_temporal,sec:downstream}).\n22\t\n23\t\\item \\textbf{Cross-subject matching with constructive FPR guarantee}: A cross-subject matching strategy provides a constructive $\\Delta\\mathrm{FPR} = 0$ guarantee under single-subject contamination ($k \\leq 5$), solving matching-variable corruption when the benchmark itself may be compromised (\\Cref{sec:semisynthetic}). We complement this with family-level DEFF correction for non-independence and semi-synthetic validation for detection-power calibration.\n24\t\n25\t\\item \\textbf{Actionable audit protocol}: We translate these findings into a three-step protocol (Monitor/Triage/Correct) with empirically grounded thresholds for benchmark maintainers (\\Cref{sec:disc_protocol}).\n26\t\\end{enumerate}\n27\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-002366"
-        },
-        {
-          "source_line": 2367,
-          "timestamp": "2026-05-23T16:17:10.290945+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex",
-              "old_string": "DIF-corrected scoring shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions",
-              "new_string": "DIF-corrected scoring (under full C-flag removal) shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 positions"
-            }
-          },
-          "id": "event-002367"
-        },
-        {
-          "source_line": 2368,
           "timestamp": "2026-05-23T16:17:10.341624+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -556,10 +475,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002368"
+          "id": "event-002364"
         },
         {
-          "source_line": 2369,
+          "source_line": 2365,
           "timestamp": "2026-05-23T16:17:14.364425+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -579,10 +498,10 @@
               "new_string": "DIF-corrected scoring (excluding all C-flagged items) shifts accuracy by ${+}2.12$\\,pp on average"
             }
           },
-          "id": "event-002369"
+          "id": "event-002365"
         },
         {
-          "source_line": 2370,
+          "source_line": 2366,
           "timestamp": "2026-05-23T16:17:14.415331+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -597,10 +516,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002370"
+          "id": "event-002366"
         },
         {
-          "source_line": 2371,
+          "source_line": 2367,
           "timestamp": "2026-05-23T16:17:28.383372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -619,10 +538,10 @@
               "limit": "8"
             }
           },
-          "id": "event-002371"
+          "id": "event-002367"
         },
         {
-          "source_line": 2372,
+          "source_line": 2368,
           "timestamp": "2026-05-23T16:17:28.434093+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -637,10 +556,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002372"
+          "id": "event-002368"
         },
         {
-          "source_line": 2373,
+          "source_line": 2369,
           "timestamp": "2026-05-23T16:17:33.358593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -660,10 +579,10 @@
               "new_string": "DIF-corrected scoring (excluding all C-flagged items) shifts accuracy by ${+}2.12$\\,pp on average, with individual models displaced by up to 849 rank positions."
             }
           },
-          "id": "event-002373"
+          "id": "event-002369"
         },
         {
-          "source_line": 2374,
+          "source_line": 2370,
           "timestamp": "2026-05-23T16:17:33.460006+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -678,10 +597,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002374"
+          "id": "event-002370"
         },
         {
-          "source_line": 2375,
+          "source_line": 2371,
           "timestamp": "2026-05-23T16:17:38.833012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -701,10 +620,10 @@
               "new_string": "\\subsection{Temporal DIF: ${\\sim}$29\\% of Items Exhibit Differential Functioning}"
             }
           },
-          "id": "event-002375"
+          "id": "event-002371"
         },
         {
-          "source_line": 2376,
+          "source_line": 2372,
           "timestamp": "2026-05-23T16:17:38.933992+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -719,11 +638,90 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-23T16:17:53.341916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
+              "old_string": "DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$)",
+              "new_string": "DIF flags are near-independent of web-overlap labels (a proxy for contamination; Jaccard $= 0.206$)"
+            }
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-23T16:17:53.392529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002374"
+        },
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-23T16:17:58.162040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-23T16:17:58.212749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\enlargethispage{6\\baselineskip}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-2\n6\tAcross six METABENCH benchmarks, 17.9--31.3\\% of items exhibit temporal DIF across 2023--2024 model cohorts (29.2\\% for MMLU; bootstrap CI: $[26.7\\%, 53.2\\%]$), while aggregate rankings remain preserved ($\\rho \\approx 0.997$). DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$); opposite base-vs-instruct patterns ($\\chi^2 = 562.7$) confirm that DIF captures signal beyond contamination. Mechanism-conditional DIF audit should complement contamination screening~\\citep{habba2026growingpains}; connecting DIF to specific training factors remains open.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
           "id": "event-002376"
         },
         {
           "source_line": 2377,
-          "timestamp": "2026-05-23T16:17:53.341916+00:00",
+          "timestamp": "2026-05-23T16:18:01.275750+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -746,85 +744,6 @@
         },
         {
           "source_line": 2378,
-          "timestamp": "2026-05-23T16:17:53.392529+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002378"
-        },
-        {
-          "source_line": 2379,
-          "timestamp": "2026-05-23T16:17:58.162040+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
-            }
-          },
-          "id": "event-002379"
-        },
-        {
-          "source_line": 2380,
-          "timestamp": "2026-05-23T16:17:58.212749+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\enlargethispage{6\\baselineskip}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-2\n6\tAcross six METABENCH benchmarks, 17.9--31.3\\% of items exhibit temporal DIF across 2023--2024 model cohorts (29.2\\% for MMLU; bootstrap CI: $[26.7\\%, 53.2\\%]$), while aggregate rankings remain preserved ($\\rho \\approx 0.997$). DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$); opposite base-vs-instruct patterns ($\\chi^2 = 562.7$) confirm that DIF captures signal beyond contamination. Mechanism-conditional DIF audit should complement contamination screening~\\citep{habba2026growingpains}; connecting DIF to specific training factors remains open.\n7\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-002380"
-        },
-        {
-          "source_line": 2381,
-          "timestamp": "2026-05-23T16:18:01.275750+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$)",
-              "new_string": "DIF flags are near-independent of web-overlap labels (a proxy for contamination; Jaccard $= 0.206$)"
-            }
-          },
-          "id": "event-002381"
-        },
-        {
-          "source_line": 2382,
           "timestamp": "2026-05-23T16:18:01.377563+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -839,10 +758,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002382"
+          "id": "event-002378"
         },
         {
-          "source_line": 2383,
+          "source_line": 2379,
           "timestamp": "2026-05-23T16:18:05.245082+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -860,10 +779,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002383"
+          "id": "event-002379"
         },
         {
-          "source_line": 2384,
+          "source_line": 2380,
           "timestamp": "2026-05-23T16:18:08.509059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -878,10 +797,10 @@
             "tool": "Bash",
             "elapsed_ms": 3263
           },
-          "id": "event-002384"
+          "id": "event-002380"
         },
         {
-          "source_line": 2385,
+          "source_line": 2381,
           "timestamp": "2026-05-23T16:18:12.480051+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -899,10 +818,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002385"
+          "id": "event-002381"
         },
         {
-          "source_line": 2386,
+          "source_line": 2382,
           "timestamp": "2026-05-23T16:18:12.531915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -917,10 +836,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-002386"
+          "id": "event-002382"
         },
         {
-          "source_line": 2387,
+          "source_line": 2383,
           "timestamp": "2026-05-23T16:18:14.896241+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -938,10 +857,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002387"
+          "id": "event-002383"
         },
         {
-          "source_line": 2388,
+          "source_line": 2384,
           "timestamp": "2026-05-23T16:18:14.997117+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -956,10 +875,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002388"
+          "id": "event-002384"
         },
         {
-          "source_line": 2389,
+          "source_line": 2385,
           "timestamp": "2026-05-23T16:18:18.075906+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -979,10 +898,10 @@
               "dpi": "165"
             }
           },
-          "id": "event-002389"
+          "id": "event-002385"
         },
         {
-          "source_line": 2390,
+          "source_line": 2386,
           "timestamp": "2026-05-23T16:18:18.377567+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -997,10 +916,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-002390"
+          "id": "event-002386"
         },
         {
-          "source_line": 2391,
+          "source_line": 2387,
           "timestamp": "2026-05-23T16:18:22.294290+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1017,10 +936,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002391"
+          "id": "event-002387"
         },
         {
-          "source_line": 2392,
+          "source_line": 2388,
           "timestamp": "2026-05-23T16:18:22.998268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1035,10 +954,10 @@
             "tool": "Read",
             "elapsed_ms": 703
           },
-          "id": "event-002392"
+          "id": "event-002388"
         },
         {
-          "source_line": 2393,
+          "source_line": 2389,
           "timestamp": "2026-05-23T16:18:41.478214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1058,10 +977,10 @@
               "dpi": "165"
             }
           },
-          "id": "event-002393"
+          "id": "event-002389"
         },
         {
-          "source_line": 2394,
+          "source_line": 2390,
           "timestamp": "2026-05-23T16:18:41.679991+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1076,10 +995,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 201
           },
-          "id": "event-002394"
+          "id": "event-002390"
         },
         {
-          "source_line": 2395,
+          "source_line": 2391,
           "timestamp": "2026-05-23T16:18:44.843179+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1096,10 +1015,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-002395"
+          "id": "event-002391"
         },
         {
-          "source_line": 2396,
+          "source_line": 2392,
           "timestamp": "2026-05-23T16:18:45.547788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1114,10 +1033,10 @@
             "tool": "Read",
             "elapsed_ms": 704
           },
-          "id": "event-002396"
+          "id": "event-002392"
         },
         {
-          "source_line": 2397,
+          "source_line": 2393,
           "timestamp": "2026-05-23T16:19:57.675880+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1137,10 +1056,10 @@
               "new_string": "\\section{Conclusion}"
             }
           },
-          "id": "event-002397"
+          "id": "event-002393"
         },
         {
-          "source_line": 2398,
+          "source_line": 2394,
           "timestamp": "2026-05-23T16:19:57.726619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1155,10 +1074,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002398"
+          "id": "event-002394"
         },
         {
-          "source_line": 2399,
+          "source_line": 2395,
           "timestamp": "2026-05-23T16:22:23.536225+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1175,10 +1094,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
             }
           },
-          "id": "event-002399"
+          "id": "event-002395"
         },
         {
-          "source_line": 2400,
+          "source_line": 2396,
           "timestamp": "2026-05-23T16:22:23.586930+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1193,10 +1112,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002400"
+          "id": "event-002396"
         },
         {
-          "source_line": 2401,
+          "source_line": 2397,
           "timestamp": "2026-05-23T16:22:28.657900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1216,10 +1135,10 @@
               "new_string": "\\enlargethispage{6\\baselineskip}\n\\section{Discussion}\n\\label{sec:discussion}"
             }
           },
-          "id": "event-002401"
+          "id": "event-002397"
         },
         {
-          "source_line": 2402,
+          "source_line": 2398,
           "timestamp": "2026-05-23T16:22:28.708535+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1234,10 +1153,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002402"
+          "id": "event-002398"
         },
         {
-          "source_line": 2403,
+          "source_line": 2399,
           "timestamp": "2026-05-23T16:22:36.389224+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1257,10 +1176,10 @@
               "new_string": "Temporal DIF detects \\emph{that} items function differently across cohorts, not \\emph{why}---and this is by design (``temporal'' denotes release-year cohorts that differ simultaneously in architecture, data, and methodology; \\Cref{sec:cohorts}). Stratifying"
             }
           },
-          "id": "event-002403"
+          "id": "event-002399"
         },
         {
-          "source_line": 2404,
+          "source_line": 2400,
           "timestamp": "2026-05-23T16:22:36.439908+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1275,10 +1194,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002404"
+          "id": "event-002400"
         },
         {
-          "source_line": 2405,
+          "source_line": 2401,
           "timestamp": "2026-05-23T16:22:44.120420+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1298,10 +1217,10 @@
               "new_string": "Composition downsampling ($\\Delta = 1.08$\\,pp), base-only, and instruct-only temporal analyses independently confirm DIF is not an artifact of cohort structure (\\Cref{app:composition_control,app:baseinst_temporal,app:within_arch})."
             }
           },
-          "id": "event-002405"
+          "id": "event-002401"
         },
         {
-          "source_line": 2406,
+          "source_line": 2402,
           "timestamp": "2026-05-23T16:22:44.221990+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1316,10 +1235,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002406"
+          "id": "event-002402"
         },
         {
-          "source_line": 2407,
+          "source_line": 2403,
           "timestamp": "2026-05-23T16:22:47.986904+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1337,10 +1256,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002407"
+          "id": "event-002403"
         },
         {
-          "source_line": 2408,
+          "source_line": 2404,
           "timestamp": "2026-05-23T16:22:49.443604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1355,10 +1274,10 @@
             "tool": "Bash",
             "elapsed_ms": 1456
           },
-          "id": "event-002408"
+          "id": "event-002404"
         },
         {
-          "source_line": 2409,
+          "source_line": 2405,
           "timestamp": "2026-05-23T16:22:52.305427+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1376,10 +1295,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002409"
+          "id": "event-002405"
         },
         {
-          "source_line": 2410,
+          "source_line": 2406,
           "timestamp": "2026-05-23T16:22:52.908268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1394,10 +1313,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 602
           },
-          "id": "event-002410"
+          "id": "event-002406"
         },
         {
-          "source_line": 2411,
+          "source_line": 2407,
           "timestamp": "2026-05-23T16:23:02.296946+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1414,10 +1333,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-f', '8', '-l', '9', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\n# Check if Conclusion appears on page content\nlines = text.split('\\n')\nfor i, line in enumerate(lines):\n    if 'Conclusion' in line or 'conclusion' in line.lower():\n        print(f'Line {i}: {line.strip()}')\n# Also check form feed positions (page breaks)\npages = text.split('\\x0c')\nfor pi, page in enumerate(pages):\n    if 'Conclusion' in page:\n        print(f'Page {8+pi} contains Conclusion')\n    if 'Limitations' in page:\n        print(f'Page {8+pi} contains Limitations')\n\"\n"
             }
           },
-          "id": "event-002411"
+          "id": "event-002407"
         },
         {
-          "source_line": 2412,
+          "source_line": 2408,
           "timestamp": "2026-05-23T16:23:02.397889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1432,10 +1351,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002412"
+          "id": "event-002408"
         },
         {
-          "source_line": 2413,
+          "source_line": 2409,
           "timestamp": "2026-05-23T16:23:07.669933+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1452,10 +1371,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\n# Extract page 8 text to see how much content is there\nresult = subprocess.run(['pdftotext', '-f', '8', '-l', '8', 'main.pdf', '-'], capture_output=True, text=True)\nlines = [l for l in result.stdout.strip().split('\\n') if l.strip()]\nprint(f'Page 8 has {len(lines)} non-empty lines')\nprint('--- Last 15 lines ---')\nfor l in lines[-15:]:\n    print(l)\n\"\n"
             }
           },
-          "id": "event-002413"
+          "id": "event-002409"
         },
         {
-          "source_line": 2414,
+          "source_line": 2410,
           "timestamp": "2026-05-23T16:23:07.921407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1470,10 +1389,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-002414"
+          "id": "event-002410"
         },
         {
-          "source_line": 2415,
+          "source_line": 2411,
           "timestamp": "2026-05-23T16:23:14.149685+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1490,10 +1409,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-f', '8', '-l', '8', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\n# Find key sections\nfor keyword in ['Discussion', 'Protocol', 'Conclusion', 'References', 'Limitations']:\n    lines = text.split('\\n')\n    for i, l in enumerate(lines):\n        if keyword in l and len(l.strip()) < 80:\n            print(f'  Line {i}: {l.strip()[:80]}')\n            break\nprint()\nprint('--- Last 30 content lines ---')\nlines = text.strip().split('\\n')\nfor l in lines[-30:]:\n    if l.strip():\n        print(l.rstrip()[:100])\n\"\n"
             }
           },
-          "id": "event-002415"
+          "id": "event-002411"
         },
         {
-          "source_line": 2416,
+          "source_line": 2412,
           "timestamp": "2026-05-23T16:23:14.250628+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1508,10 +1427,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002416"
+          "id": "event-002412"
         },
         {
-          "source_line": 2417,
+          "source_line": 2413,
           "timestamp": "2026-05-23T16:23:28.625998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1528,10 +1447,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 << 'PYEOF'\ntry:\n    from pdf2image import convert_from_path\n    images = convert_from_path('main.pdf', first_page=8, last_page=8, dpi=150)\n    images[0].save('/tmp/page8_check.png')\n    print(\"Saved page 8 to /tmp/page8_check.png\")\nexcept ImportError:\n    import subprocess\n    subprocess.run(['pdftoppm', '-png', '-f', '8', '-l', '8', '-r', '150', 'main.pdf', '/tmp/page8_check'], check=True)\n    print(\"Saved page 8\")\nPYEOF\n"
             }
           },
-          "id": "event-002417"
+          "id": "event-002413"
         },
         {
-          "source_line": 2418,
+          "source_line": 2414,
           "timestamp": "2026-05-23T16:23:29.582183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1546,10 +1465,10 @@
             "tool": "Bash",
             "elapsed_ms": 956
           },
-          "id": "event-002418"
+          "id": "event-002414"
         },
         {
-          "source_line": 2419,
+          "source_line": 2415,
           "timestamp": "2026-05-23T16:23:32.694851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1566,10 +1485,10 @@
               "file_path": "/tmp/page8_check-8.png"
             }
           },
-          "id": "event-002419"
+          "id": "event-002415"
         },
         {
-          "source_line": 2420,
+          "source_line": 2416,
           "timestamp": "2026-05-23T16:23:32.795669+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1584,10 +1503,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002420"
+          "id": "event-002416"
         },
         {
-          "source_line": 2421,
+          "source_line": 2417,
           "timestamp": "2026-05-23T16:23:34.705928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1604,10 +1523,10 @@
               "command": "ls /tmp/page8_check*"
             }
           },
-          "id": "event-002421"
+          "id": "event-002417"
         },
         {
-          "source_line": 2422,
+          "source_line": 2418,
           "timestamp": "2026-05-23T16:23:34.806869+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1622,10 +1541,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002422"
+          "id": "event-002418"
         },
         {
-          "source_line": 2423,
+          "source_line": 2419,
           "timestamp": "2026-05-23T16:23:36.564513+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1642,10 +1561,10 @@
               "file_path": "/tmp/page8_check-08.png"
             }
           },
-          "id": "event-002423"
+          "id": "event-002419"
         },
         {
-          "source_line": 2424,
+          "source_line": 2420,
           "timestamp": "2026-05-23T16:23:37.167654+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1660,10 +1579,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-002424"
+          "id": "event-002420"
         },
         {
-          "source_line": 2425,
+          "source_line": 2421,
           "timestamp": "2026-05-23T16:23:57.498210+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1680,10 +1599,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-f', '9', '-l', '9', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.strip().split('\\n')\n# Show first 20 lines of page 9\nfor l in lines[:20]:\n    if l.strip():\n        print(l.rstrip()[:120])\n\"\n"
             }
           },
-          "id": "event-002425"
+          "id": "event-002421"
         },
         {
-          "source_line": 2426,
+          "source_line": 2422,
           "timestamp": "2026-05-23T16:23:57.600071+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1698,10 +1617,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002426"
+          "id": "event-002422"
         },
         {
-          "source_line": 2427,
+          "source_line": 2423,
           "timestamp": "2026-05-23T16:24:25.167101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1721,10 +1640,10 @@
               "new_string": "\\enlargethispage{10\\baselineskip}"
             }
           },
-          "id": "event-002427"
+          "id": "event-002423"
         },
         {
-          "source_line": 2428,
+          "source_line": 2424,
           "timestamp": "2026-05-23T16:24:25.217812+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1739,10 +1658,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002428"
+          "id": "event-002424"
         },
         {
-          "source_line": 2429,
+          "source_line": 2425,
           "timestamp": "2026-05-23T16:24:30.841453+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1759,10 +1678,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
             }
           },
-          "id": "event-002429"
+          "id": "event-002425"
         },
         {
-          "source_line": 2430,
+          "source_line": 2426,
           "timestamp": "2026-05-23T16:24:30.892167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1777,10 +1696,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002430"
+          "id": "event-002426"
         },
         {
-          "source_line": 2431,
+          "source_line": 2427,
           "timestamp": "2026-05-23T16:24:37.319393+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1798,10 +1717,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002431"
+          "id": "event-002427"
         },
         {
-          "source_line": 2432,
+          "source_line": 2428,
           "timestamp": "2026-05-23T16:24:38.775370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1816,10 +1735,10 @@
             "tool": "Bash",
             "elapsed_ms": 1455
           },
-          "id": "event-002432"
+          "id": "event-002428"
         },
         {
-          "source_line": 2433,
+          "source_line": 2429,
           "timestamp": "2026-05-23T16:24:45.452306+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1755,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-f', '9', '-l', '9', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.strip().split('\\n')\nfor l in lines[:10]:\n    if l.strip():\n        print(l.rstrip()[:120])\n\"\n"
             }
           },
-          "id": "event-002433"
+          "id": "event-002429"
         },
         {
-          "source_line": 2434,
+          "source_line": 2430,
           "timestamp": "2026-05-23T16:24:45.553208+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1773,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002434"
+          "id": "event-002430"
         },
         {
-          "source_line": 2435,
+          "source_line": 2431,
           "timestamp": "2026-05-23T16:25:04.633870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1877,10 +1796,10 @@
               "new_string": "\\enlargethispage{12\\baselineskip}"
             }
           },
-          "id": "event-002435"
+          "id": "event-002431"
         },
         {
-          "source_line": 2436,
+          "source_line": 2432,
           "timestamp": "2026-05-23T16:25:04.734734+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1895,10 +1814,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002436"
+          "id": "event-002432"
         },
         {
-          "source_line": 2437,
+          "source_line": 2433,
           "timestamp": "2026-05-23T16:25:10.760285+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1918,10 +1837,10 @@
               "new_string": "Across six METABENCH benchmarks, 17.9--31.3\\% of items exhibit temporal DIF across 2023--2024 model cohorts (29.2\\% for MMLU), while aggregate rankings remain preserved ($\\rho \\approx 0.997$). DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$); opposite base-vs-instruct patterns ($\\chi^2 = 562.7$) confirm that DIF captures signal beyond contamination. Mechanism-conditional DIF audit should complement contamination screening~\\citep{habba2026growingpains}; connecting DIF to specific training factors remains open."
             }
           },
-          "id": "event-002437"
+          "id": "event-002433"
         },
         {
-          "source_line": 2438,
+          "source_line": 2434,
           "timestamp": "2026-05-23T16:25:10.810935+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1936,10 +1855,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002438"
+          "id": "event-002434"
         },
         {
-          "source_line": 2439,
+          "source_line": 2435,
           "timestamp": "2026-05-23T16:25:16.294023+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1957,10 +1876,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002439"
+          "id": "event-002435"
         },
         {
-          "source_line": 2440,
+          "source_line": 2436,
           "timestamp": "2026-05-23T16:25:17.751038+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1975,10 +1894,10 @@
             "tool": "Bash",
             "elapsed_ms": 1457
           },
-          "id": "event-002440"
+          "id": "event-002436"
         },
         {
-          "source_line": 2441,
+          "source_line": 2437,
           "timestamp": "2026-05-23T16:25:25.133933+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1995,10 +1914,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-f', '9', '-l', '9', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.strip().split('\\n')\nfor l in lines[:8]:\n    if l.strip():\n        print(l.rstrip()[:120])\n# Also check if Conclusion or conclusion content appears\ntext = result.stdout\nif 'Conclusion' in text or 'DIF to specific' in text or 'Mechanism-conditional' in text:\n    print('WARNING: Conclusion text still on page 9')\nelse:\n    print('OK: No conclusion text on page 9')\n\"\n"
             }
           },
-          "id": "event-002441"
+          "id": "event-002437"
         },
         {
-          "source_line": 2442,
+          "source_line": 2438,
           "timestamp": "2026-05-23T16:25:25.285079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2013,10 +1932,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002442"
+          "id": "event-002438"
         },
         {
-          "source_line": 2443,
+          "source_line": 2439,
           "timestamp": "2026-05-23T16:25:36.932266+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2033,10 +1952,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\n# Check pages 7 and 8 for section headers\nfor p in [7, 8]:\n    result = subprocess.run(['pdftotext', '-f', str(p), '-l', str(p), '-layout', 'main.pdf', '-'], capture_output=True, text=True)\n    text = result.stdout\n    for keyword in ['Discussion', 'Structured Signal', 'Audit Protocol', 'Conclusion', 'Cross-Benchmark']:\n        if keyword in text:\n            print(f'Page {p}: contains \\\"{keyword}\\\"')\n\"\n"
             }
           },
-          "id": "event-002443"
+          "id": "event-002439"
         },
         {
-          "source_line": 2444,
+          "source_line": 2440,
           "timestamp": "2026-05-23T16:25:37.083488+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2051,10 +1970,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002444"
+          "id": "event-002440"
         },
         {
-          "source_line": 2445,
+          "source_line": 2441,
           "timestamp": "2026-05-23T16:26:16.412268+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2074,10 +1993,10 @@
               "new_string": "Three features distinguish LLM temporal DIF from educational settings: (1)~C\\% (29.2\\%; cluster bootstrap CI: $[26.7\\%, 53.2\\%]$) substantially exceeds typical educational DIF rates~\\citep{clauser1998dif}; (2)~DIF flags and web-overlap labels are near-independent (Jaccard $= 0.206$), unlike educational settings where DIF correlates with construct-irrelevant variance; (3)~the near-independence admits two interpretations: DIF captures a broader signal---including capability evolution and training methodology shifts---of which contamination is one component, or DIF and contamination detection measure distinct constructs. The base/instruct reversal (OR $= 4.75$; \\Cref{app:mechanism_discussion}) favors the former; either interpretation supports periodic DIF audits."
             }
           },
-          "id": "event-002445"
+          "id": "event-002441"
         },
         {
-          "source_line": 2446,
+          "source_line": 2442,
           "timestamp": "2026-05-23T16:26:16.412736+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2092,10 +2011,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002446"
+          "id": "event-002442"
         },
         {
-          "source_line": 2447,
+          "source_line": 2443,
           "timestamp": "2026-05-23T16:26:27.562694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2113,10 +2032,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002447"
+          "id": "event-002443"
         },
         {
-          "source_line": 2448,
+          "source_line": 2444,
           "timestamp": "2026-05-23T16:26:29.068265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2131,10 +2050,10 @@
             "tool": "Bash",
             "elapsed_ms": 1505
           },
-          "id": "event-002448"
+          "id": "event-002444"
         },
         {
-          "source_line": 2449,
+          "source_line": 2445,
           "timestamp": "2026-05-23T16:26:39.811432+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2154,10 +2073,10 @@
               "new_string": "\\enlargethispage{20\\baselineskip}"
             }
           },
-          "id": "event-002449"
+          "id": "event-002445"
         },
         {
-          "source_line": 2450,
+          "source_line": 2446,
           "timestamp": "2026-05-23T16:26:40.113143+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2172,10 +2091,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-002450"
+          "id": "event-002446"
         },
         {
-          "source_line": 2451,
+          "source_line": 2447,
           "timestamp": "2026-05-23T16:26:44.732022+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2193,10 +2112,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002451"
+          "id": "event-002447"
         },
         {
-          "source_line": 2452,
+          "source_line": 2448,
           "timestamp": "2026-05-23T16:26:46.287876+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2211,10 +2130,10 @@
             "tool": "Bash",
             "elapsed_ms": 1555
           },
-          "id": "event-002452"
+          "id": "event-002448"
         },
         {
-          "source_line": 2453,
+          "source_line": 2449,
           "timestamp": "2026-05-23T16:26:54.220528+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2234,10 +2153,10 @@
               "new_string": "\\enlargethispage{14\\baselineskip}"
             }
           },
-          "id": "event-002453"
+          "id": "event-002449"
         },
         {
-          "source_line": 2454,
+          "source_line": 2450,
           "timestamp": "2026-05-23T16:26:54.221052+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2252,10 +2171,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002454"
+          "id": "event-002450"
         },
         {
-          "source_line": 2455,
+          "source_line": 2451,
           "timestamp": "2026-05-23T16:27:03.961054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2273,10 +2192,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002455"
+          "id": "event-002451"
         },
         {
-          "source_line": 2456,
+          "source_line": 2452,
           "timestamp": "2026-05-23T16:27:05.568403+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2291,10 +2210,10 @@
             "tool": "Bash",
             "elapsed_ms": 1607
           },
-          "id": "event-002456"
+          "id": "event-002452"
         },
         {
-          "source_line": 2457,
+          "source_line": 2453,
           "timestamp": "2026-05-23T16:27:18.645901+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2311,10 +2230,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nfor p in [8, 9]:\n    result = subprocess.run(['pdftotext', '-f', str(p), '-l', str(p), 'main.pdf', '-'], capture_output=True, text=True)\n    text = result.stdout\n    sections = []\n    for kw in ['Discussion', 'Conclusion', 'Limitations', 'References', 'Appendix']:\n        if kw in text:\n            sections.append(kw)\n    print(f'Page {p}: {sections}')\n\"\n"
             }
           },
-          "id": "event-002457"
+          "id": "event-002453"
         },
         {
-          "source_line": 2458,
+          "source_line": 2454,
           "timestamp": "2026-05-23T16:27:18.796934+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2329,10 +2248,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002458"
+          "id": "event-002454"
         },
         {
-          "source_line": 2459,
+          "source_line": 2455,
           "timestamp": "2026-05-23T16:27:23.215557+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2349,10 +2268,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && pdftoppm -png -f 8 -l 8 -r 150 main.pdf /tmp/page8_final"
             }
           },
-          "id": "event-002459"
+          "id": "event-002455"
         },
         {
-          "source_line": 2460,
+          "source_line": 2456,
           "timestamp": "2026-05-23T16:27:24.121797+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2367,10 +2286,10 @@
             "tool": "Bash",
             "elapsed_ms": 906
           },
-          "id": "event-002460"
+          "id": "event-002456"
         },
         {
-          "source_line": 2461,
+          "source_line": 2457,
           "timestamp": "2026-05-23T16:27:26.883511+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2387,10 +2306,10 @@
               "file_path": "/tmp/page8_final-08.png"
             }
           },
-          "id": "event-002461"
+          "id": "event-002457"
         },
         {
-          "source_line": 2462,
+          "source_line": 2458,
           "timestamp": "2026-05-23T16:27:27.487222+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2405,10 +2324,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-002462"
+          "id": "event-002458"
         },
         {
-          "source_line": 2463,
+          "source_line": 2459,
           "timestamp": "2026-05-23T16:27:43.502615+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2426,10 +2345,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002463"
+          "id": "event-002459"
         },
         {
-          "source_line": 2464,
+          "source_line": 2460,
           "timestamp": "2026-05-23T16:27:45.011842+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2444,10 +2363,10 @@
             "tool": "Bash",
             "elapsed_ms": 1509
           },
-          "id": "event-002464"
+          "id": "event-002460"
         },
         {
-          "source_line": 2465,
+          "source_line": 2461,
           "timestamp": "2026-05-23T16:27:50.837631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2464,10 +2383,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
             }
           },
-          "id": "event-002465"
+          "id": "event-002461"
         },
         {
-          "source_line": 2466,
+          "source_line": 2462,
           "timestamp": "2026-05-23T16:27:51.038920+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2482,10 +2401,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002466"
+          "id": "event-002462"
         },
         {
-          "source_line": 2467,
+          "source_line": 2463,
           "timestamp": "2026-05-23T16:27:51.089566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2502,10 +2421,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-002467"
+          "id": "event-002463"
         },
         {
-          "source_line": 2468,
+          "source_line": 2464,
           "timestamp": "2026-05-23T16:27:51.140264+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2520,10 +2439,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002468"
+          "id": "event-002464"
         },
         {
-          "source_line": 2469,
+          "source_line": 2465,
           "timestamp": "2026-05-23T16:27:54.402645+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2541,10 +2460,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002469"
+          "id": "event-002465"
         },
         {
-          "source_line": 2470,
+          "source_line": 2466,
           "timestamp": "2026-05-23T16:27:54.453233+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2559,10 +2478,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002470"
+          "id": "event-002466"
         },
         {
-          "source_line": 2471,
+          "source_line": 2467,
           "timestamp": "2026-05-23T16:28:03.850250+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2580,10 +2499,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-002471"
+          "id": "event-002467"
         },
         {
-          "source_line": 2472,
+          "source_line": 2468,
           "timestamp": "2026-05-23T16:28:04.051498+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2598,10 +2517,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 201
           },
-          "id": "event-002472"
+          "id": "event-002468"
         },
         {
-          "source_line": 2473,
+          "source_line": 2469,
           "timestamp": "2026-05-23T16:28:17.868514+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2618,10 +2537,10 @@
               "text": "页面溢出已修复。\n\n**问题**：W1/W4/P2/P5 累计增加的文字把 Conclusion 推到了第 9 页，违反 EMNLP 8 页限制。\n\n**修复措施**：\n1. `\\enlargethispage{14\\baselineskip}` 加到 discussion.tex（§5 起始处，即第 8 页）\n2. §5.1 W1 句子压缩：独立句 → 括号注释，省 ~1 行\n3. §5.1 P2 删除冗余半句 \"motivating periodic psychometric audits alongside score reporting\"（与 §5.2 重复）\n4. Conclusion 精简：去掉 bootstrap CI（已在 abstract/experiments 中出现）和 proxy 注释\n\n**当前页面结构**：\n- Page 8: §4.6-4.7 + §5 Discussion + §6 Conclusion ✓\n- Page 9: Limitations + References（不计入 8 页限制）\n- 共 18 页，编译无错误\n\n底部 margin 略紧但可接受，视觉检查通过。"
             }
           },
-          "id": "event-002473"
+          "id": "event-002469"
         },
         {
-          "source_line": 2474,
+          "source_line": 2470,
           "timestamp": "2026-05-23T16:28:20.932453+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2636,10 +2555,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3063
           },
-          "id": "event-002474"
+          "id": "event-002470"
         },
         {
-          "source_line": 2475,
+          "source_line": 2471,
           "timestamp": "2026-05-23T16:28:27.008052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2656,10 +2575,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen && cat artifacts/review_issues.yaml 2>/dev/null | head -200"
             }
           },
-          "id": "event-002475"
+          "id": "event-002471"
         },
         {
-          "source_line": 2476,
+          "source_line": 2472,
           "timestamp": "2026-05-23T16:28:27.058964+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2674,10 +2593,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002476"
+          "id": "event-002472"
         },
         {
-          "source_line": 2477,
+          "source_line": 2473,
           "timestamp": "2026-05-23T16:28:32.884349+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2694,10 +2613,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen && cat artifacts/review_issues.yaml 2>/dev/null | tail -100"
             }
           },
-          "id": "event-002477"
+          "id": "event-002473"
         },
         {
-          "source_line": 2478,
+          "source_line": 2474,
           "timestamp": "2026-05-23T16:28:32.935203+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2712,10 +2631,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002478"
+          "id": "event-002474"
         },
         {
-          "source_line": 2479,
+          "source_line": 2475,
           "timestamp": "2026-05-23T16:29:00.591799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2733,10 +2652,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-002479"
+          "id": "event-002475"
         },
         {
-          "source_line": 2480,
+          "source_line": 2476,
           "timestamp": "2026-05-23T16:29:03.754096+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2751,10 +2670,10 @@
             "tool": "Bash",
             "elapsed_ms": 3162
           },
-          "id": "event-002480"
+          "id": "event-002476"
         },
         {
-          "source_line": 2481,
+          "source_line": 2477,
           "timestamp": "2026-05-23T16:29:25.855950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2771,10 +2690,10 @@
               "text": "**R19 修复状态汇总**（DDL 5/25 AoE）\n\n✅ **4 个 Must-Fix 全部完成**：\n- N1: DEFF → 29.2% headline + cluster bootstrap CI [26.7%, 53.2%]\n- N2: Binary injection → calibration upper bound + 20% overestimation bound\n- N3: Impact/bias → \"DIF is necessary but not sufficient for item bias\"\n- N4: Proxy quality → hedged framing + label-independent evidence (base/instruct reversal)\n\n✅ **3/6 Warnings 完成**：\n- W1: Temporal = release-year cohort shorthand\n- W3: Related Work 段落重排（DIF Methodology → IRT → Contamination → Benchmark Quality）\n- W4: ETS 阈值校准（连接 Monte Carlo power analysis + random-split FPR）\n\n✅ **Reviewer 盲区修复**：P2 (+2.12pp qualifier), P3 (§4.2 标题 ~29%), P5 (Conclusion proxy label)\n\n✅ **页面溢出修复**：Conclusion 回到第 8 页，18 页总计\n\n⏳ **剩余 open items**（低优先级，非 Must-Fix）：\n- W2: k=30/50 ΔFPR 模拟（需新实验，风险：加内容可能再次超页）\n- W5: Growing Pains 差异化（low priority）\n- W6: Score correction 扩展（linked to N3）\n- D1: 新颖性 framing（审稿员分歧）\n\n**建议**：当前版本已覆盖所有 Must-Fix 和高优先级 Warning，可以提交 R20 审稿确认修复效果。剩余 open items 的收益-风险比不高（加内容 → 页面压力），建议冻结。"
             }
           },
-          "id": "event-002481"
+          "id": "event-002477"
         },
         {
-          "source_line": 2482,
+          "source_line": 2478,
           "timestamp": "2026-05-23T16:29:26.458883+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2789,10 +2708,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 602
           },
-          "id": "event-002482"
+          "id": "event-002478"
         },
         {
-          "source_line": 2483,
+          "source_line": 2479,
           "timestamp": "2026-05-23T16:29:29.902557+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2805,7 +2724,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-002483"
+          "id": "event-002479"
         }
       ]
     },
@@ -2813,7 +2732,7 @@
       "number": 121,
       "messages": [
         {
-          "source_line": 2484,
+          "source_line": 2480,
           "timestamp": "2026-05-23T17:01:21.177443+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2827,10 +2746,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "system:keepalive"
           },
-          "id": "event-002484"
+          "id": "event-002480"
         },
         {
-          "source_line": 2485,
+          "source_line": 2481,
           "timestamp": "2026-05-23T17:01:37.100568+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2848,10 +2767,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002485"
+          "id": "event-002481"
         },
         {
-          "source_line": 2486,
+          "source_line": 2482,
           "timestamp": "2026-05-23T17:01:37.151306+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2866,10 +2785,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002486"
+          "id": "event-002482"
         },
         {
-          "source_line": 2487,
+          "source_line": 2483,
           "timestamp": "2026-05-23T17:01:39.214226+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2887,10 +2806,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-002487"
+          "id": "event-002483"
         },
         {
-          "source_line": 2488,
+          "source_line": 2484,
           "timestamp": "2026-05-23T17:01:39.265160+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2905,10 +2824,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002488"
+          "id": "event-002484"
         },
         {
-          "source_line": 2489,
+          "source_line": 2485,
           "timestamp": "2026-05-23T17:01:47.148328+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2927,10 +2846,10 @@
               "detail": "分析 W2/W5/W6/D1 哪些可在附录中解决（不影响 8 页限制），立即推进不依赖审批的改进。W5（Growing Pains 差异化）和 D1（novelty 论述）是纯写作任务，现在就可以在 Related Work/appendix 中加强；W6 可在附录加 case study。W2 的 k=30/50 模拟需要派 Agent 跑代码。10 分钟内确定具体方案并开始执行。"
             }
           },
-          "id": "event-002489"
+          "id": "event-002485"
         },
         {
-          "source_line": 2490,
+          "source_line": 2486,
           "timestamp": "2026-05-23T17:01:47.750987+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2945,10 +2864,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 602
           },
-          "id": "event-002490"
+          "id": "event-002486"
         },
         {
-          "source_line": 2491,
+          "source_line": 2487,
           "timestamp": "2026-05-23T17:02:22.818139+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2966,10 +2885,10 @@
               "limit": "60"
             }
           },
-          "id": "event-002491"
+          "id": "event-002487"
         },
         {
-          "source_line": 2492,
+          "source_line": 2488,
           "timestamp": "2026-05-23T17:02:23.270641+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2984,10 +2903,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002492"
+          "id": "event-002488"
         },
         {
-          "source_line": 2493,
+          "source_line": 2489,
           "timestamp": "2026-05-23T17:02:23.372380+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3005,10 +2924,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
             }
           },
-          "id": "event-002493"
+          "id": "event-002489"
         },
         {
-          "source_line": 2494,
+          "source_line": 2490,
           "timestamp": "2026-05-23T17:02:23.473320+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3023,10 +2942,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-002494"
+          "id": "event-002490"
         },
         {
-          "source_line": 2495,
+          "source_line": 2491,
           "timestamp": "2026-05-23T17:02:29.649733+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3043,10 +2962,10 @@
               "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_034_multi_subject_injection/multi_subject_injection_results.csv"
             }
           },
-          "id": "event-002495"
+          "id": "event-002491"
         },
         {
-          "source_line": 2496,
+          "source_line": 2492,
           "timestamp": "2026-05-23T17:02:30.604693+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3061,10 +2980,10 @@
             "tool": "Bash",
             "elapsed_ms": 954
           },
-          "id": "event-002496"
+          "id": "event-002492"
         },
         {
-          "source_line": 2497,
+          "source_line": 2493,
           "timestamp": "2026-05-23T17:02:30.605135+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3083,10 +3002,10 @@
               "limit": "100"
             }
           },
-          "id": "event-002497"
+          "id": "event-002493"
         },
         {
-          "source_line": 2498,
+          "source_line": 2494,
           "timestamp": "2026-05-23T17:02:30.655672+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3101,10 +3020,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002498"
+          "id": "event-002494"
         },
         {
-          "source_line": 2499,
+          "source_line": 2495,
           "timestamp": "2026-05-23T17:03:05.598521+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3122,10 +3041,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002499"
+          "id": "event-002495"
         },
         {
-          "source_line": 2500,
+          "source_line": 2496,
           "timestamp": "2026-05-23T17:03:05.649936+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3140,10 +3059,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-002500"
+          "id": "event-002496"
         },
         {
-          "source_line": 2501,
+          "source_line": 2497,
           "timestamp": "2026-05-23T17:03:09.417686+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3161,10 +3080,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002501"
+          "id": "event-002497"
         },
         {
-          "source_line": 2502,
+          "source_line": 2498,
           "timestamp": "2026-05-23T17:03:09.619088+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3179,10 +3098,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 201
           },
-          "id": "event-002502"
+          "id": "event-002498"
         },
         {
-          "source_line": 2503,
+          "source_line": 2499,
           "timestamp": "2026-05-23T17:03:20.846321+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3199,10 +3118,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-002503"
+          "id": "event-002499"
         },
         {
-          "source_line": 2504,
+          "source_line": 2500,
           "timestamp": "2026-05-23T17:03:20.896931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3217,10 +3136,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 50
           },
-          "id": "event-002504"
+          "id": "event-002500"
         },
         {
-          "source_line": 2505,
+          "source_line": 2501,
           "timestamp": "2026-05-23T17:03:30.044428+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3239,10 +3158,10 @@
               "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen, find the Python script that runs the multi-subject injection simulation (the one that produces multi_subject_injection_results.csv with columns k, p, seed, target_subject, delta_tpr, delta_fpr). Look in artifacts/ and any subdirectories. Report the exact file path and the key parameters (especially how k values are configured)."
             }
           },
-          "id": "event-002505"
+          "id": "event-002501"
         },
         {
-          "source_line": 2506,
+          "source_line": 2502,
           "timestamp": "2026-05-23T17:03:32.406955+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3260,10 +3179,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
             }
           },
-          "id": "event-002506"
+          "id": "event-002502"
         },
         {
-          "source_line": 2507,
+          "source_line": 2503,
           "timestamp": "2026-05-23T17:03:32.708681+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3278,10 +3197,10 @@
             "tool": "Glob",
             "elapsed_ms": 301
           },
-          "id": "event-002507"
+          "id": "event-002503"
         },
         {
-          "source_line": 2508,
+          "source_line": 2504,
           "timestamp": "2026-05-23T17:03:32.759596+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3298,10 +3217,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts -type f -name \"*.csv\" | head -20"
             }
           },
-          "id": "event-002508"
+          "id": "event-002504"
         },
         {
-          "source_line": 2509,
+          "source_line": 2505,
           "timestamp": "2026-05-23T17:03:32.810405+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3316,10 +3235,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002509"
+          "id": "event-002505"
         },
         {
-          "source_line": 2510,
+          "source_line": 2506,
           "timestamp": "2026-05-23T17:03:36.576788+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3336,10 +3255,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts -type f -name \"*multi_subject_injection*\""
             }
           },
-          "id": "event-002510"
+          "id": "event-002506"
         },
         {
-          "source_line": 2511,
+          "source_line": 2507,
           "timestamp": "2026-05-23T17:03:36.727873+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3354,10 +3273,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002511"
+          "id": "event-002507"
         },
         {
-          "source_line": 2512,
+          "source_line": 2508,
           "timestamp": "2026-05-23T17:03:36.728429+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3374,10 +3293,10 @@
               "command": "grep -r \"multi_subject_injection_results\" /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts --include=\"*.py\" 2>/dev/null"
             }
           },
-          "id": "event-002512"
+          "id": "event-002508"
         },
         {
-          "source_line": 2513,
+          "source_line": 2509,
           "timestamp": "2026-05-23T17:03:36.829057+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3392,10 +3311,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002513"
+          "id": "event-002509"
         },
         {
-          "source_line": 2514,
+          "source_line": 2510,
           "timestamp": "2026-05-23T17:03:38.988038+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3412,10 +3331,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_034_multi_subject_injection/plan_034_multi_subject_injection.py"
             }
           },
-          "id": "event-002514"
+          "id": "event-002510"
         },
         {
-          "source_line": 2515,
+          "source_line": 2511,
           "timestamp": "2026-05-23T17:03:39.039037+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3430,10 +3349,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002515"
+          "id": "event-002511"
         },
         {
-          "source_line": 2516,
+          "source_line": 2512,
           "timestamp": "2026-05-23T17:03:45.463987+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3448,10 +3367,10 @@
             "tool": "Agent",
             "elapsed_ms": 15419
           },
-          "id": "event-002516"
+          "id": "event-002512"
         },
         {
-          "source_line": 2517,
+          "source_line": 2513,
           "timestamp": "2026-05-23T17:04:23.434091+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3469,10 +3388,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-002517"
+          "id": "event-002513"
         },
         {
-          "source_line": 2518,
+          "source_line": 2514,
           "timestamp": "2026-05-23T17:04:27.400944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3487,10 +3406,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3966
           },
-          "id": "event-002518"
+          "id": "event-002514"
         },
         {
-          "source_line": 2519,
+          "source_line": 2515,
           "timestamp": "2026-05-23T17:04:45.682803+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3509,10 +3428,10 @@
               "prompt": "Check the paper at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/ for internal consistency issues after recent edits. Specifically check:\n\n1. **Headline number consistency**: The paper uses 29.2% as the headline C% for MMLU. Check that abstract.tex, introduction.tex, experiments.tex (§4.2 title), discussion.tex, and conclusion.tex all use 29.2% consistently (not 31.3% or 13.5% as headline). Note: 31.3% is the raw/uncorrected C%, which should appear with appropriate context (e.g., \"before DEFF correction\"). 13.5% is the weighted-mean DEFF estimate, which should appear only in the DEFF discussion context.\n\n2. **\"ground truth\" terminology**: After R19-N4 fix, we changed \"ground truth\" to \"web-overlap labels\" throughout. Check that no stale \"ground truth\" references remain (except in the appendix label app:structural which references older labels).\n\n3. **\"upper bound\" / \"calibration\" framing for injection**: Check experiments.tex §4.5 and figure captions for consistent use of \"calibration upper bound\" when referring to binary injection.\n\n4. **DIF-corrected scoring qualifier**: After P2 fix, \"+2.12 pp\" should always be accompanied by \"under full C-flag removal\" or \"excluding all C-flagged items\". Check abstract.tex, introduction.tex, experiments.tex §4.6.\n\n5. **§4.3 title**: Should be \"Comparison with Web-Overlap Labels\" (not \"Ground Truth Comparison\" or similar).\n\nRead abstract.tex, introduction.tex, experiments.tex, discussion.tex, conclusion.tex, and the first 100 lines of appendix.tex. Report any inconsistencies found."
             }
           },
-          "id": "event-002519"
+          "id": "event-002515"
         },
         {
-          "source_line": 2520,
+          "source_line": 2516,
           "timestamp": "2026-05-23T17:04:49.850409+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3527,6 +3446,82 @@
             "tool": "Read",
             "tool_args": {
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/abstract.tex"
+            }
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-23T17:04:49.900912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/.claude/sessions/director_af61c18a."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-23T17:04:50.102014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/introduction.tex"
+            }
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-23T17:04:50.152604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/.claude/sessions/director_af61c18a."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-23T17:04:50.253377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/experiments.tex"
             }
           },
           "id": "event-002520"

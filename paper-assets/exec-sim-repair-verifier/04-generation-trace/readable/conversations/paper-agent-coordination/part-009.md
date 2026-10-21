@@ -1,4 +1,4 @@
-# Paper Agent coordination — Part 9 of 13
+# Paper Agent coordination — Part 9 of 12
 
 **A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
 

@@ -3,330 +3,10 @@
   "session_id": "b9b998528d0a5e47b6a3",
   "rounds": [
     {
-      "number": 403,
-      "messages": [
-        {
-          "source_line": 6121,
-          "timestamp": "2026-05-21T14:38:11.978792+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/exp062_pipeline_status.txt"
-            }
-          },
-          "id": "event-006121"
-        },
-        {
-          "source_line": 6122,
-          "timestamp": "2026-05-21T14:38:11.979332+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\texp062 Pipeline Status — 2026-05-21 22:36 CST\n2\t\n3\t| #  | Generator       | Strategy | Chain              | Features  | Cohen's d | GPU    | Notes                            |\n4\t|----|-----------------|----------|--------------------|-----------|-----------|--------|----------------------------------|\n5\t| 1  | pythia-2.8b     | greedy   | DONE (4854)        | EXTRACTED | —         | —      | batch1                           |\n6\t| 2  | pythia-2.8b     | topk     | DONE (4527)        | EXTRACTED | —         | —      | batch1                           |\n7\t| 3  | pythia-1b       | greedy   | DONE (4867)        | EXTRACTED | —         | —      | batch1                           |\n8\t| 4  | pythia-1b       | topk     | DONE (4589)        | EXTRACTED | —         | —      | batch1                           |\n9\t| 5  | olmo-2-1b       | greedy   | DONE (4879)        | EXTRACTED | —         | —      | batch1                           |\n10\t| 6  | olmo-2-1b       | topk     | DONE (4641)        | EXTRACTED | —         | —      | batch1                           |\n11\t| 7  | qwen3-0.6b     | greedy   | RUNNING 631/996    | —         | —         | cuda:3 | ~13.1s/it, ETA 23:56 May 21     |\n12\t| 8  | qwen3-0.6b     | topk     | QUEUED             | —         | —         | cuda:3 | after greedy on same GPU         |\n13\t| 9  | qwen3-1.7b     | greedy   | DONE (4864)        | EXTRACTED | —         | —      | batch2                           |\n14\t| 10 | qwen3-1.7b     | topk     | RUNNING 757/996    | —         | —         | cuda:1 | ~12.5s/it, ETA 23:26 May 21     |\n15\t| 11 | qwen3-8b       | greedy   | QUEUED             | —         | —         | —      | watcher waiting for cuda:0/1/2   |\n16\t| 12 | qwen3-8b       | topk     | QUEUED             | —         | —         | —      | watcher waiting for cuda:0/1/2   |\n17\t| 13 | llama-3.2-3b   | greedy   | DONE (4875)        | EXTRACTED | —         | —      | batch2                           |\n18\t| 14 | llama-3.2-3b   | topk     | RUNNING\n…[truncated 1582 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006122"
-        },
-        {
-          "source_line": 6123,
-          "timestamp": "2026-05-21T14:38:27.990753+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "text": "[资源] GPU 4/4 饱和 | Worker 0 | Watcher ×2 存活\n\n## exp_062 管线状态 (22:36 CST) — NOMINAL\n\n### 16 combo 状态\n\n| 状态 | 数量 | 详情 |\n|------|------|------|\n| chain_done + features_extracted | **9/16** | pythia-2.8b×2, pythia-1b×2, olmo-2-1b×2, qwen3-1.7b greedy, llama greedy, mistral greedy |\n| chain_running | **4/16** | qwen3-1.7b topk (76%, cuda:1), llama topk (46%, cuda:0), mistral topk (29%, cuda:2), qwen3-0.6b greedy (63%, cuda:3) |\n| queued | **3/16** | qwen3-0.6b topk, qwen3-8b greedy, qwen3-8b topk |\n\n### GPU 利用率\n| GPU | 进程 | 利用率 | ETA |\n|-----|------|--------|-----|\n| cuda:0 | llama topk | 61% | 00:05 May 22 |\n| cuda:1 | qwen3-1.7b topk | 42% | **23:26** (最先空闲) |\n| cuda:2 | mistral topk | 88% | 01:03 May 22 |\n| cuda:3 | qwen3-0.6b greedy | 33% | 23:56 → 接 topk |\n\n### Watcher 状态\n- PID 356867 (Qwen3-8B watcher): **存活** (2h27m)，无 pgrep bug\n- PID 356682 (cuda:3 chain v2): **存活** (2h28m)\n\n### 管线健康：正常，无需修复\n4 张卡全部饱和，watcher 按计划运行。cuda:1 ~23:26 空闲后 Qwen3-8B watcher 自动接管。\n\n### 完成时间线\n- 9/16 features 已提取 + Cohen's d 已计算\n- 剩余 7 combo chain 完成：逐步到 5/22 ~09:30 CST（瓶颈：Qwen3-8B ~19s/it）\n- 全部 features 提取完：5/22 ~10:30 CST\n- 每个 combo chain 完成后立即提取特征 + 计算 Cohen's d",
-              "project": "gen-depth-fingerprint"
-            }
-          },
-          "id": "event-006123"
-        },
-        {
-          "source_line": 6124,
-          "timestamp": "2026-05-21T14:38:31.531521+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "elapsed_ms": 3540
-          },
-          "id": "event-006124"
-        }
-      ]
-    },
-    {
-      "number": 404,
-      "messages": [
-        {
-          "source_line": 6125,
-          "timestamp": "2026-05-21T15:10:48.960830+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] 等数据期间推进 appendix 表格填充。把已有 9/16 combo 的 Cohen's d 数据填入 `docs/paper/appendix_decoding_strategy.tex` 的两个表格（Table tab:decoding-shape 和 tab:decoding-drift），把 XX 替换为实际值。\n\n已有数据（从你上次汇报的表格）：\n\n**Shape features (gen-1 vs gen-2+):**\n| Generator | Strategy | entropy_max | entropy_min | tail_decay |\n|-----------|----------|------------|------------|-----------|\n| Pythia 2.8B | Nucleus | 已有（从主实验） | | |\n| Pythia 2.8B | Greedy | 0.091 | 0.075 | 0.066 |\n| Pythia 2.8B | Top-k | 0.265 | 0.044 | 0.116 |\n| Pythia 1B | Nucleus | 已有 | | |\n| Pythia 1B | Greedy | 0.123 | 0.044 | 0.039 |\n| Pythia 1B | Top-k | 0.271 | 0.035 | 0.177 |\n| OLMo 2-1B | Nucleus | 已有 | | |\n| OLMo 2-1B | Greedy | 0.031 | 0.027 | 0.033 |\n| OLMo 2-1B | Top-k | 0.011 | 0.011 | 0.222 |\n| Qwen3 1.7B | Nucleus | 已有 | | |\n| Qwen3 1.7B | Greedy | 0.079 | 0.012 | 0.037 |\n| LLaMA 3.2-3B | Nucleus | 已有 | | |\n| LLaMA 3.2-3B | Greedy | 0.060 | 0.069 | 0.045 |\n| Mistral 7B | Nucleus | 已有 | | |\n| Mistral 7B | Greedy | 0.014 | 0.020 | 0.138 |\n\n**Drift features 同理**（entropy_mean, TTR, hapax, entropy_std 从你汇报的表格取值）。\n\n操作要求：\n1. 先从服务器取 nucleus sampling 的 Cohen's d 值（主实验数据），填入 Nuc. 列\n2. 用上面的 greedy/top-k 数据填对应列\n3. 未完成的 7 combo 保留 XX\n4. **同步更新** `artifacts/_project/paper/appendix_decoding_strategy.tex`\n5. 不要动 Version C 结论文本（等全量数据再更新）\n6. Mean 行暂时只算已有数据的均值，标注 (N/8) 表示基于 N 个 generator"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "source": "director"
-          },
-          "id": "event-006125"
-        },
-        {
-          "source_line": 6126,
-          "timestamp": "2026-05-21T15:11:25.276539+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__spawn_worker"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__spawn_worker",
-            "tool_args": {
-              "task_type": "writing:appendix_decoding_fill_tables",
-              "project": "gen-depth-fingerprint",
-              "task_prompt": "## 任务：填充 appendix_decoding_strategy.tex 的两个表格\n\n### 背景\n论文 appendix 有两个 decoding strategy robustness 表格（tab:decoding-shape 和 tab:decoding-drift），当前值都是 XX 占位符。需要用已有的 Cohen's d 数据填入实际值。\n\n### 数据来源\n\n**来源 1：Greedy + Top-k 数据**（已计算，在本地文件）\n\n读取：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/decoding_cohens_d_all.txt`\n\n9 combo 的完整 Cohen's d 值。\n\n**来源 2：Nucleus sampling 数据**（主实验数据，需要从服务器计算）\n\n服务器 bjb2-18868 上已有 nucleus 的 feature CSV：\n```\n/root/gen-depth-fingerprint/data/features_*.csv\n```\n但注意这些是 greedy/topk 的。Nucleus 的数据在主实验的 chain 目录（不带策略后缀）：\n```\n/root/gen-depth-fingerprint/data/chains_pythia-2.8b/\n/root/gen-depth-fingerprint/data/chains_pythia-1b/\n/root/gen-depth-fingerprint/data/chains_olmo-2-1b/\n/root/gen-depth-fingerprint/data/chains_qwen3-0.6b/\n/root/gen-depth-fingerprint/data/chains_qwen3-1.7b/\n/root/gen-depth-fingerprint/data/chains_qwen3-8b/  (可能不存在)\n/root/gen-depth-fingerprint/data/chains_llama-3.2-3b/\n/root/gen-depth-fingerprint/data/chains_mistral-7b-v0.3/\n```\n\n需要先检查 nucleus feature CSV 是否已存在（可能在主实验时已提取）。如果存在就直接用，否则需要提取。\n\n步骤：\n1. ssh_read_only 检查 nucleus features 是否已存在：\n```bash\nls -la /root/gen-depth-fingerprint/data/features_*nucleus* /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv /root/gen-depth-fingerprint/analysis/nucleus_* 2>/dev/null\n# 也检查主实验的 feature 文件\nls -la /root/gen-depth-fingerprint/data/features*.csv 2>/dev/null\n```\n\n2. 如果 nucleus feature CSV 不存在，需要对每个 generator 的 nucleus chain 提取特征并计算 Cohen's d。运行与 greedy/topk 相同的提取 + Cohen's d 脚本。\n\n3. 如果存在，直接计算 Cohen's d (gen-1 vs gen-2+)。\n\n**对于未完成的 combo（Qwen3-0.6B topk, Qwen3-8B greedy/topk, 以及其他 topk 未完成的）保留 XX。**\n\n### 表格填充\n\n读取当前文件：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex`\n\n**Table 1 (tab:decoding-shape)**: 3 shape features × 8 generators × 3 strategies\n列顺序：Nuc. | Gr. | Top-$k$\n\n已有 Greedy + Top-k 数据（9 combo，从 decoding_cohens_d_all.txt）：\n\nShape features:\n| Generator | Greedy entropy_max | Greedy entropy_min | Greedy tail_decay | Topk entropy_max | Topk entropy_min | Topk tail_decay |\n|-----------|---|---|---|---|---|---|\n| Pythia 2.8B | 0.091 | 0.075 | 0.066 | 0.265 | 0.044 | 0.116 |\n| Pythia 1B | 0.123 | 0.044 | 0.039 | 0.271 | 0.035 | 0.177 |\n| OLMo 2-1B | 0.031 | 0.027 | 0.033 | 0.011 | 0.011 | 0.222 |\n| Qwen3 0.6B | XX | XX | XX | XX | XX | XX |\n| Qwen3 1.7B | 0.079 | 0.012 | 0.037 | XX | XX | XX |\n| Qwen3 8B | XX | XX | XX | XX | XX | XX |\n| LLaMA 3.2-3B | 0.060 | 0.069 | 0.045 | XX | XX | XX |\n| Mistral 7B | 0.014 | 0.020 | 0.138 | XX | XX | XX |\n\n**Table 2 (tab:decoding-drift)**: 4 features (entropy_mean, TTR, hapax_ratio, entropy_std) × 8 generators × 3 strategies\n\nDrift + intermediate data:\n| Generator | Gr. entropy_mean | Gr. TTR | Gr. hapax | Gr. entropy_std | Topk entropy_mean | Topk TTR | Topk hapax | Topk entropy_std |\n|-----------|---|---|---|---|---|---|---|---|\n| Pythia 2.8B | 1.426 | 0.981 | 0.875 | 0.931 | 0.705 | 0.412 | 0.367 | 0.099 |\n| Pythia 1B | 0.983 | 0.635 | 0.529 | 0.912 | 0.833 | 0.411 | 0.337 | 0.129 |\n| OLMo 2-1B | 1.293 | 0.889 | 0.805 | 0.947 | 0.729 | 0.704 | 0.690 | 0.352 |\n| Qwen3 0.6B | XX | XX | XX | XX | XX | XX | XX | XX |\n| Qwen3 1.7B | 1.028 | 0.740 | 0.683 | 0.780 | XX | XX | XX | XX |\n| Qwen3 8B | XX | XX | XX | XX | XX | XX | XX | XX |\n| LLaMA 3.2-3B | 1.459 | 1.272 | 1.263 | 1.010 | XX | XX | XX | XX |\n| Mistral 7B | 1.308 | 1.045 | 1.030 | 0.616 | XX | XX | XX | XX |\n\n### 格式要求\n- 数值保留 2 位小数（如 0.09, 0.27, 1.43）\n- 未完成的保留 XX\n- Mean 行：只算已有数据的均值，格式 `\\textbf{0.XX}$^{N/8}$` 表示基于 N 个 generator\n- 两位数小数，如 0.09 而非 0.091\n\n### 输出\n修改两个文件（内容完全相同）：\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex`\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex`\n\n不要修改结论文本（Version A/B/C），只改表格中的 XX → 实际值。\n",
-              "tool_groups": "['ssh']",
-              "tools": "['read_project_file']"
-            }
-          },
-          "id": "event-006126"
-        },
-        {
-          "source_line": 6127,
-          "timestamp": "2026-05-21T15:11:30.903072+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_writing_appendix_decoding_fill_tables_20260521T151125\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_writing_appendix_decoding_fill_tables_20260521T151125.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_writing_appendix_decoding_fill_tables_20260521T151125 started. Use get_worker_status('worker_writing_appendix_decoding_fill_tables_20260521T151125') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__spawn_worker",
-            "elapsed_ms": 5626
-          },
-          "id": "event-006127"
-        },
-        {
-          "source_line": 6128,
-          "timestamp": "2026-05-21T15:11:36.377527+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "text": "收到，已派 Worker 填充 appendix 表格：\n1. 先从服务器取 nucleus sampling 的 Cohen's d（主实验 chain 数据）\n2. 用 9 combo greedy/top-k 数据填对应列\n3. 未完成 7 combo 保留 XX\n4. Mean 行标注 (N/8)\n5. 同步更新 docs/ 和 artifacts/ 两个副本\n\n不动结论文本。",
-              "project": "gen-depth-fingerprint"
-            }
-          },
-          "id": "event-006128"
-        }
-      ]
-    },
-    {
       "number": 405,
       "messages": [
         {
-          "source_line": 6129,
-          "timestamp": "2026-05-21T15:30:49.795667+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[WORKER DONE] Worker worker_writing_appendix_decoding_fill_tables_20260521T151125 已完成（status=done）。用 `get_worker_status('worker_writing_appendix_decoding_fill_tables_20260521T151125')` 读取结果，然后处理。\n\n- worker_id: worker_writing_appendix_decoding_fill_tables_20260521T151125\n- project: gen-depth-fingerprint\n- status: done"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "source": "worker:done"
-          },
-          "id": "event-006129"
-        },
-        {
-          "source_line": 6130,
-          "timestamp": "2026-05-21T15:30:55.530732+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__get_worker_status"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__get_worker_status",
-            "tool_args": {
-              "worker_id": "worker_writing_appendix_decoding_fill_tables_20260521T151125"
-            }
-          },
-          "id": "event-006130"
-        },
-        {
-          "source_line": 6131,
-          "timestamp": "2026-05-21T15:30:55.631639+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_writing_appendix_decoding_fill_tables_20260521T151125\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"writing:appendix_decoding_fill_tables\\\", \\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"started_at\\\": \\\"2026-05-21T15:11:25.885638+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T15:15:56.778381+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Both files updated. Data sources and coverage summary:\\\\n\\\\n**Nucleus (Nuc.)**: 8/8 generators — computed from `features_8gen.csv` on server (gen-1 vs gen-2+ Cohen's d)\\\\n\\\\n**Greedy (Gr.)**: 6/8 generators — from `decoding_cohens_d_all.txt` (Qwen3-0.6B and Qwen3-8B missing)\\\\n\\\\n**Top-k**: 3/8 generators — from `decoding_cohens_d_all.txt` (only Pythia-2.8B, Pythia-1B, OLMo-2-1B completed)\\\\n\\\\nRemaining XX cells: Qwen3-0.6B greedy/topk, Qwen3-8B greedy/topk, Qwen3-1.7B topk, LLaMA-3.2-3B topk, Mistral-7B topk — pending experiment completion. Conclusion text (VERSION A/B/C) left untouched as requested.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__get_worker_status",
-            "elapsed_ms": 100
-          },
-          "id": "event-006131"
-        },
-        {
-          "source_line": 6132,
-          "timestamp": "2026-05-21T15:30:58.641912+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex"
-            }
-          },
-          "id": "event-006132"
-        },
-        {
-          "source_line": 6133,
-          "timestamp": "2026-05-21T15:30:58.642479+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% Decoding Strategy Robustness — placeholder pending experiment results\n2\tTo verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\\tau{=}0.7$),\n3\twe repeat the generation chain experiment under two alternative decoding strategies:\n4\tgreedy decoding ($\\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\\tau{=}0.7$).\n5\tAll eight generators spanning five architectural families produce ${\\sim}$1{,}000 chains of depth 0--4 per strategy,\n6\tyielding ${\\sim}$5{,}000 texts per generator--strategy combination.\n7\t\n8\tTable~\\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\\ gen-2+) for the three shape features across strategies;\n9\tTable~\\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.\n10\t\n11\t\\begin{table}[ht]\n12\t\\centering\n13\t\\small\n14\t\\caption{Shape-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\n15\tValues below 0.20 indicate negligible drift.\n16\tShape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}\n17\t\\label{tab:decoding-shape}\n18\t\\resizebox{\\linewidth}{!}{%\n19\t\\begin{tabular}{ll ccc ccc ccc}\n20\t\\toprule\n21\t& & \\multicolumn{3}{c}{entropy\\_max} & \\multicolumn{3}{c}{entropy\\_min} & \\multicolumn{3}{c}{tail\\_decay} \\\\\n22\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11}\n23\tFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n24\t\\midrule\n25\tPythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n26\t        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\n27\tOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\n28\tQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n29\t        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n30\t        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\n31\tLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.0\n…[truncated 4949 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006133"
-        },
-        {
-          "source_line": 6134,
-          "timestamp": "2026-05-21T15:31:24.600749+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
-              "limit": "35"
-            }
-          },
-          "id": "event-006134"
-        },
-        {
-          "source_line": 6135,
-          "timestamp": "2026-05-21T15:31:24.902479+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% Decoding Strategy Robustness — placeholder pending experiment results\n2\tTo verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\\tau{=}0.7$),\n3\twe repeat the generation chain experiment under two alternative decoding strategies:\n4\tgreedy decoding ($\\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\\tau{=}0.7$).\n5\tAll eight generators spanning five architectural families produce ${\\sim}$1{,}000 chains of depth 0--4 per strategy,\n6\tyielding ${\\sim}$5{,}000 texts per generator--strategy combination.\n7\t\n8\tTable~\\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\\ gen-2+) for the three shape features across strategies;\n9\tTable~\\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.\n10\t\n11\t\\begin{table}[ht]\n12\t\\centering\n13\t\\small\n14\t\\caption{Shape-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\n15\tValues below 0.20 indicate negligible drift.\n16\tShape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}\n17\t\\label{tab:decoding-shape}\n18\t\\resizebox{\\linewidth}{!}{%\n19\t\\begin{tabular}{ll ccc ccc ccc}\n20\t\\toprule\n21\t& & \\multicolumn{3}{c}{entropy\\_max} & \\multicolumn{3}{c}{entropy\\_min} & \\multicolumn{3}{c}{tail\\_decay} \\\\\n22\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11}\n23\tFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n24\t\\midrule\n25\tPythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n26\t        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\n27\tOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\n28\tQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n29\t        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n30\t        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\n31\tLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.0\n…[truncated 392 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "Read",
-            "elapsed_ms": 301
-          },
-          "id": "event-006135"
-        },
-        {
-          "source_line": 6136,
-          "timestamp": "2026-05-21T15:31:44.649868+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "text": "[资源] GPU 4/4 饱和 | Worker 0 | Watcher ×2 运行中\n\n## appendix_decoding_strategy.tex 表格填充完成\n\n两个表格已更新（docs/ + artifacts/ 同步）：\n- **Nucleus**: 8/8 generator 全部填入（从服务器 features_8gen.csv 计算）\n- **Greedy**: 6/8 填入（缺 Qwen3-0.6B, Qwen3-8B）\n- **Top-k**: 3/8 填入（缺 5 个）\n- Mean 行标注 N/8 基数\n- 结论文本（Version A/B/C）未修改\n\n### 重要发现：Nucleus 基线数据揭示 Pythia 固有不稳定\n\n填入 Nucleus 列后发现：\n| Generator | Nuc. entropy_max | 判定 |\n|-----------|-----------------|------|\n| Pythia-2.8B | **0.25** | > 0.20 |\n| Pythia-1B | **0.21** | > 0.20 |\n| OLMo-2-1B | 0.06 | PASS |\n| 其余 5 gen | 0.00-0.04 | PASS |\n\n**Pythia 在 nucleus 下 entropy_max 就已经超 0.20**。这意味着：\n1. Pythia top-k entropy_max 0.27/0.26 不是 top-k 引入的退化——它在 nucleus 下就不稳定（0.25/0.21）\n2. top-k 的真正退化体现在 **TTR/hapax 降到 0.41/0.34**（nucleus 下 Pythia 仍然 0.77-0.80）\n3. **Greedy 反而比 nucleus 更稳定**：greedy shape mean = 0.07/0.04/0.06 vs nucleus 0.08/0.04/0.13\n\n### 对 Version C 结论的影响\nVersion C 说 \"top-k partially attenuates the partition\" 基本正确，但需要补充：\n- 不应说 \"top-k elevates shape d\"——Pythia entropy_max 在 nucleus 下就高\n- 真正的 top-k 效应是 **lexical diversity 特征 (TTR, hapax) 的压缩**\n- Greedy 是最干净的 decoding strategy（优于 nucleus）\n\n等 16/16 数据齐全后可定稿 Version C。",
-              "project": "gen-depth-fingerprint"
-            }
-          },
-          "id": "event-006136"
-        },
-        {
-          "source_line": 6137,
+          "source_line": 6121,
           "timestamp": "2026-05-21T15:31:48.155105+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -341,10 +21,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3505
           },
-          "id": "event-006137"
+          "id": "event-006121"
         },
         {
-          "source_line": 6138,
+          "source_line": 6122,
           "timestamp": "2026-05-21T15:31:50.656466+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -357,7 +37,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006138"
+          "id": "event-006122"
         }
       ]
     },
@@ -365,7 +45,7 @@
       "number": 406,
       "messages": [
         {
-          "source_line": 6139,
+          "source_line": 6123,
           "timestamp": "2026-05-21T15:31:51.283509+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -379,10 +59,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "cron"
           },
-          "id": "event-006139"
+          "id": "event-006123"
         },
         {
-          "source_line": 6140,
+          "source_line": 6124,
           "timestamp": "2026-05-21T15:32:21.263950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -402,10 +82,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006140"
+          "id": "event-006124"
         },
         {
-          "source_line": 6141,
+          "source_line": 6125,
           "timestamp": "2026-05-21T15:32:27.602753+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -420,10 +100,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6338
           },
-          "id": "event-006141"
+          "id": "event-006125"
         },
         {
-          "source_line": 6142,
+          "source_line": 6126,
           "timestamp": "2026-05-21T15:32:32.323889+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -436,7 +116,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006142"
+          "id": "event-006126"
         }
       ]
     },
@@ -444,7 +124,7 @@
       "number": 407,
       "messages": [
         {
-          "source_line": 6143,
+          "source_line": 6127,
           "timestamp": "2026-05-21T15:32:32.328775+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -458,10 +138,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "cron"
           },
-          "id": "event-006143"
+          "id": "event-006127"
         },
         {
-          "source_line": 6144,
+          "source_line": 6128,
           "timestamp": "2026-05-21T15:32:38.894751+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -474,7 +154,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006144"
+          "id": "event-006128"
         }
       ]
     },
@@ -482,7 +162,7 @@
       "number": 408,
       "messages": [
         {
-          "source_line": 6145,
+          "source_line": 6129,
           "timestamp": "2026-05-21T15:34:12.760779+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -496,10 +176,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006145"
+          "id": "event-006129"
         },
         {
-          "source_line": 6146,
+          "source_line": 6130,
           "timestamp": "2026-05-21T15:34:20.279838+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -516,10 +196,10 @@
               "worker_id": "worker_diagnosis_exp062_cron_exit_check_20260521T153221"
             }
           },
-          "id": "event-006146"
+          "id": "event-006130"
         },
         {
-          "source_line": 6147,
+          "source_line": 6131,
           "timestamp": "2026-05-21T15:34:20.380526+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -534,10 +214,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-006147"
+          "id": "event-006131"
         },
         {
-          "source_line": 6148,
+          "source_line": 6132,
           "timestamp": "2026-05-21T15:34:27.760832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -555,10 +235,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-006148"
+          "id": "event-006132"
         },
         {
-          "source_line": 6149,
+          "source_line": 6133,
           "timestamp": "2026-05-21T15:34:27.811439+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -573,10 +253,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-006149"
+          "id": "event-006133"
         },
         {
-          "source_line": 6150,
+          "source_line": 6134,
           "timestamp": "2026-05-21T15:34:31.327667+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +274,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-006150"
+          "id": "event-006134"
         },
         {
-          "source_line": 6151,
+          "source_line": 6135,
           "timestamp": "2026-05-21T15:34:31.678895+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +292,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 351
           },
-          "id": "event-006151"
+          "id": "event-006135"
         },
         {
-          "source_line": 6152,
+          "source_line": 6136,
           "timestamp": "2026-05-21T15:34:34.039408+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -629,10 +309,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-006152"
+          "id": "event-006136"
         },
         {
-          "source_line": 6153,
+          "source_line": 6137,
           "timestamp": "2026-05-21T15:34:35.948761+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -647,10 +327,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 1909
           },
-          "id": "event-006153"
+          "id": "event-006137"
         },
         {
-          "source_line": 6154,
+          "source_line": 6138,
           "timestamp": "2026-05-21T15:34:43.338054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -668,10 +348,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-006154"
+          "id": "event-006138"
         },
         {
-          "source_line": 6155,
+          "source_line": 6139,
           "timestamp": "2026-05-21T15:34:43.338382+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -686,10 +366,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-006155"
+          "id": "event-006139"
         },
         {
-          "source_line": 6156,
+          "source_line": 6140,
           "timestamp": "2026-05-21T15:34:47.053893+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -707,10 +387,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-006156"
+          "id": "event-006140"
         },
         {
-          "source_line": 6157,
+          "source_line": 6141,
           "timestamp": "2026-05-21T15:34:47.154544+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -725,10 +405,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-006157"
+          "id": "event-006141"
         },
         {
-          "source_line": 6158,
+          "source_line": 6142,
           "timestamp": "2026-05-21T15:34:52.981892+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -750,10 +430,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006158"
+          "id": "event-006142"
         },
         {
-          "source_line": 6159,
+          "source_line": 6143,
           "timestamp": "2026-05-21T15:34:53.434667+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -768,10 +448,10 @@
             "tool": "mcp__agent-ml-research__register_cron",
             "elapsed_ms": 452
           },
-          "id": "event-006159"
+          "id": "event-006143"
         },
         {
-          "source_line": 6160,
+          "source_line": 6144,
           "timestamp": "2026-05-21T15:35:08.245151+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -791,10 +471,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006160"
+          "id": "event-006144"
         },
         {
-          "source_line": 6161,
+          "source_line": 6145,
           "timestamp": "2026-05-21T15:35:13.941519+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -809,10 +489,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5696
           },
-          "id": "event-006161"
+          "id": "event-006145"
         },
         {
-          "source_line": 6162,
+          "source_line": 6146,
           "timestamp": "2026-05-21T15:35:18.505954+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -830,10 +510,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-006162"
+          "id": "event-006146"
         },
         {
-          "source_line": 6163,
+          "source_line": 6147,
           "timestamp": "2026-05-21T15:35:18.556601+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -848,10 +528,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-006163"
+          "id": "event-006147"
         },
         {
-          "source_line": 6164,
+          "source_line": 6148,
           "timestamp": "2026-05-21T15:35:26.402384+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -869,10 +549,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-006164"
+          "id": "event-006148"
         },
         {
-          "source_line": 6165,
+          "source_line": 6149,
           "timestamp": "2026-05-21T15:35:26.452950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -887,10 +567,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-006165"
+          "id": "event-006149"
         },
         {
-          "source_line": 6166,
+          "source_line": 6150,
           "timestamp": "2026-05-21T15:35:32.627403+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -908,10 +588,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3"
             }
           },
-          "id": "event-006166"
+          "id": "event-006150"
         },
         {
-          "source_line": 6167,
+          "source_line": 6151,
           "timestamp": "2026-05-21T15:35:32.878650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -926,10 +606,10 @@
             "tool": "Glob",
             "elapsed_ms": 251
           },
-          "id": "event-006167"
+          "id": "event-006151"
         },
         {
-          "source_line": 6168,
+          "source_line": 6152,
           "timestamp": "2026-05-21T15:35:32.879081+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -947,10 +627,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3"
             }
           },
-          "id": "event-006168"
+          "id": "event-006152"
         },
         {
-          "source_line": 6169,
+          "source_line": 6153,
           "timestamp": "2026-05-21T15:35:32.979733+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -965,10 +645,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-006169"
+          "id": "event-006153"
         },
         {
-          "source_line": 6170,
+          "source_line": 6154,
           "timestamp": "2026-05-21T15:35:35.790731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -985,10 +665,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/crons.yaml"
             }
           },
-          "id": "event-006170"
+          "id": "event-006154"
         },
         {
-          "source_line": 6171,
+          "source_line": 6155,
           "timestamp": "2026-05-21T15:35:35.791328+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1003,10 +683,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006171"
+          "id": "event-006155"
         },
         {
-          "source_line": 6172,
+          "source_line": 6156,
           "timestamp": "2026-05-21T15:35:45.386386+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1026,10 +706,10 @@
               "new_string": "- _no_signal_miss_count: 0\n  chat_id: null\n  created_at: '2026-05-21T09:00:17.552Z'\n  exp_id: exp_062_decoding_strategy_shape\n  hooks: null\n  interval_seconds: 300\n  last_checked: '2026-05-21T15:40:00.000Z'\n  log_path: /tmp/gen_qwen8b_decoding.log\n  pid: '369104'\n  project: gen-depth-fingerprint\n  server: bjb2-18868\n  tracked_metrics: null\n  wandb_run_id: null"
             }
           },
-          "id": "event-006172"
+          "id": "event-006156"
         },
         {
-          "source_line": 6173,
+          "source_line": 6157,
           "timestamp": "2026-05-21T15:35:45.386922+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1044,10 +724,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006173"
+          "id": "event-006157"
         },
         {
-          "source_line": 6174,
+          "source_line": 6158,
           "timestamp": "2026-05-21T15:35:49.212954+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1060,7 +740,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006174"
+          "id": "event-006158"
         }
       ]
     },
@@ -1068,7 +748,7 @@
       "number": 409,
       "messages": [
         {
-          "source_line": 6175,
+          "source_line": 6159,
           "timestamp": "2026-05-21T15:39:13.362665+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1082,10 +762,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006175"
+          "id": "event-006159"
         },
         {
-          "source_line": 6176,
+          "source_line": 6160,
           "timestamp": "2026-05-21T15:39:20.261013+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1102,10 +782,10 @@
               "worker_id": "worker_analysis_exp062_extract_qwen17b_topk_20260521T153508"
             }
           },
-          "id": "event-006176"
+          "id": "event-006160"
         },
         {
-          "source_line": 6177,
+          "source_line": 6161,
           "timestamp": "2026-05-21T15:39:20.361944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1120,10 +800,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-006177"
+          "id": "event-006161"
         },
         {
-          "source_line": 6178,
+          "source_line": 6162,
           "timestamp": "2026-05-21T15:39:32.252108+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1141,10 +821,10 @@
               "limit": "37"
             }
           },
-          "id": "event-006178"
+          "id": "event-006162"
         },
         {
-          "source_line": 6179,
+          "source_line": 6163,
           "timestamp": "2026-05-21T15:39:32.302799+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1159,10 +839,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006179"
+          "id": "event-006163"
         },
         {
-          "source_line": 6180,
+          "source_line": 6164,
           "timestamp": "2026-05-21T15:39:36.721918+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1182,10 +862,10 @@
               "new_string": "        & 1.7B    & 0.02 & 0.08 & 0.03 & 0.05 & 0.01 & 0.03 & 0.09 & 0.04 & 0.14 \\\\"
             }
           },
-          "id": "event-006180"
+          "id": "event-006164"
         },
         {
-          "source_line": 6181,
+          "source_line": 6165,
           "timestamp": "2026-05-21T15:39:36.772570+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1200,10 +880,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006181"
+          "id": "event-006165"
         },
         {
-          "source_line": 6182,
+          "source_line": 6166,
           "timestamp": "2026-05-21T15:39:41.290961+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1222,10 +902,10 @@
               "limit": "30"
             }
           },
-          "id": "event-006182"
+          "id": "event-006166"
         },
         {
-          "source_line": 6183,
+          "source_line": 6167,
           "timestamp": "2026-05-21T15:39:41.341522+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1240,10 +920,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006183"
+          "id": "event-006167"
         },
         {
-          "source_line": 6184,
+          "source_line": 6168,
           "timestamp": "2026-05-21T15:39:55.228562+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1263,10 +943,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{6/8}$ & \\textbf{0.14}$^{4/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{6/8}$ & \\textbf{0.03}$^{4/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{6/8}$ & \\textbf{0.17}$^{4/8}$ \\\\"
             }
           },
-          "id": "event-006184"
+          "id": "event-006168"
         },
         {
-          "source_line": 6185,
+          "source_line": 6169,
           "timestamp": "2026-05-21T15:39:55.283826+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1281,10 +961,10 @@
             "tool": "Edit",
             "elapsed_ms": 55
           },
-          "id": "event-006185"
+          "id": "event-006169"
         },
         {
-          "source_line": 6186,
+          "source_line": 6170,
           "timestamp": "2026-05-21T15:39:59.933050+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1304,10 +984,10 @@
               "new_string": "        & 1.7B    & 1.12 & 1.03 & 0.99 & 0.93 & 0.74 & 0.85 & 0.83 & 0.68 & 0.80 & 0.52 & 0.78 & 0.32 \\\\"
             }
           },
-          "id": "event-006186"
+          "id": "event-006170"
         },
         {
-          "source_line": 6187,
+          "source_line": 6171,
           "timestamp": "2026-05-21T15:39:59.983598+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1322,10 +1002,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006187"
+          "id": "event-006171"
         },
         {
-          "source_line": 6188,
+          "source_line": 6172,
           "timestamp": "2026-05-21T15:40:08.012760+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1345,10 +1025,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.25}$^{6/8}$ & \\textbf{0.81}$^{4/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.93}$^{6/8}$ & \\textbf{0.59}$^{4/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.86}$^{6/8}$ & \\textbf{0.55}$^{4/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.87}$^{6/8}$ & \\textbf{0.23}$^{4/8}$ \\\\"
             }
           },
-          "id": "event-006188"
+          "id": "event-006172"
         },
         {
-          "source_line": 6189,
+          "source_line": 6173,
           "timestamp": "2026-05-21T15:40:08.063681+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1363,10 +1043,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006189"
+          "id": "event-006173"
         },
         {
-          "source_line": 6190,
+          "source_line": 6174,
           "timestamp": "2026-05-21T15:40:13.154909+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1384,10 +1064,10 @@
               "description": "Sync appendix to artifacts copy"
             }
           },
-          "id": "event-006190"
+          "id": "event-006174"
         },
         {
-          "source_line": 6191,
+          "source_line": 6175,
           "timestamp": "2026-05-21T15:40:13.357267+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1402,10 +1082,10 @@
             "tool": "Bash",
             "elapsed_ms": 202
           },
-          "id": "event-006191"
+          "id": "event-006175"
         },
         {
-          "source_line": 6192,
+          "source_line": 6176,
           "timestamp": "2026-05-21T15:40:35.060457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1423,10 +1103,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006192"
+          "id": "event-006176"
         },
         {
-          "source_line": 6193,
+          "source_line": 6177,
           "timestamp": "2026-05-21T15:40:38.473636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1441,10 +1121,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3413
           },
-          "id": "event-006193"
+          "id": "event-006177"
         },
         {
-          "source_line": 6194,
+          "source_line": 6178,
           "timestamp": "2026-05-21T15:40:41.008264+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1457,7 +1137,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006194"
+          "id": "event-006178"
         }
       ]
     },
@@ -1465,7 +1145,7 @@
       "number": 410,
       "messages": [
         {
-          "source_line": 6195,
+          "source_line": 6179,
           "timestamp": "2026-05-21T16:12:26.251032+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1479,10 +1159,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "director"
           },
-          "id": "event-006195"
+          "id": "event-006179"
         },
         {
-          "source_line": 6196,
+          "source_line": 6180,
           "timestamp": "2026-05-21T16:12:52.268307+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1502,10 +1182,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006196"
+          "id": "event-006180"
         },
         {
-          "source_line": 6197,
+          "source_line": 6181,
           "timestamp": "2026-05-21T16:12:57.839825+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1520,7 +1200,7 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5571
           },
-          "id": "event-006197"
+          "id": "event-006181"
         }
       ]
     },
@@ -1528,7 +1208,7 @@
       "number": 411,
       "messages": [
         {
-          "source_line": 6198,
+          "source_line": 6182,
           "timestamp": "2026-05-21T16:18:35.167594+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1542,10 +1222,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006198"
+          "id": "event-006182"
         },
         {
-          "source_line": 6199,
+          "source_line": 6183,
           "timestamp": "2026-05-21T16:18:42.200855+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1562,10 +1242,10 @@
               "worker_id": "worker_diagnosis_exp062_gpu_util_fix_20260521T161252"
             }
           },
-          "id": "event-006199"
+          "id": "event-006183"
         },
         {
-          "source_line": 6200,
+          "source_line": 6184,
           "timestamp": "2026-05-21T16:18:42.252051+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1580,10 +1260,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 51
           },
-          "id": "event-006200"
+          "id": "event-006184"
         },
         {
-          "source_line": 6201,
+          "source_line": 6185,
           "timestamp": "2026-05-21T16:18:46.116857+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1600,10 +1280,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/exp062_gpu_util_status.txt"
             }
           },
-          "id": "event-006201"
+          "id": "event-006185"
         },
         {
-          "source_line": 6202,
+          "source_line": 6186,
           "timestamp": "2026-05-21T16:18:46.217776+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1618,10 +1298,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006202"
+          "id": "event-006186"
         },
         {
-          "source_line": 6203,
+          "source_line": 6187,
           "timestamp": "2026-05-21T16:19:06.825713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1641,10 +1321,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006203"
+          "id": "event-006187"
         },
         {
-          "source_line": 6204,
+          "source_line": 6188,
           "timestamp": "2026-05-21T16:19:12.400541+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1659,10 +1339,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5574
           },
-          "id": "event-006204"
+          "id": "event-006188"
         },
         {
-          "source_line": 6205,
+          "source_line": 6189,
           "timestamp": "2026-05-21T16:19:26.657639+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1680,10 +1360,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006205"
+          "id": "event-006189"
         },
         {
-          "source_line": 6206,
+          "source_line": 6190,
           "timestamp": "2026-05-21T16:19:27.962538+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1698,10 +1378,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 1304
           },
-          "id": "event-006206"
+          "id": "event-006190"
         },
         {
-          "source_line": 6207,
+          "source_line": 6191,
           "timestamp": "2026-05-21T16:19:30.247393+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1714,7 +1394,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006207"
+          "id": "event-006191"
         }
       ]
     },
@@ -1722,7 +1402,7 @@
       "number": 412,
       "messages": [
         {
-          "source_line": 6208,
+          "source_line": 6192,
           "timestamp": "2026-05-21T16:22:05.556497+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1736,10 +1416,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006208"
+          "id": "event-006192"
         },
         {
-          "source_line": 6209,
+          "source_line": 6193,
           "timestamp": "2026-05-21T16:22:12.884718+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1756,10 +1436,10 @@
               "worker_id": "worker_analysis_exp062_cohens_d_batch4_20260521T161907"
             }
           },
-          "id": "event-006209"
+          "id": "event-006193"
         },
         {
-          "source_line": 6210,
+          "source_line": 6194,
           "timestamp": "2026-05-21T16:22:12.985567+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1774,10 +1454,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-006210"
+          "id": "event-006194"
         },
         {
-          "source_line": 6211,
+          "source_line": 6195,
           "timestamp": "2026-05-21T16:22:27.394927+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1794,10 +1474,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex"
             }
           },
-          "id": "event-006211"
+          "id": "event-006195"
         },
         {
-          "source_line": 6212,
+          "source_line": 6196,
           "timestamp": "2026-05-21T16:22:27.395540+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1812,10 +1492,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006212"
+          "id": "event-006196"
         },
         {
-          "source_line": 6213,
+          "source_line": 6197,
           "timestamp": "2026-05-21T16:22:45.737179+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1835,10 +1515,10 @@
               "new_string": "Qwen3   & 0.6B    & 0.01 & 0.09 & XX & 0.10 & 0.02 & XX & 0.08 & 0.03 & XX \\\\"
             }
           },
-          "id": "event-006213"
+          "id": "event-006197"
         },
         {
-          "source_line": 6214,
+          "source_line": 6198,
           "timestamp": "2026-05-21T16:22:45.787931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1853,10 +1533,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006214"
+          "id": "event-006198"
         },
         {
-          "source_line": 6215,
+          "source_line": 6199,
           "timestamp": "2026-05-21T16:22:50.204257+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1876,10 +1556,10 @@
               "new_string": "Llama   & 3.2-3B  & 0.01 & 0.06 & 0.08 & 0.01 & 0.07 & 0.03 & 0.19 & 0.04 & 0.20 \\\\"
             }
           },
-          "id": "event-006215"
+          "id": "event-006199"
         },
         {
-          "source_line": 6216,
+          "source_line": 6200,
           "timestamp": "2026-05-21T16:22:50.255769+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1894,10 +1574,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-006216"
+          "id": "event-006200"
         },
         {
-          "source_line": 6217,
+          "source_line": 6201,
           "timestamp": "2026-05-21T16:22:56.682827+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1917,10 +1597,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{7/8}$ & \\textbf{0.13}$^{5/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{7/8}$ & \\textbf{0.03}$^{5/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{7/8}$ & \\textbf{0.17}$^{5/8}$ \\\\"
             }
           },
-          "id": "event-006217"
+          "id": "event-006201"
         },
         {
-          "source_line": 6218,
+          "source_line": 6202,
           "timestamp": "2026-05-21T16:22:56.733599+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1935,10 +1615,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006218"
+          "id": "event-006202"
         },
         {
-          "source_line": 6219,
+          "source_line": 6203,
           "timestamp": "2026-05-21T16:23:01.615524+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1958,10 +1638,10 @@
               "new_string": "Qwen3   & 0.6B    & 0.92 & 0.82 & XX & 0.63 & 0.51 & XX & 0.50 & 0.46 & XX & 0.56 & 0.72 & XX \\\\"
             }
           },
-          "id": "event-006219"
+          "id": "event-006203"
         },
         {
-          "source_line": 6220,
+          "source_line": 6204,
           "timestamp": "2026-05-21T16:23:01.666142+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1976,10 +1656,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006220"
+          "id": "event-006204"
         },
         {
-          "source_line": 6221,
+          "source_line": 6205,
           "timestamp": "2026-05-21T16:23:08.631767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1999,10 +1679,10 @@
               "new_string": "Llama   & 3.2-3B  & 1.15 & 1.46 & 0.77 & 1.04 & 1.27 & 0.73 & 0.98 & 1.26 & 0.71 & 0.50 & 1.01 & 0.21 \\\\"
             }
           },
-          "id": "event-006221"
+          "id": "event-006205"
         },
         {
-          "source_line": 6222,
+          "source_line": 6206,
           "timestamp": "2026-05-21T16:23:08.637889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2017,10 +1697,10 @@
             "tool": "Edit",
             "elapsed_ms": 6
           },
-          "id": "event-006222"
+          "id": "event-006206"
         },
         {
-          "source_line": 6223,
+          "source_line": 6207,
           "timestamp": "2026-05-21T16:23:15.899679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2040,10 +1720,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.19}$^{7/8}$ & \\textbf{0.80}$^{5/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.87}$^{7/8}$ & \\textbf{0.62}$^{5/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.80}$^{7/8}$ & \\textbf{0.58}$^{5/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.85}$^{7/8}$ & \\textbf{0.22}$^{5/8}$ \\\\"
             }
           },
-          "id": "event-006223"
+          "id": "event-006207"
         },
         {
-          "source_line": 6224,
+          "source_line": 6208,
           "timestamp": "2026-05-21T16:23:15.950368+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2058,10 +1738,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006224"
+          "id": "event-006208"
         },
         {
-          "source_line": 6225,
+          "source_line": 6209,
           "timestamp": "2026-05-21T16:23:20.319927+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2079,10 +1759,10 @@
               "description": "Sync appendix to artifacts"
             }
           },
-          "id": "event-006225"
+          "id": "event-006209"
         },
         {
-          "source_line": 6226,
+          "source_line": 6210,
           "timestamp": "2026-05-21T16:23:20.420694+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2097,10 +1777,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006226"
+          "id": "event-006210"
         },
         {
-          "source_line": 6227,
+          "source_line": 6211,
           "timestamp": "2026-05-21T16:23:40.574497+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2118,10 +1798,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006227"
+          "id": "event-006211"
         },
         {
-          "source_line": 6228,
+          "source_line": 6212,
           "timestamp": "2026-05-21T16:23:44.037327+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2136,10 +1816,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3462
           },
-          "id": "event-006228"
+          "id": "event-006212"
         },
         {
-          "source_line": 6229,
+          "source_line": 6213,
           "timestamp": "2026-05-21T16:23:46.777094+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2152,7 +1832,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006229"
+          "id": "event-006213"
         }
       ]
     },
@@ -2160,7 +1840,7 @@
       "number": 413,
       "messages": [
         {
-          "source_line": 6230,
+          "source_line": 6214,
           "timestamp": "2026-05-21T17:05:45.232905+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2174,10 +1854,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "director"
           },
-          "id": "event-006230"
+          "id": "event-006214"
         },
         {
-          "source_line": 6231,
+          "source_line": 6215,
           "timestamp": "2026-05-21T17:06:20.652015+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2197,10 +1877,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006231"
+          "id": "event-006215"
         },
         {
-          "source_line": 6232,
+          "source_line": 6216,
           "timestamp": "2026-05-21T17:06:26.462888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2215,7 +1895,7 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 5810
           },
-          "id": "event-006232"
+          "id": "event-006216"
         }
       ]
     },
@@ -2223,7 +1903,7 @@
       "number": 414,
       "messages": [
         {
-          "source_line": 6233,
+          "source_line": 6217,
           "timestamp": "2026-05-21T17:12:12.138123+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2237,10 +1917,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006233"
+          "id": "event-006217"
         },
         {
-          "source_line": 6234,
+          "source_line": 6218,
           "timestamp": "2026-05-21T17:12:23.901281+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2257,10 +1937,10 @@
               "worker_id": "worker_diagnosis_exp062_final4_status_20260521T170621"
             }
           },
-          "id": "event-006234"
+          "id": "event-006218"
         },
         {
-          "source_line": 6235,
+          "source_line": 6219,
           "timestamp": "2026-05-21T17:12:24.002240+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2275,10 +1955,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-006235"
+          "id": "event-006219"
         },
         {
-          "source_line": 6236,
+          "source_line": 6220,
           "timestamp": "2026-05-21T17:12:37.259797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2298,10 +1978,10 @@
               "new_string": "Mistral & 7B-v0.3 & 0.00 & 0.01 & 0.06 & 0.04 & 0.02 & 0.01 & 0.16 & 0.14 & 0.12 \\\\"
             }
           },
-          "id": "event-006236"
+          "id": "event-006220"
         },
         {
-          "source_line": 6237,
+          "source_line": 6221,
           "timestamp": "2026-05-21T17:12:37.260353+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2316,10 +1996,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006237"
+          "id": "event-006221"
         },
         {
-          "source_line": 6238,
+          "source_line": 6222,
           "timestamp": "2026-05-21T17:12:42.541631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2339,10 +2019,10 @@
               "new_string": "Mistral & 7B-v0.3 & 0.89 & 1.31 & 0.70 & 0.82 & 1.04 & 0.64 & 0.82 & 1.03 & 0.67 & 0.23 & 0.62 & 0.15 \\\\"
             }
           },
-          "id": "event-006238"
+          "id": "event-006222"
         },
         {
-          "source_line": 6239,
+          "source_line": 6223,
           "timestamp": "2026-05-21T17:12:42.592655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2357,10 +2037,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-006239"
+          "id": "event-006223"
         },
         {
-          "source_line": 6240,
+          "source_line": 6224,
           "timestamp": "2026-05-21T17:12:46.512756+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2379,10 +2059,10 @@
               "limit": "12"
             }
           },
-          "id": "event-006240"
+          "id": "event-006224"
         },
         {
-          "source_line": 6241,
+          "source_line": 6225,
           "timestamp": "2026-05-21T17:12:46.613636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2397,10 +2077,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006241"
+          "id": "event-006225"
         },
         {
-          "source_line": 6242,
+          "source_line": 6226,
           "timestamp": "2026-05-21T17:12:57.915537+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2420,10 +2100,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{7/8}$ & \\textbf{0.12}$^{6/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{7/8}$ & \\textbf{0.03}$^{6/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{7/8}$ & \\textbf{0.16}$^{6/8}$ \\\\"
             }
           },
-          "id": "event-006242"
+          "id": "event-006226"
         },
         {
-          "source_line": 6243,
+          "source_line": 6227,
           "timestamp": "2026-05-21T17:12:57.966132+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2438,10 +2118,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006243"
+          "id": "event-006227"
         },
         {
-          "source_line": 6244,
+          "source_line": 6228,
           "timestamp": "2026-05-21T17:13:06.552715+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2461,10 +2141,10 @@
               "new_string": "\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.19}$^{7/8}$ & \\textbf{0.79}$^{6/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.87}$^{7/8}$ & \\textbf{0.62}$^{6/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.80}$^{7/8}$ & \\textbf{0.60}$^{6/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.85}$^{7/8}$ & \\textbf{0.21}$^{6/8}$ \\\\"
             }
           },
-          "id": "event-006244"
+          "id": "event-006228"
         },
         {
-          "source_line": 6245,
+          "source_line": 6229,
           "timestamp": "2026-05-21T17:13:06.603374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2479,10 +2159,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006245"
+          "id": "event-006229"
         },
         {
-          "source_line": 6246,
+          "source_line": 6230,
           "timestamp": "2026-05-21T17:13:10.749024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2500,10 +2180,10 @@
               "description": "Sync appendix to artifacts"
             }
           },
-          "id": "event-006246"
+          "id": "event-006230"
         },
         {
-          "source_line": 6247,
+          "source_line": 6231,
           "timestamp": "2026-05-21T17:13:10.899826+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2518,10 +2198,10 @@
             "tool": "Bash",
             "elapsed_ms": 150
           },
-          "id": "event-006247"
+          "id": "event-006231"
         },
         {
-          "source_line": 6248,
+          "source_line": 6232,
           "timestamp": "2026-05-21T17:13:28.613585+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2539,10 +2219,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006248"
+          "id": "event-006232"
         },
         {
-          "source_line": 6249,
+          "source_line": 6233,
           "timestamp": "2026-05-21T17:13:32.025758+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2557,10 +2237,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3412
           },
-          "id": "event-006249"
+          "id": "event-006233"
         },
         {
-          "source_line": 6250,
+          "source_line": 6234,
           "timestamp": "2026-05-21T17:13:35.224744+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2573,7 +2253,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006250"
+          "id": "event-006234"
         }
       ]
     },
@@ -2581,7 +2261,7 @@
       "number": 415,
       "messages": [
         {
-          "source_line": 6251,
+          "source_line": 6235,
           "timestamp": "2026-05-21T17:14:17.178421+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2595,10 +2275,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "director"
           },
-          "id": "event-006251"
+          "id": "event-006235"
         },
         {
-          "source_line": 6252,
+          "source_line": 6236,
           "timestamp": "2026-05-21T17:14:43.048178+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2618,10 +2298,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006252"
+          "id": "event-006236"
         },
         {
-          "source_line": 6253,
+          "source_line": 6237,
           "timestamp": "2026-05-21T17:14:49.674020+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2636,7 +2316,7 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6625
           },
-          "id": "event-006253"
+          "id": "event-006237"
         }
       ]
     },
@@ -2644,7 +2324,7 @@
       "number": 416,
       "messages": [
         {
-          "source_line": 6254,
+          "source_line": 6238,
           "timestamp": "2026-05-21T17:14:55.204984+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2658,10 +2338,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "director"
           },
-          "id": "event-006254"
+          "id": "event-006238"
         },
         {
-          "source_line": 6255,
+          "source_line": 6239,
           "timestamp": "2026-05-21T17:15:10.609903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2679,10 +2359,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-006255"
+          "id": "event-006239"
         },
         {
-          "source_line": 6256,
+          "source_line": 6240,
           "timestamp": "2026-05-21T17:15:10.660801+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2697,10 +2377,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-006256"
+          "id": "event-006240"
         },
         {
-          "source_line": 6257,
+          "source_line": 6241,
           "timestamp": "2026-05-21T17:15:19.402459+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2718,10 +2398,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006257"
+          "id": "event-006241"
         },
         {
-          "source_line": 6258,
+          "source_line": 6242,
           "timestamp": "2026-05-21T17:15:22.865620+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2736,10 +2416,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3463
           },
-          "id": "event-006258"
+          "id": "event-006242"
         },
         {
-          "source_line": 6259,
+          "source_line": 6243,
           "timestamp": "2026-05-21T17:15:25.465517+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2752,7 +2432,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006259"
+          "id": "event-006243"
         }
       ]
     },
@@ -2760,7 +2440,7 @@
       "number": 417,
       "messages": [
         {
-          "source_line": 6260,
+          "source_line": 6244,
           "timestamp": "2026-05-21T17:21:13.295406+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2774,10 +2454,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006260"
+          "id": "event-006244"
         },
         {
-          "source_line": 6261,
+          "source_line": 6245,
           "timestamp": "2026-05-21T17:21:21.177718+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2794,10 +2474,10 @@
               "worker_id": "worker_ops_exp062_launch_qwen8b_topk_20260521T171443"
             }
           },
-          "id": "event-006261"
+          "id": "event-006245"
         },
         {
-          "source_line": 6262,
+          "source_line": 6246,
           "timestamp": "2026-05-21T17:21:21.279985+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2812,10 +2492,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-006262"
+          "id": "event-006246"
         },
         {
-          "source_line": 6263,
+          "source_line": 6247,
           "timestamp": "2026-05-21T17:21:30.477318+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2833,10 +2513,10 @@
               "project": "gen-depth-fingerprint"
             }
           },
-          "id": "event-006263"
+          "id": "event-006247"
         },
         {
-          "source_line": 6264,
+          "source_line": 6248,
           "timestamp": "2026-05-21T17:21:33.939771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2851,10 +2531,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3462
           },
-          "id": "event-006264"
+          "id": "event-006248"
         },
         {
-          "source_line": 6265,
+          "source_line": 6249,
           "timestamp": "2026-05-21T17:24:05.189351+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2872,10 +2552,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-006265"
+          "id": "event-006249"
         },
         {
-          "source_line": 6266,
+          "source_line": 6250,
           "timestamp": "2026-05-21T17:24:05.189709+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2890,10 +2570,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-006266"
+          "id": "event-006250"
         },
         {
-          "source_line": 6267,
+          "source_line": 6251,
           "timestamp": "2026-05-21T17:24:09.706529+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2912,10 +2592,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-006267"
+          "id": "event-006251"
         },
         {
-          "source_line": 6268,
+          "source_line": 6252,
           "timestamp": "2026-05-21T17:24:09.706955+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2929,10 +2609,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-006268"
+          "id": "event-006252"
         },
         {
-          "source_line": 6269,
+          "source_line": 6253,
           "timestamp": "2026-05-21T17:24:09.857688+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2947,10 +2627,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 151
           },
-          "id": "event-006269"
+          "id": "event-006253"
         },
         {
-          "source_line": 6270,
+          "source_line": 6254,
           "timestamp": "2026-05-21T17:24:11.664114+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2965,10 +2645,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 1957
           },
-          "id": "event-006270"
+          "id": "event-006254"
         },
         {
-          "source_line": 6271,
+          "source_line": 6255,
           "timestamp": "2026-05-21T17:24:20.864012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2986,10 +2666,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-006271"
+          "id": "event-006255"
         },
         {
-          "source_line": 6272,
+          "source_line": 6256,
           "timestamp": "2026-05-21T17:24:20.914646+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3004,10 +2684,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-006272"
+          "id": "event-006256"
         },
         {
-          "source_line": 6273,
+          "source_line": 6257,
           "timestamp": "2026-05-21T17:24:23.926119+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3024,10 +2704,10 @@
               "server": "bjb2-18868"
             }
           },
-          "id": "event-006273"
+          "id": "event-006257"
         },
         {
-          "source_line": 6274,
+          "source_line": 6258,
           "timestamp": "2026-05-21T17:24:24.077416+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3042,10 +2722,10 @@
             "tool": "mcp__agent-ml-research__get_gpu_health",
             "elapsed_ms": 151
           },
-          "id": "event-006274"
+          "id": "event-006258"
         },
         {
-          "source_line": 6275,
+          "source_line": 6259,
           "timestamp": "2026-05-21T17:24:39.835739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3065,10 +2745,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-006275"
+          "id": "event-006259"
         },
         {
-          "source_line": 6276,
+          "source_line": 6260,
           "timestamp": "2026-05-21T17:24:43.269036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3083,10 +2763,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 3433
           },
-          "id": "event-006276"
+          "id": "event-006260"
         },
         {
-          "source_line": 6277,
+          "source_line": 6261,
           "timestamp": "2026-05-21T17:24:45.669591+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3099,7 +2779,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006277"
+          "id": "event-006261"
         }
       ]
     },
@@ -3107,7 +2787,7 @@
       "number": 418,
       "messages": [
         {
-          "source_line": 6278,
+          "source_line": 6262,
           "timestamp": "2026-05-21T17:26:43.924769+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3121,10 +2801,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "worker:done"
           },
-          "id": "event-006278"
+          "id": "event-006262"
         },
         {
-          "source_line": 6279,
+          "source_line": 6263,
           "timestamp": "2026-05-21T17:26:50.816064+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3142,10 +2822,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-006279"
+          "id": "event-006263"
         },
         {
-          "source_line": 6280,
+          "source_line": 6264,
           "timestamp": "2026-05-21T17:26:50.916824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3160,10 +2840,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-006280"
+          "id": "event-006264"
         },
         {
-          "source_line": 6281,
+          "source_line": 6265,
           "timestamp": "2026-05-21T17:26:53.379721+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3180,10 +2860,10 @@
               "worker_id": "worker_ssh_exp062-status-check_20260521T172440"
             }
           },
-          "id": "event-006281"
+          "id": "event-006265"
         },
         {
-          "source_line": 6282,
+          "source_line": 6266,
           "timestamp": "2026-05-21T17:26:53.480384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3198,10 +2878,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-006282"
+          "id": "event-006266"
         },
         {
-          "source_line": 6283,
+          "source_line": 6267,
           "timestamp": "2026-05-21T17:28:01.094512+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3220,10 +2900,10 @@
               "prompt": "Check exp062 pipeline: 3 remaining combos (qwen3-8b greedy cuda:1 ~43%, qwen3-8b topk cuda:0 ~2%, qwen3-0.6b topk cuda:3 ~49%). Feature watcher PID 372588 should auto-extract. When any combo completes, spawn worker to compute Cohen's d and fill appendix tables. When all 16/16 done, report to Director."
             }
           },
-          "id": "event-006283"
+          "id": "event-006267"
         },
         {
-          "source_line": 6284,
+          "source_line": 6268,
           "timestamp": "2026-05-21T17:28:01.195373+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3238,10 +2918,10 @@
             "tool": "ScheduleWakeup",
             "elapsed_ms": 100
           },
-          "id": "event-006284"
+          "id": "event-006268"
         },
         {
-          "source_line": 6285,
+          "source_line": 6269,
           "timestamp": "2026-05-21T17:28:03.794540+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3254,7 +2934,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006285"
+          "id": "event-006269"
         }
       ]
     },
@@ -3262,7 +2942,7 @@
       "number": 419,
       "messages": [
         {
-          "source_line": 6286,
+          "source_line": 6270,
           "timestamp": "2026-05-21T17:57:08.232271+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3276,10 +2956,10 @@
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3",
             "source": "system:ralph_loop"
           },
-          "id": "event-006286"
+          "id": "event-006270"
         },
         {
-          "source_line": 6287,
+          "source_line": 6271,
           "timestamp": "2026-05-21T17:57:48.598737+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3292,7 +2972,7 @@
           "metadata": {
             "session": "feishu:group:oc_a189a3add89efad7437b5c9f3e05fbf3"
           },
-          "id": "event-006287"
+          "id": "event-006271"
         }
       ]
     }

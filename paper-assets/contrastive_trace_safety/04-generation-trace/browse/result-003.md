@@ -33,4 +33,3 @@
 | `logs/workers/worker_verification_bge_1024d_ensemble_20260523T112237_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/verification-bge-1024d-ensemble.md) | [Open JSON](../sessions/91/91703fd6008db2ff300f.json) |
 | `logs/workers/worker_verification_holdout_ot7b_r132b_20260523T112218_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/verification-holdout-ot7b-r132b.md) | [Open JSON](../sessions/6c/6c671efb2081c4c635f3.json) |
 | `logs/workers/worker_writing_path_c_appendix_20260517T055959_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-path-c-appendix.md) | [Open JSON](../sessions/a7/a7cd804bc5ae470867d5.json) |
-| `logs/workers/worker_writing_rebuttal_prep_20260518T202752_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-rebuttal-prep.md) | [Open JSON](../sessions/01/01c5d96e62de861df6b9.json) |

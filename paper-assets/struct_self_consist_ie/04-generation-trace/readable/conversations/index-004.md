@@ -39,7 +39,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis scierc 3seed recompute | 95 | 0 | [Read transcript](analysis-scierc-3seed-recompute.md) | [JSON](../../sessions/8f/8f9769d63ec04e3662dc.json) |
 | research ma2024 author verify | 7 | 0 | [Read transcript](research-ma2024-author-verify.md) | [JSON](../../sessions/4a/4a3b13cab5bb2cc5d8e8.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #18。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 两台服务器：autodl | 2,386 | 144 | [Read transcript](reviewer-coordination-20260522-182508.md) | [JSON](../../sessions/39/39644650420c737d9e2c.json) |
-| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #17。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: autodl-509 | 5,745 | 349 | [Read transcript](coordination-coordination-20260525-191817.md) | [JSON](../../sessions/37/376b63568205872fb300.json) |
+| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #17。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: autodl-509 | 5,709 | 349 | [Read transcript](coordination-coordination-20260525-191817.md) | [JSON](../../sessions/37/376b63568205872fb300.json) |
 | ssh verify n16 sample count | 25 | 0 | [Read transcript](ssh-verify-n16-sample-count.md) | [JSON](../../sessions/30/30d525cffc1438f4eb05.json) |
 | ssh scierc pretrained mv recompute | 13 | 0 | [Read transcript](ssh-scierc-pretrained-mv-recompute.md) | [JSON](../../sessions/ba/bac6d9e0c45fe35909a2.json) |
 | ssh p0 5epoch s42 mv recompute | 31 | 0 | [Read transcript](ssh-p0-5epoch-s42-mv-recompute.md) | [JSON](../../sessions/cb/cb4118a852c86513ec14.json) |
@@ -52,7 +52,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | cron hook exp fewnerd t05 s456 — [HANDOFF] 你是 Main Agent，这是 Loop #18。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: autodl-509 | 48 | 1 | [Read transcript](cron-hook-exp-fewnerd-t05-s456.md) | [JSON](../../sessions/ad/ad7b92de10aadc4a422e.json) |
 | ssh mf4v2 s42 s123 v4 | 13 | 0 | [Read transcript](ssh-mf4v2-s42-s123-v4.md) | [JSON](../../sessions/03/03ca07c0e3ff5738e32e.json) |
 | ssh v3 completion recompute cleanup | 15 | 0 | [Read transcript](ssh-v3-completion-recompute-cleanup.md) | [JSON](../../sessions/8b/8b91887afe4e310a915d.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #12。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autodl-5090 c | 4,305 | 408 | [Read transcript](director-coordination-20260524-013156.md) | [JSON](../../sessions/5a/5a986026c1c05ee59d71.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #12。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autodl-5090 c | 4,269 | 408 | [Read transcript](director-coordination-20260524-013156.md) | [JSON](../../sessions/5a/5a986026c1c05ee59d71.json) |
 | cron hook exp 14b inference scierc — [HANDOFF] 你是 Main Agent，这是 Loop #18。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**：autodl- | 36 | 1 | [Read transcript](cron-hook-exp-14b-inference-scierc.md) | [JSON](../../sessions/a6/a6ad1518becde097a4dd.json) |
 | ssh verify v3 output and disk | 37 | 0 | [Read transcript](ssh-verify-v3-output-and-disk.md) | [JSON](../../sessions/6e/6e585c81e4b2cb3895ae.json) |
 | cron hook exp 14b inference fewnerd — [HANDOFF] 你是 Main Agent，这是 Loop #17。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autodl-5090 | 36 | 1 | [Read transcript](cron-hook-exp-14b-inference-fewnerd.md) | [JSON](../../sessions/e4/e4ec486dc03f02594304.json) |
@@ -90,7 +90,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops gpu investigation | 61 | 0 | [Read transcript](ops-gpu-investigation.md) | [JSON](../../sessions/b3/b30596deeeca3be616f9.json) |
 | ops kill v1 zombie | 13 | 0 | [Read transcript](ops-kill-v1-zombie.md) | [JSON](../../sessions/90/90905ef961554b771731.json) |
 | ops r40 resubmit autodl5090 | 39 | 0 | [Read transcript](ops-r40-resubmit-autodl5090.md) | [JSON](../../sessions/5b/5ba555286d5f424731c1.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #19。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - `exp_fewnerd | 1,793 | 80 | [Read transcript](reviewer-coordination-20260524-013205.md) | [JSON](../../sessions/d5/d56bc80b1b0f585794ef.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #19。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - `exp_fewnerd | 1,773 | 80 | [Read transcript](reviewer-coordination-20260524-013205.md) | [JSON](../../sessions/d5/d56bc80b1b0f585794ef.json) |
 | ops scierc seeds registry update | 55 | 0 | [Read transcript](ops-scierc-seeds-registry-update.md) | [JSON](../../sessions/30/308f568514e69eaebe24.json) |
 | paper holm esj update | 87 | 0 | [Read transcript](paper-holm-esj-update.md) | [JSON](../../sessions/36/36f0a0feacfa17b3e595.json) |
 | paper fig bound | 77 | 0 | [Read transcript](paper-fig-bound.md) | [JSON](../../sessions/04/045d2ef859d468ae3ea0.json) |
@@ -99,7 +99,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | cron hook exp scierc n8 s123 — [HANDOFF] 你是 Main Agent，这是 Loop #19。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autodl-5090 | 16 | 1 | [Read transcript](cron-hook-exp-scierc-n8-s123.md) | [JSON](../../sessions/6e/6e35499a3d41ed1f9bd6.json) |
 | cron hook exp scierc n8 s456 — [HANDOFF] 你是 Main Agent，这是 Loop #19。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autodl-5090 | 16 | 1 | [Read transcript](cron-hook-exp-scierc-n8-s456.md) | [JSON](../../sessions/04/04b1dbb29d1b296f2f18.json) |
 | check n32 progress v2 | 51 | 0 | [Read transcript](check-n32-progress-v2.md) | [JSON](../../sessions/28/281f836fd29d401b7898.json) |
-| paper r42 response letter | 59 | 0 | [Read transcript](paper-r42-response-letter.md) | [JSON](../../sessions/d4/d4bfddef5c356d8ad9dd.json) |
 | code n32 analysis prep | 165 | 0 | [Read transcript](code-n32-analysis-prep.md) | [JSON](../../sessions/2f/2f1ca6400857799f4f04.json) |
 | check n32 and run | 301 | 0 | [Read transcript](check-n32-and-run.md) | [JSON](../../sessions/88/881fc23228faf15814fa.json) |
 | cron hook exp fewnerd pretrained n32 s42 v2 20260524T035924 294691 — [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp_fewnerd_pret | 55 | 2 | [Read transcript](cron-hook-exp-fewnerd-pretrained-n32-s42-v2-20260524t035924-294691.md) | [JSON](../../sessions/6a/6acfe4daf7ca6f341c9a.json) |
@@ -107,8 +106,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper anonymity check | 65 | 0 | [Read transcript](paper-anonymity-check.md) | [JSON](../../sessions/0a/0a81b8e5e55c8f005964.json) |
 | paper arr checklist | 55 | 0 | [Read transcript](paper-arr-checklist.md) | [JSON](../../sessions/e3/e3ac5f42901dfbd777f4.json) |
 | paper claim audit | 85 | 0 | [Read transcript](paper-claim-audit.md) | [JSON](../../sessions/f7/f765aa08ec63d003e5d1.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #13。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 autodl-5090 的 | 1,682 | 100 | [Read transcript](director-coordination-20260524-232536.md) | [JSON](../../sessions/9e/9e166f7bc41ba6837ee0.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #20。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 autodl-5 | 503 | 32 | [Read transcript](reviewer-coordination-20260524-232917.md) | [JSON](../../sessions/5a/5acbae46df09de757092.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #13。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 autodl-5090 的 | 1,676 | 100 | [Read transcript](director-coordination-20260524-232536.md) | [JSON](../../sessions/9e/9e166f7bc41ba6837ee0.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #20。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 autodl-5 | 487 | 32 | [Read transcript](reviewer-coordination-20260524-232917.md) | [JSON](../../sessions/5a/5acbae46df09de757092.json) |
 | paper final polish | 144 | 0 | [Read transcript](paper-final-polish.md) | [JSON](../../sessions/50/5048410f69b32000cc47.json) |
 | review related work completeness | 41 | 0 | [Read transcript](review-related-work-completeness.md) | [JSON](../../sessions/58/582ef74d6cb10ba7e315.json) |
 | review appendix cross ref | 89 | 0 | [Read transcript](review-appendix-cross-ref.md) | [JSON](../../sessions/2b/2b4d4d4342d7189a3fda.json) |
@@ -116,7 +115,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | audit maintext numbers | 53 | 0 | [Read transcript](audit-maintext-numbers.md) | [JSON](../../sessions/ce/cefa5aeed71436922ebb.json) |
 | analysis scierc 5seed construction v2 | 17 | 0 | [Read transcript](analysis-scierc-5seed-construction-v2.md) | [JSON](../../sessions/ff/ffe266dfef7b8fe99718.json) |
 | ssh fewnerd mf4v2 s123 v4 | 51 | 0 | [Read transcript](ssh-fewnerd-mf4v2-s123-v4.md) | [JSON](../../sessions/27/27a57be3a758c463f6f5.json) |
-| analysis fewnerd 3epoch construction | 39 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction.md) | [JSON](../../sessions/dc/dc56a346c360cf5ee249.json) |
+| analysis fewnerd 3epoch construction | 37 | 0 | [Read transcript](analysis-fewnerd-3epoch-construction.md) | [JSON](../../sessions/dc/dc56a346c360cf5ee249.json) |
 | analysis scierc metric verification | 69 | 0 | [Read transcript](analysis-scierc-metric-verification.md) | [JSON](../../sessions/96/96dd8251ecc8f9edaf07.json) |
 | fig fig2 fig5 style | 45 | 0 | [Read transcript](fig-fig2-fig5-style.md) | [JSON](../../sessions/88/8833c3c78377c3b018ec.json) |
 | fig fig4 bound | 1 | 0 | [Read transcript](fig-fig4-bound.md) | [JSON](../../sessions/87/879bf1e8a97dafb66c48.json) |

@@ -25,7 +25,6 @@
   - M3 §1 重复删除 + contributions 压缩
   - M4/M5 wont_fix（页数约束）
 - ✅ **W4 64.7% task-type classifier 已写入 §3.6**（D133）
-- ✅ **Rebuttal 6 个 Attack 准备完毕**（精简版 ~670 词 + 详细版 ~1200 词）
 - ✅ **编译通过**：24 页（主文 8 页），0 errors
 - 用户："论文提交的事你不用管，我们会手动去做的"
 

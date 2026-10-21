@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_w3_mixed_mechanism_writeup_20260523T020328.log",
     "occurrence": 1,
-    "bytes": 146707,
-    "sha256": "2184555a3925bbd9abc5d2005e8a88174be4c44f3c6c89f565bba9aa02ee0bde"
+    "bytes": 127056,
+    "sha256": "1ca7fa5cb80abef07efcedc74e1440fdb05d4fc488e92ccc61dd064b83a4095c"
   },
   "statistics": {
-    "messages": 34,
+    "messages": 28,
     "user_turns": 0,
-    "tool_calls": 11,
+    "tool_calls": 8,
     "roles": {
       "log": 1,
       "system": 3,
       "record": 1,
       "assistant": 6,
-      "tool_call": 11,
-      "tool_result": 11,
+      "tool_call": 8,
+      "tool_result": 8,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -577,84 +577,6 @@
         {
           "source_line": 14,
           "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01TPDkGbbFpSqW8gSyKoiJ7i",
-              "name": "Read",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "b0b6e8f0-4523-4c2c-bb43-59a8ee4b7c87",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01VXn5gzyCZbDrq6FVxrMQJp",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 404,
-                "cache_read_input_tokens": 25130,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 404
-                },
-                "output_tokens": 1,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000014"
-        },
-        {
-          "source_line": 15,
-          "timestamp": "2026-05-23T02:03:47.946Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01TPDkGbbFpSqW8gSyKoiJ7i",
-              "type": "tool_result",
-              "content": "1\t# Rebuttal Talking Points (prepared 2026-05-23)\n2\t\n3\t## B1 (Q3): Difficulty-dependent contamination defense\n4\t**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n5\t**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n6\t\n7\t## B5 (Q6): ≥500 threshold\n8\t**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n9\t**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n10\t\n11\t## B8: Size-stratified DEFF\n12\t**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n13\t**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n14\t\n15\t## Negative results framing\n16\t| Result | Framing | Strength |\n17\t|--------|---------|----------|\n18\t| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n19\t| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n20\t| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n21\t| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n22\t"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "495afe93-d4de-43cb-a8ee-0238158cf4fe",
-            "tool_use_result": {
-              "type": "text",
-              "file": {
-                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-                "content": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-                "numLines": 22,
-                "startLine": 1,
-                "totalLines": 22
-              }
-            }
-          },
-          "id": "event-000015"
-        },
-        {
-          "source_line": 16,
-          "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
           "content": [
@@ -692,10 +614,10 @@
               "context_management": null
             }
           },
-          "id": "event-000016"
+          "id": "event-000014"
         },
         {
-          "source_line": 17,
+          "source_line": 15,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -733,10 +655,10 @@
               "context_management": null
             }
           },
-          "id": "event-000017"
+          "id": "event-000015"
         },
         {
-          "source_line": 18,
+          "source_line": 16,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -784,10 +706,10 @@
               "context_management": null
             }
           },
-          "id": "event-000018"
+          "id": "event-000016"
         },
         {
-          "source_line": 19,
+          "source_line": 17,
           "timestamp": "2026-05-23T02:04:21.878Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -832,10 +754,10 @@
               "replaceAll": false
             }
           },
-          "id": "event-000019"
+          "id": "event-000017"
         },
         {
-          "source_line": 20,
+          "source_line": 18,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -883,10 +805,10 @@
               "context_management": null
             }
           },
-          "id": "event-000020"
+          "id": "event-000018"
         },
         {
-          "source_line": 21,
+          "source_line": 19,
           "timestamp": "2026-05-23T02:04:27.587Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -929,203 +851,10 @@
               "replaceAll": false
             }
           },
-          "id": "event-000021"
+          "id": "event-000019"
         },
         {
-          "source_line": 22,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01Kjp3UaayQi48X23XaNWwoz",
-              "name": "Edit",
-              "input": {
-                "replace_all": false,
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-                "old_string": "## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"",
-                "new_string": "## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism."
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "84eae0c6-04be-4353-9195-f5f5832f925c",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01E1828LBgquDnaNwYvrEJwQ",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 391,
-                "cache_read_input_tokens": 39287,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 391
-                },
-                "output_tokens": 72,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000022"
-        },
-        {
-          "source_line": 23,
-          "timestamp": "2026-05-23T02:04:39.874Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01Kjp3UaayQi48X23XaNWwoz",
-              "type": "tool_result",
-              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "13624c71-e40d-4df9-81f5-a2c43ba6954c",
-            "tool_use_result": {
-              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-              "oldString": "## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"",
-              "newString": "## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.",
-              "originalFile": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-              "structuredPatch": [
-                {
-                  "oldStart": 3,
-                  "oldLines": 6,
-                  "newStart": 3,
-                  "newLines": 8,
-                  "lines": [
-                    " ## B1 (Q3): Difficulty-dependent contamination defense",
-                    " **审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。",
-                    " **Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"",
-                    "+**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.",
-                    "+**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.",
-                    " ",
-                    " ## B5 (Q6): ≥500 threshold",
-                    " **审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？"
-                  ]
-                }
-              ],
-              "userModified": false,
-              "replaceAll": false
-            }
-          },
-          "id": "event-000023"
-        },
-        {
-          "source_line": 24,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01G2Afkn3ttg4MumMyf3L1BV",
-              "name": "Edit",
-              "input": {
-                "replace_all": false,
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-                "old_string": "## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。",
-                "new_string": "## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.93。详见 Tab k3_power + §5.2。"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "b3d2c37a-f63a-431b-8dae-cf56f1453a70",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01ChCzf23tRRotQRAXkcdtx3",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 806,
-                "cache_read_input_tokens": 39678,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 806
-                },
-                "output_tokens": 65,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000024"
-        },
-        {
-          "source_line": 25,
-          "timestamp": "2026-05-23T02:04:49.573Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01G2Afkn3ttg4MumMyf3L1BV",
-              "type": "tool_result",
-              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "6f4e8584-2f44-4c0e-8d90-4afab5ccb5c7",
-            "uuid": "a58d3076-5b9c-463e-a096-f098b5e10c32",
-            "tool_use_result": {
-              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md",
-              "oldString": "## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。",
-              "newString": "## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.93。详见 Tab k3_power + §5.2。",
-              "originalFile": "# Rebuttal Talking Points (prepared 2026-05-23)\n\n## B1 (Q3): Difficulty-dependent contamination defense\n**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。\n**Defense**: \"We agree that a difficulty × model-type interaction remains plausible; the base-vs-instruct decomposition constrains but does not eliminate this account. Crucially, regardless of mechanism, the direction reversal itself constitutes measurement instability—items that favor one group in base models disfavor the same group in instruct models, undermining cross-generation comparability.\"\n**E2 regression**: Logistic regression confirms difficulty×model-type interaction (β=1.56, OR=4.75, p<10⁻¹⁸⁸); controlling for difficulty, model type remains significant (OR=4.24, p<10⁻²²⁵). See §app:interaction.\n**E3 mixed mechanism**: Semi-synthetic Scheme D (base=difficulty-dependent, instruct=uniform) reproduces overall ρ (−0.676 vs observed −0.597) and χ² reversal (634 vs 562.7), but cannot replicate instruct near-zero gradient: simulated ρ_instruct=−0.302±0.090 vs observed −0.079 (3.8× gap). No contamination scheme matches instruct DIF pattern → supports non-contamination mechanism (alignment-induced capability shifts). See §app:mixed_mechanism.\n\n## B5 (Q6): ≥500 threshold\n**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？\n**Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。\n\n## B8: Size-stratified DEFF\n**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？\n**Defense**: 没有单一\"正确\"tier。所有 5,227 模型共同构成分析群体。Simple-mean (m̄=63) 和 weighted-mean (m̄=254) 分别代表 family-weighted 和 model-weighted 视角，真实情况介于两者之间。\n\n## Negative results framing\n| Result | Framing | Strength |\n|--------|---------|----------|\n| AUROC=0.60 | Emergent cohort-item interactions, not fixed defects | 4/5 |\n| R²=0.0007 | Exclusion evidence (domain improvement ≠ DIF) | 5/5 |\n| ρ=-0.597 diagnostic limit | DIF is diagnostic lens, not causal detector | 4/5 |\n| Jaccard=0.206 | Orthogonal constructs (core contribution) | 5/5 |\n",
-              "structuredPatch": [
-                {
-                  "oldStart": 9,
-                  "oldLines": 6,
-                  "newStart": 9,
-                  "newLines": 7,
-                  "lines": [
-                    " ## B5 (Q6): ≥500 threshold",
-                    " **审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？",
-                    " **Defense**: 引用 Clauser & Mazor (1998) 和 Penfield & Camilli (2006) 关于 K=3 的已有结论。如果需要，可跑 K=3 power simulation（复用 §4.1 框架，半小时出结果）。",
-                    "+**E1 K=3 power**: K=3 vs K=5 TPR 差异 <0.02（所有条件下）。N≥80 时 K=3 达到 TPR=0.571 (|Δ_MH|≥1.4), AUC=0.93。详见 Tab k3_power + §5.2。",
-                    " ",
-                    " ## B8: Size-stratified DEFF",
-                    " **审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？"
-                  ]
-                }
-              ],
-              "userModified": false,
-              "replaceAll": false
-            }
-          },
-          "id": "event-000025"
-        },
-        {
-          "source_line": 26,
+          "source_line": 20,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -1163,10 +892,10 @@
               "context_management": null
             }
           },
-          "id": "event-000026"
+          "id": "event-000020"
         },
         {
-          "source_line": 27,
+          "source_line": 21,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1212,10 +941,10 @@
               "context_management": null
             }
           },
-          "id": "event-000027"
+          "id": "event-000021"
         },
         {
-          "source_line": 28,
+          "source_line": 22,
           "timestamp": "2026-05-23T02:04:53.888Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1240,10 +969,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000028"
+          "id": "event-000022"
         },
         {
-          "source_line": 29,
+          "source_line": 23,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1290,10 +1019,10 @@
               "context_management": null
             }
           },
-          "id": "event-000029"
+          "id": "event-000023"
         },
         {
-          "source_line": 30,
+          "source_line": 24,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1311,10 +1040,10 @@
               }
             }
           ],
-          "id": "event-000030"
+          "id": "event-000024"
         },
         {
-          "source_line": 31,
+          "source_line": 25,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1333,10 +1062,10 @@
               }
             }
           ],
-          "id": "event-000031"
+          "id": "event-000025"
         },
         {
-          "source_line": 32,
+          "source_line": 26,
           "timestamp": "2026-05-23T02:05:02.756Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1361,10 +1090,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000032"
+          "id": "event-000026"
         },
         {
-          "source_line": 33,
+          "source_line": 27,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -1402,10 +1131,10 @@
               "context_management": null
             }
           },
-          "id": "event-000033"
+          "id": "event-000027"
         },
         {
-          "source_line": 34,
+          "source_line": 28,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -1482,10 +1211,10 @@
             "fast_mode_state": "off",
             "uuid": "028bdd06-2aa8-4b60-8bb4-4d633e63ad67"
           },
-          "id": "event-000034"
+          "id": "event-000028"
         }
       ],
-      "message_count": 34
+      "message_count": 28
     }
   ],
   "readable_path": "readable/worker-executions/paper-w3-mixed-mechanism-writeup.md"

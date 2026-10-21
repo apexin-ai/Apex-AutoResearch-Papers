@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 45
+- **Events:** 43
 - **Recorded user turns:** 0
-- **Tool calls:** 16
+- **Tool calls:** 15
 - **Original source:** `logs/workers/worker_analysis_q8_fp_paired_analysis_20260515T110950_retry1.log`
 - **Structured JSON:** [`120c0bcc872d3cff913b.json`](../../sessions/12/120c0bcc872d3cff913b.json)
 
 ## Before a recorded user message
 
-45 recorded events
+43 recorded events
 
 ### System
 
@@ -1924,98 +1924,9 @@ _source line 41 · 2026-05-15T11:11:49.887Z_
 
 ---
 
-### Tool call
-
-_source line 42_
-
-<details open><summary>🔧 Tool call — Write · `toolu_01CodgqvG2thaTDC1BfbtqP7`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q8_fp_analysis_report.md",
-  "content": "# Q8: False Positive Paired Analysis — Constrained vs Unconstrained\n\n**Dataset**: SciERC test set (551 samples)\n**Methods compared**: Unconstrained vs Full_s1 (constrained)\n\n## 1. Overall Performance\n\n| Metric | Unconstrained | Full_s1 |\n|--------|--------------|---------|\n| Predicted triples | 1,724 | 1,729 |\n| Gold triples | 974 | 974 |\n| True Positives | 111 | 113 |\n| False Positives | 1,613 | 1,616 |\n| Precision | 0.0644 | 0.0654 |\n| Recall | 0.1140 | 0.1160 |\n| F1 | 0.0823 | 0.0836 |\n\n## 2. FP Classification Summary\n\n| FP Type | Unconstrained | Full_s1 | Delta |\n|---------|--------------|---------|-------|\n| **A** (Hallucinated entities) | 1,275 | 1,281 | +6 |\n| **B** (Wrong relation/pairing) | 338 | 335 | -3 |\n| **C** (Constraint-induced, fs1 only) | n/a | 71 | — |\n| **Total FP** | **1,613** | **1,616** | **+3** |\n| FPs removed by constraint | 68 | n/a | — |\n\n**Key insight**: Constraints produce a near-zero net FP change (+3). The mechanism is *turnover* rather than accumulation: constraints remove 68 FPs while introducing 71 new ones.\n\n## 3. Type C (Constraint-Induced FP) Analysis\n\n**Type C count**: 71 out of 1,616 full_s1 FPs = **4.4%**\n\n### 3.1 Type C by Relation Type\n\n| Relation | Count | % of Type C |\n|----------|------:|------------:|\n| Feature-of | 25 | 35.2% |\n| Used-for | 16 | 22.5% |\n| Evaluate-for | 11 | 15.5% |\n| Compare | 6 | 8.5% |\n| Part-of | 6 | 8.5% |\n| Hyponym-of | 4 | 5.6% |\n| Conjunction | 3 | 4.2% |\n\nType C FPs concentrate on the three most frequent relation types (Feature-of, Used-for, Evaluate-for = 73.2%), which is expected since these are the relations most likely to be affected by probability mass redistribution under constraints.\n\n### 3.2 Type C Mechanism Breakdown\n\n| Mechanism | Count | % |\n|-----------|------:|--:|\n| **Relation reassignment** (same entity pair, different relation in unc) | 42 | 59.2% |\n| **Novel pair** (entity pair not predicted at all by unc) | 29 | 40.8% |\n\n- **59.2%** of constraint-induced FPs are *relation reassignments*: the unconstrained model predicted the same entity pair but with a different (often free-form) relation. When the constraint forces the model into valid schema relations, the wrong schema relation gets selected.\n- **40.8%** are *novel pairs*: constraints cause the model to predict entity pairs that the unconstrained model didn't predict at all, likely due to probability redistribution across the output space.\n\n## 4. FP by Relation Type (All FPs)\n\n| Relation | Unc FP | FS1 FP | Delta |\n|----------|-------:|-------:|------:|\n| Used-for | 706 | 710 | +4 |\n| Feature-of | 483 | 492 | +9 |\n| Evaluate-for | 133 | 139 | +6 |\n| Hyponym-of | 112 | 111 | -1 |\n| Part-of | 68 | 71 | +3 |\n| Compare | 59 | 63 | +4 |\n| Conjunction | 28 | 30 | +2 |\n| Free-form relations (unc only) | 24 | 0 | -24 |\n\nConstraints eliminate 24 free-form relation FPs (invalid relation types) while slightly increasing FPs on high-frequency valid relations.\n\n## 5. Type C: Representative Examples\n\n### Example 1 — Relation reassignment: free-form → schema relation\n- **Doc**: C04-1011_sent2\n- **FP**: (result, **hyponym-of**, applications)\n- **Unconstrained predicted**: (result, **used-for**, applications) — a free-form/different relation\n- **Gold**: No relation between \"result\" and \"applications\"\n- **Analysis**: Unconstrained chose \"used-for\"; constraint validation may have redirected to \"hyponym-of\" — both wrong, but the constraint changed which wrong relation was selected.\n\n### Example 2 — Relation reassignment: invalid → valid relation\n- **Doc**: CVPR_2003_30_abs_sent1\n- **FP**: (true three-dimensional affine and euclidean models, **evaluate-for**, single photograph)\n- **Unconstrained predicted**: same pair with **recognized-in** (invalid relation)\n- **Gold**: No relation between these entities\n- **Analysis**: \"recognized-in\" is not in the SciERC schema. Constraint forced reassignment to \"evaluate-for\".\n\n### Example 3 — Relation reassignment: invalid → valid\n- **Doc**: CVPR_2003_30_abs_sent1\n- **FP**: (true three-dimensional affine and euclidean models, **evaluate-for**, multiple images)\n- **Unconstrained predicted**: same pair with **acquired-from** (invalid)\n- **Analysis**: Same pattern — invalid relation becomes nearest valid schema relation.\n\n### Example 4 — Relation reassignment: plausible but wrong\n- **Doc**: CVPR_2003_30_abs_sent2\n- **FP**: (proposed approach, **feature-of**, cluttered scenes)\n- **Unconstrained predicted**: (proposed approach, **apply-to**, cluttered scenes)\n- **Gold**: (approach, **used-for**, cluttered scenes) — note different head span\n- **Analysis**: \"apply-to\" is not in schema; constraint maps it to \"feature-of\" which is semantically further from the gold \"used-for\".\n\n### Example 5 — Novel pair: constraint adds new prediction\n- **Doc**: CVPR_1994_10_abs_sent5\n- **FP**: (minpran, **evaluate-for**, percentage)\n- **Unconstrained**: No relation predicted for this pair\n- **Analysis**: Constraint-induced probability redistribution caused a new (incorrect) relation to surface.\n\n### Example 6 — Novel pair\n- **Doc**: CVPR_1994_10_abs_sent5\n- **FP**: (minpran, **feature-of**, true inliers)\n- **Unconstrained**: No relation predicted for this pair\n- **Analysis**: Same document as Example 5; constraint induced multiple novel FP pairs.\n\n### Example 7 — Novel pair with entity outside gold\n- **Doc**: CVPR_2004_18_abs_sent2\n- **FP**: (bayesian statistics, **evaluate-for**, image understanding)\n- **Unconstrained**: No relation for this pair\n- **Gold**: (bayesian statistics, **used-for**, approach)\n- **Analysis**: Entity \"image understanding\" isn't in gold entities exactly; constraint led model to fabricate this pair instead of the correct one.\n\n### Example 8 — Relation reassignment in text analysis domain\n- **Doc**: C04-1022_sent3\n- **FP**: (model, **feature-of**, texts)\n- **Unconstrained**: No relation for this pair\n- **Gold**: (model, **used-for**, interpretation of compounds)\n- **Analysis**: Constraint redistributed prediction toward a different (wrong) entity pair.\n\n## 6. Summary of Findings\n\n1. **Net FP impact is negligible**: Constraints add only +3 net FPs (1,613 → 1,616), a 0.2% increase.\n2. **FP turnover, not accumulation**: 68 FPs are removed (mostly invalid free-form relations eliminated), while 71 new FPs are introduced — a near-symmetric exchange.\n3. **Constraint-induced FPs are a small fraction**: Type C = 4.4% of all full_s1 FPs.\n4. **Dominant mechanism is relation reassignment** (59.2%): When constraints block an invalid relation, the model selects the nearest valid relation, which may also be wrong.\n5. **Type C concentrates on high-frequency relations**: Feature-of (35.2%), Used-for (22.5%), and Evaluate-for (15.5%) account for 73.2% of Type C FPs — these act as \"catch-all\" bins when invalid relations are redirected.\n\n## 7. Suggested Rebuttal Response\n\n> Our paired FP analysis on SciERC shows that schema constraints produce negligible net FP increase (+3 out of 1,616 total FPs, or +0.2%). The constraint mechanism operates as a near-symmetric FP exchange: it eliminates 68 FPs from invalid relation types while introducing 71 new constraint-induced FPs (4.4% of total), primarily through relation reassignment when invalid predictions are redirected to the nearest valid schema relation. This confirms that the precision improvements from constraints are not offset by systematic FP introduction.\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "c1711e87-f550-4aa6-88d8-e2e3e2f9ca53",
-  "uuid": "2f723cf5-d93e-4a4b-ad9b-bf4c957adef2",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_0182HX496qVeESq2sFxp6zEx",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 446,
-      "cache_read_input_tokens": 38063,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 446
-      },
-      "output_tokens": 68,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 43 · 2026-05-15T11:12:34.118Z_
-
-<details><summary>↩ Tool result · `toolu_01CodgqvG2thaTDC1BfbtqP7`</summary>
-
-```text
-File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q8_fp_analysis_report.md
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "c1711e87-f550-4aa6-88d8-e2e3e2f9ca53",
-  "uuid": "0da5e1f4-ee76-42c2-9616-f919690288bd",
-  "tool_use_result": {
-    "type": "create",
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q8_fp_analysis_report.md",
-    "content": "# Q8: False Positive Paired Analysis — Constrained vs Unconstrained\n\n**Dataset**: SciERC test set (551 samples)\n**Methods compared**: Unconstrained vs Full_s1 (constrained)\n\n## 1. Overall Performance\n\n| Metric | Unconstrained | Full_s1 |\n|--------|--------------|---------|\n| Predicted triples | 1,724 | 1,729 |\n| Gold triples | 974 | 974 |\n| True Positives | 111 | 113 |\n| False Positives | 1,613 | 1,616 |\n| Precision | 0.0644 | 0.0654 |\n| Recall | 0.1140 | 0.1160 |\n| F1 | 0.0823 | 0.0836 |\n\n## 2. FP Classification Summary\n\n| FP Type | Unconstrained | Full_s1 | Delta |\n|---------|--------------|---------|-------|\n| **A** (Hallucinated entities) | 1,275 | 1,281 | +6 |\n| **B** (Wrong relation/pairing) | 338 | 335 | -3 |\n| **C** (Constraint-induced, fs1 only) | n/a | 71 | — |\n| **Total FP** | **1,613** | **1,616** | **+3** |\n| FPs removed by constraint | 68 | n/a | — |\n\n**Key insight**: Constraints produce a near-zero net FP change (+3). The mechanism is *turnover* rather than accumulation: constraints remove 68 FPs while introducing 71 new ones.\n\n## 3. Type C (Constraint-Induced FP) Analysis\n\n**Type C count**: 71 out of 1,616 full_s1 FPs = **4.4%**\n\n### 3.1 Type C by Relation Type\n\n| Relation | Count | % of Type C |\n|----------|------:|------------:|\n| Feature-of | 25 | 35.2% |\n| Used-for | 16 | 22.5% |\n| Evaluate-for | 11 | 15.5% |\n| Compare | 6 | 8.5% |\n| Part-of | 6 | 8.5% |\n| Hyponym-of | 4 | 5.6% |\n| Conjunction | 3 | 4.2% |\n\nType C FPs concentrate on the three most frequent relation types (Feature-of, Used-for, Evaluate-for = 73.2%), which is expected since these are the relations most likely to be affected by probability mass redistribution under constraints.\n\n### 3.2 Type C Mechanism Breakdown\n\n| Mechanism | Count | % |\n|-----------|------:|--:|\n| **Relation reassignment** (same entity pair, different relation in unc) | 42 | 59.2% |\n| **Novel pair** (entity pair not predicted at all by unc) | 29 | 40.8% |\n\n- **59.2%** of constraint-induced FPs are *relation reassignments*: the unconstrained model predicted the same entity pair but with a different (often free-form) relation. When the constraint forces the model into valid schema relations, the wrong schema relation gets selected.\n- **40.8%** are *novel pairs*: constraints cause the model to predict entity pairs that the unconstrained model didn't predict at all, likely due to probability redistribution across the output space.\n\n## 4. FP by Relation Type (All FPs)\n\n| Relation | Unc FP | FS1 FP | Delta |\n|----------|-------:|-------:|------:|\n| Used-for | 706 | 710 | +4 |\n| Feature-of | 483 | 492 | +9 |\n| Evaluate-for | 133 | 139 | +6 |\n| Hyponym-of | 112 | 111 | -1 |\n| Part-of | 68 | 71 | +3 |\n| Compare | 59 | 63 | +4 |\n| Conjunction | 28 | 30 | +2 |\n| Free-form relations (unc only) | 24 | 0 | -24 |\n\nConstraints eliminate 24 free-form relation FPs (invalid relation types) while slightly increasing FPs on high-frequency valid relations.\n\n## 5. Type C: Representative Examples\n\n### Example 1 — Relation reassignment: free-form → schema relation\n- **Doc**: C04-1011_sent2\n- **FP**: (result, **hyponym-of**, applications)\n- **Unconstrained predicted**: (result, **used-for**, applications) — a free-form/different relation\n- **Gold**: No relation between \"result\" and \"applications\"\n- **Analysis**: Unconstrained chose \"used-for\"; constraint validation may have redirected to \"hyponym-of\" — both wrong, but the constraint changed which wrong relation was selected.\n\n### Example 2 — Relation reassignment: invalid → valid relation\n- **Doc**: CVPR_2003_30_abs_sent1\n- **FP**: (true three-dimensional affine and euclidean models, **evaluate-for**, single photograph)\n- **Unconstrained predicted**: same pair with **recognized-in** (invalid relation)\n- **Gold**: No relation between these entities\n- **Analysis**: \"recognized-in\" is not in the SciERC schema. Constraint forced reassignment to \"evaluate-for\".\n\n### Example 3 — Relation reassignment: invalid → valid\n- **Doc**: CVPR_2003_30_abs_sent1\n- **FP**: (true three-dimensional affine and euclidean models, **evaluate-for**, multiple images)\n- **Unconstrained predicted**: same pair with **acquired-from** (invalid)\n- **Analysis**: Same pattern — invalid relation becomes nearest valid schema relation.\n\n### Example 4 — Relation reassignment: plausible but wrong\n- **Doc**: CVPR_2003_30_abs_sent2\n- **FP**: (proposed approach, **feature-of**, cluttered scenes)\n- **Unconstrained predicted**: (proposed approach, **apply-to**, cluttered scenes)\n- **Gold**: (approach, **used-for**, cluttered scenes) — note different head span\n- **Analysis**: \"apply-to\" is not in schema; constraint maps it to \"feature-of\" which is semantically further from the gold \"used-for\".\n\n### Example 5 — Novel pair: constraint adds new prediction\n- **Doc**: CVPR_1994_10_abs_sent5\n- **FP**: (minpran, **evaluate-for**, percentage)\n- **Unconstrained**: No relation predicted for this pair\n- **Analysis**: Constraint-induced probability redistribution caused a new (incorrect) relation to surface.\n\n### Example 6 — Novel pair\n- **Doc**: CVPR_1994_10_abs_sent5\n- **FP**: (minpran, **feature-of**, true inliers)\n- **Unconstrained**: No relation predicted for this pair\n- **Analysis**: Same document as Example 5; constraint induced multiple novel FP pairs.\n\n### Example 7 — Novel pair with entity outside gold\n- **Doc**: CVPR_2004_18_abs_sent2\n- **FP**: (bayesian statistics, **evaluate-for**, image understanding)\n- **Unconstrained**: No relation for this pair\n- **Gold**: (bayesian statistics, **used-for**, approach)\n- **Analysis**: Entity \"image understanding\" isn't in gold entities exactly; constraint led model to fabricate this pair instead of the correct one.\n\n### Example 8 — Relation reassignment in text analysis domain\n- **Doc**: C04-1022_sent3\n- **FP**: (model, **feature-of**, texts)\n- **Unconstrained**: No relation for this pair\n- **Gold**: (model, **used-for**, interpretation of compounds)\n- **Analysis**: Constraint redistributed prediction toward a different (wrong) entity pair.\n\n## 6. Summary of Findings\n\n1. **Net FP impact is negligible**: Constraints add only +3 net FPs (1,613 → 1,616), a 0.2% increase.\n2. **FP turnover, not accumulation**: 68 FPs are removed (mostly invalid free-form relations eliminated), while 71 new FPs are introduced — a near-symmetric exchange.\n3. **Constraint-induced FPs are a small fraction**: Type C = 4.4% of all full_s1 FPs.\n4. **Dominant mechanism is relation reassignment** (59.2%): When constraints block an invalid relation, the model selects the nearest valid relation, which may also be wrong.\n5. **Type C concentrates on high-frequency relations**: Feature-of (35.2%), Used-for (22.5%), and Evaluate-for (15.5%) account for 73.2% of Type C FPs — these act as \"catch-all\" bins when invalid relations are redirected.\n\n## 7. Suggested Rebuttal Response\n\n> Our paired FP analysis on SciERC shows that schema constraints produce negligible net FP increase (+3 out of 1,616 total FPs, or +0.2%). The constraint mechanism operates as a near-symmetric FP exchange: it eliminates 68 FPs from invalid relation types while introducing 71 new constraint-induced FPs (4.4% of total), primarily through relation reassignment when invalid predictions are redirected to the nearest valid schema relation. This confirms that the precision improvements from constraints are not offset by systematic FP introduction.\n",
-    "structuredPatch": [],
-    "originalFile": null,
-    "userModified": false
-  }
-}
-```
-
-</details>
-
----
-
 ### Assistant
 
-_source line 44_
+_source line 42_
 
 报告已写入 `artifacts/rebuttal/q8_fp_analysis_report.md`。
 
@@ -2066,7 +1977,7 @@ _source line 44_
 
 ### Task result
 
-_source line 45_
+_source line 43_
 
 报告已写入 `artifacts/rebuttal/q8_fp_analysis_report.md`。
 

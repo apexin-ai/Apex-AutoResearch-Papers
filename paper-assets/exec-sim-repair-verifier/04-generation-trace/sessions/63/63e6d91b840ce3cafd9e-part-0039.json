@@ -7,432 +7,6 @@
       "messages": [
         {
           "source_line": 6841,
-          "timestamp": "2026-05-25T19:43:35.028309+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Audit Table 1 + baselines",
-              "prompt": "You are auditing a research paper's numbers against experiment registry data. Your task is to verify every number in Table 1 (main_results) of the paper.\n\n## Paper's Table 1 numbers (from experiments.tex):\nFunction-level per-test accuracy on HumanEval+MBPP (n=1,890):\n\nQwen3 (primary):\n- CLS (fine-tuned) 4B, 5 seeds: 88.43 ± 0.78\n- CWM (fine-tuned) 4B, 5 seeds: 87.19 ± 0.37\n- TRAJ (fine-tuned) 4B, 5 seeds: 86.30 ± 0.97\n\nDeepSeek-Coder:\n- CLS (fine-tuned) 6.7B, 2 seeds: 86.85 ± 0.11\n- CWM (fine-tuned) 6.7B, 2 seeds: 86.83 ± 1.49\n- TRAJ (fine-tuned) 6.7B, 2 seeds: 84.16 ± 1.30\n\nPrompting baselines:\n- 0-shot 8B (Qwen3): 60.53\n- 0-shot 14B (Qwen3): 66.24\n- 0-shot 6.7B (DeepSeek): 63.02\n- ZS LLM-as-judge 8B (Qwen3): 64.40\n- ZS LLM-as-judge 6.7B (DeepSeek): 56.56\n- ZS LLM-as-judge 32B (NF4): 71.69\n- 3-shot ICL 8B (Qwen3): 60.42\n- 3-shot ICL 14B (Qwen3): 73.12\n- 3-shot ICL 6.7B (DeepSeek): 59.95\n- Majority (pass): 51.75\n\n## Registry data to cross-reference:\n\nKey experiments with metrics:\n- multi-seed-core: seed42=87.83, seed123=89.52 (these are CLS 4B function level)\n- cls-seed789: accuracy=89.00\n- cls-seed0: accuracy=87.94\n- cwm-baseline: accuracy=87.51 (seed 42)\n- cwm-seed123: accuracy=87.20\n- cwm-seed456: accuracy=86.98\n- cwm-seed789: accuracy=86.67\n- cwm-seed0: accuracy=87.57\n- traj-level-finetuned: accuracy=85.66 (seed 42)\n- traj-level-seed123: accuracy=85.47\n- traj-level-seed456: accuracy=87.40\n- traj-level-seed789: accuracy=87.31\n- traj-level-seed0: accuracy=85.66\n- deepseek-cls-func: test_accuracy=86.93 (seed 42)\n- deepseek-cls-func-s123: test_accuracy=86.77\n- deepseek-cwm-func: test_accuracy=85.77 (seed 42)\n- deepseek-cwm-func-s123: test_accuracy=87.88\n- deepseek-traj-func-v2: test_accuracy=0.8324 (=83.24%)\n- deepseek-traj-func-v2-s123: test_accuracy=0.8508 (=85.08%)\n- 8b-baseline-rerun: 0shot_accuracy=60.53, 3shot_accuracy=60.42\n- 14b-baseline-0shot-3shot-v2: 0shot accuracy=66.24, 3shot accuracy=73.12\n- deepseek-0shot-func-baseline: accuracy=0.6302 (=63.02%)\n- qwen3-0shot-func-baseline: accuracy=0.6873 (=68.73%)\n- llm-judge-8b-zeroshot: overall_accuracy=64.40\n- llm-judge-32b-zeroshot: overall_accuracy=71.69\n\nAlso read the file at /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls_multiseed_summary.json and /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek_func_summary.json and /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/f1_macro_summary.json for additional verification.\n\n## Tasks:\n1. Compute the 5-seed mean/std for Qwen3 CLS from registry: seeds 42(87.83), 123(89.52), 456(?), 789(89.00), 0(87.94). You need to find seed456 - check cls8b-seed456 but that's 8B. Check the multi-seed-core experiment more carefully.\n2. Compute 5-seed mean/std for CWM from: 42(87.51), 123(87.20), 456(86.98), 789(86.67), 0(87.57)\n3. Compute 5-seed mean/std for TRAJ from: 42(85.66), 123(85.47), 456(87.40), 789(87.31), 0(85.66)\n4. Compute 2-seed mean/std for DeepSeek CLS from: 42(86.93), 123(86.77)\n5. Compute 2-seed mean/std for DeepSeek CWM from: 42(85.77), 123(87.88)\n6. Compute 2-seed mean/std for DeepSeek TRAJ from: v2(83.24%), v2-s123(85.08%)\n7. Verify all baseline numbers\n8. Note: qwen3-0shot-func-baseline shows accuracy=68.73%, but paper says \"0-shot 8B: 60.53\" - the 0shot baseline was rerun as \"8b-baseline-rerun\" with 60.53. Check if there's a discrepancy or if these are different experiments.\n\nFor each number, report: MATCH / MISMATCH / CANNOT VERIFY, with details.\n\nRead the mentioned JSON files for more data. Report in a concise table format.",
-              "model": "sonnet"
-            }
-          },
-          "id": "event-006841"
-        },
-        {
-          "source_line": 6842,
-          "timestamp": "2026-05-25T19:43:53.667243+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls_multiseed_summary.json"
-            }
-          },
-          "id": "event-006842"
-        },
-        {
-          "source_line": 6843,
-          "timestamp": "2026-05-25T19:43:53.667782+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"qwen3_8b_cls\": {\n3\t    \"n_seeds\": 3,\n4\t    \"seeds\": [\n5\t      42,\n6\t      123,\n7\t      456\n8\t    ],\n9\t    \"stats\": {\n10\t      \"accuracy\": {\n11\t        \"mean\": 84.83,\n12\t        \"std\": 0.67,\n13\t        \"ci95_half\": 1.67,\n14\t        \"n\": 3,\n15\t        \"t_crit\": 4.303,\n16\t        \"values\": [\n17\t          84.48,\n18\t          85.6,\n19\t          84.4\n20\t        ]\n21\t      },\n22\t      \"f1_macro\": {\n23\t        \"mean\": 77.58,\n24\t        \"std\": 1.21,\n25\t        \"ci95_half\": 3.0,\n26\t        \"n\": 3,\n27\t        \"t_crit\": 4.303,\n28\t        \"values\": [\n29\t          78.17,\n30\t          78.38,\n31\t          76.19\n32\t        ]\n33\t      },\n34\t      \"f1_fail\": {\n35\t        \"mean\": 64.84,\n36\t        \"std\": 2.3,\n37\t        \"ci95_half\": 5.71,\n38\t        \"n\": 3,\n39\t        \"t_crit\": 4.303,\n40\t        \"values\": [\n41\t          66.43,\n42\t          65.89,\n43\t          62.21\n44\t        ]\n45\t      },\n46\t      \"f1_pass\": {\n47\t        \"mean\": 90.32,\n48\t        \"std\": 0.5,\n49\t        \"ci95_half\": 1.23,\n50\t        \"n\": 3,\n51\t        \"t_crit\": 4.303,\n52\t        \"values\": [\n53\t          89.91,\n54\t          90.87,\n55\t          90.17\n56\t        ]\n57\t      }\n58\t    },\n59\t    \"raw\": {\n60\t      \"s42\": {\n61\t        \"accuracy\": 84.48,\n62\t        \"f1_macro\": 78.17,\n63\t        \"f1_fail\": 66.43,\n64\t        \"f1_pass\": 89.91,\n65\t        \"recall_fail\": 56.8,\n66\t        \"recall_pass\": 94.8\n67\t      },\n68\t      \"s123\": {\n69\t        \"accuracy\": 85.6,\n70\t        \"f1_macro\": 78.38,\n71\t        \"f1_fail\": 65.89,\n72\t        \"f1_pass\": 90.87,\n73\t        \"precision_fail\": 91.65,\n74\t        \"recall_fail\": 51.44,\n75\t        \"precision_pass\": 84.52,\n76\t        \"recall_pass\": 98.26\n77\t      },\n78\t      \"s456\": {\n79\t        \"accuracy\": 84.4,\n80\t        \"f1_macro\": 76.19,\n81\t        \"f1_fail\": 62.21,\n82\t        \"f1_pass\": 90.17,\n83\t        \"precision_fail\": 90.23,\n84\t        \"recall_fail\": 47.47\n85\t      }\n86\t    }\n87\t  },\n88\t  \"deepseek_cls\": {\n89\t    \"n_seeds\": 2,\n90\t    \"seeds\": [\n91\t      42,\n92\t      456\n93\t    ],\n94\n…[truncated 3549 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006843"
-        },
-        {
-          "source_line": 6844,
-          "timestamp": "2026-05-25T19:43:53.668071+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek_func_summary.json"
-            }
-          },
-          "id": "event-006844"
-        },
-        {
-          "source_line": 6845,
-          "timestamp": "2026-05-25T19:43:53.668283+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"model\": \"DeepSeek-Coder-6.7B-Instruct\",\n3\t  \"level\": \"func\",\n4\t  \"test_set\": {\n5\t    \"n_instances\": 1890,\n6\t    \"label_distribution\": {\"pass\": 978, \"fail\": 912},\n7\t    \"majority_baseline_pct\": 51.75\n8\t  },\n9\t  \"experiments\": {\n10\t    \"CLS\": {\n11\t      \"seed42\": {\n12\t        \"accuracy\": 86.93,\n13\t        \"f1_macro\": 86.92,\n14\t        \"precision_fail\": 86.42,\n15\t        \"recall_fail\": 86.51,\n16\t        \"f1_fail\": 86.47,\n17\t        \"precision_pass\": 87.41,\n18\t        \"recall_pass\": 87.32,\n19\t        \"f1_pass\": 87.37,\n20\t        \"unparseable_rate\": 0.0,\n21\t        \"best_checkpoint_step\": 478,\n22\t        \"best_epoch\": 1,\n23\t        \"total_steps\": 1434,\n24\t        \"total_epochs\": 3,\n25\t        \"train_batch_size\": 2,\n26\t        \"training_time_min_approx\": 90,\n27\t        \"confusion_matrix\": {\"tn\": 789, \"fp\": 123, \"fn\": 124, \"tp\": 854}\n28\t      },\n29\t      \"seed123\": {\n30\t        \"accuracy\": 86.77,\n31\t        \"f1_macro\": 86.77,\n32\t        \"precision_fail\": 84.99,\n33\t        \"recall_fail\": 88.16,\n34\t        \"f1_fail\": 86.54,\n35\t        \"precision_pass\": 88.56,\n36\t        \"recall_pass\": 85.48,\n37\t        \"f1_pass\": 86.99,\n38\t        \"unparseable_rate\": 0.0,\n39\t        \"best_checkpoint_step\": 956,\n40\t        \"best_epoch\": 1,\n41\t        \"total_steps\": 2868,\n42\t        \"total_epochs\": 3,\n43\t        \"train_batch_size\": 2,\n44\t        \"training_time_min_approx\": 90,\n45\t        \"confusion_matrix\": {\"tn\": 804, \"fp\": 108, \"fn\": 142, \"tp\": 836}\n46\t      },\n47\t      \"mean_accuracy\": 86.85,\n48\t      \"mean_f1_macro\": 86.845,\n49\t      \"std_accuracy\": 0.11,\n50\t      \"std_f1_macro\": 0.11\n51\t    },\n52\t    \"CWM\": {\n53\t      \"seed42\": {\n54\t        \"accuracy\": 85.77,\n55\t        \"f1_macro\": 85.73,\n56\t        \"precision_fail\": 80.07,\n57\t        \"recall_fail\": 93.86,\n58\t        \"f1_fail\": 86.42,\n59\t        \"precision_pass\": 93.18,\n60\t        \"recall_pass\": 78.22,\n61\t        \"f1_pass\": 85.05,\n62\t        \"unparseable_rate\": 0.0,\n63\t        \"best_checkpoint_step\": 956,\n64\t        \"best_epoch\":\n…[truncated 2510 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006845"
-        },
-        {
-          "source_line": 6846,
-          "timestamp": "2026-05-25T19:43:53.668460+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/f1_macro_summary.json"
-            }
-          },
-          "id": "event-006846"
-        },
-        {
-          "source_line": 6847,
-          "timestamp": "2026-05-25T19:43:53.668829+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"cls8b-eval-seed42\": {\n3\t    \"f1_pass\": 90.86,\n4\t    \"f1_fail\": 90.06,\n5\t    \"f1_macro\": 90.46,\n6\t    \"source\": \"avg(pass_f1, fail_f1)\"\n7\t  },\n8\t  \"model-size-scaling-cls8b\": {\n9\t    \"f1_pass\": 90.86,\n10\t    \"f1_fail\": 90.06,\n11\t    \"f1_macro\": 90.46,\n12\t    \"source\": \"avg(pass_f1, fail_f1)\"\n13\t  },\n14\t  \"cls8b-eval-seed123\": {\n15\t    \"f1_pass\": 89.54,\n16\t    \"f1_fail\": 89.19,\n17\t    \"f1_macro\": 89.36,\n18\t    \"source\": \"avg(pass_f1, fail_f1)\"\n19\t  },\n20\t  \"cls8b-seed123\": {\n21\t    \"f1_pass\": 89.5,\n22\t    \"f1_fail\": 89.2,\n23\t    \"f1_macro\": 89.35,\n24\t    \"source\": \"avg(pass_f1, fail_f1)\"\n25\t  },\n26\t  \"cls-seed789\": {\n27\t    \"f1_pass\": 88.9,\n28\t    \"f1_fail\": 89.1,\n29\t    \"f1_macro\": 89.0,\n30\t    \"source\": \"avg(pass_f1, fail_f1)\"\n31\t  },\n32\t  \"cls8b-seed456\": {\n33\t    \"f1_pass\": 88.2,\n34\t    \"f1_fail\": 88.41,\n35\t    \"f1_macro\": 88.31,\n36\t    \"source\": \"avg(pass_f1, fail_f1)\"\n37\t  },\n38\t  \"cls-seed0\": {\n39\t    \"f1_pass\": 87.79,\n40\t    \"f1_fail\": 88.08,\n41\t    \"f1_macro\": 87.94,\n42\t    \"source\": \"avg(pass_f1, fail_f1)\"\n43\t  },\n44\t  \"deepseek-cwm-func-s123\": {\n45\t    \"f1_macro\": 87.88,\n46\t    \"source\": \"direct:test_f1_macro\"\n47\t  },\n48\t  \"model-size-scaling-cwm8b\": {\n49\t    \"f1_pass\": 87.57,\n50\t    \"f1_fail\": 87.77,\n51\t    \"f1_macro\": 87.67,\n52\t    \"source\": \"avg(pass_f1, fail_f1)\"\n53\t  },\n54\t  \"cwm-seed0\": {\n55\t    \"f1_pass\": 87.18,\n56\t    \"f1_fail\": 87.93,\n57\t    \"f1_macro\": 87.56,\n58\t    \"source\": \"avg(pass_f1, fail_f1)\"\n59\t  },\n60\t  \"cwm-baseline\": {\n61\t    \"f1_pass\": 87.31,\n62\t    \"f1_fail\": 87.71,\n63\t    \"f1_macro\": 87.51,\n64\t    \"source\": \"avg(pass_f1, fail_f1)\"\n65\t  },\n66\t  \"per-test-precision-recall\": {\n67\t    \"f1_pass\": 87.15,\n68\t    \"f1_fail\": 87.86,\n69\t    \"f1_macro\": 87.5,\n70\t    \"source\": \"avg(pass_f1, fail_f1)\"\n71\t  },\n72\t  \"per-test-majority-voting\": {\n73\t    \"f1_macro\": 87.5,\n74\t    \"source\": \"avg(pass_f1, fail_f1)\"\n75\t  },\n76\t  \"traj-level-seed456\": {\n77\t    \"f1_resolved\": 85.8,\n78\t    \"f1_unresolved\": 88.7,\n79\t    \"f1_macro\": 87.25,\n80\t    \"sou\n…[truncated 8214 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006847"
-        },
-        {
-          "source_line": 6848,
-          "timestamp": "2026-05-25T19:43:53.869858+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Audit Table 2 (scaling) numbers",
-              "prompt": "Audit the scaling table (Table 2, tab:scaling) in the paper against registry data.\n\n## Paper's Table 2 numbers (from experiments.tex):\nModel-size scaling: accuracy (%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference.\n\nCLS:\n- 4B: s42=87.83, s123=89.52, Mean=88.68\n- 8B: s42=90.48, s123=89.40, Mean=89.94, Δ=+1.27\n- 14B: s42=89.21, s123=90.79, s456=89.79, Mean=89.93±0.80, Δ=-0.01\n\nCWM:\n- 4B: s42=87.51, s123=87.20, Mean=87.36\n- 8B: s42=87.67, s123=86.98, Mean=87.33, Δ=-0.03\n- 14B: s42=89.26, s123=88.99, s456=90.26, Mean=89.50±0.67, Δ=+2.17\n\nTRAJ:\n- 4B: s42=85.66, s123=85.47, Mean=85.57\n- 8B: s42=87.60, s123=87.79, Mean=87.70, Δ=+2.13\n- 14B: s42=89.73, s123=88.57, s456=88.28, Mean=88.86±0.77, Δ=+1.16\n\n## Registry data:\n- multi-seed-core: seed42=87.83, seed123=89.52 (CLS 4B)\n- cwm-baseline: accuracy=87.51 (CWM 4B s42)\n- cwm-seed123: accuracy=87.20 (CWM 4B s123)\n- model-size-scaling-cls8b: accuracy=90.48 (CLS 8B s42)\n- cls8b-seed123: accuracy=89.40 ... wait, cls8b-eval-seed123: accuracy=89.37\n- model-size-scaling-cwm8b: accuracy=87.67 (CWM 8B s42)\n- cwm8b-seed123: accuracy=86.98 (CWM 8B s123)\n- traj-level-finetuned: accuracy=85.66 (TRAJ 4B s42)\n- traj-level-seed123: accuracy=85.47 (TRAJ 4B s123)\n- qwen3-8b-traj-func-s42: test_accuracy=87.60\n- qwen3-8b-traj-func-s123: test_accuracy=87.79\n- cls14b-func-s42-v2: accuracy=89.47 (NOTE: paper says 89.21!)\n- cls14b-func-s123: accuracy=90.79\n- cls14b-func-s456: accuracy=89.79\n- cwm14b-func-s42: accuracy=89.30 (NOTE: paper says 89.26!)\n- cwm14b-func-s123: accuracy=88.99\n- cwm14b-func-s456: accuracy=90.26\n- traj14b-func-s42: accuracy=89.73\n- traj14b-func-s123: accuracy=88.57\n- traj14b-func-s456: accuracy=88.28\n\n## Tasks:\n1. Verify each cell value against registry\n2. Recompute means and stds, verify Δ values\n3. FLAG: cls14b-func-s42-v2 has 89.47 in registry but paper says 89.21. And cwm14b-func-s42 has 89.30 but paper says 89.26. These are potential MISMATCHES - investigate.\n4. Verify cls8b-seed123 accuracy: registry shows cls8b-seed123=89.40 but cls8b-eval-seed123=89.37. Which is used in the paper (89.40)?\n5. Check that paper notes \"Seeds 42/123 (4B/8B)\" - this means only 2 seeds at 4B and 8B, not all 5\n6. Recompute all means and check they match\n\nAlso read /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/14b_seed_level_stats.json for 14B data.\n\nReport each number as MATCH / MISMATCH with details. Focus especially on the 14B s42 discrepancies.",
-              "model": "sonnet"
-            }
-          },
-          "id": "event-006848"
-        },
-        {
-          "source_line": 6849,
-          "timestamp": "2026-05-25T19:44:29.620015+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "python3 << 'EOF'\nimport numpy as np\n\ndef stats(vals):\n    a = np.array(vals)\n    return np.mean(a), np.std(a, ddof=1)\n\n# ── Qwen3 CLS 4B (5 seeds) ──────────────────────────────────────────\n# Registry: multi-seed-core seed42=87.83, seed123=89.52, cls-seed789=89.00, cls-seed0=87.94\n# seed456: f1_macro_summary has cls8b-seed456 f1_macro=88.31 (that's 8B, not 4B)\n# The paper claims 4B. Let's check if there's a separate 4B CLS seed456.\n# From the registry data provided: no cls-seed456 (4B) is listed explicitly.\n# But the f1_macro_summary has \"cls8b-seed456\" → that's 8B.\n# The 5 seeds for CLS 4B are: 42(87.83), 123(89.52), 456(?), 789(89.00), 0(87.94)\n# We cannot verify seed456 for 4B CLS from provided data.\n\ncls_vals = [87.83, 89.52, 89.00, 87.94]  # seed456 unknown for 4B\nprint(\"=== Qwen3 CLS 4B (known 4 seeds, seed456 missing for 4B) ===\")\nprint(f\"  Known seeds: {cls_vals}\")\nm4, s4 = stats(cls_vals)\nprint(f\"  4-seed mean={m4:.2f}, std={s4:.2f}\")\n# To get 88.43 mean with 5 seeds:\n# mean = (87.83+89.52+89.00+87.94+x)/5 = 88.43 → x = 88.43*5 - sum(known4)\nx_needed = 88.43*5 - sum(cls_vals)\nprint(f\"  Seed456 needed to get mean=88.43: {x_needed:.2f}\")\n# std check: if seed456=88.46\nall5 = cls_vals + [x_needed]\nm5, s5 = stats(all5)\nprint(f\"  5-seed mean={m5:.2f}, std={s5:.2f}\")\nprint()\n\n# ── Qwen3 CWM 4B (5 seeds) ──────────────────────────────────────────\nprint(\"=== Qwen3 CWM 4B (5 seeds) ===\")\ncwm_vals = [87.51, 87.20, 86.98, 86.67, 87.57]  # 42, 123, 456, 789, 0\nm, s = stats(cwm_vals)\nprint(f\"  Seeds [42,123,456,789,0]: {cwm_vals}\")\nprint(f\"  Computed mean={m:.2f}, std={s:.2f}\")\nprint(f\"  Paper claims: 87.19 ± 0.37\")\nprint(f\"  MATCH mean: {abs(m-87.19)<0.01}, MATCH std: {abs(s-0.37)<0.01}\")\nprint()\n\n# ── Qwen3 TRAJ 4B (5 seeds) ──────────────────────────────────────────\nprint(\"=== Qwen3 TRAJ 4B (5 seeds) ===\")\ntraj_vals = [85.66, 85.47, 87.40, 87.31, 85.66]  # 42, 123, 456, 789, 0\nm, s = stats(traj_vals)\nprint(f\"  Seeds [42,123,456,789,0]: {traj_vals}\")\nprint(f\"  Computed mean={m:.2f}, std={s:.2f}\")\nprint(f\"  Paper claims: 86.30 ± 0.97\")\nprint(f\"  MATCH mean: {abs(m-86.30)<0.01}, MATCH std: {abs(s-0.97)<0.01}\")\nprint()\n\n# ── DeepSeek CLS 6.7B (2 seeds) ──────────────────────────────────────\nprint(\"=== DeepSeek CLS 6.7B (2 seeds) ===\")\ndscls = [86.93, 86.77]\nm, s = stats(dscls)\nprint(f\"  Seeds [42,123]: {dscls}\")\nprint(f\"  Computed mean={m:.2f}, std={s:.2f}\")\nprint(f\"  Paper claims: 86.85 ± 0.11\")\nprint(f\"  JSON confirms: mean=86.85, std=0.11\")\nprint(f\"  MATCH mean: {abs(m-86.85)<0.01}, MATCH std: {abs(s-0.11)<0.01}\")\nprint()\n\n# ── DeepSeek CWM 6.7B (2 seeds) ──────────────────────────────────────\nprint(\"=== DeepSeek CWM 6.7B (2 seeds) ===\")\ndscwm = [85.77, 87.88]\nm, s = stats(dscwm)\nprint(f\"  Seeds [42,123]: {dscwm}\")\nprint(f\"  Computed mean={m:.2f}, std={s:.2f}\")\nprint(f\"  Paper claims: 86.83 ± 1.49\")\nprint(f\"  JSON confirms: mean=86.83, std=1.49\")\nprint(f\"  MATCH mean: {abs(m-86.83)<0.02}, MATCH std: {abs(s-1.49)<0.01}\")\nprint()\n\n# ── DeepSeek TRAJ 6.7B (2 seeds) ──────────────────────────────────────\nprint(\"=== DeepSeek TRAJ 6.7B (2 seeds) ===\")\ndstraj = [83.24, 85.08]\nm, s = stats(dstraj)\nprint(f\"  Seeds [v2=83.24, v2-s123=85.08]: {dstraj}\")\nprint(f\"  Computed mean={m:.2f}, std={s:.2f}\")\nprint(f\"  Paper claims: 84.16 ± 1.30\")\nprint(f\"  MATCH mean: {abs(m-84.16)<0.01}, MATCH std: {abs(s-1.30)<0.01}\")\nprint()\n\n# ── Baselines ──────────────────────────────────────────────────────────\nprint(\"=== Baselines ===\")\n# 0-shot 8B: 8b-baseline-rerun = 60.53 → paper says 60.53 ✓\n# 0-shot 14B: 14b-baseline-0shot-3shot-v2 = 66.24 → paper says 66.24 ✓\n# 0-shot 6.7B DeepSeek: deepseek-0shot-func-baseline = 63.02 → paper says 63.02 ✓\n# Note: qwen3-0shot-func-baseline = 68.73% ≠ 60.53 (different experiment/model)\n# ZS LLM-judge 8B: llm-judge-8b-zeroshot = 64.40 → paper says 64.40 ✓\n# ZS LLM-judge 32B NF4: llm-judge-32b-zeroshot = 71.69 → paper says 71.69 ✓\n# ZS LLM-judge 6.7B: not listed in registry summary → CANNOT VERIFY\n# 3-shot ICL 8B: 8b-baseline-rerun = 60.42 → paper says 60.42 ✓\n# 3-shot ICL 14B: 14b-baseline-0shot-3shot-v2 = 73.12 → paper says 73.12 ✓\n# 3-shot ICL 6.7B: 59.95 → not in provided registry summary → CANNOT VERIFY\n# Majority (pass): deepseek_func_summary test_set majority_baseline_pct = 51.75 → ✓\nprint(\"Majority baseline from deepseek_func_summary: 51.75 ✓\")\nprint(\"0-shot 8B (8b-baseline-rerun): 60.53 ✓\")\nprint(\"0-shot 14B: 66.24 ✓\")\nprint(\"0-shot 6.7B DeepSeek: 63.02 ✓\")\nprint(\"ZS LLM-judge 8B: 64.40 ✓\")\nprint(\"ZS LLM-judge 32B NF4: 71.69 ✓\")\nprint(\"3-shot ICL 8B: 60.42 ✓\")\nprint(\"3-shot ICL 14B: 73.12 ✓\")\nprint()\n\n# qwen3-0shot-func-baseline discrepancy\nprint(\"=== 0-shot 8B discrepancy analysis ===\")\nprint(\"qwen3-0shot-func-baseline: 68.73% (likely a DIFFERENT model/config than 8b-baseline-rerun)\")\nprint(\"8b-baseline-rerun: 60.53% (used in paper)\")\nprint(\"Paper uses 8b-baseline-rerun (60.53) — these appear to be different experiments\")\nprint(\"(possibly qwen3-0shot-func-baseline was run with a different model size or prompt)\")\nEOF\n",
-              "description": "Compute mean/std for all seed groups and verify against paper claims"
-            }
-          },
-          "id": "event-006849"
-        },
-        {
-          "source_line": 6850,
-          "timestamp": "2026-05-25T19:44:29.620438+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "=== Qwen3 CLS 4B (known 4 seeds, seed456 missing for 4B) ===\n  Known seeds: [87.83, 89.52, 89.0, 87.94]\n  4-seed mean=88.57, std=0.82\n  Seed456 needed to get mean=88.43: 87.86\n  5-seed mean=88.43, std=0.78\n\n=== Qwen3 CWM 4B (5 seeds) ===\n  Seeds [42,123,456,789,0]: [87.51, 87.2, 86.98, 86.67, 87.57]\n  Computed mean=87.19, std=0.37\n  Paper claims: 87.19 ± 0.37\n  MATCH mean: True, MATCH std: True\n\n=== Qwen3 TRAJ 4B (5 seeds) ===\n  Seeds [42,123,456,789,0]: [85.66, 85.47, 87.4, 87.31, 85.66]\n  Computed mean=86.30, std=0.97\n  Paper claims: 86.30 ± 0.97\n  MATCH mean: True, MATCH std: True\n\n=== DeepSeek CLS 6.7B (2 seeds) ===\n  Seeds [42,123]: [86.93, 86.77]\n  Computed mean=86.85, std=0.11\n  Paper claims: 86.85 ± 0.11\n  JSON confirms: mean=86.85, std=0.11\n  MATCH mean: True, MATCH std: True\n\n=== DeepSeek CWM 6.7B (2 seeds) ===\n  Seeds [42,123]: [85.77, 87.88]\n  Computed mean=86.82, std=1.49\n  Paper claims: 86.83 ± 1.49\n  JSON confirms: mean=86.83, std=1.49\n  MATCH mean: True, MATCH std: True\n\n=== DeepSeek TRAJ 6.7B (2 seeds) ===\n  Seeds [v2=83.24, v2-s123=85.08]: [83.24, 85.08]\n  Computed mean=84.16, std=1.30\n  Paper claims: 84.16 ± 1.30\n  MATCH mean: True, MATCH std: True\n\n=== Baselines ===\nMajority baseline from deepseek_func_summary: 51.75 ✓\n0-shot 8B (8b-baseline-rerun): 60.53 ✓\n0-shot 14B: 66.24 ✓\n0-shot 6.7B DeepSeek: 63.02 ✓\nZS LLM-judge 8B: 64.40 ✓\nZS LLM-judge 32B NF4: 71.69 ✓\n3-shot ICL 8B: 60.42 ✓\n3-shot ICL 14B: 73.12 ✓\n\n=== 0-shot 8B discrepancy analysis ===\nqwen3-0shot-func-baseline: 68.73% (likely a DIFFERENT model/config than 8b-baseline-rerun)\n8b-baseline-rerun: 60.53% (used in paper)\nPaper uses 8b-baseline-rerun (60.53) — these appear to be different experiments\n(possibly qwen3-0shot-func-baseline was run with a different model size or prompt)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 0
-          },
-          "id": "event-006850"
-        },
-        {
-          "source_line": 6851,
-          "timestamp": "2026-05-25T19:44:29.620648+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/14b_seed_level_stats.json"
-            }
-          },
-          "id": "event-006851"
-        },
-        {
-          "source_line": 6852,
-          "timestamp": "2026-05-25T19:44:29.620883+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"title\": \"14B Seed-Level Statistical Analysis (D169 compliant)\",\n3\t  \"method\": \"Seed-level paired t-test (training seeds = replication unit)\",\n4\t  \"n_seeds\": 3,\n5\t  \"df\": 2,\n6\t  \"rope_margin_pp\": 2.0,\n7\t  \"data\": {\n8\t    \"CLS_14B\": {\n9\t      \"s42\": 89.21,\n10\t      \"s123\": 90.79,\n11\t      \"s456\": 89.79\n12\t    },\n13\t    \"CWM_14B\": {\n14\t      \"s42\": 89.26,\n15\t      \"s123\": 88.99,\n16\t      \"s456\": 90.26\n17\t    },\n18\t    \"TRAJ_14B\": {\n19\t      \"s42\": 89.73,\n20\t      \"s123\": 88.57,\n21\t      \"s456\": 88.28\n22\t    },\n23\t    \"note\": \"All bf16-consistent. CLS s42=89.21 from bf16 eval (NF4=89.47). CWM s42=89.26 from bf16 eval (NF4=89.30).\"\n24\t  },\n25\t  \"results\": {\n26\t    \"CLS-CWM\": {\n27\t      \"tost\": {\n28\t        \"method\": \"seed-level paired TOST (D169)\",\n29\t        \"n_seeds\": 3,\n30\t        \"df\": 2,\n31\t        \"mean_diff_pp\": 0.4267,\n32\t        \"sd_pp\": 1.2077,\n33\t        \"se_pp\": 0.6973,\n34\t        \"margin_pp\": 2.0,\n35\t        \"t_lower\": 3.4801,\n36\t        \"t_upper\": -2.2564,\n37\t        \"p_lower\": 0.036785,\n38\t        \"p_upper\": 0.076338,\n39\t        \"tost_p\": 0.076338,\n40\t        \"equivalent_at_alpha05\": false,\n41\t        \"ci90_pp\": [\n42\t          -1.609,\n43\t          2.463\n44\t        ],\n45\t        \"ci90_inside_rope\": false,\n46\t        \"ci95_pp\": [\n47\t          -2.574,\n48\t          3.427\n49\t        ],\n50\t        \"diffs\": [\n51\t          -0.05,\n52\t          1.8,\n53\t          -0.47\n54\t        ]\n55\t      },\n56\t      \"bayesian_rope\": {\n57\t        \"method\": \"Bayesian ROPE (Kruschke 2013, Jeffreys prior)\",\n58\t        \"n\": 3,\n59\t        \"df\": 2,\n60\t        \"mean_diff_pp\": 0.4267,\n61\t        \"sd_pp\": 1.2077,\n62\t        \"se_pp\": 0.6973,\n63\t        \"rope\": [\n64\t          -2.0,\n65\t          2.0\n66\t        ],\n67\t        \"p_rope\": 0.8869,\n68\t        \"p_above_rope\": 0.0763,\n69\t        \"p_below_rope\": 0.0368,\n70\t        \"hdi_95_lo\": -2.57,\n71\t        \"hdi_95_hi\": 3.43,\n72\t        \"hdi_inside_rope\": false,\n73\t        \"decision_continuous\": \"Inconclusive\",\n74\t        \"decision_hdi\": \"U\n…[truncated 1918 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006852"
-        },
-        {
-          "source_line": 6853,
-          "timestamp": "2026-05-25T19:44:29.621069+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/**/*.tex"
-            }
-          },
-          "id": "event-006853"
-        },
-        {
-          "source_line": 6854,
-          "timestamp": "2026-05-25T19:44:29.621224+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T231719/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T231719/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T231719/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/introduction_304198.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/experiments_3378f2.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper/rank_ablation_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260516T073712/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260516T073712/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260516T073712/worst/paper.tex\n/home/ubuntu/.agent-ml-re\n…[truncated 2516 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Glob",
-            "elapsed_ms": 0
-          },
-          "id": "event-006854"
-        },
-        {
-          "source_line": 6855,
-          "timestamp": "2026-05-25T19:44:29.621395+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
-            }
-          },
-          "id": "event-006855"
-        },
-        {
-          "source_line": 6856,
-          "timestamp": "2026-05-25T19:44:29.621680+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation landscape for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench}; runs with NaN validation loss (due to truncated targets exceeding 2,048-token limits) default to the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Qwen3 \\cwm{} runs show early overfitting (best at ${\\sim}$6\\% of training); checkpoint details in Appendix~\\ref{app:hyperparams}.\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with LoRA~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds (3 bfloat16, 2 NF4~\\cite{dettmers2024qlora}). DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} serves as a cross-model check (2 seeds). Our \\cwm{} baseline uses LoRA fine-tuning for matched comparison, not the 32B CWM~\\cite{meta2025cwm}. Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4). Full hyperparameters in Appendix~\\ref{app:hyperparams}; prompts in Appendix~\\ref{app:prompts}.\n15\t\n16\t\\paragraph{Statistics.}\n17\tEquivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2\\pp{} margin; seed-level paired analysis (df${=}$4 for 5-seed, df${=}$2 for 3-seed) treats \n…[truncated 21417 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006856"
-        },
-        {
-          "source_line": 6857,
-          "timestamp": "2026-05-25T19:44:29.621894+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/registry.yaml"
-            }
-          },
-          "id": "event-006857"
-        },
-        {
-          "source_line": 6858,
-          "timestamp": "2026-05-25T19:44:29.622035+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006858"
-        },
-        {
-          "source_line": 6859,
-          "timestamp": "2026-05-25T19:44:29.622161+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/registry.yaml",
-              "limit": "300"
-            }
-          },
-          "id": "event-006859"
-        },
-        {
-          "source_line": 6860,
-          "timestamp": "2026-05-25T19:44:29.622283+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006860"
-        },
-        {
-          "source_line": 6861,
-          "timestamp": "2026-05-25T19:44:29.622404+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry*.yaml"
-            }
-          },
-          "id": "event-006861"
-        },
-        {
-          "source_line": 6862,
-          "timestamp": "2026-05-25T19:44:29.622521+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Glob",
-            "elapsed_ms": 0
-          },
-          "id": "event-006862"
-        },
-        {
-          "source_line": 6863,
           "timestamp": "2026-05-25T19:44:29.622639+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -449,10 +23,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
             }
           },
-          "id": "event-006863"
+          "id": "event-006841"
         },
         {
-          "source_line": 6864,
+          "source_line": 6842,
           "timestamp": "2026-05-25T19:44:29.622757+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -467,10 +41,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006864"
+          "id": "event-006842"
         },
         {
-          "source_line": 6865,
+          "source_line": 6843,
           "timestamp": "2026-05-25T19:44:29.622903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -490,10 +64,10 @@
               "context": "3"
             }
           },
-          "id": "event-006865"
+          "id": "event-006843"
         },
         {
-          "source_line": 6866,
+          "source_line": 6844,
           "timestamp": "2026-05-25T19:44:29.623133+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -508,10 +82,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006866"
+          "id": "event-006844"
         },
         {
-          "source_line": 6867,
+          "source_line": 6845,
           "timestamp": "2026-05-25T19:44:29.623306+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -531,10 +105,10 @@
               "context": "5"
             }
           },
-          "id": "event-006867"
+          "id": "event-006845"
         },
         {
-          "source_line": 6868,
+          "source_line": 6846,
           "timestamp": "2026-05-25T19:44:29.623627+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -549,10 +123,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006868"
+          "id": "event-006846"
         },
         {
-          "source_line": 6869,
+          "source_line": 6847,
           "timestamp": "2026-05-25T19:44:29.623823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -572,10 +146,10 @@
               "context": "8"
             }
           },
-          "id": "event-006869"
+          "id": "event-006847"
         },
         {
-          "source_line": 6870,
+          "source_line": 6848,
           "timestamp": "2026-05-25T19:44:29.624051+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -590,10 +164,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006870"
+          "id": "event-006848"
         },
         {
-          "source_line": 6871,
+          "source_line": 6849,
           "timestamp": "2026-05-25T19:44:30.728038+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -612,10 +186,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-006871"
+          "id": "event-006849"
         },
         {
-          "source_line": 6872,
+          "source_line": 6850,
           "timestamp": "2026-05-25T19:44:54.605482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -630,10 +204,10 @@
             "tool": "Agent",
             "elapsed_ms": 79577
           },
-          "id": "event-006872"
+          "id": "event-006850"
         },
         {
-          "source_line": 6873,
+          "source_line": 6851,
           "timestamp": "2026-05-25T19:44:54.606026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -654,10 +228,10 @@
               "offset": "4"
             }
           },
-          "id": "event-006873"
+          "id": "event-006851"
         },
         {
-          "source_line": 6874,
+          "source_line": 6852,
           "timestamp": "2026-05-25T19:44:54.606352+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -672,10 +246,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006874"
+          "id": "event-006852"
         },
         {
-          "source_line": 6875,
+          "source_line": 6853,
           "timestamp": "2026-05-25T19:44:54.606675+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -695,10 +269,10 @@
               "context": "20"
             }
           },
-          "id": "event-006875"
+          "id": "event-006853"
         },
         {
-          "source_line": 6876,
+          "source_line": 6854,
           "timestamp": "2026-05-25T19:44:54.607039+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -713,10 +287,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006876"
+          "id": "event-006854"
         },
         {
-          "source_line": 6877,
+          "source_line": 6855,
           "timestamp": "2026-05-25T19:44:54.607378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -737,10 +311,10 @@
               "offset": "1"
             }
           },
-          "id": "event-006877"
+          "id": "event-006855"
         },
         {
-          "source_line": 6878,
+          "source_line": 6856,
           "timestamp": "2026-05-25T19:44:54.607671+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -755,10 +329,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006878"
+          "id": "event-006856"
         },
         {
-          "source_line": 6879,
+          "source_line": 6857,
           "timestamp": "2026-05-25T19:44:54.608002+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -778,10 +352,10 @@
               "context": "3"
             }
           },
-          "id": "event-006879"
+          "id": "event-006857"
         },
         {
-          "source_line": 6880,
+          "source_line": 6858,
           "timestamp": "2026-05-25T19:44:54.608258+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -796,10 +370,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006880"
+          "id": "event-006858"
         },
         {
-          "source_line": 6881,
+          "source_line": 6859,
           "timestamp": "2026-05-25T19:44:54.608502+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -820,10 +394,10 @@
               "head_limit": "50"
             }
           },
-          "id": "event-006881"
+          "id": "event-006859"
         },
         {
-          "source_line": 6882,
+          "source_line": 6860,
           "timestamp": "2026-05-25T19:44:54.608840+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -838,10 +412,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006882"
+          "id": "event-006860"
         },
         {
-          "source_line": 6883,
+          "source_line": 6861,
           "timestamp": "2026-05-25T19:44:54.609139+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -861,10 +435,10 @@
               "context": "2"
             }
           },
-          "id": "event-006883"
+          "id": "event-006861"
         },
         {
-          "source_line": 6884,
+          "source_line": 6862,
           "timestamp": "2026-05-25T19:44:54.609386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -879,10 +453,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006884"
+          "id": "event-006862"
         },
         {
-          "source_line": 6885,
+          "source_line": 6863,
           "timestamp": "2026-05-25T19:44:54.609620+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -903,10 +477,10 @@
               "head_limit": "100"
             }
           },
-          "id": "event-006885"
+          "id": "event-006863"
         },
         {
-          "source_line": 6886,
+          "source_line": 6864,
           "timestamp": "2026-05-25T19:44:54.609907+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -921,10 +495,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006886"
+          "id": "event-006864"
         },
         {
-          "source_line": 6887,
+          "source_line": 6865,
           "timestamp": "2026-05-25T19:44:54.610203+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -945,10 +519,10 @@
               "head_limit": "60"
             }
           },
-          "id": "event-006887"
+          "id": "event-006865"
         },
         {
-          "source_line": 6888,
+          "source_line": 6866,
           "timestamp": "2026-05-25T19:44:54.610597+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -963,10 +537,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006888"
+          "id": "event-006866"
         },
         {
-          "source_line": 6889,
+          "source_line": 6867,
           "timestamp": "2026-05-25T19:44:54.610902+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -985,10 +559,10 @@
               "limit": "60"
             }
           },
-          "id": "event-006889"
+          "id": "event-006867"
         },
         {
-          "source_line": 6890,
+          "source_line": 6868,
           "timestamp": "2026-05-25T19:44:54.611184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1003,10 +577,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006890"
+          "id": "event-006868"
         },
         {
-          "source_line": 6891,
+          "source_line": 6869,
           "timestamp": "2026-05-25T19:44:54.611488+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1025,10 +599,10 @@
               "limit": "30"
             }
           },
-          "id": "event-006891"
+          "id": "event-006869"
         },
         {
-          "source_line": 6892,
+          "source_line": 6870,
           "timestamp": "2026-05-25T19:44:54.611822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1043,10 +617,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006892"
+          "id": "event-006870"
         },
         {
-          "source_line": 6893,
+          "source_line": 6871,
           "timestamp": "2026-05-25T19:44:54.612104+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1063,10 +637,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
             }
           },
-          "id": "event-006893"
+          "id": "event-006871"
         },
         {
-          "source_line": 6894,
+          "source_line": 6872,
           "timestamp": "2026-05-25T19:44:54.612359+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1081,10 +655,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006894"
+          "id": "event-006872"
         },
         {
-          "source_line": 6895,
+          "source_line": 6873,
           "timestamp": "2026-05-25T19:44:54.612605+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1101,10 +675,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/inference_benchmark_results.json"
             }
           },
-          "id": "event-006895"
+          "id": "event-006873"
         },
         {
-          "source_line": 6896,
+          "source_line": 6874,
           "timestamp": "2026-05-25T19:44:54.612876+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1119,10 +693,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006896"
+          "id": "event-006874"
         },
         {
-          "source_line": 6897,
+          "source_line": 6875,
           "timestamp": "2026-05-25T19:44:54.613130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1142,10 +716,10 @@
               "context": "5"
             }
           },
-          "id": "event-006897"
+          "id": "event-006875"
         },
         {
-          "source_line": 6898,
+          "source_line": 6876,
           "timestamp": "2026-05-25T19:44:54.613463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1160,10 +734,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006898"
+          "id": "event-006876"
         },
         {
-          "source_line": 6899,
+          "source_line": 6877,
           "timestamp": "2026-05-25T19:44:54.613767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1183,10 +757,10 @@
               "context": "5"
             }
           },
-          "id": "event-006899"
+          "id": "event-006877"
         },
         {
-          "source_line": 6900,
+          "source_line": 6878,
           "timestamp": "2026-05-25T19:44:54.614175+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1201,10 +775,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006900"
+          "id": "event-006878"
         },
         {
-          "source_line": 6901,
+          "source_line": 6879,
           "timestamp": "2026-05-25T19:44:54.614472+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1224,10 +798,10 @@
               "context": "20"
             }
           },
-          "id": "event-006901"
+          "id": "event-006879"
         },
         {
-          "source_line": 6902,
+          "source_line": 6880,
           "timestamp": "2026-05-25T19:44:54.665135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1242,10 +816,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-006902"
+          "id": "event-006880"
         },
         {
-          "source_line": 6903,
+          "source_line": 6881,
           "timestamp": "2026-05-25T19:44:54.665593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1265,10 +839,10 @@
               "context": "10"
             }
           },
-          "id": "event-006903"
+          "id": "event-006881"
         },
         {
-          "source_line": 6904,
+          "source_line": 6882,
           "timestamp": "2026-05-25T19:44:54.665944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1283,10 +857,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006904"
+          "id": "event-006882"
         },
         {
-          "source_line": 6905,
+          "source_line": 6883,
           "timestamp": "2026-05-25T19:44:54.766633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1305,10 +879,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-006905"
+          "id": "event-006883"
         },
         {
-          "source_line": 6906,
+          "source_line": 6884,
           "timestamp": "2026-05-25T19:45:35.572826+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1327,10 +901,10 @@
               "limit": "35"
             }
           },
-          "id": "event-006906"
+          "id": "event-006884"
         },
         {
-          "source_line": 6907,
+          "source_line": 6885,
           "timestamp": "2026-05-25T19:45:35.573339+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1345,10 +919,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006907"
+          "id": "event-006885"
         },
         {
-          "source_line": 6908,
+          "source_line": 6886,
           "timestamp": "2026-05-25T19:45:35.573636+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1369,10 +943,10 @@
               "head_limit": "50"
             }
           },
-          "id": "event-006908"
+          "id": "event-006886"
         },
         {
-          "source_line": 6909,
+          "source_line": 6887,
           "timestamp": "2026-05-25T19:45:35.573905+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1387,10 +961,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006909"
+          "id": "event-006887"
         },
         {
-          "source_line": 6910,
+          "source_line": 6888,
           "timestamp": "2026-05-25T19:45:35.574214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1409,10 +983,10 @@
               "limit": "20"
             }
           },
-          "id": "event-006910"
+          "id": "event-006888"
         },
         {
-          "source_line": 6911,
+          "source_line": 6889,
           "timestamp": "2026-05-25T19:45:35.574515+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1427,10 +1001,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006911"
+          "id": "event-006889"
         },
         {
-          "source_line": 6912,
+          "source_line": 6890,
           "timestamp": "2026-05-25T19:45:35.574747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1450,10 +1024,10 @@
               "context": "2"
             }
           },
-          "id": "event-006912"
+          "id": "event-006890"
         },
         {
-          "source_line": 6913,
+          "source_line": 6891,
           "timestamp": "2026-05-25T19:45:35.575010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1468,10 +1042,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006913"
+          "id": "event-006891"
         },
         {
-          "source_line": 6914,
+          "source_line": 6892,
           "timestamp": "2026-05-25T19:45:35.575250+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1490,10 +1064,10 @@
               "limit": "25"
             }
           },
-          "id": "event-006914"
+          "id": "event-006892"
         },
         {
-          "source_line": 6915,
+          "source_line": 6893,
           "timestamp": "2026-05-25T19:45:35.575520+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1508,10 +1082,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006915"
+          "id": "event-006893"
         },
         {
-          "source_line": 6916,
+          "source_line": 6894,
           "timestamp": "2026-05-25T19:45:35.575782+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1530,10 +1104,10 @@
               "limit": "35"
             }
           },
-          "id": "event-006916"
+          "id": "event-006894"
         },
         {
-          "source_line": 6917,
+          "source_line": 6895,
           "timestamp": "2026-05-25T19:45:35.576038+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1548,10 +1122,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006917"
+          "id": "event-006895"
         },
         {
-          "source_line": 6918,
+          "source_line": 6896,
           "timestamp": "2026-05-25T19:45:35.576275+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1570,10 +1144,10 @@
               "limit": "50"
             }
           },
-          "id": "event-006918"
+          "id": "event-006896"
         },
         {
-          "source_line": 6919,
+          "source_line": 6897,
           "timestamp": "2026-05-25T19:45:35.576574+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1588,10 +1162,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006919"
+          "id": "event-006897"
         },
         {
-          "source_line": 6920,
+          "source_line": 6898,
           "timestamp": "2026-05-25T19:45:35.576896+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1611,10 +1185,10 @@
               "context": "25"
             }
           },
-          "id": "event-006920"
+          "id": "event-006898"
         },
         {
-          "source_line": 6921,
+          "source_line": 6899,
           "timestamp": "2026-05-25T19:45:35.577197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1629,10 +1203,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006921"
+          "id": "event-006899"
         },
         {
-          "source_line": 6922,
+          "source_line": 6900,
           "timestamp": "2026-05-25T19:45:35.577379+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1652,10 +1226,10 @@
               "context": "20"
             }
           },
-          "id": "event-006922"
+          "id": "event-006900"
         },
         {
-          "source_line": 6923,
+          "source_line": 6901,
           "timestamp": "2026-05-25T19:45:35.577586+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1670,10 +1244,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006923"
+          "id": "event-006901"
         },
         {
-          "source_line": 6924,
+          "source_line": 6902,
           "timestamp": "2026-05-25T19:45:35.577763+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1693,10 +1267,10 @@
               "context": "30"
             }
           },
-          "id": "event-006924"
+          "id": "event-006902"
         },
         {
-          "source_line": 6925,
+          "source_line": 6903,
           "timestamp": "2026-05-25T19:45:35.578002+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1711,10 +1285,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006925"
+          "id": "event-006903"
         },
         {
-          "source_line": 6926,
+          "source_line": 6904,
           "timestamp": "2026-05-25T19:45:35.578177+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1734,10 +1308,10 @@
               "context": "20"
             }
           },
-          "id": "event-006926"
+          "id": "event-006904"
         },
         {
-          "source_line": 6927,
+          "source_line": 6905,
           "timestamp": "2026-05-25T19:45:35.578366+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1752,10 +1326,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006927"
+          "id": "event-006905"
         },
         {
-          "source_line": 6928,
+          "source_line": 6906,
           "timestamp": "2026-05-25T19:45:35.578526+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1775,10 +1349,10 @@
               "context": "3"
             }
           },
-          "id": "event-006928"
+          "id": "event-006906"
         },
         {
-          "source_line": 6929,
+          "source_line": 6907,
           "timestamp": "2026-05-25T19:45:35.578657+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1793,10 +1367,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006929"
+          "id": "event-006907"
         },
         {
-          "source_line": 6930,
+          "source_line": 6908,
           "timestamp": "2026-05-25T19:45:35.578790+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1816,10 +1390,10 @@
               "context": "15"
             }
           },
-          "id": "event-006930"
+          "id": "event-006908"
         },
         {
-          "source_line": 6931,
+          "source_line": 6909,
           "timestamp": "2026-05-25T19:45:35.578989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1834,10 +1408,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006931"
+          "id": "event-006909"
         },
         {
-          "source_line": 6932,
+          "source_line": 6910,
           "timestamp": "2026-05-25T19:45:35.579169+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1857,10 +1431,10 @@
               "context": "40"
             }
           },
-          "id": "event-006932"
+          "id": "event-006910"
         },
         {
-          "source_line": 6933,
+          "source_line": 6911,
           "timestamp": "2026-05-25T19:45:35.579346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1875,10 +1449,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006933"
+          "id": "event-006911"
         },
         {
-          "source_line": 6934,
+          "source_line": 6912,
           "timestamp": "2026-05-25T19:45:35.579523+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1898,10 +1472,10 @@
               "context": "5"
             }
           },
-          "id": "event-006934"
+          "id": "event-006912"
         },
         {
-          "source_line": 6935,
+          "source_line": 6913,
           "timestamp": "2026-05-25T19:45:35.579662+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1916,10 +1490,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006935"
+          "id": "event-006913"
         },
         {
-          "source_line": 6936,
+          "source_line": 6914,
           "timestamp": "2026-05-25T19:45:35.579811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1936,10 +1510,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_overlap_matched_seed.json"
             }
           },
-          "id": "event-006936"
+          "id": "event-006914"
         },
         {
-          "source_line": 6937,
+          "source_line": 6915,
           "timestamp": "2026-05-25T19:45:35.579986+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1954,10 +1528,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006937"
+          "id": "event-006915"
         },
         {
-          "source_line": 6938,
+          "source_line": 6916,
           "timestamp": "2026-05-25T19:45:35.580143+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1977,10 +1551,10 @@
               "context": "20"
             }
           },
-          "id": "event-006938"
+          "id": "event-006916"
         },
         {
-          "source_line": 6939,
+          "source_line": 6917,
           "timestamp": "2026-05-25T19:45:35.580344+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1995,10 +1569,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006939"
+          "id": "event-006917"
         },
         {
-          "source_line": 6940,
+          "source_line": 6918,
           "timestamp": "2026-05-25T19:45:35.580505+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2018,10 +1592,10 @@
               "context": "15"
             }
           },
-          "id": "event-006940"
+          "id": "event-006918"
         },
         {
-          "source_line": 6941,
+          "source_line": 6919,
           "timestamp": "2026-05-25T19:45:35.580717+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2036,10 +1610,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006941"
+          "id": "event-006919"
         },
         {
-          "source_line": 6942,
+          "source_line": 6920,
           "timestamp": "2026-05-25T19:45:35.580908+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2059,10 +1633,10 @@
               "context": "3"
             }
           },
-          "id": "event-006942"
+          "id": "event-006920"
         },
         {
-          "source_line": 6943,
+          "source_line": 6921,
           "timestamp": "2026-05-25T19:45:35.581049+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2077,10 +1651,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006943"
+          "id": "event-006921"
         },
         {
-          "source_line": 6944,
+          "source_line": 6922,
           "timestamp": "2026-05-25T19:45:35.581235+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2100,10 +1674,10 @@
               "context": "15"
             }
           },
-          "id": "event-006944"
+          "id": "event-006922"
         },
         {
-          "source_line": 6945,
+          "source_line": 6923,
           "timestamp": "2026-05-25T19:45:35.581403+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2118,10 +1692,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006945"
+          "id": "event-006923"
         },
         {
-          "source_line": 6946,
+          "source_line": 6924,
           "timestamp": "2026-05-25T19:45:35.581559+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2138,10 +1712,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity.json"
             }
           },
-          "id": "event-006946"
+          "id": "event-006924"
         },
         {
-          "source_line": 6947,
+          "source_line": 6925,
           "timestamp": "2026-05-25T19:45:35.581726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2156,10 +1730,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006947"
+          "id": "event-006925"
         },
         {
-          "source_line": 6948,
+          "source_line": 6926,
           "timestamp": "2026-05-25T19:45:35.581910+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2176,10 +1750,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni_results.json"
             }
           },
-          "id": "event-006948"
+          "id": "event-006926"
         },
         {
-          "source_line": 6949,
+          "source_line": 6927,
           "timestamp": "2026-05-25T19:45:35.582056+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2194,10 +1768,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006949"
+          "id": "event-006927"
         },
         {
-          "source_line": 6950,
+          "source_line": 6928,
           "timestamp": "2026-05-25T19:45:35.582194+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2214,10 +1788,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/4b_8b_cls_cwm_paired_bootstrap_corrected.json"
             }
           },
-          "id": "event-006950"
+          "id": "event-006928"
         },
         {
-          "source_line": 6951,
+          "source_line": 6929,
           "timestamp": "2026-05-25T19:45:35.582321+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2232,10 +1806,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006951"
+          "id": "event-006929"
         },
         {
-          "source_line": 6952,
+          "source_line": 6930,
           "timestamp": "2026-05-25T19:45:35.582449+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2252,10 +1826,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bayesian_rope_results_reproduced.json"
             }
           },
-          "id": "event-006952"
+          "id": "event-006930"
         },
         {
-          "source_line": 6953,
+          "source_line": 6931,
           "timestamp": "2026-05-25T19:45:35.582616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2270,10 +1844,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006953"
+          "id": "event-006931"
         },
         {
-          "source_line": 6954,
+          "source_line": 6932,
           "timestamp": "2026-05-25T19:45:35.582774+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2290,10 +1864,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/14b_seed_level_stats.json"
             }
           },
-          "id": "event-006954"
+          "id": "event-006932"
         },
         {
-          "source_line": 6955,
+          "source_line": 6933,
           "timestamp": "2026-05-25T19:45:35.582973+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2308,10 +1882,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006955"
+          "id": "event-006933"
         },
         {
-          "source_line": 6956,
+          "source_line": 6934,
           "timestamp": "2026-05-25T19:45:35.583138+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2328,10 +1902,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bf16_only_tost.json"
             }
           },
-          "id": "event-006956"
+          "id": "event-006934"
         },
         {
-          "source_line": 6957,
+          "source_line": 6935,
           "timestamp": "2026-05-25T19:45:35.583270+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2346,10 +1920,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006957"
+          "id": "event-006935"
         },
         {
-          "source_line": 6958,
+          "source_line": 6936,
           "timestamp": "2026-05-25T19:45:35.583412+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2366,10 +1940,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_margin_sweep_v2_results.json"
             }
           },
-          "id": "event-006958"
+          "id": "event-006936"
         },
         {
-          "source_line": 6959,
+          "source_line": 6937,
           "timestamp": "2026-05-25T19:45:35.583558+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2384,10 +1958,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006959"
+          "id": "event-006937"
         },
         {
-          "source_line": 6960,
+          "source_line": 6938,
           "timestamp": "2026-05-25T19:45:35.583711+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2404,10 +1978,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/registry.yaml"
             }
           },
-          "id": "event-006960"
+          "id": "event-006938"
         },
         {
-          "source_line": 6961,
+          "source_line": 6939,
           "timestamp": "2026-05-25T19:45:35.583853+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2422,10 +1996,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006961"
+          "id": "event-006939"
         },
         {
-          "source_line": 6962,
+          "source_line": 6940,
           "timestamp": "2026-05-25T19:45:35.583978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2443,10 +2017,10 @@
               "limit": "200"
             }
           },
-          "id": "event-006962"
+          "id": "event-006940"
         },
         {
-          "source_line": 6963,
+          "source_line": 6941,
           "timestamp": "2026-05-25T19:45:35.584132+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2461,10 +2035,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006963"
+          "id": "event-006941"
         },
         {
-          "source_line": 6964,
+          "source_line": 6942,
           "timestamp": "2026-05-25T19:45:35.584292+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2481,10 +2055,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/*.tex"
             }
           },
-          "id": "event-006964"
+          "id": "event-006942"
         },
         {
-          "source_line": 6965,
+          "source_line": 6943,
           "timestamp": "2026-05-25T19:45:35.584417+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2499,10 +2073,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-006965"
+          "id": "event-006943"
         },
         {
-          "source_line": 6966,
+          "source_line": 6944,
           "timestamp": "2026-05-25T19:45:35.584544+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2519,10 +2093,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/registry.yaml"
             }
           },
-          "id": "event-006966"
+          "id": "event-006944"
         },
         {
-          "source_line": 6967,
+          "source_line": 6945,
           "timestamp": "2026-05-25T19:45:35.584659+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2537,10 +2111,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-006967"
+          "id": "event-006945"
         },
         {
-          "source_line": 6968,
+          "source_line": 6946,
           "timestamp": "2026-05-25T19:45:35.584777+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2557,10 +2131,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
             }
           },
-          "id": "event-006968"
+          "id": "event-006946"
         },
         {
-          "source_line": 6969,
+          "source_line": 6947,
           "timestamp": "2026-05-25T19:45:35.585064+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2575,10 +2149,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006969"
+          "id": "event-006947"
         },
         {
-          "source_line": 6970,
+          "source_line": 6948,
           "timestamp": "2026-05-25T19:45:35.585237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2595,10 +2169,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
             }
           },
-          "id": "event-006970"
+          "id": "event-006948"
         },
         {
-          "source_line": 6971,
+          "source_line": 6949,
           "timestamp": "2026-05-25T19:45:35.585392+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2613,10 +2187,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006971"
+          "id": "event-006949"
         },
         {
-          "source_line": 6972,
+          "source_line": 6950,
           "timestamp": "2026-05-25T19:45:35.585525+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2636,10 +2210,10 @@
               "context": "5"
             }
           },
-          "id": "event-006972"
+          "id": "event-006950"
         },
         {
-          "source_line": 6973,
+          "source_line": 6951,
           "timestamp": "2026-05-25T19:45:35.585668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2654,10 +2228,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006973"
+          "id": "event-006951"
         },
         {
-          "source_line": 6974,
+          "source_line": 6952,
           "timestamp": "2026-05-25T19:45:35.585846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2677,10 +2251,10 @@
               "context": "5"
             }
           },
-          "id": "event-006974"
+          "id": "event-006952"
         },
         {
-          "source_line": 6975,
+          "source_line": 6953,
           "timestamp": "2026-05-25T19:45:35.585989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2695,10 +2269,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-006975"
+          "id": "event-006953"
         },
         {
-          "source_line": 6976,
+          "source_line": 6954,
           "timestamp": "2026-05-25T19:45:35.586126+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2715,10 +2289,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/*.json"
             }
           },
-          "id": "event-006976"
+          "id": "event-006954"
         },
         {
-          "source_line": 6977,
+          "source_line": 6955,
           "timestamp": "2026-05-25T19:45:35.586309+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2733,10 +2307,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-006977"
+          "id": "event-006955"
         },
         {
-          "source_line": 6978,
+          "source_line": 6956,
           "timestamp": "2026-05-25T19:45:35.586466+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2754,10 +2328,10 @@
               "limit": "50"
             }
           },
-          "id": "event-006978"
+          "id": "event-006956"
         },
         {
-          "source_line": 6979,
+          "source_line": 6957,
           "timestamp": "2026-05-25T19:45:35.586590+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2772,10 +2346,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006979"
+          "id": "event-006957"
         },
         {
-          "source_line": 6980,
+          "source_line": 6958,
           "timestamp": "2026-05-25T19:45:35.837862+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2794,10 +2368,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-006980"
+          "id": "event-006958"
         },
         {
-          "source_line": 6981,
+          "source_line": 6959,
           "timestamp": "2026-05-25T19:45:39.953734+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2815,10 +2389,10 @@
               "description": "Find LaTeX source files"
             }
           },
-          "id": "event-006981"
+          "id": "event-006959"
         },
         {
-          "source_line": 6982,
+          "source_line": 6960,
           "timestamp": "2026-05-25T19:45:40.307000+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2833,10 +2407,10 @@
             "tool": "Bash",
             "elapsed_ms": 353
           },
-          "id": "event-006982"
+          "id": "event-006960"
         },
         {
-          "source_line": 6983,
+          "source_line": 6961,
           "timestamp": "2026-05-25T19:45:40.307570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2854,10 +2428,10 @@
               "description": "List project directory"
             }
           },
-          "id": "event-006983"
+          "id": "event-006961"
         },
         {
-          "source_line": 6984,
+          "source_line": 6962,
           "timestamp": "2026-05-25T19:45:40.358128+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2872,10 +2446,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006984"
+          "id": "event-006962"
         },
         {
-          "source_line": 6985,
+          "source_line": 6963,
           "timestamp": "2026-05-25T19:45:40.509200+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2895,10 +2469,10 @@
               "context": "5"
             }
           },
-          "id": "event-006985"
+          "id": "event-006963"
         },
         {
-          "source_line": 6986,
+          "source_line": 6964,
           "timestamp": "2026-05-25T19:45:40.760480+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2918,10 +2492,10 @@
               "context": "3"
             }
           },
-          "id": "event-006986"
+          "id": "event-006964"
         },
         {
-          "source_line": 6987,
+          "source_line": 6965,
           "timestamp": "2026-05-25T19:45:40.811240+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2936,10 +2510,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-006987"
+          "id": "event-006965"
         },
         {
-          "source_line": 6988,
+          "source_line": 6966,
           "timestamp": "2026-05-25T19:45:41.363558+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2958,10 +2532,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-006988"
+          "id": "event-006966"
         },
         {
-          "source_line": 6989,
+          "source_line": 6967,
           "timestamp": "2026-05-25T19:45:41.484489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2976,10 +2550,10 @@
             "tool": "Grep",
             "elapsed_ms": 120
           },
-          "id": "event-006989"
+          "id": "event-006967"
         },
         {
-          "source_line": 6990,
+          "source_line": 6968,
           "timestamp": "2026-05-25T19:45:41.764673+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2994,10 +2568,10 @@
             "tool": "Grep",
             "elapsed_ms": 1255
           },
-          "id": "event-006990"
+          "id": "event-006968"
         },
         {
-          "source_line": 6991,
+          "source_line": 6969,
           "timestamp": "2026-05-25T19:45:42.066197+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3017,10 +2591,10 @@
               "context": "10"
             }
           },
-          "id": "event-006991"
+          "id": "event-006969"
         },
         {
-          "source_line": 6992,
+          "source_line": 6970,
           "timestamp": "2026-05-25T19:45:42.167012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3035,10 +2609,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-006992"
+          "id": "event-006970"
         },
         {
-          "source_line": 6993,
+          "source_line": 6971,
           "timestamp": "2026-05-25T19:45:43.422157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3055,10 +2629,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
             }
           },
-          "id": "event-006993"
+          "id": "event-006971"
         },
         {
-          "source_line": 6994,
+          "source_line": 6972,
           "timestamp": "2026-05-25T19:45:43.673489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3073,10 +2647,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-006994"
+          "id": "event-006972"
         },
         {
-          "source_line": 6995,
+          "source_line": 6973,
           "timestamp": "2026-05-25T19:45:43.724086+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3093,10 +2667,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex"
             }
           },
-          "id": "event-006995"
+          "id": "event-006973"
         },
         {
-          "source_line": 6996,
+          "source_line": 6974,
           "timestamp": "2026-05-25T19:45:43.825241+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3111,10 +2685,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-006996"
+          "id": "event-006974"
         },
         {
-          "source_line": 6997,
+          "source_line": 6975,
           "timestamp": "2026-05-25T19:45:46.184434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3134,10 +2708,10 @@
               "context": "5"
             }
           },
-          "id": "event-006997"
+          "id": "event-006975"
         },
         {
-          "source_line": 6998,
+          "source_line": 6976,
           "timestamp": "2026-05-25T19:45:46.485984+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3154,10 +2728,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
             }
           },
-          "id": "event-006998"
+          "id": "event-006976"
         },
         {
-          "source_line": 6999,
+          "source_line": 6977,
           "timestamp": "2026-05-25T19:45:46.787682+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3172,10 +2746,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-006999"
+          "id": "event-006977"
         },
         {
-          "source_line": 7000,
+          "source_line": 6978,
           "timestamp": "2026-05-25T19:45:46.838361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3192,10 +2766,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-007000"
+          "id": "event-006978"
         },
         {
-          "source_line": 7001,
+          "source_line": 6979,
           "timestamp": "2026-05-25T19:45:46.838844+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3210,10 +2784,10 @@
             "tool": "Grep",
             "elapsed_ms": 654
           },
-          "id": "event-007001"
+          "id": "event-006979"
         },
         {
-          "source_line": 7002,
+          "source_line": 6980,
           "timestamp": "2026-05-25T19:45:46.889458+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3232,10 +2806,10 @@
               "limit": "50"
             }
           },
-          "id": "event-007002"
+          "id": "event-006980"
         },
         {
-          "source_line": 7003,
+          "source_line": 6981,
           "timestamp": "2026-05-25T19:45:46.940147+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3250,10 +2824,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-007003"
+          "id": "event-006981"
         },
         {
-          "source_line": 7004,
+          "source_line": 6982,
           "timestamp": "2026-05-25T19:45:46.990773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3268,10 +2842,10 @@
             "tool": "Read",
             "elapsed_ms": 152
           },
-          "id": "event-007004"
+          "id": "event-006982"
         },
         {
-          "source_line": 7005,
+          "source_line": 6983,
           "timestamp": "2026-05-25T19:45:48.346101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3288,10 +2862,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/*tost*"
             }
           },
-          "id": "event-007005"
+          "id": "event-006983"
         },
         {
-          "source_line": 7006,
+          "source_line": 6984,
           "timestamp": "2026-05-25T19:45:48.848316+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3306,10 +2880,10 @@
             "tool": "Glob",
             "elapsed_ms": 502
           },
-          "id": "event-007006"
+          "id": "event-006984"
         },
         {
-          "source_line": 7007,
+          "source_line": 6985,
           "timestamp": "2026-05-25T19:45:48.848675+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3326,10 +2900,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_sensitivity_full.json"
             }
           },
-          "id": "event-007007"
+          "id": "event-006985"
         },
         {
-          "source_line": 7008,
+          "source_line": 6986,
           "timestamp": "2026-05-25T19:45:48.899153+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3344,10 +2918,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-007008"
+          "id": "event-006986"
         },
         {
-          "source_line": 7009,
+          "source_line": 6987,
           "timestamp": "2026-05-25T19:45:50.256075+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3365,10 +2939,10 @@
               "description": "Recompute all Table 2 means, deltas, and stds from raw registry values"
             }
           },
-          "id": "event-007009"
+          "id": "event-006987"
         },
         {
-          "source_line": 7010,
+          "source_line": 6988,
           "timestamp": "2026-05-25T19:45:50.306697+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3385,10 +2959,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex"
             }
           },
-          "id": "event-007010"
+          "id": "event-006988"
         },
         {
-          "source_line": 7011,
+          "source_line": 6989,
           "timestamp": "2026-05-25T19:45:50.357321+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3403,10 +2977,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-007011"
+          "id": "event-006989"
         },
         {
-          "source_line": 7012,
+          "source_line": 6990,
           "timestamp": "2026-05-25T19:45:50.659268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3421,10 +2995,10 @@
             "tool": "Read",
             "elapsed_ms": 352
           },
-          "id": "event-007012"
+          "id": "event-006990"
         },
         {
-          "source_line": 7013,
+          "source_line": 6991,
           "timestamp": "2026-05-25T19:45:51.512904+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3444,10 +3018,10 @@
               "context": "3"
             }
           },
-          "id": "event-007013"
+          "id": "event-006991"
         },
         {
-          "source_line": 7014,
+          "source_line": 6992,
           "timestamp": "2026-05-25T19:45:51.664009+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3462,10 +3036,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-007014"
+          "id": "event-006992"
         },
         {
-          "source_line": 7015,
+          "source_line": 6993,
           "timestamp": "2026-05-25T19:45:51.664412+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3482,10 +3056,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/*.tex"
             }
           },
-          "id": "event-007015"
+          "id": "event-006993"
         },
         {
-          "source_line": 7016,
+          "source_line": 6994,
           "timestamp": "2026-05-25T19:45:51.714866+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3500,10 +3074,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-007016"
+          "id": "event-006994"
         },
         {
-          "source_line": 7017,
+          "source_line": 6995,
           "timestamp": "2026-05-25T19:45:54.825700+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3521,10 +3095,10 @@
               "limit": "100"
             }
           },
-          "id": "event-007017"
+          "id": "event-006995"
         },
         {
-          "source_line": 7018,
+          "source_line": 6996,
           "timestamp": "2026-05-25T19:45:54.926487+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3539,10 +3113,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-007018"
+          "id": "event-006996"
         },
         {
-          "source_line": 7019,
+          "source_line": 6997,
           "timestamp": "2026-05-25T19:45:55.077418+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3559,10 +3133,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report/tost_multi_margin_results.txt"
             }
           },
-          "id": "event-007019"
+          "id": "event-006997"
         },
         {
-          "source_line": 7020,
+          "source_line": 6998,
           "timestamp": "2026-05-25T19:45:55.127971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3575,6 +3149,445 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006998"
+        },
+        {
+          "source_line": 6999,
+          "timestamp": "2026-05-25T19:45:55.730536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle|90.63|95.83|2.80|14.58|function.level.*oracle|repo.level.*oracle",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-006999"
+        },
+        {
+          "source_line": 7000,
+          "timestamp": "2026-05-25T19:45:56.232906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "207-\n208-\\begin{figure}[t]\n209-\\centering\n210:\\includegraphics[width=\\columnwidth]{figures/paper/fig3_oracle_stratified.pdf}\n211-\\caption{Oracle per-test advantage by F2P test count $T$. Advantage is zero at $T{=}1$ (68.7\\% of instances) and concentrates at $T{=}2$ (19.1\\%, contributing 55.3\\% of total advantage).}\n212:\\label{fig:oracle_stratified}\n213-\\end{figure}\n214-\n215:[Omitted long matching line]\n216-\n217-\\subsection{Threats to Validity}\n218-\\label{sec:threats}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-007000"
+        },
+        {
+          "source_line": 7001,
+          "timestamp": "2026-05-25T19:45:56.885703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle|90.63|95.83|2.80|14.58",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-007001"
+        },
+        {
+          "source_line": 7002,
+          "timestamp": "2026-05-25T19:45:56.986540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3-\\noindent\\textbf{Appendix overview.} A: Oracle analysis. B: Ablations. C: Per-mutation breakdown. D: Variant-level accuracy. E: Hyperparameters. F: Prompt templates. G: Mutation distribution. H: Qualitative errors. I: Extended analysis (I.a--I.k). J: TOST sensitivity (J.1: Bayesian ROPE). K: Effect sizes. L: Holm-Bonferroni. M: Mixed-effects regression. N: Parseable bias. O: Threats (O.1: CWM convergence; O.2: Extended validity). P: AI assistants.\n4-\n5-\\section{Oracle Accuracy-Utility Analysis}\n6:\\label{app:oracle}\n7-\n8:We stratify SWE-bench Verified instances by Fail-to-Pass (F2P) test count $T$, comparing per-test vs.\\ trajectory-level oracle resolve rates under i.i.d.\\ and block-correlated error models (ICC $= 0.191$, from function-level analysis; \\S\\ref{sec:equivalence}).\n9-\n10-\\begin{table}[h]\n11-\\centering\n12-\\small\n13-\\caption{Oracle accuracy-utility frontier: per-test advantage stratified by F2P test count ($T$) on SWE-bench Verified (500 instances). Block-correlated model uses function-level ICC $= 0.191$ (from function-level analysis, \\S\\ref{sec:equivalence}). Pass-to-Pass (P2P) regression rate: 1.04\\% mean, 0\\% median.}\n14:\\label{tab:oracle}\n15-\\resizebox{\\columnwidth}{!}{%\n16-\\setlength{\\tabcolsep}{3pt}\n17-\\begin{tabular}{lcccc}\n--\n28-\\end{tabular}}\n29-\\end{table}\n30-\n31:Figure~\\ref{fig:oracle_stratified} (main text) shows the oracle per-test advantage by F2P test count.\n32-\n33:[Omitted long matching line]\n34-\n35-\\paragraph{Sensitivity to ICC estimate.}\n36:[Omitted long matching line]\n37-\n38-\\section{Ablation Studies}\n39-\\label{app:ablations}\n--\n358-[Omitted long context line]\n359-\n360-\\paragraph{Complementarity.}\n361:These failure patterns operate at different levels: \\cwm{} fails at the format level (producing no usable signal), while \\cls{} fails at the reasoning level (producing a confident but incorrect binary verdict). Both formulations are FP-dominant (over-predict failure), but \\cwm{}'s higher FP rate (70.3\\% vs.\\ 56.5\\%) means it over-predicts\n…[truncated 1853 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-007002"
+        },
+        {
+          "source_line": 7003,
+          "timestamp": "2026-05-25T19:45:57.590334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_multi_margin.csv"
+            }
+          },
+          "id": "event-007003"
+        },
+        {
+          "source_line": 7004,
+          "timestamp": "2026-05-25T19:45:57.590773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmargin_pp,ci90_lower,ci90_upper,pooled_mean_diff_pp,bootstrap_se,p_value,reject_null,n_pairs,n_clusters,n_obs\n2\t1.0,-0.275,1.620,0.661,0.577,0.2854,NO,4,114,7560\n3\t2.0,-0.275,1.620,0.661,0.577,0.0104,YES,4,114,7560\n4\t3.0,-0.275,1.620,0.661,0.577,0.0000,YES,4,114,7560\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-007004"
+        },
+        {
+          "source_line": 7005,
+          "timestamp": "2026-05-25T19:45:59.247024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"oracle-f2p-stratified\\|T1_pct\\|T1_block\\|T2_pct\\|T2_block\\|T3_5\\|T6plus\\|overall_block\\|T2_contribution\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -40",
+              "description": "Search for oracle stratified experiment in registry"
+            }
+          },
+          "id": "event-007005"
+        },
+        {
+          "source_line": 7006,
+          "timestamp": "2026-05-25T19:46:00.702962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle.*90.63.*2.80|2.80.*oracle|oracle.*95.83.*14.58|14.58.*oracle|oracle.*repo.*95.83|oracle.*func.*90.63",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-007006"
+        },
+        {
+          "source_line": 7007,
+          "timestamp": "2026-05-25T19:46:00.753674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-212-\\label{fig:oracle_stratified}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-213-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-214-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:215:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-216-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-217-\\subsection{Threats to Validity}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-218-\\label{sec:threats}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-367-At function level, \\cwm{} outputs are short status strings (mean ${\\sim}$5--15 tokens). The unparseable rate is only 1.39\\%, and default-to-pass bias is $<$1\\pp{}, well below the SESOI threshold. Exact string matching is appropriate for these short, structured outputs; semantic-but-format-different matches are rare given the constrained output space.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-368-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-369-\\paragraph{(a) Error complementarity.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:370:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-371-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/\n…[truncated 648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-007007"
+        },
+        {
+          "source_line": 7008,
+          "timestamp": "2026-05-25T19:46:02.259995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "643:  oracle-f2p-stratified:\n661:      T1_pct: 68.7\n662:      T1_block_adv: -0.09\n663:      T2_pct: 19.1\n664:      T2_block_adv: 31.69\n665:      T3_5_pct: 7.1\n666:      T3_5_block_adv: 40.74\n667:      T6plus_pct: 5.1\n668:      T6plus_block_adv: 40.06\n669:      overall_block_adv: 10.93\n670:      T2_contribution_pct: 55.3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "elapsed_ms": 3012
+          },
+          "id": "event-007008"
+        },
+        {
+          "source_line": 7009,
+          "timestamp": "2026-05-25T19:46:02.611997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"cwm-rank32\\|rank32\\|majority.voting\\|per-test-majority\\|cls8b-s42-ckpt.*seq2048\\|seq2048-ablation\\|exp-downsample\\|cls-downsample-400\\|exp-e-qwen3\\|repo-level-3shot\\|re-repair-docker\\|cls8b-s42-ckpt-ablation\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -50",
+              "description": "Search for key experiments in registry"
+            }
+          },
+          "id": "event-007009"
+        },
+        {
+          "source_line": 7010,
+          "timestamp": "2026-05-25T19:46:02.712913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "759:  per-test-majority-voting:\n767:        && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B\n768:        --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json\n774:      log_path: ~/runs/exec-sim-repair-verifier/per-test-majority-voting.log\n787:    hypothesis: Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B\n819:      greedy 是最优推理策略，majority voting 不值得采用。\n5158:  cls8b-s42-ckpt1000-test-seq2048-ablation:\n5175:      log_path: ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\n5410:  cwm-rank32-ablation:\n5417:        --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16\n5423:      log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\n5433:      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\n5463:  cwm-4b-rank32-ablation:\n5472:        --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed\n5473:        42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation\n5479:      log_path: ~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\n5488:      checkpoint_path: /root/autodl-tmp/checkpoints_cwm_4b_rank32/\n5503:    notes: Killed at ~5min on cuda:0 because duplicate of cwm-rank32-ablation (submitted\n5506:      baseline config). Canonical rank=32 ablation continues as cwm-rank32-ablation\n5507:      (PID 368823, bs=2/ga=16, output=checkpoints_cwm_rank32/). No checkpoints written\n5510:  cwm-rank32-ablation-v2:\n5517:        --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/\n5524:      log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\n5525:      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\n5542:    checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/best\n5543:    log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\n…[truncated 1577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-007010"
+        },
+        {
+          "source_line": 7011,
+          "timestamp": "2026-05-25T19:46:04.419880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "185",
+              "limit": "40"
+            }
+          },
+          "id": "event-007011"
+        },
+        {
+          "source_line": 7012,
+          "timestamp": "2026-05-25T19:46:04.520659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.025|tost_p.*0\\.02|p.*0\\.025",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+              "output_mode": "content",
+              "context": "2"
+            }
+          },
+          "id": "event-007012"
+        },
+        {
+          "source_line": 7013,
+          "timestamp": "2026-05-25T19:46:04.571399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "185\t\\midrule\n186\tFormat collapse & \\cwm{} (all) & N/A & 48--52\\% \\\\\n187\tDecision collapse & \\cls{} (DeepSeek, s123) & ${\\sim}$14\\% & 56\\% \\\\\n188\tAggr.\\ penalty & \\cls{} (Qwen3-8B) & 51--57\\% & 73--81\\% \\\\\n189\tAggr.\\ penalty & \\cls{} (DeepSeek, s42) & 38--51\\% & 79--81\\% \\\\\n190\t\\bottomrule\n191\t\\end{tabular}}\n192\t\\end{table}\n193\t\n194\t\\subsection{Analysis}\n195\t\\label{sec:analysis}\n196\t\n197\t\\paragraph{Aggregation penalty.} The aggregation penalty ranges from 1.36\\pp{} to 19\\pp{}, negligible at function level ($\\bar{T} \\approx 2.3$) but substantial at repo level ($\\bar{T} \\gg 10$; Appendix~\\ref{app:extended_analysis}(a)).\n198\t\n199\t\\begin{figure}[t]\n200\t\\centering\n201\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n202\t\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy---evidence of default-assignment inflation.}\n203\t\\label{fig:cwm_unparseable}\n204\t\\end{figure}\n205\t\n206\t\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens (Figure~\\ref{fig:cwm_unparseable}), leading to format collapse (53--74\\% unparseable; Appendix~\\ref{app:qualitative}). Even parseable outputs achieve only 38--43\\%, below majority; a model accidentally trained on CLS-format data achieves 86.05\\% with 0\\% unparseable; this confirms that degradation stems from output format complexity, not task difficulty (Appendix~\\ref{app:extended_analysis}(c)). Four targeted interventions all fail to close this gap (Appendix~\\ref{app:extended_analysis}(g)). \\cls{} achieves 217$\\times$ higher throughput (1 vs.\\ avg 477 output tokens).\n207\t\n208\t\\begin{figure}[t]\n209\t\\centering\n210\t\\includegraphics[width=\\columnwidth]\n…[truncated 1653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-007013"
+        },
+        {
+          "source_line": 7014,
+          "timestamp": "2026-05-25T19:46:04.623016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (32.4KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-7a9aef1a/582c0f6d-ada1-4fcd-b3d2-25d5d670557d/tool-results/toolu_01VkVUA4X9V7xwvAjcMiuxyd.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-462-  name: 4B-8B CLS vs CWM Paired Bootstrap Corrected\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-463-  type: data\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml:464:  description: 修正版 4B/8B CLS vs CWM paired bootstrap 统计分析。4B gap=1.25pp p=0.0253,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-465-    8B gap=2.26pp p=0.0066, Scaling P(8B>4B)=0.988\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-466-  path: projects/exec-sim-repair-verifier/artifacts/_project/data/4b_8b_cls_cwm_paired_bootstrap_corrected.json\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-121-| Config | CLS Acc | CWM Acc | Gap (pp) | p-value | Cohen's d |\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-122-|--------|---------|---------|----------|---------|-----------|\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md:123:| 4B (5 seeds) | 88.43 ± 0.78 | 87.19 ± 0.37 | +1.24 | 0.025 | 1.24 |\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-124-| 8B (3 seeds) | 89.39 ± 1.09 | 86.96 ± 0.72 | +2.43 | 0.007 | 4.97 |\n/home/ubuntu/.agent-ml-research-idea_gen_0509_\n…[truncated 101 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "elapsed_ms": 102
+          },
+          "id": "event-007014"
+        },
+        {
+          "source_line": 7015,
+          "timestamp": "2026-05-25T19:46:05.677460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"accuracy_greedy\\|accuracy_majority\\|delta_accuracy\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+              "description": "Check majority voting metrics"
+            }
+          },
+          "id": "event-007015"
+        },
+        {
+          "source_line": 7016,
+          "timestamp": "2026-05-25T19:46:06.430520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "798:      accuracy_greedy: 87.51\n799:      accuracy_majority_vote_K3: 86.83\n800:      delta_accuracy: -0.69"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "elapsed_ms": 753
+          },
+          "id": "event-007016"
+        },
+        {
+          "source_line": 7017,
+          "timestamp": "2026-05-25T19:46:06.631640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -n '759,830p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+              "description": "Read majority voting experiment entry"
+            }
+          },
+          "id": "event-007017"
+        },
+        {
+          "source_line": 7018,
+          "timestamp": "2026-05-25T19:46:06.632166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  per-test-majority-voting:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-12T08:18:14.827Z'\n    updated_at: '2026-05-12T10:06:09.994Z'\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier\n        && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B\n        --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json\n        --K 3 --temperature 0.7 --gpu 0\"\n      server: seetacloud-westd-4x5090\n      gpu:\n      - cuda:2\n      pid: '21710'\n      log_path: ~/runs/exec-sim-repair-verifier/per-test-majority-voting.log\n      submitted_at: '2026-05-12T09:22:45.956Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /home/sonny/exec-sim-repair-verifier/data/test.jsonl\n      data_count: 1890\n      model_name: Qwen/Qwen3-4B + LoRA\n      seed: 42\n      checkpoint_source: /home/sonny/exec-sim-repair-verifier/checkpoints/best/\n      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints/best/\n      wall_clock_seconds: 643.2\n      gpu_hours: 0.18\n    hypothesis: Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B\n      classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy\n    reproduce:\n      finished_at: '2026-05-12T09:25:13.934Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-12T09:25:15.074858+00:00'\n    conclusion: negative\n    metrics:\n      accuracy_greedy: 87.51\n      accuracy_majority_vote_K3: 86.83\n      delta_accuracy: -0.69\n      fail_f1_greedy: 87.86\n      fail_f1_mv: 87.29\n      pass_f1_greedy: 87.15\n      pass_f1_mv: 86.33\n      unanimous_rate: 93.3\n      split_samples: 127\n      flipped_correct_to_wrong: 28\n      flipped_wrong_to_correct: 15\n      net_flips: -13\n      per_pass_accuracy:\n      - \n…[truncated 859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-007018"
+        },
+        {
+          "source_line": 7019,
+          "timestamp": "2026-05-25T19:46:07.535810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tost.*0\\.025|0\\.025.*tost|CLS.*TRAJ.*p.*0\\.025",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-007019"
+        },
+        {
+          "source_line": 7020,
+          "timestamp": "2026-05-25T19:46:07.586544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-38-comparisons = [\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-39-    {\"name\": \"Repo: CLS vs CWM (Qwen3-8B)\",     \"raw_p\": 0.003, \"level\": \"repo\",     \"note\": \"paired bootstrap, diff=+29.17pp\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-40-    {\"name\": \"Func: CLS vs CWM (TOST ±2pp)\",    \"raw_p\": 0.007, \"level\": \"function\", \"note\": \"seed-level paired t-test, 5 seeds (same as clustered bootstrap)\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py:41:    {\"name\": \"Func: CLS vs TRAJ (TOST ±2pp)\",   \"raw_p\": 0.025, \"level\": \"function\", \"note\": \"seed-level paired t-test, 5 seeds, df=4\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-42-    {\"name\": \"Repo: CWM vs TRAJ (Qwen3-8B)\",    \"raw_p\": 0.039, \"level\": \"repo\",     \"note\": \"unpaired bootstrap, diff=-20.83pp\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-43-    {\"name\": \"Repo: CLS vs TRAJ (Qwen3-8B)\",    \"raw_p\": 0.385, \"level\": \"repo\",     \"note\": \"unpaired bootstrap, diff=+8.33pp\"},\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-44-]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-63-All 5 rows match `artifacts/holm_bonferroni_results.json` exactly:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-64-1. Repo CLS vs CWM: raw p=0.003, adj p=0.015 ✓\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-65-2. Func CLS vs CWM\n…[truncated 1912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
             "elapsed_ms": 50
           },
           "id": "event-007020"

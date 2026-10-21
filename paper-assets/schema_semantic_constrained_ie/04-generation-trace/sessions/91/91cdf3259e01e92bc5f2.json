@@ -9,21 +9,21 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_r4_m6q4_cfdr_transferability_20260517T110043.log",
     "occurrence": 1,
-    "bytes": 401922,
-    "sha256": "ef1d318e85bb87ccdcf93481e5d87553065f410100f096ad04e6fc8a48bd111f"
+    "bytes": 361423,
+    "sha256": "509069de2a2fa015a1f351b4c872041af6b98204d2075faddcf888f183fd074e"
   },
   "statistics": {
-    "messages": 108,
+    "messages": 102,
     "user_turns": 1,
-    "tool_calls": 35,
+    "tool_calls": 32,
     "roles": {
       "log": 1,
       "system": 24,
       "record": 1,
       "assistant": 10,
-      "tool_call": 35,
+      "tool_call": 32,
       "user": 1,
-      "tool_result": 35,
+      "tool_result": 32,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -1300,74 +1300,6 @@
         {
           "source_line": 39,
           "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01VNyBsT6McnnN6QSXNmVdhG",
-              "name": "Read",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": "toolu_0156cqe1jRdQt9gQptJ64nMD",
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "48ac2904-8b7a-4b3c-9c8b-6946ba7b666d",
-            "message": {
-              "model": "claude-haiku-4-5-20251001",
-              "id": "msg_01TrPWJn2SbJfsq8md8HRz56",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 6,
-                "cache_creation_input_tokens": 6904,
-                "cache_read_input_tokens": 29158,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 6904,
-                  "ephemeral_1h_input_tokens": 0
-                },
-                "output_tokens": 3,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000039"
-        },
-        {
-          "source_line": 40,
-          "timestamp": "2026-05-17T11:01:14.070Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01VNyBsT6McnnN6QSXNmVdhG",
-              "type": "tool_result",
-              "content": "1\t# Rebuttal Draft v2 — Response to Reviewer (Group C)\n2\t\n3\t---\n4\t\n5\t## Q1: CF and DR Weight / Interaction\n6\t\n7\t**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n8\t\n9\t**Response**:\n10\tCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n11\t\n12\tTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n13\t\n14\tCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n15\t\n16\tFurthermore, on SciERC (551 docs, Qwen3-8B), beam search ($k$=4) largely resolves the CF trade-off: beam search reduces constraint-fallback frequency by exploring alternative token sequences that satisfy both grammar and semantic masks simultaneously, reducing CF from 9.90% to 0.53% while eliminating all residual DR (0.93%→0%). This indicates that CF elevation under greedy decoding is an artifact of single-path search encountering grammar∩semantic=∅ conflicts, not a fundamental limitation of the constraint design.\n17\t\n18\t**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n19\t\n20\t---\n21\t\n22\t## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n23\t\n24\t**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n25\t\n26\t**Response**:\n27\tThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n28\t\n29\tWe identify three failure modes:\n30\t\n31\t1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n32\t\n33\t2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n34\t\n35\t3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n36\t\n37\tThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n38\t\n39\t**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n40\t\n41\t---\n42\t\n43\t## Q3: Is Grammar Redundant Under Fine-Tuning?\n44\t\n45\t**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n46\t\n47\t**Response**:\n48\tThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n49\t\n50\t**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.\n51\t\n52\t**Role 2: Enabling the semantic layer.** The semantic layer's domain-range enforcement operates by looking up the generated relation name in the ontology to retrieve valid (head_type, tail_type) pairs. If the relation name is OOV (not in vocabulary), the lookup fails and no constraint can be applied. Grammar ensures every generated relation name is in-vocabulary, thereby enabling the semantic layer to function. Without grammar, the semantic-only mode on DocRED FT still shows RV=0.23% (Qwen) / 0.15% (Llama) — these represent cases where the semantic layer cannot enforce DR constraints because it cannot resolve the relation name.\n53\t\n54\tThe ablation data confirms the complementarity: Semantic-only reduces DR by 39–72% across all four model×dataset settings, but the full system (grammar + semantic) achieves the lowest DR in all cases (0–0.20%), because the grammar layer's guarantee of valid relation names enables complete semantic enforcement.\n55\t\n56\t**Action**: Add a sentence in Section 6.2 explicitly noting that grammar's FT-regime role is as an enabling dependency for the semantic layer rather than as an independent violation reducer.\n57\t\n58\t---\n59\t\n60\t## Q4: R² Generalizability and Mistral as Outlier\n61\t\n62\t**Concern**: The reviewer questions whether the dual-factor regression (R²=0.886) generalizes beyond the four calibrated data points, particularly given Mistral's deviation.\n63\t\n64\t**Response**:\n65\tWe use a **dual-factor model** regressing `residual_DR ~ τ̄ × RV_baseline` (schema tightness multiplied by the model's relation vocabulary violation baseline). On n=4 calibrated points (Qwen + Llama, each on SciERC and DocRED), this model achieves **R² = 0.886**, accurately predicting the residual DR that remains after semantic constraint application. We acknowledge this is descriptive rather than predictive at the current sample size — it characterizes the relationship between schema tightness, vocabulary confusion, and residual DR for models that have been properly calibrated to the target schema.\n66\t\n67\tMistral constitutes a **boundary condition** that reveals a qualitatively different error mode. On SciERC, Mistral shows RV=0% (no vocabulary confusion) yet residual DR=13.4%. This disconnect arises because Mistral's DR originates from **entity type misclassification** — it generates syntactically valid relation names but systematically assigns wrong entity types (e.g., labeling organizations as persons), producing type-pair violations that the dual-factor model (which captures vocabulary-confusion-driven DR) does not account for. We do not report a 6-point R² because Mistral is a catastrophic outlier driven by a mechanistically distinct error source, making the aggregate statistic uninformative.\n68\t\n69\tThe dual-factor model's value is precisely in delineating *when* the semantic constraint layer is sufficient (calibrated models where DR stems from vocabulary confusion scaled by schema restrictiveness) versus *when* additional interventions are needed (models exhibiting systematic type misclassification). Mistral's deviation is thus a finding — it identifies entity type misclassification as a novel error mode that constrained decoding alone cannot address, motivating future work on type-aware decoding constraints.\n70\t\n71\t**Action**: Reframe the R² discussion in Section 5.4 as a \"calibrated-model characterization\" with the dual-factor formulation, and explicitly position Mistral as a boundary condition that reveals when grammar+semantic constraints are most impactful versus when a different error mechanism dominates.\n72\t\n73\t---\n74\t\n75\t## Q5: Fuzzy Matching Threshold Sensitivity\n76\t\n77\t**Concern**: The reviewer asks whether the fuzzy matching thresholds (Jaccard > 0.8, Levenshtein ≤ 2) were tuned on the evaluation data, potentially inflating reported metrics.\n78\t\n79\t**Response**:\n80\tThe thresholds are **a priori constants**, not tuned parameters. Both values (Token Jaccard > 0.8, Levenshtein distance ≤ 2) are hardcoded identically across 6 evaluation files (`violation_checker.py`, `unified_f1_eval.py`, `compute_bootstrap_ci.py`, `posthoc_filter.py`, etc.) with no parameterized interface — no CLI argument, no config file, no sweep code exists. They represent standard NLP soft-matching defaults (0.8 Jaccard ≈ allow 1/5 token difference; ≤2 Levenshtein ≈ tolerate minor typos).\n81\t\n82\tMore importantly, **fuzzy matching has negligible impact on reported results**:\n83\t\n84\t| Scope | Fuzzy match triggers | Total triples | Impact |\n85\t|-------|---------------------|---------------|--------|\n86\t| DocRED ZS unconstrained | 129 | 17,497 | 0.74% |\n87\t| All constrained modes (grammar/semantic/full) | **0** | — | **0%** |\n88\t| All FT experiments | **0** | — | **0%** |\n89\t| All SciERC experiments | **0** | — | **0%** |\n90\t\n91\tFuzzy matching triggers *only* in DocRED zero-shot unconstrained mode (where the model occasionally generates near-miss relation names like \"country\" for P17). In all constrained decoding modes — which constitute the primary experimental claims — and in all fine-tuned models, the fuzzy match count is exactly zero. The strict-vs-fuzzy R_F1 difference is <0.1pp even in the one setting where it triggers.\n92\t\n93\tAll main conclusions (DR reduction, layer complementarity, FT ablation findings) rest entirely on strict matching.\n94\t\n95\t**Action**: Add a footnote in Section 4.1 (Evaluation Protocol) stating that thresholds are fixed a priori constants and that fuzzy matching triggers in <1% of triples, exclusively in unconstrained baselines.\n96\t\n97\t---\n98\t\n99\t## Additional Points (for Author Response if space permits)\n100\t\n101\t### M7: Beam Search / Sampling Compatibility\n102\t\n103\tWe have now validated constraint robustness under **nucleus sampling** (temperature=0.7, top_p=0.9) on full SciERC (551 docs) and a DocRED subset (114 docs).\n104\t\n105\t| Dataset | Decoding | ET% | RV% | DR% | CF% | E-F1 | R-F1 |\n106\t|---------|----------|:---:|:---:|:---:|:---:|:----:|:----:|\n107\t| SciERC (551) | Greedy | 0 | 0 | 0.93 | 9.90 | 30.98 | 8.36 |\n108\t| SciERC (551) | Sampling | 0 | 0 | 0.75 | 9.90 | 31.28 | 7.42 |\n109\t| DocRED (114†) | Greedy | 0 | 0.03 | 10.21 | 2.57 | 59.37 | 8.23 |\n110\t| DocRED (114†) | Sampling | 0 | 0 | 10.31 | 12.63 | 57.05 | 7.92 |\n111\t\n112\t†Subset; full DocRED sampling requires ~300h due to extended generation under high-temperature sampling with complex schemas.\n113\t\n114\t**Key findings**:\n115\t\n116\t1. **Grammar-layer guarantees hold perfectly**: ET=0% and RV=0% under sampling on both datasets, confirming that CFG-based token masking is invariant to the sampling distribution — the constraint is applied *before* sampling, so any non-zero-probability token is guaranteed schema-valid regardless of temperature.\n117\t\n118\t2. **Semantic-layer effectiveness is maintained**: DR differs by only −0.18pp (SciERC) and +0.10pp (DocRED) between greedy and sampling. The domain-range constraint mask remains effective because it operates on the same pre-sampling logit filtering mechanism.\n119\t\n120\t3. **CF increase in DocRED sampling (+10.06pp)**: This is *not* a constraint failure. CF measures cross-field consistency (whether entity names in relation triples match declared entities). Under high-temperature sampling, the model's entity type annotations become less self-consistent — it generates valid entity names that happen to differ from previously declared ones. This is a model behavior issue (type annotation stochasticity), not a constraint bypass. SciERC shows no CF increase (+0.08pp) because its simpler schema produces less annotation variance.\n121\t\n122\t4. **Task performance**: E-F1 is stable (SciERC +0.30, DocRED −2.32); R-F1 shows minor decreases (−0.94, −0.31), consistent with sampling introducing diversity at the cost of precision.\n123\t\n124\t**Suggested paper phrasing**: \"Validated on full SciERC (551 docs) and a DocRED subset (114 docs); grammar-layer guarantees (ET=0%, RV=0%) and semantic-layer effectiveness (DR within ±0.2pp of greedy) are maintained under nucleus sampling (temperature=0.7, top_p=0.9). See Appendix Table~\\ref{tab:sampling-robustness} for full results.\"\n125\t\n126\t**Reproducibility**: All greedy experiments are fully deterministic (3 independent seeds produce identical outputs), confirming reported violation rates are perfectly reproducible.\n127\t\n128\t**Beam search**: Beam compatibility is achieved via per-step token replay from XGrammar's stateless API (64 lines for grammar layer, 61 lines for semantic layer). On SciERC (551 docs, Qwen3-8B), beam search ($k$=4) eliminates all residual DR (0.93%→0%) and reduces CF from 9.90% to 0.53% by reducing constraint-fallback frequency (beam exploration finds token sequences satisfying both grammar and semantic masks simultaneously). This provides additional evidence that OntoCoDec's constraint enforcement is decoding-strategy agnostic. See Appendix~\\ref{app:beam-search} for full results including Mistral-7B/DocRED.\n129\t\n130\t### RV=0.03% Residual in Grammar Mode\n131\t\n132\tThe 5 residual RV violations (0.03%, all in one document \"Souvlaki\") stem from an XGrammar v0.1.33 enum compilation bug where the grammar bitmask leaks token continuations across enum entries (e.g., after \"member\", token \"icipant\" is incorrectly allowed, producing the nonexistent relation \"membericipant of\"). This is a third-party library bug, not a limitation of our constraint formulation. The FT models do not trigger this bug. We will note this in the camera-ready as a known XGrammar issue.\n133\t\n134\t### Parse Failure Denominator\n135\t\n136\tOur violation rates use parsed-only denominators (excluding documents where JSON parsing fails entirely). The maximum adjustment under an all-set denominator assumption is <0.23pp (Llama DocRED ZS constrained: 2.55% → 2.32%), which does not affect any comparative conclusion. We will report both denominators in the supplementary material.\n137\t"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": "toolu_0156cqe1jRdQt9gQptJ64nMD",
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "4c6e4e18-7285-42f7-9d0a-6bece0c40124"
-          },
-          "id": "event-000040"
-        },
-        {
-          "source_line": 41,
-          "timestamp": null,
           "role": "system",
           "content": [
             {
@@ -1389,10 +1321,10 @@
               }
             }
           ],
-          "id": "event-000041"
+          "id": "event-000039"
         },
         {
-          "source_line": 42,
+          "source_line": 40,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1437,10 +1369,10 @@
               "context_management": null
             }
           },
-          "id": "event-000042"
+          "id": "event-000040"
         },
         {
-          "source_line": 43,
+          "source_line": 41,
           "timestamp": "2026-05-17T11:01:14.308Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1457,10 +1389,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "0415d2c7-5924-47fb-b450-15672a968352"
           },
-          "id": "event-000043"
+          "id": "event-000041"
         },
         {
-          "source_line": 44,
+          "source_line": 42,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1483,10 +1415,10 @@
               }
             }
           ],
-          "id": "event-000044"
+          "id": "event-000042"
         },
         {
-          "source_line": 45,
+          "source_line": 43,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1532,10 +1464,10 @@
               "context_management": null
             }
           },
-          "id": "event-000045"
+          "id": "event-000043"
         },
         {
-          "source_line": 46,
+          "source_line": 44,
           "timestamp": "2026-05-17T11:01:20.576Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1552,10 +1484,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "fd78a318-aefc-4955-8d97-a9509c30cf97"
           },
-          "id": "event-000046"
+          "id": "event-000044"
         },
         {
-          "source_line": 47,
+          "source_line": 45,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1578,10 +1510,10 @@
               }
             }
           ],
-          "id": "event-000047"
+          "id": "event-000045"
         },
         {
-          "source_line": 48,
+          "source_line": 46,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1630,10 +1562,10 @@
               "context_management": null
             }
           },
-          "id": "event-000048"
+          "id": "event-000046"
         },
         {
-          "source_line": 49,
+          "source_line": 47,
           "timestamp": "2026-05-17T11:01:21.698Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1650,10 +1582,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "1118fd0b-0383-447b-974a-d89c9954e6e3"
           },
-          "id": "event-000049"
+          "id": "event-000047"
         },
         {
-          "source_line": 50,
+          "source_line": 48,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1676,10 +1608,10 @@
               }
             }
           ],
-          "id": "event-000050"
+          "id": "event-000048"
         },
         {
-          "source_line": 51,
+          "source_line": 49,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1724,10 +1656,10 @@
               "context_management": null
             }
           },
-          "id": "event-000051"
+          "id": "event-000049"
         },
         {
-          "source_line": 52,
+          "source_line": 50,
           "timestamp": "2026-05-17T11:01:22.261Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1744,10 +1676,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "aa6b1582-472a-449e-a684-784d8d4c6d40"
           },
-          "id": "event-000052"
+          "id": "event-000050"
         },
         {
-          "source_line": 53,
+          "source_line": 51,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1770,10 +1702,10 @@
               }
             }
           ],
-          "id": "event-000053"
+          "id": "event-000051"
         },
         {
-          "source_line": 54,
+          "source_line": 52,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1819,10 +1751,10 @@
               "context_management": null
             }
           },
-          "id": "event-000054"
+          "id": "event-000052"
         },
         {
-          "source_line": 55,
+          "source_line": 53,
           "timestamp": "2026-05-17T11:01:25.537Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1839,10 +1771,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "7825161e-db4e-4282-8f46-4ce6a2d9e9bc"
           },
-          "id": "event-000055"
+          "id": "event-000053"
         },
         {
-          "source_line": 56,
+          "source_line": 54,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1865,10 +1797,10 @@
               }
             }
           ],
-          "id": "event-000056"
+          "id": "event-000054"
         },
         {
-          "source_line": 57,
+          "source_line": 55,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1913,10 +1845,10 @@
               "context_management": null
             }
           },
-          "id": "event-000057"
+          "id": "event-000055"
         },
         {
-          "source_line": 58,
+          "source_line": 56,
           "timestamp": "2026-05-17T11:01:25.979Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1933,10 +1865,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "43ea814d-6825-4ead-9cbb-4f74eb2bc315"
           },
-          "id": "event-000058"
+          "id": "event-000056"
         },
         {
-          "source_line": 59,
+          "source_line": 57,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1959,10 +1891,10 @@
               }
             }
           ],
-          "id": "event-000059"
+          "id": "event-000057"
         },
         {
-          "source_line": 60,
+          "source_line": 58,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2008,10 +1940,10 @@
               "context_management": null
             }
           },
-          "id": "event-000060"
+          "id": "event-000058"
         },
         {
-          "source_line": 61,
+          "source_line": 59,
           "timestamp": "2026-05-17T11:01:26.049Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2028,10 +1960,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "2a678b16-6fc7-43d0-a9d0-dc871b904252"
           },
-          "id": "event-000061"
+          "id": "event-000059"
         },
         {
-          "source_line": 62,
+          "source_line": 60,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -2054,79 +1986,10 @@
               }
             }
           ],
-          "id": "event-000062"
+          "id": "event-000060"
         },
         {
-          "source_line": 63,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01EEE1cRJr3UAu68BV617cUF",
-              "name": "Read",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v1.md",
-                "limit": 100
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": "toolu_0156cqe1jRdQt9gQptJ64nMD",
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "7624c033-1b27-45a9-afe7-a7e442584a2e",
-            "message": {
-              "model": "claude-haiku-4-5-20251001",
-              "id": "msg_01DNknjCTZGyFLkUDwykSwmW",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 6,
-                "cache_creation_input_tokens": 10296,
-                "cache_read_input_tokens": 57043,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 10296,
-                  "ephemeral_1h_input_tokens": 0
-                },
-                "output_tokens": 1,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000063"
-        },
-        {
-          "source_line": 64,
-          "timestamp": "2026-05-17T11:01:29.771Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01EEE1cRJr3UAu68BV617cUF",
-              "type": "tool_result",
-              "content": "1\t# Rebuttal Draft v1 — Response to Reviewer (Group C)\n2\t\n3\t---\n4\t\n5\t## Q1: CF and DR Weight / Interaction\n6\t\n7\t**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n8\t\n9\t**Response**:\n10\tCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n11\t\n12\tTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n13\t\n14\tCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n15\t\n16\t**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n17\t\n18\t---\n19\t\n20\t## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n21\t\n22\t**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n23\t\n24\t**Response**:\n25\tThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n26\t\n27\tWe identify three failure modes:\n28\t\n29\t1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n30\t\n31\t2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n32\t\n33\t3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n34\t\n35\tThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n36\t\n37\t**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n38\t\n39\t---\n40\t\n41\t## Q3: Is Grammar Redundant Under Fine-Tuning?\n42\t\n43\t**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n44\t\n45\t**Response**:\n46\tThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n47\t\n48\t**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.\n49\t\n50\t**Role 2: Enabling the semantic layer.** The semantic layer's domain-range enforcement operates by looking up the generated relation name in the ontology to retrieve valid (head_type, tail_type) pairs. If the relation name is OOV (not in vocabulary), the lookup fails and no constraint can be applied. Grammar ensures every generated relation name is in-vocabulary, thereby enabling the semantic layer to function. Without grammar, the semantic-only mode on DocRED FT still shows RV=0.23% (Qwen) / 0.15% (Llama) — these represent cases where the semantic layer cannot enforce DR constraints because it cannot resolve the relation name.\n51\t\n52\tThe ablation data confirms the complementarity: Semantic-only reduces DR by 41–72% across all four model×dataset settings, but the full system (grammar + semantic) achieves the lowest DR in all cases (0–0.20%), because the grammar layer's guarantee of valid relation names enables complete semantic enforcement.\n53\t\n54\t**Action**: Add a sentence in Section 6.2 explicitly noting that grammar's FT-regime role is as an enabling dependency for the semantic layer rather than as an independent violation reducer.\n55\t\n56\t---\n57\t\n58\t## Q4: R² Generalizability and Mistral as Outlier\n59\t\n60\t**Concern**: The reviewer questions whether the dual-factor regression (R²=0.886) generalizes beyond the four calibrated data points, particularly given Mistral's deviation.\n61\t\n62\t**Response**:\n63\tWe acknowledge that the n=4 dual-factor model (τ̄ × RV_baseline, R²=0.886) is descriptive rather than predictive — it characterizes the relationship between schema tightness, vocabulary confusion, and residual DR for models that have been properly calibrated to the target schema (via zero-shot prompting with schema-informed instructions).\n64\t\n65\tMistral's extreme deviation is informative rather than problematic. When included, the single-factor linear fit collapses (R² drops from 0.54 to 0.21 for τ̄-only), confirming that schema tightness alone is insufficient. Mistral's residual DR (13.4% on SciERC, 33.2% on DocRED) originates from a qualitatively different mechanism: **entity type misclassification**, not vocabulary confusion. Mistral generates syntactically valid relation names but systematically assigns wrong entity types (e.g., labeling organizations as persons), producing type-pair violations that no amount of relation-vocabulary calibration can address.\n66\t\n67\tThis is a finding about *model architecture limitations* in constrained decoding, not a limitation of our method. In fact, Mistral's case demonstrates that OntoCoDec provides the *greatest absolute benefit* precisely when models are least calibrated — the constrained-vs-unconstrained DR gap is largest for Mistral, validating the system's value proposition for weaker or out-of-distribution models.\n68\t\n69\t**Action**: Reframe the R² discussion in Section 5.4 as a \"calibrated-model characterization\" rather than a universal predictive model, and explicitly position Mistral as a boundary condition that reveals when grammar+semantic constraints are most impactful.\n70\t\n71\t---\n72\t\n73\t## Q5: Fuzzy Matching Threshold Sensitivity\n74\t\n75\t**Concern**: The reviewer asks whether the fuzzy matching thresholds (Jaccard > 0.8, Levenshtein ≤ 2) were tuned on the evaluation data, potentially inflating reported metrics.\n76\t\n77\t**Response**:\n78\tThe thresholds are **a priori constants**, not tuned parameters. Both values (Token Jaccard > 0.8, Levenshtein distance ≤ 2) are hardcoded identically across 6 evaluation files (`violation_checker.py`, `unified_f1_eval.py`, `compute_bootstrap_ci.py`, `posthoc_filter.py`, etc.) with no parameterized interface — no CLI argument, no config file, no sweep code exists. They represent standard NLP soft-matching defaults (0.8 Jaccard ≈ allow 1/5 token difference; ≤2 Levenshtein ≈ tolerate minor typos).\n79\t\n80\tMore importantly, **fuzzy matching has negligible impact on reported results**:\n81\t\n82\t| Scope | Fuzzy match triggers | Total triples | Impact |\n83\t|-------|---------------------|---------------|--------|\n84\t| DocRED ZS unconstrained | 129 | 17,497 | 0.74% |\n85\t| All constrained modes (grammar/semantic/full) | **0** | — | **0%** |\n86\t| All FT experiments | **0** | — | **0%** |\n87\t| All SciERC experiments | **0** | — | **0%** |\n88\t\n89\tFuzzy matching triggers *only* in DocRED zero-shot unconstrained mode (where the model occasionally generates near-miss relation names like \"country\" for P17). In all constrained decoding modes — which constitute the primary experimental claims — and in all fine-tuned models, the fuzzy match count is exactly zero. The strict-vs-fuzzy R_F1 difference is <0.1pp even in the one setting where it triggers.\n90\t\n91\tAll main conclusions (DR reduction, layer complementarity, FT ablation findings) rest entirely on strict matching.\n92\t\n93\t**Action**: Add a footnote in Section 4.1 (Evaluation Protocol) stating that thresholds are fixed a priori constants and that fuzzy matching triggers in <1% of triples, exclusively in unconstrained baselines.\n94\t\n95\t---\n96\t\n97\t## Additional Points (for Author Response if space permits)\n98\t\n99\t### Beam Search / Sampling Compatibility\n100\t"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": "toolu_0156cqe1jRdQt9gQptJ64nMD",
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "9d588529-840c-479f-b53c-5218a76dfe1b"
-          },
-          "id": "event-000064"
-        },
-        {
-          "source_line": 65,
+          "source_line": 61,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -2149,10 +2012,10 @@
               }
             }
           ],
-          "id": "event-000065"
+          "id": "event-000061"
         },
         {
-          "source_line": 66,
+          "source_line": 62,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2197,10 +2060,10 @@
               "context_management": null
             }
           },
-          "id": "event-000066"
+          "id": "event-000062"
         },
         {
-          "source_line": 67,
+          "source_line": 63,
           "timestamp": "2026-05-17T11:01:30.274Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2218,10 +2081,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "9c3d9a4a-c7ef-46ef-952f-77d3576705cc"
           },
-          "id": "event-000067"
+          "id": "event-000063"
         },
         {
-          "source_line": 68,
+          "source_line": 64,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -2244,10 +2107,10 @@
               }
             }
           ],
-          "id": "event-000068"
+          "id": "event-000064"
         },
         {
-          "source_line": 69,
+          "source_line": 65,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2293,10 +2156,10 @@
               "context_management": null
             }
           },
-          "id": "event-000069"
+          "id": "event-000065"
         },
         {
-          "source_line": 70,
+          "source_line": 66,
           "timestamp": "2026-05-17T11:01:32.240Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2313,10 +2176,10 @@
             "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
             "uuid": "b96049fd-069a-4561-85dc-a35cba7c4002"
           },
-          "id": "event-000070"
+          "id": "event-000066"
         },
         {
-          "source_line": 71,
+          "source_line": 67,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -2340,10 +2203,10 @@
               }
             }
           ],
-          "id": "event-000071"
+          "id": "event-000067"
         },
         {
-          "source_line": 72,
+          "source_line": 68,
           "timestamp": "2026-05-17T11:01:53.743Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2419,10 +2282,10 @@
               }
             }
           },
-          "id": "event-000072"
+          "id": "event-000068"
         },
         {
-          "source_line": 73,
+          "source_line": 69,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2467,10 +2330,10 @@
               "context_management": null
             }
           },
-          "id": "event-000073"
+          "id": "event-000069"
         },
         {
-          "source_line": 74,
+          "source_line": 70,
           "timestamp": "2026-05-17T11:01:58.463Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2497,10 +2360,10 @@
               }
             }
           },
-          "id": "event-000074"
+          "id": "event-000070"
         },
         {
-          "source_line": 75,
+          "source_line": 71,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2545,10 +2408,10 @@
               "context_management": null
             }
           },
-          "id": "event-000075"
+          "id": "event-000071"
         },
         {
-          "source_line": 76,
+          "source_line": 72,
           "timestamp": "2026-05-17T11:01:58.688Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2575,10 +2438,10 @@
               }
             }
           },
-          "id": "event-000076"
+          "id": "event-000072"
         },
         {
-          "source_line": 77,
+          "source_line": 73,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2623,10 +2486,10 @@
               "context_management": null
             }
           },
-          "id": "event-000077"
+          "id": "event-000073"
         },
         {
-          "source_line": 78,
+          "source_line": 74,
           "timestamp": "2026-05-17T11:01:59.140Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2653,10 +2516,10 @@
               }
             }
           },
-          "id": "event-000078"
+          "id": "event-000074"
         },
         {
-          "source_line": 79,
+          "source_line": 75,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2695,10 +2558,10 @@
               "context_management": null
             }
           },
-          "id": "event-000079"
+          "id": "event-000075"
         },
         {
-          "source_line": 80,
+          "source_line": 76,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2736,89 +2599,10 @@
               "context_management": null
             }
           },
-          "id": "event-000080"
+          "id": "event-000076"
         },
         {
-          "source_line": 81,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_019KsTJV5hiM4Uz5TkxbDHj2",
-              "name": "Read",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md",
-                "limit": 50
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "7156eb42-1a5f-4506-b9a2-c4cc92f0b54b",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01W8xQzHNbWqHrWT9pFGVajD",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 19100,
-                "cache_read_input_tokens": 27125,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 19100
-                },
-                "output_tokens": 9,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000081"
-        },
-        {
-          "source_line": 82,
-          "timestamp": "2026-05-17T11:02:05.090Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_019KsTJV5hiM4Uz5TkxbDHj2",
-              "type": "tool_result",
-              "content": "1\t# Rebuttal Draft v2 — Response to Reviewer (Group C)\n2\t\n3\t---\n4\t\n5\t## Q1: CF and DR Weight / Interaction\n6\t\n7\t**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n8\t\n9\t**Response**:\n10\tCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n11\t\n12\tTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n13\t\n14\tCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n15\t\n16\tFurthermore, on SciERC (551 docs, Qwen3-8B), beam search ($k$=4) largely resolves the CF trade-off: beam search reduces constraint-fallback frequency by exploring alternative token sequences that satisfy both grammar and semantic masks simultaneously, reducing CF from 9.90% to 0.53% while eliminating all residual DR (0.93%→0%). This indicates that CF elevation under greedy decoding is an artifact of single-path search encountering grammar∩semantic=∅ conflicts, not a fundamental limitation of the constraint design.\n17\t\n18\t**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n19\t\n20\t---\n21\t\n22\t## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n23\t\n24\t**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n25\t\n26\t**Response**:\n27\tThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n28\t\n29\tWe identify three failure modes:\n30\t\n31\t1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n32\t\n33\t2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n34\t\n35\t3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n36\t\n37\tThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n38\t\n39\t**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n40\t\n41\t---\n42\t\n43\t## Q3: Is Grammar Redundant Under Fine-Tuning?\n44\t\n45\t**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n46\t\n47\t**Response**:\n48\tThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n49\t\n50\t**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction."
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "e45c1322-0e7e-4125-85e1-9829bdae3715",
-            "uuid": "4cfc3ffd-c9d2-4695-9bed-94ebd6b9f36a",
-            "tool_use_result": {
-              "type": "text",
-              "file": {
-                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal_draft_v2.md",
-                "content": "# Rebuttal Draft v2 — Response to Reviewer (Group C)\n\n---\n\n## Q1: CF and DR Weight / Interaction\n\n**Concern**: The reviewer asks how CF (Cross-Field consistency violations) and DR (Domain-Range violations) are weighted and whether they trade off against each other.\n\n**Response**:\nCF and DR measure fundamentally different properties and should not be combined into a single weighted metric. DR measures ontological constraint violations (whether entity-type pairs are valid for a given relation), while CF measures cross-field consistency (whether head/tail entities referenced in a relation triple match previously declared entities). They operate on orthogonal axes of schema compliance.\n\nTable 5 (ablation) reports CF and DR separately precisely to expose the trade-off landscape. The key finding: CF rises when the semantic layer is active (full_s1: CF=9.90% on SciERC) because CF is a *byproduct* of the constraint fallback mechanism, not an independent optimization target. When the semantic layer's bitwise AND of grammar mask and domain-range mask produces an empty set (no token simultaneously satisfies both constraints), the system falls back to grammar-only decoding for that token position. This fallback may produce an entity name that is grammatically valid but inconsistent with previously generated fields — hence CF. The fallback design prioritizes generating *some* valid output over blocking generation entirely.\n\nCrucially, DR reduction (15.37% → 0.93% on SciERC, a 93.9% relative reduction) vastly outweighs the CF increase (+9.82pp), and CF violations are inherently less severe: they represent internal naming inconsistencies that downstream systems can resolve via string matching, whereas DR violations represent fundamentally invalid semantic assertions.\n\nFurthermore, on SciERC (551 docs, Qwen3-8B), beam search ($k$=4) largely resolves the CF trade-off: beam search reduces constraint-fallback frequency by exploring alternative token sequences that satisfy both grammar and semantic masks simultaneously, reducing CF from 9.90% to 0.53% while eliminating all residual DR (0.93%→0%). This indicates that CF elevation under greedy decoding is an artifact of single-path search encountering grammar∩semantic=∅ conflicts, not a fundamental limitation of the constraint design.\n\n**Action**: Add a clarifying footnote in Section 5 explaining that CF is a constraint-fallback artifact, not an independent error mode to be minimized jointly with DR.\n\n---\n\n## Q2: Quality of Grammar-Layer Replacements for OOV Relations\n\n**Concern**: The reviewer questions whether the grammar layer's replacement of out-of-vocabulary (OOV) relation names produces semantically meaningful outputs.\n\n**Response**:\nThis is precisely the limitation that motivates the semantic constraint layer. In the DocRED zero-shot unconstrained setting, we observe **5,261 triples with OOV relation names** (out of 2,038 unique OOV strings). The grammar layer replaces 4,357 of these with in-vocabulary names, but **36.6% (1,594) of replacements introduce new DR violations**. This occurs because XGrammar performs token-level CFG steering — it selects the nearest *syntactically* valid continuation based on token-prefix matching, with no semantic awareness.\n\nWe identify three failure modes:\n\n1. **Token-prefix collisions**: \"opponent\" → \"operator\" (both share prefix \"op\"); \"peaked at\" → \"performer\" (share \"pe\"). These produce semantically absurd triples (e.g., a cricketer \"operates\" a country).\n\n2. **Ontology gaps**: \"population\", \"instrument\" have no valid DocRED equivalent. Any grammar-forced replacement is necessarily wrong (e.g., \"population\" → \"has part\", asserting a numeric value is a constituent part of a county).\n\n3. **Silent semantic errors**: \"available on\" → \"operator\" passes type-checking (ORG→ORG is valid for P137) but reverses the semantic direction, producing undetectable errors at the type level.\n\nThese findings directly justify the two-layer architecture: the grammar layer guarantees *syntactic* schema validity (eliminating ET and RV violations entirely), while the semantic layer is needed to enforce *relational* validity that token-level matching cannot achieve.\n\n**Action**: Add a brief discussion in Section 4.3 with 2-3 representative replacement examples and aggregate statistics (36.6% DR-inducing rate).\n\n---\n\n## Q3: Is Grammar Redundant Under Fine-Tuning?\n\n**Concern**: The reviewer suggests that fine-tuned models may not need the grammar constraint layer at all.\n\n**Response**:\nThe FT ablation confirms that grammar constraints are indeed *operationally redundant* for ET and RV in fine-tuned models — both Qwen3-8B and Llama-3.1-8B produce zero ET violations and near-zero RV violations without constraints after fine-tuning. However, the grammar layer serves two essential roles even in the FT regime:\n\n**Role 1: Eliminating residual RV.** On DocRED, FT-Qwen unconstrained still shows RV=0.27% and FT-Llama shows RV=0.15%. Grammar-only mode reduces both to RV=0% (Tables 1-2 of the FT ablation). While small in absolute terms, this guarantees zero vocabulary violations — a hard requirement for downstream knowledge graph construction.",
-                "numLines": 50,
-                "startLine": 1,
-                "totalLines": 137
-              }
-            }
-          },
-          "id": "event-000082"
-        },
-        {
-          "source_line": 83,
+          "source_line": 77,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2866,10 +2650,10 @@
               "context_management": null
             }
           },
-          "id": "event-000083"
+          "id": "event-000077"
         },
         {
-          "source_line": 84,
+          "source_line": 78,
           "timestamp": "2026-05-17T11:02:06.210Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2968,10 +2752,10 @@
               "numFiles": 76
             }
           },
-          "id": "event-000084"
+          "id": "event-000078"
         },
         {
-          "source_line": 85,
+          "source_line": 79,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3010,10 +2794,10 @@
               "context_management": null
             }
           },
-          "id": "event-000085"
+          "id": "event-000079"
         },
         {
-          "source_line": 86,
+          "source_line": 80,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3051,10 +2835,10 @@
               "context_management": null
             }
           },
-          "id": "event-000086"
+          "id": "event-000080"
         },
         {
-          "source_line": 87,
+          "source_line": 81,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3099,10 +2883,10 @@
               "context_management": null
             }
           },
-          "id": "event-000087"
+          "id": "event-000081"
         },
         {
-          "source_line": 88,
+          "source_line": 82,
           "timestamp": "2026-05-17T11:02:09.813Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3129,10 +2913,10 @@
               }
             }
           },
-          "id": "event-000088"
+          "id": "event-000082"
         },
         {
-          "source_line": 89,
+          "source_line": 83,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3171,10 +2955,10 @@
               "context_management": null
             }
           },
-          "id": "event-000089"
+          "id": "event-000083"
         },
         {
-          "source_line": 90,
+          "source_line": 84,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3212,10 +2996,10 @@
               "context_management": null
             }
           },
-          "id": "event-000090"
+          "id": "event-000084"
         },
         {
-          "source_line": 91,
+          "source_line": 85,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3261,10 +3045,10 @@
               "context_management": null
             }
           },
-          "id": "event-000091"
+          "id": "event-000085"
         },
         {
-          "source_line": 92,
+          "source_line": 86,
           "timestamp": "2026-05-17T11:03:04.475Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3293,10 +3077,10 @@
               "total_deferred_tools": 26
             }
           },
-          "id": "event-000092"
+          "id": "event-000086"
         },
         {
-          "source_line": 93,
+          "source_line": 87,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3335,10 +3119,10 @@
               "context_management": null
             }
           },
-          "id": "event-000093"
+          "id": "event-000087"
         },
         {
-          "source_line": 94,
+          "source_line": 88,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3399,10 +3183,10 @@
               "context_management": null
             }
           },
-          "id": "event-000094"
+          "id": "event-000088"
         },
         {
-          "source_line": 95,
+          "source_line": 89,
           "timestamp": "2026-05-17T11:03:17.659Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3440,10 +3224,10 @@
               "verificationNudgeNeeded": false
             }
           },
-          "id": "event-000095"
+          "id": "event-000089"
         },
         {
-          "source_line": 96,
+          "source_line": 90,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3481,10 +3265,10 @@
               "context_management": null
             }
           },
-          "id": "event-000096"
+          "id": "event-000090"
         },
         {
-          "source_line": 97,
+          "source_line": 91,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3530,10 +3314,10 @@
               "context_management": null
             }
           },
-          "id": "event-000097"
+          "id": "event-000091"
         },
         {
-          "source_line": 98,
+          "source_line": 92,
           "timestamp": "2026-05-17T11:04:28.007Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3558,10 +3342,10 @@
               "userModified": false
             }
           },
-          "id": "event-000098"
+          "id": "event-000092"
         },
         {
-          "source_line": 99,
+          "source_line": 93,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3627,10 +3411,10 @@
               "context_management": null
             }
           },
-          "id": "event-000099"
+          "id": "event-000093"
         },
         {
-          "source_line": 100,
+          "source_line": 94,
           "timestamp": "2026-05-17T11:04:33.849Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3689,10 +3473,10 @@
               "verificationNudgeNeeded": false
             }
           },
-          "id": "event-000100"
+          "id": "event-000094"
         },
         {
-          "source_line": 101,
+          "source_line": 95,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3738,10 +3522,10 @@
               "context_management": null
             }
           },
-          "id": "event-000101"
+          "id": "event-000095"
         },
         {
-          "source_line": 102,
+          "source_line": 96,
           "timestamp": "2026-05-17T11:04:36.703Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3770,10 +3554,10 @@
               "total_deferred_tools": 26
             }
           },
-          "id": "event-000102"
+          "id": "event-000096"
         },
         {
-          "source_line": 103,
+          "source_line": 97,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3828,10 +3612,10 @@
               "context_management": null
             }
           },
-          "id": "event-000103"
+          "id": "event-000097"
         },
         {
-          "source_line": 104,
+          "source_line": 98,
           "timestamp": "2026-05-17T11:04:42.002Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3854,10 +3638,10 @@
               }
             }
           },
-          "id": "event-000104"
+          "id": "event-000098"
         },
         {
-          "source_line": 105,
+          "source_line": 99,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3923,10 +3707,10 @@
               "context_management": null
             }
           },
-          "id": "event-000105"
+          "id": "event-000099"
         },
         {
-          "source_line": 106,
+          "source_line": 100,
           "timestamp": "2026-05-17T11:04:46.254Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3990,10 +3774,10 @@
               "verificationNudgeNeeded": false
             }
           },
-          "id": "event-000106"
+          "id": "event-000100"
         },
         {
-          "source_line": 107,
+          "source_line": 101,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -4031,10 +3815,10 @@
               "context_management": null
             }
           },
-          "id": "event-000107"
+          "id": "event-000101"
         },
         {
-          "source_line": 108,
+          "source_line": 102,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -4111,10 +3895,10 @@
             "fast_mode_state": "off",
             "uuid": "09d4c44e-f591-48e2-a7b6-c4ba9b922331"
           },
-          "id": "event-000108"
+          "id": "event-000102"
         }
       ],
-      "message_count": 102
+      "message_count": 96
     }
   ],
   "readable_path": "readable/worker-executions/code-r4-m6q4-cfdr-transferability.md"

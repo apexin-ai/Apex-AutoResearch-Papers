@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_1f489e32588225ae3672d716b94662a8_reviewer_20260517T081447_180375.jsonl",
     "occurrence": 1,
-    "bytes": 822988,
-    "sha256": "d5087059e5d12da0289d415c426d7922c63d6af12bd902da2c89907945090a7b"
+    "bytes": 818653,
+    "sha256": "e27583438af981fa1938fd95664956e4811894e2e596440ca14f6be41e3728ad"
   },
   "statistics": {
-    "messages": 960,
+    "messages": 956,
     "user_turns": 64,
-    "tool_calls": 421,
+    "tool_calls": 419,
     "roles": {
       "user": 64,
-      "tool_call": 421,
-      "tool_result": 421,
+      "tool_call": 419,
+      "tool_result": 419,
       "assistant": 54
     },
     "unparsed_lines_preserved": 0,
@@ -371,11 +371,11 @@
     {
       "number": 31,
       "boundary": "recorded_user_message",
-      "message_count": 6,
+      "message_count": 4,
       "chunks": [
         {
           "path": "c1b6d6d9fd255466e178-part-0004.json",
-          "message_count": 6
+          "message_count": 4
         }
       ]
     },
@@ -437,11 +437,11 @@
     {
       "number": 37,
       "boundary": "recorded_user_message",
-      "message_count": 6,
+      "message_count": 4,
       "chunks": [
         {
           "path": "c1b6d6d9fd255466e178-part-0004.json",
-          "message_count": 6
+          "message_count": 4
         }
       ]
     },
@@ -507,11 +507,11 @@
       "chunks": [
         {
           "path": "c1b6d6d9fd255466e178-part-0004.json",
-          "message_count": 6
+          "message_count": 10
         },
         {
           "path": "c1b6d6d9fd255466e178-part-0005.json",
-          "message_count": 8
+          "message_count": 4
         }
       ]
     },
@@ -676,11 +676,7 @@
       "chunks": [
         {
           "path": "c1b6d6d9fd255466e178-part-0005.json",
-          "message_count": 10
-        },
-        {
-          "path": "c1b6d6d9fd255466e178-part-0006.json",
-          "message_count": 4
+          "message_count": 14
         }
       ]
     },

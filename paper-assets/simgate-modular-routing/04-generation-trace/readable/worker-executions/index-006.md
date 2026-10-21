@@ -6,7 +6,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 |---|---:|---:|---|---|
 | code anon repo figures v3 | 150 | 0 | [Read transcript](code-anon-repo-figures-v3.md) | [JSON](../../sessions/4f/4f27b97794a81e6f0a5f.json) |
 | audit server data inventory | 31 | 0 | [Read transcript](audit-server-data-inventory.md) | [JSON](../../sessions/86/863ad7de002c8918b1d9.json) |
-| analysis rebuttal grounding decomposition | 141 | 0 | [Read transcript](analysis-rebuttal-grounding-decomposition.md) | [JSON](../../sessions/55/5540937793fdb0f1276b.json) |
 | code llama 70b setup — This session is being continued from a previous conversation that ran out of context. The summary be | 751 | 1 | [Read transcript](code-llama-70b-setup.md) | [JSON](../../sessions/40/40b81a45174fa3fe6e80.json) |
 | code llama 70b setup v2 | 15 | 0 | [Read transcript](code-llama-70b-setup-v2.md) | [JSON](../../sessions/df/dfe0d160bb383c873b09.json) |
 | code llama 70b download fix | 19 | 0 | [Read transcript](code-llama-70b-download-fix.md) | [JSON](../../sessions/21/21daa32d9762f2095951.json) |

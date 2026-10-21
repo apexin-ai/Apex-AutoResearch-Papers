@@ -15459,7 +15459,7 @@ Rebuttal framework 更新完成，4 项素材全部整合。等 Director 对 Thr
 
 ## Round 424
 
-32 recorded events
+22 recorded events
 
 
 ### User

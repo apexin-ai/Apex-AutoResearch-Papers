@@ -7,317 +7,6 @@
       "messages": [
         {
           "source_line": 721,
-          "timestamp": "2026-05-27T15:18:06.689983+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (42 pages, 1444712 bytes).\nTranscript written on main.log.\ntype1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (42 pages, 1444712 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 3008
-          },
-          "id": "event-000721"
-        },
-        {
-          "source_line": 722,
-          "timestamp": "2026-05-27T15:18:15.627232+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__pdf_to_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "tool_args": {
-              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-              "project": "vla-ssd",
-              "pages": "5,7,8,9",
-              "dpi": "150"
-            }
-          },
-          "id": "event-000722"
-        },
-        {
-          "source_line": 723,
-          "timestamp": "2026-05-27T15:18:16.029373+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 354.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 346.4}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 364.9}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 327.6}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 402
-          },
-          "id": "event-000723"
-        },
-        {
-          "source_line": 724,
-          "timestamp": "2026-05-27T15:18:19.945287+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
-            }
-          },
-          "id": "event-000724"
-        },
-        {
-          "source_line": 725,
-          "timestamp": "2026-05-27T15:18:20.297098+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-000725"
-        },
-        {
-          "source_line": 726,
-          "timestamp": "2026-05-27T15:18:20.786535+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 841
-          },
-          "id": "event-000726"
-        },
-        {
-          "source_line": 727,
-          "timestamp": "2026-05-27T15:18:20.786993+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-000727"
-        },
-        {
-          "source_line": 728,
-          "timestamp": "2026-05-27T15:18:20.939988+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 642
-          },
-          "id": "event-000728"
-        },
-        {
-          "source_line": 729,
-          "timestamp": "2026-05-27T15:18:21.142977+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 355
-          },
-          "id": "event-000729"
-        },
-        {
-          "source_line": 730,
-          "timestamp": "2026-05-27T15:18:32.589347+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
-            }
-          },
-          "id": "event-000730"
-        },
-        {
-          "source_line": 731,
-          "timestamp": "2026-05-27T15:18:32.993514+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 404
-          },
-          "id": "event-000731"
-        },
-        {
-          "source_line": 732,
-          "timestamp": "2026-05-27T15:18:50.161684+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__pdf_to_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "tool_args": {
-              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
-              "project": "vla-ssd",
-              "pages": "6",
-              "dpi": "150"
-            }
-          },
-          "id": "event-000732"
-        },
-        {
-          "source_line": 733,
-          "timestamp": "2026-05-27T15:18:50.312835+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1275, \\\"height\\\": 1650, \\\"size_kb\\\": 318.7}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 151
-          },
-          "id": "event-000733"
-        },
-        {
-          "source_line": 734,
-          "timestamp": "2026-05-27T15:18:59.564983+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p6.png"
-            }
-          },
-          "id": "event-000734"
-        },
-        {
-          "source_line": 735,
-          "timestamp": "2026-05-27T15:18:59.918603+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 353
-          },
-          "id": "event-000735"
-        },
-        {
-          "source_line": 736,
-          "timestamp": "2026-05-27T15:19:14.114607+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && grep -c \"LaTeX Error\" main.log && grep -c \"Undefined\" main.log && grep -c \"Float too large\" main.log && echo \"Pages:\" && grep \"Output written\" main.log | tail -1",
-              "timeout": "5000"
-            }
-          },
-          "id": "event-000736"
-        },
-        {
-          "source_line": 737,
           "timestamp": "2026-05-27T15:19:14.165355+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -332,10 +21,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-000737"
+          "id": "event-000721"
         },
         {
-          "source_line": 738,
+          "source_line": 722,
           "timestamp": "2026-05-27T15:19:18.683431+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -353,10 +42,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-000738"
+          "id": "event-000722"
         },
         {
-          "source_line": 739,
+          "source_line": 723,
           "timestamp": "2026-05-27T15:19:18.734294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -371,10 +60,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-000739"
+          "id": "event-000723"
         },
         {
-          "source_line": 740,
+          "source_line": 724,
           "timestamp": "2026-05-27T15:19:23.772508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -392,10 +81,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-000740"
+          "id": "event-000724"
         },
         {
-          "source_line": 741,
+          "source_line": 725,
           "timestamp": "2026-05-27T15:19:23.873405+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -410,10 +99,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-000741"
+          "id": "event-000725"
         },
         {
-          "source_line": 742,
+          "source_line": 726,
           "timestamp": "2026-05-27T15:19:47.967290+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -431,10 +120,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-000742"
+          "id": "event-000726"
         },
         {
-          "source_line": 743,
+          "source_line": 727,
           "timestamp": "2026-05-27T15:19:51.702861+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -449,10 +138,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3735
           },
-          "id": "event-000743"
+          "id": "event-000727"
         },
         {
-          "source_line": 744,
+          "source_line": 728,
           "timestamp": "2026-05-27T15:19:57.978118+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -465,7 +154,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-000744"
+          "id": "event-000728"
         }
       ]
     },
@@ -473,7 +162,7 @@
       "number": 10,
       "messages": [
         {
-          "source_line": 745,
+          "source_line": 729,
           "timestamp": "2026-05-27T16:43:46.334966+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -487,10 +176,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-000745"
+          "id": "event-000729"
         },
         {
-          "source_line": 746,
+          "source_line": 730,
           "timestamp": "2026-05-27T16:43:55.975120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -509,10 +198,10 @@
               "limit": "8"
             }
           },
-          "id": "event-000746"
+          "id": "event-000730"
         },
         {
-          "source_line": 747,
+          "source_line": 731,
           "timestamp": "2026-05-27T16:43:56.025914+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -527,10 +216,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000747"
+          "id": "event-000731"
         },
         {
-          "source_line": 748,
+          "source_line": 732,
           "timestamp": "2026-05-27T16:44:00.894100+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -550,10 +239,10 @@
               "dpi": "165"
             }
           },
-          "id": "event-000748"
+          "id": "event-000732"
         },
         {
-          "source_line": 749,
+          "source_line": 733,
           "timestamp": "2026-05-27T16:44:01.195849+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -568,10 +257,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 301
           },
-          "id": "event-000749"
+          "id": "event-000733"
         },
         {
-          "source_line": 750,
+          "source_line": 734,
           "timestamp": "2026-05-27T16:44:04.932586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -588,10 +277,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-000750"
+          "id": "event-000734"
         },
         {
-          "source_line": 751,
+          "source_line": 735,
           "timestamp": "2026-05-27T16:44:05.636081+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -606,10 +295,10 @@
             "tool": "Read",
             "elapsed_ms": 703
           },
-          "id": "event-000751"
+          "id": "event-000735"
         },
         {
-          "source_line": 752,
+          "source_line": 736,
           "timestamp": "2026-05-27T16:44:24.400779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -629,10 +318,10 @@
               "new_string": "\\includegraphics[width=0.78\\textwidth]{figures/fig_matrix_heatmap.pdf}"
             }
           },
-          "id": "event-000752"
+          "id": "event-000736"
         },
         {
-          "source_line": 753,
+          "source_line": 737,
           "timestamp": "2026-05-27T16:44:24.451595+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -647,10 +336,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000753"
+          "id": "event-000737"
         },
         {
-          "source_line": 754,
+          "source_line": 738,
           "timestamp": "2026-05-27T16:44:29.671636+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -668,10 +357,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000754"
+          "id": "event-000738"
         },
         {
-          "source_line": 755,
+          "source_line": 739,
           "timestamp": "2026-05-27T16:44:32.185142+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -686,10 +375,10 @@
             "tool": "Bash",
             "elapsed_ms": 2513
           },
-          "id": "event-000755"
+          "id": "event-000739"
         },
         {
-          "source_line": 756,
+          "source_line": 740,
           "timestamp": "2026-05-27T16:44:37.906881+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -709,10 +398,10 @@
               "new_string": "\\includegraphics[width=0.76\\textwidth]{figures/fig_matrix_heatmap.pdf}"
             }
           },
-          "id": "event-000756"
+          "id": "event-000740"
         },
         {
-          "source_line": 757,
+          "source_line": 741,
           "timestamp": "2026-05-27T16:44:37.957613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -727,10 +416,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000757"
+          "id": "event-000741"
         },
         {
-          "source_line": 758,
+          "source_line": 742,
           "timestamp": "2026-05-27T16:44:42.977497+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -748,10 +437,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000758"
+          "id": "event-000742"
         },
         {
-          "source_line": 759,
+          "source_line": 743,
           "timestamp": "2026-05-27T16:44:45.286298+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -766,10 +455,10 @@
             "tool": "Bash",
             "elapsed_ms": 2308
           },
-          "id": "event-000759"
+          "id": "event-000743"
         },
         {
-          "source_line": 760,
+          "source_line": 744,
           "timestamp": "2026-05-27T16:44:56.278839+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -786,10 +475,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py"
             }
           },
-          "id": "event-000760"
+          "id": "event-000744"
         },
         {
-          "source_line": 761,
+          "source_line": 745,
           "timestamp": "2026-05-27T16:44:56.330262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -804,10 +493,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-000761"
+          "id": "event-000745"
         },
         {
-          "source_line": 762,
+          "source_line": 746,
           "timestamp": "2026-05-27T16:45:27.701198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -825,10 +514,10 @@
               "content": "\"\"\"\nRegenerate fig_matrix_heatmap.pdf with correct ΔR² values from Table 1.\nDesigned for display at 0.75\\\\textwidth (~4.9 inches) with minimal scaling.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as patches\nimport numpy as np\n\narchitectures = ['OpenVLA', 'TracVLA', 'NORA']\nsuites = ['Goal', 'Spatial', 'Object', 'Long']\ntransition_types = {\n    'OpenVLA': 'VLA→VLA',\n    'TracVLA': 'VLM→VLA',\n    'NORA': 'VLM→VLA',\n}\n\ndata = {\n    ('OpenVLA', 'Goal'): 0.086,\n    ('OpenVLA', 'Spatial'): 0.037,\n    ('OpenVLA', 'Object'): 0.037,\n    ('OpenVLA', 'Long'): 0.033,\n    ('TracVLA', 'Goal'): 0.333,\n    ('TracVLA', 'Spatial'): 0.156,\n    ('TracVLA', 'Object'): 0.362,\n    ('TracVLA', 'Long'): 0.358,\n    ('NORA', 'Goal'): 0.455,\n    ('NORA', 'Spatial'): 0.308,\n    ('NORA', 'Object'): None,\n    ('NORA', 'Long'): None,\n}\n\nTHRESHOLD = 0.10\nnrows = len(architectures)\nncols = len(suites)\n\ncell_w = 0.88\ncell_h = 0.48\n\nfig_w = 5.2\nfig_h = 1.75\nfig, ax = plt.subplots(figsize=(fig_w, fig_h))\n\ncmap = plt.cm.Blues\nvmin, vmax = 0.0, 0.50\n\nfor i in range(nrows):\n    for j in range(ncols):\n        val = data[(architectures[i], suites[j])]\n        x0 = j * cell_w\n        y0 = (nrows - 1 - i) * cell_h\n        gap = 0.03\n        if val is None:\n            rect = patches.FancyBboxPatch(\n                (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n                boxstyle=\"round,pad=0.02\",\n                facecolor='#E0E0E0', edgecolor='#AAAAAA', linewidth=0.6\n            )\n            ax.add_patch(rect)\n            ax.text(x0 + cell_w/2, y0 + cell_h/2, 'N/A',\n                    ha='center', va='center', fontsize=8, color='#888888',\n                    fontweight='bold')\n        else:\n            norm_val = np.clip((val - vmin) / (vmax - vmin), 0, 1)\n            color = cmap(norm_val)\n            rect = patches.FancyBboxPatch(\n                (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n                boxstyle=\"round,pad=0.02\",\n                facecolor=color, edgecolor='none', linewidth=0\n            )\n            ax.add_patch(rect)\n\n            if val > THRESHOLD:\n                border = patches.FancyBboxPatch(\n                    (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n                    boxstyle=\"round,pad=0.02\",\n                    facecolor='none', edgecolor='#CC3333', linewidth=1.5\n                )\n                ax.add_patch(border)\n\n            text_color = 'white' if norm_val > 0.55 else '#333333'\n            trans = transition_types[architectures[i]]\n            ax.text(x0 + cell_w/2, y0 + cell_h*0.70, trans,\n                    ha='center', va='center', fontsize=5.5, color=text_color,\n                    fontstyle='italic')\n            ax.text(x0 + cell_w/2, y0 + cell_h*0.35, f'{val:.3f}',\n                    ha='center', va='center', fontsize=9, color=text_color,\n                    fontweight='bold')\n\nfor j, suite in enumerate(suites):\n    ax.text(j * cell_w + cell_w/2, nrows * cell_h + 0.05, suite,\n            ha='center', va='bottom', fontsize=8, fontweight='bold')\n\nfor i, arch in enumerate(architectures):\n    ax.text(-0.06, (nrows - 1 - i) * cell_h + cell_h/2, arch,\n            ha='right', va='center', fontsize=8, fontweight='bold')\n\nax.set_xlim(-0.03, ncols * cell_w + 0.03)\nax.set_ylim(-0.22, nrows * cell_h + 0.22)\nax.axis('off')\n\nax.set_title('Cross-Architecture Representation Dynamics',\n             fontsize=9.5, fontweight='bold', pad=6)\n\nsm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=vmin, vmax=vmax))\nsm.set_array([])\ncbar_ax = fig.add_axes([0.92, 0.15, 0.015, 0.65])\ncbar = fig.colorbar(sm, cax=cbar_ax)\ncbar.set_label('$\\\\Delta R^2$ (peak − exit)', fontsize=7, labelpad=5)\ncbar.ax.tick_params(labelsize=6)\ncbar.ax.axhline(y=THRESHOLD, color='#CC3333', linewidth=1.2, linestyle='--')\ncbar.ax.text(1.2, THRESHOLD, 'substantial\\n(0.10)',\n             transform=cbar.ax.get_yaxis_transform(),\n             fontsize=5, color='#CC3333', va='center', ha='left')\n\nfig.text(0.48, 0.01,\n         'Values: peak−exit $\\\\Delta R^2$ from MCCV bootstrap (1000 iterations). '\n         'Gray cells: suite not available for this architecture.',\n         ha='center', fontsize=5.5, color='#666666')\n\nplt.subplots_adjust(left=0.12, right=0.90, top=0.86, bottom=0.08)\n\nimport os\nout_dir = os.path.dirname(os.path.abspath(__file__))\nproject_root = os.path.dirname(out_dir)\npaper_fig_dir = os.path.join(project_root, 'docs', 'paper', 'figures')\nartifacts_fig_dir = os.path.join(project_root, 'artifacts', 'figures')\n\nfor d in [paper_fig_dir, artifacts_fig_dir]:\n    os.makedirs(d, exist_ok=True)\n    fig.savefig(os.path.join(d, 'fig_matrix_heatmap.pdf'),\n                bbox_inches='tight', dpi=300, backend='pdf')\n    fig.savefig(os.path.join(d, 'fig_matrix_heatmap.png'),\n                bbox_inches='tight', dpi=200)\n\nprint(\"Generated fig_matrix_heatmap.pdf and .png\")\n# Print dimensions for verification\nimport fitz\ndoc = fitz.open(os.path.join(paper_fig_dir, 'fig_matrix_heatmap.pdf'))\np = doc[0]\nprint(f'PDF: {p.rect.width:.0f}x{p.rect.height:.0f}pt, aspect {p.rect.width/p.rect.height:.2f}')\ntarget = 0.75 * 468\nprint(f'At 0.75 textwidth ({target:.0f}pt): scale={target/p.rect.width:.2f}, height={target/p.rect.width*p.rect.height:.0f}pt')\nplt.close()\n"
             }
           },
-          "id": "event-000762"
+          "id": "event-000746"
         },
         {
-          "source_line": 763,
+          "source_line": 747,
           "timestamp": "2026-05-27T16:45:27.702033+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -843,10 +532,10 @@
             "tool": "Write",
             "elapsed_ms": 0
           },
-          "id": "event-000763"
+          "id": "event-000747"
         },
         {
-          "source_line": 764,
+          "source_line": 748,
           "timestamp": "2026-05-27T16:45:34.810455+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -864,10 +553,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000764"
+          "id": "event-000748"
         },
         {
-          "source_line": 765,
+          "source_line": 749,
           "timestamp": "2026-05-27T16:45:36.668107+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -882,10 +571,10 @@
             "tool": "Bash",
             "elapsed_ms": 1857
           },
-          "id": "event-000765"
+          "id": "event-000749"
         },
         {
-          "source_line": 766,
+          "source_line": 750,
           "timestamp": "2026-05-27T16:45:41.235694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -902,10 +591,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/fig_matrix_heatmap.png"
             }
           },
-          "id": "event-000766"
+          "id": "event-000750"
         },
         {
-          "source_line": 767,
+          "source_line": 751,
           "timestamp": "2026-05-27T16:45:41.287689+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -920,10 +609,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-000767"
+          "id": "event-000751"
         },
         {
-          "source_line": 768,
+          "source_line": 752,
           "timestamp": "2026-05-27T16:47:27.838713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -940,10 +629,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
             }
           },
-          "id": "event-000768"
+          "id": "event-000752"
         },
         {
-          "source_line": 769,
+          "source_line": 753,
           "timestamp": "2026-05-27T16:47:27.889638+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -958,10 +647,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000769"
+          "id": "event-000753"
         },
         {
-          "source_line": 770,
+          "source_line": 754,
           "timestamp": "2026-05-27T16:47:34.874434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -981,10 +670,10 @@
               "new_string": "\\includegraphics[width=0.75\\textwidth]{figures/fig_matrix_heatmap.pdf}"
             }
           },
-          "id": "event-000770"
+          "id": "event-000754"
         },
         {
-          "source_line": 771,
+          "source_line": 755,
           "timestamp": "2026-05-27T16:47:34.975360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -999,10 +688,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-000771"
+          "id": "event-000755"
         },
         {
-          "source_line": 772,
+          "source_line": 756,
           "timestamp": "2026-05-27T16:47:42.202519+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1021,10 +710,10 @@
               "subagent_type": "general-purpose"
             }
           },
-          "id": "event-000772"
+          "id": "event-000756"
         },
         {
-          "source_line": 773,
+          "source_line": 757,
           "timestamp": "2026-05-27T16:47:51.337642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1042,10 +731,10 @@
               "description": "Get PDF dimensions for both figure files"
             }
           },
-          "id": "event-000773"
+          "id": "event-000757"
         },
         {
-          "source_line": 774,
+          "source_line": 758,
           "timestamp": "2026-05-27T16:47:51.588911+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1060,10 +749,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-000774"
+          "id": "event-000758"
         },
         {
-          "source_line": 775,
+          "source_line": 759,
           "timestamp": "2026-05-27T16:47:55.353538+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1078,10 +767,10 @@
             "tool": "Agent",
             "elapsed_ms": 13151
           },
-          "id": "event-000775"
+          "id": "event-000759"
         },
         {
-          "source_line": 776,
+          "source_line": 760,
           "timestamp": "2026-05-27T16:48:29.564143+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1101,10 +790,10 @@
               "new_string": "\\begin{wrapfigure}[32]{R}{0.38\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity across the architecture-suite matrix. (a)~Cohen's $d$ for four perturbation conditions (E=empty, W=wrong, S=shuffled, P=paraphrased); asterisks mark the top condition per cell; dashed line: large-effect threshold ($d = 0.8$). (b)~Cosine distance on hidden representations (different scale).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
             }
           },
-          "id": "event-000776"
+          "id": "event-000760"
         },
         {
-          "source_line": 777,
+          "source_line": 761,
           "timestamp": "2026-05-27T16:48:29.564808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1119,10 +808,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000777"
+          "id": "event-000761"
         },
         {
-          "source_line": 778,
+          "source_line": 762,
           "timestamp": "2026-05-27T16:48:36.109095+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1142,10 +831,10 @@
               "new_string": "\\begin{table}[t]\n\\centering\n\\caption{\\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TracVLA). NORA uses cosine distance on hidden representations (different scale; see \\S\\ref{sec:cf_repr}).}\n\\label{tab:cf_summary}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}llcl@{}}"
             }
           },
-          "id": "event-000778"
+          "id": "event-000762"
         },
         {
-          "source_line": 779,
+          "source_line": 763,
           "timestamp": "2026-05-27T16:48:36.109718+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1160,10 +849,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000779"
+          "id": "event-000763"
         },
         {
-          "source_line": 780,
+          "source_line": 764,
           "timestamp": "2026-05-27T16:49:01.254881+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1181,10 +870,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000780"
+          "id": "event-000764"
         },
         {
-          "source_line": 781,
+          "source_line": 765,
           "timestamp": "2026-05-27T16:49:02.810889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1199,10 +888,10 @@
             "tool": "Bash",
             "elapsed_ms": 1556
           },
-          "id": "event-000781"
+          "id": "event-000765"
         },
         {
-          "source_line": 782,
+          "source_line": 766,
           "timestamp": "2026-05-27T16:49:09.860686+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1220,10 +909,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000782"
+          "id": "event-000766"
         },
         {
-          "source_line": 783,
+          "source_line": 767,
           "timestamp": "2026-05-27T16:49:09.911260+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1238,10 +927,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000783"
+          "id": "event-000767"
         },
         {
-          "source_line": 784,
+          "source_line": 768,
           "timestamp": "2026-05-27T16:49:13.224089+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1261,10 +950,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-000784"
+          "id": "event-000768"
         },
         {
-          "source_line": 785,
+          "source_line": 769,
           "timestamp": "2026-05-27T16:49:14.077730+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1279,10 +968,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 853
           },
-          "id": "event-000785"
+          "id": "event-000769"
         },
         {
-          "source_line": 786,
+          "source_line": 770,
           "timestamp": "2026-05-27T16:49:19.799841+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1299,10 +988,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-000786"
+          "id": "event-000770"
         },
         {
-          "source_line": 787,
+          "source_line": 771,
           "timestamp": "2026-05-27T16:49:20.153101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1319,10 +1008,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-000787"
+          "id": "event-000771"
         },
         {
-          "source_line": 788,
+          "source_line": 772,
           "timestamp": "2026-05-27T16:49:20.657601+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1337,10 +1026,10 @@
             "tool": "Read",
             "elapsed_ms": 857
           },
-          "id": "event-000788"
+          "id": "event-000772"
         },
         {
-          "source_line": 789,
+          "source_line": 773,
           "timestamp": "2026-05-27T16:49:20.659449+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1355,10 +1044,10 @@
             "tool": "Read",
             "elapsed_ms": 506
           },
-          "id": "event-000789"
+          "id": "event-000773"
         },
         {
-          "source_line": 790,
+          "source_line": 774,
           "timestamp": "2026-05-27T16:49:20.659912+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1375,10 +1064,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-000790"
+          "id": "event-000774"
         },
         {
-          "source_line": 791,
+          "source_line": 775,
           "timestamp": "2026-05-27T16:49:21.614771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1393,10 +1082,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-000791"
+          "id": "event-000775"
         },
         {
-          "source_line": 792,
+          "source_line": 776,
           "timestamp": "2026-05-27T16:49:21.615323+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1413,10 +1102,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-000792"
+          "id": "event-000776"
         },
         {
-          "source_line": 793,
+          "source_line": 777,
           "timestamp": "2026-05-27T16:49:21.767113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1433,10 +1122,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-000793"
+          "id": "event-000777"
         },
         {
-          "source_line": 794,
+          "source_line": 778,
           "timestamp": "2026-05-27T16:49:21.970235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1451,10 +1140,10 @@
             "tool": "Read",
             "elapsed_ms": 354
           },
-          "id": "event-000794"
+          "id": "event-000778"
         },
         {
-          "source_line": 795,
+          "source_line": 779,
           "timestamp": "2026-05-27T16:49:22.324034+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1469,10 +1158,10 @@
             "tool": "Read",
             "elapsed_ms": 556
           },
-          "id": "event-000795"
+          "id": "event-000779"
         },
         {
-          "source_line": 796,
+          "source_line": 780,
           "timestamp": "2026-05-27T16:50:52.575157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1492,10 +1181,10 @@
               "new_string": "\\begin{wrapfigure}[29]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity. (a)~Cohen's $d$ (E=empty, W=wrong, S=shuffled, P=paraphrased; dashed: $d{=}0.8$). (b)~Cosine distance on representations (different scale; \\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
             }
           },
-          "id": "event-000796"
+          "id": "event-000780"
         },
         {
-          "source_line": 797,
+          "source_line": 781,
           "timestamp": "2026-05-27T16:50:52.575981+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1510,10 +1199,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000797"
+          "id": "event-000781"
         },
         {
-          "source_line": 798,
+          "source_line": 782,
           "timestamp": "2026-05-27T16:50:58.397761+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1531,10 +1220,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000798"
+          "id": "event-000782"
         },
         {
-          "source_line": 799,
+          "source_line": 783,
           "timestamp": "2026-05-27T16:51:01.308024+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1549,10 +1238,10 @@
             "tool": "Bash",
             "elapsed_ms": 2910
           },
-          "id": "event-000799"
+          "id": "event-000783"
         },
         {
-          "source_line": 800,
+          "source_line": 784,
           "timestamp": "2026-05-27T16:51:26.984317+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1571,10 +1260,10 @@
               "limit": "15"
             }
           },
-          "id": "event-000800"
+          "id": "event-000784"
         },
         {
-          "source_line": 801,
+          "source_line": 785,
           "timestamp": "2026-05-27T16:51:27.035097+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1589,10 +1278,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000801"
+          "id": "event-000785"
         },
         {
-          "source_line": 802,
+          "source_line": 786,
           "timestamp": "2026-05-27T16:51:32.835195+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1612,10 +1301,10 @@
               "new_string": "\\vspace{-4pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n\\label{sec:routing_synthesis}\n\n\\looseness=-1\nThe three analyses separate two empirical patterns:"
             }
           },
-          "id": "event-000802"
+          "id": "event-000786"
         },
         {
-          "source_line": 803,
+          "source_line": 787,
           "timestamp": "2026-05-27T16:51:32.886063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1630,10 +1319,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000803"
+          "id": "event-000787"
         },
         {
-          "source_line": 804,
+          "source_line": 788,
           "timestamp": "2026-05-27T16:51:37.574740+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1652,10 +1341,10 @@
               "limit": "15"
             }
           },
-          "id": "event-000804"
+          "id": "event-000788"
         },
         {
-          "source_line": 805,
+          "source_line": 789,
           "timestamp": "2026-05-27T16:51:37.575242+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1670,10 +1359,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000805"
+          "id": "event-000789"
         },
         {
-          "source_line": 806,
+          "source_line": 790,
           "timestamp": "2026-05-27T16:51:41.691023+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1693,10 +1382,10 @@
               "new_string": "\\vspace{-4pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}\n\n\\looseness=-1\nL1 instruction-dominant head counts across architectures reveal"
             }
           },
-          "id": "event-000806"
+          "id": "event-000790"
         },
         {
-          "source_line": 807,
+          "source_line": 791,
           "timestamp": "2026-05-27T16:51:41.792059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1711,10 +1400,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-000807"
+          "id": "event-000791"
         },
         {
-          "source_line": 808,
+          "source_line": 792,
           "timestamp": "2026-05-27T16:51:45.306629+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1733,10 +1422,10 @@
               "limit": "20"
             }
           },
-          "id": "event-000808"
+          "id": "event-000792"
         },
         {
-          "source_line": 809,
+          "source_line": 793,
           "timestamp": "2026-05-27T16:51:45.357368+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1751,10 +1440,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000809"
+          "id": "event-000793"
         },
         {
-          "source_line": 810,
+          "source_line": 794,
           "timestamp": "2026-05-27T16:51:50.025334+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1774,10 +1463,10 @@
               "new_string": "\\vspace{-4pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}\n\n\\subsubsection{Instruction Sensitivity in Action-Producing VLAs}\n\\looseness=-1\nWe first evaluate counterfactual sensitivity in action-producing models using a shared action-space metric."
             }
           },
-          "id": "event-000810"
+          "id": "event-000794"
         },
         {
-          "source_line": 811,
+          "source_line": 795,
           "timestamp": "2026-05-27T16:51:50.026058+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1792,11 +1481,335 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-27T16:51:55.196002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-27T16:51:56.651348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (43 pages, 1445252 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-27T16:53:11.162525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\begin{wrapfigure}[29]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity. (a)~Cohen's $d$ (E=empty, W=wrong, S=shuffled, P=paraphrased; dashed: $d{=}0.8$). (b)~Cosine distance on representations (different scale; \\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
+              "new_string": "\\begin{wrapfigure}[27]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-8pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). Legend: E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
+            }
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-27T16:53:11.163173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-27T16:53:14.275111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-27T16:53:16.984203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (43 pages, 1445258 bytes).\nOutput written on main.pdf (43 pages, 1445258 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 2709
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-27T16:53:36.254708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\begin{wrapfigure}[27]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-8pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). Legend: E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
+              "new_string": "\\begin{wrapfigure}[26]{R}{0.42\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.40\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity across the architecture-suite matrix. (a)~Cohen's $d$ for four perturbation conditions (E=empty, W=wrong, S=shuffled, P=paraphrased); asterisks mark the top condition per cell; dashed line: large-effect threshold ($d = 0.8$). (b)~Cosine distance on hidden representations (different scale).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
+            }
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-27T16:53:36.255245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-27T16:53:42.429098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\vspace{-4pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}\n\n\\subsubsection{Instruction Sensitivity in Action-Producing VLAs}\n\\looseness=-1\nWe first evaluate counterfactual sensitivity in action-producing models using a shared action-space metric.",
+              "new_string": "\\vspace{-2pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}\n\n\\subsubsection{Instruction Sensitivity in Action-Producing VLAs}\nWe first evaluate counterfactual sensitivity in action-producing models using a shared action-space metric."
+            }
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-27T16:53:42.530092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-27T16:53:47.348580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\vspace{-4pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}\n\n\\looseness=-1\nL1 instruction-dominant head counts across architectures reveal",
+              "new_string": "\\vspace{-2pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}\n\nL1 instruction-dominant head counts across architectures reveal"
+            }
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-27T16:53:47.399399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-27T16:53:52.318348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\vspace{-4pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n\\label{sec:routing_synthesis}\n\n\\looseness=-1\nThe three analyses separate two empirical patterns:",
+              "new_string": "\\vspace{-2pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n\\label{sec:routing_synthesis}\n\nThe three analyses separate two empirical patterns:"
+            }
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-27T16:53:52.369251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-27T16:53:57.037566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\label{tab:cf_summary}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}llcl@{}}",
+              "new_string": "\\label{tab:cf_summary}\n\\small\n\\begin{tabular}{@{}llcl@{}}"
+            }
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-27T16:53:57.138439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
           "id": "event-000811"
         },
         {
           "source_line": 812,
-          "timestamp": "2026-05-27T16:51:55.196002+00:00",
+          "timestamp": "2026-05-27T16:54:01.103264+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -1817,25 +1830,63 @@
         },
         {
           "source_line": 813,
-          "timestamp": "2026-05-27T16:51:56.651348+00:00",
+          "timestamp": "2026-05-27T16:54:03.864594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "Output written on main.pdf (43 pages, 1445252 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+              "text": "Output written on main.pdf (43 pages, 1445394 bytes).\nOutput written on main.pdf (43 pages, 1445394 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Bash",
-            "elapsed_ms": 1455
+            "elapsed_ms": 2761
           },
           "id": "event-000813"
         },
         {
           "source_line": 814,
-          "timestamp": "2026-05-27T16:53:11.162525+00:00",
+          "timestamp": "2026-05-27T16:54:27.725951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport fitz\ndoc = fitz.open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_matrix_heatmap.pdf')\np = doc[0]\nw, h = p.rect.width, p.rect.height\nprint(f'Current heatmap: {w:.0f}x{h:.0f}pt, aspect {w/h:.2f}')\n# At 0.75 textwidth (351pt)\ndisplay_w = 0.75 * 468\ndisplay_h = display_w / w * h\nprint(f'At 0.75 textwidth: {display_w:.0f}x{display_h:.0f}pt')\n# At 0.76\ndisplay_w2 = 0.76 * 468\ndisplay_h2 = display_w2 / w * h\nprint(f'At 0.76 textwidth: {display_w2:.0f}x{display_h2:.0f}pt')\n\"\n"
+            }
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-27T16:54:27.978854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Current heatmap: 394x137pt, aspect 2.87\nAt 0.75 textwidth: 351x122pt\nAt 0.76 textwidth: 356x124pt"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-27T16:54:43.940115+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -1850,15 +1901,15 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{wrapfigure}[29]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity. (a)~Cohen's $d$ (E=empty, W=wrong, S=shuffled, P=paraphrased; dashed: $d{=}0.8$). (b)~Cosine distance on representations (different scale; \\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
-              "new_string": "\\begin{wrapfigure}[27]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-8pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). Legend: E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
+              "old_string": "\\includegraphics[width=0.75\\textwidth]{figures/fig_matrix_heatmap.pdf}",
+              "new_string": "\\includegraphics[width=0.76\\textwidth]{figures/fig_matrix_heatmap.pdf}"
             }
           },
-          "id": "event-000814"
+          "id": "event-000816"
         },
         {
-          "source_line": 815,
-          "timestamp": "2026-05-27T16:53:11.163173+00:00",
+          "source_line": 817,
+          "timestamp": "2026-05-27T16:54:43.940557+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -1872,11 +1923,11 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000815"
+          "id": "event-000817"
         },
         {
-          "source_line": 816,
-          "timestamp": "2026-05-27T16:53:14.275111+00:00",
+          "source_line": 818,
+          "timestamp": "2026-05-27T16:54:47.955542+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -1893,111 +1944,67 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000816"
+          "id": "event-000818"
         },
         {
-          "source_line": 817,
-          "timestamp": "2026-05-27T16:53:16.984203+00:00",
+          "source_line": 819,
+          "timestamp": "2026-05-27T16:54:49.460838+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "Output written on main.pdf (43 pages, 1445258 bytes).\nOutput written on main.pdf (43 pages, 1445258 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+              "text": "Output written on main.pdf (43 pages, 1445392 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Bash",
-            "elapsed_ms": 2709
-          },
-          "id": "event-000817"
-        },
-        {
-          "source_line": 818,
-          "timestamp": "2026-05-27T16:53:36.254708+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{wrapfigure}[27]{R}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-8pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). Legend: E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
-              "new_string": "\\begin{wrapfigure}[26]{R}{0.42\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.40\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity across the architecture-suite matrix. (a)~Cohen's $d$ for four perturbation conditions (E=empty, W=wrong, S=shuffled, P=paraphrased); asterisks mark the top condition per cell; dashed line: large-effect threshold ($d = 0.8$). (b)~Cosine distance on hidden representations (different scale).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
-            }
-          },
-          "id": "event-000818"
-        },
-        {
-          "source_line": 819,
-          "timestamp": "2026-05-27T16:53:36.255245+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 0
+            "elapsed_ms": 1505
           },
           "id": "event-000819"
         },
         {
           "source_line": 820,
-          "timestamp": "2026-05-27T16:53:42.429098+00:00",
+          "timestamp": "2026-05-27T16:55:09.817661+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
             {
               "type": "text",
-              "text": "called Edit"
+              "text": "called Read"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
+            "tool": "Read",
             "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\vspace{-4pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}\n\n\\subsubsection{Instruction Sensitivity in Action-Producing VLAs}\n\\looseness=-1\nWe first evaluate counterfactual sensitivity in action-producing models using a shared action-space metric.",
-              "new_string": "\\vspace{-2pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}\n\n\\subsubsection{Instruction Sensitivity in Action-Producing VLAs}\nWe first evaluate counterfactual sensitivity in action-producing models using a shared action-space metric."
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py"
             }
           },
           "id": "event-000820"
         },
         {
           "source_line": 821,
-          "timestamp": "2026-05-27T16:53:42.530092+00:00",
+          "timestamp": "2026-05-27T16:55:09.918644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+              "text": "1\t\"\"\"\n2\tRegenerate fig_matrix_heatmap.pdf with correct ΔR² values from Table 1.\n3\tDesigned for display at 0.75\\\\textwidth (~4.9 inches) with minimal scaling.\n4\t\"\"\"\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\timport matplotlib.patches as patches\n9\timport numpy as np\n10\t\n11\tarchitectures = ['OpenVLA', 'TracVLA', 'NORA']\n12\tsuites = ['Goal', 'Spatial', 'Object', 'Long']\n13\ttransition_types = {\n14\t    'OpenVLA': 'VLA→VLA',\n15\t    'TracVLA': 'VLM→VLA',\n16\t    'NORA': 'VLM→VLA',\n17\t}\n18\t\n19\tdata = {\n20\t    ('OpenVLA', 'Goal'): 0.086,\n21\t    ('OpenVLA', 'Spatial'): 0.037,\n22\t    ('OpenVLA', 'Object'): 0.037,\n23\t    ('OpenVLA', 'Long'): 0.033,\n24\t    ('TracVLA', 'Goal'): 0.333,\n25\t    ('TracVLA', 'Spatial'): 0.156,\n26\t    ('TracVLA', 'Object'): 0.362,\n27\t    ('TracVLA', 'Long'): 0.358,\n28\t    ('NORA', 'Goal'): 0.455,\n29\t    ('NORA', 'Spatial'): 0.308,\n30\t    ('NORA', 'Object'): None,\n31\t    ('NORA', 'Long'): None,\n32\t}\n33\t\n34\tTHRESHOLD = 0.10\n35\tnrows = len(architectures)\n36\tncols = len(suites)\n37\t\n38\tcell_w = 0.88\n39\tcell_h = 0.48\n40\t\n41\tfig_w = 5.2\n42\tfig_h = 1.75\n43\tfig, ax = plt.subplots(figsize=(fig_w, fig_h))\n44\t\n45\tcmap = plt.cm.Blues\n46\tvmin, vmax = 0.0, 0.50\n47\t\n48\tfor i in range(nrows):\n49\t    for j in range(ncols):\n50\t        val = data[(architectures[i], suites[j])]\n51\t        x0 = j * cell_w\n52\t        y0 = (nrows - 1 - i) * cell_h\n53\t        gap = 0.03\n54\t        if val is None:\n55\t            rect = patches.FancyBboxPatch(\n56\t                (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n57\t                boxstyle=\"round,pad=0.02\",\n58\t                facecolor='#E0E0E0', edgecolor='#AAAAAA', linewidth=0.6\n59\t            )\n60\t            ax.add_patch(rect)\n61\t            ax.text(x0 + cell_w/2, y0 + cell_h/2, 'N/A',\n62\t                    ha='center', va='center', fontsize=8, color='#888888',\n63\t                    fontweight='bold')\n64\t        else:\n65\t            norm_val = np.clip((val - vmin) / (vmax - vmin), 0, 1\n…[truncated 3779 chars]"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
+            "tool": "Read",
             "elapsed_ms": 100
           },
           "id": "event-000821"
         },
         {
           "source_line": 822,
-          "timestamp": "2026-05-27T16:53:47.348580+00:00",
+          "timestamp": "2026-05-27T16:55:14.586735+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -2011,22 +2018,22 @@
             "tool": "Edit",
             "tool_args": {
               "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\vspace{-4pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}\n\n\\looseness=-1\nL1 instruction-dominant head counts across architectures reveal",
-              "new_string": "\\vspace{-2pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}\n\nL1 instruction-dominant head counts across architectures reveal"
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py",
+              "old_string": "cell_w = 0.88\ncell_h = 0.48\n\nfig_w = 5.2\nfig_h = 1.75",
+              "new_string": "cell_w = 0.88\ncell_h = 0.40\n\nfig_w = 5.2\nfig_h = 1.50"
             }
           },
           "id": "event-000822"
         },
         {
           "source_line": 823,
-          "timestamp": "2026-05-27T16:53:47.399399+00:00",
+          "timestamp": "2026-05-27T16:55:14.637380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py has been updated successfully."
             }
           ],
           "metadata": {
@@ -2038,7 +2045,7 @@
         },
         {
           "source_line": 824,
-          "timestamp": "2026-05-27T16:53:52.318348+00:00",
+          "timestamp": "2026-05-27T16:55:19.857284+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -2052,22 +2059,22 @@
             "tool": "Edit",
             "tool_args": {
               "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\vspace{-4pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n\\label{sec:routing_synthesis}\n\n\\looseness=-1\nThe three analyses separate two empirical patterns:",
-              "new_string": "\\vspace{-2pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n\\label{sec:routing_synthesis}\n\nThe three analyses separate two empirical patterns:"
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py",
+              "old_string": "ax.set_ylim(-0.22, nrows * cell_h + 0.22)",
+              "new_string": "ax.set_ylim(-0.18, nrows * cell_h + 0.18)"
             }
           },
           "id": "event-000824"
         },
         {
           "source_line": 825,
-          "timestamp": "2026-05-27T16:53:52.369251+00:00",
+          "timestamp": "2026-05-27T16:55:19.907916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py has been updated successfully."
             }
           ],
           "metadata": {
@@ -2079,48 +2086,46 @@
         },
         {
           "source_line": 826,
-          "timestamp": "2026-05-27T16:53:57.037566+00:00",
+          "timestamp": "2026-05-27T16:55:22.919946+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
             {
               "type": "text",
-              "text": "called Edit"
+              "text": "called Bash"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
+            "tool": "Bash",
             "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\label{tab:cf_summary}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}llcl@{}}",
-              "new_string": "\\label{tab:cf_summary}\n\\small\n\\begin{tabular}{@{}llcl@{}}"
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 scripts/gen_fig_matrix_heatmap.py",
+              "timeout": "30000"
             }
           },
           "id": "event-000826"
         },
         {
           "source_line": 827,
-          "timestamp": "2026-05-27T16:53:57.138439+00:00",
+          "timestamp": "2026-05-27T16:55:24.676335+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+              "text": "Generated fig_matrix_heatmap.pdf and .png\nPDF: 394x122pt, aspect 3.23\nAt 0.75 textwidth (351pt): scale=0.89, height=109pt\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 100
+            "tool": "Bash",
+            "elapsed_ms": 1756
           },
           "id": "event-000827"
         },
         {
           "source_line": 828,
-          "timestamp": "2026-05-27T16:54:01.103264+00:00",
+          "timestamp": "2026-05-27T16:55:32.530566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -2141,322 +2146,6 @@
         },
         {
           "source_line": 829,
-          "timestamp": "2026-05-27T16:54:03.864594+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (43 pages, 1445394 bytes).\nOutput written on main.pdf (43 pages, 1445394 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 2761
-          },
-          "id": "event-000829"
-        },
-        {
-          "source_line": 830,
-          "timestamp": "2026-05-27T16:54:27.725951+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "python3 -c \"\nimport fitz\ndoc = fitz.open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_matrix_heatmap.pdf')\np = doc[0]\nw, h = p.rect.width, p.rect.height\nprint(f'Current heatmap: {w:.0f}x{h:.0f}pt, aspect {w/h:.2f}')\n# At 0.75 textwidth (351pt)\ndisplay_w = 0.75 * 468\ndisplay_h = display_w / w * h\nprint(f'At 0.75 textwidth: {display_w:.0f}x{display_h:.0f}pt')\n# At 0.76\ndisplay_w2 = 0.76 * 468\ndisplay_h2 = display_w2 / w * h\nprint(f'At 0.76 textwidth: {display_w2:.0f}x{display_h2:.0f}pt')\n\"\n"
-            }
-          },
-          "id": "event-000830"
-        },
-        {
-          "source_line": 831,
-          "timestamp": "2026-05-27T16:54:27.978854+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Current heatmap: 394x137pt, aspect 2.87\nAt 0.75 textwidth: 351x122pt\nAt 0.76 textwidth: 356x124pt"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 252
-          },
-          "id": "event-000831"
-        },
-        {
-          "source_line": 832,
-          "timestamp": "2026-05-27T16:54:43.940115+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\includegraphics[width=0.75\\textwidth]{figures/fig_matrix_heatmap.pdf}",
-              "new_string": "\\includegraphics[width=0.76\\textwidth]{figures/fig_matrix_heatmap.pdf}"
-            }
-          },
-          "id": "event-000832"
-        },
-        {
-          "source_line": 833,
-          "timestamp": "2026-05-27T16:54:43.940557+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-000833"
-        },
-        {
-          "source_line": 834,
-          "timestamp": "2026-05-27T16:54:47.955542+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-000834"
-        },
-        {
-          "source_line": 835,
-          "timestamp": "2026-05-27T16:54:49.460838+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (43 pages, 1445392 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 1505
-          },
-          "id": "event-000835"
-        },
-        {
-          "source_line": 836,
-          "timestamp": "2026-05-27T16:55:09.817661+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py"
-            }
-          },
-          "id": "event-000836"
-        },
-        {
-          "source_line": 837,
-          "timestamp": "2026-05-27T16:55:09.918644+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\"\"\"\n2\tRegenerate fig_matrix_heatmap.pdf with correct ΔR² values from Table 1.\n3\tDesigned for display at 0.75\\\\textwidth (~4.9 inches) with minimal scaling.\n4\t\"\"\"\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\timport matplotlib.patches as patches\n9\timport numpy as np\n10\t\n11\tarchitectures = ['OpenVLA', 'TracVLA', 'NORA']\n12\tsuites = ['Goal', 'Spatial', 'Object', 'Long']\n13\ttransition_types = {\n14\t    'OpenVLA': 'VLA→VLA',\n15\t    'TracVLA': 'VLM→VLA',\n16\t    'NORA': 'VLM→VLA',\n17\t}\n18\t\n19\tdata = {\n20\t    ('OpenVLA', 'Goal'): 0.086,\n21\t    ('OpenVLA', 'Spatial'): 0.037,\n22\t    ('OpenVLA', 'Object'): 0.037,\n23\t    ('OpenVLA', 'Long'): 0.033,\n24\t    ('TracVLA', 'Goal'): 0.333,\n25\t    ('TracVLA', 'Spatial'): 0.156,\n26\t    ('TracVLA', 'Object'): 0.362,\n27\t    ('TracVLA', 'Long'): 0.358,\n28\t    ('NORA', 'Goal'): 0.455,\n29\t    ('NORA', 'Spatial'): 0.308,\n30\t    ('NORA', 'Object'): None,\n31\t    ('NORA', 'Long'): None,\n32\t}\n33\t\n34\tTHRESHOLD = 0.10\n35\tnrows = len(architectures)\n36\tncols = len(suites)\n37\t\n38\tcell_w = 0.88\n39\tcell_h = 0.48\n40\t\n41\tfig_w = 5.2\n42\tfig_h = 1.75\n43\tfig, ax = plt.subplots(figsize=(fig_w, fig_h))\n44\t\n45\tcmap = plt.cm.Blues\n46\tvmin, vmax = 0.0, 0.50\n47\t\n48\tfor i in range(nrows):\n49\t    for j in range(ncols):\n50\t        val = data[(architectures[i], suites[j])]\n51\t        x0 = j * cell_w\n52\t        y0 = (nrows - 1 - i) * cell_h\n53\t        gap = 0.03\n54\t        if val is None:\n55\t            rect = patches.FancyBboxPatch(\n56\t                (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n57\t                boxstyle=\"round,pad=0.02\",\n58\t                facecolor='#E0E0E0', edgecolor='#AAAAAA', linewidth=0.6\n59\t            )\n60\t            ax.add_patch(rect)\n61\t            ax.text(x0 + cell_w/2, y0 + cell_h/2, 'N/A',\n62\t                    ha='center', va='center', fontsize=8, color='#888888',\n63\t                    fontweight='bold')\n64\t        else:\n65\t            norm_val = np.clip((val - vmin) / (vmax - vmin), 0, 1\n…[truncated 3779 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-000837"
-        },
-        {
-          "source_line": 838,
-          "timestamp": "2026-05-27T16:55:14.586735+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py",
-              "old_string": "cell_w = 0.88\ncell_h = 0.48\n\nfig_w = 5.2\nfig_h = 1.75",
-              "new_string": "cell_w = 0.88\ncell_h = 0.40\n\nfig_w = 5.2\nfig_h = 1.50"
-            }
-          },
-          "id": "event-000838"
-        },
-        {
-          "source_line": 839,
-          "timestamp": "2026-05-27T16:55:14.637380+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-000839"
-        },
-        {
-          "source_line": 840,
-          "timestamp": "2026-05-27T16:55:19.857284+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py",
-              "old_string": "ax.set_ylim(-0.22, nrows * cell_h + 0.22)",
-              "new_string": "ax.set_ylim(-0.18, nrows * cell_h + 0.18)"
-            }
-          },
-          "id": "event-000840"
-        },
-        {
-          "source_line": 841,
-          "timestamp": "2026-05-27T16:55:19.907916+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-000841"
-        },
-        {
-          "source_line": 842,
-          "timestamp": "2026-05-27T16:55:22.919946+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd && python3 scripts/gen_fig_matrix_heatmap.py",
-              "timeout": "30000"
-            }
-          },
-          "id": "event-000842"
-        },
-        {
-          "source_line": 843,
-          "timestamp": "2026-05-27T16:55:24.676335+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Generated fig_matrix_heatmap.pdf and .png\nPDF: 394x122pt, aspect 3.23\nAt 0.75 textwidth (351pt): scale=0.89, height=109pt\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 1756
-          },
-          "id": "event-000843"
-        },
-        {
-          "source_line": 844,
-          "timestamp": "2026-05-27T16:55:32.530566+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-000844"
-        },
-        {
-          "source_line": 845,
           "timestamp": "2026-05-27T16:55:33.987242+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2471,10 +2160,10 @@
             "tool": "Bash",
             "elapsed_ms": 1456
           },
-          "id": "event-000845"
+          "id": "event-000829"
         },
         {
-          "source_line": 846,
+          "source_line": 830,
           "timestamp": "2026-05-27T16:55:48.914857+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2494,10 +2183,10 @@
               "new_string": "cell_w = 0.88\ncell_h = 0.36\n\nfig_w = 5.2\nfig_h = 1.38"
             }
           },
-          "id": "event-000846"
+          "id": "event-000830"
         },
         {
-          "source_line": 847,
+          "source_line": 831,
           "timestamp": "2026-05-27T16:55:49.015807+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2512,10 +2201,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-000847"
+          "id": "event-000831"
         },
         {
-          "source_line": 848,
+          "source_line": 832,
           "timestamp": "2026-05-27T16:55:53.132518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2535,10 +2224,10 @@
               "new_string": "ax.set_ylim(-0.14, nrows * cell_h + 0.14)"
             }
           },
-          "id": "event-000848"
+          "id": "event-000832"
         },
         {
-          "source_line": 849,
+          "source_line": 833,
           "timestamp": "2026-05-27T16:55:53.133092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2553,10 +2242,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000849"
+          "id": "event-000833"
         },
         {
-          "source_line": 850,
+          "source_line": 834,
           "timestamp": "2026-05-27T16:55:56.195495+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2574,10 +2263,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000850"
+          "id": "event-000834"
         },
         {
-          "source_line": 851,
+          "source_line": 835,
           "timestamp": "2026-05-27T16:55:58.002145+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2592,10 +2281,10 @@
             "tool": "Bash",
             "elapsed_ms": 1806
           },
-          "id": "event-000851"
+          "id": "event-000835"
         },
         {
-          "source_line": 852,
+          "source_line": 836,
           "timestamp": "2026-05-27T16:56:01.919113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2613,10 +2302,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000852"
+          "id": "event-000836"
         },
         {
-          "source_line": 853,
+          "source_line": 837,
           "timestamp": "2026-05-27T16:56:03.475294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2631,10 +2320,10 @@
             "tool": "Bash",
             "elapsed_ms": 1556
           },
-          "id": "event-000853"
+          "id": "event-000837"
         },
         {
-          "source_line": 854,
+          "source_line": 838,
           "timestamp": "2026-05-27T16:56:18.602504+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2651,10 +2340,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/submission_package/main.pdf 2>/dev/null && python3 -c \"\nimport fitz\ndoc = fitz.open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/submission_package/main.pdf')\nprint(f'Submission package PDF: {doc.page_count} pages')\n\""
             }
           },
-          "id": "event-000854"
+          "id": "event-000838"
         },
         {
-          "source_line": 855,
+          "source_line": 839,
           "timestamp": "2026-05-27T16:56:18.853915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2669,10 +2358,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-000855"
+          "id": "event-000839"
         },
         {
-          "source_line": 856,
+          "source_line": 840,
           "timestamp": "2026-05-27T16:56:31.479116+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2692,10 +2381,10 @@
               "dpi": "165"
             }
           },
-          "id": "event-000856"
+          "id": "event-000840"
         },
         {
-          "source_line": 857,
+          "source_line": 841,
           "timestamp": "2026-05-27T16:56:31.749146+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2710,10 +2399,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 270
           },
-          "id": "event-000857"
+          "id": "event-000841"
         },
         {
-          "source_line": 858,
+          "source_line": 842,
           "timestamp": "2026-05-27T16:56:34.672315+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2730,10 +2419,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-000858"
+          "id": "event-000842"
         },
         {
-          "source_line": 859,
+          "source_line": 843,
           "timestamp": "2026-05-27T16:56:35.024600+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2750,10 +2439,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-000859"
+          "id": "event-000843"
         },
         {
-          "source_line": 860,
+          "source_line": 844,
           "timestamp": "2026-05-27T16:56:35.530344+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2768,10 +2457,10 @@
             "tool": "Read",
             "elapsed_ms": 858
           },
-          "id": "event-000860"
+          "id": "event-000844"
         },
         {
-          "source_line": 861,
+          "source_line": 845,
           "timestamp": "2026-05-27T16:56:35.733466+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2786,10 +2475,10 @@
             "tool": "Read",
             "elapsed_ms": 708
           },
-          "id": "event-000861"
+          "id": "event-000845"
         },
         {
-          "source_line": 862,
+          "source_line": 846,
           "timestamp": "2026-05-27T16:56:50.389441+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2808,10 +2497,10 @@
               "limit": "25"
             }
           },
-          "id": "event-000862"
+          "id": "event-000846"
         },
         {
-          "source_line": 863,
+          "source_line": 847,
           "timestamp": "2026-05-27T16:56:50.490273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2826,10 +2515,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000863"
+          "id": "event-000847"
         },
         {
-          "source_line": 864,
+          "source_line": 848,
           "timestamp": "2026-05-27T16:56:55.309354+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2849,10 +2538,10 @@
               "new_string": "\\looseness=-1\nWe define $R^2$ exit collapse as $\\Delta R^2 = R^2_{\\text{peak}} - R^2_{\\text{exit}}$, the drop in action-probe decodability from peak layer to exit layer"
             }
           },
-          "id": "event-000864"
+          "id": "event-000848"
         },
         {
-          "source_line": 865,
+          "source_line": 849,
           "timestamp": "2026-05-27T16:56:55.410464+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2867,10 +2556,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-000865"
+          "id": "event-000849"
         },
         {
-          "source_line": 866,
+          "source_line": 850,
           "timestamp": "2026-05-27T16:56:58.926093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2890,10 +2579,10 @@
               "new_string": "\\paragraph{NLP finetuning control.}\\looseness=-1\nTo test whether exit collapse is specific"
             }
           },
-          "id": "event-000866"
+          "id": "event-000850"
         },
         {
-          "source_line": 867,
+          "source_line": 851,
           "timestamp": "2026-05-27T16:56:59.027509+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2908,10 +2597,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-000867"
+          "id": "event-000851"
         },
         {
-          "source_line": 868,
+          "source_line": 852,
           "timestamp": "2026-05-27T16:57:03.054604+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2931,10 +2620,10 @@
               "new_string": "\\looseness=-1\nL1 instruction-dominant head counts across architectures reveal a pattern"
             }
           },
-          "id": "event-000868"
+          "id": "event-000852"
         },
         {
-          "source_line": 869,
+          "source_line": 853,
           "timestamp": "2026-05-27T16:57:03.105311+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2949,10 +2638,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000869"
+          "id": "event-000853"
         },
         {
-          "source_line": 870,
+          "source_line": 854,
           "timestamp": "2026-05-27T16:57:06.996961+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2972,10 +2661,10 @@
               "new_string": "\\looseness=-1\nIf VLA training drove L1 instruction routing, reference models should show low counts"
             }
           },
-          "id": "event-000870"
+          "id": "event-000854"
         },
         {
-          "source_line": 871,
+          "source_line": 855,
           "timestamp": "2026-05-27T16:57:07.098044+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2990,10 +2679,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-000871"
+          "id": "event-000855"
         },
         {
-          "source_line": 872,
+          "source_line": 856,
           "timestamp": "2026-05-27T16:57:11.464518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3013,10 +2702,10 @@
               "new_string": "\\looseness=-1\nThe three analyses separate two empirical patterns: exit collapse and counterfactual sensitivity"
             }
           },
-          "id": "event-000872"
+          "id": "event-000856"
         },
         {
-          "source_line": 873,
+          "source_line": 857,
           "timestamp": "2026-05-27T16:57:11.565422+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3031,10 +2720,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-000873"
+          "id": "event-000857"
         },
         {
-          "source_line": 874,
+          "source_line": 858,
           "timestamp": "2026-05-27T16:57:17.088331+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3052,10 +2741,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000874"
+          "id": "event-000858"
         },
         {
-          "source_line": 875,
+          "source_line": 859,
           "timestamp": "2026-05-27T16:57:18.799036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3070,10 +2759,10 @@
             "tool": "Bash",
             "elapsed_ms": 1710
           },
-          "id": "event-000875"
+          "id": "event-000859"
         },
         {
-          "source_line": 876,
+          "source_line": 860,
           "timestamp": "2026-05-27T16:57:34.369131+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3092,10 +2781,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000876"
+          "id": "event-000860"
         },
         {
-          "source_line": 877,
+          "source_line": 861,
           "timestamp": "2026-05-27T16:57:34.369599+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3110,10 +2799,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000877"
+          "id": "event-000861"
         },
         {
-          "source_line": 878,
+          "source_line": 862,
           "timestamp": "2026-05-27T16:57:40.663769+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3133,10 +2822,10 @@
               "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.76\\textwidth]{figures/fig_matrix_heatmap.pdf}\n\\vspace{-6pt}\n\\caption{\\textbf{Cross-architecture evaluation matrix.} Each cell reports $\\Delta R^2$ (peak$-$exit). OpenVLA: VLA-to-VLA; TracVLA and NORA: VLM-to-VLA. Gray: unavailable checkpoints. Red borders: $\\Delta R^2 > 0.10$.}\n\\label{fig:result_matrix}\n\\vspace{-6pt}\n\\end{figure}"
             }
           },
-          "id": "event-000878"
+          "id": "event-000862"
         },
         {
-          "source_line": 879,
+          "source_line": 863,
           "timestamp": "2026-05-27T16:57:40.714463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3151,10 +2840,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000879"
+          "id": "event-000863"
         },
         {
-          "source_line": 880,
+          "source_line": 864,
           "timestamp": "2026-05-27T16:57:45.283500+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3173,10 +2862,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000880"
+          "id": "event-000864"
         },
         {
-          "source_line": 881,
+          "source_line": 865,
           "timestamp": "2026-05-27T16:57:45.284040+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3191,10 +2880,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000881"
+          "id": "event-000865"
         },
         {
-          "source_line": 882,
+          "source_line": 866,
           "timestamp": "2026-05-27T16:57:52.063470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3214,10 +2903,10 @@
               "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_r2_collapse.pdf}\n\\vspace{-6pt}\n\\caption{\\textbf{Layer-wise action-probe $R^2$ (LIBERO-Goal, readout token).} Solid: trained; dashed: reference. VLM-to-VLA: pronounced peak-to-exit drops ($\\Delta R^2 = 0.16$--$0.46$); VLA-to-VLA: flat ($< 0.09$). Values use demo-level splitting; see Table~\\ref{tab:cross_arch_matrix}.}\n\\label{fig:r2_collapse}\n\\vspace{-6pt}\n\\end{figure}"
             }
           },
-          "id": "event-000882"
+          "id": "event-000866"
         },
         {
-          "source_line": 883,
+          "source_line": 867,
           "timestamp": "2026-05-27T16:57:52.114398+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3232,10 +2921,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000883"
+          "id": "event-000867"
         },
         {
-          "source_line": 884,
+          "source_line": 868,
           "timestamp": "2026-05-27T16:57:57.034340+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3254,10 +2943,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000884"
+          "id": "event-000868"
         },
         {
-          "source_line": 885,
+          "source_line": 869,
           "timestamp": "2026-05-27T16:57:57.034771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3272,10 +2961,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000885"
+          "id": "event-000869"
         },
         {
-          "source_line": 886,
+          "source_line": 870,
           "timestamp": "2026-05-27T16:58:00.748067+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3295,10 +2984,10 @@
               "new_string": "\\vspace{-4pt}\n\\subsection{Exit Collapse: Layer-Wise Action Probing}"
             }
           },
-          "id": "event-000886"
+          "id": "event-000870"
         },
         {
-          "source_line": 887,
+          "source_line": 871,
           "timestamp": "2026-05-27T16:58:00.798767+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3313,11 +3002,327 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-27T16:58:03.811572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-27T16:58:06.830303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (42 pages, 1444084 bytes).\nOutput written on main.pdf (42 pages, 1444084 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 3018
+          },
+          "id": "event-000873"
+        },
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-27T16:58:12.002054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf",
+              "project": "vla-ssd",
+              "pages": "5,7,8",
+              "dpi": "165"
+            }
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-27T16:58:12.354149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 408.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 395.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 415.7}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 352
+          },
+          "id": "event-000875"
+        },
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-27T16:58:15.316310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-27T16:58:15.818622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-000877"
+        },
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-27T16:58:16.271670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-000878"
+        },
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-27T16:58:16.272108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-000879"
+        },
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-27T16:58:16.375117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 556
+          },
+          "id": "event-000880"
+        },
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-27T16:58:16.979637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 707
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-27T17:00:16.262119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\begin{wrapfigure}[26]{R}{0.42\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.40\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity across the architecture-suite matrix. (a)~Cohen's $d$ for four perturbation conditions (E=empty, W=wrong, S=shuffled, P=paraphrased); asterisks mark the top condition per cell; dashed line: large-effect threshold ($d = 0.8$). (b)~Cosine distance on hidden representations (different scale).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
+              "new_string": "\\begin{wrapfigure}[27]{R}{0.37\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.35\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
+            }
+          },
+          "id": "event-000882"
+        },
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-27T17:00:16.262768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-27T17:00:20.635298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "offset": "116",
+              "limit": "20"
+            }
+          },
+          "id": "event-000884"
+        },
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-27T17:00:20.686035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "116\t\n117\t\\begin{table}[t]\n118\t\\centering\n119\t\\caption{\\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TracVLA). NORA uses cosine distance on hidden representations (different scale; see \\S\\ref{sec:cf_repr}).}\n120\t\\label{tab:cf_summary}\n121\t\\small\n122\t\\begin{tabular}{@{}llcl@{}}\n123\t\\toprule\n124\tArchitecture & $d$ range & Most sensitive & Metric \\\\\n125\t\\midrule\n126\tOpenVLA & 0.45--1.21 & empty (2/4 suites) & Cohen's $d$ \\\\\n127\tTracVLA & 0.97--1.52 & empty (4/4 suites) & Cohen's $d$ \\\\\n128\t\\midrule\n129\tNORA    & 0.28--sat. & --- & cosine dist.$^{a}$ \\\\\n130\t\\bottomrule\n131\t\\multicolumn{4}{l}{\\footnotesize $^{a}$Representation-space only; not comparable to Cohen's $d$ (\\S\\ref{sec:cf_repr}).}\\\\\n132\t\\multicolumn{4}{l}{\\footnotesize Empty ranks first in 6/8 suites total across both architectures.}\\\\\n133\t\\end{tabular}\n134\t\\end{table}\n135\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-27T17:00:29.225011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
+              "old_string": "\\begin{table}[t]\n\\centering\n\\caption{\\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TracVLA). NORA uses cosine distance on hidden representations (different scale; see \\S\\ref{sec:cf_repr}).}\n\\label{tab:cf_summary}\n\\small\n\\begin{tabular}{@{}llcl@{}}\n\\toprule\nArchitecture & $d$ range & Most sensitive & Metric \\\\\n\\midrule\nOpenVLA & 0.45--1.21 & empty (2/4 suites) & Cohen's $d$ \\\\\nTracVLA & 0.97--1.52 & empty (4/4 suites) & Cohen's $d$ \\\\\n\\midrule\nNORA    & 0.28--sat. & --- & cosine dist.$^{a}$ \\\\\n\\bottomrule\n\\multicolumn{4}{l}{\\footnotesize $^{a}$Representation-space only; not comparable to Cohen's $d$ (\\S\\ref{sec:cf_repr}).}\\\\\n\\multicolumn{4}{l}{\\footnotesize Empty ranks first in 6/8 suites total across both architectures.}\\\\\n\\end{tabular}\n\\end{table}",
+              "new_string": "\\begin{table}[t]\n\\caption{\\textbf{Counterfactual sensitivity summary.} Cohen's $d$ range and most sensitive perturbation for action-producing models (OpenVLA, TracVLA). NORA uses cosine distance on representations (different scale; \\S\\ref{sec:cf_repr}).}\n\\label{tab:cf_summary}\n\\small\n\\centering\n\\setlength{\\tabcolsep}{5pt}\n\\begin{tabular}{@{}llcl@{}}\n\\toprule\nArchitecture & $d$ range & Most sensitive & Metric \\\\\n\\midrule\nOpenVLA & 0.45--1.21 & empty (2/4) & Cohen's $d$ \\\\\nTracVLA & 0.97--1.52 & empty (4/4) & Cohen's $d$ \\\\\n\\midrule\nNORA    & 0.28--sat. & --- & cosine dist.$^{a}$ \\\\\n\\bottomrule\n\\multicolumn{4}{l}{\\footnotesize $^{a}$Representation-space only; not comparable to Cohen's $d$.}\\\\\n\\multicolumn{4}{l}{\\footnotesize Empty ranks first in 6/8 cells across both architectures.}\\\\\n\\end{tabular}\n\\end{table}"
+            }
+          },
+          "id": "event-000886"
+        },
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-27T17:00:29.225660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
           "id": "event-000887"
         },
         {
           "source_line": 888,
-          "timestamp": "2026-05-27T16:58:03.811572+00:00",
+          "timestamp": "2026-05-27T17:00:33.642854+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3338,25 +3343,25 @@
         },
         {
           "source_line": 889,
-          "timestamp": "2026-05-27T16:58:06.830303+00:00",
+          "timestamp": "2026-05-27T17:00:37.238040+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "Output written on main.pdf (42 pages, 1444084 bytes).\nOutput written on main.pdf (42 pages, 1444084 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+              "text": "Output written on main.pdf (42 pages, 1443557 bytes).\nOutput written on main.pdf (42 pages, 1443557 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Bash",
-            "elapsed_ms": 3018
+            "elapsed_ms": 3595
           },
           "id": "event-000889"
         },
         {
           "source_line": 890,
-          "timestamp": "2026-05-27T16:58:12.002054+00:00",
+          "timestamp": "2026-05-27T17:00:43.261418+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3379,25 +3384,25 @@
         },
         {
           "source_line": 891,
-          "timestamp": "2026-05-27T16:58:12.354149+00:00",
+          "timestamp": "2026-05-27T17:00:43.613047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 408.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 395.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 415.7}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 408.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 374.1}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1403, \\\"height\\\": 1815, \\\"size_kb\\\": 413.3}], \\\"total_pages\\\": 42, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 352
+            "elapsed_ms": 351
           },
           "id": "event-000891"
         },
         {
           "source_line": 892,
-          "timestamp": "2026-05-27T16:58:15.316310+00:00",
+          "timestamp": "2026-05-27T17:00:47.328641+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3417,7 +3422,25 @@
         },
         {
           "source_line": 893,
-          "timestamp": "2026-05-27T16:58:15.818622+00:00",
+          "timestamp": "2026-05-27T17:00:47.982034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 653
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-27T17:00:47.982530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3433,29 +3456,11 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-000893"
-        },
-        {
-          "source_line": 894,
-          "timestamp": "2026-05-27T16:58:16.271670+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 955
-          },
           "id": "event-000894"
         },
         {
           "source_line": 895,
-          "timestamp": "2026-05-27T16:58:16.272108+00:00",
+          "timestamp": "2026-05-27T17:00:48.233996+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3475,7 +3480,7 @@
         },
         {
           "source_line": 896,
-          "timestamp": "2026-05-27T16:58:16.375117+00:00",
+          "timestamp": "2026-05-27T17:00:48.491384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -3487,13 +3492,13 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Read",
-            "elapsed_ms": 556
+            "elapsed_ms": 508
           },
           "id": "event-000896"
         },
         {
           "source_line": 897,
-          "timestamp": "2026-05-27T16:58:16.979637+00:00",
+          "timestamp": "2026-05-27T17:00:49.095022+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -3505,13 +3510,13 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Read",
-            "elapsed_ms": 707
+            "elapsed_ms": 861
           },
           "id": "event-000897"
         },
         {
           "source_line": 898,
-          "timestamp": "2026-05-27T17:00:16.262119+00:00",
+          "timestamp": "2026-05-27T17:01:27.792688+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -3526,15 +3531,15 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{wrapfigure}[26]{R}{0.42\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.40\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity across the architecture-suite matrix. (a)~Cohen's $d$ for four perturbation conditions (E=empty, W=wrong, S=shuffled, P=paraphrased); asterisks mark the top condition per cell; dashed line: large-effect threshold ($d = 0.8$). (b)~Cosine distance on hidden representations (different scale).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}",
-              "new_string": "\\begin{wrapfigure}[27]{R}{0.37\\columnwidth}\n\\vspace{-8pt}\n\\centering\n\\includegraphics[width=0.35\\columnwidth]{figures/fig_counterfactual_bar.pdf}\n\\vspace{-6pt}\n\\caption{Counterfactual sensitivity (Cohen's $d$; dashed: $d{=}0.8$). E=empty, W=wrong, S=shuffled, P=paraphrased. Panel~(b): cosine distance (\\S\\ref{sec:cf_repr}).}\n\\label{fig:counterfactual_bar}\n\\vspace{-4pt}\n\\end{wrapfigure}"
+              "old_string": "\\includegraphics[width=0.76\\textwidth]{figures/fig_matrix_heatmap.pdf}",
+              "new_string": "\\includegraphics[width=0.78\\textwidth]{figures/fig_matrix_heatmap.pdf}"
             }
           },
           "id": "event-000898"
         },
         {
           "source_line": 899,
-          "timestamp": "2026-05-27T17:00:16.262768+00:00",
+          "timestamp": "2026-05-27T17:01:27.893808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -3546,28 +3551,27 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Edit",
-            "elapsed_ms": 0
+            "elapsed_ms": 101
           },
           "id": "event-000899"
         },
         {
           "source_line": 900,
-          "timestamp": "2026-05-27T17:00:20.635298+00:00",
+          "timestamp": "2026-05-27T17:01:31.460140+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
             {
               "type": "text",
-              "text": "called Read"
+              "text": "called Bash"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
+            "tool": "Bash",
             "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "offset": "116",
-              "limit": "20"
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
             }
           },
           "id": "event-000900"

@@ -25,7 +25,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | sync cka heatmap to local | 76 | 0 | [Read transcript](sync-cka-heatmap-to-local.md) | [JSON](../../sessions/33/33cc50e1f9bf2056fd4b.json) |
 | eval tost equivalence test | 37 | 0 | [Read transcript](eval-tost-equivalence-test.md) | [JSON](../../sessions/9d/9dff8403465ac5344e82.json) |
 | paper embedding tsne | 278 | 0 | [Read transcript](paper-embedding-tsne.md) | [JSON](../../sessions/cd/cdee74643aa2dadcdcf8.json) |
-| paper rebuttal evidence matrix — I need to extract all experiment data from a large JSON registry file for a rebuttal evidence matrix | 133 | 2 | [Read transcript](paper-rebuttal-evidence-matrix.md) | [JSON](../../sessions/f9/f9dff4cf8591bd3cd86e.json) |
 | eval exp12 toxicchat bootstrap | 49 | 0 | [Read transcript](eval-exp12-toxicchat-bootstrap.md) | [JSON](../../sessions/6e/6ece8a3beed6a59a4bb3.json) |
 | eval meanpool multiseed | 84 | 0 | [Read transcript](eval-meanpool-multiseed.md) | [JSON](../../sessions/58/58835d3342a4073191e0.json) |
 | sync results to local | 33 | 0 | [Read transcript](sync-results-to-local.md) | [JSON](../../sessions/d9/d9cfb1a889616dde4c44.json) |

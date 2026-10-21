@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_40962fa57a434c0fa984bdc62b106f2e_reviewer_20260522T012734_923380.jsonl",
     "occurrence": 1,
-    "bytes": 708139,
-    "sha256": "16a6e7da7d819efe8b7e6fceebb2e7437e24fb8b6c1379ef799b3b16383515b5"
+    "bytes": 702323,
+    "sha256": "f9eef187fc47444bbe83ac9cf1e7bd2cb07d1ad7a8637785b3039ac1af44bb49"
   },
   "statistics": {
-    "messages": 743,
+    "messages": 737,
     "user_turns": 41,
-    "tool_calls": 334,
+    "tool_calls": 331,
     "roles": {
       "user": 41,
-      "tool_call": 334,
-      "tool_result": 334,
+      "tool_call": 331,
+      "tool_result": 331,
       "assistant": 34
     },
     "unparsed_lines_preserved": 0,
@@ -235,22 +235,22 @@
     {
       "number": 19,
       "boundary": "recorded_user_message",
-      "message_count": 26,
+      "message_count": 24,
       "chunks": [
         {
           "path": "476227ad3d2094c30662-part-0003.json",
-          "message_count": 26
+          "message_count": 24
         }
       ]
     },
     {
       "number": 20,
       "boundary": "recorded_user_message",
-      "message_count": 17,
+      "message_count": 15,
       "chunks": [
         {
           "path": "476227ad3d2094c30662-part-0003.json",
-          "message_count": 17
+          "message_count": 15
         }
       ]
     },
@@ -312,11 +312,11 @@
     {
       "number": 26,
       "boundary": "recorded_user_message",
-      "message_count": 6,
+      "message_count": 4,
       "chunks": [
         {
           "path": "476227ad3d2094c30662-part-0003.json",
-          "message_count": 6
+          "message_count": 4
         }
       ]
     },
@@ -349,11 +349,7 @@
       "chunks": [
         {
           "path": "476227ad3d2094c30662-part-0003.json",
-          "message_count": 13
-        },
-        {
-          "path": "476227ad3d2094c30662-part-0004.json",
-          "message_count": 1
+          "message_count": 14
         }
       ]
     },
@@ -363,7 +359,7 @@
       "message_count": 5,
       "chunks": [
         {
-          "path": "476227ad3d2094c30662-part-0004.json",
+          "path": "476227ad3d2094c30662-part-0003.json",
           "message_count": 5
         }
       ]
@@ -463,11 +459,7 @@
       "chunks": [
         {
           "path": "476227ad3d2094c30662-part-0004.json",
-          "message_count": 1
-        },
-        {
-          "path": "476227ad3d2094c30662-part-0005.json",
-          "message_count": 5
+          "message_count": 6
         }
       ]
     },
@@ -477,8 +469,12 @@
       "message_count": 16,
       "chunks": [
         {
+          "path": "476227ad3d2094c30662-part-0004.json",
+          "message_count": 1
+        },
+        {
           "path": "476227ad3d2094c30662-part-0005.json",
-          "message_count": 16
+          "message_count": 15
         }
       ]
     },

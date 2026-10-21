@@ -105,7 +105,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | data irt scale verification | 1 | 0 | [Read transcript](data-irt-scale-verification.md) | [JSON](../../sessions/74/743908e6a0f9daf8b86f.json) |
 | data metabench explore v2 | 1 | 0 | [Read transcript](data-metabench-explore-v2.md) | [JSON](../../sessions/35/350c4eaaa151001eec42.json) |
 | paper arr checklist draft | 1 | 0 | [Read transcript](paper-arr-checklist-draft.md) | [JSON](../../sessions/50/5087942c6e93dfb2fd09.json) |
-| paper b5 fix and rebuttal memo | 1 | 0 | [Read transcript](paper-b5-fix-and-rebuttal-memo.md) | [JSON](../../sessions/aa/aaccce7c367aa48d09a8.json) |
 | paper b9 fix | 1 | 0 | [Read transcript](paper-b9-fix.md) | [JSON](../../sessions/78/783c4d2be21eb8a3536d.json) |
 | paper b9 page budget | 1 | 0 | [Read transcript](paper-b9-page-budget.md) | [JSON](../../sessions/1a/1af3eaed94fbda637034.json) |
 | paper camera ready full precheck | 1 | 0 | [Read transcript](paper-camera-ready-full-precheck.md) | [JSON](../../sessions/b3/b305352221dd956c8c8d.json) |
@@ -118,18 +117,14 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper figure fig A1 subject heatmap | 1 | 0 | [Read transcript](paper-figure-fig-a1-subject-heatmap.md) | [JSON](../../sessions/e0/e08331cb2ab209281d37.json) |
 | paper figure fig A2 q3 distribution | 1 | 0 | [Read transcript](paper-figure-fig-a2-q3-distribution.md) | [JSON](../../sessions/a4/a4cdfdc6f956b3b97e02.json) |
 | paper fix page overflow | 1 | 0 | [Read transcript](paper-fix-page-overflow.md) | [JSON](../../sessions/ca/cad000acc52b9195738e.json) |
-| paper fix response letter refs | 1 | 0 | [Read transcript](paper-fix-response-letter-refs.md) | [JSON](../../sessions/e5/e5ec7f6a11fc74375769.json) |
 | paper precheck fixes | 1 | 0 | [Read transcript](paper-precheck-fixes.md) | [JSON](../../sessions/2b/2b16867db49abe03556b.json) |
 | paper r20 text edits | 1 | 0 | [Read transcript](paper-r20-text-edits.md) | [JSON](../../sessions/d3/d342d4acd6a82987547e.json) |
-| paper rebuttal b1 b7 branch | 1 | 0 | [Read transcript](paper-rebuttal-b1-b7-branch.md) | [JSON](../../sessions/a0/a0dd6f21939fdade25f8.json) |
-| paper rebuttal b8 | 1 | 0 | [Read transcript](paper-rebuttal-b8.md) | [JSON](../../sessions/4c/4c033203c78b9b32efc7.json) |
 | paper research bib sync | 1 | 0 | [Read transcript](paper-research-bib-sync.md) | [JSON](../../sessions/b2/b2805df988088f05dc89.json) |
 | paper research cluster 1 contamination detection | 1 | 0 | [Read transcript](paper-research-cluster-1-contamination-detection.md) | [JSON](../../sessions/6b/6bc71d3e1a5e44555421.json) |
 | paper research cluster 2 irt llm evaluation | 1 | 0 | [Read transcript](paper-research-cluster-2-irt-llm-evaluation.md) | [JSON](../../sessions/e2/e2919054e6034baa6e77.json) |
 | paper research cluster 3 dif methodology | 1 | 0 | [Read transcript](paper-research-cluster-3-dif-methodology.md) | [JSON](../../sessions/7f/7ff844b23c030a0ae7f7.json) |
 | paper research cluster 4 benchmark design | 1 | 0 | [Read transcript](paper-research-cluster-4-benchmark-design.md) | [JSON](../../sessions/32/32dcb4c9fa15b710961d.json) |
 | paper research cluster 5 llm evaluation | 1 | 0 | [Read transcript](paper-research-cluster-5-llm-evaluation.md) | [JSON](../../sessions/8d/8d8643f311ce7f6de8f8.json) |
-| paper response letter draft | 1 | 0 | [Read transcript](paper-response-letter-draft.md) | [JSON](../../sessions/00/008bc14eb6158fc598e8.json) |
 | paper t2 3 camera ready precheck | 1 | 0 | [Read transcript](paper-t2-3-camera-ready-precheck.md) | [JSON](../../sessions/a8/a8043d02f09827d4d5bf.json) |
 | paper w1 k3 power writeup | 1 | 0 | [Read transcript](paper-w1-k3-power-writeup.md) | [JSON](../../sessions/b0/b0b737674b5df0e48eb3.json) |
 | paper w2 interaction writeup | 1 | 0 | [Read transcript](paper-w2-interaction-writeup.md) | [JSON](../../sessions/51/510181c544a2a332038d.json) |

@@ -8885,7 +8885,7 @@ Agent 的 3 项修复确认无误——都是数据一致性问题（CAR 精度�
 
 ## Round 41
 
-28 recorded events
+26 recorded events
 
 
 ### User
@@ -9466,92 +9466,7 @@ _source line 306 · 2026-05-29T15:00:34.760593+00:00_
 
 ### Tool call
 
-_source line 307 · 2026-05-29T15:00:37.571456+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 308 · 2026-05-29T15:00:37.622273+00:00_
-
-1	# Rebuttal Preparation: Negative Experiment Analysis
-2	
-3	## Summary
-4	- Total negative experiments: 25
-5	- Engineering Rigor: 3 (trust-building — bug discovery→fix→re-eval)
-6	- Method Negative: 8
-7	- Hyperparameter Sensitivity: 6
-8	- Scale/Generalization: 5
-9	- Evaluation Artifact: 3
-10	
-11	---
-12	
-13	## Category 1: Engineering Rigor (3 experiments)
-14	
-15	Implementation bugs that, once identified and fixed, still resulted in negative outcomes — confirming the method-level failure is not caused by engineering errors. The bug discovery→fix→re-eval narrative demonstrates scientific rigor and builds trust in the remaining results.
-16	
-17	### Experiments
-18	
-19	| exp_id | hypothesis (short) | key metric |
-20	|--------|-------------------|------------|
-21	| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |
-22	| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |
-23	| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |
-24	
-25	### Anticipated Questions & Responses
-26	
-27	**Q: "How do you know the negative results aren't just caused by implementation bugs?"**
-28	
-29	A: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the "ground-truth" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivate
-…[truncated 20552 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 309 · 2026-05-29T15:01:09.972624+00:00_
+_source line 307 · 2026-05-29T15:01:09.972624+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -9587,7 +9502,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 310 · 2026-05-29T15:01:17.854739+00:00_
+_source line 308 · 2026-05-29T15:01:17.854739+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -9609,7 +9524,7 @@ _source line 310 · 2026-05-29T15:01:17.854739+00:00_
 
 ### Tool call
 
-_source line 311 · 2026-05-29T15:01:17.905537+00:00_
+_source line 309 · 2026-05-29T15:01:17.905537+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -9645,7 +9560,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 312 · 2026-05-29T15:01:18.813857+00:00_
+_source line 310 · 2026-05-29T15:01:18.813857+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -9667,7 +9582,7 @@ _source line 312 · 2026-05-29T15:01:18.813857+00:00_
 
 ### Tool call
 
-_source line 313 · 2026-05-29T15:01:33.295582+00:00_
+_source line 311 · 2026-05-29T15:01:33.295582+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -9701,7 +9616,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 314 · 2026-05-29T15:01:33.797641+00:00_
+_source line 312 · 2026-05-29T15:01:33.797641+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -9723,7 +9638,7 @@ _source line 314 · 2026-05-29T15:01:33.797641+00:00_
 
 ### Assistant
 
-_source line 315 · 2026-05-29T15:01:46.210204+00:00_
+_source line 313 · 2026-05-29T15:01:46.210204+00:00_
 
 Feishu 用户群 API 月配额确实已耗尽，无法直接通知用户。Manager 已收到报告。
 
@@ -9757,7 +9672,7 @@ Feishu 用户群 API 月配额确实已耗尽，无法直接通知用户。Manag
 
 ### User
 
-_source line 316 · 2026-05-29T15:04:03.606864+00:00_
+_source line 314 · 2026-05-29T15:04:03.606864+00:00_
 
 [Reviewer 回复]:
 [severity: warning] Rebuttal 覆盖度完整审计 — 5 维度逐项核查
@@ -9903,7 +9818,7 @@ paper_framing.md 明确列出 R6："Fine-tuning collapse — catastrophic forget
 
 ### Tool call
 
-_source line 317 · 2026-05-29T15:04:18.960704+00:00_
+_source line 315 · 2026-05-29T15:04:18.960704+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -9937,7 +9852,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 318 · 2026-05-29T15:04:19.061574+00:00_
+_source line 316 · 2026-05-29T15:04:19.061574+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] **Seed3 Restart Plan + Rebuttal 深化**\\n\\n两台服务器（westd-35807/westd-45947）当前不可达，但需要提前准备好 restart p\"},\"pending\":[],\"idle_seconds\":2275}"}
 
@@ -9959,7 +9874,7 @@ _source line 318 · 2026-05-29T15:04:19.061574+00:00_
 
 ### Tool call
 
-_source line 319 · 2026-05-29T15:04:42.956630+00:00_
+_source line 317 · 2026-05-29T15:04:42.956630+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -9995,7 +9910,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 320 · 2026-05-29T15:04:46.068483+00:00_
+_source line 318 · 2026-05-29T15:04:46.068483+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] **Seed3 Restart Plan + Rebuttal 深化**\\n\\n两台服务器（westd-35807/westd-45947）当前不可达，但需要提前准备好 restart plan。同时利用等待时间深化 rebuttal 准备。\\n\\n**任务 1: Seed3 Restart Plan（写文档，不执行）**\\n准备一份 seed3_re\"}, \"error\": \"\"}"}
 
@@ -10017,7 +9932,7 @@ _source line 320 · 2026-05-29T15:04:46.068483+00:00_
 
 ### Assistant
 
-_source line 321 · 2026-05-29T15:04:54.238915+00:00_
+_source line 319 · 2026-05-29T15:04:54.238915+00:00_
 
 已排队。现在整理一下当前系统状态和行动矩阵：
 
@@ -10058,7 +9973,7 @@ _source line 321 · 2026-05-29T15:04:54.238915+00:00_
 
 ### User
 
-_source line 322 · 2026-05-29T15:04:55.749504+00:00_
+_source line 320 · 2026-05-29T15:04:55.749504+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h36m
@@ -10089,7 +10004,7 @@ _source line 322 · 2026-05-29T15:04:55.749504+00:00_
 
 ### Tool call
 
-_source line 323 · 2026-05-29T15:05:01.222803+00:00_
+_source line 321 · 2026-05-29T15:05:01.222803+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -10123,7 +10038,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 324 · 2026-05-29T15:05:01.323636+00:00_
+_source line 322 · 2026-05-29T15:05:01.323636+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -10145,7 +10060,7 @@ _source line 324 · 2026-05-29T15:05:01.323636+00:00_
 
 ### Assistant
 
-_source line 325 · 2026-05-29T15:05:04.923946+00:00_
+_source line 323 · 2026-05-29T15:05:04.923946+00:00_
 
 Reviewer 已重置。我自己继续——Agent 还有两条排队指令（seed3 restart plan + rebuttal 缺口修复）待完成，需要我跟进结果。
 
@@ -10172,7 +10087,7 @@ Reviewer 已重置。我自己继续——Agent 还有两条排队指令（seed3
 
 ### User
 
-_source line 326 · 2026-05-29T15:05:06.437631+00:00_
+_source line 324 · 2026-05-29T15:05:06.437631+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h37m
@@ -10203,7 +10118,7 @@ _source line 326 · 2026-05-29T15:05:06.437631+00:00_
 
 ### Tool call
 
-_source line 327 · 2026-05-29T15:05:11.672172+00:00_
+_source line 325 · 2026-05-29T15:05:11.672172+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -10237,7 +10152,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 328 · 2026-05-29T15:05:11.822894+00:00_
+_source line 326 · 2026-05-29T15:05:11.822894+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -10266,7 +10181,7 @@ _source line 328 · 2026-05-29T15:05:11.822894+00:00_
 
 ### User
 
-_source line 329 · 2026-05-29T15:06:51.664315+00:00_
+_source line 327 · 2026-05-29T15:06:51.664315+00:00_
 
 [Reviewer 回复]:
 [severity: info] Seed3 Restart Plan 审查 — worker_paper_seed3-restart-plan_20260529T150143
@@ -10306,7 +10221,7 @@ seed3 是 rebuttal 储备而非论文必需。当前论文已有 3 seeds per con
 
 ### Assistant
 
-_source line 330 · 2026-05-29T15:07:04.922370+00:00_
+_source line 328 · 2026-05-29T15:07:04.922370+00:00_
 
 No response requested.
 
@@ -10333,7 +10248,7 @@ No response requested.
 
 ### User
 
-_source line 331 · 2026-05-29T15:08:07.884330+00:00_
+_source line 329 · 2026-05-29T15:08:07.884330+00:00_
 
 [Reviewer 回复]:
 [severity: info] Per-Task Analysis 审查 — worker_paper_per-task-analysis_20260529T150201
@@ -10386,7 +10301,7 @@ supplementary_checklist S1d 中 SDF λ=0.1 s0 标注为 "—"（缺失），但�
 
 ### Assistant
 
-_source line 332 · 2026-05-29T15:08:17.242091+00:00_
+_source line 330 · 2026-05-29T15:08:17.242091+00:00_
 
 No response requested.
 
@@ -10413,7 +10328,7 @@ No response requested.
 
 ### User
 
-_source line 333 · 2026-05-29T15:08:18.753369+00:00_
+_source line 331 · 2026-05-29T15:08:18.753369+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h40m
@@ -10444,7 +10359,7 @@ _source line 333 · 2026-05-29T15:08:18.753369+00:00_
 
 ### Tool call
 
-_source line 334 · 2026-05-29T15:08:24.170836+00:00_
+_source line 332 · 2026-05-29T15:08:24.170836+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -10478,7 +10393,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 335 · 2026-05-29T15:08:24.271604+00:00_
+_source line 333 · 2026-05-29T15:08:24.271604+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -10507,7 +10422,7 @@ _source line 335 · 2026-05-29T15:08:24.271604+00:00_
 
 ### User
 
-_source line 336 · 2026-05-29T15:23:23.878457+00:00_
+_source line 334 · 2026-05-29T15:23:23.878457+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 2 (seed3-restart-plan + per-task-analysis 在跑) | 磁盘: N/A
@@ -10543,7 +10458,7 @@ _source line 336 · 2026-05-29T15:23:23.878457+00:00_
 
 ### Assistant
 
-_source line 337 · 2026-05-29T15:23:39.764130+00:00_
+_source line 335 · 2026-05-29T15:23:39.764130+00:00_
 
 No response requested.
 
@@ -10570,7 +10485,7 @@ No response requested.
 
 ### User
 
-_source line 338 · 2026-05-29T15:23:41.327111+00:00_
+_source line 336 · 2026-05-29T15:23:41.327111+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h55m
@@ -10601,7 +10516,7 @@ _source line 338 · 2026-05-29T15:23:41.327111+00:00_
 
 ### Tool call
 
-_source line 339 · 2026-05-29T15:23:49.653572+00:00_
+_source line 337 · 2026-05-29T15:23:49.653572+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -10635,7 +10550,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 340 · 2026-05-29T15:23:49.754308+00:00_
+_source line 338 · 2026-05-29T15:23:49.754308+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -10664,7 +10579,7 @@ _source line 340 · 2026-05-29T15:23:49.754308+00:00_
 
 ### User
 
-_source line 341 · 2026-05-29T15:24:00.445816+00:00_
+_source line 339 · 2026-05-29T15:24:00.445816+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 (全部完成) | 磁盘: N/A
@@ -10700,7 +10615,7 @@ _source line 341 · 2026-05-29T15:24:00.445816+00:00_
 
 ### Tool call
 
-_source line 342 · 2026-05-29T15:24:21.503592+00:00_
+_source line 340 · 2026-05-29T15:24:21.503592+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -10736,7 +10651,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 343 · 2026-05-29T15:24:24.768604+00:00_
+_source line 341 · 2026-05-29T15:24:24.768604+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -10758,7 +10673,7 @@ _source line 343 · 2026-05-29T15:24:24.768604+00:00_
 
 ### Tool call
 
-_source line 344 · 2026-05-29T15:24:27.482747+00:00_
+_source line 342 · 2026-05-29T15:24:27.482747+00:00_
 
 called ToolSearch
 
@@ -10794,7 +10709,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 345 · 2026-05-29T15:24:27.533377+00:00_
+_source line 343 · 2026-05-29T15:24:27.533377+00:00_
 
 
 
@@ -10816,7 +10731,7 @@ _source line 345 · 2026-05-29T15:24:27.533377+00:00_
 
 ### Tool call
 
-_source line 346 · 2026-05-29T15:24:55.016599+00:00_
+_source line 344 · 2026-05-29T15:24:55.016599+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -10854,7 +10769,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 347 · 2026-05-29T15:24:55.624655+00:00_
+_source line 345 · 2026-05-29T15:24:55.624655+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 73, \"reason\": \"Rebuttal 准备完成（16 Q&A + per-task 分析 + seed3 restart plan），更新阻塞状态\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10876,7 +10791,7 @@ _source line 347 · 2026-05-29T15:24:55.624655+00:00_
 
 ### Assistant
 
-_source line 348 · 2026-05-29T15:25:00.132859+00:00_
+_source line 346 · 2026-05-29T15:25:00.132859+00:00_
 
 ROADMAP 已更新。当前状态：
 
@@ -10908,7 +10823,7 @@ ROADMAP 已更新。当前状态：
 
 ### User
 
-_source line 349 · 2026-05-29T15:25:10.786157+00:00_
+_source line 347 · 2026-05-29T15:25:10.786157+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A
@@ -10936,7 +10851,7 @@ Supplementary zip 无需重打包（checklist 不在 zip 内）。
 
 ### Assistant
 
-_source line 350 · 2026-05-29T15:25:21.841911+00:00_
+_source line 348 · 2026-05-29T15:25:21.841911+00:00_
 
 No response requested.
 
@@ -10963,7 +10878,7 @@ No response requested.
 
 ### User
 
-_source line 351 · 2026-05-29T15:25:49.734774+00:00_
+_source line 349 · 2026-05-29T15:25:49.734774+00:00_
 
 [Reviewer 回复]:
 [severity: warning] ROADMAP 更新审查 — 信息准确性与遗漏项
@@ -11030,7 +10945,7 @@ DDL=2026-05-29（今天）。阻塞链：
 
 ### Tool call
 
-_source line 352 · 2026-05-29T15:26:09.364543+00:00_
+_source line 350 · 2026-05-29T15:26:09.364543+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -11066,7 +10981,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 353 · 2026-05-29T15:26:12.685724+00:00_
+_source line 351 · 2026-05-29T15:26:12.685724+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -11088,7 +11003,7 @@ _source line 353 · 2026-05-29T15:26:12.685724+00:00_
 
 ### Assistant
 
-_source line 354 · 2026-05-29T15:26:15.278268+00:00_
+_source line 352 · 2026-05-29T15:26:15.278268+00:00_
 
 Reviewer 抓到两个提交阻塞问题——page overflow + supplementary README 超参错误。DDL 今天，这两个必须立即修。
 
@@ -11115,7 +11030,7 @@ Reviewer 抓到两个提交阻塞问题——page overflow + supplementary READM
 
 ### User
 
-_source line 355 · 2026-05-29T15:26:16.796570+00:00_
+_source line 353 · 2026-05-29T15:26:16.796570+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h57m
@@ -11146,7 +11061,7 @@ _source line 355 · 2026-05-29T15:26:16.796570+00:00_
 
 ### Tool call
 
-_source line 356 · 2026-05-29T15:26:21.908503+00:00_
+_source line 354 · 2026-05-29T15:26:21.908503+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -11180,7 +11095,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 357 · 2026-05-29T15:26:21.960604+00:00_
+_source line 355 · 2026-05-29T15:26:21.960604+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -11209,7 +11124,7 @@ _source line 357 · 2026-05-29T15:26:21.960604+00:00_
 
 ### User
 
-_source line 358 · 2026-05-29T15:26:57.946721+00:00_
+_source line 356 · 2026-05-29T15:26:57.946721+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A
@@ -11251,7 +11166,7 @@ _source line 358 · 2026-05-29T15:26:57.946721+00:00_
 
 ### Assistant
 
-_source line 359 · 2026-05-29T15:27:08.622101+00:00_
+_source line 357 · 2026-05-29T15:27:08.622101+00:00_
 
 No response requested.
 
@@ -11278,7 +11193,7 @@ No response requested.
 
 ### User
 
-_source line 360 · 2026-05-29T15:27:10.135439+00:00_
+_source line 358 · 2026-05-29T15:27:10.135439+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h59m
@@ -11309,7 +11224,7 @@ _source line 360 · 2026-05-29T15:27:10.135439+00:00_
 
 ### Tool call
 
-_source line 361 · 2026-05-29T15:27:15.430604+00:00_
+_source line 359 · 2026-05-29T15:27:15.430604+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -11343,7 +11258,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 362 · 2026-05-29T15:27:15.431104+00:00_
+_source line 360 · 2026-05-29T15:27:15.431104+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_REVIEWER\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -11372,7 +11287,7 @@ _source line 362 · 2026-05-29T15:27:15.431104+00:00_
 
 ### User
 
-_source line 363 · 2026-05-29T15:58:08.859760+00:00_
+_source line 361 · 2026-05-29T15:58:08.859760+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -11416,7 +11331,7 @@ _source line 363 · 2026-05-29T15:58:08.859760+00:00_
 
 ### Tool call
 
-_source line 364 · 2026-05-29T15:58:19.499534+00:00_
+_source line 362 · 2026-05-29T15:58:19.499534+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -11452,7 +11367,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 365 · 2026-05-29T15:58:20.254765+00:00_
+_source line 363 · 2026-05-29T15:58:20.254765+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"BLOCKED\", \"minutes\": null, \"next_nudge_in_minutes\": 30}"}
 
@@ -11481,7 +11396,7 @@ _source line 365 · 2026-05-29T15:58:20.254765+00:00_
 
 ### User
 
-_source line 366 · 2026-05-29T16:29:37.869082+00:00_
+_source line 364 · 2026-05-29T16:29:37.869082+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -11521,7 +11436,7 @@ _source line 366 · 2026-05-29T16:29:37.869082+00:00_
 
 ### Tool call
 
-_source line 367 · 2026-05-29T16:29:52.540191+00:00_
+_source line 365 · 2026-05-29T16:29:52.540191+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -11559,7 +11474,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 368 · 2026-05-29T16:29:52.942090+00:00_
+_source line 366 · 2026-05-29T16:29:52.942090+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -11581,7 +11496,7 @@ _source line 368 · 2026-05-29T16:29:52.942090+00:00_
 
 ### Tool call
 
-_source line 369 · 2026-05-29T16:30:07.297910+00:00_
+_source line 367 · 2026-05-29T16:30:07.297910+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -11617,7 +11532,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 370 · 2026-05-29T16:30:15.668102+00:00_
+_source line 368 · 2026-05-29T16:30:15.668102+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -11639,7 +11554,7 @@ _source line 370 · 2026-05-29T16:30:15.668102+00:00_
 
 ### Tool call
 
-_source line 371 · 2026-05-29T16:30:16.321084+00:00_
+_source line 369 · 2026-05-29T16:30:16.321084+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -11675,7 +11590,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 372 · 2026-05-29T16:30:20.889954+00:00_
+_source line 370 · 2026-05-29T16:30:20.889954+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -11697,7 +11612,7 @@ _source line 372 · 2026-05-29T16:30:20.889954+00:00_
 
 ### Tool call
 
-_source line 373 · 2026-05-29T16:30:20.890618+00:00_
+_source line 371 · 2026-05-29T16:30:20.890618+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -11733,7 +11648,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 374 · 2026-05-29T16:30:21.819178+00:00_
+_source line 372 · 2026-05-29T16:30:21.819178+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -11755,7 +11670,7 @@ _source line 374 · 2026-05-29T16:30:21.819178+00:00_
 
 ### Assistant
 
-_source line 375 · 2026-05-29T16:30:25.223727+00:00_
+_source line 373 · 2026-05-29T16:30:25.223727+00:00_
 
 三路并行派出：Reviewer 验证 rebuttal 修复、Manager 催 Feishu 恢复、Agent 做最终 pre-submission checklist。等结果回来。
 
@@ -11782,7 +11697,7 @@ _source line 375 · 2026-05-29T16:30:25.223727+00:00_
 
 ### User
 
-_source line 376 · 2026-05-29T16:31:19.190764+00:00_
+_source line 374 · 2026-05-29T16:31:19.190764+00:00_
 
 [Reviewer 回复]:
 [severity: info] Rebuttal Prep 二次验证 — 6 项逐条 PASS/FAIL
@@ -11863,7 +11778,7 @@ per_task_analysis.md line 155 有此分析："λ=0.1 mean = 69.3, actually below
 
 ### Assistant
 
-_source line 377 · 2026-05-29T16:31:24.294393+00:00_
+_source line 375 · 2026-05-29T16:31:24.294393+00:00_
 
 No response requested.
 
@@ -11890,7 +11805,7 @@ No response requested.
 
 ### User
 
-_source line 378 · 2026-05-29T16:31:29.603717+00:00_
+_source line 376 · 2026-05-29T16:31:29.603717+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A
@@ -11925,7 +11840,7 @@ _source line 378 · 2026-05-29T16:31:29.603717+00:00_
 
 ### Tool call
 
-_source line 379 · 2026-05-29T16:31:45.688928+00:00_
+_source line 377 · 2026-05-29T16:31:45.688928+00:00_
 
 called ToolSearch
 
@@ -11961,7 +11876,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 380 · 2026-05-29T16:31:45.695981+00:00_
+_source line 378 · 2026-05-29T16:31:45.695981+00:00_
 
 
 
@@ -11983,7 +11898,7 @@ _source line 380 · 2026-05-29T16:31:45.695981+00:00_
 
 ### Tool call
 
-_source line 381 · 2026-05-29T16:31:48.556028+00:00_
+_source line 379 · 2026-05-29T16:31:48.556028+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -12017,7 +11932,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool call
 
-_source line 382 · 2026-05-29T16:31:48.556412+00:00_
+_source line 380 · 2026-05-29T16:31:48.556412+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -12051,7 +11966,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 383 · 2026-05-29T16:31:49.159260+00:00_
+_source line 381 · 2026-05-29T16:31:49.159260+00:00_
 
 {"result":"**项目**: `diff_collision_sdf`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-35807 (connect.westd.seetacloud.com) [root] + westd-45947 (connect.westd.seetacloud.com) [root]\n✓ 代码路径  /root/colliforce-vla\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 45 条记录\n**论文溯源**: 覆盖率 79/83\n\n── 📊 研究进度 ──\n实验: 137 个 (待处理 1 | 完成 136 | 成功 73)\n\n  a1_sdf_spatial_bowl_s0_v3    DONE (killed)\n  a1_sdf_object_pudding_s0     DONE (killed)\n  baseline_spatial_bowl_s1_v2  DONE (failed)\n  a1_sdf_spatial_bowl_s0_v2    DONE (failed)\n  a1_sdf_spatial_bowl_s0       DONE (failed)\n  baseline_spatial_bowl_s0     DONE (failed)\n  baseline_spatial_bowl_s1     DONE (failed)\n  baseline_object_pudding_s0   DONE (failed)\n\n── 📝 最新报告 ──\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 137 个实验 — DONE 136, PREPARING 1\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\n\n### GPU 占用\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\n\n### 💾 磁盘余量\n- **westd-35807**: ❌ 连接失败\n- **westd-45947**: ❌ 连接失败\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable"}
 
@@ -12073,7 +11988,7 @@ _source line 383 · 2026-05-29T16:31:49.159260+00:00_
 
 ### Tool result
 
-_source line 384 · 2026-05-29T16:31:49.160181+00:00_
+_source line 382 · 2026-05-29T16:31:49.160181+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 15:24 UTC | 更新原因: Rebuttal 准备完成（16 Q&A + per-task 分析 + seed3 restart plan），更新阻塞状态\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 论文终稿就绪 + rebuttal 准备完成，等用户确认提交\\n- **模板**: CoRL 2026 单栏格式 ✅\\n- **写作**: 正文 8 页 + refs 2 页 + appendix 8 页 = 18 页 ✅\\n- **数据**: 全表统一用 rotation-fixed reeval v2 数据源 ✅\\n- **数字一致性**: Reviewer 全文交叉核验通过 ✅\\n- **Rebuttal 准备**: rebuttal_prep.md 16 个 Q&A 覆盖 R1-R6 全部 reviewer concerns ✅\\n- **Per-task 分析**: fingerprint 100% 一致，94% 方差来自 task identity ✅\\n- **通信阻塞**: Feishu API 月配额耗尽，已报 Manager\\n\\n## 可信 Reeval 数据汇总（全部来自 seed=7, 200ep，rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n\\n## 关键时间线\\n\\n| 事件 | 时间 | 状态 |\\n|------|------|------|\\n| 论文 + supplementary 完成 | 22:27 UTC 5/28 | ✅ |\\n| Figure 1 数值修正 | 23:30 UTC 5/28 | ✅ |\\n| Reviewer 最终验证 PASS | Loop #10 | ✅ |\\n| Rebuttal prep 完成（16 Q&A） | 15:30 UTC 5/29 | ✅ |\\n| Per-task analysis 完成 | 15:30 UTC 5/29 | ✅ |\\n| Seed3 restart plan 就绪 | 15:30 UTC 5/29 | ✅ |\\n| 等用户确认 PDF | — | 🔄 阻塞（Feishu API 配额耗尽） |\\n| **DDL** | **2026-05-29** | |\\n\\n## 基础设施\\n- **westd-35807**: 不可达（SSH 连接失败，可能实例过期）\\n- **westd-45947**: 不可达（SSH 连接失败，可能实例过期）\\n- **Feishu API**: 月配额耗尽，无法给用户发消息，已报 Manager\\n- 137 个实验已全部完成（73 success / 25 negative / 22 failed / 16 killed）\\n\\n## 近期任务\\n- [x] Rebuttal prep R6 TSR collapse Q&A 补充\\n- [x] Per-task error case 分析（BBQ 高方差）\\n- [x] Phase 2 单 seed 应急策略\\n- [x] R2/R4/R5 话术强化\\n- [x]
 …[truncated 1645 chars]
@@ -12096,7 +12011,7 @@ _source line 384 · 2026-05-29T16:31:49.160181+00:00_
 
 ### Tool call
 
-_source line 385 · 2026-05-29T16:31:58.796112+00:00_
+_source line 383 · 2026-05-29T16:31:58.796112+00:00_
 
 called ToolSearch
 
@@ -12132,7 +12047,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 386 · 2026-05-29T16:31:58.796552+00:00_
+_source line 384 · 2026-05-29T16:31:58.796552+00:00_
 
 
 
@@ -12154,7 +12069,7 @@ _source line 386 · 2026-05-29T16:31:58.796552+00:00_
 
 ### Tool call
 
-_source line 387 · 2026-05-29T16:32:06.877611+00:00_
+_source line 385 · 2026-05-29T16:32:06.877611+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -12188,7 +12103,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 388 · 2026-05-29T16:32:09.488613+00:00_
+_source line 386 · 2026-05-29T16:32:09.488613+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -12210,7 +12125,7 @@ _source line 388 · 2026-05-29T16:32:09.488613+00:00_
 
 ### Tool call
 
-_source line 389 · 2026-05-29T16:32:19.646088+00:00_
+_source line 387 · 2026-05-29T16:32:19.646088+00:00_
 
 called ToolSearch
 
@@ -12246,7 +12161,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 390 · 2026-05-29T16:32:19.696610+00:00_
+_source line 388 · 2026-05-29T16:32:19.696610+00:00_
 
 
 
@@ -12268,7 +12183,7 @@ _source line 390 · 2026-05-29T16:32:19.696610+00:00_
 
 ### Tool call
 
-_source line 391 · 2026-05-29T16:32:23.460592+00:00_
+_source line 389 · 2026-05-29T16:32:23.460592+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -12304,7 +12219,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 392 · 2026-05-29T16:32:23.862479+00:00_
+_source line 390 · 2026-05-29T16:32:23.862479+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\", \"metadata\": {}}"}
 
@@ -12326,7 +12241,7 @@ _source line 392 · 2026-05-29T16:32:23.862479+00:00_
 
 ### Tool call
 
-_source line 393 · 2026-05-29T16:32:33.598532+00:00_
+_source line 391 · 2026-05-29T16:32:33.598532+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -12362,7 +12277,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 394 · 2026-05-29T16:32:33.649172+00:00_
+_source line 392 · 2026-05-29T16:32:33.649172+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -12384,7 +12299,7 @@ _source line 394 · 2026-05-29T16:32:33.649172+00:00_
 
 ### Assistant
 
-_source line 395 · 2026-05-29T16:32:48.772536+00:00_
+_source line 393 · 2026-05-29T16:32:48.772536+00:00_
 
 已向 Manager 发送紧急通知，请求通过其他渠道联系用户。
 
@@ -12419,7 +12334,7 @@ _source line 395 · 2026-05-29T16:32:48.772536+00:00_
 
 ### User
 
-_source line 396 · 2026-05-29T17:04:05.791821+00:00_
+_source line 394 · 2026-05-29T17:04:05.791821+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -12461,7 +12376,7 @@ _source line 396 · 2026-05-29T17:04:05.791821+00:00_
 
 ### Tool call
 
-_source line 397 · 2026-05-29T17:04:16.768282+00:00_
+_source line 395 · 2026-05-29T17:04:16.768282+00:00_
 
 called ToolSearch
 
@@ -12497,7 +12412,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 398 · 2026-05-29T17:04:16.869089+00:00_
+_source line 396 · 2026-05-29T17:04:16.869089+00:00_
 
 
 
@@ -12519,7 +12434,7 @@ _source line 398 · 2026-05-29T17:04:16.869089+00:00_
 
 ### Tool call
 
-_source line 399 · 2026-05-29T17:04:23.140948+00:00_
+_source line 397 · 2026-05-29T17:04:23.140948+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -12557,7 +12472,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 400 · 2026-05-29T17:04:23.542616+00:00_
+_source line 398 · 2026-05-29T17:04:23.542616+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -12579,7 +12494,7 @@ _source line 400 · 2026-05-29T17:04:23.542616+00:00_
 
 ### Tool call
 
-_source line 401 · 2026-05-29T17:04:25.649958+00:00_
+_source line 399 · 2026-05-29T17:04:25.649958+00:00_
 
 called mcp__agent-ml-research__list_ssh_hosts
 
@@ -12608,7 +12523,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 402 · 2026-05-29T17:04:26.453039+00:00_
+_source line 400 · 2026-05-29T17:04:26.453039+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"hosts\": [{\"host_alias\": \"github.com\", \"hostname\": \"github.com\", \"user\": \"git\", \"identity_file\": \"~/.ssh/github_deploy\", \"registered\": false}, {\"host_alias\": \"westd-35807\", \"hostname\": \"connect.westd.seetacloud.com\", \"port\": \"35807\", \"user\": \"root\", \"identity_file\": \"~/.ssh/id_ed25519\", \"registered\": true}, {\"host_alias\": \"westd-45947\", \"hostname\": \"connect.westd.seetacloud.com\", \"port\": \"45947\", \"user\": \"root\", \"identity_file\": \"~/.ssh/id_ed25519\", \"registered\": true}], \"ssh_config_path\": \"/home/ubuntu/.ssh/config\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12630,7 +12545,7 @@ _source line 402 · 2026-05-29T17:04:26.453039+00:00_
 
 ### Tool call
 
-_source line 403 · 2026-05-29T17:04:26.503628+00:00_
+_source line 401 · 2026-05-29T17:04:26.503628+00:00_
 
 called ToolSearch
 
@@ -12666,7 +12581,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 404 · 2026-05-29T17:04:26.554145+00:00_
+_source line 402 · 2026-05-29T17:04:26.554145+00:00_
 
 
 
@@ -12688,7 +12603,7 @@ _source line 404 · 2026-05-29T17:04:26.554145+00:00_
 
 ### Tool call
 
-_source line 405 · 2026-05-29T17:04:33.328614+00:00_
+_source line 403 · 2026-05-29T17:04:33.328614+00:00_
 
 called Bash
 
@@ -12726,7 +12641,7 @@ called Bash
 
 ### Tool result
 
-_source line 406 · 2026-05-29T17:04:33.882302+00:00_
+_source line 404 · 2026-05-29T17:04:33.882302+00:00_
 
 ssh: connect to host connect.westd.seetacloud.com port 35807: Connection refused
 
@@ -12748,7 +12663,7 @@ ssh: connect to host connect.westd.seetacloud.com port 35807: Connection refused
 
 ### Tool call
 
-_source line 407 · 2026-05-29T17:04:34.334326+00:00_
+_source line 405 · 2026-05-29T17:04:34.334326+00:00_
 
 called Bash
 
@@ -12786,7 +12701,7 @@ called Bash
 
 ### Tool result
 
-_source line 408 · 2026-05-29T17:04:40.851438+00:00_
+_source line 406 · 2026-05-29T17:04:40.851438+00:00_
 
 ssh: connect to host connect.westd.seetacloud.com port 45947: Connection refused
 
@@ -12808,7 +12723,7 @@ ssh: connect to host connect.westd.seetacloud.com port 45947: Connection refused
 
 ### Tool call
 
-_source line 409 · 2026-05-29T17:04:41.353372+00:00_
+_source line 407 · 2026-05-29T17:04:41.353372+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -12844,7 +12759,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool call
 
-_source line 410 · 2026-05-29T17:04:41.454141+00:00_
+_source line 408 · 2026-05-29T17:04:41.454141+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -12878,7 +12793,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 411 · 2026-05-29T17:04:44.572603+00:00_
+_source line 409 · 2026-05-29T17:04:44.572603+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -12900,7 +12815,7 @@ _source line 411 · 2026-05-29T17:04:44.572603+00:00_
 
 ### Tool result
 
-_source line 412 · 2026-05-29T17:04:44.573148+00:00_
+_source line 410 · 2026-05-29T17:04:44.573148+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":1994}"}
 
@@ -12922,7 +12837,7 @@ _source line 412 · 2026-05-29T17:04:44.573148+00:00_
 
 ### Tool call
 
-_source line 413 · 2026-05-29T17:05:04.850255+00:00_
+_source line 411 · 2026-05-29T17:05:04.850255+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -12958,7 +12873,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 414 · 2026-05-29T17:05:04.918578+00:00_
+_source line 412 · 2026-05-29T17:05:04.918578+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -12980,7 +12895,7 @@ _source line 414 · 2026-05-29T17:05:04.918578+00:00_
 
 ### Assistant
 
-_source line 415 · 2026-05-29T17:05:12.032004+00:00_
+_source line 413 · 2026-05-29T17:05:12.032004+00:00_
 
 已完成 ACK 承诺的三项行动：
 
@@ -13011,7 +12926,7 @@ _source line 415 · 2026-05-29T17:05:12.032004+00:00_
 
 ### User
 
-_source line 416 · 2026-05-29T17:06:30.033897+00:00_
+_source line 414 · 2026-05-29T17:06:30.033897+00:00_
 
 [Reviewer 回复]:
 [severity: warning] Rebuttal Q&A 完备性深度审计 — 4 维度分析
@@ -13132,7 +13047,7 @@ TSR Collapse、Architecture Gen、Demo Curation、dfCAR Bimodal、Real Hardware�
 
 ### Tool call
 
-_source line 417 · 2026-05-29T17:06:46.471577+00:00_
+_source line 415 · 2026-05-29T17:06:46.471577+00:00_
 
 called ToolSearch
 
@@ -13168,7 +13083,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 418 · 2026-05-29T17:06:46.572280+00:00_
+_source line 416 · 2026-05-29T17:06:46.572280+00:00_
 
 
 
@@ -13190,7 +13105,7 @@ _source line 418 · 2026-05-29T17:06:46.572280+00:00_
 
 ### Tool call
 
-_source line 419 · 2026-05-29T17:06:58.565579+00:00_
+_source line 417 · 2026-05-29T17:06:58.565579+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -13226,7 +13141,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 420 · 2026-05-29T17:07:01.831637+00:00_
+_source line 418 · 2026-05-29T17:07:01.831637+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -13248,7 +13163,7 @@ _source line 420 · 2026-05-29T17:07:01.831637+00:00_
 
 ### Tool call
 
-_source line 421 · 2026-05-29T17:07:06.691970+00:00_
+_source line 419 · 2026-05-29T17:07:06.691970+00:00_
 
 called ToolSearch
 
@@ -13284,7 +13199,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 422 · 2026-05-29T17:07:07.093667+00:00_
+_source line 420 · 2026-05-29T17:07:07.093667+00:00_
 
 
 
@@ -13306,7 +13221,7 @@ _source line 422 · 2026-05-29T17:07:07.093667+00:00_
 
 ### Tool call
 
-_source line 423 · 2026-05-29T17:07:40.616193+00:00_
+_source line 421 · 2026-05-29T17:07:40.616193+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -13344,7 +13259,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 424 · 2026-05-29T17:07:41.171637+00:00_
+_source line 422 · 2026-05-29T17:07:41.171637+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 80, \"reason\": \"Reviewer rebuttal审计结果 + pre-submission PASS + 服务器诊断 + Q&A实际计数更正\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13366,7 +13281,7 @@ _source line 424 · 2026-05-29T17:07:41.171637+00:00_
 
 ### Assistant
 
-_source line 425 · 2026-05-29T17:07:49.139870+00:00_
+_source line 423 · 2026-05-29T17:07:49.139870+00:00_
 
 当前状态汇总：
 
@@ -13399,7 +13314,7 @@ _source line 425 · 2026-05-29T17:07:49.139870+00:00_
 
 ### User
 
-_source line 426 · 2026-05-29T17:08:08.683192+00:00_
+_source line 424 · 2026-05-29T17:08:08.683192+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A
@@ -13434,7 +13349,7 @@ _source line 426 · 2026-05-29T17:08:08.683192+00:00_
 
 ### Assistant
 
-_source line 427 · 2026-05-29T17:08:16.502026+00:00_
+_source line 425 · 2026-05-29T17:08:16.502026+00:00_
 
 Rebuttal 储备补强完成——25 Q&A 覆盖全部已知攻击角度，包括 Reviewer 识别的 3 个统计方法论薄弱点。
 
@@ -13468,7 +13383,7 @@ Rebuttal 储备补强完成——25 Q&A 覆盖全部已知攻击角度，包括 
 
 ### User
 
-_source line 428 · 2026-05-29T17:08:18.012122+00:00_
+_source line 426 · 2026-05-29T17:08:18.012122+00:00_
 
 [Reviewer 回复]:
 [severity: warning] ROADMAP 更新审查
@@ -13514,7 +13429,7 @@ _source line 428 · 2026-05-29T17:08:18.012122+00:00_
 
 ### Tool call
 
-_source line 429 · 2026-05-29T17:08:34.716049+00:00_
+_source line 427 · 2026-05-29T17:08:34.716049+00:00_
 
 called ToolSearch
 
@@ -13550,7 +13465,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 430 · 2026-05-29T17:08:34.766601+00:00_
+_source line 428 · 2026-05-29T17:08:34.766601+00:00_
 
 
 
@@ -13572,7 +13487,7 @@ _source line 430 · 2026-05-29T17:08:34.766601+00:00_
 
 ### Tool call
 
-_source line 431 · 2026-05-29T17:08:37.564778+00:00_
+_source line 429 · 2026-05-29T17:08:37.564778+00:00_
 
 called Glob
 
@@ -13608,7 +13523,7 @@ called Glob
 
 ### Tool result
 
-_source line 432 · 2026-05-29T17:08:38.016698+00:00_
+_source line 430 · 2026-05-29T17:08:38.016698+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission/submission_checklist.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/submission_checklist.md
@@ -13632,7 +13547,7 @@ _source line 432 · 2026-05-29T17:08:38.016698+00:00_
 
 ### Tool call
 
-_source line 433 · 2026-05-29T17:08:38.168046+00:00_
+_source line 431 · 2026-05-29T17:08:38.168046+00:00_
 
 called Glob
 
@@ -13668,7 +13583,7 @@ called Glob
 
 ### Tool result
 
-_source line 434 · 2026-05-29T17:08:38.218670+00:00_
+_source line 432 · 2026-05-29T17:08:38.218670+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary/README.md
 
@@ -13690,7 +13605,7 @@ _source line 434 · 2026-05-29T17:08:38.218670+00:00_
 
 ### Tool call
 
-_source line 435 · 2026-05-29T17:08:40.928525+00:00_
+_source line 433 · 2026-05-29T17:08:40.928525+00:00_
 
 called Read
 
@@ -13724,7 +13639,7 @@ called Read
 
 ### Tool result
 
-_source line 436 · 2026-05-29T17:08:41.129757+00:00_
+_source line 434 · 2026-05-29T17:08:41.129757+00:00_
 
 1	# CoRL 2026 Submission Checklist
 2	
@@ -13790,7 +13705,7 @@ _source line 436 · 2026-05-29T17:08:41.129757+00:00_
 
 ### Tool call
 
-_source line 437 · 2026-05-29T17:08:41.130140+00:00_
+_source line 435 · 2026-05-29T17:08:41.130140+00:00_
 
 called Read
 
@@ -13824,7 +13739,7 @@ called Read
 
 ### Tool result
 
-_source line 438 · 2026-05-29T17:08:41.180735+00:00_
+_source line 436 · 2026-05-29T17:08:41.180735+00:00_
 
 1	# Supplementary Material: ColliForce-VLA
 2	
@@ -13888,7 +13803,7 @@ _source line 438 · 2026-05-29T17:08:41.180735+00:00_
 
 ### Tool call
 
-_source line 439 · 2026-05-29T17:09:17.648939+00:00_
+_source line 437 · 2026-05-29T17:09:17.648939+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -13924,7 +13839,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 440 · 2026-05-29T17:09:20.866601+00:00_
+_source line 438 · 2026-05-29T17:09:20.866601+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -13946,7 +13861,7 @@ _source line 440 · 2026-05-29T17:09:20.866601+00:00_
 
 ### Assistant
 
-_source line 441 · 2026-05-29T17:09:25.582954+00:00_
+_source line 439 · 2026-05-29T17:09:25.582954+00:00_
 
 Reviewer 的 warning 有效——确认两项修复已完成，submission_checklist 是过时文件而非真实阻塞。已派 Agent 同步更新 checklist，消除内部文档歧义。提交不受影响，继续等待用户确认 + Feishu/服务器恢复。
 
@@ -13973,7 +13888,7 @@ Reviewer 的 warning 有效——确认两项修复已完成，submission_checkl
 
 ### User
 
-_source line 442 · 2026-05-29T17:09:56.550932+00:00_
+_source line 440 · 2026-05-29T17:09:56.550932+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A
@@ -14004,7 +13919,7 @@ _source line 442 · 2026-05-29T17:09:56.550932+00:00_
 
 ### Assistant
 
-_source line 443 · 2026-05-29T17:10:01.604068+00:00_
+_source line 441 · 2026-05-29T17:10:01.604068+00:00_
 
 No response requested.
 
@@ -14031,7 +13946,7 @@ No response requested.
 
 ### User
 
-_source line 444 · 2026-05-29T17:40:37.663135+00:00_
+_source line 442 · 2026-05-29T17:40:37.663135+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -14075,7 +13990,7 @@ _source line 444 · 2026-05-29T17:40:37.663135+00:00_
 
 ### Tool call
 
-_source line 445 · 2026-05-29T17:40:53.392522+00:00_
+_source line 443 · 2026-05-29T17:40:53.392522+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -14113,7 +14028,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 446 · 2026-05-29T17:40:53.795923+00:00_
+_source line 444 · 2026-05-29T17:40:53.795923+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -14135,7 +14050,7 @@ _source line 446 · 2026-05-29T17:40:53.795923+00:00_
 
 ### Tool call
 
-_source line 447 · 2026-05-29T17:41:10.704863+00:00_
+_source line 445 · 2026-05-29T17:41:10.704863+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -14171,7 +14086,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 448 · 2026-05-29T17:41:18.815066+00:00_
+_source line 446 · 2026-05-29T17:41:18.815066+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -14193,7 +14108,7 @@ _source line 448 · 2026-05-29T17:41:18.815066+00:00_
 
 ### Tool call
 
-_source line 449 · 2026-05-29T17:41:19.317168+00:00_
+_source line 447 · 2026-05-29T17:41:19.317168+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -14229,7 +14144,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 450 · 2026-05-29T17:41:19.618736+00:00_
+_source line 448 · 2026-05-29T17:41:19.618736+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -14251,7 +14166,7 @@ _source line 450 · 2026-05-29T17:41:19.618736+00:00_
 
 ### Tool call
 
-_source line 451 · 2026-05-29T17:41:19.619079+00:00_
+_source line 449 · 2026-05-29T17:41:19.619079+00:00_
 
 called ToolSearch
 
@@ -14287,7 +14202,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 452 · 2026-05-29T17:41:19.720287+00:00_
+_source line 450 · 2026-05-29T17:41:19.720287+00:00_
 
 No matching deferred tools found
 
@@ -14309,7 +14224,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 453 · 2026-05-29T17:41:22.430399+00:00_
+_source line 451 · 2026-05-29T17:41:22.430399+00:00_
 
 called ToolSearch
 
@@ -14345,7 +14260,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 454 · 2026-05-29T17:41:22.531169+00:00_
+_source line 452 · 2026-05-29T17:41:22.531169+00:00_
 
 
 
@@ -14367,7 +14282,7 @@ _source line 454 · 2026-05-29T17:41:22.531169+00:00_
 
 ### Tool call
 
-_source line 455 · 2026-05-29T17:41:25.592590+00:00_
+_source line 453 · 2026-05-29T17:41:25.592590+00:00_
 
 called WebSearch
 
@@ -14401,7 +14316,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 456 · 2026-05-29T17:41:30.611502+00:00_
+_source line 454 · 2026-05-29T17:41:30.611502+00:00_
 
 Web search results for query: "CoRL 2026 submission deadline late submission policy OpenReview"
 
@@ -14436,7 +14351,7 @@ The search results from the official CoRL 2026 Instructions for Authors page do 
 
 ### Tool call
 
-_source line 457 · 2026-05-29T17:41:41.194983+00:00_
+_source line 455 · 2026-05-29T17:41:41.194983+00:00_
 
 called WebFetch
 
@@ -14472,7 +14387,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 458 · 2026-05-29T17:41:44.131603+00:00_
+_source line 456 · 2026-05-29T17:41:44.131603+00:00_
 
 Based on the provided web page content, **I cannot find the exact submission deadline, timezone, or late submission policy information**.
 
@@ -14498,7 +14413,7 @@ To obtain this information, you would need to visit the "Instruction for Authors
 
 ### Tool call
 
-_source line 459 · 2026-05-29T17:41:50.458880+00:00_
+_source line 457 · 2026-05-29T17:41:50.458880+00:00_
 
 called WebFetch
 
@@ -14534,7 +14449,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 460 · 2026-05-29T17:41:54.326569+00:00_
+_source line 458 · 2026-05-29T17:41:54.326569+00:00_
 
 # CoRL 2026 Paper Submission Deadline
 
@@ -14568,7 +14483,7 @@ The instructions are explicit about deadlines: "Please keep in mind that the dea
 
 ### Tool call
 
-_source line 461 · 2026-05-29T17:42:13.207878+00:00_
+_source line 459 · 2026-05-29T17:42:13.207878+00:00_
 
 called WebFetch
 
@@ -14604,7 +14519,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 462 · 2026-05-29T17:42:15.598189+00:00_
+_source line 460 · 2026-05-29T17:42:15.598189+00:00_
 
 I cannot find the submission deadline for CoRL 2026 papers in the provided web page content. The page appears to be a generic OpenReview platform header and footer with navigation links, but it does not contain specific information about CoRL 2026's submission deadline, timezone, or current submission status.
 
@@ -14628,7 +14543,7 @@ To locate this information, you would need to access the actual CoRL 2026 confer
 
 ### Tool call
 
-_source line 463 · 2026-05-29T17:42:35.618812+00:00_
+_source line 461 · 2026-05-29T17:42:35.618812+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -14664,7 +14579,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 464 · 2026-05-29T17:42:35.720499+00:00_
+_source line 462 · 2026-05-29T17:42:35.720499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -14686,7 +14601,7 @@ _source line 464 · 2026-05-29T17:42:35.720499+00:00_
 
 ### Tool call
 
-_source line 465 · 2026-05-29T17:42:40.351807+00:00_
+_source line 463 · 2026-05-29T17:42:40.351807+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -14720,7 +14635,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 466 · 2026-05-29T17:42:40.703403+00:00_
+_source line 464 · 2026-05-29T17:42:40.703403+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -14742,7 +14657,7 @@ _source line 466 · 2026-05-29T17:42:40.703403+00:00_
 
 ### Assistant
 
-_source line 467 · 2026-05-29T17:42:55.014500+00:00_
+_source line 465 · 2026-05-29T17:42:55.014500+00:00_
 
 Feishu 仍然不通。已通过 Manager 渠道紧急上报 DDL 差异。目前所有能做的通信渠道都已用尽——Manager 是唯一能联系用户的路径。
 
@@ -14771,7 +14686,7 @@ Feishu 仍然不通。已通过 Manager 渠道紧急上报 DDL 差异。目前�
 
 ### User
 
-_source line 468 · 2026-05-29T17:42:56.525297+00:00_
+_source line 466 · 2026-05-29T17:42:56.525297+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 2 (CPU 2: rebuttal-seed3-versions + camera-ready-polish) | 磁盘: N/A
@@ -14799,7 +14714,7 @@ Worker 完成后汇报。
 
 ### Assistant
 
-_source line 469 · 2026-05-29T17:43:01.724957+00:00_
+_source line 467 · 2026-05-29T17:43:01.724957+00:00_
 
 No response requested.
 
@@ -14826,7 +14741,7 @@ No response requested.
 
 ### User
 
-_source line 470 · 2026-05-29T17:47:09.876369+00:00_
+_source line 468 · 2026-05-29T17:47:09.876369+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 (全部完成) | 磁盘: N/A
@@ -14869,7 +14784,7 @@ Priority A 关键项：
 
 ### Assistant
 
-_source line 471 · 2026-05-29T17:47:30.166068+00:00_
+_source line 469 · 2026-05-29T17:47:30.166068+00:00_
 
 No response requested.
 
@@ -14896,7 +14811,7 @@ No response requested.
 
 ### User
 
-_source line 472 · 2026-05-29T17:47:30.175934+00:00_
+_source line 470 · 2026-05-29T17:47:30.175934+00:00_
 
 [Reviewer 回复]:
 [severity: info] Rebuttal Seed3 Versions 审查 — worker_paper_rebuttal-seed3-versions_20260529T174146
@@ -14977,7 +14892,7 @@ contingency 规划到位，两个版本覆盖了可能的 outcome space。Gray z
 
 ### Tool call
 
-_source line 473 · 2026-05-29T17:47:45.820184+00:00_
+_source line 471 · 2026-05-29T17:47:45.820184+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -15011,7 +14926,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 474 · 2026-05-29T17:47:45.870820+00:00_
+_source line 472 · 2026-05-29T17:47:45.870820+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_AGENT\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -15033,7 +14948,7 @@ _source line 474 · 2026-05-29T17:47:45.870820+00:00_
 
 ### Assistant
 
-_source line 475 · 2026-05-29T17:47:51.928878+00:00_
+_source line 473 · 2026-05-29T17:47:51.928878+00:00_
 
 Reviewer 重置完成。当前状态：
 
@@ -15065,7 +14980,7 @@ Reviewer 重置完成。当前状态：
 
 ### User
 
-_source line 476 · 2026-05-29T17:48:18.144909+00:00_
+_source line 474 · 2026-05-29T17:48:18.144909+00:00_
 
 [Reviewer 回复]:
 [severity: warning] Camera-Ready Polish 审查 — worker_paper_camera-ready-polish_20260529T174202
@@ -15131,7 +15046,7 @@ reference audit 中发现的 2 处 citation context 错误（Diffusion Policy �
 
 ### Assistant
 
-_source line 477 · 2026-05-29T17:48:35.315976+00:00_
+_source line 475 · 2026-05-29T17:48:35.315976+00:00_
 
 No response requested.
 
@@ -15158,7 +15073,7 @@ No response requested.
 
 ### User
 
-_source line 478 · 2026-05-29T18:19:03.219724+00:00_
+_source line 476 · 2026-05-29T18:19:03.219724+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -15200,7 +15115,7 @@ _source line 478 · 2026-05-29T18:19:03.219724+00:00_
 
 ### Tool call
 
-_source line 479 · 2026-05-29T18:19:13.752478+00:00_
+_source line 477 · 2026-05-29T18:19:13.752478+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -15238,7 +15153,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 480 · 2026-05-29T18:19:14.155734+00:00_
+_source line 478 · 2026-05-29T18:19:14.155734+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -15260,7 +15175,7 @@ _source line 480 · 2026-05-29T18:19:14.155734+00:00_
 
 ### Tool call
 
-_source line 481 · 2026-05-29T18:19:19.575402+00:00_
+_source line 479 · 2026-05-29T18:19:19.575402+00:00_
 
 called WebFetch
 
@@ -15296,7 +15211,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 482 · 2026-05-29T18:19:30.718375+00:00_
+_source line 480 · 2026-05-29T18:19:30.718375+00:00_
 
 Based on the web page content provided, I cannot determine whether the submission portal is currently open or if authors can still submit papers. 
 
@@ -15322,7 +15237,7 @@ To find current submission availability, you would need to access the full confe
 
 ### Tool call
 
-_source line 483 · 2026-05-29T18:19:31.170316+00:00_
+_source line 481 · 2026-05-29T18:19:31.170316+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -15358,7 +15273,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 484 · 2026-05-29T18:19:34.423614+00:00_
+_source line 482 · 2026-05-29T18:19:34.423614+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -15380,7 +15295,7 @@ _source line 484 · 2026-05-29T18:19:34.423614+00:00_
 
 ### Tool call
 
-_source line 485 · 2026-05-29T18:19:38.889338+00:00_
+_source line 483 · 2026-05-29T18:19:38.889338+00:00_
 
 called WebSearch
 
@@ -15414,7 +15329,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 486 · 2026-05-29T18:19:40.043151+00:00_
+_source line 484 · 2026-05-29T18:19:40.043151+00:00_
 
 called WebFetch
 
@@ -15450,7 +15365,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 487 · 2026-05-29T18:19:42.199163+00:00_
+_source line 485 · 2026-05-29T18:19:42.199163+00:00_
 
 # CoRL 2026 Conference Submission Status
 
@@ -15478,7 +15393,7 @@ To find submission information, you would need to navigate further into the conf
 
 ### Tool result
 
-_source line 488 · 2026-05-29T18:19:44.962623+00:00_
+_source line 486 · 2026-05-29T18:19:44.962623+00:00_
 
 Web search results for query: "CoRL 2026 paper submission deadline "May 28" OR "May 29" AoE site:openreview.net OR site:corl.org"
 
@@ -15511,7 +15426,7 @@ The official CoRL website instruction for authors specifically notes that the pa
 
 ### Tool call
 
-_source line 489 · 2026-05-29T18:19:57.910525+00:00_
+_source line 487 · 2026-05-29T18:19:57.910525+00:00_
 
 called ToolSearch
 
@@ -15547,7 +15462,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 490 · 2026-05-29T18:19:58.011395+00:00_
+_source line 488 · 2026-05-29T18:19:58.011395+00:00_
 
 
 
@@ -15569,7 +15484,7 @@ _source line 490 · 2026-05-29T18:19:58.011395+00:00_
 
 ### Tool call
 
-_source line 491 · 2026-05-29T18:20:12.930759+00:00_
+_source line 489 · 2026-05-29T18:20:12.930759+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -15617,7 +15532,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 492 · 2026-05-29T18:20:13.081752+00:00_
+_source line 490 · 2026-05-29T18:20:13.081752+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M067\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15639,7 +15554,7 @@ _source line 492 · 2026-05-29T18:20:13.081752+00:00_
 
 ### Tool call
 
-_source line 493 · 2026-05-29T18:20:38.368603+00:00_
+_source line 491 · 2026-05-29T18:20:38.368603+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -15677,7 +15592,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 494 · 2026-05-29T18:20:39.029235+00:00_
+_source line 492 · 2026-05-29T18:20:39.029235+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 72, \"reason\": \"DDL 确认为 5/28 AoE（已过），记录 M067，更新全局状态\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15699,7 +15614,7 @@ _source line 494 · 2026-05-29T18:20:39.029235+00:00_
 
 ### Assistant
 
-_source line 495 · 2026-05-29T18:20:41.109219+00:00_
+_source line 493 · 2026-05-29T18:20:41.109219+00:00_
 
 搜索确认：CoRL 2026 DDL 是 **5/28 AoE**（= 5/29 11:59 UTC），已过。多个来源一致。我们 ROADMAP 标的 5/29 是错误的。
 
@@ -15726,7 +15641,7 @@ _source line 495 · 2026-05-29T18:20:41.109219+00:00_
 
 ### User
 
-_source line 496 · 2026-05-29T18:22:33.820940+00:00_
+_source line 494 · 2026-05-29T18:22:33.820940+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 更新审查 — DDL 确认 + 全局状态
@@ -15772,7 +15687,7 @@ _source line 496 · 2026-05-29T18:22:33.820940+00:00_
 
 ### Tool call
 
-_source line 497 · 2026-05-29T18:22:47.570290+00:00_
+_source line 495 · 2026-05-29T18:22:47.570290+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -15810,7 +15725,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 498 · 2026-05-29T18:22:47.721326+00:00_
+_source line 496 · 2026-05-29T18:22:47.721326+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\", \"content\": \"_next_id: 46\\ndecisions:\\n- id: D001\\n  date: 2026-05-19 16:08 UTC\\n  summary: 锁定 π0/openpi 为 MVP 基座模型，补充 Phase A kill gates 和可复现性协议\\n  rationale: 采纳 Reviewer 4 条 warning：(1) π0 flow matching 连续动作空间天然适配 SDF 梯度修正，OpenVLA\\n    autoregressive token 预测需额外离散→连续映射；(2) 10%-20% 成功率下降定义为 conditional pass 消除灰色地带；(3)\\n    Phase A 增加 3 个 kill gate（MuJoCo 版本、mesh 可访问性、梯度回传 toy test）；(4) 3 seeds × 50 episodes\\n    保证统计显著性。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-19 16:19 UTC\\n  summary: 维持 D001 π0/openpi 决策，Worker 推荐 OpenVLA-OFT 被否决\\n  rationale: Worker 推荐 OFT 基于\\\"ODE 多步梯度传播劣势\\\"论点，但 Reviewer 修正：(1) 训练时 π0 不跑 ODE solver，单步去噪梯度回传无劣势；(2)\\n    推理时多步 ODE 反而是优势——每步去噪可注入 SDF gradient correction，实现迭代式轨迹优化，这是 IDEA_BRIEF 核心机制\\n    \\\"SDF-gradient-guided action refinement\\\" 的天然载体；(3) 2.5B vs 7B，MVP 快速迭代 π0 有 2-3x\\n    速度优势。OpenVLA-OFT 记录为工程 fallback。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-19 17:42 UTC\\n  summary: KG-2 conditional pass，接受非 watertight 风险，要求 SDF GT 预计算时验证梯度方向 + 翻转符号约定\\n  rationale: 81.4% robosuite mesh 非 watertight，trimesh repair 失败。但 pysdf 在非 watertight\\n    mesh 上仍返回合理 SDF 值，且 MVP 只需 1-2 个场景可用。关键要求：(1) SDF GT 生成时取负翻转符号约定（pysdf 正=内部 →\\n    标准正=外部）(2) 对 MVP 场景的实际 mesh 验证 SDF 梯度方向指向远离障碍物 (3) 可视化确认 SDF 场质量。不阻塞 Phase B 启动。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-19 17:54 UTC\\n  summary: 批准 Phase B 启动：三步走——openpi baseline 验证 pipeline → A1 SDF auxiliary → A3\\n    gradient-guided，4 卡并行\\n  rationale: Phase A Kill Gates 全部 PASS（KG-1 MuJoCo 3.8.1，KG-2 梯度方向 >98% 准确，KG-3 梯度回传稳定）。SDF\\n    GT 已预计算（符号已翻转），代码框架已完成。Reviewer 两个 warning 需在集成时修复：(1) EEPositionExtractor 需加\\n    FK 监督 loss (2) sdf_data.py 确认不二次翻转符号。先用 1 seed 跑通 baseline 验证 pipeline，再 3 组 ×\\n    3 seeds 并行铺开。\\n 
 …[truncated 1448 chars]
@@ -15833,7 +15748,7 @@ _source line 498 · 2026-05-29T18:22:47.721326+00:00_
 
 ### Tool call
 
-_source line 499 · 2026-05-29T18:22:47.721755+00:00_
+_source line 497 · 2026-05-29T18:22:47.721755+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -15871,7 +15786,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 500 · 2026-05-29T18:22:47.772659+00:00_
+_source line 498 · 2026-05-29T18:22:47.772659+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\", \"content\": \"# ColliForce-VLA Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase\\n\\n## Core Insight\\n\\nVLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 \\\"安全\\\" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。\\n\\n## Working Title\\n\\n\\\"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion\\\"\\n\\n> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献\\n\\n## Target Venue\\n\\n**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)\\n**定位**: Diagnostic/evaluation methodology paper with positive method contribution\\n**Fit**: Robotics safety track — \\\"VLA safety metrics are fundamentally broken\\\" 对社区有直接影响\\n\\n## Core Claims (D028 重组: 4→3 claims)\\n\\n### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)\\n\\nStandard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as \\\"safe\\\", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. \\\"Collision-free\\\" ≠ \\\"collision-avoiding.\\\"\\n\\n**Primary evidence — Action collapse (fake safety)**:\\n- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen\\n- TSR=0% 独立确认 action collapse\\n- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主\\n\\n**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:\\n- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务
 …[truncated 9749 chars]
@@ -15894,7 +15809,7 @@ _source line 500 · 2026-05-29T18:22:47.772659+00:00_
 
 ### Tool call
 
-_source line 501 · 2026-05-29T18:23:00.218608+00:00_
+_source line 499 · 2026-05-29T18:23:00.218608+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -15932,7 +15847,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 502 · 2026-05-29T18:23:00.320500+00:00_
+_source line 500 · 2026-05-29T18:23:00.320500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\", \"content\": \"_next_id: 46\\ndecisions:\\n- id: D001\\n  date: 2026-05-19 16:08 UTC\\n  summary: 锁定 π0/openpi 为 MVP 基座模型，补充 Phase A kill gates 和可复现性协议\\n  rationale: 采纳 Reviewer 4 条 warning：(1) π0 flow matching 连续动作空间天然适配 SDF 梯度修正，OpenVLA\\n    autoregressive token 预测需额外离散→连续映射；(2) 10%-20% 成功率下降定义为 conditional pass 消除灰色地带；(3)\\n    Phase A 增加 3 个 kill gate（MuJoCo 版本、mesh 可访问性、梯度回传 toy test）；(4) 3 seeds × 50 episodes\\n    保证统计显著性。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-19 16:19 UTC\\n  summary: 维持 D001 π0/openpi 决策，Worker 推荐 OpenVLA-OFT 被否决\\n  rationale: Worker 推荐 OFT 基于\\\"ODE 多步梯度传播劣势\\\"论点，但 Reviewer 修正：(1) 训练时 π0 不跑 ODE solver，单步去噪梯度回传无劣势；(2)\\n    推理时多步 ODE 反而是优势——每步去噪可注入 SDF gradient correction，实现迭代式轨迹优化，这是 IDEA_BRIEF 核心机制\\n    \\\"SDF-gradient-guided action refinement\\\" 的天然载体；(3) 2.5B vs 7B，MVP 快速迭代 π0 有 2-3x\\n    速度优势。OpenVLA-OFT 记录为工程 fallback。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-19 17:42 UTC\\n  summary: KG-2 conditional pass，接受非 watertight 风险，要求 SDF GT 预计算时验证梯度方向 + 翻转符号约定\\n  rationale: 81.4% robosuite mesh 非 watertight，trimesh repair 失败。但 pysdf 在非 watertight\\n    mesh 上仍返回合理 SDF 值，且 MVP 只需 1-2 个场景可用。关键要求：(1) SDF GT 生成时取负翻转符号约定（pysdf 正=内部 →\\n    标准正=外部）(2) 对 MVP 场景的实际 mesh 验证 SDF 梯度方向指向远离障碍物 (3) 可视化确认 SDF 场质量。不阻塞 Phase B 启动。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-19 17:54 UTC\\n  summary: 批准 Phase B 启动：三步走——openpi baseline 验证 pipeline → A1 SDF auxiliary → A3\\n    gradient-guided，4 卡并行\\n  rationale: Phase A Kill Gates 全部 PASS（KG-1 MuJoCo 3.8.1，KG-2 梯度方向 >98% 准确，KG-3 梯度回传稳定）。SDF\\n    GT 已预计算（符号已翻转），代码框架已完成。Reviewer 两个 warning 需在集成时修复：(1) EEPositionExtractor 需加\\n    FK 监督 loss (2) sdf_data.py 确认不二次翻转符号。先用 1 seed 跑通 baseline 验证 pipeline，再 3 组 ×\\n    3 seeds 并行铺开。\\n 
 …[truncated 36167 chars]
@@ -15955,7 +15870,7 @@ _source line 502 · 2026-05-29T18:23:00.320500+00:00_
 
 ### Tool call
 
-_source line 503 · 2026-05-29T18:23:19.613579+00:00_
+_source line 501 · 2026-05-29T18:23:19.613579+00:00_
 
 called Grep
 
@@ -15995,7 +15910,7 @@ called Grep
 
 ### Tool result
 
-_source line 504 · 2026-05-29T18:23:20.066065+00:00_
+_source line 502 · 2026-05-29T18:23:20.066065+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/reeval_comparison.tex:14:LoRA-only s0 & 6.5 & 51.5 & +45.0 & 54.5 & 56.5 & +2.0 & 0.396 \\
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/reeval_comparison.tex:16:\rowcolor{gray!15} \textit{LoRA-only mean} & 6.2$\pm$0.2 & 51.5$\pm$0.0 & +45.2 & 55.2$\pm$0.8 & 56.5$\pm$0.0 & +1.2 & \\
@@ -16027,7 +15942,7 @@ _source line 504 · 2026-05-29T18:23:20.066065+00:00_
 
 ### Tool call
 
-_source line 505 · 2026-05-29T18:23:20.618358+00:00_
+_source line 503 · 2026-05-29T18:23:20.618358+00:00_
 
 called Grep
 
@@ -16069,7 +15984,7 @@ called Grep
 
 ### Tool result
 
-_source line 506 · 2026-05-29T18:23:20.669141+00:00_
+_source line 504 · 2026-05-29T18:23:20.669141+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md:21:| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md:61:| D042 | 2026-05-28 | D042: 全表统一用 reeval 数据——LoRA TSR=51.5±0.0, baseline | reeval_lora_s0_30k_v2, reeval_lora_s1_30k, eval_lora_s2_30k_v2 |
@@ -16100,7 +16015,7 @@ _source line 506 · 2026-05-29T18:23:20.669141+00:00_
 
 ### Tool call
 
-_source line 507 · 2026-05-29T18:24:33.258066+00:00_
+_source line 505 · 2026-05-29T18:24:33.258066+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -16138,7 +16053,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 508 · 2026-05-29T18:24:36.271876+00:00_
+_source line 506 · 2026-05-29T18:24:36.271876+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 77, \"reason\": \"TSR 数据溯源完成（论文正确），实验计数修正 136+1，D042 注释\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16160,7 +16075,7 @@ _source line 508 · 2026-05-29T18:24:36.271876+00:00_
 
 ### Assistant
 
-_source line 509 · 2026-05-29T18:24:38.438292+00:00_
+_source line 507 · 2026-05-29T18:24:38.438292+00:00_
 
 数据溯源完成。情况比最初看起来更微妙：
 
@@ -16197,7 +16112,7 @@ _source line 509 · 2026-05-29T18:24:38.438292+00:00_
 
 ### User
 
-_source line 510 · 2026-05-29T18:25:03.504340+00:00_
+_source line 508 · 2026-05-29T18:25:03.504340+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP 二次更新确认——三项修正全部到位。
@@ -16225,7 +16140,7 @@ _source line 510 · 2026-05-29T18:25:03.504340+00:00_
 
 ### Assistant
 
-_source line 511 · 2026-05-29T18:25:09.081991+00:00_
+_source line 509 · 2026-05-29T18:25:09.081991+00:00_
 
 No response requested.
 
@@ -16252,7 +16167,7 @@ No response requested.
 
 ### User
 
-_source line 512 · 2026-05-29T18:56:02.773913+00:00_
+_source line 510 · 2026-05-29T18:56:02.773913+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -16294,7 +16209,7 @@ Agent 刚完成 camera-ready 11 项修复，Reviewer 确认 ROADMAP 三项修正
 
 ### Tool call
 
-_source line 513 · 2026-05-29T18:56:13.802795+00:00_
+_source line 511 · 2026-05-29T18:56:13.802795+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -16332,7 +16247,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 514 · 2026-05-29T18:56:14.254845+00:00_
+_source line 512 · 2026-05-29T18:56:14.254845+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -16354,7 +16269,7 @@ _source line 514 · 2026-05-29T18:56:14.254845+00:00_
 
 ### Tool call
 
-_source line 515 · 2026-05-29T18:56:29.154571+00:00_
+_source line 513 · 2026-05-29T18:56:29.154571+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -16390,7 +16305,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool call
 
-_source line 516 · 2026-05-29T18:56:29.255970+00:00_
+_source line 514 · 2026-05-29T18:56:29.255970+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -16424,7 +16339,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 517 · 2026-05-29T18:56:32.447755+00:00_
+_source line 515 · 2026-05-29T18:56:32.447755+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -16446,7 +16361,7 @@ _source line 517 · 2026-05-29T18:56:32.447755+00:00_
 
 ### Tool result
 
-_source line 518 · 2026-05-29T18:56:32.448188+00:00_
+_source line 516 · 2026-05-29T18:56:32.448188+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":1749}"}
 
@@ -16468,7 +16383,7 @@ _source line 518 · 2026-05-29T18:56:32.448188+00:00_
 
 ### Tool call
 
-_source line 519 · 2026-05-29T18:56:47.052509+00:00_
+_source line 517 · 2026-05-29T18:56:47.052509+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -16504,7 +16419,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 520 · 2026-05-29T18:56:47.964870+00:00_
+_source line 518 · 2026-05-29T18:56:47.964870+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -16526,7 +16441,7 @@ _source line 520 · 2026-05-29T18:56:47.964870+00:00_
 
 ### Tool call
 
-_source line 521 · 2026-05-29T18:56:50.727997+00:00_
+_source line 519 · 2026-05-29T18:56:50.727997+00:00_
 
 called ToolSearch
 
@@ -16562,7 +16477,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 522 · 2026-05-29T18:56:50.828783+00:00_
+_source line 520 · 2026-05-29T18:56:50.828783+00:00_
 
 
 
@@ -16584,7 +16499,7 @@ _source line 522 · 2026-05-29T18:56:50.828783+00:00_
 
 ### Tool call
 
-_source line 523 · 2026-05-29T18:57:01.424426+00:00_
+_source line 521 · 2026-05-29T18:57:01.424426+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -16624,7 +16539,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 524 · 2026-05-29T18:57:01.623716+00:00_
+_source line 522 · 2026-05-29T18:57:01.623716+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D046\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16646,7 +16561,7 @@ _source line 524 · 2026-05-29T18:57:01.623716+00:00_
 
 ### Assistant
 
-_source line 525 · 2026-05-29T18:57:03.741146+00:00_
+_source line 523 · 2026-05-29T18:57:03.741146+00:00_
 
 Agent 空闲 29 分钟。派活。
 
@@ -16673,7 +16588,7 @@ Agent 空闲 29 分钟。派活。
 
 ### User
 
-_source line 526 · 2026-05-29T18:57:56.056631+00:00_
+_source line 524 · 2026-05-29T18:57:56.056631+00:00_
 
 [Reviewer 回复]:
 ## Post-DDL 战略评估
@@ -16756,7 +16671,7 @@ _source line 526 · 2026-05-29T18:57:56.056631+00:00_
 
 ### Tool call
 
-_source line 527 · 2026-05-29T18:58:14.537084+00:00_
+_source line 525 · 2026-05-29T18:58:14.537084+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -16790,7 +16705,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 528 · 2026-05-29T18:58:17.248589+00:00_
+_source line 526 · 2026-05-29T18:58:17.248589+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -16812,7 +16727,7 @@ _source line 528 · 2026-05-29T18:58:17.248589+00:00_
 
 ### Tool call
 
-_source line 529 · 2026-05-29T18:58:26.988461+00:00_
+_source line 527 · 2026-05-29T18:58:26.988461+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -16848,7 +16763,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 530 · 2026-05-29T18:58:27.039075+00:00_
+_source line 528 · 2026-05-29T18:58:27.039075+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -16870,7 +16785,7 @@ _source line 530 · 2026-05-29T18:58:27.039075+00:00_
 
 ### Assistant
 
-_source line 531 · 2026-05-29T18:58:29.032878+00:00_
+_source line 529 · 2026-05-29T18:58:29.032878+00:00_
 
 Reviewer 战略评估到位。综合后形成用户决策选项包。
 
@@ -16897,7 +16812,7 @@ Reviewer 战略评估到位。综合后形成用户决策选项包。
 
 ### User
 
-_source line 532 · 2026-05-29T18:59:48.210409+00:00_
+_source line 530 · 2026-05-29T18:59:48.210409+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯本地任务)
@@ -16942,7 +16857,7 @@ _source line 532 · 2026-05-29T18:59:48.210409+00:00_
 
 ### Assistant
 
-_source line 533 · 2026-05-29T18:59:53.113007+00:00_
+_source line 531 · 2026-05-29T18:59:53.113007+00:00_
 
 No response requested.
 
@@ -16969,7 +16884,7 @@ No response requested.
 
 ### User
 
-_source line 534 · 2026-05-29T19:30:33.664464+00:00_
+_source line 532 · 2026-05-29T19:30:33.664464+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -17013,7 +16928,7 @@ Agent 完成了 Dependencies 清理和 ICRA 分析，Reviewer 给了战略评估
 
 ### Tool call
 
-_source line 535 · 2026-05-29T19:30:47.001596+00:00_
+_source line 533 · 2026-05-29T19:30:47.001596+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -17051,7 +16966,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 536 · 2026-05-29T19:30:47.403348+00:00_
+_source line 534 · 2026-05-29T19:30:47.403348+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -17073,7 +16988,7 @@ _source line 536 · 2026-05-29T19:30:47.403348+00:00_
 
 ### Tool call
 
-_source line 537 · 2026-05-29T19:30:52.120767+00:00_
+_source line 535 · 2026-05-29T19:30:52.120767+00:00_
 
 called Read
 
@@ -17107,7 +17022,7 @@ called Read
 
 ### Tool result
 
-_source line 538 · 2026-05-29T19:31:01.151472+00:00_
+_source line 536 · 2026-05-29T19:31:01.151472+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/director_1e36c1b1.
 
@@ -17129,7 +17044,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 539 · 2026-05-29T19:31:01.703856+00:00_
+_source line 537 · 2026-05-29T19:31:01.703856+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -17165,7 +17080,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 540 · 2026-05-29T19:31:15.489984+00:00_
+_source line 538 · 2026-05-29T19:31:15.489984+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -17187,7 +17102,7 @@ _source line 540 · 2026-05-29T19:31:15.489984+00:00_
 
 ### Tool call
 
-_source line 541 · 2026-05-29T19:31:15.540864+00:00_
+_source line 539 · 2026-05-29T19:31:15.540864+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -17223,7 +17138,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 542 · 2026-05-29T19:31:16.448025+00:00_
+_source line 540 · 2026-05-29T19:31:16.448025+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -17245,7 +17160,7 @@ _source line 542 · 2026-05-29T19:31:16.448025+00:00_
 
 ### Tool call
 
-_source line 543 · 2026-05-29T19:31:20.423464+00:00_
+_source line 541 · 2026-05-29T19:31:20.423464+00:00_
 
 called Glob
 
@@ -17281,7 +17196,7 @@ called Glob
 
 ### Tool result
 
-_source line 544 · 2026-05-29T19:31:20.674700+00:00_
+_source line 542 · 2026-05-29T19:31:20.674700+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/method-improvement.skill.md
 /home/ubuntu/agent-ml-research-worktrees/exp-scenario_b_draft/skills/global/method-improvement.skill.md
@@ -17304,7 +17219,7 @@ _source line 544 · 2026-05-29T19:31:20.674700+00:00_
 
 ### Tool call
 
-_source line 545 · 2026-05-29T19:31:24.139125+00:00_
+_source line 543 · 2026-05-29T19:31:24.139125+00:00_
 
 called Read
 
@@ -17338,7 +17253,7 @@ called Read
 
 ### Tool result
 
-_source line 546 · 2026-05-29T19:31:24.139979+00:00_
+_source line 544 · 2026-05-29T19:31:24.139979+00:00_
 
 1	---
 2	name: method-improvement
@@ -17438,7 +17353,7 @@ _source line 546 · 2026-05-29T19:31:24.139979+00:00_
 
 ### Assistant
 
-_source line 547 · 2026-05-29T19:31:57.424108+00:00_
+_source line 545 · 2026-05-29T19:31:57.424108+00:00_
 
 用 method-improvement 框架系统分析了 25 个 negative 结果。核心诊断已在 D018/D019 建立，现在用框架审视改进空间。
 
@@ -17482,7 +17397,7 @@ _source line 547 · 2026-05-29T19:31:57.424108+00:00_
 
 ### User
 
-_source line 548 · 2026-05-29T19:33:38.018084+00:00_
+_source line 546 · 2026-05-29T19:33:38.018084+00:00_
 
 [Reviewer 回复]:
 ## 方法改进方向评估
@@ -17601,7 +17516,7 @@ _source line 548 · 2026-05-29T19:33:38.018084+00:00_
 
 ### Tool call
 
-_source line 549 · 2026-05-29T19:34:00.374189+00:00_
+_source line 547 · 2026-05-29T19:34:00.374189+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -17641,7 +17556,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 550 · 2026-05-29T19:34:00.525281+00:00_
+_source line 548 · 2026-05-29T19:34:00.525281+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D047\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17663,7 +17578,7 @@ _source line 550 · 2026-05-29T19:34:00.525281+00:00_
 
 ### Tool call
 
-_source line 551 · 2026-05-29T19:34:34.934651+00:00_
+_source line 549 · 2026-05-29T19:34:34.934651+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -17701,7 +17616,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 552 · 2026-05-29T19:34:37.848524+00:00_
+_source line 550 · 2026-05-29T19:34:37.848524+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 88, \"reason\": \"D047 方法改进战略 + ICRA 转投路线图 + 实验扩展规划\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17723,7 +17638,7 @@ _source line 552 · 2026-05-29T19:34:37.848524+00:00_
 
 ### Assistant
 
-_source line 553 · 2026-05-29T19:34:40.299969+00:00_
+_source line 551 · 2026-05-29T19:34:40.299969+00:00_
 
 Reviewer 的分析非常扎实。Demo curation 作为 P0 方法改进方向与核心发现完美对齐，且风险最低。
 
@@ -17750,7 +17665,7 @@ Reviewer 的分析非常扎实。Demo curation 作为 P0 方法改进方向与�
 
 ### User
 
-_source line 554 · 2026-05-29T19:34:45.639340+00:00_
+_source line 552 · 2026-05-29T19:34:45.639340+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯本地任务)
@@ -17794,7 +17709,7 @@ _source line 554 · 2026-05-29T19:34:45.639340+00:00_
 
 ### Assistant
 
-_source line 555 · 2026-05-29T19:34:51.450939+00:00_
+_source line 553 · 2026-05-29T19:34:51.450939+00:00_
 
 No response requested.
 
@@ -17821,7 +17736,7 @@ No response requested.
 
 ### User
 
-_source line 556 · 2026-05-29T19:35:14.687289+00:00_
+_source line 554 · 2026-05-29T19:35:14.687289+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP D047 更新审查——战略规划合理，方向优先级和成本估算与审查建议一致。
@@ -17849,7 +17764,7 @@ _source line 556 · 2026-05-29T19:35:14.687289+00:00_
 
 ### Tool call
 
-_source line 557 · 2026-05-29T19:35:31.120752+00:00_
+_source line 555 · 2026-05-29T19:35:31.120752+00:00_
 
 called ToolSearch
 
@@ -17885,7 +17800,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 558 · 2026-05-29T19:35:31.171275+00:00_
+_source line 556 · 2026-05-29T19:35:31.171275+00:00_
 
 No matching deferred tools found
 
@@ -17907,7 +17822,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 559 · 2026-05-29T19:35:34.516277+00:00_
+_source line 557 · 2026-05-29T19:35:34.516277+00:00_
 
 called ToolSearch
 
@@ -17943,7 +17858,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 560 · 2026-05-29T19:35:34.571858+00:00_
+_source line 558 · 2026-05-29T19:35:34.571858+00:00_
 
 
 
@@ -17965,7 +17880,7 @@ _source line 560 · 2026-05-29T19:35:34.571858+00:00_
 
 ### Tool call
 
-_source line 561 · 2026-05-29T19:35:37.131160+00:00_
+_source line 559 · 2026-05-29T19:35:37.131160+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -17999,7 +17914,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 562 · 2026-05-29T19:35:37.633703+00:00_
+_source line 560 · 2026-05-29T19:35:37.633703+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 19:34 UTC | 更新原因: D047 方法改进战略 + ICRA 转投路线图 + 实验扩展规划\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Post-DDL 战略规划，等用户确认提交状态\\n- **CoRL 2026**: DDL 5/28 AoE 已过（M067），用户可能已提交（有 abstract slot），Feishu 不可用无法确认\\n- **转投准备**: ICRA 2027 venue 分析完成，DDL ~Sep 2026（~3.5 月窗口）\\n- **方法改进**: D047 确定 demo curation 为 P0 方向（与 Claim 3 核心发现一致，叙事最自然）\\n- **论文材料**: 6/6 PASS + 25 Q&A rebuttal + seed3 双版本 contingency + camera-ready 修复完成\\n- **通信阻塞**: Feishu API 月配额耗尽，已四次报 Manager\\n\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n\\n> LoRA TSR=49.7% 来自 per-seed {46.0, 51.5, 51.5}，与论文一致。\\n\\n## 方法改进路线图（D047，如转投 ICRA 2027）\\n\\n| 优先级 | 方向 | 成本 | 风险 | 状态 |\\n|--------|------|------|------|------|\\n| **P0** | Demo curation（collision-free ratio → Pareto 曲线）| 3 周 | ★ 极低 | 待启动 |\\n| P1 | SDF-as-observation（SDF 值作 proprioception 输入）| 5-7 周 | ★★★ | 待 P0 结果 |\\n| P2 | Full-body SDF auxiliary | 4-6 周 | ★★★★ | 待 demo 碰撞分布数据 |\\n| ✗ | CBF / Safety filter | 6+ 周 | ★★★★★ | 不推荐 |\\n\\n## 实验扩展路线图（如转投 ICRA 2027）\\n\\n| 优先级 | 方向 | 成本 | 目的 |\\n|--------|------|------|------|\\n| P0 | 全条件 4-seed | 2 周 | 消除统计功效质疑 |\\n| P0 | Demo curation 实验 | 3 周 | 正向方法贡献 |\\n| P1 | OpenVLA zero-shot eval | 1 周 | 第 3 个 model family |\\n| P1 | 第二 benchmark（RoboCasa） | 2-3 周 | 跨 benchmark 泛化 |\\n| P2 | SDF-as-observation | 5-7 周 | 新 SDF 集成范式 |\\n\\n## 关键时间线\\n\\n| 事件 | 时间 | 状态 |\\n|------|-
 …[truncated 2019 chars]
@@ -18022,7 +17937,7 @@ _source line 562 · 2026-05-29T19:35:37.633703+00:00_
 
 ### Tool call
 
-_source line 563 · 2026-05-29T19:35:37.836066+00:00_
+_source line 561 · 2026-05-29T19:35:37.836066+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -18060,7 +17975,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 564 · 2026-05-29T19:35:37.888069+00:00_
+_source line 562 · 2026-05-29T19:35:37.888069+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\", \"content\": \"# ColliForce-VLA Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase\\n\\n## Core Insight\\n\\nVLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 \\\"安全\\\" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。\\n\\n## Working Title\\n\\n\\\"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion\\\"\\n\\n> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献\\n\\n## Target Venue\\n\\n**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)\\n**定位**: Diagnostic/evaluation methodology paper with positive method contribution\\n**Fit**: Robotics safety track — \\\"VLA safety metrics are fundamentally broken\\\" 对社区有直接影响\\n\\n## Core Claims (D028 重组: 4→3 claims)\\n\\n### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)\\n\\nStandard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as \\\"safe\\\", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. \\\"Collision-free\\\" ≠ \\\"collision-avoiding.\\\"\\n\\n**Primary evidence — Action collapse (fake safety)**:\\n- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen\\n- TSR=0% 独立确认 action collapse\\n- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主\\n\\n**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:\\n- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务
 …[truncated 9876 chars]
@@ -18083,7 +17998,7 @@ _source line 564 · 2026-05-29T19:35:37.888069+00:00_
 
 ### Tool call
 
-_source line 565 · 2026-05-29T19:36:28.325121+00:00_
+_source line 563 · 2026-05-29T19:36:28.325121+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -18121,7 +18036,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 566 · 2026-05-29T19:36:31.289549+00:00_
+_source line 564 · 2026-05-29T19:36:31.289549+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 90, \"reason\": \"Reviewer info 反馈：(1) 标注 4-seed 与 demo curation 可并行；(2) 补回 paper_framing.md Dependencies 清理任务\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18143,7 +18058,7 @@ _source line 566 · 2026-05-29T19:36:31.289549+00:00_
 
 ### Assistant
 
-_source line 567 · 2026-05-29T19:36:34.077669+00:00_
+_source line 565 · 2026-05-29T19:36:34.077669+00:00_
 
 ROADMAP 已更新：
 1. Demo curation 任务标注"可与 4-seed 并行（不同 GPU）"
@@ -18172,7 +18087,7 @@ ROADMAP 已更新：
 
 ### User
 
-_source line 568 · 2026-05-29T20:07:09.237741+00:00_
+_source line 566 · 2026-05-29T20:07:09.237741+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -18214,7 +18129,7 @@ _source line 568 · 2026-05-29T20:07:09.237741+00:00_
 
 ### Tool call
 
-_source line 569 · 2026-05-29T20:07:20.519277+00:00_
+_source line 567 · 2026-05-29T20:07:20.519277+00:00_
 
 called ToolSearch
 
@@ -18250,7 +18165,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 570 · 2026-05-29T20:07:20.519661+00:00_
+_source line 568 · 2026-05-29T20:07:20.519661+00:00_
 
 
 
@@ -18272,7 +18187,7 @@ _source line 570 · 2026-05-29T20:07:20.519661+00:00_
 
 ### Tool call
 
-_source line 571 · 2026-05-29T20:07:28.849607+00:00_
+_source line 569 · 2026-05-29T20:07:28.849607+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -18310,7 +18225,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 572 · 2026-05-29T20:07:29.201483+00:00_
+_source line 570 · 2026-05-29T20:07:29.201483+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -18332,7 +18247,7 @@ _source line 572 · 2026-05-29T20:07:29.201483+00:00_
 
 ### Tool call
 
-_source line 573 · 2026-05-29T20:07:33.818324+00:00_
+_source line 571 · 2026-05-29T20:07:33.818324+00:00_
 
 called ToolSearch
 
@@ -18368,7 +18283,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 574 · 2026-05-29T20:07:33.818676+00:00_
+_source line 572 · 2026-05-29T20:07:33.818676+00:00_
 
 
 
@@ -18390,7 +18305,7 @@ _source line 574 · 2026-05-29T20:07:33.818676+00:00_
 
 ### Tool call
 
-_source line 575 · 2026-05-29T20:07:36.578672+00:00_
+_source line 573 · 2026-05-29T20:07:36.578672+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -18424,7 +18339,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 576 · 2026-05-29T20:07:36.679660+00:00_
+_source line 574 · 2026-05-29T20:07:36.679660+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":1967}"}
 
@@ -18446,7 +18361,7 @@ _source line 576 · 2026-05-29T20:07:36.679660+00:00_
 
 ### Tool call
 
-_source line 577 · 2026-05-29T20:07:48.807296+00:00_
+_source line 575 · 2026-05-29T20:07:48.807296+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -18480,7 +18395,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 578 · 2026-05-29T20:08:03.208668+00:00_
+_source line 576 · 2026-05-29T20:08:03.208668+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -18502,7 +18417,7 @@ _source line 578 · 2026-05-29T20:08:03.208668+00:00_
 
 ### Tool call
 
-_source line 579 · 2026-05-29T20:08:03.660640+00:00_
+_source line 577 · 2026-05-29T20:08:03.660640+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -18538,7 +18453,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 580 · 2026-05-29T20:08:04.521282+00:00_
+_source line 578 · 2026-05-29T20:08:04.521282+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -18560,7 +18475,7 @@ _source line 580 · 2026-05-29T20:08:04.521282+00:00_
 
 ### Tool call
 
-_source line 581 · 2026-05-29T20:08:24.361638+00:00_
+_source line 579 · 2026-05-29T20:08:24.361638+00:00_
 
 called ToolSearch
 
@@ -18596,7 +18511,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 582 · 2026-05-29T20:08:24.362075+00:00_
+_source line 580 · 2026-05-29T20:08:24.362075+00:00_
 
 
 
@@ -18618,7 +18533,7 @@ _source line 582 · 2026-05-29T20:08:24.362075+00:00_
 
 ### Tool call
 
-_source line 583 · 2026-05-29T20:08:39.995108+00:00_
+_source line 581 · 2026-05-29T20:08:39.995108+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -18654,7 +18569,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 584 · 2026-05-29T20:08:40.913188+00:00_
+_source line 582 · 2026-05-29T20:08:40.913188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -18676,7 +18591,7 @@ _source line 584 · 2026-05-29T20:08:40.913188+00:00_
 
 ### Assistant
 
-_source line 585 · 2026-05-29T20:08:45.777826+00:00_
+_source line 583 · 2026-05-29T20:08:45.777826+00:00_
 
 三件事状态：
 1. **用户通信** — Feishu 配额耗尽发不出去，这是已知阻塞，只能等月初重置或 Manager 处理
@@ -18706,7 +18621,7 @@ _source line 585 · 2026-05-29T20:08:45.777826+00:00_
 
 ### User
 
-_source line 586 · 2026-05-29T20:10:12.161964+00:00_
+_source line 584 · 2026-05-29T20:10:12.161964+00:00_
 
 [Reviewer 回复]:
 ## P1/P2 深度评估：叙事一致性 vs 实验覆盖度
@@ -18821,7 +18736,7 @@ ICRA story 调整为：**diagnostic breadth (3+ models, 2+ benchmarks) + data-ce
 
 ### Tool call
 
-_source line 587 · 2026-05-29T20:10:28.472017+00:00_
+_source line 585 · 2026-05-29T20:10:28.472017+00:00_
 
 called ToolSearch
 
@@ -18857,7 +18772,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 588 · 2026-05-29T20:10:28.572801+00:00_
+_source line 586 · 2026-05-29T20:10:28.572801+00:00_
 
 
 
@@ -18879,7 +18794,7 @@ _source line 588 · 2026-05-29T20:10:28.572801+00:00_
 
 ### Tool call
 
-_source line 589 · 2026-05-29T20:10:38.311869+00:00_
+_source line 587 · 2026-05-29T20:10:38.311869+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -18919,7 +18834,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 590 · 2026-05-29T20:10:38.413728+00:00_
+_source line 588 · 2026-05-29T20:10:38.413728+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D048\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18941,7 +18856,7 @@ _source line 590 · 2026-05-29T20:10:38.413728+00:00_
 
 ### Tool call
 
-_source line 591 · 2026-05-29T20:11:19.498261+00:00_
+_source line 589 · 2026-05-29T20:11:19.498261+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -18979,7 +18894,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 592 · 2026-05-29T20:11:22.367635+00:00_
+_source line 590 · 2026-05-29T20:11:22.367635+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 84, \"reason\": \"D048: P1 SDF-as-obs 降级 P3，P2 full-body SDF 砍掉，breadth expansion 升 P1，资源重新分配\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -19001,7 +18916,7 @@ _source line 592 · 2026-05-29T20:11:22.367635+00:00_
 
 ### Assistant
 
-_source line 593 · 2026-05-29T20:11:29.079842+00:00_
+_source line 591 · 2026-05-29T20:11:29.079842+00:00_
 
 D048 已落地。三件事状态：
 
@@ -19032,7 +18947,7 @@ D048 已落地。三件事状态：
 
 ### User
 
-_source line 594 · 2026-05-29T20:11:41.123025+00:00_
+_source line 592 · 2026-05-29T20:11:41.123025+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP D048 重组确认——无新增问题。
@@ -19058,7 +18973,7 @@ _source line 594 · 2026-05-29T20:11:41.123025+00:00_
 
 ### Tool call
 
-_source line 595 · 2026-05-29T20:11:48.100631+00:00_
+_source line 593 · 2026-05-29T20:11:48.100631+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -19092,7 +19007,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 596 · 2026-05-29T20:11:48.201319+00:00_
+_source line 594 · 2026-05-29T20:11:48.201319+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **任务：Demo Curation 方案设计（不需要 GPU，纯设计工作）**\\n\\n背景：D047 确定 demo curation 为 ICRA 2027 P0 方法改进方向。核心发现是碰撞避免能力隐式来自 c\"},\"pending\":[],\"idle_seconds\":2219}"}
 
@@ -19114,7 +19029,7 @@ _source line 596 · 2026-05-29T20:11:48.201319+00:00_
 
 ### Tool call
 
-_source line 597 · 2026-05-29T20:12:05.067294+00:00_
+_source line 595 · 2026-05-29T20:12:05.067294+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -19150,7 +19065,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 598 · 2026-05-29T20:12:08.079602+00:00_
+_source line 596 · 2026-05-29T20:12:08.079602+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] **任务：Demo Curation 方案设计（不需要 GPU，纯设计工作）**\\n\\n背景：D047 确定 demo curation 为 ICRA 2027 P0 方法改进方向。核心发现是碰撞避免能力隐式来自 collision-free demonstration data，demo curation 直接顺着这个 insight 做正向贡献。\\n\\n请设计完整的 dem\"}, \"error\": \"\"}"}
 
@@ -19172,7 +19087,7 @@ _source line 598 · 2026-05-29T20:12:08.079602+00:00_
 
 ### Assistant
 
-_source line 599 · 2026-05-29T20:12:11.348652+00:00_
+_source line 597 · 2026-05-29T20:12:11.348652+00:00_
 
 已排入队列。Agent 完成 demo curation 方案后会自动接 RoboCasa spec。两个设计任务都不依赖 GPU，服务器恢复后可立即进入执行。
 
@@ -19199,7 +19114,7 @@ _source line 599 · 2026-05-29T20:12:11.348652+00:00_
 
 ### User
 
-_source line 600 · 2026-05-29T20:12:42.622514+00:00_
+_source line 598 · 2026-05-29T20:12:42.622514+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)
@@ -19255,7 +19170,7 @@ _source line 600 · 2026-05-29T20:12:42.622514+00:00_
 
 ### Tool call
 
-_source line 601 · 2026-05-29T20:13:05.013114+00:00_
+_source line 599 · 2026-05-29T20:13:05.013114+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -19289,7 +19204,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 602 · 2026-05-29T20:13:05.114058+00:00_
+_source line 600 · 2026-05-29T20:13:05.114058+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **任务：RoboCasa Benchmark Eval Pipeline Spec（不需要 GPU，纯设计工作）**\\n\\nDemo curation 方案做完后接着做这个。P1 breadth expansion\"},\"pending\":[],\"idle_seconds\":21}"}
 
@@ -19311,7 +19226,7 @@ _source line 602 · 2026-05-29T20:13:05.114058+00:00_
 
 ### Tool call
 
-_source line 603 · 2026-05-29T20:13:18.923448+00:00_
+_source line 601 · 2026-05-29T20:13:18.923448+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -19347,7 +19262,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 604 · 2026-05-29T20:13:22.034568+00:00_
+_source line 602 · 2026-05-29T20:13:22.034568+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] **任务：RoboCasa Benchmark Eval Pipeline Spec（不需要 GPU，纯设计工作）**\\n\\nDemo curation 方案做完后接着做这个。P1 breadth expansion 需要第二个 benchmark，RoboCasa 是候选。服务器恢复后要能立即启动，现在先把 pipeline spec 设计好。\\n\\n请输出一份方案文档，覆盖\"}, \"error\": \"\"}"}
 
@@ -19369,7 +19284,7 @@ _source line 604 · 2026-05-29T20:13:22.034568+00:00_
 
 ### Assistant
 
-_source line 605 · 2026-05-29T20:13:28.247646+00:00_
+_source line 603 · 2026-05-29T20:13:28.247646+00:00_
 
 Agent 有两个任务排队（RoboCasa spec → 标注脚本）。当前阻塞项仍是服务器不可达和 Feishu 配额耗尽——等 Agent 完成设计工作后，所有 GPU 依赖任务都需要服务器恢复才能推进。
 
@@ -19396,7 +19311,7 @@ Agent 有两个任务排队（RoboCasa spec → 标注脚本）。当前阻塞�
 
 ### User
 
-_source line 606 · 2026-05-29T20:17:07.838623+00:00_
+_source line 604 · 2026-05-29T20:17:07.838623+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)
@@ -19451,7 +19366,7 @@ _source line 606 · 2026-05-29T20:17:07.838623+00:00_
 
 ### Assistant
 
-_source line 607 · 2026-05-29T20:17:29.809091+00:00_
+_source line 605 · 2026-05-29T20:17:29.809091+00:00_
 
 RoboCasa spec 质量不错。两个战略判断：
 
@@ -19484,7 +19399,7 @@ Agent 现在应该在处理之前排入的标注脚本任务。等标注脚本�
 
 ### User
 
-_source line 608 · 2026-05-29T20:21:01.671263+00:00_
+_source line 606 · 2026-05-29T20:21:01.671263+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (westd-35807 + westd-45947 均离线) | Worker 0 | 磁盘: 两台服务器均不可达
@@ -19530,7 +19445,7 @@ ROADMAP 已更新，所有设计任务标记为完成。等待指令。
 
 ### Tool call
 
-_source line 609 · 2026-05-29T20:21:20.411879+00:00_
+_source line 607 · 2026-05-29T20:21:20.411879+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -19564,7 +19479,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 610 · 2026-05-29T20:21:20.463641+00:00_
+_source line 608 · 2026-05-29T20:21:20.463641+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **Demo Curation 方案审批通过（D048 P0 方向）**\\n\\n方案设计质量高，整体批准。几点确认：\\n\\n1. **Phase 0 标注脚本**：服务器当前不可达，无法 SSH 执行。请先在本地代码库写\"},\"pending\":[],\"idle_seconds\":17}"}
 
@@ -19586,7 +19501,7 @@ _source line 610 · 2026-05-29T20:21:20.463641+00:00_
 
 ### Tool call
 
-_source line 611 · 2026-05-29T20:21:36.422855+00:00_
+_source line 609 · 2026-05-29T20:21:36.422855+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -19622,7 +19537,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 612 · 2026-05-29T20:21:39.433989+00:00_
+_source line 610 · 2026-05-29T20:21:39.433989+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] **Demo Curation 方案审批通过（D048 P0 方向）**\\n\\n方案设计质量高，整体批准。几点确认：\\n\\n1. **Phase 0 标注脚本**：服务器当前不可达，无法 SSH 执行。请先在本地代码库写好标注脚本（方法 A: MuJoCo 回放 + check_collision），服务器恢复后立即部署执行。脚本放 `artifacts/scripts/dem\"}, \"error\": \"\"}"}
 
@@ -19644,7 +19559,7 @@ _source line 612 · 2026-05-29T20:21:39.433989+00:00_
 
 ### Tool call
 
-_source line 613 · 2026-05-29T20:22:14.387568+00:00_
+_source line 611 · 2026-05-29T20:22:14.387568+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -19682,7 +19597,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 614 · 2026-05-29T20:22:15.002801+00:00_
+_source line 612 · 2026-05-29T20:22:15.002801+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 81, \"reason\": \"Agent 完成全部设计任务，更新状态 + 近期任务列表\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -19704,7 +19619,7 @@ _source line 614 · 2026-05-29T20:22:15.002801+00:00_
 
 ### Assistant
 
-_source line 615 · 2026-05-29T20:22:16.849608+00:00_
+_source line 613 · 2026-05-29T20:22:16.849608+00:00_
 
 ROADMAP 近期任务更新——paper_framing.md 清理已完成，标记勾选。
 
@@ -19731,7 +19646,7 @@ ROADMAP 近期任务更新——paper_framing.md 清理已完成，标记勾选�
 
 ### User
 
-_source line 616 · 2026-05-29T20:22:42.628970+00:00_
+_source line 614 · 2026-05-29T20:22:42.628970+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP 更新确认——设计工作高效利用了服务器停机窗口，无新增问题。
@@ -19761,7 +19676,7 @@ _source line 616 · 2026-05-29T20:22:42.628970+00:00_
 
 ### Assistant
 
-_source line 617 · 2026-05-29T20:22:47.030888+00:00_
+_source line 615 · 2026-05-29T20:22:47.030888+00:00_
 
 No response requested.
 
@@ -19788,7 +19703,7 @@ No response requested.
 
 ### User
 
-_source line 618 · 2026-05-29T20:23:54.223576+00:00_
+_source line 616 · 2026-05-29T20:23:54.223576+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (westd-35807 + westd-45947 均离线) | Worker 0 | 磁盘: 不可达
@@ -19833,7 +19748,7 @@ python demo_collision_label.py \
 
 ### Tool call
 
-_source line 619 · 2026-05-29T20:24:10.230072+00:00_
+_source line 617 · 2026-05-29T20:24:10.230072+00:00_
 
 called ToolSearch
 
@@ -19869,7 +19784,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 620 · 2026-05-29T20:24:10.280750+00:00_
+_source line 618 · 2026-05-29T20:24:10.280750+00:00_
 
 
 
@@ -19891,7 +19806,7 @@ _source line 620 · 2026-05-29T20:24:10.280750+00:00_
 
 ### Tool call
 
-_source line 621 · 2026-05-29T20:24:21.452053+00:00_
+_source line 619 · 2026-05-29T20:24:21.452053+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -19925,7 +19840,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool call
 
-_source line 622 · 2026-05-29T20:24:21.954152+00:00_
+_source line 620 · 2026-05-29T20:24:21.954152+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -19959,7 +19874,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 623 · 2026-05-29T20:24:22.055017+00:00_
+_source line 621 · 2026-05-29T20:24:22.055017+00:00_
 
 {"result":"**项目**: `diff_collision_sdf`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-35807 (connect.westd.seetacloud.com) [root] + westd-45947 (connect.westd.seetacloud.com) [root]\n✓ 代码路径  /root/colliforce-vla\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 48 条记录\n**论文溯源**: 覆盖率 79/83\n\n── 📊 研究进度 ──\n实验: 137 个 (待处理 1 | 完成 136 | 成功 73)\n\n  a1_sdf_spatial_bowl_s0_v3    DONE (killed)\n  a1_sdf_object_pudding_s0     DONE (killed)\n  baseline_spatial_bowl_s1_v2  DONE (failed)\n  a1_sdf_spatial_bowl_s0_v2    DONE (failed)\n  a1_sdf_spatial_bowl_s0       DONE (failed)\n  baseline_spatial_bowl_s0     DONE (failed)\n  baseline_spatial_bowl_s1     DONE (failed)\n  baseline_object_pudding_s0   DONE (failed)\n\n── 📝 最新报告 ──\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 137 个实验 — DONE 136, PREPARING 1\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\n\n### GPU 占用\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\n\n### 💾 磁盘余量\n- **westd-35807**: ❌ 连接失败\n- **westd-45947**: ❌ 连接失败\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable"}
 
@@ -19981,7 +19896,7 @@ _source line 623 · 2026-05-29T20:24:22.055017+00:00_
 
 ### Tool result
 
-_source line 624 · 2026-05-29T20:24:22.055411+00:00_
+_source line 622 · 2026-05-29T20:24:22.055411+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **补充指令（接 Demo Curation 审批）**\\n\\n**1. RoboCasa Pipeline Spec 审批通过**\\n方案合理。几点确认：\\n- 3 个 PnP 任务选择合理（不同碰撞场景 + TSR \"},\"pending\":[],\"idle_seconds\":25}"}
 
@@ -20003,7 +19918,7 @@ _source line 624 · 2026-05-29T20:24:22.055411+00:00_
 
 ### Tool call
 
-_source line 625 · 2026-05-29T20:24:22.105858+00:00_
+_source line 623 · 2026-05-29T20:24:22.105858+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -20037,7 +19952,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 626 · 2026-05-29T20:24:22.156821+00:00_
+_source line 624 · 2026-05-29T20:24:22.156821+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 20:22 UTC | 更新原因: Agent 完成全部设计任务，更新状态 + 近期任务列表\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Post-DDL 战略规划，等用户确认提交状态\\n- **CoRL 2026**: DDL 5/28 AoE 已过（M067），用户可能已提交（有 abstract slot），Feishu 不可用无法确认\\n- **转投准备**: ICRA 2027 venue 分析完成，DDL ~Sep 2026（~3.5 月窗口）\\n- **方法改进**: D048 重组——P0 demo curation + P1 breadth expansion，砍掉 geometric variants\\n- **设计工作全部完成**: Demo curation 方案 + RoboCasa eval spec + IEEEtran skeleton + 压缩方案\\n- **通信阻塞**: Feishu API 月配额耗尽\\n\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n\\n## 方法改进路线图（D048 重组，ICRA 2027）\\n\\n| 优先级 | 方向 | 成本 | 风险 | 状态 |\\n|--------|------|------|------|------|\\n| **P0** | Demo curation（collision-free ratio → Pareto 曲线）| 756 GPU-hrs | ★ 极低 | 方案通过，标注脚本编写中 |\\n| **P1** | OpenVLA zero-shot eval（第 3 model family）| 1 周 | ★★ | 待服务器恢复 |\\n| **P1** | RoboCasa benchmark（跨 benchmark 泛化）| 378 GPU-hrs | ★★ | Spec 通过，脚本待写 |\\n| P2 | 全条件 5-seed + Pi0.5 baseline 多 seed | 2 周 | ★ | 待服务器恢复 |\\n| P3 | SDF-as-observation（快速单 seed 验证）| 1 周 | ★★★ | 仅余量时做 |\\n\\n## 关键时间线\\n\\n| 事件 | 时间 | 状态 |\\n|------|------|------|\\n| Pre-submission 6/6 PASS | 5/29 | ✅ |\\n| **CoRL DDL** | **5/28 AoE** | **⚠️ 已过，M067** |\\n| ICRA 2027 DDL（预估）| ~Sep 2026 | 🎯 Primary target |\\n| 用户提交状态 | — | ❓ 等 Feishu 恢复 |\\n\\n## 基础设施\\n- **westd-35807/45947**: Connection refused（实例关机）\\n- **Feishu API**: 月配额耗尽\\n- 137 实验：136 DONE 
 …[truncated 1813 chars]
@@ -20060,7 +19975,7 @@ _source line 626 · 2026-05-29T20:24:22.156821+00:00_
 
 ### Tool call
 
-_source line 627 · 2026-05-29T20:24:43.810271+00:00_
+_source line 625 · 2026-05-29T20:24:43.810271+00:00_
 
 called ToolSearch
 
@@ -20096,7 +20011,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 628 · 2026-05-29T20:24:43.911126+00:00_
+_source line 626 · 2026-05-29T20:24:43.911126+00:00_
 
 
 
@@ -20118,7 +20033,7 @@ _source line 628 · 2026-05-29T20:24:43.911126+00:00_
 
 ### Tool call
 
-_source line 629 · 2026-05-29T20:25:23.887511+00:00_
+_source line 627 · 2026-05-29T20:25:23.887511+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -20156,7 +20071,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 630 · 2026-05-29T20:25:31.480664+00:00_
+_source line 628 · 2026-05-29T20:25:31.480664+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 85, \"reason\": \"Demo curation 标注脚本完成，更新任务状态\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20178,7 +20093,7 @@ _source line 630 · 2026-05-29T20:25:31.480664+00:00_
 
 ### Tool call
 
-_source line 631 · 2026-05-29T20:25:31.481096+00:00_
+_source line 629 · 2026-05-29T20:25:31.481096+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -20214,7 +20129,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 632 · 2026-05-29T20:25:32.133491+00:00_
+_source line 630 · 2026-05-29T20:25:32.133491+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] **补充指令（接 Demo Curation 审批）**\\n\\n**1. RoboCasa Pipeline Spec 审批通过**\\n方案合理。几点确认：\\n- 3 个 PnP 任务选择合理（不同碰撞场景 + TSR 可控范围）\\n- 碰撞检测用 MuJoCo contact API 方向正确，排除 gripper↔target + 自碰撞的过滤逻辑需在脚本中明确\\n- Pi0.\"}, \"error\": \"\"}"}
 
@@ -20236,7 +20151,7 @@ _source line 632 · 2026-05-29T20:25:32.133491+00:00_
 
 ### Assistant
 
-_source line 633 · 2026-05-29T20:25:39.394089+00:00_
+_source line 631 · 2026-05-29T20:25:39.394089+00:00_
 
 ROADMAP 已更新，指令已排队。Agent 正在处理之前的 Demo Curation 补充指令，完成后会按顺序接 RoboCasa 两项任务。服务器恢复前先把所有代码准备工作铺完。
 
@@ -20263,7 +20178,7 @@ ROADMAP 已更新，指令已排队。Agent 正在处理之前的 Demo Curation 
 
 ### User
 
-_source line 634 · 2026-05-29T20:25:41.861211+00:00_
+_source line 632 · 2026-05-29T20:25:41.861211+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP 更新确认——Demo curation 标注脚本完成，进展正常。
@@ -20289,7 +20204,7 @@ _source line 634 · 2026-05-29T20:25:41.861211+00:00_
 
 ### Assistant
 
-_source line 635 · 2026-05-29T20:25:50.945959+00:00_
+_source line 633 · 2026-05-29T20:25:50.945959+00:00_
 
 Reviewer info 级别，无方向性问题。重复时间戳行会在下次 ROADMAP 更新时一并清理。
 
@@ -20316,7 +20231,7 @@ Reviewer info 级别，无方向性问题。重复时间戳行会在下次 ROADM
 
 ### User
 
-_source line 636 · 2026-05-29T20:28:17.375707+00:00_
+_source line 634 · 2026-05-29T20:28:17.375707+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (westd-35807 + westd-45947 均离线) | Worker 0 | 磁盘: 不可达
@@ -20372,7 +20287,7 @@ _source line 636 · 2026-05-29T20:28:17.375707+00:00_
 
 ### Tool call
 
-_source line 637 · 2026-05-29T20:29:00.410665+00:00_
+_source line 635 · 2026-05-29T20:29:00.410665+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -20410,7 +20325,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 638 · 2026-05-29T20:29:03.323514+00:00_
+_source line 636 · 2026-05-29T20:29:03.323514+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 82, \"reason\": \"RoboCasa eval + config 完成，所有代码准备就绪\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20432,7 +20347,7 @@ _source line 638 · 2026-05-29T20:29:03.323514+00:00_
 
 ### Assistant
 
-_source line 639 · 2026-05-29T20:29:09.587692+00:00_
+_source line 637 · 2026-05-29T20:29:09.587692+00:00_
 
 所有不依赖服务器的代码准备工作已完成（标注脚本 + RoboCasa eval + fine-tune config）。当前阻塞项：两台服务器均离线 + Feishu 配额耗尽。服务器恢复后立即按优先级执行：标注 → seed3 → demo curation 训练 → RoboCasa 部署。
 
@@ -20459,7 +20374,7 @@ _source line 639 · 2026-05-29T20:29:09.587692+00:00_
 
 ### User
 
-_source line 640 · 2026-05-29T20:29:11.097887+00:00_
+_source line 638 · 2026-05-29T20:29:11.097887+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (均离线) | Worker 0 | 磁盘: 不可达
@@ -20488,7 +20403,7 @@ _source line 640 · 2026-05-29T20:29:11.097887+00:00_
 
 ### Assistant
 
-_source line 641 · 2026-05-29T20:29:17.140947+00:00_
+_source line 639 · 2026-05-29T20:29:17.140947+00:00_
 
 No response requested.
 
@@ -20515,7 +20430,7 @@ No response requested.
 
 ### User
 
-_source line 642 · 2026-05-29T20:59:45.800589+00:00_
+_source line 640 · 2026-05-29T20:59:45.800589+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -20557,7 +20472,7 @@ _source line 642 · 2026-05-29T20:59:45.800589+00:00_
 
 ### Tool call
 
-_source line 643 · 2026-05-29T20:59:51.883835+00:00_
+_source line 641 · 2026-05-29T20:59:51.883835+00:00_
 
 called ToolSearch
 
@@ -20593,7 +20508,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 644 · 2026-05-29T20:59:51.984634+00:00_
+_source line 642 · 2026-05-29T20:59:51.984634+00:00_
 
 
 
@@ -20615,7 +20530,7 @@ _source line 644 · 2026-05-29T20:59:51.984634+00:00_
 
 ### Tool call
 
-_source line 645 · 2026-05-29T21:00:02.573792+00:00_
+_source line 643 · 2026-05-29T21:00:02.573792+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -20653,7 +20568,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 646 · 2026-05-29T21:00:02.925369+00:00_
+_source line 644 · 2026-05-29T21:00:02.925369+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -20675,7 +20590,7 @@ _source line 646 · 2026-05-29T21:00:02.925369+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-29T21:00:11.356443+00:00_
+_source line 645 · 2026-05-29T21:00:11.356443+00:00_
 
 called ToolSearch
 
@@ -20711,7 +20626,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 648 · 2026-05-29T21:00:11.407001+00:00_
+_source line 646 · 2026-05-29T21:00:11.407001+00:00_
 
 
 
@@ -20733,7 +20648,7 @@ _source line 648 · 2026-05-29T21:00:11.407001+00:00_
 
 ### Tool call
 
-_source line 649 · 2026-05-29T21:00:24.962732+00:00_
+_source line 647 · 2026-05-29T21:00:24.962732+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -20769,7 +20684,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 650 · 2026-05-29T21:00:35.759508+00:00_
+_source line 648 · 2026-05-29T21:00:35.759508+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": true}, \"error\": \"\"}"}
 
@@ -20791,7 +20706,7 @@ _source line 650 · 2026-05-29T21:00:35.759508+00:00_
 
 ### Tool call
 
-_source line 651 · 2026-05-29T21:00:36.311848+00:00_
+_source line 649 · 2026-05-29T21:00:36.311848+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -20827,7 +20742,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 652 · 2026-05-29T21:00:44.002627+00:00_
+_source line 650 · 2026-05-29T21:00:44.002627+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -20849,7 +20764,7 @@ _source line 652 · 2026-05-29T21:00:44.002627+00:00_
 
 ### Tool call
 
-_source line 653 · 2026-05-29T21:00:44.255278+00:00_
+_source line 651 · 2026-05-29T21:00:44.255278+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -20885,7 +20800,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 654 · 2026-05-29T21:00:44.308589+00:00_
+_source line 652 · 2026-05-29T21:00:44.308589+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -20907,7 +20822,7 @@ _source line 654 · 2026-05-29T21:00:44.308589+00:00_
 
 ### Assistant
 
-_source line 655 · 2026-05-29T21:00:51.054792+00:00_
+_source line 653 · 2026-05-29T21:00:51.054792+00:00_
 
 三路并行已派出：
 
@@ -20940,7 +20855,7 @@ GPU 空置期不再空等，用来打磨论文质量和规划精准实验方案�
 
 ### User
 
-_source line 656 · 2026-05-29T21:04:00.923890+00:00_
+_source line 654 · 2026-05-29T21:04:00.923890+00:00_
 
 [Reviewer 回复]:
 ## 系统性审查：ICRA 2027 证据链支撑力度
@@ -21133,7 +21048,7 @@ _source line 656 · 2026-05-29T21:04:00.923890+00:00_
 
 ### Tool call
 
-_source line 657 · 2026-05-29T21:04:28.246930+00:00_
+_source line 655 · 2026-05-29T21:04:28.246930+00:00_
 
 called ToolSearch
 
@@ -21169,7 +21084,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 658 · 2026-05-29T21:04:28.297613+00:00_
+_source line 656 · 2026-05-29T21:04:28.297613+00:00_
 
 
 
@@ -21191,7 +21106,7 @@ _source line 658 · 2026-05-29T21:04:28.297613+00:00_
 
 ### Tool call
 
-_source line 659 · 2026-05-29T21:04:31.258066+00:00_
+_source line 657 · 2026-05-29T21:04:31.258066+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -21225,7 +21140,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool call
 
-_source line 660 · 2026-05-29T21:04:31.308680+00:00_
+_source line 658 · 2026-05-29T21:04:31.308680+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -21259,7 +21174,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 661 · 2026-05-29T21:04:31.711005+00:00_
+_source line 659 · 2026-05-29T21:04:31.711005+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim 1 的 fake safety 定量数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\"}, {\"id\": \"plan_003\", \"claim\": 3, \"description\": \"LoRA baseline eval (2 seeds): 训练完成后立即 eval，确定 LoRA-only CAR。决定 SDF 的归因强度——是 SDF 贡献还是 LoRA capacity 贡献\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [\"plan_004\"], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"LoRA 训练 ETA ~09:30 UTC May 26, eval 紧跟其后\"}, {\"id\": \"plan_004\", \"claim\": 3, \"description\": \"LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 + LoRA only (无 SDF loss) 训练到 30K\", \"priority\": \"P0\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"train_pi05_lora_baseline_s0\", \"status\": \"DONE\", \"notes\": \"step 26000/30000, ETA ~09:30 UTC\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.01343, \"best_loss\": 0.01025, \"best_step\": 24000, \"total_steps\": 30000, \"grad_norm\": 0.10538, \"time_per_step\": 4.613}}, {\"id\": \"plan_005\", \"claim\": 3, \"description\": \"Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \
 …[truncated 4188 chars]
@@ -21282,7 +21197,7 @@ _source line 661 · 2026-05-29T21:04:31.711005+00:00_
 
 ### Tool result
 
-_source line 662 · 2026-05-29T21:04:31.761665+00:00_
+_source line 660 · 2026-05-29T21:04:31.761665+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":2149}"}
 
@@ -21304,7 +21219,7 @@ _source line 662 · 2026-05-29T21:04:31.761665+00:00_
 
 ### Tool call
 
-_source line 663 · 2026-05-29T21:05:02.793650+00:00_
+_source line 661 · 2026-05-29T21:05:02.793650+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -21346,7 +21261,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 664 · 2026-05-29T21:05:03.144826+00:00_
+_source line 662 · 2026-05-29T21:05:03.144826+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D049\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -21368,7 +21283,7 @@ _source line 664 · 2026-05-29T21:05:03.144826+00:00_
 
 ### Tool call
 
-_source line 665 · 2026-05-29T21:05:03.295595+00:00_
+_source line 663 · 2026-05-29T21:05:03.295595+00:00_
 
 called ToolSearch
 
@@ -21404,7 +21319,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 666 · 2026-05-29T21:05:03.346591+00:00_
+_source line 664 · 2026-05-29T21:05:03.346591+00:00_
 
 
 
@@ -21426,7 +21341,7 @@ _source line 666 · 2026-05-29T21:05:03.346591+00:00_
 
 ### Tool call
 
-_source line 667 · 2026-05-29T21:05:05.803726+00:00_
+_source line 665 · 2026-05-29T21:05:05.803726+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -21464,7 +21379,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 668 · 2026-05-29T21:05:05.855002+00:00_
+_source line 666 · 2026-05-29T21:05:05.855002+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md\", \"content\": \"# ColliForce-VLA Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase\\n\\n## Core Insight\\n\\nVLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 \\\"安全\\\" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。\\n\\n## Working Title\\n\\n\\\"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion\\\"\\n\\n> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献\\n\\n## Target Venue\\n\\n**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)\\n**定位**: Diagnostic/evaluation methodology paper with positive method contribution\\n**Fit**: Robotics safety track — \\\"VLA safety metrics are fundamentally broken\\\" 对社区有直接影响\\n\\n## Core Claims (D028 重组: 4→3 claims)\\n\\n### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)\\n\\nStandard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as \\\"safe\\\", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. \\\"Collision-free\\\" ≠ \\\"collision-avoiding.\\\"\\n\\n**Primary evidence — Action collapse (fake safety)**:\\n- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen\\n- TSR=0% 独立确认 action collapse\\n- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主\\n\\n**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:\\n- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务
 …[truncated 9876 chars]
@@ -21487,7 +21402,7 @@ _source line 668 · 2026-05-29T21:05:05.855002+00:00_
 
 ### Tool call
 
-_source line 669 · 2026-05-29T21:05:25.416082+00:00_
+_source line 667 · 2026-05-29T21:05:25.416082+00:00_
 
 called Read
 
@@ -21511,6 +21426,126 @@ called Read
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 668 · 2026-05-29T21:05:25.517103+00:00_
+
+1	# ColliForce-VLA Paper Framing
+2	
+3	> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase
+4	
+5	## Core Insight
+6	
+7	VLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 "安全" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。
+8	
+9	## Working Title
+10	
+11	"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion"
+12	
+13	> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献
+14	
+15	## Target Venue
+16	
+17	**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)
+18	**定位**: Diagnostic/evaluation methodology paper with positive method contribution
+19	**Fit**: Robotics safety track — "VLA safety metrics are fundamentally broken" 对社区有直接影响
+20	
+21	## Core Claims (D028 重组: 4→3 claims)
+22	
+23	### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)
+24	
+25	Standard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as "safe", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. "Collision-free" ≠ "collision-avoiding."
+26	
+27	**Primary evidence — Action collapse (fake safety)**:
+28	- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen
+29	- TSR=0% 独立确认 action collapse
+30	- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主
+31	
+32	**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:
+33	- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务但碰撞更多
+34	- Pi0 baseline: TSR≈0%, CAR=82% — "高 CAR" 来自 action collapse
+35	- Capability↑ → motion↑ → collision↑; 表面安全要么是 frozen (Pi0) 要么是 path geometry (Pi0.5)
+36	- 限制: 仅 2 model
+…[truncated 9753 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 669 · 2026-05-29T21:05:35.701926+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
+  "old_string": "> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase",
+  "new_string": "> 维护者: Director | 最后更新: 2026-05-29 UTC | D049: Reviewer 证据链审查——补入 Pi0.5 oracle + multi-eval-seed | Post-MVP research phase"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
+    "old_string": "> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase",
+    "new_string": "> 维护者: Director | 最后更新: 2026-05-29 UTC | D049: Reviewer 证据链审查——补入 Pi0.5 oracle + multi-eval-seed | Post-MVP research phase"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 670 · 2026-05-29T21:05:35.752624+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+  "tool": "Edit",
+  "elapsed_ms": 50
 }
 ```
 

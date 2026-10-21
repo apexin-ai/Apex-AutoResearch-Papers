@@ -69,7 +69,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis r14 a8 oracle gap | 82 | 0 | [Read transcript](analysis-r14-a8-oracle-gap.md) | [JSON](../../sessions/dd/ddf9677e2566fff747b4.json) |
 | analysis e5 mistral text encoder — This session is being continued from a previous conversation that ran out of context. The summary be | 702 | 1 | [Read transcript](analysis-e5-mistral-text-encoder.md) | [JSON](../../sessions/99/99ca6f654696658599c3.json) |
 | analysis bge large 60 20 20 — In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety, | 214 | 1 | [Read transcript](analysis-bge-large-60-20-20.md) | [JSON](../../sessions/b1/b1674acb573adb240603.json) |
-| writing rebuttal prep — In /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/, fi | 74 | 1 | [Read transcript](writing-rebuttal-prep.md) | [JSON](../../sessions/4b/4b3f6a2890cc1c6ff491.json) |
 | research api key fallback | 61 | 0 | [Read transcript](research-api-key-fallback.md) | [JSON](../../sessions/4c/4cbdbbccefa7c48a7b16.json) |
 | code iaa framework | 116 | 0 | [Read transcript](code-iaa-framework.md) | [JSON](../../sessions/f7/f78dd52ffeddd9849979.json) |
 | analysis e5 mistral rerun correct layers | 103 | 0 | [Read transcript](analysis-e5-mistral-rerun-correct-layers.md) | [JSON](../../sessions/c9/c9997c2158445e58603d.json) |

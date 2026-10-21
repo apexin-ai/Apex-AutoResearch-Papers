@@ -136,20 +136,17 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code r20 size stratified deff — I need to understand the data structure for a DEFF analysis task. Please find and report: 1. The str | 72 | 1 | [Read transcript](code-r20-size-stratified-deff.md) | [JSON](../../sessions/a3/a37c40070d3583fcd7b8.json) |
 | paper r20 text edits | 61 | 0 | [Read transcript](paper-r20-text-edits.md) | [JSON](../../sessions/b8/b813664c818aaeed50ac.json) |
 | research r20 reference verification | 29 | 0 | [Read transcript](research-r20-reference-verification.md) | [JSON](../../sessions/34/34f989dcc7c3603ea795.json) |
-| paper rebuttal b1 b7 branch | 70 | 0 | [Read transcript](paper-rebuttal-b1-b7-branch.md) | [JSON](../../sessions/f8/f8c15f54f2c8c6878c31.json) |
-| paper rebuttal b8 | 21 | 0 | [Read transcript](paper-rebuttal-b8.md) | [JSON](../../sessions/f5/f5234014b142c754423d.json) |
 | paper b9 page budget | 221 | 2 | [Read transcript](paper-b9-page-budget.md) | [JSON](../../sessions/21/21a55f8256a244f6473d.json) |
 | paper arr checklist draft | 32 | 0 | [Read transcript](paper-arr-checklist-draft.md) | [JSON](../../sessions/3f/3f4036d9658dd0f67886.json) |
 | paper b9 fix | 253 | 2 | [Read transcript](paper-b9-fix.md) | [JSON](../../sessions/6e/6e2433e4dfee2ab51424.json) |
-| paper b5 fix and rebuttal memo | 18 | 0 | [Read transcript](paper-b5-fix-and-rebuttal-memo.md) | [JSON](../../sessions/df/df4caf9e06e75c38e63f.json) |
 | code e1 k3 power simulation — Search the project at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_reg | 120 | 1 | [Read transcript](code-e1-k3-power-simulation.md) | [JSON](../../sessions/e9/e9249004864fe1c745ec.json) |
 | code e2 difficulty modeltype interaction — I need to understand the data structure for a DIF analysis project. Please explore these files and r | 119 | 1 | [Read transcript](code-e2-difficulty-modeltype-interaction.md) | [JSON](../../sessions/57/570e91cd803b4a24bb91.json) |
 | code e3 mixed mechanism semisynthetic — I need to understand the existing semi-synthetic injection framework in this project. Please find an | 133 | 2 | [Read transcript](code-e3-mixed-mechanism-semisynthetic.md) | [JSON](../../sessions/93/93152c255b880e4c63e0.json) |
 | paper w1 k3 power writeup | 28 | 0 | [Read transcript](paper-w1-k3-power-writeup.md) | [JSON](../../sessions/90/90f220b7b68eff56908e.json) |
 | paper w2 interaction writeup | 35 | 0 | [Read transcript](paper-w2-interaction-writeup.md) | [JSON](../../sessions/9a/9ac4e83c7b89f9ed4900.json) |
-| paper w3 mixed mechanism writeup | 34 | 0 | [Read transcript](paper-w3-mixed-mechanism-writeup.md) | [JSON](../../sessions/d0/d0148391f451d2430b53.json) |
+| paper w3 mixed mechanism writeup | 28 | 0 | [Read transcript](paper-w3-mixed-mechanism-writeup.md) | [JSON](../../sessions/d0/d0148391f451d2430b53.json) |
 | paper e1 fix values | 23 | 0 | [Read transcript](paper-e1-fix-values.md) | [JSON](../../sessions/2f/2fbe77e22f76e191b50c.json) |
-| paper w3 wording fix | 24 | 0 | [Read transcript](paper-w3-wording-fix.md) | [JSON](../../sessions/aa/aafaced2ad1e70bb5811.json) |
+| paper w3 wording fix | 20 | 0 | [Read transcript](paper-w3-wording-fix.md) | [JSON](../../sessions/aa/aafaced2ad1e70bb5811.json) |
 | code t2 1 deff parametric curve | 89 | 0 | [Read transcript](code-t2-1-deff-parametric-curve.md) | [JSON](../../sessions/cf/cfd9b3d6f62b81684459.json) |
 | code t2 2 temporal accumulation — In the project at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen,  | 103 | 1 | [Read transcript](code-t2-2-temporal-accumulation.md) | [JSON](../../sessions/9d/9d20cf4bdbe0caadf3aa.json) |
 | paper t2 3 camera ready precheck | 62 | 0 | [Read transcript](paper-t2-3-camera-ready-precheck.md) | [JSON](../../sessions/ce/ce7e993037809d3ae168.json) |

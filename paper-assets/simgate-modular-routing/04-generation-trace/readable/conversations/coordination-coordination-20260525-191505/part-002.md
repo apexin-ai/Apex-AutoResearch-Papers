@@ -1,1091 +1,14 @@
-# Project coordination (archived snapshot) — Part 2 of 7
+# Project coordination (archived snapshot) — Part 2 of 6
 
 **Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
 
 [← Part 1](part-001.md) · [Transcript overview](../coordination-coordination-20260525-191505.md) · [Part 3 →](part-003.md) · [Structured JSON](../../../sessions/4b/4bb829b2481d3f9f0b26.json)
 
-## Round 20
-
-### Tool call
-
-_source line 730 · 2026-05-22T00:54:28.485415+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**(iii) The 0.5B inverted-U.** A 0.5B model shows *reduced* death rate (13.3%) because it is too weak to reach dangerous states, revealing a capability–vulnerability relationship where intermediate-capability models are most vulnerable. This non-monotonic pattern contradicts the intuition that \"weaker models die more\" (§5).",
-  "new_string": "**(iii) Suggestive observation (n=15): the 0.5B inverted-U.** A 0.5B model shows *reduced* death rate (13.3%) because it is too weak to reach dangerous states, suggesting a capability–vulnerability relationship where intermediate-capability models are most vulnerable. We note this as a suggestive pattern from a small sample (n=15 episodes), not a primary claim; it warrants future investigation with larger N."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**(iii) The 0.5B inverted-U.** A 0.5B model shows *reduced* death rate (13.3%) because it is too weak to reach dangerous states, revealing a capability–vulnerability relationship where intermediate-capability models are most vulnerable. This non-monotonic pattern contradicts the intuition that \"weaker models die more\" (§5).",
-    "new_string": "**(iii) Suggestive observation (n=15): the 0.5B inverted-U.** A 0.5B model shows *reduced* death rate (13.3%) because it is too weak to reach dangerous states, suggesting a capability–vulnerability relationship where intermediate-capability models are most vulnerable. We note this as a suggestive pattern from a small sample (n=15 episodes), not a primary claim; it warrants future investigation with larger N."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 731 · 2026-05-22T00:54:28.536295+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 732 · 2026-05-22T00:54:36.274737+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "If death dominance were trivially obvious, diagnostic decomposition would be standard practice. Yet no prior routing work—Toolformer, ART, Chameleon, CogRouter, RouteLLM—performs signal-source diagnosis before training a router. The absence of prior diagnostic work itself argues against triviality.",
-  "new_string": "The routing literature's design choices **presuppose** diverse signal sources: Toolformer learns per-token API calls, CogRouter adapts per-step reasoning depth, RouteLLM learns preference-based routing. These architectures would be unnecessary if single-mechanism dominance were the default assumption. Our finding that death avoidance accounts for 78.9% of non-tie labels directly challenges these design presuppositions. The absence of prior diagnostic work is not mere oversight—it reflects an implicit assumption of signal diversity that our quantification disproves."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "If death dominance were trivially obvious, diagnostic decomposition would be standard practice. Yet no prior routing work—Toolformer, ART, Chameleon, CogRouter, RouteLLM—performs signal-source diagnosis before training a router. The absence of prior diagnostic work itself argues against triviality.",
-    "new_string": "The routing literature's design choices **presuppose** diverse signal sources: Toolformer learns per-token API calls, CogRouter adapts per-step reasoning depth, RouteLLM learns preference-based routing. These architectures would be unnecessary if single-mechanism dominance were the default assumption. Our finding that death avoidance accounts for 78.9% of non-tie labels directly challenges these design presuppositions. The absence of prior diagnostic work is not mere oversight—it reflects an implicit assumption of signal diversity that our quantification disproves."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 733 · 2026-05-22T00:54:36.275292+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 734 · 2026-05-22T00:54:41.948258+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively.",
-  "new_string": "obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively; moreover, the ALFWorld null-death diagnosis replicated across two models (Llama 16/16, Qwen 35/37 information-asymmetric episodes)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively.",
-    "new_string": "obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively; moreover, the ALFWorld null-death diagnosis replicated across two models (Llama 16/16, Qwen 35/37 information-asymmetric episodes)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 735 · 2026-05-22T00:54:41.948885+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 736 · 2026-05-22T00:54:48.776777+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "Our contribution follows the established pattern of diagnostic work that redirects community effort. Two analogies clarify the contribution type: (1) \"Attention is not Explanation\" (Jain & Wallace, 2019), which did not propose a new attention mechanism but changed how researchers interpret and use attention weights; (2) **probing classifiers in representation analysis**—our framework is to routing what probing classifiers are to representations: a diagnostic tool that should precede optimization, not replace it. Just as probing reveals what information is encoded before designing extraction methods, our framework reveals what signal drives routing before building routers. Similarly, our framework provides three forms of practical value:",
-  "new_string": "Our contribution follows the established pattern of diagnostic work that redirects community effort. **Our framework is to routing what probing classifiers are to representations**: a diagnostic tool that should precede optimization, not replace it. Just as probing reveals what information is encoded before designing extraction methods, our framework reveals what signal drives routing before building routers. (A secondary analogy: \"Attention is not Explanation\" (Jain & Wallace, 2019) did not propose a new mechanism but changed how researchers interpret existing ones.) Our framework provides three forms of practical value:"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "Our contribution follows the established pattern of diagnostic work that redirects community effort. Two analogies clarify the contribution type: (1) \"Attention is not Explanation\" (Jain & Wallace, 2019), which did not propose a new attention mechanism but changed how researchers interpret and use attention weights; (2) **probing classifiers in representation analysis**—our framework is to routing what probing classifiers are to representations: a diagnostic tool that should precede optimization, not replace it. Just as probing reveals what information is encoded before designing extraction methods, our framework reveals what signal drives routing before building routers. Similarly, our framework provides three forms of practical value:",
-    "new_string": "Our contribution follows the established pattern of diagnostic work that redirects community effort. **Our framework is to routing what probing classifiers are to representations**: a diagnostic tool that should precede optimization, not replace it. Just as probing reveals what information is encoded before designing extraction methods, our framework reveals what signal drives routing before building routers. (A secondary analogy: \"Attention is not Explanation\" (Jain & Wallace, 2019) did not propose a new mechanism but changed how researchers interpret existing ones.) Our framework provides three forms of practical value:"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 737 · 2026-05-22T00:54:48.827555+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 738 · 2026-05-22T00:54:55.102747+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**2. The diagnosis itself is actionable.** For ScienceWorld, the framework prescribes always-deterministic as the routing strategy—which achieves 90.5% of oracle non-tie decisions (§3.5). This is not \"no solution\"; it is the correct solution, derived from understanding the mechanism. The finding that routing signal equals task-type identity (confirmed by leave-one-task-type-out degradation to chance, cross-task transfer failure, and majority-vote baseline matching) means practitioners should invest in reducing internal-strategy death rates rather than building routers.",
-  "new_string": "**2. The diagnosis itself is actionable.** For ScienceWorld, the framework prescribes always-deterministic as the routing strategy—which achieves 90.5% of oracle non-tie decisions (§3.5). Crucially, always-deterministic is not only near-optimal but requires **zero additional training cost**—the framework's diagnosis directly yields a cost-free deployment strategy. This is not \"no solution\"; it is the correct solution, derived from understanding the mechanism. The finding that routing signal equals task-type identity (confirmed by leave-one-task-type-out degradation to chance, cross-task transfer failure, and majority-vote baseline matching) means practitioners should invest in reducing internal-strategy death rates rather than building routers."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**2. The diagnosis itself is actionable.** For ScienceWorld, the framework prescribes always-deterministic as the routing strategy—which achieves 90.5% of oracle non-tie decisions (§3.5). This is not \"no solution\"; it is the correct solution, derived from understanding the mechanism. The finding that routing signal equals task-type identity (confirmed by leave-one-task-type-out degradation to chance, cross-task transfer failure, and majority-vote baseline matching) means practitioners should invest in reducing internal-strategy death rates rather than building routers.",
-    "new_string": "**2. The diagnosis itself is actionable.** For ScienceWorld, the framework prescribes always-deterministic as the routing strategy—which achieves 90.5% of oracle non-tie decisions (§3.5). Crucially, always-deterministic is not only near-optimal but requires **zero additional training cost**—the framework's diagnosis directly yields a cost-free deployment strategy. This is not \"no solution\"; it is the correct solution, derived from understanding the mechanism. The finding that routing signal equals task-type identity (confirmed by leave-one-task-type-out degradation to chance, cross-task transfer failure, and majority-vote baseline matching) means practitioners should invest in reducing internal-strategy death rates rather than building routers."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 739 · 2026-05-22T00:54:55.153535+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 740 · 2026-05-22T00:55:14.257824+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "## Attack 4: Router Positive Control Missing\n\n> \"You show step-level routers fail, but never demonstrate a task-level router succeeds. Without a positive control, 'signal-limited' is unsubstantiated.\"\n\nFour converging lines of evidence establish that signal exists at the task-type level, collectively serving as the positive control:\n\n**(i) Keyword variant achieves 62.9% accuracy** (Appendix P). Adding task name to step features yields a 6pp jump over the best step-only router (56–59%), directly demonstrating that task identity carries exploitable routing signal. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable.\n\n**(ii) Leave-one-task-type-out collapses to chance (49.2%)** (§3.6, Appendix P). When the test task type is excluded from training, accuracy degrades to chance—proving that the router's above-chance performance comes entirely from task-type classification, not from genuine step-level routing signal. This is the negative side of the positive control: remove task-type information → signal disappears.\n\n**(iii) Generative router also fails (46.7%)** (Appendix P). An unconstrained generative approach (Qwen3-8B generating routing decisions from episode context) cannot extract step-level signal either, ruling out the hypothesis that SFT router architecture is the bottleneck.\n\n**(iv) 10/11 task types carry death risk** (§5). Death avoidance is a binary task-type property. The routing label is determined primarily by whether the task type has death risk—a property that is constant within a task type but invisible to step-level features. This structural explanation is consistent with all three router experiments above.\n\n**Supplementary data (available on request):** We additionally trained a task-type-only classifier (one-hot task-type → LogisticRegression, 5-fold stratified CV). Key finding: under leave-one-task-type-out (LOTO), the task-type classifier collapses to chance (50.0% pooled balanced accuracy on informative types), matching the LLM router's LOTO (49.2%). This confirms that both approaches fail for the same structural reason: death risk is a task-type-level binary attribute with no learnable cross-type signal. The 7/11 pure-deterministic task types achieve 100% balanced accuracy; the 4 types with within-type episode variance cap at 50%. This convergence from two independent methods—neural step-level router and statistical task-type classifier—strengthens the \"signal-limited, not architecture-limited\" conclusion.",
-  "new_string": "## Attack 4: Router Positive Control Missing\n\n> \"You show step-level routers fail, but never demonstrate a task-level router succeeds. Without a positive control, 'signal-limited' is unsubstantiated.\"\n\nThe positive control's purpose is not to show a router can work, but to **confirm signal granularity**—that routing signal exists at one level (task-type) but not another (step). This granularity diagnosis is the core contribution of §3.6:\n\n**(i) Task-type features → 64.7% BA vs step features → 56–59% BA.** Adding task name to step features (keyword variant, Appendix P) yields a clear jump, directly demonstrating a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity.\n\n**(ii) LOTO confirms signal is a per-task-type constant with no cross-type generalization.** Under leave-one-task-type-out, two independent methods—600M–4B neural routers and logistic regression on one-hot task-type features—both collapse to chance (49.2% and 50.0% respectively; §3.6, Appendix P). This convergence from architecturally unrelated approaches confirms that routing signal is a per-task-type constant, not a learnable cross-type pattern. The diagnosis is \"signal-limited, not architecture-limited.\"\n\n**(iii) Generative router also fails (46.7%)** (Appendix P). An unconstrained generative approach (Qwen3-8B generating routing decisions from episode context) cannot extract step-level signal either, ruling out the hypothesis that SFT router architecture is the bottleneck.\n\n**(iv) Structural explanation: death risk is a binary task-type property.** 10/11 task types carry death risk (§5). The routing label is determined primarily by whether the task type has death risk—a property that is constant within a task type but invisible to step-level features. The 7/11 pure-deterministic task types achieve 100% balanced accuracy; the 4 types with within-type episode variance cap at 50%.\n\n**Summary:** The granularity diagnosis is complete—signal exists (task-type level), signal is absent (step level), and two independent methods confirm no cross-type generalization. This is not a missing positive control; it is a positive demonstration of where signal lives and why step-level routers cannot reach it."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "## Attack 4: Router Positive Control Missing\n\n> \"You show step-level routers fail, but never demonstrate a task-level router succeeds. Without a positive control, 'signal-limited' is unsubstantiated.\"\n\nFour converging lines of evidence establish that signal exists at the task-type level, collectively serving as the positive control:\n\n**(i) Keyword variant achieves 62.9% accuracy** (Appendix P). Adding task name to step features yields a 6pp jump over the best step-only router (56–59%), directly demonstrating that task identity carries exploitable routing signal. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable.\n\n**(ii) Leave-one-task-type-out collapses to chance (49.2%)** (§3.6, Appendix P). When the test task type is excluded from training, accuracy degrades to chance—proving that the router's above-chance performance comes entirely from task-type classification, not from genuine step-level routing signal. This is the negative side of the positive control: remove task-type information → signal disappears.\n\n**(iii) Generative router also fails (46.7%)** (Appendix P). An unconstrained generative approach (Qwen3-8B generating routing decisions from episode context) cannot extract step-level signal either, ruling out the hypothesis that SFT router architecture is the bottleneck.\n\n**(iv) 10/11 task types carry death risk** (§5). Death avoidance is a binary task-type property. The routing label is determined primarily by whether the task type has death risk—a property that is constant within a task type but invisible to step-level features. This structural explanation is consistent with all three router experiments above.\n\n**Supplementary data (available on request):** We additionally trained a task-type-only classifier (one-hot task-type → LogisticRegression, 5-fold stratified CV). Key finding: under leave-one-task-type-out (LOTO), the task-type classifier collapses to chance (50.0% pooled balanced accuracy on informative types), matching the LLM router's LOTO (49.2%). This confirms that both approaches fail for the same structural reason: death risk is a task-type-level binary attribute with no learnable cross-type signal. The 7/11 pure-deterministic task types achieve 100% balanced accuracy; the 4 types with within-type episode variance cap at 50%. This convergence from two independent methods—neural step-level router and statistical task-type classifier—strengthens the \"signal-limited, not architecture-limited\" conclusion.",
-    "new_string": "## Attack 4: Router Positive Control Missing\n\n> \"You show step-level routers fail, but never demonstrate a task-level router succeeds. Without a positive control, 'signal-limited' is unsubstantiated.\"\n\nThe positive control's purpose is not to show a router can work, but to **confirm signal granularity**—that routing signal exists at one level (task-type) but not another (step). This granularity diagnosis is the core contribution of §3.6:\n\n**(i) Task-type features → 64.7% BA vs step features → 56–59% BA.** Adding task name to step features (keyword variant, Appendix P) yields a clear jump, directly demonstrating a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity.\n\n**(ii) LOTO confirms signal is a per-task-type constant with no cross-type generalization.** Under leave-one-task-type-out, two independent methods—600M–4B neural routers and logistic regression on one-hot task-type features—both collapse to chance (49.2% and 50.0% respectively; §3.6, Appendix P). This convergence from architecturally unrelated approaches confirms that routing signal is a per-task-type constant, not a learnable cross-type pattern. The diagnosis is \"signal-limited, not architecture-limited.\"\n\n**(iii) Generative router also fails (46.7%)** (Appendix P). An unconstrained generative approach (Qwen3-8B generating routing decisions from episode context) cannot extract step-level signal either, ruling out the hypothesis that SFT router architecture is the bottleneck.\n\n**(iv) Structural explanation: death risk is a binary task-type property.** 10/11 task types carry death risk (§5). The routing label is determined primarily by whether the task type has death risk—a property that is constant within a task type but invisible to step-level features. The 7/11 pure-deterministic task types achieve 100% balanced accuracy; the 4 types with within-type episode variance cap at 50%.\n\n**Summary:** The granularity diagnosis is complete—signal exists (task-type level), signal is absent (step level), and two independent methods confirm no cross-type generalization. This is not a missing positive control; it is a positive demonstration of where signal lives and why step-level routers cannot reach it."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 741 · 2026-05-22T00:55:14.308829+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 742 · 2026-05-22T00:55:18.827617+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "78",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "78",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 743 · 2026-05-22T00:55:18.928452+00:00_
-
-78	
-79	**(iv) Cross-model replication substitutes for within-model N.** Three independent model families (Qwen, Llama, Gemma) independently converge on DAF 88–90% (2.2pp spread). This between-model replication provides stronger evidence for the finding's reliability than simply increasing N within a single model.
-80	
-81	**(v) Wilson CIs are reported honestly.** Per-task Wilson CIs of ±20pp are wide, which is why we avoid strong per-task claims. The K=11 cluster bootstrap limitation is acknowledged in the paper (§2.4). The aggregate bootstrap CI ([69.5%, 86.3%]) confirms the finding is well-separated from the 50% null even accounting for task-level clustering.
-82	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 744 · 2026-05-22T00:55:40.249820+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**(v) Wilson CIs are reported honestly.** Per-task Wilson CIs of ±20pp are wide, which is why we avoid strong per-task claims. The K=11 cluster bootstrap limitation is acknowledged in the paper (§2.4). The aggregate bootstrap CI ([69.5%, 86.3%]) confirms the finding is well-separated from the 50% null even accounting for task-level clustering.",
-  "new_string": "**(v) Wilson CIs are reported honestly.** Per-task Wilson CIs of ±20pp are wide, which is why we avoid strong per-task claims. The K=11 cluster bootstrap limitation is acknowledged in the paper (§2.4). The aggregate bootstrap CI ([69.5%, 86.3%]) confirms the finding is well-separated from the 50% null even accounting for task-level clustering.\n\n---\n\n## Attack 6: Limited Excitement / Novelty\n\n> \"The contribution is primarily empirical analysis rather than a new method. Excitement 2.5/5.\"\n\nWe position this work as an empirical analysis contribution in the \"Interpretability and Analysis\" track, where diagnostic frameworks have established precedent and impact:\n\n**(i) Diagnostic contributions have a strong track record in this venue.** Probing classifiers (Conneau et al., 2018; Hewitt & Manning, 2019) did not propose new architectures but fundamentally changed how the community understands and evaluates representations. Behavioral testing (Ribeiro et al., 2020, CheckList) did not improve models but redirected evaluation methodology. BERTology (Rogers et al., 2020) synthesized analytical findings into actionable guidance. Our contribution type—diagnostic framework that precedes and redirects optimization—follows this lineage.\n\n**(ii) Quantification is the contribution, not the direction.** \"Death might matter for routing\" is a reasonable intuition. But intuitions do not specify magnitudes. The finding that 78.9% of non-tie labels trace to a single mechanism is not a number anyone predicted—it could have been 30%, 50%, or 90%. The quantification transforms a vague intuition into a precise, actionable diagnostic: at 78.9%, building a step-level router is provably wasteful; at 30%, it might be justified. This precision is the information gain.\n\n**(iii) Persistence across interventions is non-obvious.** The finding that death dominance survives 10× scaling (DAF=92.4%), self-correction (DAF>100%), multi-seed replication (3 model families, 2.2pp spread), and penalty removal (78.9% label fraction unchanged) was not predictable a priori. Each intervention was a plausible path to reducing death dominance; none succeeded. This persistence pattern is empirically informative for practitioners deciding whether to invest in router development.\n\n**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**(v) Wilson CIs are reported honestly.** Per-task Wilson CIs of ±20pp are wide, which is why we avoid strong per-task claims. The K=11 cluster bootstrap limitation is acknowledged in the paper (§2.4). The aggregate bootstrap CI ([69.5%, 86.3%]) confirms the finding is well-separated from the 50% null even accounting for task-level clustering.",
-    "new_string": "**(v) Wilson CIs are reported honestly.** Per-task Wilson CIs of ±20pp are wide, which is why we avoid strong per-task claims. The K=11 cluster bootstrap limitation is acknowledged in the paper (§2.4). The aggregate bootstrap CI ([69.5%, 86.3%]) confirms the finding is well-separated from the 50% null even accounting for task-level clustering.\n\n---\n\n## Attack 6: Limited Excitement / Novelty\n\n> \"The contribution is primarily empirical analysis rather than a new method. Excitement 2.5/5.\"\n\nWe position this work as an empirical analysis contribution in the \"Interpretability and Analysis\" track, where diagnostic frameworks have established precedent and impact:\n\n**(i) Diagnostic contributions have a strong track record in this venue.** Probing classifiers (Conneau et al., 2018; Hewitt & Manning, 2019) did not propose new architectures but fundamentally changed how the community understands and evaluates representations. Behavioral testing (Ribeiro et al., 2020, CheckList) did not improve models but redirected evaluation methodology. BERTology (Rogers et al., 2020) synthesized analytical findings into actionable guidance. Our contribution type—diagnostic framework that precedes and redirects optimization—follows this lineage.\n\n**(ii) Quantification is the contribution, not the direction.** \"Death might matter for routing\" is a reasonable intuition. But intuitions do not specify magnitudes. The finding that 78.9% of non-tie labels trace to a single mechanism is not a number anyone predicted—it could have been 30%, 50%, or 90%. The quantification transforms a vague intuition into a precise, actionable diagnostic: at 78.9%, building a step-level router is provably wasteful; at 30%, it might be justified. This precision is the information gain.\n\n**(iii) Persistence across interventions is non-obvious.** The finding that death dominance survives 10× scaling (DAF=92.4%), self-correction (DAF>100%), multi-seed replication (3 model families, 2.2pp spread), and penalty removal (78.9% label fraction unchanged) was not predictable a priori. Each intervention was a plausible path to reducing death dominance; none succeeded. This persistence pattern is empirically informative for practitioners deciding whether to invest in router development.\n\n**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 745 · 2026-05-22T00:55:40.250556+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 746 · 2026-05-22T00:55:43.764962+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "95",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "95",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 747 · 2026-05-22T00:55:43.815695+00:00_
-
-95	**(iii) Persistence across interventions is non-obvious.** The finding that death dominance survives 10× scaling (DAF=92.4%), self-correction (DAF>100%), multi-seed replication (3 model families, 2.2pp spread), and penalty removal (78.9% label fraction unchanged) was not predictable a priori. Each intervention was a plausible path to reducing death dominance; none succeeded. This persistence pattern is empirically informative for practitioners deciding whether to invest in router development.
-96	
-97	**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding.
-98	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 748 · 2026-05-22T00:58:17.557018+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding.",
-  "new_string": "**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding.\n\n---\n\n## Compressed Version (~800 words)\n\n*For ARR rebuttal word limit. Each attack ~130 words.*\n\n### R1: Single-Environment Generalization\nThe framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%; replicated across Llama 16/16 and Qwen 35/37 episodes). The ~50-episode pilot correctly predicted all four tested conditions (including MiniHack \"no signal\") at 4–8 GPU-hours. The specific finding (death dominance) replicates across three model families (DAF=88–90%, 2.2pp spread) and persists under 10× scaling to 72B (DAF=92.4%), confirming it is an environment property, not a model artifact. We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes.\n\n### R2: Trivial Finding\nDeath penalty makes death *relevant*—not dominant. The magnitude is empirical: (i) 10× scaling to 72B yields DAF=92.4%, *higher* than 7B—if trivial, scaling should eliminate it; (ii) Reflexion self-correction yields DAF>100%: a stronger agent loses overall due to catastrophic vulnerability, counterintuitive from penalty structure alone; (iii) the primary metric (78.9% label fraction) is penalty-independent, holding at any P>0. The routing literature presupposes diverse signal: Toolformer learns per-token calls, CogRouter per-step depth, RouteLLM preference-based routing. These architectures are unnecessary if single-mechanism dominance is default. Our 78.9% directly challenges these presuppositions. Absence of prior signal-source diagnosis reflects an implicit diversity assumption we disprove.\n\n### R3: No Actionable Solution\nOur framework is to routing what probing classifiers are to representations: diagnostic work that precedes optimization. Three practical values: (1) The ~50-episode pilot answers \"should we build a router?\" in 4–8 GPU-hours—we spent ~200 GPU-hours on router training before discovering always-deterministic is near-optimal; ~190 GPU-hours would have been saved. (2) The diagnosis prescribes always-deterministic, which achieves 90.5% of oracle decisions at **zero additional training cost**—a cost-free deployment strategy derived from mechanism understanding. (3) Cross-environment applicability yields different prescriptions: ALFWorld (DAF=0%) diagnoses information asymmetry, recommending router development—qualitatively different guidance from the same tool.\n\n### R4: Router Positive Control\nThe positive control confirms **signal granularity**, not router viability. Task-type features → 64.7% BA vs step features → 56–59% BA demonstrates a granularity mismatch. Under LOTO, two independent methods—600M–4B neural routers and logistic regression on one-hot features—both collapse to chance (49.2% and 50.0%), confirming routing signal is a per-task-type constant with no cross-type generalization. A generative router (Qwen3-8B) also fails at 46.7%, ruling out architecture bottleneck. The structural explanation: death risk is a binary task-type property (10/11 types), constant within type but invisible to step features. This is a complete granularity diagnosis, not a missing control.\n\n### R5: Per-Task Statistical Power\nThe headline finding is aggregate (N=245, 78.9%, bootstrap CI [69.5%, 86.3%]), not per-task. Per-task results are explicitly exploratory (Table 1 caption). Directional consistency: all 10 death-prone types show deterministic preference (p≈0.001); this holds across three independently sampled model families (30/30). Cross-model replication (DAF 88–90%, 2.2pp spread) provides stronger reliability evidence than increasing within-model N. Per-task Wilson CIs are wide (±20pp), which is why we avoid strong per-task claims. The aggregate CI confirms the finding is well-separated from 50% null even accounting for task-level clustering.\n\n### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding.",
-    "new_string": "**(iv) Findings is the appropriate venue tier.** We agree this is an empirical analysis contribution rather than a method innovation. The ARR system explicitly accommodates such work: Findings recognizes papers that provide reliable empirical insights to the community. Our contribution—a reusable diagnostic framework with a surprising quantitative finding—fits squarely in this category. The framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value beyond the specific ScienceWorld finding.\n\n---\n\n## Compressed Version (~800 words)\n\n*For ARR rebuttal word limit. Each attack ~130 words.*\n\n### R1: Single-Environment Generalization\nThe framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%; replicated across Llama 16/16 and Qwen 35/37 episodes). The ~50-episode pilot correctly predicted all four tested conditions (including MiniHack \"no signal\") at 4–8 GPU-hours. The specific finding (death dominance) replicates across three model families (DAF=88–90%, 2.2pp spread) and persists under 10× scaling to 72B (DAF=92.4%), confirming it is an environment property, not a model artifact. We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes.\n\n### R2: Trivial Finding\nDeath penalty makes death *relevant*—not dominant. The magnitude is empirical: (i) 10× scaling to 72B yields DAF=92.4%, *higher* than 7B—if trivial, scaling should eliminate it; (ii) Reflexion self-correction yields DAF>100%: a stronger agent loses overall due to catastrophic vulnerability, counterintuitive from penalty structure alone; (iii) the primary metric (78.9% label fraction) is penalty-independent, holding at any P>0. The routing literature presupposes diverse signal: Toolformer learns per-token calls, CogRouter per-step depth, RouteLLM preference-based routing. These architectures are unnecessary if single-mechanism dominance is default. Our 78.9% directly challenges these presuppositions. Absence of prior signal-source diagnosis reflects an implicit diversity assumption we disprove.\n\n### R3: No Actionable Solution\nOur framework is to routing what probing classifiers are to representations: diagnostic work that precedes optimization. Three practical values: (1) The ~50-episode pilot answers \"should we build a router?\" in 4–8 GPU-hours—we spent ~200 GPU-hours on router training before discovering always-deterministic is near-optimal; ~190 GPU-hours would have been saved. (2) The diagnosis prescribes always-deterministic, which achieves 90.5% of oracle decisions at **zero additional training cost**—a cost-free deployment strategy derived from mechanism understanding. (3) Cross-environment applicability yields different prescriptions: ALFWorld (DAF=0%) diagnoses information asymmetry, recommending router development—qualitatively different guidance from the same tool.\n\n### R4: Router Positive Control\nThe positive control confirms **signal granularity**, not router viability. Task-type features → 64.7% BA vs step features → 56–59% BA demonstrates a granularity mismatch. Under LOTO, two independent methods—600M–4B neural routers and logistic regression on one-hot features—both collapse to chance (49.2% and 50.0%), confirming routing signal is a per-task-type constant with no cross-type generalization. A generative router (Qwen3-8B) also fails at 46.7%, ruling out architecture bottleneck. The structural explanation: death risk is a binary task-type property (10/11 types), constant within type but invisible to step features. This is a complete granularity diagnosis, not a missing control.\n\n### R5: Per-Task Statistical Power\nThe headline finding is aggregate (N=245, 78.9%, bootstrap CI [69.5%, 86.3%]), not per-task. Per-task results are explicitly exploratory (Table 1 caption). Directional consistency: all 10 death-prone types show deterministic preference (p≈0.001); this holds across three independently sampled model families (30/30). Cross-model replication (DAF 88–90%, 2.2pp spread) provides stronger reliability evidence than increasing within-model N. Per-task Wilson CIs are wide (±20pp), which is why we avoid strong per-task claims. The aggregate CI confirms the finding is well-separated from 50% null even accounting for task-level clustering.\n\n### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 749 · 2026-05-22T00:58:17.658339+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 750 · 2026-05-22T00:58:23.382368+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"---\" && grep -c \"^## Attack\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"attacks\" && grep \"^## \" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "description": "Count words and verify section structure"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"---\" && grep -c \"^## Attack\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"attacks\" && grep \"^## \" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "description": "Count words and verify section structure"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 751 · 2026-05-22T00:58:23.583497+00:00_
-
-2476 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md
----
-6
-attacks
-## Attack 1: Single-Environment Generalization
-## Attack 2: Trivial Finding
-## Attack 3: No Actionable Solution
-## Attack 4: Router Positive Control Missing
-## Attack 5: Per-Task Statistical Power
-## Attack 6: Limited Excitement / Novelty
-## Compressed Version (~800 words)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Bash",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 752 · 2026-05-22T00:58:27.064191+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "sed -n '/^## Compressed/,$ p' /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md | wc -w",
-  "description": "Count words in compressed section"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "sed -n '/^## Compressed/,$ p' /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md | wc -w",
-    "description": "Count words in compressed section"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 753 · 2026-05-22T00:58:27.115009+00:00_
-
-593
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Bash",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 754 · 2026-05-22T00:58:33.913598+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
-  "old_string": "See `artifacts/rebuttal_prep.md` for 5 anticipated weaknesses:",
-  "new_string": "See `artifacts/rebuttal_prep.md` for 6 anticipated weaknesses (+compressed ~800-word version for ARR limit):"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
-    "old_string": "See `artifacts/rebuttal_prep.md` for 5 anticipated weaknesses:",
-    "new_string": "See `artifacts/rebuttal_prep.md` for 6 anticipated weaknesses (+compressed ~800-word version for ARR limit):"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 755 · 2026-05-22T00:58:33.964480+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 756 · 2026-05-22T00:58:40.939400+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
-  "old_string": "5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N",
-  "new_string": "5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N\n6. W: Limited excitement (2.5/5) → Response: diagnostic contributions have venue precedent (probing/CheckList/BERTology); quantification (78.9%) is the information gain; persistence across 4 interventions was non-obvious; Findings is appropriate tier"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
-    "old_string": "5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N",
-    "new_string": "5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N\n6. W: Limited excitement (2.5/5) → Response: diagnostic contributions have venue precedent (probing/CheckList/BERTology); quantification (78.9%) is the information gain; persistence across 4 interventions was non-obvious; Findings is appropriate tier"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 757 · 2026-05-22T00:58:40.990285+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 758 · 2026-05-22T00:58:53.462888+00:00_
-
-完成。`rebuttal_prep.md` 已按 Director 指令完成全部 6 项修改：
-
-1. **Attack 2** — 最后一段替换为 "presuppose diverse signal" 论证；0.5B inverted-U 降级为 "suggestive observation (n=15)"
-2. **Attack 1** — ALFWorld 双模型一致性补入（Llama 16/16, Qwen 35/37）
-3. **Attack 3** — Probing classifier 类比提为主打，Attention-is-not-Explanation 降为辅助；"zero additional training cost" 加入诊断即部署策略论点
-4. **Attack 4** — 核心论证改为 "signal granularity diagnosis"（64.7% vs 56-59% BA + dual-method LOTO collapse）
-5. **Attack 6 新增** — 回应 Excitement 2.5/5（venue 先例、量化即贡献、persistence non-obvious、Findings appropriate）
-6. **Compressed Version** — 文末 ~593 词压缩版，每个 Attack ~100 词，为 ARR rebuttal 字数限制预备
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d"
-}
-```
-
-</details>
-
----
-
-
-## Round 21
-
-## Round 21
-
-6 recorded events
-
+## Round 22
 
 ### User
 
-_source line 759 · 2026-05-22T01:24:45.743334+00:00_
-
-[Director 指令] **ARR 表单对齐 + Rebuttal 改进 — 状态确认**
-
-请简要汇报：
-1. ARR 提交表单对齐是否已完成？`artifacts/arr_submission_prep.md` 是否已与 R26 修复后论文同步？如有未完成项请列出。
-2. Rebuttal 6 项修改是否全部落地到 `artifacts/rebuttal_prep.md`？精简版 (~800 词) 是否已写入？
-
-简短回复即可。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 760 · 2026-05-22T01:25:08.606103+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 761 · 2026-05-22T01:25:08.807521+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "ToolSearch",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 762 · 2026-05-22T01:25:25.703034+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "**ARR 表单对齐 + Rebuttal 改进 — 完成确认**\n\n**1. ARR 提交表单对齐：✅ 已完成**\n\n`arr_submission_prep.md` 已与 R26 修复后论文同步，具体更新：\n- Abstract：已同步 R26 版本（\"three 7-9B model families\"、\"preliminary signal...given large effect size (d=3.02)\"）\n- Paper PDF 元数据：23 pages (8+15)，日期更新为 2026-05-22\n- Responsible NLP Checklist：新增 4 项 R26 对齐注释（negative results §3.6、causal methodology scoping、statistical claims hedging、model scope）\n- Pre-submission Verification：新增 2 项检查（causal claims scoped、pilot claim hedged），bib 条目更新为 54（+3: pearl2009, rubin1974, bonagiri2025）\n- Rebuttal Prep 索引：从 3 条扩展为 6 条\n\n无未完成项。\n\n**2. Rebuttal 6 项修改：✅ 全部落地**\n\n1. ✅ Attack 2：末段替换为 \"presuppose diverse signal\" 论证；0.5B inverted-U 降级为 \"suggestive observation (n=15)\"\n2. ✅ Attack 1：ALFWorld 补双模型一致性（Llama 16/16, Qwen 35/37）\n3. ✅ Attack 3：probing classifier 类比主打，Attention-is-not-Explanation 降为辅助；补 \"zero additional training cost\" 半句\n4. ✅ Attack 4：重新 frame 为 \"signal granularity diagnosis\"，核心论证改为 task-type vs step-level 粒度对比 + 双方法 LOTO 收敛\n5. ✅ Attack 6（新增）：Excitement 2.5/5 回应，4 点论证（venue 先例、quantification = information gain、persistence across interventions、Findings tier）\n6. ✅ Compressed Version：593 词，6 个 attack 各 ~100 词，已写入文件末尾",
-  "project": "simgate-modular-routing"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "**ARR 表单对齐 + Rebuttal 改进 — 完成确认**\n\n**1. ARR 提交表单对齐：✅ 已完成**\n\n`arr_submission_prep.md` 已与 R26 修复后论文同步，具体更新：\n- Abstract：已同步 R26 版本（\"three 7-9B model families\"、\"preliminary signal...given large effect size (d=3.02)\"）\n- Paper PDF 元数据：23 pages (8+15)，日期更新为 2026-05-22\n- Responsible NLP Checklist：新增 4 项 R26 对齐注释（negative results §3.6、causal methodology scoping、statistical claims hedging、model scope）\n- Pre-submission Verification：新增 2 项检查（causal claims scoped、pilot claim hedged），bib 条目更新为 54（+3: pearl2009, rubin1974, bonagiri2025）\n- Rebuttal Prep 索引：从 3 条扩展为 6 条\n\n无未完成项。\n\n**2. Rebuttal 6 项修改：✅ 全部落地**\n\n1. ✅ Attack 2：末段替换为 \"presuppose diverse signal\" 论证；0.5B inverted-U 降级为 \"suggestive observation (n=15)\"\n2. ✅ Attack 1：ALFWorld 补双模型一致性（Llama 16/16, Qwen 35/37）\n3. ✅ Attack 3：probing classifier 类比主打，Attention-is-not-Explanation 降为辅助；补 \"zero additional training cost\" 半句\n4. ✅ Attack 4：重新 frame 为 \"signal granularity diagnosis\"，核心论证改为 task-type vs step-level 粒度对比 + 双方法 LOTO 收敛\n5. ✅ Attack 6（新增）：Excitement 2.5/5 回应，4 点论证（venue 先例、quantification = information gain、persistence across interventions、Findings tier）\n6. ✅ Compressed Version：593 词，6 个 attack 各 ~100 词，已写入文件末尾",
-    "project": "simgate-modular-routing"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 763 · 2026-05-22T01:25:29.571842+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3868
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 764 · 2026-05-22T01:25:32.914207+00:00_
-
-已向 Director 汇报。两项任务均已完成：ARR 表单对齐无遗留项，Rebuttal 6 项修改全部落地（含 593 词精简版）。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d"
-}
-```
-
-</details>
-
----
-
-
-## Round 22
-
-## Round 22
-
-14 recorded events
-
-
-### User
-
-_source line 765 · 2026-05-22T01:26:48.599740+00:00_
+_source line 733 · 2026-05-22T01:26:48.599740+00:00_
 
 [Director 指令] **[修正] Rebuttal Attack 4 数字归因错误**
 
@@ -1123,327 +46,7 @@ _source line 765 · 2026-05-22T01:26:48.599740+00:00_
 
 ### Tool call
 
-_source line 766 · 2026-05-22T01:26:55.431718+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "49",
-  "limit": "15"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "49",
-    "limit": "15"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 767 · 2026-05-22T01:26:55.432351+00:00_
-
-49	## Attack 4: Router Positive Control Missing
-50	
-51	> "You show step-level routers fail, but never demonstrate a task-level router succeeds. Without a positive control, 'signal-limited' is unsubstantiated."
-52	
-53	The positive control's purpose is not to show a router can work, but to **confirm signal granularity**—that routing signal exists at one level (task-type) but not another (step). This granularity diagnosis is the core contribution of §3.6:
-54	
-55	**(i) Task-type features → 64.7% BA vs step features → 56–59% BA.** Adding task name to step features (keyword variant, Appendix P) yields a clear jump, directly demonstrating a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity.
-56	
-57	**(ii) LOTO confirms signal is a per-task-type constant with no cross-type generalization.** Under leave-one-task-type-out, two independent methods—600M–4B neural routers and logistic regression on one-hot task-type features—both collapse to chance (49.2% and 50.0% respectively; §3.6, Appendix P). This convergence from architecturally unrelated approaches confirms that routing signal is a per-task-type constant, not a learnable cross-type pattern. The diagnosis is "signal-limited, not architecture-limited."
-58	
-59	**(iii) Generative router also fails (46.7%)** (Appendix P). An unconstrained generative approach (Qwen3-8B generating routing decisions from episode context) cannot extract step-level signal either, ruling out the hypothesis that SFT router architecture is the bottleneck.
-60	
-61	**(iv) Structural explanation: death risk is a binary task-type property.** 10/11 task types carry death risk (§5). The routing label is determined primarily by whether the task type has death risk—a property that is constant within a t
-…[truncated 500 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 768 · 2026-05-22T01:27:01.005529+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**(i) Task-type features → 64.7% BA vs step features → 56–59% BA.** Adding task name to step features (keyword variant, Appendix P) yields a clear jump, directly demonstrating a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity.",
-  "new_string": "**(i) Task-type features consistently outperform step features.** A keyword variant adding task name to step features reaches 62.9% (Appendix P), and a task-type-only logistic regression on one-hot features achieves 64.7% (supplementary analysis)—both exceeding all step-level routers (56–59%). This directly demonstrates a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**(i) Task-type features → 64.7% BA vs step features → 56–59% BA.** Adding task name to step features (keyword variant, Appendix P) yields a clear jump, directly demonstrating a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity.",
-    "new_string": "**(i) Task-type features consistently outperform step features.** A keyword variant adding task name to step features reaches 62.9% (Appendix P), and a task-type-only logistic regression on one-hot features achieves 64.7% (supplementary analysis)—both exceeding all step-level routers (56–59%). This directly demonstrates a granularity mismatch: task identity carries exploitable routing signal that step-level features cannot access. The accuracy is bounded below perfect because task-type labels are probabilistic (not all episodes of a death-prone type result in death), but the signal is clearly learnable at the correct granularity."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 769 · 2026-05-22T01:27:01.106748+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 770 · 2026-05-22T01:27:05.429589+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "Task-type features.*64\\.7",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "Task-type features.*64\\.7",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 771 · 2026-05-22T01:27:05.480185+00:00_
-
-55:[Omitted long matching line]
-115:[Omitted long matching line]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 772 · 2026-05-22T01:27:11.599841+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "114",
-  "limit": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "114",
-    "limit": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 773 · 2026-05-22T01:27:11.651952+00:00_
-
-114	### R4: Router Positive Control
-115	The positive control confirms **signal granularity**, not router viability. Task-type features → 64.7% BA vs step features → 56–59% BA demonstrates a granularity mismatch. Under LOTO, two independent methods—600M–4B neural routers and logistic regression on one-hot features—both collapse to chance (49.2% and 50.0%), confirming routing signal is a per-task-type constant with no cross-type generalization. A generative router (Qwen3-8B) also fails at 46.7%, ruling out architecture bottleneck. The structural explanation: death risk is a binary task-type property (10/11 types), constant within type but invisible to step features. This is a complete granularity diagnosis, not a missing control.
-116	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 774 · 2026-05-22T01:27:16.171420+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "The positive control confirms **signal granularity**, not router viability. Task-type features → 64.7% BA vs step features → 56–59% BA demonstrates a granularity mismatch.",
-  "new_string": "The positive control confirms **signal granularity**, not router viability. Task-type features reach 62.9–64.7% BA vs step-level 56–59%, confirming signal granularity mismatch."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "The positive control confirms **signal granularity**, not router viability. Task-type features → 64.7% BA vs step features → 56–59% BA demonstrates a granularity mismatch.",
-    "new_string": "The positive control confirms **signal granularity**, not router viability. Task-type features reach 62.9–64.7% BA vs step-level 56–59%, confirming signal granularity mismatch."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 775 · 2026-05-22T01:27:16.172181+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 776 · 2026-05-22T01:27:24.907555+00:00_
+_source line 734 · 2026-05-22T01:27:24.907555+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -1479,7 +82,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 777 · 2026-05-22T01:27:28.772748+00:00_
+_source line 735 · 2026-05-22T01:27:28.772748+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -1501,7 +104,7 @@ _source line 777 · 2026-05-22T01:27:28.772748+00:00_
 
 ### Assistant
 
-_source line 778 · 2026-05-22T01:27:31.062966+00:00_
+_source line 736 · 2026-05-22T01:27:31.062966+00:00_
 
 已修正两处：
 - 全文版 L55：分开报告 keyword variant (62.9%, Appendix P) 和 task-type-only LogReg (64.7%, supplementary analysis)
@@ -1530,7 +133,7 @@ _source line 778 · 2026-05-22T01:27:31.062966+00:00_
 
 ### User
 
-_source line 779 · 2026-05-22T02:08:00.587628+00:00_
+_source line 737 · 2026-05-22T02:08:00.587628+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -1551,7 +154,7 @@ _source line 779 · 2026-05-22T02:08:00.587628+00:00_
 
 ### Tool call
 
-_source line 780 · 2026-05-22T02:08:11.812790+00:00_
+_source line 738 · 2026-05-22T02:08:11.812790+00:00_
 
 called ToolSearch
 
@@ -1587,7 +190,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 781 · 2026-05-22T02:08:11.813203+00:00_
+_source line 739 · 2026-05-22T02:08:11.813203+00:00_
 
 
 
@@ -1609,7 +212,7 @@ _source line 781 · 2026-05-22T02:08:11.813203+00:00_
 
 ### Tool call
 
-_source line 782 · 2026-05-22T02:08:15.678084+00:00_
+_source line 740 · 2026-05-22T02:08:15.678084+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1645,7 +248,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 783 · 2026-05-22T02:08:16.029698+00:00_
+_source line 741 · 2026-05-22T02:08:16.029698+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -1674,7 +277,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 784 · 2026-05-22T02:08:16.180820+00:00_
+_source line 742 · 2026-05-22T02:08:16.180820+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1710,7 +313,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 785 · 2026-05-22T02:08:16.334022+00:00_
+_source line 743 · 2026-05-22T02:08:16.334022+00:00_
 
 Error: result (119,313 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-ae7c9c01/a0ff0dcc-b9d5-437c-9893-6b9da3108657/tool-results/mcp-agent-ml-research-read_registry-1779415696283.txt.
 Format: JSON with schema: {result: string}
@@ -1739,7 +342,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool result
 
-_source line 786 · 2026-05-22T02:08:16.384715+00:00_
+_source line 744 · 2026-05-22T02:08:16.384715+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -1761,7 +364,7 @@ _source line 786 · 2026-05-22T02:08:16.384715+00:00_
 
 ### Tool result
 
-_source line 787 · 2026-05-22T02:08:16.435522+00:00_
+_source line 745 · 2026-05-22T02:08:16.435522+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| alfworld-llama-cross-model | Llama-3.1-8B on ALFWorld will show information asymmetry (not death) as the dominant routing mechanism, consistent with Qwen2.5-7B findings (25.9% det-preferred, DAF=0%), confirming the framework diagnoses environment-specific mechanisms regardless of model family. | — | — | — |\\n| gemma-scienceworld-cross-model | Gemma-2-9B-it on ScienceWorld will show death dominance (DAF > 80%) consistent with Qwen2.5-7B (90.4%) and Llama-3.1-8B (88.2%), extending the cross-model-family evidence from 2 to 3 independent model families and strengthening the claim that death avoidance dominates routing signal regardless of model architecture. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **gemma-scienceworld-gpu0** (success): Gemma-2-9B-it on ScienceWorld will replicate the death-avoidance dominance pattern (DAF>80%) observed with Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming the diagnostic finding is model-agnostic across 3 model families.\\n- **gemma-scienceworld-v4** (success): Gemma-2-9B-it on ScienceWorld will replicate the death-avoidance dominance pattern (DAF>80%) observed with Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming the diagnostic finding is model-agnostic across 3 model families.\\n- **gemma-scienceworld-v5** (success): Gemma-2-9B-it replicates the death-avoidance dominance pattern observed in Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming that high DAF is model-agnostic rather than an artifact of a specific backbone architecture\\n  [Gemma-2-9B ScienceWorld Analysis Results](/api/workspace-files/projects/simgate-modular-routing/artifacts/gemma-scienceworld-v5/data/
 …[truncated 1759 chars]
@@ -1784,7 +387,7 @@ _source line 787 · 2026-05-22T02:08:16.435522+00:00_
 
 ### Tool call
 
-_source line 788 · 2026-05-22T02:08:19.893921+00:00_
+_source line 746 · 2026-05-22T02:08:19.893921+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1820,7 +423,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 789 · 2026-05-22T02:08:20.096677+00:00_
+_source line 747 · 2026-05-22T02:08:20.096677+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1856,7 +459,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 790 · 2026-05-22T02:08:20.297770+00:00_
+_source line 748 · 2026-05-22T02:08:20.297770+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.418}}"}
 
@@ -1878,7 +481,7 @@ _source line 790 · 2026-05-22T02:08:20.297770+00:00_
 
 ### Tool result
 
-_source line 791 · 2026-05-22T02:08:20.348642+00:00_
+_source line 749 · 2026-05-22T02:08:20.348642+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\", \"content\": \"# simgate-modular-routing — Research Dashboard\\n\\n> 最后更新: 2026-05-22 01:59 UTC\\n\\n> 最后更新: 2026-05-22 02:00 UTC | 更新原因: R26 修复完成 + Rebuttal 终审通过 + Continue-mode 审稿已提交\\n\\n## 核心方向\\n**[D126/D127 Framework-centric pivot]** Episode-level counterfactual analysis as a diagnostic framework for understanding when and why deterministic computation helps LLM agents. ScienceWorld case study: death avoidance accounts for ~90% of routing signal. 详见 paper_framing.md。\\n\\n## 当前进展\\n**R26 全部 20 项修复 + 3 项微调完成，continue-mode 审稿已提交等用户确认。** DDL 2026-05-25（剩 ~3 天）。\\n\\n- 目标：EMNLP 2026 via ARR, Findings (≥3.0)\\n- **121 个实验全部完成**（53 成功 / 68 阴性+失败+killed）\\n- ✅ **R26 修复 20/20**：N1 DAF penalty sensitivity 独立段落、N2 7-9B tier 限定、N3 strawman 去除、W1 Pearl/Rubin 连接、W2-W6 全部 writing fixes\\n- ✅ **Reviewer 验收 PASS**（19/20 首次通过 + W5 补丁后 20/20）\\n- ✅ **Rebuttal 6 个 Attack 准备完毕**（终审通过，精简版 ~670 词）\\n- ✅ **ARR 提交表单与 R26 修复后论文同步**\\n- ✅ **编译通过**：23 页（主文 8 页），0 errors，0 overfull hbox\\n- ⏳ Continue-mode 审稿等用户确认（apr_20260522T001839_s9kl）\\n- ⏳ 用户决策：W4 task-type 64.7% 是否写入正文\\n- ⏳ 用户确认匿名代码仓库\\n\\n## 近期任务\\n- [x] R26 审稿修复 20 项\\n- [x] R26 微调 3 项（Q2 连接、rebuttal Attack 2/5 加强）\\n- [x] Rebuttal 6 个 Attack 准备 + 精简版\\n- [x] ARR 提交表单对齐\\n- [ ] Continue-mode 审稿报告返回 → 按 review-report-action 处理\\n- [ ] 用户确认 → 最终 ARR 提交（DDL 05-25）\\n- [ ] （待用户决策）W4 64.7% task-type data 是否写入正文 §3.6\\n\\n## GPU 预算\\n- westd-18266: 4× RTX PRO 6000 — GPU 已全部释放（D129），无活跃实验\\n- D131/D132 + Reviewer 联合确认：最后 3 天不开新 GPU 实验\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D132 | 2026-05-21 | 维持 D131 冻结，不补做 task-level router positive control  | — |\\n| D131 | 2026-05-21 | DDL 前 4 天不再做新实验，聚焦零错误提交 | — |\\n| D130 | 2026-05-21 | D130: 接受 Findings 级别 (3.0)，不追 Borderline Conferenc | — |\\n| D129 | 2026-05-21 | 释放 2× RTX 5090 GPU，不再跑新实验。剩余工作全部是零 GPU 分析
 …[truncated 672 chars]
@@ -1901,7 +504,7 @@ _source line 791 · 2026-05-22T02:08:20.348642+00:00_
 
 ### Assistant
 
-_source line 792 · 2026-05-22T02:08:27.003491+00:00_
+_source line 750 · 2026-05-22T02:08:27.003491+00:00_
 
 Session-start 完成。状态概要：
 
@@ -1936,7 +539,7 @@ Session-start 完成。状态概要：
 
 ### User
 
-_source line 793 · 2026-05-22T02:41:24.069369+00:00_
+_source line 751 · 2026-05-22T02:41:24.069369+00:00_
 
 [Director 指令] **DDL 前准备 — Supplementary Material + 匿名代码仓库骨架**
 
@@ -1990,7 +593,7 @@ anonymous_code/
 
 ### Tool call
 
-_source line 794 · 2026-05-22T02:41:40.678692+00:00_
+_source line 752 · 2026-05-22T02:41:40.678692+00:00_
 
 called ToolSearch
 
@@ -2026,7 +629,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 795 · 2026-05-22T02:41:40.729475+00:00_
+_source line 753 · 2026-05-22T02:41:40.729475+00:00_
 
 
 
@@ -2048,7 +651,7 @@ _source line 795 · 2026-05-22T02:41:40.729475+00:00_
 
 ### Tool call
 
-_source line 796 · 2026-05-22T02:41:45.304134+00:00_
+_source line 754 · 2026-05-22T02:41:45.304134+00:00_
 
 called Glob
 
@@ -2084,7 +687,7 @@ called Glob
 
 ### Tool result
 
-_source line 797 · 2026-05-22T02:41:45.756717+00:00_
+_source line 755 · 2026-05-22T02:41:45.756717+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/phase1_progress_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/diagnosis_mvp-p1-gpu1-v2.md
@@ -2120,7 +723,7 @@ _source line 797 · 2026-05-22T02:41:45.756717+00:00_
 
 ### Tool call
 
-_source line 798 · 2026-05-22T02:41:45.808149+00:00_
+_source line 756 · 2026-05-22T02:41:45.808149+00:00_
 
 called mcp__agent-ml-research__list_artifacts
 
@@ -2156,7 +759,7 @@ called mcp__agent-ml-research__list_artifacts
 
 ### Tool result
 
-_source line 799 · 2026-05-22T02:41:46.059728+00:00_
+_source line 757 · 2026-05-22T02:41:46.059728+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifacts\": [{\"id\": \"unregistered:rebuttal_prep.md\", \"name\": \"rebuttal_prep\", \"type\": \"report\", \"description\": \"(未注册) projects/simgate-modular-routing/artifacts/rebuttal_prep.md\", \"path\": \"projects/simgate-modular-routing/artifacts/rebuttal_prep.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T01:27:16.129973+00:00\", \"tags\": [\"unregistered\"]}, {\"id\": \"unregistered:arr_submission_prep.md\", \"name\": \"arr_submission_prep\", \"type\": \"report\", \"description\": \"(未注册) projects/simgate-modular-routing/artifacts/arr_submission_prep.md\", \"path\": \"projects/simgate-modular-routing/artifacts/arr_submission_prep.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T00:58:40.934533+00:00\", \"tags\": [\"unregistered\"]}, {\"id\": \"unregistered:w1_causal_refs.md\", \"name\": \"w1_causal_refs\", \"type\": \"report\", \"description\": \"(未注册) projects/simgate-modular-routing/artifacts/w1_causal_refs.md\", \"path\": \"projects/simgate-modular-routing/artifacts/w1_causal_refs.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T22:40:17.602767+00:00\", \"tags\": [\"unregistered\"]}, {\"id\": \"unregistered:review_issues.yaml\", \"name\": \"review_issues\", \"type\": \"report\", \"description\": \"(未注册) projects/simgate-modular-routing/artifacts/review_issues.yaml\", \"path\": \"projects/simgate-modular-routing/artifacts/review_issues.yaml\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T22:39:30.165400+00:00\", \"tags\": [\"unregistered\"]}, {\"id\": \"unregistered:round_26.md\", \"name\": \"round_26\", \"type\": \"report\", \"description\": \"(未注册) projects/simgate-modular-routing/artifacts/review_reports/
 …[truncated 8402 chars]
@@ -2179,7 +782,7 @@ _source line 799 · 2026-05-22T02:41:46.059728+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-22T02:42:12.484351+00:00_
+_source line 758 · 2026-05-22T02:42:12.484351+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2219,7 +822,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 801 · 2026-05-22T02:42:25.497168+00:00_
+_source line 759 · 2026-05-22T02:42:25.497168+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_anonymous-repo-skeleton_20260522T024213\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_code_anonymous-repo-skeleton_20260522T024213.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_anonymous-repo-skeleton_20260522T024213 started. Use get_worker_status('worker_code_anonymous-repo-skeleton_20260522T024213') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2241,7 +844,7 @@ _source line 801 · 2026-05-22T02:42:25.497168+00:00_
 
 ### Tool call
 
-_source line 802 · 2026-05-22T02:42:25.547793+00:00_
+_source line 760 · 2026-05-22T02:42:25.547793+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2281,7 +884,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 803 · 2026-05-22T02:42:28.765775+00:00_
+_source line 761 · 2026-05-22T02:42:28.765775+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_pdf-compliance-check_20260522T024225\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_paper_pdf-compliance-check_20260522T024225.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_pdf-compliance-check_20260522T024225 started. Use get_worker_status('worker_paper_pdf-compliance-check_20260522T024225') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2303,7 +906,7 @@ _source line 803 · 2026-05-22T02:42:28.765775+00:00_
 
 ### Assistant
 
-_source line 804 · 2026-05-22T02:42:34.858795+00:00_
+_source line 762 · 2026-05-22T02:42:34.858795+00:00_
 
 两个 Worker 已并行启动：
 1. **anonymous-repo-skeleton** — 查看 westd-18266 代码结构并在本地创建匿名仓库骨架
@@ -2336,7 +939,7 @@ Worker 完成后自动回调，届时汇总结果向 Director 汇报。
 
 ### User
 
-_source line 805 · 2026-05-22T02:46:06.393116+00:00_
+_source line 763 · 2026-05-22T02:46:06.393116+00:00_
 
 [WORKER DONE] Worker worker_paper_pdf-compliance-check_20260522T024225 已完成（status=done）。用 `get_worker_status('worker_paper_pdf-compliance-check_20260522T024225')` 读取结果，然后处理。
 
@@ -2361,7 +964,7 @@ _source line 805 · 2026-05-22T02:46:06.393116+00:00_
 
 ### Tool call
 
-_source line 806 · 2026-05-22T02:46:15.343040+00:00_
+_source line 764 · 2026-05-22T02:46:15.343040+00:00_
 
 called ToolSearch
 
@@ -2397,7 +1000,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 807 · 2026-05-22T02:46:15.393645+00:00_
+_source line 765 · 2026-05-22T02:46:15.393645+00:00_
 
 
 
@@ -2419,7 +1022,7 @@ _source line 807 · 2026-05-22T02:46:15.393645+00:00_
 
 ### Tool call
 
-_source line 808 · 2026-05-22T02:46:18.205702+00:00_
+_source line 766 · 2026-05-22T02:46:18.205702+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2453,7 +1056,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 809 · 2026-05-22T02:46:18.306694+00:00_
+_source line 767 · 2026-05-22T02:46:18.306694+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_pdf-compliance-check_20260522T024225\", \"status\": \"done\", \"task_type\": \"paper:pdf-compliance-check\", \"project\": \"simgate-modular-routing\", \"started_at\": \"2026-05-22T02:42:25.850274+00:00\", \"ended_at\": \"2026-05-22T02:46:04.402928+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"```\\nPDF 合规检查结果：\\n- 编译状态: 成功（already up-to-date）\\n- 总页数: 24 (主文 9 + Limitations 1 + References 2 + 附录 12)\\n- 未解析引用: 0\\n- Overfull hbox: 0 (>10pt: 0)\\n- 字体嵌入: 全部嵌入\\n- 匿名性: 通过（Author() 为空，正文无身份信息）\\n- ⚠️ 主文超页: 主文 9 页，超出 EMNLP 2026 的 8 页限制 1 页\\n```\\n\\n**关键问题：主文 9 页，需要砍 1 页。** 页面结构：\\n- Pages 1–9: 主文（Discussion + Conclusion 在第 9 页）\\n- Page 10: Limitations\\n- Pages 11–12: References\\n- Pages 13–24: Appendix\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2475,7 +1078,7 @@ _source line 809 · 2026-05-22T02:46:18.306694+00:00_
 
 ### Tool call
 
-_source line 810 · 2026-05-22T02:46:31.221034+00:00_
+_source line 768 · 2026-05-22T02:46:31.221034+00:00_
 
 called Bash
 
@@ -2511,7 +1114,7 @@ called Bash
 
 ### Tool result
 
-_source line 811 · 2026-05-22T02:46:31.825183+00:00_
+_source line 769 · 2026-05-22T02:46:31.825183+00:00_
 
 Pages:           23
 ---
@@ -2538,7 +1141,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 812 · 2026-05-22T02:46:38.286226+00:00_
+_source line 770 · 2026-05-22T02:46:38.286226+00:00_
 
 called Bash
 
@@ -2574,7 +1177,7 @@ called Bash
 
 ### Tool result
 
-_source line 813 · 2026-05-22T02:46:38.638749+00:00_
+_source line 771 · 2026-05-22T02:46:38.638749+00:00_
 
 1579 = page break check
 1580 
@@ -2605,7 +1208,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 814 · 2026-05-22T02:46:53.923344+00:00_
+_source line 772 · 2026-05-22T02:46:53.923344+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2641,7 +1244,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 815 · 2026-05-22T02:46:58.141421+00:00_
+_source line 773 · 2026-05-22T02:46:58.141421+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -2663,7 +1266,7 @@ _source line 815 · 2026-05-22T02:46:58.141421+00:00_
 
 ### Assistant
 
-_source line 816 · 2026-05-22T02:47:01.493870+00:00_
+_source line 774 · 2026-05-22T02:47:01.493870+00:00_
 
 本地 PDF 确认：Discussion + Conclusion 都在 page 8 内，Limitations 在 page 9 开始（不计入 8 页限制）。总 23 页，合规。
 
@@ -2692,7 +1295,7 @@ _source line 816 · 2026-05-22T02:47:01.493870+00:00_
 
 ### User
 
-_source line 817 · 2026-05-22T02:47:23.354220+00:00_
+_source line 775 · 2026-05-22T02:47:23.354220+00:00_
 
 [Director 指令] **🔴 CRITICAL: 主文超页 9→8，必须立即修复**
 
@@ -2733,7 +1336,7 @@ Reviewer 审查发现主文溢出到第 9 页（Discussion + Conclusion 溢出�
 
 ### Tool call
 
-_source line 818 · 2026-05-22T02:47:41.408052+00:00_
+_source line 776 · 2026-05-22T02:47:41.408052+00:00_
 
 called Bash
 
@@ -2769,7 +1372,7 @@ called Bash
 
 ### Tool result
 
-_source line 819 · 2026-05-22T02:47:41.709935+00:00_
+_source line 777 · 2026-05-22T02:47:41.709935+00:00_
 
 === PAGE 8 ===
 First line: 570   strong and weak models. Zhang et al. (2026a) train           why—death avoidance dominates rou
@@ -2818,7 +1421,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 820 · 2026-05-22T02:47:52.908412+00:00_
+_source line 778 · 2026-05-22T02:47:52.908412+00:00_
 
 called Read
 
@@ -2852,7 +1455,7 @@ called Read
 
 ### Tool result
 
-_source line 821 · 2026-05-22T02:47:53.661521+00:00_
+_source line 779 · 2026-05-22T02:47:53.661521+00:00_
 
 1	\section{Conclusion}
 2	
@@ -2877,7 +1480,7 @@ _source line 821 · 2026-05-22T02:47:53.661521+00:00_
 
 ### Tool call
 
-_source line 822 · 2026-05-22T02:47:53.712303+00:00_
+_source line 780 · 2026-05-22T02:47:53.712303+00:00_
 
 called Read
 
@@ -2911,7 +1514,7 @@ called Read
 
 ### Tool result
 
-_source line 823 · 2026-05-22T02:47:53.863538+00:00_
+_source line 781 · 2026-05-22T02:47:53.863538+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -2949,7 +1552,7 @@ _source line 823 · 2026-05-22T02:47:53.863538+00:00_
 
 ### Tool call
 
-_source line 824 · 2026-05-22T02:47:53.864050+00:00_
+_source line 782 · 2026-05-22T02:47:53.864050+00:00_
 
 called Read
 
@@ -2983,7 +1586,7 @@ called Read
 
 ### Tool result
 
-_source line 825 · 2026-05-22T02:47:53.914818+00:00_
+_source line 783 · 2026-05-22T02:47:53.914818+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -3021,7 +1624,7 @@ _source line 825 · 2026-05-22T02:47:53.914818+00:00_
 
 ### Tool call
 
-_source line 826 · 2026-05-22T02:48:24.600834+00:00_
+_source line 784 · 2026-05-22T02:48:24.600834+00:00_
 
 called Edit
 
@@ -3061,7 +1664,7 @@ called Edit
 
 ### Tool result
 
-_source line 827 · 2026-05-22T02:48:24.752614+00:00_
+_source line 785 · 2026-05-22T02:48:24.752614+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -3083,7 +1686,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 828 · 2026-05-22T02:48:36.462222+00:00_
+_source line 786 · 2026-05-22T02:48:36.462222+00:00_
 
 called Edit
 
@@ -3123,7 +1726,7 @@ called Edit
 
 ### Tool result
 
-_source line 829 · 2026-05-22T02:48:36.462937+00:00_
+_source line 787 · 2026-05-22T02:48:36.462937+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -3145,7 +1748,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 830 · 2026-05-22T02:48:44.544172+00:00_
+_source line 788 · 2026-05-22T02:48:44.544172+00:00_
 
 called Edit
 
@@ -3185,7 +1788,7 @@ called Edit
 
 ### Tool result
 
-_source line 831 · 2026-05-22T02:48:44.595051+00:00_
+_source line 789 · 2026-05-22T02:48:44.595051+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -3207,7 +1810,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 832 · 2026-05-22T02:48:52.779387+00:00_
+_source line 790 · 2026-05-22T02:48:52.779387+00:00_
 
 called Edit
 
@@ -3247,7 +1850,7 @@ called Edit
 
 ### Tool result
 
-_source line 833 · 2026-05-22T02:48:52.830239+00:00_
+_source line 791 · 2026-05-22T02:48:52.830239+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex has been updated successfully.
 
@@ -3269,7 +1872,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 834 · 2026-05-22T02:48:56.346200+00:00_
+_source line 792 · 2026-05-22T02:48:56.346200+00:00_
 
 called Bash
 
@@ -3307,7 +1910,7 @@ called Bash
 
 ### Tool result
 
-_source line 835 · 2026-05-22T02:49:00.112645+00:00_
+_source line 793 · 2026-05-22T02:49:00.112645+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -3333,7 +1936,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 836 · 2026-05-22T02:49:03.334271+00:00_
+_source line 794 · 2026-05-22T02:49:03.334271+00:00_
 
 called Bash
 
@@ -3371,7 +1974,7 @@ called Bash
 
 ### Tool result
 
-_source line 837 · 2026-05-22T02:49:05.421861+00:00_
+_source line 795 · 2026-05-22T02:49:05.421861+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -3397,7 +2000,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 838 · 2026-05-22T02:49:09.338196+00:00_
+_source line 796 · 2026-05-22T02:49:09.338196+00:00_
 
 called Bash
 
@@ -3435,7 +2038,7 @@ called Bash
 
 ### Tool result
 
-_source line 839 · 2026-05-22T02:49:14.910451+00:00_
+_source line 797 · 2026-05-22T02:49:14.910451+00:00_
 
 Latexmk: Examining 'main.fls'
 Latexmk: Examining 'main.log'
@@ -3466,7 +2069,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 840 · 2026-05-22T02:49:18.776224+00:00_
+_source line 798 · 2026-05-22T02:49:18.776224+00:00_
 
 called Bash
 
@@ -3504,7 +2107,7 @@ called Bash
 
 ### Tool result
 
-_source line 841 · 2026-05-22T02:49:21.889766+00:00_
+_source line 799 · 2026-05-22T02:49:21.889766+00:00_
 
 s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on main.pdf (23 pages, 592366 bytes).
@@ -3532,7 +2135,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 842 · 2026-05-22T02:49:27.762905+00:00_
+_source line 800 · 2026-05-22T02:49:27.762905+00:00_
 
 called Bash
 
@@ -3568,7 +2171,7 @@ called Bash
 
 ### Tool result
 
-_source line 843 · 2026-05-22T02:49:27.914221+00:00_
+_source line 801 · 2026-05-22T02:49:27.914221+00:00_
 
 === PAGE 8 ===
 First: 572   2017; Moldovan and Abbeel, 2012). Death dom-                 achieve near-zero scores—represen
@@ -3602,7 +2205,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 844 · 2026-05-22T02:49:42.321450+00:00_
+_source line 802 · 2026-05-22T02:49:42.321450+00:00_
 
 called Bash
 
@@ -3638,7 +2241,7 @@ called Bash
 
 ### Tool result
 
-_source line 845 · 2026-05-22T02:49:42.472573+00:00_
+_source line 803 · 2026-05-22T02:49:42.472573+00:00_
 
 === PAGE 8 LAST 25 LINES ===
 '603   risk depends on multi-step trajectories. The 4B'
@@ -3681,7 +2284,7 @@ _source line 845 · 2026-05-22T02:49:42.472573+00:00_
 
 ### Tool call
 
-_source line 846 · 2026-05-22T02:50:05.125225+00:00_
+_source line 804 · 2026-05-22T02:50:05.125225+00:00_
 
 called Bash
 
@@ -3717,7 +2320,7 @@ called Bash
 
 ### Tool result
 
-_source line 847 · 2026-05-22T02:50:05.272642+00:00_
+_source line 805 · 2026-05-22T02:50:05.272642+00:00_
 
 Line 33:                                                                    6   Conclusion                                         639
 Line 35: 592   quitting yields substantial safety gains; our frame-         In ScienceWorld, death avoidance alone accounts        640
@@ -3742,7 +2345,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 848 · 2026-05-22T02:50:10.351518+00:00_
+_source line 806 · 2026-05-22T02:50:10.351518+00:00_
 
 called Bash
 
@@ -3778,7 +2381,7 @@ called Bash
 
 ### Tool result
 
-_source line 849 · 2026-05-22T02:50:10.452484+00:00_
+_source line 807 · 2026-05-22T02:50:10.452484+00:00_
 
 28: 588   der controlled conditions, eliminating confound-             practical routing value in death-dominated environ-    637
 29: 
@@ -3821,7 +2424,7 @@ _source line 849 · 2026-05-22T02:50:10.452484+00:00_
 
 ### Tool call
 
-_source line 850 · 2026-05-22T02:50:19.037555+00:00_
+_source line 808 · 2026-05-22T02:50:19.037555+00:00_
 
 called Bash
 
@@ -3857,7 +2460,7 @@ called Bash
 
 ### Tool result
 
-_source line 851 · 2026-05-22T02:50:19.138584+00:00_
+_source line 809 · 2026-05-22T02:50:19.138584+00:00_
 
 === Pages ===
 Pages:           23
@@ -3885,7 +2488,7 @@ Pages:           23
 
 ### Tool call
 
-_source line 852 · 2026-05-22T02:50:22.301508+00:00_
+_source line 810 · 2026-05-22T02:50:22.301508+00:00_
 
 called Bash
 
@@ -3921,7 +2524,7 @@ called Bash
 
 ### Tool result
 
-_source line 853 · 2026-05-22T02:50:22.554191+00:00_
+_source line 811 · 2026-05-22T02:50:22.554191+00:00_
 
 0
 
@@ -3943,7 +2546,7 @@ _source line 853 · 2026-05-22T02:50:22.554191+00:00_
 
 ### Tool call
 
-_source line 854 · 2026-05-22T02:50:39.728135+00:00_
+_source line 812 · 2026-05-22T02:50:39.728135+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3979,7 +2582,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 855 · 2026-05-22T02:50:43.643791+00:00_
+_source line 813 · 2026-05-22T02:50:43.643791+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -4001,7 +2604,7 @@ _source line 855 · 2026-05-22T02:50:43.643791+00:00_
 
 ### Assistant
 
-_source line 856 · 2026-05-22T02:50:48.158341+00:00_
+_source line 814 · 2026-05-22T02:50:48.158341+00:00_
 
 全部合规。汇报 Director。
 
@@ -4028,7 +2631,7 @@ _source line 856 · 2026-05-22T02:50:48.158341+00:00_
 
 ### User
 
-_source line 857 · 2026-05-22T02:50:48.817511+00:00_
+_source line 815 · 2026-05-22T02:50:48.817511+00:00_
 
 [Director 指令] **⚠️ 撤回上条紧急压缩指令 — 超页是远程未同步导致的误报**
 
@@ -4055,7 +2658,7 @@ _source line 857 · 2026-05-22T02:50:48.817511+00:00_
 
 ### Tool call
 
-_source line 858 · 2026-05-22T02:51:01.527716+00:00_
+_source line 816 · 2026-05-22T02:51:01.527716+00:00_
 
 called Edit
 
@@ -4095,7 +2698,7 @@ called Edit
 
 ### Tool result
 
-_source line 859 · 2026-05-22T02:51:01.579929+00:00_
+_source line 817 · 2026-05-22T02:51:01.579929+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -4117,7 +2720,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 860 · 2026-05-22T02:51:14.074388+00:00_
+_source line 818 · 2026-05-22T02:51:14.074388+00:00_
 
 called Edit
 
@@ -4157,7 +2760,7 @@ called Edit
 
 ### Tool result
 
-_source line 861 · 2026-05-22T02:51:14.075067+00:00_
+_source line 819 · 2026-05-22T02:51:14.075067+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -4179,7 +2782,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 862 · 2026-05-22T02:51:25.676484+00:00_
+_source line 820 · 2026-05-22T02:51:25.676484+00:00_
 
 called Edit
 
@@ -4219,7 +2822,7 @@ called Edit
 
 ### Tool result
 
-_source line 863 · 2026-05-22T02:51:25.777466+00:00_
+_source line 821 · 2026-05-22T02:51:25.777466+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -4241,7 +2844,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 864 · 2026-05-22T02:51:40.093044+00:00_
+_source line 822 · 2026-05-22T02:51:40.093044+00:00_
 
 called Edit
 
@@ -4281,7 +2884,7 @@ called Edit
 
 ### Tool result
 
-_source line 865 · 2026-05-22T02:51:40.244352+00:00_
+_source line 823 · 2026-05-22T02:51:40.244352+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex has been updated successfully.
 
@@ -4303,7 +2906,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 866 · 2026-05-22T02:51:44.812481+00:00_
+_source line 824 · 2026-05-22T02:51:44.812481+00:00_
 
 called Bash
 
@@ -4341,7 +2944,7 @@ called Bash
 
 ### Tool result
 
-_source line 867 · 2026-05-22T02:51:48.328910+00:00_
+_source line 825 · 2026-05-22T02:51:48.328910+00:00_
 
 Output written on main.pdf (23 pages, 595338 bytes).
 Transcript written on main.log.
@@ -4367,7 +2970,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 868 · 2026-05-22T02:51:53.199314+00:00_
+_source line 826 · 2026-05-22T02:51:53.199314+00:00_
 
 called Bash
 
@@ -4403,7 +3006,7 @@ called Bash
 
 ### Tool result
 
-_source line 869 · 2026-05-22T02:51:53.350398+00:00_
+_source line 827 · 2026-05-22T02:51:53.350398+00:00_
 
 Page 8, line 65: 6   Conclusion                                         665
 Page 9, line 10: 677   Limitations                                               et al., 2011). Under mixed-strategy
@@ -4427,7 +3030,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 870 · 2026-05-22T02:52:20.950193+00:00_
+_source line 828 · 2026-05-22T02:52:20.950193+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4463,7 +3066,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 871 · 2026-05-22T02:52:24.866206+00:00_
+_source line 829 · 2026-05-22T02:52:24.866206+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -4485,7 +3088,7 @@ _source line 871 · 2026-05-22T02:52:24.866206+00:00_
 
 ### Assistant
 
-_source line 872 · 2026-05-22T02:52:27.614213+00:00_
+_source line 830 · 2026-05-22T02:52:27.614213+00:00_
 
 23 页，Conclusion 在 page 8，Limitations 在 page 9。Revert 完成，PDF 合规。
 
@@ -4512,7 +3115,7 @@ _source line 872 · 2026-05-22T02:52:27.614213+00:00_
 
 ### User
 
-_source line 873 · 2026-05-22T02:52:27.630026+00:00_
+_source line 831 · 2026-05-22T02:52:27.630026+00:00_
 
 [WORKER DONE] Worker worker_code_anonymous-repo-skeleton_20260522T024213 已完成（status=done）。用 `get_worker_status('worker_code_anonymous-repo-skeleton_20260522T024213')` 读取结果，然后处理。
 
@@ -4537,7 +3140,7 @@ _source line 873 · 2026-05-22T02:52:27.630026+00:00_
 
 ### Tool call
 
-_source line 874 · 2026-05-22T02:52:34.188162+00:00_
+_source line 832 · 2026-05-22T02:52:34.188162+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4571,7 +3174,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 875 · 2026-05-22T02:52:34.289390+00:00_
+_source line 833 · 2026-05-22T02:52:34.289390+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_anonymous-repo-skeleton_20260522T024213\", \"status\": \"done\", \"task_type\": \"code:anonymous-repo-skeleton\", \"project\": \"simgate-modular-routing\", \"started_at\": \"2026-05-22T02:42:13.154484+00:00\", \"ended_at\": \"2026-05-22T02:52:05.924540+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"No identifying information found — the only GitHub links are public dataset references (ScienceWorld, ALFWorld, MATH), which are appropriate.\\n\\n匿名代码仓库骨架已创建完毕，位于 `artifacts/anonymous_code/`，共 22 个文件：\\n\\n```\\nanonymous_code/\\n├── README.md                              # 论文标题、环境配置、复现步骤（无作者/机构）\\n├── requirements.txt                       # 核心依赖（torch, transformers, peft, scienceworld 等）\\n├── configs/\\n│   └── default.yaml                       # 实验超参配置（11 tasks, counterfactual, router training）\\n├── data/\\n│   └── README.md                          # 数据获取说明（ScienceWorld Apache 2.0, ALFWorld MIT, MATH MIT）\\n└── src/\\n    ├── counterfactual_analysis.py         # Algorithm 1: 反事实标注（fork-and-lookahead）\\n    ├── daf_computation.py                 # DAF 计算 + 10000 次 bootstrap CI\\n    ├── death_decomposition.py             # Death decomposition 分析（Table 3 核心证据）\\n    ├── scienceworld_utils.py              # ScienceWorld 环境封装（创建/fork/重放）\\n    ├── llm_agent.py                       # ReAct LLM agent（支持 vLLM API / 本地推理）\\n    ├── alfworld_counterfactual.py         # ALFWorld 反事实扩展（Table 4）\\n    ├── math_counterfactual.py             # MATH 反事实扩展（Table 4）\\n    ├── code_sandbox.py                    # MATH code interpreter 沙箱\\n    ├── math_answer_utils.py               # 数学答案提取与 sympy 等价比较\\n    ├── guided_router/\\n    │   ├── __init__.py\\n    │   ├── config.py                      # 11 task 的 death risk 配置（来自反事实数据）\\n    │   ├── router.py                      # Decomposition-Guided Router（oracle/learned）\\n    │   ├── eval_episode.py                # Ep
 …[truncated 572 chars]
@@ -4594,7 +3197,7 @@ _source line 875 · 2026-05-22T02:52:34.289390+00:00_
 
 ### Tool call
 
-_source line 876 · 2026-05-22T02:52:39.047174+00:00_
+_source line 834 · 2026-05-22T02:52:39.047174+00:00_
 
 called Bash
 
@@ -4630,7 +3233,7 @@ called Bash
 
 ### Tool result
 
-_source line 877 · 2026-05-22T02:52:39.350623+00:00_
+_source line 835 · 2026-05-22T02:52:39.350623+00:00_
 
 23
 ---
@@ -4670,7 +3273,7 @@ _source line 877 · 2026-05-22T02:52:39.350623+00:00_
 
 ### Tool call
 
-_source line 878 · 2026-05-22T02:52:51.773661+00:00_
+_source line 836 · 2026-05-22T02:52:51.773661+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4706,7 +3309,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 879 · 2026-05-22T02:52:55.642198+00:00_
+_source line 837 · 2026-05-22T02:52:55.642198+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -4728,7 +3331,7 @@ _source line 879 · 2026-05-22T02:52:55.642198+00:00_
 
 ### Assistant
 
-_source line 880 · 2026-05-22T02:52:57.925597+00:00_
+_source line 838 · 2026-05-22T02:52:57.925597+00:00_
 
 23 文件全部就位。汇报 Director。
 
@@ -4755,7 +3358,7 @@ _source line 880 · 2026-05-22T02:52:57.925597+00:00_
 
 ### User
 
-_source line 881 · 2026-05-22T03:01:15.309811+00:00_
+_source line 839 · 2026-05-22T03:01:15.309811+00:00_
 
 [Director 指令] **匿名代码仓库修正 — Reviewer 发现 2 处问题**
 
@@ -4784,7 +3387,7 @@ _source line 881 · 2026-05-22T03:01:15.309811+00:00_
 
 ### Tool call
 
-_source line 882 · 2026-05-22T03:01:21.498408+00:00_
+_source line 840 · 2026-05-22T03:01:21.498408+00:00_
 
 called Read
 
@@ -4818,7 +3421,7 @@ called Read
 
 ### Tool result
 
-_source line 883 · 2026-05-22T03:01:21.800121+00:00_
+_source line 841 · 2026-05-22T03:01:21.800121+00:00_
 
 1	# Default experiment configuration
 2	
@@ -4900,7 +3503,7 @@ _source line 883 · 2026-05-22T03:01:21.800121+00:00_
 
 ### Tool call
 
-_source line 884 · 2026-05-22T03:01:21.901011+00:00_
+_source line 842 · 2026-05-22T03:01:21.901011+00:00_
 
 called Read
 
@@ -4936,7 +3539,7 @@ called Read
 
 ### Tool result
 
-_source line 885 · 2026-05-22T03:01:21.952171+00:00_
+_source line 843 · 2026-05-22T03:01:21.952171+00:00_
 
 1	"""Episode-terminal counterfactual labeling (Algorithm 1).
 2	
@@ -4997,7 +3600,7 @@ _source line 885 · 2026-05-22T03:01:21.952171+00:00_
 
 ### Tool call
 
-_source line 886 · 2026-05-22T03:01:25.468351+00:00_
+_source line 844 · 2026-05-22T03:01:25.468351+00:00_
 
 called Grep
 
@@ -5035,7 +3638,7 @@ called Grep
 
 ### Tool result
 
-_source line 887 · 2026-05-22T03:01:25.519107+00:00_
+_source line 845 · 2026-05-22T03:01:25.519107+00:00_
 
 106:    max_steps: int = 50,
 117:    for step_idx in range(max_steps):
@@ -5063,7 +3666,7 @@ _source line 887 · 2026-05-22T03:01:25.519107+00:00_
 
 ### Tool call
 
-_source line 888 · 2026-05-22T03:01:29.434979+00:00_
+_source line 846 · 2026-05-22T03:01:29.434979+00:00_
 
 called Edit
 
@@ -5103,7 +3706,7 @@ called Edit
 
 ### Tool result
 
-_source line 889 · 2026-05-22T03:01:29.485748+00:00_
+_source line 847 · 2026-05-22T03:01:29.485748+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/configs/default.yaml has been updated successfully.
 
@@ -5125,7 +3728,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 890 · 2026-05-22T03:01:33.203127+00:00_
+_source line 848 · 2026-05-22T03:01:33.203127+00:00_
 
 called Edit
 
@@ -5165,7 +3768,7 @@ called Edit
 
 ### Tool result
 
-_source line 891 · 2026-05-22T03:01:33.253862+00:00_
+_source line 849 · 2026-05-22T03:01:33.253862+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/src/counterfactual_analysis.py has been updated. All occurrences were successfully replaced.
 
@@ -5187,7 +3790,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 892 · 2026-05-22T03:01:36.918754+00:00_
+_source line 850 · 2026-05-22T03:01:36.918754+00:00_
 
 called Edit
 
@@ -5227,7 +3830,7 @@ called Edit
 
 ### Tool result
 
-_source line 893 · 2026-05-22T03:01:36.969519+00:00_
+_source line 851 · 2026-05-22T03:01:36.969519+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/src/counterfactual_analysis.py has been updated successfully.
 
@@ -5249,7 +3852,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 894 · 2026-05-22T03:01:45.977090+00:00_
+_source line 852 · 2026-05-22T03:01:45.977090+00:00_
 
 called Edit
 
@@ -5289,7 +3892,7 @@ called Edit
 
 ### Tool result
 
-_source line 895 · 2026-05-22T03:01:46.027965+00:00_
+_source line 853 · 2026-05-22T03:01:46.027965+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/src/counterfactual_analysis.py has been updated successfully.
 
@@ -5311,7 +3914,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 896 · 2026-05-22T03:01:49.793792+00:00_
+_source line 854 · 2026-05-22T03:01:49.793792+00:00_
 
 called Grep
 
@@ -5349,7 +3952,7 @@ called Grep
 
 ### Tool result
 
-_source line 897 · 2026-05-22T03:01:49.794343+00:00_
+_source line 855 · 2026-05-22T03:01:49.794343+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/src/alfworld_counterfactual.py:121:    parser.add_argument("--n_episodes", type=int, default=50)
 
@@ -5371,7 +3974,7 @@ _source line 897 · 2026-05-22T03:01:49.794343+00:00_
 
 ### Tool call
 
-_source line 898 · 2026-05-22T03:01:57.324788+00:00_
+_source line 856 · 2026-05-22T03:01:57.324788+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5407,7 +4010,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 899 · 2026-05-22T03:02:01.289179+00:00_
+_source line 857 · 2026-05-22T03:02:01.289179+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -5429,7 +4032,7 @@ _source line 899 · 2026-05-22T03:02:01.289179+00:00_
 
 ### Assistant
 
-_source line 900 · 2026-05-22T03:02:03.845123+00:00_
+_source line 858 · 2026-05-22T03:02:03.845123+00:00_
 
 仅剩 ALFWorld 的 `--n_episodes` default=50，这是 episode 数量不是 max_steps，正确。无残留的 max_steps=50。
 
@@ -5456,7 +4059,7 @@ _source line 900 · 2026-05-22T03:02:03.845123+00:00_
 
 ### User
 
-_source line 901 · 2026-05-22T04:35:41.777812+00:00_
+_source line 859 · 2026-05-22T04:35:41.777812+00:00_
 
 [Director 指令] **DDL 前最后准备 — 2 项并行任务**
 
@@ -5494,7 +4097,7 @@ _source line 901 · 2026-05-22T04:35:41.777812+00:00_
 
 ### Tool call
 
-_source line 902 · 2026-05-22T04:35:49.811856+00:00_
+_source line 860 · 2026-05-22T04:35:49.811856+00:00_
 
 called Read
 
@@ -5528,7 +4131,7 @@ called Read
 
 ### Tool result
 
-_source line 903 · 2026-05-22T04:35:50.113670+00:00_
+_source line 861 · 2026-05-22T04:35:50.113670+00:00_
 
 1	# Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld
 2	
@@ -5602,7 +4205,7 @@ _source line 903 · 2026-05-22T04:35:50.113670+00:00_
 
 ### Tool call
 
-_source line 904 · 2026-05-22T04:35:50.114130+00:00_
+_source line 862 · 2026-05-22T04:35:50.114130+00:00_
 
 called Read
 
@@ -5636,7 +4239,7 @@ called Read
 
 ### Tool result
 
-_source line 905 · 2026-05-22T04:35:50.164585+00:00_
+_source line 863 · 2026-05-22T04:35:50.164585+00:00_
 
 1	torch>=2.1.0
 2	transformers>=4.40.0
@@ -5668,7 +4271,7 @@ _source line 905 · 2026-05-22T04:35:50.164585+00:00_
 
 ### Tool call
 
-_source line 906 · 2026-05-22T04:36:00.461314+00:00_
+_source line 864 · 2026-05-22T04:36:00.461314+00:00_
 
 called Read
 
@@ -5706,7 +4309,7 @@ called Read
 
 ### Tool result
 
-_source line 907 · 2026-05-22T04:36:01.264736+00:00_
+_source line 865 · 2026-05-22T04:36:01.264736+00:00_
 
 235	        "task_type": task_name,
 236	        "variation": variation_idx,
@@ -5771,7 +4374,7 @@ _source line 907 · 2026-05-22T04:36:01.264736+00:00_
 
 ### Tool call
 
-_source line 908 · 2026-05-22T04:36:01.416542+00:00_
+_source line 866 · 2026-05-22T04:36:01.416542+00:00_
 
 called Read
 
@@ -5809,7 +4412,7 @@ called Read
 
 ### Tool result
 
-_source line 909 · 2026-05-22T04:36:02.069763+00:00_
+_source line 867 · 2026-05-22T04:36:02.069763+00:00_
 
 110	            return action
 111	        action_lower = action.lower()
@@ -5860,7 +4463,7 @@ _source line 909 · 2026-05-22T04:36:02.069763+00:00_
 
 ### Tool call
 
-_source line 910 · 2026-05-22T04:36:02.222199+00:00_
+_source line 868 · 2026-05-22T04:36:02.222199+00:00_
 
 called Read
 
@@ -5898,7 +4501,7 @@ called Read
 
 ### Tool result
 
-_source line 911 · 2026-05-22T04:36:02.222725+00:00_
+_source line 869 · 2026-05-22T04:36:02.222725+00:00_
 
 100	
 101	if __name__ == "__main__":
@@ -5923,7 +4526,7 @@ _source line 911 · 2026-05-22T04:36:02.222725+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-22T04:36:06.540431+00:00_
+_source line 870 · 2026-05-22T04:36:06.540431+00:00_
 
 called Grep
 
@@ -5961,7 +4564,7 @@ called Grep
 
 ### Tool result
 
-_source line 913 · 2026-05-22T04:36:06.992566+00:00_
+_source line 871 · 2026-05-22T04:36:06.992566+00:00_
 
 16:import argparse
 86:    parser = argparse.ArgumentParser(description="MATH counterfactual labeling")
@@ -5990,7 +4593,7 @@ _source line 913 · 2026-05-22T04:36:06.992566+00:00_
 
 ### Tool call
 
-_source line 914 · 2026-05-22T04:36:06.993036+00:00_
+_source line 872 · 2026-05-22T04:36:06.993036+00:00_
 
 called Grep
 
@@ -6028,7 +4631,7 @@ called Grep
 
 ### Tool result
 
-_source line 915 · 2026-05-22T04:36:07.508713+00:00_
+_source line 873 · 2026-05-22T04:36:07.508713+00:00_
 
 12:import argparse
 131:    parser = argparse.ArgumentParser(description="Death decomposition analysis")
@@ -6053,7 +4656,7 @@ _source line 915 · 2026-05-22T04:36:07.508713+00:00_
 
 ### Tool call
 
-_source line 916 · 2026-05-22T04:36:07.811828+00:00_
+_source line 874 · 2026-05-22T04:36:07.811828+00:00_
 
 called Grep
 
@@ -6091,7 +4694,7 @@ called Grep
 
 ### Tool result
 
-_source line 917 · 2026-05-22T04:36:07.862557+00:00_
+_source line 875 · 2026-05-22T04:36:07.862557+00:00_
 
 12:import argparse
 106:    parser = argparse.ArgumentParser(description="DAF bootstrap computation")
@@ -6118,7 +4721,7 @@ _source line 917 · 2026-05-22T04:36:07.862557+00:00_
 
 ### Tool call
 
-_source line 918 · 2026-05-22T04:36:27.287622+00:00_
+_source line 876 · 2026-05-22T04:36:27.287622+00:00_
 
 called Grep
 
@@ -6156,7 +4759,7 @@ called Grep
 
 ### Tool result
 
-_source line 919 · 2026-05-22T04:36:27.589214+00:00_
+_source line 877 · 2026-05-22T04:36:27.589214+00:00_
 
 8:import argparse
 98:    parser = argparse.ArgumentParser(description="Evaluate guided router")
@@ -6181,7 +4784,7 @@ _source line 919 · 2026-05-22T04:36:27.589214+00:00_
 
 ### Tool call
 
-_source line 920 · 2026-05-22T04:36:27.639825+00:00_
+_source line 878 · 2026-05-22T04:36:27.639825+00:00_
 
 called Grep
 
@@ -6219,7 +4822,7 @@ called Grep
 
 ### Tool result
 
-_source line 921 · 2026-05-22T04:36:28.041882+00:00_
+_source line 879 · 2026-05-22T04:36:28.041882+00:00_
 
 12:import argparse
 68:    parser = argparse.ArgumentParser(description="LOTO evaluation for guided router")
@@ -6244,7 +4847,7 @@ _source line 921 · 2026-05-22T04:36:28.041882+00:00_
 
 ### Tool call
 
-_source line 922 · 2026-05-22T04:36:28.343502+00:00_
+_source line 880 · 2026-05-22T04:36:28.343502+00:00_
 
 called Grep
 
@@ -6282,7 +4885,7 @@ called Grep
 
 ### Tool result
 
-_source line 923 · 2026-05-22T04:36:28.394228+00:00_
+_source line 881 · 2026-05-22T04:36:28.394228+00:00_
 
 10:import argparse
 72:    parser = argparse.ArgumentParser(description="Format labeled data for implicit SFT")
@@ -6308,7 +4911,7 @@ _source line 923 · 2026-05-22T04:36:28.394228+00:00_
 
 ### Tool call
 
-_source line 924 · 2026-05-22T04:36:33.614974+00:00_
+_source line 882 · 2026-05-22T04:36:33.614974+00:00_
 
 called Read
 
@@ -6346,7 +4949,7 @@ called Read
 
 ### Tool result
 
-_source line 925 · 2026-05-22T04:36:33.666264+00:00_
+_source line 883 · 2026-05-22T04:36:33.666264+00:00_
 
 108	\subsection{Router Training: A Preliminary Negative Result}
 109	\label{sec:router-diagnostic}
@@ -6374,7 +4977,7 @@ _source line 925 · 2026-05-22T04:36:33.666264+00:00_
 
 ### Tool call
 
-_source line 926 · 2026-05-22T04:36:48.311476+00:00_
+_source line 884 · 2026-05-22T04:36:48.311476+00:00_
 
 called Write
 
@@ -6410,7 +5013,7 @@ called Write
 
 ### Tool result
 
-_source line 927 · 2026-05-22T04:36:48.362123+00:00_
+_source line 885 · 2026-05-22T04:36:48.362123+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/w4_paper_insert_draft.tex
 
@@ -6432,7 +5035,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/p
 
 ### Tool call
 
-_source line 928 · 2026-05-22T04:36:53.539842+00:00_
+_source line 886 · 2026-05-22T04:36:53.539842+00:00_
 
 called Bash
 
@@ -6468,7 +5071,7 @@ called Bash
 
 ### Tool result
 
-_source line 929 · 2026-05-22T04:36:53.740923+00:00_
+_source line 887 · 2026-05-22T04:36:53.740923+00:00_
 
 (Bash completed with no output)
 
@@ -6490,7 +5093,7 @@ _source line 929 · 2026-05-22T04:36:53.740923+00:00_
 
 ### Tool call
 
-_source line 930 · 2026-05-22T04:37:01.535153+00:00_
+_source line 888 · 2026-05-22T04:37:01.535153+00:00_
 
 called Edit
 
@@ -6530,7 +5133,7 @@ called Edit
 
 ### Tool result
 
-_source line 931 · 2026-05-22T04:37:01.836682+00:00_
+_source line 889 · 2026-05-22T04:37:01.836682+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -6552,7 +5155,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 932 · 2026-05-22T04:37:06.262201+00:00_
+_source line 890 · 2026-05-22T04:37:06.262201+00:00_
 
 called Bash
 
@@ -6590,7 +5193,7 @@ called Bash
 
 ### Tool result
 
-_source line 933 · 2026-05-22T04:37:09.795677+00:00_
+_source line 891 · 2026-05-22T04:37:09.795677+00:00_
 
 Output written on main.pdf (23 pages, 595537 bytes).
 Transcript written on main.log.
@@ -6616,7 +5219,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 934 · 2026-05-22T04:37:16.282866+00:00_
+_source line 892 · 2026-05-22T04:37:16.282866+00:00_
 
 called Bash
 
@@ -6652,7 +5255,7 @@ called Bash
 
 ### Tool result
 
-_source line 935 · 2026-05-22T04:37:16.484629+00:00_
+_source line 893 · 2026-05-22T04:37:16.484629+00:00_
 
 Page 9, line 4: 672   6   Conclusion                                            labels assign a single routing preference to e
 Page 9, line 28: 684   Limitations                                               et al., 2011). Under mixed-strategy routing wi
@@ -6676,7 +5279,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 936 · 2026-05-22T04:37:27.860167+00:00_
+_source line 894 · 2026-05-22T04:37:27.860167+00:00_
 
 called Bash
 
@@ -6712,7 +5315,7 @@ called Bash
 
 ### Tool result
 
-_source line 937 · 2026-05-22T04:37:27.961174+00:00_
+_source line 895 · 2026-05-22T04:37:27.961174+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
 
@@ -6734,7 +5337,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 938 · 2026-05-22T04:37:35.748242+00:00_
+_source line 896 · 2026-05-22T04:37:35.748242+00:00_
 
 called Edit
 
@@ -6774,7 +5377,7 @@ called Edit
 
 ### Tool result
 
-_source line 939 · 2026-05-22T04:37:35.799164+00:00_
+_source line 897 · 2026-05-22T04:37:35.799164+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -6796,7 +5399,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 940 · 2026-05-22T04:37:40.342130+00:00_
+_source line 898 · 2026-05-22T04:37:40.342130+00:00_
 
 called Bash
 
@@ -6834,7 +5437,7 @@ called Bash
 
 ### Tool result
 
-_source line 941 · 2026-05-22T04:37:43.609789+00:00_
+_source line 899 · 2026-05-22T04:37:43.609789+00:00_
 
 Output written on main.pdf (23 pages, 595047 bytes).
 Transcript written on main.log.
@@ -6860,7 +5463,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 942 · 2026-05-22T04:37:51.140246+00:00_
+_source line 900 · 2026-05-22T04:37:51.140246+00:00_
 
 called Edit
 
@@ -6900,7 +5503,7 @@ called Edit
 
 ### Tool result
 
-_source line 943 · 2026-05-22T04:37:51.191177+00:00_
+_source line 901 · 2026-05-22T04:37:51.191177+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/README.md has been updated successfully.
 
@@ -6922,7 +5525,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 944 · 2026-05-22T04:38:00.528776+00:00_
+_source line 902 · 2026-05-22T04:38:00.528776+00:00_
 
 called Edit
 
@@ -6962,7 +5565,7 @@ called Edit
 
 ### Tool result
 
-_source line 945 · 2026-05-22T04:38:00.579619+00:00_
+_source line 903 · 2026-05-22T04:38:00.579619+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/README.md has been updated successfully.
 
@@ -6984,7 +5587,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 946 · 2026-05-22T04:38:06.605608+00:00_
+_source line 904 · 2026-05-22T04:38:06.605608+00:00_
 
 called Edit
 
@@ -7024,7 +5627,7 @@ called Edit
 
 ### Tool result
 
-_source line 947 · 2026-05-22T04:38:06.656565+00:00_
+_source line 905 · 2026-05-22T04:38:06.656565+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/README.md has been updated successfully.
 
@@ -7046,7 +5649,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 948 · 2026-05-22T04:38:14.135207+00:00_
+_source line 906 · 2026-05-22T04:38:14.135207+00:00_
 
 called Edit
 
@@ -7086,7 +5689,7 @@ called Edit
 
 ### Tool result
 
-_source line 949 · 2026-05-22T04:38:14.186012+00:00_
+_source line 907 · 2026-05-22T04:38:14.186012+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/anonymous_code/README.md has been updated successfully.
 
@@ -7108,7 +5711,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 950 · 2026-05-22T04:38:27.791382+00:00_
+_source line 908 · 2026-05-22T04:38:27.791382+00:00_
 
 called Edit
 
@@ -7148,7 +5751,7 @@ called Edit
 
 ### Tool result
 
-_source line 951 · 2026-05-22T04:38:27.842175+00:00_
+_source line 909 · 2026-05-22T04:38:27.842175+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/w4_paper_insert_draft.tex has been updated successfully.
 
@@ -7170,7 +5773,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 952 · 2026-05-22T04:38:48.887086+00:00_
+_source line 910 · 2026-05-22T04:38:48.887086+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7206,7 +5809,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 953 · 2026-05-22T04:38:52.652399+00:00_
+_source line 911 · 2026-05-22T04:38:52.652399+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -7228,7 +5831,7 @@ _source line 953 · 2026-05-22T04:38:52.652399+00:00_
 
 ### Assistant
 
-_source line 954 · 2026-05-22T04:38:55.342107+00:00_
+_source line 912 · 2026-05-22T04:38:55.342107+00:00_
 
 Now update the w4_paper_insert_draft.tex with overflow note and compression plan:
 
@@ -7250,12 +5853,12 @@ Now update the w4_paper_insert_draft.tex with overflow note and compression plan
 
 ## Round 31
 
-11 recorded events
+5 recorded events
 
 
 ### User
 
-_source line 955 · 2026-05-22T04:43:52.618821+00:00_
+_source line 913 · 2026-05-22T04:43:52.618821+00:00_
 
 [Director 指令] 将以下内容**原样追加**到 `artifacts/rebuttal_prep.md` 末尾（不要修改已有内容）：
 
@@ -7357,193 +5960,7 @@ We position this as an empirical analysis contribution, where diagnostic framewo
 
 ### Tool call
 
-_source line 956 · 2026-05-22T04:44:01.368601+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "125",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "125",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 957 · 2026-05-22T04:44:01.469390+00:00_
-
-&lt;system-reminder>Warning: the file exists but is shorter than the provided offset (125). The file has 122 lines.&lt;/system-reminder>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 958 · 2026-05-22T04:44:05.586680+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "offset": "118",
-  "limit": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "offset": "118",
-    "limit": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 959 · 2026-05-22T04:44:05.687708+00:00_
-
-118	The headline finding is aggregate (N=245, 78.9%, bootstrap CI [69.5%, 86.3%]), not per-task. Per-task results are explicitly exploratory (Table 1 caption). Directional consistency: all 10 death-prone types show deterministic preference (p≈0.001); this holds across three independently sampled model families (30/30). Cross-model replication (DAF 88–90%, 2.2pp spread) provides stronger reliability evidence than increasing within-model N. Per-task Wilson CIs are wide (±20pp), which is why we avoid strong per-task claims. The aggregate CI confirms the finding is well-separated from 50% null even accounting for task-level clustering.
-119	
-120	### R6: Limited Excitement
-121	Diagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions.
-122	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 960 · 2026-05-22T04:44:32.243614+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions.",
-  "new_string": "### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions.\n\n---\n\n## Detailed Version (~1200 words)\n\n*For venues with higher word limits. Integrates Q1–Q4 responses into relevant attacks.*\n\n### R1: Single-Environment Generalization\n\nThe framework is applied unchanged to three environments, producing qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%, §3.1), no extractable signal in MATH (73.5% vs 73.0%, McNemar p=0.81, 84.4% no-preference; §3.4), and information asymmetry in ALFWorld (DAF=0%, 35/37 non-tie labels favor information-advantaged strategy; §3.4). The ALFWorld diagnosis replicates across two model families: Llama-3.1-8B (16/16 non-tie labels, 100% directional consistency) and Qwen2.5-7B (35/37, 94.6%). A MiniHack pilot (Appendix R) returns \"no signal\" as a fourth validated condition.\n\nThe specific finding—death dominance—replicates across three architecturally distinct 7–9B model families (Qwen2.5-7B DAF=90.4%, Llama-3.1-8B DAF=88.2%, Gemma-2-9B DAF=89.7%; spread 2.2pp; §3.2) and persists under 10× scaling to 72B (DAF=92.4%; §3.3). Cross-model death rate stability (36–43% internal; §5) confirms death vulnerability is a task-environment property, not a model artifact.\n\n**[Q4]** Regarding the relationship to causal inference: our counterfactual comparison is a simplified instance of Rubin's (1974) potential outcomes framework—each episode observes outcomes under two treatments (internal vs. deterministic)—not Pearl's structural counterfactual involving do-calculus. We clarify this distinction in Related Work (§4).\n\nThe ~50-episode pilot protocol (Appendix R) correctly predicted all four tested conditions at 4–8 GPU-hours, providing preliminary build-vs-buy signal given large effect sizes (d=3.02; §3.1). We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).\n\n### R2: Trivial Finding\n\nA death penalty makes death *relevant* to routing—not dominant. The magnitude is empirical, with three non-trivial results:\n\n**(i) 10× scaling does not eliminate death dominance.** Qwen2.5-72B reduces internal death rate from 42.9% to 30.6% but yields DAF=92.4%—higher than 7B (90.4%). **[Q1]** This increase occurs because the deterministic strategy also becomes safer (2.75% vs 16.3% at 7B), so Δ_nd=+2.28 shrinks as a fraction of the total gap. Death dominance is *more* extreme at larger scale, not less—if it were a trivial artifact of weak models, scaling should reduce it (§3.3).\n\n**(ii) Reflexion self-correction yields DAF>100%.** Under Reflexion (N=3), Δ_nd=−0.47: the self-correcting agent slightly *outperforms* deterministic on non-death episodes, yet loses overall because death asymmetry more than accounts for the full gap (§3.3). This counterintuitive result—a stronger agent performing worse due to catastrophic vulnerability—was not predictable from the penalty structure alone.\n\n**(iii) The primary metric is penalty-independent.** The 78.9% death-asymmetry label fraction (75/95 non-tie labels; §3.1) holds at any P>0. DAF is a derived P-dependent measure (7.4% at P=0, 50.4% at P=10, 90.4% at P=100; Appendix K); we report both to separate the structural finding from its score-space amplification. **[Q3]** Algorithm 1's death-priority rule assumes P exceeds maximum partial scores; in ScienceWorld P=100 on a 0–100 scale, satisfying this condition. For environments where P < max_partial_score, score comparison would supplement the death-priority heuristic.\n\nThe routing literature presupposes diverse signal: Toolformer (per-token), CogRouter (per-step depth), RouteLLM (preference-based). Our 78.9% directly challenges this implicit assumption in catastrophic-failure environments.\n\n### R3: No Actionable Solution\n\nOur framework is to routing what probing classifiers are to representations: diagnostic work that should precede optimization. Three forms of practical value:\n\n**Cost-saving diagnostic.** The ~50-episode pilot (Appendix R) answers \"should we build a router?\" in 4–8 GPU-hours. We invested ~200 GPU-hours training routers (6 SFT variants × 8 seeds × 3 model scales) before the diagnostic revealed always-deterministic is near-optimal; ~190 GPU-hours would have been avoided.\n\n**The diagnosis is directly actionable.** Always-deterministic achieves 90.5% of oracle non-tie decisions (§3.5) at zero additional training cost. The diagnosis yields a cost-free deployment strategy derived from mechanism understanding, not \"no solution.\"\n\n**[Q2] Routing value ceiling.** Of 245 episodes, 150 (61.2%) show no preference (§3.1); routing is relevant in only 95 (38.8%). The oracle margin is 2.89 points (always-deterministic −9.47 vs oracle −6.58; §3.5), bounding practical routing value. We discuss this explicitly in §5: \"even optimal routing yields modest gains.\" This quantification is itself actionable—it tells practitioners the maximum return on router investment.\n\n**Cross-environment prescriptions differ.** In ALFWorld (DAF=0%), the framework diagnoses information asymmetry rather than death dominance, recommending router development—qualitatively different guidance from the same diagnostic tool (§3.4). The framework's value is not tied to any single prescription.\n\n### R4: Router Positive Control\n\nThe positive control confirms **signal granularity**—routing signal exists at task-type level but not step level—which is §3.6's core diagnostic contribution.\n\n**Task-type features outperform step features.** A keyword variant adding task name to step features reaches 62.9% balanced accuracy (Appendix P). Independently, a task-type-only logistic regression on one-hot task-type features achieves 64.7% (supplementary analysis). Both exceed all step-level routers (56–59%; §3.6), directly demonstrating a granularity mismatch. The 62.9% result augments step-level features with task identity; the 64.7% uses *only* task identity, confirming that task-type is the informative feature.\n\n**LOTO confirms no cross-type generalization.** Under leave-one-task-type-out, two architecturally unrelated approaches—600M–4B neural routers (49.2%; §3.6) and logistic regression on one-hot features (50.0%; Appendix P)—both collapse to chance. This convergence confirms routing signal is a per-task-type constant, not a learnable cross-type pattern.\n\n**Generative router also fails.** Qwen3-8B generating routing decisions achieves 46.7% (Appendix P), ruling out SFT architecture as the bottleneck.\n\n**Structural explanation:** 10/11 task types carry death risk (§5). Death risk is binary per task type—constant within type but invisible to step-level features. This is a complete granularity diagnosis: signal exists (task-type level), signal is absent (step level), two independent methods confirm no cross-type transfer. The diagnosis is \"signal-limited, not architecture-limited.\"\n\n### R5: Per-Task Statistical Power\n\nThe headline finding is aggregate, not per-task. The 78.9% death-asymmetry fraction is computed over N=245 episodes with bootstrap 95% CI [69.5%, 86.3%] (B=10,000; §3.1), well-separated from the 50% null.\n\n**Per-task results are explicitly exploratory.** Table 1 caption marks all per-task analyses as single-seed, n≈20 exploratory results with power ≈50% for 20pp effects. We make no claims requiring per-task significance.\n\n**Directional consistency provides strong evidence.** All 10 death-prone task types show deterministic preference (p≈0.001 under null). This holds across three independently sampled model families: Qwen 10/10, Llama 10/10, Gemma 10/10 = 30/30 (§3.2), where distinct architectures provide genuinely independent sampling—stronger evidence than within-model replication.\n\n**Cross-model replication substitutes for within-model N.** Three model families independently converge on DAF 88–90% (2.2pp spread; §3.2). An independent seed replication (N=220) yields DAF=89.7%, within 0.7pp of the primary result (Appendix D).\n\n**Cluster bootstrap caveat.** Wild cluster bootstrap with K=11 yields p=0.002 (§3.1), but K<20 falls below recommended thresholds (Cameron et al., 2008; Webb, 2023). We treat this as a sensitivity check; readers should rely on the non-clustered bootstrap CI ([81.1%, 99.0%] for DAF). Per-task Wilson CIs are wide (±20pp), which is why we avoid strong per-task claims.\n\n### R6: Limited Excitement / Novelty\n\nWe position this as an empirical analysis contribution, where diagnostic frameworks have established precedent and impact at *ACL venues.\n\n**Diagnostic contributions have strong track records.** Probing classifiers (Conneau et al., 2018; Hewitt & Manning, 2019) changed how the community evaluates representations without proposing new architectures. CheckList (Ribeiro et al., 2020) redirected evaluation methodology. BERTology (Rogers et al., 2020) synthesized analytical findings into actionable guidance. Our contribution—a diagnostic framework that precedes and redirects optimization—follows this lineage.\n\n**Quantification is the contribution.** \"Death might matter\" is a reasonable intuition, but intuitions lack precision. The 78.9% finding specifies magnitude: at 30%, router development might be justified; at 78.9%, it is provably wasteful. This precision transforms vague intuition into actionable guidance with quantified decision boundaries.\n\n**Persistence across interventions is non-obvious.** Death dominance survives 10× scaling (DAF=92.4%), self-correction (DAF>100%), multi-family replication (3 models, 2.2pp spread), and penalty removal (78.9% unchanged; §3.3, §5). Each was a plausible path to reducing death dominance; none succeeded.\n\n**Findings is the appropriate venue.** ARR explicitly accommodates empirical analysis contributions. Our framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value. The reusable diagnostic procedure—not the specific ScienceWorld finding—is the durable contribution."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions.",
-    "new_string": "### R6: Limited Excitement\nDiagnostic contributions have strong venue precedent: probing classifiers, CheckList, BERTology all redirected community methodology without proposing new architectures. Quantification is the contribution—78.9% is not a number anyone predicted; it could have been 30% or 90%, and the precision transforms vague intuition into actionable guidance. Persistence across four interventions (10× scaling, self-correction, 3 model families, penalty removal) was not predictable a priori. We position this as an empirical analysis contribution appropriate for Findings, providing a reusable diagnostic framework validated across 3 environments and 4 conditions.\n\n---\n\n## Detailed Version (~1200 words)\n\n*For venues with higher word limits. Integrates Q1–Q4 responses into relevant attacks.*\n\n### R1: Single-Environment Generalization\n\nThe framework is applied unchanged to three environments, producing qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%, §3.1), no extractable signal in MATH (73.5% vs 73.0%, McNemar p=0.81, 84.4% no-preference; §3.4), and information asymmetry in ALFWorld (DAF=0%, 35/37 non-tie labels favor information-advantaged strategy; §3.4). The ALFWorld diagnosis replicates across two model families: Llama-3.1-8B (16/16 non-tie labels, 100% directional consistency) and Qwen2.5-7B (35/37, 94.6%). A MiniHack pilot (Appendix R) returns \"no signal\" as a fourth validated condition.\n\nThe specific finding—death dominance—replicates across three architecturally distinct 7–9B model families (Qwen2.5-7B DAF=90.4%, Llama-3.1-8B DAF=88.2%, Gemma-2-9B DAF=89.7%; spread 2.2pp; §3.2) and persists under 10× scaling to 72B (DAF=92.4%; §3.3). Cross-model death rate stability (36–43% internal; §5) confirms death vulnerability is a task-environment property, not a model artifact.\n\n**[Q4]** Regarding the relationship to causal inference: our counterfactual comparison is a simplified instance of Rubin's (1974) potential outcomes framework—each episode observes outcomes under two treatments (internal vs. deterministic)—not Pearl's structural counterfactual involving do-calculus. We clarify this distinction in Related Work (§4).\n\nThe ~50-episode pilot protocol (Appendix R) correctly predicted all four tested conditions at 4–8 GPU-hours, providing preliminary build-vs-buy signal given large effect sizes (d=3.02; §3.1). We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).\n\n### R2: Trivial Finding\n\nA death penalty makes death *relevant* to routing—not dominant. The magnitude is empirical, with three non-trivial results:\n\n**(i) 10× scaling does not eliminate death dominance.** Qwen2.5-72B reduces internal death rate from 42.9% to 30.6% but yields DAF=92.4%—higher than 7B (90.4%). **[Q1]** This increase occurs because the deterministic strategy also becomes safer (2.75% vs 16.3% at 7B), so Δ_nd=+2.28 shrinks as a fraction of the total gap. Death dominance is *more* extreme at larger scale, not less—if it were a trivial artifact of weak models, scaling should reduce it (§3.3).\n\n**(ii) Reflexion self-correction yields DAF>100%.** Under Reflexion (N=3), Δ_nd=−0.47: the self-correcting agent slightly *outperforms* deterministic on non-death episodes, yet loses overall because death asymmetry more than accounts for the full gap (§3.3). This counterintuitive result—a stronger agent performing worse due to catastrophic vulnerability—was not predictable from the penalty structure alone.\n\n**(iii) The primary metric is penalty-independent.** The 78.9% death-asymmetry label fraction (75/95 non-tie labels; §3.1) holds at any P>0. DAF is a derived P-dependent measure (7.4% at P=0, 50.4% at P=10, 90.4% at P=100; Appendix K); we report both to separate the structural finding from its score-space amplification. **[Q3]** Algorithm 1's death-priority rule assumes P exceeds maximum partial scores; in ScienceWorld P=100 on a 0–100 scale, satisfying this condition. For environments where P < max_partial_score, score comparison would supplement the death-priority heuristic.\n\nThe routing literature presupposes diverse signal: Toolformer (per-token), CogRouter (per-step depth), RouteLLM (preference-based). Our 78.9% directly challenges this implicit assumption in catastrophic-failure environments.\n\n### R3: No Actionable Solution\n\nOur framework is to routing what probing classifiers are to representations: diagnostic work that should precede optimization. Three forms of practical value:\n\n**Cost-saving diagnostic.** The ~50-episode pilot (Appendix R) answers \"should we build a router?\" in 4–8 GPU-hours. We invested ~200 GPU-hours training routers (6 SFT variants × 8 seeds × 3 model scales) before the diagnostic revealed always-deterministic is near-optimal; ~190 GPU-hours would have been avoided.\n\n**The diagnosis is directly actionable.** Always-deterministic achieves 90.5% of oracle non-tie decisions (§3.5) at zero additional training cost. The diagnosis yields a cost-free deployment strategy derived from mechanism understanding, not \"no solution.\"\n\n**[Q2] Routing value ceiling.** Of 245 episodes, 150 (61.2%) show no preference (§3.1); routing is relevant in only 95 (38.8%). The oracle margin is 2.89 points (always-deterministic −9.47 vs oracle −6.58; §3.5), bounding practical routing value. We discuss this explicitly in §5: \"even optimal routing yields modest gains.\" This quantification is itself actionable—it tells practitioners the maximum return on router investment.\n\n**Cross-environment prescriptions differ.** In ALFWorld (DAF=0%), the framework diagnoses information asymmetry rather than death dominance, recommending router development—qualitatively different guidance from the same diagnostic tool (§3.4). The framework's value is not tied to any single prescription.\n\n### R4: Router Positive Control\n\nThe positive control confirms **signal granularity**—routing signal exists at task-type level but not step level—which is §3.6's core diagnostic contribution.\n\n**Task-type features outperform step features.** A keyword variant adding task name to step features reaches 62.9% balanced accuracy (Appendix P). Independently, a task-type-only logistic regression on one-hot task-type features achieves 64.7% (supplementary analysis). Both exceed all step-level routers (56–59%; §3.6), directly demonstrating a granularity mismatch. The 62.9% result augments step-level features with task identity; the 64.7% uses *only* task identity, confirming that task-type is the informative feature.\n\n**LOTO confirms no cross-type generalization.** Under leave-one-task-type-out, two architecturally unrelated approaches—600M–4B neural routers (49.2%; §3.6) and logistic regression on one-hot features (50.0%; Appendix P)—both collapse to chance. This convergence confirms routing signal is a per-task-type constant, not a learnable cross-type pattern.\n\n**Generative router also fails.** Qwen3-8B generating routing decisions achieves 46.7% (Appendix P), ruling out SFT architecture as the bottleneck.\n\n**Structural explanation:** 10/11 task types carry death risk (§5). Death risk is binary per task type—constant within type but invisible to step-level features. This is a complete granularity diagnosis: signal exists (task-type level), signal is absent (step level), two independent methods confirm no cross-type transfer. The diagnosis is \"signal-limited, not architecture-limited.\"\n\n### R5: Per-Task Statistical Power\n\nThe headline finding is aggregate, not per-task. The 78.9% death-asymmetry fraction is computed over N=245 episodes with bootstrap 95% CI [69.5%, 86.3%] (B=10,000; §3.1), well-separated from the 50% null.\n\n**Per-task results are explicitly exploratory.** Table 1 caption marks all per-task analyses as single-seed, n≈20 exploratory results with power ≈50% for 20pp effects. We make no claims requiring per-task significance.\n\n**Directional consistency provides strong evidence.** All 10 death-prone task types show deterministic preference (p≈0.001 under null). This holds across three independently sampled model families: Qwen 10/10, Llama 10/10, Gemma 10/10 = 30/30 (§3.2), where distinct architectures provide genuinely independent sampling—stronger evidence than within-model replication.\n\n**Cross-model replication substitutes for within-model N.** Three model families independently converge on DAF 88–90% (2.2pp spread; §3.2). An independent seed replication (N=220) yields DAF=89.7%, within 0.7pp of the primary result (Appendix D).\n\n**Cluster bootstrap caveat.** Wild cluster bootstrap with K=11 yields p=0.002 (§3.1), but K<20 falls below recommended thresholds (Cameron et al., 2008; Webb, 2023). We treat this as a sensitivity check; readers should rely on the non-clustered bootstrap CI ([81.1%, 99.0%] for DAF). Per-task Wilson CIs are wide (±20pp), which is why we avoid strong per-task claims.\n\n### R6: Limited Excitement / Novelty\n\nWe position this as an empirical analysis contribution, where diagnostic frameworks have established precedent and impact at *ACL venues.\n\n**Diagnostic contributions have strong track records.** Probing classifiers (Conneau et al., 2018; Hewitt & Manning, 2019) changed how the community evaluates representations without proposing new architectures. CheckList (Ribeiro et al., 2020) redirected evaluation methodology. BERTology (Rogers et al., 2020) synthesized analytical findings into actionable guidance. Our contribution—a diagnostic framework that precedes and redirects optimization—follows this lineage.\n\n**Quantification is the contribution.** \"Death might matter\" is a reasonable intuition, but intuitions lack precision. The 78.9% finding specifies magnitude: at 30%, router development might be justified; at 78.9%, it is provably wasteful. This precision transforms vague intuition into actionable guidance with quantified decision boundaries.\n\n**Persistence across interventions is non-obvious.** Death dominance survives 10× scaling (DAF=92.4%), self-correction (DAF>100%), multi-family replication (3 models, 2.2pp spread), and penalty removal (78.9% unchanged; §3.3, §5). Each was a plausible path to reducing death dominance; none succeeded.\n\n**Findings is the appropriate venue.** ARR explicitly accommodates empirical analysis contributions. Our framework's demonstrated applicability across 3 environments and 4 diagnostic conditions (death dominance, no signal, information asymmetry, agent floor) provides lasting methodological value. The reusable diagnostic procedure—not the specific ScienceWorld finding—is the durable contribution."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 961 · 2026-05-22T04:44:32.294913+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 962 · 2026-05-22T04:44:36.766145+00:00_
+_source line 914 · 2026-05-22T04:44:36.766145+00:00_
 
 called Bash
 
@@ -7579,7 +5996,7 @@ called Bash
 
 ### Tool result
 
-_source line 963 · 2026-05-22T04:44:36.918194+00:00_
+_source line 915 · 2026-05-22T04:44:36.918194+00:00_
 
 20
 ---
@@ -7610,7 +6027,7 @@ _source line 963 · 2026-05-22T04:44:36.918194+00:00_
 
 ### Tool call
 
-_source line 964 · 2026-05-22T04:44:43.986246+00:00_
+_source line 916 · 2026-05-22T04:44:43.986246+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7646,7 +6063,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 965 · 2026-05-22T04:44:47.705368+00:00_
+_source line 917 · 2026-05-22T04:44:47.705368+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -7675,7 +6092,7 @@ _source line 965 · 2026-05-22T04:44:47.705368+00:00_
 
 ### User
 
-_source line 966 · 2026-05-22T05:07:11.704465+00:00_
+_source line 918 · 2026-05-22T05:07:11.704465+00:00_
 
 [Director 指令] **R27 审稿修复 — 全部 writing fixes，DDL 05-25**
 
@@ -7808,7 +6225,7 @@ _source line 966 · 2026-05-22T05:07:11.704465+00:00_
 
 ### Tool call
 
-_source line 967 · 2026-05-22T05:07:18.224172+00:00_
+_source line 919 · 2026-05-22T05:07:18.224172+00:00_
 
 called Read
 
@@ -7846,7 +6263,7 @@ called Read
 
 ### Tool result
 
-_source line 968 · 2026-05-22T05:07:18.325477+00:00_
+_source line 920 · 2026-05-22T05:07:18.325477+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -7884,7 +6301,7 @@ _source line 968 · 2026-05-22T05:07:18.325477+00:00_
 
 ### Tool call
 
-_source line 969 · 2026-05-22T05:07:36.521188+00:00_
+_source line 921 · 2026-05-22T05:07:36.521188+00:00_
 
 called Read
 
@@ -7922,7 +6339,7 @@ called Read
 
 ### Tool result
 
-_source line 970 · 2026-05-22T05:07:36.622116+00:00_
+_source line 922 · 2026-05-22T05:07:36.622116+00:00_
 
 8	
 9	\begin{figure}[t]
@@ -7948,7 +6365,7 @@ _source line 970 · 2026-05-22T05:07:36.622116+00:00_
 
 ### Tool call
 
-_source line 971 · 2026-05-22T05:07:36.873469+00:00_
+_source line 923 · 2026-05-22T05:07:36.873469+00:00_
 
 called Read
 
@@ -7982,7 +6399,7 @@ called Read
 
 ### Tool result
 
-_source line 972 · 2026-05-22T05:07:36.873827+00:00_
+_source line 924 · 2026-05-22T05:07:36.873827+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This label fraction is penalty-independent. A derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\% across three 7--9B model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), illustrating the framework's applicability. A ${\sim}$50-episode diagnostic pilot provides preliminary signal for identifying the dominant routing mechanism given a large effect size ($d = 3.02$); environments with smaller effects may require larger samples, enabling informed build-vs-buy decisions before expensive router training.
@@ -8007,7 +6424,7 @@ _source line 972 · 2026-05-22T05:07:36.873827+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-22T05:07:37.476464+00:00_
+_source line 925 · 2026-05-22T05:07:37.476464+00:00_
 
 called Read
 
@@ -8045,7 +6462,7 @@ called Read
 
 ### Tool result
 
-_source line 974 · 2026-05-22T05:07:37.727877+00:00_
+_source line 926 · 2026-05-22T05:07:37.727877+00:00_
 
 13	\subsection{Problem Setup}
 14	\label{sec:problem-setup}
@@ -8071,7 +6488,7 @@ _source line 974 · 2026-05-22T05:07:37.727877+00:00_
 
 ### Tool call
 
-_source line 975 · 2026-05-22T05:09:34.026475+00:00_
+_source line 927 · 2026-05-22T05:09:34.026475+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8111,7 +6528,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 976 · 2026-05-22T05:09:40.003023+00:00_
+_source line 928 · 2026-05-22T05:09:40.003023+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_r27-writing-fixes_20260522T050934\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_paper_r27-writing-fixes_20260522T050934.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_r27-writing-fixes_20260522T050934 started. Use get_worker_status('worker_paper_r27-writing-fixes_20260522T050934') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8133,7 +6550,7 @@ _source line 976 · 2026-05-22T05:09:40.003023+00:00_
 
 ### Tool call
 
-_source line 977 · 2026-05-22T05:10:00.850206+00:00_
+_source line 929 · 2026-05-22T05:10:00.850206+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8169,7 +6586,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 978 · 2026-05-22T05:10:02.106200+00:00_
+_source line 930 · 2026-05-22T05:10:02.106200+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -8191,7 +6608,7 @@ _source line 978 · 2026-05-22T05:10:02.106200+00:00_
 
 ### Assistant
 
-_source line 979 · 2026-05-22T05:10:10.886826+00:00_
+_source line 931 · 2026-05-22T05:10:10.886826+00:00_
 
 Worker 已派发执行 R27 全部 writing fixes。将在完成后处理结果并汇报 Director。
 
@@ -8218,7 +6635,7 @@ Worker 已派发执行 R27 全部 writing fixes。将在完成后处理结果并
 
 ### User
 
-_source line 980 · 2026-05-22T05:19:20.517931+00:00_
+_source line 932 · 2026-05-22T05:19:20.517931+00:00_
 
 [WORKER DONE] Worker worker_paper_r27-writing-fixes_20260522T050934 已完成（status=done）。用 `get_worker_status('worker_paper_r27-writing-fixes_20260522T050934')` 读取结果，然后处理。
 
@@ -8243,7 +6660,7 @@ _source line 980 · 2026-05-22T05:19:20.517931+00:00_
 
 ### Tool call
 
-_source line 981 · 2026-05-22T05:19:32.698194+00:00_
+_source line 933 · 2026-05-22T05:19:32.698194+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -8277,7 +6694,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 982 · 2026-05-22T05:19:32.799388+00:00_
+_source line 934 · 2026-05-22T05:19:32.799388+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_r27-writing-fixes_20260522T050934\", \"status\": \"done\", \"task_type\": \"paper:r27-writing-fixes\", \"project\": \"simgate-modular-routing\", \"started_at\": \"2026-05-22T05:09:34.851308+00:00\", \"ended_at\": \"2026-05-22T05:19:18.647924+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All changes confirmed. Here's the summary:\\n\\n```\\n每条修改:\\n[experiments.tex:10] Figure 2 width 0.85\\\\columnwidth → 0.38\\\\textwidth, caption 前缀 \\\"Internal consistency check:\\\" | -1 列行\\n[experiments.tex:19-20] §3.1 per-task correlation 段压缩（删除冗余解释） | -4 列行\\n[experiments.tex:26-27] §3.1 sensitivity 段 wild cluster bootstrap 压缩 | -2 列行\\n[experiments.tex:31-32] §3.2 \\\"Both models exhibit...\\\" 压缩 | -2 列行\\n[experiments.tex:3] W4: prescreening n=5 说明 | +1 列行\\n[experiments.tex:26] W5: cluster-robust CI 添加 | +0.5 列行\\n[abstract.tex:1-3] Abstract 重写：78.9% 为 headline，加 methodological/empirical generality 区分 | -1 列行\\n[discussion.tex:4-11] §5 Discussion 完全重组为 3 段（signal-limited vs data-limited, oracle confound, actionability） | -3 列行\\n[method.tex:16] §2.1 deterministic 脚注→内联，保留环境差异说明 | +1 列行\\n[conclusion.tex:3] N4: \\\"illustrate applicability\\\" → \\\"provide preliminary evidence that the diagnostic procedure transfers\\\" | +0.5 列行\\n[conclusion.tex:3] M5: \\\"(DAF=88-90%)\\\" → \\\"(replicated across three 7-9B model families, spread 2.2 pp)\\\" | +0.5 列行\\n[introduction.tex:8] M3: \\\"catastrophic death\\\" → \\\"catastrophic failure (``death,'' $-100$ penalty)\\\" | +0.5 列行\\n[related_work.tex:12-13] W6: MoE routing + counterfactual data augmentation 引用 | +2 列行\\n[related_work.tex:22] Safe RL 段压缩 | -1 列行\\n[related_work.tex:24-25] Causal Grounding 段压缩 | -2 列行\\n[references.bib] 新增 switch-transformer-2022, gshard-2021, kaushik2020learning | +24 bib 行\\n---\\n最终编译:\\n- 总页数: 8 (main) + 16 (appendix) = 24\\n- Conclusion 位置: page 8\\n- Limitations 位置: page 9\\n-
 …[truncated 98 chars]
@@ -8300,7 +6717,7 @@ _source line 982 · 2026-05-22T05:19:32.799388+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-22T05:19:42.510976+00:00_
+_source line 935 · 2026-05-22T05:19:42.510976+00:00_
 
 called Bash
 
@@ -8336,7 +6753,7 @@ called Bash
 
 ### Tool result
 
-_source line 984 · 2026-05-22T05:19:43.017821+00:00_
+_source line 936 · 2026-05-22T05:19:43.017821+00:00_
 
 Exit code 1
 Pages:           24
@@ -8364,7 +6781,7 @@ Page 9: 680   Limitations                                               et al., 
 
 ### Tool call
 
-_source line 985 · 2026-05-22T05:19:47.185392+00:00_
+_source line 937 · 2026-05-22T05:19:47.185392+00:00_
 
 called Bash
 
@@ -8400,7 +6817,7 @@ called Bash
 
 ### Tool result
 
-_source line 986 · 2026-05-22T05:19:47.486963+00:00_
+_source line 938 · 2026-05-22T05:19:47.486963+00:00_
 
 0
 ---
@@ -8424,7 +6841,7 @@ _source line 986 · 2026-05-22T05:19:47.486963+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-22T05:20:08.234168+00:00_
+_source line 939 · 2026-05-22T05:20:08.234168+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8460,7 +6877,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 988 · 2026-05-22T05:20:12.011673+00:00_
+_source line 940 · 2026-05-22T05:20:12.011673+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -8482,7 +6899,7 @@ _source line 988 · 2026-05-22T05:20:12.011673+00:00_
 
 ### Assistant
 
-_source line 989 · 2026-05-22T05:20:14.807423+00:00_
+_source line 941 · 2026-05-22T05:20:14.807423+00:00_
 
 编译验证通过：
 - 24 页 (8 main + 16 appendix)
@@ -8514,7 +6931,7 @@ _source line 989 · 2026-05-22T05:20:14.807423+00:00_
 
 ### User
 
-_source line 990 · 2026-05-22T05:21:07.269234+00:00_
+_source line 942 · 2026-05-22T05:21:07.269234+00:00_
 
 [Director 指令] **R27 M5 小项补完**
 
@@ -8549,7 +6966,7 @@ _source line 990 · 2026-05-22T05:21:07.269234+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-22T05:21:14.128184+00:00_
+_source line 943 · 2026-05-22T05:21:14.128184+00:00_
 
 called Read
 
@@ -8587,7 +7004,7 @@ called Read
 
 ### Tool result
 
-_source line 992 · 2026-05-22T05:21:14.178928+00:00_
+_source line 944 · 2026-05-22T05:21:14.178928+00:00_
 
 37	\subsection{Agent Improvement Baselines}
 38	\label{sec:agent-improvement}
@@ -8634,7 +7051,7 @@ _source line 992 · 2026-05-22T05:21:14.178928+00:00_
 
 ### Tool call
 
-_source line 993 · 2026-05-22T05:21:19.179584+00:00_
+_source line 945 · 2026-05-22T05:21:19.179584+00:00_
 
 called Read
 
@@ -8672,7 +7089,7 @@ called Read
 
 ### Tool result
 
-_source line 994 · 2026-05-22T05:21:19.632188+00:00_
+_source line 946 · 2026-05-22T05:21:19.632188+00:00_
 
 29	\subsection{Multi-Model Validation (7--9B Tier)}
 30	\label{sec:cross-model}
@@ -8701,7 +7118,7 @@ _source line 994 · 2026-05-22T05:21:19.632188+00:00_
 
 ### Tool call
 
-_source line 995 · 2026-05-22T05:21:19.933959+00:00_
+_source line 947 · 2026-05-22T05:21:19.933959+00:00_
 
 called Grep
 
@@ -8739,7 +7156,7 @@ called Grep
 
 ### Tool result
 
-_source line 996 · 2026-05-22T05:21:19.984690+00:00_
+_source line 948 · 2026-05-22T05:21:19.984690+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex:370:For ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\citep{qwen25-2024} as the backbone.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex:36:[Omitted long matching line]
@@ -8763,7 +7180,7 @@ _source line 996 · 2026-05-22T05:21:19.984690+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-22T05:21:37.079093+00:00_
+_source line 949 · 2026-05-22T05:21:37.079093+00:00_
 
 called Grep
 
@@ -8801,7 +7218,7 @@ called Grep
 
 ### Tool result
 
-_source line 998 · 2026-05-22T05:21:37.431086+00:00_
+_source line 950 · 2026-05-22T05:21:37.431086+00:00_
 
 7:Concurrent work examines \emph{when} to invoke tools: tool-call decisions correlate with uncertainty~\citep{tool-overuse-illusion-2026}, are encoded in hidden states~\citep{when2tool-2026}, impose a ``tool-use tax''~\citep{tool-use-tax-2026}, or follow necessity-utility-affordability logic~\citep{to-call-or-not-2026}. Our decomposition yields a concrete answer: 78.9\% of non-tie routing labels trace to catastrophic-failure prevention.
 10:Adaptive routing traces back to learned halting policies \citep{graves2016act}. In the LLM era, CogRouter \citep{cogrouter-2026} adapts reasoning depth per step, ARES \citep{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \citep{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \citep{mtrouter-2026} addresses multi-turn routing.
@@ -8827,7 +7244,7 @@ _source line 998 · 2026-05-22T05:21:37.431086+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-22T05:21:37.783048+00:00_
+_source line 951 · 2026-05-22T05:21:37.783048+00:00_
 
 called Read
 
@@ -8865,7 +7282,7 @@ called Read
 
 ### Tool result
 
-_source line 1000 · 2026-05-22T05:21:37.833801+00:00_
+_source line 952 · 2026-05-22T05:21:37.833801+00:00_
 
 34	\end{multline}
 35	
@@ -8890,7 +7307,7 @@ _source line 1000 · 2026-05-22T05:21:37.833801+00:00_
 
 ### Tool call
 
-_source line 1001 · 2026-05-22T05:23:56.841593+00:00_
+_source line 953 · 2026-05-22T05:23:56.841593+00:00_
 
 called Read
 
@@ -8928,7 +7345,7 @@ called Read
 
 ### Tool result
 
-_source line 1002 · 2026-05-22T05:23:56.942408+00:00_
+_source line 954 · 2026-05-22T05:23:56.942408+00:00_
 
 28	
 29	\subsection{Multi-Model Validation (7--9B Tier)}
@@ -8977,7 +7394,7 @@ _source line 1002 · 2026-05-22T05:23:56.942408+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-22T05:23:56.993152+00:00_
+_source line 955 · 2026-05-22T05:23:56.993152+00:00_
 
 called Read
 
@@ -9011,7 +7428,7 @@ called Read
 
 ### Tool result
 
-_source line 1004 · 2026-05-22T05:23:57.444733+00:00_
+_source line 956 · 2026-05-22T05:23:57.444733+00:00_
 
 1	\section{Related Work}
 2	
@@ -9046,7 +7463,7 @@ _source line 1004 · 2026-05-22T05:23:57.444733+00:00_
 
 ### Tool call
 
-_source line 1005 · 2026-05-22T05:23:57.796080+00:00_
+_source line 957 · 2026-05-22T05:23:57.796080+00:00_
 
 called Read
 
@@ -9084,7 +7501,7 @@ called Read
 
 ### Tool result
 
-_source line 1006 · 2026-05-22T05:23:57.846706+00:00_
+_source line 958 · 2026-05-22T05:23:57.846706+00:00_
 
 34	\end{multline}
 35	
@@ -9110,7 +7527,7 @@ _source line 1006 · 2026-05-22T05:23:57.846706+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-22T05:24:36.575831+00:00_
+_source line 959 · 2026-05-22T05:24:36.575831+00:00_
 
 called Read
 
@@ -9148,7 +7565,7 @@ called Read
 
 ### Tool result
 
-_source line 1008 · 2026-05-22T05:24:36.626619+00:00_
+_source line 960 · 2026-05-22T05:24:36.626619+00:00_
 
 365	\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\pm$std.}
 366	\label{tab:hyperparams}
@@ -9179,7 +7596,7 @@ _source line 1008 · 2026-05-22T05:24:36.626619+00:00_
 
 ### Tool call
 
-_source line 1009 · 2026-05-22T05:25:39.244650+00:00_
+_source line 961 · 2026-05-22T05:25:39.244650+00:00_
 
 called Edit
 
@@ -9219,7 +7636,7 @@ called Edit
 
 ### Tool result
 
-_source line 1010 · 2026-05-22T05:25:39.697192+00:00_
+_source line 962 · 2026-05-22T05:25:39.697192+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -9241,7 +7658,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1011 · 2026-05-22T05:25:41.153342+00:00_
+_source line 963 · 2026-05-22T05:25:41.153342+00:00_
 
 called Edit
 
@@ -9281,7 +7698,7 @@ called Edit
 
 ### Tool result
 
-_source line 1012 · 2026-05-22T05:25:41.605427+00:00_
+_source line 964 · 2026-05-22T05:25:41.605427+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -9303,7 +7720,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1013 · 2026-05-22T05:25:42.111147+00:00_
+_source line 965 · 2026-05-22T05:25:42.111147+00:00_
 
 called Edit
 
@@ -9343,7 +7760,7 @@ called Edit
 
 ### Tool result
 
-_source line 1014 · 2026-05-22T05:25:42.563237+00:00_
+_source line 966 · 2026-05-22T05:25:42.563237+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -9365,7 +7782,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1015 · 2026-05-22T05:25:44.721320+00:00_
+_source line 967 · 2026-05-22T05:25:44.721320+00:00_
 
 called Edit
 
@@ -9405,7 +7822,7 @@ called Edit
 
 ### Tool result
 
-_source line 1016 · 2026-05-22T05:25:45.775809+00:00_
+_source line 968 · 2026-05-22T05:25:45.775809+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -9427,7 +7844,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1017 · 2026-05-22T05:25:46.027304+00:00_
+_source line 969 · 2026-05-22T05:25:46.027304+00:00_
 
 called Edit
 
@@ -9467,7 +7884,7 @@ called Edit
 
 ### Tool result
 
-_source line 1018 · 2026-05-22T05:25:46.078241+00:00_
+_source line 970 · 2026-05-22T05:25:46.078241+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -9489,7 +7906,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1019 · 2026-05-22T05:25:55.367809+00:00_
+_source line 971 · 2026-05-22T05:25:55.367809+00:00_
 
 called Edit
 
@@ -9529,7 +7946,7 @@ called Edit
 
 ### Tool result
 
-_source line 1020 · 2026-05-22T05:25:55.418648+00:00_
+_source line 972 · 2026-05-22T05:25:55.418648+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -9551,7 +7968,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1021 · 2026-05-22T05:25:56.121675+00:00_
+_source line 973 · 2026-05-22T05:25:56.121675+00:00_
 
 called Edit
 
@@ -9591,7 +8008,7 @@ called Edit
 
 ### Tool result
 
-_source line 1022 · 2026-05-22T05:25:56.122239+00:00_
+_source line 974 · 2026-05-22T05:25:56.122239+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -9613,7 +8030,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1023 · 2026-05-22T05:25:56.323287+00:00_
+_source line 975 · 2026-05-22T05:25:56.323287+00:00_
 
 called Edit
 
@@ -9653,7 +8070,7 @@ called Edit
 
 ### Tool result
 
-_source line 1024 · 2026-05-22T05:25:56.374299+00:00_
+_source line 976 · 2026-05-22T05:25:56.374299+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex has been updated successfully.
 
@@ -9675,7 +8092,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1025 · 2026-05-22T05:26:01.144128+00:00_
+_source line 977 · 2026-05-22T05:26:01.144128+00:00_
 
 called Read
 
@@ -9713,7 +8130,7 @@ called Read
 
 ### Tool result
 
-_source line 1026 · 2026-05-22T05:26:01.596408+00:00_
+_source line 978 · 2026-05-22T05:26:01.596408+00:00_
 
 34	Per-task details, including cross-model precision matching and routing transfer analysis, appear in Appendix~\ref{app:cross-model}.
 35	A third model family, Gemma-2-9B-it~\citep{gemma2-2024} (sliding window attention, vs.\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\%$ (95\% CI $[79.5\%, 98.4\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\Delta$DR (Appendix~\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\%$ (spread 2.2~pp); $10{\times}$ scaling to 72B (\S\ref{sec:agent-improvement}) confirms persistence across capability levels (DAF${=}92.4\%$).
@@ -9737,7 +8154,7 @@ _source line 1026 · 2026-05-22T05:26:01.596408+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-22T05:26:02.048591+00:00_
+_source line 979 · 2026-05-22T05:26:02.048591+00:00_
 
 called Read
 
@@ -9775,7 +8192,7 @@ called Read
 
 ### Tool result
 
-_source line 1028 · 2026-05-22T05:26:02.500940+00:00_
+_source line 980 · 2026-05-22T05:26:02.500940+00:00_
 
 60	
 61	We test whether agent-level improvement reduces death dominance (Table~\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\%$ vs.\ $48.0\%$ baseline, $\Delta = -4.5$~pp). Reflexion~\citep{reflexion-2023}\footnote{Reflexion uses a fixed allocation of 20 episodes per task type ($20 \times 11 = 220$), vs.\ the baseline's variable 20--40 per type ($N{=}245$).} (verbal self-reflection between trials) reduces death to 31.4\% across all 11 tasks by rescuing 29.3\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\sim}$35\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\Delta_{\text{nd}} = -0.47$, yielding DAF $> 100\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\%$. The 72B deterministic strategy achieves $2.75\%$ death rate ($\Delta\text{DR} = +27.8$~pp), and $\Delta_{\text{nd}} = +2.28$, yielding DAF $= 92.4\%$ (7B: $90.4\%$). This $10{\times}$ scaling analysis (distinct from the 7--9B cross-family replication in \S\ref{sec:cross-model}) shows that while 72B reduces the internal death rate from $42.9\%$ to $30.6\%$, DAF \emph{increases} because the deterministic strategy also becomes safer ($2.75\%$ vs.\ $16.3\%$), making the proportional dominance of death avoidance more extreme.
@@ -9799,7 +8216,7 @@ _source line 1028 · 2026-05-22T05:26:02.500940+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-22T05:26:03.254556+00:00_
+_source line 981 · 2026-05-22T05:26:03.254556+00:00_
 
 called Read
 
@@ -9837,7 +8254,7 @@ called Read
 
 ### Tool result
 
-_source line 1030 · 2026-05-22T05:26:03.254909+00:00_
+_source line 982 · 2026-05-22T05:26:03.254909+00:00_
 
 68	\includegraphics[width=\columnwidth]{figures/dose_response.pdf}
 69	\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\%$) and deterministic baseline ($16.3\%$), both computed over all 11 task types; retry and Reflexion use 10 death-prone types only. Error bands: Wilson 95\% CIs.}
@@ -9861,7 +8278,7 @@ _source line 1030 · 2026-05-22T05:26:03.254909+00:00_
 
 ### Tool call
 
-_source line 1031 · 2026-05-22T05:26:03.506162+00:00_
+_source line 983 · 2026-05-22T05:26:03.506162+00:00_
 
 called Read
 
@@ -9895,7 +8312,7 @@ called Read
 
 ### Tool result
 
-_source line 1032 · 2026-05-22T05:26:04.008672+00:00_
+_source line 984 · 2026-05-22T05:26:04.008672+00:00_
 
 1	\section{Related Work}
 2	
@@ -9930,7 +8347,7 @@ _source line 1032 · 2026-05-22T05:26:04.008672+00:00_
 
 ### Tool call
 
-_source line 1033 · 2026-05-22T05:26:04.109536+00:00_
+_source line 985 · 2026-05-22T05:26:04.109536+00:00_
 
 called Read
 
@@ -9968,7 +8385,7 @@ called Read
 
 ### Tool result
 
-_source line 1034 · 2026-05-22T05:26:04.160329+00:00_
+_source line 986 · 2026-05-22T05:26:04.160329+00:00_
 
 35	
 36	We use Qwen2.5-7B-Instruct~\citep{qwen25-2024} (vLLM v0.21.0) on ScienceWorld \citep{scienceworld-2022}, a text-based environment spanning 30 task types with a $-100$ death penalty. After prescreening, we collect 245 episode pairs across 11 task types (20--40 per type). The framework is applicable to any environment where paired episodes under two computation modes can be collected with binary success/failure indicators. We apply it unchanged to ALFWorld and MATH in \S\ref{sec:math-contrast}--\ref{sec:cross-env}.
@@ -9992,7 +8409,7 @@ _source line 1034 · 2026-05-22T05:26:04.160329+00:00_
 
 ### Tool call
 
-_source line 1035 · 2026-05-22T05:26:10.686208+00:00_
+_source line 987 · 2026-05-22T05:26:10.686208+00:00_
 
 called Edit
 
@@ -10032,7 +8449,7 @@ called Edit
 
 ### Tool result
 
-_source line 1036 · 2026-05-22T05:26:10.736897+00:00_
+_source line 988 · 2026-05-22T05:26:10.736897+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -10054,7 +8471,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1037 · 2026-05-22T05:26:14.059300+00:00_
+_source line 989 · 2026-05-22T05:26:14.059300+00:00_
 
 called ToolSearch
 
@@ -10090,7 +8507,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1038 · 2026-05-22T05:26:14.109896+00:00_
+_source line 990 · 2026-05-22T05:26:14.109896+00:00_
 
 
 
@@ -10112,7 +8529,7 @@ _source line 1038 · 2026-05-22T05:26:14.109896+00:00_
 
 ### Tool call
 
-_source line 1039 · 2026-05-22T05:26:25.734572+00:00_
+_source line 991 · 2026-05-22T05:26:25.734572+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -10148,7 +8565,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1040 · 2026-05-22T05:26:29.549904+00:00_
+_source line 992 · 2026-05-22T05:26:29.549904+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -10170,7 +8587,7 @@ _source line 1040 · 2026-05-22T05:26:29.549904+00:00_
 
 ### Assistant
 
-_source line 1041 · 2026-05-22T05:26:35.128271+00:00_
+_source line 993 · 2026-05-22T05:26:35.128271+00:00_
 
 R27 M5 全部 5 项已完成并汇报 Director：
 
@@ -10203,7 +8620,7 @@ R27 M5 全部 5 项已完成并汇报 Director：
 
 ### User
 
-_source line 1042 · 2026-05-22T05:26:52.204348+00:00_
+_source line 994 · 2026-05-22T05:26:52.204348+00:00_
 
 [Director 指令] **R27 Reviewer 验收补修 — 3 项快速修复**
 
@@ -10243,7 +8660,7 @@ references.bib 中 `switch-transformer-2022` 用了 `@inproceedings` 但 JMLR �
 
 ### Tool call
 
-_source line 1043 · 2026-05-22T05:27:00.490437+00:00_
+_source line 995 · 2026-05-22T05:27:00.490437+00:00_
 
 called Read
 
@@ -10277,7 +8694,7 @@ called Read
 
 ### Tool result
 
-_source line 1044 · 2026-05-22T05:27:00.792034+00:00_
+_source line 996 · 2026-05-22T05:27:00.792034+00:00_
 
 1	\section{Conclusion}
 2	
@@ -10302,7 +8719,7 @@ _source line 1044 · 2026-05-22T05:27:00.792034+00:00_
 
 ### Tool call
 
-_source line 1045 · 2026-05-22T05:27:00.792640+00:00_
+_source line 997 · 2026-05-22T05:27:00.792640+00:00_
 
 called Read
 
@@ -10336,7 +8753,7 @@ called Read
 
 ### Tool result
 
-_source line 1046 · 2026-05-22T05:27:00.843191+00:00_
+_source line 998 · 2026-05-22T05:27:00.843191+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -10368,7 +8785,7 @@ _source line 1046 · 2026-05-22T05:27:00.843191+00:00_
 
 ### Tool call
 
-_source line 1047 · 2026-05-22T05:27:01.445896+00:00_
+_source line 999 · 2026-05-22T05:27:01.445896+00:00_
 
 called Grep
 
@@ -10408,7 +8825,7 @@ called Grep
 
 ### Tool result
 
-_source line 1048 · 2026-05-22T05:27:01.496606+00:00_
+_source line 1000 · 2026-05-22T05:27:01.496606+00:00_
 
 402:@inproceedings{switch-transformer-2022,
 403-  title={Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},
@@ -10440,7 +8857,7 @@ _source line 1048 · 2026-05-22T05:27:01.496606+00:00_
 
 ### Tool call
 
-_source line 1049 · 2026-05-22T05:27:10.030186+00:00_
+_source line 1001 · 2026-05-22T05:27:10.030186+00:00_
 
 called Edit
 
@@ -10480,7 +8897,7 @@ called Edit
 
 ### Tool result
 
-_source line 1050 · 2026-05-22T05:27:10.633052+00:00_
+_source line 1002 · 2026-05-22T05:27:10.633052+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex has been updated successfully.
 
@@ -10502,7 +8919,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1051 · 2026-05-22T05:27:12.045624+00:00_
+_source line 1003 · 2026-05-22T05:27:12.045624+00:00_
 
 called Edit
 
@@ -10542,7 +8959,7 @@ called Edit
 
 ### Tool result
 
-_source line 1052 · 2026-05-22T05:27:12.548288+00:00_
+_source line 1004 · 2026-05-22T05:27:12.548288+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
 
@@ -10564,7 +8981,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1053 · 2026-05-22T05:27:14.355909+00:00_
+_source line 1005 · 2026-05-22T05:27:14.355909+00:00_
 
 called Edit
 
@@ -10604,7 +9021,7 @@ called Edit
 
 ### Tool result
 
-_source line 1054 · 2026-05-22T05:27:14.406682+00:00_
+_source line 1006 · 2026-05-22T05:27:14.406682+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -10626,7 +9043,7 @@ _source line 1054 · 2026-05-22T05:27:14.406682+00:00_
 
 ### Tool call
 
-_source line 1055 · 2026-05-22T05:27:17.722200+00:00_
+_source line 1007 · 2026-05-22T05:27:17.722200+00:00_
 
 called Read
 
@@ -10664,7 +9081,7 @@ called Read
 
 ### Tool result
 
-_source line 1056 · 2026-05-22T05:27:17.722703+00:00_
+_source line 1008 · 2026-05-22T05:27:17.722703+00:00_
 
 400	}
 401	
@@ -10697,7 +9114,7 @@ _source line 1056 · 2026-05-22T05:27:17.722703+00:00_
 
 ### Tool call
 
-_source line 1057 · 2026-05-22T05:27:24.411207+00:00_
+_source line 1009 · 2026-05-22T05:27:24.411207+00:00_
 
 called Edit
 
@@ -10737,7 +9154,7 @@ called Edit
 
 ### Tool result
 
-_source line 1058 · 2026-05-22T05:27:24.411911+00:00_
+_source line 1010 · 2026-05-22T05:27:24.411911+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib has been updated successfully.
 
@@ -10759,7 +9176,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1059 · 2026-05-22T05:27:29.814401+00:00_
+_source line 1011 · 2026-05-22T05:27:29.814401+00:00_
 
 called Read
 
@@ -10793,7 +9210,7 @@ called Read
 
 ### Tool result
 
-_source line 1060 · 2026-05-22T05:27:30.316896+00:00_
+_source line 1012 · 2026-05-22T05:27:30.316896+00:00_
 
 1	\section{Conclusion}
 2	
@@ -10818,7 +9235,7 @@ _source line 1060 · 2026-05-22T05:27:30.316896+00:00_
 
 ### Tool call
 
-_source line 1061 · 2026-05-22T05:27:30.317320+00:00_
+_source line 1013 · 2026-05-22T05:27:30.317320+00:00_
 
 called Read
 
@@ -10856,7 +9273,7 @@ called Read
 
 ### Tool result
 
-_source line 1062 · 2026-05-22T05:27:30.367868+00:00_
+_source line 1014 · 2026-05-22T05:27:30.367868+00:00_
 
 7	\paragraph{Non-triviality and oracle confound.}
 8	While death dominance follows from the penalty structure (\S\ref{sec:daf}), two consequences were not predictable a priori: $10{\times}$ scaling to 72B fails to eliminate it (DAF${}= 92.4\%$), and Reflexion yields DAF${}>100\%$. All four interventions leave ${\geq}12$~pp residual gaps (Appendix~\ref{sec:threshold-routing}); cross-model DR stability ($36$--$43\%$) confirms death vulnerability is a task-environment property. An oracle confound arises: is the signal merely ``use the oracle''? Two observations argue otherwise: (a)~$\Delta_{\text{nd}} = 2.84$ (9.6\% of the total gap)---on non-death episodes, internal reasoning provides almost no advantage; (b)~action-space filtering (Appendix~\ref{app:grounding-ablation}) reduces death rate by 19~pp but remains far above deterministic safety (16.3\%). The 7 excluded agent-floor tasks, where both strategies achieve near-zero scores, represent a symmetric failure regime that the framework correctly diagnoses as ``no signal.''
@@ -10881,7 +9298,7 @@ _source line 1062 · 2026-05-22T05:27:30.367868+00:00_
 
 ### Tool call
 
-_source line 1063 · 2026-05-22T05:28:02.135893+00:00_
+_source line 1015 · 2026-05-22T05:28:02.135893+00:00_
 
 called Bash
 
@@ -10917,7 +9334,7 @@ called Bash
 
 ### Tool result
 
-_source line 1064 · 2026-05-22T05:28:02.338313+00:00_
+_source line 1016 · 2026-05-22T05:28:02.338313+00:00_
 
 /usr/bin/latexmk
 /usr/bin/pdflatex
@@ -10941,7 +9358,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1065 · 2026-05-22T05:28:09.118460+00:00_
+_source line 1017 · 2026-05-22T05:28:09.118460+00:00_
 
 called Bash
 
@@ -10979,7 +9396,7 @@ called Bash
 
 ### Tool result
 
-_source line 1066 · 2026-05-22T05:28:10.675259+00:00_
+_source line 1018 · 2026-05-22T05:28:10.675259+00:00_
 
 .pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/shar
@@ -11021,7 +9438,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1067 · 2026-05-22T05:28:18.005203+00:00_
+_source line 1019 · 2026-05-22T05:28:18.005203+00:00_
 
 called Bash
 
@@ -11057,7 +9474,7 @@ called Bash
 
 ### Tool result
 
-_source line 1068 · 2026-05-22T05:28:18.608112+00:00_
+_source line 1020 · 2026-05-22T05:28:18.608112+00:00_
 
 0
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
@@ -11080,7 +9497,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1069 · 2026-05-22T05:28:29.843792+00:00_
+_source line 1021 · 2026-05-22T05:28:29.843792+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11116,7 +9533,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1070 · 2026-05-22T05:28:33.794785+00:00_
+_source line 1022 · 2026-05-22T05:28:33.794785+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -11138,7 +9555,7 @@ _source line 1070 · 2026-05-22T05:28:33.794785+00:00_
 
 ### Assistant
 
-_source line 1071 · 2026-05-22T05:28:36.588506+00:00_
+_source line 1023 · 2026-05-22T05:28:36.588506+00:00_
 
 3 项补修完成，编译验证通过。
 
@@ -11160,12 +9577,12 @@ _source line 1071 · 2026-05-22T05:28:36.588506+00:00_
 
 ## Round 36
 
-38 recorded events
+24 recorded events
 
 
 ### User
 
-_source line 1072 · 2026-05-22T06:04:45.040133+00:00_
+_source line 1024 · 2026-05-22T06:04:45.040133+00:00_
 
 [Director 指令] **R27 后续对齐 — 2 项任务**
 
@@ -11206,41 +9623,7 @@ R27 修复改变了论文 framing（DAF 降为 derived，78.9% 为 headline；or
 
 ### Tool call
 
-_source line 1073 · 2026-05-22T06:04:52.675485+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1074 · 2026-05-22T06:04:52.777192+00:00_
+_source line 1025 · 2026-05-22T06:04:52.777192+00:00_
 
 called Read
 
@@ -11274,50 +9657,7 @@ called Read
 
 ### Tool result
 
-_source line 1075 · 2026-05-22T06:04:52.777819+00:00_
-
-1	# ARR Submission Preparation — simgate-modular-routing
-2	
-3	> Updated 2026-05-22 (R26 aligned) | DDL: 2026-05-25
-4	
-5	---
-6	
-7	## 1. Submission Form Pre-fill
-8	
-9	### Title
-10	Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld
-11	
-12	### Abstract (plain text, synced with abstract.tex post-R26)
-13	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs. deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This label fraction is penalty-independent. A derived score-weighted measure, the Death Avoidance Factor, reaches 88-90% across three 7-9B model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), illustrating the framework's applicability. A ~50-episode diagnostic pilot provides preliminary signal for identifying the dominant routing mechanism given a large effect size (d = 3.02); environments with smaller effects may require larger samples, enabling informed build-vs-buy decisions before expensive router training.
-14	
-15	### Keywords
-16	1. LLM agent routing
-17	2. counterfactual analysis
-18	3. death avoidance
-19	4. diagnostic framework
-20	5. ScienceWorld
-21
-…[truncated 5364 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1076 · 2026-05-22T06:04:52.979341+00:00_
+_source line 1026 · 2026-05-22T06:04:52.979341+00:00_
 
 1	# EMNLP 2026 ARR Rebuttal Preparation
 2	
@@ -11352,7 +9692,7 @@ _source line 1076 · 2026-05-22T06:04:52.979341+00:00_
 
 ### Tool call
 
-_source line 1077 · 2026-05-22T06:06:01.204217+00:00_
+_source line 1027 · 2026-05-22T06:06:01.204217+00:00_
 
 called Bash
 
@@ -11390,7 +9730,7 @@ called Bash
 
 ### Tool result
 
-_source line 1078 · 2026-05-22T06:06:05.921849+00:00_
+_source line 1028 · 2026-05-22T06:06:05.921849+00:00_
 
 Output written on main.pdf (24 pages, 597402 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
@@ -11413,7 +9753,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1079 · 2026-05-22T06:06:12.476232+00:00_
+_source line 1029 · 2026-05-22T06:06:12.476232+00:00_
 
 called Bash
 
@@ -11449,7 +9789,7 @@ called Bash
 
 ### Tool result
 
-_source line 1080 · 2026-05-22T06:06:12.577265+00:00_
+_source line 1030 · 2026-05-22T06:06:12.577265+00:00_
 
 57
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
@@ -11472,379 +9812,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1081 · 2026-05-22T06:06:36.172545+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**Framework generality is empirically demonstrated across three environments.** We apply the identical diagnostic procedure—unchanged—to ScienceWorld, MATH (§3.4), and ALFWorld (§3.4), obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively",
-  "new_string": "**Methodological generality is demonstrated across three environments.** We apply the identical diagnostic procedure—unchanged—to ScienceWorld, MATH (§3.4), and ALFWorld (§3.4), obtaining qualitatively distinct diagnoses: death dominance (78.9% label fraction; DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**Framework generality is empirically demonstrated across three environments.** We apply the identical diagnostic procedure—unchanged—to ScienceWorld, MATH (§3.4), and ALFWorld (§3.4), obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively",
-    "new_string": "**Methodological generality is demonstrated across three environments.** We apply the identical diagnostic procedure—unchanged—to ScienceWorld, MATH (§3.4), and ALFWorld (§3.4), obtaining qualitatively distinct diagnoses: death dominance (78.9% label fraction; DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1082 · 2026-05-22T06:06:36.625080+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1083 · 2026-05-22T06:06:41.483386+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "**Practical generalizability** is addressed by the ~50-episode pilot protocol (Appendix R), which correctly predicted all four tested conditions. The pilot is designed to be low-cost (4–8 GPU-hours vs. 200 for full router training), enabling practitioners to diagnose any new environment before committing to router development. We explicitly scope our quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).",
-  "new_string": "**Practical generalizability** is addressed by the ~50-episode pilot protocol (Appendix R), which provides preliminary build-vs-buy signal for all four tested conditions given the large effect sizes observed (d=3.02). The pilot is designed to be low-cost (4–8 GPU-hours vs. 200 for full router training), enabling practitioners to diagnose new environments before committing to router development. We distinguish *methodological generality* (applicable to any environment with paired episode outcomes) from *empirical generality* (full quantitative validation on ScienceWorld only), and scope claims accordingly (Limitations §1)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "**Practical generalizability** is addressed by the ~50-episode pilot protocol (Appendix R), which correctly predicted all four tested conditions. The pilot is designed to be low-cost (4–8 GPU-hours vs. 200 for full router training), enabling practitioners to diagnose any new environment before committing to router development. We explicitly scope our quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).",
-    "new_string": "**Practical generalizability** is addressed by the ~50-episode pilot protocol (Appendix R), which provides preliminary build-vs-buy signal for all four tested conditions given the large effect sizes observed (d=3.02). The pilot is designed to be low-cost (4–8 GPU-hours vs. 200 for full router training), enabling practitioners to diagnose new environments before committing to router development. We distinguish *methodological generality* (applicable to any environment with paired episode outcomes) from *empirical generality* (full quantitative validation on ScienceWorld only), and scope claims accordingly (Limitations §1)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1084 · 2026-05-22T06:06:41.935771+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1085 · 2026-05-22T06:06:43.894216+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "The framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%",
-  "new_string": "The framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (78.9% label fraction, DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "The framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%",
-    "new_string": "The framework is applied unchanged to three environments yielding qualitatively distinct diagnoses: death dominance in ScienceWorld (78.9% label fraction, DAF=90.4%), no extractable signal in MATH (p=0.81), and information asymmetry in ALFWorld (DAF=0%"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1086 · 2026-05-22T06:06:44.346865+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1087 · 2026-05-22T06:06:45.351213+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes.",
-  "new_string": "We distinguish methodological generality (the procedure applies to any environment with paired episodes) from empirical generality (full validation on ScienceWorld only), providing preliminary evidence of applicability beyond death-dominated settings."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes.",
-    "new_string": "We distinguish methodological generality (the procedure applies to any environment with paired episodes) from empirical generality (full validation on ScienceWorld only), providing preliminary evidence of applicability beyond death-dominated settings."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1088 · 2026-05-22T06:06:45.402155+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1089 · 2026-05-22T06:06:50.121428+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "death dominance in ScienceWorld (DAF=90.4%, §3.1), no extractable signal in MATH",
-  "new_string": "death dominance in ScienceWorld (78.9% label fraction, DAF=90.4%; §3.1), no extractable signal in MATH"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "death dominance in ScienceWorld (DAF=90.4%, §3.1), no extractable signal in MATH",
-    "new_string": "death dominance in ScienceWorld (78.9% label fraction, DAF=90.4%; §3.1), no extractable signal in MATH"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1090 · 2026-05-22T06:06:50.122014+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1091 · 2026-05-22T06:06:52.734383+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-  "old_string": "The ~50-episode pilot protocol (Appendix R) correctly predicted all four tested conditions at 4–8 GPU-hours, providing preliminary build-vs-buy signal given large effect sizes (d=3.02; §3.1). We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).",
-  "new_string": "The ~50-episode pilot protocol (Appendix R) provides preliminary build-vs-buy signal for all four tested conditions given large effect sizes (d=3.02; §3.1) at 4–8 GPU-hours. We distinguish *methodological generality* (applicable to any environment with paired episode outcomes) from *empirical generality* (full quantitative validation on ScienceWorld only), and scope claims accordingly (Limitations §1)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-    "old_string": "The ~50-episode pilot protocol (Appendix R) correctly predicted all four tested conditions at 4–8 GPU-hours, providing preliminary build-vs-buy signal given large effect sizes (d=3.02; §3.1). We scope quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).",
-    "new_string": "The ~50-episode pilot protocol (Appendix R) provides preliminary build-vs-buy signal for all four tested conditions given large effect sizes (d=3.02; §3.1) at 4–8 GPU-hours. We distinguish *methodological generality* (applicable to any environment with paired episode outcomes) from *empirical generality* (full quantitative validation on ScienceWorld only), and scope claims accordingly (Limitations §1)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1092 · 2026-05-22T06:06:52.785195+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1093 · 2026-05-22T06:06:57.905704+00:00_
+_source line 1031 · 2026-05-22T06:06:57.905704+00:00_
 
 called Edit
 
@@ -11884,7 +9852,7 @@ called Edit
 
 ### Tool result
 
-_source line 1094 · 2026-05-22T06:06:58.357842+00:00_
+_source line 1032 · 2026-05-22T06:06:58.357842+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -11906,7 +9874,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1095 · 2026-05-22T06:07:09.789644+00:00_
+_source line 1033 · 2026-05-22T06:07:09.789644+00:00_
 
 called Edit
 
@@ -11946,7 +9914,7 @@ called Edit
 
 ### Tool result
 
-_source line 1096 · 2026-05-22T06:07:10.041311+00:00_
+_source line 1034 · 2026-05-22T06:07:10.041311+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -11968,7 +9936,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1097 · 2026-05-22T06:07:11.547500+00:00_
+_source line 1035 · 2026-05-22T06:07:11.547500+00:00_
 
 called Edit
 
@@ -12008,7 +9976,7 @@ called Edit
 
 ### Tool result
 
-_source line 1098 · 2026-05-22T06:07:11.952768+00:00_
+_source line 1036 · 2026-05-22T06:07:11.952768+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -12030,7 +9998,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1099 · 2026-05-22T06:07:13.409196+00:00_
+_source line 1037 · 2026-05-22T06:07:13.409196+00:00_
 
 called Edit
 
@@ -12070,7 +10038,7 @@ called Edit
 
 ### Tool result
 
-_source line 1100 · 2026-05-22T06:07:13.861304+00:00_
+_source line 1038 · 2026-05-22T06:07:13.861304+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -12092,7 +10060,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1101 · 2026-05-22T06:07:17.125026+00:00_
+_source line 1039 · 2026-05-22T06:07:17.125026+00:00_
 
 called Edit
 
@@ -12132,7 +10100,7 @@ called Edit
 
 ### Tool result
 
-_source line 1102 · 2026-05-22T06:07:17.175797+00:00_
+_source line 1040 · 2026-05-22T06:07:17.175797+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -12154,7 +10122,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1103 · 2026-05-22T06:07:24.354462+00:00_
+_source line 1041 · 2026-05-22T06:07:24.354462+00:00_
 
 called Edit
 
@@ -12194,7 +10162,7 @@ called Edit
 
 ### Tool result
 
-_source line 1104 · 2026-05-22T06:07:24.606065+00:00_
+_source line 1042 · 2026-05-22T06:07:24.606065+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -12216,7 +10184,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1105 · 2026-05-22T06:07:29.024228+00:00_
+_source line 1043 · 2026-05-22T06:07:29.024228+00:00_
 
 called Edit
 
@@ -12256,7 +10224,7 @@ called Edit
 
 ### Tool result
 
-_source line 1106 · 2026-05-22T06:07:29.024867+00:00_
+_source line 1044 · 2026-05-22T06:07:29.024867+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully.
 
@@ -12278,7 +10246,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1107 · 2026-05-22T06:07:42.871141+00:00_
+_source line 1045 · 2026-05-22T06:07:42.871141+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -12314,7 +10282,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1108 · 2026-05-22T06:07:46.936907+00:00_
+_source line 1046 · 2026-05-22T06:07:46.936907+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -12336,7 +10304,7 @@ _source line 1108 · 2026-05-22T06:07:46.936907+00:00_
 
 ### Assistant
 
-_source line 1109 · 2026-05-22T06:07:49.143197+00:00_
+_source line 1047 · 2026-05-22T06:07:49.143197+00:00_
 
 向 Director 汇报。
 
@@ -12363,7 +10331,7 @@ _source line 1109 · 2026-05-22T06:07:49.143197+00:00_
 
 ### User
 
-_source line 1110 · 2026-05-22T07:39:41.148636+00:00_
+_source line 1048 · 2026-05-22T07:39:41.148636+00:00_
 
 [Director 指令] **D133: W4 64.7% task-type classifier 写入正文 §3.6**
 
@@ -12396,7 +10364,7 @@ _source line 1110 · 2026-05-22T07:39:41.148636+00:00_
 
 ### Tool call
 
-_source line 1111 · 2026-05-22T07:39:49.483031+00:00_
+_source line 1049 · 2026-05-22T07:39:49.483031+00:00_
 
 called Read
 
@@ -12430,7 +10398,7 @@ called Read
 
 ### Tool result
 
-_source line 1112 · 2026-05-22T07:39:49.533827+00:00_
+_source line 1050 · 2026-05-22T07:39:49.533827+00:00_
 
 1	% W4 Paper Insert: Task-type positive control (signal granularity confirmation)
 2	% Location: End of §3.6 "Router Training: A Preliminary Negative Result", after "End-to-end deployment" paragraph
@@ -12479,7 +10447,7 @@ _source line 1112 · 2026-05-22T07:39:49.533827+00:00_
 
 ### Tool call
 
-_source line 1113 · 2026-05-22T07:39:50.337536+00:00_
+_source line 1051 · 2026-05-22T07:39:50.337536+00:00_
 
 called Grep
 
@@ -12519,7 +10487,7 @@ called Grep
 
 ### Tool result
 
-_source line 1114 · 2026-05-22T07:39:50.438401+00:00_
+_source line 1052 · 2026-05-22T07:39:50.438401+00:00_
 
 108:\subsection{Router Training: A Preliminary Negative Result}
 109:\label{sec:router-diagnostic}
@@ -12542,7 +10510,7 @@ _source line 1114 · 2026-05-22T07:39:50.438401+00:00_
 
 ### Tool call
 
-_source line 1115 · 2026-05-22T07:39:53.413167+00:00_
+_source line 1053 · 2026-05-22T07:39:53.413167+00:00_
 
 called Read
 
@@ -12580,7 +10548,7 @@ called Read
 
 ### Tool result
 
-_source line 1116 · 2026-05-22T07:39:53.514100+00:00_
+_source line 1054 · 2026-05-22T07:39:53.514100+00:00_
 
 108	\subsection{Router Training: A Preliminary Negative Result}
 109	\label{sec:router-diagnostic}
@@ -12608,7 +10576,7 @@ _source line 1116 · 2026-05-22T07:39:53.514100+00:00_
 
 ### Tool call
 
-_source line 1117 · 2026-05-22T07:40:06.450680+00:00_
+_source line 1055 · 2026-05-22T07:40:06.450680+00:00_
 
 called Edit
 
@@ -12648,7 +10616,7 @@ called Edit
 
 ### Tool result
 
-_source line 1118 · 2026-05-22T07:40:06.551757+00:00_
+_source line 1056 · 2026-05-22T07:40:06.551757+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -12670,7 +10638,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1119 · 2026-05-22T07:40:10.836212+00:00_
+_source line 1057 · 2026-05-22T07:40:10.836212+00:00_
 
 called Bash
 
@@ -12708,7 +10676,7 @@ called Bash
 
 ### Tool result
 
-_source line 1120 · 2026-05-22T07:40:15.554620+00:00_
+_source line 1058 · 2026-05-22T07:40:15.554620+00:00_
 
 Output written on main.pdf (24 pages, 597994 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
@@ -12731,7 +10699,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1121 · 2026-05-22T07:40:23.793200+00:00_
+_source line 1059 · 2026-05-22T07:40:23.793200+00:00_
 
 called Bash
 
@@ -12767,7 +10735,7 @@ called Bash
 
 ### Tool result
 
-_source line 1122 · 2026-05-22T07:40:23.894198+00:00_
+_source line 1060 · 2026-05-22T07:40:23.894198+00:00_
 
 ---
 Output written on main.pdf (24 pages, 597994 bytes).
@@ -12791,7 +10759,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1123 · 2026-05-22T07:40:27.910676+00:00_
+_source line 1061 · 2026-05-22T07:40:27.910676+00:00_
 
 called Bash
 
@@ -12827,7 +10795,7 @@ called Bash
 
 ### Tool result
 
-_source line 1124 · 2026-05-22T07:40:27.961442+00:00_
+_source line 1062 · 2026-05-22T07:40:27.961442+00:00_
 
 [8]) (./conclusion.tex)
 Underfull \hbox (badness 1112) in paragraph at lines 40--41
@@ -12852,7 +10820,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1125 · 2026-05-22T07:40:33.358210+00:00_
+_source line 1063 · 2026-05-22T07:40:33.358210+00:00_
 
 called Bash
 
@@ -12888,7 +10856,7 @@ called Bash
 
 ### Tool result
 
-_source line 1126 · 2026-05-22T07:40:33.408836+00:00_
+_source line 1064 · 2026-05-22T07:40:33.408836+00:00_
 
  []
 [3]) (./experiments.tex
@@ -12925,7 +10893,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1127 · 2026-05-22T07:40:36.469892+00:00_
+_source line 1065 · 2026-05-22T07:40:36.469892+00:00_
 
 called Bash
 
@@ -12961,7 +10929,7 @@ called Bash
 
 ### Tool result
 
-_source line 1128 · 2026-05-22T07:40:36.571336+00:00_
+_source line 1066 · 2026-05-22T07:40:36.571336+00:00_
 
 (./main.tex
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -13013,7 +10981,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1129 · 2026-05-22T07:40:40.437186+00:00_
+_source line 1067 · 2026-05-22T07:40:40.437186+00:00_
 
 called Bash
 
@@ -13049,7 +11017,7 @@ called Bash
 
 ### Tool result
 
-_source line 1130 · 2026-05-22T07:40:40.487961+00:00_
+_source line 1068 · 2026-05-22T07:40:40.487961+00:00_
 
 [3]) (./experiments.tex
 [5]
@@ -13088,7 +11056,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1131 · 2026-05-22T07:41:14.493546+00:00_
+_source line 1069 · 2026-05-22T07:41:14.493546+00:00_
 
 called ToolSearch
 
@@ -13124,7 +11092,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1132 · 2026-05-22T07:41:14.493911+00:00_
+_source line 1070 · 2026-05-22T07:41:14.493911+00:00_
 
 
 
@@ -13146,7 +11114,7 @@ _source line 1132 · 2026-05-22T07:41:14.493911+00:00_
 
 ### Tool call
 
-_source line 1133 · 2026-05-22T07:41:18.009178+00:00_
+_source line 1071 · 2026-05-22T07:41:18.009178+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -13186,7 +11154,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1134 · 2026-05-22T07:41:18.412802+00:00_
+_source line 1072 · 2026-05-22T07:41:18.412802+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 570.7}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 552.0}], \"total_pages\": 24, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13208,7 +11176,7 @@ _source line 1134 · 2026-05-22T07:41:18.412802+00:00_
 
 ### Tool call
 
-_source line 1135 · 2026-05-22T07:41:21.826639+00:00_
+_source line 1073 · 2026-05-22T07:41:21.826639+00:00_
 
 called Read
 
@@ -13242,7 +11210,7 @@ called Read
 
 ### Tool call
 
-_source line 1136 · 2026-05-22T07:41:22.188657+00:00_
+_source line 1074 · 2026-05-22T07:41:22.188657+00:00_
 
 called Read
 
@@ -13276,7 +11244,7 @@ called Read
 
 ### Tool result
 
-_source line 1137 · 2026-05-22T07:41:22.742044+00:00_
+_source line 1075 · 2026-05-22T07:41:22.742044+00:00_
 
 
 
@@ -13298,7 +11266,7 @@ _source line 1137 · 2026-05-22T07:41:22.742044+00:00_
 
 ### Tool result
 
-_source line 1138 · 2026-05-22T07:41:22.993819+00:00_
+_source line 1076 · 2026-05-22T07:41:22.993819+00:00_
 
 
 
@@ -13320,7 +11288,7 @@ _source line 1138 · 2026-05-22T07:41:22.993819+00:00_
 
 ### Tool call
 
-_source line 1139 · 2026-05-22T07:42:00.213746+00:00_
+_source line 1077 · 2026-05-22T07:42:00.213746+00:00_
 
 called Read
 
@@ -13358,7 +11326,7 @@ called Read
 
 ### Tool result
 
-_source line 1140 · 2026-05-22T07:42:00.364825+00:00_
+_source line 1078 · 2026-05-22T07:42:00.364825+00:00_
 
 115	\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\%$--$800\%$) provides no improvement; the $3.7\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\ref{app:seed-robustness}--\ref{app:ablations}). Alternative architectures (e.g., contrastive objectives), larger training corpora, or multi-task setups may yield different conclusions; our finding is specific to LoRA-tuned Qwen3 on 2{,}040 steps.
 116	A task-type-only classifier (logistic regression on one-hot task identity) achieves $64.7\%$ balanced accuracy---higher than all step-level routers---but collapses to chance under LOTO ($50.0\%$), matching the neural router's LOTO performance ($49.2\%$) and confirming that routing signal is a per-task-type constant with no cross-type generalization.
@@ -13382,7 +11350,7 @@ _source line 1140 · 2026-05-22T07:42:00.364825+00:00_
 
 ### Tool call
 
-_source line 1141 · 2026-05-22T07:42:04.797977+00:00_
+_source line 1079 · 2026-05-22T07:42:04.797977+00:00_
 
 called Edit
 
@@ -13422,7 +11390,7 @@ called Edit
 
 ### Tool result
 
-_source line 1142 · 2026-05-22T07:42:04.898936+00:00_
+_source line 1080 · 2026-05-22T07:42:04.898936+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -13444,7 +11412,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1143 · 2026-05-22T07:42:10.121217+00:00_
+_source line 1081 · 2026-05-22T07:42:10.121217+00:00_
 
 called Bash
 
@@ -13482,7 +11450,7 @@ called Bash
 
 ### Tool result
 
-_source line 1144 · 2026-05-22T07:42:13.448813+00:00_
+_source line 1082 · 2026-05-22T07:42:13.448813+00:00_
 
 [3]) (./experiments.tex
 [5]
@@ -13519,7 +11487,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1145 · 2026-05-22T07:42:34.863665+00:00_
+_source line 1083 · 2026-05-22T07:42:34.863665+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -13559,7 +11527,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1146 · 2026-05-22T07:42:35.165162+00:00_
+_source line 1084 · 2026-05-22T07:42:35.165162+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 573.3}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 551.7}], \"total_pages\": 24, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13581,7 +11549,7 @@ _source line 1146 · 2026-05-22T07:42:35.165162+00:00_
 
 ### Tool call
 
-_source line 1147 · 2026-05-22T07:42:38.076949+00:00_
+_source line 1085 · 2026-05-22T07:42:38.076949+00:00_
 
 called Read
 
@@ -13615,7 +11583,7 @@ called Read
 
 ### Tool result
 
-_source line 1148 · 2026-05-22T07:42:38.680603+00:00_
+_source line 1086 · 2026-05-22T07:42:38.680603+00:00_
 
 
 
@@ -13637,7 +11605,7 @@ _source line 1148 · 2026-05-22T07:42:38.680603+00:00_
 
 ### Tool call
 
-_source line 1149 · 2026-05-22T07:43:02.338887+00:00_
+_source line 1087 · 2026-05-22T07:43:02.338887+00:00_
 
 called Edit
 
@@ -13677,7 +11645,7 @@ called Edit
 
 ### Tool result
 
-_source line 1150 · 2026-05-22T07:43:02.389782+00:00_
+_source line 1088 · 2026-05-22T07:43:02.389782+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -13699,7 +11667,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1151 · 2026-05-22T07:43:06.017579+00:00_
+_source line 1089 · 2026-05-22T07:43:06.017579+00:00_
 
 called Read
 
@@ -13733,7 +11701,7 @@ called Read
 
 ### Tool result
 
-_source line 1152 · 2026-05-22T07:43:06.570771+00:00_
+_source line 1090 · 2026-05-22T07:43:06.570771+00:00_
 
 
 
@@ -13755,7 +11723,7 @@ _source line 1152 · 2026-05-22T07:43:06.570771+00:00_
 
 ### Tool call
 
-_source line 1153 · 2026-05-22T07:43:28.789884+00:00_
+_source line 1091 · 2026-05-22T07:43:28.789884+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -13789,7 +11757,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1154 · 2026-05-22T07:43:28.790413+00:00_
+_source line 1092 · 2026-05-22T07:43:28.790413+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13811,7 +11779,7 @@ _source line 1154 · 2026-05-22T07:43:28.790413+00:00_
 
 ### Tool call
 
-_source line 1155 · 2026-05-22T07:43:54.859184+00:00_
+_source line 1093 · 2026-05-22T07:43:54.859184+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -13847,7 +11815,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1156 · 2026-05-22T07:43:58.673710+00:00_
+_source line 1094 · 2026-05-22T07:43:58.673710+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -13869,7 +11837,7 @@ _source line 1156 · 2026-05-22T07:43:58.673710+00:00_
 
 ### Assistant
 
-_source line 1157 · 2026-05-22T07:44:02.695934+00:00_
+_source line 1095 · 2026-05-22T07:44:02.695934+00:00_
 
 已汇报 Director：Conclusion 在第 9 页（~10 行溢出），提供了 6 个压缩选项供选择。W4 已插入但需要配合压缩才能合规。等待 Director 决策。
 
@@ -13896,7 +11864,7 @@ _source line 1157 · 2026-05-22T07:44:02.695934+00:00_
 
 ### User
 
-_source line 1158 · 2026-05-22T07:44:34.091619+00:00_
+_source line 1096 · 2026-05-22T07:44:34.091619+00:00_
 
 [Director 指令] **页数压缩 — 执行 A+D+E+F，保留 B**
 
@@ -13933,7 +11901,7 @@ _source line 1158 · 2026-05-22T07:44:34.091619+00:00_
 
 ### Tool call
 
-_source line 1159 · 2026-05-22T07:44:43.732425+00:00_
+_source line 1097 · 2026-05-22T07:44:43.732425+00:00_
 
 called Read
 
@@ -13971,7 +11939,7 @@ called Read
 
 ### Tool result
 
-_source line 1160 · 2026-05-22T07:44:44.235019+00:00_
+_source line 1098 · 2026-05-22T07:44:44.235019+00:00_
 
 10	\paragraph{Practical implications and actionability.}
 11	The penalty-invariant label fraction (78.9\%) is the primary diagnostic; DAF varies with $P$ (Appendix~\ref{app:penalty}). Since routing is relevant in only 38.8\% of episodes (\S\ref{sec:death-decomp}), even optimal routing yields modest gains (oracle margin 2.89 points; \S\ref{sec:baselines}). When $f_{\text{death}} > 75\%$, deterministic routing matches or exceeds learned alternatives at zero training cost; action-space filtering (Appendix~\ref{app:grounding-ablation}) reduces death rate by 19~pp as a complementary intervention. The diagnostic identifies \emph{when} always-deterministic suffices versus when router development is warranted (as in ALFWorld, where DAF${=}0\%$).
@@ -13995,7 +11963,7 @@ _source line 1160 · 2026-05-22T07:44:44.235019+00:00_
 
 ### Tool call
 
-_source line 1161 · 2026-05-22T07:44:44.737588+00:00_
+_source line 1099 · 2026-05-22T07:44:44.737588+00:00_
 
 called Read
 
@@ -14033,7 +12001,7 @@ called Read
 
 ### Tool result
 
-_source line 1162 · 2026-05-22T07:44:45.189723+00:00_
+_source line 1100 · 2026-05-22T07:44:45.189723+00:00_
 
 32	A Llama-3.1-8B-Instruct~\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\%$ vs.\ deterministic $11.4\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\%$ (95\% CI: $[80.2\%, 95.1\%]$; $\Delta_{\text{full}} = +33.17$, $\Delta_{\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\%, all death-asymmetry reversals), and 134 no-preference labels.
 33	Both models show ${\sim}42\%$ internal vulnerability; the differential magnitude varies ($+26.5$ vs.\ $+30.0$~pp) due to model-dependent deterministic safety (Appendix~\ref{app:cross-model}).
@@ -14059,7 +12027,7 @@ _source line 1162 · 2026-05-22T07:44:45.189723+00:00_
 
 ### Tool call
 
-_source line 1163 · 2026-05-22T07:44:45.692136+00:00_
+_source line 1101 · 2026-05-22T07:44:45.692136+00:00_
 
 called Read
 
@@ -14097,7 +12065,7 @@ called Read
 
 ### Tool result
 
-_source line 1164 · 2026-05-22T07:44:46.144362+00:00_
+_source line 1102 · 2026-05-22T07:44:46.144362+00:00_
 
 21	\paragraph{Safe RL.}
 22	Death avoidance connects to constrained MDPs \citep{altman1999constrained}, risk-sensitive RL \citep{mihatsch2002risk}, and safe RL \citep{garcia2015comprehensive,achiam2017cpo,moldovan2012safe}; however, classical methods assume known dynamics or differentiable constraints, neither available for LLM agents. \citet{ruan2024failures} identify catastrophic actions as a failure category; SafeRoute \citep{saferoute-2025} applies adaptive model selection for safety; Agent-SafetyBench \citep{agent-safetybench-2024} evaluates agent safety failures systematically.
@@ -14123,7 +12091,7 @@ _source line 1164 · 2026-05-22T07:44:46.144362+00:00_
 
 ### Tool call
 
-_source line 1165 · 2026-05-22T07:44:46.445921+00:00_
+_source line 1103 · 2026-05-22T07:44:46.445921+00:00_
 
 called Read
 
@@ -14161,7 +12129,7 @@ called Read
 
 ### Tool result
 
-_source line 1166 · 2026-05-22T07:44:46.496615+00:00_
+_source line 1104 · 2026-05-22T07:44:46.496615+00:00_
 
 114	
 115	\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\%$--$800\%$) provides no improvement; the $3.7\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\ref{app:seed-robustness}--\ref{app:ablations}). Alternative architectures (e.g., contrastive objectives), larger training corpora, or multi-task setups may yield different conclusions; our finding is specific to LoRA-tuned Qwen3 on 2{,}040 steps.
@@ -14186,7 +12154,7 @@ _source line 1166 · 2026-05-22T07:44:46.496615+00:00_
 
 ### Tool call
 
-_source line 1167 · 2026-05-22T07:45:34.779851+00:00_
+_source line 1105 · 2026-05-22T07:45:34.779851+00:00_
 
 called Edit
 
@@ -14226,7 +12194,7 @@ called Edit
 
 ### Tool result
 
-_source line 1168 · 2026-05-22T07:45:34.830798+00:00_
+_source line 1106 · 2026-05-22T07:45:34.830798+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -14248,7 +12216,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1169 · 2026-05-22T07:45:39.699551+00:00_
+_source line 1107 · 2026-05-22T07:45:39.699551+00:00_
 
 called Edit
 
@@ -14288,7 +12256,7 @@ called Edit
 
 ### Tool result
 
-_source line 1170 · 2026-05-22T07:45:39.750283+00:00_
+_source line 1108 · 2026-05-22T07:45:39.750283+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -14310,7 +12278,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1171 · 2026-05-22T07:45:47.635131+00:00_
+_source line 1109 · 2026-05-22T07:45:47.635131+00:00_
 
 called Edit
 
@@ -14350,7 +12318,7 @@ called Edit
 
 ### Tool result
 
-_source line 1172 · 2026-05-22T07:45:47.685905+00:00_
+_source line 1110 · 2026-05-22T07:45:47.685905+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
 
@@ -14372,7 +12340,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1173 · 2026-05-22T07:45:57.864933+00:00_
+_source line 1111 · 2026-05-22T07:45:57.864933+00:00_
 
 called Edit
 
@@ -14412,7 +12380,7 @@ called Edit
 
 ### Tool result
 
-_source line 1174 · 2026-05-22T07:45:57.915820+00:00_
+_source line 1112 · 2026-05-22T07:45:57.915820+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -14434,7 +12402,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1175 · 2026-05-22T07:46:03.801203+00:00_
+_source line 1113 · 2026-05-22T07:46:03.801203+00:00_
 
 called Bash
 
@@ -14472,7 +12440,7 @@ called Bash
 
 ### Tool result
 
-_source line 1176 · 2026-05-22T07:46:09.326159+00:00_
+_source line 1114 · 2026-05-22T07:46:09.326159+00:00_
 
 Output written on main.pdf (24 pages, 597012 bytes).
 ---
@@ -14511,7 +12479,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1177 · 2026-05-22T07:46:21.228967+00:00_
+_source line 1115 · 2026-05-22T07:46:21.228967+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -14551,7 +12519,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1178 · 2026-05-22T07:46:21.581226+00:00_
+_source line 1116 · 2026-05-22T07:46:21.581226+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 567.3}], \"total_pages\": 24, \"rendered_pages\": 1, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14573,7 +12541,7 @@ _source line 1178 · 2026-05-22T07:46:21.581226+00:00_
 
 ### Tool call
 
-_source line 1179 · 2026-05-22T07:46:24.757961+00:00_
+_source line 1117 · 2026-05-22T07:46:24.757961+00:00_
 
 called Read
 
@@ -14607,7 +12575,7 @@ called Read
 
 ### Tool result
 
-_source line 1180 · 2026-05-22T07:46:25.462359+00:00_
+_source line 1118 · 2026-05-22T07:46:25.462359+00:00_
 
 
 
@@ -14629,7 +12597,7 @@ _source line 1180 · 2026-05-22T07:46:25.462359+00:00_
 
 ### Tool call
 
-_source line 1181 · 2026-05-22T07:46:36.399449+00:00_
+_source line 1119 · 2026-05-22T07:46:36.399449+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -14663,7 +12631,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1182 · 2026-05-22T07:46:36.399967+00:00_
+_source line 1120 · 2026-05-22T07:46:36.399967+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14685,7 +12653,7 @@ _source line 1182 · 2026-05-22T07:46:36.399967+00:00_
 
 ### Tool call
 
-_source line 1183 · 2026-05-22T07:46:40.775784+00:00_
+_source line 1121 · 2026-05-22T07:46:40.775784+00:00_
 
 called Bash
 
@@ -14721,7 +12689,7 @@ called Bash
 
 ### Tool result
 
-_source line 1184 · 2026-05-22T07:46:40.877084+00:00_
+_source line 1122 · 2026-05-22T07:46:40.877084+00:00_
 
 0
 
@@ -14743,7 +12711,7 @@ _source line 1184 · 2026-05-22T07:46:40.877084+00:00_
 
 ### Tool call
 
-_source line 1185 · 2026-05-22T07:46:55.455362+00:00_
+_source line 1123 · 2026-05-22T07:46:55.455362+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -14779,7 +12747,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1186 · 2026-05-22T07:46:59.479163+00:00_
+_source line 1124 · 2026-05-22T07:46:59.479163+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -14801,7 +12769,7 @@ _source line 1186 · 2026-05-22T07:46:59.479163+00:00_
 
 ### Assistant
 
-_source line 1187 · 2026-05-22T07:47:02.576795+00:00_
+_source line 1125 · 2026-05-22T07:47:02.576795+00:00_
 
 检查编译 0 errors。
 
@@ -14828,7 +12796,7 @@ _source line 1187 · 2026-05-22T07:47:02.576795+00:00_
 
 ### User
 
-_source line 1188 · 2026-05-22T09:09:19.204325+00:00_
+_source line 1126 · 2026-05-22T09:09:19.204325+00:00_
 
 [Director 指令] **R28 审稿修复 — 全部 writing fixes，DDL 05-25**
 
@@ -14937,7 +12905,7 @@ Limitations 加 1 句："Our framework assumes binary catastrophic failure; envi
 
 ### Tool call
 
-_source line 1189 · 2026-05-22T09:09:36.568856+00:00_
+_source line 1127 · 2026-05-22T09:09:36.568856+00:00_
 
 called Read
 
@@ -14971,7 +12939,7 @@ called Read
 
 ### Tool result
 
-_source line 1190 · 2026-05-22T09:09:37.121389+00:00_
+_source line 1128 · 2026-05-22T09:09:37.121389+00:00_
 
 1	\section{Introduction}
 2	
@@ -15001,7 +12969,7 @@ _source line 1190 · 2026-05-22T09:09:37.121389+00:00_
 
 ### Tool call
 
-_source line 1191 · 2026-05-22T09:09:37.623676+00:00_
+_source line 1129 · 2026-05-22T09:09:37.623676+00:00_
 
 called Read
 
@@ -15039,7 +13007,7 @@ called Read
 
 ### Tool result
 
-_source line 1192 · 2026-05-22T09:09:38.075756+00:00_
+_source line 1130 · 2026-05-22T09:09:38.075756+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -15077,7 +13045,7 @@ _source line 1192 · 2026-05-22T09:09:38.075756+00:00_
 
 ### Tool call
 
-_source line 1193 · 2026-05-22T09:09:38.543924+00:00_
+_source line 1131 · 2026-05-22T09:09:38.543924+00:00_
 
 called Read
 
@@ -15115,7 +13083,7 @@ called Read
 
 ### Tool result
 
-_source line 1194 · 2026-05-22T09:09:39.046142+00:00_
+_source line 1132 · 2026-05-22T09:09:39.046142+00:00_
 
 49	\subsection{Death Avoidance Factor}
 50	\label{sec:daf}
@@ -15153,7 +13121,7 @@ _source line 1194 · 2026-05-22T09:09:39.046142+00:00_
 
 ### Tool call
 
-_source line 1195 · 2026-05-22T09:09:39.046550+00:00_
+_source line 1133 · 2026-05-22T09:09:39.046550+00:00_
 
 called Read
 
@@ -15187,7 +13155,7 @@ called Read
 
 ### Tool result
 
-_source line 1196 · 2026-05-22T09:09:39.548078+00:00_
+_source line 1134 · 2026-05-22T09:09:39.548078+00:00_
 
 1	\section{Conclusion}
 2	
@@ -15212,7 +13180,7 @@ _source line 1196 · 2026-05-22T09:09:39.548078+00:00_
 
 ### Tool call
 
-_source line 1197 · 2026-05-22T09:09:39.548584+00:00_
+_source line 1135 · 2026-05-22T09:09:39.548584+00:00_
 
 called Read
 
@@ -15246,7 +13214,7 @@ called Read
 
 ### Tool result
 
-_source line 1198 · 2026-05-22T09:09:39.599067+00:00_
+_source line 1136 · 2026-05-22T09:09:39.599067+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families (spread 2.2\,pp), revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode diagnostic pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$); environments with smaller effects may require larger samples.
@@ -15271,7 +13239,7 @@ _source line 1198 · 2026-05-22T09:09:39.599067+00:00_
 
 ### Tool call
 
-_source line 1199 · 2026-05-22T09:09:39.900250+00:00_
+_source line 1137 · 2026-05-22T09:09:39.900250+00:00_
 
 called Read
 
@@ -15305,7 +13273,7 @@ called Read
 
 ### Tool result
 
-_source line 1200 · 2026-05-22T09:09:39.951047+00:00_
+_source line 1138 · 2026-05-22T09:09:39.951047+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -15335,7 +13303,7 @@ _source line 1200 · 2026-05-22T09:09:39.951047+00:00_
 
 ### Tool call
 
-_source line 1201 · 2026-05-22T09:09:47.628270+00:00_
+_source line 1139 · 2026-05-22T09:09:47.628270+00:00_
 
 called Grep
 
@@ -15377,7 +13345,7 @@ called Grep
 
 ### Tool result
 
-_source line 1202 · 2026-05-22T09:09:47.679011+00:00_
+_source line 1140 · 2026-05-22T09:09:47.679011+00:00_
 
 37:\section*{Limitations}
 38-
@@ -15401,7 +13369,7 @@ _source line 1202 · 2026-05-22T09:09:47.679011+00:00_
 
 ### Tool call
 
-_source line 1203 · 2026-05-22T09:09:51.346645+00:00_
+_source line 1141 · 2026-05-22T09:09:51.346645+00:00_
 
 called Read
 
@@ -15439,7 +13407,7 @@ called Read
 
 ### Tool result
 
-_source line 1204 · 2026-05-22T09:09:51.397323+00:00_
+_source line 1142 · 2026-05-22T09:09:51.397323+00:00_
 
 37	\section*{Limitations}
 38	
@@ -15468,7 +13436,7 @@ _source line 1204 · 2026-05-22T09:09:51.397323+00:00_
 
 ### Tool call
 
-_source line 1205 · 2026-05-22T09:11:29.370171+00:00_
+_source line 1143 · 2026-05-22T09:11:29.370171+00:00_
 
 called Grep
 
@@ -15508,7 +13476,7 @@ called Grep
 
 ### Tool result
 
-_source line 1206 · 2026-05-22T09:11:29.370667+00:00_
+_source line 1144 · 2026-05-22T09:11:29.370667+00:00_
 
 15:[Omitted long matching line]
 
@@ -15530,7 +13498,7 @@ _source line 1206 · 2026-05-22T09:11:29.370667+00:00_
 
 ### Tool call
 
-_source line 1207 · 2026-05-22T09:11:39.902048+00:00_
+_source line 1145 · 2026-05-22T09:11:39.902048+00:00_
 
 called Edit
 
@@ -15570,7 +13538,7 @@ called Edit
 
 ### Tool result
 
-_source line 1208 · 2026-05-22T09:11:40.404594+00:00_
+_source line 1146 · 2026-05-22T09:11:40.404594+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
 
@@ -15592,7 +13560,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1209 · 2026-05-22T09:11:41.910813+00:00_
+_source line 1147 · 2026-05-22T09:11:41.910813+00:00_
 
 called Edit
 
@@ -15632,7 +13600,7 @@ called Edit
 
 ### Tool result
 
-_source line 1210 · 2026-05-22T09:11:41.961624+00:00_
+_source line 1148 · 2026-05-22T09:11:41.961624+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -15654,7 +13622,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1211 · 2026-05-22T09:11:46.732233+00:00_
+_source line 1149 · 2026-05-22T09:11:46.732233+00:00_
 
 called Bash
 
@@ -15692,7 +13660,7 @@ called Bash
 
 ### Tool result
 
-_source line 1212 · 2026-05-22T09:11:49.996628+00:00_
+_source line 1150 · 2026-05-22T09:11:49.996628+00:00_
 
 Output written on main.pdf (24 pages, 596961 bytes).
 [3]) (./experiments.tex
@@ -15725,7 +13693,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1213 · 2026-05-22T09:12:12.886954+00:00_
+_source line 1151 · 2026-05-22T09:12:12.886954+00:00_
 
 called Edit
 
@@ -15765,7 +13733,7 @@ called Edit
 
 ### Tool result
 
-_source line 1214 · 2026-05-22T09:12:13.339265+00:00_
+_source line 1152 · 2026-05-22T09:12:13.339265+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex has been updated successfully.
 
@@ -15787,7 +13755,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1215 · 2026-05-22T09:12:13.741203+00:00_
+_source line 1153 · 2026-05-22T09:12:13.741203+00:00_
 
 called Edit
 
@@ -15827,7 +13795,7 @@ called Edit
 
 ### Tool result
 
-_source line 1216 · 2026-05-22T09:12:13.791863+00:00_
+_source line 1154 · 2026-05-22T09:12:13.791863+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex has been updated successfully.
 
@@ -15849,7 +13817,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1217 · 2026-05-22T09:12:17.914572+00:00_
+_source line 1155 · 2026-05-22T09:12:17.914572+00:00_
 
 called Bash
 
@@ -15887,7 +13855,7 @@ called Bash
 
 ### Tool result
 
-_source line 1218 · 2026-05-22T09:12:21.027250+00:00_
+_source line 1156 · 2026-05-22T09:12:21.027250+00:00_
 
 Output written on main.pdf (24 pages, 597351 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -15918,7 +13886,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1219 · 2026-05-22T09:13:06.191536+00:00_
+_source line 1157 · 2026-05-22T09:13:06.191536+00:00_
 
 called Edit
 
@@ -15958,7 +13926,7 @@ called Edit
 
 ### Tool result
 
-_source line 1220 · 2026-05-22T09:13:06.593557+00:00_
+_source line 1158 · 2026-05-22T09:13:06.593557+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -15980,7 +13948,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1221 · 2026-05-22T09:13:07.548013+00:00_
+_source line 1159 · 2026-05-22T09:13:07.548013+00:00_
 
 called Edit
 
@@ -16020,7 +13988,7 @@ called Edit
 
 ### Tool result
 
-_source line 1222 · 2026-05-22T09:13:08.000178+00:00_
+_source line 1160 · 2026-05-22T09:13:08.000178+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
 
@@ -16042,7 +14010,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1223 · 2026-05-22T09:13:08.954315+00:00_
+_source line 1161 · 2026-05-22T09:13:08.954315+00:00_
 
 called Edit
 
@@ -16082,7 +14050,7 @@ called Edit
 
 ### Tool result
 
-_source line 1224 · 2026-05-22T09:13:09.005078+00:00_
+_source line 1162 · 2026-05-22T09:13:09.005078+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
 
@@ -16104,7 +14072,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1225 · 2026-05-22T09:13:14.723200+00:00_
+_source line 1163 · 2026-05-22T09:13:14.723200+00:00_
 
 called Bash
 
@@ -16142,7 +14110,7 @@ called Bash
 
 ### Tool result
 
-_source line 1226 · 2026-05-22T09:13:18.052259+00:00_
+_source line 1164 · 2026-05-22T09:13:18.052259+00:00_
 
 Output written on main.pdf (24 pages, 597429 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -16173,7 +14141,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1227 · 2026-05-22T09:13:40.339360+00:00_
+_source line 1165 · 2026-05-22T09:13:40.339360+00:00_
 
 called Edit
 
@@ -16213,7 +14181,7 @@ called Edit
 
 ### Tool result
 
-_source line 1228 · 2026-05-22T09:13:40.741897+00:00_
+_source line 1166 · 2026-05-22T09:13:40.741897+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
 
@@ -16235,7 +14203,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1229 · 2026-05-22T09:13:42.298230+00:00_
+_source line 1167 · 2026-05-22T09:13:42.298230+00:00_
 
 called Edit
 
@@ -16275,7 +14243,7 @@ called Edit
 
 ### Tool result
 
-_source line 1230 · 2026-05-22T09:13:42.750527+00:00_
+_source line 1168 · 2026-05-22T09:13:42.750527+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
 
@@ -16297,7 +14265,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1231 · 2026-05-22T09:13:43.955561+00:00_
+_source line 1169 · 2026-05-22T09:13:43.955561+00:00_
 
 called Edit
 
@@ -16337,7 +14305,7 @@ called Edit
 
 ### Tool result
 
-_source line 1232 · 2026-05-22T09:13:44.006903+00:00_
+_source line 1170 · 2026-05-22T09:13:44.006903+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
 
@@ -16359,7 +14327,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1233 · 2026-05-22T09:13:47.922059+00:00_
+_source line 1171 · 2026-05-22T09:13:47.922059+00:00_
 
 called Bash
 
@@ -16397,7 +14365,7 @@ called Bash
 
 ### Tool result
 
-_source line 1234 · 2026-05-22T09:13:50.983356+00:00_
+_source line 1172 · 2026-05-22T09:13:50.983356+00:00_
 
 Output written on main.pdf (24 pages, 597889 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -16428,7 +14396,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1235 · 2026-05-22T09:14:49.513828+00:00_
+_source line 1173 · 2026-05-22T09:14:49.513828+00:00_
 
 called Read
 
@@ -16466,7 +14434,7 @@ called Read
 
 ### Tool result
 
-_source line 1236 · 2026-05-22T09:14:49.514383+00:00_
+_source line 1174 · 2026-05-22T09:14:49.514383+00:00_
 
 408	  pages={1--39},
 409	  year={2022}
@@ -16497,7 +14465,7 @@ _source line 1236 · 2026-05-22T09:14:49.514383+00:00_
 
 ### Tool call
 
-_source line 1237 · 2026-05-22T09:14:53.329133+00:00_
+_source line 1175 · 2026-05-22T09:14:53.329133+00:00_
 
 called Read
 
@@ -16535,7 +14503,7 @@ called Read
 
 ### Tool result
 
-_source line 1238 · 2026-05-22T09:14:53.429937+00:00_
+_source line 1176 · 2026-05-22T09:14:53.429937+00:00_
 
 415	  booktitle={International Conference on Learning Representations (ICLR)},
 416	  year={2021}
@@ -16571,7 +14539,7 @@ _source line 1238 · 2026-05-22T09:14:53.429937+00:00_
 
 ### Tool call
 
-_source line 1239 · 2026-05-22T09:15:04.073184+00:00_
+_source line 1177 · 2026-05-22T09:15:04.073184+00:00_
 
 called Edit
 
@@ -16611,7 +14579,7 @@ called Edit
 
 ### Tool result
 
-_source line 1240 · 2026-05-22T09:15:04.073904+00:00_
+_source line 1178 · 2026-05-22T09:15:04.073904+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib has been updated successfully.
 
@@ -16633,7 +14601,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1241 · 2026-05-22T09:15:09.346382+00:00_
+_source line 1179 · 2026-05-22T09:15:09.346382+00:00_
 
 called Edit
 
@@ -16673,7 +14641,7 @@ called Edit
 
 ### Tool result
 
-_source line 1242 · 2026-05-22T09:15:09.842828+00:00_
+_source line 1180 · 2026-05-22T09:15:09.842828+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
 
@@ -16695,7 +14663,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1243 · 2026-05-22T09:15:09.843223+00:00_
+_source line 1181 · 2026-05-22T09:15:09.843223+00:00_
 
 called Read
 
@@ -16733,7 +14701,7 @@ called Read
 
 ### Tool result
 
-_source line 1244 · 2026-05-22T09:15:09.893688+00:00_
+_source line 1182 · 2026-05-22T09:15:09.893688+00:00_
 
 9	\paragraph{Adaptive Computation and Routing.}
 10	Adaptive routing traces back to learned halting policies \citep{graves2016act}. Mixture-of-Recursions \citep{mixture-of-recursions-2025} learns token-level recursion depths in the LLM era; concurrent work further diversifies routing granularity: CogRouter \citep{cogrouter-2026} adapts per-step depth, ARES \citep{ares-2026} selects effort levels, and MTRouter \citep{mtrouter-2026} addresses multi-turn settings.
@@ -16758,7 +14726,7 @@ _source line 1244 · 2026-05-22T09:15:09.893688+00:00_
 
 ### Tool call
 
-_source line 1245 · 2026-05-22T09:15:14.109868+00:00_
+_source line 1183 · 2026-05-22T09:15:14.109868+00:00_
 
 called Edit
 
@@ -16798,7 +14766,7 @@ called Edit
 
 ### Tool result
 
-_source line 1246 · 2026-05-22T09:15:14.461656+00:00_
+_source line 1184 · 2026-05-22T09:15:14.461656+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -16820,7 +14788,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1247 · 2026-05-22T09:15:15.415883+00:00_
+_source line 1185 · 2026-05-22T09:15:15.415883+00:00_
 
 called Edit
 
@@ -16860,7 +14828,7 @@ called Edit
 
 ### Tool result
 
-_source line 1248 · 2026-05-22T09:15:15.868177+00:00_
+_source line 1186 · 2026-05-22T09:15:15.868177+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -16882,7 +14850,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1249 · 2026-05-22T09:15:16.571533+00:00_
+_source line 1187 · 2026-05-22T09:15:16.571533+00:00_
 
 called Edit
 
@@ -16922,7 +14890,7 @@ called Edit
 
 ### Tool result
 
-_source line 1250 · 2026-05-22T09:15:16.622176+00:00_
+_source line 1188 · 2026-05-22T09:15:16.622176+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -16944,7 +14912,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1251 · 2026-05-22T09:15:22.366331+00:00_
+_source line 1189 · 2026-05-22T09:15:22.366331+00:00_
 
 called Bash
 
@@ -16982,7 +14950,7 @@ called Bash
 
 ### Tool result
 
-_source line 1252 · 2026-05-22T09:15:26.932262+00:00_
+_source line 1190 · 2026-05-22T09:15:26.932262+00:00_
 
 Output written on main.pdf (24 pages, 599386 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -17013,7 +14981,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1253 · 2026-05-22T09:15:59.242683+00:00_
+_source line 1191 · 2026-05-22T09:15:59.242683+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -17049,7 +15017,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1254 · 2026-05-22T09:16:03.108361+00:00_
+_source line 1192 · 2026-05-22T09:16:03.108361+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -17071,7 +15039,7 @@ _source line 1254 · 2026-05-22T09:16:03.108361+00:00_
 
 ### Assistant
 
-_source line 1255 · 2026-05-22T09:16:07.013820+00:00_
+_source line 1193 · 2026-05-22T09:16:07.013820+00:00_
 
 **超页了。** Step 5 (P3) 的 W7 + M4/M5 添加后 Conclusion 被推到 page 9。
 
@@ -17098,7 +15066,7 @@ _source line 1255 · 2026-05-22T09:16:07.013820+00:00_
 
 ### User
 
-_source line 1256 · 2026-05-22T09:16:17.342376+00:00_
+_source line 1194 · 2026-05-22T09:16:17.342376+00:00_
 
 [Director 指令] **Step 5 压缩方案：W7 压到 1 句**
 
@@ -17126,7 +15094,7 @@ M4/M5 引用扩展全部保留。
 
 ### Tool call
 
-_source line 1257 · 2026-05-22T09:16:24.963945+00:00_
+_source line 1195 · 2026-05-22T09:16:24.963945+00:00_
 
 called Edit
 
@@ -17166,7 +15134,7 @@ called Edit
 
 ### Tool result
 
-_source line 1258 · 2026-05-22T09:16:24.964639+00:00_
+_source line 1196 · 2026-05-22T09:16:24.964639+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
 
@@ -17188,7 +15156,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1259 · 2026-05-22T09:16:29.282227+00:00_
+_source line 1197 · 2026-05-22T09:16:29.282227+00:00_
 
 called Bash
 
@@ -17226,7 +15194,7 @@ called Bash
 
 ### Tool result
 
-_source line 1260 · 2026-05-22T09:16:34.054171+00:00_
+_source line 1198 · 2026-05-22T09:16:34.054171+00:00_
 
 Output written on main.pdf (24 pages, 598855 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -17257,7 +15225,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1261 · 2026-05-22T09:16:41.753445+00:00_
+_source line 1199 · 2026-05-22T09:16:41.753445+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -17297,7 +15265,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1262 · 2026-05-22T09:16:42.155440+00:00_
+_source line 1200 · 2026-05-22T09:16:42.155440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 574.0}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 548.4}], \"total_pages\": 24, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17319,7 +15287,7 @@ _source line 1262 · 2026-05-22T09:16:42.155440+00:00_
 
 ### Tool call
 
-_source line 1263 · 2026-05-22T09:16:46.533359+00:00_
+_source line 1201 · 2026-05-22T09:16:46.533359+00:00_
 
 called Read
 
@@ -17353,7 +15321,7 @@ called Read
 
 ### Tool result
 
-_source line 1264 · 2026-05-22T09:16:47.136592+00:00_
+_source line 1202 · 2026-05-22T09:16:47.136592+00:00_
 
 
 
@@ -17375,7 +15343,7 @@ _source line 1264 · 2026-05-22T09:16:47.136592+00:00_
 
 ### Tool call
 
-_source line 1265 · 2026-05-22T09:16:56.170951+00:00_
+_source line 1203 · 2026-05-22T09:16:56.170951+00:00_
 
 called Read
 
@@ -17409,7 +15377,7 @@ called Read
 
 ### Tool result
 
-_source line 1266 · 2026-05-22T09:16:56.776127+00:00_
+_source line 1204 · 2026-05-22T09:16:56.776127+00:00_
 
 
 
@@ -17431,7 +15399,7 @@ _source line 1266 · 2026-05-22T09:16:56.776127+00:00_
 
 ### Tool call
 
-_source line 1267 · 2026-05-22T09:17:47.549028+00:00_
+_source line 1205 · 2026-05-22T09:17:47.549028+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -17465,7 +15433,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1268 · 2026-05-22T09:17:47.599738+00:00_
+_source line 1206 · 2026-05-22T09:17:47.599738+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17487,7 +15455,7 @@ _source line 1268 · 2026-05-22T09:17:47.599738+00:00_
 
 ### Tool call
 
-_source line 1269 · 2026-05-22T09:18:00.600031+00:00_
+_source line 1207 · 2026-05-22T09:18:00.600031+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -17523,7 +15491,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1270 · 2026-05-22T09:18:04.366207+00:00_
+_source line 1208 · 2026-05-22T09:18:04.366207+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -17545,7 +15513,7 @@ _source line 1270 · 2026-05-22T09:18:04.366207+00:00_
 
 ### Assistant
 
-_source line 1271 · 2026-05-22T09:18:07.677344+00:00_
+_source line 1209 · 2026-05-22T09:18:07.677344+00:00_
 
 W7 压缩后仍超页——Conclusion 仍在 page 9。差约 1-2 行。
 
@@ -17572,7 +15540,7 @@ W7 压缩后仍超页——Conclusion 仍在 page 9。差约 1-2 行。
 
 ### User
 
-_source line 1272 · 2026-05-22T09:18:19.339287+00:00_
+_source line 1210 · 2026-05-22T09:18:19.339287+00:00_
 
 [Director 指令] **Step 5 再压缩：移除 Geifman + CALM + MoD 引用扩展**
 
@@ -17599,7 +15567,7 @@ _source line 1272 · 2026-05-22T09:18:19.339287+00:00_
 
 ### Tool call
 
-_source line 1273 · 2026-05-22T09:18:27.279232+00:00_
+_source line 1211 · 2026-05-22T09:18:27.279232+00:00_
 
 called Edit
 
@@ -17639,7 +15607,7 @@ called Edit
 
 ### Tool result
 
-_source line 1274 · 2026-05-22T09:18:27.781573+00:00_
+_source line 1212 · 2026-05-22T09:18:27.781573+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -17661,7 +15629,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1275 · 2026-05-22T09:18:28.936246+00:00_
+_source line 1213 · 2026-05-22T09:18:28.936246+00:00_
 
 called Edit
 
@@ -17701,7 +15669,7 @@ called Edit
 
 ### Tool result
 
-_source line 1276 · 2026-05-22T09:18:28.987298+00:00_
+_source line 1214 · 2026-05-22T09:18:28.987298+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
 
@@ -17723,7 +15691,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1277 · 2026-05-22T09:18:33.657408+00:00_
+_source line 1215 · 2026-05-22T09:18:33.657408+00:00_
 
 called Grep
 
@@ -17763,7 +15731,7 @@ called Grep
 
 ### Tool result
 
-_source line 1278 · 2026-05-22T09:18:33.758394+00:00_
+_source line 1216 · 2026-05-22T09:18:33.758394+00:00_
 
 No matches found
 
@@ -17787,7 +15755,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 1279 · 2026-05-22T09:18:37.523983+00:00_
+_source line 1217 · 2026-05-22T09:18:37.523983+00:00_
 
 called Read
 
@@ -17825,7 +15793,7 @@ called Read
 
 ### Tool result
 
-_source line 1280 · 2026-05-22T09:18:37.625052+00:00_
+_source line 1218 · 2026-05-22T09:18:37.625052+00:00_
 
 418	
 419	@inproceedings{calm-2022,
@@ -17876,7 +15844,7 @@ _source line 1280 · 2026-05-22T09:18:37.625052+00:00_
 
 ### Tool call
 
-_source line 1281 · 2026-05-22T09:18:43.514032+00:00_
+_source line 1219 · 2026-05-22T09:18:43.514032+00:00_
 
 called Edit
 
@@ -17916,7 +15884,7 @@ called Edit
 
 ### Tool result
 
-_source line 1282 · 2026-05-22T09:18:43.514683+00:00_
+_source line 1220 · 2026-05-22T09:18:43.514683+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib has been updated successfully.
 
@@ -17938,7 +15906,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1283 · 2026-05-22T09:18:44.720059+00:00_
+_source line 1221 · 2026-05-22T09:18:44.720059+00:00_
 
 called Edit
 
@@ -17978,7 +15946,7 @@ called Edit
 
 ### Tool result
 
-_source line 1284 · 2026-05-22T09:18:44.771149+00:00_
+_source line 1222 · 2026-05-22T09:18:44.771149+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib has been updated successfully.
 
@@ -18000,7 +15968,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1285 · 2026-05-22T09:18:50.343234+00:00_
+_source line 1223 · 2026-05-22T09:18:50.343234+00:00_
 
 called Bash
 
@@ -18038,7 +16006,7 @@ called Bash
 
 ### Tool result
 
-_source line 1286 · 2026-05-22T09:18:55.062244+00:00_
+_source line 1224 · 2026-05-22T09:18:55.062244+00:00_
 
 Output written on main.pdf (24 pages, 598104 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -18069,7 +16037,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1287 · 2026-05-22T09:19:03.395538+00:00_
+_source line 1225 · 2026-05-22T09:19:03.395538+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -18109,7 +16077,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1288 · 2026-05-22T09:19:03.697208+00:00_
+_source line 1226 · 2026-05-22T09:19:03.697208+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 580.2}], \"total_pages\": 24, \"rendered_pages\": 1, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18131,7 +16099,7 @@ _source line 1288 · 2026-05-22T09:19:03.697208+00:00_
 
 ### Tool call
 
-_source line 1289 · 2026-05-22T09:19:07.565215+00:00_
+_source line 1227 · 2026-05-22T09:19:07.565215+00:00_
 
 called Read
 
@@ -18165,7 +16133,7 @@ called Read
 
 ### Tool result
 
-_source line 1290 · 2026-05-22T09:19:08.221418+00:00_
+_source line 1228 · 2026-05-22T09:19:08.221418+00:00_
 
 
 
@@ -18187,7 +16155,7 @@ _source line 1290 · 2026-05-22T09:19:08.221418+00:00_
 
 ### Tool call
 
-_source line 1291 · 2026-05-22T09:19:24.321373+00:00_
+_source line 1229 · 2026-05-22T09:19:24.321373+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -18221,7 +16189,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1292 · 2026-05-22T09:19:24.423188+00:00_
+_source line 1230 · 2026-05-22T09:19:24.423188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18243,7 +16211,7 @@ _source line 1292 · 2026-05-22T09:19:24.423188+00:00_
 
 ### Tool call
 
-_source line 1293 · 2026-05-22T09:19:28.388414+00:00_
+_source line 1231 · 2026-05-22T09:19:28.388414+00:00_
 
 called Bash
 
@@ -18279,7 +16247,7 @@ called Bash
 
 ### Tool result
 
-_source line 1294 · 2026-05-22T09:19:28.489634+00:00_
+_source line 1232 · 2026-05-22T09:19:28.489634+00:00_
 
 0
 
@@ -18301,7 +16269,7 @@ _source line 1294 · 2026-05-22T09:19:28.489634+00:00_
 
 ### Tool call
 
-_source line 1295 · 2026-05-22T09:19:32.103291+00:00_
+_source line 1233 · 2026-05-22T09:19:32.103291+00:00_
 
 called Bash
 
@@ -18337,7 +16305,7 @@ called Bash
 
 ### Tool result
 
-_source line 1296 · 2026-05-22T09:19:32.153958+00:00_
+_source line 1234 · 2026-05-22T09:19:32.153958+00:00_
 
 58
 
@@ -18359,7 +16327,7 @@ _source line 1296 · 2026-05-22T09:19:32.153958+00:00_
 
 ### Tool call
 
-_source line 1297 · 2026-05-22T09:19:52.110123+00:00_
+_source line 1235 · 2026-05-22T09:19:52.110123+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18395,7 +16363,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1298 · 2026-05-22T09:19:55.924756+00:00_
+_source line 1236 · 2026-05-22T09:19:55.924756+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -18417,7 +16385,7 @@ _source line 1298 · 2026-05-22T09:19:55.924756+00:00_
 
 ### Assistant
 
-_source line 1299 · 2026-05-22T09:19:59.022873+00:00_
+_source line 1237 · 2026-05-22T09:19:59.022873+00:00_
 
 Conclusion 回到 page 8！验证 margin。
 
@@ -18444,7 +16412,7 @@ Conclusion 回到 page 8！验证 margin。
 
 ### User
 
-_source line 1300 · 2026-05-22T10:46:18.492079+00:00_
+_source line 1238 · 2026-05-22T10:46:18.492079+00:00_
 
 [Director 指令] **写作微调 2 项（低风险，30 分钟内完成）**
 
@@ -18490,7 +16458,7 @@ Reviewer 评估后认为有 2 处低成本改进值得做。请按以下修改�
 
 ### Tool call
 
-_source line 1301 · 2026-05-22T10:46:32.449192+00:00_
+_source line 1239 · 2026-05-22T10:46:32.449192+00:00_
 
 called Read
 
@@ -18528,7 +16496,7 @@ called Read
 
 ### Tool result
 
-_source line 1302 · 2026-05-22T10:46:32.499939+00:00_
+_source line 1240 · 2026-05-22T10:46:32.499939+00:00_
 
 6	Existing routing approaches frame this as a capability or efficiency decision: Toolformer \citep{toolformer-2023} inserts API calls by perplexity reduction; ART \citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \citep{cogrouter-2026,ares-2026}, model tiers \citep{mtrouter-2026}, or episode-level model selection under sparse rewards \citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. These approaches, which operate in non-catastrophic settings, share the assumption that routing signal stems from diverse sources and a learned router can exploit it---an assumption that remains untested: no prior work has decomposed what drives routing decisions in interactive environments.
 7	
@@ -18552,7 +16520,7 @@ _source line 1302 · 2026-05-22T10:46:32.499939+00:00_
 
 ### Tool call
 
-_source line 1303 · 2026-05-22T10:46:36.969332+00:00_
+_source line 1241 · 2026-05-22T10:46:36.969332+00:00_
 
 called Edit
 
@@ -18592,7 +16560,7 @@ called Edit
 
 ### Tool result
 
-_source line 1304 · 2026-05-22T10:46:37.371392+00:00_
+_source line 1242 · 2026-05-22T10:46:37.371392+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
 
@@ -18614,7 +16582,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1305 · 2026-05-22T10:46:38.225022+00:00_
+_source line 1243 · 2026-05-22T10:46:38.225022+00:00_
 
 called Edit
 
@@ -18654,7 +16622,7 @@ called Edit
 
 ### Tool result
 
-_source line 1306 · 2026-05-22T10:46:38.275736+00:00_
+_source line 1244 · 2026-05-22T10:46:38.275736+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex has been updated successfully.
 
@@ -18676,7 +16644,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1307 · 2026-05-22T10:46:43.530819+00:00_
+_source line 1245 · 2026-05-22T10:46:43.530819+00:00_
 
 called Bash
 
@@ -18714,7 +16682,7 @@ called Bash
 
 ### Tool result
 
-_source line 1308 · 2026-05-22T10:46:46.743333+00:00_
+_source line 1246 · 2026-05-22T10:46:46.743333+00:00_
 
 Output written on main.pdf (24 pages, 598445 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -18746,7 +16714,7 @@ Output written on main.pdf (24 pages, 598445 bytes).
 
 ### Tool call
 
-_source line 1309 · 2026-05-22T10:47:01.400780+00:00_
+_source line 1247 · 2026-05-22T10:47:01.400780+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18782,7 +16750,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1310 · 2026-05-22T10:47:05.317366+00:00_
+_source line 1248 · 2026-05-22T10:47:05.317366+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -18804,7 +16772,7 @@ _source line 1310 · 2026-05-22T10:47:05.317366+00:00_
 
 ### Assistant
 
-_source line 1311 · 2026-05-22T10:47:08.152672+00:00_
+_source line 1249 · 2026-05-22T10:47:08.152672+00:00_
 
 Introduction 桥接句导致超页——Conclusion 被推到 page 9。Conclusion 替换句长度相近，问题出在 A 增加的 ~1 行。
 
@@ -18831,7 +16799,7 @@ Introduction 桥接句导致超页——Conclusion 被推到 page 9。Conclusion
 
 ### User
 
-_source line 1312 · 2026-05-22T10:47:26.511177+00:00_
+_source line 1250 · 2026-05-22T10:47:26.511177+00:00_
 
 [Director 指令] 撤回 A（Introduction 桥接句），恢复到只有 B（Conclusion future work）的状态。编译验证 8 页 + 0 errors 后汇报。
 
@@ -18852,7 +16820,7 @@ _source line 1312 · 2026-05-22T10:47:26.511177+00:00_
 
 ### Tool call
 
-_source line 1313 · 2026-05-22T10:47:33.391363+00:00_
+_source line 1251 · 2026-05-22T10:47:33.391363+00:00_
 
 called Edit
 
@@ -18892,7 +16860,7 @@ called Edit
 
 ### Tool result
 
-_source line 1314 · 2026-05-22T10:47:33.492428+00:00_
+_source line 1252 · 2026-05-22T10:47:33.492428+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
 
@@ -18914,7 +16882,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1315 · 2026-05-22T10:47:37.609369+00:00_
+_source line 1253 · 2026-05-22T10:47:37.609369+00:00_
 
 called Bash
 
@@ -18952,7 +16920,7 @@ called Bash
 
 ### Tool result
 
-_source line 1316 · 2026-05-22T10:47:40.823874+00:00_
+_source line 1254 · 2026-05-22T10:47:40.823874+00:00_
 
 Output written on main.pdf (24 pages, 598239 bytes).
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
@@ -18984,7 +16952,7 @@ Output written on main.pdf (24 pages, 598239 bytes).
 
 ### Tool call
 
-_source line 1317 · 2026-05-22T10:47:45.364349+00:00_
+_source line 1255 · 2026-05-22T10:47:45.364349+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -19020,7 +16988,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1318 · 2026-05-22T10:47:49.080230+00:00_
+_source line 1256 · 2026-05-22T10:47:49.080230+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -19042,7 +17010,7 @@ _source line 1318 · 2026-05-22T10:47:49.080230+00:00_
 
 ### Assistant
 
-_source line 1319 · 2026-05-22T10:47:51.620438+00:00_
+_source line 1257 · 2026-05-22T10:47:51.620438+00:00_
 
 Conclusion 在 page 8，0 errors，24 页。
 
@@ -19069,7 +17037,7 @@ Conclusion 在 page 8，0 errors，24 页。
 
 ### User
 
-_source line 1320 · 2026-05-22T17:23:58.326338+00:00_
+_source line 1258 · 2026-05-22T17:23:58.326338+00:00_
 
 [Director 指令] **最终 proofread + orphan bib 清理**
 
@@ -19103,7 +17071,7 @@ _source line 1320 · 2026-05-22T17:23:58.326338+00:00_
 
 ### Tool call
 
-_source line 1321 · 2026-05-22T17:24:09.640130+00:00_
+_source line 1259 · 2026-05-22T17:24:09.640130+00:00_
 
 called Grep
 
@@ -19143,7 +17111,7 @@ called Grep
 
 ### Tool result
 
-_source line 1322 · 2026-05-22T17:24:09.991774+00:00_
+_source line 1260 · 2026-05-22T17:24:09.991774+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex:1
 
@@ -19167,7 +17135,7 @@ Found 1 total occurrence across 1 file.
 
 ### Tool call
 
-_source line 1323 · 2026-05-22T17:24:10.644486+00:00_
+_source line 1261 · 2026-05-22T17:24:10.644486+00:00_
 
 called Grep
 
@@ -19209,7 +17177,7 @@ called Grep
 
 ### Tool result
 
-_source line 1324 · 2026-05-22T17:24:10.695426+00:00_
+_source line 1262 · 2026-05-22T17:24:10.695426+00:00_
 
 177:@inproceedings{tot-2023,
 178-  title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models},
@@ -19236,7 +17204,7 @@ _source line 1324 · 2026-05-22T17:24:10.695426+00:00_
 
 ### Tool call
 
-_source line 1325 · 2026-05-22T17:24:15.314574+00:00_
+_source line 1263 · 2026-05-22T17:24:15.314574+00:00_
 
 called Grep
 
@@ -19276,7 +17244,7 @@ called Grep
 
 ### Tool result
 
-_source line 1326 · 2026-05-22T17:24:15.365255+00:00_
+_source line 1264 · 2026-05-22T17:24:15.365255+00:00_
 
 43:[Omitted long matching line]
 
@@ -19298,7 +17266,7 @@ _source line 1326 · 2026-05-22T17:24:15.365255+00:00_
 
 ### Tool call
 
-_source line 1327 · 2026-05-22T17:24:19.454286+00:00_
+_source line 1265 · 2026-05-22T17:24:19.454286+00:00_
 
 called Read
 
@@ -19336,7 +17304,7 @@ called Read
 
 ### Tool result
 
-_source line 1328 · 2026-05-22T17:24:19.467398+00:00_
+_source line 1266 · 2026-05-22T17:24:19.467398+00:00_
 
 42	\paragraph{Methodological constraints.}
 43	Our internal-reasoning baseline uses single-pass ReAct~\citep{react-2023}. Reflexion~\citep{reflexion-2023} reduces death rate from 42.9\% to 31.4\% (\S\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\% pre-event neutral). The issue is granularity mismatch (applying correct-direction labels to uninformative steps), not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.
@@ -19359,7 +17327,7 @@ _source line 1328 · 2026-05-22T17:24:19.467398+00:00_
 
 ### Tool call
 
-_source line 1329 · 2026-05-22T17:24:26.544803+00:00_
+_source line 1267 · 2026-05-22T17:24:26.544803+00:00_
 
 called Read
 
@@ -19393,7 +17361,7 @@ called Read
 
 ### Tool result
 
-_source line 1330 · 2026-05-22T17:24:27.047389+00:00_
+_source line 1268 · 2026-05-22T17:24:27.047389+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families (spread 2.2\,pp), revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode diagnostic pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$); environments with smaller effects may require larger samples.
@@ -19418,7 +17386,7 @@ _source line 1330 · 2026-05-22T17:24:27.047389+00:00_
 
 ### Tool call
 
-_source line 1331 · 2026-05-22T17:24:27.047775+00:00_
+_source line 1269 · 2026-05-22T17:24:27.047775+00:00_
 
 called Read
 
@@ -19452,7 +17420,7 @@ called Read
 
 ### Tool result
 
-_source line 1332 · 2026-05-22T17:24:27.349285+00:00_
+_source line 1270 · 2026-05-22T17:24:27.349285+00:00_
 
 1	\section{Introduction}
 2	
@@ -19482,7 +17450,7 @@ _source line 1332 · 2026-05-22T17:24:27.349285+00:00_
 
 ### Tool call
 
-_source line 1333 · 2026-05-22T17:24:27.349655+00:00_
+_source line 1271 · 2026-05-22T17:24:27.349655+00:00_
 
 called Read
 
@@ -19516,7 +17484,7 @@ called Read
 
 ### Tool result
 
-_source line 1334 · 2026-05-22T17:24:27.550831+00:00_
+_source line 1272 · 2026-05-22T17:24:27.550831+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -19554,7 +17522,7 @@ _source line 1334 · 2026-05-22T17:24:27.550831+00:00_
 
 ### Tool call
 
-_source line 1335 · 2026-05-22T17:26:49.944426+00:00_
+_source line 1273 · 2026-05-22T17:26:49.944426+00:00_
 
 called Read
 
@@ -19588,7 +17556,7 @@ called Read
 
 ### Tool result
 
-_source line 1336 · 2026-05-22T17:26:50.162076+00:00_
+_source line 1274 · 2026-05-22T17:26:50.162076+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -19626,7 +17594,7 @@ _source line 1336 · 2026-05-22T17:26:50.162076+00:00_
 
 ### Tool call
 
-_source line 1337 · 2026-05-22T17:26:50.162609+00:00_
+_source line 1275 · 2026-05-22T17:26:50.162609+00:00_
 
 called Read
 
@@ -19660,7 +17628,7 @@ called Read
 
 ### Tool result
 
-_source line 1338 · 2026-05-22T17:26:50.442471+00:00_
+_source line 1276 · 2026-05-22T17:26:50.442471+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -19722,7 +17690,7 @@ _source line 1338 · 2026-05-22T17:26:50.442471+00:00_
 
 ### Tool call
 
-_source line 1339 · 2026-05-22T17:29:25.862230+00:00_
+_source line 1277 · 2026-05-22T17:29:25.862230+00:00_
 
 called Read
 
@@ -19756,7 +17724,7 @@ called Read
 
 ### Tool call
 
-_source line 1340 · 2026-05-22T17:29:25.862756+00:00_
+_source line 1278 · 2026-05-22T17:29:25.862756+00:00_
 
 called Read
 
@@ -19790,7 +17758,7 @@ called Read
 
 ### Tool result
 
-_source line 1341 · 2026-05-22T17:29:25.863301+00:00_
+_source line 1279 · 2026-05-22T17:29:25.863301+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -19828,7 +17796,7 @@ _source line 1341 · 2026-05-22T17:29:25.863301+00:00_
 
 ### Tool result
 
-_source line 1342 · 2026-05-22T17:29:25.863680+00:00_
+_source line 1280 · 2026-05-22T17:29:25.863680+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families (spread 2.2\,pp), revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode diagnostic pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$); environments with smaller effects may require larger samples.
@@ -19853,7 +17821,7 @@ _source line 1342 · 2026-05-22T17:29:25.863680+00:00_
 
 ### Tool call
 
-_source line 1343 · 2026-05-22T17:31:28.523546+00:00_
+_source line 1281 · 2026-05-22T17:31:28.523546+00:00_
 
 called Edit
 
@@ -19893,7 +17861,7 @@ called Edit
 
 ### Tool result
 
-_source line 1344 · 2026-05-22T17:31:28.524340+00:00_
+_source line 1282 · 2026-05-22T17:31:28.524340+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
 
@@ -19915,7 +17883,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1345 · 2026-05-22T17:31:28.725489+00:00_
+_source line 1283 · 2026-05-22T17:31:28.725489+00:00_
 
 called Edit
 
@@ -19955,7 +17923,7 @@ called Edit
 
 ### Tool result
 
-_source line 1346 · 2026-05-22T17:31:28.776768+00:00_
+_source line 1284 · 2026-05-22T17:31:28.776768+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
 
@@ -19977,7 +17945,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modul
 
 ### Tool call
 
-_source line 1347 · 2026-05-22T17:31:33.402262+00:00_
+_source line 1285 · 2026-05-22T17:31:33.402262+00:00_
 
 called Bash
 
@@ -20015,7 +17983,7 @@ called Bash
 
 ### Tool result
 
-_source line 1348 · 2026-05-22T17:31:38.474191+00:00_
+_source line 1286 · 2026-05-22T17:31:38.474191+00:00_
 
 f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
 /type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
@@ -20051,7 +18019,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1349 · 2026-05-22T17:31:42.037028+00:00_
+_source line 1287 · 2026-05-22T17:31:42.037028+00:00_
 
 called Bash
 
@@ -20087,7 +18055,7 @@ called Bash
 
 ### Tool result
 
-_source line 1350 · 2026-05-22T17:31:42.941813+00:00_
+_source line 1288 · 2026-05-22T17:31:42.941813+00:00_
 
  [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
 [5]
@@ -20125,7 +18093,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1351 · 2026-05-22T17:31:42.942345+00:00_
+_source line 1289 · 2026-05-22T17:31:42.942345+00:00_
 
 called Bash
 
@@ -20161,7 +18129,7 @@ called Bash
 
 ### Tool result
 
-_source line 1352 · 2026-05-22T17:31:42.993204+00:00_
+_source line 1290 · 2026-05-22T17:31:42.993204+00:00_
 
 7
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
@@ -20184,7 +18152,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects
 
 ### Tool call
 
-_source line 1353 · 2026-05-22T17:31:49.926689+00:00_
+_source line 1291 · 2026-05-22T17:31:49.926689+00:00_
 
 called ToolSearch
 
@@ -20220,7 +18188,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1354 · 2026-05-22T17:31:49.927129+00:00_
+_source line 1292 · 2026-05-22T17:31:49.927129+00:00_
 
 
 
@@ -20242,7 +18210,7 @@ _source line 1354 · 2026-05-22T17:31:49.927129+00:00_
 
 ### Tool call
 
-_source line 1355 · 2026-05-22T17:32:03.240811+00:00_
+_source line 1293 · 2026-05-22T17:32:03.240811+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -20278,7 +18246,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1356 · 2026-05-22T17:32:07.111138+00:00_
+_source line 1294 · 2026-05-22T17:32:07.111138+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
 
@@ -20300,7 +18268,7 @@ _source line 1356 · 2026-05-22T17:32:07.111138+00:00_
 
 ### Assistant
 
-_source line 1357 · 2026-05-22T17:32:11.730120+00:00_
+_source line 1295 · 2026-05-22T17:32:11.730120+00:00_
 
 已完成最终 proofread：修复了 2 个 bug（experiments.tex WCB p 值 0.002→<0.001，appendix 阈值 20-30→20-50），确认 `tot-2023` 不是 orphan（Limitations 段有引用），全文术语/数字/引用格式/语法无其他问题。编译通过，24 页，Conclusion 在第 8 页。已汇报 Director。
 
@@ -20327,7 +18295,7 @@ _source line 1357 · 2026-05-22T17:32:11.730120+00:00_
 
 ### User
 
-_source line 1358 · 2026-05-22T23:19:52.244760+00:00_
+_source line 1296 · 2026-05-22T23:19:52.244760+00:00_
 
 [Director 指令] R29 审稿修复任务。所有修改在本地 workspace 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/`。修改后必须编译验证正文 ≤8 页。
 
@@ -20435,7 +18403,7 @@ _source line 1358 · 2026-05-22T23:19:52.244760+00:00_
 
 ### Tool call
 
-_source line 1359 · 2026-05-22T23:23:19.539345+00:00_
+_source line 1297 · 2026-05-22T23:23:19.539345+00:00_
 
 called Read
 
@@ -20469,7 +18437,7 @@ called Read
 
 ### Tool result
 
-_source line 1360 · 2026-05-22T23:23:19.941888+00:00_
+_source line 1298 · 2026-05-22T23:23:19.941888+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -20507,7 +18475,7 @@ _source line 1360 · 2026-05-22T23:23:19.941888+00:00_
 
 ### Tool call
 
-_source line 1361 · 2026-05-22T23:23:20.092976+00:00_
+_source line 1299 · 2026-05-22T23:23:20.092976+00:00_
 
 called Read
 
@@ -20541,7 +18509,7 @@ called Read
 
 ### Tool result
 
-_source line 1362 · 2026-05-22T23:23:20.093963+00:00_
+_source line 1300 · 2026-05-22T23:23:20.093963+00:00_
 
 1	@inproceedings{scienceworld-2022,
 2	  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},
@@ -20602,7 +18570,7 @@ _source line 1362 · 2026-05-22T23:23:20.093963+00:00_
 
 ### Tool call
 
-_source line 1363 · 2026-05-22T23:25:15.691554+00:00_
+_source line 1301 · 2026-05-22T23:25:15.691554+00:00_
 
 called Edit
 
@@ -20642,7 +18610,7 @@ called Edit
 
 ### Tool result
 
-_source line 1364 · 2026-05-22T23:25:15.993536+00:00_
+_source line 1302 · 2026-05-22T23:25:15.993536+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -20654,6 +18622,3162 @@ _source line 1364 · 2026-05-22T23:25:15.993536+00:00_
   "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
   "tool": "Edit",
   "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1303 · 2026-05-22T23:25:20.415965+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry, persisting across four interventions, three 7--9B model families, and $10{\\times}$ scaling; a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:router-diagnostic}); (3)~\\textbf{cross-model convergence} across three 7--9B model families (DAF within $88$--$90\\%$; Llama-3.1-8B, Gemma-2-9B-it), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+  "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling, and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "old_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry, persisting across four interventions, three 7--9B model families, and $10{\\times}$ scaling; a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:router-diagnostic}); (3)~\\textbf{cross-model convergence} across three 7--9B model families (DAF within $88$--$90\\%$; Llama-3.1-8B, Gemma-2-9B-it), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+    "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling, and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1304 · 2026-05-22T23:25:20.717748+00:00_
+
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1305 · 2026-05-22T23:25:21.722645+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "78.9\\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families (spread 2.2\\,pp), revealing",
+  "new_string": "78.9\\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "old_string": "78.9\\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families (spread 2.2\\,pp), revealing",
+    "new_string": "78.9\\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1306 · 2026-05-22T23:25:22.627279+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1307 · 2026-05-22T23:25:23.230095+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "A ${\\sim}$50-episode diagnostic pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$); environments with smaller effects may require larger samples.",
+  "new_string": "A ${\\sim}$50-episode pilot suffices for build-vs-buy decisions given large effect sizes ($d = 3.02$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "old_string": "A ${\\sim}$50-episode diagnostic pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$); environments with smaller effects may require larger samples.",
+    "new_string": "A ${\\sim}$50-episode pilot suffices for build-vs-buy decisions given large effect sizes ($d = 3.02$)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1308 · 2026-05-22T23:25:23.280755+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1309 · 2026-05-22T23:25:26.648183+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1310 · 2026-05-22T23:25:26.949815+00:00_
+
+1	\section{Conclusion}
+2	
+3	In ScienceWorld, death avoidance alone accounts for 78.9\% of non-tie routing labels, replicated across three 7--9B model families (spread 2.2\,pp); our episode-level counterfactual framework diagnoses this before any router is built. Cross-environment probes provide preliminary evidence that the diagnostic procedure---though not the specific operationalization of ``deterministic''---transfers across environments with qualitatively different information asymmetries; a ${\sim}$50-episode pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$). Future work should validate death dominance in additional catastrophic-failure environments and investigate whether lightweight death-prediction mechanisms can exploit this task-type-level binary structure without full step-level router training.
+4	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1311 · 2026-05-22T23:25:26.950340+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1312 · 2026-05-22T23:25:27.502920+00:00_
+
+1	\section{Introduction}
+2	
+3	Large language models deployed as interactive agents must repeatedly decide \emph{how} to compute: reason internally, or delegate to an external tool.
+4	In ScienceWorld \citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while deterministic external computation eliminates such errors via exact state transitions. The practical question: \emph{when should an agent route computation externally versus internally?}
+5	
+6	Existing routing approaches frame this as a capability or efficiency decision: Toolformer \citep{toolformer-2023} inserts API calls by perplexity reduction; ART \citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \citep{cogrouter-2026,ares-2026}, model tiers \citep{mtrouter-2026}, or episode-level model selection under sparse rewards \citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. These approaches, which operate in non-catastrophic settings, share the assumption that routing signal stems from diverse sources and a learned router can exploit it---an assumption that remains untested: no prior work has decomposed what drives routing decisions in interactive environments.
+7	
+8	We propose a \emph{diagnostic framework} comprising (i)~episode-level counterfactual labeling under pure strategies (\S\ref{sec:collection}--\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\S\ref{sec:daf}). Applied to ScienceWorld, \textbf{78.9\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding. Under 
+…[truncated 2479 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1313 · 2026-05-22T23:25:27.503436+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1314 · 2026-05-22T23:25:28.005791+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Signal granularity and router failure.}
+5	The router diagnostic (\S\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property (10/11 types carry death risk), but step-level features correlate weakly because death risk depends on multi-step trajectories. Six router variants (0.6B--4B, classification and generative) converge on near-chance step-level accuracy ($56$--$59\%$); this convergent failure is consistent with signal limitation; however, extreme class imbalance (90.5\% deterministic-preferred, only 9 internal-preferred episodes) makes a data-limited explanation equally plausible---distinguishing the two requires ${\sim}$1{,}350 paired episodes to obtain 50 minority-class samples. Cross-task-type transfer yields chance accuracy (49.2\%; Appendix~\ref{app:ablations}). Training on pure-strategy labels but deploying under mixed-strategy routing also introduces a distribution shift~\citep{dagger-2011}; the negative result may partly reflect this train--deploy mismatch. Concurrent routing methods (CogRouter, ARES, MTRouter) optimize step-level signals orthogonal to death avoidance; in death-dominated environments, this task-type-level binary signal is structurally inaccessible to step features.
+6	
+7	\paragraph{Non-triviality and oracle confound.}
+8	While death dominance follows from the penalty structure (\S\ref{sec:daf}), two consequences were not predictable a priori: $10{\times}$ scaling to 72B fails to eliminate it (DAF${}= 92.4\%$), and Reflexion yields DAF${}>100\%$. All four interventions leave ${\geq}12$~pp residual gaps (Appendix~\ref{sec:threshold-routing}); cross-model DR stability ($36$--$43\%$) confirms death vulnerability is a task-environment property. An oracle confound arises: is the signal merely ``use the oracle''? Two observations argue otherwise: (a)~$\Delta_{\text{nd}} = 2.84$ (9.6\% of the total gap)---on non-death episodes, int
+…[truncated 932 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1315 · 2026-05-22T23:25:28.006237+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1316 · 2026-05-22T23:25:28.106972+00:00_
+
+1	\section{Related Work}
+2	
+3	\paragraph{Tool Use and External Computation in LLMs.}
+4	A growing body of work augments language models with external tools \citep{tool-learning-survey-2024}, spanning several functional categories.
+5	Self-supervised methods learn tool invocation from loss signals \citep{toolformer-2023,toolace-2025}, token-level methods embed tools in the vocabulary \citep{toolkengpt-2023}, task-level decomposition routes subtasks to specialized modules \citep{art-2023,chameleon-2023}, and RL-based methods learn routing from reward \citep{retool-2025}.
+6	All focus on \emph{learning to use tools}; we ask a prior question: \emph{what signal drives the routing decision?}
+7	Concurrent work examines \emph{when} to invoke tools: tool-call decisions correlate with uncertainty~\citep{tool-overuse-illusion-2026}, are encoded in hidden states~\citep{when2tool-2026}, impose a ``tool-use tax''~\citep{tool-use-tax-2026}, or follow necessity-utility-affordability logic~\citep{to-call-or-not-2026}. Our decomposition yields a concrete answer: 78.9\% of non-tie routing labels trace to catastrophic-failure prevention.
+8	
+9	\paragraph{Adaptive Computation and Routing.}
+10	Adaptive routing traces back to learned halting policies \citep{graves2016act}. Mixture-of-Recursions \citep{mixture-of-recursions-2025} learns token-level recursion depths in the LLM era; concurrent work further diversifies routing granularity: CogRouter \citep{cogrouter-2026} adapts per-step depth, ARES \citep{ares-2026} selects effort levels, and MTRouter \citep{mtrouter-2026} addresses multi-turn settings.
+11	RouteLLM \citep{routellm-2024} learns routers from preference data to select between strong and weak models.
+12	Concurrently, \citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours; they optimize \emph{which} model to invoke, whereas we diagnose \emph{what} drives the routing decision.
+13	Mixture-of-Experts architecture
+…[truncated 2335 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1317 · 2026-05-22T23:25:43.259023+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+  "old_string": "In ScienceWorld, death avoidance alone accounts for 78.9\\% of non-tie routing labels, replicated across three 7--9B model families (spread 2.2\\,pp); our episode-level counterfactual framework diagnoses this before any router is built. Cross-environment probes provide preliminary evidence that the diagnostic procedure---though not the specific operationalization of ``deterministic''---transfers across environments with qualitatively different information asymmetries; a ${\\sim}$50-episode pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$). Future work should validate death dominance in additional catastrophic-failure environments and investigate whether lightweight death-prediction mechanisms can exploit this task-type-level binary structure without full step-level router training.",
+  "new_string": "Our episode-level counterfactual framework reveals that 78.9\\% of non-tie routing labels in ScienceWorld stem from death avoidance---replicated across three model families, persistent under $10{\\times}$ scaling, and transferable to qualitatively different environments. Future work should validate this in additional catastrophic-failure settings and investigate lightweight death-prediction mechanisms that exploit task-type-level binary structure without full step-level router training."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+    "old_string": "In ScienceWorld, death avoidance alone accounts for 78.9\\% of non-tie routing labels, replicated across three 7--9B model families (spread 2.2\\,pp); our episode-level counterfactual framework diagnoses this before any router is built. Cross-environment probes provide preliminary evidence that the diagnostic procedure---though not the specific operationalization of ``deterministic''---transfers across environments with qualitatively different information asymmetries; a ${\\sim}$50-episode pilot provides preliminary build-vs-buy signal given large effect sizes ($d = 3.02$). Future work should validate death dominance in additional catastrophic-failure environments and investigate whether lightweight death-prediction mechanisms can exploit this task-type-level binary structure without full step-level router training.",
+    "new_string": "Our episode-level counterfactual framework reveals that 78.9\\% of non-tie routing labels in ScienceWorld stem from death avoidance---replicated across three model families, persistent under $10{\\times}$ scaling, and transferable to qualitatively different environments. Future work should validate this in additional catastrophic-failure settings and investigate lightweight death-prediction mechanisms that exploit task-type-level binary structure without full step-level router training."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1318 · 2026-05-22T23:25:43.560875+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1319 · 2026-05-22T23:25:54.611217+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry, persisting across four interventions, three 7--9B model families, and $10{\\times}$ scaling; a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:router-diagnostic}); (3)~\\textbf{cross-model convergence} across three 7--9B model families (DAF within $88$--$90\\%$; Llama-3.1-8B, Gemma-2-9B-it), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+  "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling, and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "old_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry, persisting across four interventions, three 7--9B model families, and $10{\\times}$ scaling; a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:router-diagnostic}); (3)~\\textbf{cross-model convergence} across three 7--9B model families (DAF within $88$--$90\\%$; Llama-3.1-8B, Gemma-2-9B-it), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+    "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling, and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1320 · 2026-05-22T23:25:55.013961+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1321 · 2026-05-22T23:26:00.388315+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+  "old_string": "Cross-task-type transfer yields chance accuracy (49.2\\%; Appendix~\\ref{app:ablations}). Training on pure-strategy labels but deploying under mixed-strategy routing also introduces a distribution shift~\\citep{dagger-2011}; the negative result may partly reflect this train--deploy mismatch. Concurrent routing methods (CogRouter, ARES, MTRouter) optimize step-level signals orthogonal to death avoidance; in death-dominated environments, this task-type-level binary signal is structurally inaccessible to step features.",
+  "new_string": "Cross-task-type transfer yields chance accuracy (49.2\\%; Appendix~\\ref{app:ablations}). A train--deploy distribution shift~\\citep{dagger-2011} may also contribute to the negative result."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+    "old_string": "Cross-task-type transfer yields chance accuracy (49.2\\%; Appendix~\\ref{app:ablations}). Training on pure-strategy labels but deploying under mixed-strategy routing also introduces a distribution shift~\\citep{dagger-2011}; the negative result may partly reflect this train--deploy mismatch. Concurrent routing methods (CogRouter, ARES, MTRouter) optimize step-level signals orthogonal to death avoidance; in death-dominated environments, this task-type-level binary signal is structurally inaccessible to step features.",
+    "new_string": "Cross-task-type transfer yields chance accuracy (49.2\\%; Appendix~\\ref{app:ablations}). A train--deploy distribution shift~\\citep{dagger-2011} may also contribute to the negative result."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1322 · 2026-05-22T23:26:00.740500+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1323 · 2026-05-22T23:26:07.916941+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+  "old_string": "An oracle confound arises: is the signal merely ``use the oracle''? Two observations argue otherwise: (a)~$\\Delta_{\\text{nd}} = 2.84$ (9.6\\% of the total gap)---on non-death episodes, internal reasoning provides almost no advantage; (b)~action-space filtering (Appendix~\\ref{app:grounding-ablation}) reduces death rate by 19~pp but remains far above deterministic safety (16.3\\%). The 7 excluded agent-floor tasks, where both strategies achieve near-zero scores, represent a symmetric failure regime that the framework correctly diagnoses as ``no signal.''",
+  "new_string": "An oracle confound (``is the signal merely use the oracle?'') is addressed by two observations: $\\Delta_{\\text{nd}} = 2.84$ (9.6\\% of total gap)---internal reasoning provides almost no non-death advantage---and action-space filtering (Appendix~\\ref{app:grounding-ablation}) reduces death rate by 19~pp while remaining far above deterministic safety."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+    "old_string": "An oracle confound arises: is the signal merely ``use the oracle''? Two observations argue otherwise: (a)~$\\Delta_{\\text{nd}} = 2.84$ (9.6\\% of the total gap)---on non-death episodes, internal reasoning provides almost no advantage; (b)~action-space filtering (Appendix~\\ref{app:grounding-ablation}) reduces death rate by 19~pp but remains far above deterministic safety (16.3\\%). The 7 excluded agent-floor tasks, where both strategies achieve near-zero scores, represent a symmetric failure regime that the framework correctly diagnoses as ``no signal.''",
+    "new_string": "An oracle confound (``is the signal merely use the oracle?'') is addressed by two observations: $\\Delta_{\\text{nd}} = 2.84$ (9.6\\% of total gap)---internal reasoning provides almost no non-death advantage---and action-space filtering (Appendix~\\ref{app:grounding-ablation}) reduces death rate by 19~pp while remaining far above deterministic safety."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1324 · 2026-05-22T23:26:08.268920+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1325 · 2026-05-22T23:26:09.926382+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+  "old_string": "and MTRouter \\citep{mtrouter-2026} addresses multi-turn settings.",
+  "new_string": "and MTRouter \\citep{mtrouter-2026} addresses multi-turn settings; in death-dominated environments, the task-type-level binary signal is structurally inaccessible to these step-level approaches (\\S\\ref{sec:router-diagnostic})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+    "old_string": "and MTRouter \\citep{mtrouter-2026} addresses multi-turn settings.",
+    "new_string": "and MTRouter \\citep{mtrouter-2026} addresses multi-turn settings; in death-dominated environments, the task-type-level binary signal is structurally inaccessible to these step-level approaches (\\S\\ref{sec:router-diagnostic})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1326 · 2026-05-22T23:26:09.978275+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1327 · 2026-05-22T23:26:13.392954+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": "60",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "offset": "60",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1328 · 2026-05-22T23:26:13.444177+00:00_
+
+60	We test whether agent-level improvement reduces death dominance (Table~\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\%$ vs.\ $48.0\%$ baseline, $\Delta = -4.5$~pp). Reflexion~\citep{reflexion-2023}\footnote{Reflexion uses a fixed allocation of 20 episodes per task type ($20 \times 11 = 220$), vs.\ the baseline's variable 20--40 per type ($N{=}245$).} (verbal self-reflection between trials) reduces death to 31.4\% across all 11 tasks by rescuing 29.3\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\sim}$35\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\Delta_{\text{nd}} = -0.47$, yielding DAF $> 100\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\%$. The 72B deterministic strategy achieves $2.75\%$ death rate ($\Delta\text{DR} = +27.8$~pp), and $\Delta_{\text{nd}} = +2.28$, yielding DAF $= 92.4\%$ (7B: $90.4\%$). This $10{\times}$ scaling analysis (distinct from the 7--9B cross-family replication in \S\ref{sec:cross-model}) shows that while 72B reduces the internal death rate from $42.9\%$ to $30.6\%$, DAF \emph{increases} because the deterministic strategy also becomes safer ($2.75\%$ vs.\ $16.3\%$), making the proportional dominance of death avoidance more extreme.
+61	
+62	\paragraph{Dose-response analysis.}
+63	We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\ref{fig:dose-response}). Retry is nearly flat ($48.0\% \to 43.5\%$, $\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\%$ at $N{=}3$ ($\Delta = -13.5$~pp, $z = 2.75$,
+…[truncated 1260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1329 · 2026-05-22T23:26:22.034216+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We interpret the plateau as suggestive of a Reflexion ceiling (per-task breakdown in Appendix~\\ref{app:dose-response}).",
+  "new_string": "We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$); both the decline and plateau are well-powered (MDE ${\\sim}8$~pp at 80\\% power; Appendix~\\ref{app:dose-response})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We interpret the plateau as suggestive of a Reflexion ceiling (per-task breakdown in Appendix~\\ref{app:dose-response}).",
+    "new_string": "We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$); both the decline and plateau are well-powered (MDE ${\\sim}8$~pp at 80\\% power; Appendix~\\ref{app:dose-response})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1330 · 2026-05-22T23:26:22.034815+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1331 · 2026-05-22T23:26:25.957127+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": "302",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "offset": "302",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1332 · 2026-05-22T23:26:26.007856+00:00_
+
+302	\section{Per-Task Dose-Response Breakdown}
+303	\label{app:dose-response}
+304	
+305	Table~\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\,pp range for \texttt{measure-melting-point}), but the aggregate smooths to a 2.5\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \texttt{freeze} is consistently the hardest task (50--60\% DR across all $N$).
+306	
+307	\begin{table}[h]
+308	\centering
+309	\small
+310	\caption{Per-task death rates (\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \geq 3$ (range: $34.0$--$36.5\%$).}
+311	\label{tab:dose-response-detail}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1333 · 2026-05-22T23:26:32.539412+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "Table~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).",
+  "new_string": "Table~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\paragraph{Statistical power.} With $n{=}200$ paired episodes, the minimum detectable effect (MDE) is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power). The key $N{=}1{\\to}3$ decline ($-13.5$~pp) exceeds this threshold and is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected if present."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "old_string": "Table~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).",
+    "new_string": "Table~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\paragraph{Statistical power.} With $n{=}200$ paired episodes, the minimum detectable effect (MDE) is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power). The key $N{=}1{\\to}3$ decline ($-13.5$~pp) exceeds this threshold and is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected if present."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1334 · 2026-05-22T23:26:32.540564+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1335 · 2026-05-22T23:26:36.944831+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "Full LaTeX compilation after Phase 1",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "description": "Full LaTeX compilation after Phase 1",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1336 · 2026-05-22T23:26:42.805749+00:00_
+
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (23 pages, 597255 bytes).
+Transcript written on main.log.
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (23 pages, 596906 bytes).
+Transcript written on main.log.
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (23 pages, 596906 bytes).
+Transcript written on main.log.
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 5860
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1337 · 2026-05-22T23:26:45.668830+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && perl -ne 'print if /\\[\\d+\\]/' main.log | head -20",
+  "description": "Check page markers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && perl -ne 'print if /\\[\\d+\\]/' main.log | head -20",
+    "description": "Check page markers"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1338 · 2026-05-22T23:26:45.719566+00:00_
+
+ [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
+[5]
+[7]) (./discussion.tex
+[8]
+[9] (./main.bbl
+[10]
+[11]
+[12] [13]
+[14] [15]
+[16] [17]
+[19]
+[21]
+ (./main.listing) [22]
+(./main.listing) [23] (./main.aux)
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1339 · 2026-05-22T23:28:41.348280+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\\%$",
+  "new_string": "At ScienceWorld's default penalty ($P{=}100$), DAF reaches $90.4\\%$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "old_string": "Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\\%$",
+    "new_string": "At ScienceWorld's default penalty ($P{=}100$), DAF reaches $90.4\\%$"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1340 · 2026-05-22T23:28:41.881273+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 532
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1341 · 2026-05-22T23:28:42.800569+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "no prior work has decomposed what drives routing decisions in interactive environments.",
+  "new_string": "no prior work has systematically decomposed what drives routing preferences in interactive environments."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "old_string": "no prior work has decomposed what drives routing decisions in interactive environments.",
+    "new_string": "no prior work has systematically decomposed what drives routing preferences in interactive environments."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1342 · 2026-05-22T23:28:43.303238+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1343 · 2026-05-22T23:28:45.311961+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "Taxonomically redundant tasks share reward structure and action space, differing only in target entity (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks.",
+  "new_string": "Taxonomically redundant tasks share identical action vocabularies, reward functions, and environmental dynamics, differing only in target entity; we retain one representative per family (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset; increasing the 30-step budget might surface signal in excluded types (see Limitations)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "Taxonomically redundant tasks share reward structure and action space, differing only in target entity (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks.",
+    "new_string": "Taxonomically redundant tasks share identical action vocabularies, reward functions, and environmental dynamics, differing only in target entity; we retain one representative per family (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset; increasing the 30-step budget might surface signal in excluded types (see Limitations)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1344 · 2026-05-22T23:28:45.664123+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1345 · 2026-05-22T23:28:47.020373+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "We examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).",
+  "new_string": "We examine MATH and ALFWorld as boundary probes (not cross-domain validation). The deterministic oracle differs in information privilege across environments---ground-truth simulator (ScienceWorld), code interpreter (MATH), admissible-action enumeration (ALFWorld; \\S\\ref{sec:problem-setup})---so cross-environment results validate the diagnostic procedure's reusability, not the transferability of specific findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "We examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).",
+    "new_string": "We examine MATH and ALFWorld as boundary probes (not cross-domain validation). The deterministic oracle differs in information privilege across environments---ground-truth simulator (ScienceWorld), code interpreter (MATH), admissible-action enumeration (ALFWorld; \\S\\ref{sec:problem-setup})---so cross-environment results validate the diagnostic procedure's reusability, not the transferability of specific findings."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1346 · 2026-05-22T23:28:47.071219+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1347 · 2026-05-22T23:28:51.192128+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": "106",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "offset": "106",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1348 · 2026-05-22T23:28:51.747567+00:00_
+
+106	
+107	\subsection{Router Training: A Preliminary Negative Result}
+108	\label{sec:router-diagnostic}
+109	
+110	We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\sim}$88\% uninformative signal (60.3\% pre-event neutral, 27.4\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level: there is no step-level pattern to learn. Directional conflict is only 0.3\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\%--800\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime.
+111	
+112	An implicit router (Qwen3, LoRA; Appendix~\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \pm 1.9\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\%; Appendix~\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \pm 2.2\%$, below the majority-vote baseline of 50.0\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to 
+…[truncated 1041 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1349 · 2026-05-22T23:28:57.974225+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "no step-level learnable signal exists under current architectures and data regime.",
+  "new_string": "no step-level learnable signal exists under current architectures and data regime ($N{=}245$, 3.7\\% minority class). The minority rate is a direct consequence of death dominance---death-asymmetry episodes universally favor deterministic, leaving only 9 internal-preferred labels---not an independent confound. Targeted collection of internal-preferred episodes could test whether the bottleneck is data-limited."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "no step-level learnable signal exists under current architectures and data regime.",
+    "new_string": "no step-level learnable signal exists under current architectures and data regime ($N{=}245$, 3.7\\% minority class). The minority rate is a direct consequence of death dominance---death-asymmetry episodes universally favor deterministic, leaving only 9 internal-preferred labels---not an independent confound. Targeted collection of internal-preferred episodes could test whether the bottleneck is data-limited."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1350 · 2026-05-22T23:28:58.275965+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1351 · 2026-05-22T23:29:00.735724+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types)",
+  "new_string": "As a preliminary probe, scaling to Qwen2.5-72B ($10{\\times}$ parameters; both strategies independently collected at 72B, 255 episodes across all 11 task types)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types)",
+    "new_string": "As a preliminary probe, scaling to Qwen2.5-72B ($10{\\times}$ parameters; both strategies independently collected at 72B, 255 episodes across all 11 task types)"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1352 · 2026-05-22T23:29:00.887398+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1353 · 2026-05-22T23:29:04.310423+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": "15",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "offset": "15",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1354 · 2026-05-22T23:29:04.363286+00:00_
+
+15	
+16	Of the 95 non-tie routing labels, 75 (78.9\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these, 54 are sole-signal labels where death was the only discriminator; at $P{=}0$ these reduce to ties, but the labeling function itself is penalty-independent (Algorithm~\ref{alg:labeling}).
+17	
+18	Of 245 episodes, 150 (61.2\%) show no preference between strategies; routing is relevant in the remaining 95 (38.8\%). Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\%$ at $P{=}100$ ($\Delta_{\text{full}} = +29.60$, $\Delta_{\text{nd}} = +2.84$; 95\% CI: $[81.1\%, 99.0\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies monotonically with $P$ (\S\ref{sec:daf}; Appendix~\ref{app:penalty}), confirming that the 78.9\% label fraction provides the more robust characterization. When $\Delta_{\text{nd}} \to 0$, DAF $\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\Delta_{\text{nd}} < 0$ (as in Reflexion $N{\geq}3$; \S\ref{sec:agent-improvement}), DAF exceeds 100\%, reflecting that death asymmetry more than accounts for the full gap.
+19	
+20	\paragraph{Per-task correlation structure.}
+21	The internal strategy dies in 42.9\% of episodes versus 16.3\% for deterministic (2.6$\times$). Per-task death rate differential correlates with $\Delta_{\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\ref{fig:decomposition}); since DAF$\to 1$ implies $r \to 1$ by construction, the near-perfect correlation is a consistency check, not an independent finding (Appendix~\ref{app:correlation}). Of 245 episodes, 86 are \texttt{det\_preferred}, 9 \texttt{internal\_preferred}, and 150 \texttt{no\_preference}.
+22	
+23	\paragraph{Signal concentration and binary structure.}
+
+…[truncated 785 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1355 · 2026-05-22T23:29:08.355801+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "$\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$",
+  "new_string": "$\\Delta_{\\text{nd}} = +2.84$, 95\\% CI$_{\\text{nd}}$: $[0.34, 5.57]$; 95\\% CI$_{\\text{DAF}}$: $[81.1\\%, 99.0\\%]$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "$\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$",
+    "new_string": "$\\Delta_{\\text{nd}} = +2.84$, 95\\% CI$_{\\text{nd}}$: $[0.34, 5.57]$; 95\\% CI$_{\\text{DAF}}$: $[81.1\\%, 99.0\\%]$"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1356 · 2026-05-22T23:29:08.406768+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1357 · 2026-05-22T23:29:11.118971+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1358 · 2026-05-22T23:29:11.271180+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Signal granularity and router failure.}
+5	The router diagnostic (\S\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property (10/11 types carry death risk), but step-level features correlate weakly because death risk depends on multi-step trajectories. Six router variants (0.6B--4B, classification and generative) converge on near-chance step-level accuracy ($56$--$59\%$); this convergent failure is consistent with signal limitation; however, extreme class imbalance (90.5\% deterministic-preferred, only 9 internal-preferred episodes) makes a data-limited explanation equally plausible---distinguishing the two requires ${\sim}$1{,}350 paired episodes to obtain 50 minority-class samples. Cross-task-type transfer yields chance accuracy (49.2\%; Appendix~\ref{app:ablations}). A train--deploy distribution shift~\citep{dagger-2011} may also contribute to the negative result.
+6	
+7	\paragraph{Non-triviality and oracle confound.}
+8	While death dominance follows from the penalty structure (\S\ref{sec:daf}), two consequences were not predictable a priori: $10{\times}$ scaling to 72B fails to eliminate it (DAF${}= 92.4\%$), and Reflexion yields DAF${}>100\%$. All four interventions leave ${\geq}12$~pp residual gaps (Appendix~\ref{sec:threshold-routing}); cross-model DR stability ($36$--$43\%$) confirms death vulnerability is a task-environment property. An oracle confound (``is the signal merely use the oracle?'') is addressed by two observations: $\Delta_{\text{nd}} = 2.84$ (9.6\% of total gap)---internal reasoning provides almost no non-death advantage---and action-space filtering (Appendix~\ref{app:grounding-ablation}) reduces death rate by 19~pp while remaining far above deterministic safety.
+9	
+10	\paragraph{Practical implications and actionability.}
+11	The penalty-invariant label fraction (78.9\%) is the primary diagnostic; DAF varies with $P$ (Appendix~\re
+…[truncated 393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1359 · 2026-05-22T23:29:16.946824+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+  "old_string": "The framework identifies \\emph{when} always-deterministic suffices versus when router development is warranted (as in ALFWorld, where DAF${=}0\\%$).",
+  "new_string": "The framework identifies \\emph{when} always-deterministic suffices versus when router development is warranted (as in ALFWorld, where DAF${=}0\\%$). While all observed internal deaths in ScienceWorld stem from a single action pattern (\\texttt{focus on}; Appendix~\\ref{app:failure-modes}), the death-avoidance decomposition applies to any environment with asymmetric fatal outcomes regardless of the specific failure mechanism."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+    "old_string": "The framework identifies \\emph{when} always-deterministic suffices versus when router development is warranted (as in ALFWorld, where DAF${=}0\\%$).",
+    "new_string": "The framework identifies \\emph{when} always-deterministic suffices versus when router development is warranted (as in ALFWorld, where DAF${=}0\\%$). While all observed internal deaths in ScienceWorld stem from a single action pattern (\\texttt{focus on}; Appendix~\\ref{app:failure-modes}), the death-avoidance decomposition applies to any environment with asymmetric fatal outcomes regardless of the specific failure mechanism."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1360 · 2026-05-22T23:29:16.947302+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1361 · 2026-05-22T23:29:21.466340+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1362 · 2026-05-22T23:29:21.567242+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1363 · 2026-05-22T23:29:25.082927+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "FrugalGPT Chen Zaharia Zou 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "FrugalGPT Chen Zaharia Zou 2023 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1364 · 2026-05-22T23:29:26.037311+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "AutoMix Madaan automatically mixing language models 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "AutoMix Madaan automatically mixing language models 2023 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1365 · 2026-05-22T23:29:27.041751+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Mixture-of-Depths Raposo 2024 arxiv dynamically allocating compute"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Mixture-of-Depths Raposo 2024 arxiv dynamically allocating compute"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1366 · 2026-05-22T23:29:27.594916+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "speculative decoding Leviathan Kalman Matias 2023 ICML fast inference transformers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "speculative decoding Leviathan Kalman Matias 2023 ICML fast inference transformers"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1367 · 2026-05-22T23:29:30.959809+00:00_
+
+Web search results for query: "AutoMix Madaan automatically mixing language models 2023 arxiv"
+
+Links: [{"title":"[PDF] AutoMix: Automatically Mixing Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/AutoMix:-Automatically-Mixing-Language-Models-Madaan-Aggarwal/f0ed191bdcbd56610ab4d95c5a80d5ac31ffc074"},{"title":"AutoMix: Automatically Mixing Language Models","url":"https://github.com/automix-llm/automix"},{"title":"Paper page - AutoMix: Automatically Mixing Language Models","url":"https://huggingface.co/papers/2310.12963"},{"title":"AutoMix: automatically mixing language models","url":"https://dl.acm.org/doi/10.5555/3737916.3742080"},{"title":"AutoMix: Automatically Mixing Language Models","url":"https://automix-llm.github.io/automix/"},{"title":"[2310.12963] AutoMix: Automatically Mixing Language Models","url":"https://arxiv.org/abs/2310.12963"},{"title":"AutoMix: Automatically Mixing Language Models Aman Madaan♠∗ Pranjal Aggarwal♢∗","url":"https://arxiv.org/pdf/2310.12963v3"},{"title":"AutoMix: Automatically Mixing Language Models Pranjal Aggarwal♢∗ Aman Madaan♣∗","url":"https://arxiv.org/pdf/2310.12963"},{"title":"AutoMix: Automatically Mixing Language Models","url":"https://proceedings.neurips.cc//paper_files/paper/2024/hash/ecda225cb187b40ea8edc1f46b03ffda-Abstract-Conference.html"}]
+
+I found the research paper you're looking for. Here are the key details:
+
+**Paper Details:**
+The paper "AutoMix: Automatically Mixing Language Models" was published on arXiv on October 19, 2023 (arxiv 2310.12963) by Aman Madaan, Pranjal Aggarwal, and 11 other co-authors.
+
+**What the Paper Does:**
+AutoMix is an approach that strategically routes queries to larger language models based on the approximate correctness of outputs from a smaller language model.
+
+**Key Technical Contributions:**
+The method employs a POMDP (Partially Observable Markov Decision Process) based router that can effectively select an appropriately sized model based on answer con
+…[truncated 453 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "elapsed_ms": 4922
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1368 · 2026-05-22T23:29:32.065078+00:00_
+
+Web search results for query: "FrugalGPT Chen Zaharia Zou 2023 arxiv"
+
+Links: [{"title":"[PDF] FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FrugalGPT:-How-to-Use-Large-Language-Models-While-Chen-Zaharia/585f8b9725f5f5e5495c3508d39f70d1c053e190"},{"title":"Paper page - FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance","url":"https://huggingface.co/papers/2305.05176"},{"title":"[2305.05176] FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance","url":"https://arxiv.org/abs/2305.05176"},{"title":"[2305.05176v1] FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance","url":"https://arxiv.org/abs/2305.05176v1"},{"title":"[2305.05176] FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance","url":"https://ar5iv.labs.arxiv.org/html/2305.05176"},{"title":"FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance - Summary","url":"https://portkey.ai/blog/frugalgpt-how-to-use-large-language-models-while-reducing-cost-and-improving-performance-summary/"},{"title":"FrugalGPT: How to Use Large Language Models While ...","url":"https://arxiv.org/pdf/2305.05176"},{"title":"FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance","url":"https://www.researchgate.net/publication/370633900_FrugalGPT_How_to_Use_Large_Language_Models_While_Reducing_Cost_and_Improving_Performance"},{"title":"FrugalGPT: How to Use Large Language Models While ...","url":"https://lingjiaochen.com/papers/2024_FrugalGPT_TMLR.pdf"}]
+
+I found the paper you're looking for. Here's a summary of the search results:
+
+**FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance** is a paper by Lingjiao Chen, Matei A. Zaharia, and James Y. Zou, published on arXiv in 2023 
+…[truncated 937 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "elapsed_ms": 6982
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1369 · 2026-05-22T23:29:32.719727+00:00_
+
+Web search results for query: "Mixture-of-Depths Raposo 2024 arxiv dynamically allocating compute"
+
+Links: [{"title":"[PDF] Mixture-of-Depths: Dynamically allocating compute in transformer-based language models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Mixture-of-Depths:-Dynamically-allocating-compute-Raposo-Ritter/a1f23f04421cdc62e80fe9f04c1ce60f4a6af9f0"},{"title":"Paper page - Mixture-of-Depths: Dynamically allocating compute in transformer-based language models","url":"https://huggingface.co/papers/2404.02258"},{"title":"Mixture-of-Depths: Dynamically allocating compute in transformer-based language models | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/paper-review-mixture-of-depths-dddf00029026"},{"title":"[2404.02258] Mixture-of-Depths: Dynamically allocating compute in transformer-based language models","url":"https://arxiv.org/abs/2404.02258"},{"title":"[2404.02258v1] Mixture-of-Depths: Dynamically allocating compute in transformer-based language models","url":"https://arxiv.org/abs/2404.02258v1"},{"title":"Aikipedia: Mixture of Depths – Champaign Magazine","url":"https://champaignmagazine.com/2025/11/03/aikipedia-mixture-of-depths/"},{"title":"Mixture-of-Depths: Dynamically allocating compute in transformer-based language models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/mixture-depths-dynamically-allocating-compute-transformer-based"},{"title":"Mixture-of-Depths: Dynamically allocating compute in transformer-based language models, David Raposo+, N/A, arXiv'24 · Issue #1273 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1273"},{"title":"Mixture-of-Depths: Dynamically allocating compute in transformer-based language","url":"https://arxiv.org/pdf/2404.02258"},{"title":"Mixture-of-Recursions: Learning Dynamic Recursive","url":"https://arxiv.org/pdf/2507.10524"}]
+
+I've found comprehensive information about the Mixture-of-
+…[truncated 1397 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "elapsed_ms": 5677
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1370 · 2026-05-22T23:29:33.172274+00:00_
+
+Web search results for query: "speculative decoding Leviathan Kalman Matias 2023 ICML fast inference transformers"
+
+Links: [{"title":"Fast Inference from Transformers via Speculative Decoding - Tel Aviv University","url":"https://cris.tau.ac.il/en/publications/fast-inference-from-transformers-via-speculative-decoding/"},{"title":"Speculative Decoding Reyna Abhyankar","url":"https://cseweb.ucsd.edu/~yiying/cse291a-fall25/reading/spec-decoding.pdf"},{"title":"Fast Inference from Transformers via Speculative Decoding","url":"https://proceedings.mlr.press/v202/leviathan23a.html"},{"title":"Fast inference from transformers via speculative decoding | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3619203"},{"title":"[2211.17192] Fast Inference from Transformers via Speculative Decoding","url":"https://arxiv.org/abs/2211.17192"},{"title":"GitHub - romsto/Speculative-Decoding: Implementation of the paper Fast Inference from Transformers via Speculative Decoding, Leviathan et al. 2023. · GitHub","url":"https://github.com/romsto/Speculative-Decoding"},{"title":"Speculative Decoding @ ICML | Yaniv Leviathan","url":"https://yanivle.github.io/ai/2023/07/25/speculative-decoding-icml.html"},{"title":"Fast Inference from Transformers via Speculative Decoding","url":"https://arxiv.org/pdf/2211.17192"},{"title":"Fast Inference from Transformers via Speculative Decoding","url":"https://www.summarizepaper.com/en/arxiv-id/2211.17192v2/"},{"title":"Unlocking Efficiency in Large Language Model Inference: A Comprehensive   Survey of Speculative Decoding","url":"https://arxiv.org/pdf/2401.07851"}]
+
+I found comprehensive information about this research. Here are the key findings:
+
+## Paper Overview
+
+The paper "Fast Inference from Transformers via Speculative Decoding" was authored by Yaniv Leviathan, Matan Kalman, and Yossi Matias and presented at the 40th International Conference on Machine Learning (ICML 2023) from July 2
+…[truncated 1230 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "WebSearch",
+  "elapsed_ms": 5577
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1371 · 2026-05-22T23:30:01.802345+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1372 · 2026-05-22T23:30:01.853203+00:00_
+
+1	\section{Related Work}
+2	
+3	\paragraph{Tool Use and External Computation in LLMs.}
+4	A growing body of work augments language models with external tools \citep{tool-learning-survey-2024}, spanning several functional categories.
+5	Self-supervised methods learn tool invocation from loss signals \citep{toolformer-2023,toolace-2025}, token-level methods embed tools in the vocabulary \citep{toolkengpt-2023}, task-level decomposition routes subtasks to specialized modules \citep{art-2023,chameleon-2023}, and RL-based methods learn routing from reward \citep{retool-2025}.
+6	All focus on \emph{learning to use tools}; we ask a prior question: \emph{what signal drives the routing decision?}
+7	Concurrent work examines \emph{when} to invoke tools: tool-call decisions correlate with uncertainty~\citep{tool-overuse-illusion-2026}, are encoded in hidden states~\citep{when2tool-2026}, impose a ``tool-use tax''~\citep{tool-use-tax-2026}, or follow necessity-utility-affordability logic~\citep{to-call-or-not-2026}. Our decomposition yields a concrete answer: 78.9\% of non-tie routing labels trace to catastrophic-failure prevention.
+8	
+9	\paragraph{Adaptive Computation and Routing.}
+10	Adaptive routing traces back to learned halting policies \citep{graves2016act}. Mixture-of-Recursions \citep{mixture-of-recursions-2025} learns token-level recursion depths in the LLM era; concurrent work further diversifies routing granularity: CogRouter \citep{cogrouter-2026} adapts per-step depth, ARES \citep{ares-2026} selects effort levels, and MTRouter \citep{mtrouter-2026} addresses multi-turn settings; in death-dominated environments, the task-type-level binary signal is structurally inaccessible to these step-level approaches (\S\ref{sec:router-diagnostic}).
+11	RouteLLM \citep{routellm-2024} learns routers from preference data to select between strong and weak models.
+12	Concurrently, \citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the clos
+…[truncated 2495 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1373 · 2026-05-22T23:30:13.064064+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+  "old_string": "RouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.\nConcurrently, \\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\nMixture-of-Experts architectures~\\citep{switch-transformer-2022,gshard-2021} learn token-level routing across expert sub-networks; we route between computation \\emph{modes} rather than expert modules. Counterfactual data augmentation~\\citep{kaushik2020learning} edits inputs to flip labels; our framework executes full counterfactual \\emph{episodes} to decompose routing signal at the environment level.",
+  "new_string": "RouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models; cost-optimization routing (FrugalGPT~\\citep{frugalgpt-2023}; AutoMix~\\citep{automix-2024}) cascades queries across model tiers. These methods optimize \\emph{which} model to invoke; our framework diagnoses \\emph{what} drives the routing decision.\nConcurrently, \\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours.\nUnlike token-level adaptive computation (Mixture-of-Depths~\\citep{mixture-of-depths-2024}; speculative decoding~\\citep{leviathan2023speculative}) and Mixture-of-Experts architectures~\\citep{switch-transformer-2022,gshard-2021}, our framework operates at episode-level granularity, diagnosing aggregate routing signal composition rather than optimizing per-token compute allocation. Counterfactual data augmentation~\\citep{kaushik2020learning} edits inputs to flip labels; our framework executes full counterfactual \\emph{episodes} to decompose routing signal at the environment level."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+    "old_string": "RouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.\nConcurrently, \\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\nMixture-of-Experts architectures~\\citep{switch-transformer-2022,gshard-2021} learn token-level routing across expert sub-networks; we route between computation \\emph{modes} rather than expert modules. Counterfactual data augmentation~\\citep{kaushik2020learning} edits inputs to flip labels; our framework executes full counterfactual \\emph{episodes} to decompose routing signal at the environment level.",
+    "new_string": "RouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models; cost-optimization routing (FrugalGPT~\\citep{frugalgpt-2023}; AutoMix~\\citep{automix-2024}) cascades queries across model tiers. These methods optimize \\emph{which} model to invoke; our framework diagnoses \\emph{what} drives the routing decision.\nConcurrently, \\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours.\nUnlike token-level adaptive computation (Mixture-of-Depths~\\citep{mixture-of-depths-2024}; speculative decoding~\\citep{leviathan2023speculative}) and Mixture-of-Experts architectures~\\citep{switch-transformer-2022,gshard-2021}, our framework operates at episode-level granularity, diagnosing aggregate routing signal composition rather than optimizing per-token compute allocation. Counterfactual data augmentation~\\citep{kaushik2020learning} edits inputs to flip labels; our framework executes full counterfactual \\emph{episodes} to decompose routing signal at the environment level."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1374 · 2026-05-22T23:30:13.064586+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1375 · 2026-05-22T23:30:22.609232+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib",
+  "old_string": "@article{bonagiri2025check,",
+  "new_string": "@article{frugalgpt-2023,\n  title={{FrugalGPT}: How to Use Large Language Models While Reducing Cost and Improving Performance},\n  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},\n  journal={arXiv preprint arXiv:2305.05176},\n  year={2023}\n}\n\n@inproceedings{automix-2024,\n  title={{AutoMix}: Automatically Mixing Language Models},\n  author={Madaan, Aman and Aggarwal, Pranjal and Anand, Prakhar and Potdar, Srividya and Gupta, Swaroop and Tandon, Niket},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024}\n}\n\n@inproceedings{mixture-of-depths-2024,\n  title={Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models},\n  author={Raposo, David and Ritter, Sam and Richards, Blake and Lillicrap, Timothy and Humphreys, Peter Conway and Santoro, Adam},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024}\n}\n\n@inproceedings{leviathan2023speculative,\n  title={Fast Inference from Transformers via Speculative Decoding},\n  author={Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2023}\n}\n\n@article{bonagiri2025check,"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib",
+    "old_string": "@article{bonagiri2025check,",
+    "new_string": "@article{frugalgpt-2023,\n  title={{FrugalGPT}: How to Use Large Language Models While Reducing Cost and Improving Performance},\n  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},\n  journal={arXiv preprint arXiv:2305.05176},\n  year={2023}\n}\n\n@inproceedings{automix-2024,\n  title={{AutoMix}: Automatically Mixing Language Models},\n  author={Madaan, Aman and Aggarwal, Pranjal and Anand, Prakhar and Potdar, Srividya and Gupta, Swaroop and Tandon, Niket},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024}\n}\n\n@inproceedings{mixture-of-depths-2024,\n  title={Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models},\n  author={Raposo, David and Ritter, Sam and Richards, Blake and Lillicrap, Timothy and Humphreys, Peter Conway and Santoro, Adam},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2024}\n}\n\n@inproceedings{leviathan2023speculative,\n  title={Fast Inference from Transformers via Speculative Decoding},\n  author={Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},\n  booktitle={International Conference on Machine Learning (ICML)},\n  year={2023}\n}\n\n@article{bonagiri2025check,"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1376 · 2026-05-22T23:30:22.660148+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1377 · 2026-05-22T23:30:31.446709+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": "121",
+  "limit": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "offset": "121",
+    "limit": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1378 · 2026-05-22T23:30:31.497433+00:00_
+
+121	\ENDIF
+122	\RETURN $\ell$
+123	\end{algorithmic}
+124	\smallskip
+125	\noindent\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).
+126	\end{algorithm}
+127	
+128	Note that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \texttt{no\_preference} labels (61.2\%), 115 (46.9\%) are both-alive ties and 35 (14.3\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\%, within 1$\sigma$ of the full-label retrain (57.6 $\pm$ 0.5\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \S\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\% step-level tie rate (\S\ref{sec:collection}) further motivates episode-level over step-level labeling.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1379 · 2026-05-22T23:30:37.541643+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).",
+  "new_string": "\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).\\\\\n\\noindent\\textit{Note:} When both strategies die (line 9), we assign \\texttt{no\\_preference}; in ScienceWorld, death yields a fixed $-100$ regardless of timing, so both-dead episodes contribute no routing signal."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "old_string": "\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).",
+    "new_string": "\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).\\\\\n\\noindent\\textit{Note:} When both strategies die (line 9), we assign \\texttt{no\\_preference}; in ScienceWorld, death yields a fixed $-100$ regardless of timing, so both-dead episodes contribute no routing signal."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1380 · 2026-05-22T23:30:37.542486+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1381 · 2026-05-22T23:30:41.609553+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && bibtex main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "Full compilation after Phase 2",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && bibtex main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "description": "Full compilation after Phase 2",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1382 · 2026-05-22T23:30:46.902953+00:00_
+
+f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (24 pages, 598934 bytes).
+Transcript written on main.log.
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (24 pages, 599724 bytes).
+Transcript written on main.log.
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (24 pages, 599625 bytes).
+Transcript written on main.log.
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 5292
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1383 · 2026-05-22T23:30:49.772790+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && perl -ne 'print if /\\[\\d+\\]/' main.log | head -20",
+  "description": "Check page markers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && perl -ne 'print if /\\[\\d+\\]/' main.log | head -20",
+    "description": "Check page markers"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1384 · 2026-05-22T23:30:51.028069+00:00_
+
+ [2 <./figures/pipeline_overview.pdf>] [3]) (./experiments.tex
+[5]
+[7]) (./discussion.tex
+[8]) (./conclusion.tex)
+[9] (./main.bbl
+[10]
+[11]
+[12]
+[13]
+[14]
+[15]
+[16]
+ [17]
+[18]
+[22]
+ [23]
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1385 · 2026-05-22T23:30:51.128971+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && grep -c \"Warning\\|undefined\" main.log",
+  "description": "Count warnings and undefined refs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && grep -c \"Warning\\|undefined\" main.log",
+    "description": "Count warnings and undefined refs"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1386 · 2026-05-22T23:30:51.179722+00:00_
+
+14
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_ae7c9c01
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1387 · 2026-05-22T23:31:09.184179+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && grep -i \"undefined\" main.log",
+  "description": "Check for undefined references"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && grep -i \"undefined\" main.log",
+    "description": "Check for undefined references"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1388 · 2026-05-22T23:31:09.335662+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Bash",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1389 · 2026-05-22T23:31:45.831147+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__pdf_to_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1390 · 2026-05-22T23:31:45.931913+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1391 · 2026-05-22T23:31:49.854151+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+  "pages": "7-9",
+  "dpi": "150",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+    "pages": "7-9",
+    "dpi": "150",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1392 · 2026-05-22T23:31:50.406803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 575.5}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 571.5}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 548.0}], \"total_pages\": 24, \"rendered_pages\": 3, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1393 · 2026-05-22T23:31:54.925204+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1394 · 2026-05-22T23:31:55.528582+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1395 · 2026-05-22T23:32:02.320323+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1396 · 2026-05-22T23:32:03.227489+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 907
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1397 · 2026-05-22T23:32:40.041537+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": "8",
+  "limit": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "offset": "8",
+    "limit": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1398 · 2026-05-22T23:32:40.092316+00:00_
+
+8	
+9	\begin{figure}[t]
+10	\centering
+11	\includegraphics[width=0.38\textwidth]{figures/fig1_daf_scatter.pdf}
+12	\caption{Internal consistency check: per-task scatter: death rate differential (internal $-$ deterministic) vs.\ performance gap ($\Delta_{\text{full}}$). $r = 0.97$ (Spearman's $\rho = 0.986$; Appendix~\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\Delta_{\text{full}} \approx \delta P + \Delta_{\text{nd}}$ with $P$ constant, $r \to 1$ as DAF $\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\S\ref{sec:death-decomp}).}
+13	\label{fig:decomposition}
+14	\end{figure}
+15	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1399 · 2026-05-22T23:32:46.158220+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.38\\textwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Internal consistency check: per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}",
+  "new_string": ""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.38\\textwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Internal consistency check: per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}",
+    "new_string": ""
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1400 · 2026-05-22T23:32:46.309904+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Edit",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1401 · 2026-05-22T23:32:50.087071+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": "18",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "offset": "18",
+    "limit": "5"
+  }
 }
 ```
 

@@ -7,435 +7,6 @@
       "messages": [
         {
           "source_line": 15121,
-          "timestamp": "2026-05-23T19:37:49.202519+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
-              "offset": "53",
-              "limit": "8"
-            }
-          },
-          "id": "event-015121"
-        },
-        {
-          "source_line": 15122,
-          "timestamp": "2026-05-23T19:37:49.253333+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "53\t\\smallskip\\noindent\n54\t\\textbf{Remark 1} \\textit{(Information Ceiling).}\\;%\n55\tIf constraints are trace-determined ($c_i = f(t_i)$), the data processing inequality gives $I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$---a standard result for any deterministic post-processing. The contribution is identifying the $M{\\to}T{\\to}A{\\to}C$ Markov chain structure: under the degeneration condition of Observation~1 ($|\\mathcal{C}^{\\setminus}| \\approx 0$), constraints are fully determined by answers, yielding the tighter bound $I(C;\\, Y) \\leq I(A;\\, Y)$ and the approximate conditional independence $C \\approx\\!\\!\\perp Y \\mid A$ shown in Figure~\\ref{fig:causal-dag}. This is an empirical conclusion holding under degeneration, not an unconditional structural claim.\n56\t\n57\t\\smallskip\\noindent\n58\t\\textbf{Remark 2.}\\;%\n59\tObservation~1 assumes degeneration and source attribution. Under \\emph{semantic} evaluation, the equivalence additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$, which is structurally motivated and empirically validated ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but could fail if $f$ systematically extracted premises contradicting their source trace's conclusion.\n60\tSince Observation~1 shows SICA reduces to majority vote under degeneration, $\\mathrm{BR} \\geq 1$ follows from the trace-count geometry; the empirical BR consistently exceeds this floor ($1.66\\times$--$4.97\\times$; Table~\\ref{tab:frontier-scb}), reflecting both base-rate effects and extraction alignment."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-015122"
-        },
-        {
-          "source_line": 15123,
-          "timestamp": "2026-05-23T19:38:08.229586+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
-            }
-          },
-          "id": "event-015123"
-        },
-        {
-          "source_line": 15124,
-          "timestamp": "2026-05-23T19:38:08.229948+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-              "offset": "6",
-              "limit": "18"
-            }
-          },
-          "id": "event-015124"
-        },
-        {
-          "source_line": 15125,
-          "timestamp": "2026-05-23T19:38:08.280403+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tCan symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? We find no detectable improvement exceeding ${\\sim}$2\\,pp under self-extraction. We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA produces answers identical to majority voting on over 90\\% of problems across six models (7B--32B) and three domains. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects. The failure is structural: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information (Remark~1), extending and formalizing \\citet{huang2024selfcorrect}'s findings for formal self-verification. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. Cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all tested conditions.\n2\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-015125"
-        },
-        {
-          "source_line": 15126,
-          "timestamp": "2026-05-23T19:38:08.281015+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "6\t\\looseness=-1\n7\tWe test this intuition through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces (prompted as first-order logic; 99\\% are propositional at the Z3 level) and selects answers via weighted partial MAX-SAT (\\S\\ref{sec:pipeline}; Figure~\\ref{fig:pipeline}). Despite Z3 validating nearly all self-extracted constraints, SICA produces answers identical to majority voting on the vast majority of problems. Across six models (7B--32B), three reasoning domains, and multi-seed replication, no condition shows a significant positive effect after FDR control (Table~\\ref{tab:main_results}). Four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects.\n8\t\n9\t\\looseness=-1\n10\tThe failure is not in the solver but in the constraints it operates on. Self-extracted constraints systematically support the model's majority answer---a structural property of self-extraction pipelines we term \\emph{symbolic confirmation bias} (\\S\\ref{sec:confirmation-bias}). Because each trace determines both an answer and its constraints, the formal channel reduces to a weighted echo of the majority vote. We show this degeneration is structural (Observation~1) and confirm it holds across nine models from 7B to frontier scale. Prior work shows LLMs cannot self-correct reasoning without external feedback \\citep{huang2024selfcorrect}; our formal analysis extends and formalizes \\citet{huang2024selfcorrect}'s empirical findings, providing structural formalization and actionable diagnostics for self-verification.\n11\t\n12\t\\looseness=-1\n13\tTwenty-seven training-free variants within the constraint-extraction paradigm confirm the trade-off is fundamental (\\S\\ref{sec:remediation}): methods that break trace correlation destroy accuracy, while methods that preserve accuracy fail to achieve independence. Cross-architecture verification provides preliminary evidence of escape: a structural\n…[truncated 1557 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-015126"
-        },
-        {
-          "source_line": 15127,
-          "timestamp": "2026-05-23T19:38:08.281353+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
-              "offset": "1",
-              "limit": "20"
-            }
-          },
-          "id": "event-015127"
-        },
-        {
-          "source_line": 15128,
-          "timestamp": "2026-05-23T19:38:08.281693+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Escaping the Bottleneck}\n2\t\\label{sec:solutions}\n3\t\\label{sec:cross-arch}\n4\t\n5\t\\paragraph{Motivation.}\n6\t\\looseness=-1 No training-free self-extraction method achieves independence from the model's distributional prior (\\S\\ref{sec:remediation}). Remark~1 implies that any escape must break the self-extraction dependency: the information ceiling $I(C;Y) \\leq I(T;Y)$ binds whenever constraints are deterministic functions of the generating model's traces. We test whether a structurally independent verifier, sharing neither architecture nor training data with the generator, provides corrective signal that escapes this bound.\n7\t\n8\t\\paragraph{Method.}\n9\t\\looseness=-1 We use DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, to classify (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n10\t\n11\t\\paragraph{Zero-shot results.}\n12\t\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO and 55.00\\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\\,pp on FOLIO (n.s.); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +1.47$\\,pp). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution.\n13\t\n14\t\\paragraph{Capability gap.}\n15\t\\looseness=-1 Four generators on ProofWriter ($n{=}600$), paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$). This \\emph{capability-gap pattern}---gain decreasing monotonically with generator accuracy---holds across three NLI architectures ($\\rho = 1.0$, $p \n…[truncated 533 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-015128"
-        },
-        {
-          "source_line": 15129,
-          "timestamp": "2026-05-23T19:40:35.355017+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-              "offset": "8",
-              "limit": "18"
-            }
-          },
-          "id": "event-015129"
-        },
-        {
-          "source_line": 15130,
-          "timestamp": "2026-05-23T19:40:35.656296+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "8\t\\looseness=-1\n9\t\\paragraph{Neuro-symbolic reasoning.}\n10\tWe distinguish three paradigms: \\emph{specification-generation} \\citep{pan2023logiclm, olausson2023linc, ye2024satlm} and \\emph{program-generation} \\citep{gao2023pal, chen2023program, lyu2023faithful} formalize \\emph{before} answer generation; \\emph{trace-extraction} (this work) operates post-hoc, inheriting confirmation bias (\\S\\ref{sec:confirmation-bias}). Recent extensions include symbolic planning and verified reasoning \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent, miya2025eidoku}; \\citet{amonkar2025realitycheck} show formalization quality degrades with problem complexity; \\citet{chan2026position} argue logical soundness alone is unreliable. Prior studies note high formalization error rates but treat them as quality problems; we show the errors are \\emph{systematically biased} toward the model's answer (Observation~1; Figure~\\ref{fig:causal-dag}). Our analysis extends and formalizes \\citet{huang2024selfcorrect}'s finding that LLMs cannot self-correct without external feedback, showing that even Z3-validated constraints carry no information beyond majority voting.\n11\t\n12\t\\looseness=-1\n13\t\\paragraph{Distinction from CoT confirmation bias.}\n14\tSymbolic confirmation bias (SCB) is complementary to, but structurally distinct from, CoT-level confirmation bias \\citep{wan2025unveiling, turpin2023language, jhaveri2026failing}. CoT bias operates at the \\emph{trace level}---individual chains may not faithfully reflect the model's computation---while SCB operates at the \\emph{aggregation level}: even if each trace is locally faithful, the \\emph{collection} of self-extracted constraints mirrors the answer distribution. SCB further extends and formalizes \\citet{huang2024selfcorrect}'s empirical finding that LLMs cannot self-correct in three respects: (a)~\\emph{formalization}---a Markov chain model of the failure mechanism (Observation~1, Remark~1) rather than empi\n…[truncated 2103 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 301
-          },
-          "id": "event-015130"
-        },
-        {
-          "source_line": 15131,
-          "timestamp": "2026-05-23T19:40:35.807159+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-015131"
-        },
-        {
-          "source_line": 15132,
-          "timestamp": "2026-05-23T19:40:35.807656+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-1\n6\tOur central finding is that the value of formal verification depends on the \\emph{independence} of its inputs, not the soundness of its logic. \\emph{SICA-specific}: under source-attribution scoring, SICA reduces to majority vote (Observation~1), and 27 training-free variants fail to escape. \\emph{General}: the DPI bound (Remark~1) applies to any deterministic self-extraction, and symbolic confirmation bias---a structural property of self-extraction pipelines, not a cognitive bias analogy---holds across nine models (7B to frontier), suggesting the bottleneck is intrinsic to self-referential constraint generation. Three diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly characterize failure modes across all tested conditions, with boundaries generalizing to held-out families (\\S\\ref{sec:diagnostic-framework}).\n7\t\n8\t\\looseness=-1\n9\tThese results connect to ensemble diversity theory \\citep{dietterich2000ensemble, krogh1994neural}: ensemble gain requires error independence, which $K_\\text{eff}$ operationalizes for LLM trace aggregation. With $K_\\text{eff} \\leq 3.62$ for $K{=}12$, same-model traces scale redundancy, not information---extending and formalizing \\citet{huang2024selfcorrect}'s empirical findings for formal self-verification. This has direct consequences for test-time compute scaling \\citep{snell2025scaling}: increasing $K$ within a single model yields diminishing returns when traces share systematic biases, regardless of the aggregation mechanism applied.\n10\t\n11\t\\looseness=-1\n12\tEscaping the bottleneck requires structural independence (\\S\\ref{sec:cross-arch}); cross-architecture NLI provides a proof of concept, but whether trained extractors or hybrid approaches can shift the boundary remains open. Our diagnostic framework offers a concrete tool: a $K{=}12$ pilot run with three zero-cost metrics predicts whether any self-extraction method will help befo\n…[truncated 23 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-015132"
-        },
-        {
-          "source_line": 15133,
-          "timestamp": "2026-05-23T19:42:54.403902+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
-            }
-          },
-          "id": "event-015133"
-        },
-        {
-          "source_line": 15134,
-          "timestamp": "2026-05-23T19:42:54.956405+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tCan symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? We find no detectable improvement exceeding ${\\sim}$2\\,pp under self-extraction. We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA produces answers identical to majority voting on over 90\\% of problems across six models (7B--32B) and three domains. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects. The failure is structural: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information (Remark~1), extending and formalizing \\citet{huang2024selfcorrect}'s findings for formal self-verification. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. Cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all tested conditions.\n2\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 552
-          },
-          "id": "event-015134"
-        },
-        {
-          "source_line": 15135,
-          "timestamp": "2026-05-23T19:42:54.956760+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
-            }
-          },
-          "id": "event-015135"
-        },
-        {
-          "source_line": 15136,
-          "timestamp": "2026-05-23T19:42:55.460090+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\t\\looseness=-1\n4\tSelf-Consistency (SC) \\citep{wang2023sc} selects the majority answer across $K$ chain-of-thought traces, a strategy grounded in the Condorcet Jury Theorem: independent voters converge to truth \\citep{condorcet1785, ladha1992correlated}. In practice, SC's gains plateau for strong models \\citep{loo2025reevaluating}, pointing to correlated traces that reduce the effective ensemble size. A natural remedy is to move beyond simple vote-counting: extract logical constraints from the traces and let a provably sound solver adjudicate. If the solver can filter contradictions and enforce logical consistency, it should recover information that raw majority voting discards.\n5\t\n6\t\\looseness=-1\n7\tWe test this intuition through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces (prompted as first-order logic; 99\\% are propositional at the Z3 level) and selects answers via weighted partial MAX-SAT (\\S\\ref{sec:pipeline}; Figure~\\ref{fig:pipeline}). Despite Z3 validating nearly all self-extracted constraints, SICA produces answers identical to majority voting on the vast majority of problems. Across six models (7B--32B), three reasoning domains, and multi-seed replication, no condition shows a significant positive effect after FDR control (Table~\\ref{tab:main_results}). Four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects.\n8\t\n9\t\\looseness=-1\n10\tThe failure is not in the solver but in the constraints it operates on. Self-extracted constraints systematically support the model's majority answer---a structural property of self-extraction pipelines we term \\emph{symbolic confirmation bias} (\\S\\ref{sec:confirmation-bias}). Because each trace determines both an answer and its constraints, the formal channel reduces to a weighted echo of the majority vote. We show this degeneration is structural \n…[truncated 4167 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 503
-          },
-          "id": "event-015136"
-        },
-        {
-          "source_line": 15137,
-          "timestamp": "2026-05-23T19:42:55.460455+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex"
-            }
-          },
-          "id": "event-015137"
-        },
-        {
-          "source_line": 15138,
-          "timestamp": "2026-05-23T19:42:55.460621+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\looseness=-1 Models range from 7B to 32B (frontier via cross-model extraction); all benchmarks are English logical reasoning. We do not evaluate trained extractors. Statistical power is limited for effects below ${\\sim}$2\\,pp; the capability-gap analysis rests on $n{=}6$ conditions (Appendix~\\ref{app:limitations-extended}).\n2\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-015138"
-        },
-        {
-          "source_line": 15139,
-          "timestamp": "2026-05-23T19:42:56.062793+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
-            }
-          },
-          "id": "event-015139"
-        },
-        {
-          "source_line": 15140,
-          "timestamp": "2026-05-23T19:42:56.114324+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{The Symbolic Mirage}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer---a structural limitation of self-extraction pipelines, not a cognitive bias analogy. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on $\\geq$99\\% of problems across all weight settings $\\alpha$ (Table~\\ref{tab:alpha-ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting.\n8\t\n9\t\\looseness=-1 Crucially, BR $> 1$ is not an independent finding but a corollary of the degeneration identified in Observation~1: under source-attribution scoring, constraint weight is proportional to trace count, so the majority answer necessarily receives more support. A permutation null model---randomizing constraint--answer associations while preserving per-trace counts (1{,}000 permutations)---confirms this: $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($\\text{BR}_\\text{excess} \\approx 0$; $p > 0.7$) across all tested conditions. BR thus quantifies the degree of extraction degeneration---how completely constraints collapse to majority-vote equivalents---not an independent bias signal. On problems where SC is correct, constraints still track the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$), confirming that self-extracted constraints reflect distributional frequency rather than logical validity.\n10\t\n11\t\\looseness=-1 The pattern generalizes across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}) and all eight cells of a $2{\\times}2$ generator$\n…[truncated 11546 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-015140"
-        },
-        {
-          "source_line": 15141,
-          "timestamp": "2026-05-23T19:43:19.576767+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
-              "old_string": "Can symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? We find no detectable improvement exceeding ${\\sim}$2\\,pp under self-extraction. We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA produces answers identical to majority voting on over 90\\% of problems across six models (7B--32B) and three domains. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects. The failure is structural: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information (Remark~1), extending and formalizing \\citet{huang2024selfcorrect}'s findings for formal self-verification. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. Cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all tested conditions.",
-              "new_string": "Can symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? We find no detectable improvement exceeding ${\\sim}$2 percentage points (pp) under self-extraction. We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA matches majority voting on over 90\\% of problems across six models (7B--32B) and three domains. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects. The failure is systematic: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information (Remark~1), revealing a deeper structural mechanism underlying \\citet{huang2024selfcorrect}'s findings. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. Breaking the self-extraction dependency, cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all tested conditions."
-            }
-          },
-          "id": "event-015141"
-        },
-        {
-          "source_line": 15142,
-          "timestamp": "2026-05-23T19:43:19.577344+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-015142"
-        },
-        {
-          "source_line": 15143,
           "timestamp": "2026-05-23T19:43:35.541826+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -455,10 +26,10 @@
               "new_string": "The failure is not in the solver but in the constraints it operates on. Self-extracted constraints systematically support the model's majority answer---a systematic property of self-extraction pipelines we term \\emph{symbolic confirmation bias} (\\S\\ref{sec:confirmation-bias}). Because each trace determines both an answer and its constraints, the formal channel reduces to a weighted echo of the majority vote. We show this degeneration is systematic (Observation~1) and confirm it holds across nine models from 7B to frontier scale. Prior work shows LLMs cannot self-correct reasoning without external feedback \\citep{huang2024selfcorrect}; our analysis reveals a deeper structural mechanism underlying these findings, providing a Markov chain formalization and actionable diagnostics for self-verification."
             }
           },
-          "id": "event-015143"
+          "id": "event-015121"
         },
         {
-          "source_line": 15144,
+          "source_line": 15122,
           "timestamp": "2026-05-23T19:43:35.592624+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -473,10 +44,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015144"
+          "id": "event-015122"
         },
         {
-          "source_line": 15145,
+          "source_line": 15123,
           "timestamp": "2026-05-23T19:43:39.416379+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -496,10 +67,10 @@
               "new_string": "We diagnose the underlying mechanism: self-extracted constraints inherit the generating model's distributional prior"
             }
           },
-          "id": "event-015145"
+          "id": "event-015123"
         },
         {
-          "source_line": 15146,
+          "source_line": 15124,
           "timestamp": "2026-05-23T19:43:39.517173+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -514,10 +85,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-015146"
+          "id": "event-015124"
         },
         {
-          "source_line": 15147,
+          "source_line": 15125,
           "timestamp": "2026-05-23T19:43:43.833191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -537,10 +108,10 @@
               "new_string": "\\textbf{Remark 1} \\textit{(Self-Extraction Bound).}\\;%"
             }
           },
-          "id": "event-015147"
+          "id": "event-015125"
         },
         {
-          "source_line": 15148,
+          "source_line": 15126,
           "timestamp": "2026-05-23T19:43:43.883896+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -555,10 +126,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015148"
+          "id": "event-015126"
         },
         {
-          "source_line": 15149,
+          "source_line": 15127,
           "timestamp": "2026-05-23T19:43:47.897540+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -578,10 +149,10 @@
               "new_string": "potentially breaking the self-extraction bound (Remark~1)"
             }
           },
-          "id": "event-015149"
+          "id": "event-015127"
         },
         {
-          "source_line": 15150,
+          "source_line": 15128,
           "timestamp": "2026-05-23T19:43:48.349999+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -596,10 +167,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-015150"
+          "id": "event-015128"
         },
         {
-          "source_line": 15151,
+          "source_line": 15129,
           "timestamp": "2026-05-23T19:43:49.754973+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -619,10 +190,10 @@
               "new_string": "the self-extraction bound $I(C;Y) \\leq I(T;Y)$ binds"
             }
           },
-          "id": "event-015151"
+          "id": "event-015129"
         },
         {
-          "source_line": 15152,
+          "source_line": 15130,
           "timestamp": "2026-05-23T19:43:50.156783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -637,10 +208,10 @@
             "tool": "Edit",
             "elapsed_ms": 401
           },
-          "id": "event-015152"
+          "id": "event-015130"
         },
         {
-          "source_line": 15153,
+          "source_line": 15131,
           "timestamp": "2026-05-23T19:43:54.121724+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -657,10 +228,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
             }
           },
-          "id": "event-015153"
+          "id": "event-015131"
         },
         {
-          "source_line": 15154,
+          "source_line": 15132,
           "timestamp": "2026-05-23T19:43:54.172391+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -675,10 +246,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015154"
+          "id": "event-015132"
         },
         {
-          "source_line": 15155,
+          "source_line": 15133,
           "timestamp": "2026-05-23T19:44:00.695572+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -698,10 +269,10 @@
               "new_string": "Prior studies note high formalization error rates but treat them as quality problems; we show the errors are \\emph{systematically biased} toward the model's answer (Observation~1; Figure~\\ref{fig:causal-dag}). Our analysis reveals a deeper structural mechanism underlying \\citet{huang2024selfcorrect}'s finding that LLMs cannot self-correct without external feedback, showing that even Z3-validated constraints carry no information beyond majority voting."
             }
           },
-          "id": "event-015155"
+          "id": "event-015133"
         },
         {
-          "source_line": 15156,
+          "source_line": 15134,
           "timestamp": "2026-05-23T19:44:00.696039+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -716,10 +287,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015156"
+          "id": "event-015134"
         },
         {
-          "source_line": 15157,
+          "source_line": 15135,
           "timestamp": "2026-05-23T19:44:16.385635+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -739,10 +310,10 @@
               "new_string": "\\looseness=-1\n\\paragraph{Distinction from CoT confirmation bias.}\nSymbolic confirmation bias (SCB) is complementary to, but structurally distinct from, CoT-level confirmation bias \\citep{wan2025unveiling, turpin2023language, jhaveri2026failing}. CoT bias operates at the \\emph{trace level}---individual chains may not faithfully reflect the model's computation---while SCB operates at the \\emph{aggregation level}: even if each trace is locally faithful, the \\emph{collection} of self-extracted constraints mirrors the answer distribution.\n\n\\looseness=-1\n\\paragraph{Relationship to \\citet{huang2024selfcorrect}.}\n\\citeauthor{huang2024selfcorrect} empirically demonstrate that LLMs cannot self-correct reasoning without external feedback; our work reveals a deeper structural mechanism underlying this finding. Where they report the phenomenon through evaluation of prompting strategies, we formalize the failure via a Markov chain model ($M{\\to}T{\\to}A{\\to}C$; Observation~1, Remark~1) that explains \\emph{why} self-correction fails. Where they lack tools for a priori prediction, we provide three zero-cost diagnostics ($K_\\text{eff}$, BR, $C_0$) that predict failure modes before deployment. Where they do not test formal verification, we systematically evaluate 27 training-free variants including Z3-validated constraints, showing that even provably sound solvers cannot escape the bottleneck."
             }
           },
-          "id": "event-015157"
+          "id": "event-015135"
         },
         {
-          "source_line": 15158,
+          "source_line": 15136,
           "timestamp": "2026-05-23T19:44:16.436549+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -757,10 +328,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015158"
+          "id": "event-015136"
         },
         {
-          "source_line": 15159,
+          "source_line": 15137,
           "timestamp": "2026-05-23T19:44:26.215726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -780,10 +351,10 @@
               "new_string": "revealing a deeper structural mechanism underlying \\citet{huang2024selfcorrect}'s empirical findings"
             }
           },
-          "id": "event-015159"
+          "id": "event-015137"
         },
         {
-          "source_line": 15160,
+          "source_line": 15138,
           "timestamp": "2026-05-23T19:44:26.266394+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -798,10 +369,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015160"
+          "id": "event-015138"
         },
         {
-          "source_line": 15161,
+          "source_line": 15139,
           "timestamp": "2026-05-23T19:44:43.361241+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -821,10 +392,10 @@
               "new_string": "\\paragraph{Capability gap.}\n\\looseness=-1 Across 108 verifier-generator-weight combinations spanning three NLI architectures, four generators, and three domains, gain decreases monotonically with generator accuracy---a \\emph{capability-gap pattern}. Of 72 above-verifier conditions, none shows a significant improvement; all significant gains concentrate below the verifier's standalone accuracy. The pattern is quantified by a perfect rank correlation across architectures ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}). On ProofWriter ($n{=}600$; Table~\\ref{tab:cross_generator_nli}), only Mistral-7B (SC below DeBERTa's 55.00\\%) gains significantly ($+6.67$\\,pp, $p < 0.001$). At $w{=}5$, BART and RoBERTa \\emph{degrade} Qwen2.5-14B ($-3.43$/$-4.41$\\,pp; Appendix~\\ref{app:multi-nli})."
             }
           },
-          "id": "event-015161"
+          "id": "event-015139"
         },
         {
-          "source_line": 15162,
+          "source_line": 15140,
           "timestamp": "2026-05-23T19:44:43.361805+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -839,10 +410,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015162"
+          "id": "event-015140"
         },
         {
-          "source_line": 15163,
+          "source_line": 15141,
           "timestamp": "2026-05-23T19:45:00.725465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -862,10 +433,10 @@
               "new_string": "\\looseness=-1 \\textbf{Model scale.} Our locally-run models range from 7B to 32B; frontier coverage (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) relies on cross-model extraction rather than self-extraction, so we cannot confirm that self-extraction produces identical SCB patterns at frontier scale.\n\n\\looseness=-1 \\textbf{Domain scope.} All benchmarks are English logical reasoning. FOLIO and ProofWriter represent a best-case scenario for symbolic verification: problems are designed to have clean first-order logic representations, so the observed bias ratios ($1.66$--$4.97\\times$) likely represent a \\emph{lower bound} on SCB in less structured domains. We excluded GSM8K and AIME because $C_0 < 5\\%$ made SICA degenerate by design; whether symbolic confirmation bias manifests differently in mathematical reasoning with higher extraction rates remains untested.\n\n\\looseness=-1 \\textbf{Statistical power and escape scope.} Statistical power is limited for effects below ${\\sim}$2\\,pp (MDE 1.86--4.84\\,pp across conditions); small positive effects cannot be ruled out. The capability-gap analysis rests on $n{=}6$ rank-correlation conditions (Appendix~\\ref{app:limitations-extended}). We do not evaluate trained extractors, which could potentially break the self-extraction bound by introducing external signal."
             }
           },
-          "id": "event-015163"
+          "id": "event-015141"
         },
         {
-          "source_line": 15164,
+          "source_line": 15142,
           "timestamp": "2026-05-23T19:45:00.726025+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -880,10 +451,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015164"
+          "id": "event-015142"
         },
         {
-          "source_line": 15165,
+          "source_line": 15143,
           "timestamp": "2026-05-23T19:45:05.092255+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -900,10 +471,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
             }
           },
-          "id": "event-015165"
+          "id": "event-015143"
         },
         {
-          "source_line": 15166,
+          "source_line": 15144,
           "timestamp": "2026-05-23T19:45:06.497658+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -918,10 +489,10 @@
             "tool": "Read",
             "elapsed_ms": 1405
           },
-          "id": "event-015166"
+          "id": "event-015144"
         },
         {
-          "source_line": 15167,
+          "source_line": 15145,
           "timestamp": "2026-05-23T19:45:06.648702+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -939,10 +510,10 @@
               "description": "Count abstract words"
             }
           },
-          "id": "event-015167"
+          "id": "event-015145"
         },
         {
-          "source_line": 15168,
+          "source_line": 15146,
           "timestamp": "2026-05-23T19:45:06.850193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -957,10 +528,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-015168"
+          "id": "event-015146"
         },
         {
-          "source_line": 15169,
+          "source_line": 15147,
           "timestamp": "2026-05-23T19:45:12.469931+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -978,10 +549,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-015169"
+          "id": "event-015147"
         },
         {
-          "source_line": 15170,
+          "source_line": 15148,
           "timestamp": "2026-05-23T19:45:12.520540+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -996,10 +567,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-015170"
+          "id": "event-015148"
         },
         {
-          "source_line": 15171,
+          "source_line": 15149,
           "timestamp": "2026-05-23T19:45:24.664814+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1018,10 +589,10 @@
               "preview": "True"
             }
           },
-          "id": "event-015171"
+          "id": "event-015149"
         },
         {
-          "source_line": 15172,
+          "source_line": 15150,
           "timestamp": "2026-05-23T19:45:32.193362+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1036,10 +607,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 7528
           },
-          "id": "event-015172"
+          "id": "event-015150"
         },
         {
-          "source_line": 15173,
+          "source_line": 15151,
           "timestamp": "2026-05-23T19:45:44.276085+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1056,10 +627,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-015173"
+          "id": "event-015151"
         },
         {
-          "source_line": 15174,
+          "source_line": 15152,
           "timestamp": "2026-05-23T19:45:47.039494+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1074,10 +645,10 @@
             "tool": "Read",
             "elapsed_ms": 2763
           },
-          "id": "event-015174"
+          "id": "event-015152"
         },
         {
-          "source_line": 15175,
+          "source_line": 15153,
           "timestamp": "2026-05-23T19:45:47.090113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1094,10 +665,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-015175"
+          "id": "event-015153"
         },
         {
-          "source_line": 15176,
+          "source_line": 15154,
           "timestamp": "2026-05-23T19:45:47.694748+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1112,10 +683,10 @@
             "tool": "Read",
             "elapsed_ms": 604
           },
-          "id": "event-015176"
+          "id": "event-015154"
         },
         {
-          "source_line": 15177,
+          "source_line": 15155,
           "timestamp": "2026-05-23T19:46:10.107950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1134,10 +705,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015177"
+          "id": "event-015155"
         },
         {
-          "source_line": 15178,
+          "source_line": 15156,
           "timestamp": "2026-05-23T19:46:10.561774+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1152,10 +723,10 @@
             "tool": "Grep",
             "elapsed_ms": 453
           },
-          "id": "event-015178"
+          "id": "event-015156"
         },
         {
-          "source_line": 15179,
+          "source_line": 15157,
           "timestamp": "2026-05-23T19:46:10.562121+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1174,10 +745,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015179"
+          "id": "event-015157"
         },
         {
-          "source_line": 15180,
+          "source_line": 15158,
           "timestamp": "2026-05-23T19:46:11.063720+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1192,10 +763,10 @@
             "tool": "Grep",
             "elapsed_ms": 501
           },
-          "id": "event-015180"
+          "id": "event-015158"
         },
         {
-          "source_line": 15181,
+          "source_line": 15159,
           "timestamp": "2026-05-23T19:46:11.314815+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1214,10 +785,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015181"
+          "id": "event-015159"
         },
         {
-          "source_line": 15182,
+          "source_line": 15160,
           "timestamp": "2026-05-23T19:46:11.367059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1232,10 +803,10 @@
             "tool": "Grep",
             "elapsed_ms": 52
           },
-          "id": "event-015182"
+          "id": "event-015160"
         },
         {
-          "source_line": 15183,
+          "source_line": 15161,
           "timestamp": "2026-05-23T19:46:15.632238+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1254,10 +825,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015183"
+          "id": "event-015161"
         },
         {
-          "source_line": 15184,
+          "source_line": 15162,
           "timestamp": "2026-05-23T19:46:16.134939+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1272,10 +843,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-015184"
+          "id": "event-015162"
         },
         {
-          "source_line": 15185,
+          "source_line": 15163,
           "timestamp": "2026-05-23T19:46:16.537385+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1294,10 +865,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015185"
+          "id": "event-015163"
         },
         {
-          "source_line": 15186,
+          "source_line": 15164,
           "timestamp": "2026-05-23T19:46:16.638023+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1312,10 +883,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-015186"
+          "id": "event-015164"
         },
         {
-          "source_line": 15187,
+          "source_line": 15165,
           "timestamp": "2026-05-23T19:46:24.098325+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1334,10 +905,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015187"
+          "id": "event-015165"
         },
         {
-          "source_line": 15188,
+          "source_line": 15166,
           "timestamp": "2026-05-23T19:46:24.549935+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1352,10 +923,10 @@
             "tool": "Grep",
             "elapsed_ms": 451
           },
-          "id": "event-015188"
+          "id": "event-015166"
         },
         {
-          "source_line": 15189,
+          "source_line": 15167,
           "timestamp": "2026-05-23T19:46:24.901314+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1374,10 +945,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-015189"
+          "id": "event-015167"
         },
         {
-          "source_line": 15190,
+          "source_line": 15168,
           "timestamp": "2026-05-23T19:46:24.951821+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1392,10 +963,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-015190"
+          "id": "event-015168"
         },
         {
-          "source_line": 15191,
+          "source_line": 15169,
           "timestamp": "2026-05-23T19:46:35.545844+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1413,10 +984,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-015191"
+          "id": "event-015169"
         },
         {
-          "source_line": 15192,
+          "source_line": 15170,
           "timestamp": "2026-05-23T19:46:35.546239+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1431,10 +1002,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-015192"
+          "id": "event-015170"
         },
         {
-          "source_line": 15193,
+          "source_line": 15171,
           "timestamp": "2026-05-23T19:47:02.249014+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1452,10 +1023,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-015193"
+          "id": "event-015171"
         },
         {
-          "source_line": 15194,
+          "source_line": 15172,
           "timestamp": "2026-05-23T19:47:05.765083+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1470,10 +1041,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3516
           },
-          "id": "event-015194"
+          "id": "event-015172"
         },
         {
-          "source_line": 15195,
+          "source_line": 15173,
           "timestamp": "2026-05-23T19:47:08.904218+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1486,7 +1057,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-015195"
+          "id": "event-015173"
         }
       ]
     },
@@ -1494,7 +1065,7 @@
       "number": 584,
       "messages": [
         {
-          "source_line": 15196,
+          "source_line": 15174,
           "timestamp": "2026-05-23T19:47:09.383164+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1508,10 +1079,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "system"
           },
-          "id": "event-015196"
+          "id": "event-015174"
         },
         {
-          "source_line": 15197,
+          "source_line": 15175,
           "timestamp": "2026-05-23T19:47:21.412211+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1524,7 +1095,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-015197"
+          "id": "event-015175"
         }
       ]
     },
@@ -1532,7 +1103,7 @@
       "number": 585,
       "messages": [
         {
-          "source_line": 15198,
+          "source_line": 15176,
           "timestamp": "2026-05-23T20:42:22.801541+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1546,10 +1117,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-015198"
+          "id": "event-015176"
         },
         {
-          "source_line": 15199,
+          "source_line": 15177,
           "timestamp": "2026-05-23T20:42:37.849837+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1566,10 +1137,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
             }
           },
-          "id": "event-015199"
+          "id": "event-015177"
         },
         {
-          "source_line": 15200,
+          "source_line": 15178,
           "timestamp": "2026-05-23T20:42:38.301564+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1584,10 +1155,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-015200"
+          "id": "event-015178"
         },
         {
-          "source_line": 15201,
+          "source_line": 15179,
           "timestamp": "2026-05-23T20:42:38.301954+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1604,10 +1175,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
             }
           },
-          "id": "event-015201"
+          "id": "event-015179"
         },
         {
-          "source_line": 15202,
+          "source_line": 15180,
           "timestamp": "2026-05-23T20:42:39.255294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1622,10 +1193,10 @@
             "tool": "Read",
             "elapsed_ms": 953
           },
-          "id": "event-015202"
+          "id": "event-015180"
         },
         {
-          "source_line": 15203,
+          "source_line": 15181,
           "timestamp": "2026-05-23T20:42:39.255699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1642,10 +1213,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
             }
           },
-          "id": "event-015203"
+          "id": "event-015181"
         },
         {
-          "source_line": 15204,
+          "source_line": 15182,
           "timestamp": "2026-05-23T20:42:39.256067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1660,10 +1231,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-015204"
+          "id": "event-015182"
         },
         {
-          "source_line": 15205,
+          "source_line": 15183,
           "timestamp": "2026-05-23T20:42:39.707672+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1680,10 +1251,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-015205"
+          "id": "event-015183"
         },
         {
-          "source_line": 15206,
+          "source_line": 15184,
           "timestamp": "2026-05-23T20:42:40.209385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1698,10 +1269,10 @@
             "tool": "Read",
             "elapsed_ms": 501
           },
-          "id": "event-015206"
+          "id": "event-015184"
         },
         {
-          "source_line": 15207,
+          "source_line": 15185,
           "timestamp": "2026-05-23T20:42:40.259981+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1718,10 +1289,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
             }
           },
-          "id": "event-015207"
+          "id": "event-015185"
         },
         {
-          "source_line": 15208,
+          "source_line": 15186,
           "timestamp": "2026-05-23T20:42:40.744231+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1736,10 +1307,10 @@
             "tool": "Read",
             "elapsed_ms": 484
           },
-          "id": "event-015208"
+          "id": "event-015186"
         },
         {
-          "source_line": 15209,
+          "source_line": 15187,
           "timestamp": "2026-05-23T20:42:40.794842+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1756,10 +1327,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex"
             }
           },
-          "id": "event-015209"
+          "id": "event-015187"
         },
         {
-          "source_line": 15210,
+          "source_line": 15188,
           "timestamp": "2026-05-23T20:42:41.296597+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1774,10 +1345,10 @@
             "tool": "Read",
             "elapsed_ms": 501
           },
-          "id": "event-015210"
+          "id": "event-015188"
         },
         {
-          "source_line": 15211,
+          "source_line": 15189,
           "timestamp": "2026-05-23T20:42:41.347397+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1794,10 +1365,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
             }
           },
-          "id": "event-015211"
+          "id": "event-015189"
         },
         {
-          "source_line": 15212,
+          "source_line": 15190,
           "timestamp": "2026-05-23T20:42:41.347948+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1812,10 +1383,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-015212"
+          "id": "event-015190"
         },
         {
-          "source_line": 15213,
+          "source_line": 15191,
           "timestamp": "2026-05-23T20:42:41.599069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1832,10 +1403,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
             }
           },
-          "id": "event-015213"
+          "id": "event-015191"
         },
         {
-          "source_line": 15214,
+          "source_line": 15192,
           "timestamp": "2026-05-23T20:42:41.649838+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1850,10 +1421,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015214"
+          "id": "event-015192"
         },
         {
-          "source_line": 15215,
+          "source_line": 15193,
           "timestamp": "2026-05-23T20:42:50.229629+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1873,10 +1444,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015215"
+          "id": "event-015193"
         },
         {
-          "source_line": 15216,
+          "source_line": 15194,
           "timestamp": "2026-05-23T20:42:50.731989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1891,10 +1462,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-015216"
+          "id": "event-015194"
         },
         {
-          "source_line": 15217,
+          "source_line": 15195,
           "timestamp": "2026-05-23T20:42:51.786176+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1914,10 +1485,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015217"
+          "id": "event-015195"
         },
         {
-          "source_line": 15218,
+          "source_line": 15196,
           "timestamp": "2026-05-23T20:42:51.836743+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1932,10 +1503,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-015218"
+          "id": "event-015196"
         },
         {
-          "source_line": 15219,
+          "source_line": 15197,
           "timestamp": "2026-05-23T20:42:52.740439+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1955,10 +1526,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015219"
+          "id": "event-015197"
         },
         {
-          "source_line": 15220,
+          "source_line": 15198,
           "timestamp": "2026-05-23T20:42:52.740771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1973,10 +1544,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-015220"
+          "id": "event-015198"
         },
         {
-          "source_line": 15221,
+          "source_line": 15199,
           "timestamp": "2026-05-23T20:42:53.694445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1996,10 +1567,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015221"
+          "id": "event-015199"
         },
         {
-          "source_line": 15222,
+          "source_line": 15200,
           "timestamp": "2026-05-23T20:42:54.146363+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2014,10 +1585,10 @@
             "tool": "Grep",
             "elapsed_ms": 451
           },
-          "id": "event-015222"
+          "id": "event-015200"
         },
         {
-          "source_line": 15223,
+          "source_line": 15201,
           "timestamp": "2026-05-23T20:42:55.099995+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2038,10 +1609,10 @@
               "-i": "True"
             }
           },
-          "id": "event-015223"
+          "id": "event-015201"
         },
         {
-          "source_line": 15224,
+          "source_line": 15202,
           "timestamp": "2026-05-23T20:42:55.602402+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2056,10 +1627,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-015224"
+          "id": "event-015202"
         },
         {
-          "source_line": 15225,
+          "source_line": 15203,
           "timestamp": "2026-05-23T20:42:56.557566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2080,10 +1651,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015225"
+          "id": "event-015203"
         },
         {
-          "source_line": 15226,
+          "source_line": 15204,
           "timestamp": "2026-05-23T20:42:56.609528+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2098,10 +1669,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-015226"
+          "id": "event-015204"
         },
         {
-          "source_line": 15227,
+          "source_line": 15205,
           "timestamp": "2026-05-23T20:43:39.678287+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2119,10 +1690,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-015227"
+          "id": "event-015205"
         },
         {
-          "source_line": 15228,
+          "source_line": 15206,
           "timestamp": "2026-05-23T20:43:39.678723+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2137,10 +1708,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-015228"
+          "id": "event-015206"
         },
         {
-          "source_line": 15229,
+          "source_line": 15207,
           "timestamp": "2026-05-23T20:43:42.658271+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2157,10 +1728,10 @@
               "query": "GRACE Khalifa 2023 NLP paper verification reward model"
             }
           },
-          "id": "event-015229"
+          "id": "event-015207"
         },
         {
-          "source_line": 15230,
+          "source_line": 15208,
           "timestamp": "2026-05-23T20:43:48.729618+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2175,10 +1746,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6071
           },
-          "id": "event-015230"
+          "id": "event-015208"
         },
         {
-          "source_line": 15231,
+          "source_line": 15209,
           "timestamp": "2026-05-23T20:43:56.408065+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2195,10 +1766,10 @@
               "query": "\"GRACE\" \"Khalifa\" \"discriminator-guided\" chain-of-thought 2023 arxiv"
             }
           },
-          "id": "event-015231"
+          "id": "event-015209"
         },
         {
-          "source_line": 15232,
+          "source_line": 15210,
           "timestamp": "2026-05-23T20:44:02.631982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2213,10 +1784,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6223
           },
-          "id": "event-015232"
+          "id": "event-015210"
         },
         {
-          "source_line": 15233,
+          "source_line": 15211,
           "timestamp": "2026-05-23T20:44:12.972514+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2237,10 +1808,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-015233"
+          "id": "event-015211"
         },
         {
-          "source_line": 15234,
+          "source_line": 15212,
           "timestamp": "2026-05-23T20:44:13.474410+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2255,10 +1826,10 @@
             "tool": "Grep",
             "elapsed_ms": 501
           },
-          "id": "event-015234"
+          "id": "event-015212"
         },
         {
-          "source_line": 15235,
+          "source_line": 15213,
           "timestamp": "2026-05-23T20:44:13.625226+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2277,10 +1848,10 @@
               "limit": "20"
             }
           },
-          "id": "event-015235"
+          "id": "event-015213"
         },
         {
-          "source_line": 15236,
+          "source_line": 15214,
           "timestamp": "2026-05-23T20:44:13.676211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2295,10 +1866,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015236"
+          "id": "event-015214"
         },
         {
-          "source_line": 15237,
+          "source_line": 15215,
           "timestamp": "2026-05-23T20:44:24.313999+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2318,10 +1889,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015237"
+          "id": "event-015215"
         },
         {
-          "source_line": 15238,
+          "source_line": 15216,
           "timestamp": "2026-05-23T20:44:24.314476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2336,10 +1907,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-015238"
+          "id": "event-015216"
         },
         {
-          "source_line": 15239,
+          "source_line": 15217,
           "timestamp": "2026-05-23T20:44:27.896891+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2360,10 +1931,10 @@
               "head_limit": "15"
             }
           },
-          "id": "event-015239"
+          "id": "event-015217"
         },
         {
-          "source_line": 15240,
+          "source_line": 15218,
           "timestamp": "2026-05-23T20:44:27.947654+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2378,10 +1949,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-015240"
+          "id": "event-015218"
         },
         {
-          "source_line": 15241,
+          "source_line": 15219,
           "timestamp": "2026-05-23T20:44:34.725267+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2400,10 +1971,10 @@
               "limit": "40"
             }
           },
-          "id": "event-015241"
+          "id": "event-015219"
         },
         {
-          "source_line": 15242,
+          "source_line": 15220,
           "timestamp": "2026-05-23T20:44:34.826025+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2418,10 +1989,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-015242"
+          "id": "event-015220"
         },
         {
-          "source_line": 15243,
+          "source_line": 15221,
           "timestamp": "2026-05-23T20:44:52.534823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2441,10 +2012,10 @@
               "new_string": "The capability-gap analysis rests on $n{=}6$ rank-correlation conditions (Appendix~\\ref{app:limitations-extended}). Multi-seed replication uses 3--4 seeds per model; cross-seed correlation is not modeled, and a larger seed budget could tighten the variance estimates. We do not evaluate trained extractors, which could potentially break the self-extraction bound by introducing external signal."
             }
           },
-          "id": "event-015243"
+          "id": "event-015221"
         },
         {
-          "source_line": 15244,
+          "source_line": 15222,
           "timestamp": "2026-05-23T20:44:52.986765+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2459,10 +2030,10 @@
             "tool": "Edit",
             "elapsed_ms": 451
           },
-          "id": "event-015244"
+          "id": "event-015222"
         },
         {
-          "source_line": 15245,
+          "source_line": 15223,
           "timestamp": "2026-05-23T20:44:56.902365+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2482,10 +2053,10 @@
               "new_string": "Degenerate conditions ($C_0 < 5\\%$: QwQ-32B AIME $n{=}22$, Qwen2.5-14B GSM8K $n{=}30$) yield $\\Delta = 0$ and are reported separately in Appendix~\\ref{app:oracle}.}"
             }
           },
-          "id": "event-015245"
+          "id": "event-015223"
         },
         {
-          "source_line": 15246,
+          "source_line": 15224,
           "timestamp": "2026-05-23T20:44:57.384262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2500,10 +2071,10 @@
             "tool": "Edit",
             "elapsed_ms": 481
           },
-          "id": "event-015246"
+          "id": "event-015224"
         },
         {
-          "source_line": 15247,
+          "source_line": 15225,
           "timestamp": "2026-05-23T20:44:57.685703+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2523,10 +2094,10 @@
               "new_string": "four benchmarks"
             }
           },
-          "id": "event-015247"
+          "id": "event-015225"
         },
         {
-          "source_line": 15248,
+          "source_line": 15226,
           "timestamp": "2026-05-23T20:44:57.736359+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2541,10 +2112,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015248"
+          "id": "event-015226"
         },
         {
-          "source_line": 15249,
+          "source_line": 15227,
           "timestamp": "2026-05-23T20:45:03.558845+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2563,10 +2134,10 @@
               "limit": "10"
             }
           },
-          "id": "event-015249"
+          "id": "event-015227"
         },
         {
-          "source_line": 15250,
+          "source_line": 15228,
           "timestamp": "2026-05-23T20:45:03.609534+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2581,10 +2152,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015250"
+          "id": "event-015228"
         },
         {
-          "source_line": 15251,
+          "source_line": 15229,
           "timestamp": "2026-05-23T20:45:09.581870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2604,10 +2175,10 @@
               "new_string": "@inproceedings{khalifa2023grace,\n  title={{GRACE}: Discriminator-Guided Chain-of-Thought Reasoning},\n  author={Khalifa, Muhammad and Logeswaran, Lajanugen and Lee, Moontae and Lee, Honglak and Wang, Lu},\n  booktitle={Findings of EMNLP},\n  year={2023}\n}\n\n%%% Constraint Satisfaction in NLP %%%\n\n%%% Debate and Multi-Agent %%%"
             }
           },
-          "id": "event-015251"
+          "id": "event-015229"
         },
         {
-          "source_line": 15252,
+          "source_line": 15230,
           "timestamp": "2026-05-23T20:45:09.582644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2622,10 +2193,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015252"
+          "id": "event-015230"
         },
         {
-          "source_line": 15253,
+          "source_line": 15231,
           "timestamp": "2026-05-23T20:45:40.828947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2645,10 +2216,10 @@
               "new_string": "The failure is a robust empirical regularity: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information, revealing a deeper mechanism underlying \\citet{huang2024selfcorrect}'s findings. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. As exploratory evidence, cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$)."
             }
           },
-          "id": "event-015253"
+          "id": "event-015231"
         },
         {
-          "source_line": 15254,
+          "source_line": 15232,
           "timestamp": "2026-05-23T20:45:40.829452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2663,10 +2234,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015254"
+          "id": "event-015232"
         },
         {
-          "source_line": 15255,
+          "source_line": 15233,
           "timestamp": "2026-05-23T20:45:45.919731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2686,10 +2257,10 @@
               "new_string": "Across six confirmatory conditions ($n \\geq 200$), we find no detectable improvement exceeding ${\\sim}$2 percentage points (pp)."
             }
           },
-          "id": "event-015255"
+          "id": "event-015233"
         },
         {
-          "source_line": 15256,
+          "source_line": 15234,
           "timestamp": "2026-05-23T20:45:45.972124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2704,10 +2275,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-015256"
+          "id": "event-015234"
         },
         {
-          "source_line": 15257,
+          "source_line": 15235,
           "timestamp": "2026-05-23T20:45:55.408057+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2727,10 +2298,10 @@
               "new_string": "Self-extracted constraints systematically support the model's majority answer---a robust empirical regularity of zero-shot self-extraction pipelines we term \\emph{symbolic confirmation bias} (\\S\\ref{sec:confirmation-bias}). Because each trace determines both an answer and its constraints, the formal channel reduces to a weighted echo of the majority vote. We show this degeneration is robust (Observation~1) and confirm it holds across nine models from 7B to frontier scale. Prior work shows LLMs cannot self-correct reasoning without external feedback \\citep{huang2024selfcorrect}; our analysis reveals a deeper mechanism underlying these findings, providing a Markov chain formalization and actionable diagnostics for self-verification."
             }
           },
-          "id": "event-015257"
+          "id": "event-015235"
         },
         {
-          "source_line": 15258,
+          "source_line": 15236,
           "timestamp": "2026-05-23T20:45:55.458833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2745,10 +2316,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015258"
+          "id": "event-015236"
         },
         {
-          "source_line": 15259,
+          "source_line": 15237,
           "timestamp": "2026-05-23T20:46:00.694471+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2768,10 +2339,10 @@
               "new_string": "a persistent empirical property of zero-shot self-extraction pipelines, not a cognitive bias analogy"
             }
           },
-          "id": "event-015259"
+          "id": "event-015237"
         },
         {
-          "source_line": 15260,
+          "source_line": 15238,
           "timestamp": "2026-05-23T20:46:01.196934+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2786,10 +2357,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-015260"
+          "id": "event-015238"
         },
         {
-          "source_line": 15261,
+          "source_line": 15239,
           "timestamp": "2026-05-23T20:46:02.251304+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2809,10 +2380,10 @@
               "new_string": "follow from a persistent empirical property of zero-shot self-extraction pipelines."
             }
           },
-          "id": "event-015261"
+          "id": "event-015239"
         },
         {
-          "source_line": 15262,
+          "source_line": 15240,
           "timestamp": "2026-05-23T20:46:02.603182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2827,10 +2398,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-015262"
+          "id": "event-015240"
         },
         {
-          "source_line": 15263,
+          "source_line": 15241,
           "timestamp": "2026-05-23T20:46:05.163003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2850,10 +2421,10 @@
               "new_string": "training-free remediation strategies face a structural limitation: methods that preserve extraction accuracy necessarily inherit the model's distributional prior. This regularity holds across all 27 tested zero-shot template extraction strategies; whether few-shot or iterative refinement approaches alter this pattern remains open."
             }
           },
-          "id": "event-015263"
+          "id": "event-015241"
         },
         {
-          "source_line": 15264,
+          "source_line": 15242,
           "timestamp": "2026-05-23T20:46:05.213696+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2868,10 +2439,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015264"
+          "id": "event-015242"
         },
         {
-          "source_line": 15265,
+          "source_line": 15243,
           "timestamp": "2026-05-23T20:46:20.021211+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2891,10 +2462,10 @@
               "new_string": "\\looseness=-1 By the data processing inequality \\citep{cover2006elements}, $I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ for any deterministic extraction $f$. The contribution is not this standard bound but the identification of the $M{\\to}T{\\to}A{\\to}C$ Markov chain structure in self-extraction pipelines: under the degeneration condition of Observation~1 ($|\\mathcal{C}^{\\setminus}| \\approx 0$), constraints are fully determined by answers, yielding the tighter bound $I(C;\\, Y) \\leq I(A;\\, Y)$ and the approximate conditional independence $C \\approx\\!\\!\\perp Y \\mid A$ (Figure~\\ref{fig:causal-dag}). This is a necessary condition, not a sufficient explanation; the empirical findings (Observation~1, BR, degeneration condition) provide the sufficient evidence."
             }
           },
-          "id": "event-015265"
+          "id": "event-015243"
         },
         {
-          "source_line": 15266,
+          "source_line": 15244,
           "timestamp": "2026-05-23T20:46:20.072068+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2909,10 +2480,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015266"
+          "id": "event-015244"
         },
         {
-          "source_line": 15267,
+          "source_line": 15245,
           "timestamp": "2026-05-23T20:46:25.692412+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2932,10 +2503,10 @@
               "new_string": "Approximate conditional independence ($C \\approx\\!\\!\\perp Y \\mid A$) is empirically supported by ${>}90\\%$ argmax agreement (Observation~1) but is not a formal consequence of the DPI bound.}"
             }
           },
-          "id": "event-015267"
+          "id": "event-015245"
         },
         {
-          "source_line": 15268,
+          "source_line": 15246,
           "timestamp": "2026-05-23T20:46:25.743106+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2950,10 +2521,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015268"
+          "id": "event-015246"
         },
         {
-          "source_line": 15269,
+          "source_line": 15247,
           "timestamp": "2026-05-23T20:46:34.904813+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2973,10 +2544,10 @@
               "new_string": "\\emph{General}: the DPI bound applies to any deterministic self-extraction, and symbolic confirmation bias---a persistent empirical pattern across all tested zero-shot self-extraction conditions, not a cognitive bias analogy---holds across nine models (7B to frontier), suggesting the bottleneck is intrinsic to self-referential constraint generation."
             }
           },
-          "id": "event-015269"
+          "id": "event-015247"
         },
         {
-          "source_line": 15270,
+          "source_line": 15248,
           "timestamp": "2026-05-23T20:46:35.408473+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2991,10 +2562,10 @@
             "tool": "Edit",
             "elapsed_ms": 503
           },
-          "id": "event-015270"
+          "id": "event-015248"
         },
         {
-          "source_line": 15271,
+          "source_line": 15249,
           "timestamp": "2026-05-23T20:46:36.914061+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3014,10 +2585,10 @@
               "new_string": "revealing a deeper mechanism underlying \\citet{huang2024selfcorrect}'s empirical findings"
             }
           },
-          "id": "event-015271"
+          "id": "event-015249"
         },
         {
-          "source_line": 15272,
+          "source_line": 15250,
           "timestamp": "2026-05-23T20:46:36.964760+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3032,10 +2603,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015272"
+          "id": "event-015250"
         },
         {
-          "source_line": 15273,
+          "source_line": 15251,
           "timestamp": "2026-05-23T20:46:43.659344+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3055,10 +2626,10 @@
               "new_string": "our work reveals a deeper mechanism underlying this finding. Where they report the phenomenon through evaluation of prompting strategies, we formalize the failure via the $M{\\to}T{\\to}A{\\to}C$ Markov chain (Observation~1) that explains \\emph{why} self-correction fails."
             }
           },
-          "id": "event-015273"
+          "id": "event-015251"
         },
         {
-          "source_line": 15274,
+          "source_line": 15252,
           "timestamp": "2026-05-23T20:46:44.111391+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3073,10 +2644,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-015274"
+          "id": "event-015252"
         },
         {
-          "source_line": 15275,
+          "source_line": 15253,
           "timestamp": "2026-05-23T20:46:45.115362+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3096,10 +2667,10 @@
               "new_string": "potentially breaking the DPI bound by violating the trace-determined assumption."
             }
           },
-          "id": "event-015275"
+          "id": "event-015253"
         },
         {
-          "source_line": 15276,
+          "source_line": 15254,
           "timestamp": "2026-05-23T20:46:45.216164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3114,10 +2685,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-015276"
+          "id": "event-015254"
         },
         {
-          "source_line": 15277,
+          "source_line": 15255,
           "timestamp": "2026-05-23T20:46:57.822943+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3137,10 +2708,10 @@
               "new_string": "Trained verifiers escape the self-extraction bottleneck via external reward signals: outcome and process reward models \\citep{cobbe2021gsm8k, lightman2024prm, wang2024mathshepherd}, discriminator-guided decoding \\citep{khalifa2023grace}, RL-based self-verification \\citep{zeng2025s2r}, dual preference optimization \\citep{dupo2025}, and execution-based filtering \\citep{li2022alphacode, chen2023codet}. These operate outside the pipeline of Observation~1, potentially breaking the DPI bound by violating the trace-determined assumption. The failure modes differ: SICA's bottleneck is extraction fidelity (constraints echo the model's prior), whereas PRM/ORM's is reward model generalization \\citep{wang2024mathshepherd}. Our diagnostics (BR, $K_\\text{eff}$) may extend to learned verification by quantifying whether learned scores introduce genuine independence."
             }
           },
-          "id": "event-015277"
+          "id": "event-015255"
         },
         {
-          "source_line": 15278,
+          "source_line": 15256,
           "timestamp": "2026-05-23T20:46:57.823541+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3155,10 +2726,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015278"
+          "id": "event-015256"
         },
         {
-          "source_line": 15279,
+          "source_line": 15257,
           "timestamp": "2026-05-23T20:47:02.692147+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3178,10 +2749,10 @@
               "new_string": "The DPI bound implies that any escape must break the self-extraction dependency: $I(C;Y) \\leq I(T;Y)$ binds"
             }
           },
-          "id": "event-015279"
+          "id": "event-015257"
         },
         {
-          "source_line": 15280,
+          "source_line": 15258,
           "timestamp": "2026-05-23T20:47:02.742915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3196,10 +2767,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015280"
+          "id": "event-015258"
         },
         {
-          "source_line": 15281,
+          "source_line": 15259,
           "timestamp": "2026-05-23T20:47:19.657687+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3219,10 +2790,10 @@
               "new_string": "\\looseness=-1 Two representative categories illustrate the trade-off. \\emph{Diversity-seeking strategies} (temperature variation, persona sampling) aim to decorrelate traces, but $K_\\text{eff}$ changes by $< 0.5$---insufficient to break the correlation ceiling. For example, varying temperature from 0.3 to 1.2 shifts $\\kappa$ by $< 0.04$, producing near-identical constraint distributions. \\emph{Constraint-level interventions} (explicit negation, contrastive prompting) attempt to diversify the extracted constraints directly, but the Z3 rejection rate remains at ${\\sim}3.4\\%$---degeneration persists because the model generates constraints that are trivially satisfiable regardless of prompting.\n\n\\looseness=-1 Two further modes complete the picture: \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) breaks correlation but collapses accuracy; \\emph{cross-model extraction} leaves $\\kappa$ near the same-model ceiling ($\\kappa \\approx 0.40$--$0.47$). No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). Across three model families, self-extraction cannot produce constraints independent of the distributional prior."
             }
           },
-          "id": "event-015281"
+          "id": "event-015259"
         },
         {
-          "source_line": 15282,
+          "source_line": 15260,
           "timestamp": "2026-05-23T20:47:19.709196+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3237,10 +2808,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-015282"
+          "id": "event-015260"
         },
         {
-          "source_line": 15283,
+          "source_line": 15261,
           "timestamp": "2026-05-23T20:47:25.780693+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3260,10 +2831,10 @@
               "-i": "True"
             }
           },
-          "id": "event-015283"
+          "id": "event-015261"
         },
         {
-          "source_line": 15284,
+          "source_line": 15262,
           "timestamp": "2026-05-23T20:47:25.781202+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3278,10 +2849,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-015284"
+          "id": "event-015262"
         },
         {
-          "source_line": 15285,
+          "source_line": 15263,
           "timestamp": "2026-05-23T20:47:30.778222+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3299,10 +2870,10 @@
               "limit": "5"
             }
           },
-          "id": "event-015285"
+          "id": "event-015263"
         },
         {
-          "source_line": 15286,
+          "source_line": 15264,
           "timestamp": "2026-05-23T20:47:30.828992+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3317,10 +2888,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015286"
+          "id": "event-015264"
         },
         {
-          "source_line": 15287,
+          "source_line": 15265,
           "timestamp": "2026-05-23T20:47:35.848066+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3340,10 +2911,10 @@
               "new_string": "@book{cover2006elements,\n  title={Elements of Information Theory},\n  author={Cover, Thomas M. and Thomas, Joy A.},\n  edition={2nd},\n  publisher={Wiley-Interscience},\n  year={2006}\n}\n\n%%% SAT-Based Reasoning %%%"
             }
           },
-          "id": "event-015287"
+          "id": "event-015265"
         },
         {
-          "source_line": 15288,
+          "source_line": 15266,
           "timestamp": "2026-05-23T20:47:35.898853+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3358,10 +2929,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-015288"
+          "id": "event-015266"
         },
         {
-          "source_line": 15289,
+          "source_line": 15267,
           "timestamp": "2026-05-23T20:47:51.587048+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3381,10 +2952,10 @@
               "new_string": "A practitioner should compute all four on a held-out sample ($n \\geq 50$). If $K_\\text{eff} \\leq 1.30$ or $C_0 > 95\\%$ or ($\\text{BR} > 2$ and $\\text{ProcessSim} > 0.6$), symbolic self-verification is unlikely to help.\n\n\\paragraph{BR permutation null model.}\n\\label{app:br-permutation}\nThe permutation test referenced in \\S\\ref{sec:confirmation-bias} proceeds as follows:\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item For each problem $p$ with extracted constraints $\\{c_1, \\ldots, c_M\\}$ and source answers $\\{a_1, \\ldots, a_M\\}$:\n\\item Randomly permute constraint-to-answer assignments within $p$ (preserving per-trace constraint counts).\n\\item Compute $\\text{BR}_\\text{null}$ from the permuted assignments.\n\\item Repeat $10{,}000$ times to obtain the null distribution.\n\\item Compute $p$-value $= |\\{r : \\text{BR}_\\text{null}^{(r)} \\geq \\text{BR}_\\text{obs}\\}| / 10{,}000$.\n\\end{enumerate}\nAcross all tested conditions, $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), confirming that the observed bias ratio is fully explained by trace-count geometry under source-attribution scoring (Observation~1), not by an independent extraction bias.\n\n\\paragraph{Future directions: trained extractors and beyond.}"
             }
           },
-          "id": "event-015289"
+          "id": "event-015267"
         },
         {
-          "source_line": 15290,
+          "source_line": 15268,
           "timestamp": "2026-05-23T20:47:51.638232+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3399,10 +2970,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-015290"
+          "id": "event-015268"
         },
         {
-          "source_line": 15291,
+          "source_line": 15269,
           "timestamp": "2026-05-23T20:47:56.856668+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3423,10 +2994,10 @@
               "-n": "True"
             }
           },
-          "id": "event-015291"
+          "id": "event-015269"
         },
         {
-          "source_line": 15292,
+          "source_line": 15270,
           "timestamp": "2026-05-23T20:47:56.957529+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3441,10 +3012,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-015292"
+          "id": "event-015270"
         },
         {
-          "source_line": 15293,
+          "source_line": 15271,
           "timestamp": "2026-05-23T20:47:59.937934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3461,10 +3032,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-015293"
+          "id": "event-015271"
         },
         {
-          "source_line": 15294,
+          "source_line": 15272,
           "timestamp": "2026-05-23T20:47:59.988647+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3479,10 +3050,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-015294"
+          "id": "event-015272"
         },
         {
-          "source_line": 15295,
+          "source_line": 15273,
           "timestamp": "2026-05-23T20:48:05.709926+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3502,10 +3073,10 @@
               "new_string": "\\looseness=-1\nThese results connect to ensemble diversity theory \\citep{dietterich2000ensemble, krogh1994neural}: with $K_\\text{eff} \\leq 3.62$ for $K{=}12$, same-model traces scale redundancy, not information. For test-time compute scaling \\citep{snell2025scaling}, increasing $K$ within a single model yields diminishing returns when traces share systematic biases."
             }
           },
-          "id": "event-015295"
+          "id": "event-015273"
         },
         {
-          "source_line": 15296,
+          "source_line": 15274,
           "timestamp": "2026-05-23T20:48:05.710302+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3520,10 +3091,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-015296"
+          "id": "event-015274"
         },
         {
-          "source_line": 15297,
+          "source_line": 15275,
           "timestamp": "2026-05-23T20:48:09.275265+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3542,10 +3113,10 @@
               "limit": "10"
             }
           },
-          "id": "event-015297"
+          "id": "event-015275"
         },
         {
-          "source_line": 15298,
+          "source_line": 15276,
           "timestamp": "2026-05-23T20:48:09.376063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3560,10 +3131,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-015298"
+          "id": "event-015276"
         },
         {
-          "source_line": 15299,
+          "source_line": 15277,
           "timestamp": "2026-05-23T20:48:20.966427+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3582,10 +3153,10 @@
               "preview": "True"
             }
           },
-          "id": "event-015299"
+          "id": "event-015277"
         },
         {
-          "source_line": 15300,
+          "source_line": 15278,
           "timestamp": "2026-05-23T20:48:33.570110+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3599,6 +3170,446 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 12603
+          },
+          "id": "event-015278"
+        },
+        {
+          "source_line": 15279,
+          "timestamp": "2026-05-23T20:48:41.550342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-015279"
+        },
+        {
+          "source_line": 15280,
+          "timestamp": "2026-05-23T20:48:41.801773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-015280"
+        },
+        {
+          "source_line": 15281,
+          "timestamp": "2026-05-23T20:48:42.586519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1036
+          },
+          "id": "event-015281"
+        },
+        {
+          "source_line": 15282,
+          "timestamp": "2026-05-23T20:48:42.958724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1156
+          },
+          "id": "event-015282"
+        },
+        {
+          "source_line": 15283,
+          "timestamp": "2026-05-23T20:49:00.460817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-015283"
+        },
+        {
+          "source_line": 15284,
+          "timestamp": "2026-05-23T20:49:02.017011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tCan symbolic verification via a provably sound solver improve Large Language Model (LLM) reasoning when constraints are self-extracted from the model's own traces? Across six confirmatory conditions ($n \\geq 200$), we find no detectable improvement exceeding ${\\sim}$2 percentage points (pp). We introduce Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from chain-of-thought traces via weighted MAX-SAT. Despite Z3 validating 99\\% of self-extracted constraints, SICA matches majority voting on over 90\\% of problems across six models (7B--32B) and four benchmarks. No condition shows a significant positive effect after FDR control; four of six powered conditions confirm equivalence within $\\pm$2\\,pp (TOST); the remainder are underpowered for smaller effects. The failure is a robust empirical regularity: self-extracted constraints track the majority answer---a property we term \\emph{symbolic confirmation bias} (bias ratios $1.66$--$4.97\\times$ across nine models, 7B to frontier). Under source-attribution scoring and degeneration, SICA reduces to majority vote (Observation~1); the $M{\\to}T{\\to}A{\\to}C$ Markov chain bounds self-extracted information, revealing a deeper mechanism underlying \\citet{huang2024selfcorrect}'s findings. Twenty-seven training-free variants fail due to a persistent independence-accuracy trade-off. As exploratory evidence, cross-architecture verification escapes the bias ($+6.67$\\,pp on the weakest generator, $p < 0.001$). Three zero-cost diagnostics characterize failure modes across all tested conditions.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1556
+          },
+          "id": "event-015284"
+        },
+        {
+          "source_line": 15285,
+          "timestamp": "2026-05-23T20:49:02.469188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && cat abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/--/-/g; s/,pp/pp/g' | wc -w",
+              "description": "Count abstract words"
+            }
+          },
+          "id": "event-015285"
+        },
+        {
+          "source_line": 15286,
+          "timestamp": "2026-05-23T20:49:02.621296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "192\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/paper_agent_644edc69"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-015286"
+        },
+        {
+          "source_line": 15287,
+          "timestamp": "2026-05-23T20:49:08.594441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Self-Extraction Bound",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-015287"
+        },
+        {
+          "source_line": 15288,
+          "timestamp": "2026-05-23T20:49:08.996342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 401
+          },
+          "id": "event-015288"
+        },
+        {
+          "source_line": 15289,
+          "timestamp": "2026-05-23T20:49:09.448220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "structural property",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-015289"
+        },
+        {
+          "source_line": 15290,
+          "timestamp": "2026-05-23T20:49:09.950569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-015290"
+        },
+        {
+          "source_line": 15291,
+          "timestamp": "2026-05-23T20:49:10.452899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "three reasoning domains",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-015291"
+        },
+        {
+          "source_line": 15292,
+          "timestamp": "2026-05-23T20:49:10.905019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-015292"
+        },
+        {
+          "source_line": 15293,
+          "timestamp": "2026-05-23T20:49:11.407263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Remark~1|Remark 1",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-015293"
+        },
+        {
+          "source_line": 15294,
+          "timestamp": "2026-05-23T20:49:11.407717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-015294"
+        },
+        {
+          "source_line": 15295,
+          "timestamp": "2026-05-23T20:49:29.947223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "preliminary",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-015295"
+        },
+        {
+          "source_line": 15296,
+          "timestamp": "2026-05-23T20:49:31.001445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 1054
+          },
+          "id": "event-015296"
+        },
+        {
+          "source_line": 15297,
+          "timestamp": "2026-05-23T20:49:31.654200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "khalifa2023grace|cover2006elements",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-015297"
+        },
+        {
+          "source_line": 15298,
+          "timestamp": "2026-05-23T20:49:31.654534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:53:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex:26:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-015298"
+        },
+        {
+          "source_line": 15299,
+          "timestamp": "2026-05-23T20:49:42.982623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "offset": "55",
+              "limit": "15"
+            }
+          },
+          "id": "event-015299"
+        },
+        {
+          "source_line": 15300,
+          "timestamp": "2026-05-23T20:49:43.036187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\\smallskip\\noindent\n56\t\\textbf{Remark 2.}\\;%\n57\tObservation~1 assumes degeneration and source attribution. Under \\emph{semantic} evaluation, the equivalence additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$, which is structurally motivated and empirically validated ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but could fail if $f$ systematically extracted premises contradicting their source trace's conclusion.\n58\tSince Observation~1 shows SICA reduces to majority vote under degeneration, $\\mathrm{BR} \\geq 1$ follows from the trace-count geometry; the empirical BR consistently exceeds this floor ($1.66\\times$--$4.97\\times$; Table~\\ref{tab:frontier-scb}), reflecting both base-rate effects and extraction alignment.\n59\t\n60\t\\begin{figure}[t]\n61\t\\centering\n62\t\\begin{tikzpicture}[\n63\t  node distance=0.8cm,\n64\t  nd/.style={rectangle, rounded corners=2pt, draw=black!50,\n65\t             fill=gray!6, minimum height=5.5mm, minimum width=8mm,\n66\t             font=\\small},\n67\t  bn/.style={nd, fill=red!10, draw=red!50, line width=0.7pt},\n68\t  ex/.style={nd, draw=gray!50, densely dashed, fill=white},\n69\t  >=Stealth,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 53
           },
           "id": "event-015300"
         }

@@ -5,10 +5,8 @@
 | Source record | Events | User turns | Readable Markdown | JSON |
 |---|---:|---:|---|---|
 | `logs/workers/worker_paper_commit_page_fix_20260523T031250.log` (occurrence 1) | 80 | 0 | [Read transcript](../readable/worker-executions/paper-commit-page-fix.md) | [Open JSON](../sessions/05/053a30fd0c3325002cec.json) |
-| `logs/workers/worker_paper_camera_ready_full_precheck_20260523T042030.log` (occurrence 1) | 79 | 0 | [Read transcript](../readable/worker-executions/paper-camera-ready-full-precheck.md) | [Open JSON](../sessions/a9/a97814ff9bbd1e6d9e6f.json) |
-| `logs/workers/worker_paper_precheck_fixes_20260523T042706.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/paper-precheck-fixes.md) | [Open JSON](../sessions/15/157531c458594945dbc4.json) |
-| `logs/workers/worker_paper_response_letter_draft_20260523T050132.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/paper-response-letter-draft.md) | [Open JSON](../sessions/39/39f4028053d65431085c.json) |
-| `logs/workers/worker_paper_fix_response_letter_refs_20260523T051014.log` (occurrence 1) | 72 | 0 | [Read transcript](../readable/worker-executions/paper-fix-response-letter-refs.md) | [Open JSON](../sessions/0f/0f64987d8063f8ff6485.json) |
+| `logs/workers/worker_paper_camera_ready_full_precheck_20260523T042030.log` (occurrence 1) | 77 | 0 | [Read transcript](../readable/worker-executions/paper-camera-ready-full-precheck.md) | [Open JSON](../sessions/a9/a97814ff9bbd1e6d9e6f.json) |
+| `logs/workers/worker_paper_precheck_fixes_20260523T042706.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/paper-precheck-fixes.md) | [Open JSON](../sessions/15/157531c458594945dbc4.json) |
 | `logs/workers/worker_code_r22_within_arch_temporal_20260523T081014.log` (occurrence 1) | 96 | 1 | [Read transcript](../readable/worker-executions/code-r22-within-arch-temporal.md) | [Open JSON](../sessions/e4/e4c81556f6e01daeb198.json) |
 | `logs/workers/worker_code_r22_base_instruct_composition_20260523T081029.log` (occurrence 1) | 83 | 1 | [Read transcript](../readable/worker-executions/code-r22-base-instruct-composition.md) | [Open JSON](../sessions/42/4215e99e93c03cf3e14f.json) |
 | `logs/workers/worker_code_r22_deff_simulation_20260523T081051.log` (occurrence 1) | 109 | 1 | [Read transcript](../readable/worker-executions/code-r22-deff-simulation.md) | [Open JSON](../sessions/23/2307f28a95efda256b6c.json) |

@@ -3114,82 +3114,6 @@
         },
         {
           "source_line": 341,
-          "timestamp": "2026-05-22T21:33:12.941758+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/logs/workers/worker_writing_rebuttal_framework_20260522T212921_result.json"
-            }
-          },
-          "id": "event-000341"
-        },
-        {
-          "source_line": 342,
-          "timestamp": "2026-05-22T21:33:12.992406+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"raw\": \"文件已生成并注册：`artifacts/rebuttal_draft.md`\\n\\n覆盖内容：\\n- **MF-1**：FF residual R² 分析（MATH 0.856, GSM8K 0.468, FF mean 0.662 vs MC 0.252），inverted-U mechanism，5 张 scatter plot 引用\\n- **MF-2**：72B scale validation 全链路（单模型 G=0.979, crossed G=0.720, item difficulty ρ=0.571），within-family 3-point 对比\\n- **MF-3**：Binary data 的 Henderson I 理论辩护 + partial-credit pilot (G 0.759→0.553) + logit cross-check (ρ=1.0)\\n- **Messing 防御**：3 个具体论点（DIF 分解、multi-benchmark 比较、D-study budget），每个带实例\\n- **9 项新增分析**：每项一句话结论 + 数据源引用 + 关键数字\\n- 末尾附数字速查表（20+ 关键指标）\"\n3\t}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000342"
-        },
-        {
-          "source_line": 343,
-          "timestamp": "2026-05-22T21:33:19.767034+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md"
-            }
-          },
-          "id": "event-000343"
-        },
-        {
-          "source_line": 344,
-          "timestamp": "2026-05-22T21:33:19.817859+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal 框架文档\n2\t\n3\t> 项目：nlp_variance_gtheory | 目标：EMNLP 2026 via ARR | DDL 2026-05-25\n4\t> 基于 Round 8 审稿意见，三个 Must-Fix + 防御论点 + 新增分析汇总\n5\t\n6\t---\n7\t\n8\t## 1. Round 8 三个 Must-Fix 的回应\n9\t\n10\t### MF-1: FF Residual Regression 分析\n11\t\n12\t**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 51.9%, MATH 56.3%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。\n13\t\n14\t**我们的回应要点**：\n15\t\n16\t1. FF 高 residual 是**系统性的**，不是随机噪声。我们对每个 benchmark 的 per-item residual variance 进行 OLS 回归，使用 item difficulty（含二次项）及 benchmark-specific 特征作为预测变量：\n17\t   - MATH: R²=0.856 (adj R²=0.847)，difficulty 二次项为最强预测因子（inverted-U pattern）\n18\t   - GSM8K: R²=0.468 (adj R²=0.454)，difficulty 同样主导（difficulty-only R²=0.449）\n19\t   - FF 平均 R²=0.662 vs MC 平均 R²=0.252（MMLU 0.377, ARC 0.221, HellaSwag 0.156）\n20\t\n21\t2. **Inverted-U mechanism**：中等难度 item 的 residual 最高——太简单（所有模型都对）或太难（都错）的 item 天然方差小，中等难度 item 对 prompt/seed 变化最敏感。FF benchmark 正好集中在中等难度区间，这解释了 residual 偏高的结构性原因。\n22\t\n23\t3. FF 的高 residual 不是框架失败，而是**有信息的**：它量化了 FF 任务中 prompt×item 和 seed×item 交互效应的大小——这些在 MC 任务中被 item difficulty 的 dominant signal 所\"压制\"。\n24\t\n25\t**支撑数据/图表**：\n26\t- 回归结果：`artifacts/exp004/ff_residual_analysis/ff_residual_regression.json`\n27\t- 5 个 difficulty-vs-residual scatter plot（每个 benchmark 一张）：`artifacts/exp004/ff_residual_analysis/difficulty_vs_residual_{mmlu,arc,gsm8k,math,hellaswag}.pdf`\n28\t- 论文 Appendix E（R²(diff. only) 数据已修正）\n29\t\n30\t---\n31\t\n32\t### MF-2: 72B Scale Validation\n33\t\n34\t**审稿原文摘要**：实验仅覆盖 7B-9B 模型，variance structure 是否在更大 scale 下保持？需要 out-of-sample scale validation。\n35\t\n36\t**我们的回应要点**：\n37\t\n38\t1. **72B 单模型 G-study**（Qwen2.5-72B-Instruct, MMLU, 200 items × 288 conditions = 57,600 records）：\n39\t   - item_id=83.25%, G_item=0.979, grand_mean=0.870\n40\t   - 方差结构与 7B/9B 一致：item_id 主导，prompt:item 次之（6.81%），residual 7.45%\n41\t   - **Within-family 3-point comparison**：3B item_id=75.3% (G=0.963) → 7B 73.4% (G=0.956) → 72B 83.2% (G=0.979)\n42\t   - 更大模型更稳定（accuracy 更高 → 更多 item 接近 ceiling → item difficulty variance 比例更高）\n\n…[truncated 8612 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000344"
-        },
-        {
-          "source_line": 345,
           "timestamp": "2026-05-22T21:34:21.021930+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3207,10 +3131,10 @@
               "project": "nlp_variance_gtheory"
             }
           },
-          "id": "event-000345"
+          "id": "event-000341"
         },
         {
-          "source_line": 346,
+          "source_line": 342,
           "timestamp": "2026-05-22T21:34:24.484184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3225,10 +3149,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3462
           },
-          "id": "event-000346"
+          "id": "event-000342"
         },
         {
-          "source_line": 347,
+          "source_line": 343,
           "timestamp": "2026-05-22T21:34:27.117818+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3241,7 +3165,7 @@
           "metadata": {
             "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer"
           },
-          "id": "event-000347"
+          "id": "event-000343"
         }
       ]
     },
@@ -3249,7 +3173,7 @@
       "number": 17,
       "messages": [
         {
-          "source_line": 348,
+          "source_line": 344,
           "timestamp": "2026-05-22T22:18:38.449441+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3263,10 +3187,10 @@
             "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
             "source": "system"
           },
-          "id": "event-000348"
+          "id": "event-000344"
         },
         {
-          "source_line": 349,
+          "source_line": 345,
           "timestamp": "2026-05-22T22:19:13.561007+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3285,10 +3209,10 @@
               "limit": "6"
             }
           },
-          "id": "event-000349"
+          "id": "event-000345"
         },
         {
-          "source_line": 350,
+          "source_line": 346,
           "timestamp": "2026-05-22T22:19:14.013278+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3303,10 +3227,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-000350"
+          "id": "event-000346"
         },
         {
-          "source_line": 351,
+          "source_line": 347,
           "timestamp": "2026-05-22T22:19:14.264709+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3325,10 +3249,10 @@
               "limit": "6"
             }
           },
-          "id": "event-000351"
+          "id": "event-000347"
         },
         {
-          "source_line": 352,
+          "source_line": 348,
           "timestamp": "2026-05-22T22:19:14.365581+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3343,10 +3267,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000352"
+          "id": "event-000348"
         },
         {
-          "source_line": 353,
+          "source_line": 349,
           "timestamp": "2026-05-22T22:19:52.698631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3364,10 +3288,10 @@
               "project": "nlp_variance_gtheory"
             }
           },
-          "id": "event-000353"
+          "id": "event-000349"
         },
         {
-          "source_line": 354,
+          "source_line": 350,
           "timestamp": "2026-05-22T22:19:56.161634+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3382,10 +3306,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3463
           },
-          "id": "event-000354"
+          "id": "event-000350"
         },
         {
-          "source_line": 355,
+          "source_line": 351,
           "timestamp": "2026-05-22T22:19:58.321619+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3398,7 +3322,7 @@
           "metadata": {
             "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer"
           },
-          "id": "event-000355"
+          "id": "event-000351"
         }
       ]
     },
@@ -3406,7 +3330,7 @@
       "number": 18,
       "messages": [
         {
-          "source_line": 356,
+          "source_line": 352,
           "timestamp": "2026-05-23T00:02:38.417325+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3420,10 +3344,10 @@
             "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
             "source": "system"
           },
-          "id": "event-000356"
+          "id": "event-000352"
         },
         {
-          "source_line": 357,
+          "source_line": 353,
           "timestamp": "2026-05-23T00:02:48.974571+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3440,10 +3364,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
             }
           },
-          "id": "event-000357"
+          "id": "event-000353"
         },
         {
-          "source_line": 358,
+          "source_line": 354,
           "timestamp": "2026-05-23T00:02:49.426719+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3458,10 +3382,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-000358"
+          "id": "event-000354"
         },
         {
-          "source_line": 359,
+          "source_line": 355,
           "timestamp": "2026-05-23T00:02:49.427036+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3478,10 +3402,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
             }
           },
-          "id": "event-000359"
+          "id": "event-000355"
         },
         {
-          "source_line": 360,
+          "source_line": 356,
           "timestamp": "2026-05-23T00:02:49.477459+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3495,6 +3419,82 @@
             "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
             "tool": "Read",
             "elapsed_ms": 50
+          },
+          "id": "event-000356"
+        },
+        {
+          "source_line": 357,
+          "timestamp": "2026-05-23T00:02:49.779150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000357"
+        },
+        {
+          "source_line": 358,
+          "timestamp": "2026-05-23T00:02:49.829811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{Variance Decomposition in ML/NLP Evaluation.}\n5\tFactorial decomposition of evaluation variance has roots in the ML reproducibility literature. \\citet{bouthillier2021accounting} introduced an ANOVA-based template that decomposes benchmark variance across implementation details, hyperparameters, and data splits, establishing that design choices account for a substantial share of reproducibility failures. Subsequent studies applied similar decomposition to specific evaluation facets \\citep{dodge2020finetuning, henderson2018deep, magnusson2023reproducibility}. \\citet{messing2026hidden} brought Generalizability theory into LLM evaluation, decomposing variance across five methodology facets on a single benchmark (judge identity: 43.8\\%; see Positioning below for detailed comparison). \\citet{madaan2024quantifying} proposed per-factor variance metrics for LLM evaluation benchmarks but did not cross factors simultaneously. Holistic evaluation frameworks \\citep{liang2023helm, kiela2021dynabench} standardize multi-scenario comparison but do not decompose variance sources. \\citet{blackwell2024towards} quantified uncertainty in benchmark scores, and \\citet{qian2026benchmark} conducted systematic meta-evaluation of LLM benchmarks; \\citet{burnell2023rethink} called for rethinking evaluation reporting standards in AI. Recently, G-theory has been applied to LLM-based writing assessment \\citep{wei2025gtheory} and annotation reliability \\citep{varannot2025gtheory}, but these studies address scoring consistency rather than benchmark evaluation variance. \\citet{kunievsky2025intent} proposed an alternative decomposition that separates intent uncertainty, articulation variance, and model uncertainty, but this framework does not cross infrastructure and methodology facets in a factorial design. Our work extends these approaches by crossing seven facets across five benchmarks, enabling direct comparison of variance structures ac\n…[truncated 4098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": "2026-05-23T00:02:53.944214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": "2026-05-23T00:02:53.944712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method and Experimental Design}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Generalizability Theory}\n5\t\\label{sec:gtheory}\n6\t\n7\tGeneralizability theory (G-theory) treats each measurement as one observation from a universe of admissible conditions defined by the crossed facets of an evaluation design \\cite{shavelson1991generalizability, brennan2001generalizability}. The \\emph{object of measurement} is the entity whose consistency is of interest. In our setting, test items ($p$) serve as the object of measurement, and the goal is to determine how reliably item-level scores generalize across the methodological conditions under which they are collected.\n8\t\n9\tA \\emph{G-study} decomposes total observed variance into components $\\sigma^2_x$ for each facet $x$ and their interactions. Each component quantifies how much variability that source contributes to the overall measurement. Large interaction components (e.g., $\\sigma^2_{pM}$ for item-by-model) indicate that facets do not affect items uniformly but instead create differential difficulty profiles. We estimate variance components via Henderson Method~I, an unbiased ANOVA-based estimator for balanced designs \\cite[Ch.~3]{brennan2001generalizability}, with 1,000-resample bootstrap confidence intervals \\cite{efron1993bootstrap} (item-level resampling with replacement, preserving the fully-crossed structure across all other facets) \\cite{li2023bootstrap}.\n10\t\n11\tA \\emph{D-study} projects the generalizability coefficient under hypothetical designs with different numbers of conditions per facet:\n12\t\\begin{equation}\n13\tG_\\text{item} = \\frac{\\sigma^2_p}{\\sigma^2_p + \\sigma^2_\\text{rel}}\n14\t\\label{eq:gcoeff}\n15\t\\end{equation}\n16\twhere $\\sigma^2_\\text{rel}$ aggregates all item-by-facet interaction variances, each divided by the number of conditions for the corresponding facets \\cite[Ch.~4]{brennan2001generalizability}. This prospective capability distinguishes G-theory from classical ANOVA: rather than only attributing varia\n…[truncated 10671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
           },
           "id": "event-000360"
         }

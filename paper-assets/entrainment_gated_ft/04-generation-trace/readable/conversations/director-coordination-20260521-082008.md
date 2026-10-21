@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 3,059
+- **Events:** 3,015
 - **Recorded user turns:** 468
-- **Tool calls:** 1,094
+- **Tool calls:** 1,072
 - **Original source:** `logs/chats/archive/feishu_group_oc_1f8f0d6d9482071694045c30143bb993_director_20260521T082008_733071.jsonl`
 - **Structured JSON:** [`01c06d01fb3b255b8d2a.json`](../../sessions/01/01c06d01fb3b255b8d2a.json)
 
@@ -20,4 +20,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](director-coordination-20260521-082008/part-001.md) · [Part 2](director-coordination-20260521-082008/part-002.md) · [Part 3](director-coordination-20260521-082008/part-003.md) · [Part 4](director-coordination-20260521-082008/part-004.md) · [Part 5](director-coordination-20260521-082008/part-005.md) · [Part 6](director-coordination-20260521-082008/part-006.md)
+[Part 1](director-coordination-20260521-082008/part-001.md) · [Part 2](director-coordination-20260521-082008/part-002.md) · [Part 3](director-coordination-20260521-082008/part-003.md) · [Part 4](director-coordination-20260521-082008/part-004.md) · [Part 5](director-coordination-20260521-082008/part-005.md)

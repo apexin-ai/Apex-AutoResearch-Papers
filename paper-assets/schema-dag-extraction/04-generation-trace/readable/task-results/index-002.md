@@ -74,7 +74,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper appendix table format | 1 | 0 | [Read transcript](paper-appendix-table-format.md) | [JSON](../../sessions/e7/e793903eb860893cc263.json) |
 | paper arr precheck anon format | 1 | 0 | [Read transcript](paper-arr-precheck-anon-format.md) | [JSON](../../sessions/b5/b5890e6457cc10f67e13.json) |
 | paper arr precheck suppl checklist | 1 | 0 | [Read transcript](paper-arr-precheck-suppl-checklist.md) | [JSON](../../sessions/56/56532bbc3f3cbb0a17c1.json) |
-| paper author response template | 1 | 0 | [Read transcript](paper-author-response-template.md) | [JSON](../../sessions/97/97d6b748e50531ee2daa.json) |
 | paper bcs scs format | 1 | 0 | [Read transcript](paper-bcs-scs-format.md) | [JSON](../../sessions/02/021bc0e6d6b9af59d0d9.json) |
 | paper c1 c2 scope vif | 1 | 0 | [Read transcript](paper-c1-c2-scope-vif.md) | [JSON](../../sessions/91/91f330d8ae78a9c7227c.json) |
 | paper c3 evidence hierarchy | 1 | 0 | [Read transcript](paper-c3-evidence-hierarchy.md) | [JSON](../../sessions/80/80404dd16a23b48be84d.json) |

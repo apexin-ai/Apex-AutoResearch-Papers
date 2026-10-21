@@ -19,5 +19,3 @@ Reviewer concern: would switching from Holm-Bonferroni to BH-FDR change conclusi
 - BH preserves 9 additional significant results that Holm rejects
 - Core conclusion "no signal reliably beats greedy" driven by large non-significant p-values, correction-method-invariant
 
-### Rebuttal Use
-Switching to BH-FDR only makes MORE positive findings survive correction, does not invalidate any null findings.

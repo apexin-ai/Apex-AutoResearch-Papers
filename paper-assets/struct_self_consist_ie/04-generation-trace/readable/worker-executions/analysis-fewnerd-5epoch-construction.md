@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 66
+- **Events:** 64
 - **Recorded user turns:** 0
-- **Tool calls:** 21
+- **Tool calls:** 20
 - **Original source:** `logs/workers/worker_analysis_fewnerd-5epoch-construction_20260524T073502.log`
 - **Structured JSON:** [`7d9ce85e11ea51b3eb2a.json`](../../sessions/7d/7d9ce85e11ea51b3eb2a.json)
 
 ## Before a recorded user message
 
-66 recorded events
+64 recorded events
 
 ### Log line
 
@@ -3110,95 +3110,6 @@ _source line 60_
 
 _source line 61_
 
-<details open><summary>🔧 Tool call — Write · `toolu_01CufWaWHrLeU2bXHQrxpBPU`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/rebuttal_construction_fewnerd_5epoch.md",
-  "content": "# FewNERD 5-Epoch Construction Analysis\n\n**Date**: 2026-05-24\n**Purpose**: Verify paper claim that 5-epoch over-convergence collapses construction gain\n**Data**: `output/fewnerd_5epoch_s{42,123}/samples.jsonl` on autodl-5090\n**Config**: θ=2/N=0.25, N=8 samples/instance, B=10000 bootstrap iterations\n\n## Results\n\n| Seed | N | Greedy F1 | MV Δ (pp) | LP Δ (pp) | MV p | LP p | Degen% |\n|------|---|-----------|-----------|-----------|------|------|--------|\n| 42   | 32565 | 78.10% | -0.52 | +0.17 | 1.0000 | 0.0169 | 25.7% |\n| 123  | 32565 | 78.05% | +0.25 | +0.85 | 0.0035 | 0.0000 | 27.1% |\n| **Pooled** | 65130 | 78.08% | -0.13 | +0.51 | 0.9774 | 0.0000 | 26.4% |\n\n### Pooled Bootstrap CIs (95%)\n- MV Δ: -0.13pp, CI=[-0.25, -0.00], p=0.9774 (not significant — MV hurts)\n- LP Δ: +0.51pp, CI=[+0.40, +0.62], p<0.0001 (significant but collapsed)\n\n## Comparison with 3-Epoch\n\n| Metric | 3-Epoch | 5-Epoch | Change |\n|--------|---------|---------|--------|\n| LP Δ (pooled) | +0.74pp | +0.51pp | -0.23pp (31% reduction) |\n| MV Δ (pooled) | — | -0.13pp | MV becomes harmful |\n| Degeneracy | — | 26.4% | High convergence |\n\n### Per-Seed Comparison\n- **Seed 42**: LP Δ collapses to +0.17pp (consistent with paper claim \"+0.20pp\")\n- **Seed 123**: LP Δ = +0.85pp (still shows gain, but MV at only +0.25pp)\n- **Seed variance**: Very high (0.17 vs 0.85), indicating instability under over-convergence\n\n## Key Observations\n\n1. **MV construction breaks at 5 epochs**: Pooled MV Δ = -0.13pp (p=0.9774), meaning uniform-weight majority vote actively hurts when samples are degenerate. This is expected — when ~26% of instances produce identical samples, MV cannot recover diversity.\n\n2. **LP construction partially survives but is diminished**: LP weighting still provides +0.51pp gain (significant), but this is substantially reduced from 3-epoch performance. The LP weights can still differentiate between high/low quality samples even when many are identical, but the benefit ceiling is lower.\n\n3. **High degeneracy confirms over-convergence**: 26.4% of instances have all 8 samples producing identical entity sets. At temperature=1.0 with a 5-epoch model, the model's output distribution has narrowed enough to suppress the diversity that construction relies on.\n\n4. **Paper claim directionally confirmed**: The paper states \"+0.88→+0.20pp\". Seed 42 shows +0.17pp (≈+0.20pp), consistent with the specific seed used in the paper. The pooled value (+0.51pp) is higher due to seed 123 still showing gain, but the overall trend of gain collapse is clear.\n\n## Notes\n- Only 2 seeds available (42, 123) vs ideal 5-seed analysis\n- `fewnerd_5epoch_lp_seed42/` directory exists but appears to be a duplicate/variant of `fewnerd_5epoch_s42/` (same line count, same data format)\n- `exp_028_fewnerd_5epoch/` has only 5000 lines (likely an earlier partial run), excluded from analysis\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "630b4dca-256b-4509-845d-a33d05cdb1ff",
-  "uuid": "909e3976-0972-454d-a10b-67b1d1ba80b8",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01XzEFKRRyMVTGM4dSxMTPUG",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2740,
-      "cache_read_input_tokens": 72252,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2740
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 62 · 2026-05-24T07:43:22.344Z_
-
-<details><summary>↩ Tool result · `toolu_01CufWaWHrLeU2bXHQrxpBPU`</summary>
-
-```text
-File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/rebuttal_construction_fewnerd_5epoch.md
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "630b4dca-256b-4509-845d-a33d05cdb1ff",
-  "uuid": "88fd5ffe-d65e-4ee6-a997-829641d1b66d",
-  "tool_use_result": {
-    "type": "create",
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/rebuttal_construction_fewnerd_5epoch.md",
-    "content": "# FewNERD 5-Epoch Construction Analysis\n\n**Date**: 2026-05-24\n**Purpose**: Verify paper claim that 5-epoch over-convergence collapses construction gain\n**Data**: `output/fewnerd_5epoch_s{42,123}/samples.jsonl` on autodl-5090\n**Config**: θ=2/N=0.25, N=8 samples/instance, B=10000 bootstrap iterations\n\n## Results\n\n| Seed | N | Greedy F1 | MV Δ (pp) | LP Δ (pp) | MV p | LP p | Degen% |\n|------|---|-----------|-----------|-----------|------|------|--------|\n| 42   | 32565 | 78.10% | -0.52 | +0.17 | 1.0000 | 0.0169 | 25.7% |\n| 123  | 32565 | 78.05% | +0.25 | +0.85 | 0.0035 | 0.0000 | 27.1% |\n| **Pooled** | 65130 | 78.08% | -0.13 | +0.51 | 0.9774 | 0.0000 | 26.4% |\n\n### Pooled Bootstrap CIs (95%)\n- MV Δ: -0.13pp, CI=[-0.25, -0.00], p=0.9774 (not significant — MV hurts)\n- LP Δ: +0.51pp, CI=[+0.40, +0.62], p<0.0001 (significant but collapsed)\n\n## Comparison with 3-Epoch\n\n| Metric | 3-Epoch | 5-Epoch | Change |\n|--------|---------|---------|--------|\n| LP Δ (pooled) | +0.74pp | +0.51pp | -0.23pp (31% reduction) |\n| MV Δ (pooled) | — | -0.13pp | MV becomes harmful |\n| Degeneracy | — | 26.4% | High convergence |\n\n### Per-Seed Comparison\n- **Seed 42**: LP Δ collapses to +0.17pp (consistent with paper claim \"+0.20pp\")\n- **Seed 123**: LP Δ = +0.85pp (still shows gain, but MV at only +0.25pp)\n- **Seed variance**: Very high (0.17 vs 0.85), indicating instability under over-convergence\n\n## Key Observations\n\n1. **MV construction breaks at 5 epochs**: Pooled MV Δ = -0.13pp (p=0.9774), meaning uniform-weight majority vote actively hurts when samples are degenerate. This is expected — when ~26% of instances produce identical samples, MV cannot recover diversity.\n\n2. **LP construction partially survives but is diminished**: LP weighting still provides +0.51pp gain (significant), but this is substantially reduced from 3-epoch performance. The LP weights can still differentiate between high/low quality samples even when many are identical, but the benefit ceiling is lower.\n\n3. **High degeneracy confirms over-convergence**: 26.4% of instances have all 8 samples producing identical entity sets. At temperature=1.0 with a 5-epoch model, the model's output distribution has narrowed enough to suppress the diversity that construction relies on.\n\n4. **Paper claim directionally confirmed**: The paper states \"+0.88→+0.20pp\". Seed 42 shows +0.17pp (≈+0.20pp), consistent with the specific seed used in the paper. The pooled value (+0.51pp) is higher due to seed 123 still showing gain, but the overall trend of gain collapse is clear.\n\n## Notes\n- Only 2 seeds available (42, 123) vs ideal 5-seed analysis\n- `fewnerd_5epoch_lp_seed42/` directory exists but appears to be a duplicate/variant of `fewnerd_5epoch_s42/` (same line count, same data format)\n- `exp_028_fewnerd_5epoch/` has only 5000 lines (likely an earlier partial run), excluded from analysis\n",
-    "structuredPatch": [],
-    "originalFile": null,
-    "userModified": false
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 63_
-
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_018y2RgDbnZsTEV1VMYp1dn9`</summary>
 
 ```json
@@ -3260,7 +3171,7 @@ _source line 63_
 
 ### Tool result
 
-_source line 64 · 2026-05-24T07:43:29.222Z_
+_source line 62 · 2026-05-24T07:43:29.222Z_
 
 <details><summary>↩ Tool result · `toolu_018y2RgDbnZsTEV1VMYp1dn9`</summary>
 
@@ -3294,7 +3205,7 @@ _source line 64 · 2026-05-24T07:43:29.222Z_
 
 ### Assistant
 
-_source line 65_
+_source line 63_
 
 完成。结果摘要：
 
@@ -3348,7 +3259,7 @@ _source line 65_
 
 ### Task result
 
-_source line 66_
+_source line 64_
 
 完成。结果摘要：
 

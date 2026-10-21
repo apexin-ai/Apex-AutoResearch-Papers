@@ -14833,7 +14833,7 @@ _source line 486 · 2026-05-21T15:17:52.912311+00:00_
 
 ## Round 28
 
-34 recorded events
+30 recorded events
 
 
 ### User
@@ -14928,215 +14928,7 @@ Rebuttal framework written to `artifacts/rebuttal_framework.md`.
 
 ### Tool call
 
-_source line 490 · 2026-05-21T15:18:59.509852+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 491 · 2026-05-21T15:18:59.611839+00:00_
-
-1	# Rebuttal Framework (Draft) — Round 6
-2	
-3	Date: 2026-05-21 | Venue: EMNLP 2026 ARR (May 25 DDL)
-4	Current score: 3.0 (Findings) | Target: 3.5+ (Borderline Conference)
-5	
-6	---
-7	
-8	## Round 6 Summary
-9	
-10	**评分**: R1 3/6, R2 3/6 → Consensus 3/6 (Weak Reject / Borderline Findings)
-11	**Confidence**: 4/5 (both)
-12	
-13	**Strengths (cross-reviewer consensus)**:
-14	- S1: Well-motivated controlled comparison, fills genuine gap
-15	- S2: Rigorous stats (TOST, clustered bootstrap, ICC, Holm-Bonferroni)
-16	- S3: Honest negative reporting (re-repair p=0.42, CWM parseable-only < majority)
-17	- S4: Function-level null result informative (calibration point)
-18	- S5: SWE-bench PerTest dataset contribution
-19	
-20	**Core weaknesses driving score**:
-21	1. Predictable central finding (CLS > CWM when outputs long)
-22	2. Missing constrained decoding experiment
-23	3. Single-seed repo-level for key comparisons
-24	4. CWM scale mismatch (≤8B LoRA vs original 32B)
-25	5. Thin references (~12)
-26	6. "Design space" framing overstated
-27	
-28	---
-29	
-30	## Response Strategy
-31	
-32	### R6-N1: Repo-level claims based on single-seed; within-formulation variance ≈ between-formulation gap
-33	
-34	**Severity**: Critical | **Status**: in_progress | **Reviewers**: R1, R2
-35	
-36	**Reviewer 原文摘要**: Within-formulation variance (~19pp) comparable to between-formulation gap (19-26pp). Cross-model reversal (CWM > CLS on DeepSeek) rests on single CWM seed. Insufficient for statistical conclusions.
-37	
-38	**回应策略**: Accept and fix — multi-seed data arriving imminently.
-39	
-40	**新证据**:
-41	- CLS 3-seed ✅ complete (Qwen + DeepSeek)
-42	- TRAJ 3-seed ✅ complete (Qwen + DeepSeek)
-43	- CWM multi-seed: 4 training jobs in progress, all data ETA **May 22 ~15:30 UTC**
-44	  - DeepSeek s123 训练 ~66% → ETA May 21 23:10
-45	  - DeepSeek s456 e3 eval 进行中 → ETA May 22 02:10
-46	  - Qwen s123 训练 ~83% → ETA May 21 21:40
-47	  - Qwen s456 训练 ~81% → ETA May 22 22:00
-48	- **即使 single-seed，per-test interaction (z=−23.7, n=56,480, 139 cl
-…[truncated 16285 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 492 · 2026-05-21T15:21:55.915296+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 493 · 2026-05-21T15:21:56.468585+00:00_
-
-1	# Rebuttal Framework (Draft) — Round 6
-2	
-3	Date: 2026-05-21 | Venue: EMNLP 2026 ARR (May 25 DDL)
-4	Current score: 3.0 (Findings) | Target: 3.5+ (Borderline Conference)
-5	
-6	---
-7	
-8	## Round 6 Summary
-9	
-10	**评分**: R1 3/6, R2 3/6 → Consensus 3/6 (Weak Reject / Borderline Findings)
-11	**Confidence**: 4/5 (both)
-12	
-13	**Strengths (cross-reviewer consensus)**:
-14	- S1: Well-motivated controlled comparison, fills genuine gap
-15	- S2: Rigorous stats (TOST, clustered bootstrap, ICC, Holm-Bonferroni)
-16	- S3: Honest negative reporting (re-repair p=0.42, CWM parseable-only < majority)
-17	- S4: Function-level null result informative (calibration point)
-18	- S5: SWE-bench PerTest dataset contribution
-19	
-20	**Core weaknesses driving score**:
-21	1. Predictable central finding (CLS > CWM when outputs long)
-22	2. Missing constrained decoding experiment
-23	3. Single-seed repo-level for key comparisons
-24	4. CWM scale mismatch (≤8B LoRA vs original 32B)
-25	5. Thin references (~12)
-26	6. "Design space" framing overstated
-27	
-28	---
-29	
-30	## Response Strategy
-31	
-32	### R6-N1: Repo-level claims based on single-seed; within-formulation variance ≈ between-formulation gap
-33	
-34	**Severity**: Critical | **Status**: in_progress | **Reviewers**: R1, R2
-35	
-36	**Reviewer 原文摘要**: Within-formulation variance (~19pp) comparable to between-formulation gap (19-26pp). Cross-model reversal (CWM > CLS on DeepSeek) rests on single CWM seed. Insufficient for statistical conclusions.
-37	
-38	**回应策略**: Accept and fix — multi-seed data arriving imminently.
-39	
-40	**新证据**:
-41	- CLS 3-seed ✅ complete (Qwen + DeepSeek)
-42	- TRAJ 3-seed ✅ complete (Qwen + DeepSeek)
-43	- CWM multi-seed: 4 training jobs in progress, all data ETA **May 22 ~15:30 UTC**
-44	  - DeepSeek s123 训练 ~66% → ETA May 21 23:10
-45	  - DeepSeek s456 e3 eval 进行中 → ETA May 22 02:10
-46	  - Qwen s123 训练 ~83% → ETA May 21 21:40
-47	  - Qwen s456 训练 ~81% → ETA May 22 22:00
-48	- **即使 single-seed，per-test interaction (z=−23.7, n=56,480, 139 cl
-…[truncated 16285 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 553
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 494 · 2026-05-21T15:21:56.519238+00:00_
+_source line 490 · 2026-05-21T15:21:56.519238+00:00_
 
 called Read
 
@@ -15170,7 +14962,7 @@ called Read
 
 ### Tool result
 
-_source line 495 · 2026-05-21T15:21:56.569955+00:00_
+_source line 491 · 2026-05-21T15:21:56.569955+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -15192,7 +14984,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 496 · 2026-05-21T15:22:04.459976+00:00_
+_source line 492 · 2026-05-21T15:22:04.459976+00:00_
 
 called ToolSearch
 
@@ -15228,7 +15020,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 497 · 2026-05-21T15:22:04.510651+00:00_
+_source line 493 · 2026-05-21T15:22:04.510651+00:00_
 
 
 
@@ -15250,7 +15042,7 @@ _source line 497 · 2026-05-21T15:22:04.510651+00:00_
 
 ### Tool call
 
-_source line 498 · 2026-05-21T15:22:07.825916+00:00_
+_source line 494 · 2026-05-21T15:22:07.825916+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15288,7 +15080,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 499 · 2026-05-21T15:22:08.881714+00:00_
+_source line 495 · 2026-05-21T15:22:08.881714+00:00_
 
 Error: result (67,930 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-reviewer-c53fe3d9/73b9e083-a32a-4138-b8e0-7802eebc464d/tool-results/mcp-agent-ml-research-read_registry-1779376928833.txt.
 Format: JSON with schema: {result: string}
@@ -15317,7 +15109,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 500 · 2026-05-21T15:22:17.399902+00:00_
+_source line 496 · 2026-05-21T15:22:17.399902+00:00_
 
 called Bash
 
@@ -15353,7 +15145,7 @@ called Bash
 
 ### Tool result
 
-_source line 501 · 2026-05-21T15:22:17.651284+00:00_
+_source line 497 · 2026-05-21T15:22:17.651284+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -15380,7 +15172,7 @@ AttributeError: 'str' object has no attribute 'get'
 
 ### Tool call
 
-_source line 502 · 2026-05-21T15:22:22.659254+00:00_
+_source line 498 · 2026-05-21T15:22:22.659254+00:00_
 
 called Bash
 
@@ -15416,7 +15208,7 @@ called Bash
 
 ### Tool result
 
-_source line 503 · 2026-05-21T15:22:22.710366+00:00_
+_source line 499 · 2026-05-21T15:22:22.710366+00:00_
 
 &lt;class 'str'>
 {"success": true, "data": {"experiments": {"deepseek-cwm-repo-s456-e3-eval": {"status": "RUNNING"}, "deepseek-cwm-repo-s456-e2-eval": {"status": "DONE", "conclusion": "killed"}, "deepseek-cwm-repo-s456-train-v2": {"status": "ANALYZING", "metrics": {"train_loss": 0.02127, "eval_loss": 5.2837, "total_steps": 12627, "training_time_hours": 27.55}}, "deepseek-cwm-repo-s123-train-v3": {"status": "RUNNING"}, "deepseek-cwm-repo-s123-eval-1epoch": {"status": "QUEUED", "conclusion": "success", "metrics":
@@ -15439,7 +15231,7 @@ _source line 503 · 2026-05-21T15:22:22.710366+00:00_
 
 ### Tool call
 
-_source line 504 · 2026-05-21T15:22:28.949990+00:00_
+_source line 500 · 2026-05-21T15:22:28.949990+00:00_
 
 called Bash
 
@@ -15475,7 +15267,7 @@ called Bash
 
 ### Tool result
 
-_source line 505 · 2026-05-21T15:22:29.050869+00:00_
+_source line 501 · 2026-05-21T15:22:29.050869+00:00_
 
 --- exp-d-constrained-decoding (DONE) ---
   metrics: {"forced_parse": {"qwen3_8b": {"n": 9784, "original_unparseable_rate": 73.8, "rescue_rate": 90.6, "original_parseable_acc": 38.5, "forced_parseable_acc": 49.4, "delta_pp": 10.8}, "qwen3_4b": {"n": 500, "original_unparseable_rate": 75.2, "rescue_rate": 77.9, "original_parseable_acc": 42.7, "forced_parseable_acc": 55.9, "delta_pp": 13.2}, "deepseek": {"n": 9784, "original_unparseable_rate": 51, "res
@@ -15507,7 +15299,7 @@ _source line 505 · 2026-05-21T15:22:29.050869+00:00_
 
 ### Tool call
 
-_source line 506 · 2026-05-21T15:22:35.779012+00:00_
+_source line 502 · 2026-05-21T15:22:35.779012+00:00_
 
 called Bash
 
@@ -15543,7 +15335,7 @@ called Bash
 
 ### Tool result
 
-_source line 507 · 2026-05-21T15:22:35.879855+00:00_
+_source line 503 · 2026-05-21T15:22:35.879855+00:00_
 
 (Bash completed with no output)
 
@@ -15565,7 +15357,7 @@ _source line 507 · 2026-05-21T15:22:35.879855+00:00_
 
 ### Tool call
 
-_source line 508 · 2026-05-21T15:22:40.698595+00:00_
+_source line 504 · 2026-05-21T15:22:40.698595+00:00_
 
 called Bash
 
@@ -15601,7 +15393,7 @@ called Bash
 
 ### Tool result
 
-_source line 509 · 2026-05-21T15:22:40.849700+00:00_
+_source line 505 · 2026-05-21T15:22:40.849700+00:00_
 
 5-paired-clustered-bootstrap: DONE
 D124-cwm-s42-epoch2-eval: PREPARING
@@ -15680,7 +15472,7 @@ cls8b-s42-ext
 
 ### Tool call
 
-_source line 510 · 2026-05-21T15:22:51.410447+00:00_
+_source line 506 · 2026-05-21T15:22:51.410447+00:00_
 
 called Bash
 
@@ -15716,7 +15508,7 @@ called Bash
 
 ### Tool result
 
-_source line 511 · 2026-05-21T15:22:51.512165+00:00_
+_source line 507 · 2026-05-21T15:22:51.512165+00:00_
 
 === exp-d-constrained-decoding ===
 {
@@ -15828,7 +15620,7 @@ _source line 511 · 2026-05-21T15:22:51.512165+00:00_
 
 ### Tool call
 
-_source line 512 · 2026-05-21T15:23:30.539073+00:00_
+_source line 508 · 2026-05-21T15:23:30.539073+00:00_
 
 called Bash
 
@@ -15864,7 +15656,7 @@ called Bash
 
 ### Tool result
 
-_source line 513 · 2026-05-21T15:23:30.640049+00:00_
+_source line 509 · 2026-05-21T15:23:30.640049+00:00_
 
 === per-test-majority-voting ===
 {
@@ -15974,7 +15766,7 @@ _source line 513 · 2026-05-21T15:23:30.640049+00:00_
 
 ### Tool call
 
-_source line 514 · 2026-05-21T15:23:38.925018+00:00_
+_source line 510 · 2026-05-21T15:23:38.925018+00:00_
 
 called Bash
 
@@ -16010,7 +15802,7 @@ called Bash
 
 ### Tool result
 
-_source line 515 · 2026-05-21T15:23:39.027198+00:00_
+_source line 511 · 2026-05-21T15:23:39.027198+00:00_
 
 === deepseek-cwm-repo-s42-seq4096-eval (DONE) ===
 {
@@ -16074,7 +15866,7 @@ conclusion: success
 
 ### Tool call
 
-_source line 516 · 2026-05-21T15:24:31.052035+00:00_
+_source line 512 · 2026-05-21T15:24:31.052035+00:00_
 
 called Bash
 
@@ -16110,7 +15902,7 @@ called Bash
 
 ### Tool result
 
-_source line 517 · 2026-05-21T15:24:31.152857+00:00_
+_source line 513 · 2026-05-21T15:24:31.152857+00:00_
 
 deepseek-cwm-repo-s123-eval-1epoch: acc=75.45, unparse=66.4, n=9784
 deepseek-cwm-repo-s123-eval: acc=86.05, unparse=0, n=9784
@@ -16142,7 +15934,7 @@ deepseek-traj-repo: acc=?, unparse=0.167, n=?
 
 ### Tool call
 
-_source line 518 · 2026-05-21T15:25:12.762024+00:00_
+_source line 514 · 2026-05-21T15:25:12.762024+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16178,7 +15970,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 519 · 2026-05-21T15:25:16.530044+00:00_
+_source line 515 · 2026-05-21T15:25:16.530044+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -16200,7 +15992,7 @@ _source line 519 · 2026-05-21T15:25:16.530044+00:00_
 
 ### Assistant
 
-_source line 520 · 2026-05-21T15:25:21.943165+00:00_
+_source line 516 · 2026-05-21T15:25:21.943165+00:00_
 
 审查报告已发送。核心问题：R6-W2 中 "63.7% average unparseable rate across both model families" 是事实性错误（63.7% 是 Qwen 单配置数字，不是跨模型平均），以及 Qwen unparseable rate 在不同文档中有 63.7%/73.8%/74% 三个版本未标注配置来源。其余 claim-evidence 对齐通过验证。
 
@@ -16229,7 +16021,7 @@ _source line 520 · 2026-05-21T15:25:21.943165+00:00_
 
 ### User
 
-_source line 521 · 2026-05-21T15:25:22.407549+00:00_
+_source line 517 · 2026-05-21T15:25:22.407549+00:00_
 
 [系统通知 — worker_done:worker_audit_appendix-cleanup-scan_20260521T151453]:
 Worker worker_audit_appendix-cleanup-scan_20260521T151453 已完成（status=done），请审查 Agent 的处理结果。
@@ -16251,7 +16043,7 @@ Worker worker_audit_appendix-cleanup-scan_20260521T151453 已完成（status=don
 
 ### Tool call
 
-_source line 522 · 2026-05-21T15:25:29.555419+00:00_
+_source line 518 · 2026-05-21T15:25:29.555419+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16289,7 +16081,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 523 · 2026-05-21T15:25:30.258211+00:00_
+_source line 519 · 2026-05-21T15:25:30.258211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6545}}"}
 
@@ -16311,7 +16103,7 @@ _source line 523 · 2026-05-21T15:25:30.258211+00:00_
 
 ### Tool call
 
-_source line 524 · 2026-05-21T15:25:33.570966+00:00_
+_source line 520 · 2026-05-21T15:25:33.570966+00:00_
 
 called Glob
 
@@ -16347,7 +16139,7 @@ called Glob
 
 ### Tool result
 
-_source line 525 · 2026-05-21T15:25:33.873065+00:00_
+_source line 521 · 2026-05-21T15:25:33.873065+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/appendix_cleanup_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex
@@ -16370,7 +16162,7 @@ _source line 525 · 2026-05-21T15:25:33.873065+00:00_
 
 ### Tool call
 
-_source line 526 · 2026-05-21T15:25:33.923817+00:00_
+_source line 522 · 2026-05-21T15:25:33.923817+00:00_
 
 called Glob
 
@@ -16406,7 +16198,7 @@ called Glob
 
 ### Tool result
 
-_source line 527 · 2026-05-21T15:25:33.924225+00:00_
+_source line 523 · 2026-05-21T15:25:33.924225+00:00_
 
 No files found
 
@@ -16428,7 +16220,7 @@ No files found
 
 ### Tool call
 
-_source line 528 · 2026-05-21T15:25:36.835616+00:00_
+_source line 524 · 2026-05-21T15:25:36.835616+00:00_
 
 called Read
 
@@ -16462,7 +16254,7 @@ called Read
 
 ### Tool result
 
-_source line 529 · 2026-05-21T15:25:36.836210+00:00_
+_source line 525 · 2026-05-21T15:25:36.836210+00:00_
 
 1	# Appendix Cleanup Scan Report
 2	
@@ -16502,7 +16294,7 @@ _source line 529 · 2026-05-21T15:25:36.836210+00:00_
 
 ### Tool call
 
-_source line 530 · 2026-05-21T15:25:41.102994+00:00_
+_source line 526 · 2026-05-21T15:25:41.102994+00:00_
 
 called Read
 
@@ -16540,7 +16332,7 @@ called Read
 
 ### Tool result
 
-_source line 531 · 2026-05-21T15:25:41.153678+00:00_
+_source line 527 · 2026-05-21T15:25:41.153678+00:00_
 
 60	\bottomrule
 61	\end{tabular}
@@ -16576,7 +16368,7 @@ _source line 531 · 2026-05-21T15:25:41.153678+00:00_
 
 ### Tool call
 
-_source line 532 · 2026-05-21T15:25:42.107528+00:00_
+_source line 528 · 2026-05-21T15:25:42.107528+00:00_
 
 called Read
 
@@ -16614,7 +16406,7 @@ called Read
 
 ### Tool result
 
-_source line 533 · 2026-05-21T15:25:42.559622+00:00_
+_source line 529 · 2026-05-21T15:25:42.559622+00:00_
 
 100	Both models converge to exactly 45.83\% variant-level accuracy under 3-shot prompting, below majority baseline (54.17\%). Variant-level analysis reveals this is not a coincidence: both models correctly classify all 22 unresolved variants and zero resolved variants, equivalent to an always-predict-unresolved baseline with 100\% prediction overlap. Per-test accuracy diverges sharply (Qwen3-8B 71.61\% vs.\ DeepSeek 46.28\%), but this divergence is entirely superficial: Qwen3-8B predicts pass on nearly all tests, inflating per-test accuracy on a pass-heavy dataset (72.96\% pass rate) without genuine discriminative ability. Per-test metrics can thus severely misrepresent baseline capability; variant-level evaluation is necessary to detect complete degradation. Neither 0-shot nor few-shot prompting approaches fine-tuned performance (82--84\% per-test); fine-tuning is a necessary condition for repo-level verification.
 101	
@@ -16650,7 +16442,7 @@ _source line 533 · 2026-05-21T15:25:42.559622+00:00_
 
 ### Tool call
 
-_source line 534 · 2026-05-21T15:25:42.710748+00:00_
+_source line 530 · 2026-05-21T15:25:42.710748+00:00_
 
 called Read
 
@@ -16688,7 +16480,7 @@ called Read
 
 ### Tool result
 
-_source line 535 · 2026-05-21T15:25:42.711177+00:00_
+_source line 531 · 2026-05-21T15:25:42.711177+00:00_
 
 295	\label{app:extended_analysis}
 296	
@@ -16720,7 +16512,7 @@ _source line 535 · 2026-05-21T15:25:42.711177+00:00_
 
 ### Tool call
 
-_source line 536 · 2026-05-21T15:25:56.382827+00:00_
+_source line 532 · 2026-05-21T15:25:56.382827+00:00_
 
 called Grep
 
@@ -16758,7 +16550,7 @@ called Grep
 
 ### Tool result
 
-_source line 537 · 2026-05-21T15:25:56.483716+00:00_
+_source line 533 · 2026-05-21T15:25:56.483716+00:00_
 
 No matches found
 
@@ -16780,7 +16572,7 @@ No matches found
 
 ### Tool call
 
-_source line 538 · 2026-05-21T15:25:57.086397+00:00_
+_source line 534 · 2026-05-21T15:25:57.086397+00:00_
 
 called Grep
 
@@ -16818,7 +16610,7 @@ called Grep
 
 ### Tool result
 
-_source line 539 · 2026-05-21T15:25:57.438151+00:00_
+_source line 535 · 2026-05-21T15:25:57.438151+00:00_
 
 No matches found
 
@@ -16840,7 +16632,7 @@ No matches found
 
 ### Tool call
 
-_source line 540 · 2026-05-21T15:25:57.739916+00:00_
+_source line 536 · 2026-05-21T15:25:57.739916+00:00_
 
 called Grep
 
@@ -16878,7 +16670,7 @@ called Grep
 
 ### Tool result
 
-_source line 541 · 2026-05-21T15:25:57.790977+00:00_
+_source line 537 · 2026-05-21T15:25:57.790977+00:00_
 
 No matches found
 
@@ -16900,7 +16692,7 @@ No matches found
 
 ### Tool call
 
-_source line 542 · 2026-05-21T15:26:06.129998+00:00_
+_source line 538 · 2026-05-21T15:26:06.129998+00:00_
 
 called Grep
 
@@ -16938,7 +16730,7 @@ called Grep
 
 ### Tool result
 
-_source line 543 · 2026-05-21T15:26:06.281254+00:00_
+_source line 539 · 2026-05-21T15:26:06.281254+00:00_
 
 447:[Omitted long matching line]
 
@@ -16960,7 +16752,7 @@ _source line 543 · 2026-05-21T15:26:06.281254+00:00_
 
 ### Tool call
 
-_source line 544 · 2026-05-21T15:26:06.783549+00:00_
+_source line 540 · 2026-05-21T15:26:06.783549+00:00_
 
 called Grep
 
@@ -16998,7 +16790,7 @@ called Grep
 
 ### Tool result
 
-_source line 545 · 2026-05-21T15:26:06.783937+00:00_
+_source line 541 · 2026-05-21T15:26:06.783937+00:00_
 
 304:[Omitted long matching line]
 
@@ -17020,7 +16812,7 @@ _source line 545 · 2026-05-21T15:26:06.783937+00:00_
 
 ### Tool call
 
-_source line 546 · 2026-05-21T15:26:07.336402+00:00_
+_source line 542 · 2026-05-21T15:26:07.336402+00:00_
 
 called Read
 
@@ -17058,7 +16850,7 @@ called Read
 
 ### Tool result
 
-_source line 547 · 2026-05-21T15:26:07.437270+00:00_
+_source line 543 · 2026-05-21T15:26:07.437270+00:00_
 
 440	
 441	
@@ -17092,7 +16884,7 @@ _source line 547 · 2026-05-21T15:26:07.437270+00:00_
 
 ### Tool call
 
-_source line 548 · 2026-05-21T15:26:35.800336+00:00_
+_source line 544 · 2026-05-21T15:26:35.800336+00:00_
 
 called Read
 
@@ -17130,7 +16922,7 @@ called Read
 
 ### Tool result
 
-_source line 549 · 2026-05-21T15:26:35.851043+00:00_
+_source line 545 · 2026-05-21T15:26:35.851043+00:00_
 
 315	
 316	\paragraph{(g) Failed interventions.}
@@ -17167,7 +16959,7 @@ _source line 549 · 2026-05-21T15:26:35.851043+00:00_
 
 ### Tool call
 
-_source line 550 · 2026-05-21T15:27:18.669000+00:00_
+_source line 546 · 2026-05-21T15:27:18.669000+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17203,7 +16995,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 551 · 2026-05-21T15:27:22.334857+00:00_
+_source line 547 · 2026-05-21T15:27:22.334857+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -17225,7 +17017,7 @@ _source line 551 · 2026-05-21T15:27:22.334857+00:00_
 
 ### Assistant
 
-_source line 552 · 2026-05-21T15:27:26.625980+00:00_
+_source line 548 · 2026-05-21T15:27:26.625980+00:00_
 
 Appendix cleanup scan 审查已提交。Worker 报告的 3 项 Critical 发现均已不存在于当前文件，报告整体过时。当前 appendix.tex 的数值一致性经独立验证无误。额外收获：L449 的 seq_length 效应解释修正了我先前对 rebuttal framework 中 Qwen 63.7% vs 73.8% 不一致的判断。
 
@@ -17252,7 +17044,7 @@ Appendix cleanup scan 审查已提交。Worker 报告的 3 项 Critical 发现�
 
 ### User
 
-_source line 553 · 2026-05-21T15:27:27.100776+00:00_
+_source line 549 · 2026-05-21T15:27:27.100776+00:00_
 
 [系统通知 — worker_done:worker_writing_appendix-fixes_20260521T152037]:
 Worker worker_writing_appendix-fixes_20260521T152037 已完成（status=done），请审查 Agent 的处理结果。
@@ -17274,7 +17066,7 @@ Worker worker_writing_appendix-fixes_20260521T152037 已完成（status=done）�
 
 ### Tool call
 
-_source line 554 · 2026-05-21T15:27:33.486841+00:00_
+_source line 550 · 2026-05-21T15:27:33.486841+00:00_
 
 called Glob
 
@@ -17310,7 +17102,7 @@ called Glob
 
 ### Tool result
 
-_source line 555 · 2026-05-21T15:27:33.838660+00:00_
+_source line 551 · 2026-05-21T15:27:33.838660+00:00_
 
 No files found
 
@@ -17332,7 +17124,7 @@ No files found
 
 ### Tool call
 
-_source line 556 · 2026-05-21T15:27:33.939567+00:00_
+_source line 552 · 2026-05-21T15:27:33.939567+00:00_
 
 called Bash
 
@@ -17368,7 +17160,7 @@ called Bash
 
 ### Tool result
 
-_source line 557 · 2026-05-21T15:27:34.090688+00:00_
+_source line 553 · 2026-05-21T15:27:34.090688+00:00_
 
  docs/paper/appendix.tex | 91 ++++++++++++++++++++++++++++---------------------
  1 file changed, 52 insertions(+), 39 deletions(-)
@@ -17392,7 +17184,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 558 · 2026-05-21T15:27:37.205025+00:00_
+_source line 554 · 2026-05-21T15:27:37.205025+00:00_
 
 called Bash
 
@@ -17430,7 +17222,7 @@ called Bash
 
 ### Tool result
 
-_source line 559 · 2026-05-21T15:27:37.306214+00:00_
+_source line 555 · 2026-05-21T15:27:37.306214+00:00_
 
 diff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex
 index 880b4df..95a5383 100644
@@ -17467,7 +17259,7 @@ index 880b4df..95a5383 100644
 
 ### Tool call
 
-_source line 560 · 2026-05-21T15:28:57.187544+00:00_
+_source line 556 · 2026-05-21T15:28:57.187544+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17503,7 +17295,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 561 · 2026-05-21T15:29:00.953086+00:00_
+_source line 557 · 2026-05-21T15:29:00.953086+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -17525,7 +17317,7 @@ _source line 561 · 2026-05-21T15:29:00.953086+00:00_
 
 ### Assistant
 
-_source line 562 · 2026-05-21T15:29:04.290216+00:00_
+_source line 558 · 2026-05-21T15:29:04.290216+00:00_
 
 Appendix fixes 审查完毕，全部修改正确通过。同时更正了之前对 cleanup scan 报告的误判。
 
@@ -17552,7 +17344,7 @@ Appendix fixes 审查完毕，全部修改正确通过。同时更正了之前�
 
 ### User
 
-_source line 563 · 2026-05-21T16:01:19.450445+00:00_
+_source line 559 · 2026-05-21T16:01:19.450445+00:00_
 
 [System 触发审查]:
 **论文主文叙事深度扫描**
@@ -17594,7 +17386,7 @@ _source line 563 · 2026-05-21T16:01:19.450445+00:00_
 
 ### Tool call
 
-_source line 564 · 2026-05-21T16:01:37.688787+00:00_
+_source line 560 · 2026-05-21T16:01:37.688787+00:00_
 
 called Read
 
@@ -17628,7 +17420,7 @@ called Read
 
 ### Tool result
 
-_source line 565 · 2026-05-21T16:01:38.091193+00:00_
+_source line 561 · 2026-05-21T16:01:38.091193+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -17658,7 +17450,7 @@ _source line 565 · 2026-05-21T16:01:38.091193+00:00_
 
 ### Tool call
 
-_source line 566 · 2026-05-21T16:01:38.091701+00:00_
+_source line 562 · 2026-05-21T16:01:38.091701+00:00_
 
 called Read
 
@@ -17692,7 +17484,7 @@ called Read
 
 ### Tool result
 
-_source line 567 · 2026-05-21T16:01:38.292994+00:00_
+_source line 563 · 2026-05-21T16:01:38.292994+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -17728,7 +17520,7 @@ _source line 567 · 2026-05-21T16:01:38.292994+00:00_
 
 ### Tool call
 
-_source line 568 · 2026-05-21T16:01:38.344311+00:00_
+_source line 564 · 2026-05-21T16:01:38.344311+00:00_
 
 called Read
 
@@ -17762,7 +17554,7 @@ called Read
 
 ### Tool result
 
-_source line 569 · 2026-05-21T16:01:38.395000+00:00_
+_source line 565 · 2026-05-21T16:01:38.395000+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -17791,7 +17583,7 @@ _source line 569 · 2026-05-21T16:01:38.395000+00:00_
 
 ### Tool call
 
-_source line 570 · 2026-05-21T16:01:45.580993+00:00_
+_source line 566 · 2026-05-21T16:01:45.580993+00:00_
 
 called Read
 
@@ -17825,7 +17617,7 @@ called Read
 
 ### Tool result
 
-_source line 571 · 2026-05-21T16:01:45.634059+00:00_
+_source line 567 · 2026-05-21T16:01:45.634059+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -17911,7 +17703,7 @@ _source line 571 · 2026-05-21T16:01:45.634059+00:00_
 
 ### Tool call
 
-_source line 572 · 2026-05-21T16:01:48.900912+00:00_
+_source line 568 · 2026-05-21T16:01:48.900912+00:00_
 
 called Read
 
@@ -17945,7 +17737,7 @@ called Read
 
 ### Tool result
 
-_source line 573 · 2026-05-21T16:01:49.102105+00:00_
+_source line 569 · 2026-05-21T16:01:49.102105+00:00_
 
 1	\begin{abstract}
 2	LLM-based program repair increasingly relies on generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\cls{}), execution output generation (\cwm{}), and trajectory-level patch scoring (\traj{}). No prior work compares these formulations under matched conditions.
@@ -17973,7 +17765,7 @@ _source line 573 · 2026-05-21T16:01:49.102105+00:00_
 
 ### Tool call
 
-_source line 574 · 2026-05-21T16:01:49.152712+00:00_
+_source line 570 · 2026-05-21T16:01:49.152712+00:00_
 
 called Read
 
@@ -18007,7 +17799,7 @@ called Read
 
 ### Tool result
 
-_source line 575 · 2026-05-21T16:01:49.153371+00:00_
+_source line 571 · 2026-05-21T16:01:49.153371+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -18049,7 +17841,7 @@ _source line 575 · 2026-05-21T16:01:49.153371+00:00_
 
 ### Tool call
 
-_source line 576 · 2026-05-21T16:02:49.130615+00:00_
+_source line 572 · 2026-05-21T16:02:49.130615+00:00_
 
 called Grep
 
@@ -18087,7 +17879,7 @@ called Grep
 
 ### Tool call
 
-_source line 577 · 2026-05-21T16:02:49.130993+00:00_
+_source line 573 · 2026-05-21T16:02:49.130993+00:00_
 
 called Read
 
@@ -18121,7 +17913,7 @@ called Read
 
 ### Tool result
 
-_source line 578 · 2026-05-21T16:02:49.231614+00:00_
+_source line 574 · 2026-05-21T16:02:49.231614+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:98:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:340:\label{app:tost_sensitivity}
@@ -18148,7 +17940,7 @@ _source line 578 · 2026-05-21T16:02:49.231614+00:00_
 
 ### Tool result
 
-_source line 579 · 2026-05-21T16:02:49.232213+00:00_
+_source line 575 · 2026-05-21T16:02:49.232213+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -18181,7 +17973,7 @@ _source line 579 · 2026-05-21T16:02:49.232213+00:00_
 
 ### Tool call
 
-_source line 580 · 2026-05-21T16:02:54.053598+00:00_
+_source line 576 · 2026-05-21T16:02:54.053598+00:00_
 
 called Read
 
@@ -18217,7 +18009,7 @@ called Read
 
 ### Tool result
 
-_source line 581 · 2026-05-21T16:02:54.104712+00:00_
+_source line 577 · 2026-05-21T16:02:54.104712+00:00_
 
 1	# Distilled Writing: Code Verification & LLM Program Repair
 2	
@@ -18271,7 +18063,7 @@ _source line 581 · 2026-05-21T16:02:54.104712+00:00_
 
 ### Tool call
 
-_source line 582 · 2026-05-21T16:03:53.613061+00:00_
+_source line 578 · 2026-05-21T16:03:53.613061+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18307,7 +18099,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 583 · 2026-05-21T16:03:57.378981+00:00_
+_source line 579 · 2026-05-21T16:03:57.378981+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -18329,7 +18121,7 @@ _source line 583 · 2026-05-21T16:03:57.378981+00:00_
 
 ### Assistant
 
-_source line 584 · 2026-05-21T16:04:02.367113+00:00_
+_source line 580 · 2026-05-21T16:04:02.367113+00:00_
 
 审查已提交。发现 3 个 WARNING 级问题：(1) "robust interaction" 用于仅单模型家族的交互检验，建议改为 "significant"；(2) Conclusion 遗漏 Intro 承诺的 failure mode taxonomy 和 complexity-conditioned recommendation；(3) §5.3 对 repo-level format collapse 的前向引用包含过多细节。另有 2 个 INFO 级改进建议：forced-parse 核心数字应从 appendix 提升到主文，oracle 段落位置可优化。
 
@@ -18356,7 +18148,7 @@ _source line 584 · 2026-05-21T16:04:02.367113+00:00_
 
 ### User
 
-_source line 585 · 2026-05-21T16:38:20.623207+00:00_
+_source line 581 · 2026-05-21T16:38:20.623207+00:00_
 
 [System 触发审查]:
 **两个审查任务**
@@ -18395,7 +18187,7 @@ Agent 刚完成你叙事扫描中的 4 个修改（robust→significant、Conclu
 
 ### Tool call
 
-_source line 586 · 2026-05-21T16:38:37.614127+00:00_
+_source line 582 · 2026-05-21T16:38:37.614127+00:00_
 
 called Read
 
@@ -18429,7 +18221,7 @@ called Read
 
 ### Tool result
 
-_source line 587 · 2026-05-21T16:38:38.116546+00:00_
+_source line 583 · 2026-05-21T16:38:38.116546+00:00_
 
 1	\begin{abstract}
 2	LLM-based program repair increasingly relies on generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\cls{}), execution output generation (\cwm{}), and trajectory-level patch scoring (\traj{}). No prior work compares these formulations under matched conditions.
@@ -18457,7 +18249,7 @@ _source line 587 · 2026-05-21T16:38:38.116546+00:00_
 
 ### Tool call
 
-_source line 588 · 2026-05-21T16:38:38.116957+00:00_
+_source line 584 · 2026-05-21T16:38:38.116957+00:00_
 
 called Read
 
@@ -18491,7 +18283,7 @@ called Read
 
 ### Tool result
 
-_source line 589 · 2026-05-21T16:38:38.569548+00:00_
+_source line 585 · 2026-05-21T16:38:38.569548+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -18521,7 +18313,7 @@ _source line 589 · 2026-05-21T16:38:38.569548+00:00_
 
 ### Tool call
 
-_source line 590 · 2026-05-21T16:38:38.620396+00:00_
+_source line 586 · 2026-05-21T16:38:38.620396+00:00_
 
 called Read
 
@@ -18555,7 +18347,7 @@ called Read
 
 ### Tool result
 
-_source line 591 · 2026-05-21T16:38:38.620946+00:00_
+_source line 587 · 2026-05-21T16:38:38.620946+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -18585,7 +18377,7 @@ _source line 591 · 2026-05-21T16:38:38.620946+00:00_
 
 ### Tool call
 
-_source line 592 · 2026-05-21T16:38:42.878078+00:00_
+_source line 588 · 2026-05-21T16:38:42.878078+00:00_
 
 called Read
 
@@ -18623,7 +18415,7 @@ called Read
 
 ### Tool result
 
-_source line 593 · 2026-05-21T16:38:43.279737+00:00_
+_source line 589 · 2026-05-21T16:38:43.279737+00:00_
 
 88	\end{table}
 89	
@@ -18654,7 +18446,7 @@ _source line 593 · 2026-05-21T16:38:43.279737+00:00_
 
 ### Tool call
 
-_source line 594 · 2026-05-21T16:38:43.731570+00:00_
+_source line 590 · 2026-05-21T16:38:43.731570+00:00_
 
 called Read
 
@@ -18692,7 +18484,7 @@ called Read
 
 ### Tool result
 
-_source line 595 · 2026-05-21T16:38:43.782262+00:00_
+_source line 591 · 2026-05-21T16:38:43.782262+00:00_
 
 168	
 169	\subsection{Analysis}
@@ -18725,7 +18517,7 @@ _source line 595 · 2026-05-21T16:38:43.782262+00:00_
 
 ### Tool call
 
-_source line 596 · 2026-05-21T16:38:48.547595+00:00_
+_source line 592 · 2026-05-21T16:38:48.547595+00:00_
 
 called Agent
 
@@ -18763,7 +18555,7 @@ called Agent
 
 ### Tool call
 
-_source line 597 · 2026-05-21T16:38:51.308974+00:00_
+_source line 593 · 2026-05-21T16:38:51.308974+00:00_
 
 called Read
 
@@ -18797,7 +18589,7 @@ called Read
 
 ### Tool result
 
-_source line 598 · 2026-05-21T16:38:51.511244+00:00_
+_source line 594 · 2026-05-21T16:38:51.511244+00:00_
 
 1	&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T14:07:54Z; do not edit — regenerated by auto_build_report_facts) -->
 2	## 📊 当前状态（auto-derived from registry）
@@ -18850,7 +18642,7 @@ _source line 598 · 2026-05-21T16:38:51.511244+00:00_
 
 ### Tool call
 
-_source line 599 · 2026-05-21T16:38:51.511775+00:00_
+_source line 595 · 2026-05-21T16:38:51.511775+00:00_
 
 called Read
 
@@ -18884,7 +18676,7 @@ called Read
 
 ### Tool result
 
-_source line 600 · 2026-05-21T16:38:51.562906+00:00_
+_source line 596 · 2026-05-21T16:38:51.562906+00:00_
 
 1	experiments:
 2	- id: cwm-baseline
@@ -18953,7 +18745,7 @@ _source line 600 · 2026-05-21T16:38:51.562906+00:00_
 
 ### Tool result
 
-_source line 601 · 2026-05-21T16:39:50.531744+00:00_
+_source line 597 · 2026-05-21T16:39:50.531744+00:00_
 
 Here are the complete, verbatim contents of both files:
 
@@ -19011,7 +18803,7 @@ Here are the complete, verbatim contents of both files:
 
 ### Tool call
 
-_source line 602 · 2026-05-21T16:40:36.133493+00:00_
+_source line 598 · 2026-05-21T16:40:36.133493+00:00_
 
 called Bash
 
@@ -19047,7 +18839,7 @@ called Bash
 
 ### Tool result
 
-_source line 603 · 2026-05-21T16:40:36.335120+00:00_
+_source line 599 · 2026-05-21T16:40:36.335120+00:00_
 
 === re-repair-docker-eval ===
   status: DONE
@@ -19095,7 +18887,7 @@ _source line 603 · 2026-05-21T16:40:36.335120+00:00_
 
 ### Tool call
 
-_source line 604 · 2026-05-21T16:41:12.719999+00:00_
+_source line 600 · 2026-05-21T16:41:12.719999+00:00_
 
 called Grep
 
@@ -19133,7 +18925,7 @@ called Grep
 
 ### Tool result
 
-_source line 605 · 2026-05-21T16:41:13.077654+00:00_
+_source line 601 · 2026-05-21T16:41:13.077654+00:00_
 
 No matches found
 
@@ -19155,7 +18947,7 @@ No matches found
 
 ### Tool call
 
-_source line 606 · 2026-05-21T16:41:13.228854+00:00_
+_source line 602 · 2026-05-21T16:41:13.228854+00:00_
 
 called Grep
 
@@ -19193,7 +18985,7 @@ called Grep
 
 ### Tool result
 
-_source line 607 · 2026-05-21T16:41:13.329704+00:00_
+_source line 603 · 2026-05-21T16:41:13.329704+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex:4:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex:4:[Omitted long matching line]
@@ -19217,7 +19009,7 @@ _source line 607 · 2026-05-21T16:41:13.329704+00:00_
 
 ### Tool call
 
-_source line 608 · 2026-05-21T16:41:16.652993+00:00_
+_source line 604 · 2026-05-21T16:41:16.652993+00:00_
 
 called Grep
 
@@ -19255,7 +19047,7 @@ called Grep
 
 ### Tool result
 
-_source line 609 · 2026-05-21T16:41:16.653546+00:00_
+_source line 605 · 2026-05-21T16:41:16.653546+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:172:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:281:\label{app:qualitative}
@@ -19279,7 +19071,7 @@ _source line 609 · 2026-05-21T16:41:16.653546+00:00_
 
 ### Tool call
 
-_source line 610 · 2026-05-21T16:41:20.319001+00:00_
+_source line 606 · 2026-05-21T16:41:20.319001+00:00_
 
 called Read
 
@@ -19317,7 +19109,7 @@ called Read
 
 ### Tool result
 
-_source line 611 · 2026-05-21T16:41:20.319559+00:00_
+_source line 607 · 2026-05-21T16:41:20.319559+00:00_
 
 278	The \texttt{operator\_swap} shift is the primary source of val-test distribution mismatch. Since \cls{} achieves moderate accuracy on this type (78.9--81.4\%), the over-representation in the test set does not systematically bias overall accuracy estimates in either direction. Two boundary observations are notable: (1)~\texttt{boundary\_removal} represents a scale-invariant difficulty ceiling at ${\sim}$47\% across both model sizes: this mutation type resists capacity scaling; (2)~\texttt{off\_by\_one} shows the largest scaling gain (+28.4\pp{}, 58.5\%$\to$86.9\%) but its small test share (1.9\%) limits its contribution to overall accuracy differences across scales.
 279	
@@ -19348,7 +19140,7 @@ _source line 611 · 2026-05-21T16:41:20.319559+00:00_
 
 ### Tool call
 
-_source line 612 · 2026-05-21T16:41:33.220935+00:00_
+_source line 608 · 2026-05-21T16:41:33.220935+00:00_
 
 called ToolSearch
 
@@ -19384,7 +19176,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 613 · 2026-05-21T16:41:33.221420+00:00_
+_source line 609 · 2026-05-21T16:41:33.221420+00:00_
 
 
 
@@ -19406,7 +19198,7 @@ _source line 613 · 2026-05-21T16:41:33.221420+00:00_
 
 ### Tool call
 
-_source line 614 · 2026-05-21T16:42:21.309949+00:00_
+_source line 610 · 2026-05-21T16:42:21.309949+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19442,7 +19234,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 615 · 2026-05-21T16:42:24.973292+00:00_
+_source line 611 · 2026-05-21T16:42:24.973292+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -19464,7 +19256,7 @@ _source line 615 · 2026-05-21T16:42:24.973292+00:00_
 
 ### Assistant
 
-_source line 616 · 2026-05-21T16:42:33.307744+00:00_
+_source line 612 · 2026-05-21T16:42:33.307744+00:00_
 
 审查完成。两项任务结果：
 
@@ -19495,7 +19287,7 @@ _source line 616 · 2026-05-21T16:42:33.307744+00:00_
 
 ### User
 
-_source line 617 · 2026-05-21T17:51:58.328820+00:00_
+_source line 613 · 2026-05-21T17:51:58.328820+00:00_
 
 [System 触发审查]:
 任务：CWM 多种子数据到齐后的三路 scenario 预案
@@ -19537,7 +19329,7 @@ _source line 617 · 2026-05-21T17:51:58.328820+00:00_
 
 ### Tool call
 
-_source line 618 · 2026-05-21T17:52:50.281739+00:00_
+_source line 614 · 2026-05-21T17:52:50.281739+00:00_
 
 called Bash
 
@@ -19573,7 +19365,7 @@ called Bash
 
 ### Tool result
 
-_source line 619 · 2026-05-21T17:52:50.599975+00:00_
+_source line 615 · 2026-05-21T17:52:50.599975+00:00_
 
 deepseek-cwm-repo-s42-seq4096-eval:
   acc=61.49, f1_macro=43.73, unparse=62.5, n=9784
@@ -19605,7 +19397,7 @@ cls8b-repo-s456-eval-v2: acc=84.4, f1=76.19
 
 ### Tool call
 
-_source line 620 · 2026-05-21T17:53:01.556465+00:00_
+_source line 616 · 2026-05-21T17:53:01.556465+00:00_
 
 called Bash
 
@@ -19641,7 +19433,7 @@ called Bash
 
 ### Tool result
 
-_source line 621 · 2026-05-21T17:53:01.658826+00:00_
+_source line 617 · 2026-05-21T17:53:01.658826+00:00_
 
 repo-level-cls-v5-conda (DONE): acc=78.43, f1_macro=71.17, fail_f1=?
 cls8b-repo-s456-eval-v2 (DONE): acc=84.4, f1_macro=76.19, fail_f1=62.21
@@ -19673,7 +19465,7 @@ model-size-scaling-cwm8b: acc=87.67, f1=87.57
 
 ### Tool call
 
-_source line 622 · 2026-05-21T17:54:49.869152+00:00_
+_source line 618 · 2026-05-21T17:54:49.869152+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19709,7 +19501,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 623 · 2026-05-21T17:54:54.493003+00:00_
+_source line 619 · 2026-05-21T17:54:54.493003+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -19731,7 +19523,7 @@ _source line 623 · 2026-05-21T17:54:54.493003+00:00_
 
 ### Assistant
 
-_source line 624 · 2026-05-21T17:54:57.987664+00:00_
+_source line 620 · 2026-05-21T17:54:57.987664+00:00_
 
 数据基线已确认。关键洞察：CWM repo 级有一个反直觉特性——unparseable rate 越高，accuracy 反而越高（因为 default-pass ≈ 73% > parseable-only 38-43%）。这会影响 Scenario B 的判断。
 
@@ -19758,7 +19550,7 @@ _source line 624 · 2026-05-21T17:54:57.987664+00:00_
 
 ### User
 
-_source line 625 · 2026-05-21T17:54:58.475137+00:00_
+_source line 621 · 2026-05-21T17:54:58.475137+00:00_
 
 [System 触发审查]:
 CWM 多种子数据即将到齐（预计 May 22 ~15:30 UTC 全部 eval 完成）。请做一个三路 scenario 预案，帮助数据到齐后快速决策叙事调整：
@@ -19802,7 +19594,7 @@ CWM 多种子数据即将到齐（预计 May 22 ~15:30 UTC 全部 eval 完成）
 
 ### Tool call
 
-_source line 626 · 2026-05-21T17:56:13.317064+00:00_
+_source line 622 · 2026-05-21T17:56:13.317064+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19838,7 +19630,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 627 · 2026-05-21T17:56:17.065167+00:00_
+_source line 623 · 2026-05-21T17:56:17.065167+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -19860,7 +19652,7 @@ _source line 627 · 2026-05-21T17:56:17.065167+00:00_
 
 ### Assistant
 
-_source line 628 · 2026-05-21T17:56:21.479422+00:00_
+_source line 624 · 2026-05-21T17:56:21.479422+00:00_
 
 这与我上一轮已提交的三路 Scenario 预案（[severity: info] CWM 多种子三路 Scenario 预案）高度重合。核心分析已覆盖，这里补充新请求中特别强调的**具体 tex 行号措辞**和**rebuttal framework 影响**。
 
@@ -19887,7 +19679,7 @@ _source line 628 · 2026-05-21T17:56:21.479422+00:00_
 
 ### User
 
-_source line 629 · 2026-05-21T17:56:21.937867+00:00_
+_source line 625 · 2026-05-21T17:56:21.937867+00:00_
 
 [系统通知 — worker_done:worker_ssh_pdf-visual-review_20260521T175211]:
 Worker worker_ssh_pdf-visual-review_20260521T175211 已完成（status=failed），请审查 Agent 的处理结果。
@@ -19909,7 +19701,7 @@ Worker worker_ssh_pdf-visual-review_20260521T175211 已完成（status=failed）
 
 ### Tool call
 
-_source line 630 · 2026-05-21T17:56:30.235000+00:00_
+_source line 626 · 2026-05-21T17:56:30.235000+00:00_
 
 called Glob
 
@@ -19945,7 +19737,7 @@ called Glob
 
 ### Tool result
 
-_source line 631 · 2026-05-21T17:56:30.335969+00:00_
+_source line 627 · 2026-05-21T17:56:30.335969+00:00_
 
 No files found
 
@@ -19967,7 +19759,7 @@ No files found
 
 ### Tool call
 
-_source line 632 · 2026-05-21T17:56:30.336406+00:00_
+_source line 628 · 2026-05-21T17:56:30.336406+00:00_
 
 called Glob
 
@@ -20003,7 +19795,7 @@ called Glob
 
 ### Tool result
 
-_source line 633 · 2026-05-21T17:56:30.386909+00:00_
+_source line 629 · 2026-05-21T17:56:30.386909+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/_last_visual_review.json
 
@@ -20025,7 +19817,7 @@ _source line 633 · 2026-05-21T17:56:30.386909+00:00_
 
 ### Tool call
 
-_source line 634 · 2026-05-21T17:56:33.347949+00:00_
+_source line 630 · 2026-05-21T17:56:33.347949+00:00_
 
 called Read
 
@@ -20059,7 +19851,7 @@ called Read
 
 ### Tool result
 
-_source line 635 · 2026-05-21T17:56:33.348380+00:00_
+_source line 631 · 2026-05-21T17:56:33.348380+00:00_
 
 1	{"timestamp": "2026-05-21T11:54:29.481001+00:00", "pages_reviewed": 20, "source": "compile_preview"}
 
@@ -20081,7 +19873,7 @@ _source line 635 · 2026-05-21T17:56:33.348380+00:00_
 
 ### Tool call
 
-_source line 636 · 2026-05-21T17:56:41.882990+00:00_
+_source line 632 · 2026-05-21T17:56:41.882990+00:00_
 
 called Bash
 
@@ -20117,7 +19909,7 @@ called Bash
 
 ### Tool result
 
-_source line 637 · 2026-05-21T17:56:42.086357+00:00_
+_source line 633 · 2026-05-21T17:56:42.086357+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 411303 May 21 17:54 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf
 EXISTS
@@ -20140,7 +19932,7 @@ EXISTS
 
 ### Assistant
 
-_source line 638 · 2026-05-21T17:56:47.980207+00:00_
+_source line 634 · 2026-05-21T17:56:47.980207+00:00_
 
 PDF 存在且是 17:54 UTC 生成的（worker 17:52 启动后 2 分钟）。Worker 可能在 PDF 编译后的图像渲染或 SSH 传输阶段失败。无审查产出物，无需发 review。
 
@@ -20169,7 +19961,7 @@ PDF 存在且是 17:54 UTC 生成的（worker 17:52 启动后 2 分钟）。Work
 
 ### User
 
-_source line 639 · 2026-05-21T18:05:20.116949+00:00_
+_source line 635 · 2026-05-21T18:05:20.116949+00:00_
 
 [系统通知 — worker_done:worker_ssh_training-progress-check_20260521T180213]:
 Worker worker_ssh_training-progress-check_20260521T180213 已完成（status=done），请审查 Agent 的处理结果。
@@ -20191,7 +19983,7 @@ Worker worker_ssh_training-progress-check_20260521T180213 已完成（status=don
 
 ### Tool call
 
-_source line 640 · 2026-05-21T18:05:28.775010+00:00_
+_source line 636 · 2026-05-21T18:05:28.775010+00:00_
 
 called ToolSearch
 
@@ -20227,7 +20019,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 641 · 2026-05-21T18:05:28.825679+00:00_
+_source line 637 · 2026-05-21T18:05:28.825679+00:00_
 
 
 
@@ -20249,7 +20041,7 @@ _source line 641 · 2026-05-21T18:05:28.825679+00:00_
 
 ### Tool call
 
-_source line 642 · 2026-05-21T18:05:33.292888+00:00_
+_source line 638 · 2026-05-21T18:05:33.292888+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20285,7 +20077,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 643 · 2026-05-21T18:05:34.296941+00:00_
+_source line 639 · 2026-05-21T18:05:34.296941+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20321,7 +20113,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 644 · 2026-05-21T18:05:34.749646+00:00_
+_source line 640 · 2026-05-21T18:05:34.749646+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 79%|███████▉  | 7406/9335 [15:13<03:58,  8.07it/s]\\u001b[A\\n\\r 79%|███████▉  | 7407/9335 [15:13<04:03,  7.91it/s]\\u001b[A\\n\\r 79%|███████▉  | 7408/9335 [15:13<04:19,  7.41it/s]\\u001b[A\\n\\r 79%|███████▉  | 7409/9335 [15:13<04:17,  7.48it/s]\\u001b[A\\n\\r 79%|███████▉  | 7411/9335 [15:13<03:37,  8.86it/s]\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
 
@@ -20343,7 +20135,7 @@ _source line 644 · 2026-05-21T18:05:34.749646+00:00_
 
 ### Tool result
 
-_source line 645 · 2026-05-21T18:05:35.855598+00:00_
+_source line 641 · 2026-05-21T18:05:35.855598+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r100%|█████████▉| 9333/9335 [18:58<00:00,  6.85it/s]\\u001b[A\\n\\r100%|██████████| 9335/9335 [18:58<00:00,  6.48it/s]\\u001b[A\\r                                                        \\r\\n\\r                                                   \\r\\u001b[A\\r 92%|█████████▏| 6100/6633 [20:06:05<1:47:05, 12.06s/it]\\n\\r100%|██████████| 9335/9335 [18:58<00:00,  6.48it/s]\\u001b[A\\n\\r                                                   \\u001b[A\\r 92%|█████████▏| 6101/6633 [20:06:17<52:16:40, 353.76s/it]\\r 92%|█████████▏| 6102/6633 [20:06:29<37:04:17, 251.33s/it]\\r 92%|█████████▏| 6103/6633 [20:06:41<26:25:19, 179.47s/it]\\r 92%|█████████▏| 6104/6633 [20:06:54<19:02:51, 129.63s/it]\\r 92%|█████████▏| 6105/6633 [20:07:06<13:50:12, 94.34s/it] \\r 92%|█████████▏| 6106/6633 [20:07:18<10:12:14, 69.70s/it]\\r 92%|█████████▏| 6107/6633 [20:07:30<7:38:43, 52.33s/it] \\r 92%|█████████▏| 6108/6633 [20:07:41<5:49:36, 39.96s/it]\\r 92%|█████████▏| 6109/6633 [20:07:53<4:35:57, 31.60s/it]\\r 92%|█████████▏| 6110/6633 [20:08:05<3:44:45, 25.78s/it]\\r 92%|█████████▏| 6111/6633 [20:08:17<3:07:28, 21.55s/it]\\r 92%|█████████▏| 6112/6633 [20:08:29<2:43:14, 18.80s/it]\\r 92%|█████████▏| 6113/6633 [20:08:41<2:23:29, 16.56s/it]\\r 92%|█████████▏| 6114/6633 [20:08:52<2:09:29, 14.97s/it]\\r 92%|█████████▏| 6115/6633 [20:09:03<1:58:00, 13.67s/it]\\r 92%|█████████▏| 6116/6633 [20:09:15<1:55:21, 13.39s/it]\\r 92%|█████████▏| 6117/6633 [20:09:28<1:53:48, 13.23s/it]\\r 92%|█████████▏| 6118/6633 [20:09:40<1:49:41, 12.78s/it]\\r 92%|█████████▏| 6119/6633 [20:09:51<1:45:55, 12.36s/it]\\r 92%|█████████▏| 6120/6633 [20:10:03<1:44:51, 12.26s/it]\\r 92%|█████████▏| 6121/6633 [20:10:15<1:43:15, 12.10s/it]\\r 92%|█████████▏| 6122/6633 [20:10:28<1:44:43, 12.30s/it]\\r 92%|█████████▏| 6123/6633 [20:10:41<1:46:23, 12.52s/it]\\r 92%|█████████▏| 6124/6633 [20:10:53<1:44:49, 12.36s/it]\\r 92%|█████████▏| 6125/6633 [20:11:04<1:41:54, 12.04s/it]\\r 92
 …[truncated 2579 chars]
@@ -20366,7 +20158,7 @@ _source line 645 · 2026-05-21T18:05:35.855598+00:00_
 
 ### Tool call
 
-_source line 646 · 2026-05-21T18:05:35.856030+00:00_
+_source line 642 · 2026-05-21T18:05:35.856030+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20402,7 +20194,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 647 · 2026-05-21T18:05:36.307987+00:00_
+_source line 643 · 2026-05-21T18:05:36.307987+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/:\\ntotal 20\\ndrwxr-xr-x 2 root root 4096 May 22 01:52 checkpoint-6100\\ndrwxr-xr-x 2 root root 4096 May 22 01:13 checkpoint-6000\\ndrwxr-xr-x 2 root root 4096 May 22 00:34 checkpoint-5900\\ndrwxr-xr-x 2 root root 4096 May 21 23:55 checkpoint-5800\\ndrwxr-xr-x 2 root root 4096 May 20 11:32 checkpoint-300\\n\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/:\\ntotal 20\\ndrwxr-xr-x 2 root root 4096 May 22 01:30 checkpoint-6000\\ndrwxr-xr-x 2 root root 4096 May 22 00:50 checkpoint-5900\\ndrwxr-xr-x 2 root root 4096 May 22 00:11 checkpoint-5800\\ndrwxr-xr-x 2 root root 4096 May 21 23:31 checkpoint-5700\\ndrwxr-xr-x 2 root root 4096 May 20 05:51 checkpoint-300\\n\\n/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/:\\ntotal 520\\n-rw-r--r-- 1 root root 479654 May 22 02:05 training_resume.log\\ndrwxr-xr-x 2 root root   4096 May 21 21:56 checkpoint-8418\\ndrwxr-xr-x 2 root root   4096 May 20 23:14 checkpoint-4209\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -20424,7 +20216,7 @@ _source line 647 · 2026-05-21T18:05:36.307987+00:00_
 
 ### Tool call
 
-_source line 648 · 2026-05-21T18:06:01.493787+00:00_
+_source line 644 · 2026-05-21T18:06:01.493787+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20460,7 +20252,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 649 · 2026-05-21T18:06:01.745244+00:00_
+_source line 645 · 2026-05-21T18:06:01.745244+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20496,7 +20288,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 650 · 2026-05-21T18:06:02.197943+00:00_
+_source line 646 · 2026-05-21T18:06:02.197943+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r100%|██████████| 948/948 [00:56<00:00, 11.61it/s]\\u001b[A\\n\\r                                                 \\u001b[A{'eval_loss': 4.9907121658325195, 'eval_runtime': 56.9076, 'eval_samples_per_second': 33.317, 'eval_steps_per_second': 16.659, 'epoch': 2.0}\\n\\r 67%|██████▋   | 8419/12627 [9:22:51<29:19:37, 25.09s/it]\\r 67%|██████▋   | 8420/12627 [9:22:59<23:15:41, 19.91s/it]\\r 67%|██████▋   | 8421/12627 [9:23:07<19:18:22, 16.52s/it]\\r 67%|██████▋   | 8422/12627 [9:23:14<15:46:14, 13.50s/it]\\r 67%|██████▋   | 8423/12627 [9:23:23<14:09:29, 12.12s/it]\\r 67%|██████▋   | 8424/12627 [9:23:31<12:42:14, 10.88s/it]\\r 67%|██████▋   | 8425/12627 [9:23:40<12:17:33, 10.53s/it]\\r 67%|██████▋   | 8426/12627 [9:23:47<11:01:08,  9.44s/it]\\r 67%|██████▋   | 8427/12627 [9:23:54<10:09:00,  8.70s/it]\\r 67%|██████▋   | 8428/12627 [9:24:03<10:10:12,  8.72s/it]\\r 67%|██████▋   | 8429/12627 [9:24:12<10:07:34,  8.68s/it]\\r 67%|██████▋   | 8430/12627 [9:24:20<10:10:28,  8.73s/it]\\r 67%|██████▋   | 8431/12627 [9:24:28<9:38:21,  8.27s/it] \\r 67%|██████▋   | 8432/12627 [9:24:34<8:54:43,  7.65s/it]\\r 67%|██████▋   | 8433/12627 [9:24:43<9:29:47,  8.15s/it]\\r 67%|██████▋   | 8434/12627 [9:24:51<9:15:19,  7.95s/it]\\r 67%|██████▋   | 8435/12627 [9:24:57<8:46:29,  7.54s/it]\\r 67%|██████▋   | 8436/12627 [9:25:05<8:57:56,  7.70s/it]\\r 67%|██████▋   | 8437/12627 [9:25:12<8:47:46,  7.56s/it]\\r 67%|██████▋   | 8438/12627 [9:25:20<8:57:31,  7.70s/it]\\r 67%|██████▋   | 8439/12627 [9:25:31<9:51:28,  8.47s/it]\\r 67%|██████▋   | 8440/12627 [9:25:39<9:42:56,  8.35s/it]\\r 67%|██████▋   | 8441/12627 [9:25:46<9:22:31,  8.06s/it]\\r 67%|██████▋   | 8442/12627 [9:25:53<8:59:18,  7.73s/it]\\r 67%|██████▋   | 8443/12627 [9:26:01<8:56:28,  7.69s/it]\\r 67%|██████▋   | 8444/12627 [9:26:08<8:44:16,  7.52s/it]\\r 67%|██████▋   | 8445/12627 [9:26:16<8:53:39,  7.66s/it]\\r 67%|██████▋   | 8446/12627 [9:26:24<8:58:09,  7.72s/it]\\r 67%|███
 …[truncated 6493 chars]
@@ -20519,7 +20311,7 @@ _source line 650 · 2026-05-21T18:06:02.197943+00:00_
 
 ### Tool result
 
-_source line 651 · 2026-05-21T18:06:02.801999+00:00_
+_source line 647 · 2026-05-21T18:06:02.801999+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 98 %, 30553 MiB, 32607 MiB\\n1, 85 %, 30427 MiB, 32607 MiB\\n2, 99 %, 20501 MiB, 32607 MiB\\n3, 98 %, 25559 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
 
@@ -20541,7 +20333,7 @@ _source line 651 · 2026-05-21T18:06:02.801999+00:00_
 
 ### Tool call
 
-_source line 652 · 2026-05-21T18:07:06.063530+00:00_
+_source line 648 · 2026-05-21T18:07:06.063530+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20577,7 +20369,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 653 · 2026-05-21T18:07:06.114210+00:00_
+_source line 649 · 2026-05-21T18:07:06.114210+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20613,7 +20405,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 654 · 2026-05-21T18:07:06.516621+00:00_
+_source line 650 · 2026-05-21T18:07:06.516621+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11092\\n-rw-r--r-- 1 root root 6269243 May 22 02:07 results_incremental.jsonl\\n-rw-r--r-- 1 root root  870017 May 21 21:47 results_contaminated_e2e3_mix.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -20635,7 +20427,7 @@ _source line 654 · 2026-05-21T18:07:06.516621+00:00_
 
 ### Tool result
 
-_source line 655 · 2026-05-21T18:07:07.019495+00:00_
+_source line 651 · 2026-05-21T18:07:07.019495+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"3384 /root/autodl-tmp/eval_results/deepseek_cwm_repo_s456_v2_eval/results_incremental.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -20657,7 +20449,7 @@ _source line 655 · 2026-05-21T18:07:07.019495+00:00_
 
 ### Tool call
 
-_source line 656 · 2026-05-21T18:07:18.336631+00:00_
+_source line 652 · 2026-05-21T18:07:18.336631+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20693,7 +20485,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 657 · 2026-05-21T18:07:18.337082+00:00_
+_source line 653 · 2026-05-21T18:07:18.337082+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20729,7 +20521,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 658 · 2026-05-21T18:07:18.789029+00:00_
+_source line 654 · 2026-05-21T18:07:18.789029+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 0, \\\"correct\\\": 0, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"+ pytest -rA xarray/tests/test_dataarray.py\\\\n============================= test session starts ==============================\\\\nplatform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0\\\\nrootdir: /testbed\\\\nconfigfile: setup.cfg\\\\nplugins: xdist-3.6.1, hypothesis-6.114.0, env-1.1.5, cov-5.0.0\\\\ncollected 669 items\\\\n\\\\nxarray/tests/test_dataarray.py ......................................... [  6%]\\\\n........................................................................ [ 16%]\\\\n...........s.s.......................................................... [ 27%]\\\\n......................                                                   [ 38%]\\\\n........................................................................ [ 49%]\\\\n........................................................................ [ 59%]\\\\n........................................................................ [ 70%]\\\\n........................................................................ [ 81%]\\\\n........................................................................ [ 92%]\\\\n....................................................                     [100%]\\\\n\\\\n=============================== warnings summary ===============================\\\\nxarray/tests/test_dataarray.py::TestDataArrayWithDask::test_eq_dask_null\\\\nxarray/tests/test_dataarray.py::TestDataArrayWithDask::test_eq_dask_null\\\\nxarray/tests/test_dataarray.py::TestDataArrayWithDask::test_eq_dask_null\\\\nxarray/tests/test_dataarray.py::TestDataArrayWithDask::test_eq_dask_null\\\\n  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/dask/core.py:119: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise 
 …[truncated 347 chars]
@@ -20752,7 +20544,7 @@ _source line 658 · 2026-05-21T18:07:18.789029+00:00_
 
 ### Tool result
 
-_source line 659 · 2026-05-21T18:07:19.283014+00:00_
+_source line 655 · 2026-05-21T18:07:19.283014+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -20764,6 +20556,100 @@ _source line 659 · 2026-05-21T18:07:19.283014+00:00_
   "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
   "tool": "mcp__agent-ml-research__ssh_read_only",
   "elapsed_ms": 945
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 656 · 2026-05-21T18:07:22.445019+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps -p 817 -o pid,etime,comm"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ps -p 817 -o pid,etime,comm"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 657 · 2026-05-21T18:07:22.896984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n   817    20:47:59 bash\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 658 · 2026-05-21T18:08:13.208878+00:00_
+
+called mcp__agent-ml-research__reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "[severity: warning] 训练进度独立核实 — ETA 全面延后\n\n## GPU 状态（02:20 UTC May 22 独立验证）\n\n| GPU | Util | VRAM | 进程 | 合规 |\n|-----|------|------|------|------|\n| 0 | 98% | 30553/32607 MiB | Qwen s123 训练 | ✅ |\n| 1 | 85% | 30427/32607 MiB | DS s456 eval | ✅ |\n| 2 | 99% | 20501/32607 MiB | DS s123 训练 | ✅ |\n| 3 | 98% | 25559/32607 MiB | Qwen s456 训练 | ✅ |\n\n4 卡全部在跑项目任务，GPU 利用率正常，无越界。\n\n## 训练进度\n\n| 任务 | 当前步/总步 | 进度 | tqdm速度 | 训练完成ETA |\n|------|-----------|------|---------|------------|\n| Qwen s123 | ~6050/6633 | ~91% | ~12s/it (×2 eval) | ~06:10 UTC |\n| Qwen s456 | 6165/6633 | 93% | ~12s/it (×2 eval) | ~05:20 UTC |\n| DS s123 v3 | 10292/12627 | 81% | ~8s/it | ~07:30 UTC |\n\nDS s456 eval 进行中：3384/9784 = 34.6%，速率 ~846 lines/h。\n\n## ⚠️ ETA 全面延后\n\n| 数据 | 之前ETA | 修正ETA | 延迟 |\n|------|---------|---------|------|\n| DS s456 eval | — | **~09:40 UTC May 22** | 首个到齐 ✅ |\n| DS s123 eval | ~15:30 | **~19:10 UTC May 22** | +3.7h |\n| Qwen s456 eval | ~15:30 | **~22:50 UTC May 22** | +7.3h |\n| Qwen s123 eval | ~15:30 | **~23:40 UTC May 22** | +8.2h |\n\n**计算依据**：\n- Qwen eval：训练完成后，batch=4 seq=8192 约 17.5h/run（之前已验证）\n- DS eval：当前 DS s456 实测速率 846 lines/h → 全量 ~11.6h\n- Qwen 使用 tqdm ×2 rule（eval_steps=100，每次 eval ~19min 开销）\n\n**\"全部数据 May 22 15:30 UTC\" 目标不可达。** 最后一组 Qwen s123 eval 预计 ~23:40 UTC May 22 才完成。\n\n## 对 DDL 的影响\n\n距 ARR May 25 DDL 还有 ~2.5 天。即使最后数据延迟到 May 22 23:40 UTC：\n- May 23 全天可用于：Table 3 填充 + interaction LPM 重跑 + Figure 2 error bars + paper 最终修改\n- May 24 用于：最终 PDF 编译 + 提交前检查\n\n**时间紧张但可行——前提是 eval 脚本和 watch 脚本都已正确配置。**\n\n建议：\n1. DS s456 eval 将于 ~09:40 UTC 最先完成，可立即开始部分数据分析（先看 DS 2-seed CWM 趋势）\n2. 确认 Qwen 训练完成后有 auto-trigger eval 的 watch 脚本（否则需要手动启动，浪费等待时间）\n3. DS s123 的 watch 脚本 (PID 817) 仍在运行（uptime 20:47:59），Phase 3 auto-trigger eval 应该正常工作",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "tool_args": {
+    "text": "[severity: warning] 训练进度独立核实 — ETA 全面延后\n\n## GPU 状态（02:20 UTC May 22 独立验证）\n\n| GPU | Util | VRAM | 进程 | 合规 |\n|-----|------|------|------|------|\n| 0 | 98% | 30553/32607 MiB | Qwen s123 训练 | ✅ |\n| 1 | 85% | 30427/32607 MiB | DS s456 eval | ✅ |\n| 2 | 99% | 20501/32607 MiB | DS s123 训练 | ✅ |\n| 3 | 98% | 25559/32607 MiB | Qwen s456 训练 | ✅ |\n\n4 卡全部在跑项目任务，GPU 利用率正常，无越界。\n\n## 训练进度\n\n| 任务 | 当前步/总步 | 进度 | tqdm速度 | 训练完成ETA |\n|------|-----------|------|---------|------------|\n| Qwen s123 | ~6050/6633 | ~91% | ~12s/it (×2 eval) | ~06:10 UTC |\n| Qwen s456 | 6165/6633 | 93% | ~12s/it (×2 eval) | ~05:20 UTC |\n| DS s123 v3 | 10292/12627 | 81% | ~8s/it | ~07:30 UTC |\n\nDS s456 eval 进行中：3384/9784 = 34.6%，速率 ~846 lines/h。\n\n## ⚠️ ETA 全面延后\n\n| 数据 | 之前ETA | 修正ETA | 延迟 |\n|------|---------|---------|------|\n| DS s456 eval | — | **~09:40 UTC May 22** | 首个到齐 ✅ |\n| DS s123 eval | ~15:30 | **~19:10 UTC May 22** | +3.7h |\n| Qwen s456 eval | ~15:30 | **~22:50 UTC May 22** | +7.3h |\n| Qwen s123 eval | ~15:30 | **~23:40 UTC May 22** | +8.2h |\n\n**计算依据**：\n- Qwen eval：训练完成后，batch=4 seq=8192 约 17.5h/run（之前已验证）\n- DS eval：当前 DS s456 实测速率 846 lines/h → 全量 ~11.6h\n- Qwen 使用 tqdm ×2 rule（eval_steps=100，每次 eval ~19min 开销）\n\n**\"全部数据 May 22 15:30 UTC\" 目标不可达。** 最后一组 Qwen s123 eval 预计 ~23:40 UTC May 22 才完成。\n\n## 对 DDL 的影响\n\n距 ARR May 25 DDL 还有 ~2.5 天。即使最后数据延迟到 May 22 23:40 UTC：\n- May 23 全天可用于：Table 3 填充 + interaction LPM 重跑 + Figure 2 error bars + paper 最终修改\n- May 24 用于：最终 PDF 编译 + 提交前检查\n\n**时间紧张但可行——前提是 eval 脚本和 watch 脚本都已正确配置。**\n\n建议：\n1. DS s456 eval 将于 ~09:40 UTC 最先完成，可立即开始部分数据分析（先看 DS 2-seed CWM 趋势）\n2. 确认 Qwen 训练完成后有 auto-trigger eval 的 watch 脚本（否则需要手动启动，浪费等待时间）\n3. DS s123 的 watch 脚本 (PID 817) 仍在运行（uptime 20:47:59），Phase 3 auto-trigger eval 应该正常工作",
+    "project": "exec-sim-repair-verifier"
+  }
 }
 ```
 

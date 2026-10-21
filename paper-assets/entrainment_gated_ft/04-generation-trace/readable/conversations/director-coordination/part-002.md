@@ -8002,7 +8002,7 @@ _source line 875 · 2026-05-26T06:38:53.062098+00:00_
 
 ## Round 29
 
-140 recorded events
+134 recorded events
 
 
 ### User
@@ -10299,43 +10299,7 @@ _source line 938 · 2026-05-26T06:39:52.681511+00:00_
 
 ### Tool call
 
-_source line 939 · 2026-05-26T06:39:52.681979+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 940 · 2026-05-26T06:39:52.732504+00:00_
+_source line 939 · 2026-05-26T06:39:52.732504+00:00_
 
 called Read
 
@@ -10369,144 +10333,9 @@ called Read
 ---
 
 
-### Tool result
-
-_source line 941 · 2026-05-26T06:39:52.933756+00:00_
-
-1	\documentclass[11pt]{article}
-2	\usepackage[margin=1in]{geometry}
-3	\usepackage{times}
-4	\usepackage[T1]{fontenc}
-5	\usepackage[utf8]{inputenc}
-6	\usepackage{enumitem}
-7	\usepackage{xcolor}
-8	\usepackage{hyperref}
-9	
-10	\definecolor{reviewercolor}{RGB}{0,0,140}
-11	\definecolor{responsecolor}{RGB}{0,100,0}
-12	
-13	\newcommand{\reviewer}[1]{\textcolor{reviewercolor}{\textbf{Reviewer comment:} \textit{#1}}}
-14	\newcommand{\response}[1]{\textcolor{responsecolor}{\textbf{Response:} #1}}
-15	\newcommand{\location}[1]{\textbf{Location:} #1}
-16	
-17	\title{Author Response --- Round 6}
-18	\author{}
-19	\date{}
-20	
-21	\begin{document}
-22	\maketitle
-23	
-24	We thank the reviewers for their detailed and constructive feedback. We have revised the paper to address each concern. Below, we respond point-by-point, noting specific changes and their locations.
-25	
-26	\section*{Overview of Changes}
-27	
-28	\begin{itemize}[leftmargin=*]
-29	\item New title scoped to observed evidence rather than general claims.
-30	\item Introduction, Abstract, and Conclusion rewritten to multiplicity-first framing: per-example multiplicity ($\alpha = 0.14$--$0.30$, Jaccard $\leq 0.10$) now leads; convergence introduced as contrastive secondary finding.
-31	\item Introduction findings reordered (First = multiplicity, Second = convergence); transition sentence explains why Results section retains convergence-first order (\S4.1 provides aggregate backdrop for \S4.2 per-example analysis).
-32	\item All instances of ``general property'' replaced with empirically scoped language.
-33	\item Per-example analysis expanded from two to four benchmarks (LAMBADA, HellaSwag, PIQA, ARC-Easy) plus BoolQ and WinoGrande as supplementary in Appendix; multiplicity spectrum $\alpha = 0.14$--$0.30$.
-34	\item Bootstrap 95\% CIs on $\alpha$ added (Appendix Table~6 + \S4.2): all adjacent-benchmark CIs non-overlapping except PIQA--HellaSwag.
-35	\item 340M LAMBADA per-example analysis added (Appendix \S F + \S4.3): $\alpha = 0.31$, $\bar
-…[truncated 1144 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 251
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 942 · 2026-05-26T06:39:52.984358+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 943 · 2026-05-26T06:39:53.034972+00:00_
-
-1	\section{Introduction}
-2	
-3	Hybrid linear recurrent architectures \citep[GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet;][]{yang2024gateddeltanet,sun2023retnet,qin2024hgrn2,yang2024gla,yang2024deltanet} achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets, yet their helped and hurt example sets overlap by only ${\sim}10$\% (pairwise Jaccard $\approx 0.10$). This gap between aggregate equivalence and per-example behavioral equivalence is invisible in standard metrics: architectures that score similarly reach that score by gaining and losing on different inputs, and the choice of backbone carries hidden consequences for which specific examples a deployed system handles correctly.
-4	
-5	\begin{figure*}[t]
-6	\centering
-7	\begin{minipage}[t]{0.56\textwidth}
-8	\centering
-9	\includegraphics[width=\textwidth]{figures/fig1_decoupling_hero.pdf}
-10	\end{minipage}%
-11	\hfill
-12	\begin{minipage}[t]{0.42\textwidth}
-13	\centering
-14	\includegraphics[width=\textwidth]{figures/fig4_jaccard_saturation.pdf}
-15	\end{minipage}
-16	\caption{Per-example overlap appears stable from minimal attention across benchmarks. (a,\,b) LAMBADA: cross-architecture $\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .167$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets appears stable from 4\% attention onward. (c) This pattern holds across all four main benchmarks: mean pairwise $\bar{J}$ remains flat across attention ratios (all $\rho \leq 0.80$, $p \geq .333$). Shaded bands are illustrative ($n = 3$).}
-17	\label{fig:decoupling}
-18	\end{figure*}
-19	
-20	This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \citep{lieber2024jamba}, Griffin \citep{de2024griffin}, RWKV-6 \citep{peng2024eagle}, and RecurrentGemma \citep{botev2024recurrentgemma} each combine recurr
-…[truncated 4023 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 302
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 944 · 2026-05-26T06:39:53.085545+00:00_
+_source line 940 · 2026-05-26T06:39:53.085545+00:00_
 
 called Read
 
@@ -10542,7 +10371,7 @@ called Read
 
 ### Tool result
 
-_source line 945 · 2026-05-26T06:39:53.136176+00:00_
+_source line 941 · 2026-05-26T06:39:53.136176+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -10585,7 +10414,7 @@ _source line 945 · 2026-05-26T06:39:53.136176+00:00_
 
 ### Tool result
 
-_source line 946 · 2026-05-26T06:39:53.237817+00:00_
+_source line 942 · 2026-05-26T06:39:53.237817+00:00_
 
 1	\documentclass[11pt]{article}
 2	\usepackage[margin=1in]{geometry}
@@ -10644,7 +10473,7 @@ _source line 946 · 2026-05-26T06:39:53.237817+00:00_
 
 ### Tool call
 
-_source line 947 · 2026-05-26T06:39:53.288437+00:00_
+_source line 943 · 2026-05-26T06:39:53.288437+00:00_
 
 called Read
 
@@ -10680,7 +10509,7 @@ called Read
 
 ### Tool result
 
-_source line 948 · 2026-05-26T06:39:53.288912+00:00_
+_source line 944 · 2026-05-26T06:39:53.288912+00:00_
 
 1	\section*{Responsible NLP Research Checklist}
 2	
@@ -10725,7 +10554,7 @@ _source line 948 · 2026-05-26T06:39:53.288912+00:00_
 
 ### Tool call
 
-_source line 949 · 2026-05-26T06:39:56.049526+00:00_
+_source line 945 · 2026-05-26T06:39:56.049526+00:00_
 
 called Grep
 
@@ -10763,7 +10592,7 @@ called Grep
 
 ### Tool result
 
-_source line 950 · 2026-05-26T06:39:56.605296+00:00_
+_source line 946 · 2026-05-26T06:39:56.605296+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:784:All models are from the publicly available model zoo of \citet{wang2025hybrid}. Analysis code and per-example evaluation outputs are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/acl_natbib.bst:126:  "[link]" 'linktextstring :=	% anonymous link text
@@ -10788,7 +10617,7 @@ _source line 950 · 2026-05-26T06:39:56.605296+00:00_
 
 ### Tool call
 
-_source line 951 · 2026-05-26T06:39:56.605741+00:00_
+_source line 947 · 2026-05-26T06:39:56.605741+00:00_
 
 called Grep
 
@@ -10828,7 +10657,7 @@ called Grep
 
 ### Tool result
 
-_source line 952 · 2026-05-26T06:39:56.605927+00:00_
+_source line 948 · 2026-05-26T06:39:56.605927+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:790:We used Claude for coding, code drafting, debugging, and language polishing.
 
@@ -10850,7 +10679,7 @@ _source line 952 · 2026-05-26T06:39:56.605927+00:00_
 
 ### Tool call
 
-_source line 953 · 2026-05-26T06:39:56.907182+00:00_
+_source line 949 · 2026-05-26T06:39:56.907182+00:00_
 
 called Bash
 
@@ -10884,7 +10713,7 @@ called Bash
 
 ### Tool result
 
-_source line 954 · 2026-05-26T06:39:57.470035+00:00_
+_source line 950 · 2026-05-26T06:39:57.470035+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:38:Hybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\leq 0.14$, roughly twice the independence baseline; all $p < .01$ across five architectures (three primary, two validation)). This multiplicity varies by task type or evaluation format ($\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap appears to stabilize at 4\% attention and remains flat across higher ratios, suggesting that minimal attention may establish which examples each architecture affects. \citet{yang2026benchmark} document analogous per-item disagreement (16--66\%) among frontier large language models (LLMs) despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (area under the ROC curve [AUC] 0.70--0.74). Low cross-architecture overlap implies substantial complementarity, though routing-based exploitation remains task-dependent\footnote{Code and data are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.}.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex:3:When aggregate benchmarks show equivalent performance, the choice among hybrid architectures is often driven by efficiency considerations. Per-example multiplicity reveals a complementary dimension: each backbone handles a different subset of inputs correctly, determined by the recurrent mechanism rather than th
@@ -10908,7 +10737,7 @@ _source line 954 · 2026-05-26T06:39:57.470035+00:00_
 
 ### Tool call
 
-_source line 955 · 2026-05-26T06:39:58.473750+00:00_
+_source line 951 · 2026-05-26T06:39:58.473750+00:00_
 
 called Read
 
@@ -10942,7 +10771,7 @@ called Read
 
 ### Tool result
 
-_source line 956 · 2026-05-26T06:39:59.046119+00:00_
+_source line 952 · 2026-05-26T06:39:59.046119+00:00_
 
 1	{
 2	  "run_id": "run_20260524_191519_f2f075",
@@ -10988,7 +10817,7 @@ _source line 956 · 2026-05-26T06:39:59.046119+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-26T06:39:59.046549+00:00_
+_source line 953 · 2026-05-26T06:39:59.046549+00:00_
 
 called Bash
 
@@ -11022,7 +10851,7 @@ called Bash
 
 ### Tool result
 
-_source line 958 · 2026-05-26T06:39:59.595587+00:00_
+_source line 954 · 2026-05-26T06:39:59.595587+00:00_
 
 {
   "run_id": "run_20260524_171243_47aaca",
@@ -11106,100 +10935,7 @@ _source line 958 · 2026-05-26T06:39:59.595587+00:00_
 
 ### Tool call
 
-_source line 959 · 2026-05-26T06:40:01.001953+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-  "limit": "100"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-    "limit": "100"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 960 · 2026-05-26T06:40:01.569788+00:00_
-
-1	\documentclass[11pt]{article}
-2	\usepackage[margin=1in]{geometry}
-3	\usepackage{times}
-4	\usepackage[T1]{fontenc}
-5	\usepackage[utf8]{inputenc}
-6	\usepackage{enumitem}
-7	\usepackage{xcolor}
-8	\usepackage{hyperref}
-9	
-10	\definecolor{reviewercolor}{RGB}{0,0,140}
-11	\definecolor{responsecolor}{RGB}{0,100,0}
-12	
-13	\newcommand{\reviewer}[1]{\textcolor{reviewercolor}{\textbf{Reviewer comment:} \textit{#1}}}
-14	\newcommand{\response}[1]{\textcolor{responsecolor}{\textbf{Response:} #1}}
-15	\newcommand{\location}[1]{\textbf{Location:} #1}
-16	
-17	\title{Author Response --- Round 6}
-18	\author{}
-19	\date{}
-20	
-21	\begin{document}
-22	\maketitle
-23	
-24	We thank the reviewers for their detailed and constructive feedback. We have revised the paper to address each concern. Below, we respond point-by-point, noting specific changes and their locations.
-25	
-26	\section*{Overview of Changes}
-27	
-28	\begin{itemize}[leftmargin=*]
-29	\item New title scoped to observed evidence rather than general claims.
-30	\item Introduction, Abstract, and Conclusion rewritten to multiplicity-first framing: per-example multiplicity ($\alpha = 0.14$--$0.30$, Jaccard $\leq 0.10$) now leads; convergence introduced as contrastive secondary finding.
-31	\item Introduction findings reordered (First = multiplicity, Second = convergence); transition sentence explains why Results section retains convergence-first order (\S4.1 provides aggregate backdrop for \S4.2 per-example analysis).
-32	\item All instances of ``general property'' replaced with empirically scoped language.
-33	\item Per-example analysis expanded from two to four benchmarks (LAMBADA, HellaSwag, PIQA, ARC-Easy) plus BoolQ and WinoGrande as supplementary in Appendix; multiplicity spectrum $\alpha = 0.14$--$0.30$.
-34	\item Bootstrap 95\% CIs on $\alpha$ added (Appendix Table~6 + \S4.2): all adjacent-benchmark CIs non-overlapping except PIQA--HellaSwag.
-35	\item 340M LAMBADA per-example analysis added (Appendix \S F + \S4.3): $\alpha = 0.31$, $\bar
-…[truncated 5699 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 567
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 961 · 2026-05-26T06:40:01.570274+00:00_
+_source line 955 · 2026-05-26T06:40:01.570274+00:00_
 
 called Bash
 
@@ -11233,7 +10969,7 @@ called Bash
 
 ### Tool result
 
-_source line 962 · 2026-05-26T06:40:02.157319+00:00_
+_source line 956 · 2026-05-26T06:40:02.157319+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib:% References for entrainment_gated_ft paper
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:All models are from the publicly available model zoo of \citet{wang2025hybrid}. Analysis code and per-example evaluation outputs are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.
@@ -11258,7 +10994,7 @@ _source line 962 · 2026-05-26T06:40:02.157319+00:00_
 
 ### Tool call
 
-_source line 963 · 2026-05-26T06:40:02.157837+00:00_
+_source line 957 · 2026-05-26T06:40:02.157837+00:00_
 
 called Bash
 
@@ -11292,7 +11028,7 @@ called Bash
 
 ### Tool result
 
-_source line 964 · 2026-05-26T06:40:02.158035+00:00_
+_source line 958 · 2026-05-26T06:40:02.158035+00:00_
 
 (Bash completed with no output)
 
@@ -11314,7 +11050,7 @@ _source line 964 · 2026-05-26T06:40:02.158035+00:00_
 
 ### Tool call
 
-_source line 965 · 2026-05-26T06:40:03.765728+00:00_
+_source line 959 · 2026-05-26T06:40:03.765728+00:00_
 
 called Bash
 
@@ -11348,7 +11084,7 @@ called Bash
 
 ### Tool result
 
-_source line 966 · 2026-05-26T06:40:03.916754+00:00_
+_source line 960 · 2026-05-26T06:40:03.916754+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171243_47aaca/metadata.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171248_baaf2b/metadata.json
@@ -11378,7 +11114,7 @@ _source line 966 · 2026-05-26T06:40:03.916754+00:00_
 
 ### Tool call
 
-_source line 967 · 2026-05-26T06:40:04.368718+00:00_
+_source line 961 · 2026-05-26T06:40:04.368718+00:00_
 
 called Bash
 
@@ -11412,7 +11148,7 @@ called Bash
 
 ### Tool result
 
-_source line 968 · 2026-05-26T06:40:04.469492+00:00_
+_source line 962 · 2026-05-26T06:40:04.469492+00:00_
 
 (Bash completed with no output)
 
@@ -11434,7 +11170,7 @@ _source line 968 · 2026-05-26T06:40:04.469492+00:00_
 
 ### Tool call
 
-_source line 969 · 2026-05-26T06:40:06.929509+00:00_
+_source line 963 · 2026-05-26T06:40:06.929509+00:00_
 
 called Bash
 
@@ -11468,7 +11204,7 @@ called Bash
 
 ### Tool call
 
-_source line 970 · 2026-05-26T06:40:07.030405+00:00_
+_source line 964 · 2026-05-26T06:40:07.030405+00:00_
 
 called Read
 
@@ -11502,7 +11238,7 @@ called Read
 
 ### Tool result
 
-_source line 971 · 2026-05-26T06:40:07.640978+00:00_
+_source line 965 · 2026-05-26T06:40:07.640978+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -11573,7 +11309,7 @@ _source line 971 · 2026-05-26T06:40:07.640978+00:00_
 
 ### Tool result
 
-_source line 972 · 2026-05-26T06:40:07.641293+00:00_
+_source line 966 · 2026-05-26T06:40:07.641293+00:00_
 
 788:\section{Use of AI Assistance}
 790:We used Claude for coding, code drafting, debugging, and language polishing.
@@ -11596,7 +11332,7 @@ _source line 972 · 2026-05-26T06:40:07.641293+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-26T06:40:09.147047+00:00_
+_source line 967 · 2026-05-26T06:40:09.147047+00:00_
 
 called Bash
 
@@ -11630,7 +11366,7 @@ called Bash
 
 ### Tool result
 
-_source line 974 · 2026-05-26T06:40:09.734064+00:00_
+_source line 968 · 2026-05-26T06:40:09.734064+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171243_47aaca/metadata.json:    "openrouter_api_key": [REDACTED],
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171248_baaf2b/metadata.json:    "openrouter_api_key": [REDACTED],
@@ -11663,7 +11399,7 @@ _source line 974 · 2026-05-26T06:40:09.734064+00:00_
 
 ### Tool call
 
-_source line 975 · 2026-05-26T06:40:10.838393+00:00_
+_source line 969 · 2026-05-26T06:40:10.838393+00:00_
 
 called Bash
 
@@ -11697,7 +11433,7 @@ called Bash
 
 ### Tool result
 
-_source line 976 · 2026-05-26T06:40:10.889095+00:00_
+_source line 970 · 2026-05-26T06:40:10.889095+00:00_
 
 (Bash completed with no output)
 
@@ -11719,7 +11455,7 @@ _source line 976 · 2026-05-26T06:40:10.889095+00:00_
 
 ### Tool call
 
-_source line 977 · 2026-05-26T06:40:11.542179+00:00_
+_source line 971 · 2026-05-26T06:40:11.542179+00:00_
 
 called Bash
 
@@ -11753,7 +11489,7 @@ called Bash
 
 ### Tool result
 
-_source line 978 · 2026-05-26T06:40:11.593012+00:00_
+_source line 972 · 2026-05-26T06:40:11.593012+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib:@inproceedings{beck2024xlstm,
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib:@inproceedings{zimerman2025unified,
@@ -11790,7 +11526,7 @@ _source line 978 · 2026-05-26T06:40:11.593012+00:00_
 
 ### Tool call
 
-_source line 979 · 2026-05-26T06:40:13.450200+00:00_
+_source line 973 · 2026-05-26T06:40:13.450200+00:00_
 
 called Bash
 
@@ -11824,7 +11560,7 @@ called Bash
 
 ### Tool result
 
-_source line 980 · 2026-05-26T06:40:13.552045+00:00_
+_source line 974 · 2026-05-26T06:40:13.552045+00:00_
 
 PWD /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper
 INPUT /etc/texmf/web2c/texmf.cnf
@@ -11850,7 +11586,7 @@ INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 
 ### Tool result
 
-_source line 981 · 2026-05-26T06:40:17.467347+00:00_
+_source line 975 · 2026-05-26T06:40:17.467347+00:00_
 
 Great! No actual date entries in YYYY-MM-DD or DD-MM-YYYY format. Now let me compile the complete findings based on everything I've found.
 
@@ -11903,7 +11639,7 @@ The paper contains no embedded work dates that could reveal when actual research
 
 ### Tool result
 
-_source line 982 · 2026-05-26T06:40:26.152913+00:00_
+_source line 976 · 2026-05-26T06:40:26.152913+00:00_
 
 Perfect. Now let me compile a comprehensive final report of all findings:
 
@@ -11957,7 +11693,7 @@ I've completed a thorough search of all `.tex` and `.bib` files in the paper dir
 
 ### Tool call
 
-_source line 983 · 2026-05-26T06:40:54.677350+00:00_
+_source line 977 · 2026-05-26T06:40:54.677350+00:00_
 
 called Read
 
@@ -11993,7 +11729,7 @@ called Read
 
 ### Tool result
 
-_source line 984 · 2026-05-26T06:40:55.212230+00:00_
+_source line 978 · 2026-05-26T06:40:55.212230+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -12053,7 +11789,7 @@ _source line 984 · 2026-05-26T06:40:55.212230+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-26T06:40:55.614099+00:00_
+_source line 979 · 2026-05-26T06:40:55.614099+00:00_
 
 called Read
 
@@ -12091,7 +11827,7 @@ called Read
 
 ### Tool result
 
-_source line 986 · 2026-05-26T06:40:55.965772+00:00_
+_source line 980 · 2026-05-26T06:40:55.965772+00:00_
 
 778	
 779	All pairwise Jaccard values remain $\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \geq 2.9$, $p \leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\text{helped}} \leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.
@@ -12126,7 +11862,7 @@ _source line 986 · 2026-05-26T06:40:55.965772+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-26T06:40:55.966124+00:00_
+_source line 981 · 2026-05-26T06:40:55.966124+00:00_
 
 called Read
 
@@ -12162,7 +11898,7 @@ called Read
 
 ### Tool result
 
-_source line 988 · 2026-05-26T06:40:56.016581+00:00_
+_source line 982 · 2026-05-26T06:40:56.016581+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -12186,7 +11922,7 @@ _source line 988 · 2026-05-26T06:40:56.016581+00:00_
 
 ### Tool call
 
-_source line 989 · 2026-05-26T06:41:24.394684+00:00_
+_source line 983 · 2026-05-26T06:41:24.394684+00:00_
 
 called Glob
 
@@ -12222,7 +11958,7 @@ called Glob
 
 ### Tool result
 
-_source line 990 · 2026-05-26T06:41:24.973202+00:00_
+_source line 984 · 2026-05-26T06:41:24.973202+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163134_f79e64/metadata.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163839_847a86/metadata.json
@@ -12252,7 +11988,7 @@ _source line 990 · 2026-05-26T06:41:24.973202+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-26T06:41:25.776926+00:00_
+_source line 985 · 2026-05-26T06:41:25.776926+00:00_
 
 called Grep
 
@@ -12292,7 +12028,7 @@ called Grep
 
 ### Tool result
 
-_source line 992 · 2026-05-26T06:41:26.312663+00:00_
+_source line 986 · 2026-05-26T06:41:26.312663+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:38:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:48:[Omitted long matching line]
@@ -12316,7 +12052,7 @@ _source line 992 · 2026-05-26T06:41:26.312663+00:00_
 
 ### Tool call
 
-_source line 993 · 2026-05-26T06:41:27.116047+00:00_
+_source line 987 · 2026-05-26T06:41:27.116047+00:00_
 
 called Grep
 
@@ -12358,7 +12094,7 @@ called Grep
 
 ### Tool result
 
-_source line 994 · 2026-05-26T06:41:27.216834+00:00_
+_source line 988 · 2026-05-26T06:41:27.216834+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:38:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib:1:% References for entrainment_gated_ft paper
@@ -12382,7 +12118,7 @@ _source line 994 · 2026-05-26T06:41:27.216834+00:00_
 
 ### Tool call
 
-_source line 995 · 2026-05-26T06:41:30.981485+00:00_
+_source line 989 · 2026-05-26T06:41:30.981485+00:00_
 
 called Read
 
@@ -12420,7 +12156,7 @@ called Read
 
 ### Tool result
 
-_source line 996 · 2026-05-26T06:41:31.513139+00:00_
+_source line 990 · 2026-05-26T06:41:31.513139+00:00_
 
 46	\end{table}
 47	
@@ -12446,7 +12182,7 @@ _source line 996 · 2026-05-26T06:41:31.513139+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-26T06:41:31.914941+00:00_
+_source line 991 · 2026-05-26T06:41:31.914941+00:00_
 
 called Read
 
@@ -12484,7 +12220,7 @@ called Read
 
 ### Tool result
 
-_source line 998 · 2026-05-26T06:41:32.919180+00:00_
+_source line 992 · 2026-05-26T06:41:32.919180+00:00_
 
 1	\section{Discussion and Conclusion}\label{sec:discussion}
 2	
@@ -12509,7 +12245,7 @@ _source line 998 · 2026-05-26T06:41:32.919180+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-26T06:41:33.572712+00:00_
+_source line 993 · 2026-05-26T06:41:33.572712+00:00_
 
 called Grep
 
@@ -12549,7 +12285,7 @@ called Grep
 
 ### Tool result
 
-_source line 1000 · 2026-05-26T06:41:34.080342+00:00_
+_source line 994 · 2026-05-26T06:41:34.080342+00:00_
 
 No matches found
 
@@ -12571,7 +12307,7 @@ No matches found
 
 ### Tool call
 
-_source line 1001 · 2026-05-26T06:41:41.909468+00:00_
+_source line 995 · 2026-05-26T06:41:41.909468+00:00_
 
 called Read
 
@@ -12605,7 +12341,7 @@ called Read
 
 ### Tool result
 
-_source line 1002 · 2026-05-26T06:41:42.436335+00:00_
+_source line 996 · 2026-05-26T06:41:42.436335+00:00_
 
 1	{
 2	  "run_id": "run_20260524_163134_f79e64",
@@ -12651,7 +12387,7 @@ _source line 1002 · 2026-05-26T06:41:42.436335+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-26T06:41:47.856910+00:00_
+_source line 997 · 2026-05-26T06:41:47.856910+00:00_
 
 called Grep
 
@@ -12691,7 +12427,7 @@ called Grep
 
 ### Tool result
 
-_source line 1004 · 2026-05-26T06:41:48.934784+00:00_
+_source line 998 · 2026-05-26T06:41:48.934784+00:00_
 
 No matches found
 
@@ -12713,7 +12449,7 @@ No matches found
 
 ### Tool call
 
-_source line 1005 · 2026-05-26T06:41:53.799354+00:00_
+_source line 999 · 2026-05-26T06:41:53.799354+00:00_
 
 called Grep
 
@@ -12753,7 +12489,7 @@ called Grep
 
 ### Tool result
 
-_source line 1006 · 2026-05-26T06:41:53.799814+00:00_
+_source line 1000 · 2026-05-26T06:41:53.799814+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:11:\includegraphics[width=\columnwidth]{figures/fig_jaccard_hierarchy.pdf}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:18:\includegraphics[width=0.75\textwidth]{figures/fig3_alpha_routing.pdf}
@@ -12782,7 +12518,7 @@ _source line 1006 · 2026-05-26T06:41:53.799814+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-26T06:42:20.498999+00:00_
+_source line 1001 · 2026-05-26T06:42:20.498999+00:00_
 
 called Grep
 
@@ -12824,7 +12560,7 @@ called Grep
 
 ### Tool result
 
-_source line 1008 · 2026-05-26T06:42:20.599847+00:00_
+_source line 1002 · 2026-05-26T06:42:20.599847+00:00_
 
 No matches found
 
@@ -12846,7 +12582,7 @@ No matches found
 
 ### Tool call
 
-_source line 1009 · 2026-05-26T06:42:25.355826+00:00_
+_source line 1003 · 2026-05-26T06:42:25.355826+00:00_
 
 called Bash
 
@@ -12882,7 +12618,7 @@ called Bash
 
 ### Tool result
 
-_source line 1010 · 2026-05-26T06:42:25.971093+00:00_
+_source line 1004 · 2026-05-26T06:42:25.971093+00:00_
 
 Title:           
 Subject:         
@@ -12925,7 +12661,7 @@ PDF version:     1.7
 
 ### Tool call
 
-_source line 1011 · 2026-05-26T06:42:42.283335+00:00_
+_source line 1005 · 2026-05-26T06:42:42.283335+00:00_
 
 called Edit
 
@@ -12965,7 +12701,7 @@ called Edit
 
 ### Tool result
 
-_source line 1012 · 2026-05-26T06:42:42.856391+00:00_
+_source line 1006 · 2026-05-26T06:42:42.856391+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib has been updated successfully.
 
@@ -12987,7 +12723,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1013 · 2026-05-26T06:43:06.015980+00:00_
+_source line 1007 · 2026-05-26T06:43:06.015980+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -13021,7 +12757,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1014 · 2026-05-26T06:43:09.166230+00:00_
+_source line 1008 · 2026-05-26T06:43:09.166230+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -13043,7 +12779,7 @@ _source line 1014 · 2026-05-26T06:43:09.166230+00:00_
 
 ### Assistant
 
-_source line 1015 · 2026-05-26T06:43:11.923555+00:00_
+_source line 1009 · 2026-05-26T06:43:11.923555+00:00_
 
 PDF 元数据干净（Author 为空）。现在修复发现的问题。
 
@@ -13070,7 +12806,7 @@ PDF 元数据干净（Author 为空）。现在修复发现的问题。
 
 ### User
 
-_source line 1016 · 2026-05-26T08:18:31.211958+00:00_
+_source line 1010 · 2026-05-26T08:18:31.211958+00:00_
 
 [飞书用户 曹晓玉]: 🔍 论文自检：前向引用问题（先用后定义）
 
@@ -13135,7 +12871,7 @@ B) 在第一次使用的位置**加一个简短的 inline 解释**（一句话 /
 
 ### Tool call
 
-_source line 1017 · 2026-05-26T08:18:46.193655+00:00_
+_source line 1011 · 2026-05-26T08:18:46.193655+00:00_
 
 called Read
 
@@ -13173,7 +12909,7 @@ called Read
 
 ### Tool result
 
-_source line 1018 · 2026-05-26T08:18:46.770271+00:00_
+_source line 1012 · 2026-05-26T08:18:46.770271+00:00_
 
 37	\begin{abstract}
 38	Hybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\leq 0.14$, roughly twice the independence baseline; all $p < .01$ across five architectures (three primary, two validation)). This multiplicity varies by task type or evaluation format ($\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap appears to stabilize at 4\% attention and remains flat across higher ratios, suggesting that minimal attention may establish which examples each architecture affects. \citet{yang2026benchmark} document analogous per-item disagreement (16--66\%) among frontier large language models (LLMs) despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (area under the ROC curve [AUC] 0.70--0.74). Low cross-architecture overlap implies substantial complementarity, though routing-based exploitation remains task-dependent\footnote{Code and data are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.}.
@@ -13197,7 +12933,7 @@ _source line 1018 · 2026-05-26T08:18:46.770271+00:00_
 
 ### Tool call
 
-_source line 1019 · 2026-05-26T08:18:46.770589+00:00_
+_source line 1013 · 2026-05-26T08:18:46.770589+00:00_
 
 called Read
 
@@ -13231,7 +12967,7 @@ called Read
 
 ### Tool result
 
-_source line 1020 · 2026-05-26T08:18:47.113224+00:00_
+_source line 1014 · 2026-05-26T08:18:47.113224+00:00_
 
 1	\section{Introduction}
 2	
@@ -13273,7 +13009,7 @@ _source line 1020 · 2026-05-26T08:18:47.113224+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-26T08:18:47.163975+00:00_
+_source line 1015 · 2026-05-26T08:18:47.163975+00:00_
 
 called Read
 
@@ -13307,7 +13043,7 @@ called Read
 
 ### Tool result
 
-_source line 1022 · 2026-05-26T08:18:47.314935+00:00_
+_source line 1016 · 2026-05-26T08:18:47.314935+00:00_
 
 1	\section{Related Work}
 2	
@@ -13336,7 +13072,7 @@ _source line 1022 · 2026-05-26T08:18:47.314935+00:00_
 
 ### Tool call
 
-_source line 1023 · 2026-05-26T08:18:51.832482+00:00_
+_source line 1017 · 2026-05-26T08:18:51.832482+00:00_
 
 called Read
 
@@ -13370,7 +13106,7 @@ called Read
 
 ### Tool result
 
-_source line 1024 · 2026-05-26T08:18:52.033821+00:00_
+_source line 1018 · 2026-05-26T08:18:52.033821+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -13422,7 +13158,7 @@ _source line 1024 · 2026-05-26T08:18:52.033821+00:00_
 
 ### Tool call
 
-_source line 1025 · 2026-05-26T08:18:52.034300+00:00_
+_source line 1019 · 2026-05-26T08:18:52.034300+00:00_
 
 called Read
 
@@ -13456,7 +13192,7 @@ called Read
 
 ### Tool result
 
-_source line 1026 · 2026-05-26T08:18:52.185294+00:00_
+_source line 1020 · 2026-05-26T08:18:52.185294+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -13499,7 +13235,7 @@ _source line 1026 · 2026-05-26T08:18:52.185294+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-26T08:20:30.973845+00:00_
+_source line 1021 · 2026-05-26T08:20:30.973845+00:00_
 
 called Grep
 
@@ -13541,7 +13277,7 @@ called Grep
 
 ### Tool result
 
-_source line 1028 · 2026-05-26T08:20:32.093924+00:00_
+_source line 1022 · 2026-05-26T08:20:32.093924+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:96:\quad\emph{(excl.\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\
@@ -13572,7 +13308,7 @@ _source line 1028 · 2026-05-26T08:20:32.093924+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-26T08:20:32.395498+00:00_
+_source line 1023 · 2026-05-26T08:20:32.395498+00:00_
 
 called Grep
 
@@ -13614,7 +13350,7 @@ called Grep
 
 ### Tool result
 
-_source line 1030 · 2026-05-26T08:20:32.546611+00:00_
+_source line 1024 · 2026-05-26T08:20:32.546611+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:26:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:28:[Omitted long matching line]
@@ -13639,7 +13375,7 @@ _source line 1030 · 2026-05-26T08:20:32.546611+00:00_
 
 ### Tool call
 
-_source line 1031 · 2026-05-26T08:20:33.199517+00:00_
+_source line 1025 · 2026-05-26T08:20:33.199517+00:00_
 
 called Grep
 
@@ -13681,7 +13417,7 @@ called Grep
 
 ### Tool result
 
-_source line 1032 · 2026-05-26T08:20:33.300471+00:00_
+_source line 1026 · 2026-05-26T08:20:33.300471+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:19:\caption{(a) Per-example ambiguity $\alpha$ varies $2\times$ across task types. (b) Confidence-based routing gains track $\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:48:[Omitted long matching line]
@@ -13709,7 +13445,7 @@ _source line 1032 · 2026-05-26T08:20:33.300471+00:00_
 
 ### Tool call
 
-_source line 1033 · 2026-05-26T08:20:45.457296+00:00_
+_source line 1027 · 2026-05-26T08:20:45.457296+00:00_
 
 called Read
 
@@ -13747,7 +13483,7 @@ called Read
 
 ### Tool result
 
-_source line 1034 · 2026-05-26T08:20:45.993318+00:00_
+_source line 1028 · 2026-05-26T08:20:45.993318+00:00_
 
 540	\end{tabular}}
 541	\end{table}
@@ -13788,7 +13524,7 @@ _source line 1034 · 2026-05-26T08:20:45.993318+00:00_
 
 ### Tool call
 
-_source line 1035 · 2026-05-26T08:21:08.263829+00:00_
+_source line 1029 · 2026-05-26T08:21:08.263829+00:00_
 
 called Read
 
@@ -13826,7 +13562,7 @@ called Read
 
 ### Tool result
 
-_source line 1036 · 2026-05-26T08:21:08.264283+00:00_
+_source line 1030 · 2026-05-26T08:21:08.264283+00:00_
 
 46	
 47	\input{sections/experiments}
@@ -13862,7 +13598,7 @@ _source line 1036 · 2026-05-26T08:21:08.264283+00:00_
 
 ### Tool call
 
-_source line 1037 · 2026-05-26T08:21:59.775969+00:00_
+_source line 1031 · 2026-05-26T08:21:59.775969+00:00_
 
 called Edit
 
@@ -13902,7 +13638,7 @@ called Edit
 
 ### Tool result
 
-_source line 1038 · 2026-05-26T08:22:00.374610+00:00_
+_source line 1032 · 2026-05-26T08:22:00.374610+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
 
@@ -13924,7 +13660,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1039 · 2026-05-26T08:22:05.683573+00:00_
+_source line 1033 · 2026-05-26T08:22:05.683573+00:00_
 
 called Read
 
@@ -13962,7 +13698,7 @@ called Read
 
 ### Tool result
 
-_source line 1040 · 2026-05-26T08:22:06.250664+00:00_
+_source line 1034 · 2026-05-26T08:22:06.250664+00:00_
 
 25	
 26	Our central finding is that architectural variation produces structured predictive multiplicity whose magnitude depends on task type, not attention ratio. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) to 0.30 (LAMBADA), varies $2\times$ across task types but only 0.03 within each benchmark across attention ratios; pairwise Jaccard remains uniformly low ($\leq 0.14$, all $p < .01$ across all ten five-architecture pairs). A second finding is that per-example overlap appears to stabilize at the first attention level (4\%) and remains flat at higher ratios. Even on LAMBADA, where aggregate variance shows a non-significant decreasing trend ($\rho = -1.0$, Bonferroni-adjusted $p = .167$; at 1.3B only), per-example Jaccard does not change (\S\ref{ssec:decoupling}).
@@ -13986,7 +13722,7 @@ _source line 1040 · 2026-05-26T08:22:06.250664+00:00_
 
 ### Tool call
 
-_source line 1041 · 2026-05-26T08:22:11.721842+00:00_
+_source line 1035 · 2026-05-26T08:22:11.721842+00:00_
 
 called Edit
 
@@ -14026,7 +13762,7 @@ called Edit
 
 ### Tool result
 
-_source line 1042 · 2026-05-26T08:22:12.273617+00:00_
+_source line 1036 · 2026-05-26T08:22:12.273617+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -14048,7 +13784,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1043 · 2026-05-26T08:22:14.984361+00:00_
+_source line 1037 · 2026-05-26T08:22:14.984361+00:00_
 
 called Read
 
@@ -14086,7 +13822,7 @@ called Read
 
 ### Tool result
 
-_source line 1044 · 2026-05-26T08:22:15.543053+00:00_
+_source line 1038 · 2026-05-26T08:22:15.543053+00:00_
 
 25	
 26	\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\% spread) but disruption thresholds vary 47\%, explaining cross-architecture Jaccard divergence (Appendix~\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \citep{marx2020predictive} under architectural variation.
@@ -14110,7 +13846,7 @@ _source line 1044 · 2026-05-26T08:22:15.543053+00:00_
 
 ### Tool call
 
-_source line 1045 · 2026-05-26T08:22:23.310475+00:00_
+_source line 1039 · 2026-05-26T08:22:23.310475+00:00_
 
 called Edit
 
@@ -14150,7 +13886,7 @@ called Edit
 
 ### Tool result
 
-_source line 1046 · 2026-05-26T08:22:23.885887+00:00_
+_source line 1040 · 2026-05-26T08:22:23.885887+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -14172,7 +13908,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1047 · 2026-05-26T08:22:28.252811+00:00_
+_source line 1041 · 2026-05-26T08:22:28.252811+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14210,7 +13946,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1048 · 2026-05-26T08:22:32.292169+00:00_
+_source line 1042 · 2026-05-26T08:22:32.292169+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"/m/n/10.95 ^^B$ \\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 730--731\\n\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\n []\\n\\n\\nUnderfull \\\\hbox (badness 2503) in paragraph at lines 734--735\\n[]\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\n []\\n\\n\\nUnderfull \\\\hbox (badness 2521) in paragraph at lines 734--735\\n\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\n []\\n\\n[20]\\n\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\n(caption)                particular \\\\caption on input line 744.\\nSee the caption package documentation for explanation.\\n\\n\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n\\nUnderfull \\\\hbox (badness 1484) in paragraph at lines 784--785\\n\\\\T1/ptm/m/n/10.95 (+20) zoo of [][]Wang et al.[][] ([][]2025[][]). Anal-y-sis c\\node\\n []\\n\\n[21]) [22\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 3BFCB467C009BF4B2DBE4CF26101ADCB;9273.\\n ) \\nHere is how much of TeX's memory you used:\\n 16640 strings out of 469438\\n 262481 string characters out of 5468411\\n 743338 words of memory out of 5000000\\n 44422 multiletter control sequences out of 15000+600000\\n 711505 words of font info for 417 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,1555b,704s sta
 …[truncated 4682 chars]
@@ -14233,7 +13969,7 @@ _source line 1048 · 2026-05-26T08:22:32.292169+00:00_
 
 ### Tool call
 
-_source line 1049 · 2026-05-26T08:22:52.933043+00:00_
+_source line 1043 · 2026-05-26T08:22:52.933043+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -14267,7 +14003,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1050 · 2026-05-26T08:22:56.022655+00:00_
+_source line 1044 · 2026-05-26T08:22:56.022655+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -14289,7 +14025,7 @@ _source line 1050 · 2026-05-26T08:22:56.022655+00:00_
 
 ### Assistant
 
-_source line 1051 · 2026-05-26T08:22:57.618298+00:00_
+_source line 1045 · 2026-05-26T08:22:57.618298+00:00_
 
 编译通过，22 页不变，无 critical warnings。
 
@@ -14316,7 +14052,7 @@ _source line 1051 · 2026-05-26T08:22:57.618298+00:00_
 
 ### User
 
-_source line 1052 · 2026-05-26T10:13:47.728533+00:00_
+_source line 1046 · 2026-05-26T10:13:47.728533+00:00_
 
 [飞书用户 曹晓玉]: 🔍 论文自检：所有引用的逐项正确性检查（交叉验证）
 
@@ -14389,7 +14125,7 @@ Main Agent 收到所有 Worker 的清单后做交叉比对：
 
 ### Tool call
 
-_source line 1053 · 2026-05-26T10:15:00.180403+00:00_
+_source line 1047 · 2026-05-26T10:15:00.180403+00:00_
 
 called Agent
 
@@ -14427,7 +14163,7 @@ called Agent
 
 ### Tool call
 
-_source line 1054 · 2026-05-26T10:15:03.990736+00:00_
+_source line 1048 · 2026-05-26T10:15:03.990736+00:00_
 
 called Read
 
@@ -14461,7 +14197,7 @@ called Read
 
 ### Tool result
 
-_source line 1055 · 2026-05-26T10:15:04.539948+00:00_
+_source line 1049 · 2026-05-26T10:15:04.539948+00:00_
 
 1	% References for this paper
 2	
@@ -14532,7 +14268,7 @@ _source line 1055 · 2026-05-26T10:15:04.539948+00:00_
 
 ### Tool call
 
-_source line 1056 · 2026-05-26T10:15:04.540311+00:00_
+_source line 1050 · 2026-05-26T10:15:04.540311+00:00_
 
 called Agent
 
@@ -14570,7 +14306,7 @@ called Agent
 
 ### Tool call
 
-_source line 1057 · 2026-05-26T10:15:07.703196+00:00_
+_source line 1051 · 2026-05-26T10:15:07.703196+00:00_
 
 called ToolSearch
 
@@ -14606,7 +14342,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1058 · 2026-05-26T10:15:08.242390+00:00_
+_source line 1052 · 2026-05-26T10:15:08.242390+00:00_
 
 
 
@@ -14628,7 +14364,7 @@ _source line 1058 · 2026-05-26T10:15:08.242390+00:00_
 
 ### Tool call
 
-_source line 1059 · 2026-05-26T10:15:08.242797+00:00_
+_source line 1053 · 2026-05-26T10:15:08.242797+00:00_
 
 called Agent
 
@@ -14666,7 +14402,7 @@ called Agent
 
 ### Tool call
 
-_source line 1060 · 2026-05-26T10:15:08.768292+00:00_
+_source line 1054 · 2026-05-26T10:15:08.768292+00:00_
 
 called Read
 
@@ -14700,7 +14436,7 @@ called Read
 
 ### Tool result
 
-_source line 1061 · 2026-05-26T10:15:09.322440+00:00_
+_source line 1055 · 2026-05-26T10:15:09.322440+00:00_
 
 1	% References for this paper
 2	
@@ -14771,7 +14507,7 @@ _source line 1061 · 2026-05-26T10:15:09.322440+00:00_
 
 ### Tool call
 
-_source line 1062 · 2026-05-26T10:15:10.978819+00:00_
+_source line 1056 · 2026-05-26T10:15:10.978819+00:00_
 
 called ToolSearch
 
@@ -14807,7 +14543,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1063 · 2026-05-26T10:15:11.519399+00:00_
+_source line 1057 · 2026-05-26T10:15:11.519399+00:00_
 
 
 
@@ -14829,7 +14565,7 @@ _source line 1063 · 2026-05-26T10:15:11.519399+00:00_
 
 ### Tool call
 
-_source line 1064 · 2026-05-26T10:15:11.720570+00:00_
+_source line 1058 · 2026-05-26T10:15:11.720570+00:00_
 
 called WebSearch
 
@@ -14863,7 +14599,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1065 · 2026-05-26T10:15:12.326473+00:00_
+_source line 1059 · 2026-05-26T10:15:12.326473+00:00_
 
 called WebSearch
 
@@ -14897,7 +14633,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1066 · 2026-05-26T10:15:14.535850+00:00_
+_source line 1060 · 2026-05-26T10:15:14.535850+00:00_
 
 called WebSearch
 
@@ -14931,7 +14667,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1067 · 2026-05-26T10:15:14.887400+00:00_
+_source line 1061 · 2026-05-26T10:15:14.887400+00:00_
 
 called Read
 
@@ -14965,7 +14701,7 @@ called Read
 
 ### Tool result
 
-_source line 1068 · 2026-05-26T10:15:15.436551+00:00_
+_source line 1062 · 2026-05-26T10:15:15.436551+00:00_
 
 1	% References for this paper
 2	
@@ -15036,7 +14772,7 @@ _source line 1068 · 2026-05-26T10:15:15.436551+00:00_
 
 ### Tool call
 
-_source line 1069 · 2026-05-26T10:15:15.487959+00:00_
+_source line 1063 · 2026-05-26T10:15:15.487959+00:00_
 
 called WebSearch
 
@@ -15070,7 +14806,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1070 · 2026-05-26T10:15:16.115458+00:00_
+_source line 1064 · 2026-05-26T10:15:16.115458+00:00_
 
 called WebSearch
 
@@ -15104,7 +14840,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1071 · 2026-05-26T10:15:19.639364+00:00_
+_source line 1065 · 2026-05-26T10:15:19.639364+00:00_
 
 Web search results for query: "Zimerman "Explaining Modern Gated-Linear RNNs via a Unified Implicit Attention Formulation" ICLR 2025"
 
@@ -15129,7 +14865,7 @@ Links: [{"title":"GitHub - Itamarzimm/UnifiedImplicitAttnRepr: [ICLR 2025] Offic
 
 ### Tool call
 
-_source line 1072 · 2026-05-26T10:15:22.449434+00:00_
+_source line 1066 · 2026-05-26T10:15:22.449434+00:00_
 
 called ToolSearch
 
@@ -15165,7 +14901,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1073 · 2026-05-26T10:15:22.990162+00:00_
+_source line 1067 · 2026-05-26T10:15:22.990162+00:00_
 
 
 
@@ -15187,7 +14923,7 @@ _source line 1073 · 2026-05-26T10:15:22.990162+00:00_
 
 ### Tool result
 
-_source line 1074 · 2026-05-26T10:15:23.090998+00:00_
+_source line 1068 · 2026-05-26T10:15:23.090998+00:00_
 
 Web search results for query: "Gu Albert "Efficiently Modeling Long Sequences with Structured State Spaces" ICLR 2022"
 
@@ -15216,7 +14952,7 @@ I found the paper you're looking for! Here are the key details:
 
 ### Tool result
 
-_source line 1075 · 2026-05-26T10:15:23.844105+00:00_
+_source line 1069 · 2026-05-26T10:15:23.844105+00:00_
 
 Web search results for query: "Katharopoulos "Transformers are RNNs Fast Autoregressive Transformers with Linear Attention" ICML 2020"
 
@@ -15241,7 +14977,7 @@ Links: [{"title":"Transformers are RNNs: Fast Autoregressive Transformers with L
 
 ### Tool result
 
-_source line 1076 · 2026-05-26T10:15:24.396559+00:00_
+_source line 1070 · 2026-05-26T10:15:24.396559+00:00_
 
 Web search results for query: "Beck "xLSTM: Extended Long Short-Term Memory" NeurIPS 2024"
 
@@ -15276,7 +15012,7 @@ The key technical contributions include introducing e
 
 ### Tool result
 
-_source line 1077 · 2026-05-26T10:15:24.497340+00:00_
+_source line 1071 · 2026-05-26T10:15:24.497340+00:00_
 
 Web search results for query: "Yang Songlin "Gated Delta Networks: Improving Mamba2 with Delta Rule" 2024 arXiv"
 
@@ -15314,7 +15050,7 @@ The paper addresses limitations of Linear Transformers by exploring gating for a
 
 ### Tool call
 
-_source line 1078 · 2026-05-26T10:15:25.852759+00:00_
+_source line 1072 · 2026-05-26T10:15:25.852759+00:00_
 
 called WebSearch
 
@@ -15348,7 +15084,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1079 · 2026-05-26T10:15:26.763976+00:00_
+_source line 1073 · 2026-05-26T10:15:26.763976+00:00_
 
 called WebSearch
 
@@ -15382,7 +15118,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1080 · 2026-05-26T10:15:27.065470+00:00_
+_source line 1074 · 2026-05-26T10:15:27.065470+00:00_
 
 called WebSearch
 
@@ -15416,7 +15152,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1081 · 2026-05-26T10:15:27.568134+00:00_
+_source line 1075 · 2026-05-26T10:15:27.568134+00:00_
 
 called WebSearch
 
@@ -15450,7 +15186,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1082 · 2026-05-26T10:15:27.718993+00:00_
+_source line 1076 · 2026-05-26T10:15:27.718993+00:00_
 
 called WebSearch
 
@@ -15484,7 +15220,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1083 · 2026-05-26T10:15:27.920997+00:00_
+_source line 1077 · 2026-05-26T10:15:27.920997+00:00_
 
 called WebSearch
 
@@ -15518,7 +15254,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1084 · 2026-05-26T10:15:28.423033+00:00_
+_source line 1078 · 2026-05-26T10:15:28.423033+00:00_
 
 called WebSearch
 
@@ -15552,7 +15288,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1085 · 2026-05-26T10:15:29.075421+00:00_
+_source line 1079 · 2026-05-26T10:15:29.075421+00:00_
 
 called WebSearch
 
@@ -15586,7 +15322,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1086 · 2026-05-26T10:15:31.433831+00:00_
+_source line 1080 · 2026-05-26T10:15:31.433831+00:00_
 
 Web search results for query: "Robinson 1950 "Ecological Correlations and the Behavior of Individuals" American Sociological Review"
 
@@ -15613,7 +15349,7 @@ I found the paper you're looking for. Robinson, W. S. (195
 
 ### Tool result
 
-_source line 1087 · 2026-05-26T10:15:32.086767+00:00_
+_source line 1081 · 2026-05-26T10:15:32.086767+00:00_
 
 Web search results for query: "Qin "Hierarchically Gated Recurrent Neural Network for Sequence Modeling" NeurIPS 2023"
 
@@ -15644,7 +15380,7 @@ Based on the search results, I found comprehensive information about this paper:
 
 ### Tool result
 
-_source line 1088 · 2026-05-26T10:15:32.137457+00:00_
+_source line 1082 · 2026-05-26T10:15:32.137457+00:00_
 
 Web search results for query: "Fort Hu Lakshminarayanan "Deep Ensembles: A Loss Landscape Perspective" 2019 arXiv"
 
@@ -15673,7 +15409,7 @@ I found the paper! Here are the search results for "Deep Ensembles: A Loss Lands
 
 ### Tool result
 
-_source line 1089 · 2026-05-26T10:15:33.593172+00:00_
+_source line 1083 · 2026-05-26T10:15:33.593172+00:00_
 
 Web search results for query: "Jain "Allocation Multiplicity Evaluating the Promises of the Rashomon Set" FAccT 2025"
 
@@ -15704,7 +15440,7 @@ The paper argues that while the Rashomon set of equally-good models promises les
 
 ### Tool result
 
-_source line 1090 · 2026-05-26T10:15:35.651162+00:00_
+_source line 1084 · 2026-05-26T10:15:35.651162+00:00_
 
 Web search results for query: "Marx Calmon Ustun "Predictive Multiplicity in Classification" ICML 2020"
 
@@ -15735,7 +15471,7 @@ The paper defines predictive multiplicity as the ability of a prediction problem
 
 ### Tool result
 
-_source line 1091 · 2026-05-26T10:15:36.103384+00:00_
+_source line 1085 · 2026-05-26T10:15:36.103384+00:00_
 
 Web search results for query: "Niven Kao "Probing Neural Network Comprehension of Natural Language Arguments" ACL 2019"
 
@@ -15765,7 +15501,7 @@ The paper was authored by Timothy Niven and Hung-Yu Kao and appeared in the Proc
 
 ### Tool result
 
-_source line 1092 · 2026-05-26T10:15:36.856719+00:00_
+_source line 1086 · 2026-05-26T10:15:36.856719+00:00_
 
 Web search results for query: "Ganesh Taik Farnadi "Systemizing Multiplicity" AIES 2025"
 
@@ -15796,7 +15532,7 @@ The work systemizes the literature on multiplicity by formalizing terminology ar
 
 ### Tool result
 
-_source line 1093 · 2026-05-26T10:15:37.559693+00:00_
+_source line 1087 · 2026-05-26T10:15:37.559693+00:00_
 
 Web search results for query: "Watson-Daniels Parkes Ustun "Predictive Multiplicity in Probabilistic Classification" AAAI 2023"
 
@@ -15829,7 +15565,7 @@ The paper addresses a key problem in machine learning: machine learning models a
 
 ### Tool call
 
-_source line 1094 · 2026-05-26T10:15:38.915038+00:00_
+_source line 1088 · 2026-05-26T10:15:38.915038+00:00_
 
 called WebSearch
 
@@ -15863,7 +15599,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1095 · 2026-05-26T10:15:39.668143+00:00_
+_source line 1089 · 2026-05-26T10:15:39.668143+00:00_
 
 called WebSearch
 
@@ -15897,7 +15633,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1096 · 2026-05-26T10:15:39.919512+00:00_
+_source line 1090 · 2026-05-26T10:15:39.919512+00:00_
 
 called WebSearch
 
@@ -15931,7 +15667,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1097 · 2026-05-26T10:15:40.221204+00:00_
+_source line 1091 · 2026-05-26T10:15:40.221204+00:00_
 
 called WebSearch
 
@@ -15965,7 +15701,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1098 · 2026-05-26T10:15:41.024631+00:00_
+_source line 1092 · 2026-05-26T10:15:41.024631+00:00_
 
 called WebSearch
 
@@ -15999,7 +15735,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1099 · 2026-05-26T10:15:41.225831+00:00_
+_source line 1093 · 2026-05-26T10:15:41.225831+00:00_
 
 called WebSearch
 
@@ -16033,7 +15769,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1100 · 2026-05-26T10:15:41.727958+00:00_
+_source line 1094 · 2026-05-26T10:15:41.727958+00:00_
 
 called WebSearch
 
@@ -16067,7 +15803,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1101 · 2026-05-26T10:15:42.982950+00:00_
+_source line 1095 · 2026-05-26T10:15:42.982950+00:00_
 
 called WebSearch
 
@@ -16101,7 +15837,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1102 · 2026-05-26T10:15:44.689541+00:00_
+_source line 1096 · 2026-05-26T10:15:44.689541+00:00_
 
 Web search results for query: "HGRN "Hierarchically Gated Recurrent Neural Network" NeurIPS 2023 full author list Zhen Qin"
 
@@ -16130,7 +15866,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1103 · 2026-05-26T10:15:45.241814+00:00_
+_source line 1097 · 2026-05-26T10:15:45.241814+00:00_
 
 Web search results for query: "Swayamdipta "Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics" EMNLP 2020 authors"
 
@@ -16157,7 +15893,7 @@ The authors of "Dataset Cartography: Mapping and Diagnosing Datasets with Traini
 
 ### Tool result
 
-_source line 1104 · 2026-05-26T10:15:45.442868+00:00_
+_source line 1098 · 2026-05-26T10:15:45.442868+00:00_
 
 Web search results for query: "Brown Wyatt Harris Yao "Diversity Creation Methods: A Survey and Categorisation" Information Fusion 2005"
 
@@ -16184,7 +15920,7 @@ I found the paper you're looking for. The article "Diversity Creation Method
 
 ### Tool result
 
-_source line 1105 · 2026-05-26T10:15:47.372044+00:00_
+_source line 1099 · 2026-05-26T10:15:47.372044+00:00_
 
 Web search results for query: "Jain "Allocation Multiplicity" FAccT 2025 authors "Suyash Jain" OR "Shomik Jain" Wang Creel Wilson"
 
@@ -16215,7 +15951,7 @@ To clarify: the paper was authored by **Shomik Jain** (not Suyash Jain), along w
 
 ### Tool result
 
-_source line 1106 · 2026-05-26T10:15:49.127834+00:00_
+_source line 1100 · 2026-05-26T10:15:49.127834+00:00_
 
 Web search results for query: "Hsu Calmon "Rashomon Capacity A Metric for Predictive Multiplicity" NeurIPS 2022"
 
@@ -16246,7 +15982,7 @@ The paper "Rashomon Capacity: A Metric for Predictive Multiplicity in Classifica
 
 ### Tool result
 
-_source line 1107 · 2026-05-26T10:15:49.379228+00:00_
+_source line 1101 · 2026-05-26T10:15:49.379228+00:00_
 
 Web search results for query: "Black Raghavan Barocas "Model Multiplicity: Opportunities, Concerns, and Solutions" FAccT 2022"
 
@@ -16275,7 +16011,7 @@ I found the paper you're looking for! Here's what I discovered:
 
 ### Tool call
 
-_source line 1108 · 2026-05-26T10:15:53.394142+00:00_
+_source line 1102 · 2026-05-26T10:15:53.394142+00:00_
 
 called WebSearch
 
@@ -16309,7 +16045,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1109 · 2026-05-26T10:15:54.170874+00:00_
+_source line 1103 · 2026-05-26T10:15:54.170874+00:00_
 
 called WebSearch
 
@@ -16343,7 +16079,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1110 · 2026-05-26T10:15:54.753839+00:00_
+_source line 1104 · 2026-05-26T10:15:54.753839+00:00_
 
 called WebSearch
 
@@ -16377,7 +16113,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1111 · 2026-05-26T10:15:54.811269+00:00_
+_source line 1105 · 2026-05-26T10:15:54.811269+00:00_
 
 called WebSearch
 
@@ -16411,7 +16147,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1112 · 2026-05-26T10:15:55.765023+00:00_
+_source line 1106 · 2026-05-26T10:15:55.765023+00:00_
 
 called WebSearch
 
@@ -16445,7 +16181,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1113 · 2026-05-26T10:15:55.965964+00:00_
+_source line 1107 · 2026-05-26T10:15:55.965964+00:00_
 
 Web search results for query: "D'Amour "Underspecification Presents Challenges for Credibility in Modern Machine Learning" JMLR 2022"
 
@@ -16476,7 +16212,7 @@ I found the paper you're looking for! Here are the details:
 
 ### Tool result
 
-_source line 1114 · 2026-05-26T10:15:57.069837+00:00_
+_source line 1108 · 2026-05-26T10:15:57.069837+00:00_
 
 Web search results for query: "McCoy Min Linzen "BERTs of a feather do not generalize together" 2020 NeurIPS BlackboxNLP"
 
@@ -16505,7 +16241,7 @@ The paper "BERTs of a feather do not general
 
 ### Tool result
 
-_source line 1115 · 2026-05-26T10:16:00.231335+00:00_
+_source line 1109 · 2026-05-26T10:16:00.231335+00:00_
 
 Web search results for query: "Fisher Rudin Dominici "All Models are Wrong but Many are Useful" JMLR 2019 variable importance Rashomon"
 
@@ -16530,7 +16266,7 @@ Links: [{"title":"All Models are Wrong, but Many are Useful: Learning a Variable
 
 ### Tool result
 
-_source line 1116 · 2026-05-26T10:16:03.092608+00:00_
+_source line 1110 · 2026-05-26T10:16:03.092608+00:00_
 
 Web search results for query: "Kuncheva Whitaker "Measures of Diversity in Classifier Ensembles" Machine Learning 2003"
 
@@ -16559,7 +16295,7 @@ Kuncheva, L. I., & Whitaker, C. J. (2003). "Measu
 
 ### Tool result
 
-_source line 1117 · 2026-05-26T10:16:04.598528+00:00_
+_source line 1111 · 2026-05-26T10:16:04.598528+00:00_
 
 Web search results for query: "Cooper Abrams Barocas "Arbitrariness and Social Prediction: The Confounding Role of Variance in Fair Classification" AAAI 2024"
 
@@ -16584,7 +16320,7 @@ Links: [{"title":"Arbitrariness and Social Prediction: The Confounding Role of V
 
 ### Tool result
 
-_source line 1118 · 2026-05-26T10:16:05.702947+00:00_
+_source line 1112 · 2026-05-26T10:16:05.702947+00:00_
 
 Web search results for query: "Semenova Rudin Parr "On the Existence of Simpler Machine Learning Models" FAccT 2022"
 
@@ -16609,7 +16345,7 @@ Links: [{"title":"On the Existence of Simpler Machine Learning Models Lesia Seme
 
 ### Tool call
 
-_source line 1119 · 2026-05-26T10:16:05.853976+00:00_
+_source line 1113 · 2026-05-26T10:16:05.853976+00:00_
 
 called WebSearch
 
@@ -16643,7 +16379,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1120 · 2026-05-26T10:16:06.055127+00:00_
+_source line 1114 · 2026-05-26T10:16:06.055127+00:00_
 
 Web search results for query: "Fu Dao Saab "Hungry Hungry Hippos: Towards Language Modeling with State Space Models" ICLR 2023"
 
@@ -16678,7 +16414,7 @@ I found the paper you're looking for! Here are the key details:
 
 ### Tool call
 
-_source line 1121 · 2026-05-26T10:16:06.607798+00:00_
+_source line 1115 · 2026-05-26T10:16:06.607798+00:00_
 
 called WebSearch
 
@@ -16712,7 +16448,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1122 · 2026-05-26T10:16:07.612103+00:00_
+_source line 1116 · 2026-05-26T10:16:07.612103+00:00_
 
 called WebSearch
 
@@ -16746,7 +16482,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1123 · 2026-05-26T10:16:08.420002+00:00_
+_source line 1117 · 2026-05-26T10:16:08.420002+00:00_
 
 called WebSearch
 
@@ -16780,7 +16516,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1124 · 2026-05-26T10:16:09.373532+00:00_
+_source line 1118 · 2026-05-26T10:16:09.373532+00:00_
 
 called WebSearch
 
@@ -16814,7 +16550,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1125 · 2026-05-26T10:16:10.579413+00:00_
+_source line 1119 · 2026-05-26T10:16:10.579413+00:00_
 
 called WebSearch
 
@@ -16848,7 +16584,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1126 · 2026-05-26T10:16:10.981051+00:00_
+_source line 1120 · 2026-05-26T10:16:10.981051+00:00_
 
 called WebSearch
 
@@ -16882,7 +16618,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1127 · 2026-05-26T10:16:11.633684+00:00_
+_source line 1121 · 2026-05-26T10:16:11.633684+00:00_
 
 called WebSearch
 
@@ -16916,7 +16652,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1128 · 2026-05-26T10:16:12.235998+00:00_
+_source line 1122 · 2026-05-26T10:16:12.235998+00:00_
 
 Web search results for query: "Sellam "The MultiBERTs BERT Reproductions for Robustness Analysis" ICLR 2022"
 
@@ -16951,7 +16687,7 @@ I found the research paper you're looking for. Here are the key details:
 
 ### Tool result
 
-_source line 1129 · 2026-05-26T10:16:15.046431+00:00_
+_source line 1123 · 2026-05-26T10:16:15.046431+00:00_
 
 Web search results for query: "Paperno "The LAMBADA Dataset Word Prediction Requiring a Broad Discourse Context" ACL 2016"
 
@@ -16978,7 +16714,7 @@ I found the pape
 
 ### Tool result
 
-_source line 1130 · 2026-05-26T10:16:15.297849+00:00_
+_source line 1124 · 2026-05-26T10:16:15.297849+00:00_
 
 Web search results for query: "arXiv 2212.14052 "Hungry Hungry Hippos" author order first author"
 
@@ -17011,7 +16747,7 @@ However, I s
 
 ### Tool result
 
-_source line 1131 · 2026-05-26T10:16:15.649489+00:00_
+_source line 1125 · 2026-05-26T10:16:15.649489+00:00_
 
 Web search results for query: "Fehlauer Mahowald Pimentel "Convergence and Divergence of Language Models under Different Random Seeds" EMNLP 2025"
 
@@ -17046,7 +16782,7 @@ The paper investigates the convergence of language models trained under differen
 
 ### Tool result
 
-_source line 1132 · 2026-05-26T10:16:16.854209+00:00_
+_source line 1126 · 2026-05-26T10:16:16.854209+00:00_
 
 Web search results for query: "Wortsman Ilharco Gadre "Model Soups: Averaging Weights" ICML 2022"
 
@@ -17071,7 +16807,7 @@ Links: [{"title":"Model soups: averaging weights of multiple fine-tuned models i
 
 ### Tool result
 
-_source line 1133 · 2026-05-26T10:16:17.356376+00:00_
+_source line 1127 · 2026-05-26T10:16:17.356376+00:00_
 
 Web search results for query: "Waleffe "An Empirical Study of Mamba-based Language Models" arXiv 2406.07887 authors"
 
@@ -17098,7 +16834,7 @@ The authors of "An Empirical Study of Mamba-based Language Models" (arXiv 2406.0
 
 ### Tool result
 
-_source line 1134 · 2026-05-26T10:16:17.571897+00:00_
+_source line 1128 · 2026-05-26T10:16:17.571897+00:00_
 
 Web search results for query: "Guo Pleiss Sun Weinberger "On Calibration of Modern Neural Networks" ICML 2017"
 
@@ -17131,7 +16867,7 @@ I found the paper you're looking for. Here are the key details:
 
 ### Tool result
 
-_source line 1135 · 2026-05-26T10:16:19.110143+00:00_
+_source line 1129 · 2026-05-26T10:16:19.110143+00:00_
 
 Web search results for query: "Dodge Ilharco Schwartz "Fine-Tuning Pretrained Language Models Weight Initializations Data Orders Early Stopping" 2020 arXiv"
 
@@ -17156,7 +16892,7 @@ Links: [{"title":"[2020] Fine-Tuning Pretrained Language Models: Weight Initiali
 
 ### Tool call
 
-_source line 1136 · 2026-05-26T10:16:21.870764+00:00_
+_source line 1130 · 2026-05-26T10:16:21.870764+00:00_
 
 called WebSearch
 
@@ -17190,7 +16926,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1137 · 2026-05-26T10:16:22.674260+00:00_
+_source line 1131 · 2026-05-26T10:16:22.674260+00:00_
 
 called WebSearch
 
@@ -17224,7 +16960,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1138 · 2026-05-26T10:16:22.775050+00:00_
+_source line 1132 · 2026-05-26T10:16:22.775050+00:00_
 
 called WebSearch
 
@@ -17258,7 +16994,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1139 · 2026-05-26T10:16:22.825630+00:00_
+_source line 1133 · 2026-05-26T10:16:22.825630+00:00_
 
 called WebSearch
 
@@ -17292,7 +17028,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1140 · 2026-05-26T10:16:23.478532+00:00_
+_source line 1134 · 2026-05-26T10:16:23.478532+00:00_
 
 called WebSearch
 
@@ -17326,7 +17062,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1141 · 2026-05-26T10:16:23.579306+00:00_
+_source line 1135 · 2026-05-26T10:16:23.579306+00:00_
 
 called WebSearch
 
@@ -17360,7 +17096,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1142 · 2026-05-26T10:16:24.081493+00:00_
+_source line 1136 · 2026-05-26T10:16:24.081493+00:00_
 
 called WebSearch
 
@@ -17394,7 +17130,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1143 · 2026-05-26T10:16:24.483283+00:00_
+_source line 1137 · 2026-05-26T10:16:24.483283+00:00_
 
 called WebSearch
 
@@ -17428,7 +17164,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1144 · 2026-05-26T10:16:30.254488+00:00_
+_source line 1138 · 2026-05-26T10:16:30.254488+00:00_
 
 Web search results for query: "Caruana Niculescu-Mizil "Ensemble Selection from Libraries of Models" ICML 2004"
 
@@ -17458,7 +17194,7 @@ The paper "Ensemble selection from libraries of models" w
 
 ### Tool result
 
-_source line 1145 · 2026-05-26T10:16:30.605940+00:00_
+_source line 1139 · 2026-05-26T10:16:30.605940+00:00_
 
 Web search results for query: "Gorbett Jana "Cross-Model Disagreement as a Label-Free Correctness Signal" arXiv 2603.25450"
 
@@ -17493,7 +17229,7 @@ The authors introduce cross-model disagreement as a correctness indicator—a si
 
 ### Tool result
 
-_source line 1146 · 2026-05-26T10:16:31.459190+00:00_
+_source line 1140 · 2026-05-26T10:16:31.459190+00:00_
 
 Web search results for query: "Clark "Think you have Solved Question Answering ARC AI2 Reasoning Challenge" 2018 arXiv"
 
@@ -17526,7 +17262,7 @@ I found the paper you're searching for. Here are the key details:
 
 ### Tool result
 
-_source line 1147 · 2026-05-26T10:16:31.810816+00:00_
+_source line 1141 · 2026-05-26T10:16:31.810816+00:00_
 
 Web search results for query: "Wang "A Systematic Analysis of Hybrid Linear Attention" arXiv 2507.06457 2025"
 
@@ -17562,7 +17298,7 @@ Transformers face quadratic complexity and memory issues with long sequences, pr
 
 ### Tool result
 
-_source line 1148 · 2026-05-26T10:16:31.961787+00:00_
+_source line 1142 · 2026-05-26T10:16:31.961787+00:00_
 
 Web search results for query: "Gao Tow "lm-evaluation-harness" Zenodo 2024 framework few-shot language model evaluation"
 
@@ -17593,7 +17329,7 @@ The framew
 
 ### Tool result
 
-_source line 1149 · 2026-05-26T10:16:33.266759+00:00_
+_source line 1143 · 2026-05-26T10:16:33.266759+00:00_
 
 Web search results for query: "Yang Wang Shen Panda Kim "Gated Linear Attention Transformers with Hardware-Efficient Training" ICML 2024"
 
@@ -17622,7 +17358,7 @@ I found the paper! Here's what I discovered:
 
 ### Tool result
 
-_source line 1150 · 2026-05-26T10:16:33.317443+00:00_
+_source line 1144 · 2026-05-26T10:16:33.317443+00:00_
 
 Web search results for query: "Geifman El-Yaniv "Selective Classification for Deep Neural Networks" NeurIPS 2017"
 
@@ -17655,7 +17391,7 @@ Selective classification techniques (also known as reject option) had not yet be
 
 ### Tool call
 
-_source line 1151 · 2026-05-26T10:16:34.873430+00:00_
+_source line 1145 · 2026-05-26T10:16:34.873430+00:00_
 
 called WebSearch
 
@@ -17689,7 +17425,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1152 · 2026-05-26T10:16:35.777148+00:00_
+_source line 1146 · 2026-05-26T10:16:35.777148+00:00_
 
 called WebSearch
 
@@ -17723,7 +17459,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1153 · 2026-05-26T10:16:36.480706+00:00_
+_source line 1147 · 2026-05-26T10:16:36.480706+00:00_
 
 called WebSearch
 
@@ -17757,7 +17493,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1154 · 2026-05-26T10:16:36.782272+00:00_
+_source line 1148 · 2026-05-26T10:16:36.782272+00:00_
 
 Web search results for query: "Basu "When Does Content-Based Routing Work? Representation Requirements for Selective Attention in Hybrid Sequence Models" arXiv 2603.20997"
 
@@ -17793,7 +17529,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool call
 
-_source line 1155 · 2026-05-26T10:16:37.134061+00:00_
+_source line 1149 · 2026-05-26T10:16:37.134061+00:00_
 
 called WebSearch
 
@@ -17827,7 +17563,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1156 · 2026-05-26T10:16:37.736842+00:00_
+_source line 1150 · 2026-05-26T10:16:37.736842+00:00_
 
 called WebSearch
 
@@ -17861,7 +17597,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1157 · 2026-05-26T10:16:38.540400+00:00_
+_source line 1151 · 2026-05-26T10:16:38.540400+00:00_
 
 called WebSearch
 
@@ -17895,7 +17631,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1158 · 2026-05-26T10:16:41.250696+00:00_
+_source line 1152 · 2026-05-26T10:16:41.250696+00:00_
 
 Web search results for query: "Yang Wang Zhang Shen Kim "Parallelizing Linear Transformers with the Delta Rule over Sequence Length" NeurIPS 2024"
 
@@ -17924,7 +17660,7 @@ The paper "Parallelizing Linear Transformers with the Delta Rule ov
 
 ### Tool result
 
-_source line 1159 · 2026-05-26T10:16:42.053956+00:00_
+_source line 1153 · 2026-05-26T10:16:42.053956+00:00_
 
 Web search results for query: "Du Ngo Wu "Reconciling Model Multiplicity for Downstream Decision Making" ICLR 2025"
 
@@ -17955,7 +17691,7 @@ The paper addresses the problem of
 
 ### Tool call
 
-_source line 1160 · 2026-05-26T10:16:42.255155+00:00_
+_source line 1154 · 2026-05-26T10:16:42.255155+00:00_
 
 called WebSearch
 
@@ -17989,7 +17725,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1161 · 2026-05-26T10:16:43.259113+00:00_
+_source line 1155 · 2026-05-26T10:16:43.259113+00:00_
 
 called WebSearch
 
@@ -18023,7 +17759,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1162 · 2026-05-26T10:16:45.116036+00:00_
+_source line 1156 · 2026-05-26T10:16:45.116036+00:00_
 
 Web search results for query: "Zellers Holtzman Bisk Farhadi Choi "HellaSwag: Can a Machine Really Finish Your Sentence" ACL 2019"
 
@@ -18053,7 +17789,7 @@ The paper was authored by Rowan Zellers, Ari Holtzman, Yonatan Bisk, Ali Farhadi
 
 ### Tool result
 
-_source line 1163 · 2026-05-26T10:16:46.170443+00:00_
+_source line 1157 · 2026-05-26T10:16:46.170443+00:00_
 
 Web search results for query: "Haghighat Anahideh Rudin "Resolving Predictive Multiplicity for the Rashomon Set" AAAI 2026"
 
@@ -18088,7 +17824,7 @@ The authors propose three approaches to reduce inconsistency among predictions f
 
 ### Tool result
 
-_source line 1164 · 2026-05-26T10:16:47.274967+00:00_
+_source line 1158 · 2026-05-26T10:16:47.274967+00:00_
 
 Web search results for query: "Bisk Zellers "PIQA: Reasoning about Physical Intuition in Natural Language" AAAI 2020"
 
@@ -18121,7 +17857,7 @@ The paper introduces the task of physical commonsense reasoning and a co
 
 ### Tool result
 
-_source line 1165 · 2026-05-26T10:16:49.329451+00:00_
+_source line 1159 · 2026-05-26T10:16:49.329451+00:00_
 
 Web search results for query: "Ali Zimerman Wolf "The Hidden Attention of Mamba Models" ACL 2025"
 
@@ -18152,7 +17888,7 @@ The core contribution of the paper is that "such models can be viewed as attenti
 
 ### Tool result
 
-_source line 1166 · 2026-05-26T10:16:50.032335+00:00_
+_source line 1160 · 2026-05-26T10:16:50.032335+00:00_
 
 Web search results for query: "arXiv 2603.20997"
 
@@ -18184,7 +17920,7 @@ REMINDER: You MUST include the sources above in your response to the user usi
 
 ### Tool call
 
-_source line 1167 · 2026-05-26T10:16:51.488014+00:00_
+_source line 1161 · 2026-05-26T10:16:51.488014+00:00_
 
 called WebSearch
 
@@ -18218,7 +17954,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1168 · 2026-05-26T10:16:52.441789+00:00_
+_source line 1162 · 2026-05-26T10:16:52.441789+00:00_
 
 called WebSearch
 
@@ -18252,7 +17988,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1169 · 2026-05-26T10:16:52.844097+00:00_
+_source line 1163 · 2026-05-26T10:16:52.844097+00:00_
 
 called WebSearch
 
@@ -18286,7 +18022,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1170 · 2026-05-26T10:16:53.346859+00:00_
+_source line 1164 · 2026-05-26T10:16:53.346859+00:00_
 
 called WebSearch
 
@@ -18320,7 +18056,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1171 · 2026-05-26T10:16:54.100040+00:00_
+_source line 1165 · 2026-05-26T10:16:54.100040+00:00_
 
 called WebSearch
 
@@ -18354,7 +18090,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1172 · 2026-05-26T10:16:54.814406+00:00_
+_source line 1166 · 2026-05-26T10:16:54.814406+00:00_
 
 called WebSearch
 
@@ -18388,7 +18124,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1173 · 2026-05-26T10:16:55.405466+00:00_
+_source line 1167 · 2026-05-26T10:16:55.405466+00:00_
 
 Web search results for query: "Ye He Liao Wu Lu "A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention" arXiv 2602.01763"
 
@@ -18423,7 +18159,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool call
 
-_source line 1174 · 2026-05-26T10:16:59.197017+00:00_
+_source line 1168 · 2026-05-26T10:16:59.197017+00:00_
 
 called WebSearch
 
@@ -18457,7 +18193,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1175 · 2026-05-26T10:16:59.348020+00:00_
+_source line 1169 · 2026-05-26T10:16:59.348020+00:00_
 
 Web search results for query: "Clark Lee Chang Kwiatkowski Collins "BoolQ: Exploring the Surprising Difficulty of Natural Yes/No Questions" NAACL 2019"
 
@@ -18487,7 +18223,7 @@ BoolQ: Exploring the Surprising Difficulty of Natural Yes/No Questions was autho
 
 ### Tool result
 
-_source line 1176 · 2026-05-26T10:16:59.950569+00:00_
+_source line 1170 · 2026-05-26T10:16:59.950569+00:00_
 
 Web search results for query: "Sakaguchi Bras Bhagavatula Choi "WinoGrande: An Adversarial Winograd Schema Challenge at Scale" AAAI 2021"
 
@@ -18518,7 +18254,7 @@ The paper
 
 ### Tool call
 
-_source line 1177 · 2026-05-26T10:17:00.101849+00:00_
+_source line 1171 · 2026-05-26T10:17:00.101849+00:00_
 
 called WebSearch
 
@@ -18552,7 +18288,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1178 · 2026-05-26T10:17:04.719984+00:00_
+_source line 1172 · 2026-05-26T10:17:04.719984+00:00_
 
 Web search results for query: "Milani Fard Cormier Canini Gupta "Launch and Iterate Reducing Prediction Churn" NeurIPS 2016"
 
@@ -18583,7 +18319,7 @@ The paper addresses the problem of prediction churn that occurs when machine lea
 
 ### Tool result
 
-_source line 1179 · 2026-05-26T10:17:04.770622+00:00_
+_source line 1173 · 2026-05-26T10:17:04.770622+00:00_
 
 Web search results for query: "Roemmele Bejan Gordon "Choice of Plausible Alternatives" COPA AAAI Spring Symposium 2011"
 
@@ -18614,7 +18350,7 @@ The paper introduces the Choice Of Plausib
 
 ### Tool result
 
-_source line 1180 · 2026-05-26T10:17:05.222760+00:00_
+_source line 1174 · 2026-05-26T10:17:05.222760+00:00_
 
 Web search results for query: "Poli Massaroli "Hyena Hierarchy Towards Larger Convolutional Language Models" ICML 2023"
 
@@ -18645,7 +18381,7 @@ The paper "Hyena Hierarchy: Towards Larger Convolutional Language Models" was au
 
 ### Tool result
 
-_source line 1181 · 2026-05-26T10:17:05.925780+00:00_
+_source line 1175 · 2026-05-26T10:17:05.925780+00:00_
 
 Web search results for query: ""When Does Content-Based Routing Work" "Hybrid Sequence Models" Basu arXiv 2026"
 
@@ -18676,7 +18412,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1182 · 2026-05-26T10:17:07.031337+00:00_
+_source line 1176 · 2026-05-26T10:17:07.031337+00:00_
 
 Web search results for query: "Lahoti "Mamba-3" ICLR 2026 "Improved Sequence Modeling using State Space Principles""
 
@@ -18709,7 +18445,7 @@ The paper combines: (1) a more expressive recurrence derived from SSM discretiza
 
 ### Tool call
 
-_source line 1183 · 2026-05-26T10:17:08.387048+00:00_
+_source line 1177 · 2026-05-26T10:17:08.387048+00:00_
 
 called WebSearch
 
@@ -18743,7 +18479,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1184 · 2026-05-26T10:17:09.240761+00:00_
+_source line 1178 · 2026-05-26T10:17:09.240761+00:00_
 
 called WebSearch
 
@@ -18777,7 +18513,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1185 · 2026-05-26T10:17:10.144413+00:00_
+_source line 1179 · 2026-05-26T10:17:10.144413+00:00_
 
 called WebSearch
 
@@ -18811,7 +18547,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1186 · 2026-05-26T10:17:12.303022+00:00_
+_source line 1180 · 2026-05-26T10:17:12.303022+00:00_
 
 Web search results for query: "Lieber "Jamba: A Hybrid Transformer-Mamba Language Model" arXiv 2403.19887 authors"
 
@@ -18838,7 +18574,7 @@ Based on the search results, the authors of the Jamba paper are: Opher Lieber, B
 
 ### Tool call
 
-_source line 1187 · 2026-05-26T10:17:14.461826+00:00_
+_source line 1181 · 2026-05-26T10:17:14.461826+00:00_
 
 called WebSearch
 
@@ -18872,7 +18608,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1188 · 2026-05-26T10:17:14.562577+00:00_
+_source line 1182 · 2026-05-26T10:17:14.562577+00:00_
 
 called WebSearch
 
@@ -18906,7 +18642,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1189 · 2026-05-26T10:17:15.064451+00:00_
+_source line 1183 · 2026-05-26T10:17:15.064451+00:00_
 
 called WebSearch
 
@@ -18940,7 +18676,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1190 · 2026-05-26T10:17:16.670365+00:00_
+_source line 1184 · 2026-05-26T10:17:16.670365+00:00_
 
 Web search results for query: "Welbl Liu Gardner "Crowdsourcing Multiple Choice Science Questions" SciQ 2017 workshop noisy user-generated text"
 
@@ -18969,7 +18705,7 @@ Based on the search results, I found the paper you're looking for:
 
 ### Tool result
 
-_source line 1191 · 2026-05-26T10:17:17.424027+00:00_
+_source line 1185 · 2026-05-26T10:17:17.424027+00:00_
 
 Web search results for query: "Hendrycks Burns Basart "Measuring Massive Multitask Language Understanding" ICLR 2021"
 
@@ -19002,7 +18738,7 @@ The repository contains OpenAI API evaluation code, and the test is available fo
 
 ### Tool call
 
-_source line 1192 · 2026-05-26T10:17:17.863970+00:00_
+_source line 1186 · 2026-05-26T10:17:17.863970+00:00_
 
 called WebSearch
 
@@ -19036,7 +18772,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1193 · 2026-05-26T10:17:18.673855+00:00_
+_source line 1187 · 2026-05-26T10:17:18.673855+00:00_
 
 called WebSearch
 
@@ -19070,7 +18806,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1194 · 2026-05-26T10:17:21.233457+00:00_
+_source line 1188 · 2026-05-26T10:17:21.233457+00:00_
 
 Web search results for query: "Biderman "Pythia A Suite for Analyzing Large Language Models Across Training and Scaling" ICML 2023"
 
@@ -19095,7 +18831,7 @@ Links: [{"title":"Pythia: A Suite for Analyzing Large Language Models Across Tra
 
 ### Tool result
 
-_source line 1195 · 2026-05-26T10:17:22.438180+00:00_
+_source line 1189 · 2026-05-26T10:17:22.438180+00:00_
 
 Web search results for query: "WinoGrande AAAI publication year 2020 Sakaguchi Bras volume 34"
 
@@ -19120,7 +18856,7 @@ Links: [{"title":"WinoGrande: An Adversarial Winograd Schema Challenge at Scale 
 
 ### Tool result
 
-_source line 1196 · 2026-05-26T10:17:23.642837+00:00_
+_source line 1190 · 2026-05-26T10:17:23.642837+00:00_
 
 Web search results for query: "van der Wal "PolyPythias Stability and Outliers across Fifty Language Model Pre-Training Runs" ICLR 2025"
 
@@ -19155,7 +18891,7 @@ I found the paper! Here are the search results for your query:
 
 ### Tool result
 
-_source line 1197 · 2026-05-26T10:17:26.001610+00:00_
+_source line 1191 · 2026-05-26T10:17:26.001610+00:00_
 
 Web search results for query: "Peng "Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence" arXiv 2404.05892"
 
@@ -19193,7 +18929,7 @@ Specifically:
 
 ### Tool result
 
-_source line 1198 · 2026-05-26T10:17:26.102432+00:00_
+_source line 1192 · 2026-05-26T10:17:26.102432+00:00_
 
 Web search results for query: "De Smith Fernando "Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models" arXiv 2402.19427"
 
@@ -19226,7 +18962,7 @@ The paper proposes Hawk, an RNN with gated linear recurrences, and Griffin, a hy
 
 ### Tool call
 
-_source line 1199 · 2026-05-26T10:17:26.404052+00:00_
+_source line 1193 · 2026-05-26T10:17:26.404052+00:00_
 
 called WebSearch
 
@@ -19260,7 +18996,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1200 · 2026-05-26T10:17:27.659027+00:00_
+_source line 1194 · 2026-05-26T10:17:27.659027+00:00_
 
 called WebSearch
 
@@ -19294,7 +19030,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1201 · 2026-05-26T10:17:29.364805+00:00_
+_source line 1195 · 2026-05-26T10:17:29.364805+00:00_
 
 called WebSearch
 
@@ -19328,7 +19064,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1202 · 2026-05-26T10:17:29.716452+00:00_
+_source line 1196 · 2026-05-26T10:17:29.716452+00:00_
 
 Web search results for query: "McCoy 2020 "BERTs of a feather" BlackboxNLP EMNLP workshop venue details"
 
@@ -19357,7 +19093,7 @@ The paper "BERTs of a feather do not generalize together: Large variability in g
 
 ### Tool call
 
-_source line 1203 · 2026-05-26T10:17:30.319156+00:00_
+_source line 1197 · 2026-05-26T10:17:30.319156+00:00_
 
 called WebSearch
 
@@ -19391,7 +19127,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1204 · 2026-05-26T10:17:33.581745+00:00_
+_source line 1198 · 2026-05-26T10:17:33.581745+00:00_
 
 Web search results for query: "Lin "Few-shot Learning with Multilingual Generative Language Models" xStoryCloze 2022 arXiv 2112.10668 authors"
 
@@ -19422,7 +19158,7 @@ The paper was published at EMNLP 2022
 
 ### Tool result
 
-_source line 1205 · 2026-05-26T10:17:34.334809+00:00_
+_source line 1199 · 2026-05-26T10:17:34.334809+00:00_
 
 Web search results for query: "Yang Wang "Benchmark Illusion: Disagreement among LLMs and Its Scientific Consequences" arXiv 2602.11898 2026"
 
@@ -19460,7 +19196,7 @@ REMINDER: You MUST include the sources above in your respo
 
 ### Tool result
 
-_source line 1206 · 2026-05-26T10:17:36.091529+00:00_
+_source line 1200 · 2026-05-26T10:17:36.091529+00:00_
 
 Web search results for query: "Dao Gu "Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality" ICML 2024"
 
@@ -19485,7 +19221,7 @@ Links: [{"title":"[2405.21060] Transformers are SSMs: Generalized Models and Eff
 
 ### Tool result
 
-_source line 1207 · 2026-05-26T10:17:37.597368+00:00_
+_source line 1201 · 2026-05-26T10:17:37.597368+00:00_
 
 Web search results for query: "Botev De Smith "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models" arXiv 2404.07839"
 
@@ -19518,7 +19254,7 @@ RecurrentGemma is a family of open language models which uses Google's novel Gri
 
 ### Tool call
 
-_source line 1208 · 2026-05-26T10:17:37.848836+00:00_
+_source line 1202 · 2026-05-26T10:17:37.848836+00:00_
 
 called WebSearch
 
@@ -19552,7 +19288,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1209 · 2026-05-26T10:17:38.551853+00:00_
+_source line 1203 · 2026-05-26T10:17:38.551853+00:00_
 
 called WebSearch
 
@@ -19586,7 +19322,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1210 · 2026-05-26T10:17:40.057738+00:00_
+_source line 1204 · 2026-05-26T10:17:40.057738+00:00_
 
 called WebSearch
 
@@ -19620,7 +19356,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1211 · 2026-05-26T10:17:40.409344+00:00_
+_source line 1205 · 2026-05-26T10:17:40.409344+00:00_
 
 called WebSearch
 
@@ -19654,7 +19390,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1212 · 2026-05-26T10:17:40.760988+00:00_
+_source line 1206 · 2026-05-26T10:17:40.760988+00:00_
 
 called WebSearch
 
@@ -19688,7 +19424,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1213 · 2026-05-26T10:17:41.463975+00:00_
+_source line 1207 · 2026-05-26T10:17:41.463975+00:00_
 
 called WebSearch
 
@@ -19722,7 +19458,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1214 · 2026-05-26T10:17:42.317342+00:00_
+_source line 1208 · 2026-05-26T10:17:42.317342+00:00_
 
 Web search results for query: "MultiBERTs ICLR 2022 Sellam Yadlowsky Tenney Wei Saphra author order full list"
 
@@ -19751,7 +19487,7 @@ Thibault Sellam, Steve Yadlowsky, Ian Tenney, Jason Wei, Naomi Saphra, Alexander
 
 ### Tool result
 
-_source line 1215 · 2026-05-26T10:17:44.174573+00:00_
+_source line 1209 · 2026-05-26T10:17:44.174573+00:00_
 
 Web search results for query: "Mamba-3 arXiv 2603.15569 authors full list Lahoti Li Chen Wang Bick Kolter Dao Gu"
 
@@ -19780,7 +19516,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1216 · 2026-05-26T10:17:47.336435+00:00_
+_source line 1210 · 2026-05-26T10:17:47.336435+00:00_
 
 Web search results for query: "Dong "Hymba: A Hybrid-head Architecture for Small Language Models" arXiv 2411.13676 authors"
 
@@ -19812,7 +19548,7 @@ REMINDER: You MU
 
 ### Tool call
 
-_source line 1217 · 2026-05-26T10:17:52.123145+00:00_
+_source line 1211 · 2026-05-26T10:17:52.123145+00:00_
 
 called WebSearch
 
@@ -19846,7 +19582,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1218 · 2026-05-26T10:17:53.126927+00:00_
+_source line 1212 · 2026-05-26T10:17:53.126927+00:00_
 
 called WebSearch
 
@@ -19880,7 +19616,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1219 · 2026-05-26T10:17:53.478407+00:00_
+_source line 1213 · 2026-05-26T10:17:53.478407+00:00_
 
 Web search results for query: "PIQA full title "Physical Commonsense" OR "Physical Intuition" Bisk Zellers AAAI 2020"
 
@@ -19907,7 +19643,7 @@ Based on the search results, the full title of PIQA is "PIQA: Reasoning about Ph
 
 ### Tool result
 
-_source line 1220 · 2026-05-26T10:17:55.083999+00:00_
+_source line 1214 · 2026-05-26T10:17:55.083999+00:00_
 
 Web search results for query: ""Few-shot Learning with Multilingual Generative Language Models" EMNLP 2022 exact title ACL anthology"
 
@@ -19939,7 +19675,7 @@ I found the paper! Here are the details for the paper you're looking for:
 
 ### Tool result
 
-_source line 1221 · 2026-05-26T10:17:55.686435+00:00_
+_source line 1215 · 2026-05-26T10:17:55.686435+00:00_
 
 Web search results for query: ""Watson-Daniels" OR "Watson Daniels" Jamelle predictive multiplicity AAAI 2023 first author name"
 
@@ -19970,7 +19706,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1222 · 2026-05-26T10:17:56.286891+00:00_
+_source line 1216 · 2026-05-26T10:17:56.286891+00:00_
 
 Web search results for query: "Ren Liu Yan "Samba: Simple Hybrid State Space Models for Efficient Unlimited Context Language Modeling" arXiv 2406.07522"
 
@@ -19999,7 +19735,7 @@ Samba is a simple hybrid architecture that layer-wise combines Mamba, a selectiv
 
 ### Tool result
 
-_source line 1223 · 2026-05-26T10:18:00.857083+00:00_
+_source line 1217 · 2026-05-26T10:18:00.857083+00:00_
 
 Web search results for query: "milanifard2016 "Launch and Iterate" NeurIPS pages 3171-3179 NeurIPS 2016 volume 29"
 
@@ -20032,7 +19768,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool call
 
-_source line 1224 · 2026-05-26T10:18:01.811350+00:00_
+_source line 1218 · 2026-05-26T10:18:01.811350+00:00_
 
 called WebSearch
 
@@ -20066,7 +19802,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1225 · 2026-05-26T10:18:02.514668+00:00_
+_source line 1219 · 2026-05-26T10:18:02.514668+00:00_
 
 called WebSearch
 
@@ -20100,7 +19836,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1226 · 2026-05-26T10:18:02.966763+00:00_
+_source line 1220 · 2026-05-26T10:18:02.966763+00:00_
 
 called WebSearch
 
@@ -20134,7 +19870,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1227 · 2026-05-26T10:18:03.318719+00:00_
+_source line 1221 · 2026-05-26T10:18:03.318719+00:00_
 
 called WebSearch
 
@@ -20168,7 +19904,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1228 · 2026-05-26T10:18:07.735841+00:00_
+_source line 1222 · 2026-05-26T10:18:07.735841+00:00_
 
 called WebSearch
 
@@ -20202,7 +19938,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1229 · 2026-05-26T10:18:08.539091+00:00_
+_source line 1223 · 2026-05-26T10:18:08.539091+00:00_
 
 called WebSearch
 
@@ -20236,7 +19972,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1230 · 2026-05-26T10:18:09.593402+00:00_
+_source line 1224 · 2026-05-26T10:18:09.593402+00:00_
 
 Web search results for query: "Arora Eyuboglu Timalsina Johnson "Zoology: Measuring and Improving Recall in Efficient Language Models" ICLR 2024"
 
@@ -20265,7 +20001,7 @@ The paper focuses on understanding efficient language models. The research pretr
 
 ### Tool result
 
-_source line 1231 · 2026-05-26T10:18:11.049188+00:00_
+_source line 1225 · 2026-05-26T10:18:11.049188+00:00_
 
 Web search results for query: "lin2022 xstorycloze bib "Arber Mikel" OR "Mikel Artetxe" "Wang Xian" OR "Xian Li" xglm authors"
 
@@ -20292,7 +20028,7 @@ Based on the web search results, I found the paper you're looking for. The paper
 
 ### Tool result
 
-_source line 1232 · 2026-05-26T10:18:13.959527+00:00_
+_source line 1226 · 2026-05-26T10:18:13.959527+00:00_
 
 Web search results for query: "arxiv 2311.04823 HGRN authors complete list "Zhen Qin" "Songlin Yang" "Weixuan Zhong""
 
@@ -20321,7 +20057,7 @@ Links: [{"title":"[2311.04823] Hierarchically Gated Recurrent Neural Network for
 
 ### Tool result
 
-_source line 1233 · 2026-05-26T10:18:15.515387+00:00_
+_source line 1227 · 2026-05-26T10:18:15.515387+00:00_
 
 Web search results for query: "Fehlauer Mahowald Pimentel EMNLP 2025 "Convergence and Divergence" pages 32982-32991"
 
@@ -20354,7 +20090,7 @@ The results suggest that larger models reconv
 
 ### Tool result
 
-_source line 1234 · 2026-05-26T10:18:18.727063+00:00_
+_source line 1228 · 2026-05-26T10:18:18.727063+00:00_
 
 Web search results for query: "Arora Eyuboglu Zhang "Simple Linear Attention Language Models Balance the Recall-Throughput Tradeoff" ICML 2024"
 
@@ -20387,7 +20123,7 @@ Attention-based language models excel at "recall", the ability to ground generat
 
 ### Tool result
 
-_source line 1235 · 2026-05-26T10:18:19.329732+00:00_
+_source line 1229 · 2026-05-26T10:18:19.329732+00:00_
 
 Web search results for query: "Ganesh Taik Farnadi AIES 2025 "Systemizing Multiplicity" volume 8 number 2 pages 1032-1048 DOI 36609"
 
@@ -20418,7 +20154,7 @@ Based on the search results, I found the paper you're looking for:
 
 ### Tool call
 
-_source line 1236 · 2026-05-26T10:18:21.037101+00:00_
+_source line 1230 · 2026-05-26T10:18:21.037101+00:00_
 
 called WebSearch
 
@@ -20452,7 +20188,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1237 · 2026-05-26T10:18:22.341906+00:00_
+_source line 1231 · 2026-05-26T10:18:22.341906+00:00_
 
 called WebSearch
 
@@ -20486,7 +20222,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1238 · 2026-05-26T10:18:23.797967+00:00_
+_source line 1232 · 2026-05-26T10:18:23.797967+00:00_
 
 called WebSearch
 
@@ -20520,7 +20256,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1239 · 2026-05-26T10:18:26.709033+00:00_
+_source line 1233 · 2026-05-26T10:18:26.709033+00:00_
 
 Web search results for query: "Sun Dong Huang "Retentive Network: A Successor to Transformer for Large Language Models" arXiv 2307.08621 authors"
 
@@ -20547,7 +20283,7 @@ Based on the search results, the authors of the paper "Retentive Network: A Succ
 
 ### Tool result
 
-_source line 1240 · 2026-05-26T10:18:26.759882+00:00_
+_source line 1234 · 2026-05-26T10:18:26.759882+00:00_
 
 Web search results for query: "Gu Dao "Mamba: Linear-Time Sequence Modeling with Selective State Spaces" arXiv 2312.00752"
 
@@ -20588,7 +20324,7 @@ The paper addresses how foundation models are almost universally based on the Tr
 
 ### Tool call
 
-_source line 1241 · 2026-05-26T10:18:27.212060+00:00_
+_source line 1235 · 2026-05-26T10:18:27.212060+00:00_
 
 called WebSearch
 
@@ -20622,7 +20358,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1242 · 2026-05-26T10:18:29.069347+00:00_
+_source line 1236 · 2026-05-26T10:18:29.069347+00:00_
 
 Web search results for query: "lm-evaluation-harness Zenodo DOI 10.5281/zenodo.12608602 2024 version authors"
 
@@ -20651,7 +20387,7 @@ Based on the search results, here is the information about the lm-evaluation-har
 
 ### Tool call
 
-_source line 1243 · 2026-05-26T10:18:30.023320+00:00_
+_source line 1237 · 2026-05-26T10:18:30.023320+00:00_
 
 called WebSearch
 
@@ -20685,7 +20421,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1244 · 2026-05-26T10:18:31.178152+00:00_
+_source line 1238 · 2026-05-26T10:18:31.178152+00:00_
 
 Now I have all the information I need. Let me compile the findings.
 
@@ -20736,7 +20472,7 @@ All other entries verified as correct.
 
 ### Tool result
 
-_source line 1245 · 2026-05-26T10:18:34.489569+00:00_
+_source line 1239 · 2026-05-26T10:18:34.489569+00:00_
 
 Web search results for query: "du2025reconciling "Ally Yalei Du" OR "Ally Du" "Dung Daniel Ngo" authors ICLR 2025"
 
@@ -20774,7 +20510,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1246 · 2026-05-26T10:18:36.647213+00:00_
+_source line 1240 · 2026-05-26T10:18:36.647213+00:00_
 
 Web search results for query: "Qin "HGRN2: Gated Linear RNNs with State Expansion" arXiv 2404.07904 authors"
 
@@ -20807,7 +20543,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool call
 
-_source line 1247 · 2026-05-26T10:18:39.106513+00:00_
+_source line 1241 · 2026-05-26T10:18:39.106513+00:00_
 
 called WebSearch
 
@@ -20841,7 +20577,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1248 · 2026-05-26T10:18:41.164450+00:00_
+_source line 1242 · 2026-05-26T10:18:41.164450+00:00_
 
 called WebSearch
 
@@ -20875,7 +20611,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1249 · 2026-05-26T10:18:46.835725+00:00_
+_source line 1243 · 2026-05-26T10:18:46.835725+00:00_
 
 Web search results for query: "EleutherAI lm-evaluation-harness CITATION.bib "A framework for few-shot language model evaluation" title official"
 
@@ -20904,7 +20640,7 @@ The official title in the CITATION.bib file is "A framework for few
 
 ### Tool call
 
-_source line 1250 · 2026-05-26T10:18:52.204325+00:00_
+_source line 1244 · 2026-05-26T10:18:52.204325+00:00_
 
 called WebSearch
 
@@ -20938,7 +20674,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1251 · 2026-05-26T10:19:02.194959+00:00_
+_source line 1245 · 2026-05-26T10:19:02.194959+00:00_
 
 Web search results for query: "swayamdipta 2020 "dataset cartography" EMNLP full author list Roy Schwartz"
 
@@ -20967,7 +20703,7 @@ S
 
 ### Tool result
 
-_source line 1252 · 2026-05-26T10:19:05.757679+00:00_
+_source line 1246 · 2026-05-26T10:19:05.757679+00:00_
 
 Web search results for query: ""Gated Delta Networks" Yang Kautz Hatamizadeh ICLR 2025 published conference paper"
 
@@ -21002,7 +20738,7 @@ Based on the search results, I found the published ICLR 2025 conference paper yo
 
 ### Tool result
 
-_source line 1253 · 2026-05-26T10:19:35.705496+00:00_
+_source line 1247 · 2026-05-26T10:19:35.705496+00:00_
 
 This is a problem. `yang2024gateddeltanet` is listed in the bib as `@article` (arXiv preprint), but it was actually **published as a conference paper at ICLR 2025**. The entry type and venue are wrong — it should be `@inproceedings` with `booktitle={Proceedings of ICLR}` and `year={2025}`.
 
@@ -21055,7 +20791,7 @@ Now I have all the information needed. Let me compile the full report.
 
 ### Tool result
 
-_source line 1254 · 2026-05-26T10:19:40.875022+00:00_
+_source line 1248 · 2026-05-26T10:19:40.875022+00:00_
 
 Now I have all the information needed. Let me compile the full verification report.
 
@@ -21115,7 +20851,7 @@ Wrong authors. Bib lists: `Wang, Zhu, Katharopoulos, Gu`. Actual authors
 
 ### Tool call
 
-_source line 1255 · 2026-05-26T10:20:27.068051+00:00_
+_source line 1249 · 2026-05-26T10:20:27.068051+00:00_
 
 called WebSearch
 
@@ -21149,7 +20885,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1256 · 2026-05-26T10:20:27.118714+00:00_
+_source line 1250 · 2026-05-26T10:20:27.118714+00:00_
 
 called WebSearch
 
@@ -21183,7 +20919,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1257 · 2026-05-26T10:20:27.420291+00:00_
+_source line 1251 · 2026-05-26T10:20:27.420291+00:00_
 
 called WebSearch
 
@@ -21217,7 +20953,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1258 · 2026-05-26T10:20:32.588807+00:00_
+_source line 1252 · 2026-05-26T10:20:32.588807+00:00_
 
 Web search results for query: "qin2023 "Hierarchically Gated Recurrent Neural Network for Sequence Modeling" NeurIPS 2023 authors"
 
@@ -21246,7 +20982,7 @@ From the PDF sources in the search results, the paper title appears to be author
 
 ### Tool result
 
-_source line 1259 · 2026-05-26T10:20:32.840026+00:00_
+_source line 1253 · 2026-05-26T10:20:32.840026+00:00_
 
 Web search results for query: "Swayamdipta 2020 "Dataset Cartography" EMNLP authors"
 
@@ -21263,6 +20999,232 @@ Based on the search results, the authors of the "Dataset Cartography: Mapping an
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "WebSearch",
   "elapsed_ms": 5419
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1254 · 2026-05-26T10:20:43.678734+00:00_
+
+Web search results for query: ""A Systematic Analysis of Hybrid Linear Attention" Wang Zhu arXiv 2507"
+
+Links: [{"title":"[2507.06457] A Systematic Analysis of Hybrid Linear Attention","url":"https://arxiv.org/abs/2507.06457"},{"title":"A Systematic Analysis of Hybrid Linear Attention","url":"https://arxiv.org/html/2507.06457v1"},{"title":"[2507.06457v1] A Systematic Analysis of Hybrid Linear Attention","url":"https://arxiv.org/abs/2507.06457v1"},{"title":"[PDF] A Systematic Analysis of Hybrid Linear Attention | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Systematic-Analysis-of-Hybrid-Linear-Attention-Wang-Zhu/f7ad9ebc481e23ae7fa90d98d3814518e94adcd1"},{"title":"(PDF) A Systematic Analysis of Hybrid Linear Attention","url":"https://www.researchgate.net/publication/393538945_A_Systematic_Analysis_of_Hybrid_Linear_Attention"},{"title":"Paper page - A Systematic Analysis of Hybrid Linear Attention","url":"https://huggingface.co/papers/2507.06457"},{"title":"A Systematic Analysis of Hybrid Linear Attention - YouTube","url":"https://www.youtube.com/watch?v=zrdHamRpshQ"},{"title":"[QA] A Systematic Analysis of Hybrid Linear Attention - YouTube","url":"https://www.youtube.com/watch?v=Qu3I8nmBpT8"},{"title":"A Systematic Analysis of Hybrid Linear Attention | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/systematic-analysis-hybrid-linear-attention"},{"title":"[Quick Review] A Systematic Analysis of Hybrid Linear Attention","url":"https://liner.com/review/systematic-analysis-hybrid-linear-attention"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** "A Systematic Analysis of Hybrid Linear Attention"
+
+**Authors:** Dustin Wang, Rui-Jie Zhu, Steven Abreu, Yong Shan, Taylor Kergan, Yuqi Pan, Yuhong Chou, Zheng Li, Ge Zhang, Wenhao Huang, Jason Eshraghian
+
+**arXiv ID:** 2507.06457
+
+**Key Findings:**
+
+The paper systematically evaluates various linear attention models both standalone and hybridized, as lin
+…[truncated 861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "elapsed_ms": 16610
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1255 · 2026-05-26T10:21:05.020822+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Cooper 2024 \"Arbitrariness and Social Prediction\" AAAI authors Katherine Lee"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Cooper 2024 \"Arbitrariness and Social Prediction\" AAAI authors Katherine Lee"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1256 · 2026-05-26T10:21:05.222065+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2311.04823 HGRN authors full list Qin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2311.04823 HGRN authors full list Qin"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1257 · 2026-05-26T10:21:05.724349+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Bisk 2020 PIQA \"Reasoning about Physical\" title AAAI commonsense intuition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Bisk 2020 PIQA \"Reasoning about Physical\" title AAAI commonsense intuition"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1258 · 2026-05-26T10:21:09.137388+00:00_
+
+Web search results for query: "arXiv 2311.04823 HGRN authors full list Qin"
+
+Links: [{"title":"[2311.04823] Hierarchically Gated Recurrent Neural Network for Sequence Modeling","url":"https://arxiv.org/abs/2311.04823"},{"title":"Hierarchically Gated Recurrent Neural Network for Sequence Modeling 1Zhen Qin⋆,","url":"https://arxiv.org/pdf/2311.04823"},{"title":"Paper page - Hierarchically Gated Recurrent Neural Network for Sequence Modeling","url":"https://huggingface.co/papers/2311.04823"},{"title":"HGRN - a fla-hub Collection","url":"https://huggingface.co/collections/fla-hub/hgrn-6729ce7592a2db3c9762f146"},{"title":"Liquid Structural State-Space Models (2022) | Ramin M. Hasani | 52 Citations","url":"https://scispace.com/papers/liquid-structural-state-space-models-k3imqmkj"},{"title":"[2404.07904] HGRN2: Gated Linear RNNs with State Expansion","url":"https://arxiv.org/abs/2404.07904"},{"title":"BabyHGRN: Exploring RNNs for Sample-Efficient Pretraining","url":"https://arxiv.org/html/2412.15978"},{"title":"HGRN2: Gated Linear RNNs with State Expansion","url":"https://openreview.net/pdf?id=y6SqbJfCSk"},{"title":"HGRN2: Gated Linear RNNs with State Expansion","url":"https://arxiv.org/html/2404.07904v2"}]
+
+Based on the search results, the authors of arXiv paper 2311.04823 (HGRN) are: Zhen Qin, Songlin Yang, and Yiran Zhong.
+
+The paper is titled "Hierarchically Gated Recurrent Neural Network for Sequence Modeling" and the authors are affiliated with OpenNLPLab at Shanghai Artificial Intelligence Laboratory and MIT CSAIL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "elapsed_ms": 3915
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1259 · 2026-05-26T10:21:10.693626+00:00_
+
+Web search results for query: "Cooper 2024 "Arbitrariness and Social Prediction" AAAI authors Katherine Lee"
+
+Links: [{"title":"Arbitrariness and Social Prediction: The Confounding Role of Variance in Fair Classification | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/30203"},{"title":"Arbitrariness and social prediction | Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/abs/10.1609/aaai.v38i20.30203"},{"title":"Arbitrariness and Social Prediction:","url":"https://afedercooper.info/AAAI_2024_Talk.pdf"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Arbitrariness+and+social+prediction:+The+confounding+role+of+variance+in+fair+classification&amp=&author=A%C2%A0Feder+Cooper&amp=&author=Katherine+Lee&amp=&author=Madiha%C2%A0Zahrah+Choksi&amp=&author=Solon+Barocas&amp=&author=Christopher+De%C2%A0Sa&amp=&author=James+Grimmelmann&amp=&author=Jon+Kleinberg&amp=&author=Siddhartha+Sen&amp=&author=Baobao+Zhang&amp=&publication_year=2024&amp=&pages=22004-22012&amp=&doi=10.1609/aaai.v38i20.30203"},{"title":"[2301.11562] Arbitrariness and Social Prediction: The Confounding Role of Variance in Fair Classification","url":"https://arxiv.org/abs/2301.11562"},{"title":"Aaai","url":"https://ojs.aaai.org/index.php/AAAI/citationstylelanguage/get/apa?submissionId=30203&publicationId=28487"},{"title":"Arbitrariness and Social Prediction: The Confounding Role of Variance in Fair Classification | Request PDF","url":"https://www.researchgate.net/publication/379286486_Arbitrariness_and_Social_Prediction_The_Confounding_Role_of_Variance_in_Fair_Classification"},{"title":"dblp: Katherine Lee","url":"https://dblp.org/pid/115/5082.html"},{"title":"AAAI-24: AI for Social Impact (AI
+…[truncated 1339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "elapsed_ms": 5672
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1260 · 2026-05-26T10:21:12.450580+00:00_
+
+Web search results for query: "Bisk 2020 PIQA "Reasoning about Physical" title AAAI commonsense intuition"
+
+Links: [{"title":"ybisk/piqa · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ybisk/piqa"},{"title":"PIQA: Reasoning about Physical Commonsense in Natural Language | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/6239"},{"title":"Aaai","url":"https://ojs.aaai.org/index.php/AAAI/citationstylelanguage/get/apa?submissionId=6239&publicationId=4605"},{"title":"PIQA: Reasoning about Physical Commonsense in Natural ...","url":"https://ojs.aaai.org/index.php/AAAI/article/view/6239/6095"},{"title":"PIQA","url":"https://yonatanbisk.com/piqa/"},{"title":"[1911.11641] PIQA: Reasoning about Physical Commonsense in Natural Language","url":"https://arxiv.org/abs/1911.11641"},{"title":"dblp: PIQA: Reasoning about Physical Commonsense in Natural Language.","url":"https://dblp.org/rec/conf/aaai/BiskZLGC20.html"},{"title":"(PDF) PIQA: Reasoning about Physical Commonsense in Natural Language (2020) | Yonatan Bisk | 1111 Citations","url":"https://scispace.com/papers/piqa-reasoning-about-physical-commonsense-in-natural-yq35niscp9"},{"title":"lm-evaluation-harness/lm_eval/tasks/piqa/README.md at main · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/blob/main/lm_eval/tasks/piqa/README.md"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+The paper is authored by Yonatan Bisk, Rowan Zellers, Ronan Le Bras, Jianfeng Gao, and Yejin Choi, titled "PIQA: Reasoning about Physical Commonsense in Natural Language," published at the Thirty-Fourth AAAI Conference on Artificial Intelligence in 2020.
+
+The paper introduces the task of physical commonsense reasoning and a corresponding benchmark dataset called Physical Interaction: Question Answering or PIQA. While humans find the dataset easy (95% accuracy), lar
+…[truncated 250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "WebSearch",
+  "elapsed_ms": 6726
 }
 ```
 

@@ -20,26 +20,6 @@ Date: 2026-05-20
 
 ---
 
-## 2. Rebuttal Framework Attack #1 引用准确性检查
-
-Attack #1 回应中引用的 negative results:
-
-| 引用 | 准确性 | 备注 |
-|------|--------|------|
-| Rank-32 ablation -0.47 to -0.51pp | ✅ 准确 | Appendix B, Table rank_ablation |
-| Parseable-only accuracy 38-43% < majority | ✅ 准确 | §4.3, Appendix C |
-| Matched-context ablation <3% | ✅ 准确 | Appendix B |
-| Format collapse 53-74% | ✅ 准确 | §4.3 Table 4 |
-
-**遗漏**: Attack #1 未引用 majority voting 阴性结果和 relaxed matching 阴性结果，这两个对 "obvious fixes don't work" 论点有补强价值。
-
-**建议补充到 rebuttal framework Attack #1**:
-- Majority voting K=3 decreases accuracy by 0.68pp (Appendix (g)) — sampling-based fixes fail
-- Relaxed matching decreases accuracy from 58.04% to 56.98% (Appendix (c)) — format tolerance makes it WORSE
-- CWM overfitting: val-best at step 400 (registry: repo-level-cwm-8b-conda-v5) — more training also fails
-
----
-
 ## 3. 系统性 Pattern 分析
 
 ### 核心发现：**"标准干预全部失败" 模式**

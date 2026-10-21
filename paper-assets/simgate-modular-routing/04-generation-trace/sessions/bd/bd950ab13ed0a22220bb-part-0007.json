@@ -2249,44 +2249,6 @@
         },
         {
           "source_line": 1198,
-          "timestamp": "2026-05-21T01:21:56.779693+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md"
-            }
-          },
-          "id": "event-001198"
-        },
-        {
-          "source_line": 1199,
-          "timestamp": "2026-05-21T01:21:56.830509+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# ARR Author Response Drafts — EMNLP 2026\n2\t\n3\tPrepared 2026-05-20. Three predicted attack points with pre-drafted responses.\n4\t\n5\t## Response #1: Single-Environment Generalization (Attack probability: 90%)\n6\t\n7\tWe thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.\n8\t\n9\tThree lines of evidence support framework applicability beyond ScienceWorld: (1) **ALFWorld** (§3.4): the framework successfully diagnoses a qualitatively different mechanism—information asymmetry from admissible-action access (94.6% det-preferred, 0% death)—without any modification, demonstrating that the diagnostic procedure generalizes even when the dominant signal differs. Cross-model ALFWorld replication (Llama-3.1-8B, 135 games) confirms 100% directional consistency (16/16 non-tie labels favor deterministic, 95% CI for det-preferred: [6.7%, 17.8%]). Combined with Qwen2.5-7B's 25.9% det-preferred (94.6% directional consistency, 35/37 non-tie labels), both models diagnose information asymmetry—not death—as the routing mechanism in ALFWorld, without framework modification. Gemma-2-9B-it (220 episodes, DAF=89.7%, 95% CI [79.5%, 98.4%]) confirms death dominance across a third model family employing sliding window attention, with 10/10 death-prone task types showing positive ΔDR. (2) **MATH** (§3.4): the framework correctly identifies the absence of routing signal (p=0.81), a useful null result. (3) **MiniHack/Crafter** (§5): the framework correctly diagnoses two boundary conditions (no death mechanism; universal death without asymmetry). These are not failures—they are the framework performing its diagnostic function on environments where routing signal is absent or unexploitable.\n1\n…[truncated 4604 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001199"
-        },
-        {
-          "source_line": 1200,
           "timestamp": "2026-05-21T01:26:19.656360+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2305,10 +2267,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-001200"
+          "id": "event-001198"
         },
         {
-          "source_line": 1201,
+          "source_line": 1199,
           "timestamp": "2026-05-21T01:26:23.624922+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2323,10 +2285,10 @@
             "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
             "elapsed_ms": 3968
           },
-          "id": "event-001201"
+          "id": "event-001199"
         },
         {
-          "source_line": 1202,
+          "source_line": 1200,
           "timestamp": "2026-05-21T01:26:31.166809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2343,10 +2305,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images"
             }
           },
-          "id": "event-001202"
+          "id": "event-001200"
         },
         {
-          "source_line": 1203,
+          "source_line": 1201,
           "timestamp": "2026-05-21T01:26:31.167381+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2361,10 +2323,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 0
           },
-          "id": "event-001203"
+          "id": "event-001201"
         },
         {
-          "source_line": 1204,
+          "source_line": 1202,
           "timestamp": "2026-05-21T01:26:40.833794+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2377,7 +2339,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2"
           },
-          "id": "event-001204"
+          "id": "event-001202"
         }
       ]
     },
@@ -2385,7 +2347,7 @@
       "number": 38,
       "messages": [
         {
-          "source_line": 1205,
+          "source_line": 1203,
           "timestamp": "2026-05-21T01:31:16.905884+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2399,10 +2361,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
             "source": "review_reviewer_2"
           },
-          "id": "event-001205"
+          "id": "event-001203"
         },
         {
-          "source_line": 1206,
+          "source_line": 1204,
           "timestamp": "2026-05-21T01:33:44.306293+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2421,10 +2383,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-001206"
+          "id": "event-001204"
         },
         {
-          "source_line": 1207,
+          "source_line": 1205,
           "timestamp": "2026-05-21T01:33:49.025784+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2439,10 +2401,10 @@
             "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
             "elapsed_ms": 4719
           },
-          "id": "event-001207"
+          "id": "event-001205"
         },
         {
-          "source_line": 1208,
+          "source_line": 1206,
           "timestamp": "2026-05-21T01:34:01.559783+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2455,7 +2417,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2"
           },
-          "id": "event-001208"
+          "id": "event-001206"
         }
       ]
     },
@@ -2463,7 +2425,7 @@
       "number": 39,
       "messages": [
         {
-          "source_line": 1209,
+          "source_line": 1207,
           "timestamp": "2026-05-21T06:59:47.019158+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2477,10 +2439,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
             "source": "review_reviewer_2"
           },
-          "id": "event-001209"
+          "id": "event-001207"
         },
         {
-          "source_line": 1210,
+          "source_line": 1208,
           "timestamp": "2026-05-21T06:59:58.972781+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2500,10 +2462,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-001210"
+          "id": "event-001208"
         },
         {
-          "source_line": 1211,
+          "source_line": 1209,
           "timestamp": "2026-05-21T06:59:59.077113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2520,10 +2482,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex"
             }
           },
-          "id": "event-001211"
+          "id": "event-001209"
         },
         {
-          "source_line": 1212,
+          "source_line": 1210,
           "timestamp": "2026-05-21T07:00:00.484732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2538,10 +2500,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1511
           },
-          "id": "event-001212"
+          "id": "event-001210"
         },
         {
-          "source_line": 1213,
+          "source_line": 1211,
           "timestamp": "2026-05-21T07:00:00.988325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2556,10 +2518,10 @@
             "tool": "Read",
             "elapsed_ms": 1911
           },
-          "id": "event-001213"
+          "id": "event-001211"
         },
         {
-          "source_line": 1214,
+          "source_line": 1212,
           "timestamp": "2026-05-21T07:00:13.528547+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2576,10 +2538,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p1.png"
             }
           },
-          "id": "event-001214"
+          "id": "event-001212"
         },
         {
-          "source_line": 1215,
+          "source_line": 1213,
           "timestamp": "2026-05-21T07:00:13.932445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2596,10 +2558,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001215"
+          "id": "event-001213"
         },
         {
-          "source_line": 1216,
+          "source_line": 1214,
           "timestamp": "2026-05-21T07:00:14.589255+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2616,10 +2578,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001216"
+          "id": "event-001214"
         },
         {
-          "source_line": 1217,
+          "source_line": 1215,
           "timestamp": "2026-05-21T07:00:15.043088+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2634,10 +2596,10 @@
             "tool": "Read",
             "elapsed_ms": 1514
           },
-          "id": "event-001217"
+          "id": "event-001215"
         },
         {
-          "source_line": 1218,
+          "source_line": 1216,
           "timestamp": "2026-05-21T07:00:15.043541+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2654,10 +2616,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-001218"
+          "id": "event-001216"
         },
         {
-          "source_line": 1219,
+          "source_line": 1217,
           "timestamp": "2026-05-21T07:00:15.094081+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2672,10 +2634,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001219"
+          "id": "event-001217"
         },
         {
-          "source_line": 1220,
+          "source_line": 1218,
           "timestamp": "2026-05-21T07:00:15.094567+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2692,10 +2654,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-001220"
+          "id": "event-001218"
         },
         {
-          "source_line": 1221,
+          "source_line": 1219,
           "timestamp": "2026-05-21T07:00:15.498311+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2710,10 +2672,10 @@
             "tool": "Read",
             "elapsed_ms": 403
           },
-          "id": "event-001221"
+          "id": "event-001219"
         },
         {
-          "source_line": 1222,
+          "source_line": 1220,
           "timestamp": "2026-05-21T07:00:15.498836+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2730,10 +2692,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-001222"
+          "id": "event-001220"
         },
         {
-          "source_line": 1223,
+          "source_line": 1221,
           "timestamp": "2026-05-21T07:00:15.499159+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2750,10 +2712,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
             }
           },
-          "id": "event-001223"
+          "id": "event-001221"
         },
         {
-          "source_line": 1224,
+          "source_line": 1222,
           "timestamp": "2026-05-21T07:00:15.701211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2768,10 +2730,10 @@
             "tool": "Read",
             "elapsed_ms": 202
           },
-          "id": "event-001224"
+          "id": "event-001222"
         },
         {
-          "source_line": 1225,
+          "source_line": 1223,
           "timestamp": "2026-05-21T07:00:15.701686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2786,10 +2748,10 @@
             "tool": "Read",
             "elapsed_ms": 202
           },
-          "id": "event-001225"
+          "id": "event-001223"
         },
         {
-          "source_line": 1226,
+          "source_line": 1224,
           "timestamp": "2026-05-21T07:00:15.753041+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2804,10 +2766,10 @@
             "tool": "Read",
             "elapsed_ms": 1820
           },
-          "id": "event-001226"
+          "id": "event-001224"
         },
         {
-          "source_line": 1227,
+          "source_line": 1225,
           "timestamp": "2026-05-21T07:00:16.055497+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2822,10 +2784,10 @@
             "tool": "Read",
             "elapsed_ms": 1466
           },
-          "id": "event-001227"
+          "id": "event-001225"
         },
         {
-          "source_line": 1228,
+          "source_line": 1226,
           "timestamp": "2026-05-21T07:00:24.911297+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2844,10 +2806,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001228"
+          "id": "event-001226"
         },
         {
-          "source_line": 1229,
+          "source_line": 1227,
           "timestamp": "2026-05-21T07:00:25.312814+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2862,10 +2824,10 @@
             "tool": "Grep",
             "elapsed_ms": 401
           },
-          "id": "event-001229"
+          "id": "event-001227"
         },
         {
-          "source_line": 1230,
+          "source_line": 1228,
           "timestamp": "2026-05-21T07:00:25.865367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2885,10 +2847,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001230"
+          "id": "event-001228"
         },
         {
-          "source_line": 1231,
+          "source_line": 1229,
           "timestamp": "2026-05-21T07:00:26.317683+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2903,10 +2865,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-001231"
+          "id": "event-001229"
         },
         {
-          "source_line": 1232,
+          "source_line": 1230,
           "timestamp": "2026-05-21T07:00:26.819627+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2926,10 +2888,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001232"
+          "id": "event-001230"
         },
         {
-          "source_line": 1233,
+          "source_line": 1231,
           "timestamp": "2026-05-21T07:00:27.809182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2944,10 +2906,10 @@
             "tool": "Grep",
             "elapsed_ms": 989
           },
-          "id": "event-001233"
+          "id": "event-001231"
         },
         {
-          "source_line": 1234,
+          "source_line": 1232,
           "timestamp": "2026-05-21T07:00:28.229344+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2966,10 +2928,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001234"
+          "id": "event-001232"
         },
         {
-          "source_line": 1235,
+          "source_line": 1233,
           "timestamp": "2026-05-21T07:00:29.134387+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2984,10 +2946,10 @@
             "tool": "Grep",
             "elapsed_ms": 905
           },
-          "id": "event-001235"
+          "id": "event-001233"
         },
         {
-          "source_line": 1236,
+          "source_line": 1234,
           "timestamp": "2026-05-21T07:00:30.088642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3007,10 +2969,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001236"
+          "id": "event-001234"
         },
         {
-          "source_line": 1237,
+          "source_line": 1235,
           "timestamp": "2026-05-21T07:00:30.591233+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3025,10 +2987,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-001237"
+          "id": "event-001235"
         },
         {
-          "source_line": 1238,
+          "source_line": 1236,
           "timestamp": "2026-05-21T07:00:30.591737+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3045,10 +3007,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
             }
           },
-          "id": "event-001238"
+          "id": "event-001236"
         },
         {
-          "source_line": 1239,
+          "source_line": 1237,
           "timestamp": "2026-05-21T07:00:30.793080+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3063,10 +3025,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-001239"
+          "id": "event-001237"
         },
         {
-          "source_line": 1240,
+          "source_line": 1238,
           "timestamp": "2026-05-21T07:00:30.793605+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3083,10 +3045,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-001240"
+          "id": "event-001238"
         },
         {
-          "source_line": 1241,
+          "source_line": 1239,
           "timestamp": "2026-05-21T07:00:30.844480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3101,10 +3063,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001241"
+          "id": "event-001239"
         },
         {
-          "source_line": 1242,
+          "source_line": 1240,
           "timestamp": "2026-05-21T07:01:38.040508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3123,10 +3085,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001242"
+          "id": "event-001240"
         },
         {
-          "source_line": 1243,
+          "source_line": 1241,
           "timestamp": "2026-05-21T07:01:38.091633+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3141,10 +3103,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-001243"
+          "id": "event-001241"
         },
         {
-          "source_line": 1244,
+          "source_line": 1242,
           "timestamp": "2026-05-21T07:01:39.047191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3165,10 +3127,10 @@
               "context": "3"
             }
           },
-          "id": "event-001244"
+          "id": "event-001242"
         },
         {
-          "source_line": 1245,
+          "source_line": 1243,
           "timestamp": "2026-05-21T07:01:40.204738+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3183,10 +3145,10 @@
             "tool": "Grep",
             "elapsed_ms": 1157
           },
-          "id": "event-001245"
+          "id": "event-001243"
         },
         {
-          "source_line": 1246,
+          "source_line": 1244,
           "timestamp": "2026-05-21T07:01:40.256218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3203,10 +3165,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
             }
           },
-          "id": "event-001246"
+          "id": "event-001244"
         },
         {
-          "source_line": 1247,
+          "source_line": 1245,
           "timestamp": "2026-05-21T07:01:40.256746+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3221,10 +3183,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001247"
+          "id": "event-001245"
         },
         {
-          "source_line": 1248,
+          "source_line": 1246,
           "timestamp": "2026-05-21T07:01:40.659074+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3243,10 +3205,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-001248"
+          "id": "event-001246"
         },
         {
-          "source_line": 1249,
+          "source_line": 1247,
           "timestamp": "2026-05-21T07:01:41.412878+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3261,10 +3223,10 @@
             "tool": "Grep",
             "elapsed_ms": 753
           },
-          "id": "event-001249"
+          "id": "event-001247"
         },
         {
-          "source_line": 1250,
+          "source_line": 1248,
           "timestamp": "2026-05-21T07:01:41.464389+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3281,10 +3243,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-001250"
+          "id": "event-001248"
         },
         {
-          "source_line": 1251,
+          "source_line": 1249,
           "timestamp": "2026-05-21T07:01:41.515118+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3299,10 +3261,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001251"
+          "id": "event-001249"
         },
         {
-          "source_line": 1252,
+          "source_line": 1250,
           "timestamp": "2026-05-21T07:01:49.962828+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3322,10 +3284,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-001252"
+          "id": "event-001250"
         },
         {
-          "source_line": 1253,
+          "source_line": 1251,
           "timestamp": "2026-05-21T07:01:50.365788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3340,10 +3302,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 402
           },
-          "id": "event-001253"
+          "id": "event-001251"
         },
         {
-          "source_line": 1254,
+          "source_line": 1252,
           "timestamp": "2026-05-21T07:02:04.566405+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3360,10 +3322,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-001254"
+          "id": "event-001252"
         },
         {
-          "source_line": 1255,
+          "source_line": 1253,
           "timestamp": "2026-05-21T07:02:05.370426+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3378,10 +3340,10 @@
             "tool": "Read",
             "elapsed_ms": 804
           },
-          "id": "event-001255"
+          "id": "event-001253"
         },
         {
-          "source_line": 1256,
+          "source_line": 1254,
           "timestamp": "2026-05-21T07:02:06.024665+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3398,10 +3360,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001256"
+          "id": "event-001254"
         },
         {
-          "source_line": 1257,
+          "source_line": 1255,
           "timestamp": "2026-05-21T07:02:06.527767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3418,10 +3380,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001257"
+          "id": "event-001255"
         },
         {
-          "source_line": 1258,
+          "source_line": 1256,
           "timestamp": "2026-05-21T07:02:06.731243+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3436,10 +3398,10 @@
             "tool": "Read",
             "elapsed_ms": 706
           },
-          "id": "event-001258"
+          "id": "event-001256"
         },
         {
-          "source_line": 1259,
+          "source_line": 1257,
           "timestamp": "2026-05-21T07:02:07.335189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3454,10 +3416,10 @@
             "tool": "Read",
             "elapsed_ms": 807
           },
-          "id": "event-001259"
+          "id": "event-001257"
         },
         {
-          "source_line": 1260,
+          "source_line": 1258,
           "timestamp": "2026-05-21T07:04:29.768337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3474,6 +3436,44 @@
               "text": "## Reviewer 2 — Round 24 验证报告（Framing、Writing、Format）\n\n**Overall Assessment**: 3.0 / 5 — Findings（维持，但论文改进显著）\n**Excitement**: 3.0 / 5（从 2.5 上调——§5 的 non-triviality 讨论有效回应了 novelty ceiling 质疑）\n**Soundness**: 3.5 / 5（维持——核心方法论未变，overclaim 已修正）\n\n---\n\n### 逐条验证\n\n**1. [RESOLVED] R20-N1 — 正文超 8 页**\nPDF 确认：§6 Conclusion 现在位于 Page 8 右栏底部，Page 9 顶部起为 Limitations。主文（Abstract 至 Conclusion）完整收入 8 页以内。无格式违规。\n\n**2. [RESOLVED] R13-N1 — DAF framing**\nAbstract 现在以 \"78.9% of non-tie routing labels arise from death asymmetry\" 为核心发现，DAF \"reaches 88-90%\" 作为跨模型一致性的补充指标，不再与 label fraction 竞争 headline 地位。§2.4 新增 \"Relationship between DAF and label fraction\" 段落（method.tex lines 66-67），清晰解释 DAF > label fraction 的原因（death episodes 的 score magnitude 放大效应）。§3.1（experiments.tex line 16）明确声明 \"This penalty-independent label fraction is the primary diagnostic metric\"。Label fraction 是主角，DAF 是配角——framing 一致。\n\n**3. [RESOLVED] R20-N3 — \"structurally determined\" overclaim**\n全文 grep 确认 \"structurally determined\" 已完全消除。剩余三处 \"structural\" 使用均合理：\n- Figure 2 caption: \"structural consequence of death dominance\"——有数学推导支撑（Δ_full ≈ δP + Δ_nd, r→1 as DAF→1），是数学事实而非因果 overclaim\n- §5 ¶1: \"structural mismatch\"——描述 task-type-level 信号与 step-level 特征的层级错配，用法恰当\n- §1 ¶3: \"fail structurally\"——描述 keyword heuristics 的系统性失败，非 routing 相关\n\n§3.2 cross-model 段（experiments.tex line 33）已改为 \"empirically dominated\"。\n\n**4. [RESOLVED] R14-W1 / R16-N1 — Non-triviality 讨论**\n§5 ¶2 \"Non-triviality of death dominance\"（discussion.tex lines 7-8）前置且充分。列举三个 a priori 不可预测的具体结果：(i) 72B 10× 扩展未消除 DAF（92.4%），(ii) Reflexion 自纠正使 DAF > 100%，(iii) 0.5B 模型因太弱而 death rate 反降（inverted-U）。还补充了 ≥12pp residual gaps 和 cross-model stability。最后一句 \"we characterize a ceiling, not a universal bound\" 语气恰当。\n\n**5. [RESOLVED] R13-W5 — Abstract 数字堆砌**\nAbstract（abstract.tex）现在为 concept-first 结构：\n- 开头：诊断方法论缺失的问题陈述（无数字）\n- 中段：框架简介 + 核心发现 \"78.9% of non-tie routing labels arise from death asymmetry\"\n- 后段：DAF 88-90% 跨模型一致性、boundary probes、~50-episode pilot\n关键数字约 3-4 个（78.9%, 88-90%, ~50-episode），相比之前的 10+ 大幅精简。可读性显著提升。\n\n**6. [PARTIALLY RESOLVED] R15-N2 — 跨环境 deterministic 定义不一致**\nmethod.tex §2.1 添加了脚注（line 9）：明确说明 \"deterministic\" 在三个环境中的不同含义（ScienceWorld: oracle simulator, MATH: code interpreter, ALFWorld: admissible-action enumeration）。Appendix L Table 14 caption 也有同样说明。\n**残留问题**：修改停留在脚注级别，未在正文中以段落或对照表形式显式讨论。对于要求 main-text acknowledgment 的审稿人来说可能不够。建议在 §3.4（Cross-Environment Boundary Probes）开头将脚注内容提升为 1-2 句正文。\n\n**7. [STILL_OPEN] R19-W2 — Conclusion 过于简短**\nconclusion.tex 仍为约 4 句话（~60 词）。对 long paper 而言偏短——通常期望 Conclusion 至少半栏（~150-200 词），涵盖 key findings summary + implications + future directions 的简要回顾。\n**缓解因素**：§5 Discussion 已承担了大部分 implications 讨论，且 Conclusion 紧凑是为了遵守 8 页限制。当前 Conclusion 覆盖了框架贡献、核心发现、跨模型验证、boundary probes、practical pilot——信息密度高。\n**建议**：如能再压缩 §4 Related Work（当前约 0.75 页，可精简至 0.5 页），释放空间给 Conclusion 增加 2-3 句关于 future directions 的内容。\n\n**8. [STILL_OPEN] R18-M1 — Algorithm 1 \"modalities\" 残留**\nmain.tex line 95: `\\REQUIRE Task instance $t$, modalities $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$`\n全文其他位置均使用 \"computation modes\"（§2.1, §2.2, §3.4 等）。仅 Algorithm 1 的 `\\REQUIRE` 行保留了 \"modalities\"。这是一个 trivial 但不一致的术语残留。\n**修复**：将 `modalities` 改为 `computation modes`。\n\n**9. [RESOLVED] R17-W1 — Pure-strategy upper bound**\nLimitations 新增 \"Pure-strategy upper bound\" 独立段落（main.tex lines 44-45），明确说明 DAF=90.4% 是 pure-strategy 比较下的 upper bound，mixed routing 下实际贡献可能更低。措辞准确，覆盖了 R1-Q5 和 R2 交叉回应中共同关注的问题。\n\n**10. [PARTIALLY RESOLVED] R16-W4 / R19-N1 — Contribution 独立价值**\nIntroduction（introduction.tex line 15）的三个 contributions 现在有更清晰的递进结构：\n- (1) 框架方法论（episode-level counterfactual + DAF + label fraction + ~50-episode pilot）\n- (2) 实证发现（78.9% label fraction, death asymmetry as single mechanism）\n- (3) 跨模型/跨环境验证（Llama, Gemma, MATH, ALFWorld）\n\n**改进之处**：Contribution (1) 现在包含 pilot 验证（\"validated 4/4 conditions\"），使框架贡献更具独立价值。§3.1 以 label fraction 为 primary metric 的声明也使 (2) 的定位更清晰。\n**残留问题**：(2) 和 (3) 本质上仍是 (1) 的应用产物，不是独立方法论贡献。这是论文类型决定的（诊断框架论文 + 单环境 case study），非 framing 问题。不影响评分。\n\n**11. [RESOLVED] R17-M1 — Orphan bib entries 和 Webb 年份**\n- references.bib 中 huang2022inner、selfcheckgpt-2023、wang2023voyager 已全部清理（grep 无匹配）。\n- Webb (2023): references.bib 中 webb-2023 条目标注 Canadian Journal of Economics, volume 56, number 3——CJE 第 56 卷第 3 期为 2023 年出版，year=2023 正确。Round 20 OpenAlex 匹配到的 2014 是 working paper 版本，published version 确实是 2023。无需修改。\n\n**12. [RESOLVED] R13-W6 / R19-M2 — Missing references (Ng 1999, Northcutt 2021)**\n- Ng et al. (1999) \"Policy Invariance Under Reward Transformations\" 已添加到 references.bib（line 419）并在 method.tex §2.4（line 64）引用，支撑 P-invariance 论述。引用位置恰当。\n- Northcutt et al. (2021) \"Confident Learning\" 已添加到 references.bib（line 403）并在 experiments.tex §3.6（line 114）与 Natarajan et al. (2013) 和 Li et al. (2020, DivideMix) 一起引用，增强了 noisy label learning 的讨论深度。三篇引用覆盖了 theoretical bounds → label estimation → practical mitigation 的完整脉络。\n\n---\n\n### 新发现问题\n\n**Minor:**\n\n**M1** [minor] §3.6 router training 4B 结果的 Bonferroni 语言需注意\nexperiments.tex line 114 现在声明 \"p < 0.001, Bonferroni-corrected across 8 comparisons\"。这回应了 R1-N2 的 multiple comparison 关切。但实际的 Bonferroni threshold 是 0.05/8 = 0.00625，而 p < 0.001 < 0.00625，所以结论正确。无需修改，仅确认逻辑无误。\n\n**M2** [minor] Table 2 caption 新增的 power caveat 值得肯定\nexperiments.tex line 103 新增 \"Per-task results are exploratory (n=20 episodes per task, power ≈ 50% for 20pp effects); aggregate conclusions do not depend on individual task significance.\" 这直接回应了 R1-W5。措辞恰当。\n\n**M3** [minor] Appendix E wild cluster bootstrap 的 caveat 改进显著\nmain.tex lines 225-248：Appendix E 标题改为 \"Cluster Bootstrap Sensitivity Analysis\"（而非 \"Robustness Check\"），开篇即声明 \"K=11 falls well below K≥20-30 recommended\"，CI 统一为 [0.73, 1.00]（非之前的反常收窄 [95.2%, 99.5%]），并明确 \"readers should rely on the non-clustered episode-level bootstrap as the primary inference\"。这完全回应了 R1-N1。\n\n**M4** [minor] §3.6 dose-response 语言修正\nFigure 3 caption（experiments.tex line 70）现在用 \"no statistically detectable improvement beyond N=3\"（而非 \"plateau\"），回应了 R1-W1。\n\n**M5** [minor] 新增引用 li2020dividemix (DivideMix)\nexperiments.tex line 114 新增 Li et al. (2020) DivideMix 引用。这与 Natarajan (2013) 和 Northcutt (2021) 形成了 noisy label learning 的完整引用链（理论 → 估计 → 实践），回应了 R2 Round 20 的 W5（noisy label learning 讨论不充分）。\n\n---\n\n### 改进总结\n\n论文在多轮审稿后有实质性改进：\n- **格式合规**：8 页限制已满足\n- **Framing 一致性**：label fraction 为 headline，DAF 为补充；overclaim 已消除\n- **统计诚实度**：wild cluster bootstrap 降级、Bonferroni 校正、per-task power 标注、dose-response 语言修正\n- **完整性**：pure-strategy upper bound、missing references、orphan bibs 均已处理\n- **Non-triviality**：§5 新增段落有效回应了 novelty 质疑\n\n**尚需微调**：\n- Algorithm 1 \"modalities\" → \"computation modes\"（trivial fix）\n- Conclusion 可适当扩展（如通过压缩 Related Work 释放空间）\n- 跨环境 \"deterministic\" 的讨论可从脚注提升到正文\n\n**评分维持 3.0 (Findings) 的理由**：论文的 presentation 和 statistical rigor 已达主会议水准，但核心 novelty concern 不变——death dominance 在 ScienceWorld 的 −100 penalty 下近乎数学必然，框架 \"发现\" 的仍是奖励结构的推论。non-triviality 讨论（intervention resistance, inverted-U）缓解但不消除这一根本限制。如果论文能在提交前增加一个 non-ScienceWorld 的深度分析（如 NetHack 的 death mechanism），Excitement 可升至 3.5，Overall 可达 Borderline Conference。",
               "reviewer_id": "2",
               "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-21T07:04:34.349724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4581
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-21T07:04:39.931025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images"
             }
           },
           "id": "event-001260"

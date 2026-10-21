@@ -7,25 +7,25 @@
       "messages": [
         {
           "source_line": 4861,
-          "timestamp": "2026-05-24T17:23:29.383622+00:00",
+          "timestamp": "2026-05-24T17:24:26.315501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307323 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11309 chars]"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11242 chars]"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 4348
+            "elapsed_ms": 6441
           },
           "id": "event-004861"
         },
         {
           "source_line": 4862,
-          "timestamp": "2026-05-24T17:23:31.995411+00:00",
+          "timestamp": "2026-05-24T17:24:28.982731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -45,7 +45,7 @@
         },
         {
           "source_line": 4863,
-          "timestamp": "2026-05-24T17:23:32.459020+00:00",
+          "timestamp": "2026-05-24T17:24:29.494990+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -57,13 +57,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 463
+            "elapsed_ms": 512
           },
           "id": "event-004863"
         },
         {
           "source_line": 4864,
-          "timestamp": "2026-05-24T17:23:44.435010+00:00",
+          "timestamp": "2026-05-24T17:24:40.895628+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -83,7 +83,7 @@
         },
         {
           "source_line": 4865,
-          "timestamp": "2026-05-24T17:23:44.934010+00:00",
+          "timestamp": "2026-05-24T17:24:41.500434+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -95,13 +95,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 498
+            "elapsed_ms": 604
           },
           "id": "event-004865"
         },
         {
           "source_line": 4866,
-          "timestamp": "2026-05-24T17:24:14.184958+00:00",
+          "timestamp": "2026-05-24T17:24:52.440734+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -115,34 +115,34 @@
             "tool": "Edit",
             "tool_args": {
               "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
-              "old_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend a three-step protocol: (1)~\\emph{Monitor}: run MH-DIF audits whenever ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}: apply mechanism-conditional responses---DIF $\\times$ web-overlap co-occurrence warrants removal; DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}: DIF flags warrant expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif}. Report DIF-corrected scores alongside raw scores (\\Cref{app:score_inflation}).",
-              "new_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}---run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}---DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}---expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif}. Report DIF-corrected alongside raw scores (\\Cref{app:score_inflation})."
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
+              "old_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$). DIF flags are near-independent of web-overlap labels; opposite base-vs-instruct patterns confirm signal beyond contamination.",
+              "new_string": "\\looseness=-2\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$); DIF flags are near-independent of web-overlap labels, with opposite base-vs-instruct patterns confirming signal beyond contamination."
             }
           },
           "id": "event-004866"
         },
         {
           "source_line": 4867,
-          "timestamp": "2026-05-24T17:24:15.150829+00:00",
+          "timestamp": "2026-05-24T17:24:52.917914+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex has been updated successfully."
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex has been updated successfully."
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Edit",
-            "elapsed_ms": 965
+            "elapsed_ms": 477
           },
           "id": "event-004867"
         },
         {
           "source_line": 4868,
-          "timestamp": "2026-05-24T17:24:19.873615+00:00",
+          "timestamp": "2026-05-24T17:24:57.688451+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -163,7 +163,7 @@
         },
         {
           "source_line": 4869,
-          "timestamp": "2026-05-24T17:24:26.315501+00:00",
+          "timestamp": "2026-05-24T17:25:01.650012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -175,13 +175,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 6441
+            "elapsed_ms": 3961
           },
           "id": "event-004869"
         },
         {
           "source_line": 4870,
-          "timestamp": "2026-05-24T17:24:28.982731+00:00",
+          "timestamp": "2026-05-24T17:25:04.774558+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -201,7 +201,7 @@
         },
         {
           "source_line": 4871,
-          "timestamp": "2026-05-24T17:24:29.494990+00:00",
+          "timestamp": "2026-05-24T17:25:05.266393+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -213,13 +213,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 512
+            "elapsed_ms": 491
           },
           "id": "event-004871"
         },
         {
           "source_line": 4872,
-          "timestamp": "2026-05-24T17:24:40.895628+00:00",
+          "timestamp": "2026-05-24T17:25:13.405948+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -239,7 +239,7 @@
         },
         {
           "source_line": 4873,
-          "timestamp": "2026-05-24T17:24:41.500434+00:00",
+          "timestamp": "2026-05-24T17:25:14.110184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -251,13 +251,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 604
+            "elapsed_ms": 704
           },
           "id": "event-004873"
         },
         {
           "source_line": 4874,
-          "timestamp": "2026-05-24T17:24:52.440734+00:00",
+          "timestamp": "2026-05-24T17:25:35.190965+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -272,15 +272,15 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$). DIF flags are near-independent of web-overlap labels; opposite base-vs-instruct patterns confirm signal beyond contamination.",
-              "new_string": "\\looseness=-2\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$); DIF flags are near-independent of web-overlap labels, with opposite base-vs-instruct patterns confirming signal beyond contamination."
+              "old_string": "\\looseness=-2\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$); DIF flags are near-independent of web-overlap labels, with opposite base-vs-instruct patterns confirming signal beyond contamination.",
+              "new_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); opposite base-vs-instruct DIF patterns and near-independence from web-overlap labels confirm signal beyond contamination."
             }
           },
           "id": "event-004874"
         },
         {
           "source_line": 4875,
-          "timestamp": "2026-05-24T17:24:52.917914+00:00",
+          "timestamp": "2026-05-24T17:25:35.657931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -292,13 +292,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Edit",
-            "elapsed_ms": 477
+            "elapsed_ms": 466
           },
           "id": "event-004875"
         },
         {
           "source_line": 4876,
-          "timestamp": "2026-05-24T17:24:57.688451+00:00",
+          "timestamp": "2026-05-24T17:25:38.522090+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -319,25 +319,25 @@
         },
         {
           "source_line": 4877,
-          "timestamp": "2026-05-24T17:25:01.650012+00:00",
+          "timestamp": "2026-05-24T17:25:45.304261+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11242 chars]"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11176 chars]"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 3961
+            "elapsed_ms": 6782
           },
           "id": "event-004877"
         },
         {
           "source_line": 4878,
-          "timestamp": "2026-05-24T17:25:04.774558+00:00",
+          "timestamp": "2026-05-24T17:25:51.686327+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -357,7 +357,7 @@
         },
         {
           "source_line": 4879,
-          "timestamp": "2026-05-24T17:25:05.266393+00:00",
+          "timestamp": "2026-05-24T17:25:52.174359+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -369,13 +369,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 491
+            "elapsed_ms": 488
           },
           "id": "event-004879"
         },
         {
           "source_line": 4880,
-          "timestamp": "2026-05-24T17:25:13.405948+00:00",
+          "timestamp": "2026-05-24T17:25:52.174849+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -395,7 +395,7 @@
         },
         {
           "source_line": 4881,
-          "timestamp": "2026-05-24T17:25:14.110184+00:00",
+          "timestamp": "2026-05-24T17:25:52.728821+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -407,13 +407,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 704
+            "elapsed_ms": 553
           },
           "id": "event-004881"
         },
         {
           "source_line": 4882,
-          "timestamp": "2026-05-24T17:25:35.190965+00:00",
+          "timestamp": "2026-05-24T17:26:31.132619+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -428,15 +428,15 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "\\looseness=-2\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain preserved ($\\rho \\geq 0.994$); DIF flags are near-independent of web-overlap labels, with opposite base-vs-instruct patterns confirming signal beyond contamination.",
-              "new_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); opposite base-vs-instruct DIF patterns and near-independence from web-overlap labels confirm signal beyond contamination."
+              "old_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); opposite base-vs-instruct DIF patterns and near-independence from web-overlap labels confirm signal beyond contamination.",
+              "new_string": "\\looseness=-1\nTemporal DIF affects 17.9--31.3\\% of items across six benchmarks while preserving rankings ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination."
             }
           },
           "id": "event-004882"
         },
         {
           "source_line": 4883,
-          "timestamp": "2026-05-24T17:25:35.657931+00:00",
+          "timestamp": "2026-05-24T17:26:31.639392+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -448,13 +448,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Edit",
-            "elapsed_ms": 466
+            "elapsed_ms": 506
           },
           "id": "event-004883"
         },
         {
           "source_line": 4884,
-          "timestamp": "2026-05-24T17:25:38.522090+00:00",
+          "timestamp": "2026-05-24T17:26:34.707813+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -475,63 +475,25 @@
         },
         {
           "source_line": 4885,
-          "timestamp": "2026-05-24T17:25:45.304261+00:00",
+          "timestamp": "2026-05-24T17:26:38.513764+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11176 chars]"
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11242 chars]"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 6782
+            "elapsed_ms": 3805
           },
           "id": "event-004885"
         },
         {
           "source_line": 4886,
-          "timestamp": "2026-05-24T17:25:51.686327+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-004886"
-        },
-        {
-          "source_line": 4887,
-          "timestamp": "2026-05-24T17:25:52.174359+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "elapsed_ms": 488
-          },
-          "id": "event-004887"
-        },
-        {
-          "source_line": 4888,
-          "timestamp": "2026-05-24T17:25:52.174849+00:00",
+          "timestamp": "2026-05-24T17:26:41.526637+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -547,11 +509,11 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-004888"
+          "id": "event-004886"
         },
         {
-          "source_line": 4889,
-          "timestamp": "2026-05-24T17:25:52.728821+00:00",
+          "source_line": 4887,
+          "timestamp": "2026-05-24T17:26:42.155342+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -563,13 +525,54 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Read",
-            "elapsed_ms": 553
+            "elapsed_ms": 628
+          },
+          "id": "event-004887"
+        },
+        {
+          "source_line": 4888,
+          "timestamp": "2026-05-24T17:27:07.096040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
+              "old_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}---run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}---DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}---expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif}. Report DIF-corrected alongside raw scores (\\Cref{app:score_inflation}).",
+              "new_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}---run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}---DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}---expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif} (\\Cref{app:score_inflation})."
+            }
+          },
+          "id": "event-004888"
+        },
+        {
+          "source_line": 4889,
+          "timestamp": "2026-05-24T17:27:07.573389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 477
           },
           "id": "event-004889"
         },
         {
           "source_line": 4890,
-          "timestamp": "2026-05-24T17:26:31.132619+00:00",
+          "timestamp": "2026-05-24T17:27:13.871041+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -584,15 +587,15 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); opposite base-vs-instruct DIF patterns and near-independence from web-overlap labels confirm signal beyond contamination.",
-              "new_string": "\\looseness=-1\nTemporal DIF affects 17.9--31.3\\% of items across six benchmarks while preserving rankings ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination."
+              "old_string": "\\looseness=-1\nTemporal DIF affects 17.9--31.3\\% of items across six benchmarks while preserving rankings ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination.",
+              "new_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination."
             }
           },
           "id": "event-004890"
         },
         {
           "source_line": 4891,
-          "timestamp": "2026-05-24T17:26:31.639392+00:00",
+          "timestamp": "2026-05-24T17:27:13.972021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -604,13 +607,13 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "tool": "Edit",
-            "elapsed_ms": 506
+            "elapsed_ms": 100
           },
           "id": "event-004891"
         },
         {
           "source_line": 4892,
-          "timestamp": "2026-05-24T17:26:34.707813+00:00",
+          "timestamp": "2026-05-24T17:27:17.156119+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [
@@ -631,165 +634,6 @@
         },
         {
           "source_line": 4893,
-          "timestamp": "2026-05-24T17:26:38.513764+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"LaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[16] [17 <../figures/paper/fig_3_within_subject_matching.pdf> <../figures/paper\\\\n/fig_4_downstream_impact.pdf>]\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To com-pare simple-mean and weighted-mean\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3780) in paragraph at lines 313--314\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) DEFF es-ti-ma-tors, we sim-u-late four family-\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (19.13397pt too wide) in paragraph at lines 345--354\\\\n [][] \\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (11.42276pt too wide) in paragraph at lines 366--376\\\\n [][] \\\\n []\\\\n\\\\n[18 <../figures/paper/fig_5_gsm1k_dif_correlation.pdf>]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4\\\\n12.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 412--413\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [19] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 654CBCA772A74438F3DBA870250DF477;6752.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 18784 strings out of 469438\\\\n 307320 string characters out of 5468411\\\\n 805386 words of memory out of 5000000\\\\n 46501 multiletter control sequences out of 15000+6000\n…[truncated 11242 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 3805
-          },
-          "id": "event-004893"
-        },
-        {
-          "source_line": 4894,
-          "timestamp": "2026-05-24T17:26:41.526637+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-004894"
-        },
-        {
-          "source_line": 4895,
-          "timestamp": "2026-05-24T17:26:42.155342+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Read",
-            "elapsed_ms": 628
-          },
-          "id": "event-004895"
-        },
-        {
-          "source_line": 4896,
-          "timestamp": "2026-05-24T17:27:07.096040+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex",
-              "old_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}---run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}---DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}---expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif}. Report DIF-corrected alongside raw scores (\\Cref{app:score_inflation}).",
-              "new_string": "\\looseness=-2\nItem-level properties do not predict DIF susceptibility (AUROC $= 0.60$; \\Cref{app:predictive}), precluding pre-screening. We recommend: (1)~\\emph{Monitor}---run MH-DIF audits when ${\\geq}$500 models accumulate, triggering review when C\\% exceeds $20\\times$ the random-split baseline; (2)~\\emph{Triage}---DIF $\\times$ web-overlap co-occurrence warrants removal, DIF on web-clean items warrants monitoring; (3)~\\emph{Correct}---expert review, not automatic removal~\\citep{camilli1994methods,penfield2007dif} (\\Cref{app:score_inflation})."
-            }
-          },
-          "id": "event-004896"
-        },
-        {
-          "source_line": 4897,
-          "timestamp": "2026-05-24T17:27:07.573389+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 477
-          },
-          "id": "event-004897"
-        },
-        {
-          "source_line": 4898,
-          "timestamp": "2026-05-24T17:27:13.871041+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "\\looseness=-1\nTemporal DIF affects 17.9--31.3\\% of items across six benchmarks while preserving rankings ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination.",
-              "new_string": "\\looseness=-1\nAcross six benchmarks, 17.9--31.3\\% of items exhibit temporal DIF while rankings remain stable ($\\rho \\geq 0.994$); base-vs-instruct reversals and web-overlap independence confirm signal beyond contamination."
-            }
-          },
-          "id": "event-004898"
-        },
-        {
-          "source_line": 4899,
-          "timestamp": "2026-05-24T17:27:13.972021+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-004899"
-        },
-        {
-          "source_line": 4900,
-          "timestamp": "2026-05-24T17:27:17.156119+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "irt_equated_bench_regen",
-              "preview": "True"
-            }
-          },
-          "id": "event-004900"
-        },
-        {
-          "source_line": 4901,
           "timestamp": "2026-05-24T17:27:23.356212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -804,10 +648,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6200
           },
-          "id": "event-004901"
+          "id": "event-004893"
         },
         {
-          "source_line": 4902,
+          "source_line": 4894,
           "timestamp": "2026-05-24T17:27:28.434671+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -824,10 +668,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-004902"
+          "id": "event-004894"
         },
         {
-          "source_line": 4903,
+          "source_line": 4895,
           "timestamp": "2026-05-24T17:27:28.936005+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -844,10 +688,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-004903"
+          "id": "event-004895"
         },
         {
-          "source_line": 4904,
+          "source_line": 4896,
           "timestamp": "2026-05-24T17:27:28.939732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -862,10 +706,10 @@
             "tool": "Read",
             "elapsed_ms": 505
           },
-          "id": "event-004904"
+          "id": "event-004896"
         },
         {
-          "source_line": 4905,
+          "source_line": 4897,
           "timestamp": "2026-05-24T17:27:29.493313+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -880,10 +724,10 @@
             "tool": "Read",
             "elapsed_ms": 557
           },
-          "id": "event-004905"
+          "id": "event-004897"
         },
         {
-          "source_line": 4906,
+          "source_line": 4898,
           "timestamp": "2026-05-24T17:27:51.259261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -901,10 +745,10 @@
               "file_name": "page8_fixed.png"
             }
           },
-          "id": "event-004906"
+          "id": "event-004898"
         },
         {
-          "source_line": 4907,
+          "source_line": 4899,
           "timestamp": "2026-05-24T17:27:55.869447+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -919,10 +763,10 @@
             "tool": "mcp__agent-ml-research__feishu_upload_file",
             "elapsed_ms": 4610
           },
-          "id": "event-004907"
+          "id": "event-004899"
         },
         {
-          "source_line": 4908,
+          "source_line": 4900,
           "timestamp": "2026-05-24T17:28:03.651289+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -939,10 +783,10 @@
               "text": "已修复。\n\n**问题**：`\\enlargethispage{3\\baselineskip}` + 全局 `\\addtolength{\\textheight}{\\baselineskip}` 把第8页文字区域向下扩展了4行，超过了页码线。\n\n**修复方案**：\n1. 移除全局 `\\addtolength{\\textheight}{\\baselineskip}`\n2. 移除 discussion.tex 的 `\\enlargethispage`\n3. 压缩 Discussion 文字（合并段落、精简措辞）让 Discussion + Conclusion 在标准页面高度内放下\n\n现在第8页文字完全在页码线以上，Conclusion 完整在第8页，Limitations 从第9页开始（不算页数限制）。"
             }
           },
-          "id": "event-004908"
+          "id": "event-004900"
         },
         {
-          "source_line": 4909,
+          "source_line": 4901,
           "timestamp": "2026-05-24T17:28:04.231898+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -957,10 +801,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 580
           },
-          "id": "event-004909"
+          "id": "event-004901"
         },
         {
-          "source_line": 4910,
+          "source_line": 4902,
           "timestamp": "2026-05-24T17:28:08.589092+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -973,7 +817,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-004910"
+          "id": "event-004902"
         }
       ]
     },
@@ -981,7 +825,7 @@
       "number": 204,
       "messages": [
         {
-          "source_line": 4911,
+          "source_line": 4903,
           "timestamp": "2026-05-24T17:37:20.761960+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -995,10 +839,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-004911"
+          "id": "event-004903"
         },
         {
-          "source_line": 4912,
+          "source_line": 4904,
           "timestamp": "2026-05-24T17:37:42.721246+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1015,10 +859,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
             }
           },
-          "id": "event-004912"
+          "id": "event-004904"
         },
         {
-          "source_line": 4913,
+          "source_line": 4905,
           "timestamp": "2026-05-24T17:37:43.215677+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1033,10 +877,10 @@
             "tool": "Read",
             "elapsed_ms": 494
           },
-          "id": "event-004913"
+          "id": "event-004905"
         },
         {
-          "source_line": 4914,
+          "source_line": 4906,
           "timestamp": "2026-05-24T17:37:43.517292+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1054,10 +898,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper"
             }
           },
-          "id": "event-004914"
+          "id": "event-004906"
         },
         {
-          "source_line": 4915,
+          "source_line": 4907,
           "timestamp": "2026-05-24T17:37:43.996192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1072,10 +916,10 @@
             "tool": "Glob",
             "elapsed_ms": 478
           },
-          "id": "event-004915"
+          "id": "event-004907"
         },
         {
-          "source_line": 4916,
+          "source_line": 4908,
           "timestamp": "2026-05-24T17:37:44.046767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1093,10 +937,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper"
             }
           },
-          "id": "event-004916"
+          "id": "event-004908"
         },
         {
-          "source_line": 4917,
+          "source_line": 4909,
           "timestamp": "2026-05-24T17:37:44.197915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1111,10 +955,10 @@
             "tool": "Glob",
             "elapsed_ms": 151
           },
-          "id": "event-004917"
+          "id": "event-004909"
         },
         {
-          "source_line": 4918,
+          "source_line": 4910,
           "timestamp": "2026-05-24T17:37:50.898693+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1131,10 +975,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
             }
           },
-          "id": "event-004918"
+          "id": "event-004910"
         },
         {
-          "source_line": 4919,
+          "source_line": 4911,
           "timestamp": "2026-05-24T17:37:51.862158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1149,10 +993,10 @@
             "tool": "Read",
             "elapsed_ms": 963
           },
-          "id": "event-004919"
+          "id": "event-004911"
         },
         {
-          "source_line": 4920,
+          "source_line": 4912,
           "timestamp": "2026-05-24T17:37:51.862491+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1169,10 +1013,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex"
             }
           },
-          "id": "event-004920"
+          "id": "event-004912"
         },
         {
-          "source_line": 4921,
+          "source_line": 4913,
           "timestamp": "2026-05-24T17:37:51.863040+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1187,10 +1031,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-004921"
+          "id": "event-004913"
         },
         {
-          "source_line": 4922,
+          "source_line": 4914,
           "timestamp": "2026-05-24T17:38:48.416132+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1209,10 +1053,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-004922"
+          "id": "event-004914"
         },
         {
-          "source_line": 4923,
+          "source_line": 4915,
           "timestamp": "2026-05-24T17:38:51.044883+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1229,10 +1073,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
             }
           },
-          "id": "event-004923"
+          "id": "event-004915"
         },
         {
-          "source_line": 4924,
+          "source_line": 4916,
           "timestamp": "2026-05-24T17:38:51.977178+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1247,10 +1091,10 @@
             "tool": "Read",
             "elapsed_ms": 932
           },
-          "id": "event-004924"
+          "id": "event-004916"
         },
         {
-          "source_line": 4925,
+          "source_line": 4917,
           "timestamp": "2026-05-24T17:39:06.747946+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1268,10 +1112,10 @@
               "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Psychometric Methods for LLM Evaluation.}\n\\looseness=-1\nThe Mantel-Haenszel procedure \\citep{holland1988mh} remains the most widely used DIF detector in educational testing due to its simplicity and well-characterized statistical properties, operating nonparametrically without requiring an explicit IRT model. DIF analysis is a specific instance of measurement invariance testing \\citep{meredith1993invariance}, which examines whether an instrument functions equivalently across groups. IRT adoption in LLM evaluation has accelerated since \\citet{lalor2019irt} introduced it to NLP: recent work calibrates test sets for discriminability, item selection, and adaptive evaluation. The closest concurrent work is Growing Pains \\citep{habba2026growingpains}, which uses parametric IRT (2PL/3PL fixed-parameter calibration) to equate scores across temporal cohorts. MH-DIF is nonparametric and robust to model misspecification---an advantage given poor 2PL fit for MMLU (RMSEA $> 0.08$; \\Cref{app:power_sensitivity}). Growing Pains prescribes how to equate scores after instability is detected; our work diagnoses \\emph{which} items exhibit instability and quantifies severity via ETS classification, providing pre-screened anchor candidates for downstream equating. Their anchor-item selection can directly consume our stable-item set; our finding that 31\\% of items exhibit temporal DIF identifies which items should \\emph{not} serve as anchors. To our knowledge, no prior work applies DIF to benchmark temporal comparability.\n\n\\paragraph{Contamination Detection.}\n\\looseness=-1\nA growing family of methods detects benchmark contamination through model behavior or training-data analysis. Membership inference approaches use token-level log-likelihood statistics \\citep{shi2024mink} or statistical anomalies \\citep{dekoninck2024constat} to flag items likely seen during training. A standard validation practice is to compare detector output against web-overlap labels \\citep{li2024contamination}, which classify items based on verbatim matches in publicly accessible corpora. Such labels measure \\emph{global exposure}---whether an item exists in training data---rather than \\emph{differential item functioning}: whether an item behaves differently across model cohorts. This global-vs-differential distinction motivates our comparison with web-overlap labels (\\Cref{sec:groundtruth}). \\citet{wang2026fragility} show that existing contamination detectors are fragile under reinforcement learning, further motivating behavioral approaches grounded in psychometric theory.\n\n\\paragraph{Benchmark Quality and Design.}\n\\looseness=-1\nMeta-evaluation of static benchmark quality~\\citep{zhu2026bhi} assesses properties at a single snapshot; our temporal DIF analysis diagnoses \\emph{when} measurement properties shift. Work on LLM memorization \\citep{carlini2022quantifying} establishes that memorization depends on data frequency and model scale, reinforcing the distinction between global exposure and differential behavior. MMLU-CF~\\citep{zhao2025mmlucf} reconstructs contamination-free items without replacement; DIF monitoring identifies which existing items remain measurement-invariant. Dynamic benchmarks~\\citep{kiela2021dynabench} mitigate contamination by construction but lack psychometric equating. Broader surveys~\\citep{chang2024survey} identify benchmark saturation as a systemic challenge that DIF analysis directly addresses.\n"
             }
           },
-          "id": "event-004925"
+          "id": "event-004917"
         },
         {
-          "source_line": 4926,
+          "source_line": 4918,
           "timestamp": "2026-05-24T17:39:07.230304+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1286,10 +1130,10 @@
             "tool": "Write",
             "elapsed_ms": 482
           },
-          "id": "event-004926"
+          "id": "event-004918"
         },
         {
-          "source_line": 4927,
+          "source_line": 4919,
           "timestamp": "2026-05-24T17:39:17.828516+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1304,10 +1148,10 @@
             "tool": "Agent",
             "elapsed_ms": 29412
           },
-          "id": "event-004927"
+          "id": "event-004919"
         },
         {
-          "source_line": 4928,
+          "source_line": 4920,
           "timestamp": "2026-05-24T17:41:14.211879+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1324,10 +1168,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
             }
           },
-          "id": "event-004928"
+          "id": "event-004920"
         },
         {
-          "source_line": 4929,
+          "source_line": 4921,
           "timestamp": "2026-05-24T17:41:14.685563+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1342,10 +1186,10 @@
             "tool": "Read",
             "elapsed_ms": 473
           },
-          "id": "event-004929"
+          "id": "event-004921"
         },
         {
-          "source_line": 4930,
+          "source_line": 4922,
           "timestamp": "2026-05-24T17:41:14.686095+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1362,10 +1206,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
             }
           },
-          "id": "event-004930"
+          "id": "event-004922"
         },
         {
-          "source_line": 4931,
+          "source_line": 4923,
           "timestamp": "2026-05-24T17:41:14.686386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1380,10 +1224,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-004931"
+          "id": "event-004923"
         },
         {
-          "source_line": 4932,
+          "source_line": 4924,
           "timestamp": "2026-05-24T17:41:27.780310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1404,10 +1248,10 @@
               "-C": "3"
             }
           },
-          "id": "event-004932"
+          "id": "event-004924"
         },
         {
-          "source_line": 4933,
+          "source_line": 4925,
           "timestamp": "2026-05-24T17:41:28.261962+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1422,10 +1266,10 @@
             "tool": "Grep",
             "elapsed_ms": 481
           },
-          "id": "event-004933"
+          "id": "event-004925"
         },
         {
-          "source_line": 4934,
+          "source_line": 4926,
           "timestamp": "2026-05-24T17:41:31.082991+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1444,10 +1288,10 @@
               "limit": "20"
             }
           },
-          "id": "event-004934"
+          "id": "event-004926"
         },
         {
-          "source_line": 4935,
+          "source_line": 4927,
           "timestamp": "2026-05-24T17:41:31.730265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1462,10 +1306,10 @@
             "tool": "Read",
             "elapsed_ms": 647
           },
-          "id": "event-004935"
+          "id": "event-004927"
         },
         {
-          "source_line": 4936,
+          "source_line": 4928,
           "timestamp": "2026-05-24T17:41:31.731002+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1484,10 +1328,10 @@
               "limit": "30"
             }
           },
-          "id": "event-004936"
+          "id": "event-004928"
         },
         {
-          "source_line": 4937,
+          "source_line": 4929,
           "timestamp": "2026-05-24T17:41:31.881982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1502,10 +1346,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-004937"
+          "id": "event-004929"
         },
         {
-          "source_line": 4938,
+          "source_line": 4930,
           "timestamp": "2026-05-24T17:42:07.844344+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1525,10 +1369,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004938"
+          "id": "event-004930"
         },
         {
-          "source_line": 4939,
+          "source_line": 4931,
           "timestamp": "2026-05-24T17:42:08.320771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1543,10 +1387,10 @@
             "tool": "Grep",
             "elapsed_ms": 476
           },
-          "id": "event-004939"
+          "id": "event-004931"
         },
         {
-          "source_line": 4940,
+          "source_line": 4932,
           "timestamp": "2026-05-24T17:42:08.321376+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1563,10 +1407,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
             }
           },
-          "id": "event-004940"
+          "id": "event-004932"
         },
         {
-          "source_line": 4941,
+          "source_line": 4933,
           "timestamp": "2026-05-24T17:42:08.800217+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1581,10 +1425,10 @@
             "tool": "Read",
             "elapsed_ms": 478
           },
-          "id": "event-004941"
+          "id": "event-004933"
         },
         {
-          "source_line": 4942,
+          "source_line": 4934,
           "timestamp": "2026-05-24T17:42:48.755360+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1604,10 +1448,10 @@
               "new_string": "Web-overlap labels measure \\emph{global exposure}, while DIF measures \\emph{differential functioning}---complementary diagnostic dimensions (\\Cref{fig:global_vs_differential}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_1_global_vs_differential.pdf}\n\\caption{Global vs.\\ differential contamination via Item Characteristic Curves (ICCs). \\textbf{Left}: global contamination produces no DIF; both cohorts encounter the item, and their ICCs overlap. \\textbf{Right}: differential contamination produces DIF; the focal cohort's ICC shifts due to disproportionate exposure. The enrichment ratio of $\\approx 1.0$ between DIF flags and web-overlap labels is expected because most items fall into the left category.}\n\\label{fig:global_vs_differential}\n\\end{figure}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_2_dose_response.pdf}\n\\caption{Semi-synthetic dose-response for DIF detection on MMLU. $\\Delta\\mathrm{TPR}$ ($= \\mathrm{TPR}_{\\text{injected}} - \\mathrm{TPR}_{\\text{baseline}}$) increases monotonically with exploitation rate $p$ under binary injection (a calibration upper bound; \\Cref{sec:injection}); MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\\Delta\\mathrm{TPR} \\approx 0$.}\n\\label{fig:dose_response}\n\\end{figure}"
             }
           },
-          "id": "event-004942"
+          "id": "event-004934"
         },
         {
-          "source_line": 4943,
+          "source_line": 4935,
           "timestamp": "2026-05-24T17:42:49.221887+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1622,10 +1466,10 @@
             "tool": "Edit",
             "elapsed_ms": 466
           },
-          "id": "event-004943"
+          "id": "event-004935"
         },
         {
-          "source_line": 4944,
+          "source_line": 4936,
           "timestamp": "2026-05-24T17:43:04.228484+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1645,10 +1489,10 @@
               "new_string": "Cross-subject matching achieves $\\Delta\\mathrm{FPR} = 0.000$ across all five MMLU subjects (4/5 with $\\Delta\\mathrm{TPR} > 0.3$ at $p = 0.5$; \\Cref{sec:injection}), while within-subject matching inflates FPR by ${+}0.186$ (\\Cref{fig:matching}). The $\\Delta\\mathrm{FPR} \\approx 0$ guarantee holds for $k \\leq 5$ contaminated subjects ($\\Delta\\mathrm{FPR} < 0.007$); at $k{=}20$, $\\Delta\\mathrm{FPR}$ rises to $0.167$---still insufficient to account for the observed 31\\% C\\% (\\Cref{tab:multi_subject_injection}). Difficulty-dependent injection yields $\\Delta\\mathrm{TPR} \\approx 0.41$ at $p = 0.5$ (vs.\\ $0.51$ uniform), bounding overestimation at ${\\sim}$20\\% (\\Cref{app:method_details}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_3_within_subject_matching.pdf}\n\\caption{Cross-subject vs.\\ within-subject matching for semi-synthetic DIF detection. Cross-subject matching eliminates FPR inflation ($\\Delta\\mathrm{FPR} = 0.000$) while preserving detection power ($\\Delta\\mathrm{TPR} > 0.3$ for 4/5 subjects at $p = 0.5$). Within-subject matching inflates FPR by ${+}0.186$ on average.}\n\\label{fig:matching}\n\\end{figure}"
             }
           },
-          "id": "event-004944"
+          "id": "event-004936"
         },
         {
-          "source_line": 4945,
+          "source_line": 4937,
           "timestamp": "2026-05-24T17:43:04.280357+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1663,10 +1507,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-004945"
+          "id": "event-004937"
         },
         {
-          "source_line": 4946,
+          "source_line": 4938,
           "timestamp": "2026-05-24T17:43:18.146725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1686,10 +1530,10 @@
               "new_string": "Stable-item ranks are preserved across all six benchmarks (mean $\\rho = 0.997$, mean $\\tau = 0.962$; flip rate $\\leq 2.9\\%$; \\Cref{tab:cross_benchmark}). DIF-flagged items concentrate discriminative signal: DIF-ordered removal degrades $\\rho$ faster than random removal across all six benchmarks (\\Cref{fig:rho_degradation}; $z = -8$ to $-49$; \\Cref{fig:downstream}). Removing C-flagged items disproportionately disadvantages 2024 models (cohort gap $= 96.2$ positions, $40\\times$ random; $p < 0.001$); DIF-corrected scoring shifts accuracy by ${+}2.12$\\,pp on average (\\Cref{app:score_inflation,app:rank_reversal}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_4_downstream_impact.pdf}\n\\caption{Downstream impact of DIF-based item filtering on model rankings. Despite $\\rho \\approx 0.997$ overall, individual model families show systematic rank shifts when evaluated on stable items (non-C-flagged) only.}\n\\label{fig:downstream}\n\\end{figure}"
             }
           },
-          "id": "event-004946"
+          "id": "event-004938"
         },
         {
-          "source_line": 4947,
+          "source_line": 4939,
           "timestamp": "2026-05-24T17:43:18.147437+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1704,10 +1548,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004947"
+          "id": "event-004939"
         },
         {
-          "source_line": 4948,
+          "source_line": 4940,
           "timestamp": "2026-05-24T17:43:26.068609+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1727,10 +1571,10 @@
               "new_string": ""
             }
           },
-          "id": "event-004948"
+          "id": "event-004940"
         },
         {
-          "source_line": 4949,
+          "source_line": 4941,
           "timestamp": "2026-05-24T17:43:26.069404+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1745,10 +1589,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004949"
+          "id": "event-004941"
         },
         {
-          "source_line": 4950,
+          "source_line": 4942,
           "timestamp": "2026-05-24T17:43:32.350237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1768,10 +1612,10 @@
               "new_string": ""
             }
           },
-          "id": "event-004950"
+          "id": "event-004942"
         },
         {
-          "source_line": 4951,
+          "source_line": 4943,
           "timestamp": "2026-05-24T17:43:32.451326+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1786,10 +1630,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-004951"
+          "id": "event-004943"
         },
         {
-          "source_line": 4952,
+          "source_line": 4944,
           "timestamp": "2026-05-24T17:43:40.142029+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1809,10 +1653,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004952"
+          "id": "event-004944"
         },
         {
-          "source_line": 4953,
+          "source_line": 4945,
           "timestamp": "2026-05-24T17:43:40.614983+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1827,10 +1671,10 @@
             "tool": "Grep",
             "elapsed_ms": 472
           },
-          "id": "event-004953"
+          "id": "event-004945"
         },
         {
-          "source_line": 4954,
+          "source_line": 4946,
           "timestamp": "2026-05-24T17:43:43.883800+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1849,10 +1693,10 @@
               "limit": "20"
             }
           },
-          "id": "event-004954"
+          "id": "event-004946"
         },
         {
-          "source_line": 4955,
+          "source_line": 4947,
           "timestamp": "2026-05-24T17:43:44.338222+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1867,10 +1711,10 @@
             "tool": "Read",
             "elapsed_ms": 454
           },
-          "id": "event-004955"
+          "id": "event-004947"
         },
         {
-          "source_line": 4956,
+          "source_line": 4948,
           "timestamp": "2026-05-24T17:43:47.676846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1889,10 +1733,10 @@
               "limit": "15"
             }
           },
-          "id": "event-004956"
+          "id": "event-004948"
         },
         {
-          "source_line": 4957,
+          "source_line": 4949,
           "timestamp": "2026-05-24T17:43:47.727464+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1907,10 +1751,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004957"
+          "id": "event-004949"
         },
         {
-          "source_line": 4958,
+          "source_line": 4950,
           "timestamp": "2026-05-24T17:43:52.282470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1928,10 +1772,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-004958"
+          "id": "event-004950"
         },
         {
-          "source_line": 4959,
+          "source_line": 4951,
           "timestamp": "2026-05-24T17:43:57.067482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1946,10 +1790,10 @@
             "tool": "Bash",
             "elapsed_ms": 4785
           },
-          "id": "event-004959"
+          "id": "event-004951"
         },
         {
-          "source_line": 4960,
+          "source_line": 4952,
           "timestamp": "2026-05-24T17:44:04.210958+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1967,10 +1811,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-004960"
+          "id": "event-004952"
         },
         {
-          "source_line": 4961,
+          "source_line": 4953,
           "timestamp": "2026-05-24T17:44:04.697453+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1985,10 +1829,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 486
           },
-          "id": "event-004961"
+          "id": "event-004953"
         },
         {
-          "source_line": 4962,
+          "source_line": 4954,
           "timestamp": "2026-05-24T17:44:07.263952+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2005,10 +1849,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdfinfo', 'main.pdf'], capture_output=True, text=True)\nprint(result.stdout)\n\" 2>/dev/null || pdfinfo /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.pdf 2>/dev/null | head -5"
             }
           },
-          "id": "event-004962"
+          "id": "event-004954"
         },
         {
-          "source_line": 4963,
+          "source_line": 4955,
           "timestamp": "2026-05-24T17:44:07.732606+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2023,10 +1867,10 @@
             "tool": "Bash",
             "elapsed_ms": 468
           },
-          "id": "event-004963"
+          "id": "event-004955"
         },
         {
-          "source_line": 4964,
+          "source_line": 4956,
           "timestamp": "2026-05-24T17:44:11.809226+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2043,10 +1887,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && grep -n \"newlabel{sec:\" main.aux | head -20"
             }
           },
-          "id": "event-004964"
+          "id": "event-004956"
         },
         {
-          "source_line": 4965,
+          "source_line": 4957,
           "timestamp": "2026-05-24T17:44:11.860064+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2061,10 +1905,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-004965"
+          "id": "event-004957"
         },
         {
-          "source_line": 4966,
+          "source_line": 4958,
           "timestamp": "2026-05-24T17:44:15.534812+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2081,10 +1925,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && grep -n \"newlabel{sec:\\|newlabel{fig:\\|newlabel{tab:\" main.aux | grep -v \"@cref\""
             }
           },
-          "id": "event-004966"
+          "id": "event-004958"
         },
         {
-          "source_line": 4967,
+          "source_line": 4959,
           "timestamp": "2026-05-24T17:44:15.585693+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2099,10 +1943,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-004967"
+          "id": "event-004959"
         },
         {
-          "source_line": 4968,
+          "source_line": 4960,
           "timestamp": "2026-05-24T17:44:34.243856+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2120,10 +1964,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-004968"
+          "id": "event-004960"
         },
         {
-          "source_line": 4969,
+          "source_line": 4961,
           "timestamp": "2026-05-24T17:44:34.718165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2138,10 +1982,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 474
           },
-          "id": "event-004969"
+          "id": "event-004961"
         },
         {
-          "source_line": 4970,
+          "source_line": 4962,
           "timestamp": "2026-05-24T17:44:42.956329+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2161,10 +2005,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-004970"
+          "id": "event-004962"
         },
         {
-          "source_line": 4971,
+          "source_line": 4963,
           "timestamp": "2026-05-24T17:44:43.881928+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2179,10 +2023,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 925
           },
-          "id": "event-004971"
+          "id": "event-004963"
         },
         {
-          "source_line": 4972,
+          "source_line": 4964,
           "timestamp": "2026-05-24T17:44:46.242904+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2199,10 +2043,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-004972"
+          "id": "event-004964"
         },
         {
-          "source_line": 4973,
+          "source_line": 4965,
           "timestamp": "2026-05-24T17:44:46.733371+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2219,10 +2063,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-004973"
+          "id": "event-004965"
         },
         {
-          "source_line": 4974,
+          "source_line": 4966,
           "timestamp": "2026-05-24T17:44:47.240300+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2237,10 +2081,10 @@
             "tool": "Read",
             "elapsed_ms": 997
           },
-          "id": "event-004974"
+          "id": "event-004966"
         },
         {
-          "source_line": 4975,
+          "source_line": 4967,
           "timestamp": "2026-05-24T17:44:47.240746+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2257,10 +2101,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-004975"
+          "id": "event-004967"
         },
         {
-          "source_line": 4976,
+          "source_line": 4968,
           "timestamp": "2026-05-24T17:44:47.812607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2275,10 +2119,10 @@
             "tool": "Read",
             "elapsed_ms": 1079
           },
-          "id": "event-004976"
+          "id": "event-004968"
         },
         {
-          "source_line": 4977,
+          "source_line": 4969,
           "timestamp": "2026-05-24T17:44:47.813072+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2295,10 +2139,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-004977"
+          "id": "event-004969"
         },
         {
-          "source_line": 4978,
+          "source_line": 4970,
           "timestamp": "2026-05-24T17:44:47.865070+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2313,10 +2157,10 @@
             "tool": "Read",
             "elapsed_ms": 624
           },
-          "id": "event-004978"
+          "id": "event-004970"
         },
         {
-          "source_line": 4979,
+          "source_line": 4971,
           "timestamp": "2026-05-24T17:44:48.468902+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2331,10 +2175,10 @@
             "tool": "Read",
             "elapsed_ms": 655
           },
-          "id": "event-004979"
+          "id": "event-004971"
         },
         {
-          "source_line": 4980,
+          "source_line": 4972,
           "timestamp": "2026-05-24T17:45:23.121847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2351,10 +2195,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && grep -c \"Warning.*undefined\\|multiply defined\\|Reference.*undefined\" main.log"
             }
           },
-          "id": "event-004980"
+          "id": "event-004972"
         },
         {
-          "source_line": 4981,
+          "source_line": 4973,
           "timestamp": "2026-05-24T17:45:23.610732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2369,10 +2213,10 @@
             "tool": "Bash",
             "elapsed_ms": 488
           },
-          "id": "event-004981"
+          "id": "event-004973"
         },
         {
-          "source_line": 4982,
+          "source_line": 4974,
           "timestamp": "2026-05-24T17:45:27.246266+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2389,10 +2233,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && grep -i \"rerun\\|undefined\" main.log | grep -v \"^(\" | head -10"
             }
           },
-          "id": "event-004982"
+          "id": "event-004974"
         },
         {
-          "source_line": 4983,
+          "source_line": 4975,
           "timestamp": "2026-05-24T17:45:27.347777+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2407,10 +2251,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-004983"
+          "id": "event-004975"
         },
         {
-          "source_line": 4984,
+          "source_line": 4976,
           "timestamp": "2026-05-24T17:45:31.116410+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2429,10 +2273,10 @@
               "limit": "18"
             }
           },
-          "id": "event-004984"
+          "id": "event-004976"
         },
         {
-          "source_line": 4985,
+          "source_line": 4977,
           "timestamp": "2026-05-24T17:45:31.609686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2447,10 +2291,10 @@
             "tool": "Read",
             "elapsed_ms": 493
           },
-          "id": "event-004985"
+          "id": "event-004977"
         },
         {
-          "source_line": 4986,
+          "source_line": 4978,
           "timestamp": "2026-05-24T17:45:35.787351+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2470,10 +2314,10 @@
               "new_string": "\\section{Additional Figures}\n\\label{app:figures}\n\n\\begin{figure}[h]"
             }
           },
-          "id": "event-004986"
+          "id": "event-004978"
         },
         {
-          "source_line": 4987,
+          "source_line": 4979,
           "timestamp": "2026-05-24T17:45:36.280876+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2488,10 +2332,10 @@
             "tool": "Edit",
             "elapsed_ms": 493
           },
-          "id": "event-004987"
+          "id": "event-004979"
         },
         {
-          "source_line": 4988,
+          "source_line": 4980,
           "timestamp": "2026-05-24T17:45:39.849673+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2509,10 +2353,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-004988"
+          "id": "event-004980"
         },
         {
-          "source_line": 4989,
+          "source_line": 4981,
           "timestamp": "2026-05-24T17:45:40.342727+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2527,10 +2371,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 493
           },
-          "id": "event-004989"
+          "id": "event-004981"
         },
         {
-          "source_line": 4990,
+          "source_line": 4982,
           "timestamp": "2026-05-24T17:45:42.409415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2547,10 +2391,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images"
             }
           },
-          "id": "event-004990"
+          "id": "event-004982"
         },
         {
-          "source_line": 4991,
+          "source_line": 4983,
           "timestamp": "2026-05-24T17:45:42.880475+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2565,10 +2409,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 471
           },
-          "id": "event-004991"
+          "id": "event-004983"
         },
         {
-          "source_line": 4992,
+          "source_line": 4984,
           "timestamp": "2026-05-24T17:45:46.145404+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2586,10 +2430,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-004992"
+          "id": "event-004984"
         },
         {
-          "source_line": 4993,
+          "source_line": 4985,
           "timestamp": "2026-05-24T17:45:46.583018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2604,10 +2448,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 437
           },
-          "id": "event-004993"
+          "id": "event-004985"
         },
         {
-          "source_line": 4994,
+          "source_line": 4986,
           "timestamp": "2026-05-24T17:46:01.095127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2624,10 +2468,10 @@
               "text": "两个修改都完成了：\n\n**1. Related Work 压缩**（周俊伟）\n从 4 个 paragraph sections 压缩到 3 个：Psychometric Methods for LLM Evaluation / Contamination Detection / Benchmark Quality and Design。长度约为原来的 60%。\n\n**2. 正文加图**（周俊伟）\n从附录提了 3 张图到正文，都与核心叙事直接关联：\n- **Figure 2**（p6）：Global vs. Differential Contamination ICC 示意图 → 支撑 §4.3 web-overlap 对比的概念基础\n- **Figure 5**（p8）：Cross-subject vs. within-subject matching → 可视化贡献 #2（$\\Delta\\text{FPR}=0$ 保证）\n- **Figure 6**（p8）：Downstream impact of DIF-based filtering → 可视化 §4.6 排名影响\n\n正文现在有 6 张图 + 2 张表（之前 3 图 2 表），视觉密度明显提升。主体文字仍在 8 页内，Conclusion 在第 8 页底部，Limitations 从第 8 页右栏开始（不计入页数限制）。无 broken references。\n\n**之前的修复也保留**（曹晓玉）：第 8 页 §5.1 不再超过页码水平线。"
             }
           },
-          "id": "event-004994"
+          "id": "event-004986"
         },
         {
-          "source_line": 4995,
+          "source_line": 4987,
           "timestamp": "2026-05-24T17:46:04.318986+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2642,10 +2486,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3223
           },
-          "id": "event-004995"
+          "id": "event-004987"
         },
         {
-          "source_line": 4996,
+          "source_line": 4988,
           "timestamp": "2026-05-24T17:46:08.114935+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2658,7 +2502,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-004996"
+          "id": "event-004988"
         }
       ]
     },
@@ -2666,7 +2510,7 @@
       "number": 205,
       "messages": [
         {
-          "source_line": 4997,
+          "source_line": 4989,
           "timestamp": "2026-05-24T18:24:23.605786+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2680,10 +2524,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-004997"
+          "id": "event-004989"
         },
         {
-          "source_line": 4998,
+          "source_line": 4990,
           "timestamp": "2026-05-24T18:24:34.512609+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2700,10 +2544,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex"
             }
           },
-          "id": "event-004998"
+          "id": "event-004990"
         },
         {
-          "source_line": 4999,
+          "source_line": 4991,
           "timestamp": "2026-05-24T18:24:34.995567+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2718,10 +2562,10 @@
             "tool": "Read",
             "elapsed_ms": 482
           },
-          "id": "event-004999"
+          "id": "event-004991"
         },
         {
-          "source_line": 5000,
+          "source_line": 4992,
           "timestamp": "2026-05-24T18:24:34.995969+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2738,10 +2582,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
             }
           },
-          "id": "event-005000"
+          "id": "event-004992"
         },
         {
-          "source_line": 5001,
+          "source_line": 4993,
           "timestamp": "2026-05-24T18:24:35.247319+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2756,10 +2600,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-005001"
+          "id": "event-004993"
         },
         {
-          "source_line": 5002,
+          "source_line": 4994,
           "timestamp": "2026-05-24T18:24:35.297946+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2776,10 +2620,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
             }
           },
-          "id": "event-005002"
+          "id": "event-004994"
         },
         {
-          "source_line": 5003,
+          "source_line": 4995,
           "timestamp": "2026-05-24T18:24:35.348557+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2794,10 +2638,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005003"
+          "id": "event-004995"
         },
         {
-          "source_line": 5004,
+          "source_line": 4996,
           "timestamp": "2026-05-24T18:24:38.762756+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2814,10 +2658,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/method.tex"
             }
           },
-          "id": "event-005004"
+          "id": "event-004996"
         },
         {
-          "source_line": 5005,
+          "source_line": 4997,
           "timestamp": "2026-05-24T18:24:38.813472+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2832,10 +2676,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005005"
+          "id": "event-004997"
         },
         {
-          "source_line": 5006,
+          "source_line": 4998,
           "timestamp": "2026-05-24T18:24:42.678040+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2852,10 +2696,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
             }
           },
-          "id": "event-005006"
+          "id": "event-004998"
         },
         {
-          "source_line": 5007,
+          "source_line": 4999,
           "timestamp": "2026-05-24T18:24:43.230790+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2870,10 +2714,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-005007"
+          "id": "event-004999"
         },
         {
-          "source_line": 5008,
+          "source_line": 5000,
           "timestamp": "2026-05-24T18:24:43.231340+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2890,10 +2734,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
             }
           },
-          "id": "event-005008"
+          "id": "event-005000"
         },
         {
-          "source_line": 5009,
+          "source_line": 5001,
           "timestamp": "2026-05-24T18:24:44.235512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2908,10 +2752,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-005009"
+          "id": "event-005001"
         },
         {
-          "source_line": 5010,
+          "source_line": 5002,
           "timestamp": "2026-05-24T18:24:44.236031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2928,10 +2772,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-005010"
+          "id": "event-005002"
         },
         {
-          "source_line": 5011,
+          "source_line": 5003,
           "timestamp": "2026-05-24T18:24:44.487935+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2946,10 +2790,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-005011"
+          "id": "event-005003"
         },
         {
-          "source_line": 5012,
+          "source_line": 5004,
           "timestamp": "2026-05-24T18:24:44.538685+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2966,10 +2810,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
             }
           },
-          "id": "event-005012"
+          "id": "event-005004"
         },
         {
-          "source_line": 5013,
+          "source_line": 5005,
           "timestamp": "2026-05-24T18:24:44.589335+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2984,10 +2828,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005013"
+          "id": "event-005005"
         },
         {
-          "source_line": 5014,
+          "source_line": 5006,
           "timestamp": "2026-05-24T18:28:29.379372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3007,10 +2851,10 @@
               "new_string": "Large language model (LLM) benchmark scores are compared across model generations"
             }
           },
-          "id": "event-005014"
+          "id": "event-005006"
         },
         {
-          "source_line": 5015,
+          "source_line": 5007,
           "timestamp": "2026-05-24T18:28:29.870381+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3025,10 +2869,10 @@
             "tool": "Edit",
             "elapsed_ms": 491
           },
-          "id": "event-005015"
+          "id": "event-005007"
         },
         {
-          "source_line": 5016,
+          "source_line": 5008,
           "timestamp": "2026-05-24T18:28:33.387535+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3048,10 +2892,10 @@
               "new_string": "29.2\\% for Massive Multitask Language Understanding [MMLU] after"
             }
           },
-          "id": "event-005016"
+          "id": "event-005008"
         },
         {
-          "source_line": 5017,
+          "source_line": 5009,
           "timestamp": "2026-05-24T18:28:33.438309+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3066,10 +2910,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005017"
+          "id": "event-005009"
         },
         {
-          "source_line": 5018,
+          "source_line": 5010,
           "timestamp": "2026-05-24T18:28:37.154274+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3089,10 +2933,10 @@
               "new_string": "with Educational Testing Service (ETS) severity classification"
             }
           },
-          "id": "event-005018"
+          "id": "event-005010"
         },
         {
-          "source_line": 5019,
+          "source_line": 5011,
           "timestamp": "2026-05-24T18:28:37.255165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3107,10 +2951,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005019"
+          "id": "event-005011"
         },
         {
-          "source_line": 5020,
+          "source_line": 5012,
           "timestamp": "2026-05-24T18:28:41.774584+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3130,10 +2974,10 @@
               "new_string": "31\\% of Massive Multitask Language Understanding (MMLU)~\\citep{hendrycks2021mmlu} items"
             }
           },
-          "id": "event-005020"
+          "id": "event-005012"
         },
         {
-          "source_line": 5021,
+          "source_line": 5013,
           "timestamp": "2026-05-24T18:28:41.825511+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3148,10 +2992,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005021"
+          "id": "event-005013"
         },
         {
-          "source_line": 5022,
+          "source_line": 5014,
           "timestamp": "2026-05-24T18:28:44.838283+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3171,10 +3015,10 @@
               "new_string": "complemented by design effect (DEFF) correction"
             }
           },
-          "id": "event-005022"
+          "id": "event-005014"
         },
         {
-          "source_line": 5023,
+          "source_line": 5015,
           "timestamp": "2026-05-24T18:28:44.940278+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3189,10 +3033,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-005023"
+          "id": "event-005015"
         },
         {
-          "source_line": 5024,
+          "source_line": 5016,
           "timestamp": "2026-05-24T18:28:56.093646+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3212,10 +3056,10 @@
               "new_string": "without requiring an explicit item response theory (IRT) model"
             }
           },
-          "id": "event-005024"
+          "id": "event-005016"
         },
         {
-          "source_line": 5025,
+          "source_line": 5017,
           "timestamp": "2026-05-24T18:28:56.445407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3230,10 +3074,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-005025"
+          "id": "event-005017"
         },
         {
-          "source_line": 5026,
+          "source_line": 5018,
           "timestamp": "2026-05-24T18:29:00.613012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3253,10 +3097,10 @@
               "new_string": "parametric IRT (two-parameter logistic [2PL] / three-parameter logistic [3PL] fixed-parameter calibration)"
             }
           },
-          "id": "event-005026"
+          "id": "event-005018"
         },
         {
-          "source_line": 5027,
+          "source_line": 5019,
           "timestamp": "2026-05-24T18:29:00.663615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3271,10 +3115,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005027"
+          "id": "event-005019"
         },
         {
-          "source_line": 5028,
+          "source_line": 5020,
           "timestamp": "2026-05-24T18:29:03.678567+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3294,10 +3138,10 @@
               "new_string": "root mean square error of approximation [RMSEA] $> 0.08$"
             }
           },
-          "id": "event-005028"
+          "id": "event-005020"
         },
         {
-          "source_line": 5029,
+          "source_line": 5021,
           "timestamp": "2026-05-24T18:29:03.729416+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3312,10 +3156,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005029"
+          "id": "event-005021"
         },
         {
-          "source_line": 5030,
+          "source_line": 5022,
           "timestamp": "2026-05-24T18:29:06.793674+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3335,10 +3179,10 @@
               "new_string": "introduced it to natural language processing"
             }
           },
-          "id": "event-005030"
+          "id": "event-005022"
         },
         {
-          "source_line": 5031,
+          "source_line": 5023,
           "timestamp": "2026-05-24T18:29:06.895533+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3353,10 +3197,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-005031"
+          "id": "event-005023"
         },
         {
-          "source_line": 5032,
+          "source_line": 5024,
           "timestamp": "2026-05-24T18:29:21.607581+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3376,10 +3220,10 @@
               "new_string": "local-dependence-attributable FPR inflation"
             }
           },
-          "id": "event-005032"
+          "id": "event-005024"
         },
         {
-          "source_line": 5033,
+          "source_line": 5025,
           "timestamp": "2026-05-24T18:29:21.708638+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3394,10 +3238,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-005033"
+          "id": "event-005025"
         },
         {
-          "source_line": 5034,
+          "source_line": 5026,
           "timestamp": "2026-05-24T18:29:25.398899+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3417,10 +3261,10 @@
               "new_string": "Benjamini-Hochberg false discovery rate correction at $q = 0.05$ reclassifies"
             }
           },
-          "id": "event-005034"
+          "id": "event-005026"
         },
         {
-          "source_line": 5035,
+          "source_line": 5027,
           "timestamp": "2026-05-24T18:29:25.499961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3435,10 +3279,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-005035"
+          "id": "event-005027"
         },
         {
-          "source_line": 5036,
+          "source_line": 5028,
           "timestamp": "2026-05-24T18:29:31.926945+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3458,10 +3302,10 @@
               "new_string": "testing DIF on Grade School Math 8K (GSM8K) items"
             }
           },
-          "id": "event-005036"
+          "id": "event-005028"
         },
         {
-          "source_line": 5037,
+          "source_line": 5029,
           "timestamp": "2026-05-24T18:29:31.977606+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3476,10 +3320,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005037"
+          "id": "event-005029"
         },
         {
-          "source_line": 5038,
+          "source_line": 5030,
           "timestamp": "2026-05-24T18:29:35.542504+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3499,10 +3343,10 @@
               "new_string": "area under the curve (AUC) of 0.93--0.94"
             }
           },
-          "id": "event-005038"
+          "id": "event-005030"
         },
         {
-          "source_line": 5039,
+          "source_line": 5031,
           "timestamp": "2026-05-24T18:29:35.594045+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3517,10 +3361,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005039"
+          "id": "event-005031"
         },
         {
-          "source_line": 5040,
+          "source_line": 5032,
           "timestamp": "2026-05-24T18:29:39.211127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3538,6 +3382,169 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
               "old_string": "LOFO $|\\Delta\\mathrm{C\\%}|",
               "new_string": "leave-one-family-out [LOFO] $|\\Delta\\mathrm{C\\%}|"
+            }
+          },
+          "id": "event-005032"
+        },
+        {
+          "source_line": 5033,
+          "timestamp": "2026-05-24T18:29:39.312208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-005033"
+        },
+        {
+          "source_line": 5034,
+          "timestamp": "2026-05-24T18:29:44.132467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU)",
+              "new_string": "17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), with AI2 Reasoning Challenge (ARC)~\\citep{clark2018arc}"
+            }
+          },
+          "id": "event-005034"
+        },
+        {
+          "source_line": 5035,
+          "timestamp": "2026-05-24T18:29:44.183353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-005035"
+        },
+        {
+          "source_line": 5036,
+          "timestamp": "2026-05-24T18:30:00.184157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), with AI2 Reasoning Challenge (ARC)~\\citep{clark2018arc} and knowledge/reasoning benchmarks consistently higher than procedural ones",
+              "new_string": "17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), with knowledge/reasoning benchmarks (including ARC [AI2 Reasoning Challenge]) consistently higher than procedural ones"
+            }
+          },
+          "id": "event-005036"
+        },
+        {
+          "source_line": 5037,
+          "timestamp": "2026-05-24T18:30:00.285163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: 17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), with AI2 Reasoning Challenge (ARC)~\\citep{clark2018arc} and knowledge/reasoning benchmarks consistently higher than procedural ones</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-005037"
+        },
+        {
+          "source_line": 5038,
+          "timestamp": "2026-05-24T18:30:04.964457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "offset": "105",
+              "limit": "8"
+            }
+          },
+          "id": "event-005038"
+        },
+        {
+          "source_line": 5039,
+          "timestamp": "2026-05-24T18:30:05.455652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "105\t\\label{sec:gsm8k}\n106\t\n107\t\\looseness=-2\n108\tTemporal DIF extends across all six METABENCH benchmarks (\\Cref{tab:cross_benchmark}): C\\% ranges from 17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), with AI2 Reasoning Challenge (ARC)~\\citep{clark2018arc}, with knowledge/reasoning benchmarks consistently higher than procedural ones (C\\% $= 26.9$--$31.3\\%$ vs.\\ $17.9$--$18.9\\%$). These differences may partly reflect item difficulty distributions; we treat them as descriptive.\n109\t\n110\t\\begin{table}[t]\n111\t\\centering\n112\t\\caption{Temporal DIF across six METABENCH benchmarks (2023 vs.\\ 2024 cohorts). $\\rho$/$\\tau$: rank correlation between full and stable-item rankings; Flip: pairwise rank-flip rate; Ratio: C\\%/random baseline.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Read",
+            "elapsed_ms": 491
+          },
+          "id": "event-005039"
+        },
+        {
+          "source_line": 5040,
+          "timestamp": "2026-05-24T18:30:09.535958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+              "old_string": "to 31.3\\% (MMLU), with AI2 Reasoning Challenge (ARC)~\\citep{clark2018arc}, with knowledge/reasoning benchmarks consistently higher than procedural ones",
+              "new_string": "to 31.3\\% (MMLU), with knowledge/reasoning benchmarks---including ARC (AI2 Reasoning Challenge)---consistently higher than procedural ones"
             }
           },
           "id": "event-005040"

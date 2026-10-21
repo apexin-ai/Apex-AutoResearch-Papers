@@ -54,7 +54,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ssh 7b zs inference 5090c | 31 | 0 | [Read transcript](ssh-7b-zs-inference-5090c.md) | [JSON](../../sessions/db/db3f9d6f546bbb4dfdb1.json) |
 | ssh cleanup 5090 old checkpoints | 23 | 0 | [Read transcript](ssh-cleanup-5090-old-checkpoints.md) | [JSON](../../sessions/5b/5bc105ef46b81897924f.json) |
 | research prepare supplementary inventory | 133 | 0 | [Read transcript](research-prepare-supplementary-inventory.md) | [JSON](../../sessions/27/27cddaf94dc0bc6dd422.json) |
-| research fix response letter | 19 | 0 | [Read transcript](research-fix-response-letter.md) | [JSON](../../sessions/c9/c967426f20cf02eb0962.json) |
 | ssh check 7b fk signal | 45 | 0 | [Read transcript](ssh-check-7b-fk-signal.md) | [JSON](../../sessions/37/37cd7337149284a002bf.json) |
 | ssh verify 7b fk correct data | 29 | 0 | [Read transcript](ssh-verify-7b-fk-correct-data.md) | [JSON](../../sessions/72/72d11203f36c39cbb0a9.json) |
 | ssh a2 degen capability regression | 45 | 0 | [Read transcript](ssh-a2-degen-capability-regression.md) | [JSON](../../sessions/d7/d7fa4a6afb8bb9933130.json) |

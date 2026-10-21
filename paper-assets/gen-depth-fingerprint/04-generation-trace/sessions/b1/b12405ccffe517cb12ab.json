@@ -9,16 +9,16 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/worker_analysis_holdout-split-validation_20260519T005549.jsonl",
     "occurrence": 1,
-    "bytes": 49667,
-    "sha256": "d7f5be495e5200f201fc3dc1d7848e8b983e9cb5e0098ba23db9a096f87cdc64"
+    "bytes": 44260,
+    "sha256": "8cd40ffcaee29b4d57fba927fa884b66a757d065a75160876770f26bea7f64d1"
   },
   "statistics": {
-    "messages": 43,
+    "messages": 39,
     "user_turns": 0,
-    "tool_calls": 21,
+    "tool_calls": 19,
     "roles": {
-      "tool_call": 21,
-      "tool_result": 21,
+      "tool_call": 19,
+      "tool_result": 19,
       "assistant": 1
     },
     "unparsed_lines_preserved": 0,
@@ -616,45 +616,6 @@
         },
         {
           "source_line": 31,
-          "timestamp": "2026-05-19T00:59:13.210334+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_holdout-split-validation_20260519T005549",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json",
-              "content": "{\n  \"pythia-1b\": {\n    \"entropy_mean\": -0.712,\n    \"entropy_std\": -0.2414,\n    \"entropy_min\": -0.5051,\n    \"entropy_max\": 0.0048,\n    \"tail_decay\": 0.0904,\n    \"ttr\": -0.6568,\n    \"hapax_ratio\": -0.6741\n  },\n  \"pythia-2.8b\": {\n    \"entropy_mean\": -0.6754,\n    \"entropy_std\": -0.153,\n    \"entropy_min\": -0.4797,\n    \"entropy_max\": -0.0351,\n    \"tail_decay\": 0.0633,\n    \"ttr\": -0.6333,\n    \"hapax_ratio\": -0.6553\n  },\n  \"olmo-2-1b\": {\n    \"entropy_mean\": -0.6386,\n    \"entropy_std\": -0.2958,\n    \"entropy_min\": -0.3874,\n    \"entropy_max\": 0.0672,\n    \"tail_decay\": -0.1411,\n    \"ttr\": -0.6996,\n    \"hapax_ratio\": -0.7124\n  },\n  \"qwen3-0.6b\": {\n    \"entropy_mean\": -0.5656,\n    \"entropy_std\": -0.2294,\n    \"entropy_min\": -0.3587,\n    \"entropy_max\": 0.0857,\n    \"tail_decay\": -0.0902,\n    \"ttr\": -0.6111,\n    \"hapax_ratio\": -0.6273\n  },\n  \"qwen3-1.7b\": {\n    \"entropy_mean\": -0.6022,\n    \"entropy_std\": -0.1882,\n    \"entropy_min\": -0.4062,\n    \"entropy_max\": 0.0884,\n    \"tail_decay\": -0.0698,\n    \"ttr\": -0.6523,\n    \"hapax_ratio\": -0.6696\n  },\n  \"qwen3-8b\": {\n    \"entropy_mean\": -0.4754,\n    \"entropy_std\": -0.0755,\n    \"entropy_min\": -0.3029,\n    \"entropy_max\": 0.0946,\n    \"tail_decay\": -0.0894,\n    \"ttr\": -0.5419,\n    \"hapax_ratio\": -0.5578\n  },\n  \"llama-3.2-3b\": {\n    \"entropy_mean\": -0.5687,\n    \"entropy_std\": -0.2826,\n    \"entropy_min\": -0.2834,\n    \"entropy_max\": -0.0187,\n    \"tail_decay\": -0.066,\n    \"ttr\": -0.5425,\n    \"hapax_ratio\": -0.5532\n  },\n  \"mistral-7b-v0.3\": {\n    \"entropy_mean\": -0.4814,\n    \"entropy_std\": -0.1222,\n    \"entropy_min\": -0.2826,\n    \"entropy_max\": 0.007,\n    \"tail_decay\": -0.1169,\n    \"ttr\": -0.4354,\n    \"hapax_ratio\": -0.4466\n  }\n}\n"
-            }
-          },
-          "id": "event-000031"
-        },
-        {
-          "source_line": 32,
-          "timestamp": "2026-05-19T00:59:13.210478+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_holdout-split-validation_20260519T005549",
-            "tool": "Write",
-            "elapsed_ms": 0
-          },
-          "id": "event-000032"
-        },
-        {
-          "source_line": 33,
           "timestamp": "2026-05-19T00:59:13.210661+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -673,10 +634,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000033"
+          "id": "event-000031"
         },
         {
-          "source_line": 34,
+          "source_line": 32,
           "timestamp": "2026-05-19T00:59:13.210884+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -691,10 +652,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000034"
+          "id": "event-000032"
         },
         {
-          "source_line": 35,
+          "source_line": 33,
           "timestamp": "2026-05-19T00:59:13.211035+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -711,10 +672,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/chart/fig_ddr_holdout_split.png"
             }
           },
-          "id": "event-000035"
+          "id": "event-000033"
         },
         {
-          "source_line": 36,
+          "source_line": 34,
           "timestamp": "2026-05-19T00:59:13.211742+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -729,10 +690,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000036"
+          "id": "event-000034"
         },
         {
-          "source_line": 37,
+          "source_line": 35,
           "timestamp": "2026-05-19T00:59:13.211964+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -751,10 +712,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-000037"
+          "id": "event-000035"
         },
         {
-          "source_line": 38,
+          "source_line": 36,
           "timestamp": "2026-05-19T00:59:13.212167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -769,10 +730,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-000038"
+          "id": "event-000036"
         },
         {
-          "source_line": 39,
+          "source_line": 37,
           "timestamp": "2026-05-19T00:59:13.212296+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -789,10 +750,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/chart/fig_ddr_holdout_split.png"
             }
           },
-          "id": "event-000039"
+          "id": "event-000037"
         },
         {
-          "source_line": 40,
+          "source_line": 38,
           "timestamp": "2026-05-19T00:59:13.213004+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -807,48 +768,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000040"
+          "id": "event-000038"
         },
         {
-          "source_line": 41,
-          "timestamp": "2026-05-19T00:59:13.213183+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_holdout-split-validation_20260519T005549",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/holdout_split_results.json"
-            }
-          },
-          "id": "event-000041"
-        },
-        {
-          "source_line": 42,
-          "timestamp": "2026-05-19T00:59:13.213367+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"split_a\": {\n3\t    \"selection_generators\": [\n4\t      \"pythia-2.8b\",\n5\t      \"qwen3-1.7b\",\n6\t      \"olmo-2-1b\",\n7\t      \"mistral-7b-v0.3\"\n8\t    ],\n9\t    \"validation_generators\": [\n10\t      \"pythia-1b\",\n11\t      \"qwen3-0.6b\",\n12\t      \"qwen3-8b\",\n13\t      \"llama-3.2-3b\"\n14\t    ],\n15\t    \"selection\": {\n16\t      \"entropy_mean\": {\n17\t        \"rho\": 0.5994,\n18\t        \"d\": 1.0982,\n19\t        \"zone\": \"drifting\"\n20\t      },\n21\t      \"entropy_std\": {\n22\t        \"rho\": 0.1898,\n23\t        \"d\": 0.4354,\n24\t        \"zone\": \"intermediate\"\n25\t      },\n26\t      \"entropy_min\": {\n27\t        \"rho\": 0.389,\n28\t        \"d\": 0.0467,\n29\t        \"zone\": \"intermediate\"\n30\t      },\n31\t      \"entropy_max\": {\n32\t        \"rho\": 0.0494,\n33\t        \"d\": 0.0842,\n34\t        \"zone\": \"near-stationary\"\n35\t      },\n36\t      \"tail_decay\": {\n37\t        \"rho\": 0.0978,\n38\t        \"d\": 0.1346,\n39\t        \"zone\": \"near-stationary\"\n40\t      },\n41\t      \"ttr\": {\n42\t        \"rho\": 0.6052,\n43\t        \"d\": 0.8984,\n44\t        \"zone\": \"drifting\"\n45\t      },\n46\t      \"hapax_ratio\": {\n47\t        \"rho\": 0.621,\n48\t        \"d\": 0.8304,\n49\t        \"zone\": \"drifting\"\n50\t      }\n51\t    },\n52\t    \"validation\": {\n53\t      \"entropy_mean\": {\n54\t        \"rho\": 0.5804,\n55\t        \"d\": 1.0831,\n56\t        \"zone\": \"drifting\"\n57\t      },\n58\t      \"entropy_std\": {\n59\t        \"rho\": 0.2072,\n60\t        \"d\": 0.4898,\n61\t        \"zone\": \"intermediate\"\n62\t      },\n63\t      \"entropy_min\": {\n64\t        \"rho\": 0.3625,\n65\t        \"d\": 0.0341,\n66\t        \"zone\": \"intermediate\"\n67\t      },\n68\t      \"entropy_max\": {\n69\t        \"rho\": 0.0509,\n70\t        \"d\": 0.0668,\n71\t        \"zone\": \"near-stationary\"\n72\t      },\n73\t      \"tail_decay\": {\n74\t        \"rho\": 0.084,\n75\t        \"d\": 0.1277,\n76\t        \"zone\": \"near-stationary\"\n77\t      },\n78\t      \"ttr\": {\n79\t        \"rho\": 0.5881,\n80\t        \"d\": 0.7928,\n81\t        \"zone\": \"drifting\"\n82\t      },\n83\t      \"hapax_ratio\": {\n84\t        \"rho\": 0.6031,\n85\t        \"d\": 0.6983,\n86\t        \"zone\": \"drif\n…[truncated 2301 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "worker_analysis_holdout-split-validation_20260519T005549",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-000042"
-        },
-        {
-          "source_line": 43,
+          "source_line": 39,
           "timestamp": "2026-05-19T00:59:13.213554+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -861,10 +784,10 @@
           "metadata": {
             "session": "worker_analysis_holdout-split-validation_20260519T005549"
           },
-          "id": "event-000043"
+          "id": "event-000039"
         }
       ],
-      "message_count": 43
+      "message_count": 39
     }
   ],
   "readable_path": "readable/conversations/analysis-holdout-split-validation.md"

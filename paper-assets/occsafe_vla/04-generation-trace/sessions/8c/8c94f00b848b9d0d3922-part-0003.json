@@ -3342,124 +3342,6 @@
         },
         {
           "source_line": 532,
-          "timestamp": "2026-05-29T15:40:28.974875+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "limit": "100"
-            }
-          },
-          "id": "event-000532"
-        },
-        {
-          "source_line": 533,
-          "timestamp": "2026-05-29T15:40:29.176840+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Round 4 Author Response — Draft\n2\t\n3\tWe thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.\n4\t\n5\t## Summary of Changes\n6\t\n7\t- **Framing**: Entire paper restructured from \"normalization-dependent gradient flow effect\" to \"two independent additive main effects\" (RD3-C1)\n8\t- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)\n9\t- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10\t- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11\t- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12\t- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13\t\n14\t---\n15\t\n16\t## Resolved Issues\n17\t\n18\t### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n19\t\n20\t**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n21\t\n22\t**Fix**: Complete reframing across all sections:\n23\t- Abstract (main.tex L23): \"two independent mechanisms\" replacing interaction language\n24\t- Introduction (L22): Contribution 1 rewritten as \"A 2×2 factorial identifies two additive mechanisms: gradient flow through BatchNorm degrades safety; LayerNorm provides a consistent protective effect\"\n25\t- Results (results.tex L11): \"Two additive main effects explain the advantage\" with permutation ANOVA p-values\n26\t- Discussion (discussion.tex L11): \"Additive protection model\" framing; \"two independent protections...with \n…[truncated 5160 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "elapsed_ms": 201
-          },
-          "id": "event-000533"
-        },
-        {
-          "source_line": 534,
-          "timestamp": "2026-05-29T15:40:33.793341+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "offset": "100",
-              "limit": "150"
-            }
-          },
-          "id": "event-000534"
-        },
-        {
-          "source_line": 535,
-          "timestamp": "2026-05-29T15:40:33.843981+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "100\t**Verification**: Limitations appears on page 8 of compiled PDF. \\clearpage before \\appendix ensures separation.\n101\t\n102\t---\n103\t\n104\t### RD2-W1 [Warning] — Factorial design overclaimed as \"5-factor\"\n105\t\n106\t**Issue**: Introduction claimed \"twelve conditions varying five factors\" but only the 2×2 core is factorial.\n107\t\n108\t**Fix**: Introduction (L16) rewritten: \"A core 2×2 factorial crosses gradient flow (ON/OFF) with normalization (BN/LN); seven additional single-factor ablations probe label content, spatial reference frame, and temporal extent, twelve conditions in total.\"\n109\t\n110\t**Verification**: No remaining claims of \"5-factor factorial\". The distinction between 2×2 core and single-factor ablations is maintained throughout.\n111\t\n112\t---\n113\t\n114\t### RD2-W2 [Warning] — Cohen's d biased at n=3; use Hedges' g\n115\t\n116\t**Issue**: Cohen's d overestimates effect size at small n. At n=3, d=0.93 → g≈0.75.\n117\t\n118\t**Fix**: All effect sizes throughout the paper replaced with Hedges' g (bias-corrected):\n119\t- Results: Cell 4 vs Vanilla g=1.89 (was d=2.31)\n120\t- Table 2 caption: g=0.78, g=0.88–1.24\n121\t- All pairwise comparisons in Appendix Table (tab:pairwise)\n122\t- Methods section: \"Hedges' g (bias-corrected effect size for small samples)\"\n123\t\n124\t**Verification**: Grep for \"Cohen\" returns zero hits in all .tex files.\n125\t\n126\t---\n127\t\n128\t### RD2-W3 [Warning] — Title/scope mismatch\n129\t\n130\t**Issue**: Title implied generalization to all VLAs but experiments use only OpenVLA-7B + SafeLIBERO Level I.\n131\t\n132\t**Fix**:\n133\t- Title retains question form (\"Does...?\") which inherently expresses exploration, not universal claim\n134\t- Practical guideline (discussion.tex L19): \"For OpenVLA with LoRA fine-tuning on tabletop manipulation\"\n135\t- Guidelines conclude: \"should be verified per implementation\"\n136\t- Limitations (limitations.tex L8): explicitly lists \"one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level I)\"\n137\t\n138\t**Verification**: No r\n…[truncated 5708 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000535"
-        },
-        {
-          "source_line": 536,
-          "timestamp": "2026-05-29T15:40:38.110366+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "offset": "249"
-            }
-          },
-          "id": "event-000536"
-        },
-        {
-          "source_line": 537,
-          "timestamp": "2026-05-29T15:40:38.161608+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "249\t\n250\t**Location**: Appendix, after TSR paragraph.\n251\t\n252\t### Levene's Test + Welch Correction\n253\t\n254\tLevene's test (Brown-Forsythe) does not reject variance homogeneity (W=0.71, p=0.57), though the test has limited power at n=3–4 per cell and Cell 1 exhibits 7× the variance of other cells. Welch-corrected marginal tests: gradient p=0.204, normalization p=0.104.\n255\t\n256\t**Location**: Appendix, after leave-one-out paragraph.\n257\t\n258\t### Per-Task Normalization Amplification (4×)\n259\t\n260\tThe normalization advantage (LN > BN) amplifies approximately fourfold on the three physically constrained tasks: +6.9pp on hard tasks (T3, T5, T6) vs +1.7pp on easy tasks. All three hard tasks show positive LN−BN differences: T6 (+9.0pp), T5 (+7.7pp), T3 (+4.0pp).\n261\t\n262\t**Location**: Results (results.tex L11): \"The normalization advantage amplifies approximately fourfold on the three physically constrained tasks (+6.9pp vs +1.7pp on easy tasks)\". Appendix (app:per_task_factorial): Updated with v2 per-task data and Cell 1 instability decomposition.\n263\t\n264\t---\n265\t\n266\t## Welch vs. Permutation p-Value Discrepancy\n267\t\n268\tThe Welch-corrected p-values (gradient 0.204, normalization 0.104) are more conservative than the permutation ANOVA p-values (gradient 0.090, normalization 0.041). This discrepancy arises from a specific data structure property:\n269\t\n270\t**Root cause**: Cell 1 (BN + gradient ON) has 7× the variance of other cells (σ²=0.0040 vs ≤0.0007). The Welch correction incorporates each group's variance into the standard error estimate. Because Cell 1's inflated variance enters the pooled SE for the gradient factor, it attenuates the test statistic substantially.\n271\t\n272\t**Why permutation is more appropriate here**: The permutation test makes no distributional or homoscedasticity assumptions — it computes the exact null distribution by shuffling labels. Cell 1's high variance affects the observed test statistic but does not disproportionately inflate the null distr\n…[truncated 4820 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-000537"
-        },
-        {
-          "source_line": 538,
           "timestamp": "2026-05-29T15:41:33.288401+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3472,7 +3354,7 @@
           "metadata": {
             "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director"
           },
-          "id": "event-000538"
+          "id": "event-000532"
         }
       ]
     },
@@ -3480,7 +3362,7 @@
       "number": 57,
       "messages": [
         {
-          "source_line": 539,
+          "source_line": 533,
           "timestamp": "2026-05-29T15:41:34.800370+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3494,10 +3376,10 @@
             "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000539"
+          "id": "event-000533"
         },
         {
-          "source_line": 540,
+          "source_line": 534,
           "timestamp": "2026-05-29T15:41:41.493884+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3512,6 +3394,130 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "tool_args": {
               "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000534"
+        },
+        {
+          "source_line": 535,
+          "timestamp": "2026-05-29T15:41:41.594720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 100
+          },
+          "id": "event-000535"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 536,
+          "timestamp": "2026-05-29T16:12:58.589868+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。\n调用规范：\n  • `keepalive_respond(kind=\"ACK\", minutes=X, detail=\"具体行动\")`\n  • `keepalive_respond(kind=\"WAIT\", minutes=X, detail=\"等什么\")`\n  • `keepalive_respond(kind=\"BLOCKED\", detail=\"阻塞项\")`\n工具失败时按返回的 `remediation` 重调直到成功。不调用工具 = 视为本轮无响应（连续 2 次升级运维群）。\n\n---\n\n⏰ **[System → Director]**\n\nRebuttal 草稿完成得很快，非 GPU 工作效率不错。几件事：\n\n**RESET REQUEST 挂了三次你都没回复。** 系统 15:03、15:36、15:41 连发三次 Reviewer RESET REQUEST，你一次都没正式回复。你自己也 55 条消息 5 个半小时了。赶紧决定 RESET AGENT 还是 RESET BOTH，别让系统请求一直挂着。\n\n**GPU 0/2，两台服务器都连不上，快 3 小时了。** 上轮你说飞书 API 配额耗尽、Manager 无回音。现在还是一样？你对这个阻塞的升级策略是什么？\"等着\"不是策略。每小时 2 张卡空转。\n\n**Agent 和 Reviewer 现在又都空了。** Rebuttal 草稿你已经审完了，Agent 闲着，Reviewer 硬限等你回复。你说\"所有非 GPU 工作已完成\"——真的吗？Rebuttal 草稿里 5 个 open issue 的框架，Reviewer 看过吗？草稿整体质量 Reviewer 审过吗？还是你打算等 GPU 回来再说？\n\n**论文质量：** 112 个成功实验、rebuttal 草稿就绪、统计加固做完——这些都是好的。但 Reviewer 上次提到 gradient flow 主效应 η²=0.180 是\"真正脆弱点\"、Cell 1 std=0.064，你上轮说派 Reviewer 分析应对预案，结果呢？分析完了吗？结论是什么？这个脆弱点如果 reviewer 追问，你的回答准备好了吗？\n\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "source": "system:keepalive"
+          },
+          "id": "event-000536"
+        },
+        {
+          "source_line": 537,
+          "timestamp": "2026-05-29T16:13:22.786914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__keepalive_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "tool_args": {
+              "kind": "WAIT",
+              "minutes": "15",
+              "detail": "已批准 RESET_BOTH（Reviewer + 自己），等待 handoff 流程。η² 脆弱性分析已完成（artifacts/statistical_vulnerability_analysis.md）：BF₀₁=3.50 + LOO 14/14 + contingency framing 已写入 paper_framing.md。Rebuttal 草稿已审阅通过。GPU 阻塞无新进展——飞书 API 配额耗尽、Manager 无回音，所有非 GPU 工作已完成。"
+            }
+          },
+          "id": "event-000537"
+        },
+        {
+          "source_line": 538,
+          "timestamp": "2026-05-29T16:13:23.189303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"kind\\\": \\\"WAIT\\\", \\\"minutes\\\": 15, \\\"next_nudge_in_minutes\\\": 30}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "elapsed_ms": 402
+          },
+          "id": "event-000538"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 539,
+          "timestamp": "2026-05-29T16:44:29.833803+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。\n调用规范：\n  • `keepalive_respond(kind=\"ACK\", minutes=X, detail=\"具体行动\")`\n  • `keepalive_respond(kind=\"WAIT\", minutes=X, detail=\"等什么\")`\n  • `keepalive_respond(kind=\"BLOCKED\", detail=\"阻塞项\")`\n工具失败时按返回的 `remediation` 重调直到成功。不调用工具 = 视为本轮无响应（连续 2 次升级运维群）。\n\n---\n\n⏰ **[System → Director]**\n\n30 分钟没动静，上轮你说 WAIT 15 分钟，时间早过了。\n\n**RESET REQUEST 挂了四次了。** 15:03、15:36、15:41、还有最新一次，你到现在没有正式回复 RESET AGENT / RESET BOTH / DEFER / DENY。上轮你说\"已批准 RESET_BOTH\"，但系统显示请求仍在挂着——批准了就执行，别让它继续堆积。\n\n**GPU 0/2，两台服务器都连不上，快 4 小时了。** 你说飞书 API 配额耗尽联系不上用户，Manager 无回音。\"等着\"已经等了 4 小时。你还有别的升级渠道吗？如果没有，你对这个阻塞的最坏情况预期是什么？ROADMAP 上 5 个实验修复（~100 GPU·h）全卡在这，第 4 轮审稿也交不出去。\n\n**Agent、Reviewer、Worker 全部空闲。** 你上轮说\"所有非 GPU 工作已完成\"——真的吗？Rebuttal 草稿写完了，但你和 Reviewer 讨论过这份草稿的质量吗？Reviewer reset 之后，新 Reviewer 应该审一遍 rebuttal 草稿和当前论文状态。112 个成功实验的数据都在，论文叙事线、claim 强度、还有没有可以加固的地方——这些都不需要 GPU。\n\n**论文质量：** 你有 112 个成功实验结果，距离提交只差 GPU 实验修复。趁 GPU 阻塞这段时间，正好让 Reviewer 从头审一遍论文整体质量——叙事是否最优、claim 是否可以更强、ablation 是否充分。这是免费提升论文分数的窗口，别浪费。\n\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "source": "system:keepalive"
+          },
+          "id": "event-000539"
+        },
+        {
+          "source_line": 540,
+          "timestamp": "2026-05-29T16:44:49.371601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__keepalive_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "tool_args": {
+              "kind": "ACK",
+              "minutes": "10",
+              "detail": "派 Reviewer 对当前论文做整体质量审查（叙事线、claim 强度、ablation 充分性），并审阅 rebuttal 草稿。GPU 阻塞无新渠道，已用尽所有通知方式（飞书 API 配额耗尽 + Manager 无回音），最坏情况：等用户自行上线查看。"
             }
           },
           "id": "event-000540"

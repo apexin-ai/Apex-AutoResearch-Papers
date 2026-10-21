@@ -7,647 +7,6 @@
       "messages": [
         {
           "source_line": 6121,
-          "timestamp": "2026-05-21T03:40:31.826945+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "and [0-9]+ others",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-006121"
-        },
-        {
-          "source_line": 6122,
-          "timestamp": "2026-05-21T03:40:31.877709+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-006122"
-        },
-        {
-          "source_line": 6123,
-          "timestamp": "2026-05-21T03:40:36.639307+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-              "offset": "400",
-              "limit": "10"
-            }
-          },
-          "id": "event-006123"
-        },
-        {
-          "source_line": 6124,
-          "timestamp": "2026-05-21T03:40:37.091539+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "400\t\\label{tab:format_independence}\n401\t\\end{table}\n402\t\n403\tThe near-zero Fisher $z$ statistics ($|z| < 0.05$, $p > 0.96$) confirm that the BCS--accuracy correlation is indistinguishable between formats. Both Pearson $r$ values are significant ($p < 0.03$), reflecting the bimodal BCS distribution of extreme batches (13 low + 12 high); the monotonic Spearman $\\rho$ is modest and non-significant under both formats, consistent with the typical-batch BCS effect size (${\\sim}2$\\,pp; \\S\\ref{sec:practical_magnitude}). This result establishes that the confusability-associated degradation pattern is robust across output formats, not an artifact of forced-choice decoding.\n404\t\n405\t\\paragraph{Per-batch paired results.}\n406\tTable~\\ref{tab:format_perbatch} reports per-batch accuracy under both formats. Of 25 batches, 23 yield \\emph{identical} accuracy; the two exceptions (high\\_5, high\\_11) differ by a single sample (1/96 $\\approx$ 1.04\\,pp). Only 2 out-of-vocabulary predictions occur in unconstrained decoding (OOV rate 0.08\\%), confirming that the model generates valid type labels even without format constraints.\n407\t\n408\t\\begin{table}[h]\n409\t\\centering"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 452
-          },
-          "id": "event-006124"
-        },
-        {
-          "source_line": 6125,
-          "timestamp": "2026-05-21T03:40:37.644012+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "confusability",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "output_mode": "content",
-              "glob": "abstract.tex"
-            }
-          },
-          "id": "event-006125"
-        },
-        {
-          "source_line": 6126,
-          "timestamp": "2026-05-21T03:40:38.096274+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:2:[Omitted long matching line]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 452
-          },
-          "id": "event-006126"
-        },
-        {
-          "source_line": 6127,
-          "timestamp": "2026-05-21T03:40:38.447998+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "confusability",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "output_mode": "content",
-              "glob": "introduction.tex"
-            }
-          },
-          "id": "event-006127"
-        },
-        {
-          "source_line": 6128,
-          "timestamp": "2026-05-21T03:40:38.498677+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:6:What explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:10:We ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what modes do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:15:(1)~Degradation operates along two dimensions with bounded interaction: count-related recall decline (up to $-$49\\,pp) and confusability-related type substitution, confirmed on sentence- and document-level RE (\\S\\ref{sec:count_curves}, \\S\\ref{sec:multi_channel}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:19:Several findings are non-obvious: modest pairwise signals ($r^2 {\\approx} 1.3\\%$) amplify to $R^2 {=}\\, 22\\text{--}58\\%$ at batch level; renaming confusable types \\emph{decreases} accuracy (Appendix~\\ref{app:renaming}); and few-shot demonstrations widen rather than close the confusability gap.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:23:    \\item We present what is, to our knowledge, the first controlled study th\n…[truncated 826 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-006128"
-        },
-        {
-          "source_line": 6129,
-          "timestamp": "2026-05-21T03:40:41.614217+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
-            }
-          },
-          "id": "event-006129"
-        },
-        {
-          "source_line": 6130,
-          "timestamp": "2026-05-21T03:40:42.116648+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\begin{abstract}\n2\tTraining-free LLM information extraction degrades as schema complexity grows, yet prior work conflates two factors: type count and type confusability. We present what is, to our knowledge, the first controlled study isolating these factors across NER, RE, and event detection on four datasets. We quantify confusability via the Schema Confusability Score (SCS) and its batch-level aggregation, the Batch Confusability Score (BCS). Degradation operates along two dimensions with task-dependent effect structures: count-related recall decline (up to $-$49\\,pp on DocRED 96-relation RE) and confusability-related type substitution. In RE, BCS explains 22--58\\% of cross-batch accuracy variance (FewRel/DocRED), independent of output format (paired constrained/unconstrained comparison yields identical correlations); NER shows no batch-level BCS signal, as errors scatter across missed entities and boundary failures. Schema decomposition fails due to merge amplification (NER, ED) and routing failure (RE). Both dimensions replicate across four models spanning three architecture families (Qwen, LLaMA, Gemini; 8B--70B), two decoding formats, and four prompt designs.\n3\t\\end{abstract}\n4\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 502
-          },
-          "id": "event-006130"
-        },
-        {
-          "source_line": 6131,
-          "timestamp": "2026-05-21T03:40:42.167391+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-006131"
-        },
-        {
-          "source_line": 6132,
-          "timestamp": "2026-05-21T03:40:42.167785+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\tThe two-dimensional decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). Approximate separability is confirmed on FewRel and DocRED (\\S\\ref{sec:multi_channel}); logit-scale evidence remains inconclusive. Both dimensions replicate across four models (8B--70B), two decoding formats, four prompt designs, and two RE datasets.\n6\t\n7\t\\paragraph{Embedding similarity and format independence.}\n8\tSCS captures semantic proximity in LLMs' type-resolution space, amplifying from pairwise $R^2 = 1.3\\%$ to batch-level 18--25\\% via correlated aggregation (Appendix~\\ref{app:aggregation-sim}). The BCS--performance relationship holds across all RE settings but not NER; a paired format comparison confirms format independence (Appendix~\\ref{app:format-independence}). The task asymmetry reflects error-mode structure: RE errors concentrate in type substitutions \\citep{tam-2024-let-me-speak}, whereas NER errors scatter across miss, boundary, and type modes \\citep{schall-2025-hidden-cost}. SCS likely proxies deeper conceptual overlap persisting despite label renaming (Appendix~\\ref{app:renaming}); we hypothesize high-SCS types intensify softmax competition---testable via logit-space analysis.\n9\t\n10\t\\paragraph{Practical implications.}\n11\tFor NER, reducing candidate types per prompt is the primary lever; for RE, we suggest flagging type pairs with SCS${}\\,>\\,0.85$ and monitoring batch-level BCS (typical gap 2--4\\,pp in random batches; extreme-BCS contrasts reach 25--31\\,pp).\n12\t\n13\t\\paragraph{Conclusion.}\n14\t\\label{sec:conclusion}\n15\tTraining-free LLM extraction degrades along two separable dimensions---count-associated recall decline and confusability-associated type substitution---replicated on four models (8B--70B); decomposition fails via merge amplification and routing failure.\n16\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-006132"
-        },
-        {
-          "source_line": 6133,
-          "timestamp": "2026-05-21T03:41:05.123721+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "mechanism",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
-              "output_mode": "content",
-              "-n": "True"
-            }
-          },
-          "id": "event-006133"
-        },
-        {
-          "source_line": 6134,
-          "timestamp": "2026-05-21T03:41:05.626393+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "8:[Omitted long matching line]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 502
-          },
-          "id": "event-006134"
-        },
-        {
-          "source_line": 6135,
-          "timestamp": "2026-05-21T03:41:06.580618+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "driven|causes|intrinsic",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "output_mode": "content",
-              "glob": "*.tex"
-            }
-          },
-          "id": "event-006135"
-        },
-        {
-          "source_line": 6136,
-          "timestamp": "2026-05-21T03:41:06.982573+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:296:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:399:\\caption{Paired comparison of constrained vs.\\ unconstrained decoding on 25 identical FewRel batch type sets. Both formats yield virtually identical BCS--accuracy correlations (Fisher $z \\approx 0$), confirming the confusability effect is format-independent. Mean accuracy is also unchanged ($\\Delta = -0.08$\\,pp), ruling out a format-driven accuracy shift.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:527:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:668:[Omitted long matching line]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 401
-          },
-          "id": "event-006136"
-        },
-        {
-          "source_line": 6137,
-          "timestamp": "2026-05-21T03:41:06.982924+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
-              "offset": "1",
-              "limit": "50"
-            }
-          },
-          "id": "event-006137"
-        },
-        {
-          "source_line": 6138,
-          "timestamp": "2026-05-21T03:41:07.083707+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t@inproceedings{josifoski-2022-genie,\n2\t  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n3\t  title     = {{GenIE}: Generative Information Extraction},\n4\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n5\t  pages     = {4626--4643},\n6\t  year      = {2022}\n7\t}\n8\t\n9\t@inproceedings{dubey-2018-pairwise-confusion,\n10\t  author    = {Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil},\n11\t  title     = {Pairwise Confusion for Fine-Grained Visual Classification},\n12\t  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},\n13\t  pages     = {71--88},\n14\t  year      = {2018}\n15\t}\n16\t\n17\t@inproceedings{collier-2021-correlated-noise,\n18\t  author    = {Collier, Mark and Mustafa, Basil and Kokiopoulou, Efi and Jenatton, Rodolphe and Berent, Jesse},\n19\t  title     = {Correlated Input-Dependent Label Noise in Large-Scale Image Classification},\n20\t  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n21\t  pages     = {1551--1560},\n22\t  year      = {2021}\n23\t}\n24\t\n25\t@inproceedings{park-2024-grammar-aligned,\n26\t  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n27\t  title     = {Grammar-Aligned Decoding},\n28\t  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n29\t  year      = {2024}\n30\t}\n31\t\n32\t@inproceedings{tam-2024-let-me-speak,\n33\t  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},\n34\t  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},\n35\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Ind\n…[truncated 723 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-006138"
-        },
-        {
-          "source_line": 6139,
-          "timestamp": "2026-05-21T03:41:10.449903+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex",
-              "offset": "1",
-              "limit": "15"
-            }
-          },
-          "id": "event-006139"
-        },
-        {
-          "source_line": 6140,
-          "timestamp": "2026-05-21T03:41:10.751917+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Training-free LLM IE.}\n5\tTraining-free LLM IE spans instruction tuning \\citep{instructuie-2023}, code-style schema encoding \\citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \\citep{gollie-2024,adelie-2024}, schema-driven decoding \\citep{slot-2025,oneke-2025}, and constrained JSON decoding \\citep{json-schema-bench-2025,willard2023efficient}. For NER, methods include zero-shot decomposition \\citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \\citep{uniner-2024}, bidirectional encoders \\citep{gliner-2024,gliner2-2025}, and fine-grained entity typing \\citep{gillick-2014-entity-typing}. For RE, recent work examines zero-shot relation triplet extraction via prompting \\citep{relationprompt-2022}, constrained generative extraction \\citep{josifoski-2022-genie}, revisits relation extraction in the LLM era \\citep{wadhwa-re-llm-2023}, and zero-shot RE via shared embedding spaces \\citep{boylan-2025-glirel}. These methods perform well with moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales, nor proposes quantitative metrics for inter-type confusability. \\citet{wei-2023-chatie} reformulate zero-shot IE as multi-turn QA with ChatGPT but do not analyze schema-size effects.\n6\t\n7\t\\paragraph{Schema complexity in IE.}\n8\tThe most directly related work is LLM-PEE \\citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \\emph{why} extraction degrades rather than developing an engineering solution; (2)~our BCS-controlled experiments isolate count from confusability, which LLM-PEE conflates; (3)~our SDGD experiments reveal that merge amplification (not partitioning quality) is the bottleneck in decompose-then-merge pipelines. LLM-PEE's union merge suffers the same precision collapse (0.56$\\to$0.21; \\S\\ref{sec:sdgd}). In short, LLM-PEE ass\n…[truncated 3785 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 302
-          },
-          "id": "event-006140"
-        },
-        {
-          "source_line": 6141,
-          "timestamp": "2026-05-21T03:41:11.254292+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-              "offset": "293",
-              "limit": "10"
-            }
-          },
-          "id": "event-006141"
-        },
-        {
-          "source_line": 6142,
-          "timestamp": "2026-05-21T03:41:11.706996+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "293\tUnder the v1 prompt, the extreme-batch BCS gap (Table~\\ref{tab:bcs_controlled}) is substantial. Under v2, with $n{=}25$ batches per group and wider BCS contrast (low-BCS range [0.356, 0.367]; high-BCS range [0.791, 0.811]), the gap is $-$25.5\\,pp (low-BCS 85.2\\% vs.\\ high-BCS 59.7\\%; 95\\% CI [22.4, 28.6]; $p < 0.001$; Pearson $r = -0.919$). The effect is significant, directionally consistent with v1, and only modestly attenuated in magnitude ($-$5.7\\,pp reduction). An earlier $n{=}5$ evaluation with narrower BCS contrast (0.21) yielded a smaller gap of $-$7.9\\,pp (95\\% CI [$-$5.2, $+$21.5]), illustrating how limited statistical power and restricted BCS range can obscure the underlying signal, a cautionary note for small-sample prompt sensitivity studies.\n294\t\n295\t\\paragraph{NER (Few-NERD).}\n296\tThe batch-level BCS--F1 correlation is null under both prompt versions. Pooling across three seeds and all count levels ($n = 450$), the correlation is $r = 0.004$ ($p = 0.94$). An earlier small-sample analysis ($n = 27$, single seed) had reported positive correlations ($r = +0.50$/$+0.58$), but these were driven by an accidental BCS--type-frequency confound: those 27 batches exhibited $r(\\text{BCS}, \\text{freq}) = 0.53$, creating a spurious path through frequency to F1. After controlling for type frequency, the partial correlation is non-significant in both the small ($r = 0.28$, $p = 0.16$) and large ($r = -0.12$, $p = 0.29$) samples. The pairwise SCS--confusion analysis (\\S\\ref{sec:pairwise}), which is immune to this batch-level aggregation artifact, remains the primary evidence for the NER confusability dimension.\n297\t\n298\t\\paragraph{Interpretation.}\n299\tThe $n{=}25$ v2 result confirms that the confusability effect is directionally consistent across prompt designs, with attenuated magnitude: the gap narrows ($-$5.7\\,pp) but remains highly significant ($p < 0.001$, $r = -0.919$). The earlier $n{=}5$ non-significance reflected insufficient power and narrow BCS contrast,\n…[truncated 617 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 452
-          },
-          "id": "event-006142"
-        },
-        {
-          "source_line": 6143,
-          "timestamp": "2026-05-21T03:41:12.159162+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-              "offset": "524",
-              "limit": "10"
-            }
-          },
-          "id": "event-006143"
-        },
-        {
-          "source_line": 6144,
-          "timestamp": "2026-05-21T03:41:12.611437+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "524\t\\section{BCS Independence from Type Composition}\n525\t\\label{app:bcs-composition}\n526\t\n527\tFewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\\% of explained variance), composition unique $R^2 = 0.298$ (42.3\\%), and shared $R^2 = 0.147$ (20.9\\%). The near-orthogonality of predictors (VIF${}\\,=\\,1.06$, $r(\\text{BCS}, \\text{difficulty}) = -0.21$) confirms that BCS captures confusability-specific signal rather than a proxy for type difficulty.\n528\t\n529\t\\section{SCS vs.\\ Simple Baselines}\n530\t\\label{app:scs-baselines}\n531\t\n532\t\\begin{table}[h]\n533\t\\centering"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 452
-          },
-          "id": "event-006144"
-        },
-        {
-          "source_line": 6145,
-          "timestamp": "2026-05-21T03:41:12.611804+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
-              "offset": "665",
-              "limit": "10"
-            }
-          },
-          "id": "event-006145"
-        },
-        {
-          "source_line": 6146,
-          "timestamp": "2026-05-21T03:41:12.662340+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "665\t\\paragraph{Dimension~2: BCS-controlled confusability.}\n666\tWe replicate the BCS-controlled experiment on Gemini 2.5 Flash using extreme-BCS batches at count 8 ($n = 50$; 25 low-BCS, 25 high-BCS) and count 16 ($n = 10$; 5+5).\n667\t\n668\tAt count 8, low-BCS batches achieve 90.5\\% vs.\\ high-BCS 72.9\\% ($\\Delta = -17.6$\\,pp, 95\\% CI [15.1, 20.1]). At count 16, the gap narrows to $-$8.7\\,pp, but one high-BCS outlier (BCS${}=0.97$, accuracy 59.9\\%) inflates Pearson $r$; leave-one-out excluding this point drops $r$ from $-$0.80 to $-$0.42 ($p = 0.22$) and $\\rho$ from $-$0.40 to $-$0.18 ($p = 0.64$), confirming the count-16 correlation is driven by this single leverage point. The count-8 gap is smaller than Qwen3-32B's ($-$31.2\\,pp), consistent with ceiling compression: Gemini's higher baseline (90.5\\% vs.\\ 82.3\\%) leaves less room for degradation.\n669\t\n670\tTable~\\ref{tab:cross_model_bcs_summary} summarizes BCS-controlled results across all validated models. Both dimensions thus replicate on a proprietary architecture with unknown training details.\n671\t\n672\t\\begin{table}[h]\n673\t\\centering\n674\t\\small"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-006146"
-        },
-        {
-          "source_line": 6147,
-          "timestamp": "2026-05-21T03:41:52.961943+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "confusability (causes|drives|produces|creates|leads|results)",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "output_mode": "content",
-              "glob": "*.tex"
-            }
-          },
-          "id": "event-006147"
-        },
-        {
-          "source_line": 6148,
-          "timestamp": "2026-05-21T03:41:53.363900+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 401
-          },
-          "id": "event-006148"
-        },
-        {
-          "source_line": 6149,
-          "timestamp": "2026-05-21T03:41:54.469119+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "confusability.driven|confusability.causes|causal|intrinsic",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-006149"
-        },
-        {
-          "source_line": 6150,
-          "timestamp": "2026-05-21T03:41:54.821114+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 351
-          },
-          "id": "event-006150"
-        },
-        {
-          "source_line": 6151,
-          "timestamp": "2026-05-21T03:41:55.072491+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "and [0-9]+ other",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-006151"
-        },
-        {
-          "source_line": 6152,
-          "timestamp": "2026-05-21T03:41:55.223743+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Grep",
-            "elapsed_ms": 151
-          },
-          "id": "event-006152"
-        },
-        {
-          "source_line": 6153,
           "timestamp": "2026-05-21T03:41:58.539944+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -667,10 +26,10 @@
               "-n": "True"
             }
           },
-          "id": "event-006153"
+          "id": "event-006121"
         },
         {
-          "source_line": 6154,
+          "source_line": 6122,
           "timestamp": "2026-05-21T03:41:58.640819+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -685,10 +44,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-006154"
+          "id": "event-006122"
         },
         {
-          "source_line": 6155,
+          "source_line": 6123,
           "timestamp": "2026-05-21T03:42:03.914974+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -707,10 +66,10 @@
               "limit": "25"
             }
           },
-          "id": "event-006155"
+          "id": "event-006123"
         },
         {
-          "source_line": 6156,
+          "source_line": 6124,
           "timestamp": "2026-05-21T03:42:04.469178+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -725,10 +84,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-006156"
+          "id": "event-006124"
         },
         {
-          "source_line": 6157,
+          "source_line": 6125,
           "timestamp": "2026-05-21T03:42:04.921811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -747,10 +106,10 @@
               "limit": "50"
             }
           },
-          "id": "event-006157"
+          "id": "event-006125"
         },
         {
-          "source_line": 6158,
+          "source_line": 6126,
           "timestamp": "2026-05-21T03:42:05.306473+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -765,10 +124,10 @@
             "tool": "Read",
             "elapsed_ms": 384
           },
-          "id": "event-006158"
+          "id": "event-006126"
         },
         {
-          "source_line": 6159,
+          "source_line": 6127,
           "timestamp": "2026-05-21T03:42:05.812189+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -787,10 +146,10 @@
               "limit": "50"
             }
           },
-          "id": "event-006159"
+          "id": "event-006127"
         },
         {
-          "source_line": 6160,
+          "source_line": 6128,
           "timestamp": "2026-05-21T03:42:06.264515+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -805,10 +164,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-006160"
+          "id": "event-006128"
         },
         {
-          "source_line": 6161,
+          "source_line": 6129,
           "timestamp": "2026-05-21T03:42:06.265102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -827,10 +186,10 @@
               "limit": "90"
             }
           },
-          "id": "event-006161"
+          "id": "event-006129"
         },
         {
-          "source_line": 6162,
+          "source_line": 6130,
           "timestamp": "2026-05-21T03:42:06.315748+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -845,10 +204,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006162"
+          "id": "event-006130"
         },
         {
-          "source_line": 6163,
+          "source_line": 6131,
           "timestamp": "2026-05-21T03:42:39.214755+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -866,10 +225,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006163"
+          "id": "event-006131"
         },
         {
-          "source_line": 6164,
+          "source_line": 6132,
           "timestamp": "2026-05-21T03:42:41.424572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -884,10 +243,10 @@
             "tool": "Bash",
             "elapsed_ms": 2209
           },
-          "id": "event-006164"
+          "id": "event-006132"
         },
         {
-          "source_line": 6165,
+          "source_line": 6133,
           "timestamp": "2026-05-21T03:42:44.638576+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -905,10 +264,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006165"
+          "id": "event-006133"
         },
         {
-          "source_line": 6166,
+          "source_line": 6134,
           "timestamp": "2026-05-21T03:42:44.739474+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -923,10 +282,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006166"
+          "id": "event-006134"
         },
         {
-          "source_line": 6167,
+          "source_line": 6135,
           "timestamp": "2026-05-21T03:42:50.161820+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -944,10 +303,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006167"
+          "id": "event-006135"
         },
         {
-          "source_line": 6168,
+          "source_line": 6136,
           "timestamp": "2026-05-21T03:42:50.465188+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -962,10 +321,10 @@
             "tool": "Bash",
             "elapsed_ms": 303
           },
-          "id": "event-006168"
+          "id": "event-006136"
         },
         {
-          "source_line": 6169,
+          "source_line": 6137,
           "timestamp": "2026-05-21T03:42:53.880275+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -983,10 +342,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006169"
+          "id": "event-006137"
         },
         {
-          "source_line": 6170,
+          "source_line": 6138,
           "timestamp": "2026-05-21T03:42:54.182036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1001,10 +360,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-006170"
+          "id": "event-006138"
         },
         {
-          "source_line": 6171,
+          "source_line": 6139,
           "timestamp": "2026-05-21T03:43:02.431474+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1022,10 +381,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006171"
+          "id": "event-006139"
         },
         {
-          "source_line": 6172,
+          "source_line": 6140,
           "timestamp": "2026-05-21T03:43:02.733087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1040,10 +399,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-006172"
+          "id": "event-006140"
         },
         {
-          "source_line": 6173,
+          "source_line": 6141,
           "timestamp": "2026-05-21T03:43:07.107717+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1061,10 +420,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006173"
+          "id": "event-006141"
         },
         {
-          "source_line": 6174,
+          "source_line": 6142,
           "timestamp": "2026-05-21T03:43:07.409951+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1079,10 +438,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-006174"
+          "id": "event-006142"
         },
         {
-          "source_line": 6175,
+          "source_line": 6143,
           "timestamp": "2026-05-21T03:43:11.429105+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1100,10 +459,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006175"
+          "id": "event-006143"
         },
         {
-          "source_line": 6176,
+          "source_line": 6144,
           "timestamp": "2026-05-21T03:43:11.730712+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1118,10 +477,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-006176"
+          "id": "event-006144"
         },
         {
-          "source_line": 6177,
+          "source_line": 6145,
           "timestamp": "2026-05-21T03:43:15.347890+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1139,10 +498,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006177"
+          "id": "event-006145"
         },
         {
-          "source_line": 6178,
+          "source_line": 6146,
           "timestamp": "2026-05-21T03:43:15.600038+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1157,10 +516,10 @@
             "tool": "Bash",
             "elapsed_ms": 252
           },
-          "id": "event-006178"
+          "id": "event-006146"
         },
         {
-          "source_line": 6179,
+          "source_line": 6147,
           "timestamp": "2026-05-21T03:44:09.631025+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1179,10 +538,10 @@
               "limit": "10"
             }
           },
-          "id": "event-006179"
+          "id": "event-006147"
         },
         {
-          "source_line": 6180,
+          "source_line": 6148,
           "timestamp": "2026-05-21T03:44:09.631488+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1197,10 +556,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006180"
+          "id": "event-006148"
         },
         {
-          "source_line": 6181,
+          "source_line": 6149,
           "timestamp": "2026-05-21T03:44:14.856776+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1220,10 +579,10 @@
               "new_string": "    author  = {Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Yang, Amy and Fan, Angela and others},"
             }
           },
-          "id": "event-006181"
+          "id": "event-006149"
         },
         {
-          "source_line": 6182,
+          "source_line": 6150,
           "timestamp": "2026-05-21T03:44:14.907781+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1238,10 +597,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006182"
+          "id": "event-006150"
         },
         {
-          "source_line": 6183,
+          "source_line": 6151,
           "timestamp": "2026-05-21T03:44:19.757435+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1259,10 +618,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006183"
+          "id": "event-006151"
         },
         {
-          "source_line": 6184,
+          "source_line": 6152,
           "timestamp": "2026-05-21T03:44:19.909431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1277,10 +636,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-006184"
+          "id": "event-006152"
         },
         {
-          "source_line": 6185,
+          "source_line": 6153,
           "timestamp": "2026-05-21T03:44:23.726532+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1298,10 +657,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006185"
+          "id": "event-006153"
         },
         {
-          "source_line": 6186,
+          "source_line": 6154,
           "timestamp": "2026-05-21T03:44:27.290415+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1316,10 +675,10 @@
             "tool": "Bash",
             "elapsed_ms": 3563
           },
-          "id": "event-006186"
+          "id": "event-006154"
         },
         {
-          "source_line": 6187,
+          "source_line": 6155,
           "timestamp": "2026-05-21T03:44:30.805712+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1337,10 +696,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006187"
+          "id": "event-006155"
         },
         {
-          "source_line": 6188,
+          "source_line": 6156,
           "timestamp": "2026-05-21T03:44:32.662988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1355,10 +714,10 @@
             "tool": "Bash",
             "elapsed_ms": 1857
           },
-          "id": "event-006188"
+          "id": "event-006156"
         },
         {
-          "source_line": 6189,
+          "source_line": 6157,
           "timestamp": "2026-05-21T03:44:36.088674+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1376,10 +735,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006189"
+          "id": "event-006157"
         },
         {
-          "source_line": 6190,
+          "source_line": 6158,
           "timestamp": "2026-05-21T03:44:36.393830+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1394,10 +753,10 @@
             "tool": "Bash",
             "elapsed_ms": 305
           },
-          "id": "event-006190"
+          "id": "event-006158"
         },
         {
-          "source_line": 6191,
+          "source_line": 6159,
           "timestamp": "2026-05-21T03:45:00.847615+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1415,10 +774,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006191"
+          "id": "event-006159"
         },
         {
-          "source_line": 6192,
+          "source_line": 6160,
           "timestamp": "2026-05-21T03:45:00.999473+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1433,10 +792,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-006192"
+          "id": "event-006160"
         },
         {
-          "source_line": 6193,
+          "source_line": 6161,
           "timestamp": "2026-05-21T03:45:04.214891+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1454,10 +813,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006193"
+          "id": "event-006161"
         },
         {
-          "source_line": 6194,
+          "source_line": 6162,
           "timestamp": "2026-05-21T03:45:04.315779+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1472,10 +831,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006194"
+          "id": "event-006162"
         },
         {
-          "source_line": 6195,
+          "source_line": 6163,
           "timestamp": "2026-05-21T03:45:21.179342+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1493,10 +852,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006195"
+          "id": "event-006163"
         },
         {
-          "source_line": 6196,
+          "source_line": 6164,
           "timestamp": "2026-05-21T03:45:21.230012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1511,10 +870,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006196"
+          "id": "event-006164"
         },
         {
-          "source_line": 6197,
+          "source_line": 6165,
           "timestamp": "2026-05-21T03:45:24.745596+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1533,10 +892,10 @@
               "limit": "15"
             }
           },
-          "id": "event-006197"
+          "id": "event-006165"
         },
         {
-          "source_line": 6198,
+          "source_line": 6166,
           "timestamp": "2026-05-21T03:45:24.746064+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1551,10 +910,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006198"
+          "id": "event-006166"
         },
         {
-          "source_line": 6199,
+          "source_line": 6167,
           "timestamp": "2026-05-21T03:45:29.013445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1574,10 +933,10 @@
               "new_string": "              t \"others\" =\n                {\n\t\t  \" \" * bbl.etal *\n                }"
             }
           },
-          "id": "event-006199"
+          "id": "event-006167"
         },
         {
-          "source_line": 6200,
+          "source_line": 6168,
           "timestamp": "2026-05-21T03:45:29.215265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1592,10 +951,10 @@
             "tool": "Edit",
             "elapsed_ms": 201
           },
-          "id": "event-006200"
+          "id": "event-006168"
         },
         {
-          "source_line": 6201,
+          "source_line": 6169,
           "timestamp": "2026-05-21T03:45:32.680833+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1613,10 +972,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-006201"
+          "id": "event-006169"
         },
         {
-          "source_line": 6202,
+          "source_line": 6170,
           "timestamp": "2026-05-21T03:45:32.731558+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1631,10 +990,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006202"
+          "id": "event-006170"
         },
         {
-          "source_line": 6203,
+          "source_line": 6171,
           "timestamp": "2026-05-21T03:45:36.717040+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1653,10 +1012,10 @@
               "limit": "5"
             }
           },
-          "id": "event-006203"
+          "id": "event-006171"
         },
         {
-          "source_line": 6204,
+          "source_line": 6172,
           "timestamp": "2026-05-21T03:45:36.817926+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1671,10 +1030,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006204"
+          "id": "event-006172"
         },
         {
-          "source_line": 6205,
+          "source_line": 6173,
           "timestamp": "2026-05-21T03:45:41.740339+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1693,10 +1052,10 @@
               "limit": "15"
             }
           },
-          "id": "event-006205"
+          "id": "event-006173"
         },
         {
-          "source_line": 6206,
+          "source_line": 6174,
           "timestamp": "2026-05-21T03:45:41.790946+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1711,10 +1070,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006206"
+          "id": "event-006174"
         },
         {
-          "source_line": 6207,
+          "source_line": 6175,
           "timestamp": "2026-05-21T03:45:45.958040+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1732,10 +1091,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006207"
+          "id": "event-006175"
         },
         {
-          "source_line": 6208,
+          "source_line": 6176,
           "timestamp": "2026-05-21T03:45:46.209788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1750,10 +1109,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-006208"
+          "id": "event-006176"
         },
         {
-          "source_line": 6209,
+          "source_line": 6177,
           "timestamp": "2026-05-21T03:45:49.825160+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1771,10 +1130,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006209"
+          "id": "event-006177"
         },
         {
-          "source_line": 6210,
+          "source_line": 6178,
           "timestamp": "2026-05-21T03:45:50.078738+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1789,10 +1148,10 @@
             "tool": "Bash",
             "elapsed_ms": 253
           },
-          "id": "event-006210"
+          "id": "event-006178"
         },
         {
-          "source_line": 6211,
+          "source_line": 6179,
           "timestamp": "2026-05-21T03:45:53.342043+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1810,10 +1169,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006211"
+          "id": "event-006179"
         },
         {
-          "source_line": 6212,
+          "source_line": 6180,
           "timestamp": "2026-05-21T03:45:53.392825+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1828,10 +1187,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006212"
+          "id": "event-006180"
         },
         {
-          "source_line": 6213,
+          "source_line": 6181,
           "timestamp": "2026-05-21T03:45:56.405433+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1848,10 +1207,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.blg"
             }
           },
-          "id": "event-006213"
+          "id": "event-006181"
         },
         {
-          "source_line": 6214,
+          "source_line": 6182,
           "timestamp": "2026-05-21T03:45:56.456057+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1866,10 +1225,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006214"
+          "id": "event-006182"
         },
         {
-          "source_line": 6215,
+          "source_line": 6183,
           "timestamp": "2026-05-21T03:46:03.039062+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1887,10 +1246,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-006215"
+          "id": "event-006183"
         },
         {
-          "source_line": 6216,
+          "source_line": 6184,
           "timestamp": "2026-05-21T03:46:07.623356+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1905,10 +1264,10 @@
             "tool": "Bash",
             "elapsed_ms": 4584
           },
-          "id": "event-006216"
+          "id": "event-006184"
         },
         {
-          "source_line": 6217,
+          "source_line": 6185,
           "timestamp": "2026-05-21T03:46:12.046148+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1926,10 +1285,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006217"
+          "id": "event-006185"
         },
         {
-          "source_line": 6218,
+          "source_line": 6186,
           "timestamp": "2026-05-21T03:46:12.400758+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1944,10 +1303,10 @@
             "tool": "Bash",
             "elapsed_ms": 354
           },
-          "id": "event-006218"
+          "id": "event-006186"
         },
         {
-          "source_line": 6219,
+          "source_line": 6187,
           "timestamp": "2026-05-21T03:46:16.921667+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1965,10 +1324,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006219"
+          "id": "event-006187"
         },
         {
-          "source_line": 6220,
+          "source_line": 6188,
           "timestamp": "2026-05-21T03:46:17.022910+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1983,10 +1342,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-006220"
+          "id": "event-006188"
         },
         {
-          "source_line": 6221,
+          "source_line": 6189,
           "timestamp": "2026-05-21T03:46:20.312435+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2004,10 +1363,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006221"
+          "id": "event-006189"
         },
         {
-          "source_line": 6222,
+          "source_line": 6190,
           "timestamp": "2026-05-21T03:46:20.414534+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2022,10 +1381,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-006222"
+          "id": "event-006190"
         },
         {
-          "source_line": 6223,
+          "source_line": 6191,
           "timestamp": "2026-05-21T03:46:23.729393+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2043,10 +1402,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006223"
+          "id": "event-006191"
         },
         {
-          "source_line": 6224,
+          "source_line": 6192,
           "timestamp": "2026-05-21T03:46:23.830187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2061,10 +1420,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006224"
+          "id": "event-006192"
         },
         {
-          "source_line": 6225,
+          "source_line": 6193,
           "timestamp": "2026-05-21T03:46:30.108029+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2082,10 +1441,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-006225"
+          "id": "event-006193"
         },
         {
-          "source_line": 6226,
+          "source_line": 6194,
           "timestamp": "2026-05-21T03:46:30.211342+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2100,10 +1459,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-006226"
+          "id": "event-006194"
         },
         {
-          "source_line": 6227,
+          "source_line": 6195,
           "timestamp": "2026-05-21T03:46:33.876804+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2121,10 +1480,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-006227"
+          "id": "event-006195"
         },
         {
-          "source_line": 6228,
+          "source_line": 6196,
           "timestamp": "2026-05-21T03:46:33.978026+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2139,10 +1498,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-006228"
+          "id": "event-006196"
         },
         {
-          "source_line": 6229,
+          "source_line": 6197,
           "timestamp": "2026-05-21T03:47:10.361970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2160,10 +1519,10 @@
               "project": "schema-dag-extraction"
             }
           },
-          "id": "event-006229"
+          "id": "event-006197"
         },
         {
-          "source_line": 6230,
+          "source_line": 6198,
           "timestamp": "2026-05-21T03:47:14.528782+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2178,10 +1537,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4166
           },
-          "id": "event-006230"
+          "id": "event-006198"
         },
         {
-          "source_line": 6231,
+          "source_line": 6199,
           "timestamp": "2026-05-21T03:47:16.949290+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2194,7 +1553,7 @@
           "metadata": {
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
           },
-          "id": "event-006231"
+          "id": "event-006199"
         }
       ]
     },
@@ -2202,7 +1561,7 @@
       "number": 220,
       "messages": [
         {
-          "source_line": 6232,
+          "source_line": 6200,
           "timestamp": "2026-05-21T06:33:43.478604+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2216,10 +1575,10 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "source": "system:restart_recovery"
           },
-          "id": "event-006232"
+          "id": "event-006200"
         },
         {
-          "source_line": 6233,
+          "source_line": 6201,
           "timestamp": "2026-05-21T06:33:59.195927+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2237,10 +1596,10 @@
               "limit": "10"
             }
           },
-          "id": "event-006233"
+          "id": "event-006201"
         },
         {
-          "source_line": 6234,
+          "source_line": 6202,
           "timestamp": "2026-05-21T06:33:59.952433+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2255,10 +1614,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 756
           },
-          "id": "event-006234"
+          "id": "event-006202"
         },
         {
-          "source_line": 6235,
+          "source_line": 6203,
           "timestamp": "2026-05-21T06:33:59.952800+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2276,10 +1635,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-006235"
+          "id": "event-006203"
         },
         {
-          "source_line": 6236,
+          "source_line": 6204,
           "timestamp": "2026-05-21T06:34:00.053974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2294,10 +1653,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 101
           },
-          "id": "event-006236"
+          "id": "event-006204"
         },
         {
-          "source_line": 6237,
+          "source_line": 6205,
           "timestamp": "2026-05-21T06:34:03.119988+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2311,10 +1670,10 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-006237"
+          "id": "event-006205"
         },
         {
-          "source_line": 6238,
+          "source_line": 6206,
           "timestamp": "2026-05-21T06:34:03.421388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2329,10 +1688,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 301
           },
-          "id": "event-006238"
+          "id": "event-006206"
         },
         {
-          "source_line": 6239,
+          "source_line": 6207,
           "timestamp": "2026-05-21T06:34:03.924796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2350,10 +1709,10 @@
               "file": "report.md"
             }
           },
-          "id": "event-006239"
+          "id": "event-006207"
         },
         {
-          "source_line": 6240,
+          "source_line": 6208,
           "timestamp": "2026-05-21T06:34:04.180432+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2368,10 +1727,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 255
           },
-          "id": "event-006240"
+          "id": "event-006208"
         },
         {
-          "source_line": 6241,
+          "source_line": 6209,
           "timestamp": "2026-05-21T06:34:04.180859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2389,10 +1748,10 @@
               "file": "ROADMAP.md"
             }
           },
-          "id": "event-006241"
+          "id": "event-006209"
         },
         {
-          "source_line": 6242,
+          "source_line": 6210,
           "timestamp": "2026-05-21T06:34:04.233133+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2407,10 +1766,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 52
           },
-          "id": "event-006242"
+          "id": "event-006210"
         },
         {
-          "source_line": 6243,
+          "source_line": 6211,
           "timestamp": "2026-05-21T06:34:20.446937+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2428,10 +1787,10 @@
               "project": "schema-dag-extraction"
             }
           },
-          "id": "event-006243"
+          "id": "event-006211"
         },
         {
-          "source_line": 6244,
+          "source_line": 6212,
           "timestamp": "2026-05-21T06:34:24.275004+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2446,10 +1805,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3828
           },
-          "id": "event-006244"
+          "id": "event-006212"
         },
         {
-          "source_line": 6245,
+          "source_line": 6213,
           "timestamp": "2026-05-21T06:34:27.124438+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2462,7 +1821,7 @@
           "metadata": {
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
           },
-          "id": "event-006245"
+          "id": "event-006213"
         }
       ]
     },
@@ -2470,7 +1829,7 @@
       "number": 221,
       "messages": [
         {
-          "source_line": 6246,
+          "source_line": 6214,
           "timestamp": "2026-05-21T09:48:41.453379+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2484,10 +1843,10 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "source": "director"
           },
-          "id": "event-006246"
+          "id": "event-006214"
         },
         {
-          "source_line": 6247,
+          "source_line": 6215,
           "timestamp": "2026-05-21T09:48:50.099337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2506,10 +1865,10 @@
               "limit": "2"
             }
           },
-          "id": "event-006247"
+          "id": "event-006215"
         },
         {
-          "source_line": 6248,
+          "source_line": 6216,
           "timestamp": "2026-05-21T09:48:50.601702+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2524,10 +1883,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-006248"
+          "id": "event-006216"
         },
         {
-          "source_line": 6249,
+          "source_line": 6217,
           "timestamp": "2026-05-21T09:48:51.104014+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2546,10 +1905,10 @@
               "limit": "3"
             }
           },
-          "id": "event-006249"
+          "id": "event-006217"
         },
         {
-          "source_line": 6250,
+          "source_line": 6218,
           "timestamp": "2026-05-21T09:48:51.505874+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2564,10 +1923,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-006250"
+          "id": "event-006218"
         },
         {
-          "source_line": 6251,
+          "source_line": 6219,
           "timestamp": "2026-05-21T09:48:51.857534+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2586,10 +1945,10 @@
               "limit": "2"
             }
           },
-          "id": "event-006251"
+          "id": "event-006219"
         },
         {
-          "source_line": 6252,
+          "source_line": 6220,
           "timestamp": "2026-05-21T09:48:51.958385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2604,10 +1963,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006252"
+          "id": "event-006220"
         },
         {
-          "source_line": 6253,
+          "source_line": 6221,
           "timestamp": "2026-05-21T09:48:55.872955+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2627,10 +1986,10 @@
               "new_string": "accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level)"
             }
           },
-          "id": "event-006253"
+          "id": "event-006221"
         },
         {
-          "source_line": 6254,
+          "source_line": 6222,
           "timestamp": "2026-05-21T09:48:56.325193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2645,10 +2004,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-006254"
+          "id": "event-006222"
         },
         {
-          "source_line": 6255,
+          "source_line": 6223,
           "timestamp": "2026-05-21T09:48:57.278715+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2668,10 +2027,10 @@
               "new_string": "amplifying from pairwise $R^2 = 1.3\\%$ to batch-level 22--58\\% via correlated aggregation"
             }
           },
-          "id": "event-006255"
+          "id": "event-006223"
         },
         {
-          "source_line": 6256,
+          "source_line": 6224,
           "timestamp": "2026-05-21T09:48:57.730749+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2686,10 +2045,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-006256"
+          "id": "event-006224"
         },
         {
-          "source_line": 6257,
+          "source_line": 6225,
           "timestamp": "2026-05-21T09:48:58.182923+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2709,10 +2068,10 @@
               "new_string": "We sample 1{,}000 instances uniformly from the test set"
             }
           },
-          "id": "event-006257"
+          "id": "event-006225"
         },
         {
-          "source_line": 6258,
+          "source_line": 6226,
           "timestamp": "2026-05-21T09:48:58.233683+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2727,10 +2086,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006258"
+          "id": "event-006226"
         },
         {
-          "source_line": 6259,
+          "source_line": 6227,
           "timestamp": "2026-05-21T09:49:01.798218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2748,10 +2107,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-006259"
+          "id": "event-006227"
         },
         {
-          "source_line": 6260,
+          "source_line": 6228,
           "timestamp": "2026-05-21T09:49:04.688280+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2766,10 +2125,10 @@
             "tool": "Bash",
             "elapsed_ms": 2890
           },
-          "id": "event-006260"
+          "id": "event-006228"
         },
         {
-          "source_line": 6261,
+          "source_line": 6229,
           "timestamp": "2026-05-21T09:49:12.769424+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2787,10 +2146,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006261"
+          "id": "event-006229"
         },
         {
-          "source_line": 6262,
+          "source_line": 6230,
           "timestamp": "2026-05-21T09:49:12.820111+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2805,10 +2164,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006262"
+          "id": "event-006230"
         },
         {
-          "source_line": 6263,
+          "source_line": 6231,
           "timestamp": "2026-05-21T09:49:16.886045+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2826,10 +2185,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-006263"
+          "id": "event-006231"
         },
         {
-          "source_line": 6264,
+          "source_line": 6232,
           "timestamp": "2026-05-21T09:49:16.987049+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2844,10 +2203,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-006264"
+          "id": "event-006232"
         },
         {
-          "source_line": 6265,
+          "source_line": 6233,
           "timestamp": "2026-05-21T09:49:21.356014+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2867,10 +2226,10 @@
               "project": "schema-dag-extraction"
             }
           },
-          "id": "event-006265"
+          "id": "event-006233"
         },
         {
-          "source_line": 6266,
+          "source_line": 6234,
           "timestamp": "2026-05-21T09:49:21.757922+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2885,10 +2244,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 401
           },
-          "id": "event-006266"
+          "id": "event-006234"
         },
         {
-          "source_line": 6267,
+          "source_line": 6235,
           "timestamp": "2026-05-21T09:49:24.971207+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2905,10 +2264,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-006267"
+          "id": "event-006235"
         },
         {
-          "source_line": 6268,
+          "source_line": 6236,
           "timestamp": "2026-05-21T09:49:25.173103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2925,10 +2284,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-006268"
+          "id": "event-006236"
         },
         {
-          "source_line": 6269,
+          "source_line": 6237,
           "timestamp": "2026-05-21T09:49:25.930407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2943,10 +2302,10 @@
             "tool": "Read",
             "elapsed_ms": 959
           },
-          "id": "event-006269"
+          "id": "event-006237"
         },
         {
-          "source_line": 6270,
+          "source_line": 6238,
           "timestamp": "2026-05-21T09:49:26.132382+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2961,10 +2320,10 @@
             "tool": "Read",
             "elapsed_ms": 959
           },
-          "id": "event-006270"
+          "id": "event-006238"
         },
         {
-          "source_line": 6271,
+          "source_line": 6239,
           "timestamp": "2026-05-21T09:51:26.534533+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2982,10 +2341,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-006271"
+          "id": "event-006239"
         },
         {
-          "source_line": 6272,
+          "source_line": 6240,
           "timestamp": "2026-05-21T09:51:26.534928+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3000,10 +2359,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-006272"
+          "id": "event-006240"
         },
         {
-          "source_line": 6273,
+          "source_line": 6241,
           "timestamp": "2026-05-21T09:51:30.550627+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3021,10 +2380,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
             }
           },
-          "id": "event-006273"
+          "id": "event-006241"
         },
         {
-          "source_line": 6274,
+          "source_line": 6242,
           "timestamp": "2026-05-21T09:51:30.802017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3039,10 +2398,10 @@
             "tool": "Glob",
             "elapsed_ms": 251
           },
-          "id": "event-006274"
+          "id": "event-006242"
         },
         {
-          "source_line": 6275,
+          "source_line": 6243,
           "timestamp": "2026-05-21T09:51:30.802433+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3060,10 +2419,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
             }
           },
-          "id": "event-006275"
+          "id": "event-006243"
         },
         {
-          "source_line": 6276,
+          "source_line": 6244,
           "timestamp": "2026-05-21T09:51:30.852986+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3078,10 +2437,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-006276"
+          "id": "event-006244"
         },
         {
-          "source_line": 6277,
+          "source_line": 6245,
           "timestamp": "2026-05-21T09:51:33.820231+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3099,10 +2458,10 @@
               "description": "Find PDF and pdf_images directory"
             }
           },
-          "id": "event-006277"
+          "id": "event-006245"
         },
         {
-          "source_line": 6278,
+          "source_line": 6246,
           "timestamp": "2026-05-21T09:51:33.881308+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3117,10 +2476,10 @@
             "tool": "Bash",
             "elapsed_ms": 61
           },
-          "id": "event-006278"
+          "id": "event-006246"
         },
         {
-          "source_line": 6279,
+          "source_line": 6247,
           "timestamp": "2026-05-21T09:51:36.740026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3137,10 +2496,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images"
             }
           },
-          "id": "event-006279"
+          "id": "event-006247"
         },
         {
-          "source_line": 6280,
+          "source_line": 6248,
           "timestamp": "2026-05-21T09:51:37.192131+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3155,10 +2514,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 452
           },
-          "id": "event-006280"
+          "id": "event-006248"
         },
         {
-          "source_line": 6281,
+          "source_line": 6249,
           "timestamp": "2026-05-21T09:51:39.703047+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3180,10 +2539,10 @@
               "tags": "['paper', 'emnlp2026', 'final-draft', 'submission']"
             }
           },
-          "id": "event-006281"
+          "id": "event-006249"
         },
         {
-          "source_line": 6282,
+          "source_line": 6250,
           "timestamp": "2026-05-21T09:51:39.854054+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3198,10 +2557,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 151
           },
-          "id": "event-006282"
+          "id": "event-006250"
         },
         {
-          "source_line": 6283,
+          "source_line": 6251,
           "timestamp": "2026-05-21T09:51:50.598052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3219,10 +2578,10 @@
               "project": "schema-dag-extraction"
             }
           },
-          "id": "event-006283"
+          "id": "event-006251"
         },
         {
-          "source_line": 6284,
+          "source_line": 6252,
           "timestamp": "2026-05-21T09:51:54.462286+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3237,10 +2596,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3864
           },
-          "id": "event-006284"
+          "id": "event-006252"
         },
         {
-          "source_line": 6285,
+          "source_line": 6253,
           "timestamp": "2026-05-21T09:51:57.771422+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3253,7 +2612,7 @@
           "metadata": {
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
           },
-          "id": "event-006285"
+          "id": "event-006253"
         }
       ]
     },
@@ -3261,7 +2620,7 @@
       "number": 222,
       "messages": [
         {
-          "source_line": 6286,
+          "source_line": 6254,
           "timestamp": "2026-05-21T10:23:26.496273+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3275,10 +2634,10 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "source": "director"
           },
-          "id": "event-006286"
+          "id": "event-006254"
         },
         {
-          "source_line": 6287,
+          "source_line": 6255,
           "timestamp": "2026-05-21T10:23:33.685457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3295,10 +2654,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
             }
           },
-          "id": "event-006287"
+          "id": "event-006255"
         },
         {
-          "source_line": 6288,
+          "source_line": 6256,
           "timestamp": "2026-05-21T10:23:33.786247+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3313,10 +2672,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006288"
+          "id": "event-006256"
         },
         {
-          "source_line": 6289,
+          "source_line": 6257,
           "timestamp": "2026-05-21T10:23:33.837153+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3333,10 +2692,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
             }
           },
-          "id": "event-006289"
+          "id": "event-006257"
         },
         {
-          "source_line": 6290,
+          "source_line": 6258,
           "timestamp": "2026-05-21T10:23:33.888275+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3351,10 +2710,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-006290"
+          "id": "event-006258"
         },
         {
-          "source_line": 6291,
+          "source_line": 6259,
           "timestamp": "2026-05-21T10:23:39.817905+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3374,10 +2733,10 @@
               "new_string": "yields virtually identical correlations)"
             }
           },
-          "id": "event-006291"
+          "id": "event-006259"
         },
         {
-          "source_line": 6292,
+          "source_line": 6260,
           "timestamp": "2026-05-21T10:23:39.868481+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3392,10 +2751,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006292"
+          "id": "event-006260"
         },
         {
-          "source_line": 6293,
+          "source_line": 6261,
           "timestamp": "2026-05-21T10:23:42.680414+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3415,10 +2774,10 @@
               "new_string": "and five prompt designs."
             }
           },
-          "id": "event-006293"
+          "id": "event-006261"
         },
         {
-          "source_line": 6294,
+          "source_line": 6262,
           "timestamp": "2026-05-21T10:23:42.731906+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3433,10 +2792,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-006294"
+          "id": "event-006262"
         },
         {
-          "source_line": 6295,
+          "source_line": 6263,
           "timestamp": "2026-05-21T10:23:46.798339+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3456,10 +2815,10 @@
               "new_string": "Both dimensions replicate across four models from three architecture families (8B--70B open-weight; Gemini 2.5 Flash via API), two decoding formats, five prompt designs, and two RE datasets."
             }
           },
-          "id": "event-006295"
+          "id": "event-006263"
         },
         {
-          "source_line": 6296,
+          "source_line": 6264,
           "timestamp": "2026-05-21T10:23:46.849116+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3474,10 +2833,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006296"
+          "id": "event-006264"
         },
         {
-          "source_line": 6297,
+          "source_line": 6265,
           "timestamp": "2026-05-21T10:23:50.114169+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3497,10 +2856,10 @@
               "new_string": "replicated on four models from three architecture families (8B--70B open-weight; Gemini 2.5 Flash via API)"
             }
           },
-          "id": "event-006297"
+          "id": "event-006265"
         },
         {
-          "source_line": 6298,
+          "source_line": 6266,
           "timestamp": "2026-05-21T10:23:50.164921+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3515,10 +2874,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006298"
+          "id": "event-006266"
         },
         {
-          "source_line": 6299,
+          "source_line": 6267,
           "timestamp": "2026-05-21T10:23:55.387013+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3538,10 +2897,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-006299"
+          "id": "event-006267"
         },
         {
-          "source_line": 6300,
+          "source_line": 6268,
           "timestamp": "2026-05-21T10:23:55.538027+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3554,6 +2913,638 @@
           "metadata": {
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "tool": "Grep",
+            "elapsed_ms": 151
+          },
+          "id": "event-006268"
+        },
+        {
+          "source_line": 6269,
+          "timestamp": "2026-05-21T10:23:59.604242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "four models|prompt designs",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-006269"
+        },
+        {
+          "source_line": 6270,
+          "timestamp": "2026-05-21T10:23:59.655031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:299:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex:5:The two-dimensional decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). Approximate separability is confirmed on FewRel and DocRED (\\S\\ref{sec:multi_channel}); logit-scale evidence remains inconclusive. Both dimensions replicate across four models from three architecture families (8B--70B open-weight; Gemini 2.5 Flash via API), two decoding formats, five prompt designs, and two RE datasets.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex:15:Training-free LLM extraction degrades along two separable dimensions---count-associated recall decline and confusability-associated type substitution---replicated on four models from three architecture families (8B--70B open-weight; Gemini 2.5 Flash via API); decomposition fails via merge amplification and routing failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:2:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:17:(3)~Effects are consistent across schema sizes, prompt designs, and models from three architecture families (\\S\\ref{sec:bcs_controlled})."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006270"
+        },
+        {
+          "source_line": 6271,
+          "timestamp": "2026-05-21T10:24:03.134079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "four models|five prompt|prompt designs",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006271"
+        },
+        {
+          "source_line": 6272,
+          "timestamp": "2026-05-21T10:24:03.184658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "299:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006272"
+        },
+        {
+          "source_line": 6273,
+          "timestamp": "2026-05-21T10:24:06.146925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "offset": "295",
+              "limit": "10"
+            }
+          },
+          "id": "event-006273"
+        },
+        {
+          "source_line": 6274,
+          "timestamp": "2026-05-21T10:24:06.197655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "295\t\\paragraph{NER (Few-NERD).}\n296\tThe batch-level BCS--F1 correlation is null under both prompt versions. Pooling across three seeds and all count levels ($n = 450$), the correlation is $r = 0.004$ ($p = 0.94$). An earlier small-sample analysis ($n = 27$, single seed) had reported positive correlations ($r = +0.50$/$+0.58$), but these were driven by an accidental BCS--type-frequency confound: those 27 batches exhibited $r(\\text{BCS}, \\text{freq}) = 0.53$, creating a spurious path through frequency to F1. After controlling for type frequency, the partial correlation is non-significant in both the small ($r = 0.28$, $p = 0.16$) and large ($r = -0.12$, $p = 0.29$) samples. The pairwise SCS--confusion analysis (\\S\\ref{sec:pairwise}), which is immune to this batch-level aggregation artifact, remains the primary evidence for the NER confusability dimension.\n297\t\n298\t\\paragraph{Interpretation.}\n299\tThe $n{=}25$ v2 result confirms that the confusability effect is directionally consistent across prompt designs, with attenuated magnitude: the gap narrows ($-$5.7\\,pp) but remains highly significant ($p < 0.001$, $r = -0.919$). The earlier $n{=}5$ non-significance reflected insufficient power and narrow BCS contrast, not absence of the effect. V2's stricter format constraints raise the baseline accuracy (low-BCS 85.2\\% vs.\\ 82.3\\%), but type confusion under high confusability persists (59.7\\% vs.\\ 51.0\\%). Prompt design modulates the practical magnitude of the confusability effect but does not eliminate it, ruling out prompt-specific confounding as the primary source. The underlying confusability signal (pairwise SCS--confusion correlation and the directional BCS--accuracy relationship) persists across both prompt versions.\n300\t\n301\t\\subsection{Cross-Prompt-Variant BCS Correlation}\n302\t\\label{sec:appendix_prompt_variants}\n303\t\n304\tTo verify that the BCS--accuracy relationship is not an artifact of a specific prompt template, we evaluate four structurally distinct prompt varia\n…[truncated 98 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006274"
+        },
+        {
+          "source_line": 6275,
+          "timestamp": "2026-05-21T10:24:12.631045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "First pdflatex pass"
+            }
+          },
+          "id": "event-006275"
+        },
+        {
+          "source_line": 6276,
+          "timestamp": "2026-05-21T10:24:14.137080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 470053 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 1506
+          },
+          "id": "event-006276"
+        },
+        {
+          "source_line": 6277,
+          "timestamp": "2026-05-21T10:24:17.451039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+              "description": "Bibtex + two pdflatex passes"
+            }
+          },
+          "id": "event-006277"
+        },
+        {
+          "source_line": 6278,
+          "timestamp": "2026-05-21T10:24:20.161724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Database file #1: references.bib\nWarning--can't use both volume and number fields in guo-2021-label-confusion\n(There was 1 warning)\nfonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 469893 bytes).\nTranscript written on main.log.\nfonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 469893 bytes).\nTranscript written on main.log.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 2710
+          },
+          "id": "event-006278"
+        },
+        {
+          "source_line": 6279,
+          "timestamp": "2026-05-21T10:24:27.136781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -c \"LaTeX Warning.*undefined\" main.log && grep -c \"^!\" main.log",
+              "description": "Check for undefined refs and errors"
+            }
+          },
+          "id": "event-006279"
+        },
+        {
+          "source_line": 6280,
+          "timestamp": "2026-05-21T10:24:27.287814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-006280"
+        },
+        {
+          "source_line": 6281,
+          "timestamp": "2026-05-21T10:24:30.000036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep \"^!\" main.log | head -5; echo \"---\"; grep \"LaTeX Warning\" main.log | head -5",
+              "description": "Check errors and warnings"
+            }
+          },
+          "id": "event-006281"
+        },
+        {
+          "source_line": 6282,
+          "timestamp": "2026-05-21T10:24:30.050748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-006282"
+        },
+        {
+          "source_line": 6283,
+          "timestamp": "2026-05-21T10:24:34.821101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -f 8 -l 8 main.pdf - 2>/dev/null | head -30",
+              "description": "Check page 8 content"
+            }
+          },
+          "id": "event-006283"
+        },
+        {
+          "source_line": 6284,
+          "timestamp": "2026-05-21T10:24:34.921990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "599\n\nfect (IQR-predicted ∆ = 2.2 pp; §4.3) would\nrepresent ≥100% amplification, fundamentally altering whether the dimensions are independently\naddressable; (ii) Cohen’s d = 0.5 (medium effect) at the within-cell SD of 4.6 pp yields ±2.3 pp.\nBoth converge on ±2–3 pp. TOST (Lakens, 2017;\nSchuirmann, 1987) on FewRel bounds the interaction at ±3 pp (p = 0.003); at the stricter ±2 pp margin, equivalence is marginal (p = 0.047) and inconclusive on the logit scale (p = 0.209; Appendix C).\nOn DocRED (n=55 per count level), the raw factorial interaction is −9.4 pp (95% CI [−12.9, −6.0]),\nbut this is confounded by narrower BCS ranges\nat count 32 (spread 0.26 vs. 0.38). Restricting\nboth count levels to the overlapping BCS range\n[0.43, 0.70] reduces the interaction from 7.52 pp\n(CI [1.49, 12.83]) to 0.93 pp (CI [−7.13, 7.44])—\nconsistent with bounded interaction, though the\nreduced sample (n = 29+55) has 80% power only\nfor effects ≥10.5 pp (Appendix C). In NER, batchlevel BCS shows no predictive signal (§4.3), where\nNER errors distribute across miss, boundary, and\ntype modes rather than concentrating in type substitution (relaxed matching confirms this null is not\na metric artifact; Appendix Y); the factorial test is\ninconclusive (p = 0.50).\n\n600\n\n4.5\n\n574\n575\n576\n577\n578\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-006284"
+        },
+        {
+          "source_line": 6285,
+          "timestamp": "2026-05-21T10:24:38.288697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -f 8 -l 8 main.pdf - 2>/dev/null | tail -30",
+              "description": "Check page 8 end content"
+            }
+          },
+          "id": "event-006285"
+        },
+        {
+          "source_line": 6286,
+          "timestamp": "2026-05-21T10:24:38.439798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "657\n658\n659\n660\n\nPractical implications. For NER, reducing candidate types per prompt is the primary lever; for RE,\nwe suggest flagging type pairs with SCS > 0.85\nand monitoring batch-level BCS (typical gap 2–\n4 pp in random batches; extreme-BCS contrasts\nreach 25–31 pp).\n\n661\n\nConclusion. Training-free LLM extraction\ndegrades along two separable dimensions—\ncount-associated recall decline and confusabilityassociated type substitution—replicated on four\n\n667\n\n662\n663\n664\n665\n666\n\n668\n669\n670\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-006286"
+        },
+        {
+          "source_line": 6287,
+          "timestamp": "2026-05-21T10:24:41.902494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdftotext -f 9 -l 9 main.pdf - 2>/dev/null | head -20",
+              "description": "Check page 9 start"
+            }
+          },
+          "id": "event-006287"
+        },
+        {
+          "source_line": 6288,
+          "timestamp": "2026-05-21T10:24:41.953195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "674\n\nmodels from three architecture families (8B–70B\nopen-weight; Gemini 2.5 Flash via API); decomposition fails via merge amplification and routing\nfailure.\n\n675\n\nLimitations\n\n676\n\n1. Model coverage. Primary experiments use a\nsingle model (Qwen3-32B); cross-model validation covers the core extreme-BCS setting but\ndoes not replicate all secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence tests). Whether these secondary findings\ngeneralize beyond Qwen3-32B remains open;\nsee Appendix U and Table 4 for detailed modelwise results.\n\n671\n672\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-006288"
+        },
+        {
+          "source_line": 6289,
+          "timestamp": "2026-05-21T10:24:47.074024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006289"
+        },
+        {
+          "source_line": 6290,
+          "timestamp": "2026-05-21T10:24:47.124621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-006290"
+        },
+        {
+          "source_line": 6291,
+          "timestamp": "2026-05-21T10:24:50.388123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.pdf",
+              "pages": "8,9",
+              "dpi": "150",
+              "project": "schema-dag-extraction"
+            }
+          },
+          "id": "event-006291"
+        },
+        {
+          "source_line": 6292,
+          "timestamp": "2026-05-21T10:24:50.792162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 539.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 485.3}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 404
+          },
+          "id": "event-006292"
+        },
+        {
+          "source_line": 6293,
+          "timestamp": "2026-05-21T10:24:54.607331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-006293"
+        },
+        {
+          "source_line": 6294,
+          "timestamp": "2026-05-21T10:24:54.808532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-006294"
+        },
+        {
+          "source_line": 6295,
+          "timestamp": "2026-05-21T10:24:55.563207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-006295"
+        },
+        {
+          "source_line": 6296,
+          "timestamp": "2026-05-21T10:24:55.764834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-006296"
+        },
+        {
+          "source_line": 6297,
+          "timestamp": "2026-05-21T10:25:01.838187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-006297"
+        },
+        {
+          "source_line": 6298,
+          "timestamp": "2026-05-21T10:25:02.240128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 401
+          },
+          "id": "event-006298"
+        },
+        {
+          "source_line": 6299,
+          "timestamp": "2026-05-21T10:25:05.431020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper-final-draft-I1I2I3-20260521",
+              "type": "paper",
+              "description": "EMNLP 2026 ARR final draft after I1/I2/I3 info-level fixes: \"virtually identical\", Gemini architecture family clarification, \"five prompt designs\". 0 errors, body ≤ 8 pages.",
+              "project": "schema-dag-extraction",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.pdf",
+              "tags": "['paper', 'emnlp2026', 'final-draft', 'submission']"
+            }
+          },
+          "id": "event-006299"
+        },
+        {
+          "source_line": 6300,
+          "timestamp": "2026-05-21T10:25:05.582021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_715ed3\\\", \\\"name\\\": \\\"paper-final-draft-I1I2I3-20260521\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 ARR final draft after I1/I2/I3 info-level fixes: \\\\\\\"virtually identical\\\\\\\", Gemini architecture family clarification, \\\\\\\"five prompt designs\\\\\\\". 0 errors, body ≤ 8 pages.\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/paper/main_715ed3.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T10:25:05.412371+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"emnlp2026\\\", \\\"final-draft\\\", \\\"submission\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 151
           },
           "id": "event-006300"

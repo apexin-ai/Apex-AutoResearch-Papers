@@ -5,10 +5,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | Record | Events | User turns | Markdown | JSON |
 |---|---:|---:|---|---|
 | paper commit page fix | 80 | 0 | [Read transcript](paper-commit-page-fix.md) | [JSON](../../sessions/05/053a30fd0c3325002cec.json) |
-| paper camera ready full precheck | 79 | 0 | [Read transcript](paper-camera-ready-full-precheck.md) | [JSON](../../sessions/a9/a97814ff9bbd1e6d9e6f.json) |
-| paper precheck fixes | 44 | 0 | [Read transcript](paper-precheck-fixes.md) | [JSON](../../sessions/15/157531c458594945dbc4.json) |
-| paper response letter draft | 36 | 0 | [Read transcript](paper-response-letter-draft.md) | [JSON](../../sessions/39/39f4028053d65431085c.json) |
-| paper fix response letter refs | 72 | 0 | [Read transcript](paper-fix-response-letter-refs.md) | [JSON](../../sessions/0f/0f64987d8063f8ff6485.json) |
+| paper camera ready full precheck | 77 | 0 | [Read transcript](paper-camera-ready-full-precheck.md) | [JSON](../../sessions/a9/a97814ff9bbd1e6d9e6f.json) |
+| paper precheck fixes | 36 | 0 | [Read transcript](paper-precheck-fixes.md) | [JSON](../../sessions/15/157531c458594945dbc4.json) |
 | code r22 within arch temporal — In the project at /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen,  | 96 | 1 | [Read transcript](code-r22-within-arch-temporal.md) | [JSON](../../sessions/e4/e4c81556f6e01daeb198.json) |
 | code r22 base instruct composition — Search in /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts | 83 | 1 | [Read transcript](code-r22-base-instruct-composition.md) | [JSON](../../sessions/42/4215e99e93c03cf3e14f.json) |
 | code r22 deff simulation — In /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/, find | 109 | 1 | [Read transcript](code-r22-deff-simulation.md) | [JSON](../../sessions/23/2307f28a95efda256b6c.json) |

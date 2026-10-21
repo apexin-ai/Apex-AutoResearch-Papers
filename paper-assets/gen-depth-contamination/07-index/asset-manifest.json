@@ -1,16 +1,16 @@
 {
   "project": "gen-depth-contamination",
   "code_count": 487,
-  "data_count": 1332,
+  "data_count": 1321,
   "env_count": 0,
   "tex_count": 102,
   "bib_count": 6,
   "review_count": 22,
   "validation_count": 32,
   "chat_count": 399,
-  "worker_count": 1771,
-  "trace_count": 2243,
-  "trace_bytes": 492028640,
+  "worker_count": 1767,
+  "trace_count": 2239,
+  "trace_bytes": 491295377,
   "maintenance_count": 252,
   "provenance_count": 0,
   "submission_count": 0,
@@ -125,7 +125,7 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "399 conversations; 1771 worker logs/results; 2243 source files",
+      "evidence": "399 conversations; 1767 worker logs/results; 2239 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
@@ -139,7 +139,7 @@
     {
       "name": "Experiments and environment",
       "status": "Partial",
-      "evidence": "1332 data/result files",
+      "evidence": "1321 data/result files",
       "gap": "Original data permissions and completeness require project-specific review.",
       "path": "03-experiments/"
     },

@@ -42,7 +42,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis d108 greedy f1 extraction | 1 | 0 | [Read transcript](analysis-d108-greedy-f1-extraction.md) | [JSON](../../sessions/02/0278c0611b3b57eb81e5.json) |
 | analysis d108 lp vc combination | 1 | 0 | [Read transcript](analysis-d108-lp-vc-combination.md) | [JSON](../../sessions/7a/7a75af8533f04aed1f59.json) |
 | analysis d108 mbr within rho | 1 | 0 | [Read transcript](analysis-d108-mbr-within-rho.md) | [JSON](../../sessions/1b/1b9ba86127b7213e8519.json) |
-| analysis d108 q4q5 answers | 1 | 0 | [Read transcript](analysis-d108-q4q5-answers.md) | [JSON](../../sessions/dc/dc86d487cd6f2beb6750.json) |
 | analysis d110 4b degeneracy | 1 | 0 | [Read transcript](analysis-d110-4b-degeneracy.md) | [JSON](../../sessions/cc/ccd88647e72873438974.json) |
 | analysis d112 claim audit | 1 | 0 | [Read transcript](analysis-d112-claim-audit.md) | [JSON](../../sessions/51/51061c7ca02735552103.json) |
 | analysis d112 mf3 random vs single | 1 | 0 | [Read transcript](analysis-d112-mf3-random-vs-single.md) | [JSON](../../sessions/7d/7d9a0dbe44639bba114b.json) |

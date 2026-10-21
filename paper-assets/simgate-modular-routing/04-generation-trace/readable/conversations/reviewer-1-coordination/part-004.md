@@ -6,177 +6,9 @@
 
 ## Round 49
 
-### Tool result
-
-_source line 1417 · 2026-05-22T22:54:19.217345+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "elapsed_ms": 1824
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 1418 · 2026-05-22T22:54:24.789592+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p17.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p17.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1419 · 2026-05-22T22:54:25.543922+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "elapsed_ms": 754
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1420 · 2026-05-22T22:54:25.544545+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p18.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p18.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1421 · 2026-05-22T22:54:26.134188+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p19.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p19.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1422 · 2026-05-22T22:54:26.446527+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:reviewer_1",
-  "tool": "Read",
-  "elapsed_ms": 901
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1423 · 2026-05-22T22:54:26.447164+00:00_
+_source line 1421 · 2026-05-22T22:54:26.447164+00:00_
 
 called Read
 
@@ -210,7 +42,7 @@ called Read
 
 ### Tool result
 
-_source line 1424 · 2026-05-22T22:54:27.633939+00:00_
+_source line 1422 · 2026-05-22T22:54:27.633939+00:00_
 
 
 
@@ -232,7 +64,7 @@ _source line 1424 · 2026-05-22T22:54:27.633939+00:00_
 
 ### Tool result
 
-_source line 1425 · 2026-05-22T22:54:27.836018+00:00_
+_source line 1423 · 2026-05-22T22:54:27.836018+00:00_
 
 
 
@@ -254,7 +86,7 @@ _source line 1425 · 2026-05-22T22:54:27.836018+00:00_
 
 ### Tool call
 
-_source line 1426 · 2026-05-22T22:54:34.727205+00:00_
+_source line 1424 · 2026-05-22T22:54:34.727205+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -294,7 +126,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1427 · 2026-05-22T22:54:35.182329+00:00_
+_source line 1425 · 2026-05-22T22:54:35.182329+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 460.6}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 452.6}, {\"page\": 23, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p23.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 239.9}, {\"page\": 24, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images/submitted_p24.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 78.5}], \"total_pages\": 24, \"rendered_pages\": 4, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -316,7 +148,7 @@ _source line 1427 · 2026-05-22T22:54:35.182329+00:00_
 
 ### Tool call
 
-_source line 1428 · 2026-05-22T22:54:38.345921+00:00_
+_source line 1426 · 2026-05-22T22:54:38.345921+00:00_
 
 called Read
 
@@ -350,7 +182,7 @@ called Read
 
 ### Tool result
 
-_source line 1429 · 2026-05-22T22:54:39.152370+00:00_
+_source line 1427 · 2026-05-22T22:54:39.152370+00:00_
 
 
 
@@ -372,7 +204,7 @@ _source line 1429 · 2026-05-22T22:54:39.152370+00:00_
 
 ### Tool call
 
-_source line 1430 · 2026-05-22T22:54:39.203048+00:00_
+_source line 1428 · 2026-05-22T22:54:39.203048+00:00_
 
 called Read
 
@@ -406,7 +238,7 @@ called Read
 
 ### Tool call
 
-_source line 1431 · 2026-05-22T22:54:39.705726+00:00_
+_source line 1429 · 2026-05-22T22:54:39.705726+00:00_
 
 called Read
 
@@ -440,7 +272,7 @@ called Read
 
 ### Tool result
 
-_source line 1432 · 2026-05-22T22:54:40.061163+00:00_
+_source line 1430 · 2026-05-22T22:54:40.061163+00:00_
 
 
 
@@ -462,7 +294,7 @@ _source line 1432 · 2026-05-22T22:54:40.061163+00:00_
 
 ### Tool call
 
-_source line 1433 · 2026-05-22T22:54:40.061608+00:00_
+_source line 1431 · 2026-05-22T22:54:40.061608+00:00_
 
 called Read
 
@@ -496,7 +328,7 @@ called Read
 
 ### Tool result
 
-_source line 1434 · 2026-05-22T22:54:40.063026+00:00_
+_source line 1432 · 2026-05-22T22:54:40.063026+00:00_
 
 
 
@@ -518,7 +350,7 @@ _source line 1434 · 2026-05-22T22:54:40.063026+00:00_
 
 ### Tool result
 
-_source line 1435 · 2026-05-22T22:54:40.165097+00:00_
+_source line 1433 · 2026-05-22T22:54:40.165097+00:00_
 
 
 
@@ -540,7 +372,7 @@ _source line 1435 · 2026-05-22T22:54:40.165097+00:00_
 
 ### Tool call
 
-_source line 1436 · 2026-05-22T22:54:49.212336+00:00_
+_source line 1434 · 2026-05-22T22:54:49.212336+00:00_
 
 called WebFetch
 
@@ -576,7 +408,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 1437 · 2026-05-22T22:54:55.338716+00:00_
+_source line 1435 · 2026-05-22T22:54:55.338716+00:00_
 
 # ACL Rolling Review Form: Complete Scoring Dimensions
 
@@ -640,7 +472,7 @@ Scale: 1–5 (with .5 increments)
 
 ### Tool call
 
-_source line 1438 · 2026-05-22T22:58:27.723199+00:00_
+_source line 1436 · 2026-05-22T22:58:27.723199+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -678,7 +510,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1439 · 2026-05-22T22:58:31.849959+00:00_
+_source line 1437 · 2026-05-22T22:58:31.849959+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -700,7 +532,7 @@ _source line 1439 · 2026-05-22T22:58:31.849959+00:00_
 
 ### Tool call
 
-_source line 1440 · 2026-05-22T22:58:36.227749+00:00_
+_source line 1438 · 2026-05-22T22:58:36.227749+00:00_
 
 called ToolSearch
 
@@ -736,7 +568,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1441 · 2026-05-22T22:58:36.228300+00:00_
+_source line 1439 · 2026-05-22T22:58:36.228300+00:00_
 
 
 
@@ -758,7 +590,7 @@ _source line 1441 · 2026-05-22T22:58:36.228300+00:00_
 
 ### Tool call
 
-_source line 1442 · 2026-05-22T22:58:40.646887+00:00_
+_source line 1440 · 2026-05-22T22:58:40.646887+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -792,7 +624,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1443 · 2026-05-22T22:58:40.647290+00:00_
+_source line 1441 · 2026-05-22T22:58:40.647290+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -814,7 +646,7 @@ _source line 1443 · 2026-05-22T22:58:40.647290+00:00_
 
 ### Assistant
 
-_source line 1444 · 2026-05-22T22:58:48.454921+00:00_
+_source line 1442 · 2026-05-22T22:58:48.454921+00:00_
 
 审稿意见已提交给 Review Director。
 
@@ -843,7 +675,7 @@ _source line 1444 · 2026-05-22T22:58:48.454921+00:00_
 
 ### User
 
-_source line 1445 · 2026-05-22T23:01:01.964895+00:00_
+_source line 1443 · 2026-05-22T23:01:01.964895+00:00_
 
 [Round 1 审稿请求]:
 以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每条 Weakness 标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
@@ -917,7 +749,7 @@ Reproducibility: 4/5
 
 ### Tool call
 
-_source line 1446 · 2026-05-22T23:03:57.008073+00:00_
+_source line 1444 · 2026-05-22T23:03:57.008073+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -955,7 +787,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1447 · 2026-05-22T23:04:01.342320+00:00_
+_source line 1445 · 2026-05-22T23:04:01.342320+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -977,7 +809,7 @@ _source line 1447 · 2026-05-22T23:04:01.342320+00:00_
 
 ### Assistant
 
-_source line 1448 · 2026-05-22T23:04:10.046794+00:00_
+_source line 1446 · 2026-05-22T23:04:10.046794+00:00_
 
 已完成对 Reviewer 2 全部 8 条 Weaknesses 的逐条回应，并对 5 个 Questions 提供了补充意见。汇总：
 
@@ -1009,7 +841,7 @@ _source line 1448 · 2026-05-22T23:04:10.046794+00:00_
 
 ### User
 
-_source line 1449 · 2026-05-23T03:35:08.562383+00:00_
+_source line 1447 · 2026-05-23T03:35:08.562383+00:00_
 
 [Round 1 审稿请求]:
 你是 Reviewer 1，负责**方法严谨性 + 实验设计**。
@@ -1079,7 +911,7 @@ _source line 1449 · 2026-05-23T03:35:08.562383+00:00_
 
 ### Tool call
 
-_source line 1450 · 2026-05-23T03:35:15.101054+00:00_
+_source line 1448 · 2026-05-23T03:35:15.101054+00:00_
 
 called Read
 
@@ -1113,7 +945,7 @@ called Read
 
 ### Tool result
 
-_source line 1451 · 2026-05-23T03:35:15.155320+00:00_
+_source line 1449 · 2026-05-23T03:35:15.155320+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -1135,7 +967,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1452 · 2026-05-23T03:35:17.633263+00:00_
+_source line 1450 · 2026-05-23T03:35:17.633263+00:00_
 
 called Glob
 
@@ -1171,7 +1003,7 @@ called Glob
 
 ### Tool result
 
-_source line 1453 · 2026-05-23T03:35:17.734126+00:00_
+_source line 1451 · 2026-05-23T03:35:17.734126+00:00_
 
 No files found
 
@@ -1193,7 +1025,7 @@ No files found
 
 ### Tool call
 
-_source line 1454 · 2026-05-23T03:35:19.604222+00:00_
+_source line 1452 · 2026-05-23T03:35:19.604222+00:00_
 
 called Glob
 
@@ -1229,7 +1061,7 @@ called Glob
 
 ### Tool result
 
-_source line 1455 · 2026-05-23T03:35:20.069882+00:00_
+_source line 1453 · 2026-05-23T03:35:20.069882+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md
 
@@ -1251,7 +1083,7 @@ _source line 1455 · 2026-05-23T03:35:20.069882+00:00_
 
 ### Tool call
 
-_source line 1456 · 2026-05-23T03:35:22.588112+00:00_
+_source line 1454 · 2026-05-23T03:35:22.588112+00:00_
 
 called Read
 
@@ -1285,7 +1117,7 @@ called Read
 
 ### Tool result
 
-_source line 1457 · 2026-05-23T03:35:22.588925+00:00_
+_source line 1455 · 2026-05-23T03:35:22.588925+00:00_
 
 1	---
 2	name: review-reviewer-session-start
@@ -1340,7 +1172,7 @@ _source line 1457 · 2026-05-23T03:35:22.588925+00:00_
 
 ### Tool call
 
-_source line 1458 · 2026-05-23T03:35:28.219824+00:00_
+_source line 1456 · 2026-05-23T03:35:28.219824+00:00_
 
 called ToolSearch
 
@@ -1376,7 +1208,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1459 · 2026-05-23T03:35:28.320970+00:00_
+_source line 1457 · 2026-05-23T03:35:28.320970+00:00_
 
 
 
@@ -1398,7 +1230,7 @@ _source line 1459 · 2026-05-23T03:35:28.320970+00:00_
 
 ### Tool call
 
-_source line 1460 · 2026-05-23T03:35:36.161629+00:00_
+_source line 1458 · 2026-05-23T03:35:36.161629+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -1438,7 +1270,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool call
 
-_source line 1461 · 2026-05-23T03:35:37.169671+00:00_
+_source line 1459 · 2026-05-23T03:35:37.169671+00:00_
 
 called WebSearch
 
@@ -1472,7 +1304,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1462 · 2026-05-23T03:35:37.572036+00:00_
+_source line 1460 · 2026-05-23T03:35:37.572036+00:00_
 
 called Read
 
@@ -1506,7 +1338,7 @@ called Read
 
 ### Tool result
 
-_source line 1463 · 2026-05-23T03:35:37.925639+00:00_
+_source line 1461 · 2026-05-23T03:35:37.925639+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 471.3}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.7}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.4}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 525.0}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 529.0}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 470.7}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 584.4}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 545.2}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p9.png\", \"w
 …[truncated 515 chars]
@@ -1529,7 +1361,7 @@ _source line 1463 · 2026-05-23T03:35:37.925639+00:00_
 
 ### Tool result
 
-_source line 1464 · 2026-05-23T03:35:38.278435+00:00_
+_source line 1462 · 2026-05-23T03:35:38.278435+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1591,7 +1423,7 @@ _source line 1464 · 2026-05-23T03:35:38.278435+00:00_
 
 ### Tool result
 
-_source line 1465 · 2026-05-23T03:35:45.363261+00:00_
+_source line 1463 · 2026-05-23T03:35:45.363261+00:00_
 
 Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria scoring"
 
@@ -1626,7 +1458,7 @@ Th
 
 ### Tool call
 
-_source line 1466 · 2026-05-23T03:35:55.017262+00:00_
+_source line 1464 · 2026-05-23T03:35:55.017262+00:00_
 
 called Read
 
@@ -1660,7 +1492,7 @@ called Read
 
 ### Tool call
 
-_source line 1467 · 2026-05-23T03:35:55.420966+00:00_
+_source line 1465 · 2026-05-23T03:35:55.420966+00:00_
 
 called Read
 
@@ -1694,7 +1526,7 @@ called Read
 
 ### Tool result
 
-_source line 1468 · 2026-05-23T03:35:56.325086+00:00_
+_source line 1466 · 2026-05-23T03:35:56.325086+00:00_
 
 
 
@@ -1716,7 +1548,7 @@ _source line 1468 · 2026-05-23T03:35:56.325086+00:00_
 
 ### Tool result
 
-_source line 1469 · 2026-05-23T03:35:56.326170+00:00_
+_source line 1467 · 2026-05-23T03:35:56.326170+00:00_
 
 
 
@@ -1738,7 +1570,7 @@ _source line 1469 · 2026-05-23T03:35:56.326170+00:00_
 
 ### Tool call
 
-_source line 1470 · 2026-05-23T03:35:56.479208+00:00_
+_source line 1468 · 2026-05-23T03:35:56.479208+00:00_
 
 called Read
 
@@ -1772,7 +1604,7 @@ called Read
 
 ### Tool call
 
-_source line 1471 · 2026-05-23T03:35:56.831732+00:00_
+_source line 1469 · 2026-05-23T03:35:56.831732+00:00_
 
 called Read
 
@@ -1806,7 +1638,7 @@ called Read
 
 ### Tool result
 
-_source line 1472 · 2026-05-23T03:35:57.387205+00:00_
+_source line 1470 · 2026-05-23T03:35:57.387205+00:00_
 
 
 
@@ -1828,7 +1660,7 @@ _source line 1472 · 2026-05-23T03:35:57.387205+00:00_
 
 ### Tool call
 
-_source line 1473 · 2026-05-23T03:35:57.589433+00:00_
+_source line 1471 · 2026-05-23T03:35:57.589433+00:00_
 
 called Read
 
@@ -1862,7 +1694,7 @@ called Read
 
 ### Tool result
 
-_source line 1474 · 2026-05-23T03:35:58.347530+00:00_
+_source line 1472 · 2026-05-23T03:35:58.347530+00:00_
 
 
 
@@ -1884,7 +1716,7 @@ _source line 1474 · 2026-05-23T03:35:58.347530+00:00_
 
 ### Tool call
 
-_source line 1475 · 2026-05-23T03:35:58.351047+00:00_
+_source line 1473 · 2026-05-23T03:35:58.351047+00:00_
 
 called Read
 
@@ -1918,7 +1750,7 @@ called Read
 
 ### Tool call
 
-_source line 1476 · 2026-05-23T03:35:59.156185+00:00_
+_source line 1474 · 2026-05-23T03:35:59.156185+00:00_
 
 called Read
 
@@ -1952,7 +1784,7 @@ called Read
 
 ### Tool call
 
-_source line 1477 · 2026-05-23T03:35:59.357347+00:00_
+_source line 1475 · 2026-05-23T03:35:59.357347+00:00_
 
 called Read
 
@@ -1986,7 +1818,7 @@ called Read
 
 ### Tool result
 
-_source line 1478 · 2026-05-23T03:36:00.165710+00:00_
+_source line 1476 · 2026-05-23T03:36:00.165710+00:00_
 
 
 
@@ -2008,7 +1840,7 @@ _source line 1478 · 2026-05-23T03:36:00.165710+00:00_
 
 ### Tool result
 
-_source line 1479 · 2026-05-23T03:36:01.377219+00:00_
+_source line 1477 · 2026-05-23T03:36:01.377219+00:00_
 
 
 
@@ -2030,7 +1862,7 @@ _source line 1479 · 2026-05-23T03:36:01.377219+00:00_
 
 ### Tool call
 
-_source line 1480 · 2026-05-23T03:36:01.580243+00:00_
+_source line 1478 · 2026-05-23T03:36:01.580243+00:00_
 
 called WebFetch
 
@@ -2066,7 +1898,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 1481 · 2026-05-23T03:36:01.631819+00:00_
+_source line 1479 · 2026-05-23T03:36:01.631819+00:00_
 
 
 
@@ -2088,7 +1920,7 @@ _source line 1481 · 2026-05-23T03:36:01.631819+00:00_
 
 ### Tool result
 
-_source line 1482 · 2026-05-23T03:36:01.733250+00:00_
+_source line 1480 · 2026-05-23T03:36:01.733250+00:00_
 
 
 
@@ -2110,7 +1942,7 @@ _source line 1482 · 2026-05-23T03:36:01.733250+00:00_
 
 ### Tool result
 
-_source line 1483 · 2026-05-23T03:36:09.631645+00:00_
+_source line 1481 · 2026-05-23T03:36:09.631645+00:00_
 
 # ACL Rolling Review Form - Complete Scoring Criteria
 
@@ -2176,7 +2008,7 @@ Scale: 1-5
 
 ### Tool call
 
-_source line 1484 · 2026-05-23T03:36:22.840830+00:00_
+_source line 1482 · 2026-05-23T03:36:22.840830+00:00_
 
 called Agent
 
@@ -2214,7 +2046,7 @@ called Agent
 
 ### Tool call
 
-_source line 1485 · 2026-05-23T03:36:23.697573+00:00_
+_source line 1483 · 2026-05-23T03:36:23.697573+00:00_
 
 called Read
 
@@ -2248,7 +2080,7 @@ called Read
 
 ### Tool call
 
-_source line 1486 · 2026-05-23T03:36:24.404350+00:00_
+_source line 1484 · 2026-05-23T03:36:24.404350+00:00_
 
 called Read
 
@@ -2282,7 +2114,7 @@ called Read
 
 ### Tool call
 
-_source line 1487 · 2026-05-23T03:36:24.607451+00:00_
+_source line 1485 · 2026-05-23T03:36:24.607451+00:00_
 
 called Glob
 
@@ -2316,7 +2148,7 @@ called Glob
 
 ### Tool result
 
-_source line 1488 · 2026-05-23T03:36:24.913350+00:00_
+_source line 1486 · 2026-05-23T03:36:24.913350+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/responsibleNLPchecklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex
@@ -2346,7 +2178,7 @@ _source line 1488 · 2026-05-23T03:36:24.913350+00:00_
 
 ### Tool result
 
-_source line 1489 · 2026-05-23T03:36:25.772978+00:00_
+_source line 1487 · 2026-05-23T03:36:25.772978+00:00_
 
 
 
@@ -2368,7 +2200,7 @@ _source line 1489 · 2026-05-23T03:36:25.772978+00:00_
 
 ### Tool result
 
-_source line 1490 · 2026-05-23T03:36:26.380274+00:00_
+_source line 1488 · 2026-05-23T03:36:26.380274+00:00_
 
 
 
@@ -2390,7 +2222,7 @@ _source line 1490 · 2026-05-23T03:36:26.380274+00:00_
 
 ### Tool call
 
-_source line 1491 · 2026-05-23T03:36:27.689380+00:00_
+_source line 1489 · 2026-05-23T03:36:27.689380+00:00_
 
 called Read
 
@@ -2424,7 +2256,7 @@ called Read
 
 ### Tool result
 
-_source line 1492 · 2026-05-23T03:36:27.689761+00:00_
+_source line 1490 · 2026-05-23T03:36:27.689761+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode pilot suffices for build-vs-buy decisions given large effect sizes ($d = 3.02$).
@@ -2449,7 +2281,7 @@ _source line 1492 · 2026-05-23T03:36:27.689761+00:00_
 
 ### Tool call
 
-_source line 1493 · 2026-05-23T03:36:27.790522+00:00_
+_source line 1491 · 2026-05-23T03:36:27.790522+00:00_
 
 called Read
 
@@ -2483,7 +2315,7 @@ called Read
 
 ### Tool result
 
-_source line 1494 · 2026-05-23T03:36:27.790911+00:00_
+_source line 1492 · 2026-05-23T03:36:27.790911+00:00_
 
 1	\section{Introduction}
 2	
@@ -2513,7 +2345,7 @@ _source line 1494 · 2026-05-23T03:36:27.790911+00:00_
 
 ### Tool call
 
-_source line 1495 · 2026-05-23T03:36:28.293705+00:00_
+_source line 1493 · 2026-05-23T03:36:28.293705+00:00_
 
 called Read
 
@@ -2547,7 +2379,7 @@ called Read
 
 ### Tool result
 
-_source line 1496 · 2026-05-23T03:36:28.294202+00:00_
+_source line 1494 · 2026-05-23T03:36:28.294202+00:00_
 
 1	\section{Related Work}
 2	
@@ -2580,7 +2412,7 @@ _source line 1496 · 2026-05-23T03:36:28.294202+00:00_
 
 ### Tool call
 
-_source line 1497 · 2026-05-23T03:36:28.344812+00:00_
+_source line 1495 · 2026-05-23T03:36:28.344812+00:00_
 
 called Read
 
@@ -2614,7 +2446,7 @@ called Read
 
 ### Tool result
 
-_source line 1498 · 2026-05-23T03:36:28.445730+00:00_
+_source line 1496 · 2026-05-23T03:36:28.445730+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -2652,7 +2484,7 @@ _source line 1498 · 2026-05-23T03:36:28.445730+00:00_
 
 ### Tool call
 
-_source line 1499 · 2026-05-23T03:36:28.446204+00:00_
+_source line 1497 · 2026-05-23T03:36:28.446204+00:00_
 
 called Read
 
@@ -2686,7 +2518,7 @@ called Read
 
 ### Tool result
 
-_source line 1500 · 2026-05-23T03:36:28.698195+00:00_
+_source line 1498 · 2026-05-23T03:36:28.698195+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -2720,7 +2552,7 @@ _source line 1500 · 2026-05-23T03:36:28.698195+00:00_
 
 ### Tool call
 
-_source line 1501 · 2026-05-23T03:36:28.698658+00:00_
+_source line 1499 · 2026-05-23T03:36:28.698658+00:00_
 
 called Read
 
@@ -2754,7 +2586,7 @@ called Read
 
 ### Tool result
 
-_source line 1502 · 2026-05-23T03:36:29.152386+00:00_
+_source line 1500 · 2026-05-23T03:36:29.152386+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -2787,7 +2619,7 @@ _source line 1502 · 2026-05-23T03:36:29.152386+00:00_
 
 ### Tool call
 
-_source line 1503 · 2026-05-23T03:36:30.057197+00:00_
+_source line 1501 · 2026-05-23T03:36:30.057197+00:00_
 
 called Read
 
@@ -2821,7 +2653,7 @@ called Read
 
 ### Tool result
 
-_source line 1504 · 2026-05-23T03:36:30.108761+00:00_
+_source line 1502 · 2026-05-23T03:36:30.108761+00:00_
 
 1	\section{Conclusion}
 2	
@@ -2846,7 +2678,7 @@ _source line 1504 · 2026-05-23T03:36:30.108761+00:00_
 
 ### Tool result
 
-_source line 1505 · 2026-05-23T03:36:44.185839+00:00_
+_source line 1503 · 2026-05-23T03:36:44.185839+00:00_
 
 Here are the complete contents of all the paper section files:
 
@@ -2890,7 +2722,7 @@ The method section describes three co
 
 ### Tool call
 
-_source line 1506 · 2026-05-23T03:39:38.815781+00:00_
+_source line 1504 · 2026-05-23T03:39:38.815781+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -2930,7 +2762,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1507 · 2026-05-23T03:39:39.972559+00:00_
+_source line 1505 · 2026-05-23T03:39:39.972559+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 548.1}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 571.6}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 442.2}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 500.3}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 402.6}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 484.4}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 479.7}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 474.8}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submit
 …[truncated 533 chars]
@@ -2953,7 +2785,7 @@ _source line 1507 · 2026-05-23T03:39:39.972559+00:00_
 
 ### Tool call
 
-_source line 1508 · 2026-05-23T03:39:42.985246+00:00_
+_source line 1506 · 2026-05-23T03:39:42.985246+00:00_
 
 called Read
 
@@ -2987,7 +2819,7 @@ called Read
 
 ### Tool call
 
-_source line 1509 · 2026-05-23T03:39:43.439203+00:00_
+_source line 1507 · 2026-05-23T03:39:43.439203+00:00_
 
 called Read
 
@@ -3021,7 +2853,7 @@ called Read
 
 ### Tool result
 
-_source line 1510 · 2026-05-23T03:39:44.244164+00:00_
+_source line 1508 · 2026-05-23T03:39:44.244164+00:00_
 
 
 
@@ -3043,7 +2875,7 @@ _source line 1510 · 2026-05-23T03:39:44.244164+00:00_
 
 ### Tool result
 
-_source line 1511 · 2026-05-23T03:39:44.245030+00:00_
+_source line 1509 · 2026-05-23T03:39:44.245030+00:00_
 
 
 
@@ -3065,7 +2897,7 @@ _source line 1511 · 2026-05-23T03:39:44.245030+00:00_
 
 ### Tool call
 
-_source line 1512 · 2026-05-23T03:39:44.295524+00:00_
+_source line 1510 · 2026-05-23T03:39:44.295524+00:00_
 
 called Read
 
@@ -3099,7 +2931,7 @@ called Read
 
 ### Tool call
 
-_source line 1513 · 2026-05-23T03:39:44.848344+00:00_
+_source line 1511 · 2026-05-23T03:39:44.848344+00:00_
 
 called Read
 
@@ -3133,7 +2965,7 @@ called Read
 
 ### Tool result
 
-_source line 1514 · 2026-05-23T03:39:45.351128+00:00_
+_source line 1512 · 2026-05-23T03:39:45.351128+00:00_
 
 
 
@@ -3155,7 +2987,7 @@ _source line 1514 · 2026-05-23T03:39:45.351128+00:00_
 
 ### Tool call
 
-_source line 1515 · 2026-05-23T03:39:45.452144+00:00_
+_source line 1513 · 2026-05-23T03:39:45.452144+00:00_
 
 called Read
 
@@ -3189,7 +3021,7 @@ called Read
 
 ### Tool result
 
-_source line 1516 · 2026-05-23T03:39:45.704832+00:00_
+_source line 1514 · 2026-05-23T03:39:45.704832+00:00_
 
 
 
@@ -3211,7 +3043,7 @@ _source line 1516 · 2026-05-23T03:39:45.704832+00:00_
 
 ### Tool call
 
-_source line 1517 · 2026-05-23T03:39:45.707427+00:00_
+_source line 1515 · 2026-05-23T03:39:45.707427+00:00_
 
 called Read
 
@@ -3245,7 +3077,7 @@ called Read
 
 ### Tool result
 
-_source line 1518 · 2026-05-23T03:39:45.961845+00:00_
+_source line 1516 · 2026-05-23T03:39:45.961845+00:00_
 
 
 
@@ -3267,7 +3099,7 @@ _source line 1518 · 2026-05-23T03:39:45.961845+00:00_
 
 ### Tool result
 
-_source line 1519 · 2026-05-23T03:39:46.466961+00:00_
+_source line 1517 · 2026-05-23T03:39:46.466961+00:00_
 
 
 
@@ -3289,7 +3121,7 @@ _source line 1519 · 2026-05-23T03:39:46.466961+00:00_
 
 ### Assistant
 
-_source line 1520 · 2026-05-23T03:40:08.688886+00:00_
+_source line 1518 · 2026-05-23T03:40:08.688886+00:00_
 
 已完成论文全文阅读（正文8页 + Limitations/Ethics + 21页附录）。现在撰写审稿意见并提交。
 
@@ -3316,7 +3148,7 @@ _source line 1520 · 2026-05-23T03:40:08.688886+00:00_
 
 ### User
 
-_source line 1521 · 2026-05-23T03:43:41.526817+00:00_
+_source line 1519 · 2026-05-23T03:43:41.526817+00:00_
 
 [Round 1 审稿请求]:
 ## Round 1 审稿任务 — Reviewer 1
@@ -3417,7 +3249,7 @@ Q1. ...
 
 ### Tool call
 
-_source line 1522 · 2026-05-23T03:43:52.012245+00:00_
+_source line 1520 · 2026-05-23T03:43:52.012245+00:00_
 
 called ToolSearch
 
@@ -3453,7 +3285,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1523 · 2026-05-23T03:43:52.063561+00:00_
+_source line 1521 · 2026-05-23T03:43:52.063561+00:00_
 
 
 
@@ -3475,7 +3307,7 @@ _source line 1523 · 2026-05-23T03:43:52.063561+00:00_
 
 ### Tool call
 
-_source line 1524 · 2026-05-23T03:43:58.609115+00:00_
+_source line 1522 · 2026-05-23T03:43:58.609115+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -3515,7 +3347,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool call
 
-_source line 1525 · 2026-05-23T03:43:59.645159+00:00_
+_source line 1523 · 2026-05-23T03:43:59.645159+00:00_
 
 called WebSearch
 
@@ -3549,7 +3381,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1526 · 2026-05-23T03:44:00.177701+00:00_
+_source line 1524 · 2026-05-23T03:44:00.177701+00:00_
 
 called Glob
 
@@ -3585,7 +3417,7 @@ called Glob
 
 ### Tool result
 
-_source line 1527 · 2026-05-23T03:44:02.522738+00:00_
+_source line 1525 · 2026-05-23T03:44:02.522738+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 471.3}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.7}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.4}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 525.0}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 529.0}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 470.7}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 584.4}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 545.2}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p9.png\", \"w
 …[truncated 515 chars]
@@ -3608,7 +3440,7 @@ _source line 1527 · 2026-05-23T03:44:02.522738+00:00_
 
 ### Tool result
 
-_source line 1528 · 2026-05-23T03:44:02.624525+00:00_
+_source line 1526 · 2026-05-23T03:44:02.624525+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/responsibleNLPchecklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex
@@ -3638,7 +3470,7 @@ _source line 1528 · 2026-05-23T03:44:02.624525+00:00_
 
 ### Tool result
 
-_source line 1529 · 2026-05-23T03:44:10.020333+00:00_
+_source line 1527 · 2026-05-23T03:44:10.020333+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 reviewer guidelines review form criteria dimensions"
 
@@ -3677,7 +3509,7 @@ Area chairs or senior area chairs may nominate great reviewers, and senior chair
 
 ### Tool call
 
-_source line 1530 · 2026-05-23T03:44:21.321408+00:00_
+_source line 1528 · 2026-05-23T03:44:21.321408+00:00_
 
 called WebFetch
 
@@ -3713,7 +3545,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 1531 · 2026-05-23T03:44:22.228629+00:00_
+_source line 1529 · 2026-05-23T03:44:22.228629+00:00_
 
 called Read
 
@@ -3747,7 +3579,7 @@ called Read
 
 ### Tool call
 
-_source line 1532 · 2026-05-23T03:44:23.387190+00:00_
+_source line 1530 · 2026-05-23T03:44:23.387190+00:00_
 
 called Read
 
@@ -3781,7 +3613,7 @@ called Read
 
 ### Tool call
 
-_source line 1533 · 2026-05-23T03:44:23.792177+00:00_
+_source line 1531 · 2026-05-23T03:44:23.792177+00:00_
 
 called Read
 
@@ -3815,7 +3647,7 @@ called Read
 
 ### Tool result
 
-_source line 1534 · 2026-05-23T03:44:24.145971+00:00_
+_source line 1532 · 2026-05-23T03:44:24.145971+00:00_
 
 
 
@@ -3837,7 +3669,7 @@ _source line 1534 · 2026-05-23T03:44:24.145971+00:00_
 
 ### Tool call
 
-_source line 1535 · 2026-05-23T03:44:24.146500+00:00_
+_source line 1533 · 2026-05-23T03:44:24.146500+00:00_
 
 called Read
 
@@ -3871,7 +3703,7 @@ called Read
 
 ### Tool result
 
-_source line 1536 · 2026-05-23T03:44:25.758240+00:00_
+_source line 1534 · 2026-05-23T03:44:25.758240+00:00_
 
 
 
@@ -3893,7 +3725,7 @@ _source line 1536 · 2026-05-23T03:44:25.758240+00:00_
 
 ### Tool result
 
-_source line 1537 · 2026-05-23T03:44:26.160911+00:00_
+_source line 1535 · 2026-05-23T03:44:26.160911+00:00_
 
 
 
@@ -3915,7 +3747,7 @@ _source line 1537 · 2026-05-23T03:44:26.160911+00:00_
 
 ### Tool result
 
-_source line 1538 · 2026-05-23T03:44:26.212311+00:00_
+_source line 1536 · 2026-05-23T03:44:26.212311+00:00_
 
 
 
@@ -3937,7 +3769,7 @@ _source line 1538 · 2026-05-23T03:44:26.212311+00:00_
 
 ### Tool result
 
-_source line 1539 · 2026-05-23T03:44:27.819488+00:00_
+_source line 1537 · 2026-05-23T03:44:27.819488+00:00_
 
 # ACL Rolling Review Form Dimensions and Scoring
 
@@ -3983,7 +3815,7 @@ For complete scoring scales and level definitions, reviewers are directed to the
 
 ### Tool call
 
-_source line 1540 · 2026-05-23T03:44:33.133223+00:00_
+_source line 1538 · 2026-05-23T03:44:33.133223+00:00_
 
 called Read
 
@@ -4017,7 +3849,7 @@ called Read
 
 ### Tool call
 
-_source line 1541 · 2026-05-23T03:44:34.342628+00:00_
+_source line 1539 · 2026-05-23T03:44:34.342628+00:00_
 
 called Read
 
@@ -4051,7 +3883,7 @@ called Read
 
 ### Tool result
 
-_source line 1542 · 2026-05-23T03:44:34.699196+00:00_
+_source line 1540 · 2026-05-23T03:44:34.699196+00:00_
 
 
 
@@ -4073,7 +3905,7 @@ _source line 1542 · 2026-05-23T03:44:34.699196+00:00_
 
 ### Tool call
 
-_source line 1543 · 2026-05-23T03:44:34.699717+00:00_
+_source line 1541 · 2026-05-23T03:44:34.699717+00:00_
 
 called Read
 
@@ -4107,7 +3939,7 @@ called Read
 
 ### Tool call
 
-_source line 1544 · 2026-05-23T03:44:35.259217+00:00_
+_source line 1542 · 2026-05-23T03:44:35.259217+00:00_
 
 called Read
 
@@ -4141,7 +3973,7 @@ called Read
 
 ### Tool call
 
-_source line 1545 · 2026-05-23T03:44:36.319326+00:00_
+_source line 1543 · 2026-05-23T03:44:36.319326+00:00_
 
 called Read
 
@@ -4175,7 +4007,7 @@ called Read
 
 ### Tool call
 
-_source line 1546 · 2026-05-23T03:44:36.370067+00:00_
+_source line 1544 · 2026-05-23T03:44:36.370067+00:00_
 
 called Read
 
@@ -4209,7 +4041,7 @@ called Read
 
 ### Tool result
 
-_source line 1547 · 2026-05-23T03:44:36.523853+00:00_
+_source line 1545 · 2026-05-23T03:44:36.523853+00:00_
 
 
 
@@ -4231,7 +4063,7 @@ _source line 1547 · 2026-05-23T03:44:36.523853+00:00_
 
 ### Tool result
 
-_source line 1548 · 2026-05-23T03:44:38.587296+00:00_
+_source line 1546 · 2026-05-23T03:44:38.587296+00:00_
 
 
 
@@ -4253,7 +4085,7 @@ _source line 1548 · 2026-05-23T03:44:38.587296+00:00_
 
 ### Tool result
 
-_source line 1549 · 2026-05-23T03:44:40.053790+00:00_
+_source line 1547 · 2026-05-23T03:44:40.053790+00:00_
 
 
 
@@ -4275,7 +4107,7 @@ _source line 1549 · 2026-05-23T03:44:40.053790+00:00_
 
 ### Tool result
 
-_source line 1550 · 2026-05-23T03:44:40.958805+00:00_
+_source line 1548 · 2026-05-23T03:44:40.958805+00:00_
 
 
 
@@ -4297,7 +4129,7 @@ _source line 1550 · 2026-05-23T03:44:40.958805+00:00_
 
 ### Tool result
 
-_source line 1551 · 2026-05-23T03:44:41.212921+00:00_
+_source line 1549 · 2026-05-23T03:44:41.212921+00:00_
 
 
 
@@ -4319,7 +4151,7 @@ _source line 1551 · 2026-05-23T03:44:41.212921+00:00_
 
 ### Tool call
 
-_source line 1552 · 2026-05-23T03:44:55.022731+00:00_
+_source line 1550 · 2026-05-23T03:44:55.022731+00:00_
 
 called WebFetch
 
@@ -4355,7 +4187,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 1553 · 2026-05-23T03:44:56.279295+00:00_
+_source line 1551 · 2026-05-23T03:44:56.279295+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -4395,7 +4227,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1554 · 2026-05-23T03:45:05.675621+00:00_
+_source line 1552 · 2026-05-23T03:45:05.675621+00:00_
 
 # ACL Rolling Review Form - Complete Scoring Dimensions
 
@@ -4441,7 +4273,7 @@ _source line 1554 · 2026-05-23T03:45:05.675621+00:00_
 
 ### Tool result
 
-_source line 1555 · 2026-05-23T03:45:06.931776+00:00_
+_source line 1553 · 2026-05-23T03:45:06.931776+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 548.1}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 571.6}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 442.2}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 500.3}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 402.6}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 484.4}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 479.7}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 474.8}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submit
 …[truncated 533 chars]
@@ -4464,7 +4296,7 @@ _source line 1555 · 2026-05-23T03:45:06.931776+00:00_
 
 ### Tool call
 
-_source line 1556 · 2026-05-23T03:45:12.863190+00:00_
+_source line 1554 · 2026-05-23T03:45:12.863190+00:00_
 
 called Read
 
@@ -4498,7 +4330,7 @@ called Read
 
 ### Tool call
 
-_source line 1557 · 2026-05-23T03:45:13.266605+00:00_
+_source line 1555 · 2026-05-23T03:45:13.266605+00:00_
 
 called Read
 
@@ -4532,7 +4364,7 @@ called Read
 
 ### Tool call
 
-_source line 1558 · 2026-05-23T03:45:14.093932+00:00_
+_source line 1556 · 2026-05-23T03:45:14.093932+00:00_
 
 called Read
 
@@ -4566,7 +4398,7 @@ called Read
 
 ### Tool result
 
-_source line 1559 · 2026-05-23T03:45:14.748791+00:00_
+_source line 1557 · 2026-05-23T03:45:14.748791+00:00_
 
 
 
@@ -4588,7 +4420,7 @@ _source line 1559 · 2026-05-23T03:45:14.748791+00:00_
 
 ### Tool call
 
-_source line 1560 · 2026-05-23T03:45:15.050210+00:00_
+_source line 1558 · 2026-05-23T03:45:15.050210+00:00_
 
 called Read
 
@@ -4622,7 +4454,7 @@ called Read
 
 ### Tool call
 
-_source line 1561 · 2026-05-23T03:45:15.253192+00:00_
+_source line 1559 · 2026-05-23T03:45:15.253192+00:00_
 
 called Read
 
@@ -4656,7 +4488,7 @@ called Read
 
 ### Tool call
 
-_source line 1562 · 2026-05-23T03:45:15.657754+00:00_
+_source line 1560 · 2026-05-23T03:45:15.657754+00:00_
 
 called Read
 
@@ -4690,7 +4522,7 @@ called Read
 
 ### Tool result
 
-_source line 1563 · 2026-05-23T03:45:15.761496+00:00_
+_source line 1561 · 2026-05-23T03:45:15.761496+00:00_
 
 
 
@@ -4712,7 +4544,7 @@ _source line 1563 · 2026-05-23T03:45:15.761496+00:00_
 
 ### Tool result
 
-_source line 1564 · 2026-05-23T03:45:17.373934+00:00_
+_source line 1562 · 2026-05-23T03:45:17.373934+00:00_
 
 
 
@@ -4734,7 +4566,7 @@ _source line 1564 · 2026-05-23T03:45:17.373934+00:00_
 
 ### Tool result
 
-_source line 1565 · 2026-05-23T03:45:17.955326+00:00_
+_source line 1563 · 2026-05-23T03:45:17.955326+00:00_
 
 
 
@@ -4756,7 +4588,7 @@ _source line 1565 · 2026-05-23T03:45:17.955326+00:00_
 
 ### Tool result
 
-_source line 1566 · 2026-05-23T03:45:18.532222+00:00_
+_source line 1564 · 2026-05-23T03:45:18.532222+00:00_
 
 
 
@@ -4778,7 +4610,7 @@ _source line 1566 · 2026-05-23T03:45:18.532222+00:00_
 
 ### Tool result
 
-_source line 1567 · 2026-05-23T03:45:18.699743+00:00_
+_source line 1565 · 2026-05-23T03:45:18.699743+00:00_
 
 
 
@@ -4800,7 +4632,7 @@ _source line 1567 · 2026-05-23T03:45:18.699743+00:00_
 
 ### Tool call
 
-_source line 1568 · 2026-05-23T03:45:24.634332+00:00_
+_source line 1566 · 2026-05-23T03:45:24.634332+00:00_
 
 called Read
 
@@ -4834,7 +4666,7 @@ called Read
 
 ### Tool call
 
-_source line 1569 · 2026-05-23T03:45:25.037770+00:00_
+_source line 1567 · 2026-05-23T03:45:25.037770+00:00_
 
 called Read
 
@@ -4868,7 +4700,7 @@ called Read
 
 ### Tool call
 
-_source line 1570 · 2026-05-23T03:45:25.593865+00:00_
+_source line 1568 · 2026-05-23T03:45:25.593865+00:00_
 
 called Read
 
@@ -4902,7 +4734,7 @@ called Read
 
 ### Tool result
 
-_source line 1571 · 2026-05-23T03:45:26.850468+00:00_
+_source line 1569 · 2026-05-23T03:45:26.850468+00:00_
 
 
 
@@ -4924,7 +4756,7 @@ _source line 1571 · 2026-05-23T03:45:26.850468+00:00_
 
 ### Tool result
 
-_source line 1572 · 2026-05-23T03:45:26.851830+00:00_
+_source line 1570 · 2026-05-23T03:45:26.851830+00:00_
 
 
 
@@ -4946,7 +4778,7 @@ _source line 1572 · 2026-05-23T03:45:26.851830+00:00_
 
 ### Tool result
 
-_source line 1573 · 2026-05-23T03:45:26.852920+00:00_
+_source line 1571 · 2026-05-23T03:45:26.852920+00:00_
 
 
 
@@ -4968,7 +4800,7 @@ _source line 1573 · 2026-05-23T03:45:26.852920+00:00_
 
 ### Tool call
 
-_source line 1574 · 2026-05-23T03:45:26.853286+00:00_
+_source line 1572 · 2026-05-23T03:45:26.853286+00:00_
 
 called Read
 
@@ -5002,7 +4834,7 @@ called Read
 
 ### Tool result
 
-_source line 1575 · 2026-05-23T03:45:27.808412+00:00_
+_source line 1573 · 2026-05-23T03:45:27.808412+00:00_
 
 
 
@@ -5024,7 +4856,7 @@ _source line 1575 · 2026-05-23T03:45:27.808412+00:00_
 
 ### Tool call
 
-_source line 1576 · 2026-05-23T03:45:27.808893+00:00_
+_source line 1574 · 2026-05-23T03:45:27.808893+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -5064,7 +4896,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1577 · 2026-05-23T03:45:28.312942+00:00_
+_source line 1575 · 2026-05-23T03:45:28.312942+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 441.5}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 469.0}, {\"page\": 23, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p23.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 294.3}, {\"page\": 24, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images/submitted_p24.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 362.7}], \"total_pages\": 24, \"rendered_pages\": 4, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5086,7 +4918,7 @@ _source line 1577 · 2026-05-23T03:45:28.312942+00:00_
 
 ### Tool call
 
-_source line 1578 · 2026-05-23T03:45:33.987002+00:00_
+_source line 1576 · 2026-05-23T03:45:33.987002+00:00_
 
 called Read
 
@@ -5120,7 +4952,7 @@ called Read
 
 ### Tool call
 
-_source line 1579 · 2026-05-23T03:45:34.439032+00:00_
+_source line 1577 · 2026-05-23T03:45:34.439032+00:00_
 
 called Read
 
@@ -5154,7 +4986,7 @@ called Read
 
 ### Tool result
 
-_source line 1580 · 2026-05-23T03:45:35.343416+00:00_
+_source line 1578 · 2026-05-23T03:45:35.343416+00:00_
 
 
 
@@ -5176,7 +5008,7 @@ _source line 1580 · 2026-05-23T03:45:35.343416+00:00_
 
 ### Tool result
 
-_source line 1581 · 2026-05-23T03:45:35.395536+00:00_
+_source line 1579 · 2026-05-23T03:45:35.395536+00:00_
 
 
 
@@ -5198,7 +5030,7 @@ _source line 1581 · 2026-05-23T03:45:35.395536+00:00_
 
 ### Tool call
 
-_source line 1582 · 2026-05-23T03:45:35.396387+00:00_
+_source line 1580 · 2026-05-23T03:45:35.396387+00:00_
 
 called Read
 
@@ -5232,7 +5064,7 @@ called Read
 
 ### Tool call
 
-_source line 1583 · 2026-05-23T03:45:35.649183+00:00_
+_source line 1581 · 2026-05-23T03:45:35.649183+00:00_
 
 called Read
 
@@ -5266,7 +5098,7 @@ called Read
 
 ### Tool result
 
-_source line 1584 · 2026-05-23T03:45:35.752465+00:00_
+_source line 1582 · 2026-05-23T03:45:35.752465+00:00_
 
 
 
@@ -5288,7 +5120,7 @@ _source line 1584 · 2026-05-23T03:45:35.752465+00:00_
 
 ### Tool result
 
-_source line 1585 · 2026-05-23T03:45:36.157618+00:00_
+_source line 1583 · 2026-05-23T03:45:36.157618+00:00_
 
 
 
@@ -5310,7 +5142,7 @@ _source line 1585 · 2026-05-23T03:45:36.157618+00:00_
 
 ### Tool call
 
-_source line 1586 · 2026-05-23T03:46:41.197286+00:00_
+_source line 1584 · 2026-05-23T03:46:41.197286+00:00_
 
 called Read
 
@@ -5344,7 +5176,7 @@ called Read
 
 ### Tool result
 
-_source line 1587 · 2026-05-23T03:46:41.248727+00:00_
+_source line 1585 · 2026-05-23T03:46:41.248727+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -5382,7 +5214,7 @@ _source line 1587 · 2026-05-23T03:46:41.248727+00:00_
 
 ### Tool call
 
-_source line 1588 · 2026-05-23T03:46:41.249151+00:00_
+_source line 1586 · 2026-05-23T03:46:41.249151+00:00_
 
 called Read
 
@@ -5416,7 +5248,7 @@ called Read
 
 ### Tool result
 
-_source line 1589 · 2026-05-23T03:46:41.299873+00:00_
+_source line 1587 · 2026-05-23T03:46:41.299873+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -5450,7 +5282,7 @@ _source line 1589 · 2026-05-23T03:46:41.299873+00:00_
 
 ### Tool call
 
-_source line 1590 · 2026-05-23T03:46:49.777317+00:00_
+_source line 1588 · 2026-05-23T03:46:49.777317+00:00_
 
 called Read
 
@@ -5484,7 +5316,7 @@ called Read
 
 ### Tool result
 
-_source line 1591 · 2026-05-23T03:46:49.777718+00:00_
+_source line 1589 · 2026-05-23T03:46:49.777718+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -5517,7 +5349,7 @@ _source line 1591 · 2026-05-23T03:46:49.777718+00:00_
 
 ### Tool call
 
-_source line 1592 · 2026-05-23T03:46:50.028752+00:00_
+_source line 1590 · 2026-05-23T03:46:50.028752+00:00_
 
 called Read
 
@@ -5551,7 +5383,7 @@ called Read
 
 ### Tool result
 
-_source line 1593 · 2026-05-23T03:46:50.029216+00:00_
+_source line 1591 · 2026-05-23T03:46:50.029216+00:00_
 
 1	\section{Introduction}
 2	
@@ -5581,7 +5413,7 @@ _source line 1593 · 2026-05-23T03:46:50.029216+00:00_
 
 ### Tool call
 
-_source line 1594 · 2026-05-23T03:46:50.380457+00:00_
+_source line 1592 · 2026-05-23T03:46:50.380457+00:00_
 
 called Read
 
@@ -5615,7 +5447,7 @@ called Read
 
 ### Tool result
 
-_source line 1595 · 2026-05-23T03:46:50.431133+00:00_
+_source line 1593 · 2026-05-23T03:46:50.431133+00:00_
 
 1	\section{Related Work}
 2	
@@ -5648,7 +5480,7 @@ _source line 1595 · 2026-05-23T03:46:50.431133+00:00_
 
 ### Tool call
 
-_source line 1596 · 2026-05-23T03:46:57.061607+00:00_
+_source line 1594 · 2026-05-23T03:46:57.061607+00:00_
 
 called Read
 
@@ -5682,7 +5514,7 @@ called Read
 
 ### Tool call
 
-_source line 1597 · 2026-05-23T03:46:57.062276+00:00_
+_source line 1595 · 2026-05-23T03:46:57.062276+00:00_
 
 called Read
 
@@ -5716,7 +5548,7 @@ called Read
 
 ### Tool result
 
-_source line 1598 · 2026-05-23T03:46:57.062624+00:00_
+_source line 1596 · 2026-05-23T03:46:57.062624+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode pilot suffices for build-vs-buy decisions given large effect sizes ($d = 3.02$).
@@ -5741,7 +5573,7 @@ _source line 1598 · 2026-05-23T03:46:57.062624+00:00_
 
 ### Tool result
 
-_source line 1599 · 2026-05-23T03:46:57.062923+00:00_
+_source line 1597 · 2026-05-23T03:46:57.062923+00:00_
 
 1	\section{Conclusion}
 2	
@@ -5766,7 +5598,7 @@ _source line 1599 · 2026-05-23T03:46:57.062923+00:00_
 
 ### Tool call
 
-_source line 1600 · 2026-05-23T03:47:01.497238+00:00_
+_source line 1598 · 2026-05-23T03:47:01.497238+00:00_
 
 called Read
 
@@ -5802,7 +5634,7 @@ called Read
 
 ### Tool result
 
-_source line 1601 · 2026-05-23T03:47:01.548097+00:00_
+_source line 1599 · 2026-05-23T03:47:01.548097+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -5864,7 +5696,7 @@ _source line 1601 · 2026-05-23T03:47:01.548097+00:00_
 
 ### Tool call
 
-_source line 1602 · 2026-05-23T03:53:35.560359+00:00_
+_source line 1600 · 2026-05-23T03:53:35.560359+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -5902,7 +5734,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1603 · 2026-05-23T03:53:39.478515+00:00_
+_source line 1601 · 2026-05-23T03:53:39.478515+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -5924,7 +5756,7 @@ _source line 1603 · 2026-05-23T03:53:39.478515+00:00_
 
 ### Tool call
 
-_source line 1604 · 2026-05-23T03:53:44.756899+00:00_
+_source line 1602 · 2026-05-23T03:53:44.756899+00:00_
 
 called ToolSearch
 
@@ -5960,7 +5792,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1605 · 2026-05-23T03:53:44.807613+00:00_
+_source line 1603 · 2026-05-23T03:53:44.807613+00:00_
 
 
 
@@ -5982,7 +5814,7 @@ _source line 1605 · 2026-05-23T03:53:44.807613+00:00_
 
 ### Tool call
 
-_source line 1606 · 2026-05-23T03:53:48.159334+00:00_
+_source line 1604 · 2026-05-23T03:53:48.159334+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -6016,7 +5848,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1607 · 2026-05-23T03:53:48.211212+00:00_
+_source line 1605 · 2026-05-23T03:53:48.211212+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -6038,7 +5870,7 @@ _source line 1607 · 2026-05-23T03:53:48.211212+00:00_
 
 ### Assistant
 
-_source line 1608 · 2026-05-23T03:54:02.113696+00:00_
+_source line 1606 · 2026-05-23T03:54:02.113696+00:00_
 
 审稿意见已完整提交给 Review Director。
 
@@ -6078,7 +5910,7 @@ _source line 1608 · 2026-05-23T03:54:02.113696+00:00_
 
 ### User
 
-_source line 1609 · 2026-05-23T03:54:47.636805+00:00_
+_source line 1607 · 2026-05-23T03:54:47.636805+00:00_
 
 [Round 1 审稿请求]:
 ## Step 2 — 交叉分享：请逐条回应 Reviewer 2 的审稿意见
@@ -6171,7 +6003,7 @@ Soundness 3.5/5, Excitement 2.5/5, Overall 3.0 (Findings), Confidence 4/5
 
 ### Tool call
 
-_source line 1610 · 2026-05-23T03:57:15.376296+00:00_
+_source line 1608 · 2026-05-23T03:57:15.376296+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -6209,7 +6041,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1611 · 2026-05-23T03:57:19.509955+00:00_
+_source line 1609 · 2026-05-23T03:57:19.509955+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -6231,7 +6063,7 @@ _source line 1611 · 2026-05-23T03:57:19.509955+00:00_
 
 ### Assistant
 
-_source line 1612 · 2026-05-23T03:57:26.579476+00:00_
+_source line 1610 · 2026-05-23T03:57:26.579476+00:00_
 
 交叉回应已提交。
 
@@ -6260,7 +6092,7 @@ _source line 1612 · 2026-05-23T03:57:26.579476+00:00_
 
 ### User
 
-_source line 1613 · 2026-05-23T05:19:58.668934+00:00_
+_source line 1611 · 2026-05-23T05:19:58.668934+00:00_
 
 [Round 31 审稿请求]:
 你是 Reviewer 1，负责**方法严谨性 + 实验设计**。
@@ -6313,7 +6145,7 @@ _source line 1613 · 2026-05-23T05:19:58.668934+00:00_
 
 ### Tool call
 
-_source line 1614 · 2026-05-23T05:20:09.194663+00:00_
+_source line 1612 · 2026-05-23T05:20:09.194663+00:00_
 
 called Read
 
@@ -6347,7 +6179,7 @@ called Read
 
 ### Tool result
 
-_source line 1615 · 2026-05-23T05:20:10.502698+00:00_
+_source line 1613 · 2026-05-23T05:20:10.502698+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -6369,7 +6201,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1616 · 2026-05-23T05:20:10.553395+00:00_
+_source line 1614 · 2026-05-23T05:20:10.553395+00:00_
 
 called ToolSearch
 
@@ -6405,7 +6237,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1617 · 2026-05-23T05:20:10.553825+00:00_
+_source line 1615 · 2026-05-23T05:20:10.553825+00:00_
 
 
 
@@ -6427,7 +6259,7 @@ _source line 1617 · 2026-05-23T05:20:10.553825+00:00_
 
 ### Tool call
 
-_source line 1618 · 2026-05-23T05:20:15.855085+00:00_
+_source line 1616 · 2026-05-23T05:20:15.855085+00:00_
 
 called WebSearch
 
@@ -6461,7 +6293,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1619 · 2026-05-23T05:20:18.271365+00:00_
+_source line 1617 · 2026-05-23T05:20:18.271365+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -6501,7 +6333,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool call
 
-_source line 1620 · 2026-05-23T05:20:18.823917+00:00_
+_source line 1618 · 2026-05-23T05:20:18.823917+00:00_
 
 called Read
 
@@ -6535,7 +6367,7 @@ called Read
 
 ### Tool result
 
-_source line 1621 · 2026-05-23T05:20:33.639154+00:00_
+_source line 1619 · 2026-05-23T05:20:33.639154+00:00_
 
 Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria"
 
@@ -6570,7 +6402,7 @@ The main criteria for Findin
 
 ### Tool result
 
-_source line 1622 · 2026-05-23T05:20:35.045843+00:00_
+_source line 1620 · 2026-05-23T05:20:35.045843+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 468.0}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 457.1}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 460.0}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 536.5}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 528.2}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 478.1}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 578.6}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 572.1}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p9.png\", \"w
 …[truncated 515 chars]
@@ -6593,7 +6425,7 @@ _source line 1622 · 2026-05-23T05:20:35.045843+00:00_
 
 ### Tool result
 
-_source line 1623 · 2026-05-23T05:20:35.348465+00:00_
+_source line 1621 · 2026-05-23T05:20:35.348465+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -6655,7 +6487,7 @@ _source line 1623 · 2026-05-23T05:20:35.348465+00:00_
 
 ### Tool call
 
-_source line 1624 · 2026-05-23T05:20:44.839880+00:00_
+_source line 1622 · 2026-05-23T05:20:44.839880+00:00_
 
 called WebFetch
 
@@ -6691,7 +6523,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 1625 · 2026-05-23T05:20:47.254326+00:00_
+_source line 1623 · 2026-05-23T05:20:47.254326+00:00_
 
 called Read
 
@@ -6725,7 +6557,7 @@ called Read
 
 ### Tool call
 
-_source line 1626 · 2026-05-23T05:20:47.807801+00:00_
+_source line 1624 · 2026-05-23T05:20:47.807801+00:00_
 
 called Read
 
@@ -6759,7 +6591,7 @@ called Read
 
 ### Tool call
 
-_source line 1627 · 2026-05-23T05:20:48.613173+00:00_
+_source line 1625 · 2026-05-23T05:20:48.613173+00:00_
 
 called Read
 
@@ -6793,7 +6625,7 @@ called Read
 
 ### Tool result
 
-_source line 1628 · 2026-05-23T05:20:49.420045+00:00_
+_source line 1626 · 2026-05-23T05:20:49.420045+00:00_
 
 
 
@@ -6815,7 +6647,7 @@ _source line 1628 · 2026-05-23T05:20:49.420045+00:00_
 
 ### Tool call
 
-_source line 1629 · 2026-05-23T05:20:49.470711+00:00_
+_source line 1627 · 2026-05-23T05:20:49.470711+00:00_
 
 called Read
 
@@ -6849,7 +6681,7 @@ called Read
 
 ### Tool call
 
-_source line 1630 · 2026-05-23T05:20:49.471149+00:00_
+_source line 1628 · 2026-05-23T05:20:49.471149+00:00_
 
 called Read
 
@@ -6883,7 +6715,7 @@ called Read
 
 ### Tool result
 
-_source line 1631 · 2026-05-23T05:20:49.927420+00:00_
+_source line 1629 · 2026-05-23T05:20:49.927420+00:00_
 
 
 
@@ -6905,7 +6737,7 @@ _source line 1631 · 2026-05-23T05:20:49.927420+00:00_
 
 ### Tool result
 
-_source line 1632 · 2026-05-23T05:20:51.543350+00:00_
+_source line 1630 · 2026-05-23T05:20:51.543350+00:00_
 
 # ACL Rolling Review Form - Scoring Dimensions
 
@@ -6970,7 +6802,7 @@ Assesses subjective impact, innovation, and relevance. Ranges from:
 
 ### Tool result
 
-_source line 1633 · 2026-05-23T05:20:51.594769+00:00_
+_source line 1631 · 2026-05-23T05:20:51.594769+00:00_
 
 
 
@@ -6992,7 +6824,7 @@ _source line 1633 · 2026-05-23T05:20:51.594769+00:00_
 
 ### Tool result
 
-_source line 1634 · 2026-05-23T05:20:52.400584+00:00_
+_source line 1632 · 2026-05-23T05:20:52.400584+00:00_
 
 
 
@@ -7014,7 +6846,7 @@ _source line 1634 · 2026-05-23T05:20:52.400584+00:00_
 
 ### Tool result
 
-_source line 1635 · 2026-05-23T05:20:52.401939+00:00_
+_source line 1633 · 2026-05-23T05:20:52.401939+00:00_
 
 
 
@@ -7036,7 +6868,7 @@ _source line 1635 · 2026-05-23T05:20:52.401939+00:00_
 
 ### Tool call
 
-_source line 1636 · 2026-05-23T05:20:59.640215+00:00_
+_source line 1634 · 2026-05-23T05:20:59.640215+00:00_
 
 called Read
 
@@ -7070,7 +6902,7 @@ called Read
 
 ### Tool call
 
-_source line 1637 · 2026-05-23T05:21:00.295879+00:00_
+_source line 1635 · 2026-05-23T05:21:00.295879+00:00_
 
 called Read
 
@@ -7104,7 +6936,7 @@ called Read
 
 ### Tool call
 
-_source line 1638 · 2026-05-23T05:21:00.628592+00:00_
+_source line 1636 · 2026-05-23T05:21:00.628592+00:00_
 
 called Read
 
@@ -7138,7 +6970,7 @@ called Read
 
 ### Tool call
 
-_source line 1639 · 2026-05-23T05:21:01.813779+00:00_
+_source line 1637 · 2026-05-23T05:21:01.813779+00:00_
 
 called Read
 
@@ -7172,7 +7004,7 @@ called Read
 
 ### Tool call
 
-_source line 1640 · 2026-05-23T05:21:01.814248+00:00_
+_source line 1638 · 2026-05-23T05:21:01.814248+00:00_
 
 called Read
 
@@ -7206,7 +7038,7 @@ called Read
 
 ### Tool result
 
-_source line 1641 · 2026-05-23T05:21:02.818882+00:00_
+_source line 1639 · 2026-05-23T05:21:02.818882+00:00_
 
 
 
@@ -7228,7 +7060,7 @@ _source line 1641 · 2026-05-23T05:21:02.818882+00:00_
 
 ### Tool result
 
-_source line 1642 · 2026-05-23T05:21:04.995256+00:00_
+_source line 1640 · 2026-05-23T05:21:04.995256+00:00_
 
 
 
@@ -7250,7 +7082,7 @@ _source line 1642 · 2026-05-23T05:21:04.995256+00:00_
 
 ### Tool result
 
-_source line 1643 · 2026-05-23T05:21:05.048226+00:00_
+_source line 1641 · 2026-05-23T05:21:05.048226+00:00_
 
 
 
@@ -7272,7 +7104,7 @@ _source line 1643 · 2026-05-23T05:21:05.048226+00:00_
 
 ### Tool result
 
-_source line 1644 · 2026-05-23T05:21:05.956147+00:00_
+_source line 1642 · 2026-05-23T05:21:05.956147+00:00_
 
 
 
@@ -7294,7 +7126,7 @@ _source line 1644 · 2026-05-23T05:21:05.956147+00:00_
 
 ### Tool result
 
-_source line 1645 · 2026-05-23T05:21:05.960882+00:00_
+_source line 1643 · 2026-05-23T05:21:05.960882+00:00_
 
 
 
@@ -7316,7 +7148,7 @@ _source line 1645 · 2026-05-23T05:21:05.960882+00:00_
 
 ### Tool call
 
-_source line 1646 · 2026-05-23T05:21:20.892814+00:00_
+_source line 1644 · 2026-05-23T05:21:20.892814+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -7356,7 +7188,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1647 · 2026-05-23T05:21:24.166866+00:00_
+_source line 1645 · 2026-05-23T05:21:24.166866+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 544.9}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.6}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 453.1}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 505.9}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 427.4}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 479.2}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.1}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 487.1}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_31/_pdf_images/submit
 …[truncated 533 chars]
@@ -7379,7 +7211,7 @@ _source line 1647 · 2026-05-23T05:21:24.166866+00:00_
 
 ### Tool call
 
-_source line 1648 · 2026-05-23T05:21:27.990637+00:00_
+_source line 1646 · 2026-05-23T05:21:27.990637+00:00_
 
 called Read
 
@@ -7413,7 +7245,7 @@ called Read
 
 ### Tool call
 
-_source line 1649 · 2026-05-23T05:21:28.392841+00:00_
+_source line 1647 · 2026-05-23T05:21:28.392841+00:00_
 
 called Read
 
@@ -7447,7 +7279,7 @@ called Read
 
 ### Tool result
 
-_source line 1650 · 2026-05-23T05:21:28.698262+00:00_
+_source line 1648 · 2026-05-23T05:21:28.698262+00:00_
 
 
 
@@ -7469,7 +7301,7 @@ _source line 1650 · 2026-05-23T05:21:28.698262+00:00_
 
 ### Tool result
 
-_source line 1651 · 2026-05-23T05:21:29.252673+00:00_
+_source line 1649 · 2026-05-23T05:21:29.252673+00:00_
 
 
 
@@ -7491,7 +7323,7 @@ _source line 1651 · 2026-05-23T05:21:29.252673+00:00_
 
 ### Tool call
 
-_source line 1652 · 2026-05-23T05:21:38.268161+00:00_
+_source line 1650 · 2026-05-23T05:21:38.268161+00:00_
 
 called Glob
 
@@ -7527,7 +7359,7 @@ called Glob
 
 ### Tool result
 
-_source line 1653 · 2026-05-23T05:21:38.318785+00:00_
+_source line 1651 · 2026-05-23T05:21:38.318785+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/responsibleNLPchecklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex
@@ -7557,7 +7389,7 @@ _source line 1653 · 2026-05-23T05:21:38.318785+00:00_
 
 ### Tool call
 
-_source line 1654 · 2026-05-23T05:21:42.786202+00:00_
+_source line 1652 · 2026-05-23T05:21:42.786202+00:00_
 
 called Read
 
@@ -7591,7 +7423,7 @@ called Read
 
 ### Tool result
 
-_source line 1655 · 2026-05-23T05:21:42.987834+00:00_
+_source line 1653 · 2026-05-23T05:21:42.987834+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode pilot suffices for build-vs-buy decisions.
@@ -7616,7 +7448,7 @@ _source line 1655 · 2026-05-23T05:21:42.987834+00:00_
 
 ### Tool call
 
-_source line 1656 · 2026-05-23T05:21:42.990512+00:00_
+_source line 1654 · 2026-05-23T05:21:42.990512+00:00_
 
 called Read
 
@@ -7650,7 +7482,7 @@ called Read
 
 ### Tool result
 
-_source line 1657 · 2026-05-23T05:21:43.493861+00:00_
+_source line 1655 · 2026-05-23T05:21:43.493861+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -7688,7 +7520,7 @@ _source line 1657 · 2026-05-23T05:21:43.493861+00:00_
 
 ### Tool call
 
-_source line 1658 · 2026-05-23T05:21:43.494396+00:00_
+_source line 1656 · 2026-05-23T05:21:43.494396+00:00_
 
 called Read
 
@@ -7722,7 +7554,7 @@ called Read
 
 ### Tool result
 
-_source line 1659 · 2026-05-23T05:21:43.997027+00:00_
+_source line 1657 · 2026-05-23T05:21:43.997027+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -7756,7 +7588,7 @@ _source line 1659 · 2026-05-23T05:21:43.997027+00:00_
 
 ### Tool call
 
-_source line 1660 · 2026-05-23T05:21:43.997480+00:00_
+_source line 1658 · 2026-05-23T05:21:43.997480+00:00_
 
 called Read
 
@@ -7790,7 +7622,7 @@ called Read
 
 ### Tool result
 
-_source line 1661 · 2026-05-23T05:21:44.199278+00:00_
+_source line 1659 · 2026-05-23T05:21:44.199278+00:00_
 
 1	\section{Introduction}
 2	
@@ -7820,7 +7652,7 @@ _source line 1661 · 2026-05-23T05:21:44.199278+00:00_
 
 ### Tool call
 
-_source line 1662 · 2026-05-23T05:21:50.527213+00:00_
+_source line 1660 · 2026-05-23T05:21:50.527213+00:00_
 
 called Read
 
@@ -7854,7 +7686,7 @@ called Read
 
 ### Tool result
 
-_source line 1663 · 2026-05-23T05:21:50.879545+00:00_
+_source line 1661 · 2026-05-23T05:21:50.879545+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -7884,7 +7716,7 @@ _source line 1663 · 2026-05-23T05:21:50.879545+00:00_
 
 ### Tool call
 
-_source line 1664 · 2026-05-23T05:21:50.980531+00:00_
+_source line 1662 · 2026-05-23T05:21:50.980531+00:00_
 
 called Read
 
@@ -7918,7 +7750,7 @@ called Read
 
 ### Tool result
 
-_source line 1665 · 2026-05-23T05:21:51.181782+00:00_
+_source line 1663 · 2026-05-23T05:21:51.181782+00:00_
 
 1	\section{Conclusion}
 2	
@@ -7943,7 +7775,7 @@ _source line 1665 · 2026-05-23T05:21:51.181782+00:00_
 
 ### Tool call
 
-_source line 1666 · 2026-05-23T05:21:51.182257+00:00_
+_source line 1664 · 2026-05-23T05:21:51.182257+00:00_
 
 called Read
 
@@ -7977,7 +7809,7 @@ called Read
 
 ### Tool result
 
-_source line 1667 · 2026-05-23T05:21:51.232841+00:00_
+_source line 1665 · 2026-05-23T05:21:51.232841+00:00_
 
 1	\section{Related Work}
 2	
@@ -8010,7 +7842,7 @@ _source line 1667 · 2026-05-23T05:21:51.232841+00:00_
 
 ### Tool call
 
-_source line 1668 · 2026-05-23T05:24:26.258769+00:00_
+_source line 1666 · 2026-05-23T05:24:26.258769+00:00_
 
 called WebFetch
 
@@ -8046,7 +7878,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 1669 · 2026-05-23T05:24:41.576063+00:00_
+_source line 1667 · 2026-05-23T05:24:41.576063+00:00_
 
 # ARR Reviewer Guidelines Summary
 
@@ -8107,7 +7939,7 @@ Three independent scores required:
 
 ### Tool call
 
-_source line 1670 · 2026-05-23T05:27:58.326032+00:00_
+_source line 1668 · 2026-05-23T05:27:58.326032+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -8145,7 +7977,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1671 · 2026-05-23T05:28:02.356329+00:00_
+_source line 1669 · 2026-05-23T05:28:02.356329+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -8167,7 +7999,7 @@ _source line 1671 · 2026-05-23T05:28:02.356329+00:00_
 
 ### Tool call
 
-_source line 1672 · 2026-05-23T05:28:12.295950+00:00_
+_source line 1670 · 2026-05-23T05:28:12.295950+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -8201,7 +8033,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1673 · 2026-05-23T05:28:12.296585+00:00_
+_source line 1671 · 2026-05-23T05:28:12.296585+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -8223,7 +8055,7 @@ _source line 1673 · 2026-05-23T05:28:12.296585+00:00_
 
 ### Assistant
 
-_source line 1674 · 2026-05-23T05:28:21.435518+00:00_
+_source line 1672 · 2026-05-23T05:28:21.435518+00:00_
 
 审稿完成，已提交给 Review Director。
 
@@ -8258,7 +8090,7 @@ _source line 1674 · 2026-05-23T05:28:21.435518+00:00_
 
 ### User
 
-_source line 1675 · 2026-05-23T05:29:20.199689+00:00_
+_source line 1673 · 2026-05-23T05:29:20.199689+00:00_
 
 [Round 31 审稿请求]:
 以下是 Reviewer 2 的完整审稿意见，请逐条回应。对每个 Weakness、Question 和 Missing Reference，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
@@ -8337,7 +8169,7 @@ CVaR-based optimization（Chow et al. 2015; Tamar et al. 2015）直接处理 tra
 
 ### Tool call
 
-_source line 1676 · 2026-05-23T05:30:24.124971+00:00_
+_source line 1674 · 2026-05-23T05:30:24.124971+00:00_
 
 called Read
 
@@ -8371,7 +8203,7 @@ called Read
 
 ### Tool result
 
-_source line 1677 · 2026-05-23T05:30:24.326183+00:00_
+_source line 1675 · 2026-05-23T05:30:24.326183+00:00_
 
 1	\begin{abstract}
 2	LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie episode-level routing labels arise from death asymmetry---a finding replicated across three architecturally distinct 7--9B model families, revealing that in catastrophic-failure environments, signal diversity can collapse to a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), providing preliminary evidence of applicability beyond death-dominated settings. The framework distinguishes \emph{methodological generality} (applicable to any environment with paired episode outcomes) from \emph{empirical generality} (full quantitative validation on ScienceWorld only). A ${\sim}$50-episode pilot suffices for build-vs-buy decisions.
@@ -8396,7 +8228,7 @@ _source line 1677 · 2026-05-23T05:30:24.326183+00:00_
 
 ### Tool call
 
-_source line 1678 · 2026-05-23T05:30:24.326533+00:00_
+_source line 1676 · 2026-05-23T05:30:24.326533+00:00_
 
 called Read
 
@@ -8430,7 +8262,7 @@ called Read
 
 ### Tool result
 
-_source line 1679 · 2026-05-23T05:30:25.079657+00:00_
+_source line 1677 · 2026-05-23T05:30:25.079657+00:00_
 
 1	\section{Related Work}
 2	
@@ -8463,7 +8295,7 @@ _source line 1679 · 2026-05-23T05:30:25.079657+00:00_
 
 ### Tool call
 
-_source line 1680 · 2026-05-23T05:30:25.130591+00:00_
+_source line 1678 · 2026-05-23T05:30:25.130591+00:00_
 
 called Read
 
@@ -8497,7 +8329,7 @@ called Read
 
 ### Tool result
 
-_source line 1681 · 2026-05-23T05:30:25.181453+00:00_
+_source line 1679 · 2026-05-23T05:30:25.181453+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -8527,7 +8359,7 @@ _source line 1681 · 2026-05-23T05:30:25.181453+00:00_
 
 ### Tool call
 
-_source line 1682 · 2026-05-23T05:32:40.611517+00:00_
+_source line 1680 · 2026-05-23T05:32:40.611517+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -8565,7 +8397,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1683 · 2026-05-23T05:32:44.428451+00:00_
+_source line 1681 · 2026-05-23T05:32:44.428451+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -8587,7 +8419,7 @@ _source line 1683 · 2026-05-23T05:32:44.428451+00:00_
 
 ### Assistant
 
-_source line 1684 · 2026-05-23T05:32:51.400795+00:00_
+_source line 1682 · 2026-05-23T05:32:51.400795+00:00_
 
 逐条回应已提交给 Review Director。
 
@@ -8616,7 +8448,7 @@ _source line 1684 · 2026-05-23T05:32:51.400795+00:00_
 
 ### User
 
-_source line 1685 · 2026-05-25T21:16:58.991180+00:00_
+_source line 1683 · 2026-05-25T21:16:58.991180+00:00_
 
 [Round 1 审稿请求]:
 ## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验有效性）
@@ -8680,7 +8512,7 @@ _source line 1685 · 2026-05-25T21:16:58.991180+00:00_
 
 ### Tool call
 
-_source line 1686 · 2026-05-25T21:17:11.568274+00:00_
+_source line 1684 · 2026-05-25T21:17:11.568274+00:00_
 
 called Read
 
@@ -8714,7 +8546,7 @@ called Read
 
 ### Tool result
 
-_source line 1687 · 2026-05-25T21:17:13.024982+00:00_
+_source line 1685 · 2026-05-25T21:17:13.024982+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -8736,7 +8568,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1688 · 2026-05-25T21:17:13.175967+00:00_
+_source line 1686 · 2026-05-25T21:17:13.175967+00:00_
 
 called ToolSearch
 
@@ -8772,7 +8604,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1689 · 2026-05-25T21:17:13.226679+00:00_
+_source line 1687 · 2026-05-25T21:17:13.226679+00:00_
 
 
 
@@ -8794,7 +8626,7 @@ _source line 1689 · 2026-05-25T21:17:13.226679+00:00_
 
 ### Tool call
 
-_source line 1690 · 2026-05-25T21:17:21.874202+00:00_
+_source line 1688 · 2026-05-25T21:17:21.874202+00:00_
 
 called WebSearch
 
@@ -8828,7 +8660,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1691 · 2026-05-25T21:17:23.844326+00:00_
+_source line 1689 · 2026-05-25T21:17:23.844326+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -8868,7 +8700,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1692 · 2026-05-25T21:17:28.763177+00:00_
+_source line 1690 · 2026-05-25T21:17:28.763177+00:00_
 
 Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria"
 
@@ -8905,7 +8737,7 @@ The review form uses the following scoring options:
 
 ### Tool result
 
-_source line 1693 · 2026-05-25T21:17:30.173273+00:00_
+_source line 1691 · 2026-05-25T21:17:30.173273+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.2}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 671.4}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 396.6}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 445.5}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 410.0}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.7}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 440.5}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.9}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p9.png\", \"w
 …[truncated 515 chars]
@@ -8928,7 +8760,7 @@ _source line 1693 · 2026-05-25T21:17:30.173273+00:00_
 
 ### Tool call
 
-_source line 1694 · 2026-05-25T21:17:38.554074+00:00_
+_source line 1692 · 2026-05-25T21:17:38.554074+00:00_
 
 called WebFetch
 
@@ -8964,7 +8796,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 1695 · 2026-05-25T21:17:40.010172+00:00_
+_source line 1693 · 2026-05-25T21:17:40.010172+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -9004,7 +8836,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool call
 
-_source line 1696 · 2026-05-25T21:17:41.116257+00:00_
+_source line 1694 · 2026-05-25T21:17:41.116257+00:00_
 
 called Read
 
@@ -9038,7 +8870,7 @@ called Read
 
 ### Tool call
 
-_source line 1697 · 2026-05-25T21:17:41.468069+00:00_
+_source line 1695 · 2026-05-25T21:17:41.468069+00:00_
 
 called Read
 
@@ -9072,7 +8904,7 @@ called Read
 
 ### Tool call
 
-_source line 1698 · 2026-05-25T21:17:41.970867+00:00_
+_source line 1696 · 2026-05-25T21:17:41.970867+00:00_
 
 called Read
 
@@ -9106,7 +8938,7 @@ called Read
 
 ### Tool call
 
-_source line 1699 · 2026-05-25T21:17:42.423058+00:00_
+_source line 1697 · 2026-05-25T21:17:42.423058+00:00_
 
 called Read
 
@@ -9140,7 +8972,7 @@ called Read
 
 ### Tool call
 
-_source line 1700 · 2026-05-25T21:17:43.076066+00:00_
+_source line 1698 · 2026-05-25T21:17:43.076066+00:00_
 
 called Read
 
@@ -9174,7 +9006,7 @@ called Read
 
 ### Tool result
 
-_source line 1701 · 2026-05-25T21:17:45.400066+00:00_
+_source line 1699 · 2026-05-25T21:17:45.400066+00:00_
 
 # ACL Rolling Review Form - Complete Dimensions
 
@@ -9241,7 +9073,7 @@ _source line 1701 · 2026-05-25T21:17:45.400066+00:00_
 
 ### Tool result
 
-_source line 1702 · 2026-05-25T21:17:47.058916+00:00_
+_source line 1700 · 2026-05-25T21:17:47.058916+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.0}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 522.8}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 455.3}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 456.1}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 506.0}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 457.5}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 495.3}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.9}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submit
 …[truncated 981 chars]
@@ -9264,7 +9096,7 @@ _source line 1702 · 2026-05-25T21:17:47.058916+00:00_
 
 ### Tool result
 
-_source line 1703 · 2026-05-25T21:17:49.022939+00:00_
+_source line 1701 · 2026-05-25T21:17:49.022939+00:00_
 
 
 
@@ -9286,7 +9118,7 @@ _source line 1703 · 2026-05-25T21:17:49.022939+00:00_
 
 ### Tool result
 
-_source line 1704 · 2026-05-25T21:17:49.628897+00:00_
+_source line 1702 · 2026-05-25T21:17:49.628897+00:00_
 
 
 
@@ -9308,7 +9140,7 @@ _source line 1704 · 2026-05-25T21:17:49.628897+00:00_
 
 ### Tool result
 
-_source line 1705 · 2026-05-25T21:17:49.631154+00:00_
+_source line 1703 · 2026-05-25T21:17:49.631154+00:00_
 
 
 
@@ -9330,7 +9162,7 @@ _source line 1705 · 2026-05-25T21:17:49.631154+00:00_
 
 ### Tool result
 
-_source line 1706 · 2026-05-25T21:17:49.632235+00:00_
+_source line 1704 · 2026-05-25T21:17:49.632235+00:00_
 
 
 
@@ -9352,7 +9184,7 @@ _source line 1706 · 2026-05-25T21:17:49.632235+00:00_
 
 ### Tool result
 
-_source line 1707 · 2026-05-25T21:17:49.683467+00:00_
+_source line 1705 · 2026-05-25T21:17:49.683467+00:00_
 
 
 
@@ -9374,7 +9206,7 @@ _source line 1707 · 2026-05-25T21:17:49.683467+00:00_
 
 ### Tool call
 
-_source line 1708 · 2026-05-25T21:17:56.874072+00:00_
+_source line 1706 · 2026-05-25T21:17:56.874072+00:00_
 
 called Read
 
@@ -9408,7 +9240,7 @@ called Read
 
 ### Tool call
 
-_source line 1709 · 2026-05-25T21:17:57.883324+00:00_
+_source line 1707 · 2026-05-25T21:17:57.883324+00:00_
 
 called Read
 
@@ -9442,7 +9274,7 @@ called Read
 
 ### Tool result
 
-_source line 1710 · 2026-05-25T21:17:58.391078+00:00_
+_source line 1708 · 2026-05-25T21:17:58.391078+00:00_
 
 
 
@@ -9464,7 +9296,7 @@ _source line 1710 · 2026-05-25T21:17:58.391078+00:00_
 
 ### Tool call
 
-_source line 1711 · 2026-05-25T21:17:58.391568+00:00_
+_source line 1709 · 2026-05-25T21:17:58.391568+00:00_
 
 called Read
 
@@ -9498,7 +9330,7 @@ called Read
 
 ### Tool call
 
-_source line 1712 · 2026-05-25T21:17:58.794406+00:00_
+_source line 1710 · 2026-05-25T21:17:58.794406+00:00_
 
 called Read
 
@@ -9532,7 +9364,7 @@ called Read
 
 ### Tool result
 
-_source line 1713 · 2026-05-25T21:17:59.298824+00:00_
+_source line 1711 · 2026-05-25T21:17:59.298824+00:00_
 
 
 
@@ -9554,7 +9386,7 @@ _source line 1713 · 2026-05-25T21:17:59.298824+00:00_
 
 ### Tool call
 
-_source line 1714 · 2026-05-25T21:17:59.299299+00:00_
+_source line 1712 · 2026-05-25T21:17:59.299299+00:00_
 
 called Read
 
@@ -9588,7 +9420,7 @@ called Read
 
 ### Tool result
 
-_source line 1715 · 2026-05-25T21:17:59.704379+00:00_
+_source line 1713 · 2026-05-25T21:17:59.704379+00:00_
 
 
 
@@ -9610,7 +9442,7 @@ _source line 1715 · 2026-05-25T21:17:59.704379+00:00_
 
 ### Tool result
 
-_source line 1716 · 2026-05-25T21:18:00.157734+00:00_
+_source line 1714 · 2026-05-25T21:18:00.157734+00:00_
 
 
 
@@ -9632,7 +9464,7 @@ _source line 1716 · 2026-05-25T21:18:00.157734+00:00_
 
 ### Tool result
 
-_source line 1717 · 2026-05-25T21:18:00.459932+00:00_
+_source line 1715 · 2026-05-25T21:18:00.459932+00:00_
 
 
 
@@ -9654,7 +9486,7 @@ _source line 1717 · 2026-05-25T21:18:00.459932+00:00_
 
 ### Tool call
 
-_source line 1718 · 2026-05-25T21:18:06.743185+00:00_
+_source line 1716 · 2026-05-25T21:18:06.743185+00:00_
 
 called Read
 
@@ -9688,7 +9520,7 @@ called Read
 
 ### Tool result
 
-_source line 1719 · 2026-05-25T21:18:07.094788+00:00_
+_source line 1717 · 2026-05-25T21:18:07.094788+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9710,7 +9542,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1720 · 2026-05-25T21:18:07.095215+00:00_
+_source line 1718 · 2026-05-25T21:18:07.095215+00:00_
 
 called Read
 
@@ -9744,7 +9576,7 @@ called Read
 
 ### Tool result
 
-_source line 1721 · 2026-05-25T21:18:07.597291+00:00_
+_source line 1719 · 2026-05-25T21:18:07.597291+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9766,7 +9598,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1722 · 2026-05-25T21:18:07.597640+00:00_
+_source line 1720 · 2026-05-25T21:18:07.597640+00:00_
 
 called Read
 
@@ -9800,7 +9632,7 @@ called Read
 
 ### Tool result
 
-_source line 1723 · 2026-05-25T21:18:08.551336+00:00_
+_source line 1721 · 2026-05-25T21:18:08.551336+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9822,7 +9654,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1724 · 2026-05-25T21:18:08.551673+00:00_
+_source line 1722 · 2026-05-25T21:18:08.551673+00:00_
 
 called Read
 
@@ -9856,7 +9688,7 @@ called Read
 
 ### Tool result
 
-_source line 1725 · 2026-05-25T21:18:09.053607+00:00_
+_source line 1723 · 2026-05-25T21:18:09.053607+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9878,7 +9710,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1726 · 2026-05-25T21:18:09.054027+00:00_
+_source line 1724 · 2026-05-25T21:18:09.054027+00:00_
 
 called Read
 
@@ -9912,7 +9744,7 @@ called Read
 
 ### Tool result
 
-_source line 1727 · 2026-05-25T21:18:09.455538+00:00_
+_source line 1725 · 2026-05-25T21:18:09.455538+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9934,7 +9766,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1728 · 2026-05-25T21:18:09.455911+00:00_
+_source line 1726 · 2026-05-25T21:18:09.455911+00:00_
 
 called Read
 
@@ -9968,7 +9800,7 @@ called Read
 
 ### Tool result
 
-_source line 1729 · 2026-05-25T21:18:09.506418+00:00_
+_source line 1727 · 2026-05-25T21:18:09.506418+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_1_38fb0170.
 
@@ -9990,7 +9822,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1730 · 2026-05-25T21:18:15.965166+00:00_
+_source line 1728 · 2026-05-25T21:18:15.965166+00:00_
 
 called Bash
 
@@ -10026,7 +9858,7 @@ called Bash
 
 ### Tool result
 
-_source line 1731 · 2026-05-25T21:18:16.167083+00:00_
+_source line 1729 · 2026-05-25T21:18:16.167083+00:00_
 
 Exit code 2
 ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/': No such file or directory
@@ -10049,7 +9881,7 @@ ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/sim
 
 ### Tool call
 
-_source line 1732 · 2026-05-25T21:18:22.170247+00:00_
+_source line 1730 · 2026-05-25T21:18:22.170247+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -10089,7 +9921,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1733 · 2026-05-25T21:18:23.880194+00:00_
+_source line 1731 · 2026-05-25T21:18:23.880194+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.0}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 522.8}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 455.3}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 456.1}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 506.0}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 457.5}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 495.3}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.9}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submit
 …[truncated 533 chars]
@@ -10112,7 +9944,7 @@ _source line 1733 · 2026-05-25T21:18:23.880194+00:00_
 
 ### Tool call
 
-_source line 1734 · 2026-05-25T21:18:28.500905+00:00_
+_source line 1732 · 2026-05-25T21:18:28.500905+00:00_
 
 called Read
 
@@ -10146,7 +9978,7 @@ called Read
 
 ### Tool call
 
-_source line 1735 · 2026-05-25T21:18:28.501403+00:00_
+_source line 1733 · 2026-05-25T21:18:28.501403+00:00_
 
 called Read
 
@@ -10180,7 +10012,7 @@ called Read
 
 ### Tool call
 
-_source line 1736 · 2026-05-25T21:18:29.357098+00:00_
+_source line 1734 · 2026-05-25T21:18:29.357098+00:00_
 
 called Read
 
@@ -10214,7 +10046,7 @@ called Read
 
 ### Tool result
 
-_source line 1737 · 2026-05-25T21:18:29.811876+00:00_
+_source line 1735 · 2026-05-25T21:18:29.811876+00:00_
 
 
 
@@ -10236,7 +10068,7 @@ _source line 1737 · 2026-05-25T21:18:29.811876+00:00_
 
 ### Tool result
 
-_source line 1738 · 2026-05-25T21:18:29.813142+00:00_
+_source line 1736 · 2026-05-25T21:18:29.813142+00:00_
 
 
 
@@ -10258,7 +10090,7 @@ _source line 1738 · 2026-05-25T21:18:29.813142+00:00_
 
 ### Tool call
 
-_source line 1739 · 2026-05-25T21:18:29.813429+00:00_
+_source line 1737 · 2026-05-25T21:18:29.813429+00:00_
 
 called Read
 
@@ -10292,7 +10124,7 @@ called Read
 
 ### Tool call
 
-_source line 1740 · 2026-05-25T21:18:30.116169+00:00_
+_source line 1738 · 2026-05-25T21:18:30.116169+00:00_
 
 called Read
 
@@ -10326,7 +10158,7 @@ called Read
 
 ### Tool result
 
-_source line 1741 · 2026-05-25T21:18:30.470044+00:00_
+_source line 1739 · 2026-05-25T21:18:30.470044+00:00_
 
 
 
@@ -10348,7 +10180,7 @@ _source line 1741 · 2026-05-25T21:18:30.470044+00:00_
 
 ### Tool result
 
-_source line 1742 · 2026-05-25T21:18:31.124529+00:00_
+_source line 1740 · 2026-05-25T21:18:31.124529+00:00_
 
 
 
@@ -10370,7 +10202,7 @@ _source line 1742 · 2026-05-25T21:18:31.124529+00:00_
 
 ### Tool result
 
-_source line 1743 · 2026-05-25T21:18:31.479583+00:00_
+_source line 1741 · 2026-05-25T21:18:31.479583+00:00_
 
 
 
@@ -10392,7 +10224,7 @@ _source line 1743 · 2026-05-25T21:18:31.479583+00:00_
 
 ### Tool call
 
-_source line 1744 · 2026-05-25T21:18:38.060377+00:00_
+_source line 1742 · 2026-05-25T21:18:38.060377+00:00_
 
 called Read
 
@@ -10426,7 +10258,7 @@ called Read
 
 ### Tool call
 
-_source line 1745 · 2026-05-25T21:18:38.563510+00:00_
+_source line 1743 · 2026-05-25T21:18:38.563510+00:00_
 
 called Read
 
@@ -10460,7 +10292,7 @@ called Read
 
 ### Tool call
 
-_source line 1746 · 2026-05-25T21:18:39.175118+00:00_
+_source line 1744 · 2026-05-25T21:18:39.175118+00:00_
 
 called Read
 
@@ -10494,7 +10326,7 @@ called Read
 
 ### Tool result
 
-_source line 1747 · 2026-05-25T21:18:39.933110+00:00_
+_source line 1745 · 2026-05-25T21:18:39.933110+00:00_
 
 
 
@@ -10516,7 +10348,7 @@ _source line 1747 · 2026-05-25T21:18:39.933110+00:00_
 
 ### Tool result
 
-_source line 1748 · 2026-05-25T21:18:39.936078+00:00_
+_source line 1746 · 2026-05-25T21:18:39.936078+00:00_
 
 
 
@@ -10538,7 +10370,7 @@ _source line 1748 · 2026-05-25T21:18:39.936078+00:00_
 
 ### Tool call
 
-_source line 1749 · 2026-05-25T21:18:39.936550+00:00_
+_source line 1747 · 2026-05-25T21:18:39.936550+00:00_
 
 called Read
 
@@ -10572,7 +10404,7 @@ called Read
 
 ### Tool result
 
-_source line 1750 · 2026-05-25T21:18:40.340912+00:00_
+_source line 1748 · 2026-05-25T21:18:40.340912+00:00_
 
 
 
@@ -10594,7 +10426,7 @@ _source line 1750 · 2026-05-25T21:18:40.340912+00:00_
 
 ### Tool call
 
-_source line 1751 · 2026-05-25T21:18:40.341381+00:00_
+_source line 1749 · 2026-05-25T21:18:40.341381+00:00_
 
 called Read
 
@@ -10628,7 +10460,7 @@ called Read
 
 ### Tool result
 
-_source line 1752 · 2026-05-25T21:18:41.046299+00:00_
+_source line 1750 · 2026-05-25T21:18:41.046299+00:00_
 
 
 
@@ -10650,7 +10482,7 @@ _source line 1752 · 2026-05-25T21:18:41.046299+00:00_
 
 ### Tool result
 
-_source line 1753 · 2026-05-25T21:18:41.048865+00:00_
+_source line 1751 · 2026-05-25T21:18:41.048865+00:00_
 
 
 
@@ -10672,7 +10504,7 @@ _source line 1753 · 2026-05-25T21:18:41.048865+00:00_
 
 ### Tool call
 
-_source line 1754 · 2026-05-25T21:18:48.235980+00:00_
+_source line 1752 · 2026-05-25T21:18:48.235980+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -10712,7 +10544,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1755 · 2026-05-25T21:18:48.437790+00:00_
+_source line 1753 · 2026-05-25T21:18:48.437790+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 373.0}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images/submitted_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 291.9}], \"total_pages\": 22, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10734,7 +10566,7 @@ _source line 1755 · 2026-05-25T21:18:48.437790+00:00_
 
 ### Tool call
 
-_source line 1756 · 2026-05-25T21:18:51.754644+00:00_
+_source line 1754 · 2026-05-25T21:18:51.754644+00:00_
 
 called Read
 
@@ -10768,7 +10600,7 @@ called Read
 
 ### Tool result
 
-_source line 1757 · 2026-05-25T21:18:52.108477+00:00_
+_source line 1755 · 2026-05-25T21:18:52.108477+00:00_
 
 
 
@@ -10790,7 +10622,7 @@ _source line 1757 · 2026-05-25T21:18:52.108477+00:00_
 
 ### Tool call
 
-_source line 1758 · 2026-05-25T21:18:52.159138+00:00_
+_source line 1756 · 2026-05-25T21:18:52.159138+00:00_
 
 called Read
 
@@ -10824,7 +10656,7 @@ called Read
 
 ### Tool result
 
-_source line 1759 · 2026-05-25T21:18:52.567554+00:00_
+_source line 1757 · 2026-05-25T21:18:52.567554+00:00_
 
 
 
@@ -10846,7 +10678,7 @@ _source line 1759 · 2026-05-25T21:18:52.567554+00:00_
 
 ### Assistant
 
-_source line 1760 · 2026-05-25T21:24:19.411657+00:00_
+_source line 1758 · 2026-05-25T21:24:19.411657+00:00_
 
 API Error: {"type":"error","error":{"details":null,"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CbPz4J9vJRHsSzpPzQYbZ"}
 
@@ -10873,7 +10705,7 @@ API Error: {"type":"error","error":{"details":null,"type":"overloaded_error","me
 
 ### User
 
-_source line 1761 · 2026-05-25T21:24:54.835038+00:00_
+_source line 1759 · 2026-05-25T21:24:54.835038+00:00_
 
 [Round 1 审稿请求]:
 ## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验有效性）
@@ -10937,7 +10769,7 @@ _source line 1761 · 2026-05-25T21:24:54.835038+00:00_
 
 ### Tool call
 
-_source line 1762 · 2026-05-25T21:30:31.729301+00:00_
+_source line 1760 · 2026-05-25T21:30:31.729301+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -10975,7 +10807,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1763 · 2026-05-25T21:30:35.645249+00:00_
+_source line 1761 · 2026-05-25T21:30:35.645249+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -10997,7 +10829,7 @@ _source line 1763 · 2026-05-25T21:30:35.645249+00:00_
 
 ### Tool call
 
-_source line 1764 · 2026-05-25T21:30:41.525270+00:00_
+_source line 1762 · 2026-05-25T21:30:41.525270+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -11031,7 +10863,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1765 · 2026-05-25T21:30:41.575960+00:00_
+_source line 1763 · 2026-05-25T21:30:41.575960+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_32/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11053,7 +10885,7 @@ _source line 1765 · 2026-05-25T21:30:41.575960+00:00_
 
 ### Assistant
 
-_source line 1766 · 2026-05-25T21:30:56.609746+00:00_
+_source line 1764 · 2026-05-25T21:30:56.609746+00:00_
 
 审稿意见已提交给 Review Director。
 
@@ -11091,7 +10923,7 @@ _source line 1766 · 2026-05-25T21:30:56.609746+00:00_
 
 ### User
 
-_source line 1767 · 2026-05-25T21:31:47.832589+00:00_
+_source line 1765 · 2026-05-25T21:31:47.832589+00:00_
 
 [Round 1 审稿请求]:
 ## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见
@@ -11164,7 +10996,7 @@ S5. Double-blind 合规，格式合规。
 
 ### Tool call
 
-_source line 1768 · 2026-05-25T21:33:16.692497+00:00_
+_source line 1766 · 2026-05-25T21:33:16.692497+00:00_
 
 called mcp__agent-ml-research__review_reviewer_post_to_director
 
@@ -11202,7 +11034,7 @@ called mcp__agent-ml-research__review_reviewer_post_to_director
 
 ### Tool result
 
-_source line 1769 · 2026-05-25T21:33:20.387166+00:00_
+_source line 1767 · 2026-05-25T21:33:20.387166+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"}
 
@@ -11224,7 +11056,7 @@ _source line 1769 · 2026-05-25T21:33:20.387166+00:00_
 
 ### Assistant
 
-_source line 1770 · 2026-05-25T21:33:28.135392+00:00_
+_source line 1768 · 2026-05-25T21:33:28.135392+00:00_
 
 交叉回应已提交。总结：
 

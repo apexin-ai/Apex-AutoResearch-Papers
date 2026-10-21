@@ -15736,7 +15736,7 @@ No response requested.
 
 ## Round 317
 
-6 recorded events
+2 recorded events
 
 
 ### User
@@ -15783,158 +15783,9 @@ Director 指令的两项并行任务均已完成：
 ---
 
 
-### Tool call
-
-_source line 2527 · 2026-05-22T21:47:24.275114+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md",
-  "limit": "30"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md",
-    "limit": "30"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2528 · 2026-05-22T21:47:24.325745+00:00_
-
-1	# Rebuttal 框架文档
-2	
-3	> 项目：nlp_variance_gtheory | 目标：EMNLP 2026 via ARR | DDL 2026-05-25
-4	> 基于 Round 8 审稿意见，三个 Must-Fix + 防御论点 + 新增分析汇总
-5	
-6	---
-7	
-8	## 1. Round 8 三个 Must-Fix 的回应
-9	
-10	### MF-1: FF Residual Regression 分析
-11	
-12	**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 51.9%, MATH 56.3%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。
-13	
-14	**我们的回应要点**：
-15	
-16	1. FF 高 residual 是**系统性的**，不是随机噪声。我们对每个 benchmark 的 per-item residual variance 进行 OLS 回归，使用 item difficulty（含二次项）及 benchmark-specific 特征作为预测变量：
-17	   - MATH: R²=0.856 (adj R²=0.847)，difficulty 二次项为最强预测因子（inverted-U pattern）
-18	   - GSM8K: R²=0.468 (adj R²=0.454)，difficulty 同样主导（difficulty-only R²=0.449）
-19	   - FF 平均 R²=0.662 vs MC 平均 R²=0.252（MMLU 0.377, ARC 0.221, HellaSwag 0.156）
-20	
-21	2. **Inverted-U mechanism**：中等难度 item 的 residual 最高——太简单（所有模型都对）或太难（都错）的 item 天然方差小，中等难度 item 对 prompt/seed 变化最敏感。FF benchmark 正好集中在中等难度区间，这解释了 residual 偏高的结构性原因。
-22	
-23	3. FF 的高 residual 不是框架失败，而是**有信息的**：它量化了 FF 任务中 prompt×item 和 seed×item 交互效应的大小——这些在 MC 任务中被 item difficulty 的 dominant signal 所"压制"。
-24	
-25	**支撑数据/图表**：
-26	- 回归结果：`artifacts/exp004/ff_residual_analysis/ff_residual_regression.json`
-27	- 5 个 difficulty-vs-residual scatter plot（每个 benchmark 一张）：`artifacts/exp004/ff_residual_analysis/difficulty_vs_residual_{mmlu,arc,gsm8k,math,hellaswag}.pdf`
-28	- 论文 Appendix E（R²(diff. only) 数据已修正）
-29	
-30	---
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2529 · 2026-05-22T21:47:28.897051+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md",
-  "old_string": "**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 51.9%, MATH 56.3%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。",
-  "new_string": "**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 39.9%, MATH 43.9%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md",
-    "old_string": "**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 51.9%, MATH 56.3%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。",
-    "new_string": "**审稿原文摘要**：Free-form benchmark 的 residual variance 偏高（GSM8K 39.9%, MATH 43.9%），是否说明 G-theory 框架对 FF 任务的解释力不足？需要分析 residual 的结构——是随机噪声还是可归因的系统性效应。"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2530 · 2026-05-22T21:47:28.897660+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/rebuttal_draft.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
 ### Assistant
 
-_source line 2531 · 2026-05-22T21:47:36.027870+00:00_
+_source line 2527 · 2026-05-22T21:47:36.027870+00:00_
 
 Rebuttal 数字已修正（51.9%/56.3% → 39.9%/43.9%）。
 
@@ -15969,7 +15820,7 @@ Rebuttal 数字已修正（51.9%/56.3% → 39.9%/43.9%）。
 
 ### User
 
-_source line 2532 · 2026-05-22T22:18:06.118619+00:00_
+_source line 2528 · 2026-05-22T22:18:06.118619+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -16009,7 +15860,7 @@ _source line 2532 · 2026-05-22T22:18:06.118619+00:00_
 
 ### Tool call
 
-_source line 2533 · 2026-05-22T22:18:17.825193+00:00_
+_source line 2529 · 2026-05-22T22:18:17.825193+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -16047,7 +15898,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 2534 · 2026-05-22T22:18:18.428568+00:00_
+_source line 2530 · 2026-05-22T22:18:18.428568+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -16069,7 +15920,7 @@ _source line 2534 · 2026-05-22T22:18:18.428568+00:00_
 
 ### Tool call
 
-_source line 2535 · 2026-05-22T22:18:24.401561+00:00_
+_source line 2531 · 2026-05-22T22:18:24.401561+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -16105,7 +15956,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 2536 · 2026-05-22T22:18:34.798549+00:00_
+_source line 2532 · 2026-05-22T22:18:34.798549+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -16127,7 +15978,7 @@ _source line 2536 · 2026-05-22T22:18:34.798549+00:00_
 
 ### Tool call
 
-_source line 2537 · 2026-05-22T22:18:34.949568+00:00_
+_source line 2533 · 2026-05-22T22:18:34.949568+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -16163,7 +16014,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 2538 · 2026-05-22T22:18:45.198108+00:00_
+_source line 2534 · 2026-05-22T22:18:45.198108+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer\"}, \"error\": \"\"}"}
 
@@ -16185,7 +16036,7 @@ _source line 2538 · 2026-05-22T22:18:45.198108+00:00_
 
 ### Tool call
 
-_source line 2539 · 2026-05-22T22:18:45.349066+00:00_
+_source line 2535 · 2026-05-22T22:18:45.349066+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -16221,7 +16072,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 2540 · 2026-05-22T22:18:46.707584+00:00_
+_source line 2536 · 2026-05-22T22:18:46.707584+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e392a9624a4b2cf347ee103b03\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -16243,7 +16094,7 @@ _source line 2540 · 2026-05-22T22:18:46.707584+00:00_
 
 ### Assistant
 
-_source line 2541 · 2026-05-22T22:18:49.763510+00:00_
+_source line 2537 · 2026-05-22T22:18:49.763510+00:00_
 
 三个方向并行推进：Manager 保留 GPU 24h 观察窗、Reviewer 评估 claim 强度、Paper Agent camera-ready 打磨。
 
@@ -16270,7 +16121,7 @@ _source line 2541 · 2026-05-22T22:18:49.763510+00:00_
 
 ### User
 
-_source line 2542 · 2026-05-22T22:19:57.601425+00:00_
+_source line 2538 · 2026-05-22T22:19:57.601425+00:00_
 
 [Reviewer 回复]:
 ## Claim 强度评估 — 补充数据加入后
@@ -16328,7 +16179,7 @@ _source line 2542 · 2026-05-22T22:19:57.601425+00:00_
 
 ### Tool call
 
-_source line 2543 · 2026-05-22T22:20:17.617253+00:00_
+_source line 2539 · 2026-05-22T22:20:17.617253+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -16364,7 +16215,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 2544 · 2026-05-22T22:20:21.032646+00:00_
+_source line 2540 · 2026-05-22T22:20:21.032646+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e39248eccacb3c228ecc69c83f\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:paper_agent\", \"created_new_session\": false, \"paper_agent_busy\": true, \"paper_agent_queue_depth\": 0, \"paper_agent_processing\": \"[Director 指令] [Patch] Camera-ready 级别打磨 — 不改内容，只改格式和质量\\n\\n等 Round 9 审稿期间做以下打磨工作：\\n\\n## 1. Figure 标注一致性\\n检查所有 figure caption 格式是否统一（句号结尾、大小写、引用格式）。检查 figure 内文字字号是否一致（特别是 scatter plot 的 axis label 和 annotat\"}, \"error\": \"\"}"}
 
@@ -16386,7 +16237,7 @@ _source line 2544 · 2026-05-22T22:20:21.032646+00:00_
 
 ### Assistant
 
-_source line 2545 · 2026-05-22T22:20:28.847649+00:00_
+_source line 2541 · 2026-05-22T22:20:28.847649+00:00_
 
 Paper Agent 正在处理 camera-ready 打磨，追加指令已排队。
 
@@ -16423,7 +16274,7 @@ Paper Agent 正在处理 camera-ready 打磨，追加指令已排队。
 
 ### User
 
-_source line 2546 · 2026-05-22T22:28:42.539801+00:00_
+_source line 2542 · 2026-05-22T22:28:42.539801+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Camera-ready 打磨完成
@@ -16459,7 +16310,7 @@ _source line 2546 · 2026-05-22T22:28:42.539801+00:00_
 
 ### Assistant
 
-_source line 2547 · 2026-05-22T22:28:46.600090+00:00_
+_source line 2543 · 2026-05-22T22:28:46.600090+00:00_
 
 No response requested.
 
@@ -16486,7 +16337,7 @@ No response requested.
 
 ### User
 
-_source line 2548 · 2026-05-22T22:29:59.208875+00:00_
+_source line 2544 · 2026-05-22T22:29:59.208875+00:00_
 
 [Paper Agent 回复]:
 [写作进展] §4.3 Appendix 交叉引用已添加
@@ -16513,7 +16364,7 @@ _source line 2548 · 2026-05-22T22:29:59.208875+00:00_
 
 ### Assistant
 
-_source line 2549 · 2026-05-22T22:30:04.026171+00:00_
+_source line 2545 · 2026-05-22T22:30:04.026171+00:00_
 
 No response requested.
 
@@ -16540,7 +16391,7 @@ No response requested.
 
 ### User
 
-_source line 2550 · 2026-05-22T23:00:31.290815+00:00_
+_source line 2546 · 2026-05-22T23:00:31.290815+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -16580,7 +16431,7 @@ _source line 2550 · 2026-05-22T23:00:31.290815+00:00_
 
 ### Tool call
 
-_source line 2551 · 2026-05-22T23:00:43.042678+00:00_
+_source line 2547 · 2026-05-22T23:00:43.042678+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -16618,7 +16469,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 2552 · 2026-05-22T23:00:43.645086+00:00_
+_source line 2548 · 2026-05-22T23:00:43.645086+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"WAIT\", \"minutes\": 60, \"next_nudge_in_minutes\": 60}"}
 
@@ -16647,7 +16498,7 @@ _source line 2552 · 2026-05-22T23:00:43.645086+00:00_
 
 ### User
 
-_source line 2553 · 2026-05-23T00:02:04.647382+00:00_
+_source line 2549 · 2026-05-23T00:02:04.647382+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -16691,7 +16542,7 @@ _source line 2553 · 2026-05-23T00:02:04.647382+00:00_
 
 ### Tool call
 
-_source line 2554 · 2026-05-23T00:02:17.153835+00:00_
+_source line 2550 · 2026-05-23T00:02:17.153835+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -16729,7 +16580,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 2555 · 2026-05-23T00:02:17.806715+00:00_
+_source line 2551 · 2026-05-23T00:02:17.806715+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -16751,7 +16602,7 @@ _source line 2555 · 2026-05-23T00:02:17.806715+00:00_
 
 ### Tool call
 
-_source line 2556 · 2026-05-23T00:02:21.368426+00:00_
+_source line 2552 · 2026-05-23T00:02:21.368426+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -16789,7 +16640,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 2557 · 2026-05-23T00:02:28.148834+00:00_
+_source line 2553 · 2026-05-23T00:02:28.148834+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 278--279\\n\\\\T1/pcr/m/n/10.95 give the final answer\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 278--279\\n\\\\T1/pcr/m/n/10.95 after ####.\\\\nProblem:\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 279--280\\n[]\\\\T1/pcr/m/n/10.95 You are a math tutor. Solve\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 279--280\\n\\\\T1/pcr/m/n/10.95 the problem and show your\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 280--281\\n[]\\\\T1/pcr/m/n/10.95 Work through this math\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 280--281\\n\\\\T1/pcr/m/n/10.95 question carefully.\\\\nQ:\\n []\\n\\n[15]\\nOverfull \\\\hbox (13.05367pt too wide) in paragraph at lines 281--282\\n[]\\\\T1/pcr/m/n/10.95 Math problem:\\\\n{question}\\\\nLet's\\n []\\n\\n) [16\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 78D4E09AD617DBA620733C2A7A4C66A5;4337.\\n ) \\nHere is how much of TeX's memory you used:\\n 16130 strings out of 469438\\n 254047 string characters out of 5468411\\n 722435 words of memory out of 5000000\\n 43958 multiletter control sequences out of 15000+600000\\n 708228 words of font info for 402 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,12n,93p,2004b,688s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-dist/fonts/type1/p
 …[truncated 7104 chars]
@@ -16812,7 +16663,7 @@ _source line 2557 · 2026-05-23T00:02:28.148834+00:00_
 
 ### Tool call
 
-_source line 2558 · 2026-05-23T00:02:28.350059+00:00_
+_source line 2554 · 2026-05-23T00:02:28.350059+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -16846,7 +16697,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2559 · 2026-05-23T00:02:36.983729+00:00_
+_source line 2555 · 2026-05-23T00:02:36.983729+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -16868,7 +16719,7 @@ _source line 2559 · 2026-05-23T00:02:36.983729+00:00_
 
 ### Tool call
 
-_source line 2560 · 2026-05-23T00:02:37.134656+00:00_
+_source line 2556 · 2026-05-23T00:02:37.134656+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -16904,7 +16755,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 2561 · 2026-05-23T00:02:38.596595+00:00_
+_source line 2557 · 2026-05-23T00:02:38.596595+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer\"}, \"error\": \"\"}"}
 
@@ -16926,7 +16777,7 @@ _source line 2561 · 2026-05-23T00:02:38.596595+00:00_
 
 ### Assistant
 
-_source line 2562 · 2026-05-23T00:02:46.367895+00:00_
+_source line 2558 · 2026-05-23T00:02:46.367895+00:00_
 
 编译确认：16 页总（主文 8 页 + Limitations + References + Appendix），0 critical warnings，0 undefined refs。`passed: false` 仅因 max_pages=8 统计了 Appendix 页数，实际主文合规。
 
@@ -16955,7 +16806,7 @@ _source line 2562 · 2026-05-23T00:02:46.367895+00:00_
 
 ### User
 
-_source line 2563 · 2026-05-23T00:06:58.699435+00:00_
+_source line 2559 · 2026-05-23T00:06:58.699435+00:00_
 
 [Reviewer 回复]:
 ## 最终通读审查报告 — 提交前完整性检查
@@ -17032,7 +16883,7 @@ L74: "...(Appendix~\ref{app:subject_gstudy} confirms this gradient: reasoning-he
 
 ### Assistant
 
-_source line 2564 · 2026-05-23T00:07:14.315446+00:00_
+_source line 2560 · 2026-05-23T00:07:14.315446+00:00_
 
 Reviewer 最终通读 PASS。论文可提交：0 critical / 0 warning / 8 页主文 / 0 undefined / 匿名合规。等待 Round 9 审稿审批。
 
@@ -17059,7 +16910,7 @@ Reviewer 最终通读 PASS。论文可提交：0 critical / 0 warning / 8 页主
 
 ### User
 
-_source line 2565 · 2026-05-23T00:38:29.295505+00:00_
+_source line 2561 · 2026-05-23T00:38:29.295505+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -17099,7 +16950,7 @@ _source line 2565 · 2026-05-23T00:38:29.295505+00:00_
 
 ### Tool call
 
-_source line 2566 · 2026-05-23T00:38:42.620022+00:00_
+_source line 2562 · 2026-05-23T00:38:42.620022+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -17137,7 +16988,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 2567 · 2026-05-23T00:38:43.273288+00:00_
+_source line 2563 · 2026-05-23T00:38:43.273288+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"WAIT\", \"minutes\": 120, \"next_nudge_in_minutes\": 120}"}
 
@@ -17166,7 +17017,7 @@ _source line 2567 · 2026-05-23T00:38:43.273288+00:00_
 
 ### User
 
-_source line 2568 · 2026-05-23T00:56:42.769137+00:00_
+_source line 2564 · 2026-05-23T00:56:42.769137+00:00_
 
 [飞书用户 孙震 (ou_12185aa391efc8ff13eea9c848f0ab5a)]: 结论：离 4.0 差 72B G-study 分析结果 + 一次 Paper Agent patch，预计今天内完成。这个做了吗
 
@@ -17187,7 +17038,7 @@ _source line 2568 · 2026-05-23T00:56:42.769137+00:00_
 
 ### Tool call
 
-_source line 2569 · 2026-05-23T00:56:59.788210+00:00_
+_source line 2565 · 2026-05-23T00:56:59.788210+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -17221,7 +17072,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2570 · 2026-05-23T00:57:02.652134+00:00_
+_source line 2566 · 2026-05-23T00:57:02.652134+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -17250,7 +17101,7 @@ _source line 2570 · 2026-05-23T00:57:02.652134+00:00_
 
 ### User
 
-_source line 2571 · 2026-05-23T00:59:12.982012+00:00_
+_source line 2567 · 2026-05-23T00:59:12.982012+00:00_
 
 [飞书用户 孙震 (ou_12185aa391efc8ff13eea9c848f0ab5a)]: 重新审稿
 
@@ -17271,7 +17122,7 @@ _source line 2571 · 2026-05-23T00:59:12.982012+00:00_
 
 ### Tool call
 
-_source line 2572 · 2026-05-23T00:59:30.873926+00:00_
+_source line 2568 · 2026-05-23T00:59:30.873926+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -17307,7 +17158,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 2573 · 2026-05-23T00:59:31.374849+00:00_
+_source line 2569 · 2026-05-23T00:59:31.374849+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 278--279\\n\\\\T1/pcr/m/n/10.95 give the final answer\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 278--279\\n\\\\T1/pcr/m/n/10.95 after ####.\\\\nProblem:\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 279--280\\n[]\\\\T1/pcr/m/n/10.95 You are a math tutor. Solve\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 279--280\\n\\\\T1/pcr/m/n/10.95 the problem and show your\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 280--281\\n[]\\\\T1/pcr/m/n/10.95 Work through this math\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 280--281\\n\\\\T1/pcr/m/n/10.95 question carefully.\\\\nQ:\\n []\\n\\n[15]\\nOverfull \\\\hbox (13.05367pt too wide) in paragraph at lines 281--282\\n[]\\\\T1/pcr/m/n/10.95 Math problem:\\\\n{question}\\\\nLet's\\n []\\n\\n) [16\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 78D4E09AD617DBA620733C2A7A4C66A5;4337.\\n ) \\nHere is how much of TeX's memory you used:\\n 16130 strings out of 469438\\n 254047 string characters out of 5468411\\n 722435 words of memory out of 5000000\\n 43958 multiletter control sequences out of 15000+600000\\n 708228 words of font info for 402 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,12n,93p,2004b,688s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-dist/fonts/type1/pu
 …[truncated 7056 chars]
@@ -17330,7 +17181,7 @@ _source line 2573 · 2026-05-23T00:59:31.374849+00:00_
 
 ### Tool call
 
-_source line 2574 · 2026-05-23T00:59:47.005610+00:00_
+_source line 2570 · 2026-05-23T00:59:47.005610+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -17378,7 +17229,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 2575 · 2026-05-23T00:59:50.774681+00:00_
+_source line 2571 · 2026-05-23T00:59:50.774681+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260523T005947_74vb\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -17400,7 +17251,7 @@ _source line 2575 · 2026-05-23T00:59:50.774681+00:00_
 
 ### Tool call
 
-_source line 2576 · 2026-05-23T00:59:54.588449+00:00_
+_source line 2572 · 2026-05-23T00:59:54.588449+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -17434,7 +17285,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2577 · 2026-05-23T00:59:55.212255+00:00_
+_source line 2573 · 2026-05-23T00:59:55.212255+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -17456,7 +17307,7 @@ _source line 2577 · 2026-05-23T00:59:55.212255+00:00_
 
 ### Assistant
 
-_source line 2578 · 2026-05-23T00:59:56.857194+00:00_
+_source line 2574 · 2026-05-23T00:59:56.857194+00:00_
 
 编译 PASS（0 critical, 16 页, 主文 8 页）。提交审稿。
 
@@ -17483,7 +17334,7 @@ _source line 2578 · 2026-05-23T00:59:56.857194+00:00_
 
 ### User
 
-_source line 2579 · 2026-05-23T01:30:09.441723+00:00_
+_source line 2575 · 2026-05-23T01:30:09.441723+00:00_
 
 [审稿报告]
 Overall: 3.5
@@ -17796,7 +17647,7 @@ Section 6 主动覆盖了 temporal correlation、model exchangeability、binary 
 
 ### Tool call
 
-_source line 2580 · 2026-05-23T01:32:33.466645+00:00_
+_source line 2576 · 2026-05-23T01:32:33.466645+00:00_
 
 called Read
 
@@ -17830,7 +17681,7 @@ called Read
 
 ### Tool result
 
-_source line 2581 · 2026-05-23T01:32:34.320496+00:00_
+_source line 2577 · 2026-05-23T01:32:34.320496+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/director_754d9c1f.
 
@@ -17852,7 +17703,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 2582 · 2026-05-23T01:32:34.471442+00:00_
+_source line 2578 · 2026-05-23T01:32:34.471442+00:00_
 
 called Read
 
@@ -17886,7 +17737,7 @@ called Read
 
 ### Tool result
 
-_source line 2583 · 2026-05-23T01:32:34.521974+00:00_
+_source line 2579 · 2026-05-23T01:32:34.521974+00:00_
 
 EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_reports'
 
@@ -17908,7 +17759,7 @@ EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-
 
 ### Tool call
 
-_source line 2584 · 2026-05-23T01:32:34.522300+00:00_
+_source line 2580 · 2026-05-23T01:32:34.522300+00:00_
 
 called Read
 
@@ -17942,7 +17793,7 @@ called Read
 
 ### Tool result
 
-_source line 2585 · 2026-05-23T01:32:34.774307+00:00_
+_source line 2581 · 2026-05-23T01:32:34.774307+00:00_
 
 1	# Review Issues Tracker — nlp_variance_gtheory
 2	# Round 1-9 | Updated: 2026-05-23 Round 9 (fresh) consolidated
@@ -18043,7 +17894,7 @@ _source line 2585 · 2026-05-23T01:32:34.774307+00:00_
 
 ### Tool call
 
-_source line 2586 · 2026-05-23T01:32:47.833105+00:00_
+_source line 2582 · 2026-05-23T01:32:47.833105+00:00_
 
 called Glob
 
@@ -18079,7 +17930,7 @@ called Glob
 
 ### Tool result
 
-_source line 2587 · 2026-05-23T01:32:47.833611+00:00_
+_source line 2583 · 2026-05-23T01:32:47.833611+00:00_
 
 No files found
 
@@ -18101,7 +17952,7 @@ No files found
 
 ### Tool call
 
-_source line 2588 · 2026-05-23T01:32:47.884085+00:00_
+_source line 2584 · 2026-05-23T01:32:47.884085+00:00_
 
 called Glob
 
@@ -18137,7 +17988,7 @@ called Glob
 
 ### Tool result
 
-_source line 2589 · 2026-05-23T01:32:47.934691+00:00_
+_source line 2585 · 2026-05-23T01:32:47.934691+00:00_
 
 No files found
 
@@ -18159,7 +18010,7 @@ No files found
 
 ### Tool call
 
-_source line 2590 · 2026-05-23T01:32:50.396693+00:00_
+_source line 2586 · 2026-05-23T01:32:50.396693+00:00_
 
 called Glob
 
@@ -18195,7 +18046,7 @@ called Glob
 
 ### Tool result
 
-_source line 2591 · 2026-05-23T01:32:50.749589+00:00_
+_source line 2587 · 2026-05-23T01:32:50.749589+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/review-report-action.skill.md
 
@@ -18217,7 +18068,7 @@ _source line 2591 · 2026-05-23T01:32:50.749589+00:00_
 
 ### Tool call
 
-_source line 2592 · 2026-05-23T01:32:50.750011+00:00_
+_source line 2588 · 2026-05-23T01:32:50.750011+00:00_
 
 called Glob
 
@@ -18253,7 +18104,7 @@ called Glob
 
 ### Tool result
 
-_source line 2593 · 2026-05-23T01:32:50.800465+00:00_
+_source line 2589 · 2026-05-23T01:32:50.800465+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_reports/round_0.md
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_reports/round_1.md
@@ -18283,7 +18134,7 @@ _source line 2593 · 2026-05-23T01:32:50.800465+00:00_
 
 ### Tool call
 
-_source line 2594 · 2026-05-23T01:32:53.060671+00:00_
+_source line 2590 · 2026-05-23T01:32:53.060671+00:00_
 
 called Read
 
@@ -18317,7 +18168,7 @@ called Read
 
 ### Tool result
 
-_source line 2595 · 2026-05-23T01:32:53.111450+00:00_
+_source line 2591 · 2026-05-23T01:32:53.111450+00:00_
 
 1	---
 2	name: review-report-action
@@ -18392,7 +18243,7 @@ _source line 2595 · 2026-05-23T01:32:53.111450+00:00_
 
 ### Tool call
 
-_source line 2596 · 2026-05-23T01:33:42.218239+00:00_
+_source line 2592 · 2026-05-23T01:33:42.218239+00:00_
 
 called ToolSearch
 
@@ -18428,7 +18279,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2597 · 2026-05-23T01:33:42.369124+00:00_
+_source line 2593 · 2026-05-23T01:33:42.369124+00:00_
 
 No matching deferred tools found
 
@@ -18450,7 +18301,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2598 · 2026-05-23T01:33:47.386683+00:00_
+_source line 2594 · 2026-05-23T01:33:47.386683+00:00_
 
 called ToolSearch
 
@@ -18486,7 +18337,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2599 · 2026-05-23T01:33:47.387001+00:00_
+_source line 2595 · 2026-05-23T01:33:47.387001+00:00_
 
 No matching deferred tools found
 
@@ -18508,7 +18359,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2600 · 2026-05-23T01:33:51.903992+00:00_
+_source line 2596 · 2026-05-23T01:33:51.903992+00:00_
 
 called ToolSearch
 
@@ -18544,7 +18395,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2601 · 2026-05-23T01:33:52.004746+00:00_
+_source line 2597 · 2026-05-23T01:33:52.004746+00:00_
 
 
 
@@ -18566,7 +18417,7 @@ _source line 2601 · 2026-05-23T01:33:52.004746+00:00_
 
 ### Tool call
 
-_source line 2602 · 2026-05-23T01:33:57.174647+00:00_
+_source line 2598 · 2026-05-23T01:33:57.174647+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -18600,7 +18451,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool call
 
-_source line 2603 · 2026-05-23T01:33:57.174972+00:00_
+_source line 2599 · 2026-05-23T01:33:57.174972+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -18634,7 +18485,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 2604 · 2026-05-23T01:33:57.275535+00:00_
+_source line 2600 · 2026-05-23T01:33:57.275535+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":13604}"}
 
@@ -18656,7 +18507,7 @@ _source line 2604 · 2026-05-23T01:33:57.275535+00:00_
 
 ### Tool result
 
-_source line 2605 · 2026-05-23T01:33:57.327139+00:00_
+_source line 2601 · 2026-05-23T01:33:57.327139+00:00_
 
 {"result":"**项目**: `nlp_variance_gtheory`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-32570 (connect.westd.seetacloud.com) + westd-19912\n✓ 代码路径  /root/nlp_variance_gtheory\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 26 条记录\n**论文溯源**: 覆盖率 8/8\n\n── 📊 研究进度 ──\n实验: 34 个 (待处理 21 | 完成 13 | 成功 11)\n\n  exp001_llama            DONE (success)\n  exp-002                 DONE (killed)\n  exp001_qwen             DONE (success)\n  exp001_mistral          DONE (success)\n  exp001_gemma            DONE (success)\n  exp001_pilot            DONE (success)\n  bf16_eager_disentangle  DONE (negative)\n  mvp_phase_a             DONE (success)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp002_deepseek_math: D009 8-model expansion: DeepSeek-LLM-7B-Chat MATH inference — free-form benchmark expected methodology-dominated variance pattern per D010（准备中）\n- exp002_deepseek_gsm8k: D009 8-model expansion: DeepSeek-LLM-7B-Chat GSM8K inference — free-form benchmark expected methodology-dominated variance pattern per D010（准备中）\n- exp002_deepseek_hellaswag: D009 8-model expansion: DeepSeek-LLM-7B-Chat HellaSwag inference — MC benchmark expected item-dominated variance pattern per D010（准备中）\n- exp002_deepseek_"}
 
@@ -18678,7 +18529,7 @@ _source line 2605 · 2026-05-23T01:33:57.327139+00:00_
 
 ### Tool call
 
-_source line 2606 · 2026-05-23T01:34:51.667212+00:00_
+_source line 2602 · 2026-05-23T01:34:51.667212+00:00_
 
 called ToolSearch
 
@@ -18714,7 +18565,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2607 · 2026-05-23T01:34:51.667654+00:00_
+_source line 2603 · 2026-05-23T01:34:51.667654+00:00_
 
 No matching deferred tools found
 
@@ -18736,7 +18587,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2608 · 2026-05-23T01:34:53.876578+00:00_
+_source line 2604 · 2026-05-23T01:34:53.876578+00:00_
 
 called ToolSearch
 
@@ -18772,7 +18623,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2609 · 2026-05-23T01:34:53.977357+00:00_
+_source line 2605 · 2026-05-23T01:34:53.977357+00:00_
 
 
 
@@ -18794,7 +18645,7 @@ _source line 2609 · 2026-05-23T01:34:53.977357+00:00_
 
 ### Tool call
 
-_source line 2610 · 2026-05-23T01:35:46.303068+00:00_
+_source line 2606 · 2026-05-23T01:35:46.303068+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -18830,7 +18681,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 2611 · 2026-05-23T01:35:50.022636+00:00_
+_source line 2607 · 2026-05-23T01:35:50.022636+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:reviewer\"}, \"error\": \"\"}"}
 
@@ -18852,7 +18703,7 @@ _source line 2611 · 2026-05-23T01:35:50.022636+00:00_
 
 ### Tool call
 
-_source line 2612 · 2026-05-23T01:35:56.752496+00:00_
+_source line 2608 · 2026-05-23T01:35:56.752496+00:00_
 
 called Read
 
@@ -18886,7 +18737,7 @@ called Read
 
 ### Tool result
 
-_source line 2613 · 2026-05-23T01:35:57.104066+00:00_
+_source line 2609 · 2026-05-23T01:35:57.104066+00:00_
 
 1	Large Language Model (LLM) evaluation results vary across reproductions, but variance sources interact, and their relative importance shifts with the benchmark format. No study has simultaneously crossed infrastructure and methodology facets in a unified factorial design across benchmarks. We apply Generalizability theory (G-theory) in a crossed design with up to seven facets across eight open-weight 7--9B parameter instruction-tuned models and five benchmarks, totaling approximately 2.3 million cross-model evaluation records. A recommended 3-prompt $\times$ 3-seed design achieves $G \geq 0.80$ with 178 items (1,602 total evaluations per model), a 3.1$\times$ item reduction over single-condition designs (552 items, 552 evaluations). Under binary scoring, BF16 and FP16 numerical precisions are functionally interchangeable ($<$0.1\% interaction). Model$\times$item interaction (up to 36\%) is the second-largest component in cross-model analysis, indicating that models differ primarily in which items they find difficult. Preliminary scale validation across a 24$\times$ parameter range (3B--72B) confirms stable variance structure within one architecture family. We observe suggestive but statistically underpowered format-associated differences in variance concentration that warrant investigation with larger benchmark samples. We release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization.
 
@@ -18908,7 +18759,7 @@ _source line 2613 · 2026-05-23T01:35:57.104066+00:00_
 
 ### Tool call
 
-_source line 2614 · 2026-05-23T01:35:57.204921+00:00_
+_source line 2610 · 2026-05-23T01:35:57.204921+00:00_
 
 called Read
 
@@ -18942,7 +18793,7 @@ called Read
 
 ### Tool result
 
-_source line 2615 · 2026-05-23T01:35:57.506173+00:00_
+_source line 2611 · 2026-05-23T01:35:57.506173+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -18970,7 +18821,7 @@ _source line 2615 · 2026-05-23T01:35:57.506173+00:00_
 
 ### Tool call
 
-_source line 2616 · 2026-05-23T01:35:57.506554+00:00_
+_source line 2612 · 2026-05-23T01:35:57.506554+00:00_
 
 called Read
 
@@ -19004,7 +18855,7 @@ called Read
 
 ### Tool result
 
-_source line 2617 · 2026-05-23T01:35:57.556935+00:00_
+_source line 2613 · 2026-05-23T01:35:57.556935+00:00_
 
 1	\section{Limitations}
 2	\label{sec:limitations}
@@ -19029,7 +18880,7 @@ _source line 2617 · 2026-05-23T01:35:57.556935+00:00_
 
 ### Tool call
 
-_source line 2618 · 2026-05-23T01:36:00.818979+00:00_
+_source line 2614 · 2026-05-23T01:36:00.818979+00:00_
 
 called Read
 
@@ -19063,7 +18914,7 @@ called Read
 
 ### Tool result
 
-_source line 2619 · 2026-05-23T01:36:01.321859+00:00_
+_source line 2615 · 2026-05-23T01:36:01.321859+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -19085,7 +18936,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 2620 · 2026-05-23T01:36:01.623285+00:00_
+_source line 2616 · 2026-05-23T01:36:01.623285+00:00_
 
 called Read
 
@@ -19123,7 +18974,7 @@ called Read
 
 ### Tool result
 
-_source line 2621 · 2026-05-23T01:36:01.724073+00:00_
+_source line 2617 · 2026-05-23T01:36:01.724073+00:00_
 
 40	
 41	\subsection{Exploratory: Format-Associated Variance Patterns}
@@ -19156,7 +19007,7 @@ _source line 2621 · 2026-05-23T01:36:01.724073+00:00_
 
 ### Tool call
 
-_source line 2622 · 2026-05-23T01:36:45.239093+00:00_
+_source line 2618 · 2026-05-23T01:36:45.239093+00:00_
 
 called Read
 
@@ -19194,7 +19045,7 @@ called Read
 
 ### Tool result
 
-_source line 2623 · 2026-05-23T01:36:45.641098+00:00_
+_source line 2619 · 2026-05-23T01:36:45.641098+00:00_
 
 1	\appendix
 2	\section{Additional Robustness Analyses}
@@ -19229,7 +19080,7 @@ _source line 2623 · 2026-05-23T01:36:45.641098+00:00_
 
 ### Tool call
 
-_source line 2624 · 2026-05-23T01:36:45.791831+00:00_
+_source line 2620 · 2026-05-23T01:36:45.791831+00:00_
 
 called Read
 
@@ -19267,7 +19118,7 @@ called Read
 
 ### Tool result
 
-_source line 2625 · 2026-05-23T01:36:45.842468+00:00_
+_source line 2621 · 2026-05-23T01:36:45.842468+00:00_
 
 1	\section{Method and Experimental Design}
 2	\label{sec:method}
@@ -19305,7 +19156,7 @@ _source line 2625 · 2026-05-23T01:36:45.842468+00:00_
 
 ### Tool call
 
-_source line 2626 · 2026-05-23T01:36:51.818064+00:00_
+_source line 2622 · 2026-05-23T01:36:51.818064+00:00_
 
 called Read
 
@@ -19343,7 +19194,7 @@ called Read
 
 ### Tool result
 
-_source line 2627 · 2026-05-23T01:36:51.868697+00:00_
+_source line 2623 · 2026-05-23T01:36:51.868697+00:00_
 
 30	
 31	\begin{table}[t]
@@ -19399,7 +19250,7 @@ _source line 2627 · 2026-05-23T01:36:51.868697+00:00_
 
 ### Tool call
 
-_source line 2628 · 2026-05-23T01:36:55.433986+00:00_
+_source line 2624 · 2026-05-23T01:36:55.433986+00:00_
 
 called Read
 
@@ -19437,7 +19288,7 @@ called Read
 
 ### Tool result
 
-_source line 2629 · 2026-05-23T01:36:55.484752+00:00_
+_source line 2625 · 2026-05-23T01:36:55.484752+00:00_
 
 79	
 80	Our target universe comprises open-weight, instruction-tuned models in the 7--9B parameter range (eight architecture families); results may not generalize to API-based, base, or $>$9B models. Our eight purposively selected models are treated as a quasi-random facet \cite{meredith1993measurement, putnick2016measurement}. We report $G$ under random-model assumptions, the more conservative specification: across five benchmarks, treating models as fixed yields $G_\text{fixed}$ of 0.951--0.990 (mean 0.975) versus $G_\text{random}$ of 0.863--0.896 (mean 0.882), a consistent increase of 0.077--0.113 (mean 0.093), because model$\times$item interaction (30--36\%) enters the relative error variance under random assumptions. Consequently, our D-study budgets are upper bounds---practitioners will not under-sample regardless of facet classification. The variance decomposition itself (Tables~\ref{tab:cross_model}--\ref{tab:cross_benchmark}) is invariant to this choice. Leave-one-model-out analysis preserves component rankings across all five benchmarks, and Cohen's $\kappa$ pairwise agreement (mean $\kappa = 0.33$--$0.46$) confirms genuine differential item functioning (Appendix~\ref{app:robustness}). Four-model subset forward predictions match the observed eight-model $G$ within mean $|\Delta G| = 0.035$ across all five benchmarks (\S4.5).
@@ -19462,7 +19313,7 @@ _source line 2629 · 2026-05-23T01:36:55.484752+00:00_
 
 ### Tool call
 
-_source line 2630 · 2026-05-23T01:36:59.100305+00:00_
+_source line 2626 · 2026-05-23T01:36:59.100305+00:00_
 
 called Read
 
@@ -19500,7 +19351,7 @@ called Read
 
 ### Tool result
 
-_source line 2631 · 2026-05-23T01:36:59.301715+00:00_
+_source line 2627 · 2026-05-23T01:36:59.301715+00:00_
 
 85	Under binary scoring, BF16 and FP16 are functionally interchangeable ($<$0.1\% interaction \cite{yuan2025layercast}); under text-exact-match, a precision$\times$temperature interaction emerges at 1.3\%, consistent with \S4.1. Precision need not be controlled for binary evaluation at BF16/FP16 \cite{shanmugavelu2024floating}.
 86	
@@ -19552,7 +19403,7 @@ _source line 2631 · 2026-05-23T01:36:59.301715+00:00_
 
 ### Tool call
 
-_source line 2632 · 2026-05-23T01:37:19.740451+00:00_
+_source line 2628 · 2026-05-23T01:37:19.740451+00:00_
 
 called Grep
 
@@ -19590,7 +19441,7 @@ called Grep
 
 ### Tool result
 
-_source line 2633 · 2026-05-23T01:37:19.740834+00:00_
+_source line 2629 · 2026-05-23T01:37:19.740834+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.aux:1360:\newlabel{tab:forward_pred}{{8}{13}{Forward prediction: four-model subset $\rightarrow $ eight-model $G_\text {item}$. FF predictions underestimate actual $G$ (conservative); MC shows mixed directions with small deviations}{table.caption.36}{}}
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex:114:\citet{zhou2026irt}'s IRT-selected 116 items yield $G = 0.457$ under single-condition but $G = 0.895$ under multi-facet conditions, demonstrating that IRT item selection and G-theory protocol optimization are orthogonal and complementary. Forward prediction from four to eight models validates projection stability ($|\Delta G| \leq 0.029$ for MC, $\leq 0.065$ for FF; Table~\ref{tab:forward_pred}).
@@ -19615,7 +19466,7 @@ _source line 2633 · 2026-05-23T01:37:19.740834+00:00_
 
 ### Tool call
 
-_source line 2634 · 2026-05-23T01:37:23.004948+00:00_
+_source line 2630 · 2026-05-23T01:37:23.004948+00:00_
 
 called Read
 
@@ -19653,7 +19504,7 @@ called Read
 
 ### Tool result
 
-_source line 2635 · 2026-05-23T01:37:23.105677+00:00_
+_source line 2631 · 2026-05-23T01:37:23.105677+00:00_
 
 100	
 101	The higher item requirements relative to the single-model analysis (55 items in Table~\ref{tab:dstudy}) reflect the additional model$\times$item interaction variance that enters $\sigma^2_\text{rel}$ when models are crossed as a facet. The format-associated ratio pattern---FF benchmarks showing $\sim$2$\times$ the MC ratio---is consistent with the distributed variance structure observed in \S\ref{sec:format_conditional}, where FF benchmarks allocate more variance to model and model$\times$prompt components.
@@ -19705,7 +19556,7 @@ _source line 2635 · 2026-05-23T01:37:23.105677+00:00_
 
 ### Tool call
 
-_source line 2636 · 2026-05-23T01:37:33.461988+00:00_
+_source line 2632 · 2026-05-23T01:37:33.461988+00:00_
 
 called Grep
 
@@ -19745,7 +19596,7 @@ called Grep
 
 ### Tool result
 
-_source line 2637 · 2026-05-23T01:37:33.462443+00:00_
+_source line 2633 · 2026-05-23T01:37:33.462443+00:00_
 
 No matches found
 
@@ -19767,7 +19618,7 @@ No matches found
 
 ### Tool call
 
-_source line 2638 · 2026-05-23T01:37:36.621915+00:00_
+_source line 2634 · 2026-05-23T01:37:36.621915+00:00_
 
 called Grep
 
@@ -19807,7 +19658,7 @@ called Grep
 
 ### Tool result
 
-_source line 2639 · 2026-05-23T01:37:36.672487+00:00_
+_source line 2635 · 2026-05-23T01:37:36.672487+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex:74:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/sections/experiments.tex:25:\caption{Variance decomposition for the cross-model MMLU design (4 models, BF16, 345,600 records). Components estimated via Henderson Method~I with 1,000-resample bootstrap CIs. $G_\text{item} = 0.820$ [0.782--0.861].}
@@ -19835,7 +19686,7 @@ _source line 2639 · 2026-05-23T01:37:36.672487+00:00_
 
 ### Tool call
 
-_source line 2640 · 2026-05-23T01:37:44.307517+00:00_
+_source line 2636 · 2026-05-23T01:37:44.307517+00:00_
 
 called Grep
 
@@ -19875,7 +19726,7 @@ called Grep
 
 ### Tool result
 
-_source line 2641 · 2026-05-23T01:37:44.358192+00:00_
+_source line 2637 · 2026-05-23T01:37:44.358192+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/sections/experiments.tex:48:\paragraph{D-study validation.} To test whether G-theory projections generalize beyond the training sample, we estimate a D-study on 3-model subsets and predict the 4-model coefficient. The predicted $G = 0.816$ for $n_\text{model} = 4$ closely matches the observed $G = 0.820$ ($\Delta = 0.004$). Forward projections indicate $G = 0.848$ at 5 models, $G = 0.893$ at 8 models, and $G \geq 0.90$ requires approximately 10 models.
 /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex:116:ARC & 0.904 & 0.892 & 0.012 & 1.38 \\
@@ -19899,7 +19750,7 @@ _source line 2641 · 2026-05-23T01:37:44.358192+00:00_
 
 ### Tool call
 
-_source line 2642 · 2026-05-23T01:37:50.229849+00:00_
+_source line 2638 · 2026-05-23T01:37:50.229849+00:00_
 
 called Read
 
@@ -19937,7 +19788,7 @@ called Read
 
 ### Tool result
 
-_source line 2643 · 2026-05-23T01:37:50.480817+00:00_
+_source line 2639 · 2026-05-23T01:37:50.480817+00:00_
 
 155	Easy upgrade (2p$\times$2s) & 4 & .766 & 245 \\
 156	Moderate (3p$\times$3s) & 9 & .818 & 178 \\
@@ -19984,7 +19835,7 @@ _source line 2643 · 2026-05-23T01:37:50.480817+00:00_
 
 ### Tool call
 
-_source line 2644 · 2026-05-23T01:40:23.123498+00:00_
+_source line 2640 · 2026-05-23T01:40:23.123498+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -20020,7 +19871,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 2645 · 2026-05-23T01:40:24.686064+00:00_
+_source line 2641 · 2026-05-23T01:40:24.686064+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e2416b428a4b2fca4809d4beb9\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_654fc63da1857a7991cc464a1f276506:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -20042,7 +19893,7 @@ _source line 2645 · 2026-05-23T01:40:24.686064+00:00_
 
 ### Tool call
 
-_source line 2646 · 2026-05-23T01:40:31.915648+00:00_
+_source line 2642 · 2026-05-23T01:40:31.915648+00:00_
 
 called ToolSearch
 
@@ -20078,7 +19929,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2647 · 2026-05-23T01:40:31.916012+00:00_
+_source line 2643 · 2026-05-23T01:40:31.916012+00:00_
 
 No matching deferred tools found
 
@@ -20100,7 +19951,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2648 · 2026-05-23T01:40:34.328885+00:00_
+_source line 2644 · 2026-05-23T01:40:34.328885+00:00_
 
 called ToolSearch
 
@@ -20136,7 +19987,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2649 · 2026-05-23T01:40:34.329220+00:00_
+_source line 2645 · 2026-05-23T01:40:34.329220+00:00_
 
 
 
@@ -20158,7 +20009,7 @@ _source line 2649 · 2026-05-23T01:40:34.329220+00:00_
 
 ### Tool call
 
-_source line 2650 · 2026-05-23T01:40:49.738038+00:00_
+_source line 2646 · 2026-05-23T01:40:49.738038+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -20192,7 +20043,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 2651 · 2026-05-23T01:40:50.390569+00:00_
+_source line 2647 · 2026-05-23T01:40:50.390569+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -20214,7 +20065,7 @@ _source line 2651 · 2026-05-23T01:40:50.390569+00:00_
 
 ### Tool call
 
-_source line 2652 · 2026-05-23T01:40:54.905651+00:00_
+_source line 2648 · 2026-05-23T01:40:54.905651+00:00_
 
 called Read
 
@@ -20242,6 +20093,139 @@ called Read
     "offset": "310",
     "limit": "200"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2649 · 2026-05-23T01:40:54.956441+00:00_
+
+310	    summary: "Quasi-random model facet: 8 purposively selected models 作为 random facet 辩护不充分"
+311	    category: method
+312	    severity: warning
+313	    status: open
+314	    first_raised_round: 6
+315	    last_seen_round: 9
+316	    mentions:
+317	      - round: 6
+318	        reviewers: [1, 2]
+319	        note: "R1 N1 critical; R2 AGREE with nuance。"
+320	      - round: 7
+321	        reviewers: [1, 2]
+322	        note: "两位 Reviewer 独立再次提出。"
+323	      - round: 8
+324	        reviewers: [1, 2]
+325	        note: "R8-R1 W3 warning + R8-R2 AGREE (partial)。共识：LOMO/Cohen's κ 证明 internal consistency 但非 representativeness。target universe 需更精确定义。"
+326	      - round: 9
+327	        reviewers: [1, 2]
+328	        note: "R9-R1 W8 (bootstrap CI 仅 item-level) + R9-R2 W7 (model main effect 2.8% 同质性)。R1 正确指出 CI 仅反映 item-sampling variability 条件于这 8 个特定模型。R2 对 model main effect 的解读被 R1 REBUT（G-theory 中 model main effect 小不等于模型不可区分），但 R2 的泛化性质疑仍有效。"
+329	    action_items:
+330	      - round: 6
+331	        action: "§3.6 完全重写: conservatism argument + LOMO + Cohen's κ"
+332	        assigned_to: "Paper Agent"
+333	        status: done
+334	      - round: 8
+335	        action: "§3.2 更精确定义 target universe；讨论 quasi-random assumption 在 model universe expansion 下的 breakdown conditions"
+336	        assigned_to: "Paper Agent"
+337	        status: in_progress
+338	      - round: 9
+339	        action: "CI 报告中明确标注 'item-sampling variability conditional on these 8 models'；讨论 model-level uncertainty 的影响"
+340	        assigned_to: "Paper Agent"
+341	        status: open
+342	    resolution: ""
+343	    resolution_round: null
+344	
+345	  - id: "FR6-N2"
+346	    summary: "Format-associated pattern 统计功效不足但叙事权重过高"
+347	    category: framing
+348	    severity: warning
+349	    status: open
+350	    first_raised_round: 4
+351	    last_seen_round: 9
+352	    mentions:
+353	      - round: 6
+354	        reviewers: [1, 2]
+355	        note: "强共识。D023 nuclear removal 执行。"
+356	      - round: 7
+357	        reviewers: [1, 2]
+358	        not
+…[truncated 6717 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2650 · 2026-05-23T01:41:16.984804+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml",
+  "old_string": "      - round: 9\n        action: \"CI 报告中明确标注 'item-sampling variability conditional on these 8 models'；讨论 model-level uncertainty 的影响\"\n        assigned_to: \"Paper Agent\"\n        status: open",
+  "new_string": "      - round: 9\n        action: \"CI 报告中明确标注 'item-sampling variability conditional on these 8 models'；讨论 model-level uncertainty 的影响\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml",
+    "old_string": "      - round: 9\n        action: \"CI 报告中明确标注 'item-sampling variability conditional on these 8 models'；讨论 model-level uncertainty 的影响\"\n        assigned_to: \"Paper Agent\"\n        status: open",
+    "new_string": "      - round: 9\n        action: \"CI 报告中明确标注 'item-sampling variability conditional on these 8 models'；讨论 model-level uncertainty 的影响\"\n        assigned_to: \"Paper Agent\"\n        status: in_progress"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2651 · 2026-05-23T01:41:16.985408+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_issues.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_117593098ee414309ced84ea501938c9:director",
+  "tool": "Edit",
+  "elapsed_ms": 0
 }
 ```
 

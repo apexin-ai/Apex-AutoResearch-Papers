@@ -144,5 +144,4 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | verify train val split count | 1 | 0 | [Read transcript](verify-train-val-split-count.md) | [JSON](../../sessions/10/103bc7d98b40904b3a24.json) |
 | writing experiments expansion long paper | 1 | 0 | [Read transcript](writing-experiments-expansion-long-paper.md) | [JSON](../../sessions/a2/a2402bb39c40bbe03cea.json) |
 | writing method rewrite direction a | 1 | 0 | [Read transcript](writing-method-rewrite-direction-a.md) | [JSON](../../sessions/87/87fb154c93dd787b20c3.json) |
-| writing rebuttal update | 1 | 0 | [Read transcript](writing-rebuttal-update.md) | [JSON](../../sessions/d5/d50b0933f063aa0ffc62.json) |
 | writing responsible nlp checklist | 1 | 0 | [Read transcript](writing-responsible-nlp-checklist.md) | [JSON](../../sessions/22/228a778ca26582afd346.json) |

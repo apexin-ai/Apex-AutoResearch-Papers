@@ -66,7 +66,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis qwen llama sensitivity | 1 | 0 | [Read transcript](analysis-qwen-llama-sensitivity.md) | [JSON](../../sessions/95/95be8ed93bd46dbb3575.json) |
 | analysis r10 q2 q6 labels | 1 | 0 | [Read transcript](analysis-r10-q2-q6-labels.md) | [JSON](../../sessions/15/15e54c30b6a4efeb581f.json) |
 | analysis r18 step mislabel distribution | 1 | 0 | [Read transcript](analysis-r18-step-mislabel-distribution.md) | [JSON](../../sessions/1d/1dd26000cfbe3584c6ce.json) |
-| analysis rebuttal grounding decomposition | 1 | 0 | [Read transcript](analysis-rebuttal-grounding-decomposition.md) | [JSON](../../sessions/4b/4b8df23e8750a0d61f33.json) |
 | analysis reflexion done 14838 | 1 | 0 | [Read transcript](analysis-reflexion-done-14838.md) | [JSON](../../sessions/4b/4bcc9da1674912d71823.json) |
 | analysis reflexion dose response n345 | 1 | 0 | [Read transcript](analysis-reflexion-dose-response-n345.md) | [JSON](../../sessions/7d/7d437640c35043ba27c1.json) |
 | analysis reflexion full metrics | 1 | 0 | [Read transcript](analysis-reflexion-full-metrics.md) | [JSON](../../sessions/be/be49d3dcea09b63551f4.json) |

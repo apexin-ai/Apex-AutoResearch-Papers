@@ -1,17 +1,17 @@
 {
   "project": "gen-depth-fingerprint",
-  "code_count": 650,
-  "data_count": 1256,
+  "code_count": 649,
+  "data_count": 1251,
   "env_count": 2,
   "tex_count": 137,
   "bib_count": 3,
   "review_count": 44,
   "validation_count": 24,
-  "chat_count": 354,
-  "worker_count": 1510,
-  "trace_count": 1964,
-  "trace_bytes": 332352586,
-  "maintenance_count": 170,
+  "chat_count": 353,
+  "worker_count": 1503,
+  "trace_count": 1956,
+  "trace_bytes": 330846241,
+  "maintenance_count": 167,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -146,21 +146,21 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "354 conversations; 1510 worker logs/results; 1964 source files",
+      "evidence": "353 conversations; 1503 worker logs/results; 1956 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "650 code/configuration files; 2 environment manifests",
+      "evidence": "649 code/configuration files; 2 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
     {
       "name": "Experiments and environment",
       "status": "Partial",
-      "evidence": "1256 data/result files",
+      "evidence": "1251 data/result files",
       "gap": "Original data permissions and completeness require project-specific review.",
       "path": "03-experiments/"
     },
@@ -174,7 +174,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "170 project documentation files; 0 license files",
+      "evidence": "167 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

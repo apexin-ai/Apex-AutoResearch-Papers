@@ -51,14 +51,12 @@ westd-15904 cuda:0 挂项目名下但 0% 利用率。**无补充实验计划**�
 
 Reviewer 判断当前论文已达 text-editing 收益极限：
 - 进一步迭代边际收益趋近于零，且有引入 regression 的风险
-- 建议将精力转向 rebuttal 准备
 - 真正值得做的已全部完成（MF1 conditional inference、MF2 E5 label、SF5 CR rationale、SF6 7-8B/32B 区分、missing refs）
 
 ## 下一步
 
 1. **等待 R29 审稿审批**（apr_20260521T164232_yyxq）
 2. **GPU westd-15904 处置**：向用户确认是否释放
-3. **Rebuttal 准备**：对结构性限制的回应策略已在 review_issues.yaml 中记录
 4. **ARR 提交准备**：DDL 2026-05-25，论文 PDF 已编译合规（8 页主文）
 
 ## 不能做 / 不要再试的事

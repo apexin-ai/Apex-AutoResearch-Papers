@@ -1,17 +1,17 @@
 {
   "project": "irt_personfit_contam",
-  "code_count": 289,
-  "data_count": 908,
+  "code_count": 288,
+  "data_count": 905,
   "env_count": 2,
-  "tex_count": 82,
+  "tex_count": 80,
   "bib_count": 4,
   "review_count": 8,
   "validation_count": 9,
-  "chat_count": 117,
-  "worker_count": 598,
-  "trace_count": 726,
-  "trace_bytes": 168488293,
-  "maintenance_count": 100,
+  "chat_count": 116,
+  "worker_count": 584,
+  "trace_count": 711,
+  "trace_bytes": 166926267,
+  "maintenance_count": 97,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -147,7 +147,7 @@
     {
       "name": "Manuscript and versions",
       "status": "Available",
-      "evidence": "82 source files; 105 PDF candidates",
+      "evidence": "80 source files; 105 PDF candidates",
       "gap": "Candidate filenames do not establish official submission or publication.",
       "path": "01-manuscript/"
     },
@@ -161,21 +161,21 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "117 conversations; 598 worker logs/results; 726 source files",
+      "evidence": "116 conversations; 584 worker logs/results; 711 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "289 code/configuration files; 2 environment manifests",
+      "evidence": "288 code/configuration files; 2 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
     {
       "name": "Experiments and environment",
       "status": "Partial",
-      "evidence": "908 data/result files",
+      "evidence": "905 data/result files",
       "gap": "Original data permissions and completeness require project-specific review.",
       "path": "03-experiments/"
     },
@@ -189,7 +189,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "100 project documentation files; 0 license files",
+      "evidence": "97 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

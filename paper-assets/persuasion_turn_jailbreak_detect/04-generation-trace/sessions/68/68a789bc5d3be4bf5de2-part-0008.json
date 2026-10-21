@@ -7,47 +7,6 @@
       "messages": [
         {
           "source_line": 1261,
-          "timestamp": "2026-05-22T07:21:19.342846+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "DisPeD|Disentangled Persuasion",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
-              "output_mode": "content",
-              "glob": "*.tex"
-            }
-          },
-          "id": "event-001261"
-        },
-        {
-          "source_line": 1262,
-          "timestamp": "2026-05-22T07:21:19.343264+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% checklist.tex — ARR Responsible NLP Research Checklist\n2\t\n3\t\\section*{Responsible NLP Research Checklist}\n4\t\n5\t\\paragraph{A. Limitations.}\n6\t\\begin{enumerate}[label=A\\arabic*.,leftmargin=2em]\n7\t  \\item Did you describe the limitations of your work? \\textbf{Yes.} Section~\\ref{sec:limitations} discusses dataset scale, lexical separability, annotation quality, OOD strategy prediction, single-seed variants, scope, and compute cost.\n8\t  \\item Did you discuss any potential risks of your work? \\textbf{Yes.} See below.\n9\t\\end{enumerate}\n10\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 3
-          },
-          "id": "event-001262"
-        },
-        {
-          "source_line": 1263,
           "timestamp": "2026-05-22T07:21:19.343622+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -62,10 +21,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-001263"
+          "id": "event-001261"
         },
         {
-          "source_line": 1264,
+          "source_line": 1262,
           "timestamp": "2026-05-22T07:21:35.882816+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -85,10 +44,10 @@
               "-n": "True"
             }
           },
-          "id": "event-001264"
+          "id": "event-001262"
         },
         {
-          "source_line": 1265,
+          "source_line": 1263,
           "timestamp": "2026-05-22T07:21:35.933378+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -103,10 +62,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001265"
+          "id": "event-001263"
         },
         {
-          "source_line": 1266,
+          "source_line": 1264,
           "timestamp": "2026-05-22T07:21:38.944350+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -125,10 +84,10 @@
               "limit": "5"
             }
           },
-          "id": "event-001266"
+          "id": "event-001264"
         },
         {
-          "source_line": 1267,
+          "source_line": 1265,
           "timestamp": "2026-05-22T07:21:38.995092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -143,10 +102,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001267"
+          "id": "event-001265"
         },
         {
-          "source_line": 1268,
+          "source_line": 1266,
           "timestamp": "2026-05-22T07:23:03.508310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -164,10 +123,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001268"
+          "id": "event-001266"
         },
         {
-          "source_line": 1269,
+          "source_line": 1267,
           "timestamp": "2026-05-22T07:23:07.610302+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -182,10 +141,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4101
           },
-          "id": "event-001269"
+          "id": "event-001267"
         },
         {
-          "source_line": 1270,
+          "source_line": 1268,
           "timestamp": "2026-05-22T07:23:18.453804+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -198,7 +157,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001270"
+          "id": "event-001268"
         }
       ]
     },
@@ -206,7 +165,7 @@
       "number": 64,
       "messages": [
         {
-          "source_line": 1271,
+          "source_line": 1269,
           "timestamp": "2026-05-22T07:26:38.052518+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -220,10 +179,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "worker_done:worker_code_exp49_repr_analysis_20260522t071133"
           },
-          "id": "event-001271"
+          "id": "event-001269"
         },
         {
-          "source_line": 1272,
+          "source_line": 1270,
           "timestamp": "2026-05-22T07:26:45.601186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -242,10 +201,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001272"
+          "id": "event-001270"
         },
         {
-          "source_line": 1273,
+          "source_line": 1271,
           "timestamp": "2026-05-22T07:26:45.953212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -260,10 +219,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 352
           },
-          "id": "event-001273"
+          "id": "event-001271"
         },
         {
-          "source_line": 1274,
+          "source_line": 1272,
           "timestamp": "2026-05-22T07:26:48.365755+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -282,10 +241,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001274"
+          "id": "event-001272"
         },
         {
-          "source_line": 1275,
+          "source_line": 1273,
           "timestamp": "2026-05-22T07:26:48.666963+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -300,10 +259,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 301
           },
-          "id": "event-001275"
+          "id": "event-001273"
         },
         {
-          "source_line": 1276,
+          "source_line": 1274,
           "timestamp": "2026-05-22T07:26:54.202665+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -321,10 +280,10 @@
               "command": "ls -la /root/persuasion_turn_jailbreak_detect/scripts/exp49*"
             }
           },
-          "id": "event-001276"
+          "id": "event-001274"
         },
         {
-          "source_line": 1277,
+          "source_line": 1275,
           "timestamp": "2026-05-22T07:26:54.604018+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -342,10 +301,10 @@
               "command": "head -60 /root/persuasion_turn_jailbreak_detect/scripts/exp49_representation_analysis.py"
             }
           },
-          "id": "event-001277"
+          "id": "event-001275"
         },
         {
-          "source_line": 1278,
+          "source_line": 1276,
           "timestamp": "2026-05-22T07:26:55.205685+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -360,10 +319,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1003
           },
-          "id": "event-001278"
+          "id": "event-001276"
         },
         {
-          "source_line": 1279,
+          "source_line": 1277,
           "timestamp": "2026-05-22T07:26:55.757888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -378,10 +337,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1153
           },
-          "id": "event-001279"
+          "id": "event-001277"
         },
         {
-          "source_line": 1280,
+          "source_line": 1278,
           "timestamp": "2026-05-22T07:27:01.238024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -399,10 +358,10 @@
               "command": "grep -n \"def \" /root/persuasion_turn_jailbreak_detect/scripts/exp49_representation_analysis.py"
             }
           },
-          "id": "event-001280"
+          "id": "event-001278"
         },
         {
-          "source_line": 1281,
+          "source_line": 1279,
           "timestamp": "2026-05-22T07:27:01.489257+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -420,10 +379,10 @@
               "command": "ls /root/runs/persuasion_turn_jailbreak_detect/exp49*"
             }
           },
-          "id": "event-001281"
+          "id": "event-001279"
         },
         {
-          "source_line": 1282,
+          "source_line": 1280,
           "timestamp": "2026-05-22T07:27:01.690297+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -438,10 +397,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 452
           },
-          "id": "event-001282"
+          "id": "event-001280"
         },
         {
-          "source_line": 1283,
+          "source_line": 1281,
           "timestamp": "2026-05-22T07:27:02.243068+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -456,10 +415,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 753
           },
-          "id": "event-001283"
+          "id": "event-001281"
         },
         {
-          "source_line": 1284,
+          "source_line": 1282,
           "timestamp": "2026-05-22T07:27:10.664860+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -477,10 +436,10 @@
               "command": "tail -80 /root/persuasion_turn_jailbreak_detect/scripts/exp49_representation_analysis.py"
             }
           },
-          "id": "event-001284"
+          "id": "event-001282"
         },
         {
-          "source_line": 1285,
+          "source_line": 1283,
           "timestamp": "2026-05-22T07:27:11.117046+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -495,10 +454,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 452
           },
-          "id": "event-001285"
+          "id": "event-001283"
         },
         {
-          "source_line": 1286,
+          "source_line": 1284,
           "timestamp": "2026-05-22T07:27:32.082998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -516,10 +475,10 @@
               "command": "ls /root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002/deberta_multitask/best/model.pt"
             }
           },
-          "id": "event-001286"
+          "id": "event-001284"
         },
         {
-          "source_line": 1287,
+          "source_line": 1285,
           "timestamp": "2026-05-22T07:27:33.438332+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -534,10 +493,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1355
           },
-          "id": "event-001287"
+          "id": "event-001285"
         },
         {
-          "source_line": 1288,
+          "source_line": 1286,
           "timestamp": "2026-05-22T07:27:33.438762+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -555,10 +514,10 @@
               "command": "ls /root/.cache/huggingface/hub/models--microsoft--deberta-v3-base/snapshots/de19fe7db5162df5f3d8f0b41321c0267288fd74/config.json"
             }
           },
-          "id": "event-001288"
+          "id": "event-001286"
         },
         {
-          "source_line": 1289,
+          "source_line": 1287,
           "timestamp": "2026-05-22T07:27:33.889976+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -573,10 +532,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 451
           },
-          "id": "event-001289"
+          "id": "event-001287"
         },
         {
-          "source_line": 1290,
+          "source_line": 1288,
           "timestamp": "2026-05-22T07:27:41.158870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +553,10 @@
               "command": "ls /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/"
             }
           },
-          "id": "event-001290"
+          "id": "event-001288"
         },
         {
-          "source_line": 1291,
+          "source_line": 1289,
           "timestamp": "2026-05-22T07:27:41.611370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +571,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 452
           },
-          "id": "event-001291"
+          "id": "event-001289"
         },
         {
-          "source_line": 1292,
+          "source_line": 1290,
           "timestamp": "2026-05-22T07:27:50.508173+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -633,10 +592,10 @@
               "command": "grep -r \"deberta-v3-base\" /root/persuasion_turn_jailbreak_detect/scripts/train_deberta_multitask.py"
             }
           },
-          "id": "event-001292"
+          "id": "event-001290"
         },
         {
-          "source_line": 1293,
+          "source_line": 1291,
           "timestamp": "2026-05-22T07:27:50.959661+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -651,10 +610,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 451
           },
-          "id": "event-001293"
+          "id": "event-001291"
         },
         {
-          "source_line": 1294,
+          "source_line": 1292,
           "timestamp": "2026-05-22T07:28:04.432149+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -672,10 +631,10 @@
               "command": "find /root/persuasion_turn_jailbreak_detect/scripts -name \"*.py\" -newer /root/persuasion_turn_jailbreak_detect/scripts/exp49_representation_analysis.py"
             }
           },
-          "id": "event-001294"
+          "id": "event-001292"
         },
         {
-          "source_line": 1295,
+          "source_line": 1293,
           "timestamp": "2026-05-22T07:28:05.235686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -690,10 +649,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 803
           },
-          "id": "event-001295"
+          "id": "event-001293"
         },
         {
-          "source_line": 1296,
+          "source_line": 1294,
           "timestamp": "2026-05-22T07:28:05.387722+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -711,10 +670,10 @@
               "command": "grep -rn \"8ccc9b6f\\|de19fe7d\\|deberta-v3-base\" /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py"
             }
           },
-          "id": "event-001296"
+          "id": "event-001294"
         },
         {
-          "source_line": 1297,
+          "source_line": 1295,
           "timestamp": "2026-05-22T07:28:05.388241+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -729,10 +688,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 0
           },
-          "id": "event-001297"
+          "id": "event-001295"
         },
         {
-          "source_line": 1298,
+          "source_line": 1296,
           "timestamp": "2026-05-22T07:28:08.983476+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -750,10 +709,10 @@
               "command": "grep -rn \"8ccc9b6f\" /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py"
             }
           },
-          "id": "event-001298"
+          "id": "event-001296"
         },
         {
-          "source_line": 1299,
+          "source_line": 1297,
           "timestamp": "2026-05-22T07:28:09.235218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -771,10 +730,10 @@
               "command": "grep -rn \"de19fe7d\" /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py"
             }
           },
-          "id": "event-001299"
+          "id": "event-001297"
         },
         {
-          "source_line": 1300,
+          "source_line": 1298,
           "timestamp": "2026-05-22T07:28:09.436187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -789,10 +748,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 452
           },
-          "id": "event-001300"
+          "id": "event-001298"
         },
         {
-          "source_line": 1301,
+          "source_line": 1299,
           "timestamp": "2026-05-22T07:28:09.988255+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -807,10 +766,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 753
           },
-          "id": "event-001301"
+          "id": "event-001299"
         },
         {
-          "source_line": 1302,
+          "source_line": 1300,
           "timestamp": "2026-05-22T07:28:38.651940+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -828,10 +787,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001302"
+          "id": "event-001300"
         },
         {
-          "source_line": 1303,
+          "source_line": 1301,
           "timestamp": "2026-05-22T07:28:42.518523+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -846,10 +805,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3866
           },
-          "id": "event-001303"
+          "id": "event-001301"
         },
         {
-          "source_line": 1304,
+          "source_line": 1302,
           "timestamp": "2026-05-22T07:28:57.902532+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -862,7 +821,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001304"
+          "id": "event-001302"
         }
       ]
     },
@@ -870,7 +829,7 @@
       "number": 65,
       "messages": [
         {
-          "source_line": 1305,
+          "source_line": 1303,
           "timestamp": "2026-05-22T07:36:40.260207+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -884,10 +843,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "system"
           },
-          "id": "event-001305"
+          "id": "event-001303"
         },
         {
-          "source_line": 1306,
+          "source_line": 1304,
           "timestamp": "2026-05-22T07:36:52.021737+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -904,10 +863,10 @@
               "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/*.tex | head -5"
             }
           },
-          "id": "event-001306"
+          "id": "event-001304"
         },
         {
-          "source_line": 1307,
+          "source_line": 1305,
           "timestamp": "2026-05-22T07:36:52.172743+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -922,10 +881,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-001307"
+          "id": "event-001305"
         },
         {
-          "source_line": 1308,
+          "source_line": 1306,
           "timestamp": "2026-05-22T07:36:56.438101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -942,10 +901,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex"
             }
           },
-          "id": "event-001308"
+          "id": "event-001306"
         },
         {
-          "source_line": 1309,
+          "source_line": 1307,
           "timestamp": "2026-05-22T07:36:56.940263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -960,10 +919,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001309"
+          "id": "event-001307"
         },
         {
-          "source_line": 1310,
+          "source_line": 1308,
           "timestamp": "2026-05-22T07:36:56.940693+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -980,10 +939,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex"
             }
           },
-          "id": "event-001310"
+          "id": "event-001308"
         },
         {
-          "source_line": 1311,
+          "source_line": 1309,
           "timestamp": "2026-05-22T07:36:56.991838+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -998,10 +957,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-001311"
+          "id": "event-001309"
         },
         {
-          "source_line": 1312,
+          "source_line": 1310,
           "timestamp": "2026-05-22T07:37:10.139566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1021,10 +980,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001312"
+          "id": "event-001310"
         },
         {
-          "source_line": 1313,
+          "source_line": 1311,
           "timestamp": "2026-05-22T07:37:10.691817+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1039,10 +998,10 @@
             "tool": "Grep",
             "elapsed_ms": 552
           },
-          "id": "event-001313"
+          "id": "event-001311"
         },
         {
-          "source_line": 1314,
+          "source_line": 1312,
           "timestamp": "2026-05-22T07:37:11.344402+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1063,10 +1022,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001314"
+          "id": "event-001312"
         },
         {
-          "source_line": 1315,
+          "source_line": 1313,
           "timestamp": "2026-05-22T07:37:11.445303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1081,10 +1040,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-001315"
+          "id": "event-001313"
         },
         {
-          "source_line": 1316,
+          "source_line": 1314,
           "timestamp": "2026-05-22T07:37:17.215122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1103,10 +1062,10 @@
               "limit": "5"
             }
           },
-          "id": "event-001316"
+          "id": "event-001314"
         },
         {
-          "source_line": 1317,
+          "source_line": 1315,
           "timestamp": "2026-05-22T07:37:17.667491+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1121,10 +1080,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001317"
+          "id": "event-001315"
         },
         {
-          "source_line": 1318,
+          "source_line": 1316,
           "timestamp": "2026-05-22T07:37:17.818523+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1143,10 +1102,10 @@
               "limit": "8"
             }
           },
-          "id": "event-001318"
+          "id": "event-001316"
         },
         {
-          "source_line": 1319,
+          "source_line": 1317,
           "timestamp": "2026-05-22T07:37:17.869182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1161,10 +1120,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001319"
+          "id": "event-001317"
         },
         {
-          "source_line": 1320,
+          "source_line": 1318,
           "timestamp": "2026-05-22T07:37:39.453212+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1183,10 +1142,10 @@
               "limit": "3"
             }
           },
-          "id": "event-001320"
+          "id": "event-001318"
         },
         {
-          "source_line": 1321,
+          "source_line": 1319,
           "timestamp": "2026-05-22T07:37:39.905186+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1201,10 +1160,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-001321"
+          "id": "event-001319"
         },
         {
-          "source_line": 1322,
+          "source_line": 1320,
           "timestamp": "2026-05-22T07:37:40.206713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1223,10 +1182,10 @@
               "limit": "18"
             }
           },
-          "id": "event-001322"
+          "id": "event-001320"
         },
         {
-          "source_line": 1323,
+          "source_line": 1321,
           "timestamp": "2026-05-22T07:37:40.307459+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1241,10 +1200,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001323"
+          "id": "event-001321"
         },
         {
-          "source_line": 1324,
+          "source_line": 1322,
           "timestamp": "2026-05-22T07:37:58.475362+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1263,10 +1222,10 @@
               "limit": "8"
             }
           },
-          "id": "event-001324"
+          "id": "event-001322"
         },
         {
-          "source_line": 1325,
+          "source_line": 1323,
           "timestamp": "2026-05-22T07:37:58.475895+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1281,10 +1240,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001325"
+          "id": "event-001323"
         },
         {
-          "source_line": 1326,
+          "source_line": 1324,
           "timestamp": "2026-05-22T07:38:21.726464+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1302,10 +1261,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001326"
+          "id": "event-001324"
         },
         {
-          "source_line": 1327,
+          "source_line": 1325,
           "timestamp": "2026-05-22T07:38:25.691582+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1320,10 +1279,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3965
           },
-          "id": "event-001327"
+          "id": "event-001325"
         },
         {
-          "source_line": 1328,
+          "source_line": 1326,
           "timestamp": "2026-05-22T07:38:28.180731+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1336,7 +1295,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001328"
+          "id": "event-001326"
         }
       ]
     },
@@ -1344,7 +1303,7 @@
       "number": 66,
       "messages": [
         {
-          "source_line": 1329,
+          "source_line": 1327,
           "timestamp": "2026-05-22T07:43:42.116382+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1358,10 +1317,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "system"
           },
-          "id": "event-001329"
+          "id": "event-001327"
         },
         {
-          "source_line": 1330,
+          "source_line": 1328,
           "timestamp": "2026-05-22T07:43:50.774762+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1378,10 +1337,10 @@
               "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/*.tex | head -8"
             }
           },
-          "id": "event-001330"
+          "id": "event-001328"
         },
         {
-          "source_line": 1331,
+          "source_line": 1329,
           "timestamp": "2026-05-22T07:43:50.976415+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1396,10 +1355,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-001331"
+          "id": "event-001329"
         },
         {
-          "source_line": 1332,
+          "source_line": 1330,
           "timestamp": "2026-05-22T07:43:58.153378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1416,10 +1375,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
             }
           },
-          "id": "event-001332"
+          "id": "event-001330"
         },
         {
-          "source_line": 1333,
+          "source_line": 1331,
           "timestamp": "2026-05-22T07:43:58.153888+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1436,10 +1395,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-001333"
+          "id": "event-001331"
         },
         {
-          "source_line": 1334,
+          "source_line": 1332,
           "timestamp": "2026-05-22T07:43:58.154360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1454,10 +1413,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001334"
+          "id": "event-001332"
         },
         {
-          "source_line": 1335,
+          "source_line": 1333,
           "timestamp": "2026-05-22T07:43:58.204993+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1472,10 +1431,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-001335"
+          "id": "event-001333"
         },
         {
-          "source_line": 1336,
+          "source_line": 1334,
           "timestamp": "2026-05-22T07:44:21.154650+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1495,10 +1454,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001336"
+          "id": "event-001334"
         },
         {
-          "source_line": 1337,
+          "source_line": 1335,
           "timestamp": "2026-05-22T07:44:23.114693+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1513,10 +1472,10 @@
             "tool": "Grep",
             "elapsed_ms": 1960
           },
-          "id": "event-001337"
+          "id": "event-001335"
         },
         {
-          "source_line": 1338,
+          "source_line": 1336,
           "timestamp": "2026-05-22T07:44:23.265749+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1535,10 +1494,10 @@
               "limit": "55"
             }
           },
-          "id": "event-001338"
+          "id": "event-001336"
         },
         {
-          "source_line": 1339,
+          "source_line": 1337,
           "timestamp": "2026-05-22T07:44:23.266847+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1553,10 +1512,10 @@
             "tool": "Read",
             "elapsed_ms": 1
           },
-          "id": "event-001339"
+          "id": "event-001337"
         },
         {
-          "source_line": 1340,
+          "source_line": 1338,
           "timestamp": "2026-05-22T07:44:38.851384+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1576,10 +1535,10 @@
               "-n": "True"
             }
           },
-          "id": "event-001340"
+          "id": "event-001338"
         },
         {
-          "source_line": 1341,
+          "source_line": 1339,
           "timestamp": "2026-05-22T07:44:39.303427+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1594,10 +1553,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-001341"
+          "id": "event-001339"
         },
         {
-          "source_line": 1342,
+          "source_line": 1340,
           "timestamp": "2026-05-22T07:44:40.208704+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1616,10 +1575,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001342"
+          "id": "event-001340"
         },
         {
-          "source_line": 1343,
+          "source_line": 1341,
           "timestamp": "2026-05-22T07:44:40.753215+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1634,10 +1593,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 544
           },
-          "id": "event-001343"
+          "id": "event-001341"
         },
         {
-          "source_line": 1344,
+          "source_line": 1342,
           "timestamp": "2026-05-22T07:44:51.409637+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1655,10 +1614,10 @@
               "command": "grep -r \"48.1\\|0.481\\|vanilla.*wildchat\\|wildchat.*vanilla\" /root/persuasion_turn_jailbreak_detect/results/ --include=\"*.json\""
             }
           },
-          "id": "event-001344"
+          "id": "event-001342"
         },
         {
-          "source_line": 1345,
+          "source_line": 1343,
           "timestamp": "2026-05-22T07:44:51.460288+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1673,10 +1632,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 50
           },
-          "id": "event-001345"
+          "id": "event-001343"
         },
         {
-          "source_line": 1346,
+          "source_line": 1344,
           "timestamp": "2026-05-22T07:44:54.725066+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1694,10 +1653,10 @@
               "command": "grep -r \"0.481\" /root/persuasion_turn_jailbreak_detect/results/ --include=\"*.json\""
             }
           },
-          "id": "event-001346"
+          "id": "event-001344"
         },
         {
-          "source_line": 1347,
+          "source_line": 1345,
           "timestamp": "2026-05-22T07:44:54.925948+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1715,10 +1674,10 @@
               "command": "grep -r \"48.1\" /root/persuasion_turn_jailbreak_detect/results/ --include=\"*.json\""
             }
           },
-          "id": "event-001347"
+          "id": "event-001345"
         },
         {
-          "source_line": 1348,
+          "source_line": 1346,
           "timestamp": "2026-05-22T07:44:55.982015+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1733,10 +1692,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1256
           },
-          "id": "event-001348"
+          "id": "event-001346"
         },
         {
-          "source_line": 1349,
+          "source_line": 1347,
           "timestamp": "2026-05-22T07:44:56.635281+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1751,10 +1710,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1709
           },
-          "id": "event-001349"
+          "id": "event-001347"
         },
         {
-          "source_line": 1350,
+          "source_line": 1348,
           "timestamp": "2026-05-22T07:45:05.734400+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1773,10 +1732,10 @@
               "limit": "25"
             }
           },
-          "id": "event-001350"
+          "id": "event-001348"
         },
         {
-          "source_line": 1351,
+          "source_line": 1349,
           "timestamp": "2026-05-22T07:45:05.734963+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1791,10 +1750,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001351"
+          "id": "event-001349"
         },
         {
-          "source_line": 1352,
+          "source_line": 1350,
           "timestamp": "2026-05-22T07:45:16.730167+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1813,10 +1772,10 @@
               "limit": "12"
             }
           },
-          "id": "event-001352"
+          "id": "event-001350"
         },
         {
-          "source_line": 1353,
+          "source_line": 1351,
           "timestamp": "2026-05-22T07:45:16.831525+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1831,10 +1790,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-001353"
+          "id": "event-001351"
         },
         {
-          "source_line": 1354,
+          "source_line": 1352,
           "timestamp": "2026-05-22T07:45:21.951318+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1855,10 +1814,10 @@
               "-n": "True"
             }
           },
-          "id": "event-001354"
+          "id": "event-001352"
         },
         {
-          "source_line": 1355,
+          "source_line": 1353,
           "timestamp": "2026-05-22T07:45:22.052202+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1873,10 +1832,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-001355"
+          "id": "event-001353"
         },
         {
-          "source_line": 1356,
+          "source_line": 1354,
           "timestamp": "2026-05-22T07:45:29.581252+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1895,10 +1854,10 @@
               "limit": "8"
             }
           },
-          "id": "event-001356"
+          "id": "event-001354"
         },
         {
-          "source_line": 1357,
+          "source_line": 1355,
           "timestamp": "2026-05-22T07:45:29.682199+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1913,10 +1872,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001357"
+          "id": "event-001355"
         },
         {
-          "source_line": 1358,
+          "source_line": 1356,
           "timestamp": "2026-05-22T07:47:45.272715+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1934,10 +1893,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001358"
+          "id": "event-001356"
         },
         {
-          "source_line": 1359,
+          "source_line": 1357,
           "timestamp": "2026-05-22T07:47:45.323346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1952,10 +1911,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001359"
+          "id": "event-001357"
         },
         {
-          "source_line": 1360,
+          "source_line": 1358,
           "timestamp": "2026-05-22T07:48:13.607210+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1973,10 +1932,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001360"
+          "id": "event-001358"
         },
         {
-          "source_line": 1361,
+          "source_line": 1359,
           "timestamp": "2026-05-22T07:48:14.260007+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1994,10 +1953,10 @@
               "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp49_representation_analysis.json"
             }
           },
-          "id": "event-001361"
+          "id": "event-001359"
         },
         {
-          "source_line": 1362,
+          "source_line": 1360,
           "timestamp": "2026-05-22T07:48:17.621801+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2012,10 +1971,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4014
           },
-          "id": "event-001362"
+          "id": "event-001360"
         },
         {
-          "source_line": 1363,
+          "source_line": 1361,
           "timestamp": "2026-05-22T07:48:18.224746+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2030,10 +1989,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3964
           },
-          "id": "event-001363"
+          "id": "event-001361"
         },
         {
-          "source_line": 1364,
+          "source_line": 1362,
           "timestamp": "2026-05-22T07:49:29.569799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2051,10 +2010,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001364"
+          "id": "event-001362"
         },
         {
-          "source_line": 1365,
+          "source_line": 1363,
           "timestamp": "2026-05-22T07:49:31.193211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2069,10 +2028,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 1623
           },
-          "id": "event-001365"
+          "id": "event-001363"
         },
         {
-          "source_line": 1366,
+          "source_line": 1364,
           "timestamp": "2026-05-22T07:49:49.129680+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2092,10 +2051,10 @@
               "-n": "True"
             }
           },
-          "id": "event-001366"
+          "id": "event-001364"
         },
         {
-          "source_line": 1367,
+          "source_line": 1365,
           "timestamp": "2026-05-22T07:49:49.180425+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2110,10 +2069,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001367"
+          "id": "event-001365"
         },
         {
-          "source_line": 1368,
+          "source_line": 1366,
           "timestamp": "2026-05-22T07:49:55.507767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2132,10 +2091,10 @@
               "limit": "60"
             }
           },
-          "id": "event-001368"
+          "id": "event-001366"
         },
         {
-          "source_line": 1369,
+          "source_line": 1367,
           "timestamp": "2026-05-22T07:49:55.508242+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2150,10 +2109,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001369"
+          "id": "event-001367"
         },
         {
-          "source_line": 1370,
+          "source_line": 1368,
           "timestamp": "2026-05-22T07:49:56.261196+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2172,10 +2131,10 @@
               "limit": "50"
             }
           },
-          "id": "event-001370"
+          "id": "event-001368"
         },
         {
-          "source_line": 1371,
+          "source_line": 1369,
           "timestamp": "2026-05-22T07:49:56.311807+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2190,10 +2149,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001371"
+          "id": "event-001369"
         },
         {
-          "source_line": 1372,
+          "source_line": 1370,
           "timestamp": "2026-05-22T07:50:02.536148+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2212,10 +2171,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001372"
+          "id": "event-001370"
         },
         {
-          "source_line": 1373,
+          "source_line": 1371,
           "timestamp": "2026-05-22T07:50:02.587216+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2230,10 +2189,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-001373"
+          "id": "event-001371"
         },
         {
-          "source_line": 1374,
+          "source_line": 1372,
           "timestamp": "2026-05-22T07:50:23.681836+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2251,10 +2210,10 @@
               "command": "ls -la /root/persuasion_turn_jailbreak_detect/docs/paper/main.pdf"
             }
           },
-          "id": "event-001374"
+          "id": "event-001372"
         },
         {
-          "source_line": 1375,
+          "source_line": 1373,
           "timestamp": "2026-05-22T07:50:24.083742+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2272,10 +2231,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper"
             }
           },
-          "id": "event-001375"
+          "id": "event-001373"
         },
         {
-          "source_line": 1376,
+          "source_line": 1374,
           "timestamp": "2026-05-22T07:50:24.184665+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2290,10 +2249,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 502
           },
-          "id": "event-001376"
+          "id": "event-001374"
         },
         {
-          "source_line": 1377,
+          "source_line": 1375,
           "timestamp": "2026-05-22T07:50:24.185027+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2308,10 +2267,10 @@
             "tool": "Glob",
             "elapsed_ms": 101
           },
-          "id": "event-001377"
+          "id": "event-001375"
         },
         {
-          "source_line": 1378,
+          "source_line": 1376,
           "timestamp": "2026-05-22T07:50:27.547050+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2329,10 +2288,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001378"
+          "id": "event-001376"
         },
         {
-          "source_line": 1379,
+          "source_line": 1377,
           "timestamp": "2026-05-22T07:50:27.597687+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2347,10 +2306,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001379"
+          "id": "event-001377"
         },
         {
-          "source_line": 1380,
+          "source_line": 1378,
           "timestamp": "2026-05-22T07:50:30.966052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2370,10 +2329,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-001380"
+          "id": "event-001378"
         },
         {
-          "source_line": 1381,
+          "source_line": 1379,
           "timestamp": "2026-05-22T07:50:32.221827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2388,10 +2347,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1255
           },
-          "id": "event-001381"
+          "id": "event-001379"
         },
         {
-          "source_line": 1382,
+          "source_line": 1380,
           "timestamp": "2026-05-22T07:50:39.064973+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2408,10 +2367,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-001382"
+          "id": "event-001380"
         },
         {
-          "source_line": 1383,
+          "source_line": 1381,
           "timestamp": "2026-05-22T07:50:40.021649+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2426,10 +2385,10 @@
             "tool": "Read",
             "elapsed_ms": 956
           },
-          "id": "event-001383"
+          "id": "event-001381"
         },
         {
-          "source_line": 1384,
+          "source_line": 1382,
           "timestamp": "2026-05-22T07:50:40.022117+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2446,10 +2405,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001384"
+          "id": "event-001382"
         },
         {
-          "source_line": 1385,
+          "source_line": 1383,
           "timestamp": "2026-05-22T07:50:40.223713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2466,10 +2425,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001385"
+          "id": "event-001383"
         },
         {
-          "source_line": 1386,
+          "source_line": 1384,
           "timestamp": "2026-05-22T07:50:40.927329+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2484,10 +2443,10 @@
             "tool": "Read",
             "elapsed_ms": 905
           },
-          "id": "event-001386"
+          "id": "event-001384"
         },
         {
-          "source_line": 1387,
+          "source_line": 1385,
           "timestamp": "2026-05-22T07:50:41.129780+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2502,10 +2461,10 @@
             "tool": "Read",
             "elapsed_ms": 906
           },
-          "id": "event-001387"
+          "id": "event-001385"
         },
         {
-          "source_line": 1388,
+          "source_line": 1386,
           "timestamp": "2026-05-22T07:51:26.970598+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2523,10 +2482,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001388"
+          "id": "event-001386"
         },
         {
-          "source_line": 1389,
+          "source_line": 1387,
           "timestamp": "2026-05-22T07:51:28.477989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2541,10 +2500,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 1507
           },
-          "id": "event-001389"
+          "id": "event-001387"
         },
         {
-          "source_line": 1390,
+          "source_line": 1388,
           "timestamp": "2026-05-22T07:51:36.118891+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2562,10 +2521,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001390"
+          "id": "event-001388"
         },
         {
-          "source_line": 1391,
+          "source_line": 1389,
           "timestamp": "2026-05-22T07:51:36.169692+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2580,10 +2539,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001391"
+          "id": "event-001389"
         },
         {
-          "source_line": 1392,
+          "source_line": 1390,
           "timestamp": "2026-05-22T07:51:41.844655+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2600,10 +2559,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images"
             }
           },
-          "id": "event-001392"
+          "id": "event-001390"
         },
         {
-          "source_line": 1393,
+          "source_line": 1391,
           "timestamp": "2026-05-22T07:51:41.845184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2618,10 +2577,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 0
           },
-          "id": "event-001393"
+          "id": "event-001391"
         },
         {
-          "source_line": 1394,
+          "source_line": 1392,
           "timestamp": "2026-05-22T07:51:51.925951+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2634,7 +2593,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001394"
+          "id": "event-001392"
         }
       ]
     },
@@ -2642,7 +2601,7 @@
       "number": 67,
       "messages": [
         {
-          "source_line": 1395,
+          "source_line": 1393,
           "timestamp": "2026-05-22T07:51:52.455508+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2656,10 +2615,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-001395"
+          "id": "event-001393"
         },
         {
-          "source_line": 1396,
+          "source_line": 1394,
           "timestamp": "2026-05-22T07:52:04.872720+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2677,10 +2636,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001396"
+          "id": "event-001394"
         },
         {
-          "source_line": 1397,
+          "source_line": 1395,
           "timestamp": "2026-05-22T07:52:04.923235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2695,10 +2654,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001397"
+          "id": "event-001395"
         },
         {
-          "source_line": 1398,
+          "source_line": 1396,
           "timestamp": "2026-05-22T07:52:07.938631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2715,10 +2674,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001398"
+          "id": "event-001396"
         },
         {
-          "source_line": 1399,
+          "source_line": 1397,
           "timestamp": "2026-05-22T07:52:07.989363+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2733,10 +2692,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 50
           },
-          "id": "event-001399"
+          "id": "event-001397"
         },
         {
-          "source_line": 1400,
+          "source_line": 1398,
           "timestamp": "2026-05-22T07:52:38.323192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2754,10 +2713,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001400"
+          "id": "event-001398"
         },
         {
-          "source_line": 1401,
+          "source_line": 1399,
           "timestamp": "2026-05-22T07:52:42.449845+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2772,10 +2731,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4126
           },
-          "id": "event-001401"
+          "id": "event-001399"
         },
         {
-          "source_line": 1402,
+          "source_line": 1400,
           "timestamp": "2026-05-22T07:52:45.852117+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2788,7 +2747,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001402"
+          "id": "event-001400"
         }
       ]
     },
@@ -2796,7 +2755,7 @@
       "number": 68,
       "messages": [
         {
-          "source_line": 1403,
+          "source_line": 1401,
           "timestamp": "2026-05-22T07:55:50.336404+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2810,10 +2769,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-001403"
+          "id": "event-001401"
         },
         {
-          "source_line": 1404,
+          "source_line": 1402,
           "timestamp": "2026-05-22T07:55:58.195305+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2830,10 +2789,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001404"
+          "id": "event-001402"
         },
         {
-          "source_line": 1405,
+          "source_line": 1403,
           "timestamp": "2026-05-22T07:55:58.246924+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2848,10 +2807,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 51
           },
-          "id": "event-001405"
+          "id": "event-001403"
         },
         {
-          "source_line": 1406,
+          "source_line": 1404,
           "timestamp": "2026-05-22T07:56:11.706036+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2868,10 +2827,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-001406"
+          "id": "event-001404"
         },
         {
-          "source_line": 1407,
+          "source_line": 1405,
           "timestamp": "2026-05-22T07:56:11.756797+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2886,10 +2845,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001407"
+          "id": "event-001405"
         },
         {
-          "source_line": 1408,
+          "source_line": 1406,
           "timestamp": "2026-05-22T07:56:58.850728+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2907,10 +2866,10 @@
               "project": "persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001408"
+          "id": "event-001406"
         },
         {
-          "source_line": 1409,
+          "source_line": 1407,
           "timestamp": "2026-05-22T07:57:03.474586+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2925,10 +2884,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4623
           },
-          "id": "event-001409"
+          "id": "event-001407"
         },
         {
-          "source_line": 1410,
+          "source_line": 1408,
           "timestamp": "2026-05-22T07:57:06.526625+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2941,7 +2900,7 @@
           "metadata": {
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer"
           },
-          "id": "event-001410"
+          "id": "event-001408"
         }
       ]
     },
@@ -2949,7 +2908,7 @@
       "number": 69,
       "messages": [
         {
-          "source_line": 1411,
+          "source_line": 1409,
           "timestamp": "2026-05-22T08:15:34.511082+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2963,10 +2922,10 @@
             "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
             "source": "system"
           },
-          "id": "event-001411"
+          "id": "event-001409"
         },
         {
-          "source_line": 1412,
+          "source_line": 1410,
           "timestamp": "2026-05-22T08:15:46.788515+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2984,10 +2943,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001412"
+          "id": "event-001410"
         },
         {
-          "source_line": 1413,
+          "source_line": 1411,
           "timestamp": "2026-05-22T08:15:46.839747+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3002,10 +2961,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-001413"
+          "id": "event-001411"
         },
         {
-          "source_line": 1414,
+          "source_line": 1412,
           "timestamp": "2026-05-22T08:15:50.056179+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3024,10 +2983,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001414"
+          "id": "event-001412"
         },
         {
-          "source_line": 1415,
+          "source_line": 1413,
           "timestamp": "2026-05-22T08:15:50.536510+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3042,10 +3001,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 480
           },
-          "id": "event-001415"
+          "id": "event-001413"
         },
         {
-          "source_line": 1416,
+          "source_line": 1414,
           "timestamp": "2026-05-22T08:15:50.888441+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3064,10 +3023,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-001416"
+          "id": "event-001414"
         },
         {
-          "source_line": 1417,
+          "source_line": 1415,
           "timestamp": "2026-05-22T08:15:51.291671+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3082,10 +3041,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 403
           },
-          "id": "event-001417"
+          "id": "event-001415"
         },
         {
-          "source_line": 1418,
+          "source_line": 1416,
           "timestamp": "2026-05-22T08:15:58.017434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3104,10 +3063,10 @@
               "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
             }
           },
-          "id": "event-001418"
+          "id": "event-001416"
         },
         {
-          "source_line": 1419,
+          "source_line": 1417,
           "timestamp": "2026-05-22T08:15:58.571773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3122,10 +3081,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 554
           },
-          "id": "event-001419"
+          "id": "event-001417"
         },
         {
-          "source_line": 1420,
+          "source_line": 1418,
           "timestamp": "2026-05-22T08:15:59.476263+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3143,10 +3102,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001420"
+          "id": "event-001418"
         },
         {
-          "source_line": 1421,
+          "source_line": 1419,
           "timestamp": "2026-05-22T08:15:59.476741+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3161,10 +3120,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-001421"
+          "id": "event-001419"
         },
         {
-          "source_line": 1422,
+          "source_line": 1420,
           "timestamp": "2026-05-22T08:16:08.161240+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3182,10 +3141,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001422"
+          "id": "event-001420"
         },
         {
-          "source_line": 1423,
+          "source_line": 1421,
           "timestamp": "2026-05-22T08:16:08.262512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3200,10 +3159,10 @@
             "tool": "Glob",
             "elapsed_ms": 101
           },
-          "id": "event-001423"
+          "id": "event-001421"
         },
         {
-          "source_line": 1424,
+          "source_line": 1422,
           "timestamp": "2026-05-22T08:16:08.313182+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3221,10 +3180,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
             }
           },
-          "id": "event-001424"
+          "id": "event-001422"
         },
         {
-          "source_line": 1425,
+          "source_line": 1423,
           "timestamp": "2026-05-22T08:16:08.364070+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3239,10 +3198,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-001425"
+          "id": "event-001423"
         },
         {
-          "source_line": 1426,
+          "source_line": 1424,
           "timestamp": "2026-05-22T08:16:16.444125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3261,10 +3220,10 @@
               "fields": "['exp_id', 'status', 'conclusion']"
             }
           },
-          "id": "event-001426"
+          "id": "event-001424"
         },
         {
-          "source_line": 1427,
+          "source_line": 1425,
           "timestamp": "2026-05-22T08:16:16.896030+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3279,10 +3238,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 451
           },
-          "id": "event-001427"
+          "id": "event-001425"
         },
         {
-          "source_line": 1428,
+          "source_line": 1426,
           "timestamp": "2026-05-22T08:16:17.147324+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3301,10 +3260,10 @@
               "limit": "50"
             }
           },
-          "id": "event-001428"
+          "id": "event-001426"
         },
         {
-          "source_line": 1429,
+          "source_line": 1427,
           "timestamp": "2026-05-22T08:16:17.198047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3319,10 +3278,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001429"
+          "id": "event-001427"
         },
         {
-          "source_line": 1430,
+          "source_line": 1428,
           "timestamp": "2026-05-22T08:16:24.690768+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3341,10 +3300,10 @@
               "limit": "60"
             }
           },
-          "id": "event-001430"
+          "id": "event-001428"
         },
         {
-          "source_line": 1431,
+          "source_line": 1429,
           "timestamp": "2026-05-22T08:16:25.193137+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3359,10 +3318,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001431"
+          "id": "event-001429"
         },
         {
-          "source_line": 1432,
+          "source_line": 1430,
           "timestamp": "2026-05-22T08:16:25.394255+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3381,10 +3340,10 @@
               "limit": "60"
             }
           },
-          "id": "event-001432"
+          "id": "event-001430"
         },
         {
-          "source_line": 1433,
+          "source_line": 1431,
           "timestamp": "2026-05-22T08:16:25.444932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3399,10 +3358,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001433"
+          "id": "event-001431"
         },
         {
-          "source_line": 1434,
+          "source_line": 1432,
           "timestamp": "2026-05-22T08:16:33.928101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3423,10 +3382,10 @@
               "-n": "True"
             }
           },
-          "id": "event-001434"
+          "id": "event-001432"
         },
         {
-          "source_line": 1435,
+          "source_line": 1433,
           "timestamp": "2026-05-22T08:16:34.029056+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3441,10 +3400,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-001435"
+          "id": "event-001433"
         },
         {
-          "source_line": 1436,
+          "source_line": 1434,
           "timestamp": "2026-05-22T08:16:36.789763+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3463,10 +3422,10 @@
               "limit": "40"
             }
           },
-          "id": "event-001436"
+          "id": "event-001434"
         },
         {
-          "source_line": 1437,
+          "source_line": 1435,
           "timestamp": "2026-05-22T08:16:36.890726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3481,10 +3440,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001437"
+          "id": "event-001435"
         },
         {
-          "source_line": 1438,
+          "source_line": 1436,
           "timestamp": "2026-05-22T08:17:05.664820+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3506,10 +3465,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-001438"
+          "id": "event-001436"
         },
         {
-          "source_line": 1439,
+          "source_line": 1437,
           "timestamp": "2026-05-22T08:17:05.715644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3524,10 +3483,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001439"
+          "id": "event-001437"
         },
         {
-          "source_line": 1440,
+          "source_line": 1438,
           "timestamp": "2026-05-22T08:17:12.241377+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3542,6 +3501,46 @@
             "tool": "Read",
             "tool_args": {
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/review_reports/round_14.md"
+            }
+          },
+          "id": "event-001438"
+        },
+        {
+          "source_line": 1439,
+          "timestamp": "2026-05-22T08:17:12.242280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tround: 14\n3\treview_mode: fresh\n4\toverall_score: 3.0\n5\ttimestamp: 2026-05-22T08:12:58.857727+00:00\n6\treviewer_ids: [1, 2]\n7\tcross_response_reviewer_ids: [1, 2]\n8\tforce_resubmit: False\n9\t---\n10\t\n11\t# 审稿报告 — Round 14 (Fresh)\n12\t\n13\t**论文**: DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n14\t**目标 Venue**: EMNLP 2026 (ARR Long Paper)\n15\t**截止日期**: 2026-05-25\n16\t**审稿模式**: 圆桌 2 人 × 1 轮 + 交叉分享\n17\t- Reviewer 1: 方法严谨性 + 实验设计 → 3.5 (Borderline Conference)\n18\t- Reviewer 2: 新颖性 + 完整性 + 写作质量 → 3.0 (Findings)\n19\t\n20\t---\n21\t\n22\t## Summary\n23\t\n24\t论文通过 7 个 Stage-1 编码器适配变体和冻结 BiGRU Stage-2 分类器的受控消融，系统性地分解多轮越狱检测中的跨攻击泛化机制。核心发现：(1) 领域暴露 (DAPT) 是主要泛化机制（弥合 ~60pp OOD gap），(2) 分类监督增加稳定性（variance 降低 4-20×）但不改变检测上限，(3) 标签粒度和时序顺序无关紧要，(4) 标签正确性仅在结构复杂攻击上有中等效应 (d=0.44)。论文提出\"攻击侧 + 良性侧\"双轴泛化框架，在 4 个攻击族、3 个编码器架构上验证。\n25\t\n26\t---\n27\t\n28\t## Strengths\n29\t\n30\t**S1. 消融设计的严谨性** [R1-S1, R2-S1, 共识]\n31\t7 个 Stage-1 变体各自精确隔离单一因素（Table 1），冻结 Stage-2 确保下游条件一致。这是该领域少见的真正受控实验。Scrambled labels 实验尤其精巧——保留分类结构同时破坏语义，直接检验标签正确性。\n32\t\n33\t**S2. 统计分析远超平均水平** [R1-S2, R2-S3, 共识]\n34\tBootstrap CIs、配对置换检验、TOST 等价性检验（扩展至 10 seeds）、Cohen's d、McNemar 检验、CKA 分析、Fisher ratio、participation ratio——统计工具箱的丰富程度在 NLP 论文中罕见。明确标注 population vs. Bessel-corrected std 的差异。\n35\t\n36\t**S3. 异常坦诚的局限性披露** [R1-S3, R2-S2, 共识]\n37\tWildChat FPR 68.1%、ToxicChat 证据层级反转、cross-LLM 90% FPR、RoBERTa-large DAPT regression——多数论文会隐藏这些结果。这种透明度值得赞赏。\n38\t\n39\t**S4. 约束性负面结果的独立价值** [R1-S5, R2-S2, 共识]\n40\t时序顺序无关 (Δ<1pp)、标签粒度无关 (binary ≈ 9-class)、mean pooling ≈ BiGRU——这些\"无效\"发现对该领域有指导意义。\n41\t\n42\t**S5. 跨架构验证** [R1-S4]\n43\tDeBERTa-v3-base, RoBERTa-base, RoBERTa-large 三个编码器 + BERT-base proxy，证明 DAPT 效果不依赖特定架构。RoBERTa-large 反转的诚实报告进一步增强可信度。\n44\t\n45\t**S6. 可复现性** [R1 4.5/5, R2 4/5]\n46\t23 页附录含 30+ 表格，超参数完整，Stage-1/Stage-2 方差分离实验，承诺代码和数据开源。\n47\t\n48\t---\n49\t\n50\t## Weaknesses\n51\t\n52\t### Must-Fix（影响接收决定）\n53\t\n54\t**N1** [critical, R1-N1 + R2-W1, 共识] **ToxicChat 证据层级反转动摇核心 claim 的外部有效性**\n55\t\n56\t在唯一的人类数据验证中，JB-MLM (0.837±0.013) 大幅领先 9-class (0.596±0.087)，24p\n…[truncated 10575 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001439"
+        },
+        {
+          "source_line": 1440,
+          "timestamp": "2026-05-22T08:17:18.518309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "filters": "{'exp_id': 'exp17'}",
+              "fields": "['*']"
             }
           },
           "id": "event-001440"

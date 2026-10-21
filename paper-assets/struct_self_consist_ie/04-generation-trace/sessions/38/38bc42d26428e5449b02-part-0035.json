@@ -7,243 +7,6 @@
       "messages": [
         {
           "source_line": 6121,
-          "timestamp": "2026-05-21T00:22:10.485820+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"current_steps\\\\\\\": 41000, \\\\\\\"total_steps\\\\\\\": 41180, \\\\\\\"loss\\\\\\\": 0.0052, \\\\\\\"lr\\\\\\\": 1.176957218174124e-08, \\\\\\\"epoch\\\\\\\": 4.978204116325664, \\\\\\\"percentage\\\\\\\": 99.56, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"1 day, 14:14:41\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"0:10:04\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 41000, \\\\\\\"total_steps\\\\\\\": 41180, \\\\\\\"eval_loss\\\\\\\": 0.04117218032479286, \\\\\\\"epoch\\\\\\\": 4.978204116325664, \\\\\\\"percentage\\\\\\\": 99.56, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"1 day, 14:28:31\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"0:10:08\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 41050, \\\\\\\"total_steps\\\\\\\": 41180, \\\\\\\"loss\\\\\\\": 0.0049, \\\\\\\"lr\\\\\\\": 6.165242662425908e-09, \\\\\\\"epoch\\\\\\\": 4.984275393115172, \\\\\\\"percentage\\\\\\\": 99.68, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"1 day, 14:30:38\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"0:07:19\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 41100, \\\\\\\"total_steps\\\\\\\": 41180, \\\\\\\"loss\\\\\\\": 0.0061, \\\\\\\"lr\\\\\\\": 2.3571128632049467e-09, \\\\\\\"epoch\\\\\\\": 4.990346669904681, \\\\\\\"percentage\\\\\\\": 99.81, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"1 day, 14:32:42\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"0:04:30\\\\\\\"}\\\\n{\\\\\\\"current_steps\\\\\\\": 41150, \\\\\\\"total_steps\\\\\\\": 41180, \\\\\\\"loss\\\\\\\": 0.0053, \\\\\\\"lr\\\\\\\": 3.4525118990380577e-10, \\\\\\\"epoch\\\\\\\": 4.99641794669419, \\\\\\\"percentage\\\\\\\": 99.93, \\\\\\\"elapsed_time\\\\\\\": \\\\\\\"1 day, 14:34:46\\\\\\\", \\\\\\\"remaining_time\\\\\\\": \\\\\\\"0:01:41\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "elapsed_ms": 953
-          },
-          "id": "event-006121"
-        },
-        {
-          "source_line": 6122,
-          "timestamp": "2026-05-21T00:22:29.077588+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "struct_self_consist_ie",
-              "filters": "{'status': 'RUNNING'}",
-              "fields": "['*']",
-              "limit": "2"
-            }
-          },
-          "id": "event-006122"
-        },
-        {
-          "source_line": 6123,
-          "timestamp": "2026-05-21T00:22:30.030782+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_32b_inference_fewnerd\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:21:12.060Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:21:33.902Z\\\", \\\"hypothesis\\\": \\\"32B fine-tuned model (Qwen2.5-32B-Instruct QLoRA, best checkpoint-32000) FewNERD inference with N=8 SC sampling. Scaling from 8B→32B should improve per-sample quality and strengthen SC diagnostic correlation (Fleiss kappa / Soft-Jaccard vs F1). Comparison baseline: Qwen3-8B-FT FewNERD results.\\\", \\\"parent\\\": \\\"exp_qwen25_32b_fewnerd\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/run_mvp_pilot.py --model_path checkpoints/qwen25-32b-fewnerd-merged --data_dir data/fewnerd --dataset fewnerd --n_samples 8 --temperature 1.0 --seed 42 --output_dir output/exp_32b_fewnerd_n8_s42 --tensor_parallel 4 --collect_logprobs\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-32B-Instruct-FT (merged checkpoint-32000)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-merged\\\", \\\"eval_data\\\": \\\"fewnerd test set\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/inference_32b_fewnerd_n8_s42.log\\\", \\\"pid\\\": 978386}}, \\\"exp_conll_t12_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:41:59.173Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:42:19.946Z\\\", \\\"hypothesis\\\": \\\"CoNLL temperature ablation (T=1.2, seed=123): additional seed for statistical power, complementing seed=42 results. N=8, Qwen3-8B-FT, CoNLL-2003.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --n_samples 8 --temperature 1.2 --seed 123 --output_dir output/exp_conll_t12_seed123\\\", \\\"server\\\": \\\"autodl-5090-c\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3\n…[truncated 181 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 953
-          },
-          "id": "event-006123"
-        },
-        {
-          "source_line": 6124,
-          "timestamp": "2026-05-21T00:22:30.181819+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__ssh_read_only"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "tool_args": {
-              "server": "autodl-5090",
-              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
-            }
-          },
-          "id": "event-006124"
-        },
-        {
-          "source_line": 6125,
-          "timestamp": "2026-05-21T00:22:30.533273+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__ssh_read_only"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "tool_args": {
-              "server": "autodl-5090-b",
-              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
-            }
-          },
-          "id": "event-006125"
-        },
-        {
-          "source_line": 6126,
-          "timestamp": "2026-05-21T00:22:30.684072+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 31302 MiB, 32607 MiB\\\\n1, 0 %, 31302 MiB, 32607 MiB\\\\n2, 0 %, 31302 MiB, 32607 MiB\\\\n3, 0 %, 31302 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "elapsed_ms": 502
-          },
-          "id": "event-006126"
-        },
-        {
-          "source_line": 6127,
-          "timestamp": "2026-05-21T00:22:31.536822+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 88 %, 30234 MiB, 32607 MiB\\\\n1, 93 %, 30232 MiB, 32607 MiB\\\\n2, 94 %, 30920 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "elapsed_ms": 1003
-          },
-          "id": "event-006127"
-        },
-        {
-          "source_line": 6128,
-          "timestamp": "2026-05-21T00:22:45.748519+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__tail_training_logs"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__tail_training_logs",
-            "tool_args": {
-              "server": "autodl-5090",
-              "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/inference_32b_fewnerd_n8_s42.log",
-              "n": "30"
-            }
-          },
-          "id": "event-006128"
-        },
-        {
-          "source_line": 6129,
-          "timestamp": "2026-05-21T00:22:46.300999+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"(Worker_TP0 pid=978671) INFO 05-21 08:21:06 [monitor.py:76] Initial profiling/warmup run took 1.82 s\\\", \\\"(Worker_TP0 pid=978671) INFO 05-21 08:21:13 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\", \\\"(Worker_TP0 pid=978671) INFO 05-21 08:21:13 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\", \\\"(Worker_TP3 pid=978674) INFO 05-21 08:21:13 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\", \\\"(Worker_TP3 pid=978674) INFO 05-21 08:21:13 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\", \\\"(Worker_TP2 pid=978673) INFO 05-21 08:21:13 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\", \\\"(Worker_TP2 pid=978673) INFO 05-21 08:21:13 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\", \\\"(Worker_TP1 pid=978672) INFO 05-21 08:21:13 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\\", \\\"(Worker_TP1 pid=978672) INFO 05-21 08:21:13 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\\", \\\"(Worker_TP1 pid=978672) INFO 05-21 08:21:16 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 1.01 GiB total\\\", \\\"(Worker_TP3 pid=978674) INFO 05-21 08:21:16 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 1.01 GiB total\\\", \\\"(Worker_TP0 pid=978671) INFO 05-21 08:21:16 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 1.01 GiB total\\\", \\\"(Worker_TP2 pid=978673) INFO 05-21 08:21:16 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 1.01 GiB total\\\", \\\"(Worker_TP1 pid=978672) INFO 05-21 08:21:17 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accou\n…[truncated 6527 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__tail_training_logs",
-            "elapsed_ms": 552
-          },
-          "id": "event-006129"
-        },
-        {
-          "source_line": 6130,
-          "timestamp": "2026-05-21T00:22:46.552237+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__ssh_read_only"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "tool_args": {
-              "server": "autodl-5090",
-              "command": "ls -lh /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-merged/config.json"
-            }
-          },
-          "id": "event-006130"
-        },
-        {
-          "source_line": 6131,
-          "timestamp": "2026-05-21T00:22:46.903446+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2.1K May 21 08:18 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-merged/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "elapsed_ms": 351
-          },
-          "id": "event-006131"
-        },
-        {
-          "source_line": 6132,
-          "timestamp": "2026-05-21T00:23:20.498496+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-            "tool_args": {
-              "text": "## 审查报告 — worker_merge_32b_fewnerd + 32B 推理启动\n\n**结论**: PASS（附 warning）\n\n### 发现\n\n- [severity: info] **32B 训练完成**：41180 steps / 5 epochs / 38.5h。最佳 checkpoint-32000 (eval_loss=0.0334)，最终 eval_loss=0.0412。**epoch 3.9 后 overfitting** — 使用 checkpoint-32000 是正确决策 ✅\n\n- [severity: info] **Merge 完成**：合并模型位于 5090:`checkpoints/qwen25-32b-fewnerd-merged/`（08:18 UTC 创建）。\n\n- [severity: info] **32B 推理已启动** (exp_32b_inference_fewnerd)：5090 上 tensor_parallel=4，PID 978386。Prompt 渲染 99%（37338/37648），即将进入实际推理。GPU 白名单合规 ✅。N=8, T=1.0, seed=42, collect_logprobs ✅。\n\n- [severity: warning] **Overfitting 需在论文中披露**：eval_loss 从 0.0334 (step 32000) 升至 0.0412 (step 41180)，+23%。建议在 training details / appendix 中注明使用 early-stop checkpoint，而非最终模型。\n\n- [severity: warning] **Spec 不完整**：exp_32b_inference_fewnerd 的 `data_count=0`（应为 37648），缺少 `gpu` 字段。\n\n- [severity: warning] **5090-b:cuda:3 持续空闲**。三次报告均未安排实验。FewNERD extra-seed 或 CoNLL T=1.0 baseline (seed=123) 可利用此卡。",
-              "project": "struct_self_consist_ie"
-            }
-          },
-          "id": "event-006132"
-        },
-        {
-          "source_line": 6133,
           "timestamp": "2026-05-21T00:23:24.111437+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -258,10 +21,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3612
           },
-          "id": "event-006133"
+          "id": "event-006121"
         },
         {
-          "source_line": 6134,
+          "source_line": 6122,
           "timestamp": "2026-05-21T00:23:25.855803+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -274,7 +37,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006134"
+          "id": "event-006122"
         }
       ]
     },
@@ -282,7 +45,7 @@
       "number": 337,
       "messages": [
         {
-          "source_line": 6135,
+          "source_line": 6123,
           "timestamp": "2026-05-21T00:38:12.228579+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -296,10 +59,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-006135"
+          "id": "event-006123"
         },
         {
-          "source_line": 6136,
+          "source_line": 6124,
           "timestamp": "2026-05-21T00:38:21.984436+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -318,10 +81,10 @@
               "fields": "['status', 'hypothesis', 'updated_at', 'server', 'gpu', 'notes']"
             }
           },
-          "id": "event-006136"
+          "id": "event-006124"
         },
         {
-          "source_line": 6137,
+          "source_line": 6125,
           "timestamp": "2026-05-21T00:38:22.737462+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -336,10 +99,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 753
           },
-          "id": "event-006137"
+          "id": "event-006125"
         },
         {
-          "source_line": 6138,
+          "source_line": 6126,
           "timestamp": "2026-05-21T00:38:22.788119+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -357,10 +120,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006138"
+          "id": "event-006126"
         },
         {
-          "source_line": 6139,
+          "source_line": 6127,
           "timestamp": "2026-05-21T00:38:23.842064+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -375,10 +138,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1053
           },
-          "id": "event-006139"
+          "id": "event-006127"
         },
         {
-          "source_line": 6140,
+          "source_line": 6128,
           "timestamp": "2026-05-21T00:38:31.221334+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -397,10 +160,10 @@
               "n": "5"
             }
           },
-          "id": "event-006140"
+          "id": "event-006128"
         },
         {
-          "source_line": 6141,
+          "source_line": 6129,
           "timestamp": "2026-05-21T00:38:31.943724+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -415,10 +178,10 @@
             "tool": "mcp__agent-ml-research__tail_training_logs",
             "elapsed_ms": 722
           },
-          "id": "event-006141"
+          "id": "event-006129"
         },
         {
-          "source_line": 6142,
+          "source_line": 6130,
           "timestamp": "2026-05-21T00:38:47.434317+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -431,7 +194,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006142"
+          "id": "event-006130"
         }
       ]
     },
@@ -439,7 +202,7 @@
       "number": 338,
       "messages": [
         {
-          "source_line": 6143,
+          "source_line": 6131,
           "timestamp": "2026-05-21T00:38:47.951715+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -453,10 +216,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-006143"
+          "id": "event-006131"
         },
         {
-          "source_line": 6144,
+          "source_line": 6132,
           "timestamp": "2026-05-21T00:38:57.387293+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -475,10 +238,10 @@
               "fields": "['status', 'hypothesis', 'updated_at', 'notes']"
             }
           },
-          "id": "event-006144"
+          "id": "event-006132"
         },
         {
-          "source_line": 6145,
+          "source_line": 6133,
           "timestamp": "2026-05-21T00:38:58.746383+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -496,10 +259,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006145"
+          "id": "event-006133"
         },
         {
-          "source_line": 6146,
+          "source_line": 6134,
           "timestamp": "2026-05-21T00:38:59.298317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -514,10 +277,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 1911
           },
-          "id": "event-006146"
+          "id": "event-006134"
         },
         {
-          "source_line": 6147,
+          "source_line": 6135,
           "timestamp": "2026-05-21T00:39:00.204189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -532,10 +295,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1457
           },
-          "id": "event-006147"
+          "id": "event-006135"
         },
         {
-          "source_line": 6148,
+          "source_line": 6136,
           "timestamp": "2026-05-21T00:39:15.350662+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -554,10 +317,10 @@
               "n": "5"
             }
           },
-          "id": "event-006148"
+          "id": "event-006136"
         },
         {
-          "source_line": 6149,
+          "source_line": 6137,
           "timestamp": "2026-05-21T00:39:15.754081+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -572,10 +335,10 @@
             "tool": "mcp__agent-ml-research__tail_training_logs",
             "elapsed_ms": 403
           },
-          "id": "event-006149"
+          "id": "event-006137"
         },
         {
-          "source_line": 6150,
+          "source_line": 6138,
           "timestamp": "2026-05-21T00:39:15.754556+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +357,10 @@
               "n": "3"
             }
           },
-          "id": "event-006150"
+          "id": "event-006138"
         },
         {
-          "source_line": 6151,
+          "source_line": 6139,
           "timestamp": "2026-05-21T00:39:46.154243+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +375,10 @@
             "tool": "mcp__agent-ml-research__tail_training_logs",
             "elapsed_ms": 30399
           },
-          "id": "event-006151"
+          "id": "event-006139"
         },
         {
-          "source_line": 6152,
+          "source_line": 6140,
           "timestamp": "2026-05-21T00:40:05.325300+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -633,10 +396,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_t12_s42/report.json"
             }
           },
-          "id": "event-006152"
+          "id": "event-006140"
         },
         {
-          "source_line": 6153,
+          "source_line": 6141,
           "timestamp": "2026-05-21T00:40:05.777349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -651,10 +414,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 452
           },
-          "id": "event-006153"
+          "id": "event-006141"
         },
         {
-          "source_line": 6154,
+          "source_line": 6142,
           "timestamp": "2026-05-21T00:40:43.869380+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -672,10 +435,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006154"
+          "id": "event-006142"
         },
         {
-          "source_line": 6155,
+          "source_line": 6143,
           "timestamp": "2026-05-21T00:40:48.346263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -690,10 +453,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4476
           },
-          "id": "event-006155"
+          "id": "event-006143"
         },
         {
-          "source_line": 6156,
+          "source_line": 6144,
           "timestamp": "2026-05-21T00:40:50.098077+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -706,7 +469,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006156"
+          "id": "event-006144"
         }
       ]
     },
@@ -714,7 +477,7 @@
       "number": 339,
       "messages": [
         {
-          "source_line": 6157,
+          "source_line": 6145,
           "timestamp": "2026-05-21T00:40:50.648724+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -728,10 +491,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-006157"
+          "id": "event-006145"
         },
         {
-          "source_line": 6158,
+          "source_line": 6146,
           "timestamp": "2026-05-21T00:41:00.668853+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -750,10 +513,10 @@
               "fields": "['status', 'hypothesis', 'updated_at', 'server', 'gpu', 'notes']"
             }
           },
-          "id": "event-006158"
+          "id": "event-006146"
         },
         {
-          "source_line": 6159,
+          "source_line": 6147,
           "timestamp": "2026-05-21T00:41:01.521443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -768,10 +531,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 852
           },
-          "id": "event-006159"
+          "id": "event-006147"
         },
         {
-          "source_line": 6160,
+          "source_line": 6148,
           "timestamp": "2026-05-21T00:41:01.824283+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -789,10 +552,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006160"
+          "id": "event-006148"
         },
         {
-          "source_line": 6161,
+          "source_line": 6149,
           "timestamp": "2026-05-21T00:41:04.785997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -807,10 +570,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2961
           },
-          "id": "event-006161"
+          "id": "event-006149"
         },
         {
-          "source_line": 6162,
+          "source_line": 6150,
           "timestamp": "2026-05-21T00:41:22.228191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -829,10 +592,10 @@
               "limit": "8"
             }
           },
-          "id": "event-006162"
+          "id": "event-006150"
         },
         {
-          "source_line": 6163,
+          "source_line": 6151,
           "timestamp": "2026-05-21T00:41:22.884273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -847,10 +610,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 656
           },
-          "id": "event-006163"
+          "id": "event-006151"
         },
         {
-          "source_line": 6164,
+          "source_line": 6152,
           "timestamp": "2026-05-21T00:41:58.130674+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -868,10 +631,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006164"
+          "id": "event-006152"
         },
         {
-          "source_line": 6165,
+          "source_line": 6153,
           "timestamp": "2026-05-21T00:42:01.945346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -886,10 +649,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3814
           },
-          "id": "event-006165"
+          "id": "event-006153"
         },
         {
-          "source_line": 6166,
+          "source_line": 6154,
           "timestamp": "2026-05-21T00:42:03.390051+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -902,7 +665,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006166"
+          "id": "event-006154"
         }
       ]
     },
@@ -910,7 +673,7 @@
       "number": 340,
       "messages": [
         {
-          "source_line": 6167,
+          "source_line": 6155,
           "timestamp": "2026-05-21T00:46:55.210537+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -924,10 +687,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-006167"
+          "id": "event-006155"
         },
         {
-          "source_line": 6168,
+          "source_line": 6156,
           "timestamp": "2026-05-21T00:47:08.686546+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -946,10 +709,10 @@
               "filters": "{'exp_id': 'exp_14b_inference_fewnerd'}"
             }
           },
-          "id": "event-006168"
+          "id": "event-006156"
         },
         {
-          "source_line": 6169,
+          "source_line": 6157,
           "timestamp": "2026-05-21T00:47:09.700292+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -967,10 +730,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006169"
+          "id": "event-006157"
         },
         {
-          "source_line": 6170,
+          "source_line": 6158,
           "timestamp": "2026-05-21T00:47:11.073245+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -985,10 +748,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 2386
           },
-          "id": "event-006170"
+          "id": "event-006158"
         },
         {
-          "source_line": 6171,
+          "source_line": 6159,
           "timestamp": "2026-05-21T00:47:13.086310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1003,10 +766,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3386
           },
-          "id": "event-006171"
+          "id": "event-006159"
         },
         {
-          "source_line": 6172,
+          "source_line": 6160,
           "timestamp": "2026-05-21T00:47:20.362284+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1025,10 +788,10 @@
               "limit": "10"
             }
           },
-          "id": "event-006172"
+          "id": "event-006160"
         },
         {
-          "source_line": 6173,
+          "source_line": 6161,
           "timestamp": "2026-05-21T00:47:20.966173+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1043,10 +806,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 603
           },
-          "id": "event-006173"
+          "id": "event-006161"
         },
         {
-          "source_line": 6174,
+          "source_line": 6162,
           "timestamp": "2026-05-21T00:47:51.974987+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1064,10 +827,10 @@
               "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/fewnerd_n8/"
             }
           },
-          "id": "event-006174"
+          "id": "event-006162"
         },
         {
-          "source_line": 6175,
+          "source_line": 6163,
           "timestamp": "2026-05-21T00:47:52.727437+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1085,10 +848,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*.log\" -newer /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/fewnerd_n4 -path \"*14b*\""
             }
           },
-          "id": "event-006175"
+          "id": "event-006163"
         },
         {
-          "source_line": 6176,
+          "source_line": 6164,
           "timestamp": "2026-05-21T00:47:53.078780+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1103,10 +866,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1103
           },
-          "id": "event-006176"
+          "id": "event-006164"
         },
         {
-          "source_line": 6177,
+          "source_line": 6165,
           "timestamp": "2026-05-21T00:47:53.930916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1121,10 +884,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1203
           },
-          "id": "event-006177"
+          "id": "event-006165"
         },
         {
-          "source_line": 6178,
+          "source_line": 6166,
           "timestamp": "2026-05-21T00:47:57.745822+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1142,10 +905,10 @@
               "command": "ps -p 252310 -o pid,stat,etime,cmd"
             }
           },
-          "id": "event-006178"
+          "id": "event-006166"
         },
         {
-          "source_line": 6179,
+          "source_line": 6167,
           "timestamp": "2026-05-21T00:47:58.297461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1163,10 +926,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/ -name \"*14b*n8*\" -type f"
             }
           },
-          "id": "event-006179"
+          "id": "event-006167"
         },
         {
-          "source_line": 6180,
+          "source_line": 6168,
           "timestamp": "2026-05-21T00:47:58.448400+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1181,10 +944,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 702
           },
-          "id": "event-006180"
+          "id": "event-006168"
         },
         {
-          "source_line": 6181,
+          "source_line": 6169,
           "timestamp": "2026-05-21T00:47:59.703241+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1199,10 +962,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1405
           },
-          "id": "event-006181"
+          "id": "event-006169"
         },
         {
-          "source_line": 6182,
+          "source_line": 6170,
           "timestamp": "2026-05-21T00:48:11.952705+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1220,10 +983,10 @@
               "command": "ps -p 224789 -o pid,stat,etime,cmd"
             }
           },
-          "id": "event-006182"
+          "id": "event-006170"
         },
         {
-          "source_line": 6183,
+          "source_line": 6171,
           "timestamp": "2026-05-21T00:48:12.906288+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1238,10 +1001,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 953
           },
-          "id": "event-006183"
+          "id": "event-006171"
         },
         {
-          "source_line": 6184,
+          "source_line": 6172,
           "timestamp": "2026-05-21T00:48:12.906700+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1260,10 +1023,10 @@
               "n": "3"
             }
           },
-          "id": "event-006184"
+          "id": "event-006172"
         },
         {
-          "source_line": 6185,
+          "source_line": 6173,
           "timestamp": "2026-05-21T00:48:13.709650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1278,10 +1041,10 @@
             "tool": "mcp__agent-ml-research__tail_training_logs",
             "elapsed_ms": 802
           },
-          "id": "event-006185"
+          "id": "event-006173"
         },
         {
-          "source_line": 6186,
+          "source_line": 6174,
           "timestamp": "2026-05-21T00:48:43.536231+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1299,10 +1062,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006186"
+          "id": "event-006174"
         },
         {
-          "source_line": 6187,
+          "source_line": 6175,
           "timestamp": "2026-05-21T00:48:47.872192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1317,10 +1080,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4335
           },
-          "id": "event-006187"
+          "id": "event-006175"
         },
         {
-          "source_line": 6188,
+          "source_line": 6176,
           "timestamp": "2026-05-21T00:48:51.132199+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1333,7 +1096,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006188"
+          "id": "event-006176"
         }
       ]
     },
@@ -1341,7 +1104,7 @@
       "number": 341,
       "messages": [
         {
-          "source_line": 6189,
+          "source_line": 6177,
           "timestamp": "2026-05-21T00:48:51.676683+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1355,10 +1118,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-006189"
+          "id": "event-006177"
         },
         {
-          "source_line": 6190,
+          "source_line": 6178,
           "timestamp": "2026-05-21T00:49:03.592352+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1376,10 +1139,10 @@
               "command": "ps -p 252310 -o pid,stat,etime"
             }
           },
-          "id": "event-006190"
+          "id": "event-006178"
         },
         {
-          "source_line": 6191,
+          "source_line": 6179,
           "timestamp": "2026-05-21T00:49:05.181175+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1394,10 +1157,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1588
           },
-          "id": "event-006191"
+          "id": "event-006179"
         },
         {
-          "source_line": 6192,
+          "source_line": 6180,
           "timestamp": "2026-05-21T00:49:10.583562+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1410,7 +1173,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006192"
+          "id": "event-006180"
         }
       ]
     },
@@ -1418,7 +1181,7 @@
       "number": 342,
       "messages": [
         {
-          "source_line": 6193,
+          "source_line": 6181,
           "timestamp": "2026-05-21T00:49:11.164530+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1432,10 +1195,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_run_conll_t_ablation_s456_20260521t004153"
           },
-          "id": "event-006193"
+          "id": "event-006181"
         },
         {
-          "source_line": 6194,
+          "source_line": 6182,
           "timestamp": "2026-05-21T00:49:18.473809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1454,10 +1217,10 @@
               "fields": "['status', 'hypothesis', 'updated_at', 'server', 'gpu', 'spec']"
             }
           },
-          "id": "event-006194"
+          "id": "event-006182"
         },
         {
-          "source_line": 6195,
+          "source_line": 6183,
           "timestamp": "2026-05-21T00:49:19.128164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1472,10 +1235,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 654
           },
-          "id": "event-006195"
+          "id": "event-006183"
         },
         {
-          "source_line": 6196,
+          "source_line": 6184,
           "timestamp": "2026-05-21T00:49:33.685270+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1493,10 +1256,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006196"
+          "id": "event-006184"
         },
         {
-          "source_line": 6197,
+          "source_line": 6185,
           "timestamp": "2026-05-21T00:49:34.538434+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1511,10 +1274,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 853
           },
-          "id": "event-006197"
+          "id": "event-006185"
         },
         {
-          "source_line": 6198,
+          "source_line": 6186,
           "timestamp": "2026-05-21T00:50:01.371165+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1532,10 +1295,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006198"
+          "id": "event-006186"
         },
         {
-          "source_line": 6199,
+          "source_line": 6187,
           "timestamp": "2026-05-21T00:50:05.475800+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1550,10 +1313,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4104
           },
-          "id": "event-006199"
+          "id": "event-006187"
         },
         {
-          "source_line": 6200,
+          "source_line": 6188,
           "timestamp": "2026-05-21T00:50:09.131513+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1566,7 +1329,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006200"
+          "id": "event-006188"
         }
       ]
     },
@@ -1574,7 +1337,7 @@
       "number": 343,
       "messages": [
         {
-          "source_line": 6201,
+          "source_line": 6189,
           "timestamp": "2026-05-21T00:50:22.059763+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1588,10 +1351,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_run_fewnerd_t_ablation_collect_and_next_20260521t004210"
           },
-          "id": "event-006201"
+          "id": "event-006189"
         },
         {
-          "source_line": 6202,
+          "source_line": 6190,
           "timestamp": "2026-05-21T00:50:29.010881+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1610,10 +1373,10 @@
               "fields": "['status', 'hypothesis', 'updated_at', 'server', 'gpu', 'spec']"
             }
           },
-          "id": "event-006202"
+          "id": "event-006190"
         },
         {
-          "source_line": 6203,
+          "source_line": 6191,
           "timestamp": "2026-05-21T00:50:29.915293+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1628,10 +1391,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 904
           },
-          "id": "event-006203"
+          "id": "event-006191"
         },
         {
-          "source_line": 6204,
+          "source_line": 6192,
           "timestamp": "2026-05-21T00:50:29.965838+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1649,10 +1412,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-006204"
+          "id": "event-006192"
         },
         {
-          "source_line": 6205,
+          "source_line": 6193,
           "timestamp": "2026-05-21T00:50:30.769297+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1667,10 +1430,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 803
           },
-          "id": "event-006205"
+          "id": "event-006193"
         },
         {
-          "source_line": 6206,
+          "source_line": 6194,
           "timestamp": "2026-05-21T00:50:51.170353+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1688,10 +1451,10 @@
               "command": "ps -p 296744,296880,297143,297409 -o pid,stat,etime"
             }
           },
-          "id": "event-006206"
+          "id": "event-006194"
         },
         {
-          "source_line": 6207,
+          "source_line": 6195,
           "timestamp": "2026-05-21T00:50:51.672700+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1706,10 +1469,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 502
           },
-          "id": "event-006207"
+          "id": "event-006195"
         },
         {
-          "source_line": 6208,
+          "source_line": 6196,
           "timestamp": "2026-05-21T00:50:51.873735+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1728,10 +1491,10 @@
               "n": "5"
             }
           },
-          "id": "event-006208"
+          "id": "event-006196"
         },
         {
-          "source_line": 6209,
+          "source_line": 6197,
           "timestamp": "2026-05-21T00:50:52.275263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1746,10 +1509,10 @@
             "tool": "mcp__agent-ml-research__tail_training_logs",
             "elapsed_ms": 401
           },
-          "id": "event-006209"
+          "id": "event-006197"
         },
         {
-          "source_line": 6210,
+          "source_line": 6198,
           "timestamp": "2026-05-21T00:52:01.539359+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1767,10 +1530,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006210"
+          "id": "event-006198"
         },
         {
-          "source_line": 6211,
+          "source_line": 6199,
           "timestamp": "2026-05-21T00:52:05.442452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1785,10 +1548,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3903
           },
-          "id": "event-006211"
+          "id": "event-006199"
         },
         {
-          "source_line": 6212,
+          "source_line": 6200,
           "timestamp": "2026-05-21T00:52:07.563726+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1801,7 +1564,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006212"
+          "id": "event-006200"
         }
       ]
     },
@@ -1809,7 +1572,7 @@
       "number": 344,
       "messages": [
         {
-          "source_line": 6213,
+          "source_line": 6201,
           "timestamp": "2026-05-21T01:36:55.399290+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1823,10 +1586,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-006213"
+          "id": "event-006201"
         },
         {
-          "source_line": 6214,
+          "source_line": 6202,
           "timestamp": "2026-05-21T01:37:01.403479+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1843,10 +1606,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006214"
+          "id": "event-006202"
         },
         {
-          "source_line": 6215,
+          "source_line": 6203,
           "timestamp": "2026-05-21T01:37:01.454212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1861,10 +1624,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 50
           },
-          "id": "event-006215"
+          "id": "event-006203"
         },
         {
-          "source_line": 6216,
+          "source_line": 6204,
           "timestamp": "2026-05-21T01:37:29.246345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1883,10 +1646,10 @@
               "max_chars": "5000"
             }
           },
-          "id": "event-006216"
+          "id": "event-006204"
         },
         {
-          "source_line": 6217,
+          "source_line": 6205,
           "timestamp": "2026-05-21T01:37:29.698571+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1901,10 +1664,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 452
           },
-          "id": "event-006217"
+          "id": "event-006205"
         },
         {
-          "source_line": 6218,
+          "source_line": 6206,
           "timestamp": "2026-05-21T01:37:29.849527+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1923,10 +1686,10 @@
               "max_chars": "8000"
             }
           },
-          "id": "event-006218"
+          "id": "event-006206"
         },
         {
-          "source_line": 6219,
+          "source_line": 6207,
           "timestamp": "2026-05-21T01:37:29.950514+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1941,10 +1704,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 100
           },
-          "id": "event-006219"
+          "id": "event-006207"
         },
         {
-          "source_line": 6220,
+          "source_line": 6208,
           "timestamp": "2026-05-21T01:38:21.949112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1962,10 +1725,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-006220"
+          "id": "event-006208"
         },
         {
-          "source_line": 6221,
+          "source_line": 6209,
           "timestamp": "2026-05-21T01:38:26.057339+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1980,10 +1743,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4108
           },
-          "id": "event-006221"
+          "id": "event-006209"
         },
         {
-          "source_line": 6222,
+          "source_line": 6210,
           "timestamp": "2026-05-21T01:38:28.353869+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1996,7 +1759,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006222"
+          "id": "event-006210"
         }
       ]
     },
@@ -2004,7 +1767,7 @@
       "number": 345,
       "messages": [
         {
-          "source_line": 6223,
+          "source_line": 6211,
           "timestamp": "2026-05-21T01:40:05.955453+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2018,10 +1781,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system:ralph_loop"
           },
-          "id": "event-006223"
+          "id": "event-006211"
         },
         {
-          "source_line": 6224,
+          "source_line": 6212,
           "timestamp": "2026-05-21T01:41:08.938570+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2034,7 +1797,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-006224"
+          "id": "event-006212"
         }
       ]
     }

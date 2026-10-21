@@ -4,20 +4,17 @@
 
 | Source record | Events | User turns | Readable Markdown | JSON |
 |---|---:|---:|---|---|
-| `logs/workers/worker_code_rebuttal-talking-points_20260523T225059.log` (occurrence 1) | 93 | 0 | [Read transcript](../readable/worker-executions/code-rebuttal-talking-points.md) | [Open JSON](../sessions/78/781080fe9f5b17f30f26.json) |
 | `logs/workers/worker_code_r19-paper-fixes_20260524T013802.log` (occurrence 1) | 124 | 0 | [Read transcript](../readable/worker-executions/code-r19-paper-fixes.md) | [Open JSON](../sessions/04/04fe3f6e2fcdcfbded2e.json) |
 | `logs/workers/worker_code_ddl-final-edits_20260524T031039.log` (occurrence 1) | 98 | 0 | [Read transcript](../readable/worker-executions/code-ddl-final-edits.md) | [Open JSON](../sessions/06/06871c95856c668ddbb4.json) |
 | `logs/workers/worker_research_demo-subgroup-codebase-discovery_20260524T040730.log` (occurrence 1) | 256 | 3 | [Read transcript](../readable/worker-executions/research-demo-subgroup-codebase-discovery.md) | [Open JSON](../sessions/ef/efdc01b130de6976c6bb.json) |
 | `logs/workers/worker_audit_numbers-traceability_20260524T042839.log` (occurrence 1) | 116 | 1 | [Read transcript](../readable/worker-executions/audit-numbers-traceability.md) | [Open JSON](../sessions/fe/fe55843beab2d4c89c64.json) |
 | `logs/workers/worker_research_ucb-demographic-subgroup-analysis_20260524T045225.log` (occurrence 1) | 91 | 0 | [Read transcript](../readable/worker-executions/research-ucb-demographic-subgroup-analysis.md) | [Open JSON](../sessions/c6/c6e2f910b3375c3b4b90.json) |
 | `logs/workers/worker_paper_appendix-forward-refs-and-tables_20260524T051427.log` (occurrence 1) | 108 | 0 | [Read transcript](../readable/worker-executions/paper-appendix-forward-refs-and-tables.md) | [Open JSON](../sessions/c6/c6056587b45acc7ac4cb.json) |
-| `logs/workers/worker_paper_rebuttal-talking-points_20260524T055908.log` (occurrence 1) | 56 | 0 | [Read transcript](../readable/worker-executions/paper-rebuttal-talking-points.md) | [Open JSON](../sessions/9b/9b437527d427d95afa7c.json) |
 | `logs/workers/worker_ops_gitignore-fix_20260524T062353.log` (occurrence 1) | 29 | 0 | [Read transcript](../readable/worker-executions/ops-gitignore-fix.md) | [Open JSON](../sessions/cd/cdcada336a164ce30530.json) |
 | `logs/workers/worker_audit_anonymization-check_20260524T065752.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/audit-anonymization-check.md) | [Open JSON](../sessions/25/259496c31ff9a4c3132a.json) |
 | `logs/workers/worker_ops_anonymous-repo-push-test_20260524T065803.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/ops-anonymous-repo-push-test.md) | [Open JSON](../sessions/88/88f38c3752a67b3850e1.json) |
 | `logs/workers/worker_ops_submission-checklist_20260524T065816.log` (occurrence 1) | 68 | 10 | [Read transcript](../readable/worker-executions/ops-submission-checklist.md) | [Open JSON](../sessions/4c/4cfde82bdd12bdcf1dc5.json) |
 | `logs/workers/worker_audit_negative-experiment-framing_20260524T075928.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/audit-negative-experiment-framing.md) | [Open JSON](../sessions/fa/fab7ffae411e0d4e8b7d.json) |
-| `logs/workers/worker_paper_rebuttal-polish_20260524T080019.log` (occurrence 1) | 14 | 0 | [Read transcript](../readable/worker-executions/paper-rebuttal-polish.md) | [Open JSON](../sessions/00/00756aef3c6ef0adb18f.json) |
 | `logs/workers/worker_paper_r20-fixes-full_20260524T120136.log` (occurrence 1) | 174 | 0 | [Read transcript](../readable/worker-executions/paper-r20-fixes-full.md) | [Open JSON](../sessions/83/83c23b1d23cefca975c7.json) |
 | `logs/workers/worker_research_lalonde-dataset-screening_20260524T123858.log` (occurrence 1) | 160 | 0 | [Read transcript](../readable/worker-executions/research-lalonde-dataset-screening.md) | [Open JSON](../sessions/9a/9a93c211bf7507effd0b.json) |
 | `logs/workers/worker_code_exp-041_20260524T124830.log` (occurrence 1) | 214 | 1 | [Read transcript](../readable/worker-executions/code-exp-041.md) | [Open JSON](../sessions/ec/ecd3611e8367393cc5d0.json) |

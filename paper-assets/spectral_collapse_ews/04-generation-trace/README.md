@@ -11,11 +11,11 @@ For a quick review on GitHub, start with the readable Markdown pages. Each page 
 | Source | Files |
 |---|---:|
 | Conversation logs | 160 |
-| Worker execution logs | 374 |
-| Task result records | 361 |
+| Worker execution logs | 372 |
+| Task result records | 359 |
 | Context and loop notes | 30 |
 
-**64,614 recorded messages/events · 2,706 recorded user-message boundaries · 26,096 tool-call records.**
+**64,157 recorded messages/events · 2,706 recorded user-message boundaries · 25,879 tool-call records.**
 
 A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
 
@@ -26,7 +26,7 @@ Source text retains its recorded language. Markdown is a reading layer over the 
 The Markdown pages are grouped by source kind. Their filenames describe the recorded task or coordination stream; hash-sharded JSON folders are used only as a storage detail.
 
 - **Conversation logs** (160): [Page 1](browse/conversation-001.md) · [Page 2](browse/conversation-002.md)
-- **Worker execution logs** (374): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md)
-- **Task result records** (361): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md)
+- **Worker execution logs** (372): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md)
+- **Task result records** (359): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md)
 - **Context and loop notes** (30): [Page 1](browse/history-001.md)
 

@@ -125,7 +125,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | audit narrative coherence | 1 | 0 | [Read transcript](audit-narrative-coherence.md) | [JSON](../../sessions/69/69a9339221239d5ecc29.json) |
 | audit paper figure table consistency | 1 | 0 | [Read transcript](audit-paper-figure-table-consistency.md) | [JSON](../../sessions/45/456338b62bd9a92ad683.json) |
 | audit paper vs data consistency | 1 | 0 | [Read transcript](audit-paper-vs-data-consistency.md) | [JSON](../../sessions/29/29e61d1445c7aca2301a.json) |
-| audit rebuttal artifacts | 1 | 0 | [Read transcript](audit-rebuttal-artifacts.md) | [JSON](../../sessions/ac/ac1e2d2f9ff2d041a571.json) |
 | audit related work completeness | 1 | 0 | [Read transcript](audit-related-work-completeness.md) | [JSON](../../sessions/6d/6d0aad12197931f4a83a.json) |
 | bugfix 32b json kstar | 1 | 0 | [Read transcript](bugfix-32b-json-kstar.md) | [JSON](../../sessions/1c/1ce84891577d31e64ff8.json) |
 | bugfix cqa1 kstar script fix | 1 | 0 | [Read transcript](bugfix-cqa1-kstar-script-fix.md) | [JSON](../../sessions/ed/ed3df4d2ca973f755131.json) |

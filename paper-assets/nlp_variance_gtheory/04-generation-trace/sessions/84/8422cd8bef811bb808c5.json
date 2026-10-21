@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_654fc63da1857a7991cc464a1f276506_reviewer_20260523T201152_103975.jsonl",
     "occurrence": 1,
-    "bytes": 968296,
-    "sha256": "47a4de2595cff287ab66b4d75dd1a41522ced5b87836d366c90e4f59db74a99d"
+    "bytes": 959676,
+    "sha256": "15a0ea73124f64d0c1d6461264c0c2f27090af3846f2f0a68b3a337f5f113833"
   },
   "statistics": {
-    "messages": 1216,
+    "messages": 1208,
     "user_turns": 72,
-    "tool_calls": 541,
+    "tool_calls": 537,
     "roles": {
       "user": 72,
-      "tool_call": 541,
-      "tool_result": 541,
+      "tool_call": 537,
+      "tool_result": 537,
       "assistant": 62
     },
     "unparsed_lines_preserved": 0,
@@ -198,11 +198,11 @@
     {
       "number": 16,
       "boundary": "recorded_user_message",
-      "message_count": 8,
+      "message_count": 4,
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0002.json",
-          "message_count": 8
+          "message_count": 4
         }
       ]
     },
@@ -224,11 +224,11 @@
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0002.json",
-          "message_count": 5
+          "message_count": 9
         },
         {
           "path": "8422cd8bef811bb808c5-part-0003.json",
-          "message_count": 55
+          "message_count": 51
         }
       ]
     },
@@ -268,11 +268,11 @@
     {
       "number": 22,
       "boundary": "recorded_user_message",
-      "message_count": 26,
+      "message_count": 22,
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0003.json",
-          "message_count": 26
+          "message_count": 22
         }
       ]
     },
@@ -316,11 +316,7 @@
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0003.json",
-          "message_count": 39
-        },
-        {
-          "path": "8422cd8bef811bb808c5-part-0004.json",
-          "message_count": 3
+          "message_count": 42
         }
       ]
     },
@@ -330,7 +326,7 @@
       "message_count": 4,
       "chunks": [
         {
-          "path": "8422cd8bef811bb808c5-part-0004.json",
+          "path": "8422cd8bef811bb808c5-part-0003.json",
           "message_count": 4
         }
       ]
@@ -341,8 +337,12 @@
       "message_count": 7,
       "chunks": [
         {
+          "path": "8422cd8bef811bb808c5-part-0003.json",
+          "message_count": 1
+        },
+        {
           "path": "8422cd8bef811bb808c5-part-0004.json",
-          "message_count": 7
+          "message_count": 6
         }
       ]
     },
@@ -430,11 +430,7 @@
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0004.json",
-          "message_count": 55
-        },
-        {
-          "path": "8422cd8bef811bb808c5-part-0005.json",
-          "message_count": 1
+          "message_count": 56
         }
       ]
     },
@@ -444,8 +440,12 @@
       "message_count": 10,
       "chunks": [
         {
+          "path": "8422cd8bef811bb808c5-part-0004.json",
+          "message_count": 7
+        },
+        {
           "path": "8422cd8bef811bb808c5-part-0005.json",
-          "message_count": 10
+          "message_count": 3
         }
       ]
     },
@@ -566,11 +566,11 @@
       "chunks": [
         {
           "path": "8422cd8bef811bb808c5-part-0005.json",
-          "message_count": 5
+          "message_count": 13
         },
         {
           "path": "8422cd8bef811bb808c5-part-0006.json",
-          "message_count": 21
+          "message_count": 13
         }
       ]
     },
@@ -690,7 +690,7 @@
       "message_count": 6,
       "chunks": [
         {
-          "path": "8422cd8bef811bb808c5-part-0007.json",
+          "path": "8422cd8bef811bb808c5-part-0006.json",
           "message_count": 6
         }
       ]
@@ -701,8 +701,12 @@
       "message_count": 11,
       "chunks": [
         {
+          "path": "8422cd8bef811bb808c5-part-0006.json",
+          "message_count": 2
+        },
+        {
           "path": "8422cd8bef811bb808c5-part-0007.json",
-          "message_count": 11
+          "message_count": 9
         }
       ]
     },

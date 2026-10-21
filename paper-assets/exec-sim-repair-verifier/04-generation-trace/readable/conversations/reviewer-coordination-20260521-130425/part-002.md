@@ -5319,7 +5319,7 @@ _source line 850 · 2026-05-21T08:43:32.508931+00:00_
 
 ## Round 31
 
-12 recorded events
+8 recorded events
 
 
 ### User
@@ -5346,65 +5346,7 @@ Worker worker_writing_rebuttal-framework-update_20260521T084223 已完成（stat
 
 ### Tool call
 
-_source line 852 · 2026-05-21T08:44:18.906616+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_writing_rebuttal-framework-update_20260521T084223_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_writing_rebuttal-framework-update_20260521T084223_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 853 · 2026-05-21T08:44:18.958031+00:00_
-
-1	{
-2	  "raw": "已完成 4 项更新：\n\n1. **Attack #1 新增第 4 点**：CLS 过拟合鲁棒性防线，含 CLS/CWM 过拟合行为对比和数据来源，原第 4 点（execution trace 预备回应）顺延为第 5 点\n2. **Attack #2 新增统计表**：M027 修正后的 Cohen's d (4.590)、power (0.914)、Qwen CLS mean (84.83)，插入在回应要点之前\n3. **新建「储备/待用」分区**：Checkpoint Selection Sensitivity（28 个 sweep 数据点，<1pp 波动）\n4. **储备分区第二条**：CWM Epoch-wise Accuracy Curve（已有 3 个 seed 部分数据点，待数据到齐画图）"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 854 · 2026-05-21T08:44:22.373007+00:00_
+_source line 852 · 2026-05-21T08:44:22.373007+00:00_
 
 called Grep
 
@@ -5444,7 +5386,7 @@ called Grep
 
 ### Tool result
 
-_source line 855 · 2026-05-21T08:44:22.624429+00:00_
+_source line 853 · 2026-05-21T08:44:22.624429+00:00_
 
 Found 4 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_writing_rebuttal-framework-update_20260521T084223_result.json
@@ -5470,94 +5412,7 @@ Found 4 files
 
 ### Tool call
 
-_source line 856 · 2026-05-21T08:44:25.285099+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 857 · 2026-05-21T08:44:25.336154+00:00_
-
-1	# Rebuttal Framework — Pre-Submission Attack Surface Analysis
-2	
-3	Date: 2026-05-20 | Venue: EMNLP 2026 ARR
-4	
-5	---
-6	
-7	## Attack #1: CWM ≤8B LoRA ≠ Real 32B CWM
-8	
-9	### Reviewer 可能措辞
-10	
-11	> "The CWM baseline is a ≤8B LoRA fine-tuned model, not the original 32B Code World Model with execution trace mid-training. The comparison is unfair—CWM was designed to operate at much larger scale with specialized pretraining. The paper's conclusion that 'generation degrades at repo level' may simply reflect insufficient model capacity rather than a fundamental formulation limitation."
-12	
-13	### 回应要点
-14	
-15	**核心论点：matched comparison at controlled capacity isolates formulation effect from scale confounds, which is complementary to—not competing with—scaling studies.**
-16	
-17	1. **Function-level 证明 LoRA 可以成功适配 CWM formulation。** CLS 和 CWM 在 function-level 达到统计等价（TOST p=0.007, 5 seeds, ±2pp margin），证明同一 LoRA 配置下 CWM formulation 能完全发挥作用。退化仅在 repo-level 出现，不是 LoRA 容量不足的全局问题。
-18	
-19	2. **退化模式指向 formulation 本身，而非容量瓶颈——四种标准干预全部失败。**
-20	   - Format collapse (53–74% unparseable outputs) 是输出空间复杂度问题：function-level 输出为短字符串（integers, booleans），repo-level 输出为无约束执行轨迹（均值 ~477 tokens），错误呈乘性积累
-21	   - 即使在可解析输出中，accuracy (38–43%) 仍低于 majority baseline (72.96%)，表明存在超越格式合规的语义鸿沟
-22	   - **LoRA rank-32 ablation（双倍参数）：无改善（−0.51pp）**，排除 adapter 容量瓶颈
-23	   - **Majority voting K=3：accuracy 反降 0.68pp**（87.51→86.83%），93.3% 样本三次一致，errors 是系统性偏差非随机噪声
-24	   - **Relaxed matching（放宽格式要求）：accuracy 反降 1.06pp**（58.04→56.98%），因为 unparseable 默认为 majority class 比模型自身预测更准
-25	   - **Model scaling 4B→8B：parseable-only accuracy 反降**（42.88→38.52%），表面 accuracy 提升完全是 default-assignment artifact
-26	   - Matched-context ablation：输入差异仅解释 <3% 的 gap
-27	   
-28	   **每种干预分别靶向不同的替代解释（容量不足 / 随机噪声 / 解析严格 / 模型规模），全部失败。这构成 formulation-level bottleneck 的最强证据链。**
-29	
-30	   **Convergent null results summary (rebuttal 可直接引用):**
-31	   > "Four convergent null results strengthen this argument: (1) doubling model size yields +0.16pp (flat
-…[truncated 13363 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 858 · 2026-05-21T08:45:07.197978+00:00_
+_source line 854 · 2026-05-21T08:45:07.197978+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5593,7 +5448,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 859 · 2026-05-21T08:45:11.072009+00:00_
+_source line 855 · 2026-05-21T08:45:11.072009+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -5615,7 +5470,7 @@ _source line 859 · 2026-05-21T08:45:11.072009+00:00_
 
 ### Tool call
 
-_source line 860 · 2026-05-21T08:45:23.389724+00:00_
+_source line 856 · 2026-05-21T08:45:23.389724+00:00_
 
 called ScheduleWakeup
 
@@ -5653,7 +5508,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 861 · 2026-05-21T08:45:23.440520+00:00_
+_source line 857 · 2026-05-21T08:45:23.440520+00:00_
 
 Next wakeup scheduled for 09:16:00 (in 1837s).
 
@@ -5675,7 +5530,7 @@ Next wakeup scheduled for 09:16:00 (in 1837s).
 
 ### Assistant
 
-_source line 862 · 2026-05-21T08:45:25.270187+00:00_
+_source line 858 · 2026-05-21T08:45:25.270187+00:00_
 
 Rebuttal framework 审查完成。两个 warning：(1) Attack #1 第 4 点过拟合防线的 cross-seed 性质需在叙事中显式标注；(2) -5.36pp 与论文 Threats "<2pp" 存在潜在矛盾，使用前需先统一。
 
@@ -5702,7 +5557,7 @@ Rebuttal framework 审查完成。两个 warning：(1) Attack #1 第 4 点过拟
 
 ### User
 
-_source line 863 · 2026-05-21T09:44:17.172509+00:00_
+_source line 859 · 2026-05-21T09:44:17.172509+00:00_
 
 [系统通知 — worker_done:worker_audit_paper-number-consistency_20260521T092353]:
 Worker worker_audit_paper-number-consistency_20260521T092353 已完成（status=done），请审查 Agent 的处理结果。
@@ -5724,7 +5579,7 @@ Worker worker_audit_paper-number-consistency_20260521T092353 已完成（status=
 
 ### Tool call
 
-_source line 864 · 2026-05-21T09:44:26.376011+00:00_
+_source line 860 · 2026-05-21T09:44:26.376011+00:00_
 
 called Read
 
@@ -5758,7 +5613,7 @@ called Read
 
 ### Tool result
 
-_source line 865 · 2026-05-21T09:44:26.376501+00:00_
+_source line 861 · 2026-05-21T09:44:26.376501+00:00_
 
 1	{
 2	  "raw": "审计完成。~180 个数字已交叉验证，结果写入 `artifacts/paper_number_audit.md`。\n\n**必须修复的 3 个高严重度问题：**\n\n1. **experiments.tex L60: \"13–26pp\" 应为 \"19–26pp\"** — 全文其他位置（abstract、intro、conclusion）都写 19–26pp，唯独这里写了 13。13 无任何数据来源支持。\n\n2. **TOST p 值不一致** — 同一个 ±2pp TOST 检验，sensitivity table 写 0.0087，Holm table 写 0.0071，正文写 0.007。三处应该是同一个数。\n\n3. **Table 2 TRAJ 4B 数值与 registry 不符** — Table 2 写 s42=85.27, s123=86.72；registry 存的是 s42=85.66, s123=85.47。差距 0.39–1.25pp，不是四舍五入能解释的。需要查来源。\n\n**中等严重度 2 个：**\n- Table 3 DeepSeek 0-shot 写 48.50，appendix 同一个数写 48.54（registry 也是 48.54）\n- CLS 8B s123 function-level: Table 2 写 89.40，registry 记录 89.37\n\n**低严重度 3 个 + 清晰度警告 2 个** 详见报告。其余 ~167 个数字全部验证通过。"
@@ -5782,7 +5637,7 @@ _source line 865 · 2026-05-21T09:44:26.376501+00:00_
 
 ### Tool call
 
-_source line 866 · 2026-05-21T09:44:29.989947+00:00_
+_source line 862 · 2026-05-21T09:44:29.989947+00:00_
 
 called Read
 
@@ -5816,7 +5671,7 @@ called Read
 
 ### Tool result
 
-_source line 867 · 2026-05-21T09:44:30.092609+00:00_
+_source line 863 · 2026-05-21T09:44:30.092609+00:00_
 
 1	# Paper Number Consistency Audit
 2	Generated: 2026-05-21
@@ -5874,7 +5729,7 @@ _source line 867 · 2026-05-21T09:44:30.092609+00:00_
 
 ### Tool call
 
-_source line 868 · 2026-05-21T09:44:43.397108+00:00_
+_source line 864 · 2026-05-21T09:44:43.397108+00:00_
 
 called Read
 
@@ -5912,7 +5767,7 @@ called Read
 
 ### Tool result
 
-_source line 869 · 2026-05-21T09:44:43.447720+00:00_
+_source line 865 · 2026-05-21T09:44:43.447720+00:00_
 
 55	Majority (pass) & --- & --- & 51.75 \\
 56	\bottomrule
@@ -5948,7 +5803,7 @@ _source line 869 · 2026-05-21T09:44:43.447720+00:00_
 
 ### Tool call
 
-_source line 870 · 2026-05-21T09:44:43.805684+00:00_
+_source line 866 · 2026-05-21T09:44:43.805684+00:00_
 
 called Read
 
@@ -5986,7 +5841,7 @@ called Read
 
 ### Tool result
 
-_source line 871 · 2026-05-21T09:44:43.806063+00:00_
+_source line 867 · 2026-05-21T09:44:43.806063+00:00_
 
 68	\begin{table}[t]
 69	\centering
@@ -6032,7 +5887,7 @@ _source line 871 · 2026-05-21T09:44:43.806063+00:00_
 
 ### Tool call
 
-_source line 872 · 2026-05-21T09:44:43.856475+00:00_
+_source line 868 · 2026-05-21T09:44:43.856475+00:00_
 
 called Read
 
@@ -6070,7 +5925,7 @@ called Read
 
 ### Tool result
 
-_source line 873 · 2026-05-21T09:44:43.957304+00:00_
+_source line 869 · 2026-05-21T09:44:43.957304+00:00_
 
 329	\label{app:tost_sensitivity}
 330	
@@ -6116,7 +5971,7 @@ _source line 873 · 2026-05-21T09:44:43.957304+00:00_
 
 ### Tool call
 
-_source line 874 · 2026-05-21T09:44:48.146680+00:00_
+_source line 870 · 2026-05-21T09:44:48.146680+00:00_
 
 called Read
 
@@ -6154,7 +6009,7 @@ called Read
 
 ### Tool result
 
-_source line 875 · 2026-05-21T09:44:48.248051+00:00_
+_source line 871 · 2026-05-21T09:44:48.248051+00:00_
 
 389	\section{Multiple Comparison Correction}
 390	\label{app:holm}
@@ -6200,7 +6055,7 @@ _source line 875 · 2026-05-21T09:44:48.248051+00:00_
 
 ### Tool call
 
-_source line 876 · 2026-05-21T09:45:32.816882+00:00_
+_source line 872 · 2026-05-21T09:45:32.816882+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6236,7 +6091,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 877 · 2026-05-21T09:45:37.638117+00:00_
+_source line 873 · 2026-05-21T09:45:37.638117+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -6258,7 +6113,7 @@ _source line 877 · 2026-05-21T09:45:37.638117+00:00_
 
 ### Tool call
 
-_source line 878 · 2026-05-21T09:45:46.721981+00:00_
+_source line 874 · 2026-05-21T09:45:46.721981+00:00_
 
 called ScheduleWakeup
 
@@ -6296,7 +6151,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 879 · 2026-05-21T09:45:46.772564+00:00_
+_source line 875 · 2026-05-21T09:45:46.772564+00:00_
 
 Next wakeup scheduled for 10:16:00 (in 1813s).
 
@@ -6318,7 +6173,7 @@ Next wakeup scheduled for 10:16:00 (in 1813s).
 
 ### Assistant
 
-_source line 880 · 2026-05-21T09:45:48.467710+00:00_
+_source line 876 · 2026-05-21T09:45:48.467710+00:00_
 
 数字审计报告已发送。3 个 HIGH severity 问题全部独立确认：
 1. "13–26pp" typo（一字之差，秒修）
@@ -6350,7 +6205,7 @@ _source line 880 · 2026-05-21T09:45:48.467710+00:00_
 
 ### User
 
-_source line 881 · 2026-05-21T09:57:04.965205+00:00_
+_source line 877 · 2026-05-21T09:57:04.965205+00:00_
 
 [System 触发审查]:
 **快速验证** — commit `44b6a29` 数字修复
@@ -6385,7 +6240,7 @@ Agent 修复了审计发现的 5 个问题，请确认：
 
 ### Tool call
 
-_source line 882 · 2026-05-21T09:57:13.545945+00:00_
+_source line 878 · 2026-05-21T09:57:13.545945+00:00_
 
 called Grep
 
@@ -6423,7 +6278,7 @@ called Grep
 
 ### Tool result
 
-_source line 883 · 2026-05-21T09:57:13.797244+00:00_
+_source line 879 · 2026-05-21T09:57:13.797244+00:00_
 
 No matches found
 
@@ -6445,7 +6300,7 @@ No matches found
 
 ### Tool call
 
-_source line 884 · 2026-05-21T09:57:17.712869+00:00_
+_source line 880 · 2026-05-21T09:57:17.712869+00:00_
 
 called Read
 
@@ -6483,7 +6338,7 @@ called Read
 
 ### Tool result
 
-_source line 885 · 2026-05-21T09:57:17.763562+00:00_
+_source line 881 · 2026-05-21T09:57:17.763562+00:00_
 
 58	\end{table}
 59	
@@ -6509,7 +6364,7 @@ _source line 885 · 2026-05-21T09:57:17.763562+00:00_
 
 ### Tool call
 
-_source line 886 · 2026-05-21T09:57:18.165282+00:00_
+_source line 882 · 2026-05-21T09:57:18.165282+00:00_
 
 called Read
 
@@ -6547,7 +6402,7 @@ called Read
 
 ### Tool result
 
-_source line 887 · 2026-05-21T09:57:18.215840+00:00_
+_source line 883 · 2026-05-21T09:57:18.215840+00:00_
 
 74	\begin{tabular}{llcccc}
 75	\toprule
@@ -6588,7 +6443,7 @@ _source line 887 · 2026-05-21T09:57:18.215840+00:00_
 
 ### Tool call
 
-_source line 888 · 2026-05-21T09:57:18.617541+00:00_
+_source line 884 · 2026-05-21T09:57:18.617541+00:00_
 
 called Read
 
@@ -6626,7 +6481,7 @@ called Read
 
 ### Tool result
 
-_source line 889 · 2026-05-21T09:57:18.718294+00:00_
+_source line 885 · 2026-05-21T09:57:18.718294+00:00_
 
 345	\textbf{1.52} & ${\sim}$\textbf{0.05} & \textbf{Smallest margin} \\
 346	1.71 & 0.027 & Yes \\
@@ -6657,7 +6512,7 @@ _source line 889 · 2026-05-21T09:57:18.718294+00:00_
 
 ### Tool call
 
-_source line 890 · 2026-05-21T09:57:37.450652+00:00_
+_source line 886 · 2026-05-21T09:57:37.450652+00:00_
 
 called Grep
 
@@ -6695,7 +6550,7 @@ called Grep
 
 ### Tool result
 
-_source line 891 · 2026-05-21T09:57:37.501999+00:00_
+_source line 887 · 2026-05-21T09:57:37.501999+00:00_
 
 124:0-shot (DeepSeek) & 48.54 & --- & --- & --- \\
 
@@ -6717,7 +6572,7 @@ _source line 891 · 2026-05-21T09:57:37.501999+00:00_
 
 ### Tool call
 
-_source line 892 · 2026-05-21T09:57:51.350989+00:00_
+_source line 888 · 2026-05-21T09:57:51.350989+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6753,7 +6608,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 893 · 2026-05-21T09:57:55.115102+00:00_
+_source line 889 · 2026-05-21T09:57:55.115102+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -6775,7 +6630,7 @@ _source line 893 · 2026-05-21T09:57:55.115102+00:00_
 
 ### Tool call
 
-_source line 894 · 2026-05-21T09:58:01.149993+00:00_
+_source line 890 · 2026-05-21T09:58:01.149993+00:00_
 
 called ScheduleWakeup
 
@@ -6813,7 +6668,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 895 · 2026-05-21T09:58:01.200574+00:00_
+_source line 891 · 2026-05-21T09:58:01.200574+00:00_
 
 Next wakeup scheduled for 10:29:00 (in 1859s).
 
@@ -6835,7 +6690,7 @@ Next wakeup scheduled for 10:29:00 (in 1859s).
 
 ### Assistant
 
-_source line 896 · 2026-05-21T09:58:05.555871+00:00_
+_source line 892 · 2026-05-21T09:58:05.555871+00:00_
 
 数字修复全部验证通过。唯一遗留项：Table 3 CLS Qwen std 0.66→0.67。
 
@@ -6862,7 +6717,7 @@ _source line 896 · 2026-05-21T09:58:05.555871+00:00_
 
 ### User
 
-_source line 897 · 2026-05-21T10:54:10.439872+00:00_
+_source line 893 · 2026-05-21T10:54:10.439872+00:00_
 
 [System 触发审查]:
 **CWM 数据到齐后叙事预演** — 提前准备分支策略
@@ -6911,7 +6766,7 @@ CWM multi-seed 数据预计 May 22 下午到齐。请预演 3 种 scenario，每
 
 ### Tool call
 
-_source line 898 · 2026-05-21T10:55:01.854196+00:00_
+_source line 894 · 2026-05-21T10:55:01.854196+00:00_
 
 called Grep
 
@@ -6949,7 +6804,7 @@ called Grep
 
 ### Tool result
 
-_source line 899 · 2026-05-21T10:55:02.808360+00:00_
+_source line 895 · 2026-05-21T10:55:02.808360+00:00_
 
 No matches found
 
@@ -6971,7 +6826,7 @@ No matches found
 
 ### Tool call
 
-_source line 900 · 2026-05-21T10:55:03.562102+00:00_
+_source line 896 · 2026-05-21T10:55:03.562102+00:00_
 
 called Grep
 
@@ -7011,7 +6866,7 @@ called Grep
 
 ### Tool result
 
-_source line 901 · 2026-05-21T10:55:03.612782+00:00_
+_source line 897 · 2026-05-21T10:55:03.612782+00:00_
 
 205:\textbf{Hyperparameter} & \textbf{Qwen3-4B \cls{}} & \textbf{Qwen3-4B \cwm{}} & \textbf{Qwen3-8B \cls{}} & \textbf{Qwen3-8B \cwm{}} & \textbf{DS-6.7B \cls{}} & \textbf{DS-6.7B \cwm{}} \\
 234:\paragraph{Data processing.} DeepSeek CWM seeds use \texttt{train\_unified.py}, which drops samples exceeding \texttt{max\_seq\_length} (3{,}405 of 70{,}748 samples, 4.8\%). Qwen CWM seeds use \texttt{train\_repo\_cwm.py}, which truncates and retains all samples. This difference affects total training steps (${\sim}$12{,}627 vs.\ ${\sim}$13{,}266 for DeepSeek, ${\sim}$6{,}633 for Qwen) but not the training data distribution, as dropped samples are uniformly distributed across labels.
@@ -7037,7 +6892,7 @@ _source line 901 · 2026-05-21T10:55:03.612782+00:00_
 
 ### Tool call
 
-_source line 902 · 2026-05-21T10:55:06.324737+00:00_
+_source line 898 · 2026-05-21T10:55:06.324737+00:00_
 
 called Read
 
@@ -7075,7 +6930,7 @@ called Read
 
 ### Tool result
 
-_source line 903 · 2026-05-21T10:55:06.375883+00:00_
+_source line 899 · 2026-05-21T10:55:06.375883+00:00_
 
 200	\label{tab:hyperparams}
 201	\resizebox{\columnwidth}{!}{%
@@ -7129,7 +6984,7 @@ _source line 903 · 2026-05-21T10:55:06.375883+00:00_
 
 ### Tool call
 
-_source line 904 · 2026-05-21T10:56:46.447054+00:00_
+_source line 900 · 2026-05-21T10:56:46.447054+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7165,7 +7020,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 905 · 2026-05-21T10:56:50.413531+00:00_
+_source line 901 · 2026-05-21T10:56:50.413531+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -7187,7 +7042,7 @@ _source line 905 · 2026-05-21T10:56:50.413531+00:00_
 
 ### Tool call
 
-_source line 906 · 2026-05-21T10:57:01.517887+00:00_
+_source line 902 · 2026-05-21T10:57:01.517887+00:00_
 
 called ScheduleWakeup
 
@@ -7225,7 +7080,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 907 · 2026-05-21T10:57:01.518261+00:00_
+_source line 903 · 2026-05-21T10:57:01.518261+00:00_
 
 Next wakeup scheduled for 11:28:00 (in 1859s).
 
@@ -7247,7 +7102,7 @@ Next wakeup scheduled for 11:28:00 (in 1859s).
 
 ### Assistant
 
-_source line 908 · 2026-05-21T10:57:08.665333+00:00_
+_source line 904 · 2026-05-21T10:57:08.665333+00:00_
 
 三种 Scenario 预演已发送。核心判断：
 
@@ -7280,7 +7135,7 @@ _source line 908 · 2026-05-21T10:57:08.665333+00:00_
 
 ### User
 
-_source line 909 · 2026-05-21T11:40:32.635069+00:00_
+_source line 905 · 2026-05-21T11:40:32.635069+00:00_
 
 [System 触发审查]:
 编译日志显示 appendix 有 5 处 Overfull hbox 警告（都是表格溢出半栏范围）：
@@ -7315,7 +7170,7 @@ _source line 909 · 2026-05-21T11:40:32.635069+00:00_
 
 ### Tool call
 
-_source line 910 · 2026-05-21T11:40:40.572549+00:00_
+_source line 906 · 2026-05-21T11:40:40.572549+00:00_
 
 called Read
 
@@ -7353,7 +7208,7 @@ called Read
 
 ### Tool result
 
-_source line 911 · 2026-05-21T11:40:41.124980+00:00_
+_source line 907 · 2026-05-21T11:40:41.124980+00:00_
 
 80	\begin{table}[h]
 81	\centering
@@ -7394,7 +7249,7 @@ _source line 911 · 2026-05-21T11:40:41.124980+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-21T11:40:41.677151+00:00_
+_source line 908 · 2026-05-21T11:40:41.677151+00:00_
 
 called Read
 
@@ -7432,7 +7287,7 @@ called Read
 
 ### Tool result
 
-_source line 913 · 2026-05-21T11:40:42.179293+00:00_
+_source line 909 · 2026-05-21T11:40:42.179293+00:00_
 
 155	
 156	\begin{table}[h]
@@ -7494,7 +7349,7 @@ _source line 913 · 2026-05-21T11:40:42.179293+00:00_
 
 ### Tool call
 
-_source line 914 · 2026-05-21T11:40:42.681676+00:00_
+_source line 910 · 2026-05-21T11:40:42.681676+00:00_
 
 called Read
 
@@ -7532,7 +7387,7 @@ called Read
 
 ### Tool result
 
-_source line 915 · 2026-05-21T11:40:43.133916+00:00_
+_source line 911 · 2026-05-21T11:40:43.133916+00:00_
 
 248	\begin{table}[h]
 249	\centering
@@ -7575,7 +7430,7 @@ _source line 915 · 2026-05-21T11:40:43.133916+00:00_
 
 ### Tool call
 
-_source line 916 · 2026-05-21T11:40:43.636426+00:00_
+_source line 912 · 2026-05-21T11:40:43.636426+00:00_
 
 called Read
 
@@ -7613,7 +7468,7 @@ called Read
 
 ### Tool result
 
-_source line 917 · 2026-05-21T11:40:44.088294+00:00_
+_source line 913 · 2026-05-21T11:40:44.088294+00:00_
 
 362	\begin{table}[h]
 363	\centering
@@ -7659,7 +7514,7 @@ _source line 917 · 2026-05-21T11:40:44.088294+00:00_
 
 ### Tool call
 
-_source line 918 · 2026-05-21T11:40:44.239178+00:00_
+_source line 914 · 2026-05-21T11:40:44.239178+00:00_
 
 called Read
 
@@ -7697,7 +7552,7 @@ called Read
 
 ### Tool result
 
-_source line 919 · 2026-05-21T11:40:44.289971+00:00_
+_source line 915 · 2026-05-21T11:40:44.289971+00:00_
 
 394	\begin{table}[h]
 395	\centering
@@ -7738,7 +7593,7 @@ _source line 919 · 2026-05-21T11:40:44.289971+00:00_
 
 ### Tool call
 
-_source line 920 · 2026-05-21T11:41:17.736896+00:00_
+_source line 916 · 2026-05-21T11:41:17.736896+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7774,7 +7629,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 921 · 2026-05-21T11:41:21.466911+00:00_
+_source line 917 · 2026-05-21T11:41:21.466911+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -7796,7 +7651,7 @@ _source line 921 · 2026-05-21T11:41:21.466911+00:00_
 
 ### Tool call
 
-_source line 922 · 2026-05-21T11:41:27.456558+00:00_
+_source line 918 · 2026-05-21T11:41:27.456558+00:00_
 
 called ScheduleWakeup
 
@@ -7834,7 +7689,7 @@ called ScheduleWakeup
 
 ### Tool result
 
-_source line 923 · 2026-05-21T11:41:27.507439+00:00_
+_source line 919 · 2026-05-21T11:41:27.507439+00:00_
 
 Next wakeup scheduled for 12:12:00 (in 1833s).
 
@@ -7856,7 +7711,7 @@ Next wakeup scheduled for 12:12:00 (in 1833s).
 
 ### Assistant
 
-_source line 924 · 2026-05-21T11:41:29.552026+00:00_
+_source line 920 · 2026-05-21T11:41:29.552026+00:00_
 
 排版审查完成。5 处溢出中 3 处超过 30pt（#1 51pt, #2 108pt, #5 55pt）会在 PDF 上可见。最快修复：全部 `\resizebox{\columnwidth}{!}{...}` 包裹，约 5 分钟。
 
@@ -7883,7 +7738,7 @@ _source line 924 · 2026-05-21T11:41:29.552026+00:00_
 
 ### User
 
-_source line 925 · 2026-05-21T13:03:29.010590+00:00_
+_source line 921 · 2026-05-21T13:03:29.010590+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -7965,7 +7820,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 926 · 2026-05-21T13:04:25.954742+00:00_
+_source line 922 · 2026-05-21T13:04:25.954742+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

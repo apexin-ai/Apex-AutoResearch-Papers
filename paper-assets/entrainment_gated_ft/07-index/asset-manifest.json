@@ -1,16 +1,16 @@
 {
   "project": "entrainment_gated_ft",
-  "code_count": 150,
+  "code_count": 149,
   "data_count": 431,
   "env_count": 0,
-  "tex_count": 27,
+  "tex_count": 25,
   "bib_count": 2,
   "review_count": 20,
   "validation_count": 5,
-  "chat_count": 99,
-  "worker_count": 489,
-  "trace_count": 599,
-  "trace_bytes": 131701771,
+  "chat_count": 98,
+  "worker_count": 486,
+  "trace_count": 595,
+  "trace_bytes": 131301857,
   "maintenance_count": 44,
   "provenance_count": 0,
   "submission_count": 0,
@@ -20,7 +20,7 @@
   "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models",
   "pages": 22,
   "status_marker": "Anonymous ACL submission",
-  "version_count": 43,
+  "version_count": 42,
   "version_paths": [
     "figures/paper/jaccard_heatmap_5arch.pdf",
     "figures/paper/fig_method_overview.pdf",
@@ -37,7 +37,6 @@
     "docs/paper/figures/fig_per_example_bars.pdf",
     "docs/paper/figures/fig_jaccard_hierarchy.pdf",
     "docs/paper/figures/fig4_jaccard_saturation.pdf",
-    "docs/paper/author_response.pdf",
     "docs/paper/main.pdf",
     "artifacts/review_round_12/submitted.pdf",
     "artifacts/review_round_17/submitted.pdf",
@@ -85,7 +84,7 @@
     {
       "name": "Manuscript and versions",
       "status": "Available",
-      "evidence": "27 source files; 43 PDF candidates",
+      "evidence": "25 source files; 42 PDF candidates",
       "gap": "Candidate filenames do not establish official submission or publication.",
       "path": "01-manuscript/"
     },
@@ -99,14 +98,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "99 conversations; 489 worker logs/results; 599 source files",
+      "evidence": "98 conversations; 486 worker logs/results; 595 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "150 code/configuration files; 0 environment manifests",
+      "evidence": "149 code/configuration files; 0 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },

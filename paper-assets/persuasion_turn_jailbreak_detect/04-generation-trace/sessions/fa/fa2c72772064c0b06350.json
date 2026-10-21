@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp68_lora_comparison_20260523T230231.log",
     "occurrence": 1,
-    "bytes": 807192,
-    "sha256": "63a9fe937c7d4b737580185ff56b92862519b8fc423b62ece490461d64ee580c"
+    "bytes": 802573,
+    "sha256": "e5919734cdc34215b7aa2b9e66e3ab26a3c5153dbe9ac329e3146e791ed132f5"
   },
   "statistics": {
-    "messages": 394,
+    "messages": 392,
     "user_turns": 0,
-    "tool_calls": 140,
+    "tool_calls": 139,
     "roles": {
       "log": 1,
       "system": 9,
       "record": 1,
       "assistant": 102,
-      "tool_call": 140,
-      "tool_result": 140,
+      "tool_call": 139,
+      "tool_result": 139,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -32,7 +32,7 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 394,
+      "message_count": 392,
       "chunks": [
         {
           "path": "fa2c72772064c0b06350-part-0001.json",
@@ -44,7 +44,7 @@
         },
         {
           "path": "fa2c72772064c0b06350-part-0003.json",
-          "message_count": 34
+          "message_count": 32
         }
       ]
     }

@@ -350,35 +350,6 @@ annotate: N per bin
 
 ---
 
-## 5. 预期结果与 Rebuttal 价值
-
-### 5.1 理想结果（强 ecological validity）
-
-| 发现 | Rebuttal 论点 |
-|------|-------------|
-| 60-80% CC 文本 predicted depth = 0 | 符合预期，OBD 不是把所有文本都标为 "contaminated" |
-| predicted depth 与 vocab richness (MTLD, vocd-D) 显著负相关 | Depth signal 捕获了真实的词汇退化 |
-| predicted depth 与 GPT-2 PPL 显著负相关 | 高 depth 文本更"机械"/"平滑" |
-| predicted depth 与 repetition 显著正相关 | 高 depth 文本更重复，与 model collapse 理论一致 |
-| MAUVE 随 depth bin 单调递减 | 分布层面的验证 |
-
-### 5.2 可接受的混合结果
-
-- 部分指标相关不显著（如 Zipf coefficient）→ 说明某些质量维度不被 depth signal 捕获，是合理的
-- Depth 2+ 样本太少 (<500) 导致统计 power 不足 → 报告 effect size，noting power limitation
-
-### 5.3 需要解释的负面结果
-
-- 所有相关均不显著 → OBD 在 wild data 上泛化差，可能是 domain shift（C4 训练 → CC 推断）
-- 大量文本 predicted depth ≥ 2 (>20%) → OBD 过度预测，calibration 问题
-- 相关方向与预期相反 → 需深入 debug，可能是特征提取 pipeline 不一致
-
-### 5.4 Rebuttal 段落模板
-
-> "To assess ecological validity, we applied our trained OBD classifier to 50K documents sampled from FineWeb (CC-MAIN-2025-26). The predicted depth distribution shows XX% at depth 0, XX% at depth 1, and XX% at depth ≥2, consistent with the expected prevalence of AI-generated content in contemporary web text. Crucially, predicted depth shows significant rank correlation with independent quality metrics not used in OBD training: [MTLD (ρ=−X.XX, p<0.001), GPT-2 perplexity (ρ=−X.XX, p<0.001), 3-gram repetition rate (ρ=+X.XX, p<0.001)]. This confirms that the depth signal captured by our 15D features reflects genuine text quality degradation patterns observable in naturally occurring web text, not merely artifacts of our experimental generation pipeline."
-
----
-
 ## 6. 资源估计
 
 ### 6.1 GPU

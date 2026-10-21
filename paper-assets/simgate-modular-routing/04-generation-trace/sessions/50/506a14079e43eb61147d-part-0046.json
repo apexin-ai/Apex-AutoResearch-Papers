@@ -1374,88 +1374,6 @@
         },
         {
           "source_line": 8171,
-          "timestamp": "2026-05-21T00:04:54.902433+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "\\[TBD.*Gemma",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md",
-              "output_mode": "content",
-              "-n": "True",
-              "context": "2"
-            }
-          },
-          "id": "event-008171"
-        },
-        {
-          "source_line": 8172,
-          "timestamp": "2026-05-21T00:04:54.953206+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "7-We thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.\n8-\n9:[Omitted long matching line]\n10-\n11-Within ScienceWorld, extended validation on 5 excluded task types (n=100; Appendix S) yields DAF=0.991, confirming that task exclusion does not bias toward death-prone tasks."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-008172"
-        },
-        {
-          "source_line": 8173,
-          "timestamp": "2026-05-21T00:04:58.811188+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md",
-              "offset": "7",
-              "limit": "6"
-            }
-          },
-          "id": "event-008173"
-        },
-        {
-          "source_line": 8174,
-          "timestamp": "2026-05-21T00:04:58.811654+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "7\tWe thank the reviewer for this important observation. We distinguish between our **methodological contribution** (the diagnostic framework) and our **empirical finding** (death dominance in ScienceWorld). The quantitative results (DAF=90.4%, 78.9% label fraction) are specific to ScienceWorld, as stated in Limitations ¶1; the framework's generality claim is methodological.\n8\t\n9\tThree lines of evidence support framework applicability beyond ScienceWorld: (1) **ALFWorld** (§3.4): the framework successfully diagnoses a qualitatively different mechanism—information asymmetry from admissible-action access (94.6% det-preferred, 0% death)—without any modification, demonstrating that the diagnostic procedure generalizes even when the dominant signal differs. Cross-model ALFWorld replication (Llama-3.1-8B, 135 games) confirms 100% directional consistency (16/16 non-tie labels favor deterministic, 95% CI for det-preferred: [6.7%, 17.8%]). Combined with Qwen2.5-7B's 25.9% det-preferred (94.6% directional consistency, 35/37 non-tie labels), both models diagnose information asymmetry—not death—as the routing mechanism in ALFWorld, without framework modification. [TBD: Gemma-2-9B-it ScienceWorld cross-model results pending] (2) **MATH** (§3.4): the framework correctly identifies the absence of routing signal (p=0.81), a useful null result. (3) **MiniHack/Crafter** (§5): the framework correctly diagnoses two boundary conditions (no death mechanism; universal death without asymmetry). These are not failures—they are the framework performing its diagnostic function on environments where routing signal is absent or unexploitable.\n10\t\n11\tWithin ScienceWorld, extended validation on 5 excluded task types (n=100; Appendix S) yields DAF=0.991, confirming that task exclusion does not bias toward death-prone tasks.\n12\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-008174"
-        },
-        {
-          "source_line": 8175,
           "timestamp": "2026-05-21T00:05:03.935642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1475,10 +1393,10 @@
               "new_string": "(3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding"
             }
           },
-          "id": "event-008175"
+          "id": "event-008171"
         },
         {
-          "source_line": 8176,
+          "source_line": 8172,
           "timestamp": "2026-05-21T00:05:03.986629+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1493,10 +1411,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008176"
+          "id": "event-008172"
         },
         {
-          "source_line": 8177,
+          "source_line": 8173,
           "timestamp": "2026-05-21T00:05:09.077483+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1516,10 +1434,10 @@
               "new_string": "Gemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [68.8, 100.0] & death \\\\"
             }
           },
-          "id": "event-008177"
+          "id": "event-008173"
         },
         {
-          "source_line": 8178,
+          "source_line": 8174,
           "timestamp": "2026-05-21T00:05:09.128599+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1534,10 +1452,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008178"
+          "id": "event-008174"
         },
         {
-          "source_line": 8179,
+          "source_line": 8175,
           "timestamp": "2026-05-21T00:05:18.963796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1557,10 +1475,10 @@
               "new_string": "Signal column: diagnosed routing mechanism. DR = death rate.}"
             }
           },
-          "id": "event-008179"
+          "id": "event-008175"
         },
         {
-          "source_line": 8180,
+          "source_line": 8176,
           "timestamp": "2026-05-21T00:05:19.016542+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1575,51 +1493,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-008180"
+          "id": "event-008176"
         },
         {
-          "source_line": 8181,
-          "timestamp": "2026-05-21T00:05:23.734327+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md",
-              "old_string": "[TBD: Gemma-2-9B-it ScienceWorld cross-model results pending]",
-              "new_string": "Gemma-2-9B-it (220 episodes, DAF=89.7%, 95% CI [68.8%, 100.0%]) confirms death dominance across a third model family employing sliding window attention, with 10/10 death-prone task types showing positive ΔDR."
-            }
-          },
-          "id": "event-008181"
-        },
-        {
-          "source_line": 8182,
-          "timestamp": "2026-05-21T00:05:23.785100+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_drafts.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-008182"
-        },
-        {
-          "source_line": 8183,
+          "source_line": 8177,
           "timestamp": "2026-05-21T00:05:29.709872+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1639,10 +1516,10 @@
               "new_string": "cross-model stability ($36$--$43\\%$ internal DR across three families) confirms death vulnerability is a task-environment property."
             }
           },
-          "id": "event-008183"
+          "id": "event-008177"
         },
         {
-          "source_line": 8184,
+          "source_line": 8178,
           "timestamp": "2026-05-21T00:05:29.812273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1657,10 +1534,10 @@
             "tool": "Edit",
             "elapsed_ms": 102
           },
-          "id": "event-008184"
+          "id": "event-008178"
         },
         {
-          "source_line": 8185,
+          "source_line": 8179,
           "timestamp": "2026-05-21T00:05:38.321773+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1679,10 +1556,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-008185"
+          "id": "event-008179"
         },
         {
-          "source_line": 8186,
+          "source_line": 8180,
           "timestamp": "2026-05-21T00:05:41.934649+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1697,10 +1574,10 @@
             "tool": "Bash",
             "elapsed_ms": 3612
           },
-          "id": "event-008186"
+          "id": "event-008180"
         },
         {
-          "source_line": 8187,
+          "source_line": 8181,
           "timestamp": "2026-05-21T00:05:47.458181+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1718,10 +1595,10 @@
               "description": "Check undefined refs and render page 9"
             }
           },
-          "id": "event-008187"
+          "id": "event-008181"
         },
         {
-          "source_line": 8188,
+          "source_line": 8182,
           "timestamp": "2026-05-21T00:05:47.559144+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1736,10 +1613,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-008188"
+          "id": "event-008182"
         },
         {
-          "source_line": 8189,
+          "source_line": 8183,
           "timestamp": "2026-05-21T00:05:51.277174+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1757,10 +1634,10 @@
               "description": "Render page 9"
             }
           },
-          "id": "event-008189"
+          "id": "event-008183"
         },
         {
-          "source_line": 8190,
+          "source_line": 8184,
           "timestamp": "2026-05-21T00:05:51.779535+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1775,10 +1652,10 @@
             "tool": "Bash",
             "elapsed_ms": 502
           },
-          "id": "event-008190"
+          "id": "event-008184"
         },
         {
-          "source_line": 8191,
+          "source_line": 8185,
           "timestamp": "2026-05-21T00:05:55.448150+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1795,10 +1672,10 @@
               "file_path": "/tmp/p9fin.png"
             }
           },
-          "id": "event-008191"
+          "id": "event-008185"
         },
         {
-          "source_line": 8192,
+          "source_line": 8186,
           "timestamp": "2026-05-21T00:05:56.909581+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1813,10 +1690,10 @@
             "tool": "Read",
             "elapsed_ms": 1461
           },
-          "id": "event-008192"
+          "id": "event-008186"
         },
         {
-          "source_line": 8193,
+          "source_line": 8187,
           "timestamp": "2026-05-21T00:06:02.163915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1713,10 @@
               "-n": "True"
             }
           },
-          "id": "event-008193"
+          "id": "event-008187"
         },
         {
-          "source_line": 8194,
+          "source_line": 8188,
           "timestamp": "2026-05-21T00:06:02.214678+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1731,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-008194"
+          "id": "event-008188"
         },
         {
-          "source_line": 8195,
+          "source_line": 8189,
           "timestamp": "2026-05-21T00:06:17.170174+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1875,10 +1752,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008195"
+          "id": "event-008189"
         },
         {
-          "source_line": 8196,
+          "source_line": 8190,
           "timestamp": "2026-05-21T00:06:20.834890+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1893,10 +1770,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3664
           },
-          "id": "event-008196"
+          "id": "event-008190"
         },
         {
-          "source_line": 8197,
+          "source_line": 8191,
           "timestamp": "2026-05-21T00:06:23.485486+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1909,7 +1786,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008197"
+          "id": "event-008191"
         }
       ]
     },
@@ -1917,7 +1794,7 @@
       "number": 412,
       "messages": [
         {
-          "source_line": 8198,
+          "source_line": 8192,
           "timestamp": "2026-05-21T00:06:23.943362+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1931,10 +1808,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008198"
+          "id": "event-008192"
         },
         {
-          "source_line": 8199,
+          "source_line": 8193,
           "timestamp": "2026-05-21T00:06:30.543415+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1947,7 +1824,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008199"
+          "id": "event-008193"
         }
       ]
     },
@@ -1955,7 +1832,7 @@
       "number": 413,
       "messages": [
         {
-          "source_line": 8200,
+          "source_line": 8194,
           "timestamp": "2026-05-21T00:12:05.778809+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1969,10 +1846,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008200"
+          "id": "event-008194"
         },
         {
-          "source_line": 8201,
+          "source_line": 8195,
           "timestamp": "2026-05-21T00:12:13.015285+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1992,10 +1869,10 @@
               "new_string": "Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}"
             }
           },
-          "id": "event-008201"
+          "id": "event-008195"
         },
         {
-          "source_line": 8202,
+          "source_line": 8196,
           "timestamp": "2026-05-21T00:12:13.067374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2010,10 +1887,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-008202"
+          "id": "event-008196"
         },
         {
-          "source_line": 8203,
+          "source_line": 8197,
           "timestamp": "2026-05-21T00:12:33.651676+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2032,10 +1909,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-008203"
+          "id": "event-008197"
         },
         {
-          "source_line": 8204,
+          "source_line": 8198,
           "timestamp": "2026-05-21T00:12:37.216250+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2050,10 +1927,10 @@
             "tool": "Bash",
             "elapsed_ms": 3564
           },
-          "id": "event-008204"
+          "id": "event-008198"
         },
         {
-          "source_line": 8205,
+          "source_line": 8199,
           "timestamp": "2026-05-21T00:12:40.488734+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2071,10 +1948,10 @@
               "description": "Check for undefined refs"
             }
           },
-          "id": "event-008205"
+          "id": "event-008199"
         },
         {
-          "source_line": 8206,
+          "source_line": 8200,
           "timestamp": "2026-05-21T00:12:40.539957+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2089,10 +1966,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-008206"
+          "id": "event-008200"
         },
         {
-          "source_line": 8207,
+          "source_line": 8201,
           "timestamp": "2026-05-21T00:12:45.617160+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2110,10 +1987,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008207"
+          "id": "event-008201"
         },
         {
-          "source_line": 8208,
+          "source_line": 8202,
           "timestamp": "2026-05-21T00:12:49.180397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2128,10 +2005,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3563
           },
-          "id": "event-008208"
+          "id": "event-008202"
         },
         {
-          "source_line": 8209,
+          "source_line": 8203,
           "timestamp": "2026-05-21T00:12:51.331845+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2144,7 +2021,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008209"
+          "id": "event-008203"
         }
       ]
     },
@@ -2152,7 +2029,7 @@
       "number": 414,
       "messages": [
         {
-          "source_line": 8210,
+          "source_line": 8204,
           "timestamp": "2026-05-21T00:12:51.886393+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2166,10 +2043,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008210"
+          "id": "event-008204"
         },
         {
-          "source_line": 8211,
+          "source_line": 8205,
           "timestamp": "2026-05-21T00:12:58.137418+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2182,7 +2059,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008211"
+          "id": "event-008205"
         }
       ]
     },
@@ -2190,7 +2067,7 @@
       "number": 415,
       "messages": [
         {
-          "source_line": 8212,
+          "source_line": 8206,
           "timestamp": "2026-05-24T20:04:59.208167+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2204,10 +2081,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008212"
+          "id": "event-008206"
         },
         {
-          "source_line": 8213,
+          "source_line": 8207,
           "timestamp": "2026-05-24T20:05:12.572637+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2225,10 +2102,10 @@
               "limit": "80"
             }
           },
-          "id": "event-008213"
+          "id": "event-008207"
         },
         {
-          "source_line": 8214,
+          "source_line": 8208,
           "timestamp": "2026-05-24T20:05:12.673883+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2243,10 +2120,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-008214"
+          "id": "event-008208"
         },
         {
-          "source_line": 8215,
+          "source_line": 8209,
           "timestamp": "2026-05-24T20:05:22.605239+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2264,10 +2141,10 @@
               "description": "Get first few lines of each page to map content"
             }
           },
-          "id": "event-008215"
+          "id": "event-008209"
         },
         {
-          "source_line": 8216,
+          "source_line": 8210,
           "timestamp": "2026-05-24T20:05:26.024158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2282,10 +2159,10 @@
             "tool": "Bash",
             "elapsed_ms": 3418
           },
-          "id": "event-008216"
+          "id": "event-008210"
         },
         {
-          "source_line": 8217,
+          "source_line": 8211,
           "timestamp": "2026-05-24T20:05:30.854178+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2303,10 +2180,10 @@
               "description": "Map sections and figures/tables to pages"
             }
           },
-          "id": "event-008217"
+          "id": "event-008211"
         },
         {
-          "source_line": 8218,
+          "source_line": 8212,
           "timestamp": "2026-05-24T20:05:31.457553+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2321,10 +2198,10 @@
             "tool": "Bash",
             "elapsed_ms": 603
           },
-          "id": "event-008218"
+          "id": "event-008212"
         },
         {
-          "source_line": 8219,
+          "source_line": 8213,
           "timestamp": "2026-05-24T20:06:06.015212+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2342,10 +2219,10 @@
               "description": "Find all figures, tables, algorithms in main text files"
             }
           },
-          "id": "event-008219"
+          "id": "event-008213"
         },
         {
-          "source_line": 8220,
+          "source_line": 8214,
           "timestamp": "2026-05-24T20:06:06.167123+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2360,10 +2237,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-008220"
+          "id": "event-008214"
         },
         {
-          "source_line": 8221,
+          "source_line": 8215,
           "timestamp": "2026-05-24T20:06:11.138210+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2381,10 +2258,10 @@
               "description": "List all float captions and labels"
             }
           },
-          "id": "event-008221"
+          "id": "event-008215"
         },
         {
-          "source_line": 8222,
+          "source_line": 8216,
           "timestamp": "2026-05-24T20:06:11.239385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2399,10 +2276,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-008222"
+          "id": "event-008216"
         },
         {
-          "source_line": 8223,
+          "source_line": 8217,
           "timestamp": "2026-05-24T20:07:35.882614+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2415,7 +2292,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008223"
+          "id": "event-008217"
         }
       ]
     },
@@ -2423,7 +2300,7 @@
       "number": 416,
       "messages": [
         {
-          "source_line": 8224,
+          "source_line": 8218,
           "timestamp": "2026-05-24T20:07:36.341913+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2437,10 +2314,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008224"
+          "id": "event-008218"
         },
         {
-          "source_line": 8225,
+          "source_line": 8219,
           "timestamp": "2026-05-24T20:09:03.081940+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2459,10 +2336,10 @@
               "limit": "30"
             }
           },
-          "id": "event-008225"
+          "id": "event-008219"
         },
         {
-          "source_line": 8226,
+          "source_line": 8220,
           "timestamp": "2026-05-24T20:09:03.135328+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2477,10 +2354,10 @@
             "tool": "Read",
             "elapsed_ms": 53
           },
-          "id": "event-008226"
+          "id": "event-008220"
         },
         {
-          "source_line": 8227,
+          "source_line": 8221,
           "timestamp": "2026-05-24T20:09:06.854378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2498,10 +2375,10 @@
               "limit": "15"
             }
           },
-          "id": "event-008227"
+          "id": "event-008221"
         },
         {
-          "source_line": 8228,
+          "source_line": 8222,
           "timestamp": "2026-05-24T20:09:06.906250+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2516,10 +2393,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-008228"
+          "id": "event-008222"
         },
         {
-          "source_line": 8229,
+          "source_line": 8223,
           "timestamp": "2026-05-24T20:09:47.053191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2537,10 +2414,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008229"
+          "id": "event-008223"
         },
         {
-          "source_line": 8230,
+          "source_line": 8224,
           "timestamp": "2026-05-24T20:09:51.115548+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2555,10 +2432,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4062
           },
-          "id": "event-008230"
+          "id": "event-008224"
         },
         {
-          "source_line": 8231,
+          "source_line": 8225,
           "timestamp": "2026-05-24T20:09:54.613675+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2571,7 +2448,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008231"
+          "id": "event-008225"
         }
       ]
     },
@@ -2579,7 +2456,7 @@
       "number": 417,
       "messages": [
         {
-          "source_line": 8232,
+          "source_line": 8226,
           "timestamp": "2026-05-24T20:10:46.921552+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2593,10 +2470,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008232"
+          "id": "event-008226"
         },
         {
-          "source_line": 8233,
+          "source_line": 8227,
           "timestamp": "2026-05-24T20:10:59.707846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2616,10 +2493,10 @@
               "new_string": "\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{experiments}\n\\input{discussion}\n\\input{conclusion}"
             }
           },
-          "id": "event-008233"
+          "id": "event-008227"
         },
         {
-          "source_line": 8234,
+          "source_line": 8228,
           "timestamp": "2026-05-24T20:10:59.759118+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2634,10 +2511,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008234"
+          "id": "event-008228"
         },
         {
-          "source_line": 8235,
+          "source_line": 8229,
           "timestamp": "2026-05-24T20:11:02.978105+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2654,10 +2531,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-008235"
+          "id": "event-008229"
         },
         {
-          "source_line": 8236,
+          "source_line": 8230,
           "timestamp": "2026-05-24T20:11:02.978758+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2672,10 +2549,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008236"
+          "id": "event-008230"
         },
         {
-          "source_line": 8237,
+          "source_line": 8231,
           "timestamp": "2026-05-24T20:11:14.041911+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2693,10 +2570,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008237"
+          "id": "event-008231"
         },
         {
-          "source_line": 8238,
+          "source_line": 8232,
           "timestamp": "2026-05-24T20:11:14.042514+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2711,10 +2588,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008238"
+          "id": "event-008232"
         },
         {
-          "source_line": 8239,
+          "source_line": 8233,
           "timestamp": "2026-05-24T20:11:20.647651+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2734,10 +2611,10 @@
               "new_string": "\\section{Method}\n\\label{sec:method}\n\nOur diagnostic framework"
             }
           },
-          "id": "event-008239"
+          "id": "event-008233"
         },
         {
-          "source_line": 8240,
+          "source_line": 8234,
           "timestamp": "2026-05-24T20:11:20.749281+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2752,10 +2629,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-008240"
+          "id": "event-008234"
         },
         {
-          "source_line": 8241,
+          "source_line": 8235,
           "timestamp": "2026-05-24T20:11:38.131610+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2775,10 +2652,10 @@
               "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling to two 70B-class models (DAF $92.4$--$101.0\\%$), and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/pipeline_overview.pdf}\n\\caption{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\\ref{alg:labeling}.}\n\\label{fig:pipeline}\n\\end{figure}"
             }
           },
-          "id": "event-008241"
+          "id": "event-008235"
         },
         {
-          "source_line": 8242,
+          "source_line": 8236,
           "timestamp": "2026-05-24T20:11:38.184246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2793,10 +2670,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-008242"
+          "id": "event-008236"
         },
         {
-          "source_line": 8243,
+          "source_line": 8237,
           "timestamp": "2026-05-24T20:11:42.413769+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2815,10 +2692,10 @@
               "limit": "30"
             }
           },
-          "id": "event-008243"
+          "id": "event-008237"
         },
         {
-          "source_line": 8244,
+          "source_line": 8238,
           "timestamp": "2026-05-24T20:11:42.517487+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2833,10 +2710,10 @@
             "tool": "Read",
             "elapsed_ms": 103
           },
-          "id": "event-008244"
+          "id": "event-008238"
         },
         {
-          "source_line": 8245,
+          "source_line": 8239,
           "timestamp": "2026-05-24T20:11:49.761612+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2855,10 +2732,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008245"
+          "id": "event-008239"
         },
         {
-          "source_line": 8246,
+          "source_line": 8240,
           "timestamp": "2026-05-24T20:11:49.762095+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2873,10 +2750,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008246"
+          "id": "event-008240"
         },
         {
-          "source_line": 8247,
+          "source_line": 8241,
           "timestamp": "2026-05-24T20:12:04.539003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2896,10 +2773,10 @@
               "new_string": "The labeling function is \\emph{death-aware}: it prioritizes survival over score, then compares scores among same-status episodes (Algorithm~\\ref{alg:labeling}). Both-dead episodes receive \\texttt{no\\_preference} because ScienceWorld's fixed $-100$ penalty makes death timing uninformative. ScienceWorld scores are integer-valued, so we use exact (in)equality with no threshold. Figure~\\ref{fig:pipeline} illustrates the overall pipeline; label distributions are reported in \\S\\ref{sec:death-decomp}.\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\smallskip\n\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).\\\\\n\\noindent\\textit{Note:} When both strategies die (line 9), we assign \\texttt{no\\_preference}; in ScienceWorld, death yields a fixed $-100$ regardless of timing, so both-dead episodes contribute no routing signal.\n\\end{algorithm}"
             }
           },
-          "id": "event-008247"
+          "id": "event-008241"
         },
         {
-          "source_line": 8248,
+          "source_line": 8242,
           "timestamp": "2026-05-24T20:12:04.539659+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2914,10 +2791,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008248"
+          "id": "event-008242"
         },
         {
-          "source_line": 8249,
+          "source_line": 8243,
           "timestamp": "2026-05-24T20:12:13.676480+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2937,10 +2814,10 @@
               "new_string": ""
             }
           },
-          "id": "event-008249"
+          "id": "event-008243"
         },
         {
-          "source_line": 8250,
+          "source_line": 8244,
           "timestamp": "2026-05-24T20:12:13.727713+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2955,10 +2832,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008250"
+          "id": "event-008244"
         },
         {
-          "source_line": 8251,
+          "source_line": 8245,
           "timestamp": "2026-05-24T20:12:19.301192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2977,10 +2854,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-008251"
+          "id": "event-008245"
         },
         {
-          "source_line": 8252,
+          "source_line": 8246,
           "timestamp": "2026-05-24T20:12:24.377121+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2995,10 +2872,10 @@
             "tool": "Bash",
             "elapsed_ms": 5075
           },
-          "id": "event-008252"
+          "id": "event-008246"
         },
         {
-          "source_line": 8253,
+          "source_line": 8247,
           "timestamp": "2026-05-24T20:12:29.999814+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3016,10 +2893,10 @@
               "description": "Check for undefined refs/citations"
             }
           },
-          "id": "event-008253"
+          "id": "event-008247"
         },
         {
-          "source_line": 8254,
+          "source_line": 8248,
           "timestamp": "2026-05-24T20:12:30.102256+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3034,10 +2911,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-008254"
+          "id": "event-008248"
         },
         {
-          "source_line": 8255,
+          "source_line": 8249,
           "timestamp": "2026-05-24T20:12:37.034209+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3055,10 +2932,10 @@
               "description": "Map sections and floats to pages after restructuring"
             }
           },
-          "id": "event-008255"
+          "id": "event-008249"
         },
         {
-          "source_line": 8256,
+          "source_line": 8250,
           "timestamp": "2026-05-24T20:12:37.386085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3073,10 +2950,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-008256"
+          "id": "event-008250"
         },
         {
-          "source_line": 8257,
+          "source_line": 8251,
           "timestamp": "2026-05-24T20:12:52.554132+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3094,10 +2971,10 @@
               "description": "Render pages 3 and 9 to check layout"
             }
           },
-          "id": "event-008257"
+          "id": "event-008251"
         },
         {
-          "source_line": 8258,
+          "source_line": 8252,
           "timestamp": "2026-05-24T20:12:53.509228+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3112,10 +2989,10 @@
             "tool": "Bash",
             "elapsed_ms": 955
           },
-          "id": "event-008258"
+          "id": "event-008252"
         },
         {
-          "source_line": 8259,
+          "source_line": 8253,
           "timestamp": "2026-05-24T20:12:58.779728+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3132,10 +3009,10 @@
               "file_path": "/tmp/p9new.png"
             }
           },
-          "id": "event-008259"
+          "id": "event-008253"
         },
         {
-          "source_line": 8260,
+          "source_line": 8254,
           "timestamp": "2026-05-24T20:13:00.512060+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3150,10 +3027,10 @@
             "tool": "Read",
             "elapsed_ms": 1732
           },
-          "id": "event-008260"
+          "id": "event-008254"
         },
         {
-          "source_line": 8261,
+          "source_line": 8255,
           "timestamp": "2026-05-24T20:14:01.906667+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3173,10 +3050,10 @@
               "new_string": ""
             }
           },
-          "id": "event-008261"
+          "id": "event-008255"
         },
         {
-          "source_line": 8262,
+          "source_line": 8256,
           "timestamp": "2026-05-24T20:14:01.957651+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3191,10 +3068,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008262"
+          "id": "event-008256"
         },
         {
-          "source_line": 8263,
+          "source_line": 8257,
           "timestamp": "2026-05-24T20:14:05.875707+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3213,10 +3090,10 @@
               "limit": "10"
             }
           },
-          "id": "event-008263"
+          "id": "event-008257"
         },
         {
-          "source_line": 8264,
+          "source_line": 8258,
           "timestamp": "2026-05-24T20:14:05.976625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3231,10 +3108,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-008264"
+          "id": "event-008258"
         },
         {
-          "source_line": 8265,
+          "source_line": 8259,
           "timestamp": "2026-05-24T20:14:18.632825+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3254,10 +3131,10 @@
               "new_string": "\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\smallskip\n\\noindent\\textit{Assumption:} The death-first priority (lines 5--10) is valid when $P$ exceeds the maximum partial score, guaranteeing that a dead episode never outscores a surviving one. ScienceWorld satisfies this ($P{=}100$, max partial score ${=}100$).\\\\\n\\noindent\\textit{Note:} When both strategies die (line 9), we assign \\texttt{no\\_preference}; in ScienceWorld, death yields a fixed $-100$ regardless of timing, so both-dead episodes contribute no routing signal.\n\\end{algorithm}\n\nNote that"
             }
           },
-          "id": "event-008265"
+          "id": "event-008259"
         },
         {
-          "source_line": 8266,
+          "source_line": 8260,
           "timestamp": "2026-05-24T20:14:18.634021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3272,10 +3149,10 @@
             "tool": "Edit",
             "elapsed_ms": 1
           },
-          "id": "event-008266"
+          "id": "event-008260"
         },
         {
-          "source_line": 8267,
+          "source_line": 8261,
           "timestamp": "2026-05-24T20:14:26.953167+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3295,10 +3172,10 @@
               "new_string": "same-status episodes (Algorithm~\\ref{alg:labeling}; Appendix~\\ref{app:labeling}). Both-dead"
             }
           },
-          "id": "event-008267"
+          "id": "event-008261"
         },
         {
-          "source_line": 8268,
+          "source_line": 8262,
           "timestamp": "2026-05-24T20:14:27.053936+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3313,10 +3190,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-008268"
+          "id": "event-008262"
         },
         {
-          "source_line": 8269,
+          "source_line": 8263,
           "timestamp": "2026-05-24T20:14:31.526300+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3334,10 +3211,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008269"
+          "id": "event-008263"
         },
         {
-          "source_line": 8270,
+          "source_line": 8264,
           "timestamp": "2026-05-24T20:14:31.526850+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3352,10 +3229,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008270"
+          "id": "event-008264"
         },
         {
-          "source_line": 8271,
+          "source_line": 8265,
           "timestamp": "2026-05-24T20:14:51.096726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3374,10 +3251,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-008271"
+          "id": "event-008265"
         },
         {
-          "source_line": 8272,
+          "source_line": 8266,
           "timestamp": "2026-05-24T20:14:56.128905+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3392,10 +3269,10 @@
             "tool": "Bash",
             "elapsed_ms": 5032
           },
-          "id": "event-008272"
+          "id": "event-008266"
         },
         {
-          "source_line": 8273,
+          "source_line": 8267,
           "timestamp": "2026-05-24T20:15:01.633753+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3413,10 +3290,10 @@
               "description": "Check refs and map sections/floats to pages"
             }
           },
-          "id": "event-008273"
+          "id": "event-008267"
         },
         {
-          "source_line": 8274,
+          "source_line": 8268,
           "timestamp": "2026-05-24T20:15:01.734708+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3431,10 +3308,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-008274"
+          "id": "event-008268"
         },
         {
-          "source_line": 8275,
+          "source_line": 8269,
           "timestamp": "2026-05-24T20:15:06.406263+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3452,10 +3329,10 @@
               "description": "Map sections and floats to pages"
             }
           },
-          "id": "event-008275"
+          "id": "event-008269"
         },
         {
-          "source_line": 8276,
+          "source_line": 8270,
           "timestamp": "2026-05-24T20:15:06.809448+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3470,10 +3347,10 @@
             "tool": "Bash",
             "elapsed_ms": 403
           },
-          "id": "event-008276"
+          "id": "event-008270"
         },
         {
-          "source_line": 8277,
+          "source_line": 8271,
           "timestamp": "2026-05-24T20:15:17.305135+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3491,10 +3368,10 @@
               "description": "Find float captions on each page"
             }
           },
-          "id": "event-008277"
+          "id": "event-008271"
         },
         {
-          "source_line": 8278,
+          "source_line": 8272,
           "timestamp": "2026-05-24T20:15:17.860927+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3509,10 +3386,10 @@
             "tool": "Bash",
             "elapsed_ms": 555
           },
-          "id": "event-008278"
+          "id": "event-008272"
         },
         {
-          "source_line": 8279,
+          "source_line": 8273,
           "timestamp": "2026-05-24T20:15:54.898566+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3531,10 +3408,10 @@
               "limit": "10"
             }
           },
-          "id": "event-008279"
+          "id": "event-008273"
         },
         {
-          "source_line": 8280,
+          "source_line": 8274,
           "timestamp": "2026-05-24T20:15:54.949428+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3547,6 +3424,125 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-008274"
+        },
+        {
+          "source_line": 8275,
+          "timestamp": "2026-05-24T20:18:06.360579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+              "limit": "20"
+            }
+          },
+          "id": "event-008275"
+        },
+        {
+          "source_line": 8276,
+          "timestamp": "2026-05-24T20:18:06.963741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). Taxonomically redundant tasks share identical action vocabularies, reward functions, and environmental dynamics, differing only in target entity; we retain one representative per family (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset; increasing the 30-step budget might surface signal in excluded types (see Limitations). An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}). Prescreening used $n{=}5$ episodes per task type; directional consistency (18/19 types favoring deterministic) rather than point estimates drives the inclusion criterion.\n5\t\n6\t\\subsection{Death Avoidance Decomposition}\n7\t\\label{sec:death-decomp}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\includegraphics[width=\\columnwidth]{figures/label_decomposition.pdf}\n12\t\\caption{Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20 non-death labels originate from a single task type (\\texttt{find-non-living-thing}).}\n13\t\\label{fig:label-decomposition}\n14\t\\end{figure}\n15\t\n16\tOf the 95 non-tie routing labels (Figure~\\ref{fig:label-decomposition}), 75 (78.9\\%; 95\\% CI: $\n…[truncated 1444 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-008276"
+        },
+        {
+          "source_line": 8277,
+          "timestamp": "2026-05-24T20:18:06.964292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
+              "limit": "10"
+            }
+          },
+          "id": "event-008277"
+        },
+        {
+          "source_line": 8278,
+          "timestamp": "2026-05-24T20:18:07.115190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur diagnostic framework quantifies what drives routing signal in interactive environments through two components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\\S\\ref{sec:collection}--\\ref{sec:labeling}); and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). A supplementary Signal Concentration Index (SCI; Appendix~\\ref{app:sci}) measures whether signal is concentrated in a few task types. Episode-level bootstrap resampling provides 95\\% confidence intervals for all metrics.\n5\t\n6\t\\subsection{Problem Setup}\n7\t\\label{sec:problem-setup}\n8\t\n9\tConsider an interactive environment with observation space $\\mathcal{O}$ and action space $\\mathcal{A}$. An agent policy $\\pi: \\mathcal{O}^* \\rightarrow \\mathcal{A}$ maps observation histories to actions. We define two computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$: \\textbf{internal} (${\\tt int}$), where the agent predicts intermediate observations via chain-of-thought reasoning (ReAct~\\citep{react-2023}), with prediction errors compounding across steps; and \\textbf{deterministic} (${\\tt det}$), a privileged-information strategy (an umbrella term: ground-truth simulator access in ScienceWorld, code interpreter in MATH, admissible-action enumeration in ALFWorld---see \\S\\ref{sec:cross-env} for environment-specific operationalizations) that eliminates observation uncertainty; these qualitative differences affect what routing signals the framework can detect. A \\emph{routing policy} $\\rho: \\mathcal{O}^* \\rightarrow \\mathcal{M}$ selects which computation mode to use at each step; our analysis investigates what signal is available to learn $\\rho$.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-008278"
+        },
+        {
+          "source_line": 8279,
+          "timestamp": "2026-05-24T20:18:16.855800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/label_decomposition.pdf}\n\\caption{Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20 non-death labels originate from a single task type (\\texttt{find-non-living-thing}).}\n\\label{fig:label-decomposition}\n\\end{figure}\n\nOf the 95",
+              "new_string": "Of the 95"
+            }
+          },
+          "id": "event-008279"
+        },
+        {
+          "source_line": 8280,
+          "timestamp": "2026-05-24T20:18:16.906621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Edit",
             "elapsed_ms": 50
           },
           "id": "event-008280"

@@ -9,14 +9,14 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/feishu_group_oc_09b04b56f2fb04931812c4a55f159dee_paper_agent.jsonl",
     "occurrence": 1,
-    "bytes": 5578280,
-    "sha256": "206a81569764d401af8894dff843386b02086ac864caa96805b8c6f5a1f813e4"
+    "bytes": 5560855,
+    "sha256": "91f2cd0b70e2a031b557667870a5cb0f107cb134097a36f9312ed709065bce61"
   },
   "readable_path": "readable/conversations/paper-agent-coordination.md",
   "paper_title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
   "preview_selection": {
     "round": 1,
-    "total_source_events": 6939,
+    "total_source_events": 6937,
     "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
   },
   "statistics": {
@@ -34,6 +34,7 @@
     {
       "number": 1,
       "boundary": "recorded_user_message",
+      "message_count": 69,
       "messages": [
         {
           "source_line": 1,
@@ -1370,8 +1371,7 @@
           },
           "id": "event-000069"
         }
-      ],
-      "message_count": 69
+      ]
     }
   ]
 }

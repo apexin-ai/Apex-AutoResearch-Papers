@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_b2cf3b1eba4db851529b6a1a7a34c4e8_reviewer_20260521T130425_956604.jsonl",
     "occurrence": 1,
-    "bytes": 805629,
-    "sha256": "1880a1553d23eb4dab8880d62a118f66fc7e72fced9c27f21966e825db2a57ed"
+    "bytes": 801248,
+    "sha256": "fa987e6539cec1173e82a2a8b7e8b7514ef55cd5a25e45a8fc44376d60441fae"
   },
   "statistics": {
-    "messages": 926,
+    "messages": 922,
     "user_turns": 36,
-    "tool_calls": 427,
+    "tool_calls": 425,
     "roles": {
       "user": 36,
-      "tool_call": 427,
-      "tool_result": 427,
+      "tool_call": 425,
+      "tool_result": 425,
       "assistant": 36
     },
     "unparsed_lines_preserved": 0,
@@ -375,11 +375,11 @@
     {
       "number": 31,
       "boundary": "recorded_user_message",
-      "message_count": 12,
+      "message_count": 8,
       "chunks": [
         {
           "path": "f2ea3b5e553fcc5657db-part-0005.json",
-          "message_count": 12
+          "message_count": 8
         }
       ]
     },
@@ -412,11 +412,11 @@
       "chunks": [
         {
           "path": "f2ea3b5e553fcc5657db-part-0005.json",
-          "message_count": 4
+          "message_count": 8
         },
         {
           "path": "f2ea3b5e553fcc5657db-part-0006.json",
-          "message_count": 8
+          "message_count": 4
         }
       ]
     },

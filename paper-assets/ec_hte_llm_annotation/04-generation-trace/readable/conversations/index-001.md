@@ -6,7 +6,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 |---|---:|---:|---|---|
 | Director coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: ec_hte_llm_annotation \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_ | 5,319 | 472 | [Read transcript](director-coordination-20260522-182928.md) | [JSON](../../sessions/38/38d6a52cbda91ea33582.json) |
 | Reviewer coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: ec_hte_llm_annotation \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_ | 1,531 | 78 | [Read transcript](reviewer-coordination-20260521-095856.md) | [JSON](../../sessions/28/281d0679bf9043ea74fc.json) |
-| Project coordination (archived snapshot) — [Director 指令] ## MVP 实现任务：EC-HTE 合成模拟 ### 背景 验证核心假设：当 LLM effect-modifier 误分类率跨子群异质 + 真实 CATE 跨子群异质时 | 8,494 | 421 | [Read transcript](coordination-coordination-20260525-192901.md) | [JSON](../../sessions/1d/1d2cd4b3f46880b20a29.json) |
+| Project coordination (archived snapshot) — [Director 指令] ## MVP 实现任务：EC-HTE 合成模拟 ### 背景 验证核心假设：当 LLM effect-modifier 误分类率跨子群异质 + 真实 CATE 跨子群异质时 | 8,430 | 421 | [Read transcript](coordination-coordination-20260525-192901.md) | [JSON](../../sessions/1d/1d2cd4b3f46880b20a29.json) |
 | code mvp simulation v3 | 9 | 0 | [Read transcript](code-mvp-simulation-v3.md) | [JSON](../../sessions/a0/a08e8b3e2ca8e36a283a.json) |
 | Reviewer 1 coordination — [Round 1 审稿请求]: ## R1 审稿任务：方法正确性 + 实验质量 **论文**: "When Debiasing Backfires: Error-Corrected Heterogen | 2,492 | 56 | [Read transcript](reviewer-1-coordination.md) | [JSON](../../sessions/3c/3cf164abc479c500844b.json) |
 | Reviewer 2 coordination — [Round 1 审稿请求]: ## R2 审稿任务：新颖性 + 相关工作 + 写作 **论文**: "When Debiasing Backfires: Error-Corrected Hetero | 2,746 | 55 | [Read transcript](reviewer-2-coordination.md) | [JSON](../../sessions/6b/6b801186fff420c7215b.json) |
@@ -46,7 +46,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code exp w4 bootstrap se | 77 | 0 | [Read transcript](code-exp-w4-bootstrap-se.md) | [JSON](../../sessions/2d/2dd5b5d13fe5c191f598.json) |
 | code exp 024 realcm bias identity | 89 | 0 | [Read transcript](code-exp-024-realcm-bias-identity.md) | [JSON](../../sessions/cd/cd9c112bfa379f7ce1fa.json) |
 | code exp 026 low budget hb v2 | 21 | 0 | [Read transcript](code-exp-026-low-budget-hb-v2.md) | [JSON](../../sessions/9d/9d03658a21abe22c4a61.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 已全部释放（已三次请 Man | 5,004 | 375 | [Read transcript](director-coordination-20260525-032205.md) | [JSON](../../sessions/cc/cc982f77fb2a72d2b4bd.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 已全部释放（已三次请 Man | 5,000 | 375 | [Read transcript](director-coordination-20260525-032205.md) | [JSON](../../sessions/cc/cc982f77fb2a72d2b4bd.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是纯 CPU 实验（ | 1,907 | 69 | [Read transcript](reviewer-coordination-20260523-202307.md) | [JSON](../../sessions/fa/fa5c4e50cc1b8cc00d5c.json) |
 | research asymmetric diagnostic | 65 | 0 | [Read transcript](research-asymmetric-diagnostic.md) | [JSON](../../sessions/f6/f65aca11c7763b9acd47.json) |
 | research adaptive shrinkage | 55 | 0 | [Read transcript](research-adaptive-shrinkage.md) | [JSON](../../sessions/a6/a6b67ba253fe64ff40bc.json) |
@@ -60,7 +60,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code exp d hatespeech upgrade | 143 | 0 | [Read transcript](code-exp-d-hatespeech-upgrade.md) | [JSON](../../sessions/32/32d2f8b262f22d476807.json) |
 | code exp a civilcomments | 69 | 0 | [Read transcript](code-exp-a-civilcomments.md) | [JSON](../../sessions/c6/c66ae941f02221885b30.json) |
 | research data integrity audit v2 | 321 | 0 | [Read transcript](research-data-integrity-audit-v2.md) | [JSON](../../sessions/5e/5ea166e1822707a40231.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 训练，全 | 1,021 | 59 | [Read transcript](reviewer-coordination-20260525-032222.md) | [JSON](../../sessions/02/0229485d97fd814d0be7.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 训练，全 | 997 | 59 | [Read transcript](reviewer-coordination-20260525-032222.md) | [JSON](../../sessions/02/0229485d97fd814d0be7.json) |
 | code paper fixes mf1 mf2 sf | 63 | 0 | [Read transcript](code-paper-fixes-mf1-mf2-sf.md) | [JSON](../../sessions/8f/8fe69475621b028aacac.json) |
 | code ddl final edits | 67 | 0 | [Read transcript](code-ddl-final-edits.md) | [JSON](../../sessions/0b/0b6cde4a39868bbd027a.json) |
 | research demo subgroup codebase discovery | 181 | 0 | [Read transcript](research-demo-subgroup-codebase-discovery.md) | [JSON](../../sessions/c6/c618ffa6361aba7c7f28.json) |

@@ -7,433 +7,6 @@
       "messages": [
         {
           "source_line": 6301,
-          "timestamp": "2026-05-25T08:43:15.315734+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper && pdftoppm -png -r 200 -f 1 -l 1 main.pdf /tmp/page1_url"
-            }
-          },
-          "id": "event-006301"
-        },
-        {
-          "source_line": 6302,
-          "timestamp": "2026-05-25T08:43:16.521869+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 1206
-          },
-          "id": "event-006302"
-        },
-        {
-          "source_line": 6303,
-          "timestamp": "2026-05-25T08:43:19.535494+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/tmp/page1_url-01.png"
-            }
-          },
-          "id": "event-006303"
-        },
-        {
-          "source_line": 6304,
-          "timestamp": "2026-05-25T08:43:20.993452+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 1457
-          },
-          "id": "event-006304"
-        },
-        {
-          "source_line": 6305,
-          "timestamp": "2026-05-25T08:45:29.199483+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && git status --short | head -30",
-              "description": "Check current git status"
-            }
-          },
-          "id": "event-006305"
-        },
-        {
-          "source_line": 6306,
-          "timestamp": "2026-05-25T08:45:29.651872+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": " M docs/paper/abstract.tex\n M docs/paper/experiments.tex\n?? .claude/\n?? .gitignore\n?? AGENTS.md\n?? ROADMAP.lock\n?? ROADMAP.md\n?? __pycache__/\n?? _last_visual_review.json\n?? _paper_audit_result.json\n?? analyze_cwm_eval.py\n?? artifacts/\n?? build_cwm_data.py\n?? build_data.py\n?? checkpoints/\n?? cls_inference_for_rerepair.py\n?? compute_deepseek_func_icc.py\n?? compute_supplementary_stats.py\n?? cwm_forced_parse.py\n?? cwm_parseable_bias.py\n?? decisions.lock\n?? decisions.yaml\n?? distill_tmp/\n?? docs/IDEA_BRIEF.md\n?? docs/paper/_pdf_images/\n?? docs/paper/figures/paper/fig2_scaling_gap.png\n?? docs/paper/figures/paper/figure2_v2.pdf\n?? docs/paper/figures/paper/figure2_v2.png\n?? docs/paper/figures/paper/figure2_v3.pdf\n?? docs/paper/figures/paper/figure2_v3.png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 452
-          },
-          "id": "event-006306"
-        },
-        {
-          "source_line": 6307,
-          "timestamp": "2026-05-25T08:45:29.653218+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && git log --oneline -5",
-              "description": "Recent commits"
-            }
-          },
-          "id": "event-006307"
-        },
-        {
-          "source_line": 6308,
-          "timestamp": "2026-05-25T08:45:30.558386+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "277eb8b Fix data consistency issues found in DDL audit\nb603ac4 Fix abstract 14B overclaim, conclusion z-stat clarity, appendix whitespace, heatmap colorblind accessibility\n9b96225 Fix page 5 Table/Figure crowding: move Figure 2 before Table 2 in source order so LaTeX distributes them across page 6\n64ffe53 Rewrite abstract (narrative-driven), shorten intro 40%, move Related Work to §2\n5c792ea Redraw Figure 1 with PaperBanana: unified color scheme (CLS blue, CWM orange, TRAJ green), three-panel Input→Model→Output flow\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 905
-          },
-          "id": "event-006308"
-        },
-        {
-          "source_line": 6309,
-          "timestamp": "2026-05-25T08:45:30.659539+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && ls -la *.py | head -30",
-              "description": "List Python scripts in project root"
-            }
-          },
-          "id": "event-006309"
-        },
-        {
-          "source_line": 6310,
-          "timestamp": "2026-05-25T08:45:30.760482+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "-rw-r--r-- 1 ubuntu ubuntu 11685 May 15 22:25 analyze_cwm_eval.py\n-rw-r--r-- 1 ubuntu ubuntu  6425 May 11 21:10 build_cwm_data.py\n-rw-r--r-- 1 ubuntu ubuntu 19740 May 11 18:28 build_data.py\n-rw-r--r-- 1 ubuntu ubuntu 10380 May 17 04:52 cls_inference_for_rerepair.py\n-rw-r--r-- 1 ubuntu ubuntu  3389 May 18 19:01 compute_deepseek_func_icc.py\n-rw-r--r-- 1 ubuntu ubuntu  8758 May 21 06:37 compute_supplementary_stats.py\n-rw-r--r-- 1 ubuntu ubuntu 12770 May 19 03:05 cwm_forced_parse.py\n-rw-r--r-- 1 ubuntu ubuntu  9478 May 19 09:12 cwm_parseable_bias.py\n-rw-r--r-- 1 ubuntu ubuntu 11171 May 22 21:56 eval_14b_baseline.py\n-rw-r--r-- 1 ubuntu ubuntu 15072 May 16 05:23 eval_cwm_baseline.py\n-rw-r--r-- 1 ubuntu ubuntu  8404 May 19 03:16 eval_cwm_constrained.py\n-rw-r--r-- 1 ubuntu ubuntu 12632 May 12 08:23 eval_majority_voting.py\n-rw-r--r-- 1 ubuntu ubuntu  8587 May 17 04:35 eval_re_repair.py\n-rw-r--r-- 1 ubuntu ubuntu  8255 May 21 06:37 integrate_cwm_results.py\n-rw-r--r-- 1 ubuntu ubuntu  9641 May 17 13:09 llm_judge_zeroshot.py\n-rw-r--r-- 1 ubuntu ubuntu  8470 May 16 05:02 merge_cwm8b_shards.py\n-rw-r--r-- 1 ubuntu ubuntu  1361 May 19 03:17 merge_lora.py\n-rw-r--r-- 1 ubuntu ubuntu 10931 May 11 19:32 mvp_a_total_sim.py\n-rw-r--r-- 1 ubuntu ubuntu 10941 May 16 04:47 oracle_icc_sensitivity.py\n-rw-r--r-- 1 ubuntu ubuntu  6766 May 22 12:58 plot_figure2_v2.py\n-rw-r--r-- 1 ubuntu ubuntu 26869 May 16 05:19 re_repair_eval.py\n-rw-r--r-- 1 ubuntu ubuntu 14322 May 16 08:46 re_repair_phase0.py\n-rw-r--r-- 1 ubuntu ubuntu 26298 May 17 04:30 re_repair_v2.py\n-rw-r--r-- 1 ubuntu ubuntu 24629 May 22 16:29 routing_analysis.py\n-rw-r--r-- 1 ubuntu ubuntu 15647 May 21 11:05 run_w5_full_regression.py\n-rw-r--r-- 1 ubuntu ubuntu  4488 May 17 09:05 tost_sensitivity.py\n-rw-r--r-- 1 ubuntu ubuntu  7768 May 11 21:11 train_cwm_baseline.py\n-rw-r--r-- 1 ubuntu ubuntu 14543 May 16 18:38 train_unified.py\n-rw-r--r-- 1 ubuntu ubuntu 15700 May 19 09:14 variant_bootstrap_ci.py\n-rw-r--r-- 1 ubuntu ubuntu 11806 May 22 17:0\n…[truncated 165 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-006310"
-        },
-        {
-          "source_line": 6311,
-          "timestamp": "2026-05-25T08:45:33.826366+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && git ls-files | head -40",
-              "description": "List tracked files in repo"
-            }
-          },
-          "id": "event-006311"
-        },
-        {
-          "source_line": 6312,
-          "timestamp": "2026-05-25T08:45:35.333387+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "docs/paper/abstract.tex\ndocs/paper/acl.sty\ndocs/paper/acl_natbib.bst\ndocs/paper/appendix.tex\ndocs/paper/checklist.tex\ndocs/paper/conclusion.tex\ndocs/paper/experiments.tex\ndocs/paper/figures/paper/fig1_reformulation.pdf\ndocs/paper/figures/paper/fig2_scaling_gap.pdf\ndocs/paper/figures/paper/fig3_oracle_stratified.pdf\ndocs/paper/figures/paper/fig3_oracle_stratified.png\ndocs/paper/figures/paper/fig_cwm_unparseable.pdf\ndocs/paper/figures/paper/fig_cwm_unparseable.png\ndocs/paper/figures/paper/fig_mutation_heatmap.pdf\ndocs/paper/figures/paper/fig_mutation_heatmap.png\ndocs/paper/figures/paper/fig_tost_sensitivity.pdf\ndocs/paper/figures/paper/fig_tost_sensitivity.png\ndocs/paper/introduction.tex\ndocs/paper/main.tex\ndocs/paper/method.tex\ndocs/paper/references.bib\ndocs/paper/related_work.tex\nmerge_cwm8b_shards.py\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 1507
-          },
-          "id": "event-006312"
-        },
-        {
-          "source_line": 6313,
-          "timestamp": "2026-05-25T08:45:35.736223+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && ls -la *.py 2>/dev/null | wc -l && ls -d paper/ paper_framing.md requirements*.txt 2>/dev/null",
-              "description": "Count scripts and check for requirements.txt"
-            }
-          },
-          "id": "event-006313"
-        },
-        {
-          "source_line": 6314,
-          "timestamp": "2026-05-25T08:45:36.590892+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Exit code 2\n32\npaper/\npaper_framing.md"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 854
-          },
-          "id": "event-006314"
-        },
-        {
-          "source_line": 6315,
-          "timestamp": "2026-05-25T08:45:36.592156+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && cat _anonymous_repo.json",
-              "description": "Read anonymous repo config"
-            }
-          },
-          "id": "event-006315"
-        },
-        {
-          "source_line": 6316,
-          "timestamp": "2026-05-25T08:45:36.592551+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored</tool_use_error>"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 0
-          },
-          "id": "event-006316"
-        },
-        {
-          "source_line": 6317,
-          "timestamp": "2026-05-25T08:45:38.966876+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/_anonymous_repo.json",
-              "description": "Read anonymous repo config"
-            }
-          },
-          "id": "event-006317"
-        },
-        {
-          "source_line": 6318,
-          "timestamp": "2026-05-25T08:45:39.419278+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/exec-sim-repair-verifier\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/exec-sim-repair-verifier.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"exec-sim-repair-verifier\"\n}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 452
-          },
-          "id": "event-006318"
-        },
-        {
-          "source_line": 6319,
-          "timestamp": "2026-05-25T08:45:39.722851+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && ls paper/",
-              "description": "Check paper directory contents"
-            }
-          },
-          "id": "event-006319"
-        },
-        {
-          "source_line": 6320,
-          "timestamp": "2026-05-25T08:45:39.823830+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "method.tex\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-006320"
-        },
-        {
-          "source_line": 6321,
-          "timestamp": "2026-05-25T08:45:54.717183+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && head -5 train_unified.py train_cwm_baseline.py build_data.py build_cwm_data.py eval_cwm_baseline.py eval_14b_baseline.py eval_majority_voting.py",
-              "description": "Check header of core scripts"
-            }
-          },
-          "id": "event-006321"
-        },
-        {
-          "source_line": 6322,
-          "timestamp": "2026-05-25T08:45:55.573692+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "==> train_unified.py <==\n\"\"\"Unified LoRA fine-tuning for CWM (Code World Model) generation — supports multiple model families.\n\nSupported model families:\n  - Qwen3 (e.g. Qwen/Qwen3-4B, Qwen/Qwen3-8B)\n  - DeepSeek-Coder (e.g. deepseek-ai/deepseek-coder-6.7b-instruct)\n\n==> train_cwm_baseline.py <==\n# train_cwm_baseline.py — Qwen3 LoRA fine-tuning for CWM (Code World Model) generation baseline\n# Input: data_dir/ with {cwm_train,cwm_val}.jsonl (fields: code, test, target)\n# Output: LoRA adapter in output_dir/best/\n# Key difference from train_verifier.py (classification):\n#   - Prompt asks for execution result instead of pass/fail\n\n==> build_data.py <==\n# Build (code, test) -> pass/fail training data from HumanEval + MBPP\n# Mutations on canonical solutions generate fail examples; actual execution verifies labels.\n\nimport argparse\nimport ast\n\n==> build_cwm_data.py <==\n# build_cwm_data.py — Convert (code, test, label) data to CWM generation format\n# Input: data/{train,val,test}.jsonl with fields: code, test, label, source, problem_id, mutation_type\n# Output: data/{cwm_train,cwm_val,cwm_test}.jsonl with target = execution output string\n# Key difference from classification: label 0/1 → target string with actual error messages\n# For fail samples, re-executes code+test to capture stderr; pass samples get fixed string.\n\n==> eval_cwm_baseline.py <==\n# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\n# Output: Formatted report to stdout + JSON to --output\n# Key difference from eval_verifier.py:\n#   - Generates execution output string instead of \"pass\"/\"fail\"\n\n==> eval_14b_baseline.py <==\n#!/usr/bin/env python3\n\"\"\"0-shot and 3-shot CLS baseline for Qwen3-14B on function-level test set.\n\nUsage:\n  # 0-shot\n\n==> eval_majority_voting.py <==\n#!/usr/bin/env python3\n\"\"\"Per-test majority voting (K-pass self-consistency) evaluation.\"\"\"\n\nimport argparse\nimport json\nShell cwd was reset to\n…[truncated 115 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Bash",
-            "elapsed_ms": 856
-          },
-          "id": "event-006322"
-        },
-        {
-          "source_line": 6323,
           "timestamp": "2026-05-25T08:45:56.126700+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -451,10 +24,10 @@
               "description": "Check for sensitive content in scripts"
             }
           },
-          "id": "event-006323"
+          "id": "event-006301"
         },
         {
-          "source_line": 6324,
+          "source_line": 6302,
           "timestamp": "2026-05-25T08:45:57.031312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -469,10 +42,10 @@
             "tool": "Bash",
             "elapsed_ms": 904
           },
-          "id": "event-006324"
+          "id": "event-006302"
         },
         {
-          "source_line": 6325,
+          "source_line": 6303,
           "timestamp": "2026-05-25T08:45:57.232789+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -490,10 +63,10 @@
               "description": "Check for identifying info in scripts"
             }
           },
-          "id": "event-006325"
+          "id": "event-006303"
         },
         {
-          "source_line": 6326,
+          "source_line": 6304,
           "timestamp": "2026-05-25T08:45:57.283507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -508,10 +81,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006326"
+          "id": "event-006304"
         },
         {
-          "source_line": 6327,
+          "source_line": 6305,
           "timestamp": "2026-05-25T08:46:06.894076+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -529,10 +102,10 @@
               "description": "Check for hardcoded paths revealing identity"
             }
           },
-          "id": "event-006327"
+          "id": "event-006305"
         },
         {
-          "source_line": 6328,
+          "source_line": 6306,
           "timestamp": "2026-05-25T08:46:07.351170+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -547,10 +120,10 @@
             "tool": "Bash",
             "elapsed_ms": 457
           },
-          "id": "event-006328"
+          "id": "event-006306"
         },
         {
-          "source_line": 6329,
+          "source_line": 6307,
           "timestamp": "2026-05-25T08:46:07.503481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -568,10 +141,10 @@
               "description": "Check wandb usage pattern"
             }
           },
-          "id": "event-006329"
+          "id": "event-006307"
         },
         {
-          "source_line": 6330,
+          "source_line": 6308,
           "timestamp": "2026-05-25T08:46:07.554182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -586,10 +159,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006330"
+          "id": "event-006308"
         },
         {
-          "source_line": 6331,
+          "source_line": 6309,
           "timestamp": "2026-05-25T08:46:11.976481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -607,10 +180,10 @@
               "limit": "15"
             }
           },
-          "id": "event-006331"
+          "id": "event-006309"
         },
         {
-          "source_line": 6332,
+          "source_line": 6310,
           "timestamp": "2026-05-25T08:46:12.077322+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -625,10 +198,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006332"
+          "id": "event-006310"
         },
         {
-          "source_line": 6333,
+          "source_line": 6311,
           "timestamp": "2026-05-25T08:46:15.393870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -648,10 +221,10 @@
               "new_string": "OUTPUT_PATH = \"artifacts/tost_sensitivity.json\""
             }
           },
-          "id": "event-006333"
+          "id": "event-006311"
         },
         {
-          "source_line": 6334,
+          "source_line": 6312,
           "timestamp": "2026-05-25T08:46:15.494669+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -666,10 +239,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-006334"
+          "id": "event-006312"
         },
         {
-          "source_line": 6335,
+          "source_line": 6313,
           "timestamp": "2026-05-25T08:46:26.388937+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -687,10 +260,10 @@
               "content": "# Secrets / credentials\n_anonymous_repo.json\n.env\n*.key\n\n# Python\n__pycache__/\n*.pyc\n*.pyo\n*.egg-info/\ndist/\nbuild/\n.venv/\nvenv/\n\n# OS\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.idea/\n\n# Project internals (not needed for reproduction)\n.claude/\nartifacts/\ncheckpoints/\nlogs/\nwandb/\ndistill_tmp/\npaper/\n\n# Agent / orchestration files\nAGENTS.md\nROADMAP.md\nROADMAP.lock\ndecisions.yaml\ndecisions.lock\ndream_registry.yaml\ndream_registry.yaml.bak\ndream_registry.lock\nexperiment_plan.yaml\nexperiment_plan.lock\nliterature_map.yaml\nliterature_map.lock\nmistakes.yaml\nmistakes.lock\nmemory.md\npaper_framing.md\n_last_visual_review.json\n_paper_audit_result.json\n\n# LaTeX build artifacts\ndocs/paper/*.aux\ndocs/paper/*.bbl\ndocs/paper/*.blg\ndocs/paper/*.fdb_latexmk\ndocs/paper/*.fls\ndocs/paper/*.log\ndocs/paper/*.out\ndocs/paper/*.pdf\ndocs/paper/_pdf_images/\n\n# Duplicate/versioned figure files (keep only canonical PDFs)\ndocs/paper/figures/paper/fig2_scaling_gap.png\ndocs/paper/figures/paper/figure2_v2.*\ndocs/paper/figures/paper/figure2_v3.*\ndocs/paper/figures/paper/run_*/\n"
             }
           },
-          "id": "event-006335"
+          "id": "event-006313"
         },
         {
-          "source_line": 6336,
+          "source_line": 6314,
           "timestamp": "2026-05-25T08:46:26.389362+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -705,10 +278,10 @@
             "tool": "Write",
             "elapsed_ms": 0
           },
-          "id": "event-006336"
+          "id": "event-006314"
         },
         {
-          "source_line": 6337,
+          "source_line": 6315,
           "timestamp": "2026-05-25T08:46:29.555998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -726,10 +299,10 @@
               "description": "Check if .gitignore exists"
             }
           },
-          "id": "event-006337"
+          "id": "event-006315"
         },
         {
-          "source_line": 6338,
+          "source_line": 6316,
           "timestamp": "2026-05-25T08:46:29.606673+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -744,10 +317,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006338"
+          "id": "event-006316"
         },
         {
-          "source_line": 6339,
+          "source_line": 6317,
           "timestamp": "2026-05-25T08:46:31.666073+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -764,10 +337,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.gitignore"
             }
           },
-          "id": "event-006339"
+          "id": "event-006317"
         },
         {
-          "source_line": 6340,
+          "source_line": 6318,
           "timestamp": "2026-05-25T08:46:31.716731+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -782,10 +355,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006340"
+          "id": "event-006318"
         },
         {
-          "source_line": 6341,
+          "source_line": 6319,
           "timestamp": "2026-05-25T08:46:37.045846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -803,10 +376,10 @@
               "content": "# Secrets / credentials\n_anonymous_repo.json\n.env\n*.key\n\n# Python\n__pycache__/\n*.pyc\n*.pyo\n*.egg-info/\ndist/\nbuild/\n.venv/\nvenv/\n\n# OS\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.idea/\n\n# Project internals (not needed for reproduction)\n.claude/\nartifacts/\ncheckpoints/\nlogs/\nwandb/\ndistill_tmp/\npaper/\n\n# Agent / orchestration files\nAGENTS.md\nROADMAP.md\nROADMAP.lock\ndecisions.yaml\ndecisions.lock\ndream_registry.yaml\ndream_registry.yaml.bak\ndream_registry.lock\nexperiment_plan.yaml\nexperiment_plan.lock\nliterature_map.yaml\nliterature_map.lock\nmistakes.yaml\nmistakes.lock\nmemory.md\npaper_framing.md\n_last_visual_review.json\n_paper_audit_result.json\n\n# LaTeX build artifacts\ndocs/paper/*.aux\ndocs/paper/*.bbl\ndocs/paper/*.blg\ndocs/paper/*.fdb_latexmk\ndocs/paper/*.fls\ndocs/paper/*.log\ndocs/paper/*.out\ndocs/paper/*.pdf\ndocs/paper/_pdf_images/\n\n# Duplicate/versioned figure files (keep only canonical PDFs)\ndocs/paper/figures/paper/fig2_scaling_gap.png\ndocs/paper/figures/paper/figure2_v2.*\ndocs/paper/figures/paper/figure2_v3.*\ndocs/paper/figures/paper/run_*/\n"
             }
           },
-          "id": "event-006341"
+          "id": "event-006319"
         },
         {
-          "source_line": 6342,
+          "source_line": 6320,
           "timestamp": "2026-05-25T08:46:37.096614+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -821,10 +394,10 @@
             "tool": "Write",
             "elapsed_ms": 50
           },
-          "id": "event-006342"
+          "id": "event-006320"
         },
         {
-          "source_line": 6343,
+          "source_line": 6321,
           "timestamp": "2026-05-25T08:46:45.712471+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -842,10 +415,10 @@
               "description": "Extract third-party imports from all scripts"
             }
           },
-          "id": "event-006343"
+          "id": "event-006321"
         },
         {
-          "source_line": 6344,
+          "source_line": 6322,
           "timestamp": "2026-05-25T08:46:45.815538+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -860,10 +433,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-006344"
+          "id": "event-006322"
         },
         {
-          "source_line": 6345,
+          "source_line": 6323,
           "timestamp": "2026-05-25T08:46:55.710524+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -881,10 +454,10 @@
               "content": "torch>=2.1.0\ntransformers>=4.40.0\ndatasets>=2.18.0\npeft>=0.10.0\naccelerate>=0.28.0\nnumpy>=1.24.0\npandas>=2.0.0\nscipy>=1.10.0\nscikit-learn>=1.3.0\nstatsmodels>=0.14.0\nmatplotlib>=3.7.0\nwandb>=0.16.0\nswebench>=1.0.0\n"
             }
           },
-          "id": "event-006345"
+          "id": "event-006323"
         },
         {
-          "source_line": 6346,
+          "source_line": 6324,
           "timestamp": "2026-05-25T08:46:55.811469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -899,10 +472,10 @@
             "tool": "Write",
             "elapsed_ms": 100
           },
-          "id": "event-006346"
+          "id": "event-006324"
         },
         {
-          "source_line": 6347,
+          "source_line": 6325,
           "timestamp": "2026-05-25T08:47:25.294039+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -920,10 +493,10 @@
               "content": "# Execution-Free Repair Verification: Classification vs. Generation vs. Trajectory\n\nCode and data for the paper *\"Execution-Free Repair Verification: A Systematic Comparison of Classification, Generation, and Trajectory Formulations\"* (EMNLP 2026 submission).\n\n## Setup\n\n```bash\npip install -r requirements.txt\n```\n\nPyTorch with CUDA is required for training and inference. See [pytorch.org](https://pytorch.org/) for installation instructions matching your CUDA version.\n\n## Data\n\n### Function-level data (HumanEval + MBPP)\n\n```bash\n# Build classification data (code, test) -> pass/fail\npython build_data.py --output_dir data/\n\n# Convert to CWM generation format (code, test) -> execution output\npython build_cwm_data.py --input_dir data/ --output_dir data/\n```\n\n### Repository-level data (SWE-bench)\n\nRepository-level data requires the [SWE-bench](https://github.com/princeton-nlp/SWE-bench) package. See `build_data.py --help` for SWE-bench data options.\n\n## Training\n\nAll formulations (CLS, CWM, TRAJ) use LoRA fine-tuning via a unified training script:\n\n```bash\n# CLS (per-test classification)\npython train_unified.py \\\n  --model_name Qwen/Qwen3-4B \\\n  --data_dir data/ \\\n  --formulation cls \\\n  --output_dir checkpoints/cls_qwen3_4b/ \\\n  --seed 42\n\n# CWM (execution output generation)\npython train_unified.py \\\n  --model_name Qwen/Qwen3-4B \\\n  --data_dir data/ \\\n  --formulation cwm \\\n  --output_dir checkpoints/cwm_qwen3_4b/ \\\n  --seed 42\n\n# TRAJ (trajectory-level scoring)\npython train_unified.py \\\n  --model_name Qwen/Qwen3-4B \\\n  --data_dir data/ \\\n  --formulation traj \\\n  --output_dir checkpoints/traj_qwen3_4b/ \\\n  --seed 42\n```\n\nSupported models: `Qwen/Qwen3-4B`, `Qwen/Qwen3-8B`, `Qwen/Qwen3-14B`, `deepseek-ai/deepseek-coder-6.7b-instruct`.\n\n## Evaluation\n\n```bash\n# CLS / TRAJ evaluation\npython eval_majority_voting.py \\\n  --checkpoint checkpoints/cls_qwen3_4b/best/ \\\n  --data_dir data/ \\\n  --output results/cls_qwen3_4b.json\n\n# CWM evaluation\npython eval_cwm_baseline.py \\\n  --checkpoint checkpoints/cwm_qwen3_4b/best/ \\\n  --data_dir data/ \\\n  --output results/cwm_qwen3_4b.json\n\n# 14B zero-shot / few-shot baselines\npython eval_14b_baseline.py \\\n  --model_name Qwen/Qwen3-14B \\\n  --data_dir data/ \\\n  --output results/14b_baseline.json\n```\n\n## Analysis\n\n```bash\n# TOST equivalence testing and sensitivity analysis\npython tost_sensitivity.py\n\n# ICC computation for oracle accuracy framework\npython compute_deepseek_func_icc.py\n\n# Supplementary statistics (bootstrap CIs, interaction tests)\npython compute_supplementary_stats.py\n\n# CWM format compliance and error analysis\npython analyze_cwm_eval.py --results_dir results/\npython cwm_forced_parse.py --results_dir results/\npython cwm_parseable_bias.py --results_dir results/\n\n# Routing analysis (error complementarity)\npython routing_analysis.py --results_dir results/\n```\n\n## Re-repair (downstream application)\n\n```bash\n# Generate re-repair candidates using CLS verifier feedback\npython cls_inference_for_rerepair.py \\\n  --checkpoint checkpoints/cls_qwen3_8b/best/ \\\n  --data_dir data/\n\n# Run re-repair pipeline\npython re_repair_v2.py --data_dir data/ --output_dir results/rerepair/\n\n# Evaluate re-repair results\npython re_repair_eval.py --results_dir results/rerepair/\n```\n\n## LoRA Adapter Merging\n\n```bash\npython merge_lora.py --base_model Qwen/Qwen3-4B --adapter checkpoints/cls_qwen3_4b/best/ --output merged_model/\n```\n\n## Repository Structure\n\n```\nbuild_data.py              # Function-level data generation (HumanEval + MBPP mutations)\nbuild_cwm_data.py          # Convert classification data to CWM generation format\ntrain_unified.py           # Unified LoRA fine-tuning for CLS/CWM/TRAJ\ntrain_cwm_baseline.py      # CWM-specific training (legacy, use train_unified.py)\neval_cwm_baseline.py       # CWM generation evaluation\neval_14b_baseline.py       # 14B zero/few-shot baselines\neval_majority_voting.py    # Per-test majority voting evaluation\neval_cwm_constrained.py    # CWM with constrained decoding\ntost_sensitivity.py        # TOST equivalence margin sensitivity\ncompute_deepseek_func_icc.py  # Intra-class correlation for oracle framework\ncompute_supplementary_stats.py # Bootstrap CIs, interaction z-tests\nanalyze_cwm_eval.py        # CWM error analysis\ncwm_forced_parse.py        # Forced parsing of CWM outputs\ncwm_parseable_bias.py      # Parseable output bias analysis\nrouting_analysis.py        # Error complementarity / routing analysis\ncls_inference_for_rerepair.py # CLS inference for re-repair pipeline\nre_repair_v2.py            # Re-repair pipeline\nre_repair_eval.py          # Re-repair evaluation\nmerge_lora.py              # Merge LoRA adapter into base model\ndocs/paper/                # LaTeX source for the paper\n```\n\n## License\n\nThis repository is released for research purposes under the MIT License.\n"
             }
           },
-          "id": "event-006347"
+          "id": "event-006325"
         },
         {
-          "source_line": 6348,
+          "source_line": 6326,
           "timestamp": "2026-05-25T08:47:25.344923+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -938,10 +511,10 @@
             "tool": "Write",
             "elapsed_ms": 50
           },
-          "id": "event-006348"
+          "id": "event-006326"
         },
         {
-          "source_line": 6349,
+          "source_line": 6327,
           "timestamp": "2026-05-25T08:47:30.171941+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -959,10 +532,10 @@
               "description": "Stage repo infrastructure files"
             }
           },
-          "id": "event-006349"
+          "id": "event-006327"
         },
         {
-          "source_line": 6350,
+          "source_line": 6328,
           "timestamp": "2026-05-25T08:47:31.076492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -977,10 +550,10 @@
             "tool": "Bash",
             "elapsed_ms": 904
           },
-          "id": "event-006350"
+          "id": "event-006328"
         },
         {
-          "source_line": 6351,
+          "source_line": 6329,
           "timestamp": "2026-05-25T08:47:31.127213+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -998,10 +571,10 @@
               "description": "Stage paper link changes"
             }
           },
-          "id": "event-006351"
+          "id": "event-006329"
         },
         {
-          "source_line": 6352,
+          "source_line": 6330,
           "timestamp": "2026-05-25T08:47:35.809952+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1016,10 +589,10 @@
             "tool": "Bash",
             "elapsed_ms": 4682
           },
-          "id": "event-006352"
+          "id": "event-006330"
         },
         {
-          "source_line": 6353,
+          "source_line": 6331,
           "timestamp": "2026-05-25T08:47:36.011121+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1037,10 +610,10 @@
               "description": "Stage all core Python scripts"
             }
           },
-          "id": "event-006353"
+          "id": "event-006331"
         },
         {
-          "source_line": 6354,
+          "source_line": 6332,
           "timestamp": "2026-05-25T08:47:36.011492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1055,10 +628,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-006354"
+          "id": "event-006332"
         },
         {
-          "source_line": 6355,
+          "source_line": 6333,
           "timestamp": "2026-05-25T08:47:41.737560+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1078,10 +651,10 @@
               "new_string": "# Project internals (not needed for reproduction)\n.claude/\nartifacts/\ncheckpoints/\nlogs/\nwandb/\ndistill_tmp/\n/paper/"
             }
           },
-          "id": "event-006355"
+          "id": "event-006333"
         },
         {
-          "source_line": 6356,
+          "source_line": 6334,
           "timestamp": "2026-05-25T08:47:41.788301+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1096,10 +669,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006356"
+          "id": "event-006334"
         },
         {
-          "source_line": 6357,
+          "source_line": 6335,
           "timestamp": "2026-05-25T08:47:47.398276+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1117,10 +690,10 @@
               "description": "Stage paper files and all core scripts"
             }
           },
-          "id": "event-006357"
+          "id": "event-006335"
         },
         {
-          "source_line": 6358,
+          "source_line": 6336,
           "timestamp": "2026-05-25T08:47:47.499412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1135,10 +708,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-006358"
+          "id": "event-006336"
         },
         {
-          "source_line": 6359,
+          "source_line": 6337,
           "timestamp": "2026-05-25T08:47:50.966933+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1156,10 +729,10 @@
               "description": "Stage infra files and check staged changes"
             }
           },
-          "id": "event-006359"
+          "id": "event-006337"
         },
         {
-          "source_line": 6360,
+          "source_line": 6338,
           "timestamp": "2026-05-25T08:47:51.068842+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1174,10 +747,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-006360"
+          "id": "event-006338"
         },
         {
-          "source_line": 6361,
+          "source_line": 6339,
           "timestamp": "2026-05-25T08:47:58.370350+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1195,10 +768,10 @@
               "description": "Commit all changes"
             }
           },
-          "id": "event-006361"
+          "id": "event-006339"
         },
         {
-          "source_line": 6362,
+          "source_line": 6340,
           "timestamp": "2026-05-25T08:47:58.421166+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1213,10 +786,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006362"
+          "id": "event-006340"
         },
         {
-          "source_line": 6363,
+          "source_line": 6341,
           "timestamp": "2026-05-25T08:48:06.167199+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1234,10 +807,10 @@
               "description": "Force push to anonymous GitHub repo"
             }
           },
-          "id": "event-006363"
+          "id": "event-006341"
         },
         {
-          "source_line": 6364,
+          "source_line": 6342,
           "timestamp": "2026-05-25T08:48:08.730451+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1252,10 +825,10 @@
             "tool": "Bash",
             "elapsed_ms": 2563
           },
-          "id": "event-006364"
+          "id": "event-006342"
         },
         {
-          "source_line": 6365,
+          "source_line": 6343,
           "timestamp": "2026-05-25T08:48:12.347004+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1273,10 +846,10 @@
               "description": "Verify repo state"
             }
           },
-          "id": "event-006365"
+          "id": "event-006343"
         },
         {
-          "source_line": 6366,
+          "source_line": 6344,
           "timestamp": "2026-05-25T08:48:12.447914+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1291,10 +864,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006366"
+          "id": "event-006344"
         },
         {
-          "source_line": 6367,
+          "source_line": 6345,
           "timestamp": "2026-05-25T08:48:18.529928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1312,10 +885,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-006367"
+          "id": "event-006345"
         },
         {
-          "source_line": 6368,
+          "source_line": 6346,
           "timestamp": "2026-05-25T08:48:18.630748+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1330,10 +903,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-006368"
+          "id": "event-006346"
         },
         {
-          "source_line": 6369,
+          "source_line": 6347,
           "timestamp": "2026-05-25T08:48:31.794032+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1351,10 +924,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-006369"
+          "id": "event-006347"
         },
         {
-          "source_line": 6370,
+          "source_line": 6348,
           "timestamp": "2026-05-25T08:48:36.164241+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1369,10 +942,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4370
           },
-          "id": "event-006370"
+          "id": "event-006348"
         },
         {
-          "source_line": 6371,
+          "source_line": 6349,
           "timestamp": "2026-05-25T08:48:40.015074+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1385,7 +958,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-006371"
+          "id": "event-006349"
         }
       ]
     },
@@ -1393,7 +966,7 @@
       "number": 287,
       "messages": [
         {
-          "source_line": 6372,
+          "source_line": 6350,
           "timestamp": "2026-05-25T09:06:08.139510+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1407,10 +980,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "director"
           },
-          "id": "event-006372"
+          "id": "event-006350"
         },
         {
-          "source_line": 6373,
+          "source_line": 6351,
           "timestamp": "2026-05-25T09:06:18.494552+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1427,10 +1000,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex"
             }
           },
-          "id": "event-006373"
+          "id": "event-006351"
         },
         {
-          "source_line": 6374,
+          "source_line": 6352,
           "timestamp": "2026-05-25T09:06:18.948494+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1445,10 +1018,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-006374"
+          "id": "event-006352"
         },
         {
-          "source_line": 6375,
+          "source_line": 6353,
           "timestamp": "2026-05-25T09:06:19.100389+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1466,10 +1039,10 @@
               "description": "Extract all labels from appendix"
             }
           },
-          "id": "event-006375"
+          "id": "event-006353"
         },
         {
-          "source_line": 6376,
+          "source_line": 6354,
           "timestamp": "2026-05-25T09:06:19.352357+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1484,10 +1057,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-006376"
+          "id": "event-006354"
         },
         {
-          "source_line": 6377,
+          "source_line": 6355,
           "timestamp": "2026-05-25T09:06:34.106003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1505,10 +1078,10 @@
               "description": "Search for appendix label references in main text"
             }
           },
-          "id": "event-006377"
+          "id": "event-006355"
         },
         {
-          "source_line": 6378,
+          "source_line": 6356,
           "timestamp": "2026-05-25T09:06:34.257487+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1523,10 +1096,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-006378"
+          "id": "event-006356"
         },
         {
-          "source_line": 6379,
+          "source_line": 6357,
           "timestamp": "2026-05-25T09:06:52.601440+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1544,10 +1117,10 @@
               "description": "Search for appendix table/figure references in main text"
             }
           },
-          "id": "event-006379"
+          "id": "event-006357"
         },
         {
-          "source_line": 6380,
+          "source_line": 6358,
           "timestamp": "2026-05-25T09:06:52.803138+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1562,10 +1135,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-006380"
+          "id": "event-006358"
         },
         {
-          "source_line": 6381,
+          "source_line": 6359,
           "timestamp": "2026-05-25T09:06:58.177008+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1583,10 +1156,10 @@
               "description": "Check for textual Appendix references without \\ref"
             }
           },
-          "id": "event-006381"
+          "id": "event-006359"
         },
         {
-          "source_line": 6382,
+          "source_line": 6360,
           "timestamp": "2026-05-25T09:06:58.277859+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1601,10 +1174,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006382"
+          "id": "event-006360"
         },
         {
-          "source_line": 6383,
+          "source_line": 6361,
           "timestamp": "2026-05-25T09:07:15.646307+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1623,10 +1196,10 @@
               "offset": "189"
             }
           },
-          "id": "event-006383"
+          "id": "event-006361"
         },
         {
-          "source_line": 6384,
+          "source_line": 6362,
           "timestamp": "2026-05-25T09:07:15.747262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1641,10 +1214,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006384"
+          "id": "event-006362"
         },
         {
-          "source_line": 6385,
+          "source_line": 6363,
           "timestamp": "2026-05-25T09:09:03.001199+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1662,10 +1235,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-006385"
+          "id": "event-006363"
         },
         {
-          "source_line": 6386,
+          "source_line": 6364,
           "timestamp": "2026-05-25T09:09:07.466855+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1680,10 +1253,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4465
           },
-          "id": "event-006386"
+          "id": "event-006364"
         },
         {
-          "source_line": 6387,
+          "source_line": 6365,
           "timestamp": "2026-05-25T09:09:13.693114+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1696,7 +1269,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-006387"
+          "id": "event-006365"
         }
       ]
     },
@@ -1704,7 +1277,7 @@
       "number": 288,
       "messages": [
         {
-          "source_line": 6388,
+          "source_line": 6366,
           "timestamp": "2026-05-25T09:20:00.804617+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1718,10 +1291,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "director"
           },
-          "id": "event-006388"
+          "id": "event-006366"
         },
         {
-          "source_line": 6389,
+          "source_line": 6367,
           "timestamp": "2026-05-25T09:20:09.115112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1738,10 +1311,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
             }
           },
-          "id": "event-006389"
+          "id": "event-006367"
         },
         {
-          "source_line": 6390,
+          "source_line": 6368,
           "timestamp": "2026-05-25T09:20:10.151273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1756,10 +1329,10 @@
             "tool": "Read",
             "elapsed_ms": 1036
           },
-          "id": "event-006390"
+          "id": "event-006368"
         },
         {
-          "source_line": 6391,
+          "source_line": 6369,
           "timestamp": "2026-05-25T09:20:10.202253+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1776,10 +1349,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex"
             }
           },
-          "id": "event-006391"
+          "id": "event-006369"
         },
         {
-          "source_line": 6392,
+          "source_line": 6370,
           "timestamp": "2026-05-25T09:20:10.405076+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1794,10 +1367,10 @@
             "tool": "Read",
             "elapsed_ms": 202
           },
-          "id": "event-006392"
+          "id": "event-006370"
         },
         {
-          "source_line": 6393,
+          "source_line": 6371,
           "timestamp": "2026-05-25T09:20:10.405606+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1814,10 +1387,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex"
             }
           },
-          "id": "event-006393"
+          "id": "event-006371"
         },
         {
-          "source_line": 6394,
+          "source_line": 6372,
           "timestamp": "2026-05-25T09:20:10.456250+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1832,10 +1405,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006394"
+          "id": "event-006372"
         },
         {
-          "source_line": 6395,
+          "source_line": 6373,
           "timestamp": "2026-05-25T09:20:14.961586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1854,10 +1427,10 @@
               "offset": "145"
             }
           },
-          "id": "event-006395"
+          "id": "event-006373"
         },
         {
-          "source_line": 6396,
+          "source_line": 6374,
           "timestamp": "2026-05-25T09:20:15.464484+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1872,10 +1445,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-006396"
+          "id": "event-006374"
         },
         {
-          "source_line": 6397,
+          "source_line": 6375,
           "timestamp": "2026-05-25T09:20:15.616308+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1894,10 +1467,10 @@
               "offset": "185"
             }
           },
-          "id": "event-006397"
+          "id": "event-006375"
         },
         {
-          "source_line": 6398,
+          "source_line": 6376,
           "timestamp": "2026-05-25T09:20:15.718067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1912,10 +1485,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-006398"
+          "id": "event-006376"
         },
         {
-          "source_line": 6399,
+          "source_line": 6377,
           "timestamp": "2026-05-25T09:20:20.898941+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1933,10 +1506,10 @@
               "description": "Check heatmap figure files"
             }
           },
-          "id": "event-006399"
+          "id": "event-006377"
         },
         {
-          "source_line": 6400,
+          "source_line": 6378,
           "timestamp": "2026-05-25T09:20:21.402904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1951,10 +1524,10 @@
             "tool": "Bash",
             "elapsed_ms": 503
           },
-          "id": "event-006400"
+          "id": "event-006378"
         },
         {
-          "source_line": 6401,
+          "source_line": 6379,
           "timestamp": "2026-05-25T09:20:21.403464+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1971,10 +1544,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper/fig_mutation_heatmap.png"
             }
           },
-          "id": "event-006401"
+          "id": "event-006379"
         },
         {
-          "source_line": 6402,
+          "source_line": 6380,
           "timestamp": "2026-05-25T09:20:21.856169+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1989,10 +1562,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-006402"
+          "id": "event-006380"
         },
         {
-          "source_line": 6403,
+          "source_line": 6381,
           "timestamp": "2026-05-25T09:20:27.592741+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2012,10 +1585,10 @@
               "new_string": "When outputs are short (function-level verification), classification and generation achieve statistically equivalent accuracy; trajectory-level parity is model-dependent."
             }
           },
-          "id": "event-006403"
+          "id": "event-006381"
         },
         {
-          "source_line": 6404,
+          "source_line": 6382,
           "timestamp": "2026-05-25T09:20:27.593169+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2030,10 +1603,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006404"
+          "id": "event-006382"
         },
         {
-          "source_line": 6405,
+          "source_line": 6383,
           "timestamp": "2026-05-25T09:20:33.671506+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2053,10 +1626,10 @@
               "new_string": "Full execution verification is reliable but expensive (\\$1--3 per candidate at repository scale\\footnote{Based on per-instance costs reported by \\citet{yang2024sweagent} and \\citet{xia2024agentless}.}), which has driven demand for execution-free alternatives."
             }
           },
-          "id": "event-006405"
+          "id": "event-006383"
         },
         {
-          "source_line": 6406,
+          "source_line": 6384,
           "timestamp": "2026-05-25T09:20:33.672142+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2071,10 +1644,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006406"
+          "id": "event-006384"
         },
         {
-          "source_line": 6407,
+          "source_line": 6385,
           "timestamp": "2026-05-25T09:20:37.743222+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2094,10 +1667,10 @@
               "new_string": "and show that formulations make partially complementary errors, which motivates complexity-aware routing (\\S\\ref{sec:repo}, \\S\\ref{sec:analysis})."
             }
           },
-          "id": "event-006407"
+          "id": "event-006385"
         },
         {
-          "source_line": 6408,
+          "source_line": 6386,
           "timestamp": "2026-05-25T09:20:37.795883+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2112,10 +1685,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-006408"
+          "id": "event-006386"
         },
         {
-          "source_line": 6409,
+          "source_line": 6387,
           "timestamp": "2026-05-25T09:20:45.385014+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2135,10 +1708,10 @@
               "new_string": "Few-shot prompting (3-shot ICL) collapses to an always-predict-unresolved baseline (variant accuracy 45.83\\%, below majority 54.17\\%; Appendix~\\ref{app:few_shot}); execution-free verification requires task-specific fine-tuning regardless of formulation. Fine-tuning yields 35--36\\pp{} gains (Table~\\ref{tab:repo_level}), a prerequisite before formulation choice becomes relevant."
             }
           },
-          "id": "event-006409"
+          "id": "event-006387"
         },
         {
-          "source_line": 6410,
+          "source_line": 6388,
           "timestamp": "2026-05-25T09:20:45.486198+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2153,10 +1726,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-006410"
+          "id": "event-006388"
         },
         {
-          "source_line": 6411,
+          "source_line": 6389,
           "timestamp": "2026-05-25T09:20:50.266007+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2176,10 +1749,10 @@
               "new_string": "All six \\cwm{} repo-level seeds exhibit format collapse ($>$50\\% unparseable), which rules out seed-specific artifacts."
             }
           },
-          "id": "event-006411"
+          "id": "event-006389"
         },
         {
-          "source_line": 6412,
+          "source_line": 6390,
           "timestamp": "2026-05-25T09:20:50.266714+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2194,10 +1767,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006412"
+          "id": "event-006390"
         },
         {
-          "source_line": 6413,
+          "source_line": 6391,
           "timestamp": "2026-05-25T09:20:53.890262+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2217,10 +1790,10 @@
               "new_string": "\\cls{} and \\cwm{} exhibit partially complementary errors that suggest potential for routing."
             }
           },
-          "id": "event-006413"
+          "id": "event-006391"
         },
         {
-          "source_line": 6414,
+          "source_line": 6392,
           "timestamp": "2026-05-25T09:20:53.941989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2235,10 +1808,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-006414"
+          "id": "event-006392"
         },
         {
-          "source_line": 6415,
+          "source_line": 6393,
           "timestamp": "2026-05-25T09:20:58.970024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2258,10 +1831,10 @@
               "new_string": "accounts for within-patch correlation via intraclass correlation coefficient (ICC) $\\rho$~\\citep{shrout1979icc}"
             }
           },
-          "id": "event-006415"
+          "id": "event-006393"
         },
         {
-          "source_line": 6416,
+          "source_line": 6394,
           "timestamp": "2026-05-25T09:20:58.970615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2276,10 +1849,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006416"
+          "id": "event-006394"
         },
         {
-          "source_line": 6417,
+          "source_line": 6395,
           "timestamp": "2026-05-25T09:21:02.859029+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2296,10 +1869,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
             }
           },
-          "id": "event-006417"
+          "id": "event-006395"
         },
         {
-          "source_line": 6418,
+          "source_line": 6396,
           "timestamp": "2026-05-25T09:21:02.909829+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2314,10 +1887,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006418"
+          "id": "event-006396"
         },
         {
-          "source_line": 6419,
+          "source_line": 6397,
           "timestamp": "2026-05-25T09:21:07.583980+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2335,10 +1908,10 @@
               "description": "Rough word count of abstract"
             }
           },
-          "id": "event-006419"
+          "id": "event-006397"
         },
         {
-          "source_line": 6420,
+          "source_line": 6398,
           "timestamp": "2026-05-25T09:21:07.737178+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2353,10 +1926,10 @@
             "tool": "Bash",
             "elapsed_ms": 153
           },
-          "id": "event-006420"
+          "id": "event-006398"
         },
         {
-          "source_line": 6421,
+          "source_line": 6399,
           "timestamp": "2026-05-25T09:21:11.692012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2374,10 +1947,10 @@
               "description": "Compile LaTeX and check page count"
             }
           },
-          "id": "event-006421"
+          "id": "event-006399"
         },
         {
-          "source_line": 6422,
+          "source_line": 6400,
           "timestamp": "2026-05-25T09:21:14.263235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2392,10 +1965,10 @@
             "tool": "Bash",
             "elapsed_ms": 2571
           },
-          "id": "event-006422"
+          "id": "event-006400"
         },
         {
-          "source_line": 6423,
+          "source_line": 6401,
           "timestamp": "2026-05-25T09:21:22.249973+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2413,10 +1986,10 @@
               "description": "Check main.tex structure for appendix location"
             }
           },
-          "id": "event-006423"
+          "id": "event-006401"
         },
         {
-          "source_line": 6424,
+          "source_line": 6402,
           "timestamp": "2026-05-25T09:21:22.350755+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2431,10 +2004,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006424"
+          "id": "event-006402"
         },
         {
-          "source_line": 6425,
+          "source_line": 6403,
           "timestamp": "2026-05-25T09:21:25.572143+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2452,10 +2025,10 @@
               "description": "Check compilation output for pages"
             }
           },
-          "id": "event-006425"
+          "id": "event-006403"
         },
         {
-          "source_line": 6426,
+          "source_line": 6404,
           "timestamp": "2026-05-25T09:21:26.677421+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2470,10 +2043,10 @@
             "tool": "Bash",
             "elapsed_ms": 1105
           },
-          "id": "event-006426"
+          "id": "event-006404"
         },
         {
-          "source_line": 6427,
+          "source_line": 6405,
           "timestamp": "2026-05-25T09:21:29.943217+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2491,10 +2064,10 @@
               "pages": "8-9"
             }
           },
-          "id": "event-006427"
+          "id": "event-006405"
         },
         {
-          "source_line": 6428,
+          "source_line": 6406,
           "timestamp": "2026-05-25T09:21:30.094566+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2509,10 +2082,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-006428"
+          "id": "event-006406"
         },
         {
-          "source_line": 6429,
+          "source_line": 6407,
           "timestamp": "2026-05-25T09:21:50.522314+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2530,10 +2103,10 @@
               "description": "Check changed files"
             }
           },
-          "id": "event-006429"
+          "id": "event-006407"
         },
         {
-          "source_line": 6430,
+          "source_line": 6408,
           "timestamp": "2026-05-25T09:21:50.572985+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2548,10 +2121,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-006430"
+          "id": "event-006408"
         },
         {
-          "source_line": 6431,
+          "source_line": 6409,
           "timestamp": "2026-05-25T09:22:01.553915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2569,10 +2142,10 @@
               "description": "Commit all fixes"
             }
           },
-          "id": "event-006431"
+          "id": "event-006409"
         },
         {
-          "source_line": 6432,
+          "source_line": 6410,
           "timestamp": "2026-05-25T09:22:01.654815+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2587,10 +2160,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-006432"
+          "id": "event-006410"
         },
         {
-          "source_line": 6433,
+          "source_line": 6411,
           "timestamp": "2026-05-25T09:22:18.772577+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2608,10 +2181,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-006433"
+          "id": "event-006411"
         },
         {
-          "source_line": 6434,
+          "source_line": 6412,
           "timestamp": "2026-05-25T09:22:22.890001+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2626,10 +2199,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4117
           },
-          "id": "event-006434"
+          "id": "event-006412"
         },
         {
-          "source_line": 6435,
+          "source_line": 6413,
           "timestamp": "2026-05-25T09:22:25.563105+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2642,7 +2215,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-006435"
+          "id": "event-006413"
         }
       ]
     },
@@ -2650,7 +2223,7 @@
       "number": 289,
       "messages": [
         {
-          "source_line": 6436,
+          "source_line": 6414,
           "timestamp": "2026-05-25T11:10:19.584739+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2664,10 +2237,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "director"
           },
-          "id": "event-006436"
+          "id": "event-006414"
         },
         {
-          "source_line": 6437,
+          "source_line": 6415,
           "timestamp": "2026-05-25T11:10:32.572723+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2686,10 +2259,10 @@
               "offset": "55"
             }
           },
-          "id": "event-006437"
+          "id": "event-006415"
         },
         {
-          "source_line": 6438,
+          "source_line": 6416,
           "timestamp": "2026-05-25T11:10:33.075660+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2704,10 +2277,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-006438"
+          "id": "event-006416"
         },
         {
-          "source_line": 6439,
+          "source_line": 6417,
           "timestamp": "2026-05-25T11:10:33.076286+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2726,10 +2299,10 @@
               "offset": "0"
             }
           },
-          "id": "event-006439"
+          "id": "event-006417"
         },
         {
-          "source_line": 6440,
+          "source_line": 6418,
           "timestamp": "2026-05-25T11:10:33.177005+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2744,10 +2317,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006440"
+          "id": "event-006418"
         },
         {
-          "source_line": 6441,
+          "source_line": 6419,
           "timestamp": "2026-05-25T11:10:38.899859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2766,10 +2339,10 @@
               "offset": "175"
             }
           },
-          "id": "event-006441"
+          "id": "event-006419"
         },
         {
-          "source_line": 6442,
+          "source_line": 6420,
           "timestamp": "2026-05-25T11:10:39.352063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2784,10 +2357,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-006442"
+          "id": "event-006420"
         },
         {
-          "source_line": 6443,
+          "source_line": 6421,
           "timestamp": "2026-05-25T11:10:39.352534+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2804,10 +2377,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-006443"
+          "id": "event-006421"
         },
         {
-          "source_line": 6444,
+          "source_line": 6422,
           "timestamp": "2026-05-25T11:10:39.453216+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2822,10 +2395,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-006444"
+          "id": "event-006422"
         },
         {
-          "source_line": 6445,
+          "source_line": 6423,
           "timestamp": "2026-05-25T11:10:51.877827+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2843,10 +2416,10 @@
               "pages": "5-6"
             }
           },
-          "id": "event-006445"
+          "id": "event-006423"
         },
         {
-          "source_line": 6446,
+          "source_line": 6424,
           "timestamp": "2026-05-25T11:10:52.162503+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2861,10 +2434,10 @@
             "tool": "Read",
             "elapsed_ms": 284
           },
-          "id": "event-006446"
+          "id": "event-006424"
         },
         {
-          "source_line": 6447,
+          "source_line": 6425,
           "timestamp": "2026-05-25T11:12:06.740452+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2884,10 +2457,10 @@
               "new_string": "\\cls{} and \\traj{} both scale positively from 4B to 8B"
             }
           },
-          "id": "event-006447"
+          "id": "event-006425"
         },
         {
-          "source_line": 6448,
+          "source_line": 6426,
           "timestamp": "2026-05-25T11:12:06.841650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2902,10 +2475,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-006448"
+          "id": "event-006426"
         },
         {
-          "source_line": 6449,
+          "source_line": 6427,
           "timestamp": "2026-05-25T11:12:12.828806+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2924,10 +2497,10 @@
               "offset": "72"
             }
           },
-          "id": "event-006449"
+          "id": "event-006427"
         },
         {
-          "source_line": 6450,
+          "source_line": 6428,
           "timestamp": "2026-05-25T11:12:12.980555+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2942,10 +2515,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-006450"
+          "id": "event-006428"
         },
         {
-          "source_line": 6451,
+          "source_line": 6429,
           "timestamp": "2026-05-25T11:12:32.606021+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2965,10 +2538,10 @@
               "new_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\subsection{Function-Level Equivalence}"
             }
           },
-          "id": "event-006451"
+          "id": "event-006429"
         },
         {
-          "source_line": 6452,
+          "source_line": 6430,
           "timestamp": "2026-05-25T11:12:32.657312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2983,10 +2556,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-006452"
+          "id": "event-006430"
         },
         {
-          "source_line": 6453,
+          "source_line": 6431,
           "timestamp": "2026-05-25T11:12:39.334817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3005,10 +2578,10 @@
               "offset": "195"
             }
           },
-          "id": "event-006453"
+          "id": "event-006431"
         },
         {
-          "source_line": 6454,
+          "source_line": 6432,
           "timestamp": "2026-05-25T11:12:39.335375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3023,10 +2596,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006454"
+          "id": "event-006432"
         },
         {
-          "source_line": 6455,
+          "source_line": 6433,
           "timestamp": "2026-05-25T11:12:51.182298+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3046,10 +2619,10 @@
               "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy, confirming default-assignment inflation.}\n\\label{fig:cwm_unparseable}\n\\end{figure}\n\n\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens (Figure~\\ref{fig:cwm_unparseable}), leading to format collapse under our ${\\leq}$8B LoRA protocol (53--74\\% unparseable; representative error examples in Appendix~\\ref{app:qualitative})."
             }
           },
-          "id": "event-006455"
+          "id": "event-006433"
         },
         {
-          "source_line": 6456,
+          "source_line": 6434,
           "timestamp": "2026-05-25T11:12:51.183077+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3064,10 +2637,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-006456"
+          "id": "event-006434"
         },
         {
-          "source_line": 6457,
+          "source_line": 6435,
           "timestamp": "2026-05-25T11:12:59.232183+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3087,10 +2660,10 @@
               "new_string": "Figure~\\ref{fig:cwm_unparseable} (main text) summarises the unparseable rate contrast across complexity levels."
             }
           },
-          "id": "event-006457"
+          "id": "event-006435"
         },
         {
-          "source_line": 6458,
+          "source_line": 6436,
           "timestamp": "2026-05-25T11:12:59.333447+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3105,10 +2678,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-006458"
+          "id": "event-006436"
         },
         {
-          "source_line": 6459,
+          "source_line": 6437,
           "timestamp": "2026-05-25T11:13:04.160016+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3126,10 +2699,10 @@
               "description": "Compile and check page count"
             }
           },
-          "id": "event-006459"
+          "id": "event-006437"
         },
         {
-          "source_line": 6460,
+          "source_line": 6438,
           "timestamp": "2026-05-25T11:13:06.271408+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3144,10 +2717,10 @@
             "tool": "Bash",
             "elapsed_ms": 2111
           },
-          "id": "event-006460"
+          "id": "event-006438"
         },
         {
-          "source_line": 6461,
+          "source_line": 6439,
           "timestamp": "2026-05-25T11:13:14.153123+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3165,10 +2738,10 @@
               "pages": "6-9"
             }
           },
-          "id": "event-006461"
+          "id": "event-006439"
         },
         {
-          "source_line": 6462,
+          "source_line": 6440,
           "timestamp": "2026-05-25T11:13:14.454558+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3183,10 +2756,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-006462"
+          "id": "event-006440"
         },
         {
-          "source_line": 6463,
+          "source_line": 6441,
           "timestamp": "2026-05-25T11:13:42.110890+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3205,10 +2778,10 @@
               "offset": "80"
             }
           },
-          "id": "event-006463"
+          "id": "event-006441"
         },
         {
-          "source_line": 6464,
+          "source_line": 6442,
           "timestamp": "2026-05-25T11:13:42.111451+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3223,10 +2796,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006464"
+          "id": "event-006442"
         },
         {
-          "source_line": 6465,
+          "source_line": 6443,
           "timestamp": "2026-05-25T11:13:59.285816+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3246,10 +2819,10 @@
               "new_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\n\\subsection{Function-Level Equivalence}"
             }
           },
-          "id": "event-006465"
+          "id": "event-006443"
         },
         {
-          "source_line": 6466,
+          "source_line": 6444,
           "timestamp": "2026-05-25T11:13:59.336599+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3264,10 +2837,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006466"
+          "id": "event-006444"
         },
         {
-          "source_line": 6467,
+          "source_line": 6445,
           "timestamp": "2026-05-25T11:14:04.509556+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3286,10 +2859,10 @@
               "offset": "95"
             }
           },
-          "id": "event-006467"
+          "id": "event-006445"
         },
         {
-          "source_line": 6468,
+          "source_line": 6446,
           "timestamp": "2026-05-25T11:14:04.510052+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3304,10 +2877,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-006468"
+          "id": "event-006446"
         },
         {
-          "source_line": 6469,
+          "source_line": 6447,
           "timestamp": "2026-05-25T11:14:08.325706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3326,10 +2899,10 @@
               "offset": "85"
             }
           },
-          "id": "event-006469"
+          "id": "event-006447"
         },
         {
-          "source_line": 6470,
+          "source_line": 6448,
           "timestamp": "2026-05-25T11:14:08.376395+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3344,10 +2917,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-006470"
+          "id": "event-006448"
         },
         {
-          "source_line": 6471,
+          "source_line": 6449,
           "timestamp": "2026-05-25T11:14:32.220770+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3367,10 +2940,10 @@
               "new_string": "\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \\S\\ref{sec:repo}). Per-test classification provides diagnostic information at no accuracy cost, paralleling process supervision~\\cite{lightman2023letsverify}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Statistical power.}"
             }
           },
-          "id": "event-006471"
+          "id": "event-006449"
         },
         {
-          "source_line": 6472,
+          "source_line": 6450,
           "timestamp": "2026-05-25T11:14:32.271723+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3385,10 +2958,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-006472"
+          "id": "event-006450"
         },
         {
-          "source_line": 6473,
+          "source_line": 6451,
           "timestamp": "2026-05-25T11:14:37.394538+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3406,10 +2979,10 @@
               "description": "Compile and check page count"
             }
           },
-          "id": "event-006473"
+          "id": "event-006451"
         },
         {
-          "source_line": 6474,
+          "source_line": 6452,
           "timestamp": "2026-05-25T11:14:39.503463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3424,10 +2997,10 @@
             "tool": "Bash",
             "elapsed_ms": 2108
           },
-          "id": "event-006474"
+          "id": "event-006452"
         },
         {
-          "source_line": 6475,
+          "source_line": 6453,
           "timestamp": "2026-05-25T11:14:43.469905+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3445,10 +3018,10 @@
               "pages": "6-7"
             }
           },
-          "id": "event-006475"
+          "id": "event-006453"
         },
         {
-          "source_line": 6476,
+          "source_line": 6454,
           "timestamp": "2026-05-25T11:14:43.620978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3463,10 +3036,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-006476"
+          "id": "event-006454"
         },
         {
-          "source_line": 6477,
+          "source_line": 6455,
           "timestamp": "2026-05-25T11:15:00.709105+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3484,10 +3057,10 @@
               "pages": "8-9"
             }
           },
-          "id": "event-006477"
+          "id": "event-006455"
         },
         {
-          "source_line": 6478,
+          "source_line": 6456,
           "timestamp": "2026-05-25T11:15:00.910344+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3502,10 +3075,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-006478"
+          "id": "event-006456"
         },
         {
-          "source_line": 6479,
+          "source_line": 6457,
           "timestamp": "2026-05-25T11:15:15.895068+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3523,10 +3096,10 @@
               "description": "Commit layout and figure changes"
             }
           },
-          "id": "event-006479"
+          "id": "event-006457"
         },
         {
-          "source_line": 6480,
+          "source_line": 6458,
           "timestamp": "2026-05-25T11:15:15.995988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3540,6 +3113,443 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "tool": "Bash",
             "elapsed_ms": 100
+          },
+          "id": "event-006458"
+        },
+        {
+          "source_line": 6459,
+          "timestamp": "2026-05-25T11:15:30.204702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**第 6 页布局优化 + 附录提图 — 完成**\n\n1. **第 6 页布局**：Figure 2 左栏顶部，Table 2 右栏顶部 ✅\n   - 将 Table 2 源码位置移到 §4.4 内部（CLS-TRAJ equivalence 段后），LaTeX 自动放入右栏\n\n2. **Figure 3 提入正文**：CWM unparseable rate 图（原附录 §N）→ 正文 §4.6 \"Why does generation degrade\" 段前\n   - 直观展示 format collapse（function 1.4% → repo 4B 53.7% → repo 8B 73.8%）\n   - 附录 §N 改为引用 \"Figure 3 (main text)\"，无重复图\n   - 正文增加 \"(Figure~3)\" 引用\n\n3. **页数**：正文 ≤ 8 页确认（Conclusion + Limitations 完整在 page 8，References 从 page 9 开始）\n\nCommit: 77db5a4",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-006459"
+        },
+        {
+          "source_line": 6460,
+          "timestamp": "2026-05-25T11:15:33.977073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3772
+          },
+          "id": "event-006460"
+        },
+        {
+          "source_line": 6461,
+          "timestamp": "2026-05-25T11:15:37.575828+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Everything looks correct:\n\n- **Page 6**: Figure 2 left column, Table 2 right column ✅\n- **Page 8**: Figure 3 (CWM unparseable) at top left, Conclusion on right column, Limitations fits entirely on page 8 left column (ending at line 624) ✅\n- **Page 9**: References start, main text ≤ 8 pages ✅\n- **24 total pages** (same as before)\n\nNow commit and report."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
+          },
+          "id": "event-006461"
+        }
+      ]
+    },
+    {
+      "number": 290,
+      "messages": [
+        {
+          "source_line": 6462,
+          "timestamp": "2026-05-25T11:19:04.987686+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **紧急：正文超页，压缩第 4 章（Experiments）**\n\n用户反馈正文超了 8 页。需要压缩 `experiments.tex`（§4），释放空间让 Conclusion + Limitations 回到第 8 页内。\n\n压缩策略（按优先级）：\n1. **§4.1 Experimental Setup** — 最容易压缩。Statistics 段（TOST/bootstrap 的方法论描述）可以精简，详细说明已在附录。Models and training 段也可以删冗余细节（附录有完整超参表）\n2. **§4.2 Function-Level Results** — 可以删掉逐个对比的描述，只保留关键结论\n3. **§4.4 Function-Level Equivalence** — CLS-CWM 和 CLS-TRAJ 的详细 p-value 讨论可精简\n4. **§4.5 Repo-Level Divergence** — 已经很紧凑，尽量不动\n5. **§4.6 Analysis / §4.7 Threats** — 可以小幅压缩\n\n目标：压缩约 0.3-0.5 页，确保 Conclusion 最后一行 + Limitations 全在第 8 页内。不要删有实质信息的内容，删的是冗余描述和已有附录支撑的重复说明。\n\n**编译验证第 8-9 页边界 + commit。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "source": "director"
+          },
+          "id": "event-006462"
+        },
+        {
+          "source_line": 6463,
+          "timestamp": "2026-05-25T11:19:15.706181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
+              "pages": "8-9"
+            }
+          },
+          "id": "event-006463"
+        },
+        {
+          "source_line": 6464,
+          "timestamp": "2026-05-25T11:19:15.910233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf (745.5KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 204
+          },
+          "id": "event-006464"
+        },
+        {
+          "source_line": 6465,
+          "timestamp": "2026-05-25T11:19:43.368154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "limit": "20",
+              "offset": "5"
+            }
+          },
+          "id": "event-006465"
+        },
+        {
+          "source_line": 6466,
+          "timestamp": "2026-05-25T11:19:43.469826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench}; runs with NaN validation loss (due to truncated targets exceeding 2,048-token limits) default to the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Qwen3 \\cwm{} runs show early overfitting (best at ${\\sim}$6\\% of training); checkpoint details in Appendix~\\ref{app:hyperparams}.\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency check, we additionally fine-tune DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} with identical LoRA configuration (2 seeds each for \\cls{} and \\cwm{}). Our \\cwm{} baseline is a LoRA fine-tuned variant for matched comparison, not a reproduction of the 32B Code World Model~\\cite{meta2025cwm}. \\traj{} uses variant-level rather than per-test labels (8,052 vs.\\ 15,290 training instances, but covering $2.24\\times$ more unique code variants); the comparison is confounded by both label granularity and data composition (\\S\\ref{sec:repo}). Rep\n…[truncated 1894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-006466"
+        },
+        {
+          "source_line": 6467,
+          "timestamp": "2026-05-25T11:19:59.632356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "limit": "20",
+              "offset": "60"
+            }
+          },
+          "id": "event-006467"
+        },
+        {
+          "source_line": 6468,
+          "timestamp": "2026-05-25T11:19:59.734562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\\end{table}\n61\t\n62\tAll three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\% ($\\pm$0.78), \\cwm{} 87.19\\% ($\\pm$0.37), \\traj{} 86.30\\% ($\\pm$0.97). DeepSeek-Coder-6.7B shows: \\cls{} 86.85\\%, \\cwm{} 86.83\\%, \\traj{} 84.16\\%. The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise in both families. However, the \\cls{}--\\traj{} per-test gap is 2.13\\pp{} on Qwen3-4B and 2.69\\pp{} on DeepSeek-Coder; the latter clearly exceeds the $\\pm$2\\pp{} equivalence margin (\\S\\ref{sec:equivalence}). \\cls{} and \\cwm{} are robustly equivalent; \\traj{} parity is model-contingent. Zero-shot baselines (Tables~\\ref{tab:main_results} and~\\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\\to$fine-tuned gains of 35--36\\pp{}) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 18--26\\pp{}).\n63\t\n64\t\n65\t\\subsection{Scaling Behavior}\n66\t\\label{sec:scaling}\n67\t\n68\tBeyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\\ref{tab:scaling} compares all three formulations at 4B, 8B, and 14B. The 4B and 8B rows use seeds 42 and 123; the 14B row uses seeds 42, 123, and 456. All rows use bfloat16 inference.\n69\t\n70\t\\begin{figure}[t]\n71\t\\centering\n72\t\\includegraphics[width=\\columnwidth]{figures/paper/figure2_v3.pdf}\n73\t\\caption{Function-level accuracy scaling (4B--14B). CLS and CWM accuracy with shaded gap region; $y$-axis does not start at zero. The \\cls{}--\\cwm{} gap shows a non-monotonic pattern: 1.32\\pp{} at 4B, widening to 2.62\\pp{} at 8B, then narrowing to 0.43\\pp{} at 14B (3 seeds).}\n74\t\\label{fig:scaling_gap}\n75\t\\end{figure}\n76\t\n77\t\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +2.13\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered b\n…[truncated 1007 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-006468"
+        },
+        {
+          "source_line": 6469,
+          "timestamp": "2026-05-25T11:20:05.468357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "limit": "20",
+              "offset": "83"
+            }
+          },
+          "id": "event-006469"
+        },
+        {
+          "source_line": 6470,
+          "timestamp": "2026-05-25T11:20:05.519123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "83\t\n84\t\\subsection{Function-Level Equivalence}\n85\t\\label{sec:equivalence}\n86\t\n87\tWe test pairwise equivalence on 523 variant-level instances across five seeds.\\footnote{Seeds 789/0 use NF4 inference; the remaining three use bfloat16. Restricting to bfloat16 only: \\cls{}--\\cwm{} remains significant ($p{<}0.05$); \\cls{}--\\traj{} yields $p{=}0.128$.} Our Smallest Effect Size of Interest (SESOI) threshold of $\\pm$2\\pp{}~\\cite{lakens2017,wellek2010} is domain-motivated but not pre-registered: at 85--88\\% accuracy, 2\\pp{} corresponds to ${\\sim}$2--3 problems out of 114, below practitioner-relevant differences, and is consistent with between-seed variation (0.37--0.97\\pp{} std). Within-problem predictions are correlated (ICC $= 0.191$, design effect [DEFF] $= 3.97$~\\cite{moulton1990}); confidence intervals use clustered bootstrap (\\S\\ref{sec:setup}). Sensitivity analysis shows \\cls{}--\\cwm{} equivalence is robust across $\\pm$1.5--3\\pp{} margins (minimum $\\pm$1.52\\pp{}); \\cls{}--\\traj{} equivalence is margin-sensitive ($\\pm$1.5\\pp{}: $p{=}0.068$; Table~\\ref{tab:tost_sensitivity}).\n88\t\n89\t\\paragraph{\\cls{}--\\cwm{} equivalence.} The pooled gap is 1.24\\pp{} (88.43\\%--87.19\\%); TOST confirms equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin), surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.028$; Table~\\ref{tab:holm}). Equivalence holds at margins as tight as $\\pm$1.52\\pp{} (Table~\\ref{tab:tost_sensitivity}). On DeepSeek-Coder, the \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence but underpowered (2 seeds).\n90\t\n91\t\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granula\n…[truncated 911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006470"
+        },
+        {
+          "source_line": 6471,
+          "timestamp": "2026-05-25T11:20:14.358981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "limit": "20",
+              "offset": "115"
+            }
+          },
+          "id": "event-006471"
+        },
+        {
+          "source_line": 6472,
+          "timestamp": "2026-05-25T11:20:14.409813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "115\t\\end{tabular}\n116\t\\end{table}\n117\t\n118\t\\paragraph{Statistical power.} With $n_{\\text{eff}} \\approx 86$ after clustering, TOST power is ${\\sim}$0.3~\\cite{cohen1988}, a 70\\% probability of failing to confirm equivalence even if the true difference is moderate. The \\cls{}--\\cwm{} equivalence ($p{=}0.007$) is robust to this limitation; the \\cls{}--\\traj{} inconclusive result ($p{=}0.025$, adjusted $p{=}0.075$) may reflect insufficient power rather than a genuine difference (a minimum $n_{\\text{eff}} \\approx 350$ would be needed for ${\\geq}$0.8 power at $\\pm$2\\pp{}). A Bayesian ROPE analysis corroborates: $P(\\text{ROPE}){=}0.975$ for \\cls{}--\\cwm{} and $P(\\text{ROPE}){=}0.970$ at variant level for \\cls{}--\\traj{} (Appendix~\\ref{app:bayesian_rope}). At per-test level, \\cls{}--\\traj{} $P(\\text{ROPE}){=}0.542$ (inconclusive), reflecting aggregation effects. 14B scaling data corroborates: the \\cls{}--\\traj{} gap narrows to 1.07\\pp{} (\\S\\ref{sec:scaling}).\n119\t\n120\t\n121\t\\subsection{Repo-Level: Complexity-Dependent Divergence}\n122\t\\label{sec:repo}\n123\t\n124\tTable~\\ref{tab:repo_level} compares formulations at repository-level complexity. The following results are established under ${\\leq}$8B LoRA; preliminary 14B evidence (\\S\\ref{sec:scaling}) suggests these gaps may narrow at larger scales. Variant-level comparisons ($n{=}48$) are exploratory due to limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\\S\\ref{sec:setup}); the test set has zero problem overlap with validation.\n125\t\n126\t\\begin{table}[t]\n127\t\\centering\n128\t\\small\n129\t\\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \\cls{}/\\traj{}: mean $\\pm$ std over 3 seeds; DeepSeek \\cls{}: 2 seeds\\textsuperscript{$\\ddagger$}; DeepSeek \\traj{}: 3 seeds; Qwen3-4B: seed 42. \\cwm{}: 3 seeds (42/123/456).}\n130\t\\label{tab:repo_level}\n131\t\\resizebox{\\columnwidth}{!}{%\n132\t\\setlength{\\t\n…[truncated 54 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006472"
+        },
+        {
+          "source_line": 6473,
+          "timestamp": "2026-05-25T11:21:14.796185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "We fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency check, we additionally fine-tune DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} with identical LoRA configuration (2 seeds each for \\cls{} and \\cwm{}). Our \\cwm{} baseline is a LoRA fine-tuned variant for matched comparison, not a reproduction of the 32B Code World Model~\\cite{meta2025cwm}. \\traj{} uses variant-level rather than per-test labels (8,052 vs.\\ 15,290 training instances, but covering $2.24\\times$ more unique code variants); the comparison is confounded by both label granularity and data composition (\\S\\ref{sec:repo}). Repo-level models use val-selected checkpoints where available; runs with NaN validation loss use the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4) as LLM-as-judge. Full hyperparameter details appear in Appendix~\\ref{app:hyperparams}; prompt templates in Appendix~\\ref{app:prompts}.",
+              "new_string": "We fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with LoRA~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds (3 bfloat16, 2 NF4~\\cite{dettmers2024qlora}). DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} serves as a cross-model check (2 seeds). Our \\cwm{} baseline uses LoRA fine-tuning for matched comparison, not the 32B CWM~\\cite{meta2025cwm}. Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4). Full hyperparameters in Appendix~\\ref{app:hyperparams}; prompts in Appendix~\\ref{app:prompts}."
+            }
+          },
+          "id": "event-006473"
+        },
+        {
+          "source_line": 6474,
+          "timestamp": "2026-05-25T11:21:14.898243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-006474"
+        },
+        {
+          "source_line": 6475,
+          "timestamp": "2026-05-25T11:23:14.048847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-006475"
+        },
+        {
+          "source_line": 6476,
+          "timestamp": "2026-05-25T11:23:14.202406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation landscape for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench}; runs with NaN validation loss (due to truncated targets exceeding 2,048-token limits) default to the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Qwen3 \\cwm{} runs show early overfitting (best at ${\\sim}$6\\% of training); checkpoint details in Appendix~\\ref{app:hyperparams}.\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with LoRA~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds (3 bfloat16, 2 NF4~\\cite{dettmers2024qlora}). DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} serves as a cross-model check (2 seeds). Our \\cwm{} baseline uses LoRA fine-tuning for matched comparison, not the 32B CWM~\\cite{meta2025cwm}. Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4). Full hyperparameters in Appendix~\\ref{app:hyperparams}; prompts in Appendix~\\ref{app:prompts}.\n15\t\n16\t\\paragraph{Statistics.}\n17\tTOST equivalence testing is our primary inferential framework for function-level claims; clustered bootstrap provides confidence intervals, Bayesian Region of Practical Equ\n…[truncated 21323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 153
+          },
+          "id": "event-006476"
+        },
+        {
+          "source_line": 6477,
+          "timestamp": "2026-05-25T11:23:37.037867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "\\paragraph{Statistics.}\nTOST equivalence testing is our primary inferential framework for function-level claims; clustered bootstrap provides confidence intervals, Bayesian Region of Practical Equivalence (ROPE) serves as a robustness check, and mixed-effects regression tests the formulation$\\times$complexity interaction. Confidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples; we resample entire problems, not individual tests, to preserve within-problem correlations). Equivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2 percentage point (\\pp{}) margin; for function-level TOST, we use seed-level paired analysis (df${=}$4 for 5-seed comparisons, df${=}$2 for 3-seed), treating each training seed as the unit of replication. This is more conservative than problem-level clustered bootstrap, which pools within-seed observations and may understate between-seed uncertainty. Holm-Bonferroni correction~\\cite{holm1979} controls family-wise error rate across the five primary comparisons (Table~\\ref{tab:holm}). Intraclass correlation coefficient (ICC)~\\cite{shrout1979icc} quantifies within-problem correlation. Variant-level effect sizes and statistical power analysis are reported in Appendix~\\ref{app:power}. Oracle analysis uses SWE-bench Verified (500 instances).",
+              "new_string": "\\paragraph{Statistics.}\nEquivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2\\pp{} margin; seed-level paired analysis (df${=}$4 for 5-seed, df${=}$2 for 3-seed) treats each training seed as the unit of replication. Holm-Bonferroni correction~\\cite{holm1979} controls family-wise error across the five primary comparisons (Table~\\ref{tab:holm}). Confidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples); intraclass correlation coefficient (ICC)~\\cite{shrout1979icc} quantifies within-problem correlation. Bayesian ROPE and mixed-effects regression supplement these tests. Full statistical power analysis in Appendix~\\ref{app:power}."
+            }
+          },
+          "id": "event-006477"
+        },
+        {
+          "source_line": 6478,
+          "timestamp": "2026-05-25T11:23:37.089013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-006478"
+        },
+        {
+          "source_line": 6479,
+          "timestamp": "2026-05-25T11:23:50.195927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "All three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\% ($\\pm$0.78), \\cwm{} 87.19\\% ($\\pm$0.37), \\traj{} 86.30\\% ($\\pm$0.97). DeepSeek-Coder-6.7B shows: \\cls{} 86.85\\%, \\cwm{} 86.83\\%, \\traj{} 84.16\\%. The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise in both families. However, the \\cls{}--\\traj{} per-test gap is 2.13\\pp{} on Qwen3-4B and 2.69\\pp{} on DeepSeek-Coder; the latter clearly exceeds the $\\pm$2\\pp{} equivalence margin (\\S\\ref{sec:equivalence}). \\cls{} and \\cwm{} are robustly equivalent; \\traj{} parity is model-contingent. Zero-shot baselines (Tables~\\ref{tab:main_results} and~\\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\\to$fine-tuned gains of 35--36\\pp{}) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 18--26\\pp{}).",
+              "new_string": "All three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\%, \\cwm{} 87.19\\%, \\traj{} 86.30\\% (Table~\\ref{tab:main_results}). The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise across both families; the \\cls{}--\\traj{} gap (2.13--2.69\\pp{}) exceeds the $\\pm$2\\pp{} equivalence margin on DeepSeek-Coder (\\S\\ref{sec:equivalence}). Zero-shot baselines confirm that repo-level verification requires fine-tuning (35--36\\pp{} gains) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 18--26\\pp{})."
+            }
+          },
+          "id": "event-006479"
+        },
+        {
+          "source_line": 6480,
+          "timestamp": "2026-05-25T11:23:50.196649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Edit",
+            "elapsed_ms": 0
           },
           "id": "event-006480"
         }

@@ -2943,45 +2943,6 @@
         },
         {
           "source_line": 1589,
-          "timestamp": "2026-05-20T10:52:03.335076+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-              "content": "\\documentclass[11pt]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{enumitem}\n\\usepackage{xcolor}\n\\usepackage{hyperref}\n\n\\definecolor{reviewercolor}{RGB}{0,0,140}\n\\definecolor{responsecolor}{RGB}{0,100,0}\n\n\\newcommand{\\reviewer}[1]{\\textcolor{reviewercolor}{\\textbf{Reviewer comment:} \\textit{#1}}}\n\\newcommand{\\response}[1]{\\textcolor{responsecolor}{\\textbf{Response:} #1}}\n\\newcommand{\\location}[1]{\\textbf{Location:} #1}\n\n\\title{Author Response --- Round 3}\n\\author{}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\nWe thank the reviewers for their detailed and constructive feedback. We have revised the paper to address each concern. Below, we respond point-by-point, noting specific changes and their locations.\n\n\\section*{Overview of Changes}\n\n\\begin{itemize}[leftmargin=*]\n\\item New title scoped to observed evidence rather than general claims.\n\\item Abstract and Introduction: Bonferroni-adjusted $p = .100$ now immediately qualifies the 79\\% reduction at first mention.\n\\item All instances of ``general property'' replaced with empirically scoped language.\n\\item \\S4.5 expanded to detail the GDN head-count confound in the main text.\n\\item ARR Responsible NLP Research Checklist added.\n\\item Table~1 footnote explains the $p$-value rounding discrepancy.\n\\item Limitations section strengthened with single-checkpoint caveat.\n\\item \\texttt{wang2025hybrid} bib entry corrected (title, authors).\n\\end{itemize}\n\n\\section*{Detailed Responses}\n\n\\subsection*{W-CITE (R2-N1): Incorrect citation for model zoo}\n\n\\reviewer{The citation for the model zoo (wang2025hybrid) has incorrect title and author list.}\n\n\\response{Fixed. The bib entry now reads ``A Systematic Analysis of Hybrid Linear Attention'' with authors Dustin Wang, Rui-Jie Zhu, Katharopoulos, and Gu.}\n\n\\location{\\texttt{references.bib}, entry \\texttt{wang2025hybrid}.}\n\n\\subsection*{W-CHECKLIST (R2-N2): Missing ARR Responsible NLP Research Checklist}\n\n\\reviewer{The submission lacks the mandatory ARR Responsible NLP Research Checklist.}\n\n\\response{Added. The checklist covers all sections (A1--A4, B1--B6, C1--C3, D, E) with specific justifications. Notably, C1 reports the computational budget (single NVIDIA RTX PRO 6000, $\\sim$5 GPU-hours inference-only) and A3 explicitly notes the scoped claims.}\n\n\\location{\\texttt{arr\\_checklist.tex}, included after the Ethics Statement in \\texttt{main.tex}.}\n\n\\subsection*{W-OVERCLAIM (R1-W1, R2-N3): Overclaiming on convergence}\n\n\\reviewer{The 79\\% reduction is presented prominently without immediately noting that the adjusted p-value does not reach significance. The title claims ``Task-Specific Convergence'' which may overstate the strength of evidence.}\n\n\\response{Three changes address this:}\n\\begin{enumerate}[leftmargin=2em]\n\\item \\textbf{Title}: Changed from ``Task-Specific Convergence and Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures'' to ``Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures: Evidence from Two Benchmarks and Three Backbones.'' The convergence claim is removed from the title.\n\\item \\textbf{Abstract}: At first mention of the 79\\% reduction, we now write ``though the Bonferroni-adjusted $p = .100$ does not reach conventional significance.''\n\\item \\textbf{Introduction}: The opening hook (79\\% reduction) is immediately followed by the same Bonferroni qualification.\n\\end{enumerate}\n\n\\location{Title (line 1 of \\texttt{main.tex}); Abstract (paragraph 1); Introduction \\S1 (paragraph 1 and Finding 1).}\n\n\\subsection*{W-GENERAL (R1-W2): ``General property'' overclaims from limited evidence}\n\n\\reviewer{Claiming per-example multiplicity is a ``general property of hybrid architectures'' is too strong given only three architectures and two benchmarks.}\n\n\\response{We have replaced all instances of ``general property'' with empirically scoped language:}\n\\begin{itemize}[leftmargin=2em]\n\\item Abstract: ``$\\ldots$across retrieval and reasoning tasks in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed across both retrieval and reasoning tasks in three recurrent backbones$\\ldots$''\n\\item Contribution bullet 3: same wording\n\\item Conclusion: ``$\\ldots$observed across retrieval (LAMBADA) and reasoning (ARC-Easy) tasks in three architectures$\\ldots$''\n\\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures and benchmarks''\n\\end{itemize}\n\n\\location{Abstract, \\S1 (paragraphs 4 and 5), \\S5.}\n\n\\subsection*{W-GDN (R1-W4): GDN head-count confound}\n\n\\reviewer{GDN's h3-1 configuration uses 16 attention heads rather than 32, creating a confound. The sensitivity analysis is only in the appendix.}\n\n\\response{\\S4.5 (Robustness) now contains two paragraphs. The first retains the existing sensitivity test: removing GDN weakens $\\rho$ from $-1.0$ to $-0.7$ ($p = .233$), while the RetNet--HGRN2 pair preserves the decoupling (all hybrid $\\sigma \\leq 0.008$, Jaccard saturates at 0.086--0.108). The second paragraph, newly added, explains the mechanism: GDN's h3-1 uses 16 attention heads vs.\\ 32 in all other configurations, introducing an attention-capacity asymmetry. We state the conclusion explicitly: ``The aggregate convergence result is therefore partially dependent on GDN; the decoupling result is not.''}\n\n\\location{\\S4.5, paragraph 2.}\n\n\\subsection*{R3-POWER (R1-W3): Low statistical power ($n = 5$)}\n\n\\reviewer{With $n = 5$ attention ratios, the minimum achievable p-value is $\\sim$0.008, limiting the power of the convergence test.}\n\n\\response{We acknowledge this as a structural constraint of the model zoo design. It is discussed in three places: (1) the Method section describes the exact permutation test with 120 permutations; (2) \\S4.1 reports the BCa bootstrap CI $[-1.0, -0.7]$ as a complementary characterization alongside the $p$-value; (3) the Limitations section (``Statistical power'' paragraph) explicitly states the minimum achievable $p$-value ceiling and its consequences. We agree that this limits the strength of the convergence finding, which is why we have removed convergence from the title and weakened all convergence-related claims (see W-OVERCLAIM above). The per-example multiplicity finding, which is the paper's central contribution, does not depend on the convergence $p$-value.}\n\n\\location{\\S3.5, \\S4.1 (paragraph 1), Limitations (``Statistical power'' paragraph).}\n\n\\subsection*{R3-BINARY (R1-W5): Binary correct/incorrect decomposition}\n\n\\reviewer{The helped/hurt decomposition uses binary correctness, which may lose information compared to continuous confidence scores.}\n\n\\response{The binary decomposition is a deliberate methodological choice aligned with the predictive multiplicity framework of Marx et al.\\ (2020), which defines multiplicity over discrete prediction outcomes. Additionally, we report continuous-valued analyses that are consistent with the binary results: Cohen's $d$ for pure-model confidence margins ranges from 0.73 to 0.92 between helped and hurt examples (Appendix, ``Confidence Margin Analysis''), showing that the binary decomposition captures a real separation in the continuous confidence space. The Jaccard similarity measure applied to the binary sets provides an interpretable metric of cross-architecture overlap that would be less transparent with continuous alternatives.}\n\n\\location{\\S4.3 (confidence margin paragraph), Appendix (Confidence Margin Analysis).}\n\n\\subsection*{W-ZOO (R1-W6): Reliance on a single model zoo}\n\n\\reviewer{All results depend on one model zoo; the controlled design limits external validity.}\n\n\\response{We acknowledge this trade-off explicitly. The controlled design of the zoo---identical training data, tokenizer, and hyperparameters across all configurations---is what allows us to isolate architectural effects from training confounds. This is stated in \\S3.1 and in the Limitations section (``Architecture coverage'' paragraph), which now also notes: ``Each configuration in the model zoo corresponds to a single training run; we cannot disentangle architectural effects from seed-specific effects.'' The Conclusion calls for extending the analysis ``beyond these three architectures.'' We believe the controlled design is the appropriate choice for a first systematic study, while recognizing that confirmation across additional model families is needed.}\n\n\\location{\\S3.1, Limitations (``Architecture coverage''), \\S5.}\n\n\\subsection*{Q1: p-value rounding discrepancy (0.100 vs.\\ 0.102)}\n\n\\reviewer{Why does the Bonferroni-adjusted p-value appear as both 0.100 and 0.102 in different places?}\n\n\\response{We have added a footnote to Table~1 explaining the discrepancy: ``Bonferroni-adjusted $p = 6 \\times 2/120 = 0.100$ (exact); 0.102 arises from rounding raw $p$ to .017 before multiplying.'' The value 0.100 is the exact result; 0.102 is a rounding artifact. We now use 0.100 consistently throughout.}\n\n\\location{Table~1 footnote.}\n\n\\subsection*{Q5: Single checkpoint per configuration}\n\n\\reviewer{Each model zoo configuration is a single training run. Can you disentangle architecture from seed?}\n\n\\response{We cannot, and we now state this explicitly in the Limitations section: ``Each configuration in the model zoo corresponds to a single training run; we cannot disentangle architectural effects from seed-specific effects.'' This is a limitation of the zoo design. Disentangling the two would require multiple seeds per architecture-attention configuration, which is beyond the scope of the available zoo. We note, however, that the zoo's controlled design (shared data, hyperparameters) reduces other confounds, making architecture the most salient axis of variation.}\n\n\\location{Limitations (``Architecture coverage'' paragraph).}\n\n\\subsection*{W-REFS (R2-W2): Additional related work citations}\n\n\\reviewer{Several relevant references are missing from the related work discussion.}\n\n\\response{We have added Sellam et al.\\ (ICLR 2022; MultiBERTs) and Fehlauer et al.\\ (EMNLP 2025) to the Related Work section (\\S2). Additional references are under verification and will be incorporated if confirmed before the camera-ready deadline.}\n\n\\location{\\S2 (``Underspecification and Model Agreement'' paragraph), \\texttt{references.bib}.}\n\n\\end{document}\n"
-            }
-          },
-          "id": "event-001589"
-        },
-        {
-          "source_line": 1590,
-          "timestamp": "2026-05-20T10:52:03.335838+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Write",
-            "elapsed_ms": 0
-          },
-          "id": "event-001590"
-        },
-        {
-          "source_line": 1591,
           "timestamp": "2026-05-20T10:52:08.155699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2999,10 +2960,10 @@
               "description": "Compile author_response.tex"
             }
           },
-          "id": "event-001591"
+          "id": "event-001589"
         },
         {
-          "source_line": 1592,
+          "source_line": 1590,
           "timestamp": "2026-05-20T10:52:08.657823+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3017,10 +2978,10 @@
             "tool": "Bash",
             "elapsed_ms": 502
           },
-          "id": "event-001592"
+          "id": "event-001590"
         },
         {
-          "source_line": 1593,
+          "source_line": 1591,
           "timestamp": "2026-05-20T10:52:24.612421+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3038,10 +2999,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001593"
+          "id": "event-001591"
         },
         {
-          "source_line": 1594,
+          "source_line": 1592,
           "timestamp": "2026-05-20T10:52:28.276076+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3056,10 +3017,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3663
           },
-          "id": "event-001594"
+          "id": "event-001592"
         },
         {
-          "source_line": 1595,
+          "source_line": 1593,
           "timestamp": "2026-05-20T10:52:30.721269+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3072,7 +3033,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001595"
+          "id": "event-001593"
         }
       ]
     },
@@ -3080,7 +3041,7 @@
       "number": 45,
       "messages": [
         {
-          "source_line": 1596,
+          "source_line": 1594,
           "timestamp": "2026-05-20T10:52:31.280812+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3094,10 +3055,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-001596"
+          "id": "event-001594"
         },
         {
-          "source_line": 1597,
+          "source_line": 1595,
           "timestamp": "2026-05-20T10:52:38.734984+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3114,10 +3075,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-001597"
+          "id": "event-001595"
         },
         {
-          "source_line": 1598,
+          "source_line": 1596,
           "timestamp": "2026-05-20T10:52:39.136871+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3132,10 +3093,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-001598"
+          "id": "event-001596"
         },
         {
-          "source_line": 1599,
+          "source_line": 1597,
           "timestamp": "2026-05-20T10:52:39.137398+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3152,10 +3113,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex"
             }
           },
-          "id": "event-001599"
+          "id": "event-001597"
         },
         {
-          "source_line": 1600,
+          "source_line": 1598,
           "timestamp": "2026-05-20T10:52:39.740918+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3170,10 +3131,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-001600"
+          "id": "event-001598"
         },
         {
-          "source_line": 1601,
+          "source_line": 1599,
           "timestamp": "2026-05-20T10:52:39.741461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3190,10 +3151,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-001601"
+          "id": "event-001599"
         },
         {
-          "source_line": 1602,
+          "source_line": 1600,
           "timestamp": "2026-05-20T10:52:39.792074+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3208,10 +3169,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001602"
+          "id": "event-001600"
         },
         {
-          "source_line": 1603,
+          "source_line": 1601,
           "timestamp": "2026-05-20T10:53:32.775900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3231,10 +3192,10 @@
               "new_string": "Mamba-2 \\citep{dao2024mamba2} establishes a formal duality between structured state spaces and attention; \\citet{ali2025hidden} reveal implicit attention patterns within Mamba layers. Mamba-3 \\citep{lahoti2026mamba3} further extends hybrid SSM design."
             }
           },
-          "id": "event-001603"
+          "id": "event-001601"
         },
         {
-          "source_line": 1604,
+          "source_line": 1602,
           "timestamp": "2026-05-20T10:53:33.227923+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3249,10 +3210,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-001604"
+          "id": "event-001602"
         },
         {
-          "source_line": 1605,
+          "source_line": 1603,
           "timestamp": "2026-05-20T10:53:35.637089+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3272,10 +3233,10 @@
               "new_string": "\\citet{watson2023predictive} extended this framework to probabilistic classification, and \\citet{hsu2022rashomon} introduced Rashomon capacity linking multiplicity to the near-optimal set size. Recent work addresses reconciliation under multiplicity \\citep{du2025reconciling} and resolution over the Rashomon set \\citep{haghighat2026resolving}. On the deployment side, \\citet{gorbett2026crossmodel} show that cross-model disagreement serves as a label-free correctness signal, motivating per-example analysis beyond academic interest. These studies focus on models within a single hypothesis class that achieve similar loss."
             }
           },
-          "id": "event-001605"
+          "id": "event-001603"
         },
         {
-          "source_line": 1606,
+          "source_line": 1604,
           "timestamp": "2026-05-20T10:53:36.038982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3290,10 +3251,10 @@
             "tool": "Edit",
             "elapsed_ms": 401
           },
-          "id": "event-001606"
+          "id": "event-001604"
         },
         {
-          "source_line": 1607,
+          "source_line": 1605,
           "timestamp": "2026-05-20T10:53:36.992660+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3313,10 +3274,10 @@
               "new_string": "confirming that per-example multiplicity is not contingent on aggregate convergence. Such structured disagreement has practical relevance: cross-model disagreement has been shown to serve as a label-free correctness signal \\citep{gorbett2026crossmodel}."
             }
           },
-          "id": "event-001607"
+          "id": "event-001605"
         },
         {
-          "source_line": 1608,
+          "source_line": 1606,
           "timestamp": "2026-05-20T10:53:37.375877+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3331,10 +3292,10 @@
             "tool": "Edit",
             "elapsed_ms": 383
           },
-          "id": "event-001608"
+          "id": "event-001606"
         },
         {
-          "source_line": 1609,
+          "source_line": 1607,
           "timestamp": "2026-05-20T10:53:38.556270+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3354,10 +3315,10 @@
               "new_string": "We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture."
             }
           },
-          "id": "event-001609"
+          "id": "event-001607"
         },
         {
-          "source_line": 1610,
+          "source_line": 1608,
           "timestamp": "2026-05-20T10:53:38.607084+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3372,10 +3333,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001610"
+          "id": "event-001608"
         },
         {
-          "source_line": 1611,
+          "source_line": 1609,
           "timestamp": "2026-05-20T10:53:42.973777+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3394,10 +3355,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001611"
+          "id": "event-001609"
         },
         {
-          "source_line": 1612,
+          "source_line": 1610,
           "timestamp": "2026-05-20T10:53:49.585160+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3412,10 +3373,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6611
           },
-          "id": "event-001612"
+          "id": "event-001610"
         },
         {
-          "source_line": 1613,
+          "source_line": 1611,
           "timestamp": "2026-05-20T10:53:54.704530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3432,10 +3393,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001613"
+          "id": "event-001611"
         },
         {
-          "source_line": 1614,
+          "source_line": 1612,
           "timestamp": "2026-05-20T10:53:55.307184+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3452,10 +3413,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001614"
+          "id": "event-001612"
         },
         {
-          "source_line": 1615,
+          "source_line": 1613,
           "timestamp": "2026-05-20T10:53:55.358696+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3470,10 +3431,10 @@
             "tool": "Read",
             "elapsed_ms": 654
           },
-          "id": "event-001615"
+          "id": "event-001613"
         },
         {
-          "source_line": 1616,
+          "source_line": 1614,
           "timestamp": "2026-05-20T10:53:55.861529+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3488,10 +3449,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-001616"
+          "id": "event-001614"
         },
         {
-          "source_line": 1617,
+          "source_line": 1615,
           "timestamp": "2026-05-20T10:54:28.326730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3511,10 +3472,10 @@
               "new_string": "Recent extensions address reconciliation \\citep{du2025reconciling}, Rashomon-set resolution \\citep{haghighat2026resolving}, and deployment applications where cross-model disagreement serves as a label-free correctness signal \\citep{gorbett2026crossmodel}. These studies focus on models within a single hypothesis class that achieve similar loss."
             }
           },
-          "id": "event-001617"
+          "id": "event-001615"
         },
         {
-          "source_line": 1618,
+          "source_line": 1616,
           "timestamp": "2026-05-20T10:54:28.778834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3529,10 +3490,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-001618"
+          "id": "event-001616"
         },
         {
-          "source_line": 1619,
+          "source_line": 1617,
           "timestamp": "2026-05-20T10:54:29.732773+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3552,10 +3513,10 @@
               "new_string": "\\citet{ali2025hidden} reveal implicit attention within Mamba, and Mamba-3 \\citep{lahoti2026mamba3} extends the hybrid design further."
             }
           },
-          "id": "event-001619"
+          "id": "event-001617"
         },
         {
-          "source_line": 1620,
+          "source_line": 1618,
           "timestamp": "2026-05-20T10:54:30.235010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3569,6 +3530,47 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "tool": "Edit",
             "elapsed_ms": 502
+          },
+          "id": "event-001618"
+        },
+        {
+          "source_line": 1619,
+          "timestamp": "2026-05-20T10:54:34.551034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "Such structured disagreement has practical relevance: cross-model disagreement has been shown to serve as a label-free correctness signal \\citep{gorbett2026crossmodel}.",
+              "new_string": "Such structured disagreement also has practical relevance as a label-free correctness signal \\citep{gorbett2026crossmodel}."
+            }
+          },
+          "id": "event-001619"
+        },
+        {
+          "source_line": 1620,
+          "timestamp": "2026-05-20T10:54:34.702477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 151
           },
           "id": "event-001620"
         }

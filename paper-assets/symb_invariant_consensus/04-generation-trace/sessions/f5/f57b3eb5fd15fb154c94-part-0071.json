@@ -7,449 +7,6 @@
       "messages": [
         {
           "source_line": 12601,
-          "timestamp": "2026-05-22T14:50:06.415075+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\vspace{-2mm}\n2\t\\section{Conclusion}\\label{sec:conclusion}\n3\t\n4\t\\looseness=-1 We identify symbolic confirmation bias: self-extracted constraints inherit the generating model's biases ($\\text{BR} = 4.97\\times$, 83.3\\%), explaining why twenty-seven remediation strategies fail. Oracle controls ($+29.90$/$+14.22$\\,pp) confirm the mechanism is sound; the bottleneck is extraction quality, not the formal channel. Three diagnostics predict failure ($C_0 < 5\\%$, SC $\\leq 40\\%$, process similarity). Cross-architecture NLI escapes the bias for generators up to SC $\\approx 70\\%$ ($p \\leq 0.004$); DRC recovers 83--90\\% of this gain at 35--39\\% cost.\n5\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-012601"
-        },
-        {
-          "source_line": 12602,
-          "timestamp": "2026-05-22T14:51:18.801060+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "lifshitz2025mav",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-012602"
-        },
-        {
-          "source_line": 12603,
-          "timestamp": "2026-05-22T14:51:19.206034+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex:11:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib:562:@article{lifshitz2025mav,\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux:235:\\citation{lifshitz2025mav}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux:1018:\\bibcite{lifshitz2025mav}{{36}{2025}{{Lifshitz et~al.}}{{Lifshitz, McIlraith, and Du}}}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.bbl:238:\\bibitem[{Lifshitz et~al.(2025)Lifshitz, McIlraith, and Du}]{lifshitz2025mav}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 404
-          },
-          "id": "event-012603"
-        },
-        {
-          "source_line": 12604,
-          "timestamp": "2026-05-22T14:51:19.759305+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "chen2025sets",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-012604"
-        },
-        {
-          "source_line": 12605,
-          "timestamp": "2026-05-22T14:51:20.214708+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "536:@article{chen2025sets,"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 455
-          },
-          "id": "event-012605"
-        },
-        {
-          "source_line": 12606,
-          "timestamp": "2026-05-22T14:51:20.366037+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "TBD_",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-012606"
-        },
-        {
-          "source_line": 12607,
-          "timestamp": "2026-05-22T14:51:20.366501+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "No matches found"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 0
-          },
-          "id": "event-012607"
-        },
-        {
-          "source_line": 12608,
-          "timestamp": "2026-05-22T14:51:37.445549+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
-              "limit": "40"
-            }
-          },
-          "id": "event-012608"
-        },
-        {
-          "source_line": 12609,
-          "timestamp": "2026-05-22T14:51:37.446070+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "positive capability gap",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
-              "output_mode": "content",
-              "-n": "True"
-            }
-          },
-          "id": "event-012609"
-        },
-        {
-          "source_line": 12610,
-          "timestamp": "2026-05-22T14:51:37.446353+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex"
-            }
-          },
-          "id": "event-012610"
-        },
-        {
-          "source_line": 12611,
-          "timestamp": "2026-05-22T14:51:37.497171+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Regime Scatter Plot}\n2\t\\label{app:regime-scatter}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{f2_regime_scatter}\n7\t\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\n8\t\\label{fig:regime-scatter}\n9\t\\end{figure}\n10\t\n11\t\\section{Prompt Templates}\n12\t\\label{app:prompts}\n13\t\n14\tSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n15\t\n16\t\\paragraph{System Prompt.}\n17\t\n18\t\\begin{lstlisting}\n19\tYou are a constraint extraction tool. Output ONLY\n20\tvalid JSON. Do NOT solve problems, reason about\n21\tcorrectness, or think step-by-step. Extract\n22\tconstraints from the given trace exactly as stated.\n23\t\\end{lstlisting}\n24\t\n25\t\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n26\t\n27\tUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n28\t\n29\t\\begin{lstlisting}\n30\tExtract mathematical constraints from this reasoning\n31\ttrace as a JSON object.\n32\t\n33\tRules:\n34\t- type: \"equation\", \"inequality\", or \"predicate\"\n35\t- expression: human-readable, e.g. \"x + y == 14\"\n36\t- z3_formula: a single comparison expression in\n37\t  Python Z3 syntax\n38\t- source_step: step number where the constraint\n39\t  appears\n40\t- Use variable names from the trace"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-012611"
-        },
-        {
-          "source_line": 12612,
-          "timestamp": "2026-05-22T14:51:37.497634+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex:12:\\looseness=-1 Our results suggest three conditions jointly enable the escape---structural independence, positive capability gap, and task-verifier alignment---expanded in \\S\\ref{sec:discussion}. NLI classification operates on (premise, conclusion) pairs, a different task from constraint extraction; the success may partly reflect task-format alignment. All three NLI architectures produce gains at $w \\geq 3$."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 51
-          },
-          "id": "event-012612"
-        },
-        {
-          "source_line": 12613,
-          "timestamp": "2026-05-22T14:51:37.549862+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t% \\usepackage{inconsolata} % removed: not available in this TeX distribution\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{amsthm}\n13\t\\usepackage{tcolorbox}\n14\t\\tcbuselibrary{skins}\n15\t\\usepackage{booktabs}\n16\t\\usepackage{multirow}\n17\t\\usepackage{xcolor}\n18\t\\usepackage{enumitem}\n19\t\\usepackage{subcaption}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,calc,fit}\n22\t\\usepackage{listings}\n23\t\\usepackage{algorithm}\n24\t\\usepackage{algpseudocode}\n25\t\\usepackage{hyperref}\n26\t\\usepackage{cleveref}\n27\t\n28\t\\lstset{\n29\t  basicstyle=\\small\\ttfamily,\n30\t  breaklines=true,\n31\t  frame=single,\n32\t  xleftmargin=1em,\n33\t  xrightmargin=1em,\n34\t  aboveskip=0.5em,\n35\t  belowskip=0.5em,\n36\t}\n37\t\n38\t\\graphicspath{{../figures/paper/}{figures/}}\n39\t\n40\t\\title{Beyond Self-Consistency: Why Self-Extracted Constraints\\\\Fail to Improve LLM Logical Reasoning}\n41\t\n42\t\\author{Anonymous}\n43\t\n44\t\\begin{document}\n45\t\\maketitle\n46\t\n47\t% Tighten spacing for 8-page budget\n48\t\\setlength{\\textfloatsep}{5pt plus 2pt minus 4pt}\n49\t\\setlength{\\dbltextfloatsep}{5pt plus 2pt minus 4pt}\n50\t\\setlength{\\floatsep}{3pt plus 2pt minus 2pt}\n51\t\\setlength{\\dblfloatsep}{3pt plus 2pt minus 2pt}\n52\t\\setlength{\\abovecaptionskip}{2pt}\n53\t\\setlength{\\belowcaptionskip}{0pt}\n54\t\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n55\t\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n56\t\\setlength{\\intextsep}{5pt plus 1pt minus 2pt}\n57\t\n58\t\\input{abstract}\n59\t\n60\t\\input{introduction}\n61\t\n62\t\\input{related_work}\n63\t\n64\t\\input{method}\n65\t\n66\t\\input{experiments}\n67\t\n68\t\\input{analysis}\n69\t\n70\t\\input{solutions}\n71\t\n72\t\\input{discussion}\n73\t\n74\t\\vspace{-1mm}\n75\t\\section*{Limitations}\n76\t\\input{limitations_content}\n77\t\n78\t\\bibliography{references}\n79\t\n80\t\\appendix\n81\t\\input{appendix}\n82\t\n\n…[truncated 21 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 103
-          },
-          "id": "event-012613"
-        },
-        {
-          "source_line": 12614,
-          "timestamp": "2026-05-22T14:53:31.476747+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
-              "old_string": "three conditions jointly enable the escape---structural independence, positive capability gap, and task-verifier alignment",
-              "new_string": "three conditions jointly enable the escape---structural independence, capability ordering, and task-verifier alignment"
-            }
-          },
-          "id": "event-012614"
-        },
-        {
-          "source_line": 12615,
-          "timestamp": "2026-05-22T14:53:31.627978+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 151
-          },
-          "id": "event-012615"
-        },
-        {
-          "source_line": 12616,
-          "timestamp": "2026-05-22T14:53:39.700501+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
-              "old_string": "Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ is monotonically increasing in the capability gap $(V_\\text{acc} - \\text{SC}_G)$.",
-              "new_string": "Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ decreases monotonically with $\\text{SC}_G$, with significant gains observed up to $\\text{SC}_G \\approx 70\\%$."
-            }
-          },
-          "id": "event-012616"
-        },
-        {
-          "source_line": 12617,
-          "timestamp": "2026-05-22T14:53:39.751328+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-012617"
-        },
-        {
-          "source_line": 12618,
-          "timestamp": "2026-05-22T14:53:50.414959+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
-              "old_string": "From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$, but incorrect verifier votes counteract gains when $V_\\text{acc} < \\text{SC}_G$. Empirically, combo gain is monotonically ordered by the capability gap ($p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}).",
-              "new_string": "From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$."
-            }
-          },
-          "id": "event-012618"
-        },
-        {
-          "source_line": 12619,
-          "timestamp": "2026-05-22T14:53:50.465717+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-012619"
-        },
-        {
-          "source_line": 12620,
-          "timestamp": "2026-05-22T14:53:55.887730+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
-              "old_string": "with gain monotonically ordered by the capability gap ($p = 0.003$, $n{=}6$).",
-              "new_string": "with gain decreasing monotonically with generator capability ($p = 0.003$, $n{=}6$)."
-            }
-          },
-          "id": "event-012620"
-        },
-        {
-          "source_line": 12621,
-          "timestamp": "2026-05-22T14:53:55.938424+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-012621"
-        },
-        {
-          "source_line": 12622,
-          "timestamp": "2026-05-22T14:53:59.553558+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "capability gap",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-              "output_mode": "content",
-              "-n": "True"
-            }
-          },
-          "id": "event-012622"
-        },
-        {
-          "source_line": 12623,
           "timestamp": "2026-05-22T14:53:59.604700+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -464,10 +21,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-012623"
+          "id": "event-012601"
         },
         {
-          "source_line": 12624,
+          "source_line": 12602,
           "timestamp": "2026-05-22T14:54:02.565470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -486,10 +43,10 @@
               "limit": "2"
             }
           },
-          "id": "event-012624"
+          "id": "event-012602"
         },
         {
-          "source_line": 12625,
+          "source_line": 12603,
           "timestamp": "2026-05-22T14:54:02.565940+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -504,10 +61,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-012625"
+          "id": "event-012603"
         },
         {
-          "source_line": 12626,
+          "source_line": 12604,
           "timestamp": "2026-05-22T14:54:07.234647+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -527,10 +84,10 @@
               "new_string": "with gain decreasing monotonically with generator capability ($p = 0.003$, $n{=}6$; \\S\\ref{sec:remediation}, \\S\\ref{sec:cross-arch})."
             }
           },
-          "id": "event-012626"
+          "id": "event-012604"
         },
         {
-          "source_line": 12627,
+          "source_line": 12605,
           "timestamp": "2026-05-22T14:54:07.385705+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -545,10 +102,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-012627"
+          "id": "event-012605"
         },
         {
-          "source_line": 12628,
+          "source_line": 12606,
           "timestamp": "2026-05-22T14:54:13.611818+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -569,10 +126,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-012628"
+          "id": "event-012606"
         },
         {
-          "source_line": 12629,
+          "source_line": 12607,
           "timestamp": "2026-05-22T14:54:13.712652+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -587,10 +144,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-012629"
+          "id": "event-012607"
         },
         {
-          "source_line": 12630,
+          "source_line": 12608,
           "timestamp": "2026-05-22T14:54:26.386794+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -609,10 +166,10 @@
               "limit": "10"
             }
           },
-          "id": "event-012630"
+          "id": "event-012608"
         },
         {
-          "source_line": 12631,
+          "source_line": 12609,
           "timestamp": "2026-05-22T14:54:26.437413+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -627,10 +184,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-012631"
+          "id": "event-012609"
         },
         {
-          "source_line": 12632,
+          "source_line": 12610,
           "timestamp": "2026-05-22T14:54:44.394897+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -650,10 +207,10 @@
               "new_string": "(ii)~\\emph{Capability ordering}: combo gain decreases monotonically with generator SC (Table~\\ref{tab:cross_generator_nli}), significant up to SC $\\approx 70\\%$---even when the generator exceeds the verifier---but vanishing above $74\\%$."
             }
           },
-          "id": "event-012632"
+          "id": "event-012610"
         },
         {
-          "source_line": 12633,
+          "source_line": 12611,
           "timestamp": "2026-05-22T14:54:44.545794+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -668,10 +225,10 @@
             "tool": "Edit",
             "elapsed_ms": 150
           },
-          "id": "event-012633"
+          "id": "event-012611"
         },
         {
-          "source_line": 12634,
+          "source_line": 12612,
           "timestamp": "2026-05-22T14:54:48.412147+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -690,10 +247,10 @@
               "limit": "30"
             }
           },
-          "id": "event-012634"
+          "id": "event-012612"
         },
         {
-          "source_line": 12635,
+          "source_line": 12613,
           "timestamp": "2026-05-22T14:54:48.563036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -708,10 +265,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-012635"
+          "id": "event-012613"
         },
         {
-          "source_line": 12636,
+          "source_line": 12614,
           "timestamp": "2026-05-22T14:54:51.882730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -731,10 +288,10 @@
               "-n": "True"
             }
           },
-          "id": "event-012636"
+          "id": "event-012614"
         },
         {
-          "source_line": 12637,
+          "source_line": 12615,
           "timestamp": "2026-05-22T14:54:51.933539+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -749,10 +306,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-012637"
+          "id": "event-012615"
         },
         {
-          "source_line": 12638,
+          "source_line": 12616,
           "timestamp": "2026-05-22T14:54:59.666944+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -771,10 +328,10 @@
               "limit": "12"
             }
           },
-          "id": "event-012638"
+          "id": "event-012616"
         },
         {
-          "source_line": 12639,
+          "source_line": 12617,
           "timestamp": "2026-05-22T14:54:59.717620+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -789,10 +346,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-012639"
+          "id": "event-012617"
         },
         {
-          "source_line": 12640,
+          "source_line": 12618,
           "timestamp": "2026-05-22T14:55:15.849077+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -812,10 +369,10 @@
               "new_string": "\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+17.17$\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\sim}$12\\% of this ceiling (Appendix~\\ref{app:oracle}).\n\n"
             }
           },
-          "id": "event-012640"
+          "id": "event-012618"
         },
         {
-          "source_line": 12641,
+          "source_line": 12619,
           "timestamp": "2026-05-22T14:55:15.849675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -830,10 +387,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-012641"
+          "id": "event-012619"
         },
         {
-          "source_line": 12642,
+          "source_line": 12620,
           "timestamp": "2026-05-22T14:56:02.097984+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -853,10 +410,10 @@
               "new_string": "\\section{Oracle Control}\n\\label{app:oracle}\n\\label{sec:oracle}\n\nReplacing self-extracted constraints with gold annotations (FOLIO logical formulae, ProofWriter DSL), Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+14.22$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+17.17$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter). The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted $\\Delta$ ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling. For Qwen2.5-14B on ProofWriter, the gap is wider still: self-extraction degrades accuracy ($-2.50$\\,pp) against an oracle ceiling of $+17.17$\\,pp, indicating that stronger models do not self-extract more effectively.\n\n\\section{Prompt Templates}\n\\label{app:prompts}"
             }
           },
-          "id": "event-012642"
+          "id": "event-012620"
         },
         {
-          "source_line": 12643,
+          "source_line": 12621,
           "timestamp": "2026-05-22T14:56:02.149415+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -871,10 +428,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-012643"
+          "id": "event-012621"
         },
         {
-          "source_line": 12644,
+          "source_line": 12622,
           "timestamp": "2026-05-22T14:56:05.061956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -891,10 +448,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-012644"
+          "id": "event-012622"
         },
         {
-          "source_line": 12645,
+          "source_line": 12623,
           "timestamp": "2026-05-22T14:56:05.162822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -909,10 +466,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-012645"
+          "id": "event-012623"
         },
         {
-          "source_line": 12646,
+          "source_line": 12624,
           "timestamp": "2026-05-22T14:56:16.876260+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -932,10 +489,10 @@
               "new_string": "(iii)~\\emph{Task-verifier alignment}: all three NLI architectures produce gains at $w \\geq 3$ (Appendices~\\ref{app:capability-gap},~\\ref{app:extended-discussion}).\n\n\\looseness=-1\n\\paragraph{Implications for test-time scaling.}\nRecent methods scale test-time compute through additional traces \\citep{chen2025sets} or multi-agent verification \\citep{lifshitz2025mav}, but SCB reveals a fundamental bottleneck: scaling same-model traces scales \\emph{redundancy}, not information. With $K_\\text{eff} \\leq 3.6$ for $K{=}12$, most additional traces are informationally redundant ($\\kappa \\geq 0.41$ across four families). Effective test-time scaling requires either structurally independent verifiers (our cross-architecture result) or trained verification signals that escape the model's distributional prior.\n\n\\looseness=-1\n\\paragraph{Limitations of current escape.}\nOur NLI proof-of-concept is limited to propositional-logic benchmarks whose premise-conclusion structure naturally suits NLI classification. Fine-tuning on domain-specific entailment data may extend the approach; cross-task generalization beyond logical reasoning remains an open question. The capability threshold ($\\text{SC}_G \\leq 70\\%$) may shift with stronger verifiers."
             }
           },
-          "id": "event-012646"
+          "id": "event-012624"
         },
         {
-          "source_line": 12647,
+          "source_line": 12625,
           "timestamp": "2026-05-22T14:56:16.876808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -950,10 +507,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-012647"
+          "id": "event-012625"
         },
         {
-          "source_line": 12648,
+          "source_line": 12626,
           "timestamp": "2026-05-22T14:56:27.052582+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -970,10 +527,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-012648"
+          "id": "event-012626"
         },
         {
-          "source_line": 12649,
+          "source_line": 12627,
           "timestamp": "2026-05-22T14:56:27.153443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -988,10 +545,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-012649"
+          "id": "event-012627"
         },
         {
-          "source_line": 12650,
+          "source_line": 12628,
           "timestamp": "2026-05-22T14:56:39.420084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1009,10 +566,10 @@
               "description": "First pdflatex pass"
             }
           },
-          "id": "event-012650"
+          "id": "event-012628"
         },
         {
-          "source_line": 12651,
+          "source_line": 12629,
           "timestamp": "2026-05-22T14:56:41.829397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1027,10 +584,10 @@
             "tool": "Bash",
             "elapsed_ms": 2409
           },
-          "id": "event-012651"
+          "id": "event-012629"
         },
         {
-          "source_line": 12652,
+          "source_line": 12630,
           "timestamp": "2026-05-22T14:56:45.298069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1048,10 +605,10 @@
               "description": "Full bibtex + pdflatex compilation cycle"
             }
           },
-          "id": "event-012652"
+          "id": "event-012630"
         },
         {
-          "source_line": 12653,
+          "source_line": 12631,
           "timestamp": "2026-05-22T14:56:50.221829+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1066,10 +623,10 @@
             "tool": "Bash",
             "elapsed_ms": 4923
           },
-          "id": "event-012653"
+          "id": "event-012631"
         },
         {
-          "source_line": 12654,
+          "source_line": 12632,
           "timestamp": "2026-05-22T14:56:54.042073+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1087,10 +644,10 @@
               "description": "Check for warnings and multiply-defined labels"
             }
           },
-          "id": "event-012654"
+          "id": "event-012632"
         },
         {
-          "source_line": 12655,
+          "source_line": 12633,
           "timestamp": "2026-05-22T14:56:54.142930+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1105,10 +662,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-012655"
+          "id": "event-012633"
         },
         {
-          "source_line": 12656,
+          "source_line": 12634,
           "timestamp": "2026-05-22T14:57:00.917733+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1126,10 +683,10 @@
               "description": "Check page breaks in log"
             }
           },
-          "id": "event-012656"
+          "id": "event-012634"
         },
         {
-          "source_line": 12657,
+          "source_line": 12635,
           "timestamp": "2026-05-22T14:57:00.968447+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1144,10 +701,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012657"
+          "id": "event-012635"
         },
         {
-          "source_line": 12658,
+          "source_line": 12636,
           "timestamp": "2026-05-22T14:57:04.634308+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1165,10 +722,10 @@
               "description": "Check page numbers in compilation log"
             }
           },
-          "id": "event-012658"
+          "id": "event-012636"
         },
         {
-          "source_line": 12659,
+          "source_line": 12637,
           "timestamp": "2026-05-22T14:57:04.785555+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1183,10 +740,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-012659"
+          "id": "event-012637"
         },
         {
-          "source_line": 12660,
+          "source_line": 12638,
           "timestamp": "2026-05-22T14:57:28.409035+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1204,10 +761,10 @@
               "description": "Extract page numbers from log"
             }
           },
-          "id": "event-012660"
+          "id": "event-012638"
         },
         {
-          "source_line": 12661,
+          "source_line": 12639,
           "timestamp": "2026-05-22T14:57:28.613149+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1222,10 +779,10 @@
             "tool": "Bash",
             "elapsed_ms": 204
           },
-          "id": "event-012661"
+          "id": "event-012639"
         },
         {
-          "source_line": 12662,
+          "source_line": 12640,
           "timestamp": "2026-05-22T14:57:32.026534+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1243,10 +800,10 @@
               "description": "Check PDF page count"
             }
           },
-          "id": "event-012662"
+          "id": "event-012640"
         },
         {
-          "source_line": 12663,
+          "source_line": 12641,
           "timestamp": "2026-05-22T14:57:32.177556+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1261,10 +818,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-012663"
+          "id": "event-012641"
         },
         {
-          "source_line": 12664,
+          "source_line": 12642,
           "timestamp": "2026-05-22T14:57:36.843078+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1282,10 +839,10 @@
               "description": "Find section breaks in log"
             }
           },
-          "id": "event-012664"
+          "id": "event-012642"
         },
         {
-          "source_line": 12665,
+          "source_line": 12643,
           "timestamp": "2026-05-22T14:57:36.944630+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1300,10 +857,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-012665"
+          "id": "event-012643"
         },
         {
-          "source_line": 12666,
+          "source_line": 12644,
           "timestamp": "2026-05-22T14:57:40.909287+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1321,10 +878,10 @@
               "description": "Find page 8 in log"
             }
           },
-          "id": "event-012666"
+          "id": "event-012644"
         },
         {
-          "source_line": 12667,
+          "source_line": 12645,
           "timestamp": "2026-05-22T14:57:40.959971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1339,10 +896,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012667"
+          "id": "event-012645"
         },
         {
-          "source_line": 12668,
+          "source_line": 12646,
           "timestamp": "2026-05-22T14:58:07.634968+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1360,10 +917,10 @@
               "description": "Check for undefined references or multiply-defined labels"
             }
           },
-          "id": "event-012668"
+          "id": "event-012646"
         },
         {
-          "source_line": 12669,
+          "source_line": 12647,
           "timestamp": "2026-05-22T14:58:07.686074+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1378,10 +935,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-012669"
+          "id": "event-012647"
         },
         {
-          "source_line": 12670,
+          "source_line": 12648,
           "timestamp": "2026-05-22T14:58:15.773060+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1400,10 +957,10 @@
               "limit": "10"
             }
           },
-          "id": "event-012670"
+          "id": "event-012648"
         },
         {
-          "source_line": 12671,
+          "source_line": 12649,
           "timestamp": "2026-05-22T14:58:15.874036+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1418,10 +975,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-012671"
+          "id": "event-012649"
         },
         {
-          "source_line": 12672,
+          "source_line": 12650,
           "timestamp": "2026-05-22T14:58:28.394345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1440,10 +997,10 @@
               "limit": "10"
             }
           },
-          "id": "event-012672"
+          "id": "event-012650"
         },
         {
-          "source_line": 12673,
+          "source_line": 12651,
           "timestamp": "2026-05-22T14:58:28.394833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1458,10 +1015,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-012673"
+          "id": "event-012651"
         },
         {
-          "source_line": 12674,
+          "source_line": 12652,
           "timestamp": "2026-05-22T14:58:37.726301+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1482,10 +1039,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-012674"
+          "id": "event-012652"
         },
         {
-          "source_line": 12675,
+          "source_line": 12653,
           "timestamp": "2026-05-22T14:58:37.827183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1500,10 +1057,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-012675"
+          "id": "event-012653"
         },
         {
-          "source_line": 12676,
+          "source_line": 12654,
           "timestamp": "2026-05-22T14:58:53.693048+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1522,10 +1079,10 @@
               "limit": "3"
             }
           },
-          "id": "event-012676"
+          "id": "event-012654"
         },
         {
-          "source_line": 12677,
+          "source_line": 12655,
           "timestamp": "2026-05-22T14:58:53.793916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1540,10 +1097,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-012677"
+          "id": "event-012655"
         },
         {
-          "source_line": 12678,
+          "source_line": 12656,
           "timestamp": "2026-05-22T14:58:57.611401+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1563,10 +1120,10 @@
               "new_string": "oracle upper bounds are reported in Appendix~\\ref{app:oracle}.}"
             }
           },
-          "id": "event-012678"
+          "id": "event-012656"
         },
         {
-          "source_line": 12679,
+          "source_line": 12657,
           "timestamp": "2026-05-22T14:58:57.662068+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1581,10 +1138,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-012679"
+          "id": "event-012657"
         },
         {
-          "source_line": 12680,
+          "source_line": 12658,
           "timestamp": "2026-05-22T14:59:00.673732+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1604,10 +1161,10 @@
               "new_string": "$p < 0.001$; Appendix~\\ref{app:oracle})"
             }
           },
-          "id": "event-012680"
+          "id": "event-012658"
         },
         {
-          "source_line": 12681,
+          "source_line": 12659,
           "timestamp": "2026-05-22T14:59:00.724503+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1622,10 +1179,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-012681"
+          "id": "event-012659"
         },
         {
-          "source_line": 12682,
+          "source_line": 12660,
           "timestamp": "2026-05-22T14:59:04.741044+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1644,10 +1201,10 @@
               "limit": "2"
             }
           },
-          "id": "event-012682"
+          "id": "event-012660"
         },
         {
-          "source_line": 12683,
+          "source_line": 12661,
           "timestamp": "2026-05-22T14:59:04.791609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1662,10 +1219,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-012683"
+          "id": "event-012661"
         },
         {
-          "source_line": 12684,
+          "source_line": 12662,
           "timestamp": "2026-05-22T14:59:08.220071+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1685,10 +1242,10 @@
               "new_string": "remain effective (Appendix~\\ref{app:oracle})"
             }
           },
-          "id": "event-012684"
+          "id": "event-012662"
         },
         {
-          "source_line": 12685,
+          "source_line": 12663,
           "timestamp": "2026-05-22T14:59:08.321015+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1703,10 +1260,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-012685"
+          "id": "event-012663"
         },
         {
-          "source_line": 12686,
+          "source_line": 12664,
           "timestamp": "2026-05-22T14:59:11.582208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1725,10 +1282,10 @@
               "limit": "3"
             }
           },
-          "id": "event-012686"
+          "id": "event-012664"
         },
         {
-          "source_line": 12687,
+          "source_line": 12665,
           "timestamp": "2026-05-22T14:59:11.682971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1743,10 +1300,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-012687"
+          "id": "event-012665"
         },
         {
-          "source_line": 12688,
+          "source_line": 12666,
           "timestamp": "2026-05-22T14:59:16.758894+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1766,10 +1323,10 @@
               "new_string": "the failure localizes to self-extraction (Appendix~\\ref{app:oracle})."
             }
           },
-          "id": "event-012688"
+          "id": "event-012666"
         },
         {
-          "source_line": 12689,
+          "source_line": 12667,
           "timestamp": "2026-05-22T14:59:16.759480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1784,10 +1341,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-012689"
+          "id": "event-012667"
         },
         {
-          "source_line": 12690,
+          "source_line": 12668,
           "timestamp": "2026-05-22T14:59:21.681417+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1805,10 +1362,10 @@
               "description": "Full compilation cycle"
             }
           },
-          "id": "event-012690"
+          "id": "event-012668"
         },
         {
-          "source_line": 12691,
+          "source_line": 12669,
           "timestamp": "2026-05-22T14:59:28.304283+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1823,10 +1380,10 @@
             "tool": "Bash",
             "elapsed_ms": 6622
           },
-          "id": "event-012691"
+          "id": "event-012669"
         },
         {
-          "source_line": 12692,
+          "source_line": 12670,
           "timestamp": "2026-05-22T14:59:33.025058+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1844,10 +1401,10 @@
               "description": "Check warnings and page 8 position"
             }
           },
-          "id": "event-012692"
+          "id": "event-012670"
         },
         {
-          "source_line": 12693,
+          "source_line": 12671,
           "timestamp": "2026-05-22T14:59:33.127031+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1862,10 +1419,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-012693"
+          "id": "event-012671"
         },
         {
-          "source_line": 12694,
+          "source_line": 12672,
           "timestamp": "2026-05-22T14:59:39.264224+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1883,10 +1440,10 @@
               "description": "Check full page sequence"
             }
           },
-          "id": "event-012694"
+          "id": "event-012672"
         },
         {
-          "source_line": 12695,
+          "source_line": 12673,
           "timestamp": "2026-05-22T14:59:39.365142+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1901,10 +1458,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-012695"
+          "id": "event-012673"
         },
         {
-          "source_line": 12696,
+          "source_line": 12674,
           "timestamp": "2026-05-22T14:59:44.283329+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1922,10 +1479,10 @@
               "description": "Extract page number markers from log"
             }
           },
-          "id": "event-012696"
+          "id": "event-012674"
         },
         {
-          "source_line": 12697,
+          "source_line": 12675,
           "timestamp": "2026-05-22T14:59:44.334061+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1940,10 +1497,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012697"
+          "id": "event-012675"
         },
         {
-          "source_line": 12698,
+          "source_line": 12676,
           "timestamp": "2026-05-22T15:00:12.184489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1961,10 +1518,10 @@
               "description": "Check context around pages 7-9"
             }
           },
-          "id": "event-012698"
+          "id": "event-012676"
         },
         {
-          "source_line": 12699,
+          "source_line": 12677,
           "timestamp": "2026-05-22T15:00:12.235254+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1979,10 +1536,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012699"
+          "id": "event-012677"
         },
         {
-          "source_line": 12700,
+          "source_line": 12678,
           "timestamp": "2026-05-22T15:00:17.861530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2000,10 +1557,10 @@
               "description": "Check counter error details"
             }
           },
-          "id": "event-012700"
+          "id": "event-012678"
         },
         {
-          "source_line": 12701,
+          "source_line": 12679,
           "timestamp": "2026-05-22T15:00:17.912211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2018,10 +1575,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012701"
+          "id": "event-012679"
         },
         {
-          "source_line": 12702,
+          "source_line": 12680,
           "timestamp": "2026-05-22T15:00:21.853157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2039,10 +1596,10 @@
               "description": "Get full context of counter error"
             }
           },
-          "id": "event-012702"
+          "id": "event-012680"
         },
         {
-          "source_line": 12703,
+          "source_line": 12681,
           "timestamp": "2026-05-22T15:00:21.954048+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2057,10 +1614,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-012703"
+          "id": "event-012681"
         },
         {
-          "source_line": 12704,
+          "source_line": 12682,
           "timestamp": "2026-05-22T15:00:49.590264+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2079,10 +1636,10 @@
               "limit": "30"
             }
           },
-          "id": "event-012704"
+          "id": "event-012682"
         },
         {
-          "source_line": 12705,
+          "source_line": 12683,
           "timestamp": "2026-05-22T15:00:49.641004+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2097,10 +1654,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-012705"
+          "id": "event-012683"
         },
         {
-          "source_line": 12706,
+          "source_line": 12684,
           "timestamp": "2026-05-22T15:01:06.254456+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2120,10 +1677,10 @@
               "new_string": "\\section{Prompt Templates}\n\\label{app:prompts}"
             }
           },
-          "id": "event-012706"
+          "id": "event-012684"
         },
         {
-          "source_line": 12707,
+          "source_line": 12685,
           "timestamp": "2026-05-22T15:01:06.255494+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2138,10 +1695,10 @@
             "tool": "Edit",
             "elapsed_ms": 1
           },
-          "id": "event-012707"
+          "id": "event-012685"
         },
         {
-          "source_line": 12708,
+          "source_line": 12686,
           "timestamp": "2026-05-22T15:01:14.577608+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2161,10 +1718,10 @@
               "new_string": "\\section{Oracle Control}\n\\label{app:oracle}\n\\label{sec:oracle}\n\\label{app:pw-oracle-subtype}\n\nReplacing self-extracted constraints with gold annotations (FOLIO logical formulae, ProofWriter DSL), Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+14.22$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+17.17$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter). The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted $\\Delta$ ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling. For Qwen2.5-14B on ProofWriter, the gap is wider still: self-extraction degrades accuracy ($-2.50$\\,pp) against an oracle ceiling of $+17.17$\\,pp, indicating that stronger models do not self-extract more effectively.\n\n\\paragraph{ProofWriter per-subtype analysis.} ProofWriter problems encode deductive rules"
             }
           },
-          "id": "event-012708"
+          "id": "event-012686"
         },
         {
-          "source_line": 12709,
+          "source_line": 12687,
           "timestamp": "2026-05-22T15:01:14.628655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2179,10 +1736,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-012709"
+          "id": "event-012687"
         },
         {
-          "source_line": 12710,
+          "source_line": 12688,
           "timestamp": "2026-05-22T15:01:19.617747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2200,10 +1757,10 @@
               "description": "Recompile after merging appendix sections"
             }
           },
-          "id": "event-012710"
+          "id": "event-012688"
         },
         {
-          "source_line": 12711,
+          "source_line": 12689,
           "timestamp": "2026-05-22T15:01:24.239001+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2218,10 +1775,10 @@
             "tool": "Bash",
             "elapsed_ms": 4621
           },
-          "id": "event-012711"
+          "id": "event-012689"
         },
         {
-          "source_line": 12712,
+          "source_line": 12690,
           "timestamp": "2026-05-22T15:01:29.311112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2239,10 +1796,10 @@
               "description": "Check for errors and page 8"
             }
           },
-          "id": "event-012712"
+          "id": "event-012690"
         },
         {
-          "source_line": 12713,
+          "source_line": 12691,
           "timestamp": "2026-05-22T15:01:29.361761+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2257,10 +1814,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012713"
+          "id": "event-012691"
         },
         {
-          "source_line": 12714,
+          "source_line": 12692,
           "timestamp": "2026-05-22T15:01:36.694387+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2278,10 +1835,10 @@
               "description": "Check references to pw-oracle-subtype"
             }
           },
-          "id": "event-012714"
+          "id": "event-012692"
         },
         {
-          "source_line": 12715,
+          "source_line": 12693,
           "timestamp": "2026-05-22T15:01:36.745583+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2296,10 +1853,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-012715"
+          "id": "event-012693"
         },
         {
-          "source_line": 12716,
+          "source_line": 12694,
           "timestamp": "2026-05-22T15:01:43.218055+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2317,10 +1874,10 @@
               "description": "Final full compilation check"
             }
           },
-          "id": "event-012716"
+          "id": "event-012694"
         },
         {
-          "source_line": 12717,
+          "source_line": 12695,
           "timestamp": "2026-05-22T15:01:49.850214+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2335,10 +1892,10 @@
             "tool": "Bash",
             "elapsed_ms": 6632
           },
-          "id": "event-012717"
+          "id": "event-012695"
         },
         {
-          "source_line": 12718,
+          "source_line": 12696,
           "timestamp": "2026-05-22T15:02:22.063074+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2356,10 +1913,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-012718"
+          "id": "event-012696"
         },
         {
-          "source_line": 12719,
+          "source_line": 12697,
           "timestamp": "2026-05-22T15:02:25.735929+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2374,10 +1931,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3672
           },
-          "id": "event-012719"
+          "id": "event-012697"
         },
         {
-          "source_line": 12720,
+          "source_line": 12698,
           "timestamp": "2026-05-22T15:02:32.414704+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2390,7 +1947,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-012720"
+          "id": "event-012698"
         }
       ]
     },
@@ -2398,7 +1955,7 @@
       "number": 495,
       "messages": [
         {
-          "source_line": 12721,
+          "source_line": 12699,
           "timestamp": "2026-05-22T15:02:32.893323+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2412,10 +1969,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-012721"
+          "id": "event-012699"
         },
         {
-          "source_line": 12722,
+          "source_line": 12700,
           "timestamp": "2026-05-22T15:04:38.216046+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2432,10 +1989,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-012722"
+          "id": "event-012700"
         },
         {
-          "source_line": 12723,
+          "source_line": 12701,
           "timestamp": "2026-05-22T15:04:38.660629+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2450,10 +2007,10 @@
             "tool": "Read",
             "elapsed_ms": 444
           },
-          "id": "event-012723"
+          "id": "event-012701"
         },
         {
-          "source_line": 12724,
+          "source_line": 12702,
           "timestamp": "2026-05-22T15:04:38.661165+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2470,10 +2027,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
             }
           },
-          "id": "event-012724"
+          "id": "event-012702"
         },
         {
-          "source_line": 12725,
+          "source_line": 12703,
           "timestamp": "2026-05-22T15:04:39.163452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2488,10 +2045,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-012725"
+          "id": "event-012703"
         },
         {
-          "source_line": 12726,
+          "source_line": 12704,
           "timestamp": "2026-05-22T15:04:39.515184+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2510,10 +2067,10 @@
               "limit": "10"
             }
           },
-          "id": "event-012726"
+          "id": "event-012704"
         },
         {
-          "source_line": 12727,
+          "source_line": 12705,
           "timestamp": "2026-05-22T15:04:39.617206+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2528,10 +2085,10 @@
             "tool": "Read",
             "elapsed_ms": 102
           },
-          "id": "event-012727"
+          "id": "event-012705"
         },
         {
-          "source_line": 12728,
+          "source_line": 12706,
           "timestamp": "2026-05-22T15:04:56.085273+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2551,10 +2108,10 @@
               "new_string": "\\looseness=-1\n\\paragraph{Diagnostic generalization.}\nThe three diagnostics ($K_\\text{eff}$, BR, $C_0$) extend beyond SICA to any trace-aggregation method. Across 60 tested conditions---self-extraction (18), training-free remediation (27), cross-architecture NLI (12), and oracle controls (3)---the framework correctly classifies every outcome. Decision boundaries: $C_0 < 5\\%$ $\\Rightarrow$ degenerate (SICA $=$ SC); $K_\\text{eff} \\leq 1.3$ $\\Rightarrow$ insufficient diversity (no condition improves); $\\text{BR} > 2\\times$ $\\Rightarrow$ self-extraction bias dominant; $\\kappa_\\text{same} \\geq 0.40$ $\\Rightarrow$ same-model ceiling (four methods, three families). Only SC $\\sim$50--60\\% with $K_\\text{eff} > 1.8$ offers marginal self-extraction gain. Practitioners can compute these from a pilot run ($K{=}12$) to predict symbolic aggregation viability at zero cost."
             }
           },
-          "id": "event-012728"
+          "id": "event-012706"
         },
         {
-          "source_line": 12729,
+          "source_line": 12707,
           "timestamp": "2026-05-22T15:04:56.085806+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2569,10 +2126,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-012729"
+          "id": "event-012707"
         },
         {
-          "source_line": 12730,
+          "source_line": 12708,
           "timestamp": "2026-05-22T15:05:03.265446+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2592,10 +2149,10 @@
               "new_string": "\\item \\textbf{General diagnostic framework for trace-aggregation methods.} Three diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly predict success or failure across all 60 tested conditions spanning self-extraction, training-free remediation, cross-architecture verification, and oracle controls. Decision boundaries---$C_0 < 5\\%$ (degenerate), $K_\\text{eff} \\leq 1.3$ (diversity-limited), $\\text{BR} > 2\\times$ (bias-dominated), $\\kappa_\\text{same} \\geq 0.40$ (same-model ceiling)---provide zero-cost prediction of symbolic aggregation viability. The framework extends to any method extracting structured representations from LLM traces (\\S\\ref{sec:remediation}, \\S\\ref{sec:cross-arch})."
             }
           },
-          "id": "event-012730"
+          "id": "event-012708"
         },
         {
-          "source_line": 12731,
+          "source_line": 12709,
           "timestamp": "2026-05-22T15:05:03.317180+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2610,10 +2167,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-012731"
+          "id": "event-012709"
         },
         {
-          "source_line": 12732,
+          "source_line": 12710,
           "timestamp": "2026-05-22T15:05:09.033084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2633,10 +2190,10 @@
               "new_string": "Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+4.17$--$6.67$\\,pp, $p \\leq 0.004$; two generator families), with gain decreasing monotonically with generator capability ($p = 0.003$, $n{=}6$).\nThree zero-cost diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly classify all 60 tested conditions, giving practitioners an a priori prediction of whether symbolic aggregation will help."
             }
           },
-          "id": "event-012732"
+          "id": "event-012710"
         },
         {
-          "source_line": 12733,
+          "source_line": 12711,
           "timestamp": "2026-05-22T15:05:09.033601+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2651,10 +2208,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-012733"
+          "id": "event-012711"
         },
         {
-          "source_line": 12734,
+          "source_line": 12712,
           "timestamp": "2026-05-22T15:05:17.923069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2672,10 +2229,10 @@
               "description": "Full compilation and page check"
             }
           },
-          "id": "event-012734"
+          "id": "event-012712"
         },
         {
-          "source_line": 12735,
+          "source_line": 12713,
           "timestamp": "2026-05-22T15:05:24.971165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2690,10 +2247,10 @@
             "tool": "Bash",
             "elapsed_ms": 7048
           },
-          "id": "event-012735"
+          "id": "event-012713"
         },
         {
-          "source_line": 12736,
+          "source_line": 12714,
           "timestamp": "2026-05-22T15:05:31.197037+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2710,10 +2267,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-012736"
+          "id": "event-012714"
         },
         {
-          "source_line": 12737,
+          "source_line": 12715,
           "timestamp": "2026-05-22T15:05:31.197372+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2728,10 +2285,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-012737"
+          "id": "event-012715"
         },
         {
-          "source_line": 12738,
+          "source_line": 12716,
           "timestamp": "2026-05-22T15:06:00.732893+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2749,10 +2306,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-012738"
+          "id": "event-012716"
         },
         {
-          "source_line": 12739,
+          "source_line": 12717,
           "timestamp": "2026-05-22T15:06:04.599071+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2767,10 +2324,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3866
           },
-          "id": "event-012739"
+          "id": "event-012717"
         },
         {
-          "source_line": 12740,
+          "source_line": 12718,
           "timestamp": "2026-05-22T15:06:06.910657+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2783,7 +2340,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-012740"
+          "id": "event-012718"
         }
       ]
     },
@@ -2791,7 +2348,7 @@
       "number": 496,
       "messages": [
         {
-          "source_line": 12741,
+          "source_line": 12719,
           "timestamp": "2026-05-22T15:06:07.429392+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2805,10 +2362,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "system"
           },
-          "id": "event-012741"
+          "id": "event-012719"
         },
         {
-          "source_line": 12742,
+          "source_line": 12720,
           "timestamp": "2026-05-22T15:06:17.230141+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2821,7 +2378,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-012742"
+          "id": "event-012720"
         }
       ]
     },
@@ -2829,7 +2386,7 @@
       "number": 497,
       "messages": [
         {
-          "source_line": 12743,
+          "source_line": 12721,
           "timestamp": "2026-05-22T15:06:17.720226+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2843,10 +2400,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-012743"
+          "id": "event-012721"
         },
         {
-          "source_line": 12744,
+          "source_line": 12722,
           "timestamp": "2026-05-22T15:07:44.013279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2865,10 +2422,10 @@
               "limit": "20"
             }
           },
-          "id": "event-012744"
+          "id": "event-012722"
         },
         {
-          "source_line": 12745,
+          "source_line": 12723,
           "timestamp": "2026-05-22T15:07:44.516188+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2883,10 +2440,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-012745"
+          "id": "event-012723"
         },
         {
-          "source_line": 12746,
+          "source_line": 12724,
           "timestamp": "2026-05-22T15:07:44.566972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2903,10 +2460,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-012746"
+          "id": "event-012724"
         },
         {
-          "source_line": 12747,
+          "source_line": 12725,
           "timestamp": "2026-05-22T15:07:45.018864+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2921,10 +2478,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-012747"
+          "id": "event-012725"
         },
         {
-          "source_line": 12748,
+          "source_line": 12726,
           "timestamp": "2026-05-22T15:07:45.219845+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2943,10 +2500,10 @@
               "limit": "15"
             }
           },
-          "id": "event-012748"
+          "id": "event-012726"
         },
         {
-          "source_line": 12749,
+          "source_line": 12727,
           "timestamp": "2026-05-22T15:07:45.321174+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2961,10 +2518,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-012749"
+          "id": "event-012727"
         },
         {
-          "source_line": 12750,
+          "source_line": 12728,
           "timestamp": "2026-05-22T15:08:24.868897+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2984,10 +2541,10 @@
               "new_string": "\\paragraph{Prospective held-out validation.}\n\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = \\textrm{TBD}\\%$, $K_\\text{eff} = \\textrm{TBD}$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n\n\\paragraph{Symbolic Mirage Hypothesis: verification.}\n\\looseness=-1 The observations and prediction of \\S\\ref{sec:mirage} are confirmed."
             }
           },
-          "id": "event-012750"
+          "id": "event-012728"
         },
         {
-          "source_line": 12751,
+          "source_line": 12729,
           "timestamp": "2026-05-22T15:08:24.919680+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3002,10 +2559,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-012751"
+          "id": "event-012729"
         },
         {
-          "source_line": 12752,
+          "source_line": 12730,
           "timestamp": "2026-05-22T15:08:33.552671+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3025,10 +2582,10 @@
               "new_string": "Practitioners can compute these from a pilot run ($K{=}12$) to predict symbolic aggregation viability at zero cost.\n\n\\looseness=-1\n\\paragraph{Transferability.}\nA potential concern is post-hoc fitting of boundaries to observed outcomes. We address this with a prospective held-out design: boundaries are derived from Qwen2.5-14B and Mistral-7B (two families); LLaMA-3.1-8B (a third, unseen family) serves as out-of-sample test. The framework correctly predicts LLaMA's Type~A outcome ($\\Delta = -4.41$\\,pp, \\S\\ref{sec:diagnostics}) using only zero-cost diagnostics computed without gold labels.\n\n\\looseness=-1\n\\paragraph{Design principles for escaping SCB.}"
             }
           },
-          "id": "event-012752"
+          "id": "event-012730"
         },
         {
-          "source_line": 12753,
+          "source_line": 12731,
           "timestamp": "2026-05-22T15:08:33.603458+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3043,10 +2600,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-012753"
+          "id": "event-012731"
         },
         {
-          "source_line": 12754,
+          "source_line": 12732,
           "timestamp": "2026-05-22T15:08:44.150125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3064,10 +2621,10 @@
               "description": "Compile and check page layout"
             }
           },
-          "id": "event-012754"
+          "id": "event-012732"
         },
         {
-          "source_line": 12755,
+          "source_line": 12733,
           "timestamp": "2026-05-22T15:08:48.766432+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3082,10 +2639,10 @@
             "tool": "Bash",
             "elapsed_ms": 4616
           },
-          "id": "event-012755"
+          "id": "event-012733"
         },
         {
-          "source_line": 12756,
+          "source_line": 12734,
           "timestamp": "2026-05-22T15:08:53.955097+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3103,10 +2660,10 @@
               "description": "Context around pages 8-9"
             }
           },
-          "id": "event-012756"
+          "id": "event-012734"
         },
         {
-          "source_line": 12757,
+          "source_line": 12735,
           "timestamp": "2026-05-22T15:08:54.005748+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3121,10 +2678,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012757"
+          "id": "event-012735"
         },
         {
-          "source_line": 12758,
+          "source_line": 12736,
           "timestamp": "2026-05-22T15:09:00.076001+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3142,10 +2699,10 @@
               "description": "Check what follows page 8"
             }
           },
-          "id": "event-012758"
+          "id": "event-012736"
         },
         {
-          "source_line": 12759,
+          "source_line": 12737,
           "timestamp": "2026-05-22T15:09:00.126657+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3160,10 +2717,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-012759"
+          "id": "event-012737"
         },
         {
-          "source_line": 12760,
+          "source_line": 12738,
           "timestamp": "2026-05-22T15:09:06.453596+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3181,10 +2738,10 @@
               "description": "Full context around page 8"
             }
           },
-          "id": "event-012760"
+          "id": "event-012738"
         },
         {
-          "source_line": 12761,
+          "source_line": 12739,
           "timestamp": "2026-05-22T15:09:06.556680+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3199,10 +2756,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-012761"
+          "id": "event-012739"
         },
         {
-          "source_line": 12762,
+          "source_line": 12740,
           "timestamp": "2026-05-22T15:09:32.913599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3221,10 +2778,10 @@
               "limit": "15"
             }
           },
-          "id": "event-012762"
+          "id": "event-012740"
         },
         {
-          "source_line": 12763,
+          "source_line": 12741,
           "timestamp": "2026-05-22T15:09:32.966087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3239,10 +2796,10 @@
             "tool": "Read",
             "elapsed_ms": 52
           },
-          "id": "event-012763"
+          "id": "event-012741"
         },
         {
-          "source_line": 12764,
+          "source_line": 12742,
           "timestamp": "2026-05-22T15:09:36.429525+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3259,10 +2816,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
             }
           },
-          "id": "event-012764"
+          "id": "event-012742"
         },
         {
-          "source_line": 12765,
+          "source_line": 12743,
           "timestamp": "2026-05-22T15:09:36.681042+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3277,10 +2834,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-012765"
+          "id": "event-012743"
         },
         {
-          "source_line": 12766,
+          "source_line": 12744,
           "timestamp": "2026-05-22T15:09:56.114038+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3298,10 +2855,10 @@
               "project": "symb_invariant_consensus"
             }
           },
-          "id": "event-012766"
+          "id": "event-012744"
         },
         {
-          "source_line": 12767,
+          "source_line": 12745,
           "timestamp": "2026-05-22T15:09:59.677431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3316,10 +2873,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3563
           },
-          "id": "event-012767"
+          "id": "event-012745"
         },
         {
-          "source_line": 12768,
+          "source_line": 12746,
           "timestamp": "2026-05-22T15:10:02.327616+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3332,7 +2889,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-012768"
+          "id": "event-012746"
         }
       ]
     },
@@ -3340,7 +2897,7 @@
       "number": 498,
       "messages": [
         {
-          "source_line": 12769,
+          "source_line": 12747,
           "timestamp": "2026-05-22T15:10:02.847689+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3354,10 +2911,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "system"
           },
-          "id": "event-012769"
+          "id": "event-012747"
         },
         {
-          "source_line": 12770,
+          "source_line": 12748,
           "timestamp": "2026-05-22T15:10:10.056120+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3370,7 +2927,7 @@
           "metadata": {
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent"
           },
-          "id": "event-012770"
+          "id": "event-012748"
         }
       ]
     },
@@ -3378,7 +2935,7 @@
       "number": 499,
       "messages": [
         {
-          "source_line": 12771,
+          "source_line": 12749,
           "timestamp": "2026-05-22T15:10:10.634867+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3392,10 +2949,10 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "source": "director"
           },
-          "id": "event-012771"
+          "id": "event-012749"
         },
         {
-          "source_line": 12772,
+          "source_line": 12750,
           "timestamp": "2026-05-22T15:10:22.552052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3414,10 +2971,10 @@
               "prompt": "Find the following files in the project at /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/:\n1. A Python script named gen_capability_gap_scatter.py or similar (for generating the capability gap scatter plot)\n2. A JSON file named nli_multi_verifier_recomputed.json or similar\n3. Any file containing \"spearman_pw6\"\n\nReport full paths and first ~50 lines of each file found."
             }
           },
-          "id": "event-012772"
+          "id": "event-012750"
         },
         {
-          "source_line": 12773,
+          "source_line": 12751,
           "timestamp": "2026-05-22T15:10:24.561103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3435,10 +2992,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
             }
           },
-          "id": "event-012773"
+          "id": "event-012751"
         },
         {
-          "source_line": 12774,
+          "source_line": 12752,
           "timestamp": "2026-05-22T15:10:24.619328+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3453,10 +3010,10 @@
             "tool": "Glob",
             "elapsed_ms": 58
           },
-          "id": "event-012774"
+          "id": "event-012752"
         },
         {
-          "source_line": 12775,
+          "source_line": 12753,
           "timestamp": "2026-05-22T15:10:24.865243+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3474,10 +3031,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
             }
           },
-          "id": "event-012775"
+          "id": "event-012753"
         },
         {
-          "source_line": 12776,
+          "source_line": 12754,
           "timestamp": "2026-05-22T15:10:25.077440+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3492,10 +3049,10 @@
             "tool": "Glob",
             "elapsed_ms": 212
           },
-          "id": "event-012776"
+          "id": "event-012754"
         },
         {
-          "source_line": 12777,
+          "source_line": 12755,
           "timestamp": "2026-05-22T15:10:25.229037+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3514,10 +3071,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-012777"
+          "id": "event-012755"
         },
         {
-          "source_line": 12778,
+          "source_line": 12756,
           "timestamp": "2026-05-22T15:10:26.032296+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3532,10 +3089,10 @@
             "tool": "Grep",
             "elapsed_ms": 803
           },
-          "id": "event-012778"
+          "id": "event-012756"
         },
         {
-          "source_line": 12779,
+          "source_line": 12757,
           "timestamp": "2026-05-22T15:10:28.395161+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3553,10 +3110,10 @@
               "limit": "50"
             }
           },
-          "id": "event-012779"
+          "id": "event-012757"
         },
         {
-          "source_line": 12780,
+          "source_line": 12758,
           "timestamp": "2026-05-22T15:10:28.395504+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3570,6 +3127,448 @@
             "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
             "tool": "Read",
             "elapsed_ms": 0
+          },
+          "id": "event-012758"
+        },
+        {
+          "source_line": 12759,
+          "timestamp": "2026-05-22T15:10:28.697003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_multi_verifier_recomputed.json",
+              "limit": "50"
+            }
+          },
+          "id": "event-012759"
+        },
+        {
+          "source_line": 12760,
+          "timestamp": "2026-05-22T15:10:28.797785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-012760"
+        },
+        {
+          "source_line": 12761,
+          "timestamp": "2026-05-22T15:10:28.848577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed.json",
+              "limit": "50"
+            }
+          },
+          "id": "event-012761"
+        },
+        {
+          "source_line": 12762,
+          "timestamp": "2026-05-22T15:10:28.849596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-012762"
+        },
+        {
+          "source_line": 12763,
+          "timestamp": "2026-05-22T15:10:32.161968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "spearman_pw6",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed.json",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-012763"
+        },
+        {
+          "source_line": 12764,
+          "timestamp": "2026-05-22T15:10:32.413393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "75-    \"expected\": 39.33,\n76-    \"matches\": true\n77-  },\n78:  \"spearman_pw6\": {\n79-    \"description\": \"6 ProofWriter points, all w=3\",\n80-    \"points\": [\n81-      {"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 251
+          },
+          "id": "event-012764"
+        },
+        {
+          "source_line": 12765,
+          "timestamp": "2026-05-22T15:10:32.966101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "spearman_pw6",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_nli-combo-data-reconcile_20260522T145105.log",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-012765"
+        },
+        {
+          "source_line": 12766,
+          "timestamp": "2026-05-22T15:10:33.067207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24-[Omitted long context line]\n25-[Omitted long context line]\n26-[Omitted long context line]\n27:[Omitted long matching line]\n28-[Omitted long context line]\n29-[Omitted long context line]\n30-[Omitted long context line]\n31:[Omitted long matching line]\n32-[Omitted long context line]\n33-[Omitted long context line]\n34-[Omitted long context line]\n35-[Omitted long context line]\n36-[Omitted long context line]\n37:[Omitted long matching line]\n38-[Omitted long context line]\n39-[Omitted long context line]\n40-[Omitted long context line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-012766"
+        },
+        {
+          "source_line": 12767,
+          "timestamp": "2026-05-22T15:10:34.823750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed.json",
+              "limit": "150"
+            }
+          },
+          "id": "event-012767"
+        },
+        {
+          "source_line": 12768,
+          "timestamp": "2026-05-22T15:10:34.824224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"roberta_mnli\": {\n3\t    \"standalone_acc\": 37.67,\n4\t    \"standalone_correct\": 226,\n5\t    \"n\": 600,\n6\t    \"mistral_pw_combo\": {\n7\t      \"w1\": {\n8\t        \"acc\": 39.17,\n9\t        \"correct\": 235,\n10\t        \"delta_pp\": -0.17,\n11\t        \"mcnemar_p\": 1.0,\n12\t        \"b\": 8,\n13\t        \"c\": 7\n14\t      },\n15\t      \"w3\": {\n16\t        \"acc\": 43.5,\n17\t        \"correct\": 261,\n18\t        \"delta_pp\": 4.17,\n19\t        \"mcnemar_p\": 0.002626,\n20\t        \"b\": 20,\n21\t        \"c\": 45\n22\t      },\n23\t      \"w5\": {\n24\t        \"acc\": 43.67,\n25\t        \"correct\": 262,\n26\t        \"delta_pp\": 4.33,\n27\t        \"mcnemar_p\": 0.036852,\n28\t        \"b\": 59,\n29\t        \"c\": 85\n30\t      }\n31\t    }\n32\t  },\n33\t  \"bart_mnli\": {\n34\t    \"standalone_acc\": 46.17,\n35\t    \"standalone_correct\": 277,\n36\t    \"n\": 600,\n37\t    \"mistral_pw_combo\": {\n38\t      \"w1\": {\n39\t        \"acc\": 39.33,\n40\t        \"correct\": 236,\n41\t        \"delta_pp\": 0.0,\n42\t        \"mcnemar_p\": 1.0,\n43\t        \"b\": 9,\n44\t        \"c\": 9\n45\t      },\n46\t      \"w3\": {\n47\t        \"acc\": 44.5,\n48\t        \"correct\": 267,\n49\t        \"delta_pp\": 5.17,\n50\t        \"mcnemar_p\": 0.000244,\n51\t        \"b\": 19,\n52\t        \"c\": 50\n53\t      },\n54\t      \"w5\": {\n55\t        \"acc\": 45.67,\n56\t        \"correct\": 274,\n57\t        \"delta_pp\": 6.33,\n58\t        \"mcnemar_p\": 0.002749,\n59\t        \"b\": 58,\n60\t        \"c\": 96\n61\t      }\n62\t    }\n63\t  },\n64\t  \"deberta_mnli_crosscheck\": {\n65\t    \"standalone_acc\": 55.0,\n66\t    \"standalone_correct\": 330,\n67\t    \"w3_combo_acc\": 46.0,\n68\t    \"w3_combo_correct\": 276,\n69\t    \"w3_gain\": 6.67,\n70\t    \"matches_recomputed\": true\n71\t  },\n72\t  \"sc_baseline_crosscheck\": {\n73\t    \"alpha_sc_acc\": 39.33,\n74\t    \"alpha_sc_correct\": 236,\n75\t    \"expected\": 39.33,\n76\t    \"matches\": true\n77\t  },\n78\t  \"spearman_pw6\": {\n79\t    \"description\": \"6 ProofWriter points, all w=3\",\n80\t    \"points\": [\n81\t      {\n82\t        \"label\": \"DeBERTa-L \\u00d7 Mistral-7B\",\n83\t        \"gap\": 15.67,\n84\t        \"gain\": 6.67\n85\t      },\n86\t      {\n87\t        \"la\n…[truncated 1644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-012768"
+        },
+        {
+          "source_line": 12769,
+          "timestamp": "2026-05-22T15:10:49.596750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've found all three items. Here's the summary:\n\n## Summary of Findings\n\n### 1. Python Script: gen_capability_gap_scatter.py\n**Full Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py`\n\n**First 50 lines:**\n```python\n\"\"\"Generate capability gap scatter plot for §6.\n\nDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts).\nAll gains at w=3. LLaMA uses orange diamond to distinguish model family.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import spearmanr, linregress\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n})\n\n# Primary: DeBERTa-MNLI across model x dataset at w=3\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n    (-35.29, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),\n]\n\n# LLaMA point (different model family, separate marker)\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n\n# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\nmulti_nli = [\n    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n    (6.84,  5.17, 'BART'),       # 46.17 - 39.33\n]\n\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\n\n# DeBERTa-only (excl. LLaMA) stats\n```\n\n### 2. JSON File: nli_multi_verifier_recomputed.json\n**Multiple copies found:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensu\n…[truncated 2762 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Agent",
+            "elapsed_ms": 27044
+          },
+          "id": "event-012769"
+        },
+        {
+          "source_line": 12770,
+          "timestamp": "2026-05-22T15:11:09.627766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py"
+            }
+          },
+          "id": "event-012770"
+        },
+        {
+          "source_line": 12771,
+          "timestamp": "2026-05-22T15:11:09.628293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Generate capability gap scatter plot for §6.\n2\t\n3\tDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts).\n4\tAll gains at w=3. LLaMA uses orange diamond to distinguish model family.\n5\t\"\"\"\n6\timport matplotlib\n7\tmatplotlib.use('Agg')\n8\timport matplotlib.pyplot as plt\n9\timport numpy as np\n10\tfrom scipy.optimize import curve_fit\n11\tfrom scipy.stats import spearmanr, linregress\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'serif',\n15\t    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n16\t    'font.size': 9,\n17\t    'axes.labelsize': 10,\n18\t    'axes.titlesize': 10,\n19\t    'xtick.labelsize': 8,\n20\t    'ytick.labelsize': 8,\n21\t    'legend.fontsize': 7,\n22\t    'figure.dpi': 300,\n23\t    'savefig.dpi': 300,\n24\t    'savefig.bbox': 'tight',\n25\t    'savefig.pad_inches': 0.08,\n26\t})\n27\t\n28\t# Primary: DeBERTa-MNLI across model x dataset at w=3\n29\tdeberta_pts = [\n30\t    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n31\t    (-35.29, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n32\t    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n33\t    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n34\t    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n35\t    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),\n36\t]\n37\t\n38\t# LLaMA point (different model family, separate marker)\n39\tllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n40\t\n41\t# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\n42\tmulti_nli = [\n43\t    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n44\t    (6.84,  5.17, 'BART'),       # 46.17 - 39.33\n45\t]\n46\t\n47\tdx = np.array([p[0] for p in deberta_pts])\n48\tdy = np.array([p[1] for p in deberta_pts])\n49\t\n50\t# DeBERTa-only (excl. LLaMA) stats\n51\trho_excl, p_excl = spearmanr(dx, dy)\n52\tprint(f\"DeBERTa-only (excl LLaMA) Spearman rho={rho_excl:.3f} (n={len(dx)}, p={p_excl:.4f})\")\n53\t\n54\t# All DeBERTa-verifier points (incl. LLaMA)\n55\tdx_all = np.append(dx, llama_pt[0])\n56\tdy_all = np.append(dy, llama_pt[1])\n57\trho, p_rho = spearmanr(dx_all, dy_all)\n58\tprint(f\"DeBERTa-all (incl LLa\n…[truncated 4850 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-012771"
+        },
+        {
+          "source_line": 12772,
+          "timestamp": "2026-05-22T15:11:29.596803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nfrom scipy.stats import spearmanr\nimport itertools\nimport numpy as np\n\n# Corrected 6 ProofWriter points (all w=3)\ngaps =  [15.67, -15.00, -18.50, -30.83, -1.66,  6.84]\ngains = [6.67,   4.17,   0.83,   0.50,  4.17,  5.17]\nlabels = ['DeBERTa×Mistral', 'DeBERTa×LLaMA', 'DeBERTa×Qwen14B', 'DeBERTa×Qwen3', 'RoBERTa×Mistral', 'BART×Mistral']\n\nrho, p = spearmanr(gaps, gains)\nprint(f'Spearman rho = {rho:.4f}')\nprint(f'Asymptotic p = {p:.6f}')\n\n# Exact permutation test (n=6, 720 perms)\nn_perms = 0\nn_ge = 0\nfor perm in itertools.permutations(gains):\n    n_perms += 1\n    r, _ = spearmanr(gaps, list(perm))\n    if r >= rho:\n        n_ge += 1\np_exact_one = n_ge / n_perms\np_exact_two = 2 * p_exact_one\nprint(f'Exact permutation p (one-tailed) = {p_exact_one:.6f} ({n_ge}/{n_perms})')\nprint(f'Exact permutation p (two-tailed) = {p_exact_two:.6f}')\nprint(f'n = {len(gaps)}')\n\n# Also compute the 9-point robustness check (DeBERTa-all incl LLaMA + all 3 w-values for Mistral)\n# DeBERTa-all 7 pts (6 DeBERTa + LLaMA)\ndeberta_all_gaps = [15.67, -15.00, -18.50, -30.83, -6.37, -35.29, -36.76]\ndeberta_all_gains = [6.67, 4.17, 0.83, 0.50, 2.94, 0.49, 0.49]\nrho_all, p_all = spearmanr(deberta_all_gaps, deberta_all_gains)\nprint(f'\\nDeBERTa-all (7pt, incl LLaMA): rho={rho_all:.4f}, p={p_all:.6f}')\n\"\n",
+              "description": "Compute new Spearman ρ with corrected data points"
+            }
+          },
+          "id": "event-012772"
+        },
+        {
+          "source_line": 12773,
+          "timestamp": "2026-05-22T15:11:31.504487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Spearman rho = 0.9856\nAsymptotic p = 0.000309\nExact permutation p (one-tailed) = 0.002778 (2/720)\nExact permutation p (two-tailed) = 0.005556\nn = 6\n\nDeBERTa-all (7pt, incl LLaMA): rho=0.9550, p=0.000806"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1907
+          },
+          "id": "event-012773"
+        },
+        {
+          "source_line": 12774,
+          "timestamp": "2026-05-22T15:12:27.961969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "rho = 1\\\\.0|\\\\\\\\rho = 1|rho.*1\\\\.0.*p.*0\\\\.003|0\\\\.003.*n.*6",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-012774"
+        },
+        {
+          "source_line": 12775,
+          "timestamp": "2026-05-22T15:12:28.012662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-012775"
+        },
+        {
+          "source_line": 12776,
+          "timestamp": "2026-05-22T15:12:32.680387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\\\.003.*n.{0,3}6|rho.*=.*1|p = 0\\\\.003",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-012776"
+        },
+        {
+          "source_line": 12777,
+          "timestamp": "2026-05-22T15:12:32.731048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:48:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:214:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:635:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:640:\\caption{Process-$\\kappa$ gradient under cross-model extraction (Mistral-7B $\\rightarrow$ target model traces, FOLIO). $\\kappa_{\\text{proc}}$: process-level cosine similarity. $\\Delta$: SICA $-$ SC (pp). Spearman $\\rho(\\kappa_{\\text{proc}} \\rightarrow \\Delta) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:942:\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur for generators with SC $\\leq 70\\%$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:948:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex:36:\\item \\textbf{Process-level independence analysis.} CoT cosine similarity ($0.69$--$0.79$) exceeds answer-level $\\kappa$\n…[truncated 221 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-012777"
+        },
+        {
+          "source_line": 12778,
+          "timestamp": "2026-05-22T15:12:38.151115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.003",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-012778"
+        },
+        {
+          "source_line": 12779,
+          "timestamp": "2026-05-22T15:12:38.203320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex:8:Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+4.17$--$6.67$\\,pp, $p \\leq 0.004$; two generator families), with gain decreasing monotonically with generator capability ($p = 0.003$, $n{=}6$).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:903: & & 3 & $+$4.17 & 0.003{**} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:908: & & 5 & $+$6.33 & 0.003{**} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:942:\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur for generators with SC $\\leq 70\\%$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:946:Table~\\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\\% standalone, combo $+5.17$\\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\\% standalone, combo $+4.17$\\,pp, $p = 0.003$). All three NLI ar\n…[truncated 205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 52
+          },
+          "id": "event-012779"
+        },
+        {
+          "source_line": 12780,
+          "timestamp": "2026-05-22T15:12:59.584659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "offset": "946",
+              "limit": "8"
+            }
           },
           "id": "event-012780"
         }

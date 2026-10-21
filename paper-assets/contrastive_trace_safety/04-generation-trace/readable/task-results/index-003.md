@@ -33,4 +33,3 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | verification bge 1024d ensemble | 1 | 0 | [Read transcript](verification-bge-1024d-ensemble.md) | [JSON](../../sessions/91/91703fd6008db2ff300f.json) |
 | verification holdout ot7b r132b | 1 | 0 | [Read transcript](verification-holdout-ot7b-r132b.md) | [JSON](../../sessions/6c/6c671efb2081c4c635f3.json) |
 | writing path c appendix | 1 | 0 | [Read transcript](writing-path-c-appendix.md) | [JSON](../../sessions/a7/a7cd804bc5ae470867d5.json) |
-| writing rebuttal prep | 1 | 0 | [Read transcript](writing-rebuttal-prep.md) | [JSON](../../sessions/01/01c5d96e62de861df6b9.json) |

@@ -8,7 +8,7 @@
 
 ### Tool call
 
-_source line 1457 · 2026-05-20T20:05:33.011230+00:00_
+_source line 1451 · 2026-05-20T20:05:33.011230+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -44,7 +44,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1458 · 2026-05-20T20:05:33.112880+00:00_
+_source line 1452 · 2026-05-20T20:05:33.112880+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 17352}, \"error\": \"\"}"}
 
@@ -66,7 +66,7 @@ _source line 1458 · 2026-05-20T20:05:33.112880+00:00_
 
 ### Tool call
 
-_source line 1459 · 2026-05-20T20:07:42.016125+00:00_
+_source line 1453 · 2026-05-20T20:07:42.016125+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -110,7 +110,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1460 · 2026-05-20T20:07:46.034502+00:00_
+_source line 1454 · 2026-05-20T20:07:46.034502+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -132,7 +132,7 @@ _source line 1460 · 2026-05-20T20:07:46.034502+00:00_
 
 ### Assistant
 
-_source line 1461 · 2026-05-20T20:07:56.409479+00:00_
+_source line 1455 · 2026-05-20T20:07:56.409479+00:00_
 
 审稿报告已投递。
 
@@ -167,7 +167,7 @@ _source line 1461 · 2026-05-20T20:07:56.409479+00:00_
 
 ### User
 
-_source line 1462 · 2026-05-20T20:07:58.896234+00:00_
+_source line 1456 · 2026-05-20T20:07:58.896234+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交。
@@ -191,7 +191,7 @@ _source line 1462 · 2026-05-20T20:07:58.896234+00:00_
 
 ### Assistant
 
-_source line 1463 · 2026-05-20T20:08:13.290459+00:00_
+_source line 1457 · 2026-05-20T20:08:13.290459+00:00_
 
 审稿报告已投递完毕。
 
@@ -229,7 +229,7 @@ _source line 1463 · 2026-05-20T20:08:13.290459+00:00_
 
 ### User
 
-_source line 1464 · 2026-05-21T01:16:22.137712+00:00_
+_source line 1458 · 2026-05-21T01:16:22.137712+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -259,7 +259,7 @@ _source line 1464 · 2026-05-21T01:16:22.137712+00:00_
 
 ### Tool call
 
-_source line 1465 · 2026-05-21T01:16:28.745633+00:00_
+_source line 1459 · 2026-05-21T01:16:28.745633+00:00_
 
 called Read
 
@@ -293,7 +293,7 @@ called Read
 
 ### Tool result
 
-_source line 1466 · 2026-05-21T01:16:28.796662+00:00_
+_source line 1460 · 2026-05-21T01:16:28.796662+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -383,7 +383,7 @@ _source line 1466 · 2026-05-21T01:16:28.796662+00:00_
 
 ### Tool call
 
-_source line 1467 · 2026-05-21T01:16:35.436773+00:00_
+_source line 1461 · 2026-05-21T01:16:35.436773+00:00_
 
 called ToolSearch
 
@@ -419,7 +419,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1468 · 2026-05-21T01:16:35.437207+00:00_
+_source line 1462 · 2026-05-21T01:16:35.437207+00:00_
 
 
 
@@ -441,7 +441,7 @@ _source line 1468 · 2026-05-21T01:16:35.437207+00:00_
 
 ### Tool call
 
-_source line 1469 · 2026-05-21T01:16:37.194910+00:00_
+_source line 1463 · 2026-05-21T01:16:37.194910+00:00_
 
 called ToolSearch
 
@@ -477,7 +477,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1470 · 2026-05-21T01:16:37.195295+00:00_
+_source line 1464 · 2026-05-21T01:16:37.195295+00:00_
 
 
 
@@ -499,7 +499,7 @@ _source line 1470 · 2026-05-21T01:16:37.195295+00:00_
 
 ### Tool call
 
-_source line 1471 · 2026-05-21T01:16:37.748446+00:00_
+_source line 1465 · 2026-05-21T01:16:37.748446+00:00_
 
 called ToolSearch
 
@@ -535,7 +535,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1472 · 2026-05-21T01:16:37.799449+00:00_
+_source line 1466 · 2026-05-21T01:16:37.799449+00:00_
 
 
 
@@ -557,7 +557,7 @@ _source line 1472 · 2026-05-21T01:16:37.799449+00:00_
 
 ### Tool call
 
-_source line 1473 · 2026-05-21T01:16:43.182435+00:00_
+_source line 1467 · 2026-05-21T01:16:43.182435+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -591,7 +591,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1474 · 2026-05-21T01:16:45.604052+00:00_
+_source line 1468 · 2026-05-21T01:16:45.604052+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (126 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| r14_llama_docred_beam4_998 | Beam=4 S1 constrained on full DocRED 998-doc with Llama-3.1-8B will confirm DR elimination and R-F1 stability seen in 50-doc subset, providing second model evidence for SF3 | — | — | — |\n| r14_qwen_docred_beam4_998 | Beam=4 S1 constrained on full DocRED 998-doc test set will show consistent DR elimination and R-F1 stability compared to 50-doc subset, addressing reviewer concern about subset representativeness | — | — | — |\n| d066_beam_sweep | Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis. | — | — | — |\n\n## 待处理\n- d066_sweep_llama_docred_beam4_s1（准备中）\n- p1_llama_ee_ft（准备中）\n\n## 近期结论\n- **d066_sweep_llama_scierc_beam8_s1_551** (success): d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config. ← 基于 d066_beam_sweep\n- **d066_swee
 …[truncated 1382 chars]
@@ -614,7 +614,7 @@ _source line 1474 · 2026-05-21T01:16:45.604052+00:00_
 
 ### Tool call
 
-_source line 1475 · 2026-05-21T01:16:45.604613+00:00_
+_source line 1469 · 2026-05-21T01:16:45.604613+00:00_
 
 called Bash
 
@@ -650,7 +650,7 @@ called Bash
 
 ### Tool result
 
-_source line 1476 · 2026-05-21T01:16:46.510564+00:00_
+_source line 1470 · 2026-05-21T01:16:46.510564+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 535757 May 20 21:46 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf
 -rw-r--r-- 1 ubuntu ubuntu   7278 May 20 20:23 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex
@@ -673,7 +673,7 @@ _source line 1476 · 2026-05-21T01:16:46.510564+00:00_
 
 ### Tool call
 
-_source line 1477 · 2026-05-21T01:16:46.661557+00:00_
+_source line 1471 · 2026-05-21T01:16:46.661557+00:00_
 
 called WebSearch
 
@@ -707,7 +707,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1478 · 2026-05-21T01:16:47.013522+00:00_
+_source line 1472 · 2026-05-21T01:16:47.013522+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -743,7 +743,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1479 · 2026-05-21T01:16:53.093062+00:00_
+_source line 1473 · 2026-05-21T01:16:53.093062+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers ARR submission guidelines author instructions site:aclweb.org"
 
@@ -770,7 +770,7 @@ Based on the search results, I found
 
 ### Tool result
 
-_source line 1480 · 2026-05-21T01:16:53.143887+00:00_
+_source line 1474 · 2026-05-21T01:16:53.143887+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'schema_semantic_constrained_ie'.\", \"metadata\": {}}"}
 
@@ -792,7 +792,7 @@ _source line 1480 · 2026-05-21T01:16:53.143887+00:00_
 
 ### Tool call
 
-_source line 1481 · 2026-05-21T01:16:57.321865+00:00_
+_source line 1475 · 2026-05-21T01:16:57.321865+00:00_
 
 called WebSearch
 
@@ -826,7 +826,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1482 · 2026-05-21T01:16:57.673813+00:00_
+_source line 1476 · 2026-05-21T01:16:57.673813+00:00_
 
 called WebSearch
 
@@ -860,7 +860,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1483 · 2026-05-21T01:16:58.427993+00:00_
+_source line 1477 · 2026-05-21T01:16:58.427993+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -898,7 +898,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1484 · 2026-05-21T01:17:03.007014+00:00_
+_source line 1478 · 2026-05-21T01:17:03.007014+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission guidelines page limits format requirements"
 
@@ -931,7 +931,7 @@ All submissions must have a section titled "Limitations" which discusses th
 
 ### Tool result
 
-_source line 1485 · 2026-05-21T01:17:03.811007+00:00_
+_source line 1479 · 2026-05-21T01:17:03.811007+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers submission deadline commitment deadline"
 
@@ -956,7 +956,7 @@ Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2
 
 ### Tool result
 
-_source line 1486 · 2026-05-21T01:17:03.811728+00:00_
+_source line 1480 · 2026-05-21T01:17:03.811728+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n> 非 metrics 性质的决策原因、约束、经验教训。Metrics 查 registry。\\n\\n## westd-21461 环境指南\\n- 系统 python3 (`/usr/bin/python3` 3.10) **无 ML 库**\\n- conda python3 (`/root/miniconda3/bin/python3` 3.12) 有完整环境：torch 2.8.0+cu128, transformers 5.8.1, peft 0.19.1, trl 1.4.0\\n- `python` 命令不存在，必须用 `python3` 或绝对路径\\n- **必须** `source /root/miniconda3/bin/activate` 激活 conda 后再执行\\n- **无外网**：必须设置 `TRANSFORMERS_OFFLINE=1` + `HF_HUB_OFFLINE=1`\\n- transformers 5.8.1 忽略 `WANDB_DISABLED=true`，必须在 TrainingArguments 中设 `report_to=\\\"none\\\"`\\n- submit_training_job 用 tmux（sh），bash builtins 必须用 `bash -c \\\"...\\\"` 或自包含 bash 脚本\\n\\n## westd-16980 环境指南\\n- conda python3 (`/root/miniconda3/bin/python3` 3.12), torch 2.10.0+cu128\\n- peft 0.19.1 有 AWQ dispatcher bug：`is_gptqmodel_available()` 在 optimum 版本低时 raise 而非 return False\\n- **必须 monkey-patch**：`import peft.import_utils as _piu; _piu.is_gptqmodel_available = lambda: False`\\n- 根分区磁盘小，checkpoint 必须写到 `/root/autodl-tmp/` 数据卷\\n\\n## 磁盘空间教训\\n- westd-21461 根分区只有 ~11G，merge 16G 模型会写满。所有 checkpoint 输出路径用 `/root/autodl-tmp/`\\n- westd-16980 同理，数据卷 `/root/autodl-tmp/` 有 109GB+\\n- westd-21461 全量 FT checkpoint (~16GB) 保存时可能磁盘满，需确保 `/root/autodl-tmp/` 有足够空间 + `save_total_limit=1`\\n\\n## P1 EE FT 失败根因汇总（r1-r4）\\n1. **r1**: `python: command not found`（tmux 用 sh，PATH 无 conda）\\n2. **r2**: HF Hub Errno 101 网络不可达 + `| tee` 掩盖退出码 + 虚假 COMPLETE 标记\\n3. **r3**: wandb 未安装但 transformers 尝试加载 WandbCallback\\n4. **r4**: 训练成功但 parse rate 极低（10-25%）——根因是 schema mismatch bug\\n- **教训**: 长 one-liner 在 tmux 里极脆弱，必须写自包含 bash 脚本 + `set -eo pipefail`\\n\\n## D060 Schema Mismatch Bug（关键教训）\\n- **根因**: `compiler/ontology_compiler.py:294` 的 `compile_event_json_schema()` 生成 `required: [\\\"entities\\\", \\\"events\\\"]`，但 FT 训练数据只有 `{\\\"events\\\": [...]}`\\n- **
 …[truncated 1523 chars]
@@ -979,7 +979,7 @@ _source line 1486 · 2026-05-21T01:17:03.811728+00:00_
 
 ### Tool call
 
-_source line 1487 · 2026-05-21T01:17:10.091837+00:00_
+_source line 1481 · 2026-05-21T01:17:10.091837+00:00_
 
 called WebSearch
 
@@ -1013,7 +1013,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1488 · 2026-05-21T01:17:10.444075+00:00_
+_source line 1482 · 2026-05-21T01:17:10.444075+00:00_
 
 called WebSearch
 
@@ -1047,7 +1047,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1489 · 2026-05-21T01:17:12.553761+00:00_
+_source line 1483 · 2026-05-21T01:17:12.553761+00:00_
 
 called Read
 
@@ -1081,7 +1081,7 @@ called Read
 
 ### Tool result
 
-_source line 1490 · 2026-05-21T01:17:12.554263+00:00_
+_source line 1484 · 2026-05-21T01:17:12.554263+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1176,7 +1176,7 @@ _source line 1490 · 2026-05-21T01:17:12.554263+00:00_
 
 ### Tool result
 
-_source line 1491 · 2026-05-21T01:17:16.028592+00:00_
+_source line 1485 · 2026-05-21T01:17:16.028592+00:00_
 
 Web search results for query: "site:2026.emnlp.org calls main conference papers submission format anonymity"
 
@@ -1213,7 +1213,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 1492 · 2026-05-21T01:17:17.183948+00:00_
+_source line 1486 · 2026-05-21T01:17:17.183948+00:00_
 
 Web search results for query: "ACL Rolling Review May 2026 cycle deadline submission requirements anonymization"
 
@@ -1244,7 +1244,7 @@ Papers must not include authors' names and affiliations, and self-references tha
 
 ### Tool call
 
-_source line 1493 · 2026-05-21T01:17:23.464486+00:00_
+_source line 1487 · 2026-05-21T01:17:23.464486+00:00_
 
 called ToolSearch
 
@@ -1280,7 +1280,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1494 · 2026-05-21T01:17:23.465137+00:00_
+_source line 1488 · 2026-05-21T01:17:23.465137+00:00_
 
 
 
@@ -1302,7 +1302,7 @@ _source line 1494 · 2026-05-21T01:17:23.465137+00:00_
 
 ### Tool call
 
-_source line 1495 · 2026-05-21T01:17:27.560058+00:00_
+_source line 1489 · 2026-05-21T01:17:27.560058+00:00_
 
 called Bash
 
@@ -1338,7 +1338,7 @@ called Bash
 
 ### Tool result
 
-_source line 1496 · 2026-05-21T01:17:28.414852+00:00_
+_source line 1490 · 2026-05-21T01:17:28.414852+00:00_
 
 NO_CONFIG_FOUND
 
@@ -1360,7 +1360,7 @@ NO_CONFIG_FOUND
 
 ### Tool call
 
-_source line 1497 · 2026-05-21T01:17:28.566440+00:00_
+_source line 1491 · 2026-05-21T01:17:28.566440+00:00_
 
 called Read
 
@@ -1394,7 +1394,7 @@ called Read
 
 ### Tool result
 
-_source line 1498 · 2026-05-21T01:17:29.379064+00:00_
+_source line 1492 · 2026-05-21T01:17:29.379064+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \emph{grammar layer} (context-free) compiles ontology constraints into grammars guaranteeing JSON validity and vocabulary membership; a \emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.
@@ -1425,7 +1425,7 @@ _source line 1498 · 2026-05-21T01:17:29.379064+00:00_
 
 ### Tool call
 
-_source line 1499 · 2026-05-21T01:17:29.530586+00:00_
+_source line 1493 · 2026-05-21T01:17:29.530586+00:00_
 
 called Read
 
@@ -1459,7 +1459,7 @@ called Read
 
 ### Tool result
 
-_source line 1500 · 2026-05-21T01:17:29.531278+00:00_
+_source line 1494 · 2026-05-21T01:17:29.531278+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -1497,7 +1497,7 @@ _source line 1500 · 2026-05-21T01:17:29.531278+00:00_
 
 ### Tool call
 
-_source line 1501 · 2026-05-21T01:17:35.458657+00:00_
+_source line 1495 · 2026-05-21T01:17:35.458657+00:00_
 
 called Bash
 
@@ -1533,7 +1533,7 @@ called Bash
 
 ### Tool result
 
-_source line 1502 · 2026-05-21T01:17:36.415460+00:00_
+_source line 1496 · 2026-05-21T01:17:36.415460+00:00_
 
 (Bash completed with no output)
 
@@ -1555,7 +1555,7 @@ _source line 1502 · 2026-05-21T01:17:36.415460+00:00_
 
 ### Tool call
 
-_source line 1503 · 2026-05-21T01:17:36.516318+00:00_
+_source line 1497 · 2026-05-21T01:17:36.516318+00:00_
 
 called Bash
 
@@ -1591,7 +1591,7 @@ called Bash
 
 ### Tool result
 
-_source line 1504 · 2026-05-21T01:17:36.567375+00:00_
+_source line 1498 · 2026-05-21T01:17:36.567375+00:00_
 
 # Review Issues Tracker — schema_semantic_constrained_ie
 # Updated: R14 修改完成 + R15 提交 (D077), 2026-05-20
@@ -1679,7 +1679,7 @@ _source line 1504 · 2026-05-21T01:17:36.567375+00:00_
 
 ### Tool call
 
-_source line 1505 · 2026-05-21T01:17:42.000466+00:00_
+_source line 1499 · 2026-05-21T01:17:42.000466+00:00_
 
 called Bash
 
@@ -1715,7 +1715,7 @@ called Bash
 
 ### Tool result
 
-_source line 1506 · 2026-05-21T01:17:42.201899+00:00_
+_source line 1500 · 2026-05-21T01:17:42.201899+00:00_
 
 (Bash completed with no output)
 
@@ -1737,7 +1737,7 @@ _source line 1506 · 2026-05-21T01:17:42.201899+00:00_
 
 ### Tool call
 
-_source line 1507 · 2026-05-21T01:17:44.764901+00:00_
+_source line 1501 · 2026-05-21T01:17:44.764901+00:00_
 
 called Bash
 
@@ -1773,7 +1773,7 @@ called Bash
 
 ### Tool result
 
-_source line 1508 · 2026-05-21T01:17:45.454924+00:00_
+_source line 1502 · 2026-05-21T01:17:45.454924+00:00_
 
 (Bash completed with no output)
 
@@ -1795,7 +1795,7 @@ _source line 1508 · 2026-05-21T01:17:45.454924+00:00_
 
 ### Tool call
 
-_source line 1509 · 2026-05-21T01:17:47.808902+00:00_
+_source line 1503 · 2026-05-21T01:17:47.808902+00:00_
 
 called Bash
 
@@ -1831,7 +1831,7 @@ called Bash
 
 ### Tool result
 
-_source line 1510 · 2026-05-21T01:17:47.909829+00:00_
+_source line 1504 · 2026-05-21T01:17:47.909829+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/idea_generator/ideas.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/global/approvals.yaml
@@ -1863,7 +1863,7 @@ _source line 1510 · 2026-05-21T01:17:47.909829+00:00_
 
 ### Tool call
 
-_source line 1511 · 2026-05-21T01:17:50.622086+00:00_
+_source line 1505 · 2026-05-21T01:17:50.622086+00:00_
 
 called Bash
 
@@ -1899,7 +1899,7 @@ called Bash
 
 ### Tool result
 
-_source line 1512 · 2026-05-21T01:17:51.526396+00:00_
+_source line 1506 · 2026-05-21T01:17:51.526396+00:00_
 
 NO_EXTERNAL_REVIEW_CONFIG
 
@@ -1921,7 +1921,7 @@ NO_EXTERNAL_REVIEW_CONFIG
 
 ### Tool call
 
-_source line 1513 · 2026-05-21T01:17:51.627882+00:00_
+_source line 1507 · 2026-05-21T01:17:51.627882+00:00_
 
 called Bash
 
@@ -1957,7 +1957,7 @@ called Bash
 
 ### Tool result
 
-_source line 1514 · 2026-05-21T01:17:51.678638+00:00_
+_source line 1508 · 2026-05-21T01:17:51.678638+00:00_
 
 NOT_IN_WORKSPACE
 
@@ -1979,7 +1979,7 @@ NOT_IN_WORKSPACE
 
 ### Tool call
 
-_source line 1515 · 2026-05-21T01:17:56.306131+00:00_
+_source line 1509 · 2026-05-21T01:17:56.306131+00:00_
 
 called Read
 
@@ -2015,7 +2015,7 @@ called Read
 
 ### Tool result
 
-_source line 1516 · 2026-05-21T01:17:56.809210+00:00_
+_source line 1510 · 2026-05-21T01:17:56.809210+00:00_
 
 PDF pages extracted: 8 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf (523.2KB)
 
@@ -2037,7 +2037,7 @@ PDF pages extracted: 8 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1517 · 2026-05-21T01:19:02.889884+00:00_
+_source line 1511 · 2026-05-21T01:19:02.889884+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2075,7 +2075,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1518 · 2026-05-21T01:19:24.408272+00:00_
+_source line 1512 · 2026-05-21T01:19:24.408272+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -2097,7 +2097,7 @@ _source line 1518 · 2026-05-21T01:19:24.408272+00:00_
 
 ### Tool call
 
-_source line 1519 · 2026-05-21T01:19:24.559854+00:00_
+_source line 1513 · 2026-05-21T01:19:24.559854+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2135,7 +2135,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool call
 
-_source line 1520 · 2026-05-21T01:19:25.877863+00:00_
+_source line 1514 · 2026-05-21T01:19:25.877863+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -2171,7 +2171,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1521 · 2026-05-21T01:19:26.233023+00:00_
+_source line 1515 · 2026-05-21T01:19:26.233023+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -2193,7 +2193,7 @@ _source line 1521 · 2026-05-21T01:19:26.233023+00:00_
 
 ### Tool result
 
-_source line 1522 · 2026-05-21T01:19:28.284416+00:00_
+_source line 1516 · 2026-05-21T01:19:28.284416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2215,7 +2215,7 @@ _source line 1522 · 2026-05-21T01:19:28.284416+00:00_
 
 ### Assistant
 
-_source line 1523 · 2026-05-21T01:19:42.670867+00:00_
+_source line 1517 · 2026-05-21T01:19:42.670867+00:00_
 
 **Round 1 已启动：**
 - Reviewer 1（方法严谨性 + 实验充分性）→ 已派发 ✓
@@ -2248,7 +2248,7 @@ _source line 1523 · 2026-05-21T01:19:42.670867+00:00_
 
 ### User
 
-_source line 1524 · 2026-05-21T01:26:52.508179+00:00_
+_source line 1518 · 2026-05-21T01:26:52.508179+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 审稿意见：OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints
@@ -2402,7 +2402,7 @@ _source line 1524 · 2026-05-21T01:26:52.508179+00:00_
 
 ### Assistant
 
-_source line 1525 · 2026-05-21T01:27:01.583033+00:00_
+_source line 1519 · 2026-05-21T01:27:01.583033+00:00_
 
 Reviewer 1 审稿意见已收到。评分 3.0 (Findings)，主要关切：缺少竞品实验对比（GCD/BoostCD/CRANE）、"guarantee"措辞 overclaim、WikiEvents 样本量不足、70B 评估 preliminary。等待 Reviewer 2 完成后进入交叉分享。
 
@@ -2429,7 +2429,7 @@ Reviewer 1 审稿意见已收到。评分 3.0 (Findings)，主要关切：缺少
 
 ### User
 
-_source line 1526 · 2026-05-21T01:27:10.599964+00:00_
+_source line 1520 · 2026-05-21T01:27:10.599964+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿意见已提交至 Review Director。
@@ -2459,7 +2459,7 @@ _source line 1526 · 2026-05-21T01:27:10.599964+00:00_
 
 ### Assistant
 
-_source line 1527 · 2026-05-21T01:27:18.001979+00:00_
+_source line 1521 · 2026-05-21T01:27:18.001979+00:00_
 
 Reviewer 1 审稿已收到（Overall 3.0 / Findings）。等待 Reviewer 2 完成审稿后进入交叉分享阶段。
 
@@ -2486,7 +2486,7 @@ Reviewer 1 审稿已收到（Overall 3.0 / Findings）。等待 Reviewer 2 完�
 
 ### User
 
-_source line 1528 · 2026-05-21T01:29:05.627066+00:00_
+_source line 1522 · 2026-05-21T01:29:05.627066+00:00_
 
 [Reviewer 2 审稿意见]:
 
@@ -2631,7 +2631,7 @@ _source line 1528 · 2026-05-21T01:29:05.627066+00:00_
 
 ### Tool call
 
-_source line 1529 · 2026-05-21T01:29:55.942319+00:00_
+_source line 1523 · 2026-05-21T01:29:55.942319+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2669,7 +2669,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1530 · 2026-05-21T01:30:25.082317+00:00_
+_source line 1524 · 2026-05-21T01:30:25.082317+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -2691,7 +2691,7 @@ _source line 1530 · 2026-05-21T01:30:25.082317+00:00_
 
 ### Tool call
 
-_source line 1531 · 2026-05-21T01:30:25.636324+00:00_
+_source line 1525 · 2026-05-21T01:30:25.636324+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -2729,7 +2729,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1532 · 2026-05-21T01:30:27.204893+00:00_
+_source line 1526 · 2026-05-21T01:30:27.204893+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -2751,7 +2751,7 @@ _source line 1532 · 2026-05-21T01:30:27.204893+00:00_
 
 ### Assistant
 
-_source line 1533 · 2026-05-21T01:30:30.103477+00:00_
+_source line 1527 · 2026-05-21T01:30:30.103477+00:00_
 
 交叉分享已发送。等待两位 Reviewer 的逐条回应。
 
@@ -2778,7 +2778,7 @@ _source line 1533 · 2026-05-21T01:30:30.103477+00:00_
 
 ### User
 
-_source line 1534 · 2026-05-21T01:30:32.855211+00:00_
+_source line 1528 · 2026-05-21T01:30:32.855211+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -2810,7 +2810,7 @@ _source line 1534 · 2026-05-21T01:30:32.855211+00:00_
 
 ### Assistant
 
-_source line 1535 · 2026-05-21T01:30:39.340757+00:00_
+_source line 1529 · 2026-05-21T01:30:39.340757+00:00_
 
 No response requested.
 
@@ -2837,7 +2837,7 @@ No response requested.
 
 ### User
 
-_source line 1536 · 2026-05-21T01:32:51.567071+00:00_
+_source line 1530 · 2026-05-21T01:32:51.567071+00:00_
 
 [Reviewer 1 审稿意见]:
 ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
@@ -2981,7 +2981,7 @@ OntoCoDec 的 positioning 是**decoding-time constraint enforcement**，不是 I
 
 ### Assistant
 
-_source line 1537 · 2026-05-21T01:32:58.395970+00:00_
+_source line 1531 · 2026-05-21T01:32:58.395970+00:00_
 
 Reviewer 1 的交叉回应已收到。等待 Reviewer 2 对 Reviewer 1 意见的交叉回应。
 
@@ -3008,7 +3008,7 @@ Reviewer 1 的交叉回应已收到。等待 Reviewer 2 对 Reviewer 1 意见的
 
 ### User
 
-_source line 1538 · 2026-05-21T01:33:04.835500+00:00_
+_source line 1532 · 2026-05-21T01:33:04.835500+00:00_
 
 [Reviewer 1 审稿结果]:
 交叉回应已提交。关键判定：
@@ -3159,7 +3159,7 @@ R1 与 R2（我）在以下关键判断上一致：
 
 ### Tool call
 
-_source line 1539 · 2026-05-21T01:33:34.912994+00:00_
+_source line 1533 · 2026-05-21T01:33:34.912994+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -3193,7 +3193,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool call
 
-_source line 1540 · 2026-05-21T01:33:34.913515+00:00_
+_source line 1534 · 2026-05-21T01:33:34.913515+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -3227,7 +3227,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1541 · 2026-05-21T01:33:35.064790+00:00_
+_source line 1535 · 2026-05-21T01:33:35.064790+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-21T01:19:27.564328+00:00\", \"completed_at\": \"2026-05-21T01:23:50.642072+00:00\", \"findings\": [{\"severity\": \"critical\", \"dimension\": \"page 9\", \"message\": \"主正文溢出至第 9 页，仅有 ~8 行结论文本（约占页面 10%），其余 >80% 为空白。EMNLP 2026 严格 8 页限制——此溢出构成页数超限风险，且大面积空白给审稿人极差的第一印象。需压缩主正文使结论在第 8 页结束，或在第 8 页为结论腾出足够空间\"}, {\"severity\": \"warning\", \"dimension\": \"pages 1-2\", \"message\": \"连续 2 页纯文本无任何 display item（figure/table/equation）。审稿人打开论文前 2 页看到纯文字墙，缺少视觉锚点来快速建立对方法的认知。第一个 display item（Figure 1）直到第 3 页才出现\"}, {\"severity\": \"warning\", \"dimension\": \"pages 4-5\", \"message\": \"连续 2 页纯文本无 display item。Page 4 有少量数学公式和 Proposition 但无 figure/table 穿插，page 5 整页纯文字叙述（Constraint Tightness + Experiments 开头）\"}, {\"severity\": \"warning\", \"dimension\": \"pages 6-7\", \"message\": \"Display items 分布严重不均——主正文的全部 5 个 table（Tables 1-5）集中在这 2 页，形成\\\"表格墙\\\"。与 pages 1-2、4-5、8-9 无 display item 形成强烈反差，阅读节奏失调\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"4 个 section header（§5.3, §5.4, §6 Related Work, §7 Discussion and Conclusion）全部起始于同一页，给人论文末段草率收尾的印象。§7 在页底仅有几行就溢出到 page 9\"}, {\"severity\": \"warning\", \"dimension\": \"pages 1-9\", \"message\": \"主正文仅 1 个 figure（Figure 1 架构图）+ 5 个 table，无任何实验结果可视化图。全部实验结果以表格呈现，缺少 bar chart / line plot 等直观图形。Figure 2-4 全部推到 appendix。审稿人快速扫描实验结果时缺少视觉锚点\"}, {\"severity\": \"warning\", \"dimension\": \"page 24, appendix\", \"message\": \"Figure 3 使用红色/绿色区分 violation 类型，对红绿色盲用户不友好。建议改用 blue/orange 或 Okabe-Ito 色板\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"Figure 1（全宽架构图）是论文第一个也是主正文唯一一个 figure，出现在第 3 页。图中展示了 grammar layer 和 semantic layer 的编译流程，caption 基本自包含。若能提前到第 2 页或第 1 页底部，可更早建立审稿人的认知锚点\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"Title / Author / Abstract 排版整洁，符合 ACL anonymous submission 模板规范。行号正确显示\"}, {\"severity\": \"info\", \"dimension\": \"pages 6-7\", \"message\": \"表格均使用 book
 …[truncated 789 chars]
@@ -3250,7 +3250,7 @@ _source line 1541 · 2026-05-21T01:33:35.064790+00:00_
 
 ### Tool result
 
-_source line 1542 · 2026-05-21T01:33:35.065522+00:00_
+_source line 1536 · 2026-05-21T01:33:35.065522+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3272,7 +3272,7 @@ _source line 1542 · 2026-05-21T01:33:35.065522+00:00_
 
 ### Tool call
 
-_source line 1543 · 2026-05-21T01:33:58.941572+00:00_
+_source line 1537 · 2026-05-21T01:33:58.941572+00:00_
 
 called ToolSearch
 
@@ -3308,7 +3308,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1544 · 2026-05-21T01:33:59.243267+00:00_
+_source line 1538 · 2026-05-21T01:33:59.243267+00:00_
 
 
 
@@ -3330,7 +3330,7 @@ _source line 1544 · 2026-05-21T01:33:59.243267+00:00_
 
 ### Tool call
 
-_source line 1545 · 2026-05-21T01:35:53.028053+00:00_
+_source line 1539 · 2026-05-21T01:35:53.028053+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -3366,7 +3366,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1546 · 2026-05-21T01:35:53.130103+00:00_
+_source line 1540 · 2026-05-21T01:35:53.130103+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 11271}, \"error\": \"\"}"}
 
@@ -3388,7 +3388,7 @@ _source line 1546 · 2026-05-21T01:35:53.130103+00:00_
 
 ### Tool call
 
-_source line 1547 · 2026-05-21T01:38:46.987047+00:00_
+_source line 1541 · 2026-05-21T01:38:46.987047+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -3432,7 +3432,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1548 · 2026-05-21T01:38:51.463354+00:00_
+_source line 1542 · 2026-05-21T01:38:51.463354+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -3454,7 +3454,7 @@ _source line 1548 · 2026-05-21T01:38:51.463354+00:00_
 
 ### Assistant
 
-_source line 1549 · 2026-05-21T01:39:06.625228+00:00_
+_source line 1543 · 2026-05-21T01:39:06.625228+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -3495,7 +3495,7 @@ _source line 1549 · 2026-05-21T01:39:06.625228+00:00_
 
 ### User
 
-_source line 1550 · 2026-05-21T01:39:08.133700+00:00_
+_source line 1544 · 2026-05-21T01:39:08.133700+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交。对 R1 的 4 个 Must-Fix 和 5 个 Should-Fix 逐条回应：
@@ -3525,7 +3525,7 @@ _source line 1550 · 2026-05-21T01:39:08.133700+00:00_
 
 ### Assistant
 
-_source line 1551 · 2026-05-21T01:39:25.338220+00:00_
+_source line 1545 · 2026-05-21T01:39:25.338220+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -3568,7 +3568,7 @@ Issue Tracker 已同步更新（`review_issues.yaml`），视觉审查结果已�
 
 ### User
 
-_source line 1552 · 2026-05-21T02:22:45.524947+00:00_
+_source line 1546 · 2026-05-21T02:22:45.524947+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -3598,7 +3598,7 @@ _source line 1552 · 2026-05-21T02:22:45.524947+00:00_
 
 ### Tool call
 
-_source line 1553 · 2026-05-21T02:22:52.174704+00:00_
+_source line 1547 · 2026-05-21T02:22:52.174704+00:00_
 
 called Read
 
@@ -3632,7 +3632,7 @@ called Read
 
 ### Tool result
 
-_source line 1554 · 2026-05-21T02:22:52.326265+00:00_
+_source line 1548 · 2026-05-21T02:22:52.326265+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -3722,7 +3722,7 @@ _source line 1554 · 2026-05-21T02:22:52.326265+00:00_
 
 ### Tool call
 
-_source line 1555 · 2026-05-21T02:22:57.702515+00:00_
+_source line 1549 · 2026-05-21T02:22:57.702515+00:00_
 
 called ToolSearch
 
@@ -3758,7 +3758,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1556 · 2026-05-21T02:22:57.753312+00:00_
+_source line 1550 · 2026-05-21T02:22:57.753312+00:00_
 
 No matching deferred tools found
 
@@ -3780,7 +3780,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1557 · 2026-05-21T02:23:02.581539+00:00_
+_source line 1551 · 2026-05-21T02:23:02.581539+00:00_
 
 called ToolSearch
 
@@ -3816,7 +3816,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1558 · 2026-05-21T02:23:02.632131+00:00_
+_source line 1552 · 2026-05-21T02:23:02.632131+00:00_
 
 
 
@@ -3838,7 +3838,7 @@ _source line 1558 · 2026-05-21T02:23:02.632131+00:00_
 
 ### Tool call
 
-_source line 1559 · 2026-05-21T02:23:05.446441+00:00_
+_source line 1553 · 2026-05-21T02:23:05.446441+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -3872,7 +3872,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1560 · 2026-05-21T02:23:06.812735+00:00_
+_source line 1554 · 2026-05-21T02:23:06.812735+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (126 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| r14_llama_docred_beam4_998 | Beam=4 S1 constrained on full DocRED 998-doc with Llama-3.1-8B will confirm DR elimination and R-F1 stability seen in 50-doc subset, providing second model evidence for SF3 | — | — | — |\n| r14_qwen_docred_beam4_998 | Beam=4 S1 constrained on full DocRED 998-doc test set will show consistent DR elimination and R-F1 stability compared to 50-doc subset, addressing reviewer concern about subset representativeness | — | — | — |\n| d066_beam_sweep | Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis. | — | — | — |\n\n## 待处理\n- d066_sweep_llama_docred_beam4_s1（准备中）\n- p1_llama_ee_ft（准备中）\n\n## 近期结论\n- **d066_sweep_llama_scierc_beam8_s1_551** (success): d066 SciERC beam sweep: Llama beam8 constrained (full_s1) on 551-sentence test set. Last Llama SciERC config. ← 基于 d066_beam_sweep\n- **d066_swee
 …[truncated 1382 chars]
@@ -3895,7 +3895,7 @@ _source line 1560 · 2026-05-21T02:23:06.812735+00:00_
 
 ### Tool call
 
-_source line 1561 · 2026-05-21T02:23:06.863755+00:00_
+_source line 1555 · 2026-05-21T02:23:06.863755+00:00_
 
 called Read
 
@@ -3931,7 +3931,7 @@ called Read
 
 ### Tool result
 
-_source line 1562 · 2026-05-21T02:23:06.864401+00:00_
+_source line 1556 · 2026-05-21T02:23:06.864401+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -4026,7 +4026,7 @@ _source line 1562 · 2026-05-21T02:23:06.864401+00:00_
 
 ### Tool call
 
-_source line 1563 · 2026-05-21T02:23:12.851819+00:00_
+_source line 1557 · 2026-05-21T02:23:12.851819+00:00_
 
 called Read
 
@@ -4062,7 +4062,7 @@ called Read
 
 ### Tool result
 
-_source line 1564 · 2026-05-21T02:23:12.902601+00:00_
+_source line 1558 · 2026-05-21T02:23:12.902601+00:00_
 
 100	
 101	This work uses publicly available benchmark datasets (SciERC, DocRED, and WikiEvents) with no personally identifiable information.
@@ -4116,7 +4116,7 @@ _source line 1564 · 2026-05-21T02:23:12.902601+00:00_
 
 ### Tool call
 
-_source line 1565 · 2026-05-21T02:23:13.305620+00:00_
+_source line 1559 · 2026-05-21T02:23:13.305620+00:00_
 
 called ToolSearch
 
@@ -4152,7 +4152,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1566 · 2026-05-21T02:23:13.457053+00:00_
+_source line 1560 · 2026-05-21T02:23:13.457053+00:00_
 
 
 
@@ -4174,7 +4174,7 @@ _source line 1566 · 2026-05-21T02:23:13.457053+00:00_
 
 ### Tool call
 
-_source line 1567 · 2026-05-21T02:23:16.472258+00:00_
+_source line 1561 · 2026-05-21T02:23:16.472258+00:00_
 
 called WebSearch
 
@@ -4208,7 +4208,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1568 · 2026-05-21T02:23:16.824242+00:00_
+_source line 1562 · 2026-05-21T02:23:16.824242+00:00_
 
 called WebSearch
 
@@ -4242,7 +4242,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1569 · 2026-05-21T02:23:24.661044+00:00_
+_source line 1563 · 2026-05-21T02:23:24.661044+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission format page limit guidelines"
 
@@ -4275,7 +4275,7 @@ Review versions of short p
 
 ### Tool result
 
-_source line 1570 · 2026-05-21T02:23:28.879971+00:00_
+_source line 1564 · 2026-05-21T02:23:28.879971+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers ARR submission guidelines author instructions"
 
@@ -4306,7 +4306,7 @@ EMNLP 2026 invites the submission of long and short papers featuring substantial
 
 ### Tool call
 
-_source line 1571 · 2026-05-21T02:23:36.633551+00:00_
+_source line 1565 · 2026-05-21T02:23:36.633551+00:00_
 
 called ToolSearch
 
@@ -4342,7 +4342,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1572 · 2026-05-21T02:23:36.634059+00:00_
+_source line 1566 · 2026-05-21T02:23:36.634059+00:00_
 
 No matching deferred tools found
 
@@ -4364,7 +4364,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1573 · 2026-05-21T02:23:39.502538+00:00_
+_source line 1567 · 2026-05-21T02:23:39.502538+00:00_
 
 called Glob
 
@@ -4400,7 +4400,7 @@ called Glob
 
 ### Tool result
 
-_source line 1574 · 2026-05-21T02:23:39.804706+00:00_
+_source line 1568 · 2026-05-21T02:23:39.804706+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_fd4b26.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_d3264e.tex
@@ -4424,7 +4424,7 @@ _source line 1574 · 2026-05-21T02:23:39.804706+00:00_
 
 ### Tool call
 
-_source line 1575 · 2026-05-21T02:23:40.267438+00:00_
+_source line 1569 · 2026-05-21T02:23:40.267438+00:00_
 
 called Glob
 
@@ -4460,7 +4460,7 @@ called Glob
 
 ### Tool result
 
-_source line 1576 · 2026-05-21T02:23:40.719807+00:00_
+_source line 1570 · 2026-05-21T02:23:40.719807+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml
 
@@ -4482,7 +4482,7 @@ _source line 1576 · 2026-05-21T02:23:40.719807+00:00_
 
 ### Tool call
 
-_source line 1577 · 2026-05-21T02:23:41.172298+00:00_
+_source line 1571 · 2026-05-21T02:23:41.172298+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -4520,7 +4520,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1578 · 2026-05-21T02:23:41.223420+00:00_
+_source line 1572 · 2026-05-21T02:23:41.223420+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'schema_semantic_constrained_ie'.\", \"metadata\": {}}"}
 
@@ -4542,7 +4542,7 @@ _source line 1578 · 2026-05-21T02:23:41.223420+00:00_
 
 ### Tool call
 
-_source line 1579 · 2026-05-21T02:23:43.936659+00:00_
+_source line 1573 · 2026-05-21T02:23:43.936659+00:00_
 
 called Read
 
@@ -4576,7 +4576,7 @@ called Read
 
 ### Tool result
 
-_source line 1580 · 2026-05-21T02:23:44.439883+00:00_
+_source line 1574 · 2026-05-21T02:23:44.439883+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.
@@ -4607,7 +4607,7 @@ _source line 1580 · 2026-05-21T02:23:44.439883+00:00_
 
 ### Tool call
 
-_source line 1581 · 2026-05-21T02:23:44.440265+00:00_
+_source line 1575 · 2026-05-21T02:23:44.440265+00:00_
 
 called Read
 
@@ -4641,7 +4641,7 @@ called Read
 
 ### Tool result
 
-_source line 1582 · 2026-05-21T02:23:44.946151+00:00_
+_source line 1576 · 2026-05-21T02:23:44.946151+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R15 Action Matrix dispatched, 2026-05-21
@@ -4718,7 +4718,7 @@ _source line 1582 · 2026-05-21T02:23:44.946151+00:00_
 
 ### Tool call
 
-_source line 1583 · 2026-05-21T02:23:44.997297+00:00_
+_source line 1577 · 2026-05-21T02:23:44.997297+00:00_
 
 called Glob
 
@@ -4754,7 +4754,7 @@ called Glob
 
 ### Tool result
 
-_source line 1584 · 2026-05-21T02:23:45.048009+00:00_
+_source line 1578 · 2026-05-21T02:23:45.048009+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex
@@ -4790,7 +4790,7 @@ _source line 1584 · 2026-05-21T02:23:45.048009+00:00_
 
 ### Tool call
 
-_source line 1585 · 2026-05-21T02:23:55.500079+00:00_
+_source line 1579 · 2026-05-21T02:23:55.500079+00:00_
 
 called Read
 
@@ -4824,7 +4824,7 @@ called Read
 
 ### Tool result
 
-_source line 1586 · 2026-05-21T02:23:55.802019+00:00_
+_source line 1580 · 2026-05-21T02:23:55.802019+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -4862,7 +4862,7 @@ _source line 1586 · 2026-05-21T02:23:55.802019+00:00_
 
 ### Tool call
 
-_source line 1587 · 2026-05-21T02:23:55.953173+00:00_
+_source line 1581 · 2026-05-21T02:23:55.953173+00:00_
 
 called Read
 
@@ -4896,7 +4896,7 @@ called Read
 
 ### Tool result
 
-_source line 1588 · 2026-05-21T02:23:56.756939+00:00_
+_source line 1582 · 2026-05-21T02:23:56.756939+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -4949,7 +4949,7 @@ _source line 1588 · 2026-05-21T02:23:56.756939+00:00_
 
 ### Tool call
 
-_source line 1589 · 2026-05-21T02:23:56.757598+00:00_
+_source line 1583 · 2026-05-21T02:23:56.757598+00:00_
 
 called Read
 
@@ -4983,7 +4983,7 @@ called Read
 
 ### Tool result
 
-_source line 1590 · 2026-05-21T02:23:56.808332+00:00_
+_source line 1584 · 2026-05-21T02:23:56.808332+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -5064,7 +5064,7 @@ _source line 1590 · 2026-05-21T02:23:56.808332+00:00_
 
 ### Tool call
 
-_source line 1591 · 2026-05-21T02:23:57.310852+00:00_
+_source line 1585 · 2026-05-21T02:23:57.310852+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5102,7 +5102,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1592 · 2026-05-21T02:23:57.361765+00:00_
+_source line 1586 · 2026-05-21T02:23:57.361765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 79\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-
 …[truncated 1469 chars]
@@ -5125,7 +5125,7 @@ _source line 1592 · 2026-05-21T02:23:57.361765+00:00_
 
 ### Tool call
 
-_source line 1593 · 2026-05-21T02:24:03.096519+00:00_
+_source line 1587 · 2026-05-21T02:24:03.096519+00:00_
 
 called Read
 
@@ -5159,7 +5159,7 @@ called Read
 
 ### Tool result
 
-_source line 1594 · 2026-05-21T02:24:03.599919+00:00_
+_source line 1588 · 2026-05-21T02:24:03.599919+00:00_
 
 1	% Section 5 — DocRED Results (compressed, 1450→~600 words)
 2	% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
@@ -5237,7 +5237,7 @@ _source line 1594 · 2026-05-21T02:24:03.599919+00:00_
 
 ### Tool call
 
-_source line 1595 · 2026-05-21T02:24:03.600472+00:00_
+_source line 1589 · 2026-05-21T02:24:03.600472+00:00_
 
 called Read
 
@@ -5271,7 +5271,7 @@ called Read
 
 ### Tool result
 
-_source line 1596 · 2026-05-21T02:24:04.204134+00:00_
+_source line 1590 · 2026-05-21T02:24:04.204134+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -5342,7 +5342,7 @@ _source line 1596 · 2026-05-21T02:24:04.204134+00:00_
 
 ### Tool call
 
-_source line 1597 · 2026-05-21T02:24:04.254978+00:00_
+_source line 1591 · 2026-05-21T02:24:04.254978+00:00_
 
 called Read
 
@@ -5376,7 +5376,7 @@ called Read
 
 ### Tool result
 
-_source line 1598 · 2026-05-21T02:24:04.255531+00:00_
+_source line 1592 · 2026-05-21T02:24:04.255531+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -5440,7 +5440,7 @@ _source line 1598 · 2026-05-21T02:24:04.255531+00:00_
 
 ### Tool call
 
-_source line 1599 · 2026-05-21T02:24:05.110921+00:00_
+_source line 1593 · 2026-05-21T02:24:05.110921+00:00_
 
 called Read
 
@@ -5474,7 +5474,7 @@ called Read
 
 ### Tool result
 
-_source line 1600 · 2026-05-21T02:24:05.563498+00:00_
+_source line 1594 · 2026-05-21T02:24:05.563498+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -5501,7 +5501,7 @@ _source line 1600 · 2026-05-21T02:24:05.563498+00:00_
 
 ### Tool call
 
-_source line 1601 · 2026-05-21T02:24:05.714625+00:00_
+_source line 1595 · 2026-05-21T02:24:05.714625+00:00_
 
 called Read
 
@@ -5535,7 +5535,7 @@ called Read
 
 ### Tool result
 
-_source line 1602 · 2026-05-21T02:24:05.766988+00:00_
+_source line 1596 · 2026-05-21T02:24:05.766988+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -5584,7 +5584,7 @@ _source line 1602 · 2026-05-21T02:24:05.766988+00:00_
 
 ### Tool call
 
-_source line 1603 · 2026-05-21T02:24:12.309254+00:00_
+_source line 1597 · 2026-05-21T02:24:12.309254+00:00_
 
 called Read
 
@@ -5618,7 +5618,7 @@ called Read
 
 ### Tool result
 
-_source line 1604 · 2026-05-21T02:24:12.309864+00:00_
+_source line 1598 · 2026-05-21T02:24:12.309864+00:00_
 
 1	% Section 2: Background (compressed)
 2	
@@ -5659,7 +5659,7 @@ _source line 1604 · 2026-05-21T02:24:12.309864+00:00_
 
 ### Tool call
 
-_source line 1605 · 2026-05-21T02:24:12.360509+00:00_
+_source line 1599 · 2026-05-21T02:24:12.360509+00:00_
 
 called Read
 
@@ -5693,7 +5693,7 @@ called Read
 
 ### Tool result
 
-_source line 1606 · 2026-05-21T02:24:12.461657+00:00_
+_source line 1600 · 2026-05-21T02:24:12.461657+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -5731,7 +5731,7 @@ _source line 1606 · 2026-05-21T02:24:12.461657+00:00_
 
 ### Tool call
 
-_source line 1607 · 2026-05-21T02:24:12.512415+00:00_
+_source line 1601 · 2026-05-21T02:24:12.512415+00:00_
 
 called Read
 
@@ -5765,7 +5765,7 @@ called Read
 
 ### Tool result
 
-_source line 1608 · 2026-05-21T02:24:13.517285+00:00_
+_source line 1602 · 2026-05-21T02:24:13.517285+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -5810,7 +5810,7 @@ _source line 1608 · 2026-05-21T02:24:13.517285+00:00_
 
 ### Tool call
 
-_source line 1609 · 2026-05-21T02:24:13.517669+00:00_
+_source line 1603 · 2026-05-21T02:24:13.517669+00:00_
 
 called Read
 
@@ -5844,7 +5844,7 @@ called Read
 
 ### Tool result
 
-_source line 1610 · 2026-05-21T02:24:13.970162+00:00_
+_source line 1604 · 2026-05-21T02:24:13.970162+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -5883,7 +5883,7 @@ _source line 1610 · 2026-05-21T02:24:13.970162+00:00_
 
 ### Tool call
 
-_source line 1611 · 2026-05-21T02:24:14.422537+00:00_
+_source line 1605 · 2026-05-21T02:24:14.422537+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5921,7 +5921,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1612 · 2026-05-21T02:24:14.473426+00:00_
+_source line 1606 · 2026-05-21T02:24:14.473426+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/paper_framing.md\", \"content\": \"# OntoCoDec — Paper Framing\\n\\n## Target Venue\\nEMNLP 2026 (ARR submission May 25, 2026) — **目标: conference main**（D040, 用户明确指示）\\n\\n## Title\\nOntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints\\n(D015: \\\"Near-Complete\\\" dropped — DocRED residual DR=10.21% (Qwen) 不算 near-complete。论文贡献是方法，不是特定消除率。SciERC 0.93% 和 DocRED 2.55% (Llama) 可在正文中描述为 near-complete，但 title 不宜 overclaim。)\\n\\n**D040 Story 升级方向**: 从 \\\"IE-specific constrained decoding\\\" → \\\"universal ontology-constrained structured generation framework\\\"。WikiEvents Event Extraction 验证跨任务泛化。Continuation masking v2 突破（10-doc: RoV 0%, semantic violations ↓95.8%）初步确认跨任务有效性，全量实验进行中。最终 title 待全量结果后调整。\\n\\n## Core Insight\\nLLM-based IE systems produce systematic ontology constraint violations concentrated in specific relation types. Prompt-level intervention (schema-informed prompting) reduces violations by ~62% but cannot eliminate them — certain relation types retain 25-30% violation rates even with explicit constraint descriptions. OntoCoDec provides **near-complete elimination (DR 15.4%→0.93%, ↓94%) at zero or positive F1 impact** through automatic ontology-to-decoder constraint compilation with two complementary layers.\\n\\n**Phase 2 confirmed (D012 bootstrap CI, v2 fix)**: Grammar+Semantic dual-layer constrained decoding reduces domain/range violations by 94%, eliminates entity-type and relation-vocabulary violations entirely (→0%). F1 impact is **dataset-dependent**:\\n- SciERC: Rel F1 neutral (+0.13pp, p=0.58), Ent F1 neutral (-0.03pp, p=0.53)\\n- DocRED: Rel F1 **significantly improved** (+0.50pp, p<0.001, 95% CI [+0.23, +0.81]); Ent F1 **significantly improved** (+1.23pp, p<0.001, 95% CI [+0.94, +1.55])\\n- Mechanism: grammar 消除 OOV relation names (DocRED RV 29.66%→0.03%) + 非标 entity types
 …[truncated 1387 chars]
@@ -5944,7 +5944,7 @@ _source line 1612 · 2026-05-21T02:24:14.473426+00:00_
 
 ### Tool call
 
-_source line 1613 · 2026-05-21T02:24:20.254066+00:00_
+_source line 1607 · 2026-05-21T02:24:20.254066+00:00_
 
 called Agent
 
@@ -5982,7 +5982,7 @@ called Agent
 
 ### Tool call
 
-_source line 1614 · 2026-05-21T02:24:31.053004+00:00_
+_source line 1608 · 2026-05-21T02:24:31.053004+00:00_
 
 called Glob
 
@@ -6018,7 +6018,7 @@ called Glob
 
 ### Tool result
 
-_source line 1615 · 2026-05-21T02:24:31.154155+00:00_
+_source line 1609 · 2026-05-21T02:24:31.154155+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/checkpoints/mvp_phase0_violation_rate_PREPARING_20260513T173538.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/checkpoints/mvp_phase0_violation_rate_docred_PREPARING_20260513T173805.json
@@ -6053,7 +6053,7 @@ _source line 1615 · 2026-05-21T02:24:31.154155+00:00_
 
 ### Tool call
 
-_source line 1616 · 2026-05-21T02:24:31.355410+00:00_
+_source line 1610 · 2026-05-21T02:24:31.355410+00:00_
 
 called Glob
 
@@ -6089,7 +6089,7 @@ called Glob
 
 ### Tool result
 
-_source line 1617 · 2026-05-21T02:24:31.506581+00:00_
+_source line 1611 · 2026-05-21T02:24:31.506581+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/config/approvals.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/config/feishu.yaml
@@ -6130,7 +6130,7 @@ _source line 1617 · 2026-05-21T02:24:31.506581+00:00_
 
 ### Tool call
 
-_source line 1618 · 2026-05-21T02:24:34.070660+00:00_
+_source line 1612 · 2026-05-21T02:24:34.070660+00:00_
 
 called Grep
 
@@ -6168,7 +6168,7 @@ called Grep
 
 ### Tool result
 
-_source line 1619 · 2026-05-21T02:24:34.272029+00:00_
+_source line 1613 · 2026-05-21T02:24:34.272029+00:00_
 
 No files found
 
@@ -6190,7 +6190,7 @@ No files found
 
 ### Tool call
 
-_source line 1620 · 2026-05-21T02:24:34.272551+00:00_
+_source line 1614 · 2026-05-21T02:24:34.272551+00:00_
 
 called Grep
 
@@ -6228,7 +6228,7 @@ called Grep
 
 ### Tool result
 
-_source line 1621 · 2026-05-21T02:24:49.746459+00:00_
+_source line 1615 · 2026-05-21T02:24:49.746459+00:00_
 
 Found 19 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/chats/feishu_group_oc_01fc90ae186a4ed432770f7601995139_director.jsonl
@@ -6268,7 +6268,7 @@ CLAUDE.md
 
 ### Tool call
 
-_source line 1622 · 2026-05-21T02:24:55.638515+00:00_
+_source line 1616 · 2026-05-21T02:24:55.638515+00:00_
 
 called Read
 
@@ -6302,7 +6302,7 @@ called Read
 
 ### Tool result
 
-_source line 1623 · 2026-05-21T02:24:55.638965+00:00_
+_source line 1617 · 2026-05-21T02:24:55.638965+00:00_
 
 1	projects: {}
 2	
@@ -6325,7 +6325,7 @@ _source line 1623 · 2026-05-21T02:24:55.638965+00:00_
 
 ### Tool call
 
-_source line 1624 · 2026-05-21T02:24:56.291773+00:00_
+_source line 1618 · 2026-05-21T02:24:56.291773+00:00_
 
 called Read
 
@@ -6361,7 +6361,7 @@ called Read
 
 ### Tool result
 
-_source line 1625 · 2026-05-21T02:24:56.292127+00:00_
+_source line 1619 · 2026-05-21T02:24:56.292127+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_director_fb2e5824.
 
@@ -6383,7 +6383,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1626 · 2026-05-21T02:24:56.543414+00:00_
+_source line 1620 · 2026-05-21T02:24:56.543414+00:00_
 
 called Read
 
@@ -6417,7 +6417,7 @@ called Read
 
 ### Tool result
 
-_source line 1627 · 2026-05-21T02:24:56.644341+00:00_
+_source line 1621 · 2026-05-21T02:24:56.644341+00:00_
 
 1	manager:
 2	  enabled: true
@@ -6469,7 +6469,7 @@ _source line 1627 · 2026-05-21T02:24:56.644341+00:00_
 
 ### Tool call
 
-_source line 1628 · 2026-05-21T02:24:59.559923+00:00_
+_source line 1622 · 2026-05-21T02:24:59.559923+00:00_
 
 called Bash
 
@@ -6503,7 +6503,7 @@ called Bash
 
 ### Tool result
 
-_source line 1629 · 2026-05-21T02:24:59.811867+00:00_
+_source line 1623 · 2026-05-21T02:24:59.811867+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/distill_tmp/genie.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/distill_tmp/codeie.yaml
@@ -6543,7 +6543,7 @@ _source line 1629 · 2026-05-21T02:24:59.811867+00:00_
 
 ### Tool call
 
-_source line 1630 · 2026-05-21T02:24:59.812355+00:00_
+_source line 1624 · 2026-05-21T02:24:59.812355+00:00_
 
 called Grep
 
@@ -6581,7 +6581,7 @@ called Grep
 
 ### Tool result
 
-_source line 1631 · 2026-05-21T02:24:59.863168+00:00_
+_source line 1625 · 2026-05-21T02:24:59.863168+00:00_
 
 No matches found
 
@@ -6603,7 +6603,7 @@ No matches found
 
 ### Tool call
 
-_source line 1632 · 2026-05-21T02:25:03.138085+00:00_
+_source line 1626 · 2026-05-21T02:25:03.138085+00:00_
 
 called Read
 
@@ -6637,7 +6637,7 @@ called Read
 
 ### Tool result
 
-_source line 1633 · 2026-05-21T02:25:03.339527+00:00_
+_source line 1627 · 2026-05-21T02:25:03.339527+00:00_
 
 1	app_id: cli_a974562a09fc9bd4
 2	app_secret: TnoVPIk7y33pAcCkOmIHyezsbnEIbWgf
@@ -6665,7 +6665,7 @@ _source line 1633 · 2026-05-21T02:25:03.339527+00:00_
 
 ### Tool call
 
-_source line 1634 · 2026-05-21T02:25:03.390841+00:00_
+_source line 1628 · 2026-05-21T02:25:03.390841+00:00_
 
 called Bash
 
@@ -6699,7 +6699,7 @@ called Bash
 
 ### Tool result
 
-_source line 1635 · 2026-05-21T02:25:03.441636+00:00_
+_source line 1629 · 2026-05-21T02:25:03.441636+00:00_
 
 (Bash completed with no output)
 
@@ -6721,7 +6721,7 @@ _source line 1635 · 2026-05-21T02:25:03.441636+00:00_
 
 ### Tool call
 
-_source line 1636 · 2026-05-21T02:25:05.254511+00:00_
+_source line 1630 · 2026-05-21T02:25:05.254511+00:00_
 
 called Read
 
@@ -6755,7 +6755,7 @@ called Read
 
 ### Tool result
 
-_source line 1637 · 2026-05-21T02:25:05.657326+00:00_
+_source line 1631 · 2026-05-21T02:25:05.657326+00:00_
 
 File content (96279 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -6777,7 +6777,7 @@ File content (96279 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 1638 · 2026-05-21T02:25:09.681893+00:00_
+_source line 1632 · 2026-05-21T02:25:09.681893+00:00_
 
 called Bash
 
@@ -6811,7 +6811,7 @@ called Bash
 
 ### Tool call
 
-_source line 1639 · 2026-05-21T02:25:09.683209+00:00_
+_source line 1633 · 2026-05-21T02:25:09.683209+00:00_
 
 called Bash
 
@@ -6845,7 +6845,7 @@ called Bash
 
 ### Tool result
 
-_source line 1640 · 2026-05-21T02:25:09.733803+00:00_
+_source line 1634 · 2026-05-21T02:25:09.733803+00:00_
 
 (Bash completed with no output)
 
@@ -6867,7 +6867,7 @@ _source line 1640 · 2026-05-21T02:25:09.733803+00:00_
 
 ### Tool result
 
-_source line 1641 · 2026-05-21T02:25:09.784438+00:00_
+_source line 1635 · 2026-05-21T02:25:09.784438+00:00_
 
 (Bash completed with no output)
 
@@ -6889,7 +6889,7 @@ _source line 1641 · 2026-05-21T02:25:09.784438+00:00_
 
 ### Tool call
 
-_source line 1642 · 2026-05-21T02:25:14.893604+00:00_
+_source line 1636 · 2026-05-21T02:25:14.893604+00:00_
 
 called Bash
 
@@ -6923,7 +6923,7 @@ called Bash
 
 ### Tool result
 
-_source line 1643 · 2026-05-21T02:25:14.944326+00:00_
+_source line 1637 · 2026-05-21T02:25:14.944326+00:00_
 
 (Bash completed with no output)
 
@@ -6945,7 +6945,7 @@ _source line 1643 · 2026-05-21T02:25:14.944326+00:00_
 
 ### Tool call
 
-_source line 1644 · 2026-05-21T02:25:15.246322+00:00_
+_source line 1638 · 2026-05-21T02:25:15.246322+00:00_
 
 called Bash
 
@@ -6979,7 +6979,7 @@ called Bash
 
 ### Tool result
 
-_source line 1645 · 2026-05-21T02:25:15.548396+00:00_
+_source line 1639 · 2026-05-21T02:25:15.548396+00:00_
 
 Exit code 2
 -rw-r--r-- 1 ubuntu ubuntu 13 May 10 05:08 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/workspace.yaml
@@ -7002,7 +7002,7 @@ Exit code 2
 
 ### Tool call
 
-_source line 1646 · 2026-05-21T02:25:18.162113+00:00_
+_source line 1640 · 2026-05-21T02:25:18.162113+00:00_
 
 called Bash
 
@@ -7036,7 +7036,7 @@ called Bash
 
 ### Tool call
 
-_source line 1647 · 2026-05-21T02:25:18.263113+00:00_
+_source line 1641 · 2026-05-21T02:25:18.263113+00:00_
 
 called Bash
 
@@ -7070,7 +7070,7 @@ called Bash
 
 ### Tool result
 
-_source line 1648 · 2026-05-21T02:25:18.263595+00:00_
+_source line 1642 · 2026-05-21T02:25:18.263595+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu     90 May 21 02:14 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/_last_visual_review.json
 -rw------- 1 ubuntu ubuntu  67860 May 21 01:48 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml
@@ -7099,7 +7099,7 @@ _source line 1648 · 2026-05-21T02:25:18.263595+00:00_
 
 ### Tool result
 
-_source line 1649 · 2026-05-21T02:25:18.314203+00:00_
+_source line 1643 · 2026-05-21T02:25:18.314203+00:00_
 
 (Bash completed with no output)
 
@@ -7121,7 +7121,7 @@ _source line 1649 · 2026-05-21T02:25:18.314203+00:00_
 
 ### Tool call
 
-_source line 1650 · 2026-05-21T02:25:20.478249+00:00_
+_source line 1644 · 2026-05-21T02:25:20.478249+00:00_
 
 called Bash
 
@@ -7155,7 +7155,7 @@ called Bash
 
 ### Tool result
 
-_source line 1651 · 2026-05-21T02:25:20.780080+00:00_
+_source line 1645 · 2026-05-21T02:25:20.780080+00:00_
 
 (Bash completed with no output)
 
@@ -7177,7 +7177,7 @@ _source line 1651 · 2026-05-21T02:25:20.780080+00:00_
 
 ### Tool call
 
-_source line 1652 · 2026-05-21T02:25:20.830908+00:00_
+_source line 1646 · 2026-05-21T02:25:20.830908+00:00_
 
 called Bash
 
@@ -7211,7 +7211,7 @@ called Bash
 
 ### Tool result
 
-_source line 1653 · 2026-05-21T02:25:20.933286+00:00_
+_source line 1647 · 2026-05-21T02:25:20.933286+00:00_
 
 (Bash completed with no output)
 
@@ -7233,7 +7233,7 @@ _source line 1653 · 2026-05-21T02:25:20.933286+00:00_
 
 ### Tool call
 
-_source line 1654 · 2026-05-21T02:25:24.100475+00:00_
+_source line 1648 · 2026-05-21T02:25:24.100475+00:00_
 
 called Bash
 
@@ -7267,7 +7267,7 @@ called Bash
 
 ### Tool call
 
-_source line 1655 · 2026-05-21T02:25:24.303944+00:00_
+_source line 1649 · 2026-05-21T02:25:24.303944+00:00_
 
 called Bash
 
@@ -7301,7 +7301,7 @@ called Bash
 
 ### Tool result
 
-_source line 1656 · 2026-05-21T02:25:24.505485+00:00_
+_source line 1650 · 2026-05-21T02:25:24.505485+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_research_r12_task3_boostcd_comparison_20260520T174617.log:{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01HknMnRUgzmF41nLk5oHy2o","type":"tool_result","content":"170\t5. **S2 为何 DR 高于 S1**：Table 1 显示 S2 (two-pass) 的 DR 反而高于 Full S1——是否因第一阶段 entity extraction 的错误传播到第二阶段？(R1-Q3)\n171\t\n172\t---\n173\t\n174\t## Missing References\n175\t\n176\t1. **BoostCD** (Sakota et al., 2025) — 已引用但未实验对比，最直接的 IE constrained decoding 竞争方法 [R1+R2 共识]\n177\t2. **Schema RL** (Lu et al., ACL 2025) — 存在于 bib 但未在正文引用，应在 §6 training-based vs. decoding-time 对比中讨论 [R1+R2]\n178\t3. **Koldehoff et al.** (Frontiers in AI, 2025) — grammar-constrained decoding + 本体约束应用于临床试验 IE [R2]\n179\t4. **GCD** (Geng et al., 2023) — 已引用，Grammar-only 配置隐式对标，但应在实验部分明确展示 GCD baseline 数字 [R1]\n180\t\n181\t---\n182\t\n183\t## External Review (Stanford Agentic Reviewer)\n184\t\n185\t**状态**：未配置。项目 config 中 `external_review.paperreview_ai.enabled` 未设置，本轮未请求外部审稿。\n186\t\n187\t---\n188\t\n189\t## Visual Layout Check（非评分项）"}]},"parent_tool_use_id":null,"session_id":"8c461ce8-ead1-4128-af95-6037c90fd3dd","uuid":"84f6ad6a-5d20-4569-afa9-f21f58ba3901","timestamp":"2026-05-20T17:48:20.099Z","tool_use_result":{"type":"text","file":{"filePath":"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_reports/round_12.md","content":"5. **S2 为何 DR 高于 S1**：Table 1 显示 S2 (two-pass) 的 DR 反而高于 Full S1——是否因第一阶段 entity extraction 的错误传播到第二阶段？(R1-Q3)\n\n---\n\n## Missing References\n\n1. **BoostCD** (Sakota et al., 2025) — 已引用但未实验对比，最直接的 IE constrained decoding 竞争方法 [R1+R2 共识]\n2. **Schema RL** (Lu et al., ACL 2025) — 存在于 bib 但未在正文引用，应在 §6 training-based vs. decoding-time 对比中讨论 [R1+R2]\n3. **Koldehoff et al.** (Frontiers in AI, 2025) — grammar-constrained decoding + 本体约束应用于临床试验 IE [R2]\n4. **GCD** (Geng et al., 2023) — 已引用，Grammar-only 配置隐式对标，但应在实验部分明确展示 G
 …[truncated 1312 chars]
@@ -7324,7 +7324,7 @@ _source line 1656 · 2026-05-21T02:25:24.505485+00:00_
 
 ### Tool result
 
-_source line 1657 · 2026-05-21T02:25:24.757360+00:00_
+_source line 1651 · 2026-05-21T02:25:24.757360+00:00_
 
 (Bash completed with no output)
 
@@ -7346,7 +7346,7 @@ _source line 1657 · 2026-05-21T02:25:24.757360+00:00_
 
 ### Tool call
 
-_source line 1658 · 2026-05-21T02:25:28.277007+00:00_
+_source line 1652 · 2026-05-21T02:25:28.277007+00:00_
 
 called Read
 
@@ -7382,7 +7382,7 @@ called Read
 
 ### Tool result
 
-_source line 1659 · 2026-05-21T02:25:28.529018+00:00_
+_source line 1653 · 2026-05-21T02:25:28.529018+00:00_
 
 1	## 当前项目
 2	当前绑定项目：**schema_semantic_constrained_ie**
@@ -7475,7 +7475,7 @@ _source line 1659 · 2026-05-21T02:25:28.529018+00:00_
 
 ### Tool call
 
-_source line 1660 · 2026-05-21T02:25:28.529608+00:00_
+_source line 1654 · 2026-05-21T02:25:28.529608+00:00_
 
 called Bash
 
@@ -7509,7 +7509,7 @@ called Bash
 
 ### Tool result
 
-_source line 1661 · 2026-05-21T02:25:56.166226+00:00_
+_source line 1655 · 2026-05-21T02:25:56.166226+00:00_
 
 &lt;persisted-output>
 Output too large (371.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-review-director-fb2e5824/a881ca2b-6fb7-4372-b046-861b7f42edfd/tool-results/b3yb1mu0q.txt
@@ -7536,7 +7536,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1662 · 2026-05-21T02:25:58.377465+00:00_
+_source line 1656 · 2026-05-21T02:25:58.377465+00:00_
 
 called Read
 
@@ -7574,7 +7574,7 @@ called Read
 
 ### Tool result
 
-_source line 1663 · 2026-05-21T02:25:58.428256+00:00_
+_source line 1657 · 2026-05-21T02:25:58.428256+00:00_
 
 170	5. **S2 为何 DR 高于 S1**：Table 1 显示 S2 (two-pass) 的 DR 反而高于 Full S1——是否因第一阶段 entity extraction 的错误传播到第二阶段？(R1-Q3)
 171	
@@ -7625,7 +7625,7 @@ _source line 1663 · 2026-05-21T02:25:58.428256+00:00_
 
 ### Tool call
 
-_source line 1664 · 2026-05-21T02:26:01.044086+00:00_
+_source line 1658 · 2026-05-21T02:26:01.044086+00:00_
 
 called Bash
 
@@ -7659,7 +7659,7 @@ called Bash
 
 ### Tool result
 
-_source line 1665 · 2026-05-21T02:26:05.214408+00:00_
+_source line 1659 · 2026-05-21T02:26:05.214408+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/idea_generator/ideas.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/global/logs/workers/registry.json
@@ -7696,7 +7696,7 @@ _source line 1665 · 2026-05-21T02:26:05.214408+00:00_
 
 ### Tool result
 
-_source line 1666 · 2026-05-21T02:26:15.015939+00:00_
+_source line 1660 · 2026-05-21T02:26:15.015939+00:00_
 
 Based on my search results, I have found the relevant information about the external_review configuration. Let me provide my findings:
 
@@ -7741,7 +7741,7 @@ However, the setting is **documented in the project documentation and review rep
 
 ### Tool call
 
-_source line 1667 · 2026-05-21T02:26:40.515903+00:00_
+_source line 1661 · 2026-05-21T02:26:40.515903+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -7777,7 +7777,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1668 · 2026-05-21T02:27:05.231901+00:00_
+_source line 1662 · 2026-05-21T02:27:05.231901+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7799,7 +7799,7 @@ _source line 1668 · 2026-05-21T02:27:05.231901+00:00_
 
 ### Tool call
 
-_source line 1669 · 2026-05-21T02:27:05.282900+00:00_
+_source line 1663 · 2026-05-21T02:27:05.282900+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -7843,7 +7843,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1670 · 2026-05-21T02:27:27.823730+00:00_
+_source line 1664 · 2026-05-21T02:27:27.823730+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -7865,7 +7865,7 @@ _source line 1670 · 2026-05-21T02:27:27.823730+00:00_
 
 ### Tool call
 
-_source line 1671 · 2026-05-21T02:27:29.345067+00:00_
+_source line 1665 · 2026-05-21T02:27:29.345067+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -7909,7 +7909,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1672 · 2026-05-21T02:27:31.125289+00:00_
+_source line 1666 · 2026-05-21T02:27:31.125289+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -7931,7 +7931,7 @@ _source line 1672 · 2026-05-21T02:27:31.125289+00:00_
 
 ### Assistant
 
-_source line 1673 · 2026-05-21T02:27:35.533362+00:00_
+_source line 1667 · 2026-05-21T02:27:35.533362+00:00_
 
 Round 16 审稿已启动：
 
@@ -7964,7 +7964,7 @@ Round 16 审稿已启动：
 
 ### User
 
-_source line 1674 · 2026-05-21T02:34:21.422846+00:00_
+_source line 1668 · 2026-05-21T02:34:21.422846+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 — Round 1 审稿意见
@@ -8123,7 +8123,7 @@ _source line 1674 · 2026-05-21T02:34:21.422846+00:00_
 
 ### Assistant
 
-_source line 1675 · 2026-05-21T02:34:29.495974+00:00_
+_source line 1669 · 2026-05-21T02:34:29.495974+00:00_
 
 Reviewer 2 审稿已收到。等待 Reviewer 1 完成初审。
 
@@ -8150,7 +8150,7 @@ Reviewer 2 审稿已收到。等待 Reviewer 1 完成初审。
 
 ### User
 
-_source line 1676 · 2026-05-21T02:34:32.238121+00:00_
+_source line 1670 · 2026-05-21T02:34:32.238121+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -8185,7 +8185,7 @@ _source line 1676 · 2026-05-21T02:34:32.238121+00:00_
 
 ### Assistant
 
-_source line 1677 · 2026-05-21T02:34:38.352763+00:00_
+_source line 1671 · 2026-05-21T02:34:38.352763+00:00_
 
 收到 Reviewer 2 的审稿意见。等待 Reviewer 1 返回后进入交叉分享阶段。
 
@@ -8212,7 +8212,7 @@ _source line 1677 · 2026-05-21T02:34:38.352763+00:00_
 
 ### User
 
-_source line 1678 · 2026-05-21T02:36:59.699989+00:00_
+_source line 1672 · 2026-05-21T02:36:59.699989+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -8373,7 +8373,7 @@ Societal impact 讨论恰当：使用公开数据集，无个人身份信息，�
 
 ### Tool call
 
-_source line 1679 · 2026-05-21T02:37:37.013393+00:00_
+_source line 1673 · 2026-05-21T02:37:37.013393+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -8417,7 +8417,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1680 · 2026-05-21T02:37:51.687073+00:00_
+_source line 1674 · 2026-05-21T02:37:51.687073+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -8439,7 +8439,7 @@ _source line 1680 · 2026-05-21T02:37:51.687073+00:00_
 
 ### Tool call
 
-_source line 1681 · 2026-05-21T02:37:51.838231+00:00_
+_source line 1675 · 2026-05-21T02:37:51.838231+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -8483,7 +8483,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1682 · 2026-05-21T02:37:53.453285+00:00_
+_source line 1676 · 2026-05-21T02:37:53.453285+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -8505,7 +8505,7 @@ _source line 1682 · 2026-05-21T02:37:53.453285+00:00_
 
 ### Assistant
 
-_source line 1683 · 2026-05-21T02:37:56.411515+00:00_
+_source line 1677 · 2026-05-21T02:37:56.411515+00:00_
 
 交叉分享已发出，等待两位 Reviewer 的逐条回应。
 
@@ -8532,7 +8532,7 @@ _source line 1683 · 2026-05-21T02:37:56.411515+00:00_
 
 ### User
 
-_source line 1684 · 2026-05-21T02:37:59.167083+00:00_
+_source line 1678 · 2026-05-21T02:37:59.167083+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -8556,7 +8556,7 @@ _source line 1684 · 2026-05-21T02:37:59.167083+00:00_
 
 ### Assistant
 
-_source line 1685 · 2026-05-21T02:38:04.148302+00:00_
+_source line 1679 · 2026-05-21T02:38:04.148302+00:00_
 
 No response requested.
 
@@ -8583,7 +8583,7 @@ No response requested.
 
 ### User
 
-_source line 1686 · 2026-05-21T02:39:29.999006+00:00_
+_source line 1680 · 2026-05-21T02:39:29.999006+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -8630,7 +8630,7 @@ R2-N1 的数值不一致是我遗漏的有效问题。综合考虑后，我维�
 
 ### Assistant
 
-_source line 1687 · 2026-05-21T02:39:36.160267+00:00_
+_source line 1681 · 2026-05-21T02:39:36.160267+00:00_
 
 No response requested.
 
@@ -8657,7 +8657,7 @@ No response requested.
 
 ### User
 
-_source line 1688 · 2026-05-21T02:39:38.855855+00:00_
+_source line 1682 · 2026-05-21T02:39:38.855855+00:00_
 
 [Reviewer 1 审稿结果]:
 交叉回应已提交。与 R2 在 5 项核心问题上达成共识（缺 baseline 对比、κ̄ 统计不足、DocRED 讨论不足、WikiEvents 功效不足、CF 选择性报告）。在 Proposition 1 的定位和 zero-shot 重要性上有分歧——我认为形式化证明本身有 contribution 价值，且 fine-tuned + constrained 是更实际的部署场景。R2 发现的 Abstract "94-100%" 数值不一致（实际 92-100%）是我遗漏的有效核查。维持 Overall 3.5。
@@ -8679,7 +8679,7 @@ _source line 1688 · 2026-05-21T02:39:38.855855+00:00_
 
 ### Assistant
 
-_source line 1689 · 2026-05-21T02:39:44.203310+00:00_
+_source line 1683 · 2026-05-21T02:39:44.203310+00:00_
 
 No response requested.
 
@@ -8706,7 +8706,7 @@ No response requested.
 
 ### User
 
-_source line 1690 · 2026-05-21T02:39:55.730533+00:00_
+_source line 1684 · 2026-05-21T02:39:55.730533+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 — 对 Reviewer 1 的交叉回应
@@ -8755,7 +8755,7 @@ _source line 1690 · 2026-05-21T02:39:55.730533+00:00_
 
 ### Tool call
 
-_source line 1691 · 2026-05-21T02:40:13.363906+00:00_
+_source line 1685 · 2026-05-21T02:40:13.363906+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -8789,7 +8789,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool call
 
-_source line 1692 · 2026-05-21T02:40:13.364398+00:00_
+_source line 1686 · 2026-05-21T02:40:13.364398+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -8823,7 +8823,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1693 · 2026-05-21T02:40:13.415098+00:00_
+_source line 1687 · 2026-05-21T02:40:13.415098+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-21T02:26:44.751781+00:00\", \"completed_at\": \"2026-05-21T02:30:21.362489+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本（Intro + Background），首个视觉锚点延迟到 page 3。审稿人前 2 分钟只看到文字墙，建议考虑将 Figure 1 提前到 page 2 或在 page 1 底部加入一个精简的 teaser figure/table\"}, {\"severity\": \"warning\", \"dimension\": \"page 5-7\", \"message\": \"主文结果部分全部为 table（5 个 table + 0 figure），视觉单调。建议将 appendix 中的 Figure 2（Residual DR vs Schema Restrictiveness 散点图）或 Figure 4（Beam width sweep）提升到主文，打破纯表格节奏，为审稿人提供一个直觉性的 visual takeaway\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"主文最后一页（Related Work + Discussion/Conclusion）为纯文本，无视觉锚点收尾。审稿人快速翻到末尾时看不到 strong visual result。若有空间，在 Conclusion 前放一个 key result 的 compact visualization 可强化收尾印象\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"Figure 1 架构图内部组件文字标注偏小（约正文字号的 60-65%），打印时可能需要放大查看。建议适当增大关键标注字号\"}, {\"severity\": \"info\", \"dimension\": \"page 6-7\", \"message\": \"每页堆叠 2 个 table，视觉密度高。Table 2+3（p.6）和 Table 4+5（p.7）之间缺少文字过渡的呼吸空间，审稿人可能感到 information overload\"}, {\"severity\": \"info\", \"dimension\": \"page 15\", \"message\": \"Table 6（Prompt Templates）含小号等宽字体的 prompt 文本，系统提示词部分在打印尺寸下可读性偏低\"}, {\"severity\": \"info\", \"dimension\": \"page 29\", \"message\": \"Table 26 案例分析使用红/绿颜色编码标注 violation/correction，对红绿色盲不友好。建议改用蓝/橙方案或增加下划线/删除线等形态区分\"}, {\"severity\": \"info\", \"dimension\": \"page 22\", \"message\": \"单页含 3 个 table（Table 9 + 10 + 11），appendix 可接受但密度极高\"}, {\"severity\": \"info\", \"dimension\": \"page 1-8\", \"message\": \"主文 8 页中仅 1 个 figure（Figure 1），figure:table 比为 1:5。对于实证为主的 IE 论文，figure 偏少。领域同行论文通常在主文中至少含 2-3 个 figure（架构图 + 结果可视化 + 案例/分析图）\"}, {\"severity\": \"info\", \"dimension\": \"page 11-13\", \"message\": \"References 格式统一，未发现 [?] 未解析引用，无可见格式问题\"}, {\"severity\": \"info\", \"dimension\": \"page 5-7\", \"message\": \"所有 table 使用 booktabs 风格（to
 …[truncated 148 chars]
@@ -8846,7 +8846,7 @@ _source line 1693 · 2026-05-21T02:40:13.415098+00:00_
 
 ### Tool result
 
-_source line 1694 · 2026-05-21T02:40:13.415526+00:00_
+_source line 1688 · 2026-05-21T02:40:13.415526+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8868,7 +8868,7 @@ _source line 1694 · 2026-05-21T02:40:13.415526+00:00_
 
 ### Tool call
 
-_source line 1695 · 2026-05-21T02:45:15.978090+00:00_
+_source line 1689 · 2026-05-21T02:45:15.978090+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -8904,7 +8904,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1696 · 2026-05-21T02:45:16.079888+00:00_
+_source line 1690 · 2026-05-21T02:45:16.079888+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 13558}, \"error\": \"\"}"}
 
@@ -8926,7 +8926,7 @@ _source line 1696 · 2026-05-21T02:45:16.079888+00:00_
 
 ### Tool call
 
-_source line 1697 · 2026-05-21T02:47:38.142837+00:00_
+_source line 1691 · 2026-05-21T02:47:38.142837+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -8970,7 +8970,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1698 · 2026-05-21T02:47:43.136009+00:00_
+_source line 1692 · 2026-05-21T02:47:43.136009+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -8992,7 +8992,7 @@ _source line 1698 · 2026-05-21T02:47:43.136009+00:00_
 
 ### Assistant
 
-_source line 1699 · 2026-05-21T02:47:51.551886+00:00_
+_source line 1693 · 2026-05-21T02:47:51.551886+00:00_
 
 **Round 16 审稿完成。**
 
@@ -9031,7 +9031,7 @@ _source line 1699 · 2026-05-21T02:47:51.551886+00:00_
 
 ### User
 
-_source line 1700 · 2026-05-21T02:47:54.244713+00:00_
+_source line 1694 · 2026-05-21T02:47:54.244713+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交。
@@ -9055,7 +9055,7 @@ _source line 1700 · 2026-05-21T02:47:54.244713+00:00_
 
 ### Assistant
 
-_source line 1701 · 2026-05-21T02:48:03.615304+00:00_
+_source line 1695 · 2026-05-21T02:48:03.615304+00:00_
 
 Round 16 审稿已完成，报告已投递给 Research Director。
 
@@ -9095,7 +9095,7 @@ Issue Tracker 已同步更新至 `review_issues.yaml`。
 
 ### User
 
-_source line 1702 · 2026-05-22T10:39:05.436462+00:00_
+_source line 1696 · 2026-05-22T10:39:05.436462+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -9126,7 +9126,7 @@ _source line 1702 · 2026-05-22T10:39:05.436462+00:00_
 
 ### Tool call
 
-_source line 1703 · 2026-05-22T10:39:22.644196+00:00_
+_source line 1697 · 2026-05-22T10:39:22.644196+00:00_
 
 called Read
 
@@ -9160,7 +9160,7 @@ called Read
 
 ### Tool result
 
-_source line 1704 · 2026-05-22T10:39:22.695237+00:00_
+_source line 1698 · 2026-05-22T10:39:22.695237+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -9250,7 +9250,7 @@ _source line 1704 · 2026-05-22T10:39:22.695237+00:00_
 
 ### Tool call
 
-_source line 1705 · 2026-05-22T10:39:34.457974+00:00_
+_source line 1699 · 2026-05-22T10:39:34.457974+00:00_
 
 called ToolSearch
 
@@ -9286,7 +9286,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1706 · 2026-05-22T10:39:34.508604+00:00_
+_source line 1700 · 2026-05-22T10:39:34.508604+00:00_
 
 
 
@@ -9308,7 +9308,7 @@ _source line 1706 · 2026-05-22T10:39:34.508604+00:00_
 
 ### Tool call
 
-_source line 1707 · 2026-05-22T10:39:37.422124+00:00_
+_source line 1701 · 2026-05-22T10:39:37.422124+00:00_
 
 called ToolSearch
 
@@ -9344,7 +9344,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1708 · 2026-05-22T10:39:37.422541+00:00_
+_source line 1702 · 2026-05-22T10:39:37.422541+00:00_
 
 No matching deferred tools found
 
@@ -9366,7 +9366,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1709 · 2026-05-22T10:39:45.763716+00:00_
+_source line 1703 · 2026-05-22T10:39:45.763716+00:00_
 
 called ToolSearch
 
@@ -9402,7 +9402,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1710 · 2026-05-22T10:39:45.764217+00:00_
+_source line 1704 · 2026-05-22T10:39:45.764217+00:00_
 
 
 
@@ -9424,7 +9424,7 @@ _source line 1710 · 2026-05-22T10:39:45.764217+00:00_
 
 ### Tool call
 
-_source line 1711 · 2026-05-22T10:39:49.529862+00:00_
+_source line 1705 · 2026-05-22T10:39:49.529862+00:00_
 
 called ToolSearch
 
@@ -9460,7 +9460,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1712 · 2026-05-22T10:39:49.580492+00:00_
+_source line 1706 · 2026-05-22T10:39:49.580492+00:00_
 
 No matching deferred tools found
 
@@ -9482,7 +9482,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1713 · 2026-05-22T10:39:55.557570+00:00_
+_source line 1707 · 2026-05-22T10:39:55.557570+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -9516,7 +9516,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1714 · 2026-05-22T10:39:56.529105+00:00_
+_source line 1708 · 2026-05-22T10:39:56.529105+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (139 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- r16_70b_lora_scierc_eval: 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale（准备中）\n- p1_llama_ee_ft（准备中）\n\n## 近期结论\n- **d066_beam_sweep** (success): Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\n  [d066_beam_sweep_eval](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_eval.md) | [d066_beam_sweep_scierc_analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_scierc_analysis.md) | [beam_pareto_dual_panel](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/chart/beam_pareto.pdf)\n- **eval_70b_lora_docred_200_s1_constrained** (success): 70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve 
 …[truncated 1212 chars]
@@ -9539,7 +9539,7 @@ _source line 1714 · 2026-05-22T10:39:56.529105+00:00_
 
 ### Tool call
 
-_source line 1715 · 2026-05-22T10:39:56.630176+00:00_
+_source line 1709 · 2026-05-22T10:39:56.630176+00:00_
 
 called WebSearch
 
@@ -9573,7 +9573,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1716 · 2026-05-22T10:39:58.488408+00:00_
+_source line 1710 · 2026-05-22T10:39:58.488408+00:00_
 
 called Read
 
@@ -9609,7 +9609,7 @@ called Read
 
 ### Tool result
 
-_source line 1717 · 2026-05-22T10:39:58.790307+00:00_
+_source line 1711 · 2026-05-22T10:39:58.790307+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -9704,7 +9704,7 @@ _source line 1717 · 2026-05-22T10:39:58.790307+00:00_
 
 ### Tool call
 
-_source line 1718 · 2026-05-22T10:39:58.790706+00:00_
+_source line 1712 · 2026-05-22T10:39:58.790706+00:00_
 
 called Read
 
@@ -9738,7 +9738,7 @@ called Read
 
 ### Tool result
 
-_source line 1719 · 2026-05-22T10:39:58.841421+00:00_
+_source line 1713 · 2026-05-22T10:39:58.841421+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R16 Action Matrix D079 dispatched, 2026-05-21
@@ -9820,7 +9820,7 @@ _source line 1719 · 2026-05-22T10:39:58.841421+00:00_
 
 ### Tool result
 
-_source line 1720 · 2026-05-22T10:40:07.684993+00:00_
+_source line 1714 · 2026-05-22T10:40:07.684993+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers ARR submission guidelines author guidelines site:aclweb.org"
 
@@ -9847,7 +9847,7 @@ Based on the search results, I found information about EMNLP 2025 and related co
 
 ### Tool call
 
-_source line 1721 · 2026-05-22T10:40:17.607124+00:00_
+_source line 1715 · 2026-05-22T10:40:17.607124+00:00_
 
 called WebSearch
 
@@ -9881,7 +9881,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1722 · 2026-05-22T10:40:17.958880+00:00_
+_source line 1716 · 2026-05-22T10:40:17.958880+00:00_
 
 called WebSearch
 
@@ -9915,7 +9915,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1723 · 2026-05-22T10:40:19.918882+00:00_
+_source line 1717 · 2026-05-22T10:40:19.918882+00:00_
 
 called Read
 
@@ -9951,7 +9951,7 @@ called Read
 
 ### Tool result
 
-_source line 1724 · 2026-05-22T10:40:20.321055+00:00_
+_source line 1718 · 2026-05-22T10:40:20.321055+00:00_
 
 PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_17/submitted.pdf (566.7KB)
 
@@ -9973,7 +9973,7 @@ PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool result
 
-_source line 1725 · 2026-05-22T10:40:29.574034+00:00_
+_source line 1719 · 2026-05-22T10:40:29.574034+00:00_
 
 Web search results for query: "EMNLP 2026 main conference call for papers deadline commitment"
 
@@ -10000,7 +10000,7 @@ Based on the search results, he
 
 ### Tool result
 
-_source line 1726 · 2026-05-22T10:40:34.853533+00:00_
+_source line 1720 · 2026-05-22T10:40:34.853533+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission guidelines page limit format requirements"
 
@@ -10033,7 +10033,7 @@ All ARR submissions are in the format of a short paper (up to 4 pages) or long p
 
 ### Tool call
 
-_source line 1727 · 2026-05-22T10:40:43.039632+00:00_
+_source line 1721 · 2026-05-22T10:40:43.039632+00:00_
 
 called Read
 
@@ -10069,7 +10069,7 @@ called Read
 
 ### Tool result
 
-_source line 1728 · 2026-05-22T10:40:43.493666+00:00_
+_source line 1722 · 2026-05-22T10:40:43.493666+00:00_
 
 PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_17/submitted.pdf (566.7KB)
 
@@ -10091,7 +10091,7 @@ PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1729 · 2026-05-22T10:40:43.980009+00:00_
+_source line 1723 · 2026-05-22T10:40:43.980009+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -10129,7 +10129,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1730 · 2026-05-22T10:40:44.080932+00:00_
+_source line 1724 · 2026-05-22T10:40:44.080932+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'schema_semantic_constrained_ie'.\", \"metadata\": {}}"}
 
@@ -10151,7 +10151,7 @@ _source line 1730 · 2026-05-22T10:40:44.080932+00:00_
 
 ### Tool call
 
-_source line 1731 · 2026-05-22T10:40:49.454491+00:00_
+_source line 1725 · 2026-05-22T10:40:49.454491+00:00_
 
 called Read
 
@@ -10187,7 +10187,7 @@ called Read
 
 ### Tool result
 
-_source line 1732 · 2026-05-22T10:40:49.807033+00:00_
+_source line 1726 · 2026-05-22T10:40:49.807033+00:00_
 
 PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_17/submitted.pdf (566.7KB)
 
@@ -10209,7 +10209,7 @@ PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1733 · 2026-05-22T10:41:05.147459+00:00_
+_source line 1727 · 2026-05-22T10:41:05.147459+00:00_
 
 called Read
 
@@ -10245,7 +10245,7 @@ called Read
 
 ### Tool result
 
-_source line 1734 · 2026-05-22T10:41:05.700703+00:00_
+_source line 1728 · 2026-05-22T10:41:05.700703+00:00_
 
 PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_17/submitted.pdf (566.7KB)
 
@@ -10267,7 +10267,7 @@ PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1735 · 2026-05-22T10:41:06.410865+00:00_
+_source line 1729 · 2026-05-22T10:41:06.410865+00:00_
 
 called Grep
 
@@ -10307,7 +10307,7 @@ called Grep
 
 ### Tool result
 
-_source line 1736 · 2026-05-22T10:41:06.461482+00:00_
+_source line 1730 · 2026-05-22T10:41:06.461482+00:00_
 
 No matches found
 
@@ -10329,7 +10329,7 @@ No matches found
 
 ### Tool call
 
-_source line 1737 · 2026-05-22T10:41:19.301095+00:00_
+_source line 1731 · 2026-05-22T10:41:19.301095+00:00_
 
 called Read
 
@@ -10365,7 +10365,7 @@ called Read
 
 ### Tool result
 
-_source line 1738 · 2026-05-22T10:41:20.105369+00:00_
+_source line 1732 · 2026-05-22T10:41:20.105369+00:00_
 
 PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_17/submitted.pdf (566.7KB)
 
@@ -10387,7 +10387,7 @@ PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 1739 · 2026-05-22T10:41:20.563884+00:00_
+_source line 1733 · 2026-05-22T10:41:20.563884+00:00_
 
 called Grep
 
@@ -10427,7 +10427,7 @@ called Grep
 
 ### Tool result
 
-_source line 1740 · 2026-05-22T10:41:20.715869+00:00_
+_source line 1734 · 2026-05-22T10:41:20.715869+00:00_
 
 No matches found
 
@@ -10449,7 +10449,7 @@ No matches found
 
 ### Tool call
 
-_source line 1741 · 2026-05-22T10:42:35.007063+00:00_
+_source line 1735 · 2026-05-22T10:42:35.007063+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -10485,7 +10485,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 1742 · 2026-05-22T10:42:59.442744+00:00_
+_source line 1736 · 2026-05-22T10:42:59.442744+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10507,7 +10507,7 @@ _source line 1742 · 2026-05-22T10:42:59.442744+00:00_
 
 ### Tool call
 
-_source line 1743 · 2026-05-22T10:43:00.450444+00:00_
+_source line 1737 · 2026-05-22T10:43:00.450444+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10547,7 +10547,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1744 · 2026-05-22T10:43:22.396721+00:00_
+_source line 1738 · 2026-05-22T10:43:22.396721+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -10569,7 +10569,7 @@ _source line 1744 · 2026-05-22T10:43:22.396721+00:00_
 
 ### Tool call
 
-_source line 1745 · 2026-05-22T10:43:22.547797+00:00_
+_source line 1739 · 2026-05-22T10:43:22.547797+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -10609,7 +10609,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1746 · 2026-05-22T10:43:24.016902+00:00_
+_source line 1740 · 2026-05-22T10:43:24.016902+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -10631,7 +10631,7 @@ _source line 1746 · 2026-05-22T10:43:24.016902+00:00_
 
 ### Assistant
 
-_source line 1747 · 2026-05-22T10:43:39.780512+00:00_
+_source line 1741 · 2026-05-22T10:43:39.780512+00:00_
 
 Round 1 已启动：
 - **Reviewer 1**（方法+实验）已派发 ✓
@@ -10664,7 +10664,7 @@ Round 1 已启动：
 
 ### User
 
-_source line 1748 · 2026-05-22T10:51:41.733381+00:00_
+_source line 1742 · 2026-05-22T10:51:41.733381+00:00_
 
 [Reviewer 1 审稿意见]:
 # Reviewer 1 审稿意见：OntoCoDec
@@ -10780,7 +10780,7 @@ OntoCoDec 提出将 IE ontology 编译为 token 级约束的两层架构：gramm
 
 ### Assistant
 
-_source line 1749 · 2026-05-22T10:52:03.153275+00:00_
+_source line 1743 · 2026-05-22T10:52:03.153275+00:00_
 
 Reviewer 1 初审已返回（3.5 — Borderline Conference）。核心发现：
 
@@ -10813,7 +10813,7 @@ Reviewer 1 初审已返回（3.5 — Borderline Conference）。核心发现：
 
 ### User
 
-_source line 1750 · 2026-05-22T10:52:05.767889+00:00_
+_source line 1744 · 2026-05-22T10:52:05.767889+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -10839,7 +10839,7 @@ _source line 1750 · 2026-05-22T10:52:05.767889+00:00_
 
 ### Assistant
 
-_source line 1751 · 2026-05-22T10:52:17.358507+00:00_
+_source line 1745 · 2026-05-22T10:52:17.358507+00:00_
 
 Reviewer 1 初审已收到（3.5 Borderline Conference）。等待 Reviewer 2 返回后进入交叉分享阶段。
 
@@ -10866,7 +10866,7 @@ Reviewer 1 初审已收到（3.5 Borderline Conference）。等待 Reviewer 2 �
 
 ### User
 
-_source line 1752 · 2026-05-22T10:53:42.668739+00:00_
+_source line 1746 · 2026-05-22T10:53:42.668739+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 审稿意见 — Round 1 (Fresh Review)
@@ -11102,7 +11102,7 @@ Proposition 1 及其 pumping lemma 证明（Appendix O）为两层架构的必�
 
 ### Tool call
 
-_source line 1753 · 2026-05-22T10:54:30.556306+00:00_
+_source line 1747 · 2026-05-22T10:54:30.556306+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -11142,7 +11142,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1754 · 2026-05-22T10:54:53.223059+00:00_
+_source line 1748 · 2026-05-22T10:54:53.223059+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -11164,7 +11164,7 @@ _source line 1754 · 2026-05-22T10:54:53.223059+00:00_
 
 ### Tool call
 
-_source line 1755 · 2026-05-22T10:54:53.576520+00:00_
+_source line 1749 · 2026-05-22T10:54:53.576520+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -11204,7 +11204,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 1756 · 2026-05-22T10:54:54.990887+00:00_
+_source line 1750 · 2026-05-22T10:54:54.990887+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -11226,7 +11226,7 @@ _source line 1756 · 2026-05-22T10:54:54.990887+00:00_
 
 ### Assistant
 
-_source line 1757 · 2026-05-22T10:55:01.308014+00:00_
+_source line 1751 · 2026-05-22T10:55:01.308014+00:00_
 
 Step 2 交叉分享已派发。两位 Reviewer 正在审阅对方意见并准备 [AGREE]/[REBUT] 回应。等待返回。
 
@@ -11253,7 +11253,7 @@ Step 2 交叉分享已派发。两位 Reviewer 正在审阅对方意见并准备
 
 ### User
 
-_source line 1758 · 2026-05-22T10:55:03.892180+00:00_
+_source line 1752 · 2026-05-22T10:55:03.892180+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -11283,7 +11283,7 @@ _source line 1758 · 2026-05-22T10:55:03.892180+00:00_
 
 ### Assistant
 
-_source line 1759 · 2026-05-22T10:55:16.407940+00:00_
+_source line 1753 · 2026-05-22T10:55:16.407940+00:00_
 
 交叉分享已派发，等待两位 Reviewer 的 [AGREE]/[REBUT] 回应。
 
@@ -11310,7 +11310,7 @@ _source line 1759 · 2026-05-22T10:55:16.407940+00:00_
 
 ### User
 
-_source line 1760 · 2026-05-22T10:56:55.189720+00:00_
+_source line 1754 · 2026-05-22T10:56:55.189720+00:00_
 
 [Reviewer 1 审稿意见]:
 # Reviewer 1 交叉回应 Reviewer 2
@@ -11364,7 +11364,7 @@ _source line 1760 · 2026-05-22T10:56:55.189720+00:00_
 
 ### Assistant
 
-_source line 1761 · 2026-05-22T10:57:03.339049+00:00_
+_source line 1755 · 2026-05-22T10:57:03.339049+00:00_
 
 Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
@@ -11391,7 +11391,7 @@ Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
 ### User
 
-_source line 1762 · 2026-05-22T10:57:08.942953+00:00_
+_source line 1756 · 2026-05-22T10:57:08.942953+00:00_
 
 [Reviewer 1 审稿结果]:
 交叉回应已提交。核心结论：R1 与 R2 在 CF 呈现、κ̄ 统计功效、WikiEvents 充分性上完全一致；在新颖性上有轻度分歧（我认为 Proposition 1 的 decidability taxonomy 有原创性，R2 评价偏低）；最大分歧是我将缺少 baseline 实验对比列为 critical weakness 而 R2 未提及。
@@ -11413,7 +11413,7 @@ _source line 1762 · 2026-05-22T10:57:08.942953+00:00_
 
 ### Assistant
 
-_source line 1763 · 2026-05-22T10:57:16.730151+00:00_
+_source line 1757 · 2026-05-22T10:57:16.730151+00:00_
 
 Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
@@ -11440,7 +11440,7 @@ Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
 ### User
 
-_source line 1764 · 2026-05-22T10:58:05.372354+00:00_
+_source line 1758 · 2026-05-22T10:58:05.372354+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 交叉回应 — Reviewer 1 Weaknesses & Questions
@@ -11616,7 +11616,7 @@ R1 和 R2 在 overall 评分上一致（3.5 Borderline Conference），但关注
 
 ### Tool call
 
-_source line 1765 · 2026-05-22T10:58:27.935702+00:00_
+_source line 1759 · 2026-05-22T10:58:27.935702+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -11650,7 +11650,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 1766 · 2026-05-22T10:58:28.443397+00:00_
+_source line 1760 · 2026-05-22T10:58:28.443397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-22T10:42:38.655628+00:00\", \"completed_at\": \"2026-05-22T10:45:57.734897+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"pages 1-2\", \"message\": \"连续 2 页纯文本（Title/Abstract/Intro/Background），直到第 3 页才出现首个 display item（Figure 1）。审稿人在前 2 分钟内仅看到文字墙，缺少快速锚定的视觉元素\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"Figure 1（全宽架构概览图）在第 3 页出现，刚好在 3 页阈值内。图示清晰传达了两层约束架构的核心 idea，caption 自包含，颜色方案柔和可读。作为首个 display item 质量合格\"}, {\"severity\": \"warning\", \"dimension\": \"pages 4-5\", \"message\": \"连续 2 页纯文本（Method §3.2-§3.4 + Experiments setup），无公式 display、无图表穿插。方法描述段落缺少形式化公式的 display math 断点，阅读体验单调\"}, {\"severity\": \"warning\", \"dimension\": \"pages 6-7\", \"message\": \"Display items 分布严重不均：5 张表格全部集中在这 2 页。Page 7 尤其密集——Tables 3、4、5 三张表挤在一页，视觉压迫感强。与 pages 1-2、4-5 的纯文本形成极端反差\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"主正文最后一页（Related Work + Discussion/Conclusion）全部为纯文本，没有视觉元素收尾。与 pages 8-9（加上 Limitations）形成连续 2 页纯文本\"}, {\"severity\": \"info\", \"dimension\": \"pages 1-8\", \"message\": \"主正文 8 页仅 1 张 figure + 5 张 table = 6 个 display items，在实证论文 5-8 个的合理范围内，但 figure 数量偏少（仅 1 张）。核心结果全部以 table 呈现，缺少直观的可视化图表（如性能对比柱状图或趋势线图）\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1 和 Table 2 使用 booktabs 风格，最优值加粗，∆DR 列标注相对变化，小数位数一致。排版规范\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Tables 3-5 同样使用 booktabs 风格，加粗标注一致。但三表同页导致字号偏小，Table 5 尤其紧凑\"}, {\"severity\": \"info\", \"dimension\": \"pages 21, 24, 28\", \"message\": \"附录中 Figure 2（DR vs Schema Restrictiveness 散点图）、Figure 3（per-relation DR 柱状图）、Figure 4（beam width vs R-F1 曲线图）质量都不错——尤其 Figure 2 或 Figure 3 若能提升到主正文，可以打破 pages 6-7 的纯表格单调性并给审稿人更直观的结果感知\"}, {\"severity\": \"info\", \"dimension\": \"page 30\", \"message\": \"Table 29 使用红绿色标注（删除线+修正）展示 OntoCoDec 的纠错案例，视觉效果好，但需注意色盲可辨性——纯红绿对比对红绿色盲不友好，建议辅以形状/下划线标记\"}, {\"severity\": \"
 …[truncated 449 chars]
@@ -11673,7 +11673,7 @@ _source line 1766 · 2026-05-22T10:58:28.443397+00:00_
 
 ### Tool call
 
-_source line 1767 · 2026-05-22T10:58:28.443855+00:00_
+_source line 1761 · 2026-05-22T10:58:28.443855+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -11707,7 +11707,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 1768 · 2026-05-22T10:58:29.598568+00:00_
+_source line 1762 · 2026-05-22T10:58:29.598568+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11729,7 +11729,7 @@ _source line 1768 · 2026-05-22T10:58:29.598568+00:00_
 
 ### Tool call
 
-_source line 1769 · 2026-05-22T10:58:29.598954+00:00_
+_source line 1763 · 2026-05-22T10:58:29.598954+00:00_
 
 called Read
 
@@ -11763,7 +11763,7 @@ called Read
 
 ### Tool result
 
-_source line 1770 · 2026-05-22T10:58:29.649766+00:00_
+_source line 1764 · 2026-05-22T10:58:29.649766+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R16 Action Matrix D079 dispatched, 2026-05-21
@@ -11845,7 +11845,7 @@ _source line 1770 · 2026-05-22T10:58:29.649766+00:00_
 
 ### Tool call
 
-_source line 1771 · 2026-05-22T11:01:32.282095+00:00_
+_source line 1765 · 2026-05-22T11:01:32.282095+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -11881,7 +11881,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1772 · 2026-05-22T11:01:32.434191+00:00_
+_source line 1766 · 2026-05-22T11:01:32.434191+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 16728}, \"error\": \"\"}"}
 
@@ -11903,7 +11903,7 @@ _source line 1772 · 2026-05-22T11:01:32.434191+00:00_
 
 ### Tool call
 
-_source line 1773 · 2026-05-22T11:04:12.780206+00:00_
+_source line 1767 · 2026-05-22T11:04:12.780206+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -11947,7 +11947,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 1774 · 2026-05-22T11:04:17.047508+00:00_
+_source line 1768 · 2026-05-22T11:04:17.047508+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -11969,7 +11969,7 @@ _source line 1774 · 2026-05-22T11:04:17.047508+00:00_
 
 ### Assistant
 
-_source line 1775 · 2026-05-22T11:04:35.809033+00:00_
+_source line 1769 · 2026-05-22T11:04:35.809033+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -12003,7 +12003,7 @@ _source line 1775 · 2026-05-22T11:04:35.809033+00:00_
 
 ### User
 
-_source line 1776 · 2026-05-22T11:04:38.388023+00:00_
+_source line 1770 · 2026-05-22T11:04:38.388023+00:00_
 
 [Reviewer 2 审稿结果]:
 交叉回应已提交给 Review Director。
@@ -12027,7 +12027,7 @@ _source line 1776 · 2026-05-22T11:04:38.388023+00:00_
 
 ### Assistant
 
-_source line 1777 · 2026-05-22T11:04:56.014220+00:00_
+_source line 1771 · 2026-05-22T11:04:56.014220+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -12061,7 +12061,7 @@ _source line 1777 · 2026-05-22T11:04:56.014220+00:00_
 
 ### User
 
-_source line 1778 · 2026-05-22T12:25:23.616601+00:00_
+_source line 1772 · 2026-05-22T12:25:23.616601+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -12092,7 +12092,7 @@ _source line 1778 · 2026-05-22T12:25:23.616601+00:00_
 
 ### Tool call
 
-_source line 1779 · 2026-05-22T12:25:30.404282+00:00_
+_source line 1773 · 2026-05-22T12:25:30.404282+00:00_
 
 called Read
 
@@ -12126,7 +12126,7 @@ called Read
 
 ### Tool result
 
-_source line 1780 · 2026-05-22T12:25:30.455316+00:00_
+_source line 1774 · 2026-05-22T12:25:30.455316+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -12216,7 +12216,7 @@ _source line 1780 · 2026-05-22T12:25:30.455316+00:00_
 
 ### Tool call
 
-_source line 1781 · 2026-05-22T12:25:35.044015+00:00_
+_source line 1775 · 2026-05-22T12:25:35.044015+00:00_
 
 called ToolSearch
 
@@ -12252,7 +12252,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1782 · 2026-05-22T12:25:35.044518+00:00_
+_source line 1776 · 2026-05-22T12:25:35.044518+00:00_
 
 
 
@@ -12274,7 +12274,7 @@ _source line 1782 · 2026-05-22T12:25:35.044518+00:00_
 
 ### Tool call
 
-_source line 1783 · 2026-05-22T12:25:39.563045+00:00_
+_source line 1777 · 2026-05-22T12:25:39.563045+00:00_
 
 called ToolSearch
 
@@ -12310,7 +12310,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1784 · 2026-05-22T12:25:39.563388+00:00_
+_source line 1778 · 2026-05-22T12:25:39.563388+00:00_
 
 No matching deferred tools found
 
@@ -12332,7 +12332,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1785 · 2026-05-22T12:25:43.463884+00:00_
+_source line 1779 · 2026-05-22T12:25:43.463884+00:00_
 
 called ToolSearch
 
@@ -12368,7 +12368,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1786 · 2026-05-22T12:25:43.514633+00:00_
+_source line 1780 · 2026-05-22T12:25:43.514633+00:00_
 
 
 
@@ -12390,7 +12390,7 @@ _source line 1786 · 2026-05-22T12:25:43.514633+00:00_
 
 ### Tool call
 
-_source line 1787 · 2026-05-22T12:25:46.427578+00:00_
+_source line 1781 · 2026-05-22T12:25:46.427578+00:00_
 
 called ToolSearch
 
@@ -12426,7 +12426,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1788 · 2026-05-22T12:25:46.478196+00:00_
+_source line 1782 · 2026-05-22T12:25:46.478196+00:00_
 
 No matching deferred tools found
 
@@ -12448,7 +12448,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1789 · 2026-05-22T12:25:49.440776+00:00_
+_source line 1783 · 2026-05-22T12:25:49.440776+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -12482,7 +12482,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 1790 · 2026-05-22T12:25:50.847094+00:00_
+_source line 1784 · 2026-05-22T12:25:50.847094+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (139 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- r16_70b_lora_scierc_eval: 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale（准备中）\n- p1_llama_ee_ft（准备中）\n\n## 近期结论\n- **d066_beam_sweep** (success): Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis.\n  [d066_beam_sweep_eval](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_eval.md) | [d066_beam_sweep_scierc_analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_scierc_analysis.md) | [beam_pareto_dual_panel](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/chart/beam_pareto.pdf)\n- **eval_70b_lora_docred_200_s1_constrained** (success): 70B LoRA DocRED with Full S1 constrained decoding on 200-doc subset will achieve 
 …[truncated 1212 chars]
@@ -12505,7 +12505,7 @@ _source line 1790 · 2026-05-22T12:25:50.847094+00:00_
 
 ### Tool call
 
-_source line 1791 · 2026-05-22T12:25:51.399886+00:00_
+_source line 1785 · 2026-05-22T12:25:51.399886+00:00_
 
 called Read
 
@@ -12541,7 +12541,7 @@ called Read
 
 ### Tool result
 
-_source line 1792 · 2026-05-22T12:25:51.852198+00:00_
+_source line 1786 · 2026-05-22T12:25:51.852198+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -12636,7 +12636,7 @@ _source line 1792 · 2026-05-22T12:25:51.852198+00:00_
 
 ### Tool call
 
-_source line 1793 · 2026-05-22T12:25:51.902847+00:00_
+_source line 1787 · 2026-05-22T12:25:51.902847+00:00_
 
 called WebSearch
 
@@ -12670,7 +12670,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 1794 · 2026-05-22T12:25:58.929871+00:00_
+_source line 1788 · 2026-05-22T12:25:58.929871+00:00_
 
 Web search results for query: "EMNLP 2026 ARR call for papers submission guidelines author instructions site:aclweb.org"
 
@@ -12697,7 +12697,7 @@ I performed the web search for you. T
 
 ### Tool call
 
-_source line 1795 · 2026-05-22T12:26:03.498494+00:00_
+_source line 1789 · 2026-05-22T12:26:03.498494+00:00_
 
 called WebSearch
 
@@ -12731,7 +12731,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1796 · 2026-05-22T12:26:03.950910+00:00_
+_source line 1790 · 2026-05-22T12:26:03.950910+00:00_
 
 called WebSearch
 
@@ -12765,7 +12765,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1797 · 2026-05-22T12:26:06.009835+00:00_
+_source line 1791 · 2026-05-22T12:26:06.009835+00:00_
 
 called Read
 
@@ -12803,7 +12803,7 @@ called Read
 
 ### Tool result
 
-_source line 1798 · 2026-05-22T12:26:06.060541+00:00_
+_source line 1792 · 2026-05-22T12:26:06.060541+00:00_
 
 100	
 101	% === Ethics Statement ===
@@ -12857,7 +12857,7 @@ _source line 1798 · 2026-05-22T12:26:06.060541+00:00_
 
 ### Tool result
 
-_source line 1799 · 2026-05-22T12:26:09.425312+00:00_
+_source line 1793 · 2026-05-22T12:26:09.425312+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers submission deadline page limit"
 
@@ -12892,7 +12892,7 @@ The format is two-column with an 8-page limit for long papers and a 4-page limit
 
 ### Tool result
 
-_source line 1800 · 2026-05-22T12:26:12.570823+00:00_
+_source line 1794 · 2026-05-22T12:26:12.570823+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission guidelines author instructions page limit template"
 
@@ -12923,7 +12923,7 @@ All long, short, and theme papers must follow the ACL Author Guidelines and use 
 
 ### Tool call
 
-_source line 1801 · 2026-05-22T12:26:24.416632+00:00_
+_source line 1795 · 2026-05-22T12:26:24.416632+00:00_
 
 called WebSearch
 
@@ -12957,7 +12957,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1802 · 2026-05-22T12:26:25.371211+00:00_
+_source line 1796 · 2026-05-22T12:26:25.371211+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -12995,7 +12995,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 1803 · 2026-05-22T12:26:26.526165+00:00_
+_source line 1797 · 2026-05-22T12:26:26.526165+00:00_
 
 called Glob
 
@@ -13031,7 +13031,7 @@ called Glob
 
 ### Tool call
 
-_source line 1804 · 2026-05-22T12:26:26.878018+00:00_
+_source line 1798 · 2026-05-22T12:26:26.878018+00:00_
 
 called Read
 
@@ -13065,7 +13065,7 @@ called Read
 
 ### Tool result
 
-_source line 1805 · 2026-05-22T12:26:32.714960+00:00_
+_source line 1799 · 2026-05-22T12:26:32.714960+00:00_
 
 Web search results for query: ""EMNLP 2026" "call for papers" anonymity "double-blind" OR "single-blind" appendix guidelines 2026.emnlp.org"
 
@@ -13100,7 +13100,7 @@ Authors are asked not to abuse the option of an unlimited appendix and only to i
 
 ### Tool result
 
-_source line 1806 · 2026-05-22T12:26:32.715421+00:00_
+_source line 1800 · 2026-05-22T12:26:32.715421+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'schema_semantic_constrained_ie'.\", \"metadata\": {}}"}
 
@@ -13122,7 +13122,7 @@ _source line 1806 · 2026-05-22T12:26:32.715421+00:00_
 
 ### Tool result
 
-_source line 1807 · 2026-05-22T12:26:32.767771+00:00_
+_source line 1801 · 2026-05-22T12:26:32.767771+00:00_
 
 This PDF has 34 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: "1-5"). Maximum 20 pages per request.
 
@@ -13144,7 +13144,7 @@ This PDF has 34 pages, which is too many to read at once. Use the pages paramete
 
 ### Tool result
 
-_source line 1808 · 2026-05-22T12:26:32.768214+00:00_
+_source line 1802 · 2026-05-22T12:26:32.768214+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml
 
@@ -13166,7 +13166,7 @@ _source line 1808 · 2026-05-22T12:26:32.768214+00:00_
 
 ### Tool call
 
-_source line 1809 · 2026-05-22T12:26:36.640031+00:00_
+_source line 1803 · 2026-05-22T12:26:36.640031+00:00_
 
 called Read
 
@@ -13200,7 +13200,7 @@ called Read
 
 ### Tool result
 
-_source line 1810 · 2026-05-22T12:26:36.992723+00:00_
+_source line 1804 · 2026-05-22T12:26:36.992723+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R17 Action Matrix dispatched, 2026-05-22
@@ -13277,7 +13277,7 @@ _source line 1810 · 2026-05-22T12:26:36.992723+00:00_
 
 ### Tool call
 
-_source line 1811 · 2026-05-22T12:26:36.993657+00:00_
+_source line 1805 · 2026-05-22T12:26:36.993657+00:00_
 
 called Read
 

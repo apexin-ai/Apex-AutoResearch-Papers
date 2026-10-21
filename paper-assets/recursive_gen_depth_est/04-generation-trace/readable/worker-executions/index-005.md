@@ -10,7 +10,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis detectgpt 004 results | 17 | 0 | [Read transcript](analysis-detectgpt-004-results.md) | [JSON](../../sessions/ab/abc060c9d41767f4edbe.json) |
 | analysis binoculars ordinal baseline 001 | 50 | 0 | [Read transcript](analysis-binoculars-ordinal-baseline-001.md) | [JSON](../../sessions/7c/7cfaf03570b473cd2519.json) |
 | exp feature ablation overlap and merged | 140 | 0 | [Read transcript](exp-feature-ablation-overlap-and-merged.md) | [JSON](../../sessions/f3/f37b1c6a3a9844ab4827.json) |
-| writing rebuttal draft | 34 | 0 | [Read transcript](writing-rebuttal-draft.md) | [JSON](../../sessions/a5/a58a6074578cf9440e00.json) |
 | check 14b progress | 76 | 0 | [Read transcript](check-14b-progress.md) | [JSON](../../sessions/ff/ff146df4efa35935b567.json) |
 | check 14b progress 2 | 66 | 0 | [Read transcript](check-14b-progress-2.md) | [JSON](../../sessions/a3/a35c7d338530e5f07393.json) |
 | analysis qwen25 14b temp09 | 46 | 0 | [Read transcript](analysis-qwen25-14b-temp09.md) | [JSON](../../sessions/23/23d2577608e2a5233bc9.json) |

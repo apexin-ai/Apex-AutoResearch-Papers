@@ -7,921 +7,6 @@
       "messages": [
         {
           "source_line": 2521,
-          "timestamp": "2026-05-24T05:02:51.310484+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper -type f -name \"*.tex\" | head -20"
-            }
-          },
-          "id": "event-002521"
-        },
-        {
-          "source_line": 2522,
-          "timestamp": "2026-05-24T05:02:51.820967+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 510
-          },
-          "id": "event-002522"
-        },
-        {
-          "source_line": 2523,
-          "timestamp": "2026-05-24T05:02:51.821409+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File content (27261 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Read",
-            "elapsed_ms": 1005
-          },
-          "id": "event-002523"
-        },
-        {
-          "source_line": 2524,
-          "timestamp": "2026-05-24T05:02:56.813061+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "\\\\label\\{(sec:appendix_figures|sec:appendix_routing|sec:appendix_within_pool|sec:appendix_bootstrap_ci|sec:appendix_domain_distribution|sec:appendix_batch_composition|sec:appendix_prompt_sensitivity|app:format-independence|app:bcs-composition|app:cross-domain|sec:appendix_cross_model_70b|app:ai-assistants)\\}",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
-            }
-          },
-          "id": "event-002524"
-        },
-        {
-          "source_line": 2525,
-          "timestamp": "2026-05-24T05:02:57.322518+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Grep",
-            "elapsed_ms": 509
-          },
-          "id": "event-002525"
-        },
-        {
-          "source_line": 2526,
-          "timestamp": "2026-05-24T05:02:57.424279+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "\\\\(section|subsection)\\{[^}]*\\}.*\\n.*\\\\label\\{(sec:appendix_|app:)",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-              "multiline": "True"
-            }
-          },
-          "id": "event-002526"
-        },
-        {
-          "source_line": 2527,
-          "timestamp": "2026-05-24T05:02:57.424626+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Found 2 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Grep",
-            "elapsed_ms": 0
-          },
-          "id": "event-002527"
-        },
-        {
-          "source_line": 2528,
-          "timestamp": "2026-05-24T05:02:59.944794+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"\\\\\\\\label{sec:appendix_figures\\|sec:appendix_routing\\|sec:appendix_within_pool\\|sec:appendix_bootstrap_ci\\|sec:appendix_domain_distribution\\|sec:appendix_batch_composition\\|sec:appendix_prompt_sensitivity\\|app:format-independence\\|app:bcs-composition\\|app:cross-domain\\|sec:appendix_cross_model_70b\\|app:ai-assistants}\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002528"
-        },
-        {
-          "source_line": 2529,
-          "timestamp": "2026-05-24T05:03:00.475445+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "57:\\label{sec:appendix_figures}\n196:\\label{sec:appendix_routing}\n259:\\label{sec:appendix_within_pool}\n335:\\label{sec:appendix_bootstrap_ci}\n340:\\label{sec:appendix_domain_distribution}\n345:\\label{sec:appendix_batch_composition}\n369:\\label{sec:appendix_prompt_sensitivity}\n460:\\label{app:format-independence}\n538:\\caption{Three-way BCS--accuracy analysis on FewRel. Slope: OLS of batch accuracy on BCS (bootstrap CIs, $B{=}10{,}000$). $\\Delta$: accuracy gap between top- and bottom-quartile BCS batches. See Appendix~\\ref{sec:appendix_within_pool} for CI interpretation.}\n557:The within-pool slope ($-$0.401, CI excludes zero) is statistically indistinguishable from the independent 16-relation pool ($-$0.509; permutation $p \\approx 0.60$). The smaller quartile gap ($-$3.92\\,pp vs.\\ $-$5.31\\,pp) reflects the narrower BCS range within the 80-relation pool (Appendix~\\ref{sec:appendix_within_pool}).\n607:\\label{app:bcs-composition}\n681:\\label{app:cross-domain}\n686:\\label{sec:appendix_cross_model_70b}\n943:\\label{app:ai-assistants}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 530
-          },
-          "id": "event-002529"
-        },
-        {
-          "source_line": 2530,
-          "timestamp": "2026-05-24T05:03:00.475992+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"\\\\\\\\section{\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | head -40"
-            }
-          },
-          "id": "event-002530"
-        },
-        {
-          "source_line": 2531,
-          "timestamp": "2026-05-24T05:03:00.527057+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"\\\\\\\\subsection{\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | head -40"
-            }
-          },
-          "id": "event-002531"
-        },
-        {
-          "source_line": 2532,
-          "timestamp": "2026-05-24T05:03:00.628551+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "56:\\section{Additional Figures}\n151:\\section{SDGD Full Protocol and Results}\n222:\\section{Factorial Analysis and Separability Test}\n258:\\section{Within-Pool CI Details}\n263:\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n344:\\section{Batch Composition Results}\n368:\\section{Prompt Version Sensitivity Analysis}\n410:\\section{BCS Aggregation Sensitivity}\n436:\\section{BCS-Controlled Detailed Results}\n459:\\section{Format Independence: Paired Constrained vs.\\ Unconstrained Comparison}\n530:\\section{Within-Pool Analysis Methodology}\n561:\\section{SCS Embedding Ablation: Name-Only vs. Name+Definition}\n588:\\section{Pair-to-Batch Aggregation Simulation}\n606:\\section{BCS Independence from Type Composition}\n611:\\section{SCS vs.\\ Simple Baselines}\n639:\\section{Split-Origin Covariate Analysis}\n653:\\section{Cross-Seed Variance Decomposition}\n680:\\section{Cross-Domain Connections}\n685:\\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}\n725:\\section{Cross-Model Validation with Gemini 2.5 Flash (API)}\n777:\\section{Few-Shot Prompting and Confusability}\n823:\\section{Qualitative Error Analysis}\n895:\\section{Schema Label Renaming Experiment}\n917:\\section{Relaxed Matching Evaluation (NER)}\n942:\\section{Use of AI Assistants}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 152
-          },
-          "id": "event-002532"
-        },
-        {
-          "source_line": 2533,
-          "timestamp": "2026-05-24T05:03:00.629138+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "195:\\subsection{Practical Routing Strategies on RE}\n304:\\subsection{Partial Correlation: Controlling for Degree Centrality}\n329:\\subsection{NER BCS-Null Power Analysis}\n334:\\subsection{Bootstrap CI Robustness}\n339:\\subsection{Domain Distribution in Extreme-BCS Batches}\n382:\\subsection{Cross-Prompt-Variant BCS Correlation}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 102
-          },
-          "id": "event-002533"
-        },
-        {
-          "source_line": 2534,
-          "timestamp": "2026-05-24T05:03:08.275328+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '54,59p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002534"
-        },
-        {
-          "source_line": 2535,
-          "timestamp": "2026-05-24T05:03:08.526855+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\appendix\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\begin{table}[h]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 251
-          },
-          "id": "event-002535"
-        },
-        {
-          "source_line": 2536,
-          "timestamp": "2026-05-24T05:03:08.527327+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '193,198p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002536"
-        },
-        {
-          "source_line": 2537,
-          "timestamp": "2026-05-24T05:03:08.729292+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span. Confidence gating improves precision (sdgd\\_zero: 0.210$\\to$0.324; random\\_batch: 0.249$\\to$0.331), but at the cost of disproportionate recall loss (0.314$\\to$0.191; 0.446$\\to$0.276), and both modes produce lower F1 (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301).\n\n\\subsection{Practical Routing Strategies on RE}\n\\label{sec:appendix_routing}\n\nWe evaluate five non-oracle routing strategies on FewRel 80-relation RE using graph-coloring sub-schema decomposition (same grouping as Table~\\ref{tab:batch_composition}). Each strategy selects a single sub-schema for each test instance and returns that sub-schema's prediction."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 201
-          },
-          "id": "event-002537"
-        },
-        {
-          "source_line": 2538,
-          "timestamp": "2026-05-24T05:03:08.729802+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '257,262p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002538"
-        },
-        {
-          "source_line": 2539,
-          "timestamp": "2026-05-24T05:03:08.932049+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\section{Within-Pool CI Details}\n\\label{sec:appendix_within_pool}\n\nThe quartile $\\Delta$ for 80-pool 16-relation subsets ($-$3.92\\,pp, 95\\% CI [$-$8.17, $+$0.38]) crosses zero, reflecting the compressed BCS range within that pool (0.46--0.68 vs.\\ 0.48--0.71 for the independent pool). Within this narrow band, the quartile contrast lacks statistical power to detect the effect that the regression identifies. The full 80-relation condition ($n = 25$) is underpowered for both the slope (95\\% CI [$-$1.303, $+$1.695]) and quartile analyses; we include it in Table~\\ref{tab:within_pool} for completeness but do not draw inferential conclusions from it."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 202
-          },
-          "id": "event-002539"
-        },
-        {
-          "source_line": 2540,
-          "timestamp": "2026-05-24T05:03:08.932483+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '333,348p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002540"
-        },
-        {
-          "source_line": 2541,
-          "timestamp": "2026-05-24T05:03:09.335912+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\subsection{Bootstrap CI Robustness}\n\\label{sec:appendix_bootstrap_ci}\n\nBecause batches in the FewRel experiments are constructed by sampling relation types from a shared pool, different batches may share text instances of the same type, potentially inducing residual dependence that makes standard bootstrap CIs anti-conservative. We assess this concern via cluster-robust inference. We cluster the $n = 164$ FewRel batches by instance-weighted type overlap (hierarchical clustering, complete linkage) and compute cluster-robust standard errors. Across six overlap thresholds (Jaccard distance $\\in \\{0.1, \\ldots, 0.9\\}$, yielding 80--83 clusters), the cluster-robust SE for the BCS regression slope is $0.96$--$0.97\\times$ the OLS SE, and the slope remains highly significant ($p < 10^{-11}$). Cluster bootstrap CIs for $R^2$ show width changes of $-6\\%$ to $+6\\%$ relative to standard bootstrap CIs ($[0.14, 0.42]$ vs.\\ $[0.15, 0.41]$). We conclude that the reported CIs are robust to the non-independence induced by shared text instances.\n\n\\subsection{Domain Distribution in Extreme-BCS Batches}\n\\label{sec:appendix_domain_distribution}\n\nWe classify the 80 FewRel relation types into six semantic domains (geography, creative work, person, organization, event/temporal, science/taxonomy) and compare domain composition between the 25 highest-BCS and 25 lowest-BCS batches from our 8-type schema pool. The distributions differ significantly ($\\chi^2 = 230.74$, $p < 0.001$, $df = 5$): low-BCS batches draw heavily from geography (45.5\\%) and creative work (25.5\\%), while high-BCS batches concentrate on science/taxonomy (49.5\\%) and event/temporal (26.0\\%) domains. Normalized Shannon entropy is higher for low-BCS batches ($H' = 0.79$) than high-BCS ($H' = 0.67$), confirming that low-BCS schemas span more diverse domains. Crucially, this domain concentration is an \\emph{expected} property of embedding-based confusability: relation types within the same domain naturally share semantic featur\n…[truncated 448 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 403
-          },
-          "id": "event-002541"
-        },
-        {
-          "source_line": 2542,
-          "timestamp": "2026-05-24T05:03:09.386712+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '366,372p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002542"
-        },
-        {
-          "source_line": 2543,
-          "timestamp": "2026-05-24T05:03:09.437566+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\input{prompt_appendix}\n\n\\section{Prompt Version Sensitivity Analysis}\n\\label{sec:appendix_prompt_sensitivity}\n\nWe assess whether the confusability effects reported in \\S\\ref{sec:bcs_controlled}--\\ref{sec:multi_channel} are robust to prompt design by replicating key experiments under the v2 prompt (\\S\\ref{sec:model}; full templates in Appendix~\\ref{sec:appendix_prompts})."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-002543"
-        },
-        {
-          "source_line": 2544,
-          "timestamp": "2026-05-24T05:03:09.541319+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '458,462p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002544"
-        },
-        {
-          "source_line": 2545,
-          "timestamp": "2026-05-24T05:03:09.642211+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\section{Format Independence: Paired Constrained vs.\\ Unconstrained Comparison}\n\\label{app:format-independence}\n\nTo test whether the BCS--accuracy relationship depends on the output format, we run both constrained (enum-based) and unconstrained (free-text) decoding on the same 25 batch type sets from the FewRel 80-relation pool (13 low-BCS, 12 high-BCS; count 8). Each batch uses identical instances and type sets; only the decoding format differs (Table~\\ref{tab:format_independence})."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-002545"
-        },
-        {
-          "source_line": 2546,
-          "timestamp": "2026-05-24T05:03:11.856070+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '605,612p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002546"
-        },
-        {
-          "source_line": 2547,
-          "timestamp": "2026-05-24T05:03:11.957044+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\section{BCS Independence from Type Composition}\n\\label{app:bcs-composition}\n\nFewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\\% of explained variance), composition unique $R^2 = 0.298$ (42.3\\%), and shared $R^2 = 0.147$ (20.9\\%). The near-orthogonality of predictors (VIF${}\\,=\\,1.06$, $r(\\text{BCS}, \\text{difficulty}) = -0.21$) confirms that BCS captures confusability-specific signal rather than a proxy for type difficulty.\n\n\\section{SCS vs.\\ Simple Baselines}\n\\label{app:scs-baselines}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-002547"
-        },
-        {
-          "source_line": 2548,
-          "timestamp": "2026-05-24T05:03:12.007679+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '679,692p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002548"
-        },
-        {
-          "source_line": 2549,
-          "timestamp": "2026-05-24T05:03:12.109785+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\section{Cross-Domain Connections}\n\\label{app:cross-domain}\n\nThe schema-associated degradation documented here is not unique to information extraction. Schema-Guided Dialogue systems (SGD/SGD-X; \\citealt{rastogi2020towards}) face an analogous challenge: as the number of intent and slot types grows, dialogue state tracking accuracy declines. \\citet{li2023evaluating} observed count-dependent degradation in ChatGPT-based IE, attributing it to prompt overload. Our two-dimensional decomposition offers a more refined explanation: schema size per se is not the sole predictor; rather, larger schemas increase the probability of including high-SCS pairs, which contribute disproportionately to confusion. This distinction has practical implications: a schema of 80 types with low mutual confusability may outperform a 40-type schema with clustered semantics, and suggests that confusability-aware design principles may generalize to any task where an LLM must discriminate among a prompt-specified label inventory.\n\n\\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}\n\\label{sec:appendix_cross_model_70b}\n\nTo test whether the two-dimensional degradation pattern generalizes across models, we replicate the count-curve and BCS-controlled experiments on Meta-LLaMA-3.1-70B-Instruct (FP8 quantization). All batch compositions, type pools, and test samples are identical to those used for Qwen3-32B (\\S\\ref{sec:count_curves}, \\S\\ref{sec:bcs_controlled}).\n\n\\begin{table}[h]\n\\centering\n\\small"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 102
-          },
-          "id": "event-002549"
-        },
-        {
-          "source_line": 2550,
-          "timestamp": "2026-05-24T05:03:12.110298+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '941,950p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002550"
-        },
-        {
-          "source_line": 2551,
-          "timestamp": "2026-05-24T05:03:12.160796+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting LaTeX.\n    \\item \\textbf{Literature:} summarizing related papers to inform the related-work section.\n\\end{itemize}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-002551"
-        },
-        {
-          "source_line": 2552,
-          "timestamp": "2026-05-24T05:03:14.838462+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "sed -n '345,368p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002552"
-        },
-        {
-          "source_line": 2553,
-          "timestamp": "2026-05-24T05:03:15.090232+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "\\label{sec:appendix_batch_composition}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Batch composition on FewRel 80-relation RE with oracle routing. $^\\dagger$Mean $\\pm$ SD across 15 random seeds.}\n\\label{tab:batch_composition}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{Accuracy} & \\textbf{Mean BCS} \\\\\n\\midrule\nSingle-pass (80 types) & 0.504 & 0.557 \\\\\nRandom batching (15 seeds)$^\\dagger$ & 0.788\\,$\\pm$\\,0.018 & 0.559 \\\\\nConfus.-aware (graph coloring) & \\textbf{0.802} & 0.552 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nSee the accompanying discussion in \\S\\ref{sec:sdgd}.\n\n\\input{prompt_appendix}\n\n\\section{Prompt Version Sensitivity Analysis}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 251
-          },
-          "id": "event-002553"
-        },
-        {
-          "source_line": 2554,
-          "timestamp": "2026-05-24T05:03:15.141029+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"0\\.802\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002554"
-        },
-        {
-          "source_line": 2555,
-          "timestamp": "2026-05-24T05:03:15.493674+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "359:Confus.-aware (graph coloring) & \\textbf{0.802} & 0.552 \\\\"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 352
-          },
-          "id": "event-002555"
-        },
-        {
-          "source_line": 2556,
-          "timestamp": "2026-05-24T05:03:15.494257+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -in \"llama\\|70b\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-002556"
-        },
-        {
-          "source_line": 2557,
-          "timestamp": "2026-05-24T05:03:15.544809+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "10:Figure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall drops sharply from 0.72 at count 1 to 0.52 at count 2, then declines further to 0.28 before recovering to 0.41 at full-schema, where type-filtering overhead is eliminated. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), is stable across seeds (Appendix~\\ref{app:variance-decomposition}; Jonckheere-Terpstra $p < 0.001$), and extends to LLaMA-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n68:The effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). Both open-weight families across all three scales (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null}).\n78:Error taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets ($\\rho = 0.843\\text{--}1.0$, all $p < 0.001$). I\n…[truncated 412 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-002557"
-        },
-        {
-          "source_line": 2558,
-          "timestamp": "2026-05-24T05:03:15.545330+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -in \"llama\\|70b\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-002558"
-        },
-        {
-          "source_line": 2559,
-          "timestamp": "2026-05-24T05:03:15.595809+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-002559"
-        },
-        {
-          "source_line": 2560,
-          "timestamp": "2026-05-24T05:03:19.164442+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-002560"
-        },
-        {
-          "source_line": 2561,
-          "timestamp": "2026-05-24T05:03:19.479227+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "4:All experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n37:The remaining variance reflects entity frequency, prompt position \\citep{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal into substantial batch-level RE accuracy variance (\\S\\ref{sec:bcs_controlled}). Independent MiniLM embeddings yield stronger SCS--confusion correlations on Few-NERD ($r = 0.172$ vs.\\ Qwen3 $r = 0.138$; Appendix), confirming that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\\ref{app:scs-baselines};  Appendix~\\ref{app:error-analysis} provides concrete examples).\n64:Direct regression on 100 random 16-type batches within the 80-relation pool yields a restricted-range estimate ($r = -0.22$, $R^2 \\approx 0.05$, $p = 0.027$) due to narrow BCS range. The pooled semipartial $R^2 = 0.273$ ($n = 204$) is the primary estimate; DocRED's $R^2 = 0.578$ is inflated by multicollinearity (semipartial $R^2_{\\text{BCS}} = 0.056$; Appendix~\\ref{sec:appendix_partial_corr}). Amplification from pairwise $r^2 \\approx 1.5\\%$ to batch-level ${\\sim}$27\\% reflects correlated confusable-type interactions compounding within shared prompts \\citep{robinson-1950-ecological,baan-2023-ecological} (${\\sim}3\\times$; Appendix~\\ref{app:aggregation-sim}).\n72:Under the v2 prompt, the extreme-batch BCS gap is $-$25.5\\,pp ($r = -0.919$, $p < 0.001$; $n{=}25$), modestly attenuated from v1 but highly significant. NER shows no batch-level BCS--F1 correlation under either prompt ($r \\approx 0$, $n = 450$; \\S\\ref{sec:multi_channel}). The effect holds across four structurally distinct prompt variants at count 32 (all $r \\leq -0.47$; Appendix~\\ref{sec:appen\n…[truncated 233 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 314
-          },
-          "id": "event-002561"
-        },
-        {
-          "source_line": 2562,
-          "timestamp": "2026-05-24T05:03:19.631605+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"sec:appendix_cross_model_70b\\|app:cross-domain\\|sec:appendix_prompt_sensitivity\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-002562"
-        },
-        {
-          "source_line": 2563,
-          "timestamp": "2026-05-24T05:03:19.833989+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 202
-          },
-          "id": "event-002563"
-        },
-        {
-          "source_line": 2564,
-          "timestamp": "2026-05-24T05:03:19.834481+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"70B\\|70b\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-002564"
-        },
-        {
-          "source_line": 2565,
-          "timestamp": "2026-05-24T05:03:19.990180+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "10:Figure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall drops sharply from 0.72 at count 1 to 0.52 at count 2, then declines further to 0.28 before recovering to 0.41 at full-schema, where type-filtering overhead is eliminated. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), is stable across seeds (Appendix~\\ref{app:variance-decomposition}; Jonckheere-Terpstra $p < 0.001$), and extends to LLaMA-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n68:The effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). Both open-weight families across all three scales (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null})."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 155
-          },
-          "id": "event-002565"
-        },
-        {
-          "source_line": 2566,
-          "timestamp": "2026-05-24T05:03:20.054975+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"sec:appendix_cross_model_70b\\|sec:appendix_cross_model_gemini\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-002566"
-        },
-        {
-          "source_line": 2567,
-          "timestamp": "2026-05-24T05:03:20.171488+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "10:Figure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall drops sharply from 0.72 at count 1 to 0.52 at count 2, then declines further to 0.28 before recovering to 0.41 at full-schema, where type-filtering overhead is eliminated. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), is stable across seeds (Appendix~\\ref{app:variance-decomposition}; Jonckheere-Terpstra $p < 0.001$), and extends to LLaMA-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n68:The effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). Both open-weight families across all three scales (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null})."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "elapsed_ms": 116
-          },
-          "id": "event-002567"
-        },
-        {
-          "source_line": 2568,
-          "timestamp": "2026-05-24T05:03:27.001654+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -n \"sec:appendix_cross_model_gemini\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
-            }
-          },
-          "id": "event-002568"
-        },
-        {
-          "source_line": 2569,
           "timestamp": "2026-05-24T05:03:27.202998+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -936,10 +21,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002569"
+          "id": "event-002521"
         },
         {
-          "source_line": 2570,
+          "source_line": 2522,
           "timestamp": "2026-05-24T05:03:27.203438+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -956,10 +41,10 @@
               "command": "grep -n \"sec:appendix_prompt_sensitivity\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
             }
           },
-          "id": "event-002570"
+          "id": "event-002522"
         },
         {
-          "source_line": 2571,
+          "source_line": 2523,
           "timestamp": "2026-05-24T05:03:27.504954+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -974,10 +59,10 @@
             "tool": "Bash",
             "elapsed_ms": 301
           },
-          "id": "event-002571"
+          "id": "event-002523"
         },
         {
-          "source_line": 2572,
+          "source_line": 2524,
           "timestamp": "2026-05-24T05:03:27.555765+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -995,10 +80,10 @@
               "limit": "100"
             }
           },
-          "id": "event-002572"
+          "id": "event-002524"
         },
         {
-          "source_line": 2573,
+          "source_line": 2525,
           "timestamp": "2026-05-24T05:03:28.059197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1013,10 +98,10 @@
             "tool": "Read",
             "elapsed_ms": 503
           },
-          "id": "event-002573"
+          "id": "event-002525"
         },
         {
-          "source_line": 2574,
+          "source_line": 2526,
           "timestamp": "2026-05-24T05:03:32.741961+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1033,10 +118,10 @@
               "command": "head -100 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002574"
+          "id": "event-002526"
         },
         {
-          "source_line": 2575,
+          "source_line": 2527,
           "timestamp": "2026-05-24T05:03:33.246365+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1051,10 +136,10 @@
             "tool": "Bash",
             "elapsed_ms": 504
           },
-          "id": "event-002575"
+          "id": "event-002527"
         },
         {
-          "source_line": 2576,
+          "source_line": 2528,
           "timestamp": "2026-05-24T05:03:36.213487+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1071,10 +156,10 @@
               "command": "sed -n '150,200p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
             }
           },
-          "id": "event-002576"
+          "id": "event-002528"
         },
         {
-          "source_line": 2577,
+          "source_line": 2529,
           "timestamp": "2026-05-24T05:03:36.515503+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1089,10 +174,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-002577"
+          "id": "event-002529"
         },
         {
-          "source_line": 2578,
+          "source_line": 2530,
           "timestamp": "2026-05-24T05:03:36.566230+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1109,10 +194,10 @@
               "command": "sed -n '330,348p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
             }
           },
-          "id": "event-002578"
+          "id": "event-002530"
         },
         {
-          "source_line": 2579,
+          "source_line": 2531,
           "timestamp": "2026-05-24T05:03:36.667575+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1127,10 +212,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002579"
+          "id": "event-002531"
         },
         {
-          "source_line": 2580,
+          "source_line": 2532,
           "timestamp": "2026-05-24T05:03:36.668113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1147,10 +232,10 @@
               "command": "sed -n '680,690p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
             }
           },
-          "id": "event-002580"
+          "id": "event-002532"
         },
         {
-          "source_line": 2581,
+          "source_line": 2533,
           "timestamp": "2026-05-24T05:03:36.720075+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1165,10 +250,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-002581"
+          "id": "event-002533"
         },
         {
-          "source_line": 2582,
+          "source_line": 2534,
           "timestamp": "2026-05-24T05:03:39.233125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1185,10 +270,10 @@
               "command": "sed -n '724,728p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
             }
           },
-          "id": "event-002582"
+          "id": "event-002534"
         },
         {
-          "source_line": 2583,
+          "source_line": 2535,
           "timestamp": "2026-05-24T05:03:39.334032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1203,10 +288,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002583"
+          "id": "event-002535"
         },
         {
-          "source_line": 2584,
+          "source_line": 2536,
           "timestamp": "2026-05-24T05:03:39.334556+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1223,10 +308,10 @@
               "command": "grep -A 5 \"sec:appendix_prompts\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | head -10"
             }
           },
-          "id": "event-002584"
+          "id": "event-002536"
         },
         {
-          "source_line": 2585,
+          "source_line": 2537,
           "timestamp": "2026-05-24T05:03:39.385136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1241,10 +326,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002585"
+          "id": "event-002537"
         },
         {
-          "source_line": 2586,
+          "source_line": 2538,
           "timestamp": "2026-05-24T05:03:49.693720+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1261,10 +346,10 @@
               "command": "grep -n \"label{sec:appendix_prompts}\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex"
             }
           },
-          "id": "event-002586"
+          "id": "event-002538"
         },
         {
-          "source_line": 2587,
+          "source_line": 2539,
           "timestamp": "2026-05-24T05:03:49.694181+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1281,10 +366,10 @@
               "command": "head -30 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex"
             }
           },
-          "id": "event-002587"
+          "id": "event-002539"
         },
         {
-          "source_line": 2588,
+          "source_line": 2540,
           "timestamp": "2026-05-24T05:03:49.794880+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1299,10 +384,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002588"
+          "id": "event-002540"
         },
         {
-          "source_line": 2589,
+          "source_line": 2541,
           "timestamp": "2026-05-24T05:03:49.795220+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1317,10 +402,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002589"
+          "id": "event-002541"
         },
         {
-          "source_line": 2590,
+          "source_line": 2542,
           "timestamp": "2026-05-24T05:04:08.467917+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1335,10 +420,10 @@
             "tool": "Agent",
             "elapsed_ms": 79258
           },
-          "id": "event-002590"
+          "id": "event-002542"
         },
         {
-          "source_line": 2591,
+          "source_line": 2543,
           "timestamp": "2026-05-24T05:04:51.084202+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1357,10 +442,10 @@
               "offset": "0"
             }
           },
-          "id": "event-002591"
+          "id": "event-002543"
         },
         {
-          "source_line": 2592,
+          "source_line": 2544,
           "timestamp": "2026-05-24T05:04:51.585659+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1375,10 +460,10 @@
             "tool": "Read",
             "elapsed_ms": 501
           },
-          "id": "event-002592"
+          "id": "event-002544"
         },
         {
-          "source_line": 2593,
+          "source_line": 2545,
           "timestamp": "2026-05-24T05:04:51.787102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1397,10 +482,10 @@
               "offset": "60"
             }
           },
-          "id": "event-002593"
+          "id": "event-002545"
         },
         {
-          "source_line": 2594,
+          "source_line": 2546,
           "timestamp": "2026-05-24T05:04:51.837857+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1415,10 +500,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002594"
+          "id": "event-002546"
         },
         {
-          "source_line": 2595,
+          "source_line": 2547,
           "timestamp": "2026-05-24T05:04:56.429541+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1437,10 +522,10 @@
               "offset": "79"
             }
           },
-          "id": "event-002595"
+          "id": "event-002547"
         },
         {
-          "source_line": 2596,
+          "source_line": 2548,
           "timestamp": "2026-05-24T05:04:56.480316+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1455,10 +540,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002596"
+          "id": "event-002548"
         },
         {
-          "source_line": 2597,
+          "source_line": 2549,
           "timestamp": "2026-05-24T05:05:50.738024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1475,10 +560,10 @@
               "text": "**附录可发现性自查结果**\n\n审计了全部 31 个附录 section，发现 **6 个顶层 section 完全没有正文 pointer**（另有 3 个 subsection 在被引父节点下可达，以及 AI Assistants 是 ARR 要求项自发现）。\n\n**必须补 pointer 的（审稿人很可能想看数据）：**\n\n1. **`sec:appendix_cross_model_70b`（LLaMA-70B 跨模型验证）** — results.tex 声称\"extends to LLaMA-70B\"但只引了 Gemini 附录，70B 的实际数据没有 pointer。审稿人一定会想核实。\n2. **`sec:appendix_batch_composition`（Batch Composition 结果）** — 包含 oracle 0.802（confusability-aware batching），是支持 confusability 假设的关键正面证据，但正文完全没引。\n3. **`app:format-independence`（格式无关性）** — constrained vs unconstrained 对比，鲁棒性验证，审稿人会看。\n4. **`app:bcs-composition`（BCS 与类型组成无关）** — 验证 BCS 不是 type composition 的伪影，方法论自证。\n\n**需要确认后决定的：**\n5. **`sec:appendix_prompt_sensitivity`** — 可能与已引的 `sec:appendix_prompt_variants` 内容重叠，需检查后决定合并还是补引。\n6. **`app:cross-domain`** — 需检查内容再决定。\n\n**Rebuttal 待机区判断：** 目前预留的 rebuttal 材料（contamination check、Monte Carlo aggregation、third embedding）都是**未执行的实验**，不存在\"已有数据藏着不给审稿人看\"的情况。上面 6 个有数据但没 pointer 的问题更紧迫。\n\n已派 Agent 修复，完成后编译 + push 匿名仓库。"
             }
           },
-          "id": "event-002597"
+          "id": "event-002549"
         },
         {
-          "source_line": 2598,
+          "source_line": 2550,
           "timestamp": "2026-05-24T05:05:54.503991+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1493,10 +578,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3765
           },
-          "id": "event-002598"
+          "id": "event-002550"
         },
         {
-          "source_line": 2599,
+          "source_line": 2551,
           "timestamp": "2026-05-24T05:06:24.865130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1513,10 +598,10 @@
               "text": "**[附录 pointer 修复 + 最终数据自查]**\n\n两个任务并行做：\n\n---\n\n**任务 A：补附录 pointer（优先级高）**\n\n以下附录 section 在正文中没有任何 `\\ref{}` 引用，审稿人找不到。请在正文最合适的位置补 pointer：\n\n1. **`sec:appendix_cross_model_70b`**（LLaMA-70B 验证）→ 在 results.tex line 68 \"extends to LLaMA-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini})\" 这句里，在 Gemini 引用旁边加上 70B 的引用。格式示例：`Appendix~\\ref{sec:appendix_cross_model_gemini}; LLaMA-70B details in Appendix~\\ref{sec:appendix_cross_model_70b}`\n\n2. **`sec:appendix_batch_composition`**（Batch Composition 结果，含 oracle 0.802）→ 在 sdgd_negative.tex 中合适位置加 pointer，比如在\"Architectures that avoid explicit merge...\"之前加一句：\"Confusability-aware batch composition achieves 0.802 accuracy under oracle assignment (Appendix~\\ref{sec:appendix_batch_composition})\"或类似。\n\n3. **`app:format-independence`**（格式无关性）→ 在 experimental_setup.tex 或 results.tex 中提到 output format 的地方加 pointer。\n\n4. **`app:bcs-composition`**（BCS 与类型组成无关）→ 在 experimental_setup.tex 或 method 中讨论 BCS 定义的地方加 pointer。\n\n5. **`sec:appendix_prompt_sensitivity`** 和 **`app:cross-domain`** — 先读内容判断：\n   - 如果 `sec:appendix_prompt_sensitivity` 和已引的 `sec:appendix_prompt_variants` 内容重叠，不用加新 pointer（已可达）\n   - 如果 `app:cross-domain` 内容有价值，在合适位置加 pointer；无价值则不管\n\n**注意**：加 pointer 要自然嵌入行文，不要生硬。每个 pointer 一两个词就够（\"Appendix~\\ref{...}\"），不要加长句子。\n\n---\n\n**任务 B：最终数据自查（运维要求的第二遍全量核查）**\n\n系统性核查 abstract / 正文 / 表 / 图 / appendix 里每个数字 vs registry.yaml + artifact。重点关注：\n\n- 跨位置一致性（abstract = 正文 = table cell）\n- 四舍五入位数全篇统一\n- Figure 数据源是否最新\n- 上次修复的 SDGD oracle 0.724 和 73.4% 是否全篇一致\n\n---\n\n两个任务完成后：编译论文 → 确认无 warning → commit → push 匿名仓库。汇报时列出所有改动。"
             }
           },
-          "id": "event-002599"
+          "id": "event-002551"
         },
         {
-          "source_line": 2600,
+          "source_line": 2552,
           "timestamp": "2026-05-24T05:06:26.423358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1531,10 +616,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 1558
           },
-          "id": "event-002600"
+          "id": "event-002552"
         },
         {
-          "source_line": 2601,
+          "source_line": 2553,
           "timestamp": "2026-05-24T05:06:33.137636+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1547,7 +632,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002601"
+          "id": "event-002553"
         }
       ]
     },
@@ -1555,7 +640,7 @@
       "number": 292,
       "messages": [
         {
-          "source_line": 2602,
+          "source_line": 2554,
           "timestamp": "2026-05-24T05:06:35.138097+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1569,10 +654,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
           },
-          "id": "event-002602"
+          "id": "event-002554"
         },
         {
-          "source_line": 2603,
+          "source_line": 2555,
           "timestamp": "2026-05-24T05:06:47.880272+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1585,7 +670,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002603"
+          "id": "event-002555"
         }
       ]
     },
@@ -1593,7 +678,7 @@
       "number": 293,
       "messages": [
         {
-          "source_line": 2604,
+          "source_line": 2556,
           "timestamp": "2026-05-24T05:37:49.079389+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1607,10 +692,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "system:keepalive"
           },
-          "id": "event-002604"
+          "id": "event-002556"
         },
         {
-          "source_line": 2605,
+          "source_line": 2557,
           "timestamp": "2026-05-24T05:37:55.126996+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1627,10 +712,10 @@
               "project": "schema-dag-extraction"
             }
           },
-          "id": "event-002605"
+          "id": "event-002557"
         },
         {
-          "source_line": 2606,
+          "source_line": 2558,
           "timestamp": "2026-05-24T05:37:55.177671+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1645,10 +730,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 50
           },
-          "id": "event-002606"
+          "id": "event-002558"
         },
         {
-          "source_line": 2607,
+          "source_line": 2559,
           "timestamp": "2026-05-24T05:38:02.181013+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1666,10 +751,10 @@
               "limit": "10"
             }
           },
-          "id": "event-002607"
+          "id": "event-002559"
         },
         {
-          "source_line": 2608,
+          "source_line": 2560,
           "timestamp": "2026-05-24T05:38:06.008667+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1684,10 +769,10 @@
             "tool": "mcp__agent-ml-research__feishu_read_chat_history",
             "elapsed_ms": 3827
           },
-          "id": "event-002608"
+          "id": "event-002560"
         },
         {
-          "source_line": 2609,
+          "source_line": 2561,
           "timestamp": "2026-05-24T05:38:24.185133+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1706,10 +791,10 @@
               "detail": "Agent idle 11m，回复可能丢失。立即 ping Agent 确认任务完成状态，如未完成则重发指令。10 分钟内闭环（确认修复 + 编译 + push 匿名仓库）。"
             }
           },
-          "id": "event-002609"
+          "id": "event-002561"
         },
         {
-          "source_line": 2610,
+          "source_line": 2562,
           "timestamp": "2026-05-24T05:38:24.839871+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1724,10 +809,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 654
           },
-          "id": "event-002610"
+          "id": "event-002562"
         },
         {
-          "source_line": 2611,
+          "source_line": 2563,
           "timestamp": "2026-05-24T05:38:31.334722+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1744,10 +829,10 @@
               "text": "**[状态确认 — 紧急]**\n\n你之前收到的两个任务（附录 pointer 修复 + 最终数据自查）完成了吗？\n\n如果已完成：\n1. 汇报修改了哪些文件、哪些行\n2. 确认是否已编译通过\n3. 确认是否已 commit + push 到匿名仓库\n\n如果未完成：立即执行，DDL 明天，今天必须闭环。\n\n简短汇报即可。"
             }
           },
-          "id": "event-002611"
+          "id": "event-002563"
         },
         {
-          "source_line": 2612,
+          "source_line": 2564,
           "timestamp": "2026-05-24T05:38:32.800053+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1762,10 +847,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 1465
           },
-          "id": "event-002612"
+          "id": "event-002564"
         },
         {
-          "source_line": 2613,
+          "source_line": 2565,
           "timestamp": "2026-05-24T05:38:34.687091+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1778,7 +863,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002613"
+          "id": "event-002565"
         }
       ]
     },
@@ -1786,7 +871,7 @@
       "number": 294,
       "messages": [
         {
-          "source_line": 2614,
+          "source_line": 2566,
           "timestamp": "2026-05-24T05:43:10.712576+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1800,10 +885,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "agent"
           },
-          "id": "event-002614"
+          "id": "event-002566"
         },
         {
-          "source_line": 2615,
+          "source_line": 2567,
           "timestamp": "2026-05-24T05:43:40.657144+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1820,10 +905,10 @@
               "text": "**[匿名仓库更新 — 紧急]**\n\npointer 修复改了 5 个 .tex 文件（results.tex, sdgd_negative.tex, introduction.tex, experimental_setup.tex, discussion.tex）。这些文件在匿名仓库里（上次 SDGD oracle 修复就 push 过 .tex）。\n\n立即：\n1. 在本地 repo commit pointer 修复\n2. 在 /tmp/anon_repo 同步更新这 5 个文件\n3. 用 Anonymous 作者 commit + push 到 GitHub\n\n完成后汇报 commit hash。"
             }
           },
-          "id": "event-002615"
+          "id": "event-002567"
         },
         {
-          "source_line": 2616,
+          "source_line": 2568,
           "timestamp": "2026-05-24T05:43:44.778172+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1838,10 +923,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 4121
           },
-          "id": "event-002616"
+          "id": "event-002568"
         },
         {
-          "source_line": 2617,
+          "source_line": 2569,
           "timestamp": "2026-05-24T05:43:52.631821+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1858,10 +943,10 @@
               "text": "**最终自查 + 附录 pointer 修复完成**\n\n**数据自查**：37 个数字全量核查，0 个不一致。SDGD oracle 0.724、73.4%、−23.9pp 全篇一致。编译通过，主文 8 页。\n\n**附录 pointer 修复**：5 个孤立附录 section 已补正文引用：\n- LLaMA-70B 验证 → results.tex\n- Batch Composition → sdgd_negative.tex\n- 格式无关性 → introduction.tex\n- BCS 组成无关 → experimental_setup.tex\n- Cross-Domain → discussion.tex\n\n正在将 .tex 修改 push 到匿名仓库，完成后汇报 commit hash。"
             }
           },
-          "id": "event-002617"
+          "id": "event-002569"
         },
         {
-          "source_line": 2618,
+          "source_line": 2570,
           "timestamp": "2026-05-24T05:43:53.386067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1876,10 +961,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 754
           },
-          "id": "event-002618"
+          "id": "event-002570"
         },
         {
-          "source_line": 2619,
+          "source_line": 2571,
           "timestamp": "2026-05-24T05:43:55.550559+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1892,7 +977,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002619"
+          "id": "event-002571"
         }
       ]
     },
@@ -1900,7 +985,7 @@
       "number": 295,
       "messages": [
         {
-          "source_line": 2620,
+          "source_line": 2572,
           "timestamp": "2026-05-24T05:44:10.951804+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1914,10 +999,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "agent"
           },
-          "id": "event-002620"
+          "id": "event-002572"
         },
         {
-          "source_line": 2621,
+          "source_line": 2573,
           "timestamp": "2026-05-24T05:44:30.110671+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1930,7 +1015,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002621"
+          "id": "event-002573"
         }
       ]
     },
@@ -1938,7 +1023,7 @@
       "number": 296,
       "messages": [
         {
-          "source_line": 2622,
+          "source_line": 2574,
           "timestamp": "2026-05-24T06:09:45.168373+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1952,10 +1037,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "system:restart_recovery"
           },
-          "id": "event-002622"
+          "id": "event-002574"
         },
         {
-          "source_line": 2623,
+          "source_line": 2575,
           "timestamp": "2026-05-24T06:09:59.277479+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1968,7 +1053,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002623"
+          "id": "event-002575"
         }
       ]
     },
@@ -1976,7 +1061,7 @@
       "number": 297,
       "messages": [
         {
-          "source_line": 2624,
+          "source_line": 2576,
           "timestamp": "2026-05-24T06:23:21.224206+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1990,10 +1075,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
           },
-          "id": "event-002624"
+          "id": "event-002576"
         },
         {
-          "source_line": 2625,
+          "source_line": 2577,
           "timestamp": "2026-05-24T06:23:30.898338+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2011,10 +1096,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
             }
           },
-          "id": "event-002625"
+          "id": "event-002577"
         },
         {
-          "source_line": 2626,
+          "source_line": 2578,
           "timestamp": "2026-05-24T06:23:31.418173+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2029,10 +1114,10 @@
             "tool": "Glob",
             "elapsed_ms": 519
           },
-          "id": "event-002626"
+          "id": "event-002578"
         },
         {
-          "source_line": 2627,
+          "source_line": 2579,
           "timestamp": "2026-05-24T06:23:38.249257+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2050,10 +1135,10 @@
               "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026/schema-dag-extraction\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\",\n  \"github_user\": \"anonymous-nlp-2026\",\n  \"repo_name\": \"schema-dag-extraction\"\n}\n"
             }
           },
-          "id": "event-002627"
+          "id": "event-002579"
         },
         {
-          "source_line": 2628,
+          "source_line": 2580,
           "timestamp": "2026-05-24T06:23:42.333208+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2068,10 +1153,10 @@
             "tool": "Write",
             "elapsed_ms": 4083
           },
-          "id": "event-002628"
+          "id": "event-002580"
         },
         {
-          "source_line": 2629,
+          "source_line": 2581,
           "timestamp": "2026-05-24T06:23:42.484205+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2089,10 +1174,10 @@
               "content": "_anonymous_repo.json\n"
             }
           },
-          "id": "event-002629"
+          "id": "event-002581"
         },
         {
-          "source_line": 2630,
+          "source_line": 2582,
           "timestamp": "2026-05-24T06:23:42.484738+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2107,10 +1192,10 @@
             "tool": "Write",
             "elapsed_ms": 0
           },
-          "id": "event-002630"
+          "id": "event-002582"
         },
         {
-          "source_line": 2631,
+          "source_line": 2583,
           "timestamp": "2026-05-24T06:23:46.147830+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2127,10 +1212,10 @@
               "text": "已持久化 URL 到 `_anonymous_repo.json`，并创建项目根 `.gitignore` 排除该文件。"
             }
           },
-          "id": "event-002631"
+          "id": "event-002583"
         },
         {
-          "source_line": 2632,
+          "source_line": 2584,
           "timestamp": "2026-05-24T06:23:49.595926+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2145,10 +1230,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3448
           },
-          "id": "event-002632"
+          "id": "event-002584"
         },
         {
-          "source_line": 2633,
+          "source_line": 2585,
           "timestamp": "2026-05-24T06:23:52.037418+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2161,7 +1246,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002633"
+          "id": "event-002585"
         }
       ]
     },
@@ -2169,7 +1254,7 @@
       "number": 298,
       "messages": [
         {
-          "source_line": 2634,
+          "source_line": 2586,
           "timestamp": "2026-05-24T06:54:19.105392+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2183,10 +1268,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "system:keepalive"
           },
-          "id": "event-002634"
+          "id": "event-002586"
         },
         {
-          "source_line": 2635,
+          "source_line": 2587,
           "timestamp": "2026-05-24T06:54:36.387192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2205,10 +1290,10 @@
               "detail": "三个问题回答：(1) GPU 空着——Reviewer 上轮已做 3 维正式评估，结论是 4 类候选实验（count=32 few-shot、第三 embedding、prompt variants、multi-seed）全部边际收益不值得跑，PASS。不是我自己说的。(2) 提交时间——运维 04:26 消息明确说\"OpenReview 由运维人工完成\"，运维自己知道 DDL。(3) 论文冷静评估——5 分钟内向用户确认提交时间安排，并简要复述 Reviewer 的 claim 强度评估结果。"
             }
           },
-          "id": "event-002635"
+          "id": "event-002587"
         },
         {
-          "source_line": 2636,
+          "source_line": 2588,
           "timestamp": "2026-05-24T06:54:37.040658+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2223,10 +1308,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 653
           },
-          "id": "event-002636"
+          "id": "event-002588"
         },
         {
-          "source_line": 2637,
+          "source_line": 2589,
           "timestamp": "2026-05-24T06:54:51.213018+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2243,10 +1328,10 @@
               "text": "**提交前最终确认**\n\n**1. GPU / 补充实验**：Reviewer 上轮做过正式 3 维评估（claim 强度 / 证据完整性 / 实验覆盖），结论是当前 4 类候选实验（count=32 few-shot、第三 embedding、prompt variants、multi-seed）边际收益均不足以值得在 DDL 前跑。这是 Reviewer 独立判断，不是我自己拍的。\n\n**2. 论文冷静评估**：\n- Core claim（count + confusability 二维退化）有 4 个模型 × 4 个数据集支撑\n- 最可能被攻击的点：(a) R²=0.273 解释力有限（已在 limitations 承认）; (b) NER 无 BCS 信号（已用 power analysis 解释）; (c) SDGD 是 negative result（已用 oracle routing 0.724 证明 confusability 本身有效、问题出在 merge）\n- 整体评估：solid empirical analysis paper，Findings 以上水平\n\n**3. 提交时间确认**：运维你之前说 OpenReview 手动提交，DDL 是明天 05-25。请确认你的提交时间安排——论文 PDF（v35，8 页主文，26 页含附录）、匿名仓库（91 文件，commit 8054e66）、ARR checklist 答案（之前已全部给出英文版）均已就绪。"
             }
           },
-          "id": "event-002637"
+          "id": "event-002589"
         },
         {
-          "source_line": 2638,
+          "source_line": 2590,
           "timestamp": "2026-05-24T06:54:54.678622+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2261,7 +1346,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3465
           },
-          "id": "event-002638"
+          "id": "event-002590"
         }
       ]
     },
@@ -2269,7 +1354,7 @@
       "number": 299,
       "messages": [
         {
-          "source_line": 2639,
+          "source_line": 2591,
           "timestamp": "2026-05-24T07:25:48.895980+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2283,10 +1368,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "system:keepalive"
           },
-          "id": "event-002639"
+          "id": "event-002591"
         },
         {
-          "source_line": 2640,
+          "source_line": 2592,
           "timestamp": "2026-05-24T07:26:09.110001+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2305,10 +1390,10 @@
               "detail": "三个行动：(1) GPU——考虑跑 contamination check（审稿人最可能问的 rebuttal 实验），立即派 Agent 评估可行性和时间。(2) 提交时间——已向运维确认，运维尚未回复，再追一次。(3) 最后一天利用——派 Agent 做 reference 格式检查 + 全文笔误扫描。15 分钟内汇报。"
             }
           },
-          "id": "event-002640"
+          "id": "event-002592"
         },
         {
-          "source_line": 2641,
+          "source_line": 2593,
           "timestamp": "2026-05-24T07:26:09.763462+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2323,10 +1408,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 653
           },
-          "id": "event-002641"
+          "id": "event-002593"
         },
         {
-          "source_line": 2642,
+          "source_line": 2594,
           "timestamp": "2026-05-24T07:26:22.388259+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2343,10 +1428,10 @@
               "text": "**[最后一天任务 — 三件事并行]**\n\nDDL 明天，cuda:0 空着。以下三件事并行做：\n\n**1. Contamination Check 可行性评估（5 分钟内回复）**\n审稿人很可能问\"FewRel 数据是否在 Qwen3 训练集中\"。我们 experiment_plan 里有 `exp_fewrel_contamination_check`。\n- 这个实验需要多长时间？\n- 需要什么资源？\n- 代码是否已准备好？\n- 如果 < 4 小时能跑完，建议现在就跑，有结果放附录比 rebuttal 时被动回应强得多。\n\n**2. Reference 格式检查**\n检查 references.bib：\n- 有没有格式不一致（有的用全名有的用缩写、会议名不统一等）\n- 有没有缺 year/venue/pages 的条目\n- 有没有重复条目\n- arXiv preprint 是否已有正式发表版本但未更新\n\n**3. 全文笔误扫描**\n快速通读所有 .tex 文件，查找：\n- 拼写错误\n- 语法问题\n- 重复的词（\"the the\"）\n- LaTeX 格式问题（如未闭合的括号、多余空格）\n\n三件事完成后统一汇报。"
             }
           },
-          "id": "event-002642"
+          "id": "event-002594"
         },
         {
-          "source_line": 2643,
+          "source_line": 2595,
           "timestamp": "2026-05-24T07:26:26.767913+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2361,7 +1446,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 4379
           },
-          "id": "event-002643"
+          "id": "event-002595"
         }
       ]
     },
@@ -2369,7 +1454,7 @@
       "number": 300,
       "messages": [
         {
-          "source_line": 2644,
+          "source_line": 2596,
           "timestamp": "2026-05-24T07:38:42.474273+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2383,10 +1468,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "agent"
           },
-          "id": "event-002644"
+          "id": "event-002596"
         },
         {
-          "source_line": 2645,
+          "source_line": 2597,
           "timestamp": "2026-05-24T07:39:20.571488+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2403,10 +1488,10 @@
               "text": "**最后一天检查完成**\n\n**Contamination**：无需新实验。Appendix `app:split-origin` 已有按 train/val split origin 控制的分析（β_BCS = -0.416, p < 0.001），可直接回应审稿人。GPU 空着合理。\n\n**修复了 5 处问题**：\n- 2 处裸 \"Appendix\" 补了 `\\ref{}` 引用\n- \"DocRE\" → \"DocRED\" 拼写修正（caption + 表格行）\n- VIF=1.18 补 math mode\n- \"LLaMA\" → \"Llama\" 全文统一（Llama 3.x 官方命名）\n\n**Reference 格式**：无 critical 问题。编译通过，26 页，0 undefined reference。\n\n**当前状态**：论文 PDF 已就绪，匿名仓库（代码）已就绪，ARR checklist 已就绪。等你提交。"
             }
           },
-          "id": "event-002645"
+          "id": "event-002597"
         },
         {
-          "source_line": 2646,
+          "source_line": 2598,
           "timestamp": "2026-05-24T07:39:24.094140+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2421,10 +1506,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3522
           },
-          "id": "event-002646"
+          "id": "event-002598"
         },
         {
-          "source_line": 2647,
+          "source_line": 2599,
           "timestamp": "2026-05-24T07:39:26.191522+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2437,7 +1522,7 @@
           "metadata": {
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
           },
-          "id": "event-002647"
+          "id": "event-002599"
         }
       ]
     },
@@ -2445,7 +1530,7 @@
       "number": 301,
       "messages": [
         {
-          "source_line": 2648,
+          "source_line": 2600,
           "timestamp": "2026-05-24T08:10:29.195024+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2459,10 +1544,10 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "source": "system:keepalive"
           },
-          "id": "event-002648"
+          "id": "event-002600"
         },
         {
-          "source_line": 2649,
+          "source_line": 2601,
           "timestamp": "2026-05-24T08:10:46.760361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2481,10 +1566,10 @@
               "detail": "四个行动：(1) 亲自检查 Agent 5 处修改的 diff，特别是 LLaMA→Llama 全局替换；(2) 匿名仓库只含代码不含 .tex，无需 push；(3) 派 Reviewer 做 camera-ready 级 claim-vs-data 通读；(4) 提交时间——运维已明确说手动提交且知道 DDL，第三次追问无新信息可追，但再发一次确认。"
             }
           },
-          "id": "event-002649"
+          "id": "event-002601"
         },
         {
-          "source_line": 2650,
+          "source_line": 2602,
           "timestamp": "2026-05-24T08:10:47.465325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2499,10 +1584,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 704
           },
-          "id": "event-002650"
+          "id": "event-002602"
         },
         {
-          "source_line": 2651,
+          "source_line": 2603,
           "timestamp": "2026-05-24T08:11:02.751436+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2521,10 +1606,10 @@
               "prompt": "In the paper directory /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/, the Agent recently did a global replacement of \"LLaMA\" to \"Llama\" across all .tex files. I need to verify this was done correctly and completely.\n\n1. Grep for any remaining \"LLaMA\" (case-sensitive) in all .tex files. Should find zero hits if replacement was complete.\n2. Grep for \"Llama\" to see all current occurrences and verify they look correct in context (show 1 line of context each).\n3. Grep for \"DocRED\" and \"DocRE[^D]\" to verify the DocRE→DocRED fix didn't miss anything or over-correct.\n4. Check the .bib file (references.bib or similar) - did the LLaMA→Llama change also affect bib entries? Bib keys with \"llama\" should be checked.\n5. Grep for bare \"Appendix\" without \\ref in results.tex to verify those were fixed.\n\nSearch breadth: very thorough"
             }
           },
-          "id": "event-002651"
+          "id": "event-002603"
         },
         {
-          "source_line": 2652,
+          "source_line": 2604,
           "timestamp": "2026-05-24T08:11:03.154310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2542,10 +1627,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002652"
+          "id": "event-002604"
         },
         {
-          "source_line": 2653,
+          "source_line": 2605,
           "timestamp": "2026-05-24T08:11:03.204997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2560,10 +1645,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002653"
+          "id": "event-002605"
         },
         {
-          "source_line": 2654,
+          "source_line": 2606,
           "timestamp": "2026-05-24T08:11:04.722420+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2580,10 +1665,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper -type f -name \"*.tex\" -o -name \"*.bib\" | head -20"
             }
           },
-          "id": "event-002654"
+          "id": "event-002606"
         },
         {
-          "source_line": 2655,
+          "source_line": 2607,
           "timestamp": "2026-05-24T08:11:04.924362+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2598,10 +1683,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002655"
+          "id": "event-002607"
         },
         {
-          "source_line": 2656,
+          "source_line": 2608,
           "timestamp": "2026-05-24T08:11:07.242521+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2621,10 +1706,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-002656"
+          "id": "event-002608"
         },
         {
-          "source_line": 2657,
+          "source_line": 2609,
           "timestamp": "2026-05-24T08:11:07.444044+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2639,10 +1724,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-002657"
+          "id": "event-002609"
         },
         {
-          "source_line": 2658,
+          "source_line": 2610,
           "timestamp": "2026-05-24T08:11:07.645794+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2663,10 +1748,10 @@
               "context": "1"
             }
           },
-          "id": "event-002658"
+          "id": "event-002610"
         },
         {
-          "source_line": 2659,
+          "source_line": 2611,
           "timestamp": "2026-05-24T08:11:07.847307+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2681,10 +1766,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-002659"
+          "id": "event-002611"
         },
         {
-          "source_line": 2660,
+          "source_line": 2612,
           "timestamp": "2026-05-24T08:11:08.299774+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2705,10 +1790,10 @@
               "context": "1"
             }
           },
-          "id": "event-002660"
+          "id": "event-002612"
         },
         {
-          "source_line": 2661,
+          "source_line": 2613,
           "timestamp": "2026-05-24T08:11:08.470521+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2723,10 +1808,10 @@
             "tool": "Grep",
             "elapsed_ms": 170
           },
-          "id": "event-002661"
+          "id": "event-002613"
         },
         {
-          "source_line": 2662,
+          "source_line": 2614,
           "timestamp": "2026-05-24T08:11:08.672041+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2747,10 +1832,10 @@
               "context": "1"
             }
           },
-          "id": "event-002662"
+          "id": "event-002614"
         },
         {
-          "source_line": 2663,
+          "source_line": 2615,
           "timestamp": "2026-05-24T08:11:08.722827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2765,10 +1850,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002663"
+          "id": "event-002615"
         },
         {
-          "source_line": 2664,
+          "source_line": 2616,
           "timestamp": "2026-05-24T08:11:10.892928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2788,10 +1873,10 @@
               "context": "1"
             }
           },
-          "id": "event-002664"
+          "id": "event-002616"
         },
         {
-          "source_line": 2665,
+          "source_line": 2617,
           "timestamp": "2026-05-24T08:11:11.094113+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2806,10 +1891,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-002665"
+          "id": "event-002617"
         },
         {
-          "source_line": 2666,
+          "source_line": 2618,
           "timestamp": "2026-05-24T08:11:11.446059+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2829,10 +1914,10 @@
               "context": "1"
             }
           },
-          "id": "event-002666"
+          "id": "event-002618"
         },
         {
-          "source_line": 2667,
+          "source_line": 2619,
           "timestamp": "2026-05-24T08:11:11.446434+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2847,10 +1932,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-002667"
+          "id": "event-002619"
         },
         {
-          "source_line": 2668,
+          "source_line": 2620,
           "timestamp": "2026-05-24T08:11:13.207227+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2867,10 +1952,10 @@
               "command": "grep -n \"Appendix\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex | grep -v \"Appendix~\" | head -30"
             }
           },
-          "id": "event-002668"
+          "id": "event-002620"
         },
         {
-          "source_line": 2669,
+          "source_line": 2621,
           "timestamp": "2026-05-24T08:11:13.359516+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2885,10 +1970,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-002669"
+          "id": "event-002621"
         },
         {
-          "source_line": 2670,
+          "source_line": 2622,
           "timestamp": "2026-05-24T08:11:15.177120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2905,10 +1990,10 @@
               "command": "grep -r \"LLaMA\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ 2>/dev/null | wc -l"
             }
           },
-          "id": "event-002670"
+          "id": "event-002622"
         },
         {
-          "source_line": 2671,
+          "source_line": 2623,
           "timestamp": "2026-05-24T08:11:15.428516+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2923,10 +2008,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-002671"
+          "id": "event-002623"
         },
         {
-          "source_line": 2672,
+          "source_line": 2624,
           "timestamp": "2026-05-24T08:11:15.429608+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2943,10 +2028,10 @@
               "command": "grep -c \"Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex"
             }
           },
-          "id": "event-002672"
+          "id": "event-002624"
         },
         {
-          "source_line": 2673,
+          "source_line": 2625,
           "timestamp": "2026-05-24T08:11:15.680967+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2961,10 +2046,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-002673"
+          "id": "event-002625"
         },
         {
-          "source_line": 2674,
+          "source_line": 2626,
           "timestamp": "2026-05-24T08:11:15.681464+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2981,10 +2066,10 @@
               "command": "grep -n \"DocRE\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | head -20"
             }
           },
-          "id": "event-002674"
+          "id": "event-002626"
         },
         {
-          "source_line": 2675,
+          "source_line": 2627,
           "timestamp": "2026-05-24T08:11:15.783828+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2999,10 +2084,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-002675"
+          "id": "event-002627"
         },
         {
-          "source_line": 2676,
+          "source_line": 2628,
           "timestamp": "2026-05-24T08:11:18.045189+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3019,10 +2104,10 @@
               "command": "grep -nE \"DocRE[^D]\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
             }
           },
-          "id": "event-002676"
+          "id": "event-002628"
         },
         {
-          "source_line": 2677,
+          "source_line": 2629,
           "timestamp": "2026-05-24T08:11:18.246595+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3037,10 +2122,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002677"
+          "id": "event-002629"
         },
         {
-          "source_line": 2678,
+          "source_line": 2630,
           "timestamp": "2026-05-24T08:11:18.297571+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3057,10 +2142,10 @@
               "command": "grep -rE \"DocRE[^D]\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex 2>/dev/null"
             }
           },
-          "id": "event-002678"
+          "id": "event-002630"
         },
         {
-          "source_line": 2679,
+          "source_line": 2631,
           "timestamp": "2026-05-24T08:11:18.348257+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3075,10 +2160,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002679"
+          "id": "event-002631"
         },
         {
-          "source_line": 2680,
+          "source_line": 2632,
           "timestamp": "2026-05-24T08:11:19.912938+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3097,10 +2182,10 @@
               "limit": "10"
             }
           },
-          "id": "event-002680"
+          "id": "event-002632"
         },
         {
-          "source_line": 2681,
+          "source_line": 2633,
           "timestamp": "2026-05-24T08:11:19.963639+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3115,10 +2200,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002681"
+          "id": "event-002633"
         },
         {
-          "source_line": 2682,
+          "source_line": 2634,
           "timestamp": "2026-05-24T08:11:21.571866+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3137,10 +2222,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002682"
+          "id": "event-002634"
         },
         {
-          "source_line": 2683,
+          "source_line": 2635,
           "timestamp": "2026-05-24T08:11:21.773200+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3155,10 +2240,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002683"
+          "id": "event-002635"
         },
         {
-          "source_line": 2684,
+          "source_line": 2636,
           "timestamp": "2026-05-24T08:11:21.773683+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3175,10 +2260,10 @@
               "command": "grep -i \"llama\\|LLaMA\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
             }
           },
-          "id": "event-002684"
+          "id": "event-002636"
         },
         {
-          "source_line": 2685,
+          "source_line": 2637,
           "timestamp": "2026-05-24T08:11:21.874519+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3193,10 +2278,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002685"
+          "id": "event-002637"
         },
         {
-          "source_line": 2686,
+          "source_line": 2638,
           "timestamp": "2026-05-24T08:11:24.794336+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3213,10 +2298,10 @@
               "command": "echo \"=== COMPREHENSIVE VERIFICATION SUMMARY ===\" && echo \"\" && echo \"1. LLaMA (case-sensitive) search:\" && grep -r \"LLaMA\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ 2>/dev/null && echo \"FOUND INSTANCES\" || echo \"✓ ZERO MATCHES - Replacement complete\" && echo \"\" && echo \"2. Llama occurrence count:\" && grep -r \"Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex 2>/dev/null | wc -l && echo \"\" && echo \"3. Files containing 'Llama':\" && grep -l \"Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex 2>/dev/null"
             }
           },
-          "id": "event-002686"
+          "id": "event-002638"
         },
         {
-          "source_line": 2687,
+          "source_line": 2639,
           "timestamp": "2026-05-24T08:11:25.548049+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3231,10 +2316,10 @@
             "tool": "Bash",
             "elapsed_ms": 753
           },
-          "id": "event-002687"
+          "id": "event-002639"
         },
         {
-          "source_line": 2688,
+          "source_line": 2640,
           "timestamp": "2026-05-24T08:11:25.548585+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3251,10 +2336,10 @@
               "command": "echo \"=== DOCRE VERIFICATION ===\" && echo \"\" && echo \"DocRED (correct) count:\" && grep -c \"DocRED\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex && echo \"\" && echo \"Incomplete 'DocRE' (incorrect) instances:\" && grep -rn \"DocRE\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex | grep -v \"DocRED\" | grep -v \"docred\" | head -5"
             }
           },
-          "id": "event-002688"
+          "id": "event-002640"
         },
         {
-          "source_line": 2689,
+          "source_line": 2641,
           "timestamp": "2026-05-24T08:11:25.649403+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3269,10 +2354,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002689"
+          "id": "event-002641"
         },
         {
-          "source_line": 2690,
+          "source_line": 2642,
           "timestamp": "2026-05-24T08:11:28.322463+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3289,10 +2374,10 @@
               "command": "grep -rn \"DocRE[^D]\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ 2>/dev/null"
             }
           },
-          "id": "event-002690"
+          "id": "event-002642"
         },
         {
-          "source_line": 2691,
+          "source_line": 2643,
           "timestamp": "2026-05-24T08:11:28.373148+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3307,10 +2392,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002691"
+          "id": "event-002643"
         },
         {
-          "source_line": 2692,
+          "source_line": 2644,
           "timestamp": "2026-05-24T08:11:30.683109+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3327,10 +2412,10 @@
               "command": "echo \"=== FINAL BARE APPENDIX CHECK ===\" && grep -rn \"Appendix[^~]\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex 2>/dev/null | grep -v \"Appendix~\" | head -10 || echo \"✓ No bare Appendix references found\""
             }
           },
-          "id": "event-002692"
+          "id": "event-002644"
         },
         {
-          "source_line": 2693,
+          "source_line": 2645,
           "timestamp": "2026-05-24T08:11:30.733855+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3345,10 +2430,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002693"
+          "id": "event-002645"
         },
         {
-          "source_line": 2694,
+          "source_line": 2646,
           "timestamp": "2026-05-24T08:11:32.391348+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3365,10 +2450,10 @@
               "command": "grep -rn \"Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex | head -30"
             }
           },
-          "id": "event-002694"
+          "id": "event-002646"
         },
         {
-          "source_line": 2695,
+          "source_line": 2647,
           "timestamp": "2026-05-24T08:11:32.442107+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3383,10 +2468,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002695"
+          "id": "event-002647"
         },
         {
-          "source_line": 2696,
+          "source_line": 2648,
           "timestamp": "2026-05-24T08:11:42.186645+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3401,10 +2486,10 @@
             "tool": "Agent",
             "elapsed_ms": 39435
           },
-          "id": "event-002696"
+          "id": "event-002648"
         },
         {
-          "source_line": 2697,
+          "source_line": 2649,
           "timestamp": "2026-05-24T08:11:54.661328+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3423,10 +2508,10 @@
               "offset": "112"
             }
           },
-          "id": "event-002697"
+          "id": "event-002649"
         },
         {
-          "source_line": 2698,
+          "source_line": 2650,
           "timestamp": "2026-05-24T08:11:54.862777+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3441,10 +2526,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002698"
+          "id": "event-002650"
         },
         {
-          "source_line": 2699,
+          "source_line": 2651,
           "timestamp": "2026-05-24T08:11:54.863271+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3462,10 +2547,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002699"
+          "id": "event-002651"
         },
         {
-          "source_line": 2700,
+          "source_line": 2652,
           "timestamp": "2026-05-24T08:11:54.964136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3479,6 +2564,932 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "ToolSearch",
             "elapsed_ms": 100
+          },
+          "id": "event-002652"
+        },
+        {
+          "source_line": 2653,
+          "timestamp": "2026-05-24T08:11:58.167164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+              "old_string": "DocRE missed rates decrease with BCS",
+              "new_string": "DocRED missed rates decrease with BCS"
+            }
+          },
+          "id": "event-002653"
+        },
+        {
+          "source_line": 2654,
+          "timestamp": "2026-05-24T08:12:09.284333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Edit",
+            "elapsed_ms": 11117
+          },
+          "id": "event-002654"
+        },
+        {
+          "source_line": 2655,
+          "timestamp": "2026-05-24T08:12:09.436780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__post_to_reviewer",
+            "tool_args": {
+              "text": "**[Camera-Ready Claim Consistency Check — 提交前最终审查]**\n\nDDL 明天 05-25，论文刚修了多处（LLaMA→Llama 全局替换、DocRE→DocRED 修正、2 处裸 Appendix 补引用、VIF math mode、5 个孤立附录 section 补正文 pointer）。\n\n请做一次 camera-ready 级别的 claim-vs-data 通读，重点：\n\n1. **Abstract / Intro / Conclusion 的 claim** 是否与正文实际数据完全对应（数字、方向、强度）\n2. **修改后 narrative 连贯性** — LLaMA→Llama 全局替换后，是否有 bib citation key 断裂、交叉引用失效\n3. **5 个新增 appendix pointer** 是否指向正确的 section（sec:appendix_cross_model_70b, sec:appendix_batch_composition, app:format-independence, app:bcs-composition, app:cross-domain）\n4. **Core claims checklist**：R²=0.273、VIF=1.18、TOST p=0.003/0.209、oracle 0.724 vs 0.504、极端 batch gap（这些数字在 abstract/intro/results/discussion 出现的地方是否全部一致）\n\n20 分钟内完成即可。"
+            }
+          },
+          "id": "event-002655"
+        },
+        {
+          "source_line": 2656,
+          "timestamp": "2026-05-24T08:12:13.914667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_session\\\": \\\"feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__post_to_reviewer",
+            "elapsed_ms": 4477
+          },
+          "id": "event-002656"
+        },
+        {
+          "source_line": 2657,
+          "timestamp": "2026-05-24T08:12:29.729873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**Diff 检查完成 + 发现 1 处遗漏已修**\n\nAgent 的 5 处修改验证结果：\n- LLaMA→Llama：24 处替换全部正确，零遗漏\n- 裸 Appendix：全部补了 `\\ref{}`\n- DocRE→DocRED：**发现 main.tex L114 表格 caption 还有 1 处遗漏**，已修\n\n匿名仓库只含代码不含 .tex，无需 push。\n\n已派 Reviewer 做提交前 camera-ready 级 claim-vs-data 通读（abstract/intro/conclusion 的 claim 与数据是否对应、新增 pointer 是否正确、核心数字跨位置一致性）。预计 20 分钟内出结果。\n\n**提交时间**：你之前说 OpenReview 手动提交，DDL 05-25。请确认你的提交时间安排——所有材料已就绪。"
+            }
+          },
+          "id": "event-002657"
+        },
+        {
+          "source_line": 2658,
+          "timestamp": "2026-05-24T08:12:30.384779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 654
+          },
+          "id": "event-002658"
+        },
+        {
+          "source_line": 2659,
+          "timestamp": "2026-05-24T08:12:32.488351+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修了最后一个 \"DocRE\" → \"DocRED\"，已派 Reviewer 做 camera-ready 级 claim-vs-data 通读。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
+          },
+          "id": "event-002659"
+        }
+      ]
+    },
+    {
+      "number": 302,
+      "messages": [
+        {
+          "source_line": 2660,
+          "timestamp": "2026-05-24T08:15:52.230929+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: info] Camera-Ready Claim Consistency Check — 提交前最终审查\n\n## 审查报告 — Claim-vs-Data 通读\n\n**结论**: PASS（无 critical / warning）\n\n### 1. Core Claims 数字一致性（全部 ✓）\n\n| 数值 | 出处数 | 一致性 |\n|------|--------|--------|\n| R²=0.273 | abstract, intro (L24), results (L50,L64) | ✓ 全部一致 |\n| VIF=1.18 | abstract (×2), intro (L24), results (L50,L55), table caption (main.tex:312) | ✓ 全部一致 |\n| TOST p=0.003 | abstract (L3), intro (L18), results (L81) | ✓ 全部一致 |\n| TOST p=0.209 | results (L81) | ✓ 仅出现一处，logit scale |\n| Oracle 0.724 vs 0.504 | sdgd caption: 0.72/0.50 (rounded), body: 0.724/0.504, appendix: 72.4%/50.4% | ✓ 精度差异合理 |\n| -49pp (count drop) | intro (L5): 88.0%→38.7% = 49.3pp | ✓ 四舍五入一致 |\n| -25.5pp (v2 gap) | results (L72), 3处 | ✓ 全部一致 |\n| 73.4% (multi-match) | sdgd caption (L7) + appendix table caption (main.tex:203) | ✓ 已统一 |\n\n### 2. LLaMA→Llama 替换\n\n- 全部 .tex 文件无残留 \"LLaMA\" ✓\n- Bib citation key `llama3-2024` 未受影响（小写，title 用 `{Llama}` 保护） ✓\n- 文中引用 `\\citep{llama3-2024}` 正常 ✓\n\n### 3. DocRE→DocRED 修正\n\n- 全部 .tex 文件搜索 `DocRE[^D]`：无残留 ✓\n\n### 4. 五个新增 Appendix Pointer\n\n| Label | 解析到 | 状态 |\n|-------|--------|------|\n| `sec:appendix_cross_model_70b` | Appendix T (main.tex:686) | ✓ |\n| `sec:appendix_batch_composition` | Appendix F (main.tex:345) | ✓ |\n| `app:format-independence` | Appendix K (main.tex:460) | ✓ |\n| `app:bcs-composition` | Appendix O (main.tex:607) | ✓ |\n| `app:cross-domain` | Appendix S (main.tex:681) | ✓ |\n\n所有 label 在 main.aux 中正确解析，无 undefined reference。\n\n### 5. Narrative 连贯性\n\n- Abstract claims (3 条) 与 Results 章节一一对应 ✓\n- Intro contributions (3 条) 均有正文 section 支撑 ✓\n- Discussion \"remaining ~73% of variance\"（= 1-0.273）与 multi-match \"73.4%\" 是不同含义、不同上下文，无歧义 ✓\n- Conclusion 无新 claim 超出正文范围 ✓\n\n### 6. 编译状态\n\n- main.aux 中仅 1 条 `\\@undefined` 引用（来自 `caption@xref`，LaTeX 内部宏，非用户级问题） ✓\n\n**论文数据一致、pointer 完整、narrative 连贯。可以提交。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "reviewer"
+          },
+          "id": "event-002660"
+        },
+        {
+          "source_line": 2661,
+          "timestamp": "2026-05-24T08:16:05.788007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**Reviewer Camera-Ready 通读完成：PASS**\n\n核心数字（R²=0.273、VIF=1.18、TOST p=0.003/0.209、oracle 0.724/0.504、73.4%）全篇一致。5 个新 appendix pointer 正确解析。LLaMA→Llama 和 DocRED 替换无残留。Narrative 连贯，无 undefined reference。\n\n**论文已达 submission-ready。所有材料就绪，等你提交。**"
+            }
+          },
+          "id": "event-002661"
+        },
+        {
+          "source_line": 2662,
+          "timestamp": "2026-05-24T08:16:09.104545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3316
+          },
+          "id": "event-002662"
+        },
+        {
+          "source_line": 2663,
+          "timestamp": "2026-05-24T08:16:12.791066+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 确认 PASS：数字全部一致、5 个新 pointer 正确解析、narrative 连贯。论文可以提交。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director"
+          },
+          "id": "event-002663"
+        }
+      ]
+    },
+    {
+      "number": 303,
+      "messages": [
+        {
+          "source_line": 2664,
+          "timestamp": "2026-05-24T08:46:58.240414+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。\n调用规范：\n  • `keepalive_respond(kind=\"ACK\", minutes=X, detail=\"具体行动\")`\n  • `keepalive_respond(kind=\"WAIT\", minutes=X, detail=\"等什么\")`\n  • `keepalive_respond(kind=\"BLOCKED\", detail=\"阻塞项\")`\n工具失败时按返回的 `remediation` 重调直到成功。不调用工具 = 视为本轮无响应（连续 2 次升级运维群）。\n\n---\n\n⏰ **[System → Director]**\n\n30 分钟没动作。Reviewer 08:16 已确认 PASS，论文 submission-ready，然后你就消失了。\n\n**提交时间。** 第四次问了。DDL 是明天 05-25。论文 ready，Reviewer PASS，你到底什么时候提交？我不要\"运维知道\"，我要一个具体时间点。如果运维一直没回，你的 Plan B 是什么？\n\n**GPU。** cuda:0 空着，之前讨论过边际收益不足我接受了。但论文已经 ready，提交前这段空窗期，有没有 rebuttal 预防性实验可以先跑？比如 robustness check、additional baseline、reviewer 最可能要求的 ablation？你和 Reviewer 讨论过这个了吗？\n\n**提交后的事。** R30 审稿待用户审批、Anonymous GitHub 上传待用户操作——这两件事你催用户了吗？还是在等用户自己想起来？\n\n**响应协议。** 上两轮你都用工具回复了，保持住。\n\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "system:keepalive"
+          },
+          "id": "event-002664"
+        },
+        {
+          "source_line": 2665,
+          "timestamp": "2026-05-24T08:47:10.983007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__keepalive_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "tool_args": {
+              "kind": "WAIT",
+              "minutes": "60",
+              "detail": "等运维提交。状态：(1) 提交时间——运维明确说\"由运维人工完成\"且知道 DDL 05-25，已发 4 次确认，运维未回复具体时间点但未表示有阻塞，Plan B 不存在（OpenReview 提交必须人工操作，我无法代替）。(2) GPU——contamination 已有、4 类候选实验 Reviewer 评估过边际不足、rebuttal 预防性实验无明确 target，空着合理。(3) 提交后事项——R30 审稿和 GitHub 操作均已在之前消息中通知运维，无新信息可追。论文 100% ready，当前无可执行的技术任务。"
+            }
+          },
+          "id": "event-002665"
+        },
+        {
+          "source_line": 2666,
+          "timestamp": "2026-05-24T08:47:11.686340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"kind\\\": \\\"WAIT\\\", \\\"minutes\\\": 60, \\\"next_nudge_in_minutes\\\": 60}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "mcp__agent-ml-research__keepalive_respond",
+            "elapsed_ms": 703
+          },
+          "id": "event-002666"
+        }
+      ]
+    },
+    {
+      "number": 304,
+      "messages": [
+        {
+          "source_line": 2667,
+          "timestamp": "2026-05-24T09:06:43.511205+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉 (ou_0195e0d106ef80f1c9301b8284339e0b)]: 你把论文中的每张图都单独发给我，并说明这张图是图几以及他的作用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "source": "feishu:oc_51326259fe46fbae9da26b81cf03f1f8"
+          },
+          "id": "event-002667"
+        },
+        {
+          "source_line": 2668,
+          "timestamp": "2026-05-24T09:06:57.567277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find all paper figures",
+              "subagent_type": "Explore",
+              "prompt": "In the paper at /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/, I need to find ALL figures used in the paper.\n\n1. Search all .tex files for \\includegraphics commands. For each, extract:\n   - The file path of the image\n   - The figure number (from \\label{fig:...} and surrounding \\begin{figure})\n   - The caption text (from \\caption{...})\n\n2. Also check the figures directory: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/ — list all files there.\n\n3. For each figure, note whether it's in the main text or appendix.\n\nBe very thorough — I need every single figure, including subfigures and multi-panel figures.\n\nSearch breadth: very thorough"
+            }
+          },
+          "id": "event-002668"
+        },
+        {
+          "source_line": 2669,
+          "timestamp": "2026-05-24T09:06:59.351353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ -type f -name \"*.tex\" | head -20"
+            }
+          },
+          "id": "event-002669"
+        },
+        {
+          "source_line": 2670,
+          "timestamp": "2026-05-24T09:06:59.869704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 518
+          },
+          "id": "event-002670"
+        },
+        {
+          "source_line": 2671,
+          "timestamp": "2026-05-24T09:07:01.485969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\includegraphics",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-002671"
+        },
+        {
+          "source_line": 2672,
+          "timestamp": "2026-05-24T09:07:01.987871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-7-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-8-\\begin{minipage}[t]{0.48\\textwidth}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-9-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:10:\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-11-\\end{minipage}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-12-\\hfill\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-13-\\begin{minipage}[t]{0.48\\textwidth}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-14-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:15:\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-16-\\end{minipage}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-17-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-18-\\label{fig:main_results}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex-28-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex-29-\\begin{figure}[t]\n/home/u\n…[truncated 3632 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Grep",
+            "elapsed_ms": 501
+          },
+          "id": "event-002672"
+        },
+        {
+          "source_line": 2673,
+          "timestamp": "2026-05-24T09:07:01.988292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/ 2>/dev/null || echo \"Directory not found or empty\""
+            }
+          },
+          "id": "event-002673"
+        },
+        {
+          "source_line": 2674,
+          "timestamp": "2026-05-24T09:07:02.523619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 816K\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 23 12:31 .\ndrwxr-xr-x 3 ubuntu ubuntu 4.0K May 15 16:09 ..\n-rw-r--r-- 1 ubuntu ubuntu  19K May 22 20:41 fig_bcs_scaling.pdf\n-rw-r--r-- 1 ubuntu ubuntu  50K May 22 20:41 fig_bcs_scaling.png\n-rw-r--r-- 1 ubuntu ubuntu  18K May 19 15:19 fig_count_curves.pdf\n-rw-r--r-- 1 ubuntu ubuntu  83K May 19 15:19 fig_count_curves.png\n-rw-r--r-- 1 ubuntu ubuntu  19K May 22 20:41 fig_error_taxonomy.pdf\n-rw-r--r-- 1 ubuntu ubuntu 149K May 22 20:41 fig_error_taxonomy.png\n-rw-r--r-- 1 ubuntu ubuntu  35K May 23 12:30 fig_framework.pdf\n-rw-r--r-- 1 ubuntu ubuntu 123K May 23 12:30 fig_framework.png\n-rw-r--r-- 1 ubuntu ubuntu  20K May 15 16:50 fig_sdgd_comparison.pdf\n-rw-r--r-- 1 ubuntu ubuntu  99K May 15 16:50 fig_sdgd_comparison.png\n-rw-r--r-- 1 ubuntu ubuntu  37K May 23 19:53 fig_sdgd_pipeline.pdf\n-rw-r--r-- 1 ubuntu ubuntu 138K May 23 19:53 fig_sdgd_pipeline.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 535
+          },
+          "id": "event-002674"
+        },
+        {
+          "source_line": 2675,
+          "timestamp": "2026-05-24T09:07:03.634505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-002675"
+        },
+        {
+          "source_line": 2676,
+          "timestamp": "2026-05-24T09:07:04.145638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.28 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n6\t\n7\t\\looseness=-1\n8\tWhat explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n9\t\n10\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accuracy (Figure~\\ref{fig:framework}).\n11\t\n12\tWe ask three quest\n…[truncated 4163 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 511
+          },
+          "id": "event-002676"
+        },
+        {
+          "source_line": 2677,
+          "timestamp": "2026-05-24T09:07:04.146038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-002677"
+        },
+        {
+          "source_line": 2678,
+          "timestamp": "2026-05-24T09:07:04.246828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).\n5\t\n6\t\\begin{figure*}[t]\n7\t\\centering\n8\t\\begin{minipage}[t]{0.48\\textwidth}\n9\t\\centering\n10\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n11\t\\end{minipage}\n12\t\\hfill\n13\t\\begin{minipage}[t]{0.48\\textwidth}\n14\t\\centering\n15\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n16\t\\end{minipage}\n17\t\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 batch-composition seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \\textbf{(b)} Illustrative BCS-controlled FewRel accuracy: each bar represents one extreme-BCS batch per condition. Slopes are consistent across pool conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps. Statistical evidence is provided by the pooled regression (\\S\\ref{sec:bcs_controlled}, semipartial $R^2 = 0.273$, $n = 204$).}\n18\t\\label{fig:main_results}\n19\t\\end{figure*}\n20\t\n21\t\\subsection{Tasks and Datasets}\n22\t\\label{sec:datasets}\n23\t\n24\t\\paragraph{Few-NERD (NER).}\n25\tFew-NERD \\citep{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains. We sample 1{,}000 instances uniformly from the test set; type frequency follows the natural long-tail distribution of Few-NERD. Evaluation uses token-level text matching. Pairwise analysis covers 1{,}953 type pairs with non-zero co-occurrence out of $\\binom{66}{2}=2{,}145$ possible pairs.\n26\t\n27\t\\paragraph{FewRel (RE).}\n28\tFewRel \\citep{fewrel-2018} conta\n…[truncated 8967 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002678"
+        },
+        {
+          "source_line": 2679,
+          "timestamp": "2026-05-24T09:07:04.297584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+            }
+          },
+          "id": "event-002679"
+        },
+        {
+          "source_line": 2680,
+          "timestamp": "2026-05-24T09:07:04.398559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\t\\looseness=-1\n10\tFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall drops sharply from 0.72 at count 1 to 0.52 at count 2, then declines further to 0.28 before recovering to 0.41 at full-schema, where type-filtering overhead is eliminated. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix~\\ref{sec:appendix_figures}). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), is stable across seeds (Appendix~\\ref{app:variance-decomposition}; Jonckheere-Terpstra $p < 0.001$), and extends to Llama-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n11\t\n12\t\\subsection{Pairwise Confusability and Type Confusion}\n13\t\\label{sec:pairwise}\n14\t\n15\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n16\t\n17\t\\begin{table}[t]\n18\t\\centering\n19\t\\small\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{llrrrrr}\n22\t\\toprule\n23\t\\textbf{Dataset} & \\textbf{Embed.} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{9\n…[truncated 10881 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002680"
+        },
+        {
+          "source_line": 2681,
+          "timestamp": "2026-05-24T09:07:04.399069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+            }
+          },
+          "id": "event-002681"
+        },
+        {
+          "source_line": 2682,
+          "timestamp": "2026-05-24T09:07:04.449623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Schema Decomposition}\n2\t\\label{sec:sdgd}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_sdgd_pipeline.pdf}\n7\t\\caption{Schema decomposition pipeline and failure modes. Two structural bottlenecks emerge: \\textbf{routing failure} in RE (per-sub-schema none-rates only 20--40\\%, causing 73.4\\% of instances to match multiple sub-schemas; oracle routing recovers to 0.72 vs.\\ single-pass 0.50) and \\textbf{merge amplification} in NER/ED (union merge doubles false positives, F1 drops $-$19\\,pp).}\n8\t\\label{fig:sdgd_pipeline}\n9\t\\end{figure}\n10\t\n11\t\\looseness=-1\n12\tA natural intervention is to partition the schema so confusable types never co-occur (Figure~\\ref{fig:sdgd_pipeline}). We tested Schema-DAG-Guided Decomposition (SDGD), which applies greedy graph coloring on the SCS graph to assign types to low-confusability batches. While oracle routing recovers accuracy (0.724 vs.\\ 0.504 single-pass), all practical routing strategies fall below the single-pass baseline, and NER decomposition amplifies false positives (F1: 0.445$\\to$0.251). Even oracle accuracy falls short of per-type baselines ({>}0.85): merge amplification is the structural bottleneck---union merge doubles false positives (precision: 0.56$\\to$0.21) while voting merge sacrifices recall. Confusability-aware batch composition avoids routing entirely and achieves higher accuracy under oracle assignment (Appendix~\\ref{sec:appendix_batch_composition}). Architectures that avoid explicit merge (e.g., retrieval-based type selection) may circumvent this. Full protocol and analysis are in Appendix~\\ref{sec:appendix_sdgd}.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002682"
+        },
+        {
+          "source_line": 2683,
+          "timestamp": "2026-05-24T09:07:06.894594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex"
+            }
+          },
+          "id": "event-002683"
+        },
+        {
+          "source_line": 2684,
+          "timestamp": "2026-05-24T09:07:06.995499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\n11\t\\title{Supplementary Material for: How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}\n12\t\n13\t\\author{Anonymous}\n14\t\n15\t\\begin{document}\n16\t\\maketitle\n17\t\n18\tAll supplementary material is included in the appendix of the main paper.\n19\t\n20\t\\end{document}\n21\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002684"
+        },
+        {
+          "source_line": 2685,
+          "timestamp": "2026-05-24T09:07:07.046236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex"
+            }
+          },
+          "id": "event-002685"
+        },
+        {
+          "source_line": 2686,
+          "timestamp": "2026-05-24T09:07:07.046883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\lstset{\n2\t  basicstyle=\\ttfamily\\small,\n3\t  breaklines=true,\n4\t  breakatwhitespace=true,\n5\t  columns=fullflexible\n6\t}\n7\t\n8\t\\section{Prompt Templates}\n9\t\\label{sec:appendix_prompts}\n10\t\n11\tThis appendix reproduces the complete prompt templates used for all three extraction tasks.\n12\tAll prompts are injected into a single \\texttt{user} message (no system prompt); the model's chat template adds the system/assistant framing.\n13\tBoth versions provide a JSON-formatted type schema to the vLLM constrained-decoding engine; the schema is \\emph{not} included in the natural-language prompt itself.\n14\tWe use greedy decoding (\\texttt{temperature=0}, \\texttt{seed=42}) throughout.\n15\t\n16\t\\medskip\\noindent\n17\t\\textbf{Notation.}\n18\tPlaceholders are shown in \\texttt{\\{braces\\}}.\n19\tText \\textbf{added in v2} (relative to v1) is marked with $\\triangleright$.\n20\tText \\textbf{removed in v2} is marked with \\sout{strikethrough}.\n21\t\n22\t\\subsection{Named Entity Recognition (Few-NERD)}\n23\t\n24\t\\paragraph{v1 prompt (with character offsets).}\n25\t\n26\t\\begin{small}\n27\t\\begin{lstlisting}\n28\tExtract all named entities from the following text.\n29\tOnly extract entities of the following types:\n30\t- {type_1}: {definition_1}\n31\t- {type_2}: {definition_2}\n32\t  ...\n33\t\n34\tText: {input_text}\n35\t\n36\tOutput as JSON: [{\"text\": \"...\", \"type\": \"...\",\n37\t                  \"start\": ..., \"end\": ...}]\n38\t\\end{lstlisting}\n39\t\\end{small}\n40\t\n41\t\\noindent\n42\t\\textbf{v1 constrained-decoding schema:}\n43\t\\begin{small}\n44\t\\begin{lstlisting}\n45\t{\"type\": \"array\",\n46\t \"items\": {\"type\": \"object\",\n47\t   \"properties\": {\n48\t     \"text\":  {\"type\": \"string\"},\n49\t     \"type\":  {\"type\": \"string\",\n50\t               \"enum\": [<sorted_types>]},\n51\t     \"start\": {\"type\": \"integer\"},\n52\t     \"end\":   {\"type\": \"integer\"}},\n53\t   \"required\": [\"text\",\"type\",\"start\",\"end\"]}}\n54\t\\end{lstlisting}\n55\t\\end{small}\n56\t\n57\t\\paragraph{v2 prompt (text+type only).}\n58\t\n59\t\\begin{small}\n60\t\\begin{lstlisting}\n61\tExtract all named entities from the foll\n…[truncated 5211 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002686"
+        },
+        {
+          "source_line": 2687,
+          "timestamp": "2026-05-24T09:07:09.215280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"\\\\\\\\label{fig:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ 2>/dev/null"
+            }
+          },
+          "id": "event-002687"
+        },
+        {
+          "source_line": 2688,
+          "timestamp": "2026-05-24T09:07:09.761207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex:\\label{fig:sdgd_pipeline}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\\label{fig:error_taxonomy}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:\\label{fig:framework}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:\\label{fig:main_results}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 545
+          },
+          "id": "event-002688"
+        },
+        {
+          "source_line": 2689,
+          "timestamp": "2026-05-24T09:07:09.761557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ -type f -name \"*.tex\" | xargs grep -l \"appendix\\|Appendix\" | head -10"
+            }
+          },
+          "id": "event-002689"
+        },
+        {
+          "source_line": 2690,
+          "timestamp": "2026-05-24T09:07:09.761741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-002690"
+        },
+        {
+          "source_line": 2691,
+          "timestamp": "2026-05-24T09:07:11.220633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-002691"
+        },
+        {
+          "source_line": 2692,
+          "timestamp": "2026-05-24T09:07:11.718444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (27248 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Read",
+            "elapsed_ms": 497
+          },
+          "id": "event-002692"
+        },
+        {
+          "source_line": 2693,
+          "timestamp": "2026-05-24T09:07:14.459500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"appendix\\|Appendix\\|\\\\\\\\input\\|\\\\\\\\include\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | head -30"
+            }
+          },
+          "id": "event-002693"
+        },
+        {
+          "source_line": 2694,
+          "timestamp": "2026-05-24T09:07:14.935298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          },
+          "id": "event-002694"
+        },
+        {
+          "source_line": 2695,
+          "timestamp": "2026-05-24T09:07:14.935875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24:\\input{abstract}\n26:\\input{introduction}\n28:\\input{related_work}\n30:\\input{experimental_setup}\n32:\\input{results}\n34:\\input{sdgd_negative}\n36:\\input{discussion}\n42:Primary experiments use Qwen3-32B; cross-model validation (Llama-8B/70B, Gemini Flash) covers count and BCS dimensions but not secondary analyses (TOST, SDGD, error taxonomy). TOST separability holds on the probability scale but is inconclusive on the logit scale. Single-seed greedy decoding limits point-estimate precision (residual SD${}\\,=\\,0.88$\\,pp; Appendix~\\ref{app:variance-decomposition}). All evidence is correlational; mechanistic confirmation remains future work.\n45:DocRED's severe VIF (50.9) prevents reliable BCS quantification; semipartial $R^2{}\\,=\\,5.6\\%$ is directional only (Appendix~\\ref{sec:appendix_factorial}).\n48:Four English Wikipedia/Wikidata datasets in a zero-shot setting; few-shot, fine-tuned, domain-specific, and non-English scenarios remain untested. BCS predicts RE batch accuracy but not NER, where errors scatter across non-type modes (Appendix~\\ref{app:relaxed-matching}). Cross-dataset consistency is converging evidence, not independent replication \\citep{rothman-1990}.\n50:% \\input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF\n54:\\appendix\n57:\\label{sec:appendix_figures}\n152:\\label{sec:appendix_sdgd}\n196:\\label{sec:appendix_routing}\n223:\\label{sec:appendix_factorial}\n259:\\label{sec:appendix_within_pool}\n264:\\label{sec:appendix_residualized_bcs}\n305:\\label{sec:appendix_partial_corr}\n324:As Table~\\ref{tab:partial_corr} shows, on FewRel, BCS and degree centrality are only moderately correlated ($r = 0.39$), and the BCS effect survives nearly intact after partialling ($r_{\\text{partial}} = -0.537$ vs.\\ $r_{\\text{zero}} = -0.570$; semipartial $R^2 = 0.273$). On DocRED, the near-perfect BCS--centrality correlation ($r = 0.99$) makes it impossible to fully separate the two predictors; the significant partial correlation ($p < 0.001$) indicates BCS retains pred\n…[truncated 1039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 476
+          },
+          "id": "event-002695"
+        },
+        {
+          "source_line": 2696,
+          "timestamp": "2026-05-24T09:07:14.936201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "952 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-002696"
+        },
+        {
+          "source_line": 2697,
+          "timestamp": "2026-05-24T09:07:16.646092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -n '54,952p' /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex | grep -n \"includegraphics\\|label{fig\""
+            }
+          },
+          "id": "event-002697"
+        },
+        {
+          "source_line": 2698,
+          "timestamp": "2026-05-24T09:07:16.746973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002698"
+        },
+        {
+          "source_line": 2699,
+          "timestamp": "2026-05-24T09:07:16.747416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/ -type f \\( -name \"*.pdf\" -o -name \"*.png\" \\) -exec basename {} \\; | sort"
+            }
+          },
+          "id": "event-002699"
+        },
+        {
+          "source_line": 2700,
+          "timestamp": "2026-05-24T09:07:16.898193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_bcs_scaling.pdf\nfig_bcs_scaling.png\nfig_count_curves.pdf\nfig_count_curves.png\nfig_error_taxonomy.pdf\nfig_error_taxonomy.png\nfig_framework.pdf\nfig_framework.png\nfig_sdgd_comparison.pdf\nfig_sdgd_comparison.png\nfig_sdgd_pipeline.pdf\nfig_sdgd_pipeline.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
+            "tool": "Bash",
+            "elapsed_ms": 150
           },
           "id": "event-002700"
         }

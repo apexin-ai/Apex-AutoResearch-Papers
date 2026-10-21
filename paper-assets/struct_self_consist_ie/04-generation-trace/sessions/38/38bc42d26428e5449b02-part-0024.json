@@ -3,247 +3,10 @@
   "session_id": "38bc42d26428e5449b02",
   "rounds": [
     {
-      "number": 240,
-      "messages": [
-        {
-          "source_line": 4141,
-          "timestamp": "2026-05-20T13:39:56.593248+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "struct_self_consist_ie",
-              "filters": "{'status': 'DONE'}",
-              "limit": "5",
-              "fields": "['exp_id', 'status', 'conclusion', 'updated_at']"
-            }
-          },
-          "id": "event-004141"
-        },
-        {
-          "source_line": 4142,
-          "timestamp": "2026-05-20T13:39:57.145194+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_b1_scd_conll_control\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T13:08:32.832Z\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_qwen25_7b_fewnerd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:45:54.613Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen25_72b_fewshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T00:54:59.032Z\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_qwen25_72b_zeroshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T16:23:10.481Z\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_wnut17_qwen25_7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T11:49:07.313Z\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 5, \\\"total\\\": 171, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5403}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 551
-          },
-          "id": "event-004142"
-        },
-        {
-          "source_line": 4143,
-          "timestamp": "2026-05-20T13:40:16.864929+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "当前状态正常，无新完成实验待审。训练进度总结：\n\n**即将完成：**\n- **14B**（5090-c GPU 0,1）：40713/41180 = 98.9%，loss=0.0044，约 17 分钟后完成\n\n**进行中：**\n- **32B**（5090 GPU 0-3）：30069/41180 = 73.0%，loss=0.0156，epoch 3.65/5.0，预计 May 21 ~06:30 UTC\n- **SCD standard**（5090-b GPU 0）：2211/8142 = 27.2%，预计 ~01:00 UTC\n- **SCD fallback**（5090-b GPU 1）：2347/8142 = 28.8%，预计 ~00:55 UTC\n- **SCD theta3**（5090-b GPU 3）：2363/9412 = 25.1%，预计 ~01:30 UTC\n\n**GPU 合规性**：✅ 所有进程均在 `gpu_constraint` 白名单内\n\n**注意**：5090-b GPU 2 空闲（VLLM kill 后释放），5090-c GPU 2,3 空闲。可用于新任务。\n\n等待 14B 完成通知或其他 worker_done 事件。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
-          },
-          "id": "event-004143"
-        }
-      ]
-    },
-    {
       "number": 241,
       "messages": [
         {
-          "source_line": 4144,
-          "timestamp": "2026-05-20T13:40:17.398820+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[System 触发审查]:\n[R25 审稿回应方案 — 请独立审查]\n\nR25 评分 3.5/3.5 (Borderline Conference)。用户已给出 Writing v2 Sprint 指令。以下是逐条 Action Matrix，请审查方案可行性、遗漏风险、技术细节。\n\n## Holistic Pass: 2 个 SYSTEMIC_ISSUE\n\n**SYSTEMIC_A: Framing Overclaim** — 4/5 信号 selection 失效是 definitional（instance-level by construction），论文呈现为 empirical surprise。\n→ 修复: §4 重构为 two-tier gap (definitional + empirical)；Abstract/Intro 删 \"surprising\"/\"diagnose\" 对 instance-level signals 的框定。\n\n**SYSTEMIC_B: Statistical Claim Strength** — n=23 cross-dataset null; SciERC p_adj=0.20; 仅 1/4 construction 显著。\n→ 修复: power analysis + 软化 null 结论 + 醒目标注 p_adj。\n\n## 逐条 Action Matrix\n\n### CRITICAL (必须修)\n\n| ID | 问题 | 方案 | 执行者 |\n|----|------|------|--------|\n| W1 (R25-N3 + R23-N2) | Def vs emp gap 未区分 | §4 重写为 §4.1 Definitional Gap + §4.2 Empirical Gap；Title 删 \"Addressing\" → \"The Correlation-Selection Gap in SC for NER\"；Abstract 删 structured prediction generality | Paper Agent |\n| W2 (R25-N1) | n=23 underpowered null | Agent 计算 post-hoc power (80% power detectable min ρ ≈ 0.55)；正文改 \"no evidence at current sample size\" | Agent + Paper Agent |\n| W3 (R25-N2) | §5.1 preliminary + §5.3 ongoing | 删除 §5.3 全部；§5.1 \"preliminary\" → \"exploratory\"，移 1 句到 Future Work | Paper Agent |\n| W4 (R25-VIS1) | Figure 10 占位符 | Agent 生成 oracle scaling curve 或删除 figure | Agent |\n\n### WARNING (应修)\n\n| ID | 问题 | 方案 |\n|----|------|------|\n| W5 (R25-W1) | SciERC p_adj=0.20 | 正文醒目标注 + 讨论 1/4 显著的范围含义 |\n| W6 (R25-W2) | k=57 family 不透明 | Agent 枚举 57 tests → Appendix 列出 |\n| W7 (R25-W3) | 72B confounded | §6.2 结论 hedge \"under this specific 72B ZS configuration\" |\n| W8 (R25-W4) | Seeds 偏少 | 现阶段 wont_fix（DDL 前无法跑 5 seeds），Limitations 坦承 |\n| W9 (R25-W5) | Entity independence | Agent 计算 entity pair PMI → Appendix 讨论违反程度 |\n| W10 (R25-W6) | Bound 松弛 | 明确定位为 diagnostic（识别 α 为 bottleneck）非 predictive |\n| W11 (R24-W5 再提) | Self-Certainty/P(True) 未测 | Discussion 增加实质性讨论 |\n| W12 (R25-N3) | NER-only framing | 叙事严格限 NER + RE 结果提到正文 Discussion |\n| W13 (R25-W8) | 引用质量 | Agent audit 4 not-found + 3 mismatch + 17 orphan |\n| W14 (R25-W7) | Yao et al. 差异化 | Related Work 加 head-to-head 段落 |\n| W15 (R25-W9) | LP compression 机制 | Discussion 加 calibration 文献对接段落 |\n| W16 (R25-W10) | 三因素 cascade | §4 重构为 diagnostic cascade（degeneracy → headroom → LP compression） |\n\n### 用户新增: Phase Transition Theory Unification (§6)\n\n用户提议将 N inverse scaling + MBR α balanced utility + P degeneracy decomposition 三者合并为 unified §6 \"Phase Transitions in Threshold-Based Aggregation\"。包含：\n- §6.1 MBR Foundation (Proposition 1)\n- §6.2 Phase Transition Theorem (θ < θ_c → inverse scaling)\n- §6.3 Degeneracy Decomposition (E[ΔF1] bound)\n\n**请审查**:\n1. 这个 unification 是否 sound？N inverse scaling 的 θ=2/N 低阈值触发和 MBR θ_c=α/(α+1) 的联系是否 tight？\n2. 称之为 \"Phase Transition Theorem\" 是否 overclaim？实际上是 empirical observation + heuristic bound\n3. 在 ≤0.8pp 主文空间内是否可行？\n4. 是否有遗漏的 R25 审稿意见？\n5. W8 (seeds) wont_fix 是否合理？\n6. Title 删 \"Addressing\" 是否正确？R24 已降级 construction 为 mitigation"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "source": "system"
-          },
-          "id": "event-004144"
-        },
-        {
-          "source_line": 4145,
-          "timestamp": "2026-05-20T13:40:33.783018+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "struct_self_consist_ie",
-              "file": "paper_framing.md",
-              "max_chars": "12000"
-            }
-          },
-          "id": "event-004145"
-        },
-        {
-          "source_line": 4146,
-          "timestamp": "2026-05-20T13:40:34.084644+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — struct_self_consist_ie\\\\n\\\\n> Updated 2026-05-20 — D189/D190 B2 LEAKAGE FIX + P DOWNGRADE. Title: \\\\\\\"Strong Predictors, Weak Selectors: Addressing the Correlation-Selection Gap in Self-Consistency for Named Entity Recognition\\\\\\\". **Round 10 critical fixes**: (1) B2 in-domain +3.62pp CONFIRMED LEAKED (train-on-test) — deleted from paper, awaiting out-of-fold re-evaluation; cross-dataset negative transfer valid; (2) P \\\\\\\"Impossibility Theorem\\\\\\\" downgraded to \\\\\\\"Degeneracy Decomposition\\\\\\\" — Theorem 1 trivial, Theorem 2 tautological, \\\\\\\"information-theoretic\\\\\\\" overclaim removed; (3) Ceiling-gap framing retained; (4) MBR v3 retained; (5) FewNERD-primary retained; (6) N Inverse Scaling core finding solid (θ=0.5 immune). Target: Main 4.3+. Scale: 7B→14B→32B→72B Qwen2.5 + 8B cross-family (Qwen3+LLaMA). 14B/32B training in progress.\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 **Main Conference** (via ARR May 2026)\\\\n- Deadline: ARR May cycle, 2026-05-25\\\\n\\\\n## Core Claims (D157 updated — TRIPLE CONTRIBUTION: QE + diagnostic + prescriptive)\\\\n\\\\n### Claim 1 (PRIMARY — Dual Contribution: QE Framework + Selection Diagnostic)\\\\n**Positive contribution (A)**: Confidence signals reliably predict structured IE output quality at the population level (AUROC up to 0.82, ρ up to 0.45), enabling practical QE/selective prediction.\\\\n**Diagnostic contribution (B)** (D154 revised): Selection viability depends on LP signal quality and dataset characteristics, not degeneracy alone:\\\\n- **Degeneracy as headroom predictor**: High degeneracy eliminates selection headroom (CoNLL 47.4% degen → 0 net gain). Within fixed dataset-model settings, degeneracy causally modulates LP effectiveness (SciERC epoch ablation: −1.18/+0.74/+0.99pp at 3/5/10 epochs; per-entity-type within Few-NERD ρ=−0.881). But acro\n…[truncated 10543 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 301
-          },
-          "id": "event-004146"
-        },
-        {
-          "source_line": 4147,
-          "timestamp": "2026-05-20T13:40:34.085021+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "struct_self_consist_ie",
-              "file": "report.md",
-              "max_chars": "12000"
-            }
-          },
-          "id": "event-004147"
-        },
-        {
-          "source_line": 4148,
-          "timestamp": "2026-05-20T13:40:34.135738+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_b1_scd_threshold_ablation | Construction threshold sweep for SCD pseudo-label generation on FewNERD: θ∈{1/N, 2/N, 3/N, 0.5}. Higher θ = more conservative pseudo-labels (higher precision, lower recall). Optimal θ balances pseudo-label quality vs quantity for SCD training effectiveness. | — | — | — |\\\\n| exp_b1_scd_fewnerd_curriculum_q | Q variant SCD with curriculum ordering: use B2 entity verifier confidence to stratify pseudo-labels (conf>0.8→Round1, 0.5-0.8→Round2, conf<0.5→discard). Curriculum by verifier confidence improves SCD convergence and final greedy F1 vs standard flat SCD on FewNERD. | — | — | — |\\\\n| exp_b1_scd_fewnerd_standard | Standard Self-Consistency Distillation on FewNERD: fine-tune Qwen3-8B-FT with theta2n construction pseudo-labels (32,565 instances) mixed 1:1 with gold data. Greedy F1 after SCD should approach N=8 construction F1 (0.764 vs current 0.748). Transductive setting: pseudo-labels from test set SC outputs. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_b3_prompted_diversity: Structurally diverse prompt templates (role framing, output format variants, few-shot exemplar diversity) increase inter-sample entity extraction diversity beyond temperature-only diversity, improving construction F1 over identical-prompt N=8 sampling on FewNERD/SciERC/CoNLL.（等待人工审批）\\\\n- exp_b1_scd: Self-Consistency Distillation via theta2n construction pseudo-labels can teach Qwen3-8B-FT to internalize SC benefits: after iterative SCD (M0→M1→M2→M3), greedy F1 should approach N=8 construction F1 (FewNERD target: 0.764 vs current greedy 0.748). CoNLL serves as negative control (construction Δ=-0.4pp, SCD should not help). Transductive setting: pseudo-labels \n…[truncated 6194 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 50
-          },
-          "id": "event-004148"
-        },
-        {
-          "source_line": 4149,
-          "timestamp": "2026-05-20T13:40:43.821640+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "struct_self_consist_ie",
-              "file": "decisions.yaml",
-              "max_chars": "6000"
-            }
-          },
-          "id": "event-004149"
-        },
-        {
-          "source_line": 4150,
-          "timestamp": "2026-05-20T13:40:44.976111+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 196\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 04:23 UTC\\\\n  summary: 'MVP 方案: ACE05 上验证 structural consistency vs Fleiss'' Kappa 的 correlation\\\\n    差异'\\\\n  rationale: 'PMC12888769 用 surface-level Fleiss'' Kappa 在 zero-shot 模型上得到 ρ=0.20-0.28，我们假设\\\\n    fine-tuned 模型 + structural consistency (soft Jaccard) 能达到 ρ≥0.40。这是整个论文的基础假设——如果\\\\n    structural consistency 不能更好地预测准确率，后续的 adaptive gating 无从谈起。Phase 0 pilot 设计: Qwen3-8B\\\\n    fine-tuned on ACE05, N=8 samples, 200 instances, 对比两种 consistency metric 的 Spearman\\\\n    ρ。Pass ≥0.40, Fail <0.30。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 04:27 UTC\\\\n  summary: 采纳 Reviewer 审查意见，收紧 MVP pass/fail 标准\\\\n  rationale: 'Reviewer 指出 5 个问题，全部合理采纳：(1) PASS 必须要求 EAE (high-headroom subtask) ρ≥0.40，仅\\\\n    NER 通过不够（ceiling effect 可能虚高）；(2) MARGINAL 区间加 time-boxed protocol: N=16 追加 +\\\\n    1天上限；(3) 加 fine-tuning 质量门控 (NER≥73, EAE≥45)，模型不行时先修 fine-tuning；(4) ACE05 今天必须确认；(5)\\\\n    监控 T=1.0 per-sample F1 分布，>30% F1=0 时追加 T=0.7。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-14 04:53 UTC\\\\n  summary: SciERC RE 替代 ACE05 EAE 作为 MVP high-headroom subtask\\\\n  rationale: ACE05 需 LDC 许可，用户未确认。SciERC 公开可得，有 NER+RE 两个 subtask。RE base F1 ~47（与\\\\n    ACE05 EAE ~52 相当），结构复杂度高（entity pair + relation type），headroom 大，是 EAE 的合理替代。PASS\\\\n    标准更新为 RE ρ≥0.40。需要补实现 RE 的 consistency + evaluation + pipeline 支持。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 07:38 UTC\\\\n  summary: 'Gate 0: NER PASS (60.4%), RE FAIL (33.8%). 执行方案 C——当前模型先跑 pilot + 追训改进版，需修复\\\\n    RE evaluation'\\\\n  rationale: RE 33.8% 低于 40% 阈值但不阻塞 pilot：(1) headroom 大，oracle best-of-N 有提升空间；(2)\\\\n    consistency correlation 不要求高绝对 F1，要求 per-instance variance；(3) 弱模型上验证假设结论更强。但\\\\n    Reviewer 发\n…[truncated 4585 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 1154
-          },
-          "id": "event-004150"
-        },
-        {
-          "source_line": 4151,
-          "timestamp": "2026-05-20T13:40:44.977946+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/b2_oof/comparison.json"
-            }
-          },
-          "id": "event-004151"
-        },
-        {
-          "source_line": 4152,
-          "timestamp": "2026-05-20T13:40:45.078579+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"greedy_f1\": 0.8216,\n3\t  \"majority_vote_f1\": 0.8048,\n4\t  \"oof_path_a_f1\": 0.8248,\n5\t  \"oof_path_b_f1\": 0.8061,\n6\t  \"original_b2_claim_delta_pp\": 3.62,\n7\t  \"oof_path_a_delta_pp\": 0.32,\n8\t  \"oof_path_b_delta_pp\": -1.55,\n9\t  \"oof_beats_greedy\": false,\n10\t  \"per_dataset\": {\n11\t    \"scierc\": {\n12\t      \"n_instances\": 1587,\n13\t      \"n_entities\": 8274,\n14\t      \"greedy\": {\n15\t        \"precision\": 0.6727,\n16\t        \"recall\": 0.6584,\n17\t        \"f1\": 0.6655\n18\t      },\n19\t      \"majority_vote\": {\n20\t        \"precision\": 0.7127,\n21\t        \"recall\": 0.6125,\n22\t        \"f1\": 0.6588\n23\t      },\n24\t      \"path_a_oof\": {\n25\t        \"precision\": 0.6712,\n26\t        \"recall\": 0.6857,\n27\t        \"f1\": 0.6783,\n28\t        \"threshold\": 1.0\n29\t      },\n30\t      \"path_b_oof\": {\n31\t        \"precision\": 0.726,\n32\t        \"recall\": 0.6071,\n33\t        \"f1\": 0.6613,\n34\t        \"filter_threshold\": 0.4\n35\t      }\n36\t    },\n37\t    \"conll\": {\n38\t      \"n_instances\": 8268,\n39\t      \"n_entities\": 23664,\n40\t      \"greedy\": {\n41\t        \"precision\": 0.9099,\n42\t        \"recall\": 0.9142,\n43\t        \"f1\": 0.9121\n44\t      },\n45\t      \"majority_vote\": {\n46\t        \"precision\": 0.9315,\n47\t        \"recall\": 0.895,\n48\t        \"f1\": 0.9129\n49\t      },\n50\t      \"path_a_oof\": {\n51\t        \"precision\": 0.9314,\n52\t        \"recall\": 0.9042,\n53\t        \"f1\": 0.9176,\n54\t        \"threshold\": 2.0\n55\t      },\n56\t      \"path_b_oof\": {\n57\t        \"precision\": 0.9407,\n58\t        \"recall\": 0.8905,\n59\t        \"f1\": 0.9149,\n60\t        \"filter_threshold\": 0.5\n61\t      }\n62\t    },\n63\t    \"fewnerd\": {\n64\t      \"n_instances\": 9000,\n65\t      \"n_entities\": 48709,\n66\t      \"greedy\": {\n67\t        \"precision\": 0.7924,\n68\t        \"recall\": 0.795,\n69\t        \"f1\": 0.7937\n70\t      },\n71\t      \"majority_vote\": {\n72\t        \"precision\": 0.853,\n73\t        \"recall\": 0.6839,\n74\t        \"f1\": 0.7591\n75\t      },\n76\t      \"path_a_oof\": {\n77\t        \"precision\": 0.7865,\n78\t        \"recall\": 0.8014,\n79\t        \"f1\": 0.7939,\n80\t        \"t\n…[truncated 203 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-004152"
-        },
-        {
-          "source_line": 4153,
+          "source_line": 4141,
           "timestamp": "2026-05-20T13:40:52.504195+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -261,10 +24,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling/scaling_results.json"
             }
           },
-          "id": "event-004153"
+          "id": "event-004141"
         },
         {
-          "source_line": 4154,
+          "source_line": 4142,
           "timestamp": "2026-05-20T13:40:57.282347+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -279,10 +42,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4778
           },
-          "id": "event-004154"
+          "id": "event-004142"
         },
         {
-          "source_line": 4155,
+          "source_line": 4143,
           "timestamp": "2026-05-20T13:40:57.282769+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -300,10 +63,10 @@
               "limit": "50"
             }
           },
-          "id": "event-004155"
+          "id": "event-004143"
         },
         {
-          "source_line": 4156,
+          "source_line": 4144,
           "timestamp": "2026-05-20T13:40:57.383391+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -318,10 +81,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-004156"
+          "id": "event-004144"
         },
         {
-          "source_line": 4157,
+          "source_line": 4145,
           "timestamp": "2026-05-20T13:42:03.398965+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -339,10 +102,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-004157"
+          "id": "event-004145"
         },
         {
-          "source_line": 4158,
+          "source_line": 4146,
           "timestamp": "2026-05-20T13:42:03.399457+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -357,10 +120,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-004158"
+          "id": "event-004146"
         },
         {
-          "source_line": 4159,
+          "source_line": 4147,
           "timestamp": "2026-05-20T13:43:01.517523+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -378,10 +141,10 @@
               "text": "## R25 审稿回应方案审查\n\n**结论**: WARNING — 方案整体方向正确，但有 3 个需要调整的点和 1 个时序风险。\n\n---\n\n### 逐项审查\n\n**SYSTEMIC_A (Framing Overclaim)**: [severity: info] 方案正确。4/5 信号（SJ/FK/EM/VC）是 instance-level aggregates → 无法 rank candidates，这确实是 definitional 而非 empirical surprise。§4 拆分为 Definitional Gap + Empirical Gap 是合理修复。\n\n**SYSTEMIC_B (Statistical Claim Strength)**: [severity: info] 方案正确。n=23 cross-dataset null（ρ=0.052, p=0.81）确实 underpowered。80% power 下可检测的最小 ρ ≈ 0.55，远大于观测值。软化为 \"no evidence at current sample size\" + post-hoc power analysis 是标准做法。\n\n**W1 (Def vs Emp gap)**: [severity: info] 合理。Title 删 \"Addressing\" → \"The Correlation-Selection Gap...\" 需要条件判断——见下方时序风险。\n\n**W2 (n=23 underpowered)**: [severity: info] 合理。\n\n**W3 (§5.1/§5.3)**: [severity: info] 删除 §5.3 ongoing + §5.1 降级为 exploratory 合理。\n\n**W4 (Figure 10 占位符)**: [severity: info] **已解决**。Oracle scaling figure 已在 autodl-5090 `/root/autodl-tmp/struct_self_consist_ie/artifacts/f1_scaling/fig_oracle_scaling.pdf` 生成完毕（我已在 P0 审查中 PASS），6 configs 全部 R² > 0.999。Agent 只需 sync 到本地 artifacts 即可。\n\n**W5-W7**: [severity: info] 方案合理，无异议。\n\n**W8 (Seeds wont_fix)**: [severity: info] **合理**。14B 单次训练 ~24h，32B ~32h。DDL 前跑 5 seeds 需 96-128 额外 GPU-hours，不可行。建议 Limitations 中除坦承外，强调 7B/8B 层面已有 3 seeds 且结论一致（SJ ρ: 0.360/0.383/0.371 across seeds），作为部分 seed 稳定性证据。\n\n**W9-W16**: [severity: info] 方案合理，无异议。\n\n---\n\n### 需要调整的 3 个点\n\n**[severity: warning] §6 \"Phase Transition Theorem\" 命名 overclaim**\n\n三者（N inverse scaling + MBR θ_c + 退化分解）的联系是 sound 的：θ=2/N at N→∞ → θ→0 → always below θ_c=α/(α+1) → precision 坍塌 → inverse scaling。概念逻辑清晰。\n\n但称之为 \"Phase Transition Theorem\" 有两个问题：\n1. **重蹈覆辙**：Theorem 1/2 刚从 \"Impossibility Theorem\" 降级为 \"Degeneracy Decomposition\"（D189/D190），再用 \"Theorem\" 标签会引发同一审稿人的不信任。Phase transition 在物理/数学中有严格定义（临界现象、不连续性），这里只是 regime boundary，降级是渐进的而非突变。\n2. **证据层级不匹配**：这是 empirical observation + heuristic bound，不是形式化证明。审稿人会问：\"Where is the proof that the transition is sharp?\"\n\n**建议**: 改名为 \"Threshold Regime Analysis\" 或 \"Aggregation Regime Characterization\"。用 Proposition（非 Theorem）表述 θ_c 的存在性，用实验数据佐证 regime 边界。\n\n**[severity: warning] ≤0.8pp 空间不足以容纳三小节**\n\n§6.1 MBR Foundation（Proposition 1 设定）+ §6.2 Regime Analysis + §6.3 Degeneracy Decomposition 三小节压入 0.8 页极为紧张。MBR setup + utility 定义本身需要 ~0.3pp。\n\n**建议**: §6.1 MBR Foundation 移入 Appendix，主文仅保留结论引用（\"Following the MBR framework (Appendix X), we derive...\"）。这样 §6 主文 ~0.5pp 可行。\n\n**[severity: warning] W13 引用问题应提升优先级**\n\n4 not-found + 3 mismatch + 17 orphan = 24 条引用问题。审稿人对引用质量很敏感——R25 已经明确标了 W8 (引用质量)。这不只是 WARNING，如果 not-found 的 4 条是正文 claim 的支撑引用，可能构成 CRITICAL（claim without source）。\n\n**建议**: 引用审计在 Paper Agent 开始重写前完成，避免基于错误引用重写章节后再修。\n\n---\n\n### 时序风险\n\n**[severity: warning] Title 删 \"Addressing\" 应等 B1 SCD 结果**\n\n当前 B1 SCD FewNERD 三个实验（standard/fallback/theta3）正在 5090-b 训练，预计 ~01:00-01:30 UTC May 21 完成。如果 SCD 产出正向结果（greedy F1 提升 ≥1pp），论文就有了 prescriptive contribution（\"SC benefits can be distilled into greedy\"），title 保留 \"Addressing\" 是合理的。\n\n现在移除 \"Addressing\" = 预判 B1 SCD 失败，放弃 prescriptive claim。建议：\n- **准备两个 title 版本**：一个 diagnostic-only（删 Addressing），一个 diagnostic + prescriptive（保留或改为 \"Bridging\"）\n- SCD 结果到手后（距 DDL 仍有 ~3.5 天）最终定版\n\n---\n\n### §6 Unification Soundness 详细评估\n\n**联系是否 tight?** 中等偏松。\n\nθ=2/N → θ_c=α/(α+1) 的映射逻辑：当 N 增大，θ=2/N 单调递减，最终低于任何 θ_c > 0。这意味着 **对于任何正 α，足够大的 N 必然触发 inverse scaling**。这个 observation 确实可以用 MBR 框架统一表述。\n\n但 \"tight\" 要求的是 θ_c 精确预测 inverse scaling 的临界点。实证数据（B3: θ=2/N at N=8 → -3.49pp; 但 θ=0.5 majority vote → -1.07pp 也是负的）显示 **所有 θ 都产生负 delta**，并非只有 θ < θ_c 时才有 inverse scaling。这削弱了 \"phase transition at θ_c\" 的叙事——更像是 \"所有 construction 在 FT 模型上都不如 greedy\"，θ_c 只是 severity 的调节器而非 regime 开关。\n\n**建议**: 不要 claim θ_c 是 sharp boundary。框定为 \"θ controls the severity of the precision-recall trade-off; θ < θ_c amplifies precision degradation with N, while θ ≥ θ_c provides immunity\"（用 θ=0.5 majority vote 的较小负 delta -1.07pp vs θ=2/N 的 -3.49pp 作为证据）。\n\n---\n\n### 遗漏检查\n\n未发现明显遗漏的 R25 审稿意见（覆盖 N1-N3, W1-W10, VIS1 + R24-W5 carry-over + R23-N2 carry-over）。\n\n### 训练状态速报\n\n| 实验 | 服务器 | 进度 | ETA |\n|------|--------|------|-----|\n| 14B | 5090-c GPU 0,1 | 98.9% (40713/41180) | ~22:00 UTC 今天 |\n| 32B | 5090 GPU 0-3 | 73.0% (30069/41180) | ~06:30 UTC May 21 |\n| SCD standard | 5090-b GPU 0 | 27.2% (2211/8142) | ~01:00 UTC |\n| SCD fallback | 5090-b GPU 1 | 28.8% (2347/8142) | ~00:55 UTC |\n| SCD theta3 | 5090-b GPU 3 | 25.1% (2363/9412) | ~01:30 UTC |\n\nGPU 分配合规：全部在项目 gpu_constraint 白名单内。5090-b GPU 2 空闲（VLLM kill 后释放）。"
             }
           },
-          "id": "event-004159"
+          "id": "event-004147"
         },
         {
-          "source_line": 4160,
+          "source_line": 4148,
           "timestamp": "2026-05-20T13:43:05.349547+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -396,10 +159,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3832
           },
-          "id": "event-004160"
+          "id": "event-004148"
         },
         {
-          "source_line": 4161,
+          "source_line": 4149,
           "timestamp": "2026-05-20T13:43:11.435372+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -412,7 +175,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004161"
+          "id": "event-004149"
         }
       ]
     },
@@ -420,7 +183,7 @@
       "number": 242,
       "messages": [
         {
-          "source_line": 4162,
+          "source_line": 4150,
           "timestamp": "2026-05-20T13:43:11.971812+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -434,10 +197,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-004162"
+          "id": "event-004150"
         },
         {
-          "source_line": 4163,
+          "source_line": 4151,
           "timestamp": "2026-05-20T13:43:18.092260+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -456,10 +219,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-004163"
+          "id": "event-004151"
         },
         {
-          "source_line": 4164,
+          "source_line": 4152,
           "timestamp": "2026-05-20T13:43:18.144560+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -474,10 +237,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 52
           },
-          "id": "event-004164"
+          "id": "event-004152"
         },
         {
-          "source_line": 4165,
+          "source_line": 4153,
           "timestamp": "2026-05-20T13:44:09.162261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -495,10 +258,10 @@
               "text": "## ROADMAP 审查 — R25 Writing v2 Sprint 更新\n\n**结论**: WARNING — 方向正确，但有 4 处事实/状态不一致需修正，1 处未采纳 Reviewer 反馈。\n\n---\n\n### 已采纳的方向评估\n\n[severity: info] 核心方向、阶段判断、Writing v2 Sprint 结构均合理。R25 的两个 SYSTEMIC_ISSUE 识别准确，修复方案与我的独立审查结论一致。Writing v2 修改清单 16 项优先级排序合理。\n\n---\n\n### 需修正的事实/状态错误\n\n**[severity: warning] B3 Prompted Diversity 状态过期**\nROADMAP 写 \"5090-c:2, 第一批结果可能已出\"。实际：B3 已完成且 Reviewer 已审查 PASS（b3_report.json）。结论：hypothesis rejected，multi-template 全面劣于 single-template（vc_weighted -4.12pp, p=1.0）。应从 \"RUNNING GPU 实验\" 移除。\n\n**[severity: warning] 14B 训练状态过期**\nROADMAP 写 \"cuda:0,1 14B (完成?)\"。截至 21:54 UTC 14B 在 step 40713/41180 (98.9%)，大概率已完成或即将完成。5090-c 至少 3 个 GPU 即将空闲（GPU 0,1,3），仅 GPU 2 已释放。\n\n**[severity: warning] B1 SCD 描述不准**\nROADMAP 写 \"B1 SCD 4-way split\"。实际：CoNLL control 已完成（训练正常 690/690 步，eval 因 VLLM-no-client bug 未完成），当前运行的是 3 个 FewNERD 实验（standard/fallback/theta3），不是 4-way。\n\n**[severity: info] 32B ETA 偏乐观**\nROADMAP 写 \"~04:30 UTC 05-21\"。按我最新检查（step 30069/41180, ~2.8s/step），剩余 11111 步 × 2.8s ≈ 8.6h → ~06:30 UTC，比 ROADMAP 晚约 2h。不影响决策但应校正。\n\n---\n\n### 未采纳的 Reviewer 反馈\n\n**[severity: warning] 锁定决策中 Title 已删 \"Addressing\"，与 Reviewer 建议冲突**\n\nROADMAP 锁定 Title 为 \"Strong Predictors, Weak Selectors: The Correlation-Selection Gap in SC for NER\"（已删 \"Addressing\"）。我在 R25 方案审查中明确建议：**Title 定稿应等 B1 SCD 结果**（~01:00-01:30 UTC May 21）。\n\n理由：如果 SCD 产出正向结果（greedy F1 提升 ≥1pp），论文有 prescriptive contribution，title 应保留或改为 \"Bridging\"。现在锁定 = 预判 B1 SCD 失败。\n\n**建议**: 将 Title 从 \"锁定决策\" 移到 \"待定决策\"，标注 \"B1 SCD 结果到手后定版\"。\n\n---\n\n### Phase Transition §6 命名\n\nROADMAP 列入 \"Phase Transition §6 重构\" 作为 NEW CRITICAL 任务。重申我的审查意见：**\"Phase Transition Theorem\" 命名 overclaim**，应改为 \"Threshold Regime Analysis\" 或 \"Aggregation Regime Characterization\"。ROADMAP 中的任务名建议同步修改，避免 Paper Agent 按 \"Phase Transition Theorem\" 标签写作后再改。\n\n---\n\n### 未覆盖风险\n\n[severity: info] ROADMAP 未提及 **W13 引用审计** (4 not-found + 3 mismatch + 17 orphan) 的执行时序。建议在 Paper Agent 开始重写前完成引用审计，否则重写后可能基于错误引用。\n\n[severity: info] ROADMAP 未列 B1 SCD CoNLL eval 的 re-do 任务。训练已完成但 eval 因 VLLM-no-client 未执行，需 Worker 用 run_mvp_pilot.py 重跑。"
             }
           },
-          "id": "event-004165"
+          "id": "event-004153"
         },
         {
-          "source_line": 4166,
+          "source_line": 4154,
           "timestamp": "2026-05-20T13:44:13.271399+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -513,10 +276,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4109
           },
-          "id": "event-004166"
+          "id": "event-004154"
         },
         {
-          "source_line": 4167,
+          "source_line": 4155,
           "timestamp": "2026-05-20T13:44:17.088427+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -529,7 +292,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004167"
+          "id": "event-004155"
         }
       ]
     },
@@ -537,7 +300,7 @@
       "number": 243,
       "messages": [
         {
-          "source_line": 4168,
+          "source_line": 4156,
           "timestamp": "2026-05-20T13:44:17.631769+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -551,10 +314,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_ssh_p1-p2-power-holm_20260520t132923"
           },
-          "id": "event-004168"
+          "id": "event-004156"
         },
         {
-          "source_line": 4169,
+          "source_line": 4157,
           "timestamp": "2026-05-20T13:44:26.561623+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -573,10 +336,10 @@
               "prompt": "Search for recently created files related to \"power\", \"holm\", \"p1\", \"p2\" in the project artifacts directory at /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/. Look for any new directories or files created in the last hour. Also check the remote server autodl-5090 path /root/autodl-tmp/struct_self_consist_ie/artifacts/ for similar files. List all matching files with their modification times."
             }
           },
-          "id": "event-004169"
+          "id": "event-004157"
         },
         {
-          "source_line": 4170,
+          "source_line": 4158,
           "timestamp": "2026-05-20T13:44:29.684399+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -593,10 +356,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ -type f \\( -name \"*power*\" -o -name \"*holm*\" -o -name \"*p1*\" -o -name \"*p2*\" \\) -mmin -60 2>/dev/null | head -100"
             }
           },
-          "id": "event-004170"
+          "id": "event-004158"
         },
         {
-          "source_line": 4171,
+          "source_line": 4159,
           "timestamp": "2026-05-20T13:44:29.836481+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -611,10 +374,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-004171"
+          "id": "event-004159"
         },
         {
-          "source_line": 4172,
+          "source_line": 4160,
           "timestamp": "2026-05-20T13:44:32.146427+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -631,10 +394,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ -type d \\( -name \"*power*\" -o -name \"*holm*\" -o -name \"*p1*\" -o -name \"*p2*\" \\) -mmin -60 2>/dev/null"
             }
           },
-          "id": "event-004172"
+          "id": "event-004160"
         },
         {
-          "source_line": 4173,
+          "source_line": 4161,
           "timestamp": "2026-05-20T13:44:32.197769+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -649,10 +412,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-004173"
+          "id": "event-004161"
         },
         {
-          "source_line": 4174,
+          "source_line": 4162,
           "timestamp": "2026-05-20T13:44:41.578817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -669,10 +432,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/power_analysis.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex 2>/dev/null"
             }
           },
-          "id": "event-004174"
+          "id": "event-004162"
         },
         {
-          "source_line": 4175,
+          "source_line": 4163,
           "timestamp": "2026-05-20T13:44:41.629446+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -687,10 +450,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-004175"
+          "id": "event-004163"
         },
         {
-          "source_line": 4176,
+          "source_line": 4164,
           "timestamp": "2026-05-20T13:44:51.799459+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -708,10 +471,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f \\( -name \"*power*\" -o -name \"*holm*\" -o -name \"*p1*\" -o -name \"*p2*\" \\) 2>/dev/null"
             }
           },
-          "id": "event-004176"
+          "id": "event-004164"
         },
         {
-          "source_line": 4177,
+          "source_line": 4165,
           "timestamp": "2026-05-20T13:44:51.799871+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -726,10 +489,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 0
           },
-          "id": "event-004177"
+          "id": "event-004165"
         },
         {
-          "source_line": 4178,
+          "source_line": 4166,
           "timestamp": "2026-05-20T13:44:53.405325+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -747,10 +510,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*power*\""
             }
           },
-          "id": "event-004178"
+          "id": "event-004166"
         },
         {
-          "source_line": 4179,
+          "source_line": 4167,
           "timestamp": "2026-05-20T13:44:54.308373+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -765,10 +528,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 903
           },
-          "id": "event-004179"
+          "id": "event-004167"
         },
         {
-          "source_line": 4180,
+          "source_line": 4168,
           "timestamp": "2026-05-20T13:44:55.813755+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -786,10 +549,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*holm*\""
             }
           },
-          "id": "event-004180"
+          "id": "event-004168"
         },
         {
-          "source_line": 4181,
+          "source_line": 4169,
           "timestamp": "2026-05-20T13:44:56.215457+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -804,10 +567,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 401
           },
-          "id": "event-004181"
+          "id": "event-004169"
         },
         {
-          "source_line": 4182,
+          "source_line": 4170,
           "timestamp": "2026-05-20T13:44:57.522233+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -825,10 +588,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*p1*\""
             }
           },
-          "id": "event-004182"
+          "id": "event-004170"
         },
         {
-          "source_line": 4183,
+          "source_line": 4171,
           "timestamp": "2026-05-20T13:44:57.873333+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -843,10 +606,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 351
           },
-          "id": "event-004183"
+          "id": "event-004171"
         },
         {
-          "source_line": 4184,
+          "source_line": 4172,
           "timestamp": "2026-05-20T13:44:59.328580+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -864,10 +627,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -type f -name \"*p2*\""
             }
           },
-          "id": "event-004184"
+          "id": "event-004172"
         },
         {
-          "source_line": 4185,
+          "source_line": 4173,
           "timestamp": "2026-05-20T13:44:59.680379+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -882,10 +645,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 351
           },
-          "id": "event-004185"
+          "id": "event-004173"
         },
         {
-          "source_line": 4186,
+          "source_line": 4174,
           "timestamp": "2026-05-20T13:45:01.336842+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -903,10 +666,10 @@
               "command": "stat /root/autodl-tmp/struct_self_consist_ie/artifacts/r25_response/power_analysis.tex"
             }
           },
-          "id": "event-004186"
+          "id": "event-004174"
         },
         {
-          "source_line": 4187,
+          "source_line": 4175,
           "timestamp": "2026-05-20T13:45:01.688685+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -921,10 +684,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 351
           },
-          "id": "event-004187"
+          "id": "event-004175"
         },
         {
-          "source_line": 4188,
+          "source_line": 4176,
           "timestamp": "2026-05-20T13:45:03.043284+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -942,10 +705,10 @@
               "command": "stat /root/autodl-tmp/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex"
             }
           },
-          "id": "event-004188"
+          "id": "event-004176"
         },
         {
-          "source_line": 4189,
+          "source_line": 4177,
           "timestamp": "2026-05-20T13:45:03.394781+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -960,10 +723,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 351
           },
-          "id": "event-004189"
+          "id": "event-004177"
         },
         {
-          "source_line": 4190,
+          "source_line": 4178,
           "timestamp": "2026-05-20T13:45:05.604184+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -980,10 +743,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ -mmin -60 -type f 2>/dev/null | head -50"
             }
           },
-          "id": "event-004190"
+          "id": "event-004178"
         },
         {
-          "source_line": 4191,
+          "source_line": 4179,
           "timestamp": "2026-05-20T13:45:05.654827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -998,10 +761,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-004191"
+          "id": "event-004179"
         },
         {
-          "source_line": 4192,
+          "source_line": 4180,
           "timestamp": "2026-05-20T13:45:12.843345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1018,10 +781,10 @@
               "command": "stat /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/power_analysis.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex 2>/dev/null"
             }
           },
-          "id": "event-004192"
+          "id": "event-004180"
         },
         {
-          "source_line": 4193,
+          "source_line": 4181,
           "timestamp": "2026-05-20T13:45:12.994360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1036,10 +799,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-004193"
+          "id": "event-004181"
         },
         {
-          "source_line": 4194,
+          "source_line": 4182,
           "timestamp": "2026-05-20T13:45:17.815807+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1054,10 +817,10 @@
             "tool": "Agent",
             "elapsed_ms": 51254
           },
-          "id": "event-004194"
+          "id": "event-004182"
         },
         {
-          "source_line": 4195,
+          "source_line": 4183,
           "timestamp": "2026-05-20T13:45:21.626303+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1074,10 +837,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/power_analysis.tex"
             }
           },
-          "id": "event-004195"
+          "id": "event-004183"
         },
         {
-          "source_line": 4196,
+          "source_line": 4184,
           "timestamp": "2026-05-20T13:45:22.027715+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1092,10 +855,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-004196"
+          "id": "event-004184"
         },
         {
-          "source_line": 4197,
+          "source_line": 4185,
           "timestamp": "2026-05-20T13:45:22.178465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1112,10 +875,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/holm_bonferroni_enumeration.tex"
             }
           },
-          "id": "event-004197"
+          "id": "event-004185"
         },
         {
-          "source_line": 4198,
+          "source_line": 4186,
           "timestamp": "2026-05-20T13:45:22.229005+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1130,10 +893,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004198"
+          "id": "event-004186"
         },
         {
-          "source_line": 4199,
+          "source_line": 4187,
           "timestamp": "2026-05-20T13:46:24.922237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1151,10 +914,10 @@
               "text": "## 审查报告 — P1/P2 Power Analysis + Holm-Bonferroni Enumeration\n\n**结论**: WARNING — 分析方法正确，输出格式干净，但结果暴露的 claim 强度问题比 Action Matrix 预估的更严重。\n\n---\n\n### Power Analysis (power_analysis.tex)\n\n[severity: info] 表格正确，n=23 cross-dataset null 的 power 分析：\n\n| ρ | Power | n needed (80%) |\n|---|-------|----------------|\n| 0.1 | 0.073 | 783 |\n| 0.5 | 0.690 | 30 |\n\n观测 ρ=0.052 → power 接近 0.05（本质是 chance level），即使 ρ=0.5 的中等效应也需要 n=30 才有 80% power（当前 n=23 不够）。分析支持 W2 的 \"no evidence at current sample size\" 重新表述。\n\n**小建议**: 表格可增加 ρ=0.55 行（~minimum detectable effect at n=23, 80% power），使 \"我们能检测到什么\" 一目了然。但不影响结论。\n\n---\n\n### Holm-Bonferroni Enumeration (holm_bonferroni_enumeration.tex)\n\n[severity: warning] **仅 2/57 tests 存活 Holm-Bonferroni 校正（α=0.05）**，这比 SYSTEMIC_B 的初步评估（\"仅 1/4 construction 显著\"）更加严峻：\n\n**存活 (p_adj < 0.05)**:\n- #51: CoNLL FS vs ZS entity entropy (p_adj < 0.001)\n- #53: RE LP selection reversal, free-form (p_adj = 0.006)\n\n**关键损失 — FewNERD LP selection**:\n- #6: Few-NERD LP selection (Qwen, 3-seed): raw p < 0.001 → **p_adj = 0.055** (差 0.005 未过)\n- #19: Few-NERD LP selection (LLaMA, 3-seed): raw p < 0.001 → **p_adj = 0.055**\n- #22: Few-NERD LP-weighted construction: raw p < 0.001 → **p_adj = 0.055**\n\n**这意味着论文最强的正面结果（FewNERD LP selection +1.36pp）在 Holm 校正后不显著。** Paper_framing.md 中标注 \"p<0.05, bootstrap B=10000\" 的 claim 在全局校正下失效。\n\n### 审稿人攻击面分析\n\n1. **Claim 降级必要性**: \"First dataset where LP significantly improves selection\" 这个 claim 在 Holm 校正后不成立。正文需改为 \"LP shows a nominally significant improvement (raw p<0.001, Holm-adjusted p=0.055)\" 或 \"LP shows a consistent positive trend across seeds\"。\n\n2. **2/57 的叙事影响**: 存活的两个 test 分别是 FS error 和 free-form RE reversal——都不是论文 core claim。Core claims（LP selection、construction、QE signal ranking）全部在 Holm 校正后不显著。审稿人可以据此质疑整篇论文的 statistical rigor。\n\n3. **k=57 family 合理性**: 所有 57 个 test 放入同一 family 是保守但可能过度。Selection tests (19 个)、Construction tests (10 个)、Signal Δρ tests (9 个) 是不同 research questions，可以论证为 separate families。如果分 family，FewNERD LP selection 在 selection family (k=19) 内校正后 p_adj = 0.001 × 19 = 0.019 < 0.05，**存活**。\n\n### 建议\n\n[severity: warning] 论文应采用 **dual reporting 策略**:\n- 主文报告 per-family Holm correction（按 research question 分 family），FewNERD LP 在 selection family 内显著\n- Appendix 报告 global k=57 correction 的完整表格（即这个 tex），注明 \"conservative global family\" 下无 core claim 存活\n- 正文明确讨论 family definition choice 对结论的影响\n\n这比单纯 wont_fix 或全局软化更诚实、更有防御力。审稿人看到你主动展示了最不利的结果反而会加分。\n\n---\n\n### 技术检查\n\n[severity: info] Holm-Bonferroni 计算逻辑正确。对于 rank-1 test (raw p 最小)，p_adj = raw_p × k。raw p = 0.001 × 57 = 0.057 → 表中 0.055 合理（raw p 可能 < 0.001 精确值更小）。Holm step-down 比 Bonferroni 更宽松但仍然保守，选择 Holm 是标准做法。\n\n[severity: info] 57 个 test 的分类和描述清晰完整。覆盖 selection/construction/calibration/signal Δρ/correlation/FS error 六个维度。"
             }
           },
-          "id": "event-004199"
+          "id": "event-004187"
         },
         {
-          "source_line": 4200,
+          "source_line": 4188,
           "timestamp": "2026-05-20T13:46:28.584858+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1169,7 +932,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3662
           },
-          "id": "event-004200"
+          "id": "event-004188"
         }
       ]
     },
@@ -1177,7 +940,7 @@
       "number": 244,
       "messages": [
         {
-          "source_line": 4201,
+          "source_line": 4189,
           "timestamp": "2026-05-20T13:46:33.319244+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1191,10 +954,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_ssh_download-fig10-oracle-scaling_20260520t133635"
           },
-          "id": "event-004201"
+          "id": "event-004189"
         },
         {
-          "source_line": 4202,
+          "source_line": 4190,
           "timestamp": "2026-05-20T13:46:40.522655+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1212,10 +975,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004202"
+          "id": "event-004190"
         },
         {
-          "source_line": 4203,
+          "source_line": 4191,
           "timestamp": "2026-05-20T13:46:40.523121+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1230,10 +993,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-004203"
+          "id": "event-004191"
         },
         {
-          "source_line": 4204,
+          "source_line": 4192,
           "timestamp": "2026-05-20T13:46:46.093714+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1251,10 +1014,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004204"
+          "id": "event-004192"
         },
         {
-          "source_line": 4205,
+          "source_line": 4193,
           "timestamp": "2026-05-20T13:46:46.545701+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1269,10 +1032,10 @@
             "tool": "Glob",
             "elapsed_ms": 451
           },
-          "id": "event-004205"
+          "id": "event-004193"
         },
         {
-          "source_line": 4206,
+          "source_line": 4194,
           "timestamp": "2026-05-20T13:46:46.596395+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1290,10 +1053,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004206"
+          "id": "event-004194"
         },
         {
-          "source_line": 4207,
+          "source_line": 4195,
           "timestamp": "2026-05-20T13:46:46.646906+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1308,10 +1071,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-004207"
+          "id": "event-004195"
         },
         {
-          "source_line": 4208,
+          "source_line": 4196,
           "timestamp": "2026-05-20T13:46:49.507621+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1329,10 +1092,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
             }
           },
-          "id": "event-004208"
+          "id": "event-004196"
         },
         {
-          "source_line": 4209,
+          "source_line": 4197,
           "timestamp": "2026-05-20T13:46:50.009255+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1347,10 +1110,10 @@
             "tool": "Glob",
             "elapsed_ms": 501
           },
-          "id": "event-004209"
+          "id": "event-004197"
         },
         {
-          "source_line": 4210,
+          "source_line": 4198,
           "timestamp": "2026-05-20T13:46:50.161319+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1368,10 +1131,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
             }
           },
-          "id": "event-004210"
+          "id": "event-004198"
         },
         {
-          "source_line": 4211,
+          "source_line": 4199,
           "timestamp": "2026-05-20T13:46:50.161880+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1386,10 +1149,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-004211"
+          "id": "event-004199"
         },
         {
-          "source_line": 4212,
+          "source_line": 4200,
           "timestamp": "2026-05-20T13:46:56.028092+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1407,10 +1170,10 @@
               "description": "Check oracle scaling figure file size"
             }
           },
-          "id": "event-004212"
+          "id": "event-004200"
         },
         {
-          "source_line": 4213,
+          "source_line": 4201,
           "timestamp": "2026-05-20T13:46:56.480417+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1425,10 +1188,10 @@
             "tool": "Bash",
             "elapsed_ms": 452
           },
-          "id": "event-004213"
+          "id": "event-004201"
         },
         {
-          "source_line": 4214,
+          "source_line": 4202,
           "timestamp": "2026-05-20T13:46:56.530884+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1445,10 +1208,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_download-fig10-oracle-scaling_20260520T133635_result.json"
             }
           },
-          "id": "event-004214"
+          "id": "event-004202"
         },
         {
-          "source_line": 4215,
+          "source_line": 4203,
           "timestamp": "2026-05-20T13:46:56.631534+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1463,10 +1226,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-004215"
+          "id": "event-004203"
         },
         {
-          "source_line": 4216,
+          "source_line": 4204,
           "timestamp": "2026-05-20T13:47:01.079656+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1479,7 +1242,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004216"
+          "id": "event-004204"
         }
       ]
     },
@@ -1487,7 +1250,7 @@
       "number": 245,
       "messages": [
         {
-          "source_line": 4217,
+          "source_line": 4205,
           "timestamp": "2026-05-20T13:47:01.621572+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1501,10 +1264,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-004217"
+          "id": "event-004205"
         },
         {
-          "source_line": 4218,
+          "source_line": 4206,
           "timestamp": "2026-05-20T13:47:12.562634+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1523,10 +1286,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-004218"
+          "id": "event-004206"
         },
         {
-          "source_line": 4219,
+          "source_line": 4207,
           "timestamp": "2026-05-20T13:47:12.930855+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1541,10 +1304,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 368
           },
-          "id": "event-004219"
+          "id": "event-004207"
         },
         {
-          "source_line": 4220,
+          "source_line": 4208,
           "timestamp": "2026-05-20T13:47:31.671622+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1557,7 +1320,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004220"
+          "id": "event-004208"
         }
       ]
     },
@@ -1565,7 +1328,7 @@
       "number": 246,
       "messages": [
         {
-          "source_line": 4221,
+          "source_line": 4209,
           "timestamp": "2026-05-20T13:52:39.821503+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1579,10 +1342,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_research_p3-citation-audit_20260520t134900"
           },
-          "id": "event-004221"
+          "id": "event-004209"
         },
         {
-          "source_line": 4222,
+          "source_line": 4210,
           "timestamp": "2026-05-20T13:52:49.967338+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1600,10 +1363,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004222"
+          "id": "event-004210"
         },
         {
-          "source_line": 4223,
+          "source_line": 4211,
           "timestamp": "2026-05-20T13:52:49.967767+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1618,10 +1381,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-004223"
+          "id": "event-004211"
         },
         {
-          "source_line": 4224,
+          "source_line": 4212,
           "timestamp": "2026-05-20T13:52:50.770739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1639,10 +1402,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004224"
+          "id": "event-004212"
         },
         {
-          "source_line": 4225,
+          "source_line": 4213,
           "timestamp": "2026-05-20T13:52:50.921713+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1657,10 +1420,10 @@
             "tool": "Glob",
             "elapsed_ms": 150
           },
-          "id": "event-004225"
+          "id": "event-004213"
         },
         {
-          "source_line": 4226,
+          "source_line": 4214,
           "timestamp": "2026-05-20T13:52:54.133369+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1677,10 +1440,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/citation_audit.md"
             }
           },
-          "id": "event-004226"
+          "id": "event-004214"
         },
         {
-          "source_line": 4227,
+          "source_line": 4215,
           "timestamp": "2026-05-20T13:52:54.184265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1695,10 +1458,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004227"
+          "id": "event-004215"
         },
         {
-          "source_line": 4228,
+          "source_line": 4216,
           "timestamp": "2026-05-20T13:53:27.852874+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1716,10 +1479,10 @@
               "text": "## 审查报告 — P3 Citation Audit\n\n**结论**: WARNING — 4 条 flagged citations 全部验证为真实论文，无幻觉引用。但有 2 处需要注意。\n\n---\n\n### 正面发现\n\n[severity: info] 4 条 R25 flagged citations (hobelsberger2025, lightman2024, venktesh2025, aggarwal2023) 全部经 web 验证为真实已发表论文，metadata 正确。无需修正。\n\n[severity: info] 发现 21 条 orphan bib entries（比 R25 报告的 17 条多 4 条），建议清理。\n\n---\n\n### 需要注意的 2 个问题\n\n**[severity: warning] `yao2026consistency` 不应删除**\n\n该条目在 orphan 列表中（#1），但 W14 (R25-W7) 的修复方案是 \"Related Work 加 Yao et al. head-to-head 段落\"。如果按计划执行 W14，`yao2026consistency` 将被引用。删除后再重新添加浪费时间且有遗漏风险。\n\n**建议**: 从删除清单中移除 `yao2026consistency`，标注 \"reserved for W14 Related Work head-to-head\"。其余 20 条 orphan 可安全删除。\n\n**[severity: warning] R25 报告的 3 条 metadata mismatch 未审计**\n\nR25 原始审查提到 \"4 not-found + 3 mismatch + 17 orphan\"。本次审计仅验证了 4 条 not-found 的正确性，但 3 条 metadata mismatch 的具体 keys 未提供，因此未检查。审计报告承认 \"the specific keys were not provided\"。\n\n**建议**: 如果 R25 原始审查记录中有这 3 条 mismatch 的具体 bib key，应补充验证。如果 keys 已不可追溯，至少在论文 pre-submission checklist 中标注 \"3 metadata mismatches unresolved\"，让 Paper Agent 在最终编译前做一次 full bib 校验。"
             }
           },
-          "id": "event-004228"
+          "id": "event-004216"
         },
         {
-          "source_line": 4229,
+          "source_line": 4217,
           "timestamp": "2026-05-20T13:53:32.009536+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1734,7 +1497,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4156
           },
-          "id": "event-004229"
+          "id": "event-004217"
         }
       ]
     },
@@ -1742,7 +1505,7 @@
       "number": 247,
       "messages": [
         {
-          "source_line": 4230,
+          "source_line": 4218,
           "timestamp": "2026-05-20T14:12:56.891798+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1756,10 +1519,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004230"
+          "id": "event-004218"
         },
         {
-          "source_line": 4231,
+          "source_line": 4219,
           "timestamp": "2026-05-20T14:13:06.330599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1776,10 +1539,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_14b-training-check_20260520T141049_result.json"
             }
           },
-          "id": "event-004231"
+          "id": "event-004219"
         },
         {
-          "source_line": 4232,
+          "source_line": 4220,
           "timestamp": "2026-05-20T14:13:06.381284+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1794,10 +1557,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004232"
+          "id": "event-004220"
         },
         {
-          "source_line": 4233,
+          "source_line": 4221,
           "timestamp": "2026-05-20T14:13:12.702600+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1815,10 +1578,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-004233"
+          "id": "event-004221"
         },
         {
-          "source_line": 4234,
+          "source_line": 4222,
           "timestamp": "2026-05-20T14:13:13.305234+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1599,10 @@
               "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-qlora-s42/"
             }
           },
-          "id": "event-004234"
+          "id": "event-004222"
         },
         {
-          "source_line": 4235,
+          "source_line": 4223,
           "timestamp": "2026-05-20T14:13:14.431666+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1617,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1729
           },
-          "id": "event-004235"
+          "id": "event-004223"
         },
         {
-          "source_line": 4236,
+          "source_line": 4224,
           "timestamp": "2026-05-20T14:13:15.337435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1872,10 +1635,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2032
           },
-          "id": "event-004236"
+          "id": "event-004224"
         },
         {
-          "source_line": 4237,
+          "source_line": 4225,
           "timestamp": "2026-05-20T14:13:34.673563+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1893,10 +1656,10 @@
               "text": "## 审查报告 — 14B Training Check\n\n**结论**: PASS\n\n[severity: info] 14B 训练已确认完成，独立核实通过：\n\n- checkpoint-41180（最终）存在于 5090-c，adapter_model.safetensors 550MB，时间戳 21:54 UTC ✅\n- train_loss=0.0348, eval_loss=0.0323，loss 收敛正常 ✅\n- 5090-c 4 个 GPU 全部空闲（0% util, 0 MiB），进程已退出 ✅\n- Registry 更新为 DONE/success ✅\n\n**注意**: Worker 正确指出现有 merged 模型是 ckpt36000（非最终），inference 前需 merge step 41180 的 adapter。5090-c 4 GPU 全部可用于后续任务（merge + inference dispatch）。"
             }
           },
-          "id": "event-004237"
+          "id": "event-004225"
         },
         {
-          "source_line": 4238,
+          "source_line": 4226,
           "timestamp": "2026-05-20T14:13:40.496288+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1911,7 +1674,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 5822
           },
-          "id": "event-004238"
+          "id": "event-004226"
         }
       ]
     },
@@ -1919,7 +1682,7 @@
       "number": 248,
       "messages": [
         {
-          "source_line": 4239,
+          "source_line": 4227,
           "timestamp": "2026-05-20T14:17:27.934493+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1933,10 +1696,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004239"
+          "id": "event-004227"
         },
         {
-          "source_line": 4240,
+          "source_line": 4228,
           "timestamp": "2026-05-20T14:17:47.019044+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1954,10 +1717,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004240"
+          "id": "event-004228"
         },
         {
-          "source_line": 4241,
+          "source_line": 4229,
           "timestamp": "2026-05-20T14:17:47.322303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1972,10 +1735,10 @@
             "tool": "Glob",
             "elapsed_ms": 303
           },
-          "id": "event-004241"
+          "id": "event-004229"
         },
         {
-          "source_line": 4242,
+          "source_line": 4230,
           "timestamp": "2026-05-20T14:17:47.322756+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1993,10 +1756,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts"
             }
           },
-          "id": "event-004242"
+          "id": "event-004230"
         },
         {
-          "source_line": 4243,
+          "source_line": 4231,
           "timestamp": "2026-05-20T14:17:47.373231+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2011,10 +1774,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-004243"
+          "id": "event-004231"
         },
         {
-          "source_line": 4244,
+          "source_line": 4232,
           "timestamp": "2026-05-20T14:17:50.282040+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2031,10 +1794,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/entity_independence.json"
             }
           },
-          "id": "event-004244"
+          "id": "event-004232"
         },
         {
-          "source_line": 4245,
+          "source_line": 4233,
           "timestamp": "2026-05-20T14:17:50.633764+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2049,10 +1812,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-004245"
+          "id": "event-004233"
         },
         {
-          "source_line": 4246,
+          "source_line": 4234,
           "timestamp": "2026-05-20T14:17:50.634844+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2069,10 +1832,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r25_response/entity_independence_paragraph.tex"
             }
           },
-          "id": "event-004246"
+          "id": "event-004234"
         },
         {
-          "source_line": 4247,
+          "source_line": 4235,
           "timestamp": "2026-05-20T14:17:50.685747+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2087,10 +1850,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004247"
+          "id": "event-004235"
         },
         {
-          "source_line": 4248,
+          "source_line": 4236,
           "timestamp": "2026-05-20T14:18:34.780522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2108,10 +1871,10 @@
               "text": "## 审查报告 — P4 Entity Independence Analysis (W9)\n\n**结论**: PASS — 分析方法学正确，三层缓解论证结构合理，可直接用于 Appendix。1 个小建议。\n\n---\n\n### 正面\n\n[severity: info] 分析设计合理：co-occurrence ratio + Fisher exact test + Monte Carlo FPR 校准（0.35% vs 5% nominal）。三个数据集覆盖不同 degeneracy regime。\n\n核心结论站得住：67-80% 的 entity pair 是 trivially independent（至少一方 deterministic），testable pairs 的 dependence 几乎全是正向（negative <0.2%），all-or-nothing joint probability 仅超出 independence prediction 2-11%。\n\n### 建议\n\n[severity: warning] **CoNLL 的 44% significant rate 和 Cramér's V=0.84 需在 paragraph 中显式说明**\n\n当前 paragraph 用 FewNERD 的 IQR [0.98, 1.33] 举例，给出 \"mild positive dependence\" 的印象。但 CoNLL testable pairs 有 44% 显著（vs FewNERD 12%），Cramér's V=0.84（strong association）。审稿人如果看 JSON 数据会发现 paragraph 选择性展示。\n\n建议在 paragraph 中增加一句：*\"CoNLL shows the strongest dependence (44\\% of testable pairs significant, Cramér's V=0.84), reflecting its high base performance where entities are frequently co-extracted correctly; however, only 22\\% of all pairs are testable, yielding an overall dependence rate of 9.7\\%.\"*\n\n这样既诚实展示最不利数据，又用 \"overall rate\" 框架化解。审稿人看到你主动报告 worst case 反而加分。\n\n---\n\n### 技术细节核实\n\n[severity: info] 数据量级合理：FewNERD 5000 instances / 22404 pairs、CoNLL 3453 / 6783、SciERC 551 / 2531。Fisher exact test 在 N=8 的 2×2 表上确实极其保守（最小可检测效应很大），Monte Carlo 校准是正确做法。\n\n[severity: info] 三层缓解论证中第三条（\"positive correlation preserves marginal ranking\"）逻辑上成立但是最弱的一条——严格来说只在 uniform correlation structure 下完全成立。不过作为 Appendix 级别的讨论已足够，审稿人不太会在此深究。"
             }
           },
-          "id": "event-004248"
+          "id": "event-004236"
         },
         {
-          "source_line": 4249,
+          "source_line": 4237,
           "timestamp": "2026-05-20T14:18:38.537897+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2126,7 +1889,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3757
           },
-          "id": "event-004249"
+          "id": "event-004237"
         }
       ]
     },
@@ -2134,7 +1897,7 @@
       "number": 249,
       "messages": [
         {
-          "source_line": 4250,
+          "source_line": 4238,
           "timestamp": "2026-05-20T14:29:31.699616+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2148,10 +1911,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004250"
+          "id": "event-004238"
         },
         {
-          "source_line": 4251,
+          "source_line": 4239,
           "timestamp": "2026-05-20T14:29:44.637237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2168,10 +1931,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_14b-merge-inference_20260520T141932_result.json"
             }
           },
-          "id": "event-004251"
+          "id": "event-004239"
         },
         {
-          "source_line": 4252,
+          "source_line": 4240,
           "timestamp": "2026-05-20T14:29:44.637733+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2186,10 +1949,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-004252"
+          "id": "event-004240"
         },
         {
-          "source_line": 4253,
+          "source_line": 4241,
           "timestamp": "2026-05-20T14:29:55.579141+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2207,10 +1970,10 @@
               "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-004253"
+          "id": "event-004241"
         },
         {
-          "source_line": 4254,
+          "source_line": 4242,
           "timestamp": "2026-05-20T14:29:56.382869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2228,10 +1991,10 @@
               "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-14b-fewnerd-merged/"
             }
           },
-          "id": "event-004254"
+          "id": "event-004242"
         },
         {
-          "source_line": 4255,
+          "source_line": 4243,
           "timestamp": "2026-05-20T14:29:57.305376+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2246,10 +2009,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1726
           },
-          "id": "event-004255"
+          "id": "event-004243"
         },
         {
-          "source_line": 4256,
+          "source_line": 4244,
           "timestamp": "2026-05-20T14:29:58.194330+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2264,10 +2027,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1811
           },
-          "id": "event-004256"
+          "id": "event-004244"
         },
         {
-          "source_line": 4257,
+          "source_line": 4245,
           "timestamp": "2026-05-20T14:30:23.847299+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2285,10 +2048,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-004257"
+          "id": "event-004245"
         },
         {
-          "source_line": 4258,
+          "source_line": 4246,
           "timestamp": "2026-05-20T14:30:23.998169+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2306,10 +2069,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*14b*\" -type d"
             }
           },
-          "id": "event-004258"
+          "id": "event-004246"
         },
         {
-          "source_line": 4259,
+          "source_line": 4247,
           "timestamp": "2026-05-20T14:30:24.700726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2324,10 +2087,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 853
           },
-          "id": "event-004259"
+          "id": "event-004247"
         },
         {
-          "source_line": 4260,
+          "source_line": 4248,
           "timestamp": "2026-05-20T14:30:25.654203+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2342,10 +2105,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1656
           },
-          "id": "event-004260"
+          "id": "event-004248"
         },
         {
-          "source_line": 4261,
+          "source_line": 4249,
           "timestamp": "2026-05-20T14:30:41.792232+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2363,10 +2126,10 @@
               "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/"
             }
           },
-          "id": "event-004261"
+          "id": "event-004249"
         },
         {
-          "source_line": 4262,
+          "source_line": 4250,
           "timestamp": "2026-05-20T14:30:42.494325+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2384,10 +2147,10 @@
               "command": "head -5 /root/autodl-tmp/struct_self_consist_ie/logs/14b_inference_fewnerd.log"
             }
           },
-          "id": "event-004262"
+          "id": "event-004250"
         },
         {
-          "source_line": 4263,
+          "source_line": 4251,
           "timestamp": "2026-05-20T14:30:42.544834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2402,10 +2165,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 752
           },
-          "id": "event-004263"
+          "id": "event-004251"
         },
         {
-          "source_line": 4264,
+          "source_line": 4252,
           "timestamp": "2026-05-20T14:30:43.447465+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2420,10 +2183,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 953
           },
-          "id": "event-004264"
+          "id": "event-004252"
         },
         {
-          "source_line": 4265,
+          "source_line": 4253,
           "timestamp": "2026-05-20T14:30:52.377832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2441,10 +2204,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/logs/ -name \"*14b*inf*\" -type f"
             }
           },
-          "id": "event-004265"
+          "id": "event-004253"
         },
         {
-          "source_line": 4266,
+          "source_line": 4254,
           "timestamp": "2026-05-20T14:30:53.141766+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2459,10 +2222,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 763
           },
-          "id": "event-004266"
+          "id": "event-004254"
         },
         {
-          "source_line": 4267,
+          "source_line": 4255,
           "timestamp": "2026-05-20T14:30:53.242699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2480,10 +2243,10 @@
               "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/"
             }
           },
-          "id": "event-004267"
+          "id": "event-004255"
         },
         {
-          "source_line": 4268,
+          "source_line": 4256,
           "timestamp": "2026-05-20T14:30:54.047279+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2498,10 +2261,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 804
           },
-          "id": "event-004268"
+          "id": "event-004256"
         },
         {
-          "source_line": 4269,
+          "source_line": 4257,
           "timestamp": "2026-05-20T14:30:57.411590+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2519,10 +2282,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n1/report.json"
             }
           },
-          "id": "event-004269"
+          "id": "event-004257"
         },
         {
-          "source_line": 4270,
+          "source_line": 4258,
           "timestamp": "2026-05-20T14:30:58.214892+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2537,10 +2300,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 803
           },
-          "id": "event-004270"
+          "id": "event-004258"
         },
         {
-          "source_line": 4271,
+          "source_line": 4259,
           "timestamp": "2026-05-20T14:31:30.472266+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2558,10 +2321,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 2 -name \"nohup*14b*\" -o -name \"*14b*nohup*\" -o -name \"run_14b*\""
             }
           },
-          "id": "event-004271"
+          "id": "event-004259"
         },
         {
-          "source_line": 4272,
+          "source_line": 4260,
           "timestamp": "2026-05-20T14:31:31.095074+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2579,10 +2342,10 @@
               "command": "find /root/autodl-tmp/struct_self_consist_ie/checkpoints/ -maxdepth 1 -name \"*14b*merged*\" -type d"
             }
           },
-          "id": "event-004272"
+          "id": "event-004260"
         },
         {
-          "source_line": 4273,
+          "source_line": 4261,
           "timestamp": "2026-05-20T14:31:31.245888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2597,10 +2360,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 773
           },
-          "id": "event-004273"
+          "id": "event-004261"
         },
         {
-          "source_line": 4274,
+          "source_line": 4262,
           "timestamp": "2026-05-20T14:31:32.499924+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2615,10 +2378,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1404
           },
-          "id": "event-004274"
+          "id": "event-004262"
         },
         {
-          "source_line": 4275,
+          "source_line": 4263,
           "timestamp": "2026-05-20T14:31:35.860642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2636,10 +2399,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/run_14b_scierc.sh"
             }
           },
-          "id": "event-004275"
+          "id": "event-004263"
         },
         {
-          "source_line": 4276,
+          "source_line": 4264,
           "timestamp": "2026-05-20T14:31:36.463001+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2657,10 +2420,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/run_14b_fewnerd_inference.sh"
             }
           },
-          "id": "event-004276"
+          "id": "event-004264"
         },
         {
-          "source_line": 4277,
+          "source_line": 4265,
           "timestamp": "2026-05-20T14:31:36.965172+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2675,10 +2438,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1104
           },
-          "id": "event-004277"
+          "id": "event-004265"
         },
         {
-          "source_line": 4278,
+          "source_line": 4266,
           "timestamp": "2026-05-20T14:31:37.868872+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2693,10 +2456,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1405
           },
-          "id": "event-004278"
+          "id": "event-004266"
         },
         {
-          "source_line": 4279,
+          "source_line": 4267,
           "timestamp": "2026-05-20T14:32:13.160103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2714,10 +2477,10 @@
               "text": "## 审查报告 — 14B Merge + Inference\n\n**结论**: WARNING — merge 正确使用最终 checkpoint，FewNERD 推理正常进行。但 SciERC/CoNLL 推理使用 FewNERD-FT 模型跨域运行，几乎无用。\n\n---\n\n### 正面\n\n[severity: info] Merge 使用最终 adapter（step 41180）→ `qwen25-14b-fewnerd-merged-final`，非旧版 ckpt36000。确认正确。✅\n\n[severity: info] GPU 分配合规：FewNERD cuda:0, CoNLL cuda:1, SciERC cuda:3，均在白名单内。✅\n\n[severity: info] 推理脚本使用 `run_mvp_pilot.py`（offline batch 模式），避免了之前的 VLLM-no-client 系统性 bug。✅\n\n---\n\n### 问题\n\n**[severity: warning] SciERC 和 CoNLL 推理是跨域且几乎无用的**\n\nSciERC N=1 report 显示 **greedy_f1=0.0041 (0.41%)**，99.05% samples F1=0。原因明确：模型仅在 FewNERD 上 fine-tune（entity types: person/org/location/...），SciERC 使用完全不同的 entity types（Task/Method/Material/...）→ 输出与 gold 无交集。\n\nCoNLL 可能稍好（PER/ORG/LOC 与 FewNERD types 有部分重叠），但仍不会产出论文可用的数据。\n\n7B 的 oracle scaling 数据（scaling_results.json）覆盖 {Qwen,LLaMA} × {SciERC,CoNLL,FewNERD}，但每个 7B 模型都在**对应数据集上 fine-tune 过**。14B 只有 FewNERD-FT 版本，跨域数据不可比。\n\n**GPU 资源浪费**：SciERC (cuda:3) 和 CoNLL (cuda:1) 各占 ~31GB 显存，FewNERD 推理预计 20-30h。这两个 GPU 本可用于其他任务。\n\n**建议**：\n- 如果 SciERC/CoNLL 14B 数据对论文无贡献 → 考虑 kill 这两个进程，释放 GPU 给其他任务（如 14B FewNERD 多 seed 或 32B 后续任务）\n- 如果需要 14B 跨数据集数据 → 需要分别在 CoNLL/SciERC 上 fine-tune 14B（各 ~30h），DDL 前不可行\n- FewNERD 推理（cuda:0）是唯一有价值的，应确保不被干扰"
             }
           },
-          "id": "event-004279"
+          "id": "event-004267"
         },
         {
-          "source_line": 4280,
+          "source_line": 4268,
           "timestamp": "2026-05-20T14:32:17.958100+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2732,10 +2495,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4797
           },
-          "id": "event-004280"
+          "id": "event-004268"
         },
         {
-          "source_line": 4281,
+          "source_line": 4269,
           "timestamp": "2026-05-20T14:32:20.208119+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2748,7 +2511,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004281"
+          "id": "event-004269"
         }
       ]
     },
@@ -2756,7 +2519,7 @@
       "number": 250,
       "messages": [
         {
-          "source_line": 4282,
+          "source_line": 4270,
           "timestamp": "2026-05-20T14:32:20.741717+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2770,10 +2533,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004282"
+          "id": "event-004270"
         },
         {
-          "source_line": 4283,
+          "source_line": 4271,
           "timestamp": "2026-05-20T14:32:30.274616+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2790,10 +2553,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ssh_14b-inference-pids_20260520T143003_result.json"
             }
           },
-          "id": "event-004283"
+          "id": "event-004271"
         },
         {
-          "source_line": 4284,
+          "source_line": 4272,
           "timestamp": "2026-05-20T14:32:30.325263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2808,10 +2571,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004284"
+          "id": "event-004272"
         },
         {
-          "source_line": 4285,
+          "source_line": 4273,
           "timestamp": "2026-05-20T14:32:38.333378+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2824,7 +2587,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004285"
+          "id": "event-004273"
         }
       ]
     },
@@ -2832,7 +2595,7 @@
       "number": 251,
       "messages": [
         {
-          "source_line": 4286,
+          "source_line": 4274,
           "timestamp": "2026-05-20T14:39:42.393108+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2846,10 +2609,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "worker_done:worker_check_14b-inference-status_20260520t143619"
           },
-          "id": "event-004286"
+          "id": "event-004274"
         },
         {
-          "source_line": 4287,
+          "source_line": 4275,
           "timestamp": "2026-05-20T14:39:52.560641+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2866,10 +2629,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_check_14b-inference-status_20260520T143619_result.json"
             }
           },
-          "id": "event-004287"
+          "id": "event-004275"
         },
         {
-          "source_line": 4288,
+          "source_line": 4276,
           "timestamp": "2026-05-20T14:39:52.611301+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2884,10 +2647,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-004288"
+          "id": "event-004276"
         },
         {
-          "source_line": 4289,
+          "source_line": 4277,
           "timestamp": "2026-05-20T14:40:05.415761+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2900,7 +2663,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004289"
+          "id": "event-004277"
         }
       ]
     },
@@ -2908,7 +2671,7 @@
       "number": 252,
       "messages": [
         {
-          "source_line": 4290,
+          "source_line": 4278,
           "timestamp": "2026-05-20T14:43:38.188319+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2922,10 +2685,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "roadmap_updated"
           },
-          "id": "event-004290"
+          "id": "event-004278"
         },
         {
-          "source_line": 4291,
+          "source_line": 4279,
           "timestamp": "2026-05-20T14:43:47.652011+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2944,10 +2707,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-004291"
+          "id": "event-004279"
         },
         {
-          "source_line": 4292,
+          "source_line": 4280,
           "timestamp": "2026-05-20T14:43:47.752899+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2962,10 +2725,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 100
           },
-          "id": "event-004292"
+          "id": "event-004280"
         },
         {
-          "source_line": 4293,
+          "source_line": 4281,
           "timestamp": "2026-05-20T14:45:03.172533+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2983,10 +2746,10 @@
               "text": "## ROADMAP 审查 — R26 3.5/3.0 双线 Sprint\n\n**结论**: WARNING — 双线并行策略方向正确，但有 3 处内部矛盾和 1 处信息未同步。\n\n---\n\n### 总体评估\n\n[severity: info] R26 分数下降（3.5/3.0 → avg 3.25, vs R25 avg 3.5）的主因是 R2 新 attack：citation integrity + construction novelty overclaim + scope。这些都是 framing/writing 问题，非科学问题——双线策略（Track A writing fix + Track B method breakthrough）的诊断正确。\n\n[severity: info] \"Construction = diagnostic ablation (非 novel method)\" 的降级是正确决策。R2 攻击 \"entity construction = MBR direct application\" 无法反驳——theta2n/vc_weighted construction 确实是 MBR 在 NER 上的直接应用。将其定位为 diagnostic ablation（\"用来验证 gap 的存在\"）而非 novel contribution 大幅减少攻击面。\n\n---\n\n### 内部矛盾\n\n**[severity: warning] 核心方向与锁定决策不一致**\n\nROADMAP 核心方向改为 \"Diagnostic → **Prescriptive** Framework\"，但锁定决策仍写 \"Construction = diagnostic ablation\" + \"Title: diagnostic (无 Addressing)\"。如果 Track B 的 E_θ 和 ESJ 产出正向结果，论文将有 prescriptive contribution → 核心方向与锁定决策将冲突。\n\n**建议**: 锁定决策增加条件注释：\"Title/Construction framing 待 B1+E_θ+ESJ 结果后 revisit。如 prescriptive 方法成功，Title 可恢复 Addressing/Bridging。\"\n\n**[severity: warning] GPU 状态与实际不符**\n\nROADMAP 写 \"5090-c GPU 1,3 空闲 → ESJ 待分配\"。但截至我上次审查（~14:30 UTC），CoNLL inference (PID 201978, cuda:1) 和 SciERC inference (PID 203428, cuda:3) 仍在运行。如果要给 ESJ 分配这些 GPU，需要先 kill 这两个进程。我已在 14B inference 审查中建议 kill（FewNERD-FT 模型跨域推理无价值）。\n\n**建议**: 确认 CoNLL/SciERC 推理已被 kill 后再标记空闲。\n\n---\n\n### 信息未同步\n\n**[severity: warning] hobelsberger2025systematic 已在 P3 audit 验证为真实论文**\n\nROADMAP 将其标为 \"疑似虚构 (integrity risk)\"，A1 任务要 Semantic Scholar 重新验证。但 P3 citation audit 已独立验证：**arXiv:2510.20460**，作者 (Hobelsberger, Winner, Nawroth, Mitevski, Haensch)，标题/年份一致。R2 审稿人可能因 Semantic Scholar 未索引该 arXiv preprint 而未找到。\n\n**建议**: A1 任务仍应执行（Semantic Scholar API 验证是好习惯），但优先级可降低。如果 SS 搜不到，可在 response letter 中附 arXiv URL 作为证据。更重要的是确认该引用是否对论文 claim 有支撑作用——如果只是 Related Work 引用且不支撑核心 claim，可考虑替换为更易验证的 reference 以消除审稿人疑虑。\n\n---\n\n### Track B 实验审查\n\n[severity: info] E_θ Threshold-Adaptive SC：5 个 CPU workers 并行（纯分析/computation），资源合理。需要确认这 5 个实验是否已注册 registry。\n\n[severity: info] ESJ Entity Self-Judgment：GPU 实验，需要明确 hypothesis 和 methodology。当前信息不足以评估可行性。如果是 \"让模型对每个 entity 进行 self-judgment 打分\"，需要额外推理 pass → 增加 inference cost → 审稿人可能质疑 cost-effectiveness。建议 registry spec 完善后再审。\n\n---\n\n### 时间线评估\n\n[severity: info] DDL 2026-05-25，当前 05-20 14:43 UTC。剩余 ~4.3 天。\n\n- Track A (writing v3): 30-45 min → 可忽略\n- B1 SCD: ~01:00 UTC May 21 完成 → 10h\n- E_θ: 2-3h CPU → 可与 B1 并行\n- ESJ: 3-4h GPU → 可与 B1 并行\n- 32B: ~06:30 UTC May 21 → 16h\n- 14B FewNERD: 20-30h → May 21-22\n- Writing integration + R27 review: ~3-4h\n\n**GPU-hours 不是瓶颈，时间窗足够。** 关键路径是 14B FewNERD inference（20-30h）→ 如果 14B 数据是 R27 必须的，则 latest finish ~May 22 00:00 UTC → 还有 3 天 buffer。如果 14B 数据是 nice-to-have（仅用于 scaling plot 扩展），则不在关键路径上。"
             }
           },
-          "id": "event-004293"
+          "id": "event-004281"
         },
         {
-          "source_line": 4294,
+          "source_line": 4282,
           "timestamp": "2026-05-20T14:45:06.875647+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3001,10 +2764,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3703
           },
-          "id": "event-004294"
+          "id": "event-004282"
         },
         {
-          "source_line": 4295,
+          "source_line": 4283,
           "timestamp": "2026-05-20T14:45:13.088891+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3017,7 +2780,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004295"
+          "id": "event-004283"
         }
       ]
     },
@@ -3025,7 +2788,7 @@
       "number": 253,
       "messages": [
         {
-          "source_line": 4296,
+          "source_line": 4284,
           "timestamp": "2026-05-20T14:46:47.983396+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3039,10 +2802,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004296"
+          "id": "event-004284"
         },
         {
-          "source_line": 4297,
+          "source_line": 4285,
           "timestamp": "2026-05-20T14:47:09.162970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3061,10 +2824,10 @@
               "limit": "15"
             }
           },
-          "id": "event-004297"
+          "id": "event-004285"
         },
         {
-          "source_line": 4298,
+          "source_line": 4286,
           "timestamp": "2026-05-20T14:47:09.314056+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3079,10 +2842,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-004298"
+          "id": "event-004286"
         },
         {
-          "source_line": 4299,
+          "source_line": 4287,
           "timestamp": "2026-05-20T14:48:38.295956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3100,10 +2863,10 @@
               "text": "## R26 Action Matrix 独立审查\n\n**结论**: WARNING — 方案整体 sound，5 个具体问题逐一回答如下。1 处 Abstract 重写方案有事实错误需修正。\n\n---\n\n### 回答 5 个审查问题\n\n**Q1: p_adj 矛盾的根因判断是否正确？**\n\n[severity: info] **正确。** 我已核实 Holm-Bonferroni 枚举表：\n\n- SciERC LP-weighted construction: raw p=0.004\n- Global k=57 (test #20): p_adj = 0.180 ≈ 0.20 ✅\n- Per-family construction (k=10, tests #20-29): Holm 校正后 p_adj ≈ 0.028；如果用 Bonferroni → 0.004 × 10 = 0.040 ≈ 0.038 ✅\n\n根因确认：0.20 来自 global family，0.038 来自 per-family。不是 bug，是 family scope 不同。D196 策略（main text 用 per-family，appendix 报 global）是正确做法。论文中需注明 \"Holm-corrected within the construction family (k=10)\"。\n\n---\n\n**Q2: Contributions 重组 (2 core + 2 supporting) 是否合理？**\n\n[severity: info] **合理。** 证据-贡献对齐：\n\n| 贡献 | 数据支撑 | 评估 |\n|------|----------|------|\n| Core 1: QE + gap | 3 datasets × 2 models × 5 signals, bootstrap CI | 最强 |\n| Core 2: Diagnostic cascade | descriptive but covers degeneracy/LP/headroom | 中等 |\n| Supporting A: Construction ablation | 1/4 显著 (per-family)，MBR 非 novel | 降级正确 |\n| Supporting B: Threshold regime | clean analysis, narrow scope | 合理 |\n\n如果 Track B (E_θ/ESJ) 正面 → Core 3，升级为 3 core + 1 supporting。这个弹性结构好——审稿人看不到条件分支，只看到最终版本。\n\n---\n\n**Q3: W-Warning-4 (SciERC single seed) wont_fix 是否可接受？**\n\n[severity: info] **可接受**，与我在 R25 审查中的判断一致。SciERC 需 ~8h/seed × 3 seeds = 24h 仅训练（不含 inference），DDL 前不可行。Bootstrap CI (B=10000) + 7B/8B 层面 3 seeds 一致性（SJ ρ: 0.360/0.383/0.371）提供间接 seed 稳定性证据。Limitations 中显式承认即可。\n\n---\n\n**Q4: SYSTEMIC_C Abstract 重写方案是否足够强？**\n\n[severity: warning] **方向正确但有事实错误。** 提案文本：\n\n> \"can log-probability—the only per-sample signal—enable selection? We find it **cannot**, due to within-instance LP compression.\"\n\n问题：**LP 在 FewNERD 上 CAN select (+1.36pp, raw p<0.001, Holm per-family p_adj<0.019)**。说 \"it cannot\" 是不准确的——论文自己的数据反驳了这个 claim。\n\n**修正建议**：\n> \"can log-probability—the only per-sample signal—enable selection? We find it succeeds only when LP-F1 alignment is strong (FewNERD +1.36pp), but fails under LP compression (SciERC, CoNLL)—revealing dataset-dependent conditions for SC viability.\"\n\n这样既前置了 structural vs empirical 二分法，又准确反映了 LP 的 conditional success，比 blanket \"cannot\" 更防御。审稿人无法用 FewNERD 结果反驳。\n\n---\n\n**Q5: Track B (E_θ/ESJ) 对 Findings→Main 升级的贡献？**\n\n[severity: info] 分层评估：\n\n**E_θ (Threshold-Adaptive SC)**: 中等贡献。如果 per-instance 自适应 θ 显著优于固定 θ → 证明 threshold 不是 one-size-fits-all → 直接支撑 diagnostic cascade 的 prescriptive 价值。但这是 CPU-only 分析（重新计算现有 samples 的 construction），提升幅度可能有限（因为底层 sample quality 不变）。\n\n**ESJ (Entity Self-Judgment)**: 强贡献。如果模型能 self-judge entity quality 并用于 selection → 直接解决 correlation-selection gap（提供一个 per-sample, entity-level signal 不受 LP compression 影响）。这是最有可能推动 Findings→Main 的实验。但风险也最高：(1) 需要额外 inference pass → cost 翻倍；(2) 审稿人会质疑 self-judgment 的 reliability（model judges its own output → circular）。\n\n**Findings→Main 判断**：\n- Track B 全失败 → 3.0-3.5 (Findings)，diagnostic-only 论文\n- E_θ 正面 + ESJ 失败 → 3.5 (Borderline Conference)，有 adaptive 但 scope 有限\n- ESJ 正面 → 4.0 (Conference) 可能，**前提是 ESJ 效果显著（≥2pp）且不需要 oracle labels**\n- 两者都正面 → 4.0-4.5 可能\n\n**关键风险**：ESJ 依赖 \"模型能准确判断自己的 entity 是否正确\"——但如果模型能做到这一点，它为什么不直接生成正确的 entity？这个 circular reasoning 是审稿人必问的。方案需要预备回答。\n\n---\n\n### 补充发现\n\n**[severity: warning] R26-C4 hobelsberger 状态**\n\n重申：P3 citation audit 已验证 hobelsberger2025systematic 为真实论文（arXiv:2510.20460）。A1 Worker 用 Semantic Scholar 验证可能搜不到（arXiv preprint 索引延迟），不应因此删除。如果 SS not-found，建议改为 Google Scholar / arXiv 直接验证，或在 response letter 附 arXiv URL。\n\n**[severity: info] Action Matrix 工作量评估**\n\nTrack A: 5 CRITICAL + 9 WARNING + 5 Q + 3 VIS = 22 项修改。对 Paper Agent 来说 30-45 min 不够——R25 的 12 项 Mod 用了 ~2h。估计 Track A 实际需要 2-3h。\n\nTrack B: E_θ (2-3h CPU) + ESJ (3-4h GPU) 可与 Track A 并行，不在关键路径上。\n\n时间窗足够（距 DDL ~4.3 天），但建议 Track A 启动后密切监控 Paper Agent 进度。"
             }
           },
-          "id": "event-004299"
+          "id": "event-004287"
         },
         {
-          "source_line": 4300,
+          "source_line": 4288,
           "timestamp": "2026-05-20T14:48:41.963109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3118,10 +2881,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3667
           },
-          "id": "event-004300"
+          "id": "event-004288"
         },
         {
-          "source_line": 4301,
+          "source_line": 4289,
           "timestamp": "2026-05-20T14:48:47.456252+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3134,7 +2897,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004301"
+          "id": "event-004289"
         }
       ]
     },
@@ -3142,7 +2905,7 @@
       "number": 254,
       "messages": [
         {
-          "source_line": 4302,
+          "source_line": 4290,
           "timestamp": "2026-05-20T14:48:47.988705+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3156,10 +2919,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004302"
+          "id": "event-004290"
         },
         {
-          "source_line": 4303,
+          "source_line": 4291,
           "timestamp": "2026-05-20T14:48:59.155186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3177,10 +2940,10 @@
               "command": "ls -lt /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/"
             }
           },
-          "id": "event-004303"
+          "id": "event-004291"
         },
         {
-          "source_line": 4304,
+          "source_line": 4292,
           "timestamp": "2026-05-20T14:49:00.110080+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3199,10 +2962,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-004304"
+          "id": "event-004292"
         },
         {
-          "source_line": 4305,
+          "source_line": 4293,
           "timestamp": "2026-05-20T14:49:00.663293+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3217,10 +2980,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1508
           },
-          "id": "event-004305"
+          "id": "event-004293"
         },
         {
-          "source_line": 4306,
+          "source_line": 4294,
           "timestamp": "2026-05-20T14:49:01.617534+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3235,10 +2998,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 1507
           },
-          "id": "event-004306"
+          "id": "event-004294"
         },
         {
-          "source_line": 4307,
+          "source_line": 4295,
           "timestamp": "2026-05-20T14:49:12.192319+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3256,10 +3019,10 @@
               "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/"
             }
           },
-          "id": "event-004307"
+          "id": "event-004295"
         },
         {
-          "source_line": 4308,
+          "source_line": 4296,
           "timestamp": "2026-05-20T14:49:12.242765+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3277,10 +3040,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-004308"
+          "id": "event-004296"
         },
         {
-          "source_line": 4309,
+          "source_line": 4297,
           "timestamp": "2026-05-20T14:49:12.944764+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3295,10 +3058,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 752
           },
-          "id": "event-004309"
+          "id": "event-004297"
         },
         {
-          "source_line": 4310,
+          "source_line": 4298,
           "timestamp": "2026-05-20T14:49:13.899326+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3313,10 +3076,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1656
           },
-          "id": "event-004310"
+          "id": "event-004298"
         },
         {
-          "source_line": 4311,
+          "source_line": 4299,
           "timestamp": "2026-05-20T14:49:29.260921+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3334,10 +3097,10 @@
               "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/scierc_n16/report.json"
             }
           },
-          "id": "event-004311"
+          "id": "event-004299"
         },
         {
-          "source_line": 4312,
+          "source_line": 4300,
           "timestamp": "2026-05-20T14:49:30.053811+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3352,10 +3115,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 792
           },
-          "id": "event-004312"
+          "id": "event-004300"
         },
         {
-          "source_line": 4313,
+          "source_line": 4301,
           "timestamp": "2026-05-20T14:49:49.203291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3373,10 +3136,10 @@
               "text": "## 审查报告 — exp_14b_inference_scierc (cron:on_failed)\n\n**结论**: PASS (false positive) — SciERC 14B 推理已正常完成，cron 误判。\n\n[severity: info] **False positive，与 B1 CoNLL control 相同模式**。SciERC N=1~16 全部 5 个 N 值的 output 均已生成（scierc_n1 ~ scierc_n16，含 report.json + samples.jsonl）。进程正常退出后 cron 检测到进程消失，无 sentinel/W&B → 误判 failed。\n\n[severity: info] SciERC N=16 结果确认跨域无用：greedy_f1=0.0041 (0.41%), oracle_f1=0.018, 99.6% samples F1=0, all signals negative correlation。符合预期（FewNERD-FT 模型无法识别 SciERC entity types）。\n\n[severity: info] GPU 3 已释放。当前 5090-c 状态：GPU 0 FewNERD inference, GPU 1 CoNLL inference (N=4 进行中), **GPU 2,3 空闲**可分配给 ESJ。\n\n**建议**: Registry 应更新为 DONE (not failed)，或直接标注 \"cross-domain, not applicable\"。\n\n[教训建议] 分类: process | 模式: 多步 sequential inference (N=1→2→4→8→16) 正常完成后 cron 误判 | 规则: cron 监控 inference 类实验应检查 output 完整性（expected N 个子目录），不仅检测进程存活。"
             }
           },
-          "id": "event-004313"
+          "id": "event-004301"
         },
         {
-          "source_line": 4314,
+          "source_line": 4302,
           "timestamp": "2026-05-20T14:49:52.820358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3391,10 +3154,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3617
           },
-          "id": "event-004314"
+          "id": "event-004302"
         },
         {
-          "source_line": 4315,
+          "source_line": 4303,
           "timestamp": "2026-05-20T14:49:58.028928+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3407,7 +3170,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004315"
+          "id": "event-004303"
         }
       ]
     },
@@ -3415,7 +3178,7 @@
       "number": 255,
       "messages": [
         {
-          "source_line": 4316,
+          "source_line": 4304,
           "timestamp": "2026-05-20T14:49:58.543596+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3429,10 +3192,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "system"
           },
-          "id": "event-004316"
+          "id": "event-004304"
         },
         {
-          "source_line": 4317,
+          "source_line": 4305,
           "timestamp": "2026-05-20T14:50:08.529394+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3445,7 +3208,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
           },
-          "id": "event-004317"
+          "id": "event-004305"
         }
       ]
     },
@@ -3453,7 +3216,7 @@
       "number": 256,
       "messages": [
         {
-          "source_line": 4318,
+          "source_line": 4306,
           "timestamp": "2026-05-20T14:50:09.043287+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3467,10 +3230,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "source": "cron:on_failed:exp_14b_inference_conll"
           },
-          "id": "event-004318"
+          "id": "event-004306"
         },
         {
-          "source_line": 4319,
+          "source_line": 4307,
           "timestamp": "2026-05-20T14:50:17.028663+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3488,10 +3251,10 @@
               "command": "ls -d /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n*/"
             }
           },
-          "id": "event-004319"
+          "id": "event-004307"
         },
         {
-          "source_line": 4320,
+          "source_line": 4308,
           "timestamp": "2026-05-20T14:50:19.789340+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3505,6 +3268,238 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2760
+          },
+          "id": "event-004308"
+        },
+        {
+          "source_line": 4309,
+          "timestamp": "2026-05-20T14:50:28.414822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n4/"
+            }
+          },
+          "id": "event-004309"
+        },
+        {
+          "source_line": 4310,
+          "timestamp": "2026-05-20T14:50:28.816017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-004310"
+        },
+        {
+          "source_line": 4311,
+          "timestamp": "2026-05-20T14:50:29.964922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root    6 May 20 22:46 .\\\\ndrwxr-xr-x 11 root root 4096 May 20 22:46 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1550
+          },
+          "id": "event-004311"
+        },
+        {
+          "source_line": 4312,
+          "timestamp": "2026-05-20T14:50:31.434279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"201291, GPU-f750d783-9d8b-8b32-0168-696428357321, 31092 MiB\\\\n207608, GPU-b08f43af-4cbf-760d-4937-eb47c56b3269, 31198 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2618
+          },
+          "id": "event-004312"
+        },
+        {
+          "source_line": 4313,
+          "timestamp": "2026-05-20T14:50:47.370670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090-c",
+              "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n2/report.json"
+            }
+          },
+          "id": "event-004313"
+        },
+        {
+          "source_line": 4314,
+          "timestamp": "2026-05-20T14:50:49.276222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1825 May 20 22:46 /root/autodl-tmp/struct_self_consist_ie/output/14b_final_inference/conll2003_n2/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1905
+          },
+          "id": "event-004314"
+        },
+        {
+          "source_line": 4315,
+          "timestamp": "2026-05-20T14:51:00.959302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "struct_self_consist_ie",
+              "text": "## 审查报告 — exp_14b_inference_conll (cron:on_failed)\n\n**结论**: PASS (false positive) — CoNLL 推理仍在运行，cron 监控的是旧 PID。\n\n[severity: info] CoNLL inference 进展正常：N=1 完成, N=2 完成 (report.json 存在), N=4 进行中 (目录已创建但为空)。PID 207608 在 GPU 1 活跃（31198 MiB）。\n\n原因：shell 脚本循环 N∈{1,2,4,8,16}，每个 N 启动新 vLLM engine → PID 变化。Cron 监控的原始 PID 201978 已退出（N=1 完成后），新 PID 207608 接管 → cron 误判。与 SciERC 和 B1 CoNLL control 相同的 cron 误报模式。\n\n不需要任何操作。预计 CoNLL 全部完成 ~2-3h。但再次提醒：CoNLL 使用 FewNERD-FT 模型，数据价值有限。"
+            }
+          },
+          "id": "event-004315"
+        },
+        {
+          "source_line": 4316,
+          "timestamp": "2026-05-20T14:51:05.516779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4557
+          },
+          "id": "event-004316"
+        },
+        {
+          "source_line": 4317,
+          "timestamp": "2026-05-20T14:51:07.936345+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CoNLL 只有 n1/n2/n4，缺 n8/n16——可能是真正的失败。让我检查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer"
+          },
+          "id": "event-004317"
+        }
+      ]
+    },
+    {
+      "number": 257,
+      "messages": [
+        {
+          "source_line": 4318,
+          "timestamp": "2026-05-20T14:55:09.259215+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_exp_14b_inference_scierc_20260520T145131]:\nWorker worker_diag_exp_14b_inference_scierc_20260520T145131 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "source": "system"
+          },
+          "id": "event-004318"
+        },
+        {
+          "source_line": 4319,
+          "timestamp": "2026-05-20T14:55:20.383089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_diag_exp_14b_inference_scierc_20260520T145131_result.json"
+            }
+          },
+          "id": "event-004319"
+        },
+        {
+          "source_line": 4320,
+          "timestamp": "2026-05-20T14:55:20.433711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 诊断结论\\n\\n**三个 inference 都没有失败，实际情况是 registry 状态不同步。**\\n\\n### 各实验实际状态\\n\\n| 实验 | GPU | 实际状态 | Registry 状态 | 详情 |\\n|------|-----|---------|--------------|------|\\n| **scierc** | GPU 3 (空闲) | ✅ **已完成全部 5 个 N** | DONE(failed) ❌ | 22:38 完成，日志 \\\"ALL SciERC DONE\\\" |\\n| **conll** | GPU 1 (98%) | 🔄 **运行中，n4 进度 77%** (10629/13812) | PREPARING ❌ | n1、n2 已完成，正在跑 n4 |\\n| **fewnerd** | GPU 0 (99%) | 🔄 **运行中，n1 进度 35%** (13029/37648) | PREPARING ❌ | PID 201001，已跑 ~26 分钟 |\\n\\n### 根本原因\\n\\n**没有任何实际失败。** 问题出在实验 registry 没有正确记录 spec（command/server/pid），导致 cron reconcile 误判：\\n- scierc 正常完成后进程退出 → cron 找不到进程 → 标记为 failed\\n- conll/fewnerd 进程一直在跑 → 但 registry 无 spec 信息 → 保持 PREPARING\\n\\n### 关键数据点\\n\\n- **磁盘空间**: 127G 可用，充足\\n- **Checkpoint**: `qwen25-14b-fewnerd-merged-final` 存在且正在使用\\n- **SciERC 结果质量极差**: greedy_f1=0.004, 99% samples F1=0, verdict=FAIL（模型只在 FewNERD 上微调，不能泛化到 SciERC 的 schema）\\n- **预计完成时间**: CoNLL n4 快完了（~2min），之后还有 n8、n16；FewNERD n1 还需 ~45 分钟，之后 n2-n16 会更久\\n\\n### 需要做的\\n\\n1. **修正 registry 状态** — scierc 标记为 DONE(success)，conll/fewnerd 标记为 RUNNING 并填入正确的 PID/server\\n2. **不需要重跑** — 三个实验都在正常工作\\n3. **SciERC 质量问题需要后续关注** — 14B 模型在非训练域数据集上 F1 接近 0，可能需要 domain-specific 微调或检查 prompt/schema 是否正确\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
           },
           "id": "event-004320"
         }

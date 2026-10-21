@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_D_comprehensive_20260515T113549.log",
     "occurrence": 1,
-    "bytes": 204770,
-    "sha256": "82cf81fd068d01c885434a291d09dae75128c4567e1199ba7084d99388d3dc68"
+    "bytes": 199638,
+    "sha256": "9df27d3fa3402d29fe484d1203f3d722babc5f35e1a4d7c6f0c7ab1680f2d707"
   },
   "statistics": {
-    "messages": 72,
+    "messages": 70,
     "user_turns": 0,
-    "tool_calls": 26,
+    "tool_calls": 25,
     "roles": {
       "log": 1,
       "system": 1,
       "record": 1,
       "assistant": 16,
-      "tool_call": 26,
-      "tool_result": 26,
+      "tool_call": 25,
+      "tool_result": 25,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -2651,83 +2651,6 @@
           "content": [
             {
               "type": "tool_use",
-              "id": "toolu_01532ikvJRKGJ4HBHsZ1VLeq",
-              "name": "Write",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_comprehensive.json",
-                "content": "{\n  \"fix_description\": \"概率合并 P(d=4)+P(d=5) 替代 min(pred,4); 加 random_state=42; n_jobs=-1 保留但种子固定\",\n  \"primary_seed\": 42,\n  \"obd_accuracy\": 0.444,\n  \"obd_accuracy_ci\": [\n    0.4,\n    0.488\n  ],\n  \"per_depth_accuracy\": {\n    \"0\": 0.96,\n    \"1\": 0.36,\n    \"2\": 0.08,\n    \"3\": 0.02,\n    \"4\": 0.8\n  },\n  \"obd_full_accuracy_6class\": 0.3856,\n  \"n_samples_500\": 500,\n  \"n_samples_full\": 30000,\n  \"obd_vs_gpt55\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.332,\n    \"accuracy_diff\": 0.112,\n    \"contingency_table\": {\n      \"a\": 92,\n      \"b\": 130,\n      \"c\": 74,\n      \"d\": 204\n    },\n    \"mcnemar_p\": 0.000107,\n    \"bootstrap_ci_lower\": 0.056,\n    \"bootstrap_ci_upper\": 0.168,\n    \"bootstrap_n\": 10000,\n    \"n_samples\": 500\n  },\n  \"obd_vs_claude\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.33,\n    \"accuracy_diff\": 0.114,\n    \"contingency_table\": {\n      \"a\": 109,\n      \"b\": 113,\n      \"c\": 56,\n      \"d\": 222\n    },\n    \"mcnemar_p\": 1.4e-05,\n    \"bootstrap_ci_lower\": 0.062,\n    \"bootstrap_ci_upper\": 0.164,\n    \"bootstrap_n\": 10000,\n    \"n_samples\": 500\n  },\n  \"multi_seed_stability\": {\n    \"seeds\": [\n      42,\n      123,\n      456,\n      789,\n      2024\n    ],\n    \"accuracies\": [\n      0.444,\n      0.444,\n      0.444,\n      0.444,\n      0.444\n    ],\n    \"mean\": 0.444,\n    \"std\": 0.0,\n    \"max_diff\": 0.0\n  },\n  \"comparison_with_old\": {\n    \"old_capping_no_seed\": 0.436,\n    \"old_v2_no_seed\": 0.38,\n    \"new_prob_merge_seed42\": 0.444\n  },\n  \"method\": \"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42, GroupKFold(5)\"\n}\n"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "fb982b60-6b89-49ad-bfa4-ede234f6203d",
-            "uuid": "6dc60b6b-0727-4097-94c5-e28e02db4c0d",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01GTyFJMCh8z49zuCjYiC4Gf",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 346,
-                "cache_read_input_tokens": 52072,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 346
-                },
-                "output_tokens": 51,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000067"
-        },
-        {
-          "source_line": 68,
-          "timestamp": "2026-05-15T11:40:11.498Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01532ikvJRKGJ4HBHsZ1VLeq",
-              "type": "tool_result",
-              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_comprehensive.json"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "fb982b60-6b89-49ad-bfa4-ede234f6203d",
-            "uuid": "959c1163-2299-4208-a176-290794954517",
-            "tool_use_result": {
-              "type": "create",
-              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_comprehensive.json",
-              "content": "{\n  \"fix_description\": \"概率合并 P(d=4)+P(d=5) 替代 min(pred,4); 加 random_state=42; n_jobs=-1 保留但种子固定\",\n  \"primary_seed\": 42,\n  \"obd_accuracy\": 0.444,\n  \"obd_accuracy_ci\": [\n    0.4,\n    0.488\n  ],\n  \"per_depth_accuracy\": {\n    \"0\": 0.96,\n    \"1\": 0.36,\n    \"2\": 0.08,\n    \"3\": 0.02,\n    \"4\": 0.8\n  },\n  \"obd_full_accuracy_6class\": 0.3856,\n  \"n_samples_500\": 500,\n  \"n_samples_full\": 30000,\n  \"obd_vs_gpt55\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.332,\n    \"accuracy_diff\": 0.112,\n    \"contingency_table\": {\n      \"a\": 92,\n      \"b\": 130,\n      \"c\": 74,\n      \"d\": 204\n    },\n    \"mcnemar_p\": 0.000107,\n    \"bootstrap_ci_lower\": 0.056,\n    \"bootstrap_ci_upper\": 0.168,\n    \"bootstrap_n\": 10000,\n    \"n_samples\": 500\n  },\n  \"obd_vs_claude\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.33,\n    \"accuracy_diff\": 0.114,\n    \"contingency_table\": {\n      \"a\": 109,\n      \"b\": 113,\n      \"c\": 56,\n      \"d\": 222\n    },\n    \"mcnemar_p\": 1.4e-05,\n    \"bootstrap_ci_lower\": 0.062,\n    \"bootstrap_ci_upper\": 0.164,\n    \"bootstrap_n\": 10000,\n    \"n_samples\": 500\n  },\n  \"multi_seed_stability\": {\n    \"seeds\": [\n      42,\n      123,\n      456,\n      789,\n      2024\n    ],\n    \"accuracies\": [\n      0.444,\n      0.444,\n      0.444,\n      0.444,\n      0.444\n    ],\n    \"mean\": 0.444,\n    \"std\": 0.0,\n    \"max_diff\": 0.0\n  },\n  \"comparison_with_old\": {\n    \"old_capping_no_seed\": 0.436,\n    \"old_v2_no_seed\": 0.38,\n    \"new_prob_merge_seed42\": 0.444\n  },\n  \"method\": \"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42, GroupKFold(5)\"\n}\n",
-              "structuredPatch": [],
-              "originalFile": null,
-              "userModified": false
-            }
-          },
-          "id": "event-000068"
-        },
-        {
-          "source_line": 69,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
               "id": "toolu_01FydA61wq47P63xBKdoq1VQ",
               "name": "mcp__agent-ml-research__register_artifact",
               "input": {
@@ -2777,10 +2700,10 @@
               "context_management": null
             }
           },
-          "id": "event-000069"
+          "id": "event-000067"
         },
         {
-          "source_line": 70,
+          "source_line": 68,
           "timestamp": "2026-05-15T11:40:19.489Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2803,10 +2726,10 @@
               }
             }
           },
-          "id": "event-000070"
+          "id": "event-000068"
         },
         {
-          "source_line": 71,
+          "source_line": 69,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2844,10 +2767,10 @@
               "context_management": null
             }
           },
-          "id": "event-000071"
+          "id": "event-000069"
         },
         {
-          "source_line": 72,
+          "source_line": 70,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -2924,10 +2847,10 @@
             "fast_mode_state": "off",
             "uuid": "5c6b5072-2961-4f59-9365-5b3b54e80dbb"
           },
-          "id": "event-000072"
+          "id": "event-000070"
         }
       ],
-      "message_count": 72
+      "message_count": 70
     }
   ],
   "readable_path": "readable/worker-executions/code-exp-d-comprehensive.md"

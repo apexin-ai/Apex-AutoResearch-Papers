@@ -112,7 +112,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | infra setup qwen7b folio cuda2 | 23 | 0 | [Read transcript](infra-setup-qwen7b-folio-cuda2.md) | [JSON](../../sessions/97/97573edbc3472b36b8e0.json) |
 | infra gpu check all servers | 53 | 0 | [Read transcript](infra-gpu-check-all-servers.md) | [JSON](../../sessions/09/092a1dc7f4e963f13230.json) |
 | theory causal dag tikz | 5 | 0 | [Read transcript](theory-causal-dag-tikz.md) | [JSON](../../sessions/a7/a76089f82f089960993b.json) |
-| analysis q5 q6 review answers | 183 | 0 | [Read transcript](analysis-q5-q6-review-answers.md) | [JSON](../../sessions/8a/8a55af83e506b1efa248.json) |
 | theory scb proposition proof | 43 | 0 | [Read transcript](theory-scb-proposition-proof.md) | [JSON](../../sessions/c4/c4cf992066a3d16afc4b.json) |
 | paper writing step1 method | 11 | 0 | [Read transcript](paper-writing-step1-method.md) | [JSON](../../sessions/f6/f66ea5eea0776f382cb0.json) |
 | paper writing step2 results | 19 | 0 | [Read transcript](paper-writing-step2-results.md) | [JSON](../../sessions/d5/d5f3fab017ef22e8eeb6.json) |

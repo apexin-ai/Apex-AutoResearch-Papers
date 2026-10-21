@@ -7,560 +7,6 @@
       "messages": [
         {
           "source_line": 2341,
-          "timestamp": "2026-05-29T21:17:29.064451+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
-            }
-          },
-          "id": "event-002341"
-        },
-        {
-          "source_line": 2342,
-          "timestamp": "2026-05-29T21:17:29.215408+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Conclusion}\n3\t\n4\tWe presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \\emph{what} the auxiliary head predicts but \\emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three guidelines follow, all at zero inference cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-truth spatial labels are unnecessary. Future work should verify the BatchNorm running-statistics hypothesis (e.g., freezing running statistics or comparing train vs.\\ eval mode), extend to other VLA architectures (e.g., $\\pi_0$, Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop manipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods for layered protection.\n5\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 150
-          },
-          "id": "event-002342"
-        },
-        {
-          "source_line": 2343,
-          "timestamp": "2026-05-29T21:17:33.882844+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
-              "old_string": "The advantage arises from two independent effects, detaching gradients and switching to LayerNorm, each contributing ${\\approx}$4--5\\,pp, with negligible interaction ($\\eta^2{=}0.005$; Table~\\ref{tab:anova}). Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety.",
-              "new_string": "The advantage arises from two independent effects (each ${\\approx}$4--5\\,pp; interaction $\\eta^2{=}0.005$). Only BN + gradient flow falls below Vanilla; removing either condition restores safety."
-            }
-          },
-          "id": "event-002343"
-        },
-        {
-          "source_line": 2344,
-          "timestamp": "2026-05-29T21:17:33.933433+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002344"
-        },
-        {
-          "source_line": 2345,
-          "timestamp": "2026-05-29T21:17:38.249515+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
-              "old_string": "Independent safety evaluation is necessary when deploying VLAs with auxiliary heads. One possibility: collision avoidance demands fine-grained trajectory control near obstacles, where small action perturbations cross obstacle boundaries; task success, a binary completion metric, tolerates larger action deviations. BN corruption may introduce action-distribution shifts that rarely affect completion but disproportionately increase boundary-crossing near obstacles.",
-              "new_string": "Independent safety evaluation is necessary. One possibility: collision avoidance demands fine-grained trajectory control near obstacles, where small perturbations cross obstacle boundaries; task success tolerates larger deviations. BN corruption may introduce action-distribution shifts that rarely affect completion but disproportionately increase boundary-crossing."
-            }
-          },
-          "id": "event-002345"
-        },
-        {
-          "source_line": 2346,
-          "timestamp": "2026-05-29T21:17:38.300175+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002346"
-        },
-        {
-          "source_line": 2347,
-          "timestamp": "2026-05-29T21:17:42.479226+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.split('\\n')\npage = 1\nfor line in lines:\n    if chr(12) in line:\n        page += 1\n    if 'Limitations' in line and page >= 7:\n        print(f'Page {page}: {line.strip()[:80]}')\n        break\n\"\n",
-              "description": "Recompile and check page"
-            }
-          },
-          "id": "event-002347"
-        },
-        {
-          "source_line": 2348,
-          "timestamp": "2026-05-29T21:17:43.484272+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (19 pages, 3865271 bytes).\nPage 9: Limitations\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 1005
-          },
-          "id": "event-002348"
-        },
-        {
-          "source_line": 2349,
-          "timestamp": "2026-05-29T21:17:53.320080+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nif len(pages) >= 9:\n    p8 = pages[7]  # 0-indexed\n    lines8 = p8.strip().split('\\n')\n    print('=== END OF PAGE 8 (last 15 lines) ===')\n    for l in lines8[-15:]:\n        print(l)\n    print()\n    p9 = pages[8]\n    lines9 = p9.strip().split('\\n')\n    print('=== START OF PAGE 9 (first 15 lines) ===')\n    for l in lines9[:15]:\n        print(l)\n\"\n",
-              "description": "Check page 8/9 boundary"
-            }
-          },
-          "id": "event-002349"
-        },
-        {
-          "source_line": 2350,
-          "timestamp": "2026-05-29T21:17:53.571389+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "=== END OF PAGE 8 (last 15 lines) ===\n\n254   6   Conclusion\n\n255   We presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. De-\n256   tached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while Batch-\n257   Norm with gradient flow reduces safety below it. The two effects combine additively, with the\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero inference cost:\n262   detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-\n263   truth spatial labels are unnecessary. Future work should verify the BatchNorm running-statistics\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 15 lines) ===\n264   hypothesis (e.g., freezing running statistics or comparing train vs. eval mode), extend to other VLA\n265   architectures (e.g., π0 , Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop ma-\n266   nipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods\n267   for layered protection.\n\n268   7   Limitations\n\n269   Our study has several limitations that qualify the scope of the conclusions.\n270   Simulation only. All experiments use simulated single-arm tabletop tasks; real-robot transfer is\n271   untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the rela-\n272   tive safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with\n273   contact-rich tasks is a necessary next step.\n274   Single model and benchmark. We study one architecture (OpenVLA-7B with LoRA) on \n…[truncated 323 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 251
-          },
-          "id": "event-002350"
-        },
-        {
-          "source_line": 2351,
-          "timestamp": "2026-05-29T21:18:03.408222+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
-              "old_string": "Future work should verify the BatchNorm running-statistics hypothesis (e.g., freezing running statistics or comparing train vs.\\ eval mode), extend to other VLA architectures (e.g., $\\pi_0$, Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop manipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods for layered protection.",
-              "new_string": "Future work should verify the BN running-statistics hypothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full fine-tuning, and integrate with runtime safety methods."
-            }
-          },
-          "id": "event-002351"
-        },
-        {
-          "source_line": 2352,
-          "timestamp": "2026-05-29T21:18:03.458979+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002352"
-        },
-        {
-          "source_line": 2353,
-          "timestamp": "2026-05-29T21:18:10.234126+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nif len(pages) >= 9:\n    p8 = pages[7]\n    lines8 = p8.strip().split('\\n')\n    print('=== END OF PAGE 8 (last 10 lines) ===')\n    for l in lines8[-10:]:\n        print(l)\n    print()\n    p9 = pages[8]\n    lines9 = p9.strip().split('\\n')\n    print('=== START OF PAGE 9 (first 5 lines) ===')\n    for l in lines9[:5]:\n        print(l)\n\"\n",
-              "description": "Recompile and verify page boundary"
-            }
-          },
-          "id": "event-002353"
-        },
-        {
-          "source_line": 2354,
-          "timestamp": "2026-05-29T21:18:11.330359+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (19 pages, 3865049 bytes).\n=== END OF PAGE 8 (last 10 lines) ===\n257   Norm with gradient flow reduces safety below it. The two effects combine additively, with the\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spa-\n259   tial labels has no detectable effect—the critical factor is not what the auxiliary head predicts but\n260   how it interacts with the shared encoder during training. The safety deficit is not accompanied\n261   by task-success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero infer-\n262   ence cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed;\n263   ground-truth spatial labels are unnecessary. Future work should verify the BN running-statistics hy-\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 5 lines) ===\n264   pothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full\n265   fine-tuning, and integrate with runtime safety methods.\n\n266   7   Limitations\n267   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 1096
-          },
-          "id": "event-002354"
-        },
-        {
-          "source_line": 2355,
-          "timestamp": "2026-05-29T21:18:23.023437+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
-              "old_string": "Future work should verify the BN running-statistics hypothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full fine-tuning, and integrate with runtime safety methods.",
-              "new_string": "Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods."
-            }
-          },
-          "id": "event-002355"
-        },
-        {
-          "source_line": 2356,
-          "timestamp": "2026-05-29T21:18:23.124374+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-002356"
-        },
-        {
-          "source_line": 2357,
-          "timestamp": "2026-05-29T21:18:27.741947+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = p8.strip().split('\\n')\nprint('=== END OF PAGE 8 (last 8 lines) ===')\nfor l in lines8[-8:]:\n    print(l)\nprint()\np9 = pages[8]\nlines9 = p9.strip().split('\\n')\nprint('=== START OF PAGE 9 (first 5 lines) ===')\nfor l in lines9[:5]:\n    print(l)\n\"\n",
-              "description": "Recompile and check page boundary"
-            }
-          },
-          "id": "event-002357"
-        },
-        {
-          "source_line": 2358,
-          "timestamp": "2026-05-29T21:18:28.745957+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (19 pages, 3865008 bytes).\n=== END OF PAGE 8 (last 8 lines) ===\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero inference cost:\n262   detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 5 lines) ===\n263   truth spatial labels are unnecessary. Future work should verify the BN hypothesis, extend to other\n264   architectures and benchmarks, and integrate with runtime safety methods.\n\n265   7   Limitations\n266   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 1004
-          },
-          "id": "event-002358"
-        },
-        {
-          "source_line": 2359,
-          "timestamp": "2026-05-29T21:18:36.023302+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
-              "old_string": "Three guidelines follow, all at zero inference cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-truth spatial labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.",
-              "new_string": "Three zero-cost guidelines follow: detach gradients under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods."
-            }
-          },
-          "id": "event-002359"
-        },
-        {
-          "source_line": 2360,
-          "timestamp": "2026-05-29T21:18:36.074039+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002360"
-        },
-        {
-          "source_line": 2361,
-          "timestamp": "2026-05-29T21:18:40.339992+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = p8.strip().split('\\n')\nprint('=== END OF PAGE 8 (last 8 lines) ===')\nfor l in lines8[-8:]:\n    print(l)\nprint()\np9 = pages[8]\nlines9 = p9.strip().split('\\n')\nprint('=== START OF PAGE 9 (first 3 lines) ===')\nfor l in lines9[:3]:\n    print(l)\n\"\n",
-              "description": "Recompile and check page boundary"
-            }
-          },
-          "id": "event-002361"
-        },
-        {
-          "source_line": 2362,
-          "timestamp": "2026-05-29T21:18:41.467453+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (19 pages, 3864976 bytes).\n=== END OF PAGE 8 (last 8 lines) ===\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three zero-cost guidelines follow: detach gradients\n262   under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hy-\n263   pothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 3 lines) ===\n264   7   Limitations\n\n265   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 1127
-          },
-          "id": "event-002362"
-        },
-        {
-          "source_line": 2363,
-          "timestamp": "2026-05-29T21:19:04.699124+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = [l for l in p8.strip().split('\\n') if l.strip()]\nprint(f'Page 8 has {len(lines8)} content lines')\nprint()\np9 = pages[8]\nlines9 = [l for l in p9.strip().split('\\n') if l.strip()]\n# Count Limitations lines on page 9\nlim_lines = []\nin_lim = False\nfor l in lines9:\n    if 'Limitations' in l and '7' in l:\n        in_lim = True\n    if in_lim:\n        lim_lines.append(l)\n    if 'References' in l:\n        break\nprint(f'Limitations takes {len(lim_lines)} lines on page 9')\nfor l in lim_lines:\n    print(l)\n\"\n",
-              "description": "Count lines needed for Limitations"
-            }
-          },
-          "id": "event-002363"
-        },
-        {
-          "source_line": 2364,
-          "timestamp": "2026-05-29T21:19:04.900190+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Page 8 has 49 content lines\n\nLimitations takes 21 lines on page 9\n264   7   Limitations\n265   Our study has several limitations that qualify the scope of the conclusions.\n266   Simulation only. All experiments use simulated single-arm tabletop tasks; real-robot transfer is\n267   untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the rela-\n268   tive safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with\n269   contact-rich tasks is a necessary next step.\n270   Single model and benchmark. We study one architecture (OpenVLA-7B with LoRA) on one\n271   benchmark (SafeLIBERO Level I). The factorial effects—particularly the BN running-statistics\n272   mechanism—may differ for other VLA families, model scales, or safety benchmarks with differ-\n273   ent collision definitions. Extending to multiple architectures and benchmarks would strengthen\n274   generalizability.\n275   Codebase sensitivity. A single code revision shifted absolute CAR by up to 8.6 pp, exceeding the\n276   largest experimental effect (≤5.7 pp). Non-hyperparameter implementation details can dominate\n277   the signal of interest; our quantitative conclusions may not transfer across codebases without re-\n278   verification.\n279   Additional limitations: the BN running-statistics hypothesis (§5) is mechanistically plausible but\n280   not directly verified; targeted experiments (e.g., freezing running statistics at inference) are needed.\n281   All conditions use LoRA; effects under full fine-tuning are untested. Content and temporal ablations\n282   were conducted under the original codebase only. We do not explore other auxiliary objectives (e.g.,\n283   flow prediction) or integration with runtime safety methods [4, 22].\n284   References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Bash",
-            "elapsed_ms": 201
-          },
-          "id": "event-002364"
-        },
-        {
-          "source_line": 2365,
-          "timestamp": "2026-05-29T21:19:25.292959+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
-            }
-          },
-          "id": "event-002365"
-        },
-        {
-          "source_line": 2366,
-          "timestamp": "2026-05-29T21:19:25.344919+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Limitations}\n3\t\n4\tOur study has several limitations that qualify the scope of the conclusions.\n5\t\n6\t\\textbf{Simulation only.} All experiments use simulated single-arm tabletop tasks; real-robot transfer is untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the relative safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with contact-rich tasks is a necessary next step.\n7\t\n8\t\\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects---particularly the BN running-statistics mechanism---may differ for other VLA families, model scales, or safety benchmarks with different collision definitions. Extending to multiple architectures and benchmarks would strengthen generalizability.\n9\t\n10\t\\textbf{Codebase sensitivity.} A single code revision shifted absolute CAR by up to 8.6\\,pp, exceeding the largest experimental effect (${\\leq}5.7$\\,pp). Non-hyperparameter implementation details can dominate the signal of interest; our quantitative conclusions may not transfer across codebases without re-verification.\n11\t\n12\tAdditional limitations: the BN running-statistics hypothesis (\\S\\ref{sec:discussion}) is mechanistically plausible but not directly verified; targeted experiments (e.g., freezing running statistics at inference) are needed. All conditions use LoRA; effects under full fine-tuning are untested. Content and temporal ablations were conducted under the original codebase only. We do not explore other auxiliary objectives (e.g., flow prediction) or integration with runtime safety methods~\\cite{hu2025vlsa, zhang2025safevla}.\n13\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-002366"
-        },
-        {
-          "source_line": 2367,
-          "timestamp": "2026-05-29T21:19:30.865381+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex",
-              "content": "\n\\section{Limitations}\n\n\\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Sim-to-real gaps in dynamics and contact modeling may alter the relative safety ranking.\n%\n\\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects may differ for other VLA families, model scales, or collision definitions.\n%\n\\textbf{Codebase sensitivity.} A code revision shifted CAR by up to 8.6\\,pp, exceeding the largest experimental effect; conclusions may not transfer across codebases without re-verification.\n%\n\\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.\n"
-            }
-          },
-          "id": "event-002367"
-        },
-        {
-          "source_line": 2368,
-          "timestamp": "2026-05-29T21:19:30.966296+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Write",
-            "elapsed_ms": 100
-          },
-          "id": "event-002368"
-        },
-        {
-          "source_line": 2369,
           "timestamp": "2026-05-29T21:19:36.237713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -578,10 +24,10 @@
               "description": "Recompile and check Limitations placement"
             }
           },
-          "id": "event-002369"
+          "id": "event-002341"
         },
         {
-          "source_line": 2370,
+          "source_line": 2342,
           "timestamp": "2026-05-29T21:19:37.191167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -596,10 +42,10 @@
             "tool": "Bash",
             "elapsed_ms": 953
           },
-          "id": "event-002370"
+          "id": "event-002342"
         },
         {
-          "source_line": 2371,
+          "source_line": 2343,
           "timestamp": "2026-05-29T21:19:42.431879+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -617,10 +63,10 @@
               "description": "Check page 8 bottom"
             }
           },
-          "id": "event-002371"
+          "id": "event-002343"
         },
         {
-          "source_line": 2372,
+          "source_line": 2344,
           "timestamp": "2026-05-29T21:19:42.633137+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -635,10 +81,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002372"
+          "id": "event-002344"
         },
         {
-          "source_line": 2373,
+          "source_line": 2345,
           "timestamp": "2026-05-29T21:20:00.249107+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -657,10 +103,10 @@
               "limit": "25"
             }
           },
-          "id": "event-002373"
+          "id": "event-002345"
         },
         {
-          "source_line": 2374,
+          "source_line": 2346,
           "timestamp": "2026-05-29T21:20:00.400013+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -675,10 +121,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-002374"
+          "id": "event-002346"
         },
         {
-          "source_line": 2375,
+          "source_line": 2347,
           "timestamp": "2026-05-29T21:20:31.896407+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -698,10 +144,10 @@
               "new_string": "\\textbf{Gradient flow is associated with lower safety under BatchNorm but not under LayerNorm.} Full OCC (BN) is the sole cell below Vanilla ($\\Delta{=}-2.0$\\,pp), while all other cells exceed it (Table~\\ref{tab:factorial}). Detach+LN yields the highest mean ($0.802$, $g{=}+1.89$; bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$). This is a practical threshold crossing rather than a statistical interaction ($\\eta^2{=}0.005$)."
             }
           },
-          "id": "event-002375"
+          "id": "event-002347"
         },
         {
-          "source_line": 2376,
+          "source_line": 2348,
           "timestamp": "2026-05-29T21:20:31.948056+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -716,10 +162,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002376"
+          "id": "event-002348"
         },
         {
-          "source_line": 2377,
+          "source_line": 2349,
           "timestamp": "2026-05-29T21:20:35.561481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -739,10 +185,10 @@
               "new_string": "However, temporal conditions use 1--3 seeds (v1); these observations are preliminary."
             }
           },
-          "id": "event-002377"
+          "id": "event-002349"
         },
         {
-          "source_line": 2378,
+          "source_line": 2350,
           "timestamp": "2026-05-29T21:20:35.612226+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -757,10 +203,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002378"
+          "id": "event-002350"
         },
         {
-          "source_line": 2379,
+          "source_line": 2351,
           "timestamp": "2026-05-29T21:20:41.083404+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -780,10 +226,10 @@
               "new_string": "\\textbf{Mechanism remains open.} Neither gradient conflict nor amplification explains the effect. CKA analysis~\\cite{kornblith2019similarity} confirms intact encoder representations (CKA $\\geq$ 0.95 across all layers), localizing the safety deficit to optimization dynamics---likely subtle LoRA adapter weight differences invisible to representational similarity measures."
             }
           },
-          "id": "event-002379"
+          "id": "event-002351"
         },
         {
-          "source_line": 2380,
+          "source_line": 2352,
           "timestamp": "2026-05-29T21:20:41.134281+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -798,10 +244,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002380"
+          "id": "event-002352"
         },
         {
-          "source_line": 2381,
+          "source_line": 2353,
           "timestamp": "2026-05-29T21:20:47.198626+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -821,10 +267,10 @@
               "new_string": "\\textbf{BN + gradient flow is associated with training instability.} Full OCC (BN) seeds span $12.2$\\,pp ($0.654$--$0.776$), more than double any other cell's range, indicating a volatile optimization landscape specific to BN + gradient flow ($\\sigma \\leq 0.027$ for all others vs.\\ $\\sigma{=}0.064$). TSR remains stable ($0.854$--$0.914$); the safety deficit does not reduce task completion."
             }
           },
-          "id": "event-002381"
+          "id": "event-002353"
         },
         {
-          "source_line": 2382,
+          "source_line": 2354,
           "timestamp": "2026-05-29T21:20:47.249349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -839,10 +285,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002382"
+          "id": "event-002354"
         },
         {
-          "source_line": 2383,
+          "source_line": 2355,
           "timestamp": "2026-05-29T21:20:54.627841+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -860,10 +306,10 @@
               "description": "Recompile and check Limitations placement"
             }
           },
-          "id": "event-002383"
+          "id": "event-002355"
         },
         {
-          "source_line": 2384,
+          "source_line": 2356,
           "timestamp": "2026-05-29T21:20:55.681704+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -878,10 +324,10 @@
             "tool": "Bash",
             "elapsed_ms": 1053
           },
-          "id": "event-002384"
+          "id": "event-002356"
         },
         {
-          "source_line": 2385,
+          "source_line": 2357,
           "timestamp": "2026-05-29T21:21:01.503537+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -899,10 +345,10 @@
               "description": "Check for LaTeX errors"
             }
           },
-          "id": "event-002385"
+          "id": "event-002357"
         },
         {
-          "source_line": 2386,
+          "source_line": 2358,
           "timestamp": "2026-05-29T21:21:01.554235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -917,10 +363,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002386"
+          "id": "event-002358"
         },
         {
-          "source_line": 2387,
+          "source_line": 2359,
           "timestamp": "2026-05-29T21:21:04.917139+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -937,10 +383,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002387"
+          "id": "event-002359"
         },
         {
-          "source_line": 2388,
+          "source_line": 2360,
           "timestamp": "2026-05-29T21:21:05.017917+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -955,10 +401,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002388"
+          "id": "event-002360"
         },
         {
-          "source_line": 2389,
+          "source_line": 2361,
           "timestamp": "2026-05-29T21:21:23.315126+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -976,10 +422,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002389"
+          "id": "event-002361"
         },
         {
-          "source_line": 2390,
+          "source_line": 2362,
           "timestamp": "2026-05-29T21:21:26.324897+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -994,10 +440,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3009
           },
-          "id": "event-002390"
+          "id": "event-002362"
         },
         {
-          "source_line": 2391,
+          "source_line": 2363,
           "timestamp": "2026-05-29T21:21:28.741543+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1010,7 +456,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002391"
+          "id": "event-002363"
         }
       ]
     },
@@ -1018,7 +464,7 @@
       "number": 103,
       "messages": [
         {
-          "source_line": 2392,
+          "source_line": 2364,
           "timestamp": "2026-05-29T21:26:19.373825+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1032,10 +478,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002392"
+          "id": "event-002364"
         },
         {
-          "source_line": 2393,
+          "source_line": 2365,
           "timestamp": "2026-05-29T21:26:26.526757+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1055,10 +501,10 @@
               "new_string": "real-robot transfer is untested. Sim-to-real gaps in dynamics and contact modeling may alter the relative safety ranking. Validating on physical hardware is a necessary next step."
             }
           },
-          "id": "event-002393"
+          "id": "event-002365"
         },
         {
-          "source_line": 2394,
+          "source_line": 2366,
           "timestamp": "2026-05-29T21:26:26.978853+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1073,10 +519,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002394"
+          "id": "event-002366"
         },
         {
-          "source_line": 2395,
+          "source_line": 2367,
           "timestamp": "2026-05-29T21:26:27.933280+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1096,10 +542,10 @@
               "new_string": "The factorial effects may differ for other VLA families, model scales, or collision definitions. Extending to additional architectures would strengthen generalizability."
             }
           },
-          "id": "event-002395"
+          "id": "event-002367"
         },
         {
-          "source_line": 2396,
+          "source_line": 2368,
           "timestamp": "2026-05-29T21:26:28.435487+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1114,10 +560,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002396"
+          "id": "event-002368"
         },
         {
-          "source_line": 2397,
+          "source_line": 2369,
           "timestamp": "2026-05-29T21:26:29.088004+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1137,10 +583,10 @@
               "new_string": "localizing the effect to optimization dynamics rather than representational corruption (a targeted test: comparing BN in train vs.\\ eval mode at inference would isolate the running-statistics channel)."
             }
           },
-          "id": "event-002397"
+          "id": "event-002369"
         },
         {
-          "source_line": 2398,
+          "source_line": 2370,
           "timestamp": "2026-05-29T21:26:29.140643+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1155,10 +601,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-002398"
+          "id": "event-002370"
         },
         {
-          "source_line": 2399,
+          "source_line": 2371,
           "timestamp": "2026-05-29T21:26:35.113751+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1176,10 +622,10 @@
               "description": "Compile and verify 8-page compliance"
             }
           },
-          "id": "event-002399"
+          "id": "event-002371"
         },
         {
-          "source_line": 2400,
+          "source_line": 2372,
           "timestamp": "2026-05-29T21:26:36.217918+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1194,10 +640,10 @@
             "tool": "Bash",
             "elapsed_ms": 1104
           },
-          "id": "event-002400"
+          "id": "event-002372"
         },
         {
-          "source_line": 2401,
+          "source_line": 2373,
           "timestamp": "2026-05-29T21:26:41.487864+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1215,10 +661,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002401"
+          "id": "event-002373"
         },
         {
-          "source_line": 2402,
+          "source_line": 2374,
           "timestamp": "2026-05-29T21:26:44.605820+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1233,10 +679,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3117
           },
-          "id": "event-002402"
+          "id": "event-002374"
         },
         {
-          "source_line": 2403,
+          "source_line": 2375,
           "timestamp": "2026-05-29T21:26:47.006271+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1249,7 +695,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002403"
+          "id": "event-002375"
         }
       ]
     },
@@ -1257,7 +703,7 @@
       "number": 104,
       "messages": [
         {
-          "source_line": 2404,
+          "source_line": 2376,
           "timestamp": "2026-05-29T23:41:51.370766+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1271,10 +717,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002404"
+          "id": "event-002376"
         },
         {
-          "source_line": 2405,
+          "source_line": 2377,
           "timestamp": "2026-05-29T23:42:00.719473+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1293,10 +739,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002405"
+          "id": "event-002377"
         },
         {
-          "source_line": 2406,
+          "source_line": 2378,
           "timestamp": "2026-05-29T23:42:01.221544+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1311,10 +757,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002406"
+          "id": "event-002378"
         },
         {
-          "source_line": 2407,
+          "source_line": 2379,
           "timestamp": "2026-05-29T23:42:01.673864+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1335,10 +781,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002407"
+          "id": "event-002379"
         },
         {
-          "source_line": 2408,
+          "source_line": 2380,
           "timestamp": "2026-05-29T23:42:02.175928+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1353,10 +799,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-002408"
+          "id": "event-002380"
         },
         {
-          "source_line": 2409,
+          "source_line": 2381,
           "timestamp": "2026-05-29T23:42:02.828576+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1377,10 +823,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002409"
+          "id": "event-002381"
         },
         {
-          "source_line": 2410,
+          "source_line": 2382,
           "timestamp": "2026-05-29T23:42:02.879190+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1395,10 +841,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002410"
+          "id": "event-002382"
         },
         {
-          "source_line": 2411,
+          "source_line": 2383,
           "timestamp": "2026-05-29T23:42:16.779363+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1418,10 +864,10 @@
               "new_string": "\\caption{Gradient dynamics (v2, seed 42, 200 batches at 50K; Random OCC data obtained under v1 codebase). Action gradient norms are comparable across conditions, ruling out amplification. Action--auxiliary cosine similarity is near zero (${\\approx}$46\\% conflict rate), consistent with orthogonality.}"
             }
           },
-          "id": "event-002411"
+          "id": "event-002383"
         },
         {
-          "source_line": 2412,
+          "source_line": 2384,
           "timestamp": "2026-05-29T23:42:17.232018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1436,10 +882,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002412"
+          "id": "event-002384"
         },
         {
-          "source_line": 2413,
+          "source_line": 2385,
           "timestamp": "2026-05-29T23:42:18.186016+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1459,10 +905,10 @@
               "new_string": "Appendix~\\ref{app:permutation}, Table~\\ref{tab:permanova}). Bayesian model comparison"
             }
           },
-          "id": "event-002413"
+          "id": "event-002385"
         },
         {
-          "source_line": 2414,
+          "source_line": 2386,
           "timestamp": "2026-05-29T23:42:18.693787+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1477,10 +923,10 @@
             "tool": "Edit",
             "elapsed_ms": 507
           },
-          "id": "event-002414"
+          "id": "event-002386"
         },
         {
-          "source_line": 2415,
+          "source_line": 2387,
           "timestamp": "2026-05-29T23:42:19.647264+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1500,10 +946,10 @@
               "new_string": "\\subsection{Factorial Interpretation}"
             }
           },
-          "id": "event-002415"
+          "id": "event-002387"
         },
         {
-          "source_line": 2416,
+          "source_line": 2388,
           "timestamp": "2026-05-29T23:42:20.299966+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1518,10 +964,10 @@
             "tool": "Edit",
             "elapsed_ms": 652
           },
-          "id": "event-002416"
+          "id": "event-002388"
         },
         {
-          "source_line": 2417,
+          "source_line": 2389,
           "timestamp": "2026-05-29T23:42:20.350420+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1540,10 +986,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002417"
+          "id": "event-002389"
         },
         {
-          "source_line": 2418,
+          "source_line": 2390,
           "timestamp": "2026-05-29T23:42:20.401860+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1558,10 +1004,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002418"
+          "id": "event-002390"
         },
         {
-          "source_line": 2419,
+          "source_line": 2391,
           "timestamp": "2026-05-29T23:42:24.515516+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1581,10 +1027,10 @@
               "new_string": "% Figure~\\ref{fig:gradient_analysis} is in the main text (Results, Gradient Dynamics subsection).\n"
             }
           },
-          "id": "event-002419"
+          "id": "event-002391"
         },
         {
-          "source_line": 2420,
+          "source_line": 2392,
           "timestamp": "2026-05-29T23:42:24.566823+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1599,255 +1045,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002420"
+          "id": "event-002392"
         },
         {
-          "source_line": 2421,
-          "timestamp": "2026-05-29T23:42:28.830425+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "offset": "274",
-              "limit": "80"
-            }
-          },
-          "id": "event-002421"
-        },
-        {
-          "source_line": 2422,
-          "timestamp": "2026-05-29T23:42:28.931192+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "274\t\n275\t## Open Issues (Pending GPU Allocation)\n276\t\n277\tAll pending experiments require approximately **142 GPU·hours total**. With our 8-GPU parallel setup, we estimate completion within **~2 days** of GPU restoration.\n278\t\n279\t### RD2-N1 [Critical] — Statistical power: seed expansion to n≥5\n280\t\n281\t**Status**: Experiments designed. Two seeds in progress (random_occ_v2_s0, full_occ_bn_v2_s2) were interrupted by server downtime. Queue includes seed expansion for Cell 1 (s4), Cell 4 (s3, s4), and Vanilla (s3).\n282\t\n283\t**Plan**:\n284\t- Target: n≥5 per cell (currently n=3–4)\n285\t- Estimated cost: ~65 GPU·hours (5 training runs × 13h each)\n286\t- Deliverables: Updated ANOVA with balanced design, tighter CIs, recomputed Hedges' g and permutation p-values\n287\t- Wording contingency prepared: \"reliably\" retained if g≥1.5 and p<0.01; downgraded to \"consistently\" otherwise (3 locations × 2 versions pre-written)\n288\t\n289\t**Partial mitigation already in place**:\n290\t- BF₀₁=3.5 provides positive evidence for additivity (vs mere absence of significance)\n291\t- Leave-one-out confirms directional robustness (14/14)\n292\t- Permutation normalization p=0.041 already significant\n293\t\n294\t[PENDING GPU — estimated ~65 GPU·h, ~8h wall time with 8-GPU parallelism]\n295\t\n296\t---\n297\t\n298\t### RD2-N2 [Critical] — Content irrelevance: v2 Random OCC replication\n299\t\n300\t**Status**: Training run (random_occ_v2_s0) interrupted by server downtime at ~step 30K. Will resume when servers recover.\n301\t\n302\t**Plan**:\n303\t- Train v2 Random OCC (3 seeds) and compare CAR with v2 Full OCC BN\n304\t- If v2 Random OCC ≈ Full OCC BN (within cross-seed variance): strengthen claim to \"cross-codebase replication\"\n305\t- If v2 Random OCC ≠ Full OCC BN: downgrade to \"codebase-dependent\" with specific text (pre-written in wording contingency, 4 locations × 2 versions)\n306\t- Estimated cost: ~39 GPU·hours (3 runs × 13h)\n307\t\n308\t**Current mitigation**: All content irrelevance claims carry explicit \"under the original cod\n…[truncated 1947 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-002422"
-        },
-        {
-          "source_line": 2423,
-          "timestamp": "2026-05-29T23:42:35.901830+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "All pending experiments require approximately **142 GPU·hours total**. With our 8-GPU parallel setup, we estimate completion within **~2 days** of GPU restoration.",
-              "new_string": "All pending experiments require approximately **~216 GPU·hours total**. With our 8-GPU parallel setup, we estimate completion within **~27h** of GPU restoration."
-            }
-          },
-          "id": "event-002423"
-        },
-        {
-          "source_line": 2424,
-          "timestamp": "2026-05-29T23:42:37.006778+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 1104
-          },
-          "id": "event-002424"
-        },
-        {
-          "source_line": 2425,
-          "timestamp": "2026-05-29T23:42:38.561565+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "- Estimated cost: ~65 GPU·hours (5 training runs × 13h each)",
-              "new_string": "- Estimated cost: ~104 GPU·hours (8 training runs × 13h each: Cell 1 +2, Cell 2 +1, Cell 3 +1, Cell 4 +2, Vanilla +2)"
-            }
-          },
-          "id": "event-002425"
-        },
-        {
-          "source_line": 2426,
-          "timestamp": "2026-05-29T23:42:38.562086+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002426"
-        },
-        {
-          "source_line": 2427,
-          "timestamp": "2026-05-29T23:42:42.577208+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "[PENDING GPU — estimated ~65 GPU·h, ~8h wall time with 8-GPU parallelism]",
-              "new_string": "[PENDING GPU — estimated ~104 GPU·h, ~13h wall time with 8-GPU parallelism]"
-            }
-          },
-          "id": "event-002427"
-        },
-        {
-          "source_line": 2428,
-          "timestamp": "2026-05-29T23:42:42.628091+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002428"
-        },
-        {
-          "source_line": 2429,
-          "timestamp": "2026-05-29T23:42:43.983037+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "- Estimated cost: ~2 GPU·hours (eval only, no training)\n\n[PENDING GPU — estimated ~2 GPU·h, <1 day]",
-              "new_string": "- Estimated cost: ~15 GPU·hours (full 50K-step training + eval, not eval-only)\n\n[PENDING GPU — estimated ~15 GPU·h, ~2h wall time with 8-GPU parallelism]"
-            }
-          },
-          "id": "event-002429"
-        },
-        {
-          "source_line": 2430,
-          "timestamp": "2026-05-29T23:42:44.084107+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-002430"
-        },
-        {
-          "source_line": 2431,
-          "timestamp": "2026-05-29T23:42:53.104744+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "**Status**: Experiment designed. Low-cost ablation using existing v2 Full OCC BN checkpoints.\n\n**Plan**:\n- Run eval with BN in eval mode (frozen running statistics) on 3 existing checkpoints\n- If eval-mode CAR > train-mode CAR: direct evidence for BN running-statistics hypothesis\n- If no difference: hypothesis not supported; update Discussion accordingly",
-              "new_string": "**Status**: Experiment designed.\n\n**Plan**:\n- Train Full OCC BN with BN set to eval mode (frozen running statistics) for full 50K steps, then evaluate\n- If eval-mode CAR > train-mode CAR: direct evidence for BN running-statistics hypothesis\n- If no difference: hypothesis not supported; update Discussion accordingly"
-            }
-          },
-          "id": "event-002431"
-        },
-        {
-          "source_line": 2432,
-          "timestamp": "2026-05-29T23:42:53.205848+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-002432"
-        },
-        {
-          "source_line": 2433,
+          "source_line": 2393,
           "timestamp": "2026-05-29T23:42:58.324538+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1865,10 +1066,10 @@
               "description": "Compile and check for errors/warnings"
             }
           },
-          "id": "event-002433"
+          "id": "event-002393"
         },
         {
-          "source_line": 2434,
+          "source_line": 2394,
           "timestamp": "2026-05-29T23:42:59.277961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1883,10 +1084,10 @@
             "tool": "Bash",
             "elapsed_ms": 953
           },
-          "id": "event-002434"
+          "id": "event-002394"
         },
         {
-          "source_line": 2435,
+          "source_line": 2395,
           "timestamp": "2026-05-29T23:43:04.598861+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1904,10 +1105,10 @@
               "description": "Second compile pass for cross-references"
             }
           },
-          "id": "event-002435"
+          "id": "event-002395"
         },
         {
-          "source_line": 2436,
+          "source_line": 2396,
           "timestamp": "2026-05-29T23:43:05.602594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1922,10 +1123,10 @@
             "tool": "Bash",
             "elapsed_ms": 1003
           },
-          "id": "event-002436"
+          "id": "event-002396"
         },
         {
-          "source_line": 2437,
+          "source_line": 2397,
           "timestamp": "2026-05-29T23:43:18.299291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1943,10 +1144,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002437"
+          "id": "event-002397"
         },
         {
-          "source_line": 2438,
+          "source_line": 2398,
           "timestamp": "2026-05-29T23:43:21.599333+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1961,10 +1162,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3300
           },
-          "id": "event-002438"
+          "id": "event-002398"
         },
         {
-          "source_line": 2439,
+          "source_line": 2399,
           "timestamp": "2026-05-29T23:43:24.548760+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1977,7 +1178,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002439"
+          "id": "event-002399"
         }
       ]
     },
@@ -1985,7 +1186,7 @@
       "number": 105,
       "messages": [
         {
-          "source_line": 2440,
+          "source_line": 2400,
           "timestamp": "2026-05-30T00:22:17.658037+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1999,10 +1200,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002440"
+          "id": "event-002400"
         },
         {
-          "source_line": 2441,
+          "source_line": 2401,
           "timestamp": "2026-05-30T00:22:37.762913+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2021,10 +1222,10 @@
               "prompt": "I need to find the training command format and hyperparameters used in the occsafe_vla project. Search for:\n\n1. The registry file at `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/registry.yaml` — read it and find experiment entries that have `spec.command` fields, especially for conditions like \"full_occ_bn_v2\", \"detach_ln_v2\", \"vanilla_v2\", \"random_occ_v2\", \"full_occ_ln_v2\", \"detach_bn_v2\". I need the exact training commands used.\n\n2. Look in `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/` for any training scripts (shell scripts, python scripts) that show how experiments are launched. Check `artifacts/` and any `scripts/` directory.\n\n3. Check the memory.md file at `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md` for any notes about training commands, hyperparameters, or server setup.\n\nReport: the exact training command format, all flags/args used, the python script path, the conda/venv activation command, working directory, and any condition-specific flags (like --detach_gradient, --use_layernorm, --occ_data_dir, etc.). Also report the standard output directory structure."
             }
           },
-          "id": "event-002441"
+          "id": "event-002401"
         },
         {
-          "source_line": 2442,
+          "source_line": 2402,
           "timestamp": "2026-05-30T00:22:40.372762+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2041,10 +1242,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/registry.yaml"
             }
           },
-          "id": "event-002442"
+          "id": "event-002402"
         },
         {
-          "source_line": 2443,
+          "source_line": 2403,
           "timestamp": "2026-05-30T00:22:40.423410+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2059,10 +1260,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002443"
+          "id": "event-002403"
         },
         {
-          "source_line": 2444,
+          "source_line": 2404,
           "timestamp": "2026-05-30T00:22:40.524193+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2079,10 +1280,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md"
             }
           },
-          "id": "event-002444"
+          "id": "event-002404"
         },
         {
-          "source_line": 2445,
+          "source_line": 2405,
           "timestamp": "2026-05-30T00:22:40.976289+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2097,10 +1298,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002445"
+          "id": "event-002405"
         },
         {
-          "source_line": 2446,
+          "source_line": 2406,
           "timestamp": "2026-05-30T00:22:41.077085+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2117,10 +1318,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/scripts/**/*"
             }
           },
-          "id": "event-002446"
+          "id": "event-002406"
         },
         {
-          "source_line": 2447,
+          "source_line": 2407,
           "timestamp": "2026-05-30T00:22:41.127726+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2135,10 +1336,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-002447"
+          "id": "event-002407"
         },
         {
-          "source_line": 2448,
+          "source_line": 2408,
           "timestamp": "2026-05-30T00:22:41.328764+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2155,10 +1356,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/**/*.sh"
             }
           },
-          "id": "event-002448"
+          "id": "event-002408"
         },
         {
-          "source_line": 2449,
+          "source_line": 2409,
           "timestamp": "2026-05-30T00:22:41.429586+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2173,10 +1374,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-002449"
+          "id": "event-002409"
         },
         {
-          "source_line": 2450,
+          "source_line": 2410,
           "timestamp": "2026-05-30T00:22:44.089749+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2193,10 +1394,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/run_gradient_same_seed.sh"
             }
           },
-          "id": "event-002450"
+          "id": "event-002410"
         },
         {
-          "source_line": 2451,
+          "source_line": 2411,
           "timestamp": "2026-05-30T00:22:44.290871+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2211,10 +1412,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002451"
+          "id": "event-002411"
         },
         {
-          "source_line": 2452,
+          "source_line": 2412,
           "timestamp": "2026-05-30T00:22:44.291240+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2231,10 +1432,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/batch_eval.sh"
             }
           },
-          "id": "event-002452"
+          "id": "event-002412"
         },
         {
-          "source_line": 2453,
+          "source_line": 2413,
           "timestamp": "2026-05-30T00:22:44.492211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2249,10 +1450,10 @@
             "tool": "Read",
             "elapsed_ms": 200
           },
-          "id": "event-002453"
+          "id": "event-002413"
         },
         {
-          "source_line": 2454,
+          "source_line": 2414,
           "timestamp": "2026-05-30T00:22:44.843882+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2272,10 +1473,10 @@
               "head_limit": "0"
             }
           },
-          "id": "event-002454"
+          "id": "event-002414"
         },
         {
-          "source_line": 2455,
+          "source_line": 2415,
           "timestamp": "2026-05-30T00:22:44.844302+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2290,10 +1491,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-002455"
+          "id": "event-002415"
         },
         {
-          "source_line": 2456,
+          "source_line": 2416,
           "timestamp": "2026-05-30T00:22:47.855639+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2314,10 +1515,10 @@
               "head_limit": "100"
             }
           },
-          "id": "event-002456"
+          "id": "event-002416"
         },
         {
-          "source_line": 2457,
+          "source_line": 2417,
           "timestamp": "2026-05-30T00:22:47.956604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2332,10 +1533,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-002457"
+          "id": "event-002417"
         },
         {
-          "source_line": 2458,
+          "source_line": 2418,
           "timestamp": "2026-05-30T00:22:51.619960+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2356,10 +1557,10 @@
               "head_limit": "150"
             }
           },
-          "id": "event-002458"
+          "id": "event-002418"
         },
         {
-          "source_line": 2459,
+          "source_line": 2419,
           "timestamp": "2026-05-30T00:22:51.671313+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2374,10 +1575,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-002459"
+          "id": "event-002419"
         },
         {
-          "source_line": 2460,
+          "source_line": 2420,
           "timestamp": "2026-05-30T00:22:55.887801+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2396,10 +1597,10 @@
               "limit": "600"
             }
           },
-          "id": "event-002460"
+          "id": "event-002420"
         },
         {
-          "source_line": 2461,
+          "source_line": 2421,
           "timestamp": "2026-05-30T00:22:56.340039+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2414,10 +1615,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002461"
+          "id": "event-002421"
         },
         {
-          "source_line": 2462,
+          "source_line": 2422,
           "timestamp": "2026-05-30T00:22:56.792890+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2438,10 +1639,10 @@
               "head_limit": "50"
             }
           },
-          "id": "event-002462"
+          "id": "event-002422"
         },
         {
-          "source_line": 2463,
+          "source_line": 2423,
           "timestamp": "2026-05-30T00:22:56.843534+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2456,10 +1657,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002463"
+          "id": "event-002423"
         },
         {
-          "source_line": 2464,
+          "source_line": 2424,
           "timestamp": "2026-05-30T00:23:02.933399+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2478,10 +1679,10 @@
               "limit": "700"
             }
           },
-          "id": "event-002464"
+          "id": "event-002424"
         },
         {
-          "source_line": 2465,
+          "source_line": 2425,
           "timestamp": "2026-05-30T00:23:02.984239+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2496,10 +1697,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002465"
+          "id": "event-002425"
         },
         {
-          "source_line": 2466,
+          "source_line": 2426,
           "timestamp": "2026-05-30T00:23:04.139463+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2520,10 +1721,10 @@
               "head_limit": "80"
             }
           },
-          "id": "event-002466"
+          "id": "event-002426"
         },
         {
-          "source_line": 2467,
+          "source_line": 2427,
           "timestamp": "2026-05-30T00:23:04.290958+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2538,10 +1739,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-002467"
+          "id": "event-002427"
         },
         {
-          "source_line": 2468,
+          "source_line": 2428,
           "timestamp": "2026-05-30T00:23:08.656830+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2562,10 +1763,10 @@
               "head_limit": "80"
             }
           },
-          "id": "event-002468"
+          "id": "event-002428"
         },
         {
-          "source_line": 2469,
+          "source_line": 2429,
           "timestamp": "2026-05-30T00:23:08.657162+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2580,10 +1781,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-002469"
+          "id": "event-002429"
         },
         {
-          "source_line": 2470,
+          "source_line": 2430,
           "timestamp": "2026-05-30T00:23:08.807872+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2604,10 +1805,10 @@
               "head_limit": "100"
             }
           },
-          "id": "event-002470"
+          "id": "event-002430"
         },
         {
-          "source_line": 2471,
+          "source_line": 2431,
           "timestamp": "2026-05-30T00:23:08.808217+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2622,10 +1823,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-002471"
+          "id": "event-002431"
         },
         {
-          "source_line": 2472,
+          "source_line": 2432,
           "timestamp": "2026-05-30T00:23:12.019681+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2644,10 +1845,10 @@
               "limit": "400"
             }
           },
-          "id": "event-002472"
+          "id": "event-002432"
         },
         {
-          "source_line": 2473,
+          "source_line": 2433,
           "timestamp": "2026-05-30T00:23:12.221075+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2662,10 +1863,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002473"
+          "id": "event-002433"
         },
         {
-          "source_line": 2474,
+          "source_line": 2434,
           "timestamp": "2026-05-30T00:23:12.472372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2686,10 +1887,10 @@
               "head_limit": "100"
             }
           },
-          "id": "event-002474"
+          "id": "event-002434"
         },
         {
-          "source_line": 2475,
+          "source_line": 2435,
           "timestamp": "2026-05-30T00:23:12.522966+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2704,10 +1905,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002475"
+          "id": "event-002435"
         },
         {
-          "source_line": 2476,
+          "source_line": 2436,
           "timestamp": "2026-05-30T00:23:15.432832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2724,10 +1925,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/**/*.py"
             }
           },
-          "id": "event-002476"
+          "id": "event-002436"
         },
         {
-          "source_line": 2477,
+          "source_line": 2437,
           "timestamp": "2026-05-30T00:23:15.533718+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2742,10 +1943,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-002477"
+          "id": "event-002437"
         },
         {
-          "source_line": 2478,
+          "source_line": 2438,
           "timestamp": "2026-05-30T00:23:15.534218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2762,10 +1963,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/**/*.sh"
             }
           },
-          "id": "event-002478"
+          "id": "event-002438"
         },
         {
-          "source_line": 2479,
+          "source_line": 2439,
           "timestamp": "2026-05-30T00:23:15.584851+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2780,10 +1981,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-002479"
+          "id": "event-002439"
         },
         {
-          "source_line": 2480,
+          "source_line": 2440,
           "timestamp": "2026-05-30T00:23:34.693222+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2798,10 +1999,10 @@
             "tool": "Agent",
             "elapsed_ms": 56930
           },
-          "id": "event-002480"
+          "id": "event-002440"
         },
         {
-          "source_line": 2481,
+          "source_line": 2441,
           "timestamp": "2026-05-30T00:24:12.782862+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2823,10 +2024,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-002481"
+          "id": "event-002441"
         },
         {
-          "source_line": 2482,
+          "source_line": 2442,
           "timestamp": "2026-05-30T00:24:12.833616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2841,10 +2042,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002482"
+          "id": "event-002442"
         },
         {
-          "source_line": 2483,
+          "source_line": 2443,
           "timestamp": "2026-05-30T00:24:25.677752+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2864,10 +2065,10 @@
               "head_limit": "10"
             }
           },
-          "id": "event-002483"
+          "id": "event-002443"
         },
         {
-          "source_line": 2484,
+          "source_line": 2444,
           "timestamp": "2026-05-30T00:24:25.728407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2882,10 +2083,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002484"
+          "id": "event-002444"
         },
         {
-          "source_line": 2485,
+          "source_line": 2445,
           "timestamp": "2026-05-30T00:24:35.753554+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2905,10 +2106,10 @@
               "head_limit": "8"
             }
           },
-          "id": "event-002485"
+          "id": "event-002445"
         },
         {
-          "source_line": 2486,
+          "source_line": 2446,
           "timestamp": "2026-05-30T00:24:35.804788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2923,10 +2124,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-002486"
+          "id": "event-002446"
         },
         {
-          "source_line": 2487,
+          "source_line": 2447,
           "timestamp": "2026-05-30T00:24:41.182373+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2946,10 +2147,10 @@
               "head_limit": "5"
             }
           },
-          "id": "event-002487"
+          "id": "event-002447"
         },
         {
-          "source_line": 2488,
+          "source_line": 2448,
           "timestamp": "2026-05-30T00:24:41.333262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2964,10 +2165,10 @@
             "tool": "Grep",
             "elapsed_ms": 150
           },
-          "id": "event-002488"
+          "id": "event-002448"
         },
         {
-          "source_line": 2489,
+          "source_line": 2449,
           "timestamp": "2026-05-30T00:24:44.392509+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2987,10 +2188,10 @@
               "head_limit": "5"
             }
           },
-          "id": "event-002489"
+          "id": "event-002449"
         },
         {
-          "source_line": 2490,
+          "source_line": 2450,
           "timestamp": "2026-05-30T00:24:44.493246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3005,10 +2206,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-002490"
+          "id": "event-002450"
         },
         {
-          "source_line": 2491,
+          "source_line": 2451,
           "timestamp": "2026-05-30T00:24:50.113826+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3026,10 +2227,10 @@
               "description": "Find exact training command for detach_bn_v2_s0"
             }
           },
-          "id": "event-002491"
+          "id": "event-002451"
         },
         {
-          "source_line": 2492,
+          "source_line": 2452,
           "timestamp": "2026-05-30T00:24:50.265854+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3044,10 +2245,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-002492"
+          "id": "event-002452"
         },
         {
-          "source_line": 2493,
+          "source_line": 2453,
           "timestamp": "2026-05-30T00:24:54.231467+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3065,10 +2266,10 @@
               "description": "Get full training command for detach_bn_v2_s0"
             }
           },
-          "id": "event-002493"
+          "id": "event-002453"
         },
         {
-          "source_line": 2494,
+          "source_line": 2454,
           "timestamp": "2026-05-30T00:24:54.282168+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3083,10 +2284,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002494"
+          "id": "event-002454"
         },
         {
-          "source_line": 2495,
+          "source_line": 2455,
           "timestamp": "2026-05-30T00:24:58.599851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3104,10 +2305,10 @@
               "description": "Get vanilla v2 training command"
             }
           },
-          "id": "event-002495"
+          "id": "event-002455"
         },
         {
-          "source_line": 2496,
+          "source_line": 2456,
           "timestamp": "2026-05-30T00:24:58.650453+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3122,10 +2323,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002496"
+          "id": "event-002456"
         },
         {
-          "source_line": 2497,
+          "source_line": 2457,
           "timestamp": "2026-05-30T00:25:05.717919+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3143,10 +2344,10 @@
               "description": "Find vanilla v2 command"
             }
           },
-          "id": "event-002497"
+          "id": "event-002457"
         },
         {
-          "source_line": 2498,
+          "source_line": 2458,
           "timestamp": "2026-05-30T00:25:05.869268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3161,10 +2362,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-002498"
+          "id": "event-002458"
         },
         {
-          "source_line": 2499,
+          "source_line": 2459,
           "timestamp": "2026-05-30T00:25:25.852833+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3182,10 +2383,10 @@
               "description": "Get random_occ and full_occ_ln training commands"
             }
           },
-          "id": "event-002499"
+          "id": "event-002459"
         },
         {
-          "source_line": 2500,
+          "source_line": 2460,
           "timestamp": "2026-05-30T00:25:25.953986+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3200,10 +2401,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002500"
+          "id": "event-002460"
         },
         {
-          "source_line": 2501,
+          "source_line": 2461,
           "timestamp": "2026-05-30T00:25:28.975657+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3221,10 +2422,10 @@
               "description": "Get random_occ_v2 command"
             }
           },
-          "id": "event-002501"
+          "id": "event-002461"
         },
         {
-          "source_line": 2502,
+          "source_line": 2462,
           "timestamp": "2026-05-30T00:25:29.026568+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3239,10 +2440,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002502"
+          "id": "event-002462"
         },
         {
-          "source_line": 2503,
+          "source_line": 2463,
           "timestamp": "2026-05-30T00:26:08.920743+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3260,10 +2461,10 @@
               "description": "Create gpu_recovery_scripts directory"
             }
           },
-          "id": "event-002503"
+          "id": "event-002463"
         },
         {
-          "source_line": 2504,
+          "source_line": 2464,
           "timestamp": "2026-05-30T00:26:08.971449+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3278,10 +2479,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002504"
+          "id": "event-002464"
         },
         {
-          "source_line": 2505,
+          "source_line": 2465,
           "timestamp": "2026-05-30T00:26:54.338087+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3299,10 +2500,10 @@
               "content": "#!/usr/bin/env python3\n\"\"\"Generate GPU recovery launch scripts for all 14 experiments.\"\"\"\n\nimport os\nimport stat\n\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n\nCOMMON_HEADER = '''#!/bin/bash\nset -euo pipefail\n\n# === {title} ===\n# Experiment: {exp_name}\n# Condition:  {condition}\n# Seed:       {seed}\n# Group:      {group}\n\nGPU_ID=${{1:-0}}  # Physical GPU ID, default 0\n\necho \"================================================================\"\necho \" Experiment: {exp_name}\"\necho \" GPU:        cuda:$GPU_ID\"\necho \" Timestamp:  $(date '+%Y-%m-%d %H:%M:%S')\"\necho \"================================================================\"\n\n# GPU verification\necho \"\"\necho \"[CHECK] nvidia-smi output:\"\nnvidia-smi --query-gpu=index,name,memory.total,driver_version --format=csv,noheader\necho \"\"\n\nexport CUDA_VISIBLE_DEVICES=$GPU_ID\n\n# Environment setup\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate occsafe\ncd /root/occsafe_vla/openvla-oft\n\n# Checkpoint resume logic\nEXP_NAME=\"{exp_name}\"\nCHECKPOINT_DIR=\"/root/autodl-tmp/checkpoints/$EXP_NAME\"\nRESUME_FLAGS=\"\"\n\nif [ -d \"$CHECKPOINT_DIR\" ]; then\n    LATEST_STEP=$(ls -d ${{CHECKPOINT_DIR}}/*_chkpt 2>/dev/null \\\\\n        | grep -oP '\\\\d+(?=_chkpt)' | sort -n | tail -1)\n    if [ -n \"$LATEST_STEP\" ] && [ \"$LATEST_STEP\" -ge 40000 ]; then\n        echo \"[RESUME] Found checkpoint at step $LATEST_STEP in $CHECKPOINT_DIR\"\n        RESUME_FLAGS=\"--resume True --resume_step $LATEST_STEP\"\n    else\n        echo \"[FROM SCRATCH] No checkpoint >= 40000 found (latest: ${{LATEST_STEP:-none}})\"\n    fi\nelse\n    echo \"[FROM SCRATCH] No checkpoint directory: $CHECKPOINT_DIR\"\nfi\n\n# Create log directory\nmkdir -p /root/autodl-tmp/occsafe_vla/runs\n\necho \"\"\necho \"[START] Training {exp_name} at $(date '+%H:%M:%S')\"\necho \"\"\n\n'''\n\nCOMMON_BASE_FLAGS = (\n    'MUJOCO_EGL_DEVICE_ID=$GPU_ID WANDB_MODE=disabled '\n    'torchrun --standalone --nnodes 1 --nproc-per-node 1 '\n    'vla-scripts/finetune.py '\n    '--vla_path /root/autodl-tmp/models/openvla-7b '\n    '--data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ '\n    '--dataset_name libero_spatial_no_noops '\n    '--use_l1_regression True '\n    '--num_images_in_input 2 '\n    '--use_proprio True '\n    '--batch_size 8 '\n    '--learning_rate 5e-4 '\n    '--max_steps 50005 '\n    '--save_freq 10000 '\n    '--image_aug True '\n    '--lora_rank 32'\n)\n\nVANILLA_EXTRA = (\n    ' --use_diffusion False --use_film False'\n    ' --num_steps_before_decay 100000'\n)\n\nOCC_BASE = (\n    ' --use_occ_head True'\n    ' --occ_data_dir /root/occsafe_vla/occ_data'\n)\n\nexperiments = [\n    # RD2-N1: Seed expansion (8 runs)\n    {\n        'exp_name': 'full_occ_bn_v2_s3',\n        'condition': 'Cell 1: Full OCC BN (gradient ON, BatchNorm)',\n        'seed': 45,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Full OCC BN seed 45',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn',\n    },\n    {\n        'exp_name': 'full_occ_bn_v2_s4',\n        'condition': 'Cell 1: Full OCC BN (gradient ON, BatchNorm)',\n        'seed': 46,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Full OCC BN seed 46',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn',\n    },\n    {\n        'exp_name': 'full_occ_ln_v2_s3',\n        'condition': 'Cell 2: Full OCC LN (gradient ON, LayerNorm)',\n        'seed': 46,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Full OCC LN seed 46',\n        'occ_flags': ' --occ_detach false --occ_norm_type ln',\n    },\n    {\n        'exp_name': 'detach_bn_v2_s3',\n        'condition': 'Cell 3: Detach BN (gradient OFF, BatchNorm)',\n        'seed': 46,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Detach BN seed 46',\n        'occ_flags': ' --occ_detach true --occ_norm_type bn',\n    },\n    {\n        'exp_name': 'detach_ln_v2_s3',\n        'condition': 'Cell 4: Detach LN (gradient OFF, LayerNorm)',\n        'seed': 45,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Detach LN seed 45',\n        'occ_flags': ' --occ_detach true --occ_norm_type ln',\n    },\n    {\n        'exp_name': 'detach_ln_v2_s4',\n        'condition': 'Cell 4: Detach LN (gradient OFF, LayerNorm)',\n        'seed': 46,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Detach LN seed 46',\n        'occ_flags': ' --occ_detach true --occ_norm_type ln',\n    },\n    {\n        'exp_name': 'vanilla_v2_s3',\n        'condition': 'Vanilla baseline (no auxiliary head)',\n        'seed': 45,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Vanilla seed 45',\n        'occ_flags': None,  # vanilla\n    },\n    {\n        'exp_name': 'vanilla_v2_s4',\n        'condition': 'Vanilla baseline (no auxiliary head)',\n        'seed': 46,\n        'group': 'RD2-N1 seed expansion',\n        'title': 'RD2-N1: Vanilla seed 46',\n        'occ_flags': None,  # vanilla\n    },\n    # RD2-N2: Random OCC v2 (3 runs)\n    {\n        'exp_name': 'random_occ_v2_s0',\n        'condition': 'Random OCC (content irrelevance control)',\n        'seed': 42,\n        'group': 'RD2-N2 Random OCC v2',\n        'title': 'RD2-N2: Random OCC seed 42',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --random_occ True',\n    },\n    {\n        'exp_name': 'random_occ_v2_s1',\n        'condition': 'Random OCC (content irrelevance control)',\n        'seed': 43,\n        'group': 'RD2-N2 Random OCC v2',\n        'title': 'RD2-N2: Random OCC seed 43',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --random_occ True',\n    },\n    {\n        'exp_name': 'random_occ_v2_s2',\n        'condition': 'Random OCC (content irrelevance control)',\n        'seed': 44,\n        'group': 'RD2-N2 Random OCC v2',\n        'title': 'RD2-N2: Random OCC seed 44',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --random_occ True',\n    },\n    # RD2-W4: BN eval mode (1 run)\n    {\n        'exp_name': 'full_occ_bn_eval_v2_s0',\n        'condition': 'Full OCC BN with eval-mode BN (frozen running stats)',\n        'seed': 42,\n        'group': 'RD2-W4 BN eval mode',\n        'title': 'RD2-W4: BN eval mode seed 42',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --occ_bn_eval True',\n    },\n    # RD3-W3: Lambda sweep (2 runs)\n    {\n        'exp_name': 'full_occ_bn_lambda001_s0',\n        'condition': 'Full OCC BN with lambda_0=0.001 (10x lower)',\n        'seed': 42,\n        'group': 'RD3-W3 lambda sweep',\n        'title': 'RD3-W3: lambda=0.001 seed 42',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --occ_loss_weight 0.001',\n    },\n    {\n        'exp_name': 'full_occ_bn_lambda01_s0',\n        'condition': 'Full OCC BN with lambda_0=0.1 (10x higher)',\n        'seed': 42,\n        'group': 'RD3-W3 lambda sweep',\n        'title': 'RD3-W3: lambda=0.1 seed 42',\n        'occ_flags': ' --occ_detach false --occ_norm_type bn --occ_loss_weight 0.1',\n    },\n]\n\nfor exp in experiments:\n    header = COMMON_HEADER.format(**exp)\n\n    if exp['occ_flags'] is None:\n        # Vanilla: no OCC head\n        cmd = COMMON_BASE_FLAGS + VANILLA_EXTRA\n    else:\n        # OCC experiment\n        cmd = COMMON_BASE_FLAGS + OCC_BASE + exp['occ_flags']\n\n    cmd += (\n        f\" --run_root_dir /root/autodl-tmp/checkpoints/{exp['exp_name']}\"\n        f\" --seed {exp['seed']}\"\n        f\" --run_id_note {exp['exp_name']}\"\n        ' $RESUME_FLAGS'\n    )\n\n    log_path = f\"/root/autodl-tmp/occsafe_vla/runs/{exp['exp_name']}.log\"\n\n    script = header\n    script += f'{cmd} \\\\\\n    2>&1 | tee {log_path}\\n'\n    script += f'\\necho \"\"\\necho \"[DONE] {exp[\"exp_name\"]} finished at $(date \\'+%H:%M:%S\\')\"\\n'\n\n    path = os.path.join(SCRIPT_DIR, f\"{exp['exp_name']}.sh\")\n    with open(path, 'w') as f:\n        f.write(script)\n    os.chmod(path, os.stat(path).st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)\n    print(f\"  Created: {exp['exp_name']}.sh\")\n\nprint(f\"\\nTotal: {len(experiments)} scripts generated.\")\n"
             }
           },
-          "id": "event-002505"
+          "id": "event-002465"
         },
         {
-          "source_line": 2506,
+          "source_line": 2466,
           "timestamp": "2026-05-30T00:26:54.338745+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3317,10 +2518,10 @@
             "tool": "Write",
             "elapsed_ms": 0
           },
-          "id": "event-002506"
+          "id": "event-002466"
         },
         {
-          "source_line": 2507,
+          "source_line": 2467,
           "timestamp": "2026-05-30T00:26:57.501049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3338,10 +2539,10 @@
               "description": "Generate all 14 launch scripts"
             }
           },
-          "id": "event-002507"
+          "id": "event-002467"
         },
         {
-          "source_line": 2508,
+          "source_line": 2468,
           "timestamp": "2026-05-30T00:26:57.551723+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3356,10 +2557,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002508"
+          "id": "event-002468"
         },
         {
-          "source_line": 2509,
+          "source_line": 2469,
           "timestamp": "2026-05-30T00:27:01.215949+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3376,10 +2577,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts/full_occ_bn_v2_s3.sh"
             }
           },
-          "id": "event-002509"
+          "id": "event-002469"
         },
         {
-          "source_line": 2510,
+          "source_line": 2470,
           "timestamp": "2026-05-30T00:27:01.768571+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3394,10 +2595,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-002510"
+          "id": "event-002470"
         },
         {
-          "source_line": 2511,
+          "source_line": 2471,
           "timestamp": "2026-05-30T00:27:02.120564+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3414,10 +2615,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts/vanilla_v2_s3.sh"
             }
           },
-          "id": "event-002511"
+          "id": "event-002471"
         },
         {
-          "source_line": 2512,
+          "source_line": 2472,
           "timestamp": "2026-05-30T00:27:02.121023+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3432,10 +2633,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002512"
+          "id": "event-002472"
         },
         {
-          "source_line": 2513,
+          "source_line": 2473,
           "timestamp": "2026-05-30T00:27:02.611206+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3452,10 +2653,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts/full_occ_bn_eval_v2_s0.sh"
             }
           },
-          "id": "event-002513"
+          "id": "event-002473"
         },
         {
-          "source_line": 2514,
+          "source_line": 2474,
           "timestamp": "2026-05-30T00:27:02.912785+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3470,10 +2671,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-002514"
+          "id": "event-002474"
         },
         {
-          "source_line": 2515,
+          "source_line": 2475,
           "timestamp": "2026-05-30T00:27:02.913244+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3490,10 +2691,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts/full_occ_bn_lambda001_s0.sh"
             }
           },
-          "id": "event-002515"
+          "id": "event-002475"
         },
         {
-          "source_line": 2516,
+          "source_line": 2476,
           "timestamp": "2026-05-30T00:27:02.963750+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3508,10 +2709,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002516"
+          "id": "event-002476"
         },
         {
-          "source_line": 2517,
+          "source_line": 2477,
           "timestamp": "2026-05-30T00:27:08.133773+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3529,10 +2730,10 @@
               "description": "List all generated scripts with permissions"
             }
           },
-          "id": "event-002517"
+          "id": "event-002477"
         },
         {
-          "source_line": 2518,
+          "source_line": 2478,
           "timestamp": "2026-05-30T00:27:08.184379+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3547,10 +2748,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002518"
+          "id": "event-002478"
         },
         {
-          "source_line": 2519,
+          "source_line": 2479,
           "timestamp": "2026-05-30T00:27:13.655332+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3568,10 +2769,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002519"
+          "id": "event-002479"
         },
         {
-          "source_line": 2520,
+          "source_line": 2480,
           "timestamp": "2026-05-30T00:27:13.756180+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3585,6 +2786,785 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "tool": "ToolSearch",
             "elapsed_ms": 100
+          },
+          "id": "event-002480"
+        },
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-30T00:27:27.430826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "gpu_recovery_scripts",
+              "type": "data",
+              "description": "14 launch scripts for GPU recovery: RD2-N1 (8 seed expansion), RD2-N2 (3 Random OCC v2), RD2-W4 (1 BN eval mode), RD3-W3 (2 lambda sweep). Each includes nvidia-smi check, CUDA_VISIBLE_DEVICES, checkpoint resume logic (>=40K step), and correct per-condition flags.",
+              "project": "occsafe_vla",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts",
+              "tags": "['gpu-recovery', 'launch-scripts', 'RD2-N1', 'RD2-N2', 'RD2-W4', 'RD3-W3']"
+            }
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-30T00:27:27.537983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: [Errno 21] Is a directory: '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 107
+          },
+          "id": "event-002482"
+        },
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-30T00:27:31.753997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "gpu_recovery_scripts",
+              "type": "data",
+              "description": "14 launch scripts for GPU recovery: RD2-N1 (8 seed expansion), RD2-N2 (3 Random OCC v2), RD2-W4 (1 BN eval mode), RD3-W3 (2 lambda sweep). Located at artifacts/gpu_recovery_scripts/*.sh",
+              "project": "occsafe_vla",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gpu_recovery_scripts/generate_all.py",
+              "tags": "['gpu-recovery', 'launch-scripts']"
+            }
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-30T00:27:32.005415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260530_d856df\\\", \\\"name\\\": \\\"gpu_recovery_scripts\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"14 launch scripts for GPU recovery: RD2-N1 (8 seed expansion), RD2-N2 (3 Random OCC v2), RD2-W4 (1 BN eval mode), RD3-W3 (2 lambda sweep). Located at artifacts/gpu_recovery_scripts/*.sh\\\", \\\"path\\\": \\\"projects/occsafe_vla/artifacts/_project/data/generate_all.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"occsafe_vla\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-30T00:27:31.749975+00:00\\\", \\\"tags\\\": [\\\"gpu-recovery\\\", \\\"launch-scripts\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 251
+          },
+          "id": "event-002484"
+        },
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-30T00:30:01.789111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-30T00:30:01.789707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002486"
+        },
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-30T00:30:05.705229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "limit": "0"
+            }
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-30T00:30:05.756868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-002488"
+        },
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-30T00:30:06.108427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "report.md"
+            }
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-30T00:30:06.209365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-002490"
+        },
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-30T00:30:06.614077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (131,824 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-9e0a08b1/a0019e43-4df7-416b-a182-3ca018e7212b/tool-results/mcp-agent-ml-research-read_registry-1780101006590.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-9e0a08b1/a0019e43-4df7-416b-a182-3ca018e7212b/tool-results/mcp-agent-ml-research-read_registry-1780101006590.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-9e0a08b1/a0019e43-4df7-416b-a182-3ca018e7212b/tool-results/mcp-agent-ml-research-read_registry-1780101006590.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 908
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-30T00:30:06.664871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 907
+          },
+          "id": "event-002492"
+        },
+        {
+          "source_line": 2493,
+          "timestamp": "2026-05-30T00:30:06.715845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:56:21Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 174 个实验 — DONE 174\\\\n**DONE 分布**: failed 39, killed 17, negative 6, success 112\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-10894:cuda:0, westd-34685:cuda:0\\\\n- **空闲（分配了没跑）**: westd-10894:cuda:0, westd-34685:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-10894**: ❌ 连接失败\\\\n- **westd-34685**: ❌ 连接失败\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `random_occ_v2_s0_r4` [failed] — 2026-05-29T11:56:15 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 10894 o\\\\n- `full_occ_bn_v2_s2_r5` [failed] — 2026-05-29T11:55:41 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 34685 o\\\\n- `vanilla_v2_s3` [failed] — 2026-05-29T04:20:24\\\\n- `full_occ_bn_v2_s4` [failed] — 2026-05-29T04:20:22\\\\n- `full_occ_bn_lambda01_v2_s0` [failed] — 2026-05-29T04:20:21\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `random_occ_v2_s0_r4`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 10894 on 36.103.198.204\\\\n- `full_occ_bn_v2_s2_r5`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 34685 on 36.103.198.204\\\\n- `vanilla_v2_s3`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-29\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **random_occ_v2_s0_r4** (failed): Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed. ← 基于 random_occ_v2_s0_r3\\\\n- **full_occ_bn_v2_s2_r5** (failed): Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. \n…[truncated 2743 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 607
+          },
+          "id": "event-002493"
+        },
+        {
+          "source_line": 2494,
+          "timestamp": "2026-05-30T00:30:06.716481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\\\", \\\"content\\\": \\\"# occsafe_vla — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-29 23:47 UTC | 更新原因: GPU 预算修正 100→216 GPU·h；标记 Agent 收尾修复（Figure 3/labels/rebuttal budget）完成；合并论文质量加固清单\\\\n\\\\n> 核心方向详见 paper_framing.md\\\\n\\\\n## 核心方向\\\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\\\n\\\\n## 目标会议\\\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\\\n\\\\n## 当前阶段：审稿修复\\\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\\\n\\\\n**修复进度：12/17 resolved + 论文已加固 + 3 项 Agent 收尾修复已完成**\\\\n\\\\n| 状态 | Issue | 类型 | 说明 |\\\\n|------|-------|------|------|\\\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\\\n| ✅ | RD3-C1 | framing | 重构为 \\\\\\\"two additive main effects\\\\\\\" |\\\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\\\n\\\\n## 统计加固（D080，全部完成）\\\\n\\\\n| 分析 | 结果 | 论文位置 |\\\\n|------|------|---------|\\\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex:196 |\\\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex:198 |\\\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex:200 |\\\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex:202 |\\\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex:11 |\\\\n| ✅ discussion.tex 修复 | \\\\\\\"highest TSR\\\\\\\" → 正确措辞 | discussion.tex:17 |\\\\n\\\\n## 论文质量加固（全部完成）\\\\n\\\\n- ✅ 论文修复 6 项（Abstract/terminology/reliably 7→3/per-task/Results split/TSR in Conclusion\n…[truncated 2445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 507
+          },
+          "id": "event-002494"
+        },
+        {
+          "source_line": 2495,
+          "timestamp": "2026-05-30T00:30:24.634698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "2"
+            }
+          },
+          "id": "event-002495"
+        },
+        {
+          "source_line": 2496,
+          "timestamp": "2026-05-30T00:30:24.635852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-002496"
+        },
+        {
+          "source_line": 2497,
+          "timestamp": "2026-05-30T00:30:31.967315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__get_gpu_health"
+          },
+          "id": "event-002497"
+        },
+        {
+          "source_line": 2498,
+          "timestamp": "2026-05-30T00:30:32.068025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 100
+          },
+          "id": "event-002498"
+        },
+        {
+          "source_line": 2499,
+          "timestamp": "2026-05-30T00:30:47.907369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-10894/westd-34685 均 SSH 不可达\n\n**Session 启动状态汇报**\n\n- 所有前序 Director 指令已完成：论文锐化 5/7 项、因果语言统一、rebuttal 草稿（216 GPU·h 预算）、14 个 GPU 恢复脚本（art_20260530_d856df）\n- Registry: 174 实验（112 success / 6 negative / 39 failed / 17 killed），0 RUNNING\n- Cron: 0 活跃（reconcile 确认）\n- **两台 AutoDL 服务器仍 SSH 不可达**，GPU 全部空闲\n- 论文编译通过，主体 8 页合规\n\n**阻塞项**: 等用户确认 AutoDL 服务器重启。GPU 上线后立即用恢复脚本部署 5 组实验（RD2-N1/N2/W4, RD3-W3, ~216 GPU·h, ~27h wall time）。\n\n当前无可推进任务，待 GPU 恢复或新指令。",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-002499"
+        },
+        {
+          "source_line": 2500,
+          "timestamp": "2026-05-30T00:30:50.969553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3062
+          },
+          "id": "event-002500"
+        },
+        {
+          "source_line": 2501,
+          "timestamp": "2026-05-30T00:30:56.802837+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 初始化完成。当前状态：\n\n- **GPU**: 两台 AutoDL 服务器（westd-10894/westd-34685）仍 SSH 不可达，8 张 GPU 全部空闲\n- **实验**: 0 RUNNING，0 cron 活跃\n- **论文**: 编译通过，8 页合规，所有写作修复完成\n- **恢复准备**: 14 个 GPU 恢复脚本就绪\n\n阻塞在 GPU 服务器重启。服务器上线后可立即部署 5 组实验（~216 GPU·h）。等待 GPU 恢复或新 Director 指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
+          },
+          "id": "event-002501"
+        }
+      ]
+    },
+    {
+      "number": 106,
+      "messages": [
+        {
+          "source_line": 2502,
+          "timestamp": "2026-05-30T00:30:56.811715+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Reviewer 做了一轮 \"claim 最大化 + 呈现优化 + rebuttal 加强\" 审查，以下 7 项改进全部不需要 GPU，请依次完成：\n\n---\n\n**A. Figure 2(b) 改为经典 interaction plot（最高优先）**\n\n用 matplotlib 生成经典 2×2 interaction plot 替代当前 Figure 2(b)：\n- 横轴: Gradient Flow (ON / OFF)\n- 纵轴: CAR\n- 两条线: BN (蓝色实线) 和 LN (橙色虚线)\n- 数据点: Cell 1 (0.725), Cell 2 (0.773), Cell 3 (0.767), Cell 4 (0.802)\n- 误差棒: Cell 1 ±0.064, Cell 2 ±0.027, Cell 3 ±0.024, Cell 4 ±0.024\n- 加一条水平虚线 Vanilla baseline (0.745, 灰色, labeled)\n- 两条线近似平行 → 视觉化 \"无交互\"\n\n这是 factorial design 标准可视化方式。替换 `results.tex` 中 Figure 2(b) 的 includegraphics。输出 PDF 到 `docs/paper/figures/`。\n\n---\n\n**B. Table 2 caption 加 BF₀₁（1 行文本）**\n\n在 Table 2 caption 末尾加: \"BF₀₁ = 3.50 (moderate evidence for additivity).\"\n\n---\n\n**C. Rebuttal 4 项修正（编辑 `artifacts/round4_rebuttal_draft.md`）**\n\n1. **RD2-N1 开头加 \"breadth over depth\" 设计选择解释**：\n   在 RD2-N1 response 的开头插入：\n   > \"We deliberately prioritized breadth (12 conditions, 5 factors) over per-cell depth in the initial submission, as our primary research question concerns the factorial structure of effects rather than precise effect estimates. The planned seed expansion to n≥5 per cell will tighten confidence intervals, while the current n=3-4 design already identifies the additive pattern with large effect sizes (g=0.78-1.89).\"\n\n2. **RD2-N2 加具体 contingency 文本**：\n   在 RD2-N2 \"if Random OCC ≠ Full OCC BN\" 部分，补充 2-3 个关键位置的实际替换文本。例如：\n   - Abstract: \"the spatial content of the labels has no detectable effect\" → \"the spatial content effect is codebase-dependent: absent under v2 but present under v1\"\n   - Results: 对应位置的具体替换\n\n3. **Wall time 修正**：\n   - RD2-W4: \"~2h wall time\" → \"~13h wall time (single GPU, full 50K training)\"\n   - RD2-N2 和 RD3-W3: 统一为 \"All pending experiments: ~27h total wall time with 8-GPU parallelism\"\n\n4. **Convergent evidence 总结句**：\n   在 5 条 evidence 列表后加：\n   > \"While any individual test may be debatable at n=3-4, the convergence of five independent lines of evidence makes it unlikely that the observed pattern is artifactual.\"\n\n---\n\n**D. 论文文本微调（3 处）**\n\n1. **C1 contribution 加 TSR invisibility 子发现**：在 introduction.tex 的 contribution list 中 C1 下加一句 bold 子项：\"these safety effects are invisible to standard task-success benchmarks (TSR ANOVA all p>0.27), explaining why fifteen prior methods did not detect them.\"\n\n2. **C3 guidelines 加 instability warning**：在 C3 practical guidelines 部分加：\"BN + gradient flow additionally exhibits 7× cross-seed variance, making safety outcomes unpredictable across training runs.\"\n\n3. **C1 或 C3 加 per-task amplification**：加一句 \"with the normalization advantage amplifying fourfold on physically constrained tasks where safety margins are thinnest.\"\n\n---\n\n完成后编译确认 8 页合规。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "source": "director"
+          },
+          "id": "event-002502"
+        },
+        {
+          "source_line": 2503,
+          "timestamp": "2026-05-30T00:31:12.796307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+            }
+          },
+          "id": "event-002503"
+        },
+        {
+          "source_line": 2504,
+          "timestamp": "2026-05-30T00:31:12.897271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\n5\t\\subsection{Main Results}\n6\t\n7\tTable~\\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\\times$ 10 tasks per seed). $\\Delta$CAR is computed against the matched-codebase Vanilla baseline (v2: $0.745 \\pm 0.024$, 3 seeds, for factorial conditions above the midrule; v1: 0.780 for supplementary conditions below). Random OCC ($^\\star$) uses v1 code but is included above the midrule as a factorial control; its $\\Delta$CAR is omitted due to the cross-codebase baseline mismatch. Statistical comparisons use permutation tests and Hedges' $g$ (bias-corrected effect size for small samples) against the Vanilla baseline.\n8\t\n9\t\\textbf{Detach+LN reliably outperforms Vanilla.} The best factorial configuration, detached gradients with LayerNorm, achieves CAR $0.802 \\pm 0.024$ ($n{=}3$), a $+5.7$\\,pp advantage over Vanilla ($0.745 \\pm 0.024$, $n{=}3$; Hedges' $g{=}1.89$, very large; bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$; Welch $t$ $p{=}0.045$).\n10\t\n11\t\\textbf{Two additive main effects explain the advantage.} The $2{\\times}2$ factorial (Table~\\ref{tab:factorial}, Figure~\\ref{fig:car_factorial}b) reveals two large main effects with negligible interaction (permutation ANOVA, 10{,}000 permutations: gradient flow $p_\\text{perm}{=}0.090$; normalization $p_\\text{perm}{=}0.041$; interaction $p_\\text{perm}{=}0.794$; Appendix~\\ref{app:permutation}, Table~\\ref{tab:permanova}). Bayesian model comparison provides moderate evidence favoring the additive model ($\\text{BF}_{01}{=}3.5$; Appendix~\\ref{app:permutation}). Parametric ANOVA yields consistent trends (Appendix~\\ref{app:stat_power}). Under BatchNorm, gradient flow is associated with lower safety: Full OCC (CAR $0.725$, $\\Delta{=}-2.0$\\,pp) is the sole cell below Vanilla, while Detach OCC recovers ($0.767$, $\\Delta{=}+2.2$\\,pp); the within-row deficit is 4.2\\,pp (Hedges' $g{=}0.78$, large). Under LayerNorm, gradient flow is benign: Full OCC+LN ($0.773$, $\\De\n…[truncated 8453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-30T00:31:17.113570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-30T00:31:17.164243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tVision-language-action (VLA) models achieve high task success on manipulation benchmarks~\\cite{brohan2023rt2, kim2024openvla, kim2025oft}, but behavioral safety does not follow. On SafeLIBERO Level~I~\\cite{hu2025vlsa}, OpenVLA-7B reaches 87.8\\% Task Success Rate but only 74.5\\% Collision Avoidance Rate (CAR), with per-task collision rates reaching 43--93\\% on the three most constrained tasks (Appendix, Table~\\ref{tab:per_task}).\n4\t\n5\tTwo active research threads address related but distinct aspects. The first enriches VLAs with auxiliary spatial prediction (occupancy grids, depth maps, point clouds)~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. At least fifteen such methods have appeared in the past year~\\cite{wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2025pointvla, sun2025geovla, bhat20253dcavla, li2025qdepthvla, abouzeid2025geoaware, rao2026augvla3d, li2026corridorvla}, all reporting improved task success under the implicit assumption that spatial awareness yields safer behavior. The second targets VLA safety directly through runtime action filtering~\\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf} or constrained RL~\\cite{zhang2025safevla}. These lines are disconnected: no spatial method evaluates collision avoidance, and no safety method examines spatial representations. A recent survey~\\cite{li2026vlasafety} confirms this gap. Moreover, single-factor ablations, the dominant methodology, cannot decompose joint effects of multiple design choices; only a factorial design can determine whether factors like gradient flow and normalization type interact or combine independently.\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/fig1_architecture_pb.pdf}\n10\t\\caption{\\textbf{Training setup and factorial design.} \\textbf{(a)}~OpenVLA-7B with dual vision encoders (DINOv2 + SigLIP) and an auxiliary spatial head (bird's-eye view occupancy or depth), discarded\n…[truncated 3175 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-30T00:31:48.844309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which python3 && python3 -c \"import matplotlib; print('matplotlib', matplotlib.__version__)\" 2>&1",
+              "description": "Check matplotlib availability"
+            }
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-30T00:31:50.402366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/python3\nmatplotlib 3.10.9"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1558
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-30T00:31:50.553388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/docs/paper/figures/*.pdf",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla"
+            }
+          },
+          "id": "event-002509"
+        },
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-30T00:31:50.604082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gradient_analysis_combined.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/cka_analysis.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/per_layer_conflict_rate.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/grad_norm_heatmap.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig1_overview_v2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/factorial_2x2.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/per_layer_combined.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/dose_response_3seed_final.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/dose_response.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig1_overview.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig1c_results_bar.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/factorial_2x2_pb.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_car_factorial_combined.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig1_architecture.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig1_architecture_pb.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gradient_analysis_v2_combined.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-30T00:32:57.178687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gen_fig2_combined.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Generate Figure 2: (a) CAR bar chart + (b) 2x2 interaction plot.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.02,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\n# Data\nconditions = ['Full OCC\\n(BN)', 'Detach\\n(BN)', 'Full OCC\\n(LN)', 'Detach\\n(LN)', 'Vanilla']\ncar_means = [0.725, 0.767, 0.773, 0.802, 0.745]\ncar_sds =   [0.064, 0.024, 0.027, 0.024, 0.024]\ncolors = ['#4878CF', '#6A9FD8', '#E8833A', '#F0A868', '#999999']\nedge_colors = ['#2A5BAA', '#4878CF', '#C0611A', '#E8833A', '#666666']\n\nvanilla_mean = 0.745\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.0, 2.8),\n                                gridspec_kw={'width_ratios': [1.15, 1], 'wspace': 0.35})\n\n# --- Panel (a): Bar chart ---\nx = np.arange(len(conditions))\nbars = ax1.bar(x, car_means, yerr=car_sds, width=0.6,\n               color=colors, edgecolor=edge_colors, linewidth=0.8,\n               capsize=3, error_kw={'linewidth': 1.0, 'capthick': 1.0})\n\nax1.axhline(y=vanilla_mean, color='#888888', linestyle='--', linewidth=1.0,\n            label=f'Vanilla ({vanilla_mean:.3f})', zorder=0)\n\nax1.set_xticks(x)\nax1.set_xticklabels(conditions, fontsize=8)\nax1.set_ylabel('Collision Avoidance Rate (CAR)')\nax1.set_ylim(0.62, 0.86)\nax1.yaxis.set_major_locator(mticker.MultipleLocator(0.04))\nax1.yaxis.set_minor_locator(mticker.MultipleLocator(0.02))\nax1.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc')\nax1.set_title('(a)', fontweight='bold', loc='left', pad=4)\nax1.spines['top'].set_visible(False)\nax1.spines['right'].set_visible(False)\n\nfor i, (m, s) in enumerate(zip(car_means, car_sds)):\n    if i < 4:\n        delta = m - vanilla_mean\n        sign = '+' if delta > 0 else ''\n        ax1.text(i, m + s + 0.008, f'{sign}{delta*100:.1f}pp',\n                 ha='center', va='bottom', fontsize=7, color=edge_colors[i])\n\n# --- Panel (b): Interaction plot ---\nx_flow = [0, 1]\nx_labels = ['Gradient ON', 'Gradient OFF']\n\nbn_means = [0.725, 0.767]\nbn_sds = [0.064, 0.024]\nln_means = [0.773, 0.802]\nln_sds = [0.027, 0.024]\n\nax2.errorbar(x_flow, bn_means, yerr=bn_sds, fmt='o-', color='#4878CF',\n             linewidth=2.0, markersize=7, capsize=4, capthick=1.2,\n             label='BatchNorm', zorder=3)\nax2.errorbar(x_flow, ln_means, yerr=ln_sds, fmt='s--', color='#E8833A',\n             linewidth=2.0, markersize=7, capsize=4, capthick=1.2,\n             label='LayerNorm', zorder=3)\n\nax2.axhline(y=vanilla_mean, color='#888888', linestyle=':', linewidth=1.2,\n            label=f'Vanilla ({vanilla_mean:.3f})', zorder=1)\n\nax2.set_xticks(x_flow)\nax2.set_xticklabels(x_labels)\nax2.set_ylabel('Collision Avoidance Rate (CAR)')\nax2.set_ylim(0.62, 0.86)\nax2.yaxis.set_major_locator(mticker.MultipleLocator(0.04))\nax2.yaxis.set_minor_locator(mticker.MultipleLocator(0.02))\nax2.set_xlim(-0.3, 1.3)\nax2.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc')\nax2.set_title('(b)', fontweight='bold', loc='left', pad=4)\nax2.spines['top'].set_visible(False)\nax2.spines['right'].set_visible(False)\n\nax2.annotate('', xy=(0.5, bn_means[0] + 0.003), xytext=(0.5, ln_means[0] - 0.003),\n             arrowprops=dict(arrowstyle='<->', color='#666666', lw=1.0))\nax2.text(0.65, (bn_means[0] + ln_means[0])/2, '4.8pp',\n         fontsize=7.5, color='#666666', va='center')\n\nax2.annotate('', xy=(0.5, bn_means[1] + 0.003), xytext=(0.5, ln_means[1] - 0.003),\n             arrowprops=dict(arrowstyle='<->', color='#666666', lw=1.0))\nax2.text(0.65, (bn_means[1] + ln_means[1])/2, '3.5pp',\n         fontsize=7.5, color='#666666', va='center')\n\nfig.savefig('fig_car_factorial_combined.pdf', format='pdf')\nfig.savefig('fig_car_factorial_combined.png', format='png', dpi=200)\nprint('Saved fig_car_factorial_combined.pdf and .png')\nplt.close()\n"
+            }
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-30T00:32:57.179185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gen_fig2_combined.py"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-30T00:33:00.290834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures && python3 gen_fig2_combined.py 2>&1",
+              "description": "Generate Figure 2 combined PDF"
+            }
+          },
+          "id": "event-002513"
+        },
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-30T00:33:01.595490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved fig_car_factorial_combined.pdf and .png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1304
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-30T00:33:04.691788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_car_factorial_combined.png"
+            }
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-30T00:33:04.694596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "elapsed_ms": 2
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-30T00:33:26.127841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex",
+              "old_string": "\\caption{(a)~Only BN + gradient flow falls below Vanilla. Detach+LN achieves the highest CAR ($0.802{\\pm}0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$). Under BatchNorm, gradient flow is associated with lower CAR; LayerNorm eliminates this vulnerability. Error bars: cross-seed SD. (b)~$2{\\times}2$ factorial comparison: normalization type (BN/LN) $\\times$ gradient flow (ON/OFF). BN row: gradient flow is associated with 4.2\\,pp lower CAR ($g{=}0.78$); LN row: 2.9\\,pp ($g{=}0.94$). All LN cells exceed Vanilla baseline.}",
+              "new_string": "\\caption{(a)~Only BN + gradient flow falls below Vanilla. Detach+LN achieves the highest CAR ($0.802{\\pm}0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$). Error bars: cross-seed SD. (b)~Classic interaction plot: near-parallel lines indicate negligible interaction ($p_\\text{perm}{=}0.794$). LN consistently outperforms BN by 3.5--4.8\\,pp regardless of gradient flow. Only BN + gradient ON falls below Vanilla.}"
+            }
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-30T00:33:26.178550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-30T00:33:33.111384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex",
+              "old_string": "\\caption{$2{\\times}2$ factorial: normalization type $\\times$ gradient flow (all v2 data). Two main effects: gradient flow under BN $g{=}0.78$ (large); normalization effect $g{=}0.88$--$1.24$ (large to very large). BN + gradient flow is the sole cell below Vanilla. interaction $p_\\text{perm}{=}0.794$.}",
+              "new_string": "\\caption{$2{\\times}2$ factorial: normalization type $\\times$ gradient flow (all v2 data). Two main effects: gradient flow under BN $g{=}0.78$ (large); normalization effect $g{=}0.88$--$1.24$ (large to very large). BN + gradient flow is the sole cell below Vanilla. Interaction $p_\\text{perm}{=}0.794$. $\\text{BF}_{01}{=}3.50$ (moderate evidence for additivity).}"
+            }
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-30T00:33:33.111897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 0
           },
           "id": "event-002520"
         }

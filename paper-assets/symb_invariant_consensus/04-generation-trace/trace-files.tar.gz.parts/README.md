@@ -3,7 +3,7 @@
 Reconstruct from the repository root:
 
 ```bash
-python3 scripts/reconstruct_trace.py paper-assets/symb_invariant_consensus/05-generation-trace/trace-files.tar.gz.parts trace-files.tar.gz
+python3 scripts/reconstruct_trace.py paper-assets/symb_invariant_consensus/04-generation-trace/trace-files.tar.gz.parts trace-files.tar.gz
 ```
 
-Original bytes: 103,411,908; SHA-256: `2f54940571584a6aa78fa42d3d391aaed079381c64a361773b94ac81dfc0a82c`. Parts retain the exact file bytes.
+Original bytes: 103,257,773; SHA-256: `dbf134c66d63693ed334de402472288411a6cb7dc2ac91e74ec1ba8f87f29248`. Parts retain the exact file bytes.

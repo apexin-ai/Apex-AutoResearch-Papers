@@ -1,17 +1,17 @@
 {
   "project": "struct_self_consist_ie",
-  "code_count": 1112,
+  "code_count": 1110,
   "data_count": 2786,
   "env_count": 0,
   "tex_count": 104,
   "bib_count": 3,
   "review_count": 45,
   "validation_count": 69,
-  "chat_count": 573,
-  "worker_count": 2377,
-  "trace_count": 3033,
-  "trace_bytes": 601896067,
-  "maintenance_count": 370,
+  "chat_count": 571,
+  "worker_count": 2365,
+  "trace_count": 3019,
+  "trace_bytes": 600108789,
+  "maintenance_count": 353,
   "provenance_count": 2,
   "submission_count": 0,
   "license_count": 0,
@@ -111,14 +111,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "573 conversations; 2377 worker logs/results; 3033 source files",
+      "evidence": "571 conversations; 2365 worker logs/results; 3019 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "1112 code/configuration files; 0 environment manifests",
+      "evidence": "1110 code/configuration files; 0 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
@@ -139,7 +139,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "370 project documentation files; 0 license files",
+      "evidence": "353 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

@@ -7,45 +7,6 @@
       "messages": [
         {
           "source_line": 7741,
-          "timestamp": "2026-05-20T18:13:33.536700+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__list_secrets",
-              "max_results": "1"
-            }
-          },
-          "id": "event-007741"
-        },
-        {
-          "source_line": 7742,
-          "timestamp": "2026-05-20T18:13:33.587898+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "tool": "ToolSearch",
-            "elapsed_ms": 51
-          },
-          "id": "event-007742"
-        },
-        {
-          "source_line": 7743,
           "timestamp": "2026-05-20T18:13:36.544994+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -62,10 +23,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007743"
+          "id": "event-007741"
         },
         {
-          "source_line": 7744,
+          "source_line": 7742,
           "timestamp": "2026-05-20T18:13:36.595619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -80,10 +41,10 @@
             "tool": "mcp__agent-ml-research__list_secrets",
             "elapsed_ms": 50
           },
-          "id": "event-007744"
+          "id": "event-007742"
         },
         {
-          "source_line": 7745,
+          "source_line": 7743,
           "timestamp": "2026-05-20T18:14:16.572262+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -101,10 +62,10 @@
               "message": "[Director 指令 — 全面扩展，最高优先级] 用户 mandate：目标从 4.0 升至 4.5，无条件支持。以下 6 个任务全部立即并行启动，与 Backup 1/3 + T_low + cross_model 共存，不替换。\n\n━━━ Direction A: Cross-Task Universality（3 个 Worker 并行）━━━\n\n**A1. Spider SQL SC pilot** → 5090-b:2（现在空闲）\n- 用 Qwen2.5-7B-Instruct（base model，不是 NER-finetuned）\n- Spider dev set 取 200 examples，N=8 SC（T=1.0）\n- 生成 8 个 SQL → 执行 → 用 execution accuracy 做 evaluation\n- 对比：greedy vs MV vs LP selection vs oracle\n- 记录 F1-F4 failure modes 在 SQL 任务上是否存在（degeneracy、LP-quality gap、agreement-correctness correlation）\n- 需要 SQLite 执行环境（pip install sqlite3 应该自带）\n- Spider 数据从 HuggingFace 下载：`spider` dataset\n- **Hypothesis**: diagnostic cascade 在 SQL structured generation 上同样适用\n\n**A2. HumanEval SC pilot** → CPU + API（OpenRouter）\n- HumanEval 164 problems，N=8 SC\n- 用 OpenRouter API（base_url=http://47.94.22.126/v1）调 GPT-5.5\n- 生成 8 个 code solutions → 执行 unit test → pass@1\n- 对比：greedy vs MV（majority voting on test-passing solutions）vs random selection\n- 记录 degeneracy rate、agreement patterns\n- CPU-only（API 调用 + local test execution）\n- **Hypothesis**: SC failure modes 在 code generation 上表现不同（code 有确定性验证，NER 没有）\n\n**A3. ACE05 Relation Extraction** → spec 先，GPU 后分配\n- 最接近 NER 的扩展，复用大部分 SC pipeline\n- 用 Qwen2.5-7B-Instruct + few-shot prompt for RE\n- 先写 spec + 数据准备代码，提交审批\n- **P1 优先级**，A1/A2 先启动\n\n━━━ Direction B: Frontier Model Spot Check（1 个 API Worker）━━━\n\n**B. Frontier model SC on FewNERD** → CPU + API\n- OpenRouter API key 已有（key_id: openrouter_api_key，base_url=http://47.94.22.126/v1）\n- 用 `request_secret(\"openrouter_api_key\")` 获取 key\n- 模型：GPT-5.5 + Claude Opus 4.6（OpenRouter 格式）\n- FewNERD **200 random instances**（seed=42），N=8，T=1.0\n- **不需要 logprob**——只统计 frequency-based agreement（每个 entity 在 8 个 sample 中出现几次）\n- 对比：greedy vs MV，记录 correlation-selection gap\n- 输出：per-model F1 表 + failure mode 分布\n- **Hypothesis**: correlation-selection gap 在 frontier 模型上依然存在 → fundamental limit of LLM SC\n- 预估 cost ~$50-100，预估时间 ~4-6h\n\n━━━ 每个任务都是独立 Worker，并行 spawn。━━━\n\nA1 需要 5090-b:2 GPU（模型推理），A2/B 是 API 调用无 GPU，A3 先写 spec。\n代码就绪即提交审批，不要等其他任务。1 小时内汇报全部 Worker spawn 状态。"
             }
           },
-          "id": "event-007745"
+          "id": "event-007743"
         },
         {
-          "source_line": 7746,
+          "source_line": 7744,
           "timestamp": "2026-05-20T18:14:29.712977+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -119,10 +80,10 @@
             "tool": "mcp__agent-ml-research__urgent_agent_message",
             "elapsed_ms": 13140
           },
-          "id": "event-007746"
+          "id": "event-007744"
         },
         {
-          "source_line": 7747,
+          "source_line": 7745,
           "timestamp": "2026-05-20T18:14:30.164836+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -140,10 +101,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007747"
+          "id": "event-007745"
         },
         {
-          "source_line": 7748,
+          "source_line": 7746,
           "timestamp": "2026-05-20T18:14:39.101339+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -158,10 +119,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 8936
           },
-          "id": "event-007748"
+          "id": "event-007746"
         },
         {
-          "source_line": 7749,
+          "source_line": 7747,
           "timestamp": "2026-05-20T18:14:39.101734+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -178,10 +139,10 @@
               "text": "收到 mandate，全面执行。6 个任务已全部 dispatch：\n\n**Direction A — Cross-Task Universality（3 Workers）：**\n- A1 Spider SQL pilot → 5090-b:2，用 Qwen2.5-7B-Instruct，200 examples N=8\n- A2 HumanEval SC → OpenRouter API (GPT-5.5)，164 problems N=8\n- A3 ACE05 RE → 先写 spec\n\n**Direction B — Frontier Model Spot Check（1 API Worker）：**\n- GPT-5.5 + Claude Opus 4.6 on FewNERD 200 instances，OpenRouter API key 已有\n\n**Direction C — Hallucination Reframe：**\n- 已派 Paper Agent 起草 §1 hook + §7 hallucination detection section\n- 连接 SelfCheckGPT / FActScore，零实验成本\n\n**Direction D — IB Theorem：**\n- Reviewer 已在推，持续\n\n**一个具体 implementation 风险**：\n- Spider SQL 需要 Qwen2.5-7B-Instruct（base model）在 5090-b 上可用。如果 5090-b 上没有该模型需要先下载（~15GB，30min）。Worker 会探查并处理。\n- HumanEval 的 code execution sandbox 需要安全隔离（防止生成的恶意代码），Worker 会用 subprocess + timeout 处理。\n\n其他不是风险，是并行工作量——Agent 有足够 Worker 池。1h 内汇报全部 spawn 状态。"
             }
           },
-          "id": "event-007749"
+          "id": "event-007747"
         },
         {
-          "source_line": 7750,
+          "source_line": 7748,
           "timestamp": "2026-05-20T18:14:39.762305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -196,10 +157,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 660
           },
-          "id": "event-007750"
+          "id": "event-007748"
         },
         {
-          "source_line": 7751,
+          "source_line": 7749,
           "timestamp": "2026-05-20T18:14:50.059311+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -220,10 +181,10 @@
               "depends_on": "['D201', 'D202']"
             }
           },
-          "id": "event-007751"
+          "id": "event-007749"
         },
         {
-          "source_line": 7752,
+          "source_line": 7750,
           "timestamp": "2026-05-20T18:14:50.510992+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -238,10 +199,10 @@
             "tool": "mcp__agent-ml-research__log_decision",
             "elapsed_ms": 451
           },
-          "id": "event-007752"
+          "id": "event-007750"
         },
         {
-          "source_line": 7753,
+          "source_line": 7751,
           "timestamp": "2026-05-20T18:14:52.658055+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -254,7 +215,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007753"
+          "id": "event-007751"
         }
       ]
     },
@@ -262,7 +223,7 @@
       "number": 984,
       "messages": [
         {
-          "source_line": 7754,
+          "source_line": 7752,
           "timestamp": "2026-05-20T18:14:54.737715+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -276,10 +237,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007754"
+          "id": "event-007752"
         },
         {
-          "source_line": 7755,
+          "source_line": 7753,
           "timestamp": "2026-05-20T18:15:16.691965+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -297,10 +258,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-007755"
+          "id": "event-007753"
         },
         {
-          "source_line": 7756,
+          "source_line": 7754,
           "timestamp": "2026-05-20T18:15:16.744310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -315,10 +276,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 52
           },
-          "id": "event-007756"
+          "id": "event-007754"
         },
         {
-          "source_line": 7757,
+          "source_line": 7755,
           "timestamp": "2026-05-20T18:15:19.910274+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -336,10 +297,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007757"
+          "id": "event-007755"
         },
         {
-          "source_line": 7758,
+          "source_line": 7756,
           "timestamp": "2026-05-20T18:15:20.212281+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -357,10 +318,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007758"
+          "id": "event-007756"
         },
         {
-          "source_line": 7759,
+          "source_line": 7757,
           "timestamp": "2026-05-20T18:15:27.778299+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -375,10 +336,10 @@
             "tool": "mcp__agent-ml-research__approve_experiment",
             "elapsed_ms": 7868
           },
-          "id": "event-007759"
+          "id": "event-007757"
         },
         {
-          "source_line": 7760,
+          "source_line": 7758,
           "timestamp": "2026-05-20T18:15:35.458317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -393,10 +354,10 @@
             "tool": "mcp__agent-ml-research__approve_experiment",
             "elapsed_ms": 15246
           },
-          "id": "event-007760"
+          "id": "event-007758"
         },
         {
-          "source_line": 7761,
+          "source_line": 7759,
           "timestamp": "2026-05-20T18:15:46.733232+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -414,10 +375,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007761"
+          "id": "event-007759"
         },
         {
-          "source_line": 7762,
+          "source_line": 7760,
           "timestamp": "2026-05-20T18:15:47.938803+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -432,10 +393,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 1205
           },
-          "id": "event-007762"
+          "id": "event-007760"
         },
         {
-          "source_line": 7763,
+          "source_line": 7761,
           "timestamp": "2026-05-20T18:15:51.084577+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -448,7 +409,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007763"
+          "id": "event-007761"
         }
       ]
     },
@@ -456,7 +417,7 @@
       "number": 985,
       "messages": [
         {
-          "source_line": 7764,
+          "source_line": 7762,
           "timestamp": "2026-05-20T18:17:09.056158+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -470,10 +431,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "paper_agent"
           },
-          "id": "event-007764"
+          "id": "event-007762"
         },
         {
-          "source_line": 7765,
+          "source_line": 7763,
           "timestamp": "2026-05-20T18:17:33.411178+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -491,10 +452,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007765"
+          "id": "event-007763"
         },
         {
-          "source_line": 7766,
+          "source_line": 7764,
           "timestamp": "2026-05-20T18:17:40.420365+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -509,10 +470,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 7009
           },
-          "id": "event-007766"
+          "id": "event-007764"
         },
         {
-          "source_line": 7767,
+          "source_line": 7765,
           "timestamp": "2026-05-20T18:17:47.605597+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -530,10 +491,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007767"
+          "id": "event-007765"
         },
         {
-          "source_line": 7768,
+          "source_line": 7766,
           "timestamp": "2026-05-20T18:17:48.759394+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -548,10 +509,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 1153
           },
-          "id": "event-007768"
+          "id": "event-007766"
         },
         {
-          "source_line": 7769,
+          "source_line": 7767,
           "timestamp": "2026-05-20T18:17:50.987222+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -564,7 +525,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007769"
+          "id": "event-007767"
         }
       ]
     },
@@ -572,7 +533,7 @@
       "number": 986,
       "messages": [
         {
-          "source_line": 7770,
+          "source_line": 7768,
           "timestamp": "2026-05-20T18:17:53.008005+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -586,10 +547,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007770"
+          "id": "event-007768"
         },
         {
-          "source_line": 7771,
+          "source_line": 7769,
           "timestamp": "2026-05-20T18:18:24.441298+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -606,10 +567,10 @@
               "text": "**Backup 1 (Heterogeneous-T) negative** — 420 次实验（6 配置 × 7 mix ratio × 10 repeats），F1 全域 ±0.23pp，无实质提升。混合 T 确实降低 degeneracy（34%→20%），但 F1 不跟着涨。\n\n**现在的全景图清晰了：**\n\n| 方向 | 结果 | 结论 |\n|------|------|------|\n| Entity-level self-judgment | MRSC/ESJ/LSC 全 negative | 模型能力瓶颈 |\n| Sampling diversity | het_temp/B3 全 negative | 多样性不是瓶颈 |\n| Adaptive θ | E_θ negative | Oracle headroom 仅 0.13pp |\n| **Adaptive budget allocation** | **ASB +1.63pp** | **唯一正向（待确认 bugfix）** |\n| Backup 3 (supervised verifier) | smoke AUROC 0.86，全量在跑 | **待结果** |\n\n两条活路：\n1. **ASB**（如果 bugfix 后仍正向）— prescriptive \"when to sample more\"\n2. **Backup 3**（如果全量 AUROC 持住）— prescriptive \"supervised entity scoring\"\n\nT_low FewNERD inference（cuda:2）让它跑完——温度分析数据对论文 §6 仍有价值，即使 het_temp mixing 不 work。\n\nDirection A/B/C/D 扩展不受影响，正在并行推进。"
             }
           },
-          "id": "event-007771"
+          "id": "event-007769"
         },
         {
-          "source_line": 7772,
+          "source_line": 7770,
           "timestamp": "2026-05-20T18:18:27.761997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -624,10 +585,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3320
           },
-          "id": "event-007772"
+          "id": "event-007770"
         },
         {
-          "source_line": 7773,
+          "source_line": 7771,
           "timestamp": "2026-05-20T18:18:30.098681+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -640,7 +601,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007773"
+          "id": "event-007771"
         }
       ]
     },
@@ -648,7 +609,7 @@
       "number": 987,
       "messages": [
         {
-          "source_line": 7774,
+          "source_line": 7772,
           "timestamp": "2026-05-20T18:20:45.731002+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -662,10 +623,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "paper_agent"
           },
-          "id": "event-007774"
+          "id": "event-007772"
         },
         {
-          "source_line": 7775,
+          "source_line": 7773,
           "timestamp": "2026-05-20T18:21:15.796883+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -683,10 +644,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007775"
+          "id": "event-007773"
         },
         {
-          "source_line": 7776,
+          "source_line": 7774,
           "timestamp": "2026-05-20T18:21:19.569311+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -701,7 +662,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 3772
           },
-          "id": "event-007776"
+          "id": "event-007774"
         }
       ]
     },
@@ -709,7 +670,7 @@
       "number": 988,
       "messages": [
         {
-          "source_line": 7777,
+          "source_line": 7775,
           "timestamp": "2026-05-20T18:22:05.763380+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -723,10 +684,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007777"
+          "id": "event-007775"
         },
         {
-          "source_line": 7778,
+          "source_line": 7776,
           "timestamp": "2026-05-20T18:22:25.562298+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -744,10 +705,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007778"
+          "id": "event-007776"
         },
         {
-          "source_line": 7779,
+          "source_line": 7777,
           "timestamp": "2026-05-20T18:22:29.227351+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -762,7 +723,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3665
           },
-          "id": "event-007779"
+          "id": "event-007777"
         }
       ]
     },
@@ -770,7 +731,7 @@
       "number": 989,
       "messages": [
         {
-          "source_line": 7780,
+          "source_line": 7778,
           "timestamp": "2026-05-20T18:23:46.759410+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -784,10 +745,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "paper_agent"
           },
-          "id": "event-007780"
+          "id": "event-007778"
         },
         {
-          "source_line": 7781,
+          "source_line": 7779,
           "timestamp": "2026-05-20T18:24:01.075291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -805,10 +766,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007781"
+          "id": "event-007779"
         },
         {
-          "source_line": 7782,
+          "source_line": 7780,
           "timestamp": "2026-05-20T18:24:05.372378+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -823,7 +784,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 4297
           },
-          "id": "event-007782"
+          "id": "event-007780"
         }
       ]
     },
@@ -831,7 +792,7 @@
       "number": 990,
       "messages": [
         {
-          "source_line": 7783,
+          "source_line": 7781,
           "timestamp": "2026-05-20T18:25:34.906881+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -845,10 +806,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "paper_agent"
           },
-          "id": "event-007783"
+          "id": "event-007781"
         },
         {
-          "source_line": 7784,
+          "source_line": 7782,
           "timestamp": "2026-05-20T18:25:41.457195+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -861,7 +822,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007784"
+          "id": "event-007782"
         }
       ]
     },
@@ -869,7 +830,7 @@
       "number": 991,
       "messages": [
         {
-          "source_line": 7785,
+          "source_line": 7783,
           "timestamp": "2026-05-20T18:29:52.067628+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -883,10 +844,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007785"
+          "id": "event-007783"
         },
         {
-          "source_line": 7786,
+          "source_line": 7784,
           "timestamp": "2026-05-20T18:30:13.685185+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -904,10 +865,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007786"
+          "id": "event-007784"
         },
         {
-          "source_line": 7787,
+          "source_line": 7785,
           "timestamp": "2026-05-20T18:30:17.470590+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -922,10 +883,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3785
           },
-          "id": "event-007787"
+          "id": "event-007785"
         },
         {
-          "source_line": 7788,
+          "source_line": 7786,
           "timestamp": "2026-05-20T18:30:26.708757+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -946,10 +907,10 @@
               "depends_on": "['D203']"
             }
           },
-          "id": "event-007788"
+          "id": "event-007786"
         },
         {
-          "source_line": 7789,
+          "source_line": 7787,
           "timestamp": "2026-05-20T18:30:27.163415+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -964,10 +925,10 @@
             "tool": "mcp__agent-ml-research__log_decision",
             "elapsed_ms": 454
           },
-          "id": "event-007789"
+          "id": "event-007787"
         },
         {
-          "source_line": 7790,
+          "source_line": 7788,
           "timestamp": "2026-05-20T18:30:29.609183+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -980,7 +941,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007790"
+          "id": "event-007788"
         }
       ]
     },
@@ -988,7 +949,7 @@
       "number": 992,
       "messages": [
         {
-          "source_line": 7791,
+          "source_line": 7789,
           "timestamp": "2026-05-20T18:34:41.210976+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1002,11 +963,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "main_agent"
           },
+          "id": "event-007789"
+        },
+        {
+          "source_line": 7790,
+          "timestamp": "2026-05-20T18:34:47.439343+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007790"
+        }
+      ]
+    },
+    {
+      "number": 993,
+      "messages": [
+        {
+          "source_line": 7791,
+          "timestamp": "2026-05-20T18:36:09.251107+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_e_theta_adaptive\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **Registry 状态过期**：实验 RUNNING 已超 11 小时（updated_at=15:39 UTC），本地无对应进程。Spec 声明 \"5 parallel workers with different feature/model variants\"，但 artifacts 中仅存 v2_mlp_results.json（1/5 变体）。其余 4 个变体（LogReg + 其他特征子集）无输出。可能 crashed 或未启动。建议标记为 DONE (partial) 并补跑缺失变体。\n\n- [severity: warning] **MLP 变体结果为 negative**：\n  - 固定 θ=0.5 mean F1 = 0.7940\n  - MLP adaptive θ mean F1 = 0.7906（**-0.34pp**，更差）\n  - Oracle θ mean F1 = 0.7953（仅 +0.13pp headroom）\n  - Win/Tie/Loss vs 固定: 5/0/13\n  - MLP 在 13/18 configs 上输给固定 θ=0.5\n  - `pred_theta_raw` 频繁为负值（如 CoNLL 配置 -0.82），clamped 到最低 0.3\n\n  **诊断**：n=18 configs 做 leave-one-config-out CV 训练 MLP（7 features, ~64 parameters）严重过拟合/欠拟合。17 个训练点不够学习映射。但更重要的发现是 **oracle-fixed gap 仅 0.13pp** —— 即使知道最优 θ，提升也极有限。**θ=0.5 是一个强 default，adaptive θ 不是论文的有效贡献方向**。\n\n- [severity: warning] **数据不一致**：Qwen_FewNERD_s42 显示 n_instances=4351，其余 FewNERD 配置均为 32565。4351 与 exp_b2_entity_verifier 的子集大小相同。可能使用了错误的数据文件，导致该配置的结果不可比。\n\n- [severity: info] **Oracle θ 分布**：CoNLL 偏好高 θ（0.4-0.65），FewNERD 偏好低 θ（0.3-0.4），SciERC 偏好低 θ（0.3-0.4）。高 degeneracy 数据集需更严格过滤阈值——但差异极小（<0.2pp within θ=0.4-0.5 range），不足以支撑 adaptive θ 的 narrative。\n\n### 建议\n- 将 exp_e_theta_adaptive 标记为 DONE (negative) —— adaptive θ headroom 不足，不应进入论文主贡献\n- 修复 Qwen_FewNERD_s42 数据不一致后再引用具体数字\n- 可在 appendix 中简要提及\"θ=0.5 是鲁棒 default\"作为 engineering finding"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
           "id": "event-007791"
         },
         {
           "source_line": 7792,
-          "timestamp": "2026-05-20T18:34:47.439343+00:00",
+          "timestamp": "2026-05-20T18:36:21.737444+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1023,48 +1022,10 @@
       ]
     },
     {
-      "number": 993,
-      "messages": [
-        {
-          "source_line": 7793,
-          "timestamp": "2026-05-20T18:36:09.251107+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 回复]:\n## 审查报告 — exp_e_theta_adaptive\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **Registry 状态过期**：实验 RUNNING 已超 11 小时（updated_at=15:39 UTC），本地无对应进程。Spec 声明 \"5 parallel workers with different feature/model variants\"，但 artifacts 中仅存 v2_mlp_results.json（1/5 变体）。其余 4 个变体（LogReg + 其他特征子集）无输出。可能 crashed 或未启动。建议标记为 DONE (partial) 并补跑缺失变体。\n\n- [severity: warning] **MLP 变体结果为 negative**：\n  - 固定 θ=0.5 mean F1 = 0.7940\n  - MLP adaptive θ mean F1 = 0.7906（**-0.34pp**，更差）\n  - Oracle θ mean F1 = 0.7953（仅 +0.13pp headroom）\n  - Win/Tie/Loss vs 固定: 5/0/13\n  - MLP 在 13/18 configs 上输给固定 θ=0.5\n  - `pred_theta_raw` 频繁为负值（如 CoNLL 配置 -0.82），clamped 到最低 0.3\n\n  **诊断**：n=18 configs 做 leave-one-config-out CV 训练 MLP（7 features, ~64 parameters）严重过拟合/欠拟合。17 个训练点不够学习映射。但更重要的发现是 **oracle-fixed gap 仅 0.13pp** —— 即使知道最优 θ，提升也极有限。**θ=0.5 是一个强 default，adaptive θ 不是论文的有效贡献方向**。\n\n- [severity: warning] **数据不一致**：Qwen_FewNERD_s42 显示 n_instances=4351，其余 FewNERD 配置均为 32565。4351 与 exp_b2_entity_verifier 的子集大小相同。可能使用了错误的数据文件，导致该配置的结果不可比。\n\n- [severity: info] **Oracle θ 分布**：CoNLL 偏好高 θ（0.4-0.65），FewNERD 偏好低 θ（0.3-0.4），SciERC 偏好低 θ（0.3-0.4）。高 degeneracy 数据集需更严格过滤阈值——但差异极小（<0.2pp within θ=0.4-0.5 range），不足以支撑 adaptive θ 的 narrative。\n\n### 建议\n- 将 exp_e_theta_adaptive 标记为 DONE (negative) —— adaptive θ headroom 不足，不应进入论文主贡献\n- 修复 Qwen_FewNERD_s42 数据不一致后再引用具体数字\n- 可在 appendix 中简要提及\"θ=0.5 是鲁棒 default\"作为 engineering finding"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "reviewer"
-          },
-          "id": "event-007793"
-        },
-        {
-          "source_line": 7794,
-          "timestamp": "2026-05-20T18:36:21.737444+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007794"
-        }
-      ]
-    },
-    {
       "number": 994,
       "messages": [
         {
-          "source_line": 7795,
+          "source_line": 7793,
           "timestamp": "2026-05-20T18:38:05.751437+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1078,10 +1039,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007795"
+          "id": "event-007793"
         },
         {
-          "source_line": 7796,
+          "source_line": 7794,
           "timestamp": "2026-05-20T18:38:20.265003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1099,10 +1060,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-007796"
+          "id": "event-007794"
         },
         {
-          "source_line": 7797,
+          "source_line": 7795,
           "timestamp": "2026-05-20T18:38:20.265385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1117,10 +1078,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-007797"
+          "id": "event-007795"
         },
         {
-          "source_line": 7798,
+          "source_line": 7796,
           "timestamp": "2026-05-20T18:38:24.528571+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1138,10 +1099,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007798"
+          "id": "event-007796"
         },
         {
-          "source_line": 7799,
+          "source_line": 7797,
           "timestamp": "2026-05-20T18:38:24.980397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1156,10 +1117,10 @@
             "tool": "mcp__agent-ml-research__approve_secret_request",
             "elapsed_ms": 451
           },
-          "id": "event-007799"
+          "id": "event-007797"
         },
         {
-          "source_line": 7800,
+          "source_line": 7798,
           "timestamp": "2026-05-20T18:38:33.910348+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1177,10 +1138,10 @@
               "message": "[Director 指令] 多个事项确认：\n\n**1. Backup 3 + cross_model 已审批（上个 session 已批）** — 不需要重新审批，立即执行。两个都是 CPU-only，直接 spawn Worker 跑。\n\n**2. OpenRouter API key 已审批** — secret_req_openrouter_api_key_1779300909 approved。A2 (HumanEval) 和 B (Frontier SC) 立即启动。注意：\n- B (Frontier SC) 代码先改 micro-F1 再运行（上条指令已说明）\n- A2 (HumanEval) 先修 MV metric bug 再运行（Reviewer 已报 warning）\n\n**3. cuda:1 → A3 SciERC RE**\n- SciERC RE 替代 ACE05 合理\n- 分配 autodl-5090-c cuda:1，准备好后提交审批\n\n**4. cuda:3 保持空闲待命** — 14B 完成 N=8 后 cuda:0 也会释放，届时重新评估分配\n\n**并行执行清单（立即）：**\n- Backup 3 → CPU Worker spawn\n- Cross_model → CPU Worker spawn\n- A2 HumanEval → CPU + API Worker spawn（修完 MV bug 后）\n- B Frontier SC → CPU + API Worker spawn（修完 micro-F1 后）\n- A3 SciERC RE → cuda:1 代码准备 + 审批\n\n5 个任务全部并行，不要串行。"
             }
           },
-          "id": "event-007800"
+          "id": "event-007798"
         },
         {
-          "source_line": 7801,
+          "source_line": 7799,
           "timestamp": "2026-05-20T18:38:34.564293+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1195,10 +1156,10 @@
             "tool": "mcp__agent-ml-research__urgent_agent_message",
             "elapsed_ms": 653
           },
-          "id": "event-007801"
+          "id": "event-007799"
         },
         {
-          "source_line": 7802,
+          "source_line": 7800,
           "timestamp": "2026-05-20T18:38:37.912446+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1211,7 +1172,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007802"
+          "id": "event-007800"
         }
       ]
     },
@@ -1219,7 +1180,7 @@
       "number": 995,
       "messages": [
         {
-          "source_line": 7803,
+          "source_line": 7801,
           "timestamp": "2026-05-20T18:42:18.552777+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1233,11 +1194,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
+          "id": "event-007801"
+        },
+        {
+          "source_line": 7802,
+          "timestamp": "2026-05-20T18:42:32.055046+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007802"
+        }
+      ]
+    },
+    {
+      "number": 996,
+      "messages": [
+        {
+          "source_line": 7803,
+          "timestamp": "2026-05-20T18:43:46.603165+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_14b_kill_after_n8\n\n**结论**: PASS (info)\n\n### 发现\n\n- [severity: info] **监控脚本已确认运行**：PID 224789 在 autodl-5090-c 上活跃，每 15 秒轮询 `/tmp/14b_fewnerd.log` 等待 \"=== FewNERD N=8 finished\" 标记。Kill log 为空（尚未触发），符合预期。\n\n- [severity: info] **Kill 机制分两层**：先精确 kill (pkill -P 200995 + kill 200995 杀进程树)，再兜底清理 (pkill -f \"VLLM::EngineCore\" + pkill -f \"run_mvp_pilot.py.*fewnerd\")。PID-based kill 应能精确终止 14B 推理。\n\n- [severity: info] **潜在兜底误杀风险**：`pkill -f \"VLLM::EngineCore\"` 会匹配服务器上所有 VLLM 进程，包括 T_low 推理（PID 221771, GPU 2）。但 T_low 当前在 53%（预计 ~40 min 完成），而 N=8 预计 05-21 18:00-20:00 CST 才完成——届时 T_low 早已结束，风险可忽略。若 Director 之后在 autodl-5090-c 部署新 VLLM 推理任务，需注意此 kill 脚本仍在运行。\n\n- [severity: info] **时间线合理**：N=2 当前 84%，N=4 ~5h，N=8 ~10h，总计约 ~15h。砍 N=16 节省 ~14h 推理时间，释放 GPU 0 供后续实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "reviewer"
+          },
           "id": "event-007803"
         },
         {
           "source_line": 7804,
-          "timestamp": "2026-05-20T18:42:32.055046+00:00",
+          "timestamp": "2026-05-20T18:43:51.402510+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1254,48 +1253,10 @@
       ]
     },
     {
-      "number": 996,
-      "messages": [
-        {
-          "source_line": 7805,
-          "timestamp": "2026-05-20T18:43:46.603165+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_14b_kill_after_n8\n\n**结论**: PASS (info)\n\n### 发现\n\n- [severity: info] **监控脚本已确认运行**：PID 224789 在 autodl-5090-c 上活跃，每 15 秒轮询 `/tmp/14b_fewnerd.log` 等待 \"=== FewNERD N=8 finished\" 标记。Kill log 为空（尚未触发），符合预期。\n\n- [severity: info] **Kill 机制分两层**：先精确 kill (pkill -P 200995 + kill 200995 杀进程树)，再兜底清理 (pkill -f \"VLLM::EngineCore\" + pkill -f \"run_mvp_pilot.py.*fewnerd\")。PID-based kill 应能精确终止 14B 推理。\n\n- [severity: info] **潜在兜底误杀风险**：`pkill -f \"VLLM::EngineCore\"` 会匹配服务器上所有 VLLM 进程，包括 T_low 推理（PID 221771, GPU 2）。但 T_low 当前在 53%（预计 ~40 min 完成），而 N=8 预计 05-21 18:00-20:00 CST 才完成——届时 T_low 早已结束，风险可忽略。若 Director 之后在 autodl-5090-c 部署新 VLLM 推理任务，需注意此 kill 脚本仍在运行。\n\n- [severity: info] **时间线合理**：N=2 当前 84%，N=4 ~5h，N=8 ~10h，总计约 ~15h。砍 N=16 节省 ~14h 推理时间，释放 GPU 0 供后续实验。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "reviewer"
-          },
-          "id": "event-007805"
-        },
-        {
-          "source_line": 7806,
-          "timestamp": "2026-05-20T18:43:51.402510+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007806"
-        }
-      ]
-    },
-    {
       "number": 997,
       "messages": [
         {
-          "source_line": 7807,
+          "source_line": 7805,
           "timestamp": "2026-05-20T18:54:09.385678+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1309,10 +1270,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "user_advisor"
           },
-          "id": "event-007807"
+          "id": "event-007805"
         },
         {
-          "source_line": 7808,
+          "source_line": 7806,
           "timestamp": "2026-05-20T18:55:07.736045+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1330,10 +1291,10 @@
               "message": "[Director 指令] cuda:3 立即分配，不空等。\n\n**cuda:3 → 第二个 RE 数据集 SC pilot**\n\nSciERC RE 已在 cuda:1 上跑。cuda:3 跑**另一个 RE 数据集**，两个 RE 结果互相印证。\n\n**数据集选择优先级**（Agent 选可行的第一个）：\n1. **DocRED** — 基于 Wikipedia，免费可下载（HuggingFace: `docred`），96K+ relation instances，学术界广泛使用\n2. **TACRED-Revisited** — 如果有 TACRED 数据访问权限\n3. ACE05 — 如果能绕过 LDC 限制（大概率不行）\n\n**执行**：\n- 复用 SciERC RE 的 `run_re_sc.py` 框架，适配新数据集的 relation format\n- Qwen2.5-7B-Instruct（base model，zero/few-shot）\n- 200 instances pilot，N=8，T=1.0，seed=42\n- 分配 autodl-5090-c cuda:1（SciERC RE 完成后接手）或 cuda:3\n- 记录 F1-F4 failure modes + degeneracy + correlation-selection gap\n\n立即开始数据准备 + 代码适配。能用 DocRED 就用 DocRED，不要花时间研究 LDC 限制。"
             }
           },
-          "id": "event-007808"
+          "id": "event-007806"
         },
         {
-          "source_line": 7809,
+          "source_line": 7807,
           "timestamp": "2026-05-20T18:55:15.003613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1348,10 +1309,10 @@
             "tool": "mcp__agent-ml-research__urgent_agent_message",
             "elapsed_ms": 7267
           },
-          "id": "event-007809"
+          "id": "event-007807"
         },
         {
-          "source_line": 7810,
+          "source_line": 7808,
           "timestamp": "2026-05-20T18:55:15.090443+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1368,10 +1329,10 @@
               "text": "确认，cuda:3 立即填。\n\n**方案：cuda:3 → 第二个 RE 数据集（DocRED 优先）**\n- SciERC RE 在 cuda:1，第二个 RE 数据集在 cuda:3，并行跑\n- DocRED 免费可下载（96K+ relations），复用 SciERC RE 代码框架\n- 两个 RE 结果互相印证 cross-task universality\n- ACE05 LDC 限制绕不过去，不浪费时间在上面\n\n当前 GPU 全景：\n| GPU | 任务 | 状态 |\n|-----|------|------|\n| 5090:0-3 | 32B QLoRA 训练 | 84% |\n| 5090-b:0,1,3 | B1 SCD ×3 | running |\n| 5090-b:2 | A1 Spider SQL | running |\n| 5090-c:0 | 14B FewNERD N=2→8 | running |\n| 5090-c:1 | A3 SciERC RE | 准备中 |\n| 5090-c:2 | T_low FewNERD | 53% |\n| 5090-c:3 | **DocRED RE** | 即将启动 |\n\n12/12 GPU 有任务或即将有任务。\"空等\"已消灭。"
             }
           },
-          "id": "event-007810"
+          "id": "event-007808"
         },
         {
-          "source_line": 7811,
+          "source_line": 7809,
           "timestamp": "2026-05-20T18:55:19.379360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1386,10 +1347,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 4288
           },
-          "id": "event-007811"
+          "id": "event-007809"
         },
         {
-          "source_line": 7812,
+          "source_line": 7810,
           "timestamp": "2026-05-20T18:55:21.796685+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1402,7 +1363,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007812"
+          "id": "event-007810"
         }
       ]
     },
@@ -1410,7 +1371,7 @@
       "number": 998,
       "messages": [
         {
-          "source_line": 7813,
+          "source_line": 7811,
           "timestamp": "2026-05-20T18:57:56.137516+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1424,11 +1385,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
+          "id": "event-007811"
+        },
+        {
+          "source_line": 7812,
+          "timestamp": "2026-05-20T18:58:10.136526+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007812"
+        }
+      ]
+    },
+    {
+      "number": 999,
+      "messages": [
+        {
+          "source_line": 7813,
+          "timestamp": "2026-05-20T18:59:04.434181+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nNow spawning all 5 workers in parallel."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "main_agent"
+          },
           "id": "event-007813"
         },
         {
           "source_line": 7814,
-          "timestamp": "2026-05-20T18:58:10.136526+00:00",
+          "timestamp": "2026-05-20T18:59:09.658496+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1445,48 +1444,10 @@
       ]
     },
     {
-      "number": 999,
-      "messages": [
-        {
-          "source_line": 7815,
-          "timestamp": "2026-05-20T18:59:04.434181+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Agent 回复]:\nNow spawning all 5 workers in parallel."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "main_agent"
-          },
-          "id": "event-007815"
-        },
-        {
-          "source_line": 7816,
-          "timestamp": "2026-05-20T18:59:09.658496+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007816"
-        }
-      ]
-    },
-    {
       "number": 1000,
       "messages": [
         {
-          "source_line": 7817,
+          "source_line": 7815,
           "timestamp": "2026-05-20T19:00:29.896501+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1500,10 +1461,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007817"
+          "id": "event-007815"
         },
         {
-          "source_line": 7818,
+          "source_line": 7816,
           "timestamp": "2026-05-20T19:00:52.141387+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1521,10 +1482,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007818"
+          "id": "event-007816"
         },
         {
-          "source_line": 7819,
+          "source_line": 7817,
           "timestamp": "2026-05-20T19:00:57.165285+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1539,10 +1500,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 5023
           },
-          "id": "event-007819"
+          "id": "event-007817"
         },
         {
-          "source_line": 7820,
+          "source_line": 7818,
           "timestamp": "2026-05-20T19:01:00.951509+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1555,7 +1516,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007820"
+          "id": "event-007818"
         }
       ]
     },
@@ -1563,7 +1524,7 @@
       "number": 1001,
       "messages": [
         {
-          "source_line": 7821,
+          "source_line": 7819,
           "timestamp": "2026-05-20T19:05:01.387605+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1577,10 +1538,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007821"
+          "id": "event-007819"
         },
         {
-          "source_line": 7822,
+          "source_line": 7820,
           "timestamp": "2026-05-20T19:05:19.386067+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1598,10 +1559,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007822"
+          "id": "event-007820"
         },
         {
-          "source_line": 7823,
+          "source_line": 7821,
           "timestamp": "2026-05-20T19:05:24.516841+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1616,10 +1577,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 5130
           },
-          "id": "event-007823"
+          "id": "event-007821"
         },
         {
-          "source_line": 7824,
+          "source_line": 7822,
           "timestamp": "2026-05-20T19:05:28.652975+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1632,7 +1593,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007824"
+          "id": "event-007822"
         }
       ]
     },
@@ -1640,7 +1601,7 @@
       "number": 1002,
       "messages": [
         {
-          "source_line": 7825,
+          "source_line": 7823,
           "timestamp": "2026-05-20T19:06:52.906972+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1654,10 +1615,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007825"
+          "id": "event-007823"
         },
         {
-          "source_line": 7826,
+          "source_line": 7824,
           "timestamp": "2026-05-20T19:07:14.838259+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1674,10 +1635,10 @@
               "text": "**Backup 3 (Supervised Verifier) 也 negative** — 第 5 个 entity-level verifier 方法全部失败。\n\n分类器 AUROC ~0.875 但 F1 delta: LR -0.0014, RF -0.0006, MLP +0.0011（噪声级）。根因：RF feature importance 63-69% 集中在 agreement_ratio——分类器本质上在学 MV 已经做的事。\n\n**5 个独立方法的收敛证据（对论文极有价值）：**\n\n| # | 方法 | 类型 | 结果 |\n|---|------|------|------|\n| 1 | MRSC (re-prompt) | prompt-based | P(yes) random |\n| 2 | ESJ (entity verification) | prompt-based | AUROC 0.51 |\n| 3 | LSC (hidden states) | representation-based | -2.5pp |\n| 4 | E_θ adaptive | optimization-based | oracle +0.13pp |\n| 5 | Backup 3 (supervised) | supervised | Δ ≈ 0pp |\n\n**统一结论**：entity-level post-processing 在 MV 基础上无法进一步提升。SC construction ceiling 由 agreement 信号决定。selection gap 需要不同层面的干预（SCD 蒸馏、采样策略调整）。\n\n现在的活路：\n- **ASB**（待 bugfix 确认）— prescriptive \"adaptive budget\"\n- **SCD**（5090-b 上训练中）— prescriptive \"self-consistency distillation\"\n- **Direction A/B/C/D** 扩展 — cross-task universality + frontier model + reframe"
             }
           },
-          "id": "event-007826"
+          "id": "event-007824"
         },
         {
-          "source_line": 7827,
+          "source_line": 7825,
           "timestamp": "2026-05-20T19:07:17.751236+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1692,7 +1653,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2912
           },
-          "id": "event-007827"
+          "id": "event-007825"
         }
       ]
     },
@@ -1700,7 +1661,7 @@
       "number": 1003,
       "messages": [
         {
-          "source_line": 7828,
+          "source_line": 7826,
           "timestamp": "2026-05-20T19:07:59.603987+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1714,11 +1675,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
+          "id": "event-007826"
+        },
+        {
+          "source_line": 7827,
+          "timestamp": "2026-05-20T19:08:06.418473+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007827"
+        }
+      ]
+    },
+    {
+      "number": 1004,
+      "messages": [
+        {
+          "source_line": 7828,
+          "timestamp": "2026-05-20T19:08:08.403836+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 12/12 分配 | 实际跑 5 张 ⚠️ | Worker 3 (GPU 0 / CPU 3) | 磁盘: autodl-5090-b 49% used (427GB 可用)\n\n## exp_b1_scd_fewnerd_curriculum_q — Cron 误判，训练实际完成\n\n**诊断结论**：非真实失败，是 cron false positive。\n\n日志确认训练 100% 完成：\n- 4706/4706 steps, 2 epochs\n- train_loss=0.023, eval_loss=0.033\n- Checkpoint 已保存: `qwen3-8b-fewnerd-scd-fallback-lora/`\n\n**根因**：LLaMA-Factory 训练未配 W&B report_to，进程正常退出后 cron 检测到 \"process dead\" 但无 W&B sentinel → 误判 failed。与之前 CoNLL control (exp_b1_scd_conll_control) 同一模式。\n\n**已执行**：\n1. Registry 更新: notes/failure_reason 标注 false positive，补充 checkpoint_path/log_path\n2. Worker 已派出 → 验证 checkpoint + 跑 FewNERD greedy eval inference（测 post-SCD F1 vs baseline 0.748）\n3. Worker 同时检查 5090-b 上其他 SCD 实验 (standard/threshold_ablation) 是否也已完成\n\n**⚠️ 资源告警**：autodl-5090-b 全 4 卡显示 idle，但 cron 仍认为 exp_b1_scd_fewnerd_standard (pid=207109) 和 exp_b1_scd_threshold_ablation (pid=205991) 在跑。高概率同样是 cron 误判（同批 LLaMA-Factory 训练，同样无 W&B）。Worker 正在确认。如果都已完成，5090-b 4 卡全部空闲可用。加上 5090-c 的 3 卡空闲（cuda:0/1/3），共 7 卡待分配任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "agent"
+          },
           "id": "event-007828"
         },
         {
           "source_line": 7829,
-          "timestamp": "2026-05-20T19:08:06.418473+00:00",
+          "timestamp": "2026-05-20T19:08:22.830502+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1735,28 +1734,28 @@
       ]
     },
     {
-      "number": 1004,
+      "number": 1005,
       "messages": [
         {
           "source_line": 7830,
-          "timestamp": "2026-05-20T19:08:08.403836+00:00",
+          "timestamp": "2026-05-20T19:09:18.466754+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "[Agent 回复]:\n[资源] GPU 12/12 分配 | 实际跑 5 张 ⚠️ | Worker 3 (GPU 0 / CPU 3) | 磁盘: autodl-5090-b 49% used (427GB 可用)\n\n## exp_b1_scd_fewnerd_curriculum_q — Cron 误判，训练实际完成\n\n**诊断结论**：非真实失败，是 cron false positive。\n\n日志确认训练 100% 完成：\n- 4706/4706 steps, 2 epochs\n- train_loss=0.023, eval_loss=0.033\n- Checkpoint 已保存: `qwen3-8b-fewnerd-scd-fallback-lora/`\n\n**根因**：LLaMA-Factory 训练未配 W&B report_to，进程正常退出后 cron 检测到 \"process dead\" 但无 W&B sentinel → 误判 failed。与之前 CoNLL control (exp_b1_scd_conll_control) 同一模式。\n\n**已执行**：\n1. Registry 更新: notes/failure_reason 标注 false positive，补充 checkpoint_path/log_path\n2. Worker 已派出 → 验证 checkpoint + 跑 FewNERD greedy eval inference（测 post-SCD F1 vs baseline 0.748）\n3. Worker 同时检查 5090-b 上其他 SCD 实验 (standard/threshold_ablation) 是否也已完成\n\n**⚠️ 资源告警**：autodl-5090-b 全 4 卡显示 idle，但 cron 仍认为 exp_b1_scd_fewnerd_standard (pid=207109) 和 exp_b1_scd_threshold_ablation (pid=205991) 在跑。高概率同样是 cron 误判（同批 LLaMA-Factory 训练，同样无 W&B）。Worker 正在确认。如果都已完成，5090-b 4 卡全部空闲可用。加上 5090-c 的 3 卡空闲（cuda:0/1/3），共 7 卡待分配任务。"
+              "text": "[Reviewer 回复]:\n[severity: info] exp_cross_model_consistency (V2 worker) 审查通过——结果与 registry 已有数据一致\n\n## 核实\n\nRegistry 数据与 worker 报告完全匹配 ✓。核心结论有效：\n\n- FewNERD mixed vs pure LLaMA: +0.42pp, p=0.000, CI [0.27, 0.58] — 显著 ✓\n- SciERC mixed vs pure LLaMA: +0.81pp, p=0.130, CI [-0.59, 2.25] — 不显著（样本量 529 导致统计功效不足）\n\n## 小修正\n\nWorker 称 \"Cross-model diversity 一致降低 degeneracy rate\"，但 FewNERD 上 mixed degeneracy (11.6%) > pure Qwen (10.0%)，仅低于 pure LLaMA (23.4%)。准确表述应为\"混合退化率介于两个 pure model 之间，总体偏向低退化模型\"。论文写作时注意用词精度。\n\n无需补充实验。"
             }
           ],
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "agent"
+            "source": "reviewer"
           },
           "id": "event-007830"
         },
         {
           "source_line": 7831,
-          "timestamp": "2026-05-20T19:08:22.830502+00:00",
+          "timestamp": "2026-05-20T19:09:23.692755+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1773,48 +1772,10 @@
       ]
     },
     {
-      "number": 1005,
-      "messages": [
-        {
-          "source_line": 7832,
-          "timestamp": "2026-05-20T19:09:18.466754+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 回复]:\n[severity: info] exp_cross_model_consistency (V2 worker) 审查通过——结果与 registry 已有数据一致\n\n## 核实\n\nRegistry 数据与 worker 报告完全匹配 ✓。核心结论有效：\n\n- FewNERD mixed vs pure LLaMA: +0.42pp, p=0.000, CI [0.27, 0.58] — 显著 ✓\n- SciERC mixed vs pure LLaMA: +0.81pp, p=0.130, CI [-0.59, 2.25] — 不显著（样本量 529 导致统计功效不足）\n\n## 小修正\n\nWorker 称 \"Cross-model diversity 一致降低 degeneracy rate\"，但 FewNERD 上 mixed degeneracy (11.6%) > pure Qwen (10.0%)，仅低于 pure LLaMA (23.4%)。准确表述应为\"混合退化率介于两个 pure model 之间，总体偏向低退化模型\"。论文写作时注意用词精度。\n\n无需补充实验。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "reviewer"
-          },
-          "id": "event-007832"
-        },
-        {
-          "source_line": 7833,
-          "timestamp": "2026-05-20T19:09:23.692755+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007833"
-        }
-      ]
-    },
-    {
       "number": 1006,
       "messages": [
         {
-          "source_line": 7834,
+          "source_line": 7832,
           "timestamp": "2026-05-20T19:12:28.802796+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1828,10 +1789,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007834"
+          "id": "event-007832"
         },
         {
-          "source_line": 7835,
+          "source_line": 7833,
           "timestamp": "2026-05-20T19:12:36.528745+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1849,10 +1810,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007835"
+          "id": "event-007833"
         },
         {
-          "source_line": 7836,
+          "source_line": 7834,
           "timestamp": "2026-05-20T19:12:40.090436+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1867,7 +1828,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3561
           },
-          "id": "event-007836"
+          "id": "event-007834"
         }
       ]
     },
@@ -1875,7 +1836,7 @@
       "number": 1007,
       "messages": [
         {
-          "source_line": 7837,
+          "source_line": 7835,
           "timestamp": "2026-05-20T19:17:00.980442+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1889,10 +1850,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007837"
+          "id": "event-007835"
         },
         {
-          "source_line": 7838,
+          "source_line": 7836,
           "timestamp": "2026-05-20T19:17:17.900676+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1910,10 +1871,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007838"
+          "id": "event-007836"
         },
         {
-          "source_line": 7839,
+          "source_line": 7837,
           "timestamp": "2026-05-20T19:17:21.580478+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1928,10 +1889,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3679
           },
-          "id": "event-007839"
+          "id": "event-007837"
         },
         {
-          "source_line": 7840,
+          "source_line": 7838,
           "timestamp": "2026-05-20T19:17:24.469558+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1944,7 +1905,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007840"
+          "id": "event-007838"
         }
       ]
     },
@@ -1952,7 +1913,7 @@
       "number": 1008,
       "messages": [
         {
-          "source_line": 7841,
+          "source_line": 7839,
           "timestamp": "2026-05-20T19:19:04.692514+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1966,11 +1927,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "main_agent"
           },
+          "id": "event-007839"
+        },
+        {
+          "source_line": 7840,
+          "timestamp": "2026-05-20T19:19:09.896417+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007840"
+        }
+      ]
+    },
+    {
+      "number": 1009,
+      "messages": [
+        {
+          "source_line": 7841,
+          "timestamp": "2026-05-20T19:21:06.478170+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 12/12 分配 | 实际在跑 5 (5090:0-3 32B训练, 5090-c:2 tlow推理) | 空闲 4 (5090-b:1,2, 5090-c:1,3) + threshold_ablation/14B推理进程在跑但GPU编号待确认 | Worker 2 (GPU eval 1 / CPU diagnose 1) | 磁盘: 5090-b 427G/879G 可用(49%)\n\n**[Cron 回调] exp_b1_scd_fewnerd_standard — 已知 cron 误判，已处理**\n\nfailure_reason: \"process dead 5× with no sentinel/W&B\" — 这是 LLaMA-Factory 未配 W&B 的已知模式（memory.md 已记录）。\n\n**实际状态**: 训练正常完成 4706/4706 steps, train_loss=0.023, eval_loss=0.0329, 耗时 7h08m。Checkpoint 在 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/。\n\n**已派 Worker** (eval:exp_b1_scd_fewnerd_standard) 在 5090-b:cuda:1 验证 checkpoint 有效性 + 跑 greedy inference 测 F1。Baseline greedy F1=0.748, hypothesis 目标接近 N=8 construction F1=0.764。\n\n等 Worker 回调后汇报 eval 结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "agent"
+          },
           "id": "event-007841"
         },
         {
           "source_line": 7842,
-          "timestamp": "2026-05-20T19:19:09.896417+00:00",
+          "timestamp": "2026-05-20T19:21:11.994003+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1987,48 +1986,10 @@
       ]
     },
     {
-      "number": 1009,
-      "messages": [
-        {
-          "source_line": 7843,
-          "timestamp": "2026-05-20T19:21:06.478170+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Agent 回复]:\n[资源] GPU 12/12 分配 | 实际在跑 5 (5090:0-3 32B训练, 5090-c:2 tlow推理) | 空闲 4 (5090-b:1,2, 5090-c:1,3) + threshold_ablation/14B推理进程在跑但GPU编号待确认 | Worker 2 (GPU eval 1 / CPU diagnose 1) | 磁盘: 5090-b 427G/879G 可用(49%)\n\n**[Cron 回调] exp_b1_scd_fewnerd_standard — 已知 cron 误判，已处理**\n\nfailure_reason: \"process dead 5× with no sentinel/W&B\" — 这是 LLaMA-Factory 未配 W&B 的已知模式（memory.md 已记录）。\n\n**实际状态**: 训练正常完成 4706/4706 steps, train_loss=0.023, eval_loss=0.0329, 耗时 7h08m。Checkpoint 在 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/。\n\n**已派 Worker** (eval:exp_b1_scd_fewnerd_standard) 在 5090-b:cuda:1 验证 checkpoint 有效性 + 跑 greedy inference 测 F1。Baseline greedy F1=0.748, hypothesis 目标接近 N=8 construction F1=0.764。\n\n等 Worker 回调后汇报 eval 结果。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "agent"
-          },
-          "id": "event-007843"
-        },
-        {
-          "source_line": 7844,
-          "timestamp": "2026-05-20T19:21:11.994003+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007844"
-        }
-      ]
-    },
-    {
       "number": 1010,
       "messages": [
         {
-          "source_line": 7845,
+          "source_line": 7843,
           "timestamp": "2026-05-20T19:21:14.013159+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2042,10 +2003,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007845"
+          "id": "event-007843"
         },
         {
-          "source_line": 7846,
+          "source_line": 7844,
           "timestamp": "2026-05-20T19:21:32.151465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2063,10 +2024,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007846"
+          "id": "event-007844"
         },
         {
-          "source_line": 7847,
+          "source_line": 7845,
           "timestamp": "2026-05-20T19:21:35.874301+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2081,7 +2042,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3722
           },
-          "id": "event-007847"
+          "id": "event-007845"
         }
       ]
     },
@@ -2089,7 +2050,7 @@
       "number": 1011,
       "messages": [
         {
-          "source_line": 7848,
+          "source_line": 7846,
           "timestamp": "2026-05-20T19:21:47.676237+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2103,10 +2064,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007848"
+          "id": "event-007846"
         },
         {
-          "source_line": 7849,
+          "source_line": 7847,
           "timestamp": "2026-05-20T19:22:02.996525+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2124,10 +2085,10 @@
               "message": "[Director 指令] 4 张 GPU 空闲，三件事立即执行：\n\n**1. SCD standard eval 并行化（5090-b:1 或 :2）**\n不要等 fallback eval 完成再跑 standard。在 5090-b 空闲卡上立即 merge qwen3-8b-fewnerd-scd-lora + 跑 greedy eval。两个 SCD eval 并行。\n\n**2. Registry 修正**\n- exp_b1_scd_fewnerd_standard → conclusion 改为 \"success\"（训练完成 8142 steps）\n- exp_b1_scd_fewnerd_curriculum_q → conclusion 改为 \"success\"（训练完成 4706 steps）\n- exp_e_theta_adaptive → status 改为 DONE, conclusion 改为 \"negative\"\n\n**3. 5090-c cuda:1 和 cuda:3**\n之前已分配：cuda:1 → A3 SciERC RE，cuda:3 → DocRED RE。这两个代码 Worker 完成了吗？如果完成了立即上机推理。"
             }
           },
-          "id": "event-007849"
+          "id": "event-007847"
         },
         {
-          "source_line": 7850,
+          "source_line": 7848,
           "timestamp": "2026-05-20T19:22:03.943114+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2142,7 +2103,7 @@
             "tool": "mcp__agent-ml-research__urgent_agent_message",
             "elapsed_ms": 946
           },
-          "id": "event-007850"
+          "id": "event-007848"
         }
       ]
     },
@@ -2150,7 +2111,7 @@
       "number": 1012,
       "messages": [
         {
-          "source_line": 7851,
+          "source_line": 7849,
           "timestamp": "2026-05-20T19:25:24.808346+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2164,11 +2125,49 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
+          "id": "event-007849"
+        },
+        {
+          "source_line": 7850,
+          "timestamp": "2026-05-20T19:25:34.038418+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
+          },
+          "id": "event-007850"
+        }
+      ]
+    },
+    {
+      "number": 1013,
+      "messages": [
+        {
+          "source_line": 7851,
+          "timestamp": "2026-05-20T19:25:36.032570+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nRegistry 修正全部完成。向 Director 汇报当前状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "source": "main_agent"
+          },
           "id": "event-007851"
         },
         {
           "source_line": 7852,
-          "timestamp": "2026-05-20T19:25:34.038418+00:00",
+          "timestamp": "2026-05-20T19:25:41.865575+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -2185,48 +2184,10 @@
       ]
     },
     {
-      "number": 1013,
-      "messages": [
-        {
-          "source_line": 7853,
-          "timestamp": "2026-05-20T19:25:36.032570+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Agent 回复]:\nRegistry 修正全部完成。向 Director 汇报当前状态。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-            "source": "main_agent"
-          },
-          "id": "event-007853"
-        },
-        {
-          "source_line": 7854,
-          "timestamp": "2026-05-20T19:25:41.865575+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-          },
-          "id": "event-007854"
-        }
-      ]
-    },
-    {
       "number": 1014,
       "messages": [
         {
-          "source_line": 7855,
+          "source_line": 7853,
           "timestamp": "2026-05-20T19:28:11.817491+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2240,10 +2201,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007855"
+          "id": "event-007853"
         },
         {
-          "source_line": 7856,
+          "source_line": 7854,
           "timestamp": "2026-05-20T19:28:32.904096+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2261,10 +2222,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007856"
+          "id": "event-007854"
         },
         {
-          "source_line": 7857,
+          "source_line": 7855,
           "timestamp": "2026-05-20T19:28:33.156041+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2279,10 +2240,10 @@
             "tool": "mcp__agent-ml-research__approve_experiment",
             "elapsed_ms": 251
           },
-          "id": "event-007857"
+          "id": "event-007855"
         },
         {
-          "source_line": 7858,
+          "source_line": 7856,
           "timestamp": "2026-05-20T19:28:42.892503+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2300,10 +2261,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007858"
+          "id": "event-007856"
         },
         {
-          "source_line": 7859,
+          "source_line": 7857,
           "timestamp": "2026-05-20T19:28:46.404510+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2318,10 +2279,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3512
           },
-          "id": "event-007859"
+          "id": "event-007857"
         },
         {
-          "source_line": 7860,
+          "source_line": 7858,
           "timestamp": "2026-05-20T19:28:48.699951+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2334,7 +2295,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007860"
+          "id": "event-007858"
         }
       ]
     },
@@ -2342,7 +2303,7 @@
       "number": 1015,
       "messages": [
         {
-          "source_line": 7861,
+          "source_line": 7859,
           "timestamp": "2026-05-20T19:32:38.738925+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2356,10 +2317,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "cron"
           },
-          "id": "event-007861"
+          "id": "event-007859"
         },
         {
-          "source_line": 7862,
+          "source_line": 7860,
           "timestamp": "2026-05-20T19:32:46.555406+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2377,10 +2338,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007862"
+          "id": "event-007860"
         },
         {
-          "source_line": 7863,
+          "source_line": 7861,
           "timestamp": "2026-05-20T19:32:50.547516+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2395,7 +2356,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3992
           },
-          "id": "event-007863"
+          "id": "event-007861"
         }
       ]
     },
@@ -2403,7 +2364,7 @@
       "number": 1016,
       "messages": [
         {
-          "source_line": 7864,
+          "source_line": 7862,
           "timestamp": "2026-05-20T19:34:04.345635+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2417,10 +2378,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "agent"
           },
-          "id": "event-007864"
+          "id": "event-007862"
         },
         {
-          "source_line": 7865,
+          "source_line": 7863,
           "timestamp": "2026-05-20T19:34:09.400318+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2433,7 +2394,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007865"
+          "id": "event-007863"
         }
       ]
     },
@@ -2441,7 +2402,7 @@
       "number": 1017,
       "messages": [
         {
-          "source_line": 7866,
+          "source_line": 7864,
           "timestamp": "2026-05-20T19:34:26.879014+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2455,10 +2416,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007866"
+          "id": "event-007864"
         },
         {
-          "source_line": 7867,
+          "source_line": 7865,
           "timestamp": "2026-05-20T19:34:50.250145+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2476,10 +2437,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007867"
+          "id": "event-007865"
         },
         {
-          "source_line": 7868,
+          "source_line": 7866,
           "timestamp": "2026-05-20T19:34:53.920911+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2494,10 +2455,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3670
           },
-          "id": "event-007868"
+          "id": "event-007866"
         },
         {
-          "source_line": 7869,
+          "source_line": 7867,
           "timestamp": "2026-05-20T19:35:05.186600+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2514,10 +2475,10 @@
               "text": "**SCD FewNERD fallback eval: +3.84pp (0.7482→0.7866)**\n\n强正向。Post-SCD 单次 greedy 推理（0.7866）超过 pre-SCD 8-sample SC construction（0.7637）。如果 consistent across variants，这是论文的核心 prescriptive contribution：\"SC 不仅是推理时策略，蒸馏后可以内化到模型中\"。\n\n**两个 caveat（Reviewer 正确指出）：**\n1. 全部提升来自 recall（precision 不变 0.766），需排除\"模型只是降低了抽取阈值\"的解释\n2. SCD 数据 = pseudo-labels + gold。CoNLL control +1.06pp 暗示 ~1pp 来自额外 gold 训练。净 pseudo-label 贡献估计 ~2.8pp\n\n**下一步：**\n- 等 standard (seed=42) + theta3 eval 结果确认一致性\n- 准备 gold-only control experiment 精确隔离贡献\n- 三个 variant 一致 + gold-only control clean → SCD claim 钉死"
             }
           },
-          "id": "event-007869"
+          "id": "event-007867"
         },
         {
-          "source_line": 7870,
+          "source_line": 7868,
           "timestamp": "2026-05-20T19:35:05.789304+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2532,10 +2493,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 602
           },
-          "id": "event-007870"
+          "id": "event-007868"
         },
         {
-          "source_line": 7871,
+          "source_line": 7869,
           "timestamp": "2026-05-20T19:35:08.431619+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2548,7 +2509,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007871"
+          "id": "event-007869"
         }
       ]
     },
@@ -2556,7 +2517,7 @@
       "number": 1018,
       "messages": [
         {
-          "source_line": 7872,
+          "source_line": 7870,
           "timestamp": "2026-05-20T19:41:14.888624+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2570,10 +2531,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007872"
+          "id": "event-007870"
         },
         {
-          "source_line": 7873,
+          "source_line": 7871,
           "timestamp": "2026-05-20T19:41:44.794150+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2591,10 +2552,10 @@
               "message": "[Director 紧急指令 — 最高优先级] SCD 结论可能因 metric 错位而虚假，必须立即验证。\n\n**问题**：\n- SCD fallback eval 报告 baseline greedy F1 = 0.748（instance-average macro）→ post-SCD = 0.7866 → Δ = +3.84pp\n- ASB bugfix 报告 FewNERD pre-SCD greedy **micro**-F1 = 0.7911\n- 如果 post-SCD 的 0.7866 也是 micro-F1，那 Δ = 0.7866 - 0.7911 = **-0.45pp**，SCD 实际变差了\n\n**这会彻底翻转 SCD 从 +3.84pp 正向变为 -0.45pp 负向。**\n\n**立即执行（不等其他任务）**：\n1. 确认 SCD fallback eval 的 0.7866 是 micro-F1 还是 macro-F1？检查 `greedy_results.json` 中用的计算方式\n2. 在**完全相同的 eval 集和完全相同的度量口径**上计算：\n   - Pre-SCD greedy micro-F1\n   - Pre-SCD greedy macro-F1 (instance-average)\n   - Post-SCD greedy micro-F1\n   - Post-SCD greedy macro-F1 (instance-average)\n3. Eval 集必须对齐：确认是 37648 还是 32565 instances，两组 eval 用同一个集\n4. 汇报四个数字 + eval 集大小\n\n这决定了 SCD 是真正的论文贡献还是 metric artifact。优先级高于所有其他任务。"
             }
           },
-          "id": "event-007873"
+          "id": "event-007871"
         },
         {
-          "source_line": 7874,
+          "source_line": 7872,
           "timestamp": "2026-05-20T19:41:49.910325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2609,10 +2570,10 @@
             "tool": "mcp__agent-ml-research__urgent_agent_message",
             "elapsed_ms": 5116
           },
-          "id": "event-007874"
+          "id": "event-007872"
         },
         {
-          "source_line": 7875,
+          "source_line": 7873,
           "timestamp": "2026-05-20T19:41:49.910883+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2629,10 +2590,10 @@
               "text": "**⚠️ 风险预警：SCD +3.84pp 可能是 metric 错位假象**\n\nASB bugfix 后发现 FewNERD pre-SCD greedy micro-F1 = 0.7911，但 SCD eval 报告 post-SCD = 0.7866。如果两者都是 micro-F1，SCD 实际 Δ = **-0.45pp**（变差）。\n\n之前报告的 +3.84pp 基于 baseline=0.748（macro-F1），post-SCD=0.7866（可能是 micro-F1）——metric 口径不一致。\n\n已发最高优先级指令给 Agent，要求在同一 eval 集 + 同一度量口径下重新计算四个数字（pre/post × micro/macro）。结果出来前 SCD claim 挂起。\n\n如果 SCD 确认为 metric artifact，论文的 prescriptive contribution 需要重新定位——cross-model diversity (+0.42pp) 和 cross-task diagnostic framework 将成为主要贡献。"
             }
           },
-          "id": "event-007875"
+          "id": "event-007873"
         },
         {
-          "source_line": 7876,
+          "source_line": 7874,
           "timestamp": "2026-05-20T19:41:52.928572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2647,10 +2608,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3017
           },
-          "id": "event-007876"
+          "id": "event-007874"
         },
         {
-          "source_line": 7877,
+          "source_line": 7875,
           "timestamp": "2026-05-20T19:41:55.926577+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2663,7 +2624,7 @@
           "metadata": {
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
           },
-          "id": "event-007877"
+          "id": "event-007875"
         }
       ]
     },
@@ -2671,7 +2632,7 @@
       "number": 1019,
       "messages": [
         {
-          "source_line": 7878,
+          "source_line": 7876,
           "timestamp": "2026-05-20T19:44:44.050716+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2685,10 +2646,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007878"
+          "id": "event-007876"
         },
         {
-          "source_line": 7879,
+          "source_line": 7877,
           "timestamp": "2026-05-20T19:45:07.884310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2705,10 +2666,10 @@
               "text": "**SCD metric 错位风险升级为 confirmed**\n\nReviewer 独立交叉验证发现：\n- Baseline greedy micro-F1 ≈ 0.791（从 ASB/T_low 两个独立实验）\n- SCD standard micro-F1 = 0.781 → 实际 **-1.0pp**\n- SCD fallback micro-F1 = 0.787 → 实际 **-0.5pp**\n\nWorker 声称的 +3.84pp 是拿 macro-F1 baseline (0.748) 对比 micro-F1 result (0.787)——metric 口径 + eval scope 双重不一致。\n\n**已发 urgent 指令要求 Agent 用 SCD eval 的同一脚本、同一 37648 instances 跑一次 base model greedy eval 获得 ground truth baseline。** 在此之前 SCD claim 全部挂起。\n\n如果 SCD 确认为 negative，论文 prescriptive contribution 重心转移到：\n1. **Cross-task diagnostic framework**（Direction A 正在铺）\n2. **Cross-model diversity** (+0.42pp, p<0.001)\n3. **Unified negative finding**（6 种方法统一证明 entity-level 后处理不超越 MV）→ 这本身是 contribution\n\nDirection A/B/C/D 扩展的战略价值在这种情况下更大——cross-task universality + frontier model validation + hallucination reframe 一起撑 4.5。"
             }
           },
-          "id": "event-007879"
+          "id": "event-007877"
         },
         {
-          "source_line": 7880,
+          "source_line": 7878,
           "timestamp": "2026-05-20T19:45:10.884349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2723,7 +2684,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3000
           },
-          "id": "event-007880"
+          "id": "event-007878"
         }
       ]
     },
@@ -2731,7 +2692,7 @@
       "number": 1020,
       "messages": [
         {
-          "source_line": 7881,
+          "source_line": 7879,
           "timestamp": "2026-05-20T20:02:02.260595+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2745,10 +2706,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "source": "reviewer"
           },
-          "id": "event-007881"
+          "id": "event-007879"
         },
         {
-          "source_line": 7882,
+          "source_line": 7880,
           "timestamp": "2026-05-20T20:02:27.993633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2771,10 +2732,10 @@
               "context": "SCD fallback micro-F1: baseline 0.7886 vs post-SCD 0.7866 = -0.20pp。SCD standard micro-F1: baseline 0.7886 vs post-SCD 0.7813 = -0.73pp。Worker 之前声称 +3.84pp 并称\"post-SCD greedy 超过 pre-SCD 8-sample construction\"，完全错误。"
             }
           },
-          "id": "event-007882"
+          "id": "event-007880"
         },
         {
-          "source_line": 7883,
+          "source_line": 7881,
           "timestamp": "2026-05-20T20:02:28.947012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2789,10 +2750,10 @@
             "tool": "mcp__agent-ml-research__log_mistake",
             "elapsed_ms": 953
           },
-          "id": "event-007883"
+          "id": "event-007881"
         },
         {
-          "source_line": 7884,
+          "source_line": 7882,
           "timestamp": "2026-05-20T20:02:33.663191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2813,10 +2774,10 @@
               "depends_on": "['D203']"
             }
           },
-          "id": "event-007884"
+          "id": "event-007882"
         },
         {
-          "source_line": 7885,
+          "source_line": 7883,
           "timestamp": "2026-05-20T20:02:34.114928+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2831,10 +2792,10 @@
             "tool": "mcp__agent-ml-research__log_decision",
             "elapsed_ms": 451
           },
-          "id": "event-007885"
+          "id": "event-007883"
         },
         {
-          "source_line": 7886,
+          "source_line": 7884,
           "timestamp": "2026-05-20T20:05:23.900184+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2852,10 +2813,10 @@
               "max_results": "4"
             }
           },
-          "id": "event-007886"
+          "id": "event-007884"
         },
         {
-          "source_line": 7887,
+          "source_line": 7885,
           "timestamp": "2026-05-20T20:05:23.950795+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2870,10 +2831,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-007887"
+          "id": "event-007885"
         },
         {
-          "source_line": 7888,
+          "source_line": 7886,
           "timestamp": "2026-05-20T20:05:27.110699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2891,10 +2852,10 @@
               "max_results": "4"
             }
           },
-          "id": "event-007888"
+          "id": "event-007886"
         },
         {
-          "source_line": 7889,
+          "source_line": 7887,
           "timestamp": "2026-05-20T20:05:27.161325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2909,10 +2870,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-007889"
+          "id": "event-007887"
         },
         {
-          "source_line": 7890,
+          "source_line": 7888,
           "timestamp": "2026-05-20T20:05:29.996270+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2929,10 +2890,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007890"
+          "id": "event-007888"
         },
         {
-          "source_line": 7891,
+          "source_line": 7889,
           "timestamp": "2026-05-20T20:05:30.046867+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2949,10 +2910,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007891"
+          "id": "event-007889"
         },
         {
-          "source_line": 7892,
+          "source_line": 7890,
           "timestamp": "2026-05-20T20:05:30.902356+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2967,10 +2928,10 @@
             "tool": "mcp__agent-ml-research__get_project_status",
             "elapsed_ms": 906
           },
-          "id": "event-007892"
+          "id": "event-007890"
         },
         {
-          "source_line": 7893,
+          "source_line": 7891,
           "timestamp": "2026-05-20T20:05:30.953539+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2985,10 +2946,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 906
           },
-          "id": "event-007893"
+          "id": "event-007891"
         },
         {
-          "source_line": 7894,
+          "source_line": 7892,
           "timestamp": "2026-05-20T20:05:43.542468+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3006,10 +2967,10 @@
               "max_results": "4"
             }
           },
-          "id": "event-007894"
+          "id": "event-007892"
         },
         {
-          "source_line": 7895,
+          "source_line": 7893,
           "timestamp": "2026-05-20T20:05:43.542788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3024,10 +2985,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-007895"
+          "id": "event-007893"
         },
         {
-          "source_line": 7896,
+          "source_line": 7894,
           "timestamp": "2026-05-20T20:06:11.063327+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3045,10 +3006,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-007896"
+          "id": "event-007894"
         },
         {
-          "source_line": 7897,
+          "source_line": 7895,
           "timestamp": "2026-05-20T20:06:11.113882+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3063,10 +3024,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-007897"
+          "id": "event-007895"
         },
         {
-          "source_line": 7898,
+          "source_line": 7896,
           "timestamp": "2026-05-20T20:06:14.625038+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3085,10 +3046,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-007898"
+          "id": "event-007896"
         },
         {
-          "source_line": 7899,
+          "source_line": 7897,
           "timestamp": "2026-05-20T20:06:14.625415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3102,10 +3063,10 @@
             "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
             "tool": "mcp__agent-ml-research__get_gpu_health"
           },
-          "id": "event-007899"
+          "id": "event-007897"
         },
         {
-          "source_line": 7900,
+          "source_line": 7898,
           "timestamp": "2026-05-20T20:06:14.676092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3120,10 +3081,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 51
           },
-          "id": "event-007900"
+          "id": "event-007898"
         },
         {
-          "source_line": 7901,
+          "source_line": 7899,
           "timestamp": "2026-05-20T20:06:14.676570+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3138,10 +3099,10 @@
             "tool": "mcp__agent-ml-research__get_gpu_health",
             "elapsed_ms": 51
           },
-          "id": "event-007901"
+          "id": "event-007899"
         },
         {
-          "source_line": 7902,
+          "source_line": 7900,
           "timestamp": "2026-05-20T20:07:22.098996+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3159,10 +3120,10 @@
               "message": "[Director 指令 — 队列清理后合并指令，替代之前 47 条消息]\n\n之前队列积压了大量重复 cron 告警和过时指令，已全部清理。以下是当前需要执行的全部任务，按优先级排序。\n\n---\n\n## P0: 紧急 — SCD 结论定论 + Registry 清理\n\nSCD 已确认是 metric artifact（M046）。**全部 SCD 实验标记 DONE/negative**：\n- `exp_b1_scd_fewnerd_standard` → DONE/negative, conclusion: \"SCD metric artifact — pre/post 统一 micro-F1 后，standard -0.73pp, fallback -0.20pp\"\n- `exp_b1_scd_fewnerd_curriculum_q` → DONE/negative, conclusion: same metric artifact\n- `exp_b1_scd_threshold_ablation` → DONE/failed（cron 已自动标记，确认即可）\n- `eval_scd_fewnerd_fallback` → 如有 PENDING/PREPARING 状态，标记 CANCELLED\n- `exp_b1_scd` (parent plan entry) → 不再需要审批\n\n**SCD gold-only control 实验取消**——SCD 整体为 artifact，不需要隔离控制实验。\n\n---\n\n## P1: Direction A — Cross-Task Universality（4.5 目标核心）\n\n### A3: SciERC RE (5090-c:cuda:1)\n代码 Worker 已完成。检查 `run_scierc_re_sc.py` 是否已就绪，直接 spawn Worker 在 5090-c cuda:1 运行。\n\n### DocRED RE (5090-c:cuda:3)\n代码 Worker 已完成。检查 `run_docred_re_sc.py` 是否已就绪，直接 spawn Worker 在 5090-c cuda:3 运行。\n\n### A1: Spider SQL (CPU/API)\n之前指出的两个 bug 需要修复（如果 code Worker 已修好，验证后直接跑）：\n1. F2/F3 failure mode 定义需与 NER framework 对齐\n2. Degeneracy 检测需用 execution result 语义比较，不能用 text comparison\n修好后先注册到 registry（PENDING），然后 nohup 运行。\n\n### A2: HumanEval (CPU/API)\nWorker 之前 timeout 失败。修复 `api_sample_greedy()` temperature 1.0→0.0 bug + `mv_pass_rate` 只在 passing solutions 中投票的 metric bug。修好后 nohup 重跑。\n\n---\n\n## P2: Direction B — Frontier SC\n\n`exp_b_frontier_sc_fewnerd` 系统报 30 分钟无日志更新。检查该 Worker 是否卡死：\n- 如果还在跑 API calls（OpenRouter），确认 log 位置并查看进度\n- 如果卡死，kill 后重跑\n- 结果出来后确保用 **micro-F1**（不是 macro）\n\n---\n\n## P3: 14B Inference\n\n`exp_14b_inference_fewnerd` 在 5090-c 运行中。检查当前进度：\n- 如果已完成 N=8，立即 kill（不跑 N=16，之前已决定）\n- 如果还在跑 N≤8，继续等\n\n---\n\n## P4: 填满 5090-b（4 张 GPU 全部空闲！）\n\n5090-b 4 张卡全部空闲，必须立刻利用。候选：\n1. **exp_14b_inference_conll** (1 GPU) — 14B CoNLL inference，填充 scaling curve\n2. **exp_a3_ace05_re** — ACE05 RE cross-task，之前分配在 5090-c:cuda:1 但还没跑。如果 SciERC RE 已占 5090-c:cuda:1，把 ACE05 RE 移到 5090-b:cuda:0\n3. 其余 GPU 用于 **B2 supervised verifier variants**（inverse_frequency, domain_invariant）或其他 Direction A 实验的 GPU 部分\n\n请评估 5090-b 上跑什么最有价值，提出方案后直接执行（低风险实验不需要等审批）。\n\n---\n\n## P5: Registry 杂项\n\n- `exp_e_theta_adaptive` → 确认 DONE/negative\n- `exp_tlow_fewnerd_inference` → 确认 DONE/success，记录 T=0.5 sampling 结果\n- `exp_asb_adaptive_budget` → 确认 DONE/negative（bugfix 后 Δ=0）\n- Worker done 通知已清理，检查所有最近 Worker 的产出是否已入 registry\n\n---\n\n**执行顺序**：P0 registry 清理 → P1 Direction A 四个实验同时推进 → P2 Frontier SC 检查 → P3 14B 检查 → P4 填 5090-b → P5 杂项。P0+P1+P2 可以并行。"
             }
           },
-          "id": "event-007902"
+          "id": "event-007900"
         },
         {
-          "source_line": 7903,
+          "source_line": 7901,
           "timestamp": "2026-05-20T20:07:22.750824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3177,10 +3138,10 @@
             "tool": "mcp__agent-ml-research__replace_agent_queue",
             "elapsed_ms": 651
           },
-          "id": "event-007903"
+          "id": "event-007901"
         },
         {
-          "source_line": 7904,
+          "source_line": 7902,
           "timestamp": "2026-05-20T20:07:34.467219+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3197,10 +3158,10 @@
               "text": "**队列清理 + 状态同步**\n\nAgent 队列积压到 47 条（含 18+ 重复 cron 告警），已全部清理并发送合并指令。\n\n**当前 GPU 状态**：\n- 5090 (4卡): 32B QLoRA 训练中 ✅\n- 5090-b (4卡): **全部空闲** ← 已指令 Agent 立即填满\n- 5090-c: cuda:0 跑 14B inference，cuda:1/2/3 空闲 ← SciERC RE + DocRED RE 待启动\n\n**关键进展**：\n- SCD 三组实验全部确认为 metric artifact（M046），已指令清理 registry 并取消相关后续\n- Direction A (cross-task) 四个实验代码 Worker 已完成，等 Agent 处理后立即上线\n- Direction B (Frontier SC) 系统报 30min 无日志，已让 Agent 检查是否卡死\n- T_low inference 已成功，ASB bugfix 后确认 negative\n\n**7 张 GPU 空闲是当前最大问题**，合并指令中 P1-P4 都在解决这个。"
             }
           },
-          "id": "event-007904"
+          "id": "event-007902"
         },
         {
-          "source_line": 7905,
+          "source_line": 7903,
           "timestamp": "2026-05-20T20:07:37.327379+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3215,10 +3176,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2860
           },
-          "id": "event-007905"
+          "id": "event-007903"
         },
         {
-          "source_line": 7906,
+          "source_line": 7904,
           "timestamp": "2026-05-20T20:07:40.086999+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3235,10 +3196,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007906"
+          "id": "event-007904"
         },
         {
-          "source_line": 7907,
+          "source_line": 7905,
           "timestamp": "2026-05-20T20:07:40.790446+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3253,10 +3214,10 @@
             "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
             "elapsed_ms": 703
           },
-          "id": "event-007907"
+          "id": "event-007905"
         },
         {
-          "source_line": 7908,
+          "source_line": 7906,
           "timestamp": "2026-05-20T20:07:57.830167+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3275,10 +3236,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-007908"
+          "id": "event-007906"
         },
         {
-          "source_line": 7909,
+          "source_line": 7907,
           "timestamp": "2026-05-20T20:07:57.881602+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3293,10 +3254,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 51
           },
-          "id": "event-007909"
+          "id": "event-007907"
         },
         {
-          "source_line": 7910,
+          "source_line": 7908,
           "timestamp": "2026-05-20T20:08:29.322006+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3313,10 +3274,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-007910"
+          "id": "event-007908"
         },
         {
-          "source_line": 7911,
+          "source_line": 7909,
           "timestamp": "2026-05-20T20:08:29.372927+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3331,10 +3292,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 50
           },
-          "id": "event-007911"
+          "id": "event-007909"
         },
         {
-          "source_line": 7912,
+          "source_line": 7910,
           "timestamp": "2026-05-20T20:08:44.480382+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3352,10 +3313,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-007912"
+          "id": "event-007910"
         },
         {
-          "source_line": 7913,
+          "source_line": 7911,
           "timestamp": "2026-05-20T20:08:44.531024+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3370,10 +3331,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-007913"
+          "id": "event-007911"
         },
         {
-          "source_line": 7914,
+          "source_line": 7912,
           "timestamp": "2026-05-20T20:09:13.696026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3392,10 +3353,10 @@
               "reason": "4.5 mandate sprint — SCD negative confirmed, Direction A/B/C/D expansion, 7 GPUs idle crisis"
             }
           },
-          "id": "event-007914"
+          "id": "event-007912"
         },
         {
-          "source_line": 7915,
+          "source_line": 7913,
           "timestamp": "2026-05-20T20:09:14.506326+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3410,10 +3371,10 @@
             "tool": "mcp__agent-ml-research__update_roadmap",
             "elapsed_ms": 810
           },
-          "id": "event-007915"
+          "id": "event-007913"
         },
         {
-          "source_line": 7916,
+          "source_line": 7914,
           "timestamp": "2026-05-20T20:09:34.070088+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3431,10 +3392,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-007916"
+          "id": "event-007914"
         },
         {
-          "source_line": 7917,
+          "source_line": 7915,
           "timestamp": "2026-05-20T20:09:34.125788+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3449,10 +3410,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 55
           },
-          "id": "event-007917"
+          "id": "event-007915"
         },
         {
-          "source_line": 7918,
+          "source_line": 7916,
           "timestamp": "2026-05-20T20:09:38.403099+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3470,10 +3431,10 @@
               "limit": "10"
             }
           },
-          "id": "event-007918"
+          "id": "event-007916"
         },
         {
-          "source_line": 7919,
+          "source_line": 7917,
           "timestamp": "2026-05-20T20:09:39.106107+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3488,11 +3449,50 @@
             "tool": "mcp__agent-ml-research__feishu_read_chat_history",
             "elapsed_ms": 703
           },
+          "id": "event-007917"
+        },
+        {
+          "source_line": 7918,
+          "timestamp": "2026-05-20T20:10:16.865902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__auto_build_provenance",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007918"
+        },
+        {
+          "source_line": 7919,
+          "timestamp": "2026-05-20T20:10:16.968345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 102
+          },
           "id": "event-007919"
         },
         {
           "source_line": 7920,
-          "timestamp": "2026-05-20T20:10:16.865902+00:00",
+          "timestamp": "2026-05-20T20:10:20.980099+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
           "content": [

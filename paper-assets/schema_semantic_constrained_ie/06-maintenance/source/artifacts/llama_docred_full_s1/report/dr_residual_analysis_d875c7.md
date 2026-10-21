@@ -142,14 +142,3 @@ Notably, P86 (composer, tau=0.917 = very tight) achieves zero violations with 15
 
 ---
 
-## 8. Rebuttal Key Takeaways
-
-**Takeaway 1 (residual DR is structurally bounded):**
-> The residual 2.55% DR violations concentrate in relations involving **entity type ambiguity** (e.g., ORG vs MISC for creative works, NUM vs TIME for dates) and **forward coreference patterns** where an entity's type must be committed before all its relational roles are known. These are inherent limitations of greedy left-to-right decoding under local constraints, not failures of the constraint system. Across 90 relations with >=5 instances, tightness tau(r) shows **no significant correlation** with residual DR (Spearman rho=0.07, p=0.52), confirming that the constraint mechanism works uniformly well regardless of schema restrictiveness.
-
-**Takeaway 2 (cross-model generality):**
-> Grammar+Semantic constrained decoding (S1) reduces DR violations by 91.7% for Llama (30.8% -> 2.55%) and 53.3% for Qwen (21.8% -> 10.2%), with 44.7% of relations achieving zero violations on Llama. The constraint system's effectiveness scales with the base model's intrinsic type consistency: Llama, which generates more compatible type assignments, benefits more from the grammar-first architecture.
-
----
-
-*Analysis date: 2026-05-15. Data: llama_docred_full_s1.jsonl (907 docs, 16368 triples), ontology_constraints_docred.json (96 relations, 6 entity types).*

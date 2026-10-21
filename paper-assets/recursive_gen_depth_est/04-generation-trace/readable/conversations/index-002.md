@@ -138,9 +138,9 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper pareek bib entry | 35 | 0 | [Read transcript](paper-pareek-bib-entry.md) | [JSON](../../sessions/29/29062464ab3095266459.json) |
 | exp rf seed robustness | 43 | 0 | [Read transcript](exp-rf-seed-robustness.md) | [JSON](../../sessions/1f/1f29d20c95d402a671f5.json) |
 | exp feature importance ablation | 53 | 0 | [Read transcript](exp-feature-importance-ablation.md) | [JSON](../../sessions/a8/a87d3ad757125de4ff84.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #14。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - gpu-6000pro- | 1,935 | 131 | [Read transcript](reviewer-coordination-20260519-103000.md) | [JSON](../../sessions/f1/f1246128a471526fa776.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #14。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - gpu-6000pro- | 1,929 | 131 | [Read transcript](reviewer-coordination-20260519-103000.md) | [JSON](../../sessions/f1/f1246128a471526fa776.json) |
 | cron hook qwen25 14b scale 002 20260519T102944 160075 — [HANDOFF] 你是 Main Agent，这是 Loop #17。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro- | 91 | 3 | [Read transcript](cron-hook-qwen25-14b-scale-002-20260519t102944-160075.md) | [JSON](../../sessions/97/97c8f38b169811a0601e.json) |
-| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #16。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **gpu-6000pro-2 只能用 | 4,398 | 276 | [Read transcript](coordination-coordination-20260521-051650.md) | [JSON](../../sessions/f9/f988650e8cd4794fec89.json) |
+| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #16。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **gpu-6000pro-2 只能用 | 4,246 | 276 | [Read transcript](coordination-coordination-20260521-051650.md) | [JSON](../../sessions/f9/f988650e8cd4794fec89.json) |
 | ops gpu status check | 19 | 0 | [Read transcript](ops-gpu-status-check.md) | [JSON](../../sessions/f3/f38e35e468f68966fdfc.json) |
 | ops prompted gen verify | 33 | 0 | [Read transcript](ops-prompted-gen-verify.md) | [JSON](../../sessions/2e/2e7099267b994980b5b5.json) |
 | ops arr checklist check | 45 | 0 | [Read transcript](ops-arr-checklist-check.md) | [JSON](../../sessions/d2/d2b797dc573d7e6407ed.json) |

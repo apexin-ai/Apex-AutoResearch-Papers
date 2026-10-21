@@ -8,244 +8,7 @@
 
 ### Tool result
 
-_source line 4255 · 2026-05-20T13:04:27.385314+00:00_
-
-1	{
-2	  "benchmark": "hellaswag",
-3	  "n_samples": 10042,
-4	  "arch_pairs": [
-5	    "GDN-RetNet",
-6	    "GDN-HGRN2",
-7	    "RetNet-HGRN2"
-8	  ],
-9	  "jaccard_analysis": {
-10	    "h24-1": {
-11	      "GDN-RetNet_helped": {
-12	        "J_obs": 0.0605,
-13	        "J_null": 0.016,
-14	        "J_max": 0.9905,
-15	        "normalized_ES": 0.0457,
-16	        "p_value_permutation": 0.0,
-17	        "n_permutations": 10000,
-18	        "sizes": [317, 314]
-19	      },
-20	      "GDN-RetNet_hurt": {
-21	        "J_obs": 0.0892,
-22	        "J_null": 0.0162,
-23	        "J_max": 0.8073,
-24	        "normalized_ES": 0.0923,
-25	        "p_value_permutation": 0.0,
-26	        "n_permutations": 10000,
-27	        "sizes": [358, 289]
-28	      },
-29	      "GDN-HGRN2_helped": {
-30	        "J_obs": 0.0942,
-31	        "J_null": 0.0152,
-32	        "J_max": 0.9054,
-33	        "normalized_ES": 0.0887,
-34	        "p_value_permutation": 0.0,
-35	        "n_permutations": 10000,
-36	        "sizes": [317, 287]
-37	      },
-38	      "GDN-HGRN2_hurt": {
-39	        "J_obs": 0.0771,
-40	        "J_null": 0.0156,
-41	        "J_max": 0.757,
-42	        "normalized_ES": 0.0829,
-43	        "p_value_permutation": 0.0,
-44	        "n_permutations": 10000,
-45	        "sizes": [358, 271]
-46	      },
-47	      "RetNet-HGRN2_helped": {
-48	        "J_obs": 0.0967,
-49	        "J_null": 0.0152,
-50	        "J_max": 0.914,
-51	        "normalized_ES": 0.0907,
-52	        "p_value_permutation": 0.0,
-53	        "n_permutations": 10000,
-54	        "sizes": [314, 287]
-55	      },
-56	      "RetNet-HGRN2_hurt": {
-57	        "J_obs": 0.0874,
-58	        "J_null": 0.0141,
-59	        "J_max": 0.9377,
-60	        "normalized_ES": 0.0793,
-61	        "p_value_permutation": 0.0,
-62	        "n_permutations": 10000,
-63	        "sizes": [289, 271]
-64	      }
-65	    },
-66	    "h12-1": {
-67	      "GDN-RetNet_helped": {
-68	        "J_obs": 0.076,
-69	        "J_null": 0.0164,
-70	        "J_max": 0.8815,
-71	        "normalized_ES": 0.0689,
-72	        "p
-…[truncated 4907 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4256 · 2026-05-20T13:04:33.499442+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_per_example.json",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_per_example.json",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4257 · 2026-05-20T13:04:33.952205+00:00_
-
-1	{
-2	  "benchmark": "boolq",
-3	  "n_samples": 3270,
-4	  "architectures": [
-5	    "GDN",
-6	    "RetNet",
-7	    "HGRN2"
-8	  ],
-9	  "ratios": [
-10	    "pure",
-11	    "h24-1",
-12	    "h12-1",
-13	    "h6-1",
-14	    "h3-1"
-15	  ],
-16	  "per_example_classification": {
-17	    "GDN": {
-18	      "h24-1": {
-19	        "n_helped": 406,
-20	        "n_hurt": 720,
-21	        "n_stayed_right": 1192,
-22	        "n_stayed_wrong": 952,
-23	        "net_effect": -314,
-24	        "pct_helped": 12.42,
-25	        "pct_hurt": 22.02
-26	      },
-27	      "h12-1": {
-28	        "n_helped": 605,
-29	        "n_hurt": 441,
-30	        "n_stayed_right": 1471,
-31	        "n_stayed_wrong": 753,
-32	        "net_effect": 164,
-33	        "pct_helped": 18.5,
-34	        "pct_hurt": 13.49
-35	      },
-36	      "h6-1": {
-37	        "n_helped": 477,
-38	        "n_hurt": 526,
-39	        "n_stayed_right": 1386,
-40	        "n_stayed_wrong": 881,
-41	        "net_effect": -49,
-42	        "pct_helped": 14.59,
-43	        "pct_hurt": 16.09
-44	      },
-45	      "h3-1": {
-46	        "n_helped": 554,
-47	        "n_hurt": 431,
-48	        "n_stayed_right": 1481,
-49	        "n_stayed_wrong": 804,
-50	        "net_effect": 123,
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4258 · 2026-05-20T13:04:34.103755+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4259 · 2026-05-20T13:04:34.154340+00:00_
+_source line 4255 · 2026-05-20T13:04:34.154340+00:00_
 
 1	{
 2	  "benchmark": "hellaswag",
@@ -316,7 +79,7 @@ _source line 4259 · 2026-05-20T13:04:34.154340+00:00_
 
 ### Tool call
 
-_source line 4260 · 2026-05-20T13:04:38.071769+00:00_
+_source line 4256 · 2026-05-20T13:04:38.071769+00:00_
 
 called Read
 
@@ -350,7 +113,7 @@ called Read
 
 ### Tool result
 
-_source line 4261 · 2026-05-20T13:04:38.072164+00:00_
+_source line 4257 · 2026-05-20T13:04:38.072164+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -389,7 +152,7 @@ _source line 4261 · 2026-05-20T13:04:38.072164+00:00_
 
 ### Tool call
 
-_source line 4262 · 2026-05-20T13:06:15.366787+00:00_
+_source line 4258 · 2026-05-20T13:06:15.366787+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -425,7 +188,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4263 · 2026-05-20T13:06:19.283136+00:00_
+_source line 4259 · 2026-05-20T13:06:19.283136+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -447,7 +210,7 @@ _source line 4263 · 2026-05-20T13:06:19.283136+00:00_
 
 ### Assistant
 
-_source line 4264 · 2026-05-20T13:06:24.112826+00:00_
+_source line 4260 · 2026-05-20T13:06:24.112826+00:00_
 
 数据已完整读取。发现一个关键的 BoolQ 问题，需要立即报告。
 
@@ -474,7 +237,7 @@ _source line 4264 · 2026-05-20T13:06:24.112826+00:00_
 
 ### User
 
-_source line 4265 · 2026-05-20T13:06:57.626711+00:00_
+_source line 4261 · 2026-05-20T13:06:57.626711+00:00_
 
 [System 触发审查]:
 审查请求：BoolQ + HellaSwag per-example 分析数据审计
@@ -512,7 +275,7 @@ Agent 产出了 4 个新 JSON artifacts：
 
 ### Tool call
 
-_source line 4266 · 2026-05-20T13:07:06.070669+00:00_
+_source line 4262 · 2026-05-20T13:07:06.070669+00:00_
 
 called Read
 
@@ -546,7 +309,7 @@ called Read
 
 ### Tool result
 
-_source line 4267 · 2026-05-20T13:07:06.171557+00:00_
+_source line 4263 · 2026-05-20T13:07:06.171557+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -585,7 +348,7 @@ _source line 4267 · 2026-05-20T13:07:06.171557+00:00_
 
 ### Tool call
 
-_source line 4268 · 2026-05-20T13:07:10.841747+00:00_
+_source line 4264 · 2026-05-20T13:07:10.841747+00:00_
 
 called Read
 
@@ -619,7 +382,7 @@ called Read
 
 ### Tool result
 
-_source line 4269 · 2026-05-20T13:07:10.894594+00:00_
+_source line 4265 · 2026-05-20T13:07:10.894594+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -658,7 +421,7 @@ _source line 4269 · 2026-05-20T13:07:10.894594+00:00_
 
 ### Tool call
 
-_source line 4270 · 2026-05-20T13:08:34.775848+00:00_
+_source line 4266 · 2026-05-20T13:08:34.775848+00:00_
 
 called Bash
 
@@ -694,7 +457,7 @@ called Bash
 
 ### Tool result
 
-_source line 4271 · 2026-05-20T13:08:34.977059+00:00_
+_source line 4267 · 2026-05-20T13:08:34.977059+00:00_
 
 BoolQ h3-1: N=3270, alpha=0.453517, n_ambig=1483
 BoolQ pure: N=3270, alpha=0.504893
@@ -734,7 +497,7 @@ Full range: 0.091 - 0.521 (5.7x variation)
 
 ### Tool call
 
-_source line 4272 · 2026-05-20T13:09:33.843958+00:00_
+_source line 4268 · 2026-05-20T13:09:33.843958+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -770,7 +533,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4273 · 2026-05-20T13:09:37.678817+00:00_
+_source line 4269 · 2026-05-20T13:09:37.678817+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -792,7 +555,7 @@ _source line 4273 · 2026-05-20T13:09:37.678817+00:00_
 
 ### Assistant
 
-_source line 4274 · 2026-05-20T13:09:43.646608+00:00_
+_source line 4270 · 2026-05-20T13:09:43.646608+00:00_
 
 独立验证完毕。所有算术正确，但发现关键的叙事影响。
 
@@ -819,7 +582,7 @@ _source line 4274 · 2026-05-20T13:09:43.646608+00:00_
 
 ### User
 
-_source line 4275 · 2026-05-20T13:09:44.133181+00:00_
+_source line 4271 · 2026-05-20T13:09:44.133181+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D018: 4-benchmark multiplicity spectrum upgrade），请审查研究方向和计划的合理性。
@@ -841,7 +604,7 @@ _source line 4275 · 2026-05-20T13:09:44.133181+00:00_
 
 ### Tool call
 
-_source line 4276 · 2026-05-20T13:09:49.534805+00:00_
+_source line 4272 · 2026-05-20T13:09:49.534805+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -875,7 +638,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4277 · 2026-05-20T13:09:49.585591+00:00_
+_source line 4273 · 2026-05-20T13:09:49.585591+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 13:07 UTC | 更新原因: D018: 4-benchmark multiplicity spectrum upgrade\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**D018 — 4-Benchmark Multiplicity Spectrum: 论文重大升级后提交**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), ~5 天\\n\\n### 突破\\nBoolQ + HellaSwag per-example 分析完成，形成 multiplicity spectrum：\\n- HellaSwag (reasoning): α=0.10 — 零效应参照\\n- ARC-Easy (mixed): α=0.21\\n- LAMBADA (retrieval): α=0.30\\n- BoolQ (comprehension): α=0.49 — 近半数样本有架构分歧\\n- Jaccard 全部 ~0.08-0.10（universal low overlap）\\n\\n### 策略变化\\n- 从 \\\"2 benchmarks, framing weakened\\\" → \\\"4 benchmarks × 4 task categories, multiplicity spectrum\\\"\\n- 直接解决审稿人 #1 关切（R2-N1: limited scope）\\n- 潜在评分提升：3.0 → 3.5+（Borderline Conference）\\n\\n### Sprint 任务\\n- [x] W-CITE: wang2025hybrid bib 修复\\n- [x] W-CHECKLIST: ARR Checklist\\n- [x] W-OVERCLAIM: Framing 弱化（Title/Abstract/Intro/Conclusion）\\n- [x] W-GDN: §4.5 扩展\\n- [x] W-REFS: 5 篇新引用验证+整合\\n- [x] R3-POWER, Q1, Q5: 统计/limitation fixes\\n- [x] Author Response Letter v1\\n- [x] BoolQ + HellaSwag eval (15/15 × 2)\\n- [x] Per-example analysis (α, Jaccard, permutation tests)\\n- [x] Taxonomy inconsistency 修复 (\\\"retrieval and reasoning\\\" → accurate labels)\\n- [x] Confidence margin 强化 (§4.3 mechanistic sentence)\\n- [ ] **4-benchmark 论文整合** — Paper Agent 执行中\\n- [ ] Reviewer 数据审计 — 执行中\\n- [ ] Author Response Letter v2 (4-benchmark 更新)\\n- [ ] 最终编译 + Round 4 审稿（重新提交）\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- 证据: 4 benchmarks × 4 task categories × 3 architectures × 5 ratios × 2 scales\\n- Target: **EMNLP 2026 vi
 …[truncated 1133 chars]
@@ -898,7 +661,7 @@ _source line 4277 · 2026-05-20T13:09:49.585591+00:00_
 
 ### Tool call
 
-_source line 4278 · 2026-05-20T13:10:14.704085+00:00_
+_source line 4274 · 2026-05-20T13:10:14.704085+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -934,7 +697,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4279 · 2026-05-20T13:10:18.319767+00:00_
+_source line 4275 · 2026-05-20T13:10:18.319767+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -963,7 +726,7 @@ _source line 4279 · 2026-05-20T13:10:18.319767+00:00_
 
 ### User
 
-_source line 4280 · 2026-05-20T13:11:21.641868+00:00_
+_source line 4276 · 2026-05-20T13:11:21.641868+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Fix "零效应" wording + clarify 3+1 strategy per Reviewer audit），请审查研究方向和计划的合理性。
@@ -985,7 +748,7 @@ _source line 4280 · 2026-05-20T13:11:21.641868+00:00_
 
 ### Tool call
 
-_source line 4281 · 2026-05-20T13:11:35.648264+00:00_
+_source line 4277 · 2026-05-20T13:11:35.648264+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -1019,7 +782,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4282 · 2026-05-20T13:11:35.749282+00:00_
+_source line 4278 · 2026-05-20T13:11:35.749282+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 13:11 UTC | 更新原因: Fix \\\"零效应\\\" wording + clarify 3+1 strategy per Reviewer audit\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**D018 — 3+1 Benchmark Upgrade: 论文修改后提交**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), ~5 天\\n\\n### 数据\\n4 benchmarks per-example 分析完成。策略：3 in main text + 1 in Appendix。\\n- **Main text**: LAMBADA (retrieval, α=0.30) + ARC-Easy (mixed, α=0.21) + HellaSwag (reasoning, α=0.10)\\n  - Jaccard: 3 benchmarks 全部 24/24 显著\\n  - α range: 0.10–0.30，task-dependent（within each benchmark stable across ratios）\\n- **Appendix**: BoolQ (comprehension, α=0.49) — 12/24 Jaccard 显著，binary classification 特殊性需讨论\\n- HellaSwag 是 \\\"low multiplicity\\\"（不是零效应——1004/10042 samples 有 structured disagreement）\\n\\n### Narrative\\nMultiplicity 是 task-dependent spectrum（0.10→0.30），不是 binary 存在/不存在。覆盖 3/4 task categories (retrieval, reasoning, mixed)。BoolQ 补充 evidence 在 Appendix。\\n\\n### Sprint 任务\\n- [x] W-CITE, W-CHECKLIST, W-OVERCLAIM, W-GDN, W-REFS, R3-POWER, Q1, Q5\\n- [x] Author Response Letter v1\\n- [x] BoolQ + HellaSwag eval + per-example analysis\\n- [x] Taxonomy inconsistency 修复\\n- [x] Confidence margin 强化\\n- [x] formal_multiplicity_metrics.json 更新（4 benchmarks）\\n- [ ] **3+1 benchmark 论文整合** — Paper Agent 执行中（3+1 correction + \\\"low multiplicity\\\" fix queued）\\n- [ ] BoolQ Appendix 新增\\n- [ ] Author Response Letter v2\\n- [ ] 最终编译 + Round 4 审稿（重新提交）\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- 证据: 3 benchmarks (main) + 1 (appendix) × 3 architectures × 5 ratios × 2 scales\\n- Target: **EMNLP 2026 via AR
 …[truncated 1136 chars]
@@ -1042,7 +805,7 @@ _source line 4282 · 2026-05-20T13:11:35.749282+00:00_
 
 ### Tool call
 
-_source line 4283 · 2026-05-20T13:14:16.689016+00:00_
+_source line 4279 · 2026-05-20T13:14:16.689016+00:00_
 
 called Agent
 
@@ -1080,7 +843,7 @@ called Agent
 
 ### Tool call
 
-_source line 4284 · 2026-05-20T13:14:18.698429+00:00_
+_source line 4280 · 2026-05-20T13:14:18.698429+00:00_
 
 called Read
 
@@ -1114,7 +877,7 @@ called Read
 
 ### Tool result
 
-_source line 4285 · 2026-05-20T13:14:18.849818+00:00_
+_source line 4281 · 2026-05-20T13:14:18.849818+00:00_
 
 1	# entrainment_gated_ft — Research Dashboard
 2	
@@ -1183,7 +946,7 @@ _source line 4285 · 2026-05-20T13:14:18.849818+00:00_
 
 ### Tool call
 
-_source line 4286 · 2026-05-20T13:14:18.850217+00:00_
+_source line 4282 · 2026-05-20T13:14:18.850217+00:00_
 
 called Read
 
@@ -1217,7 +980,7 @@ called Read
 
 ### Tool result
 
-_source line 4287 · 2026-05-20T13:14:19.252025+00:00_
+_source line 4283 · 2026-05-20T13:14:19.252025+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -1250,7 +1013,7 @@ _source line 4287 · 2026-05-20T13:14:19.252025+00:00_
 
 ### Tool call
 
-_source line 4288 · 2026-05-20T13:14:19.252408+00:00_
+_source line 4284 · 2026-05-20T13:14:19.252408+00:00_
 
 called Read
 
@@ -1284,7 +1047,7 @@ called Read
 
 ### Tool result
 
-_source line 4289 · 2026-05-20T13:14:19.453323+00:00_
+_source line 4285 · 2026-05-20T13:14:19.453323+00:00_
 
 1	\section{Conclusion}
 2	
@@ -1309,7 +1072,7 @@ _source line 4289 · 2026-05-20T13:14:19.453323+00:00_
 
 ### Tool call
 
-_source line 4290 · 2026-05-20T13:14:19.503909+00:00_
+_source line 4286 · 2026-05-20T13:14:19.503909+00:00_
 
 called Read
 
@@ -1343,7 +1106,7 @@ called Read
 
 ### Tool result
 
-_source line 4291 · 2026-05-20T13:14:19.654812+00:00_
+_source line 4287 · 2026-05-20T13:14:19.654812+00:00_
 
 1	\section{Introduction}
 2	
@@ -1370,7 +1133,7 @@ _source line 4291 · 2026-05-20T13:14:19.654812+00:00_
 
 ### Tool call
 
-_source line 4292 · 2026-05-20T13:14:19.705834+00:00_
+_source line 4288 · 2026-05-20T13:14:19.705834+00:00_
 
 called Read
 
@@ -1406,7 +1169,7 @@ called Read
 
 ### Tool result
 
-_source line 4293 · 2026-05-20T13:14:19.706293+00:00_
+_source line 4289 · 2026-05-20T13:14:19.706293+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1453,7 +1216,7 @@ _source line 4293 · 2026-05-20T13:14:19.706293+00:00_
 
 ### Tool result
 
-_source line 4294 · 2026-05-20T13:14:31.760325+00:00_
+_source line 4290 · 2026-05-20T13:14:31.760325+00:00_
 
 ## Report: Paper State and "3+1 Strategy" Rewrite Status
 
@@ -1509,7 +1272,7 @@ The ROADMAP describes the intended structure:
 
 ### Tool call
 
-_source line 4295 · 2026-05-20T13:14:37.515533+00:00_
+_source line 4291 · 2026-05-20T13:14:37.515533+00:00_
 
 called Read
 
@@ -1543,7 +1306,7 @@ called Read
 
 ### Tool result
 
-_source line 4296 · 2026-05-20T13:14:37.967934+00:00_
+_source line 4292 · 2026-05-20T13:14:37.967934+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -1576,7 +1339,7 @@ _source line 4296 · 2026-05-20T13:14:37.967934+00:00_
 
 ### Tool call
 
-_source line 4297 · 2026-05-20T13:14:37.968388+00:00_
+_source line 4293 · 2026-05-20T13:14:37.968388+00:00_
 
 called Read
 
@@ -1610,7 +1373,7 @@ called Read
 
 ### Tool result
 
-_source line 4298 · 2026-05-20T13:14:38.470801+00:00_
+_source line 4294 · 2026-05-20T13:14:38.470801+00:00_
 
 1	\section{Introduction}
 2	
@@ -1637,7 +1400,7 @@ _source line 4298 · 2026-05-20T13:14:38.470801+00:00_
 
 ### Tool call
 
-_source line 4299 · 2026-05-20T13:14:38.471173+00:00_
+_source line 4295 · 2026-05-20T13:14:38.471173+00:00_
 
 called Read
 
@@ -1671,7 +1434,7 @@ called Read
 
 ### Tool result
 
-_source line 4300 · 2026-05-20T13:14:38.923629+00:00_
+_source line 4296 · 2026-05-20T13:14:38.923629+00:00_
 
 1	\section{Conclusion}
 2	
@@ -1696,7 +1459,7 @@ _source line 4300 · 2026-05-20T13:14:38.923629+00:00_
 
 ### Tool call
 
-_source line 4301 · 2026-05-20T13:14:38.924035+00:00_
+_source line 4297 · 2026-05-20T13:14:38.924035+00:00_
 
 called Read
 
@@ -1730,7 +1493,7 @@ called Read
 
 ### Tool result
 
-_source line 4302 · 2026-05-20T13:14:38.974537+00:00_
+_source line 4298 · 2026-05-20T13:14:38.974537+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1777,7 +1540,7 @@ _source line 4302 · 2026-05-20T13:14:38.974537+00:00_
 
 ### Tool call
 
-_source line 4303 · 2026-05-20T13:16:53.634784+00:00_
+_source line 4299 · 2026-05-20T13:16:53.634784+00:00_
 
 called Read
 
@@ -1811,7 +1574,7 @@ called Read
 
 ### Tool result
 
-_source line 4304 · 2026-05-20T13:16:53.836280+00:00_
+_source line 4300 · 2026-05-20T13:16:53.836280+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -1853,7 +1616,7 @@ _source line 4304 · 2026-05-20T13:16:53.836280+00:00_
 
 ### Tool call
 
-_source line 4305 · 2026-05-20T13:16:53.836671+00:00_
+_source line 4301 · 2026-05-20T13:16:53.836671+00:00_
 
 called Read
 
@@ -1887,7 +1650,7 @@ called Read
 
 ### Tool result
 
-_source line 4306 · 2026-05-20T13:16:53.887170+00:00_
+_source line 4302 · 2026-05-20T13:16:53.887170+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -1922,7 +1685,7 @@ _source line 4306 · 2026-05-20T13:16:53.887170+00:00_
 
 ### Tool call
 
-_source line 4307 · 2026-05-20T13:17:49.497895+00:00_
+_source line 4303 · 2026-05-20T13:17:49.497895+00:00_
 
 called Agent
 
@@ -1960,7 +1723,7 @@ called Agent
 
 ### Tool call
 
-_source line 4308 · 2026-05-20T13:17:51.655791+00:00_
+_source line 4304 · 2026-05-20T13:17:51.655791+00:00_
 
 called Glob
 
@@ -1996,7 +1759,7 @@ called Glob
 
 ### Tool result
 
-_source line 4309 · 2026-05-20T13:17:51.856712+00:00_
+_source line 4305 · 2026-05-20T13:17:51.856712+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/within_arch_stability.json
 
@@ -2018,7 +1781,7 @@ _source line 4309 · 2026-05-20T13:17:51.856712+00:00_
 
 ### Tool call
 
-_source line 4310 · 2026-05-20T13:17:52.058838+00:00_
+_source line 4306 · 2026-05-20T13:17:52.058838+00:00_
 
 called Glob
 
@@ -2054,7 +1817,7 @@ called Glob
 
 ### Tool result
 
-_source line 4311 · 2026-05-20T13:17:52.260156+00:00_
+_source line 4307 · 2026-05-20T13:17:52.260156+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/within_scale_jaccard_results.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/jaccard_upper_bound.json
@@ -2079,7 +1842,7 @@ _source line 4311 · 2026-05-20T13:17:52.260156+00:00_
 
 ### Tool call
 
-_source line 4312 · 2026-05-20T13:17:52.260522+00:00_
+_source line 4308 · 2026-05-20T13:17:52.260522+00:00_
 
 called Glob
 
@@ -2115,7 +1878,7 @@ called Glob
 
 ### Tool result
 
-_source line 4313 · 2026-05-20T13:17:52.511601+00:00_
+_source line 4309 · 2026-05-20T13:17:52.511601+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/wang_7b_search_results.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/arc_easy_per_example.json
@@ -2139,7 +1902,7 @@ _source line 4313 · 2026-05-20T13:17:52.511601+00:00_
 
 ### Tool call
 
-_source line 4314 · 2026-05-20T13:17:52.511967+00:00_
+_source line 4310 · 2026-05-20T13:17:52.511967+00:00_
 
 called Glob
 
@@ -2175,7 +1938,7 @@ called Glob
 
 ### Tool result
 
-_source line 4315 · 2026-05-20T13:17:52.512135+00:00_
+_source line 4311 · 2026-05-20T13:17:52.512135+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/null_jaccard_results.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/arc_easy_jaccard_analysis.json
@@ -2198,7 +1961,7 @@ _source line 4315 · 2026-05-20T13:17:52.512135+00:00_
 
 ### Tool call
 
-_source line 4316 · 2026-05-20T13:17:54.518969+00:00_
+_source line 4312 · 2026-05-20T13:17:54.518969+00:00_
 
 called Bash
 
@@ -2232,7 +1995,7 @@ called Bash
 
 ### Tool result
 
-_source line 4317 · 2026-05-20T13:17:54.670528+00:00_
+_source line 4313 · 2026-05-20T13:17:54.670528+00:00_
 
 LAMBADA file not found
 
@@ -2254,7 +2017,7 @@ LAMBADA file not found
 
 ### Tool call
 
-_source line 4318 · 2026-05-20T13:17:54.670972+00:00_
+_source line 4314 · 2026-05-20T13:17:54.670972+00:00_
 
 called Read
 
@@ -2288,7 +2051,7 @@ called Read
 
 ### Tool result
 
-_source line 4319 · 2026-05-20T13:17:54.721569+00:00_
+_source line 4315 · 2026-05-20T13:17:54.721569+00:00_
 
 1	{
 2	  "benchmark": "arc_easy",
@@ -2332,7 +2095,7 @@ _source line 4319 · 2026-05-20T13:17:54.721569+00:00_
 
 ### Tool call
 
-_source line 4320 · 2026-05-20T13:17:57.482020+00:00_
+_source line 4316 · 2026-05-20T13:17:57.482020+00:00_
 
 called Bash
 
@@ -2366,7 +2129,7 @@ called Bash
 
 ### Tool result
 
-_source line 4321 · 2026-05-20T13:17:57.532707+00:00_
+_source line 4317 · 2026-05-20T13:17:57.532707+00:00_
 
 -rw-r--r--  1 ubuntu ubuntu  6119 May 20 13:01 boolq_jaccard_analysis.json
 -rw-r--r--  1 ubuntu ubuntu  6071 May 20 13:02 hellaswag_jaccard_analysis.json
@@ -2391,7 +2154,7 @@ _source line 4321 · 2026-05-20T13:17:57.532707+00:00_
 
 ### Tool call
 
-_source line 4322 · 2026-05-20T13:17:58.988147+00:00_
+_source line 4318 · 2026-05-20T13:17:58.988147+00:00_
 
 called Read
 
@@ -2425,7 +2188,7 @@ called Read
 
 ### Tool result
 
-_source line 4323 · 2026-05-20T13:17:59.038822+00:00_
+_source line 4319 · 2026-05-20T13:17:59.038822+00:00_
 
 1	=== 340M Within-Scale Pairwise Jaccard ===
 2	GDN-RetNet: J_helped=0.092, J_hurt=0.109
@@ -2485,7 +2248,7 @@ _source line 4323 · 2026-05-20T13:17:59.038822+00:00_
 
 ### Tool result
 
-_source line 4324 · 2026-05-20T13:18:07.404431+00:00_
+_source line 4320 · 2026-05-20T13:18:07.404431+00:00_
 
 Excellent! I found LAMBADA data in the within_scale_jaccard_results.txt file. Now let me verify the file paths and provide a complete summary:
 
@@ -2562,7 +2325,7 @@ The LAMBADA data (5153 samples) shows within-scale Jaccard similarity:
 
 ### Tool call
 
-_source line 4325 · 2026-05-20T13:18:16.888375+00:00_
+_source line 4321 · 2026-05-20T13:18:16.888375+00:00_
 
 called Read
 
@@ -2596,7 +2359,7 @@ called Read
 
 ### Tool result
 
-_source line 4326 · 2026-05-20T13:18:16.940546+00:00_
+_source line 4322 · 2026-05-20T13:18:16.940546+00:00_
 
 1	{
 2	  "benchmark": "arc_easy",
@@ -2640,7 +2403,7 @@ _source line 4326 · 2026-05-20T13:18:16.940546+00:00_
 
 ### Tool call
 
-_source line 4327 · 2026-05-20T13:19:01.086833+00:00_
+_source line 4323 · 2026-05-20T13:19:01.086833+00:00_
 
 called ToolSearch
 
@@ -2676,7 +2439,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4328 · 2026-05-20T13:19:01.137544+00:00_
+_source line 4324 · 2026-05-20T13:19:01.137544+00:00_
 
 
 
@@ -2698,7 +2461,7 @@ _source line 4328 · 2026-05-20T13:19:01.137544+00:00_
 
 ### Tool call
 
-_source line 4329 · 2026-05-20T13:19:34.096621+00:00_
+_source line 4325 · 2026-05-20T13:19:34.096621+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2734,7 +2497,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4330 · 2026-05-20T13:19:37.873189+00:00_
+_source line 4326 · 2026-05-20T13:19:37.873189+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -2756,7 +2519,7 @@ _source line 4330 · 2026-05-20T13:19:37.873189+00:00_
 
 ### Assistant
 
-_source line 4331 · 2026-05-20T13:19:44.943315+00:00_
+_source line 4327 · 2026-05-20T13:19:44.943315+00:00_
 
 审查报告已提交。发现 3 个 CRITICAL 级数据错误：
 
@@ -2789,7 +2552,7 @@ _source line 4331 · 2026-05-20T13:19:44.943315+00:00_
 
 ### User
 
-_source line 4332 · 2026-05-20T14:02:20.177165+00:00_
+_source line 4328 · 2026-05-20T14:02:20.177165+00:00_
 
 [System 触发审查]:
 **紧急审查请求：Round 4 提交前最终版本干净度验证**
@@ -2839,7 +2602,7 @@ LaTeX 源码: projects/entrainment_gated_ft/docs/paper/
 
 ### Tool call
 
-_source line 4333 · 2026-05-20T14:02:37.294080+00:00_
+_source line 4329 · 2026-05-20T14:02:37.294080+00:00_
 
 called Grep
 
@@ -2879,7 +2642,7 @@ called Grep
 
 ### Tool result
 
-_source line 4334 · 2026-05-20T14:02:37.645625+00:00_
+_source line 4330 · 2026-05-20T14:02:37.645625+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:28:\textbf{LAMBADA} & \textbf{Retrieval} & $\mathbf{-1.0}$ & \textbf{.017} & \textbf{2.41} & \textbf{0.49} & \textbf{4.87} \\
 
@@ -2901,7 +2664,7 @@ _source line 4334 · 2026-05-20T14:02:37.645625+00:00_
 
 ### Tool call
 
-_source line 4335 · 2026-05-20T14:02:38.599157+00:00_
+_source line 4331 · 2026-05-20T14:02:38.599157+00:00_
 
 called Grep
 
@@ -2941,7 +2704,7 @@ called Grep
 
 ### Tool result
 
-_source line 4336 · 2026-05-20T14:02:39.051168+00:00_
+_source line 4332 · 2026-05-20T14:02:39.051168+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:25:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:9:[Omitted long matching line]
@@ -2970,7 +2733,7 @@ _source line 4336 · 2026-05-20T14:02:39.051168+00:00_
 
 ### Tool call
 
-_source line 4337 · 2026-05-20T14:02:39.553510+00:00_
+_source line 4333 · 2026-05-20T14:02:39.553510+00:00_
 
 called Grep
 
@@ -3010,7 +2773,7 @@ called Grep
 
 ### Tool result
 
-_source line 4338 · 2026-05-20T14:02:40.055682+00:00_
+_source line 4334 · 2026-05-20T14:02:40.055682+00:00_
 
 No matches found
 
@@ -3032,7 +2795,7 @@ No matches found
 
 ### Tool call
 
-_source line 4339 · 2026-05-20T14:02:40.454899+00:00_
+_source line 4335 · 2026-05-20T14:02:40.454899+00:00_
 
 called Grep
 
@@ -3072,7 +2835,7 @@ called Grep
 
 ### Tool result
 
-_source line 4340 · 2026-05-20T14:02:40.623590+00:00_
+_source line 4336 · 2026-05-20T14:02:40.623590+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:31:\item All instances of ``general property'' replaced with empirically scoped language.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:72:\reviewer{Claiming per-example multiplicity is a ``general property of hybrid architectures'' is too strong given only three architectures and two benchmarks.}
@@ -3096,7 +2859,7 @@ _source line 4340 · 2026-05-20T14:02:40.623590+00:00_
 
 ### Tool call
 
-_source line 4341 · 2026-05-20T14:02:49.480563+00:00_
+_source line 4337 · 2026-05-20T14:02:49.480563+00:00_
 
 called Read
 
@@ -3134,7 +2897,7 @@ called Read
 
 ### Tool result
 
-_source line 4342 · 2026-05-20T14:02:50.434594+00:00_
+_source line 4338 · 2026-05-20T14:02:50.434594+00:00_
 
 23	
 24	\begin{abstract}
@@ -3160,7 +2923,7 @@ _source line 4342 · 2026-05-20T14:02:50.434594+00:00_
 
 ### Tool call
 
-_source line 4343 · 2026-05-20T14:02:50.434995+00:00_
+_source line 4339 · 2026-05-20T14:02:50.434995+00:00_
 
 called Read
 
@@ -3198,7 +2961,7 @@ called Read
 
 ### Tool result
 
-_source line 4344 · 2026-05-20T14:02:50.987256+00:00_
+_source line 4340 · 2026-05-20T14:02:50.987256+00:00_
 
 14	\end{figure}
 15	
@@ -3225,7 +2988,7 @@ _source line 4344 · 2026-05-20T14:02:50.987256+00:00_
 
 ### Tool call
 
-_source line 4345 · 2026-05-20T14:02:51.389145+00:00_
+_source line 4341 · 2026-05-20T14:02:51.389145+00:00_
 
 called Read
 
@@ -3263,7 +3026,7 @@ called Read
 
 ### Tool result
 
-_source line 4346 · 2026-05-20T14:02:51.791073+00:00_
+_source line 4342 · 2026-05-20T14:02:51.791073+00:00_
 
 52	\subsection{Per-Example Divergence}\label{ssec:per_example}
 53	
@@ -3292,7 +3055,7 @@ _source line 4346 · 2026-05-20T14:02:51.791073+00:00_
 
 ### Tool call
 
-_source line 4347 · 2026-05-20T14:02:51.841780+00:00_
+_source line 4343 · 2026-05-20T14:02:51.841780+00:00_
 
 called Read
 
@@ -3326,7 +3089,7 @@ called Read
 
 ### Tool result
 
-_source line 4348 · 2026-05-20T14:02:51.892838+00:00_
+_source line 4344 · 2026-05-20T14:02:51.892838+00:00_
 
 1	\section{Conclusion}
 2	
@@ -3351,7 +3114,7 @@ _source line 4348 · 2026-05-20T14:02:51.892838+00:00_
 
 ### Tool call
 
-_source line 4349 · 2026-05-20T14:04:26.354807+00:00_
+_source line 4345 · 2026-05-20T14:04:26.354807+00:00_
 
 called Read
 
@@ -3389,7 +3152,7 @@ called Read
 
 ### Tool call
 
-_source line 4350 · 2026-05-20T14:04:26.355160+00:00_
+_source line 4346 · 2026-05-20T14:04:26.355160+00:00_
 
 called Read
 
@@ -3427,7 +3190,7 @@ called Read
 
 ### Tool result
 
-_source line 4351 · 2026-05-20T14:04:26.405588+00:00_
+_source line 4347 · 2026-05-20T14:04:26.405588+00:00_
 
 420	\end{tabular}
 421	}
@@ -3470,7 +3233,7 @@ _source line 4351 · 2026-05-20T14:04:26.405588+00:00_
 
 ### Tool result
 
-_source line 4352 · 2026-05-20T14:04:26.406040+00:00_
+_source line 4348 · 2026-05-20T14:04:26.406040+00:00_
 
 80	\subsection{Decoupling}\label{ssec:decoupling}
 81	
@@ -3505,7 +3268,7 @@ _source line 4352 · 2026-05-20T14:04:26.406040+00:00_
 
 ### Tool call
 
-_source line 4353 · 2026-05-20T14:05:29.466027+00:00_
+_source line 4349 · 2026-05-20T14:05:29.466027+00:00_
 
 called Read
 
@@ -3543,7 +3306,7 @@ called Read
 
 ### Tool result
 
-_source line 4354 · 2026-05-20T14:05:29.918281+00:00_
+_source line 4350 · 2026-05-20T14:05:29.918281+00:00_
 
 5	Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.
 6	
@@ -3568,7 +3331,7 @@ _source line 4354 · 2026-05-20T14:05:29.918281+00:00_
 
 ### Tool call
 
-_source line 4355 · 2026-05-20T14:05:30.371676+00:00_
+_source line 4351 · 2026-05-20T14:05:30.371676+00:00_
 
 called Read
 
@@ -3606,7 +3369,7 @@ called Read
 
 ### Tool result
 
-_source line 4356 · 2026-05-20T14:05:30.823975+00:00_
+_source line 4352 · 2026-05-20T14:05:30.823975+00:00_
 
 28	\subsection{Per-Example Decomposition}\label{ssec:per_example_decomposition}
 29	
@@ -3639,7 +3402,7 @@ _source line 4356 · 2026-05-20T14:05:30.823975+00:00_
 
 ### Tool call
 
-_source line 4357 · 2026-05-20T14:05:30.974948+00:00_
+_source line 4353 · 2026-05-20T14:05:30.974948+00:00_
 
 called Read
 
@@ -3677,7 +3440,7 @@ called Read
 
 ### Tool result
 
-_source line 4358 · 2026-05-20T14:05:31.125956+00:00_
+_source line 4354 · 2026-05-20T14:05:31.125956+00:00_
 
 38	\section*{Limitations}
 39	
@@ -3712,7 +3475,7 @@ _source line 4358 · 2026-05-20T14:05:31.125956+00:00_
 
 ### Tool call
 
-_source line 4359 · 2026-05-20T14:06:22.089012+00:00_
+_source line 4355 · 2026-05-20T14:06:22.089012+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3748,7 +3511,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4360 · 2026-05-20T14:06:25.701284+00:00_
+_source line 4356 · 2026-05-20T14:06:25.701284+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3770,7 +3533,7 @@ _source line 4360 · 2026-05-20T14:06:25.701284+00:00_
 
 ### Assistant
 
-_source line 4361 · 2026-05-20T14:06:32.023945+00:00_
+_source line 4357 · 2026-05-20T14:06:32.023945+00:00_
 
 3 个 CRITICAL 修复全部验证通过，无遗漏。残留 2 个 WARNING：
 
@@ -3802,7 +3565,7 @@ _source line 4361 · 2026-05-20T14:06:32.023945+00:00_
 
 ### User
 
-_source line 4362 · 2026-05-20T14:09:46.907872+00:00_
+_source line 4358 · 2026-05-20T14:09:46.907872+00:00_
 
 [系统通知 — worker_done:worker_analysis_cross-benchmark-confidence-margin_20260520T140423]:
 Worker worker_analysis_cross-benchmark-confidence-margin_20260520T140423 已完成（status=done），请审查 Agent 的处理结果。
@@ -3824,7 +3587,7 @@ Worker worker_analysis_cross-benchmark-confidence-margin_20260520T140423 已完�
 
 ### Tool call
 
-_source line 4363 · 2026-05-20T14:10:00.883970+00:00_
+_source line 4359 · 2026-05-20T14:10:00.883970+00:00_
 
 called ToolSearch
 
@@ -3860,7 +3623,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4364 · 2026-05-20T14:10:00.984787+00:00_
+_source line 4360 · 2026-05-20T14:10:00.984787+00:00_
 
 
 
@@ -3882,7 +3645,7 @@ _source line 4364 · 2026-05-20T14:10:00.984787+00:00_
 
 ### Tool call
 
-_source line 4365 · 2026-05-20T14:10:05.152788+00:00_
+_source line 4361 · 2026-05-20T14:10:05.152788+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3920,7 +3683,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4366 · 2026-05-20T14:10:06.207694+00:00_
+_source line 4362 · 2026-05-20T14:10:06.207694+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0586}}"}
 
@@ -3942,7 +3705,7 @@ _source line 4366 · 2026-05-20T14:10:06.207694+00:00_
 
 ### Tool call
 
-_source line 4367 · 2026-05-20T14:10:06.208018+00:00_
+_source line 4363 · 2026-05-20T14:10:06.208018+00:00_
 
 called Glob
 
@@ -3978,7 +3741,7 @@ called Glob
 
 ### Tool result
 
-_source line 4368 · 2026-05-20T14:10:06.258397+00:00_
+_source line 4364 · 2026-05-20T14:10:06.258397+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/confidence_margin_analysis.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/confidence_margin_analysis.json
@@ -4003,7 +3766,7 @@ _source line 4368 · 2026-05-20T14:10:06.258397+00:00_
 
 ### Tool call
 
-_source line 4369 · 2026-05-20T14:10:10.677782+00:00_
+_source line 4365 · 2026-05-20T14:10:10.677782+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4041,7 +3804,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 4370 · 2026-05-20T14:10:11.129899+00:00_
+_source line 4366 · 2026-05-20T14:10:11.129899+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T13:05:00.607Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10)
 …[truncated 7204 chars]
@@ -4064,7 +3827,7 @@ _source line 4370 · 2026-05-20T14:10:11.129899+00:00_
 
 ### Tool call
 
-_source line 4371 · 2026-05-20T14:10:11.130354+00:00_
+_source line 4367 · 2026-05-20T14:10:11.130354+00:00_
 
 called Read
 
@@ -4098,7 +3861,7 @@ called Read
 
 ### Tool result
 
-_source line 4372 · 2026-05-20T14:10:11.682723+00:00_
+_source line 4368 · 2026-05-20T14:10:11.682723+00:00_
 
 1	{
 2	  "analysis": "confidence_margin",
@@ -4165,7 +3928,7 @@ _source line 4372 · 2026-05-20T14:10:11.682723+00:00_
 
 ### Tool call
 
-_source line 4373 · 2026-05-20T14:10:11.683232+00:00_
+_source line 4369 · 2026-05-20T14:10:11.683232+00:00_
 
 called Read
 
@@ -4199,7 +3962,7 @@ called Read
 
 ### Tool result
 
-_source line 4374 · 2026-05-20T14:10:11.784109+00:00_
+_source line 4370 · 2026-05-20T14:10:11.784109+00:00_
 
 1	{
 2	  "analysis": "confidence_margin_within_category",
@@ -4263,7 +4026,7 @@ _source line 4374 · 2026-05-20T14:10:11.784109+00:00_
 
 ### Tool call
 
-_source line 4375 · 2026-05-20T14:10:49.076615+00:00_
+_source line 4371 · 2026-05-20T14:10:49.076615+00:00_
 
 called Glob
 
@@ -4299,7 +4062,7 @@ called Glob
 
 ### Tool result
 
-_source line 4376 · 2026-05-20T14:10:49.428388+00:00_
+_source line 4372 · 2026-05-20T14:10:49.428388+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/confidence_margin_analysis.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/confidence_margin_analysis.json
@@ -4324,7 +4087,7 @@ _source line 4376 · 2026-05-20T14:10:49.428388+00:00_
 
 ### Tool call
 
-_source line 4377 · 2026-05-20T14:10:49.980795+00:00_
+_source line 4373 · 2026-05-20T14:10:49.980795+00:00_
 
 called Grep
 
@@ -4362,7 +4125,7 @@ called Grep
 
 ### Tool result
 
-_source line 4378 · 2026-05-20T14:10:50.131827+00:00_
+_source line 4374 · 2026-05-20T14:10:50.131827+00:00_
 
 Found 6 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin.json
@@ -4390,7 +4153,7 @@ Found 6 files
 
 ### Tool call
 
-_source line 4379 · 2026-05-20T14:11:02.026927+00:00_
+_source line 4375 · 2026-05-20T14:11:02.026927+00:00_
 
 called Read
 
@@ -4424,7 +4187,7 @@ called Read
 
 ### Tool result
 
-_source line 4380 · 2026-05-20T14:11:02.178022+00:00_
+_source line 4376 · 2026-05-20T14:11:02.178022+00:00_
 
 1	{
 2	  "analysis": "cross_benchmark_confidence_margin",
@@ -4493,7 +4256,7 @@ _source line 4380 · 2026-05-20T14:11:02.178022+00:00_
 
 ### Tool call
 
-_source line 4381 · 2026-05-20T14:12:08.242783+00:00_
+_source line 4377 · 2026-05-20T14:12:08.242783+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4529,7 +4292,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4382 · 2026-05-20T14:12:12.007407+00:00_
+_source line 4378 · 2026-05-20T14:12:12.007407+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4551,7 +4314,7 @@ _source line 4382 · 2026-05-20T14:12:12.007407+00:00_
 
 ### Assistant
 
-_source line 4383 · 2026-05-20T14:12:18.691207+00:00_
+_source line 4379 · 2026-05-20T14:12:18.691207+00:00_
 
 审查完成。cross-benchmark confidence margin 分析的核心发现：LAMBADA 的 confidence margin 数据与论文一致（d=0.73-0.92）。跨 benchmark 扩展显示 C2（near-miss 可救）9/9 显著，C1（borderline 脆弱）7/9 显著但效应量在多选题上大幅降低（d~0.1-0.3 vs LAMBADA 的 d~0.9）。论文当前范围正确限定在 LAMBADA，跨 benchmark 数据作 rebuttal reserve 合理。已标注 2 个 WARNING（hypothesis_supported 标注错误、无 registry 条目）。
 
@@ -4578,7 +4341,7 @@ _source line 4383 · 2026-05-20T14:12:18.691207+00:00_
 
 ### User
 
-_source line 4384 · 2026-05-20T14:44:21.359423+00:00_
+_source line 4380 · 2026-05-20T14:44:21.359423+00:00_
 
 [System 触发审查]:
 **请评估：confidence margin 跨 benchmark 发现是否值得提升主文地位**
@@ -4613,7 +4376,7 @@ _source line 4384 · 2026-05-20T14:44:21.359423+00:00_
 
 ### Tool call
 
-_source line 4385 · 2026-05-20T14:45:53.052828+00:00_
+_source line 4381 · 2026-05-20T14:45:53.052828+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4649,7 +4412,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4386 · 2026-05-20T14:45:57.012847+00:00_
+_source line 4382 · 2026-05-20T14:45:57.012847+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4671,7 +4434,7 @@ _source line 4386 · 2026-05-20T14:45:57.012847+00:00_
 
 ### Assistant
 
-_source line 4387 · 2026-05-20T14:45:59.704867+00:00_
+_source line 4383 · 2026-05-20T14:45:59.704867+00:00_
 
 逐条评估。
 
@@ -4738,7 +4501,7 @@ _source line 4387 · 2026-05-20T14:45:59.704867+00:00_
 
 ### User
 
-_source line 4388 · 2026-05-20T14:49:30.581131+00:00_
+_source line 4384 · 2026-05-20T14:49:30.581131+00:00_
 
 [系统通知 — worker_done:worker_analysis_boolq-confidence-margin_20260520T144742]:
 Worker worker_analysis_boolq-confidence-margin_20260520T144742 已完成（status=done），请审查 Agent 的处理结果。
@@ -4760,7 +4523,7 @@ Worker worker_analysis_boolq-confidence-margin_20260520T144742 已完成（statu
 
 ### Tool call
 
-_source line 4389 · 2026-05-20T14:49:37.276891+00:00_
+_source line 4385 · 2026-05-20T14:49:37.276891+00:00_
 
 called Glob
 
@@ -4796,7 +4559,7 @@ called Glob
 
 ### Tool result
 
-_source line 4390 · 2026-05-20T14:49:37.327504+00:00_
+_source line 4386 · 2026-05-20T14:49:37.327504+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/boolq_confidence_margin.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/boolq_confidence_margin.json
@@ -4819,7 +4582,7 @@ _source line 4390 · 2026-05-20T14:49:37.327504+00:00_
 
 ### Tool call
 
-_source line 4391 · 2026-05-20T14:49:40.338063+00:00_
+_source line 4387 · 2026-05-20T14:49:40.338063+00:00_
 
 called Read
 
@@ -4853,7 +4616,7 @@ called Read
 
 ### Tool result
 
-_source line 4392 · 2026-05-20T14:49:40.388765+00:00_
+_source line 4388 · 2026-05-20T14:49:40.388765+00:00_
 
 1	{
 2	  "analysis": "boolq_confidence_margin",
@@ -4931,7 +4694,7 @@ _source line 4392 · 2026-05-20T14:49:40.388765+00:00_
 
 ### Tool call
 
-_source line 4393 · 2026-05-20T14:50:36.608794+00:00_
+_source line 4389 · 2026-05-20T14:50:36.608794+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4967,7 +4730,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4394 · 2026-05-20T14:50:40.173567+00:00_
+_source line 4390 · 2026-05-20T14:50:40.173567+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4996,7 +4759,7 @@ _source line 4394 · 2026-05-20T14:50:40.173567+00:00_
 
 ### User
 
-_source line 4395 · 2026-05-20T15:24:05.278926+00:00_
+_source line 4391 · 2026-05-20T15:24:05.278926+00:00_
 
 [System 触发审查]:
 **战略评估：C2 claim 强化 + C1 task-structure pattern 作为 finding**
@@ -5046,7 +4809,7 @@ C1 效应量的梯度非常规律：
 
 ### Tool call
 
-_source line 4396 · 2026-05-20T15:24:39.878102+00:00_
+_source line 4392 · 2026-05-20T15:24:39.878102+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5082,7 +4845,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4397 · 2026-05-20T15:24:43.490783+00:00_
+_source line 4393 · 2026-05-20T15:24:43.490783+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -5104,7 +4867,7 @@ _source line 4397 · 2026-05-20T15:24:43.490783+00:00_
 
 ### Assistant
 
-_source line 4398 · 2026-05-20T15:24:45.827094+00:00_
+_source line 4394 · 2026-05-20T15:24:45.827094+00:00_
 
 **Q1: 维持 9/9，不升级。**
 
@@ -5150,12 +4913,12 @@ BoolQ C2 数据放 appendix，让审稿人自己发现"连 binary 都有信号"�
 
 ## Round 212
 
-5 recorded events
+3 recorded events
 
 
 ### User
 
-_source line 4399 · 2026-05-20T17:29:24.889592+00:00_
+_source line 4395 · 2026-05-20T17:29:24.889592+00:00_
 
 [System 触发审查]:
 **审查请求：Author Response R3-BINARY 的 rebuttal 充分性**
@@ -5195,110 +4958,7 @@ _source line 4399 · 2026-05-20T17:29:24.889592+00:00_
 
 ### Tool call
 
-_source line 4400 · 2026-05-20T17:29:41.768514+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4401 · 2026-05-20T17:29:41.819466+00:00_
-
-1	\documentclass[11pt]{article}
-2	\usepackage[margin=1in]{geometry}
-3	\usepackage{times}
-4	\usepackage[T1]{fontenc}
-5	\usepackage[utf8]{inputenc}
-6	\usepackage{enumitem}
-7	\usepackage{xcolor}
-8	\usepackage{hyperref}
-9	
-10	\definecolor{reviewercolor}{RGB}{0,0,140}
-11	\definecolor{responsecolor}{RGB}{0,100,0}
-12	
-13	\newcommand{\reviewer}[1]{\textcolor{reviewercolor}{\textbf{Reviewer comment:} \textit{#1}}}
-14	\newcommand{\response}[1]{\textcolor{responsecolor}{\textbf{Response:} #1}}
-15	\newcommand{\location}[1]{\textbf{Location:} #1}
-16	
-17	\title{Author Response --- Round 3}
-18	\author{}
-19	\date{}
-20	
-21	\begin{document}
-22	\maketitle
-23	
-24	We thank the reviewers for their detailed and constructive feedback. We have revised the paper to address each concern. Below, we respond point-by-point, noting specific changes and their locations.
-25	
-26	\section*{Overview of Changes}
-27	
-28	\begin{itemize}[leftmargin=*]
-29	\item New title scoped to observed evidence rather than general claims.
-30	\item Abstract and Introduction: Bonferroni-adjusted $p = .100$ now immediately qualifies the 79\% reduction at first mention.
-31	\item All instances of ``general property'' replaced with empirically scoped language.
-32	\item \S4.5 expanded to detail the GDN head-count confound in the main text.
-33	\item ARR Responsible NLP Research Checklist added.
-34	\item Table~1 footnote explains the $p$-value rounding discrepancy.
-35	\item Limitations section strengthened with single-checkpoint caveat.
-36	\item \texttt{wang2025hybrid} bib entry corrected (title, authors).
-37	\end{itemize}
-38	
-39	\section*{Detailed Responses}
-40	
-41	\subsection*{W-CITE (R2-N1): Incorrect citation for model zoo}
-42	
-43	\reviewer{The citation for the model zoo (wang2025hybrid) has incorrect title and author list.}
-44	
-45	\response{Fixed. The bib entry now reads ``A Systematic Analysis of Hybrid Linear Attention'' with authors Dustin Wang, Rui-Jie Zhu, Katharopoulos, and Gu.}
-46	
-47	\location{\texttt{references.bi
-…[truncated 10750 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4402 · 2026-05-20T17:30:41.465751+00:00_
+_source line 4396 · 2026-05-20T17:30:41.465751+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5334,7 +4994,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4403 · 2026-05-20T17:30:45.388462+00:00_
+_source line 4397 · 2026-05-20T17:30:45.388462+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -5358,12 +5018,12 @@ _source line 4403 · 2026-05-20T17:30:45.388462+00:00_
 
 ## Round 213
 
-14 recorded events
+12 recorded events
 
 
 ### User
 
-_source line 4404 · 2026-05-20T17:30:48.804323+00:00_
+_source line 4398 · 2026-05-20T17:30:48.804323+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新，请审查研究方向和计划的合理性。
@@ -5385,7 +5045,7 @@ _source line 4404 · 2026-05-20T17:30:48.804323+00:00_
 
 ### Tool call
 
-_source line 4405 · 2026-05-20T17:30:56.233746+00:00_
+_source line 4399 · 2026-05-20T17:30:56.233746+00:00_
 
 called ToolSearch
 
@@ -5421,7 +5081,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4406 · 2026-05-20T17:30:56.284433+00:00_
+_source line 4400 · 2026-05-20T17:30:56.284433+00:00_
 
 
 
@@ -5443,7 +5103,7 @@ _source line 4406 · 2026-05-20T17:30:56.284433+00:00_
 
 ### Tool call
 
-_source line 4407 · 2026-05-20T17:31:00.500463+00:00_
+_source line 4401 · 2026-05-20T17:31:00.500463+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -5477,7 +5137,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 4408 · 2026-05-20T17:31:00.551360+00:00_
+_source line 4402 · 2026-05-20T17:31:00.551360+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-20 17:29 UTC\\n\\n> 最后更新: 2026-05-20 17:30 UTC | 更新原因: 全部论文修改完成，等用户批准 Round 4 审稿\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Round 4 审稿已提交（apr_20260520T132953_zqau），等用户批准**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), ~5 天\\n\\n### 数据\\n4 benchmarks per-example 分析完成 + 4-benchmark confidence margin 全景。\\n- **Main text**: LAMBADA (retrieval, α=0.30) + ARC-Easy (mixed, α=0.21) + HellaSwag (reasoning, α=0.10)\\n  - Jaccard: 3 benchmarks 全部 24/24 显著\\n  - α range: 0.10–0.30，task-dependent（within each benchmark stable, range ≤ 0.025）\\n  - C2 rescue: 9/9 显著 (d=0.48-0.77)\\n- **Appendix**: BoolQ (comprehension, α≈0.45) — 12/24 Jaccard 显著 + confidence margin C2 2/3, C1 0/3\\n\\n### 已完成修改\\n- [x] 3 CRITICAL 数据错误修复（BoolQ α .49→.45, p-value scoping, Jaccard bounds）\\n- [x] Table 2 ρ_σ→ρ_α + J̄ grand mean clarification\\n- [x] 3+1 benchmark 论文整合（Paper Agent + Director）\\n- [x] BoolQ Appendix（完整：Jaccard + confidence margin + binary classification 讨论）\\n- [x] 跨 benchmark confidence margin appendix（C2 9/9 + C1 gradient + asymmetry explanation）\\n- [x] HellaSwag α-by-ratio 完整数据（range=0.012）\\n- [x] Author Response Letter v2（跨 benchmark C2/C1 数据整合）\\n- [x] \\\"near-zero\\\" → \\\"low multiplicity\\\" 叙事修正\\n- [x] 主文 C1 limitation acknowledge（Reviewer 建议的限定性措辞）\\n- [x] 最终编译：8 页主文 + 10 页 appendix = 18 页，0 critical warning\\n\\n### 进行中\\n- [ ] loglik range 诊断实验（Agent 执行中）— 验证 C1 weakness 的 \\\"loglik 压缩\\\" 假说\\n- [ ] 用户批准 Round 4 审稿\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- 证据: 3 benchmarks (main) + 1 (appendix) × 3 architectures × 5
 …[truncated 1187 chars]
@@ -5500,7 +5160,7 @@ _source line 4408 · 2026-05-20T17:31:00.551360+00:00_
 
 ### Tool call
 
-_source line 4409 · 2026-05-20T17:31:16.659742+00:00_
+_source line 4403 · 2026-05-20T17:31:16.659742+00:00_
 
 called Grep
 
@@ -5540,7 +5200,7 @@ called Grep
 
 ### Tool result
 
-_source line 4410 · 2026-05-20T17:31:17.164674+00:00_
+_source line 4404 · 2026-05-20T17:31:17.164674+00:00_
 
 No matches found
 
@@ -5562,7 +5222,7 @@ No matches found
 
 ### Tool call
 
-_source line 4411 · 2026-05-20T17:31:17.604314+00:00_
+_source line 4405 · 2026-05-20T17:31:17.604314+00:00_
 
 called Read
 
@@ -5600,7 +5260,7 @@ called Read
 
 ### Tool result
 
-_source line 4412 · 2026-05-20T17:31:17.604704+00:00_
+_source line 4406 · 2026-05-20T17:31:17.604704+00:00_
 
 62	\begin{table}[t]
 63	\centering
@@ -5638,81 +5298,7 @@ _source line 4412 · 2026-05-20T17:31:17.604704+00:00_
 
 ### Tool call
 
-_source line 4413 · 2026-05-20T17:31:18.407982+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-  "offset": "101",
-  "limit": "15"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-    "offset": "101",
-    "limit": "15"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4414 · 2026-05-20T17:31:18.558940+00:00_
-
-101	\subsection*{R3-BINARY (R1-W5): Binary correct/incorrect decomposition}
-102	
-103	\reviewer{The helped/hurt decomposition uses binary correctness, which may lose information compared to continuous confidence scores.}
-104	
-105	\response{The binary decomposition is a deliberate methodological choice aligned with the predictive multiplicity framework of Marx et al.\ (2020), which defines multiplicity over discrete prediction outcomes. Additionally, we report continuous-valued analyses that are consistent with the binary results: Cohen's $d$ for pure-model confidence margins ranges from 0.73 to 0.92 between helped and hurt examples on LAMBADA (Appendix, ``Confidence Margin Analysis''), showing that the binary decomposition captures a real separation in the continuous confidence space. We have extended this analysis to all four benchmarks:}
-106	\begin{itemize}[leftmargin=2em]
-107	\item \textbf{Rescue pattern (C2)}: Near-miss errors rescued by attention replicate across all three main benchmarks (9/9 tests, $d = 0.48$--$0.77$, all $p < 10^{-9}$). On BoolQ (binary classification), the rescue signal is weaker but directionally consistent (2/3, $d = 0.16$--$0.36$).
-108	\item \textbf{Disruption pattern (C1)}: Effect sizes decrease with answer-space dimensionality: open-ended prediction ($d = 0.83$--$0.92$, LAMBADA) $>$ four-way multiple choice ($d = 0.09$--$0.28$, HellaSwag/ARC-Easy) $>$ binary ($d \approx 0$, BoolQ). This gradient is consistent with compressed log-likelihood ranges in constrained-choice settings reducing the confidence margin's predictive power.
-109	\end{itemize}
-110	The Jaccard similarity measure applied to the binary sets provides an interpretable metric of cross-architecture overlap that would be less transparent with continuous alternatives.
-111	
-112	\location{\S4.3 (confidence margin paragraph), Appendix (Confidence Margin Analysis, Cross-Benchmark Extension, BoolQ Supplementary Analysis).}
-113	
-114	\subsection*{W-ZOO (R1-W6): Reliance on a single mo
-…[truncated 13 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 150
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4415 · 2026-05-20T17:32:27.322348+00:00_
+_source line 4407 · 2026-05-20T17:32:27.322348+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5748,7 +5334,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4416 · 2026-05-20T17:32:30.990116+00:00_
+_source line 4408 · 2026-05-20T17:32:30.990116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -5770,7 +5356,7 @@ _source line 4416 · 2026-05-20T17:32:30.990116+00:00_
 
 ### Assistant
 
-_source line 4417 · 2026-05-20T17:32:57.426284+00:00_
+_source line 4409 · 2026-05-20T17:32:57.426284+00:00_
 
 ROADMAP 其他方面无新问题。总结：ROADMAP review PASS，但 Round 4 提交需阻塞直到 Table 2 LAMBADA ρ_α 值修复（-1.0* → -0.6）。
 
@@ -5797,7 +5383,7 @@ ROADMAP 其他方面无新问题。总结：ROADMAP review PASS，但 Round 4 �
 
 ### User
 
-_source line 4418 · 2026-05-20T17:34:49.228858+00:00_
+_source line 4410 · 2026-05-20T17:34:49.228858+00:00_
 
 [系统通知 — worker_done:worker_analysis_loglik-range-diagnostic_20260520T173004]:
 Worker worker_analysis_loglik-range-diagnostic_20260520T173004 已完成（status=done），请审查 Agent 的处理结果。
@@ -5819,7 +5405,7 @@ Worker worker_analysis_loglik-range-diagnostic_20260520T173004 已完成（statu
 
 ### Tool call
 
-_source line 4419 · 2026-05-20T17:34:57.857967+00:00_
+_source line 4411 · 2026-05-20T17:34:57.857967+00:00_
 
 called Glob
 
@@ -5855,7 +5441,7 @@ called Glob
 
 ### Tool result
 
-_source line 4420 · 2026-05-20T17:34:57.908684+00:00_
+_source line 4412 · 2026-05-20T17:34:57.908684+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/loglik_range_diagnostic.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/loglik_range_diagnostic.json
@@ -5878,7 +5464,7 @@ _source line 4420 · 2026-05-20T17:34:57.908684+00:00_
 
 ### Tool call
 
-_source line 4421 · 2026-05-20T17:35:01.223665+00:00_
+_source line 4413 · 2026-05-20T17:35:01.223665+00:00_
 
 called Read
 
@@ -5912,7 +5498,7 @@ called Read
 
 ### Tool result
 
-_source line 4422 · 2026-05-20T17:35:01.224275+00:00_
+_source line 4414 · 2026-05-20T17:35:01.224275+00:00_
 
 1	{
 2	  "analysis": "loglik_range_diagnostic",
@@ -6017,7 +5603,7 @@ _source line 4422 · 2026-05-20T17:35:01.224275+00:00_
 
 ### Tool call
 
-_source line 4423 · 2026-05-20T17:35:44.570700+00:00_
+_source line 4415 · 2026-05-20T17:35:44.570700+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6053,7 +5639,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4424 · 2026-05-20T17:35:48.770861+00:00_
+_source line 4416 · 2026-05-20T17:35:48.770861+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6082,7 +5668,7 @@ _source line 4424 · 2026-05-20T17:35:48.770861+00:00_
 
 ### User
 
-_source line 4425 · 2026-05-20T19:13:26.542041+00:00_
+_source line 4417 · 2026-05-20T19:13:26.542041+00:00_
 
 [System 触发审查]:
 请对以下三个问题做系统评估，需要你的独立判断：
@@ -6142,7 +5728,7 @@ loglik range 诊断发现 CV 与 C1 效应量完美单调 (Spearman ρ=1.0)：LA
 
 ### Tool call
 
-_source line 4426 · 2026-05-20T19:15:18.791255+00:00_
+_source line 4418 · 2026-05-20T19:15:18.791255+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6178,7 +5764,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4427 · 2026-05-20T19:15:22.204213+00:00_
+_source line 4419 · 2026-05-20T19:15:22.204213+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6200,7 +5786,7 @@ _source line 4427 · 2026-05-20T19:15:22.204213+00:00_
 
 ### Tool call
 
-_source line 4428 · 2026-05-20T19:17:55.150831+00:00_
+_source line 4420 · 2026-05-20T19:17:55.150831+00:00_
 
 called Read
 
@@ -6238,7 +5824,7 @@ called Read
 
 ### Tool result
 
-_source line 4429 · 2026-05-20T19:17:55.603043+00:00_
+_source line 4421 · 2026-05-20T19:17:55.603043+00:00_
 
 55	
 56	Each architecture displays a distinct profile of per-example changes (Table~\ref{tab:per_example}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395). HGRN2 is the only architecture for which attention produces a net per-example benefit. Pairwise Jaccard similarity is low: mean $\bar{J} \leq 0.104$ for helped, $\leq 0.096$ for hurt, indicating ${\sim}90$\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\text{null}} \approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\ref{app:jaccard_permutation}), but normalizing by the theoretical upper bound $J_{\max} = \min(|A|,|B|)/\max(|A|,|B|)$, observed overlap reaches only 5--7\% of the achievable range above chance (normalized ES 0.065 helped, 0.062 hurt; per-pair details in Appendix~\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.
@@ -6264,7 +5850,7 @@ _source line 4429 · 2026-05-20T19:17:55.603043+00:00_
 
 ### Tool call
 
-_source line 4430 · 2026-05-20T19:17:56.055344+00:00_
+_source line 4422 · 2026-05-20T19:17:56.055344+00:00_
 
 called Read
 
@@ -6302,7 +5888,7 @@ called Read
 
 ### Tool result
 
-_source line 4431 · 2026-05-20T19:17:56.106056+00:00_
+_source line 4423 · 2026-05-20T19:17:56.106056+00:00_
 
 0	# entrainment_gated_ft — Research Dashboard
 1	
@@ -6373,7 +5959,7 @@ _source line 4431 · 2026-05-20T19:17:56.106056+00:00_
 
 ### Tool call
 
-_source line 4432 · 2026-05-20T19:18:17.164262+00:00_
+_source line 4424 · 2026-05-20T19:18:17.164262+00:00_
 
 called Grep
 
@@ -6411,7 +5997,7 @@ called Grep
 
 ### Tool result
 
-_source line 4433 · 2026-05-20T19:18:17.616431+00:00_
+_source line 4425 · 2026-05-20T19:18:17.616431+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:43:LAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:89:[Omitted long matching line]
@@ -6434,7 +6020,7 @@ _source line 4433 · 2026-05-20T19:18:17.616431+00:00_
 
 ### Tool call
 
-_source line 4434 · 2026-05-20T19:18:17.968064+00:00_
+_source line 4426 · 2026-05-20T19:18:17.968064+00:00_
 
 called Grep
 
@@ -6472,7 +6058,7 @@ called Grep
 
 ### Tool result
 
-_source line 4435 · 2026-05-20T19:18:18.018651+00:00_
+_source line 4427 · 2026-05-20T19:18:18.018651+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:9:[Omitted long matching line]
 
@@ -6494,7 +6080,7 @@ _source line 4435 · 2026-05-20T19:18:18.018651+00:00_
 
 ### Tool call
 
-_source line 4436 · 2026-05-20T19:18:27.453798+00:00_
+_source line 4428 · 2026-05-20T19:18:27.453798+00:00_
 
 called Read
 
@@ -6532,7 +6118,7 @@ called Read
 
 ### Tool result
 
-_source line 4437 · 2026-05-20T19:18:27.454165+00:00_
+_source line 4429 · 2026-05-20T19:18:27.454165+00:00_
 
 5	\subsection{Task-Specific Convergence}\label{ssec:task_convergence}
 6	
@@ -6565,7 +6151,7 @@ _source line 4437 · 2026-05-20T19:18:27.454165+00:00_
 
 ### Tool call
 
-_source line 4438 · 2026-05-20T19:18:27.454369+00:00_
+_source line 4430 · 2026-05-20T19:18:27.454369+00:00_
 
 called Read
 
@@ -6603,7 +6189,7 @@ called Read
 
 ### Tool result
 
-_source line 4439 · 2026-05-20T19:18:27.504852+00:00_
+_source line 4431 · 2026-05-20T19:18:27.504852+00:00_
 
 38	\label{tab:gdn_sensitivity}
 39	\begin{tabular}{lrrrr}
@@ -6639,7 +6225,7 @@ _source line 4439 · 2026-05-20T19:18:27.504852+00:00_
 
 ### Tool call
 
-_source line 4440 · 2026-05-20T19:18:39.397780+00:00_
+_source line 4432 · 2026-05-20T19:18:39.397780+00:00_
 
 called Read
 
@@ -6677,7 +6263,7 @@ called Read
 
 ### Tool result
 
-_source line 4441 · 2026-05-20T19:18:39.849843+00:00_
+_source line 4433 · 2026-05-20T19:18:39.849843+00:00_
 
 0	\section{Introduction}
 1	
@@ -6704,7 +6290,7 @@ _source line 4441 · 2026-05-20T19:18:39.849843+00:00_
 
 ### Tool call
 
-_source line 4442 · 2026-05-20T19:18:40.000821+00:00_
+_source line 4434 · 2026-05-20T19:18:40.000821+00:00_
 
 called Read
 
@@ -6742,7 +6328,7 @@ called Read
 
 ### Tool result
 
-_source line 4443 · 2026-05-20T19:18:40.101588+00:00_
+_source line 4435 · 2026-05-20T19:18:40.101588+00:00_
 
 17	\title{Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures}
 18	
@@ -6790,7 +6376,7 @@ _source line 4443 · 2026-05-20T19:18:40.101588+00:00_
 
 ### Tool call
 
-_source line 4444 · 2026-05-20T19:18:54.633806+00:00_
+_source line 4436 · 2026-05-20T19:18:54.633806+00:00_
 
 called ToolSearch
 
@@ -6826,7 +6412,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 4445 · 2026-05-20T19:18:54.734557+00:00_
+_source line 4437 · 2026-05-20T19:18:54.734557+00:00_
 
 
 
@@ -6848,7 +6434,7 @@ _source line 4445 · 2026-05-20T19:18:54.734557+00:00_
 
 ### Tool call
 
-_source line 4446 · 2026-05-20T19:19:06.395113+00:00_
+_source line 4438 · 2026-05-20T19:19:06.395113+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6884,7 +6470,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4447 · 2026-05-20T19:19:07.499826+00:00_
+_source line 4439 · 2026-05-20T19:19:07.499826+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6906,7 +6492,7 @@ _source line 4447 · 2026-05-20T19:19:07.499826+00:00_
 
 ### Assistant
 
-_source line 4448 · 2026-05-20T19:19:10.586979+00:00_
+_source line 4440 · 2026-05-20T19:19:10.586979+00:00_
 
 Round 4 论文最终验证完成。Table 2 LAMBADA ρ_α = -0.6 修复已确认，全文无残留不一致，无 CRITICAL 阻塞项。已通知 Director 可批准提交。
 
@@ -6933,7 +6519,7 @@ Round 4 论文最终验证完成。Table 2 LAMBADA ρ_α = -0.6 修复已确认�
 
 ### User
 
-_source line 4449 · 2026-05-20T22:24:00.836959+00:00_
+_source line 4441 · 2026-05-20T22:24:00.836959+00:00_
 
 [System 触发审查]:
 论文整体质量终审请求——目标从"无硬伤"推到"尽可能强"。
@@ -6978,7 +6564,7 @@ _source line 4449 · 2026-05-20T22:24:00.836959+00:00_
 
 ### Tool call
 
-_source line 4450 · 2026-05-20T22:24:10.591954+00:00_
+_source line 4442 · 2026-05-20T22:24:10.591954+00:00_
 
 called Read
 
@@ -7012,7 +6598,7 @@ called Read
 
 ### Tool result
 
-_source line 4451 · 2026-05-20T22:24:12.048005+00:00_
+_source line 4443 · 2026-05-20T22:24:12.048005+00:00_
 
 1	---
 2	name: paper-quality-lessons
@@ -7106,7 +6692,7 @@ _source line 4451 · 2026-05-20T22:24:12.048005+00:00_
 
 ### Tool call
 
-_source line 4452 · 2026-05-20T22:24:12.048365+00:00_
+_source line 4444 · 2026-05-20T22:24:12.048365+00:00_
 
 called Read
 
@@ -7140,7 +6726,7 @@ called Read
 
 ### Tool result
 
-_source line 4453 · 2026-05-20T22:24:12.249508+00:00_
+_source line 4445 · 2026-05-20T22:24:12.249508+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -7173,7 +6759,7 @@ _source line 4453 · 2026-05-20T22:24:12.249508+00:00_
 
 ### Tool call
 
-_source line 4454 · 2026-05-20T22:24:12.300248+00:00_
+_source line 4446 · 2026-05-20T22:24:12.300248+00:00_
 
 called Read
 
@@ -7207,7 +6793,7 @@ called Read
 
 ### Tool result
 
-_source line 4455 · 2026-05-20T22:24:12.350955+00:00_
+_source line 4447 · 2026-05-20T22:24:12.350955+00:00_
 
 1	\section{Conclusion}
 2	
@@ -7232,7 +6818,7 @@ _source line 4455 · 2026-05-20T22:24:12.350955+00:00_
 
 ### Tool call
 
-_source line 4456 · 2026-05-20T22:24:17.420624+00:00_
+_source line 4448 · 2026-05-20T22:24:17.420624+00:00_
 
 called Read
 
@@ -7266,7 +6852,7 @@ called Read
 
 ### Tool result
 
-_source line 4457 · 2026-05-20T22:24:17.772390+00:00_
+_source line 4449 · 2026-05-20T22:24:17.772390+00:00_
 
 1	\section{Related Work}
 2	
@@ -7295,7 +6881,7 @@ _source line 4457 · 2026-05-20T22:24:17.772390+00:00_
 
 ### Tool call
 
-_source line 4458 · 2026-05-20T22:24:17.823114+00:00_
+_source line 4450 · 2026-05-20T22:24:17.823114+00:00_
 
 called Read
 
@@ -7329,7 +6915,7 @@ called Read
 
 ### Tool result
 
-_source line 4459 · 2026-05-20T22:24:17.873923+00:00_
+_source line 4451 · 2026-05-20T22:24:17.873923+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -7364,7 +6950,7 @@ _source line 4459 · 2026-05-20T22:24:17.873923+00:00_
 
 ### Tool call
 
-_source line 4460 · 2026-05-20T22:24:24.699823+00:00_
+_source line 4452 · 2026-05-20T22:24:24.699823+00:00_
 
 called Grep
 
@@ -7404,7 +6990,7 @@ called Grep
 
 ### Tool result
 
-_source line 4461 · 2026-05-20T22:24:26.105544+00:00_
+_source line 4453 · 2026-05-20T22:24:26.105544+00:00_
 
 9:    \item \textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).
 16:\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. These are corrected separately across all 10 benchmarks (adjusted threshold $\alpha / 10 = 0.005$) and reported as exploratory throughout the paper.
@@ -7438,7 +7024,7 @@ _source line 4461 · 2026-05-20T22:24:26.105544+00:00_
 
 ### Tool call
 
-_source line 4462 · 2026-05-20T22:24:26.859825+00:00_
+_source line 4454 · 2026-05-20T22:24:26.859825+00:00_
 
 called Grep
 
@@ -7480,7 +7066,7 @@ called Grep
 
 ### Tool result
 
-_source line 4463 · 2026-05-20T22:24:26.960759+00:00_
+_source line 4455 · 2026-05-20T22:24:26.960759+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/acl.sty:115:% save space --- suggested by drstrip@sandia-2
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:389:This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.
@@ -7513,7 +7099,7 @@ _source line 4463 · 2026-05-20T22:24:26.960759+00:00_
 
 ### Tool call
 
-_source line 4464 · 2026-05-20T22:24:30.876469+00:00_
+_source line 4456 · 2026-05-20T22:24:30.876469+00:00_
 
 called Grep
 
@@ -7555,7 +7141,7 @@ called Grep
 
 ### Tool result
 
-_source line 4465 · 2026-05-20T22:24:30.927119+00:00_
+_source line 4457 · 2026-05-20T22:24:30.927119+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:389:This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:393:\caption{Control 1: Pure-correct samples---hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct).}
@@ -7582,7 +7168,7 @@ _source line 4465 · 2026-05-20T22:24:30.927119+00:00_
 
 ### Tool call
 
-_source line 4466 · 2026-05-20T22:27:13.188439+00:00_
+_source line 4458 · 2026-05-20T22:27:13.188439+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7618,7 +7204,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4467 · 2026-05-20T22:27:16.751918+00:00_
+_source line 4459 · 2026-05-20T22:27:16.751918+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -7640,7 +7226,7 @@ _source line 4467 · 2026-05-20T22:27:16.751918+00:00_
 
 ### Assistant
 
-_source line 4468 · 2026-05-20T22:27:24.685984+00:00_
+_source line 4460 · 2026-05-20T22:27:24.685984+00:00_
 
 五维度终审已提交。核心结论：
 
@@ -7672,7 +7258,7 @@ _source line 4468 · 2026-05-20T22:27:24.685984+00:00_
 
 ### User
 
-_source line 4469 · 2026-05-21T08:19:14.493093+00:00_
+_source line 4461 · 2026-05-21T08:19:14.493093+00:00_
 
 [System 触发审查]:
 Round 5 审稿报告 (Overall 3.0 Findings) 收到。请独立审视我的逐条 Action Matrix，重点关注：(1) 方案可行性，(2) 遗漏项，(3) 优先级是否合理，(4) W3 的 GPU 实验是否值得做。
@@ -7791,7 +7377,7 @@ Round 5 审稿报告 (Overall 3.0 Findings) 收到。请独立审视我的逐条
 
 ### Tool call
 
-_source line 4470 · 2026-05-21T08:19:24.992501+00:00_
+_source line 4462 · 2026-05-21T08:19:24.992501+00:00_
 
 called Read
 
@@ -7829,7 +7415,7 @@ called Read
 
 ### Tool result
 
-_source line 4471 · 2026-05-21T08:19:25.996282+00:00_
+_source line 4463 · 2026-05-21T08:19:25.996282+00:00_
 
 200	
 201	\begin{table}[h]
@@ -7895,7 +7481,7 @@ _source line 4471 · 2026-05-21T08:19:25.996282+00:00_
 
 ### Tool call
 
-_source line 4472 · 2026-05-21T08:19:26.297673+00:00_
+_source line 4464 · 2026-05-21T08:19:26.297673+00:00_
 
 called Grep
 
@@ -7935,7 +7521,7 @@ called Grep
 
 ### Tool result
 
-_source line 4473 · 2026-05-21T08:19:26.348384+00:00_
+_source line 4465 · 2026-05-21T08:19:26.348384+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.log:115:Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.log:146:Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -7966,7 +7552,7 @@ _source line 4473 · 2026-05-21T08:19:26.348384+00:00_
 
 ### Tool call
 
-_source line 4474 · 2026-05-21T08:19:31.271287+00:00_
+_source line 4466 · 2026-05-21T08:19:31.271287+00:00_
 
 called Read
 
@@ -8004,7 +7590,7 @@ called Read
 
 ### Tool result
 
-_source line 4475 · 2026-05-21T08:19:32.321266+00:00_
+_source line 4467 · 2026-05-21T08:19:32.321266+00:00_
 
 328	\section{Within-Architecture Per-Example Stability}\label{app:within_arch_stability}
 329	
@@ -8055,7 +7641,7 @@ _source line 4475 · 2026-05-21T08:19:32.321266+00:00_
 
 ### Tool call
 
-_source line 4476 · 2026-05-21T08:19:32.475826+00:00_
+_source line 4468 · 2026-05-21T08:19:32.475826+00:00_
 
 called Grep
 
@@ -8093,7 +7679,7 @@ called Grep
 
 ### Tool result
 
-_source line 4477 · 2026-05-21T08:19:32.576563+00:00_
+_source line 4469 · 2026-05-21T08:19:32.576563+00:00_
 
 No matches found
 
@@ -8115,7 +7701,7 @@ No matches found
 
 ### Tool call
 
-_source line 4478 · 2026-05-21T08:19:36.792004+00:00_
+_source line 4470 · 2026-05-21T08:19:36.792004+00:00_
 
 called Grep
 
@@ -8153,7 +7739,7 @@ called Grep
 
 ### Tool result
 
-_source line 4479 · 2026-05-21T08:19:37.244238+00:00_
+_source line 4471 · 2026-05-21T08:19:37.244238+00:00_
 
 760:Output written on main.pdf (18 pages, 444364 bytes).
 
@@ -8175,7 +7761,7 @@ _source line 4479 · 2026-05-21T08:19:37.244238+00:00_
 
 ### Tool call
 
-_source line 4480 · 2026-05-21T08:19:37.696275+00:00_
+_source line 4472 · 2026-05-21T08:19:37.696275+00:00_
 
 called Grep
 
@@ -8213,7 +7799,7 @@ called Grep
 
 ### Tool result
 
-_source line 4481 · 2026-05-21T08:19:37.796911+00:00_
+_source line 4473 · 2026-05-21T08:19:37.796911+00:00_
 
 No matches found
 
@@ -8237,7 +7823,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 4482 · 2026-05-21T08:19:43.217500+00:00_
+_source line 4474 · 2026-05-21T08:19:43.217500+00:00_
 
 called Grep
 
@@ -8277,7 +7863,7 @@ called Grep
 
 ### Tool result
 
-_source line 4483 · 2026-05-21T08:19:43.569398+00:00_
+_source line 4475 · 2026-05-21T08:19:43.569398+00:00_
 
 38:\section*{Limitations}
 54:\section*{Ethics Statement}
@@ -8302,7 +7888,7 @@ _source line 4483 · 2026-05-21T08:19:43.569398+00:00_
 
 ### Tool call
 
-_source line 4484 · 2026-05-21T08:19:43.770411+00:00_
+_source line 4476 · 2026-05-21T08:19:43.770411+00:00_
 
 called Read
 
@@ -8340,7 +7926,7 @@ called Read
 
 ### Tool result
 
-_source line 4485 · 2026-05-21T08:19:43.770804+00:00_
+_source line 4477 · 2026-05-21T08:19:43.770804+00:00_
 
 36	\input{sections/conclusion}
 37	
@@ -8377,7 +7963,7 @@ _source line 4485 · 2026-05-21T08:19:43.770804+00:00_
 
 ### Tool call
 
-_source line 4486 · 2026-05-21T08:19:51.551396+00:00_
+_source line 4478 · 2026-05-21T08:19:51.551396+00:00_
 
 called Grep
 
@@ -8419,7 +8005,7 @@ called Grep
 
 ### Tool result
 
-_source line 4487 · 2026-05-21T08:19:51.602832+00:00_
+_source line 4479 · 2026-05-21T08:19:51.602832+00:00_
 
 431:\newlabel{ssec:model_zoo}{{3.1}{4}{Model Zoo}{subsection.3.1}{}}
 463:\newlabel{ssec:task_taxonomy}{{3.2}{5}{Task Taxonomy}{subsection.3.2}{}}
@@ -8451,7 +8037,7 @@ _source line 4487 · 2026-05-21T08:19:51.602832+00:00_
 
 ### Tool call
 
-_source line 4488 · 2026-05-21T08:22:17.422348+00:00_
+_source line 4480 · 2026-05-21T08:22:17.422348+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8487,7 +8073,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 4489 · 2026-05-21T08:22:21.338530+00:00_
+_source line 4481 · 2026-05-21T08:22:21.338530+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -8509,7 +8095,7 @@ _source line 4489 · 2026-05-21T08:22:21.338530+00:00_
 
 ### Assistant
 
-_source line 4490 · 2026-05-21T08:22:23.834426+00:00_
+_source line 4482 · 2026-05-21T08:22:23.834426+00:00_
 
 数据核实完毕。编写评估报告。
 
@@ -8536,7 +8122,7 @@ _source line 4490 · 2026-05-21T08:22:23.834426+00:00_
 
 ### User
 
-_source line 4491 · 2026-05-21T08:22:24.470224+00:00_
+_source line 4483 · 2026-05-21T08:22:24.470224+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -8618,7 +8204,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 4492 · 2026-05-21T08:23:16.676301+00:00_
+_source line 4484 · 2026-05-21T08:23:16.676301+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

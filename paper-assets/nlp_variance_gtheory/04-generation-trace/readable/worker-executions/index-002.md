@@ -131,9 +131,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops gpu status check | 22 | 0 | [Read transcript](ops-gpu-status-check.md) | [JSON](../../sessions/95/959099c3384c191425c7.json) |
 | analysis 72b vs 7b item correlation | 100 | 0 | [Read transcript](analysis-72b-vs-7b-item-correlation.md) | [JSON](../../sessions/ef/efe6ef8f7d1c0fc9461b.json) |
 | analysis 72b vs 7b item correlation | 74 | 0 | [Read transcript](analysis-72b-vs-7b-item-correlation-copy-2.md) | [JSON](../../sessions/7c/7ccedb3dcb01e3bcbbe8.json) |
-| writing rebuttal framework | 63 | 0 | [Read transcript](writing-rebuttal-framework.md) | [JSON](../../sessions/39/39a3728664169646527e.json) |
 | analysis g model calculation | 39 | 0 | [Read transcript](analysis-g-model-calculation.md) | [JSON](../../sessions/dc/dc475860c5538c5b3105.json) |
-| analysis binary vs continuous dstudy — Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/art | 150 | 1 | [Read transcript](analysis-binary-vs-continuous-dstudy.md) | [JSON](../../sessions/6c/6c52c6dae481bf6bab4a.json) |
+| analysis binary vs continuous dstudy — Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/art | 148 | 1 | [Read transcript](analysis-binary-vs-continuous-dstudy.md) | [JSON](../../sessions/6c/6c52c6dae481bf6bab4a.json) |
 | analysis probit mape | 49 | 0 | [Read transcript](analysis-probit-mape.md) | [JSON](../../sessions/14/14e03fb33c56b4ef0691.json) |
 | analysis multifacet cost comparison | 116 | 0 | [Read transcript](analysis-multifacet-cost-comparison.md) | [JSON](../../sessions/5a/5a838ac2252bafcad93e.json) |
 | analysis held out prediction | 48 | 0 | [Read transcript](analysis-held-out-prediction.md) | [JSON](../../sessions/03/036dc6605abe2293baf1.json) |

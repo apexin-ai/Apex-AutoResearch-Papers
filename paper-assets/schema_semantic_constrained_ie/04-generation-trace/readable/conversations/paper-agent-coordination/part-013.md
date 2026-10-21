@@ -8,583 +8,7 @@
 
 ### Tool call
 
-_source line 7467 · 2026-05-22T07:08:41.019840+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
-  "old_string": "    \\item A comprehensive evaluation of type constraint enforcement across 3 IE datasets, 5 models (7--70B), and 2 tasks: (a)~for RE, the five-way ablation confirms that neither layer alone achieves $>$24\\% DR reduction while their composition yields 92--100\\% DR reduction in fine-tuned settings; zero-shot effectiveness is dataset-dependent (45--99\\%), with entity type errors accounting for most residual DR in complex schemas (\\S\\ref{sec:docred-results}); (b)~event extraction results on WikiEvents provide initial evidence for applicability beyond RE, covering 245 constraints across three tokenizer families (\\S\\ref{sec:wikievents}).",
-  "new_string": "    \\item A comprehensive evaluation across 3 IE datasets, 5 models (7--70B), and 2 tasks: under fine-tuning, DR\\,$\\leq$\\,0.09\\% at R-F1 43--46\\% with CF\\,$\\leq$\\,1.3\\%; zero-shot ablation reveals an enabling dependency where neither layer alone exceeds 24\\% DR reduction (\\S\\ref{sec:scierc-results}); event extraction on WikiEvents validates applicability beyond RE (\\S\\ref{sec:wikievents})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
-    "old_string": "    \\item A comprehensive evaluation of type constraint enforcement across 3 IE datasets, 5 models (7--70B), and 2 tasks: (a)~for RE, the five-way ablation confirms that neither layer alone achieves $>$24\\% DR reduction while their composition yields 92--100\\% DR reduction in fine-tuned settings; zero-shot effectiveness is dataset-dependent (45--99\\%), with entity type errors accounting for most residual DR in complex schemas (\\S\\ref{sec:docred-results}); (b)~event extraction results on WikiEvents provide initial evidence for applicability beyond RE, covering 245 constraints across three tokenizer families (\\S\\ref{sec:wikievents}).",
-    "new_string": "    \\item A comprehensive evaluation across 3 IE datasets, 5 models (7--70B), and 2 tasks: under fine-tuning, DR\\,$\\leq$\\,0.09\\% at R-F1 43--46\\% with CF\\,$\\leq$\\,1.3\\%; zero-shot ablation reveals an enabling dependency where neither layer alone exceeds 24\\% DR reduction (\\S\\ref{sec:scierc-results}); event extraction on WikiEvents validates applicability beyond RE (\\S\\ref{sec:wikievents})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7468 · 2026-05-22T07:08:41.070590+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7469 · 2026-05-22T07:08:44.758602+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
-  "offset": "70",
-  "limit": "20"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
-    "offset": "70",
-    "limit": "20"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7470 · 2026-05-22T07:08:44.833931+00:00_
-
-70	% ──────────────────────────────────────────
-71	\paragraph{Zero-shot diagnostic.}
-72	% phase2_scierc_unconstrained: DR=0.1537; phase2_scierc_full_s1: DR=0.0093
-73	% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836
-74	% bootstrap: delta=+0.13pp, CI=[-0.24,+0.58], p=0.5824
-75	Full S1 reduces DR from 15.37\% to 0.93\% ($\downarrow$94\%) while R-F1 is unchanged (8.23\,$\to$\,8.36, $p{=}0.58$).
-76	Per-relation DR drops to $\leq$2.82\%, reaching 0\% on 4/7 relations (Appendix~\ref{app:per-relation-landscape}).
-77	Post-hoc filtering discards up to 48\% of predictions rather than correcting them (Appendix~\ref{app:posthoc-extended}); CF rises to 9.90\% (\S\ref{sec:discussion}).
-78	
-79	% ──────────────────────────────────────────
-80	%  (b) Grammar layer
-81	% ──────────────────────────────────────────
-82	\paragraph{Layer contributions.}
-83	% phase2_scierc_grammar_only: RV=0, ET=0, DR=0.1484, R-F1=0.0823
-84	Grammar-only eliminates RV and ET with no F1 impact while DR remains at 14.84\%, the ceiling of grammar-based decoding~\cite{geng2023gcd}; grammar-only CF is near-zero (0.08\%), so CF originates from the semantic layer.
-85	Semantic-only reduces DR by only 24\% and cannot eliminate RV or ET; this is the \emph{empirical enabling dependency}: adding the grammar layer yields a further 92\% reduction (11.65\%\,$\to$\,0.93\%).
-86	
-87	
-88	% ──────────────────────────────────────────
-89	%  (d) S1 vs S2
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 75
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7471 · 2026-05-22T07:08:55.612031+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
-  "old_string": "Post-hoc filtering discards up to 48\\% of predictions rather than correcting them (Appendix~\\ref{app:posthoc-extended}); CF rises to 9.90\\% (\\S\\ref{sec:discussion}).",
-  "new_string": "Post-hoc filtering discards up to 48\\% of predictions rather than correcting them (Appendix~\\ref{app:posthoc-extended}).\nTotal type-violation burden (Tot.\\,=\\,DR+CF; Table~\\ref{tab:scierc-ablation}) decreases from 15.45\\% to 10.83\\% ($\\downarrow$30\\%), reflecting \\emph{violation conversion}: DR enforcement replaces ontologically invalid triples with individually valid but type-inconsistent ones (CF 0.08\\%\\,$\\to$\\,9.90\\%).\nUnder fine-tuning, this conversion resolves: Tot.\\ drops from 1.95\\% to 1.18\\% with CF\\,$\\leq$\\,1.3\\% (Table~\\ref{tab:composability})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
-    "old_string": "Post-hoc filtering discards up to 48\\% of predictions rather than correcting them (Appendix~\\ref{app:posthoc-extended}); CF rises to 9.90\\% (\\S\\ref{sec:discussion}).",
-    "new_string": "Post-hoc filtering discards up to 48\\% of predictions rather than correcting them (Appendix~\\ref{app:posthoc-extended}).\nTotal type-violation burden (Tot.\\,=\\,DR+CF; Table~\\ref{tab:scierc-ablation}) decreases from 15.45\\% to 10.83\\% ($\\downarrow$30\\%), reflecting \\emph{violation conversion}: DR enforcement replaces ontologically invalid triples with individually valid but type-inconsistent ones (CF 0.08\\%\\,$\\to$\\,9.90\\%).\nUnder fine-tuning, this conversion resolves: Tot.\\ drops from 1.95\\% to 1.18\\% with CF\\,$\\leq$\\,1.3\\% (Table~\\ref{tab:composability})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7472 · 2026-05-22T07:08:55.612696+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7473 · 2026-05-22T07:09:14.703031+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
-  "old_string": "\\paragraph{Grammar-constrained decoding.}\nXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} enforce format validity via CFG-based token masking.\nIn code generation, PICARD~\\cite{scholak2021picard} and \\citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata, but IE type environments accumulate dynamically (\\S\\ref{sec:composition}).",
-  "new_string": "\\paragraph{Constrained decoding.}\nXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} enforce format validity via CFG-based token masking.\nNeuroLogic Decoding~\\cite{lu2021neurologic} enforces predicate-logic constraints via beam-level reranking; OntoCoDec applies constraints per-token via forward masking, avoiding beam-width dependence.\nIn code generation, PICARD~\\cite{scholak2021picard} and \\citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata, but IE type environments accumulate dynamically (\\S\\ref{sec:composition})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
-    "old_string": "\\paragraph{Grammar-constrained decoding.}\nXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} enforce format validity via CFG-based token masking.\nIn code generation, PICARD~\\cite{scholak2021picard} and \\citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata, but IE type environments accumulate dynamically (\\S\\ref{sec:composition}).",
-    "new_string": "\\paragraph{Constrained decoding.}\nXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} enforce format validity via CFG-based token masking.\nNeuroLogic Decoding~\\cite{lu2021neurologic} enforces predicate-logic constraints via beam-level reranking; OntoCoDec applies constraints per-token via forward masking, avoiding beam-width dependence.\nIn code generation, PICARD~\\cite{scholak2021picard} and \\citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata, but IE type environments accumulate dynamically (\\S\\ref{sec:composition})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7474 · 2026-05-22T07:09:14.753855+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7475 · 2026-05-22T07:09:40.825992+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
-  "old_string": "\\paragraph{Constraint enforcement in IE.}\n\\citet{roth_yih_2004} and \\citet{riedel2010modeling} formulated hard type constraints via ILP; post-hoc validation~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation; EnriCo~\\cite{zaratiana2024enrico}, IterGen~\\cite{ugare2025itergen}, and DCCD~\\cite{dccd2026} enforce constraints via ASP, backtracking, or draft-conditioning.\nGrammar-only enforcement (GCD~\\cite{geng2023gcd}, BoostCD~\\cite{boostcd2025}) achieves only partial DR reduction (\\S\\ref{sec:constrained-baselines}).\nOntoCoDec uses forward-only token masking at $O(|V|)$ per step; extraction tasks are robust to format constraints~\\cite{tam2024letmespeak} despite reasoning degradation in other domains~\\cite{banerjee2025crane,formattax2026}.",
-  "new_string": "\\paragraph{Constraint enforcement in IE.}\n\\citet{roth_yih_2004} and \\citet{riedel2010modeling} formulated hard type constraints via ILP; post-hoc validation~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation but discards up to 48\\% of predictions including true positives.\nEnriCo~\\cite{zaratiana2024enrico} uses ASP; IterGen~\\cite{ugare2025itergen} backtracks on constraint violations---OntoCoDec instead uses forward-only token masking at $O(|V|)$ per step, avoiding the latency spikes of backtracking.\nGrammar-only enforcement (GCD~\\cite{geng2023gcd}, BoostCD~\\cite{boostcd2025}) achieves only 3\\% DR reduction (\\S\\ref{sec:constrained-baselines}); DCCD~\\cite{dccd2026} draft-conditions constrained decoding.\nExtraction tasks are robust to format constraints~\\cite{tam2024letmespeak} despite reasoning degradation in other domains~\\cite{banerjee2025crane,formattax2026}."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
-    "old_string": "\\paragraph{Constraint enforcement in IE.}\n\\citet{roth_yih_2004} and \\citet{riedel2010modeling} formulated hard type constraints via ILP; post-hoc validation~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation; EnriCo~\\cite{zaratiana2024enrico}, IterGen~\\cite{ugare2025itergen}, and DCCD~\\cite{dccd2026} enforce constraints via ASP, backtracking, or draft-conditioning.\nGrammar-only enforcement (GCD~\\cite{geng2023gcd}, BoostCD~\\cite{boostcd2025}) achieves only partial DR reduction (\\S\\ref{sec:constrained-baselines}).\nOntoCoDec uses forward-only token masking at $O(|V|)$ per step; extraction tasks are robust to format constraints~\\cite{tam2024letmespeak} despite reasoning degradation in other domains~\\cite{banerjee2025crane,formattax2026}.",
-    "new_string": "\\paragraph{Constraint enforcement in IE.}\n\\citet{roth_yih_2004} and \\citet{riedel2010modeling} formulated hard type constraints via ILP; post-hoc validation~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation but discards up to 48\\% of predictions including true positives.\nEnriCo~\\cite{zaratiana2024enrico} uses ASP; IterGen~\\cite{ugare2025itergen} backtracks on constraint violations---OntoCoDec instead uses forward-only token masking at $O(|V|)$ per step, avoiding the latency spikes of backtracking.\nGrammar-only enforcement (GCD~\\cite{geng2023gcd}, BoostCD~\\cite{boostcd2025}) achieves only 3\\% DR reduction (\\S\\ref{sec:constrained-baselines}); DCCD~\\cite{dccd2026} draft-conditions constrained decoding.\nExtraction tasks are robust to format constraints~\\cite{tam2024letmespeak} despite reasoning degradation in other domains~\\cite{banerjee2025crane,formattax2026}."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7476 · 2026-05-22T07:09:40.876798+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7477 · 2026-05-22T07:09:47.523862+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "neurologic|lu2021neuro",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
-  "glob": "*.bib",
-  "output_mode": "content",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "neurologic|lu2021neuro",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
-    "glob": "*.bib",
-    "output_mode": "content",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7478 · 2026-05-22T07:09:47.559834+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib:276:@inproceedings{lu2021neurologic,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib:277:  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 35
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7479 · 2026-05-22T07:09:53.522832+00:00_
-
-called mcp__agent-ml-research__paper_compile_and_check
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
-
-```json
-{
-  "project": "schema_semantic_constrained_ie",
-  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
-  "max_pages": "8",
-  "clean": "True",
-  "preview": "False"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "tool_args": {
-    "project": "schema_semantic_constrained_ie",
-    "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
-    "max_pages": "8",
-    "clean": "True",
-    "preview": "False"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7480 · 2026-05-22T07:10:02.169242+00:00_
-
-{"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524109 string characters out of 5468411\\n 993630 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747634 words of font info for 56
-…[truncated 11046 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "elapsed_ms": 8646
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7481 · 2026-05-22T07:12:44.676246+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__paper_compile_and_check",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__paper_compile_and_check",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7482 · 2026-05-22T07:12:44.726830+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7483 · 2026-05-22T07:12:47.244497+00:00_
-
-called mcp__agent-ml-research__paper_compile_and_check
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
-
-```json
-{
-  "project": "schema_semantic_constrained_ie",
-  "max_pages": "8",
-  "preview": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "tool_args": {
-    "project": "schema_semantic_constrained_ie",
-    "max_pages": "8",
-    "preview": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7484 · 2026-05-22T07:12:49.818462+00:00_
-
-{"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524109 string characters out of 5468411\\n 993630 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747634 words of font info for 56
-…[truncated 15670 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-  "tool": "mcp__agent-ml-research__paper_compile_and_check",
-  "elapsed_ms": 2573
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7485 · 2026-05-22T07:13:00.812986+00:00_
+_source line 7471 · 2026-05-22T07:13:00.812986+00:00_
 
 called Read
 
@@ -618,7 +42,7 @@ called Read
 
 ### Tool call
 
-_source line 7486 · 2026-05-22T07:13:01.365563+00:00_
+_source line 7472 · 2026-05-22T07:13:01.365563+00:00_
 
 called Read
 
@@ -652,7 +76,7 @@ called Read
 
 ### Tool result
 
-_source line 7487 · 2026-05-22T07:13:01.467112+00:00_
+_source line 7473 · 2026-05-22T07:13:01.467112+00:00_
 
 
 
@@ -674,7 +98,7 @@ _source line 7487 · 2026-05-22T07:13:01.467112+00:00_
 
 ### Tool result
 
-_source line 7488 · 2026-05-22T07:13:01.467952+00:00_
+_source line 7474 · 2026-05-22T07:13:01.467952+00:00_
 
 
 
@@ -696,7 +120,7 @@ _source line 7488 · 2026-05-22T07:13:01.467952+00:00_
 
 ### Tool call
 
-_source line 7489 · 2026-05-22T07:13:14.774891+00:00_
+_source line 7475 · 2026-05-22T07:13:14.774891+00:00_
 
 called Read
 
@@ -730,7 +154,7 @@ called Read
 
 ### Tool result
 
-_source line 7490 · 2026-05-22T07:13:15.629566+00:00_
+_source line 7476 · 2026-05-22T07:13:15.629566+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -756,7 +180,7 @@ _source line 7490 · 2026-05-22T07:13:15.629566+00:00_
 
 ### Tool call
 
-_source line 7491 · 2026-05-22T07:13:15.629982+00:00_
+_source line 7477 · 2026-05-22T07:13:15.629982+00:00_
 
 called Read
 
@@ -790,7 +214,7 @@ called Read
 
 ### Tool result
 
-_source line 7492 · 2026-05-22T07:13:16.259313+00:00_
+_source line 7478 · 2026-05-22T07:13:16.259313+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -861,7 +285,7 @@ _source line 7492 · 2026-05-22T07:13:16.259313+00:00_
 
 ### Tool call
 
-_source line 7493 · 2026-05-22T07:13:16.259756+00:00_
+_source line 7479 · 2026-05-22T07:13:16.259756+00:00_
 
 called Read
 
@@ -895,7 +319,7 @@ called Read
 
 ### Tool result
 
-_source line 7494 · 2026-05-22T07:13:16.310360+00:00_
+_source line 7480 · 2026-05-22T07:13:16.310360+00:00_
 
 1	% Section 5 — DocRED Results (compressed, 1450→~600 words)
 2	% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
@@ -973,7 +397,7 @@ _source line 7494 · 2026-05-22T07:13:16.310360+00:00_
 
 ### Tool call
 
-_source line 7495 · 2026-05-22T07:14:50.102491+00:00_
+_source line 7481 · 2026-05-22T07:14:50.102491+00:00_
 
 called Read
 
@@ -1007,7 +431,7 @@ called Read
 
 ### Tool call
 
-_source line 7496 · 2026-05-22T07:14:50.304915+00:00_
+_source line 7482 · 2026-05-22T07:14:50.304915+00:00_
 
 called Read
 
@@ -1041,7 +465,7 @@ called Read
 
 ### Tool result
 
-_source line 7497 · 2026-05-22T07:14:50.355802+00:00_
+_source line 7483 · 2026-05-22T07:14:50.355802+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -1105,7 +529,7 @@ _source line 7497 · 2026-05-22T07:14:50.355802+00:00_
 
 ### Tool result
 
-_source line 7498 · 2026-05-22T07:14:50.759804+00:00_
+_source line 7484 · 2026-05-22T07:14:50.759804+00:00_
 
 
 
@@ -1127,7 +551,7 @@ _source line 7498 · 2026-05-22T07:14:50.759804+00:00_
 
 ### Tool call
 
-_source line 7499 · 2026-05-22T07:16:44.624545+00:00_
+_source line 7485 · 2026-05-22T07:16:44.624545+00:00_
 
 called Edit
 
@@ -1167,7 +591,7 @@ called Edit
 
 ### Tool result
 
-_source line 7500 · 2026-05-22T07:16:45.077287+00:00_
+_source line 7486 · 2026-05-22T07:16:45.077287+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -1189,7 +613,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7501 · 2026-05-22T07:16:48.875035+00:00_
+_source line 7487 · 2026-05-22T07:16:48.875035+00:00_
 
 called Edit
 
@@ -1229,7 +653,7 @@ called Edit
 
 ### Tool result
 
-_source line 7502 · 2026-05-22T07:16:49.327336+00:00_
+_source line 7488 · 2026-05-22T07:16:49.327336+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -1251,7 +675,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7503 · 2026-05-22T07:16:52.651289+00:00_
+_source line 7489 · 2026-05-22T07:16:52.651289+00:00_
 
 called Edit
 
@@ -1291,7 +715,7 @@ called Edit
 
 ### Tool result
 
-_source line 7504 · 2026-05-22T07:16:53.103773+00:00_
+_source line 7490 · 2026-05-22T07:16:53.103773+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -1313,7 +737,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7505 · 2026-05-22T07:16:55.463929+00:00_
+_source line 7491 · 2026-05-22T07:16:55.463929+00:00_
 
 called Edit
 
@@ -1353,7 +777,7 @@ called Edit
 
 ### Tool result
 
-_source line 7506 · 2026-05-22T07:16:55.916236+00:00_
+_source line 7492 · 2026-05-22T07:16:55.916236+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -1375,7 +799,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7507 · 2026-05-22T07:16:58.300959+00:00_
+_source line 7493 · 2026-05-22T07:16:58.300959+00:00_
 
 called Edit
 
@@ -1415,7 +839,7 @@ called Edit
 
 ### Tool result
 
-_source line 7508 · 2026-05-22T07:16:58.753207+00:00_
+_source line 7494 · 2026-05-22T07:16:58.753207+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -1437,7 +861,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7509 · 2026-05-22T07:17:00.466110+00:00_
+_source line 7495 · 2026-05-22T07:17:00.466110+00:00_
 
 called Edit
 
@@ -1477,7 +901,7 @@ called Edit
 
 ### Tool result
 
-_source line 7510 · 2026-05-22T07:17:00.617370+00:00_
+_source line 7496 · 2026-05-22T07:17:00.617370+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully.
 
@@ -1499,7 +923,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7511 · 2026-05-22T07:17:08.500443+00:00_
+_source line 7497 · 2026-05-22T07:17:08.500443+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -1537,7 +961,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7512 · 2026-05-22T07:17:15.024640+00:00_
+_source line 7498 · 2026-05-22T07:17:15.024640+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524109 string characters out of 5468411\\n 993688 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747634 words of font info for 56
 …[truncated 15602 chars]
@@ -1560,7 +984,7 @@ _source line 7512 · 2026-05-22T07:17:15.024640+00:00_
 
 ### Tool call
 
-_source line 7513 · 2026-05-22T07:17:21.631730+00:00_
+_source line 7499 · 2026-05-22T07:17:21.631730+00:00_
 
 called Read
 
@@ -1594,7 +1018,7 @@ called Read
 
 ### Tool result
 
-_source line 7514 · 2026-05-22T07:17:21.934223+00:00_
+_source line 7500 · 2026-05-22T07:17:21.934223+00:00_
 
 
 
@@ -1616,7 +1040,7 @@ _source line 7514 · 2026-05-22T07:17:21.934223+00:00_
 
 ### Tool call
 
-_source line 7515 · 2026-05-22T07:17:21.934724+00:00_
+_source line 7501 · 2026-05-22T07:17:21.934724+00:00_
 
 called Read
 
@@ -1650,7 +1074,7 @@ called Read
 
 ### Tool result
 
-_source line 7516 · 2026-05-22T07:17:22.540007+00:00_
+_source line 7502 · 2026-05-22T07:17:22.540007+00:00_
 
 
 
@@ -1672,7 +1096,7 @@ _source line 7516 · 2026-05-22T07:17:22.540007+00:00_
 
 ### Tool call
 
-_source line 7517 · 2026-05-22T07:18:33.050843+00:00_
+_source line 7503 · 2026-05-22T07:18:33.050843+00:00_
 
 called Edit
 
@@ -1712,7 +1136,7 @@ called Edit
 
 ### Tool result
 
-_source line 7518 · 2026-05-22T07:18:36.314063+00:00_
+_source line 7504 · 2026-05-22T07:18:36.314063+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex has been updated successfully.
 
@@ -1734,7 +1158,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7519 · 2026-05-22T07:18:36.917896+00:00_
+_source line 7505 · 2026-05-22T07:18:36.917896+00:00_
 
 called Edit
 
@@ -1774,7 +1198,7 @@ called Edit
 
 ### Tool result
 
-_source line 7520 · 2026-05-22T07:18:36.968629+00:00_
+_source line 7506 · 2026-05-22T07:18:36.968629+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully.
 
@@ -1796,7 +1220,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7521 · 2026-05-22T07:18:46.710719+00:00_
+_source line 7507 · 2026-05-22T07:18:46.710719+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -1834,7 +1258,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7522 · 2026-05-22T07:18:53.441997+00:00_
+_source line 7508 · 2026-05-22T07:18:53.441997+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524109 string characters out of 5468411\\n 993688 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747634 words of font info for 56
 …[truncated 15602 chars]
@@ -1857,7 +1281,7 @@ _source line 7522 · 2026-05-22T07:18:53.441997+00:00_
 
 ### Tool call
 
-_source line 7523 · 2026-05-22T07:18:58.909030+00:00_
+_source line 7509 · 2026-05-22T07:18:58.909030+00:00_
 
 called Read
 
@@ -1891,7 +1315,7 @@ called Read
 
 ### Tool result
 
-_source line 7524 · 2026-05-22T07:18:58.970394+00:00_
+_source line 7510 · 2026-05-22T07:18:58.970394+00:00_
 
 
 
@@ -1913,7 +1337,7 @@ _source line 7524 · 2026-05-22T07:18:58.970394+00:00_
 
 ### Tool call
 
-_source line 7525 · 2026-05-22T07:19:28.364266+00:00_
+_source line 7511 · 2026-05-22T07:19:28.364266+00:00_
 
 called Read
 
@@ -1947,7 +1371,7 @@ called Read
 
 ### Tool result
 
-_source line 7526 · 2026-05-22T07:19:28.415078+00:00_
+_source line 7512 · 2026-05-22T07:19:28.415078+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -1993,7 +1417,7 @@ _source line 7526 · 2026-05-22T07:19:28.415078+00:00_
 
 ### Tool call
 
-_source line 7527 · 2026-05-22T07:19:35.748650+00:00_
+_source line 7513 · 2026-05-22T07:19:35.748650+00:00_
 
 called Edit
 
@@ -2033,7 +1457,7 @@ called Edit
 
 ### Tool result
 
-_source line 7528 · 2026-05-22T07:19:35.799517+00:00_
+_source line 7514 · 2026-05-22T07:19:35.799517+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -2055,7 +1479,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7529 · 2026-05-22T07:19:41.122901+00:00_
+_source line 7515 · 2026-05-22T07:19:41.122901+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2093,7 +1517,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7530 · 2026-05-22T07:19:45.592106+00:00_
+_source line 7516 · 2026-05-22T07:19:45.592106+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32])\\n[33] [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524110 string characters out of 5468411\\n 993653 words of memory out of 5000000\\n 55835 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 10909 chars]
@@ -2116,7 +1540,7 @@ _source line 7530 · 2026-05-22T07:19:45.592106+00:00_
 
 ### Tool call
 
-_source line 7531 · 2026-05-22T07:19:57.104985+00:00_
+_source line 7517 · 2026-05-22T07:19:57.104985+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2154,7 +1578,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7532 · 2026-05-22T07:20:01.533390+00:00_
+_source line 7518 · 2026-05-22T07:20:01.533390+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32])\\n[33] [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524110 string characters out of 5468411\\n 993653 words of memory out of 5000000\\n 55835 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 15534 chars]
@@ -2177,7 +1601,7 @@ _source line 7532 · 2026-05-22T07:20:01.533390+00:00_
 
 ### Tool call
 
-_source line 7533 · 2026-05-22T07:20:12.987444+00:00_
+_source line 7519 · 2026-05-22T07:20:12.987444+00:00_
 
 called Read
 
@@ -2211,7 +1635,7 @@ called Read
 
 ### Tool call
 
-_source line 7534 · 2026-05-22T07:20:13.541435+00:00_
+_source line 7520 · 2026-05-22T07:20:13.541435+00:00_
 
 called Read
 
@@ -2245,7 +1669,7 @@ called Read
 
 ### Tool result
 
-_source line 7535 · 2026-05-22T07:20:13.843998+00:00_
+_source line 7521 · 2026-05-22T07:20:13.843998+00:00_
 
 
 
@@ -2267,7 +1691,7 @@ _source line 7535 · 2026-05-22T07:20:13.843998+00:00_
 
 ### Tool result
 
-_source line 7536 · 2026-05-22T07:20:14.196516+00:00_
+_source line 7522 · 2026-05-22T07:20:14.196516+00:00_
 
 
 
@@ -2289,7 +1713,7 @@ _source line 7536 · 2026-05-22T07:20:14.196516+00:00_
 
 ### Tool call
 
-_source line 7537 · 2026-05-22T07:20:33.160220+00:00_
+_source line 7523 · 2026-05-22T07:20:33.160220+00:00_
 
 called ToolSearch
 
@@ -2325,7 +1749,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7538 · 2026-05-22T07:20:33.210997+00:00_
+_source line 7524 · 2026-05-22T07:20:33.210997+00:00_
 
 
 
@@ -2347,7 +1771,7 @@ _source line 7538 · 2026-05-22T07:20:33.210997+00:00_
 
 ### Tool call
 
-_source line 7539 · 2026-05-22T07:20:55.173379+00:00_
+_source line 7525 · 2026-05-22T07:20:55.173379+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -2383,7 +1807,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7540 · 2026-05-22T07:20:59.753904+00:00_
+_source line 7526 · 2026-05-22T07:20:59.753904+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -2405,7 +1829,7 @@ _source line 7540 · 2026-05-22T07:20:59.753904+00:00_
 
 ### Tool call
 
-_source line 7541 · 2026-05-22T07:21:06.942115+00:00_
+_source line 7527 · 2026-05-22T07:21:06.942115+00:00_
 
 called Grep
 
@@ -2445,7 +1869,7 @@ called Grep
 
 ### Tool result
 
-_source line 7542 · 2026-05-22T07:21:06.993040+00:00_
+_source line 7528 · 2026-05-22T07:21:06.993040+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:21:DR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\,$\leq$\,1.3\% fine-tuned; \S\ref{sec:scierc-results}); zero-shot evaluation (7--70B) reveals DR drops 76--99\% for calibrated models, but total violations (DR+CF) decrease by $\sim$31\%, reflecting conversion that fine-tuning resolves (\S\ref{sec:cross-model}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:26:    \item A comprehensive evaluation across 3 IE datasets, 5 models (7--70B), and 2 tasks: under fine-tuning, DR\,$\leq$\,0.09\% at R-F1 43--46\% with CF\,$\leq$\,1.3\%; zero-shot ablation reveals an enabling dependency where neither layer alone exceeds 24\% DR reduction (\S\ref{sec:scierc-results}); event extraction on WikiEvents validates applicability beyond RE (\S\ref{sec:wikievents}).
@@ -2471,7 +1895,7 @@ _source line 7542 · 2026-05-22T07:21:06.993040+00:00_
 
 ### Tool call
 
-_source line 7543 · 2026-05-22T07:21:40.610394+00:00_
+_source line 7529 · 2026-05-22T07:21:40.610394+00:00_
 
 called Edit
 
@@ -2511,7 +1935,7 @@ called Edit
 
 ### Tool result
 
-_source line 7544 · 2026-05-22T07:21:40.661542+00:00_
+_source line 7530 · 2026-05-22T07:21:40.661542+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex has been updated successfully.
 
@@ -2533,7 +1957,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Assistant
 
-_source line 7545 · 2026-05-22T07:22:02.906254+00:00_
+_source line 7531 · 2026-05-22T07:22:02.906254+00:00_
 
 Dream 审稿修订全部完成，页面溢出已修复（34 页，正文 §1-§7 在 8 页内），CF 数字不一致已统一为 ≤1.3%。
 
@@ -2565,7 +1989,7 @@ Dream 审稿修订全部完成，页面溢出已修复（34 页，正文 §1-§7
 
 ### User
 
-_source line 7546 · 2026-05-22T07:22:03.453994+00:00_
+_source line 7532 · 2026-05-22T07:22:03.453994+00:00_
 
 [Director 指令] [Patch — 小修]
 
@@ -2590,7 +2014,7 @@ CF≤1.2% vs CF≤1.3% 不一致：SciERC 70B LoRA CF=1.33%，8B FT 的 CF 最�
 
 ### Tool call
 
-_source line 7547 · 2026-05-22T07:22:16.064443+00:00_
+_source line 7533 · 2026-05-22T07:22:16.064443+00:00_
 
 called ToolSearch
 
@@ -2626,7 +2050,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7548 · 2026-05-22T07:22:16.064974+00:00_
+_source line 7534 · 2026-05-22T07:22:16.064974+00:00_
 
 
 
@@ -2648,7 +2072,7 @@ _source line 7548 · 2026-05-22T07:22:16.064974+00:00_
 
 ### Tool call
 
-_source line 7549 · 2026-05-22T07:22:21.798389+00:00_
+_source line 7535 · 2026-05-22T07:22:21.798389+00:00_
 
 called Grep
 
@@ -2686,7 +2110,7 @@ called Grep
 
 ### Tool result
 
-_source line 7550 · 2026-05-22T07:22:22.100113+00:00_
+_source line 7536 · 2026-05-22T07:22:22.100113+00:00_
 
 27:  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF & Tot.\,$\downarrow$
 59:Tot.\ = DR + CF (total type-violation burden).
@@ -2717,7 +2141,7 @@ _source line 7550 · 2026-05-22T07:22:22.100113+00:00_
 
 ### Tool call
 
-_source line 7551 · 2026-05-22T07:22:22.451853+00:00_
+_source line 7537 · 2026-05-22T07:22:22.451853+00:00_
 
 called Read
 
@@ -2755,7 +2179,7 @@ called Read
 
 ### Tool result
 
-_source line 7552 · 2026-05-22T07:22:22.502646+00:00_
+_source line 7538 · 2026-05-22T07:22:22.502646+00:00_
 
 108	\begin{table}[t]
 109	\centering
@@ -2816,7 +2240,7 @@ _source line 7552 · 2026-05-22T07:22:22.502646+00:00_
 
 ### Tool call
 
-_source line 7553 · 2026-05-22T07:23:23.512598+00:00_
+_source line 7539 · 2026-05-22T07:23:23.512598+00:00_
 
 called Read
 
@@ -2850,7 +2274,7 @@ called Read
 
 ### Tool result
 
-_source line 7554 · 2026-05-22T07:23:23.717002+00:00_
+_source line 7540 · 2026-05-22T07:23:23.717002+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -2914,7 +2338,7 @@ _source line 7554 · 2026-05-22T07:23:23.717002+00:00_
 
 ### Tool call
 
-_source line 7555 · 2026-05-22T07:23:23.717571+00:00_
+_source line 7541 · 2026-05-22T07:23:23.717571+00:00_
 
 called Read
 
@@ -2948,7 +2372,7 @@ called Read
 
 ### Tool result
 
-_source line 7556 · 2026-05-22T07:23:23.821934+00:00_
+_source line 7542 · 2026-05-22T07:23:23.821934+00:00_
 
 1	\section{Full Fine-Tuning Baseline}
 2	\label{app:full-ft}
@@ -2994,7 +2418,7 @@ _source line 7556 · 2026-05-22T07:23:23.821934+00:00_
 
 ### Tool call
 
-_source line 7557 · 2026-05-22T07:23:57.177200+00:00_
+_source line 7543 · 2026-05-22T07:23:57.177200+00:00_
 
 called Grep
 
@@ -3034,7 +2458,7 @@ called Grep
 
 ### Tool result
 
-_source line 7558 · 2026-05-22T07:23:57.227926+00:00_
+_source line 7544 · 2026-05-22T07:23:57.227926+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:21:DR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\,$\leq$\,1.3\% fine-tuned; \S\ref{sec:scierc-results}); zero-shot evaluation (7--70B) reveals DR drops 76--99\% for calibrated models, but total violations (DR+CF) decrease by $\sim$31\%, reflecting conversion that fine-tuning resolves (\S\ref{sec:cross-model}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:26:    \item A comprehensive evaluation across 3 IE datasets, 5 models (7--70B), and 2 tasks: under fine-tuning, DR\,$\leq$\,0.09\% at R-F1 43--46\% with CF\,$\leq$\,1.3\%; zero-shot ablation reveals an enabling dependency where neither layer alone exceeds 24\% DR reduction (\S\ref{sec:scierc-results}); event extraction on WikiEvents validates applicability beyond RE (\S\ref{sec:wikievents}).
@@ -3060,7 +2484,7 @@ _source line 7558 · 2026-05-22T07:23:57.227926+00:00_
 
 ### Tool call
 
-_source line 7559 · 2026-05-22T07:24:08.309051+00:00_
+_source line 7545 · 2026-05-22T07:24:08.309051+00:00_
 
 called Grep
 
@@ -3100,7 +2524,7 @@ called Grep
 
 ### Tool result
 
-_source line 7560 · 2026-05-22T07:24:08.359775+00:00_
+_source line 7546 · 2026-05-22T07:24:08.359775+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:73:CF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\,$\leq$\,1\% under greedy constrained decoding), S1 introduces CF violations (up to 12.02\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\%\,$\to$\,1.27\%) by constraining type assignments to schema-valid values.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex:58:CF direction depends on calibration: S1 introduces CF for calibrated models (up to 12.02\%; \S\ref{sec:discussion}) but reduces it for Mistral (56.87\%\,$\to$\,1.27\%; poor entity typing limits DR reduction to 42\%); fine-tuning resolves both (\S\ref{sec:composability}).
@@ -3124,7 +2548,7 @@ _source line 7560 · 2026-05-22T07:24:08.359775+00:00_
 
 ### Tool call
 
-_source line 7561 · 2026-05-22T07:24:19.913039+00:00_
+_source line 7547 · 2026-05-22T07:24:19.913039+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -3160,7 +2584,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7562 · 2026-05-22T07:24:23.987064+00:00_
+_source line 7548 · 2026-05-22T07:24:23.987064+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -3182,7 +2606,7 @@ _source line 7562 · 2026-05-22T07:24:23.987064+00:00_
 
 ### Assistant
 
-_source line 7563 · 2026-05-22T07:24:32.199146+00:00_
+_source line 7549 · 2026-05-22T07:24:32.199146+00:00_
 
 CF bound 统一完成。全文 5 处 FT CF bound 已全部对齐为 CF≤1.3%，无残留不一致。
 
@@ -3209,7 +2633,7 @@ CF bound 统一完成。全文 5 处 FT CF bound 已全部对齐为 CF≤1.3%，
 
 ### User
 
-_source line 7564 · 2026-05-22T07:24:32.785503+00:00_
+_source line 7550 · 2026-05-22T07:24:32.785503+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -3230,7 +2654,7 @@ _source line 7564 · 2026-05-22T07:24:32.785503+00:00_
 
 ### Assistant
 
-_source line 7565 · 2026-05-22T07:24:39.359060+00:00_
+_source line 7551 · 2026-05-22T07:24:39.359060+00:00_
 
 已在上一轮通过 `paper_agent_post_to_director` 汇报，Director 已收到。无需重复发送。
 
@@ -3257,7 +2681,7 @@ _source line 7565 · 2026-05-22T07:24:39.359060+00:00_
 
 ### User
 
-_source line 7566 · 2026-05-22T07:24:39.886647+00:00_
+_source line 7552 · 2026-05-22T07:24:39.886647+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -3278,7 +2702,7 @@ _source line 7566 · 2026-05-22T07:24:39.886647+00:00_
 
 ### Assistant
 
-_source line 7567 · 2026-05-22T07:24:47.233159+00:00_
+_source line 7553 · 2026-05-22T07:24:47.233159+00:00_
 
 这是误报。我已在完成 CF bound 统一后通过 `paper_agent_post_to_director` 汇报了结果（两次：Dream 修订完成 + CF bound 统一完成）。Director 已收到，无需重复发送。
 
@@ -3305,7 +2729,7 @@ _source line 7567 · 2026-05-22T07:24:47.233159+00:00_
 
 ### User
 
-_source line 7568 · 2026-05-22T08:00:31.221145+00:00_
+_source line 7554 · 2026-05-22T08:00:31.221145+00:00_
 
 [Director 指令] [Patch — violation_checker bug 修复后的数据更新]
 
@@ -3345,7 +2769,7 @@ DocRED 数字不受影响（eval_d064.py 无此 bug）。SciERC FT 主表数字�
 
 ### Tool call
 
-_source line 7569 · 2026-05-22T08:00:45.515912+00:00_
+_source line 7555 · 2026-05-22T08:00:45.515912+00:00_
 
 called Read
 
@@ -3383,7 +2807,7 @@ called Read
 
 ### Tool result
 
-_source line 7570 · 2026-05-22T08:00:45.668972+00:00_
+_source line 7556 · 2026-05-22T08:00:45.668972+00:00_
 
 485	\label{tab:lucky-violations}
 486	\end{table}
@@ -3440,7 +2864,7 @@ _source line 7570 · 2026-05-22T08:00:45.668972+00:00_
 
 ### Tool call
 
-_source line 7571 · 2026-05-22T08:01:02.165259+00:00_
+_source line 7557 · 2026-05-22T08:01:02.165259+00:00_
 
 called Edit
 
@@ -3480,7 +2904,7 @@ called Edit
 
 ### Tool result
 
-_source line 7572 · 2026-05-22T08:01:02.670138+00:00_
+_source line 7558 · 2026-05-22T08:01:02.670138+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -3502,7 +2926,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7573 · 2026-05-22T08:01:04.280985+00:00_
+_source line 7559 · 2026-05-22T08:01:04.280985+00:00_
 
 called Edit
 
@@ -3542,7 +2966,7 @@ called Edit
 
 ### Tool result
 
-_source line 7574 · 2026-05-22T08:01:04.583257+00:00_
+_source line 7560 · 2026-05-22T08:01:04.583257+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -3564,7 +2988,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7575 · 2026-05-22T08:01:05.286404+00:00_
+_source line 7561 · 2026-05-22T08:01:05.286404+00:00_
 
 called Grep
 
@@ -3604,7 +3028,7 @@ called Grep
 
 ### Tool result
 
-_source line 7576 · 2026-05-22T08:01:05.387426+00:00_
+_source line 7562 · 2026-05-22T08:01:05.387426+00:00_
 
 No matches found
 
@@ -3626,7 +3050,7 @@ No matches found
 
 ### Tool call
 
-_source line 7577 · 2026-05-22T08:01:16.614100+00:00_
+_source line 7563 · 2026-05-22T08:01:16.614100+00:00_
 
 called Edit
 
@@ -3666,7 +3090,7 @@ called Edit
 
 ### Tool result
 
-_source line 7578 · 2026-05-22T08:01:16.665263+00:00_
+_source line 7564 · 2026-05-22T08:01:16.665263+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -3688,7 +3112,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7579 · 2026-05-22T08:01:32.069869+00:00_
+_source line 7565 · 2026-05-22T08:01:32.069869+00:00_
 
 called Read
 
@@ -3726,7 +3150,7 @@ called Read
 
 ### Tool result
 
-_source line 7580 · 2026-05-22T08:01:32.070344+00:00_
+_source line 7566 · 2026-05-22T08:01:32.070344+00:00_
 
 21	\paragraph{Comparison with grammar-constrained approaches.}
 22	\label{sec:constrained-baselines}
@@ -3752,7 +3176,7 @@ _source line 7580 · 2026-05-22T08:01:32.070344+00:00_
 
 ### Tool call
 
-_source line 7581 · 2026-05-22T08:01:40.814725+00:00_
+_source line 7567 · 2026-05-22T08:01:40.814725+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -3790,7 +3214,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7582 · 2026-05-22T08:01:45.937723+00:00_
+_source line 7568 · 2026-05-22T08:01:45.937723+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32])\\n[33] [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524110 string characters out of 5468411\\n 993653 words of memory out of 5000000\\n 55835 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 10993 chars]
@@ -3813,7 +3237,7 @@ _source line 7582 · 2026-05-22T08:01:45.937723+00:00_
 
 ### Tool call
 
-_source line 7583 · 2026-05-22T08:01:58.560722+00:00_
+_source line 7569 · 2026-05-22T08:01:58.560722+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -3849,7 +3273,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7584 · 2026-05-22T08:02:02.986099+00:00_
+_source line 7570 · 2026-05-22T08:02:02.986099+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -3871,7 +3295,7 @@ _source line 7584 · 2026-05-22T08:02:02.986099+00:00_
 
 ### Assistant
 
-_source line 7585 · 2026-05-22T08:02:07.401792+00:00_
+_source line 7571 · 2026-05-22T08:02:07.401792+00:00_
 
 编译成功，34 页（8 页正文 + appendix），无 critical warnings。
 
@@ -3898,7 +3322,7 @@ _source line 7585 · 2026-05-22T08:02:07.401792+00:00_
 
 ### User
 
-_source line 7586 · 2026-05-22T08:02:07.957548+00:00_
+_source line 7572 · 2026-05-22T08:02:07.957548+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -3919,7 +3343,7 @@ _source line 7586 · 2026-05-22T08:02:07.957548+00:00_
 
 ### Assistant
 
-_source line 7587 · 2026-05-22T08:02:14.543546+00:00_
+_source line 7573 · 2026-05-22T08:02:14.543546+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报，Director 已收到。系统提醒误触发。
 
@@ -3946,7 +3370,7 @@ _source line 7587 · 2026-05-22T08:02:14.543546+00:00_
 
 ### User
 
-_source line 7588 · 2026-05-22T08:46:01.018778+00:00_
+_source line 7574 · 2026-05-22T08:46:01.018778+00:00_
 
 [Director 指令] [Patch — Trie baseline 叙事强化，基于 Reviewer Report #70]
 
@@ -3990,7 +3414,7 @@ section5_runtime.tex 的 "Comparison with grammar-constrained approaches" 段落
 
 ### Tool call
 
-_source line 7589 · 2026-05-22T08:46:12.762064+00:00_
+_source line 7575 · 2026-05-22T08:46:12.762064+00:00_
 
 called Read
 
@@ -4024,7 +3448,7 @@ called Read
 
 ### Tool result
 
-_source line 7590 · 2026-05-22T08:46:12.812813+00:00_
+_source line 7576 · 2026-05-22T08:46:12.812813+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -4069,7 +3493,7 @@ _source line 7590 · 2026-05-22T08:46:12.812813+00:00_
 
 ### Tool call
 
-_source line 7591 · 2026-05-22T08:46:25.312201+00:00_
+_source line 7577 · 2026-05-22T08:46:25.312201+00:00_
 
 called Edit
 
@@ -4109,7 +3533,7 @@ called Edit
 
 ### Tool result
 
-_source line 7592 · 2026-05-22T08:46:25.363023+00:00_
+_source line 7578 · 2026-05-22T08:46:25.363023+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -4131,7 +3555,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7593 · 2026-05-22T08:46:32.945992+00:00_
+_source line 7579 · 2026-05-22T08:46:32.945992+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4169,7 +3593,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7594 · 2026-05-22T08:46:40.124167+00:00_
+_source line 7580 · 2026-05-22T08:46:40.124167+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524133 string characters out of 5468411\\n 994689 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 15700 chars]
@@ -4192,7 +3616,7 @@ _source line 7594 · 2026-05-22T08:46:40.124167+00:00_
 
 ### Tool call
 
-_source line 7595 · 2026-05-22T08:46:45.497540+00:00_
+_source line 7581 · 2026-05-22T08:46:45.497540+00:00_
 
 called Read
 
@@ -4226,7 +3650,7 @@ called Read
 
 ### Tool result
 
-_source line 7596 · 2026-05-22T08:46:45.550488+00:00_
+_source line 7582 · 2026-05-22T08:46:45.550488+00:00_
 
 
 
@@ -4248,7 +3672,7 @@ _source line 7596 · 2026-05-22T08:46:45.550488+00:00_
 
 ### Tool call
 
-_source line 7597 · 2026-05-22T08:47:54.343897+00:00_
+_source line 7583 · 2026-05-22T08:47:54.343897+00:00_
 
 called Edit
 
@@ -4288,7 +3712,7 @@ called Edit
 
 ### Tool result
 
-_source line 7598 · 2026-05-22T08:47:54.394773+00:00_
+_source line 7584 · 2026-05-22T08:47:54.394773+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -4310,7 +3734,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7599 · 2026-05-22T08:48:24.369494+00:00_
+_source line 7585 · 2026-05-22T08:48:24.369494+00:00_
 
 called Edit
 
@@ -4350,7 +3774,7 @@ called Edit
 
 ### Tool result
 
-_source line 7600 · 2026-05-22T08:48:24.370079+00:00_
+_source line 7586 · 2026-05-22T08:48:24.370079+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -4372,7 +3796,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7601 · 2026-05-22T08:48:35.621948+00:00_
+_source line 7587 · 2026-05-22T08:48:35.621948+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4410,7 +3834,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7602 · 2026-05-22T08:48:40.597921+00:00_
+_source line 7588 · 2026-05-22T08:48:40.597921+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524133 string characters out of 5468411\\n 993698 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 10925 chars]
@@ -4433,7 +3857,7 @@ _source line 7602 · 2026-05-22T08:48:40.597921+00:00_
 
 ### Tool call
 
-_source line 7603 · 2026-05-22T08:49:23.276607+00:00_
+_source line 7589 · 2026-05-22T08:49:23.276607+00:00_
 
 called Edit
 
@@ -4473,7 +3897,7 @@ called Edit
 
 ### Tool result
 
-_source line 7604 · 2026-05-22T08:49:23.578655+00:00_
+_source line 7590 · 2026-05-22T08:49:23.578655+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -4495,7 +3919,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7605 · 2026-05-22T08:49:24.784161+00:00_
+_source line 7591 · 2026-05-22T08:49:24.784161+00:00_
 
 called Edit
 
@@ -4535,7 +3959,7 @@ called Edit
 
 ### Tool result
 
-_source line 7606 · 2026-05-22T08:49:24.834965+00:00_
+_source line 7592 · 2026-05-22T08:49:24.834965+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully.
 
@@ -4557,7 +3981,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7607 · 2026-05-22T08:49:37.890608+00:00_
+_source line 7593 · 2026-05-22T08:49:37.890608+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4595,7 +4019,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7608 · 2026-05-22T08:49:42.460006+00:00_
+_source line 7594 · 2026-05-22T08:49:42.460006+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[31]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33])\\n[34] [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524133 string characters out of 5468411\\n 993698 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 11007 chars]
@@ -4618,7 +4042,7 @@ _source line 7608 · 2026-05-22T08:49:42.460006+00:00_
 
 ### Tool call
 
-_source line 7609 · 2026-05-22T08:51:33.541057+00:00_
+_source line 7595 · 2026-05-22T08:51:33.541057+00:00_
 
 called Read
 
@@ -4656,7 +4080,7 @@ called Read
 
 ### Tool result
 
-_source line 7610 · 2026-05-22T08:51:34.244954+00:00_
+_source line 7596 · 2026-05-22T08:51:34.244954+00:00_
 
 108	
 109	\begin{table}[t]
@@ -4717,7 +4141,7 @@ _source line 7610 · 2026-05-22T08:51:34.244954+00:00_
 
 ### Tool call
 
-_source line 7611 · 2026-05-22T08:51:34.245475+00:00_
+_source line 7597 · 2026-05-22T08:51:34.245475+00:00_
 
 called Read
 
@@ -4751,7 +4175,7 @@ called Read
 
 ### Tool result
 
-_source line 7612 · 2026-05-22T08:51:34.346414+00:00_
+_source line 7598 · 2026-05-22T08:51:34.346414+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -4822,7 +4246,7 @@ _source line 7612 · 2026-05-22T08:51:34.346414+00:00_
 
 ### Tool call
 
-_source line 7613 · 2026-05-22T08:52:04.827207+00:00_
+_source line 7599 · 2026-05-22T08:52:04.827207+00:00_
 
 called Read
 
@@ -4856,7 +4280,7 @@ called Read
 
 ### Tool result
 
-_source line 7614 · 2026-05-22T08:52:04.877899+00:00_
+_source line 7600 · 2026-05-22T08:52:04.877899+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -4895,7 +4319,7 @@ _source line 7614 · 2026-05-22T08:52:04.877899+00:00_
 
 ### Tool call
 
-_source line 7615 · 2026-05-22T08:52:04.978754+00:00_
+_source line 7601 · 2026-05-22T08:52:04.978754+00:00_
 
 called Read
 
@@ -4933,7 +4357,7 @@ called Read
 
 ### Tool result
 
-_source line 7616 · 2026-05-22T08:52:05.129738+00:00_
+_source line 7602 · 2026-05-22T08:52:05.129738+00:00_
 
 60	% exp_ids: phase2_docred_unconstrained, phase2_docred_full_s1
 61	\paragraph{Zero-shot diagnostic.}
@@ -4967,7 +4391,7 @@ _source line 7616 · 2026-05-22T08:52:05.129738+00:00_
 
 ### Tool call
 
-_source line 7617 · 2026-05-22T08:52:32.803659+00:00_
+_source line 7603 · 2026-05-22T08:52:32.803659+00:00_
 
 called Edit
 
@@ -5007,7 +4431,7 @@ called Edit
 
 ### Tool result
 
-_source line 7618 · 2026-05-22T08:52:33.155861+00:00_
+_source line 7604 · 2026-05-22T08:52:33.155861+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -5029,7 +4453,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7619 · 2026-05-22T08:52:36.119724+00:00_
+_source line 7605 · 2026-05-22T08:52:36.119724+00:00_
 
 called Edit
 
@@ -5069,7 +4493,7 @@ called Edit
 
 ### Tool result
 
-_source line 7620 · 2026-05-22T08:52:36.572999+00:00_
+_source line 7606 · 2026-05-22T08:52:36.572999+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully.
 
@@ -5091,7 +4515,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7621 · 2026-05-22T08:52:41.844475+00:00_
+_source line 7607 · 2026-05-22T08:52:41.844475+00:00_
 
 called Edit
 
@@ -5131,7 +4555,7 @@ called Edit
 
 ### Tool result
 
-_source line 7622 · 2026-05-22T08:52:41.949135+00:00_
+_source line 7608 · 2026-05-22T08:52:41.949135+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -5153,7 +4577,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7623 · 2026-05-22T08:52:56.941469+00:00_
+_source line 7609 · 2026-05-22T08:52:56.941469+00:00_
 
 called ToolSearch
 
@@ -5189,7 +4613,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7624 · 2026-05-22T08:52:56.992152+00:00_
+_source line 7610 · 2026-05-22T08:52:56.992152+00:00_
 
 
 
@@ -5211,7 +4635,7 @@ _source line 7624 · 2026-05-22T08:52:56.992152+00:00_
 
 ### Tool call
 
-_source line 7625 · 2026-05-22T08:53:05.077686+00:00_
+_source line 7611 · 2026-05-22T08:53:05.077686+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -5249,7 +4673,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7626 · 2026-05-22T08:53:11.754279+00:00_
+_source line 7612 · 2026-05-22T08:53:11.754279+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[30]) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32])\\n[33] [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28691 strings out of 469438\\n 524110 string characters out of 5468411\\n 993499 words of memory out of 5000000\\n 55835 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 56
 …[truncated 15482 chars]
@@ -5272,7 +4696,7 @@ _source line 7626 · 2026-05-22T08:53:11.754279+00:00_
 
 ### Tool call
 
-_source line 7627 · 2026-05-22T08:53:16.926731+00:00_
+_source line 7613 · 2026-05-22T08:53:16.926731+00:00_
 
 called Read
 
@@ -5306,7 +4730,7 @@ called Read
 
 ### Tool result
 
-_source line 7628 · 2026-05-22T08:53:17.580358+00:00_
+_source line 7614 · 2026-05-22T08:53:17.580358+00:00_
 
 
 
@@ -5328,7 +4752,7 @@ _source line 7628 · 2026-05-22T08:53:17.580358+00:00_
 
 ### Tool call
 
-_source line 7629 · 2026-05-22T08:53:17.681353+00:00_
+_source line 7615 · 2026-05-22T08:53:17.681353+00:00_
 
 called Read
 
@@ -5362,7 +4786,7 @@ called Read
 
 ### Tool result
 
-_source line 7630 · 2026-05-22T08:53:18.311566+00:00_
+_source line 7616 · 2026-05-22T08:53:18.311566+00:00_
 
 
 
@@ -5384,7 +4808,7 @@ _source line 7630 · 2026-05-22T08:53:18.311566+00:00_
 
 ### Tool call
 
-_source line 7631 · 2026-05-22T08:53:37.394276+00:00_
+_source line 7617 · 2026-05-22T08:53:37.394276+00:00_
 
 called ToolSearch
 
@@ -5420,7 +4844,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7632 · 2026-05-22T08:53:37.495260+00:00_
+_source line 7618 · 2026-05-22T08:53:37.495260+00:00_
 
 
 
@@ -5442,7 +4866,7 @@ _source line 7632 · 2026-05-22T08:53:37.495260+00:00_
 
 ### Tool call
 
-_source line 7633 · 2026-05-22T08:53:53.246644+00:00_
+_source line 7619 · 2026-05-22T08:53:53.246644+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -5478,7 +4902,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7634 · 2026-05-22T08:53:57.112446+00:00_
+_source line 7620 · 2026-05-22T08:53:57.112446+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -5500,7 +4924,7 @@ _source line 7634 · 2026-05-22T08:53:57.112446+00:00_
 
 ### Assistant
 
-_source line 7635 · 2026-05-22T08:54:06.324422+00:00_
+_source line 7621 · 2026-05-22T08:54:06.324422+00:00_
 
 Trie baseline 叙事强化 Patch 完成，已汇报 Director。
 
@@ -5535,7 +4959,7 @@ Trie baseline 叙事强化 Patch 完成，已汇报 Director。
 
 ### User
 
-_source line 7636 · 2026-05-22T08:54:06.932861+00:00_
+_source line 7622 · 2026-05-22T08:54:06.932861+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -5556,7 +4980,7 @@ _source line 7636 · 2026-05-22T08:54:06.932861+00:00_
 
 ### Assistant
 
-_source line 7637 · 2026-05-22T08:54:15.071216+00:00_
+_source line 7623 · 2026-05-22T08:54:15.071216+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报完毕（上一轮调用成功，`director_session` 已确认接收）。此系统提醒为误触发。
 
@@ -5583,7 +5007,7 @@ _source line 7637 · 2026-05-22T08:54:15.071216+00:00_
 
 ### User
 
-_source line 7638 · 2026-05-22T10:23:04.796654+00:00_
+_source line 7624 · 2026-05-22T10:23:04.796654+00:00_
 
 [Director 指令] [Patch — Parse failure 注释 + Final compile]
 
@@ -5622,7 +5046,7 @@ Reviewer Report #71 指出 DocRED 70B LoRA S1 的 parse failure 从 10% 升到 1
 
 ### Tool call
 
-_source line 7639 · 2026-05-22T10:23:14.148000+00:00_
+_source line 7625 · 2026-05-22T10:23:14.148000+00:00_
 
 called Read
 
@@ -5656,7 +5080,7 @@ called Read
 
 ### Tool result
 
-_source line 7640 · 2026-05-22T10:23:14.198830+00:00_
+_source line 7626 · 2026-05-22T10:23:14.198830+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -5701,7 +5125,7 @@ _source line 7640 · 2026-05-22T10:23:14.198830+00:00_
 
 ### Tool call
 
-_source line 7641 · 2026-05-22T10:23:33.477892+00:00_
+_source line 7627 · 2026-05-22T10:23:33.477892+00:00_
 
 called Read
 
@@ -5735,7 +5159,7 @@ called Read
 
 ### Tool result
 
-_source line 7642 · 2026-05-22T10:23:33.528610+00:00_
+_source line 7628 · 2026-05-22T10:23:33.528610+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3.
 
@@ -5757,7 +5181,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 7643 · 2026-05-22T10:23:36.797829+00:00_
+_source line 7629 · 2026-05-22T10:23:36.797829+00:00_
 
 called Glob
 
@@ -5793,7 +5217,7 @@ called Glob
 
 ### Tool result
 
-_source line 7644 · 2026-05-22T10:23:36.998821+00:00_
+_source line 7630 · 2026-05-22T10:23:36.998821+00:00_
 
 No files found
 
@@ -5815,7 +5239,7 @@ No files found
 
 ### Tool call
 
-_source line 7645 · 2026-05-22T10:23:36.999248+00:00_
+_source line 7631 · 2026-05-22T10:23:36.999248+00:00_
 
 called Glob
 
@@ -5851,7 +5275,7 @@ called Glob
 
 ### Tool result
 
-_source line 7646 · 2026-05-22T10:23:37.049863+00:00_
+_source line 7632 · 2026-05-22T10:23:37.049863+00:00_
 
 No files found
 
@@ -5873,7 +5297,7 @@ No files found
 
 ### Tool call
 
-_source line 7647 · 2026-05-22T10:23:39.961349+00:00_
+_source line 7633 · 2026-05-22T10:23:39.961349+00:00_
 
 called Glob
 
@@ -5909,7 +5333,7 @@ called Glob
 
 ### Tool result
 
-_source line 7648 · 2026-05-22T10:23:40.012385+00:00_
+_source line 7634 · 2026-05-22T10:23:40.012385+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex
 
@@ -5931,7 +5355,7 @@ _source line 7648 · 2026-05-22T10:23:40.012385+00:00_
 
 ### Tool call
 
-_source line 7649 · 2026-05-22T10:23:43.184335+00:00_
+_source line 7635 · 2026-05-22T10:23:43.184335+00:00_
 
 called Read
 
@@ -5965,7 +5389,7 @@ called Read
 
 ### Tool result
 
-_source line 7650 · 2026-05-22T10:23:43.185191+00:00_
+_source line 7636 · 2026-05-22T10:23:43.185191+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -6060,7 +5484,7 @@ _source line 7650 · 2026-05-22T10:23:43.185191+00:00_
 
 ### Tool call
 
-_source line 7651 · 2026-05-22T10:24:13.105923+00:00_
+_source line 7637 · 2026-05-22T10:24:13.105923+00:00_
 
 called Edit
 
@@ -6100,7 +5524,7 @@ called Edit
 
 ### Tool result
 
-_source line 7652 · 2026-05-22T10:24:13.574085+00:00_
+_source line 7638 · 2026-05-22T10:24:13.574085+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex has been updated successfully.
 
@@ -6122,7 +5546,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7653 · 2026-05-22T10:24:14.411272+00:00_
+_source line 7639 · 2026-05-22T10:24:14.411272+00:00_
 
 called Grep
 
@@ -6162,7 +5586,7 @@ called Grep
 
 ### Tool result
 
-_source line 7654 · 2026-05-22T10:24:14.461998+00:00_
+_source line 7640 · 2026-05-22T10:24:14.461998+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:22:\newcommand{\TBD}[1]{\textcolor{red}{#1}}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:18:% TODO: Expand with 2-3 sentences on how grammar-constrained decoding has become
@@ -6190,7 +5614,7 @@ _source line 7654 · 2026-05-22T10:24:14.461998+00:00_
 
 ### Tool call
 
-_source line 7655 · 2026-05-22T10:24:22.600746+00:00_
+_source line 7641 · 2026-05-22T10:24:22.600746+00:00_
 
 called Grep
 
@@ -6230,7 +5654,7 @@ called Grep
 
 ### Tool result
 
-_source line 7656 · 2026-05-22T10:24:23.102602+00:00_
+_source line 7642 · 2026-05-22T10:24:23.102602+00:00_
 
 No matches found
 
@@ -6252,7 +5676,7 @@ No matches found
 
 ### Tool call
 
-_source line 7657 · 2026-05-22T10:24:23.203328+00:00_
+_source line 7643 · 2026-05-22T10:24:23.203328+00:00_
 
 called Grep
 
@@ -6292,7 +5716,7 @@ called Grep
 
 ### Tool result
 
-_source line 7658 · 2026-05-22T10:24:23.254037+00:00_
+_source line 7644 · 2026-05-22T10:24:23.254037+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex:20:\placeholder{DocRED DR result: unconstrained DR=18.70\% $\to$ full system DR=??\%, with RV 28.90\%$\to$??\% and ET 7.50\%$\to$??\%.}
 
@@ -6314,7 +5738,7 @@ _source line 7658 · 2026-05-22T10:24:23.254037+00:00_
 
 ### Tool call
 
-_source line 7659 · 2026-05-22T10:24:38.630653+00:00_
+_source line 7645 · 2026-05-22T10:24:38.630653+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -6354,7 +5778,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7660 · 2026-05-22T10:24:47.919572+00:00_
+_source line 7646 · 2026-05-22T10:24:47.919572+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[30]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_tcr.tex [31]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex [32] [33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28693 strings out of 469438\\n 524142 string characters out of 5468411\\n 989300 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+600000\\n 747761 words of font info for 562 fonts, out of 8000000 for 9000\\n 59 hyphenation excepti
 …[truncated 15612 chars]
@@ -6377,7 +5801,7 @@ _source line 7660 · 2026-05-22T10:24:47.919572+00:00_
 
 ### Tool call
 
-_source line 7661 · 2026-05-22T10:24:53.650769+00:00_
+_source line 7647 · 2026-05-22T10:24:53.650769+00:00_
 
 called Read
 
@@ -6411,7 +5835,7 @@ called Read
 
 ### Tool call
 
-_source line 7662 · 2026-05-22T10:24:54.253598+00:00_
+_source line 7648 · 2026-05-22T10:24:54.253598+00:00_
 
 called Read
 
@@ -6445,7 +5869,7 @@ called Read
 
 ### Tool result
 
-_source line 7663 · 2026-05-22T10:24:54.355324+00:00_
+_source line 7649 · 2026-05-22T10:24:54.355324+00:00_
 
 
 
@@ -6467,7 +5891,7 @@ _source line 7663 · 2026-05-22T10:24:54.355324+00:00_
 
 ### Tool result
 
-_source line 7664 · 2026-05-22T10:24:54.908946+00:00_
+_source line 7650 · 2026-05-22T10:24:54.908946+00:00_
 
 
 
@@ -6489,7 +5913,7 @@ _source line 7664 · 2026-05-22T10:24:54.908946+00:00_
 
 ### Tool call
 
-_source line 7665 · 2026-05-22T10:25:12.742461+00:00_
+_source line 7651 · 2026-05-22T10:25:12.742461+00:00_
 
 called ToolSearch
 
@@ -6525,7 +5949,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7666 · 2026-05-22T10:25:12.742990+00:00_
+_source line 7652 · 2026-05-22T10:25:12.742990+00:00_
 
 
 
@@ -6547,7 +5971,7 @@ _source line 7666 · 2026-05-22T10:25:12.742990+00:00_
 
 ### Tool call
 
-_source line 7667 · 2026-05-22T10:25:19.495635+00:00_
+_source line 7653 · 2026-05-22T10:25:19.495635+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -6581,7 +6005,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 7668 · 2026-05-22T10:25:19.547913+00:00_
+_source line 7654 · 2026-05-22T10:25:19.547913+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper\", \"sections\": [], \"critical\": [], \"warning\": [{\"kind\": \"no_paper_tex\", \"message\": \"No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper\", \"location\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper\"}], \"info\": [], \"summary\": {\"critical\": 0, \"warning\": 1, \"info\": 0}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6603,7 +6027,7 @@ _source line 7668 · 2026-05-22T10:25:19.547913+00:00_
 
 ### Tool call
 
-_source line 7669 · 2026-05-22T10:25:25.282055+00:00_
+_source line 7655 · 2026-05-22T10:25:25.282055+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -6639,7 +6063,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 7670 · 2026-05-22T10:25:25.384136+00:00_
+_source line 7656 · 2026-05-22T10:25:25.384136+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"sections\": [{\"file\": \"abstract.tex\", \"role\": \"headline\", \"num_numbers\": 4, \"num_cites\": 0}, {\"file\": \"abstract_d3264e.tex\", \"role\": \"other\", \"num_numbers\": 9, \"num_cites\": 0}, {\"file\": \"abstract_fd4b26.tex\", \"role\": \"other\", \"num_numbers\": 9, \"num_cites\": 0}, {\"file\": \"appendix_beam_search.tex\", \"role\": \"other\", \"num_numbers\": 172, \"num_cites\": 0}, {\"file\": \"appendix_case_studies.tex\", \"role\": \"other\", \"num_numbers\": 3, \"num_cites\": 0}, {\"file\": \"appendix_discussion.tex\", \"role\": \"other\", \"num_numbers\": 370, \"num_cites\": 4}, {\"file\": \"appendix_doc_length.tex\", \"role\": \"other\", \"num_numbers\": 34, \"num_cites\": 0}, {\"file\": \"appendix_full_ft.tex\", \"role\": \"other\", \"num_numbers\": 18, \"num_cites\": 0}, {\"file\": \"appendix_kappa_case_study.tex\", \"role\": \"other\", \"num_numbers\": 16, \"num_cites\": 0}, {\"file\": \"appendix_llama_per_relation.tex\", \"role\": \"other\", \"num_numbers\": 20, \"num_cites\": 0}, {\"file\": \"appendix_prompt_sensitivity.tex\", \"role\": \"other\", \"num_numbers\": 41, \"num_cites\": 0}, {\"file\": \"appendix_prompts.tex\", \"role\": \"other\", \"num_numbers\": 1, \"num_cites\": 0}, {\"file\": \"appendix_pumping_lemma.tex\", \"role\": \"other\", \"num_numbers\": 0, \"num_cites\": 0}, {\"file\": \"appendix_related_work.tex\", \"role\": \"other\", \"num_numbers\": 8, \"num_cites\": 35}, {\"file\": \"appendix_reproducibility.tex\", \"role\": \"other\", \"num_numbers\": 50, \"num_cites\": 0}, {\"file\": \"appendix_sampling_table.tex\", \"role\": \"other\", \"num_numbers\": 19, \"num_cites\": 0}, {\"file\": \"appendix_scalability.tex\", \"role\": \"other\", \"num_numbers\": 12, \"num_cites\": 0}, {\"file\": \"appendix_tcr.tex\", \"role\": \"other\", \"num_numbers\": 62, \"nu
 …[truncated 23130 chars]
@@ -6662,7 +6086,7 @@ _source line 7670 · 2026-05-22T10:25:25.384136+00:00_
 
 ### Tool call
 
-_source line 7671 · 2026-05-22T10:25:53.736234+00:00_
+_source line 7657 · 2026-05-22T10:25:53.736234+00:00_
 
 called Read
 
@@ -6696,7 +6120,7 @@ called Read
 
 ### Tool result
 
-_source line 7672 · 2026-05-22T10:25:54.339291+00:00_
+_source line 7658 · 2026-05-22T10:25:54.339291+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.
@@ -6726,7 +6150,7 @@ _source line 7672 · 2026-05-22T10:25:54.339291+00:00_
 
 ### Tool call
 
-_source line 7673 · 2026-05-22T10:25:54.339849+00:00_
+_source line 7659 · 2026-05-22T10:25:54.339849+00:00_
 
 called Read
 
@@ -6760,7 +6184,7 @@ called Read
 
 ### Tool result
 
-_source line 7674 · 2026-05-22T10:25:54.440550+00:00_
+_source line 7660 · 2026-05-22T10:25:54.440550+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -6785,7 +6209,7 @@ _source line 7674 · 2026-05-22T10:25:54.440550+00:00_
 
 ### Tool call
 
-_source line 7675 · 2026-05-22T10:26:55.010904+00:00_
+_source line 7661 · 2026-05-22T10:26:55.010904+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -6821,7 +6245,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7676 · 2026-05-22T10:26:58.775483+00:00_
+_source line 7662 · 2026-05-22T10:26:58.775483+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -6843,7 +6267,7 @@ _source line 7676 · 2026-05-22T10:26:58.775483+00:00_
 
 ### Assistant
 
-_source line 7677 · 2026-05-22T10:27:09.501753+00:00_
+_source line 7663 · 2026-05-22T10:27:09.501753+00:00_
 
 两项修改完成并已汇报 Director：
 
@@ -6873,7 +6297,7 @@ _source line 7677 · 2026-05-22T10:27:09.501753+00:00_
 
 ### User
 
-_source line 7678 · 2026-05-22T10:27:10.013229+00:00_
+_source line 7664 · 2026-05-22T10:27:10.013229+00:00_
 
 [Director 指令] [Patch — Parse failure 注释 + Final compile]
 
@@ -6908,7 +6332,7 @@ Reviewer Report #71 指出 70B LoRA DocRED S1 的 parse failure 从 10.0% 升至
 
 ### Tool call
 
-_source line 7679 · 2026-05-22T10:27:23.980482+00:00_
+_source line 7665 · 2026-05-22T10:27:23.980482+00:00_
 
 called Read
 
@@ -6946,7 +6370,7 @@ called Read
 
 ### Tool result
 
-_source line 7680 · 2026-05-22T10:27:24.031228+00:00_
+_source line 7666 · 2026-05-22T10:27:24.031228+00:00_
 
 72	\paragraph{Constraint scope.}
 73	CF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\,$\leq$\,1\% under greedy constrained decoding), S1 introduces CF violations (up to 12.02\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\%\,$\to$\,1.27\%) by constraining type assignments to schema-valid values.
@@ -6977,7 +6401,7 @@ _source line 7680 · 2026-05-22T10:27:24.031228+00:00_
 
 ### Tool call
 
-_source line 7681 · 2026-05-22T10:27:43.315010+00:00_
+_source line 7667 · 2026-05-22T10:27:43.315010+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -7013,7 +6437,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7682 · 2026-05-22T10:27:47.433387+00:00_
+_source line 7668 · 2026-05-22T10:27:47.433387+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -7035,7 +6459,7 @@ _source line 7682 · 2026-05-22T10:27:47.433387+00:00_
 
 ### Assistant
 
-_source line 7683 · 2026-05-22T10:27:52.978464+00:00_
+_source line 7669 · 2026-05-22T10:27:52.978464+00:00_
 
 L78 已包含 70B DocRED parse failure 说明。编译和全部检查也已在上一轮完成：正文 ≤ 8 页、无 XX.XX/TODO/TBD、无 undefined reference、数字一致。
 
@@ -7062,7 +6486,7 @@ L78 已包含 70B DocRED parse failure 说明。编译和全部检查也已在�
 
 ### User
 
-_source line 7684 · 2026-05-22T10:27:53.464059+00:00_
+_source line 7670 · 2026-05-22T10:27:53.464059+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -7083,7 +6507,7 @@ _source line 7684 · 2026-05-22T10:27:53.464059+00:00_
 
 ### Assistant
 
-_source line 7685 · 2026-05-22T10:27:59.541128+00:00_
+_source line 7671 · 2026-05-22T10:27:59.541128+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报，这是误报提醒。
 
@@ -7110,7 +6534,7 @@ _source line 7685 · 2026-05-22T10:27:59.541128+00:00_
 
 ### User
 
-_source line 7686 · 2026-05-22T10:28:00.062496+00:00_
+_source line 7672 · 2026-05-22T10:28:00.062496+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -7131,7 +6555,7 @@ _source line 7686 · 2026-05-22T10:28:00.062496+00:00_
 
 ### Assistant
 
-_source line 7687 · 2026-05-22T10:28:11.781518+00:00_
+_source line 7673 · 2026-05-22T10:28:11.781518+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报。系统提醒为误报——上一条消息已成功调用并收到 `success: true`。无需重复调用。
 
@@ -7158,7 +6582,7 @@ _source line 7687 · 2026-05-22T10:28:11.781518+00:00_
 
 ### User
 
-_source line 7688 · 2026-05-22T11:10:53.148109+00:00_
+_source line 7674 · 2026-05-22T11:10:53.148109+00:00_
 
 [Director 指令] **Round 17 审稿修复 — P0+P1 批次**
 
@@ -7260,7 +6684,7 @@ _source line 7688 · 2026-05-22T11:10:53.148109+00:00_
 
 ### Tool call
 
-_source line 7689 · 2026-05-22T11:11:06.293836+00:00_
+_source line 7675 · 2026-05-22T11:11:06.293836+00:00_
 
 called Read
 
@@ -7294,7 +6718,7 @@ called Read
 
 ### Tool result
 
-_source line 7690 · 2026-05-22T11:11:06.745905+00:00_
+_source line 7676 · 2026-05-22T11:11:06.745905+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.
@@ -7324,7 +6748,7 @@ _source line 7690 · 2026-05-22T11:11:06.745905+00:00_
 
 ### Tool call
 
-_source line 7691 · 2026-05-22T11:11:06.746378+00:00_
+_source line 7677 · 2026-05-22T11:11:06.746378+00:00_
 
 called Read
 
@@ -7358,7 +6782,7 @@ called Read
 
 ### Tool result
 
-_source line 7692 · 2026-05-22T11:11:07.701121+00:00_
+_source line 7678 · 2026-05-22T11:11:07.701121+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -7397,7 +6821,7 @@ _source line 7692 · 2026-05-22T11:11:07.701121+00:00_
 
 ### Tool call
 
-_source line 7693 · 2026-05-22T11:11:07.751917+00:00_
+_source line 7679 · 2026-05-22T11:11:07.751917+00:00_
 
 called Read
 
@@ -7431,7 +6855,7 @@ called Read
 
 ### Tool result
 
-_source line 7694 · 2026-05-22T11:11:07.903083+00:00_
+_source line 7680 · 2026-05-22T11:11:07.903083+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -7502,7 +6926,7 @@ _source line 7694 · 2026-05-22T11:11:07.903083+00:00_
 
 ### Tool call
 
-_source line 7695 · 2026-05-22T11:11:07.903470+00:00_
+_source line 7681 · 2026-05-22T11:11:07.903470+00:00_
 
 called Read
 
@@ -7536,7 +6960,7 @@ called Read
 
 ### Tool result
 
-_source line 7696 · 2026-05-22T11:11:07.955137+00:00_
+_source line 7682 · 2026-05-22T11:11:07.955137+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -7589,7 +7013,7 @@ _source line 7696 · 2026-05-22T11:11:07.955137+00:00_
 
 ### Tool call
 
-_source line 7697 · 2026-05-22T11:11:13.629099+00:00_
+_source line 7683 · 2026-05-22T11:11:13.629099+00:00_
 
 called Read
 
@@ -7623,7 +7047,7 @@ called Read
 
 ### Tool result
 
-_source line 7698 · 2026-05-22T11:11:14.583690+00:00_
+_source line 7684 · 2026-05-22T11:11:14.583690+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -7648,7 +7072,7 @@ _source line 7698 · 2026-05-22T11:11:14.583690+00:00_
 
 ### Tool call
 
-_source line 7699 · 2026-05-22T11:11:14.584181+00:00_
+_source line 7685 · 2026-05-22T11:11:14.584181+00:00_
 
 called Read
 
@@ -7682,7 +7106,7 @@ called Read
 
 ### Tool result
 
-_source line 7700 · 2026-05-22T11:11:15.086613+00:00_
+_source line 7686 · 2026-05-22T11:11:15.086613+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -7720,7 +7144,7 @@ _source line 7700 · 2026-05-22T11:11:15.086613+00:00_
 
 ### Tool call
 
-_source line 7701 · 2026-05-22T11:11:15.589242+00:00_
+_source line 7687 · 2026-05-22T11:11:15.589242+00:00_
 
 called Read
 
@@ -7758,7 +7182,7 @@ called Read
 
 ### Tool result
 
-_source line 7702 · 2026-05-22T11:11:15.890971+00:00_
+_source line 7688 · 2026-05-22T11:11:15.890971+00:00_
 
 95	
 96	% ──────────────────────────────────────────
@@ -7816,7 +7240,7 @@ _source line 7702 · 2026-05-22T11:11:15.890971+00:00_
 
 ### Tool call
 
-_source line 7703 · 2026-05-22T11:11:15.942153+00:00_
+_source line 7689 · 2026-05-22T11:11:15.942153+00:00_
 
 called Read
 
@@ -7850,7 +7274,7 @@ called Read
 
 ### Tool result
 
-_source line 7704 · 2026-05-22T11:11:15.993010+00:00_
+_source line 7690 · 2026-05-22T11:11:15.993010+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -7895,7 +7319,7 @@ _source line 7704 · 2026-05-22T11:11:15.993010+00:00_
 
 ### Tool call
 
-_source line 7705 · 2026-05-22T11:13:37.635661+00:00_
+_source line 7691 · 2026-05-22T11:13:37.635661+00:00_
 
 called Grep
 
@@ -7937,7 +7361,7 @@ called Grep
 
 ### Tool result
 
-_source line 7706 · 2026-05-22T11:13:38.539706+00:00_
+_source line 7692 · 2026-05-22T11:13:38.539706+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:19:OntoCoDec compiles constraints automatically from IE ontologies, requires no constraint-specific training, and is applicable to autoregressive LMs with logits access; we validate on three English datasets (up to 96 relation types), five models (7--70B), and three tokenizer families (Llama, Qwen, Mistral).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:462:On Llama SciERC, all five lucky violations are recovered as legal type paths under constrained decoding (zero churn): the model finds an ontology-compliant route to the same prediction.
@@ -7961,7 +7385,7 @@ _source line 7706 · 2026-05-22T11:13:38.539706+00:00_
 
 ### Tool call
 
-_source line 7707 · 2026-05-22T11:13:38.640751+00:00_
+_source line 7693 · 2026-05-22T11:13:38.640751+00:00_
 
 called Grep
 
@@ -8001,7 +7425,7 @@ called Grep
 
 ### Tool result
 
-_source line 7708 · 2026-05-22T11:13:39.143098+00:00_
+_source line 7694 · 2026-05-22T11:13:39.143098+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:21:DR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\,$\leq$\,1.3\% fine-tuned; \S\ref{sec:scierc-results}); zero-shot evaluation (7--70B) reveals DR drops 76--99\% for calibrated models, but total violations (DR+CF) decrease by $\sim$31\%, reflecting conversion that fine-tuning resolves (\S\ref{sec:cross-model}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:26:    \item A comprehensive evaluation across 3 IE datasets, 5 models (7--70B), and 2 tasks: under fine-tuning, DR\,$\leq$\,0.09\% at R-F1 43--46\% with CF\,$\leq$\,1.3\%; zero-shot ablation reveals an enabling dependency where neither layer alone exceeds 24\% DR reduction (\S\ref{sec:scierc-results}); event extraction on WikiEvents validates applicability beyond RE (\S\ref{sec:wikievents}).
@@ -8027,7 +7451,7 @@ _source line 7708 · 2026-05-22T11:13:39.143098+00:00_
 
 ### Tool call
 
-_source line 7709 · 2026-05-22T11:13:39.445860+00:00_
+_source line 7695 · 2026-05-22T11:13:39.445860+00:00_
 
 called Grep
 
@@ -8067,7 +7491,7 @@ called Grep
 
 ### Tool result
 
-_source line 7710 · 2026-05-22T11:13:39.496602+00:00_
+_source line 7696 · 2026-05-22T11:13:39.496602+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:144:Combining both layers (Full S1) reduces DR a further 26\% relative to
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex:18:Full S1 constrained decoding adds $+$13.1\% wall-clock overhead on SciERC (Qwen3-8B, zero-shot greedy), lower on DocRED due to amortization over longer sequences; under LoRA fine-tuning, overhead is $+$10.0\% on SciERC.
@@ -8097,7 +7521,7 @@ _source line 7710 · 2026-05-22T11:13:39.496602+00:00_
 
 ### Tool call
 
-_source line 7711 · 2026-05-22T11:13:45.922866+00:00_
+_source line 7697 · 2026-05-22T11:13:45.922866+00:00_
 
 called Grep
 
@@ -8137,7 +7561,7 @@ called Grep
 
 ### Tool result
 
-_source line 7712 · 2026-05-22T11:13:46.425579+00:00_
+_source line 7698 · 2026-05-22T11:13:46.425579+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:9:At deployment-grade quality (R-F1 40--46\%), even 1--2\% residual violations compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:20:LoRA + greedy S1 achieves deployment-grade compliance: DR\,$\leq$\,0.09\% at R-F1 43--46\% ($\pm$0.8\,pp, $+$10\% latency); beam ($k{=}4$) eliminates all violation types on SciERC (1.54$\times$ latency).
@@ -8162,7 +7586,7 @@ _source line 7712 · 2026-05-22T11:13:46.425579+00:00_
 
 ### Tool call
 
-_source line 7713 · 2026-05-22T11:13:47.430221+00:00_
+_source line 7699 · 2026-05-22T11:13:47.430221+00:00_
 
 called Grep
 
@@ -8204,7 +7628,7 @@ called Grep
 
 ### Tool result
 
-_source line 7714 · 2026-05-22T11:13:47.882477+00:00_
+_source line 7700 · 2026-05-22T11:13:47.882477+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:35:\caption{TCR on SciERC ($\bar{\kappa}{=}0.333$, 551 docs).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:66:\caption{TCR on DocRED ($\bar{\kappa}{=}0.842$, 998 docs).
@@ -8233,7 +7657,7 @@ _source line 7714 · 2026-05-22T11:13:47.882477+00:00_
 
 ### Tool call
 
-_source line 7715 · 2026-05-22T11:13:48.384903+00:00_
+_source line 7701 · 2026-05-22T11:13:48.384903+00:00_
 
 called Grep
 
@@ -8273,7 +7697,7 @@ called Grep
 
 ### Tool result
 
-_source line 7716 · 2026-05-22T11:13:48.435536+00:00_
+_source line 7702 · 2026-05-22T11:13:48.435536+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:21:DR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\,$\leq$\,1.3\% fine-tuned; \S\ref{sec:scierc-results}); zero-shot evaluation (7--70B) reveals DR drops 76--99\% for calibrated models, but total violations (DR+CF) decrease by $\sim$31\%, reflecting conversion that fine-tuning resolves (\S\ref{sec:cross-model}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex:57:DR drops 76--99\% on SciERC and 42--90\% on DocRED; R-F1 improves in 5/6 settings.
@@ -8297,7 +7721,7 @@ _source line 7716 · 2026-05-22T11:13:48.435536+00:00_
 
 ### Tool call
 
-_source line 7717 · 2026-05-22T11:14:04.169144+00:00_
+_source line 7703 · 2026-05-22T11:14:04.169144+00:00_
 
 called Grep
 
@@ -8339,7 +7763,7 @@ called Grep
 
 ### Tool call
 
-_source line 7718 · 2026-05-22T11:14:04.169611+00:00_
+_source line 7704 · 2026-05-22T11:14:04.169611+00:00_
 
 called Read
 
@@ -8373,7 +7797,7 @@ called Read
 
 ### Tool result
 
-_source line 7719 · 2026-05-22T11:14:04.169947+00:00_
+_source line 7705 · 2026-05-22T11:14:04.169947+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -8412,7 +7836,7 @@ _source line 7719 · 2026-05-22T11:14:04.169947+00:00_
 
 ### Tool result
 
-_source line 7720 · 2026-05-22T11:14:04.170197+00:00_
+_source line 7706 · 2026-05-22T11:14:04.170197+00:00_
 
 No matches found
 
@@ -8434,7 +7858,7 @@ No matches found
 
 ### Tool call
 
-_source line 7721 · 2026-05-22T11:14:14.163436+00:00_
+_source line 7707 · 2026-05-22T11:14:14.163436+00:00_
 
 called Grep
 
@@ -8476,7 +7900,7 @@ called Grep
 
 ### Tool result
 
-_source line 7722 · 2026-05-22T11:14:14.214193+00:00_
+_source line 7708 · 2026-05-22T11:14:14.214193+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_kappa_case_study.tex:30:\caption{Per-relation $\kappa$ vs.\ DR violation rate (Qwen3-8B, zero-shot, unconstrained).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:248:\caption{Per-relation DR elimination on SciERC with LoRA fine-tuning (Qwen3-8B).
@@ -8503,7 +7927,7 @@ _source line 7722 · 2026-05-22T11:14:14.214193+00:00_
 
 ### Tool call
 
-_source line 7723 · 2026-05-22T11:14:48.198310+00:00_
+_source line 7709 · 2026-05-22T11:14:48.198310+00:00_
 
 called Read
 
@@ -8541,7 +7965,7 @@ called Read
 
 ### Tool result
 
-_source line 7724 · 2026-05-22T11:14:48.249034+00:00_
+_source line 7710 · 2026-05-22T11:14:48.249034+00:00_
 
 128	Mistral-7B (unconstrained ET${=}$7.58\% on DocRED) deviates from this pattern: its residual DR on DocRED (33.21\%) substantially exceeds the linear prediction. When model calibration is insufficient (ET${>}$5\% on either dataset), residual DR is dominated by entity misclassification rather than constraint-search failure.
 129	This motivates a principled exclusion criterion: models with unconstrained ET${>}$5\% on either dataset fall outside the regime where the tightness$\times$RV product is the primary DR driver.
@@ -8577,7 +8001,7 @@ _source line 7724 · 2026-05-22T11:14:48.249034+00:00_
 
 ### Tool call
 
-_source line 7725 · 2026-05-22T11:16:35.354599+00:00_
+_source line 7711 · 2026-05-22T11:16:35.354599+00:00_
 
 called Edit
 
@@ -8617,7 +8041,7 @@ called Edit
 
 ### Tool result
 
-_source line 7726 · 2026-05-22T11:16:35.656275+00:00_
+_source line 7712 · 2026-05-22T11:16:35.656275+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex has been updated successfully.
 
@@ -8639,7 +8063,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7727 · 2026-05-22T11:16:36.761205+00:00_
+_source line 7713 · 2026-05-22T11:16:36.761205+00:00_
 
 called Edit
 
@@ -8679,7 +8103,7 @@ called Edit
 
 ### Tool result
 
-_source line 7728 · 2026-05-22T11:16:37.564936+00:00_
+_source line 7714 · 2026-05-22T11:16:37.564936+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -8701,7 +8125,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7729 · 2026-05-22T11:16:43.389227+00:00_
+_source line 7715 · 2026-05-22T11:16:43.389227+00:00_
 
 called Edit
 
@@ -8741,7 +8165,7 @@ called Edit
 
 ### Tool result
 
-_source line 7730 · 2026-05-22T11:16:43.490132+00:00_
+_source line 7716 · 2026-05-22T11:16:43.490132+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -8763,7 +8187,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7731 · 2026-05-22T11:16:45.149156+00:00_
+_source line 7717 · 2026-05-22T11:16:45.149156+00:00_
 
 called Edit
 
@@ -8803,7 +8227,7 @@ called Edit
 
 ### Tool result
 
-_source line 7732 · 2026-05-22T11:16:45.601604+00:00_
+_source line 7718 · 2026-05-22T11:16:45.601604+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -8825,7 +8249,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7733 · 2026-05-22T11:16:50.832759+00:00_
+_source line 7719 · 2026-05-22T11:16:50.832759+00:00_
 
 called Edit
 
@@ -8865,7 +8289,7 @@ called Edit
 
 ### Tool result
 
-_source line 7734 · 2026-05-22T11:16:50.833428+00:00_
+_source line 7720 · 2026-05-22T11:16:50.833428+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -8887,7 +8311,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7735 · 2026-05-22T11:17:02.997711+00:00_
+_source line 7721 · 2026-05-22T11:17:02.997711+00:00_
 
 called Edit
 
@@ -8927,7 +8351,7 @@ called Edit
 
 ### Tool result
 
-_source line 7736 · 2026-05-22T11:17:03.450114+00:00_
+_source line 7722 · 2026-05-22T11:17:03.450114+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -8949,7 +8373,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7737 · 2026-05-22T11:17:10.138739+00:00_
+_source line 7723 · 2026-05-22T11:17:10.138739+00:00_
 
 called Edit
 
@@ -8989,7 +8413,7 @@ called Edit
 
 ### Tool result
 
-_source line 7738 · 2026-05-22T11:17:10.591049+00:00_
+_source line 7724 · 2026-05-22T11:17:10.591049+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex has been updated successfully.
 
@@ -9011,7 +8435,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7739 · 2026-05-22T11:17:12.399039+00:00_
+_source line 7725 · 2026-05-22T11:17:12.399039+00:00_
 
 called Edit
 
@@ -9051,7 +8475,7 @@ called Edit
 
 ### Tool result
 
-_source line 7740 · 2026-05-22T11:17:12.450004+00:00_
+_source line 7726 · 2026-05-22T11:17:12.450004+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -9073,7 +8497,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7741 · 2026-05-22T11:17:23.212226+00:00_
+_source line 7727 · 2026-05-22T11:17:23.212226+00:00_
 
 called Edit
 
@@ -9113,7 +8537,7 @@ called Edit
 
 ### Tool result
 
-_source line 7742 · 2026-05-22T11:17:24.016037+00:00_
+_source line 7728 · 2026-05-22T11:17:24.016037+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -9135,7 +8559,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7743 · 2026-05-22T11:17:29.789374+00:00_
+_source line 7729 · 2026-05-22T11:17:29.789374+00:00_
 
 called Edit
 
@@ -9175,7 +8599,7 @@ called Edit
 
 ### Tool result
 
-_source line 7744 · 2026-05-22T11:17:29.840208+00:00_
+_source line 7730 · 2026-05-22T11:17:29.840208+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -9197,7 +8621,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7745 · 2026-05-22T11:17:39.441427+00:00_
+_source line 7731 · 2026-05-22T11:17:39.441427+00:00_
 
 called Edit
 
@@ -9237,7 +8661,7 @@ called Edit
 
 ### Tool result
 
-_source line 7746 · 2026-05-22T11:17:42.504154+00:00_
+_source line 7732 · 2026-05-22T11:17:42.504154+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex has been updated successfully.
 
@@ -9259,7 +8683,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7747 · 2026-05-22T11:17:43.759662+00:00_
+_source line 7733 · 2026-05-22T11:17:43.759662+00:00_
 
 called Edit
 
@@ -9299,7 +8723,7 @@ called Edit
 
 ### Tool result
 
-_source line 7748 · 2026-05-22T11:17:44.213281+00:00_
+_source line 7734 · 2026-05-22T11:17:44.213281+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -9321,7 +8745,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7749 · 2026-05-22T11:17:49.789239+00:00_
+_source line 7735 · 2026-05-22T11:17:49.789239+00:00_
 
 called Edit
 
@@ -9361,7 +8785,7 @@ called Edit
 
 ### Tool result
 
-_source line 7750 · 2026-05-22T11:17:50.241625+00:00_
+_source line 7736 · 2026-05-22T11:17:50.241625+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9383,7 +8807,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7751 · 2026-05-22T11:17:51.210308+00:00_
+_source line 7737 · 2026-05-22T11:17:51.210308+00:00_
 
 called Edit
 
@@ -9423,7 +8847,7 @@ called Edit
 
 ### Tool result
 
-_source line 7752 · 2026-05-22T11:17:51.311231+00:00_
+_source line 7738 · 2026-05-22T11:17:51.311231+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9445,7 +8869,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7753 · 2026-05-22T11:17:52.064715+00:00_
+_source line 7739 · 2026-05-22T11:17:52.064715+00:00_
 
 called Edit
 
@@ -9485,7 +8909,7 @@ called Edit
 
 ### Tool result
 
-_source line 7754 · 2026-05-22T11:17:52.115592+00:00_
+_source line 7740 · 2026-05-22T11:17:52.115592+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9507,7 +8931,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7755 · 2026-05-22T11:17:59.196582+00:00_
+_source line 7741 · 2026-05-22T11:17:59.196582+00:00_
 
 called Edit
 
@@ -9547,7 +8971,7 @@ called Edit
 
 ### Tool result
 
-_source line 7756 · 2026-05-22T11:17:59.297609+00:00_
+_source line 7742 · 2026-05-22T11:17:59.297609+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9569,7 +8993,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7757 · 2026-05-22T11:17:59.950979+00:00_
+_source line 7743 · 2026-05-22T11:17:59.950979+00:00_
 
 called Edit
 
@@ -9609,7 +9033,7 @@ called Edit
 
 ### Tool result
 
-_source line 7758 · 2026-05-22T11:18:00.253322+00:00_
+_source line 7744 · 2026-05-22T11:18:00.253322+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9631,7 +9055,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7759 · 2026-05-22T11:18:00.917532+00:00_
+_source line 7745 · 2026-05-22T11:18:00.917532+00:00_
 
 called Edit
 
@@ -9671,7 +9095,7 @@ called Edit
 
 ### Tool result
 
-_source line 7760 · 2026-05-22T11:18:01.119850+00:00_
+_source line 7746 · 2026-05-22T11:18:01.119850+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -9693,7 +9117,7 @@ _source line 7760 · 2026-05-22T11:18:01.119850+00:00_
 
 ### Tool call
 
-_source line 7761 · 2026-05-22T11:18:04.135830+00:00_
+_source line 7747 · 2026-05-22T11:18:04.135830+00:00_
 
 called Read
 
@@ -9727,7 +9151,7 @@ called Read
 
 ### Tool result
 
-_source line 7762 · 2026-05-22T11:18:04.136261+00:00_
+_source line 7748 · 2026-05-22T11:18:04.136261+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -9791,7 +9215,7 @@ _source line 7762 · 2026-05-22T11:18:04.136261+00:00_
 
 ### Tool call
 
-_source line 7763 · 2026-05-22T11:18:09.523745+00:00_
+_source line 7749 · 2026-05-22T11:18:09.523745+00:00_
 
 called Edit
 
@@ -9831,7 +9255,7 @@ called Edit
 
 ### Tool result
 
-_source line 7764 · 2026-05-22T11:18:09.574499+00:00_
+_source line 7750 · 2026-05-22T11:18:09.574499+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -9853,7 +9277,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7765 · 2026-05-22T11:18:18.310071+00:00_
+_source line 7751 · 2026-05-22T11:18:18.310071+00:00_
 
 called Grep
 
@@ -9893,7 +9317,7 @@ called Grep
 
 ### Tool result
 
-_source line 7766 · 2026-05-22T11:18:18.360745+00:00_
+_source line 7752 · 2026-05-22T11:18:18.360745+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:54:Full (S1)
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:144:Combining both layers (Full S1) reduces DR a further 26\% relative to
@@ -9919,7 +9343,7 @@ _source line 7766 · 2026-05-22T11:18:18.360745+00:00_
 
 ### Tool call
 
-_source line 7767 · 2026-05-22T11:18:35.343102+00:00_
+_source line 7753 · 2026-05-22T11:18:35.343102+00:00_
 
 called Grep
 
@@ -9959,7 +9383,7 @@ called Grep
 
 ### Tool result
 
-_source line 7768 · 2026-05-22T11:18:35.393845+00:00_
+_source line 7754 · 2026-05-22T11:18:35.393845+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex
@@ -9984,7 +9408,7 @@ Found 3 files
 
 ### Tool call
 
-_source line 7769 · 2026-05-22T11:18:38.958857+00:00_
+_source line 7755 · 2026-05-22T11:18:38.958857+00:00_
 
 called Read
 
@@ -10022,7 +9446,7 @@ called Read
 
 ### Tool result
 
-_source line 7770 · 2026-05-22T11:18:39.009604+00:00_
+_source line 7756 · 2026-05-22T11:18:39.009604+00:00_
 
 15	
 16	\paragraph{Inference time.}
@@ -10053,7 +9477,7 @@ _source line 7770 · 2026-05-22T11:18:39.009604+00:00_
 
 ### Tool call
 
-_source line 7771 · 2026-05-22T11:18:43.126447+00:00_
+_source line 7757 · 2026-05-22T11:18:43.126447+00:00_
 
 called Edit
 
@@ -10093,7 +9517,7 @@ called Edit
 
 ### Tool result
 
-_source line 7772 · 2026-05-22T11:18:43.578585+00:00_
+_source line 7758 · 2026-05-22T11:18:43.578585+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex has been updated. All occurrences were successfully replaced.
 
@@ -10115,7 +9539,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7773 · 2026-05-22T11:18:44.332535+00:00_
+_source line 7759 · 2026-05-22T11:18:44.332535+00:00_
 
 called Edit
 
@@ -10155,7 +9579,7 @@ called Edit
 
 ### Tool result
 
-_source line 7774 · 2026-05-22T11:18:44.433379+00:00_
+_source line 7760 · 2026-05-22T11:18:44.433379+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -10177,7 +9601,7 @@ _source line 7774 · 2026-05-22T11:18:44.433379+00:00_
 
 ### Tool call
 
-_source line 7775 · 2026-05-22T11:18:44.935595+00:00_
+_source line 7761 · 2026-05-22T11:18:44.935595+00:00_
 
 called Edit
 
@@ -10217,7 +9641,7 @@ called Edit
 
 ### Tool result
 
-_source line 7776 · 2026-05-22T11:18:45.036966+00:00_
+_source line 7762 · 2026-05-22T11:18:45.036966+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated. All occurrences were successfully replaced.
 
@@ -10239,7 +9663,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7777 · 2026-05-22T11:18:48.551465+00:00_
+_source line 7763 · 2026-05-22T11:18:48.551465+00:00_
 
 called Read
 
@@ -10277,7 +9701,7 @@ called Read
 
 ### Tool result
 
-_source line 7778 · 2026-05-22T11:18:48.802999+00:00_
+_source line 7764 · 2026-05-22T11:18:48.802999+00:00_
 
 5	
 6	Table~\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.
@@ -10313,7 +9737,7 @@ _source line 7778 · 2026-05-22T11:18:48.802999+00:00_
 
 ### Tool call
 
-_source line 7779 · 2026-05-22T11:18:52.022554+00:00_
+_source line 7765 · 2026-05-22T11:18:52.022554+00:00_
 
 called Edit
 
@@ -10353,7 +9777,7 @@ called Edit
 
 ### Tool result
 
-_source line 7780 · 2026-05-22T11:18:52.123494+00:00_
+_source line 7766 · 2026-05-22T11:18:52.123494+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex has been updated. All occurrences were successfully replaced.
 
@@ -10375,7 +9799,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7781 · 2026-05-22T11:19:01.870276+00:00_
+_source line 7767 · 2026-05-22T11:19:01.870276+00:00_
 
 called Grep
 
@@ -10417,7 +9841,7 @@ called Grep
 
 ### Tool result
 
-_source line 7782 · 2026-05-22T11:19:01.921004+00:00_
+_source line 7768 · 2026-05-22T11:19:01.921004+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex:5:\caption{Constraint robustness under nucleus sampling ($T$=0.7, $p$=0.9) vs.\ greedy decoding (Qwen3-8B, full S1 constraints).}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:144:Combining both layers (Full S1) reduces DR a further 26\% relative to
@@ -10447,7 +9871,7 @@ _source line 7782 · 2026-05-22T11:19:01.921004+00:00_
 
 ### Tool call
 
-_source line 7783 · 2026-05-22T11:19:19.578892+00:00_
+_source line 7769 · 2026-05-22T11:19:19.578892+00:00_
 
 called Edit
 
@@ -10487,7 +9911,7 @@ called Edit
 
 ### Tool result
 
-_source line 7784 · 2026-05-22T11:19:19.981103+00:00_
+_source line 7770 · 2026-05-22T11:19:19.981103+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex has been updated. All occurrences were successfully replaced.
 
@@ -10509,7 +9933,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7785 · 2026-05-22T11:19:20.959128+00:00_
+_source line 7771 · 2026-05-22T11:19:20.959128+00:00_
 
 called Edit
 
@@ -10549,7 +9973,7 @@ called Edit
 
 ### Tool result
 
-_source line 7786 · 2026-05-22T11:19:21.413759+00:00_
+_source line 7772 · 2026-05-22T11:19:21.413759+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated. All occurrences were successfully replaced.
 
@@ -10571,7 +9995,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7787 · 2026-05-22T11:19:21.665222+00:00_
+_source line 7773 · 2026-05-22T11:19:21.665222+00:00_
 
 called Edit
 
@@ -10611,7 +10035,7 @@ called Edit
 
 ### Tool result
 
-_source line 7788 · 2026-05-22T11:19:21.716143+00:00_
+_source line 7774 · 2026-05-22T11:19:21.716143+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated. All occurrences were successfully replaced.
 
@@ -10633,7 +10057,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7789 · 2026-05-22T11:19:25.583022+00:00_
+_source line 7775 · 2026-05-22T11:19:25.583022+00:00_
 
 called Read
 
@@ -10671,7 +10095,7 @@ called Read
 
 ### Tool result
 
-_source line 7790 · 2026-05-22T11:19:25.884714+00:00_
+_source line 7776 · 2026-05-22T11:19:25.884714+00:00_
 
 1	\section{Sampling Robustness}\label{app:sampling}
 2	
@@ -10702,7 +10126,7 @@ _source line 7790 · 2026-05-22T11:19:25.884714+00:00_
 
 ### Tool call
 
-_source line 7791 · 2026-05-22T11:19:26.337449+00:00_
+_source line 7777 · 2026-05-22T11:19:26.337449+00:00_
 
 called Read
 
@@ -10740,7 +10164,7 @@ called Read
 
 ### Tool result
 
-_source line 7792 · 2026-05-22T11:19:26.840002+00:00_
+_source line 7778 · 2026-05-22T11:19:26.840002+00:00_
 
 50	\begin{table}[h]
 51	\centering
@@ -10769,7 +10193,7 @@ _source line 7792 · 2026-05-22T11:19:26.840002+00:00_
 
 ### Tool call
 
-_source line 7793 · 2026-05-22T11:19:27.091414+00:00_
+_source line 7779 · 2026-05-22T11:19:27.091414+00:00_
 
 called Read
 
@@ -10807,7 +10231,7 @@ called Read
 
 ### Tool result
 
-_source line 7794 · 2026-05-22T11:19:27.192249+00:00_
+_source line 7780 · 2026-05-22T11:19:27.192249+00:00_
 
 14	Both adaptations add ${\sim}125$ lines total without modifying the existing greedy/sampling logic.
 15	
@@ -10838,7 +10262,7 @@ _source line 7794 · 2026-05-22T11:19:27.192249+00:00_
 
 ### Tool call
 
-_source line 7795 · 2026-05-22T11:19:31.722708+00:00_
+_source line 7781 · 2026-05-22T11:19:31.722708+00:00_
 
 called Edit
 
@@ -10878,7 +10302,7 @@ called Edit
 
 ### Tool result
 
-_source line 7796 · 2026-05-22T11:19:32.174830+00:00_
+_source line 7782 · 2026-05-22T11:19:32.174830+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex has been updated. All occurrences were successfully replaced.
 
@@ -10900,7 +10324,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7797 · 2026-05-22T11:19:32.677081+00:00_
+_source line 7783 · 2026-05-22T11:19:32.677081+00:00_
 
 called Edit
 
@@ -10940,7 +10364,7 @@ called Edit
 
 ### Tool result
 
-_source line 7798 · 2026-05-22T11:19:33.129251+00:00_
+_source line 7784 · 2026-05-22T11:19:33.129251+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_doc_length.tex has been updated. All occurrences were successfully replaced.
 
@@ -10962,7 +10386,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7799 · 2026-05-22T11:19:33.430866+00:00_
+_source line 7785 · 2026-05-22T11:19:33.430866+00:00_
 
 called Edit
 
@@ -11002,7 +10426,7 @@ called Edit
 
 ### Tool result
 
-_source line 7800 · 2026-05-22T11:19:33.481734+00:00_
+_source line 7786 · 2026-05-22T11:19:33.481734+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex has been updated. All occurrences were successfully replaced.
 
@@ -11024,7 +10448,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7801 · 2026-05-22T11:19:41.413830+00:00_
+_source line 7787 · 2026-05-22T11:19:41.413830+00:00_
 
 called Read
 
@@ -11062,7 +10486,7 @@ called Read
 
 ### Tool result
 
-_source line 7802 · 2026-05-22T11:19:41.464506+00:00_
+_source line 7788 · 2026-05-22T11:19:41.464506+00:00_
 
 96	\subsection{Decoding Strategies}
 97	\label{sec:strategies}
@@ -11093,7 +10517,7 @@ _source line 7802 · 2026-05-22T11:19:41.464506+00:00_
 
 ### Tool call
 
-_source line 7803 · 2026-05-22T11:19:56.937757+00:00_
+_source line 7789 · 2026-05-22T11:19:56.937757+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -11133,7 +10557,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7804 · 2026-05-22T11:20:06.287350+00:00_
+_source line 7790 · 2026-05-22T11:20:06.287350+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[30]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_tcr.tex [31]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex [32] [33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524152 string characters out of 5468411\\n 989323 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+600000\\n 747867 words of font info for 563 fonts, out of 8000000 for 9000\\n 59 hyphenation excepti
 …[truncated 15689 chars]
@@ -11156,7 +10580,7 @@ _source line 7804 · 2026-05-22T11:20:06.287350+00:00_
 
 ### Tool call
 
-_source line 7805 · 2026-05-22T11:20:17.666217+00:00_
+_source line 7791 · 2026-05-22T11:20:17.666217+00:00_
 
 called Read
 
@@ -11190,7 +10614,7 @@ called Read
 
 ### Tool result
 
-_source line 7806 · 2026-05-22T11:20:18.270482+00:00_
+_source line 7792 · 2026-05-22T11:20:18.270482+00:00_
 
 
 
@@ -11212,7 +10636,7 @@ _source line 7806 · 2026-05-22T11:20:18.270482+00:00_
 
 ### Tool call
 
-_source line 7807 · 2026-05-22T11:20:29.171548+00:00_
+_source line 7793 · 2026-05-22T11:20:29.171548+00:00_
 
 called Read
 
@@ -11246,7 +10670,7 @@ called Read
 
 ### Tool result
 
-_source line 7808 · 2026-05-22T11:20:29.775341+00:00_
+_source line 7794 · 2026-05-22T11:20:29.775341+00:00_
 
 
 
@@ -11268,7 +10692,7 @@ _source line 7808 · 2026-05-22T11:20:29.775341+00:00_
 
 ### Tool call
 
-_source line 7809 · 2026-05-22T11:20:39.675309+00:00_
+_source line 7795 · 2026-05-22T11:20:39.675309+00:00_
 
 called Read
 
@@ -11302,7 +10726,7 @@ called Read
 
 ### Tool result
 
-_source line 7810 · 2026-05-22T11:20:40.228974+00:00_
+_source line 7796 · 2026-05-22T11:20:40.228974+00:00_
 
 
 
@@ -11324,7 +10748,7 @@ _source line 7810 · 2026-05-22T11:20:40.228974+00:00_
 
 ### Tool call
 
-_source line 7811 · 2026-05-22T11:21:21.729735+00:00_
+_source line 7797 · 2026-05-22T11:21:21.729735+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -11360,7 +10784,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7812 · 2026-05-22T11:21:25.444752+00:00_
+_source line 7798 · 2026-05-22T11:21:25.444752+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -11382,7 +10806,7 @@ _source line 7812 · 2026-05-22T11:21:25.444752+00:00_
 
 ### Assistant
 
-_source line 7813 · 2026-05-22T11:21:40.006232+00:00_
+_source line 7799 · 2026-05-22T11:21:40.006232+00:00_
 
 所有修改完成，编译通过。Conclusion 在第 8 页底部，正文 ≤ 8 页。汇报 Director。
 
@@ -11409,7 +10833,7 @@ _source line 7813 · 2026-05-22T11:21:40.006232+00:00_
 
 ### User
 
-_source line 7814 · 2026-05-22T11:21:40.515268+00:00_
+_source line 7800 · 2026-05-22T11:21:40.515268+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -11430,7 +10854,7 @@ _source line 7814 · 2026-05-22T11:21:40.515268+00:00_
 
 ### Assistant
 
-_source line 7815 · 2026-05-22T11:21:48.659946+00:00_
+_source line 7801 · 2026-05-22T11:21:48.659946+00:00_
 
 No response requested.
 
@@ -11457,7 +10881,7 @@ No response requested.
 
 ### User
 
-_source line 7816 · 2026-05-22T11:22:02.932172+00:00_
+_source line 7802 · 2026-05-22T11:22:02.932172+00:00_
 
 [Director 指令] **Round 17 P2 收尾**
 
@@ -11495,7 +10919,7 @@ P0+P1 全部确认。剩余 3 项：
 
 ### Tool call
 
-_source line 7817 · 2026-05-22T11:22:13.515873+00:00_
+_source line 7803 · 2026-05-22T11:22:13.515873+00:00_
 
 called Read
 
@@ -11533,7 +10957,7 @@ called Read
 
 ### Tool result
 
-_source line 7818 · 2026-05-22T11:22:13.968024+00:00_
+_source line 7804 · 2026-05-22T11:22:13.968024+00:00_
 
 60	Post-hoc filtering is impractical ($<$0.5\% arguments retained).
 61	Unlike RE, EE shows measurable F1 gains: entity F1 0\%\,$\to$\,12--18\%, trigger F1 $+$1.5--1.8\,pp.
@@ -11562,7 +10986,7 @@ _source line 7818 · 2026-05-22T11:22:13.968024+00:00_
 
 ### Tool call
 
-_source line 7819 · 2026-05-22T11:22:14.470697+00:00_
+_source line 7805 · 2026-05-22T11:22:14.470697+00:00_
 
 called Read
 
@@ -11600,7 +11024,7 @@ called Read
 
 ### Tool result
 
-_source line 7820 · 2026-05-22T11:22:14.922914+00:00_
+_source line 7806 · 2026-05-22T11:22:14.922914+00:00_
 
 72	\paragraph{Constraint scope.}
 73	CF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\,$\leq$\,1\% under greedy constrained decoding), S1 introduces CF violations (up to 12.02\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\%\,$\to$\,1.27\%) by constraining type assignments to schema-valid values.
@@ -11631,7 +11055,7 @@ _source line 7820 · 2026-05-22T11:22:14.922914+00:00_
 
 ### Tool call
 
-_source line 7821 · 2026-05-22T11:22:14.973536+00:00_
+_source line 7807 · 2026-05-22T11:22:14.973536+00:00_
 
 called Read
 
@@ -11665,7 +11089,7 @@ called Read
 
 ### Tool result
 
-_source line 7822 · 2026-05-22T11:22:15.024482+00:00_
+_source line 7808 · 2026-05-22T11:22:15.024482+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -11703,7 +11127,7 @@ _source line 7822 · 2026-05-22T11:22:15.024482+00:00_
 
 ### Tool call
 
-_source line 7823 · 2026-05-22T11:22:37.051392+00:00_
+_source line 7809 · 2026-05-22T11:22:37.051392+00:00_
 
 called Edit
 
@@ -11743,7 +11167,7 @@ called Edit
 
 ### Tool result
 
-_source line 7824 · 2026-05-22T11:22:37.453580+00:00_
+_source line 7810 · 2026-05-22T11:22:37.453580+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated successfully.
 
@@ -11765,7 +11189,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7825 · 2026-05-22T11:22:39.964060+00:00_
+_source line 7811 · 2026-05-22T11:22:39.964060+00:00_
 
 called Edit
 
@@ -11805,7 +11229,7 @@ called Edit
 
 ### Tool result
 
-_source line 7826 · 2026-05-22T11:22:40.667511+00:00_
+_source line 7812 · 2026-05-22T11:22:40.667511+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated successfully.
 
@@ -11827,7 +11251,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7827 · 2026-05-22T11:22:45.085874+00:00_
+_source line 7813 · 2026-05-22T11:22:45.085874+00:00_
 
 called Edit
 
@@ -11867,7 +11291,7 @@ called Edit
 
 ### Tool result
 
-_source line 7828 · 2026-05-22T11:22:45.086813+00:00_
+_source line 7814 · 2026-05-22T11:22:45.086813+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex has been updated successfully.
 
@@ -11889,7 +11313,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7829 · 2026-05-22T11:22:49.706196+00:00_
+_source line 7815 · 2026-05-22T11:22:49.706196+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -11927,7 +11351,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7830 · 2026-05-22T11:22:56.415533+00:00_
+_source line 7816 · 2026-05-22T11:22:56.415533+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\nUnderfull \\\\vbox (badness 2894) has occurred while \\\\output is active []\\n\\n [32])\\n(./appendix_tcr.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28697 strings out of 469438\\n 524175 string characters out of 5468411\\n 989840 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+600000\\n 747867 words of font info for 563 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 
 …[truncated 15728 chars]
@@ -11950,7 +11374,7 @@ _source line 7830 · 2026-05-22T11:22:56.415533+00:00_
 
 ### Tool call
 
-_source line 7831 · 2026-05-22T11:25:14.643729+00:00_
+_source line 7817 · 2026-05-22T11:25:14.643729+00:00_
 
 called Read
 
@@ -11984,7 +11408,7 @@ called Read
 
 ### Tool result
 
-_source line 7832 · 2026-05-22T11:25:15.548274+00:00_
+_source line 7818 · 2026-05-22T11:25:15.548274+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -12006,7 +11430,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 7833 · 2026-05-22T11:25:15.598909+00:00_
+_source line 7819 · 2026-05-22T11:25:15.598909+00:00_
 
 called Read
 
@@ -12040,7 +11464,7 @@ called Read
 
 ### Tool result
 
-_source line 7834 · 2026-05-22T11:25:15.950852+00:00_
+_source line 7820 · 2026-05-22T11:25:15.950852+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -12065,7 +11489,7 @@ _source line 7834 · 2026-05-22T11:25:15.950852+00:00_
 
 ### Tool call
 
-_source line 7835 · 2026-05-22T11:25:16.101916+00:00_
+_source line 7821 · 2026-05-22T11:25:16.101916+00:00_
 
 called Read
 
@@ -12099,7 +11523,7 @@ called Read
 
 ### Tool result
 
-_source line 7836 · 2026-05-22T11:25:16.102451+00:00_
+_source line 7822 · 2026-05-22T11:25:16.102451+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -12170,7 +11594,7 @@ _source line 7836 · 2026-05-22T11:25:16.102451+00:00_
 
 ### Tool call
 
-_source line 7837 · 2026-05-22T11:25:23.453771+00:00_
+_source line 7823 · 2026-05-22T11:25:23.453771+00:00_
 
 called Read
 
@@ -12208,7 +11632,7 @@ called Read
 
 ### Tool result
 
-_source line 7838 · 2026-05-22T11:25:23.504661+00:00_
+_source line 7824 · 2026-05-22T11:25:23.504661+00:00_
 
 68	% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===
 69	\clearpage
@@ -12243,7 +11667,7 @@ _source line 7838 · 2026-05-22T11:25:23.504661+00:00_
 
 ### Tool call
 
-_source line 7839 · 2026-05-22T11:25:39.024935+00:00_
+_source line 7825 · 2026-05-22T11:25:39.024935+00:00_
 
 called ToolSearch
 
@@ -12279,7 +11703,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7840 · 2026-05-22T11:25:39.075647+00:00_
+_source line 7826 · 2026-05-22T11:25:39.075647+00:00_
 
 
 
@@ -12301,7 +11725,7 @@ _source line 7840 · 2026-05-22T11:25:39.075647+00:00_
 
 ### Tool call
 
-_source line 7841 · 2026-05-22T11:25:41.737083+00:00_
+_source line 7827 · 2026-05-22T11:25:41.737083+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -12339,7 +11763,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7842 · 2026-05-22T11:25:44.147050+00:00_
+_source line 7828 · 2026-05-22T11:25:44.147050+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\nUnderfull \\\\vbox (badness 2894) has occurred while \\\\output is active []\\n\\n [32])\\n(./appendix_tcr.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28697 strings out of 469438\\n 524175 string characters out of 5468411\\n 989840 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+600000\\n 747867 words of font info for 563 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 
 …[truncated 15728 chars]
@@ -12362,7 +11786,7 @@ _source line 7842 · 2026-05-22T11:25:44.147050+00:00_
 
 ### Tool call
 
-_source line 7843 · 2026-05-22T11:25:49.118517+00:00_
+_source line 7829 · 2026-05-22T11:25:49.118517+00:00_
 
 called Read
 
@@ -12396,7 +11820,7 @@ called Read
 
 ### Tool call
 
-_source line 7844 · 2026-05-22T11:25:49.371893+00:00_
+_source line 7830 · 2026-05-22T11:25:49.371893+00:00_
 
 called Read
 
@@ -12430,7 +11854,7 @@ called Read
 
 ### Tool result
 
-_source line 7845 · 2026-05-22T11:25:49.422816+00:00_
+_source line 7831 · 2026-05-22T11:25:49.422816+00:00_
 
 
 
@@ -12452,7 +11876,7 @@ _source line 7845 · 2026-05-22T11:25:49.422816+00:00_
 
 ### Tool result
 
-_source line 7846 · 2026-05-22T11:25:49.827796+00:00_
+_source line 7832 · 2026-05-22T11:25:49.827796+00:00_
 
 
 
@@ -12474,7 +11898,7 @@ _source line 7846 · 2026-05-22T11:25:49.827796+00:00_
 
 ### Tool call
 
-_source line 7847 · 2026-05-22T11:26:04.245523+00:00_
+_source line 7833 · 2026-05-22T11:26:04.245523+00:00_
 
 called Read
 
@@ -12508,7 +11932,7 @@ called Read
 
 ### Tool result
 
-_source line 7848 · 2026-05-22T11:26:04.597617+00:00_
+_source line 7834 · 2026-05-22T11:26:04.597617+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -12553,7 +11977,7 @@ _source line 7848 · 2026-05-22T11:26:04.597617+00:00_
 
 ### Tool call
 
-_source line 7849 · 2026-05-22T11:26:04.598136+00:00_
+_source line 7835 · 2026-05-22T11:26:04.598136+00:00_
 
 called Read
 
@@ -12587,7 +12011,7 @@ called Read
 
 ### Tool result
 
-_source line 7850 · 2026-05-22T11:26:04.648718+00:00_
+_source line 7836 · 2026-05-22T11:26:04.648718+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -12625,7 +12049,7 @@ _source line 7850 · 2026-05-22T11:26:04.648718+00:00_
 
 ### Tool call
 
-_source line 7851 · 2026-05-22T11:26:27.843902+00:00_
+_source line 7837 · 2026-05-22T11:26:27.843902+00:00_
 
 called Edit
 
@@ -12665,7 +12089,7 @@ called Edit
 
 ### Tool result
 
-_source line 7852 · 2026-05-22T11:26:27.894665+00:00_
+_source line 7838 · 2026-05-22T11:26:27.894665+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -12687,7 +12111,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7853 · 2026-05-22T11:26:31.362868+00:00_
+_source line 7839 · 2026-05-22T11:26:31.362868+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -12725,7 +12149,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7854 · 2026-05-22T11:26:35.678368+00:00_
+_source line 7840 · 2026-05-22T11:26:35.678368+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n[30]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\nUnderfull \\\\vbox (badness 2894) has occurred while \\\\output is active []\\n\\n [31])\\n(./appendix_tcr.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [32]\\n[33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524152 string characters out of 5468411\\n 989804 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+600000\\n 747867 words of font info for 563 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 
 …[truncated 11103 chars]
@@ -12748,7 +12172,7 @@ _source line 7854 · 2026-05-22T11:26:35.678368+00:00_
 
 ### Tool call
 
-_source line 7855 · 2026-05-22T11:26:43.663612+00:00_
+_source line 7841 · 2026-05-22T11:26:43.663612+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -12786,7 +12210,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7856 · 2026-05-22T11:26:46.225023+00:00_
+_source line 7842 · 2026-05-22T11:26:46.225023+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n[30]\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\nUnderfull \\\\vbox (badness 2894) has occurred while \\\\output is active []\\n\\n [31])\\n(./appendix_tcr.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [32]\\n[33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 53072C90E759BBF833E7DE7F36E67CCF;6174.\\n ) \\nHere is how much of TeX's memory you used:\\n 28694 strings out of 469438\\n 524152 string characters out of 5468411\\n 989804 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+600000\\n 747867 words of font info for 563 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 
 …[truncated 15729 chars]
@@ -12809,7 +12233,7 @@ _source line 7856 · 2026-05-22T11:26:46.225023+00:00_
 
 ### Tool call
 
-_source line 7857 · 2026-05-22T11:26:49.538865+00:00_
+_source line 7843 · 2026-05-22T11:26:49.538865+00:00_
 
 called Read
 
@@ -12843,7 +12267,7 @@ called Read
 
 ### Tool call
 
-_source line 7858 · 2026-05-22T11:26:50.091505+00:00_
+_source line 7844 · 2026-05-22T11:26:50.091505+00:00_
 
 called Read
 
@@ -12877,7 +12301,7 @@ called Read
 
 ### Tool result
 
-_source line 7859 · 2026-05-22T11:26:50.143058+00:00_
+_source line 7845 · 2026-05-22T11:26:50.143058+00:00_
 
 
 
@@ -12899,7 +12323,7 @@ _source line 7859 · 2026-05-22T11:26:50.143058+00:00_
 
 ### Tool result
 
-_source line 7860 · 2026-05-22T11:26:50.696020+00:00_
+_source line 7846 · 2026-05-22T11:26:50.696020+00:00_
 
 
 
@@ -12921,7 +12345,7 @@ _source line 7860 · 2026-05-22T11:26:50.696020+00:00_
 
 ### Tool call
 
-_source line 7861 · 2026-05-22T11:27:10.293025+00:00_
+_source line 7847 · 2026-05-22T11:27:10.293025+00:00_
 
 called ToolSearch
 
@@ -12957,7 +12381,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7862 · 2026-05-22T11:27:10.343614+00:00_
+_source line 7848 · 2026-05-22T11:27:10.343614+00:00_
 
 
 
@@ -12979,7 +12403,7 @@ _source line 7862 · 2026-05-22T11:27:10.343614+00:00_
 
 ### Tool call
 
-_source line 7863 · 2026-05-22T11:27:29.533280+00:00_
+_source line 7849 · 2026-05-22T11:27:29.533280+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -13015,7 +12439,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7864 · 2026-05-22T11:27:33.306220+00:00_
+_source line 7850 · 2026-05-22T11:27:33.306220+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -13037,7 +12461,7 @@ _source line 7864 · 2026-05-22T11:27:33.306220+00:00_
 
 ### Assistant
 
-_source line 7865 · 2026-05-22T11:27:38.104136+00:00_
+_source line 7851 · 2026-05-22T11:27:38.104136+00:00_
 
 Round 17 P2 全部完成并已汇报 Director。修改清单：
 - SF2 WikiEvents preliminary + CI 标注 ✅
@@ -13068,7 +12492,7 @@ Round 17 P2 全部完成并已汇报 Director。修改清单：
 
 ### User
 
-_source line 7866 · 2026-05-22T11:27:38.605658+00:00_
+_source line 7852 · 2026-05-22T11:27:38.605658+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -13089,7 +12513,7 @@ _source line 7866 · 2026-05-22T11:27:38.605658+00:00_
 
 ### Assistant
 
-_source line 7867 · 2026-05-22T11:27:46.589464+00:00_
+_source line 7853 · 2026-05-22T11:27:46.589464+00:00_
 
 P2 结果已通过 `paper_agent_post_to_director` 汇报，无需重复发送。（Paper Agent 使用的是 `paper_agent_post_to_director`，不是 `main_agent_post_to_director`。）
 
@@ -13116,7 +12540,7 @@ P2 结果已通过 `paper_agent_post_to_director` 汇报，无需重复发送。
 
 ### User
 
-_source line 7868 · 2026-05-22T12:07:58.910662+00:00_
+_source line 7854 · 2026-05-22T12:07:58.910662+00:00_
 
 [Director 指令] **GCD 等价论证 Appendix 强化 + Error Analysis 框架准备**
 
@@ -13174,7 +12598,7 @@ Agent 正在收集数据，收集完后我会再派你填充具体案例。框�
 
 ### Tool call
 
-_source line 7869 · 2026-05-22T12:08:10.457728+00:00_
+_source line 7855 · 2026-05-22T12:08:10.457728+00:00_
 
 called Read
 
@@ -13208,7 +12632,7 @@ called Read
 
 ### Tool result
 
-_source line 7870 · 2026-05-22T12:08:11.062146+00:00_
+_source line 7856 · 2026-05-22T12:08:11.062146+00:00_
 
 1	% Appendix B — Extended Discussion
 2	% Contains discussion paragraphs moved from the main text during compression.
@@ -13256,7 +12680,7 @@ _source line 7870 · 2026-05-22T12:08:11.062146+00:00_
 
 ### Tool call
 
-_source line 7871 · 2026-05-22T12:08:11.113927+00:00_
+_source line 7857 · 2026-05-22T12:08:11.113927+00:00_
 
 called Read
 
@@ -13290,7 +12714,7 @@ called Read
 
 ### Tool result
 
-_source line 7872 · 2026-05-22T12:08:11.114625+00:00_
+_source line 7858 · 2026-05-22T12:08:11.114625+00:00_
 
 1	% Appendix — Error Analysis and Case Studies
 2	
@@ -13347,7 +12771,7 @@ _source line 7872 · 2026-05-22T12:08:11.114625+00:00_
 
 ### Tool call
 
-_source line 7873 · 2026-05-22T12:08:44.715010+00:00_
+_source line 7859 · 2026-05-22T12:08:44.715010+00:00_
 
 called Edit
 
@@ -13387,7 +12811,7 @@ called Edit
 
 ### Tool result
 
-_source line 7874 · 2026-05-22T12:08:45.770104+00:00_
+_source line 7860 · 2026-05-22T12:08:45.770104+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -13409,7 +12833,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7875 · 2026-05-22T12:08:51.695744+00:00_
+_source line 7861 · 2026-05-22T12:08:51.695744+00:00_
 
 called Edit
 
@@ -13449,7 +12873,7 @@ called Edit
 
 ### Tool result
 
-_source line 7876 · 2026-05-22T12:08:51.746439+00:00_
+_source line 7862 · 2026-05-22T12:08:51.746439+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -13471,7 +12895,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7877 · 2026-05-22T12:08:57.219994+00:00_
+_source line 7863 · 2026-05-22T12:08:57.219994+00:00_
 
 called Edit
 
@@ -13511,7 +12935,7 @@ called Edit
 
 ### Tool result
 
-_source line 7878 · 2026-05-22T12:08:57.421217+00:00_
+_source line 7864 · 2026-05-22T12:08:57.421217+00:00_
 
 &lt;tool_use_error>Found 3 matches of the string to replace, but replace_all is false. To replace all occurrences, set replace_all to true. To replace only one occurrence, please provide more context to uniquely identify the instance.
 String: \bottomrule
@@ -13536,7 +12960,7 @@ String: \bottomrule
 
 ### Tool call
 
-_source line 7879 · 2026-05-22T12:09:06.209443+00:00_
+_source line 7865 · 2026-05-22T12:09:06.209443+00:00_
 
 called Edit
 
@@ -13576,7 +13000,7 @@ called Edit
 
 ### Tool result
 
-_source line 7880 · 2026-05-22T12:09:07.728949+00:00_
+_source line 7866 · 2026-05-22T12:09:07.728949+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully.
 
@@ -13598,7 +13022,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7881 · 2026-05-22T12:09:11.444440+00:00_
+_source line 7867 · 2026-05-22T12:09:11.444440+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -13636,7 +13060,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7882 · 2026-05-22T12:09:16.416236+00:00_
+_source line 7868 · 2026-05-22T12:09:16.416236+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 39--39\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 40--40\\n[]|\\\\T1/ptm/m/n/9 (+20) Feature-of(recover,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex [31])\\n(./appendix_tcr.tex) (./appendix_kappa_case_study.tex [32])\\n(./appendix_pumping_lemma.tex [33]) [34] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28676 strings out of 469438\\n 523985 string characters out of 5468411\\n 990258 words of memory out of 5000000\\n 55835 multiletter control sequences out of 15000+600000\\n 748092 wor
 …[truncated 10819 chars]
@@ -13659,7 +13083,7 @@ _source line 7882 · 2026-05-22T12:09:16.416236+00:00_
 
 ### Tool call
 
-_source line 7883 · 2026-05-22T12:09:36.702902+00:00_
+_source line 7869 · 2026-05-22T12:09:36.702902+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -13695,7 +13119,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7884 · 2026-05-22T12:09:40.466031+00:00_
+_source line 7870 · 2026-05-22T12:09:40.466031+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -13717,7 +13141,7 @@ _source line 7884 · 2026-05-22T12:09:40.466031+00:00_
 
 ### Assistant
 
-_source line 7885 · 2026-05-22T12:09:46.490960+00:00_
+_source line 7871 · 2026-05-22T12:09:46.490960+00:00_
 
 两项任务已完成：
 1. **GCD 等价对比表**已加入 Appendix B（`app:gcd-comparison`），含 5 行方法对比 + 论证段落；主文 §5 baselines 段已添加交叉引用。
@@ -13748,7 +13172,7 @@ _source line 7885 · 2026-05-22T12:09:46.490960+00:00_
 
 ### User
 
-_source line 7886 · 2026-05-22T12:09:47.047376+00:00_
+_source line 7872 · 2026-05-22T12:09:47.047376+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -13769,7 +13193,7 @@ _source line 7886 · 2026-05-22T12:09:47.047376+00:00_
 
 ### Assistant
 
-_source line 7887 · 2026-05-22T12:09:55.845021+00:00_
+_source line 7873 · 2026-05-22T12:09:55.845021+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报，无需重复调用。
 
@@ -13796,7 +13220,7 @@ _source line 7887 · 2026-05-22T12:09:55.845021+00:00_
 
 ### User
 
-_source line 7888 · 2026-05-22T12:15:18.821818+00:00_
+_source line 7874 · 2026-05-22T12:15:18.821818+00:00_
 
 [Director 指令] **Error Analysis 填充 + 主文 claim**
 
@@ -13847,7 +13271,7 @@ _source line 7888 · 2026-05-22T12:15:18.821818+00:00_
 
 ### Tool call
 
-_source line 7889 · 2026-05-22T12:15:31.211278+00:00_
+_source line 7875 · 2026-05-22T12:15:31.211278+00:00_
 
 called Read
 
@@ -13881,7 +13305,7 @@ called Read
 
 ### Tool call
 
-_source line 7890 · 2026-05-22T12:15:31.515321+00:00_
+_source line 7876 · 2026-05-22T12:15:31.515321+00:00_
 
 called Read
 
@@ -13915,7 +13339,7 @@ called Read
 
 ### Tool result
 
-_source line 7891 · 2026-05-22T12:15:31.921297+00:00_
+_source line 7877 · 2026-05-22T12:15:31.921297+00:00_
 
 1	{
 2	  "metadata": {
@@ -13976,7 +13400,7 @@ _source line 7891 · 2026-05-22T12:15:31.921297+00:00_
 
 ### Tool result
 
-_source line 7892 · 2026-05-22T12:15:31.922004+00:00_
+_source line 7878 · 2026-05-22T12:15:31.922004+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -14058,7 +13482,7 @@ _source line 7892 · 2026-05-22T12:15:31.922004+00:00_
 
 ### Tool call
 
-_source line 7893 · 2026-05-22T12:15:47.564033+00:00_
+_source line 7879 · 2026-05-22T12:15:47.564033+00:00_
 
 called Edit
 
@@ -14098,7 +13522,7 @@ called Edit
 
 ### Tool result
 
-_source line 7894 · 2026-05-22T12:15:47.765379+00:00_
+_source line 7880 · 2026-05-22T12:15:47.765379+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -14120,7 +13544,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7895 · 2026-05-22T12:16:20.563775+00:00_
+_source line 7881 · 2026-05-22T12:16:20.563775+00:00_
 
 called Edit
 
@@ -14160,7 +13584,7 @@ called Edit
 
 ### Tool result
 
-_source line 7896 · 2026-05-22T12:16:20.564555+00:00_
+_source line 7882 · 2026-05-22T12:16:20.564555+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex has been updated successfully.
 
@@ -14182,7 +13606,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7897 · 2026-05-22T12:16:31.001852+00:00_
+_source line 7883 · 2026-05-22T12:16:31.001852+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14220,7 +13644,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7898 · 2026-05-22T12:16:35.267118+00:00_
+_source line 7884 · 2026-05-22T12:16:35.267118+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28693 strings out of 469438\\n 524151 string characters out of 5468411\\n 990296 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+60000
 …[truncated 11125 chars]
@@ -14243,7 +13667,7 @@ _source line 7898 · 2026-05-22T12:16:35.267118+00:00_
 
 ### Tool call
 
-_source line 7899 · 2026-05-22T12:16:47.143737+00:00_
+_source line 7885 · 2026-05-22T12:16:47.143737+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14281,7 +13705,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7900 · 2026-05-22T12:16:49.656532+00:00_
+_source line 7886 · 2026-05-22T12:16:49.656532+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28693 strings out of 469438\\n 524151 string characters out of 5468411\\n 990296 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+60000
 …[truncated 15750 chars]
@@ -14304,7 +13728,7 @@ _source line 7900 · 2026-05-22T12:16:49.656532+00:00_
 
 ### Tool call
 
-_source line 7901 · 2026-05-22T12:16:52.969879+00:00_
+_source line 7887 · 2026-05-22T12:16:52.969879+00:00_
 
 called Read
 
@@ -14338,7 +13762,7 @@ called Read
 
 ### Tool result
 
-_source line 7902 · 2026-05-22T12:16:53.573076+00:00_
+_source line 7888 · 2026-05-22T12:16:53.573076+00:00_
 
 
 
@@ -14360,7 +13784,7 @@ _source line 7902 · 2026-05-22T12:16:53.573076+00:00_
 
 ### Tool call
 
-_source line 7903 · 2026-05-22T12:16:53.623735+00:00_
+_source line 7889 · 2026-05-22T12:16:53.623735+00:00_
 
 called Read
 
@@ -14394,7 +13818,7 @@ called Read
 
 ### Tool result
 
-_source line 7904 · 2026-05-22T12:16:53.675588+00:00_
+_source line 7890 · 2026-05-22T12:16:53.675588+00:00_
 
 
 
@@ -14416,7 +13840,7 @@ _source line 7904 · 2026-05-22T12:16:53.675588+00:00_
 
 ### Tool call
 
-_source line 7905 · 2026-05-22T12:17:25.355737+00:00_
+_source line 7891 · 2026-05-22T12:17:25.355737+00:00_
 
 called Edit
 
@@ -14456,7 +13880,7 @@ called Edit
 
 ### Tool result
 
-_source line 7906 · 2026-05-22T12:17:25.356358+00:00_
+_source line 7892 · 2026-05-22T12:17:25.356358+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -14478,7 +13902,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7907 · 2026-05-22T12:17:36.804003+00:00_
+_source line 7893 · 2026-05-22T12:17:36.804003+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14516,7 +13940,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7908 · 2026-05-22T12:17:41.251345+00:00_
+_source line 7894 · 2026-05-22T12:17:41.251345+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28693 strings out of 469438\\n 524151 string characters out of 5468411\\n 990296 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+60000
 …[truncated 11042 chars]
@@ -14539,7 +13963,7 @@ _source line 7908 · 2026-05-22T12:17:41.251345+00:00_
 
 ### Tool call
 
-_source line 7909 · 2026-05-22T12:18:10.044112+00:00_
+_source line 7895 · 2026-05-22T12:18:10.044112+00:00_
 
 called Edit
 
@@ -14579,7 +14003,7 @@ called Edit
 
 ### Tool result
 
-_source line 7910 · 2026-05-22T12:18:10.094765+00:00_
+_source line 7896 · 2026-05-22T12:18:10.094765+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -14601,7 +14025,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7911 · 2026-05-22T12:18:15.667696+00:00_
+_source line 7897 · 2026-05-22T12:18:15.667696+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14639,7 +14063,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7912 · 2026-05-22T12:18:19.984252+00:00_
+_source line 7898 · 2026-05-22T12:18:19.984252+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [30]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[31]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[32]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [33]\\n[34]) [35\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28693 strings out of 469438\\n 524151 string characters out of 5468411\\n 991296 words of memory out of 5000000\\n 55838 multiletter control sequences out of 15000+60000
 …[truncated 10906 chars]
@@ -14662,7 +14086,7 @@ _source line 7912 · 2026-05-22T12:18:19.984252+00:00_
 
 ### Tool call
 
-_source line 7913 · 2026-05-22T12:18:32.655803+00:00_
+_source line 7899 · 2026-05-22T12:18:32.655803+00:00_
 
 called Read
 
@@ -14696,7 +14120,7 @@ called Read
 
 ### Tool result
 
-_source line 7914 · 2026-05-22T12:18:32.706951+00:00_
+_source line 7900 · 2026-05-22T12:18:32.706951+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -14741,7 +14165,7 @@ _source line 7914 · 2026-05-22T12:18:32.706951+00:00_
 
 ### Tool call
 
-_source line 7915 · 2026-05-22T12:18:44.837474+00:00_
+_source line 7901 · 2026-05-22T12:18:44.837474+00:00_
 
 called Edit
 
@@ -14781,7 +14205,7 @@ called Edit
 
 ### Tool result
 
-_source line 7916 · 2026-05-22T12:18:44.888195+00:00_
+_source line 7902 · 2026-05-22T12:18:44.888195+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -14803,7 +14227,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7917 · 2026-05-22T12:18:50.863246+00:00_
+_source line 7903 · 2026-05-22T12:18:50.863246+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14841,7 +14265,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7918 · 2026-05-22T12:18:55.128955+00:00_
+_source line 7904 · 2026-05-22T12:18:55.128955+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [29]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[30]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32]\\n[33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28690 strings out of 469438\\n 524128 string characters out of 5468411\\n 990261 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+60000
 …[truncated 10906 chars]
@@ -14864,7 +14288,7 @@ _source line 7918 · 2026-05-22T12:18:55.128955+00:00_
 
 ### Tool call
 
-_source line 7919 · 2026-05-22T12:19:18.262170+00:00_
+_source line 7905 · 2026-05-22T12:19:18.262170+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -14900,7 +14324,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7920 · 2026-05-22T12:19:22.127599+00:00_
+_source line 7906 · 2026-05-22T12:19:22.127599+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -14922,7 +14346,7 @@ _source line 7920 · 2026-05-22T12:19:22.127599+00:00_
 
 ### Assistant
 
-_source line 7921 · 2026-05-22T12:19:32.994470+00:00_
+_source line 7907 · 2026-05-22T12:19:32.994470+00:00_
 
 34 pages — back to the target. The "over_limit" flag is just the total page count including appendices. 0 critical warnings. Let me report to Director.
 
@@ -14949,7 +14373,7 @@ _source line 7921 · 2026-05-22T12:19:32.994470+00:00_
 
 ### User
 
-_source line 7922 · 2026-05-22T12:19:33.530259+00:00_
+_source line 7908 · 2026-05-22T12:19:33.530259+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -14970,7 +14394,7 @@ _source line 7922 · 2026-05-22T12:19:33.530259+00:00_
 
 ### Assistant
 
-_source line 7923 · 2026-05-22T12:19:40.991261+00:00_
+_source line 7909 · 2026-05-22T12:19:40.991261+00:00_
 
 No response requested.
 
@@ -14997,7 +14421,7 @@ No response requested.
 
 ### User
 
-_source line 7924 · 2026-05-22T12:56:55.559759+00:00_
+_source line 7910 · 2026-05-22T12:56:55.559759+00:00_
 
 [Director 指令] **R18 写作修复批次（不依赖实验结果，立即执行）**
 
@@ -15063,7 +14487,7 @@ _source line 7924 · 2026-05-22T12:56:55.559759+00:00_
 
 ### Tool call
 
-_source line 7925 · 2026-05-22T12:57:10.186972+00:00_
+_source line 7911 · 2026-05-22T12:57:10.186972+00:00_
 
 called Read
 
@@ -15097,7 +14521,7 @@ called Read
 
 ### Tool result
 
-_source line 7926 · 2026-05-22T12:57:11.091288+00:00_
+_source line 7912 · 2026-05-22T12:57:11.091288+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints via a decidability-guided architecture: a \emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.
@@ -15127,7 +14551,7 @@ _source line 7926 · 2026-05-22T12:57:11.091288+00:00_
 
 ### Tool call
 
-_source line 7927 · 2026-05-22T12:57:11.142020+00:00_
+_source line 7913 · 2026-05-22T12:57:11.142020+00:00_
 
 called Read
 
@@ -15161,7 +14585,7 @@ called Read
 
 ### Tool result
 
-_source line 7928 · 2026-05-22T12:57:11.593715+00:00_
+_source line 7914 · 2026-05-22T12:57:11.593715+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -15199,7 +14623,7 @@ _source line 7928 · 2026-05-22T12:57:11.593715+00:00_
 
 ### Tool call
 
-_source line 7929 · 2026-05-22T12:57:11.644262+00:00_
+_source line 7915 · 2026-05-22T12:57:11.644262+00:00_
 
 called Read
 
@@ -15233,7 +14657,7 @@ called Read
 
 ### Tool result
 
-_source line 7930 · 2026-05-22T12:57:11.695884+00:00_
+_source line 7916 · 2026-05-22T12:57:11.695884+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -15278,7 +14702,7 @@ _source line 7930 · 2026-05-22T12:57:11.695884+00:00_
 
 ### Tool call
 
-_source line 7931 · 2026-05-22T12:57:16.515754+00:00_
+_source line 7917 · 2026-05-22T12:57:16.515754+00:00_
 
 called Read
 
@@ -15312,7 +14736,7 @@ called Read
 
 ### Tool result
 
-_source line 7932 · 2026-05-22T12:57:17.293010+00:00_
+_source line 7918 · 2026-05-22T12:57:17.293010+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -15351,7 +14775,7 @@ _source line 7932 · 2026-05-22T12:57:17.293010+00:00_
 
 ### Tool call
 
-_source line 7933 · 2026-05-22T12:57:17.293425+00:00_
+_source line 7919 · 2026-05-22T12:57:17.293425+00:00_
 
 called Read
 
@@ -15385,7 +14809,7 @@ called Read
 
 ### Tool result
 
-_source line 7934 · 2026-05-22T12:57:17.343933+00:00_
+_source line 7920 · 2026-05-22T12:57:17.343933+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -15456,7 +14880,7 @@ _source line 7934 · 2026-05-22T12:57:17.343933+00:00_
 
 ### Tool call
 
-_source line 7935 · 2026-05-22T12:57:33.208388+00:00_
+_source line 7921 · 2026-05-22T12:57:33.208388+00:00_
 
 called Read
 
@@ -15494,7 +14918,7 @@ called Read
 
 ### Tool result
 
-_source line 7936 · 2026-05-22T12:57:33.209207+00:00_
+_source line 7922 · 2026-05-22T12:57:33.209207+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -15547,7 +14971,7 @@ _source line 7936 · 2026-05-22T12:57:33.209207+00:00_
 
 ### Tool call
 
-_source line 7937 · 2026-05-22T12:57:33.310077+00:00_
+_source line 7923 · 2026-05-22T12:57:33.310077+00:00_
 
 called Read
 
@@ -15581,7 +15005,7 @@ called Read
 
 ### Tool result
 
-_source line 7938 · 2026-05-22T12:57:33.310752+00:00_
+_source line 7924 · 2026-05-22T12:57:33.310752+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -15620,7 +15044,7 @@ _source line 7938 · 2026-05-22T12:57:33.310752+00:00_
 
 ### Tool call
 
-_source line 7939 · 2026-05-22T12:59:08.797318+00:00_
+_source line 7925 · 2026-05-22T12:59:08.797318+00:00_
 
 called Read
 
@@ -15654,7 +15078,7 @@ called Read
 
 ### Tool result
 
-_source line 7940 · 2026-05-22T12:59:08.898935+00:00_
+_source line 7926 · 2026-05-22T12:59:08.898935+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -15697,7 +15121,7 @@ _source line 7940 · 2026-05-22T12:59:08.898935+00:00_
 
 ### Tool call
 
-_source line 7941 · 2026-05-22T13:01:11.325009+00:00_
+_source line 7927 · 2026-05-22T13:01:11.325009+00:00_
 
 called Edit
 
@@ -15737,7 +15161,7 @@ called Edit
 
 ### Tool result
 
-_source line 7942 · 2026-05-22T13:01:11.375912+00:00_
+_source line 7928 · 2026-05-22T13:01:11.375912+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex has been updated successfully.
 
@@ -15759,7 +15183,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7943 · 2026-05-22T13:03:32.186629+00:00_
+_source line 7929 · 2026-05-22T13:03:32.186629+00:00_
 
 called Read
 
@@ -15793,7 +15217,7 @@ called Read
 
 ### Tool result
 
-_source line 7944 · 2026-05-22T13:03:33.141077+00:00_
+_source line 7930 · 2026-05-22T13:03:33.141077+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -15832,7 +15256,7 @@ _source line 7944 · 2026-05-22T13:03:33.141077+00:00_
 
 ### Tool call
 
-_source line 7945 · 2026-05-22T13:03:33.141481+00:00_
+_source line 7931 · 2026-05-22T13:03:33.141481+00:00_
 
 called Read
 
@@ -15866,7 +15290,7 @@ called Read
 
 ### Tool result
 
-_source line 7946 · 2026-05-22T13:03:33.643933+00:00_
+_source line 7932 · 2026-05-22T13:03:33.643933+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -15904,7 +15328,7 @@ _source line 7946 · 2026-05-22T13:03:33.643933+00:00_
 
 ### Tool call
 
-_source line 7947 · 2026-05-22T13:03:33.694560+00:00_
+_source line 7933 · 2026-05-22T13:03:33.694560+00:00_
 
 called Read
 
@@ -15938,7 +15362,7 @@ called Read
 
 ### Tool result
 
-_source line 7948 · 2026-05-22T13:03:33.946290+00:00_
+_source line 7934 · 2026-05-22T13:03:33.946290+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -15977,7 +15401,7 @@ _source line 7948 · 2026-05-22T13:03:33.946290+00:00_
 
 ### Tool call
 
-_source line 7949 · 2026-05-22T13:03:33.997018+00:00_
+_source line 7935 · 2026-05-22T13:03:33.997018+00:00_
 
 called Read
 
@@ -16011,7 +15435,7 @@ called Read
 
 ### Tool result
 
-_source line 7950 · 2026-05-22T13:03:34.047694+00:00_
+_source line 7936 · 2026-05-22T13:03:34.047694+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -16082,7 +15506,7 @@ _source line 7950 · 2026-05-22T13:03:34.047694+00:00_
 
 ### Tool call
 
-_source line 7951 · 2026-05-22T13:04:06.463846+00:00_
+_source line 7937 · 2026-05-22T13:04:06.463846+00:00_
 
 called Read
 
@@ -16116,7 +15540,7 @@ called Read
 
 ### Tool result
 
-_source line 7952 · 2026-05-22T13:04:06.766137+00:00_
+_source line 7938 · 2026-05-22T13:04:06.766137+00:00_
 
 1	% Appendix B — Extended Discussion
 2	% Contains discussion paragraphs moved from the main text during compression.
@@ -16164,7 +15588,7 @@ _source line 7952 · 2026-05-22T13:04:06.766137+00:00_
 
 ### Tool call
 
-_source line 7953 · 2026-05-22T13:07:32.544489+00:00_
+_source line 7939 · 2026-05-22T13:07:32.544489+00:00_
 
 called Edit
 
@@ -16204,7 +15628,7 @@ called Edit
 
 ### Tool result
 
-_source line 7954 · 2026-05-22T13:07:32.595243+00:00_
+_source line 7940 · 2026-05-22T13:07:32.595243+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -16226,7 +15650,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7955 · 2026-05-22T13:07:47.809397+00:00_
+_source line 7941 · 2026-05-22T13:07:47.809397+00:00_
 
 called Edit
 
@@ -16266,7 +15690,7 @@ called Edit
 
 ### Tool result
 
-_source line 7956 · 2026-05-22T13:07:48.010807+00:00_
+_source line 7942 · 2026-05-22T13:07:48.010807+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -16288,7 +15712,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7957 · 2026-05-22T13:07:54.803897+00:00_
+_source line 7943 · 2026-05-22T13:07:54.803897+00:00_
 
 called Edit
 
@@ -16328,7 +15752,7 @@ called Edit
 
 ### Tool result
 
-_source line 7958 · 2026-05-22T13:07:54.855067+00:00_
+_source line 7944 · 2026-05-22T13:07:54.855067+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully.
 
@@ -16350,7 +15774,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7959 · 2026-05-22T13:08:00.433291+00:00_
+_source line 7945 · 2026-05-22T13:08:00.433291+00:00_
 
 called Edit
 
@@ -16390,7 +15814,7 @@ called Edit
 
 ### Tool result
 
-_source line 7960 · 2026-05-22T13:08:00.484980+00:00_
+_source line 7946 · 2026-05-22T13:08:00.484980+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex has been updated successfully.
 
@@ -16412,7 +15836,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7961 · 2026-05-22T13:08:10.383780+00:00_
+_source line 7947 · 2026-05-22T13:08:10.383780+00:00_
 
 called Edit
 
@@ -16452,7 +15876,7 @@ called Edit
 
 ### Tool result
 
-_source line 7962 · 2026-05-22T13:08:10.384328+00:00_
+_source line 7948 · 2026-05-22T13:08:10.384328+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -16474,7 +15898,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7963 · 2026-05-22T13:08:22.039889+00:00_
+_source line 7949 · 2026-05-22T13:08:22.039889+00:00_
 
 called Edit
 
@@ -16514,7 +15938,7 @@ called Edit
 
 ### Tool result
 
-_source line 7964 · 2026-05-22T13:08:22.090692+00:00_
+_source line 7950 · 2026-05-22T13:08:22.090692+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex has been updated successfully.
 
@@ -16536,7 +15960,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7965 · 2026-05-22T13:08:30.273727+00:00_
+_source line 7951 · 2026-05-22T13:08:30.273727+00:00_
 
 called Edit
 
@@ -16576,7 +16000,7 @@ called Edit
 
 ### Tool result
 
-_source line 7966 · 2026-05-22T13:08:30.274394+00:00_
+_source line 7952 · 2026-05-22T13:08:30.274394+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex has been updated successfully.
 
@@ -16598,7 +16022,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7967 · 2026-05-22T13:08:39.874768+00:00_
+_source line 7953 · 2026-05-22T13:08:39.874768+00:00_
 
 called Edit
 
@@ -16638,7 +16062,7 @@ called Edit
 
 ### Tool result
 
-_source line 7968 · 2026-05-22T13:08:39.875364+00:00_
+_source line 7954 · 2026-05-22T13:08:39.875364+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex has been updated successfully.
 
@@ -16660,7 +16084,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7969 · 2026-05-22T13:08:45.201980+00:00_
+_source line 7955 · 2026-05-22T13:08:45.201980+00:00_
 
 called Edit
 
@@ -16700,7 +16124,7 @@ called Edit
 
 ### Tool result
 
-_source line 7970 · 2026-05-22T13:08:45.253264+00:00_
+_source line 7956 · 2026-05-22T13:08:45.253264+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -16722,7 +16146,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7971 · 2026-05-22T13:08:50.460252+00:00_
+_source line 7957 · 2026-05-22T13:08:50.460252+00:00_
 
 called Read
 
@@ -16756,7 +16180,7 @@ called Read
 
 ### Tool result
 
-_source line 7972 · 2026-05-22T13:08:50.862028+00:00_
+_source line 7958 · 2026-05-22T13:08:50.862028+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -16799,7 +16223,7 @@ _source line 7972 · 2026-05-22T13:08:50.862028+00:00_
 
 ### Tool call
 
-_source line 7973 · 2026-05-22T13:08:50.913726+00:00_
+_source line 7959 · 2026-05-22T13:08:50.913726+00:00_
 
 called Read
 
@@ -16833,7 +16257,7 @@ called Read
 
 ### Tool result
 
-_source line 7974 · 2026-05-22T13:08:50.964494+00:00_
+_source line 7960 · 2026-05-22T13:08:50.964494+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -16872,7 +16296,7 @@ _source line 7974 · 2026-05-22T13:08:50.964494+00:00_
 
 ### Tool call
 
-_source line 7975 · 2026-05-22T13:09:28.501697+00:00_
+_source line 7961 · 2026-05-22T13:09:28.501697+00:00_
 
 called Read
 
@@ -16906,7 +16330,7 @@ called Read
 
 ### Tool result
 
-_source line 7976 · 2026-05-22T13:09:28.502372+00:00_
+_source line 7962 · 2026-05-22T13:09:28.502372+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -17001,7 +16425,7 @@ _source line 7976 · 2026-05-22T13:09:28.502372+00:00_
 
 ### Tool call
 
-_source line 7977 · 2026-05-22T13:10:03.109891+00:00_
+_source line 7963 · 2026-05-22T13:10:03.109891+00:00_
 
 called Edit
 
@@ -17041,7 +16465,7 @@ called Edit
 
 ### Tool result
 
-_source line 7978 · 2026-05-22T13:10:03.210982+00:00_
+_source line 7964 · 2026-05-22T13:10:03.210982+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex has been updated successfully.
 
@@ -17063,7 +16487,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 7979 · 2026-05-22T13:10:06.528587+00:00_
+_source line 7965 · 2026-05-22T13:10:06.528587+00:00_
 
 called ToolSearch
 
@@ -17099,7 +16523,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7980 · 2026-05-22T13:10:06.529968+00:00_
+_source line 7966 · 2026-05-22T13:10:06.529968+00:00_
 
 
 
@@ -17121,7 +16545,7 @@ _source line 7980 · 2026-05-22T13:10:06.529968+00:00_
 
 ### Tool call
 
-_source line 7981 · 2026-05-22T13:10:12.704225+00:00_
+_source line 7967 · 2026-05-22T13:10:12.704225+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -17159,7 +16583,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 7982 · 2026-05-22T13:10:19.732267+00:00_
+_source line 7968 · 2026-05-22T13:10:19.732267+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 41--41\\n[]|\\\\T1/ptm/m/n/9 (+20) Used-for(model ap-\\n []\\n\\n\\nUnderfull \\\\vbox (badness 1424) has occurred while \\\\output is active []\\n\\n [29]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n[30]\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex) (./appendix_tcr.tex\\n[31]) (./appendix_kappa_case_study.tex) (./appendix_pumping_lemma.tex [32]\\n[33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28682 strings out of 469438\\n 524052 string characters out of 5468411\\n 991334 words of memory out of 5000000\\n 55836 multiletter control sequences out of 15000+60000
 …[truncated 15517 chars]
@@ -17182,7 +16606,7 @@ _source line 7982 · 2026-05-22T13:10:19.732267+00:00_
 
 ### Tool call
 
-_source line 7983 · 2026-05-22T13:10:35.997897+00:00_
+_source line 7969 · 2026-05-22T13:10:35.997897+00:00_
 
 called Read
 
@@ -17216,7 +16640,7 @@ called Read
 
 ### Tool call
 
-_source line 7984 · 2026-05-22T13:10:36.400259+00:00_
+_source line 7970 · 2026-05-22T13:10:36.400259+00:00_
 
 called Read
 
@@ -17250,7 +16674,7 @@ called Read
 
 ### Tool result
 
-_source line 7985 · 2026-05-22T13:10:36.853221+00:00_
+_source line 7971 · 2026-05-22T13:10:36.853221+00:00_
 
 
 
@@ -17272,7 +16696,7 @@ _source line 7985 · 2026-05-22T13:10:36.853221+00:00_
 
 ### Tool result
 
-_source line 7986 · 2026-05-22T13:10:37.257548+00:00_
+_source line 7972 · 2026-05-22T13:10:37.257548+00:00_
 
 
 
@@ -17294,7 +16718,7 @@ _source line 7986 · 2026-05-22T13:10:37.257548+00:00_
 
 ### Tool call
 
-_source line 7987 · 2026-05-22T13:10:54.610042+00:00_
+_source line 7973 · 2026-05-22T13:10:54.610042+00:00_
 
 called Read
 
@@ -17328,7 +16752,7 @@ called Read
 
 ### Tool result
 
-_source line 7988 · 2026-05-22T13:10:55.166981+00:00_
+_source line 7974 · 2026-05-22T13:10:55.166981+00:00_
 
 
 
@@ -17350,7 +16774,7 @@ _source line 7988 · 2026-05-22T13:10:55.166981+00:00_
 
 ### Tool call
 
-_source line 7989 · 2026-05-22T13:11:13.744901+00:00_
+_source line 7975 · 2026-05-22T13:11:13.744901+00:00_
 
 called Read
 
@@ -17384,7 +16808,7 @@ called Read
 
 ### Tool call
 
-_source line 7990 · 2026-05-22T13:11:13.745380+00:00_
+_source line 7976 · 2026-05-22T13:11:13.745380+00:00_
 
 called Read
 
@@ -17418,7 +16842,7 @@ called Read
 
 ### Tool result
 
-_source line 7991 · 2026-05-22T13:11:14.853171+00:00_
+_source line 7977 · 2026-05-22T13:11:14.853171+00:00_
 
 
 
@@ -17440,7 +16864,7 @@ _source line 7991 · 2026-05-22T13:11:14.853171+00:00_
 
 ### Tool result
 
-_source line 7992 · 2026-05-22T13:11:14.855312+00:00_
+_source line 7978 · 2026-05-22T13:11:14.855312+00:00_
 
 
 
@@ -17462,7 +16886,7 @@ _source line 7992 · 2026-05-22T13:11:14.855312+00:00_
 
 ### Tool call
 
-_source line 7993 · 2026-05-22T13:12:05.576316+00:00_
+_source line 7979 · 2026-05-22T13:12:05.576316+00:00_
 
 called ToolSearch
 
@@ -17498,7 +16922,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7994 · 2026-05-22T13:12:05.677280+00:00_
+_source line 7980 · 2026-05-22T13:12:05.677280+00:00_
 
 
 
@@ -17520,7 +16944,7 @@ _source line 7994 · 2026-05-22T13:12:05.677280+00:00_
 
 ### Tool call
 
-_source line 7995 · 2026-05-22T13:12:34.231056+00:00_
+_source line 7981 · 2026-05-22T13:12:34.231056+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -17556,7 +16980,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 7996 · 2026-05-22T13:12:38.149417+00:00_
+_source line 7982 · 2026-05-22T13:12:38.149417+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -17578,7 +17002,7 @@ _source line 7996 · 2026-05-22T13:12:38.149417+00:00_
 
 ### Assistant
 
-_source line 7997 · 2026-05-22T13:12:47.590451+00:00_
+_source line 7983 · 2026-05-22T13:12:47.590451+00:00_
 
 R18 写作修复批次全部完成。
 
@@ -17615,7 +17039,7 @@ R18 写作修复批次全部完成。
 
 ### User
 
-_source line 7998 · 2026-05-22T13:12:48.136818+00:00_
+_source line 7984 · 2026-05-22T13:12:48.136818+00:00_
 
 [Director 指令] [Patch — R18 W6 ZS/FT 篇幅再平衡]
 
@@ -17647,7 +17071,7 @@ R18 reviewer 指出 zero-shot 实验占比过大（~2.5 页）但 F1 极低（1.
 
 ### Tool call
 
-_source line 7999 · 2026-05-22T13:13:12.308375+00:00_
+_source line 7985 · 2026-05-22T13:13:12.308375+00:00_
 
 called Read
 
@@ -17681,7 +17105,7 @@ called Read
 
 ### Tool call
 
-_source line 8000 · 2026-05-22T13:13:12.309061+00:00_
+_source line 7986 · 2026-05-22T13:13:12.309061+00:00_
 
 called Read
 
@@ -17715,7 +17139,7 @@ called Read
 
 ### Tool result
 
-_source line 8001 · 2026-05-22T13:13:13.061887+00:00_
+_source line 7987 · 2026-05-22T13:13:13.061887+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -17797,7 +17221,7 @@ _source line 8001 · 2026-05-22T13:13:13.061887+00:00_
 
 ### Tool result
 
-_source line 8002 · 2026-05-22T13:13:13.062309+00:00_
+_source line 7988 · 2026-05-22T13:13:13.062309+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -17868,7 +17292,7 @@ _source line 8002 · 2026-05-22T13:13:13.062309+00:00_
 
 ### Tool call
 
-_source line 8003 · 2026-05-22T13:13:13.062513+00:00_
+_source line 7989 · 2026-05-22T13:13:13.062513+00:00_
 
 called Read
 
@@ -17902,7 +17326,7 @@ called Read
 
 ### Tool result
 
-_source line 8004 · 2026-05-22T13:13:13.313498+00:00_
+_source line 7990 · 2026-05-22T13:13:13.313498+00:00_
 
 1	% Section 5 — DocRED Results (compressed, 1450→~600 words)
 2	% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
@@ -17980,7 +17404,7 @@ _source line 8004 · 2026-05-22T13:13:13.313498+00:00_
 
 ### Tool call
 
-_source line 8005 · 2026-05-22T13:13:13.314037+00:00_
+_source line 7991 · 2026-05-22T13:13:13.314037+00:00_
 
 called Read
 
@@ -18014,7 +17438,7 @@ called Read
 
 ### Tool result
 
-_source line 8006 · 2026-05-22T13:13:13.364605+00:00_
+_source line 7992 · 2026-05-22T13:13:13.364605+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -18053,7 +17477,7 @@ _source line 8006 · 2026-05-22T13:13:13.364605+00:00_
 
 ### Tool call
 
-_source line 8007 · 2026-05-22T13:20:29.078180+00:00_
+_source line 7993 · 2026-05-22T13:20:29.078180+00:00_
 
 called Read
 
@@ -18087,7 +17511,7 @@ called Read
 
 ### Tool result
 
-_source line 8008 · 2026-05-22T13:20:29.078829+00:00_
+_source line 7994 · 2026-05-22T13:20:29.078829+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -18132,7 +17556,7 @@ _source line 8008 · 2026-05-22T13:20:29.078829+00:00_
 
 ### Tool call
 
-_source line 8009 · 2026-05-22T13:21:09.003753+00:00_
+_source line 7995 · 2026-05-22T13:21:09.003753+00:00_
 
 called Edit
 
@@ -18172,7 +17596,7 @@ called Edit
 
 ### Tool result
 
-_source line 8010 · 2026-05-22T13:21:09.054771+00:00_
+_source line 7996 · 2026-05-22T13:21:09.054771+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -18194,7 +17618,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8011 · 2026-05-22T13:21:29.153714+00:00_
+_source line 7997 · 2026-05-22T13:21:29.153714+00:00_
 
 called Edit
 
@@ -18234,7 +17658,7 @@ called Edit
 
 ### Tool result
 
-_source line 8012 · 2026-05-22T13:21:29.154386+00:00_
+_source line 7998 · 2026-05-22T13:21:29.154386+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -18256,7 +17680,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8013 · 2026-05-22T13:21:41.317145+00:00_
+_source line 7999 · 2026-05-22T13:21:41.317145+00:00_
 
 called Edit
 
@@ -18296,7 +17720,7 @@ called Edit
 
 ### Tool result
 
-_source line 8014 · 2026-05-22T13:21:41.317872+00:00_
+_source line 8000 · 2026-05-22T13:21:41.317872+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -18318,7 +17742,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8015 · 2026-05-22T13:22:05.723074+00:00_
+_source line 8001 · 2026-05-22T13:22:05.723074+00:00_
 
 called Write
 
@@ -18354,7 +17778,7 @@ called Write
 
 ### Tool result
 
-_source line 8016 · 2026-05-22T13:22:05.723800+00:00_
+_source line 8002 · 2026-05-22T13:22:05.723800+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully.
 
@@ -18376,7 +17800,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8017 · 2026-05-22T13:22:29.240982+00:00_
+_source line 8003 · 2026-05-22T13:22:29.240982+00:00_
 
 called Edit
 
@@ -18416,7 +17840,7 @@ called Edit
 
 ### Tool result
 
-_source line 8018 · 2026-05-22T13:22:29.292074+00:00_
+_source line 8004 · 2026-05-22T13:22:29.292074+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
 
@@ -18438,7 +17862,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8019 · 2026-05-22T13:22:35.392430+00:00_
+_source line 8005 · 2026-05-22T13:22:35.392430+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -18476,7 +17900,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 8020 · 2026-05-22T13:22:42.270353+00:00_
+_source line 8006 · 2026-05-22T13:22:42.270353+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 5331) in paragraph at lines 122--123\\n[]\\\\T1/ptm/m/n/10.95 (+20) The gold an-no-ta-tion types ``Amorph'' as\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1838) in paragraph at lines 122--123\\n\\\\T1/ptm/m/sc/10.95 (+20) Method \\\\T1/ptm/m/n/10.95 (+20) and ``NE items'' as \\\\T1\\n/ptm/m/sc/10.95 (+20) Oth-er-Sci-en-\\n []\\n\\n[30]\\nUnderfull \\\\hbox (badness 1033) in paragraph at lines 153--156\\n\\\\T1/ptm/m/n/10.95 (+20) Gold: Evaluate-for(retrieval effectiveness$[]$,\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1661) in paragraph at lines 173--175\\n\\\\T1/ptm/m/n/10.95 (+20) The com-pound noun `per-son re-identification\\n []\\n\\n) (./appendix_scalability.tex) (./appendix_full_ft.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_tcr.tex [31]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_kappa_case_study.tex\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) (./appendix_pumping_lemma.tex [32] [33]) [34\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 0DD8EA27C9F9235DE4564325316D44EA;6526.\\n ) \\nHere is how much of TeX's memory you used:\\n 28681 strings out of 469438\\n 524043 string characters out of 5468411\\n 996974 words of memory out of 5000000\\n 55837 multiletter control sequences out of 15000+600000\\n 748370 words of font info for 5
 …[truncated 16158 chars]
@@ -18499,7 +17923,7 @@ _source line 8020 · 2026-05-22T13:22:42.270353+00:00_
 
 ### Tool call
 
-_source line 8021 · 2026-05-22T13:22:49.207453+00:00_
+_source line 8007 · 2026-05-22T13:22:49.207453+00:00_
 
 called Read
 
@@ -18533,7 +17957,7 @@ called Read
 
 ### Tool call
 
-_source line 8022 · 2026-05-22T13:22:49.560234+00:00_
+_source line 8008 · 2026-05-22T13:22:49.560234+00:00_
 
 called Read
 
@@ -18567,7 +17991,7 @@ called Read
 
 ### Tool result
 
-_source line 8023 · 2026-05-22T13:22:50.014193+00:00_
+_source line 8009 · 2026-05-22T13:22:50.014193+00:00_
 
 
 
@@ -18589,7 +18013,7 @@ _source line 8023 · 2026-05-22T13:22:50.014193+00:00_
 
 ### Tool result
 
-_source line 8024 · 2026-05-22T13:22:50.417904+00:00_
+_source line 8010 · 2026-05-22T13:22:50.417904+00:00_
 
 
 
@@ -18611,7 +18035,7 @@ _source line 8024 · 2026-05-22T13:22:50.417904+00:00_
 
 ### Tool call
 
-_source line 8025 · 2026-05-22T13:22:55.804665+00:00_
+_source line 8011 · 2026-05-22T13:22:55.804665+00:00_
 
 called Read
 
@@ -18645,7 +18069,7 @@ called Read
 
 ### Tool call
 
-_source line 8026 · 2026-05-22T13:22:56.005953+00:00_
+_source line 8012 · 2026-05-22T13:22:56.005953+00:00_
 
 called Read
 
@@ -18679,7 +18103,7 @@ called Read
 
 ### Tool result
 
-_source line 8027 · 2026-05-22T13:22:56.711928+00:00_
+_source line 8013 · 2026-05-22T13:22:56.711928+00:00_
 
 
 
@@ -18701,7 +18125,7 @@ _source line 8027 · 2026-05-22T13:22:56.711928+00:00_
 
 ### Tool result
 
-_source line 8028 · 2026-05-22T13:22:56.713823+00:00_
+_source line 8014 · 2026-05-22T13:22:56.713823+00:00_
 
 
 
@@ -18723,7 +18147,7 @@ _source line 8028 · 2026-05-22T13:22:56.713823+00:00_
 
 ### Tool call
 
-_source line 8029 · 2026-05-22T13:23:49.757779+00:00_
+_source line 8015 · 2026-05-22T13:23:49.757779+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -18759,7 +18183,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 8030 · 2026-05-22T13:23:53.428155+00:00_
+_source line 8016 · 2026-05-22T13:23:53.428155+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -18781,7 +18205,7 @@ _source line 8030 · 2026-05-22T13:23:53.428155+00:00_
 
 ### Assistant
 
-_source line 8031 · 2026-05-22T13:23:59.995442+00:00_
+_source line 8017 · 2026-05-22T13:23:59.995442+00:00_
 
 R18 W6 ZS/FT 篇幅再平衡完成。ZS 内容从 ~2.5 页压缩到 ~1.65 页（DocRED 表移至附录，SciERC ZS 文本合并），FT 讨论扩展了约 6 行（grammar no-op 转变、per-relation 分析、error decomposition）。主文 8 页，无 critical warnings。
 
@@ -18808,7 +18232,7 @@ R18 W6 ZS/FT 篇幅再平衡完成。ZS 内容从 ~2.5 页压缩到 ~1.65 页（
 
 ### User
 
-_source line 8032 · 2026-05-22T13:24:00.506912+00:00_
+_source line 8018 · 2026-05-22T13:24:00.506912+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -18829,7 +18253,7 @@ _source line 8032 · 2026-05-22T13:24:00.506912+00:00_
 
 ### Assistant
 
-_source line 8033 · 2026-05-22T13:24:10.000209+00:00_
+_source line 8019 · 2026-05-22T13:24:10.000209+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报（不是 `main_agent_post_to_director`——Paper Agent 使用的是 `paper_agent_post_to_director`，这是正确的工具）。汇报已成功发送，Director 会收到。
 
@@ -18856,7 +18280,7 @@ _source line 8033 · 2026-05-22T13:24:10.000209+00:00_
 
 ### User
 
-_source line 8034 · 2026-05-22T13:24:10.522196+00:00_
+_source line 8020 · 2026-05-22T13:24:10.522196+00:00_
 
 [Director 指令] 确认 p 值：两个分析是不同的，两个 p 值都正确。
 
@@ -18882,7 +18306,7 @@ _source line 8034 · 2026-05-22T13:24:10.522196+00:00_
 
 ### Assistant
 
-_source line 8035 · 2026-05-22T13:24:16.392887+00:00_
+_source line 8021 · 2026-05-22T13:24:16.392887+00:00_
 
 已确认，不需要修改。等待 vLLM 实验结果。
 
@@ -18909,7 +18333,7 @@ _source line 8035 · 2026-05-22T13:24:16.392887+00:00_
 
 ### User
 
-_source line 8036 · 2026-05-22T13:24:16.871773+00:00_
+_source line 8022 · 2026-05-22T13:24:16.871773+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -18930,7 +18354,7 @@ _source line 8036 · 2026-05-22T13:24:16.871773+00:00_
 
 ### Tool call
 
-_source line 8037 · 2026-05-22T13:24:33.938064+00:00_
+_source line 8023 · 2026-05-22T13:24:33.938064+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -18966,7 +18390,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 8038 · 2026-05-22T13:24:38.284477+00:00_
+_source line 8024 · 2026-05-22T13:24:38.284477+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -18995,7 +18419,7 @@ _source line 8038 · 2026-05-22T13:24:38.284477+00:00_
 
 ### User
 
-_source line 8039 · 2026-05-22T13:24:42.000780+00:00_
+_source line 8025 · 2026-05-22T13:24:42.000780+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -19016,7 +18440,7 @@ _source line 8039 · 2026-05-22T13:24:42.000780+00:00_
 
 ### Assistant
 
-_source line 8040 · 2026-05-22T13:25:01.473183+00:00_
+_source line 8026 · 2026-05-22T13:25:01.473183+00:00_
 
 已在上一轮通过 `paper_agent_post_to_director` 汇报。当前无待处理的 Director 指令，等待 vLLM 实验结果。
 
@@ -19043,7 +18467,7 @@ _source line 8040 · 2026-05-22T13:25:01.473183+00:00_
 
 ### User
 
-_source line 8041 · 2026-05-22T14:03:43.571948+00:00_
+_source line 8027 · 2026-05-22T14:03:43.571948+00:00_
 
 [Director 指令] [Patch] R19 审稿修复批次——7 个 should-fix + 5 minor。DDL May 25，必须今天完成。
 
@@ -19115,7 +18539,7 @@ W1 > W2 > W4 > W5 > W3 > W6 > W7 > M2 > M3 > M1 > M4
 
 ### Tool call
 
-_source line 8042 · 2026-05-22T14:04:17.177998+00:00_
+_source line 8028 · 2026-05-22T14:04:17.177998+00:00_
 
 called Read
 
@@ -19149,7 +18573,7 @@ called Read
 
 ### Tool result
 
-_source line 8043 · 2026-05-22T14:04:17.278915+00:00_
+_source line 8029 · 2026-05-22T14:04:17.278915+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -19174,7 +18598,7 @@ _source line 8043 · 2026-05-22T14:04:17.278915+00:00_
 
 ### Tool call
 
-_source line 8044 · 2026-05-22T14:04:17.329703+00:00_
+_source line 8030 · 2026-05-22T14:04:17.329703+00:00_
 
 called Read
 
@@ -19208,7 +18632,7 @@ called Read
 
 ### Tool result
 
-_source line 8045 · 2026-05-22T14:04:17.781882+00:00_
+_source line 8031 · 2026-05-22T14:04:17.781882+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints.
@@ -19239,7 +18663,7 @@ _source line 8045 · 2026-05-22T14:04:17.781882+00:00_
 
 ### Tool call
 
-_source line 8046 · 2026-05-22T14:04:17.782269+00:00_
+_source line 8032 · 2026-05-22T14:04:17.782269+00:00_
 
 called Read
 
@@ -19273,7 +18697,7 @@ called Read
 
 ### Tool result
 
-_source line 8047 · 2026-05-22T14:04:18.385330+00:00_
+_source line 8033 · 2026-05-22T14:04:18.385330+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -19337,7 +18761,7 @@ _source line 8047 · 2026-05-22T14:04:18.385330+00:00_
 
 ### Tool call
 
-_source line 8048 · 2026-05-22T14:04:18.385756+00:00_
+_source line 8034 · 2026-05-22T14:04:18.385756+00:00_
 
 called Read
 
@@ -19371,7 +18795,7 @@ called Read
 
 ### Tool result
 
-_source line 8049 · 2026-05-22T14:04:18.436450+00:00_
+_source line 8035 · 2026-05-22T14:04:18.436450+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -19453,7 +18877,7 @@ _source line 8049 · 2026-05-22T14:04:18.436450+00:00_
 
 ### Tool call
 
-_source line 8050 · 2026-05-22T14:04:36.294777+00:00_
+_source line 8036 · 2026-05-22T14:04:36.294777+00:00_
 
 called Read
 
@@ -19487,7 +18911,7 @@ called Read
 
 ### Tool result
 
-_source line 8051 · 2026-05-22T14:04:36.696935+00:00_
+_source line 8037 · 2026-05-22T14:04:36.696935+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -19524,7 +18948,7 @@ _source line 8051 · 2026-05-22T14:04:36.696935+00:00_
 
 ### Tool call
 
-_source line 8052 · 2026-05-22T14:04:36.697337+00:00_
+_source line 8038 · 2026-05-22T14:04:36.697337+00:00_
 
 called Read
 
@@ -19558,7 +18982,7 @@ called Read
 
 ### Tool result
 
-_source line 8053 · 2026-05-22T14:04:36.848206+00:00_
+_source line 8039 · 2026-05-22T14:04:36.848206+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -19601,7 +19025,7 @@ _source line 8053 · 2026-05-22T14:04:36.848206+00:00_
 
 ### Tool call
 
-_source line 8054 · 2026-05-22T14:04:37.150246+00:00_
+_source line 8040 · 2026-05-22T14:04:37.150246+00:00_
 
 called Read
 
@@ -19635,7 +19059,7 @@ called Read
 
 ### Tool result
 
-_source line 8055 · 2026-05-22T14:04:37.251386+00:00_
+_source line 8041 · 2026-05-22T14:04:37.251386+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -19688,7 +19112,7 @@ _source line 8055 · 2026-05-22T14:04:37.251386+00:00_
 
 ### Tool call
 
-_source line 8056 · 2026-05-22T14:06:49.439883+00:00_
+_source line 8042 · 2026-05-22T14:06:49.439883+00:00_
 
 called Bash
 
@@ -19724,7 +19148,7 @@ called Bash
 
 ### Tool result
 
-_source line 8057 · 2026-05-22T14:06:49.641103+00:00_
+_source line 8043 · 2026-05-22T14:06:49.641103+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/new_citations.bib
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib
@@ -19747,7 +19171,7 @@ _source line 8057 · 2026-05-22T14:06:49.641103+00:00_
 
 ### Tool call
 
-_source line 8058 · 2026-05-22T14:09:20.913353+00:00_
+_source line 8044 · 2026-05-22T14:09:20.913353+00:00_
 
 called Read
 
@@ -19781,7 +19205,7 @@ called Read
 
 ### Tool result
 
-_source line 8059 · 2026-05-22T14:09:21.754285+00:00_
+_source line 8045 · 2026-05-22T14:09:21.754285+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -19806,7 +19230,7 @@ _source line 8059 · 2026-05-22T14:09:21.754285+00:00_
 
 ### Tool call
 
-_source line 8060 · 2026-05-22T14:09:21.754730+00:00_
+_source line 8046 · 2026-05-22T14:09:21.754730+00:00_
 
 called Read
 
@@ -19840,7 +19264,7 @@ called Read
 
 ### Tool result
 
-_source line 8061 · 2026-05-22T14:09:22.257154+00:00_
+_source line 8047 · 2026-05-22T14:09:22.257154+00:00_
 
 1	\begin{abstract}
 2	We present \textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints.
@@ -19871,7 +19295,7 @@ _source line 8061 · 2026-05-22T14:09:22.257154+00:00_
 
 ### Tool call
 
-_source line 8062 · 2026-05-22T14:09:22.257619+00:00_
+_source line 8048 · 2026-05-22T14:09:22.257619+00:00_
 
 called Read
 
@@ -19905,7 +19329,7 @@ called Read
 
 ### Tool result
 
-_source line 8063 · 2026-05-22T14:09:22.960922+00:00_
+_source line 8049 · 2026-05-22T14:09:22.960922+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -19942,7 +19366,7 @@ _source line 8063 · 2026-05-22T14:09:22.960922+00:00_
 
 ### Tool call
 
-_source line 8064 · 2026-05-22T14:09:23.112010+00:00_
+_source line 8050 · 2026-05-22T14:09:23.112010+00:00_
 
 called Read
 
@@ -19976,7 +19400,7 @@ called Read
 
 ### Tool result
 
-_source line 8065 · 2026-05-22T14:09:23.112501+00:00_
+_source line 8051 · 2026-05-22T14:09:23.112501+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -20058,7 +19482,7 @@ _source line 8065 · 2026-05-22T14:09:23.112501+00:00_
 
 ### Tool call
 
-_source line 8066 · 2026-05-22T14:09:31.026798+00:00_
+_source line 8052 · 2026-05-22T14:09:31.026798+00:00_
 
 called Read
 
@@ -20092,7 +19516,7 @@ called Read
 
 ### Tool result
 
-_source line 8067 · 2026-05-22T14:09:31.931057+00:00_
+_source line 8053 · 2026-05-22T14:09:31.931057+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -20145,7 +19569,7 @@ _source line 8067 · 2026-05-22T14:09:31.931057+00:00_
 
 ### Tool call
 
-_source line 8068 · 2026-05-22T14:09:31.931420+00:00_
+_source line 8054 · 2026-05-22T14:09:31.931420+00:00_
 
 called Read
 
@@ -20179,7 +19603,7 @@ called Read
 
 ### Tool result
 
-_source line 8069 · 2026-05-22T14:09:32.182724+00:00_
+_source line 8055 · 2026-05-22T14:09:32.182724+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (compact, inline)
 2	% exp_ids: ee_qwen_wikievents_unconstrained, ee_llama_wikievents_unconstrained,
@@ -20243,7 +19667,7 @@ _source line 8069 · 2026-05-22T14:09:32.182724+00:00_
 
 ### Tool call
 
-_source line 8070 · 2026-05-22T14:09:32.183243+00:00_
+_source line 8056 · 2026-05-22T14:09:32.183243+00:00_
 
 called Glob
 
@@ -20279,7 +19703,7 @@ called Glob
 
 ### Tool result
 
-_source line 8071 · 2026-05-22T14:09:32.233811+00:00_
+_source line 8057 · 2026-05-22T14:09:32.233811+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/new_citations.bib
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib
@@ -20302,7 +19726,7 @@ _source line 8071 · 2026-05-22T14:09:32.233811+00:00_
 
 ### Tool call
 
-_source line 8072 · 2026-05-22T14:09:35.798603+00:00_
+_source line 8058 · 2026-05-22T14:09:35.798603+00:00_
 
 called Read
 
@@ -20336,7 +19760,7 @@ called Read
 
 ### Tool call
 
-_source line 8073 · 2026-05-22T14:09:36.100247+00:00_
+_source line 8059 · 2026-05-22T14:09:36.100247+00:00_
 
 called Read
 
@@ -20370,7 +19794,7 @@ called Read
 
 ### Tool result
 
-_source line 8074 · 2026-05-22T14:09:36.703801+00:00_
+_source line 8060 · 2026-05-22T14:09:36.703801+00:00_
 
 1	% ============================================================
 2	% Merged authoritative BibTeX references
@@ -20426,7 +19850,7 @@ _source line 8074 · 2026-05-22T14:09:36.703801+00:00_
 
 ### Tool result
 
-_source line 8075 · 2026-05-22T14:09:36.704304+00:00_
+_source line 8061 · 2026-05-22T14:09:36.704304+00:00_
 
 1	% New citations for schema_semantic_constrained_ie
 2	% Generated 2026-05-18
@@ -20451,7 +19875,7 @@ _source line 8075 · 2026-05-22T14:09:36.704304+00:00_
 
 ### Tool call
 
-_source line 8076 · 2026-05-22T14:09:36.704548+00:00_
+_source line 8062 · 2026-05-22T14:09:36.704548+00:00_
 
 called Read
 
@@ -20485,7 +19909,7 @@ called Read
 
 ### Tool result
 
-_source line 8077 · 2026-05-22T14:09:36.755189+00:00_
+_source line 8063 · 2026-05-22T14:09:36.755189+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -20580,7 +20004,7 @@ _source line 8077 · 2026-05-22T14:09:36.755189+00:00_
 
 ### Tool call
 
-_source line 8078 · 2026-05-22T14:12:22.281045+00:00_
+_source line 8064 · 2026-05-22T14:12:22.281045+00:00_
 
 called ToolSearch
 
@@ -20616,7 +20040,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8079 · 2026-05-22T14:12:22.433076+00:00_
+_source line 8065 · 2026-05-22T14:12:22.433076+00:00_
 
 
 
@@ -20638,7 +20062,7 @@ _source line 8079 · 2026-05-22T14:12:22.433076+00:00_
 
 ### Tool call
 
-_source line 8080 · 2026-05-22T14:12:41.554498+00:00_
+_source line 8066 · 2026-05-22T14:12:41.554498+00:00_
 
 called TodoWrite
 
@@ -20672,7 +20096,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 8081 · 2026-05-22T14:12:41.605306+00:00_
+_source line 8067 · 2026-05-22T14:12:41.605306+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -20694,7 +20118,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 8082 · 2026-05-22T14:13:16.930896+00:00_
+_source line 8068 · 2026-05-22T14:13:16.930896+00:00_
 
 called Edit
 
@@ -20734,7 +20158,7 @@ called Edit
 
 ### Tool result
 
-_source line 8083 · 2026-05-22T14:13:17.132223+00:00_
+_source line 8069 · 2026-05-22T14:13:17.132223+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex has been updated successfully.
 
@@ -20756,7 +20180,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8084 · 2026-05-22T14:13:17.182871+00:00_
+_source line 8070 · 2026-05-22T14:13:17.182871+00:00_
 
 called ToolSearch
 
@@ -20792,7 +20216,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8085 · 2026-05-22T14:13:17.233494+00:00_
+_source line 8071 · 2026-05-22T14:13:17.233494+00:00_
 
 
 
@@ -20814,7 +20238,7 @@ _source line 8085 · 2026-05-22T14:13:17.233494+00:00_
 
 ### Tool call
 
-_source line 8086 · 2026-05-22T14:13:21.249154+00:00_
+_source line 8072 · 2026-05-22T14:13:21.249154+00:00_
 
 called WebFetch
 
@@ -20850,7 +20274,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 8087 · 2026-05-22T14:13:26.107403+00:00_
+_source line 8073 · 2026-05-22T14:13:26.107403+00:00_
 
 called Edit
 
@@ -20890,7 +20314,7 @@ called Edit
 
 ### Tool result
 
-_source line 8088 · 2026-05-22T14:13:32.101027+00:00_
+_source line 8074 · 2026-05-22T14:13:32.101027+00:00_
 
 Title: "Thinking Before Constraining: A Unified Decoding Framework for Large Language Models"
 
@@ -20916,7 +20340,7 @@ Year: 2026
 
 ### Tool result
 
-_source line 8089 · 2026-05-22T14:13:32.152958+00:00_
+_source line 8075 · 2026-05-22T14:13:32.152958+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex has been updated successfully.
 
@@ -20938,7 +20362,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8090 · 2026-05-22T14:14:23.559862+00:00_
+_source line 8076 · 2026-05-22T14:14:23.559862+00:00_
 
 called TodoWrite
 
@@ -20972,7 +20396,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 8091 · 2026-05-22T14:14:23.560307+00:00_
+_source line 8077 · 2026-05-22T14:14:23.560307+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -20994,7 +20418,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 8092 · 2026-05-22T14:14:42.182692+00:00_
+_source line 8078 · 2026-05-22T14:14:42.182692+00:00_
 
 called Edit
 
@@ -21034,7 +20458,7 @@ called Edit
 
 ### Tool result
 
-_source line 8093 · 2026-05-22T14:14:42.635755+00:00_
+_source line 8079 · 2026-05-22T14:14:42.635755+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -21056,7 +20480,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8094 · 2026-05-22T14:14:46.049907+00:00_
+_source line 8080 · 2026-05-22T14:14:46.049907+00:00_
 
 called Edit
 
@@ -21096,7 +20520,7 @@ called Edit
 
 ### Tool result
 
-_source line 8095 · 2026-05-22T14:14:46.401954+00:00_
+_source line 8081 · 2026-05-22T14:14:46.401954+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex has been updated successfully.
 
@@ -21118,7 +20542,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8096 · 2026-05-22T14:14:49.363404+00:00_
+_source line 8082 · 2026-05-22T14:14:49.363404+00:00_
 
 called Edit
 
@@ -21158,7 +20582,7 @@ called Edit
 
 ### Tool result
 
-_source line 8097 · 2026-05-22T14:14:49.665122+00:00_
+_source line 8083 · 2026-05-22T14:14:49.665122+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -21180,7 +20604,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8098 · 2026-05-22T14:14:51.171632+00:00_
+_source line 8084 · 2026-05-22T14:14:51.171632+00:00_
 
 called Edit
 
@@ -21220,7 +20644,7 @@ called Edit
 
 ### Tool result
 
-_source line 8099 · 2026-05-22T14:14:51.222290+00:00_
+_source line 8085 · 2026-05-22T14:14:51.222290+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex has been updated successfully.
 
@@ -21242,7 +20666,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8100 · 2026-05-22T14:15:02.109090+00:00_
+_source line 8086 · 2026-05-22T14:15:02.109090+00:00_
 
 called Edit
 
@@ -21282,7 +20706,7 @@ called Edit
 
 ### Tool result
 
-_source line 8101 · 2026-05-22T14:15:02.160174+00:00_
+_source line 8087 · 2026-05-22T14:15:02.160174+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib has been updated successfully.
 
@@ -21304,7 +20728,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8102 · 2026-05-22T14:15:15.317976+00:00_
+_source line 8088 · 2026-05-22T14:15:15.317976+00:00_
 
 called TodoWrite
 
@@ -21338,7 +20762,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 8103 · 2026-05-22T14:15:15.318558+00:00_
+_source line 8089 · 2026-05-22T14:15:15.318558+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -21360,7 +20784,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 8104 · 2026-05-22T14:15:30.447753+00:00_
+_source line 8090 · 2026-05-22T14:15:30.447753+00:00_
 
 called Edit
 
@@ -21400,7 +20824,7 @@ called Edit
 
 ### Tool result
 
-_source line 8105 · 2026-05-22T14:15:30.900142+00:00_
+_source line 8091 · 2026-05-22T14:15:30.900142+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated successfully.
 
@@ -21422,7 +20846,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
 
 ### Tool call
 
-_source line 8106 · 2026-05-22T14:15:34.480475+00:00_
+_source line 8092 · 2026-05-22T14:15:34.480475+00:00_
 
 called Edit
 
@@ -21462,7 +20886,7 @@ called Edit
 
 ### Tool result
 
-_source line 8107 · 2026-05-22T14:15:34.631639+00:00_
+_source line 8093 · 2026-05-22T14:15:34.631639+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex has been updated successfully.
 
@@ -21474,6 +20898,641 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semanti
   "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
   "tool": "Edit",
   "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8094 · 2026-05-22T14:15:40.306430+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+  "old_string": "The semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.\n\n\\paragraph{Entity registry.}",
+  "new_string": "The semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.\n\\emph{Running example}: given entities $e_1{=}$\\textrm{``ResNet''} (Method) and $e_2{=}$\\textrm{``image classification''} (Task), and relation \\textsc{Used-for} with $\\operatorname{dom}{=}\\{\\textrm{Method}\\}$, $\\operatorname{range}{=}\\{\\textrm{Task}\\}$, the semantic layer permits head type Method for $e_1$ and tail type Task for $e_2$, blocking type Material (which would violate the domain constraint).\n\n\\paragraph{Entity registry.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+    "old_string": "The semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.\n\n\\paragraph{Entity registry.}",
+    "new_string": "The semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.\n\\emph{Running example}: given entities $e_1{=}$\\textrm{``ResNet''} (Method) and $e_2{=}$\\textrm{``image classification''} (Task), and relation \\textsc{Used-for} with $\\operatorname{dom}{=}\\{\\textrm{Method}\\}$, $\\operatorname{range}{=}\\{\\textrm{Task}\\}$, the semantic layer permits head type Method for $e_1$ and tail type Task for $e_2$, blocking type Material (which would violate the domain constraint).\n\n\\paragraph{Entity registry.}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8095 · 2026-05-22T14:15:40.508090+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8096 · 2026-05-22T14:15:52.861907+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\bar\\{\\\\kappa\\}|kappa",
+  "glob": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\bar\\{\\\\kappa\\}|kappa",
+    "glob": "*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8097 · 2026-05-22T14:15:53.313997+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex:10:We quantify constraint restrictiveness via \emph{constraint tightness} $\kappa(r)$ (\S\ref{sec:composition}): tighter constraints leave fewer valid type pairs per relation.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:128:\input{appendix_kappa_case_study}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:35:\caption{TCR on SciERC ($\bar{\kappa}{=}0.333$, 551 docs).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:66:\caption{TCR on DocRED ($\bar{\kappa}{=}0.842$, 998 docs).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:74:TCR effectiveness correlates inversely with schema constraint tightness $\bar{\kappa}$.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:75:On SciERC ($\bar{\kappa}{=}0.333$), fundamental conflicts constitute 0--2\% of type disagreements: most conflicts are resolvable because the loose schema admits many valid type pairs, and TCR can find a type satisfying all relational contexts.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:77:On DocRED ($\bar{\kappa}{=}0.842$), 13--23\% of conflicts are fundamental: the tight schema renders most type pairs invalid, so unifying an entity's type across all its relational contexts inevitably violates some domain/range constraints.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:81:This $\bar{\kappa}$-dependent boundary 
+…[truncated 13169 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Grep",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8098 · 2026-05-22T14:15:53.465552+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8099 · 2026-05-22T14:15:53.566517+00:00_
+
+1	% Appendix B — Extended Discussion
+2	% Contains discussion paragraphs moved from the main text during compression.
+3	
+4	\section{Extended Discussion}\label{app:discussion}
+5	
+6	%%% CF Dual Mechanism %%%
+7	% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, llama_docred_full_s1
+8	
+9	\paragraph{CF Dual Mechanism.}
+10	CF violations arise from two distinct mechanisms:
+11	(1)~\emph{Registry override}: the semantic constraint forces a domain-compatible type that conflicts with the entity's previously registered type.
+12	The entity appears in multiple relations with different type requirements, and the per-relation mask selects the locally valid type without consulting prior assignments.
+13	(2)~\emph{Grammar-first fallback} (\S\ref{sec:interaction}): when the semantic mask conflicts with all grammar-valid tokens, the semantic layer is dropped entirely, allowing the grammar layer to generate any structurally valid type, which may differ from the entity's registered type.
+14	
+15	These mechanisms have sharply different model profiles.
+16	Qwen3-8B triggers zero grammar-first fallbacks across all experiments, attributing 100\% of its CF violations to registry override.
+17	Llama-3.1-8B, by contrast, triggers 5{,}882 fallbacks on SciERC (10.7 per document) and 57{,}825 on DocRED (63.8 per document), making grammar-first fallback the dominant CF source.
+18	This asymmetry is consistent with the cross-model CF gap: Qwen achieves CF\,=\,2.57\% on DocRED vs.\ Llama's 12.02\%, despite both using identical constraint configurations.
+19	The difference traces to Llama's less calibrated type predictions, which more frequently conflict with the semantic mask's valid set, triggering fallback.
+20	
+21	%%% Fallback Behavior and Effective Coverage %%%
+22	% exp_ids: cf_fallback_ablation_scierc (final data)
+23	
+24	\paragraph{Fallback Behavior and Effective Coverage.}
+25	\label{app:fallback-coverage}
+26	The two-layer architecture produces two distinct fallback mechanisms with different semant
+…[truncated 5160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8100 · 2026-05-22T14:16:09.779646+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+  "offset": "80",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+    "offset": "80",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8101 · 2026-05-22T14:16:09.831468+00:00_
+
+80	Table~\ref{tab:cf-dr-tradeoff} reports a pilot ablation in which we replace the grammar-first fallback with a CF-priority fallback that forces the entity's registered type when it conflicts with $\sigma(r)$.
+81	
+82	\begin{table}[t]
+83	\centering
+84	\small
+85	\begin{tabular}{@{}l rrrr@{}}
+86	\toprule
+87	\textbf{Configuration} & \textbf{DR\,(\%)} & \textbf{CF\,(\%)} & \textbf{DR+CF} & \textbf{$f_{\text{gf}}$\,(\%)} \\
+88	\midrule
+89	S1 (baseline) & 0.93 & 9.90 & 10.83 & --- \\
+90	CF fallback        & 14.78 & 0.04 & 14.82 & 36.64 \\
+91	\midrule
+92	$\Delta$ & $+$13.85 & $-$9.86 & $+$3.99 & --- \\
+93	\bottomrule
+94	\end{tabular}
+95	\caption{CF-DR trade-off pilot on SciERC (Qwen3-8B, 551 documents; \texttt{w1\_cf\_fallback\_scierc\_pilot}). CF fallback eliminates CF but re-routes violations to DR, increasing total violations (DR+CF) by 3.99\,pp. $f_{\text{gf}}$: token-level grammar-first fallback rate at type-bearing positions (includes continuation tokens of multi-token type names; first-token position fallback rate is 0.46\% for SciERC Qwen; \S\ref{sec:greedy-limitation}).}
+96	\label{tab:cf-dr-tradeoff}
+97	\end{table}
+98	
+99	The CF fallback variant nearly eliminates CF (9.90\%\,$\to$\,0.04\%, $-$9.86\,pp) but at the cost of a 15.9$\times$ increase in DR (0.93\%\,$\to$\,14.78\%, $+$13.85\,pp).
+100	% exp_id: w1_cf_fallback_scierc_pilot: DR=0.1478, CF=0.0004, f_gf=0.3664
+101	This is not a net improvement: total violations (DR+CF) rise from 10.83\% to 14.82\% ($+$3.99\,pp), so the change \emph{re-routes} violations rather than reducing them.
+102	The mechanism is mechanical: each token position with conflicting masks must commit to one violation type; when the CF fallback forces the system to emit the entity's registered type even though it lies outside $\sigma(r)$, the resulting triple satisfies cross-entity consistency but violates domain/range.
+103	The token-level grammar-first fallback is triggered at 36.64\% of type-bearing positions (0.46\% at first-token positions;
+…[truncated 6991 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8102 · 2026-05-22T14:16:09.882867+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8103 · 2026-05-22T14:16:09.933585+00:00_
+
+1	% Section: Constraint Composition (compressed, 787→~500 words)
+2	
+3	At each decoding step $t$, let $G(t) \subseteq V$ and $S(t) \subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.
+4	The final mask is their conjunction:
+5	%
+6	\begin{equation}\label{eq:composition}
+7	  M_{\text{final}}(t) = M_{\text{grammar}}(t) \;\wedge\; M_{\text{semantic}}(t),
+8	\end{equation}
+9	%
+10	where $\wedge$ denotes element-wise AND over the vocabulary $V$; a token is allowed only if it satisfies \emph{both} structural and type-level constraints.
+11	The conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the empirical enabling dependency (\S\ref{sec:method}): the semantic layer requires the relation type to belong to $\mathcal{R}$, a property enforced only by the grammar layer.
+12	
+13	\paragraph{Grammar-First Fallback.}
+14	When $S(t) \cap G(t) = \emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\"{\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.
+15	We enforce a \emph{grammar-first fallback}: semantic masking is skipped and the grammar layer alone controls selection.
+16	Structural integrity is a hard constraint; type violations are soft errors detectable by downstream validation, with DR (ontologically invalid type pair) more severe than CF (individually valid triples with cross-triple type inconsistency).
+17	
+18	\paragraph{Constraint Tightness.}
+19	\label{eq:tightness}
+20	We define per-relation constraint tightness $\kappa(r) = 1 - |\sigma(r)|/|\mathcal{E}|^2$ and the schema-level mean $\bar{\kappa} = \frac{1}{|\mathcal{R}|}\sum_{r} \kappa(r)$.
+21	Across three schemas---WikiEvents ($\bar{\kappa}{=}0.029$), SciERC ($\bar{\kappa}{=}0.333$), DocRED ($\bar{\kappa}{=}0.842$)---DR reduction ranges from 94--99\% (low $\bar{\kappa}$) to 42--90\% (high $\bar{\kappa}$), though this correlation is descriptive only ($n{=}3$, $p{=}0.138$); entity type 
+…[truncated 1207 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8104 · 2026-05-22T14:17:12.925210+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+  "old_string": "%%% CF-DR Trade-off Analysis %%%\n% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n\n\\paragraph{CF-DR Trade-off Analysis.}",
+  "new_string": "%%% Enabling Dependency: Confound Analysis %%%\n\n\\paragraph{Enabling Dependency: Confound Analysis.}\n\\label{app:enabling-confound}\n\nThe empirical enabling dependency (\\S\\ref{sec:method}) shows that the semantic layer achieves only 24\\% DR reduction without the grammar layer (Table~\\ref{tab:scierc-ablation}).\nA potential confound is that the semantic layer depends not only on grammar-enforced vocabulary membership but also on structural enforcement for positional awareness: the semantic layer identifies type-bearing positions by pattern-matching the decoded prefix against the JSON schema, which is reliable only when the grammar layer guarantees valid JSON structure.\nWithout grammar enforcement, malformed structure can cause the semantic layer to misidentify type-bearing positions, reducing effective coverage.\nWe quantify this via the semantic-only ablation (Table~\\ref{tab:scierc-ablation}, row~3): CF rises from 0.08\\% to 2.71\\%, indicating that 2.63\\,pp of additional violations trace to structural ambiguity.\nHowever, the dominant enabling mechanism remains vocabulary membership: the semantic layer's domain/range lookup requires $r_j \\in \\mathcal{R}$, which only the grammar layer ensures; without it, OOV relation names produce null constraint lookups.\nThe confound reinforces rather than undermines the enabling dependency: both vocabulary and structural contributions of the grammar layer are prerequisites for effective semantic enforcement.\n\n%%% CF-DR Trade-off Analysis %%%\n% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n\n\\paragraph{CF-DR Trade-off Analysis.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+    "old_string": "%%% CF-DR Trade-off Analysis %%%\n% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n\n\\paragraph{CF-DR Trade-off Analysis.}",
+    "new_string": "%%% Enabling Dependency: Confound Analysis %%%\n\n\\paragraph{Enabling Dependency: Confound Analysis.}\n\\label{app:enabling-confound}\n\nThe empirical enabling dependency (\\S\\ref{sec:method}) shows that the semantic layer achieves only 24\\% DR reduction without the grammar layer (Table~\\ref{tab:scierc-ablation}).\nA potential confound is that the semantic layer depends not only on grammar-enforced vocabulary membership but also on structural enforcement for positional awareness: the semantic layer identifies type-bearing positions by pattern-matching the decoded prefix against the JSON schema, which is reliable only when the grammar layer guarantees valid JSON structure.\nWithout grammar enforcement, malformed structure can cause the semantic layer to misidentify type-bearing positions, reducing effective coverage.\nWe quantify this via the semantic-only ablation (Table~\\ref{tab:scierc-ablation}, row~3): CF rises from 0.08\\% to 2.71\\%, indicating that 2.63\\,pp of additional violations trace to structural ambiguity.\nHowever, the dominant enabling mechanism remains vocabulary membership: the semantic layer's domain/range lookup requires $r_j \\in \\mathcal{R}$, which only the grammar layer ensures; without it, OOV relation names produce null constraint lookups.\nThe confound reinforces rather than undermines the enabling dependency: both vocabulary and structural contributions of the grammar layer are prerequisites for effective semantic enforcement.\n\n%%% CF-DR Trade-off Analysis %%%\n% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n\n\\paragraph{CF-DR Trade-off Analysis.}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8105 · 2026-05-22T14:17:13.730251+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 805
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8106 · 2026-05-22T14:17:15.088927+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+  "old_string": "The lower DR reduction (45\\% vs.\\ 94\\% on SciERC) reflects higher $\\bar{\\kappa}$: tighter constraints trigger more grammar-first fallback (\\S\\ref{sec:greedy-limitation}).",
+  "new_string": "The lower DR reduction (45\\% vs.\\ 94\\% on SciERC) is consistent with higher $\\bar{\\kappa}$ (descriptive; \\S\\ref{sec:composition}): tighter constraints trigger more grammar-first fallback (\\S\\ref{sec:greedy-limitation})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+    "old_string": "The lower DR reduction (45\\% vs.\\ 94\\% on SciERC) reflects higher $\\bar{\\kappa}$: tighter constraints trigger more grammar-first fallback (\\S\\ref{sec:greedy-limitation}).",
+    "new_string": "The lower DR reduction (45\\% vs.\\ 94\\% on SciERC) is consistent with higher $\\bar{\\kappa}$ (descriptive; \\S\\ref{sec:composition}): tighter constraints trigger more grammar-first fallback (\\S\\ref{sec:greedy-limitation})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8107 · 2026-05-22T14:17:15.139629+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8108 · 2026-05-22T14:17:21.014361+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+  "offset": "72",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+    "offset": "72",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8109 · 2026-05-22T14:17:21.014807+00:00_
+
+72	
+73	\paragraph{Analysis.}
+74	TCR effectiveness correlates inversely with schema constraint tightness $\bar{\kappa}$.
+75	On SciERC ($\bar{\kappa}{=}0.333$), fundamental conflicts constitute 0--2\% of type disagreements: most conflicts are resolvable because the loose schema admits many valid type pairs, and TCR can find a type satisfying all relational contexts.
+76	DR increases are bounded ($\leq$0.28\,pp), and E-F1 cost is modest ($\leq$1.78\,pp in zero-shot, $\leq$0.75\,pp under LoRA).
+77	On DocRED ($\bar{\kappa}{=}0.842$), 13--23\% of conflicts are fundamental: the tight schema renders most type pairs invalid, so unifying an entity's type across all its relational contexts inevitably violates some domain/range constraints.
+78	This produces severe DR regressions under zero-shot (Llama: 2.55\%$\to$11.93\%; 70B: 0\%$\to$4.20\%), where baseline CF is high enough that many entities require resolution.
+79	Under LoRA, baseline CF is already low (0.36--0.42\%), limiting both the scope for TCR improvement and the DR cost.
+80	
+81	This $\bar{\kappa}$-dependent boundary is consistent with the constraint tightness analysis in \S\ref{sec:composition}: $\bar{\kappa}$ characterizes not only the decoding-time DR residual regime but also the feasibility of post-hoc type resolution.
+82	Beam search (\S\ref{sec:beam-results}) resolves CF and DR simultaneously across all $\bar{\kappa}$ values (SciERC and DocRED (998 docs): DR$\to$0\% for calibrated models), making it the preferred approach for high-tightness schemas.
+83	TCR is a zero-cost complement for low-tightness schemas where beam search latency (1.54$\times$) is undesirable.
+84	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8110 · 2026-05-22T14:17:27.997246+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+  "old_string": "TCR effectiveness correlates inversely with schema constraint tightness $\\bar{\\kappa}$.",
+  "new_string": "TCR effectiveness varies inversely with schema constraint tightness $\\bar{\\kappa}$ (descriptive pattern across two schemas)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex",
+    "old_string": "TCR effectiveness correlates inversely with schema constraint tightness $\\bar{\\kappa}$.",
+    "new_string": "TCR effectiveness varies inversely with schema constraint tightness $\\bar{\\kappa}$ (descriptive pattern across two schemas)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8111 · 2026-05-22T14:17:28.048356+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 51
 }
 ```
 

@@ -36,7 +36,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops sync anon repo introduction | 22 | 0 | [Read transcript](ops-sync-anon-repo-introduction.md) | [JSON](../../sessions/e0/e071cf059899c9daff0c.json) |
 | ops check westd 13176 | 10 | 0 | [Read transcript](ops-check-westd-13176.md) | [JSON](../../sessions/8a/8a6f12d69e5dc5012ac6.json) |
 | ops supplementary material check — In the directory /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifac | 229 | 4 | [Read transcript](ops-supplementary-material-check.md) | [JSON](../../sessions/a2/a2d5a777efc478ca8f60.json) |
-| writing rebuttal prep | 33 | 0 | [Read transcript](writing-rebuttal-prep.md) | [JSON](../../sessions/64/64090b41dfd44f279f5a.json) |
 | analysis bootstrap c2 ci | 240 | 0 | [Read transcript](analysis-bootstrap-c2-ci.md) | [JSON](../../sessions/a3/a37afba0708de2ba7a61.json) |
 | ops appendix bootstrap update | 54 | 0 | [Read transcript](ops-appendix-bootstrap-update.md) | [JSON](../../sessions/b8/b8fbb6bf0fb2cc557132.json) |
 | ops sync appendix to local | 133 | 0 | [Read transcript](ops-sync-appendix-to-local.md) | [JSON](../../sessions/f3/f30c242a69d7305b5c7c.json) |

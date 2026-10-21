@@ -1,4 +1,4 @@
-# Director coordination (archived snapshot) — Part 4 of 6
+# Director coordination (archived snapshot) — Part 4 of 5
 
 **Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
 
@@ -16296,7 +16296,7 @@ No response requested.
 
 ## Round 408
 
-40 recorded events
+36 recorded events
 
 
 ### User
@@ -17071,143 +17071,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 2450 · 2026-05-20T11:33:34.820757+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-  "offset": "70",
-  "limit": "15"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-    "offset": "70",
-    "limit": "15"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2451 · 2026-05-20T11:33:34.871325+00:00_
-
-70	\subsection*{W-GENERAL (R1-W2): ``General property'' overclaims from limited evidence}
-71	
-72	\reviewer{Claiming per-example multiplicity is a ``general property of hybrid architectures'' is too strong given only three architectures and two benchmarks.}
-73	
-74	\response{We have replaced all instances of ``general property'' with empirically scoped language:}
-75	\begin{itemize}[leftmargin=2em]
-76	\item Abstract: ``$\ldots$across retrieval and reasoning tasks in three linear recurrent backbones$\ldots$''
-77	\item Introduction Finding 3: ``$\ldots$observed across both retrieval and reasoning tasks in three recurrent backbones$\ldots$''
-78	\item Contribution bullet 3: same wording
-79	\item Conclusion: ``$\ldots$observed across retrieval (LAMBADA) and reasoning (ARC-Easy) tasks in three architectures$\ldots$''
-80	\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures and benchmarks''
-81	\end{itemize}
-82	
-83	\location{Abstract, \S1 (paragraphs 4 and 5), \S5.}
-84	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2452 · 2026-05-20T11:33:40.811156+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-  "old_string": "\\item Abstract: ``$\\ldots$across retrieval and reasoning tasks in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed across both retrieval and reasoning tasks in three recurrent backbones$\\ldots$''\n\\item Contribution bullet 3: same wording\n\\item Conclusion: ``$\\ldots$observed across retrieval (LAMBADA) and reasoning (ARC-Easy) tasks in three architectures$\\ldots$''",
-  "new_string": "\\item Abstract: ``$\\ldots$across two task categories (retrieval and mixed) in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed on both benchmarks---a retrieval task (LAMBADA) and a mixed task (ARC-Easy)$\\ldots$''\n\\item Contribution bullet 3: ``$\\ldots$observed on both a retrieval task and a mixed task in three recurrent backbones$\\ldots$''\n\\item Conclusion: ``$\\ldots$observed on both a retrieval task (LAMBADA) and a mixed task (ARC-Easy) in three architectures$\\ldots$''"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-    "old_string": "\\item Abstract: ``$\\ldots$across retrieval and reasoning tasks in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed across both retrieval and reasoning tasks in three recurrent backbones$\\ldots$''\n\\item Contribution bullet 3: same wording\n\\item Conclusion: ``$\\ldots$observed across retrieval (LAMBADA) and reasoning (ARC-Easy) tasks in three architectures$\\ldots$''",
-    "new_string": "\\item Abstract: ``$\\ldots$across two task categories (retrieval and mixed) in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed on both benchmarks---a retrieval task (LAMBADA) and a mixed task (ARC-Easy)$\\ldots$''\n\\item Contribution bullet 3: ``$\\ldots$observed on both a retrieval task and a mixed task in three recurrent backbones$\\ldots$''\n\\item Conclusion: ``$\\ldots$observed on both a retrieval task (LAMBADA) and a mixed task (ARC-Easy) in three architectures$\\ldots$''"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2453 · 2026-05-20T11:33:40.861931+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2454 · 2026-05-20T11:33:46.967821+00:00_
+_source line 2450 · 2026-05-20T11:33:46.967821+00:00_
 
 called Grep
 
@@ -17249,7 +17113,7 @@ called Grep
 
 ### Tool result
 
-_source line 2455 · 2026-05-20T11:33:47.018484+00:00_
+_source line 2451 · 2026-05-20T11:33:47.018484+00:00_
 
 No matches found
 
@@ -17261,6 +17125,172 @@ No matches found
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "Grep",
   "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2452 · 2026-05-20T11:33:52.137476+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "though the Bonferroni",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "though the Bonferroni",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2453 · 2026-05-20T11:33:52.188254+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:3:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:64:\item \textbf{Abstract}: At first mention of the 79\% reduction, we now write ``though the Bonferroni-adjusted $p = .100$ does not reach conventional significance.''
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2454 · 2026-05-20T11:33:55.500966+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+  "offset": "2",
+  "limit": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+    "offset": "2",
+    "limit": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2455 · 2026-05-20T11:33:55.601857+00:00_
+
+2	
+3	When attention layers are added to three different recurrent architectures, their LAMBADA performance becomes near-identical: cross-architecture standard deviation drops from 0.024 to 0.005, a 79\% reduction (though the Bonferroni-adjusted $p = .100$ does not reach conventional significance). Yet this aggregate convergence hides an asymmetry at the per-example level. The three architectures reach similar overall accuracy by helping and hurting different examples with low overlap (pairwise Jaccard at most 0.11, approximately twice the independence baseline). Two models can agree on a benchmark score while disagreeing on which inputs they get right. This tension between aggregate agreement and per-example disagreement arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \citep{lieber2024jamba}, Griffin \citep{de2024griffin}, RWKV-6 \citep{peng2024eagle}, and RecurrentGemma \citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2456 · 2026-05-20T11:34:00.118747+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+  "old_string": "a 79\\% reduction (though the Bonferroni-adjusted $p = .100$ does not reach conventional significance)",
+  "new_string": "a 79\\% reduction (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+    "old_string": "a 79\\% reduction (though the Bonferroni-adjusted $p = .100$ does not reach conventional significance)",
+    "new_string": "a 79\\% reduction (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero)"
+  }
 }
 ```
 

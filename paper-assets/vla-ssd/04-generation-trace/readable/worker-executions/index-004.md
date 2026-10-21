@@ -9,7 +9,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis r2 mse correlation | 110 | 0 | [Read transcript](analysis-r2-mse-correlation.md) | [JSON](../../sessions/86/860fd9d7d5674c714bc6.json) |
 | paper figure | 101 | 0 | [Read transcript](paper-figure.md) | [JSON](../../sessions/12/12cdb1cf787470617550.json) |
 | research intermediate checkpoints | 85 | 0 | [Read transcript](research-intermediate-checkpoints.md) | [JSON](../../sessions/60/6064a9cdf010ef6c84d6.json) |
-| research rebuttal material — You are working on a VLA (Vision-Language-Action) research project. I need you to collect all interv | 310 | 3 | [Read transcript](research-rebuttal-material.md) | [JSON](../../sessions/1b/1b30ff8a7b8177b3f40f.json) |
 | analysis statistical supplements | 137 | 0 | [Read transcript](analysis-statistical-supplements.md) | [JSON](../../sessions/1e/1e285ce023da487ccca7.json) |
 | sync statistical supplements | 33 | 0 | [Read transcript](sync-statistical-supplements.md) | [JSON](../../sessions/d5/d566ad63a7d34668e5e3.json) |
 | exp counterfactual 10tasks | 123 | 0 | [Read transcript](exp-counterfactual-10tasks.md) | [JSON](../../sessions/f5/f55d0c0339815c521a06.json) |

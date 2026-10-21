@@ -139,7 +139,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | fix multi candidate rate | 113 | 0 | [Read transcript](fix-multi-candidate-rate.md) | [JSON](../../sessions/01/010a8db48e2daed765f8.json) |
 | fix extraction rate bug | 113 | 0 | [Read transcript](fix-extraction-rate-bug.md) | [JSON](../../sessions/23/234a5864ecfdaa60059b.json) |
 | cron hook exp 014 deepseek r1 7b 20260517T173908 887432 — [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available -  | 24 | 2 | [Read transcript](cron-hook-exp-014-deepseek-r1-7b-20260517t173908-887432.md) | [JSON](../../sessions/4d/4d01d9789c3f4509926a.json) |
-| Paper Agent coordination — [Director 指令] [Full Draft — Phase 1: Non-dream-dependent sections] 目标：EMNLP 2026 Main (ARR May 25, D | 15,751 | 604 | [Read transcript](paper-agent-coordination.md) | [JSON](../../sessions/f5/f57b3eb5fd15fb154c94.json) |
+| Paper Agent coordination — [Director 指令] [Full Draft — Phase 1: Non-dream-dependent sections] 目标：EMNLP 2026 Main (ARR May 25, D | 15,729 | 604 | [Read transcript](paper-agent-coordination.md) | [JSON](../../sessions/f5/f57b3eb5fd15fb154c94.json) |
 | paper writing method | 95 | 0 | [Read transcript](paper-writing-method-copy-2.md) | [JSON](../../sessions/2e/2e86ca3ed5e65fb5d13c.json) |
 | paper figure fig1 pipeline | 5 | 0 | [Read transcript](paper-figure-fig1-pipeline.md) | [JSON](../../sessions/a1/a18a5c56c5c1bacaf5b4.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 `west | 735 | 44 | [Read transcript](reviewer-coordination-20260517-211642.md) | [JSON](../../sessions/22/2274ff34152f02a9390f.json) |

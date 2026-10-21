@@ -7,47 +7,6 @@
       "messages": [
         {
           "source_line": 1621,
-          "timestamp": "2026-05-20T10:54:34.551034+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
-              "old_string": "Such structured disagreement has practical relevance: cross-model disagreement has been shown to serve as a label-free correctness signal \\citep{gorbett2026crossmodel}.",
-              "new_string": "Such structured disagreement also has practical relevance as a label-free correctness signal \\citep{gorbett2026crossmodel}."
-            }
-          },
-          "id": "event-001621"
-        },
-        {
-          "source_line": 1622,
-          "timestamp": "2026-05-20T10:54:34.702477+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 151
-          },
-          "id": "event-001622"
-        },
-        {
-          "source_line": 1623,
           "timestamp": "2026-05-20T10:54:38.523786+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -66,10 +25,10 @@
               "preview": "False"
             }
           },
-          "id": "event-001623"
+          "id": "event-001621"
         },
         {
-          "source_line": 1624,
+          "source_line": 1622,
           "timestamp": "2026-05-20T10:54:41.286542+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -84,10 +43,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2762
           },
-          "id": "event-001624"
+          "id": "event-001622"
         },
         {
-          "source_line": 1625,
+          "source_line": 1623,
           "timestamp": "2026-05-20T10:54:47.749192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -106,10 +65,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001625"
+          "id": "event-001623"
         },
         {
-          "source_line": 1626,
+          "source_line": 1624,
           "timestamp": "2026-05-20T10:54:49.707135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -124,10 +83,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 1957
           },
-          "id": "event-001626"
+          "id": "event-001624"
         },
         {
-          "source_line": 1627,
+          "source_line": 1625,
           "timestamp": "2026-05-20T10:54:52.969169+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -144,10 +103,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001627"
+          "id": "event-001625"
         },
         {
-          "source_line": 1628,
+          "source_line": 1626,
           "timestamp": "2026-05-20T10:54:53.573824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -162,10 +121,10 @@
             "tool": "Read",
             "elapsed_ms": 604
           },
-          "id": "event-001628"
+          "id": "event-001626"
         },
         {
-          "source_line": 1629,
+          "source_line": 1627,
           "timestamp": "2026-05-20T10:55:04.966381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -182,10 +141,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001629"
+          "id": "event-001627"
         },
         {
-          "source_line": 1630,
+          "source_line": 1628,
           "timestamp": "2026-05-20T10:55:05.519487+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -200,10 +159,10 @@
             "tool": "Read",
             "elapsed_ms": 553
           },
-          "id": "event-001630"
+          "id": "event-001628"
         },
         {
-          "source_line": 1631,
+          "source_line": 1629,
           "timestamp": "2026-05-20T10:55:35.052731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -222,10 +181,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001631"
+          "id": "event-001629"
         },
         {
-          "source_line": 1632,
+          "source_line": 1630,
           "timestamp": "2026-05-20T10:55:35.103319+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -240,10 +199,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001632"
+          "id": "event-001630"
         },
         {
-          "source_line": 1633,
+          "source_line": 1631,
           "timestamp": "2026-05-20T10:55:42.878154+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -263,10 +222,10 @@
               "new_string": "\\paragraph{Cross-task generalization.} We repeat the analysis on ARC-Easy ($N = 2{,}376$), which shows no aggregate convergence ($\\rho = -0.20$, $p = .783$). Pairwise Jaccard ranges from 0.067 to 0.134 (all 24 pair $\\times$ ratio combinations $p < .01$). The ambiguity $\\alpha$ \\citep{marx2020predictive} is substantial on both benchmarks ($\\alpha \\approx 0.21$--$0.30$; Table~\\ref{tab:multiplicity}) and stable across attention ratios, confirming that multiplicity is not contingent on aggregate convergence \\citep[cf.][]{gorbett2026crossmodel}."
             }
           },
-          "id": "event-001633"
+          "id": "event-001631"
         },
         {
-          "source_line": 1634,
+          "source_line": 1632,
           "timestamp": "2026-05-20T10:55:43.330273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -281,10 +240,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-001634"
+          "id": "event-001632"
         },
         {
-          "source_line": 1635,
+          "source_line": 1633,
           "timestamp": "2026-05-20T10:55:45.614867+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -304,10 +263,10 @@
               "new_string": "Cross-architecture $\\sigma$ decreases gradually across the five attention ratios: $0.024 \\to 0.016 \\to 0.014 \\to 0.006 \\to 0.005$. In contrast, pairwise Jaccard similarity between architectures' per-example effects saturates at the first attention level (4\\%): approximately 0.095 for helped, with no further increase at higher ratios."
             }
           },
-          "id": "event-001635"
+          "id": "event-001633"
         },
         {
-          "source_line": 1636,
+          "source_line": 1634,
           "timestamp": "2026-05-20T10:55:45.715903+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -322,10 +281,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-001636"
+          "id": "event-001634"
         },
         {
-          "source_line": 1637,
+          "source_line": 1635,
           "timestamp": "2026-05-20T10:55:49.729839+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -344,10 +303,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001637"
+          "id": "event-001635"
         },
         {
-          "source_line": 1638,
+          "source_line": 1636,
           "timestamp": "2026-05-20T10:55:53.848366+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -362,10 +321,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4118
           },
-          "id": "event-001638"
+          "id": "event-001636"
         },
         {
-          "source_line": 1639,
+          "source_line": 1637,
           "timestamp": "2026-05-20T10:55:57.663069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -382,11 +341,49 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
+          "id": "event-001637"
+        },
+        {
+          "source_line": 1638,
+          "timestamp": "2026-05-20T10:55:58.215933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-001638"
+        },
+        {
+          "source_line": 1639,
+          "timestamp": "2026-05-20T10:56:04.390250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
           "id": "event-001639"
         },
         {
           "source_line": 1640,
-          "timestamp": "2026-05-20T10:55:58.215933+00:00",
+          "timestamp": "2026-05-20T10:56:04.943176+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -404,125 +401,6 @@
         },
         {
           "source_line": 1641,
-          "timestamp": "2026-05-20T10:56:04.390250+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-001641"
-        },
-        {
-          "source_line": 1642,
-          "timestamp": "2026-05-20T10:56:04.943176+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 552
-          },
-          "id": "event-001642"
-        },
-        {
-          "source_line": 1643,
-          "timestamp": "2026-05-20T10:56:10.965793+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-              "offset": "120",
-              "limit": "20"
-            }
-          },
-          "id": "event-001643"
-        },
-        {
-          "source_line": 1644,
-          "timestamp": "2026-05-20T10:56:11.066604+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "120\t\n121\t\\response{We have added a footnote to Table~1 explaining the discrepancy: ``Bonferroni-adjusted $p = 6 \\times 2/120 = 0.100$ (exact); 0.102 arises from rounding raw $p$ to .017 before multiplying.'' The value 0.100 is the exact result; 0.102 is a rounding artifact. We now use 0.100 consistently throughout.}\n122\t\n123\t\\location{Table~1 footnote.}\n124\t\n125\t\\subsection*{Q5: Single checkpoint per configuration}\n126\t\n127\t\\reviewer{Each model zoo configuration is a single training run. Can you disentangle architecture from seed?}\n128\t\n129\t\\response{We cannot, and we now state this explicitly in the Limitations section: ``Each configuration in the model zoo corresponds to a single training run; we cannot disentangle architectural effects from seed-specific effects.'' This is a limitation of the zoo design. Disentangling the two would require multiple seeds per architecture-attention configuration, which is beyond the scope of the available zoo. We note, however, that the zoo's controlled design (shared data, hyperparameters) reduces other confounds, making architecture the most salient axis of variation.}\n130\t\n131\t\\location{Limitations (``Architecture coverage'' paragraph).}\n132\t\n133\t\\subsection*{W-REFS (R2-W2): Additional related work citations}\n134\t\n135\t\\reviewer{Several relevant references are missing from the related work discussion.}\n136\t\n137\t\\response{We have added Sellam et al.\\ (ICLR 2022; MultiBERTs) and Fehlauer et al.\\ (EMNLP 2025) to the Related Work section (\\S2). Additional references are under verification and will be incorporated if confirmed before the camera-ready deadline.}\n138\t\n139\t\\location{\\S2 (``Underspecification and Model Agreement'' paragraph), \\texttt{references.bib}.}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 100
-          },
-          "id": "event-001644"
-        },
-        {
-          "source_line": 1645,
-          "timestamp": "2026-05-20T10:56:22.463042+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-              "old_string": "\\response{We have added Sellam et al.\\ (ICLR 2022; MultiBERTs) and Fehlauer et al.\\ (EMNLP 2025) to the Related Work section (\\S2). Additional references are under verification and will be incorporated if confirmed before the camera-ready deadline.}\n\n\\location{\\S2 (``Underspecification and Model Agreement'' paragraph), \\texttt{references.bib}.}",
-              "new_string": "\\response{We have substantially expanded the citation coverage. In addition to Sellam et al.\\ (ICLR 2022; MultiBERTs) and Fehlauer et al.\\ (EMNLP 2025) added in Round~2, we now cite five additional references:}\n\\begin{itemize}[leftmargin=2em]\n\\item \\textbf{Predictive Multiplicity paragraph}: Du et al.\\ (2025; reconciliation under multiplicity), Haghighat et al.\\ (2026; Rashomon-set resolution), and Gorbett \\& Jana (2026; cross-model disagreement as label-free correctness signal).\n\\item \\textbf{Hybrid Architectures paragraph}: Ali et al.\\ (2025; implicit attention in Mamba) and Lahoti et al.\\ (2026; Mamba-3).\n\\item \\textbf{Appendix~D}: Ali et al.\\ (2025) cited as methodological background for attention weight analysis.\n\\item \\textbf{\\S4.3}: Gorbett \\& Jana (2026) cited for the practical relevance of per-example disagreement.\n\\end{itemize}\n\n\\location{\\S2 (``Predictive Multiplicity'' and ``Hybrid Recurrent Architectures'' paragraphs), \\S4.3, Appendix~D, \\texttt{references.bib}.}"
-            }
-          },
-          "id": "event-001645"
-        },
-        {
-          "source_line": 1646,
-          "timestamp": "2026-05-20T10:56:22.463911+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-001646"
-        },
-        {
-          "source_line": 1647,
           "timestamp": "2026-05-20T10:56:37.267699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -540,10 +418,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001647"
+          "id": "event-001641"
         },
         {
-          "source_line": 1648,
+          "source_line": 1642,
           "timestamp": "2026-05-20T10:56:40.835569+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -558,10 +436,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3567
           },
-          "id": "event-001648"
+          "id": "event-001642"
         },
         {
-          "source_line": 1649,
+          "source_line": 1643,
           "timestamp": "2026-05-20T10:56:44.794828+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -574,7 +452,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001649"
+          "id": "event-001643"
         }
       ]
     },
@@ -582,7 +460,7 @@
       "number": 46,
       "messages": [
         {
-          "source_line": 1650,
+          "source_line": 1644,
           "timestamp": "2026-05-20T10:56:45.299612+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -596,10 +474,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-001650"
+          "id": "event-001644"
         },
         {
-          "source_line": 1651,
+          "source_line": 1645,
           "timestamp": "2026-05-20T10:56:57.256840+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -612,7 +490,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001651"
+          "id": "event-001645"
         }
       ]
     },
@@ -620,7 +498,7 @@
       "number": 47,
       "messages": [
         {
-          "source_line": 1652,
+          "source_line": 1646,
           "timestamp": "2026-05-20T10:56:57.750513+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -634,10 +512,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-001652"
+          "id": "event-001646"
         },
         {
-          "source_line": 1653,
+          "source_line": 1647,
           "timestamp": "2026-05-20T10:57:06.576838+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -650,7 +528,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001653"
+          "id": "event-001647"
         }
       ]
     },
@@ -658,7 +536,7 @@
       "number": 48,
       "messages": [
         {
-          "source_line": 1654,
+          "source_line": 1648,
           "timestamp": "2026-05-20T10:57:07.093163+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -672,10 +550,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-001654"
+          "id": "event-001648"
         },
         {
-          "source_line": 1655,
+          "source_line": 1649,
           "timestamp": "2026-05-20T10:57:22.819975+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -688,7 +566,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001655"
+          "id": "event-001649"
         }
       ]
     },
@@ -696,7 +574,7 @@
       "number": 49,
       "messages": [
         {
-          "source_line": 1656,
+          "source_line": 1650,
           "timestamp": "2026-05-20T13:06:52.442372+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -710,10 +588,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-001656"
+          "id": "event-001650"
         },
         {
-          "source_line": 1657,
+          "source_line": 1651,
           "timestamp": "2026-05-20T13:07:09.535817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -730,10 +608,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex"
             }
           },
-          "id": "event-001657"
+          "id": "event-001651"
         },
         {
-          "source_line": 1658,
+          "source_line": 1652,
           "timestamp": "2026-05-20T13:07:10.389582+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -748,10 +626,10 @@
             "tool": "Read",
             "elapsed_ms": 853
           },
-          "id": "event-001658"
+          "id": "event-001652"
         },
         {
-          "source_line": 1659,
+          "source_line": 1653,
           "timestamp": "2026-05-20T13:07:10.389979+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -768,10 +646,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-001659"
+          "id": "event-001653"
         },
         {
-          "source_line": 1660,
+          "source_line": 1654,
           "timestamp": "2026-05-20T13:07:10.893912+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -786,10 +664,10 @@
             "tool": "Read",
             "elapsed_ms": 503
           },
-          "id": "event-001660"
+          "id": "event-001654"
         },
         {
-          "source_line": 1661,
+          "source_line": 1655,
           "timestamp": "2026-05-20T13:07:10.944550+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -808,10 +686,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001661"
+          "id": "event-001655"
         },
         {
-          "source_line": 1662,
+          "source_line": 1656,
           "timestamp": "2026-05-20T13:07:11.848162+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -826,10 +704,10 @@
             "tool": "Read",
             "elapsed_ms": 903
           },
-          "id": "event-001662"
+          "id": "event-001656"
         },
         {
-          "source_line": 1663,
+          "source_line": 1657,
           "timestamp": "2026-05-20T13:07:11.898886+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -848,10 +726,10 @@
               "limit": "50"
             }
           },
-          "id": "event-001663"
+          "id": "event-001657"
         },
         {
-          "source_line": 1664,
+          "source_line": 1658,
           "timestamp": "2026-05-20T13:07:11.949567+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -866,10 +744,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001664"
+          "id": "event-001658"
         },
         {
-          "source_line": 1665,
+          "source_line": 1659,
           "timestamp": "2026-05-20T13:09:28.560847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -886,10 +764,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-001665"
+          "id": "event-001659"
         },
         {
-          "source_line": 1666,
+          "source_line": 1660,
           "timestamp": "2026-05-20T13:09:28.561196+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -906,10 +784,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
             }
           },
-          "id": "event-001666"
+          "id": "event-001660"
         },
         {
-          "source_line": 1667,
+          "source_line": 1661,
           "timestamp": "2026-05-20T13:09:28.611762+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -924,10 +802,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001667"
+          "id": "event-001661"
         },
         {
-          "source_line": 1668,
+          "source_line": 1662,
           "timestamp": "2026-05-20T13:09:28.612179+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -942,10 +820,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001668"
+          "id": "event-001662"
         },
         {
-          "source_line": 1669,
+          "source_line": 1663,
           "timestamp": "2026-05-20T13:09:34.797537+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -965,10 +843,10 @@
               "new_string": "\\title{Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures}"
             }
           },
-          "id": "event-001669"
+          "id": "event-001663"
         },
         {
-          "source_line": 1670,
+          "source_line": 1664,
           "timestamp": "2026-05-20T13:09:34.797964+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -983,10 +861,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001670"
+          "id": "event-001664"
         },
         {
-          "source_line": 1671,
+          "source_line": 1665,
           "timestamp": "2026-05-20T13:10:00.917902+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1006,10 +884,10 @@
               "new_string": "Hybrid recurrent architectures that interleave attention layers with linear recurrence are increasingly standard, yet how attention affects per-example behavior across different recurrent backbones remains poorly quantified. We conduct a systematic analysis using the controlled model zoo of \\citet{wang2025hybrid}: three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios and two scales (340M and 1.3B parameters), evaluated on 10 benchmarks with per-example analysis on four (LAMBADA, BoolQ, HellaSwag, ARC-Easy; $N = 5{,}153$ to $10{,}042$). Aggregate convergence is task-specific: only LAMBADA shows monotonic reduction in cross-architecture variance ($\\rho = -1.0$, BCa 95\\% CI $[-1.0, -0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$), complete at 1.3B but non-monotonic at 340M. Per-example predictive multiplicity varies in magnitude but is present on all four benchmarks: the ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) to 0.49 (BoolQ), forming a task-dependent spectrum rather than a binary phenomenon, while pairwise Jaccard of helped/hurt sets remains universally low ($\\leq 0.13$, all $p < .01$). On LAMBADA, aggregate and per-example trajectories are decoupled: $\\sigma$ decreases gradually while per-example overlap saturates at 4\\% attention. These results establish per-example predictive multiplicity across all four task categories (retrieval, comprehension, reasoning, mixed) in three linear recurrent backbones, with HellaSwag's near-zero $\\alpha$ serving as a reference point that rules out measurement noise."
             }
           },
-          "id": "event-001671"
+          "id": "event-001665"
         },
         {
-          "source_line": 1672,
+          "source_line": 1666,
           "timestamp": "2026-05-20T13:10:00.968658+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1024,10 +902,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001672"
+          "id": "event-001666"
         },
         {
-          "source_line": 1673,
+          "source_line": 1667,
           "timestamp": "2026-05-20T13:10:07.365370+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1047,10 +925,10 @@
               "new_string": "To move beyond aggregate metrics, we decompose performance changes at the individual-example level on four benchmarks spanning all four task categories: LAMBADA (5{,}153 examples), BoolQ (3{,}270), HellaSwag (10{,}042), and ARC-Easy (2{,}376). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:"
             }
           },
-          "id": "event-001673"
+          "id": "event-001667"
         },
         {
-          "source_line": 1674,
+          "source_line": 1668,
           "timestamp": "2026-05-20T13:10:07.517876+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1065,10 +943,10 @@
             "tool": "Edit",
             "elapsed_ms": 152
           },
-          "id": "event-001674"
+          "id": "event-001668"
         },
         {
-          "source_line": 1675,
+          "source_line": 1669,
           "timestamp": "2026-05-20T13:10:28.608811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1088,10 +966,10 @@
               "new_string": "\\paragraph{Multiplicity spectrum.} Extending the per-example analysis to BoolQ ($N = 3{,}270$) and HellaSwag ($N = 10{,}042$) reveals that predictive multiplicity is not binary but varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} spans an order of magnitude: from 0.10 (HellaSwag) through 0.21 (ARC-Easy) and 0.30 (LAMBADA) to 0.49 (BoolQ). Yet pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$), indicating that architectures affect different examples regardless of how many examples are affected. HellaSwag's near-zero $\\alpha$ rules out measurement noise as the source of multiplicity on the other benchmarks. Within each benchmark, $\\alpha$ is stable across attention ratios (range $\\leq 0.04$), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Predictive multiplicity at 1.3B (h3-1). $\\alpha$: ambiguity \\citep{marx2020predictive}. $\\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets. Benchmarks ordered by $\\alpha$.}\n\\label{tab:multiplicity}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\rho_\\sigma$ \\\\\n\\midrule\nHellaSwag & 10042 & .10 & .091 & .080 & $-0.8$ \\\\\nARC-Easy & 2376 & .21 & .092 & .096 & $-0.2$ \\\\\nLAMBADA & 5153 & .30 & .086 & .091 & $-1.0^*$ \\\\\nBoolQ & 3270 & .49 & .103 & .098 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize $^*\\!p = .017$. $\\alpha$ stable across ratios (within-benchmark range $\\leq 0.04$).}\n\\end{table}"
             }
           },
-          "id": "event-001675"
+          "id": "event-001669"
         },
         {
-          "source_line": 1676,
+          "source_line": 1670,
           "timestamp": "2026-05-20T13:10:28.659616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1106,10 +984,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001676"
+          "id": "event-001670"
         },
         {
-          "source_line": 1677,
+          "source_line": 1671,
           "timestamp": "2026-05-20T13:10:32.645570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1128,10 +1006,10 @@
               "limit": "20"
             }
           },
-          "id": "event-001677"
+          "id": "event-001671"
         },
         {
-          "source_line": 1678,
+          "source_line": 1672,
           "timestamp": "2026-05-20T13:10:32.696303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1146,10 +1024,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001678"
+          "id": "event-001672"
         },
         {
-          "source_line": 1679,
+          "source_line": 1673,
           "timestamp": "2026-05-20T13:10:44.057440+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1169,10 +1047,10 @@
               "new_string": "Attention weight analysis (Appendix~\\ref{app:attention_patterns}) provides partial insight: GDN and RetNet produce nearly identical attention distributions at layer 2 (cosine 0.995) yet differ in per-example effects, and entropy differences between helped and hurt examples are negligible ($|\\Delta H| \\leq 0.018$), suggesting per-example effects originate in the recurrent layers. The four-benchmark spectrum (Table~\\ref{tab:multiplicity}) confirms independence from aggregate equalization: BoolQ ($\\alpha = 0.49$) has the highest multiplicity despite no convergence ($\\rho = +0.1$), while HellaSwag ($\\alpha = 0.10$, $\\rho = -0.8$) trends toward convergence with minimal multiplicity."
             }
           },
-          "id": "event-001679"
+          "id": "event-001673"
         },
         {
-          "source_line": 1680,
+          "source_line": 1674,
           "timestamp": "2026-05-20T13:10:44.108230+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1187,10 +1065,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001680"
+          "id": "event-001674"
         },
         {
-          "source_line": 1681,
+          "source_line": 1675,
           "timestamp": "2026-05-20T13:10:54.448499+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1210,10 +1088,10 @@
               "new_string": "Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\\% to 25\\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks---LAMBADA ($N = 5{,}153$), BoolQ ($N = 3{,}270$), HellaSwag ($N = 10{,}042$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central result: aggregate convergence and per-example divergence follow different trajectories as attention ratio increases."
             }
           },
-          "id": "event-001681"
+          "id": "event-001675"
         },
         {
-          "source_line": 1682,
+          "source_line": 1676,
           "timestamp": "2026-05-20T13:10:54.449092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1228,10 +1106,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001682"
+          "id": "event-001676"
         },
         {
-          "source_line": 1683,
+          "source_line": 1677,
           "timestamp": "2026-05-20T13:11:04.474991+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1251,10 +1129,10 @@
               "new_string": "Third, per-example predictive multiplicity is present on all four benchmarks but varies in magnitude, forming a task-dependent spectrum. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) through 0.21 (ARC-Easy) and 0.30 (LAMBADA) to 0.49 (BoolQ), while pairwise Jaccard remains uniformly low ($\\leq 0.10$). On LAMBADA, aggregate $\\sigma$ decreases gradually ($0.024 \\to 0.005$) while per-example Jaccard saturates at 4\\% attention (${\\sim}0.09$)---the two quantities are decoupled. HellaSwag's near-zero $\\alpha$ serves as a reference point that rules out measurement noise; within each benchmark, $\\alpha$ is stable across attention ratios (range $\\leq 0.04$)."
             }
           },
-          "id": "event-001683"
+          "id": "event-001677"
         },
         {
-          "source_line": 1684,
+          "source_line": 1678,
           "timestamp": "2026-05-20T13:11:04.526198+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1269,10 +1147,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001684"
+          "id": "event-001678"
         },
         {
-          "source_line": 1685,
+          "source_line": 1679,
           "timestamp": "2026-05-20T13:11:14.134171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1292,10 +1170,10 @@
               "new_string": "    \\item We demonstrate that per-example predictive multiplicity spans a task-dependent spectrum ($\\alpha = 0.10$--$0.49$) across all four task categories in three recurrent backbones, with magnitude independent of aggregate convergence (\\S\\ref{ssec:per_example}, \\S\\ref{ssec:decoupling}, Table~\\ref{tab:multiplicity})."
             }
           },
-          "id": "event-001685"
+          "id": "event-001679"
         },
         {
-          "source_line": 1686,
+          "source_line": 1680,
           "timestamp": "2026-05-20T13:11:14.134787+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1310,10 +1188,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001686"
+          "id": "event-001680"
         },
         {
-          "source_line": 1687,
+          "source_line": 1681,
           "timestamp": "2026-05-20T13:11:24.129466+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1333,10 +1211,10 @@
               "new_string": "We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Aggregate convergence is task-specific (only LAMBADA among ten benchmarks) and scale-dependent (monotonic at 1.3B, non-monotonic at 340M). Per-example predictive multiplicity spans a task-dependent spectrum across all four task categories ($\\alpha = 0.10$--$0.49$; HellaSwag to BoolQ), with pairwise Jaccard uniformly low ($\\leq 0.10$) and magnitude independent of aggregate convergence. The low per-example overlap suggests that, if confirmed in additional architectures, diverse hybrid ensembles may provide complementary coverage. Future work should establish causal mechanisms through attention ablation and extend the analysis beyond these three architectures."
             }
           },
-          "id": "event-001687"
+          "id": "event-001681"
         },
         {
-          "source_line": 1688,
+          "source_line": 1682,
           "timestamp": "2026-05-20T13:11:24.230330+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1351,10 +1229,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-001688"
+          "id": "event-001682"
         },
         {
-          "source_line": 1689,
+          "source_line": 1683,
           "timestamp": "2026-05-20T13:11:30.614939+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1374,10 +1252,10 @@
               "new_string": "\\paragraph{Per-example scope.} Our per-example analysis covers four benchmarks (LAMBADA, BoolQ, HellaSwag, ARC-Easy) spanning all four task categories. Extending to additional benchmarks within each category and to other hybrid families would further characterize the multiplicity spectrum."
             }
           },
-          "id": "event-001689"
+          "id": "event-001683"
         },
         {
-          "source_line": 1690,
+          "source_line": 1684,
           "timestamp": "2026-05-20T13:11:30.665782+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1392,10 +1270,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001690"
+          "id": "event-001684"
         },
         {
-          "source_line": 1691,
+          "source_line": 1685,
           "timestamp": "2026-05-20T13:11:37.504957+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1415,10 +1293,10 @@
               "new_string": "\\textit{Yes. Claims are scoped to three architectures and four benchmarks spanning all four task categories. We explicitly note that Bonferroni-adjusted $p = .100$ does not reach conventional significance, that the scale comparison is a preliminary observation from two data points, and that per-example multiplicity is characterized as a task-dependent spectrum ($\\alpha = 0.10$--$0.49$) rather than claimed as universal.}"
             }
           },
-          "id": "event-001691"
+          "id": "event-001685"
         },
         {
-          "source_line": 1692,
+          "source_line": 1686,
           "timestamp": "2026-05-20T13:11:37.555796+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1433,51 +1311,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001692"
+          "id": "event-001686"
         },
         {
-          "source_line": 1693,
-          "timestamp": "2026-05-20T13:11:50.859273+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-              "old_string": "\\response{We have replaced all instances of ``general property'' with empirically scoped language:}\n\\begin{itemize}[leftmargin=2em]\n\\item Abstract: ``$\\ldots$across two task categories (retrieval and mixed) in three linear recurrent backbones$\\ldots$''\n\\item Introduction Finding 3: ``$\\ldots$observed on both benchmarks---a retrieval task (LAMBADA) and a mixed task (ARC-Easy)$\\ldots$''\n\\item Contribution bullet 3: ``$\\ldots$observed on both a retrieval task and a mixed task in three recurrent backbones$\\ldots$''\n\\item Conclusion: ``$\\ldots$observed on both a retrieval task (LAMBADA) and a mixed task (ARC-Easy) in three architectures$\\ldots$''\n\\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures and benchmarks''\n\\end{itemize}\n\n\\location{Abstract, \\S1 (paragraphs 4 and 5), \\S5.}",
-              "new_string": "\\response{We have replaced all instances of ``general property'' with empirically scoped language and expanded the per-example analysis from two to four benchmarks:}\n\\begin{itemize}[leftmargin=2em]\n\\item Per-example analysis now covers four benchmarks spanning all four task categories: LAMBADA (retrieval), BoolQ (comprehension), HellaSwag (reasoning), ARC-Easy (mixed).\n\\item Multiplicity is characterized as a task-dependent spectrum: $\\alpha$ ranges from 0.10 (HellaSwag) to 0.49 (BoolQ), rather than a binary finding.\n\\item HellaSwag's near-zero $\\alpha$ serves as a reference point ruling out measurement noise.\n\\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures''\n\\end{itemize}\n\n\\location{Abstract, \\S1, \\S3.4, \\S4.3 (Table~2), \\S4.4, \\S5, Limitations.}"
-            }
-          },
-          "id": "event-001693"
-        },
-        {
-          "source_line": 1694,
-          "timestamp": "2026-05-20T13:11:50.960150+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-001694"
-        },
-        {
-          "source_line": 1695,
+          "source_line": 1687,
           "timestamp": "2026-05-20T13:11:56.231095+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1496,10 +1333,10 @@
               "limit": "5"
             }
           },
-          "id": "event-001695"
+          "id": "event-001687"
         },
         {
-          "source_line": 1696,
+          "source_line": 1688,
           "timestamp": "2026-05-20T13:11:56.281757+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1514,10 +1351,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001696"
+          "id": "event-001688"
         },
         {
-          "source_line": 1697,
+          "source_line": 1689,
           "timestamp": "2026-05-20T13:11:59.092401+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1536,10 +1373,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001697"
+          "id": "event-001689"
         },
         {
-          "source_line": 1698,
+          "source_line": 1690,
           "timestamp": "2026-05-20T13:11:59.143039+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1554,10 +1391,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001698"
+          "id": "event-001690"
         },
         {
-          "source_line": 1699,
+          "source_line": 1691,
           "timestamp": "2026-05-20T13:12:07.816515+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1575,10 +1412,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001699"
+          "id": "event-001691"
         },
         {
-          "source_line": 1700,
+          "source_line": 1692,
           "timestamp": "2026-05-20T13:12:07.917357+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1593,10 +1430,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-001700"
+          "id": "event-001692"
         },
         {
-          "source_line": 1701,
+          "source_line": 1693,
           "timestamp": "2026-05-20T13:12:11.029790+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1615,10 +1452,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001701"
+          "id": "event-001693"
         },
         {
-          "source_line": 1702,
+          "source_line": 1694,
           "timestamp": "2026-05-20T13:12:15.471609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1633,10 +1470,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4441
           },
-          "id": "event-001702"
+          "id": "event-001694"
         },
         {
-          "source_line": 1703,
+          "source_line": 1695,
           "timestamp": "2026-05-20T13:12:22.045823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1653,10 +1490,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-001703"
+          "id": "event-001695"
         },
         {
-          "source_line": 1704,
+          "source_line": 1696,
           "timestamp": "2026-05-20T13:12:22.450007+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1671,10 +1508,10 @@
             "tool": "Read",
             "elapsed_ms": 404
           },
-          "id": "event-001704"
+          "id": "event-001696"
         },
         {
-          "source_line": 1705,
+          "source_line": 1697,
           "timestamp": "2026-05-20T13:12:22.450469+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1691,10 +1528,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001705"
+          "id": "event-001697"
         },
         {
-          "source_line": 1706,
+          "source_line": 1698,
           "timestamp": "2026-05-20T13:12:23.055576+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1709,10 +1546,10 @@
             "tool": "Read",
             "elapsed_ms": 605
           },
-          "id": "event-001706"
+          "id": "event-001698"
         },
         {
-          "source_line": 1707,
+          "source_line": 1699,
           "timestamp": "2026-05-20T13:12:28.429919+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1729,10 +1566,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001707"
+          "id": "event-001699"
         },
         {
-          "source_line": 1708,
+          "source_line": 1700,
           "timestamp": "2026-05-20T13:12:29.380079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1747,10 +1584,10 @@
             "tool": "Read",
             "elapsed_ms": 950
           },
-          "id": "event-001708"
+          "id": "event-001700"
         },
         {
-          "source_line": 1709,
+          "source_line": 1701,
           "timestamp": "2026-05-20T13:12:45.525730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1767,10 +1604,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
             }
           },
-          "id": "event-001709"
+          "id": "event-001701"
         },
         {
-          "source_line": 1710,
+          "source_line": 1702,
           "timestamp": "2026-05-20T13:12:45.676907+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1785,10 +1622,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-001710"
+          "id": "event-001702"
         },
         {
-          "source_line": 1711,
+          "source_line": 1703,
           "timestamp": "2026-05-20T13:13:12.337893+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1808,10 +1645,10 @@
               "new_string": "The 95\\% BCa bootstrap confidence interval for $\\rho$ is $[-1.0, -0.7]$ (10{,}000 resamples), which excludes zero. After Bonferroni correction for six confirmatory benchmarks, the adjusted $p = .100$ does not reach conventional significance at $\\alpha = 0.05$; the confidence interval provides a complementary characterization indicating a reliably negative association."
             }
           },
-          "id": "event-001711"
+          "id": "event-001703"
         },
         {
-          "source_line": 1712,
+          "source_line": 1704,
           "timestamp": "2026-05-20T13:13:12.388959+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1826,10 +1663,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001712"
+          "id": "event-001704"
         },
         {
-          "source_line": 1713,
+          "source_line": 1705,
           "timestamp": "2026-05-20T13:13:21.329725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1849,10 +1686,10 @@
               "new_string": "The decoupling analysis (\\S\\ref{ssec:decoupling}) is demonstrated on LAMBADA; per-example divergence extends to all four benchmarks with per-example analysis (\\S\\ref{ssec:per_example})."
             }
           },
-          "id": "event-001713"
+          "id": "event-001705"
         },
         {
-          "source_line": 1714,
+          "source_line": 1706,
           "timestamp": "2026-05-20T13:13:21.481039+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1867,10 +1704,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-001714"
+          "id": "event-001706"
         },
         {
-          "source_line": 1715,
+          "source_line": 1707,
           "timestamp": "2026-05-20T13:13:26.352227+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1890,10 +1727,10 @@
               "new_string": "This contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \\approx 0.09$), extending the decoupling observation (\\S\\ref{ssec:decoupling}) to the scale dimension."
             }
           },
-          "id": "event-001715"
+          "id": "event-001707"
         },
         {
-          "source_line": 1716,
+          "source_line": 1708,
           "timestamp": "2026-05-20T13:13:26.402821+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1908,10 +1745,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001716"
+          "id": "event-001708"
         },
         {
-          "source_line": 1717,
+          "source_line": 1709,
           "timestamp": "2026-05-20T13:13:31.858026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1931,10 +1768,10 @@
               "new_string": "Attention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The four-benchmark spectrum (Table~\\ref{tab:multiplicity}) confirms independence: BoolQ ($\\alpha = 0.49$) has the highest multiplicity despite no convergence ($\\rho = +0.1$), while HellaSwag ($\\alpha = 0.10$) trends toward convergence with minimal multiplicity."
             }
           },
-          "id": "event-001717"
+          "id": "event-001709"
         },
         {
-          "source_line": 1718,
+          "source_line": 1710,
           "timestamp": "2026-05-20T13:13:31.908765+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1949,10 +1786,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001718"
+          "id": "event-001710"
         },
         {
-          "source_line": 1719,
+          "source_line": 1711,
           "timestamp": "2026-05-20T13:13:38.533122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1972,10 +1809,10 @@
               "new_string": "Removing GDN weakens LAMBADA convergence from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), partly because GDN's h3-1 uses 16 attention heads rather than 32 in all other configurations (Appendix~\\ref{app:gdn_confound}). The RetNet--HGRN2 pair preserves the decoupling: all hybrid $\\sigma \\leq 0.008$ while Jaccard saturates at 0.086--0.108. The aggregate convergence result is therefore partially dependent on GDN; the decoupling result is not. Full sensitivity analyses appear in Appendix~\\ref{app:sensitivity}."
             }
           },
-          "id": "event-001719"
+          "id": "event-001711"
         },
         {
-          "source_line": 1720,
+          "source_line": 1712,
           "timestamp": "2026-05-20T13:13:38.583932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1990,10 +1827,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001720"
+          "id": "event-001712"
         },
         {
-          "source_line": 1721,
+          "source_line": 1713,
           "timestamp": "2026-05-20T13:13:42.147726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2012,10 +1849,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001721"
+          "id": "event-001713"
         },
         {
-          "source_line": 1722,
+          "source_line": 1714,
           "timestamp": "2026-05-20T13:13:46.363159+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2030,10 +1867,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4215
           },
-          "id": "event-001722"
+          "id": "event-001714"
         },
         {
-          "source_line": 1723,
+          "source_line": 1715,
           "timestamp": "2026-05-20T13:13:51.884428+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2050,10 +1887,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001723"
+          "id": "event-001715"
         },
         {
-          "source_line": 1724,
+          "source_line": 1716,
           "timestamp": "2026-05-20T13:13:52.436850+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2070,10 +1907,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001724"
+          "id": "event-001716"
         },
         {
-          "source_line": 1725,
+          "source_line": 1717,
           "timestamp": "2026-05-20T13:13:52.638811+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2088,10 +1925,10 @@
             "tool": "Read",
             "elapsed_ms": 754
           },
-          "id": "event-001725"
+          "id": "event-001717"
         },
         {
-          "source_line": 1726,
+          "source_line": 1718,
           "timestamp": "2026-05-20T13:13:52.991223+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2106,10 +1943,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-001726"
+          "id": "event-001718"
         },
         {
-          "source_line": 1727,
+          "source_line": 1719,
           "timestamp": "2026-05-20T13:14:09.759849+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2129,10 +1966,10 @@
               "new_string": "We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Aggregate convergence is task-specific (only LAMBADA among ten benchmarks) and scale-dependent (monotonic at 1.3B, non-monotonic at 340M). Per-example predictive multiplicity spans a task-dependent spectrum ($\\alpha = 0.10$--$0.49$) across all four task categories, with pairwise Jaccard uniformly low ($\\leq 0.10$) regardless of aggregate convergence. These results suggest that diverse hybrid ensembles may provide complementary coverage; future work should establish causal mechanisms and extend the analysis beyond these three architectures."
             }
           },
-          "id": "event-001727"
+          "id": "event-001719"
         },
         {
-          "source_line": 1728,
+          "source_line": 1720,
           "timestamp": "2026-05-20T13:14:09.810580+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2147,10 +1984,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001728"
+          "id": "event-001720"
         },
         {
-          "source_line": 1729,
+          "source_line": 1721,
           "timestamp": "2026-05-20T13:14:14.078978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2169,10 +2006,10 @@
               "preview": "False"
             }
           },
-          "id": "event-001729"
+          "id": "event-001721"
         },
         {
-          "source_line": 1730,
+          "source_line": 1722,
           "timestamp": "2026-05-20T13:14:16.745216+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2187,10 +2024,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2666
           },
-          "id": "event-001730"
+          "id": "event-001722"
         },
         {
-          "source_line": 1731,
+          "source_line": 1723,
           "timestamp": "2026-05-20T13:14:22.539100+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2209,10 +2046,10 @@
               "preview": "True"
             }
           },
-          "id": "event-001731"
+          "id": "event-001723"
         },
         {
-          "source_line": 1732,
+          "source_line": 1724,
           "timestamp": "2026-05-20T13:14:24.498050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2227,10 +2064,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 1958
           },
-          "id": "event-001732"
+          "id": "event-001724"
         },
         {
-          "source_line": 1733,
+          "source_line": 1725,
           "timestamp": "2026-05-20T13:14:27.609298+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2247,10 +2084,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-001733"
+          "id": "event-001725"
         },
         {
-          "source_line": 1734,
+          "source_line": 1726,
           "timestamp": "2026-05-20T13:14:28.162778+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2265,10 +2102,10 @@
             "tool": "Read",
             "elapsed_ms": 553
           },
-          "id": "event-001734"
+          "id": "event-001726"
         },
         {
-          "source_line": 1735,
+          "source_line": 1727,
           "timestamp": "2026-05-20T13:14:35.358101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2285,10 +2122,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-001735"
+          "id": "event-001727"
         },
         {
-          "source_line": 1736,
+          "source_line": 1728,
           "timestamp": "2026-05-20T13:14:35.912490+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2303,10 +2140,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-001736"
+          "id": "event-001728"
         },
         {
-          "source_line": 1737,
+          "source_line": 1729,
           "timestamp": "2026-05-20T13:14:57.849198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2326,10 +2163,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-001737"
+          "id": "event-001729"
         },
         {
-          "source_line": 1738,
+          "source_line": 1730,
           "timestamp": "2026-05-20T13:14:57.899812+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2344,10 +2181,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001738"
+          "id": "event-001730"
         },
         {
-          "source_line": 1739,
+          "source_line": 1731,
           "timestamp": "2026-05-20T13:15:12.696382+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2367,10 +2204,10 @@
               "new_string": "\\textit{Yes. The Limitations section (after \\S5) discusses statistical power constraints ($n = 5$ attention ratios), per-example scope (four benchmarks), scale coverage (two scale points), architecture coverage (three backbones from one model zoo, single training run per configuration), observational design (descriptive, not causal), and pre-training-only evaluation.}"
             }
           },
-          "id": "event-001739"
+          "id": "event-001731"
         },
         {
-          "source_line": 1740,
+          "source_line": 1732,
           "timestamp": "2026-05-20T13:15:12.747162+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2385,10 +2222,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001740"
+          "id": "event-001732"
         },
         {
-          "source_line": 1741,
+          "source_line": 1733,
           "timestamp": "2026-05-20T13:15:15.909358+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2407,10 +2244,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001741"
+          "id": "event-001733"
         },
         {
-          "source_line": 1742,
+          "source_line": 1734,
           "timestamp": "2026-05-20T13:15:15.960057+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2425,10 +2262,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001742"
+          "id": "event-001734"
         },
         {
-          "source_line": 1743,
+          "source_line": 1735,
           "timestamp": "2026-05-20T13:15:21.480369+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2448,10 +2285,10 @@
               "new_string": "Table~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for LAMBADA and ARC-Easy. On ARC-Easy, $\\alpha$ ranges from 0.201 to 0.226; on LAMBADA, from 0.294 to 0.316. Both are stable across attention ratios, consistent with the within-benchmark stability observed across all four benchmarks (Table~\\ref{tab:multiplicity})."
             }
           },
-          "id": "event-001743"
+          "id": "event-001735"
         },
         {
-          "source_line": 1744,
+          "source_line": 1736,
           "timestamp": "2026-05-20T13:15:21.531213+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2466,10 +2303,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001744"
+          "id": "event-001736"
         },
         {
-          "source_line": 1745,
+          "source_line": 1737,
           "timestamp": "2026-05-20T13:15:24.391970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2487,10 +2324,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001745"
+          "id": "event-001737"
         },
         {
-          "source_line": 1746,
+          "source_line": 1738,
           "timestamp": "2026-05-20T13:15:24.442549+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2505,10 +2342,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001746"
+          "id": "event-001738"
         },
         {
-          "source_line": 1747,
+          "source_line": 1739,
           "timestamp": "2026-05-20T13:15:29.617775+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2525,10 +2362,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001747"
+          "id": "event-001739"
         },
         {
-          "source_line": 1748,
+          "source_line": 1740,
           "timestamp": "2026-05-20T13:15:29.718680+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2543,10 +2380,10 @@
             "tool": "mcp__agent-ml-research__check_paper_consistency",
             "elapsed_ms": 100
           },
-          "id": "event-001748"
+          "id": "event-001740"
         },
         {
-          "source_line": 1749,
+          "source_line": 1741,
           "timestamp": "2026-05-20T13:15:50.072396+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2564,10 +2401,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001749"
+          "id": "event-001741"
         },
         {
-          "source_line": 1750,
+          "source_line": 1742,
           "timestamp": "2026-05-20T13:15:50.173344+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2582,10 +2419,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-001750"
+          "id": "event-001742"
         },
         {
-          "source_line": 1751,
+          "source_line": 1743,
           "timestamp": "2026-05-20T13:16:10.990772+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2603,10 +2440,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001751"
+          "id": "event-001743"
         },
         {
-          "source_line": 1752,
+          "source_line": 1744,
           "timestamp": "2026-05-20T13:16:14.603058+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2621,10 +2458,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3612
           },
-          "id": "event-001752"
+          "id": "event-001744"
         },
         {
-          "source_line": 1753,
+          "source_line": 1745,
           "timestamp": "2026-05-20T13:16:20.069936+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2637,7 +2474,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-001753"
+          "id": "event-001745"
         }
       ]
     },
@@ -2645,7 +2482,7 @@
       "number": 50,
       "messages": [
         {
-          "source_line": 1754,
+          "source_line": 1746,
           "timestamp": "2026-05-20T13:16:20.577801+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2659,10 +2496,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-001754"
+          "id": "event-001746"
         },
         {
-          "source_line": 1755,
+          "source_line": 1747,
           "timestamp": "2026-05-20T13:16:34.470793+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2681,10 +2518,10 @@
               "limit": "6"
             }
           },
-          "id": "event-001755"
+          "id": "event-001747"
         },
         {
-          "source_line": 1756,
+          "source_line": 1748,
           "timestamp": "2026-05-20T13:16:34.923854+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2699,10 +2536,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-001756"
+          "id": "event-001748"
         },
         {
-          "source_line": 1757,
+          "source_line": 1749,
           "timestamp": "2026-05-20T13:16:35.476122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2721,10 +2558,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001757"
+          "id": "event-001749"
         },
         {
-          "source_line": 1758,
+          "source_line": 1750,
           "timestamp": "2026-05-20T13:16:35.978150+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2739,10 +2576,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001758"
+          "id": "event-001750"
         },
         {
-          "source_line": 1759,
+          "source_line": 1751,
           "timestamp": "2026-05-20T13:16:36.431630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2761,10 +2598,10 @@
               "limit": "25"
             }
           },
-          "id": "event-001759"
+          "id": "event-001751"
         },
         {
-          "source_line": 1760,
+          "source_line": 1752,
           "timestamp": "2026-05-20T13:16:36.984031+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2779,10 +2616,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-001760"
+          "id": "event-001752"
         },
         {
-          "source_line": 1761,
+          "source_line": 1753,
           "timestamp": "2026-05-20T13:16:36.984409+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2799,10 +2636,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-001761"
+          "id": "event-001753"
         },
         {
-          "source_line": 1762,
+          "source_line": 1754,
           "timestamp": "2026-05-20T13:16:37.486867+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2817,10 +2654,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001762"
+          "id": "event-001754"
         },
         {
-          "source_line": 1763,
+          "source_line": 1755,
           "timestamp": "2026-05-20T13:16:37.888798+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2839,10 +2676,10 @@
               "limit": "30"
             }
           },
-          "id": "event-001763"
+          "id": "event-001755"
         },
         {
-          "source_line": 1764,
+          "source_line": 1756,
           "timestamp": "2026-05-20T13:16:37.939433+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2857,10 +2694,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001764"
+          "id": "event-001756"
         },
         {
-          "source_line": 1765,
+          "source_line": 1757,
           "timestamp": "2026-05-20T13:16:53.446544+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2879,10 +2716,10 @@
               "limit": "12"
             }
           },
-          "id": "event-001765"
+          "id": "event-001757"
         },
         {
-          "source_line": 1766,
+          "source_line": 1758,
           "timestamp": "2026-05-20T13:16:54.451187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2897,10 +2734,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-001766"
+          "id": "event-001758"
         },
         {
-          "source_line": 1767,
+          "source_line": 1759,
           "timestamp": "2026-05-20T13:16:54.652271+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2919,10 +2756,10 @@
               "limit": "12"
             }
           },
-          "id": "event-001767"
+          "id": "event-001759"
         },
         {
-          "source_line": 1768,
+          "source_line": 1760,
           "timestamp": "2026-05-20T13:16:54.652623+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2937,10 +2774,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001768"
+          "id": "event-001760"
         },
         {
-          "source_line": 1769,
+          "source_line": 1761,
           "timestamp": "2026-05-20T13:16:54.954155+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2959,10 +2796,10 @@
               "limit": "10"
             }
           },
-          "id": "event-001769"
+          "id": "event-001761"
         },
         {
-          "source_line": 1770,
+          "source_line": 1762,
           "timestamp": "2026-05-20T13:16:55.055002+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2977,10 +2814,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001770"
+          "id": "event-001762"
         },
         {
-          "source_line": 1771,
+          "source_line": 1763,
           "timestamp": "2026-05-20T13:16:59.170732+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2999,10 +2836,10 @@
               "limit": "50"
             }
           },
-          "id": "event-001771"
+          "id": "event-001763"
         },
         {
-          "source_line": 1772,
+          "source_line": 1764,
           "timestamp": "2026-05-20T13:16:59.321776+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3017,10 +2854,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-001772"
+          "id": "event-001764"
         },
         {
-          "source_line": 1773,
+          "source_line": 1765,
           "timestamp": "2026-05-20T13:17:19.910847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3040,10 +2877,10 @@
               "new_string": "Hybrid recurrent architectures that interleave attention layers with linear recurrence are increasingly standard, yet how attention affects per-example behavior across different recurrent backbones remains poorly quantified. We conduct a systematic analysis using the controlled model zoo of \\citet{wang2025hybrid}: three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios and two scales (340M and 1.3B parameters), evaluated on 10 benchmarks with per-example analysis on three (LAMBADA, HellaSwag, ARC-Easy; $N = 2{,}376$ to $10{,}042$). Aggregate convergence is task-specific: only LAMBADA shows monotonic reduction in cross-architecture variance ($\\rho = -1.0$, BCa 95\\% CI $[-1.0, -0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$), complete at 1.3B but non-monotonic at 340M. Per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent spectrum: the ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) to 0.30 (LAMBADA), while pairwise Jaccard of helped/hurt sets remains uniformly low ($\\leq 0.10$, all $p < .01$). On LAMBADA, aggregate and per-example trajectories are decoupled: $\\sigma$ decreases gradually while per-example overlap saturates at 4\\% attention. These results establish per-example predictive multiplicity across three task categories (retrieval, reasoning, mixed) in three linear recurrent backbones, with HellaSwag's near-zero $\\alpha$ serving as a reference point that rules out measurement noise."
             }
           },
-          "id": "event-001773"
+          "id": "event-001765"
         },
         {
-          "source_line": 1774,
+          "source_line": 1766,
           "timestamp": "2026-05-20T13:17:19.961625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3058,10 +2895,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001774"
+          "id": "event-001766"
         },
         {
-          "source_line": 1775,
+          "source_line": 1767,
           "timestamp": "2026-05-20T13:17:26.084737+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3081,10 +2918,10 @@
               "new_string": "To move beyond aggregate metrics, we decompose performance changes at the individual-example level on three benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. A supplementary analysis on BoolQ (3{,}270; comprehension, binary classification) appears in Appendix~\\ref{app:boolq}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid and classify each example into one of three categories:"
             }
           },
-          "id": "event-001775"
+          "id": "event-001767"
         },
         {
-          "source_line": 1776,
+          "source_line": 1768,
           "timestamp": "2026-05-20T13:17:26.085151+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3099,10 +2936,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001776"
+          "id": "event-001768"
         },
         {
-          "source_line": 1777,
+          "source_line": 1769,
           "timestamp": "2026-05-20T13:17:47.107182+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3122,10 +2959,10 @@
               "new_string": "\\paragraph{Multiplicity spectrum.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) through 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent spectrum. Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all 24/24 pairs $p < .01$), indicating that architectures affect different examples regardless of how many examples are affected. HellaSwag's near-zero $\\alpha$ rules out measurement noise as the source of multiplicity on the other benchmarks. Within each benchmark, $\\alpha$ is stable across attention ratios (range $\\leq 0.04$), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}. A supplementary analysis on BoolQ (comprehension, binary classification; $\\alpha = 0.49$, 12/24 Jaccard pairs significant) appears in Appendix~\\ref{app:boolq}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Predictive multiplicity at 1.3B (h3-1). $\\alpha$: ambiguity \\citep{marx2020predictive}. $\\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets. Benchmarks ordered by $\\alpha$.}\n\\label{tab:multiplicity}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\rho_\\sigma$ \\\\\n\\midrule\nHellaSwag & 10042 & .10 & .091 & .080 & $-0.8$ \\\\\nARC-Easy & 2376 & .21 & .092 & .096 & $-0.2$ \\\\\nLAMBADA & 5153 & .30 & .086 & .091 & $-1.0^*$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize $^*\\!p = .017$. $\\alpha$ stable across ratios (range $\\leq 0.04$). BoolQ: Appendix~\\ref{app:boolq}.}\n\\end{table}"
             }
           },
-          "id": "event-001777"
+          "id": "event-001769"
         },
         {
-          "source_line": 1778,
+          "source_line": 1770,
           "timestamp": "2026-05-20T13:17:47.107962+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3140,10 +2977,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001778"
+          "id": "event-001770"
         },
         {
-          "source_line": 1779,
+          "source_line": 1771,
           "timestamp": "2026-05-20T13:17:55.118982+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3163,10 +3000,10 @@
               "new_string": "Attention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The three-benchmark spectrum (Table~\\ref{tab:multiplicity}) confirms independence: HellaSwag ($\\alpha = 0.10$) trends toward convergence with minimal multiplicity, while ARC-Easy ($\\alpha = 0.21$, $\\rho = -0.2$) shows moderate multiplicity without convergence."
             }
           },
-          "id": "event-001779"
+          "id": "event-001771"
         },
         {
-          "source_line": 1780,
+          "source_line": 1772,
           "timestamp": "2026-05-20T13:17:55.119605+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3181,10 +3018,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001780"
+          "id": "event-001772"
         },
         {
-          "source_line": 1781,
+          "source_line": 1773,
           "timestamp": "2026-05-20T13:18:02.599205+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3204,10 +3041,10 @@
               "new_string": "On three benchmarks---LAMBADA ($N = 5{,}153$), HellaSwag ($N = 10{,}042$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity."
             }
           },
-          "id": "event-001781"
+          "id": "event-001773"
         },
         {
-          "source_line": 1782,
+          "source_line": 1774,
           "timestamp": "2026-05-20T13:18:02.650857+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3222,10 +3059,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001782"
+          "id": "event-001774"
         },
         {
-          "source_line": 1783,
+          "source_line": 1775,
           "timestamp": "2026-05-20T13:18:10.650137+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3245,10 +3082,10 @@
               "new_string": "Third, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent spectrum. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) through 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$). On LAMBADA, aggregate $\\sigma$ decreases gradually ($0.024 \\to 0.005$) while per-example Jaccard saturates at 4\\% attention (${\\sim}0.09$)---the two quantities are decoupled. HellaSwag's near-zero $\\alpha$ serves as a reference point that rules out measurement noise; within each benchmark, $\\alpha$ is stable across attention ratios (range $\\leq 0.04$)."
             }
           },
-          "id": "event-001783"
+          "id": "event-001775"
         },
         {
-          "source_line": 1784,
+          "source_line": 1776,
           "timestamp": "2026-05-20T13:18:10.650751+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3263,10 +3100,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001784"
+          "id": "event-001776"
         },
         {
-          "source_line": 1785,
+          "source_line": 1777,
           "timestamp": "2026-05-20T13:18:16.924975+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3286,10 +3123,10 @@
               "new_string": "    \\item We demonstrate that per-example predictive multiplicity spans a task-dependent spectrum ($\\alpha = 0.10$--$0.30$) across three task categories (retrieval, reasoning, mixed) in three recurrent backbones, with magnitude independent of aggregate convergence (\\S\\ref{ssec:per_example}, \\S\\ref{ssec:decoupling}, Table~\\ref{tab:multiplicity})."
             }
           },
-          "id": "event-001785"
+          "id": "event-001777"
         },
         {
-          "source_line": 1786,
+          "source_line": 1778,
           "timestamp": "2026-05-20T13:18:16.975768+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3304,10 +3141,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001786"
+          "id": "event-001778"
         },
         {
-          "source_line": 1787,
+          "source_line": 1779,
           "timestamp": "2026-05-20T13:18:22.195623+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3327,10 +3164,10 @@
               "new_string": "Per-example predictive multiplicity spans a task-dependent spectrum ($\\alpha = 0.10$--$0.30$) across three task categories (retrieval, reasoning, mixed), with pairwise Jaccard uniformly low ($\\leq 0.10$) regardless of aggregate convergence."
             }
           },
-          "id": "event-001787"
+          "id": "event-001779"
         },
         {
-          "source_line": 1788,
+          "source_line": 1780,
           "timestamp": "2026-05-20T13:18:22.246301+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3345,10 +3182,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-001788"
+          "id": "event-001780"
         },
         {
-          "source_line": 1789,
+          "source_line": 1781,
           "timestamp": "2026-05-20T13:18:29.271957+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3368,10 +3205,10 @@
               "new_string": "\\paragraph{Per-example scope.} Our per-example analysis covers three benchmarks (LAMBADA, HellaSwag, ARC-Easy) spanning retrieval, reasoning, and mixed tasks. BoolQ (comprehension) is reported as supplementary due to structural limitations of binary classification on Jaccard significance (Appendix~\\ref{app:boolq}). Extending to additional benchmarks within each category and to other hybrid families would further characterize the multiplicity spectrum."
             }
           },
-          "id": "event-001789"
+          "id": "event-001781"
         },
         {
-          "source_line": 1790,
+          "source_line": 1782,
           "timestamp": "2026-05-20T13:18:29.323888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3386,10 +3223,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-001790"
+          "id": "event-001782"
         },
         {
-          "source_line": 1791,
+          "source_line": 1783,
           "timestamp": "2026-05-20T13:18:37.049665+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3409,10 +3246,10 @@
               "new_string": "\\textit{Yes. Claims are scoped to three architectures and three benchmarks spanning retrieval, reasoning, and mixed tasks. We explicitly note that Bonferroni-adjusted $p = .100$ does not reach conventional significance, that the scale comparison is a preliminary observation from two data points, and that per-example multiplicity is characterized as a task-dependent spectrum ($\\alpha = 0.10$--$0.30$) rather than claimed as universal. BoolQ (comprehension) is reported as supplementary in the Appendix due to structural limitations of binary classification.}"
             }
           },
-          "id": "event-001791"
+          "id": "event-001783"
         },
         {
-          "source_line": 1792,
+          "source_line": 1784,
           "timestamp": "2026-05-20T13:18:37.050197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3427,10 +3264,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-001792"
+          "id": "event-001784"
         },
         {
-          "source_line": 1793,
+          "source_line": 1785,
           "timestamp": "2026-05-20T13:18:43.676428+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3450,10 +3287,10 @@
               "new_string": "\\textit{Yes. The Limitations section (after \\S5) discusses statistical power constraints ($n = 5$ attention ratios), per-example scope (three benchmarks, one supplementary), scale coverage (two scale points), architecture coverage (three backbones from one model zoo, single training run per configuration), observational design (descriptive, not causal), and pre-training-only evaluation.}"
             }
           },
-          "id": "event-001793"
+          "id": "event-001785"
         },
         {
-          "source_line": 1794,
+          "source_line": 1786,
           "timestamp": "2026-05-20T13:18:43.777686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3468,51 +3305,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-001794"
+          "id": "event-001786"
         },
         {
-          "source_line": 1795,
-          "timestamp": "2026-05-20T13:18:58.327810+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
-              "old_string": "\\response{We have replaced all instances of ``general property'' with empirically scoped language and expanded the per-example analysis from two to four benchmarks:}\n\\begin{itemize}[leftmargin=2em]\n\\item Per-example analysis now covers four benchmarks spanning all four task categories: LAMBADA (retrieval), BoolQ (comprehension), HellaSwag (reasoning), ARC-Easy (mixed).\n\\item Multiplicity is characterized as a task-dependent spectrum: $\\alpha$ ranges from 0.10 (HellaSwag) to 0.49 (BoolQ), rather than a binary finding.\n\\item HellaSwag's near-zero $\\alpha$ serves as a reference point ruling out measurement noise.\n\\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures''\n\\end{itemize}\n\n\\location{Abstract, \\S1, \\S3.4, \\S4.3 (Table~2), \\S4.4, \\S5, Limitations.}",
-              "new_string": "\\response{We have replaced all instances of ``general property'' with empirically scoped language and expanded the per-example analysis from two to three benchmarks (plus one supplementary):}\n\\begin{itemize}[leftmargin=2em]\n\\item Per-example analysis now covers three benchmarks spanning three task categories: LAMBADA (retrieval), HellaSwag (reasoning), ARC-Easy (mixed). BoolQ (comprehension, binary classification) is reported as supplementary in the Appendix due to structural limitations affecting Jaccard significance.\n\\item Multiplicity is characterized as a task-dependent spectrum: $\\alpha$ ranges from 0.10 (HellaSwag) to 0.30 (LAMBADA).\n\\item HellaSwag's near-zero $\\alpha$ serves as a reference point ruling out measurement noise.\n\\item Conclusion ensemble claim: now qualified with ``if confirmed in additional architectures''\n\\end{itemize}\n\n\\location{Abstract, \\S1, \\S3.4, \\S4.3 (Table~2), \\S4.4, \\S5, Limitations, Appendix.}"
-            }
-          },
-          "id": "event-001795"
-        },
-        {
-          "source_line": 1796,
-          "timestamp": "2026-05-20T13:18:58.328430+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-001796"
-        },
-        {
-          "source_line": 1797,
+          "source_line": 1787,
           "timestamp": "2026-05-20T13:19:02.192005+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3531,10 +3327,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001797"
+          "id": "event-001787"
         },
         {
-          "source_line": 1798,
+          "source_line": 1788,
           "timestamp": "2026-05-20T13:19:02.192483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3549,10 +3345,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001798"
+          "id": "event-001788"
         },
         {
-          "source_line": 1799,
+          "source_line": 1789,
           "timestamp": "2026-05-20T13:19:23.519928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3572,10 +3368,10 @@
               "new_string": "\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{BoolQ Supplementary Analysis}\n\\label{app:boolq}\n\nBoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha = 0.49$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n\n\\paragraph{Binary classification baseline.} The structural difference is that BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\\bar{J}_h = 0.103$ and $\\bar{J}_u = 0.098$---values comparable to the three main benchmarks.\n\n\\paragraph{Per-example summary.} Table~\\ref{tab:boolq_multiplicity} reports the key metrics. The high $\\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the three main benchmarks.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:boolq_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\sigma$ \\\\\n\\midrule\nBoolQ & 3270 & .49 & .103 & .098 & 12/24 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n\\end{table}\n\n\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly."
             }
           },
-          "id": "event-001799"
+          "id": "event-001789"
         },
         {
-          "source_line": 1800,
+          "source_line": 1790,
           "timestamp": "2026-05-20T13:19:23.520286+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3589,6 +3385,208 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "tool": "Edit",
             "elapsed_ms": 0
+          },
+          "id": "event-001790"
+        },
+        {
+          "source_line": 1791,
+          "timestamp": "2026-05-20T13:19:33.282188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "old_string": "HGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}",
+              "new_string": "HGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\section{BoolQ Supplementary Analysis}\n\\label{app:boolq}\n\nBoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha = 0.49$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n\n\\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\\bar{J}_h = 0.103$ and $\\bar{J}_u = 0.098$---values comparable to the three main benchmarks.\n\n\\paragraph{Per-example summary.} Table~\\ref{tab:boolq_multiplicity} reports the key metrics. The high $\\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the three main benchmarks.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:boolq_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\sigma$ \\\\\n\\midrule\nBoolQ & 3270 & .49 & .103 & .098 & 12/24 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n\\end{table}\n\n\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly."
+            }
+          },
+          "id": "event-001791"
+        },
+        {
+          "source_line": 1792,
+          "timestamp": "2026-05-20T13:19:33.333042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001792"
+        },
+        {
+          "source_line": 1793,
+          "timestamp": "2026-05-20T13:19:37.256248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "offset": "258",
+              "limit": "5"
+            }
+          },
+          "id": "event-001793"
+        },
+        {
+          "source_line": 1794,
+          "timestamp": "2026-05-20T13:19:37.306865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "258\t\\end{table}\n259\t\n260\tTable~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for LAMBADA and ARC-Easy. On ARC-Easy, $\\alpha$ ranges from 0.201 to 0.226; on LAMBADA, from 0.294 to 0.316. Both are stable across attention ratios, consistent with the within-benchmark stability observed across all four benchmarks (Table~\\ref{tab:multiplicity}).\n261\t\n262\t\\begin{table}[h]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001794"
+        },
+        {
+          "source_line": 1795,
+          "timestamp": "2026-05-20T13:19:41.482450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "old_string": "Both are stable across attention ratios, consistent with the within-benchmark stability observed across all four benchmarks (Table~\\ref{tab:multiplicity}).",
+              "new_string": "Both are stable across attention ratios, consistent with the within-benchmark stability observed across all three main benchmarks (Table~\\ref{tab:multiplicity})."
+            }
+          },
+          "id": "event-001795"
+        },
+        {
+          "source_line": 1796,
+          "timestamp": "2026-05-20T13:19:41.533327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001796"
+        },
+        {
+          "source_line": 1797,
+          "timestamp": "2026-05-20T13:19:44.968784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "20",
+              "preview": "True"
+            }
+          },
+          "id": "event-001797"
+        },
+        {
+          "source_line": 1798,
+          "timestamp": "2026-05-20T13:19:49.388421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\n[14]\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n[15] [16]\\\\nUnderfull \\\\\\\\hbox (badness 1264) in paragraph at lines 386--389\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture pre-dictabil-ity co-ex-ists with cross-\\\\n []\\\\n\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 449--64\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) The RetNet\\\\n--HGRN2 anti-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 449--64\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3302) in paragraph at lines 449--64\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1194) in paragraph at lines 449--64\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 7740) in paragraph at lines 449--64\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\\\n []\\\\n\\\\n[17] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 7FFB0B83666848F2045CBC165B8EEBC8;6033.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16062 strings out of 469438\\\\n 251769 string characters out of 5468411\\\\n 721486 words of memory out of 5000000\\\\n 43902 multiletter control sequences out of 15000+600000\\\\n 703553 words of font info for 397 fonts, out of 80\n…[truncated 7310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 4419
+          },
+          "id": "event-001798"
+        },
+        {
+          "source_line": 1799,
+          "timestamp": "2026-05-20T13:19:57.018509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-001799"
+        },
+        {
+          "source_line": 1800,
+          "timestamp": "2026-05-20T13:19:57.270794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p17.png"
+            }
           },
           "id": "event-001800"
         }

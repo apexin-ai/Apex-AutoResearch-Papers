@@ -140,22 +140,6 @@ Coverage is comprehensive. The paper includes all imagined experiments. The prim
 
 ---
 
-## Rebuttal Guidance
-
-**What could change the score to borderline accept (4/6):**
-- Present MLM-only continued pretraining results showing it does NOT bridge the OOD gap (proving persuasion supervision matters beyond domain exposure)
-- Add evaluation on at least one real-world multi-turn attack dataset
-- Provide statistical significance tests for the DisPeD-TF-IDF gap on DD
-
-**What would NOT change the score:**
-- Additional related work citations alone
-- More ablation axes on synthetic data
-- Stronger framing without new evidence
-
-**Rebuttal success probability: 0.3-0.4.** The domain-adaptation confound is experimentally addressable but the required control experiment (MLM continued pretraining) may show that domain exposure alone suffices, which would confirm rather than resolve the weakness. The synthetic-data concern requires new evaluation data that may not be available within rebuttal timelines.
-
----
-
 ## Roundtable Process Notes
 
 - **Step 1 (Independent):** R1 scored 3/6, R2 scored 3/6. Both identified the domain-adaptation confound and TF-IDF near-parity as top concerns independently.

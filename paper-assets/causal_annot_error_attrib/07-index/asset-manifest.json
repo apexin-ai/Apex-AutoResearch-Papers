@@ -10,8 +10,8 @@
   "chat_count": 78,
   "worker_count": 388,
   "trace_count": 475,
-  "trace_bytes": 115693003,
-  "maintenance_count": 27,
+  "trace_bytes": 115629293,
+  "maintenance_count": 25,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -130,7 +130,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "27 project documentation files; 0 license files",
+      "evidence": "25 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

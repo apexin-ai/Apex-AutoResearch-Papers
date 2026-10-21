@@ -6,168 +6,9 @@
 
 ## Round 83
 
-### User
-
-_source line 703 · 2026-05-30T00:24:40.073839+00:00_
-
-[Reviewer 回复]:
-## 审查报告 — Claim 最大化 + 呈现优化 + Rebuttal 加强
-
-**结论**: WARNING（发现 3 个可挖掘的数据-论文落差 + 2 个呈现优化机会 + 2 个 rebuttal 缺口）
-
----
-
-### 维度 1: Claim 强度最大化
-
-**当前 4 个 Core Claims**: (C1) Two additive factors, (C2) Factorial methodology, (C3) Zero-cost guidelines, (C4) Codebase sensitivity.
-
-#### 已有数据支撑但未充分利用的机会
-
-- [severity: warning] **"TSR-invisible safety effects" 未提升为独立发现**。TSR ANOVA (all p>0.27) 目前分散在 abstract、conclusion、appendix，但从未被列为 contribution。这是本文最有"破圈"影响力的发现——它直接解释了**为什么 15 个 prior spatial VLA 方法没检测到安全问题**（它们只测 TSR）。建议：
-  - 方案 A（推荐）：在 C1 中加粗一句独立 claim："These safety effects are invisible to standard task-success benchmarks, explaining why fifteen prior methods did not detect them."——当前已在 abstract 但不在 contribution list。
-  - 方案 B：升级为 C5（但可能挤压 8 页空间）。
-  - **证据**：TSR ANOVA F 值全 < 1.34, p 全 > 0.27。gradient flow 和 normalization 仅影响 CAR。这不是 p 值边缘的弱信号——是全面零效应。
-
-- [severity: warning] **Per-task 4× 放大效应未进入 contribution 列表**。normalization advantage 在 hard tasks 上 +6.9pp vs easy tasks +1.7pp。这不仅是"有趣的观察"——它表明**效应恰好集中在安全最关键的场景**。当前仅在 results.tex L15 和 conclusion 提及。建议在 C1 或 C3 中加一句：如 "with the normalization advantage amplifying fourfold on physically constrained tasks where safety margins are thinnest"。
-
-- [severity: info] **Cell 1 instability 可作为独立 practical finding**。σ=0.064 (7× 其他 cell) 意味着：即使某个 seed 通过安全阈值，下一个可能大幅低于。对 safety-critical 部署，**方差本身是风险**。当前在 results L17 和 discussion 提及但未显式与 C3 (guidelines) 关联。可在 C3 中加："BN + gradient flow additionally exhibits 7× cross-seed variance, making safety outcomes unpredictable across training runs."
-
-- [severity: info] **CKA invisibility 可加强 mechanism 叙事**。CKA ≥ 0.95 但 safety 差异 7.7pp → 标准表征分析工具无法检测安全效应。当前在 results L100 提及但未明确框架化为"diagnostic limitation"。可在 Discussion 中加一句：standard representational diagnostics (CKA, gradient analysis) are insufficient for detecting fine-tuning-induced safety deficits.
-
-#### Claim 措辞强化（在数据支撑范围内）
-
-- [severity: info] C1 当前用 "reliably outperforming" (g=1.89, p=0.045, bootstrap CI [0.025, 0.089])。措辞合理，不建议进一步加强——CI 下界仅 2.5pp，n=3。n≥5 完成后若 p<0.01 可升级为 "significantly"。
-- [severity: info] C4 "Codebase sensitivity as a confound"——措辞偏保守。8.6pp > 最大实验效应 5.7pp。可考虑改为 "Codebase sensitivity as a dominant confound" 或 "implementation details outweigh experimental effects"。但"confound"已经是审稿人友好的诚实措辞，过度加强可能适得其反。保持现状。
-
----
-
-### 维度 2: Table/Figure 呈现优化
-
-- [severity: warning] **Figure 2(b) 建议改为经典 interaction plot（两条线）替代当前 2×2 网格**。经典 2×2 interaction plot（BN 线 + LN 线，横轴 Gradient ON/OFF，纵轴 CAR）能**直接视觉展示平行线 = 无交互**——这是论文的核心统计发现。当前网格/热力图需要读者自己比较数字才能判断交互。interaction plot 是 factorial design 的标准可视化方式（Montgomery 2017 教材标配），审稿人会立刻认出模式。实现成本极低（matplotlib 10 行代码），不需要 GPU。可在 GPU 停机期间完成。
-  - 如果保留当前 grid，至少在 grid 上叠加连线以视觉化斜率方向。
-
-- [severity: info] **考虑用 forest plot 替代/补充 Figure 2(a) 的条形图**。forest plot（Hedges' g ± 95% CI 横向排列）是展示效应量的标准方式，让审稿人一眼看出哪些效应跨越零线。但对 workshop paper，当前条形图已足够直观。建议作为 full paper 版本的改进方向，非当前优先。
-
-- [severity: info] **Table 2 caption 可加 BF₀₁**。当前 caption 已有 "interaction p_perm=0.794"，加 "BF₀₁=3.5 (moderate evidence for additivity)" 使表格更自足。一句话，零成本。
-
-- [severity: info] **Appendix 的 per-layer gradient 图（Figure 4, per_layer_combined.pdf）信息密度过高**。4 个子图（amplitude × 2 encoders + direction × 2 encoders）可能让审稿人迷失。但 appendix 允许更密集的展示，不是 critical issue。
-
----
-
-### 维度 3: Rebuttal Framing 加强
-
-#### Rebuttal 整体评价
-Rebuttal 结构清晰（16 resolved + 5 open + D080 proactive），Issue/Fix/Verification 格式有效。convergent evidence 策略（5 条 evidence）合理。
-
-#### 具体建议
-
-- [severity: warning] **缺少 "为什么提交时只有 n=3-4" 的主动解释**。审稿人最可能的攻击点不是某个 specific issue，而是 "为什么不在提交前跑更多 seeds？" 当前 rebuttal 只是说 "pending GPU"，没有解释提交时的设计选择。建议在 RD2-N1 response 开头加一段：
-  > "We deliberately prioritized breadth (12 conditions, 5 factors) over per-cell depth in the initial submission, as our primary research question concerns the factorial structure of effects rather than precise effect estimates. The planned seed expansion to n≥5 per cell will tighten confidence intervals and resolve the Welch/permutation discrepancy, while the current n=3-4 design already identifies the additive pattern with large effect sizes (g=0.78-1.89)."
-
-- [severity: warning] **RD2-N2 response 缺少"如果 v2 Random OCC ≠ Full OCC BN"的具体修改文本**。Rebuttal L305 说 "downgrade to 'codebase-dependent' with specific text (pre-written in wording contingency, 4 locations × 2 versions)" 但没有给出实际文本。如果审稿人看到这里会想知道具体改什么——建议附上 2-3 个关键位置的实际替换文本，增强可信度。
-
-- [severity: info] **Convergent evidence 策略可更有力地框架化**。5 条 evidence 目前是平行列举。建议加一句总结：如 "While any individual test may be debatable at n=3-4, the convergence of five independent lines of evidence — directional consistency (Welch+permutation), leave-one-out robustness, large effect sizes, Bayesian model comparison, and permutation significance — makes it unlikely that the observed pattern is artifactual." 即：**单个测试可争议，五个指向同一方向则不是偶然**。
-
-- [severity: info] **RD2-W4 wall time 估算有误**。L334 说 "~2h wall time with 8-GPU parallelism"，但实验是完整 50K step 训练 (~13h)。应改为 "~13h wall time (single GPU)"。（GPU budget 216h 已包含此修正，但文本未同步。）
-
-- [severity: info] **RD2-N2 和 RD3-W3 wall time 估算有误**。L310 和 L348 都说 "~3 days wall time with 1 GPU"——但如果有 8 GPU 并行，这两组可以跟 P0 重叠，实际 wall time << 3 天。建议统一用 "~27h total wall time for all pending experiments with 8-GPU parallelism"（ROADMAP 已修正为此估算）。
-
-#### Open issues 回应策略评估
-
-| Issue | 当前策略 | 评估 |
-|-------|---------|------|
-| RD2-N1 | 扩 n≥5 + wording contingency | ✅ 合理，contingency 覆盖了 g 下降场景 |
-| RD2-N2 | v2 Random OCC + codebase-dependent 降级 | ✅ 合理但需具体降级文本 |
-| RD2-W4 | BN eval mode → 验证假设 | ✅ 合理，低成本高信息量 |
-| RD3-W3 | λ sweep → robustness | ✅ 合理 |
-| R1-C9 | 随 RD2-N2 解决 | ✅ 合理 |
-
----
-
-### 行动优先级（GPU 停机期间可完成）
-
-1. **Figure 2(b) 改为 interaction plot**——零 GPU 成本，叙事增强最大
-2. **Table 2 caption 加 BF₀₁**——一行文本修改
-3. **Rebuttal 加 "breadth over depth" 设计选择解释**
-4. **Rebuttal 修正 W4/N2/W3 的 wall time 估算**
-5. **考虑在 C1 中显式提及 TSR invisibility 作为子发现**
-
-以上均不需要 GPU，可在停机窗口内完成。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-  "source": "reviewer"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 704 · 2026-05-30T00:25:12.247845+00:00_
-
-called mcp__agent-ml-research__get_agent_queue_status
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_agent_queue_status</summary>
-
-```json
-{
-  "project": "occsafe_vla"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-  "tool": "mcp__agent-ml-research__get_agent_queue_status",
-  "tool_args": {
-    "project": "occsafe_vla"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 705 · 2026-05-30T00:25:12.348595+00:00_
-
-{"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] GPU 恢复准备工作（不需要 GPU，纯本地）：\\n\\n请准备以下 5 个实验的完整启动脚本（shell script），放到本地 `projects/occsafe_vla/artifacts/gpu_recove\"},\"pending\":[],\"idle_seconds\":2508}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-  "tool": "mcp__agent-ml-research__get_agent_queue_status",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 706 · 2026-05-30T00:25:49.370957+00:00_
+_source line 700 · 2026-05-30T00:25:49.370957+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -203,7 +44,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 707 · 2026-05-30T00:25:52.433270+00:00_
+_source line 701 · 2026-05-30T00:25:52.433270+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] GPU 恢复准备工作（不需要 GPU，纯本地）：\\n\\n请准备以下 5 个实验的完整启动脚本（shell script），放到本地 `projects/occsafe_vla/artifacts/gpu_recovery_scripts/` 下。每个脚本包含：训练命令 + 超参 + checkpoint resume 检查逻辑（如果 `/root/autodl-tmp/` \"}, \"error\": \"\"}"}
 
@@ -225,7 +66,7 @@ _source line 707 · 2026-05-30T00:25:52.433270+00:00_
 
 ### Tool call
 
-_source line 708 · 2026-05-30T00:25:56.700897+00:00_
+_source line 702 · 2026-05-30T00:25:56.700897+00:00_
 
 called ToolSearch
 
@@ -261,7 +102,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 709 · 2026-05-30T00:25:56.751528+00:00_
+_source line 703 · 2026-05-30T00:25:56.751528+00:00_
 
 No matching deferred tools found
 
@@ -283,7 +124,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 710 · 2026-05-30T00:25:58.757569+00:00_
+_source line 704 · 2026-05-30T00:25:58.757569+00:00_
 
 called ToolSearch
 
@@ -319,7 +160,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 711 · 2026-05-30T00:25:58.808064+00:00_
+_source line 705 · 2026-05-30T00:25:58.808064+00:00_
 
 
 
@@ -341,7 +182,7 @@ _source line 711 · 2026-05-30T00:25:58.808064+00:00_
 
 ### Tool call
 
-_source line 712 · 2026-05-30T00:26:16.955163+00:00_
+_source line 706 · 2026-05-30T00:26:16.955163+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -381,7 +222,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 713 · 2026-05-30T00:26:17.156305+00:00_
+_source line 707 · 2026-05-30T00:26:17.156305+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D081\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -403,7 +244,7 @@ _source line 713 · 2026-05-30T00:26:17.156305+00:00_
 
 ### Assistant
 
-_source line 714 · 2026-05-30T00:26:22.662212+00:00_
+_source line 708 · 2026-05-30T00:26:22.662212+00:00_
 
 D081 已记录。Agent 正在处理 GPU recovery scripts，完成后自动接续 7 项质量改进任务。Reviewer 报告已消化、决策已做、Agent 已派单。等 Agent 回报结果。
 
@@ -430,7 +271,7 @@ D081 已记录。Agent 正在处理 GPU recovery scripts，完成后自动接续
 
 ### User
 
-_source line 715 · 2026-05-30T00:30:52.452251+00:00_
+_source line 709 · 2026-05-30T00:30:52.452251+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-10894/westd-34685 均 SSH 不可达
@@ -464,7 +305,7 @@ _source line 715 · 2026-05-30T00:30:52.452251+00:00_
 
 ### Tool call
 
-_source line 716 · 2026-05-30T00:31:01.667088+00:00_
+_source line 710 · 2026-05-30T00:31:01.667088+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -498,7 +339,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 717 · 2026-05-30T00:31:01.767973+00:00_
+_source line 711 · 2026-05-30T00:31:01.767973+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] Reviewer 做了一轮 \\\"claim 最大化 + 呈现优化 + rebuttal 加强\\\" 审查，以下 7 项改进全部不需要 GPU，请依次完成：\\n\\n---\\n\\n**A. Figure 2(b) 改为经典 int\"},\"pending\":[],\"idle_seconds\":5}"}
 
@@ -520,7 +361,7 @@ _source line 717 · 2026-05-30T00:31:01.767973+00:00_
 
 ### Assistant
 
-_source line 718 · 2026-05-30T00:31:04.654188+00:00_
+_source line 712 · 2026-05-30T00:31:04.654188+00:00_
 
 Agent 正在处理质量改进任务（interaction plot + rebuttal 修正等 7 项），队列没丢。等 Agent 完成后汇报。
 
@@ -542,12 +383,12 @@ Agent 正在处理质量改进任务（interaction plot + rebuttal 修正等 7 �
 
 ## Round 85
 
-18 recorded events
+16 recorded events
 
 
 ### User
 
-_source line 719 · 2026-05-30T00:35:57.749622+00:00_
+_source line 713 · 2026-05-30T00:35:57.749622+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -594,7 +435,7 @@ _source line 719 · 2026-05-30T00:35:57.749622+00:00_
 
 ### Tool call
 
-_source line 720 · 2026-05-30T00:36:08.227522+00:00_
+_source line 714 · 2026-05-30T00:36:08.227522+00:00_
 
 called Glob
 
@@ -630,7 +471,7 @@ called Glob
 
 ### Tool result
 
-_source line 721 · 2026-05-30T00:36:09.180995+00:00_
+_source line 715 · 2026-05-30T00:36:09.180995+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_car_factorial_combined.pdf
 
@@ -652,7 +493,7 @@ _source line 721 · 2026-05-30T00:36:09.180995+00:00_
 
 ### Tool call
 
-_source line 722 · 2026-05-30T00:36:09.181323+00:00_
+_source line 716 · 2026-05-30T00:36:09.181323+00:00_
 
 called Grep
 
@@ -690,7 +531,7 @@ called Grep
 
 ### Tool result
 
-_source line 723 · 2026-05-30T00:36:09.633140+00:00_
+_source line 717 · 2026-05-30T00:36:09.633140+00:00_
 
 22:[Omitted long matching line]
 
@@ -712,67 +553,7 @@ _source line 723 · 2026-05-30T00:36:09.633140+00:00_
 
 ### Tool call
 
-_source line 724 · 2026-05-30T00:36:10.335950+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "breadth.*12 conditions",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "breadth.*12 conditions",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 725 · 2026-05-30T00:36:10.387860+00:00_
-
-281:We deliberately prioritized breadth (12 conditions, 5 factors) over per-cell depth in the initial submission, as our primary research question concerns the factorial structure of effects rather than precise effect estimates. The planned seed expansion to n≥5 per cell will tighten confidence intervals, while the current n=3–4 design already identifies the additive pattern with large effect sizes (g=0.78–1.89).
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director",
-  "tool": "Grep",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 726 · 2026-05-30T00:36:14.956117+00:00_
+_source line 718 · 2026-05-30T00:36:14.956117+00:00_
 
 called Grep
 
@@ -810,7 +591,7 @@ called Grep
 
 ### Tool result
 
-_source line 727 · 2026-05-30T00:36:15.408291+00:00_
+_source line 719 · 2026-05-30T00:36:15.408291+00:00_
 
 26:    \item \textbf{Actionable guidelines at zero cost.} Do not add auxiliary spatial heads with gradient flow under BN. If required, use detached gradients with LayerNorm. BN + gradient flow additionally exhibits $7{\times}$ cross-seed variance, making safety outcomes unpredictable across training runs. No ground-truth spatial labels are needed; the auxiliary head is discarded at inference (\S\ref{sec:discussion}).
 
@@ -832,7 +613,7 @@ _source line 727 · 2026-05-30T00:36:15.408291+00:00_
 
 ### Tool call
 
-_source line 728 · 2026-05-30T00:36:15.458883+00:00_
+_source line 720 · 2026-05-30T00:36:15.458883+00:00_
 
 called Grep
 
@@ -870,7 +651,7 @@ called Grep
 
 ### Tool result
 
-_source line 729 · 2026-05-30T00:36:15.559799+00:00_
+_source line 721 · 2026-05-30T00:36:15.559799+00:00_
 
 77:\caption{(a)~Only BN + gradient flow falls below Vanilla. Detach+LN achieves the highest CAR ($0.802{\pm}0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$). Error bars: cross-seed SD. (b)~Classic interaction plot: near-parallel lines indicate negligible interaction ($p_\text{perm}{=}0.794$). LN consistently outperforms BN by 3.5--4.8\,pp regardless of gradient flow. Only BN + gradient ON falls below Vanilla.}
 
@@ -892,7 +673,7 @@ _source line 729 · 2026-05-30T00:36:15.559799+00:00_
 
 ### Tool call
 
-_source line 730 · 2026-05-30T00:37:09.832391+00:00_
+_source line 722 · 2026-05-30T00:37:09.832391+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -930,7 +711,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 731 · 2026-05-30T00:37:12.797020+00:00_
+_source line 723 · 2026-05-30T00:37:12.797020+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"lines\": 97, \"reason\": \"D081 claim 最大化 7 项全部完成（interaction plot + TSR/per-task/instability 贡献升级 + rebuttal 4 项修正）\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -952,7 +733,7 @@ _source line 731 · 2026-05-30T00:37:12.797020+00:00_
 
 ### Tool call
 
-_source line 732 · 2026-05-30T00:37:22.736653+00:00_
+_source line 724 · 2026-05-30T00:37:22.736653+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -986,7 +767,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 733 · 2026-05-30T00:37:23.138628+00:00_
+_source line 725 · 2026-05-30T00:37:23.138628+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -1008,7 +789,7 @@ _source line 733 · 2026-05-30T00:37:23.138628+00:00_
 
 ### Tool call
 
-_source line 734 · 2026-05-30T00:37:30.314919+00:00_
+_source line 726 · 2026-05-30T00:37:30.314919+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -1044,7 +825,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 735 · 2026-05-30T00:37:30.371625+00:00_
+_source line 727 · 2026-05-30T00:37:30.371625+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -1066,7 +847,7 @@ _source line 735 · 2026-05-30T00:37:30.371625+00:00_
 
 ### Assistant
 
-_source line 736 · 2026-05-30T00:37:38.525235+00:00_
+_source line 728 · 2026-05-30T00:37:38.525235+00:00_
 
 D081 全部完成。当前状态：
 
@@ -1098,7 +879,7 @@ D081 全部完成。当前状态：
 
 ### User
 
-_source line 737 · 2026-05-30T00:39:26.366556+00:00_
+_source line 729 · 2026-05-30T00:39:26.366556+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — D081 Claim 最大化实施验证
@@ -1152,7 +933,7 @@ _source line 737 · 2026-05-30T00:39:26.366556+00:00_
 
 ### Assistant
 
-_source line 738 · 2026-05-30T00:39:31.401208+00:00_
+_source line 730 · 2026-05-30T00:39:31.401208+00:00_
 
 No response requested.
 
@@ -1179,7 +960,7 @@ No response requested.
 
 ### User
 
-_source line 739 · 2026-05-30T01:10:03.449264+00:00_
+_source line 731 · 2026-05-30T01:10:03.449264+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -1221,7 +1002,7 @@ _source line 739 · 2026-05-30T01:10:03.449264+00:00_
 
 ### Tool call
 
-_source line 740 · 2026-05-30T01:10:12.152693+00:00_
+_source line 732 · 2026-05-30T01:10:12.152693+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -1259,7 +1040,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 741 · 2026-05-30T01:10:12.604781+00:00_
+_source line 733 · 2026-05-30T01:10:12.604781+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -1281,7 +1062,7 @@ _source line 741 · 2026-05-30T01:10:12.604781+00:00_
 
 ### Tool call
 
-_source line 742 · 2026-05-30T01:10:31.723385+00:00_
+_source line 734 · 2026-05-30T01:10:31.723385+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -1317,7 +1098,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 743 · 2026-05-30T01:10:45.862110+00:00_
+_source line 735 · 2026-05-30T01:10:45.862110+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer\"}, \"error\": \"\"}"}
 
@@ -1339,7 +1120,7 @@ _source line 743 · 2026-05-30T01:10:45.862110+00:00_
 
 ### Tool call
 
-_source line 744 · 2026-05-30T01:10:46.013197+00:00_
+_source line 736 · 2026-05-30T01:10:46.013197+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -1375,7 +1156,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 745 · 2026-05-30T01:10:46.064074+00:00_
+_source line 737 · 2026-05-30T01:10:46.064074+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -1397,7 +1178,7 @@ _source line 745 · 2026-05-30T01:10:46.064074+00:00_
 
 ### Assistant
 
-_source line 746 · 2026-05-30T01:10:48.258864+00:00_
+_source line 738 · 2026-05-30T01:10:48.258864+00:00_
 
 Reviewer 正在做整体通读，Manager 已收到备用 GPU 正式申请。
 
@@ -1424,7 +1205,7 @@ Reviewer 正在做整体通读，Manager 已收到备用 GPU 正式申请。
 
 ### User
 
-_source line 747 · 2026-05-30T01:17:46.191950+00:00_
+_source line 739 · 2026-05-30T01:17:46.191950+00:00_
 
 [Reviewer 回复]:
 ## 论文整体叙事一致性审查报告（Full Narrative Coherence Pass）
@@ -1508,7 +1289,7 @@ _source line 747 · 2026-05-30T01:17:46.191950+00:00_
 
 ### Tool call
 
-_source line 748 · 2026-05-30T01:18:14.074014+00:00_
+_source line 740 · 2026-05-30T01:18:14.074014+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -1544,7 +1325,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 749 · 2026-05-30T01:18:17.295867+00:00_
+_source line 741 · 2026-05-30T01:18:17.295867+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -1566,7 +1347,7 @@ _source line 749 · 2026-05-30T01:18:17.295867+00:00_
 
 ### Assistant
 
-_source line 750 · 2026-05-30T01:18:19.041074+00:00_
+_source line 742 · 2026-05-30T01:18:19.041074+00:00_
 
 3 个 warning 全部可立即修复，不需要 GPU。
 
@@ -1593,7 +1374,7 @@ _source line 750 · 2026-05-30T01:18:19.041074+00:00_
 
 ### User
 
-_source line 751 · 2026-05-30T01:22:45.879350+00:00_
+_source line 743 · 2026-05-30T01:22:45.879350+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -1635,7 +1416,7 @@ _source line 751 · 2026-05-30T01:22:45.879350+00:00_
 
 ### Tool call
 
-_source line 752 · 2026-05-30T01:22:52.979442+00:00_
+_source line 744 · 2026-05-30T01:22:52.979442+00:00_
 
 called Grep
 
@@ -1673,7 +1454,7 @@ called Grep
 
 ### Tool result
 
-_source line 753 · 2026-05-30T01:22:53.431553+00:00_
+_source line 745 · 2026-05-30T01:22:53.431553+00:00_
 
 26:    \item \textbf{Actionable guidelines at zero cost.} Do not add auxiliary spatial heads with gradient flow under BN. If required, use detached gradients with LayerNorm. BN + gradient flow additionally exhibits $5$--$7{\times}$ cross-seed variance, making safety outcomes unpredictable across training runs. No ground-truth spatial labels are needed; the auxiliary head is discarded at inference (\S\ref{sec:discussion}).
 
@@ -1695,7 +1476,7 @@ _source line 753 · 2026-05-30T01:22:53.431553+00:00_
 
 ### Tool call
 
-_source line 754 · 2026-05-30T01:22:53.582537+00:00_
+_source line 746 · 2026-05-30T01:22:53.582537+00:00_
 
 called Grep
 
@@ -1733,7 +1514,7 @@ called Grep
 
 ### Tool result
 
-_source line 755 · 2026-05-30T01:22:53.633455+00:00_
+_source line 747 · 2026-05-30T01:22:53.633455+00:00_
 
 216:\label{tab:per_task_norm}
 
@@ -1755,7 +1536,7 @@ _source line 755 · 2026-05-30T01:22:53.633455+00:00_
 
 ### Tool call
 
-_source line 756 · 2026-05-30T01:22:56.745501+00:00_
+_source line 748 · 2026-05-30T01:22:56.745501+00:00_
 
 called Grep
 
@@ -1793,7 +1574,7 @@ called Grep
 
 ### Tool result
 
-_source line 757 · 2026-05-30T01:22:56.846312+00:00_
+_source line 749 · 2026-05-30T01:22:56.846312+00:00_
 
 4:\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Real-world contact dynamics, sensor noise, and control latency introduce failure modes absent in simulation that may alter the relative safety ranking. Validating on physical hardware is a necessary next step.
 
@@ -1815,7 +1596,7 @@ _source line 757 · 2026-05-30T01:22:56.846312+00:00_
 
 ### Tool call
 
-_source line 758 · 2026-05-30T01:23:01.163280+00:00_
+_source line 750 · 2026-05-30T01:23:01.163280+00:00_
 
 called Grep
 
@@ -1853,7 +1634,7 @@ called Grep
 
 ### Tool result
 
-_source line 759 · 2026-05-30T01:23:01.163633+00:00_
+_source line 751 · 2026-05-30T01:23:01.163633+00:00_
 
 No matches found
 
@@ -1875,7 +1656,7 @@ No matches found
 
 ### Tool call
 
-_source line 760 · 2026-05-30T01:23:03.974431+00:00_
+_source line 752 · 2026-05-30T01:23:03.974431+00:00_
 
 called Grep
 
@@ -1915,7 +1696,7 @@ called Grep
 
 ### Tool result
 
-_source line 761 · 2026-05-30T01:23:04.075362+00:00_
+_source line 753 · 2026-05-30T01:23:04.075362+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_figure_backups/20260528_175232/fig1_overview.py:265:ax_c.text(0.798, 1.7, '$-$4.9 pp', fontsize=12,
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.log:215:Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
@@ -1945,7 +1726,7 @@ _source line 761 · 2026-05-30T01:23:04.075362+00:00_
 
 ### Tool call
 
-_source line 762 · 2026-05-30T01:23:21.573444+00:00_
+_source line 754 · 2026-05-30T01:23:21.573444+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -1981,7 +1762,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 763 · 2026-05-30T01:23:24.790985+00:00_
+_source line 755 · 2026-05-30T01:23:24.790985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -2003,7 +1784,7 @@ _source line 763 · 2026-05-30T01:23:24.790985+00:00_
 
 ### Assistant
 
-_source line 764 · 2026-05-30T01:23:26.585403+00:00_
+_source line 756 · 2026-05-30T01:23:26.585403+00:00_
 
 发现数据不一致：新 Table 显示 easy tasks Δ=+1.3pp，但 results.tex、discussion.tex、appendix.tex 正文全部写 +1.7pp。需要统一。
 
@@ -2030,7 +1811,7 @@ _source line 764 · 2026-05-30T01:23:26.585403+00:00_
 
 ### User
 
-_source line 765 · 2026-05-30T01:24:43.570354+00:00_
+_source line 757 · 2026-05-30T01:24:43.570354+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -2065,7 +1846,7 @@ _source line 765 · 2026-05-30T01:24:43.570354+00:00_
 
 ### Tool call
 
-_source line 766 · 2026-05-30T01:24:50.875926+00:00_
+_source line 758 · 2026-05-30T01:24:50.875926+00:00_
 
 called Grep
 
@@ -2103,7 +1884,7 @@ called Grep
 
 ### Tool result
 
-_source line 767 · 2026-05-30T01:24:50.876273+00:00_
+_source line 759 · 2026-05-30T01:24:50.876273+00:00_
 
 33:\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.
 223:Easy (T0--T2, T7--T9) & $0.945$ & $0.962$ & $+1.7$\,pp \\
@@ -2126,7 +1907,7 @@ _source line 767 · 2026-05-30T01:24:50.876273+00:00_
 
 ### Tool call
 
-_source line 768 · 2026-05-30T01:25:05.881837+00:00_
+_source line 760 · 2026-05-30T01:25:05.881837+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -2162,7 +1943,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 769 · 2026-05-30T01:25:09.428745+00:00_
+_source line 761 · 2026-05-30T01:25:09.428745+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -2184,7 +1965,7 @@ _source line 769 · 2026-05-30T01:25:09.428745+00:00_
 
 ### Assistant
 
-_source line 770 · 2026-05-30T01:25:10.960629+00:00_
+_source line 762 · 2026-05-30T01:25:10.960629+00:00_
 
 发现新问题：appendix.tex L33 说 "seven easy tasks (T0--T2, T4, T7--T9)"（含 T4），但新 Table L223 说 "Easy (T0--T2, T7--T9)"（不含 T4）。同一个 appendix 里两种 Easy 定义。
 
@@ -2211,7 +1992,7 @@ _source line 770 · 2026-05-30T01:25:10.960629+00:00_
 
 ### User
 
-_source line 771 · 2026-05-30T01:25:57.567404+00:00_
+_source line 763 · 2026-05-30T01:25:57.567404+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -2246,7 +2027,7 @@ _source line 771 · 2026-05-30T01:25:57.567404+00:00_
 
 ### Assistant
 
-_source line 772 · 2026-05-30T01:26:05.598110+00:00_
+_source line 764 · 2026-05-30T01:26:05.598110+00:00_
 
 No response requested.
 
@@ -2273,7 +2054,7 @@ No response requested.
 
 ### User
 
-_source line 773 · 2026-05-30T01:56:45.011100+00:00_
+_source line 765 · 2026-05-30T01:56:45.011100+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -2315,7 +2096,7 @@ _source line 773 · 2026-05-30T01:56:45.011100+00:00_
 
 ### Tool call
 
-_source line 774 · 2026-05-30T01:56:55.572357+00:00_
+_source line 766 · 2026-05-30T01:56:55.572357+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -2353,7 +2134,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 775 · 2026-05-30T01:56:55.975111+00:00_
+_source line 767 · 2026-05-30T01:56:55.975111+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -2375,7 +2156,7 @@ _source line 775 · 2026-05-30T01:56:55.975111+00:00_
 
 ### Tool call
 
-_source line 776 · 2026-05-30T01:57:18.923862+00:00_
+_source line 768 · 2026-05-30T01:57:18.923862+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -2411,7 +2192,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 777 · 2026-05-30T01:57:22.203858+00:00_
+_source line 769 · 2026-05-30T01:57:22.203858+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer\"}, \"error\": \"\"}"}
 
@@ -2433,7 +2214,7 @@ _source line 777 · 2026-05-30T01:57:22.203858+00:00_
 
 ### Tool call
 
-_source line 778 · 2026-05-30T01:57:22.354801+00:00_
+_source line 770 · 2026-05-30T01:57:22.354801+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -2469,7 +2250,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 779 · 2026-05-30T01:57:22.756965+00:00_
+_source line 771 · 2026-05-30T01:57:22.756965+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\", \"metadata\": {}}"}
 
@@ -2491,7 +2272,7 @@ _source line 779 · 2026-05-30T01:57:22.756965+00:00_
 
 ### Tool call
 
-_source line 780 · 2026-05-30T01:57:34.000922+00:00_
+_source line 772 · 2026-05-30T01:57:34.000922+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -2527,7 +2308,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 781 · 2026-05-30T01:57:34.001559+00:00_
+_source line 773 · 2026-05-30T01:57:34.001559+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -2549,7 +2330,7 @@ _source line 781 · 2026-05-30T01:57:34.001559+00:00_
 
 ### Assistant
 
-_source line 782 · 2026-05-30T01:57:36.649955+00:00_
+_source line 774 · 2026-05-30T01:57:36.649955+00:00_
 
 Reviewer 已派出做全文数据一致性扫描，Manager 已追催备用 GPU。等待两边回复。
 
@@ -2576,7 +2357,7 @@ Reviewer 已派出做全文数据一致性扫描，Manager 已追催备用 GPU�
 
 ### User
 
-_source line 783 · 2026-05-30T02:04:11.575610+00:00_
+_source line 775 · 2026-05-30T02:04:11.575610+00:00_
 
 [Reviewer 回复]:
 ## 全文数据一致性扫描报告（Data Consistency Audit）
@@ -2724,7 +2505,7 @@ Gradient effect 的下限为 2.9pp，不在 "4-5pp" 范围内。"each ≈3-5pp" 
 
 ### Tool call
 
-_source line 784 · 2026-05-30T02:04:31.681041+00:00_
+_source line 776 · 2026-05-30T02:04:31.681041+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -2760,7 +2541,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 785 · 2026-05-30T02:04:34.897030+00:00_
+_source line 777 · 2026-05-30T02:04:34.897030+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -2782,7 +2563,7 @@ _source line 785 · 2026-05-30T02:04:34.897030+00:00_
 
 ### Assistant
 
-_source line 786 · 2026-05-30T02:04:37.129655+00:00_
+_source line 778 · 2026-05-30T02:04:37.129655+00:00_
 
 4 个 warning 全部可立即修复。
 
@@ -2809,7 +2590,7 @@ _source line 786 · 2026-05-30T02:04:37.129655+00:00_
 
 ### User
 
-_source line 787 · 2026-05-30T02:05:40.424252+00:00_
+_source line 779 · 2026-05-30T02:05:40.424252+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -2840,7 +2621,7 @@ _source line 787 · 2026-05-30T02:05:40.424252+00:00_
 
 ### Assistant
 
-_source line 788 · 2026-05-30T02:05:44.553172+00:00_
+_source line 780 · 2026-05-30T02:05:44.553172+00:00_
 
 No response requested.
 
@@ -2867,7 +2648,7 @@ No response requested.
 
 ### User
 
-_source line 789 · 2026-05-30T02:36:20.195989+00:00_
+_source line 781 · 2026-05-30T02:36:20.195989+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -2909,7 +2690,7 @@ _source line 789 · 2026-05-30T02:36:20.195989+00:00_
 
 ### Tool call
 
-_source line 790 · 2026-05-30T02:36:35.922712+00:00_
+_source line 782 · 2026-05-30T02:36:35.922712+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -2947,7 +2728,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 791 · 2026-05-30T02:36:36.325559+00:00_
+_source line 783 · 2026-05-30T02:36:36.325559+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"WAIT\", \"minutes\": 60, \"next_nudge_in_minutes\": 60}"}
 
@@ -2976,7 +2757,7 @@ _source line 791 · 2026-05-30T02:36:36.325559+00:00_
 
 ### User
 
-_source line 792 · 2026-05-30T03:37:05.244965+00:00_
+_source line 784 · 2026-05-30T03:37:05.244965+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3016,7 +2797,7 @@ _source line 792 · 2026-05-30T03:37:05.244965+00:00_
 
 ### Tool call
 
-_source line 793 · 2026-05-30T03:37:13.237632+00:00_
+_source line 785 · 2026-05-30T03:37:13.237632+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3054,7 +2835,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 794 · 2026-05-30T03:37:13.639547+00:00_
+_source line 786 · 2026-05-30T03:37:13.639547+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -3076,7 +2857,7 @@ _source line 794 · 2026-05-30T03:37:13.639547+00:00_
 
 ### Tool call
 
-_source line 795 · 2026-05-30T03:37:23.124883+00:00_
+_source line 787 · 2026-05-30T03:37:23.124883+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -3112,7 +2893,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 796 · 2026-05-30T03:37:40.877411+00:00_
+_source line 788 · 2026-05-30T03:37:40.877411+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -3134,7 +2915,7 @@ _source line 796 · 2026-05-30T03:37:40.877411+00:00_
 
 ### Tool call
 
-_source line 797 · 2026-05-30T03:37:41.379410+00:00_
+_source line 789 · 2026-05-30T03:37:41.379410+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -3170,7 +2951,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 798 · 2026-05-30T03:37:45.701816+00:00_
+_source line 790 · 2026-05-30T03:37:45.701816+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer\"}, \"error\": \"\"}"}
 
@@ -3192,7 +2973,7 @@ _source line 798 · 2026-05-30T03:37:45.701816+00:00_
 
 ### Tool call
 
-_source line 799 · 2026-05-30T03:37:45.802559+00:00_
+_source line 791 · 2026-05-30T03:37:45.802559+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -3226,7 +3007,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 800 · 2026-05-30T03:37:46.206629+00:00_
+_source line 792 · 2026-05-30T03:37:46.206629+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -3248,7 +3029,7 @@ _source line 800 · 2026-05-30T03:37:46.206629+00:00_
 
 ### Assistant
 
-_source line 801 · 2026-05-30T03:37:49.761136+00:00_
+_source line 793 · 2026-05-30T03:37:49.761136+00:00_
 
 Feishu API 仍然不可用。Manager 第 3 次追催已发出，Reviewer 投稿竞争力评估已派出。
 
@@ -3275,7 +3056,7 @@ Feishu API 仍然不可用。Manager 第 3 次追催已发出，Reviewer 投稿�
 
 ### User
 
-_source line 802 · 2026-05-30T03:40:17.605057+00:00_
+_source line 794 · 2026-05-30T03:40:17.605057+00:00_
 
 [Reviewer 回复]:
 ## 投稿竞争力评估（SafeRL Workshop @ RSS 2025）
@@ -3418,7 +3199,7 @@ _source line 802 · 2026-05-30T03:40:17.605057+00:00_
 
 ### Tool call
 
-_source line 803 · 2026-05-30T03:40:43.340091+00:00_
+_source line 795 · 2026-05-30T03:40:43.340091+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -3454,7 +3235,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 804 · 2026-05-30T03:40:46.456865+00:00_
+_source line 796 · 2026-05-30T03:40:46.456865+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -3476,7 +3257,7 @@ _source line 804 · 2026-05-30T03:40:46.456865+00:00_
 
 ### Assistant
 
-_source line 805 · 2026-05-30T03:40:48.254117+00:00_
+_source line 797 · 2026-05-30T03:40:48.254117+00:00_
 
 Reviewer 的竞争力评估很有价值。决策：
 
@@ -3509,7 +3290,7 @@ Reviewer 的竞争力评估很有价值。决策：
 
 ### User
 
-_source line 806 · 2026-05-30T03:42:35.725983+00:00_
+_source line 798 · 2026-05-30T03:42:35.725983+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/8 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 两台服务器 SSH 不可达
@@ -3545,7 +3326,7 @@ _source line 806 · 2026-05-30T03:42:35.725983+00:00_
 
 ### Tool call
 
-_source line 807 · 2026-05-30T03:42:42.125089+00:00_
+_source line 799 · 2026-05-30T03:42:42.125089+00:00_
 
 called Grep
 
@@ -3583,7 +3364,7 @@ called Grep
 
 ### Tool result
 
-_source line 808 · 2026-05-30T03:42:42.526968+00:00_
+_source line 800 · 2026-05-30T03:42:42.526968+00:00_
 
 13:\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ A Factorial Analysis}
 
@@ -3605,7 +3386,7 @@ _source line 808 · 2026-05-30T03:42:42.526968+00:00_
 
 ### Tool call
 
-_source line 809 · 2026-05-30T03:42:42.978999+00:00_
+_source line 801 · 2026-05-30T03:42:42.978999+00:00_
 
 called Grep
 
@@ -3643,7 +3424,7 @@ called Grep
 
 ### Tool result
 
-_source line 810 · 2026-05-30T03:42:43.431027+00:00_
+_source line 802 · 2026-05-30T03:42:43.431027+00:00_
 
 21:\textbf{Generalizability.} Normalization type and gradient flow are architectural choices common to all auxiliary-head VLA pipelines. The BN running-statistics mechanism is not architecture-specific; we expect the qualitative pattern to transfer, though effect sizes may vary.
 
@@ -3665,7 +3446,7 @@ _source line 810 · 2026-05-30T03:42:43.431027+00:00_
 
 ### Tool call
 
-_source line 811 · 2026-05-30T03:42:43.431434+00:00_
+_source line 803 · 2026-05-30T03:42:43.431434+00:00_
 
 called Grep
 
@@ -3703,7 +3484,7 @@ called Grep
 
 ### Tool result
 
-_source line 812 · 2026-05-30T03:42:43.532182+00:00_
+_source line 804 · 2026-05-30T03:42:43.532182+00:00_
 
 28:    \item \textbf{Codebase sensitivity as a confound.} Implementation details dominate safety signals: a single code revision shifts CAR by up to 8.6\,pp, exceeding the largest experimental effect (${\leq}5.7$\,pp), questioning the reproducibility of safety claims across existing spatial VLA methods (\S\ref{sec:discussion}, Appendix~\ref{app:codebase}).
 
@@ -3725,7 +3506,7 @@ _source line 812 · 2026-05-30T03:42:43.532182+00:00_
 
 ### Assistant
 
-_source line 813 · 2026-05-30T03:42:49.839979+00:00_
+_source line 805 · 2026-05-30T03:42:49.839979+00:00_
 
 全部验证通过。3 项竞争力改进准确实施。
 
@@ -3754,7 +3535,7 @@ _source line 813 · 2026-05-30T03:42:49.839979+00:00_
 
 ### User
 
-_source line 814 · 2026-05-30T04:13:43.127619+00:00_
+_source line 806 · 2026-05-30T04:13:43.127619+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3794,7 +3575,7 @@ _source line 814 · 2026-05-30T04:13:43.127619+00:00_
 
 ### Tool call
 
-_source line 815 · 2026-05-30T04:13:54.434834+00:00_
+_source line 807 · 2026-05-30T04:13:54.434834+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3830,7 +3611,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 816 · 2026-05-30T04:13:55.238004+00:00_
+_source line 808 · 2026-05-30T04:13:55.238004+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"BLOCKED\", \"minutes\": null, \"next_nudge_in_minutes\": 30}"}
 
@@ -3859,7 +3640,7 @@ _source line 816 · 2026-05-30T04:13:55.238004+00:00_
 
 ### User
 
-_source line 817 · 2026-05-30T04:44:20.522456+00:00_
+_source line 809 · 2026-05-30T04:44:20.522456+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3899,7 +3680,7 @@ _source line 817 · 2026-05-30T04:44:20.522456+00:00_
 
 ### Tool call
 
-_source line 818 · 2026-05-30T04:44:27.783809+00:00_
+_source line 810 · 2026-05-30T04:44:27.783809+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3937,7 +3718,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 819 · 2026-05-30T04:44:28.188195+00:00_
+_source line 811 · 2026-05-30T04:44:28.188195+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -3959,7 +3740,7 @@ _source line 819 · 2026-05-30T04:44:28.188195+00:00_
 
 ### Tool call
 
-_source line 820 · 2026-05-30T04:44:42.697852+00:00_
+_source line 812 · 2026-05-30T04:44:42.697852+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -3995,7 +3776,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 821 · 2026-05-30T04:44:48.928158+00:00_
+_source line 813 · 2026-05-30T04:44:48.928158+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer\"}, \"error\": \"\"}"}
 
@@ -4017,7 +3798,7 @@ _source line 821 · 2026-05-30T04:44:48.928158+00:00_
 
 ### Tool call
 
-_source line 822 · 2026-05-30T04:44:49.078986+00:00_
+_source line 814 · 2026-05-30T04:44:49.078986+00:00_
 
 called mcp__agent-ml-research__director_post_to_manager
 
@@ -4053,7 +3834,7 @@ called mcp__agent-ml-research__director_post_to_manager
 
 ### Tool result
 
-_source line 823 · 2026-05-30T04:44:49.129619+00:00_
+_source line 815 · 2026-05-30T04:44:49.129619+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"queued\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -4082,7 +3863,7 @@ _source line 823 · 2026-05-30T04:44:49.129619+00:00_
 
 ### User
 
-_source line 824 · 2026-05-30T04:48:44.888121+00:00_
+_source line 816 · 2026-05-30T04:48:44.888121+00:00_
 
 [Reviewer 回复]:
 ## 模拟审稿意见（Adversarial Review Simulation）
@@ -4213,7 +3994,7 @@ _source line 824 · 2026-05-30T04:48:44.888121+00:00_
 
 ### Tool call
 
-_source line 825 · 2026-05-30T04:49:10.758024+00:00_
+_source line 817 · 2026-05-30T04:49:10.758024+00:00_
 
 called ToolSearch
 
@@ -4249,7 +4030,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 826 · 2026-05-30T04:49:10.808602+00:00_
+_source line 818 · 2026-05-30T04:49:10.808602+00:00_
 
 
 
@@ -4271,7 +4052,7 @@ _source line 826 · 2026-05-30T04:49:10.808602+00:00_
 
 ### Tool call
 
-_source line 827 · 2026-05-30T04:49:12.666818+00:00_
+_source line 819 · 2026-05-30T04:49:12.666818+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -4305,7 +4086,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool call
 
-_source line 828 · 2026-05-30T04:49:13.269350+00:00_
+_source line 820 · 2026-05-30T04:49:13.269350+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -4339,7 +4120,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 829 · 2026-05-30T04:49:13.570939+00:00_
+_source line 821 · 2026-05-30T04:49:13.570939+00:00_
 
 {"result":"**项目**: `occsafe_vla`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-10894 (connect.westd.seetacloud.com) [root] + westd-34685 (connect.westd.seetacloud.com) [root]\n✓ 代码路径  /root/occsafe_vla\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n**当前阶段**:\n  第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\n  \n  **修复进度：12/17 resolved + 论文全面加固 + GPU 恢复脚本就绪**\n  \n  | 状态 | Issue | 类型 | 说明 |\n\n**决策日志**: 81 条记录\n**论文溯源**: 覆盖率 8/58\n\n── 📊 研究进度 ──\n实验: 174 个 (完成 174 | 成功 112)\n\n  ablation_occ_detach_s1  DONE (success)\n  ablation_occ_detach_s0  DONE (success)\n  mvp_occ_s0              DONE (negative)\n  mvp_vanilla_s2          DONE (success)\n  mvp_vanilla_s1          DONE (success)\n  mvp_vanilla_s0          DONE (success)\n  mvp_occ_s2              DONE (negative)\n  mvp_occ_s1              DONE (negative)\n\n── 📝 最新报告 ──\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:56:21Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 174 个实验 — DONE 174\n**DONE 分布**: failed 39, killed 17, negative 6, success 112\n\n### GPU 占用\n- **分配**: 2 张 — westd-10894:cuda:0, westd-34685:cuda:0\n- **空闲（分配了没跑）**: westd-10894:cuda:0, westd-34685:cuda:0\n\n### 💾 磁盘余量\n- **westd-10894**: ❌ 连接失败\n- **westd-34685**: ❌ 连接失败\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `random_occ_v2_s0_r4` [failed] — 2026-05-29T11:56:15 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 1089"}
 
@@ -4361,7 +4142,7 @@ _source line 829 · 2026-05-30T04:49:13.570939+00:00_
 
 ### Tool result
 
-_source line 830 · 2026-05-30T04:49:13.571398+00:00_
+_source line 822 · 2026-05-30T04:49:13.571398+00:00_
 
 {"result":"{\"error\": \"&lt;urlopen error [Errno 111] Connection refused>\"}"}
 
@@ -4383,7 +4164,7 @@ _source line 830 · 2026-05-30T04:49:13.571398+00:00_
 
 ### Tool call
 
-_source line 831 · 2026-05-30T04:49:13.571639+00:00_
+_source line 823 · 2026-05-30T04:49:13.571639+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -4417,7 +4198,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 832 · 2026-05-30T04:49:14.174119+00:00_
+_source line 824 · 2026-05-30T04:49:14.174119+00:00_
 
 {"result":"# 项目 occsafe_vla 概况\n\n## 实验状态 (174 个)\n\n- **ablation_random_occ_s2_eval**: DONE (success) — \n- **ablation_occ_detach_s2_eval**: DONE (success) — \n- **occ_s1_fresh**: DONE (success) — \n- **occ_s1_fresh_eval_50000**: DONE (success) — \n- **occ_s1_fresh_eval_47500**: DONE (success) — \n- **ablation_random_occ_s1**: DONE (success) — \n- **ablation_random_occ_s0**: DONE (success) — \n- **ablation_occ_detach_s1**: DONE (success) — \n- **ablation_occ_detach_s0**: DONE (success) — \n- **mvp_occ_s0**: DONE (negative) — \n- **mvp_vanilla_s2**: DONE (success) — \n- **mvp_vanilla_s1**: DONE (success) — \n- **mvp_vanilla_s0**: DONE (success) — \n- **mvp_occ_s2**: DONE (negative) — \n- **mvp_occ_s1**: DONE (negative) — \n\n## 最新报告\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:56:21Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 174 个实验 — DONE 174\n**DONE 分布**: failed 39, killed 17, negative 6, success 112\n\n### GPU 占用\n- **分配**: 2 张 — westd-10894:cuda:0, westd-34685:cuda:0\n- **空闲（分配了没跑）**: westd-10894:cuda:0, westd-34685:cuda:0\n\n### 💾 磁盘余量\n- **westd-10894**: ❌ 连接失败\n- **westd-34685**: ❌ 连接失败\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `random_occ_v2_s0_r4` [failed] — 2026-05-29T11:56:15 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 10894 o\n- `full_occ_bn_v2_s2_r5` [failed] — 2026-05-29T11:55:41 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 34685 o\n- `vanilla_v2_s3` [failed] — 2026-05-29T04:20:24\n- `full_occ_bn_v2_s4` [failed] — 2026-05-29T04:20:22\n- `full_occ_bn_lambda01_v2_s0` [failed] — 2026-05-29T04:20:21\n\n### 🔴 最近失败原因 (top 3)\n- `random_occ_v2_s0_r4`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 10894 on 36.103.198.204\n- `full_occ_bn_v2_s2_r5`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 34685 on 36.103.198.204\n- `vanilla_v2_s3`: _(no failure_reason — pre-2026-04-24
 …[truncated 1829 chars]
@@ -4440,7 +4221,7 @@ _source line 832 · 2026-05-30T04:49:14.174119+00:00_
 
 ### Tool call
 
-_source line 833 · 2026-05-30T04:49:37.912934+00:00_
+_source line 825 · 2026-05-30T04:49:37.912934+00:00_
 
 called ToolSearch
 
@@ -4476,7 +4257,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 834 · 2026-05-30T04:49:37.913271+00:00_
+_source line 826 · 2026-05-30T04:49:37.913271+00:00_
 
 
 
@@ -4498,7 +4279,7 @@ _source line 834 · 2026-05-30T04:49:37.913271+00:00_
 
 ### Tool call
 
-_source line 835 · 2026-05-30T04:49:40.774202+00:00_
+_source line 827 · 2026-05-30T04:49:40.774202+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -4536,7 +4317,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 836 · 2026-05-30T04:49:41.328177+00:00_
+_source line 828 · 2026-05-30T04:49:41.328177+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-30 00:37 UTC | 更新原因: D081 claim 最大化 7 项全部完成（interaction plot + TSR/per-task/instability 贡献升级 + rebuttal 4 项修正）\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文全面加固 + GPU 恢复脚本就绪**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex + Table 2 caption |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex |\\n\\n## 论文质量加固（全部完成）\\n\\n**Phase 1（锐化+修复）：**\\n- ✅ 论文修复 6 项 + 锐化 5/7 项 + 一致性验证 PASS\\n- ✅ Figure 3 caption v1 annot
 …[truncated 2441 chars]
@@ -4559,7 +4340,7 @@ _source line 836 · 2026-05-30T04:49:41.328177+00:00_
 
 ### Tool call
 
-_source line 837 · 2026-05-30T04:49:41.328695+00:00_
+_source line 829 · 2026-05-30T04:49:41.328695+00:00_
 
 called ToolSearch
 
@@ -4595,7 +4376,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 838 · 2026-05-30T04:49:41.429407+00:00_
+_source line 830 · 2026-05-30T04:49:41.429407+00:00_
 
 No matching deferred tools found
 
@@ -4617,7 +4398,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 839 · 2026-05-30T04:49:47.100366+00:00_
+_source line 831 · 2026-05-30T04:49:47.100366+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -4655,7 +4436,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 840 · 2026-05-30T04:49:48.004542+00:00_
+_source line 832 · 2026-05-30T04:49:48.004542+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\", \"content\": \"# OccSafe-VLA — Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-29 13:30 UTC | 状态: Draft — **D074 Dual Main Effects (D076 N=14 sync)** — v2 factorial: gradient flow 主效应 (Δ=-3.0pp) + normalization 主效应 (LN>BN, Δ=+3.6pp, d≈1.05); ANOVA interaction ≈ 0 (F=0.10, p=0.763); BN+Grad ON 是唯一 < Vanilla 的配置。Cell 1 n=3, Cell 2 n=4, Cell 3 n=4, Cell 4 n=3。CoRL 2026 target (Paper May 29)\\n>\\n> ⚠️ **D074 Dual Main Effects Transition (2026-05-27)**: Reviewer 审查发现 ANOVA 交互项 F=0.10, p=0.763，数学上不可能显著。\\\"ordinal interaction\\\" framing 改为 \\\"dual main effects + practical threshold crossing\\\"。新增 normalization 主效应 (d≈1.05) 作为 secondary claim。详见 D074。\\n\\n## Architecture Facts (from code, verified)\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\n- **FocalLoss**: α=0.25, γ=2.0\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\n\\n### 叙事含义\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\n  比\\\"仅改善 DINOv2\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\"lightweight auxiliary\\\" 叙事\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\"放手\\\"让 action loss 主导，\\n  可论证为\\\"先学空间结构，再精化动作\\\"的课程学习效果\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\n\\n### DepthHead (新增, 2026-05-22)\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 
 …[truncated 6767 chars]
@@ -4678,7 +4459,7 @@ _source line 840 · 2026-05-30T04:49:48.004542+00:00_
 
 ### Tool call
 
-_source line 841 · 2026-05-30T04:49:48.155609+00:00_
+_source line 833 · 2026-05-30T04:49:48.155609+00:00_
 
 called Read
 
@@ -4714,7 +4495,7 @@ called Read
 
 ### Tool result
 
-_source line 842 · 2026-05-30T04:49:48.206289+00:00_
+_source line 834 · 2026-05-30T04:49:48.206289+00:00_
 
 1	- id: "R1-C9"
 2	  summary: "v1/v2 mixing — 实验使用了混合版本的模型/数据"
@@ -4802,7 +4583,7 @@ _source line 842 · 2026-05-30T04:49:48.206289+00:00_
 
 ### Tool call
 
-_source line 843 · 2026-05-30T04:49:52.472627+00:00_
+_source line 835 · 2026-05-30T04:49:52.472627+00:00_
 
 called Read
 
@@ -4840,7 +4621,7 @@ called Read
 
 ### Tool result
 
-_source line 844 · 2026-05-30T04:49:52.523581+00:00_
+_source line 836 · 2026-05-30T04:49:52.523581+00:00_
 
 100	      note: "主文 ~7.5 页，无超页"
 101	    - round: 2
@@ -4919,7 +4700,7 @@ _source line 844 · 2026-05-30T04:49:52.523581+00:00_
 
 ### Tool call
 
-_source line 845 · 2026-05-30T04:49:55.836455+00:00_
+_source line 837 · 2026-05-30T04:49:55.836455+00:00_
 
 called Read
 
@@ -4957,7 +4738,7 @@ called Read
 
 ### Tool result
 
-_source line 846 · 2026-05-30T04:49:55.887337+00:00_
+_source line 838 · 2026-05-30T04:49:55.887337+00:00_
 
 298	  mentions:
 299	    - round: 2

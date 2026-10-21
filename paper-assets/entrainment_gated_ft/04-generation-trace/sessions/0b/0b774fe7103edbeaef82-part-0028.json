@@ -3,972 +3,10 @@
   "session_id": "0b774fe7103edbeaef82",
   "rounds": [
     {
-      "number": 204,
-      "messages": [
-        {
-          "source_line": 4861,
-          "timestamp": "2026-05-24T12:36:41.456693+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
-            "elapsed_ms": 3512
-          },
-          "id": "event-004861"
-        },
-        {
-          "source_line": 4862,
-          "timestamp": "2026-05-24T12:36:44.003623+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "主文 ≤ 8 页确认。第 8 页显示 Limitations + Code and Data Availability + References 起始。Conclusion 在此之前结束。\n\n汇报 Director："
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
-          },
-          "id": "event-004862"
-        }
-      ]
-    },
-    {
-      "number": 205,
-      "messages": [
-        {
-          "source_line": 4863,
-          "timestamp": "2026-05-24T12:36:44.490272+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "source": "system"
-          },
-          "id": "event-004863"
-        },
-        {
-          "source_line": 4864,
-          "timestamp": "2026-05-24T12:36:50.540388+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
-          },
-          "id": "event-004864"
-        }
-      ]
-    },
-    {
-      "number": 206,
-      "messages": [
-        {
-          "source_line": 4865,
-          "timestamp": "2026-05-24T12:36:51.024658+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "source": "system"
-          },
-          "id": "event-004865"
-        },
-        {
-          "source_line": 4866,
-          "timestamp": "2026-05-24T12:37:12.919154+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Check project state",
-              "subagent_type": "Explore",
-              "prompt": "I need to understand the current state of the entrainment_gated_ft project. Check:\n1. What .tex files exist under /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ (especially in docs/paper/ or paper/)\n2. Whether writing_plan.yaml exists at /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/writing_plan.yaml\n3. Whether paper_provenance.yaml exists at /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/paper_provenance.yaml\n4. What's in the memory directory at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea_gen_0509_2-projects-entrainment_gated_ft--claude-sessions-paper-agent-b031d53b/memory/\n\nReport file existence and brief contents summary."
-            }
-          },
-          "id": "event-004866"
-        },
-        {
-          "source_line": 4867,
-          "timestamp": "2026-05-24T12:37:14.418622+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/**/*.tex"
-            }
-          },
-          "id": "event-004867"
-        },
-        {
-          "source_line": 4868,
-          "timestamp": "2026-05-24T12:37:14.808722+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T135121/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T135121/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T135121/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T143201/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T143201/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T143201/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/report/prediction_summary_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/arr_checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment\n…[truncated 495 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "elapsed_ms": 390
-          },
-          "id": "event-004868"
-        },
-        {
-          "source_line": 4869,
-          "timestamp": "2026-05-24T12:37:14.859488+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/writing_plan.yaml"
-            }
-          },
-          "id": "event-004869"
-        },
-        {
-          "source_line": 4870,
-          "timestamp": "2026-05-24T12:37:15.061049+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tmeta:\n2\t  venue: EMNLP 2026\n3\t  track: findings\n4\t  submission_system: ARR June 2026 cycle\n5\t  template: templates/latex/acl2023/\n6\t  template_note: \"标准 ACL LaTeX 模板 (acl2023.sty)，ARR/ACL/EMNLP 2026 通用\"\n7\t  page_limit: 8\n8\t  deadline: 2026-06-15\n9\t  title: \"Aggregate Convergence, Per-Example Divergence: Decoupled Effects of Attention in Hybrid Recurrent Architectures\"\n10\t  core_claim: >\n11\t    Adding attention to hybrid recurrent architectures (GDN, RetNet, HGRN2) reduces\n12\t    cross-architecture variance by 79% on LAMBADA (BCa CI [-1.0, -0.7]), but per-example\n13\t    helped/hurt sets remain nearly disjoint (Jaccard ≤ 0.11) and saturate at minimal\n14\t    attention — aggregate convergence and per-example divergence are decoupled,\n15\t    quantifying underspecification in hybrid architecture design.\n16\t  created_at: 2026-05-19T18:00:00Z\n17\t\n18\t  # D009 统计硬约束\n19\t  statistical_constraints:\n20\t    primary_evidence: \"BCa percentile CI [-1.0, -0.7] (valid-only, 88.75%)\"\n21\t    permutation_test: \"exact, two-tailed, n=5, 120 permutations\"\n22\t    bonferroni: \"6-benchmark pre-registered adj-p=0.100; report 'does not survive strict Bonferroni'\"\n23\t    prohibited:\n24\t      - \"post-hoc subset Bonferroni (e.g. '2-benchmark Bonferroni', 'only rho<0 benchmarks')\"\n25\t      - \"'mechanistic analysis' → use 'characterization' / 'decomposition'\"\n26\t      - \"'paradox' / 'paradoxical' / 'co-evolution' / 'co-evolve'\"\n27\t      - \"'significantly improves' without statistical test\"\n28\t      - \"'state-of-the-art' (no SOTA comparison)\"\n29\t      - \"'consistently outperforms' (1 benchmark only)\"\n30\t\n31\t  # 叙事约束\n32\t  narrative_constraints:\n33\t    prohibited_terms:\n34\t      - paradox\n35\t      - paradoxical\n36\t      - co-evolution\n37\t      - co-evolve\n38\t      - paradoxical coexistence\n39\t      - mechanistic analysis\n40\t      - remarkably\n41\t      - extensive experiments demonstrate\n42\t    replacement_map:\n43\t      co-evolution: \"decoupling\"\n44\t      paradox: \"divergence\"\n45\t      mechanistic analy\n…[truncated 21766 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 201
-          },
-          "id": "event-004870"
-        },
-        {
-          "source_line": 4871,
-          "timestamp": "2026-05-24T12:37:15.061506+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/paper_provenance.yaml"
-            }
-          },
-          "id": "event-004871"
-        },
-        {
-          "source_line": 4872,
-          "timestamp": "2026-05-24T12:37:15.312811+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tpaper:\n2\t  title: 'Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures: Evidence\n3\t    from Two Benchmarks and Three Backbones'\n4\t  version: 5\n5\t  generated_at: '2026-05-22T10:18:40.456475+00:00'\n6\t  source: Round 3 patch — framing weakening, GDN confound expansion, ARR checklist,\n7\t    reviewer Q responses\n8\tclaims:\n9\t- id: claim_lambada_rho\n10\t  section: experiments\n11\t  text: LAMBADA rho = -1.0, exact permutation p = .017\n12\t  type: quantitative\n13\t  tier: 1\n14\t  evidence:\n15\t  - exp_id: exp-001\n16\t    metric: LAMBADA.rho=-1.0, p=0.0167\n17\t  - exp_id: exp-008\n18\t    metric: LAMBADA.rho=-1.0, raw_p=0.0167\n19\t  status: active\n20\t- id: claim_lambada_ci\n21\t  section: experiments\n22\t  text: BCa percentile bootstrap CI [-1.0, -0.7] excludes zero\n23\t  type: quantitative\n24\t  tier: 1\n25\t  evidence:\n26\t  - exp_id: exp-008\n27\t    metric: ci_lower=-1.0, ci_upper=-0.7\n28\t  status: active\n29\t- id: claim_lambada_bonferroni\n30\t  section: experiments\n31\t  text: Bonferroni-adjusted p = .100\n32\t  type: quantitative\n33\t  tier: 1\n34\t  evidence:\n35\t  - exp_id: exp-008\n36\t    metric: bonferroni_adj_p=0.1\n37\t  status: active\n38\t- id: claim_sigma_reduction\n39\t  section: experiments\n40\t  text: sigma drops from 0.024 to 0.005, 79% reduction\n41\t  type: quantitative\n42\t  tier: 1\n43\t  evidence:\n44\t  - exp_id: exp-010\n45\t    metric: std_pure=0.024, std_h3_1=0.0049\n46\t  status: active\n47\t- id: claim_no_other_benchmark\n48\t  section: experiments\n49\t  text: No other benchmark significant\n50\t  type: quantitative\n51\t  tier: 1\n52\t  evidence:\n53\t  - exp_id: exp-001\n54\t    metric: non-LAMBADA p>=0.2333\n55\t  - exp_id: exp-011\n56\t    metric: boolq/piqa/sciq/copa p>0.26\n57\t  - exp_id: exp-011-xstorycloze\n58\t    metric: rho=-0.6, p=0.35\n59\t  status: active\n60\t- id: claim_340m_nonmonotonic\n61\t  section: experiments\n62\t  text: 340M non-monotonic, 56% max, 36% endpoint\n63\t  type: quantitative\n64\t  tier: 1\n65\t  evidence:\n66\t  - exp_id: exp-007\n67\t    metric: 340m_cross_arch_std rebound at \n…[truncated 7891 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 251
-          },
-          "id": "event-004872"
-        },
-        {
-          "source_line": 4873,
-          "timestamp": "2026-05-24T12:37:15.363541+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea_gen_0509_2-projects-entrainment_gated_ft--claude-sessions-paper-agent-b031d53b/memory/ -type f 2>/dev/null | head -20"
-            }
-          },
-          "id": "event-004873"
-        },
-        {
-          "source_line": 4874,
-          "timestamp": "2026-05-24T12:37:15.464503+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-004874"
-        },
-        {
-          "source_line": 4875,
-          "timestamp": "2026-05-24T12:37:17.622981+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.claude-account-3/projects/ 2>/dev/null | head -20"
-            }
-          },
-          "id": "event-004875"
-        },
-        {
-          "source_line": 4876,
-          "timestamp": "2026-05-24T12:37:18.075043+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "total 148\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 24 09:31 -\ndrwxrwxr-x  2 ubuntu ubuntu  4096 May 21 08:33 -home-ubuntu\ndrwxr-xr-x  6 ubuntu ubuntu  4096 May 19 14:01 -home-ubuntu--agent-ml-research-idea-gen-0509-2\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 17 07:54 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-contrastive-graph-jailbreak-detect\ndrwxr-xr-x  8 ubuntu ubuntu 12288 May 23 16:55 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 19 18:50 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-1dde1527\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 15:50 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-4a678707\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 04:42 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-755d769c\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 20 02:54 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-a3ca0b43\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 22 16:53 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-aa1a2296\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 12:31 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-af2720fa\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 15:21 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-bb6b3b47\ndrwxr-xr-x  7 ubuntu ubuntu  4096 May 24 08:34 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-director-63b8b789\ndrwxr-xr-x  7 ubuntu ubuntu  4096 May 24 12:37 -home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-paper-agent-b031d53b\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 10:02 -home-ubuntu--agent-ml-research-idea-gen-0509-2-proje\n…[truncated 616 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 452
-          },
-          "id": "event-004876"
-        },
-        {
-          "source_line": 4877,
-          "timestamp": "2026-05-24T12:37:18.075413+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
-            }
-          },
-          "id": "event-004877"
-        },
-        {
-          "source_line": 4878,
-          "timestamp": "2026-05-24T12:37:18.125865+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft'"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-004878"
-        },
-        {
-          "source_line": 4879,
-          "timestamp": "2026-05-24T12:37:19.982346+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/ 2>/dev/null | head -30"
-            }
-          },
-          "id": "event-004879"
-        },
-        {
-          "source_line": 4880,
-          "timestamp": "2026-05-24T12:37:20.484424+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "total 1000\ndrwxr-xr-x 6 ubuntu ubuntu   4096 May 24 12:35 .\ndrwxr-xr-x 4 ubuntu ubuntu   4096 May 24 10:52 ..\ndrwxr-xr-x 5 ubuntu ubuntu   4096 May 24 09:38 _figure_backups\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 24 12:36 _pdf_images\n-rw-r--r-- 1 ubuntu ubuntu  11615 May 19 18:02 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu  45186 May 19 18:02 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu   5583 May 22 19:20 arr_checklist.tex\n-rw-r--r-- 1 ubuntu ubuntu    162 May 20 10:52 author_response.aux\n-rw-r--r-- 1 ubuntu ubuntu  14289 May 20 10:52 author_response.log\n-rw-r--r-- 1 ubuntu ubuntu      0 May 20 10:52 author_response.out\n-rw-r--r-- 1 ubuntu ubuntu 121122 May 20 10:52 author_response.pdf\n-rw-r--r-- 1 ubuntu ubuntu  15633 May 21 17:11 author_response.tex\n-rw-r--r-- 1 ubuntu ubuntu  23253 May 22 05:10 author_response_r7.tex\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 24 08:39 figures\n-rw-r--r-- 1 ubuntu ubuntu  62443 May 24 12:35 main.aux\n-rw-r--r-- 1 ubuntu ubuntu  16676 May 24 12:35 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu   1470 May 24 12:35 main.blg\n-rw-r--r-- 1 ubuntu ubuntu  20559 May 24 12:35 main.fdb_latexmk\n-rw-r--r-- 1 ubuntu ubuntu  23717 May 24 12:35 main.fls\n-rw-r--r-- 1 ubuntu ubuntu  30879 May 24 12:35 main.log\n-rw-r--r-- 1 ubuntu ubuntu   8859 May 24 12:35 main.out\n-rw-r--r-- 1 ubuntu ubuntu 535744 May 24 12:35 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu   3897 May 24 12:30 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  17378 May 24 12:35 references.bib\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 24 12:35 sections"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 502
-          },
-          "id": "event-004880"
-        },
-        {
-          "source_line": 4881,
-          "timestamp": "2026-05-24T12:37:20.535022+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea_gen_0509_2-projects-entrainment_gated_ft--claude-sessions-paper-agent-b031d53b/memory/ 2>/dev/null"
-            }
-          },
-          "id": "event-004881"
-        },
-        {
-          "source_line": 4882,
-          "timestamp": "2026-05-24T12:37:20.585683+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Exit code 2"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-004882"
-        },
-        {
-          "source_line": 4883,
-          "timestamp": "2026-05-24T12:37:22.293408+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.claude-account-3/projects/*paper-agent-b031d53b* -maxdepth 2 -type f -name \"*.md\" -o -name \"*.yaml\" 2>/dev/null"
-            }
-          },
-          "id": "event-004883"
-        },
-        {
-          "source_line": 4884,
-          "timestamp": "2026-05-24T12:37:22.695204+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 401
-          },
-          "id": "event-004884"
-        },
-        {
-          "source_line": 4885,
-          "timestamp": "2026-05-24T12:37:22.696749+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ 2>/dev/null"
-            }
-          },
-          "id": "event-004885"
-        },
-        {
-          "source_line": 4886,
-          "timestamp": "2026-05-24T12:37:22.747335+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "total 372\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 24 11:58 .\ndrwxrwxr-x  7 ubuntu ubuntu  4096 May 18 04:47 ..\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 18 04:47 .claude\n-rw-r--r--  1 ubuntu ubuntu    21 May 24 06:23 .gitignore\n-rw-r--r--  1 ubuntu ubuntu 14593 May 24 12:36 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 18 04:49 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu  2650 May 23 22:51 ROADMAP.md\n-rw-r--r--  1 ubuntu ubuntu   308 May 24 06:22 _anonymous_repo.json\n-rw-r--r--  1 ubuntu ubuntu    90 May 24 12:36 _last_visual_review.json\n-rw-r--r--  1 ubuntu ubuntu     0 May 24 09:38 _paper_figure.lock\n-rw-r--r--  1 ubuntu ubuntu 15773 May 24 09:52 _paper_figure_result.json\n-rw-r--r--  1 ubuntu ubuntu 12721 May 22 08:21 a2_prediction_framework.py\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 19 16:17 analysis\ndrwxr-xr-x 32 ubuntu ubuntu  4096 May 24 12:28 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu 20480 May 24 07:46 checkpoints\n-rw-r--r--  1 ubuntu ubuntu     0 May 18 05:44 constraints.lock\n-rw-------  1 ubuntu ubuntu   223 May 18 05:44 constraints.yaml\n-rw-r--r--  1 ubuntu ubuntu     0 May 18 07:24 decisions.lock\n-rw-------  1 ubuntu ubuntu 33232 May 23 14:57 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 24 10:52 docs\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 18 12:35 dream_registry.lock\n-rw-------  1 ubuntu ubuntu  4723 May 19 15:46 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  4728 May 19 15:46 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu  9844 May 19 17:01 experiment_plan.yaml\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 19 17:26 figures\n-rw-r--r--  1 ubuntu ubuntu 17718 May 19 18:50 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 18 04:51 logs\n-rw-r--r--  1 ubuntu ubuntu 12092 May 22 16:46 memory.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 18 09:58 mistakes.lock\n-rw-------  1 ubuntu ubuntu 18354 May 22 15:40 mistakes.yaml\n-rw-r--r--  1 ubuntu ubuntu 12866 May 20 05:29 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 19 19:28 paper_provenance.lock\n-rw-------  1 u\n…[truncated 500 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-004886"
-        },
-        {
-          "source_line": 4887,
-          "timestamp": "2026-05-24T12:37:24.704525+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/memory.md",
-              "limit": "100"
-            }
-          },
-          "id": "event-004887"
-        },
-        {
-          "source_line": 4888,
-          "timestamp": "2026-05-24T12:37:24.956334+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# FLA 版本与 m-a-p 模型兼容性调查结果 (2026-05-18)\n2\t\n3\t## 核心结论：fla 0.5.0 与 m-a-p 模型兼容，attn.D 丢弃无影响\n4\t\n5\t（详情见前版，略）\n6\t\n7\t- m-a-p 模型的 `attn.D` 是死参数，fla ≥0.1.0 已移除，strict=False 加载安全\n8\t- 训练框架：fla + flame (torchtitan)，训练数据：FineWeb-Edu，72 模型\n9\t- HuggingFace: https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research-686c488a63d609d2f20e2b1e\n10\t\n11\t---\n12\t\n13\t# 统计报告规则 (2026-05-19, Director 硬约束)\n14\t\n15\t**所有统计 claim 必须附原始数值 (ρ=X, p=Y)。** \"majority\"/\"most\" 必须有准确计数。适用于所有产出。\n16\t\n17\t---\n18\t\n19\t# exp-003 表面特征：无法区分 helped/hurt (2026-05-19)\n20\t\n21\t表面特征（token frequency、context length、lexical diversity）对 LAMBADA helped/hurt 无区分力（GDN/HGRN2 全部 p>0.2）。机制在模型内部，不在输入。→ 需要 exp-004 attention weight analysis。\n22\t\n23\t---\n24\t\n25\t# exp-004-r2 Attention Patterns：不是 per-example 效应的来源 (2026-05-19)\n26\t\n27\t**Attention entropy 无法区分 helped vs hurt**（三个架构差异均 <0.02）。Per-example divergence 不由 attention pattern 差异驱动——效应发生在 recurrent component 层面。\n28\t\n29\t**跨架构相似度发现**：GDN-RetNet 全层高度相似（>0.9）。HGRN2 在浅层 L2 与另外两者差异大（cos sim ~0.2），但深层收敛到 >0.94。→ 三架构深层 attention 相似但 per-example 仍分化，进一步支持 decoupling。\n30\t\n31\t**论文影响**：排除了 \"不同 attention pattern → 不同受影响样本\" 的 trivial 解释。效应来源指向 attention-recurrence interaction，非 attention 本身。Supplementary/appendix material。\n32\t\n33\t---\n34\t\n35\t# exp-004 Attention 层结构 (2026-05-19)\n36\t\n37\t3 架构 h3-1 都有 8 个 attention 层，索引 [2,5,8,11,14,17,20,23]。16 heads (8 KV heads, GQA)。Hook point: `model.model.layers[i].attn`。Flash Attention 不返回 weights，需 forward hook 截获 Q,K 手动计算 softmax(QK^T/√d)。\n38\t\n39\t---\n40\t\n41\t# exp-007 lm-eval 脚本选择：必须用 run_lmeval_clean.py (2026-05-19, 修正)\n42\t\n43\t**根因不是 dtype，是 `allow_neg_eigval=True` 配置注入缺失。**\n44\t\n45\tGDN 模型的 config.json 有 `\"use_beta\": true`。`run_lmeval_clean.py` 第 44-46 行有 `if getattr(config, \"use_beta\", False): config.allow_neg_eigval = True`，这改变了 GatedDeltaNet 的 forward pass。`run_lm_eval_fla.py` 缺少此步骤 → acc=0.3423 vs 正确 0.3753（~3.3pp 偏差）。\n46\t\n47\t**规则**：所有 fla 模型评估必须用 `run_lmeval_clean.py`，不要另写 wrapper。它已支持 `--log_samples`、`--tasks`、HGRN2 monkey-patch、`allow_neg\n…[truncated 2387 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 251
-          },
-          "id": "event-004888"
-        },
-        {
-          "source_line": 4889,
-          "timestamp": "2026-05-24T12:37:24.956877+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md"
-            }
-          },
-          "id": "event-004889"
-        },
-        {
-          "source_line": 4890,
-          "timestamp": "2026-05-24T12:37:25.259112+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# entrainment_gated_ft — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-23 22:51 UTC | 更新原因: Pre-RESET handoff: 论文锁定，等待提交\n4\t\n5\t## 核心方向\n6\tPer-example predictive multiplicity in hybrid linear recurrent architectures。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t- **阶段**: 论文已锁定，等待 ARR EMNLP 2026 提交（DDL 2026-05-25）\n10\t- **审稿状态**: 连续两轮 fresh review 均 3.0 Findings（R16, R17），论文达到 Findings 均衡（D040）\n11\t- **数据核查**: 全面审计完成，修复 4 项问题（ECE 17%→6%、Tab 7 全表 14/24 cell、Tab 11 caption、routing 数值统一）\n12\t- **匿名仓库**: https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft（61 files，code+data only，paper source 已移除）\n13\t- **AI disclosure**: Appendix Y \"Use of AI Assistants\" 已添加\n14\t\n15\t## 提交状态\n16\t- ✅ PDF 编译通过，主文 ≤ 8 页，0 错误\n17\t- ✅ code_release.zip 打包（1.1MB, 129 files）\n18\t- ✅ 匿名仓库已更新（356217b）\n19\t- ✅ ARR checklist 字段已准备（含 E1 AI disclosure）\n20\t- ✅ 数据核查完成（~50+ 数值点验证）\n21\t- ⏳ 用户确认 checklist（作者列表、GitHub URL）— 多次提醒未回复，deadline 20:30 已过，按默认提交处理\n22\t\n23\t## GPU 预算\n24\t- westb-48145:cuda:0 × 1（空闲，所有实验+验证已完成，保留至提交后）\n25\t- 无活跃实验，无待跑实验\n26\t\n27\t## 近期任务\n28\t- [ ] 用户确认后锁定提交（或按默认提交）\n29\t- [ ] 提交后释放 westb-48145\n30\t\n31\t## 关键决策日志\n32\t\n33\t| ID | 日期 | 摘要 | 关联实验 |\n34\t|----|------|------|----------|\n35\t| D040 | 2026-05-23 | R17 后锁定论文为 Findings 均衡点，做最终 polish 后不再迭代审稿 | — |\n36\t| D039 | 2026-05-23 | R16 审稿报告 Action Matrix 定稿：结构性叙事重组 + Findings 定位 +  | — |\n37\t| D038 | 2026-05-22 | 保持 5-arch 论文呈现，不升级到 6-arch（HGRN outlier） | exp-005 |\n38\t| D037 | 2026-05-22 | 整合 4 架构 Jaccard 结果到论文 Appendix，不等 6 架构 | exp-005 |\n39\t| D036 | 2026-05-22 | 恢复 exp-005：Zoo 确认含 6 架构，之前取消理由有误 | exp-005 |\n40\t| D035 | 2026-05-22 | 取消 exp-005（6 架构扩展不可行），转向替代实验方案 | exp-005 |\n41\t| D034 | 2026-05-22 | E4 Pythia seed calibration 结果接受：70M 替代 410M，放 Appe | e4-pythia-seed-calibration |\n42\t| D033 | 2026-05-22 | D033: Pythia framing 策略 + 额外架构 stretch goal 标记 | e4-pythia-seed-calibration |\n43\t| D032 | 2026-05-22 | D032: 批准 Pythia 410M multi-seed calibration 实验——用  | — |\n44\t| D031 | 2026-05-22 | D031: E1 routing 结果 framing——作为 §4.1 supporting an | — |\n45\t\n46\t\n47\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 302
-          },
-          "id": "event-004890"
-        },
-        {
-          "source_line": 4891,
-          "timestamp": "2026-05-24T12:37:25.309929+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/AGENTS.md",
-              "limit": "150"
-            }
-          },
-          "id": "event-004891"
-        },
-        {
-          "source_line": 4892,
-          "timestamp": "2026-05-24T12:37:25.310437+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t## 当前项目\n2\t当前绑定项目：**entrainment_gated_ft**\n3\t\n4\t## 按需查阅\n5\t- 项目配置：`load_project_config(\"entrainment_gated_ft\")` 或 `load_project_config(\"entrainment_gated_ft\", section=\"execution\")`\n6\t- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n7\t- 路线图：`read_roadmap()` 读取研究方向和短期任务\n8\t- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/`（写文件后用 `register_artifact` 注册）\n9\t\n10\t## 用户自定义规则（必须遵守）\n11\t### 审稿规则\n12\t\n13\t- **[EMNLP 2026]** “EMNLP 2026 通过 ARR 统一审稿，Main/Findings 不分开投稿（不是两个Track），Long/Short 也走同一审稿系统，Overall Assessment的评分标准如下：5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle（需大幅修改，可在下一周期完成），1.5 = Resubmit after next cycle（需大幅修改，无法在下一周期完成），1 = Do not resubmit（需完全重做或与*ACL无关）”\n14\t- **[EMNLP 2026]** EMNLP 2026 restricts long paper submissions to a strict 8-page limit for main text, with unlimited space for references. Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content.\n15\t\n16\t### 写作规则\n17\t\n18\t- **[EMNLP 2026]** Limitations 章节只需要写一小段，覆盖 3 个点左右就可以了，不需要写得很长\n19\t- **[EMNLP 2026]** ARR Responsible NLP Checklist在OpenReview的submission form里面（由用户手动填写），而不是在论文pdf里面\n20\t- **[EMNLP 2026]** 一篇文章只能有一个limitations section，放在正文里面，appendix不能有 limitations section\n21\t- **[EMNLP 2026]** abstract 不要超过 200 words\n22\t\n23\t> 以上规则由用户配置，优先级等同于硬约束。违反会被 Reviewer 标记。\n24\t\n25\t## Worker 操作规范\n26\t\n27\t### ssh-env-setup\n28\t\n29\t# 远程服务器环境搭建规范\n30\t\n31\t## 核心原则\n32\t\n33\t**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n34\t\n35\t**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n36\t\n37\t**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n\n…[truncated 3589 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-004892"
-        },
-        {
-          "source_line": 4893,
-          "timestamp": "2026-05-24T12:37:27.646130+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf 2>/dev/null || echo \"NO PDF\""
-            }
-          },
-          "id": "event-004893"
-        },
-        {
-          "source_line": 4894,
-          "timestamp": "2026-05-24T12:37:28.048000+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "-rw-r--r-- 1 ubuntu ubuntu 524K May 24 12:35 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 401
-          },
-          "id": "event-004894"
-        },
-        {
-          "source_line": 4895,
-          "timestamp": "2026-05-24T12:37:28.048429+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/ 2>/dev/null | head -20"
-            }
-          },
-          "id": "event-004895"
-        },
-        {
-          "source_line": 4896,
-          "timestamp": "2026-05-24T12:37:28.149130+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "total 108\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 24 12:35 .\ndrwxr-xr-x 6 ubuntu ubuntu  4096 May 24 12:35 ..\n-rw-r--r-- 1 ubuntu ubuntu 57118 May 24 12:32 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  1136 May 24 12:29 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu 14368 May 24 12:34 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  6039 May 24 12:35 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  7685 May 24 12:35 method.tex\n-rw-r--r-- 1 ubuntu ubuntu  4527 May 24 12:35 related_work.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-004896"
-        },
-        {
-          "source_line": 4897,
-          "timestamp": "2026-05-24T12:37:28.149570+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md"
-            }
-          },
-          "id": "event-004897"
-        },
-        {
-          "source_line": 4898,
-          "timestamp": "2026-05-24T12:37:28.200102+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Handover — 2026-05-24\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t（无）\n7\t\n8\t## 待处理\n9\t（无）\n10\t\n11\t## 近期结论\n12\t- **exp-005-pure-v4** (killed): —\n13\t- **exp-005-pure-v3** (killed): —\n14\t- **exp-005-hgrn-chain** (killed): —\n15\t\n16\t## 趋势\n17\t成功 16 / 负向 4 / 失败 3 / 共 46\n18\t\n19\t## 下一步\n20\t（无活跃 idea，请通过 ideas.md 添加）\n21\t\n22\t## 资源状态\n23\twestb-48145: 无 GPU 信息\n24\t\n25\t## 告警\n26\t- hgrn2_eval_1_3b_all: 已被终止 — unknown\n27\t- exp-003-p2v2: 已被终止 — unknown\n28\t- exp-004: 训练失败 — unknown\n29\t- exp-005-eval: 已被终止 — unknown\n30\t- exp-005-p1-v4: 已被终止 — unknown\n31\t- exp-005-gla-eval: 训练失败 — unknown\n32\t- exp-005-gla: 已被终止 — unknown\n33\t- exp-005-deltanet: 已被终止 — unknown\n34\t- exp-005-dn-eval: 已被终止 — unknown\n35\t- exp-005-pure-eval: 已被终止 — unknown\n36\t- exp-005-p1-eval: 已被终止 — unknown\n37\t- exp-005-p1-eval-v2: 已被终止 — unknown\n38\t- exp-005-p1-eval-v3: 已被终止 — unknown\n39\t- exp-005-p1-eval-v4: 已被终止 — unknown\n40\t- exp-005-p1-eval-v5: 已被终止 — unknown\n41\t- exp-005-hgrn-chain: 已被终止 — unknown\n42\t- exp-005-batch: 训练失败 — unknown\n43\t- exp-005-pure-v3: 已被终止 — unknown\n44\t- exp-005-pure-v4: 已被终止 — unknown\n45\t- exp-005-pure-v5: 已被终止 — unknown\n46\t- exp-005-pure-v6: 已被终止 — unknown\n47\t- exp-005-pure-v7: 已被终止 — unknown\n48\t- exp-005-pure-v8: 已被终止 — unknown\n49\t- exp-005-pure-v9: 已被终止 — unknown\n50\t- exp-005-pure-v10: 已被终止 — unknown\n51\t- exp-005-pure-baselines: 已被终止 — unknown\n52\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-004898"
-        },
-        {
-          "source_line": 4899,
-          "timestamp": "2026-05-24T12:37:48.970070+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Perfect. Now I have a comprehensive understanding of the project state. Let me compile my findings:\n\n## Project State Summary: entrainment_gated_ft\n\n### 1. LaTeX Files\n\nThe project has a complete paper structure under `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/`:\n\n**Main paper files:**\n- `main.tex` - Main entry point\n- `sections/introduction.tex` - Introduction (6,039 bytes)\n- `sections/method.tex` - Method (7,685 bytes)\n- `sections/related_work.tex` - Related work (4,527 bytes)\n- `sections/experiments.tex` - Experiments section (14,368 bytes)\n- `sections/conclusion.tex` - Conclusion (1,136 bytes)\n- `sections/appendix.tex` - Large appendix (57,118 bytes)\n\n**Supporting files:**\n- `arr_checklist.tex` - ARR compliance checklist\n- `author_response.tex` and `author_response_r7.tex` - Author response documents\n\n**Output:**\n- `main.pdf` (524 KB, updated 2026-05-24 12:35) - Successfully compiled\n\nThere are also multiple backup paper.tex files in the `/artifacts/dream_reports/` directory from previous iterations.\n\n### 2. writing_plan.yaml\n\n**Status: EXISTS** at `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/writing_plan.yaml`\n\n**Content Summary:**\n- **Venue**: EMNLP 2026 Findings track, ARR June 2026 cycle\n- **Deadline**: 2026-06-15\n- **Core Claim**: \"Aggregate Convergence, Per-Example Divergence: Decoupled Effects of Attention in Hybrid Recurrent Architectures\"\n- **Key Metric**: Adding attention to hybrid recurrent architectures reduces cross-architecture variance by 79% on LAMBADA (BCa CI [-1.0, -0.7]), but per-example helped/hurt sets remain nearly disjoint (Jaccard ≤ 0.11)\n- **Paper Sections Planned**: Abstract, introduction, related_work, method, experiments, conclusion, limitations with specific word budgets (e.g., experiments=1800 words)\n- **Figures Planned**: fig1_decoupling_hero (2-panel statistical), fig2_task_specificity (forest plot)\n- **Tables Planned**: tab1_convergence (10 benchmark\n…[truncated 3672 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Agent",
-            "elapsed_ms": 36050
-          },
-          "id": "event-004899"
-        },
-        {
-          "source_line": 4900,
-          "timestamp": "2026-05-24T12:38:02.316450+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "当前项目状态：\n\n- **论文已锁定**，等待 ARR EMNLP 2026 提交（DDL 2026-06-15）\n- 全部章节已完成（intro / method / related work / experiments / conclusion / appendix）\n- PDF 编译成功（524 KB，8 页）\n- 34 条 claims 全部有 provenance 追踪\n- `writing_plan.yaml` / `paper_provenance.yaml` 均已就位\n\n这是新会话，没有未完成的 Director 指令需要汇报。等待 Director 下一步指令。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
-          },
-          "id": "event-004900"
-        }
-      ]
-    },
-    {
       "number": 207,
       "messages": [
         {
-          "source_line": 4901,
-          "timestamp": "2026-05-24T12:47:21.773578+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] [Patch] 方法概览图集成\n\nMain Agent 已生成 `figures/fig_method_overview.pdf`，现在替换 §3.1 之后的 placeholder。\n\n具体操作：\n1. 将 `% [PLACEHOLDER] Figure 2: Experimental Framework` 替换为实际 figure 环境\n2. 放在 §3.1 Model Zoo 之后、§3.2 Task Taxonomy 之前\n3. 使用 `\\begin{figure}[t]` 单栏格式\n\n建议 caption：\n\"Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.\"\n\nFigure label：`\\label{fig:method_overview}`\n\n注意检查：\n- 编号是否与现有 figures 冲突（现有 Figure 1 = decoupling hero）\n- 页面预算是否仍在 8 页内\n- 编译通过\n\n不验证引用。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "source": "director"
-          },
-          "id": "event-004901"
-        },
-        {
-          "source_line": 4902,
-          "timestamp": "2026-05-24T12:47:28.074606+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section,mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__check_figures_and_layout,mcp__agent-ml-research__paper_agent_post_to_director",
-              "max_results": "5"
-            }
-          },
-          "id": "event-004902"
-        },
-        {
-          "source_line": 4903,
-          "timestamp": "2026-05-24T12:47:28.074974+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "ToolSearch",
-            "elapsed_ms": 0
-          },
-          "id": "event-004903"
-        },
-        {
-          "source_line": 4904,
-          "timestamp": "2026-05-24T12:47:34.200016+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
-            }
-          },
-          "id": "event-004904"
-        },
-        {
-          "source_line": 4905,
-          "timestamp": "2026-05-24T12:47:34.551672+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\tWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n4\t\n5\t\\subsection{Model Zoo}\\label{ssec:model_zoo}\n6\t\n7\tWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n8\t\n9\t% [PLACEHOLDER] Figure 2: Experimental Framework overview\n10\t% Awaiting figure from Main Agent. Insert here with:\n11\t% \\begin{figure}[t]\n12\t% \\centering\n13\t% \\includegraphics[width=\\columnwidth]{figures/fig_experimental_framework.pdf}\n14\t% \\caption{...}\n15\t% \\label{fig:experimental_framework}\n16\t% \\end{figure}\n17\t\n18\t\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n19\t\n20\tWe evaluate on 10 benchmarks grouped into four categor\n…[truncated 5844 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 351
-          },
-          "id": "event-004905"
-        },
-        {
-          "source_line": 4906,
-          "timestamp": "2026-05-24T12:47:35.103628+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "**/fig_method_overview*",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
-            }
-          },
-          "id": "event-004906"
-        },
-        {
-          "source_line": 4907,
-          "timestamp": "2026-05-24T12:47:35.154783+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/fig_method_overview.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/fig_method_overview.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/fig_method_overview.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/fig_method_overview.png"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "elapsed_ms": 51
-          },
-          "id": "event-004907"
-        },
-        {
-          "source_line": 4908,
-          "timestamp": "2026-05-24T12:47:42.082991+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "\\\\label\\{fig:",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
-              "output_mode": "content"
-            }
-          },
-          "id": "event-004908"
-        },
-        {
-          "source_line": 4909,
-          "timestamp": "2026-05-24T12:47:42.133682+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:43:\\label{fig:per_example_bars}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:79:\\label{fig:task_specificity}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:86:\\label{fig:jaccard_heatmap_5arch}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:97:\\label{fig:jaccard_saturation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:106:\\label{fig:jaccard_hierarchy}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:15:\\label{fig:decoupling}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex:15:% \\label{fig:experimental_framework}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-004909"
-        },
-        {
-          "source_line": 4910,
-          "timestamp": "2026-05-24T12:47:53.326039+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__edit_paper_section"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "mcp__agent-ml-research__edit_paper_section",
-            "tool_args": {
-              "project": "entrainment_gated_ft",
-              "section": "method",
-              "old_text": "% [PLACEHOLDER] Figure 2: Experimental Framework overview\n% Awaiting figure from Main Agent. Insert here with:\n% \\begin{figure}[t]\n% \\centering\n% \\includegraphics[width=\\columnwidth]{figures/fig_experimental_framework.pdf}\n% \\caption{...}\n% \\label{fig:experimental_framework}\n% \\end{figure}",
-              "new_text": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}",
-              "figures": "[{'fig_id': 'fig_method_overview', 'label': 'fig:method_overview', 'source_path': 'figures/fig_method_overview.pdf', 'placement': 'method', 'description': 'Experimental framework overview showing per-example classification and cross-architecture Jaccard overlap'}]"
-            }
-          },
-          "id": "event-004910"
-        },
-        {
-          "source_line": 4911,
+          "source_line": 4861,
           "timestamp": "2026-05-24T12:47:53.326410+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -983,10 +21,10 @@
             "tool": "mcp__agent-ml-research__edit_paper_section",
             "elapsed_ms": 0
           },
-          "id": "event-004911"
+          "id": "event-004861"
         },
         {
-          "source_line": 4912,
+          "source_line": 4862,
           "timestamp": "2026-05-24T12:47:59.035872+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1006,10 +44,10 @@
               "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}"
             }
           },
-          "id": "event-004912"
+          "id": "event-004862"
         },
         {
-          "source_line": 4913,
+          "source_line": 4863,
           "timestamp": "2026-05-24T12:47:59.036465+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1024,10 +62,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004913"
+          "id": "event-004863"
         },
         {
-          "source_line": 4914,
+          "source_line": 4864,
           "timestamp": "2026-05-24T12:48:09.976846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1046,10 +84,10 @@
               "preview": "True"
             }
           },
-          "id": "event-004914"
+          "id": "event-004864"
         },
         {
-          "source_line": 4915,
+          "source_line": 4865,
           "timestamp": "2026-05-24T12:48:14.997611+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1064,10 +102,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5020
           },
-          "id": "event-004915"
+          "id": "event-004865"
         },
         {
-          "source_line": 4916,
+          "source_line": 4866,
           "timestamp": "2026-05-24T12:48:25.587822+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1084,10 +122,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-004916"
+          "id": "event-004866"
         },
         {
-          "source_line": 4917,
+          "source_line": 4867,
           "timestamp": "2026-05-24T12:48:26.204886+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1104,10 +142,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-004917"
+          "id": "event-004867"
         },
         {
-          "source_line": 4918,
+          "source_line": 4868,
           "timestamp": "2026-05-24T12:48:26.579505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1122,10 +160,10 @@
             "tool": "Read",
             "elapsed_ms": 991
           },
-          "id": "event-004918"
+          "id": "event-004868"
         },
         {
-          "source_line": 4919,
+          "source_line": 4869,
           "timestamp": "2026-05-24T12:48:26.586364+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1142,10 +180,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-004919"
+          "id": "event-004869"
         },
         {
-          "source_line": 4920,
+          "source_line": 4870,
           "timestamp": "2026-05-24T12:48:27.795281+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1160,10 +198,10 @@
             "tool": "Read",
             "elapsed_ms": 1590
           },
-          "id": "event-004920"
+          "id": "event-004870"
         },
         {
-          "source_line": 4921,
+          "source_line": 4871,
           "timestamp": "2026-05-24T12:48:27.802686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1178,10 +216,10 @@
             "tool": "Read",
             "elapsed_ms": 1216
           },
-          "id": "event-004921"
+          "id": "event-004871"
         },
         {
-          "source_line": 4922,
+          "source_line": 4872,
           "timestamp": "2026-05-24T12:48:46.087522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1200,10 +238,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-004922"
+          "id": "event-004872"
         },
         {
-          "source_line": 4923,
+          "source_line": 4873,
           "timestamp": "2026-05-24T12:48:46.138365+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1218,10 +256,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-004923"
+          "id": "event-004873"
         },
         {
-          "source_line": 4924,
+          "source_line": 4874,
           "timestamp": "2026-05-24T12:48:52.260356+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1238,10 +276,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-004924"
+          "id": "event-004874"
         },
         {
-          "source_line": 4925,
+          "source_line": 4875,
           "timestamp": "2026-05-24T12:48:52.311029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1256,10 +294,10 @@
             "tool": "mcp__agent-ml-research__check_figures_and_layout",
             "elapsed_ms": 50
           },
-          "id": "event-004925"
+          "id": "event-004875"
         },
         {
-          "source_line": 4926,
+          "source_line": 4876,
           "timestamp": "2026-05-24T12:49:08.361808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1277,10 +315,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-004926"
+          "id": "event-004876"
         },
         {
-          "source_line": 4927,
+          "source_line": 4877,
           "timestamp": "2026-05-24T12:49:11.824361+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1295,10 +333,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3462
           },
-          "id": "event-004927"
+          "id": "event-004877"
         },
         {
-          "source_line": 4928,
+          "source_line": 4878,
           "timestamp": "2026-05-24T12:49:14.869285+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1311,7 +349,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-004928"
+          "id": "event-004878"
         }
       ]
     },
@@ -1319,7 +357,7 @@
       "number": 208,
       "messages": [
         {
-          "source_line": 4929,
+          "source_line": 4879,
           "timestamp": "2026-05-24T12:49:15.352670+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1333,10 +371,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-004929"
+          "id": "event-004879"
         },
         {
-          "source_line": 4930,
+          "source_line": 4880,
           "timestamp": "2026-05-24T12:49:22.022740+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1349,7 +387,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-004930"
+          "id": "event-004880"
         }
       ]
     },
@@ -1357,7 +395,7 @@
       "number": 209,
       "messages": [
         {
-          "source_line": 4931,
+          "source_line": 4881,
           "timestamp": "2026-05-24T13:49:55.178151+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1371,10 +409,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-004931"
+          "id": "event-004881"
         },
         {
-          "source_line": 4932,
+          "source_line": 4882,
           "timestamp": "2026-05-24T13:50:10.703480+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1391,10 +429,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-004932"
+          "id": "event-004882"
         },
         {
-          "source_line": 4933,
+          "source_line": 4883,
           "timestamp": "2026-05-24T13:50:11.155505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1409,10 +447,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-004933"
+          "id": "event-004883"
         },
         {
-          "source_line": 4934,
+          "source_line": 4884,
           "timestamp": "2026-05-24T13:50:11.156010+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1429,10 +467,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-004934"
+          "id": "event-004884"
         },
         {
-          "source_line": 4935,
+          "source_line": 4885,
           "timestamp": "2026-05-24T13:50:11.657990+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1447,10 +485,10 @@
             "tool": "Read",
             "elapsed_ms": 501
           },
-          "id": "event-004935"
+          "id": "event-004885"
         },
         {
-          "source_line": 4936,
+          "source_line": 4886,
           "timestamp": "2026-05-24T13:50:11.658353+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1467,10 +505,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
             }
           },
-          "id": "event-004936"
+          "id": "event-004886"
         },
         {
-          "source_line": 4937,
+          "source_line": 4887,
           "timestamp": "2026-05-24T13:50:12.109846+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1485,10 +523,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-004937"
+          "id": "event-004887"
         },
         {
-          "source_line": 4938,
+          "source_line": 4888,
           "timestamp": "2026-05-24T13:50:12.110242+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1505,10 +543,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-004938"
+          "id": "event-004888"
         },
         {
-          "source_line": 4939,
+          "source_line": 4889,
           "timestamp": "2026-05-24T13:50:13.063055+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1523,10 +561,10 @@
             "tool": "Read",
             "elapsed_ms": 952
           },
-          "id": "event-004939"
+          "id": "event-004889"
         },
         {
-          "source_line": 4940,
+          "source_line": 4890,
           "timestamp": "2026-05-24T13:50:13.063403+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1543,10 +581,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
             }
           },
-          "id": "event-004940"
+          "id": "event-004890"
         },
         {
-          "source_line": 4941,
+          "source_line": 4891,
           "timestamp": "2026-05-24T13:50:13.515594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1561,10 +599,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-004941"
+          "id": "event-004891"
         },
         {
-          "source_line": 4942,
+          "source_line": 4892,
           "timestamp": "2026-05-24T13:50:13.516278+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1581,10 +619,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex"
             }
           },
-          "id": "event-004942"
+          "id": "event-004892"
         },
         {
-          "source_line": 4943,
+          "source_line": 4893,
           "timestamp": "2026-05-24T13:50:13.817388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1599,10 +637,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-004943"
+          "id": "event-004893"
         },
         {
-          "source_line": 4944,
+          "source_line": 4894,
           "timestamp": "2026-05-24T13:50:13.817754+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1619,10 +657,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib"
             }
           },
-          "id": "event-004944"
+          "id": "event-004894"
         },
         {
-          "source_line": 4945,
+          "source_line": 4895,
           "timestamp": "2026-05-24T13:50:13.918469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1637,10 +675,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-004945"
+          "id": "event-004895"
         },
         {
-          "source_line": 4946,
+          "source_line": 4896,
           "timestamp": "2026-05-24T13:53:23.143422+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1660,10 +698,10 @@
               "new_string": "@article{dodge2020finetuning,\n  title={Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping},\n  author={Dodge, Jesse and Ilharco, Gabriel and Schwartz, Roy and Farhadi, Ali and Hajishirzi, Hannaneh and Smith, Noah A.},\n  journal={arXiv preprint arXiv:2002.06305},\n  year={2020}\n}\n\n% ============================================================\n% Round 19 additions\n% ============================================================\n\n@article{yang2026benchmark,\n  title={Benchmark Illusion: Disagreement among {LLMs} and Its Scientific Consequences},\n  author={Yang, Eddie and Wang, Dashun},\n  journal={arXiv preprint arXiv:2602.11898},\n  year={2026}\n}"
             }
           },
-          "id": "event-004946"
+          "id": "event-004896"
         },
         {
-          "source_line": 4947,
+          "source_line": 4897,
           "timestamp": "2026-05-24T13:53:23.445235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1678,10 +716,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-004947"
+          "id": "event-004897"
         },
         {
-          "source_line": 4948,
+          "source_line": 4898,
           "timestamp": "2026-05-24T13:53:27.912134+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1701,10 +739,10 @@
               "new_string": "The observation that aggregate associations can diverge from individual-level patterns is a well-known statistical phenomenon (ecological fallacy; \\citealt{robinson1950ecological}); our finding (\\S\\ref{ssec:decoupling}) is a controlled instance within recurrent architectural families. \\citet{yang2026benchmark} demonstrate this phenomenon at the frontier-LLM level, showing 16--66\\% per-item disagreement despite comparable benchmark accuracy; our work provides a controlled within-family analysis that isolates backbone variation from training-regime differences."
             }
           },
-          "id": "event-004948"
+          "id": "event-004898"
         },
         {
-          "source_line": 4949,
+          "source_line": 4899,
           "timestamp": "2026-05-24T13:53:28.012897+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1719,10 +757,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-004949"
+          "id": "event-004899"
         },
         {
-          "source_line": 4950,
+          "source_line": 4900,
           "timestamp": "2026-05-24T13:53:32.530871+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1742,10 +780,10 @@
               "new_string": "GatedDeltaNet \\citep{yang2024gateddeltanet} (noting that the GDN 1.3B h3-1 configuration uses 16 attention heads vs.\\ 32 for RetNet and HGRN2; see \\S\\ref{ssec:robustness} for robustness checks excluding GDN), RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion."
             }
           },
-          "id": "event-004950"
+          "id": "event-004900"
         },
         {
-          "source_line": 4951,
+          "source_line": 4901,
           "timestamp": "2026-05-24T13:53:32.882562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1760,10 +798,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-004951"
+          "id": "event-004901"
         },
         {
-          "source_line": 4952,
+          "source_line": 4902,
           "timestamp": "2026-05-24T13:53:34.237273+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1783,10 +821,10 @@
               "new_string": "This taxonomy (informal; not pre-registered) was fixed prior to analysis following standard categorizations in the evaluation literature \\citep{arora2024zoology} and is treated as hypothesis-generating rather than confirmatory (see Appendix~\\ref{app:benchmark_details} for the confirmatory/exploratory split), not derived post hoc from observed results."
             }
           },
-          "id": "event-004952"
+          "id": "event-004902"
         },
         {
-          "source_line": 4953,
+          "source_line": 4903,
           "timestamp": "2026-05-24T13:53:34.338380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1801,10 +839,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-004953"
+          "id": "event-004903"
         },
         {
-          "source_line": 4954,
+          "source_line": 4904,
           "timestamp": "2026-05-24T13:53:46.374501+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1825,10 +863,10 @@
               "context": "3"
             }
           },
-          "id": "event-004954"
+          "id": "event-004904"
         },
         {
-          "source_line": 4955,
+          "source_line": 4905,
           "timestamp": "2026-05-24T13:53:46.425114+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1843,10 +881,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-004955"
+          "id": "event-004905"
         },
         {
-          "source_line": 4956,
+          "source_line": 4906,
           "timestamp": "2026-05-24T13:53:47.959928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1866,10 +904,10 @@
               "new_string": "\\subsection{Per-Example Overlap Saturates at Minimal Attention}\\label{ssec:decoupling}"
             }
           },
-          "id": "event-004956"
+          "id": "event-004906"
         },
         {
-          "source_line": 4957,
+          "source_line": 4907,
           "timestamp": "2026-05-24T13:53:48.060919+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1884,10 +922,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-004957"
+          "id": "event-004907"
         },
         {
-          "source_line": 4958,
+          "source_line": 4908,
           "timestamp": "2026-05-24T13:54:08.740747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1907,10 +945,10 @@
               "new_string": "Does adding more attention change \\emph{which} examples each architecture affects? Pairwise Jaccard saturates at the first attention level (4\\%; $\\bar{J} \\approx 0.095$) and remains flat across all higher ratios (Figure~\\ref{fig:decoupling}b), indicating that minimal attention suffices to establish the full per-example divergence pattern. As background, LAMBADA's aggregate cross-architecture $\\sigma$ shows a non-significant decreasing trend ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; excluding GDN: $\\rho = -0.7$, $p = .233$; MMLU reverses to $\\rho = +0.6$ when excluding GDN; observed at 1.3B, absent at 340M; Table~\\ref{tab:convergence}, Figure~\\ref{fig:task_specificity}). No other benchmark shows a comparable aggregate pattern ($n = 5$; negligible power for $|\\rho| < 1.0$)."
             }
           },
-          "id": "event-004958"
+          "id": "event-004908"
         },
         {
-          "source_line": 4959,
+          "source_line": 4909,
           "timestamp": "2026-05-24T13:54:09.042309+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1925,10 +963,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-004959"
+          "id": "event-004909"
         },
         {
-          "source_line": 4960,
+          "source_line": 4910,
           "timestamp": "2026-05-24T13:54:09.795347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1948,10 +986,10 @@
               "new_string": "Both are available only at 340M in the model zoo; all results below use the h3-1 (25\\% attention) configuration. This extension validates per-example divergence (not aggregate convergence)."
             }
           },
-          "id": "event-004960"
+          "id": "event-004910"
         },
         {
-          "source_line": 4961,
+          "source_line": 4911,
           "timestamp": "2026-05-24T13:54:09.846812+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1966,10 +1004,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-004961"
+          "id": "event-004911"
         },
         {
-          "source_line": 4962,
+          "source_line": 4912,
           "timestamp": "2026-05-24T13:54:12.857627+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1988,10 +1026,10 @@
               "limit": "15"
             }
           },
-          "id": "event-004962"
+          "id": "event-004912"
         },
         {
-          "source_line": 4963,
+          "source_line": 4913,
           "timestamp": "2026-05-24T13:54:12.908738+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2006,10 +1044,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-004963"
+          "id": "event-004913"
         },
         {
-          "source_line": 4964,
+          "source_line": 4914,
           "timestamp": "2026-05-24T13:54:20.941513+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2029,10 +1067,10 @@
               "new_string": "Both are available only at 340M in the model zoo; all results below use the h3-1 (25\\% attention) configuration. This extension validates per-example divergence (not aggregate convergence)."
             }
           },
-          "id": "event-004964"
+          "id": "event-004914"
         },
         {
-          "source_line": 4965,
+          "source_line": 4915,
           "timestamp": "2026-05-24T13:54:20.992673+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2047,10 +1085,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-004965"
+          "id": "event-004915"
         },
         {
-          "source_line": 4966,
+          "source_line": 4916,
           "timestamp": "2026-05-24T13:54:34.489530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2070,10 +1108,10 @@
               "new_string": "Each architecture's per-example response to attention is largely idiosyncratic. The observed $\\bar{J}$ reaches only 6--7\\% of the achievable range above chance ($J_{\\max} \\approx 0.78$--$0.92$), ruling out ceiling constraints (\\S\\ref{ssec:per_example}). Readers can verify $\\rho$ directly from Table~\\ref{tab:convergence}; with $n = 3$ architectures, all bootstrap CIs are heuristic indicators of direction rather than precise coverage."
             }
           },
-          "id": "event-004966"
+          "id": "event-004916"
         },
         {
-          "source_line": 4967,
+          "source_line": 4917,
           "timestamp": "2026-05-24T13:54:34.540306+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2088,10 +1126,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004967"
+          "id": "event-004917"
         },
         {
-          "source_line": 4968,
+          "source_line": 4918,
           "timestamp": "2026-05-24T13:54:38.253124+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2111,10 +1149,10 @@
               "new_string": "(AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\\ref{app:confidence_margin})"
             }
           },
-          "id": "event-004968"
+          "id": "event-004918"
         },
         {
-          "source_line": 4969,
+          "source_line": 4919,
           "timestamp": "2026-05-24T13:54:38.303989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2129,10 +1167,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004969"
+          "id": "event-004919"
         },
         {
-          "source_line": 4970,
+          "source_line": 4920,
           "timestamp": "2026-05-24T13:54:45.435178+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2152,10 +1190,10 @@
               "new_string": "A natural comparison---average-logits ensemble---is left to future work as it requires simultaneous inference across all architectures."
             }
           },
-          "id": "event-004970"
+          "id": "event-004920"
         },
         {
-          "source_line": 4971,
+          "source_line": 4921,
           "timestamp": "2026-05-24T13:54:45.462999+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2170,10 +1208,10 @@
             "tool": "Edit",
             "elapsed_ms": 27
           },
-          "id": "event-004971"
+          "id": "event-004921"
         },
         {
-          "source_line": 4972,
+          "source_line": 4922,
           "timestamp": "2026-05-24T13:54:58.135859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2193,10 +1231,10 @@
               "new_string": "Cross-scale analysis reveals a clear dissociation: per-example Jaccard is consistent across both scales ($\\bar{J} = 0.08$--$0.10$ at 340M and 1.3B), whereas the aggregate variance trend is observed only at 1.3B on LAMBADA ($\\rho = -0.50$, $p = .45$ at 340M). Ambiguity $\\alpha$ is systematically higher at 340M ($\\Delta \\leq 8$\\,pp), suggesting that the \\emph{pattern} of per-example multiplicity is stable across scales while its magnitude co-varies with model capacity"
             }
           },
-          "id": "event-004972"
+          "id": "event-004922"
         },
         {
-          "source_line": 4973,
+          "source_line": 4923,
           "timestamp": "2026-05-24T13:54:58.287270+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2211,10 +1249,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-004973"
+          "id": "event-004923"
         },
         {
-          "source_line": 4974,
+          "source_line": 4924,
           "timestamp": "2026-05-24T13:55:01.649261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2234,10 +1272,10 @@
               "new_string": "but differs $2\\times$ across task types (or evaluation formats), confirming"
             }
           },
-          "id": "event-004974"
+          "id": "event-004924"
         },
         {
-          "source_line": 4975,
+          "source_line": 4925,
           "timestamp": "2026-05-24T13:55:01.750246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2252,10 +1290,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-004975"
+          "id": "event-004925"
         },
         {
-          "source_line": 4976,
+          "source_line": 4926,
           "timestamp": "2026-05-24T13:55:18.939686+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2275,10 +1313,10 @@
               "new_string": "We present the first controlled within-family per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models."
             }
           },
-          "id": "event-004976"
+          "id": "event-004926"
         },
         {
-          "source_line": 4977,
+          "source_line": 4927,
           "timestamp": "2026-05-24T13:55:19.241184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2293,10 +1331,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-004977"
+          "id": "event-004927"
         },
         {
-          "source_line": 4978,
+          "source_line": 4928,
           "timestamp": "2026-05-24T13:55:33.792209+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2316,10 +1354,10 @@
               "new_string": "\\begin{itemize}\n    \\item Architectural variation in hybrid recurrent models---controlled within a single model zoo sharing training data and hyperparameters---produces structured predictive multiplicity whose magnitude varies by task type (or evaluation format) rather than attention dose (\\S\\ref{ssec:per_example}). Five-architecture validation confirms the pattern (\\S\\ref{ssec:robustness}; Appendix~\\ref{app:extended_arch}).\n    \\item Per-example overlap saturates at the first attention level (4\\%) across all four benchmarks: minimal attention establishes which examples each architecture affects, and additional attention does not homogenize these per-example sets (\\S\\ref{ssec:decoupling}).\n\\end{itemize}"
             }
           },
-          "id": "event-004978"
+          "id": "event-004928"
         },
         {
-          "source_line": 4979,
+          "source_line": 4929,
           "timestamp": "2026-05-24T13:55:33.842958+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2334,10 +1372,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004979"
+          "id": "event-004929"
         },
         {
-          "source_line": 4980,
+          "source_line": 4930,
           "timestamp": "2026-05-24T13:55:43.526850+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2357,10 +1395,10 @@
               "new_string": "\\caption{Aggregate variance and per-example overlap on LAMBADA (helped: correct only with attention; hurt: correct only without). (a) Cross-architecture $\\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .170$) but partially rebounds at 340M (dashed). (b) Pairwise Jaccard similarity of helped/hurt sets---our central finding---saturates at the first attention level (4\\%) and remains flat: minimal attention establishes the full per-example divergence pattern. Shaded bands are illustrative ($n = 3$).}"
             }
           },
-          "id": "event-004980"
+          "id": "event-004930"
         },
         {
-          "source_line": 4981,
+          "source_line": 4931,
           "timestamp": "2026-05-24T13:55:43.828251+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2375,10 +1413,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-004981"
+          "id": "event-004931"
         },
         {
-          "source_line": 4982,
+          "source_line": 4932,
           "timestamp": "2026-05-24T13:55:46.074913+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2398,10 +1436,10 @@
               "new_string": "This multiplicity varies by task type ($\\alpha = 0.14$--$0.30$) rather than attention dose. Per-example overlap saturates at 4\\% attention (pairwise Jaccard $\\leq 0.10$), establishing architecture-specific sensitivity patterns that additional attention does not alter."
             }
           },
-          "id": "event-004982"
+          "id": "event-004932"
         },
         {
-          "source_line": 4983,
+          "source_line": 4933,
           "timestamp": "2026-05-24T13:55:46.094691+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2416,10 +1454,10 @@
             "tool": "Edit",
             "elapsed_ms": 19
           },
-          "id": "event-004983"
+          "id": "event-004933"
         },
         {
-          "source_line": 4984,
+          "source_line": 4934,
           "timestamp": "2026-05-24T13:56:03.865497+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2439,10 +1477,10 @@
               "new_string": "Hybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \\citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \\citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\\approx 0.10$, roughly twice the independence baseline; all $p < .01$ across five architectures). This multiplicity varies by task type or evaluation format ($\\alpha = 0.14$--$0.30$) rather than attention dose. Per-example overlap saturates at 4\\% attention and remains flat across higher ratios, indicating that minimal attention establishes which examples each architecture affects. \\citet{yang2026benchmark} document analogous per-item disagreement (16--66\\%) among frontier LLMs despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (AUC 0.70--0.74), and preliminary task-dependent routing extracts 36\\% of oracle complementarity on LAMBADA ($+5.2$\\,pp) but is counterproductive on low-multiplicity tasks."
             }
           },
-          "id": "event-004984"
+          "id": "event-004934"
         },
         {
-          "source_line": 4985,
+          "source_line": 4935,
           "timestamp": "2026-05-24T13:56:03.916332+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2457,10 +1495,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-004985"
+          "id": "event-004935"
         },
         {
-          "source_line": 4986,
+          "source_line": 4936,
           "timestamp": "2026-05-24T13:56:09.987849+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2480,10 +1518,10 @@
               "new_string": "\\paragraph{Format confound.} The confound between task type and evaluation format cannot be fully resolved: LAMBADA is the only free-form benchmark, so its higher $\\alpha$ may reflect format differences rather than cognitive demands alone.\n\n\\paragraph{Coverage.} We examine three primary architectures"
             }
           },
-          "id": "event-004986"
+          "id": "event-004936"
         },
         {
-          "source_line": 4987,
+          "source_line": 4937,
           "timestamp": "2026-05-24T13:56:09.988374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2498,10 +1536,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-004987"
+          "id": "event-004937"
         },
         {
-          "source_line": 4988,
+          "source_line": 4938,
           "timestamp": "2026-05-24T13:56:25.849261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2521,10 +1559,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004988"
+          "id": "event-004938"
         },
         {
-          "source_line": 4989,
+          "source_line": 4939,
           "timestamp": "2026-05-24T13:56:26.351529+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2539,10 +1577,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-004989"
+          "id": "event-004939"
         },
         {
-          "source_line": 4990,
+          "source_line": 4940,
           "timestamp": "2026-05-24T13:56:26.602834+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2562,10 +1600,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004990"
+          "id": "event-004940"
         },
         {
-          "source_line": 4991,
+          "source_line": 4941,
           "timestamp": "2026-05-24T13:56:26.653425+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2580,10 +1618,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-004991"
+          "id": "event-004941"
         },
         {
-          "source_line": 4992,
+          "source_line": 4942,
           "timestamp": "2026-05-24T13:56:34.833319+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2603,10 +1641,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004992"
+          "id": "event-004942"
         },
         {
-          "source_line": 4993,
+          "source_line": 4943,
           "timestamp": "2026-05-24T13:56:35.034513+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2621,10 +1659,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-004993"
+          "id": "event-004943"
         },
         {
-          "source_line": 4994,
+          "source_line": 4944,
           "timestamp": "2026-05-24T13:56:35.135261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2644,10 +1682,10 @@
               "-n": "True"
             }
           },
-          "id": "event-004994"
+          "id": "event-004944"
         },
         {
-          "source_line": 4995,
+          "source_line": 4945,
           "timestamp": "2026-05-24T13:56:35.135710+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2662,10 +1700,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-004995"
+          "id": "event-004945"
         },
         {
-          "source_line": 4996,
+          "source_line": 4946,
           "timestamp": "2026-05-24T13:56:41.107581+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2686,10 +1724,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-004996"
+          "id": "event-004946"
         },
         {
-          "source_line": 4997,
+          "source_line": 4947,
           "timestamp": "2026-05-24T13:56:41.158302+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2704,10 +1742,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-004997"
+          "id": "event-004947"
         },
         {
-          "source_line": 4998,
+          "source_line": 4948,
           "timestamp": "2026-05-24T13:56:51.523865+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2726,10 +1764,10 @@
               "limit": "50"
             }
           },
-          "id": "event-004998"
+          "id": "event-004948"
         },
         {
-          "source_line": 4999,
+          "source_line": 4949,
           "timestamp": "2026-05-24T13:56:52.026224+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2744,10 +1782,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-004999"
+          "id": "event-004949"
         },
         {
-          "source_line": 5000,
+          "source_line": 4950,
           "timestamp": "2026-05-24T13:56:52.076861+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2766,10 +1804,10 @@
               "limit": "25"
             }
           },
-          "id": "event-005000"
+          "id": "event-004950"
         },
         {
-          "source_line": 5001,
+          "source_line": 4951,
           "timestamp": "2026-05-24T13:56:52.177769+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2784,10 +1822,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-005001"
+          "id": "event-004951"
         },
         {
-          "source_line": 5002,
+          "source_line": 4952,
           "timestamp": "2026-05-24T13:57:02.666361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2808,10 +1846,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-005002"
+          "id": "event-004952"
         },
         {
-          "source_line": 5003,
+          "source_line": 4953,
           "timestamp": "2026-05-24T13:57:03.168576+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2826,10 +1864,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-005003"
+          "id": "event-004953"
         },
         {
-          "source_line": 5004,
+          "source_line": 4954,
           "timestamp": "2026-05-24T13:57:03.770977+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2849,10 +1887,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005004"
+          "id": "event-004954"
         },
         {
-          "source_line": 5005,
+          "source_line": 4955,
           "timestamp": "2026-05-24T13:57:03.821549+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2867,10 +1905,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-005005"
+          "id": "event-004955"
         },
         {
-          "source_line": 5006,
+          "source_line": 4956,
           "timestamp": "2026-05-24T13:57:30.468998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2890,10 +1928,10 @@
               "new_string": "The aggregate variance pattern therefore depends on GDN inclusion; the per-example saturation result does not."
             }
           },
-          "id": "event-005006"
+          "id": "event-004956"
         },
         {
-          "source_line": 5007,
+          "source_line": 4957,
           "timestamp": "2026-05-24T13:57:30.921063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2908,10 +1946,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-005007"
+          "id": "event-004957"
         },
         {
-          "source_line": 5008,
+          "source_line": 4958,
           "timestamp": "2026-05-24T13:57:33.380016+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2931,10 +1969,10 @@
               "new_string": "Second, per-example overlap saturates at the first attention level (4\\%) and is stable across higher ratios. Of 10 benchmarks, only LAMBADA shows a non-significant decreasing aggregate variance pattern ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; observed at 1.3B, absent at 340M). Yet even on this benchmark, per-example Jaccard remains flat while aggregate variance changes (\\S\\ref{ssec:decoupling})."
             }
           },
-          "id": "event-005008"
+          "id": "event-004958"
         },
         {
-          "source_line": 5009,
+          "source_line": 4959,
           "timestamp": "2026-05-24T13:57:33.430699+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2949,10 +1987,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005009"
+          "id": "event-004959"
         },
         {
-          "source_line": 5010,
+          "source_line": 4960,
           "timestamp": "2026-05-24T13:57:37.746533+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2971,10 +2009,10 @@
               "preview": "True"
             }
           },
-          "id": "event-005010"
+          "id": "event-004960"
         },
         {
-          "source_line": 5011,
+          "source_line": 4961,
           "timestamp": "2026-05-24T13:57:45.322258+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2989,10 +2027,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 7575
           },
-          "id": "event-005011"
+          "id": "event-004961"
         },
         {
-          "source_line": 5012,
+          "source_line": 4962,
           "timestamp": "2026-05-24T13:57:53.218842+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3009,10 +2047,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-005012"
+          "id": "event-004962"
         },
         {
-          "source_line": 5013,
+          "source_line": 4963,
           "timestamp": "2026-05-24T13:57:53.420808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3029,10 +2067,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-005013"
+          "id": "event-004963"
         },
         {
-          "source_line": 5014,
+          "source_line": 4964,
           "timestamp": "2026-05-24T13:57:53.625021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3047,10 +2085,10 @@
             "tool": "Read",
             "elapsed_ms": 406
           },
-          "id": "event-005014"
+          "id": "event-004964"
         },
         {
-          "source_line": 5015,
+          "source_line": 4965,
           "timestamp": "2026-05-24T13:57:54.177677+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3065,10 +2103,10 @@
             "tool": "Read",
             "elapsed_ms": 756
           },
-          "id": "event-005015"
+          "id": "event-004965"
         },
         {
-          "source_line": 5016,
+          "source_line": 4966,
           "timestamp": "2026-05-24T13:58:03.964586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3085,10 +2123,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p1.png"
             }
           },
-          "id": "event-005016"
+          "id": "event-004966"
         },
         {
-          "source_line": 5017,
+          "source_line": 4967,
           "timestamp": "2026-05-24T13:58:04.467379+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3103,10 +2141,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-005017"
+          "id": "event-004967"
         },
         {
-          "source_line": 5018,
+          "source_line": 4968,
           "timestamp": "2026-05-24T13:58:49.781923+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3124,10 +2162,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-005018"
+          "id": "event-004968"
         },
         {
-          "source_line": 5019,
+          "source_line": 4969,
           "timestamp": "2026-05-24T13:58:53.868944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3142,10 +2180,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4087
           },
-          "id": "event-005019"
+          "id": "event-004969"
         },
         {
-          "source_line": 5020,
+          "source_line": 4970,
           "timestamp": "2026-05-24T13:58:56.315374+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3158,7 +2196,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-005020"
+          "id": "event-004970"
         }
       ]
     },
@@ -3166,7 +2204,7 @@
       "number": 210,
       "messages": [
         {
-          "source_line": 5021,
+          "source_line": 4971,
           "timestamp": "2026-05-24T13:58:56.833856+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3180,10 +2218,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-005021"
+          "id": "event-004971"
         },
         {
-          "source_line": 5022,
+          "source_line": 4972,
           "timestamp": "2026-05-24T13:59:02.892010+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3196,7 +2234,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-005022"
+          "id": "event-004972"
         }
       ]
     },
@@ -3204,7 +2242,7 @@
       "number": 211,
       "messages": [
         {
-          "source_line": 5023,
+          "source_line": 4973,
           "timestamp": "2026-05-24T14:37:47.590234+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3218,10 +2256,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-005023"
+          "id": "event-004973"
         },
         {
-          "source_line": 5024,
+          "source_line": 4974,
           "timestamp": "2026-05-24T14:38:00.553032+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3238,10 +2276,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex"
             }
           },
-          "id": "event-005024"
+          "id": "event-004974"
         },
         {
-          "source_line": 5025,
+          "source_line": 4975,
           "timestamp": "2026-05-24T14:38:01.055409+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3256,10 +2294,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-005025"
+          "id": "event-004975"
         },
         {
-          "source_line": 5026,
+          "source_line": 4976,
           "timestamp": "2026-05-24T14:38:01.055947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3276,10 +2314,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-005026"
+          "id": "event-004976"
         },
         {
-          "source_line": 5027,
+          "source_line": 4977,
           "timestamp": "2026-05-24T14:38:01.507938+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3294,10 +2332,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-005027"
+          "id": "event-004977"
         },
         {
-          "source_line": 5028,
+          "source_line": 4978,
           "timestamp": "2026-05-24T14:38:01.508392+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3314,10 +2352,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
             }
           },
-          "id": "event-005028"
+          "id": "event-004978"
         },
         {
-          "source_line": 5029,
+          "source_line": 4979,
           "timestamp": "2026-05-24T14:38:01.960395+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3332,10 +2370,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-005029"
+          "id": "event-004979"
         },
         {
-          "source_line": 5030,
+          "source_line": 4980,
           "timestamp": "2026-05-24T14:38:02.663679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3355,10 +2393,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005030"
+          "id": "event-004980"
         },
         {
-          "source_line": 5031,
+          "source_line": 4981,
           "timestamp": "2026-05-24T14:38:02.714354+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3373,10 +2411,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-005031"
+          "id": "event-004981"
         },
         {
-          "source_line": 5032,
+          "source_line": 4982,
           "timestamp": "2026-05-24T14:38:59.923981+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3396,10 +2434,10 @@
               "new_string": "@inproceedings{geifman2017selective,\n  title={Selective Classification for Deep Neural Networks},\n  author={Geifman, Yonatan and El-Yaniv, Ran},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2017}\n}\n\n@inproceedings{caruana2004ensemble,\n  title={Ensemble Selection from Libraries of Models},\n  author={Caruana, Rich and Niculescu-Mizil, Alexandru and Crew, Geoff and Ksikes, Alex},\n  booktitle={Proceedings of the 21st International Conference on Machine Learning},\n  year={2004}\n}\n\n@article{yang2026benchmark,"
             }
           },
-          "id": "event-005032"
+          "id": "event-004982"
         },
         {
-          "source_line": 5033,
+          "source_line": 4983,
           "timestamp": "2026-05-24T14:39:00.498897+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3414,10 +2452,10 @@
             "tool": "Edit",
             "elapsed_ms": 574
           },
-          "id": "event-005033"
+          "id": "event-004983"
         },
         {
-          "source_line": 5034,
+          "source_line": 4984,
           "timestamp": "2026-05-24T14:39:04.129456+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3437,10 +2475,10 @@
               "new_string": "Weight-space interpolation \\citep{wortsman2022model} can reduce multiplicity among models of a single architecture; we instead characterize multiplicity across architectures, where interpolation is not applicable. Our routing approach relates to selective prediction \\citep{geifman2017selective} and ensemble selection \\citep{caruana2004ensemble}, though we select among architecturally distinct models rather than same-architecture ensembles."
             }
           },
-          "id": "event-005034"
+          "id": "event-004984"
         },
         {
-          "source_line": 5035,
+          "source_line": 4985,
           "timestamp": "2026-05-24T14:39:04.581794+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3455,10 +2493,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-005035"
+          "id": "event-004985"
         },
         {
-          "source_line": 5036,
+          "source_line": 4986,
           "timestamp": "2026-05-24T14:39:05.086096+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3478,10 +2516,10 @@
               "new_string": "attention ratio"
             }
           },
-          "id": "event-005036"
+          "id": "event-004986"
         },
         {
-          "source_line": 5037,
+          "source_line": 4987,
           "timestamp": "2026-05-24T14:39:05.538975+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3496,10 +2534,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-005037"
+          "id": "event-004987"
         },
         {
-          "source_line": 5038,
+          "source_line": 4988,
           "timestamp": "2026-05-24T14:39:06.041124+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3519,10 +2557,10 @@
               "new_string": "attention ratio"
             }
           },
-          "id": "event-005038"
+          "id": "event-004988"
         },
         {
-          "source_line": 5039,
+          "source_line": 4989,
           "timestamp": "2026-05-24T14:39:06.493192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3537,10 +2575,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-005039"
+          "id": "event-004989"
         },
         {
-          "source_line": 5040,
+          "source_line": 4990,
           "timestamp": "2026-05-24T14:39:07.045522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3558,6 +2596,999 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
               "old_string": "attention dose",
               "new_string": "attention ratio"
+            }
+          },
+          "id": "event-004990"
+        },
+        {
+          "source_line": 4991,
+          "timestamp": "2026-05-24T14:39:07.096344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004991"
+        },
+        {
+          "source_line": 4992,
+          "timestamp": "2026-05-24T14:39:16.432826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+              "old_string": "Confidence margins partially predict affected examples (AUC 0.70--0.74), and preliminary task-dependent routing extracts 36\\% of oracle complementarity on LAMBADA ($+5.2$\\,pp) but is counterproductive on low-multiplicity tasks.",
+              "new_string": "Confidence margins partially predict affected examples (AUC 0.70--0.74). Preliminary routing partially exploits this complementarity on one benchmark but is counterproductive on others."
+            }
+          },
+          "id": "event-004992"
+        },
+        {
+          "source_line": 4993,
+          "timestamp": "2026-05-24T14:39:16.884962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004993"
+        },
+        {
+          "source_line": 4994,
+          "timestamp": "2026-05-24T14:39:17.838808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+              "old_string": "attention dose",
+              "new_string": "attention ratio"
+            }
+          },
+          "id": "event-004994"
+        },
+        {
+          "source_line": 4995,
+          "timestamp": "2026-05-24T14:39:18.290837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004995"
+        },
+        {
+          "source_line": 4996,
+          "timestamp": "2026-05-24T14:39:21.150958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+              "old_string": "\\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation.",
+              "new_string": "\\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation. All evaluations use greedy decoding (the lm-eval-harness default); sampling strategies may alter per-example agreement patterns."
+            }
+          },
+          "id": "event-004996"
+        },
+        {
+          "source_line": 4997,
+          "timestamp": "2026-05-24T14:39:21.603780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004997"
+        },
+        {
+          "source_line": 4998,
+          "timestamp": "2026-05-24T14:39:33.172303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
+              "old_string": "\\vspace{-2pt}\n\\section{Conclusion}\n\nWe have shown that hybrid linear recurrent architectures which appear interchangeable by aggregate benchmarks diverge substantially at the per-example level. This multiplicity varies by task type ($\\alpha = 0.14$--$0.30$) rather than attention dose. Per-example overlap saturates at 4\\% attention (pairwise Jaccard $\\leq 0.10$), establishing architecture-specific sensitivity patterns that additional attention does not alter. Confidence margins partially predict which examples are affected (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\\%.\n\nTwo observations follow at the 340M--1.3B scales studied here. First, per-example audit before architecture substitution is advisable when multiplicity is substantial---aggregate equivalence does not guarantee behavioral equivalence. Second, the low cross-architecture Jaccard creates complementarity ($+7$--$14$\\,pp oracle gain), but our preliminary routing experiments suggest that exploiting it is task-dependent: confidence-based selection shows gains on high-multiplicity free-form tasks (LAMBADA: $+5.2$\\,pp) but is counterproductive on low-multiplicity ones (PIQA: $-0.49$\\,pp).",
+              "new_string": "\\vspace{-2pt}\n\\section{Conclusion}\n\nWe have shown that hybrid linear recurrent architectures which appear interchangeable by aggregate benchmarks diverge substantially at the per-example level. This multiplicity varies by task type ($\\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap saturates at 4\\% attention (pairwise Jaccard $\\leq 0.10$), establishing architecture-specific sensitivity patterns that additional attention does not alter. Confidence margins partially predict which examples are affected (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\\%.\n\nAt the 340M--1.3B scales studied here, per-example audit before architecture substitution is advisable when multiplicity is substantial---aggregate equivalence does not guarantee behavioral equivalence. Low cross-architecture Jaccard creates complementarity ($+7$--$14$\\,pp oracle gain), though preliminary routing experiments show exploitation remains task-dependent ($+5.2$\\,pp on LAMBADA; $-0.49$\\,pp on PIQA)."
+            }
+          },
+          "id": "event-004998"
+        },
+        {
+          "source_line": 4999,
+          "timestamp": "2026-05-24T14:39:33.222923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004999"
+        },
+        {
+          "source_line": 5000,
+          "timestamp": "2026-05-24T14:39:42.796471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "Attention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers.",
+              "new_string": "An alternative interpretation of the saturation is that adding even minimal attention causes all architectures to rapidly adopt Transformer-like behavior, rather than locking in architecture-specific fingerprints. Appendix~\\ref{app:transformer_entrainment} shows that h3-1 correct sets indeed converge toward the Transformer baseline; disentangling these accounts requires ablation of the attention mechanism itself, which we leave to future work. Attention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers."
+            }
+          },
+          "id": "event-005000"
+        },
+        {
+          "source_line": 5001,
+          "timestamp": "2026-05-24T14:39:43.148100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 351
+          },
+          "id": "event-005001"
+        },
+        {
+          "source_line": 5002,
+          "timestamp": "2026-05-24T14:39:48.922891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .017 \\times 10 = .170$ (all-10-benchmark correction). \\textbf{Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.}}",
+              "new_string": "\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .017 \\times 10 = .170$ (all-10-benchmark correction). \\textbf{Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.} Excluding GDN reverses the MMLU $\\rho$ from $-0.7$ to $+0.6$; see \\S\\ref{ssec:robustness}.}"
+            }
+          },
+          "id": "event-005002"
+        },
+        {
+          "source_line": 5003,
+          "timestamp": "2026-05-24T14:39:49.324576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 401
+          },
+          "id": "event-005003"
+        },
+        {
+          "source_line": 5004,
+          "timestamp": "2026-05-24T14:39:51.782859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+              "old_string": "Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}).",
+              "new_string": "Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}). The permutation null does not condition on item difficulty; shared-difficulty effects may inflate baseline overlap expectations."
+            }
+          },
+          "id": "event-005004"
+        },
+        {
+          "source_line": 5005,
+          "timestamp": "2026-05-24T14:39:51.833474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-005005"
+        },
+        {
+          "source_line": 5006,
+          "timestamp": "2026-05-24T14:39:55.446480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8",
+              "preview": "True"
+            }
+          },
+          "id": "event-005006"
+        },
+        {
+          "source_line": 5007,
+          "timestamp": "2026-05-24T14:40:02.326632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 7740) in paragraph at lines 596--597\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\\\n []\\\\n\\\\n[19] [20]\\\\nUnderfull \\\\\\\\hbox (badness 4316) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) To con-tex-tu-al-ize the $\\\\\\\\OT1/cmr/m/n/10.95 3\\\\\\\\OMS/cmsy\\\\n/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n[21]\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 787--789\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [22\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 430D4C85BC0390AF7D31AD6FABB89605;8902.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16627 strings out of 469438\\\\n 262282 string characters ou\n…[truncated 8616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6880
+          },
+          "id": "event-005007"
+        },
+        {
+          "source_line": 5008,
+          "timestamp": "2026-05-24T14:40:12.061012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-005008"
+        },
+        {
+          "source_line": 5009,
+          "timestamp": "2026-05-24T14:40:12.462833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-005009"
+        },
+        {
+          "source_line": 5010,
+          "timestamp": "2026-05-24T14:40:12.515422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 454
+          },
+          "id": "event-005010"
+        },
+        {
+          "source_line": 5011,
+          "timestamp": "2026-05-24T14:40:13.018384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 555
+          },
+          "id": "event-005011"
+        },
+        {
+          "source_line": 5012,
+          "timestamp": "2026-05-24T14:40:46.652099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-005012"
+        },
+        {
+          "source_line": 5013,
+          "timestamp": "2026-05-24T14:40:47.205085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-005013"
+        },
+        {
+          "source_line": 5014,
+          "timestamp": "2026-05-24T14:41:05.227941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "attention dose",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+              "output_mode": "count"
+            }
+          },
+          "id": "event-005014"
+        },
+        {
+          "source_line": 5015,
+          "timestamp": "2026-05-24T14:41:05.278486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found\n\nFound 0 total occurrences across 0 files."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-005015"
+        },
+        {
+          "source_line": 5016,
+          "timestamp": "2026-05-24T14:41:31.909857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "tool_args": {
+              "text": "[写作进展] Patch 完成 — R20 最终修改（7 项，单次 pass）\n\n## P0 Critical（全部完成）\n1. **Routing 结构性降级**：Abstract routing 缩为 ~15 词（\"Preliminary routing partially exploits this complementarity on one benchmark but is counterproductive on others.\"）；Conclusion 删除 \"Two observations... First... Second...\" 结构，改为单段式——per-example audit 为唯一 named implication，routing 融入 complementarity\n2. **\"attention dose\" → \"attention ratio\"**：全文 7 处替换完毕（Abstract、Intro、§4.1、Conclusion、Appendix ×3），grep 确认 0 残留\n\n## P1 Major（全部完成）\n3. **替代解读**：§4.2 Jaccard saturation 段后加 alternative interpretation（Transformer-like behavior adoption vs architecture-specific fingerprints），指向 Appendix I，留 future work\n4. **Geifman + Caruana 引用**：bib 已添加；Related Work 加 \"Our routing approach relates to selective prediction and ensemble selection, though we select among architecturally distinct models rather than same-architecture ensembles.\"\n5. **GDN Table 1 脚注**：Table 1 caption 末尾加 \"Excluding GDN reverses the MMLU ρ from −0.7 to +0.6; see §4.3.\"\n6. **Permutation difficulty caveat**：§3.5 Statistical Methods 末尾加 \"The permutation null does not condition on item difficulty; shared-difficulty effects may inflate baseline overlap expectations.\"\n7. **Greedy decoding**：Limitations Pre-training only 段加 \"All evaluations use greedy decoding (the lm-eval-harness default); sampling strategies may alter per-example agreement patterns.\"\n\n## 验证\n- 编译通过，无 critical warnings\n- 正文（§1-§5 Conclusion）在第 8 页内完成；Limitations 跨 8-9 页但不计入 EMNLP 页限\n- Abstract ~160 words（≤200）\n- 第 8 页布局紧凑（3 figures + Conclusion + Limitations 开头）但未溢出；Figure 7 未移至 Appendix（如需节省空间可执行）",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-005016"
+        },
+        {
+          "source_line": 5017,
+          "timestamp": "2026-05-24T14:41:35.475505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
+            "elapsed_ms": 3565
+          },
+          "id": "event-005017"
+        },
+        {
+          "source_line": 5018,
+          "timestamp": "2026-05-24T14:41:38.186132+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全文 0 处 \"attention dose\" 残留。汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
+          },
+          "id": "event-005018"
+        }
+      ]
+    },
+    {
+      "number": 212,
+      "messages": [
+        {
+          "source_line": 5019,
+          "timestamp": "2026-05-24T14:41:38.682033+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "source": "system"
+          },
+          "id": "event-005019"
+        },
+        {
+          "source_line": 5020,
+          "timestamp": "2026-05-24T14:41:47.902877+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已汇报。上一条 `paper_agent_post_to_director` 在编译验证后已成功发送（R20 最终修改 7 项全部完成）。当前无待处理指令，等待 Director 下一步。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
+          },
+          "id": "event-005020"
+        }
+      ]
+    },
+    {
+      "number": 213,
+      "messages": [
+        {
+          "source_line": 5021,
+          "timestamp": "2026-05-24T18:42:18.325289+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Patch — 用户 4 项排版/内容修改]\n\n## 1. Hero Figure 升级（Figure 1 → 全宽 3-panel 主图）\n\n当前 Figure 1 是单栏 2-panel（σ + Jaccard on LAMBADA）。升级为 `figure*` 全宽 3-panel 主图：\n\n**方法**：用 LaTeX `\\begin{figure*}` + `\\begin{minipage}` 或 `\\subfigure`，把现有 Figure 1 的两个 panel 和 Figure 6（fig4_jaccard_saturation.pdf，4 benchmark Jaccard 饱和）组合：\n- Panel (a): 当前 Figure 1 左 panel（aggregate σ vs attention ratio）\n- Panel (b): 当前 Figure 1 右 panel（Jaccard saturation on LAMBADA）  \n- Panel (c): 当前 Figure 6（fig4_jaccard_saturation.pdf，cross-benchmark Jaccard saturation）\n\n如果当前 Figure 1 是单个 PDF 文件（fig1_decoupling_hero.pdf）不能拆分 panel，那就用 2 个子图并排：左边放 fig1_decoupling_hero.pdf（占 55%），右边放 fig4_jaccard_saturation.pdf（占 42%）。\n\nCaption 改为强调这是论文核心发现：跨 benchmark 的 Jaccard 饱和。\n\n**同时**：删除正文中单独的 Figure 6（原 fig4_jaccard_saturation 的独立出现），因为已合并到主图。\n\n## 2. Related Work 三段平衡\n\n当前三段大致比例：§1 Hybrid ~6行，§2 Linear ~4行，§3 Underspecification ~12行。\n\n修改：\n- §3 Underspecification 压缩到 ~7-8 行。具体删减：\n  - \"Rashomon-set analyses \\citep{fisher2019all,semenova2022existence,jain2025allocation}...\" 这句和 ensemble diversity 那句可以合并为 1 句\n  - \"Weight-space interpolation...\" 那句可以缩短\n  - 最后关于 ecological fallacy 的括号注可以简化\n- §1 和 §2 保持现有长度或略扩\n- 总长度不超过当前，可以略短\n\n## 3. Table 1 空白修复\n\n当前 Table 1（`table*`）下方有大片空白。可能的原因和修复：\n- 检查 Table 1 的 `\\begin{table*}[t]` 后面是否有多余的 `\\vspace` 或 `\\par`\n- 检查 Table 1 底部 footnotes 后面是否有多余空行\n- 如果是 LaTeX float 问题，尝试 `[!t]` 或调整 `\\textfloatsep`\n- 检查 `\\multicolumn{7}{l}` 的 footnote 行是否过多留白——可以用 `\\vspace{-4pt}` 或改用 `\\tablenotes` 压缩\n- Table 1 的最后一行 footnote（Bonferroni 说明）如果是 `\\multicolumn{7}{@{}p{\\textwidth}@{}}` 可能撑开了过多高度\n\n请视觉检查修复后的效果（`paper_compile_and_check` + `pdf_to_images` 看 Table 1 那一页）。\n\n## 4. 正文充实到 8 页\n\n如果修复以上问题后正文（§1-5 Conclusion，不含 Limitations）不足 8 页，在以下位置扩充：\n- §4.2 Jaccard 饱和段：扩展 \"alternative interpretation\"（Transformer-like behavior vs architecture fingerprints）的讨论，可以多加 1-2 句分析两种解读的理论含义\n- §4.1 Multiplicity variation 段：可以多讨论一下 within-MC format 不预测 α 的含义\n- §4.3 Robustness 段：可以多加 1-2 句五架构验证的细节\n\n**不要为了凑页数而注水**。如果正文已经满 8 页就不用扩充。\n\n## 约束\n- 正文（§1-5）≤ 8 页，目标正好 8 页\n- Abstract ≤ 200 words\n- 修完后 `paper_compile_and_check` + `pdf_to_images` pages 1-8 做视觉验证，确保 Table 1 空白消除 + hero figure 效果好"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "source": "director"
+          },
+          "id": "event-005021"
+        },
+        {
+          "source_line": 5022,
+          "timestamp": "2026-05-24T18:42:35.140891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-005022"
+        },
+        {
+          "source_line": 5023,
+          "timestamp": "2026-05-24T18:42:35.141452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tHybrid linear recurrent architectures---including GatedDeltaNet (GDN), RetNet, HGRN2, Gated Linear Attention (GLA), and DeltaNet---achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets. Yet they can differ on up to 90\\% of the individual examples they affect: adding attention to three controlled linear recurrent backbones yields helped and hurt sets with at most 10\\% pairwise overlap, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: architectures that score within 1--2 points of each other reach similar accuracy by gaining and losing on different inputs. Across all ten pairwise comparisons among five architectures, overlap in per-example effects remains below 14\\% (all $p < .01$), meaning the choice of backbone is associated with which specific inputs a deployed system handles correctly.\n4\t\n5\tThis tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n6\t\n7\tPrior work on predictive multiplicity \\citep{marx2020predictive} and underspecification \\citep{damour2022underspecification,mccoy2020berts} documents this risk for seed variation within a single architecture, but whether it exte\n…[truncated 3591 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-005023"
+        },
+        {
+          "source_line": 5024,
+          "timestamp": "2026-05-24T18:42:35.143933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-005024"
+        },
+        {
+          "source_line": 5025,
+          "timestamp": "2026-05-24T18:42:35.194451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-005025"
+        },
+        {
+          "source_line": 5026,
+          "timestamp": "2026-05-24T18:42:35.245237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\tUsing the model zoo of \\citet{wang2025hybrid} (\\S\\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\\% attention.\n4\t\n5\t\\begin{table*}[t]\n6\t\\centering\n7\t\\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\\sigma$ values reported $\\times 10^{2}$ (accuracy percentage points). Ratio: $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$. \\textbf{Bold}: only benchmark with $\\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\\_norm), the standard metric for this benchmark.}\n8\t\\label{tab:convergence}\n9\t\\begin{tabular}{llrrrrr}\n10\t\\toprule\n11\tBenchmark & Category & $\\rho$ & $p$ & $\\sigma_{\\text{pure}}$ & $\\sigma_{\\text{h3-1}}$ & Ratio \\\\\n12\t\\midrule\n13\t\\textbf{LAMBADA$^{\\ddagger}$} & \\textbf{Retrieval} & $\\mathbf{-1.0}$ & \\textbf{.017} & \\textbf{2.41} & \\textbf{0.49} & \\textbf{4.87} \\\\\n14\t\\quad\\emph{(excl.\\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\\\\n15\tBoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\n16\tARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\n17\tHellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\\\\n18\tPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\n19\tWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\\n20\tARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\\\\n21\tMMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\\\\n22\tSciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\\\\n23\tXStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\\\\n24\t\\midrule\n25\tCOPA$^{\\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\\\\n26\t\\bottomrule\n27\t\\multicolumn{7}{l}{\\fo\n…[truncated 13495 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-005026"
+        },
+        {
+          "source_line": 5027,
+          "timestamp": "2026-05-24T18:42:35.245859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Hybrid Recurrent Architectures.}\n4\tThe design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. H3 \\citep{fu2023hungry} and Hyena \\citep{poli2023hyena} establish early design points in the hybrid space with gated convolutions and subquadratic operators. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. Recent theoretical work establishes a provable expressiveness hierarchy between hybrid and pure linear attention \\citep{ye2026provable}, providing formal grounding for the architectural differences we characterize at the per-example level. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n5\t\n6\t\\paragraph{Linear Recurrent Models.}\n7\tOur three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear a\n…[truncated 3056 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-005027"
+        },
+        {
+          "source_line": 5028,
+          "timestamp": "2026-05-24T18:43:04.927506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig:jaccard_saturation|fig_jaccard_saturation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-005028"
+        },
+        {
+          "source_line": 5029,
+          "timestamp": "2026-05-24T18:43:04.978325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:91:This saturation generalizes beyond LAMBADA (Figure~\\ref{fig:jaccard_saturation}): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:97:\\label{fig:jaccard_saturation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.aux:688:\\newlabel{fig:jaccard_saturation}{{6}{8}{Cross-benchmark Jaccard saturation. Mean pairwise $\\bar {J}$ (averaged over helped and hurt sets) remains flat across attention ratios on all four benchmarks (all $\\rho \\leq 0.80$, $p \\geq .333$), confirming that per-example divergence saturates immediately regardless of task type}{figure.caption.14}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-005029"
+        },
+        {
+          "source_line": 5030,
+          "timestamp": "2026-05-24T18:43:19.809855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig1_decoupling_hero.pdf}\n\\caption{Aggregate variance and per-example overlap on LAMBADA (helped: correct only with attention; hurt: correct only without). (a) Cross-architecture $\\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .170$) but partially rebounds at 340M (dashed). (b) Pairwise Jaccard similarity of helped/hurt sets---our central finding---saturates at the first attention level (4\\%) and remains flat: minimal attention establishes the full per-example divergence pattern. Shaded bands are illustrative ($n = 3$).}\n\\label{fig:decoupling}\n\\end{figure}",
+              "new_string": "\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.56\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_decoupling_hero.pdf}\n\\end{minipage}%\n\\hfill\n\\begin{minipage}[t]{0.42\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig4_jaccard_saturation.pdf}\n\\end{minipage}\n\\caption{Per-example overlap saturates at minimal attention across benchmarks. (a,\\,b) LAMBADA: cross-architecture $\\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .170$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets saturates at 4\\% attention and remains flat. (c) This saturation generalizes: on all four main benchmarks, mean pairwise $\\bar{J}$ remains flat across attention ratios (all $\\rho \\leq 0.80$, $p \\geq .333$). Shaded bands are illustrative ($n = 3$).}\n\\label{fig:decoupling}\n\\end{figure*}"
+            }
+          },
+          "id": "event-005030"
+        },
+        {
+          "source_line": 5031,
+          "timestamp": "2026-05-24T18:43:19.810484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-005031"
+        },
+        {
+          "source_line": 5032,
+          "timestamp": "2026-05-24T18:43:26.186046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "This saturation generalizes beyond LAMBADA (Figure~\\ref{fig:jaccard_saturation}): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig4_jaccard_saturation.pdf}\n\\caption{Cross-benchmark Jaccard saturation. Mean pairwise $\\bar{J}$ (averaged over helped and hurt sets) remains flat across attention ratios on all four benchmarks (all $\\rho \\leq 0.80$, $p \\geq .333$), confirming that per-example divergence saturates immediately regardless of task type.}\n\\label{fig:jaccard_saturation}\n\\end{figure}",
+              "new_string": "This saturation generalizes beyond LAMBADA (Figure~\\ref{fig:decoupling}c): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11."
+            }
+          },
+          "id": "event-005032"
+        },
+        {
+          "source_line": 5033,
+          "timestamp": "2026-05-24T18:43:26.236857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-005033"
+        },
+        {
+          "source_line": 5034,
+          "timestamp": "2026-05-24T18:43:48.943597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
+              "old_string": "These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. Rashomon-set analyses \\citep{fisher2019all,semenova2022existence,jain2025allocation} examine variation among near-optimal models within a single hypothesis class; ensemble diversity work \\citep{fort2019deep,kuncheva2003measures,brown2005diversity} shows that diverse architectures explore distinct loss-landscape modes. Weight-space interpolation \\citep{wortsman2022model} can reduce multiplicity among models of a single architecture; we instead characterize multiplicity across architectures, where interpolation is not applicable. Our routing approach relates to selective prediction \\citep{geifman2017selective} and ensemble selection \\citep{caruana2004ensemble}, though we select among architecturally distinct models rather than same-architecture ensembles. We show that changing the recurrent backbone---without explicit diversification---is associated with per-example multiplicity that varies systematically by task type. \\citet{swayamdipta2020dataset} characterize examples via training dynamics; our decomposition operates at deployment time across architectures. Our cross-benchmark variation ($\\alpha = 0.14$--$0.30$) argues against single-artifact explanations \\citep{niven2019probing}. The observation that aggregate associations can diverge from individual-level patterns is a well-known statistical phenomenon (ecological fallacy; \\citealt{robinson1950ecological}); our finding (\\S\\ref{ssec:decoupling}) is a controlled instance within recurrent architectural families. \\citet{yang2026benchmark} demonstrate this phenomenon at the frontier-LLM level, showing 16--66\\% per-item disagreement despite comparable benchmark accuracy; our work provides a controlled within-family analysis that isolates backbone variation from training-regime differences.",
+              "new_string": "These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. Rashomon-set and ensemble diversity analyses \\citep{fisher2019all,semenova2022existence,jain2025allocation,fort2019deep,kuncheva2003measures,brown2005diversity} show that variation within a hypothesis class or across diverse architectures produces distinct loss-landscape modes; weight-space interpolation \\citep{wortsman2022model} can reduce such multiplicity within a single architecture but does not apply across architectures. Our routing approach relates to selective prediction \\citep{geifman2017selective} and ensemble selection \\citep{caruana2004ensemble}, though we select among architecturally distinct models rather than same-architecture ensembles. We show that changing the recurrent backbone is associated with per-example multiplicity that varies by task type; \\citet{swayamdipta2020dataset} characterize examples via training dynamics, while our decomposition operates at deployment time. \\citet{yang2026benchmark} demonstrate analogous per-item disagreement (16--66\\%) among frontier LLMs; our within-family design isolates backbone variation from training-regime differences."
+            }
+          },
+          "id": "event-005034"
+        },
+        {
+          "source_line": 5035,
+          "timestamp": "2026-05-24T18:43:48.994915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-005035"
+        },
+        {
+          "source_line": 5036,
+          "timestamp": "2026-05-24T18:44:01.139904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+              "old_string": "\\multicolumn{7}{l}{\\footnotesize $^{\\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^{\\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\\S\\ref{ssec:robustness}).} \\\\\n\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .017 \\times 10 = .170$ (all-10-benchmark correction). \\textbf{Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.} Excluding GDN reverses the MMLU $\\rho$ from $-0.7$ to $+0.6$; see \\S\\ref{ssec:robustness}.}\n\\end{tabular}\n\\end{table*}",
+              "new_string": "\\multicolumn{7}{l}{\\footnotesize $^{\\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^{\\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\\S\\ref{ssec:robustness}).} \\\\\n\\multicolumn{7}{l}{\\footnotesize Bonferroni-adjusted $p = .170$. \\textbf{Power: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.} Excl.\\ GDN reverses MMLU $\\rho$ to $+0.6$ (\\S\\ref{ssec:robustness}).}\n\\end{tabular}\n\\vspace{-4pt}\n\\end{table*}"
+            }
+          },
+          "id": "event-005036"
+        },
+        {
+          "source_line": 5037,
+          "timestamp": "2026-05-24T18:44:01.190728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-005037"
+        },
+        {
+          "source_line": 5038,
+          "timestamp": "2026-05-24T18:44:05.685163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "entrainment_gated_ft",
+              "max_pages": "8",
+              "preview": "True"
+            }
+          },
+          "id": "event-005038"
+        },
+        {
+          "source_line": 5039,
+          "timestamp": "2026-05-24T18:44:11.957278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"/m/n/10.95 ^^B$ \\\\\\\\T1/ptm/m/n/10.95 (+20) within- vs. cross-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1629) in paragraph at lines 730--731\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture Jac-card gap (�[][]4.2[][]), we com-pare\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 2707) has occurred while \\\\\\\\output is active []\\\\n\\\\n [20]\\\\nUnderfull \\\\\\\\hbox (badness 2503) in paragraph at lines 734--735\\\\n[]\\\\\\\\T1/ptm/m/n/10.95 (+20) Seeds thus pro-duce com-pa-ra-ble or higher\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2521) in paragraph at lines 734--735\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) architecture vari-a-tion is as-so-ci-ated with per-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\\n\\\\n\\\\n\\\\nPackage caption Warning: The option `hypcap=true' will be ignored for this\\\\n(caption)                particular \\\\\\\\caption on input line 744.\\\\nSee the caption package documentation for explanation.\\\\n\\\\n[21]\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 787--789\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n) [22\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 430D4C85BC0390AF7D31AD6FABB89605;8902.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16610 strings out of 469438\\\\n 262007 string characters out of 5468411\\\\n 735825 words of memory out of 5000000\\\\n 44401 multiletter control sequences out of 15000+600000\\\\n 706602 words of font info for 404\n…[truncated 8539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6272
+          },
+          "id": "event-005039"
+        },
+        {
+          "source_line": 5040,
+          "timestamp": "2026-05-24T18:44:20.689961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p1.png"
             }
           },
           "id": "event-005040"

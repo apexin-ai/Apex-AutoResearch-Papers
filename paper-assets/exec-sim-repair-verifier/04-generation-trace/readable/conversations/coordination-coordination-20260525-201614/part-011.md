@@ -4,1395 +4,11 @@
 
 [← Part 10](part-010.md) · [Transcript overview](../coordination-coordination-20260525-201614.md) · [Part 12 →](part-012.md) · [Structured JSON](../../../sessions/63/63e6d91b840ce3cafd9e.json)
 
-## Round 289
-
-### Tool call
-
-_source line 6453 · 2026-05-25T11:12:39.334817+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "15",
-  "offset": "195"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "15",
-    "offset": "195"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6454 · 2026-05-25T11:12:39.335375+00:00_
-
-195	
-196	We identify five potential confounds (Appendix~\ref{app:threats}): checkpoint selection ($<$1\pp{}), evaluation sequence length (${\sim}$1.5\pp{}), preprocessing (${\sim}$8\pp{}; val-test distribution shift in Appendix~\ref{app:mutation_distribution}), \traj{} training regime, and \cwm{} scale/pretraining (primary limitation). Preprocessing and checkpoint interact, accounting for up to 7.68\pp{} variation within one model (Appendix~\ref{app:threats}). The 18--26\pp{} gap exceeds any single confound, but correlated confounds and limited seeds preclude definitive causal attribution. Holm-Bonferroni ($k{=}5$) confirms the two core claims (adjusted $p{=}0.015$ and $p{=}0.028$; Table~\ref{tab:holm}).
-197	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6455 · 2026-05-25T11:12:51.182298+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "old_string": "\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens, leading to format collapse under our ${\\leq}$8B LoRA protocol (53--74\\% unparseable; representative error examples in Appendix~\\ref{app:qualitative}).",
-  "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy, confirming default-assignment inflation.}\n\\label{fig:cwm_unparseable}\n\\end{figure}\n\n\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens (Figure~\\ref{fig:cwm_unparseable}), leading to format collapse under our ${\\leq}$8B LoRA protocol (53--74\\% unparseable; representative error examples in Appendix~\\ref{app:qualitative})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "old_string": "\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens, leading to format collapse under our ${\\leq}$8B LoRA protocol (53--74\\% unparseable; representative error examples in Appendix~\\ref{app:qualitative}).",
-    "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy, confirming default-assignment inflation.}\n\\label{fig:cwm_unparseable}\n\\end{figure}\n\n\\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\\sim}$5--15 tokens; repo-level outputs average ${\\sim}$477 tokens (Figure~\\ref{fig:cwm_unparseable}), leading to format collapse under our ${\\leq}$8B LoRA protocol (53--74\\% unparseable; representative error examples in Appendix~\\ref{app:qualitative})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6456 · 2026-05-25T11:12:51.183077+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6457 · 2026-05-25T11:12:59.232183+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
-  "old_string": "Figure~\\ref{fig:cwm_unparseable} summarises the unparseable rate contrast across complexity levels.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy, confirming default-assignment inflation.}\n\\label{fig:cwm_unparseable}\n\\end{figure}",
-  "new_string": "Figure~\\ref{fig:cwm_unparseable} (main text) summarises the unparseable rate contrast across complexity levels."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
-    "old_string": "Figure~\\ref{fig:cwm_unparseable} summarises the unparseable rate contrast across complexity levels.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}\n\\caption{\\cwm{} unparseable rate by complexity level. Function-level outputs (${\\sim}$5--15 tokens) yield 1.4\\% unparseable; repo-level outputs (${\\sim}$477 tokens) reach 53.7\\% (4B) and 73.8\\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy, confirming default-assignment inflation.}\n\\label{fig:cwm_unparseable}\n\\end{figure}",
-    "new_string": "Figure~\\ref{fig:cwm_unparseable} (main text) summarises the unparseable rate contrast across complexity levels."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6458 · 2026-05-25T11:12:59.333447+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6459 · 2026-05-25T11:13:04.160016+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdfinfo main.pdf | grep Pages",
-  "description": "Compile and check page count"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdfinfo main.pdf | grep Pages",
-    "description": "Compile and check page count"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6460 · 2026-05-25T11:13:06.271408+00:00_
-
-Pages:           24
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "elapsed_ms": 2111
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6461 · 2026-05-25T11:13:14.153123+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-  "pages": "6-9"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-    "pages": "6-9"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6462 · 2026-05-25T11:13:14.454558+00:00_
-
-PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf (745.4KB)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6463 · 2026-05-25T11:13:42.110890+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "30",
-  "offset": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "30",
-    "offset": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6464 · 2026-05-25T11:13:42.111451+00:00_
-
-80	
-81	\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\%) is 16.82\pp{} below fine-tuned \cls{} at 8B. Only \cls{} scales positively across both complexity levels; \traj{} shows negligible repo-level scaling (72.92\% at 4B, 73.61\% at 8B).
-82	
-83	\begin{table}[t]
-84	\centering
-85	\small
-86	\caption{Model-size scaling: accuracy (\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\Delta$: change from previous size. \cwm{} and \traj{}\textsuperscript{$\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \traj{}\textsuperscript{$\star$} evaluated on 1{,}032-sample subset; \cls{}/\cwm{} use the full 1{,}890-sample set. \textsuperscript{$\star$}Training configuration differs (\S\ref{sec:repo}).}
-87	\label{tab:scaling}
-88	\setlength{\tabcolsep}{3pt}
-89	\begin{tabular}{llccccc}
-90	\toprule
-91	\textbf{Method} & \textbf{Size} & \textbf{s42} & \textbf{s123} & \textbf{s456} & \textbf{Mean} & \textbf{$\Delta$} \\
-92	\midrule
-93	\multirow{3}{*}{\cls{}} & 4B & 87.83 & 89.52 & --- & \textbf{88.68} & --- \\
-94	 & 8B & \textbf{90.48} & 89.40 & --- & \textbf{89.94} & +1.27 \\
-95	 & 14B & 89.21 & \textbf{90.79} & 89.79 & \textbf{89.93 $\pm$ 0.80} & $-$0.01 \\
-96	\midrule
-97	\multirow{3}{*}{\cwm{}} & 4B & 87.51 & 87.20 & --- & \underline{87.36} & --- \\
-98	 & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\
-99	 & 14B & 89.26 & 88.99 & 90.26 & \underline{89.50 $\pm$ 0.67} & +2.17 \\
-100	\midrule
-101	\multirow{3}{*}{\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\
-102	 & 8B & 87.60 & 87.79 & --- & \underline{87.70} & +2.13 \\
-103	 & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\pm$ 0.77 & +1.16 \\
-104	\bottomrule
-105	\end{tabular}
-106	\end{table}
-107	
-108	
-109	\subsection{Function-Level Equivalence}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6465 · 2026-05-25T11:13:59.285816+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "old_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\subsection{Function-Level Equivalence}",
-  "new_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\n\\subsection{Function-Level Equivalence}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "old_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\subsection{Function-Level Equivalence}",
-    "new_string": "\\paragraph{Baseline scaling.} Prompting baselines remain well below fine-tuning: the best result (14B 3-shot, 73.12\\%) is 16.82\\pp{} below fine-tuned \\cls{} at 8B. Only \\cls{} scales positively across both complexity levels; \\traj{} shows negligible repo-level scaling (72.92\\% at 4B, 73.61\\% at 8B).\n\n\n\\subsection{Function-Level Equivalence}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6466 · 2026-05-25T11:13:59.336599+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6467 · 2026-05-25T11:14:04.509556+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "15",
-  "offset": "95"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "15",
-    "offset": "95"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6468 · 2026-05-25T11:14:04.510052+00:00_
-
-95	
-96	\subsection{Repo-Level: Complexity-Dependent Divergence}
-97	\label{sec:repo}
-98	
-99	Table~\ref{tab:repo_level} compares formulations at repository-level complexity. The following results are established under ${\leq}$8B LoRA; preliminary 14B evidence (\S\ref{sec:scaling}) suggests these gaps may narrow at larger scales. Variant-level comparisons ($n{=}48$) are exploratory due to limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\S\ref{sec:setup}); the test set has zero problem overlap with validation.
-100	
-101	\begin{table}[t]
-102	\centering
-103	\small
-104	\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \cls{}/\traj{}: mean $\pm$ std over 3 seeds; DeepSeek \cls{}: 2 seeds\textsuperscript{$\ddagger$}; DeepSeek \traj{}: 3 seeds; Qwen3-4B: seed 42. \cwm{}: 3 seeds (42/123/456).}
-105	\label{tab:repo_level}
-106	\resizebox{\columnwidth}{!}{%
-107	\setlength{\tabcolsep}{4pt}
-108	\begin{tabular}{lcccc}
-109	\toprule
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6469 · 2026-05-25T11:14:08.325706+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "10",
-  "offset": "85"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "10",
-    "offset": "85"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6470 · 2026-05-25T11:14:08.376395+00:00_
-
-85	\label{sec:equivalence}
-86	
-87	We test pairwise equivalence on 523 variant-level instances across five seeds.\footnote{Seeds 789/0 use NF4 inference; the remaining three use bfloat16. Restricting to bfloat16 only: \cls{}--\cwm{} remains significant ($p{<}0.05$); \cls{}--\traj{} yields $p{=}0.128$.} Our Smallest Effect Size of Interest (SESOI) threshold of $\pm$2\pp{}~\cite{lakens2017,wellek2010} is domain-motivated but not pre-registered: at 85--88\% accuracy, 2\pp{} corresponds to ${\sim}$2--3 problems out of 114, below practitioner-relevant differences, and is consistent with between-seed variation (0.37--0.97\pp{} std). Within-problem predictions are correlated (ICC $= 0.191$, design effect [DEFF] $= 3.97$~\cite{moulton1990}); confidence intervals use clustered bootstrap (\S\ref{sec:setup}). Sensitivity analysis shows \cls{}--\cwm{} equivalence is robust across $\pm$1.5--3\pp{} margins (minimum $\pm$1.52\pp{}); \cls{}--\traj{} equivalence is margin-sensitive ($\pm$1.5\pp{}: $p{=}0.068$; Table~\ref{tab:tost_sensitivity}).
-88	
-89	\paragraph{\cls{}--\cwm{} equivalence.} The pooled gap is 1.24\pp{} (88.43\%--87.19\%); TOST confirms equivalence at $p = 0.007$ ($\pm$2\pp{} margin), surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.028$; Table~\ref{tab:holm}). Equivalence holds at margins as tight as $\pm$1.52\pp{} (Table~\ref{tab:tost_sensitivity}). On DeepSeek-Coder, the \cls{}--\cwm{} gap of 0.02\pp{} is consistent with equivalence but underpowered (2 seeds).
-90	
-91	\paragraph{\cls{}--\traj{} equivalence.} The pooled gap is $-$0.45\pp{} (95\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\pm$2\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\ref{tab:holm}). The DeepSeek \cls{}--\traj{} gap (2.69\pp{}) exceeds the $\pm$2\pp{} margin; \traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \S\ref{sec:repo}). Per-test classificatio
-…[truncated 1050 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6471 · 2026-05-25T11:14:32.220770+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "old_string": "\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \\S\\ref{sec:repo}). Per-test classification provides diagnostic information at no accuracy cost, paralleling process supervision~\\cite{lightman2023letsverify}.\n\n\\paragraph{Statistical power.}",
-  "new_string": "\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \\S\\ref{sec:repo}). Per-test classification provides diagnostic information at no accuracy cost, paralleling process supervision~\\cite{lightman2023letsverify}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Statistical power.}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "old_string": "\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \\S\\ref{sec:repo}). Per-test classification provides diagnostic information at no accuracy cost, paralleling process supervision~\\cite{lightman2023letsverify}.\n\n\\paragraph{Statistical power.}",
-    "new_string": "\\paragraph{\\cls{}--\\traj{} equivalence.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\\pm$2\\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\\ref{tab:holm}). The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent. This holds under different training recipes (data volume and label granularity; \\S\\ref{sec:repo}). Per-test classification provides diagnostic information at no accuracy cost, paralleling process supervision~\\cite{lightman2023letsverify}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B, 8B, and 14B (Qwen3). Seeds 42/123 (4B/8B), seeds 42/123/456 (14B). All bfloat16 inference. $\\Delta$: change from previous size. \\cwm{} and \\traj{}\\textsuperscript{$\\star$} use $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B). \\traj{}\\textsuperscript{$\\star$} evaluated on 1{,}032-sample subset; \\cls{}/\\cwm{} use the full 1{,}890-sample set. \\textsuperscript{$\\star$}Training configuration differs (\\S\\ref{sec:repo}).}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{$\\Delta$} \\\\\n\\midrule\n\\multirow{3}{*}{\\cls{}} & 4B & 87.83 & 89.52 & --- & \\textbf{88.68} & --- \\\\\n & 8B & \\textbf{90.48} & 89.40 & --- & \\textbf{89.94} & +1.27 \\\\\n & 14B & 89.21 & \\textbf{90.79} & 89.79 & \\textbf{89.93 $\\pm$ 0.80} & $-$0.01 \\\\\n\\midrule\n\\multirow{3}{*}{\\cwm{}} & 4B & 87.51 & 87.20 & --- & \\underline{87.36} & --- \\\\\n & 8B & 87.67 & 86.98 & --- & 87.33 & $-$0.03 \\\\\n & 14B & 89.26 & 88.99 & 90.26 & \\underline{89.50 $\\pm$ 0.67} & +2.17 \\\\\n\\midrule\n\\multirow{3}{*}{\\traj{}} & 4B & 85.66 & 85.47 & --- & 85.57 & --- \\\\\n & 8B & 87.60 & 87.79 & --- & \\underline{87.70} & +2.13 \\\\\n & 14B & 89.73 & 88.57 & 88.28 & 88.86 $\\pm$ 0.77 & +1.16 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Statistical power.}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6472 · 2026-05-25T11:14:32.271723+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6473 · 2026-05-25T11:14:37.394538+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdfinfo main.pdf | grep Pages",
-  "description": "Compile and check page count"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdfinfo main.pdf | grep Pages",
-    "description": "Compile and check page count"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6474 · 2026-05-25T11:14:39.503463+00:00_
-
-Pages:           24
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "elapsed_ms": 2108
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6475 · 2026-05-25T11:14:43.469905+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-  "pages": "6-7"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-    "pages": "6-7"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6476 · 2026-05-25T11:14:43.620978+00:00_
-
-PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf (745.5KB)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6477 · 2026-05-25T11:15:00.709105+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-  "pages": "8-9"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-    "pages": "8-9"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6478 · 2026-05-25T11:15:00.910344+00:00_
-
-PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf (745.5KB)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6479 · 2026-05-25T11:15:15.895068+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && git add docs/paper/experiments.tex docs/paper/appendix.tex && git commit -m \"$(cat <<'EOF'\nImprove page 6 layout and promote CWM unparseable figure to main text\n\n- Move Table 2 source position so LaTeX places it in right column\n  of page 6 (Figure 2 left, Table 2 right)\n- Promote fig_cwm_unparseable from Appendix N to main text as\n  Figure 3, placed near \"Why does generation degrade\" discussion\n- Update appendix to reference main-text Figure 3 instead of\n  duplicating the figure\n- Main text remains ≤ 8 pages (24 total)\n\nCo-Authored-By: Claude Opus 4.6 &lt;noreply@anthropic.com>\nEOF\n)\"",
-  "description": "Commit layout and figure changes"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier && git add docs/paper/experiments.tex docs/paper/appendix.tex && git commit -m \"$(cat <<'EOF'\nImprove page 6 layout and promote CWM unparseable figure to main text\n\n- Move Table 2 source position so LaTeX places it in right column\n  of page 6 (Figure 2 left, Table 2 right)\n- Promote fig_cwm_unparseable from Appendix N to main text as\n  Figure 3, placed near \"Why does generation degrade\" discussion\n- Update appendix to reference main-text Figure 3 instead of\n  duplicating the figure\n- Main text remains ≤ 8 pages (24 total)\n\nCo-Authored-By: Claude Opus 4.6 &lt;noreply@anthropic.com>\nEOF\n)\"",
-    "description": "Commit layout and figure changes"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6480 · 2026-05-25T11:15:15.995988+00:00_
-
-[master 77db5a4] Improve page 6 layout and promote CWM unparseable figure to main text
- Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly. Run the
-following command and follow the instructions in your editor to edit
-your configuration file:
-
-    git config --global --edit
-
-After doing this, you may fix the identity used for this commit with:
-
-    git commit --amend --reset-author
-
- 2 files changed, 25 insertions(+), 25 deletions(-)
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Bash",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6481 · 2026-05-25T11:15:30.204702+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**第 6 页布局优化 + 附录提图 — 完成**\n\n1. **第 6 页布局**：Figure 2 左栏顶部，Table 2 右栏顶部 ✅\n   - 将 Table 2 源码位置移到 §4.4 内部（CLS-TRAJ equivalence 段后），LaTeX 自动放入右栏\n\n2. **Figure 3 提入正文**：CWM unparseable rate 图（原附录 §N）→ 正文 §4.6 \"Why does generation degrade\" 段前\n   - 直观展示 format collapse（function 1.4% → repo 4B 53.7% → repo 8B 73.8%）\n   - 附录 §N 改为引用 \"Figure 3 (main text)\"，无重复图\n   - 正文增加 \"(Figure~3)\" 引用\n\n3. **页数**：正文 ≤ 8 页确认（Conclusion + Limitations 完整在 page 8，References 从 page 9 开始）\n\nCommit: 77db5a4",
-  "project": "exec-sim-repair-verifier"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**第 6 页布局优化 + 附录提图 — 完成**\n\n1. **第 6 页布局**：Figure 2 左栏顶部，Table 2 右栏顶部 ✅\n   - 将 Table 2 源码位置移到 §4.4 内部（CLS-TRAJ equivalence 段后），LaTeX 自动放入右栏\n\n2. **Figure 3 提入正文**：CWM unparseable rate 图（原附录 §N）→ 正文 §4.6 \"Why does generation degrade\" 段前\n   - 直观展示 format collapse（function 1.4% → repo 4B 53.7% → repo 8B 73.8%）\n   - 附录 §N 改为引用 \"Figure 3 (main text)\"，无重复图\n   - 正文增加 \"(Figure~3)\" 引用\n\n3. **页数**：正文 ≤ 8 页确认（Conclusion + Limitations 完整在 page 8，References 从 page 9 开始）\n\nCommit: 77db5a4",
-    "project": "exec-sim-repair-verifier"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6482 · 2026-05-25T11:15:33.977073+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3772
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 6483 · 2026-05-25T11:15:37.575828+00:00_
-
-Everything looks correct:
-
-- **Page 6**: Figure 2 left column, Table 2 right column ✅
-- **Page 8**: Figure 3 (CWM unparseable) at top left, Conclusion on right column, Limitations fits entirely on page 8 left column (ending at line 624) ✅
-- **Page 9**: References start, main text ≤ 8 pages ✅
-- **24 total pages** (same as before)
-
-Now commit and report.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
-}
-```
-
-</details>
-
----
-
-
 ## Round 290
 
-## Round 290
-
-36 recorded events
-
-
-### User
-
-_source line 6484 · 2026-05-25T11:19:04.987686+00:00_
-
-[Director 指令] [Director 指令] **紧急：正文超页，压缩第 4 章（Experiments）**
-
-用户反馈正文超了 8 页。需要压缩 `experiments.tex`（§4），释放空间让 Conclusion + Limitations 回到第 8 页内。
-
-压缩策略（按优先级）：
-1. **§4.1 Experimental Setup** — 最容易压缩。Statistics 段（TOST/bootstrap 的方法论描述）可以精简，详细说明已在附录。Models and training 段也可以删冗余细节（附录有完整超参表）
-2. **§4.2 Function-Level Results** — 可以删掉逐个对比的描述，只保留关键结论
-3. **§4.4 Function-Level Equivalence** — CLS-CWM 和 CLS-TRAJ 的详细 p-value 讨论可精简
-4. **§4.5 Repo-Level Divergence** — 已经很紧凑，尽量不动
-5. **§4.6 Analysis / §4.7 Threats** — 可以小幅压缩
-
-目标：压缩约 0.3-0.5 页，确保 Conclusion 最后一行 + Limitations 全在第 8 页内。不要删有实质信息的内容，删的是冗余描述和已有附录支撑的重复说明。
-
-**编译验证第 8-9 页边界 + commit。**
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 6485 · 2026-05-25T11:19:15.706181+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-  "pages": "8-9"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf",
-    "pages": "8-9"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6486 · 2026-05-25T11:19:15.910233+00:00_
-
-PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.pdf (745.5KB)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 204
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6487 · 2026-05-25T11:19:43.368154+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "20",
-  "offset": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "20",
-    "offset": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6488 · 2026-05-25T11:19:43.469826+00:00_
-
-5	
-6	\subsection{Experimental Setup}
-7	\label{sec:setup}
-8	
-9	\paragraph{Datasets.}
-10	\emph{Function-level}: mutated variants from HumanEval~\cite{chen2021humaneval} and MBPP~\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\approx$ 52:48, majority baseline 51.75\%).
-11	\emph{Repo-level}: per-test instances from SWE-bench Verified~\cite{chowdhury2024swebenchverified} mutants. ${\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\%). Val-based checkpoint selection follows standard practice~\cite{jimenez2024swebench}; runs with NaN validation loss (due to truncated targets exceeding 2,048-token limits) default to the final epoch checkpoint (Appendix~\ref{app:hyperparams}). Qwen3 \cwm{} runs show early overfitting (best at ${\sim}$6\% of training); checkpoint details in Appendix~\ref{app:hyperparams}.
-12	
-13	\paragraph{Models and training.}
-14	We fine-tune Qwen3-4B and Qwen3-8B~\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \S\ref{sec:equivalence}). As a cross-model consistency check, we additionally fine-tune DeepSeek-Coder-6.7B~\cite{guo2024deepseekcoder} with identical LoRA configuration (2 seeds each for \cls{} and \cwm{}). Our \cwm{} baseline is a LoRA fine-tuned variant for matched comparison, not a reproduction of the 32B Code World Model~\cite{meta2025cwm}. \traj{} uses variant-level rather than per-test labels (8,052 vs.\ 15,290 training instances, but covering $2.24\times$ more unique code variants); the comparison is confounded by both label granularity and data composition (\S\ref{sec:repo}). Rep
-…[truncated 1894 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6489 · 2026-05-25T11:19:59.632356+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "20",
-  "offset": "60"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "20",
-    "offset": "60"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6490 · 2026-05-25T11:19:59.734562+00:00_
-
-60	\end{table}
-61	
-62	All three formulations achieve comparable accuracy on Qwen3-4B: \cls{} 88.43\% ($\pm$0.78), \cwm{} 87.19\% ($\pm$0.37), \traj{} 86.30\% ($\pm$0.97). DeepSeek-Coder-6.7B shows: \cls{} 86.85\%, \cwm{} 86.83\%, \traj{} 84.16\%. The \cls{}--\cwm{} gap (0.02--1.24\pp{}) is within seed noise in both families. However, the \cls{}--\traj{} per-test gap is 2.13\pp{} on Qwen3-4B and 2.69\pp{} on DeepSeek-Coder; the latter clearly exceeds the $\pm$2\pp{} equivalence margin (\S\ref{sec:equivalence}). \cls{} and \cwm{} are robustly equivalent; \traj{} parity is model-contingent. Zero-shot baselines (Tables~\ref{tab:main_results} and~\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\to$fine-tuned gains of 35--36\pp{}) and that formulation choice matters only at repo level (\cls{} outperforms \cwm{} by 18--26\pp{}).
-63	
-64	
-65	\subsection{Scaling Behavior}
-66	\label{sec:scaling}
-67	
-68	Beyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\ref{tab:scaling} compares all three formulations at 4B, 8B, and 14B. The 4B and 8B rows use seeds 42 and 123; the 14B row uses seeds 42, 123, and 456. All rows use bfloat16 inference.
-69	
-70	\begin{figure}[t]
-71	\centering
-72	\includegraphics[width=\columnwidth]{figures/paper/figure2_v3.pdf}
-73	\caption{Function-level accuracy scaling (4B--14B). CLS and CWM accuracy with shaded gap region; $y$-axis does not start at zero. The \cls{}--\cwm{} gap shows a non-monotonic pattern: 1.32\pp{} at 4B, widening to 2.62\pp{} at 8B, then narrowing to 0.43\pp{} at 14B (3 seeds).}
-74	\label{fig:scaling_gap}
-75	\end{figure}
-76	
-77	\cls{} and \traj{} both scale positively from 4B to 8B (+1.27\pp{} and +2.13\pp{} respectively), while \cwm{} remains flat ($-$0.03\pp{}). At 8B, the ranking is \cls{} (89.94) $>$ \traj{} (87.70) $>$ \cwm{} (87.33). The \cls{}--\cwm{} gap widens from 1.32\pp{} at 4B to 2.62\pp{} at 8B (Figure~\ref{fig:scaling_gap}); clustered b
-…[truncated 1007 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 102
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6491 · 2026-05-25T11:20:05.468357+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "20",
-  "offset": "83"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "20",
-    "offset": "83"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6492 · 2026-05-25T11:20:05.519123+00:00_
-
-83	
-84	\subsection{Function-Level Equivalence}
-85	\label{sec:equivalence}
-86	
-87	We test pairwise equivalence on 523 variant-level instances across five seeds.\footnote{Seeds 789/0 use NF4 inference; the remaining three use bfloat16. Restricting to bfloat16 only: \cls{}--\cwm{} remains significant ($p{<}0.05$); \cls{}--\traj{} yields $p{=}0.128$.} Our Smallest Effect Size of Interest (SESOI) threshold of $\pm$2\pp{}~\cite{lakens2017,wellek2010} is domain-motivated but not pre-registered: at 85--88\% accuracy, 2\pp{} corresponds to ${\sim}$2--3 problems out of 114, below practitioner-relevant differences, and is consistent with between-seed variation (0.37--0.97\pp{} std). Within-problem predictions are correlated (ICC $= 0.191$, design effect [DEFF] $= 3.97$~\cite{moulton1990}); confidence intervals use clustered bootstrap (\S\ref{sec:setup}). Sensitivity analysis shows \cls{}--\cwm{} equivalence is robust across $\pm$1.5--3\pp{} margins (minimum $\pm$1.52\pp{}); \cls{}--\traj{} equivalence is margin-sensitive ($\pm$1.5\pp{}: $p{=}0.068$; Table~\ref{tab:tost_sensitivity}).
-88	
-89	\paragraph{\cls{}--\cwm{} equivalence.} The pooled gap is 1.24\pp{} (88.43\%--87.19\%); TOST confirms equivalence at $p = 0.007$ ($\pm$2\pp{} margin), surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.028$; Table~\ref{tab:holm}). Equivalence holds at margins as tight as $\pm$1.52\pp{} (Table~\ref{tab:tost_sensitivity}). On DeepSeek-Coder, the \cls{}--\cwm{} gap of 0.02\pp{} is consistent with equivalence but underpowered (2 seeds).
-90	
-91	\paragraph{\cls{}--\traj{} equivalence.} The pooled gap is $-$0.45\pp{} (95\% CI [$-$1.71, +0.84]); TOST yields $p = 0.025$ ($\pm$2\pp{}), nominally significant but not surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.075$; Table~\ref{tab:holm}). The DeepSeek \cls{}--\traj{} gap (2.69\pp{}) exceeds the $\pm$2\pp{} margin; \traj{} parity is model-dependent. This holds under different training recipes (data volume and label granula
-…[truncated 911 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6493 · 2026-05-25T11:20:14.358981+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-  "limit": "20",
-  "offset": "115"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
-    "limit": "20",
-    "offset": "115"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6494 · 2026-05-25T11:20:14.409813+00:00_
-
-115	\end{tabular}
-116	\end{table}
-117	
-118	\paragraph{Statistical power.} With $n_{\text{eff}} \approx 86$ after clustering, TOST power is ${\sim}$0.3~\cite{cohen1988}, a 70\% probability of failing to confirm equivalence even if the true difference is moderate. The \cls{}--\cwm{} equivalence ($p{=}0.007$) is robust to this limitation; the \cls{}--\traj{} inconclusive result ($p{=}0.025$, adjusted $p{=}0.075$) may reflect insufficient power rather than a genuine difference (a minimum $n_{\text{eff}} \approx 350$ would be needed for ${\geq}$0.8 power at $\pm$2\pp{}). A Bayesian ROPE analysis corroborates: $P(\text{ROPE}){=}0.975$ for \cls{}--\cwm{} and $P(\text{ROPE}){=}0.970$ at variant level for \cls{}--\traj{} (Appendix~\ref{app:bayesian_rope}). At per-test level, \cls{}--\traj{} $P(\text{ROPE}){=}0.542$ (inconclusive), reflecting aggregation effects. 14B scaling data corroborates: the \cls{}--\traj{} gap narrows to 1.07\pp{} (\S\ref{sec:scaling}).
-119	
-120	
-121	\subsection{Repo-Level: Complexity-Dependent Divergence}
-122	\label{sec:repo}
-123	
-124	Table~\ref{tab:repo_level} compares formulations at repository-level complexity. The following results are established under ${\leq}$8B LoRA; preliminary 14B evidence (\S\ref{sec:scaling}) suggests these gaps may narrow at larger scales. Variant-level comparisons ($n{=}48$) are exploratory due to limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\S\ref{sec:setup}); the test set has zero problem overlap with validation.
-125	
-126	\begin{table}[t]
-127	\centering
-128	\small
-129	\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \cls{}/\traj{}: mean $\pm$ std over 3 seeds; DeepSeek \cls{}: 2 seeds\textsuperscript{$\ddagger$}; DeepSeek \traj{}: 3 seeds; Qwen3-4B: seed 42. \cwm{}: 3 seeds (42/123/456).}
-130	\label{tab:repo_level}
-131	\resizebox{\columnwidth}{!}{%
-132	\setlength{\t
-…[truncated 54 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6495 · 2026-05-25T11:21:14.796185+00:00_
+_source line 6473 · 2026-05-25T11:21:14.796185+00:00_
 
 called Edit
 
@@ -1432,7 +48,7 @@ called Edit
 
 ### Tool result
 
-_source line 6496 · 2026-05-25T11:21:14.898243+00:00_
+_source line 6474 · 2026-05-25T11:21:14.898243+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -1454,7 +70,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6497 · 2026-05-25T11:23:14.048847+00:00_
+_source line 6475 · 2026-05-25T11:23:14.048847+00:00_
 
 called Read
 
@@ -1488,7 +104,7 @@ called Read
 
 ### Tool result
 
-_source line 6498 · 2026-05-25T11:23:14.202406+00:00_
+_source line 6476 · 2026-05-25T11:23:14.202406+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -1527,7 +143,7 @@ _source line 6498 · 2026-05-25T11:23:14.202406+00:00_
 
 ### Tool call
 
-_source line 6499 · 2026-05-25T11:23:37.037867+00:00_
+_source line 6477 · 2026-05-25T11:23:37.037867+00:00_
 
 called Edit
 
@@ -1567,7 +183,7 @@ called Edit
 
 ### Tool result
 
-_source line 6500 · 2026-05-25T11:23:37.089013+00:00_
+_source line 6478 · 2026-05-25T11:23:37.089013+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -1589,7 +205,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6501 · 2026-05-25T11:23:50.195927+00:00_
+_source line 6479 · 2026-05-25T11:23:50.195927+00:00_
 
 called Edit
 
@@ -1629,7 +245,7 @@ called Edit
 
 ### Tool result
 
-_source line 6502 · 2026-05-25T11:23:50.196649+00:00_
+_source line 6480 · 2026-05-25T11:23:50.196649+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -1651,7 +267,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6503 · 2026-05-25T11:24:03.429752+00:00_
+_source line 6481 · 2026-05-25T11:24:03.429752+00:00_
 
 called Edit
 
@@ -1691,7 +307,7 @@ called Edit
 
 ### Tool result
 
-_source line 6504 · 2026-05-25T11:24:03.480719+00:00_
+_source line 6482 · 2026-05-25T11:24:03.480719+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -1713,7 +329,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6505 · 2026-05-25T11:24:07.146008+00:00_
+_source line 6483 · 2026-05-25T11:24:07.146008+00:00_
 
 called Bash
 
@@ -1749,7 +365,7 @@ called Bash
 
 ### Tool result
 
-_source line 6506 · 2026-05-25T11:24:09.906430+00:00_
+_source line 6484 · 2026-05-25T11:24:09.906430+00:00_
 
 onts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
 mbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
@@ -1790,7 +406,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6507 · 2026-05-25T11:24:14.929484+00:00_
+_source line 6485 · 2026-05-25T11:24:14.929484+00:00_
 
 called Bash
 
@@ -1824,7 +440,7 @@ called Bash
 
 ### Tool result
 
-_source line 6508 · 2026-05-25T11:24:15.231059+00:00_
+_source line 6486 · 2026-05-25T11:24:15.231059+00:00_
 
 Page 1: ends with "078"
 Page 2: ends with "174"
@@ -1856,7 +472,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6509 · 2026-05-25T11:24:24.138313+00:00_
+_source line 6487 · 2026-05-25T11:24:24.138313+00:00_
 
 called Bash
 
@@ -1890,7 +506,7 @@ called Bash
 
 ### Tool result
 
-_source line 6510 · 2026-05-25T11:24:24.440008+00:00_
+_source line 6488 · 2026-05-25T11:24:24.440008+00:00_
 
 === PAGE 8 (last 30 lines) ===
 526       tion achieves 90.63% (+2.80 pp; 95% CI [89.3%,                                        different format compliance rates. Training data         574
@@ -1929,7 +545,7 @@ _source line 6510 · 2026-05-25T11:24:24.440008+00:00_
 
 ### Tool call
 
-_source line 6511 · 2026-05-25T11:24:29.966692+00:00_
+_source line 6489 · 2026-05-25T11:24:29.966692+00:00_
 
 called Bash
 
@@ -1963,7 +579,7 @@ called Bash
 
 ### Tool result
 
-_source line 6512 · 2026-05-25T11:24:30.017738+00:00_
+_source line 6490 · 2026-05-25T11:24:30.017738+00:00_
 
 diff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex
 index c7ecb4f..07e3d0e 100644
@@ -1994,7 +610,7 @@ index c7ecb4f..07e3d0e 100644
 
 ### Tool call
 
-_source line 6513 · 2026-05-25T11:24:38.272999+00:00_
+_source line 6491 · 2026-05-25T11:24:38.272999+00:00_
 
 called Bash
 
@@ -2028,7 +644,7 @@ called Bash
 
 ### Tool result
 
-_source line 6514 · 2026-05-25T11:24:38.373926+00:00_
+_source line 6492 · 2026-05-25T11:24:38.373926+00:00_
 
 [master f1ab312] Compress §4 Experiments to fit main text within 8-page limit
  Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
@@ -2065,7 +681,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6515 · 2026-05-25T11:24:44.957705+00:00_
+_source line 6493 · 2026-05-25T11:24:44.957705+00:00_
 
 called ToolSearch
 
@@ -2101,7 +717,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6516 · 2026-05-25T11:24:45.008987+00:00_
+_source line 6494 · 2026-05-25T11:24:45.008987+00:00_
 
 
 
@@ -2123,7 +739,7 @@ _source line 6516 · 2026-05-25T11:24:45.008987+00:00_
 
 ### Tool call
 
-_source line 6517 · 2026-05-25T11:24:52.845976+00:00_
+_source line 6495 · 2026-05-25T11:24:52.845976+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2159,7 +775,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6518 · 2026-05-25T11:24:57.013248+00:00_
+_source line 6496 · 2026-05-25T11:24:57.013248+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2181,7 +797,7 @@ _source line 6518 · 2026-05-25T11:24:57.013248+00:00_
 
 ### Assistant
 
-_source line 6519 · 2026-05-25T11:24:59.667549+00:00_
+_source line 6497 · 2026-05-25T11:24:59.667549+00:00_
 
 已向 Director 汇报。§4 压缩完成，主文 8 页限制满足。
 
@@ -2208,7 +824,7 @@ _source line 6519 · 2026-05-25T11:24:59.667549+00:00_
 
 ### User
 
-_source line 6520 · 2026-05-25T11:27:57.529910+00:00_
+_source line 6498 · 2026-05-25T11:27:57.529910+00:00_
 
 [Director 指令] [Director 指令] **正文第 8 页未填满，从附录提一张表或图**
 
@@ -2247,7 +863,7 @@ _source line 6520 · 2026-05-25T11:27:57.529910+00:00_
 
 ### Tool call
 
-_source line 6521 · 2026-05-25T11:28:10.209514+00:00_
+_source line 6499 · 2026-05-25T11:28:10.209514+00:00_
 
 called Bash
 
@@ -2281,7 +897,7 @@ called Bash
 
 ### Tool result
 
-_source line 6522 · 2026-05-25T11:28:10.612225+00:00_
+_source line 6500 · 2026-05-25T11:28:10.612225+00:00_
 
 Page 8 total lines: 76
 === PAGE 8 (last 40 lines) ===
@@ -2319,7 +935,7 @@ Page 8 total lines: 76
 
 ### Tool call
 
-_source line 6523 · 2026-05-25T11:28:18.946978+00:00_
+_source line 6501 · 2026-05-25T11:28:18.946978+00:00_
 
 called Grep
 
@@ -2359,7 +975,7 @@ called Grep
 
 ### Tool result
 
-_source line 6524 · 2026-05-25T11:28:18.947571+00:00_
+_source line 6502 · 2026-05-25T11:28:18.947571+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:17:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:89:\paragraph{\cls{}--\cwm{} equivalence.} The pooled gap is 1.24\pp{} (88.43\%--87.19\%); TOST confirms equivalence at $p = 0.007$ ($\pm$2\pp{} margin), surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.028$; Table~\ref{tab:holm}). Equivalence holds at margins as tight as $\pm$1.52\pp{} (Table~\ref{tab:tost_sensitivity}). On DeepSeek-Coder, the \cls{}--\cwm{} gap of 0.02\pp{} is consistent with equivalence but underpowered (2 seeds).
@@ -2391,7 +1007,7 @@ _source line 6524 · 2026-05-25T11:28:18.947571+00:00_
 
 ### Tool call
 
-_source line 6525 · 2026-05-25T11:28:22.711980+00:00_
+_source line 6503 · 2026-05-25T11:28:22.711980+00:00_
 
 called Read
 
@@ -2429,7 +1045,7 @@ called Read
 
 ### Tool result
 
-_source line 6526 · 2026-05-25T11:28:22.814229+00:00_
+_source line 6504 · 2026-05-25T11:28:22.814229+00:00_
 
 497	
 498	
@@ -2484,7 +1100,7 @@ _source line 6526 · 2026-05-25T11:28:22.814229+00:00_
 
 ### Tool call
 
-_source line 6527 · 2026-05-25T11:28:30.545006+00:00_
+_source line 6505 · 2026-05-25T11:28:30.545006+00:00_
 
 called Read
 
@@ -2522,7 +1138,7 @@ called Read
 
 ### Tool result
 
-_source line 6528 · 2026-05-25T11:28:30.595730+00:00_
+_source line 6506 · 2026-05-25T11:28:30.595730+00:00_
 
 440	5.0 & $\ll$0.001 & Yes \\
 441	\bottomrule
@@ -2562,7 +1178,7 @@ _source line 6528 · 2026-05-25T11:28:30.595730+00:00_
 
 ### Tool call
 
-_source line 6529 · 2026-05-25T11:28:36.318256+00:00_
+_source line 6507 · 2026-05-25T11:28:36.318256+00:00_
 
 called Read
 
@@ -2600,7 +1216,7 @@ called Read
 
 ### Tool result
 
-_source line 6530 · 2026-05-25T11:28:36.470019+00:00_
+_source line 6508 · 2026-05-25T11:28:36.470019+00:00_
 
 25	\midrule
 26	\textbf{All} & 100.0 & --- & \textbf{10.93} & 100.0 \\
@@ -2639,7 +1255,7 @@ _source line 6530 · 2026-05-25T11:28:36.470019+00:00_
 
 ### Tool call
 
-_source line 6531 · 2026-05-25T11:28:44.805314+00:00_
+_source line 6509 · 2026-05-25T11:28:44.805314+00:00_
 
 called Grep
 
@@ -2679,7 +1295,7 @@ called Grep
 
 ### Tool result
 
-_source line 6532 · 2026-05-25T11:28:44.855939+00:00_
+_source line 6510 · 2026-05-25T11:28:44.855939+00:00_
 
 17:[Omitted long matching line]
 89:\paragraph{\cls{}--\cwm{} equivalence.} The pooled gap is 1.24\pp{} (88.43\%--87.19\%); TOST confirms equivalence at $p = 0.007$ ($\pm$2\pp{} margin), surviving Holm-Bonferroni correction ($k{=}5$, adjusted $p{=}0.028$; Table~\ref{tab:holm}). Equivalence holds at margins as tight as $\pm$1.52\pp{} (Table~\ref{tab:tost_sensitivity}). On DeepSeek-Coder, the \cls{}--\cwm{} gap of 0.02\pp{} is consistent with equivalence but underpowered (2 seeds).
@@ -2704,7 +1320,7 @@ _source line 6532 · 2026-05-25T11:28:44.855939+00:00_
 
 ### Tool call
 
-_source line 6533 · 2026-05-25T11:28:49.029436+00:00_
+_source line 6511 · 2026-05-25T11:28:49.029436+00:00_
 
 called Read
 
@@ -2742,7 +1358,7 @@ called Read
 
 ### Tool result
 
-_source line 6534 · 2026-05-25T11:28:49.130211+00:00_
+_source line 6512 · 2026-05-25T11:28:49.130211+00:00_
 
 195	
 196	\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\sim}$5--15 tokens; repo-level outputs average ${\sim}$477 tokens (Figure~\ref{fig:cwm_unparseable}), leading to format collapse under our ${\leq}$8B LoRA protocol (53--74\% unparseable; representative error examples in Appendix~\ref{app:qualitative}). Even parseable outputs achieve only 38--43\%, below majority; a model accidentally trained on CLS-format data achieves 86.05\% with 0\% unparseable, confirming the degradation stems from output format complexity, not task difficulty (Appendix~\ref{app:extended_analysis}(c)). Four targeted interventions (doubling LoRA rank, majority voting [$k{=}5$], relaxed matching, and scaling to 8B) all fail to close this gap (Appendix~\ref{app:extended_analysis}(g)); checkpoint selection explains $<$1\pp{} (Appendix~\ref{app:cwm_convergence}). \cls{} achieves 217$\times$ higher throughput (1 vs.\ avg 477 output tokens; Appendix~\ref{app:extended_analysis}(i)).
@@ -2773,7 +1389,7 @@ _source line 6534 · 2026-05-25T11:28:49.130211+00:00_
 
 ### Tool call
 
-_source line 6535 · 2026-05-25T11:29:10.013516+00:00_
+_source line 6513 · 2026-05-25T11:29:10.013516+00:00_
 
 called Edit
 
@@ -2813,7 +1429,7 @@ called Edit
 
 ### Tool result
 
-_source line 6536 · 2026-05-25T11:29:10.064465+00:00_
+_source line 6514 · 2026-05-25T11:29:10.064465+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -2835,7 +1451,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6537 · 2026-05-25T11:29:20.155603+00:00_
+_source line 6515 · 2026-05-25T11:29:20.155603+00:00_
 
 called Edit
 
@@ -2875,7 +1491,7 @@ called Edit
 
 ### Tool result
 
-_source line 6538 · 2026-05-25T11:29:20.206740+00:00_
+_source line 6516 · 2026-05-25T11:29:20.206740+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex has been updated successfully.
 
@@ -2897,7 +1513,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6539 · 2026-05-25T11:29:23.670573+00:00_
+_source line 6517 · 2026-05-25T11:29:23.670573+00:00_
 
 called Bash
 
@@ -2933,7 +1549,7 @@ called Bash
 
 ### Tool result
 
-_source line 6540 · 2026-05-25T11:29:26.130288+00:00_
+_source line 6518 · 2026-05-25T11:29:26.130288+00:00_
 
 Latexmk: Examining 'main.fls'
 Latexmk: Examining 'main.log'
@@ -2964,7 +1580,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6541 · 2026-05-25T11:29:33.792262+00:00_
+_source line 6519 · 2026-05-25T11:29:33.792262+00:00_
 
 called Bash
 
@@ -2998,7 +1614,7 @@ called Bash
 
 ### Tool result
 
-_source line 6542 · 2026-05-25T11:29:34.144264+00:00_
+_source line 6520 · 2026-05-25T11:29:34.144264+00:00_
 
 === PAGE 8 (last 35 lines) ===
 525       gest potential for routing. An oracle combina-
@@ -3038,7 +1654,7 @@ _source line 6542 · 2026-05-25T11:29:34.144264+00:00_
 
 ### Tool call
 
-_source line 6543 · 2026-05-25T11:29:49.002508+00:00_
+_source line 6521 · 2026-05-25T11:29:49.002508+00:00_
 
 called Bash
 
@@ -3072,7 +1688,7 @@ called Bash
 
 ### Tool result
 
-_source line 6544 · 2026-05-25T11:29:49.305031+00:00_
+_source line 6522 · 2026-05-25T11:29:49.305031+00:00_
 
 Holm table found on page 8
   Table 5: Holm-Bonferroni correction for primary com-
@@ -3106,7 +1722,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6545 · 2026-05-25T11:29:56.938715+00:00_
+_source line 6523 · 2026-05-25T11:29:56.938715+00:00_
 
 called Bash
 
@@ -3140,7 +1756,7 @@ called Bash
 
 ### Tool result
 
-_source line 6546 · 2026-05-25T11:29:57.190136+00:00_
+_source line 6524 · 2026-05-25T11:29:57.190136+00:00_
 
 === PAGE 8 RIGHT COLUMN ===
 m-
@@ -3202,7 +1818,7 @@ is formulation-inherent or capacity-contingent re-
 
 ### Tool call
 
-_source line 6547 · 2026-05-25T11:30:14.544600+00:00_
+_source line 6525 · 2026-05-25T11:30:14.544600+00:00_
 
 called Bash
 
@@ -3236,7 +1852,7 @@ called Bash
 
 ### Tool result
 
-_source line 6548 · 2026-05-25T11:30:14.647549+00:00_
+_source line 6526 · 2026-05-25T11:30:14.647549+00:00_
 
 0
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
@@ -3259,7 +1875,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6549 · 2026-05-25T11:30:24.949134+00:00_
+_source line 6527 · 2026-05-25T11:30:24.949134+00:00_
 
 called Bash
 
@@ -3293,7 +1909,7 @@ called Bash
 
 ### Tool result
 
-_source line 6550 · 2026-05-25T11:30:24.999880+00:00_
+_source line 6528 · 2026-05-25T11:30:24.999880+00:00_
 
 [master 5536db3] Promote Holm-Bonferroni table from appendix to main text (Table 5)
  Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
@@ -3330,7 +1946,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6551 · 2026-05-25T11:30:36.204748+00:00_
+_source line 6529 · 2026-05-25T11:30:36.204748+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3366,7 +1982,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6552 · 2026-05-25T11:30:40.070205+00:00_
+_source line 6530 · 2026-05-25T11:30:40.070205+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -3388,7 +2004,7 @@ _source line 6552 · 2026-05-25T11:30:40.070205+00:00_
 
 ### Assistant
 
-_source line 6553 · 2026-05-25T11:30:43.774905+00:00_
+_source line 6531 · 2026-05-25T11:30:43.774905+00:00_
 
 完成。Holm-Bonferroni 表（Table 5）已从附录提到正文 §4.7 末尾，第 8 页填充良好，所有正文内容在 8 页内。Commit 5536db3。
 
@@ -3415,7 +2031,7 @@ _source line 6553 · 2026-05-25T11:30:43.774905+00:00_
 
 ### User
 
-_source line 6554 · 2026-05-25T11:38:51.342851+00:00_
+_source line 6532 · 2026-05-25T11:38:51.342851+00:00_
 
 [Director 指令] 周俊伟提了 4 点修改要求，今天 DDL，优先级最高，立即执行：
 
@@ -3478,7 +2094,7 @@ _source line 6554 · 2026-05-25T11:38:51.342851+00:00_
 
 ### Tool call
 
-_source line 6555 · 2026-05-25T11:39:01.436967+00:00_
+_source line 6533 · 2026-05-25T11:39:01.436967+00:00_
 
 called Read
 
@@ -3512,7 +2128,7 @@ called Read
 
 ### Tool result
 
-_source line 6556 · 2026-05-25T11:39:01.487666+00:00_
+_source line 6534 · 2026-05-25T11:39:01.487666+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -3540,7 +2156,7 @@ _source line 6556 · 2026-05-25T11:39:01.487666+00:00_
 
 ### Tool call
 
-_source line 6557 · 2026-05-25T11:39:05.510555+00:00_
+_source line 6535 · 2026-05-25T11:39:05.510555+00:00_
 
 called Read
 
@@ -3578,7 +2194,7 @@ called Read
 
 ### Tool result
 
-_source line 6558 · 2026-05-25T11:39:05.561509+00:00_
+_source line 6536 · 2026-05-25T11:39:05.561509+00:00_
 
 83	
 84	\subsection{Function-Level Equivalence}
@@ -3609,7 +2225,7 @@ _source line 6558 · 2026-05-25T11:39:05.561509+00:00_
 
 ### Tool call
 
-_source line 6559 · 2026-05-25T11:39:14.072000+00:00_
+_source line 6537 · 2026-05-25T11:39:14.072000+00:00_
 
 called Bash
 
@@ -3643,7 +2259,7 @@ called Bash
 
 ### Tool result
 
-_source line 6560 · 2026-05-25T11:39:14.424138+00:00_
+_source line 6538 · 2026-05-25T11:39:14.424138+00:00_
 
 Page 5: Table 1: Function-level per-test accuracy on Hu-                                  91
 Page 6: 372   4.4    Function-Level Equivalence                                 Table 2: Model-size scaling:
@@ -3671,7 +2287,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6561 · 2026-05-25T11:39:32.455478+00:00_
+_source line 6539 · 2026-05-25T11:39:32.455478+00:00_
 
 called Bash
 
@@ -3705,7 +2321,7 @@ called Bash
 
 ### Tool result
 
-_source line 6562 · 2026-05-25T11:39:32.757932+00:00_
+_source line 6540 · 2026-05-25T11:39:32.757932+00:00_
 
 Page 7 total lines: 94
 === PAGE 7 ===
@@ -3755,7 +2371,7 @@ Table 3: Repo-level cross-formulation comparison on                             
 
 ### Tool call
 
-_source line 6563 · 2026-05-25T11:39:38.488846+00:00_
+_source line 6541 · 2026-05-25T11:39:38.488846+00:00_
 
 called Read
 
@@ -3793,7 +2409,7 @@ called Read
 
 ### Tool result
 
-_source line 6564 · 2026-05-25T11:39:38.590457+00:00_
+_source line 6542 · 2026-05-25T11:39:38.590457+00:00_
 
 25	\midrule
 26	\textbf{All} & 100.0 & --- & \textbf{10.93} & 100.0 \\
@@ -3829,7 +2445,7 @@ _source line 6564 · 2026-05-25T11:39:38.590457+00:00_
 
 ### Tool call
 
-_source line 6565 · 2026-05-25T11:39:42.004712+00:00_
+_source line 6543 · 2026-05-25T11:39:42.004712+00:00_
 
 called Read
 
@@ -3867,7 +2483,7 @@ called Read
 
 ### Tool result
 
-_source line 6566 · 2026-05-25T11:39:42.105544+00:00_
+_source line 6544 · 2026-05-25T11:39:42.105544+00:00_
 
 445	Figure~\ref{fig:tost_sensitivity} visualises the margin--$p$-value relationship for both comparisons.
 446	
@@ -3902,7 +2518,7 @@ _source line 6566 · 2026-05-25T11:39:42.105544+00:00_
 
 ### Tool call
 
-_source line 6567 · 2026-05-25T11:39:47.225699+00:00_
+_source line 6545 · 2026-05-25T11:39:47.225699+00:00_
 
 called Grep
 
@@ -3944,7 +2560,7 @@ called Grep
 
 ### Tool result
 
-_source line 6568 · 2026-05-25T11:39:47.426817+00:00_
+_source line 6546 · 2026-05-25T11:39:47.426817+00:00_
 
 132-
 133-\begin{figure}[h]
@@ -3972,7 +2588,7 @@ _source line 6568 · 2026-05-25T11:39:47.426817+00:00_
 
 ### Tool call
 
-_source line 6569 · 2026-05-25T11:40:01.936045+00:00_
+_source line 6547 · 2026-05-25T11:40:01.936045+00:00_
 
 called Edit
 
@@ -4012,7 +2628,7 @@ called Edit
 
 ### Tool result
 
-_source line 6570 · 2026-05-25T11:40:01.986962+00:00_
+_source line 6548 · 2026-05-25T11:40:01.986962+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex has been updated successfully.
 
@@ -4034,7 +2650,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6571 · 2026-05-25T11:40:08.026200+00:00_
+_source line 6549 · 2026-05-25T11:40:08.026200+00:00_
 
 called Read
 
@@ -4072,7 +2688,7 @@ called Read
 
 ### Tool result
 
-_source line 6572 · 2026-05-25T11:40:08.393190+00:00_
+_source line 6550 · 2026-05-25T11:40:08.393190+00:00_
 
 120	
 121	\subsection{Repo-Level: Complexity-Dependent Divergence}
@@ -4123,7 +2739,7 @@ _source line 6572 · 2026-05-25T11:40:08.393190+00:00_
 
 ### Tool call
 
-_source line 6573 · 2026-05-25T11:40:56.858717+00:00_
+_source line 6551 · 2026-05-25T11:40:56.858717+00:00_
 
 called Edit
 
@@ -4163,7 +2779,7 @@ called Edit
 
 ### Tool result
 
-_source line 6574 · 2026-05-25T11:40:56.910242+00:00_
+_source line 6552 · 2026-05-25T11:40:56.910242+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -4185,7 +2801,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6575 · 2026-05-25T11:41:11.063989+00:00_
+_source line 6553 · 2026-05-25T11:41:11.063989+00:00_
 
 called Edit
 
@@ -4225,7 +2841,7 @@ called Edit
 
 ### Tool result
 
-_source line 6576 · 2026-05-25T11:41:11.064749+00:00_
+_source line 6554 · 2026-05-25T11:41:11.064749+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -4247,7 +2863,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6577 · 2026-05-25T11:41:25.782164+00:00_
+_source line 6555 · 2026-05-25T11:41:25.782164+00:00_
 
 called Edit
 
@@ -4287,7 +2903,7 @@ called Edit
 
 ### Tool result
 
-_source line 6578 · 2026-05-25T11:41:25.833078+00:00_
+_source line 6556 · 2026-05-25T11:41:25.833078+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -4309,7 +2925,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6579 · 2026-05-25T11:41:40.182708+00:00_
+_source line 6557 · 2026-05-25T11:41:40.182708+00:00_
 
 called Edit
 
@@ -4349,7 +2965,7 @@ called Edit
 
 ### Tool result
 
-_source line 6580 · 2026-05-25T11:41:40.183595+00:00_
+_source line 6558 · 2026-05-25T11:41:40.183595+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -4371,7 +2987,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6581 · 2026-05-25T11:41:49.125367+00:00_
+_source line 6559 · 2026-05-25T11:41:49.125367+00:00_
 
 called Edit
 
@@ -4411,7 +3027,7 @@ called Edit
 
 ### Tool result
 
-_source line 6582 · 2026-05-25T11:41:49.178461+00:00_
+_source line 6560 · 2026-05-25T11:41:49.178461+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex has been updated successfully.
 
@@ -4433,7 +3049,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6583 · 2026-05-25T11:41:56.613726+00:00_
+_source line 6561 · 2026-05-25T11:41:56.613726+00:00_
 
 called Edit
 
@@ -4473,7 +3089,7 @@ called Edit
 
 ### Tool result
 
-_source line 6584 · 2026-05-25T11:41:56.664964+00:00_
+_source line 6562 · 2026-05-25T11:41:56.664964+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex has been updated successfully.
 
@@ -4495,7 +3111,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6585 · 2026-05-25T11:42:04.869187+00:00_
+_source line 6563 · 2026-05-25T11:42:04.869187+00:00_
 
 called Grep
 
@@ -4535,7 +3151,7 @@ called Grep
 
 ### Tool result
 
-_source line 6586 · 2026-05-25T11:42:04.920053+00:00_
+_source line 6564 · 2026-05-25T11:42:04.920053+00:00_
 
 87:[Omitted long matching line]
 
@@ -4557,7 +3173,7 @@ _source line 6586 · 2026-05-25T11:42:04.920053+00:00_
 
 ### Tool call
 
-_source line 6587 · 2026-05-25T11:42:12.512284+00:00_
+_source line 6565 · 2026-05-25T11:42:12.512284+00:00_
 
 called Bash
 
@@ -4593,7 +3209,7 @@ called Bash
 
 ### Tool result
 
-_source line 6588 · 2026-05-25T11:42:15.327961+00:00_
+_source line 6566 · 2026-05-25T11:42:15.327961+00:00_
 
 Latexmk: Examining 'main.log'
 Latexmk: Found input bbl file 'main.bbl'
@@ -4624,7 +3240,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6589 · 2026-05-25T11:42:22.864989+00:00_
+_source line 6567 · 2026-05-25T11:42:22.864989+00:00_
 
 called Bash
 
@@ -4658,7 +3274,7 @@ called Bash
 
 ### Tool result
 
-_source line 6590 · 2026-05-25T11:42:23.166504+00:00_
+_source line 6568 · 2026-05-25T11:42:23.166504+00:00_
 
 Page 1: 69 lines |  | ends: 1
 Page 2: 65 lines |  | ends: 2
@@ -4692,7 +3308,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6591 · 2026-05-25T11:42:29.848026+00:00_
+_source line 6569 · 2026-05-25T11:42:29.848026+00:00_
 
 called Bash
 
@@ -4726,7 +3342,7 @@ called Bash
 
 ### Tool result
 
-_source line 6592 · 2026-05-25T11:42:30.149757+00:00_
+_source line 6570 · 2026-05-25T11:42:30.149757+00:00_
 
 === PAGE 8 (last 40 lines) ===
                                   (~5 15 tokens)   (~477 tokens)        (~477 tokens)
@@ -4762,7 +3378,7 @@ _source line 6592 · 2026-05-25T11:42:30.149757+00:00_
 
 ### Tool call
 
-_source line 6593 · 2026-05-25T11:42:52.665342+00:00_
+_source line 6571 · 2026-05-25T11:42:52.665342+00:00_
 
 called Read
 
@@ -4796,7 +3412,7 @@ called Read
 
 ### Tool result
 
-_source line 6594 · 2026-05-25T11:42:52.665931+00:00_
+_source line 6572 · 2026-05-25T11:42:52.665931+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -4826,7 +3442,7 @@ _source line 6594 · 2026-05-25T11:42:52.665931+00:00_
 
 ### Tool call
 
-_source line 6595 · 2026-05-25T11:42:57.041970+00:00_
+_source line 6573 · 2026-05-25T11:42:57.041970+00:00_
 
 called Read
 
@@ -4860,7 +3476,7 @@ called Read
 
 ### Tool result
 
-_source line 6596 · 2026-05-25T11:42:57.142836+00:00_
+_source line 6574 · 2026-05-25T11:42:57.142836+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -4897,7 +3513,7 @@ _source line 6596 · 2026-05-25T11:42:57.142836+00:00_
 
 ### Tool call
 
-_source line 6597 · 2026-05-25T11:43:28.043639+00:00_
+_source line 6575 · 2026-05-25T11:43:28.043639+00:00_
 
 called Edit
 
@@ -4937,7 +3553,7 @@ called Edit
 
 ### Tool result
 
-_source line 6598 · 2026-05-25T11:43:28.094414+00:00_
+_source line 6576 · 2026-05-25T11:43:28.094414+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex has been updated successfully.
 
@@ -4959,7 +3575,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6599 · 2026-05-25T11:43:39.408790+00:00_
+_source line 6577 · 2026-05-25T11:43:39.408790+00:00_
 
 called Edit
 
@@ -4999,7 +3615,7 @@ called Edit
 
 ### Tool result
 
-_source line 6600 · 2026-05-25T11:43:39.511907+00:00_
+_source line 6578 · 2026-05-25T11:43:39.511907+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex has been updated successfully.
 
@@ -5021,7 +3637,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6601 · 2026-05-25T11:44:04.262148+00:00_
+_source line 6579 · 2026-05-25T11:44:04.262148+00:00_
 
 called Edit
 
@@ -5061,7 +3677,7 @@ called Edit
 
 ### Tool result
 
-_source line 6602 · 2026-05-25T11:44:04.313017+00:00_
+_source line 6580 · 2026-05-25T11:44:04.313017+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex has been updated successfully.
 
@@ -5083,7 +3699,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6603 · 2026-05-25T11:44:07.778913+00:00_
+_source line 6581 · 2026-05-25T11:44:07.778913+00:00_
 
 called Bash
 
@@ -5119,7 +3735,7 @@ called Bash
 
 ### Tool result
 
-_source line 6604 · 2026-05-25T11:44:12.102690+00:00_
+_source line 6582 · 2026-05-25T11:44:12.102690+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -5145,7 +3761,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6605 · 2026-05-25T11:44:17.727658+00:00_
+_source line 6583 · 2026-05-25T11:44:17.727658+00:00_
 
 called Bash
 
@@ -5179,7 +3795,7 @@ called Bash
 
 ### Tool result
 
-_source line 6606 · 2026-05-25T11:44:18.032147+00:00_
+_source line 6584 · 2026-05-25T11:44:18.032147+00:00_
 
 Page 1: 69 lines | 
 Page 2: 63 lines | 
@@ -5212,7 +3828,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6607 · 2026-05-25T11:44:23.407001+00:00_
+_source line 6585 · 2026-05-25T11:44:23.407001+00:00_
 
 called Bash
 
@@ -5246,7 +3862,7 @@ called Bash
 
 ### Tool result
 
-_source line 6608 · 2026-05-25T11:44:23.658462+00:00_
+_source line 6586 · 2026-05-25T11:44:23.658462+00:00_
 
 === PAGE 8 (last 25 lines) ===
              T . Advantage is zero at T =1 (68.7% of instances) and                                                  three failure modes; the formulation×complexity                        537
@@ -5282,7 +3898,7 @@ _source line 6608 · 2026-05-25T11:44:23.658462+00:00_
 
 ### Tool call
 
-_source line 6609 · 2026-05-25T11:44:50.145195+00:00_
+_source line 6587 · 2026-05-25T11:44:50.145195+00:00_
 
 called Read
 
@@ -5316,7 +3932,7 @@ called Read
 
 ### Tool result
 
-_source line 6610 · 2026-05-25T11:44:50.195862+00:00_
+_source line 6588 · 2026-05-25T11:44:50.195862+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -5345,7 +3961,7 @@ _source line 6610 · 2026-05-25T11:44:50.195862+00:00_
 
 ### Tool call
 
-_source line 6611 · 2026-05-25T11:44:58.341870+00:00_
+_source line 6589 · 2026-05-25T11:44:58.341870+00:00_
 
 called Edit
 
@@ -5385,7 +4001,7 @@ called Edit
 
 ### Tool result
 
-_source line 6612 · 2026-05-25T11:44:58.342396+00:00_
+_source line 6590 · 2026-05-25T11:44:58.342396+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex has been updated successfully.
 
@@ -5407,7 +4023,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6613 · 2026-05-25T11:45:04.697700+00:00_
+_source line 6591 · 2026-05-25T11:45:04.697700+00:00_
 
 called Edit
 
@@ -5447,7 +4063,7 @@ called Edit
 
 ### Tool result
 
-_source line 6614 · 2026-05-25T11:45:04.849603+00:00_
+_source line 6592 · 2026-05-25T11:45:04.849603+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex has been updated successfully.
 
@@ -5469,7 +4085,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6615 · 2026-05-25T11:45:22.811731+00:00_
+_source line 6593 · 2026-05-25T11:45:22.811731+00:00_
 
 called Edit
 
@@ -5509,7 +4125,7 @@ called Edit
 
 ### Tool result
 
-_source line 6616 · 2026-05-25T11:45:22.912912+00:00_
+_source line 6594 · 2026-05-25T11:45:22.912912+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -5531,7 +4147,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6617 · 2026-05-25T11:45:33.933827+00:00_
+_source line 6595 · 2026-05-25T11:45:33.933827+00:00_
 
 called Bash
 
@@ -5567,7 +4183,7 @@ called Bash
 
 ### Tool result
 
-_source line 6618 · 2026-05-25T11:45:36.747585+00:00_
+_source line 6596 · 2026-05-25T11:45:36.747585+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -5593,7 +4209,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6619 · 2026-05-25T11:45:41.810000+00:00_
+_source line 6597 · 2026-05-25T11:45:41.810000+00:00_
 
 called Bash
 
@@ -5627,7 +4243,7 @@ called Bash
 
 ### Tool result
 
-_source line 6620 · 2026-05-25T11:45:42.111484+00:00_
+_source line 6598 · 2026-05-25T11:45:42.111484+00:00_
 
 === PAGE 8 (last 20 lines) ===
 
@@ -5663,7 +4279,7 @@ _source line 6620 · 2026-05-25T11:45:42.111484+00:00_
 
 ### Tool call
 
-_source line 6621 · 2026-05-25T11:45:50.094471+00:00_
+_source line 6599 · 2026-05-25T11:45:50.094471+00:00_
 
 called Bash
 
@@ -5697,7 +4313,7 @@ called Bash
 
 ### Tool result
 
-_source line 6622 · 2026-05-25T11:45:50.347073+00:00_
+_source line 6600 · 2026-05-25T11:45:50.347073+00:00_
 
 LEFT (indent=0): Table 3: Repo-level cross-formulation comparison on                                   Tabl
 LEFT (indent=7): (Table 4); mean over two matched seeds. ⋄ Var. columns:                              ticip
@@ -5721,7 +4337,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6623 · 2026-05-25T11:45:54.514212+00:00_
+_source line 6601 · 2026-05-25T11:45:54.514212+00:00_
 
 called Bash
 
@@ -5755,7 +4371,7 @@ called Bash
 
 ### Tool result
 
-_source line 6624 · 2026-05-25T11:45:54.765500+00:00_
+_source line 6602 · 2026-05-25T11:45:54.765500+00:00_
 
 Line 0: Table 3: Repo-level cross-formulation comparison on                                   Table 4: Repo-level failure mode taxonomy. Variant-
 Line 21:        (Table 4); mean over two matched seeds. ⋄ Var. columns:                              ticipated from §3.2, the magnitude of this gap, the                 463
@@ -5780,7 +4396,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6625 · 2026-05-25T11:45:59.135191+00:00_
+_source line 6603 · 2026-05-25T11:45:59.135191+00:00_
 
 called Bash
 
@@ -5814,7 +4430,7 @@ called Bash
 
 ### Tool result
 
-_source line 6626 · 2026-05-25T11:45:59.386653+00:00_
+_source line 6604 · 2026-05-25T11:45:59.386653+00:00_
 
 === PAGE 7 (first 30 lines) ===
 Table 3: Repo-level cross-formulation comparison on                                   Table 4: Repo-level failure mode taxonomy. Variant-
@@ -5855,7 +4471,7 @@ Table 3: Repo-level cross-formulation comparison on                             
 
 ### Tool call
 
-_source line 6627 · 2026-05-25T11:46:05.068871+00:00_
+_source line 6605 · 2026-05-25T11:46:05.068871+00:00_
 
 called Bash
 
@@ -5889,7 +4505,7 @@ called Bash
 
 ### Tool result
 
-_source line 6628 · 2026-05-25T11:46:05.119541+00:00_
+_source line 6606 · 2026-05-25T11:46:05.119541+00:00_
 
 8
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
@@ -5912,7 +4528,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6629 · 2026-05-25T11:46:08.736765+00:00_
+_source line 6607 · 2026-05-25T11:46:08.736765+00:00_
 
 called Bash
 
@@ -5946,7 +4562,7 @@ called Bash
 
 ### Tool result
 
-_source line 6630 · 2026-05-25T11:46:08.888271+00:00_
+_source line 6608 · 2026-05-25T11:46:08.888271+00:00_
 
 (Bash completed with no output)
 
@@ -5968,7 +4584,7 @@ _source line 6630 · 2026-05-25T11:46:08.888271+00:00_
 
 ### Tool call
 
-_source line 6631 · 2026-05-25T11:46:17.235031+00:00_
+_source line 6609 · 2026-05-25T11:46:17.235031+00:00_
 
 called Bash
 
@@ -6002,7 +4618,7 @@ called Bash
 
 ### Tool result
 
-_source line 6632 · 2026-05-25T11:46:17.486454+00:00_
+_source line 6610 · 2026-05-25T11:46:17.486454+00:00_
 
 Exit code 1
   File "&lt;string>", line 16
@@ -6028,7 +4644,7 @@ SyntaxError: f-string: expecting a valid expression after '{'
 
 ### Tool call
 
-_source line 6633 · 2026-05-25T11:46:24.169257+00:00_
+_source line 6611 · 2026-05-25T11:46:24.169257+00:00_
 
 called Bash
 
@@ -6062,7 +4678,7 @@ called Bash
 
 ### Tool result
 
-_source line 6634 · 2026-05-25T11:46:24.471663+00:00_
+_source line 6612 · 2026-05-25T11:46:24.471663+00:00_
 
 Page 1: (text only)
 Page 2: (text only)
@@ -6094,7 +4710,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6635 · 2026-05-25T11:46:30.605988+00:00_
+_source line 6613 · 2026-05-25T11:46:30.605988+00:00_
 
 called Bash
 
@@ -6128,7 +4744,7 @@ called Bash
 
 ### Tool result
 
-_source line 6636 · 2026-05-25T11:46:30.708394+00:00_
+_source line 6614 · 2026-05-25T11:46:30.708394+00:00_
 
  docs/paper/appendix.tex     | 16 ++--------------
  docs/paper/conclusion.tex   |  4 ++--
@@ -6157,7 +4773,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6637 · 2026-05-25T11:46:41.799007+00:00_
+_source line 6615 · 2026-05-25T11:46:41.799007+00:00_
 
 called Bash
 
@@ -6191,7 +4807,7 @@ called Bash
 
 ### Tool result
 
-_source line 6638 · 2026-05-25T11:46:41.851873+00:00_
+_source line 6616 · 2026-05-25T11:46:41.851873+00:00_
 
 [master dec783f] Add contributions, split tables, promote 2 figures, maintain 8-page limit
  Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
@@ -6228,7 +4844,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6639 · 2026-05-25T11:46:46.071493+00:00_
+_source line 6617 · 2026-05-25T11:46:46.071493+00:00_
 
 called Bash
 
@@ -6262,7 +4878,7 @@ called Bash
 
 ### Tool result
 
-_source line 6640 · 2026-05-25T11:46:46.122182+00:00_
+_source line 6618 · 2026-05-25T11:46:46.122182+00:00_
 
 (Bash completed with no output)
 
@@ -6284,7 +4900,7 @@ _source line 6640 · 2026-05-25T11:46:46.122182+00:00_
 
 ### Tool call
 
-_source line 6641 · 2026-05-25T11:46:48.937290+00:00_
+_source line 6619 · 2026-05-25T11:46:48.937290+00:00_
 
 called ToolSearch
 
@@ -6320,7 +4936,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6642 · 2026-05-25T11:46:49.038108+00:00_
+_source line 6620 · 2026-05-25T11:46:49.038108+00:00_
 
 
 
@@ -6342,7 +4958,7 @@ _source line 6642 · 2026-05-25T11:46:49.038108+00:00_
 
 ### Tool call
 
-_source line 6643 · 2026-05-25T11:47:01.443373+00:00_
+_source line 6621 · 2026-05-25T11:47:01.443373+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -6386,7 +5002,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 6644 · 2026-05-25T11:47:01.795928+00:00_
+_source line 6622 · 2026-05-25T11:47:01.795928+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_272380\", \"name\": \"paper_v_4tasks\", \"type\": \"paper\", \"description\": \"Paper PDF after 4-task revision: expanded contributions, split tables, promoted figures, 8-page verified\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_v_4tasks.pdf\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T11:47:01.413006+00:00\", \"tags\": [\"paper\", \"revision\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6408,7 +5024,7 @@ _source line 6644 · 2026-05-25T11:47:01.795928+00:00_
 
 ### Tool call
 
-_source line 6645 · 2026-05-25T11:47:21.660676+00:00_
+_source line 6623 · 2026-05-25T11:47:21.660676+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -6444,7 +5060,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6646 · 2026-05-25T11:47:25.574910+00:00_
+_source line 6624 · 2026-05-25T11:47:25.574910+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -6466,7 +5082,7 @@ _source line 6646 · 2026-05-25T11:47:25.574910+00:00_
 
 ### Assistant
 
-_source line 6647 · 2026-05-25T11:47:28.937276+00:00_
+_source line 6625 · 2026-05-25T11:47:28.937276+00:00_
 
 Now copy the PDF to artifacts and report to Director.
 
@@ -6493,7 +5109,7 @@ Now copy the PDF to artifacts and report to Director.
 
 ### User
 
-_source line 6648 · 2026-05-25T11:47:29.472643+00:00_
+_source line 6626 · 2026-05-25T11:47:29.472643+00:00_
 
 [Director 指令] **追加任务（在周俊伟 4 点修改完成后执行）：审计报告 Critical + Warning 修复**
 
@@ -6538,7 +5154,7 @@ _source line 6648 · 2026-05-25T11:47:29.472643+00:00_
 
 ### Tool call
 
-_source line 6649 · 2026-05-25T11:47:39.769140+00:00_
+_source line 6627 · 2026-05-25T11:47:39.769140+00:00_
 
 called Read
 
@@ -6572,7 +5188,7 @@ called Read
 
 ### Tool result
 
-_source line 6650 · 2026-05-25T11:47:39.870123+00:00_
+_source line 6628 · 2026-05-25T11:47:39.870123+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -6601,7 +5217,7 @@ _source line 6650 · 2026-05-25T11:47:39.870123+00:00_
 
 ### Tool call
 
-_source line 6651 · 2026-05-25T11:47:42.539153+00:00_
+_source line 6629 · 2026-05-25T11:47:42.539153+00:00_
 
 called Read
 
@@ -6639,7 +5255,7 @@ called Read
 
 ### Tool result
 
-_source line 6652 · 2026-05-25T11:47:42.590002+00:00_
+_source line 6630 · 2026-05-25T11:47:42.590002+00:00_
 
 148	0-shot (Qwen3-8B) & 49.90 & --- & --- & --- \\
 149	0-shot (DeepSeek) & 48.54 & --- & --- & --- \\
@@ -6676,7 +5292,7 @@ _source line 6652 · 2026-05-25T11:47:42.590002+00:00_
 
 ### Tool call
 
-_source line 6653 · 2026-05-25T11:47:47.259924+00:00_
+_source line 6631 · 2026-05-25T11:47:47.259924+00:00_
 
 called Read
 
@@ -6714,7 +5330,7 @@ called Read
 
 ### Tool result
 
-_source line 6654 · 2026-05-25T11:47:47.511788+00:00_
+_source line 6632 · 2026-05-25T11:47:47.511788+00:00_
 
 208	\caption{Oracle per-test advantage by F2P test count $T$. Advantage is zero at $T{=}1$ (68.7\% of instances) and concentrates at $T{=}2$ (19.1\%, contributing 55.3\% of total advantage).}
 209	\label{fig:oracle_stratified}
@@ -6750,7 +5366,7 @@ _source line 6654 · 2026-05-25T11:47:47.511788+00:00_
 
 ### Tool call
 
-_source line 6655 · 2026-05-25T11:47:56.000710+00:00_
+_source line 6633 · 2026-05-25T11:47:56.000710+00:00_
 
 called Read
 
@@ -6784,7 +5400,7 @@ called Read
 
 ### Tool result
 
-_source line 6656 · 2026-05-25T11:47:56.151961+00:00_
+_source line 6634 · 2026-05-25T11:47:56.151961+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -6814,7 +5430,7 @@ _source line 6656 · 2026-05-25T11:47:56.151961+00:00_
 
 ### Tool call
 
-_source line 6657 · 2026-05-25T11:48:04.387676+00:00_
+_source line 6635 · 2026-05-25T11:48:04.387676+00:00_
 
 called Edit
 
@@ -6854,7 +5470,7 @@ called Edit
 
 ### Tool result
 
-_source line 6658 · 2026-05-25T11:48:04.488585+00:00_
+_source line 6636 · 2026-05-25T11:48:04.488585+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex has been updated successfully.
 
@@ -6876,7 +5492,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6659 · 2026-05-25T11:48:10.261263+00:00_
+_source line 6637 · 2026-05-25T11:48:10.261263+00:00_
 
 called Edit
 
@@ -6916,7 +5532,7 @@ called Edit
 
 ### Tool result
 
-_source line 6660 · 2026-05-25T11:48:10.362235+00:00_
+_source line 6638 · 2026-05-25T11:48:10.362235+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -6938,7 +5554,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6661 · 2026-05-25T11:48:15.348344+00:00_
+_source line 6639 · 2026-05-25T11:48:15.348344+00:00_
 
 called Edit
 
@@ -6978,7 +5594,7 @@ called Edit
 
 ### Tool result
 
-_source line 6662 · 2026-05-25T11:48:15.400184+00:00_
+_source line 6640 · 2026-05-25T11:48:15.400184+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -7000,7 +5616,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6663 · 2026-05-25T11:48:20.067983+00:00_
+_source line 6641 · 2026-05-25T11:48:20.067983+00:00_
 
 called Edit
 
@@ -7040,7 +5656,7 @@ called Edit
 
 ### Tool result
 
-_source line 6664 · 2026-05-25T11:48:20.118949+00:00_
+_source line 6642 · 2026-05-25T11:48:20.118949+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -7062,7 +5678,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6665 · 2026-05-25T11:48:30.861143+00:00_
+_source line 6643 · 2026-05-25T11:48:30.861143+00:00_
 
 called Edit
 
@@ -7102,7 +5718,7 @@ called Edit
 
 ### Tool result
 
-_source line 6666 · 2026-05-25T11:48:31.112890+00:00_
+_source line 6644 · 2026-05-25T11:48:31.112890+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -7124,7 +5740,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6667 · 2026-05-25T11:48:39.148653+00:00_
+_source line 6645 · 2026-05-25T11:48:39.148653+00:00_
 
 called Edit
 
@@ -7164,7 +5780,7 @@ called Edit
 
 ### Tool result
 
-_source line 6668 · 2026-05-25T11:48:39.199498+00:00_
+_source line 6646 · 2026-05-25T11:48:39.199498+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex has been updated successfully.
 
@@ -7186,7 +5802,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6669 · 2026-05-25T11:48:43.452925+00:00_
+_source line 6647 · 2026-05-25T11:48:43.452925+00:00_
 
 called Bash
 
@@ -7222,7 +5838,7 @@ called Bash
 
 ### Tool result
 
-_source line 6670 · 2026-05-25T11:48:46.062062+00:00_
+_source line 6648 · 2026-05-25T11:48:46.062062+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -7248,7 +5864,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6671 · 2026-05-25T11:48:51.082776+00:00_
+_source line 6649 · 2026-05-25T11:48:51.082776+00:00_
 
 called Bash
 
@@ -7282,7 +5898,7 @@ called Bash
 
 ### Tool result
 
-_source line 6672 · 2026-05-25T11:48:51.384265+00:00_
+_source line 6650 · 2026-05-25T11:48:51.384265+00:00_
 
 Page 1: 
 Page 2: 
@@ -7314,7 +5930,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6673 · 2026-05-25T11:49:00.018088+00:00_
+_source line 6651 · 2026-05-25T11:49:00.018088+00:00_
 
 called Bash
 
@@ -7348,7 +5964,7 @@ called Bash
 
 ### Tool result
 
-_source line 6674 · 2026-05-25T11:49:00.068786+00:00_
+_source line 6652 · 2026-05-25T11:49:00.068786+00:00_
 
 [master de64718] Fix conclusion narrative inconsistency and remove AI-style participle phrases
  Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
@@ -7385,7 +6001,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6675 · 2026-05-25T11:49:12.485211+00:00_
+_source line 6653 · 2026-05-25T11:49:12.485211+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7421,7 +6037,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6676 · 2026-05-25T11:49:16.551967+00:00_
+_source line 6654 · 2026-05-25T11:49:16.551967+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -7443,7 +6059,7 @@ _source line 6676 · 2026-05-25T11:49:16.551967+00:00_
 
 ### Assistant
 
-_source line 6677 · 2026-05-25T11:49:18.766138+00:00_
+_source line 6655 · 2026-05-25T11:49:18.766138+00:00_
 
 8-page limit intact. Commit.
 
@@ -7470,7 +6086,7 @@ _source line 6677 · 2026-05-25T11:49:18.766138+00:00_
 
 ### User
 
-_source line 6678 · 2026-05-25T12:02:51.278371+00:00_
+_source line 6656 · 2026-05-25T12:02:51.278371+00:00_
 
 [Director 指令] 游承松 3 点排版修复，立即执行：
 
@@ -7512,7 +6128,7 @@ _source line 6678 · 2026-05-25T12:02:51.278371+00:00_
 
 ### Tool call
 
-_source line 6679 · 2026-05-25T12:03:00.190392+00:00_
+_source line 6657 · 2026-05-25T12:03:00.190392+00:00_
 
 called Grep
 
@@ -7550,7 +6166,7 @@ called Grep
 
 ### Tool result
 
-_source line 6680 · 2026-05-25T12:03:00.242015+00:00_
+_source line 6658 · 2026-05-25T12:03:00.242015+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/tost_sensitivity.py
@@ -7573,7 +6189,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 6681 · 2026-05-25T12:03:02.703997+00:00_
+_source line 6659 · 2026-05-25T12:03:02.703997+00:00_
 
 called Read
 
@@ -7607,7 +6223,7 @@ called Read
 
 ### Tool result
 
-_source line 6682 · 2026-05-25T12:03:02.755001+00:00_
+_source line 6660 · 2026-05-25T12:03:02.755001+00:00_
 
 1	"""TOST equivalence margin sensitivity analysis (Dream A6)."""
 2	import json
@@ -7686,7 +6302,7 @@ _source line 6682 · 2026-05-25T12:03:02.755001+00:00_
 
 ### Tool call
 
-_source line 6683 · 2026-05-25T12:03:10.388463+00:00_
+_source line 6661 · 2026-05-25T12:03:10.388463+00:00_
 
 called Grep
 
@@ -7724,7 +6340,7 @@ called Grep
 
 ### Tool result
 
-_source line 6684 · 2026-05-25T12:03:10.489373+00:00_
+_source line 6662 · 2026-05-25T12:03:10.489373+00:00_
 
 No files found
 
@@ -7746,7 +6362,7 @@ No files found
 
 ### Tool call
 
-_source line 6685 · 2026-05-25T12:03:13.101199+00:00_
+_source line 6663 · 2026-05-25T12:03:13.101199+00:00_
 
 called Glob
 
@@ -7782,7 +6398,7 @@ called Glob
 
 ### Tool result
 
-_source line 6686 · 2026-05-25T12:03:13.202118+00:00_
+_source line 6664 · 2026-05-25T12:03:13.202118+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper/fig_tost_sensitivity.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper/fig_tost_sensitivity.png
@@ -7805,7 +6421,7 @@ _source line 6686 · 2026-05-25T12:03:13.202118+00:00_
 
 ### Tool call
 
-_source line 6687 · 2026-05-25T12:03:18.763126+00:00_
+_source line 6665 · 2026-05-25T12:03:18.763126+00:00_
 
 called Grep
 
@@ -7845,7 +6461,7 @@ called Grep
 
 ### Tool result
 
-_source line 6688 · 2026-05-25T12:03:19.065164+00:00_
+_source line 6666 · 2026-05-25T12:03:19.065164+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/tost_sensitivity.py
@@ -7868,7 +6484,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 6689 · 2026-05-25T12:03:23.434552+00:00_
+_source line 6667 · 2026-05-25T12:03:23.434552+00:00_
 
 called Grep
 
@@ -7904,7 +6520,7 @@ called Grep
 
 ### Tool result
 
-_source line 6690 · 2026-05-25T12:03:23.536014+00:00_
+_source line 6668 · 2026-05-25T12:03:23.536014+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex
@@ -7927,7 +6543,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 6691 · 2026-05-25T12:03:27.050135+00:00_
+_source line 6669 · 2026-05-25T12:03:27.050135+00:00_
 
 called Read
 
@@ -7961,7 +6577,7 @@ called Read
 
 ### Tool result
 
-_source line 6692 · 2026-05-25T12:03:27.102736+00:00_
+_source line 6670 · 2026-05-25T12:03:27.102736+00:00_
 
 
 
@@ -7983,7 +6599,7 @@ _source line 6692 · 2026-05-25T12:03:27.102736+00:00_
 
 ### Tool call
 
-_source line 6693 · 2026-05-25T12:03:33.579314+00:00_
+_source line 6671 · 2026-05-25T12:03:33.579314+00:00_
 
 called Read
 
@@ -8017,7 +6633,7 @@ called Read
 
 ### Tool result
 
-_source line 6694 · 2026-05-25T12:03:33.630066+00:00_
+_source line 6672 · 2026-05-25T12:03:33.630066+00:00_
 
 1	{
 2	  "metadata": {
@@ -8124,7 +6740,7 @@ _source line 6694 · 2026-05-25T12:03:33.630066+00:00_
 
 ### Tool call
 
-_source line 6695 · 2026-05-25T12:03:46.581031+00:00_
+_source line 6673 · 2026-05-25T12:03:46.581031+00:00_
 
 called Grep
 
@@ -8166,7 +6782,7 @@ called Grep
 
 ### Tool result
 
-_source line 6696 · 2026-05-25T12:03:46.732029+00:00_
+_source line 6674 · 2026-05-25T12:03:46.732029+00:00_
 
 417:Table~\ref{tab:tost_sensitivity} reports the TOST equivalence $p$-value as a function of the equivalence margin, computed on the 5-seed variant-level \cls{}--\cwm{} comparison (gap $= 1.24$\pp{}, 523 variants, 114 clusters, clustered bootstrap).
 418-
@@ -8224,7 +6840,7 @@ _source line 6696 · 2026-05-25T12:03:46.732029+00:00_
 
 ### Tool call
 
-_source line 6697 · 2026-05-25T12:04:13.719521+00:00_
+_source line 6675 · 2026-05-25T12:04:13.719521+00:00_
 
 called Bash
 
@@ -8258,7 +6874,7 @@ called Bash
 
 ### Tool result
 
-_source line 6698 · 2026-05-25T12:04:14.975996+00:00_
+_source line 6676 · 2026-05-25T12:04:14.975996+00:00_
 
 CLS-CWM: SE=0.1821
 CLS-TRAJ: SE=0.5583
@@ -8286,7 +6902,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6699 · 2026-05-25T12:04:39.642892+00:00_
+_source line 6677 · 2026-05-25T12:04:39.642892+00:00_
 
 called Bash
 
@@ -8320,7 +6936,7 @@ called Bash
 
 ### Tool result
 
-_source line 6700 · 2026-05-25T12:04:42.407963+00:00_
+_source line 6678 · 2026-05-25T12:04:42.407963+00:00_
 
 Saved fig_tost_sensitivity.pdf and .png
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
@@ -8343,7 +6959,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6701 · 2026-05-25T12:04:46.374514+00:00_
+_source line 6679 · 2026-05-25T12:04:46.374514+00:00_
 
 called Read
 
@@ -8377,7 +6993,7 @@ called Read
 
 ### Tool result
 
-_source line 6702 · 2026-05-25T12:04:46.425774+00:00_
+_source line 6680 · 2026-05-25T12:04:46.425774+00:00_
 
 
 
@@ -8399,7 +7015,7 @@ _source line 6702 · 2026-05-25T12:04:46.425774+00:00_
 
 ### Tool call
 
-_source line 6703 · 2026-05-25T12:04:52.108185+00:00_
+_source line 6681 · 2026-05-25T12:04:52.108185+00:00_
 
 called Read
 
@@ -8437,7 +7053,7 @@ called Read
 
 ### Tool result
 
-_source line 6704 · 2026-05-25T12:04:52.209096+00:00_
+_source line 6682 · 2026-05-25T12:04:52.209096+00:00_
 
 152	\end{tabular}}
 153	
@@ -8466,7 +7082,7 @@ _source line 6704 · 2026-05-25T12:04:52.209096+00:00_
 
 ### Tool call
 
-_source line 6705 · 2026-05-25T12:05:00.449251+00:00_
+_source line 6683 · 2026-05-25T12:05:00.449251+00:00_
 
 called Edit
 
@@ -8506,7 +7122,7 @@ called Edit
 
 ### Tool result
 
-_source line 6706 · 2026-05-25T12:05:00.501174+00:00_
+_source line 6684 · 2026-05-25T12:05:00.501174+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -8528,7 +7144,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6707 · 2026-05-25T12:05:04.586665+00:00_
+_source line 6685 · 2026-05-25T12:05:04.586665+00:00_
 
 called Read
 
@@ -8566,7 +7182,7 @@ called Read
 
 ### Tool result
 
-_source line 6708 · 2026-05-25T12:05:04.637415+00:00_
+_source line 6686 · 2026-05-25T12:05:04.637415+00:00_
 
 161	Few-shot prompting (3-shot ICL) collapses to an always-predict-unresolved baseline (variant accuracy 45.83\%, below majority 54.17\%; Appendix~\ref{app:few_shot}); execution-free verification requires task-specific fine-tuning regardless of formulation. Fine-tuning yields 35--36\pp{} gains (Table~\ref{tab:repo_level}), a prerequisite before formulation choice becomes relevant.
 162	
@@ -8592,7 +7208,7 @@ _source line 6708 · 2026-05-25T12:05:04.637415+00:00_
 
 ### Tool call
 
-_source line 6709 · 2026-05-25T12:05:11.164361+00:00_
+_source line 6687 · 2026-05-25T12:05:11.164361+00:00_
 
 called Edit
 
@@ -8632,7 +7248,7 @@ called Edit
 
 ### Tool result
 
-_source line 6710 · 2026-05-25T12:05:11.215117+00:00_
+_source line 6688 · 2026-05-25T12:05:11.215117+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully.
 
@@ -8654,7 +7270,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6711 · 2026-05-25T12:05:15.081308+00:00_
+_source line 6689 · 2026-05-25T12:05:15.081308+00:00_
 
 called Bash
 
@@ -8690,7 +7306,7 @@ called Bash
 
 ### Tool result
 
-_source line 6712 · 2026-05-25T12:05:17.591529+00:00_
+_source line 6690 · 2026-05-25T12:05:17.591529+00:00_
 
   ===Source file 'main.bbl' for 'pdflatex'
 Latexmk: Found bibliography file(s):
@@ -8716,7 +7332,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6713 · 2026-05-25T12:05:31.384593+00:00_
+_source line 6691 · 2026-05-25T12:05:31.384593+00:00_
 
 called Bash
 
@@ -8750,7 +7366,7 @@ called Bash
 
 ### Tool result
 
-_source line 6714 · 2026-05-25T12:05:31.686132+00:00_
+_source line 6692 · 2026-05-25T12:05:31.686132+00:00_
 
 Page 1: 
 Page 2: 
@@ -8782,7 +7398,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6715 · 2026-05-25T12:05:37.008142+00:00_
+_source line 6693 · 2026-05-25T12:05:37.008142+00:00_
 
 called Bash
 
@@ -8816,7 +7432,7 @@ called Bash
 
 ### Tool result
 
-_source line 6716 · 2026-05-25T12:05:37.310136+00:00_
+_source line 6694 · 2026-05-25T12:05:37.310136+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
 
@@ -8838,7 +7454,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6717 · 2026-05-25T12:05:45.793989+00:00_
+_source line 6695 · 2026-05-25T12:05:45.793989+00:00_
 
 called Bash
 
@@ -8872,7 +7488,7 @@ called Bash
 
 ### Tool result
 
-_source line 6718 · 2026-05-25T12:05:46.095475+00:00_
+_source line 6696 · 2026-05-25T12:05:46.095475+00:00_
 
 Page 6: 392   The C LS–C WM equivalence (p=0.007) is ro-                                          Cross-mode
 Page 6: 398   0.542 at per-test level (Appendix J.1).                                             unparseabl
@@ -8896,7 +7512,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6719 · 2026-05-25T12:05:51.010813+00:00_
+_source line 6697 · 2026-05-25T12:05:51.010813+00:00_
 
 called Bash
 
@@ -8930,7 +7546,7 @@ called Bash
 
 ### Tool result
 
-_source line 6720 · 2026-05-25T12:05:51.263005+00:00_
+_source line 6698 · 2026-05-25T12:05:51.263005+00:00_
 
 L60: 392   The C LS–C WM equivalence (p=0.007) is ro-                                          Cross-model        consistency. DeepSeek-Coder           425
 L66: 398   0.542 at per-test level (Appendix J.1).                                             unparseable), ruling out seed-specific artifacts.        431
@@ -8954,7 +7570,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6721 · 2026-05-25T12:06:07.384750+00:00_
+_source line 6699 · 2026-05-25T12:06:07.384750+00:00_
 
 called Bash
 
@@ -8988,7 +7604,7 @@ called Bash
 
 ### Tool result
 
-_source line 6722 · 2026-05-25T12:06:07.686528+00:00_
+_source line 6700 · 2026-05-25T12:06:07.686528+00:00_
 
 L15: Majority               72.96          54.17        72.96            54.17
 L18: Individual-seed variant accuracy.
@@ -9014,7 +7630,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6723 · 2026-05-25T12:06:19.974292+00:00_
+_source line 6701 · 2026-05-25T12:06:19.974292+00:00_
 
 called Bash
 
@@ -9048,7 +7664,7 @@ called Bash
 
 ### Tool result
 
-_source line 6724 · 2026-05-25T12:06:20.024999+00:00_
+_source line 6702 · 2026-05-25T12:06:20.024999+00:00_
 
 [master 4a0ff39] Typographic fixes: shrink Figure 3 legend, format Table 3 notes, fix widow word
  Committer: Ubuntu &lt;ubuntu@ip-172-31-12-144.ap-northeast-1.compute.internal>
@@ -9085,7 +7701,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6725 · 2026-05-25T12:06:24.041127+00:00_
+_source line 6703 · 2026-05-25T12:06:24.041127+00:00_
 
 called Bash
 
@@ -9119,7 +7735,7 @@ called Bash
 
 ### Tool result
 
-_source line 6726 · 2026-05-25T12:06:24.093007+00:00_
+_source line 6704 · 2026-05-25T12:06:24.093007+00:00_
 
 (Bash completed with no output)
 
@@ -9141,7 +7757,7 @@ _source line 6726 · 2026-05-25T12:06:24.093007+00:00_
 
 ### Tool call
 
-_source line 6727 · 2026-05-25T12:06:30.670769+00:00_
+_source line 6705 · 2026-05-25T12:06:30.670769+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -9185,7 +7801,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 6728 · 2026-05-25T12:06:31.022526+00:00_
+_source line 6706 · 2026-05-25T12:06:31.022526+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_bdc8be\", \"name\": \"paper_v_typfix\", \"type\": \"paper\", \"description\": \"Paper PDF after typographic fixes: smaller Figure 3 legend, Table 3 note formatting, widow word fix\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/paper/paper_v_typfix.pdf\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T12:06:30.671536+00:00\", \"tags\": [\"paper\", \"typographic\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -9207,7 +7823,7 @@ _source line 6728 · 2026-05-25T12:06:31.022526+00:00_
 
 ### Tool call
 
-_source line 6729 · 2026-05-25T12:06:45.482964+00:00_
+_source line 6707 · 2026-05-25T12:06:45.482964+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -9243,7 +7859,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6730 · 2026-05-25T12:06:49.193480+00:00_
+_source line 6708 · 2026-05-25T12:06:49.193480+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -9265,7 +7881,7 @@ _source line 6730 · 2026-05-25T12:06:49.193480+00:00_
 
 ### Assistant
 
-_source line 6731 · 2026-05-25T12:06:52.599558+00:00_
+_source line 6709 · 2026-05-25T12:06:52.599558+00:00_
 
 Copy PDF to artifacts.
 
@@ -9292,7 +7908,7 @@ Copy PDF to artifacts.
 
 ### User
 
-_source line 6732 · 2026-05-25T15:36:24.008466+00:00_
+_source line 6710 · 2026-05-25T15:36:24.008466+00:00_
 
 [Director 指令] 用户要求 ACL 官方模板对齐 + 8 页控制，今天 DDL，优先级最高。
 
@@ -9361,7 +7977,7 @@ Overleaf 链接：https://www.overleaf.com/latex/templates/association-for-compu
 
 ### Tool call
 
-_source line 6733 · 2026-05-25T15:36:35.220245+00:00_
+_source line 6711 · 2026-05-25T15:36:35.220245+00:00_
 
 called Read
 
@@ -9397,7 +8013,7 @@ called Read
 
 ### Tool result
 
-_source line 6734 · 2026-05-25T15:36:35.220735+00:00_
+_source line 6712 · 2026-05-25T15:36:35.220735+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -9478,7 +8094,7 @@ _source line 6734 · 2026-05-25T15:36:35.220735+00:00_
 
 ### Tool call
 
-_source line 6735 · 2026-05-25T15:36:40.130006+00:00_
+_source line 6713 · 2026-05-25T15:36:40.130006+00:00_
 
 called Read
 
@@ -9514,7 +8130,7 @@ called Read
 
 ### Tool result
 
-_source line 6736 · 2026-05-25T15:36:40.130481+00:00_
+_source line 6714 · 2026-05-25T15:36:40.130481+00:00_
 
 60	\bibliography{references}
 61	
@@ -9544,7 +8160,7 @@ _source line 6736 · 2026-05-25T15:36:40.130481+00:00_
 
 ### Tool call
 
-_source line 6737 · 2026-05-25T15:36:43.444097+00:00_
+_source line 6715 · 2026-05-25T15:36:43.444097+00:00_
 
 called ToolSearch
 
@@ -9580,7 +8196,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6738 · 2026-05-25T15:36:43.494681+00:00_
+_source line 6716 · 2026-05-25T15:36:43.494681+00:00_
 
 
 
@@ -9602,7 +8218,7 @@ _source line 6738 · 2026-05-25T15:36:43.494681+00:00_
 
 ### Tool call
 
-_source line 6739 · 2026-05-25T15:36:48.312706+00:00_
+_source line 6717 · 2026-05-25T15:36:48.312706+00:00_
 
 called WebFetch
 
@@ -9638,7 +8254,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 6740 · 2026-05-25T15:36:48.664438+00:00_
+_source line 6718 · 2026-05-25T15:36:48.664438+00:00_
 
 Request failed with status code 404
 
@@ -9660,7 +8276,7 @@ Request failed with status code 404
 
 ### Tool call
 
-_source line 6741 · 2026-05-25T15:36:49.296594+00:00_
+_source line 6719 · 2026-05-25T15:36:49.296594+00:00_
 
 called WebFetch
 
@@ -9696,7 +8312,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 6742 · 2026-05-25T15:36:49.497762+00:00_
+_source line 6720 · 2026-05-25T15:36:49.497762+00:00_
 
 Request failed with status code 404
 
@@ -9718,7 +8334,7 @@ Request failed with status code 404
 
 ### Tool call
 
-_source line 6743 · 2026-05-25T15:36:52.911964+00:00_
+_source line 6721 · 2026-05-25T15:36:52.911964+00:00_
 
 called Bash
 
@@ -9752,7 +8368,7 @@ called Bash
 
 ### Tool result
 
-_source line 6744 · 2026-05-25T15:36:53.114152+00:00_
+_source line 6722 · 2026-05-25T15:36:53.114152+00:00_
 
 (Bash completed with no output)
 
@@ -9774,7 +8390,7 @@ _source line 6744 · 2026-05-25T15:36:53.114152+00:00_
 
 ### Tool call
 
-_source line 6745 · 2026-05-25T15:36:56.428301+00:00_
+_source line 6723 · 2026-05-25T15:36:56.428301+00:00_
 
 called Bash
 
@@ -9808,7 +8424,7 @@ called Bash
 
 ### Tool result
 
-_source line 6746 · 2026-05-25T15:36:56.529144+00:00_
+_source line 6724 · 2026-05-25T15:36:56.529144+00:00_
 
 /bin/bash: line 1: gh: command not found
 
@@ -9830,7 +8446,7 @@ _source line 6746 · 2026-05-25T15:36:56.529144+00:00_
 
 ### Tool call
 
-_source line 6747 · 2026-05-25T15:37:00.198446+00:00_
+_source line 6725 · 2026-05-25T15:37:00.198446+00:00_
 
 called WebFetch
 
@@ -9866,7 +8482,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 6748 · 2026-05-25T15:37:04.369901+00:00_
+_source line 6726 · 2026-05-25T15:37:04.369901+00:00_
 
 # ACL Style Files Repository Structure
 
@@ -9909,7 +8525,7 @@ For authors, the guidance emphasizes that submissions "must use the official ACL
 
 ### Tool call
 
-_source line 6749 · 2026-05-25T15:37:09.360997+00:00_
+_source line 6727 · 2026-05-25T15:37:09.360997+00:00_
 
 called WebFetch
 
@@ -9945,7 +8561,7 @@ called WebFetch
 
 ### Tool call
 
-_source line 6750 · 2026-05-25T15:37:09.913482+00:00_
+_source line 6728 · 2026-05-25T15:37:09.913482+00:00_
 
 called WebFetch
 
@@ -9981,7 +8597,7 @@ called WebFetch
 
 ### Tool result
 
-_source line 6751 · 2026-05-25T15:37:13.579835+00:00_
+_source line 6729 · 2026-05-25T15:37:13.579835+00:00_
 
 # ACL LaTeX Template Document
 
@@ -10030,7 +8646,7 @@ The document itself serves as a working example conforming to its own specificat
 
 ### Tool result
 
-_source line 6752 · 2026-05-25T15:37:15.236986+00:00_
+_source line 6730 · 2026-05-25T15:37:15.236986+00:00_
 
 # ACL LaTeX Style File Content
 
@@ -10079,7 +8695,7 @@ The file represents the official ACL submission template used for conference pap
 
 ### Tool call
 
-_source line 6753 · 2026-05-25T15:37:20.510013+00:00_
+_source line 6731 · 2026-05-25T15:37:20.510013+00:00_
 
 called Bash
 
@@ -10113,7 +8729,7 @@ called Bash
 
 ### Tool result
 
-_source line 6754 · 2026-05-25T15:37:21.012309+00:00_
+_source line 6732 · 2026-05-25T15:37:21.012309+00:00_
 
 377 acl_latex_official.tex
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
@@ -10136,7 +8752,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6755 · 2026-05-25T15:37:21.063290+00:00_
+_source line 6733 · 2026-05-25T15:37:21.063290+00:00_
 
 called Bash
 
@@ -10170,7 +8786,7 @@ called Bash
 
 ### Tool result
 
-_source line 6756 · 2026-05-25T15:37:21.314738+00:00_
+_source line 6734 · 2026-05-25T15:37:21.314738+00:00_
 
 312 acl_official.sty
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
@@ -10193,7 +8809,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6757 · 2026-05-25T15:37:24.829177+00:00_
+_source line 6735 · 2026-05-25T15:37:24.829177+00:00_
 
 called Read
 
@@ -10229,7 +8845,7 @@ called Read
 
 ### Tool result
 
-_source line 6758 · 2026-05-25T15:37:24.930104+00:00_
+_source line 6736 · 2026-05-25T15:37:24.930104+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -10303,7 +8919,7 @@ _source line 6758 · 2026-05-25T15:37:24.930104+00:00_
 
 ### Tool call
 
-_source line 6759 · 2026-05-25T15:37:28.694118+00:00_
+_source line 6737 · 2026-05-25T15:37:28.694118+00:00_
 
 called Read
 
@@ -10341,7 +8957,7 @@ called Read
 
 ### Tool result
 
-_source line 6760 · 2026-05-25T15:37:28.794912+00:00_
+_source line 6738 · 2026-05-25T15:37:28.794912+00:00_
 
 80	%  \textbf{Ninth Author\textsuperscript{1}},
 81	%  \textbf{Tenth Author\textsuperscript{1}},
@@ -10402,7 +9018,7 @@ _source line 6760 · 2026-05-25T15:37:28.794912+00:00_
 
 ### Tool call
 
-_source line 6761 · 2026-05-25T15:37:32.861994+00:00_
+_source line 6739 · 2026-05-25T15:37:32.861994+00:00_
 
 called Read
 
@@ -10436,7 +9052,7 @@ called Read
 
 ### Tool result
 
-_source line 6762 · 2026-05-25T15:37:32.862698+00:00_
+_source line 6740 · 2026-05-25T15:37:32.862698+00:00_
 
 1	% This is the LaTex style file for *ACL.
 2	% The official sources can be found at
@@ -10509,7 +9125,7 @@ _source line 6762 · 2026-05-25T15:37:32.862698+00:00_
 
 ### Tool call
 
-_source line 6763 · 2026-05-25T15:37:38.184824+00:00_
+_source line 6741 · 2026-05-25T15:37:38.184824+00:00_
 
 called Bash
 
@@ -10543,7 +9159,7 @@ called Bash
 
 ### Tool result
 
-_source line 6764 · 2026-05-25T15:37:38.335735+00:00_
+_source line 6742 · 2026-05-25T15:37:38.335735+00:00_
 
 (Bash completed with no output)
 
@@ -10565,7 +9181,7 @@ _source line 6764 · 2026-05-25T15:37:38.335735+00:00_
 
 ### Tool call
 
-_source line 6765 · 2026-05-25T15:37:41.736393+00:00_
+_source line 6743 · 2026-05-25T15:37:41.736393+00:00_
 
 called Bash
 
@@ -10599,7 +9215,7 @@ called Bash
 
 ### Tool result
 
-_source line 6766 · 2026-05-25T15:37:41.787066+00:00_
+_source line 6744 · 2026-05-25T15:37:41.787066+00:00_
 
 (Bash completed with no output)
 
@@ -10621,7 +9237,7 @@ _source line 6766 · 2026-05-25T15:37:41.787066+00:00_
 
 ### Tool call
 
-_source line 6767 · 2026-05-25T15:37:45.501192+00:00_
+_source line 6745 · 2026-05-25T15:37:45.501192+00:00_
 
 called Bash
 
@@ -10655,7 +9271,7 @@ called Bash
 
 ### Tool result
 
-_source line 6768 · 2026-05-25T15:37:45.602093+00:00_
+_source line 6746 · 2026-05-25T15:37:45.602093+00:00_
 
 3,4c3
 < % Change "review" to "final" to generate the final (sometimes called camera-ready) version.
@@ -10744,7 +9360,7 @@ _source line 6768 · 2026-05-25T15:37:45.602093+00:00_
 
 ### Tool call
 
-_source line 6769 · 2026-05-25T15:39:32.419666+00:00_
+_source line 6747 · 2026-05-25T15:39:32.419666+00:00_
 
 called Read
 
@@ -10778,7 +9394,7 @@ called Read
 
 ### Tool result
 
-_source line 6770 · 2026-05-25T15:39:32.470374+00:00_
+_source line 6748 · 2026-05-25T15:39:32.470374+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -10867,7 +9483,7 @@ _source line 6770 · 2026-05-25T15:39:32.470374+00:00_
 
 ### Tool call
 
-_source line 6771 · 2026-05-25T15:39:40.799730+00:00_
+_source line 6749 · 2026-05-25T15:39:40.799730+00:00_
 
 called Edit
 
@@ -10907,7 +9523,7 @@ called Edit
 
 ### Tool result
 
-_source line 6772 · 2026-05-25T15:39:40.800136+00:00_
+_source line 6750 · 2026-05-25T15:39:40.800136+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.tex has been updated successfully.
 
@@ -10929,7 +9545,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repa
 
 ### Tool call
 
-_source line 6773 · 2026-05-25T15:39:44.313842+00:00_
+_source line 6751 · 2026-05-25T15:39:44.313842+00:00_
 
 called Bash
 
@@ -10965,7 +9581,7 @@ called Bash
 
 ### Tool result
 
-_source line 6774 · 2026-05-25T15:39:44.715604+00:00_
+_source line 6752 · 2026-05-25T15:39:44.715604+00:00_
 
 l.13 ^^M
         
@@ -10991,7 +9607,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6775 · 2026-05-25T15:39:49.184987+00:00_
+_source line 6753 · 2026-05-25T15:39:49.184987+00:00_
 
 called Bash
 
@@ -11025,7 +9641,7 @@ called Bash
 
 ### Tool result
 
-_source line 6776 · 2026-05-25T15:39:49.235631+00:00_
+_source line 6754 · 2026-05-25T15:39:49.235631+00:00_
 
 150:Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 303:! LaTeX Error: File `inconsolata.sty' not found.
@@ -11050,7 +9666,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6777 · 2026-05-25T15:39:53.467667+00:00_
+_source line 6755 · 2026-05-25T15:39:53.467667+00:00_
 
 called Bash
 
@@ -11086,7 +9702,7 @@ called Bash
 
 ### Tool result
 
-_source line 6778 · 2026-05-25T15:41:53.935487+00:00_
+_source line 6756 · 2026-05-25T15:41:53.935487+00:00_
 
 Command running in background with ID: b3r6zvzm7. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-7a9aef1a/582c0f6d-ada1-4fcd-b3d2-25d5d670557d/tasks/b3r6zvzm7.output
 
@@ -11108,7 +9724,7 @@ Command running in background with ID: b3r6zvzm7. Output is being written to: /t
 
 ### Tool call
 
-_source line 6779 · 2026-05-25T15:41:56.597163+00:00_
+_source line 6757 · 2026-05-25T15:41:56.597163+00:00_
 
 called Bash
 
@@ -11142,7 +9758,7 @@ called Bash
 
 ### Tool result
 
-_source line 6780 · 2026-05-25T15:41:57.707174+00:00_
+_source line 6758 · 2026-05-25T15:41:57.707174+00:00_
 
 /usr/share/texlive/texmf-dist/tex/latex/inconsolata/inconsolata.sty
 
@@ -11164,7 +9780,7 @@ _source line 6780 · 2026-05-25T15:41:57.707174+00:00_
 
 ### Tool call
 
-_source line 6781 · 2026-05-25T15:42:01.021033+00:00_
+_source line 6759 · 2026-05-25T15:42:01.021033+00:00_
 
 called Bash
 
@@ -11200,7 +9816,7 @@ called Bash
 
 ### Tool result
 
-_source line 6782 · 2026-05-25T15:42:02.627033+00:00_
+_source line 6760 · 2026-05-25T15:42:02.627033+00:00_
 
 /type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/
@@ -11232,7 +9848,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6783 · 2026-05-25T15:42:06.694870+00:00_
+_source line 6761 · 2026-05-25T15:42:06.694870+00:00_
 
 called Bash
 
@@ -11268,7 +9884,7 @@ called Bash
 
 ### Tool result
 
-_source line 6784 · 2026-05-25T15:42:10.009824+00:00_
+_source line 6762 · 2026-05-25T15:42:10.009824+00:00_
 
 The top-level auxiliary file: main.aux
 The style file: acl_natbib.bst
@@ -11299,7 +9915,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6785 · 2026-05-25T15:42:16.189490+00:00_
+_source line 6763 · 2026-05-25T15:42:16.189490+00:00_
 
 called Bash
 
@@ -11333,7 +9949,7 @@ called Bash
 
 ### Tool result
 
-_source line 6786 · 2026-05-25T15:42:16.491190+00:00_
+_source line 6764 · 2026-05-25T15:42:16.491190+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a
 
@@ -11355,7 +9971,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6787 · 2026-05-25T15:42:20.057818+00:00_
+_source line 6765 · 2026-05-25T15:42:20.057818+00:00_
 
 called Bash
 
@@ -11389,7 +10005,7 @@ called Bash
 
 ### Tool result
 
-_source line 6788 · 2026-05-25T15:42:20.310027+00:00_
+_source line 6766 · 2026-05-25T15:42:20.310027+00:00_
 
 1:A Systematic Comparison of Execution-Free Verification Formulations for
 95:A related question is whether formulation choice
@@ -11421,7 +10037,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6789 · 2026-05-25T15:42:27.188021+00:00_
+_source line 6767 · 2026-05-25T15:42:27.188021+00:00_
 
 called Bash
 
@@ -11455,7 +10071,7 @@ called Bash
 
 ### Tool result
 
-_source line 6790 · 2026-05-25T15:42:27.439422+00:00_
+_source line 6768 · 2026-05-25T15:42:27.439422+00:00_
 
 === Page 8 ===
   TOP: 50                                                                              
@@ -11522,7 +10138,7 @@ _source line 6790 · 2026-05-25T15:42:27.439422+00:00_
 
 ### Tool call
 
-_source line 6791 · 2026-05-25T15:42:43.741431+00:00_
+_source line 6769 · 2026-05-25T15:42:43.741431+00:00_
 
 called Bash
 
@@ -11556,7 +10172,7 @@ called Bash
 
 ### Tool result
 
-_source line 6792 · 2026-05-25T15:42:44.043058+00:00_
+_source line 6770 · 2026-05-25T15:42:44.043058+00:00_
 
 Limitations is on page 8
 Page 8 has 80 lines
@@ -11584,7 +10200,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6793 · 2026-05-25T15:42:47.758687+00:00_
+_source line 6771 · 2026-05-25T15:42:47.758687+00:00_
 
 called Read
 
@@ -11620,7 +10236,7 @@ called Read
 
 ### Tool result
 
-_source line 6794 · 2026-05-25T15:42:47.809377+00:00_
+_source line 6772 · 2026-05-25T15:42:47.809377+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -11676,7 +10292,7 @@ _source line 6794 · 2026-05-25T15:42:47.809377+00:00_
 
 ### Tool call
 
-_source line 6795 · 2026-05-25T15:42:51.525173+00:00_
+_source line 6773 · 2026-05-25T15:42:51.525173+00:00_
 
 called Bash
 
@@ -11710,7 +10326,7 @@ called Bash
 
 ### Tool result
 
-_source line 6796 · 2026-05-25T15:42:51.626049+00:00_
+_source line 6774 · 2026-05-25T15:42:51.626049+00:00_
 
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -11746,7 +10362,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6797 · 2026-05-25T15:42:56.997711+00:00_
+_source line 6775 · 2026-05-25T15:42:56.997711+00:00_
 
 called Bash
 
@@ -11780,7 +10396,7 @@ called Bash
 
 ### Tool result
 
-_source line 6798 · 2026-05-25T15:42:57.048843+00:00_
+_source line 6776 · 2026-05-25T15:42:57.048843+00:00_
 
 (Bash completed with no output)
 
@@ -11802,7 +10418,7 @@ _source line 6798 · 2026-05-25T15:42:57.048843+00:00_
 
 ### Tool call
 
-_source line 6799 · 2026-05-25T15:43:00.211657+00:00_
+_source line 6777 · 2026-05-25T15:43:00.211657+00:00_
 
 called ToolSearch
 
@@ -11838,7 +10454,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6800 · 2026-05-25T15:43:00.262222+00:00_
+_source line 6778 · 2026-05-25T15:43:00.262222+00:00_
 
 
 
@@ -11860,7 +10476,7 @@ _source line 6800 · 2026-05-25T15:43:00.262222+00:00_
 
 ### Tool call
 
-_source line 6801 · 2026-05-25T15:43:11.853100+00:00_
+_source line 6779 · 2026-05-25T15:43:11.853100+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11896,7 +10512,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6802 · 2026-05-25T15:43:15.869539+00:00_
+_source line 6780 · 2026-05-25T15:43:15.869539+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -11918,7 +10534,7 @@ _source line 6802 · 2026-05-25T15:43:15.869539+00:00_
 
 ### Assistant
 
-_source line 6803 · 2026-05-25T15:43:19.974737+00:00_
+_source line 6781 · 2026-05-25T15:43:19.974737+00:00_
 
 ACL 官方模板对齐已完成并汇报 Director。改动：添加 5 个官方标准包（latexsym, fontenc T1, inputenc utf8, microtype, inconsolata），移除冗余 xcolor。acl.sty 无差异。编译后正文仍为 8 页。
 
@@ -11945,7 +10561,7 @@ ACL 官方模板对齐已完成并汇报 Director。改动：添加 5 个官方�
 
 ### User
 
-_source line 6804 · 2026-05-25T19:41:18.644332+00:00_
+_source line 6782 · 2026-05-25T19:41:18.644332+00:00_
 
 [Director 指令] **重大任务：全文数据真实性与可追溯性彻底审计**
 
@@ -12036,7 +10652,7 @@ _source line 6804 · 2026-05-25T19:41:18.644332+00:00_
 
 ### Tool call
 
-_source line 6805 · 2026-05-25T19:41:31.165462+00:00_
+_source line 6783 · 2026-05-25T19:41:31.165462+00:00_
 
 called Read
 
@@ -12070,7 +10686,7 @@ called Read
 
 ### Tool result
 
-_source line 6806 · 2026-05-25T19:41:31.617509+00:00_
+_source line 6784 · 2026-05-25T19:41:31.617509+00:00_
 
 1	\begin{abstract}
 2	Execution-free verification promises to replace costly test execution in Large Language Model (LLM)-based program repair, yet practitioners must choose among three fundamentally different formulations with no controlled comparison to guide the decision: per-test classification (\cls{}), execution output generation (\cwm{}), and trajectory-level scoring (\traj{}). We present the first systematic comparison, controlling for model capacity, training data, and evaluation protocol across two code LLM families (Qwen3, DeepSeek-Coder), two complexity levels, and multiple random seeds under ${\leq}$8B Low-Rank Adaptation (LoRA) fine-tuning. Our central finding is that \emph{code complexity moderates the classification--generation tradeoff}. When outputs are short (function-level verification), classification and generation achieve statistically equivalent accuracy; trajectory-level parity is model-dependent. When outputs grow longer and more structured (repository-level verification), this equivalence breaks down: generation-based verification suffers format collapse, falling well below classification. At 14B, function-level gaps narrow to approximately one percentage point, but whether the repo-level divergence is capacity-contingent remains open. A failure mode taxonomy and error complementarity analysis provide actionable guidance for formulation selection and motivate complexity-aware routing as a key open direction\footnote{Code and data are available at \url{https://anonymous.4open.science/r/exec-sim-repair-verifier-102B/}.}.
@@ -12095,7 +10711,7 @@ _source line 6806 · 2026-05-25T19:41:31.617509+00:00_
 
 ### Tool call
 
-_source line 6807 · 2026-05-25T19:41:31.703060+00:00_
+_source line 6785 · 2026-05-25T19:41:31.703060+00:00_
 
 called Read
 
@@ -12129,7 +10745,7 @@ called Read
 
 ### Tool result
 
-_source line 6808 · 2026-05-25T19:41:32.607385+00:00_
+_source line 6786 · 2026-05-25T19:41:32.607385+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -12157,7 +10773,7 @@ _source line 6808 · 2026-05-25T19:41:32.607385+00:00_
 
 ### Tool call
 
-_source line 6809 · 2026-05-25T19:41:32.607857+00:00_
+_source line 6787 · 2026-05-25T19:41:32.607857+00:00_
 
 called Read
 
@@ -12191,7 +10807,7 @@ called Read
 
 ### Tool result
 
-_source line 6810 · 2026-05-25T19:41:33.059780+00:00_
+_source line 6788 · 2026-05-25T19:41:33.059780+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -12228,7 +10844,7 @@ _source line 6810 · 2026-05-25T19:41:33.059780+00:00_
 
 ### Tool call
 
-_source line 6811 · 2026-05-25T19:41:33.060156+00:00_
+_source line 6789 · 2026-05-25T19:41:33.060156+00:00_
 
 called Read
 
@@ -12262,7 +10878,7 @@ called Read
 
 ### Tool result
 
-_source line 6812 · 2026-05-25T19:41:33.612598+00:00_
+_source line 6790 · 2026-05-25T19:41:33.612598+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -12301,7 +10917,7 @@ _source line 6812 · 2026-05-25T19:41:33.612598+00:00_
 
 ### Tool call
 
-_source line 6813 · 2026-05-25T19:41:33.613048+00:00_
+_source line 6791 · 2026-05-25T19:41:33.613048+00:00_
 
 called Read
 
@@ -12335,7 +10951,7 @@ called Read
 
 ### Tool result
 
-_source line 6814 · 2026-05-25T19:41:33.814087+00:00_
+_source line 6792 · 2026-05-25T19:41:33.814087+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -12364,7 +10980,7 @@ _source line 6814 · 2026-05-25T19:41:33.814087+00:00_
 
 ### Tool call
 
-_source line 6815 · 2026-05-25T19:41:33.814422+00:00_
+_source line 6793 · 2026-05-25T19:41:33.814422+00:00_
 
 called Read
 
@@ -12398,7 +11014,7 @@ called Read
 
 ### Tool result
 
-_source line 6816 · 2026-05-25T19:41:34.116957+00:00_
+_source line 6794 · 2026-05-25T19:41:34.116957+00:00_
 
 1	\appendix
 2	
@@ -12453,7 +11069,7 @@ _source line 6816 · 2026-05-25T19:41:34.116957+00:00_
 
 ### Tool call
 
-_source line 6817 · 2026-05-25T19:41:40.712980+00:00_
+_source line 6795 · 2026-05-25T19:41:40.712980+00:00_
 
 called Glob
 
@@ -12489,7 +11105,7 @@ called Glob
 
 ### Tool result
 
-_source line 6818 · 2026-05-25T19:41:41.516126+00:00_
+_source line 6796 · 2026-05-25T19:41:41.516126+00:00_
 
 No files found
 
@@ -12511,7 +11127,7 @@ No files found
 
 ### Tool call
 
-_source line 6819 · 2026-05-25T19:41:41.516450+00:00_
+_source line 6797 · 2026-05-25T19:41:41.516450+00:00_
 
 called ToolSearch
 
@@ -12547,7 +11163,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6820 · 2026-05-25T19:41:41.566863+00:00_
+_source line 6798 · 2026-05-25T19:41:41.566863+00:00_
 
 
 
@@ -12569,7 +11185,7 @@ _source line 6820 · 2026-05-25T19:41:41.566863+00:00_
 
 ### Tool call
 
-_source line 6821 · 2026-05-25T19:41:44.026976+00:00_
+_source line 6799 · 2026-05-25T19:41:44.026976+00:00_
 
 called Glob
 
@@ -12605,7 +11221,7 @@ called Glob
 
 ### Tool result
 
-_source line 6822 · 2026-05-25T19:41:44.478875+00:00_
+_source line 6800 · 2026-05-25T19:41:44.478875+00:00_
 
 No files found
 
@@ -12627,7 +11243,7 @@ No files found
 
 ### Tool call
 
-_source line 6823 · 2026-05-25T19:41:44.579587+00:00_
+_source line 6801 · 2026-05-25T19:41:44.579587+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12665,7 +11281,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 6824 · 2026-05-25T19:41:45.737823+00:00_
+_source line 6802 · 2026-05-25T19:41:45.737823+00:00_
 
 Error: result (429,067 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-7a9aef1a/582c0f6d-ada1-4fcd-b3d2-25d5d670557d/tool-results/mcp-agent-ml-research-read_registry-1779738105687.txt.
 Format: JSON with schema: {result: string}
@@ -12694,7 +11310,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 6825 · 2026-05-25T19:41:54.219910+00:00_
+_source line 6803 · 2026-05-25T19:41:54.219910+00:00_
 
 called Bash
 
@@ -12728,7 +11344,7 @@ called Bash
 
 ### Tool result
 
-_source line 6826 · 2026-05-25T19:41:57.935639+00:00_
+_source line 6804 · 2026-05-25T19:41:57.935639+00:00_
 
 14b_seed_level_stats.json
 14b_upgrade_checklist.txt
@@ -12822,7 +11438,7 @@ error_comple
 
 ### Tool call
 
-_source line 6827 · 2026-05-25T19:41:58.086772+00:00_
+_source line 6805 · 2026-05-25T19:41:58.086772+00:00_
 
 called Bash
 
@@ -12858,7 +11474,7 @@ called Bash
 
 ### Tool result
 
-_source line 6828 · 2026-05-25T19:41:58.339668+00:00_
+_source line 6806 · 2026-05-25T19:41:58.339668+00:00_
 
 Traceback (most recent call last):
   File "&lt;string>", line 7, in &lt;module>
@@ -12885,7 +11501,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6829 · 2026-05-25T19:42:13.986471+00:00_
+_source line 6807 · 2026-05-25T19:42:13.986471+00:00_
 
 called Bash
 
@@ -12921,7 +11537,7 @@ called Bash
 
 ### Tool result
 
-_source line 6830 · 2026-05-25T19:42:14.187663+00:00_
+_source line 6808 · 2026-05-25T19:42:14.187663+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -12949,7 +11565,7 @@ Total experiments: 4
 
 ### Tool call
 
-_source line 6831 · 2026-05-25T19:42:19.658749+00:00_
+_source line 6809 · 2026-05-25T19:42:19.658749+00:00_
 
 called Bash
 
@@ -12985,7 +11601,7 @@ called Bash
 
 ### Tool result
 
-_source line 6832 · 2026-05-25T19:42:19.760918+00:00_
+_source line 6810 · 2026-05-25T19:42:19.760918+00:00_
 
 Type: &lt;class 'dict'>, Keys: ['success', 'data', 'error', 'metadata']
   success: &lt;class 'bool'>
@@ -13012,7 +11628,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6833 · 2026-05-25T19:42:26.084326+00:00_
+_source line 6811 · 2026-05-25T19:42:26.084326+00:00_
 
 called Bash
 
@@ -13048,7 +11664,7 @@ called Bash
 
 ### Tool result
 
-_source line 6834 · 2026-05-25T19:42:26.285487+00:00_
+_source line 6812 · 2026-05-25T19:42:26.285487+00:00_
 
 Traceback (most recent call last):
   File "&lt;string>", line 10, in &lt;module>
@@ -13076,7 +11692,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 6835 · 2026-05-25T19:42:30.351304+00:00_
+_source line 6813 · 2026-05-25T19:42:30.351304+00:00_
 
 called Bash
 
@@ -13112,7 +11728,7 @@ called Bash
 
 ### Tool result
 
-_source line 6836 · 2026-05-25T19:42:30.453065+00:00_
+_source line 6814 · 2026-05-25T19:42:30.453065+00:00_
 
 {
   "success": true,
@@ -13175,7 +11791,7 @@ _source line 6836 · 2026-05-25T19:42:30.453065+00:00_
 
 ### Tool call
 
-_source line 6837 · 2026-05-25T19:42:41.682711+00:00_
+_source line 6815 · 2026-05-25T19:42:41.682711+00:00_
 
 called Bash
 
@@ -13211,7 +11827,7 @@ called Bash
 
 ### Tool result
 
-_source line 6838 · 2026-05-25T19:42:41.783759+00:00_
+_source line 6816 · 2026-05-25T19:42:41.783759+00:00_
 
 &lt;persisted-output>
 Output too large (41.9KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-7a9aef1a/582c0f6d-ada1-4fcd-b3d2-25d5d670557d/tool-results/bt7o751mx.txt
@@ -13266,7 +11882,7 @@ Total experiments: 267
 
 ### Tool call
 
-_source line 6839 · 2026-05-25T19:42:46.551171+00:00_
+_source line 6817 · 2026-05-25T19:42:46.551171+00:00_
 
 called Read
 
@@ -13300,7 +11916,7 @@ called Read
 
 ### Tool result
 
-_source line 6840 · 2026-05-25T19:42:46.853586+00:00_
+_source line 6818 · 2026-05-25T19:42:46.853586+00:00_
 
 1	Total experiments: 267
 2	--- cls-downsample-400-s42 ---
@@ -13355,7 +11971,7 @@ _source line 6840 · 2026-05-25T19:42:46.853586+00:00_
 
 ### Tool call
 
-_source line 6841 · 2026-05-25T19:43:35.028309+00:00_
+_source line 6819 · 2026-05-25T19:43:35.028309+00:00_
 
 called Agent
 
@@ -13393,7 +12009,7 @@ called Agent
 
 ### Tool call
 
-_source line 6842 · 2026-05-25T19:43:53.667243+00:00_
+_source line 6820 · 2026-05-25T19:43:53.667243+00:00_
 
 called Read
 
@@ -13427,7 +12043,7 @@ called Read
 
 ### Tool result
 
-_source line 6843 · 2026-05-25T19:43:53.667782+00:00_
+_source line 6821 · 2026-05-25T19:43:53.667782+00:00_
 
 1	{
 2	  "qwen3_8b_cls": {
@@ -13543,7 +12159,7 @@ _source line 6843 · 2026-05-25T19:43:53.667782+00:00_
 
 ### Tool call
 
-_source line 6844 · 2026-05-25T19:43:53.668071+00:00_
+_source line 6822 · 2026-05-25T19:43:53.668071+00:00_
 
 called Read
 
@@ -13577,7 +12193,7 @@ called Read
 
 ### Tool result
 
-_source line 6845 · 2026-05-25T19:43:53.668283+00:00_
+_source line 6823 · 2026-05-25T19:43:53.668283+00:00_
 
 1	{
 2	  "model": "DeepSeek-Coder-6.7B-Instruct",
@@ -13663,7 +12279,7 @@ _source line 6845 · 2026-05-25T19:43:53.668283+00:00_
 
 ### Tool call
 
-_source line 6846 · 2026-05-25T19:43:53.668460+00:00_
+_source line 6824 · 2026-05-25T19:43:53.668460+00:00_
 
 called Read
 
@@ -13697,7 +12313,7 @@ called Read
 
 ### Tool result
 
-_source line 6847 · 2026-05-25T19:43:53.668829+00:00_
+_source line 6825 · 2026-05-25T19:43:53.668829+00:00_
 
 1	{
 2	  "cls8b-eval-seed42": {
@@ -13799,7 +12415,7 @@ _source line 6847 · 2026-05-25T19:43:53.668829+00:00_
 
 ### Tool call
 
-_source line 6848 · 2026-05-25T19:43:53.869858+00:00_
+_source line 6826 · 2026-05-25T19:43:53.869858+00:00_
 
 called Agent
 
@@ -13837,7 +12453,7 @@ called Agent
 
 ### Tool call
 
-_source line 6849 · 2026-05-25T19:44:29.620015+00:00_
+_source line 6827 · 2026-05-25T19:44:29.620015+00:00_
 
 called Bash
 
@@ -13873,7 +12489,7 @@ called Bash
 
 ### Tool result
 
-_source line 6850 · 2026-05-25T19:44:29.620438+00:00_
+_source line 6828 · 2026-05-25T19:44:29.620438+00:00_
 
 === Qwen3 CLS 4B (known 4 seeds, seed456 missing for 4B) ===
   Known seeds: [87.83, 89.52, 89.0, 87.94]
@@ -13947,7 +12563,7 @@ Paper uses 8b-baseline-rerun (60.53) — these appear to be different experiment
 
 ### Tool call
 
-_source line 6851 · 2026-05-25T19:44:29.620648+00:00_
+_source line 6829 · 2026-05-25T19:44:29.620648+00:00_
 
 called Read
 
@@ -13981,7 +12597,7 @@ called Read
 
 ### Tool result
 
-_source line 6852 · 2026-05-25T19:44:29.620883+00:00_
+_source line 6830 · 2026-05-25T19:44:29.620883+00:00_
 
 1	{
 2	  "title": "14B Seed-Level Statistical Analysis (D169 compliant)",
@@ -14077,7 +12693,7 @@ _source line 6852 · 2026-05-25T19:44:29.620883+00:00_
 
 ### Tool call
 
-_source line 6853 · 2026-05-25T19:44:29.621069+00:00_
+_source line 6831 · 2026-05-25T19:44:29.621069+00:00_
 
 called Glob
 
@@ -14111,7 +12727,7 @@ called Glob
 
 ### Tool result
 
-_source line 6854 · 2026-05-25T19:44:29.621224+00:00_
+_source line 6832 · 2026-05-25T19:44:29.621224+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T231719/best/paper.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T231719/median/paper.tex
@@ -14149,7 +12765,7 @@ _source line 6854 · 2026-05-25T19:44:29.621224+00:00_
 
 ### Tool call
 
-_source line 6855 · 2026-05-25T19:44:29.621395+00:00_
+_source line 6833 · 2026-05-25T19:44:29.621395+00:00_
 
 called Read
 
@@ -14183,7 +12799,7 @@ called Read
 
 ### Tool result
 
-_source line 6856 · 2026-05-25T19:44:29.621680+00:00_
+_source line 6834 · 2026-05-25T19:44:29.621680+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -14222,7 +12838,7 @@ _source line 6856 · 2026-05-25T19:44:29.621680+00:00_
 
 ### Tool call
 
-_source line 6857 · 2026-05-25T19:44:29.621894+00:00_
+_source line 6835 · 2026-05-25T19:44:29.621894+00:00_
 
 called Read
 
@@ -14256,7 +12872,7 @@ called Read
 
 ### Tool result
 
-_source line 6858 · 2026-05-25T19:44:29.622035+00:00_
+_source line 6836 · 2026-05-25T19:44:29.622035+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a.
 
@@ -14278,7 +12894,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 6859 · 2026-05-25T19:44:29.622161+00:00_
+_source line 6837 · 2026-05-25T19:44:29.622161+00:00_
 
 called Read
 
@@ -14314,7 +12930,7 @@ called Read
 
 ### Tool result
 
-_source line 6860 · 2026-05-25T19:44:29.622283+00:00_
+_source line 6838 · 2026-05-25T19:44:29.622283+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a.
 
@@ -14336,7 +12952,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 6861 · 2026-05-25T19:44:29.622404+00:00_
+_source line 6839 · 2026-05-25T19:44:29.622404+00:00_
 
 called Glob
 
@@ -14370,7 +12986,7 @@ called Glob
 
 ### Tool result
 
-_source line 6862 · 2026-05-25T19:44:29.622521+00:00_
+_source line 6840 · 2026-05-25T19:44:29.622521+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml
 
@@ -14392,7 +13008,7 @@ _source line 6862 · 2026-05-25T19:44:29.622521+00:00_
 
 ### Tool call
 
-_source line 6863 · 2026-05-25T19:44:29.622639+00:00_
+_source line 6841 · 2026-05-25T19:44:29.622639+00:00_
 
 called Read
 
@@ -14426,7 +13042,7 @@ called Read
 
 ### Tool result
 
-_source line 6864 · 2026-05-25T19:44:29.622757+00:00_
+_source line 6842 · 2026-05-25T19:44:29.622757+00:00_
 
 File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -14448,7 +13064,7 @@ File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limi
 
 ### Tool call
 
-_source line 6865 · 2026-05-25T19:44:29.622903+00:00_
+_source line 6843 · 2026-05-25T19:44:29.622903+00:00_
 
 called Grep
 
@@ -14488,7 +13104,7 @@ called Grep
 
 ### Tool result
 
-_source line 6866 · 2026-05-25T19:44:29.623133+00:00_
+_source line 6844 · 2026-05-25T19:44:29.623133+00:00_
 
 140-      zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage
 141-      on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair).
@@ -14559,7 +13175,7 @@ _source line 6866 · 2026-05-25T19:44:29.623133+00:00_
 
 ### Tool call
 
-_source line 6867 · 2026-05-25T19:44:29.623306+00:00_
+_source line 6845 · 2026-05-25T19:44:29.623306+00:00_
 
 called Grep
 
@@ -14599,7 +13215,7 @@ called Grep
 
 ### Tool result
 
-_source line 6868 · 2026-05-25T19:44:29.623627+00:00_
+_source line 6846 · 2026-05-25T19:44:29.623627+00:00_
 
 1860-      pass_recall: 91.51
 1861-      fail_precision: 90.76
@@ -14667,7 +13283,7 @@ _source line 6868 · 2026-05-25T19:44:29.623627+00:00_
 
 ### Tool call
 
-_source line 6869 · 2026-05-25T19:44:29.623823+00:00_
+_source line 6847 · 2026-05-25T19:44:29.623823+00:00_
 
 called Grep
 
@@ -14707,7 +13323,7 @@ called Grep
 
 ### Tool result
 
-_source line 6870 · 2026-05-25T19:44:29.624051+00:00_
+_source line 6848 · 2026-05-25T19:44:29.624051+00:00_
 
 1857-      pass_f1: 90.86
 1858-      fail_f1: 90.06
@@ -14777,7 +13393,7 @@ _source line 6870 · 2026-05-25T19:44:29.624051+00:00_
 
 ### Tool call
 
-_source line 6871 · 2026-05-25T19:44:30.728038+00:00_
+_source line 6849 · 2026-05-25T19:44:30.728038+00:00_
 
 called Agent
 
@@ -14815,7 +13431,7 @@ called Agent
 
 ### Tool result
 
-_source line 6872 · 2026-05-25T19:44:54.605482+00:00_
+_source line 6850 · 2026-05-25T19:44:54.605482+00:00_
 
 Here is the complete audit report:
 
@@ -14867,7 +13483,7 @@ Here is the complete audit report:
 
 ### Tool call
 
-_source line 6873 · 2026-05-25T19:44:54.606026+00:00_
+_source line 6851 · 2026-05-25T19:44:54.606026+00:00_
 
 called Grep
 
@@ -14909,7 +13525,7 @@ called Grep
 
 ### Tool result
 
-_source line 6874 · 2026-05-25T19:44:54.606352+00:00_
+_source line 6852 · 2026-05-25T19:44:54.606352+00:00_
 
 10500-      epochs: 3
 10501-      accuracy: 88.57
@@ -14967,7 +13583,7 @@ _source line 6874 · 2026-05-25T19:44:54.606352+00:00_
 
 ### Tool call
 
-_source line 6875 · 2026-05-25T19:44:54.606675+00:00_
+_source line 6853 · 2026-05-25T19:44:54.606675+00:00_
 
 called Grep
 
@@ -15007,7 +13623,7 @@ called Grep
 
 ### Tool result
 
-_source line 6876 · 2026-05-25T19:44:54.607039+00:00_
+_source line 6854 · 2026-05-25T19:44:54.607039+00:00_
 
 1845-      data_count: 1890
 1846-      model_name: Qwen/Qwen3-8B
@@ -15069,7 +13685,7 @@ _source line 6876 · 2026-05-25T19:44:54.607039+00:00_
 
 ### Tool call
 
-_source line 6877 · 2026-05-25T19:44:54.607378+00:00_
+_source line 6855 · 2026-05-25T19:44:54.607378+00:00_
 
 called Grep
 
@@ -15111,7 +13727,7 @@ called Grep
 
 ### Tool result
 
-_source line 6878 · 2026-05-25T19:44:54.607671+00:00_
+_source line 6856 · 2026-05-25T19:44:54.607671+00:00_
 
 1841-        --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_results/cls8b_seed42.json
 1842-        --save_predictions
@@ -15176,7 +13792,7 @@ _source line 6878 · 2026-05-25T19:44:54.607671+00:00_
 
 ### Tool call
 
-_source line 6879 · 2026-05-25T19:44:54.608002+00:00_
+_source line 6857 · 2026-05-25T19:44:54.608002+00:00_
 
 called Grep
 
@@ -15216,7 +13832,7 @@ called Grep
 
 ### Tool result
 
-_source line 6880 · 2026-05-25T19:44:54.608258+00:00_
+_source line 6858 · 2026-05-25T19:44:54.608258+00:00_
 
 10532-      best_eval_loss: 0.0971
 10533-      best_checkpoint: best
@@ -15244,7 +13860,7 @@ _source line 6880 · 2026-05-25T19:44:54.608258+00:00_
 
 ### Tool call
 
-_source line 6881 · 2026-05-25T19:44:54.608502+00:00_
+_source line 6859 · 2026-05-25T19:44:54.608502+00:00_
 
 called Grep
 
@@ -15286,7 +13902,7 @@ called Grep
 
 ### Tool result
 
-_source line 6882 · 2026-05-25T19:44:54.608840+00:00_
+_source line 6860 · 2026-05-25T19:44:54.608840+00:00_
 
 141-      on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair).
 142-      Project premise partially invalidated for P2P.
@@ -15359,7 +13975,7 @@ _source line 6882 · 2026-05-25T19:44:54.608840+00:00_
 
 ### Tool call
 
-_source line 6883 · 2026-05-25T19:44:54.609139+00:00_
+_source line 6861 · 2026-05-25T19:44:54.609139+00:00_
 
 called Grep
 
@@ -15399,7 +14015,7 @@ called Grep
 
 ### Tool result
 
-_source line 6884 · 2026-05-25T19:44:54.609386+00:00_
+_source line 6862 · 2026-05-25T19:44:54.609386+00:00_
 
 No matches found
 
@@ -15421,7 +14037,7 @@ No matches found
 
 ### Tool call
 
-_source line 6885 · 2026-05-25T19:44:54.609620+00:00_
+_source line 6863 · 2026-05-25T19:44:54.609620+00:00_
 
 called Grep
 
@@ -15463,7 +14079,7 @@ called Grep
 
 ### Tool result
 
-_source line 6886 · 2026-05-25T19:44:54.609907+00:00_
+_source line 6864 · 2026-05-25T19:44:54.609907+00:00_
 
 114-    conclusion: success
 115-    metrics:
@@ -15569,7 +14185,7 @@ _source line 6886 · 2026-05-25T19:44:54.609907+00:00_
 
 ### Tool call
 
-_source line 6887 · 2026-05-25T19:44:54.610203+00:00_
+_source line 6865 · 2026-05-25T19:44:54.610203+00:00_
 
 called Grep
 
@@ -15611,7 +14227,7 @@ called Grep
 
 ### Tool result
 
-_source line 6888 · 2026-05-25T19:44:54.610597+00:00_
+_source line 6866 · 2026-05-25T19:44:54.610597+00:00_
 
 924-      gpu_hours: 1.23
 925-    hypothesis: 补充第 5 seed (0) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05
@@ -15678,7 +14294,7 @@ _source line 6888 · 2026-05-25T19:44:54.610597+00:00_
 
 ### Tool call
 
-_source line 6889 · 2026-05-25T19:44:54.610902+00:00_
+_source line 6867 · 2026-05-25T19:44:54.610902+00:00_
 
 called Read
 
@@ -15716,7 +14332,7 @@ called Read
 
 ### Tool result
 
-_source line 6890 · 2026-05-25T19:44:54.611184+00:00_
+_source line 6868 · 2026-05-25T19:44:54.611184+00:00_
 
 140	      zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage
 141	      on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair).
@@ -15784,7 +14400,7 @@ _source line 6890 · 2026-05-25T19:44:54.611184+00:00_
 
 ### Tool call
 
-_source line 6891 · 2026-05-25T19:44:54.611488+00:00_
+_source line 6869 · 2026-05-25T19:44:54.611488+00:00_
 
 called Read
 
@@ -15822,7 +14438,7 @@ called Read
 
 ### Tool result
 
-_source line 6892 · 2026-05-25T19:44:54.611822+00:00_
+_source line 6870 · 2026-05-25T19:44:54.611822+00:00_
 
 984	    spec:
 985	      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/best/
@@ -15873,7 +14489,7 @@ _source line 6892 · 2026-05-25T19:44:54.611822+00:00_
 
 ### Tool call
 
-_source line 6893 · 2026-05-25T19:44:54.612104+00:00_
+_source line 6871 · 2026-05-25T19:44:54.612104+00:00_
 
 called Read
 
@@ -15907,7 +14523,7 @@ called Read
 
 ### Tool result
 
-_source line 6894 · 2026-05-25T19:44:54.612359+00:00_
+_source line 6872 · 2026-05-25T19:44:54.612359+00:00_
 
 File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -15929,7 +14545,7 @@ File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limi
 
 ### Tool call
 
-_source line 6895 · 2026-05-25T19:44:54.612605+00:00_
+_source line 6873 · 2026-05-25T19:44:54.612605+00:00_
 
 called Read
 
@@ -15963,7 +14579,7 @@ called Read
 
 ### Tool result
 
-_source line 6896 · 2026-05-25T19:44:54.612876+00:00_
+_source line 6874 · 2026-05-25T19:44:54.612876+00:00_
 
 1	{
 2	  "gpu": "NVIDIA GeForce RTX 5090",
@@ -16036,7 +14652,7 @@ _source line 6896 · 2026-05-25T19:44:54.612876+00:00_
 
 ### Tool call
 
-_source line 6897 · 2026-05-25T19:44:54.613130+00:00_
+_source line 6875 · 2026-05-25T19:44:54.613130+00:00_
 
 called Grep
 
@@ -16076,7 +14692,7 @@ called Grep
 
 ### Tool result
 
-_source line 6898 · 2026-05-25T19:44:54.613463+00:00_
+_source line 6876 · 2026-05-25T19:44:54.613463+00:00_
 
 8772-      submitted_via: submit_training_job
 8773-      backend: tmux
@@ -16146,7 +14762,7 @@ _source line 6898 · 2026-05-25T19:44:54.613463+00:00_
 
 ### Tool call
 
-_source line 6899 · 2026-05-25T19:44:54.613767+00:00_
+_source line 6877 · 2026-05-25T19:44:54.613767+00:00_
 
 called Grep
 
@@ -16186,7 +14802,7 @@ called Grep
 
 ### Tool result
 
-_source line 6900 · 2026-05-25T19:44:54.614175+00:00_
+_source line 6878 · 2026-05-25T19:44:54.614175+00:00_
 
 6413-        Range 9100-9783 fully covered by shard2 (7680-9784). Orphan registry entry.
 6414-      log_path: N/A
@@ -16250,7 +14866,7 @@ _source line 6900 · 2026-05-25T19:44:54.614175+00:00_
 
 ### Tool call
 
-_source line 6901 · 2026-05-25T19:44:54.614472+00:00_
+_source line 6879 · 2026-05-25T19:44:54.614472+00:00_
 
 called Grep
 
@@ -16290,7 +14906,7 @@ called Grep
 
 ### Tool result
 
-_source line 6902 · 2026-05-25T19:44:54.665135+00:00_
+_source line 6880 · 2026-05-25T19:44:54.665135+00:00_
 
 7758-        cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python
 7759-        train_traj_verifier.py --data_dir data/swebench_full/ --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B
@@ -16344,7 +14960,7 @@ _source line 6902 · 2026-05-25T19:44:54.665135+00:00_
 
 ### Tool call
 
-_source line 6903 · 2026-05-25T19:44:54.665593+00:00_
+_source line 6881 · 2026-05-25T19:44:54.665593+00:00_
 
 called Grep
 
@@ -16384,7 +15000,7 @@ called Grep
 
 ### Tool result
 
-_source line 6904 · 2026-05-25T19:44:54.665944+00:00_
+_source line 6882 · 2026-05-25T19:44:54.665944+00:00_
 
 885-      resolved_recall: 85.18
 886-      consistency_rate: 76.74
@@ -16456,7 +15072,7 @@ _source line 6904 · 2026-05-25T19:44:54.665944+00:00_
 
 ### Tool call
 
-_source line 6905 · 2026-05-25T19:44:54.766633+00:00_
+_source line 6883 · 2026-05-25T19:44:54.766633+00:00_
 
 called Agent
 
@@ -16494,7 +15110,7 @@ called Agent
 
 ### Tool call
 
-_source line 6906 · 2026-05-25T19:45:35.572826+00:00_
+_source line 6884 · 2026-05-25T19:45:35.572826+00:00_
 
 called Read
 
@@ -16532,7 +15148,7 @@ called Read
 
 ### Tool result
 
-_source line 6907 · 2026-05-25T19:45:35.573339+00:00_
+_source line 6885 · 2026-05-25T19:45:35.573339+00:00_
 
 1020	      submitted_via: submit_training_job
 1021	      backend: tmux
@@ -16588,7 +15204,7 @@ _source line 6907 · 2026-05-25T19:45:35.573339+00:00_
 
 ### Tool call
 
-_source line 6908 · 2026-05-25T19:45:35.573636+00:00_
+_source line 6886 · 2026-05-25T19:45:35.573636+00:00_
 
 called Grep
 
@@ -16630,7 +15246,7 @@ called Grep
 
 ### Tool result
 
-_source line 6909 · 2026-05-25T19:45:35.573905+00:00_
+_source line 6887 · 2026-05-25T19:45:35.573905+00:00_
 
 10169-        f1_pass: 55.01
 10170-        f1_macro: 64
@@ -16700,7 +15316,7 @@ _source line 6909 · 2026-05-25T19:45:35.573905+00:00_
 
 ### Tool call
 
-_source line 6910 · 2026-05-25T19:45:35.574214+00:00_
+_source line 6888 · 2026-05-25T19:45:35.574214+00:00_
 
 called Read
 
@@ -16738,7 +15354,7 @@ called Read
 
 ### Tool result
 
-_source line 6911 · 2026-05-25T19:45:35.574515+00:00_
+_source line 6889 · 2026-05-25T19:45:35.574515+00:00_
 
 10237	      checkpoint_source: pretrained Qwen3-14B (fresh LoRA)
 10238	      eval_data: data/test.jsonl (1890 samples)
@@ -16779,7 +15395,7 @@ _source line 6911 · 2026-05-25T19:45:35.574515+00:00_
 
 ### Tool call
 
-_source line 6912 · 2026-05-25T19:45:35.574747+00:00_
+_source line 6890 · 2026-05-25T19:45:35.574747+00:00_
 
 called Grep
 
@@ -16819,7 +15435,7 @@ called Grep
 
 ### Tool result
 
-_source line 6913 · 2026-05-25T19:45:35.575010+00:00_
+_source line 6891 · 2026-05-25T19:45:35.575010+00:00_
 
 10394-    conclusion: success
 10395-    metrics:
@@ -16845,7 +15461,7 @@ _source line 6913 · 2026-05-25T19:45:35.575010+00:00_
 
 ### Tool call
 
-_source line 6914 · 2026-05-25T19:45:35.575250+00:00_
+_source line 6892 · 2026-05-25T19:45:35.575250+00:00_
 
 called Read
 
@@ -16883,7 +15499,7 @@ called Read
 
 ### Tool result
 
-_source line 6915 · 2026-05-25T19:45:35.575520+00:00_
+_source line 6893 · 2026-05-25T19:45:35.575520+00:00_
 
 1232	  cwm-seed123:
 1233	    status: DONE
@@ -16929,7 +15545,7 @@ _source line 6915 · 2026-05-25T19:45:35.575520+00:00_
 
 ### Tool call
 
-_source line 6916 · 2026-05-25T19:45:35.575782+00:00_
+_source line 6894 · 2026-05-25T19:45:35.575782+00:00_
 
 called Read
 
@@ -16967,7 +15583,7 @@ called Read
 
 ### Tool result
 
-_source line 6917 · 2026-05-25T19:45:35.576038+00:00_
+_source line 6895 · 2026-05-25T19:45:35.576038+00:00_
 
 1256	      model_name: Qwen/Qwen3-4B
 1257	      seed: 123
@@ -17023,7 +15639,7 @@ _source line 6917 · 2026-05-25T19:45:35.576038+00:00_
 
 ### Tool call
 
-_source line 6918 · 2026-05-25T19:45:35.576275+00:00_
+_source line 6896 · 2026-05-25T19:45:35.576275+00:00_
 
 called Read
 
@@ -17061,7 +15677,7 @@ called Read
 
 ### Tool result
 
-_source line 6919 · 2026-05-25T19:45:35.576574+00:00_
+_source line 6897 · 2026-05-25T19:45:35.576574+00:00_
 
 671	  traj-level-seed123:
 672	    status: DONE
@@ -17131,7 +15747,7 @@ _source line 6919 · 2026-05-25T19:45:35.576574+00:00_
 
 ### Tool call
 
-_source line 6920 · 2026-05-25T19:45:35.576896+00:00_
+_source line 6898 · 2026-05-25T19:45:35.576896+00:00_
 
 called Grep
 
@@ -17171,7 +15787,7 @@ called Grep
 
 ### Tool result
 
-_source line 6921 · 2026-05-25T19:45:35.577197+00:00_
+_source line 6899 · 2026-05-25T19:45:35.577197+00:00_
 
 9091-        --epochs 3
 9092-      server: seetacloud-westd-4x5090
@@ -17236,7 +15852,7 @@ _source line 6921 · 2026-05-25T19:45:35.577197+00:00_
 
 ### Tool call
 
-_source line 6922 · 2026-05-25T19:45:35.577379+00:00_
+_source line 6900 · 2026-05-25T19:45:35.577379+00:00_
 
 called Grep
 
@@ -17276,7 +15892,7 @@ called Grep
 
 ### Tool result
 
-_source line 6923 · 2026-05-25T19:45:35.577586+00:00_
+_source line 6901 · 2026-05-25T19:45:35.577586+00:00_
 
 8951-        f1_macro: 79.04
 8952-        f1_fail: 67.56
@@ -17341,7 +15957,7 @@ _source line 6923 · 2026-05-25T19:45:35.577586+00:00_
 
 ### Tool call
 
-_source line 6924 · 2026-05-25T19:45:35.577763+00:00_
+_source line 6902 · 2026-05-25T19:45:35.577763+00:00_
 
 called Grep
 
@@ -17381,7 +15997,7 @@ called Grep
 
 ### Tool result
 
-_source line 6925 · 2026-05-25T19:45:35.578002+00:00_
+_source line 6903 · 2026-05-25T19:45:35.578002+00:00_
 
 9847-      seed: 123
 9848-      pid: 111113
@@ -17443,7 +16059,7 @@ _source line 6925 · 2026-05-25T19:45:35.578002+00:00_
 
 ### Tool call
 
-_source line 6926 · 2026-05-25T19:45:35.578177+00:00_
+_source line 6904 · 2026-05-25T19:45:35.578177+00:00_
 
 called Grep
 
@@ -17483,7 +16099,7 @@ called Grep
 
 ### Tool result
 
-_source line 6927 · 2026-05-25T19:45:35.578366+00:00_
+_source line 6905 · 2026-05-25T19:45:35.578366+00:00_
 
 8233-    status: PREPARING
 8234-    retry_count: 0
@@ -17541,7 +16157,7 @@ _source line 6927 · 2026-05-25T19:45:35.578366+00:00_
 
 ### Tool call
 
-_source line 6928 · 2026-05-25T19:45:35.578526+00:00_
+_source line 6906 · 2026-05-25T19:45:35.578526+00:00_
 
 called Grep
 
@@ -17581,7 +16197,7 @@ called Grep
 
 ### Tool result
 
-_source line 6929 · 2026-05-25T19:45:35.578657+00:00_
+_source line 6907 · 2026-05-25T19:45:35.578657+00:00_
 
 8291-        ts: '2026-05-19T19:45:45.091313+00:00'
 8292-    conclusion: success
@@ -17609,7 +16225,7 @@ _source line 6929 · 2026-05-25T19:45:35.578657+00:00_
 
 ### Tool call
 
-_source line 6930 · 2026-05-25T19:45:35.578790+00:00_
+_source line 6908 · 2026-05-25T19:45:35.578790+00:00_
 
 called Grep
 
@@ -17649,7 +16265,7 @@ called Grep
 
 ### Tool result
 
-_source line 6931 · 2026-05-25T19:45:35.578989+00:00_
+_source line 6909 · 2026-05-25T19:45:35.578989+00:00_
 
 9968-        --batch_size 1 --grad_accumulation 32 --lr 5e-5 --epochs 3 --lora_rank 16
 9969-        --no_wandb
@@ -17722,7 +16338,7 @@ _source line 6931 · 2026-05-25T19:45:35.578989+00:00_
 
 ### Tool call
 
-_source line 6932 · 2026-05-25T19:45:35.579169+00:00_
+_source line 6910 · 2026-05-25T19:45:35.579169+00:00_
 
 called Grep
 
@@ -17762,7 +16378,7 @@ called Grep
 
 ### Tool result
 
-_source line 6933 · 2026-05-25T19:45:35.579346+00:00_
+_source line 6911 · 2026-05-25T19:45:35.579346+00:00_
 
 10016-      precision_fail: 32.42
 10017-      recall_fail: 20.56
@@ -17830,7 +16446,7 @@ _source line 6933 · 2026-05-25T19:45:35.579346+00:00_
 
 ### Tool call
 
-_source line 6934 · 2026-05-25T19:45:35.579523+00:00_
+_source line 6912 · 2026-05-25T19:45:35.579523+00:00_
 
 called Grep
 
@@ -17870,7 +16486,7 @@ called Grep
 
 ### Tool result
 
-_source line 6935 · 2026-05-25T19:45:35.579662+00:00_
+_source line 6913 · 2026-05-25T19:45:35.579662+00:00_
 
 8379-    updated_at: '2026-05-19T03:44:43.981Z'
 8380-    hypothesis: Complexity-aware routing（按 test count/confidence/learned features
@@ -17902,7 +16518,7 @@ _source line 6935 · 2026-05-25T19:45:35.579662+00:00_
 
 ### Tool call
 
-_source line 6936 · 2026-05-25T19:45:35.579811+00:00_
+_source line 6914 · 2026-05-25T19:45:35.579811+00:00_
 
 called Read
 
@@ -17936,7 +16552,7 @@ called Read
 
 ### Tool result
 
-_source line 6937 · 2026-05-25T19:45:35.579986+00:00_
+_source line 6915 · 2026-05-25T19:45:35.579986+00:00_
 
 1	{
 2	  "per_seed": [
@@ -18009,7 +16625,7 @@ _source line 6937 · 2026-05-25T19:45:35.579986+00:00_
 
 ### Tool call
 
-_source line 6938 · 2026-05-25T19:45:35.580143+00:00_
+_source line 6916 · 2026-05-25T19:45:35.580143+00:00_
 
 called Grep
 
@@ -18049,7 +16665,7 @@ called Grep
 
 ### Tool result
 
-_source line 6939 · 2026-05-25T19:45:35.580344+00:00_
+_source line 6917 · 2026-05-25T19:45:35.580344+00:00_
 
 2623-        n: 9335
 2624-        unparseable: 0
@@ -18126,7 +16742,7 @@ _source line 6939 · 2026-05-25T19:45:35.580344+00:00_
 
 ### Tool call
 
-_source line 6940 · 2026-05-25T19:45:35.580505+00:00_
+_source line 6918 · 2026-05-25T19:45:35.580505+00:00_
 
 called Grep
 
@@ -18166,7 +16782,7 @@ called Grep
 
 ### Tool result
 
-_source line 6941 · 2026-05-25T19:45:35.580717+00:00_
+_source line 6919 · 2026-05-25T19:45:35.580717+00:00_
 
 2381-          accuracy: 83.32
 2382-          f1_macro: 70.26
@@ -18249,7 +16865,7 @@ _source line 6941 · 2026-05-25T19:45:35.580717+00:00_
 
 ### Tool call
 
-_source line 6942 · 2026-05-25T19:45:35.580908+00:00_
+_source line 6920 · 2026-05-25T19:45:35.580908+00:00_
 
 called Grep
 
@@ -18289,7 +16905,7 @@ called Grep
 
 ### Tool result
 
-_source line 6943 · 2026-05-25T19:45:35.581049+00:00_
+_source line 6921 · 2026-05-25T19:45:35.581049+00:00_
 
 9594-    updated_at: '2026-05-21T21:56:51.630Z'
 9595-    hypothesis: 'Qwen3-8B CWM repo-level s123 训练 (v4, OOM 修复后重启): multi-seed replication
@@ -18325,7 +16941,7 @@ _source line 6943 · 2026-05-25T19:45:35.581049+00:00_
 
 ### Tool call
 
-_source line 6944 · 2026-05-25T19:45:35.581235+00:00_
+_source line 6922 · 2026-05-25T19:45:35.581235+00:00_
 
 called Grep
 
@@ -18365,7 +16981,7 @@ called Grep
 
 ### Tool result
 
-_source line 6945 · 2026-05-25T19:45:35.581403+00:00_
+_source line 6923 · 2026-05-25T19:45:35.581403+00:00_
 
 7583-    metrics:
 7584-      accuracy: 0.499
@@ -18433,7 +17049,7 @@ _source line 6945 · 2026-05-25T19:45:35.581403+00:00_
 
 ### Tool call
 
-_source line 6946 · 2026-05-25T19:45:35.581559+00:00_
+_source line 6924 · 2026-05-25T19:45:35.581559+00:00_
 
 called Read
 
@@ -18467,7 +17083,7 @@ called Read
 
 ### Tool result
 
-_source line 6947 · 2026-05-25T19:45:35.581726+00:00_
+_source line 6925 · 2026-05-25T19:45:35.581726+00:00_
 
 1	{
 2	  "metadata": {
@@ -18574,7 +17190,7 @@ _source line 6947 · 2026-05-25T19:45:35.581726+00:00_
 
 ### Tool call
 
-_source line 6948 · 2026-05-25T19:45:35.581910+00:00_
+_source line 6926 · 2026-05-25T19:45:35.581910+00:00_
 
 called Read
 
@@ -18608,7 +17224,7 @@ called Read
 
 ### Tool result
 
-_source line 6949 · 2026-05-25T19:45:35.582056+00:00_
+_source line 6927 · 2026-05-25T19:45:35.582056+00:00_
 
 1	{
 2	  "method": "Holm-Bonferroni",
@@ -18687,7 +17303,7 @@ _source line 6949 · 2026-05-25T19:45:35.582056+00:00_
 
 ### Tool call
 
-_source line 6950 · 2026-05-25T19:45:35.582194+00:00_
+_source line 6928 · 2026-05-25T19:45:35.582194+00:00_
 
 called Read
 
@@ -18721,7 +17337,7 @@ called Read
 
 ### Tool result
 
-_source line 6951 · 2026-05-25T19:45:35.582321+00:00_
+_source line 6929 · 2026-05-25T19:45:35.582321+00:00_
 
 1	{
 2	  "4B_cls_vs_cwm_5seeds": {
@@ -18767,7 +17383,7 @@ _source line 6951 · 2026-05-25T19:45:35.582321+00:00_
 
 ### Tool call
 
-_source line 6952 · 2026-05-25T19:45:35.582449+00:00_
+_source line 6930 · 2026-05-25T19:45:35.582449+00:00_
 
 called Read
 
@@ -18801,7 +17417,7 @@ called Read
 
 ### Tool result
 
-_source line 6953 · 2026-05-25T19:45:35.582616+00:00_
+_source line 6931 · 2026-05-25T19:45:35.582616+00:00_
 
 1	{
 2	  "method": "Bayesian ROPE (Kruschke 2013)",
@@ -18890,7 +17506,7 @@ _source line 6953 · 2026-05-25T19:45:35.582616+00:00_
 
 ### Tool call
 
-_source line 6954 · 2026-05-25T19:45:35.582774+00:00_
+_source line 6932 · 2026-05-25T19:45:35.582774+00:00_
 
 called Read
 
@@ -18924,7 +17540,7 @@ called Read
 
 ### Tool result
 
-_source line 6955 · 2026-05-25T19:45:35.582973+00:00_
+_source line 6933 · 2026-05-25T19:45:35.582973+00:00_
 
 1	{
 2	  "title": "14B Seed-Level Statistical Analysis (D169 compliant)",
@@ -19020,7 +17636,7 @@ _source line 6955 · 2026-05-25T19:45:35.582973+00:00_
 
 ### Tool call
 
-_source line 6956 · 2026-05-25T19:45:35.583138+00:00_
+_source line 6934 · 2026-05-25T19:45:35.583138+00:00_
 
 called Read
 
@@ -19054,7 +17670,7 @@ called Read
 
 ### Tool result
 
-_source line 6957 · 2026-05-25T19:45:35.583270+00:00_
+_source line 6935 · 2026-05-25T19:45:35.583270+00:00_
 
 1	{
 2	  "method": "paired_t_TOST",
@@ -19093,7 +17709,7 @@ _source line 6957 · 2026-05-25T19:45:35.583270+00:00_
 
 ### Tool call
 
-_source line 6958 · 2026-05-25T19:45:35.583412+00:00_
+_source line 6936 · 2026-05-25T19:45:35.583412+00:00_
 
 called Read
 
@@ -19127,7 +17743,7 @@ called Read
 
 ### Tool result
 
-_source line 6959 · 2026-05-25T19:45:35.583558+00:00_
+_source line 6937 · 2026-05-25T19:45:35.583558+00:00_
 
 1	{
 2	  "comparison": "CLS vs TRAJ (variant-level, pooled across 5 seeds)",
@@ -19224,7 +17840,7 @@ _source line 6959 · 2026-05-25T19:45:35.583558+00:00_
 
 ### Tool call
 
-_source line 6960 · 2026-05-25T19:45:35.583711+00:00_
+_source line 6938 · 2026-05-25T19:45:35.583711+00:00_
 
 called Read
 
@@ -19258,7 +17874,7 @@ called Read
 
 ### Tool result
 
-_source line 6961 · 2026-05-25T19:45:35.583853+00:00_
+_source line 6939 · 2026-05-25T19:45:35.583853+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_7a9aef1a.
 
@@ -19280,7 +17896,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 6962 · 2026-05-25T19:45:35.583978+00:00_
+_source line 6940 · 2026-05-25T19:45:35.583978+00:00_
 
 called Read
 
@@ -19316,7 +17932,7 @@ called Read
 
 ### Tool result
 
-_source line 6963 · 2026-05-25T19:45:35.584132+00:00_
+_source line 6941 · 2026-05-25T19:45:35.584132+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -19407,7 +18023,7 @@ _source line 6963 · 2026-05-25T19:45:35.584132+00:00_
 
 ### Tool call
 
-_source line 6964 · 2026-05-25T19:45:35.584292+00:00_
+_source line 6942 · 2026-05-25T19:45:35.584292+00:00_
 
 called Glob
 
@@ -19441,7 +18057,7 @@ called Glob
 
 ### Tool result
 
-_source line 6965 · 2026-05-25T19:45:35.584417+00:00_
+_source line 6943 · 2026-05-25T19:45:35.584417+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/checklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex
@@ -19471,7 +18087,7 @@ _source line 6965 · 2026-05-25T19:45:35.584417+00:00_
 
 ### Tool call
 
-_source line 6966 · 2026-05-25T19:45:35.584544+00:00_
+_source line 6944 · 2026-05-25T19:45:35.584544+00:00_
 
 called Glob
 
@@ -19505,7 +18121,7 @@ called Glob
 
 ### Tool result
 
-_source line 6967 · 2026-05-25T19:45:35.584659+00:00_
+_source line 6945 · 2026-05-25T19:45:35.584659+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/global/registry.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml
@@ -19528,7 +18144,7 @@ _source line 6967 · 2026-05-25T19:45:35.584659+00:00_
 
 ### Tool call
 
-_source line 6968 · 2026-05-25T19:45:35.584777+00:00_
+_source line 6946 · 2026-05-25T19:45:35.584777+00:00_
 
 called Read
 
@@ -19562,7 +18178,7 @@ called Read
 
 ### Tool result
 
-_source line 6969 · 2026-05-25T19:45:35.585064+00:00_
+_source line 6947 · 2026-05-25T19:45:35.585064+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -19601,7 +18217,7 @@ _source line 6969 · 2026-05-25T19:45:35.585064+00:00_
 
 ### Tool call
 
-_source line 6970 · 2026-05-25T19:45:35.585237+00:00_
+_source line 6948 · 2026-05-25T19:45:35.585237+00:00_
 
 called Read
 
@@ -19635,7 +18251,7 @@ called Read
 
 ### Tool result
 
-_source line 6971 · 2026-05-25T19:45:35.585392+00:00_
+_source line 6949 · 2026-05-25T19:45:35.585392+00:00_
 
 File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -19657,7 +18273,7 @@ File content (430.4KB) exceeds maximum allowed size (256KB). Use offset and limi
 
 ### Tool call
 
-_source line 6972 · 2026-05-25T19:45:35.585525+00:00_
+_source line 6950 · 2026-05-25T19:45:35.585525+00:00_
 
 called Grep
 
@@ -19697,7 +18313,7 @@ called Grep
 
 ### Tool result
 
-_source line 6973 · 2026-05-25T19:45:35.585668+00:00_
+_source line 6951 · 2026-05-25T19:45:35.585668+00:00_
 
 816-    notes: Majority voting K=3 (temperature=0.7) 无效，accuracy 从 87.51% 降至 86.83% (-0.69pp)。93.3%
 817-      样本三次预测一致（unanimous），仅 127 个分歧样本。Flip 分析：28 个原正确样本被 voting 翻错，15 个原错误样本被 voting
@@ -19766,7 +18382,7 @@ _source line 6973 · 2026-05-25T19:45:35.585668+00:00_
 
 ### Tool call
 
-_source line 6974 · 2026-05-25T19:45:35.585846+00:00_
+_source line 6952 · 2026-05-25T19:45:35.585846+00:00_
 
 called Grep
 
@@ -19806,7 +18422,7 @@ called Grep
 
 ### Tool result
 
-_source line 6975 · 2026-05-25T19:45:35.585989+00:00_
+_source line 6953 · 2026-05-25T19:45:35.585989+00:00_
 
 1453-      exact_match_rate: 84.29
 1454-      eval_loss: 0.0665
@@ -19851,7 +18467,7 @@ _source line 6975 · 2026-05-25T19:45:35.585989+00:00_
 
 ### Tool call
 
-_source line 6976 · 2026-05-25T19:45:35.586126+00:00_
+_source line 6954 · 2026-05-25T19:45:35.586126+00:00_
 
 called Glob
 
@@ -19885,7 +18501,7 @@ called Glob
 
 ### Tool result
 
-_source line 6977 · 2026-05-25T19:45:35.586309+00:00_
+_source line 6955 · 2026-05-25T19:45:35.586309+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim/data/mvp_a_total_results.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260511T214810/best/experiment_data.json
@@ -19921,7 +18537,7 @@ _source line 6977 · 2026-05-25T19:45:35.586309+00:00_
 
 ### Tool call
 
-_source line 6978 · 2026-05-25T19:45:35.586466+00:00_
+_source line 6956 · 2026-05-25T19:45:35.586466+00:00_
 
 called Read
 
@@ -19957,7 +18573,7 @@ called Read
 
 ### Tool result
 
-_source line 6979 · 2026-05-25T19:45:35.586590+00:00_
+_source line 6957 · 2026-05-25T19:45:35.586590+00:00_
 
 1	see server: /home/sonny/exec-sim-repair-verifier/eval_block_correlation_v2.json
 
@@ -19979,7 +18595,7 @@ _source line 6979 · 2026-05-25T19:45:35.586590+00:00_
 
 ### Tool call
 
-_source line 6980 · 2026-05-25T19:45:35.837862+00:00_
+_source line 6958 · 2026-05-25T19:45:35.837862+00:00_
 
 called Agent
 
@@ -20017,7 +18633,7 @@ called Agent
 
 ### Tool call
 
-_source line 6981 · 2026-05-25T19:45:39.953734+00:00_
+_source line 6959 · 2026-05-25T19:45:39.953734+00:00_
 
 called Bash
 
@@ -20053,7 +18669,7 @@ called Bash
 
 ### Tool result
 
-_source line 6982 · 2026-05-25T19:45:40.307000+00:00_
+_source line 6960 · 2026-05-25T19:45:40.307000+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex
@@ -20093,7 +18709,7 @@ _source line 6982 · 2026-05-25T19:45:40.307000+00:00_
 
 ### Tool call
 
-_source line 6983 · 2026-05-25T19:45:40.307570+00:00_
+_source line 6961 · 2026-05-25T19:45:40.307570+00:00_
 
 called Bash
 
@@ -20129,7 +18745,7 @@ called Bash
 
 ### Tool result
 
-_source line 6984 · 2026-05-25T19:45:40.358128+00:00_
+_source line 6962 · 2026-05-25T19:45:40.358128+00:00_
 
 AGENTS.md
 README.md
@@ -20223,7 +18839,7 @@ writing_plan.yaml
 
 ### Tool call
 
-_source line 6985 · 2026-05-25T19:45:40.509200+00:00_
+_source line 6963 · 2026-05-25T19:45:40.509200+00:00_
 
 called Grep
 
@@ -20263,7 +18879,7 @@ called Grep
 
 ### Tool call
 
-_source line 6986 · 2026-05-25T19:45:40.760480+00:00_
+_source line 6964 · 2026-05-25T19:45:40.760480+00:00_
 
 called Grep
 
@@ -20303,7 +18919,7 @@ called Grep
 
 ### Tool result
 
-_source line 6987 · 2026-05-25T19:45:40.811240+00:00_
+_source line 6965 · 2026-05-25T19:45:40.811240+00:00_
 
 84-\subsection{Function-Level Equivalence}
 85-\label{sec:equivalence}
@@ -20340,7 +18956,7 @@ _source line 6987 · 2026-05-25T19:45:40.811240+00:00_
 
 ### Tool call
 
-_source line 6988 · 2026-05-25T19:45:41.363558+00:00_
+_source line 6966 · 2026-05-25T19:45:41.363558+00:00_
 
 called Grep
 
@@ -20378,7 +18994,7 @@ called Grep
 
 ### Tool result
 
-_source line 6989 · 2026-05-25T19:45:41.484489+00:00_
+_source line 6967 · 2026-05-25T19:45:41.484489+00:00_
 
 43:    "min_margin_for_equivalence": 1.628
 83:    "min_margin_for_equivalence": 7.191
@@ -20401,7 +19017,7 @@ _source line 6989 · 2026-05-25T19:45:41.484489+00:00_
 
 ### Tool result
 
-_source line 6990 · 2026-05-25T19:45:41.764673+00:00_
+_source line 6968 · 2026-05-25T19:45:41.764673+00:00_
 
 No matches found
 
@@ -20423,7 +19039,7 @@ No matches found
 
 ### Tool call
 
-_source line 6991 · 2026-05-25T19:45:42.066197+00:00_
+_source line 6969 · 2026-05-25T19:45:42.066197+00:00_
 
 called Grep
 
@@ -20463,7 +19079,7 @@ called Grep
 
 ### Tool result
 
-_source line 6992 · 2026-05-25T19:45:42.167012+00:00_
+_source line 6970 · 2026-05-25T19:45:42.167012+00:00_
 
 7158-    hypothesis: DeepSeek CLS repo-level seed 123 replication for multi-seed evidence
 7159-      (same config as s42)
@@ -20505,7 +19121,7 @@ _source line 6992 · 2026-05-25T19:45:42.167012+00:00_
 
 ### Tool call
 
-_source line 6993 · 2026-05-25T19:45:43.422157+00:00_
+_source line 6971 · 2026-05-25T19:45:43.422157+00:00_
 
 called Read
 
@@ -20539,7 +19155,7 @@ called Read
 
 ### Tool result
 
-_source line 6994 · 2026-05-25T19:45:43.673489+00:00_
+_source line 6972 · 2026-05-25T19:45:43.673489+00:00_
 
 1	\begin{abstract}
 2	Execution-free verification promises to replace costly test execution in Large Language Model (LLM)-based program repair, yet practitioners must choose among three fundamentally different formulations with no controlled comparison to guide the decision: per-test classification (\cls{}), execution output generation (\cwm{}), and trajectory-level scoring (\traj{}). We present the first systematic comparison, controlling for model capacity, training data, and evaluation protocol across two code LLM families (Qwen3, DeepSeek-Coder), two complexity levels, and multiple random seeds under ${\leq}$8B Low-Rank Adaptation (LoRA) fine-tuning. Our central finding is that \emph{code complexity moderates the classification--generation tradeoff}. When outputs are short (function-level verification), classification and generation achieve statistically equivalent accuracy; trajectory-level parity is model-dependent. When outputs grow longer and more structured (repository-level verification), this equivalence breaks down: generation-based verification suffers format collapse, falling well below classification. At 14B, function-level gaps narrow to approximately one percentage point, but whether the repo-level divergence is capacity-contingent remains open. A failure mode taxonomy and error complementarity analysis provide actionable guidance for formulation selection and motivate complexity-aware routing as a key open direction\footnote{Code and data are available at \url{https://anonymous.4open.science/r/exec-sim-repair-verifier-102B/}.}.
@@ -20564,7 +19180,7 @@ _source line 6994 · 2026-05-25T19:45:43.673489+00:00_
 
 ### Tool call
 
-_source line 6995 · 2026-05-25T19:45:43.724086+00:00_
+_source line 6973 · 2026-05-25T19:45:43.724086+00:00_
 
 called Read
 
@@ -20598,7 +19214,7 @@ called Read
 
 ### Tool result
 
-_source line 6996 · 2026-05-25T19:45:43.825241+00:00_
+_source line 6974 · 2026-05-25T19:45:43.825241+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -20626,7 +19242,7 @@ _source line 6996 · 2026-05-25T19:45:43.825241+00:00_
 
 ### Tool call
 
-_source line 6997 · 2026-05-25T19:45:46.184434+00:00_
+_source line 6975 · 2026-05-25T19:45:46.184434+00:00_
 
 called Grep
 
@@ -20666,7 +19282,7 @@ called Grep
 
 ### Tool call
 
-_source line 6998 · 2026-05-25T19:45:46.485984+00:00_
+_source line 6976 · 2026-05-25T19:45:46.485984+00:00_
 
 called Read
 
@@ -20700,7 +19316,7 @@ called Read
 
 ### Tool result
 
-_source line 6999 · 2026-05-25T19:45:46.787682+00:00_
+_source line 6977 · 2026-05-25T19:45:46.787682+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -20739,7 +19355,7 @@ _source line 6999 · 2026-05-25T19:45:46.787682+00:00_
 
 ### Tool call
 
-_source line 7000 · 2026-05-25T19:45:46.838361+00:00_
+_source line 6978 · 2026-05-25T19:45:46.838361+00:00_
 
 called Read
 
@@ -20773,7 +19389,7 @@ called Read
 
 ### Tool result
 
-_source line 7001 · 2026-05-25T19:45:46.838844+00:00_
+_source line 6979 · 2026-05-25T19:45:46.838844+00:00_
 
 No matches found
 
@@ -20795,7 +19411,7 @@ No matches found
 
 ### Tool call
 
-_source line 7002 · 2026-05-25T19:45:46.889458+00:00_
+_source line 6980 · 2026-05-25T19:45:46.889458+00:00_
 
 called Read
 
@@ -20833,7 +19449,7 @@ called Read
 
 ### Tool result
 
-_source line 7003 · 2026-05-25T19:45:46.940147+00:00_
+_source line 6981 · 2026-05-25T19:45:46.940147+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -20904,7 +19520,7 @@ _source line 7003 · 2026-05-25T19:45:46.940147+00:00_
 
 ### Tool result
 
-_source line 7004 · 2026-05-25T19:45:46.990773+00:00_
+_source line 6982 · 2026-05-25T19:45:46.990773+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -20933,7 +19549,7 @@ _source line 7004 · 2026-05-25T19:45:46.990773+00:00_
 
 ### Tool call
 
-_source line 7005 · 2026-05-25T19:45:48.346101+00:00_
+_source line 6983 · 2026-05-25T19:45:48.346101+00:00_
 
 called Glob
 
@@ -20967,7 +19583,7 @@ called Glob
 
 ### Tool result
 
-_source line 7006 · 2026-05-25T19:45:48.848316+00:00_
+_source line 6984 · 2026-05-25T19:45:48.848316+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report/tost_multi_margin_results.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_multi_margin.csv
@@ -20995,7 +19611,7 @@ _source line 7006 · 2026-05-25T19:45:48.848316+00:00_
 
 ### Tool call
 
-_source line 7007 · 2026-05-25T19:45:48.848675+00:00_
+_source line 6985 · 2026-05-25T19:45:48.848675+00:00_
 
 called Read
 
@@ -21029,7 +19645,7 @@ called Read
 
 ### Tool result
 
-_source line 7008 · 2026-05-25T19:45:48.899153+00:00_
+_source line 6986 · 2026-05-25T19:45:48.899153+00:00_
 
 1	{
 2	  "comparison": "CLS vs TRAJ (Qwen3-4B, 5-seed, 523 variants)",
@@ -21078,7 +19694,7 @@ _source line 7008 · 2026-05-25T19:45:48.899153+00:00_
 
 ### Tool call
 
-_source line 7009 · 2026-05-25T19:45:50.256075+00:00_
+_source line 6987 · 2026-05-25T19:45:50.256075+00:00_
 
 called Bash
 
@@ -21114,7 +19730,7 @@ called Bash
 
 ### Tool call
 
-_source line 7010 · 2026-05-25T19:45:50.306697+00:00_
+_source line 6988 · 2026-05-25T19:45:50.306697+00:00_
 
 called Read
 
@@ -21148,7 +19764,7 @@ called Read
 
 ### Tool result
 
-_source line 7011 · 2026-05-25T19:45:50.357321+00:00_
+_source line 6989 · 2026-05-25T19:45:50.357321+00:00_
 
 === RECOMPUTED MEANS ===
 
@@ -21200,7 +19816,7 @@ TRAJ 14B std: 0.7673 -> round to 0.77  [Paper: 0.77]
 
 ### Tool result
 
-_source line 7012 · 2026-05-25T19:45:50.659268+00:00_
+_source line 6990 · 2026-05-25T19:45:50.659268+00:00_
 
 1	\appendix
 2	
@@ -21255,7 +19871,7 @@ _source line 7012 · 2026-05-25T19:45:50.659268+00:00_
 
 ### Tool call
 
-_source line 7013 · 2026-05-25T19:45:51.512904+00:00_
+_source line 6991 · 2026-05-25T19:45:51.512904+00:00_
 
 called Grep
 
@@ -21295,7 +19911,7 @@ called Grep
 
 ### Tool result
 
-_source line 7014 · 2026-05-25T19:45:51.664009+00:00_
+_source line 6992 · 2026-05-25T19:45:51.664009+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-160-
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-161-Few-shot prompting (3-shot ICL) collapses to an always-predict-unresolved baseline (variant accuracy 45.83\%, below majority 54.17\%; Appendix~\ref{app:few_shot}); execution-free verification requires task-specific fine-tuning regardless of formulation. Fine-tuning yields 35--36\pp{} gains (Table~\ref{tab:repo_level}), a prerequisite before formulation choice becomes relevant.
@@ -21325,7 +19941,7 @@ _source line 7014 · 2026-05-25T19:45:51.664009+00:00_
 
 ### Tool call
 
-_source line 7015 · 2026-05-25T19:45:51.664412+00:00_
+_source line 6993 · 2026-05-25T19:45:51.664412+00:00_
 
 called Glob
 
@@ -21359,7 +19975,7 @@ called Glob
 
 ### Tool result
 
-_source line 7016 · 2026-05-25T19:45:51.714866+00:00_
+_source line 6994 · 2026-05-25T19:45:51.714866+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/checklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex
@@ -21389,7 +20005,7 @@ _source line 7016 · 2026-05-25T19:45:51.714866+00:00_
 
 ### Tool call
 
-_source line 7017 · 2026-05-25T19:45:54.825700+00:00_
+_source line 6995 · 2026-05-25T19:45:54.825700+00:00_
 
 called Read
 
@@ -21425,7 +20041,7 @@ called Read
 
 ### Tool result
 
-_source line 7018 · 2026-05-25T19:45:54.926487+00:00_
+_source line 6996 · 2026-05-25T19:45:54.926487+00:00_
 
 1	baseline: null
 2	experiments:
@@ -21506,7 +20122,7 @@ _source line 7018 · 2026-05-25T19:45:54.926487+00:00_
 
 ### Tool call
 
-_source line 7019 · 2026-05-25T19:45:55.077418+00:00_
+_source line 6997 · 2026-05-25T19:45:55.077418+00:00_
 
 called Read
 
@@ -21540,7 +20156,7 @@ called Read
 
 ### Tool result
 
-_source line 7020 · 2026-05-25T19:45:55.127971+00:00_
+_source line 6998 · 2026-05-25T19:45:55.127971+00:00_
 
 1	TOST Multi-Margin Equivalence Test Results
 2	===========================================
@@ -21590,7 +20206,7 @@ _source line 7020 · 2026-05-25T19:45:55.127971+00:00_
 
 ### Tool call
 
-_source line 7021 · 2026-05-25T19:45:55.730536+00:00_
+_source line 6999 · 2026-05-25T19:45:55.730536+00:00_
 
 called Grep
 
@@ -21630,7 +20246,7 @@ called Grep
 
 ### Tool result
 
-_source line 7022 · 2026-05-25T19:45:56.232906+00:00_
+_source line 7000 · 2026-05-25T19:45:56.232906+00:00_
 
 207-
 208-\begin{figure}[t]
@@ -21663,7 +20279,7 @@ _source line 7022 · 2026-05-25T19:45:56.232906+00:00_
 
 ### Tool call
 
-_source line 7023 · 2026-05-25T19:45:56.885703+00:00_
+_source line 7001 · 2026-05-25T19:45:56.885703+00:00_
 
 called Grep
 
@@ -21703,7 +20319,7 @@ called Grep
 
 ### Tool result
 
-_source line 7024 · 2026-05-25T19:45:56.986540+00:00_
+_source line 7002 · 2026-05-25T19:45:56.986540+00:00_
 
 3-\noindent\textbf{Appendix overview.} A: Oracle analysis. B: Ablations. C: Per-mutation breakdown. D: Variant-level accuracy. E: Hyperparameters. F: Prompt templates. G: Mutation distribution. H: Qualitative errors. I: Extended analysis (I.a--I.k). J: TOST sensitivity (J.1: Bayesian ROPE). K: Effect sizes. L: Holm-Bonferroni. M: Mixed-effects regression. N: Parseable bias. O: Threats (O.1: CWM convergence; O.2: Extended validity). P: AI assistants.
 4-
@@ -21748,6 +20364,1818 @@ _source line 7024 · 2026-05-25T19:45:56.986540+00:00_
   "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
   "tool": "Grep",
   "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7003 · 2026-05-25T19:45:57.590334+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_multi_margin.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_multi_margin.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7004 · 2026-05-25T19:45:57.590773+00:00_
+
+1	margin_pp,ci90_lower,ci90_upper,pooled_mean_diff_pp,bootstrap_se,p_value,reject_null,n_pairs,n_clusters,n_obs
+2	1.0,-0.275,1.620,0.661,0.577,0.2854,NO,4,114,7560
+3	2.0,-0.275,1.620,0.661,0.577,0.0104,YES,4,114,7560
+4	3.0,-0.275,1.620,0.661,0.577,0.0000,YES,4,114,7560
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7005 · 2026-05-25T19:45:59.247024+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"oracle-f2p-stratified\\|T1_pct\\|T1_block\\|T2_pct\\|T2_block\\|T3_5\\|T6plus\\|overall_block\\|T2_contribution\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -40",
+  "description": "Search for oracle stratified experiment in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"oracle-f2p-stratified\\|T1_pct\\|T1_block\\|T2_pct\\|T2_block\\|T3_5\\|T6plus\\|overall_block\\|T2_contribution\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -40",
+    "description": "Search for oracle stratified experiment in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7006 · 2026-05-25T19:46:00.702962+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "oracle.*90.63.*2.80|2.80.*oracle|oracle.*95.83.*14.58|14.58.*oracle|oracle.*repo.*95.83|oracle.*func.*90.63",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "oracle.*90.63.*2.80|2.80.*oracle|oracle.*95.83.*14.58|14.58.*oracle|oracle.*repo.*95.83|oracle.*func.*90.63",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7007 · 2026-05-25T19:46:00.753674+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-212-\label{fig:oracle_stratified}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-213-\end{figure}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-214-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:215:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-216-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-217-\subsection{Threats to Validity}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex-218-\label{sec:threats}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-367-At function level, \cwm{} outputs are short status strings (mean ${\sim}$5--15 tokens). The unparseable rate is only 1.39\%, and default-to-pass bias is $<$1\pp{}, well below the SESOI threshold. Exact string matching is appropriate for these short, structured outputs; semantic-but-format-different matches are rare given the constrained output space.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-368-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-369-\paragraph{(a) Error complementarity.}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:370:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex-371-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/
+…[truncated 648 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7008 · 2026-05-25T19:46:02.259995+00:00_
+
+643:  oracle-f2p-stratified:
+661:      T1_pct: 68.7
+662:      T1_block_adv: -0.09
+663:      T2_pct: 19.1
+664:      T2_block_adv: 31.69
+665:      T3_5_pct: 7.1
+666:      T3_5_block_adv: 40.74
+667:      T6plus_pct: 5.1
+668:      T6plus_block_adv: 40.06
+669:      overall_block_adv: 10.93
+670:      T2_contribution_pct: 55.3
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 3012
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7009 · 2026-05-25T19:46:02.611997+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"cwm-rank32\\|rank32\\|majority.voting\\|per-test-majority\\|cls8b-s42-ckpt.*seq2048\\|seq2048-ablation\\|exp-downsample\\|cls-downsample-400\\|exp-e-qwen3\\|repo-level-3shot\\|re-repair-docker\\|cls8b-s42-ckpt-ablation\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -50",
+  "description": "Search for key experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"cwm-rank32\\|rank32\\|majority.voting\\|per-test-majority\\|cls8b-s42-ckpt.*seq2048\\|seq2048-ablation\\|exp-downsample\\|cls-downsample-400\\|exp-e-qwen3\\|repo-level-3shot\\|re-repair-docker\\|cls8b-s42-ckpt-ablation\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -50",
+    "description": "Search for key experiments in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7010 · 2026-05-25T19:46:02.712913+00:00_
+
+759:  per-test-majority-voting:
+767:        && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B
+768:        --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json
+774:      log_path: ~/runs/exec-sim-repair-verifier/per-test-majority-voting.log
+787:    hypothesis: Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B
+819:      greedy 是最优推理策略，majority voting 不值得采用。
+5158:  cls8b-s42-ckpt1000-test-seq2048-ablation:
+5175:      log_path: ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log
+5410:  cwm-rank32-ablation:
+5417:        --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16
+5423:      log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log
+5433:      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/
+5463:  cwm-4b-rank32-ablation:
+5472:        --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed
+5473:        42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation
+5479:      log_path: ~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log
+5488:      checkpoint_path: /root/autodl-tmp/checkpoints_cwm_4b_rank32/
+5503:    notes: Killed at ~5min on cuda:0 because duplicate of cwm-rank32-ablation (submitted
+5506:      baseline config). Canonical rank=32 ablation continues as cwm-rank32-ablation
+5507:      (PID 368823, bs=2/ga=16, output=checkpoints_cwm_rank32/). No checkpoints written
+5510:  cwm-rank32-ablation-v2:
+5517:        --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/
+5524:      log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log
+5525:      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/
+5542:    checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/best
+5543:    log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log
+…[truncated 1577 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7011 · 2026-05-25T19:46:04.419880+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+  "offset": "185",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+    "offset": "185",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7012 · 2026-05-25T19:46:04.520659+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "0\\.025|tost_p.*0\\.02|p.*0\\.025",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+  "output_mode": "content",
+  "context": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "0\\.025|tost_p.*0\\.02|p.*0\\.025",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+    "output_mode": "content",
+    "context": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7013 · 2026-05-25T19:46:04.571399+00:00_
+
+185	\midrule
+186	Format collapse & \cwm{} (all) & N/A & 48--52\% \\
+187	Decision collapse & \cls{} (DeepSeek, s123) & ${\sim}$14\% & 56\% \\
+188	Aggr.\ penalty & \cls{} (Qwen3-8B) & 51--57\% & 73--81\% \\
+189	Aggr.\ penalty & \cls{} (DeepSeek, s42) & 38--51\% & 79--81\% \\
+190	\bottomrule
+191	\end{tabular}}
+192	\end{table}
+193	
+194	\subsection{Analysis}
+195	\label{sec:analysis}
+196	
+197	\paragraph{Aggregation penalty.} The aggregation penalty ranges from 1.36\pp{} to 19\pp{}, negligible at function level ($\bar{T} \approx 2.3$) but substantial at repo level ($\bar{T} \gg 10$; Appendix~\ref{app:extended_analysis}(a)).
+198	
+199	\begin{figure}[t]
+200	\centering
+201	\includegraphics[width=\columnwidth]{figures/paper/fig_cwm_unparseable.pdf}
+202	\caption{\cwm{} unparseable rate by complexity level. Function-level outputs (${\sim}$5--15 tokens) yield 1.4\% unparseable; repo-level outputs (${\sim}$477 tokens) reach 53.7\% (4B) and 73.8\% (8B). Parseable-only accuracy (inside bars) decreases from 4B to 8B despite rising overall accuracy---evidence of default-assignment inflation.}
+203	\label{fig:cwm_unparseable}
+204	\end{figure}
+205	
+206	\paragraph{Why does generation degrade at repo level?} Output complexity increases nonlinearly: function-level outputs average ${\sim}$5--15 tokens; repo-level outputs average ${\sim}$477 tokens (Figure~\ref{fig:cwm_unparseable}), leading to format collapse (53--74\% unparseable; Appendix~\ref{app:qualitative}). Even parseable outputs achieve only 38--43\%, below majority; a model accidentally trained on CLS-format data achieves 86.05\% with 0\% unparseable; this confirms that degradation stems from output format complexity, not task difficulty (Appendix~\ref{app:extended_analysis}(c)). Four targeted interventions all fail to close this gap (Appendix~\ref{app:extended_analysis}(g)). \cls{} achieves 217$\times$ higher throughput (1 vs.\ avg 477 output tokens).
+207	
+208	\begin{figure}[t]
+209	\centering
+210	\includegraphics[width=\columnwidth]
+…[truncated 1653 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7014 · 2026-05-25T19:46:04.623016+00:00_
+
+&lt;persisted-output>
+Output too large (32.4KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-7a9aef1a/582c0f6d-ada1-4fcd-b3d2-25d5d670557d/tool-results/toolu_01VkVUA4X9V7xwvAjcMiuxyd.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-462-  name: 4B-8B CLS vs CWM Paired Bootstrap Corrected
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-463-  type: data
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml:464:  description: 修正版 4B/8B CLS vs CWM paired bootstrap 统计分析。4B gap=1.25pp p=0.0253,
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-465-    8B gap=2.26pp p=0.0066, Scaling P(8B>4B)=0.988
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml-466-  path: projects/exec-sim-repair-verifier/artifacts/_project/data/4b_8b_cls_cwm_paired_bootstrap_corrected.json
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-121-| Config | CLS Acc | CWM Acc | Gap (pp) | p-value | Cohen's d |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-122-|--------|---------|---------|----------|---------|-----------|
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md:123:| 4B (5 seeds) | 88.43 ± 0.78 | 87.19 ± 0.37 | +1.24 | 0.025 | 1.24 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/error_analysis_data.md-124-| 8B (3 seeds) | 89.39 ± 1.09 | 86.96 ± 0.72 | +2.43 | 0.007 | 4.97 |
+/home/ubuntu/.agent-ml-research-idea_gen_0509_
+…[truncated 101 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7015 · 2026-05-25T19:46:05.677460+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"accuracy_greedy\\|accuracy_majority\\|delta_accuracy\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+  "description": "Check majority voting metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"accuracy_greedy\\|accuracy_majority\\|delta_accuracy\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+    "description": "Check majority voting metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7016 · 2026-05-25T19:46:06.430520+00:00_
+
+798:      accuracy_greedy: 87.51
+799:      accuracy_majority_vote_K3: 86.83
+800:      delta_accuracy: -0.69
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 753
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7017 · 2026-05-25T19:46:06.631640+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '759,830p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read majority voting experiment entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '759,830p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read majority voting experiment entry"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7018 · 2026-05-25T19:46:06.632166+00:00_
+
+  per-test-majority-voting:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T08:18:14.827Z'
+    updated_at: '2026-05-12T10:06:09.994Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier
+        && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B
+        --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json
+        --K 3 --temperature 0.7 --gpu 0"
+      server: seetacloud-westd-4x5090
+      gpu:
+      - cuda:2
+      pid: '21710'
+      log_path: ~/runs/exec-sim-repair-verifier/per-test-majority-voting.log
+      submitted_at: '2026-05-12T09:22:45.956Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /home/sonny/exec-sim-repair-verifier/data/test.jsonl
+      data_count: 1890
+      model_name: Qwen/Qwen3-4B + LoRA
+      seed: 42
+      checkpoint_source: /home/sonny/exec-sim-repair-verifier/checkpoints/best/
+      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints/best/
+      wall_clock_seconds: 643.2
+      gpu_hours: 0.18
+    hypothesis: Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B
+      classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy
+    reproduce:
+      finished_at: '2026-05-12T09:25:13.934Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-12T09:25:15.074858+00:00'
+    conclusion: negative
+    metrics:
+      accuracy_greedy: 87.51
+      accuracy_majority_vote_K3: 86.83
+      delta_accuracy: -0.69
+      fail_f1_greedy: 87.86
+      fail_f1_mv: 87.29
+      pass_f1_greedy: 87.15
+      pass_f1_mv: 86.33
+      unanimous_rate: 93.3
+      split_samples: 127
+      flipped_correct_to_wrong: 28
+      flipped_wrong_to_correct: 15
+      net_flips: -13
+      per_pass_accuracy:
+      - 
+…[truncated 859 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7019 · 2026-05-25T19:46:07.535810+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tost.*0\\.025|0\\.025.*tost|CLS.*TRAJ.*p.*0\\.025",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tost.*0\\.025|0\\.025.*tost|CLS.*TRAJ.*p.*0\\.025",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7020 · 2026-05-25T19:46:07.586544+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-38-comparisons = [
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-39-    {"name": "Repo: CLS vs CWM (Qwen3-8B)",     "raw_p": 0.003, "level": "repo",     "note": "paired bootstrap, diff=+29.17pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-40-    {"name": "Func: CLS vs CWM (TOST ±2pp)",    "raw_p": 0.007, "level": "function", "note": "seed-level paired t-test, 5 seeds (same as clustered bootstrap)"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py:41:    {"name": "Func: CLS vs TRAJ (TOST ±2pp)",   "raw_p": 0.025, "level": "function", "note": "seed-level paired t-test, 5 seeds, df=4"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-42-    {"name": "Repo: CWM vs TRAJ (Qwen3-8B)",    "raw_p": 0.039, "level": "repo",     "note": "unpaired bootstrap, diff=-20.83pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-43-    {"name": "Repo: CLS vs TRAJ (Qwen3-8B)",    "raw_p": 0.385, "level": "repo",     "note": "unpaired bootstrap, diff=+8.33pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-44-]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-63-All 5 rows match `artifacts/holm_bonferroni_results.json` exactly:
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-64-1. Repo CLS vs CWM: raw p=0.003, adj p=0.015 ✓
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/data_audit_results.md-65-2. Func CLS vs CWM
+…[truncated 1912 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7021 · 2026-05-25T19:46:09.142477+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "84.83|84.38|66.48|58.30|tab:repo_level",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "84.83|84.38|66.48|58.30|tab:repo_level",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7022 · 2026-05-25T19:46:09.193061+00:00_
+
+128-\subsection{Repo-Level: Complexity-Dependent Divergence}
+129-\label{sec:repo}
+130-
+131:[Omitted long matching line]
+132-
+133-\begin{table}[t]
+134-\centering
+135-\small
+136-\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \cls{}/\traj{}: mean $\pm$ std over 3 seeds; DeepSeek \cls{}: 2 seeds\textsuperscript{$\ddagger$}; DeepSeek \traj{}: 3 seeds; Qwen3-4B: seed 42. \cwm{}: 3 seeds (42/123/456).}
+137:\label{tab:repo_level}
+138-\resizebox{\columnwidth}{!}{%
+139-\setlength{\tabcolsep}{4pt}
+140-\begin{tabular}{lcccc}
+--
+142-\textbf{Model} & \textbf{\cls{} (\%)} & \textbf{\cls{} Var.\ (\%)} & \textbf{\cwm{} (\%)} & \textbf{\traj{} Var.\ (\%)\textsuperscript{$\diamond$}} \\
+143-\midrule
+144-Qwen3-4B & 83.63 & 64.58 & 58.04 & 72.92 \\
+145:Qwen3-8B & \textbf{84.83 $\pm$ 0.67} & 72.92 / 81.25\textsuperscript{$\dagger$} & 66.48 $\pm$ 1.15 & 73.61 $\pm$ 3.18 \\
+146:DeepSeek-6.7B & 84.38 $\pm$ 2.50\textsuperscript{$\ddagger$} & 81.25\textsuperscript{$\dagger$} & 58.30 $\pm$ 2.82 & 77.08 $\pm$ 3.61 \\
+147-\midrule
+148-0-shot (Qwen3-8B) & 49.90 & --- & --- & --- \\
+149-0-shot (DeepSeek) & 48.54 & --- & --- & --- \\
+--
+158-[Omitted long context line]
+159-\end{table}
+160-
+161:Few-shot prompting (3-shot ICL) collapses to an always-predict-unresolved baseline (variant accuracy 45.83\%, below majority 54.17\%; Appendix~\ref{app:few_shot}); execution-free verification requires task-specific fine-tuning regardless of formulation. Fine-tuning yields 35--36\pp{} gains (Table~\ref{tab:repo_level}), a prerequisite before formulation choice becomes relevant.
+162-
+163:\paragraph{Formulation divergence.} Under our 4--8B LoRA protocol, \cls{} and \cwm{} diverge: the gap is 25.59\pp{} at 4B and 18.35\pp{} at 8B (Table~\ref{tab:repo_level}), with \cwm{} falling below majority baseline at both scales. Limited seed coverage and multiple confounds (\S\ref{sec:threats}) limit causal attribution.
+164-
+165-\paragraph{Cross-model consistency.} DeepSeek-Coder sh
+…[truncated 334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7023 · 2026-05-25T19:46:09.444338+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '6087,6160p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read seq2048 ablation experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '6087,6160p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read seq2048 ablation experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7024 · 2026-05-25T19:46:10.398278+00:00_
+
+  cls8b-s42-ckpt3600-seq2048-ablation:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T23:48:09.625Z'
+    updated_at: '2026-05-16T00:38:31.977Z'
+    spec:
+      command: HF_HUB_OFFLINE=1 python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/
+        --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device
+        cuda:0 --batch_size 1 --max_seq_length 2048 --max_new_tokens 8 --output_dir
+        /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/
+      server: seetacloud-westd-4x5090
+      data_path: test split
+      data_count: 9784
+      model_name: Qwen3-8B
+      seed: 42
+      checkpoint_source: ckpt-3600 (val-best from resume sweep)
+      eval_data: test split n=9784
+      checkpoint_path: /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/
+      log_path: /tmp/eval_cls8b_ckpt3600_seq2048.log
+      output_dir: /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/
+      max_seq_length: 2048
+      batch_size: 1
+      purpose: Appendix B seq-length ablation
+    hypothesis: 'CLS 8B ckpt-3600 @seq2048 ablation: 测试新 val-best 在短 context 下表现，与
+      ckpt-1000 @2048 (82.83%) 对比'
+    reproduce:
+      finished_at: '2026-05-16T00:24:10.728Z'
+    failure_reason: ''
+    conclusion: success
+    completed_at: '2026-05-16T00:24:13.557Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-16T00:24:17.644744+00:00'
+    metrics:
+      accuracy: 83.04
+      f1_macro: 76.8
+      unparseable: 136
+      n_samples: 9784
+      seq_length: 2048
+  repo-level-cwm-8b-conda-v6:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T00:40:49.599Z'
+    updated_at: '2026-05-16T00:44:41.264Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py
+        ..."
+      server: s
+…[truncated 892 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 953
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7025 · 2026-05-25T19:46:10.549292+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"accuracy.*83.04\\|unparseable.*136\\|seq2048\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+  "description": "Check seq2048 ablation metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"accuracy.*83.04\\|unparseable.*136\\|seq2048\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+    "description": "Check seq2048 ablation metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7026 · 2026-05-25T19:46:10.600001+00:00_
+
+2501:      unparseable: 136
+5158:  cls8b-s42-ckpt1000-test-seq2048-ablation:
+5175:      log_path: ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log
+5204:      unparseable: 136
+6087:  cls8b-s42-ckpt3600-seq2048-ablation:
+6096:        /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/
+6105:      log_path: /tmp/eval_cls8b_ckpt3600_seq2048.log
+6106:      output_dir: /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/
+6110:    hypothesis: 'CLS 8B ckpt-3600 @seq2048 ablation: 测试新 val-best 在短 context 下表现，与
+6123:      accuracy: 83.04
+6125:      unparseable: 136
+7169:      per_test_accuracy_seq2048: 82.62
+7181:      variant_accuracy_seq2048: 36
+7182:      variant_correct_seq2048: 9
+7183:      variant_total_seq2048: 25
+7185:      unparseable_seq2048: 2796
+7192:      note: seq2048 metrics inflated by 28.6% unparseable defaulting to pass; seq8192
+7917:  D133-cwm-s42-e2-seq2048-home:
+7929:        2048 --max_new_tokens 512 --batch_size 1 --device cuda:0 --output_dir eval_results/deepseek_cwm_repo_s42_e2_seq2048/
+8232:  D133-cwm-s42-e2-seq2048-home-resume:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7027 · 2026-05-25T19:46:13.838895+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"exp-downsample-cls-func-v3-eval\\|exp-downsample-cls-func-v3\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+  "description": "Check downsample experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"exp-downsample-cls-func-v3-eval\\|exp-downsample-cls-func-v3\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -20",
+    "description": "Check downsample experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7028 · 2026-05-25T19:46:14.290902+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "seed.level.*CLS.*TRAJ|CLS.*TRAJ.*seed.level|traj.*0\\.025|0\\.025.*traj",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "seed.level.*CLS.*TRAJ|CLS.*TRAJ.*seed.level|traj.*0\\.025|0\\.025.*traj",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7029 · 2026-05-25T19:46:14.341588+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-38-comparisons = [
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-39-    {"name": "Repo: CLS vs CWM (Qwen3-8B)",     "raw_p": 0.003, "level": "repo",     "note": "paired bootstrap, diff=+29.17pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-40-    {"name": "Func: CLS vs CWM (TOST ±2pp)",    "raw_p": 0.007, "level": "function", "note": "seed-level paired t-test, 5 seeds (same as clustered bootstrap)"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py:41:    {"name": "Func: CLS vs TRAJ (TOST ±2pp)",   "raw_p": 0.025, "level": "function", "note": "seed-level paired t-test, 5 seeds, df=4"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-42-    {"name": "Repo: CWM vs TRAJ (Qwen3-8B)",    "raw_p": 0.039, "level": "repo",     "note": "unpaired bootstrap, diff=-20.83pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-43-    {"name": "Repo: CLS vs TRAJ (Qwen3-8B)",    "raw_p": 0.385, "level": "repo",     "note": "unpaired bootstrap, diff=+8.33pp"},
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py-44-]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/compute_14b_seed_level_stats.py-1-#!/usr/bin/env python3
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/compute_14b_seed_level_stats.py:2:"""Compute seed-level TOST and Bayesian ROPE for 14B CLS-CWM and CLS-TRAJ.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/compute_14b_seed_level_stats.py-3-
+/home/
+…[truncated 3459 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7030 · 2026-05-25T19:46:14.341987+00:00_
+
+8650:  exp-downsample-cls-func-v3:
+8667:      log_path: ~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3.log
+8686:      exp-downsample-cls-func-v3, started 2026-05-19 12:05:35, step ~36/756 @ ~3.35s/iter,
+8713:  exp-downsample-cls-func-v3-eval:
+8728:      log_path: ~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3-eval.log
+8755:  exp-downsample-cls-func-v3-eval-v2:
+8770:      log_path: ~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3-eval-v2.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7031 · 2026-05-25T19:46:14.594598+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"cls-downsample-400\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -10",
+  "description": "Check cls downsample 400 experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"cls-downsample-400\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -10",
+    "description": "Check cls downsample 400 experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7032 · 2026-05-25T19:46:14.645325+00:00_
+
+10539:  cls-downsample-400-s42:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7033 · 2026-05-25T19:46:15.448717+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "cwm8b-ckpt400-test-eval|cwm.*8b.*ckpt400.*accuracy|accuracy.*67.33|accuracy.*66.93|66.48",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "output_mode": "content",
+  "context": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "cwm8b-ckpt400-test-eval|cwm.*8b.*ckpt400.*accuracy|accuracy.*67.33|accuracy.*66.93|66.48",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "output_mode": "content",
+    "context": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7034 · 2026-05-25T19:46:15.500110+00:00_
+
+2879-      CLS v5 ckpt-600 (76.92%) 仅差 0.55pp，确认 home vs westd conda 环境差异可忽略。checkpoint
+2880-      选择才是主因。D056 early stop 导致只看了 ckpt-200 险些误判。
+2881-    conclusion: success
+2882-    metrics:
+2883-      checkpoint_sweep:
+2884-        ckpt_200:
+2885-          accuracy: 52.96
+2886-          f1_macro: 52.89
+2887-          fail_f1: 51.02
+2888-          pass_f1: 54.76
+2889-        ckpt_400:
+2890-          accuracy: 78.43
+2891-          f1_macro: 68.41
+2892-          fail_f1: 50.61
+2893-          pass_f1: 86.21
+2894:          fail_precision: 66.48
+2895-          fail_recall: 40.85
+2896-          pass_precision: 80.82
+2897-          pass_recall: 92.36
+2898-        ckpt_600:
+2899-          accuracy: 76.37
+2900-          f1_macro: 71.17
+2901-          fail_f1: 58.93
+2902-          pass_f1: 83.41
+2903-          fail_precision: 55.6
+2904-          fail_recall: 62.7
+2905-          pass_precision: 85.49
+2906-          pass_recall: 81.44
+2907-      best_checkpoint_accuracy: checkpoint-400
+2908-      best_checkpoint_f1: checkpoint-600
+2909-      eval_samples: 9784
+--
+5341-      fail_precision: 49.54
+5342-      fail_recall: 82.05
+5343-      n_samples: 9784
+5344-      n_pass: 7138
+5345-      n_fail: 2646
+5346-      majority_baseline: 72.96
+5347-      unparseable: 0
+5348-      confusion_matrix:
+5349-        tn: 2171
+5350-        fp: 475
+5351-        fn: 2211
+5352-        tp: 4927
+5353-    checkpoint_path: /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200
+5354-    log_path: ~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log
+5355-    completed_at: '2026-05-15T12:11:58.203Z'
+5356:  cwm8b-ckpt400-test-eval:
+5357-    status: DONE
+5358-    retry_count: 1
+5359-    created_at: '2026-05-15T12:16:19.540Z'
+5360-    updated_at: '2026-05-16T00:18:16.631Z'
+5361-    hypothesis: CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B
+5362-      对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。
+5363-    notes: '2026-05-15 16:57 UTC: pid=381618, etime=2h18
+…[truncated 8710 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7035 · 2026-05-25T19:46:17.407007+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '8713,8760p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read downsample eval experiment metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '8713,8760p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read downsample eval experiment metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7036 · 2026-05-25T19:46:17.859199+00:00_
+
+  exp-downsample-cls-func-v3-eval:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T05:32:19.527Z'
+    updated_at: '2026-05-19T07:10:09.357Z'
+    spec:
+      command: bash -c "cd /home/sonny/exec-sim-repair-verifier && /root/miniconda3/bin/python
+        eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best
+        --model_name /root/autodl-tmp/models/Qwen/Qwen3-4B --output artifacts/eval_cls_downsample_v3/eval_repo_cls.json
+        --pred_output artifacts/eval_cls_downsample_v3/eval_repo_cls_predictions.jsonl
+        --device cuda:0 --split test"
+      server: seetacloud-westd-4x5090
+      gpu:
+      - cuda:2
+      pid: '808206'
+      log_path: ~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3-eval.log
+      submitted_at: '2026-05-19T06:57:29.274Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 574.1
+      gpu_hours: 0.16
+    hypothesis: Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果
+      accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量
+    conclusion: success
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    reproduce:
+      finished_at: '2026-05-19T07:06:58.661Z'
+    completed_at: '2026-05-19T07:07:03.399Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-19T07:07:09.351958+00:00'
+    metrics:
+      accuracy: 80.74
+      f1_macro: 75.89
+      fail_f1: 65.1
+      pass_f1: 86.7
+      unparseable: 132
+      total: 9784
+      source: extracted from log (file write failed)
+  exp-downsample-cls-func-v3-eval-v2:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-19T06:33:40.319Z'
+    updated_at: '2026-05-19T06:33:52.644Z'
+    spec:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7037 · 2026-05-25T19:46:17.910015+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '10539,10600p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read cls-downsample-400-s42 experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '10539,10600p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read cls-downsample-400-s42 experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7038 · 2026-05-25T19:46:18.010832+00:00_
+
+  cls-downsample-400-s42:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-23T17:59:26.018Z'
+    updated_at: '2026-05-23T20:09:20.393Z'
+    hypothesis: CLS function-level trained on ~447 samples (matching TRAJ variant
+      count) should reveal whether TRAJ's lower accuracy (86.30% vs CLS 88.43%) is
+      due to data volume disparity (34×) or formulation difference. If CLS@447 ≈ TRAJ
+      → data volume is main confound; if CLS@447 > TRAJ → formulation effect independent
+      of data volume.
+    spec:
+      command: WANDB_MODE=offline HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py
+        --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir data/
+        --task cls --train_file train_downsampled_400.jsonl --val_file val.jsonl --output_dir
+        /root/autodl-tmp/checkpoints_cls_downsample_400_s42/ --epochs 10 --batch_size
+        2 --grad_accumulation 16 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length
+        2048 --seed 42
+      server: seetacloud-westd-4x5090
+      data_path: data/train_downsampled_400.jsonl
+      data_count: 447
+      model_name: Qwen3-4B
+      seed: 42
+      gpu:
+      - cuda:2
+    metrics:
+      accuracy_s42: 79.47
+      accuracy_s123: 78.2
+      accuracy_s456: 78.04
+      accuracy_mean: 78.57
+      accuracy_std: 0.78
+      f1_s42: 79.47
+      f1_s123: 78.12
+      f1_s456: 78
+      f1_mean: 78.53
+      f1_std: 0.82
+      vs_traj_gap_pp: -7.73
+    checkpoint_path: /root/autodl-tmp/checkpoints_cls_downsample_400_s{42,123,456}/
+    log_path: /tmp/eval_ds400_s{42,123,456}.log
+    conclusion: success
+    completed_at: '2026-05-23T20:09:20.393Z'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7039 · 2026-05-25T19:46:20.419650+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "cwm8b-ckpt400-test-eval-merged|cwm.*8b.*ckpt400.*merged|cwm.*8b.*combined|combined.*cwm.*8b|cwm.*8b.*accuracy.*67|cwm.*67.33",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "output_mode": "content",
+  "context": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "cwm8b-ckpt400-test-eval-merged|cwm.*8b.*ckpt400.*merged|cwm.*8b.*combined|combined.*cwm.*8b|cwm.*8b.*accuracy.*67|cwm.*67.33",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "output_mode": "content",
+    "context": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7040 · 2026-05-25T19:46:20.570604+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7041 · 2026-05-25T19:46:21.323686+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '7394,7460p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read re-repair-docker-eval experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '7394,7460p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read re-repair-docker-eval experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7042 · 2026-05-25T19:46:21.775809+00:00_
+
+  re-repair-docker-eval:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T07:26:36.395Z'
+    updated_at: '2026-05-17T08:36:26.508Z'
+    hypothesis: Per-test diagnostic information (CLS predictions or oracle labels)
+      improves LLM patch repair success rate compared to minimal or random diagnostics,
+      following information gradient A1 < A2 < D ≈ B < C
+    conclusion: negative
+    metrics:
+      A1_pass1: 52.3
+      A2_pass1: 43.2
+      B_pass1: 36.4
+      C_pass1: 38.6
+      D_pass1: 40.9
+      n_instances: 44
+      error_rate: 38.6
+      total_samples: 1475
+    spec:
+      command: python eval_re_repair.py --predictions generated_repairs.jsonl --max-workers
+        4 --timeout 300
+      server: home-1x5090
+      data_path: /home/sonny/eval_results/re_repair_v2/generated_repairs.jsonl
+      data_count: 1475
+      model_name: Qwen3-8B (generation) + SWE-bench harness v4.1.0 (eval)
+      seed: 42
+    checkpoint_path: /home/sonny/eval_results/re_repair_v2/verification_results.jsonl
+    log_path: /home/sonny/eval_results/re_repair_v2/docker_eval.log
+    completed_at: '2026-05-17T08:36:26.508Z'
+  qwen3-8b-traj-func-s42:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T13:19:43.240Z'
+    updated_at: '2026-05-17T14:29:53.572Z'
+    hypothesis: Qwen3-8B TRAJ func-level 将展示 TRAJ 在更大模型上的 scaling 行为，预期与 4B TRAJ (86.30%)
+      相比有小幅提升（类似 CLS/CWM 的 4B→8B +1-2pp pattern），填补 Table 2 scaling 分析的 TRAJ 8B 缺口
+    spec:
+      command: python3 train_traj_verifier.py --model_name Qwen/Qwen3-8B --seed 42
+        --batch_size 2 --grad_accumulation 16 --epochs 3 --lr 2e-4 --lora_rank 16
+        --lora_alpha 32 --max_seq_length 2048
+      server: home-1x5090
+      gpu:
+      - cuda:0
+      pid: '3819402'
+      log_path: /home/sonny/exec-sim-repair-verifier/checkpoints_traj_8b_seed42/trainer_state.json
+      submitted_at: '2026-05-17T13:20:05.999Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: sonny
+      data_path: /home/sonny/
+…[truncated 537 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7043 · 2026-05-25T19:46:22.632865+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed -n '7598,7660p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "description": "Read repo-level-3shot-baseline experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed -n '7598,7660p' /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "description": "Read repo-level-3shot-baseline experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7044 · 2026-05-25T19:46:22.733789+00:00_
+
+  repo-level-3shot-baseline:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T23:08:27.137Z'
+    updated_at: '2026-05-19T04:36:55.833Z'
+    hypothesis: 3-shot few-shot 在 repo-level 能否作为 baseline，预期因 context 长度限制表现差于 fine-tuned
+      models
+    conclusion: success
+    failure_reason: 'CORRECTED: initial run had context overflow, final run @seq4096
+      succeeded. Previous failure_reason was stale metadata.'
+    spec:
+      command: bash -c "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1
+        HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_3shot_baseline.py --model_name_or_path
+        /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir
+        data/swebench_full --device cuda:0 --max_seq_length 4096 --output_dir artifacts/eval_3shot_deepseek"
+      server: seetacloud-westd-4x5090
+      gpu:
+      - cuda:1
+      pid: '788567'
+      log_path: ~/runs/exec-sim-repair-verifier/repo-level-3shot-baseline.log
+      submitted_at: '2026-05-19T02:53:00.493Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/swebench_full/swebench_test.jsonl
+      data_count: 9784
+      model_name: deepseek-coder-6.7b-instruct
+      seed: 42
+      checkpoint_source: base model (no fine-tuning)
+      eval_data: swebench_test.jsonl (9784 per-test, 48 variants)
+      wall_clock_seconds: 3414.8
+      gpu_hours: 0.95
+    completed_at: '2026-05-19T03:49:55.284Z'
+    metrics:
+      per_test_accuracy: 46.28
+      variant_accuracy: 45.83
+      variant_correct: 22
+      variant_total: 48
+      majority_baseline: 73
+      truncated: 0
+      unparseable: 0
+      total: 9784
+      runtime_min: 33.8
+  deepseek-0shot-repo-baseline:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T23:30:52.005Z'
+    updated_at: '2026-05-18T00:10:04.699Z'
+    hypothesis: DeepSeek 0-shot instruction 在 repo-level 的基准表现，跨模型验证 0-shot 在 repo-level
+      普遍接近随机
+    conclusion: success
+    metrics:
+      a
+…[truncated 238 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7045 · 2026-05-25T19:46:23.687705+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "cwm.*8b.*ckpt400|ckpt400.*cwm.*accuracy|accuracy.*cwm.*8b.*ckpt400",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+  "output_mode": "content",
+  "context": "20",
+  "offset": "6395"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "cwm.*8b.*ckpt400|ckpt400.*cwm.*accuracy|accuracy.*cwm.*8b.*ckpt400",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+    "output_mode": "content",
+    "context": "20",
+    "offset": "6395"
+  }
 }
 ```
 

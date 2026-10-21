@@ -19,15 +19,8 @@ R1: 2.5 → R2-R4: 3.0 → R5-R10: 3.5 → R11-R16: 3.5 → R17: 3.5 → Target:
 - 匿名仓库已同步 push（commit 808123f, public）
 - OpenReview 提交由运维人工完成
 
-### Rebuttal 备弹（全部完成）
-- [x] formality_scaled_n300: Llama-70B n=355, BT=72.5%, Likert d=0.048 p=.026。大样本下 Likert 终于 sig 但 d 极小 → 结构性 attenuation 确认
-- [x] formality_llama_rewriter: Llama-70B rewriter, BT=71.1%, Blindspot YES。3 独立 rewriter 排除 rewriter artifact
-- [x] llama70b_crossbench: AlpacaEval formality BT=95.7%, verbosity BT=97.0%; MT-Bench formality BT=91.7%。全部 Likert sig (d=0.21-0.30) → Blindspot 在大效应下消失，验证 effect-size gradient
-- [x] GPT-5.4 NO-GO（D081）
-
 ### 待做
 - [ ] 等待审稿结果（预计 4-6 周）
-- [ ] 审稿回来后根据 reviewer concerns 制定 rebuttal 策略
 
 ## GPU 预算
 westb-29275: 4×RTX PRO 6000 96GB。全部实验完成，已通知 Manager GPU 可供全局调度。

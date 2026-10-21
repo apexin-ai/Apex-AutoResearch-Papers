@@ -28,7 +28,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code r4 sf5 sf7 llama docred | 173 | 0 | [Read transcript](code-r4-sf5-sf7-llama-docred.md) | [JSON](../../sessions/e7/e78721845370e6959236.json) |
 | code r4 sf8 reproducibility | 94 | 0 | [Read transcript](code-r4-sf8-reproducibility.md) | [JSON](../../sessions/03/03439abd12d539dee881.json) |
 | code r4 m3q3 semantic only et | 117 | 0 | [Read transcript](code-r4-m3q3-semantic-only-et.md) | [JSON](../../sessions/fe/fe08dd2e56659bfcb92b.json) |
-| code r4 m6q4 cfdr transferability — I need to find relevant files in the project /home/ubuntu/.agent-ml-research-idea_gen_0509_6/project | 108 | 1 | [Read transcript](code-r4-m6q4-cfdr-transferability.md) | [JSON](../../sessions/91/91cdf3259e01e92bc5f2.json) |
+| code r4 m6q4 cfdr transferability — I need to find relevant files in the project /home/ubuntu/.agent-ml-research-idea_gen_0509_6/project | 102 | 1 | [Read transcript](code-r4-m6q4-cfdr-transferability.md) | [JSON](../../sessions/91/91cdf3259e01e92bc5f2.json) |
 | code r4 prompt sensitivity | 220 | 0 | [Read transcript](code-r4-prompt-sensitivity.md) | [JSON](../../sessions/d0/d03895535681cca01a27.json) |
 | code r4 doc length breakdown | 69 | 0 | [Read transcript](code-r4-doc-length-breakdown.md) | [JSON](../../sessions/02/02a9b3e20d4ec1937117.json) |
 | code r4 prompt sensitivity v2 | 108 | 0 | [Read transcript](code-r4-prompt-sensitivity-v2.md) | [JSON](../../sessions/b8/b85dd9e448da9af40ead.json) |

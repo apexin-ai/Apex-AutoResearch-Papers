@@ -7,312 +7,6 @@
       "messages": [
         {
           "source_line": 3241,
-          "timestamp": "2026-05-28T19:57:11.198702+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type d -name \"*llama*\" 2>/dev/null"
-            }
-          },
-          "id": "event-003241"
-        },
-        {
-          "source_line": 3242,
-          "timestamp": "2026-05-28T19:57:11.249367+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-003242"
-        },
-        {
-          "source_line": 3243,
-          "timestamp": "2026-05-28T19:57:12.303643+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*.json\" | xargs grep -l \"ci\\|CI\\|bootstrap\\|confidence\" 2>/dev/null | head -10"
-            }
-          },
-          "id": "event-003243"
-        },
-        {
-          "source_line": 3244,
-          "timestamp": "2026-05-28T19:57:12.404519+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/dino_action_probe.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bonferroni_global.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/action_delta_probe_projector.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/tost_equivalence.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/power_analysis.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/bonferroni_global.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_spatial/data/counterfactual_spatial.json"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 100
-          },
-          "id": "event-003244"
-        },
-        {
-          "source_line": 3245,
-          "timestamp": "2026-05-28T19:57:12.457158+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type d -name \"*bootstrap*\" 2>/dev/null"
-            }
-          },
-          "id": "event-003245"
-        },
-        {
-          "source_line": 3246,
-          "timestamp": "2026-05-28T19:57:12.507815+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_multi_layer_attention.py",
-              "offset": "30",
-              "limit": "15"
-            }
-          },
-          "id": "event-003246"
-        },
-        {
-          "source_line": 3247,
-          "timestamp": "2026-05-28T19:57:12.508261+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "30\t# ── Data ──\n31\tlayers = ['L1', 'L8', 'L16', 'L31']\n32\tx = np.arange(len(layers))\n33\t\n34\t# Panel (a): Instruction-dominant heads count (of 32 total)\n35\ttrained_heads = [25, 4, 10, 19]\n36\tllama2_heads = [9, 8, 25, 8]\n37\tuntrained_heads = [0, 0, 0, 0]\n38\t\n39\t# Panel (b): Mean instruction attention fraction\n40\ttrained_mean = [0.577, 0.468, 0.484, 0.563]\n41\tllama2_mean = [0.365, 0.488, 0.602, 0.349]\n42\tuntrained_mean = [0.117, 0.079, 0.092, 0.076]\n43\t\n44\tcolors = {'trained': '#4C72B0', 'llama2': '#55A868', 'untrained': '#C44E52'}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-003247"
-        },
-        {
-          "source_line": 3248,
-          "timestamp": "2026-05-28T19:57:12.558753+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v2"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 101
-          },
-          "id": "event-003248"
-        },
-        {
-          "source_line": 3249,
-          "timestamp": "2026-05-28T19:57:12.910512+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -r \"llama2base_mean\\|llama2base_r2\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts --include=\"*.json\" 2>/dev/null | head -5"
-            }
-          },
-          "id": "event-003249"
-        },
-        {
-          "source_line": 3250,
-          "timestamp": "2026-05-28T19:57:13.262303+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 351
-          },
-          "id": "event-003250"
-        },
-        {
-          "source_line": 3251,
-          "timestamp": "2026-05-28T19:57:13.312909+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "grep -l \"0.6451\\|0.6276\\|Llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/*.json 2>/dev/null"
-            }
-          },
-          "id": "event-003251"
-        },
-        {
-          "source_line": 3252,
-          "timestamp": "2026-05-28T19:57:13.363544+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "(Bash completed with no output)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-003252"
-        },
-        {
-          "source_line": 3253,
-          "timestamp": "2026-05-28T19:57:14.267167+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json"
-            }
-          },
-          "id": "event-003253"
-        },
-        {
-          "source_line": 3254,
-          "timestamp": "2026-05-28T19:57:14.368608+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\timage_mean: delta=0.0206, 95% CI=[-0.0314, 0.0638], p=0.1996 (not significant)\n2\tlast_preaction: delta=0.0076, 95% CI=[-0.0395, 0.0558], p=0.3701 (not significant)\n3\tFull JSON at /root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-003254"
-        },
-        {
-          "source_line": 3255,
-          "timestamp": "2026-05-28T19:57:14.369092+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/ | head -30"
-            }
-          },
-          "id": "event-003255"
-        },
-        {
-          "source_line": 3256,
-          "timestamp": "2026-05-28T19:57:14.419624+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "total 20\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 23 12:08 .\ndrwxr-xr-x 56 ubuntu ubuntu 12288 May 28 15:48 ..\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 23 16:44 report"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 50
-          },
-          "id": "event-003256"
-        },
-        {
-          "source_line": 3257,
           "timestamp": "2026-05-28T19:57:15.174165+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -329,10 +23,10 @@
               "command": "grep -A 5 \"Layer 1\\|L1\\|layer.*1.*text_dominant\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_multi_layer_attention_extraction_20260517T063232.log 2>/dev/null | grep -E \"text_dominant|mean_text|^\\s*[0-9]+/32|trained|untrained|llama\" | head -40"
             }
           },
-          "id": "event-003257"
+          "id": "event-003241"
         },
         {
-          "source_line": 3258,
+          "source_line": 3242,
           "timestamp": "2026-05-28T19:57:15.174617+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -349,10 +43,10 @@
               "command": "grep -B5 -A2 \"llama2base_mean\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_action_r2_threecond.py"
             }
           },
-          "id": "event-003258"
+          "id": "event-003242"
         },
         {
-          "source_line": 3259,
+          "source_line": 3243,
           "timestamp": "2026-05-28T19:57:15.225162+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -367,10 +61,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003259"
+          "id": "event-003243"
         },
         {
-          "source_line": 3260,
+          "source_line": 3244,
           "timestamp": "2026-05-28T19:57:15.326058+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -385,10 +79,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003260"
+          "id": "event-003244"
         },
         {
-          "source_line": 3261,
+          "source_line": 3245,
           "timestamp": "2026-05-28T19:57:15.376770+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -405,10 +99,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15 -type f -name \"*.json\" -path \"*llama*\" 2>/dev/null"
             }
           },
-          "id": "event-003261"
+          "id": "event-003245"
         },
         {
-          "source_line": 3262,
+          "source_line": 3246,
           "timestamp": "2026-05-28T19:57:15.427437+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -423,10 +117,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003262"
+          "id": "event-003246"
         },
         {
-          "source_line": 3263,
+          "source_line": 3247,
           "timestamp": "2026-05-28T19:57:15.880171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -443,10 +137,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/"
             }
           },
-          "id": "event-003263"
+          "id": "event-003247"
         },
         {
-          "source_line": 3264,
+          "source_line": 3248,
           "timestamp": "2026-05-28T19:57:16.231820+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -461,10 +155,10 @@
             "tool": "Bash",
             "elapsed_ms": 351
           },
-          "id": "event-003264"
+          "id": "event-003248"
         },
         {
-          "source_line": 3265,
+          "source_line": 3249,
           "timestamp": "2026-05-28T19:57:16.232387+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -481,10 +175,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*delta*r2*\" -o -name \"*mccv*\" 2>/dev/null | head -20"
             }
           },
-          "id": "event-003265"
+          "id": "event-003249"
         },
         {
-          "source_line": 3266,
+          "source_line": 3250,
           "timestamp": "2026-05-28T19:57:16.333060+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -499,10 +193,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-003266"
+          "id": "event-003250"
         },
         {
-          "source_line": 3267,
+          "source_line": 3251,
           "timestamp": "2026-05-28T19:57:17.136176+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -519,10 +213,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f \\( -name \"*l1*\" -o -name \"*L1*\" \\) | grep -E \"\\.(py|json)$\""
             }
           },
-          "id": "event-003267"
+          "id": "event-003251"
         },
         {
-          "source_line": 3268,
+          "source_line": 3252,
           "timestamp": "2026-05-28T19:57:17.236985+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -537,10 +231,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-003268"
+          "id": "event-003252"
         },
         {
-          "source_line": 3269,
+          "source_line": 3253,
           "timestamp": "2026-05-28T19:57:17.589267+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -557,10 +251,10 @@
               "command": "grep -A 20 \"llama2base_action_probe.json\\|llama2base_r2\\|output.*llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2base_action_probe_20260517T204531.log 2>/dev/null | head -40"
             }
           },
-          "id": "event-003269"
+          "id": "event-003253"
         },
         {
-          "source_line": 3270,
+          "source_line": 3254,
           "timestamp": "2026-05-28T19:57:17.912628+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -577,10 +271,10 @@
               "command": "cat > /tmp/verify_data.txt << 'EOF'\nSCRIPT HARDCODED DATA VERIFICATION\n==================================\n\nPanel A: Cohen's d values\nScript format: cohens_d[group][condition_index]\nCondition order: [0=empty, 1=wrong, 2=shuffled, 3=paraphrased]\n\nSCRIPT VALUES:\nOV-G: [1.17, 1.18, 1.10, 1.00]  (empty, wrong, shuffled, paraphrased)\nOV-S: [1.18, 0.88, 0.99, 0.81]\nOV-O: [1.21, 1.19, 1.12, 0.90]\nOV-L: [0.50, 0.56, 0.56, 0.45]\nTV-G: [1.52, 1.40, 1.34, 1.21]\nTV-S: [1.33, 1.29, 1.18, 1.19]\nTV-O: [1.21, 1.16, 1.06, 0.97]\nTV-L: [1.47, 1.42, 1.39, 1.16]\n\nPanel B: Cosine distance values\nScript format: cosine_dist[model_code][condition_index]\nCondition order: [0=empty, 1=wrong, 2=shuffled, 3=paraphrased]\n\nSCRIPT VALUES:\nG (NORA):    [1.0, 1.0, 1.0, 1.0]\nS (NORA):    [0.24, 0.275, 0.12, 0.03]\nG. (Phi):    [0.1530, 0.0160, 0.0839, 0.0043]\nS. (Phi):    [0.1805, 0.0046, 0.1395, 0.0044]\nO (Qwen):    [0.1850, 0.0044, 0.0977, 0.0052]\nL (Qwen):    [0.1734, 0.0221, 0.1204, 0.0070]\nG.. (Qwen):  [0.0814, 0.0143, 0.0332, 0.0041]\nS.. (Qwen):  [0.0807, 0.0020, 0.0313, 0.0047]\n\nANALYSIS:\n- OV-G should be OpenVLA spatial suite (most likely = counterfactual_spatial.json)\n- OV-S/O/L are other suites (need to find sources)\n- TV-G is TraceVLA spatial (= tracvla_spatial/counterfactual_combined.json)\n- Panel B cosine distance values don't appear in found JSON artifacts\n  (This data appears to be computed separately, possibly from embedding analysis)\nEOF\ncat /tmp/verify_data.txt\n"
             }
           },
-          "id": "event-003270"
+          "id": "event-003254"
         },
         {
-          "source_line": 3271,
+          "source_line": 3255,
           "timestamp": "2026-05-28T19:57:17.963283+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -595,10 +289,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003271"
+          "id": "event-003255"
         },
         {
-          "source_line": 3272,
+          "source_line": 3256,
           "timestamp": "2026-05-28T19:57:18.064189+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -615,10 +309,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table.md"
             }
           },
-          "id": "event-003272"
+          "id": "event-003256"
         },
         {
-          "source_line": 3273,
+          "source_line": 3257,
           "timestamp": "2026-05-28T19:57:18.115183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -633,10 +327,10 @@
             "tool": "Bash",
             "elapsed_ms": 525
           },
-          "id": "event-003273"
+          "id": "event-003257"
         },
         {
-          "source_line": 3274,
+          "source_line": 3258,
           "timestamp": "2026-05-28T19:57:18.166874+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -653,10 +347,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -name \"*.json\" -newer /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json 2>/dev/null | head -10"
             }
           },
-          "id": "event-003274"
+          "id": "event-003258"
         },
         {
-          "source_line": 3275,
+          "source_line": 3259,
           "timestamp": "2026-05-28T19:57:18.167390+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -671,10 +365,10 @@
             "tool": "Read",
             "elapsed_ms": 103
           },
-          "id": "event-003275"
+          "id": "event-003259"
         },
         {
-          "source_line": 3276,
+          "source_line": 3260,
           "timestamp": "2026-05-28T19:57:18.167717+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -691,10 +385,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_ci_delta_r2.py"
             }
           },
-          "id": "event-003276"
+          "id": "event-003260"
         },
         {
-          "source_line": 3277,
+          "source_line": 3261,
           "timestamp": "2026-05-28T19:57:18.218384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -709,10 +403,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-003277"
+          "id": "event-003261"
         },
         {
-          "source_line": 3278,
+          "source_line": 3262,
           "timestamp": "2026-05-28T19:57:18.218902+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -727,10 +421,10 @@
             "tool": "Bash",
             "elapsed_ms": 52
           },
-          "id": "event-003278"
+          "id": "event-003262"
         },
         {
-          "source_line": 3279,
+          "source_line": 3263,
           "timestamp": "2026-05-28T19:57:18.971799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -747,10 +441,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_extract_l1_attention_data_20260517T081258_result.json"
             }
           },
-          "id": "event-003279"
+          "id": "event-003263"
         },
         {
-          "source_line": 3280,
+          "source_line": 3264,
           "timestamp": "2026-05-28T19:57:19.022507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -765,10 +459,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-003280"
+          "id": "event-003264"
         },
         {
-          "source_line": 3281,
+          "source_line": 3265,
           "timestamp": "2026-05-28T19:57:20.678827+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -785,10 +479,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -name \"*.py\" -exec grep -l \"llama2base_mean\\|0.6451.*0.6276\" {} \\; 2>/dev/null"
             }
           },
-          "id": "event-003281"
+          "id": "event-003265"
         },
         {
-          "source_line": 3282,
+          "source_line": 3266,
           "timestamp": "2026-05-28T19:57:20.830495+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -805,10 +499,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type d | grep -i \"tracvla\\|trace\" | head -20"
             }
           },
-          "id": "event-003282"
+          "id": "event-003266"
         },
         {
-          "source_line": 3283,
+          "source_line": 3267,
           "timestamp": "2026-05-28T19:57:20.831003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -826,10 +520,10 @@
               "limit": "100"
             }
           },
-          "id": "event-003283"
+          "id": "event-003267"
         },
         {
-          "source_line": 3284,
+          "source_line": 3268,
           "timestamp": "2026-05-28T19:57:21.133773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -844,10 +538,10 @@
             "tool": "Bash",
             "elapsed_ms": 303
           },
-          "id": "event-003284"
+          "id": "event-003268"
         },
         {
-          "source_line": 3285,
+          "source_line": 3269,
           "timestamp": "2026-05-28T19:57:21.134247+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -864,10 +558,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -path \"*/results/bootstrap_v3/*\" 2>/dev/null | head -30"
             }
           },
-          "id": "event-003285"
+          "id": "event-003269"
         },
         {
-          "source_line": 3286,
+          "source_line": 3270,
           "timestamp": "2026-05-28T19:57:21.234889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -882,10 +576,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-003286"
+          "id": "event-003270"
         },
         {
-          "source_line": 3287,
+          "source_line": 3271,
           "timestamp": "2026-05-28T19:57:23.546846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -902,10 +596,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -name \"*tracvla*goal*\" -o -name \"*nora*object*\" -o -name \"*nora*long*\" 2>/dev/null"
             }
           },
-          "id": "event-003287"
+          "id": "event-003271"
         },
         {
-          "source_line": 3288,
+          "source_line": 3272,
           "timestamp": "2026-05-28T19:57:23.698120+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -920,10 +614,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003288"
+          "id": "event-003272"
         },
         {
-          "source_line": 3289,
+          "source_line": 3273,
           "timestamp": "2026-05-28T19:57:23.748823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -940,10 +634,10 @@
               "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/ | grep -E \"tracvla|nora\""
             }
           },
-          "id": "event-003289"
+          "id": "event-003273"
         },
         {
-          "source_line": 3290,
+          "source_line": 3274,
           "timestamp": "2026-05-28T19:57:23.799511+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -958,10 +652,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003290"
+          "id": "event-003274"
         },
         {
-          "source_line": 3291,
+          "source_line": 3275,
           "timestamp": "2026-05-28T19:57:25.206157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -978,10 +672,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/tracvla_trained_metrics_20260521.md"
             }
           },
-          "id": "event-003291"
+          "id": "event-003275"
         },
         {
-          "source_line": 3292,
+          "source_line": 3276,
           "timestamp": "2026-05-28T19:57:25.256852+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -998,10 +692,10 @@
               "command": "python3 << 'PYEOF'\nimport json\n\n# Load the JSON sources\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json') as f:\n    spatial = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json') as f:\n    trajectory = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial/counterfactual_combined.json') as f:\n    tracvla = json.load(f)\n\nprint(\"=\" * 80)\nprint(\"OPENVLA SPATIAL (OV-G)\")\nprint(\"=\" * 80)\nspatial_global = spatial['global_metrics_detail']\n# Script expects: [empty, wrong, shuffled, paraphrased]\nscript_ov_g = [1.17, 1.18, 1.10, 1.00]\nsource_ov_g = [\n    spatial_global['empty']['paired_mse']['cohens_d'],\n    spatial_global['wrong']['paired_mse']['cohens_d'],\n    spatial_global['shuffled']['paired_mse']['cohens_d'],\n    spatial_global['paraphrased']['paired_mse']['cohens_d']\n]\nprint(\"Script OV-G:     \", script_ov_g)\nprint(\"Source OV-G:     \", source_ov_g)\nprint(\"Match:\", \"YES\" if all(abs(s - src) < 0.01 for s, src in zip(script_ov_g, source_ov_g)) else \"MISMATCH\")\n\nprint(\"\\n\" + \"=\" * 80)\nprint(\"OPENVLA 10-TASK (OV-L)\")\nprint(\"=\" * 80)\ntraj_global = trajectory['counterfactual_10tasks']['ranking_by_cohens_d']\n# ranking_by_cohens_d is ordered by condition then cohens_d\n# Extract in order: empty, wrong, shuffled, paraphrased\ntraj_by_cond = {item['condition']: item['cohens_d'] for item in traj_global}\nscript_ov_l = [0.50, 0.56, 0.56, 0.45]\nsource_ov_l = [\n    traj_by_cond.get('empty'),\n    traj_by_cond.get('wrong'),\n    traj_by_cond.get('shuffled'),\n    traj_by_cond.get('paraphrased')\n]\nprint(\"Script OV-L:     \", script_ov_l)\nprint(\"Source OV-L:     \", source_ov_l)\nprint(\"Match:\", \"UNCLEAR - values don't match, source has different data\")\n\nprint(\"\\n\" + \"=\" * 80)\nprint(\"TRACEVLA SPATIAL (TV-G)\")\nprint(\"=\" * 80)\ntracvla_ranking = tracvla['ranking_by_cohens_d']\ntracvla_by_cond = {item['condition']: item['cohens_d'] for item in tracvla_ranking}\nscript_tv_g = [1.52, 1.40, 1.34, 1.21]\nsource_tv_g = [\n    tracvla_by_cond.get('empty'),\n    tracvla_by_cond.get('wrong'),\n    tracvla_by_cond.get('shuffled'),\n    tracvla_by_cond.get('paraphrased')\n]\nprint(\"Script TV-G:     \", script_tv_g)\nprint(\"Source TV-G:     \", source_tv_g)\nprint(\"Match:\", \"MISMATCH - source has different values\")\n\nPYEOF\n"
             }
           },
-          "id": "event-003292"
+          "id": "event-003276"
         },
         {
-          "source_line": 3293,
+          "source_line": 3277,
           "timestamp": "2026-05-28T19:57:25.308181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1016,10 +710,10 @@
             "tool": "Read",
             "elapsed_ms": 102
           },
-          "id": "event-003293"
+          "id": "event-003277"
         },
         {
-          "source_line": 3294,
+          "source_line": 3278,
           "timestamp": "2026-05-28T19:57:25.409252+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1034,10 +728,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-003294"
+          "id": "event-003278"
         },
         {
-          "source_line": 3295,
+          "source_line": 3279,
           "timestamp": "2026-05-28T19:57:27.768445+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1052,10 +746,10 @@
             "tool": "Bash",
             "elapsed_ms": 7089
           },
-          "id": "event-003295"
+          "id": "event-003279"
         },
         {
-          "source_line": 3296,
+          "source_line": 3280,
           "timestamp": "2026-05-28T19:57:27.768938+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1070,10 +764,10 @@
             "tool": "Read",
             "elapsed_ms": 6937
           },
-          "id": "event-003296"
+          "id": "event-003280"
         },
         {
-          "source_line": 3297,
+          "source_line": 3281,
           "timestamp": "2026-05-28T19:57:29.023799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1090,10 +784,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*.json\" | xargs grep -l \"libero_semantic\\|libero_long_horizon\\|libero_object\" 2>/dev/null | head -10"
             }
           },
-          "id": "event-003297"
+          "id": "event-003281"
         },
         {
-          "source_line": 3298,
+          "source_line": 3282,
           "timestamp": "2026-05-28T19:57:29.075141+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1108,10 +802,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-003298"
+          "id": "event-003282"
         },
         {
-          "source_line": 3299,
+          "source_line": 3283,
           "timestamp": "2026-05-28T19:57:29.228060+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1128,10 +822,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual* 2>/dev/null | grep -v \"^-\" | head -30"
             }
           },
-          "id": "event-003299"
+          "id": "event-003283"
         },
         {
-          "source_line": 3300,
+          "source_line": 3284,
           "timestamp": "2026-05-28T19:57:29.278739+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1146,10 +840,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003300"
+          "id": "event-003284"
         },
         {
-          "source_line": 3301,
+          "source_line": 3285,
           "timestamp": "2026-05-28T19:57:30.634063+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1166,10 +860,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -path \"*/results/*\" -name \"*llama2base*\" -type f 2>/dev/null"
             }
           },
-          "id": "event-003301"
+          "id": "event-003285"
         },
         {
-          "source_line": 3302,
+          "source_line": 3286,
           "timestamp": "2026-05-28T19:57:30.785047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1184,10 +878,10 @@
             "tool": "Bash",
             "elapsed_ms": 150
           },
-          "id": "event-003302"
+          "id": "event-003286"
         },
         {
-          "source_line": 3303,
+          "source_line": 3287,
           "timestamp": "2026-05-28T19:57:30.785524+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1204,10 +898,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -name \"*llama*r2*\" -type f 2>/dev/null"
             }
           },
-          "id": "event-003303"
+          "id": "event-003287"
         },
         {
-          "source_line": 3304,
+          "source_line": 3288,
           "timestamp": "2026-05-28T19:57:30.836134+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1222,10 +916,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003304"
+          "id": "event-003288"
         },
         {
-          "source_line": 3305,
+          "source_line": 3289,
           "timestamp": "2026-05-28T19:57:30.939079+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1242,10 +936,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_spatial/data/"
             }
           },
-          "id": "event-003305"
+          "id": "event-003289"
         },
         {
-          "source_line": 3306,
+          "source_line": 3290,
           "timestamp": "2026-05-28T19:57:31.039942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1260,10 +954,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-003306"
+          "id": "event-003290"
         },
         {
-          "source_line": 3307,
+          "source_line": 3291,
           "timestamp": "2026-05-28T19:57:31.090611+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1280,10 +974,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_10tasks/data/"
             }
           },
-          "id": "event-003307"
+          "id": "event-003291"
         },
         {
-          "source_line": 3308,
+          "source_line": 3292,
           "timestamp": "2026-05-28T19:57:31.241607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1298,10 +992,10 @@
             "tool": "Bash",
             "elapsed_ms": 150
           },
-          "id": "event-003308"
+          "id": "event-003292"
         },
         {
-          "source_line": 3309,
+          "source_line": 3293,
           "timestamp": "2026-05-28T19:57:31.242027+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1318,10 +1012,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial/"
             }
           },
-          "id": "event-003309"
+          "id": "event-003293"
         },
         {
-          "source_line": 3310,
+          "source_line": 3294,
           "timestamp": "2026-05-28T19:57:31.292503+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1336,10 +1030,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003310"
+          "id": "event-003294"
         },
         {
-          "source_line": 3311,
+          "source_line": 3295,
           "timestamp": "2026-05-28T19:57:31.543985+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1354,10 +1048,10 @@
             "tool": "Agent",
             "elapsed_ms": 62333
           },
-          "id": "event-003311"
+          "id": "event-003295"
         },
         {
-          "source_line": 3312,
+          "source_line": 3296,
           "timestamp": "2026-05-28T19:57:31.594706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1374,10 +1068,10 @@
               "command": "cat <<'EOF'\nSCRIPT DATA EXTRACTION COMPLETE\n\nScript: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py\nLines 29-42: Hardcoded ΔR² matrix\n\ndata = {\n    ('OpenVLA', 'Goal'): 0.086,\n    ('OpenVLA', 'Spatial'): 0.037,\n    ('OpenVLA', 'Object'): 0.037,\n    ('OpenVLA', 'Long'): 0.033,\n    ('TraceVLA', 'Goal'): 0.333,\n    ('TraceVLA', 'Spatial'): 0.156,\n    ('TraceVLA', 'Object'): 0.362,\n    ('TraceVLA', 'Long'): 0.358,\n    ('NORA', 'Goal'): 0.455,\n    ('NORA', 'Spatial'): 0.308,\n    ('NORA', 'Object'): None,\n    ('NORA', 'Long'): None,\n}\n\n===\n\nLATEX TABLE EXTRACTION:\nexperiments.tex, lines 78-89, Table: tab:cross_arch_matrix\n\nOpenVLA | Goal    | 0.086 | [-0.060, 0.110]\nOpenVLA | Spatial | 0.037 | [0.010, 0.100]\nOpenVLA | Object  | 0.037 | [0.000, 0.090]\nOpenVLA | Long    | 0.033 | [0.000, 0.100]\nTraceVLA | Goal    | 0.333 | [0.210, 0.450]\nTraceVLA | Spatial | 0.156 | [0.090, 0.220]\nTraceVLA | Object  | 0.362 | [0.280, 0.500]\nTraceVLA | Long    | 0.358 | [0.170, 0.530]\nNORA | Goal    | 0.455 | (CI unreliable, see note b)\nNORA | Spatial | 0.308 | [0.300, 0.510]\n\nEOF\n"
             }
           },
-          "id": "event-003312"
+          "id": "event-003296"
         },
         {
-          "source_line": 3313,
+          "source_line": 3297,
           "timestamp": "2026-05-28T19:57:31.646013+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1392,10 +1086,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-003313"
+          "id": "event-003297"
         },
         {
-          "source_line": 3314,
+          "source_line": 3298,
           "timestamp": "2026-05-28T19:57:34.205301+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1412,10 +1106,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -name \"*.md\" -o -name \"*.tex\" 2>/dev/null | xargs grep -l \"OV-G\\|OV-S\\|TV-G\" 2>/dev/null | head -5"
             }
           },
-          "id": "event-003314"
+          "id": "event-003298"
         },
         {
-          "source_line": 3315,
+          "source_line": 3299,
           "timestamp": "2026-05-28T19:57:34.507985+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1430,10 +1124,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-003315"
+          "id": "event-003299"
         },
         {
-          "source_line": 3316,
+          "source_line": 3300,
           "timestamp": "2026-05-28T19:57:34.508445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1450,10 +1144,10 @@
               "command": "grep -r \"1.17\\|1.18\\|1.10\\|1.00\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs --include=\"*.tex\" --include=\"*.md\" 2>/dev/null | head -10"
             }
           },
-          "id": "event-003316"
+          "id": "event-003300"
         },
         {
-          "source_line": 3317,
+          "source_line": 3301,
           "timestamp": "2026-05-28T19:57:34.558989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1468,10 +1162,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003317"
+          "id": "event-003301"
         },
         {
-          "source_line": 3318,
+          "source_line": 3302,
           "timestamp": "2026-05-28T19:57:36.416335+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1489,10 +1183,10 @@
               "limit": "300"
             }
           },
-          "id": "event-003318"
+          "id": "event-003302"
         },
         {
-          "source_line": 3319,
+          "source_line": 3303,
           "timestamp": "2026-05-28T19:57:36.467073+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1507,10 +1201,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-003319"
+          "id": "event-003303"
         },
         {
-          "source_line": 3320,
+          "source_line": 3304,
           "timestamp": "2026-05-28T19:57:38.424627+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1527,10 +1221,10 @@
               "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Extracted from plot_action_r2_threecond.py\ntrained_mean = np.array([0.6451, 0.6429, 0.6221, 0.6211, 0.6386, 0.6304, 0.6421, 0.6339,\n    0.6362, 0.6434, 0.6245, 0.6245, 0.6205, 0.6348, 0.6282, 0.6391,\n    0.6246, 0.6185, 0.6008, 0.5961, 0.5907, 0.5946, 0.5899, 0.5490,\n    0.5711, 0.5696, 0.5557, 0.5221, 0.4963, 0.5153, 0.5186, 0.4724])\n\nllama2base_mean = np.array([0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,\n    0.6202, 0.6271, 0.6287, 0.6284, 0.6344, 0.6136, 0.6053, 0.6085,\n    0.6137, 0.6062, 0.6117, 0.6032, 0.5788, 0.5875, 0.5860, 0.5905,\n    0.5810, 0.5690, 0.5755, 0.5689, 0.5607, 0.5814, 0.5619, 0.5571])\n\nuntrained_mean = np.array([0.6451, 0.5470, 0.5202, 0.5361, 0.5147, 0.3973, 0.5048, 0.5033,\n    0.4985, 0.4416, -0.0924, 0.1408, 0.2114, 0.2237, 0.4157, 0.5108,\n    0.4242, 0.4500, 0.2569, 0.4703, 0.3451, 0.2755, -0.0631, 0.3638,\n    0.4605, 0.2013, 0.3528, 0.2881, -0.0822, 0.1137, 0.1700, 0.1928])\n\nprint(\"Script L0 values (baseline ~0.645):\")\nprint(f\"  Trained:    {trained_mean[0]:.4f}\")\nprint(f\"  Llama2Base: {llama2base_mean[0]:.4f}\")\nprint(f\"  Untrained:  {untrained_mean[0]:.4f}\")\nprint()\n\nprint(\"Peak R² per condition:\")\nprint(f\"  Trained (max):    {trained_mean.max():.4f} at L{trained_mean.argmax()}\")\nprint(f\"  Llama2Base (max): {llama2base_mean.max():.4f} at L{llama2base_mean.argmax()}\")\nprint(f\"  Untrained (max):  {untrained_mean.max():.4f} at L{untrained_mean.argmax()}\")\nprint()\n\nprint(\"Key Layers:\")\nfor layer in [0, 1, 8, 31]:\n    print(f\"  L{layer}: T={trained_mean[layer]:.4f} L2B={llama2base_mean[layer]:.4f} U={untrained_mean[layer]:.4f}\")\n\nprint()\nprint(f\"Total layers in script: {len(trained_mean)}\")\nEOF\n"
             }
           },
-          "id": "event-003320"
+          "id": "event-003304"
         },
         {
-          "source_line": 3321,
+          "source_line": 3305,
           "timestamp": "2026-05-28T19:57:38.577819+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1545,10 +1239,10 @@
             "tool": "Bash",
             "elapsed_ms": 153
           },
-          "id": "event-003321"
+          "id": "event-003305"
         },
         {
-          "source_line": 3322,
+          "source_line": 3306,
           "timestamp": "2026-05-28T19:57:45.202779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1565,10 +1259,10 @@
               "command": "python3 << 'PYEOF'\nimport json\n\n# From paper appendix (lines 102-110):\n# The table shows condition rankings in the order: 1st, 2nd, 3rd, 4th (from highest to lowest Cohen's d)\n# Format: \"Condition\\tvalue\"\n# Order in table: 1st (highest), 2nd, 3rd, 4th (lowest)\n\npaper_table = {\n    \"OpenVLA Goal\": {\"W\": 1.18, \"E\": 1.17, \"S\": 1.10, \"P\": 1.00},\n    \"OpenVLA Spatial\": {\"E\": 1.17, \"S\": 0.98, \"W\": 0.89, \"P\": 0.81},\n    \"OpenVLA Object\": {\"E\": 1.21, \"W\": 1.19, \"S\": 1.12, \"P\": 0.90},\n    \"OpenVLA Long\": {\"S\": 0.57, \"W\": 0.55, \"E\": 0.51, \"P\": 0.45},\n    \"TraceVLA Goal\": {\"E\": 1.52, \"W\": 1.40, \"S\": 1.34, \"P\": 1.21},\n    \"TraceVLA Spatial\": {\"E\": 1.33, \"S\": 1.30, \"P\": 1.18, \"W\": 1.17},\n    \"TraceVLA Object\": {\"E\": 1.21, \"S\": 1.16, \"W\": 1.06, \"P\": 0.97},\n    \"TraceVLA Long\": {\"E\": 1.47, \"W\": 1.42, \"S\": 1.39, \"P\": 1.16},\n}\n\n# Script expects: [empty(0), wrong(1), shuffled(2), paraphrased(3)]\nscript_data = {\n    'OV-G': [1.17, 1.18, 1.10, 1.00],  # Goal\n    'OV-S': [1.18, 0.88, 0.99, 0.81],  # Spatial\n    'OV-O': [1.21, 1.19, 1.12, 0.90],  # Object\n    'OV-L': [0.50, 0.56, 0.56, 0.45],  # Long\n    'TV-G': [1.52, 1.40, 1.34, 1.21],  # Goal\n    'TV-S': [1.33, 1.29, 1.18, 1.19],  # Spatial\n    'TV-O': [1.21, 1.16, 1.06, 0.97],  # Object\n    'TV-L': [1.47, 1.42, 1.39, 1.16],  # Long\n}\n\n# Map script labels to paper table keys\nmapping = {\n    'OV-G': 'OpenVLA Goal',\n    'OV-S': 'OpenVLA Spatial',\n    'OV-O': 'OpenVLA Object',\n    'OV-L': 'OpenVLA Long',\n    'TV-G': 'TraceVLA Goal',\n    'TV-S': 'TraceVLA Spatial',\n    'TV-O': 'TraceVLA Object',\n    'TV-L': 'TraceVLA Long',\n}\n\nprint(\"=\" * 90)\nprint(\"COMPARING SCRIPT DATA TO PAPER TABLE\")\nprint(\"=\" * 90)\n\ncond_names = ['E (empty)', 'W (wrong)', 'S (shuffled)', 'P (paraphrased)']\n\nfor script_key, paper_key in mapping.items():\n    script_vals = script_data[script_key]\n    paper_vals_dict = paper_table[paper_key]\n    paper_vals = [paper_vals_dict['E'], paper_vals_dict['W'], paper_vals_dict['S'], paper_vals_dict['P']]\n    \n    print(f\"\\n{script_key:6s} ({paper_key:22s})\")\n    print(f\"  Script: {script_vals}\")\n    print(f\"  Paper:  {paper_vals}\")\n    \n    all_match = all(abs(s - p) < 0.001 for s, p in zip(script_vals, paper_vals))\n    if all_match:\n        print(f\"  Result: MATCH\")\n    else:\n        print(f\"  Result: MISMATCH\")\n        for i, (c, s, p) in enumerate(zip(cond_names, script_vals, paper_vals)):\n            if abs(s - p) > 0.001:\n                print(f\"    {c}: Script={s} vs Paper={p} (diff={s-p:+.2f})\")\n\nPYEOF\n"
             }
           },
-          "id": "event-003322"
+          "id": "event-003306"
         },
         {
-          "source_line": 3323,
+          "source_line": 3307,
           "timestamp": "2026-05-28T19:57:45.255010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1583,10 +1277,10 @@
             "tool": "Bash",
             "elapsed_ms": 52
           },
-          "id": "event-003323"
+          "id": "event-003307"
         },
         {
-          "source_line": 3324,
+          "source_line": 3308,
           "timestamp": "2026-05-28T19:57:45.858021+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1603,10 +1297,10 @@
               "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Read original data files\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json') as f:\n    openvla_trained = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json') as f:\n    openvla_untrained = json.load(f)\n\n# Extract from script\ntrained_mean_script = np.array([0.6451, 0.6429, 0.6221, 0.6211, 0.6386, 0.6304, 0.6421, 0.6339,\n    0.6362, 0.6434, 0.6245, 0.6245, 0.6205, 0.6348, 0.6282, 0.6391,\n    0.6246, 0.6185, 0.6008, 0.5961, 0.5907, 0.5946, 0.5899, 0.5490,\n    0.5711, 0.5696, 0.5557, 0.5221, 0.4963, 0.5153, 0.5186, 0.4724])\n\nuntrained_mean_script = np.array([0.6451, 0.5470, 0.5202, 0.5361, 0.5147, 0.3973, 0.5048, 0.5033,\n    0.4985, 0.4416, -0.0924, 0.1408, 0.2114, 0.2237, 0.4157, 0.5108,\n    0.4242, 0.4500, 0.2569, 0.4703, 0.3451, 0.2755, -0.0631, 0.3638,\n    0.4605, 0.2013, 0.3528, 0.2881, -0.0822, 0.1137, 0.1700, 0.1928])\n\nprint(\"TRAINED (OpenVLA) CONDITION:\")\nprint(\"Layer | Script Value | Original Value | Match?\")\nprint(\"-\" * 55)\n\ntrained_matches = 0\nfor i in range(min(32, len(trained_mean_script))):\n    orig_val = openvla_trained['layers'][str(i)]['mean']\n    script_val = trained_mean_script[i]\n    match = \"MATCH\" if abs(script_val - orig_val) < 0.0001 else \"MISMATCH\"\n    if match == \"MATCH\":\n        trained_matches += 1\n    print(f\"L{i:2d}  | {script_val:.4f}       | {orig_val:.6f}      | {match}\")\n\nprint(f\"\\nTRAINED: {trained_matches}/32 MATCH\")\nprint()\n\nprint(\"UNTRAINED CONDITION:\")\nprint(\"Layer | Script Value | Original Value | Match?\")\nprint(\"-\" * 55)\n\nuntrained_matches = 0\nfor i in range(min(32, len(untrained_mean_script))):\n    orig_val = openvla_untrained['layers'][str(i)]['mean']\n    script_val = untrained_mean_script[i]\n    match = \"MATCH\" if abs(script_val - orig_val) < 0.0001 else \"MISMATCH\"\n    if match == \"MATCH\":\n        untrained_matches += 1\n    print(f\"L{i:2d}  | {script_val:.4f}       | {orig_val:.6f}      | {match}\")\n\nprint(f\"\\nUNTRAINED: {untrained_matches}/32 MATCH\")\nprint()\n\nprint(\"=\"*55)\nprint(f\"SUMMARY: {trained_matches + untrained_matches}/64 layers match between script and originals\")\nEOF\n"
             }
           },
-          "id": "event-003324"
+          "id": "event-003308"
         },
         {
-          "source_line": 3325,
+          "source_line": 3309,
           "timestamp": "2026-05-28T19:57:46.009083+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1621,10 +1315,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003325"
+          "id": "event-003309"
         },
         {
-          "source_line": 3326,
+          "source_line": 3310,
           "timestamp": "2026-05-28T19:57:54.354062+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1641,10 +1335,10 @@
               "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Read original data files\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json') as f:\n    openvla_trained = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json') as f:\n    openvla_untrained = json.load(f)\n\n# Script values\ntrained_mean_script = np.array([0.6451, 0.6429, 0.6221, 0.6211, 0.6386, 0.6304, 0.6421, 0.6339,\n    0.6362, 0.6434, 0.6245, 0.6245, 0.6205, 0.6348, 0.6282, 0.6391,\n    0.6246, 0.6185, 0.6008, 0.5961, 0.5907, 0.5946, 0.5899, 0.5490,\n    0.5711, 0.5696, 0.5557, 0.5221, 0.4963, 0.5153, 0.5186, 0.4724])\n\n# Check for rounding diffs\nprint(\"TRAINED CONDITION - Largest differences:\")\ndiffs = []\nfor i in range(32):\n    orig_val = openvla_trained['layers'][str(i)]['mean']\n    script_val = trained_mean_script[i]\n    diff = abs(script_val - orig_val)\n    diffs.append((i, diff, script_val, orig_val))\n\ndiffs.sort(key=lambda x: x[1], reverse=True)\nfor layer, diff, script, orig in diffs[:10]:\n    print(f\"  L{layer:2d}: Script {script:.4f} vs Orig {orig:.6f}, diff={diff:.6f}\")\n\nprint()\n\n# Check if script might be from a different dataset (e.g., different seed)\nprint(\"Is script data perhaps from a DIFFERENT EXPERIMENT?\")\nprint(f\"  Trained L0: Script=0.6451 vs Orig=0.6294 (diff=0.0157)\")\nprint(f\"  Untrained L0: Script=0.6451 vs Orig=0.6294 (diff=0.0157)\")\nprint()\nprint(\"  NOTE: L0 identical in all 3 script conditions (0.6451), suggests synthetic/placeholder data\")\n\n# Check the documented L0 baseline\nprint()\nprint(\"Script comment about L0:\")\nprint('  ax.axhline(y=0.645, color=\"gray\", linestyle=\"--\", alpha=0.3, linewidth=0.8)')\nprint('  ax.text(31.5, 0.650, \"L0 baseline\", fontsize=7, color=\"gray\", ha=\"right\", va=\"bottom\")')\nprint()\nprint(\"  This suggests L0=0.645 is a REFERENCE LINE, not actual data!\")\nEOF\n"
             }
           },
-          "id": "event-003326"
+          "id": "event-003310"
         },
         {
-          "source_line": 3327,
+          "source_line": 3311,
           "timestamp": "2026-05-28T19:57:54.505087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1659,10 +1353,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003327"
+          "id": "event-003311"
         },
         {
-          "source_line": 3328,
+          "source_line": 3312,
           "timestamp": "2026-05-28T19:57:55.761190+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1679,10 +1373,10 @@
               "command": "python3 << 'PYEOF'\nimport json\n\n# Load JSON sources\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json') as f:\n    spatial = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json') as f:\n    trajectory = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial/counterfactual_combined.json') as f:\n    tracvla = json.load(f)\n\nprint(\"=\" * 90)\nprint(\"DETAILED COMPARISON: Script vs JSON vs Paper\")\nprint(\"=\" * 90)\n\n# OV Spatial from counterfactual_spatial.json\nprint(\"\\nOPENVLA SPATIAL (OV-S)\")\nprint(\"-\" * 90)\novs_json = {\n    'E': spatial['global_metrics_detail']['empty']['paired_mse']['cohens_d'],\n    'W': spatial['global_metrics_detail']['wrong']['paired_mse']['cohens_d'],\n    'S': spatial['global_metrics_detail']['shuffled']['paired_mse']['cohens_d'],\n    'P': spatial['global_metrics_detail']['paraphrased']['paired_mse']['cohens_d'],\n}\novs_script = {'E': 1.18, 'W': 0.88, 'S': 0.99, 'P': 0.81}\novs_paper = {'E': 1.17, 'W': 0.89, 'S': 0.98, 'P': 0.81}\n\nprint(f\"JSON:    E={ovs_json['E']:.4f}, W={ovs_json['W']:.4f}, S={ovs_json['S']:.4f}, P={ovs_json['P']:.4f}\")\nprint(f\"Script:  E={ovs_script['E']:.2f},     W={ovs_script['W']:.2f},     S={ovs_script['S']:.2f},     P={ovs_script['P']:.2f}\")\nprint(f\"Paper:   E={ovs_paper['E']:.2f},     W={ovs_paper['W']:.2f},     S={ovs_paper['S']:.2f},     P={ovs_paper['P']:.2f}\")\nprint(f\"JSON vs Paper match: {all(abs(ovs_json[k] - ovs_paper[k]) < 0.005 for k in ['E','W','S','P'])}\")\n\n# OV Long (10 tasks) from counterfactual_10tasks_trajectory.json\nprint(\"\\nOPENVLA LONG / 10-TASKS (OV-L)\")\nprint(\"-\" * 90)\novl_ranking = trajectory['counterfactual_10tasks']['ranking_by_cohens_d']\novl_json = {item['condition']: item['cohens_d'] for item in ovl_ranking}\novl_script = {'E': 0.50, 'W': 0.56, 'S': 0.56, 'P': 0.45}\novl_paper = {'E': 0.51, 'W': 0.55, 'S': 0.57, 'P': 0.45}\n\nprint(f\"JSON:    E={ovl_json['empty']:.4f}, W={ovl_json['wrong']:.4f}, S={ovl_json['shuffled']:.4f}, P={ovl_json['paraphrased']:.4f}\")\nprint(f\"Script:  E={ovl_script['E']:.2f},     W={ovl_script['W']:.2f},     S={ovl_script['S']:.2f},     P={ovl_script['P']:.2f}\")\nprint(f\"Paper:   E={ovl_paper['E']:.2f},     W={ovl_paper['W']:.2f},     S={ovl_paper['S']:.2f},     P={ovl_paper['P']:.2f}\")\nprint(f\"Note: JSON values are for 10-task set, paper values appear to be from a different measurement\")\nprint(f\"      JSON != Script: values are from different experiments (10 generic tasks vs unclear suite)\")\n\n# TraceVLA Spatial from tracvla_spatial/counterfactual_combined.json\nprint(\"\\nTRACEVLA SPATIAL (TV-S)\")\nprint(\"-\" * 90)\ntvs_ranking = tracvla['ranking_by_cohens_d']\ntvs_json = {item['condition']: item['cohens_d'] for item in tvs_ranking}\ntvs_script = {'E': 1.33, 'W': 1.29, 'S': 1.18, 'P': 1.19}\ntvs_paper = {'E': 1.33, 'W': 1.17, 'S': 1.30, 'P': 1.18}\n\nprint(f\"JSON:    E={tvs_json['empty']:.4f}, W={tvs_json['wrong']:.4f}, S={tvs_json['shuffled']:.4f}, P={tvs_json['paraphrased']:.4f}\")\nprint(f\"Script:  E={tvs_script['E']:.2f},     W={tvs_script['W']:.2f},     S={tvs_script['S']:.2f},     P={tvs_script['P']:.2f}\")\nprint(f\"Paper:   E={tvs_paper['E']:.2f},     W={tvs_paper['W']:.2f},     S={tvs_paper['S']:.2f},     P={tvs_paper['P']:.2f}\")\nprint(f\"Script vs JSON match: {all(abs(tvs_script[k] - tvs_json[k]) < 0.01 for k in ['E','W','S','P'])}\")\nprint(f\"Paper vs JSON match:  {all(abs(tvs_paper[k] - tvs_json[k]) < 0.01 for k in ['E','W','S','P'])}\")\n\nPYEOF\n"
             }
           },
-          "id": "event-003328"
+          "id": "event-003312"
         },
         {
-          "source_line": 3329,
+          "source_line": 3313,
           "timestamp": "2026-05-28T19:57:55.963282+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1697,10 +1391,10 @@
             "tool": "Bash",
             "elapsed_ms": 202
           },
-          "id": "event-003329"
+          "id": "event-003313"
         },
         {
-          "source_line": 3330,
+          "source_line": 3314,
           "timestamp": "2026-05-28T19:57:57.770554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1715,10 +1409,10 @@
             "tool": "Agent",
             "elapsed_ms": 68562
           },
-          "id": "event-003330"
+          "id": "event-003314"
         },
         {
-          "source_line": 3331,
+          "source_line": 3315,
           "timestamp": "2026-05-28T19:58:01.585797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1735,10 +1429,10 @@
               "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Script values for llama2base\nllama2base_mean_script = np.array([0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,\n    0.6202, 0.6271, 0.6287, 0.6284, 0.6344, 0.6136, 0.6053, 0.6085,\n    0.6137, 0.6062, 0.6117, 0.6032, 0.5788, 0.5875, 0.5860, 0.5905,\n    0.5810, 0.5690, 0.5755, 0.5689, 0.5607, 0.5814, 0.5619, 0.5571])\n\n# Check for any JSON files that contain llama2 data\nimport os\nimport glob\n\nprint(\"Searching for any files containing llama2base R2 values...\")\nprint()\n\n# Search for exact match with first few values\nsearch_str = \"0.6451.*0.6276.*0.6204\"\n\nfound_llama = False\nfor root, dirs, files in os.walk('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts'):\n    for file in files:\n        if file.endswith('.json'):\n            filepath = os.path.join(root, file)\n            try:\n                with open(filepath) as f:\n                    content = f.read()\n                    if '0.6451' in content and '0.6276' in content:\n                        print(f\"FOUND: {filepath}\")\n                        found_llama = True\n            except:\n                pass\n\nif not found_llama:\n    print(\"No artifact JSON files found containing llama2base R2 sequence\")\n\nprint()\nprint(\"LLAMA2BASE STATUS: Data exists in plot script but NO SOURCE FILE found in artifacts/\")\nprint()\n\n# Check libero file for comparison info\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_finetuned_probe_profile.json') as f:\n    libero = json.load(f)\n    \nif 'comparison_4conditions' in libero:\n    print(\"Found 4-condition comparison in libero_finetuned_probe_profile.json:\")\n    comp = libero['comparison_4conditions']\n    if 'L0' in comp:\n        print(f\"  L0: {comp['L0']}\")\n    if 'L1' in comp:\n        print(f\"  L1: {comp['L1']}\")\n    if 'L31' in comp:\n        print(f\"  L31: {comp['L31']}\")\nEOF\n"
             }
           },
-          "id": "event-003331"
+          "id": "event-003315"
         },
         {
-          "source_line": 3332,
+          "source_line": 3316,
           "timestamp": "2026-05-28T19:58:01.737380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1753,10 +1447,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003332"
+          "id": "event-003316"
         },
         {
-          "source_line": 3333,
+          "source_line": 3317,
           "timestamp": "2026-05-28T19:58:02.141114+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1773,10 +1467,10 @@
               "command": "python3 << 'PYEOF'\nimport json\n\n# Load JSON sources\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json') as f:\n    spatial = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json') as f:\n    trajectory = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial/counterfactual_combined.json') as f:\n    tracvla = json.load(f)\n\nprint(\"=\" * 90)\nprint(\"DETAILED COMPARISON: Script vs JSON vs Paper\")\nprint(\"=\" * 90)\n\n# TraceVLA Spatial from tracvla_spatial/counterfactual_combined.json\nprint(\"\\nTRACEVLA SPATIAL (TV-S)\")\nprint(\"-\" * 90)\ntvs_ranking = tracvla['ranking_by_cohens_d']\ntvs_json = {item['condition']: item['cohens_d'] for item in tvs_ranking}\ntvs_script = {'empty': 1.33, 'wrong': 1.29, 'shuffled': 1.18, 'paraphrased': 1.19}\ntvs_paper = {'empty': 1.33, 'wrong': 1.17, 'shuffled': 1.30, 'paraphrased': 1.18}\n\nprint(f\"JSON:    E={tvs_json['empty']:.4f}, W={tvs_json['wrong']:.4f}, S={tvs_json['shuffled']:.4f}, P={tvs_json['paraphrased']:.4f}\")\nprint(f\"Script:  E={tvs_script['empty']:.2f},     W={tvs_script['wrong']:.2f},     S={tvs_script['shuffled']:.2f},     P={tvs_script['paraphrased']:.2f}\")\nprint(f\"Paper:   E={tvs_paper['empty']:.2f},     W={tvs_paper['wrong']:.2f},     S={tvs_paper['shuffled']:.2f},     P={tvs_paper['paraphrased']:.2f}\")\nprint(f\"\\nScript vs JSON match: NO - Values differ significantly\")\nfor k in ['empty', 'wrong', 'shuffled', 'paraphrased']:\n    print(f\"  {k:12s}: Script={tvs_script[k]:.2f}, JSON={tvs_json[k]:.4f}\")\nprint(f\"\\nScript vs Paper match: Partial - some conditions wrong/shuffled swapped\")\nprint(f\"Paper vs JSON match:   NO - Different values\")\n\n# Check the raw counterfactual_combined.json file\nprint(\"\\n\" + \"=\" * 90)\nprint(\"RAW JSON VALUES FROM tracvla_spatial/counterfactual_combined.json\")\nprint(\"=\" * 90)\nfor condition in ['wrong', 'empty', 'shuffled', 'paraphrased']:\n    metrics = tracvla[condition]['global_metrics']\n    d = metrics['paired_mse']['cohens_d']\n    print(f\"{condition:15s}: {d:.4f}\")\n\nPYEOF\n"
             }
           },
-          "id": "event-003333"
+          "id": "event-003317"
         },
         {
-          "source_line": 3334,
+          "source_line": 3318,
           "timestamp": "2026-05-28T19:58:02.191696+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1791,10 +1485,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-003334"
+          "id": "event-003318"
         },
         {
-          "source_line": 3335,
+          "source_line": 3319,
           "timestamp": "2026-05-28T19:58:10.323191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1811,10 +1505,10 @@
               "command": "python3 << 'EOF'\n# Parse the worker analysis result to extract the table data\nresult_text = \"\"\"\n| Layer | Untrained | Llama2Base | Trained | Pattern |\n|-------|-----------|------------|---------|---------| \n| L0 | 0.6403 | 0.6403 | 0.6403 | U = L = T |\n| L1 | 0.5546 | 0.6366 | 0.6331 | U < L >= T |\n| L2 | 0.5219 | 0.6124 | 0.6278 | U < L < T |\n| L3 | 0.5338 | 0.6446 | 0.6519 | U < L < T |\n| L4 | 0.5606 | 0.6447 | 0.6468 | U < L < T |\n| L5 | 0.5383 | 0.6326 | 0.6468 | U < L < T |\n| L6 | 0.5313 | 0.6413 | 0.6494 | U < L < T |\n| L7 | 0.5176 | 0.6335 | 0.6447 | U < L < T |\n| L8 | 0.5323 | 0.6307 | 0.6553 | U < L < T |\n| L9 | 0.5350 | 0.6371 | 0.6511 | U < L < T |\n| L10 | -0.3293 | 0.6233 | 0.6427 | U < L < T |\n| L11 | -0.2806 | 0.6184 | 0.6436 | U < L < T |\n| L12 | 0.5198 | 0.6268 | 0.6086 | U < L >= T |\n| L13 | 0.4410 | 0.6047 | 0.6296 | U < L < T |\n| L32 | 0.5785 | 0.5255 | 0.5390 | U >= L < T |\n\"\"\"\n\nimport numpy as np\n\n# Worker analysis data for llama2base (image_mean readout from worker analysis result)\nworker_llama2base = [0.6403, 0.6366, 0.6124, 0.6446, 0.6447, 0.6326, 0.6413, 0.6335,\n                     0.6307, 0.6371, 0.6233, 0.6184, 0.6268, 0.6047, None, None, None, None, None, None,\n                     None, None, None, None, None, None, None, None, None, None, None, 0.5255]\n\n# Script values\nllama2base_mean_script = [0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,\n    0.6202, 0.6271, 0.6287, 0.6284, 0.6344, 0.6136, 0.6053, 0.6085,\n    0.6137, 0.6062, 0.6117, 0.6032, 0.5788, 0.5875, 0.5860, 0.5905,\n    0.5810, 0.5690, 0.5755, 0.5689, 0.5607, 0.5814, 0.5619, 0.5571]\n\nprint(\"LLAMA2BASE: Script vs Worker Analysis Result (image_mean)\")\nprint(\"-\" * 65)\nprint(\"Layer | Script  | Worker  | Diff    | Match?\")\nprint(\"-\" * 65)\n\nfor layer in range(14):\n    script = llama2base_mean_script[layer]\n    worker = worker_llama2base[layer]\n    diff = abs(script - worker) if worker is not None else None\n    match = \"MATCH\" if worker and diff < 0.0001 else (\"CLOSE\" if worker and diff < 0.01 else \"DIFF/MISSING\")\n    print(f\"L{layer:2d}  | {script:.4f}  | {worker:.4f if worker else 'N/A':>7} | {diff:.4f if diff else 'N/A':>7} | {match}\")\n\nprint()\nprint(\"Analysis: Worker result from llama2base_action_probe uses 'image_mean' readout\")\nprint(\"          Script values do NOT match worker analysis result\")\nEOF\n"
             }
           },
-          "id": "event-003335"
+          "id": "event-003319"
         },
         {
-          "source_line": 3336,
+          "source_line": 3320,
           "timestamp": "2026-05-28T19:58:10.574585+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1829,10 +1523,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-003336"
+          "id": "event-003320"
         },
         {
-          "source_line": 3337,
+          "source_line": 3321,
           "timestamp": "2026-05-28T19:58:13.937801+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1849,10 +1543,10 @@
               "command": "python3 << 'EOF'\nimport numpy as np\n\n# Worker analysis data for llama2base (image_mean readout from worker analysis result)\nworker_llama2base = [0.6403, 0.6366, 0.6124, 0.6446, 0.6447, 0.6326, 0.6413, 0.6335,\n                     0.6307, 0.6371, 0.6233, 0.6184, 0.6268, 0.6047]\n\n# Script values for same layers\nllama2base_mean_script = [0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,\n    0.6202, 0.6271, 0.6287, 0.6284, 0.6344, 0.6136]\n\nprint(\"LLAMA2BASE: Script vs Worker Analysis Result (image_mean readout)\")\nprint(\"-\" * 65)\nprint(\"Layer | Script  | Worker  | Diff    | Match?\")\nprint(\"-\" * 65)\n\nfor layer in range(len(worker_llama2base)):\n    script = llama2base_mean_script[layer]\n    worker = worker_llama2base[layer]\n    diff = abs(script - worker)\n    match = \"MATCH\" if diff < 0.0001 else (\"CLOSE\" if diff < 0.01 else \"MISMATCH\")\n    print(f\"L{layer:2d}  | {script:.4f}  | {worker:.4f}  | {diff:.4f}  | {match}\")\n\nprint()\nprint(\"Summary: All llama2base values DIFFER from worker analysis result\")\nprint(\"         Worker used 'image_mean' readout, script uses different data source\")\nEOF\n"
             }
           },
-          "id": "event-003337"
+          "id": "event-003321"
         },
         {
-          "source_line": 3338,
+          "source_line": 3322,
           "timestamp": "2026-05-28T19:58:14.088919+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1867,10 +1561,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003338"
+          "id": "event-003322"
         },
         {
-          "source_line": 3339,
+          "source_line": 3323,
           "timestamp": "2026-05-28T19:58:19.535361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1887,10 +1581,10 @@
               "command": "python3 << 'PYEOF'\n# Generate comprehensive verification report\n\nreport = \"\"\"\n================================================================================\nDATA INTEGRITY VERIFICATION REPORT\nScript: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_counterfactual_bar.py\n================================================================================\n\nPART A: COHEN'S D VALUES (Panel A of Figure)\n================================================================================\n\nSUMMARY OF FINDINGS:\n- Script has 8 groups × 4 conditions = 32 Cohen's d values total\n- Paper table (appendix.tex) provides authoritative values\n- JSON artifacts show DIFFERENT values for some suites (likely from different analyses)\n- Condition order in script: [0=empty, 1=wrong, 2=shuffled, 3=paraphrased]\n\nDETAILED VALUE COMPARISON:\n\n1. OpenVLA Goal (OV-G)\n   Script: [1.17, 1.18, 1.10, 1.00]\n   Paper:  [1.17, 1.18, 1.10, 1.00]\n   Result: PERFECT MATCH ✓\n\n2. OpenVLA Spatial (OV-S)\n   Script: [1.18, 0.88, 0.99, 0.81]\n   Paper:  [1.17, 0.89, 0.98, 0.81]\n   JSON:   [0.94, 0.85, 0.83, 0.81]  ← Different experiment?\n   Result: Script ~matches Paper (rounding differences < 0.01 except 1st value)\n           MINOR DISCREPANCY - Script value 1.18 vs Paper 1.17 (empty condition)\n\n3. OpenVLA Object (OV-O)\n   Script: [1.21, 1.19, 1.12, 0.90]\n   Paper:  [1.21, 1.19, 1.12, 0.90]\n   Result: PERFECT MATCH ✓\n\n4. OpenVLA Long (OV-L)\n   Script: [0.50, 0.56, 0.56, 0.45]\n   Paper:  [0.51, 0.55, 0.57, 0.45]\n   JSON:   [0.98, 0.92, 0.76, 0.71]  ← Different experiment (10-task)\n   Result: Script differs from Paper by ~0.01 on 3/4 conditions\n           MINOR DISCREPANCIES - rounding/precision issues\n\n5. TraceVLA Goal (TV-G)\n   Script: [1.52, 1.40, 1.34, 1.21]\n   Paper:  [1.52, 1.40, 1.34, 1.21]\n   Result: PERFECT MATCH ✓\n\n6. TraceVLA Spatial (TV-S)\n   Script: [1.33, 1.29, 1.18, 1.19]\n   Paper:  [1.33, 1.17, 1.30, 1.18]\n   JSON:   [3.75, 1.61, 1.56, 1.55]  ← Completely different values\n   Result: SIGNIFICANT MISMATCH\n           Script wrong=1.29 vs Paper wrong=1.17 (diff: +0.12)\n           Script shuffled=1.18 vs Paper shuffled=1.30 (diff: -0.12)\n           Values appear swapped between wrong/shuffled conditions\n           JSON values are vastly different (3.75 for empty vs 1.33)\n\n7. TraceVLA Object (TV-O)\n   Script: [1.21, 1.16, 1.06, 0.97]\n   Paper:  [1.21, 1.06, 1.16, 0.97]\n   Result: MISMATCH - Values swapped for wrong/shuffled\n           Script wrong=1.16 vs Paper wrong=1.06 (diff: +0.10)\n           Script shuffled=1.06 vs Paper shuffled=1.16 (diff: -0.10)\n\n8. TraceVLA Long (TV-L)\n   Script: [1.47, 1.42, 1.39, 1.16]\n   Paper:  [1.47, 1.42, 1.39, 1.16]\n   Result: PERFECT MATCH ✓\n\nPART B: COSINE DISTANCE VALUES (Panel B of Figure)\n================================================================================\n\nPanel B hardcoded values (8 model variants × 4 conditions = 32 values):\nCondition order: [0=empty, 1=wrong, 2=shuffled, 3=paraphrased]\n\nScript values:\n  G (NORA):       [1.0,    1.0,    1.0,    1.0   ]\n  S (NORA):       [0.24,   0.275,  0.12,   0.03  ]\n  G. (Phi-3V):    [0.1530, 0.0160, 0.0839, 0.0043]\n  S. (Phi-3V):    [0.1805, 0.0046, 0.1395, 0.0044]\n  O (Qwen2.5):    [0.1850, 0.0044, 0.0977, 0.0052]\n  L (Qwen2.5):    [0.1734, 0.0221, 0.1204, 0.0070]\n  G.. (Qwen2.5):  [0.0814, 0.0143, 0.0332, 0.0041]\n  S.. (Qwen2.5):  [0.0807, 0.0020, 0.0313, 0.0047]\n\nData source status:\n  - NO_SOURCE: Cosine distance values do not appear in any examined JSON artifacts\n  - Searched: counterfactual_spatial.json, counterfactual_10tasks_trajectory.json,\n              tracvla_spatial/counterfactual_combined.json\n  - Paper mentions (appendix.tex line 121-123):\n    \"NORA Goal produces saturated exit-layer cosine distances of 1.0 for all conditions\"\n    \"NORA Spatial produces a peak cosine distance of 0.275 for the 'wrong' condition\"\n  - These values appear to be computed separately, possibly from embedding/representation\n    analysis not included in the JSON artifacts examined\n\nOVERALL INTEGRITY ASSESSMENT:\n================================================================================\n\nCRITICAL ISSUES:\n✗ TraceVLA Spatial (TV-S): Values swapped between wrong/shuffled conditions\n  - Script: [wrong=1.29, shuffled=1.18]\n  - Paper:  [wrong=1.17, shuffled=1.30]\n  - This is a significant data entry error that affects figure interpretation\n\n✗ TraceVLA Object (TV-O): Values swapped between wrong/shuffled conditions\n  - Script: [wrong=1.16, shuffled=1.06]\n  - Paper:  [wrong=1.06, shuffled=1.16]\n  - This is a significant data entry error\n\n✗ Panel B (Cosine distance): No source found in artifacts\n  - All 32 values for Panel B are hardcoded with no identifiable source\n  - Cannot verify against original experiment data\n\nMINOR ISSUES:\n⚠ OpenVLA Spatial (OV-S): Rounding differences\n  - empty: Script 1.18 vs Paper 1.17 (difference: +0.01)\n  - These could be intentional rounding for visualization\n\n⚠ OpenVLA Long (OV-L): Rounding differences\n  - All 4 values differ by ±0.01 from paper values\n  - Could be rounding or different precision in original calculation\n\nVERIFIED MATCHES (No Issues):\n✓ OpenVLA Goal (OV-G)\n✓ OpenVLA Object (OV-O)\n✓ TraceVLA Goal (TV-G)\n✓ TraceVLA Long (TV-L)\n\"\"\"\n\nprint(report)\n\nPYEOF\n"
             }
           },
-          "id": "event-003339"
+          "id": "event-003323"
         },
         {
-          "source_line": 3340,
+          "source_line": 3324,
           "timestamp": "2026-05-28T19:58:19.636387+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1905,10 +1599,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-003340"
+          "id": "event-003324"
         },
         {
-          "source_line": 3341,
+          "source_line": 3325,
           "timestamp": "2026-05-28T19:58:35.295525+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1925,10 +1619,10 @@
               "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nprint(\"=\" * 80)\nprint(\"DATA INTEGRITY VERIFICATION REPORT\")\nprint(\"Plot Script: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/\")\nprint(\"              scripts/plot_action_r2_threecond.py\")\nprint(\"=\" * 80)\nprint()\n\n# Extract script data\ntrained_mean_script = np.array([0.6451, 0.6429, 0.6221, 0.6211, 0.6386, 0.6304, 0.6421, 0.6339,\n    0.6362, 0.6434, 0.6245, 0.6245, 0.6205, 0.6348, 0.6282, 0.6391,\n    0.6246, 0.6185, 0.6008, 0.5961, 0.5907, 0.5946, 0.5899, 0.5490,\n    0.5711, 0.5696, 0.5557, 0.5221, 0.4963, 0.5153, 0.5186, 0.4724])\n\nllama2base_mean_script = np.array([0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,\n    0.6202, 0.6271, 0.6287, 0.6284, 0.6344, 0.6136, 0.6053, 0.6085,\n    0.6137, 0.6062, 0.6117, 0.6032, 0.5788, 0.5875, 0.5860, 0.5905,\n    0.5810, 0.5690, 0.5755, 0.5689, 0.5607, 0.5814, 0.5619, 0.5571])\n\nuntrained_mean_script = np.array([0.6451, 0.5470, 0.5202, 0.5361, 0.5147, 0.3973, 0.5048, 0.5033,\n    0.4985, 0.4416, -0.0924, 0.1408, 0.2114, 0.2237, 0.4157, 0.5108,\n    0.4242, 0.4500, 0.2569, 0.4703, 0.3451, 0.2755, -0.0631, 0.3638,\n    0.4605, 0.2013, 0.3528, 0.2881, -0.0822, 0.1137, 0.1700, 0.1928])\n\n# Load original artifacts\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json') as f:\n    openvla_trained = json.load(f)\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json') as f:\n    openvla_untrained = json.load(f)\n\nprint(\"1. CONDITION: VLA-TRAINED (OpenVLA)\")\nprint(\"-\" * 80)\nprint()\nprint(\"   Key Values from Script:\")\nprint(f\"     L0:  {trained_mean_script[0]:.4f}  (baseline reference line)\")\nprint(f\"     L1:  {trained_mean_script[1]:.4f}\")\nprint(f\"     L8:  {trained_mean_script[8]:.4f}\")\nprint(f\"     L31: {trained_mean_script[31]:.4f}\")\nprint(f\"     Peak: {trained_mean_script.max():.4f} at L{trained_mean_script.argmax()}\")\nprint()\nprint(\"   Comparison with Original (/artifacts/_project/data/openvla_r2_per_layer.json):\")\nprint()\nprint(\"   Layer | Script   | Original | Status\")\nprint(\"   \" + \"-\" * 44)\nfor layer in [0, 1, 8, 15, 20, 25, 31]:\n    script_val = trained_mean_script[layer]\n    orig_val = openvla_trained['layers'][str(layer)]['mean']\n    diff = abs(script_val - orig_val)\n    if diff < 0.0001:\n        status = \"EXACT MATCH\"\n    elif diff < 0.01:\n        status = \"CLOSE (rounding?)\"\n    else:\n        status = \"MISMATCH\"\n    print(f\"   L{layer:2d}  | {script_val:.4f}   | {orig_val:.6f} | {status}\")\n\nprint()\nprint(\"   VERDICT: 0/32 EXACT MATCH - Data source differs from openvla_r2_per_layer.json\")\nprint()\n\nprint()\nprint(\"2. CONDITION: LLAMA2-BASE (Pre-trained Language Model)\")\nprint(\"-\" * 80)\nprint()\nprint(\"   Key Values from Script:\")\nprint(f\"     L0:  {llama2base_mean_script[0]:.4f}  (baseline reference)\")\nprint(f\"     L1:  {llama2base_mean_script[1]:.4f}\")\nprint(f\"     L8:  {llama2base_mean_script[8]:.4f}\")\nprint(f\"     L31: {llama2base_mean_script[31]:.4f}\")\nprint(f\"     Peak: {llama2base_mean_script.max():.4f} at L{llama2base_mean_script.argmax()}\")\nprint()\nprint(\"   Original Data Source Search:\")\nprint(\"     - /artifacts/_project/data/llama2base_r2_per_layer.json: NOT FOUND\")\nprint(\"     - /artifacts/*/*llama2base*.json: NOT FOUND\")\nprint(\"     - Any artifact containing '0.6451, 0.6276, 0.6204...': NOT FOUND\")\nprint()\nprint(\"   Comparison with Worker Analysis (image_mean readout, L0-L13):\")\nprint()\nworker_llama = [0.6403, 0.6366, 0.6124, 0.6446, 0.6447, 0.6326, 0.6413, 0.6335,\n                0.6307, 0.6371, 0.6233, 0.6184, 0.6268, 0.6047]\nprint(\"   Layer | Script   | Worker   | Status\")\nprint(\"   \" + \"-\" * 44)\nfor layer in range(min(14, len(worker_llama))):\n    script_val = llama2base_mean_script[layer]\n    worker_val = worker_llama[layer]\n    diff = abs(script_val - worker_val)\n    if diff < 0.0001:\n        status = \"EXACT MATCH\"\n    elif diff < 0.01:\n        status = \"CLOSE\"\n    else:\n        status = \"MISMATCH\"\n    print(f\"   L{layer:2d}  | {script_val:.4f}   | {worker_val:.4f}   | {status}\")\n\nprint()\nprint(\"   VERDICT: NO EXACT SOURCE FOUND - Likely different preprocessing or data version\")\nprint()\n\nprint()\nprint(\"3. CONDITION: RANDOM/UNTRAINED (Random weights)\")\nprint(\"-\" * 80)\nprint()\nprint(\"   Key Values from Script:\")\nprint(f\"     L0:  {untrained_mean_script[0]:.4f}  (baseline reference)\")\nprint(f\"     L1:  {untrained_mean_script[1]:.4f}\")\nprint(f\"     L8:  {untrained_mean_script[8]:.4f}\")\nprint(f\"     L31: {untrained_mean_script[31]:.4f}\")\nprint(f\"     Peak: {untrained_mean_script.max():.4f} at L{untrained_mean_script.argmax()}\")\nprint()\nprint(\"   Comparison with Original (/artifacts/_project/data/openvla_untrained_r2_per_layer.json):\")\nprint()\nprint(\"   Layer | Script   | Original | Status\")\nprint(\"   \" + \"-\" * 44)\nfor layer in [0, 1, 8, 15, 20, 25, 31]:\n    script_val = untrained_mean_script[layer]\n    orig_val = openvla_untrained['layers'][str(layer)]['mean']\n    diff = abs(script_val - orig_val)\n    if diff < 0.0001:\n        status = \"EXACT MATCH\"\n    elif diff < 0.01:\n        status = \"CLOSE (rounding?)\"\n    else:\n        status = \"MISMATCH\"\n    print(f\"   L{layer:2d}  | {script_val:.4f}   | {orig_val:.6f} | {status}\")\n\nprint()\nprint(\"   VERDICT: 0/32 EXACT MATCH - Data source differs from openvla_untrained_r2_per_layer.json\")\nprint()\n\nprint()\nprint(\"=\" * 80)\nprint(\"KEY FINDINGS & INTEGRITY ISSUES\")\nprint(\"=\" * 80)\nprint()\n\nprint(\"CRITICAL FINDING #1: SUSPICIOUS L0 VALUES\")\nprint(\"-\" * 80)\nprint(\"  - All 3 conditions have IDENTICAL L0 = 0.6451 in the script\")\nprint(\"  - Original OpenVLA data has L0 = 0.6294 for BOTH trained & untrained\")\nprint(\"  - This 0.6451 appears in a REFERENCE LINE (ax.axhline) in the plot\")\nprint(\"  - INTERPRETATION: L0 appears to be a synthetic/placeholder value\")\nprint()\n\nprint(\"CRITICAL FINDING #2: NO SOURCE FOR LLAMA2BASE DATA\")\nprint(\"-\" * 80)\nprint(\"  - 32 layers of llama2base_mean hardcoded in script\")\nprint(\"  - NO JSON file found in artifacts containing these values\")\nprint(\"  - Worker analysis has DIFFERENT values (image_mean readout)\")\nprint(\"  - DATA ORIGIN UNKNOWN - Cannot verify authenticity\")\nprint()\n\nprint(\"CRITICAL FINDING #3: MISMATCH WITH ORIGINAL ARTIFACTS\")\nprint(\"-\" * 80)\nprint(\"  - Trained condition: 0/32 layers match openvla_r2_per_layer.json\")\nprint(\"  - Untrained condition: 0/32 layers match openvla_untrained_r2_per_layer.json\")\nprint(\"  - Average difference: ~0.015-0.020 per layer\")\nprint(\"  - POSSIBLE EXPLANATIONS:\")\nprint(\"    * Different random seed for the experiments\")\nprint(\"    * Different subset of data (different demos)\")\nprint(\"    * Different preprocessing or evaluation metric\")\nprint(\"    * Rounded/approximated values for visualization\")\nprint()\n\nprint(\"=\" * 80)\nprint(\"RECOMMENDATIONS\")\nprint(\"=\" * 80)\nprint()\nprint(\"1. LOCATE SOURCE DATA\")\nprint(\"   - Find original experiment outputs for llama2base_action_probe\")\nprint(\"   - Check if output was saved to different location (e.g., /root/autodl-tmp/)\")\nprint(\"   - Verify if data matches worker analysis result\")\nprint()\n\nprint(\"2. VERIFY TRAINED/UNTRAINED DATA SOURCE\")\nprint(\"   - Confirm if script values are deliberately different from JSON artifacts\")\nprint(\"   - If artifacts are the source of truth: UPDATE script data to match\")\nprint(\"   - If script values are correct: ADD new artifact JSON files\")\nprint()\n\nprint(\"3. DOCUMENT DATA PROVENANCE\")\nprint(\"   - Add header comments to plot script with experiment IDs/dates\")\nprint(\"   - Link to source data files and processing scripts\")\nprint(\"   - Include data versioning info (seed, date, preprocessing)\")\nprint()\n\nEOF\n"
             }
           },
-          "id": "event-003341"
+          "id": "event-003325"
         },
         {
-          "source_line": 3342,
+          "source_line": 3326,
           "timestamp": "2026-05-28T19:58:35.446643+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1943,10 +1637,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-003342"
+          "id": "event-003326"
         },
         {
-          "source_line": 3343,
+          "source_line": 3327,
           "timestamp": "2026-05-28T19:58:38.457935+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1963,10 +1657,10 @@
               "command": "python3 << 'PYEOF'\nimport json\n\nfinal_report = \"\"\"\n╔════════════════════════════════════════════════════════════════════════════════════════════╗\n║                         COMPLETE DATA INTEGRITY VERIFICATION                              ║\n║  Script: plot_counterfactual_bar.py | Source: Paper Table (appendix.tex) + JSON Artifacts ║\n╚════════════════════════════════════════════════════════════════════════════════════════════╝\n\nPANEL A: COHEN'S D VALUES - DETAILED COMPARISON TABLE\n═════════════════════════════════════════════════════════════════════════════════════════════\n\n                          EMPTY (E)          WRONG (W)        SHUFFLED (S)      PARAPHRASED (P)\n                      ─────────────────  ──────────────  ─────────────────  ──────────────\n\nOpenVLA Goal (OV-G)\n  Script:              1.17               1.18             1.10              1.00\n  Paper:               1.17               1.18             1.10              1.00\n  Match:               ✓ MATCH            ✓ MATCH          ✓ MATCH           ✓ MATCH\n\nOpenVLA Spatial (OV-S) \n  Script:              1.18               0.88             0.99              0.81\n  Paper:               1.17               0.89             0.98              0.81\n  JSON:                0.9422             0.8514           0.8328            0.8057\n  Match:               ⚠ -0.01            ⚠ -0.01          ⚠ +0.01           ✓ MATCH\n  Status:              Minor rounding differences; JSON is from different analysis\n\nOpenVLA Object (OV-O)\n  Script:              1.21               1.19             1.12              0.90\n  Paper:               1.21               1.19             1.12              0.90\n  Match:               ✓ MATCH            ✓ MATCH          ✓ MATCH           ✓ MATCH\n\nOpenVLA Long (OV-L)\n  Script:              0.50               0.56             0.56              0.45\n  Paper:               0.51               0.55             0.57              0.45\n  JSON (10-task):      0.9780             0.9237           0.7625            0.7071\n  Match:               ⚠ -0.01            ⚠ +0.01          ⚠ -0.01           ✓ MATCH\n  Status:              Minor rounding differences; JSON is from different experiment\n\nTraceVLA Goal (TV-G)\n  Script:              1.52               1.40             1.34              1.21\n  Paper:               1.52               1.40             1.34              1.21\n  Match:               ✓ MATCH            ✓ MATCH          ✓ MATCH           ✓ MATCH\n\nTraceVLA Spatial (TV-S) ⚠⚠⚠ CRITICAL ISSUE ⚠⚠⚠\n  Script:              1.33               1.29             1.18              1.19\n  Paper:               1.33               1.17             1.30              1.18\n  JSON:                3.7523             1.6148           1.5552            1.5532\n  Match:               ✓ MATCH            ✗ MISMATCH       ✗ MISMATCH        ⚠ -0.01\n  Status:              WRONG/SHUFFLED VALUES SWAPPED IN SCRIPT\n                       • Script wrong=1.29, Paper wrong=1.17 (diff: +0.12)\n                       • Script shuffled=1.18, Paper shuffled=1.30 (diff: -0.12)\n                       JSON values are different (appears to be different analysis)\n\nTraceVLA Object (TV-O) ⚠⚠⚠ CRITICAL ISSUE ⚠⚠⚠\n  Script:              1.21               1.16             1.06              0.97\n  Paper:               1.21               1.06             1.16              0.97\n  Match:               ✓ MATCH            ✗ MISMATCH       ✗ MISMATCH        ✓ MATCH\n  Status:              WRONG/SHUFFLED VALUES SWAPPED IN SCRIPT\n                       • Script wrong=1.16, Paper wrong=1.06 (diff: +0.10)\n                       • Script shuffled=1.06, Paper shuffled=1.16 (diff: -0.10)\n\nTraceVLA Long (TV-L)\n  Script:              1.47               1.42             1.39              1.16\n  Paper:               1.47               1.42             1.39              1.16\n  Match:               ✓ MATCH            ✓ MATCH          ✓ MATCH           ✓ MATCH\n\n═════════════════════════════════════════════════════════════════════════════════════════════\n\nPANEL B: COSINE DISTANCE VALUES - VERIFICATION STATUS\n═════════════════════════════════════════════════════════════════════════════════════════════\n\nModel Codes:\n  G = NORA Goal               G. = Phi-3-Vision Goal    G.. = Qwen2.5-VL Goal\n  S = NORA Spatial            S. = Phi-3-Vision Spatial S.. = Qwen2.5-VL Spatial\n  O = Qwen2.5-VL Object (implied)\n  L = Qwen2.5-VL Long-horizon (implied)\n\nHardcoded Values in Script:\n  G:    [1.0,    1.0,    1.0,    1.0   ]\n  S:    [0.24,   0.275,  0.12,   0.03  ]\n  G.:   [0.1530, 0.0160, 0.0839, 0.0043]\n  S.:   [0.1805, 0.0046, 0.1395, 0.0044]\n  O:    [0.1850, 0.0044, 0.0977, 0.0052]\n  L:    [0.1734, 0.0221, 0.1204, 0.0070]\n  G..:  [0.0814, 0.0143, 0.0332, 0.0041]\n  S..:  [0.0807, 0.0020, 0.0313, 0.0047]\n\nDATA SOURCE VERIFICATION:\n  ✗ NO_SOURCE: Not found in examined JSON artifacts\n  ✗ JSON FILES CHECKED:\n    - counterfactual_spatial.json (contains action MSE data, not cosine distances)\n    - counterfactual_10tasks_trajectory.json (contains action MSE data, not cosine distances)\n    - tracvla_spatial/counterfactual_combined.json (contains action MSE data, not cosine distances)\n  \n  ⚠ PAPER VERIFICATION:\n    - Paper appendix.tex mentions these values exist but doesn't list them in tables\n    - Line 121-123: \"NORA Goal produces saturated exit-layer cosine distances of 1.0\"\n    - Line 123: \"NORA Spatial produces a peak cosine distance of 0.275 for 'wrong'\"\n    - These appear to be computed from instruction embedding representations\n    - Likely computed via instruction_embedding_cosine_distance.py (not found in search)\n\n  ⚠ FINDING: Panel B values are completely hardcoded with no identifiable source artifact\n\n═════════════════════════════════════════════════════════════════════════════════════════════\n\nSUMMARY OF ISSUES BY SEVERITY:\n═════════════════════════════════════════════════════════════════════════════════════════════\n\nCRITICAL (Data Integrity Issues):\n 1. ✗ TraceVLA Spatial (TV-S): WRONG/SHUFFLED VALUES SWAPPED\n    - Affects 2 out of 4 conditions\n    - Differences: ±0.12 on each swapped condition\n    \n 2. ✗ TraceVLA Object (TV-O): WRONG/SHUFFLED VALUES SWAPPED\n    - Affects 2 out of 4 conditions\n    - Differences: ±0.10 on each swapped condition\n    \n 3. ✗ Panel B (Cosine Distance): NO SOURCE FOUND\n    - All 32 values hardcoded with no identifiable source\n    - Cannot verify authenticity of embedding analysis\n\nMINOR (Rounding/Precision Discrepancies):\n 4. ⚠ OpenVLA Spatial (OV-S): Empty condition rounded\n    - Script 1.18 vs Paper 1.17 (±0.01 difference)\n    \n 5. ⚠ OpenVLA Long (OV-L): All values rounded\n    - All 4 conditions differ by ±0.01 from paper\n\n═════════════════════════════════════════════════════════════════════════════════════════════\n\nRECOMMENDATIONS:\n═════════════════════════════════════════════════════════════════════════════════════════════\n\n1. IMMEDIATE: Fix TV-S and TV-O wrong/shuffled swaps\n   - Correct TV-S: Change [1.33, 1.29, 1.18, 1.19] → [1.33, 1.17, 1.30, 1.18]\n   - Correct TV-O: Change [1.21, 1.16, 1.06, 0.97] → [1.21, 1.06, 1.16, 0.97]\n   - These appear to be transposition errors during hardcoding\n\n2. IMPORTANT: Locate Panel B source data\n   - Find/generate original cosine distance computations\n   - Create traceable artifact for instruction embedding analysis\n   - Link source in script comments\n\n3. OPTIONAL: Standardize precision\n   - Decide on consistent decimal precision (2 vs 4 decimals)\n   - Either round all to 2 decimals or use 4-decimal values consistently\n\n═════════════════════════════════════════════════════════════════════════════════════════════\n\"\"\"\n\nprint(final_report)\n\nPYEOF\n"
             }
           },
-          "id": "event-003343"
+          "id": "event-003327"
         },
         {
-          "source_line": 3344,
+          "source_line": 3328,
           "timestamp": "2026-05-28T19:58:38.558949+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1981,10 +1675,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-003344"
+          "id": "event-003328"
         },
         {
-          "source_line": 3345,
+          "source_line": 3329,
           "timestamp": "2026-05-28T19:58:48.056742+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1999,10 +1693,10 @@
             "tool": "Agent",
             "elapsed_ms": 127140
           },
-          "id": "event-003345"
+          "id": "event-003329"
         },
         {
-          "source_line": 3346,
+          "source_line": 3330,
           "timestamp": "2026-05-28T19:59:07.334808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2017,10 +1711,10 @@
             "tool": "Agent",
             "elapsed_ms": 151593
           },
-          "id": "event-003346"
+          "id": "event-003330"
         },
         {
-          "source_line": 3347,
+          "source_line": 3331,
           "timestamp": "2026-05-28T20:00:22.840175+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2038,10 +1732,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-003347"
+          "id": "event-003331"
         },
         {
-          "source_line": 3348,
+          "source_line": 3332,
           "timestamp": "2026-05-28T20:00:26.654337+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2056,10 +1750,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3814
           },
-          "id": "event-003348"
+          "id": "event-003332"
         },
         {
-          "source_line": 3349,
+          "source_line": 3333,
           "timestamp": "2026-05-28T20:00:32.389027+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2072,7 +1766,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-003349"
+          "id": "event-003333"
         }
       ]
     },
@@ -2080,7 +1774,7 @@
       "number": 39,
       "messages": [
         {
-          "source_line": 3350,
+          "source_line": 3334,
           "timestamp": "2026-05-28T21:37:01.075535+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2094,10 +1788,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "system:ralph_loop"
           },
-          "id": "event-003350"
+          "id": "event-003334"
         },
         {
-          "source_line": 3351,
+          "source_line": 3335,
           "timestamp": "2026-05-28T21:37:46.972025+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2110,7 +1804,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-003351"
+          "id": "event-003335"
         }
       ]
     }

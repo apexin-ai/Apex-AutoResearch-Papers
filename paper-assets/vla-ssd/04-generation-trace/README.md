@@ -10,12 +10,12 @@ For a quick review on GitHub, start with the readable Markdown pages. Each page 
 
 | Source | Files |
 |---|---:|
-| Conversation logs | 326 |
-| Worker execution logs | 743 |
-| Task result records | 692 |
+| Conversation logs | 324 |
+| Worker execution logs | 740 |
+| Task result records | 689 |
 | Context and loop notes | 89 |
 
-**182,262 recorded messages/events · 5,734 recorded user-message boundaries · 72,996 tool-call records.**
+**181,569 recorded messages/events · 5,731 recorded user-message boundaries · 72,718 tool-call records.**
 
 A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
 
@@ -25,8 +25,8 @@ Source text retains its recorded language. Markdown is a reading layer over the 
 
 The Markdown pages are grouped by source kind. Their filenames describe the recorded task or coordination stream; hash-sharded JSON folders are used only as a storage detail.
 
-- **Conversation logs** (326): [Page 1](browse/conversation-001.md) · [Page 2](browse/conversation-002.md) · [Page 3](browse/conversation-003.md)
-- **Worker execution logs** (743): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md)
-- **Task result records** (692): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md)
+- **Conversation logs** (324): [Page 1](browse/conversation-001.md) · [Page 2](browse/conversation-002.md) · [Page 3](browse/conversation-003.md)
+- **Worker execution logs** (740): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md)
+- **Task result records** (689): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md)
 - **Context and loop notes** (89): [Page 1](browse/history-001.md)
 

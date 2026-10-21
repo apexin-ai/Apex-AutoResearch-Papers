@@ -1,4 +1,4 @@
-# Excluded Tasks Anti-Cherry-Picking Analysis (C2 Rebuttal)
+# Excluded Tasks Anti-Cherry-Picking Analysis
 
 > **Revision 2026-05-18**: Added C2-focused death dominance analysis with aggregate statistics and paper-ready text. All excluded task data verified against prescreening `summary.json` and MVP runs.
 

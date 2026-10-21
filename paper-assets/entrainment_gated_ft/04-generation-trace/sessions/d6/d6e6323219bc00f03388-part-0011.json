@@ -7,46 +7,6 @@
       "messages": [
         {
           "source_line": 1801,
-          "timestamp": "2026-05-25T21:21:53.962818+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called WebSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
-            "tool": "WebSearch",
-            "tool_args": {
-              "query": "arXiv 2602.01763 \"Provable Expressiveness Hierarchy\" hybrid linear attention Ye 2026"
-            }
-          },
-          "id": "event-001801"
-        },
-        {
-          "source_line": 1802,
-          "timestamp": "2026-05-25T21:21:54.916521+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called WebSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
-            "tool": "WebSearch",
-            "tool_args": {
-              "query": "arXiv 2603.25450 \"Cross-Model Disagreement\" Gorbett Jana label-free 2026"
-            }
-          },
-          "id": "event-001802"
-        },
-        {
-          "source_line": 1803,
           "timestamp": "2026-05-25T21:21:57.249522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -66,10 +26,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001803"
+          "id": "event-001801"
         },
         {
-          "source_line": 1804,
+          "source_line": 1802,
           "timestamp": "2026-05-25T21:21:57.350305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -84,10 +44,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-001804"
+          "id": "event-001802"
         },
         {
-          "source_line": 1805,
+          "source_line": 1803,
           "timestamp": "2026-05-25T21:22:00.659444+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -102,10 +62,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 7200
           },
-          "id": "event-001805"
+          "id": "event-001803"
         },
         {
-          "source_line": 1806,
+          "source_line": 1804,
           "timestamp": "2026-05-25T21:22:01.261730+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -120,10 +80,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6345
           },
-          "id": "event-001806"
+          "id": "event-001804"
         },
         {
-          "source_line": 1807,
+          "source_line": 1805,
           "timestamp": "2026-05-25T21:22:01.663318+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -138,10 +98,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 7700
           },
-          "id": "event-001807"
+          "id": "event-001805"
         },
         {
-          "source_line": 1808,
+          "source_line": 1806,
           "timestamp": "2026-05-25T21:25:25.927315+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -160,10 +120,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001808"
+          "id": "event-001806"
         },
         {
-          "source_line": 1809,
+          "source_line": 1807,
           "timestamp": "2026-05-25T21:25:29.539808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -178,10 +138,10 @@
             "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
             "elapsed_ms": 3612
           },
-          "id": "event-001809"
+          "id": "event-001807"
         },
         {
-          "source_line": 1810,
+          "source_line": 1808,
           "timestamp": "2026-05-25T21:25:48.992262+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -194,7 +154,7 @@
           "metadata": {
             "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
           },
-          "id": "event-001810"
+          "id": "event-001808"
         }
       ]
     },
@@ -202,7 +162,7 @@
       "number": 42,
       "messages": [
         {
-          "source_line": 1811,
+          "source_line": 1809,
           "timestamp": "2026-05-25T21:26:32.837421+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -216,10 +176,10 @@
             "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2",
             "source": "review_reviewer_2"
           },
-          "id": "event-001811"
+          "id": "event-001809"
         },
         {
-          "source_line": 1812,
+          "source_line": 1810,
           "timestamp": "2026-05-25T21:28:10.103404+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -238,10 +198,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001812"
+          "id": "event-001810"
         },
         {
-          "source_line": 1813,
+          "source_line": 1811,
           "timestamp": "2026-05-25T21:28:13.618020+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -256,10 +216,10 @@
             "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
             "elapsed_ms": 3514
           },
-          "id": "event-001813"
+          "id": "event-001811"
         },
         {
-          "source_line": 1814,
+          "source_line": 1812,
           "timestamp": "2026-05-25T21:28:40.605952+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -272,7 +232,7 @@
           "metadata": {
             "session": "feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2"
           },
-          "id": "event-001814"
+          "id": "event-001812"
         }
       ]
     }

@@ -59,27 +59,6 @@ Notes:
 >
 > By contrast, perturbation-based detection (DetectGPT, 28.8%) and membership inference (Min-K\% Prob, 33.2%) achieve near-chance accuracy. These methods probe local token-level properties — perturbation sensitivity and training-set membership — that do not encode ordinal depth information. The depth signal resides in distributional shape, not in token-level anomalies.
 
-## 4. Rebuttal Defense Points
-
-### Q: "Why not just use Binoculars?"
-
-1. **Model-agnostic**: Our pipeline needs one matched reference model. Binoculars needs a specific observer/performer pair. When generator family is unknown or Binoculars pair unavailable, our approach works.
-2. **Interpretability**: The Depth Degradation Atlas (EDD, feature trajectories, strategy reversal) is built on our individually meaningful features. Binoculars' single cross-ppl score requires post-hoc decomposition.
-3. **Complementarity**: 78.1% vs 78.4% convergence is itself a contribution — validates depth as genuine distributional property. Practitioners choose based on infrastructure constraints.
-4. **Same calibration overhead**: Binoculars RF_multi requires 11-feature extraction + RF training — comparable to our pipeline's 19-feature extraction + RF.
-
-### Q: "Does Binoculars invalidate Claim 1?"
-
-1. Claim 1 is narrowed to: perturbation-based and membership-inference scores lack ordinal signal (confirmed: 28.8% and 33.2%).
-2. Binoculars is a partial success via implicit distributional encoding, not raw binary detection score.
-3. Three-tier result is more informative than blanket "all fail" — precisely delineates which paradigms carry ordinal info and why.
-
-### Q: "What about other detectors (LOKI, Ghostbuster, etc.)?"
-
-1. Three paradigms tested: perturbation, membership-inference, cross-perplexity — covers major methodological families.
-2. Fast-DetectGPT = efficiency improvement over DetectGPT with similar signal.
-3. LOKI/DivEye operate on statistical features similar to our pipeline → more comparable to our method than binary detector baselines.
-
 ## 5. Updated Narrative Summary
 
 **Old**: "Binary detection methods fail at ordinal depth — the signal requires purpose-built distributional features."

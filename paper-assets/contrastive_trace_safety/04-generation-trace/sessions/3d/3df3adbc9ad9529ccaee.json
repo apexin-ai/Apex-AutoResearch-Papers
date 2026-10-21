@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director_20260525T143714_239333.jsonl",
     "occurrence": 1,
-    "bytes": 823451,
-    "sha256": "f1a0485b669f2b819fb858876fca1f60d84305c910a2b7bde60cd09cab523c4c"
+    "bytes": 820105,
+    "sha256": "94f21808519a6333313a0204501d2cf1ffce428663721ec9d0edf81b96534a2f"
   },
   "statistics": {
-    "messages": 1048,
+    "messages": 1046,
     "user_turns": 22,
-    "tool_calls": 503,
+    "tool_calls": 502,
     "roles": {
       "user": 22,
-      "tool_call": 503,
-      "tool_result": 503,
+      "tool_call": 502,
+      "tool_result": 502,
       "assistant": 20
     },
     "unparsed_lines_preserved": 0,
@@ -84,11 +84,11 @@
     {
       "number": 6,
       "boundary": "recorded_user_message",
-      "message_count": 166,
+      "message_count": 164,
       "chunks": [
         {
           "path": "3df3adbc9ad9529ccaee-part-0002.json",
-          "message_count": 166
+          "message_count": 164
         }
       ]
     },
@@ -99,11 +99,11 @@
       "chunks": [
         {
           "path": "3df3adbc9ad9529ccaee-part-0002.json",
-          "message_count": 14
+          "message_count": 16
         },
         {
           "path": "3df3adbc9ad9529ccaee-part-0003.json",
-          "message_count": 146
+          "message_count": 144
         }
       ]
     },
@@ -125,11 +125,11 @@
       "chunks": [
         {
           "path": "3df3adbc9ad9529ccaee-part-0003.json",
-          "message_count": 30
+          "message_count": 32
         },
         {
           "path": "3df3adbc9ad9529ccaee-part-0004.json",
-          "message_count": 60
+          "message_count": 58
         }
       ]
     },
@@ -184,11 +184,11 @@
       "chunks": [
         {
           "path": "3df3adbc9ad9529ccaee-part-0004.json",
-          "message_count": 2
+          "message_count": 4
         },
         {
           "path": "3df3adbc9ad9529ccaee-part-0005.json",
-          "message_count": 8
+          "message_count": 6
         }
       ]
     },
@@ -232,11 +232,11 @@
       "chunks": [
         {
           "path": "3df3adbc9ad9529ccaee-part-0005.json",
-          "message_count": 34
+          "message_count": 36
         },
         {
           "path": "3df3adbc9ad9529ccaee-part-0006.json",
-          "message_count": 36
+          "message_count": 34
         }
       ]
     },

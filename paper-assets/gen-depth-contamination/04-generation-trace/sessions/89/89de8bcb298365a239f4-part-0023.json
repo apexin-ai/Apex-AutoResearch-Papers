@@ -3,86 +3,10 @@
   "session_id": "89de8bcb298365a239f4",
   "rounds": [
     {
-      "number": 351,
-      "messages": [
-        {
-          "source_line": 3961,
-          "timestamp": "2026-05-20T00:14:41.113661+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "Registry 注册完成。6 个 GPU 全满，4 个实验并行运行。等待 14B 数据不一致调查 Worker 和实验完成回调。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-          },
-          "id": "event-003961"
-        }
-      ]
-    },
-    {
       "number": 352,
       "messages": [
         {
-          "source_line": 3962,
-          "timestamp": "2026-05-20T00:14:41.670324+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[WORKER DONE] Worker worker_diagnose_exp_deberta_c4_1b5_20260519T231400 已完成（status=done）。用 `get_worker_status('worker_diagnose_exp_deberta_c4_1b5_20260519T231400')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_exp_deberta_c4_1b5_20260519T231400\n- project: gen-depth-contamination\n- status: done"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "source": "worker:done"
-          },
-          "id": "event-003962"
-        },
-        {
-          "source_line": 3963,
-          "timestamp": "2026-05-20T00:14:50.552300+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__get_worker_status"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "mcp__agent-ml-research__get_worker_status",
-            "tool_args": {
-              "worker_id": "worker_diagnose_exp_deberta_c4_1b5_20260519T231400"
-            }
-          },
-          "id": "event-003963"
-        },
-        {
-          "source_line": 3964,
-          "timestamp": "2026-05-20T00:14:50.653310+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp_deberta_c4_1b5_20260519T231400\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:exp_deberta_c4_1b5\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-19T23:14:00.993104+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T23:16:07.100465+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"诊断完成。\\\\n\\\\n**结论：exp_deberta_c4_1b5 正常完成，应将状态从 \\\\\\\"failed\\\\\\\" 改为 \\\\\\\"success\\\\\\\"。**\\\\n\\\\n关键证据：\\\\n- 日志最后一行是 `Done.`，3 个 epoch 全部跑完，无任何错误\\\\n- 结果文件齐全（JSON metrics + OOF predictions + log）\\\\n- K*=2，DeBERTa 在所有 pair 上均优于 OBD baseline（delta +0.005 到 +0.079）\\\\n- 误判原因：cron 监控依赖 W&B sentinel，但该实验未使用 W&B\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "tool": "mcp__agent-ml-research__get_worker_status",
-            "elapsed_ms": 101
-          },
-          "id": "event-003964"
-        },
-        {
-          "source_line": 3965,
+          "source_line": 3961,
           "timestamp": "2026-05-20T00:14:54.358095+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -95,7 +19,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003965"
+          "id": "event-003961"
         }
       ]
     },
@@ -103,7 +27,7 @@
       "number": 353,
       "messages": [
         {
-          "source_line": 3966,
+          "source_line": 3962,
           "timestamp": "2026-05-20T00:14:54.919162+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -117,10 +41,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-003966"
+          "id": "event-003962"
         },
         {
-          "source_line": 3967,
+          "source_line": 3963,
           "timestamp": "2026-05-20T00:15:11.411138+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -140,10 +64,10 @@
               "tool_groups": "['ssh', 'registry']"
             }
           },
-          "id": "event-003967"
+          "id": "event-003963"
         },
         {
-          "source_line": 3968,
+          "source_line": 3964,
           "timestamp": "2026-05-20T00:15:17.940373+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -158,10 +82,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6529
           },
-          "id": "event-003968"
+          "id": "event-003964"
         },
         {
-          "source_line": 3969,
+          "source_line": 3965,
           "timestamp": "2026-05-20T00:15:21.452384+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -174,7 +98,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003969"
+          "id": "event-003965"
         }
       ]
     },
@@ -182,7 +106,7 @@
       "number": 354,
       "messages": [
         {
-          "source_line": 3970,
+          "source_line": 3966,
           "timestamp": "2026-05-20T00:15:21.464033+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -196,10 +120,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-003970"
+          "id": "event-003966"
         },
         {
-          "source_line": 3971,
+          "source_line": 3967,
           "timestamp": "2026-05-20T00:15:33.995595+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -212,7 +136,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003971"
+          "id": "event-003967"
         }
       ]
     },
@@ -220,7 +144,7 @@
       "number": 355,
       "messages": [
         {
-          "source_line": 3972,
+          "source_line": 3968,
           "timestamp": "2026-05-20T00:15:34.487163+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -234,11 +158,87 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
+          "id": "event-003968"
+        },
+        {
+          "source_line": 3969,
+          "timestamp": "2026-05-20T00:15:40.932065+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-003969"
+        }
+      ]
+    },
+    {
+      "number": 356,
+      "messages": [
+        {
+          "source_line": 3970,
+          "timestamp": "2026-05-20T00:15:41.513889+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-42896 检查日志 `/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_32b_c4_6class')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "cron"
+          },
+          "id": "event-003970"
+        },
+        {
+          "source_line": 3971,
+          "timestamp": "2026-05-20T00:15:48.523174+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已派 Worker 处理中（worker_analysis_32b-6class-check），等待结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-003971"
+        }
+      ]
+    },
+    {
+      "number": 357,
+      "messages": [
+        {
+          "source_line": 3972,
+          "timestamp": "2026-05-20T00:15:48.535079+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-42896 检查日志 `/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_32b_c4_6class')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "cron"
+          },
           "id": "event-003972"
         },
         {
           "source_line": 3973,
-          "timestamp": "2026-05-20T00:15:40.932065+00:00",
+          "timestamp": "2026-05-20T00:15:55.573371+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -255,11 +255,11 @@
       ]
     },
     {
-      "number": 356,
+      "number": 358,
       "messages": [
         {
           "source_line": 3974,
-          "timestamp": "2026-05-20T00:15:41.513889+00:00",
+          "timestamp": "2026-05-20T00:15:55.580488+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
@@ -276,82 +276,6 @@
         },
         {
           "source_line": 3975,
-          "timestamp": "2026-05-20T00:15:48.523174+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "已派 Worker 处理中（worker_analysis_32b-6class-check），等待结果。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-          },
-          "id": "event-003975"
-        }
-      ]
-    },
-    {
-      "number": 357,
-      "messages": [
-        {
-          "source_line": 3976,
-          "timestamp": "2026-05-20T00:15:48.535079+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-42896 检查日志 `/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_32b_c4_6class')` 清除监控。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "source": "cron"
-          },
-          "id": "event-003976"
-        },
-        {
-          "source_line": 3977,
-          "timestamp": "2026-05-20T00:15:55.573371+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-          },
-          "id": "event-003977"
-        }
-      ]
-    },
-    {
-      "number": 358,
-      "messages": [
-        {
-          "source_line": 3978,
-          "timestamp": "2026-05-20T00:15:55.580488+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_32b_c4_6class** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-42896 检查日志 `/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_32b_c4_6class')` 清除监控。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "source": "cron"
-          },
-          "id": "event-003978"
-        },
-        {
-          "source_line": 3979,
           "timestamp": "2026-05-20T00:16:01.332815+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -364,7 +288,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003979"
+          "id": "event-003975"
         }
       ]
     },
@@ -372,7 +296,7 @@
       "number": 359,
       "messages": [
         {
-          "source_line": 3980,
+          "source_line": 3976,
           "timestamp": "2026-05-20T00:16:01.341983+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -386,10 +310,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-003980"
+          "id": "event-003976"
         },
         {
-          "source_line": 3981,
+          "source_line": 3977,
           "timestamp": "2026-05-20T00:16:13.339978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -406,10 +330,10 @@
               "worker_id": "worker_analysis_32b-6class-check_20260520T001512"
             }
           },
-          "id": "event-003981"
+          "id": "event-003977"
         },
         {
-          "source_line": 3982,
+          "source_line": 3978,
           "timestamp": "2026-05-20T00:16:13.742669+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -424,10 +348,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 402
           },
-          "id": "event-003982"
+          "id": "event-003978"
         },
         {
-          "source_line": 3983,
+          "source_line": 3979,
           "timestamp": "2026-05-20T00:16:13.743182+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -444,10 +368,10 @@
               "worker_id": "worker_audit_lgbm-14b-data-mismatch_20260519T234313"
             }
           },
-          "id": "event-003983"
+          "id": "event-003979"
         },
         {
-          "source_line": 3984,
+          "source_line": 3980,
           "timestamp": "2026-05-20T00:16:13.794121+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -462,10 +386,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-003984"
+          "id": "event-003980"
         },
         {
-          "source_line": 3985,
+          "source_line": 3981,
           "timestamp": "2026-05-20T00:16:34.085118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -485,10 +409,10 @@
               "tool_groups": "['ssh', 'registry']"
             }
           },
-          "id": "event-003985"
+          "id": "event-003981"
         },
         {
-          "source_line": 3986,
+          "source_line": 3982,
           "timestamp": "2026-05-20T00:16:40.724543+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -503,10 +427,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6639
           },
-          "id": "event-003986"
+          "id": "event-003982"
         },
         {
-          "source_line": 3987,
+          "source_line": 3983,
           "timestamp": "2026-05-20T00:16:53.403970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -524,10 +448,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-003987"
+          "id": "event-003983"
         },
         {
-          "source_line": 3988,
+          "source_line": 3984,
           "timestamp": "2026-05-20T00:36:01.683977+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -540,7 +464,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003988"
+          "id": "event-003984"
         }
       ]
     },
@@ -548,7 +472,7 @@
       "number": 360,
       "messages": [
         {
-          "source_line": 3989,
+          "source_line": 3985,
           "timestamp": "2026-05-20T00:36:02.171027+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -562,10 +486,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-003989"
+          "id": "event-003985"
         },
         {
-          "source_line": 3990,
+          "source_line": 3986,
           "timestamp": "2026-05-20T00:36:18.878215+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -583,10 +507,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-003990"
+          "id": "event-003986"
         },
         {
-          "source_line": 3991,
+          "source_line": 3987,
           "timestamp": "2026-05-20T00:36:22.895106+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -601,10 +525,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4016
           },
-          "id": "event-003991"
+          "id": "event-003987"
         },
         {
-          "source_line": 3992,
+          "source_line": 3988,
           "timestamp": "2026-05-20T00:36:25.444003+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -617,7 +541,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003992"
+          "id": "event-003988"
         }
       ]
     },
@@ -625,7 +549,7 @@
       "number": 361,
       "messages": [
         {
-          "source_line": 3993,
+          "source_line": 3989,
           "timestamp": "2026-05-20T00:36:26.057088+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -639,10 +563,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-003993"
+          "id": "event-003989"
         },
         {
-          "source_line": 3994,
+          "source_line": 3990,
           "timestamp": "2026-05-20T00:36:32.736952+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -659,10 +583,10 @@
               "worker_id": "worker_analysis_32b-6class-check_20260520T001512"
             }
           },
-          "id": "event-003994"
+          "id": "event-003990"
         },
         {
-          "source_line": 3995,
+          "source_line": 3991,
           "timestamp": "2026-05-20T00:36:32.787869+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -677,10 +601,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-003995"
+          "id": "event-003991"
         },
         {
-          "source_line": 3996,
+          "source_line": 3992,
           "timestamp": "2026-05-20T00:36:49.598982+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -698,10 +622,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-003996"
+          "id": "event-003992"
         },
         {
-          "source_line": 3997,
+          "source_line": 3993,
           "timestamp": "2026-05-20T00:36:53.703072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -716,10 +640,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4104
           },
-          "id": "event-003997"
+          "id": "event-003993"
         },
         {
-          "source_line": 3998,
+          "source_line": 3994,
           "timestamp": "2026-05-20T00:36:56.143529+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -732,7 +656,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-003998"
+          "id": "event-003994"
         }
       ]
     },
@@ -740,7 +664,7 @@
       "number": 362,
       "messages": [
         {
-          "source_line": 3999,
+          "source_line": 3995,
           "timestamp": "2026-05-20T00:36:56.817682+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -754,10 +678,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-003999"
+          "id": "event-003995"
         },
         {
-          "source_line": 4000,
+          "source_line": 3996,
           "timestamp": "2026-05-20T00:37:03.771972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -774,10 +698,10 @@
               "worker_id": "worker_infra_c4-1b5-status-check_20260520T001634"
             }
           },
-          "id": "event-004000"
+          "id": "event-003996"
         },
         {
-          "source_line": 4001,
+          "source_line": 3997,
           "timestamp": "2026-05-20T00:37:03.873003+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -792,10 +716,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 101
           },
-          "id": "event-004001"
+          "id": "event-003997"
         },
         {
-          "source_line": 4002,
+          "source_line": 3998,
           "timestamp": "2026-05-20T00:37:24.613947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -815,10 +739,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-004002"
+          "id": "event-003998"
         },
         {
-          "source_line": 4003,
+          "source_line": 3999,
           "timestamp": "2026-05-20T00:37:31.545045+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -833,10 +757,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6931
           },
-          "id": "event-004003"
+          "id": "event-003999"
         },
         {
-          "source_line": 4004,
+          "source_line": 4000,
           "timestamp": "2026-05-20T00:37:44.023988+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -854,10 +778,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004004"
+          "id": "event-004000"
         },
         {
-          "source_line": 4005,
+          "source_line": 4001,
           "timestamp": "2026-05-20T00:37:45.179192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -872,10 +796,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 1155
           },
-          "id": "event-004005"
+          "id": "event-004001"
         },
         {
-          "source_line": 4006,
+          "source_line": 4002,
           "timestamp": "2026-05-20T00:37:47.508188+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -888,7 +812,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004006"
+          "id": "event-004002"
         }
       ]
     },
@@ -896,7 +820,7 @@
       "number": 363,
       "messages": [
         {
-          "source_line": 4007,
+          "source_line": 4003,
           "timestamp": "2026-05-20T00:37:48.065597+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -910,10 +834,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-004007"
+          "id": "event-004003"
         },
         {
-          "source_line": 4008,
+          "source_line": 4004,
           "timestamp": "2026-05-20T00:38:12.507764+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -933,10 +857,10 @@
               "tool_groups": "['ssh', 'registry']"
             }
           },
-          "id": "event-004008"
+          "id": "event-004004"
         },
         {
-          "source_line": 4009,
+          "source_line": 4005,
           "timestamp": "2026-05-20T00:38:18.899953+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -951,10 +875,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6392
           },
-          "id": "event-004009"
+          "id": "event-004005"
         },
         {
-          "source_line": 4010,
+          "source_line": 4006,
           "timestamp": "2026-05-20T00:38:21.383730+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -967,7 +891,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004010"
+          "id": "event-004006"
         }
       ]
     },
@@ -975,7 +899,7 @@
       "number": 364,
       "messages": [
         {
-          "source_line": 4011,
+          "source_line": 4007,
           "timestamp": "2026-05-20T00:38:21.395019+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -989,11 +913,87 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
+          "id": "event-004007"
+        },
+        {
+          "source_line": 4008,
+          "timestamp": "2026-05-20T00:38:27.617314+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-004008"
+        }
+      ]
+    },
+    {
+      "number": 365,
+      "messages": [
+        {
+          "source_line": 4009,
+          "timestamp": "2026-05-20T00:38:27.634563+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu3')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "cron"
+          },
+          "id": "event-004009"
+        },
+        {
+          "source_line": 4010,
+          "timestamp": "2026-05-20T00:38:34.185387+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-004010"
+        }
+      ]
+    },
+    {
+      "number": 366,
+      "messages": [
+        {
+          "source_line": 4011,
+          "timestamp": "2026-05-20T00:38:34.192660+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu1.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu1')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "cron"
+          },
           "id": "event-004011"
         },
         {
           "source_line": 4012,
-          "timestamp": "2026-05-20T00:38:27.617314+00:00",
+          "timestamp": "2026-05-20T00:38:39.783942+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1010,17 +1010,17 @@
       ]
     },
     {
-      "number": 365,
+      "number": 367,
       "messages": [
         {
           "source_line": 4013,
-          "timestamp": "2026-05-20T00:38:27.634563+00:00",
+          "timestamp": "2026-05-20T00:38:39.790725+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu3')` 清除监控。"
+              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu2.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu2')` 清除监控。"
             }
           ],
           "metadata": {
@@ -1031,7 +1031,7 @@
         },
         {
           "source_line": 4014,
-          "timestamp": "2026-05-20T00:38:34.185387+00:00",
+          "timestamp": "2026-05-20T00:38:45.375235+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1048,17 +1048,17 @@
       ]
     },
     {
-      "number": 366,
+      "number": 368,
       "messages": [
         {
           "source_line": 4015,
-          "timestamp": "2026-05-20T00:38:34.192660+00:00",
+          "timestamp": "2026-05-20T00:38:45.383067+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
             {
               "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu1** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu1.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu1')` 清除监控。"
+              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu3')` 清除监控。"
             }
           ],
           "metadata": {
@@ -1069,7 +1069,7 @@
         },
         {
           "source_line": 4016,
-          "timestamp": "2026-05-20T00:38:39.783942+00:00",
+          "timestamp": "2026-05-20T00:38:51.413279+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1086,86 +1086,10 @@
       ]
     },
     {
-      "number": 367,
-      "messages": [
-        {
-          "source_line": 4017,
-          "timestamp": "2026-05-20T00:38:39.790725+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu2.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu2')` 清除监控。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "source": "cron"
-          },
-          "id": "event-004017"
-        },
-        {
-          "source_line": 4018,
-          "timestamp": "2026-05-20T00:38:45.375235+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-          },
-          "id": "event-004018"
-        }
-      ]
-    },
-    {
-      "number": 368,
-      "messages": [
-        {
-          "source_line": 4019,
-          "timestamp": "2026-05-20T00:38:45.383067+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[CRON 需要判断] 实验 **exp_deberta_cross_transfer_gpu3** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 cqa1-22115 检查日志 `/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_deberta_cross_transfer_gpu3')` 清除监控。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-            "source": "cron"
-          },
-          "id": "event-004019"
-        },
-        {
-          "source_line": 4020,
-          "timestamp": "2026-05-20T00:38:51.413279+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-          },
-          "id": "event-004020"
-        }
-      ]
-    },
-    {
       "number": 369,
       "messages": [
         {
-          "source_line": 4021,
+          "source_line": 4017,
           "timestamp": "2026-05-20T00:38:51.420703+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1179,10 +1103,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-004021"
+          "id": "event-004017"
         },
         {
-          "source_line": 4022,
+          "source_line": 4018,
           "timestamp": "2026-05-20T00:38:57.661057+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1199,10 +1123,10 @@
               "worker_id": "worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725"
             }
           },
-          "id": "event-004022"
+          "id": "event-004018"
         },
         {
-          "source_line": 4023,
+          "source_line": 4019,
           "timestamp": "2026-05-20T00:38:57.762030+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1217,10 +1141,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-004023"
+          "id": "event-004019"
         },
         {
-          "source_line": 4024,
+          "source_line": 4020,
           "timestamp": "2026-05-20T00:39:02.018167+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1233,7 +1157,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004024"
+          "id": "event-004020"
         }
       ]
     },
@@ -1241,7 +1165,7 @@
       "number": 370,
       "messages": [
         {
-          "source_line": 4025,
+          "source_line": 4021,
           "timestamp": "2026-05-20T00:40:13.877832+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1255,10 +1179,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-004025"
+          "id": "event-004021"
         },
         {
-          "source_line": 4026,
+          "source_line": 4022,
           "timestamp": "2026-05-20T00:40:23.626706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1276,10 +1200,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-004026"
+          "id": "event-004022"
         },
         {
-          "source_line": 4027,
+          "source_line": 4023,
           "timestamp": "2026-05-20T00:40:23.729167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1294,10 +1218,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-004027"
+          "id": "event-004023"
         },
         {
-          "source_line": 4028,
+          "source_line": 4024,
           "timestamp": "2026-05-20T00:40:38.010554+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1317,10 +1241,10 @@
               "tool_groups": "['ssh', 'registry']"
             }
           },
-          "id": "event-004028"
+          "id": "event-004024"
         },
         {
-          "source_line": 4029,
+          "source_line": 4025,
           "timestamp": "2026-05-20T00:40:45.015752+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1335,10 +1259,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 7005
           },
-          "id": "event-004029"
+          "id": "event-004025"
         },
         {
-          "source_line": 4030,
+          "source_line": 4026,
           "timestamp": "2026-05-20T00:40:47.651950+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1351,7 +1275,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004030"
+          "id": "event-004026"
         }
       ]
     },
@@ -1359,7 +1283,7 @@
       "number": 371,
       "messages": [
         {
-          "source_line": 4031,
+          "source_line": 4027,
           "timestamp": "2026-05-20T00:41:29.502403+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1373,10 +1297,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-004031"
+          "id": "event-004027"
         },
         {
-          "source_line": 4032,
+          "source_line": 4028,
           "timestamp": "2026-05-20T00:41:38.704080+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1394,10 +1318,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-004032"
+          "id": "event-004028"
         },
         {
-          "source_line": 4033,
+          "source_line": 4029,
           "timestamp": "2026-05-20T00:41:39.107790+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1412,10 +1336,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 403
           },
-          "id": "event-004033"
+          "id": "event-004029"
         },
         {
-          "source_line": 4034,
+          "source_line": 4030,
           "timestamp": "2026-05-20T00:41:39.108254+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1433,10 +1357,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-004034"
+          "id": "event-004030"
         },
         {
-          "source_line": 4035,
+          "source_line": 4031,
           "timestamp": "2026-05-20T00:41:39.209194+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1451,10 +1375,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-004035"
+          "id": "event-004031"
         },
         {
-          "source_line": 4036,
+          "source_line": 4032,
           "timestamp": "2026-05-20T00:41:48.696328+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1467,7 +1391,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004036"
+          "id": "event-004032"
         }
       ]
     },
@@ -1475,7 +1399,7 @@
       "number": 372,
       "messages": [
         {
-          "source_line": 4037,
+          "source_line": 4033,
           "timestamp": "2026-05-20T00:42:26.815690+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1489,10 +1413,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-004037"
+          "id": "event-004033"
         },
         {
-          "source_line": 4038,
+          "source_line": 4034,
           "timestamp": "2026-05-20T00:42:35.230515+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1509,10 +1433,10 @@
               "worker_id": "worker_infra_urgent-status-check_20260520T004038"
             }
           },
-          "id": "event-004038"
+          "id": "event-004034"
         },
         {
-          "source_line": 4039,
+          "source_line": 4035,
           "timestamp": "2026-05-20T00:42:35.331980+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1527,10 +1451,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 101
           },
-          "id": "event-004039"
+          "id": "event-004035"
         },
         {
-          "source_line": 4040,
+          "source_line": 4036,
           "timestamp": "2026-05-20T00:42:43.755831+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1548,10 +1472,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-004040"
+          "id": "event-004036"
         },
         {
-          "source_line": 4041,
+          "source_line": 4037,
           "timestamp": "2026-05-20T00:42:43.806976+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1566,10 +1490,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 51
           },
-          "id": "event-004041"
+          "id": "event-004037"
         },
         {
-          "source_line": 4042,
+          "source_line": 4038,
           "timestamp": "2026-05-20T00:43:03.378945+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1587,10 +1511,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004042"
+          "id": "event-004038"
         },
         {
-          "source_line": 4043,
+          "source_line": 4039,
           "timestamp": "2026-05-20T00:43:07.752859+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1605,10 +1529,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4373
           },
-          "id": "event-004043"
+          "id": "event-004039"
         },
         {
-          "source_line": 4044,
+          "source_line": 4040,
           "timestamp": "2026-05-20T00:43:10.503851+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1621,7 +1545,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004044"
+          "id": "event-004040"
         }
       ]
     },
@@ -1629,7 +1553,7 @@
       "number": 373,
       "messages": [
         {
-          "source_line": 4045,
+          "source_line": 4041,
           "timestamp": "2026-05-20T00:43:11.094893+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1643,10 +1567,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "director"
           },
-          "id": "event-004045"
+          "id": "event-004041"
         },
         {
-          "source_line": 4046,
+          "source_line": 4042,
           "timestamp": "2026-05-20T00:43:19.839115+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1663,10 +1587,10 @@
               "worker_id": "worker_analysis_cross-transfer-completion-check_20260520T003813"
             }
           },
-          "id": "event-004046"
+          "id": "event-004042"
         },
         {
-          "source_line": 4047,
+          "source_line": 4043,
           "timestamp": "2026-05-20T00:43:19.940850+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1681,10 +1605,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 101
           },
-          "id": "event-004047"
+          "id": "event-004043"
         },
         {
-          "source_line": 4048,
+          "source_line": 4044,
           "timestamp": "2026-05-20T00:43:37.737632+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1704,10 +1628,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-004048"
+          "id": "event-004044"
         },
         {
-          "source_line": 4049,
+          "source_line": 4045,
           "timestamp": "2026-05-20T00:43:42.681103+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1727,10 +1651,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004049"
+          "id": "event-004045"
         },
         {
-          "source_line": 4050,
+          "source_line": 4046,
           "timestamp": "2026-05-20T00:43:43.350193+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1750,10 +1674,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004050"
+          "id": "event-004046"
         },
         {
-          "source_line": 4051,
+          "source_line": 4047,
           "timestamp": "2026-05-20T00:43:44.176641+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1768,10 +1692,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6439
           },
-          "id": "event-004051"
+          "id": "event-004047"
         },
         {
-          "source_line": 4052,
+          "source_line": 4048,
           "timestamp": "2026-05-20T00:43:44.832060+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1786,10 +1710,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2150
           },
-          "id": "event-004052"
+          "id": "event-004048"
         },
         {
-          "source_line": 4053,
+          "source_line": 4049,
           "timestamp": "2026-05-20T00:43:45.862992+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1804,10 +1728,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2512
           },
-          "id": "event-004053"
+          "id": "event-004049"
         },
         {
-          "source_line": 4054,
+          "source_line": 4050,
           "timestamp": "2026-05-20T00:43:57.146156+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1827,10 +1751,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004054"
+          "id": "event-004050"
         },
         {
-          "source_line": 4055,
+          "source_line": 4051,
           "timestamp": "2026-05-20T00:43:58.100091+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1845,10 +1769,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 953
           },
-          "id": "event-004055"
+          "id": "event-004051"
         },
         {
-          "source_line": 4056,
+          "source_line": 4052,
           "timestamp": "2026-05-20T00:43:58.152996+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1868,10 +1792,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004056"
+          "id": "event-004052"
         },
         {
-          "source_line": 4057,
+          "source_line": 4053,
           "timestamp": "2026-05-20T00:43:59.309578+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1886,10 +1810,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1156
           },
-          "id": "event-004057"
+          "id": "event-004053"
         },
         {
-          "source_line": 4058,
+          "source_line": 4054,
           "timestamp": "2026-05-20T00:44:05.160373+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1909,10 +1833,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004058"
+          "id": "event-004054"
         },
         {
-          "source_line": 4059,
+          "source_line": 4055,
           "timestamp": "2026-05-20T00:44:06.169375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1927,10 +1851,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1008
           },
-          "id": "event-004059"
+          "id": "event-004055"
         },
         {
-          "source_line": 4060,
+          "source_line": 4056,
           "timestamp": "2026-05-20T00:44:09.243217+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1950,10 +1874,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004060"
+          "id": "event-004056"
         },
         {
-          "source_line": 4061,
+          "source_line": 4057,
           "timestamp": "2026-05-20T00:44:11.002932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1968,10 +1892,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1759
           },
-          "id": "event-004061"
+          "id": "event-004057"
         },
         {
-          "source_line": 4062,
+          "source_line": 4058,
           "timestamp": "2026-05-20T00:44:15.650895+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1984,7 +1908,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004062"
+          "id": "event-004058"
         }
       ]
     },
@@ -1992,7 +1916,7 @@
       "number": 374,
       "messages": [
         {
-          "source_line": 4063,
+          "source_line": 4059,
           "timestamp": "2026-05-20T00:44:16.392831+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2006,10 +1930,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "worker:done"
           },
-          "id": "event-004063"
+          "id": "event-004059"
         },
         {
-          "source_line": 4064,
+          "source_line": 4060,
           "timestamp": "2026-05-20T00:44:25.489023+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2026,10 +1950,10 @@
               "worker_id": "worker_analysis_cross-transfer-completion-check_20260520T003813"
             }
           },
-          "id": "event-004064"
+          "id": "event-004060"
         },
         {
-          "source_line": 4065,
+          "source_line": 4061,
           "timestamp": "2026-05-20T00:44:25.590425+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2044,10 +1968,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 101
           },
-          "id": "event-004065"
+          "id": "event-004061"
         },
         {
-          "source_line": 4066,
+          "source_line": 4062,
           "timestamp": "2026-05-20T00:44:48.663764+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2067,10 +1991,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-004066"
+          "id": "event-004062"
         },
         {
-          "source_line": 4067,
+          "source_line": 4063,
           "timestamp": "2026-05-20T00:44:55.198017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2085,10 +2009,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6534
           },
-          "id": "event-004067"
+          "id": "event-004063"
         },
         {
-          "source_line": 4068,
+          "source_line": 4064,
           "timestamp": "2026-05-20T00:45:03.371976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2108,10 +2032,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004068"
+          "id": "event-004064"
         },
         {
-          "source_line": 4069,
+          "source_line": 4065,
           "timestamp": "2026-05-20T00:45:04.476978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2126,10 +2050,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1104
           },
-          "id": "event-004069"
+          "id": "event-004065"
         },
         {
-          "source_line": 4070,
+          "source_line": 4066,
           "timestamp": "2026-05-20T00:45:17.824550+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2147,10 +2071,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004070"
+          "id": "event-004066"
         },
         {
-          "source_line": 4071,
+          "source_line": 4067,
           "timestamp": "2026-05-20T00:45:19.081303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2165,10 +2089,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 1256
           },
-          "id": "event-004071"
+          "id": "event-004067"
         },
         {
-          "source_line": 4072,
+          "source_line": 4068,
           "timestamp": "2026-05-20T00:45:21.865362+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2181,7 +2105,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004072"
+          "id": "event-004068"
         }
       ]
     },
@@ -2189,7 +2113,7 @@
       "number": 375,
       "messages": [
         {
-          "source_line": 4073,
+          "source_line": 4069,
           "timestamp": "2026-05-20T00:45:22.482336+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2203,10 +2127,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-004073"
+          "id": "event-004069"
         },
         {
-          "source_line": 4074,
+          "source_line": 4070,
           "timestamp": "2026-05-20T00:45:40.162469+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2220,10 +2144,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-004074"
+          "id": "event-004070"
         },
         {
-          "source_line": 4075,
+          "source_line": 4071,
           "timestamp": "2026-05-20T00:45:46.359739+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2238,10 +2162,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 6197
           },
-          "id": "event-004075"
+          "id": "event-004071"
         },
         {
-          "source_line": 4076,
+          "source_line": 4072,
           "timestamp": "2026-05-20T00:45:55.182830+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2261,10 +2185,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004076"
+          "id": "event-004072"
         },
         {
-          "source_line": 4077,
+          "source_line": 4073,
           "timestamp": "2026-05-20T00:45:56.681609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2279,10 +2203,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1498
           },
-          "id": "event-004077"
+          "id": "event-004073"
         },
         {
-          "source_line": 4078,
+          "source_line": 4074,
           "timestamp": "2026-05-20T00:45:56.682102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2302,10 +2226,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004078"
+          "id": "event-004074"
         },
         {
-          "source_line": 4079,
+          "source_line": 4075,
           "timestamp": "2026-05-20T00:45:57.962795+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2320,10 +2244,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1280
           },
-          "id": "event-004079"
+          "id": "event-004075"
         },
         {
-          "source_line": 4080,
+          "source_line": 4076,
           "timestamp": "2026-05-20T00:45:58.014006+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2343,10 +2267,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004080"
+          "id": "event-004076"
         },
         {
-          "source_line": 4081,
+          "source_line": 4077,
           "timestamp": "2026-05-20T00:45:59.269893+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2361,10 +2285,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1255
           },
-          "id": "event-004081"
+          "id": "event-004077"
         },
         {
-          "source_line": 4082,
+          "source_line": 4078,
           "timestamp": "2026-05-20T00:46:03.346347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2384,10 +2308,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004082"
+          "id": "event-004078"
         },
         {
-          "source_line": 4083,
+          "source_line": 4079,
           "timestamp": "2026-05-20T00:46:04.253024+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2402,10 +2326,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 906
           },
-          "id": "event-004083"
+          "id": "event-004079"
         },
         {
-          "source_line": 4084,
+          "source_line": 4080,
           "timestamp": "2026-05-20T00:46:04.306055+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2425,10 +2349,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004084"
+          "id": "event-004080"
         },
         {
-          "source_line": 4085,
+          "source_line": 4081,
           "timestamp": "2026-05-20T00:46:04.758474+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2448,10 +2372,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004085"
+          "id": "event-004081"
         },
         {
-          "source_line": 4086,
+          "source_line": 4082,
           "timestamp": "2026-05-20T00:46:05.060047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2466,10 +2390,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 753
           },
-          "id": "event-004086"
+          "id": "event-004082"
         },
         {
-          "source_line": 4087,
+          "source_line": 4083,
           "timestamp": "2026-05-20T00:46:05.714483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2484,10 +2408,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 956
           },
-          "id": "event-004087"
+          "id": "event-004083"
         },
         {
-          "source_line": 4088,
+          "source_line": 4084,
           "timestamp": "2026-05-20T00:46:10.690347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2507,10 +2431,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004088"
+          "id": "event-004084"
         },
         {
-          "source_line": 4089,
+          "source_line": 4085,
           "timestamp": "2026-05-20T00:46:11.143597+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2525,10 +2449,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 453
           },
-          "id": "event-004089"
+          "id": "event-004085"
         },
         {
-          "source_line": 4090,
+          "source_line": 4086,
           "timestamp": "2026-05-20T00:46:11.597054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2548,10 +2472,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004090"
+          "id": "event-004086"
         },
         {
-          "source_line": 4091,
+          "source_line": 4087,
           "timestamp": "2026-05-20T00:46:12.202162+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2566,10 +2490,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 605
           },
-          "id": "event-004091"
+          "id": "event-004087"
         },
         {
-          "source_line": 4092,
+          "source_line": 4088,
           "timestamp": "2026-05-20T00:46:12.252895+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2589,10 +2513,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004092"
+          "id": "event-004088"
         },
         {
-          "source_line": 4093,
+          "source_line": 4089,
           "timestamp": "2026-05-20T00:46:12.655982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2607,10 +2531,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 403
           },
-          "id": "event-004093"
+          "id": "event-004089"
         },
         {
-          "source_line": 4094,
+          "source_line": 4090,
           "timestamp": "2026-05-20T00:46:21.465012+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2623,7 +2547,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004094"
+          "id": "event-004090"
         }
       ]
     },
@@ -2631,7 +2555,7 @@
       "number": 376,
       "messages": [
         {
-          "source_line": 4095,
+          "source_line": 4091,
           "timestamp": "2026-05-20T00:46:21.472252+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2645,10 +2569,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-004095"
+          "id": "event-004091"
         },
         {
-          "source_line": 4096,
+          "source_line": 4092,
           "timestamp": "2026-05-20T00:46:28.541524+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2661,7 +2585,7 @@
           "metadata": {
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
           },
-          "id": "event-004096"
+          "id": "event-004092"
         }
       ]
     },
@@ -2669,7 +2593,7 @@
       "number": 377,
       "messages": [
         {
-          "source_line": 4097,
+          "source_line": 4093,
           "timestamp": "2026-05-20T00:46:28.552717+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2683,10 +2607,10 @@
             "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
             "source": "cron"
           },
-          "id": "event-004097"
+          "id": "event-004093"
         },
         {
-          "source_line": 4098,
+          "source_line": 4094,
           "timestamp": "2026-05-20T00:46:48.220981+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2706,10 +2630,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004098"
+          "id": "event-004094"
         },
         {
-          "source_line": 4099,
+          "source_line": 4095,
           "timestamp": "2026-05-20T00:46:48.975601+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2724,10 +2648,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 754
           },
-          "id": "event-004099"
+          "id": "event-004095"
         },
         {
-          "source_line": 4100,
+          "source_line": 4096,
           "timestamp": "2026-05-20T00:46:54.752944+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2747,10 +2671,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004100"
+          "id": "event-004096"
         },
         {
-          "source_line": 4101,
+          "source_line": 4097,
           "timestamp": "2026-05-20T00:46:55.205943+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2765,10 +2689,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 452
           },
-          "id": "event-004101"
+          "id": "event-004097"
         },
         {
-          "source_line": 4102,
+          "source_line": 4098,
           "timestamp": "2026-05-20T00:46:55.206368+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2788,10 +2712,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004102"
+          "id": "event-004098"
         },
         {
-          "source_line": 4103,
+          "source_line": 4099,
           "timestamp": "2026-05-20T00:46:55.658165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2806,10 +2730,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 451
           },
-          "id": "event-004103"
+          "id": "event-004099"
         },
         {
-          "source_line": 4104,
+          "source_line": 4100,
           "timestamp": "2026-05-20T00:46:55.988931+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2829,10 +2753,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004104"
+          "id": "event-004100"
         },
         {
-          "source_line": 4105,
+          "source_line": 4101,
           "timestamp": "2026-05-20T00:46:56.343231+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2847,10 +2771,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 354
           },
-          "id": "event-004105"
+          "id": "event-004101"
         },
         {
-          "source_line": 4106,
+          "source_line": 4102,
           "timestamp": "2026-05-20T00:47:02.527067+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2868,10 +2792,10 @@
               "description": "Plan state transitions for 3 sub-experiments"
             }
           },
-          "id": "event-004106"
+          "id": "event-004102"
         },
         {
-          "source_line": 4107,
+          "source_line": 4103,
           "timestamp": "2026-05-20T00:47:02.829792+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2886,10 +2810,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-004107"
+          "id": "event-004103"
         },
         {
-          "source_line": 4108,
+          "source_line": 4104,
           "timestamp": "2026-05-20T00:47:06.197711+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2909,10 +2833,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004108"
+          "id": "event-004104"
         },
         {
-          "source_line": 4109,
+          "source_line": 4105,
           "timestamp": "2026-05-20T00:47:07.102500+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2932,10 +2856,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004109"
+          "id": "event-004105"
         },
         {
-          "source_line": 4110,
+          "source_line": 4106,
           "timestamp": "2026-05-20T00:47:07.458634+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2955,10 +2879,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004110"
+          "id": "event-004106"
         },
         {
-          "source_line": 4111,
+          "source_line": 4107,
           "timestamp": "2026-05-20T00:47:08.010765+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2973,10 +2897,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1813
           },
-          "id": "event-004111"
+          "id": "event-004107"
         },
         {
-          "source_line": 4112,
+          "source_line": 4108,
           "timestamp": "2026-05-20T00:47:09.516984+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2991,10 +2915,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2414
           },
-          "id": "event-004112"
+          "id": "event-004108"
         },
         {
-          "source_line": 4113,
+          "source_line": 4109,
           "timestamp": "2026-05-20T00:47:11.322324+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3009,10 +2933,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 3863
           },
-          "id": "event-004113"
+          "id": "event-004109"
         },
         {
-          "source_line": 4114,
+          "source_line": 4110,
           "timestamp": "2026-05-20T00:47:15.253984+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3032,10 +2956,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004114"
+          "id": "event-004110"
         },
         {
-          "source_line": 4115,
+          "source_line": 4111,
           "timestamp": "2026-05-20T00:47:15.706981+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3055,10 +2979,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004115"
+          "id": "event-004111"
         },
         {
-          "source_line": 4116,
+          "source_line": 4112,
           "timestamp": "2026-05-20T00:47:16.461995+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3078,10 +3002,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004116"
+          "id": "event-004112"
         },
         {
-          "source_line": 4117,
+          "source_line": 4113,
           "timestamp": "2026-05-20T00:47:17.014388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3096,10 +3020,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1760
           },
-          "id": "event-004117"
+          "id": "event-004113"
         },
         {
-          "source_line": 4118,
+          "source_line": 4114,
           "timestamp": "2026-05-20T00:47:18.528211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3114,10 +3038,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2821
           },
-          "id": "event-004118"
+          "id": "event-004114"
         },
         {
-          "source_line": 4119,
+          "source_line": 4115,
           "timestamp": "2026-05-20T00:47:20.465274+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3132,10 +3056,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 4003
           },
-          "id": "event-004119"
+          "id": "event-004115"
         },
         {
-          "source_line": 4120,
+          "source_line": 4116,
           "timestamp": "2026-05-20T00:47:24.912036+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3155,10 +3079,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004120"
+          "id": "event-004116"
         },
         {
-          "source_line": 4121,
+          "source_line": 4117,
           "timestamp": "2026-05-20T00:47:25.364068+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3178,10 +3102,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004121"
+          "id": "event-004117"
         },
         {
-          "source_line": 4122,
+          "source_line": 4118,
           "timestamp": "2026-05-20T00:47:26.145171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3201,10 +3125,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004122"
+          "id": "event-004118"
         },
         {
-          "source_line": 4123,
+          "source_line": 4119,
           "timestamp": "2026-05-20T00:47:26.547588+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3219,10 +3143,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1635
           },
-          "id": "event-004123"
+          "id": "event-004119"
         },
         {
-          "source_line": 4124,
+          "source_line": 4120,
           "timestamp": "2026-05-20T00:47:28.671974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3237,10 +3161,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 3307
           },
-          "id": "event-004124"
+          "id": "event-004120"
         },
         {
-          "source_line": 4125,
+          "source_line": 4121,
           "timestamp": "2026-05-20T00:47:31.084349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3255,10 +3179,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 4939
           },
-          "id": "event-004125"
+          "id": "event-004121"
         },
         {
-          "source_line": 4126,
+          "source_line": 4122,
           "timestamp": "2026-05-20T00:47:36.722956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3279,10 +3203,10 @@
               "spec": "{'server': 'cqa1-22115', 'gpu': ['cuda:1'], 'command': 'python scripts/run_deberta_cross_transfer.py', 'pid': '208306', 'data_path': '/root/gen-depth-contamination/data/', 'data_count': 20000, 'model_name': 'DeBERTa-v3-base', 'seed': 42}"
             }
           },
-          "id": "event-004126"
+          "id": "event-004122"
         },
         {
-          "source_line": 4127,
+          "source_line": 4123,
           "timestamp": "2026-05-20T00:47:38.754377+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3303,10 +3227,10 @@
               "spec": "{'server': 'cqa1-22115', 'gpu': ['cuda:2'], 'command': 'python scripts/run_deberta_cross_transfer.py', 'pid': '208307', 'data_path': '/root/gen-depth-contamination/data/', 'data_count': 20000, 'model_name': 'DeBERTa-v3-base', 'seed': 42}"
             }
           },
-          "id": "event-004127"
+          "id": "event-004123"
         },
         {
-          "source_line": 4128,
+          "source_line": 4124,
           "timestamp": "2026-05-20T00:47:39.459110+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3321,10 +3245,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2736
           },
-          "id": "event-004128"
+          "id": "event-004124"
         },
         {
-          "source_line": 4129,
+          "source_line": 4125,
           "timestamp": "2026-05-20T00:47:40.011081+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3345,10 +3269,10 @@
               "spec": "{'server': 'cqa1-22115', 'gpu': ['cuda:3'], 'command': 'python scripts/run_deberta_cross_transfer.py', 'pid': '208308', 'data_path': '/root/gen-depth-contamination/data/', 'data_count': 20000, 'model_name': 'DeBERTa-v3-base', 'seed': 42}"
             }
           },
-          "id": "event-004129"
+          "id": "event-004125"
         },
         {
-          "source_line": 4130,
+          "source_line": 4126,
           "timestamp": "2026-05-20T00:47:41.821997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3363,10 +3287,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 3067
           },
-          "id": "event-004130"
+          "id": "event-004126"
         },
         {
-          "source_line": 4131,
+          "source_line": 4127,
           "timestamp": "2026-05-20T00:47:43.378209+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3381,10 +3305,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 3367
           },
-          "id": "event-004131"
+          "id": "event-004127"
         },
         {
-          "source_line": 4132,
+          "source_line": 4128,
           "timestamp": "2026-05-20T00:47:47.549679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3404,10 +3328,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004132"
+          "id": "event-004128"
         },
         {
-          "source_line": 4133,
+          "source_line": 4129,
           "timestamp": "2026-05-20T00:47:48.011482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3422,10 +3346,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 461
           },
-          "id": "event-004133"
+          "id": "event-004129"
         },
         {
-          "source_line": 4134,
+          "source_line": 4130,
           "timestamp": "2026-05-20T00:47:48.516915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3445,10 +3369,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004134"
+          "id": "event-004130"
         },
         {
-          "source_line": 4135,
+          "source_line": 4131,
           "timestamp": "2026-05-20T00:47:48.969292+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3463,10 +3387,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 452
           },
-          "id": "event-004135"
+          "id": "event-004131"
         },
         {
-          "source_line": 4136,
+          "source_line": 4132,
           "timestamp": "2026-05-20T00:47:49.170591+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3486,10 +3410,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004136"
+          "id": "event-004132"
         },
         {
-          "source_line": 4137,
+          "source_line": 4133,
           "timestamp": "2026-05-20T00:47:49.572470+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3504,10 +3428,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 401
           },
-          "id": "event-004137"
+          "id": "event-004133"
         },
         {
-          "source_line": 4138,
+          "source_line": 4134,
           "timestamp": "2026-05-20T00:47:53.640921+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3527,10 +3451,10 @@
               "project": "gen-depth-contamination"
             }
           },
-          "id": "event-004138"
+          "id": "event-004134"
         },
         {
-          "source_line": 4139,
+          "source_line": 4135,
           "timestamp": "2026-05-20T00:47:54.746136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3545,10 +3469,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1105
           },
-          "id": "event-004139"
+          "id": "event-004135"
         },
         {
-          "source_line": 4140,
+          "source_line": 4136,
           "timestamp": "2026-05-20T00:47:54.746568+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3565,6 +3489,88 @@
               "exp_id": "exp_deberta_cross_transfer_gpu2",
               "field": "checkpoint_path",
               "value": "/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-004136"
+        },
+        {
+          "source_line": 4137,
+          "timestamp": "2026-05-20T00:47:55.451985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_cross_transfer_gpu2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T00:45:57.106Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:47:55.142Z\\\", \\\"hypothesis\\\": \\\"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"command\\\": \\\"python scripts/run_deberta_cross_transfer.py\\\", \\\"pid\\\": \\\"208307\\\", \\\"data_path\\\": \\\"/root/gen-depth-contamination/data/\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"DeBERTa-v3-base\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6603}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 705
+          },
+          "id": "event-004137"
+        },
+        {
+          "source_line": 4138,
+          "timestamp": "2026-05-20T00:47:55.452419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_deberta_cross_transfer_gpu3",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-004138"
+        },
+        {
+          "source_line": 4139,
+          "timestamp": "2026-05-20T00:47:56.171476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_cross_transfer_gpu3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T00:45:58.698Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:47:55.845Z\\\", \\\"hypothesis\\\": \\\"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"command\\\": \\\"python scripts/run_deberta_cross_transfer.py\\\", \\\"pid\\\": \\\"208308\\\", \\\"data_path\\\": \\\"/root/gen-depth-contamination/data/\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"DeBERTa-v3-base\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6721}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 719
+          },
+          "id": "event-004139"
+        },
+        {
+          "source_line": 4140,
+          "timestamp": "2026-05-20T00:47:59.836883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_deberta_cross_transfer_gpu1",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu1.log",
               "project": "gen-depth-contamination"
             }
           },

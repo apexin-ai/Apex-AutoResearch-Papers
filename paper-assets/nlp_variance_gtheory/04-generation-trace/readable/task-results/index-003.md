@@ -37,5 +37,3 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | run auto gsm8k to math monitor | 1 | 0 | [Read transcript](run-auto-gsm8k-to-math-monitor.md) | [JSON](../../sessions/c2/c2cb7756c7fc3b54cdae.json) |
 | run llama math gpu1 immediate | 1 | 0 | [Read transcript](run-llama-math-gpu1-immediate.md) | [JSON](../../sessions/c5/c5fe5f8f4e062243ba9c.json) |
 | ssh check 72b download | 1 | 0 | [Read transcript](ssh-check-72b-download.md) | [JSON](../../sessions/d8/d8415123da8527232a15.json) |
-| writing rebuttal prep | 1 | 0 | [Read transcript](writing-rebuttal-prep.md) | [JSON](../../sessions/08/08467209653a8683060b.json) |
-| writing rebuttal framework | 1 | 0 | [Read transcript](writing-rebuttal-framework.md) | [JSON](../../sessions/1a/1a2d3111de5795da89ba.json) |

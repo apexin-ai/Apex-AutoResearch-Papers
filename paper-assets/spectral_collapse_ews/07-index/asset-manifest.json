@@ -1,17 +1,17 @@
 {
   "project": "spectral_collapse_ews",
   "code_count": 191,
-  "data_count": 270,
+  "data_count": 269,
   "env_count": 0,
   "tex_count": 22,
   "bib_count": 2,
   "review_count": 4,
   "validation_count": 9,
   "chat_count": 160,
-  "worker_count": 735,
-  "trace_count": 925,
-  "trace_bytes": 99887017,
-  "maintenance_count": 47,
+  "worker_count": 731,
+  "trace_count": 921,
+  "trace_bytes": 99086229,
+  "maintenance_count": 42,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -78,7 +78,7 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "160 conversations; 735 worker logs/results; 925 source files",
+      "evidence": "160 conversations; 731 worker logs/results; 921 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
@@ -92,7 +92,7 @@
     {
       "name": "Experiments and environment",
       "status": "Partial",
-      "evidence": "270 data/result files",
+      "evidence": "269 data/result files",
       "gap": "Original data permissions and completeness require project-specific review.",
       "path": "03-experiments/"
     },
@@ -106,7 +106,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "47 project documentation files; 0 license files",
+      "evidence": "42 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

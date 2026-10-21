@@ -37,5 +37,3 @@
 | `logs/workers/worker_run_auto_gsm8k_to_math_monitor_20260521T124749_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/run-auto-gsm8k-to-math-monitor.md) | [Open JSON](../sessions/c2/c2cb7756c7fc3b54cdae.json) |
 | `logs/workers/worker_run_llama_math_gpu1_immediate_20260521T124317_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/run-llama-math-gpu1-immediate.md) | [Open JSON](../sessions/c5/c5fe5f8f4e062243ba9c.json) |
 | `logs/workers/worker_ssh_check_72b_download_20260522T141706_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ssh-check-72b-download.md) | [Open JSON](../sessions/d8/d8415123da8527232a15.json) |
-| `logs/workers/worker_writing_rebuttal-prep_20260524T100307_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-rebuttal-prep.md) | [Open JSON](../sessions/08/08467209653a8683060b.json) |
-| `logs/workers/worker_writing_rebuttal_framework_20260522T212921_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/writing-rebuttal-framework.md) | [Open JSON](../sessions/1a/1a2d3111de5795da89ba.json) |

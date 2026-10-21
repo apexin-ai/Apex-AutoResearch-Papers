@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 394
+- **Events:** 392
 - **Recorded user turns:** 0
-- **Tool calls:** 140
+- **Tool calls:** 139
 - **Original source:** `logs/workers/worker_code_exp68_lora_comparison_20260523T230231.log`
 - **Structured JSON:** [`fa2c72772064c0b06350.json`](../../sessions/fa/fa2c72772064c0b06350.json)
 

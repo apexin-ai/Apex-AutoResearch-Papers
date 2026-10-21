@@ -57,5 +57,3 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | writing appendix fixes | 1 | 0 | [Read transcript](writing-appendix-fixes.md) | [JSON](../../sessions/e1/e132e24c4a1f00d264e1.json) |
 | writing cwm format collapse paragraph | 1 | 0 | [Read transcript](writing-cwm-format-collapse-paragraph.md) | [JSON](../../sessions/85/85b41e1bd782989e5127.json) |
 | writing discussion rw review | 1 | 0 | [Read transcript](writing-discussion-rw-review.md) | [JSON](../../sessions/b7/b7fa7b3b73b7f30cab27.json) |
-| writing rebuttal framework update | 1 | 0 | [Read transcript](writing-rebuttal-framework-update.md) | [JSON](../../sessions/ff/ffcae9e0f1fe32070658.json) |
-| writing rebuttal framework | 1 | 0 | [Read transcript](writing-rebuttal-framework.md) | [JSON](../../sessions/27/27e7b38960338e681db4.json) |

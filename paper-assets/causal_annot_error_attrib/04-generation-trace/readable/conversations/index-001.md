@@ -4,7 +4,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 
 | Record | Events | User turns | Markdown | JSON |
 |---|---:|---:|---|---|
-| Director coordination — [PROJECT BOOTSTRAP] 项目: causal_annot_error_attrib \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: I | 13,968 | 817 | [Read transcript](director-coordination-copy-2.md) | [JSON](../../sessions/14/14a1684fd29bbe5b5703.json) |
+| Director coordination — [PROJECT BOOTSTRAP] 项目: causal_annot_error_attrib \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: I | 13,962 | 817 | [Read transcript](director-coordination-copy-2.md) | [JSON](../../sessions/14/14a1684fd29bbe5b5703.json) |
 | Reviewer coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: causal_annot_error_attrib \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: I | 1,975 | 131 | [Read transcript](reviewer-coordination-20260521-012909.md) | [JSON](../../sessions/fb/fbafdba1220263114b9f.json) |
 | Project coordination (archived snapshot) — [Director 指令] ## MVP 任务：Confounding DAG 多分类偏差验证 ### 背景 项目核心假设：多分类（K≥3）LLM 标注误差在因果推断中的偏差与二分类有本质区别。MVP | 2,709 | 206 | [Read transcript](coordination-coordination-20260521-175453.md) | [JSON](../../sessions/e2/e2274da717b7c221dc43.json) |
 | research protest dataset search | 171 | 0 | [Read transcript](research-protest-dataset-search.md) | [JSON](../../sessions/bf/bfc04dfa146bbd72bffe.json) |
@@ -44,8 +44,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | cron hook plan009 pathological matrices — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - home-1x5090 上 sonny  | 30 | 1 | [Read transcript](cron-hook-plan009-pathological-matrices.md) | [JSON](../../sessions/2f/2f3dc752e0b47641259d.json) |
 | cron hook plan007 correction guidance — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 白名单：home-1x5 | 39 | 1 | [Read transcript](cron-hook-plan007-correction-guidance.md) | [JSON](../../sessions/40/409ed2b428eb4d584d8a.json) |
 | analysis plan011 frontier check | 37 | 0 | [Read transcript](analysis-plan011-frontier-check.md) | [JSON](../../sessions/d4/d4c860e11f11954c232c.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 `home-1x5 | 1,502 | 51 | [Read transcript](reviewer-coordination-20260522-181545.md) | [JSON](../../sessions/cd/cd201f029eb379548bdc.json) |
-| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **不要修改 experiments.t | 8,034 | 196 | [Read transcript](coordination-coordination-20260525-055729.md) | [JSON](../../sessions/51/51171fdab9751d74b501.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 `home-1x5 | 1,496 | 51 | [Read transcript](reviewer-coordination-20260522-181545.md) | [JSON](../../sessions/cd/cd201f029eb379548bdc.json) |
+| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **不要修改 experiments.t | 7,990 | 196 | [Read transcript](coordination-coordination-20260525-055729.md) | [JSON](../../sessions/51/51171fdab9751d74b501.json) |
 | cron hook plan003 empirical confusion matrices — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 home-1x5090 用 ** | 16 | 1 | [Read transcript](cron-hook-plan003-empirical-confusion-matrices.md) | [JSON](../../sessions/30/30291a3699bfee50d43f.json) |
 | ssh check vast annotation | 38 | 0 | [Read transcript](ssh-check-vast-annotation.md) | [JSON](../../sessions/c5/c53826685323c53c8c6a.json) |
 | check vast annotation status | 54 | 0 | [Read transcript](check-vast-annotation-status.md) | [JSON](../../sessions/40/403498a899b77578a969.json) |

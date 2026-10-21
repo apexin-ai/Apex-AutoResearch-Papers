@@ -153,4 +153,3 @@
 | `logs/workers/worker_paper_p2-discussion-paragraph_20260523T120500_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/paper-p2-discussion-paragraph.md) | [Open JSON](../sessions/02/02db25ce0af17d1fd69a.json) |
 | `logs/workers/worker_paper_p3-should-fix_20260523T115155_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/paper-p3-should-fix.md) | [Open JSON](../sessions/e9/e95e4660f7d65efa30ab.json) |
 | `logs/workers/worker_paper_prewrite-discussion-limitations_20260519T190748_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/paper-prewrite-discussion-limitations.md) | [Open JSON](../sessions/b5/b542fddeebcc01d9e83c.json) |
-| `logs/workers/worker_paper_rebuttal-evidence-matrix_20260518T232848_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/paper-rebuttal-evidence-matrix.md) | [Open JSON](../sessions/7f/7f63c273e3dbcc9661f3.json) |

@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 459
+- **Events:** 457
 - **Recorded user turns:** 12
-- **Tool calls:** 219
+- **Tool calls:** 218
 - **Original source:** `logs/chats/archive/feishu_group_oc_08c152bc06b6b60d10dd15b4d91ab1f1_reviewer_20260515T140205_276979.jsonl`
 - **Structured JSON:** [`80220ce3f12e3d74a267.json`](../../sessions/80/80220ce3f12e3d74a267.json)
 
@@ -6437,7 +6437,7 @@ _source line 200 · 2026-05-15T11:16:26.330409+00:00_
 
 ## Round 4
 
-30 recorded events
+28 recorded events
 
 ### User
 
@@ -6632,113 +6632,7 @@ _source line 207 · 2026-05-15T11:16:43.998556+00:00_
 
 ### Tool call
 
-_source line 208 · 2026-05-15T11:16:47.617447+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q8_fp_analysis_report.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q8_fp_analysis_report.md"
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 209 · 2026-05-15T11:16:48.070817+00:00_
-
-1	# Q8: False Positive Paired Analysis — Constrained vs Unconstrained
-2	
-3	**Dataset**: SciERC test set (551 samples)
-4	**Methods compared**: Unconstrained vs Full_s1 (constrained)
-5	
-6	## 1. Overall Performance
-7	
-8	| Metric | Unconstrained | Full_s1 |
-9	|--------|--------------|---------|
-10	| Predicted triples | 1,724 | 1,729 |
-11	| Gold triples | 974 | 974 |
-12	| True Positives | 111 | 113 |
-13	| False Positives | 1,613 | 1,616 |
-14	| Precision | 0.0644 | 0.0654 |
-15	| Recall | 0.1140 | 0.1160 |
-16	| F1 | 0.0823 | 0.0836 |
-17	
-18	## 2. FP Classification Summary
-19	
-20	| FP Type | Unconstrained | Full_s1 | Delta |
-21	|---------|--------------|---------|-------|
-22	| **A** (Hallucinated entities) | 1,275 | 1,281 | +6 |
-23	| **B** (Wrong relation/pairing) | 338 | 335 | -3 |
-24	| **C** (Constraint-induced, fs1 only) | n/a | 71 | — |
-25	| **Total FP** | **1,613** | **1,616** | **+3** |
-26	| FPs removed by constraint | 68 | n/a | — |
-27	
-28	**Key insight**: Constraints produce a near-zero net FP change (+3). The mechanism is *turnover* rather than accumulation: constraints remove 68 FPs while introducing 71 new ones.
-29	
-30	## 3. Type C (Constraint-Induced FP) Analysis
-31	
-32	**Type C count**: 71 out of 1,616 full_s1 FPs = **4.4%**
-33	
-34	### 3.1 Type C by Relation Type
-35	
-36	| Relation | Count | % of Type C |
-37	|----------|------:|------------:|
-38	| Feature-of | 25 | 35.2% |
-39	| Used-for | 16 | 22.5% |
-40	| Evaluate-for | 11 | 15.5% |
-41	| Compare | 6 | 8.5% |
-42	| Part-of | 6 | 8.5% |
-43	| Hyponym-of | 4 | 5.6% |
-44	| Conjunction | 3 | 4.2% |
-45	
-46	Type C FPs concentrate on the three most frequent relation types (Feature-of, Used-for, Evaluate-for = 73.2%), which is expected since these are the relations most likely to be affected by probability mass redistribution under constraints.
-47	
-48	### 3.2 Type C Mechanism Breakdown
-49	
-50	| Mechanism | Count | % |
-51	|-----------|------:|--:|
-52	| **Relation reassignment** (same entity pair, different relation in unc)
-…[truncated 5836 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 453
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 210 · 2026-05-15T11:16:48.473730+00:00_
+_source line 208 · 2026-05-15T11:16:48.473730+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6775,7 +6669,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 211 · 2026-05-15T11:16:48.624758+00:00_
+_source line 209 · 2026-05-15T11:16:48.624758+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-15T10:36:41.601Z\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T10:36:39.319Z\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T10:33:00.998Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T10:32:57.470Z\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T10:32:53.234Z\"}}, \"count\": 5, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1446}}"}
 
@@ -6796,7 +6690,7 @@ _source line 211 · 2026-05-15T11:16:48.624758+00:00_
 
 ### Tool call
 
-_source line 212 · 2026-05-15T11:16:57.319453+00:00_
+_source line 210 · 2026-05-15T11:16:57.319453+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6833,7 +6727,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 213 · 2026-05-15T11:16:57.520898+00:00_
+_source line 211 · 2026-05-15T11:16:57.520898+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0957}}"}
 
@@ -6854,7 +6748,7 @@ _source line 213 · 2026-05-15T11:16:57.520898+00:00_
 
 ### Tool call
 
-_source line 214 · 2026-05-15T11:16:57.521347+00:00_
+_source line 212 · 2026-05-15T11:16:57.521347+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6891,7 +6785,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 215 · 2026-05-15T11:16:57.624028+00:00_
+_source line 213 · 2026-05-15T11:16:57.624028+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0918}}"}
 
@@ -6912,7 +6806,7 @@ _source line 215 · 2026-05-15T11:16:57.624028+00:00_
 
 ### Tool call
 
-_source line 216 · 2026-05-15T11:17:01.192886+00:00_
+_source line 214 · 2026-05-15T11:17:01.192886+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -6949,7 +6843,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 217 · 2026-05-15T11:17:01.294080+00:00_
+_source line 215 · 2026-05-15T11:17:01.294080+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\"}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"RUNNING\"}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"
 …[truncated 10672 chars]
@@ -6971,7 +6865,7 @@ _source line 217 · 2026-05-15T11:17:01.294080+00:00_
 
 ### Tool call
 
-_source line 218 · 2026-05-15T11:17:21.043250+00:00_
+_source line 216 · 2026-05-15T11:17:21.043250+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7006,7 +6900,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 219 · 2026-05-15T11:17:21.344916+00:00_
+_source line 217 · 2026-05-15T11:17:21.344916+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -7027,7 +6921,7 @@ _source line 219 · 2026-05-15T11:17:21.344916+00:00_
 
 ### Tool call
 
-_source line 220 · 2026-05-15T11:17:21.646622+00:00_
+_source line 218 · 2026-05-15T11:17:21.646622+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7062,7 +6956,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 221 · 2026-05-15T11:17:21.697488+00:00_
+_source line 219 · 2026-05-15T11:17:21.697488+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -7083,7 +6977,7 @@ _source line 221 · 2026-05-15T11:17:21.697488+00:00_
 
 ### Tool call
 
-_source line 222 · 2026-05-15T11:17:25.181841+00:00_
+_source line 220 · 2026-05-15T11:17:25.181841+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7118,7 +7012,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 223 · 2026-05-15T11:17:26.788995+00:00_
+_source line 221 · 2026-05-15T11:17:26.788995+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/q8_fp_analysis.json\\n/root/schema_semantic_constrained_ie/scripts/q8_fp_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
 
@@ -7139,7 +7033,7 @@ _source line 223 · 2026-05-15T11:17:26.788995+00:00_
 
 ### Tool call
 
-_source line 224 · 2026-05-15T11:17:29.802960+00:00_
+_source line 222 · 2026-05-15T11:17:29.802960+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7174,7 +7068,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 225 · 2026-05-15T11:17:30.305930+00:00_
+_source line 223 · 2026-05-15T11:17:30.305930+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nfrom collections import defaultdict, Counter\\n\\ndef load_jsonl(path):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            data.append(json.loads(line.strip()))\\n    return data\\n\\ndef normalize(text):\\n    return text.strip().lower()\\n\\ndef get_gold_triples(doc):\\n    triples = set()\\n    for r in doc.get(\\\"gold_relations\\\", []):\\n        triples.add((normalize(r[\\\"head\\\"]), normalize(r[\\\"type\\\"]), normalize(r[\\\"tail\\\"])))\\n    return triples\\n\\ndef get_pred_triples(doc):\\n    triples = set()\\n    parsed = doc.get(\\\"parsed_output\\\", {})\\n    if parsed is None:\\n        return triples\\n    for r in parsed.get(\\\"relations\\\", []):\\n        triples.add((normalize(r[\\\"head\\\"]), normalize(r[\\\"type\\\"]), normalize(r[\\\"tail\\\"])))\\n    return triples\\n\\ndef get_gold_entity_texts(doc):\\n    return set(normalize(e[\\\"text\\\"]) for e in doc.get(\\\"gold_entities\\\", []))\\n\\ndef get_pred_entity_texts(doc):\\n    parsed = doc.get(\\\"parsed_output\\\", {})\\n    if parsed is None:\\n        return set()\\n    return set(normalize(e[\\\"text\\\"]) for e in parsed.get(\\\"entities\\\", []))\\n\\ndef classify_fp(fp_triple, gold_entities, gold_triples):\\n    h, r, t = fp_triple\\n    h_in_gold = h in gold_entities\\n    t_in_gold = t in gold_entities\\n    \\n    if not h_in_gold or not t_in_gold:\\n        return \\\"A\\\"  # hallucinated entity\\n    \\n    # Both entities in gold, check if any relation exists between them\\n    for gh, gr, gt in gold_triples:\\n        if gh == h and gt == t:\\n            return \\\"B\\\"  # wrong relation (right entity pair, wrong relation type)\\n        if gh == t and gt == h:\\n            return \\\"B\\\"  # wrong relation (reversed but same pair)\\n    \\n    # Both entities in gold but no relation between them in gold\\n    return \\\"B\\\"  # wrong pairing (entities exist ind
 …[truncated 7350 chars]
@@ -7196,7 +7090,7 @@ _source line 225 · 2026-05-15T11:17:30.305930+00:00_
 
 ### Tool call
 
-_source line 226 · 2026-05-15T11:17:30.306341+00:00_
+_source line 224 · 2026-05-15T11:17:30.306341+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7231,7 +7125,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 227 · 2026-05-15T11:17:30.760393+00:00_
+_source line 225 · 2026-05-15T11:17:30.760393+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"stats\\\": {\\n    \\\"unc\\\": {\\n      \\\"A\\\": 1275,\\n      \\\"B\\\": 338,\\n      \\\"total_fp\\\": 1613,\\n      \\\"total_pred\\\": 1724,\\n      \\\"total_gold\\\": 974,\\n      \\\"tp\\\": 111\\n    },\\n    \\\"fs1\\\": {\\n      \\\"A\\\": 1281,\\n      \\\"B\\\": 335,\\n      \\\"total_fp\\\": 1616,\\n      \\\"total_pred\\\": 1729,\\n      \\\"total_gold\\\": 974,\\n      \\\"tp\\\": 113,\\n      \\\"C\\\": 71\\n    }\\n  },\\n  \\\"fps_removed_by_constraint\\\": 68,\\n  \\\"type_c_by_relation\\\": {\\n    \\\"feature-of\\\": 25,\\n    \\\"used-for\\\": 16,\\n    \\\"evaluate-for\\\": 11,\\n    \\\"compare\\\": 6,\\n    \\\"conjunction\\\": 3,\\n    \\\"part-of\\\": 6,\\n    \\\"hyponym-of\\\": 4\\n  },\\n  \\\"type_c_details\\\": [\\n    {\\n      \\\"doc_id\\\": \\\"X96-1059_sent2\\\",\\n      \\\"triple\\\": [\\n        \\\"morphological analysis\\\",\\n        \\\"feature-of\\\",\\n        \\\"japanese\\\"\\n      ],\\n      \\\"fp_subtype\\\": \\\"A\\\",\\n      \\\"unc_rels_for_same_pair\\\": [\\n        \\\"used-for\\\"\\n      ],\\n      \\\"input_text\\\": \\\"Our approach to the Multi-lingual Evaluation Task -LRB- MET -RRB- for Japanese text is to consider the given task as a morphological analysis problem in Japanese .\\\"\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"X96-1059_sent2\\\",\\n      \\\"triple\\\": [\\n        \\\"multi-lingual evaluation task\\\",\\n        \\\"used-for\\\",\\n        \\\"morphological analysis\\\"\\n      ],\\n      \\\"fp_subtype\\\": \\\"A\\\",\\n      \\\"unc_rels_for_same_pair\\\": [],\\n      \\\"input_text\\\": \\\"Our approach to the Multi-lingual Evaluation Task -LRB- MET -RRB- for Japanese text is to consider the given task as a morphological analysis problem in Japanese .\\\"\\n    },\\n    {\\n      \\\"doc_id\\\": \\\"ICCV_2001_47_abs_sent1\\\",\\n      \\\"triple\\\": [\\n        \\\"our approach\\\",\\n        \\\"evaluate-for\\\
 …[truncated 1972 chars]
@@ -7253,7 +7147,7 @@ _source line 227 · 2026-05-15T11:17:30.760393+00:00_
 
 ### Tool call
 
-_source line 228 · 2026-05-15T11:18:35.032057+00:00_
+_source line 226 · 2026-05-15T11:18:35.032057+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7288,7 +7182,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 229 · 2026-05-15T11:18:38.747306+00:00_
+_source line 227 · 2026-05-15T11:18:38.747306+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -7309,7 +7203,7 @@ _source line 229 · 2026-05-15T11:18:38.747306+00:00_
 
 ### Assistant
 
-_source line 230 · 2026-05-15T11:18:42.310580+00:00_
+_source line 228 · 2026-05-15T11:18:42.310580+00:00_
 
 审查已提交。Q8 FP paired analysis 通过——数字与 registry 精确匹配，方法论正确，结论未过度解读。唯一备注：当前仅覆盖 SciERC，如 rebuttal 需泛化 claim 建议补 DocRED 侧分析。
 
@@ -7332,7 +7226,7 @@ _source line 230 · 2026-05-15T11:18:42.310580+00:00_
 
 ### User
 
-_source line 231 · 2026-05-15T11:25:09.964603+00:00_
+_source line 229 · 2026-05-15T11:25:09.964603+00:00_
 
 [系统通知 — worker_done:worker_check_mt6144_progress_v2_20260515T112358]:
 Worker worker_check_mt6144_progress_v2_20260515T112358 已完成（status=done），请审查 Agent 的处理结果。
@@ -7353,7 +7247,7 @@ Worker worker_check_mt6144_progress_v2_20260515T112358 已完成（status=done�
 
 ### Tool call
 
-_source line 232 · 2026-05-15T11:25:17.949855+00:00_
+_source line 230 · 2026-05-15T11:25:17.949855+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7390,7 +7284,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 233 · 2026-05-15T11:25:18.352110+00:00_
+_source line 231 · 2026-05-15T11:25:18.352110+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1014}}"}
 
@@ -7411,7 +7305,7 @@ _source line 233 · 2026-05-15T11:25:18.352110+00:00_
 
 ### Tool call
 
-_source line 234 · 2026-05-15T11:25:18.403010+00:00_
+_source line 232 · 2026-05-15T11:25:18.403010+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7448,7 +7342,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 235 · 2026-05-15T11:25:18.554294+00:00_
+_source line 233 · 2026-05-15T11:25:18.554294+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1515}}"}
 
@@ -7469,7 +7363,7 @@ _source line 235 · 2026-05-15T11:25:18.554294+00:00_
 
 ### Tool call
 
-_source line 236 · 2026-05-15T11:25:22.369155+00:00_
+_source line 234 · 2026-05-15T11:25:22.369155+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7506,7 +7400,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 237 · 2026-05-15T11:25:22.699394+00:00_
+_source line 235 · 2026-05-15T11:25:22.699394+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T08:17:36.675Z\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T08:19:50.589Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T08:19:51.861Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:19:53.379823+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"247487\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1_mt6144.log\", \"submitted_at\": \"2026-05-15T08:22:03.222Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"247487\", \"log_path\": \"~
 …[truncated 2121 chars]
@@ -7528,7 +7422,7 @@ _source line 237 · 2026-05-15T11:25:22.699394+00:00_
 
 ### Tool call
 
-_source line 238 · 2026-05-15T11:25:30.666869+00:00_
+_source line 236 · 2026-05-15T11:25:30.666869+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7563,7 +7457,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 239 · 2026-05-15T11:25:31.270039+00:00_
+_source line 237 · 2026-05-15T11:25:31.270039+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7598,7 +7492,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 240 · 2026-05-15T11:25:31.974116+00:00_
+_source line 238 · 2026-05-15T11:25:31.974116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 00000000:B8:00.0, 87 %, 18203 MiB, 97887 MiB\\n1, 00000000:C8:00.0, 86 %, 18107 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
 
@@ -7619,7 +7513,7 @@ _source line 240 · 2026-05-15T11:25:31.974116+00:00_
 
 ### Tool result
 
-_source line 241 · 2026-05-15T11:25:32.579014+00:00_
+_source line 239 · 2026-05-15T11:25:32.579014+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"246952, 00000000:B8:00.0, 18194 MiB\\n247492, 00000000:C8:00.0, 18098 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
 
@@ -7640,7 +7534,7 @@ _source line 241 · 2026-05-15T11:25:32.579014+00:00_
 
 ### Tool call
 
-_source line 242 · 2026-05-15T11:25:37.411872+00:00_
+_source line 240 · 2026-05-15T11:25:37.411872+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7675,7 +7569,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 243 · 2026-05-15T11:25:37.714138+00:00_
+_source line 241 · 2026-05-15T11:25:37.714138+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7710,7 +7604,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 244 · 2026-05-15T11:25:37.823397+00:00_
+_source line 242 · 2026-05-15T11:25:37.823397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
 
@@ -7731,7 +7625,7 @@ _source line 244 · 2026-05-15T11:25:37.823397+00:00_
 
 ### Tool result
 
-_source line 245 · 2026-05-15T11:25:38.381063+00:00_
+_source line 243 · 2026-05-15T11:25:38.381063+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Grammar-first fallback triggered (skip_count=25): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=26): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=27): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=28): semantic mask would eliminate all grammar-valid tokens\\nGrammar-first fallback triggered (skip_count=29): semantic mask would eliminate all grammar-valid tokens\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -7752,7 +7646,7 @@ _source line 245 · 2026-05-15T11:25:38.381063+00:00_
 
 ### Tool call
 
-_source line 246 · 2026-05-15T11:25:41.734035+00:00_
+_source line 244 · 2026-05-15T11:25:41.734035+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7787,7 +7681,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 247 · 2026-05-15T11:25:41.985661+00:00_
+_source line 245 · 2026-05-15T11:25:41.985661+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7822,7 +7716,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 248 · 2026-05-15T11:25:42.186868+00:00_
+_source line 246 · 2026-05-15T11:25:42.186868+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"555 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -7843,7 +7737,7 @@ _source line 248 · 2026-05-15T11:25:42.186868+00:00_
 
 ### Tool result
 
-_source line 249 · 2026-05-15T11:25:42.692384+00:00_
+_source line 247 · 2026-05-15T11:25:42.692384+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"446 /root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -7864,7 +7758,7 @@ _source line 249 · 2026-05-15T11:25:42.692384+00:00_
 
 ### Tool call
 
-_source line 250 · 2026-05-15T11:26:11.620767+00:00_
+_source line 248 · 2026-05-15T11:26:11.620767+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7899,7 +7793,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 251 · 2026-05-15T11:26:15.438891+00:00_
+_source line 249 · 2026-05-15T11:26:15.438891+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -7924,7 +7818,7 @@ _source line 251 · 2026-05-15T11:26:15.438891+00:00_
 
 ### User
 
-_source line 252 · 2026-05-15T11:28:43.079946+00:00_
+_source line 250 · 2026-05-15T11:28:43.079946+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Paper Agent 8 项写作修复全部完成，15/16 issues resolved，仅剩 W1 CF fallback），请审查研究方向和计划的合理性。
@@ -7945,7 +7839,7 @@ _source line 252 · 2026-05-15T11:28:43.079946+00:00_
 
 ### Tool call
 
-_source line 253 · 2026-05-15T11:28:49.527238+00:00_
+_source line 251 · 2026-05-15T11:28:49.527238+00:00_
 
 called ToolSearch
 
@@ -7980,7 +7874,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 254 · 2026-05-15T11:28:49.578007+00:00_
+_source line 252 · 2026-05-15T11:28:49.578007+00:00_
 
 
 
@@ -8001,7 +7895,7 @@ _source line 254 · 2026-05-15T11:28:49.578007+00:00_
 
 ### Tool call
 
-_source line 255 · 2026-05-15T11:28:52.091136+00:00_
+_source line 253 · 2026-05-15T11:28:52.091136+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -8034,7 +7928,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 256 · 2026-05-15T11:28:52.142019+00:00_
+_source line 254 · 2026-05-15T11:28:52.142019+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 11:28 UTC | 更新原因: Paper Agent 8 项写作修复全部完成，15/16 issues resolved，仅剩 W1 CF fallback\\n\\n> 最后更新: 2026-05-15 | 更新原因: Paper Agent 8 项写作修复全部完成，15/16 issues resolved，仅剩 W1 CF fallback\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Round 1 审稿应对 — 收尾阶段\\n- **Issue Tracker**: 15/16 resolved，仅 W1 (CF fallback ablation) 待实验\\n- **Paper Agent**: 全部 8 项写作修复完成 ✅（§3 pair-based 重写, runtime 表, Limitations, prompts appendix, DocRED footnote, CF 分布, W4 v2 数据统一, 页数压缩）\\n- **编译状态**: 17 页（8 main + Limitations/Ethics + References + Appendix），无 undefined refs\\n- **GPU**: 2 张运行 mt6144 实验，预计 ~2h 完成\\n\\n## Round 1 Issue Tracker\\n| ID | Severity | Status | 简述 |\\n|----|----------|--------|------|\\n| W1 | critical | **in_progress** | CF fallback 代码完成，4 实验 PREPARING，等 GPU (~12 GPU-hrs) |\\n| W2 | critical | ✅ resolved | §3 pair-based 重写 |\\n| W3 | critical | ✅ resolved | Runtime 表 + 分析 |\\n| W4 | critical | ✅ resolved | Table 1 v2 数据统一 |\\n| W5 | warning | ✅ resolved | Limitations: zero-shot |\\n| W6 | warning | ✅ resolved | 合并到 W3 |\\n| W7 | warning | ✅ resolved | Title → Type-Constrained |\\n| W8 | warning | ✅ resolved | Contribution #2 narrowed |\\n| W9 | warning | ✅ resolved | Limitations: single-token |\\n| W10 | info | ✅ resolved | Prompt template appendix |\\n| W11 | info | ✅ resolved | DocRED dev set footnote |\\n| W12 | info | ✅ resolved | 合并到 W3 runtime |\\n| W13 | info | ✅ resolved | Abstract + \\\"6 types\\\" 修正 |\\n| W14 | info | ✅ resolved | Orphan bib 删除 |\\n| Q7 | info | ✅ resolved | CF 分布 appendix |\\n| Q8 | info | ✅ resolved | FP paired analysis |\\n\\n## 关键路径（仅剩 W1）\\n1. mt6144 实验完成 
 …[truncated 2926 chars]
@@ -8056,7 +7950,7 @@ _source line 256 · 2026-05-15T11:28:52.142019+00:00_
 
 ### Tool call
 
-_source line 257 · 2026-05-15T11:29:39.276072+00:00_
+_source line 255 · 2026-05-15T11:29:39.276072+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8091,7 +7985,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 258 · 2026-05-15T11:29:43.160288+00:00_
+_source line 256 · 2026-05-15T11:29:43.160288+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -8116,7 +8010,7 @@ _source line 258 · 2026-05-15T11:29:43.160288+00:00_
 
 ### User
 
-_source line 259 · 2026-05-15T11:33:08.110654+00:00_
+_source line 257 · 2026-05-15T11:33:08.110654+00:00_
 
 [系统通知 — worker_done:worker_verify_cf_fallback_dryrun_20260515T113020]:
 Worker worker_verify_cf_fallback_dryrun_20260515T113020 已完成（status=done），请审查 Agent 的处理结果。
@@ -8137,7 +8031,7 @@ Worker worker_verify_cf_fallback_dryrun_20260515T113020 已完成（status=done�
 
 ### Tool call
 
-_source line 260 · 2026-05-15T11:33:15.820861+00:00_
+_source line 258 · 2026-05-15T11:33:15.820861+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8174,7 +8068,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 261 · 2026-05-15T11:33:16.273053+00:00_
+_source line 259 · 2026-05-15T11:33:16.273053+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0893}}"}
 
@@ -8195,7 +8089,7 @@ _source line 261 · 2026-05-15T11:33:16.273053+00:00_
 
 ### Tool call
 
-_source line 262 · 2026-05-15T11:33:16.801841+00:00_
+_source line 260 · 2026-05-15T11:33:16.801841+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8230,7 +8124,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 263 · 2026-05-15T11:33:18.057137+00:00_
+_source line 261 · 2026-05-15T11:33:18.057137+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 20108 May 15 18:29 /root/schema_semantic_constrained_ie/outputs/test_cf_fallback_dryrun.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
 
@@ -8251,7 +8145,7 @@ _source line 263 · 2026-05-15T11:33:18.057137+00:00_
 
 ### Tool call
 
-_source line 264 · 2026-05-15T11:33:22.074809+00:00_
+_source line 262 · 2026-05-15T11:33:22.074809+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8286,7 +8180,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 265 · 2026-05-15T11:33:22.477035+00:00_
+_source line 263 · 2026-05-15T11:33:22.477035+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8321,7 +8215,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 266 · 2026-05-15T11:33:22.577750+00:00_
+_source line 264 · 2026-05-15T11:33:22.577750+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"10 /root/schema_semantic_constrained_ie/outputs/test_cf_fallback_dryrun.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -8342,7 +8236,7 @@ _source line 266 · 2026-05-15T11:33:22.577750+00:00_
 
 ### Tool result
 
-_source line 267 · 2026-05-15T11:33:23.080041+00:00_
+_source line 265 · 2026-05-15T11:33:23.080041+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -8363,7 +8257,7 @@ _source line 267 · 2026-05-15T11:33:23.080041+00:00_
 
 ### Tool call
 
-_source line 268 · 2026-05-15T11:33:26.042871+00:00_
+_source line 266 · 2026-05-15T11:33:26.042871+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8398,7 +8292,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 269 · 2026-05-15T11:33:26.496494+00:00_
+_source line 267 · 2026-05-15T11:33:26.496494+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"X96-1059_sent0\\\", \\\"input_text\\\": \\\"Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing -LRB- -LSB- 1 -RSB- -LSB- 2 -RSB- -RRB- .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Recognition of proper nouns\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"proper nouns\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}, {\\\"text\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Material\\\"}, {\\\"text\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Task\\\"}, {\\\"text\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Task\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Recognition of proper nouns\\\", \\\"tail\\\": \\\"morphological analysis\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}, {\\\"head\\\": \\\"proper nouns\\\", \\\"tail\\\": \\\"Japanese text\\\", \\\"type\\\": \\\"Part-of\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"Material\\\"}, {\\\"head\\\": \\\"morphological analysis\\\", \\\"tail\\\": \\\"Japanese text processing\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"Task\\\", \\\"tail_type\\\": \\\"Task\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"problem\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"morphological analysis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Japanese text processing\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Task\\\\\\\"}\\\\n  ],\\\\n  \\\\\\\"relati
 …[truncated 2555 chars]
@@ -8420,7 +8314,7 @@ _source line 269 · 2026-05-15T11:33:26.496494+00:00_
 
 ### Tool call
 
-_source line 270 · 2026-05-15T11:33:32.961845+00:00_
+_source line 268 · 2026-05-15T11:33:32.961845+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8455,7 +8349,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 271 · 2026-05-15T11:33:33.567771+00:00_
+_source line 269 · 2026-05-15T11:33:33.567771+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -8476,7 +8370,7 @@ _source line 271 · 2026-05-15T11:33:33.567771+00:00_
 
 ### Tool call
 
-_source line 272 · 2026-05-15T11:33:33.618494+00:00_
+_source line 270 · 2026-05-15T11:33:33.618494+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8511,7 +8405,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 273 · 2026-05-15T11:33:34.070991+00:00_
+_source line 271 · 2026-05-15T11:33:34.070991+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -8532,7 +8426,7 @@ _source line 273 · 2026-05-15T11:33:34.070991+00:00_
 
 ### Tool call
 
-_source line 274 · 2026-05-15T11:33:39.094067+00:00_
+_source line 272 · 2026-05-15T11:33:39.094067+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8567,7 +8461,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 275 · 2026-05-15T11:33:39.245200+00:00_
+_source line 273 · 2026-05-15T11:33:39.245200+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8602,7 +8496,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 276 · 2026-05-15T11:33:39.554125+00:00_
+_source line 274 · 2026-05-15T11:33:39.554125+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -8623,7 +8517,7 @@ _source line 276 · 2026-05-15T11:33:39.554125+00:00_
 
 ### Tool result
 
-_source line 277 · 2026-05-15T11:33:40.057052+00:00_
+_source line 275 · 2026-05-15T11:33:40.057052+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"X96-1059_sent7\\\", \\\"input_text\\\": \\\"Second , based on the information resulting from the dictionary lookup stage , a set of rules is applied to the segmented strings in order to identify NE items .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"dictionary lookup stage\\\", \\\"type\\\": \\\"Method\\\"}, {\\\"text\\\": \\\"rules\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}, {\\\"text\\\": \\\"NE items\\\", \\\"type\\\": \\\"OtherScientificTerm\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"dictionary lookup stage\\\", \\\"tail\\\": \\\"rules\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"Method\\\", \\\"tail_type\\\": \\\"OtherScientificTerm\\\"}, {\\\"head\\\": \\\"rules\\\", \\\"tail\\\": \\\"NE items\\\", \\\"type\\\": \\\"Used-for\\\", \\\"head_type\\\": \\\"OtherScientificTerm\\\", \\\"tail_type\\\": \\\"OtherScientificTerm\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Second\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Generic\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"dictionary lookup stage\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"NE items\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n    }\\\\n  ],\\\\n  \\\\\\\"relations\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"head\\\\\\\": \\\\\\\"Second\\\\\\\",\\\\n      \\\\\\\"tail\\\\\\\": \\\\\\\"dictionary lookup stage\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"Conjunction\\\\\\\",\\\\n      \\\\\\\"head_type\\\\\\\": \\\\\\\"Generic\\\\\\\",\\\\n      \\\\\\\"tail_type\\\\\\\": \\\\\\\"OtherScientificTerm\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"head\\\\\\\": \\\\\\\"Second\\\\\\\",\\\\n      \\\\\\\"tail\\\\\\\": \\\\\\\"NE items\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": 
 …[truncated 5242 chars]
@@ -8645,7 +8539,7 @@ _source line 277 · 2026-05-15T11:33:40.057052+00:00_
 
 ### Tool call
 
-_source line 278 · 2026-05-15T11:34:04.061647+00:00_
+_source line 276 · 2026-05-15T11:34:04.061647+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8680,7 +8574,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 279 · 2026-05-15T11:34:04.062184+00:00_
+_source line 277 · 2026-05-15T11:34:04.062184+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -8701,7 +8595,7 @@ _source line 279 · 2026-05-15T11:34:04.062184+00:00_
 
 ### Tool call
 
-_source line 280 · 2026-05-15T11:34:25.668206+00:00_
+_source line 278 · 2026-05-15T11:34:25.668206+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8736,7 +8630,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 281 · 2026-05-15T11:34:29.830416+00:00_
+_source line 279 · 2026-05-15T11:34:29.830416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -8761,7 +8655,7 @@ _source line 281 · 2026-05-15T11:34:29.830416+00:00_
 
 ### User
 
-_source line 282 · 2026-05-15T12:23:26.406824+00:00_
+_source line 280 · 2026-05-15T12:23:26.406824+00:00_
 
 [System 触发审查]:
 Round 2 前全文预审请求。当前论文已完成 15/16 审稿修复（仅剩 W1 CF fallback 等实验数据），Paper Agent 刚做完页数压缩。请做一次全面审查：
@@ -8791,7 +8685,7 @@ Round 2 前全文预审请求。当前论文已完成 15/16 审稿修复（仅�
 
 ### Tool call
 
-_source line 283 · 2026-05-15T12:23:40.450996+00:00_
+_source line 281 · 2026-05-15T12:23:40.450996+00:00_
 
 called Glob
 
@@ -8826,7 +8720,7 @@ called Glob
 
 ### Tool result
 
-_source line 284 · 2026-05-15T12:23:40.501669+00:00_
+_source line 282 · 2026-05-15T12:23:40.501669+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_fd4b26.tex
@@ -8862,7 +8756,7 @@ _source line 284 · 2026-05-15T12:23:40.501669+00:00_
 
 ### Tool call
 
-_source line 285 · 2026-05-15T12:23:44.369119+00:00_
+_source line 283 · 2026-05-15T12:23:44.369119+00:00_
 
 called Read
 
@@ -8895,7 +8789,7 @@ called Read
 
 ### Tool result
 
-_source line 286 · 2026-05-15T12:23:44.771970+00:00_
+_source line 284 · 2026-05-15T12:23:44.771970+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -8984,7 +8878,7 @@ _source line 286 · 2026-05-15T12:23:44.771970+00:00_
 
 ### Tool call
 
-_source line 287 · 2026-05-15T12:23:44.772486+00:00_
+_source line 285 · 2026-05-15T12:23:44.772486+00:00_
 
 called Read
 
@@ -9017,7 +8911,7 @@ called Read
 
 ### Tool result
 
-_source line 288 · 2026-05-15T12:23:45.279542+00:00_
+_source line 286 · 2026-05-15T12:23:45.279542+00:00_
 
 1	\begin{abstract}
 2	LLM-based information extraction systems can produce systematic ontology constraint violations during autoregressive generation.
@@ -9052,7 +8946,7 @@ _source line 288 · 2026-05-15T12:23:45.279542+00:00_
 
 ### Tool call
 
-_source line 289 · 2026-05-15T12:23:45.280062+00:00_
+_source line 287 · 2026-05-15T12:23:45.280062+00:00_
 
 called Read
 
@@ -9085,7 +8979,7 @@ called Read
 
 ### Tool result
 
-_source line 290 · 2026-05-15T12:23:45.832809+00:00_
+_source line 288 · 2026-05-15T12:23:45.832809+00:00_
 
 1	% Section 7 — Discussion and Conclusion (compressed)
 2	% Full discussion paragraphs moved to Appendix B.
@@ -9126,7 +9020,7 @@ _source line 290 · 2026-05-15T12:23:45.832809+00:00_
 
 ### Tool call
 
-_source line 291 · 2026-05-15T12:23:45.833300+00:00_
+_source line 289 · 2026-05-15T12:23:45.833300+00:00_
 
 called Read
 
@@ -9159,7 +9053,7 @@ called Read
 
 ### Tool result
 
-_source line 292 · 2026-05-15T12:23:45.884495+00:00_
+_source line 290 · 2026-05-15T12:23:45.884495+00:00_
 
 1	% Section 5 — Runtime Analysis
 2	% Data source: artifacts/rebuttal/w3_runtime_report.md
@@ -9228,7 +9122,7 @@ _source line 292 · 2026-05-15T12:23:45.884495+00:00_
 
 ### Tool call
 
-_source line 293 · 2026-05-15T12:23:50.304704+00:00_
+_source line 291 · 2026-05-15T12:23:50.304704+00:00_
 
 called Read
 
@@ -9261,7 +9155,7 @@ called Read
 
 ### Tool result
 
-_source line 294 · 2026-05-15T12:23:50.758067+00:00_
+_source line 292 · 2026-05-15T12:23:50.758067+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -9315,7 +9209,7 @@ _source line 294 · 2026-05-15T12:23:50.758067+00:00_
 
 ### Tool call
 
-_source line 295 · 2026-05-15T12:23:50.808864+00:00_
+_source line 293 · 2026-05-15T12:23:50.808864+00:00_
 
 called Read
 
@@ -9348,7 +9242,7 @@ called Read
 
 ### Tool result
 
-_source line 296 · 2026-05-15T12:23:51.261446+00:00_
+_source line 294 · 2026-05-15T12:23:51.261446+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -9432,7 +9326,7 @@ _source line 296 · 2026-05-15T12:23:51.261446+00:00_
 
 ### Tool call
 
-_source line 297 · 2026-05-15T12:23:51.261868+00:00_
+_source line 295 · 2026-05-15T12:23:51.261868+00:00_
 
 called Read
 
@@ -9465,7 +9359,7 @@ called Read
 
 ### Tool result
 
-_source line 298 · 2026-05-15T12:23:51.864629+00:00_
+_source line 296 · 2026-05-15T12:23:51.864629+00:00_
 
 1	% Section 5 — DocRED Results (compressed, 1450→~600 words)
 2	% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
@@ -9545,7 +9439,7 @@ _source line 298 · 2026-05-15T12:23:51.864629+00:00_
 
 ### Tool call
 
-_source line 299 · 2026-05-15T12:23:51.915310+00:00_
+_source line 297 · 2026-05-15T12:23:51.915310+00:00_
 
 called Read
 
@@ -9578,7 +9472,7 @@ called Read
 
 ### Tool result
 
-_source line 300 · 2026-05-15T12:23:51.966167+00:00_
+_source line 298 · 2026-05-15T12:23:51.966167+00:00_
 
 1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
 2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
@@ -9648,7 +9542,7 @@ _source line 300 · 2026-05-15T12:23:51.966167+00:00_
 
 ### Tool call
 
-_source line 301 · 2026-05-15T12:24:01.450137+00:00_
+_source line 299 · 2026-05-15T12:24:01.450137+00:00_
 
 called Read
 
@@ -9681,7 +9575,7 @@ called Read
 
 ### Tool result
 
-_source line 302 · 2026-05-15T12:24:01.500968+00:00_
+_source line 300 · 2026-05-15T12:24:01.500968+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -9730,7 +9624,7 @@ _source line 302 · 2026-05-15T12:24:01.500968+00:00_
 
 ### Tool call
 
-_source line 303 · 2026-05-15T12:24:01.501444+00:00_
+_source line 301 · 2026-05-15T12:24:01.501444+00:00_
 
 called Read
 
@@ -9763,7 +9657,7 @@ called Read
 
 ### Tool result
 
-_source line 304 · 2026-05-15T12:24:01.702768+00:00_
+_source line 302 · 2026-05-15T12:24:01.702768+00:00_
 
 1	% Appendix B — Extended Discussion
 2	% Contains discussion paragraphs moved from the main text during compression.
@@ -9810,7 +9704,7 @@ _source line 304 · 2026-05-15T12:24:01.702768+00:00_
 
 ### Tool call
 
-_source line 305 · 2026-05-15T12:24:01.803697+00:00_
+_source line 303 · 2026-05-15T12:24:01.803697+00:00_
 
 called Read
 
@@ -9843,7 +9737,7 @@ called Read
 
 ### Tool result
 
-_source line 306 · 2026-05-15T12:24:01.854481+00:00_
+_source line 304 · 2026-05-15T12:24:01.854481+00:00_
 
 1	% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)
 2	% exp_ids: llama_docred_unconstrained, llama_docred_full_s1
@@ -9900,7 +9794,7 @@ _source line 306 · 2026-05-15T12:24:01.854481+00:00_
 
 ### Tool call
 
-_source line 307 · 2026-05-15T12:24:08.083439+00:00_
+_source line 305 · 2026-05-15T12:24:08.083439+00:00_
 
 called Read
 
@@ -9933,7 +9827,7 @@ called Read
 
 ### Tool result
 
-_source line 308 · 2026-05-15T12:24:08.335116+00:00_
+_source line 306 · 2026-05-15T12:24:08.335116+00:00_
 
 1	% Section 2: Background (compressed)
 2	
@@ -9975,7 +9869,7 @@ _source line 308 · 2026-05-15T12:24:08.335116+00:00_
 
 ### Tool call
 
-_source line 309 · 2026-05-15T12:24:08.335519+00:00_
+_source line 307 · 2026-05-15T12:24:08.335519+00:00_
 
 called Read
 
@@ -10008,7 +9902,7 @@ called Read
 
 ### Tool result
 
-_source line 310 · 2026-05-15T12:24:08.386251+00:00_
+_source line 308 · 2026-05-15T12:24:08.386251+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -10050,7 +9944,7 @@ _source line 310 · 2026-05-15T12:24:08.386251+00:00_
 
 ### Tool call
 
-_source line 311 · 2026-05-15T12:27:09.363299+00:00_
+_source line 309 · 2026-05-15T12:27:09.363299+00:00_
 
 called Bash
 
@@ -10085,7 +9979,7 @@ called Bash
 
 ### Tool result
 
-_source line 312 · 2026-05-15T12:27:09.866886+00:00_
+_source line 310 · 2026-05-15T12:27:09.866886+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 320213 May 15 11:32 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf
 
@@ -10106,7 +10000,7 @@ _source line 312 · 2026-05-15T12:27:09.866886+00:00_
 
 ### Tool call
 
-_source line 313 · 2026-05-15T12:27:09.867358+00:00_
+_source line 311 · 2026-05-15T12:27:09.867358+00:00_
 
 called Read
 
@@ -10139,7 +10033,7 @@ called Read
 
 ### Tool result
 
-_source line 314 · 2026-05-15T12:27:09.917988+00:00_
+_source line 312 · 2026-05-15T12:27:09.917988+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -10179,7 +10073,7 @@ _source line 314 · 2026-05-15T12:27:09.917988+00:00_
 
 ### Tool call
 
-_source line 315 · 2026-05-15T12:27:16.847666+00:00_
+_source line 313 · 2026-05-15T12:27:16.847666+00:00_
 
 called ToolSearch
 
@@ -10214,7 +10108,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 316 · 2026-05-15T12:27:16.848179+00:00_
+_source line 314 · 2026-05-15T12:27:16.848179+00:00_
 
 
 
@@ -10235,7 +10129,7 @@ _source line 316 · 2026-05-15T12:27:16.848179+00:00_
 
 ### Tool call
 
-_source line 317 · 2026-05-15T12:27:20.516058+00:00_
+_source line 315 · 2026-05-15T12:27:20.516058+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -10272,7 +10166,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 318 · 2026-05-15T12:27:22.360659+00:00_
+_source line 316 · 2026-05-15T12:27:22.360659+00:00_
 
 Error: result (2,982,055 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/34d4c930-08d8-4b1a-b4fe-5e8ff7b36401/tool-results/mcp-agent-ml-research-pdf_to_images-1778848042235.txt.
 Format: JSON with schema: {result: string}
@@ -10300,7 +10194,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 319 · 2026-05-15T12:27:26.207403+00:00_
+_source line 317 · 2026-05-15T12:27:26.207403+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -10337,7 +10231,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 320 · 2026-05-15T12:27:26.762575+00:00_
+_source line 318 · 2026-05-15T12:27:26.762575+00:00_
 
 Error: result (635,441 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-reviewer-17ad4b4d/34d4c930-08d8-4b1a-b4fe-5e8ff7b36401/tool-results/mcp-agent-ml-research-pdf_to_images-1778848046701.txt.
 Format: JSON with schema: {result: string}
@@ -10365,7 +10259,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 321 · 2026-05-15T12:27:30.738168+00:00_
+_source line 319 · 2026-05-15T12:27:30.738168+00:00_
 
 called Bash
 
@@ -10400,7 +10294,7 @@ called Bash
 
 ### Tool result
 
-_source line 322 · 2026-05-15T12:27:30.788893+00:00_
+_source line 320 · 2026-05-15T12:27:30.788893+00:00_
 
 total 2200
 drwxr-xr-x 2 ubuntu ubuntu   4096 May 15 12:27 .
@@ -10427,7 +10321,7 @@ drwxr-xr-x 4 ubuntu ubuntu   4096 May 15 12:24 ..
 
 ### Tool call
 
-_source line 323 · 2026-05-15T12:27:34.405891+00:00_
+_source line 321 · 2026-05-15T12:27:34.405891+00:00_
 
 called Read
 
@@ -10460,7 +10354,7 @@ called Read
 
 ### Tool call
 
-_source line 324 · 2026-05-15T12:27:34.406372+00:00_
+_source line 322 · 2026-05-15T12:27:34.406372+00:00_
 
 called Read
 
@@ -10493,7 +10387,7 @@ called Read
 
 ### Tool result
 
-_source line 325 · 2026-05-15T12:27:35.615464+00:00_
+_source line 323 · 2026-05-15T12:27:35.615464+00:00_
 
 
 
@@ -10514,7 +10408,7 @@ _source line 325 · 2026-05-15T12:27:35.615464+00:00_
 
 ### Tool result
 
-_source line 326 · 2026-05-15T12:27:35.617203+00:00_
+_source line 324 · 2026-05-15T12:27:35.617203+00:00_
 
 
 
@@ -10535,7 +10429,7 @@ _source line 326 · 2026-05-15T12:27:35.617203+00:00_
 
 ### Tool call
 
-_source line 327 · 2026-05-15T12:27:56.310525+00:00_
+_source line 325 · 2026-05-15T12:27:56.310525+00:00_
 
 called Read
 
@@ -10568,7 +10462,7 @@ called Read
 
 ### Tool result
 
-_source line 328 · 2026-05-15T12:27:56.913839+00:00_
+_source line 326 · 2026-05-15T12:27:56.913839+00:00_
 
 
 
@@ -10589,7 +10483,7 @@ _source line 328 · 2026-05-15T12:27:56.913839+00:00_
 
 ### Tool call
 
-_source line 329 · 2026-05-15T12:28:06.646374+00:00_
+_source line 327 · 2026-05-15T12:28:06.646374+00:00_
 
 called Grep
 
@@ -10626,7 +10520,7 @@ called Grep
 
 ### Tool result
 
-_source line 330 · 2026-05-15T12:28:06.697141+00:00_
+_source line 328 · 2026-05-15T12:28:06.697141+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex:1:% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)
 
@@ -10647,7 +10541,7 @@ _source line 330 · 2026-05-15T12:28:06.697141+00:00_
 
 ### Tool call
 
-_source line 331 · 2026-05-15T12:28:10.263784+00:00_
+_source line 329 · 2026-05-15T12:28:10.263784+00:00_
 
 called Grep
 
@@ -10684,7 +10578,7 @@ called Grep
 
 ### Tool result
 
-_source line 332 · 2026-05-15T12:28:10.264285+00:00_
+_source line 330 · 2026-05-15T12:28:10.264285+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex:39:This is strictly stronger than checking domain and range independently ($\tau^h \in \operatorname{dom}(r) \wedge \tau^t \in \operatorname{range}(r)$), because most relations have non-rectangular type signatures: $\sigma(r) \subsetneq \operatorname{dom}(r) \times \operatorname{range}(r)$ for all 7 SciERC and 73/96 DocRED relations.\footnote{An independent check would over-permit type pairs by $1.50\times$ on SciERC and $1.58\times$ on DocRED.}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex:111:This pair-based check is strictly tighter than an independent range check $\tau^t \in \operatorname{range}(r_j)$, because most relations have non-rectangular type signatures (\S\ref{sec:formulation}).
@@ -10706,7 +10600,7 @@ _source line 332 · 2026-05-15T12:28:10.264285+00:00_
 
 ### Tool call
 
-_source line 333 · 2026-05-15T12:28:19.554522+00:00_
+_source line 331 · 2026-05-15T12:28:19.554522+00:00_
 
 called Grep
 
@@ -10743,7 +10637,7 @@ called Grep
 
 ### Tool result
 
-_source line 334 · 2026-05-15T12:28:19.605238+00:00_
+_source line 332 · 2026-05-15T12:28:19.605238+00:00_
 
 No matches found
 
@@ -10764,7 +10658,7 @@ No matches found
 
 ### Tool call
 
-_source line 335 · 2026-05-15T12:28:25.289167+00:00_
+_source line 333 · 2026-05-15T12:28:25.289167+00:00_
 
 called Grep
 
@@ -10801,7 +10695,7 @@ called Grep
 
 ### Tool result
 
-_source line 336 · 2026-05-15T12:28:25.339903+00:00_
+_source line 334 · 2026-05-15T12:28:25.339903+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex:42:\paragraph{Constraint decidability.}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex:44:We distinguish three classes by \emph{prefix-decidability}:
@@ -10826,7 +10720,7 @@ _source line 336 · 2026-05-15T12:28:25.339903+00:00_
 
 ### Tool call
 
-_source line 337 · 2026-05-15T12:30:04.097763+00:00_
+_source line 335 · 2026-05-15T12:30:04.097763+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10861,7 +10755,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 338 · 2026-05-15T12:30:07.916574+00:00_
+_source line 336 · 2026-05-15T12:30:07.916574+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -10882,7 +10776,7 @@ _source line 338 · 2026-05-15T12:30:07.916574+00:00_
 
 ### Assistant
 
-_source line 339 · 2026-05-15T12:30:12.032894+00:00_
+_source line 337 · 2026-05-15T12:30:12.032894+00:00_
 
 All files read and cross-checked. Page 8 ends with §7, page 9 starts with Limitations — page limit fixed. Now I have a complete picture. Let me compile and post the review.
 
@@ -10905,7 +10799,7 @@ All files read and cross-checked. Page 8 ends with §7, page 9 starts with Limit
 
 ### User
 
-_source line 340 · 2026-05-15T13:09:17.559857+00:00_
+_source line 338 · 2026-05-15T13:09:17.559857+00:00_
 
 [System 触发审查]:
 两项审查请求：
@@ -10942,7 +10836,7 @@ Paper Agent 刚完成 4 项 warning 修复 + dual-factor appendix，需要你验
 
 ### Tool call
 
-_source line 341 · 2026-05-15T13:09:28.643368+00:00_
+_source line 339 · 2026-05-15T13:09:28.643368+00:00_
 
 called Read
 
@@ -10975,7 +10869,7 @@ called Read
 
 ### Tool result
 
-_source line 342 · 2026-05-15T13:09:29.196233+00:00_
+_source line 340 · 2026-05-15T13:09:29.196233+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -11026,7 +10920,7 @@ _source line 342 · 2026-05-15T13:09:29.196233+00:00_
 
 ### Tool call
 
-_source line 343 · 2026-05-15T13:09:29.197101+00:00_
+_source line 341 · 2026-05-15T13:09:29.197101+00:00_
 
 called Read
 
@@ -11059,7 +10953,7 @@ called Read
 
 ### Tool result
 
-_source line 344 · 2026-05-15T13:09:29.699613+00:00_
+_source line 342 · 2026-05-15T13:09:29.699613+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -11108,7 +11002,7 @@ _source line 344 · 2026-05-15T13:09:29.699613+00:00_
 
 ### Tool call
 
-_source line 345 · 2026-05-15T13:09:29.700063+00:00_
+_source line 343 · 2026-05-15T13:09:29.700063+00:00_
 
 called Read
 
@@ -11141,7 +11035,7 @@ called Read
 
 ### Tool result
 
-_source line 346 · 2026-05-15T13:09:30.353229+00:00_
+_source line 344 · 2026-05-15T13:09:30.353229+00:00_
 
 1	% Section 5 — Runtime Analysis
 2	% Data source: artifacts/rebuttal/w3_runtime_report.md
@@ -11210,7 +11104,7 @@ _source line 346 · 2026-05-15T13:09:30.353229+00:00_
 
 ### Tool call
 
-_source line 347 · 2026-05-15T13:09:30.353831+00:00_
+_source line 345 · 2026-05-15T13:09:30.353831+00:00_
 
 called Read
 
@@ -11243,7 +11137,7 @@ called Read
 
 ### Tool result
 
-_source line 348 · 2026-05-15T13:09:30.454585+00:00_
+_source line 346 · 2026-05-15T13:09:30.454585+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -11335,7 +11229,7 @@ _source line 348 · 2026-05-15T13:09:30.454585+00:00_
 
 ### Tool call
 
-_source line 349 · 2026-05-15T13:09:46.988830+00:00_
+_source line 347 · 2026-05-15T13:09:46.988830+00:00_
 
 called Grep
 
@@ -11372,7 +11266,7 @@ called Grep
 
 ### Tool result
 
-_source line 350 · 2026-05-15T13:09:47.390919+00:00_
+_source line 348 · 2026-05-15T13:09:47.390919+00:00_
 
 No matches found
 
@@ -11393,7 +11287,7 @@ No matches found
 
 ### Tool call
 
-_source line 351 · 2026-05-15T13:09:47.893362+00:00_
+_source line 349 · 2026-05-15T13:09:47.893362+00:00_
 
 called Grep
 
@@ -11432,7 +11326,7 @@ called Grep
 
 ### Tool result
 
-_source line 352 · 2026-05-15T13:09:48.345888+00:00_
+_source line 350 · 2026-05-15T13:09:48.345888+00:00_
 
 No matches found
 
@@ -11453,7 +11347,7 @@ No matches found
 
 ### Tool call
 
-_source line 353 · 2026-05-15T13:09:48.698078+00:00_
+_source line 351 · 2026-05-15T13:09:48.698078+00:00_
 
 called Grep
 
@@ -11490,7 +11384,7 @@ called Grep
 
 ### Tool result
 
-_source line 354 · 2026-05-15T13:09:48.748802+00:00_
+_source line 352 · 2026-05-15T13:09:48.748802+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:374:INPUT ./figures/dual_factor_scatter.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:375:INPUT ./figures/dual_factor_scatter.pdf
@@ -11522,7 +11416,7 @@ _source line 354 · 2026-05-15T13:09:48.748802+00:00_
 
 ### Tool call
 
-_source line 355 · 2026-05-15T13:09:56.681905+00:00_
+_source line 353 · 2026-05-15T13:09:56.681905+00:00_
 
 called Read
 
@@ -11559,7 +11453,7 @@ called Read
 
 ### Tool result
 
-_source line 356 · 2026-05-15T13:09:56.682479+00:00_
+_source line 354 · 2026-05-15T13:09:56.682479+00:00_
 
 30	%          llama_scierc_full_s1, llama_docred_full_s1
 31	
@@ -11607,7 +11501,7 @@ _source line 356 · 2026-05-15T13:09:56.682479+00:00_
 
 ### Tool call
 
-_source line 357 · 2026-05-15T13:09:56.682914+00:00_
+_source line 355 · 2026-05-15T13:09:56.682914+00:00_
 
 called Read
 
@@ -11640,7 +11534,7 @@ called Read
 
 ### Tool result
 
-_source line 358 · 2026-05-15T13:09:56.733586+00:00_
+_source line 356 · 2026-05-15T13:09:56.733586+00:00_
 
 1	% Section 2: Background (compressed)
 2	
@@ -11682,7 +11576,7 @@ _source line 358 · 2026-05-15T13:09:56.733586+00:00_
 
 ### Tool call
 
-_source line 359 · 2026-05-15T13:10:23.634414+00:00_
+_source line 357 · 2026-05-15T13:10:23.634414+00:00_
 
 called Glob
 
@@ -11717,7 +11611,7 @@ called Glob
 
 ### Tool call
 
-_source line 360 · 2026-05-15T13:10:23.634824+00:00_
+_source line 358 · 2026-05-15T13:10:23.634824+00:00_
 
 called Grep
 
@@ -11756,7 +11650,7 @@ called Grep
 
 ### Tool result
 
-_source line 361 · 2026-05-15T13:10:23.685335+00:00_
+_source line 359 · 2026-05-15T13:10:23.685335+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/data/dual_factor_data.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/dual_factor_analysis/dual_factor_data.json
@@ -11782,7 +11676,7 @@ _source line 361 · 2026-05-15T13:10:23.685335+00:00_
 
 ### Tool result
 
-_source line 362 · 2026-05-15T13:10:23.685849+00:00_
+_source line 360 · 2026-05-15T13:10:23.685849+00:00_
 
 No matches found
 
@@ -11803,7 +11697,7 @@ No matches found
 
 ### Tool call
 
-_source line 363 · 2026-05-15T13:10:26.950177+00:00_
+_source line 361 · 2026-05-15T13:10:26.950177+00:00_
 
 called Read
 
@@ -11836,7 +11730,7 @@ called Read
 
 ### Tool result
 
-_source line 364 · 2026-05-15T13:10:28.457377+00:00_
+_source line 362 · 2026-05-15T13:10:28.457377+00:00_
 
 1	{
 2	  "description": "Dual-factor quantitative analysis: tightness × baseline_RV explains residual DR variation across model-dataset configurations",
@@ -11906,7 +11800,7 @@ _source line 364 · 2026-05-15T13:10:28.457377+00:00_
 
 ### Tool call
 
-_source line 365 · 2026-05-15T13:10:28.959881+00:00_
+_source line 363 · 2026-05-15T13:10:28.959881+00:00_
 
 called Read
 
@@ -11943,7 +11837,7 @@ called Read
 
 ### Tool result
 
-_source line 366 · 2026-05-15T13:10:29.010776+00:00_
+_source line 364 · 2026-05-15T13:10:29.010776+00:00_
 
 60	is practically negligible on a 2.68\% baseline.
 61	On SciERC, Qwen's R-F1 change is not significant ($p{=}0.58$).
@@ -11978,7 +11872,7 @@ _source line 366 · 2026-05-15T13:10:29.010776+00:00_
 
 ### Tool call
 
-_source line 367 · 2026-05-15T13:11:53.710201+00:00_
+_source line 365 · 2026-05-15T13:11:53.710201+00:00_
 
 called Grep
 
@@ -12015,7 +11909,7 @@ called Grep
 
 ### Tool call
 
-_source line 368 · 2026-05-15T13:11:53.710667+00:00_
+_source line 366 · 2026-05-15T13:11:53.710667+00:00_
 
 called Read
 
@@ -12048,7 +11942,7 @@ called Read
 
 ### Tool result
 
-_source line 369 · 2026-05-15T13:11:54.213140+00:00_
+_source line 367 · 2026-05-15T13:11:54.213140+00:00_
 
 No matches found
 
@@ -12069,7 +11963,7 @@ No matches found
 
 ### Tool result
 
-_source line 370 · 2026-05-15T13:11:54.213540+00:00_
+_source line 368 · 2026-05-15T13:11:54.213540+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -12109,7 +12003,7 @@ _source line 370 · 2026-05-15T13:11:54.213540+00:00_
 
 ### Tool call
 
-_source line 371 · 2026-05-15T13:11:54.414542+00:00_
+_source line 369 · 2026-05-15T13:11:54.414542+00:00_
 
 called Read
 
@@ -12142,7 +12036,7 @@ called Read
 
 ### Tool result
 
-_source line 372 · 2026-05-15T13:11:54.465374+00:00_
+_source line 370 · 2026-05-15T13:11:54.465374+00:00_
 
 1	\begin{abstract}
 2	LLM-based information extraction systems can produce systematic ontology constraint violations during autoregressive generation.
@@ -12177,7 +12071,7 @@ _source line 372 · 2026-05-15T13:11:54.465374+00:00_
 
 ### Tool call
 
-_source line 373 · 2026-05-15T13:12:00.139332+00:00_
+_source line 371 · 2026-05-15T13:12:00.139332+00:00_
 
 called Grep
 
@@ -12214,7 +12108,7 @@ called Grep
 
 ### Tool result
 
-_source line 374 · 2026-05-15T13:12:00.190957+00:00_
+_source line 372 · 2026-05-15T13:12:00.190957+00:00_
 
 197:Package hyperref Info: Plain pages OFF on input line 4210.
 1079:Output written on main.pdf (18 pages, 346139 bytes).
@@ -12236,7 +12130,7 @@ _source line 374 · 2026-05-15T13:12:00.190957+00:00_
 
 ### Tool call
 
-_source line 375 · 2026-05-15T13:13:36.509961+00:00_
+_source line 373 · 2026-05-15T13:13:36.509961+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12271,7 +12165,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 376 · 2026-05-15T13:13:40.277513+00:00_
+_source line 374 · 2026-05-15T13:13:40.277513+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -12292,7 +12186,7 @@ _source line 376 · 2026-05-15T13:13:40.277513+00:00_
 
 ### Assistant
 
-_source line 377 · 2026-05-15T13:13:43.274608+00:00_
+_source line 375 · 2026-05-15T13:13:43.274608+00:00_
 
 开始验证 Paper Agent 修复和 story 评估。
 
@@ -12315,7 +12209,7 @@ _source line 377 · 2026-05-15T13:13:43.274608+00:00_
 
 ### User
 
-_source line 378 · 2026-05-15T13:32:16.109307+00:00_
+_source line 376 · 2026-05-15T13:32:16.109307+00:00_
 
 [系统通知 — worker_done:worker_dryrun_w1_cf_fallback_20260515T131645]:
 Worker worker_dryrun_w1_cf_fallback_20260515T131645 已完成（status=done），请审查 Agent 的处理结果。
@@ -12336,7 +12230,7 @@ Worker worker_dryrun_w1_cf_fallback_20260515T131645 已完成（status=done）�
 
 ### Tool call
 
-_source line 379 · 2026-05-15T13:32:26.946535+00:00_
+_source line 377 · 2026-05-15T13:32:26.946535+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12373,7 +12267,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 380 · 2026-05-15T13:32:27.398811+00:00_
+_source line 378 · 2026-05-15T13:32:27.398811+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"gpu\": \"cuda:1\", \"pid\": \"247487\"}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-15T08:19:27.936Z\", \"gpu\": \"cuda:0\", \"pid\": \"246947\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0891}}"}
 
@@ -12394,7 +12288,7 @@ _source line 380 · 2026-05-15T13:32:27.398811+00:00_
 
 ### Tool call
 
-_source line 381 · 2026-05-15T13:32:28.355871+00:00_
+_source line 379 · 2026-05-15T13:32:28.355871+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12429,7 +12323,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 382 · 2026-05-15T13:32:29.761844+00:00_
+_source line 380 · 2026-05-15T13:32:29.761844+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
 
@@ -12450,7 +12344,7 @@ _source line 382 · 2026-05-15T13:32:29.761844+00:00_
 
 ### Tool call
 
-_source line 383 · 2026-05-15T13:32:33.427005+00:00_
+_source line 381 · 2026-05-15T13:32:33.427005+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12485,7 +12379,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 384 · 2026-05-15T13:32:33.778797+00:00_
+_source line 382 · 2026-05-15T13:32:33.778797+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12522,7 +12416,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 385 · 2026-05-15T13:32:33.879648+00:00_
+_source line 383 · 2026-05-15T13:32:33.879648+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/dryrun_phase2_grammar.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_s2_dryrun.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_report_s2_dryrun.json\\n/root/schema_semantic_constrained_ie/outputs/docred_full_s1_dryrun.jsonl\\n/root/schema_semantic_constrained_ie/outputs/docred_semantic_only_dryrun.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_cf_fallback_dryrun.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -12543,7 +12437,7 @@ _source line 385 · 2026-05-15T13:32:33.879648+00:00_
 
 ### Tool result
 
-_source line 386 · 2026-05-15T13:32:33.980695+00:00_
+_source line 384 · 2026-05-15T13:32:33.980695+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:48:00.744Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 Llama SciERC 上的跨模型验证。Llama SciERC full_s1 原 CF=6.56%，预期显著降低。Phase 2 实验。\", \"parent\": \"llama_scierc_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w1_cf_fallback_llama_scierc.jsonl --device cuda:1 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": \"default\", \"gpu\": \"cuda:1\"}}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:47:56.874Z\", \"spec\": {\"hypothesis\": \"W1 CF fallback 在 DocRED (96 relations, 高 tightness) 上的效果。DocRED CF 原值 2.57%，预计 fallback 触发更频繁，DR vs CF trade-off 更明显。Phase 2 实验。\", \"parent\": \"phase2_docred_full_s1\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w1_cf_fallback_docred.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"data_path\": \"data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": \"default\", \"gpu\": \"cuda:0\"}}, \"w1_cf_fallback_scierc_pilot\": {\"
 …[truncated 2062 chars]
@@ -12565,7 +12459,7 @@ _source line 386 · 2026-05-15T13:32:33.980695+00:00_
 
 ### Tool call
 
-_source line 387 · 2026-05-15T13:32:41.561243+00:00_
+_source line 385 · 2026-05-15T13:32:41.561243+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12600,7 +12494,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 388 · 2026-05-15T13:32:42.013814+00:00_
+_source line 386 · 2026-05-15T13:32:42.013814+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred.json\\n/root/schema_semantic_constrained_ie/outputs/dry_run.jsonl\\n/root/schema_semantic_constrained_ie/outputs/dry_run_violations.json\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_report_fixed.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_docred_fixed.json\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_report_scierc.json\\n/root/schema_semantic_constrained_ie/outputs/violation_report_schema.json\\n/root/schema_semantic_constrained_ie/outputs/comparison_minimal_vs_schema_informed.json\\n/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred_schema.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_unconstrained.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_grammar_only.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_semantic_only.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_full_s1.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_full_s2.jsonl\\n/root/schema_semantic_constrained_ie/outputs/dryrun_phase2_grammar.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_batch.log\\n/root/schema_semantic_constrained_ie/outputs/posthoc_scierc.jsonl\\n/root/schema_semantic_constrained_ie/outputs/test_s2_fixed.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_report.json\\n/root/schema_semantic_constrained_ie/outputs/test_s2_fixed2.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\n/root/schema_semantic_constrained_ie/outputs/phase2_s2_dryrun.jsonl\\n/root/schema_semantic_constrained_ie/outputs/violation_repor
 …[truncated 6408 chars]
@@ -12622,7 +12516,7 @@ _source line 388 · 2026-05-15T13:32:42.013814+00:00_
 
 ### Tool call
 
-_source line 389 · 2026-05-15T13:32:46.583272+00:00_
+_source line 387 · 2026-05-15T13:32:46.583272+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12657,7 +12551,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 390 · 2026-05-15T13:32:47.035353+00:00_
+_source line 388 · 2026-05-15T13:32:47.035353+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1778695206 /root/schema_semantic_constrained_ie/outputs/dry_run.jsonl\\n1778695256 /root/schema_semantic_constrained_ie/outputs/dry_run_violations.json\\n1778840993 /root/schema_semantic_constrained_ie/outputs/test_cf_fallback_dryrun.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -12678,7 +12572,7 @@ _source line 390 · 2026-05-15T13:32:47.035353+00:00_
 
 ### Tool call
 
-_source line 391 · 2026-05-15T13:33:05.313909+00:00_
+_source line 389 · 2026-05-15T13:33:05.313909+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12713,7 +12607,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 392 · 2026-05-15T13:33:06.067300+00:00_
+_source line 390 · 2026-05-15T13:33:06.067300+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"     922 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n     779 /root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl\\n    1701 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
 
@@ -12734,7 +12628,7 @@ _source line 392 · 2026-05-15T13:33:06.067300+00:00_
 
 ### Tool call
 
-_source line 393 · 2026-05-15T13:33:26.917109+00:00_
+_source line 391 · 2026-05-15T13:33:26.917109+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12769,7 +12663,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 394 · 2026-05-15T13:33:31.687548+00:00_
+_source line 392 · 2026-05-15T13:33:31.687548+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -12790,7 +12684,7 @@ _source line 394 · 2026-05-15T13:33:31.687548+00:00_
 
 ### Tool call
 
-_source line 395 · 2026-05-15T13:36:26.387614+00:00_
+_source line 393 · 2026-05-15T13:36:26.387614+00:00_
 
 called ToolSearch
 
@@ -12825,7 +12719,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 396 · 2026-05-15T13:36:26.438263+00:00_
+_source line 394 · 2026-05-15T13:36:26.438263+00:00_
 
 
 
@@ -12846,7 +12740,7 @@ _source line 396 · 2026-05-15T13:36:26.438263+00:00_
 
 ### Tool call
 
-_source line 397 · 2026-05-15T13:36:29.501848+00:00_
+_source line 395 · 2026-05-15T13:36:29.501848+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12883,7 +12777,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 398 · 2026-05-15T13:36:29.954232+00:00_
+_source line 396 · 2026-05-15T13:36:29.954232+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T08:17:36.675Z\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"notes\": \"⚠️ 变量混淆：此实验同时包含 CF fallback 代码修改 + max_tokens 6144（两个变量）。CF 数据可作为 'Llama DocRED with fallback + mt6144' 参考点，但不能用于纯 CF ablation 对比。纯 CF ablation 必须控制 max_tokens=4096。unconstrained_mt6144 不受影响（不走 semantic layer）。\"}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T08:19:27.936Z\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.09}}"}
 
@@ -12904,7 +12798,7 @@ _source line 398 · 2026-05-15T13:36:29.954232+00:00_
 
 ### Tool call
 
-_source line 399 · 2026-05-15T13:36:30.959846+00:00_
+_source line 397 · 2026-05-15T13:36:30.959846+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12943,7 +12837,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 400 · 2026-05-15T13:36:31.463641+00:00_
+_source line 398 · 2026-05-15T13:36:31.463641+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T20:29:59.744Z\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:45:08.201Z\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T18:52:55.527Z\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20
 …[truncated 11804 chars]
@@ -12965,7 +12859,7 @@ _source line 400 · 2026-05-15T13:36:31.463641+00:00_
 
 ### Tool call
 
-_source line 401 · 2026-05-15T13:36:31.514313+00:00_
+_source line 399 · 2026-05-15T13:36:31.514313+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13004,7 +12898,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 402 · 2026-05-15T13:36:31.616118+00:00_
+_source line 400 · 2026-05-15T13:36:31.616118+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:48:00.744Z\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:47:56.874Z\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:47:52.128Z\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:29:52.780Z\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.094}}"}
 
@@ -13025,7 +12919,7 @@ _source line 402 · 2026-05-15T13:36:31.616118+00:00_
 
 ### Tool call
 
-_source line 403 · 2026-05-15T13:36:37.689715+00:00_
+_source line 401 · 2026-05-15T13:36:37.689715+00:00_
 
 called ToolSearch
 
@@ -13060,7 +12954,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 404 · 2026-05-15T13:36:37.740584+00:00_
+_source line 402 · 2026-05-15T13:36:37.740584+00:00_
 
 
 
@@ -13081,7 +12975,7 @@ _source line 404 · 2026-05-15T13:36:37.740584+00:00_
 
 ### Tool call
 
-_source line 405 · 2026-05-15T13:36:45.540149+00:00_
+_source line 403 · 2026-05-15T13:36:45.540149+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13116,7 +13010,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 406 · 2026-05-15T13:36:46.042776+00:00_
+_source line 404 · 2026-05-15T13:36:46.042776+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/schema_semantic_constrained_ie/outputs/llama_docred_*_mt6144/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -13137,7 +13031,7 @@ _source line 406 · 2026-05-15T13:36:46.042776+00:00_
 
 ### Tool call
 
-_source line 407 · 2026-05-15T13:36:46.043151+00:00_
+_source line 405 · 2026-05-15T13:36:46.043151+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13172,7 +13066,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 408 · 2026-05-15T13:36:46.645768+00:00_
+_source line 406 · 2026-05-15T13:36:46.645768+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 89 %, 18203 MiB, 97887 MiB\\n1, 85 %, 18203 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
 
@@ -13193,7 +13087,7 @@ _source line 408 · 2026-05-15T13:36:46.645768+00:00_
 
 ### Tool call
 
-_source line 409 · 2026-05-15T13:36:54.911711+00:00_
+_source line 407 · 2026-05-15T13:36:54.911711+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13228,7 +13122,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 410 · 2026-05-15T13:36:55.364028+00:00_
+_source line 408 · 2026-05-15T13:36:55.364028+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -13249,7 +13143,7 @@ _source line 410 · 2026-05-15T13:36:55.364028+00:00_
 
 ### Tool call
 
-_source line 411 · 2026-05-15T13:36:55.565248+00:00_
+_source line 409 · 2026-05-15T13:36:55.565248+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13284,7 +13178,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 412 · 2026-05-15T13:36:56.017314+00:00_
+_source line 410 · 2026-05-15T13:36:56.017314+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -13305,7 +13199,7 @@ _source line 412 · 2026-05-15T13:36:56.017314+00:00_
 
 ### Tool call
 
-_source line 413 · 2026-05-15T13:36:58.677814+00:00_
+_source line 411 · 2026-05-15T13:36:58.677814+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13340,7 +13234,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 414 · 2026-05-15T13:36:59.130172+00:00_
+_source line 412 · 2026-05-15T13:36:59.130172+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 133548\\n-rw-r--r-- 1 root root 10132429 May 15 21:36 llama_docred_unconstrained_mt6144.jsonl\\n-rw-r--r-- 1 root root  8988392 May 15 21:35 llama_docred_full_s1_mt6144.jsonl\\n-rw-r--r-- 1 root root    31763 May 15 19:11 q8_fp_analysis.json\\n-rw-r--r-- 1 root root    20108 May 15 18:29 test_cf_fallback_dryrun.jsonl\\n-rw-r--r-- 1 root root   390793 May 15 17:37 violation_report_docred_schema_v2.json\\n-rw-r--r-- 1 root root     3025 May 15 16:58 runtime_summary_detailed.json\\n-rw-r--r-- 1 root root     2934 May 15 16:58 runtime_summary.json\\n-rw-r--r-- 1 root root    47239 May 15 14:38 dr_residual_analysis.json\\n-rw-r--r-- 1 root root     2959 May 15 06:56 bootstrap_ci_results_llama.json\\n-rw-r--r-- 1 root root      663 May 15 04:28 analysis_llama_docred_unconstrained_v2.json\\n-rw-r--r-- 1 root root      653 May 15 04:27 analysis_llama_docred_full_s1_v2.json\\n-rw-r--r-- 1 root root     9244 May 15 04:26 violation_report_docred_full_s1_unified.json\\n-rw-r--r-- 1 root root     9335 May 15 04:26 violation_report_docred_semantic_only_unified.json\\n-rw-r--r-- 1 root root     9403 May 15 04:26 violation_report_docred_grammar_only_unified.json\\n-rw-r--r-- 1 root root     9415 May 15 04:26 violation_report_docred_unconstrained_unified.json\\n-rw-r--r-- 1 root root 10730125 May 15 04:22 llama_docred_full_s1.jsonl\\n-rw-r--r-- 1 root root 10372904 May 15 03:38 llama_docred_unconstrained.jsonl\\n-rw-r--r-- 1 root root     9809 May 15 02:51 bootstrap_ci_results_v2.json\\n-rw-r--r-- 1 root root     3050 May 15 02:28 violation_report_llama_scierc_full_s1_v2.json\\n-rw-r--r-- 1 root root     4897 May 15 02:28 violation_report_llama_scierc_unconstrained_v2.json\\n-rw-r--r-- 1 root root     3790 May 15 02:28 violation_report_scierc_full_s2_v2.json\\n-rw-r--r-- 1 root root     3864 May 15 02:28 violation_report_scierc_full_s1_v2.json\\n-rw-r--r-- 1 root root     5245 May 15 02:28 violation_report_scierc_semantic
 …[truncated 6405 chars]
@@ -13362,7 +13256,7 @@ _source line 414 · 2026-05-15T13:36:59.130172+00:00_
 
 ### Tool call
 
-_source line 415 · 2026-05-15T13:37:05.407381+00:00_
+_source line 413 · 2026-05-15T13:37:05.407381+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13397,7 +13291,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 416 · 2026-05-15T13:37:05.909908+00:00_
+_source line 414 · 2026-05-15T13:37:05.909908+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"935 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -13418,7 +13312,7 @@ _source line 416 · 2026-05-15T13:37:05.909908+00:00_
 
 ### Tool call
 
-_source line 417 · 2026-05-15T13:37:05.910351+00:00_
+_source line 415 · 2026-05-15T13:37:05.910351+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13453,7 +13347,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 418 · 2026-05-15T13:37:06.413044+00:00_
+_source line 416 · 2026-05-15T13:37:06.413044+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"784 /root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -13474,7 +13368,7 @@ _source line 418 · 2026-05-15T13:37:06.413044+00:00_
 
 ### Tool call
 
-_source line 419 · 2026-05-15T13:37:14.950865+00:00_
+_source line 417 · 2026-05-15T13:37:14.950865+00:00_
 
 called ToolSearch
 
@@ -13509,7 +13403,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 420 · 2026-05-15T13:37:15.001514+00:00_
+_source line 418 · 2026-05-15T13:37:15.001514+00:00_
 
 
 
@@ -13530,7 +13424,7 @@ _source line 420 · 2026-05-15T13:37:15.001514+00:00_
 
 ### Tool call
 
-_source line 421 · 2026-05-15T13:37:18.120874+00:00_
+_source line 419 · 2026-05-15T13:37:18.120874+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13565,7 +13459,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 422 · 2026-05-15T13:37:18.674855+00:00_
+_source line 420 · 2026-05-15T13:37:18.674855+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"246952, GPU-0ce19412-d126-ec05-795b-3fddc575596a, 18194 MiB\\n247492, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178, 18194 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
 
@@ -13586,7 +13480,7 @@ _source line 422 · 2026-05-15T13:37:18.674855+00:00_
 
 ### Tool call
 
-_source line 423 · 2026-05-15T13:37:25.861382+00:00_
+_source line 421 · 2026-05-15T13:37:25.861382+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13621,7 +13515,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 424 · 2026-05-15T13:37:26.414164+00:00_
+_source line 422 · 2026-05-15T13:37:26.414164+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, GPU-0ce19412-d126-ec05-795b-3fddc575596a\\n1, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -13642,7 +13536,7 @@ _source line 424 · 2026-05-15T13:37:26.414164+00:00_
 
 ### Tool call
 
-_source line 425 · 2026-05-15T13:37:30.670864+00:00_
+_source line 423 · 2026-05-15T13:37:30.670864+00:00_
 
 called ToolSearch
 
@@ -13677,7 +13571,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 426 · 2026-05-15T13:37:30.771814+00:00_
+_source line 424 · 2026-05-15T13:37:30.771814+00:00_
 
 
 
@@ -13698,7 +13592,7 @@ _source line 426 · 2026-05-15T13:37:30.771814+00:00_
 
 ### Tool call
 
-_source line 427 · 2026-05-15T13:37:34.085446+00:00_
+_source line 425 · 2026-05-15T13:37:34.085446+00:00_
 
 called mcp__agent-ml-research__list_constraints
 
@@ -13731,7 +13625,7 @@ called mcp__agent-ml-research__list_constraints
 
 ### Tool result
 
-_source line 428 · 2026-05-15T13:37:34.136111+00:00_
+_source line 426 · 2026-05-15T13:37:34.136111+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"constraints\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -13752,7 +13646,7 @@ _source line 428 · 2026-05-15T13:37:34.136111+00:00_
 
 ### Tool call
 
-_source line 429 · 2026-05-15T13:37:38.505688+00:00_
+_source line 427 · 2026-05-15T13:37:38.505688+00:00_
 
 called Glob
 
@@ -13787,7 +13681,7 @@ called Glob
 
 ### Tool result
 
-_source line 430 · 2026-05-15T13:37:38.607164+00:00_
+_source line 428 · 2026-05-15T13:37:38.607164+00:00_
 
 No files found
 
@@ -13808,7 +13702,7 @@ No files found
 
 ### Tool call
 
-_source line 431 · 2026-05-15T13:37:41.471058+00:00_
+_source line 429 · 2026-05-15T13:37:41.471058+00:00_
 
 called Glob
 
@@ -13843,7 +13737,7 @@ called Glob
 
 ### Tool result
 
-_source line 432 · 2026-05-15T13:37:41.572248+00:00_
+_source line 430 · 2026-05-15T13:37:41.572248+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/experiment_plan.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/writing_plan.yaml
@@ -13868,7 +13762,7 @@ _source line 432 · 2026-05-15T13:37:41.572248+00:00_
 
 ### Tool call
 
-_source line 433 · 2026-05-15T13:37:44.484892+00:00_
+_source line 431 · 2026-05-15T13:37:44.484892+00:00_
 
 called Grep
 
@@ -13907,7 +13801,7 @@ called Grep
 
 ### Tool result
 
-_source line 434 · 2026-05-15T13:37:44.586048+00:00_
+_source line 432 · 2026-05-15T13:37:44.586048+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/config/projects/prov_grounded_uie.yaml:6:  gpu_ids:
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/config/projects/schema_semantic_constrained_ie.yaml:3:  gpu_ids:
@@ -13931,7 +13825,7 @@ _source line 434 · 2026-05-15T13:37:44.586048+00:00_
 
 ### Tool call
 
-_source line 435 · 2026-05-15T13:37:47.103979+00:00_
+_source line 433 · 2026-05-15T13:37:47.103979+00:00_
 
 called Read
 
@@ -13964,7 +13858,7 @@ called Read
 
 ### Tool result
 
-_source line 436 · 2026-05-15T13:37:47.154619+00:00_
+_source line 434 · 2026-05-15T13:37:47.154619+00:00_
 
 1	execution:
 2	  gpu_constraint: cuda:0, cuda:1 on westd-16980 only
@@ -14008,7 +13902,7 @@ _source line 436 · 2026-05-15T13:37:47.154619+00:00_
 
 ### Assistant
 
-_source line 437 · 2026-05-15T13:37:53.553272+00:00_
+_source line 435 · 2026-05-15T13:37:53.553272+00:00_
 
 GPU 白名单是 `[0, 1]`。当前进程：PID 246952 在 GPU 0，PID 247492 在 GPU 1。**合规，无越界。**
 
@@ -14039,7 +13933,7 @@ GPU 白名单是 `[0, 1]`。当前进程：PID 246952 在 GPU 0，PID 247492 在
 
 ### User
 
-_source line 438 · 2026-05-15T13:59:25.749918+00:00_
+_source line 436 · 2026-05-15T13:59:25.749918+00:00_
 
 [系统通知 — cron:on_complete:llama_docred_unconstrained_mt6144]:
 实验 llama_docred_unconstrained_mt6144 complete，请审查。
@@ -14060,7 +13954,7 @@ _source line 438 · 2026-05-15T13:59:25.749918+00:00_
 
 ### Tool call
 
-_source line 439 · 2026-05-15T13:59:37.913410+00:00_
+_source line 437 · 2026-05-15T13:59:37.913410+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14099,7 +13993,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 440 · 2026-05-15T13:59:38.265840+00:00_
+_source line 438 · 2026-05-15T13:59:38.265840+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0916}}"}
 
@@ -14120,7 +14014,7 @@ _source line 440 · 2026-05-15T13:59:38.265840+00:00_
 
 ### Tool call
 
-_source line 441 · 2026-05-15T13:59:38.266275+00:00_
+_source line 439 · 2026-05-15T13:59:38.266275+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14155,7 +14049,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 442 · 2026-05-15T13:59:39.973958+00:00_
+_source line 440 · 2026-05-15T13:59:39.973958+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"998 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
 
@@ -14176,7 +14070,7 @@ _source line 442 · 2026-05-15T13:59:39.973958+00:00_
 
 ### Tool call
 
-_source line 443 · 2026-05-15T13:59:46.525840+00:00_
+_source line 441 · 2026-05-15T13:59:46.525840+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14215,7 +14109,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 444 · 2026-05-15T13:59:46.985739+00:00_
+_source line 442 · 2026-05-15T13:59:46.985739+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T08:17:36.675Z\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T08:19:50.589Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T08:19:51.861Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:19:53.379823+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"247487\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1_mt6144.log\", \"submitted_at\": \"2026-05-15T08:22:03.222Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"247487\", \"log_path\": \"~
 …[truncated 413 chars]
@@ -14237,7 +14131,7 @@ _source line 444 · 2026-05-15T13:59:46.985739+00:00_
 
 ### Tool call
 
-_source line 445 · 2026-05-15T13:59:47.137853+00:00_
+_source line 443 · 2026-05-15T13:59:47.137853+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14274,7 +14168,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 446 · 2026-05-15T13:59:47.342333+00:00_
+_source line 444 · 2026-05-15T13:59:47.342333+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained_mt6144\": {\"status\": \"ANALYZING\", \"updated_at\": \"2026-05-15T13:59:24.655Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:48:00.744Z\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:47:56.874Z\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:47:52.128Z\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:29:52.780Z\"}}, \"count\": 5, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2115}}"}
 
@@ -14295,7 +14189,7 @@ _source line 446 · 2026-05-15T13:59:47.342333+00:00_
 
 ### Tool call
 
-_source line 447 · 2026-05-15T13:59:53.977583+00:00_
+_source line 445 · 2026-05-15T13:59:53.977583+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14330,7 +14224,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 448 · 2026-05-15T13:59:54.429825+00:00_
+_source line 446 · 2026-05-15T13:59:54.429825+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n/root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14351,7 +14245,7 @@ _source line 448 · 2026-05-15T13:59:54.429825+00:00_
 
 ### Tool call
 
-_source line 449 · 2026-05-15T14:00:05.990267+00:00_
+_source line 447 · 2026-05-15T14:00:05.990267+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14386,7 +14280,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 450 · 2026-05-15T14:00:06.443023+00:00_
+_source line 448 · 2026-05-15T14:00:06.443023+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14421,7 +14315,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 451 · 2026-05-15T14:00:06.744685+00:00_
+_source line 449 · 2026-05-15T14:00:06.744685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"247492, GPU-342cbca6-b6cd-1081-aa90-5bd70b126178, 18194 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
 
@@ -14442,7 +14336,7 @@ _source line 451 · 2026-05-15T14:00:06.744685+00:00_
 
 ### Tool result
 
-_source line 452 · 2026-05-15T14:00:07.297440+00:00_
+_source line 450 · 2026-05-15T14:00:07.297440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"862 /root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -14463,7 +14357,7 @@ _source line 452 · 2026-05-15T14:00:07.297440+00:00_
 
 ### Tool call
 
-_source line 453 · 2026-05-15T14:00:20.369142+00:00_
+_source line 451 · 2026-05-15T14:00:20.369142+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14498,7 +14392,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 454 · 2026-05-15T14:00:20.821515+00:00_
+_source line 452 · 2026-05-15T14:00:20.821515+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14533,7 +14427,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 455 · 2026-05-15T14:00:20.872982+00:00_
+_source line 453 · 2026-05-15T14:00:20.872982+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Essingen Islands\\\", \\\"input_text\\\": \\\"The Essingen Islands are a group of two islands — Stora Essingen and Lilla Essingen — in the Swedish lake of Mälaren , located southwest of Kungsholmen in Stockholm . On older maps , the islands are called Stora Hessingen and Lilla Hessingen . The islands were a part of the administrative Bromma Parish until 1916 , when they were incorporated with the parish into Stockholm Municipality . They remained a part of Bromma ecclesiastical parish until 1955 , when they received their own parish within the Church of Sweden . A bridge was built between the islands and Kungsholmen in 1907 , and between the islands themselves in 1917 . In 1966 , the Essingeleden motorway opened across the islands . The Alviksbron bridge ( for pedestrians , bicycles , and trams ) opened in 2000 .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Essingen Islands\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"two\\\", \\\"type\\\": \\\"NUM\\\"}, {\\\"text\\\": \\\"Stora Essingen\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Lilla Essingen\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Swedish\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Mälaren\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Kungsholmen\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Stockholm\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Bromma Parish\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"1916\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"Stockholm Municipality\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Bromma\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"1955\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"Church of Sweden\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"1907\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"1917\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"1966\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"
 …[truncated 10661 chars]
@@ -14555,7 +14449,7 @@ _source line 455 · 2026-05-15T14:00:20.872982+00:00_
 
 ### Tool result
 
-_source line 456 · 2026-05-15T14:00:21.427127+00:00_
+_source line 454 · 2026-05-15T14:00:21.427127+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"input_text\\\": \\\"Skai TV is a Greek free - to - air television network based in Piraeus . It is part of the Skai Group , one of the largest media groups in the country . It was relaunched in its present form on 1st of April 2006 in the Athens metropolitan area , and gradually spread its coverage nationwide . Besides digital terrestrial transmission , it is available on the subscription - based encrypted services of Nova and Cosmote TV . Skai TV is also a member of Digea , a consortium of private television networks introducing digital terrestrial transmission in Greece . At launch , Skai TV opted for dubbing all foreign language content into Greek , instead of using subtitles . This is very uncommon in Greece for anything except documentaries ( using voiceover dubbing ) and children 's programmes ( using lip - synced dubbing ) , so after intense criticism the station switched to using subtitles for almost all foreign shows .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Skai TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"1st of April 2006\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"Athens\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Nova\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Digea\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greece\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"MISC\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Piraeus\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"LOC\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai Group\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\
 …[truncated 6616 chars]
@@ -14577,7 +14471,7 @@ _source line 456 · 2026-05-15T14:00:21.427127+00:00_
 
 ### Assistant
 
-_source line 457 · 2026-05-15T14:00:43.333601+00:00_
+_source line 455 · 2026-05-15T14:00:43.333601+00:00_
 
 输出格式正常，998 个文档全部完成，模式标记 `unconstrained`。该实验目前在 ANALYZING 状态，Agent 正在运行 violation checker。
 
@@ -14607,7 +14501,7 @@ _source line 457 · 2026-05-15T14:00:43.333601+00:00_
 
 ### User
 
-_source line 458 · 2026-05-15T14:01:13.765119+00:00_
+_source line 456 · 2026-05-15T14:01:13.765119+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -14688,7 +14582,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 459 · 2026-05-15T14:02:05.275068+00:00_
+_source line 457 · 2026-05-15T14:02:05.275068+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

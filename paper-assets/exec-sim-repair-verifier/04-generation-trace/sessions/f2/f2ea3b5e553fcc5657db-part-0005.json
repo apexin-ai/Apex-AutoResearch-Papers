@@ -2580,44 +2580,6 @@
         },
         {
           "source_line": 852,
-          "timestamp": "2026-05-21T08:44:18.906616+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_writing_rebuttal-framework-update_20260521T084223_result.json"
-            }
-          },
-          "id": "event-000852"
-        },
-        {
-          "source_line": 853,
-          "timestamp": "2026-05-21T08:44:18.958031+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"raw\": \"已完成 4 项更新：\\n\\n1. **Attack #1 新增第 4 点**：CLS 过拟合鲁棒性防线，含 CLS/CWM 过拟合行为对比和数据来源，原第 4 点（execution trace 预备回应）顺延为第 5 点\\n2. **Attack #2 新增统计表**：M027 修正后的 Cohen's d (4.590)、power (0.914)、Qwen CLS mean (84.83)，插入在回应要点之前\\n3. **新建「储备/待用」分区**：Checkpoint Selection Sensitivity（28 个 sweep 数据点，<1pp 波动）\\n4. **储备分区第二条**：CWM Epoch-wise Accuracy Curve（已有 3 个 seed 部分数据点，待数据到齐画图）\"\n3\t}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-000853"
-        },
-        {
-          "source_line": 854,
           "timestamp": "2026-05-21T08:44:22.373007+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2637,10 +2599,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-000854"
+          "id": "event-000852"
         },
         {
-          "source_line": 855,
+          "source_line": 853,
           "timestamp": "2026-05-21T08:44:22.624429+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2655,48 +2617,10 @@
             "tool": "Grep",
             "elapsed_ms": 251
           },
-          "id": "event-000855"
+          "id": "event-000853"
         },
         {
-          "source_line": 856,
-          "timestamp": "2026-05-21T08:44:25.285099+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md"
-            }
-          },
-          "id": "event-000856"
-        },
-        {
-          "source_line": 857,
-          "timestamp": "2026-05-21T08:44:25.336154+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Framework — Pre-Submission Attack Surface Analysis\n2\t\n3\tDate: 2026-05-20 | Venue: EMNLP 2026 ARR\n4\t\n5\t---\n6\t\n7\t## Attack #1: CWM ≤8B LoRA ≠ Real 32B CWM\n8\t\n9\t### Reviewer 可能措辞\n10\t\n11\t> \"The CWM baseline is a ≤8B LoRA fine-tuned model, not the original 32B Code World Model with execution trace mid-training. The comparison is unfair—CWM was designed to operate at much larger scale with specialized pretraining. The paper's conclusion that 'generation degrades at repo level' may simply reflect insufficient model capacity rather than a fundamental formulation limitation.\"\n12\t\n13\t### 回应要点\n14\t\n15\t**核心论点：matched comparison at controlled capacity isolates formulation effect from scale confounds, which is complementary to—not competing with—scaling studies.**\n16\t\n17\t1. **Function-level 证明 LoRA 可以成功适配 CWM formulation。** CLS 和 CWM 在 function-level 达到统计等价（TOST p=0.007, 5 seeds, ±2pp margin），证明同一 LoRA 配置下 CWM formulation 能完全发挥作用。退化仅在 repo-level 出现，不是 LoRA 容量不足的全局问题。\n18\t\n19\t2. **退化模式指向 formulation 本身，而非容量瓶颈——四种标准干预全部失败。**\n20\t   - Format collapse (53–74% unparseable outputs) 是输出空间复杂度问题：function-level 输出为短字符串（integers, booleans），repo-level 输出为无约束执行轨迹（均值 ~477 tokens），错误呈乘性积累\n21\t   - 即使在可解析输出中，accuracy (38–43%) 仍低于 majority baseline (72.96%)，表明存在超越格式合规的语义鸿沟\n22\t   - **LoRA rank-32 ablation（双倍参数）：无改善（−0.51pp）**，排除 adapter 容量瓶颈\n23\t   - **Majority voting K=3：accuracy 反降 0.68pp**（87.51→86.83%），93.3% 样本三次一致，errors 是系统性偏差非随机噪声\n24\t   - **Relaxed matching（放宽格式要求）：accuracy 反降 1.06pp**（58.04→56.98%），因为 unparseable 默认为 majority class 比模型自身预测更准\n25\t   - **Model scaling 4B→8B：parseable-only accuracy 反降**（42.88→38.52%），表面 accuracy 提升完全是 default-assignment artifact\n26\t   - Matched-context ablation：输入差异仅解释 <3% 的 gap\n27\t   \n28\t   **每种干预分别靶向不同的替代解释（容量不足 / 随机噪声 / 解析严格 / 模型规模），全部失败。这构成 formulation-level bottleneck 的最强证据链。**\n29\t\n30\t   **Convergent null results summary (rebuttal 可直接引用):**\n31\t   > \"Four convergent null results strengthen this argument: (1) doubling model size yields +0.16pp (flat\n…[truncated 13363 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-000857"
-        },
-        {
-          "source_line": 858,
+          "source_line": 854,
           "timestamp": "2026-05-21T08:45:07.197978+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2714,10 +2638,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-000858"
+          "id": "event-000854"
         },
         {
-          "source_line": 859,
+          "source_line": 855,
           "timestamp": "2026-05-21T08:45:11.072009+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2732,10 +2656,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3874
           },
-          "id": "event-000859"
+          "id": "event-000855"
         },
         {
-          "source_line": 860,
+          "source_line": 856,
           "timestamp": "2026-05-21T08:45:23.389724+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2754,10 +2678,10 @@
               "prompt": "<<autonomous-loop-dynamic>>"
             }
           },
-          "id": "event-000860"
+          "id": "event-000856"
         },
         {
-          "source_line": 861,
+          "source_line": 857,
           "timestamp": "2026-05-21T08:45:23.440520+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2772,10 +2696,10 @@
             "tool": "ScheduleWakeup",
             "elapsed_ms": 50
           },
-          "id": "event-000861"
+          "id": "event-000857"
         },
         {
-          "source_line": 862,
+          "source_line": 858,
           "timestamp": "2026-05-21T08:45:25.270187+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2788,7 +2712,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
           },
-          "id": "event-000862"
+          "id": "event-000858"
         }
       ]
     },
@@ -2796,7 +2720,7 @@
       "number": 32,
       "messages": [
         {
-          "source_line": 863,
+          "source_line": 859,
           "timestamp": "2026-05-21T09:44:17.172509+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2810,10 +2734,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
             "source": "system"
           },
-          "id": "event-000863"
+          "id": "event-000859"
         },
         {
-          "source_line": 864,
+          "source_line": 860,
           "timestamp": "2026-05-21T09:44:26.376011+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2830,10 +2754,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_audit_paper-number-consistency_20260521T092353_result.json"
             }
           },
-          "id": "event-000864"
+          "id": "event-000860"
         },
         {
-          "source_line": 865,
+          "source_line": 861,
           "timestamp": "2026-05-21T09:44:26.376501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2848,10 +2772,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000865"
+          "id": "event-000861"
         },
         {
-          "source_line": 866,
+          "source_line": 862,
           "timestamp": "2026-05-21T09:44:29.989947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2868,10 +2792,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/paper_number_audit.md"
             }
           },
-          "id": "event-000866"
+          "id": "event-000862"
         },
         {
-          "source_line": 867,
+          "source_line": 863,
           "timestamp": "2026-05-21T09:44:30.092609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2886,10 +2810,10 @@
             "tool": "Read",
             "elapsed_ms": 102
           },
-          "id": "event-000867"
+          "id": "event-000863"
         },
         {
-          "source_line": 868,
+          "source_line": 864,
           "timestamp": "2026-05-21T09:44:43.397108+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2908,10 +2832,10 @@
               "limit": "15"
             }
           },
-          "id": "event-000868"
+          "id": "event-000864"
         },
         {
-          "source_line": 869,
+          "source_line": 865,
           "timestamp": "2026-05-21T09:44:43.447720+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2926,10 +2850,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000869"
+          "id": "event-000865"
         },
         {
-          "source_line": 870,
+          "source_line": 866,
           "timestamp": "2026-05-21T09:44:43.805684+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2948,10 +2872,10 @@
               "limit": "25"
             }
           },
-          "id": "event-000870"
+          "id": "event-000866"
         },
         {
-          "source_line": 871,
+          "source_line": 867,
           "timestamp": "2026-05-21T09:44:43.806063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2966,10 +2890,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000871"
+          "id": "event-000867"
         },
         {
-          "source_line": 872,
+          "source_line": 868,
           "timestamp": "2026-05-21T09:44:43.856475+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2988,10 +2912,10 @@
               "limit": "25"
             }
           },
-          "id": "event-000872"
+          "id": "event-000868"
         },
         {
-          "source_line": 873,
+          "source_line": 869,
           "timestamp": "2026-05-21T09:44:43.957304+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3006,10 +2930,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000873"
+          "id": "event-000869"
         },
         {
-          "source_line": 874,
+          "source_line": 870,
           "timestamp": "2026-05-21T09:44:48.146680+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3028,10 +2952,10 @@
               "limit": "25"
             }
           },
-          "id": "event-000874"
+          "id": "event-000870"
         },
         {
-          "source_line": 875,
+          "source_line": 871,
           "timestamp": "2026-05-21T09:44:48.248051+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3046,10 +2970,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-000875"
+          "id": "event-000871"
         },
         {
-          "source_line": 876,
+          "source_line": 872,
           "timestamp": "2026-05-21T09:45:32.816882+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3067,10 +2991,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-000876"
+          "id": "event-000872"
         },
         {
-          "source_line": 877,
+          "source_line": 873,
           "timestamp": "2026-05-21T09:45:37.638117+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3085,10 +3009,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4821
           },
-          "id": "event-000877"
+          "id": "event-000873"
         },
         {
-          "source_line": 878,
+          "source_line": 874,
           "timestamp": "2026-05-21T09:45:46.721981+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3107,10 +3031,10 @@
               "prompt": "<<autonomous-loop-dynamic>>"
             }
           },
-          "id": "event-000878"
+          "id": "event-000874"
         },
         {
-          "source_line": 879,
+          "source_line": 875,
           "timestamp": "2026-05-21T09:45:46.772564+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3125,10 +3049,10 @@
             "tool": "ScheduleWakeup",
             "elapsed_ms": 50
           },
-          "id": "event-000879"
+          "id": "event-000875"
         },
         {
-          "source_line": 880,
+          "source_line": 876,
           "timestamp": "2026-05-21T09:45:48.467710+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3141,7 +3065,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
           },
-          "id": "event-000880"
+          "id": "event-000876"
         }
       ]
     },
@@ -3149,7 +3073,7 @@
       "number": 33,
       "messages": [
         {
-          "source_line": 881,
+          "source_line": 877,
           "timestamp": "2026-05-21T09:57:04.965205+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3163,10 +3087,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
             "source": "system"
           },
-          "id": "event-000881"
+          "id": "event-000877"
         },
         {
-          "source_line": 882,
+          "source_line": 878,
           "timestamp": "2026-05-21T09:57:13.545945+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3185,10 +3109,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-000882"
+          "id": "event-000878"
         },
         {
-          "source_line": 883,
+          "source_line": 879,
           "timestamp": "2026-05-21T09:57:13.797244+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3203,10 +3127,10 @@
             "tool": "Grep",
             "elapsed_ms": 251
           },
-          "id": "event-000883"
+          "id": "event-000879"
         },
         {
-          "source_line": 884,
+          "source_line": 880,
           "timestamp": "2026-05-21T09:57:17.712869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3225,10 +3149,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000884"
+          "id": "event-000880"
         },
         {
-          "source_line": 885,
+          "source_line": 881,
           "timestamp": "2026-05-21T09:57:17.763562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3243,10 +3167,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000885"
+          "id": "event-000881"
         },
         {
-          "source_line": 886,
+          "source_line": 882,
           "timestamp": "2026-05-21T09:57:18.165282+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3265,10 +3189,10 @@
               "limit": "20"
             }
           },
-          "id": "event-000886"
+          "id": "event-000882"
         },
         {
-          "source_line": 887,
+          "source_line": 883,
           "timestamp": "2026-05-21T09:57:18.215840+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3283,10 +3207,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000887"
+          "id": "event-000883"
         },
         {
-          "source_line": 888,
+          "source_line": 884,
           "timestamp": "2026-05-21T09:57:18.617541+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3305,10 +3229,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000888"
+          "id": "event-000884"
         },
         {
-          "source_line": 889,
+          "source_line": 885,
           "timestamp": "2026-05-21T09:57:18.718294+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3323,10 +3247,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000889"
+          "id": "event-000885"
         },
         {
-          "source_line": 890,
+          "source_line": 886,
           "timestamp": "2026-05-21T09:57:37.450652+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3345,10 +3269,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-000890"
+          "id": "event-000886"
         },
         {
-          "source_line": 891,
+          "source_line": 887,
           "timestamp": "2026-05-21T09:57:37.501999+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3363,10 +3287,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-000891"
+          "id": "event-000887"
         },
         {
-          "source_line": 892,
+          "source_line": 888,
           "timestamp": "2026-05-21T09:57:51.350989+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3384,10 +3308,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-000892"
+          "id": "event-000888"
         },
         {
-          "source_line": 893,
+          "source_line": 889,
           "timestamp": "2026-05-21T09:57:55.115102+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3402,10 +3326,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3764
           },
-          "id": "event-000893"
+          "id": "event-000889"
         },
         {
-          "source_line": 894,
+          "source_line": 890,
           "timestamp": "2026-05-21T09:58:01.149993+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3424,10 +3348,10 @@
               "prompt": "<<autonomous-loop-dynamic>>"
             }
           },
-          "id": "event-000894"
+          "id": "event-000890"
         },
         {
-          "source_line": 895,
+          "source_line": 891,
           "timestamp": "2026-05-21T09:58:01.200574+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3442,10 +3366,10 @@
             "tool": "ScheduleWakeup",
             "elapsed_ms": 50
           },
-          "id": "event-000895"
+          "id": "event-000891"
         },
         {
-          "source_line": 896,
+          "source_line": 892,
           "timestamp": "2026-05-21T09:58:05.555871+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3458,7 +3382,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
           },
-          "id": "event-000896"
+          "id": "event-000892"
         }
       ]
     },
@@ -3466,7 +3390,7 @@
       "number": 34,
       "messages": [
         {
-          "source_line": 897,
+          "source_line": 893,
           "timestamp": "2026-05-21T10:54:10.439872+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3480,10 +3404,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
             "source": "system"
           },
-          "id": "event-000897"
+          "id": "event-000893"
         },
         {
-          "source_line": 898,
+          "source_line": 894,
           "timestamp": "2026-05-21T10:55:01.854196+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3502,10 +3426,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-000898"
+          "id": "event-000894"
         },
         {
-          "source_line": 899,
+          "source_line": 895,
           "timestamp": "2026-05-21T10:55:02.808360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3520,10 +3444,10 @@
             "tool": "Grep",
             "elapsed_ms": 954
           },
-          "id": "event-000899"
+          "id": "event-000895"
         },
         {
-          "source_line": 900,
+          "source_line": 896,
           "timestamp": "2026-05-21T10:55:03.562102+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3541,6 +3465,85 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
               "output_mode": "content",
               "-i": "True"
+            }
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-21T10:55:03.612782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "205:\\textbf{Hyperparameter} & \\textbf{Qwen3-4B \\cls{}} & \\textbf{Qwen3-4B \\cwm{}} & \\textbf{Qwen3-8B \\cls{}} & \\textbf{Qwen3-8B \\cwm{}} & \\textbf{DS-6.7B \\cls{}} & \\textbf{DS-6.7B \\cwm{}} \\\\\n234:\\paragraph{Data processing.} DeepSeek CWM seeds use \\texttt{train\\_unified.py}, which drops samples exceeding \\texttt{max\\_seq\\_length} (3{,}405 of 70{,}748 samples, 4.8\\%). Qwen CWM seeds use \\texttt{train\\_repo\\_cwm.py}, which truncates and retains all samples. This difference affects total training steps (${\\sim}$12{,}627 vs.\\ ${\\sim}$13{,}266 for DeepSeek, ${\\sim}$6{,}633 for Qwen) but not the training data distribution, as dropped samples are uniformly distributed across labels.\n321:[Omitted long matching line]\n434:[Omitted long matching line]\n436:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-21T10:55:06.324737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "offset": "200",
+              "limit": "40"
+            }
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-21T10:55:06.375883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t\\label{tab:hyperparams}\n201\t\\resizebox{\\columnwidth}{!}{%\n202\t\\setlength{\\tabcolsep}{3pt}\n203\t\\begin{tabular}{lcccccc}\n204\t\\toprule\n205\t\\textbf{Hyperparameter} & \\textbf{Qwen3-4B \\cls{}} & \\textbf{Qwen3-4B \\cwm{}} & \\textbf{Qwen3-8B \\cls{}} & \\textbf{Qwen3-8B \\cwm{}} & \\textbf{DS-6.7B \\cls{}} & \\textbf{DS-6.7B \\cwm{}} \\\\\n206\t\\midrule\n207\tBase model & Qwen3-4B & Qwen3-4B & Qwen3-8B & Qwen3-8B & DS-Coder-6.7B & DS-Coder-6.7B \\\\\n208\tLoRA rank ($r$) & 16 & 16 & 16 & 16 & 16 & 16 \\\\\n209\tLoRA alpha ($\\alpha$) & 32 & 32 & 32 & 32 & 32 & 32 \\\\\n210\tLoRA dropout & 0.05 & 0.05 & 0.05 & 0.05 & 0.05 & 0.05 \\\\\n211\tLoRA targets & \\multicolumn{6}{c}{\\texttt{q\\_proj, k\\_proj, v\\_proj, o\\_proj}} \\\\\n212\tLearning rate & 5e-5 & 5e-5 & 5e-5 & 5e-5 & 2e-4 & 2e-4 \\\\\n213\tOptimizer & \\multicolumn{6}{c}{AdamW ($\\beta_1{=}0.9$, $\\beta_2{=}0.999$)} \\\\\n214\tWeight decay & 0.01 & 0.01 & 0.01 & 0.01 & 0.0 & 0.0 \\\\\n215\tWarmup ratio & 0.05 & 0.05 & 0.05 & 0.05 & 0.1 & 0.1 \\\\\n216\tLR scheduler & \\multicolumn{6}{c}{Linear} \\\\\n217\tPer-device batch size & 2 & 1 & 1 & 1 & 2 & 1 \\\\\n218\tGradient accumulation & 16 & 32 & 32 & 32 & 16 & 32 \\\\\n219\tEffective batch size & 32 & 32 & 32 & 32 & 32 & 32 \\\\\n220\tMax sequence length & 2,048 & 2,048 & 2,048 & 2,048 & 2,048 & 2,048 \\\\\n221\tEpochs & 3 & 3 & 3 & 3 & 3 & 3 \\\\\n222\tPrecision & bf16 & bf16 & bf16 & bf16 & bf16 & bf16 \\\\\n223\tGradient checkpointing & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n224\tSeeds (function) & \\multicolumn{6}{c}{\\{42, 123, 456, 789, 0\\}\\textsuperscript{$b$}} \\\\\n225\tSeeds (repo) & \\multicolumn{6}{c}{\\{42, 123, 456\\}\\textsuperscript{$c$}} \\\\\n226\tTraining samples & 70,748 & 70,748 & 70,748 & 70,748 & 67,343$^a$ & 70,748 \\\\\n227\t\\bottomrule\n228\t\\end{tabular}}\n229\t\n230\t\\vspace{2pt}\n231\t{\\footnotesize $^a$DeepSeek \\cls{} canonical run (s42) uses drop preprocessing, which excludes 3,405 sequences exceeding max length (67,343 of 70,748). The s123 run uses truncate preprocessing (70,748 samples) but produces NaN \n…[truncated 1735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-21T10:56:46.447054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] CWM 数据到齐后叙事预演 — 三种 Scenario 分析\n\n---\n\n## 预估依据\n\n已有 CWM 数据点：\n- Qwen 8B s42: 64.36% (seq4096) / 65.17% (seq8192), unparseable 63-74%\n- Qwen 4B: s42=58.04, s123=59.09 → 跨 seed Δ=1.05pp（低方差）\n- DeepSeek s42: 61.49% (3-epoch), unparseable 62.5%\n- DeepSeek s123-v2 epoch 1: 75.45% → 3-epoch 预期更低（过拟合）\n- Function-level CWM 5-seed std=0.37pp（极低）\n\n关键约束：所有 CWM 使用 3-epoch final checkpoint（NaN eval_loss 无法 val-select）。\n\n---\n\n## Scenario A：CWM 跨 seed 一致差（~70% 概率）\n\n### 预期数值\n| | Qwen 8B CWM | DeepSeek CWM |\n|---|---|---|\n| Per-test mean | 63-66% | 59-65% |\n| Per-test std | 1-3pp | 2-5pp |\n| Variant-level | ~48-55% | ~45-52% |\n\n### Table 3 CWM 行\n```\nQwen3-8B: ~65 ± 2 (per-test)\nDeepSeek: ~62 ± 3 (per-test)\n```\n\n### Claim 影响\n- **\"19-26pp\" → 可升级为 \"20±2pp (Qwen, 3 seeds), 22±3pp (DeepSeek, 3 seeds)\"**\n- \"single-seed variant-level\" caveat → 可弱化或删除\n- W5 交互检验增加 ~29K Qwen per-test 观测 → z 值预期 < -30（目前 -23.7 仅用 DeepSeek）\n- Cross-model CWM deficit z 从 -64.4 进一步增强\n\n### 叙事调整（最小改动策略）\n\n**Abstract L4** 当前：\n> \"the CLS–CWM gap widens from ≤1.3pp to 19–26pp in single-seed variant-level evaluation\"\n\n→ 改为：\n> \"the CLS–CWM gap widens from ≤1.3pp to 20–22pp (3 seeds, per-test)\"\n\n**Intro contribution #2** 当前：\n> \"diverge by 19–26pp at repository level under ≤8B LoRA fine-tuning, driven by format collapse\"\n\n→ 改为：\n> \"diverge by 20±2pp (Qwen, 3 seeds) and 22±3pp (DeepSeek, 3 seeds) at repository level, driven by format collapse\"\n\n**删除 caveats**：\n- experiments.tex L106 \"Variant-level comparisons rely on limited seed coverage\" → 可删除（CWM 不再 limited）\n- conclusion \"single-seed variant-level\" → 改为 \"3-seed\"\n- Threats \"definitive causal attribution requires multi-seed replication currently underway\" → 改为 \"multi-seed replication confirms the single-seed finding\"\n\n**评分影响**：3.0 → **3.5 可期**。最大的提分点是 single-seed caveat 消除——这是 R6 的主要扣分项之一。\n\n---\n\n## Scenario B：CWM 方差大（~20% 概率）\n\n### 预期数值\n| | Qwen 8B CWM | DeepSeek CWM |\n|---|---|---|\n| 某 seed | ~55-58% | ~55-60% |\n| 另一 seed | ~70-75% | ~65-75% |\n| std | >7pp | >7pp |\n\n### 触发条件\n- 某 seed 的 unparseable rate 异常低（<40%），实际生成质量好\n- 或 overfitting 程度跨 seed 差异大（某 seed epoch 3 未严重退化）\n\n### 处理方案\n\n**如果有 mechanistic 解释（可排除 outlier）**：\n- 类似 DeepSeek CLS s123（preprocessing confound → NaN eval_loss）\n- 报告个别 seed 值 + 排除理由 + 剩余 seeds 的 mean\n\n**如果是 genuine variance（不可排除）**：\n- Table 3 报告 mean±std，不排除任何 seed\n- 加 caveat：\"CWM repo-level performance exhibits high seed sensitivity (std > Xpp), in contrast to function-level stability (std = 0.37pp)\"\n- 这实际上 **增强** 论文 story：CWM 不仅 accuracy 低，还不稳定 → 更不适合部署\n\n**叙事调整**：\n- \"19-26pp gap\" → \"CLS-CWM gap: mean Xpp, range Y-Zpp across seeds\"\n- 加一个新论点：\"high variance at repo level but not function level further demonstrates that output complexity is the bottleneck — seed noise is amplified through the long generation pipeline\"\n\n**W5 影响**：高方差会降低 per-test interaction z（因为 CWM 在某些 seed 表现好）。如果 z 仍然 < -15，结论不变。如果 z 在 -5 到 -15，需要加 \"seed-dependent effect\" 限定。\n\n**评分影响**：3.0 → **3.0-3.5**。如果 framing 成 \"CWM 不仅差还不稳定\" 处理得当，仍可提分。但如果某 seed 接近 TRAJ (>70%)，需要 nuanced discussion，降低论文的 clean narrative → 略减分。\n\n---\n\n## Scenario C：CWM 意外好（~10% 概率）\n\n### 预期数值\n| | Qwen 8B CWM | DeepSeek CWM |\n|---|---|---|\n| Best seed | >70% | >70% |\n| Mean | >68% | >67% |\n\n### 为什么不太可能\n1. Qwen 4B 双 seed 都在 58-59%（一致差）\n2. 8B s42 在 64-65%（format collapse 63-74%）\n3. Format collapse 是 structural 的（76.9% 无 execution keywords）→ 不太可能某 seed 突然格式正确\n4. 3-epoch training 有 overfitting 倾向\n\n### 如果发生的叙事调整\n\n**核心 pivot**：从 \"CWM fails at repo-level\" → \"CWM is unreliable at repo-level (high variance, seed-dependent)\"\n\n**Abstract**：\n> \"the CLS–CWM gap is 19–26pp\" → \"CWM shows high variability at repo level (mean X%, range Y-Z%, 3 seeds), with format collapse affecting 54-74% of predictions\"\n\n**Intro contribution #2**：\n> \"diverge by 19-26pp\" → \"diverge significantly but with high seed sensitivity; CWM accuracy ranges from Y% to Z%\"\n\n**保留的论点**：\n- Format collapse 仍然是事实（即使 accuracy > 70%，unparseable rate 仍高）\n- Parseable-only accuracy 仍然低于 majority → semantic gap 仍在\n- CLS 的 consistency + throughput 优势不受影响\n- 过拟合发现变得更重要：\"CWM 在某些 seed/epoch 偶尔达到 decent accuracy，但不可预测地退化\"\n\n**评分影响**：3.0 → **2.5-3.0 风险**。Clean narrative 被打破，需要更多 nuance。但如果处理成 \"reliability vs peak performance\" 的 tradeoff，仍可保持 Findings 水平。\n\n---\n\n## 数据到齐后的执行清单\n\n```\n1. 读取所有 CWM eval 结果 → 判定 Scenario A/B/C\n2. 更新 integrate_cwm_results.py 中的 CWM_REPO dict\n3. 重跑 compute_supplementary_stats.py → 更新 CI/d/power\n4. 填充 Table 3 CWM 行\n5. 按 Scenario 执行叙事调整（Abstract/Intro/Conclusion/Threats）\n6. 重跑 W5 mixed-effects → 更新 z 值（如果显著变化）\n7. Reviewer 验证更新后的数字一致性\n```\n\n**预计工作量**：Scenario A 约 2-3 小时（机械替换 + 数字验证），Scenario B/C 约 4-6 小时（需要叙事重构）。AI 团队均可在 May 23 Round 7 前完成。",
+              "project": "exec-sim-repair-verifier"
             }
           },
           "id": "event-000900"

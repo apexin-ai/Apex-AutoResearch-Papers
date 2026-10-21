@@ -6,100 +6,9 @@
 
 ## Round 71
 
-### Tool result
-
-_source line 1368 · 2026-05-22T08:36:38.537200+00:00_
-
-440	\label{app:parseable_bias}
-441	
-442	The default-to-pass assignment for unparseable \cwm{} outputs is not random with respect to instance difficulty. Unparseable instances have significantly higher pass rates than parseable ones (74.6\% vs.\ 68.3\%, $\chi^2$ $p = 5.9 \times 10^{-10}$), and \cls{} models achieve higher accuracy on unparseable instances (86.4\% vs.\ 79.1\%, $p = 3.3 \times 10^{-18}$). This indicates that \cwm{}'s parsing failures concentrate on simpler, pass-heavy instances where the majority-class default happens to be correct more often. Cross-model Jaccard overlap of unparseable instance sets is 0.46, confirming this pattern is instance-driven (specific inputs consistently cause parsing failure across models) rather than stochastic. The net effect is that \cwm{}'s reported accuracy is inflated by default-correct assignments on easy instances, while its effective discriminative accuracy on harder instances is substantially lower than the aggregate figure suggests.
-443	
-444	
-445	\section{Threats to Validity (Full Analysis)}
-446	\label{app:threats}
-447	
-448	We identify five potential confounds and assess their impact on our conclusions.
-449	
-450	\paragraph{Checkpoint selection.} Val-based selection is unavailable for runs with NaN validation loss (all \cwm{} repo-level runs, DeepSeek \cls{} s123), which default to the final epoch checkpoint. A checkpoint ablation on Qwen3-8B \cls{} s42 quantifies this confound: epoch~1 (ckpt-2200) achieves 85.34\%, val-selected (ckpt-3600) 84.48\%, and final epoch (ckpt-6633) 85.29\%---a $<$1\pp{} range. The val-selected checkpoint is the lowest, indicating no upward bias from checkpoint selection. The Qwen3-8B \traj{} comparison (epoch 2: 72.92\% vs.\ epoch 3: 70.83\%) shows a slightly larger ${\sim}$2\pp{} shift. For \cwm{}, the convergence analysis (Appendix~\ref{app:cwm_convergence}) shows eval loss at the final epoch is 1.8$\times$ its minimum; however, early-stopped checkpoints retain high unparseable rates, 
-…[truncated 4267 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 1369 · 2026-05-22T08:37:31.762543+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1370 · 2026-05-22T08:37:31.763106+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
-  "tool": "ToolSearch",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1371 · 2026-05-22T08:38:31.554496+00:00_
+_source line 1361 · 2026-05-22T08:38:31.554496+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -135,7 +44,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1372 · 2026-05-22T08:38:35.624998+00:00_
+_source line 1362 · 2026-05-22T08:38:35.624998+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -157,7 +66,7 @@ _source line 1372 · 2026-05-22T08:38:35.624998+00:00_
 
 ### Assistant
 
-_source line 1373 · 2026-05-22T08:38:41.293589+00:00_
+_source line 1363 · 2026-05-22T08:38:41.293589+00:00_
 
 Claim strength 预审已发送。覆盖了 Director 的全部 4 个问题：5 个核心 claim 的 evidence 评级（Claim 2/4 可加强）、6 处 single-seed caveat 的具体修改建议、4 个 overlooked claim 机会（其中"6 seeds 方向完全一致"的 aggregated statement 最有价值）、以及 L172 failed interventions 句子的逐项事实核查（全部准确，位置合理）。
 
@@ -184,7 +93,7 @@ Claim strength 预审已发送。覆盖了 Director 的全部 4 个问题：5 �
 
 ### User
 
-_source line 1374 · 2026-05-22T09:16:16.587937+00:00_
+_source line 1364 · 2026-05-22T09:16:16.587937+00:00_
 
 [System 触发审查]:
 Agent 刚完成 6 处论文文字改动（基于你的 claim strength 预审建议）。请快速验证：
@@ -215,7 +124,7 @@ Agent 刚完成 6 处论文文字改动（基于你的 claim strength 预审建�
 
 ### Tool call
 
-_source line 1375 · 2026-05-22T09:16:25.475714+00:00_
+_source line 1365 · 2026-05-22T09:16:25.475714+00:00_
 
 called Read
 
@@ -253,7 +162,7 @@ called Read
 
 ### Tool result
 
-_source line 1376 · 2026-05-22T09:16:26.379894+00:00_
+_source line 1366 · 2026-05-22T09:16:26.379894+00:00_
 
 128	{\footnotesize \textsuperscript{$\dagger$}Individual-seed variant accuracy; multi-seed aggregate pending. \textsuperscript{$\ddagger$}One seed excluded: truncate preprocessing$\to$NaN val loss, decision collapse (Table~\ref{tab:taxonomy}); mean over two matched seeds. \textsuperscript{$\diamond$}Var.\ columns: variant-level accuracy ($n{=}48$); \cls{} aggregated via all-pass rule; \traj{} by design. Per-test: $n{=}9{,}784$. \cwm{} unparseable: 54\% (4B); default to pass; parseable-only 38--43\%, below majority. Eval seq\_length differs across models (Appendix~\ref{app:threats}). \cwm{} uses epoch-3 checkpoint (val loss undefined); see text for checkpoint sensitivity analysis.}
 129	\end{table}
@@ -283,7 +192,7 @@ _source line 1376 · 2026-05-22T09:16:26.379894+00:00_
 
 ### Tool call
 
-_source line 1377 · 2026-05-22T09:16:26.530980+00:00_
+_source line 1367 · 2026-05-22T09:16:26.530980+00:00_
 
 called Read
 
@@ -317,7 +226,7 @@ called Read
 
 ### Tool result
 
-_source line 1378 · 2026-05-22T09:16:26.882916+00:00_
+_source line 1368 · 2026-05-22T09:16:26.882916+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -349,7 +258,7 @@ _source line 1378 · 2026-05-22T09:16:26.882916+00:00_
 
 ### Tool call
 
-_source line 1379 · 2026-05-22T09:16:27.036995+00:00_
+_source line 1369 · 2026-05-22T09:16:27.036995+00:00_
 
 called Read
 
@@ -387,7 +296,7 @@ called Read
 
 ### Tool result
 
-_source line 1380 · 2026-05-22T09:16:27.037544+00:00_
+_source line 1370 · 2026-05-22T09:16:27.037544+00:00_
 
 12	\begin{itemize}[leftmargin=*,itemsep=2pt]
 13	\item \textbf{Formulation near-equivalence at low complexity.} At function level, \cls{} and \cwm{} achieve statistical equivalence across two representative code LLM families; \traj{} reaches parity on Qwen3 but exceeds the equivalence margin on DeepSeek-Coder. Per-test classification matches trajectory-level accuracy while identifying which tests fail (\S\ref{sec:func_results}, \S\ref{sec:equivalence}).
@@ -416,7 +325,7 @@ _source line 1380 · 2026-05-22T09:16:27.037544+00:00_
 
 ### Tool call
 
-_source line 1381 · 2026-05-22T09:18:39.139130+00:00_
+_source line 1371 · 2026-05-22T09:18:39.139130+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -452,7 +361,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1382 · 2026-05-22T09:18:42.902569+00:00_
+_source line 1372 · 2026-05-22T09:18:42.902569+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -474,7 +383,7 @@ _source line 1382 · 2026-05-22T09:18:42.902569+00:00_
 
 ### Assistant
 
-_source line 1383 · 2026-05-22T09:18:50.134332+00:00_
+_source line 1373 · 2026-05-22T09:18:50.134332+00:00_
 
 验证已发送。6 项改动中 5 项通过，L172 的 75.45% vs 61.49% 存在 cross-seed confound（DS s123 epoch-1 vs DS s42 epoch-3），建议改用 same-seed 比较或明确标注 seed。
 
@@ -501,7 +410,7 @@ _source line 1383 · 2026-05-22T09:18:50.134332+00:00_
 
 ### User
 
-_source line 1384 · 2026-05-22T09:51:43.373701+00:00_
+_source line 1374 · 2026-05-22T09:51:43.373701+00:00_
 
 [System 触发审查]:
 两个任务：
@@ -541,7 +450,7 @@ DS s123 e3 eval ~11:50 UTC 完成后，需要修正 L172 的 cross-seed confound
 
 ### Tool call
 
-_source line 1385 · 2026-05-22T09:52:04.847779+00:00_
+_source line 1375 · 2026-05-22T09:52:04.847779+00:00_
 
 called Read
 
@@ -579,7 +488,7 @@ called Read
 
 ### Tool result
 
-_source line 1386 · 2026-05-22T09:52:05.301011+00:00_
+_source line 1376 · 2026-05-22T09:52:05.301011+00:00_
 
 170	\paragraph{Aggregation penalty.} Under the all-pass rule, a single false negative flips the variant verdict. The penalty ranges from 1.36\pp{} (DeepSeek s42) to 19\pp{} (Qwen3-4B), depending on fail recall and test count (Appendix Table~\ref{tab:variant_level}). Val-based checkpoint selection biases toward per-test accuracy at the expense of fail recall, which amplifies the penalty. \traj{} avoids this by predicting variant outcomes directly (72.91--77.08\%). The penalty is predictable from test count: function-level variants ($\bar{T} \approx 2.3$) incur negligible penalty, while repo-level variants ($\bar{T} \gg 10$) incur substantial penalty, both the \emph{advantage} and \emph{cost} of per-test granularity concentrate at high $T$ (Appendix~\ref{app:extended_analysis}(a)).
 171	
@@ -604,7 +513,7 @@ _source line 1386 · 2026-05-22T09:52:05.301011+00:00_
 
 ### Tool call
 
-_source line 1387 · 2026-05-22T09:52:05.301387+00:00_
+_source line 1377 · 2026-05-22T09:52:05.301387+00:00_
 
 called Read
 
@@ -642,7 +551,7 @@ called Read
 
 ### Tool result
 
-_source line 1388 · 2026-05-22T09:52:05.354073+00:00_
+_source line 1378 · 2026-05-22T09:52:05.354073+00:00_
 
 449	
 450	\paragraph{Checkpoint selection.} Val-based selection is unavailable for runs with NaN validation loss (all \cwm{} repo-level runs, DeepSeek \cls{} s123), which default to the final epoch checkpoint. A checkpoint ablation on Qwen3-8B \cls{} s42 quantifies this confound: epoch~1 (ckpt-2200) achieves 85.34\%, val-selected (ckpt-3600) 84.48\%, and final epoch (ckpt-6633) 85.29\%---a $<$1\pp{} range. The val-selected checkpoint is the lowest, indicating no upward bias from checkpoint selection. The Qwen3-8B \traj{} comparison (epoch 2: 72.92\% vs.\ epoch 3: 70.83\%) shows a slightly larger ${\sim}$2\pp{} shift. For \cwm{}, the convergence analysis (Appendix~\ref{app:cwm_convergence}) shows eval loss at the final epoch is 1.8$\times$ its minimum; however, early-stopped checkpoints retain high unparseable rates, leaving the qualitative ranking unchanged.
@@ -671,7 +580,7 @@ _source line 1388 · 2026-05-22T09:52:05.354073+00:00_
 
 ### Tool call
 
-_source line 1389 · 2026-05-22T09:53:20.669636+00:00_
+_source line 1379 · 2026-05-22T09:53:20.669636+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -707,7 +616,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1390 · 2026-05-22T09:53:24.736903+00:00_
+_source line 1380 · 2026-05-22T09:53:24.736903+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -729,7 +638,7 @@ _source line 1390 · 2026-05-22T09:53:24.736903+00:00_
 
 ### Assistant
 
-_source line 1391 · 2026-05-22T09:53:35.823553+00:00_
+_source line 1381 · 2026-05-22T09:53:35.823553+00:00_
 
 两个任务的分析已提交。要点：
 
@@ -760,7 +669,7 @@ _source line 1391 · 2026-05-22T09:53:35.823553+00:00_
 
 ### User
 
-_source line 1392 · 2026-05-22T10:31:49.814971+00:00_
+_source line 1382 · 2026-05-22T10:31:49.814971+00:00_
 
 [System 触发审查]:
 Claim-evidence 对齐审查。请逐条审查 5 个 core claims，对照现有实验证据：
@@ -801,7 +710,7 @@ Core Claims:
 
 ### Tool call
 
-_source line 1393 · 2026-05-22T10:31:59.834345+00:00_
+_source line 1383 · 2026-05-22T10:31:59.834345+00:00_
 
 called ToolSearch
 
@@ -837,7 +746,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1394 · 2026-05-22T10:31:59.935231+00:00_
+_source line 1384 · 2026-05-22T10:31:59.935231+00:00_
 
 
 
@@ -859,7 +768,7 @@ _source line 1394 · 2026-05-22T10:31:59.935231+00:00_
 
 ### Tool call
 
-_source line 1395 · 2026-05-22T10:32:03.505924+00:00_
+_source line 1385 · 2026-05-22T10:32:03.505924+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -897,7 +806,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1396 · 2026-05-22T10:32:03.908018+00:00_
+_source line 1386 · 2026-05-22T10:32:03.908018+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -935,7 +844,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1397 · 2026-05-22T10:32:04.566510+00:00_
+_source line 1387 · 2026-05-22T10:32:04.566510+00:00_
 
 Error: result (98,981 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-reviewer-c53fe3d9/73b9e083-a32a-4138-b8e0-7802eebc464d/tool-results/mcp-agent-ml-research-read_registry-1779445924528.txt.
 Format: JSON with schema: {result: string}
@@ -964,7 +873,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool result
 
-_source line 1398 · 2026-05-22T10:32:04.617581+00:00_
+_source line 1388 · 2026-05-22T10:32:04.617581+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| deepseek-cwm-repo-s123-eval-1epoch | Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。 | — | — | — |\\n| qwen3-8b-cwm-repo-s123-eval | Eval Qwen3-8B CWM repo-level s123 checkpoint-6633。与 s42/s456 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。 | — | — | — |\\n| deepseek-cwm-repo-s123-e3-eval | Eval DeepSeek CWM repo-level s123 epoch 3 final checkpoint (checkpoint-12627)。与 s42 (61.49%) 和 s456 (~56%) 对比，验证 CWM repo-level 跨 seed 一致性。 | — | — | — |\\n\\n## 待处理\\n- deepseek-cls-repo-resume: Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633（已分配 ? GPU:?，等待提交）\\n- qwen_cwm_s456_resume2（准备中）\\n- qwen_cwm_s456_resume（准备中）\\n- deepseek-cwm-repo-s42-e3-seq4096-eval（准备中）\\n- exp-downsample-cls-func-v3-eval-v2: Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量（准备中）\\n- exp-e-qwen3-3shot-baseline: Qwen3-8B 3-shot few-shot CLS baseline 在 repo-level 表现差于 fine-tuned models，与 DeepSeek 3-shot 一致，证明 fine-tuning 的必要性跨模型成立（准备中）\\n- D131-cwm-s42-epoch3-seq2048（准备中）\\n- D133-cwm-s42-e2-seq2048-home-resume（准备中）\\n- deepseek-cwm-repo-s42-epoch2-eval: Eval CWM s42 epoch 2 checkpoint 解耦过拟合 vs seed 差异：如果 epoch 2 accuracy >> epoch 3 (56.7%)，则 CWM repo-level 在 epoch 3 过拟合（准备中）\\n- deepseek-cls-repo-resume-v3: Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633. Fixed: removed unrecognized --save_steps arg.（准备中）\\n- …另有 8 项\\n\\n## 近期结论\\n- **deepseek-cwm-repo-s456-e3-eval** (success): Eval DeepSeek CWM rep
 …[truncated 5085 chars]
@@ -987,7 +896,7 @@ _source line 1398 · 2026-05-22T10:32:04.617581+00:00_
 
 ### Tool call
 
-_source line 1399 · 2026-05-22T10:32:16.057010+00:00_
+_source line 1389 · 2026-05-22T10:32:16.057010+00:00_
 
 called Bash
 
@@ -1023,7 +932,7 @@ called Bash
 
 ### Tool result
 
-_source line 1400 · 2026-05-22T10:32:16.308435+00:00_
+_source line 1390 · 2026-05-22T10:32:16.308435+00:00_
 
 Total experiments: 1
 Successful/Negative/Partial: 0
@@ -1052,7 +961,7 @@ Experiments with metrics: 0
 
 ### Tool call
 
-_source line 1401 · 2026-05-22T10:32:20.476627+00:00_
+_source line 1391 · 2026-05-22T10:32:20.476627+00:00_
 
 called Bash
 
@@ -1088,7 +997,7 @@ called Bash
 
 ### Tool result
 
-_source line 1402 · 2026-05-22T10:32:20.527437+00:00_
+_source line 1392 · 2026-05-22T10:32:20.527437+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate
 
@@ -1110,7 +1019,7 @@ _source line 1402 · 2026-05-22T10:32:20.527437+00:00_
 
 ### Tool call
 
-_source line 1403 · 2026-05-22T10:32:30.574007+00:00_
+_source line 1393 · 2026-05-22T10:32:30.574007+00:00_
 
 called Bash
 
@@ -1146,7 +1055,7 @@ called Bash
 
 ### Tool result
 
-_source line 1404 · 2026-05-22T10:32:30.674842+00:00_
+_source line 1394 · 2026-05-22T10:32:30.674842+00:00_
 
 Total experiments: 252
 Status: {'RUNNING': 4, 'DONE': 229, 'PREPARING': 17, 'ANALYZING': 1, 'ALLOCATED': 1}
@@ -1182,7 +1091,7 @@ Tag distribution:
 
 ### Tool call
 
-_source line 1405 · 2026-05-22T10:32:37.150893+00:00_
+_source line 1395 · 2026-05-22T10:32:37.150893+00:00_
 
 called Bash
 
@@ -1218,7 +1127,7 @@ called Bash
 
 ### Tool result
 
-_source line 1406 · 2026-05-22T10:32:37.279099+00:00_
+_source line 1396 · 2026-05-22T10:32:37.279099+00:00_
 
 === 7 NEGATIVE EXPERIMENTS (full details) ===
 --- re-repair-docker-eval ---
@@ -1265,7 +1174,7 @@ _source line 1406 · 2026-05-22T10:32:37.279099+00:00_
 
 ### Tool call
 
-_source line 1407 · 2026-05-22T10:32:51.812018+00:00_
+_source line 1397 · 2026-05-22T10:32:51.812018+00:00_
 
 called Bash
 
@@ -1301,7 +1210,7 @@ called Bash
 
 ### Tool result
 
-_source line 1408 · 2026-05-22T10:32:51.913065+00:00_
+_source line 1398 · 2026-05-22T10:32:51.913065+00:00_
 
 Success experiments: 132
 
@@ -1345,7 +1254,7 @@ ablation (5):
 
 ### Tool call
 
-_source line 1409 · 2026-05-22T10:33:03.117032+00:00_
+_source line 1399 · 2026-05-22T10:33:03.117032+00:00_
 
 called Bash
 
@@ -1381,7 +1290,7 @@ called Bash
 
 ### Tool result
 
-_source line 1410 · 2026-05-22T10:33:03.269625+00:00_
+_source line 1400 · 2026-05-22T10:33:03.269625+00:00_
 
 === POTENTIALLY UNDERUTILIZED EXPERIMENTS ===
 repo-level-3shot-baseline [success] matched:['3-shot', '3shot']
@@ -1429,7 +1338,7 @@ cwm4b-s42-mutation-breakdown [success] matched:['mutation']
 
 ### Tool call
 
-_source line 1411 · 2026-05-22T10:33:16.478720+00:00_
+_source line 1401 · 2026-05-22T10:33:16.478720+00:00_
 
 called Bash
 
@@ -1465,7 +1374,7 @@ called Bash
 
 ### Tool result
 
-_source line 1412 · 2026-05-22T10:33:16.579782+00:00_
+_source line 1402 · 2026-05-22T10:33:16.579782+00:00_
 
 --- per-test-majority-voting [negative] ---
   Hypothesis: Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy
@@ -1546,7 +1455,7 @@ _source line 1412 · 2026-05-22T10:33:16.579782+00:00_
 
 ### Tool call
 
-_source line 1413 · 2026-05-22T10:33:21.147079+00:00_
+_source line 1403 · 2026-05-22T10:33:21.147079+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1584,7 +1493,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1414 · 2026-05-22T10:33:21.248917+00:00_
+_source line 1404 · 2026-05-22T10:33:21.248917+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 68\\n  generated_at: '2026-05-18T19:26:04.627651+00:00'\\nclaims:\\n- id: C001\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: CLS output space is fixed and minimal, eliminating token-budget exhaustion\\n    and string-value mismatch failure modes by construction\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C003\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: CWM suffers from token-budget exhaustion when output length exceeds generation\\n    budget, producing spurious FAIL verdicts\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C006\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: CWM suffers from string-value mismatch on complex return types due to exact-match\\n    evaluation\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C010\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: When T_f2p = 1, per-test and trajectory-level are informationally equivalent\\n  type: analytical\\n  evidence:\\n  - oracle-f2p-stratified\\n  decisions: []\\n  deprecated: true\\n- id: C015\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Block-correlation model with ICC=rho yields DEFF = 1 + (n_bar - 1)*rho, amplifying\\n    per-test advantage\\n  type: analytical\\n  evidence:\\n  - block-corr-empirical\\n  decisions: []\\n  deprecated: true\\n- id: C021\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Empirical ICC = 0.191, DEFF = 3.97 from function-level experiments\\n  type: quantitative\\n  evidence:\\n  - block-corr-empirical\\n  decisions: []\\n  d
 …[truncated 45315 chars]
@@ -1607,7 +1516,7 @@ _source line 1414 · 2026-05-22T10:33:21.248917+00:00_
 
 ### Tool call
 
-_source line 1415 · 2026-05-22T10:35:10.117702+00:00_
+_source line 1405 · 2026-05-22T10:35:10.117702+00:00_
 
 called Grep
 
@@ -1647,7 +1556,7 @@ called Grep
 
 ### Tool result
 
-_source line 1416 · 2026-05-22T10:35:10.620067+00:00_
+_source line 1406 · 2026-05-22T10:35:10.620067+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex:4:Let $p$ denote a candidate patch and $T = \{t_1, \ldots, t_n\}$ its test suite, where each $t_i$ has label $y_i \in \{\text{\textsc{Pass}}, \text{\textsc{Fail}}\}$ from execution. Tests decompose into \emph{fail-to-pass} ($T_{\text{f2p}}$) and \emph{pass-to-pass} ($T_{\text{p2p}}$) subsets; a patch is correct iff $\forall\, t_i{:}\ y_i = \text{\textsc{Pass}}$. We compare three formulations for predicting correctness without execution.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:11:\caption{Oracle accuracy-utility frontier: per-test advantage stratified by F2P test count ($T$) on SWE-bench Verified (500 instances). Block-correlated model uses function-level ICC $= 0.191$ (from function-level analysis, \S\ref{sec:equivalence}). P2P regression rate: 1.04\% mean, 0\% median.}
@@ -1674,7 +1583,7 @@ _source line 1416 · 2026-05-22T10:35:10.620067+00:00_
 
 ### Tool call
 
-_source line 1417 · 2026-05-22T10:35:10.921785+00:00_
+_source line 1407 · 2026-05-22T10:35:10.921785+00:00_
 
 called Grep
 
@@ -1712,7 +1621,7 @@ called Grep
 
 ### Tool result
 
-_source line 1418 · 2026-05-22T10:35:10.972537+00:00_
+_source line 1408 · 2026-05-22T10:35:10.972537+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:172:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex:45:All \cwm{} experiments use LoRA rank $r{=}16$. To test whether this capacity constraint handicaps \cwm{}, we train rank-32 variants (seed 42), doubling adapter parameters.
@@ -1737,7 +1646,7 @@ _source line 1418 · 2026-05-22T10:35:10.972537+00:00_
 
 ### Tool call
 
-_source line 1419 · 2026-05-22T10:37:16.036247+00:00_
+_source line 1409 · 2026-05-22T10:37:16.036247+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1773,7 +1682,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1420 · 2026-05-22T10:37:20.152908+00:00_
+_source line 1410 · 2026-05-22T10:37:20.152908+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -1795,7 +1704,7 @@ _source line 1420 · 2026-05-22T10:37:20.152908+00:00_
 
 ### Assistant
 
-_source line 1421 · 2026-05-22T10:37:22.461886+00:00_
+_source line 1411 · 2026-05-22T10:37:22.461886+00:00_
 
 Full data gathered. Now composing the comprehensive claim-evidence alignment audit.
 
@@ -1822,7 +1731,7 @@ Full data gathered. Now composing the comprehensive claim-evidence alignment aud
 
 ### User
 
-_source line 1422 · 2026-05-22T10:50:46.189134+00:00_
+_source line 1412 · 2026-05-22T10:50:46.189134+00:00_
 
 [系统通知 — worker_done:worker_check_eval-progress-round3_20260522T104758]:
 Worker worker_check_eval-progress-round3_20260522T104758 已完成（status=done），请审查 Agent 的处理结果。
@@ -1844,7 +1753,7 @@ Worker worker_check_eval-progress-round3_20260522T104758 已完成（status=done
 
 ### Tool call
 
-_source line 1423 · 2026-05-22T10:50:58.605823+00:00_
+_source line 1413 · 2026-05-22T10:50:58.605823+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1882,7 +1791,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1424 · 2026-05-22T10:50:59.258776+00:00_
+_source line 1414 · 2026-05-22T10:50:59.258776+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T02:44:16.317Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}}, \"deepseek-cwm-repo-s456-e3-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:20:45.706Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s456 epoch 3 final checkpoint (checkpoint-12627)。与 s42 epoch 3 (61.49% @seq4096) 对比，验证 CWM repo-level 跨 seed 一致性。组成 3-seed coverage (42/123/456) 用于论文 Table 3。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 56.11, \"unparseable_rate\": 56.97, \"parseable_only_accuracy\": 32.45, \"f1_macro\": 50.6, \"samples\": 9784}}, \"qwen3-8b-cwm-repo-s123-eval\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T02:10:53.609Z\", \"hypothesis\": \"Eval Qwen3-8B CWM repo-level s123 checkpoint-6633。与 s42/s456 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。\"}, \"deepseek-cwm-repo-s123-train-v3\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:08:01.180Z\", \"hypothesis\": \"DeepSeek CWM repo-level s123 恢复训练 v3：从 v2 的 checkpoint-4209（epoch 1）恢复，跑完剩余 2 epochs。v2 被 ssh_execute timeout (EXIT_CODE=124) 在 step 4423 杀死。使用 --train_file swebench_full/swebench_train.jsonl，与 s42 对齐。\", \"conclusion\": \"failed\"}, \"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T01:08:13.576Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 epoch 3 final checkpoint (checkpoint-12627)。与 s42 (61.49%) 和 s456 (~56%) 对比，验证 CWM repo-level 跨 
 …[truncated 874 chars]
@@ -1905,7 +1814,7 @@ _source line 1424 · 2026-05-22T10:50:59.258776+00:00_
 
 ### Assistant
 
-_source line 1425 · 2026-05-22T10:51:13.134358+00:00_
+_source line 1415 · 2026-05-22T10:51:13.134358+00:00_
 
 三个 running evals 仍在进行中，registry 状态无异常。DS s123 e3 eval 预计约 11:50 UTC 完成，到时需要用 same-seed 数据修正 L172。无需立即行动。
 
@@ -1932,7 +1841,7 @@ _source line 1425 · 2026-05-22T10:51:13.134358+00:00_
 
 ### User
 
-_source line 1426 · 2026-05-22T11:20:57.248771+00:00_
+_source line 1416 · 2026-05-22T11:20:57.248771+00:00_
 
 [系统通知 — worker_done:worker_check_qwen-s123-eval-done_20260522T111847]:
 Worker worker_check_qwen-s123-eval-done_20260522T111847 已完成（status=done），请审查 Agent 的处理结果。
@@ -1954,7 +1863,7 @@ Worker worker_check_qwen-s123-eval-done_20260522T111847 已完成（status=done�
 
 ### Tool call
 
-_source line 1427 · 2026-05-22T11:21:04.364786+00:00_
+_source line 1417 · 2026-05-22T11:21:04.364786+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1992,7 +1901,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1428 · 2026-05-22T11:21:05.168092+00:00_
+_source line 1418 · 2026-05-22T11:21:05.168092+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen3-8b-cwm-repo-s123-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T11:20:18.566Z\", \"hypothesis\": \"Qwen3-8B CWM model trained on repo-level data with seed 123 will achieve accuracy above majority baseline on the test set, demonstrating that the counterfactual reasoning signal transfers across seeds\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 67.33, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -5.62, \"f1_fail\": 32.94, \"f1_pass\": 78.41, \"f1_macro\": 55.67, \"precision_fail\": 37.03, \"precision_pass\": 75.72, \"recall_fail\": 29.67, \"recall_pass\": 81.3, \"unparseable_count\": 6257, \"unparseable_rate\": 63.95, \"n_instances\": 9784, \"checkpoint_step\": 6633}}, \"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T02:44:16.317Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}}, \"deepseek-cwm-repo-s456-e3-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:20:45.706Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s456 epoch 3 final checkpoint (checkpoint-12627)。与 s42 epoch 3 (61.49% @seq4096) 对比，验证 CWM repo-level 跨 seed 一致性。组成 3-seed coverage (42/123/456) 用于论文 Table 3。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 56.11, \"unparseable_rate\": 56.97, \"parseable_only_accuracy\": 32.45, \"f1_macro\": 50.6, \"samples\": 9784}}, \"deepseek-cwm-repo-s123-train-v3\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:08:01.180Z\", \"hypothesis\": \"DeepSeek CWM repo-le
 …[truncated 329 chars]
@@ -2015,7 +1924,7 @@ _source line 1428 · 2026-05-22T11:21:05.168092+00:00_
 
 ### Tool call
 
-_source line 1429 · 2026-05-22T11:21:27.523980+00:00_
+_source line 1419 · 2026-05-22T11:21:27.523980+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2055,7 +1964,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1430 · 2026-05-22T11:21:28.535149+00:00_
+_source line 1420 · 2026-05-22T11:21:28.535149+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T02:44:16.317Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}}, \"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T01:08:13.576Z\"}, \"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T22:08:03.658Z\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9454}}"}
 
@@ -2077,7 +1986,7 @@ _source line 1430 · 2026-05-22T11:21:28.535149+00:00_
 
 ### Tool call
 
-_source line 1431 · 2026-05-22T11:21:48.479373+00:00_
+_source line 1421 · 2026-05-22T11:21:48.479373+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2113,7 +2022,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1432 · 2026-05-22T11:21:52.143025+00:00_
+_source line 1422 · 2026-05-22T11:21:52.143025+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2135,7 +2044,7 @@ _source line 1432 · 2026-05-22T11:21:52.143025+00:00_
 
 ### Assistant
 
-_source line 1433 · 2026-05-22T11:21:54.452342+00:00_
+_source line 1423 · 2026-05-22T11:21:54.452342+00:00_
 
 Qwen3-8B CWM s123 eval 完成。核实数据。
 
@@ -2162,7 +2071,7 @@ Qwen3-8B CWM s123 eval 完成。核实数据。
 
 ### User
 
-_source line 1434 · 2026-05-22T11:49:38.032996+00:00_
+_source line 1424 · 2026-05-22T11:49:38.032996+00:00_
 
 [系统通知 — worker_done:worker_check_ds-s123-e3-eval-done_20260522T114754]:
 Worker worker_check_ds-s123-e3-eval-done_20260522T114754 已完成（status=done），请审查 Agent 的处理结果。
@@ -2184,7 +2093,7 @@ Worker worker_check_ds-s123-e3-eval-done_20260522T114754 已完成（status=done
 
 ### Tool call
 
-_source line 1435 · 2026-05-22T11:49:48.516696+00:00_
+_source line 1425 · 2026-05-22T11:49:48.516696+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2222,7 +2131,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1436 · 2026-05-22T11:49:49.273403+00:00_
+_source line 1426 · 2026-05-22T11:49:49.273403+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T11:49:21.356Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 57.31, \"f1_macro\": 51.79, \"f1_fail\": 35.49, \"f1_pass\": 68.1, \"precision_fail\": 30.01, \"precision_pass\": 74.86, \"recall_fail\": 43.42, \"recall_pass\": 62.45, \"unparseable_count\": 5028, \"unparseable_rate\": 51.39, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -15.65}}, \"qwen3-8b-cwm-repo-s123-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T11:21:32.743Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 67.33, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -5.62, \"f1_fail\": 32.94, \"f1_pass\": 78.41, \"f1_macro\": 55.67, \"precision_fail\": 37.03, \"precision_pass\": 75.72, \"recall_fail\": 29.67, \"recall_pass\": 81.3, \"unparseable_count\": 6257, \"unparseable_rate\": 63.95, \"n_instances\": 9784, \"checkpoint_step\": 6633}}, \"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T02:44:16.317Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}}}, \"count\": 3, \"total\": 252, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7017}}"}
 
@@ -2244,7 +2153,7 @@ _source line 1436 · 2026-05-22T11:49:49.273403+00:00_
 
 ### Tool call
 
-_source line 1437 · 2026-05-22T11:50:13.537656+00:00_
+_source line 1427 · 2026-05-22T11:50:13.537656+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2280,7 +2189,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1438 · 2026-05-22T11:50:17.462209+00:00_
+_source line 1428 · 2026-05-22T11:50:17.462209+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2302,7 +2211,7 @@ _source line 1438 · 2026-05-22T11:50:17.462209+00:00_
 
 ### Assistant
 
-_source line 1439 · 2026-05-22T11:50:19.729498+00:00_
+_source line 1429 · 2026-05-22T11:50:19.729498+00:00_
 
 DS s123 epoch 3 完成 — 这是 L172 same-seed 修正的关键数据。
 
@@ -2329,7 +2238,7 @@ DS s123 epoch 3 完成 — 这是 L172 same-seed 修正的关键数据。
 
 ### User
 
-_source line 1440 · 2026-05-22T12:23:01.634194+00:00_
+_source line 1430 · 2026-05-22T12:23:01.634194+00:00_
 
 [System 触发审查]:
 两个评估：
@@ -2364,7 +2273,7 @@ Same-seed 比较给出 +18.14pp（75.45% → 57.31%），比之前 cross-seed �
 
 ### Tool call
 
-_source line 1441 · 2026-05-22T12:24:22.656114+00:00_
+_source line 1431 · 2026-05-22T12:24:22.656114+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2400,7 +2309,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1442 · 2026-05-22T12:24:26.320978+00:00_
+_source line 1432 · 2026-05-22T12:24:26.320978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2429,7 +2338,7 @@ _source line 1442 · 2026-05-22T12:24:26.320978+00:00_
 
 ### User
 
-_source line 1443 · 2026-05-22T12:31:05.442767+00:00_
+_source line 1433 · 2026-05-22T12:31:05.442767+00:00_
 
 [系统通知 — worker_done:worker_check_qwen-s456-eval-done_20260522T122901]:
 Worker worker_check_qwen-s456-eval-done_20260522T122901 已完成（status=done），请审查 Agent 的处理结果。
@@ -2451,7 +2360,7 @@ Worker worker_check_qwen-s456-eval-done_20260522T122901 已完成（status=done�
 
 ### Tool call
 
-_source line 1444 · 2026-05-22T12:31:12.984928+00:00_
+_source line 1434 · 2026-05-22T12:31:12.984928+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2489,7 +2398,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1445 · 2026-05-22T12:31:14.217662+00:00_
+_source line 1435 · 2026-05-22T12:31:14.217662+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T12:30:37.182Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 66.93, \"f1_macro\": 51.97, \"f1_fail\": 25.16, \"f1_pass\": 78.77, \"unparseable_rate\": 60.39, \"unparseable_count\": 5909, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -6.03, \"precision_fail\": 32.42, \"recall_fail\": 20.56, \"checkpoint_step\": 6633}}, \"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T11:49:21.356Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 57.31, \"f1_macro\": 51.79, \"f1_fail\": 35.49, \"f1_pass\": 68.1, \"precision_fail\": 30.01, \"precision_pass\": 74.86, \"recall_fail\": 43.42, \"recall_pass\": 62.45, \"unparseable_count\": 5028, \"unparseable_rate\": 51.39, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -15.65}}}, \"count\": 2, \"total\": 252, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1561}}"}
 
@@ -2511,7 +2420,7 @@ _source line 1445 · 2026-05-22T12:31:14.217662+00:00_
 
 ### Tool call
 
-_source line 1446 · 2026-05-22T12:31:46.719014+00:00_
+_source line 1436 · 2026-05-22T12:31:46.719014+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2547,7 +2456,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1447 · 2026-05-22T12:31:50.281961+00:00_
+_source line 1437 · 2026-05-22T12:31:50.281961+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2569,7 +2478,7 @@ _source line 1447 · 2026-05-22T12:31:50.281961+00:00_
 
 ### Assistant
 
-_source line 1448 · 2026-05-22T12:31:57.944517+00:00_
+_source line 1438 · 2026-05-22T12:31:57.944517+00:00_
 
 All 6 CWM repo-level seeds now confirmed. This is a milestone — Table 3 data is complete.
 
@@ -2596,7 +2505,7 @@ All 6 CWM repo-level seeds now confirmed. This is a milestone — Table 3 data i
 
 ### User
 
-_source line 1449 · 2026-05-22T12:43:09.671860+00:00_
+_source line 1439 · 2026-05-22T12:43:09.671860+00:00_
 
 [系统通知 — worker_done:worker_gen_figure2-and-lpm_20260522T123736]:
 Worker worker_gen_figure2-and-lpm_20260522T123736 已完成（status=done），请审查 Agent 的处理结果。
@@ -2618,7 +2527,7 @@ Worker worker_gen_figure2-and-lpm_20260522T123736 已完成（status=done），�
 
 ### Tool call
 
-_source line 1450 · 2026-05-22T12:43:20.226757+00:00_
+_source line 1440 · 2026-05-22T12:43:20.226757+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2658,7 +2567,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1451 · 2026-05-22T12:43:20.881129+00:00_
+_source line 1441 · 2026-05-22T12:43:20.881129+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6816}}"}
 
@@ -2680,7 +2589,7 @@ _source line 1451 · 2026-05-22T12:43:20.881129+00:00_
 
 ### Tool call
 
-_source line 1452 · 2026-05-22T12:43:26.451978+00:00_
+_source line 1442 · 2026-05-22T12:43:26.451978+00:00_
 
 called Glob
 
@@ -2716,7 +2625,7 @@ called Glob
 
 ### Tool result
 
-_source line 1453 · 2026-05-22T12:43:26.954165+00:00_
+_source line 1443 · 2026-05-22T12:43:26.954165+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/figure2_v2.png
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v2.pdf
@@ -2740,7 +2649,7 @@ _source line 1453 · 2026-05-22T12:43:26.954165+00:00_
 
 ### Tool call
 
-_source line 1454 · 2026-05-22T12:43:26.954507+00:00_
+_source line 1444 · 2026-05-22T12:43:26.954507+00:00_
 
 called Glob
 
@@ -2776,7 +2685,7 @@ called Glob
 
 ### Tool result
 
-_source line 1455 · 2026-05-22T12:43:27.004942+00:00_
+_source line 1445 · 2026-05-22T12:43:27.004942+00:00_
 
 No files found
 
@@ -2798,7 +2707,7 @@ No files found
 
 ### Tool call
 
-_source line 1456 · 2026-05-22T12:43:34.807605+00:00_
+_source line 1446 · 2026-05-22T12:43:34.807605+00:00_
 
 called Read
 
@@ -2832,7 +2741,7 @@ called Read
 
 ### Tool result
 
-_source line 1457 · 2026-05-22T12:43:35.110319+00:00_
+_source line 1447 · 2026-05-22T12:43:35.110319+00:00_
 
 
 
@@ -2854,7 +2763,7 @@ _source line 1457 · 2026-05-22T12:43:35.110319+00:00_
 
 ### Tool call
 
-_source line 1458 · 2026-05-22T12:43:57.873575+00:00_
+_source line 1448 · 2026-05-22T12:43:57.873575+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2890,7 +2799,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1459 · 2026-05-22T12:44:02.805016+00:00_
+_source line 1449 · 2026-05-22T12:44:02.805016+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -2912,7 +2821,7 @@ _source line 1459 · 2026-05-22T12:44:02.805016+00:00_
 
 ### Assistant
 
-_source line 1460 · 2026-05-22T12:44:07.146942+00:00_
+_source line 1450 · 2026-05-22T12:44:07.146942+00:00_
 
 Figure 已更新为 multi-seed CWM 数据。数据核实：
 
@@ -2939,7 +2848,7 @@ Figure 已更新为 multi-seed CWM 数据。数据核实：
 
 ### User
 
-_source line 1461 · 2026-05-22T12:49:11.849160+00:00_
+_source line 1451 · 2026-05-22T12:49:11.849160+00:00_
 
 [System 触发审查]:
 论文主体改动全部完成（22 页，编译通过）。请做一轮 final verification：
@@ -2971,7 +2880,7 @@ _source line 1461 · 2026-05-22T12:49:11.849160+00:00_
 
 ### Tool call
 
-_source line 1462 · 2026-05-22T12:49:17.926150+00:00_
+_source line 1452 · 2026-05-22T12:49:17.926150+00:00_
 
 called Read
 
@@ -3005,7 +2914,7 @@ called Read
 
 ### Tool result
 
-_source line 1463 · 2026-05-22T12:49:18.478541+00:00_
+_source line 1453 · 2026-05-22T12:49:18.478541+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -3041,7 +2950,7 @@ _source line 1463 · 2026-05-22T12:49:18.478541+00:00_
 
 ### Tool call
 
-_source line 1464 · 2026-05-22T12:49:18.478925+00:00_
+_source line 1454 · 2026-05-22T12:49:18.478925+00:00_
 
 called Read
 
@@ -3075,7 +2984,7 @@ called Read
 
 ### Tool result
 
-_source line 1465 · 2026-05-22T12:49:18.930613+00:00_
+_source line 1455 · 2026-05-22T12:49:18.930613+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -3107,7 +3016,7 @@ _source line 1465 · 2026-05-22T12:49:18.930613+00:00_
 
 ### Tool call
 
-_source line 1466 · 2026-05-22T12:49:18.931103+00:00_
+_source line 1456 · 2026-05-22T12:49:18.931103+00:00_
 
 called Read
 
@@ -3141,7 +3050,7 @@ called Read
 
 ### Tool result
 
-_source line 1467 · 2026-05-22T12:49:18.981729+00:00_
+_source line 1457 · 2026-05-22T12:49:18.981729+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -3171,7 +3080,7 @@ _source line 1467 · 2026-05-22T12:49:18.981729+00:00_
 
 ### Tool call
 
-_source line 1468 · 2026-05-22T12:49:27.872772+00:00_
+_source line 1458 · 2026-05-22T12:49:27.872772+00:00_
 
 called Read
 
@@ -3205,7 +3114,7 @@ called Read
 
 ### Tool result
 
-_source line 1469 · 2026-05-22T12:49:28.935653+00:00_
+_source line 1459 · 2026-05-22T12:49:28.935653+00:00_
 
 1	\begin{abstract}
 2	LLM-based program repair increasingly relies on generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\cls{}), execution output generation (\cwm{}), and trajectory-level patch scoring (\traj{}). No prior work compares these formulations under matched conditions.
@@ -3233,7 +3142,7 @@ _source line 1469 · 2026-05-22T12:49:28.935653+00:00_
 
 ### Tool call
 
-_source line 1470 · 2026-05-22T12:49:29.237407+00:00_
+_source line 1460 · 2026-05-22T12:49:29.237407+00:00_
 
 called Read
 
@@ -3271,7 +3180,7 @@ called Read
 
 ### Tool result
 
-_source line 1471 · 2026-05-22T12:49:29.288067+00:00_
+_source line 1461 · 2026-05-22T12:49:29.288067+00:00_
 
 449	
 450	\paragraph{Checkpoint selection.} Val-based selection is unavailable for runs with NaN validation loss (all \cwm{} repo-level runs, DeepSeek \cls{} s123), which default to the final epoch checkpoint. A checkpoint ablation on Qwen3-8B \cls{} s42 quantifies this confound: epoch~1 (ckpt-2200) achieves 85.34\%, val-selected (ckpt-3600) 84.48\%, and final epoch (ckpt-6633) 85.29\%---a $<$1\pp{} range. The val-selected checkpoint is the lowest, indicating no upward bias from checkpoint selection. The Qwen3-8B \traj{} comparison (epoch 2: 72.92\% vs.\ epoch 3: 70.83\%) shows a slightly larger ${\sim}$2\pp{} shift. For \cwm{}, the convergence analysis (Appendix~\ref{app:cwm_convergence}) shows eval loss at the final epoch is 1.8$\times$ its minimum; however, early-stopped checkpoints retain high unparseable rates, leaving the qualitative ranking unchanged.
@@ -3302,7 +3211,7 @@ _source line 1471 · 2026-05-22T12:49:29.288067+00:00_
 
 ### Tool call
 
-_source line 1472 · 2026-05-22T12:49:30.093000+00:00_
+_source line 1462 · 2026-05-22T12:49:30.093000+00:00_
 
 called Grep
 
@@ -3342,7 +3251,7 @@ called Grep
 
 ### Tool result
 
-_source line 1473 · 2026-05-22T12:49:30.143631+00:00_
+_source line 1463 · 2026-05-22T12:49:30.143631+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:60:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:160:\paragraph{Complexity as moderator.} The \cls{}--\cwm{} gap widens from 1--3\pp{} (function) to 18--26\pp{} (repo) under our protocol; a matched-context ablation confirms input disparity explains $<$3\% of this gap (Appendix~\ref{app:ablations}).
@@ -3376,7 +3285,7 @@ _source line 1473 · 2026-05-22T12:49:30.143631+00:00_
 
 ### Tool call
 
-_source line 1474 · 2026-05-22T12:49:35.771595+00:00_
+_source line 1464 · 2026-05-22T12:49:35.771595+00:00_
 
 called Grep
 
@@ -3418,7 +3327,7 @@ called Grep
 
 ### Tool result
 
-_source line 1475 · 2026-05-22T12:49:36.223604+00:00_
+_source line 1465 · 2026-05-22T12:49:36.223604+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.bbl:94:  Wang}]{gu2024cruxeval}
@@ -3446,7 +3355,7 @@ _source line 1475 · 2026-05-22T12:49:36.223604+00:00_
 
 ### Tool call
 
-_source line 1476 · 2026-05-22T12:49:36.725866+00:00_
+_source line 1466 · 2026-05-22T12:49:36.725866+00:00_
 
 called Grep
 
@@ -3490,7 +3399,7 @@ called Grep
 
 ### Tool result
 
-_source line 1477 · 2026-05-22T12:49:36.880072+00:00_
+_source line 1467 · 2026-05-22T12:49:36.880072+00:00_
 
 1-% === Execution Simulation ===
 2-
@@ -3520,7 +3429,7 @@ _source line 1477 · 2026-05-22T12:49:36.880072+00:00_
 
 ### Tool call
 
-_source line 1478 · 2026-05-22T12:50:03.058151+00:00_
+_source line 1468 · 2026-05-22T12:50:03.058151+00:00_
 
 called Read
 
@@ -3558,7 +3467,7 @@ called Read
 
 ### Tool result
 
-_source line 1479 · 2026-05-22T12:50:03.159302+00:00_
+_source line 1469 · 2026-05-22T12:50:03.159302+00:00_
 
 472	\end{table}
 473	
@@ -3587,7 +3496,7 @@ _source line 1479 · 2026-05-22T12:50:03.159302+00:00_
 
 ### Tool call
 
-_source line 1480 · 2026-05-22T12:51:33.126226+00:00_
+_source line 1470 · 2026-05-22T12:51:33.126226+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3623,7 +3532,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1481 · 2026-05-22T12:51:36.740201+00:00_
+_source line 1471 · 2026-05-22T12:51:36.740201+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -3645,7 +3554,7 @@ _source line 1481 · 2026-05-22T12:51:36.740201+00:00_
 
 ### Tool call
 
-_source line 1482 · 2026-05-22T12:54:03.954654+00:00_
+_source line 1472 · 2026-05-22T12:54:03.954654+00:00_
 
 called ToolSearch
 
@@ -3681,7 +3590,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1483 · 2026-05-22T12:54:03.955160+00:00_
+_source line 1473 · 2026-05-22T12:54:03.955160+00:00_
 
 
 
@@ -3703,7 +3612,7 @@ _source line 1483 · 2026-05-22T12:54:03.955160+00:00_
 
 ### Tool call
 
-_source line 1484 · 2026-05-22T12:54:07.216666+00:00_
+_source line 1474 · 2026-05-22T12:54:07.216666+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3741,7 +3650,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1485 · 2026-05-22T12:54:07.870587+00:00_
+_source line 1475 · 2026-05-22T12:54:07.870587+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:16:05.664Z\", \"updated_at\": \"2026-05-22T02:44:16.317Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"parent\": \"deepseek-cwm-repo-s123-train-v2\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}, \"spec\": {\"command\": \"bash eval_deepseek_cwm_s123_1epoch.sh (CVD=1, batch=4, checkpoint-4209)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"deepseek-coder-6.7b-instruct\", \"seed\": 123, \"pid\": 111113, \"gpu\": \"GPU 1 (RTX 5090 32GB)\", \"checkpoint_source\": \"deepseek-cwm-repo-s123-train-v2 checkpoint-4209 (epoch 1)\", \"eval_data\": \"repo-level CWM test set (9784 per-test samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/checkpoint-4209\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6363}}"}
 
@@ -3763,7 +3672,7 @@ _source line 1485 · 2026-05-22T12:54:07.870587+00:00_
 
 ### Tool call
 
-_source line 1486 · 2026-05-22T12:54:12.111315+00:00_
+_source line 1476 · 2026-05-22T12:54:12.111315+00:00_
 
 called ToolSearch
 
@@ -3799,7 +3708,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1487 · 2026-05-22T12:54:12.212293+00:00_
+_source line 1477 · 2026-05-22T12:54:12.212293+00:00_
 
 
 
@@ -3821,7 +3730,7 @@ _source line 1487 · 2026-05-22T12:54:12.212293+00:00_
 
 ### Tool call
 
-_source line 1488 · 2026-05-22T12:54:15.525969+00:00_
+_source line 1478 · 2026-05-22T12:54:15.525969+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3857,7 +3766,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1489 · 2026-05-22T12:54:16.736993+00:00_
+_source line 1479 · 2026-05-22T12:54:16.736993+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"111113    10:29:00 bash -c cd /home/sonny/exec-sim-repair-verifier && nohup bash eval_deepseek_cwm_s123_1epoch.sh > eval_deepseek_cwm_s123_1epoch.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
 
@@ -3879,7 +3788,7 @@ _source line 1489 · 2026-05-22T12:54:16.736993+00:00_
 
 ### Tool call
 
-_source line 1490 · 2026-05-22T12:54:24.165232+00:00_
+_source line 1480 · 2026-05-22T12:54:24.165232+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3915,7 +3824,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1491 · 2026-05-22T12:54:24.667465+00:00_
+_source line 1481 · 2026-05-22T12:54:24.667465+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 20:45:19,265 INFO [CWM] 8144/9784  running_acc=75.5%  (new=8144 resumed=0)\\n2026-05-22 20:45:38,321 INFO [CWM] 8148/9784  running_acc=75.6%  (new=8148 resumed=0)\\n2026-05-22 20:45:53,512 INFO [CWM] 8152/9784  running_acc=75.5%  (new=8152 resumed=0)\\n2026-05-22 20:46:09,338 INFO [CWM] 8156/9784  running_acc=75.6%  (new=8156 resumed=0)\\n2026-05-22 20:46:29,426 INFO [CWM] 8160/9784  running_acc=75.6%  (new=8160 resumed=0)\\n2026-05-22 20:46:48,593 INFO [CWM] 8164/9784  running_acc=75.6%  (new=8164 resumed=0)\\n2026-05-22 20:47:08,083 INFO [CWM] 8168/9784  running_acc=75.5%  (new=8168 resumed=0)\\n2026-05-22 20:47:27,165 INFO [CWM] 8172/9784  running_acc=75.5%  (new=8172 resumed=0)\\n2026-05-22 20:47:46,277 INFO [CWM] 8176/9784  running_acc=75.5%  (new=8176 resumed=0)\\n2026-05-22 20:48:05,975 INFO [CWM] 8180/9784  running_acc=75.5%  (new=8180 resumed=0)\\n2026-05-22 20:48:25,893 INFO [CWM] 8184/9784  running_acc=75.5%  (new=8184 resumed=0)\\n2026-05-22 20:48:45,041 INFO [CWM] 8188/9784  running_acc=75.5%  (new=8188 resumed=0)\\n2026-05-22 20:49:04,132 INFO [CWM] 8192/9784  running_acc=75.5%  (new=8192 resumed=0)\\n2026-05-22 20:49:23,229 INFO [CWM] 8196/9784  running_acc=75.5%  (new=8196 resumed=0)\\n2026-05-22 20:49:42,532 INFO [CWM] 8200/9784  running_acc=75.5%  (new=8200 resumed=0)\\n2026-05-22 20:50:01,849 INFO [CWM] 8204/9784  running_acc=75.5%  (new=8204 resumed=0)\\n2026-05-22 20:50:21,010 INFO [CWM] 8208/9784  running_acc=75.5%  (new=8208 resumed=0)\\n2026-05-22 20:50:40,156 INFO [CWM] 8212/9784  running_acc=75.5%  (new=8212 resumed=0)\\n2026-05-22 20:50:59,242 INFO [CWM] 8216/9784  running_acc=75.6%  (new=8216 resumed=0)\\n2026-05-22 20:51:14,314 INFO [CWM] 8220/9784  running_acc=75.5%  (new=8220 resumed=0)\\n2026-05-22 20:51:33,395 INFO [CWM] 8224/9784  running_acc=75.5%  (new=8224 resumed=0)\\n2026-05-22 20:51:48,521 INFO [CWM] 8228/9784  running_acc=75.5%  (new=8228 resumed=0)\\n2026-05-
 …[truncated 800 chars]
@@ -3938,7 +3847,7 @@ _source line 1491 · 2026-05-22T12:54:24.667465+00:00_
 
 ### Tool call
 
-_source line 1492 · 2026-05-22T12:54:24.918713+00:00_
+_source line 1482 · 2026-05-22T12:54:24.918713+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3974,7 +3883,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1493 · 2026-05-22T12:54:25.471314+00:00_
+_source line 1483 · 2026-05-22T12:54:25.471314+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 32607 MiB\\n1, 87 %, 30427 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 0 %, 0 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
 
@@ -3996,7 +3905,7 @@ _source line 1493 · 2026-05-22T12:54:25.471314+00:00_
 
 ### Assistant
 
-_source line 1494 · 2026-05-22T12:54:42.120429+00:00_
+_source line 1484 · 2026-05-22T12:54:42.120429+00:00_
 
 Eval 正常推进：8260/9784（84.4%），GPU 1 利用率 87%，running_acc 稳定在 75.5%，与预填 75.45% 高度一致。剩余 ~1524 样本，预计约 2 小时完成。无异常，无需向 Director 报告。
 
@@ -4030,7 +3939,7 @@ Eval 正常推进：8260/9784（84.4%），GPU 1 利用率 87%，running_acc 稳
 
 ### User
 
-_source line 1495 · 2026-05-22T12:54:42.608679+00:00_
+_source line 1485 · 2026-05-22T12:54:42.608679+00:00_
 
 [系统通知 — worker_done:worker_analysis_multi-seed-oracle_20260522T124959]:
 Worker worker_analysis_multi-seed-oracle_20260522T124959 已完成（status=done），请审查 Agent 的处理结果。
@@ -4052,7 +3961,7 @@ Worker worker_analysis_multi-seed-oracle_20260522T124959 已完成（status=done
 
 ### Tool call
 
-_source line 1496 · 2026-05-22T12:54:51.406459+00:00_
+_source line 1486 · 2026-05-22T12:54:51.406459+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4090,7 +3999,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1497 · 2026-05-22T12:54:52.110377+00:00_
+_source line 1487 · 2026-05-22T12:54:52.110377+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:07:40.156Z\", \"updated_at\": \"2026-05-22T12:30:37.182Z\", \"hypothesis\": \"Eval Qwen3-8B CWM repo-level s456 checkpoint-6633。与 s42/s123 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。\", \"parent\": \"qwen3-8b-cwm-repo-s456-train-v4\", \"spec\": {\"command\": \"bash eval_qwen_cwm_s456.sh (CVD=3, batch=4, checkpoint-6633)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 456, \"pid\": 96722, \"gpu\": \"GPU 3 (RTX 5090 32GB)\", \"checkpoint_source\": \"qwen3-8b-cwm-repo-s456-train-v4 checkpoint-6633\", \"eval_data\": \"repo-level CWM test set (1890 samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6633\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_qwen_cwm_s456.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:30:35.024Z\", \"metrics\": {\"accuracy\": 66.93, \"f1_macro\": 51.97, \"f1_fail\": 25.16, \"f1_pass\": 78.77, \"unparseable_rate\": 60.39, \"unparseable_count\": 5909, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -6.03, \"precision_fail\": 32.42, \"recall_fail\": 20.56, \"checkpoint_step\": 6633}}, \"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:07:53.274Z\", \"updated_at\": \"2026-05-22T11:49:21.356Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 epoch 3 final checkpoint (checkpoint-12627)。与 s42 (61.49%) 和 s456 (~56%) 对比，验证 CWM repo-level 跨 seed 一致性。\", \"parent\": \"deepseek-cwm-repo-s123\", \"spec\": {\"command\": \"eval_deepseek_cwm_s123_v2.sh (CVD=2, batch=4, checkpoint-12627)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_cou
 …[truncated 13821 chars]
@@ -4113,7 +4022,7 @@ _source line 1497 · 2026-05-22T12:54:52.110377+00:00_
 
 ### Tool call
 
-_source line 1498 · 2026-05-22T12:55:01.796921+00:00_
+_source line 1488 · 2026-05-22T12:55:01.796921+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4153,7 +4062,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1499 · 2026-05-22T12:55:02.754742+00:00_
+_source line 1489 · 2026-05-22T12:55:02.754742+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:07:40.156Z\", \"updated_at\": \"2026-05-22T12:30:37.182Z\", \"hypothesis\": \"Eval Qwen3-8B CWM repo-level s456 checkpoint-6633。与 s42/s123 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。\", \"parent\": \"qwen3-8b-cwm-repo-s456-train-v4\", \"spec\": {\"command\": \"bash eval_qwen_cwm_s456.sh (CVD=3, batch=4, checkpoint-6633)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 456, \"pid\": 96722, \"gpu\": \"GPU 3 (RTX 5090 32GB)\", \"checkpoint_source\": \"qwen3-8b-cwm-repo-s456-train-v4 checkpoint-6633\", \"eval_data\": \"repo-level CWM test set (1890 samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6633\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_qwen_cwm_s456.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:30:35.024Z\", \"metrics\": {\"accuracy\": 66.93, \"f1_macro\": 51.97, \"f1_fail\": 25.16, \"f1_pass\": 78.77, \"unparseable_rate\": 60.39, \"unparseable_count\": 5909, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -6.03, \"precision_fail\": 32.42, \"recall_fail\": 20.56, \"checkpoint_step\": 6633}}, \"deepseek-cwm-repo-s123-e3-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:07:53.274Z\", \"updated_at\": \"2026-05-22T11:49:21.356Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 epoch 3 final checkpoint (checkpoint-12627)。与 s42 (61.49%) 和 s456 (~56%) 对比，验证 CWM repo-level 跨 seed 一致性。\", \"parent\": \"deepseek-cwm-repo-s123\", \"spec\": {\"command\": \"eval_deepseek_cwm_s123_v2.sh (CVD=2, batch=4, checkpoint-12627)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_cou
 …[truncated 5361 chars]
@@ -4176,7 +4085,7 @@ _source line 1499 · 2026-05-22T12:55:02.754742+00:00_
 
 ### Tool call
 
-_source line 1500 · 2026-05-22T12:55:03.156672+00:00_
+_source line 1490 · 2026-05-22T12:55:03.156672+00:00_
 
 called Read
 
@@ -4210,7 +4119,7 @@ called Read
 
 ### Tool result
 
-_source line 1501 · 2026-05-22T12:55:03.458692+00:00_
+_source line 1491 · 2026-05-22T12:55:03.458692+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -4246,7 +4155,7 @@ _source line 1501 · 2026-05-22T12:55:03.458692+00:00_
 
 ### Tool call
 
-_source line 1502 · 2026-05-22T12:55:14.088060+00:00_
+_source line 1492 · 2026-05-22T12:55:14.088060+00:00_
 
 called Bash
 
@@ -4282,7 +4191,7 @@ called Bash
 
 ### Tool result
 
-_source line 1503 · 2026-05-22T12:55:14.690858+00:00_
+_source line 1493 · 2026-05-22T12:55:14.690858+00:00_
 
 Exit code 129
 warning: Not a git repository. Use --no-index to compare two paths outside a working tree
@@ -4341,7 +4250,7 @@ Diff output format options
 
 ### Tool call
 
-_source line 1504 · 2026-05-22T12:55:14.892026+00:00_
+_source line 1494 · 2026-05-22T12:55:14.892026+00:00_
 
 called Glob
 
@@ -4377,7 +4286,7 @@ called Glob
 
 ### Tool result
 
-_source line 1505 · 2026-05-22T12:55:14.892384+00:00_
+_source line 1495 · 2026-05-22T12:55:14.892384+00:00_
 
 &lt;tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored&lt;/tool_use_error>
 
@@ -4399,7 +4308,7 @@ _source line 1505 · 2026-05-22T12:55:14.892384+00:00_
 
 ### Tool call
 
-_source line 1506 · 2026-05-22T12:55:18.562379+00:00_
+_source line 1496 · 2026-05-22T12:55:18.562379+00:00_
 
 called Bash
 
@@ -4435,7 +4344,7 @@ called Bash
 
 ### Tool result
 
-_source line 1507 · 2026-05-22T12:55:18.914098+00:00_
+_source line 1497 · 2026-05-22T12:55:18.914098+00:00_
 
 docs/paper/abstract.tex
 docs/paper/appendix.tex
@@ -4472,7 +4381,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects
 
 ### Tool call
 
-_source line 1508 · 2026-05-22T12:55:19.065976+00:00_
+_source line 1498 · 2026-05-22T12:55:19.065976+00:00_
 
 called Glob
 
@@ -4508,7 +4417,7 @@ called Glob
 
 ### Tool result
 
-_source line 1509 · 2026-05-22T12:55:19.166764+00:00_
+_source line 1499 · 2026-05-22T12:55:19.166764+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/oracle_icc_sensitivity.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/oracle_icc_sensitivity.pdf
@@ -4536,7 +4445,7 @@ _source line 1509 · 2026-05-22T12:55:19.166764+00:00_
 
 ### Tool call
 
-_source line 1510 · 2026-05-22T12:55:23.685058+00:00_
+_source line 1500 · 2026-05-22T12:55:23.685058+00:00_
 
 called Bash
 
@@ -4572,7 +4481,7 @@ called Bash
 
 ### Tool result
 
-_source line 1511 · 2026-05-22T12:55:23.735724+00:00_
+_source line 1501 · 2026-05-22T12:55:23.735724+00:00_
 
 total 3312
 -rw-r--r--  1 ubuntu ubuntu 118813 May 22 12:47 fig3_oracle_stratified.png
@@ -4613,7 +4522,7 @@ total 3312
 
 ### Tool call
 
-_source line 1512 · 2026-05-22T12:55:26.946934+00:00_
+_source line 1502 · 2026-05-22T12:55:26.946934+00:00_
 
 called Read
 
@@ -4647,7 +4556,7 @@ called Read
 
 ### Tool call
 
-_source line 1513 · 2026-05-22T12:55:27.148039+00:00_
+_source line 1503 · 2026-05-22T12:55:27.148039+00:00_
 
 called Read
 
@@ -4681,7 +4590,7 @@ called Read
 
 ### Tool result
 
-_source line 1514 · 2026-05-22T12:55:27.198723+00:00_
+_source line 1504 · 2026-05-22T12:55:27.198723+00:00_
 
 1	# Oracle Frontier: Majority Voting with Dual ICC
 2	
@@ -4739,7 +4648,7 @@ _source line 1514 · 2026-05-22T12:55:27.198723+00:00_
 
 ### Tool result
 
-_source line 1515 · 2026-05-22T12:55:27.251365+00:00_
+_source line 1505 · 2026-05-22T12:55:27.251365+00:00_
 
 1	{
 2	  "params": {
@@ -4889,7 +4798,7 @@ _source line 1515 · 2026-05-22T12:55:27.251365+00:00_
 
 ### Tool call
 
-_source line 1516 · 2026-05-22T12:55:37.340315+00:00_
+_source line 1506 · 2026-05-22T12:55:37.340315+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4925,7 +4834,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1517 · 2026-05-22T12:55:37.842582+00:00_
+_source line 1507 · 2026-05-22T12:55:37.842582+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -4947,7 +4856,7 @@ _source line 1517 · 2026-05-22T12:55:37.842582+00:00_
 
 ### Tool call
 
-_source line 1518 · 2026-05-22T12:55:39.047766+00:00_
+_source line 1508 · 2026-05-22T12:55:39.047766+00:00_
 
 called Grep
 
@@ -4985,7 +4894,7 @@ called Grep
 
 ### Tool result
 
-_source line 1519 · 2026-05-22T12:55:39.450932+00:00_
+_source line 1509 · 2026-05-22T12:55:39.450932+00:00_
 
 &lt;persisted-output>
 Output too large (48.8KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-reviewer-c53fe3d9/73b9e083-a32a-4138-b8e0-7802eebc464d/tool-results/toolu_01LH22MrmUma59BfSecgCWYh.txt
@@ -5019,7 +4928,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1520 · 2026-05-22T12:55:42.557869+00:00_
+_source line 1510 · 2026-05-22T12:55:42.557869+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5055,7 +4964,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1521 · 2026-05-22T12:55:43.914254+00:00_
+_source line 1511 · 2026-05-22T12:55:43.914254+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5920\\n-rw-r--r-- 1 root root  178369 May 22 20:55 eval_deepseek_cwm_s123_1epoch.log\\n-rw-r--r-- 1 root root  214850 May 22 20:28 monitor_qwen_s456_eval.log\\n-rw-r--r-- 1 root root    5692 May 22 19:47 watch_s123_resume.log\\n-rwxr-xr-x 1 root root    1584 May 22 10:25 eval_deepseek_cwm_s123_1epoch.sh\\n-rwxr-xr-x 1 root root    2833 May 22 05:38 monitor_qwen_s456_eval.sh\\n-rw-r--r-- 1 root root   19116 May 22 05:36 monitor_qwen_s123_resume.log\\n-rwxr-xr-x 1 root root    2374 May 22 05:08 eval_14b_cwm_pilot.sh\\n-rwxr-xr-x 1 root root    1643 May 22 05:08 eval_deepseek_cwm_s123_v2.sh\\n-rwxr-xr-x 1 root root    1643 May 22 05:08 eval_deepseek_cwm_s456_v2.sh\\n-rwxr-xr-x 1 root root    2041 May 22 05:08 eval_qwen_cwm_s123.sh\\n-rwxr-xr-x 1 root root    2041 May 22 05:08 eval_qwen_cwm_s456.sh\\n-rw-r--r-- 1 root root   14086 May 22 02:21 monitor_qwen_s456_resume.log\\n-rwxr-xr-x 1 root root    1784 May 22 02:14 watch_qwen_train_then_eval.sh\\n-rwxr-xr-x 1 root root    1637 May 21 22:28 run_qwen_cwm_s456_eval.sh\\n-rwxr-xr-x 1 root root    1637 May 21 22:28 run_qwen_cwm_s123_eval.sh\\n-rwxr-xr-x 1 root root    2216 May 21 21:21 test_qwen_eval_batch.sh\\n-rw-r--r-- 1 root root   20777 May 21 21:21 monitor_s456_v2_enhanced.log\\n-rw-r--r-- 1 root root   45823 May 21 20:53 watch_eval.log\\n-rw-r--r-- 1 root root      66 May 21 20:46 sidecar_s456.log\\n-rwxr-xr-x 1 root root    1496 May 21 14:18 test_qwen_eval_batch2.sh\\n-rw-r--r-- 1 root root  215307 May 21 12:19 monitor_s123_v2.log\\n-rwxr-xr-x 1 root root     753 May 21 05:21 sidecar_exitcode_s456.sh\\n-rwxr-xr-x 1 root root    1168 May 21 05:21 resume_deepseek_s123_v2.sh\\n-rw-r--r-- 1 root root    7006 May 21 05:21 monitor_s456_v2.log\\n-rwxr-xr-x 1 root root    2653 May 21 05:19 watch_s123_eval_then_resume.sh\\n-rwxr-xr-x 1 root root     561 May 21 05:13 launch_with_exitcode.sh\\n-rwxr-xr-x 1 root root    2347 May 21 05:13 monitor_with_exitcheck.sh\\n
 …[truncated 6439 chars]
@@ -5078,7 +4987,7 @@ _source line 1521 · 2026-05-22T12:55:43.914254+00:00_
 
 ### Tool call
 
-_source line 1522 · 2026-05-22T12:55:55.348502+00:00_
+_source line 1512 · 2026-05-22T12:55:55.348502+00:00_
 
 called Bash
 
@@ -5114,7 +5023,7 @@ called Bash
 
 ### Tool result
 
-_source line 1523 · 2026-05-22T12:55:55.749984+00:00_
+_source line 1513 · 2026-05-22T12:55:55.749984+00:00_
 
 (Bash completed with no output)
 
@@ -5136,7 +5045,7 @@ _source line 1523 · 2026-05-22T12:55:55.749984+00:00_
 
 ### Tool call
 
-_source line 1524 · 2026-05-22T12:55:55.901957+00:00_
+_source line 1514 · 2026-05-22T12:55:55.901957+00:00_
 
 called Bash
 
@@ -5172,7 +5081,7 @@ called Bash
 
 ### Tool result
 
-_source line 1525 · 2026-05-22T12:55:55.952844+00:00_
+_source line 1515 · 2026-05-22T12:55:55.952844+00:00_
 
 diff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex
 index 95a5383..97f8b76 100644
@@ -5211,7 +5120,7 @@ index 95a5383..97f8b76 100644
 
 ### Tool call
 
-_source line 1526 · 2026-05-22T12:56:14.267006+00:00_
+_source line 1516 · 2026-05-22T12:56:14.267006+00:00_
 
 called Bash
 
@@ -5247,7 +5156,7 @@ called Bash
 
 ### Tool result
 
-_source line 1527 · 2026-05-22T12:56:14.318202+00:00_
+_source line 1517 · 2026-05-22T12:56:14.318202+00:00_
 
 diff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex
 index f0a2b07..9e9c607 100644
@@ -5279,7 +5188,7 @@ index f0a2b07..9e9c607 100644
 
 ### Tool call
 
-_source line 1528 · 2026-05-22T12:56:19.838916+00:00_
+_source line 1518 · 2026-05-22T12:56:19.838916+00:00_
 
 called Bash
 
@@ -5315,7 +5224,7 @@ called Bash
 
 ### Tool result
 
-_source line 1529 · 2026-05-22T12:56:19.990157+00:00_
+_source line 1519 · 2026-05-22T12:56:19.990157+00:00_
 
 diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
 index 67e2ffd..61cfe43 100644
@@ -5347,7 +5256,7 @@ index 67e2ffd..61cfe43 100644
 
 ### Tool call
 
-_source line 1530 · 2026-05-22T12:57:11.305189+00:00_
+_source line 1520 · 2026-05-22T12:57:11.305189+00:00_
 
 called Grep
 
@@ -5387,7 +5296,7 @@ called Grep
 
 ### Tool result
 
-_source line 1531 · 2026-05-22T12:57:11.305675+00:00_
+_source line 1521 · 2026-05-22T12:57:11.305675+00:00_
 
 4:\label{app:oracle}
 6:We stratify SWE-bench Verified instances by F2P test count $T$, comparing per-test vs.\ trajectory-level oracle resolve rates under i.i.d.\ and block-correlated error models (ICC $= 0.191$, from function-level analysis; \S\ref{sec:equivalence}).
@@ -5419,7 +5328,7 @@ _source line 1531 · 2026-05-22T12:57:11.305675+00:00_
 
 ### Tool call
 
-_source line 1532 · 2026-05-22T12:57:15.233678+00:00_
+_source line 1522 · 2026-05-22T12:57:15.233678+00:00_
 
 called Read
 
@@ -5457,7 +5366,7 @@ called Read
 
 ### Tool result
 
-_source line 1533 · 2026-05-22T12:57:15.635299+00:00_
+_source line 1523 · 2026-05-22T12:57:15.635299+00:00_
 
 1	\appendix
 2	
@@ -5515,7 +5424,7 @@ _source line 1533 · 2026-05-22T12:57:15.635299+00:00_
 
 ### Tool call
 
-_source line 1534 · 2026-05-22T12:57:15.737207+00:00_
+_source line 1524 · 2026-05-22T12:57:15.737207+00:00_
 
 called Read
 
@@ -5553,7 +5462,7 @@ called Read
 
 ### Tool result
 
-_source line 1535 · 2026-05-22T12:57:15.737748+00:00_
+_source line 1525 · 2026-05-22T12:57:15.737748+00:00_
 
 290	
 291	\paragraph{Complementarity.}
@@ -5587,7 +5496,7 @@ _source line 1535 · 2026-05-22T12:57:15.737748+00:00_
 
 ### Tool call
 
-_source line 1536 · 2026-05-22T12:57:46.833707+00:00_
+_source line 1526 · 2026-05-22T12:57:46.833707+00:00_
 
 called Read
 
@@ -5625,7 +5534,7 @@ called Read
 
 ### Tool result
 
-_source line 1537 · 2026-05-22T12:57:47.235913+00:00_
+_source line 1527 · 2026-05-22T12:57:47.235913+00:00_
 
 330	
 331	\paragraph{(i) Inference efficiency.}
@@ -5655,7 +5564,7 @@ _source line 1537 · 2026-05-22T12:57:47.235913+00:00_
 
 ### Tool call
 
-_source line 1538 · 2026-05-22T12:57:47.386889+00:00_
+_source line 1528 · 2026-05-22T12:57:47.386889+00:00_
 
 called Read
 
@@ -5693,7 +5602,7 @@ called Read
 
 ### Tool result
 
-_source line 1539 · 2026-05-22T12:57:47.437661+00:00_
+_source line 1529 · 2026-05-22T12:57:47.437661+00:00_
 
 440	\label{app:parseable_bias}
 441	
@@ -5726,7 +5635,7 @@ _source line 1539 · 2026-05-22T12:57:47.437661+00:00_
 
 ### Tool call
 
-_source line 1540 · 2026-05-22T12:58:10.955916+00:00_
+_source line 1530 · 2026-05-22T12:58:10.955916+00:00_
 
 called Read
 
@@ -5764,7 +5673,7 @@ called Read
 
 ### Tool result
 
-_source line 1541 · 2026-05-22T12:58:11.006561+00:00_
+_source line 1531 · 2026-05-22T12:58:11.006561+00:00_
 
 339	\paragraph{(k) Relationship to chain-of-thought verification.}
 340	\cwm{} is structurally a chain-of-thought verifier: the model generates an execution trace token by token and derives its PASS/FAIL verdict from the final trace state. If intermediate reasoning improved verification, \cwm{} should outperform the reasoning-free \cls{} baseline. At function level, no such advantage materialises: \cwm{} and \cls{} are statistically equivalent (TOST $p{=}0.007$, $\pm$1.52\pp{} margin; \S\ref{sec:func_results}), indicating that the additional trace generation provides no accuracy benefit over direct binary classification. At repo level, the chain-of-thought mechanism actively \emph{hurts}: trace generation triggers format collapse (53--74\% unparseable), and even parseable traces yield accuracy below the majority baseline (38--43\% vs.\ 72.96\%; paragraph~(c)). Four targeted interventions fail to rescue the generation pathway (paragraph~(g)). Within the ${\leq}$8B LoRA regime, chain-of-thought--style verification does not outperform direct classification for execution prediction. Whether execution-trace pretraining at larger scale~\cite{meta2025cwm} changes this conclusion remains the primary open question (\S\ref{sec:threats}).
@@ -5788,7 +5697,7 @@ _source line 1541 · 2026-05-22T12:58:11.006561+00:00_
 
 ### Tool call
 
-_source line 1542 · 2026-05-22T12:58:35.121158+00:00_
+_source line 1532 · 2026-05-22T12:58:35.121158+00:00_
 
 called Grep
 
@@ -5830,7 +5739,7 @@ called Grep
 
 ### Tool result
 
-_source line 1543 · 2026-05-22T12:58:35.171877+00:00_
+_source line 1533 · 2026-05-22T12:58:35.171877+00:00_
 
 402-
 403-
@@ -5880,7 +5789,7 @@ _source line 1543 · 2026-05-22T12:58:35.171877+00:00_
 
 ### Tool call
 
-_source line 1544 · 2026-05-22T12:58:39.236458+00:00_
+_source line 1534 · 2026-05-22T12:58:39.236458+00:00_
 
 called Read
 
@@ -5918,7 +5827,7 @@ called Read
 
 ### Tool result
 
-_source line 1545 · 2026-05-22T12:58:39.236981+00:00_
+_source line 1535 · 2026-05-22T12:58:39.236981+00:00_
 
 407	Table~\ref{tab:holm} applies Holm-Bonferroni correction~\cite{holm1979} to the four primary statistical comparisons across this study ($k{=}4$, family-wise $\alpha{=}0.05$).
 408	
@@ -5969,7 +5878,7 @@ _source line 1545 · 2026-05-22T12:58:39.236981+00:00_
 
 ### Tool call
 
-_source line 1546 · 2026-05-22T12:59:03.527478+00:00_
+_source line 1536 · 2026-05-22T12:59:03.527478+00:00_
 
 called ToolSearch
 
@@ -6005,7 +5914,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1547 · 2026-05-22T12:59:03.528095+00:00_
+_source line 1537 · 2026-05-22T12:59:03.528095+00:00_
 
 
 
@@ -6027,7 +5936,7 @@ _source line 1547 · 2026-05-22T12:59:03.528095+00:00_
 
 ### Tool call
 
-_source line 1548 · 2026-05-22T12:59:11.335274+00:00_
+_source line 1538 · 2026-05-22T12:59:11.335274+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6063,7 +5972,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1549 · 2026-05-22T12:59:12.592014+00:00_
+_source line 1539 · 2026-05-22T12:59:12.592014+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/checkpoints_repo_cwm_8b_s42': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -6085,7 +5994,7 @@ _source line 1549 · 2026-05-22T12:59:12.592014+00:00_
 
 ### Tool call
 
-_source line 1550 · 2026-05-22T12:59:12.692905+00:00_
+_source line 1540 · 2026-05-22T12:59:12.692905+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6121,7 +6030,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1551 · 2026-05-22T12:59:13.146888+00:00_
+_source line 1541 · 2026-05-22T12:59:13.146888+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/outputs_qwen3_8b_cwm_repo_s123/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6143,7 +6052,7 @@ _source line 1551 · 2026-05-22T12:59:13.146888+00:00_
 
 ### Tool call
 
-_source line 1552 · 2026-05-22T12:59:16.334424+00:00_
+_source line 1542 · 2026-05-22T12:59:16.334424+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6179,7 +6088,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1553 · 2026-05-22T12:59:16.785934+00:00_
+_source line 1543 · 2026-05-22T12:59:16.785934+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm\\n/root/autodl-tmp/checkpoints_repo_cwm_v4\\n/root/autodl-tmp/checkpoints_repo_cwm_v6\\n/root/autodl-tmp/checkpoints_repo_cwm_v9\\n/root/autodl-tmp/checkpoints_repo_cwm_v10\\n/root/autodl-tmp/results/checkpoints_repo_cwm_conda_v12_eval\\n/root/autodl-tmp/checkpoints_repo_cwm_v11\\n/root/autodl-tmp/checkpoints_repo_cwm_seed123\\n/root/autodl-tmp/checkpoints_repo_cwm_conda_v12\\n/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6201,7 +6110,7 @@ _source line 1553 · 2026-05-22T12:59:16.785934+00:00_
 
 ### Tool call
 
-_source line 1554 · 2026-05-22T12:59:20.287279+00:00_
+_source line 1544 · 2026-05-22T12:59:20.287279+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6237,7 +6146,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1555 · 2026-05-22T12:59:20.726647+00:00_
+_source line 1545 · 2026-05-22T12:59:20.726647+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400/trainer_state.json\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5800/trainer_state.json\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5900/trainer_state.json\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6000/trainer_state.json\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6259,7 +6168,7 @@ _source line 1555 · 2026-05-22T12:59:20.726647+00:00_
 
 ### Tool call
 
-_source line 1556 · 2026-05-22T12:59:26.313342+00:00_
+_source line 1546 · 2026-05-22T12:59:26.313342+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6295,7 +6204,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1557 · 2026-05-22T12:59:26.815837+00:00_
+_source line 1547 · 2026-05-22T12:59:26.815837+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"eval_loss\\\": 0.4423239231109619\\n\\\"eval_loss\\\": 0.3069685101509094\\n\\\"eval_loss\\\": 0.2907436490058899\\n\\\"eval_loss\\\": 0.28620442748069763\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6317,7 +6226,7 @@ _source line 1557 · 2026-05-22T12:59:26.815837+00:00_
 
 ### Tool call
 
-_source line 1558 · 2026-05-22T12:59:26.866424+00:00_
+_source line 1548 · 2026-05-22T12:59:26.866424+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6353,7 +6262,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1559 · 2026-05-22T12:59:26.916963+00:00_
+_source line 1549 · 2026-05-22T12:59:26.916963+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -6375,7 +6284,7 @@ _source line 1559 · 2026-05-22T12:59:26.916963+00:00_
 
 ### Tool call
 
-_source line 1560 · 2026-05-22T12:59:38.262929+00:00_
+_source line 1550 · 2026-05-22T12:59:38.262929+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6411,7 +6320,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1561 · 2026-05-22T12:59:38.714730+00:00_
+_source line 1551 · 2026-05-22T12:59:38.714730+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"eval_loss\\\": 0.4423239231109619,\\n      \\\"eval_loss\\\": 0.3069685101509094,\\n      \\\"eval_loss\\\": 0.2907436490058899,\\n      \\\"eval_loss\\\": 0.28620442748069763,\\n      \\\"eval_loss\\\": 0.29983875155448914,\\n      \\\"eval_loss\\\": 0.30134978890419006,\\n      \\\"eval_loss\\\": 0.3173505663871765,\\n      \\\"eval_loss\\\": 0.3243130147457123,\\n      \\\"eval_loss\\\": 0.34334537386894226,\\n      \\\"eval_loss\\\": 0.33317747712135315,\\n      \\\"eval_loss\\\": 0.34051015973091125,\\n      \\\"eval_loss\\\": 0.35654646158218384,\\n      \\\"eval_loss\\\": 0.36374735832214355,\\n      \\\"eval_loss\\\": 0.368895024061203,\\n      \\\"eval_loss\\\": 0.3742271661758423,\\n      \\\"eval_loss\\\": 0.3842127323150635,\\n      \\\"eval_loss\\\": 0.3730962574481964,\\n      \\\"eval_loss\\\": 0.38658642768859863,\\n      \\\"eval_loss\\\": 0.3922711908817291,\\n      \\\"eval_loss\\\": 0.39950358867645264,\\n      \\\"eval_loss\\\": 0.39827266335487366,\\n      \\\"eval_loss\\\": 0.41091135144233704,\\n      \\\"eval_loss\\\": 0.41445836424827576,\\n      \\\"eval_loss\\\": 0.43435138463974,\\n      \\\"eval_loss\\\": 0.43536877632141113,\\n      \\\"eval_loss\\\": 0.4259932339191437,\\n      \\\"eval_loss\\\": 0.4465680718421936,\\n      \\\"eval_loss\\\": 0.44782331585884094,\\n      \\\"eval_loss\\\": 0.43612757325172424,\\n      \\\"eval_loss\\\": 0.4448842704296112,\\n      \\\"eval_loss\\\": 0.44620150327682495,\\n      \\\"eval_loss\\\": 0.4529778063297272,\\n      \\\"eval_loss\\\": 0.44489744305610657,\\n      \\\"eval_loss\\\": 0.44345414638519287,\\n      \\\"eval_loss\\\": 0.4627508521080017,\\n      \\\"eval_loss\\\": 0.45825108885765076,\\n      \\\"eval_loss\\\": 0.457393616437912,\\n      \\\"eval_loss\\\": 0.46643152832984924,\\n      \\\"eval_loss\\\": 0.4701577126979828,\\n      \\\"eval_loss\\\": 0.4779250919818878,\\n      \\\"eval_loss\\\": 0.4788362681865692,\\n
 …[truncated 1046 chars]
@@ -6434,7 +6343,7 @@ _source line 1561 · 2026-05-22T12:59:38.714730+00:00_
 
 ### Tool call
 
-_source line 1562 · 2026-05-22T13:00:38.373692+00:00_
+_source line 1552 · 2026-05-22T13:00:38.373692+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6470,7 +6379,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1563 · 2026-05-22T13:00:42.244122+00:00_
+_source line 1553 · 2026-05-22T13:00:42.244122+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -6492,7 +6401,7 @@ _source line 1563 · 2026-05-22T13:00:42.244122+00:00_
 
 ### Assistant
 
-_source line 1564 · 2026-05-22T13:00:49.141948+00:00_
+_source line 1554 · 2026-05-22T13:00:49.141948+00:00_
 
 报告已发送。发现 appendix 新增段落 (k) 的 TOST 引用有数值不匹配错误（p=0.007 配了 ±1.52pp margin，实际 p=0.007 对应 ±2pp margin）。其余新增内容（CWM convergence table、wrong-data artifact、TRAJ 措辞改善、rank-32 α=64 更新）均通过核实。DS s123 1-epoch eval 仍在运行，84.4% 进度，running accuracy 与预填充数据一致。
 
@@ -6519,7 +6428,7 @@ _source line 1564 · 2026-05-22T13:00:49.141948+00:00_
 
 ### User
 
-_source line 1565 · 2026-05-22T14:10:37.510680+00:00_
+_source line 1555 · 2026-05-22T14:10:37.510680+00:00_
 
 [System 触发审查]:
 Round 8 审稿报告收到（Overall 3.0 Findings）。请审查我的逐条 Action Matrix 的可行性和完整性。
@@ -6602,7 +6511,7 @@ M8-M10 → 保留不改（R1 反驳成立）
 
 ### Tool call
 
-_source line 1566 · 2026-05-22T14:10:56.726591+00:00_
+_source line 1556 · 2026-05-22T14:10:56.726591+00:00_
 
 called Read
 
@@ -6640,7 +6549,7 @@ called Read
 
 ### Tool result
 
-_source line 1567 · 2026-05-22T14:10:57.780414+00:00_
+_source line 1557 · 2026-05-22T14:10:57.780414+00:00_
 
 94	
 95	\subsection{Per-Test vs.\ Trajectory-Level Equivalence}
@@ -6667,7 +6576,7 @@ _source line 1567 · 2026-05-22T14:10:57.780414+00:00_
 
 ### Tool call
 
-_source line 1568 · 2026-05-22T14:10:57.931398+00:00_
+_source line 1558 · 2026-05-22T14:10:57.931398+00:00_
 
 called Read
 
@@ -6701,7 +6610,7 @@ called Read
 
 ### Tool result
 
-_source line 1569 · 2026-05-22T14:10:58.232969+00:00_
+_source line 1559 · 2026-05-22T14:10:58.232969+00:00_
 
 1	\begin{abstract}
 2	LLM-based program repair increasingly relies on generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\cls{}), execution output generation (\cwm{}), and trajectory-level patch scoring (\traj{}). No prior work compares these formulations under matched conditions.
@@ -6729,7 +6638,7 @@ _source line 1569 · 2026-05-22T14:10:58.232969+00:00_
 
 ### Tool call
 
-_source line 1570 · 2026-05-22T14:10:59.688873+00:00_
+_source line 1560 · 2026-05-22T14:10:59.688873+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6765,7 +6674,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1571 · 2026-05-22T14:11:00.040503+00:00_
+_source line 1561 · 2026-05-22T14:11:00.040503+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6801,7 +6710,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1572 · 2026-05-22T14:11:00.944358+00:00_
+_source line 1562 · 2026-05-22T14:11:00.944358+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5800\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5900\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6000\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
 
@@ -6823,7 +6732,7 @@ _source line 1572 · 2026-05-22T14:11:00.944358+00:00_
 
 ### Tool result
 
-_source line 1573 · 2026-05-22T14:11:01.496977+00:00_
+_source line 1563 · 2026-05-22T14:11:01.496977+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-300\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-6400\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-6500\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-6600\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-6633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -6845,7 +6754,7 @@ _source line 1573 · 2026-05-22T14:11:01.496977+00:00_
 
 ### Tool call
 
-_source line 1574 · 2026-05-22T14:11:26.371808+00:00_
+_source line 1564 · 2026-05-22T14:11:26.371808+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6881,7 +6790,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1575 · 2026-05-22T14:11:27.927544+00:00_
+_source line 1565 · 2026-05-22T14:11:27.927544+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-300\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6400\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6500\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6600\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -6903,7 +6812,7 @@ _source line 1575 · 2026-05-22T14:11:27.927544+00:00_
 
 ### Tool call
 
-_source line 1576 · 2026-05-22T14:11:28.128657+00:00_
+_source line 1566 · 2026-05-22T14:11:28.128657+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6939,7 +6848,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1577 · 2026-05-22T14:11:28.480393+00:00_
+_source line 1567 · 2026-05-22T14:11:28.480393+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6975,7 +6884,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1578 · 2026-05-22T14:11:28.581504+00:00_
+_source line 1568 · 2026-05-22T14:11:28.581504+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -6997,7 +6906,7 @@ _source line 1578 · 2026-05-22T14:11:28.581504+00:00_
 
 ### Tool result
 
-_source line 1579 · 2026-05-22T14:11:29.083669+00:00_
+_source line 1569 · 2026-05-22T14:11:29.083669+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/tost_cls_traj.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -7019,7 +6928,7 @@ _source line 1579 · 2026-05-22T14:11:29.083669+00:00_
 
 ### Tool call
 
-_source line 1580 · 2026-05-22T14:11:33.802303+00:00_
+_source line 1570 · 2026-05-22T14:11:33.802303+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7055,7 +6964,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1581 · 2026-05-22T14:11:34.304542+00:00_
+_source line 1571 · 2026-05-22T14:11:34.304542+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7077,7 +6986,7 @@ _source line 1581 · 2026-05-22T14:11:34.304542+00:00_
 
 ### Tool call
 
-_source line 1582 · 2026-05-22T14:11:34.455570+00:00_
+_source line 1572 · 2026-05-22T14:11:34.455570+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7113,7 +7022,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1583 · 2026-05-22T14:11:34.907549+00:00_
+_source line 1573 · 2026-05-22T14:11:34.907549+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_llm_judge_8b.json\\n/home/sonny/exec-sim-repair-verifier/eval_llm_judge_32b.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_results_bf16.json\\n/home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.json\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation_v2.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_pertest_diag.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_rank32_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_rank32_alpha64_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_rank32_alpha64_results_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_v2_s42_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results_s0.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results_s789.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7135,7 +7044,7 @@ _source line 1583 · 2026-05-22T14:11:34.907549+00:00_
 
 ### Tool call
 
-_source line 1584 · 2026-05-22T14:12:24.415087+00:00_
+_source line 1574 · 2026-05-22T14:12:24.415087+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7171,7 +7080,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1585 · 2026-05-22T14:12:25.067927+00:00_
+_source line 1575 · 2026-05-22T14:12:25.067927+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"gen_text\\\": \\\"FAIL: SyntaxError: expected ':'\\\"}\\n{\\\"index\\\": 3, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 4, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7193,7 +7102,7 @@ _source line 1585 · 2026-05-22T14:12:25.067927+00:00_
 
 ### Tool call
 
-_source line 1586 · 2026-05-22T14:12:25.268997+00:00_
+_source line 1576 · 2026-05-22T14:12:25.268997+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7229,7 +7138,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1587 · 2026-05-22T14:12:25.470025+00:00_
+_source line 1577 · 2026-05-22T14:12:25.470025+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7265,7 +7174,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1588 · 2026-05-22T14:12:25.721240+00:00_
+_source line 1578 · 2026-05-22T14:12:25.721240+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  1890 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n  1890 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n  1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n  5670 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7287,7 +7196,7 @@ _source line 1588 · 2026-05-22T14:12:25.721240+00:00_
 
 ### Tool result
 
-_source line 1589 · 2026-05-22T14:12:26.223234+00:00_
+_source line 1579 · 2026-05-22T14:12:26.223234+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -7309,7 +7218,7 @@ _source line 1589 · 2026-05-22T14:12:26.223234+00:00_
 
 ### Tool call
 
-_source line 1590 · 2026-05-22T14:12:30.690967+00:00_
+_source line 1580 · 2026-05-22T14:12:30.690967+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7345,7 +7254,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1591 · 2026-05-22T14:12:31.694690+00:00_
+_source line 1581 · 2026-05-22T14:12:31.694690+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl.SUSPECT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7367,7 +7276,7 @@ _source line 1591 · 2026-05-22T14:12:31.694690+00:00_
 
 ### Tool call
 
-_source line 1592 · 2026-05-22T14:12:31.795464+00:00_
+_source line 1582 · 2026-05-22T14:12:31.795464+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7403,7 +7312,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1593 · 2026-05-22T14:12:32.247634+00:00_
+_source line 1583 · 2026-05-22T14:12:32.247634+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/cls_v5/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/forced_parse_results.jsonl\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500_backup/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls_seed123_ckpt200/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls_8b_ckpt200/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt1000_test_mutation/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_ckpt1000_test_mutation/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_seed123_ckpt3000_test_mutation/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/results_incremental.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_v2/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/results_incremental.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/results_incremental.jsonl\\n/root/autodl-tmp/eval_results/cwm_8b_c
 …[truncated 4572 chars]
@@ -7426,7 +7335,7 @@ _source line 1593 · 2026-05-22T14:12:32.247634+00:00_
 
 ### Tool call
 
-_source line 1594 · 2026-05-22T14:13:07.453526+00:00_
+_source line 1584 · 2026-05-22T14:13:07.453526+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7462,7 +7371,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1595 · 2026-05-22T14:13:07.453974+00:00_
+_source line 1585 · 2026-05-22T14:13:07.453974+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7498,7 +7407,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1596 · 2026-05-22T14:13:07.905921+00:00_
+_source line 1586 · 2026-05-22T14:13:07.905921+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_error_overlap.py\\n/home/sonny/exec-sim-repair-verifier/analysis_error_overlap_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7520,7 +7429,7 @@ _source line 1596 · 2026-05-22T14:13:07.905921+00:00_
 
 ### Tool result
 
-_source line 1597 · 2026-05-22T14:13:08.408562+00:00_
+_source line 1587 · 2026-05-22T14:13:08.408562+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"CLS vs TRAJ TOST equivalence test (variant-level, function-level).\\n\\nFixes paper §Equivalence: the original TOST reported CLS-CWM p-values\\n(mean_diff=1.24pp, p=0.007 at ±2pp) mislabeled as CLS-TRAJ.\\n\\nThis script computes the correct CLS-TRAJ comparison.\\nUses paired t-test TOST from seed-level summary statistics (same method\\nas tost_sensitivity.py) plus clustered bootstrap where raw predictions\\nare available.\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport numpy as np\\nfrom collections import defaultdict\\n\\nBASE = \\\"/home/sonny/exec-sim-repair-verifier\\\"\\nOUTPUT = f\\\"{BASE}/artifacts/tost_sensitivity_cls_traj.json\\\"\\n\\n# ─── Data ──────────────────────────────────────────────────────────────────\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
 
@@ -7542,7 +7451,7 @@ _source line 1597 · 2026-05-22T14:13:08.408562+00:00_
 
 ### Tool call
 
-_source line 1598 · 2026-05-22T14:13:27.292244+00:00_
+_source line 1588 · 2026-05-22T14:13:27.292244+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7578,7 +7487,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1599 · 2026-05-22T14:13:27.794848+00:00_
+_source line 1589 · 2026-05-22T14:13:27.794848+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"CLS vs TRAJ TOST equivalence test (variant-level, function-level).\\n\\nFixes paper §Equivalence: the original TOST reported CLS-CWM p-values\\n(mean_diff=1.24pp, p=0.007 at ±2pp) mislabeled as CLS-TRAJ.\\n\\nThis script computes the correct CLS-TRAJ comparison.\\nUses paired t-test TOST from seed-level summary statistics (same method\\nas tost_sensitivity.py) plus clustered bootstrap where raw predictions\\nare available.\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport numpy as np\\nfrom collections import defaultdict\\n\\nBASE = \\\"/home/sonny/exec-sim-repair-verifier\\\"\\nOUTPUT = f\\\"{BASE}/artifacts/tost_sensitivity_cls_traj.json\\\"\\n\\n# ─── Data ──────────────────────────────────────────────────────────────────\\n\\n# CLS per-test prediction files (Qwen3-4B func-level)\\nCLS_PRED_FILES = {\\n    42: f\\\"{BASE}/predictions_cls_seed42.jsonl\\\",\\n    0:  f\\\"{BASE}/predictions_cls_seed0.jsonl\\\",\\n}\\n\\n# TRAJ per-test accuracy per seed (Qwen3-4B, from registry / traj_accuracy_investigation.json)\\n# evaluated on traj_test.jsonl (1032 test cases, 447 variants)\\nTRAJ_PER_TEST_ACC = {\\n    42:  85.66,\\n    0:   85.66,\\n    123: 85.47,\\n    456: 87.40,\\n    789: 87.31,\\n}\\n\\n# CLS per-test accuracy per seed (from registry, on 1890 test cases)\\nCLS_PER_TEST_ACC = {\\n    42:  87.51,\\n    0:   87.94,\\n    789: 89.00,\\n}\\n\\n\\n# ─── Helpers ───────────────────────────────────────────────────────────────\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef compute_variant_level(preds):\\n    \\\"\\\"\\\"Aggregate CLS per-test predictions to variant level (all-pass rule).\\n\\n    For each variant (problem_id, mutation_type):\\n    - ground truth: resolved (1) if ALL test labels are 1\\n    - prediction:   resolved (1) if ALL test predictions are 1\\n    - correct if prediction matches g
 …[truncated 7205 chars]
@@ -7601,7 +7510,7 @@ _source line 1599 · 2026-05-22T14:13:27.794848+00:00_
 
 ### Tool call
 
-_source line 1600 · 2026-05-22T14:13:36.929732+00:00_
+_source line 1590 · 2026-05-22T14:13:36.929732+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7637,7 +7546,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1601 · 2026-05-22T14:13:37.381937+00:00_
+_source line 1591 · 2026-05-22T14:13:37.381937+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"TOST_margin_sweep_CLS_vs_TRAJ\\\",\\n  \\\"method\\\": \\\"paired_t_test_TOST\\\",\\n  \\\"formula\\\": \\\"TOST p = max(p_upper, p_lower); p_upper = P(T_df <= (mean-delta)/SE); p_lower = 1 - P(T_df <= (mean+delta)/SE)\\\",\\n  \\\"date\\\": \\\"2026-05-19\\\",\\n  \\\"note\\\": \\\"Independent recomputation from per-seed variant-level gaps (CLS - TRAJ, pp). Source: experiment registry 5-paired-clustered-bootstrap.\\\",\\n  \\\"data\\\": {\\n    \\\"seeds\\\": [\\n      \\\"seed0\\\",\\n      \\\"seed123\\\",\\n      \\\"seed42\\\",\\n      \\\"seed456\\\",\\n      \\\"seed789\\\"\\n    ],\\n    \\\"per_seed_gaps_pp\\\": {\\n      \\\"seed0\\\": -0.29,\\n      \\\"seed123\\\": 1.45,\\n      \\\"seed42\\\": -0.97,\\n      \\\"seed456\\\": -1.84,\\n      \\\"seed789\\\": -0.78\\n    },\\n    \\\"n_seeds\\\": 5,\\n    \\\"df\\\": 4,\\n    \\\"mean_gap_pp\\\": -0.486,\\n    \\\"sd_pp\\\": 1.2187,\\n    \\\"se_pp\\\": 0.545\\n  },\\n  \\\"alpha\\\": 0.05,\\n  \\\"margins\\\": [\\n    {\\n      \\\"margin_pp\\\": 0.5,\\n      \\\"tost_p\\\": 0.490368,\\n      \\\"equivalent\\\": false,\\n      \\\"p_upper\\\": 0.072343,\\n      \\\"p_lower\\\": 0.490368,\\n      \\\"t_upper\\\": -1.8092,\\n      \\\"t_lower\\\": 0.0257\\n    },\\n    {\\n      \\\"margin_pp\\\": 1.0,\\n      \\\"tost_p\\\": 0.199511,\\n      \\\"equivalent\\\": false,\\n      \\\"p_upper\\\": 0.026314,\\n      \\\"p_lower\\\": 0.199511,\\n      \\\"t_upper\\\": -2.7266,\\n      \\\"t_lower\\\": 0.9431\\n    },\\n    {\\n      \\\"margin_pp\\\": 1.5,\\n      \\\"tost_p\\\": 0.068157,\\n      \\\"equivalent\\\": false,\\n      \\\"p_upper\\\": 0.010943,\\n      \\\"p_lower\\\": 0.068157,\\n      \\\"t_upper\\\": -3.644,\\n      \\\"t_lower\\\": 1.8605\\n    },\\n    {\\n      \\\"margin_pp\\\": 2.0,\\n      \\\"tost_p\\\": 0.024961,\\n      \\\"equivalent\\\": true,\\n      \\\"p_upper\\\": 0.005164,\\n      \\\"p_lower\\\":
 …[truncated 1289 chars]
@@ -7660,7 +7569,7 @@ _source line 1601 · 2026-05-22T14:13:37.381937+00:00_
 
 ### Tool call
 
-_source line 1602 · 2026-05-22T14:15:00.737343+00:00_
+_source line 1592 · 2026-05-22T14:15:00.737343+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7696,7 +7605,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1603 · 2026-05-22T14:15:00.788083+00:00_
+_source line 1593 · 2026-05-22T14:15:00.788083+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7732,7 +7641,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1604 · 2026-05-22T14:15:01.240319+00:00_
+_source line 1594 · 2026-05-22T14:15:01.240319+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"13231 /home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -7754,7 +7663,7 @@ _source line 1604 · 2026-05-22T14:15:01.240319+00:00_
 
 ### Tool result
 
-_source line 1605 · 2026-05-22T14:15:01.742468+00:00_
+_source line 1595 · 2026-05-22T14:15:01.742468+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1890\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -7776,7 +7685,7 @@ _source line 1605 · 2026-05-22T14:15:01.742468+00:00_
 
 ### Tool call
 
-_source line 1606 · 2026-05-22T14:15:06.711666+00:00_
+_source line 1596 · 2026-05-22T14:15:06.711666+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7812,7 +7721,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1607 · 2026-05-22T14:15:07.163638+00:00_
+_source line 1597 · 2026-05-22T14:15:07.163638+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -7834,7 +7743,7 @@ _source line 1607 · 2026-05-22T14:15:07.163638+00:00_
 
 ### Tool call
 
-_source line 1608 · 2026-05-22T14:15:07.164064+00:00_
+_source line 1598 · 2026-05-22T14:15:07.164064+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7870,7 +7779,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1609 · 2026-05-22T14:15:07.716995+00:00_
+_source line 1599 · 2026-05-22T14:15:07.716995+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -7892,7 +7801,7 @@ _source line 1609 · 2026-05-22T14:15:07.716995+00:00_
 
 ### Tool call
 
-_source line 1610 · 2026-05-22T14:16:55.353837+00:00_
+_source line 1600 · 2026-05-22T14:16:55.353837+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7928,7 +7837,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1611 · 2026-05-22T14:16:58.916891+00:00_
+_source line 1601 · 2026-05-22T14:16:58.916891+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -7950,7 +7859,7 @@ _source line 1611 · 2026-05-22T14:16:58.916891+00:00_
 
 ### Assistant
 
-_source line 1612 · 2026-05-22T14:17:07.101588+00:00_
+_source line 1602 · 2026-05-22T14:17:07.101588+00:00_
 
 审查报告已提交。核心发现：
 
@@ -7982,7 +7891,7 @@ _source line 1612 · 2026-05-22T14:17:07.101588+00:00_
 
 ### User
 
-_source line 1613 · 2026-05-22T14:52:02.600482+00:00_
+_source line 1603 · 2026-05-22T14:52:02.600482+00:00_
 
 [系统通知 — worker_done:worker_ssh_check-ds-1epoch-eval-done_20260522T145055]:
 Worker worker_ssh_check-ds-1epoch-eval-done_20260522T145055 已完成（status=done），请审查 Agent 的处理结果。
@@ -8004,7 +7913,7 @@ Worker worker_ssh_check-ds-1epoch-eval-done_20260522T145055 已完成（status=d
 
 ### Tool call
 
-_source line 1614 · 2026-05-22T14:52:13.770515+00:00_
+_source line 1604 · 2026-05-22T14:52:13.770515+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8042,7 +7951,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1615 · 2026-05-22T14:52:14.630716+00:00_
+_source line 1605 · 2026-05-22T14:52:14.630716+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8302}}"}
 
@@ -8064,7 +7973,7 @@ _source line 1615 · 2026-05-22T14:52:14.630716+00:00_
 
 ### Tool call
 
-_source line 1616 · 2026-05-22T14:52:18.193062+00:00_
+_source line 1606 · 2026-05-22T14:52:18.193062+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8102,7 +8011,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1617 · 2026-05-22T14:52:18.845035+00:00_
+_source line 1607 · 2026-05-22T14:52:18.845035+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6374}}"}
 
@@ -8124,7 +8033,7 @@ _source line 1617 · 2026-05-22T14:52:18.845035+00:00_
 
 ### Tool call
 
-_source line 1618 · 2026-05-22T14:52:24.128769+00:00_
+_source line 1608 · 2026-05-22T14:52:24.128769+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8162,7 +8071,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1619 · 2026-05-22T14:52:24.833346+00:00_
+_source line 1609 · 2026-05-22T14:52:24.833346+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:16:05.664Z\", \"updated_at\": \"2026-05-22T14:51:28.766Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"parent\": \"deepseek-cwm-repo-s123-train-v2\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}, \"spec\": {\"command\": \"bash eval_deepseek_cwm_s123_1epoch.sh (CVD=1, batch=4, checkpoint-4209)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"deepseek-coder-6.7b-instruct\", \"seed\": 123, \"pid\": 111113, \"gpu\": \"GPU 1 (RTX 5090 32GB)\", \"checkpoint_source\": \"deepseek-cwm-repo-s123-train-v2 checkpoint-4209 (epoch 1)\", \"eval_data\": \"repo-level CWM test set (9784 per-test samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/checkpoint-4209\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log\"}, \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log\", \"completed_at\": \"2026-05-22T14:51:28.766Z\"}, \"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:07:40.156Z\", \"updated_at\": \"2026-05-22T12:30:37.182Z\", \"hypothesis\": \"Eval Qwen3-8B CWM repo-level s456 checkpoint-6633。与 s42/s123 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。\", \"parent\": \"qwen3-8b-cwm-repo-s456-train-v4\", \"spec\": {\"command\": \"bash eval_qwen_cwm_s456.sh (CVD=3
 …[truncated 2541 chars]
@@ -8185,7 +8094,7 @@ _source line 1619 · 2026-05-22T14:52:24.833346+00:00_
 
 ### Assistant
 
-_source line 1620 · 2026-05-22T14:52:34.218475+00:00_
+_source line 1610 · 2026-05-22T14:52:34.218475+00:00_
 
 DS s123 1-epoch eval 完成。最终指标与预填充值完全一致：
 
@@ -8220,7 +8129,7 @@ DS s123 1-epoch eval 完成。最终指标与预填充值完全一致：
 
 ### User
 
-_source line 1621 · 2026-05-22T15:13:01.326492+00:00_
+_source line 1611 · 2026-05-22T15:13:01.326492+00:00_
 
 [System 触发审查]:
 Round 9 审稿报告独立审视请求
@@ -8406,7 +8315,7 @@ Round 9 vs Round 8 变化：
 
 ### Tool call
 
-_source line 1622 · 2026-05-22T15:13:12.124026+00:00_
+_source line 1612 · 2026-05-22T15:13:12.124026+00:00_
 
 called Read
 
@@ -8444,7 +8353,7 @@ called Read
 
 ### Tool result
 
-_source line 1623 · 2026-05-22T15:13:12.566433+00:00_
+_source line 1613 · 2026-05-22T15:13:12.566433+00:00_
 
 94	
 95	\subsection{Function-Level Equivalence}
@@ -8471,7 +8380,7 @@ _source line 1623 · 2026-05-22T15:13:12.566433+00:00_
 
 ### Tool call
 
-_source line 1624 · 2026-05-22T15:13:13.068745+00:00_
+_source line 1614 · 2026-05-22T15:13:13.068745+00:00_
 
 called Read
 
@@ -8509,7 +8418,7 @@ called Read
 
 ### Tool result
 
-_source line 1625 · 2026-05-22T15:13:13.571131+00:00_
+_source line 1615 · 2026-05-22T15:13:13.571131+00:00_
 
 430	\end{tabular}
 431	\end{table}
@@ -8538,7 +8447,7 @@ _source line 1625 · 2026-05-22T15:13:13.571131+00:00_
 
 ### Tool call
 
-_source line 1626 · 2026-05-22T15:13:14.073415+00:00_
+_source line 1616 · 2026-05-22T15:13:14.073415+00:00_
 
 called Grep
 
@@ -8580,7 +8489,7 @@ called Grep
 
 ### Tool result
 
-_source line 1627 · 2026-05-22T15:13:14.124673+00:00_
+_source line 1617 · 2026-05-22T15:13:14.124673+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:4:We systematically compare \cls{}, \cwm{}, and \traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation design space for neural code verification.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:180:[Omitted long matching line]
@@ -8605,7 +8514,7 @@ _source line 1627 · 2026-05-22T15:13:14.124673+00:00_
 
 ### Tool call
 
-_source line 1628 · 2026-05-22T15:15:09.744447+00:00_
+_source line 1618 · 2026-05-22T15:15:09.744447+00:00_
 
 called Read
 
@@ -8643,7 +8552,7 @@ called Read
 
 ### Tool result
 
-_source line 1629 · 2026-05-22T15:15:10.246990+00:00_
+_source line 1619 · 2026-05-22T15:15:10.246990+00:00_
 
 420	\textbf{Margin ($\pm$\pp{})} & \textbf{$p$-value} & \textbf{Equivalent ($\alpha{=}0.05$)?} \\
 421	\midrule
@@ -8695,7 +8604,7 @@ _source line 1629 · 2026-05-22T15:15:10.246990+00:00_
 
 ### Tool call
 
-_source line 1630 · 2026-05-22T15:15:10.749423+00:00_
+_source line 1620 · 2026-05-22T15:15:10.749423+00:00_
 
 called Grep
 
@@ -8735,7 +8644,7 @@ called Grep
 
 ### Tool result
 
-_source line 1631 · 2026-05-22T15:15:11.201631+00:00_
+_source line 1621 · 2026-05-22T15:15:11.201631+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.bbl:321:  Bao}]{tang2026execverify}
@@ -8763,7 +8672,7 @@ _source line 1631 · 2026-05-22T15:15:11.201631+00:00_
 
 ### Tool call
 
-_source line 1632 · 2026-05-22T15:15:11.402925+00:00_
+_source line 1622 · 2026-05-22T15:15:11.402925+00:00_
 
 called Read
 
@@ -8801,7 +8710,7 @@ called Read
 
 ### Tool result
 
-_source line 1633 · 2026-05-22T15:15:11.453555+00:00_
+_source line 1623 · 2026-05-22T15:15:11.453555+00:00_
 
 88	\end{table}
 89	
@@ -8836,7 +8745,7 @@ _source line 1633 · 2026-05-22T15:15:11.453555+00:00_
 
 ### Tool call
 
-_source line 1634 · 2026-05-22T15:15:18.337953+00:00_
+_source line 1624 · 2026-05-22T15:15:18.337953+00:00_
 
 called Grep
 
@@ -8876,7 +8785,7 @@ called Grep
 
 ### Tool result
 
-_source line 1635 · 2026-05-22T15:15:18.840259+00:00_
+_source line 1625 · 2026-05-22T15:15:18.840259+00:00_
 
 50:\caption{LoRA rank ablation for \cwm{} 4B (seed 42, 3 epochs, lr $= 2{\times}10^{-4}$). Rank-16 seed variance: 0.53\pp{} (seeds 42 vs.\ 456).}
 64:Both rank-32 variants fall within the 2-seed variance of the rank-16 baseline (0.53\pp{} between seeds 42 and 456; Table~\ref{tab:rank_ablation}). The $\alpha{=}64$ variant (matching the baseline $\alpha/r{=}2$ ratio) rules out the confound that the $\alpha{=}32$ result might reflect reduced effective scaling rather than rank insensitivity. This is consistent with \cwm{}'s function-level performance being bounded by output-format constraints rather than adapter capacity.
@@ -8903,7 +8812,7 @@ _source line 1635 · 2026-05-22T15:15:18.840259+00:00_
 
 ### Tool call
 
-_source line 1636 · 2026-05-22T15:15:19.442985+00:00_
+_source line 1626 · 2026-05-22T15:15:19.442985+00:00_
 
 called Grep
 
@@ -8943,7 +8852,7 @@ called Grep
 
 ### Tool result
 
-_source line 1637 · 2026-05-22T15:15:19.995617+00:00_
+_source line 1627 · 2026-05-22T15:15:19.995617+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:11:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:14:[Omitted long matching line]
@@ -8976,7 +8885,7 @@ _source line 1637 · 2026-05-22T15:15:19.995617+00:00_
 
 ### Tool call
 
-_source line 1638 · 2026-05-22T15:15:20.046288+00:00_
+_source line 1628 · 2026-05-22T15:15:20.046288+00:00_
 
 called ToolSearch
 
@@ -9012,7 +8921,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1639 · 2026-05-22T15:15:20.096870+00:00_
+_source line 1629 · 2026-05-22T15:15:20.096870+00:00_
 
 
 
@@ -9034,7 +8943,7 @@ _source line 1639 · 2026-05-22T15:15:20.096870+00:00_
 
 ### Tool call
 
-_source line 1640 · 2026-05-22T15:15:25.165958+00:00_
+_source line 1630 · 2026-05-22T15:15:25.165958+00:00_
 
 called Read
 
@@ -9072,7 +8981,7 @@ called Read
 
 ### Tool result
 
-_source line 1641 · 2026-05-22T15:15:25.216821+00:00_
+_source line 1631 · 2026-05-22T15:15:25.216821+00:00_
 
 490	\bottomrule
 491	\end{tabular}}
@@ -9108,7 +9017,7 @@ _source line 1641 · 2026-05-22T15:15:25.216821+00:00_
 
 ### Tool call
 
-_source line 1642 · 2026-05-22T15:15:26.176316+00:00_
+_source line 1632 · 2026-05-22T15:15:26.176316+00:00_
 
 called Read
 
@@ -9146,7 +9055,7 @@ called Read
 
 ### Tool result
 
-_source line 1643 · 2026-05-22T15:15:26.176830+00:00_
+_source line 1633 · 2026-05-22T15:15:26.176830+00:00_
 
 125	0-shot (Qwen3-8B) & 49.90 & --- & --- & --- \\
 126	0-shot (DeepSeek) & 48.54 & --- & --- & --- \\
@@ -9183,7 +9092,7 @@ _source line 1643 · 2026-05-22T15:15:26.176830+00:00_
 
 ### Tool call
 
-_source line 1644 · 2026-05-22T15:15:27.733173+00:00_
+_source line 1634 · 2026-05-22T15:15:27.733173+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9219,7 +9128,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1645 · 2026-05-22T15:15:29.088509+00:00_
+_source line 1635 · 2026-05-22T15:15:29.088509+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/home/sonny/exec-sim-repair-verifier/data/func_cwm_train.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.34}}"}
 
@@ -9241,7 +9150,7 @@ _source line 1645 · 2026-05-22T15:15:29.088509+00:00_
 
 ### Tool call
 
-_source line 1646 · 2026-05-22T15:15:43.790331+00:00_
+_source line 1636 · 2026-05-22T15:15:43.790331+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9277,7 +9186,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1647 · 2026-05-22T15:15:44.242341+00:00_
+_source line 1637 · 2026-05-22T15:15:44.242341+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9299,7 +9208,7 @@ _source line 1647 · 2026-05-22T15:15:44.242341+00:00_
 
 ### Tool call
 
-_source line 1648 · 2026-05-22T15:15:44.794711+00:00_
+_source line 1638 · 2026-05-22T15:15:44.794711+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9335,7 +9244,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1649 · 2026-05-22T15:15:44.845308+00:00_
+_source line 1639 · 2026-05-22T15:15:44.845308+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9357,7 +9266,7 @@ _source line 1649 · 2026-05-22T15:15:44.845308+00:00_
 
 ### Tool call
 
-_source line 1650 · 2026-05-22T15:15:48.109705+00:00_
+_source line 1640 · 2026-05-22T15:15:48.109705+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9393,7 +9302,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1651 · 2026-05-22T15:15:48.411278+00:00_
+_source line 1641 · 2026-05-22T15:15:48.411278+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9429,7 +9338,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1652 · 2026-05-22T15:15:48.512957+00:00_
+_source line 1642 · 2026-05-22T15:15:48.512957+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -9451,7 +9360,7 @@ _source line 1652 · 2026-05-22T15:15:48.512957+00:00_
 
 ### Tool result
 
-_source line 1653 · 2026-05-22T15:15:49.065302+00:00_
+_source line 1643 · 2026-05-22T15:15:49.065302+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /home/sonny/exec-sim-repair-verifier/train_cwm.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -9473,7 +9382,7 @@ _source line 1653 · 2026-05-22T15:15:49.065302+00:00_
 
 ### Tool call
 
-_source line 1654 · 2026-05-22T15:15:52.678444+00:00_
+_source line 1644 · 2026-05-22T15:15:52.678444+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9509,7 +9418,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1655 · 2026-05-22T15:15:53.080269+00:00_
+_source line 1645 · 2026-05-22T15:15:53.080269+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9545,7 +9454,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1656 · 2026-05-22T15:15:53.130961+00:00_
+_source line 1646 · 2026-05-22T15:15:53.130961+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 
 …[truncated 1265 chars]
@@ -9568,7 +9477,7 @@ _source line 1656 · 2026-05-22T15:15:53.130961+00:00_
 
 ### Tool result
 
-_source line 1657 · 2026-05-22T15:15:53.633195+00:00_
+_source line 1647 · 2026-05-22T15:15:53.633195+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/train_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/train_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/train_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/train_verifier.py\\n/home/sonny/exec-sim-repair-verifier/train_repo_verifier.py\\n/home/sonny/exec-sim-repair-verifier/train_repo_cwm.py\\n/home/sonny/exec-sim-repair-verifier/train_repo_verifier_8b.py\\n/home/sonny/exec-sim-repair-verifier/train_repo_cwm_8b.py\\n/home/sonny/exec-sim-repair-verifier/train_unified.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -9590,7 +9499,7 @@ _source line 1657 · 2026-05-22T15:15:53.633195+00:00_
 
 ### Tool call
 
-_source line 1658 · 2026-05-22T15:16:17.631422+00:00_
+_source line 1648 · 2026-05-22T15:16:17.631422+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9626,7 +9535,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1659 · 2026-05-22T15:16:17.882765+00:00_
+_source line 1649 · 2026-05-22T15:16:17.882765+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9662,7 +9571,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1660 · 2026-05-22T15:16:18.033937+00:00_
+_source line 1650 · 2026-05-22T15:16:18.033937+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"# train_repo_cwm.py — Qwen3 LoRA fine-tuning for repo-level CWM (Code World Model) generation\\n# Input: data/swebench_full/{swebench_train,swebench_val}.jsonl\\n#   fields: code (git diff), test (test name), label, execution_output (generation target)\\n# Output: LoRA adapter in output_dir/best/\\n# Deps: torch, transformers, peft, datasets, wandb\\n# Differences from function-level train_cwm_baseline.py:\\n#   - Reads swebench_* split files; uses execution_output as target\\n#   - Prompt adapted for repo-level diffs\\n#   - Sample-weighted loss based on class frequency\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import Counter\\n\\nimport torch\\nfrom torch.nn import CrossEntropyLoss\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    Trainer,\\n    TrainingArguments,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_messages(code, test, target=None):\\n    user_msg = f\\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n 
 …[truncated 2025 chars]
@@ -9685,7 +9594,7 @@ _source line 1660 · 2026-05-22T15:16:18.033937+00:00_
 
 ### Tool result
 
-_source line 1661 · 2026-05-22T15:16:18.586623+00:00_
+_source line 1651 · 2026-05-22T15:16:18.586623+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"# train_cwm_baseline.py — Qwen3 LoRA fine-tuning for CWM (Code World Model) generation baseline\\n# Input: data_dir/ with {cwm_train,cwm_val}.jsonl (fields: code, test, target)\\n# Output: LoRA adapter in output_dir/best/\\n# Key difference from train_verifier.py (classification):\\n#   - Prompt asks for execution result instead of pass/fail\\n#   - Target is execution output string (e.g. \\\"PASS: ...\\\" or \\\"FAIL: AssertionError: ...\\\")\\n#   - Standard causal LM loss on target tokens (no classification head)\\n#   - Loss masked on system+user tokens, only computed on assistant response\\n# Same: LoRA config, batch_size, grad_accumulation, lr, epochs, seed, max_seq_len\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    DataCollatorForSeq2Seq,\\n    Trainer,\\n    TrainingArguments,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code snippet and a test case, \\\"\\n    \\\"predict the execution result.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    \\\"\\\"\\\"Qwen3 tokenizers support enable_thinking; older ones don't.\\\"\\\"\\\"\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_messages(code, test, target=None):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\
 …[truncated 1830 chars]
@@ -9708,7 +9617,7 @@ _source line 1661 · 2026-05-22T15:16:18.586623+00:00_
 
 ### Tool call
 
-_source line 1662 · 2026-05-22T15:16:41.182299+00:00_
+_source line 1652 · 2026-05-22T15:16:41.182299+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9744,7 +9653,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1663 · 2026-05-22T15:16:41.232963+00:00_
+_source line 1653 · 2026-05-22T15:16:41.232963+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9780,7 +9689,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1664 · 2026-05-22T15:16:41.634989+00:00_
+_source line 1654 · 2026-05-22T15:16:41.634989+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"        loss_fct = CrossEntropyLoss(reduction=\\\"none\\\")\\n        per_token_loss = loss_fct(\\n            shift_logits.view(-1, shift_logits.size(-1)),\\n            shift_labels.view(-1),\\n        ).view(shift_labels.size())\\n\\n        mask = (shift_labels != -100).float()\\n        per_sample_loss = (per_token_loss * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1)\\n        weighted_loss = (per_sample_loss * sample_weights).mean()\\n\\n        return (weighted_loss, outputs) if return_outputs else weighted_loss\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(description=\\\"Train Qwen3 LoRA repo-level CWM generation\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"/root/.cache/huggingface/hub/Qwen/Qwen3-4B\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=\\\"/root/autodl-tmp/checkpoints_repo_cwm/\\\")\\n    p.add_argument(\\\"--wandb_project\\\", default=\\\"exec-sim-repair-verifier\\\")\\n    p.add_argument(\\\"--run_name\\\", default=\\\"repo-cwm-qwen3-4b-lora\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=1)\\n    p.add_argument(\\\"--grad_accumulation\\\", type=int, default=32)\\n    p.add_argument(\\\"--lr\\\", type=float, default=5e-5)\\n    p.add_argument(\\\"--epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup_ratio\\\", type=float, default=0.05)\\n    p.add_argument(\\\"--weight_decay\\\", type=float, default=0.01)\\n    p.add_argument(\\\"--lora_rank\\\", type=int, default=16)\\n    p.add_argument(\\\"--lora_alpha\\\", type=int, default=32)\\n    p.add_argument(\\\"--lora_dropout\\\", type=float, default=0.05)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=-1)\\n    p.add_argument(
 …[truncated 5108 chars]
@@ -9803,7 +9712,7 @@ _source line 1664 · 2026-05-22T15:16:41.634989+00:00_
 
 ### Tool result
 
-_source line 1665 · 2026-05-22T15:16:41.635452+00:00_
+_source line 1655 · 2026-05-22T15:16:41.635452+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9825,7 +9734,7 @@ _source line 1665 · 2026-05-22T15:16:41.635452+00:00_
 
 ### Tool call
 
-_source line 1666 · 2026-05-22T15:16:55.236218+00:00_
+_source line 1656 · 2026-05-22T15:16:55.236218+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9861,7 +9770,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1667 · 2026-05-22T15:16:55.793765+00:00_
+_source line 1657 · 2026-05-22T15:16:55.793765+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9883,7 +9792,7 @@ _source line 1667 · 2026-05-22T15:16:55.793765+00:00_
 
 ### Tool call
 
-_source line 1668 · 2026-05-22T15:16:55.944733+00:00_
+_source line 1658 · 2026-05-22T15:16:55.944733+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9919,7 +9828,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1669 · 2026-05-22T15:16:55.945259+00:00_
+_source line 1659 · 2026-05-22T15:16:55.945259+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9941,7 +9850,7 @@ _source line 1669 · 2026-05-22T15:16:55.945259+00:00_
 
 ### Tool call
 
-_source line 1670 · 2026-05-22T15:16:59.056197+00:00_
+_source line 1660 · 2026-05-22T15:16:59.056197+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9977,7 +9886,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1671 · 2026-05-22T15:16:59.107445+00:00_
+_source line 1661 · 2026-05-22T15:16:59.107445+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -9999,7 +9908,7 @@ _source line 1671 · 2026-05-22T15:16:59.107445+00:00_
 
 ### Tool call
 
-_source line 1672 · 2026-05-22T15:17:03.374477+00:00_
+_source line 1662 · 2026-05-22T15:17:03.374477+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10035,7 +9944,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1673 · 2026-05-22T15:17:03.876999+00:00_
+_source line 1663 · 2026-05-22T15:17:03.876999+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"151:    def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\\n280:        # Keep class_label column for WeightedCausalLMTrainer.compute_loss\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -10057,7 +9966,7 @@ _source line 1673 · 2026-05-22T15:17:03.876999+00:00_
 
 ### Tool call
 
-_source line 1674 · 2026-05-22T15:17:04.128410+00:00_
+_source line 1664 · 2026-05-22T15:17:04.128410+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10093,7 +10002,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1675 · 2026-05-22T15:17:04.530225+00:00_
+_source line 1665 · 2026-05-22T15:17:04.530225+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"144:class WeightedCausalLMTrainer(Trainer):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -10115,7 +10024,7 @@ _source line 1675 · 2026-05-22T15:17:04.530225+00:00_
 
 ### Tool call
 
-_source line 1676 · 2026-05-22T15:17:07.291049+00:00_
+_source line 1666 · 2026-05-22T15:17:07.291049+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10151,7 +10060,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1677 · 2026-05-22T15:17:07.341781+00:00_
+_source line 1667 · 2026-05-22T15:17:07.341781+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -10173,7 +10082,7 @@ _source line 1677 · 2026-05-22T15:17:07.341781+00:00_
 
 ### Tool call
 
-_source line 1678 · 2026-05-22T15:17:10.554123+00:00_
+_source line 1668 · 2026-05-22T15:17:10.554123+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10209,7 +10118,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1679 · 2026-05-22T15:17:11.006345+00:00_
+_source line 1669 · 2026-05-22T15:17:11.006345+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"# train_repo_cwm.py — Qwen3 LoRA fine-tuning for repo-level CWM (Code World Model) generation\\n# Input: data/swebench_full/{swebench_train,swebench_val}.jsonl\\n#   fields: code (git diff), test (test name), label, execution_output (generation target)\\n# Output: LoRA adapter in output_dir/best/\\n# Deps: torch, transformers, peft, datasets, wandb\\n# Differences from function-level train_cwm_baseline.py:\\n#   - Reads swebench_* split files; uses execution_output as target\\n#   - Prompt adapted for repo-level diffs\\n#   - Sample-weighted loss based on class frequency\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import Counter\\n\\nimport torch\\nfrom torch.nn import CrossEntropyLoss\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    Trainer,\\n    TrainingArguments,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_messages(code, test, target=None):\\n    user_msg = f\\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n 
 …[truncated 6524 chars]
@@ -10232,7 +10141,7 @@ _source line 1679 · 2026-05-22T15:17:11.006345+00:00_
 
 ### Tool call
 
-_source line 1680 · 2026-05-22T15:17:51.257615+00:00_
+_source line 1670 · 2026-05-22T15:17:51.257615+00:00_
 
 called Read
 
@@ -10270,7 +10179,7 @@ called Read
 
 ### Tool result
 
-_source line 1681 · 2026-05-22T15:17:51.358504+00:00_
+_source line 1671 · 2026-05-22T15:17:51.358504+00:00_
 
 0	\section{Experiments}
 1	\label{sec:experiments}
@@ -10306,7 +10215,7 @@ _source line 1681 · 2026-05-22T15:17:51.358504+00:00_
 
 ### Tool call
 
-_source line 1682 · 2026-05-22T15:17:51.358917+00:00_
+_source line 1672 · 2026-05-22T15:17:51.358917+00:00_
 
 called Read
 
@@ -10344,7 +10253,7 @@ called Read
 
 ### Tool result
 
-_source line 1683 · 2026-05-22T15:17:51.811515+00:00_
+_source line 1673 · 2026-05-22T15:17:51.811515+00:00_
 
 10	We make the following contributions:
 11	
@@ -10375,7 +10284,7 @@ _source line 1683 · 2026-05-22T15:17:51.811515+00:00_
 
 ### Tool call
 
-_source line 1684 · 2026-05-22T15:17:52.213360+00:00_
+_source line 1674 · 2026-05-22T15:17:52.213360+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10411,7 +10320,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1685 · 2026-05-22T15:17:52.263906+00:00_
+_source line 1675 · 2026-05-22T15:17:52.263906+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -10433,7 +10342,7 @@ _source line 1685 · 2026-05-22T15:17:52.263906+00:00_
 
 ### Tool call
 
-_source line 1686 · 2026-05-22T15:19:31.671160+00:00_
+_source line 1676 · 2026-05-22T15:19:31.671160+00:00_
 
 called Read
 
@@ -10471,7 +10380,7 @@ called Read
 
 ### Tool result
 
-_source line 1687 · 2026-05-22T15:19:31.972764+00:00_
+_source line 1677 · 2026-05-22T15:19:31.972764+00:00_
 
 0	% ARR Responsible NLP Research Checklist
 1	% Reference: https://aclrollingreview.org/responsibleNLPresearch/
@@ -10515,7 +10424,7 @@ _source line 1687 · 2026-05-22T15:19:31.972764+00:00_
 
 ### Tool call
 
-_source line 1688 · 2026-05-22T15:19:32.023545+00:00_
+_source line 1678 · 2026-05-22T15:19:32.023545+00:00_
 
 called Read
 
@@ -10549,7 +10458,7 @@ called Read
 
 ### Tool result
 
-_source line 1689 · 2026-05-22T15:19:32.074297+00:00_
+_source line 1679 · 2026-05-22T15:19:32.074297+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -10581,7 +10490,7 @@ _source line 1689 · 2026-05-22T15:19:32.074297+00:00_
 
 ### Tool call
 
-_source line 1690 · 2026-05-22T15:20:08.720765+00:00_
+_source line 1680 · 2026-05-22T15:20:08.720765+00:00_
 
 called ToolSearch
 
@@ -10617,7 +10526,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1691 · 2026-05-22T15:20:08.721244+00:00_
+_source line 1681 · 2026-05-22T15:20:08.721244+00:00_
 
 
 
@@ -10639,7 +10548,7 @@ _source line 1691 · 2026-05-22T15:20:08.721244+00:00_
 
 ### Tool call
 
-_source line 1692 · 2026-05-22T15:21:11.928587+00:00_
+_source line 1682 · 2026-05-22T15:21:11.928587+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10675,7 +10584,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1693 · 2026-05-22T15:21:15.470871+00:00_
+_source line 1683 · 2026-05-22T15:21:15.470871+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -10697,7 +10606,7 @@ _source line 1693 · 2026-05-22T15:21:15.470871+00:00_
 
 ### Assistant
 
-_source line 1694 · 2026-05-22T15:21:22.598774+00:00_
+_source line 1684 · 2026-05-22T15:21:22.598774+00:00_
 
 Round 9 Action Matrix 审查已提交。核心发现：
 
@@ -10729,7 +10638,7 @@ Round 9 Action Matrix 审查已提交。核心发现：
 
 ### User
 
-_source line 1695 · 2026-05-22T16:03:30.947037+00:00_
+_source line 1685 · 2026-05-22T16:03:30.947037+00:00_
 
 [System 触发审查]:
 **Round 10 审稿报告 Action Matrix 初稿——请独立审查**
@@ -10855,7 +10764,7 @@ Overall 3.0 (Findings)，与 R9 持平。DDL 5月25日（3天）。以下是我�
 
 ### Tool call
 
-_source line 1696 · 2026-05-22T16:03:41.665754+00:00_
+_source line 1686 · 2026-05-22T16:03:41.665754+00:00_
 
 called ToolSearch
 
@@ -10891,7 +10800,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1697 · 2026-05-22T16:03:41.716424+00:00_
+_source line 1687 · 2026-05-22T16:03:41.716424+00:00_
 
 
 
@@ -10913,7 +10822,7 @@ _source line 1697 · 2026-05-22T16:03:41.716424+00:00_
 
 ### Tool call
 
-_source line 1698 · 2026-05-22T16:03:45.598021+00:00_
+_source line 1688 · 2026-05-22T16:03:45.598021+00:00_
 
 called WebSearch
 
@@ -10947,7 +10856,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 1699 · 2026-05-22T16:03:47.362904+00:00_
+_source line 1689 · 2026-05-22T16:03:47.362904+00:00_
 
 called Read
 
@@ -10985,7 +10894,7 @@ called Read
 
 ### Tool result
 
-_source line 1700 · 2026-05-22T16:03:48.170199+00:00_
+_source line 1690 · 2026-05-22T16:03:48.170199+00:00_
 
 94	
 95	\subsection{Function-Level Equivalence}
@@ -11016,7 +10925,7 @@ _source line 1700 · 2026-05-22T16:03:48.170199+00:00_
 
 ### Tool call
 
-_source line 1701 · 2026-05-22T16:03:48.221091+00:00_
+_source line 1691 · 2026-05-22T16:03:48.221091+00:00_
 
 called Read
 
@@ -11050,7 +10959,7 @@ called Read
 
 ### Tool result
 
-_source line 1702 · 2026-05-22T16:03:48.272602+00:00_
+_source line 1692 · 2026-05-22T16:03:48.272602+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -11082,7 +10991,7 @@ _source line 1702 · 2026-05-22T16:03:48.272602+00:00_
 
 ### Tool result
 
-_source line 1703 · 2026-05-22T16:03:52.593462+00:00_
+_source line 1693 · 2026-05-22T16:03:52.593462+00:00_
 
 Web search results for query: "CodeRM Diao "Dynamic Scaling of Unit Tests" code reward modeling ACL 2025"
 
@@ -11123,7 +11032,7 @@ Experimental results show that the approach significantly improves performance a
 
 ### Tool call
 
-_source line 1704 · 2026-05-22T16:04:26.259620+00:00_
+_source line 1694 · 2026-05-22T16:04:26.259620+00:00_
 
 called Read
 
@@ -11161,7 +11070,7 @@ called Read
 
 ### Tool call
 
-_source line 1705 · 2026-05-22T16:04:26.260133+00:00_
+_source line 1695 · 2026-05-22T16:04:26.260133+00:00_
 
 called Read
 
@@ -11199,7 +11108,7 @@ called Read
 
 ### Tool result
 
-_source line 1706 · 2026-05-22T16:04:26.260518+00:00_
+_source line 1696 · 2026-05-22T16:04:26.260518+00:00_
 
 163	
 164	\paragraph{Complexity as moderator.} The \cls{}--\cwm{} gap widens from 1--3\pp{} (function) to 18--26\pp{} (repo) under our protocol; a matched-context ablation confirms input disparity explains $<$3\% of this gap (Appendix~\ref{app:ablations}).
@@ -11233,7 +11142,7 @@ _source line 1706 · 2026-05-22T16:04:26.260518+00:00_
 
 ### Tool result
 
-_source line 1707 · 2026-05-22T16:04:26.260890+00:00_
+_source line 1697 · 2026-05-22T16:04:26.260890+00:00_
 
 88	\end{table}
 89	
@@ -11260,7 +11169,7 @@ _source line 1707 · 2026-05-22T16:04:26.260890+00:00_
 
 ### Tool call
 
-_source line 1708 · 2026-05-22T16:04:52.398439+00:00_
+_source line 1698 · 2026-05-22T16:04:52.398439+00:00_
 
 called Read
 
@@ -11294,7 +11203,7 @@ called Read
 
 ### Tool call
 
-_source line 1709 · 2026-05-22T16:04:52.398922+00:00_
+_source line 1699 · 2026-05-22T16:04:52.398922+00:00_
 
 called Read
 
@@ -11332,7 +11241,7 @@ called Read
 
 ### Tool result
 
-_source line 1710 · 2026-05-22T16:04:52.449578+00:00_
+_source line 1700 · 2026-05-22T16:04:52.449578+00:00_
 
 1	\begin{abstract}
 2	LLM-based program repair increasingly leverages test-time compute scaling, generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\cls{}), execution output generation (\cwm{}), and trajectory-level patch scoring (\traj{}). No prior work compares these formulations under matched conditions.
@@ -11360,7 +11269,7 @@ _source line 1710 · 2026-05-22T16:04:52.449578+00:00_
 
 ### Tool result
 
-_source line 1711 · 2026-05-22T16:04:52.450452+00:00_
+_source line 1701 · 2026-05-22T16:04:52.450452+00:00_
 
 0	\section{Introduction}
 1	\label{sec:introduction}
@@ -11390,7 +11299,7 @@ _source line 1711 · 2026-05-22T16:04:52.450452+00:00_
 
 ### Tool call
 
-_source line 1712 · 2026-05-22T16:06:13.705055+00:00_
+_source line 1702 · 2026-05-22T16:06:13.705055+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11426,7 +11335,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1713 · 2026-05-22T16:06:17.978846+00:00_
+_source line 1703 · 2026-05-22T16:06:17.978846+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -11448,7 +11357,7 @@ _source line 1713 · 2026-05-22T16:06:17.978846+00:00_
 
 ### Assistant
 
-_source line 1714 · 2026-05-22T16:06:25.160745+00:00_
+_source line 1704 · 2026-05-22T16:06:25.160745+00:00_
 
 Round 10 Action Matrix 审查已提交。核心发现：
 
@@ -11480,7 +11389,7 @@ Round 10 Action Matrix 审查已提交。核心发现：
 
 ### User
 
-_source line 1715 · 2026-05-22T16:33:09.597035+00:00_
+_source line 1705 · 2026-05-22T16:33:09.597035+00:00_
 
 [系统通知 — worker_done:worker_analysis_routing-heuristic_20260522T162027]:
 Worker worker_analysis_routing-heuristic_20260522T162027 已完成（status=done），请审查 Agent 的处理结果。
@@ -11502,7 +11411,7 @@ Worker worker_analysis_routing-heuristic_20260522T162027 已完成（status=done
 
 ### Tool call
 
-_source line 1716 · 2026-05-22T16:33:24.118338+00:00_
+_source line 1706 · 2026-05-22T16:33:24.118338+00:00_
 
 called ToolSearch
 
@@ -11538,7 +11447,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1717 · 2026-05-22T16:33:24.168965+00:00_
+_source line 1707 · 2026-05-22T16:33:24.168965+00:00_
 
 
 
@@ -11560,7 +11469,7 @@ _source line 1717 · 2026-05-22T16:33:24.168965+00:00_
 
 ### Tool call
 
-_source line 1718 · 2026-05-22T16:33:27.131766+00:00_
+_source line 1708 · 2026-05-22T16:33:27.131766+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11598,7 +11507,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1719 · 2026-05-22T16:33:27.836269+00:00_
+_source line 1709 · 2026-05-22T16:33:27.836269+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:16:05.664Z\", \"updated_at\": \"2026-05-22T14:51:28.766Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"parent\": \"deepseek-cwm-repo-s123-train-v2\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}, \"spec\": {\"command\": \"bash eval_deepseek_cwm_s123_1epoch.sh (CVD=1, batch=4, checkpoint-4209)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"deepseek-coder-6.7b-instruct\", \"seed\": 123, \"pid\": 111113, \"gpu\": \"GPU 1 (RTX 5090 32GB)\", \"checkpoint_source\": \"deepseek-cwm-repo-s123-train-v2 checkpoint-4209 (epoch 1)\", \"eval_data\": \"repo-level CWM test set (9784 per-test samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/checkpoint-4209\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log\"}, \"log_path\": \"/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log\", \"completed_at\": \"2026-05-22T14:51:28.766Z\"}, \"qwen3-8b-cwm-repo-s456-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:07:40.156Z\", \"updated_at\": \"2026-05-22T12:30:37.182Z\", \"hypothesis\": \"Eval Qwen3-8B CWM repo-level s456 checkpoint-6633。与 s42/s123 对比验证 CWM repo-level 跨 seed 一致性，组成 3-seed coverage 用于论文 Table 3。\", \"parent\": \"qwen3-8b-cwm-repo-s456-train-v4\", \"spec\": {\"command\": \"bash eval_qwen_cwm_s456.sh (CVD=3
 …[truncated 2541 chars]
@@ -11621,7 +11530,7 @@ _source line 1719 · 2026-05-22T16:33:27.836269+00:00_
 
 ### Tool call
 
-_source line 1720 · 2026-05-22T16:33:31.652028+00:00_
+_source line 1710 · 2026-05-22T16:33:31.652028+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11659,7 +11568,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1721 · 2026-05-22T16:33:32.305685+00:00_
+_source line 1711 · 2026-05-22T16:33:32.305685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.664}}"}
 
@@ -11681,7 +11590,7 @@ _source line 1721 · 2026-05-22T16:33:32.305685+00:00_
 
 ### Tool call
 
-_source line 1722 · 2026-05-22T16:33:38.730764+00:00_
+_source line 1712 · 2026-05-22T16:33:38.730764+00:00_
 
 called Glob
 
@@ -11717,7 +11626,7 @@ called Glob
 
 ### Tool result
 
-_source line 1723 · 2026-05-22T16:33:39.182969+00:00_
+_source line 1713 · 2026-05-22T16:33:39.182969+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/routing_analysis.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report/routing_analysis_report.md
@@ -11741,7 +11650,7 @@ _source line 1723 · 2026-05-22T16:33:39.182969+00:00_
 
 ### Tool call
 
-_source line 1724 · 2026-05-22T16:33:39.333909+00:00_
+_source line 1714 · 2026-05-22T16:33:39.333909+00:00_
 
 called Bash
 
@@ -11777,7 +11686,7 @@ called Bash
 
 ### Tool result
 
-_source line 1725 · 2026-05-22T16:33:39.535157+00:00_
+_source line 1715 · 2026-05-22T16:33:39.535157+00:00_
 
 total 4612
 -rw-r--r--  1 ubuntu ubuntu  90735 May 22 16:32 manifest.yaml
@@ -11808,7 +11717,7 @@ drwxr-xr-x  3 ubuntu ubuntu   4096 May 22 15:00 review_round_7
 
 ### Tool call
 
-_source line 1726 · 2026-05-22T16:33:42.496931+00:00_
+_source line 1716 · 2026-05-22T16:33:42.496931+00:00_
 
 called Read
 
@@ -11842,7 +11751,7 @@ called Read
 
 ### Tool result
 
-_source line 1727 · 2026-05-22T16:33:42.497444+00:00_
+_source line 1717 · 2026-05-22T16:33:42.497444+00:00_
 
 1	# Routing Heuristic Analysis: CLS vs CWM Formulation Routing
 2	
@@ -11906,7 +11815,7 @@ _source line 1727 · 2026-05-22T16:33:42.497444+00:00_
 
 ### Tool call
 
-_source line 1728 · 2026-05-22T16:34:20.300319+00:00_
+_source line 1718 · 2026-05-22T16:34:20.300319+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11942,7 +11851,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1729 · 2026-05-22T16:34:24.116152+00:00_
+_source line 1719 · 2026-05-22T16:34:24.116152+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -11964,7 +11873,7 @@ _source line 1729 · 2026-05-22T16:34:24.116152+00:00_
 
 ### Assistant
 
-_source line 1730 · 2026-05-22T16:34:28.272819+00:00_
+_source line 1720 · 2026-05-22T16:34:28.272819+00:00_
 
 审查已发送。Routing heuristic analysis 是一个干净的 negative result——三种简单 heuristic 均无法统计显著地捕获 oracle gap，最大 gain 仅 +0.37pp（bootstrap CI 包含 0）。结论是 complementarity 来自 instance-specific error patterns，支撑论文将 learned routing 作为 future work 方向。
 
@@ -11991,7 +11900,7 @@ _source line 1730 · 2026-05-22T16:34:28.272819+00:00_
 
 ### User
 
-_source line 1731 · 2026-05-22T17:04:21.541578+00:00_
+_source line 1721 · 2026-05-22T17:04:21.541578+00:00_
 
 [系统通知 — worker_done:worker_viz_figure2-yaxis_20260522T170212]:
 Worker worker_viz_figure2-yaxis_20260522T170212 已完成（status=done），请审查 Agent 的处理结果。
@@ -12013,7 +11922,7 @@ Worker worker_viz_figure2-yaxis_20260522T170212 已完成（status=done），请
 
 ### Tool call
 
-_source line 1732 · 2026-05-22T17:04:31.090752+00:00_
+_source line 1722 · 2026-05-22T17:04:31.090752+00:00_
 
 called Glob
 
@@ -12049,7 +11958,7 @@ called Glob
 
 ### Tool result
 
-_source line 1733 · 2026-05-22T17:04:31.492271+00:00_
+_source line 1723 · 2026-05-22T17:04:31.492271+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/figure2_v2.png
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v2.pdf
@@ -12073,7 +11982,7 @@ _source line 1733 · 2026-05-22T17:04:31.492271+00:00_
 
 ### Tool call
 
-_source line 1734 · 2026-05-22T17:04:31.643992+00:00_
+_source line 1724 · 2026-05-22T17:04:31.643992+00:00_
 
 called Bash
 
@@ -12109,7 +12018,7 @@ called Bash
 
 ### Tool result
 
-_source line 1735 · 2026-05-22T17:04:31.845567+00:00_
+_source line 1725 · 2026-05-22T17:04:31.845567+00:00_
 
 total 4
 drwxr-xr-x 2 ubuntu ubuntu 4096 May 22 12:47 paper
@@ -12132,7 +12041,7 @@ drwxr-xr-x 2 ubuntu ubuntu 4096 May 22 12:47 paper
 
 ### Tool call
 
-_source line 1736 · 2026-05-22T17:04:34.859482+00:00_
+_source line 1726 · 2026-05-22T17:04:34.859482+00:00_
 
 called Bash
 
@@ -12168,7 +12077,7 @@ called Bash
 
 ### Tool result
 
-_source line 1737 · 2026-05-22T17:04:34.910136+00:00_
+_source line 1727 · 2026-05-22T17:04:34.910136+00:00_
 
 total 316
 -rw-r--r-- 1 ubuntu ubuntu 111739 May 22 17:03 fig2_scaling_gap.png
@@ -12196,7 +12105,7 @@ total 316
 
 ### Tool call
 
-_source line 1738 · 2026-05-22T17:04:39.428988+00:00_
+_source line 1728 · 2026-05-22T17:04:39.428988+00:00_
 
 called Read
 
@@ -12230,7 +12139,7 @@ called Read
 
 ### Tool result
 
-_source line 1739 · 2026-05-22T17:04:39.832369+00:00_
+_source line 1729 · 2026-05-22T17:04:39.832369+00:00_
 
 
 
@@ -12252,7 +12161,7 @@ _source line 1739 · 2026-05-22T17:04:39.832369+00:00_
 
 ### Tool call
 
-_source line 1740 · 2026-05-22T17:04:40.484984+00:00_
+_source line 1730 · 2026-05-22T17:04:40.484984+00:00_
 
 called Grep
 
@@ -12292,7 +12201,7 @@ called Grep
 
 ### Tool result
 
-_source line 1741 · 2026-05-22T17:04:40.535656+00:00_
+_source line 1731 · 2026-05-22T17:04:40.535656+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:90:\cls{} and \traj{} both scale positively from 4B to 8B (+1.27\pp{} and +2.13\pp{} respectively), while \cwm{} remains flat ($-$0.03\pp{}). At 8B, the ranking is \cls{} (89.94) $>$ \traj{} (87.70) $>$ \cwm{} (87.33). The \cls{}--\cwm{} gap widens from 1.32\pp{} at 4B to 2.62\pp{} at 8B (Figure~\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \cls{}/\cwm{}) yields $p = 0.0066$ (95\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex:139:\paragraph{Formulation divergence.} Under our 4--8B LoRA protocol, \cls{} and \cwm{} diverge on Qwen3: the gap is 25.59\pp{} at 4B (\cls{} 83.63\% vs.\ \cwm{} 58.04\%, seed 42; Figure~\ref{fig:scaling_gap}) and 18.35\pp{} at 8B (84.83\% vs.\ 66.48\%, 3-seed means). \cwm{} falls below majority baseline at both scales. These gaps confirm complexity-dependent formulation divergence, though limited seed coverage and multiple confounds (\S\ref{sec:threats}) limit definitive causal attribution.
@@ -12317,7 +12226,7 @@ _source line 1741 · 2026-05-22T17:04:40.535656+00:00_
 
 ### Tool call
 
-_source line 1742 · 2026-05-22T17:05:30.428893+00:00_
+_source line 1732 · 2026-05-22T17:05:30.428893+00:00_
 
 called Read
 
@@ -12355,7 +12264,7 @@ called Read
 
 ### Tool result
 
-_source line 1743 · 2026-05-22T17:05:30.429270+00:00_
+_source line 1733 · 2026-05-22T17:05:30.429270+00:00_
 
 53	
 54	\begin{figure}[t]
@@ -12388,7 +12297,7 @@ _source line 1743 · 2026-05-22T17:05:30.429270+00:00_
 
 ### Tool call
 
-_source line 1744 · 2026-05-22T17:06:01.544641+00:00_
+_source line 1734 · 2026-05-22T17:06:01.544641+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12424,7 +12333,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1745 · 2026-05-22T17:06:05.966980+00:00_
+_source line 1735 · 2026-05-22T17:06:05.966980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -12453,7 +12362,7 @@ _source line 1745 · 2026-05-22T17:06:05.966980+00:00_
 
 ### User
 
-_source line 1746 · 2026-05-22T17:09:23.397503+00:00_
+_source line 1736 · 2026-05-22T17:09:23.397503+00:00_
 
 [系统通知 — worker_done:worker_analysis_bayesian-rope_20260522T170114]:
 Worker worker_analysis_bayesian-rope_20260522T170114 已完成（status=done），请审查 Agent 的处理结果。
@@ -12475,7 +12384,7 @@ Worker worker_analysis_bayesian-rope_20260522T170114 已完成（status=done）�
 
 ### Tool call
 
-_source line 1747 · 2026-05-22T17:09:30.913732+00:00_
+_source line 1737 · 2026-05-22T17:09:30.913732+00:00_
 
 called Glob
 
@@ -12511,7 +12420,7 @@ called Glob
 
 ### Tool result
 
-_source line 1748 · 2026-05-22T17:09:31.666959+00:00_
+_source line 1738 · 2026-05-22T17:09:31.666959+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bayesian_rope_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report/bayesian_rope_report.md
@@ -12534,7 +12443,7 @@ _source line 1748 · 2026-05-22T17:09:31.666959+00:00_
 
 ### Tool call
 
-_source line 1749 · 2026-05-22T17:09:31.767644+00:00_
+_source line 1739 · 2026-05-22T17:09:31.767644+00:00_
 
 called Bash
 
@@ -12570,7 +12479,7 @@ called Bash
 
 ### Tool result
 
-_source line 1750 · 2026-05-22T17:09:31.918852+00:00_
+_source line 1740 · 2026-05-22T17:09:31.918852+00:00_
 
 total 4620
 -rw-r--r--  1 ubuntu ubuntu  91874 May 22 17:09 manifest.yaml
@@ -12596,7 +12505,7 @@ total 4620
 
 ### Tool call
 
-_source line 1751 · 2026-05-22T17:09:35.130881+00:00_
+_source line 1741 · 2026-05-22T17:09:35.130881+00:00_
 
 called Read
 
@@ -12630,7 +12539,7 @@ called Read
 
 ### Tool result
 
-_source line 1752 · 2026-05-22T17:09:35.181657+00:00_
+_source line 1742 · 2026-05-22T17:09:35.181657+00:00_
 
 1	# Bayesian ROPE Equivalence Analysis
 2	
@@ -12712,7 +12621,7 @@ _source line 1752 · 2026-05-22T17:09:35.181657+00:00_
 
 ### Tool call
 
-_source line 1753 · 2026-05-22T17:10:11.479949+00:00_
+_source line 1743 · 2026-05-22T17:10:11.479949+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12748,7 +12657,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1754 · 2026-05-22T17:10:12.888603+00:00_
+_source line 1744 · 2026-05-22T17:10:12.888603+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 6770 May 23 01:08 /home/sonny/exec-sim-repair-verifier/bayesian_rope.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
 
@@ -12770,7 +12679,7 @@ _source line 1754 · 2026-05-22T17:10:12.888603+00:00_
 
 ### Tool call
 
-_source line 1755 · 2026-05-22T17:10:16.452678+00:00_
+_source line 1745 · 2026-05-22T17:10:16.452678+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -12806,7 +12715,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1756 · 2026-05-22T17:10:16.904733+00:00_
+_source line 1746 · 2026-05-22T17:10:16.904733+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bayesian ROPE equivalence analysis for CLS vs CWM/TRAJ (Qwen3-4B, 5 seeds).\\n\\nComplements the existing TOST analysis (§5.2) with Bayesian inference.\\nMethod: Bayesian paired t-test with Jeffreys prior → posterior t-distribution.\\nReference: Kruschke (2013, 2018).\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport numpy as np\\nfrom scipy import stats\\n\\nROPE_LO, ROPE_HI = -2.0, 2.0  # ±2pp, matches TOST SESOI\\n\\n# Per-seed per-test accuracy (%, function-level, Qwen3-4B)\\n# Seeds 42/123: bfloat16; 456/789/0: seeds 789/0 use NF4\\nSEEDS = [42, 123, 456, 789, 0]\\nCLS_ACC  = [87.83, 89.52, 88.10, 87.78, 87.94]\\nCWM_ACC  = [87.51, 87.20, 87.41, 86.67, 87.14]\\nTRAJ_ACC = [85.66, 85.47, 87.25, 86.35, 86.77]\\n\\n# Variant-level CLS-TRAJ gaps (from tost_margin_sweep_cls_traj.json)\\nVARIANT_CLS_TRAJ_GAPS = {\\\"seed0\\\": -0.29, \\\"seed42\\\": -0.97, \\\"seed123\\\": 1.45,\\n                         \\\"seed456\\\": -1.84, \\\"seed789\\\": -0.78}\\n\\n\\ndef bayesian_rope(diffs, rope_lo=ROPE_LO, rope_hi=ROPE_HI, label=\\\"\\\"):\\n    \\\"\\\"\\\"Bayesian ROPE analysis on paired differences.\\n\\n    Prior: Jeffreys (p(mu, sigma^2) ∝ 1/sigma^2)\\n    Marginal posterior: mu | data ~ t(n-1, x_bar, s/sqrt(n))\\n    \\\"\\\"\\\"\\n    diffs = np.array(diffs, dtype=float)\\n    n = len(diffs)\\n    d_mean = float(np.mean(diffs))\\n    d_std = float(np.std(diffs, ddof=1))\\n    d_se = d_std / np.sqrt(n)\\n    df = n - 1\\n\\n    posterior = stats.t(df=df, loc=d_mean, scale=d_se)\\n\\n    p_rope = float(posterior.cdf(rope_hi) - posterior.cdf(rope_lo))\\n    p_below = float(posterior.cdf(rope_lo))\\n    p_above = float(1.0 - posterior.cdf(rope_hi))\\n\\n    hdi_lo = float(posterior.ppf(0.025))\\n    hdi_hi = float(posterior.ppf(0.975))\\n\\n    # Continuous decision (P(ROPE) thresholds)\\n    if p_rope > 0.9:\\n        p_decision = \\\"equivalence supported\\\"\\n    elif p_rop
 …[truncated 1327 chars]
@@ -12829,7 +12738,7 @@ _source line 1756 · 2026-05-22T17:10:16.904733+00:00_
 
 ### Tool call
 
-_source line 1757 · 2026-05-22T17:10:57.037180+00:00_
+_source line 1747 · 2026-05-22T17:10:57.037180+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12865,7 +12774,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1758 · 2026-05-22T17:11:00.775037+00:00_
+_source line 1748 · 2026-05-22T17:11:00.775037+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -12894,7 +12803,7 @@ _source line 1758 · 2026-05-22T17:11:00.775037+00:00_
 
 ### User
 
-_source line 1759 · 2026-05-22T17:13:55.098620+00:00_
+_source line 1749 · 2026-05-22T17:13:55.098620+00:00_
 
 [系统通知 — worker_done:worker_analysis_logistic-regression-marginal_20260522T170132]:
 Worker worker_analysis_logistic-regression-marginal_20260522T170132 已完成（status=done），请审查 Agent 的处理结果。
@@ -12916,7 +12825,7 @@ Worker worker_analysis_logistic-regression-marginal_20260522T170132 已完成（
 
 ### Tool call
 
-_source line 1760 · 2026-05-22T17:14:08.958637+00:00_
+_source line 1750 · 2026-05-22T17:14:08.958637+00:00_
 
 called Glob
 
@@ -12952,7 +12861,7 @@ called Glob
 
 ### Tool result
 
-_source line 1761 · 2026-05-22T17:14:09.009243+00:00_
+_source line 1751 · 2026-05-22T17:14:09.009243+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report/logistic_regression_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/logistic_regression_report.md
@@ -12975,7 +12884,7 @@ _source line 1761 · 2026-05-22T17:14:09.009243+00:00_
 
 ### Tool call
 
-_source line 1762 · 2026-05-22T17:14:12.672369+00:00_
+_source line 1752 · 2026-05-22T17:14:12.672369+00:00_
 
 called Read
 
@@ -13009,7 +12918,7 @@ called Read
 
 ### Tool result
 
-_source line 1763 · 2026-05-22T17:14:12.823621+00:00_
+_source line 1753 · 2026-05-22T17:14:12.823621+00:00_
 
 1	# Logistic Regression Marginal Effects: Supplement to Appendix M
 2	
@@ -13065,7 +12974,7 @@ _source line 1763 · 2026-05-22T17:14:12.823621+00:00_
 
 ### Tool call
 
-_source line 1764 · 2026-05-22T17:15:07.834336+00:00_
+_source line 1754 · 2026-05-22T17:15:07.834336+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13101,7 +13010,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1765 · 2026-05-22T17:15:11.751008+00:00_
+_source line 1755 · 2026-05-22T17:15:11.751008+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -13130,7 +13039,7 @@ _source line 1765 · 2026-05-22T17:15:11.751008+00:00_
 
 ### User
 
-_source line 1766 · 2026-05-22T17:50:36.357706+00:00_
+_source line 1756 · 2026-05-22T17:50:36.357706+00:00_
 
 [System 触发审查]:
 请审查以下 framing 判断是否经得起审稿人追问：
@@ -13163,7 +13072,7 @@ _source line 1766 · 2026-05-22T17:50:36.357706+00:00_
 
 ### Assistant
 
-_source line 1767 · 2026-05-22T17:51:32.148909+00:00_
+_source line 1757 · 2026-05-22T17:51:32.148909+00:00_
 
 逐条判断：
 
@@ -13225,7 +13134,7 @@ Appendix M 加入 GEE robustness 段落（worker 报告 L53-55 的文本），�
 
 ### User
 
-_source line 1768 · 2026-05-22T17:51:57.834006+00:00_
+_source line 1758 · 2026-05-22T17:51:57.834006+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：R10 修复全面完成，进入 14B 验证 + 提交冲刺阶段），请审查研究方向和计划的合理性。
@@ -13247,7 +13156,7 @@ _source line 1768 · 2026-05-22T17:51:57.834006+00:00_
 
 ### Tool call
 
-_source line 1769 · 2026-05-22T17:52:10.615947+00:00_
+_source line 1759 · 2026-05-22T17:52:10.615947+00:00_
 
 called ToolSearch
 
@@ -13283,7 +13192,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1770 · 2026-05-22T17:52:10.616284+00:00_
+_source line 1760 · 2026-05-22T17:52:10.616284+00:00_
 
 
 
@@ -13305,7 +13214,7 @@ _source line 1770 · 2026-05-22T17:52:10.616284+00:00_
 
 ### Tool call
 
-_source line 1771 · 2026-05-22T17:52:13.434943+00:00_
+_source line 1761 · 2026-05-22T17:52:13.434943+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -13339,7 +13248,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1772 · 2026-05-22T17:52:13.537228+00:00_
+_source line 1762 · 2026-05-22T17:52:13.537228+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-22 17:51 UTC | 更新原因: R10 修复全面完成，进入 14B 验证 + 提交冲刺阶段\\n\\n> 核心方向: Execution-free verification formulation comparison (CLS vs CWM vs TRAJ). 详见 paper_framing.md.\\n\\n## 当前进展\\n- **阶段**: Round 10 审稿修复完成 → 14B 验证实验 → Round 11 内审 → ARR 提交\\n- **Round 10 评分**: 3.0 (Findings), 目标 3.5 (Borderline Conference)\\n- **训练/eval**: ✅ 全部完成（CLS/CWM/TRAJ × Qwen/DeepSeek × 3 seeds）\\n- **论文打磨**: ✅ 10 轮内审迭代完成\\n- **R10 写作修复**: ✅ TOST power, TRAJ 措辞, ≤8B qualifier, checkpoint 证据, CodeRM+ORM/PRM, governed→moderated, ICL 扩展, Python-only, Appendix TOC\\n- **R10 实验/分析**: ✅ Routing heuristic (negative), ✅ Bayesian ROPE (CLS-CWM P(ROPE)=0.975), ✅ GEE logistic regression, ✅ Figure 2 y-axis\\n- **14B 验证**: ⏳ 模型下载中\\n\\n## 提分路径（R10 审稿 3→3.5 条件，满足 2/3 可上调）\\n- [x] (a) Routing/ensemble 实验 — negative result, 已写入论文\\n- [x] (b) Bayesian equivalence test — CLS-CWM P(ROPE)=0.975, 写入 Appendix J\\n- [ ] (c) ≥14B 模型单点验证 — Qwen3-14B CLS/CWM function-level 训练中\\n\\n## 近期任务\\n- [ ] 14B CLS function-level 训练 + eval（模型下载中）\\n- [ ] 14B CWM function-level 训练 + eval（如时间允许）\\n- [ ] 14B 0-shot/3-shot baseline eval（下载完成后立即跑）\\n- [ ] 14B 结果写入论文 §5.3 Scaling Behavior\\n- [ ] Round 11 内审提交\\n- [ ] 最终 PDF + ARR 提交\\n\\n## GPU 预算\\nSeetaCloud 4×RTX 5090，当前全部空闲（14B 下载为 CPU 任务）\\n\\n## ⚠️ 风险\\n- **14B 下载速度** — ~5-8 MB/s, ~1h ETA, 是当前瓶颈\\n- **14B QLoRA 内存** — 5090 32GB 应足够 14B NF4+LoRA, 需验证\\n- **DDL May 25** — 距离 3 天, 14B 必须今天完成训练+eval\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D163 | 2026-05-21 | Qwen CWM eval 采用 batch=4（2.7× 加速），前 200 样本监控精度漂移 | deepseek-cwm-repo-s456-e3-eval, qwen3-8b-cwm-repo-s123-train-v4, qwen3-8b-cwm-repo-s456-train-v3 |\\n| D162 | 2026-05-21 | Kill DS s456 epoch 2 eval (3.7% done) — 释放 GPU 1 做 | deepseek-cwm-repo-s456-e2-eval, dee
 …[truncated 1269 chars]
@@ -13362,7 +13271,7 @@ _source line 1772 · 2026-05-22T17:52:13.537228+00:00_
 
 ### Tool call
 
-_source line 1773 · 2026-05-22T17:52:45.493165+00:00_
+_source line 1763 · 2026-05-22T17:52:45.493165+00:00_
 
 called Read
 
@@ -13400,7 +13309,7 @@ called Read
 
 ### Tool result
 
-_source line 1774 · 2026-05-22T17:52:45.794944+00:00_
+_source line 1764 · 2026-05-22T17:52:45.794944+00:00_
 
 163	
 164	\paragraph{Default assignment artifact.} The apparent \cwm{} accuracy increase from 4B to 8B is an artifact of rising unparseable rate (53.7\%$\to$73.8\%), inflating accuracy via majority-class default while parseable-only accuracy decreases (42.88\%$\to$38.52\%); cross-seed evidence confirms the pattern (Appendix~\ref{app:parseable_bias}).
@@ -13429,7 +13338,7 @@ _source line 1774 · 2026-05-22T17:52:45.794944+00:00_
 
 ### Tool call
 
-_source line 1775 · 2026-05-22T17:52:45.997032+00:00_
+_source line 1765 · 2026-05-22T17:52:45.997032+00:00_
 
 called Read
 
@@ -13467,7 +13376,7 @@ called Read
 
 ### Tool result
 
-_source line 1776 · 2026-05-22T17:52:46.047703+00:00_
+_source line 1766 · 2026-05-22T17:52:46.047703+00:00_
 
 496	3 & Func: \cls{} vs \traj{} (TOST $\pm$2\pp{}) & 0.025 & $\times$3 & 0.075 & --- \\
 497	4 & Repo: \cwm{} vs \traj{} & 0.039 & $\times$2 & 0.078 & --- \\
@@ -13498,7 +13407,7 @@ _source line 1776 · 2026-05-22T17:52:46.047703+00:00_
 
 ### Tool call
 
-_source line 1777 · 2026-05-22T17:52:51.467973+00:00_
+_source line 1767 · 2026-05-22T17:52:51.467973+00:00_
 
 called Read
 
@@ -13536,7 +13445,7 @@ called Read
 
 ### Tool result
 
-_source line 1778 · 2026-05-22T17:52:51.519063+00:00_
+_source line 1768 · 2026-05-22T17:52:51.519063+00:00_
 
 505	\section{Mixed-Effects Regression}
 506	\label{app:interaction}
@@ -13566,7 +13475,7 @@ _source line 1778 · 2026-05-22T17:52:51.519063+00:00_
 
 ### Tool call
 
-_source line 1779 · 2026-05-22T17:53:45.998317+00:00_
+_source line 1769 · 2026-05-22T17:53:45.998317+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13602,7 +13511,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1780 · 2026-05-22T17:53:49.667807+00:00_
+_source line 1770 · 2026-05-22T17:53:49.667807+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -13624,7 +13533,7 @@ _source line 1780 · 2026-05-22T17:53:49.667807+00:00_
 
 ### Assistant
 
-_source line 1781 · 2026-05-22T17:53:51.961412+00:00_
+_source line 1771 · 2026-05-22T17:53:51.961412+00:00_
 
 Both the framing question and the ROADMAP are ready to review. The paper text has already been updated with GEE results — let me verify the defense is airtight.
 
@@ -13651,7 +13560,7 @@ Both the framing question and the ROADMAP are ready to review. The paper text ha
 
 ### User
 
-_source line 1782 · 2026-05-22T18:10:17.766091+00:00_
+_source line 1772 · 2026-05-22T18:10:17.766091+00:00_
 
 [系统通知 — worker_done:worker_eval_14b-zeroshot-fewshot-baseline_20260522T175229]:
 Worker worker_eval_14b-zeroshot-fewshot-baseline_20260522T175229 已完成（status=done），请审查 Agent 的处理结果。
@@ -13673,7 +13582,7 @@ Worker worker_eval_14b-zeroshot-fewshot-baseline_20260522T175229 已完成（sta
 
 ### Tool call
 
-_source line 1783 · 2026-05-22T18:10:27.291976+00:00_
+_source line 1773 · 2026-05-22T18:10:27.291976+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13711,7 +13620,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1784 · 2026-05-22T18:10:28.045092+00:00_
+_source line 1774 · 2026-05-22T18:10:28.045092+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"cls14b-func-s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:08:16.477Z\", \"updated_at\": \"2026-05-22T17:57:49.878Z\", \"hypothesis\": \"Qwen3-14B QLoRA CLS should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend from 4B→8B→14B on function-level pass/fail classification.\", \"spec\": {\"command\": \"bash -c \\\"bash /tmp/auto_train_14b.sh\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"200350\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls14b-func-s42.log\", \"submitted_at\": \"2026-05-22T17:57:49.273Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deepseek-cwm-repo-s123-eval-1epoch\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:16:05.664Z\", \"updated_at\": \"2026-05-22T14:51:28.766Z\", \"hypothesis\": \"Eval DeepSeek CWM repo-level s123 1-epoch checkpoint (checkpoint-4209)。验证 appendix cwm_convergence 中引用的 early-stopping 数据 (75.45% acc / 66.4% unparseable) 是否在干净 eval 下可复现。\", \"parent\": \"deepseek-cwm-repo-s123-train-v2\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 75.45, \"f1_macro\": 65.08, \"f1_fail\": 46.05, \"f1_pass\": 84.11, \"unparseable_rate\": 66.4, \"unparseable_count\": 6500, \"n_instances\": 9784, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 2.49, \"truncated\": 0}, \"spec\": {\"command\": \"bash eval_deepseek_cwm_s123_1epoch.sh (CVD=1, batch=4, checkpoint-4209)\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"deepseek-coder-6.7b-instruct\", \"seed\": 123, \"pid\": 111113, \"gpu\": \"GPU 1 (RTX 5090 32GB)\", \"checkpoint_source\": \"deepseek-cwm-repo-s123-train-v2 checkpoint-4209 (epoch 1)\", \"eval_data\": \"repo-level CWM test set (9784 per-test samples)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoi
 …[truncated 4813 chars]
@@ -13734,7 +13643,7 @@ _source line 1784 · 2026-05-22T18:10:28.045092+00:00_
 
 ### Tool call
 
-_source line 1785 · 2026-05-22T18:10:35.773787+00:00_
+_source line 1775 · 2026-05-22T18:10:35.773787+00:00_
 
 called Glob
 
@@ -13770,7 +13679,7 @@ called Glob
 
 ### Tool result
 
-_source line 1786 · 2026-05-22T18:10:36.376282+00:00_
+_source line 1776 · 2026-05-22T18:10:36.376282+00:00_
 
 No files found
 
@@ -13792,7 +13701,7 @@ No files found
 
 ### Tool call
 
-_source line 1787 · 2026-05-22T18:10:36.581959+00:00_
+_source line 1777 · 2026-05-22T18:10:36.581959+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13830,7 +13739,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1788 · 2026-05-22T18:10:37.284532+00:00_
+_source line 1778 · 2026-05-22T18:10:37.284532+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"cls14b-func-s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:08:16.477Z\", \"updated_at\": \"2026-05-22T17:57:49.878Z\", \"hypothesis\": \"Qwen3-14B QLoRA CLS should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend from 4B→8B→14B on function-level pass/fail classification.\", \"spec\": {\"command\": \"bash -c \\\"bash /tmp/auto_train_14b.sh\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"200350\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls14b-func-s42.log\", \"submitted_at\": \"2026-05-22T17:57:49.273Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7098}}"}
 
@@ -13852,7 +13761,7 @@ _source line 1788 · 2026-05-22T18:10:37.284532+00:00_
 
 ### Tool call
 
-_source line 1789 · 2026-05-22T18:10:42.955402+00:00_
+_source line 1779 · 2026-05-22T18:10:42.955402+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13888,7 +13797,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1790 · 2026-05-22T18:10:43.858811+00:00_
+_source line 1780 · 2026-05-22T18:10:43.858811+00:00_
 
 called Grep
 
@@ -13928,7 +13837,7 @@ called Grep
 
 ### Tool result
 
-_source line 1791 · 2026-05-22T18:10:44.360930+00:00_
+_source line 1781 · 2026-05-22T18:10:44.360930+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/__pycache__/eval_14b_baseline.cpython-312.pyc\\n/home/sonny/exec-sim-repair-verifier/artifacts/14b_pilot_feasibility.md\\n/home/sonny/exec-sim-repair-verifier/train_14b_cwm_pilot.sh\\n/home/sonny/exec-sim-repair-verifier/eval_14b_cwm_pilot.sh\\n/home/sonny/exec-sim-repair-verifier/eval_14b_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
 
@@ -13950,7 +13859,7 @@ _source line 1791 · 2026-05-22T18:10:44.360930+00:00_
 
 ### Tool result
 
-_source line 1792 · 2026-05-22T18:10:44.411708+00:00_
+_source line 1782 · 2026-05-22T18:10:44.411708+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md
@@ -13973,7 +13882,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 1793 · 2026-05-22T18:10:47.842040+00:00_
+_source line 1783 · 2026-05-22T18:10:47.842040+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14009,7 +13918,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1794 · 2026-05-22T18:10:48.293929+00:00_
+_source line 1784 · 2026-05-22T18:10:48.293929+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"# 14B CWM Pilot Feasibility Report\\n\\n## 推荐模型: Qwen3-14B\\n\\n- HuggingFace ID: `Qwen/Qwen3-14B`\\n- 参数量: 14.8B\\n- 发布: 2025-04-29\\n- 选择理由: 与现有 Qwen3-8B 实验保持模型系列一致性，支持 thinking/non-thinking 双模式，32K 原生上下文\\n\\n### 备选模型（不推荐）\\n\\n| 模型 | 参数量 | 不选理由 |\\n|------|--------|----------|\\n| Qwen2.5-14B-Instruct | 14.7B | 旧代，与现有 Qwen3-8B 不同系列 |\\n| Qwen2.5-Coder-14B-Instruct | 14.7B | 同上，且 Qwen3 coding 能力已超越 |\\n\\n## VRAM 估算\\n\\n### BF16 LoRA（当前代码路径）\\n\\n| 组件 | VRAM |\\n|------|------|\\n| 模型权重 (14.8B × 2B) | ~29.6 GB |\\n| LoRA 参数 (r=16) | ~50 MB |\\n| Optimizer states (LoRA only) | ~100 MB |\\n| Activations (grad ckpt, seq=2048, bs=1) | ~2-3 GB |\\n| **总计** | **~32-33 GB** |\\n\\n**结论: BF16 LoRA 在单卡 RTX 5090 (32GB) 上极其紧张，大概率 OOM。**\\n\\n### QLoRA 4-bit（推荐路径）\\n\\n| 组件 | VRAM |\\n|------|------|\\n| 模型权重 (14.8B �� 0.5B, NF4) | ~7.4 GB |\\n| LoRA 参数 (r=16, bf16) | ~50 MB |\\n| Optimizer states (LoRA only, fp32) | ~100 MB |\\n| Activations (grad ckpt, seq=2048, bs=1) | ~2-3 GB |\\n| BNB quantization overhead | ~1-2 GB |\\n| **总计** | **~12-14 GB** |\\n\\n**结论: QLoRA 4-bit 可以轻松放下，预留充足余量。**\\n\\n## 预估训练时间\\n\\n基准: Qwen3-8B on 5090 ≈ 12 s/step @ seq=2048, bs=1, grad_accum=32\\n\\n14B 外推:\\n- 参数量 1.85x → 计算量约 1.5-2x（QLoRA 只更新 LoRA 参数，但前向/反向仍过全模型）\\n- 预估: **18-24 s/step**\\n- 总步数: 70748 samples / 32 (effective bs) × 3 epochs ≈ **6633 steps**\\n- 总时间: 6633 × 21s ≈ **~39 hours** (范围 33-44 hours)\\n\\n## 代码修改需求\\n\\n### train_repo_cwm.py — 需要添加 QLoRA 支持\\n\\n当前 `AutoModelForCausalLM.from_pretrained()` 仅使用 `torch_dtype=torch.bfloat16`，无量化配置。\\n\\n需修改内容:\\n\\n1. **新增 import** (约第 8 行后):\\n```python\\nfrom transformers import BitsAndBytesConfig\\n```\\n\\n2. **���增 argparse 参数** (约第 192 行后):\\n```python\\np.add_argument(\\\"--load_in_4bit\\\", action=\\\"store_true\\\", help=\\\"Use QLoRA 4-bit quantization\\\")\\n```\\n\\n3. **修改模型加载逻辑** (约第 210 行, `from_pretrained` 调用处):\\n```python\\nquant_config = None\\nif args.load_in_4bi
 …[truncated 1419 chars]
@@ -14032,7 +13941,7 @@ _source line 1794 · 2026-05-22T18:10:48.293929+00:00_
 
 ### Tool call
 
-_source line 1795 · 2026-05-22T18:10:59.486574+00:00_
+_source line 1785 · 2026-05-22T18:10:59.486574+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14068,7 +13977,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1796 · 2026-05-22T18:10:59.938680+00:00_
+_source line 1786 · 2026-05-22T18:10:59.938680+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14090,7 +13999,7 @@ _source line 1796 · 2026-05-22T18:10:59.938680+00:00_
 
 ### Tool call
 
-_source line 1797 · 2026-05-22T18:11:00.643125+00:00_
+_source line 1787 · 2026-05-22T18:11:00.643125+00:00_
 
 called Grep
 
@@ -14132,7 +14041,7 @@ called Grep
 
 ### Tool result
 
-_source line 1798 · 2026-05-22T18:11:00.844256+00:00_
+_source line 1788 · 2026-05-22T18:11:00.844256+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md:8:| cls14b-func-s42 | Qwen3-14B QLoRA CLS should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend from 4B→8B→14B on function-level pass/fail classification. | — | — | — |
 
@@ -14154,7 +14063,7 @@ _source line 1798 · 2026-05-22T18:11:00.844256+00:00_
 
 ### Tool call
 
-_source line 1799 · 2026-05-22T18:11:04.061391+00:00_
+_source line 1789 · 2026-05-22T18:11:04.061391+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14190,7 +14099,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1800 · 2026-05-22T18:11:04.514288+00:00_
+_source line 1790 · 2026-05-22T18:11:04.514288+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"0-shot and 3-shot CLS baseline for Qwen3-14B on function-level test set.\\n\\nUsage:\\n  # 0-shot\\n  python eval_14b_baseline.py --model_path /dev/shm/Qwen3-14B --num_shots 0 --device cuda:0\\n\\n  # 3-shot\\n  python eval_14b_baseline.py --model_path /dev/shm/Qwen3-14B --num_shots 3 --device cuda:0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport time\\nfrom collections import Counter\\n\\nimport torch\\nfrom sklearn.metrics import accuracy_score, confusion_matrix, f1_score\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict whether the test will pass or fail when run against the patched code. \\\"\\n    \\\"Answer with exactly one word: PASS or FAIL.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\nLABEL_MAP = {1: \\\"PASS\\\", 0: \\\"FAIL\\\"}\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef select_demonstrations(train_data, num_shots, seed=42):\\n    rng = random.Random(seed)\\n    pass_ex = [ex for ex in train_data if ex[\\\"label\\\"] == 1]\\n    fail_ex = [ex for ex in train_data if ex[\\\"label\\\"] == 0]\\n    pass_ex.sort(key=lambda x: len(x[\\\"code\\\"]))\\n    fail_ex.sort(key=lambda x: len(x[\\\"code\\\"]))\\n    short_pass = pass_ex[:200]\\n    short_fail = fail_ex[:200]\\n    n_fail = num_shots // 2 + (num_shots % 2)\\n    n_pass = num_shots - n_fail\\n    demos = []\\n    demos.extend(rng.sample(short_fail, min(n_fail, len(short_fail))))\\n    demos.extend(rng.sample(short_pass, min(n_p
 …[truncated 7360 chars]
@@ -14213,7 +14122,7 @@ _source line 1800 · 2026-05-22T18:11:04.514288+00:00_
 
 ### Tool call
 
-_source line 1801 · 2026-05-22T18:11:07.977251+00:00_
+_source line 1791 · 2026-05-22T18:11:07.977251+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14249,7 +14158,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1802 · 2026-05-22T18:11:08.378753+00:00_
+_source line 1792 · 2026-05-22T18:11:08.378753+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14271,7 +14180,7 @@ _source line 1802 · 2026-05-22T18:11:08.378753+00:00_
 
 ### Tool call
 
-_source line 1803 · 2026-05-22T18:11:12.193477+00:00_
+_source line 1793 · 2026-05-22T18:11:12.193477+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14307,7 +14216,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1804 · 2026-05-22T18:11:12.645410+00:00_
+_source line 1794 · 2026-05-22T18:11:12.645410+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14329,7 +14238,7 @@ _source line 1804 · 2026-05-22T18:11:12.645410+00:00_
 
 ### Tool call
 
-_source line 1805 · 2026-05-22T18:11:15.706697+00:00_
+_source line 1795 · 2026-05-22T18:11:15.706697+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14365,7 +14274,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1806 · 2026-05-22T18:11:16.188138+00:00_
+_source line 1796 · 2026-05-22T18:11:16.188138+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14387,7 +14296,7 @@ _source line 1806 · 2026-05-22T18:11:16.188138+00:00_
 
 ### Tool call
 
-_source line 1807 · 2026-05-22T18:11:22.242716+00:00_
+_source line 1797 · 2026-05-22T18:11:22.242716+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14423,7 +14332,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1808 · 2026-05-22T18:11:22.694313+00:00_
+_source line 1798 · 2026-05-22T18:11:22.694313+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14445,7 +14354,7 @@ _source line 1808 · 2026-05-22T18:11:22.694313+00:00_
 
 ### Tool call
 
-_source line 1809 · 2026-05-22T18:11:25.805720+00:00_
+_source line 1799 · 2026-05-22T18:11:25.805720+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14481,7 +14390,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1810 · 2026-05-22T18:11:26.257899+00:00_
+_source line 1800 · 2026-05-22T18:11:26.257899+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/result*.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14503,7 +14412,7 @@ _source line 1810 · 2026-05-22T18:11:26.257899+00:00_
 
 ### Tool call
 
-_source line 1811 · 2026-05-22T18:11:29.622154+00:00_
+_source line 1801 · 2026-05-22T18:11:29.622154+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14539,7 +14448,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1812 · 2026-05-22T18:11:30.074545+00:00_
+_source line 1802 · 2026-05-22T18:11:30.074545+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14561,7 +14470,7 @@ _source line 1812 · 2026-05-22T18:11:30.074545+00:00_
 
 ### Tool call
 
-_source line 1813 · 2026-05-22T18:11:38.612584+00:00_
+_source line 1803 · 2026-05-22T18:11:38.612584+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14597,7 +14506,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1814 · 2026-05-22T18:11:39.114416+00:00_
+_source line 1804 · 2026-05-22T18:11:39.114416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15608\\ndrwxr-xr-x 3 root root      320 May 23 02:02 .\\ndrwxrwxrwt 4 root root       80 May 23 02:01 ..\\ndrwxr-xr-x 2 root root      200 May 23 02:02 ._____temp\\n-rw-r--r-- 1 root root     1570 May 23 01:10 .gitattributes\\n-rw------- 1 root root      368 May 23 02:02 .msc\\n-rw-r--r-- 1 root root    11343 May 23 02:01 LICENSE\\n-rw-r--r-- 1 root root    16670 May 23 01:11 README.md\\n-rw-r--r-- 1 root root      728 May 23 02:01 config.json\\n-rw-r--r-- 1 root root       73 May 23 02:01 configuration.json\\n-rw-r--r-- 1 root root      239 May 23 02:01 generation_config.json\\n-rw-r--r-- 1 root root  1671853 May 23 02:02 merges.txt\\n-rw-r--r-- 1 root root    36514 May 23 01:20 model.safetensors.index.json\\n-rw-r--r-- 1 root root       15 May 23 01:26 special_tokens_map.json\\n-rw-r--r-- 1 root root 11422654 May 23 01:26 tokenizer.json\\n-rw-r--r-- 1 root root     9732 May 23 01:22 tokenizer_config.json\\n-rw-r--r-- 1 root root  2776833 May 23 01:22 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14619,7 +14528,7 @@ _source line 1814 · 2026-05-22T18:11:39.114416+00:00_
 
 ### Tool call
 
-_source line 1815 · 2026-05-22T18:11:39.516032+00:00_
+_source line 1805 · 2026-05-22T18:11:39.516032+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14655,7 +14564,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1816 · 2026-05-22T18:11:39.967551+00:00_
+_source line 1806 · 2026-05-22T18:11:39.967551+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14677,7 +14586,7 @@ _source line 1816 · 2026-05-22T18:11:39.967551+00:00_
 
 ### Tool call
 
-_source line 1817 · 2026-05-22T18:11:52.541397+00:00_
+_source line 1807 · 2026-05-22T18:11:52.541397+00:00_
 
 called Read
 
@@ -14715,7 +14624,7 @@ called Read
 
 ### Tool result
 
-_source line 1818 · 2026-05-22T18:11:52.943599+00:00_
+_source line 1808 · 2026-05-22T18:11:52.943599+00:00_
 
 0	# Handover — 2026-05-22
 1	
@@ -14763,7 +14672,7 @@ _source line 1818 · 2026-05-22T18:11:52.943599+00:00_
 
 ### Tool call
 
-_source line 1819 · 2026-05-22T18:11:52.944105+00:00_
+_source line 1809 · 2026-05-22T18:11:52.944105+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14799,7 +14708,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1820 · 2026-05-22T18:11:53.396631+00:00_
+_source line 1810 · 2026-05-22T18:11:53.396631+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"model-00001-of-00008.safetensors\\nmodel-00002-of-00008.safetensors\\nmodel-00003-of-00008.safetensors\\nmodel-00004-of-00008.safetensors\\nmodel-00005-of-00008.safetensors\\nmodel-00006-of-00008.safetensors\\nmodel-00007-of-00008.safetensors\\nmodel-00008-of-00008.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14821,7 +14730,7 @@ _source line 1820 · 2026-05-22T18:11:53.396631+00:00_
 
 ### Tool call
 
-_source line 1821 · 2026-05-22T18:12:06.141480+00:00_
+_source line 1811 · 2026-05-22T18:12:06.141480+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14857,7 +14766,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1822 · 2026-05-22T18:12:06.845719+00:00_
+_source line 1812 · 2026-05-22T18:12:06.845719+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -14879,7 +14788,7 @@ _source line 1822 · 2026-05-22T18:12:06.845719+00:00_
 
 ### Tool call
 
-_source line 1823 · 2026-05-22T18:12:06.846111+00:00_
+_source line 1813 · 2026-05-22T18:12:06.846111+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14915,7 +14824,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1824 · 2026-05-22T18:12:07.297489+00:00_
+_source line 1814 · 2026-05-22T18:12:07.297489+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-14B/snapshots': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14937,7 +14846,7 @@ _source line 1824 · 2026-05-22T18:12:07.297489+00:00_
 
 ### Tool call
 
-_source line 1825 · 2026-05-22T18:12:11.062472+00:00_
+_source line 1815 · 2026-05-22T18:12:11.062472+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14973,7 +14882,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1826 · 2026-05-22T18:12:11.514338+00:00_
+_source line 1816 · 2026-05-22T18:12:11.514338+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -14995,7 +14904,7 @@ _source line 1826 · 2026-05-22T18:12:11.514338+00:00_
 
 ### Tool call
 
-_source line 1827 · 2026-05-22T18:12:11.815628+00:00_
+_source line 1817 · 2026-05-22T18:12:11.815628+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -15031,7 +14940,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1828 · 2026-05-22T18:12:12.217010+00:00_
+_source line 1818 · 2026-05-22T18:12:12.217010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Waiting for model download to complete...\\n01:57:49 Downloaded: 6.0G\\n01:59:49 Downloaded: 6.1G\\n02:01:49 Downloaded: 16M\\n02:03:49 Downloaded: 499M\\n02:05:49 Downloaded: 1.1G\\n02:07:49 Downloaded: 1.8G\\n02:09:49 Downloaded: 2.4G\\n02:11:49 Downloaded: 3.1G\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -15053,7 +14962,7 @@ _source line 1828 · 2026-05-22T18:12:12.217010+00:00_
 
 ### Tool call
 
-_source line 1829 · 2026-05-22T18:12:46.455670+00:00_
+_source line 1819 · 2026-05-22T18:12:46.455670+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15089,7 +14998,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1830 · 2026-05-22T18:12:51.317191+00:00_
+_source line 1820 · 2026-05-22T18:12:51.317191+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
 
@@ -15118,7 +15027,7 @@ _source line 1830 · 2026-05-22T18:12:51.317191+00:00_
 
 ### User
 
-_source line 1831 · 2026-05-22T18:14:12.412976+00:00_
+_source line 1821 · 2026-05-22T18:14:12.412976+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -15200,7 +15109,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1832 · 2026-05-22T18:15:08.464473+00:00_
+_source line 1822 · 2026-05-22T18:15:08.464473+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

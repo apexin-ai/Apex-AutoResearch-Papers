@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 2,104
+- **Events:** 2,098
 - **Recorded user turns:** 158
-- **Tool calls:** 894
+- **Tool calls:** 891
 - **Original source:** `logs/chats/feishu_group_oc_b542b52ff24f138c42225a1d4b456e7e_director.jsonl`
 - **Structured JSON:** [`bb384fed2f084cd5d585.json`](../../sessions/bb/bb384fed2f084cd5d585.json)
 

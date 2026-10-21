@@ -10,7 +10,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | data exp 018 integration | 118 | 0 | [Read transcript](data-exp-018-integration.md) | [JSON](../../sessions/1a/1a6eada697ff35f31429.json) |
 | paper p3 cross arch prep | 19 | 0 | [Read transcript](paper-p3-cross-arch-prep.md) | [JSON](../../sessions/dd/dd0efe14390c2623d7fd.json) |
 | audit data integrity full | 134 | 0 | [Read transcript](audit-data-integrity-full.md) | [JSON](../../sessions/d2/d2457bb3d6d9bdbd1879.json) |
-| paper response letter r2 | 29 | 0 | [Read transcript](paper-response-letter-r2.md) | [JSON](../../sessions/99/9976cd3b3ed8a2e3b821.json) |
 | figure fig3 slv ppl decoupling | 32 | 0 | [Read transcript](figure-fig3-slv-ppl-decoupling.md) | [JSON](../../sessions/b8/b8e4c161c4a64d6c7403.json) |
 | figure fig4 ews heatmap | 25 | 0 | [Read transcript](figure-fig4-ews-heatmap.md) | [JSON](../../sessions/ef/efce9958d0fd5d6ee597.json) |
 | ops anon repo push | 97 | 0 | [Read transcript](ops-anon-repo-push.md) | [JSON](../../sessions/d5/d515eb8e200d4bc6ad2d.json) |

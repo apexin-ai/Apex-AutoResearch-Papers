@@ -6,7 +6,7 @@
       "number": 0,
       "messages": [
         {
-          "source_line": 86,
+          "source_line": 82,
           "timestamp": "2026-05-22T08:50:04.212Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -49,10 +49,10 @@
               "replaceAll": false
             }
           },
-          "id": "event-000086"
+          "id": "event-000082"
         },
         {
-          "source_line": 87,
+          "source_line": 83,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -100,10 +100,10 @@
               "context_management": null
             }
           },
-          "id": "event-000087"
+          "id": "event-000083"
         },
         {
-          "source_line": 88,
+          "source_line": 84,
           "timestamp": "2026-05-22T08:50:07.882Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -146,10 +146,10 @@
               "replaceAll": false
             }
           },
-          "id": "event-000088"
+          "id": "event-000084"
         },
         {
-          "source_line": 89,
+          "source_line": 85,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -197,10 +197,10 @@
               "context_management": null
             }
           },
-          "id": "event-000089"
+          "id": "event-000085"
         },
         {
-          "source_line": 90,
+          "source_line": 86,
           "timestamp": "2026-05-22T08:50:13.083Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -243,10 +243,10 @@
               "replaceAll": false
             }
           },
-          "id": "event-000090"
+          "id": "event-000086"
         },
         {
-          "source_line": 91,
+          "source_line": 87,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -284,10 +284,10 @@
               "context_management": null
             }
           },
-          "id": "event-000091"
+          "id": "event-000087"
         },
         {
-          "source_line": 92,
+          "source_line": 88,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -336,10 +336,10 @@
               "context_management": null
             }
           },
-          "id": "event-000092"
+          "id": "event-000088"
         },
         {
-          "source_line": 93,
+          "source_line": 89,
           "timestamp": "2026-05-22T08:50:17.300Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -363,10 +363,10 @@
               "numLines": 2
             }
           },
-          "id": "event-000093"
+          "id": "event-000089"
         },
         {
-          "source_line": 94,
+          "source_line": 90,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -415,10 +415,10 @@
               "context_management": null
             }
           },
-          "id": "event-000094"
+          "id": "event-000090"
         },
         {
-          "source_line": 95,
+          "source_line": 91,
           "timestamp": "2026-05-22T08:50:18.271Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -442,10 +442,10 @@
               "numLines": 0
             }
           },
-          "id": "event-000095"
+          "id": "event-000091"
         },
         {
-          "source_line": 96,
+          "source_line": 92,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -483,10 +483,10 @@
               "context_management": null
             }
           },
-          "id": "event-000096"
+          "id": "event-000092"
         },
         {
-          "source_line": 97,
+          "source_line": 93,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -533,10 +533,10 @@
               "context_management": null
             }
           },
-          "id": "event-000097"
+          "id": "event-000093"
         },
         {
-          "source_line": 98,
+          "source_line": 94,
           "timestamp": "2026-05-22T08:50:23.755Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -560,10 +560,10 @@
               "numLines": 0
             }
           },
-          "id": "event-000098"
+          "id": "event-000094"
         },
         {
-          "source_line": 99,
+          "source_line": 95,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -610,10 +610,10 @@
               "context_management": null
             }
           },
-          "id": "event-000099"
+          "id": "event-000095"
         },
         {
-          "source_line": 100,
+          "source_line": 96,
           "timestamp": "2026-05-22T08:50:26.265Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -638,10 +638,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000100"
+          "id": "event-000096"
         },
         {
-          "source_line": 101,
+          "source_line": 97,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -688,10 +688,10 @@
               "context_management": null
             }
           },
-          "id": "event-000101"
+          "id": "event-000097"
         },
         {
-          "source_line": 102,
+          "source_line": 98,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -709,10 +709,10 @@
               }
             }
           ],
-          "id": "event-000102"
+          "id": "event-000098"
         },
         {
-          "source_line": 103,
+          "source_line": 99,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -731,10 +731,10 @@
               }
             }
           ],
-          "id": "event-000103"
+          "id": "event-000099"
         },
         {
-          "source_line": 104,
+          "source_line": 100,
           "timestamp": "2026-05-22T08:50:33.317Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -759,10 +759,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000104"
+          "id": "event-000100"
         },
         {
-          "source_line": 105,
+          "source_line": 101,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -808,10 +808,10 @@
               "context_management": null
             }
           },
-          "id": "event-000105"
+          "id": "event-000101"
         },
         {
-          "source_line": 106,
+          "source_line": 102,
           "timestamp": "2026-05-22T08:50:37.360Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -836,10 +836,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000106"
+          "id": "event-000102"
         },
         {
-          "source_line": 107,
+          "source_line": 103,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -878,10 +878,10 @@
               "context_management": null
             }
           },
-          "id": "event-000107"
+          "id": "event-000103"
         },
         {
-          "source_line": 108,
+          "source_line": 104,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -927,10 +927,10 @@
               "context_management": null
             }
           },
-          "id": "event-000108"
+          "id": "event-000104"
         },
         {
-          "source_line": 109,
+          "source_line": 105,
           "timestamp": "2026-05-22T08:50:43.104Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -955,10 +955,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000109"
+          "id": "event-000105"
         },
         {
-          "source_line": 110,
+          "source_line": 106,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -996,10 +996,10 @@
               "context_management": null
             }
           },
-          "id": "event-000110"
+          "id": "event-000106"
         },
         {
-          "source_line": 111,
+          "source_line": 107,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1045,10 +1045,10 @@
               "context_management": null
             }
           },
-          "id": "event-000111"
+          "id": "event-000107"
         },
         {
-          "source_line": 112,
+          "source_line": 108,
           "timestamp": "2026-05-22T08:50:46.720Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1073,10 +1073,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000112"
+          "id": "event-000108"
         },
         {
-          "source_line": 113,
+          "source_line": 109,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1122,10 +1122,10 @@
               "context_management": null
             }
           },
-          "id": "event-000113"
+          "id": "event-000109"
         },
         {
-          "source_line": 114,
+          "source_line": 110,
           "timestamp": "2026-05-22T08:50:50.331Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1150,10 +1150,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000114"
+          "id": "event-000110"
         },
         {
-          "source_line": 115,
+          "source_line": 111,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -1191,10 +1191,10 @@
               "context_management": null
             }
           },
-          "id": "event-000115"
+          "id": "event-000111"
         },
         {
-          "source_line": 116,
+          "source_line": 112,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -1271,7 +1271,7 @@
             "fast_mode_state": "off",
             "uuid": "c378667c-dc73-46c5-85bc-342f62d720e0"
           },
-          "id": "event-000116"
+          "id": "event-000112"
         }
       ]
     }

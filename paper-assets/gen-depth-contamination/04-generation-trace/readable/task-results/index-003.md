@@ -31,7 +31,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | compute lofo importance | 1 | 0 | [Read transcript](compute-lofo-importance.md) | [JSON](../../sessions/9f/9f9342118f200898d6cb.json) |
 | data exp 023 wiki prep | 1 | 0 | [Read transcript](data-exp-023-wiki-prep.md) | [JSON](../../sessions/07/07a3b873a06e19e588c2.json) |
 | data exp 024 arxiv prep | 1 | 0 | [Read transcript](data-exp-024-arxiv-prep.md) | [JSON](../../sessions/88/88e9a4a3d17b08db9858.json) |
-| data pull rebuttal artifacts | 1 | 0 | [Read transcript](data-pull-rebuttal-artifacts.md) | [JSON](../../sessions/94/94fb26bf90276cb18c9c.json) |
 | debug exp006 lmeval config | 1 | 0 | [Read transcript](debug-exp006-lmeval-config.md) | [JSON](../../sessions/eb/ebc1cf443623cdeed5e0.json) |
 | diag exp code llama8b | 1 | 0 | [Read transcript](diag-exp-code-llama8b.md) | [JSON](../../sessions/7f/7fc1fab5c643307adbfc.json) |
 | diagnose arXiv crossscorer fix | 1 | 0 | [Read transcript](diagnose-arxiv-crossscorer-fix.md) | [JSON](../../sessions/22/22b8f5970de137b1fe53.json) |

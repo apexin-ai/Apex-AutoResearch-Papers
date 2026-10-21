@@ -88,7 +88,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | eval llama 5pct correct baseline | 49 | 0 | [Read transcript](eval-llama-5pct-correct-baseline.md) | [JSON](../../sessions/76/76f4d4cc08acce20c890.json) |
 | code fix llama eval verified | 35 | 0 | [Read transcript](code-fix-llama-eval-verified.md) | [JSON](../../sessions/35/3596b444cec2068dfc6b.json) |
 | code fix bca bootstrap llama baseline | 17 | 0 | [Read transcript](code-fix-bca-bootstrap-llama-baseline.md) | [JSON](../../sessions/b6/b6e48d1068e28e8e111f.json) |
-| analysis false positive rate | 37 | 0 | [Read transcript](analysis-false-positive-rate.md) | [JSON](../../sessions/0c/0c45ee107bc4e1e1ef3e.json) |
+| analysis false positive rate | 35 | 0 | [Read transcript](analysis-false-positive-rate.md) | [JSON](../../sessions/0c/0c45ee107bc4e1e1ef3e.json) |
 | analysis multiseed 15pct stats | 97 | 0 | [Read transcript](analysis-multiseed-15pct-stats.md) | [JSON](../../sessions/96/96050592dce5e3977cce.json) |
 | analysis fpr calibration v2 | 85 | 0 | [Read transcript](analysis-fpr-calibration-v2.md) | [JSON](../../sessions/65/6572ff31843d2d6b3694.json) |
 | Director coordination — [HANDOFF] 你是 Director，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 论文有两套 sections 目录必须保持同 | 2,482 | 115 | [Read transcript](director-coordination.md) | [JSON](../../sessions/75/75ae73db35f3da03cdcc.json) |
@@ -112,7 +112,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops audit paper numbers | 1 | 0 | [Read transcript](ops-audit-paper-numbers.md) | [JSON](../../sessions/ed/edb446d3f2e011abe2fb.json) |
 | ops batch1 eval results | 1 | 0 | [Read transcript](ops-batch1-eval-results.md) | [JSON](../../sessions/63/63f34619bcf9a2001f3d.json) |
 | ops multiseed ht acc zscore | 1 | 0 | [Read transcript](ops-multiseed-ht-acc-zscore.md) | [JSON](../../sessions/12/1257b7fb1e4ced8ebd90.json) |
-| ops rebuttal mistral execute | 1 | 0 | [Read transcript](ops-rebuttal-mistral-execute.md) | [JSON](../../sessions/c1/c1a47576b2d0ef9cef5f.json) |
 | ops reference audit | 1 | 0 | [Read transcript](ops-reference-audit.md) | [JSON](../../sessions/c6/c64991d16a8d2a2f6066.json) |
 | paper final ddl fixes | 1 | 0 | [Read transcript](paper-final-ddl-fixes.md) | [JSON](../../sessions/02/02d0356efc619ded74d1.json) |
 | paper investigate mistral d15 and fix | 1 | 0 | [Read transcript](paper-investigate-mistral-d15-and-fix.md) | [JSON](../../sessions/13/130df8c3da0b375e16ac.json) |

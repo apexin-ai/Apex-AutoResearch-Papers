@@ -36,7 +36,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research persuasion taxonomy | 1 | 0 | [Read transcript](research-persuasion-taxonomy.md) | [JSON](../../sessions/d6/d609badcdcf0d24ed68d.json) |
 | research precheck exp16 17 | 1 | 0 | [Read transcript](research-precheck-exp16-17.md) | [JSON](../../sessions/92/921487615f468cfd1ce6.json) |
 | research r5 citation verification | 1 | 0 | [Read transcript](research-r5-citation-verification.md) | [JSON](../../sessions/27/27e65ca1b1d8ce5fae67.json) |
-| research rebuttal data summary | 1 | 0 | [Read transcript](research-rebuttal-data-summary.md) | [JSON](../../sessions/47/475bc14baf432ae8e8af.json) |
 | research scrambled data investigation | 1 | 0 | [Read transcript](research-scrambled-data-investigation.md) | [JSON](../../sessions/0f/0ff235ff80b874b113d7.json) |
 | research toxicchat error analysis | 1 | 0 | [Read transcript](research-toxicchat-error-analysis.md) | [JSON](../../sessions/48/487448a16f33d1201eca.json) |
 | research w11 reference verify | 1 | 0 | [Read transcript](research-w11-reference-verify.md) | [JSON](../../sessions/cf/cf6607d45a9c662337b8.json) |

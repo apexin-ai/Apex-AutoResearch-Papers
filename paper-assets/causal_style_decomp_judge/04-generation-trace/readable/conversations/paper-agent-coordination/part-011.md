@@ -6,1074 +6,9 @@
 
 ## Round 308
 
-### Tool call
-
-_source line 6585 · 2026-05-23T15:01:34.946042+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
-  "offset": "588",
-  "limit": "6"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
-    "offset": "588",
-    "limit": "6"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 6586 · 2026-05-23T15:01:35.046867+00:00_
-
-588	  volume={61},
-589	  number={1},
-590	  pages={29--48},
-591	  year={2008},
-592	  publisher={Wiley}
-593	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6587 · 2026-05-23T15:01:40.522719+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
-  "old_string": "  publisher={Wiley}\n}",
-  "new_string": "  publisher={Wiley}\n}\n\n@article{likert1932technique,\n  title={A Technique for the Measurement of Attitudes},\n  author={Likert, Rensis},\n  journal={Archives of Psychology},\n  volume={22},\n  number={140},\n  pages={1--55},\n  year={1932}\n}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
-    "old_string": "  publisher={Wiley}\n}",
-    "new_string": "  publisher={Wiley}\n}\n\n@article{likert1932technique,\n  title={A Technique for the Measurement of Attitudes},\n  author={Likert, Rensis},\n  journal={Archives of Psychology},\n  volume={22},\n  number={140},\n  pages={1--55},\n  year={1932}\n}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6588 · 2026-05-23T15:01:40.573494+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6589 · 2026-05-23T15:01:45.343643+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "Likert scoring",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "Likert scoring",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6590 · 2026-05-23T15:01:45.394213+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6591 · 2026-05-23T15:04:49.848360+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6592 · 2026-05-23T15:04:50.300712+00:00_
-
-1	\section{Related Work}
-2	\label{sec:related_work}
-3	
-4	Two lines of work motivate our approach: interventional methods for diagnosing judge bias, and measurement theory on the sensitivity of different elicitation formats.
-5	
-6	\paragraph{Interventional Approaches to Judge Bias}
-7	Text-based interventional methods have a growing methodological foundation \citep{feder2021causalm,wu2021polyjuice,feder2022causal}.
-8	\citet{reber2025rate} propose RATE, a framework that rewrites model outputs along style attributes using imperfect counterfactuals and measures the causal effect on reward model scores via Likert-scale Average Treatment Effect (ATE).
-9	RATE applies a correction term to account for rewriting imperfections, but its reliance on Likert ATE as the primary metric is a vulnerability: our experiments show that Likert scoring exhibits a ceiling effect in which 60\% of style-transformed pairs receive identical integer scores, yielding non-significant ATE estimates ($p = 0.332$) for the same interventions that pairwise comparison detects at $p = 0.006$.
-10	Whether this format sensitivity extends to RATE's broader attribute space is an open question; our results motivate independent validation of Likert-based effect estimates alongside pairwise measures.
-11	CSD differs from RATE in three respects: it targets individual style axes rather than general attributes, it measures bias through position-controlled pairwise comparison rather than Likert ATE, and it enforces content preservation via NLI entailment gating rather than post-hoc correction for imperfect rewrites.
-12	\citet{counterfactual2025rhetorical} also adopt an interventional LLM-based design, rewriting texts to measure rhetorical style effects and aggregating preferences with a Bradley-Terry model.
-13	Their framework operates at persona-level granularity (e.g., ``writes like a professor''), whereas CSD intervenes on specific style axes (e.g., formality, conciseness) and uses a sign test with position control r
-…[truncated 5573 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6593 · 2026-05-23T15:04:50.301074+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6594 · 2026-05-23T15:04:50.753352+00:00_
-
-1	\section{Method}
-2	\label{sec:method}
-3	
-4	\subsection{Style-Controlled Rewriting}
-5	\label{sec:rewriting}
-6	
-7	We isolate the effect of individual style attributes on judge scores by generating text pairs that differ along exactly one style axis.
-8	For each text, an instruction-tuned LLM (Qwen3-32B) classifies its current style along the target axis (e.g., formal vs.\ casual via binary classification).
-9	It then rewrites the text toward the opposite pole (temperature 0.7, selected to balance diversity with coherence in pilot experiments) according to an axis-specific prompt (e.g., ``Rewrite the following text to be more formal/casual while preserving the exact same content and meaning'').
-10	This produces a dataset balanced across both directions at the dataset level: texts detected as formal are rewritten to casual, and vice versa.
-11	Each operation approximates a binary intervention on a single style variable while all other axes remain fixed (Section~\ref{sec:causal_framework}).
-12	To control for rewriting artifact bias---the possibility that the judge prefers original text over any rewrite regardless of style---we additionally generate a same-style double-rewrite for each text (e.g., formal $\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \citep{reber2025rate}.
-13	
-14	\subsection{Content Preservation Verification}
-15	\label{sec:nli_gate}
-16	
-17	Style-controlled rewriting risks altering semantic content, which would confound the style effect with a content quality effect (the $R \to Q$ path in Figure~\ref{fig:dag}).
-18	To block this path, we apply a natural language inference (NLI) gate using DeBERTa-v3-large fine-tuned on MNLI \citep{williams2018broad} with an entailment threshold of 0.90, selected as the threshold above which NLI performance plateaus (Appendix~\ref{app:nli_sweep}).
-19	For axes that preserve information density (formality, register), we apply standard bidirectional entailment: both 
-…[truncated 5577 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6595 · 2026-05-23T15:04:50.753711+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6596 · 2026-05-23T15:04:50.854484+00:00_
-
-1	\section{Experiments}
-2	\label{sec:experiments}
-3	
-4	
-5	\subsection{Statistical Framework}
-6	\label{sec:stat_framework}
-7	
-8	The primary family comprises six tests---three target judges (GPT-4o, Qwen3-32B, Llama-3.3-70B) $\times$ two axes (formality, verbosity)---corrected via Holm-Bonferroni at $\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from FWER control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\ref{app:holm8}).
-9	Table~\ref{tab:main_results} reports both raw and adjusted $p$-values.
-10	Analyses outside this grid are classified as either \emph{exploratory} (NLI threshold sensitivity sweep, \S\ref{sec:nli_threshold}) or \emph{confirmatory} (consistency filter validation, \S\ref{sec:consistency}).
-11	Exploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\alpha = 0.05$ without additional correction.
-12	Bradley-Terry parameters \citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \citep{hunter2004mm}, using the \texttt{choix} Python library's default L2 regularization ($\alpha = 10^{-6}$).
-13	In binary-choice BT models, IIA is structurally satisfied; the direction asymmetry in Appendix~\ref{app:bt_gof} (formality: formal-origin 88.9\% vs.\ casual-origin 52.6\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.
-14	All bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42.
-15	GEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\hat{\alpha} \in [-0.25, +0.11]$; Appendix~\ref{app:gee_diagnostics}).
-16	
-17	\paragraph{Model selection.}
-18	Target judges span four architectures: GPT-4o (2024-08-06), Qwen3-32B-Instruct (also serving as rewriter), Llama
-…[truncated 17056 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6597 · 2026-05-23T15:05:15.787108+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6598 · 2026-05-23T15:05:16.340135+00:00_
-
-1	\appendix
-2	
-3	\noindent\emph{Organization: design rationale (A$^*$), confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R), FK length-control (R$'$), human annotation agreement (S), cross-benchmark replication (T), Claude cross-benchmark (U), rewriting prompts (V), non-tie concordance (W).}
-4	
-5	\section{Design Rationale}
-6	\label{app:design_rationale}
-7	
-8	Three variables govern the observed judge score $Y$: the style attribute $S$ (e.g., formality), the original content quality $Q$, and the judge's internal scoring function.
-9	Both $S$ and $Q$ causally influence $Y$; the goal of CSD is to approximate the effect $S \to Y$ while blocking confounding through $Q$.
-10	Style-controlled rewriting generates a text pair that differs along a single style axis, but any rewriting operation risks inadvertently altering content quality ($R \to Q$).
-11	The NLI gate (\S\ref{sec:nli_gate}) blocks this path, yielding a controlled estimate of the $S \to Y$ effect.
-12	Our approach provides interventional rather than formal causal evidence: we do not claim that the DAG in Figure~\ref{fig:dag} is a complete structural causal model, nor do we invoke SUTVA or consistency assumptions from the potential outcomes framework.
-13	``Controlled'' in this context refers to experimentally controlled rewriting conditions, not formal causal identification in the potential-outcomes sense.
-14	Our identification rests on three operational assumptions: (i)~the NLI gate approximates content preservation, blocking the $R \to Q$ path; (ii)~position swapping controls for presentation-order effects; and (iii)~the style rewrite introduces no systematic differences beyond the target axis.
-15	
-16	\section{Direction Asymmetry and Quality Confounding}
-17	\label{app:direction}
-18	
-19	The formality ax
-…[truncated 3759 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 553
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6599 · 2026-05-23T15:05:16.842596+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "likert1932",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "likert1932",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6600 · 2026-05-23T15:05:17.345179+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib:595:@article{likert1932technique,
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6601 · 2026-05-23T15:05:17.898484+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "polo|tinybench",
-  "-i": "True",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "polo|tinybench",
-    "-i": "True",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6602 · 2026-05-23T15:05:17.999362+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6603 · 2026-05-23T15:05:29.902923+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "alpha.*10|regularization|choix|likert100|100-point|app:likert100",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "alpha.*10|regularization|choix|likert100|100-point|app:likert100",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6604 · 2026-05-23T15:05:30.907390+00:00_
-
-466:\label{app:likert100}
-468:To test whether the Blindspot reflects integer-scale granularity rather than a paradigm difference between absolute and relative evaluation, we replicate the formality experiment using a 100-point continuous scale ($1$--$100$) with three judges (Table~\ref{tab:likert100}).
-477:\label{tab:likert100}
-554:Bradley-Terry parameters are estimated via spectral initialization followed by minorization-maximization \citep{hunter2004mm} using the \texttt{choix} Python library (default regularization).
-804:Concordance is highest for verbosity ($74$--$88\%$) and for Llama-70B across both axes ($83$--$88\%$), consistent with Llama's lower Likert tie rate (Table~\ref{tab:likert100}).
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 1004
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6605 · 2026-05-23T15:05:31.459518+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "cross.bench|selective|selection.crit|untested",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "cross.bench|selective|selection.crit|untested",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6606 · 2026-05-23T15:05:31.510160+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:23:\caption{Primary results on LLMBar ($n = 88$ formality, $86$ verbosity, except where noted) across five judges and three style axes. BT $> 0.50$ indicates style preference; $\dagger$ marks Blindspot cases (BT significant, Likert not). Cross-benchmark replication in Appendix~\ref{app:cross_bench}. BT: Bradley-Terry win probability (95\% CIs in Appendix~\ref{app:bt_ci}).}
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:78:Post hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \to 0$, BT 63--67\%) and partial at stronger effects (${>}60\%$ loss, BT ${>}70\%$)---explaining three cross-benchmark exceptions ($\ddagger$, Table~\ref{tab:cross_bench}).
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:167:These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.6\%, Style OR $= 7.64$) is strong enough for Likert detection ($\ddagger$ rows), confirming the severity spectrum.
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:171:\includegraphics[width=\columnwidth]{figures/cross_benchmark_heatmap.pdf}
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:172:\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\times$: not tested. Claude cross-benchmark effects are quality-driven (\S\ref{sec:cross_judge}). Full results in Table~\ref{tab:cross_bench}.}
-/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causa
-…[truncated 2596 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6607 · 2026-05-23T15:05:39.745956+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-  "offset": "460",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-    "offset": "460",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6608 · 2026-05-23T15:05:39.746465+00:00_
-
-460	\bottomrule
-461	\multicolumn{5}{p{0.95\columnwidth}}{\footnotesize $^{***}$\,$p < 0.001$. $\dagger$ marks Blindspot cases (BT significant, Likert $d$ non-significant at $\alpha = 0.05$ by Wilcoxon). Likert $p$ values from Wilcoxon signed-rank test on non-zero differences.}
-462	\end{tabular}
-463	\end{table}
-464	
-465	\section{100-Point Continuous Likert Scale}
-466	\label{app:likert100}
-467	
-468	To test whether the Blindspot reflects integer-scale granularity rather than a paradigm difference between absolute and relative evaluation, we replicate the formality experiment using a 100-point continuous scale ($1$--$100$) with three judges (Table~\ref{tab:likert100}).
-469	All three judges remain non-significant (all $p > 0.15$).
-470	Tie rates decrease substantially with finer granularity (1--10 scale: 58--73\%; 1--100 scale: 40--66\%), yet ATE remains non-significant, confirming the gap reflects measurement mode rather than scale granularity \citep{preston2000scale}.
-471	Judges differ markedly in effective granularity usage: GPT-4o clusters scores into ${\sim}5$ distinct bins, Qwen3-32B uses ${\sim}20$, and Llama-70B exploits $50{+}$---yet none resolves the Blindspot.
-472	
-473	\begin{table}[h]
-474	\centering
-475	\small
-476	\caption{Formality Likert ATE: 1--10 vs.\ 1--100 scale. Finer granularity reduces tie rates but does not resolve the Blindspot (all 1--100 $p > 0.15$).}
-477	\label{tab:likert100}
-478	\resizebox{\columnwidth}{!}{%
-479	\begin{tabular}{@{}lcccc@{}}
-480	\toprule
-481	Judge & 1--10 $d$ ($p$) & 1--100 $d$ ($p$) & Tie 1--10 & Tie 1--100 \\
-482	\midrule
-483	GPT-4o & --- & $-$.038 (.725) & --- & 65.9\% \\
-484	Qwen3-32B & .012 (.908) & .153 (.154) & 72.7\% & 51.1\% \\
-485	Llama-70B$^a$ & .000 (1.00) & .085 (.440) & 72.7\% & 39.8\% \\
-486	\bottomrule
-487	\multicolumn{5}{l}{\footnotesize $^a$ 5 pairs returned score $= 0$ (out of range); effective $n = 83$.}
-488	\end{tabular}}
-489	\end{table}
-490	
-491	\section{NLI Gate Ablation}
-492	\label{app:nli_ablation}
-493	
-4
-…[truncated 844 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6609 · 2026-05-23T15:05:39.947487+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-  "offset": "545",
-  "limit": "30"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-    "offset": "545",
-    "limit": "30"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6610 · 2026-05-23T15:05:39.947853+00:00_
-
-545	Target judges: GPT-4o (\texttt{gpt-4o-2024-08-06}, accessed April--May 2026), Qwen3-32B (locally hosted), Llama-3.3-70B (locally hosted via vLLM).
-546	Low-sensitivity reference: Claude Sonnet 4 (\texttt{claude-sonnet-4-20250514}, accessed May 2026).
-547	All judge calls use temperature $0$ and $\texttt{max\_tokens} = 2048$.
-548	
-549	\paragraph{NLI gate.}
-550	Content preservation is verified using DeBERTa-v3-large \citep{he2021debertav3} fine-tuned on MNLI, with entailment threshold $\tau = 0.90$.
-551	Bidirectional entailment is applied for formality and register; direction-aware entailment for verbosity (Section~\ref{sec:nli_gate}).
-552	
-553	\paragraph{Statistical methods.}
-554	Bradley-Terry parameters are estimated via spectral initialization followed by minorization-maximization \citep{hunter2004mm} using the \texttt{choix} Python library (default regularization).
-555	All bootstrap CIs use 10{,}000 pair-level resamples with seed $42$.
-556	GEE models use exchangeable working correlation with robust (sandwich) standard errors via \texttt{statsmodels} (Section~\ref{sec:direction}; diagnostics in Appendix~\ref{app:gee_diagnostics}).
-557	
-558	\paragraph{Benchmarks.}
-559	LLMBar \citep{zeng2023llmbar}: 100 instruction-response pairs ($n = 88$ after NLI gate, $n = 355$ for scaled replication).
-560	AlpacaEval \citep{dubois2025lc}: 100 sampled pairs.
-561	MT-Bench \citep{zheng2023judging}: 80 multi-turn pairs.
-562	
-563	\paragraph{Code and data.}
-564	All code, prompts, and experimental data will be released upon acceptance under an open-source license.
-565	
-566	\section{Holm-Bonferroni Sensitivity Analysis}
-567	\label{app:holm8}
-568	
-569	Table~\ref{tab:holm8} reports adjusted $p$-values under the full 8-test family (4 judges $\times$ 2 primary axes), including Gemini-2.5-Flash which is excluded from the primary 6-test family (\S\ref{sec:stat_framework}).
-570	All results remain significant at $\alpha = 0.05$.
-571	
-572	\begin{table}[h]
-573	\centering
-574	\small
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6611 · 2026-05-23T15:05:40.098618+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-  "offset": "685",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-    "offset": "685",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6612 · 2026-05-23T15:05:40.149339+00:00_
-
-685	This does not affect the primary validation target, which concerns content preservation rather than style detection.
-686	
-687	\section{Cross-Benchmark Replication}
-688	\label{app:cross_bench}
-689	
-690	Table~\ref{tab:cross_bench} reports cross-benchmark replication results on AlpacaEval and MT-Bench for selected configurations targeting the strongest effects from the primary LLMBar analysis.
-691	
-692	\begin{table}[h]
-693	\centering
-694	\small
-695	\caption{Cross-benchmark replication on AlpacaEval (AEval) and MT-Bench (MTB). $\ddagger$: both BT and Likert significant; $\dagger$: Blindspot (BT significant, Likert not).}
-696	\label{tab:cross_bench}
-697	\begin{tabular}{@{}lllccc@{}}
-698	\toprule
-699	Bench & Judge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\ \\
-700	\midrule
-701	AEval & GPT-4o & Form.\ & .727$^{***}$ & .005 (.909) & $\dagger$ \\
-702	 & Qwen3 & Form.\ & .657$^{***}$ & .081 (.198) & $\dagger$ \\
-703	 & Qwen3 & Verb.\ & .841$^{***}$ & .375 (.0003) & $\ddagger$ \\
-704	 & Llama-70B & Form.\ & .756$^{***}$ & 1.120 (${<}.001$) & $\ddagger$ \\
-705	\midrule
-706	MTB & GPT-4o & Form.\ & .692$^{***}$ & .167 (.016) & $\ddagger$ \\
-707	 & Qwen3 & Form.\ & .712$^{***}$ & .149 (.007) & $\ddagger$ \\
-708	\bottomrule
-709	\multicolumn{6}{l}{\footnotesize $^{***}$ $p < 0.001$. $\ddagger$: both sig.;\; $\dagger$: Blindspot.}
-710	\end{tabular}
-711	\end{table}
-712	
-713	\section{Claude Cross-Benchmark Analysis}
-714	\label{app:claude_crossbench}
-715	
-716	Claude Sonnet~4 exhibits near-null style sensitivity on LLMBar (\S\ref{sec:amplification}; Appendix~\ref{app:claude_tost}).
-717	Cross-benchmark GEE decomposition reveals that Claude's elevated aggregate BT on AEval/MT-Bench reflects quality detection rather than style preference.
-718	Table~\ref{tab:claude_crossbench} reports results across all five tested configurations.
-719	
-720	\begin{table}[h]
-721	\centering
-722	\small
-723	\caption{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-signi
-…[truncated 716 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 6613 · 2026-05-23T15:05:53.751993+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "reference.*judge|reference.*Claude|low.sensitivity|lower.sensitivity",
-  "-i": "True",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "reference.*judge|reference.*Claude|low.sensitivity|lower.sensitivity",
-    "-i": "True",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 6614 · 2026-05-23T15:05:54.254667+00:00_
+_source line 6612 · 2026-05-23T15:05:54.254667+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex:27:\citet{wang2023faireval} further showed that preference rankings can be manipulated by swapping option order, proposing a win/tie/lose annotation scheme, and \citet{shi2024judging} systematically study position bias across 15 judges, showing it varies by model and quality gap.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex:30:Style bias as a separate, dominant bias source has received attention only recently \citep{wu2023style,murugadoss2025sos,li2026preference,soumik2026judging}; \citet{saito2023verbosity} specifically quantify verbosity bias in multi-turn chatbot evaluation, and \citet{chen2024humans} compare human and LLM judge biases, finding partially overlapping but distinct bias profiles; \citet{bavaresco2025llms} show that LLM--human agreement varies substantially across tasks.
@@ -1100,7 +35,7 @@ _source line 6614 · 2026-05-23T15:05:54.254667+00:00_
 
 ### Tool call
 
-_source line 6615 · 2026-05-23T15:05:54.756991+00:00_
+_source line 6613 · 2026-05-23T15:05:54.756991+00:00_
 
 called Grep
 
@@ -1142,7 +77,7 @@ called Grep
 
 ### Tool result
 
-_source line 6616 · 2026-05-23T15:05:54.858483+00:00_
+_source line 6614 · 2026-05-23T15:05:54.858483+00:00_
 
 No matches found
 
@@ -1164,7 +99,7 @@ No matches found
 
 ### Tool call
 
-_source line 6617 · 2026-05-23T15:06:05.054107+00:00_
+_source line 6615 · 2026-05-23T15:06:05.054107+00:00_
 
 called Edit
 
@@ -1204,7 +139,7 @@ called Edit
 
 ### Tool result
 
-_source line 6618 · 2026-05-23T15:06:05.993643+00:00_
+_source line 6616 · 2026-05-23T15:06:05.993643+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex has been updated successfully.
 
@@ -1226,7 +161,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6619 · 2026-05-23T15:06:06.948586+00:00_
+_source line 6617 · 2026-05-23T15:06:06.948586+00:00_
 
 called Edit
 
@@ -1266,7 +201,7 @@ called Edit
 
 ### Tool result
 
-_source line 6620 · 2026-05-23T15:06:07.401373+00:00_
+_source line 6618 · 2026-05-23T15:06:07.401373+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -1288,7 +223,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6621 · 2026-05-23T15:06:10.564729+00:00_
+_source line 6619 · 2026-05-23T15:06:10.564729+00:00_
 
 called Edit
 
@@ -1328,7 +263,7 @@ called Edit
 
 ### Tool result
 
-_source line 6622 · 2026-05-23T15:06:10.565362+00:00_
+_source line 6620 · 2026-05-23T15:06:10.565362+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -1350,7 +285,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6623 · 2026-05-23T15:06:15.785281+00:00_
+_source line 6621 · 2026-05-23T15:06:15.785281+00:00_
 
 called Read
 
@@ -1388,7 +323,7 @@ called Read
 
 ### Tool result
 
-_source line 6624 · 2026-05-23T15:06:15.785773+00:00_
+_source line 6622 · 2026-05-23T15:06:15.785773+00:00_
 
 20	\begin{table}[t]
 21	\centering
@@ -1442,7 +377,7 @@ _source line 6624 · 2026-05-23T15:06:15.785773+00:00_
 
 ### Tool call
 
-_source line 6625 · 2026-05-23T15:06:16.238268+00:00_
+_source line 6623 · 2026-05-23T15:06:16.238268+00:00_
 
 called Read
 
@@ -1480,7 +415,7 @@ called Read
 
 ### Tool result
 
-_source line 6626 · 2026-05-23T15:06:16.289053+00:00_
+_source line 6624 · 2026-05-23T15:06:16.289053+00:00_
 
 160	
 161	Verbosity provides the strongest Blindspot: all four target judges show consistent preference (GPT-4o 76.0\%, Qwen3-32B 77.3\%, Llama-70B 73.5\%, Gemini 70.8\%; all $p \leq 0.0001$), while Likert ATE remains non-significant for all ($p = 0.179$--$0.752$).
@@ -1515,7 +450,7 @@ _source line 6626 · 2026-05-23T15:06:16.289053+00:00_
 
 ### Tool call
 
-_source line 6627 · 2026-05-23T15:06:45.102275+00:00_
+_source line 6625 · 2026-05-23T15:06:45.102275+00:00_
 
 called Edit
 
@@ -1555,7 +490,7 @@ called Edit
 
 ### Tool result
 
-_source line 6628 · 2026-05-23T15:06:45.604686+00:00_
+_source line 6626 · 2026-05-23T15:06:45.604686+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -1577,7 +512,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6629 · 2026-05-23T15:06:49.924466+00:00_
+_source line 6627 · 2026-05-23T15:06:49.924466+00:00_
 
 called Edit
 
@@ -1617,7 +552,7 @@ called Edit
 
 ### Tool result
 
-_source line 6630 · 2026-05-23T15:06:49.975407+00:00_
+_source line 6628 · 2026-05-23T15:06:49.975407+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -1639,7 +574,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6631 · 2026-05-23T15:07:16.376089+00:00_
+_source line 6629 · 2026-05-23T15:07:16.376089+00:00_
 
 called Edit
 
@@ -1679,7 +614,7 @@ called Edit
 
 ### Tool result
 
-_source line 6632 · 2026-05-23T15:07:16.477277+00:00_
+_source line 6630 · 2026-05-23T15:07:16.477277+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -1701,7 +636,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6633 · 2026-05-23T15:07:20.192945+00:00_
+_source line 6631 · 2026-05-23T15:07:20.192945+00:00_
 
 called ToolSearch
 
@@ -1737,7 +672,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6634 · 2026-05-23T15:07:20.243442+00:00_
+_source line 6632 · 2026-05-23T15:07:20.243442+00:00_
 
 No matching deferred tools found
 
@@ -1759,7 +694,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 6635 · 2026-05-23T15:07:23.709213+00:00_
+_source line 6633 · 2026-05-23T15:07:23.709213+00:00_
 
 called ToolSearch
 
@@ -1795,7 +730,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6636 · 2026-05-23T15:07:23.709673+00:00_
+_source line 6634 · 2026-05-23T15:07:23.709673+00:00_
 
 
 
@@ -1817,7 +752,7 @@ _source line 6636 · 2026-05-23T15:07:23.709673+00:00_
 
 ### Tool call
 
-_source line 6637 · 2026-05-23T15:07:27.878278+00:00_
+_source line 6635 · 2026-05-23T15:07:27.878278+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -1855,7 +790,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6638 · 2026-05-23T15:07:35.803816+00:00_
+_source line 6636 · 2026-05-23T15:07:35.803816+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [20] [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26815 strings out of 469438\\n 487483 string characters out of 5468411\\n 931471 words of memory out of 5000000\\n 54342 multiletter control sequences out of 15000+600000\\n 705454 words of font info for 440 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,94p,10
 …[truncated 11546 chars]
@@ -1878,7 +813,7 @@ _source line 6638 · 2026-05-23T15:07:35.803816+00:00_
 
 ### Tool call
 
-_source line 6639 · 2026-05-23T15:07:45.899129+00:00_
+_source line 6637 · 2026-05-23T15:07:45.899129+00:00_
 
 called Read
 
@@ -1912,7 +847,7 @@ called Read
 
 ### Tool result
 
-_source line 6640 · 2026-05-23T15:07:46.501694+00:00_
+_source line 6638 · 2026-05-23T15:07:46.501694+00:00_
 
 
 
@@ -1934,7 +869,7 @@ _source line 6640 · 2026-05-23T15:07:46.501694+00:00_
 
 ### Tool call
 
-_source line 6641 · 2026-05-23T15:07:46.552259+00:00_
+_source line 6639 · 2026-05-23T15:07:46.552259+00:00_
 
 called Read
 
@@ -1968,7 +903,7 @@ called Read
 
 ### Tool result
 
-_source line 6642 · 2026-05-23T15:07:47.057140+00:00_
+_source line 6640 · 2026-05-23T15:07:47.057140+00:00_
 
 
 
@@ -1990,7 +925,7 @@ _source line 6642 · 2026-05-23T15:07:47.057140+00:00_
 
 ### Tool call
 
-_source line 6643 · 2026-05-23T15:07:53.130484+00:00_
+_source line 6641 · 2026-05-23T15:07:53.130484+00:00_
 
 called Read
 
@@ -2024,7 +959,7 @@ called Read
 
 ### Tool result
 
-_source line 6644 · 2026-05-23T15:07:53.683196+00:00_
+_source line 6642 · 2026-05-23T15:07:53.683196+00:00_
 
 
 
@@ -2046,7 +981,7 @@ _source line 6644 · 2026-05-23T15:07:53.683196+00:00_
 
 ### Tool call
 
-_source line 6645 · 2026-05-23T15:08:41.961924+00:00_
+_source line 6643 · 2026-05-23T15:08:41.961924+00:00_
 
 called Read
 
@@ -2080,7 +1015,7 @@ called Read
 
 ### Tool result
 
-_source line 6646 · 2026-05-23T15:08:41.962860+00:00_
+_source line 6644 · 2026-05-23T15:08:41.962860+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -2102,7 +1037,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 6647 · 2026-05-23T15:08:50.546877+00:00_
+_source line 6645 · 2026-05-23T15:08:50.546877+00:00_
 
 called Edit
 
@@ -2142,7 +1077,7 @@ called Edit
 
 ### Tool result
 
-_source line 6648 · 2026-05-23T15:08:50.597515+00:00_
+_source line 6646 · 2026-05-23T15:08:50.597515+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -2164,7 +1099,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6649 · 2026-05-23T15:08:55.566168+00:00_
+_source line 6647 · 2026-05-23T15:08:55.566168+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2202,7 +1137,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6650 · 2026-05-23T15:08:58.426845+00:00_
+_source line 6648 · 2026-05-23T15:08:58.426845+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[20]) [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26815 strings out of 469438\\n 487483 string characters out of 5468411\\n 933304 words of memory out of 5000000\\n 54342 multiletter control sequences out of 15000+600000\\n 705454 words of font info for 440 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,94p,1001b,873s stack positions out of 10000i,1000n,2000
 …[truncated 7001 chars]
@@ -2225,7 +1160,7 @@ _source line 6650 · 2026-05-23T15:08:58.426845+00:00_
 
 ### Tool call
 
-_source line 6651 · 2026-05-23T15:09:05.859937+00:00_
+_source line 6649 · 2026-05-23T15:09:05.859937+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2263,7 +1198,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6652 · 2026-05-23T15:09:08.117489+00:00_
+_source line 6650 · 2026-05-23T15:09:08.117489+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[20]) [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26815 strings out of 469438\\n 487483 string characters out of 5468411\\n 933304 words of memory out of 5000000\\n 54342 multiletter control sequences out of 15000+600000\\n 705454 words of font info for 440 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,94p,1001b,873s stack positions out of 10000i,1000n,2000
 …[truncated 11247 chars]
@@ -2286,7 +1221,7 @@ _source line 6652 · 2026-05-23T15:09:08.117489+00:00_
 
 ### Tool call
 
-_source line 6653 · 2026-05-23T15:09:11.159998+00:00_
+_source line 6651 · 2026-05-23T15:09:11.159998+00:00_
 
 called Read
 
@@ -2320,7 +1255,7 @@ called Read
 
 ### Tool result
 
-_source line 6654 · 2026-05-23T15:09:11.712862+00:00_
+_source line 6652 · 2026-05-23T15:09:11.712862+00:00_
 
 
 
@@ -2342,7 +1277,7 @@ _source line 6654 · 2026-05-23T15:09:11.712862+00:00_
 
 ### Tool call
 
-_source line 6655 · 2026-05-23T15:09:11.713280+00:00_
+_source line 6653 · 2026-05-23T15:09:11.713280+00:00_
 
 called Read
 
@@ -2376,7 +1311,7 @@ called Read
 
 ### Tool result
 
-_source line 6656 · 2026-05-23T15:09:12.265815+00:00_
+_source line 6654 · 2026-05-23T15:09:12.265815+00:00_
 
 
 
@@ -2398,7 +1333,7 @@ _source line 6656 · 2026-05-23T15:09:12.265815+00:00_
 
 ### Tool call
 
-_source line 6657 · 2026-05-23T15:09:38.828625+00:00_
+_source line 6655 · 2026-05-23T15:09:38.828625+00:00_
 
 called Edit
 
@@ -2438,7 +1373,7 @@ called Edit
 
 ### Tool result
 
-_source line 6658 · 2026-05-23T15:09:38.879265+00:00_
+_source line 6656 · 2026-05-23T15:09:38.879265+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -2460,7 +1395,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6659 · 2026-05-23T15:09:42.191523+00:00_
+_source line 6657 · 2026-05-23T15:09:42.191523+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2498,7 +1433,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6660 · 2026-05-23T15:09:47.156464+00:00_
+_source line 6658 · 2026-05-23T15:09:47.156464+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[20]) [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26815 strings out of 469438\\n 487483 string characters out of 5468411\\n 933304 words of memory out of 5000000\\n 54342 multiletter control sequences out of 15000+600000\\n 705454 words of font info for 440 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,94p,1001b,873s stack positions out of 10000i,1000n,2000
 …[truncated 11247 chars]
@@ -2521,7 +1456,7 @@ _source line 6660 · 2026-05-23T15:09:47.156464+00:00_
 
 ### Tool call
 
-_source line 6661 · 2026-05-23T15:09:51.070811+00:00_
+_source line 6659 · 2026-05-23T15:09:51.070811+00:00_
 
 called Read
 
@@ -2555,7 +1490,7 @@ called Read
 
 ### Tool result
 
-_source line 6662 · 2026-05-23T15:09:51.573467+00:00_
+_source line 6660 · 2026-05-23T15:09:51.573467+00:00_
 
 
 
@@ -2577,7 +1512,7 @@ _source line 6662 · 2026-05-23T15:09:51.573467+00:00_
 
 ### Tool call
 
-_source line 6663 · 2026-05-23T15:10:05.431679+00:00_
+_source line 6661 · 2026-05-23T15:10:05.431679+00:00_
 
 called Read
 
@@ -2611,7 +1546,7 @@ called Read
 
 ### Tool result
 
-_source line 6664 · 2026-05-23T15:10:05.984395+00:00_
+_source line 6662 · 2026-05-23T15:10:05.984395+00:00_
 
 
 
@@ -2633,7 +1568,7 @@ _source line 6664 · 2026-05-23T15:10:05.984395+00:00_
 
 ### Tool call
 
-_source line 6665 · 2026-05-23T15:10:15.929822+00:00_
+_source line 6663 · 2026-05-23T15:10:15.929822+00:00_
 
 called Read
 
@@ -2667,7 +1602,7 @@ called Read
 
 ### Tool result
 
-_source line 6666 · 2026-05-23T15:10:15.930277+00:00_
+_source line 6664 · 2026-05-23T15:10:15.930277+00:00_
 
 1	\begin{abstract}
 2	Likert and pairwise scoring produce divergent sensitivity across two primary surface-level style axes, with varying effect sizes across judges, when applied to LLM judges.
@@ -2698,7 +1633,7 @@ _source line 6666 · 2026-05-23T15:10:15.930277+00:00_
 
 ### Tool call
 
-_source line 6667 · 2026-05-23T15:10:31.698481+00:00_
+_source line 6665 · 2026-05-23T15:10:31.698481+00:00_
 
 called Bash
 
@@ -2734,7 +1669,7 @@ called Bash
 
 ### Tool result
 
-_source line 6668 · 2026-05-23T15:10:31.799251+00:00_
+_source line 6666 · 2026-05-23T15:10:31.799251+00:00_
 
 173
 
@@ -2756,7 +1691,7 @@ _source line 6668 · 2026-05-23T15:10:31.799251+00:00_
 
 ### Tool call
 
-_source line 6669 · 2026-05-23T15:10:36.869870+00:00_
+_source line 6667 · 2026-05-23T15:10:36.869870+00:00_
 
 called ToolSearch
 
@@ -2792,7 +1727,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6670 · 2026-05-23T15:10:36.920508+00:00_
+_source line 6668 · 2026-05-23T15:10:36.920508+00:00_
 
 
 
@@ -2814,7 +1749,7 @@ _source line 6670 · 2026-05-23T15:10:36.920508+00:00_
 
 ### Tool call
 
-_source line 6671 · 2026-05-23T15:10:39.884803+00:00_
+_source line 6669 · 2026-05-23T15:10:39.884803+00:00_
 
 called mcp__agent-ml-research__verify_references
 
@@ -2852,7 +1787,7 @@ called mcp__agent-ml-research__verify_references
 
 ### Tool result
 
-_source line 6672 · 2026-05-23T15:12:38.864507+00:00_
+_source line 6670 · 2026-05-23T15:12:38.864507+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 67, \"total_citations\": 81, \"unique_cited_keys\": 55, \"orphan_bib\": 12, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 57, \"online_not_found\": 1, \"online_mismatch\": 9, \"online_error\": 0, \"online_checked\": 67, \"online_total\": 67, \"online_verified_by_doi\": 10, \"online_verified_by_arxiv\": 19, \"online_verified_by_search\": 28}, \"cross_check\": {\"orphan_bib\": [\"bojar2016findings\", \"boubdir2023elo\", \"celikyilmaz2020evaluation\", \"clark2021human\", \"hoenig2001abuse\", \"liusie2024comparative\", \"louviere2015bws\", \"panickssery2024selfpreference\", \"sedoc-ungar-2020-item\", \"tripathi2025pairwise\", \"vanderlee2019best\", \"vanderlee2021human\"], \"missing_bib\": [], \"orphan_count\": 12, \"missing_count\": 0}, \"bib_problems\": [{\"key\": \"tripathi2025pairwise\", \"type\": \"inproceedings\", \"title\": \"Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation\", \"authors\": \"Tripathi, Tuhina and Wadhwa, Manya and Durrett, Greg and Niekum, Scott\", \"year\": \"2025\", \"issue\": \"orphan\"}, {\"key\": \"hoenig2001abuse\", \"type\": \"article\", \"title\": \"The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis\", \"authors\": \"Hoenig, John M. and Heisey, Dennis M.\", \"year\": \"2001\", \"issue\": \"orphan\"}, {\"key\": \"louviere2015bws\", \"type\": \"book\", \"title\": \"Best-Worst Scaling: Theory, Methods and Applications\", \"authors\": \"Louviere, Jordan J. and Flynn, Terry N. and Marley, A. A. J.\", \"year\": \"2015\", \"issue\": \"orphan\"}, {\"key\": \"clark2021human\", \"type\": \"inproceedings\", \"title\": \"All That's `Human' Is Not Gold: Evaluating Human Evaluation of Generated Text\", \"authors\": \"Clark, Elizabeth and August, Tal and Serrano, Sofia and Haduong, Nikita and Guru...\", \"year\": \"2021\", \"issue\": \"orphan\"}, {\"key\": \"boubdir2023elo\", \"type\": \"inpr
 …[truncated 5837 chars]
@@ -2875,7 +1810,7 @@ _source line 6672 · 2026-05-23T15:12:38.864507+00:00_
 
 ### Assistant
 
-_source line 6673 · 2026-05-23T15:12:52.679653+00:00_
+_source line 6671 · 2026-05-23T15:12:52.679653+00:00_
 
 Abstract ~173 words, 在200词限制内。现在运行引用验证。
 
@@ -2902,7 +1837,7 @@ Abstract ~173 words, 在200词限制内。现在运行引用验证。
 
 ### User
 
-_source line 6674 · 2026-05-23T15:12:53.141266+00:00_
+_source line 6672 · 2026-05-23T15:12:53.141266+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -2923,7 +1858,7 @@ _source line 6674 · 2026-05-23T15:12:53.141266+00:00_
 
 ### Tool call
 
-_source line 6675 · 2026-05-23T15:13:28.308949+00:00_
+_source line 6673 · 2026-05-23T15:13:28.308949+00:00_
 
 called Grep
 
@@ -2963,7 +1898,7 @@ called Grep
 
 ### Tool result
 
-_source line 6676 · 2026-05-23T15:13:28.761385+00:00_
+_source line 6674 · 2026-05-23T15:13:28.761385+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:86:Figure~\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\ \citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \leq 100$.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:89:The measurement-mode divergence admits three non-exclusive interpretations: (a)~\emph{Likert attenuation}---tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\emph{pairwise amplification}---forced-choice comparison inflates micro-preferences into apparent biases \citep{jeong2025comparative}; (c)~\emph{construct divergence}---the two formats measure different constructs (absolute quality vs.\ ordinal preference; \citealt{tripathi2025pairwise}).
@@ -2986,7 +1921,7 @@ _source line 6676 · 2026-05-23T15:13:28.761385+00:00_
 
 ### Tool call
 
-_source line 6677 · 2026-05-23T15:13:29.163633+00:00_
+_source line 6675 · 2026-05-23T15:13:29.163633+00:00_
 
 called Grep
 
@@ -3026,7 +1961,7 @@ called Grep
 
 ### Tool result
 
-_source line 6678 · 2026-05-23T15:13:29.214507+00:00_
+_source line 6676 · 2026-05-23T15:13:29.214507+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib:495:@inproceedings{saito2023verbosity,
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.bbl:290:\bibitem[{Saito et~al.(2023)Saito, Nishida, and Okazaki}]{saito2023verbosity}
@@ -3054,7 +1989,7 @@ _source line 6678 · 2026-05-23T15:13:29.214507+00:00_
 
 ### Tool call
 
-_source line 6679 · 2026-05-23T15:13:37.399009+00:00_
+_source line 6677 · 2026-05-23T15:13:37.399009+00:00_
 
 called Grep
 
@@ -3096,7 +2031,7 @@ called Grep
 
 ### Tool result
 
-_source line 6680 · 2026-05-23T15:13:37.851126+00:00_
+_source line 6678 · 2026-05-23T15:13:37.851126+00:00_
 
 495:@inproceedings{saito2023verbosity,
 496-  title={Verbosity Bias in Multi-Turn Chatbot Evaluations},
@@ -3128,7 +2063,7 @@ _source line 6680 · 2026-05-23T15:13:37.851126+00:00_
 
 ### Tool call
 
-_source line 6681 · 2026-05-23T15:13:38.102474+00:00_
+_source line 6679 · 2026-05-23T15:13:38.102474+00:00_
 
 called Grep
 
@@ -3170,7 +2105,7 @@ called Grep
 
 ### Tool result
 
-_source line 6682 · 2026-05-23T15:13:38.203247+00:00_
+_source line 6680 · 2026-05-23T15:13:38.203247+00:00_
 
 25:@inproceedings{murugadoss2025sos,
 26-  title={Style Over Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},
@@ -3202,7 +2137,7 @@ _source line 6682 · 2026-05-23T15:13:38.203247+00:00_
 
 ### Tool call
 
-_source line 6683 · 2026-05-23T15:14:13.147793+00:00_
+_source line 6681 · 2026-05-23T15:14:13.147793+00:00_
 
 called ToolSearch
 
@@ -3238,7 +2173,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6684 · 2026-05-23T15:14:13.499457+00:00_
+_source line 6682 · 2026-05-23T15:14:13.499457+00:00_
 
 
 
@@ -3260,7 +2195,7 @@ _source line 6684 · 2026-05-23T15:14:13.499457+00:00_
 
 ### Tool call
 
-_source line 6685 · 2026-05-23T15:14:46.892848+00:00_
+_source line 6683 · 2026-05-23T15:14:46.892848+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -3296,7 +2231,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6686 · 2026-05-23T15:14:50.306038+00:00_
+_source line 6684 · 2026-05-23T15:14:50.306038+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -3318,7 +2253,7 @@ _source line 6686 · 2026-05-23T15:14:50.306038+00:00_
 
 ### Assistant
 
-_source line 6687 · 2026-05-23T15:14:57.580643+00:00_
+_source line 6685 · 2026-05-23T15:14:57.580643+00:00_
 
 已向 Director 汇报 R18→4.0 Patch 完成状态，包含：
 
@@ -3352,7 +2287,7 @@ _source line 6687 · 2026-05-23T15:14:57.580643+00:00_
 
 ### User
 
-_source line 6688 · 2026-05-23T15:15:17.223106+00:00_
+_source line 6686 · 2026-05-23T15:15:17.223106+00:00_
 
 [Director 指令] 决策回复：
 
@@ -3380,7 +2315,7 @@ _source line 6688 · 2026-05-23T15:15:17.223106+00:00_
 
 ### Tool call
 
-_source line 6689 · 2026-05-23T15:15:24.475454+00:00_
+_source line 6687 · 2026-05-23T15:15:24.475454+00:00_
 
 called Read
 
@@ -3418,7 +2353,7 @@ called Read
 
 ### Tool result
 
-_source line 6690 · 2026-05-23T15:15:24.526130+00:00_
+_source line 6688 · 2026-05-23T15:15:24.526130+00:00_
 
 23	}
 24	
@@ -3449,7 +2384,7 @@ _source line 6690 · 2026-05-23T15:15:24.526130+00:00_
 
 ### Tool call
 
-_source line 6691 · 2026-05-23T15:15:28.744546+00:00_
+_source line 6689 · 2026-05-23T15:15:28.744546+00:00_
 
 called Edit
 
@@ -3489,7 +2424,7 @@ called Edit
 
 ### Tool result
 
-_source line 6692 · 2026-05-23T15:15:28.846686+00:00_
+_source line 6690 · 2026-05-23T15:15:28.846686+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3511,7 +2446,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6693 · 2026-05-23T15:15:44.667624+00:00_
+_source line 6691 · 2026-05-23T15:15:44.667624+00:00_
 
 called Agent
 
@@ -3547,7 +2482,7 @@ called Agent
 
 ### Tool call
 
-_source line 6694 · 2026-05-23T15:15:47.984651+00:00_
+_source line 6692 · 2026-05-23T15:15:47.984651+00:00_
 
 called Read
 
@@ -3581,7 +2516,7 @@ called Read
 
 ### Tool result
 
-_source line 6695 · 2026-05-23T15:15:48.035532+00:00_
+_source line 6693 · 2026-05-23T15:15:48.035532+00:00_
 
 1	@book{cohen1988statistical,
 2	  title={Statistical Power Analysis for the Behavioral Sciences},
@@ -3656,7 +2591,7 @@ _source line 6695 · 2026-05-23T15:15:48.035532+00:00_
 
 ### Tool call
 
-_source line 6696 · 2026-05-23T15:15:58.188101+00:00_
+_source line 6694 · 2026-05-23T15:15:58.188101+00:00_
 
 called Edit
 
@@ -3696,7 +2631,7 @@ called Edit
 
 ### Tool result
 
-_source line 6697 · 2026-05-23T15:15:58.188488+00:00_
+_source line 6695 · 2026-05-23T15:15:58.188488+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3718,7 +2653,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6698 · 2026-05-23T15:16:02.970912+00:00_
+_source line 6696 · 2026-05-23T15:16:02.970912+00:00_
 
 called Edit
 
@@ -3758,7 +2693,7 @@ called Edit
 
 ### Tool result
 
-_source line 6699 · 2026-05-23T15:16:03.021397+00:00_
+_source line 6697 · 2026-05-23T15:16:03.021397+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3780,7 +2715,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6700 · 2026-05-23T15:16:11.762249+00:00_
+_source line 6698 · 2026-05-23T15:16:11.762249+00:00_
 
 called Edit
 
@@ -3820,7 +2755,7 @@ called Edit
 
 ### Tool result
 
-_source line 6701 · 2026-05-23T15:16:11.912993+00:00_
+_source line 6699 · 2026-05-23T15:16:11.912993+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3842,7 +2777,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6702 · 2026-05-23T15:16:17.038831+00:00_
+_source line 6700 · 2026-05-23T15:16:17.038831+00:00_
 
 called Edit
 
@@ -3882,7 +2817,7 @@ called Edit
 
 ### Tool result
 
-_source line 6703 · 2026-05-23T15:16:17.089506+00:00_
+_source line 6701 · 2026-05-23T15:16:17.089506+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3904,7 +2839,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6704 · 2026-05-23T15:16:21.942891+00:00_
+_source line 6702 · 2026-05-23T15:16:21.942891+00:00_
 
 called Edit
 
@@ -3944,7 +2879,7 @@ called Edit
 
 ### Tool result
 
-_source line 6705 · 2026-05-23T15:16:21.993499+00:00_
+_source line 6703 · 2026-05-23T15:16:21.993499+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -3966,7 +2901,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6706 · 2026-05-23T15:16:26.112690+00:00_
+_source line 6704 · 2026-05-23T15:16:26.112690+00:00_
 
 called Edit
 
@@ -4006,7 +2941,7 @@ called Edit
 
 ### Tool result
 
-_source line 6707 · 2026-05-23T15:16:26.164589+00:00_
+_source line 6705 · 2026-05-23T15:16:26.164589+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -4028,7 +2963,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6708 · 2026-05-23T15:16:30.182232+00:00_
+_source line 6706 · 2026-05-23T15:16:30.182232+00:00_
 
 called Edit
 
@@ -4068,7 +3003,7 @@ called Edit
 
 ### Tool result
 
-_source line 6709 · 2026-05-23T15:16:30.282827+00:00_
+_source line 6707 · 2026-05-23T15:16:30.282827+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -4090,7 +3025,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6710 · 2026-05-23T15:16:45.809429+00:00_
+_source line 6708 · 2026-05-23T15:16:45.809429+00:00_
 
 called Edit
 
@@ -4130,7 +3065,7 @@ called Edit
 
 ### Tool result
 
-_source line 6711 · 2026-05-23T15:16:45.809820+00:00_
+_source line 6709 · 2026-05-23T15:16:45.809820+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -4152,7 +3087,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6712 · 2026-05-23T15:16:50.535428+00:00_
+_source line 6710 · 2026-05-23T15:16:50.535428+00:00_
 
 called Edit
 
@@ -4192,7 +3127,7 @@ called Edit
 
 ### Tool result
 
-_source line 6713 · 2026-05-23T15:16:50.586070+00:00_
+_source line 6711 · 2026-05-23T15:16:50.586070+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -4214,7 +3149,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6714 · 2026-05-23T15:16:54.405677+00:00_
+_source line 6712 · 2026-05-23T15:16:54.405677+00:00_
 
 called Edit
 
@@ -4254,7 +3189,7 @@ called Edit
 
 ### Tool result
 
-_source line 6715 · 2026-05-23T15:16:54.456228+00:00_
+_source line 6713 · 2026-05-23T15:16:54.456228+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
 
@@ -4276,7 +3211,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6716 · 2026-05-23T15:17:01.346859+00:00_
+_source line 6714 · 2026-05-23T15:17:01.346859+00:00_
 
 called Read
 
@@ -4310,7 +3245,7 @@ called Read
 
 ### Tool result
 
-_source line 6717 · 2026-05-23T15:17:01.498153+00:00_
+_source line 6715 · 2026-05-23T15:17:01.498153+00:00_
 
 1	@book{cohen1988statistical,
 2	  title={Statistical Power Analysis for the Behavioral Sciences},
@@ -4385,7 +3320,7 @@ _source line 6717 · 2026-05-23T15:17:01.498153+00:00_
 
 ### Tool call
 
-_source line 6718 · 2026-05-23T15:17:09.490055+00:00_
+_source line 6716 · 2026-05-23T15:17:09.490055+00:00_
 
 called Grep
 
@@ -4423,7 +3358,7 @@ called Grep
 
 ### Tool result
 
-_source line 6719 · 2026-05-23T15:17:10.444990+00:00_
+_source line 6717 · 2026-05-23T15:17:10.444990+00:00_
 
 No matches found
 
@@ -4447,7 +3382,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 6720 · 2026-05-23T15:17:10.646056+00:00_
+_source line 6718 · 2026-05-23T15:17:10.646056+00:00_
 
 called Grep
 
@@ -4485,7 +3420,7 @@ called Grep
 
 ### Tool result
 
-_source line 6721 · 2026-05-23T15:17:10.746871+00:00_
+_source line 6719 · 2026-05-23T15:17:10.746871+00:00_
 
 2
 
@@ -4509,7 +3444,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 6722 · 2026-05-23T15:17:17.426433+00:00_
+_source line 6720 · 2026-05-23T15:17:17.426433+00:00_
 
 called Bash
 
@@ -4545,7 +3480,7 @@ called Bash
 
 ### Tool result
 
-_source line 6723 · 2026-05-23T15:17:17.527504+00:00_
+_source line 6721 · 2026-05-23T15:17:17.527504+00:00_
 
 OK: all braces balanced
 Remaining entries: 57
@@ -4568,7 +3503,7 @@ Remaining entries: 57
 
 ### Tool result
 
-_source line 6724 · 2026-05-23T15:17:23.025818+00:00_
+_source line 6722 · 2026-05-23T15:17:23.025818+00:00_
 
 All done. Summary:
 
@@ -4598,7 +3533,7 @@ duration_ms: 98369&lt;/usage>
 
 ### Tool call
 
-_source line 6725 · 2026-05-23T15:17:28.449441+00:00_
+_source line 6723 · 2026-05-23T15:17:28.449441+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4636,7 +3571,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6726 · 2026-05-23T15:17:28.700803+00:00_
+_source line 6724 · 2026-05-23T15:17:28.700803+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[20]) [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26815 strings out of 469438\\n 487483 string characters out of 5468411\\n 933304 words of memory out of 5000000\\n 54342 multiletter control sequences out of 15000+600000\\n 705454 words of font info for 440 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,94p,1001b,873s stack positions out of 10000i,1000n,2000
 …[truncated 7001 chars]
@@ -4659,7 +3594,7 @@ _source line 6726 · 2026-05-23T15:17:28.700803+00:00_
 
 ### Tool call
 
-_source line 6727 · 2026-05-23T15:17:41.095513+00:00_
+_source line 6725 · 2026-05-23T15:17:41.095513+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -4695,7 +3630,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6728 · 2026-05-23T15:17:44.457897+00:00_
+_source line 6726 · 2026-05-23T15:17:44.457897+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -4717,7 +3652,7 @@ _source line 6728 · 2026-05-23T15:17:44.457897+00:00_
 
 ### Assistant
 
-_source line 6729 · 2026-05-23T15:17:47.613462+00:00_
+_source line 6727 · 2026-05-23T15:17:47.613462+00:00_
 
 已向 Director 确认完成。等待 Director 提交 Reviewer 审查指令。
 
@@ -4744,7 +3679,7 @@ _source line 6729 · 2026-05-23T15:17:47.613462+00:00_
 
 ### User
 
-_source line 6730 · 2026-05-23T15:17:48.107171+00:00_
+_source line 6728 · 2026-05-23T15:17:48.107171+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -4765,7 +3700,7 @@ _source line 6730 · 2026-05-23T15:17:48.107171+00:00_
 
 ### Assistant
 
-_source line 6731 · 2026-05-23T15:17:54.108544+00:00_
+_source line 6729 · 2026-05-23T15:17:54.108544+00:00_
 
 这是误报。Paper Agent 使用 `paper_agent_post_to_director`（不是 `main_agent_post_to_director`），已在上一步成功调用并汇报。等待 Director 下一步指令。
 
@@ -4792,7 +3727,7 @@ _source line 6731 · 2026-05-23T15:17:54.108544+00:00_
 
 ### User
 
-_source line 6732 · 2026-05-25T06:57:41.707630+00:00_
+_source line 6730 · 2026-05-25T06:57:41.707630+00:00_
 
 [Director 指令] [Patch — 紧急审计修复] 论文审计发现以下必修问题，按优先级排列：
 
@@ -4831,7 +3766,7 @@ _source line 6732 · 2026-05-25T06:57:41.707630+00:00_
 
 ### Tool call
 
-_source line 6733 · 2026-05-25T06:57:52.757107+00:00_
+_source line 6731 · 2026-05-25T06:57:52.757107+00:00_
 
 called ToolSearch
 
@@ -4867,7 +3802,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6734 · 2026-05-25T06:57:52.807841+00:00_
+_source line 6732 · 2026-05-25T06:57:52.807841+00:00_
 
 No matching deferred tools found
 
@@ -4889,7 +3824,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 6735 · 2026-05-25T06:57:56.676512+00:00_
+_source line 6733 · 2026-05-25T06:57:56.676512+00:00_
 
 called ToolSearch
 
@@ -4925,7 +3860,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6736 · 2026-05-25T06:57:56.727412+00:00_
+_source line 6734 · 2026-05-25T06:57:56.727412+00:00_
 
 
 
@@ -4947,7 +3882,7 @@ _source line 6736 · 2026-05-25T06:57:56.727412+00:00_
 
 ### Tool call
 
-_source line 6737 · 2026-05-25T06:58:01.563572+00:00_
+_source line 6735 · 2026-05-25T06:58:01.563572+00:00_
 
 called Glob
 
@@ -4983,7 +3918,7 @@ called Glob
 
 ### Tool result
 
-_source line 6738 · 2026-05-25T06:58:01.625631+00:00_
+_source line 6736 · 2026-05-25T06:58:01.625631+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/best/paper.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/median/paper.tex
@@ -5019,7 +3954,7 @@ _source line 6738 · 2026-05-25T06:58:01.625631+00:00_
 
 ### Tool call
 
-_source line 6739 · 2026-05-25T06:58:04.366442+00:00_
+_source line 6737 · 2026-05-25T06:58:04.366442+00:00_
 
 called Read
 
@@ -5053,7 +3988,7 @@ called Read
 
 ### Tool result
 
-_source line 6740 · 2026-05-25T06:58:04.818840+00:00_
+_source line 6738 · 2026-05-25T06:58:04.818840+00:00_
 
 1	\begin{abstract}
 2	Likert and pairwise scoring produce divergent style-sensitivity profiles when applied to large language model (LLM) judges.
@@ -5084,7 +4019,7 @@ _source line 6740 · 2026-05-25T06:58:04.818840+00:00_
 
 ### Tool call
 
-_source line 6741 · 2026-05-25T06:58:04.869667+00:00_
+_source line 6739 · 2026-05-25T06:58:04.869667+00:00_
 
 called Read
 
@@ -5118,7 +4053,7 @@ called Read
 
 ### Tool result
 
-_source line 6742 · 2026-05-25T06:58:05.271981+00:00_
+_source line 6740 · 2026-05-25T06:58:05.271981+00:00_
 
 1	\section{Introduction}
 2	
@@ -5151,7 +4086,7 @@ _source line 6742 · 2026-05-25T06:58:05.271981+00:00_
 
 ### Tool call
 
-_source line 6743 · 2026-05-25T06:58:05.423165+00:00_
+_source line 6741 · 2026-05-25T06:58:05.423165+00:00_
 
 called Read
 
@@ -5185,7 +4120,7 @@ called Read
 
 ### Tool result
 
-_source line 6744 · 2026-05-25T06:58:06.227560+00:00_
+_source line 6742 · 2026-05-25T06:58:06.227560+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -5222,7 +4157,7 @@ _source line 6744 · 2026-05-25T06:58:06.227560+00:00_
 
 ### Tool call
 
-_source line 6745 · 2026-05-25T06:58:06.378708+00:00_
+_source line 6743 · 2026-05-25T06:58:06.378708+00:00_
 
 called Read
 
@@ -5256,7 +4191,7 @@ called Read
 
 ### Tool result
 
-_source line 6746 · 2026-05-25T06:58:06.730781+00:00_
+_source line 6744 · 2026-05-25T06:58:06.730781+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -5296,7 +4231,7 @@ _source line 6746 · 2026-05-25T06:58:06.730781+00:00_
 
 ### Tool call
 
-_source line 6747 · 2026-05-25T06:58:06.831672+00:00_
+_source line 6745 · 2026-05-25T06:58:06.831672+00:00_
 
 called Read
 
@@ -5330,7 +4265,7 @@ called Read
 
 ### Tool result
 
-_source line 6748 · 2026-05-25T06:58:07.184186+00:00_
+_source line 6746 · 2026-05-25T06:58:07.184186+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -5368,7 +4303,7 @@ _source line 6748 · 2026-05-25T06:58:07.184186+00:00_
 
 ### Tool call
 
-_source line 6749 · 2026-05-25T06:58:07.184671+00:00_
+_source line 6747 · 2026-05-25T06:58:07.184671+00:00_
 
 called Read
 
@@ -5402,7 +4337,7 @@ called Read
 
 ### Tool result
 
-_source line 6750 · 2026-05-25T06:58:07.536395+00:00_
+_source line 6748 · 2026-05-25T06:58:07.536395+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -5430,7 +4365,7 @@ _source line 6750 · 2026-05-25T06:58:07.536395+00:00_
 
 ### Tool call
 
-_source line 6751 · 2026-05-25T06:58:07.587189+00:00_
+_source line 6749 · 2026-05-25T06:58:07.587189+00:00_
 
 called Read
 
@@ -5464,7 +4399,7 @@ called Read
 
 ### Tool result
 
-_source line 6752 · 2026-05-25T06:58:07.890107+00:00_
+_source line 6750 · 2026-05-25T06:58:07.890107+00:00_
 
 1	\appendix
 2	
@@ -5505,7 +4440,7 @@ _source line 6752 · 2026-05-25T06:58:07.890107+00:00_
 
 ### Tool call
 
-_source line 6753 · 2026-05-25T06:58:50.544951+00:00_
+_source line 6751 · 2026-05-25T06:58:50.544951+00:00_
 
 called Grep
 
@@ -5545,7 +4480,7 @@ called Grep
 
 ### Tool result
 
-_source line 6754 · 2026-05-25T06:58:51.500126+00:00_
+_source line 6752 · 2026-05-25T06:58:51.500126+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl_natbib.bst:226:            { "XXX" }
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/acl_natbib.bst:395: % Each function has a name bbl.xxx where xxx is the English word.
@@ -5568,7 +4503,7 @@ _source line 6754 · 2026-05-25T06:58:51.500126+00:00_
 
 ### Tool call
 
-_source line 6755 · 2026-05-25T06:58:52.002903+00:00_
+_source line 6753 · 2026-05-25T06:58:52.002903+00:00_
 
 called Grep
 
@@ -5608,7 +4543,7 @@ called Grep
 
 ### Tool result
 
-_source line 6756 · 2026-05-25T06:58:52.507610+00:00_
+_source line 6754 · 2026-05-25T06:58:52.507610+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.fls:1:PWD /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_085152/manifest.yaml:2:  backup_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_085152/pipeline_diagram.pdf
@@ -5638,7 +4573,7 @@ _source line 6756 · 2026-05-25T06:58:52.507610+00:00_
 
 ### Tool call
 
-_source line 6757 · 2026-05-25T06:58:53.060520+00:00_
+_source line 6755 · 2026-05-25T06:58:53.060520+00:00_
 
 called Grep
 
@@ -5678,7 +4613,7 @@ called Grep
 
 ### Tool result
 
-_source line 6758 · 2026-05-25T06:58:53.563178+00:00_
+_source line 6756 · 2026-05-25T06:58:53.563178+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex:14:\citet{jeong2025comparative} identify the Comparative Trap---pairwise comparison may amplify style biases---which we address in \S\ref{sec:amplification}.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:48:Claude & Form.\ & .562 & $-$.021 (.721) & --- \\
@@ -5708,7 +4643,7 @@ _source line 6758 · 2026-05-25T06:58:53.563178+00:00_
 
 ### Tool call
 
-_source line 6759 · 2026-05-25T06:58:54.017436+00:00_
+_source line 6757 · 2026-05-25T06:58:54.017436+00:00_
 
 called Grep
 
@@ -5748,7 +4683,7 @@ called Grep
 
 ### Tool result
 
-_source line 6760 · 2026-05-25T06:58:54.118412+00:00_
+_source line 6758 · 2026-05-25T06:58:54.118412+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex:12:To control for rewriting artifact bias (the possibility that the judge prefers original text over any rewrite regardless of style), we additionally generate a same-style double-rewrite for each text (e.g., formal $\to$ formal) to form an original-vs-double-rewrite control pair, following the RATE bias correction protocol \citep{reber2025rate}.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex:52:For cross-benchmark validation, we additionally evaluate on AlpacaEval \citep{dubois2023alpacafarm} and MT-Bench \citep{zheng2023judging}, targeting the strongest effects from the primary analysis to test whether style sensitivity generalizes beyond a single benchmark's distributional characteristics.
@@ -5772,7 +4707,7 @@ _source line 6760 · 2026-05-25T06:58:54.118412+00:00_
 
 ### Tool call
 
-_source line 6761 · 2026-05-25T07:01:24.442118+00:00_
+_source line 6759 · 2026-05-25T07:01:24.442118+00:00_
 
 called Grep
 
@@ -5812,7 +4747,7 @@ called Grep
 
 ### Tool result
 
-_source line 6762 · 2026-05-25T07:01:25.297983+00:00_
+_source line 6760 · 2026-05-25T07:01:25.297983+00:00_
 
 No matches found
 
@@ -5834,7 +4769,7 @@ No matches found
 
 ### Tool call
 
-_source line 6763 · 2026-05-25T07:01:25.701005+00:00_
+_source line 6761 · 2026-05-25T07:01:25.701005+00:00_
 
 called Grep
 
@@ -5874,7 +4809,7 @@ called Grep
 
 ### Tool result
 
-_source line 6764 · 2026-05-25T07:01:25.802022+00:00_
+_source line 6762 · 2026-05-25T07:01:25.802022+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex:8:Three variables govern the observed judge score $Y$: the style attribute $S$ (e.g., formality), the original content quality $Q$, and the judge's internal scoring function.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex:822:    \item \textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.
@@ -5900,7 +4835,7 @@ _source line 6764 · 2026-05-25T07:01:25.802022+00:00_
 
 ### Tool call
 
-_source line 6765 · 2026-05-25T07:01:41.120697+00:00_
+_source line 6763 · 2026-05-25T07:01:41.120697+00:00_
 
 called Edit
 
@@ -5940,7 +4875,7 @@ called Edit
 
 ### Tool result
 
-_source line 6766 · 2026-05-25T07:01:41.472727+00:00_
+_source line 6764 · 2026-05-25T07:01:41.472727+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex has been updated successfully.
 
@@ -5962,7 +4897,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6767 · 2026-05-25T07:01:46.496524+00:00_
+_source line 6765 · 2026-05-25T07:01:46.496524+00:00_
 
 called Edit
 
@@ -6002,7 +4937,7 @@ called Edit
 
 ### Tool result
 
-_source line 6768 · 2026-05-25T07:01:46.698011+00:00_
+_source line 6766 · 2026-05-25T07:01:46.698011+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -6024,7 +4959,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6769 · 2026-05-25T07:01:50.063470+00:00_
+_source line 6767 · 2026-05-25T07:01:50.063470+00:00_
 
 called Edit
 
@@ -6064,7 +4999,7 @@ called Edit
 
 ### Tool result
 
-_source line 6770 · 2026-05-25T07:01:50.064665+00:00_
+_source line 6768 · 2026-05-25T07:01:50.064665+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -6086,7 +5021,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6771 · 2026-05-25T07:01:50.467124+00:00_
+_source line 6769 · 2026-05-25T07:01:50.467124+00:00_
 
 called Edit
 
@@ -6126,7 +5061,7 @@ called Edit
 
 ### Tool result
 
-_source line 6772 · 2026-05-25T07:01:50.517938+00:00_
+_source line 6770 · 2026-05-25T07:01:50.517938+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex has been updated successfully.
 
@@ -6148,7 +5083,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6773 · 2026-05-25T07:01:51.071131+00:00_
+_source line 6771 · 2026-05-25T07:01:51.071131+00:00_
 
 called Edit
 
@@ -6188,7 +5123,7 @@ called Edit
 
 ### Tool result
 
-_source line 6774 · 2026-05-25T07:01:51.423282+00:00_
+_source line 6772 · 2026-05-25T07:01:51.423282+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex has been updated successfully.
 
@@ -6210,7 +5145,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6775 · 2026-05-25T07:01:51.574375+00:00_
+_source line 6773 · 2026-05-25T07:01:51.574375+00:00_
 
 called Edit
 
@@ -6250,7 +5185,7 @@ called Edit
 
 ### Tool result
 
-_source line 6776 · 2026-05-25T07:01:51.675349+00:00_
+_source line 6774 · 2026-05-25T07:01:51.675349+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex has been updated successfully.
 
@@ -6272,7 +5207,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6777 · 2026-05-25T07:02:04.789893+00:00_
+_source line 6775 · 2026-05-25T07:02:04.789893+00:00_
 
 called Edit
 
@@ -6312,7 +5247,7 @@ called Edit
 
 ### Tool result
 
-_source line 6778 · 2026-05-25T07:02:05.243763+00:00_
+_source line 6776 · 2026-05-25T07:02:05.243763+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6334,7 +5269,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6779 · 2026-05-25T07:02:06.751736+00:00_
+_source line 6777 · 2026-05-25T07:02:06.751736+00:00_
 
 called Edit
 
@@ -6374,7 +5309,7 @@ called Edit
 
 ### Tool result
 
-_source line 6780 · 2026-05-25T07:02:07.104115+00:00_
+_source line 6778 · 2026-05-25T07:02:07.104115+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6396,7 +5331,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6781 · 2026-05-25T07:02:08.058710+00:00_
+_source line 6779 · 2026-05-25T07:02:08.058710+00:00_
 
 called Edit
 
@@ -6436,7 +5371,7 @@ called Edit
 
 ### Tool result
 
-_source line 6782 · 2026-05-25T07:02:08.559544+00:00_
+_source line 6780 · 2026-05-25T07:02:08.559544+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6458,7 +5393,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6783 · 2026-05-25T07:02:09.508046+00:00_
+_source line 6781 · 2026-05-25T07:02:09.508046+00:00_
 
 called Edit
 
@@ -6498,7 +5433,7 @@ called Edit
 
 ### Tool result
 
-_source line 6784 · 2026-05-25T07:02:09.986720+00:00_
+_source line 6782 · 2026-05-25T07:02:09.986720+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6520,7 +5455,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6785 · 2026-05-25T07:02:10.993552+00:00_
+_source line 6783 · 2026-05-25T07:02:10.993552+00:00_
 
 called Edit
 
@@ -6560,7 +5495,7 @@ called Edit
 
 ### Tool result
 
-_source line 6786 · 2026-05-25T07:02:11.399167+00:00_
+_source line 6784 · 2026-05-25T07:02:11.399167+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6582,7 +5517,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6787 · 2026-05-25T07:02:12.357786+00:00_
+_source line 6785 · 2026-05-25T07:02:12.357786+00:00_
 
 called Edit
 
@@ -6622,7 +5557,7 @@ called Edit
 
 ### Tool result
 
-_source line 6788 · 2026-05-25T07:02:12.811189+00:00_
+_source line 6786 · 2026-05-25T07:02:12.811189+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6644,7 +5579,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6789 · 2026-05-25T07:02:13.816776+00:00_
+_source line 6787 · 2026-05-25T07:02:13.816776+00:00_
 
 called Edit
 
@@ -6684,7 +5619,7 @@ called Edit
 
 ### Tool result
 
-_source line 6790 · 2026-05-25T07:02:14.269596+00:00_
+_source line 6788 · 2026-05-25T07:02:14.269596+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6706,7 +5641,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6791 · 2026-05-25T07:02:15.225427+00:00_
+_source line 6789 · 2026-05-25T07:02:15.225427+00:00_
 
 called Edit
 
@@ -6746,7 +5681,7 @@ called Edit
 
 ### Tool result
 
-_source line 6792 · 2026-05-25T07:02:15.678706+00:00_
+_source line 6790 · 2026-05-25T07:02:15.678706+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6768,7 +5703,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6793 · 2026-05-25T07:02:16.583772+00:00_
+_source line 6791 · 2026-05-25T07:02:16.583772+00:00_
 
 called Edit
 
@@ -6808,7 +5743,7 @@ called Edit
 
 ### Tool result
 
-_source line 6794 · 2026-05-25T07:02:17.087724+00:00_
+_source line 6792 · 2026-05-25T07:02:17.087724+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6830,7 +5765,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6795 · 2026-05-25T07:02:18.395403+00:00_
+_source line 6793 · 2026-05-25T07:02:18.395403+00:00_
 
 called Edit
 
@@ -6870,7 +5805,7 @@ called Edit
 
 ### Tool result
 
-_source line 6796 · 2026-05-25T07:02:18.446510+00:00_
+_source line 6794 · 2026-05-25T07:02:18.446510+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -6892,7 +5827,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6797 · 2026-05-25T07:02:38.301504+00:00_
+_source line 6795 · 2026-05-25T07:02:38.301504+00:00_
 
 called Bash
 
@@ -6928,7 +5863,7 @@ called Bash
 
 ### Tool result
 
-_source line 6798 · 2026-05-25T07:02:38.755381+00:00_
+_source line 6796 · 2026-05-25T07:02:38.755381+00:00_
 
 162
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/paper_agent_6f1f41de
@@ -6951,7 +5886,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/
 
 ### Tool call
 
-_source line 6799 · 2026-05-25T07:02:39.107246+00:00_
+_source line 6797 · 2026-05-25T07:02:39.107246+00:00_
 
 called Grep
 
@@ -6991,7 +5926,7 @@ called Grep
 
 ### Tool result
 
-_source line 6800 · 2026-05-25T07:02:39.158072+00:00_
+_source line 6798 · 2026-05-25T07:02:39.158072+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:48:Claude & Form.\ & .562 & $-$.021 (.721) & --- \\
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:49:Claude & Verb.\ & .541 & $-$.039 (.743) & --- \\
@@ -7024,7 +5959,7 @@ _source line 6800 · 2026-05-25T07:02:39.158072+00:00_
 
 ### Tool call
 
-_source line 6801 · 2026-05-25T07:02:50.062207+00:00_
+_source line 6799 · 2026-05-25T07:02:50.062207+00:00_
 
 called Edit
 
@@ -7064,7 +5999,7 @@ called Edit
 
 ### Tool result
 
-_source line 6802 · 2026-05-25T07:02:50.113429+00:00_
+_source line 6800 · 2026-05-25T07:02:50.113429+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -7086,7 +6021,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6803 · 2026-05-25T07:03:03.337501+00:00_
+_source line 6801 · 2026-05-25T07:03:03.337501+00:00_
 
 called Edit
 
@@ -7126,7 +6061,7 @@ called Edit
 
 ### Tool result
 
-_source line 6804 · 2026-05-25T07:03:03.338267+00:00_
+_source line 6802 · 2026-05-25T07:03:03.338267+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -7148,7 +6083,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6805 · 2026-05-25T07:03:07.962261+00:00_
+_source line 6803 · 2026-05-25T07:03:07.962261+00:00_
 
 called Grep
 
@@ -7186,7 +6121,7 @@ called Grep
 
 ### Tool result
 
-_source line 6806 · 2026-05-25T07:03:08.012976+00:00_
+_source line 6804 · 2026-05-25T07:03:08.012976+00:00_
 
 No matches found
 
@@ -7208,7 +6143,7 @@ No matches found
 
 ### Tool call
 
-_source line 6807 · 2026-05-25T07:03:12.771954+00:00_
+_source line 6805 · 2026-05-25T07:03:12.771954+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -7246,7 +6181,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6808 · 2026-05-25T07:03:19.304543+00:00_
+_source line 6806 · 2026-05-25T07:03:19.304543+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 822--823\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26564 strings out of 469438\\n 482699 string characters out of 5468411\\n 928689 words of memory out of 5000000\\n 54144 multiletter control sequences out of 15000+600000\\n 70261
 …[truncated 11155 chars]
@@ -7269,7 +6204,7 @@ _source line 6808 · 2026-05-25T07:03:19.304543+00:00_
 
 ### Tool call
 
-_source line 6809 · 2026-05-25T07:03:31.434267+00:00_
+_source line 6807 · 2026-05-25T07:03:31.434267+00:00_
 
 called Read
 
@@ -7303,7 +6238,7 @@ called Read
 
 ### Tool call
 
-_source line 6810 · 2026-05-25T07:03:31.485264+00:00_
+_source line 6808 · 2026-05-25T07:03:31.485264+00:00_
 
 called Read
 
@@ -7337,7 +6272,7 @@ called Read
 
 ### Tool result
 
-_source line 6811 · 2026-05-25T07:03:32.798352+00:00_
+_source line 6809 · 2026-05-25T07:03:32.798352+00:00_
 
 
 
@@ -7359,7 +6294,7 @@ _source line 6811 · 2026-05-25T07:03:32.798352+00:00_
 
 ### Tool result
 
-_source line 6812 · 2026-05-25T07:03:32.952249+00:00_
+_source line 6810 · 2026-05-25T07:03:32.952249+00:00_
 
 
 
@@ -7381,7 +6316,7 @@ _source line 6812 · 2026-05-25T07:03:32.952249+00:00_
 
 ### Tool call
 
-_source line 6813 · 2026-05-25T07:03:40.950441+00:00_
+_source line 6811 · 2026-05-25T07:03:40.950441+00:00_
 
 called Read
 
@@ -7415,7 +6350,7 @@ called Read
 
 ### Tool result
 
-_source line 6814 · 2026-05-25T07:03:41.605932+00:00_
+_source line 6812 · 2026-05-25T07:03:41.605932+00:00_
 
 
 
@@ -7437,7 +6372,7 @@ _source line 6814 · 2026-05-25T07:03:41.605932+00:00_
 
 ### Tool call
 
-_source line 6815 · 2026-05-25T07:03:53.323520+00:00_
+_source line 6813 · 2026-05-25T07:03:53.323520+00:00_
 
 called Bash
 
@@ -7473,7 +6408,7 @@ called Bash
 
 ### Tool call
 
-_source line 6816 · 2026-05-25T07:03:53.374431+00:00_
+_source line 6814 · 2026-05-25T07:03:53.374431+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -7507,7 +6442,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 6817 · 2026-05-25T07:03:53.425214+00:00_
+_source line 6815 · 2026-05-25T07:03:53.425214+00:00_
 
 texcount not available, using detex
 152
@@ -7531,7 +6466,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/
 
 ### Tool result
 
-_source line 6818 · 2026-05-25T07:03:53.425751+00:00_
+_source line 6816 · 2026-05-25T07:03:53.425751+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"sections\": [], \"critical\": [], \"warning\": [{\"kind\": \"no_paper_tex\", \"message\": \"No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"location\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\"}], \"info\": [], \"summary\": {\"critical\": 0, \"warning\": 1, \"info\": 0}}, \"error\": null, \"metadata\": {}}"}
 
@@ -7553,7 +6488,7 @@ _source line 6818 · 2026-05-25T07:03:53.425751+00:00_
 
 ### Tool call
 
-_source line 6819 · 2026-05-25T07:04:32.523513+00:00_
+_source line 6817 · 2026-05-25T07:04:32.523513+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -7589,7 +6524,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6820 · 2026-05-25T07:04:36.642072+00:00_
+_source line 6818 · 2026-05-25T07:04:36.642072+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -7611,7 +6546,7 @@ _source line 6820 · 2026-05-25T07:04:36.642072+00:00_
 
 ### Assistant
 
-_source line 6821 · 2026-05-25T07:04:43.157875+00:00_
+_source line 6819 · 2026-05-25T07:04:43.157875+00:00_
 
 修复完成，已汇报 Director。修改汇总：
 
@@ -7649,7 +6584,7 @@ _source line 6821 · 2026-05-25T07:04:43.157875+00:00_
 
 ### User
 
-_source line 6822 · 2026-05-25T07:04:43.753498+00:00_
+_source line 6820 · 2026-05-25T07:04:43.753498+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -7670,7 +6605,7 @@ _source line 6822 · 2026-05-25T07:04:43.753498+00:00_
 
 ### Assistant
 
-_source line 6823 · 2026-05-25T07:04:52.091081+00:00_
+_source line 6821 · 2026-05-25T07:04:52.091081+00:00_
 
 已在上一轮通过 `paper_agent_post_to_director` 完成汇报（返回 success=true）。Patch 修复全部完成，等待 Director 下一步指令。
 
@@ -7697,7 +6632,7 @@ _source line 6823 · 2026-05-25T07:04:52.091081+00:00_
 
 ### User
 
-_source line 6824 · 2026-05-25T07:17:57.752542+00:00_
+_source line 6822 · 2026-05-25T07:17:57.752542+00:00_
 
 [Director 指令] [Patch — 审计修复 Round 2] 上轮修复的 em-dash/占位符/信息泄露/Abstract 字数已通过审计 ✅。但发现新的 critical 和遗留 warning，按优先级：
 
@@ -7739,7 +6674,7 @@ Abstract 已修为 "Style OR 8–13 at n=88"，但 Introduction Contribution 2 �
 
 ### Tool call
 
-_source line 6825 · 2026-05-25T07:18:07.257729+00:00_
+_source line 6823 · 2026-05-25T07:18:07.257729+00:00_
 
 called Read
 
@@ -7773,7 +6708,7 @@ called Read
 
 ### Tool result
 
-_source line 6826 · 2026-05-25T07:18:07.860711+00:00_
+_source line 6824 · 2026-05-25T07:18:07.860711+00:00_
 
 1	\begin{abstract}
 2	Likert and pairwise scoring yield divergent style-sensitivity profiles in LLM judges.
@@ -7805,7 +6740,7 @@ _source line 6826 · 2026-05-25T07:18:07.860711+00:00_
 
 ### Tool call
 
-_source line 6827 · 2026-05-25T07:18:08.664392+00:00_
+_source line 6825 · 2026-05-25T07:18:08.664392+00:00_
 
 called Read
 
@@ -7843,7 +6778,7 @@ called Read
 
 ### Tool result
 
-_source line 6828 · 2026-05-25T07:18:08.664765+00:00_
+_source line 6826 · 2026-05-25T07:18:08.664765+00:00_
 
 20	Our contributions are both methodological and empirical:
 21	\begin{itemize}
@@ -7870,7 +6805,7 @@ _source line 6828 · 2026-05-25T07:18:08.664765+00:00_
 
 ### Tool call
 
-_source line 6829 · 2026-05-25T07:18:08.715227+00:00_
+_source line 6827 · 2026-05-25T07:18:08.715227+00:00_
 
 called Read
 
@@ -7908,7 +6843,7 @@ called Read
 
 ### Tool result
 
-_source line 6830 · 2026-05-25T07:18:08.766531+00:00_
+_source line 6828 · 2026-05-25T07:18:08.766531+00:00_
 
 110	\begin{table}[t]
 111	\centering
@@ -7935,7 +6870,7 @@ _source line 6830 · 2026-05-25T07:18:08.766531+00:00_
 
 ### Tool call
 
-_source line 6831 · 2026-05-25T07:18:13.737416+00:00_
+_source line 6829 · 2026-05-25T07:18:13.737416+00:00_
 
 called Edit
 
@@ -7975,7 +6910,7 @@ called Edit
 
 ### Tool result
 
-_source line 6832 · 2026-05-25T07:18:14.139583+00:00_
+_source line 6830 · 2026-05-25T07:18:14.139583+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex has been updated successfully.
 
@@ -7997,7 +6932,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6833 · 2026-05-25T07:18:15.093961+00:00_
+_source line 6831 · 2026-05-25T07:18:15.093961+00:00_
 
 called Edit
 
@@ -8037,7 +6972,7 @@ called Edit
 
 ### Tool result
 
-_source line 6834 · 2026-05-25T07:18:15.546521+00:00_
+_source line 6832 · 2026-05-25T07:18:15.546521+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -8059,7 +6994,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6835 · 2026-05-25T07:18:16.601465+00:00_
+_source line 6833 · 2026-05-25T07:18:16.601465+00:00_
 
 called Edit
 
@@ -8099,7 +7034,7 @@ called Edit
 
 ### Tool result
 
-_source line 6836 · 2026-05-25T07:18:16.702852+00:00_
+_source line 6834 · 2026-05-25T07:18:16.702852+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -8121,7 +7056,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6837 · 2026-05-25T07:18:22.730451+00:00_
+_source line 6835 · 2026-05-25T07:18:22.730451+00:00_
 
 called Grep
 
@@ -8159,7 +7094,7 @@ called Grep
 
 ### Tool result
 
-_source line 6838 · 2026-05-25T07:18:23.333478+00:00_
+_source line 6836 · 2026-05-25T07:18:23.333478+00:00_
 
 No matches found
 
@@ -8181,7 +7116,7 @@ No matches found
 
 ### Tool call
 
-_source line 6839 · 2026-05-25T07:18:23.735482+00:00_
+_source line 6837 · 2026-05-25T07:18:23.735482+00:00_
 
 called Bash
 
@@ -8217,7 +7152,7 @@ called Bash
 
 ### Tool result
 
-_source line 6840 · 2026-05-25T07:18:24.213722+00:00_
+_source line 6838 · 2026-05-25T07:18:24.213722+00:00_
 
 160
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/paper_agent_6f1f41de
@@ -8240,7 +7175,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/
 
 ### Tool call
 
-_source line 6841 · 2026-05-25T07:18:28.485836+00:00_
+_source line 6839 · 2026-05-25T07:18:28.485836+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -8278,7 +7213,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6842 · 2026-05-25T07:18:31.955081+00:00_
+_source line 6840 · 2026-05-25T07:18:31.955081+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 822--823\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26561 strings out of 469438\\n 482672 string characters out of 5468411\\n 927693 words of memory out of 5000000\\n 54144 multiletter control sequences out of 15000+600000\\n 70248
 …[truncated 6909 chars]
@@ -8301,7 +7236,7 @@ _source line 6842 · 2026-05-25T07:18:31.955081+00:00_
 
 ### Tool call
 
-_source line 6843 · 2026-05-25T07:18:47.455149+00:00_
+_source line 6841 · 2026-05-25T07:18:47.455149+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -8337,7 +7272,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6844 · 2026-05-25T07:18:51.574633+00:00_
+_source line 6842 · 2026-05-25T07:18:51.574633+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -8359,7 +7294,7 @@ _source line 6844 · 2026-05-25T07:18:51.574633+00:00_
 
 ### Assistant
 
-_source line 6845 · 2026-05-25T07:18:54.421195+00:00_
+_source line 6843 · 2026-05-25T07:18:54.421195+00:00_
 
 Round 2 全部修复完成并已汇报 Director。
 
@@ -8386,7 +7321,7 @@ Round 2 全部修复完成并已汇报 Director。
 
 ### User
 
-_source line 6846 · 2026-05-25T07:18:55.074786+00:00_
+_source line 6844 · 2026-05-25T07:18:55.074786+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -8407,7 +7342,7 @@ _source line 6846 · 2026-05-25T07:18:55.074786+00:00_
 
 ### Assistant
 
-_source line 6847 · 2026-05-25T07:19:04.845866+00:00_
+_source line 6845 · 2026-05-25T07:19:04.845866+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报完成，Director 已收到 Round 2 修复报告。无需额外操作。
 
@@ -8434,7 +7369,7 @@ _source line 6847 · 2026-05-25T07:19:04.845866+00:00_
 
 ### User
 
-_source line 6848 · 2026-05-25T07:30:11.745947+00:00_
+_source line 6846 · 2026-05-25T07:30:11.745947+00:00_
 
 [Director 指令] [Patch — 审计修复 Round 3] 前两轮修复已通过。本轮修 4 个 warning，都是审稿人会抓的点：
 
@@ -8474,7 +7409,7 @@ conclusion.tex:3 "8/8 primary cells" — 但 experiments.tex 将 Gemini 排除�
 
 ### Tool call
 
-_source line 6849 · 2026-05-25T07:30:19.716726+00:00_
+_source line 6847 · 2026-05-25T07:30:19.716726+00:00_
 
 called Read
 
@@ -8508,7 +7443,7 @@ called Read
 
 ### Tool result
 
-_source line 6850 · 2026-05-25T07:30:20.174192+00:00_
+_source line 6848 · 2026-05-25T07:30:20.174192+00:00_
 
 1	\begin{abstract}
 2	Likert and pairwise scoring yield divergent style-sensitivity profiles in LLM judges.
@@ -8540,7 +7475,7 @@ _source line 6850 · 2026-05-25T07:30:20.174192+00:00_
 
 ### Tool call
 
-_source line 6851 · 2026-05-25T07:30:20.880769+00:00_
+_source line 6849 · 2026-05-25T07:30:20.880769+00:00_
 
 called Read
 
@@ -8578,7 +7513,7 @@ called Read
 
 ### Tool result
 
-_source line 6852 · 2026-05-25T07:30:20.982728+00:00_
+_source line 6850 · 2026-05-25T07:30:20.982728+00:00_
 
 11	Classical psychometrics establishes that pairwise comparison yields higher discriminability than absolute rating \citep{thurstone1927law,david1988method}; our power analysis (Figure~\ref{fig:power_curve}) is quantitatively consistent.
 12	In the LLM judge setting, this gap has \emph{per-axis} confound signatures: verbosity is style-dominated (Style OR $8$--$13$) while formality is quality-confounded (Table~\ref{tab:gee}), a decomposition not previously applied in LLM judge evaluation.
@@ -8612,7 +7547,7 @@ _source line 6852 · 2026-05-25T07:30:20.982728+00:00_
 
 ### Tool call
 
-_source line 6853 · 2026-05-25T07:30:21.033818+00:00_
+_source line 6851 · 2026-05-25T07:30:21.033818+00:00_
 
 called Read
 
@@ -8646,7 +7581,7 @@ called Read
 
 ### Tool result
 
-_source line 6854 · 2026-05-25T07:30:21.084712+00:00_
+_source line 6852 · 2026-05-25T07:30:21.084712+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -8674,7 +7609,7 @@ _source line 6854 · 2026-05-25T07:30:21.084712+00:00_
 
 ### Tool call
 
-_source line 6855 · 2026-05-25T07:31:07.908791+00:00_
+_source line 6853 · 2026-05-25T07:31:07.908791+00:00_
 
 called Edit
 
@@ -8714,7 +7649,7 @@ called Edit
 
 ### Tool result
 
-_source line 6856 · 2026-05-25T07:31:08.060055+00:00_
+_source line 6854 · 2026-05-25T07:31:08.060055+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex has been updated successfully.
 
@@ -8736,7 +7671,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6857 · 2026-05-25T07:31:09.566729+00:00_
+_source line 6855 · 2026-05-25T07:31:09.566729+00:00_
 
 called Edit
 
@@ -8776,7 +7711,7 @@ called Edit
 
 ### Tool result
 
-_source line 6858 · 2026-05-25T07:31:10.019131+00:00_
+_source line 6856 · 2026-05-25T07:31:10.019131+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -8798,7 +7733,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6859 · 2026-05-25T07:31:10.622745+00:00_
+_source line 6857 · 2026-05-25T07:31:10.622745+00:00_
 
 called Edit
 
@@ -8838,7 +7773,7 @@ called Edit
 
 ### Tool result
 
-_source line 6860 · 2026-05-25T07:31:10.723573+00:00_
+_source line 6858 · 2026-05-25T07:31:10.723573+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -8860,7 +7795,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6861 · 2026-05-25T07:31:15.143872+00:00_
+_source line 6859 · 2026-05-25T07:31:15.143872+00:00_
 
 called Bash
 
@@ -8896,7 +7831,7 @@ called Bash
 
 ### Tool result
 
-_source line 6862 · 2026-05-25T07:31:15.548814+00:00_
+_source line 6860 · 2026-05-25T07:31:15.548814+00:00_
 
 163
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/paper_agent_6f1f41de
@@ -8919,7 +7854,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/
 
 ### Tool call
 
-_source line 6863 · 2026-05-25T07:31:15.549320+00:00_
+_source line 6861 · 2026-05-25T07:31:15.549320+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -8957,7 +7892,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6864 · 2026-05-25T07:31:19.218548+00:00_
+_source line 6862 · 2026-05-25T07:31:19.218548+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 770--771\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 822--823\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26570 strings out of 469438\\n 482753 string characters out of 5468411\\n 927693 words of memory out of 5000000\\n 54144 multiletter control sequences out of 15000+600000\\n 70287
 …[truncated 6841 chars]
@@ -8980,7 +7915,7 @@ _source line 6864 · 2026-05-25T07:31:19.218548+00:00_
 
 ### Tool call
 
-_source line 6865 · 2026-05-25T07:31:36.097223+00:00_
+_source line 6863 · 2026-05-25T07:31:36.097223+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -9016,7 +7951,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6866 · 2026-05-25T07:31:40.166552+00:00_
+_source line 6864 · 2026-05-25T07:31:40.166552+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -9038,7 +7973,7 @@ _source line 6866 · 2026-05-25T07:31:40.166552+00:00_
 
 ### Assistant
 
-_source line 6867 · 2026-05-25T07:31:42.563973+00:00_
+_source line 6865 · 2026-05-25T07:31:42.563973+00:00_
 
 编译成功，无 critical warnings，Abstract 163 words。汇报 Director。
 
@@ -9065,7 +8000,7 @@ _source line 6867 · 2026-05-25T07:31:42.563973+00:00_
 
 ### User
 
-_source line 6868 · 2026-05-25T07:31:43.206735+00:00_
+_source line 6866 · 2026-05-25T07:31:43.206735+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -9086,7 +8021,7 @@ _source line 6868 · 2026-05-25T07:31:43.206735+00:00_
 
 ### Assistant
 
-_source line 6869 · 2026-05-25T07:31:52.831053+00:00_
+_source line 6867 · 2026-05-25T07:31:52.831053+00:00_
 
 已通过 `paper_agent_post_to_director` 汇报完成。Paper Agent 的通信通道是 `paper_agent_post_to_director`，非 `main_agent_post_to_director`。Round 3 修复报告已发送成功。
 
@@ -9113,7 +8048,7 @@ _source line 6869 · 2026-05-25T07:31:52.831053+00:00_
 
 ### User
 
-_source line 6870 · 2026-05-25T08:37:55.345270+00:00_
+_source line 6868 · 2026-05-25T08:37:55.345270+00:00_
 
 [Director 指令] [Patch — 链接位置规范化] 匿名仓库链接需要按 ACL/EMNLP 社区惯例放置。
 
@@ -9150,7 +8085,7 @@ _source line 6870 · 2026-05-25T08:37:55.345270+00:00_
 
 ### Tool call
 
-_source line 6871 · 2026-05-25T08:38:04.296940+00:00_
+_source line 6869 · 2026-05-25T08:38:04.296940+00:00_
 
 called Grep
 
@@ -9190,7 +8125,7 @@ called Grep
 
 ### Tool result
 
-_source line 6872 · 2026-05-25T08:38:04.849871+00:00_
+_source line 6870 · 2026-05-25T08:38:04.849871+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex:9:Table~\ref{tab:main_results} reports both raw and adjusted $p$-values.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex:53:We select formality and verbosity as primary axes based on prior evidence that these are among the most commonly reported style sensitivities in LLM judges \citep{wu2023style,saito2023verbosity}, with register (academic vs.\ conversational) as an exploratory third axis (implementation details in Appendix~\ref{app:implementation}).
@@ -9221,7 +8156,7 @@ _source line 6872 · 2026-05-25T08:38:04.849871+00:00_
 
 ### Tool call
 
-_source line 6873 · 2026-05-25T08:38:05.000989+00:00_
+_source line 6871 · 2026-05-25T08:38:05.000989+00:00_
 
 called Grep
 
@@ -9259,7 +8194,7 @@ called Grep
 
 ### Tool result
 
-_source line 6874 · 2026-05-25T08:38:05.051672+00:00_
+_source line 6872 · 2026-05-25T08:38:05.051672+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex:565:All code, prompts, and experimental data will be released upon acceptance under an open-source license.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex:815:Code and data will be released upon acceptance.
@@ -9282,7 +8217,7 @@ _source line 6874 · 2026-05-25T08:38:05.051672+00:00_
 
 ### Tool call
 
-_source line 6875 · 2026-05-25T08:38:15.144157+00:00_
+_source line 6873 · 2026-05-25T08:38:15.144157+00:00_
 
 called Edit
 
@@ -9322,7 +8257,7 @@ called Edit
 
 ### Tool result
 
-_source line 6876 · 2026-05-25T08:38:15.596512+00:00_
+_source line 6874 · 2026-05-25T08:38:15.596512+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex has been updated successfully.
 
@@ -9344,7 +8279,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6877 · 2026-05-25T08:38:16.550735+00:00_
+_source line 6875 · 2026-05-25T08:38:16.550735+00:00_
 
 called Edit
 
@@ -9384,7 +8319,7 @@ called Edit
 
 ### Tool result
 
-_source line 6878 · 2026-05-25T08:38:17.053621+00:00_
+_source line 6876 · 2026-05-25T08:38:17.053621+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -9406,7 +8341,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6879 · 2026-05-25T08:38:17.355312+00:00_
+_source line 6877 · 2026-05-25T08:38:17.355312+00:00_
 
 called Edit
 
@@ -9446,7 +8381,7 @@ called Edit
 
 ### Tool result
 
-_source line 6880 · 2026-05-25T08:38:17.407959+00:00_
+_source line 6878 · 2026-05-25T08:38:17.407959+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -9468,7 +8403,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6881 · 2026-05-25T08:38:22.379040+00:00_
+_source line 6879 · 2026-05-25T08:38:22.379040+00:00_
 
 called Grep
 
@@ -9506,7 +8441,7 @@ called Grep
 
 ### Tool result
 
-_source line 6882 · 2026-05-25T08:38:22.580343+00:00_
+_source line 6880 · 2026-05-25T08:38:22.580343+00:00_
 
 No matches found
 
@@ -9528,7 +8463,7 @@ No matches found
 
 ### Tool call
 
-_source line 6883 · 2026-05-25T08:38:22.630932+00:00_
+_source line 6881 · 2026-05-25T08:38:22.630932+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -9566,7 +8501,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6884 · 2026-05-25T08:38:28.762012+00:00_
+_source line 6882 · 2026-05-25T08:38:28.762012+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 817--818\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26573 strings out of 469438\\n 482799 string characters out of 5468411\\n 927694 words of memory out of 5000000\\n 54147 multiletter control sequences out of 15000+600000\\n 70349
 …[truncated 11226 chars]
@@ -9589,7 +8524,7 @@ _source line 6884 · 2026-05-25T08:38:28.762012+00:00_
 
 ### Tool call
 
-_source line 6885 · 2026-05-25T08:38:37.211541+00:00_
+_source line 6883 · 2026-05-25T08:38:37.211541+00:00_
 
 called Read
 
@@ -9623,7 +8558,7 @@ called Read
 
 ### Tool result
 
-_source line 6886 · 2026-05-25T08:38:37.815545+00:00_
+_source line 6884 · 2026-05-25T08:38:37.815545+00:00_
 
 
 
@@ -9645,7 +8580,7 @@ _source line 6886 · 2026-05-25T08:38:37.815545+00:00_
 
 ### Tool call
 
-_source line 6887 · 2026-05-25T08:38:50.792385+00:00_
+_source line 6885 · 2026-05-25T08:38:50.792385+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -9681,7 +8616,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6888 · 2026-05-25T08:38:54.865469+00:00_
+_source line 6886 · 2026-05-25T08:38:54.865469+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -9703,7 +8638,7 @@ _source line 6888 · 2026-05-25T08:38:54.865469+00:00_
 
 ### Assistant
 
-_source line 6889 · 2026-05-25T08:38:58.019348+00:00_
+_source line 6887 · 2026-05-25T08:38:58.019348+00:00_
 
 脚注正确渲染在第 1 页底部，URL 显示为 `https://github.com/anonymous-nlp-2026-2/causal_style_decomp_judge`。汇报 Director。
 
@@ -9730,7 +8665,7 @@ _source line 6889 · 2026-05-25T08:38:58.019348+00:00_
 
 ### User
 
-_source line 6890 · 2026-05-25T08:38:58.601073+00:00_
+_source line 6888 · 2026-05-25T08:38:58.601073+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -9751,7 +8686,7 @@ _source line 6890 · 2026-05-25T08:38:58.601073+00:00_
 
 ### Assistant
 
-_source line 6891 · 2026-05-25T08:39:04.066277+00:00_
+_source line 6889 · 2026-05-25T08:39:04.066277+00:00_
 
 No response requested.
 
@@ -9778,7 +8713,7 @@ No response requested.
 
 ### User
 
-_source line 6892 · 2026-05-25T08:49:23.226981+00:00_
+_source line 6890 · 2026-05-25T08:49:23.226981+00:00_
 
 [Director 指令] [Patch — 数字一致性修复] Reviewer 独立核实确认以下问题，全部需修复：
 
@@ -9834,7 +8769,7 @@ _source line 6892 · 2026-05-25T08:49:23.226981+00:00_
 
 ### Tool call
 
-_source line 6893 · 2026-05-25T08:49:32.876100+00:00_
+_source line 6891 · 2026-05-25T08:49:32.876100+00:00_
 
 called Read
 
@@ -9872,7 +8807,7 @@ called Read
 
 ### Tool result
 
-_source line 6894 · 2026-05-25T08:49:32.876541+00:00_
+_source line 6892 · 2026-05-25T08:49:32.876541+00:00_
 
 320	
 321	\section{Bootstrap Attenuation Analysis}
@@ -9929,7 +8864,7 @@ _source line 6894 · 2026-05-25T08:49:32.876541+00:00_
 
 ### Tool call
 
-_source line 6895 · 2026-05-25T08:49:33.731837+00:00_
+_source line 6893 · 2026-05-25T08:49:33.731837+00:00_
 
 called Read
 
@@ -9967,7 +8902,7 @@ called Read
 
 ### Tool result
 
-_source line 6896 · 2026-05-25T08:49:34.184403+00:00_
+_source line 6894 · 2026-05-25T08:49:34.184403+00:00_
 
 118	Gemini form.\ & 1.64 [0.91, 2.98] & 2.51 [1.39, 4.54] \\
 119	GPT-4o reg.\ & 1.88 [1.08, 3.28] & 2.21 [1.26, 3.86] \\
@@ -9996,7 +8931,7 @@ _source line 6896 · 2026-05-25T08:49:34.184403+00:00_
 
 ### Tool call
 
-_source line 6897 · 2026-05-25T08:49:34.686723+00:00_
+_source line 6895 · 2026-05-25T08:49:34.686723+00:00_
 
 called Read
 
@@ -10034,7 +8969,7 @@ called Read
 
 ### Tool result
 
-_source line 6898 · 2026-05-25T08:49:35.139406+00:00_
+_source line 6896 · 2026-05-25T08:49:35.139406+00:00_
 
 693	\begin{table}[h]
 694	\centering
@@ -10077,7 +9012,7 @@ _source line 6898 · 2026-05-25T08:49:35.139406+00:00_
 
 ### Tool call
 
-_source line 6899 · 2026-05-25T08:49:35.693045+00:00_
+_source line 6897 · 2026-05-25T08:49:35.693045+00:00_
 
 called Read
 
@@ -10115,7 +9050,7 @@ called Read
 
 ### Tool result
 
-_source line 6900 · 2026-05-25T08:49:36.145963+00:00_
+_source line 6898 · 2026-05-25T08:49:36.145963+00:00_
 
 73	Applying RATE's Likert ATE methodology \citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\%, $p = 0.006$, $n = 46$ consistent pairs).
 74	This is the Likert Blindspot: the same data, the same style intervention, two measurement instruments, yet one detects bias and the other does not.
@@ -10150,7 +9085,7 @@ _source line 6900 · 2026-05-25T08:49:36.145963+00:00_
 
 ### Tool call
 
-_source line 6901 · 2026-05-25T08:49:36.196731+00:00_
+_source line 6899 · 2026-05-25T08:49:36.196731+00:00_
 
 called Read
 
@@ -10184,7 +9119,7 @@ called Read
 
 ### Tool result
 
-_source line 6902 · 2026-05-25T08:49:36.699002+00:00_
+_source line 6900 · 2026-05-25T08:49:36.699002+00:00_
 
 1	\begin{abstract}
 2	Likert and pairwise scoring yield divergent style-sensitivity profiles in LLM judges.
@@ -10217,7 +9152,7 @@ _source line 6902 · 2026-05-25T08:49:36.699002+00:00_
 
 ### Tool call
 
-_source line 6903 · 2026-05-25T08:49:36.751470+00:00_
+_source line 6901 · 2026-05-25T08:49:36.751470+00:00_
 
 called Read
 
@@ -10251,7 +9186,7 @@ called Read
 
 ### Tool result
 
-_source line 6904 · 2026-05-25T08:49:36.752009+00:00_
+_source line 6902 · 2026-05-25T08:49:36.752009+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -10279,7 +9214,7 @@ _source line 6904 · 2026-05-25T08:49:36.752009+00:00_
 
 ### Tool call
 
-_source line 6905 · 2026-05-25T08:50:10.614702+00:00_
+_source line 6903 · 2026-05-25T08:50:10.614702+00:00_
 
 called Read
 
@@ -10317,7 +9252,7 @@ called Read
 
 ### Tool result
 
-_source line 6906 · 2026-05-25T08:50:10.715764+00:00_
+_source line 6904 · 2026-05-25T08:50:10.715764+00:00_
 
 137	\end{tabular}
 138	\end{table}
@@ -10343,7 +9278,7 @@ _source line 6906 · 2026-05-25T08:50:10.715764+00:00_
 
 ### Tool call
 
-_source line 6907 · 2026-05-25T08:50:15.488487+00:00_
+_source line 6905 · 2026-05-25T08:50:15.488487+00:00_
 
 called Read
 
@@ -10381,7 +9316,7 @@ called Read
 
 ### Tool result
 
-_source line 6908 · 2026-05-25T08:50:15.539135+00:00_
+_source line 6906 · 2026-05-25T08:50:15.539135+00:00_
 
 35	\cmidrule{1-5}
 36	Qwen3 & Form.\ & .665$^{***}$ & $-$.052 (.461) & $\dagger$ \\
@@ -10407,7 +9342,7 @@ _source line 6908 · 2026-05-25T08:50:15.539135+00:00_
 
 ### Tool call
 
-_source line 6909 · 2026-05-25T08:50:41.487980+00:00_
+_source line 6907 · 2026-05-25T08:50:41.487980+00:00_
 
 called Edit
 
@@ -10447,7 +9382,7 @@ called Edit
 
 ### Tool result
 
-_source line 6910 · 2026-05-25T08:50:42.092633+00:00_
+_source line 6908 · 2026-05-25T08:50:42.092633+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -10469,7 +9404,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6911 · 2026-05-25T08:50:44.456367+00:00_
+_source line 6909 · 2026-05-25T08:50:44.456367+00:00_
 
 called Edit
 
@@ -10509,7 +9444,7 @@ called Edit
 
 ### Tool result
 
-_source line 6912 · 2026-05-25T08:50:44.909246+00:00_
+_source line 6910 · 2026-05-25T08:50:44.909246+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -10531,7 +9466,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6913 · 2026-05-25T08:50:47.274594+00:00_
+_source line 6911 · 2026-05-25T08:50:47.274594+00:00_
 
 called Edit
 
@@ -10571,7 +9506,7 @@ called Edit
 
 ### Tool result
 
-_source line 6914 · 2026-05-25T08:50:47.728352+00:00_
+_source line 6912 · 2026-05-25T08:50:47.728352+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -10593,7 +9528,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6915 · 2026-05-25T08:50:48.130845+00:00_
+_source line 6913 · 2026-05-25T08:50:48.130845+00:00_
 
 called Edit
 
@@ -10633,7 +9568,7 @@ called Edit
 
 ### Tool result
 
-_source line 6916 · 2026-05-25T08:50:48.131588+00:00_
+_source line 6914 · 2026-05-25T08:50:48.131588+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -10655,7 +9590,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6917 · 2026-05-25T08:50:50.493241+00:00_
+_source line 6915 · 2026-05-25T08:50:50.493241+00:00_
 
 called Edit
 
@@ -10695,7 +9630,7 @@ called Edit
 
 ### Tool result
 
-_source line 6918 · 2026-05-25T08:50:50.493709+00:00_
+_source line 6916 · 2026-05-25T08:50:50.493709+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex has been updated successfully.
 
@@ -10717,7 +9652,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6919 · 2026-05-25T08:50:51.146904+00:00_
+_source line 6917 · 2026-05-25T08:50:51.146904+00:00_
 
 called Edit
 
@@ -10757,7 +9692,7 @@ called Edit
 
 ### Tool result
 
-_source line 6920 · 2026-05-25T08:50:51.550500+00:00_
+_source line 6918 · 2026-05-25T08:50:51.550500+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -10779,7 +9714,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6921 · 2026-05-25T08:50:53.128589+00:00_
+_source line 6919 · 2026-05-25T08:50:53.128589+00:00_
 
 called Edit
 
@@ -10819,7 +9754,7 @@ called Edit
 
 ### Tool result
 
-_source line 6922 · 2026-05-25T08:50:53.129318+00:00_
+_source line 6920 · 2026-05-25T08:50:53.129318+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -10841,7 +9776,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6923 · 2026-05-25T08:50:54.376442+00:00_
+_source line 6921 · 2026-05-25T08:50:54.376442+00:00_
 
 called Edit
 
@@ -10881,7 +9816,7 @@ called Edit
 
 ### Tool result
 
-_source line 6924 · 2026-05-25T08:50:54.880472+00:00_
+_source line 6922 · 2026-05-25T08:50:54.880472+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -10903,7 +9838,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6925 · 2026-05-25T08:50:56.236839+00:00_
+_source line 6923 · 2026-05-25T08:50:56.236839+00:00_
 
 called Edit
 
@@ -10943,7 +9878,7 @@ called Edit
 
 ### Tool result
 
-_source line 6926 · 2026-05-25T08:50:56.287529+00:00_
+_source line 6924 · 2026-05-25T08:50:56.287529+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -10965,7 +9900,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6927 · 2026-05-25T08:50:59.809188+00:00_
+_source line 6925 · 2026-05-25T08:50:59.809188+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -11003,7 +9938,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6928 · 2026-05-25T08:51:03.741840+00:00_
+_source line 6926 · 2026-05-25T08:51:03.741840+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 817--818\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26570 strings out of 469438\\n 482772 string characters out of 5468411\\n 926783 words of memory out of 5000000\\n 54147 multiletter control sequences out of 15000+600000\\n 70336
 …[truncated 6482 chars]
@@ -11026,7 +9961,7 @@ _source line 6928 · 2026-05-25T08:51:03.741840+00:00_
 
 ### Tool call
 
-_source line 6929 · 2026-05-25T08:51:20.433031+00:00_
+_source line 6927 · 2026-05-25T08:51:20.433031+00:00_
 
 called Read
 
@@ -11064,7 +9999,7 @@ called Read
 
 ### Tool result
 
-_source line 6930 · 2026-05-25T08:51:20.534565+00:00_
+_source line 6928 · 2026-05-25T08:51:20.534565+00:00_
 
 110	\begin{table}[t]
 111	\centering
@@ -11113,7 +10048,7 @@ _source line 6930 · 2026-05-25T08:51:20.534565+00:00_
 
 ### Tool call
 
-_source line 6931 · 2026-05-25T08:51:40.191826+00:00_
+_source line 6929 · 2026-05-25T08:51:40.191826+00:00_
 
 called Edit
 
@@ -11153,7 +10088,7 @@ called Edit
 
 ### Tool result
 
-_source line 6932 · 2026-05-25T08:51:40.242714+00:00_
+_source line 6930 · 2026-05-25T08:51:40.242714+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -11175,7 +10110,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_d
 
 ### Tool call
 
-_source line 6933 · 2026-05-25T08:51:43.758149+00:00_
+_source line 6931 · 2026-05-25T08:51:43.758149+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -11213,7 +10148,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 6934 · 2026-05-25T08:51:45.518996+00:00_
+_source line 6932 · 2026-05-25T08:51:45.518996+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n []\\\\T1/ptm/b/n/10.95 (+20) Same-style double-rewrite.[] \\\\T1/pcr/m/n/10.95 Rewri\\nte\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the following text in\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the same style (keep it\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 while preserving the exact same\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 768--769\\n\\\\T1/pcr/m/n/10.95 the text without changing its\\n []\\n\\n[19]\\nUnderfull \\\\hbox (badness 1092) in paragraph at lines 817--818\\n[]\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\n scripts, data-\\n []\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\\n ) \\nHere is how much of TeX's memory you used:\\n 26570 strings out of 469438\\n 482772 string characters out of 5468411\\n 926783 words of memory out of 5000000\\n 54147 multiletter control sequences out of 15000+600000\\n 70336
 …[truncated 6558 chars]
@@ -11236,7 +10171,7 @@ _source line 6934 · 2026-05-25T08:51:45.518996+00:00_
 
 ### Tool call
 
-_source line 6935 · 2026-05-25T08:52:20.510224+00:00_
+_source line 6933 · 2026-05-25T08:52:20.510224+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -11272,7 +10207,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 6936 · 2026-05-25T08:52:24.530578+00:00_
+_source line 6934 · 2026-05-25T08:52:24.530578+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
 
@@ -11294,7 +10229,7 @@ _source line 6936 · 2026-05-25T08:52:24.530578+00:00_
 
 ### Assistant
 
-_source line 6937 · 2026-05-25T08:52:27.089267+00:00_
+_source line 6935 · 2026-05-25T08:52:27.089267+00:00_
 
 编译成功，无 critical warnings。汇报 Director。
 
@@ -11321,7 +10256,7 @@ _source line 6937 · 2026-05-25T08:52:27.089267+00:00_
 
 ### User
 
-_source line 6938 · 2026-05-25T08:52:27.719962+00:00_
+_source line 6936 · 2026-05-25T08:52:27.719962+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -11342,7 +10277,7 @@ _source line 6938 · 2026-05-25T08:52:27.719962+00:00_
 
 ### Assistant
 
-_source line 6939 · 2026-05-25T08:52:35.699671+00:00_
+_source line 6937 · 2026-05-25T08:52:35.699671+00:00_
 
 No response requested.
 

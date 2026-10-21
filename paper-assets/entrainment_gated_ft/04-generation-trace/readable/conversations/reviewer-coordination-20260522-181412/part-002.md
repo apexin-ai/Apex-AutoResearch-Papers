@@ -6,32 +6,9 @@
 
 ## Round 29
 
-### Tool result
-
-_source line 568 · 2026-05-22T11:16:05.428597+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724384 22132 ?        Sl   May18 105:26 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6895316 103832 ?      Sl   May18  19:12 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:28 sshd: /usr/sbin/sshd -D [listener] 5 of 10-100 startups\\nroot       1206  0.0  0.0 3831864 23040 ?       Sl   May18   2:13 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 21176 ?       Sl   May18   5:15 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   10:07   0:02 sshd: root@notty\\nroot     825209  0.0  0.0  16692 10512 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     825345  0.0  0.0  16692 10776 ?        Ss   18:27   0:00 sshd: root@notty\\nroot     826106  0.0  0.0  16692 10648 ?        Ss   18:30   0:00 sshd: root@notty\\nroot     826401  0.0  0.0  16692 10688 ?        Ss   18:31   0:00 sshd: root@notty\\nroot     826770  0.0  0.0  16692 10704 ?        Ss   18:32   0:00 sshd: root@notty\\nroot     826930  0.0  0.0  16692 10772 ?        Ss   18:33   0:00 sshd: root@notty\\nroot     827241  0.0  0.0  16692 10664 ?        Ss   18:34   0:00 sshd: root@notty\\nroot     827901  0.0  0.0  16692 10548 ?        Ss   18:37   0:00 sshd: root@notty\\nroot     828741  0.0  0.0  16692 10640 ?        Ss   18:40   0:00 sshd: root@notty\\nroot     828989  0.0  0.0  16692 10620 ?        Ss   18:41   0:00 sshd: root@notty\\nroot     829008  0.0  0.0  12844  8876 ?        S    18:41   0:0
-…[truncated 6035 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1405
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 569 · 2026-05-22T11:16:30.454905+00:00_
+_source line 567 · 2026-05-22T11:16:30.454905+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -67,7 +44,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 570 · 2026-05-22T11:16:34.071005+00:00_
+_source line 568 · 2026-05-22T11:16:34.071005+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -89,7 +66,7 @@ _source line 570 · 2026-05-22T11:16:34.071005+00:00_
 
 ### Assistant
 
-_source line 571 · 2026-05-22T11:16:36.614893+00:00_
+_source line 569 · 2026-05-22T11:16:36.614893+00:00_
 
 **严重问题**：多个 worker 和脚本在同一 GPU 上竞争执行。这是 seed1-3 被 SIGTERM 的根因。
 
@@ -116,7 +93,7 @@ _source line 571 · 2026-05-22T11:16:36.614893+00:00_
 
 ### User
 
-_source line 572 · 2026-05-22T11:16:46.625034+00:00_
+_source line 570 · 2026-05-22T11:16:46.625034+00:00_
 
 [系统通知 — worker_done:worker_fix_e4-pythia-exact_20260522T111254]:
 Worker worker_fix_e4-pythia-exact_20260522T111254 已完成（status=done），请审查 Agent 的处理结果。
@@ -138,7 +115,7 @@ Worker worker_fix_e4-pythia-exact_20260522T111254 已完成（status=done），�
 
 ### Tool call
 
-_source line 573 · 2026-05-22T11:16:55.386486+00:00_
+_source line 571 · 2026-05-22T11:16:55.386486+00:00_
 
 called Bash
 
@@ -174,7 +151,7 @@ called Bash
 
 ### Tool result
 
-_source line 574 · 2026-05-22T11:16:55.537845+00:00_
+_source line 572 · 2026-05-22T11:16:55.537845+00:00_
 
 result: 评估已启动：
 - **PID**: 838915
@@ -202,7 +179,7 @@ result: 评估已启动：
 
 ### Tool call
 
-_source line 575 · 2026-05-22T11:17:05.222536+00:00_
+_source line 573 · 2026-05-22T11:17:05.222536+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -238,7 +215,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 576 · 2026-05-22T11:17:08.786822+00:00_
+_source line 574 · 2026-05-22T11:17:08.786822+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724384 22132 ?        Sl   May18 105:27 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6895316 103832 ?      Sl   May18  19:12 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:28 sshd: /usr/sbin/sshd -D [listener] 3 of 10-100 startups\\nroot       1206  0.0  0.0 3831864 21720 ?       Sl   May18   2:13 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 21940 ?       Sl   May18   5:15 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   10:07   0:02 sshd: root@notty\\nroot     825209  0.0  0.0  16692 10512 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     825345  0.0  0.0  16692 10776 ?        Ss   18:27   0:00 sshd: root@notty\\nroot     826106  0.0  0.0  16692 10648 ?        Ss   18:30   0:00 sshd: root@notty\\nroot     826401  0.0  0.0  16692 10688 ?        Ss   18:31   0:00 sshd: root@notty\\nroot     826770  0.0  0.0  16692 10704 ?        Ss   18:32   0:00 sshd: root@notty\\nroot     826930  0.0  0.0  16692 10772 ?        Ss   18:33   0:00 sshd: root@notty\\nroot     827241  0.0  0.0  16692 10664 ?        Ss   18:34   0:00 sshd: root@notty\\nroot     827901  0.0  0.0  16692 10548 ?        Ss   18:37   0:00 sshd: root@notty\\nroot     828741  0.0  0.0  16692 10640 ?        Ss   18:40   0:00 sshd: root@notty\\nroot     828989  0.0  0.0  16692 10620 ?        Ss   18:41   0:00 sshd: root@notty\\nroot     829008  0.0  0.0  12844  8876 ?        S    18:41   0:00 wget -c --timeout=120 --tries=5 -O /root/autodl-tmp/pythia_weights/seed1_m
 …[truncated 4326 chars]
@@ -261,7 +238,7 @@ _source line 576 · 2026-05-22T11:17:08.786822+00:00_
 
 ### Tool call
 
-_source line 577 · 2026-05-22T11:17:27.650105+00:00_
+_source line 575 · 2026-05-22T11:17:27.650105+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -297,7 +274,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 578 · 2026-05-22T11:17:29.155735+00:00_
+_source line 576 · 2026-05-22T11:17:29.155735+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 3 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"}
 
@@ -319,7 +296,7 @@ _source line 578 · 2026-05-22T11:17:29.155735+00:00_
 
 ### Assistant
 
-_source line 579 · 2026-05-22T11:17:43.294135+00:00_
+_source line 577 · 2026-05-22T11:17:43.294135+00:00_
 
 GPU 仍然 0% / 3 MiB。两个 lm_eval 占用 ~1GB RSS 但都未使用 GPU——可能在下载模型权重或因 HF cache 并发冲突而卡住。
 
@@ -348,7 +325,7 @@ GPU 仍然 0% / 3 MiB。两个 lm_eval 占用 ~1GB RSS 但都未使用 GPU——
 
 ### User
 
-_source line 580 · 2026-05-22T11:35:44.136784+00:00_
+_source line 578 · 2026-05-22T11:35:44.136784+00:00_
 
 [系统通知 — worker_done:worker_fix_e4-clean-restart_20260522T113236]:
 Worker worker_fix_e4-clean-restart_20260522T113236 已完成（status=done），请审查 Agent 的处理结果。
@@ -370,7 +347,7 @@ Worker worker_fix_e4-clean-restart_20260522T113236 已完成（status=done），
 
 ### Tool call
 
-_source line 581 · 2026-05-22T11:35:52.250443+00:00_
+_source line 579 · 2026-05-22T11:35:52.250443+00:00_
 
 called Bash
 
@@ -406,7 +383,7 @@ called Bash
 
 ### Tool result
 
-_source line 582 · 2026-05-22T11:35:52.454407+00:00_
+_source line 580 · 2026-05-22T11:35:52.454407+00:00_
 
 result: 完成。
 
@@ -432,7 +409,7 @@ result: 完成。
 
 ### Tool call
 
-_source line 583 · 2026-05-22T11:35:56.619820+00:00_
+_source line 581 · 2026-05-22T11:35:56.619820+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -468,7 +445,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 584 · 2026-05-22T11:35:57.071922+00:00_
+_source line 582 · 2026-05-22T11:35:57.071922+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -504,7 +481,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 585 · 2026-05-22T11:36:01.064444+00:00_
+_source line 583 · 2026-05-22T11:36:01.064444+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 5648 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.45}}"}
 
@@ -526,7 +503,7 @@ _source line 585 · 2026-05-22T11:36:01.064444+00:00_
 
 ### Tool result
 
-_source line 586 · 2026-05-22T11:36:02.770126+00:00_
+_source line 584 · 2026-05-22T11:36:02.770126+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"=== E4 Pythia Seed Calibration (clean restart) ===\\nStart: Fri May 22 19:33:50 CST 2026\\nseed1: START Fri May 22 19:33:50 CST 2026\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
 
@@ -548,7 +525,7 @@ _source line 586 · 2026-05-22T11:36:02.770126+00:00_
 
 ### Tool call
 
-_source line 587 · 2026-05-22T11:36:09.750109+00:00_
+_source line 585 · 2026-05-22T11:36:09.750109+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -584,7 +561,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 588 · 2026-05-22T11:36:11.163558+00:00_
+_source line 586 · 2026-05-22T11:36:11.163558+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724384 22128 ?        Sl   May18 105:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6895316 103184 ?      Sl   May18  19:16 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:29 sshd: /usr/sbin/sshd -D [listener] 4 of 10-100 startups\\nroot       1206  0.0  0.0 3831864 22312 ?       Sl   May18   2:18 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 21228 ?       Sl   May18   5:16 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   10:07   0:02 sshd: root@notty\\nroot     825209  0.0  0.0  16692 10512 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     825345  0.0  0.0  16692 10776 ?        Ss   18:27   0:00 sshd: root@notty\\nroot     826106  0.0  0.0  16692 10648 ?        Ss   18:30   0:00 sshd: root@notty\\nroot     826401  0.0  0.0  16692 10688 ?        Ss   18:31   0:00 sshd: root@notty\\nroot     826770  0.0  0.0  16692 10704 ?        Ss   18:32   0:00 sshd: root@notty\\nroot     826930  0.0  0.0  16692 10772 ?        Ss   18:33   0:00 sshd: root@notty\\nroot     827241  0.0  0.0  16692 10664 ?        Ss   18:34   0:00 sshd: root@notty\\nroot     827901  0.0  0.0  16692 10548 ?        Ss   18:37   0:00 sshd: root@notty\\nroot     828741  0.0  0.0  16692 10640 ?        Ss   18:40   0:00 sshd: root@notty\\nroot     828989  0.0  0.0  16692 10620 ?        Ss   18:41   0:00 sshd: root@notty\\nroot     829008  0.0  0.0  12844  8876 ?        S    18:41   0:00 wget -c --timeout=120 --tries=5 -O /root/autodl-tmp/pythia_weights/seed1_m
 …[truncated 6349 chars]
@@ -607,7 +584,7 @@ _source line 588 · 2026-05-22T11:36:11.163558+00:00_
 
 ### Tool call
 
-_source line 589 · 2026-05-22T11:36:37.514462+00:00_
+_source line 587 · 2026-05-22T11:36:37.514462+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -643,7 +620,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 590 · 2026-05-22T11:36:41.192513+00:00_
+_source line 588 · 2026-05-22T11:36:41.192513+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -665,7 +642,7 @@ _source line 590 · 2026-05-22T11:36:41.192513+00:00_
 
 ### Assistant
 
-_source line 591 · 2026-05-22T11:36:43.607064+00:00_
+_source line 589 · 2026-05-22T11:36:43.607064+00:00_
 
 情况恶化。**四个** lm_eval 同时运行在 cuda:0 上，混合 410M 和 70M 模型，还有两个 seed7 写同一目录。
 
@@ -692,7 +669,7 @@ _source line 591 · 2026-05-22T11:36:43.607064+00:00_
 
 ### User
 
-_source line 592 · 2026-05-22T11:45:21.387005+00:00_
+_source line 590 · 2026-05-22T11:45:21.387005+00:00_
 
 [系统通知 — worker_done:worker_fix_e4-pythia-restart_20260522T102601]:
 Worker worker_fix_e4-pythia-restart_20260522T102601 已完成（status=failed），请审查 Agent 的处理结果。
@@ -714,7 +691,7 @@ Worker worker_fix_e4-pythia-restart_20260522T102601 已完成（status=failed）
 
 ### Tool call
 
-_source line 593 · 2026-05-22T11:45:30.683905+00:00_
+_source line 591 · 2026-05-22T11:45:30.683905+00:00_
 
 called Bash
 
@@ -750,7 +727,7 @@ called Bash
 
 ### Tool result
 
-_source line 594 · 2026-05-22T11:45:30.835988+00:00_
+_source line 592 · 2026-05-22T11:45:30.835988+00:00_
 
 type: result
 subtype: success
@@ -780,7 +757,7 @@ result: Step 7 完成。实验 `e4-pythia-seed-calibration` 已注册完毕：
 
 ### Tool call
 
-_source line 595 · 2026-05-22T11:45:49.370821+00:00_
+_source line 593 · 2026-05-22T11:45:49.370821+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -818,7 +795,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 596 · 2026-05-22T11:45:49.471951+00:00_
+_source line 594 · 2026-05-22T11:45:49.471951+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"e4-pythia-seed-calibration\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:17:05.445Z\", \"updated_at\": \"2026-05-22T11:44:42.532Z\", \"hypothesis\": \"Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显著高于 cross-architecture Jaccard (~0.10), 证明 within-arch overlap >> cross-arch overlap, 即 cross-arch 信号不能被 seed noise 解释。\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"lm_eval --model hf --tasks lambada_openai,arc_easy --log_samples\", \"server\": \"westb-48145\", \"model_name\": \"EleutherAI/pythia-70m-seed{1-9}\", \"seed\": \"1-9\", \"data_path\": \"/root/entrainment_gated_ft/results/e4_pythia_seed/\", \"data_count\": \"5153+2376 per seed × 9 seeds\", \"checkpoint_source\": \"ModelScope CDN\", \"eval_data\": \"lambada_openai + arc_easy\", \"checkpoint_path\": \"/root/autodl-tmp/pythia_weights_70m/seed{1-9}/\", \"log_path\": \"/root/entrainment_gated_ft/results/e4_pythia_seed/eval.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T11:10:00.780Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T11:10:01.238Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T11:10:03.664374+00:00\"}]}, \"metrics\": {\"lambada_J_helped\": 0.273, \"lambada_J_hurt\": 0.393, \"lambada_alpha\": 0.355, \"arc_J_helped\": 0.312, \"arc_alpha\": 0.491, \"cross_arch_ref_J_helped\": 0.1, \"ratio_lambada\": 2.73, \"ratio_arc\": 3.12}}, \"exp-340m-multi-bench\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:23:25.467Z\", \"updated_at\": \"2026-05-22T00:34:02.116Z\", \"hypothesis\": \"340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the si
 …[truncated 4337 chars]
@@ -841,7 +818,7 @@ _source line 596 · 2026-05-22T11:45:49.471951+00:00_
 
 ### Tool call
 
-_source line 597 · 2026-05-22T11:46:12.976278+00:00_
+_source line 595 · 2026-05-22T11:46:12.976278+00:00_
 
 called Glob
 
@@ -877,7 +854,7 @@ called Glob
 
 ### Tool result
 
-_source line 598 · 2026-05-22T11:46:12.976760+00:00_
+_source line 596 · 2026-05-22T11:46:12.976760+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e4_pythia_seed_calibration.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/e4-pythia-seed-calibration/data/e4_pythia_seed_calibration.json
@@ -900,7 +877,7 @@ _source line 598 · 2026-05-22T11:46:12.976760+00:00_
 
 ### Tool call
 
-_source line 599 · 2026-05-22T11:46:16.239236+00:00_
+_source line 597 · 2026-05-22T11:46:16.239236+00:00_
 
 called Read
 
@@ -934,7 +911,7 @@ called Read
 
 ### Tool result
 
-_source line 600 · 2026-05-22T11:46:16.239821+00:00_
+_source line 598 · 2026-05-22T11:46:16.239821+00:00_
 
 1	{
 2	  "lambada_openai": {
@@ -1000,7 +977,7 @@ _source line 600 · 2026-05-22T11:46:16.239821+00:00_
 
 ### Tool call
 
-_source line 601 · 2026-05-22T11:46:57.817930+00:00_
+_source line 599 · 2026-05-22T11:46:57.817930+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1036,7 +1013,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 602 · 2026-05-22T11:47:01.432035+00:00_
+_source line 600 · 2026-05-22T11:47:01.432035+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -1058,7 +1035,7 @@ _source line 602 · 2026-05-22T11:47:01.432035+00:00_
 
 ### Assistant
 
-_source line 603 · 2026-05-22T11:47:04.743906+00:00_
+_source line 601 · 2026-05-22T11:47:04.743906+00:00_
 
 9 个 seed 全部完成，数据结构完整。独立审查发现几个重要问题。
 
@@ -1085,7 +1062,7 @@ _source line 603 · 2026-05-22T11:47:04.743906+00:00_
 
 ### User
 
-_source line 604 · 2026-05-22T12:14:05.295574+00:00_
+_source line 602 · 2026-05-22T12:14:05.295574+00:00_
 
 [System 触发审查]:
 ## Round 14 审稿报告反审请求
@@ -1155,7 +1132,7 @@ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。DDL 2026-05-25�
 
 ### Tool call
 
-_source line 605 · 2026-05-22T12:15:14.388391+00:00_
+_source line 603 · 2026-05-22T12:15:14.388391+00:00_
 
 called Read
 
@@ -1189,7 +1166,7 @@ called Read
 
 ### Tool result
 
-_source line 606 · 2026-05-22T12:15:14.840927+00:00_
+_source line 604 · 2026-05-22T12:15:14.840927+00:00_
 
 1	\section{Introduction}
 2	
@@ -1218,7 +1195,7 @@ _source line 606 · 2026-05-22T12:15:14.840927+00:00_
 
 ### Tool call
 
-_source line 607 · 2026-05-22T12:15:14.841424+00:00_
+_source line 605 · 2026-05-22T12:15:14.841424+00:00_
 
 called Read
 
@@ -1252,7 +1229,7 @@ called Read
 
 ### Tool result
 
-_source line 608 · 2026-05-22T12:15:14.892423+00:00_
+_source line 606 · 2026-05-22T12:15:14.892423+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -1301,7 +1278,7 @@ _source line 608 · 2026-05-22T12:15:14.892423+00:00_
 
 ### Tool call
 
-_source line 609 · 2026-05-22T12:15:15.445176+00:00_
+_source line 607 · 2026-05-22T12:15:15.445176+00:00_
 
 called Read
 
@@ -1335,7 +1312,7 @@ called Read
 
 ### Tool result
 
-_source line 610 · 2026-05-22T12:15:15.495990+00:00_
+_source line 608 · 2026-05-22T12:15:15.495990+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -1399,7 +1376,7 @@ _source line 610 · 2026-05-22T12:15:15.495990+00:00_
 
 ### Tool call
 
-_source line 611 · 2026-05-22T12:15:42.086753+00:00_
+_source line 609 · 2026-05-22T12:15:42.086753+00:00_
 
 called Read
 
@@ -1433,7 +1410,7 @@ called Read
 
 ### Tool result
 
-_source line 612 · 2026-05-22T12:15:42.288165+00:00_
+_source line 610 · 2026-05-22T12:15:42.288165+00:00_
 
 1	\section{Conclusion}
 2	
@@ -1460,7 +1437,7 @@ _source line 612 · 2026-05-22T12:15:42.288165+00:00_
 
 ### Tool call
 
-_source line 613 · 2026-05-22T12:15:42.288675+00:00_
+_source line 611 · 2026-05-22T12:15:42.288675+00:00_
 
 called Read
 
@@ -1494,7 +1471,7 @@ called Read
 
 ### Tool result
 
-_source line 614 · 2026-05-22T12:15:42.339311+00:00_
+_source line 612 · 2026-05-22T12:15:42.339311+00:00_
 
 1	\section{Related Work}
 2	
@@ -1526,7 +1503,7 @@ _source line 614 · 2026-05-22T12:15:42.339311+00:00_
 
 ### Tool call
 
-_source line 615 · 2026-05-22T12:18:01.875897+00:00_
+_source line 613 · 2026-05-22T12:18:01.875897+00:00_
 
 called ToolSearch
 
@@ -1562,7 +1539,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 616 · 2026-05-22T12:18:01.926572+00:00_
+_source line 614 · 2026-05-22T12:18:01.926572+00:00_
 
 
 
@@ -1584,7 +1561,7 @@ _source line 616 · 2026-05-22T12:18:01.926572+00:00_
 
 ### Tool call
 
-_source line 617 · 2026-05-22T12:18:47.683372+00:00_
+_source line 615 · 2026-05-22T12:18:47.683372+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1620,7 +1597,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 618 · 2026-05-22T12:18:51.246140+00:00_
+_source line 616 · 2026-05-22T12:18:51.246140+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -1642,7 +1619,7 @@ _source line 618 · 2026-05-22T12:18:51.246140+00:00_
 
 ### Assistant
 
-_source line 619 · 2026-05-22T12:18:55.242185+00:00_
+_source line 617 · 2026-05-22T12:18:55.242185+00:00_
 
 Round 14 Action Matrix 评估已提交给 Director。核心判断：方案足以 3.0→3.5 但不到 4.0；最高 ROI 的额外实验是用 zoo 中已有的 6 架构全覆盖扩展 Jaccard 分析；W1/W2 framing 方向正确但需区分强/弱发现。
 
@@ -1669,7 +1646,7 @@ Round 14 Action Matrix 评估已提交给 Director。核心判断：方案足以
 
 ### User
 
-_source line 620 · 2026-05-22T13:10:29.037878+00:00_
+_source line 618 · 2026-05-22T13:10:29.037878+00:00_
 
 [System 触发审查]:
 ## 审查请求：Paper Agent Round 14 全部修改
@@ -1719,7 +1696,7 @@ Paper Agent 刚完成 Round 14 综合修复，请逐项审查以下变更是否�
 
 ### Tool call
 
-_source line 621 · 2026-05-22T13:10:37.085518+00:00_
+_source line 619 · 2026-05-22T13:10:37.085518+00:00_
 
 called Read
 
@@ -1753,7 +1730,7 @@ called Read
 
 ### Tool result
 
-_source line 622 · 2026-05-22T13:10:37.436932+00:00_
+_source line 620 · 2026-05-22T13:10:37.436932+00:00_
 
 1	\section{Introduction}
 2	
@@ -1782,7 +1759,7 @@ _source line 622 · 2026-05-22T13:10:37.436932+00:00_
 
 ### Tool call
 
-_source line 623 · 2026-05-22T13:10:37.437371+00:00_
+_source line 621 · 2026-05-22T13:10:37.437371+00:00_
 
 called Read
 
@@ -1816,7 +1793,7 @@ called Read
 
 ### Tool result
 
-_source line 624 · 2026-05-22T13:10:38.440148+00:00_
+_source line 622 · 2026-05-22T13:10:38.440148+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -1866,7 +1843,7 @@ _source line 624 · 2026-05-22T13:10:38.440148+00:00_
 
 ### Tool call
 
-_source line 625 · 2026-05-22T13:10:38.440514+00:00_
+_source line 623 · 2026-05-22T13:10:38.440514+00:00_
 
 called Read
 
@@ -1900,7 +1877,7 @@ called Read
 
 ### Tool result
 
-_source line 626 · 2026-05-22T13:10:38.942317+00:00_
+_source line 624 · 2026-05-22T13:10:38.942317+00:00_
 
 1	\section{Conclusion}
 2	
@@ -1927,7 +1904,7 @@ _source line 626 · 2026-05-22T13:10:38.942317+00:00_
 
 ### Tool call
 
-_source line 627 · 2026-05-22T13:10:38.942719+00:00_
+_source line 625 · 2026-05-22T13:10:38.942719+00:00_
 
 called Read
 
@@ -1961,7 +1938,7 @@ called Read
 
 ### Tool result
 
-_source line 628 · 2026-05-22T13:10:39.294925+00:00_
+_source line 626 · 2026-05-22T13:10:39.294925+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -2025,7 +2002,7 @@ _source line 628 · 2026-05-22T13:10:39.294925+00:00_
 
 ### Tool call
 
-_source line 629 · 2026-05-22T13:10:39.295382+00:00_
+_source line 627 · 2026-05-22T13:10:39.295382+00:00_
 
 called Read
 
@@ -2059,7 +2036,7 @@ called Read
 
 ### Tool result
 
-_source line 630 · 2026-05-22T13:10:39.396001+00:00_
+_source line 628 · 2026-05-22T13:10:39.396001+00:00_
 
 1	\section{Related Work}
 2	
@@ -2091,7 +2068,7 @@ _source line 630 · 2026-05-22T13:10:39.396001+00:00_
 
 ### Tool call
 
-_source line 631 · 2026-05-22T13:10:45.887350+00:00_
+_source line 629 · 2026-05-22T13:10:45.887350+00:00_
 
 called Read
 
@@ -2125,7 +2102,7 @@ called Read
 
 ### Tool result
 
-_source line 632 · 2026-05-22T13:10:46.188648+00:00_
+_source line 630 · 2026-05-22T13:10:46.188648+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -2158,7 +2135,7 @@ _source line 632 · 2026-05-22T13:10:46.188648+00:00_
 
 ### Tool call
 
-_source line 633 · 2026-05-22T13:10:47.194831+00:00_
+_source line 631 · 2026-05-22T13:10:47.194831+00:00_
 
 called Grep
 
@@ -2198,7 +2175,7 @@ called Grep
 
 ### Tool result
 
-_source line 634 · 2026-05-22T13:10:48.250892+00:00_
+_source line 632 · 2026-05-22T13:10:48.250892+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex:56:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:110:To test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.
@@ -2227,7 +2204,7 @@ _source line 634 · 2026-05-22T13:10:48.250892+00:00_
 
 ### Tool call
 
-_source line 635 · 2026-05-22T13:10:48.602471+00:00_
+_source line 633 · 2026-05-22T13:10:48.602471+00:00_
 
 called Grep
 
@@ -2267,7 +2244,7 @@ called Grep
 
 ### Tool result
 
-_source line 636 · 2026-05-22T13:10:49.565013+00:00_
+_source line 634 · 2026-05-22T13:10:49.565013+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:25:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:42:[Omitted long matching line]
@@ -2298,7 +2275,7 @@ _source line 636 · 2026-05-22T13:10:49.565013+00:00_
 
 ### Tool call
 
-_source line 637 · 2026-05-22T13:10:50.167771+00:00_
+_source line 635 · 2026-05-22T13:10:50.167771+00:00_
 
 called Grep
 
@@ -2340,7 +2317,7 @@ called Grep
 
 ### Tool result
 
-_source line 638 · 2026-05-22T13:10:50.168322+00:00_
+_source line 636 · 2026-05-22T13:10:50.168322+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex:4:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex:10:[Omitted long matching line]
@@ -2374,7 +2351,7 @@ _source line 638 · 2026-05-22T13:10:50.168322+00:00_
 
 ### Tool call
 
-_source line 639 · 2026-05-22T13:10:56.742974+00:00_
+_source line 637 · 2026-05-22T13:10:56.742974+00:00_
 
 called Grep
 
@@ -2414,7 +2391,7 @@ called Grep
 
 ### Tool result
 
-_source line 640 · 2026-05-22T13:10:57.194936+00:00_
+_source line 638 · 2026-05-22T13:10:57.194936+00:00_
 
 No matches found
 
@@ -2436,7 +2413,7 @@ No matches found
 
 ### Tool call
 
-_source line 641 · 2026-05-22T13:10:57.646802+00:00_
+_source line 639 · 2026-05-22T13:10:57.646802+00:00_
 
 called Read
 
@@ -2474,7 +2451,7 @@ called Read
 
 ### Tool result
 
-_source line 642 · 2026-05-22T13:10:58.148977+00:00_
+_source line 640 · 2026-05-22T13:10:58.148977+00:00_
 
 320	% ============================================================
 321	
@@ -2536,7 +2513,7 @@ _source line 642 · 2026-05-22T13:10:58.148977+00:00_
 
 ### Tool call
 
-_source line 643 · 2026-05-22T13:10:58.149332+00:00_
+_source line 641 · 2026-05-22T13:10:58.149332+00:00_
 
 called Read
 
@@ -2574,7 +2551,7 @@ called Read
 
 ### Tool result
 
-_source line 644 · 2026-05-22T13:10:58.199859+00:00_
+_source line 642 · 2026-05-22T13:10:58.199859+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -2612,7 +2589,7 @@ _source line 644 · 2026-05-22T13:10:58.199859+00:00_
 
 ### Tool call
 
-_source line 645 · 2026-05-22T13:11:03.274862+00:00_
+_source line 643 · 2026-05-22T13:11:03.274862+00:00_
 
 called Read
 
@@ -2650,7 +2627,7 @@ called Read
 
 ### Tool result
 
-_source line 646 · 2026-05-22T13:11:03.728475+00:00_
+_source line 644 · 2026-05-22T13:11:03.728475+00:00_
 
 720	\end{tabular}
 721	\end{table}
@@ -2686,7 +2663,7 @@ _source line 646 · 2026-05-22T13:11:03.728475+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-22T13:11:04.380800+00:00_
+_source line 645 · 2026-05-22T13:11:04.380800+00:00_
 
 called Grep
 
@@ -2726,7 +2703,7 @@ called Grep
 
 ### Tool result
 
-_source line 648 · 2026-05-22T13:11:04.434613+00:00_
+_source line 646 · 2026-05-22T13:11:04.434613+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:41:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex:44:\item Ensemble proof-of-concept: majority vote vs.\ oracle analysis added to Conclusion.
@@ -2751,7 +2728,7 @@ _source line 648 · 2026-05-22T13:11:04.434613+00:00_
 
 ### Tool call
 
-_source line 649 · 2026-05-22T13:12:07.431158+00:00_
+_source line 647 · 2026-05-22T13:12:07.431158+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2787,7 +2764,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 650 · 2026-05-22T13:12:11.198003+00:00_
+_source line 648 · 2026-05-22T13:12:11.198003+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -2809,7 +2786,7 @@ _source line 650 · 2026-05-22T13:12:11.198003+00:00_
 
 ### Assistant
 
-_source line 651 · 2026-05-22T13:12:17.461057+00:00_
+_source line 649 · 2026-05-22T13:12:17.461057+00:00_
 
 Round 14 审查报告已提交。核心发现：
 
@@ -2841,7 +2818,7 @@ Round 14 审查报告已提交。核心发现：
 
 ### User
 
-_source line 652 · 2026-05-22T13:46:10.757887+00:00_
+_source line 650 · 2026-05-22T13:46:10.757887+00:00_
 
 [System 触发审查]:
 ## 复核请求：J_hurt 数据修正后的一致性验证
@@ -2877,7 +2854,7 @@ Paper Agent 刚完成 Appendix W 的 J_hurt 数据修正：
 
 ### Tool call
 
-_source line 653 · 2026-05-22T13:46:17.867222+00:00_
+_source line 651 · 2026-05-22T13:46:17.867222+00:00_
 
 called Read
 
@@ -2915,7 +2892,7 @@ called Read
 
 ### Tool result
 
-_source line 654 · 2026-05-22T13:46:18.319286+00:00_
+_source line 652 · 2026-05-22T13:46:18.319286+00:00_
 
 725	\section{Seed-Variation Calibration}\label{app:seed_calibration}
 726	
@@ -2946,7 +2923,7 @@ _source line 654 · 2026-05-22T13:46:18.319286+00:00_
 
 ### Tool call
 
-_source line 655 · 2026-05-22T13:46:18.821436+00:00_
+_source line 653 · 2026-05-22T13:46:18.821436+00:00_
 
 called Read
 
@@ -2984,7 +2961,7 @@ called Read
 
 ### Tool result
 
-_source line 656 · 2026-05-22T13:46:19.223984+00:00_
+_source line 654 · 2026-05-22T13:46:19.223984+00:00_
 
 72	This saturation generalizes beyond LAMBADA: on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$; Appendix~\ref{app:cross_bench_jaccard}), with values uniformly between 0.08 and 0.11.
 73	
@@ -3013,7 +2990,7 @@ _source line 656 · 2026-05-22T13:46:19.223984+00:00_
 
 ### Tool call
 
-_source line 657 · 2026-05-22T13:46:19.425090+00:00_
+_source line 655 · 2026-05-22T13:46:19.425090+00:00_
 
 called Read
 
@@ -3051,7 +3028,7 @@ called Read
 
 ### Tool result
 
-_source line 658 · 2026-05-22T13:46:19.425469+00:00_
+_source line 656 · 2026-05-22T13:46:19.425469+00:00_
 
 40	Our analysis has several limitations.
 41	
@@ -3080,7 +3057,7 @@ _source line 658 · 2026-05-22T13:46:19.425469+00:00_
 
 ### Tool call
 
-_source line 659 · 2026-05-22T13:47:05.863216+00:00_
+_source line 657 · 2026-05-22T13:47:05.863216+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3116,7 +3093,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 660 · 2026-05-22T13:47:09.629002+00:00_
+_source line 658 · 2026-05-22T13:47:09.629002+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3138,7 +3115,7 @@ _source line 660 · 2026-05-22T13:47:09.629002+00:00_
 
 ### Assistant
 
-_source line 661 · 2026-05-22T13:47:12.726293+00:00_
+_source line 659 · 2026-05-22T13:47:12.726293+00:00_
 
 修正验证完成，6 处全部正确写入，无新增不一致。
 
@@ -3165,7 +3142,7 @@ _source line 661 · 2026-05-22T13:47:12.726293+00:00_
 
 ### User
 
-_source line 662 · 2026-05-22T14:21:13.298629+00:00_
+_source line 660 · 2026-05-22T14:21:13.298629+00:00_
 
 [系统通知 — worker_done:worker_diag_exp-005-status-check_20260522T141953]:
 Worker worker_diag_exp-005-status-check_20260522T141953 已完成（status=done），请审查 Agent 的处理结果。
@@ -3187,7 +3164,7 @@ Worker worker_diag_exp-005-status-check_20260522T141953 已完成（status=done�
 
 ### Tool call
 
-_source line 663 · 2026-05-22T14:21:20.801822+00:00_
+_source line 661 · 2026-05-22T14:21:20.801822+00:00_
 
 called ToolSearch
 
@@ -3223,7 +3200,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 664 · 2026-05-22T14:21:20.802276+00:00_
+_source line 662 · 2026-05-22T14:21:20.802276+00:00_
 
 
 
@@ -3245,7 +3222,7 @@ _source line 664 · 2026-05-22T14:21:20.802276+00:00_
 
 ### Tool call
 
-_source line 665 · 2026-05-22T14:21:23.963547+00:00_
+_source line 663 · 2026-05-22T14:21:23.963547+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3283,7 +3260,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 666 · 2026-05-22T14:21:24.064343+00:00_
+_source line 664 · 2026-05-22T14:21:24.064343+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0696}}"}
 
@@ -3305,7 +3282,7 @@ _source line 666 · 2026-05-22T14:21:24.064343+00:00_
 
 ### Tool call
 
-_source line 667 · 2026-05-22T14:21:28.133774+00:00_
+_source line 665 · 2026-05-22T14:21:28.133774+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3341,7 +3318,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 668 · 2026-05-22T14:21:28.285239+00:00_
+_source line 666 · 2026-05-22T14:21:28.285239+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-22T12:53:28.248Z\", \"hypothesis\": \"Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}, \"parent\": \"exp-001\"}, \"e4-pythia-seed-calibration\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:17:05.445Z\", \"updated_at\": \"2026-05-22T11:44:42.532Z\", \"hypothesis\": \"Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显著高于 cross-architecture Jaccard (~0.10), 证明 within-arch overlap >> cross-arch overlap, 即 cross-arch 信号不能被 seed noise 解释。\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"lambada_J_helped\": 0.273, \"lambada_J_hurt\": 0.393, \"lambada_alpha\": 0.355, \"arc_J_helped\": 0.312, \"arc_alpha\": 0.491, \"cross_arch_ref_J_helped\": 0.1, \"ratio_lambada\": 2.73, \"ratio_arc\": 3.12}}, \"exp-340m-multi-bench\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:23:25.467Z\", \"updated_at\": \"2026-05-22T00:34:02.116Z\", \"hypothesis\": \"340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the scale-dependency claim needs qualification.\", \"parent\": \"exp-007\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": {\"340m_alpha_all\": 0.334, \"1_3b_alpha_all\": 0.302, \"delta\": 0.031, 
 …[truncated 21728 chars]
@@ -3364,7 +3341,7 @@ _source line 668 · 2026-05-22T14:21:28.285239+00:00_
 
 ### Tool call
 
-_source line 669 · 2026-05-22T14:21:49.007128+00:00_
+_source line 667 · 2026-05-22T14:21:49.007128+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3400,7 +3377,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 670 · 2026-05-22T14:21:52.673295+00:00_
+_source line 668 · 2026-05-22T14:21:52.673295+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3422,7 +3399,7 @@ _source line 670 · 2026-05-22T14:21:52.673295+00:00_
 
 ### Assistant
 
-_source line 671 · 2026-05-22T14:21:54.862344+00:00_
+_source line 669 · 2026-05-22T14:21:54.862344+00:00_
 
 exp-005 不在 registry 中。查看全部实验确认上下文。
 
@@ -3449,7 +3426,7 @@ exp-005 不在 registry 中。查看全部实验确认上下文。
 
 ### User
 
-_source line 672 · 2026-05-22T14:23:17.053842+00:00_
+_source line 670 · 2026-05-22T14:23:17.053842+00:00_
 
 [系统通知 — cron:on_failed:exp-005-eval]:
 实验 exp-005-eval failed，请审查。
@@ -3471,7 +3448,7 @@ _source line 672 · 2026-05-22T14:23:17.053842+00:00_
 
 ### Tool call
 
-_source line 673 · 2026-05-22T14:23:27.602701+00:00_
+_source line 671 · 2026-05-22T14:23:27.602701+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3509,7 +3486,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 674 · 2026-05-22T14:23:27.703967+00:00_
+_source line 672 · 2026-05-22T14:23:27.703967+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0775}}"}
 
@@ -3531,7 +3508,7 @@ _source line 674 · 2026-05-22T14:23:27.703967+00:00_
 
 ### Tool call
 
-_source line 675 · 2026-05-22T14:23:35.130267+00:00_
+_source line 673 · 2026-05-22T14:23:35.130267+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3567,7 +3544,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 676 · 2026-05-22T14:23:38.810184+00:00_
+_source line 674 · 2026-05-22T14:23:38.810184+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3589,7 +3566,7 @@ _source line 676 · 2026-05-22T14:23:38.810184+00:00_
 
 ### Assistant
 
-_source line 677 · 2026-05-22T14:23:41.448220+00:00_
+_source line 675 · 2026-05-22T14:23:41.448220+00:00_
 
 exp-005-eval 不在 registry 中。exp-005 已被 killed（zoo 仅 3 架构，无法扩展）。这是关联 exp-005 的残留 cron 触发，实验本身已取消，无需审查。
 
@@ -3616,7 +3593,7 @@ exp-005-eval 不在 registry 中。exp-005 已被 killed（zoo 仅 3 架构，�
 
 ### User
 
-_source line 678 · 2026-05-22T14:26:34.234615+00:00_
+_source line 676 · 2026-05-22T14:26:34.234615+00:00_
 
 [系统通知 — worker_done:worker_diagnose_exp-005-eval-failure_20260522T142413]:
 Worker worker_diagnose_exp-005-eval-failure_20260522T142413 已完成（status=done），请审查 Agent 的处理结果。
@@ -3638,7 +3615,7 @@ Worker worker_diagnose_exp-005-eval-failure_20260522T142413 已完成（status=d
 
 ### Assistant
 
-_source line 679 · 2026-05-22T14:26:40.759936+00:00_
+_source line 677 · 2026-05-22T14:26:40.759936+00:00_
 
 已在上一条通知中确认 exp-005-eval 是已取消的 exp-005 的残留 cron 触发，不在 registry 中。诊断 worker 的结论应与此一致。无新信息需要审查，无需额外行动。
 
@@ -3665,7 +3642,7 @@ _source line 679 · 2026-05-22T14:26:40.759936+00:00_
 
 ### User
 
-_source line 680 · 2026-05-22T14:30:57.824409+00:00_
+_source line 678 · 2026-05-22T14:30:57.824409+00:00_
 
 [系统通知 — worker_done:worker_research_exp-005-alternatives_20260522T142547]:
 Worker worker_research_exp-005-alternatives_20260522T142547 已完成（status=done），请审查 Agent 的处理结果。
@@ -3687,7 +3664,7 @@ Worker worker_research_exp-005-alternatives_20260522T142547 已完成（status=d
 
 ### Tool call
 
-_source line 681 · 2026-05-22T14:31:03.760101+00:00_
+_source line 679 · 2026-05-22T14:31:03.760101+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3725,7 +3702,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 682 · 2026-05-22T14:31:03.861394+00:00_
+_source line 680 · 2026-05-22T14:31:03.861394+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-eval\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:22:49.860Z\", \"updated_at\": \"2026-05-22T14:25:11.027Z\", \"spec\": {\"command\": \"bash -c '\\nset -eo pipefail\\nsource /etc/network_turbo\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_DISABLE_XET=1\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\nMODELS_DIR=\\\"/root/entrainment_gated_ft/models\\\"\\nRESULTS_DIR=\\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion\\\"\\nLOG=\\\"$RESULTS_DIR/run_all.log\\\"\\nmkdir -p \\\"$RESULTS_DIR\\\"\\n\\necho \\\"=== EXP-005 FULL RUN $(date) ===\\\" | tee \\\"$LOG\\\"\\n\\n# Phase 1: Download missing Priority 1 models (GLA already done)\\nfor arch in DeltaNet HGRN; do\\n  MODEL_NAME=\\\"340M-20B-${arch}-hybrid-3-1\\\"\\n  MODEL_DIR=\\\"$MODELS_DIR/$MODEL_NAME\\\"\\n  if [ ! -f \\\"$MODEL_DIR/model.safetensors\\\" ]; then\\n    echo \\\"Downloading $MODEL_NAME ...\\\" | tee -a \\\"$LOG\\\"\\n    rm -rf \\\"$MODEL_DIR\\\"\\n    huggingface-cli download \\\"m-a-p/$MODEL_NAME\\\" --local-dir \\\"$MODEL_DIR\\\" 2>&1 | tail -5 | tee -a \\\"$LOG\\\"\\n    echo \\\"Downloaded $MODEL_NAME $(date)\\\" | tee -a \\\"$LOG\\\"\\n  else\\n    echo \\\"Already have $MODEL_NAME\\\" | tee -a \\\"$LOG\\\"\\n  fi\\ndone\\n\\n# Phase 2: Evaluate Priority 1 (h3-1 x 3 new archs)\\nfor arch in GLA DeltaNet HGRN; do\\n  MODEL_NAME=\\\"340M-20B-${arch}-hybrid-3-1\\\"\\n  MODEL_DIR=\\\"$MODELS_DIR/$MODEL_NAME\\\"\\n  OUT_DIR=\\\"$RESULTS_DIR/${arch}_hybrid-3-1\\\"\\n  echo \\\"EVAL $MODEL_NAME START $(date)\\\" | tee -a \\\"$LOG\\\"\\n  python -m lm_eval \\\\\\n    --model hf \\\\\\n    --model_args pretrained=$MODEL_DIR,trust_remote_code=True \\\\\\n    --tasks lambada_openai,arc_easy \\\\\\n    --device cuda:0 \\\\\\n    --batc
 …[truncated 10206 chars]
@@ -3748,7 +3725,7 @@ _source line 682 · 2026-05-22T14:31:03.861394+00:00_
 
 ### Tool call
 
-_source line 683 · 2026-05-22T14:31:20.519801+00:00_
+_source line 681 · 2026-05-22T14:31:20.519801+00:00_
 
 called ToolSearch
 
@@ -3784,7 +3761,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 684 · 2026-05-22T14:31:20.620508+00:00_
+_source line 682 · 2026-05-22T14:31:20.620508+00:00_
 
 
 
@@ -3806,7 +3783,7 @@ _source line 684 · 2026-05-22T14:31:20.620508+00:00_
 
 ### Tool call
 
-_source line 685 · 2026-05-22T14:31:24.284780+00:00_
+_source line 683 · 2026-05-22T14:31:24.284780+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3842,7 +3819,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 686 · 2026-05-22T14:31:24.536138+00:00_
+_source line 684 · 2026-05-22T14:31:24.536138+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3878,7 +3855,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 687 · 2026-05-22T14:31:27.497783+00:00_
+_source line 685 · 2026-05-22T14:31:27.497783+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n=== EXP-005 FULL RUN Fri May 22 22:22:49 CST 2026 ===\\nDownloading 340M-20B-DeltaNet-hybrid-3-1 ...\\n  hf models ls --search \\\"gemma\\\"\\n  hf repos ls --format json\\n  hf jobs run python:3.12 python -c 'print(\\\"Hello!\\\")'\\n  hf --help\\n\\u001b[0m\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.24}}"}
 
@@ -3900,7 +3877,7 @@ _source line 687 · 2026-05-22T14:31:27.497783+00:00_
 
 ### Tool result
 
-_source line 688 · 2026-05-22T14:31:28.952854+00:00_
+_source line 686 · 2026-05-22T14:31:28.952854+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 300\\ndrwxr-xr-x  2 root root   4096 May 22 22:22 .\\ndrwxr-xr-x 12 root root   4096 May 22 20:30 ..\\n-rw-r--r--  1 root root   8654 May 22 20:39 analyze_6arch.py\\n-rw-r--r--  1 root root    663 May 22 20:48 priority1.log\\n-rw-r--r--  1 root root   3605 May 22 22:15 priority1_v2.log\\n-rw-r--r--  1 root root 244501 May 22 22:31 priority1_v3.log\\n-rw-r--r--  1 root root    230 May 22 22:22 run_all.log\\n-rwxr-xr-x  1 root root   2160 May 22 20:30 run_priority1.sh\\n-rwxr-xr-x  1 root root   2314 May 22 20:46 run_priority1_v2.sh\\n-rwxr-xr-x  1 root root   2548 May 22 20:51 run_priority1_v3.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
 
@@ -3922,7 +3899,7 @@ _source line 688 · 2026-05-22T14:31:28.952854+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-22T14:31:35.328958+00:00_
+_source line 687 · 2026-05-22T14:31:35.328958+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3958,7 +3935,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 690 · 2026-05-22T14:31:36.132593+00:00_
+_source line 688 · 2026-05-22T14:31:36.132593+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3994,7 +3971,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 691 · 2026-05-22T14:31:36.584253+00:00_
+_source line 689 · 2026-05-22T14:31:36.584253+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\n\\rDownloading [model.safetensors]:  68%|██████▊   | 867M/1.24G [39:10<20:01, 352kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  68%|██████▊   | 868M/1.24G [39:13<19:34, 359kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  68%|██████▊   | 869M/1.24G [39:16<18:38, 377kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  68%|██████▊   | 870M/1.24G [39:18<18:39, 375kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▊   | 871M/1.24G [39:21<17:27, 400kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▊   | 872M/1.24G [39:23<17:37, 395kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▊   | 873M/1.24G [39:26<17:44, 392kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 874M/1.24G [39:29<17:38, 393kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 875M/1.24G [39:32<18:09, 381kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 876M/1.24G [39:35<19:00, 363kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 877M/1.24G [39:37<18:15, 377kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 878M/1.24G [39:41<19:08, 358kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 879M/1.24G [39:44<19:03, 359kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 880M/1.24G [39:47<19:24, 352kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]:  69%|██████▉   | 881M/1
 …[truncated 838 chars]
@@ -4017,7 +3994,7 @@ _source line 691 · 2026-05-22T14:31:36.584253+00:00_
 
 ### Tool result
 
-_source line 692 · 2026-05-22T14:31:37.988917+00:00_
+_source line 690 · 2026-05-22T14:31:37.988917+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/models/\\n\", \"stderr\": \"ls: cannot access '340M-20B-GLA*': No such file or directory\\nls: cannot access '340M-20B-DeltaNet*': No such file or directory\\nls: cannot access '340M-20B-HGRN-*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.4}}"}
 
@@ -4039,7 +4016,7 @@ _source line 692 · 2026-05-22T14:31:37.988917+00:00_
 
 ### Tool call
 
-_source line 693 · 2026-05-22T14:32:08.305427+00:00_
+_source line 691 · 2026-05-22T14:32:08.305427+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4075,7 +4052,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 694 · 2026-05-22T14:32:11.817557+00:00_
+_source line 692 · 2026-05-22T14:32:11.817557+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4097,7 +4074,7 @@ _source line 694 · 2026-05-22T14:32:11.817557+00:00_
 
 ### Assistant
 
-_source line 695 · 2026-05-22T14:32:14.294661+00:00_
+_source line 693 · 2026-05-22T14:32:14.294661+00:00_
 
 exp-005-eval 是新实验（尝试下载+评估 GLA/DeltaNet/HGRN 340M 模型），已失败。让我查看服务器日志确认失败原因。
 
@@ -4124,7 +4101,7 @@ exp-005-eval 是新实验（尝试下载+评估 GLA/DeltaNet/HGRN 340M 模型）
 
 ### User
 
-_source line 696 · 2026-05-22T14:49:52.505349+00:00_
+_source line 694 · 2026-05-22T14:49:52.505349+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-priority1-v2_20260522T144606]:
 Worker worker_exp_exp-005-priority1-v2_20260522T144606 已完成（status=done），请审查 Agent 的处理结果。
@@ -4146,7 +4123,7 @@ Worker worker_exp_exp-005-priority1-v2_20260522T144606 已完成（status=done�
 
 ### Tool call
 
-_source line 697 · 2026-05-22T14:49:59.892542+00:00_
+_source line 695 · 2026-05-22T14:49:59.892542+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4182,7 +4159,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 698 · 2026-05-22T14:50:00.395052+00:00_
+_source line 696 · 2026-05-22T14:50:00.395052+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4218,7 +4195,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 699 · 2026-05-22T14:50:03.004730+00:00_
+_source line 697 · 2026-05-22T14:50:03.004730+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:13<00:08, 408kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:16<00:06, 416kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:18<00:03, 399kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:21<00:01, 386kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|██████████| 1.24G/1.24G [57:22<00:00, 395kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\rDownloading [model.safetensors]: 100%|██████████| 1.24G/1.24G [57:22<00:00, 387kB/s]\\n\\rProcessing 8 items: 100%|██████████| 8.00/8.00 [57:23<00:00, 642s/it] \\rProcessing 8 items: 100%|██████████| 8.00/8.00 [57:23<00:00, 430s/it]\\n2026-05-22 22:48:54,406 - modelscope - INFO - Finish downloading 8 files for repo 'm-a-p/340M-20B-DeltaNet-hybrid-3-1'\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 12, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/shutil.py\\\", line 475, in copy2\\n    copyfile(src, dst, follow_symlinks=follow_symlinks)\\n  File \\\"/root/miniconda3/lib/python3.12/shutil.py\\\", line 262, in copyfile\\n    with open(dst, 'wb') as fdst:\\n         ^^^^^^^^^^^^^^^\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/.mdl'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.08}}"}
 
@@ -4240,7 +4217,7 @@ _source line 699 · 2026-05-22T14:50:03.004730+00:00_
 
 ### Tool result
 
-_source line 700 · 2026-05-22T14:50:04.411500+00:00_
+_source line 698 · 2026-05-22T14:50:04.411500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-New-hybrid-24-1\\n/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-hybrid-12-1\\n/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-hybrid-6-1\\n/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-24-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-12-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-6-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-24-1\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-12-1\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-6-1\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
 
@@ -4262,7 +4239,7 @@ _source line 700 · 2026-05-22T14:50:04.411500+00:00_
 
 ### Tool call
 
-_source line 701 · 2026-05-22T14:50:13.850128+00:00_
+_source line 699 · 2026-05-22T14:50:13.850128+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4298,7 +4275,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 702 · 2026-05-22T14:50:14.854192+00:00_
+_source line 700 · 2026-05-22T14:50:14.854192+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4334,7 +4311,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 703 · 2026-05-22T14:50:15.206043+00:00_
+_source line 701 · 2026-05-22T14:50:15.206043+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4370,7 +4347,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 704 · 2026-05-22T14:50:15.507606+00:00_
+_source line 702 · 2026-05-22T14:50:15.507606+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1304740\\ndrwxr-xr-x  2 root root       4096 May 22 21:51 .\\ndrwxr-xr-x 21 root root       4096 May 22 22:50 ..\\n-rw-r--r--  1 root root       1519 May 22 20:46 .gitattributes\\n-rw-r--r--  1 root root         52 May 22 20:53 .mdl\\n-rw-------  1 root root        597 May 22 21:51 .msc\\n-rw-r--r--  1 root root         36 May 22 21:51 .mv\\n-rw-r--r--  1 root root       1374 May 22 20:53 README.md\\n-rw-r--r--  1 root root       1136 May 22 20:53 config.json\\n-rw-r--r--  1 root root         64 May 22 20:53 configuration.json\\n-rw-r--r--  1 root root        111 May 22 20:53 generation_config.json\\n-rw-r--r--  1 root root 1332498184 May 22 21:51 model.safetensors\\n-rw-r--r--  1 root root        414 May 22 20:53 special_tokens_map.json\\n-rw-r--r--  1 root root    3505751 May 22 20:55 tokenizer.json\\n-rw-r--r--  1 root root       1029 May 22 20:53 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
 
@@ -4392,7 +4369,7 @@ _source line 704 · 2026-05-22T14:50:15.507606+00:00_
 
 ### Tool result
 
-_source line 705 · 2026-05-22T14:50:16.949660+00:00_
+_source line 703 · 2026-05-22T14:50:16.949660+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3452\\ndrwxr-xr-x  3 root root    4096 May 22 22:50 .\\ndrwxr-xr-x 21 root root    4096 May 22 22:50 ..\\ndrwxr-xr-x  3 root root      33 May 22 22:49 .cache\\n-rw-r--r--  1 root root    1519 May 22 22:49 .gitattributes\\n-rw-r--r--  1 root root    1122 May 22 22:49 config.json\\n-rw-r--r--  1 root root     111 May 22 22:49 generation_config.json\\n-rw-r--r--  1 root root     414 May 22 22:49 special_tokens_map.json\\n-rw-r--r--  1 root root 3505751 May 22 22:50 tokenizer.json\\n-rw-r--r--  1 root root    1029 May 22 22:49 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
 
@@ -4414,7 +4391,7 @@ _source line 705 · 2026-05-22T14:50:16.949660+00:00_
 
 ### Tool result
 
-_source line 706 · 2026-05-22T14:50:18.342534+00:00_
+_source line 704 · 2026-05-22T14:50:18.342534+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 22 20:50 .\\ndrwxr-xr-x 21 root root 4096 May 22 22:50 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
 
@@ -4436,7 +4413,7 @@ _source line 706 · 2026-05-22T14:50:18.342534+00:00_
 
 ### Tool call
 
-_source line 707 · 2026-05-22T14:50:26.174489+00:00_
+_source line 705 · 2026-05-22T14:50:26.174489+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4472,7 +4449,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 708 · 2026-05-22T14:50:26.375494+00:00_
+_source line 706 · 2026-05-22T14:50:26.375494+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4508,7 +4485,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 709 · 2026-05-22T14:50:27.379033+00:00_
+_source line 707 · 2026-05-22T14:50:27.379033+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
 
@@ -4530,7 +4507,7 @@ _source line 709 · 2026-05-22T14:50:27.379033+00:00_
 
 ### Tool result
 
-_source line 710 · 2026-05-22T14:50:28.784079+00:00_
+_source line 708 · 2026-05-22T14:50:28.784079+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--m-a-p--340M-20B-GatedDeltaNet-pure-baseline\\n/root/autodl-tmp/.hf_cache/hub/models--m-a-p--1.3B-100B-GatedDeltaNet-pure\\n/root/autodl-tmp/.hf_cache/hub/models--m-a-p--1.3B-100B-GatedDeltaNet-hybrid-3-1\\n/root/autodl-tmp/.hf_cache/hub/models--m-a-p--340M-20B-DeltaNet-hybrid-3-1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"}
 
@@ -4552,7 +4529,7 @@ _source line 710 · 2026-05-22T14:50:28.784079+00:00_
 
 ### Tool call
 
-_source line 711 · 2026-05-22T14:50:57.395682+00:00_
+_source line 709 · 2026-05-22T14:50:57.395682+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4588,7 +4565,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 712 · 2026-05-22T14:51:00.915367+00:00_
+_source line 710 · 2026-05-22T14:51:00.915367+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4610,7 +4587,7 @@ _source line 712 · 2026-05-22T14:51:00.915367+00:00_
 
 ### Assistant
 
-_source line 713 · 2026-05-22T14:51:03.760481+00:00_
+_source line 711 · 2026-05-22T14:51:03.760481+00:00_
 
 GLA/DeltaNet/HGRN h3-1 模型已下载到 models 目录。但 v3 日志显示 DeltaNet 下载后的文件复制出错。让我检查模型完整性和评估进展。
 
@@ -4637,7 +4614,7 @@ GLA/DeltaNet/HGRN h3-1 模型已下载到 models 目录。但 v3 日志显示 De
 
 ### User
 
-_source line 714 · 2026-05-22T15:05:27.683307+00:00_
+_source line 712 · 2026-05-22T15:05:27.683307+00:00_
 
 [系统通知 — cron:on_failed:exp-005]:
 实验 exp-005 failed，请审查。
@@ -4659,7 +4636,7 @@ _source line 714 · 2026-05-22T15:05:27.683307+00:00_
 
 ### Tool call
 
-_source line 715 · 2026-05-22T15:05:38.057815+00:00_
+_source line 713 · 2026-05-22T15:05:38.057815+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4695,7 +4672,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 716 · 2026-05-22T15:05:42.624274+00:00_
+_source line 714 · 2026-05-22T15:05:42.624274+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:13<00:08, 408kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:16<00:06, 416kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:18<00:03, 399kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|█████████▉| 1.24G/1.24G [57:21<00:01, 386kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\n\\n\\n\\n\\rDownloading [model.safetensors]: 100%|██████████| 1.24G/1.24G [57:22<00:00, 395kB/s]\\u001b[A\\u001b[A\\u001b[A\\u001b[A\\rDownloading [model.safetensors]: 100%|██████████| 1.24G/1.24G [57:22<00:00, 387kB/s]\\n\\rProcessing 8 items: 100%|██████████| 8.00/8.00 [57:23<00:00, 642s/it] \\rProcessing 8 items: 100%|██████████| 8.00/8.00 [57:23<00:00, 430s/it]\\n2026-05-22 22:48:54,406 - modelscope - INFO - Finish downloading 8 files for repo 'm-a-p/340M-20B-DeltaNet-hybrid-3-1'\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 12, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/shutil.py\\\", line 475, in copy2\\n    copyfile(src, dst, follow_symlinks=follow_symlinks)\\n  File \\\"/root/miniconda3/lib/python3.12/shutil.py\\\", line 262, in copyfile\\n    with open(dst, 'wb') as fdst:\\n         ^^^^^^^^^^^^^^^\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/.mdl'\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.52}}"}
 
@@ -4717,7 +4694,7 @@ _source line 716 · 2026-05-22T15:05:42.624274+00:00_
 
 ### Tool call
 
-_source line 717 · 2026-05-22T15:06:03.906398+00:00_
+_source line 715 · 2026-05-22T15:06:03.906398+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4753,7 +4730,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 718 · 2026-05-22T15:06:07.370813+00:00_
+_source line 716 · 2026-05-22T15:06:07.370813+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -4775,7 +4752,7 @@ _source line 718 · 2026-05-22T15:06:07.370813+00:00_
 
 ### Assistant
 
-_source line 719 · 2026-05-22T15:06:09.812421+00:00_
+_source line 717 · 2026-05-22T15:06:09.812421+00:00_
 
 同一个失败——与之前审查的一致。DeltaNet h3-1 模型通过 ModelScope 下载完成，但 post-download 的 `shutil.copy2` 步骤在复制 `.mdl` 元数据文件时失败（ModelScope 缓存目录结构与脚本预期不匹配）。
 
@@ -4807,7 +4784,7 @@ _source line 719 · 2026-05-22T15:06:09.812421+00:00_
 
 ### User
 
-_source line 720 · 2026-05-22T15:09:50.772390+00:00_
+_source line 718 · 2026-05-22T15:09:50.772390+00:00_
 
 [系统通知 — worker_done:worker_diagnose_exp-005-p1-v4_20260522T150706]:
 Worker worker_diagnose_exp-005-p1-v4_20260522T150706 已完成（status=done），请审查 Agent 的处理结果。
@@ -4829,7 +4806,7 @@ Worker worker_diagnose_exp-005-p1-v4_20260522T150706 已完成（status=done）�
 
 ### Tool call
 
-_source line 721 · 2026-05-22T15:09:58.578803+00:00_
+_source line 719 · 2026-05-22T15:09:58.578803+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4865,7 +4842,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 722 · 2026-05-22T15:09:59.084886+00:00_
+_source line 720 · 2026-05-22T15:09:59.084886+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4901,7 +4878,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 723 · 2026-05-22T15:09:59.988407+00:00_
+_source line 721 · 2026-05-22T15:09:59.988407+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4937,7 +4914,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 724 · 2026-05-22T15:10:03.654521+00:00_
+_source line 722 · 2026-05-22T15:10:03.654521+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 5.06}}"}
 
@@ -4959,7 +4936,7 @@ _source line 724 · 2026-05-22T15:10:03.654521+00:00_
 
 ### Tool result
 
-_source line 725 · 2026-05-22T15:10:06.968933+00:00_
+_source line 723 · 2026-05-22T15:10:06.968933+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 22 20:50 .\\ndrwxr-xr-x 21 root root 4096 May 22 22:50 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.27}}"}
 
@@ -4981,7 +4958,7 @@ _source line 725 · 2026-05-22T15:10:06.968933+00:00_
 
 ### Tool result
 
-_source line 726 · 2026-05-22T15:10:10.182385+00:00_
+_source line 724 · 2026-05-22T15:10:10.182385+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.21}}"}
 
@@ -5003,7 +4980,7 @@ _source line 726 · 2026-05-22T15:10:10.182385+00:00_
 
 ### Assistant
 
-_source line 727 · 2026-05-22T15:10:14.824139+00:00_
+_source line 725 · 2026-05-22T15:10:14.824139+00:00_
 
 状态与之前一致：DeltaNet model.safetensors 仍未复制到目标目录，HGRN 仍为空，无评估输出。diagnose worker 未能修复问题。无需更新——此前的审查结论仍然成立。
 
@@ -5030,7 +5007,7 @@ _source line 727 · 2026-05-22T15:10:14.824139+00:00_
 
 ### User
 
-_source line 728 · 2026-05-22T15:39:05.451103+00:00_
+_source line 726 · 2026-05-22T15:39:05.451103+00:00_
 
 [系统通知 — cron:on_complete:exp-005-gla-eval]:
 实验 exp-005-gla-eval complete，请审查。
@@ -5052,7 +5029,7 @@ _source line 728 · 2026-05-22T15:39:05.451103+00:00_
 
 ### Tool call
 
-_source line 729 · 2026-05-22T15:39:12.729797+00:00_
+_source line 727 · 2026-05-22T15:39:12.729797+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5090,7 +5067,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 730 · 2026-05-22T15:39:12.830508+00:00_
+_source line 728 · 2026-05-22T15:39:12.830508+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0884}}"}
 
@@ -5112,7 +5089,7 @@ _source line 730 · 2026-05-22T15:39:12.830508+00:00_
 
 ### Tool call
 
-_source line 731 · 2026-05-22T15:39:16.593413+00:00_
+_source line 729 · 2026-05-22T15:39:16.593413+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5148,7 +5125,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 732 · 2026-05-22T15:39:23.719973+00:00_
+_source line 730 · 2026-05-22T15:39:23.719973+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\", line 14, in &lt;module>\\n    cli_evaluate()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\", line 10, in cli_evaluate\\n    parser.execute(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\", line 60, in execute\\n    args.func(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\", line 391, in _execute\\n    results = simple_evaluate(\\n              ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\", line 575, in _wrapper\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\", line 242, in simple_evaluate\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\", line 169, in create_from_arg_obj\\n    return cls(**arg_dict, **additional_config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 318, in __init__\\n    self._get_config(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 739, in _get_config\\n    self._config = transformers.AutoConfig.from_pretrained(\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\", line 374, in from_pretrained\\n    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
 …[truncated 1257 chars]
@@ -5171,7 +5148,7 @@ _source line 732 · 2026-05-22T15:39:23.719973+00:00_
 
 ### Tool call
 
-_source line 733 · 2026-05-22T15:39:31.165487+00:00_
+_source line 731 · 2026-05-22T15:39:31.165487+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5207,7 +5184,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 734 · 2026-05-22T15:39:40.051554+00:00_
+_source line 732 · 2026-05-22T15:39:40.051554+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.83}}"}
 
@@ -5229,7 +5206,7 @@ _source line 734 · 2026-05-22T15:39:40.051554+00:00_
 
 ### Tool call
 
-_source line 735 · 2026-05-22T15:39:52.139118+00:00_
+_source line 733 · 2026-05-22T15:39:52.139118+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5265,7 +5242,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 736 · 2026-05-22T15:39:55.652766+00:00_
+_source line 734 · 2026-05-22T15:39:55.652766+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -5294,7 +5271,7 @@ _source line 736 · 2026-05-22T15:39:55.652766+00:00_
 
 ### User
 
-_source line 737 · 2026-05-22T15:42:01.202335+00:00_
+_source line 735 · 2026-05-22T15:42:01.202335+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-005-gla-eval_20260522T154011]:
 Worker worker_analysis_exp-005-gla-eval_20260522T154011 已完成（status=done），请审查 Agent 的处理结果。
@@ -5316,7 +5293,7 @@ Worker worker_analysis_exp-005-gla-eval_20260522T154011 已完成（status=done�
 
 ### Tool call
 
-_source line 738 · 2026-05-22T15:42:08.784686+00:00_
+_source line 736 · 2026-05-22T15:42:08.784686+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5354,7 +5331,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 739 · 2026-05-22T15:42:08.935577+00:00_
+_source line 737 · 2026-05-22T15:42:08.935577+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0821}}"}
 
@@ -5376,7 +5353,7 @@ _source line 739 · 2026-05-22T15:42:08.935577+00:00_
 
 ### Tool call
 
-_source line 740 · 2026-05-22T15:42:12.451800+00:00_
+_source line 738 · 2026-05-22T15:42:12.451800+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5412,7 +5389,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 741 · 2026-05-22T15:42:16.568018+00:00_
+_source line 739 · 2026-05-22T15:42:16.568018+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v3.log\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p1_v4.sh\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/priority1_v4.log\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/run_eval_p1.sh\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_gla_hardcode.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.08}}"}
 
@@ -5434,7 +5411,7 @@ _source line 741 · 2026-05-22T15:42:16.568018+00:00_
 
 ### Tool call
 
-_source line 742 · 2026-05-22T15:42:21.286811+00:00_
+_source line 740 · 2026-05-22T15:42:21.286811+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5470,7 +5447,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 743 · 2026-05-22T15:42:22.592394+00:00_
+_source line 741 · 2026-05-22T15:42:22.592394+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 84, in _inner_fn\\n    validate_repo_id(arg_value)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 138, in validate_repo_id\\n    raise HFValidationError(\\nhuggingface_hub.errors.HFValidationError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: ''.\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;frozen runpy>\\\", line 198, in _run_module_as_main\\n  File \\\"&lt;frozen runpy>\\\", line 88, in _run_code\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\", line 14, in &lt;module>\\n    cli_evaluate()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\", line 10, in cli_evaluate\\n    parser.execute(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\", line 60, in execute\\n    args.func(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\", line 391, in _execute\\n    results = simple_evaluate(\\n              ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\", line 575, in _wrapper\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\", line 242, in simple_evaluate\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\", line 169, in create_from_arg_obj\\n    return cls(**arg_dict, **additional_config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^
 …[truncated 1981 chars]
@@ -5493,7 +5470,7 @@ _source line 743 · 2026-05-22T15:42:22.592394+00:00_
 
 ### Tool call
 
-_source line 744 · 2026-05-22T15:42:26.154534+00:00_
+_source line 742 · 2026-05-22T15:42:26.154534+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5529,7 +5506,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 745 · 2026-05-22T15:42:27.960065+00:00_
+_source line 743 · 2026-05-22T15:42:27.960065+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -eo pipefail\\nsource /etc/network_turbo\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_DISABLE_XET=1\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\necho \\\"=== GLA EVAL START $(date) ===\\\"\\n\\nls /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/config.json || { echo \\\"ERROR: model not found\\\"; exit 1; }\\nls /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/model.safetensors || { echo \\\"ERROR: model weights not found\\\"; exit 1; }\\n\\npython -m lm_eval \\\\\\n  --model hf \\\\\\n  --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1,trust_remote_code=True \\\\\\n  --tasks lambada_openai,arc_easy \\\\\\n  --device cuda:0 \\\\\\n  --batch_size auto \\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
 
@@ -5551,7 +5528,7 @@ _source line 745 · 2026-05-22T15:42:27.960065+00:00_
 
 ### Tool call
 
-_source line 746 · 2026-05-22T15:42:35.703580+00:00_
+_source line 744 · 2026-05-22T15:42:35.703580+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5587,7 +5564,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 747 · 2026-05-22T15:42:37.420940+00:00_
+_source line 745 · 2026-05-22T15:42:37.420940+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"root     875366  0.0  0.0   7064  1588 ?        Rs   23:42   0:00 ps aux -w --no-headers --sort=-start_time\\nsshd     875365  1.0  0.0  15444  5576 ?        S    23:42   0:00 sshd: unknown [net]\\nroot     875364  1.0  0.0  16432  9956 ?        Ss   23:42   0:00 sshd: unknown [priv]\\nsshd     875362  3.0  0.0  15444  5544 ?        S    23:42   0:00 sshd: [net]\\nroot     875361  0.0  0.0  15444  8576 ?        Ss   23:42   0:00 sshd: [accepted]\\nroot     875317  0.4  0.0  16692 10800 ?        Ss   23:42   0:00 sshd: root@notty\\nroot     875037  0.1  0.0  16692 10812 ?        Ss   23:41   0:00 sshd: root@notty\\nroot     872730  0.2  0.0  12844  9112 ?        S    23:15   0:03 wget --timeout=120 --tries=5 --continue https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main/model.safetensors -O model.safetensors\\nroot     872714  0.0  0.0  16692 10972 ?        Ss   23:15   0:00 sshd: root@notty\\nroot     872662  0.0  0.0   4364  3212 ?        S    23:15   0:00 bash /tmp/download_hgrn.sh\\nroot     872660  0.0  0.0   4364  1600 ?        S    23:15   0:00 bash -c cat > /tmp/download_hgrn.sh << 'SCRIPT' #!/bin/bash source /etc/network_turbo DIR=\\\"/root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1\\\" cd \\\"$DIR\\\" REPO=\\\"https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main\\\" echo \\\"HGRN small files start $(date)\\\" for f in config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json .gitattributes; do   wget -q --timeout=60 \\\"$REPO/$f\\\" -O \\\"$f\\\"   echo \\\"  $f done\\\" done echo \\\"HGRN small files done $(date)\\\" echo \\\"HGRN model.safetensors start $(date)\\\" wget --timeout=120 --tries=5 --continue \\\"$REPO/model.safetensors\\\" -O model.safetensors echo \\\"HGRN model.safetensors done $(date)\\\" SCRIPT chmod +x /tmp/download_hgrn.sh && nohup bash /tmp/download_hgrn.sh > /tmp/wget_hgrn.log 2>&1 & echo \\\"HGRN_PID=$!
 …[truncated 2023 chars]
@@ -5610,7 +5587,7 @@ _source line 747 · 2026-05-22T15:42:37.420940+00:00_
 
 ### Tool call
 
-_source line 748 · 2026-05-22T15:42:44.796706+00:00_
+_source line 746 · 2026-05-22T15:42:44.796706+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5646,7 +5623,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 749 · 2026-05-22T15:42:46.001852+00:00_
+_source line 747 · 2026-05-22T15:42:46.001852+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 659457679 May 22 23:42 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors\\n-rw-r--r-- 1 root root 231601028 May 22 23:42 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
 
@@ -5668,7 +5645,7 @@ _source line 749 · 2026-05-22T15:42:46.001852+00:00_
 
 ### Assistant
 
-_source line 750 · 2026-05-22T15:42:51.758242+00:00_
+_source line 748 · 2026-05-22T15:42:51.758242+00:00_
 
 下载进行中（DeltaNet 53%, HGRN 19%）。方向正确，等待完成后的评估结果。
 
@@ -5695,7 +5672,7 @@ _source line 750 · 2026-05-22T15:42:51.758242+00:00_
 
 ### User
 
-_source line 751 · 2026-05-22T15:43:12.704103+00:00_
+_source line 749 · 2026-05-22T15:43:12.704103+00:00_
 
 [系统通知 — cron:on_failed:exp-005-gla-eval]:
 实验 exp-005-gla-eval failed，请审查。
@@ -5717,7 +5694,7 @@ _source line 751 · 2026-05-22T15:43:12.704103+00:00_
 
 ### Tool call
 
-_source line 752 · 2026-05-22T15:43:20.013804+00:00_
+_source line 750 · 2026-05-22T15:43:20.013804+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5753,7 +5730,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 753 · 2026-05-22T15:43:20.565616+00:00_
+_source line 751 · 2026-05-22T15:43:20.565616+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5789,7 +5766,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 754 · 2026-05-22T15:43:26.286177+00:00_
+_source line 752 · 2026-05-22T15:43:26.286177+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 318, in __init__\\n    self._get_config(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 739, in _get_config\\n    self._config = transformers.AutoConfig.from_pretrained(\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\", line 374, in from_pretrained\\n    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\", line 682, in get_config_dict\\n    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\", line 737, in _get_config_dict\\n    resolved_config_file = cached_file(\\n                           ^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 278, in cached_file\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 473, in cached_files\\n    raise OSError(f\\\"{e}\\\") from e\\nOSError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: ''.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elaps
 …[truncated 22 chars]
@@ -5812,7 +5789,7 @@ _source line 754 · 2026-05-22T15:43:26.286177+00:00_
 
 ### Tool result
 
-_source line 755 · 2026-05-22T15:43:29.347481+00:00_
+_source line 753 · 2026-05-22T15:43:29.347481+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.06}}"}
 
@@ -5834,7 +5811,7 @@ _source line 755 · 2026-05-22T15:43:29.347481+00:00_
 
 ### Assistant
 
-_source line 756 · 2026-05-22T15:43:35.150879+00:00_
+_source line 754 · 2026-05-22T15:43:35.150879+00:00_
 
 同一个失败的旧日志，cron 重复触发。gla_eval.log 未更新，无新评估输出。已在之前的报告中覆盖此问题（空路径 bug + 缺少 `set -e`）。不再重复报告。
 
@@ -5861,7 +5838,7 @@ _source line 756 · 2026-05-22T15:43:35.150879+00:00_
 
 ### User
 
-_source line 757 · 2026-05-22T15:54:03.094581+00:00_
+_source line 755 · 2026-05-22T15:54:03.094581+00:00_
 
 [系统通知 — worker_done:worker_fix_exp-005-gla-eval-hardcode_20260522T154045]:
 Worker worker_fix_exp-005-gla-eval-hardcode_20260522T154045 已完成（status=done），请审查 Agent 的处理结果。
@@ -5883,7 +5860,7 @@ Worker worker_fix_exp-005-gla-eval-hardcode_20260522T154045 已完成（status=d
 
 ### Tool call
 
-_source line 758 · 2026-05-22T15:54:10.855303+00:00_
+_source line 756 · 2026-05-22T15:54:10.855303+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5919,7 +5896,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 759 · 2026-05-22T15:54:11.356983+00:00_
+_source line 757 · 2026-05-22T15:54:11.356983+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5955,7 +5932,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 760 · 2026-05-22T15:54:14.775485+00:00_
+_source line 758 · 2026-05-22T15:54:14.775485+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.86}}"}
 
@@ -5977,7 +5954,7 @@ _source line 760 · 2026-05-22T15:54:14.775485+00:00_
 
 ### Tool result
 
-_source line 761 · 2026-05-22T15:54:16.231677+00:00_
+_source line 759 · 2026-05-22T15:54:16.231677+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
 
@@ -5999,7 +5976,7 @@ _source line 761 · 2026-05-22T15:54:16.231677+00:00_
 
 ### Tool call
 
-_source line 762 · 2026-05-22T15:54:23.963234+00:00_
+_source line 760 · 2026-05-22T15:54:23.963234+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6035,7 +6012,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 763 · 2026-05-22T15:54:25.267923+00:00_
+_source line 761 · 2026-05-22T15:54:25.267923+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6071,7 +6048,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 764 · 2026-05-22T15:54:26.020721+00:00_
+_source line 762 · 2026-05-22T15:54:26.020721+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n    7529 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
 
@@ -6093,7 +6070,7 @@ _source line 764 · 2026-05-22T15:54:26.020721+00:00_
 
 ### Tool call
 
-_source line 765 · 2026-05-22T15:54:26.171432+00:00_
+_source line 763 · 2026-05-22T15:54:26.171432+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6129,7 +6106,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 766 · 2026-05-22T15:54:27.174979+00:00_
+_source line 764 · 2026-05-22T15:54:27.174979+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"text\\\": \\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\"}, \\\"target\\\": \\\" signs\\\", \\\"arguments\\\": {\\\"gen_args_0\\\": {\\\"arg_0\\\": \\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\", \\\"arg_1\\\": \\\" signs\\\"}}, \\\"resps\\\": [[[\\\"-6.97496223449707\\\", \\\"False\\\"]]], \\\"filtered_resps\\\": [[\\\"-6.97496223449707\\\", \\\"False\\\"]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\", \\\"prompt_hash\\\": \\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\", \\\"target_hash\\\": \\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\", \\\"perplexity\\\": -6.97496223449707, \\\"acc\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
 
@@ -6151,7 +6128,7 @@ _source line 766 · 2026-05-22T15:54:27.174979+00:00_
 
 ### Tool result
 
-_source line 767 · 2026-05-22T15:54:29.133469+00:00_
+_source line 765 · 2026-05-22T15:54:29.133469+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1.2G May 22 23:54 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors\\n-rw-r--r-- 1 root root 269M May 22 23:54 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"}
 
@@ -6173,7 +6150,7 @@ _source line 767 · 2026-05-22T15:54:29.133469+00:00_
 
 ### Tool call
 
-_source line 768 · 2026-05-22T15:54:39.582989+00:00_
+_source line 766 · 2026-05-22T15:54:39.582989+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6209,7 +6186,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 769 · 2026-05-22T15:54:43.046535+00:00_
+_source line 767 · 2026-05-22T15:54:43.046535+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6231,7 +6208,7 @@ _source line 769 · 2026-05-22T15:54:43.046535+00:00_
 
 ### Assistant
 
-_source line 770 · 2026-05-22T15:54:45.346106+00:00_
+_source line 768 · 2026-05-22T15:54:45.346106+00:00_
 
 GLA h3-1 评估成功完成——lambada_openai 和 arc_easy 的 log_samples jsonl 文件已生成。DeltaNet 和 HGRN 的结果目录已创建但尚空（等待模型下载完成后评估）。
 
@@ -6258,7 +6235,7 @@ GLA h3-1 评估成功完成——lambada_openai 和 arc_easy 的 log_samples jso
 
 ### User
 
-_source line 771 · 2026-05-22T16:18:07.426885+00:00_
+_source line 769 · 2026-05-22T16:18:07.426885+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530]:
 Worker worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530 已完成（status=done），请审查 Agent 的处理结果。
@@ -6280,7 +6257,7 @@ Worker worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530 已完成（sta
 
 ### Tool call
 
-_source line 772 · 2026-05-22T16:18:21.478360+00:00_
+_source line 770 · 2026-05-22T16:18:21.478360+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6316,7 +6293,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 773 · 2026-05-22T16:18:27.400981+00:00_
+_source line 771 · 2026-05-22T16:18:27.400981+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.89}}"}
 
@@ -6338,7 +6315,7 @@ _source line 773 · 2026-05-22T16:18:27.400981+00:00_
 
 ### Tool call
 
-_source line 774 · 2026-05-22T16:18:32.523834+00:00_
+_source line 772 · 2026-05-22T16:18:32.523834+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6374,7 +6351,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 775 · 2026-05-22T16:18:32.926006+00:00_
+_source line 773 · 2026-05-22T16:18:32.926006+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6410,7 +6387,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 776 · 2026-05-22T16:18:34.230476+00:00_
+_source line 774 · 2026-05-22T16:18:34.230476+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n    7529 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
 
@@ -6432,7 +6409,7 @@ _source line 776 · 2026-05-22T16:18:34.230476+00:00_
 
 ### Tool result
 
-_source line 777 · 2026-05-22T16:18:35.685292+00:00_
+_source line 775 · 2026-05-22T16:18:35.685292+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 3.8M May 23 00:18 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
 
@@ -6454,7 +6431,7 @@ _source line 777 · 2026-05-22T16:18:35.685292+00:00_
 
 ### Tool call
 
-_source line 778 · 2026-05-22T16:18:42.081328+00:00_
+_source line 776 · 2026-05-22T16:18:42.081328+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6490,7 +6467,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 779 · 2026-05-22T16:18:42.735000+00:00_
+_source line 777 · 2026-05-22T16:18:42.735000+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6526,7 +6503,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 780 · 2026-05-22T16:18:43.738958+00:00_
+_source line 778 · 2026-05-22T16:18:43.738958+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"282400K .......... .......... .......... .......... .......... 21% 69.2K 2h28m\\n282450K .......... .......... .......... .......... .......... 21% 79.3K 2h28m\\n282500K .......... .......... .......... .......... .......... 21% 81.8K 2h28m\\n282550K .......... .......... .......... .......... .......... 21% 93.2K 2h28m\\n282600K .......... .......... .......... .......... .......... 21%  141K 2h28m\\n282650K .......... .......... .......... .......... .......... 21%  105K 2h28m\\n282700K .......... .......... .......... .......... .......... 21%  119K 2h28m\\n282750K .......... .......... .......... .......... .......... 21% 90.5K 2h28m\\n282800K .......... .......... .......... .......... .......... 21% 90.7K 2h28m\\n282850K .......... .......... .......... .......... .......... 21%  473K 2h28m\\n282900K .......... .......... .......... .......... .......... 21% 84.6K 2h28m\\n282950K .......... .......... .......... .......... .......... 21%  675K 2h28m\\n283000K .......... .......... .......... .......... .......... 21%  119K 2h28m\\n283050K .......... .......... .......... .......... .......... 21%  134K 2h28m\\n283100K .......... .......... .......... .......... .......... 21% 78.0K 2h28m\\n283150K .......... .......... .......... .......... .......... 21%  108K 2h28m\\n283200K .......... .......... .......... .......... .......... 21%  130K 2h28m\\n283250K .......... .......... .......... .......... .......... 21% 89.1K 2h28m\\n283300K .......... .......... .......... .......... .......... 21%  182K 2h28m\\n283350K .......\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
 
@@ -6548,7 +6525,7 @@ _source line 780 · 2026-05-22T16:18:43.738958+00:00_
 
 ### Tool result
 
-_source line 781 · 2026-05-22T16:18:45.848373+00:00_
+_source line 779 · 2026-05-22T16:18:45.848373+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"�c\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000{\\\"__metadata__\\\":{\\\"format\\\":\\\"pt\\\"},\\\"model.embeddings.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[32000,1024],\\\"data_offsets\\\":[0,131072000]},\\\"model.layers.0.attn.f_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,1024],\\\"data_offsets\\\":[131072000,135266304]},\\\"model.layers.0.attn.g_norm.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024],\\\"data_offsets\\\":[135266304,135270400]},\\\"model.layers.0.attn.g_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,1024],\\\"data_offsets\\\":[135270400,139464704]},\\\"model.layers.0.attn.i_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,1024],\\\"data_offsets\\\":[139464704,143659008]},\\\"model.layers.0.attn.o_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,1024],\\\"data_offsets\\\":[143659008,147853312]},\\\"model.layers.0.attn_norm.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024],\\\"data_offsets\\\":[147853312,147857408]},\\\"model.layers.0.mlp.down_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,2816],\\\"data_offsets\\\":[147857408,159391744]},\\\"model.layers.0.mlp.gate_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[2816,1024],\\\"data_offsets\\\":[159391744,170926080]},\\\"model.layers.0.mlp.up_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[2816,1024],\\\"data_offsets\\\":[170926080,182460416]},\\\"model.layers.0.mlp_norm.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024],\\\"data_offsets\\\":[182460416,182464512]},\\\"model.layers.1.attn.f_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024,1024],\\\"data_offsets\\\":[182464512,186658816]},\\\"model.layers.1.attn.g_norm.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\":[1024],\\\"data_offsets\\\":[186658816,186662912]},\\\"model.layers.1.attn.g_proj.weight\\\":{\\\"dtype\\\":\\\"F32\\\",\\\"shape\\\
 …[truncated 8909 chars]
@@ -6571,7 +6548,7 @@ _source line 781 · 2026-05-22T16:18:45.848373+00:00_
 
 ### Tool call
 
-_source line 782 · 2026-05-22T16:19:06.817743+00:00_
+_source line 780 · 2026-05-22T16:19:06.817743+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6607,7 +6584,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 783 · 2026-05-22T16:19:10.384715+00:00_
+_source line 781 · 2026-05-22T16:19:10.384715+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -6629,7 +6606,7 @@ _source line 783 · 2026-05-22T16:19:10.384715+00:00_
 
 ### Assistant
 
-_source line 784 · 2026-05-22T16:19:13.133493+00:00_
+_source line 782 · 2026-05-22T16:19:13.133493+00:00_
 
 GLA 和 DeltaNet 评估完成。HGRN 模型文件异常——只有 3.8MB（预期 ~1.2GB）。
 
@@ -6656,7 +6633,7 @@ GLA 和 DeltaNet 评估完成。HGRN 模型文件异常——只有 3.8MB（预�
 
 ### User
 
-_source line 785 · 2026-05-22T16:20:37.810039+00:00_
+_source line 783 · 2026-05-22T16:20:37.810039+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-hgrn-eval-watch_20260522T161920]:
 Worker worker_exp_exp-005-hgrn-eval-watch_20260522T161920 已完成（status=done），请审查 Agent 的处理结果。
@@ -6678,7 +6655,7 @@ Worker worker_exp_exp-005-hgrn-eval-watch_20260522T161920 已完成（status=don
 
 ### Tool call
 
-_source line 786 · 2026-05-22T16:20:46.690272+00:00_
+_source line 784 · 2026-05-22T16:20:46.690272+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6714,7 +6691,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 787 · 2026-05-22T16:20:47.605320+00:00_
+_source line 785 · 2026-05-22T16:20:47.605320+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6750,7 +6727,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 788 · 2026-05-22T16:20:56.690412+00:00_
+_source line 786 · 2026-05-22T16:20:56.690412+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.97}}"}
 
@@ -6772,7 +6749,7 @@ _source line 788 · 2026-05-22T16:20:56.690412+00:00_
 
 ### Tool result
 
-_source line 789 · 2026-05-22T16:20:59.200849+00:00_
+_source line 787 · 2026-05-22T16:20:59.200849+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4.7M May 23 00:20 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.53}}"}
 
@@ -6794,7 +6771,7 @@ _source line 789 · 2026-05-22T16:20:59.200849+00:00_
 
 ### Tool call
 
-_source line 790 · 2026-05-22T16:21:03.568423+00:00_
+_source line 788 · 2026-05-22T16:21:03.568423+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6830,7 +6807,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 791 · 2026-05-22T16:21:07.439944+00:00_
+_source line 789 · 2026-05-22T16:21:07.439944+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724384 22168 ?        Sl   May18 110:37 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6895316 104224 ?      Sl   May18  20:17 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:34 sshd: /usr/sbin/sshd -D [listener] 1 of 10-100 startups\\nroot       1206  0.0  0.0 3831864 17856 ?       Sl   May18   2:48 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 20092 ?       Sl   May18   5:31 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   May22   0:04 sshd: root@notty\\nroot     872300  0.0  0.0  16692 10728 ?        Ss   May22   0:00 sshd: root@notty\\nroot     872552  0.0  0.0  16692 10584 ?        Ss   May22   0:00 sshd: root@notty\\nroot     872643  0.0  0.0  16692 10420 ?        Ss   May22   0:00 sshd: root@notty\\nroot     872714  0.0  0.0  16692 10972 ?        Ss   May22   0:00 sshd: root@notty\\nroot     882351  0.0  0.0  16692 10780 ?        Ss   May22   0:00 sshd: root@notty\\nroot     882484  0.0  0.0   4364  2160 ?        S    May22   0:00 bash -c source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && nohup aria2c -x 16 -s 16 --timeout=120 --max-tries=10 --file-allocation=none 'https://huggingface.co/m-a-p/340M-20B-HGRN-hybrid-3-1/resolve/main/model.safetensors' -d /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/ -o model.safetensors > /tmp/aria2c_hgrn
 …[truncated 6333 chars]
@@ -6853,7 +6830,7 @@ _source line 791 · 2026-05-22T16:21:07.439944+00:00_
 
 ### Tool call
 
-_source line 792 · 2026-05-22T16:21:18.649967+00:00_
+_source line 790 · 2026-05-22T16:21:18.649967+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6889,7 +6866,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 793 · 2026-05-22T16:21:19.039415+00:00_
+_source line 791 · 2026-05-22T16:21:19.039415+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -6925,7 +6902,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 794 · 2026-05-22T16:21:20.295210+00:00_
+_source line 792 · 2026-05-22T16:21:20.295210+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    hf_hub_download(  # type: ignore\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 976, in hf_hub_download\\n    return _hf_hub_download_to_local_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1427, in _hf_hub_download_to_local_dir\\n    _download_to_tmp_and_move(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1858, in _download_to_tmp_and_move\\n    http_get(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 421, in http_get\\n    for chunk in response.iter_bytes(chunk_size=constants.DOWNLOAD_CHUNK_SIZE):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_models.py\\\", line 831, in iter_bytes\\n    for raw_bytes in self.iter_raw():\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_models.py\\\", line 885, in iter_raw\\n    for raw_stream_bytes in self.stream:\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 127, in __iter__\\n    for chunk in self._stream:\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", line 115, in __iter__\\n    with map_httpcore_exceptions():\\n  File \\\"/root/miniconda3/lib/python3.12/contextlib.py\\\", line 158, in __exit__\\n    self.gen.throw(value)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", 
 …[truncated 337 chars]
@@ -6948,7 +6925,7 @@ _source line 794 · 2026-05-22T16:21:20.295210+00:00_
 
 ### Tool result
 
-_source line 795 · 2026-05-22T16:21:26.617961+00:00_
+_source line 793 · 2026-05-22T16:21:26.617961+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.5KiB ETA:1h56m28s]\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:7.1KiB ETA:2h19m10s]\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.0KiB ETA:2h3m48s]\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:7.1KiB ETA:2h18m44s]\\n[#321bd9 1.1GiB/1.2GiB(95%) CN:2 DL:8.1KiB ETA:2h2m59s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.3}}"}
 
@@ -6970,7 +6947,7 @@ _source line 795 · 2026-05-22T16:21:26.617961+00:00_
 
 ### Tool call
 
-_source line 796 · 2026-05-22T16:21:41.138381+00:00_
+_source line 794 · 2026-05-22T16:21:41.138381+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7006,7 +6983,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 797 · 2026-05-22T16:21:41.340887+00:00_
+_source line 795 · 2026-05-22T16:21:41.340887+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7042,7 +7019,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 798 · 2026-05-22T16:21:46.617412+00:00_
+_source line 796 · 2026-05-22T16:21:46.617412+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -eo pipefail\\nsource /etc/network_turbo\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_DISABLE_XET=1\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\nMODELS=\\\"/root/entrainment_gated_ft/models\\\"\\nRESULTS=\\\"/root/entrainment_gated_ft/results/exp005_zoo_expansion\\\"\\nLOG=\\\"$RESULTS/pure_wget_eval.log\\\"\\nFILES=\\\"config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json model.safetensors\\\"\\n\\necho \\\"=== PURE WGET+EVAL START $(date) ===\\\" | tee \\\"$LOG\\\"\\n\\n# ---- DOWNLOAD via wget ----\\ndeclare -A REPOS\\nREPOS[GLA]=\\\"340M-20B-GLA-pure-baseline\\\"\\nREPOS[DeltaNet]=\\\"340M-20B-DeltaNet-pure\\\"\\nREPOS[HGRN]=\\\"340M-20B-HGRN-pure-baseline\\\"\\n\\nfor ARCH in GLA DeltaNet HGRN; do\\n  REPO_NAME=\\\"${REPOS[$ARCH]}\\\"\\n  LOCAL=\\\"$MODELS/$REPO_NAME\\\"\\n  \\n  if [ -f \\\"$LOCAL/model.safetensors\\\" ]; then\\n    SIZE=$(stat -c%s \\\"$LOCAL/model.safetensors\\\")\\n    if [ \\\"$SIZE\\\" -gt 100000000 ]; then\\n      echo \\\"$ARCH: already exists ($SIZE bytes), skip\\\" | tee -a \\\"$LOG\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.44}}"}
 
@@ -7064,7 +7041,7 @@ _source line 798 · 2026-05-22T16:21:46.617412+00:00_
 
 ### Tool result
 
-_source line 799 · 2026-05-22T16:21:51.587678+00:00_
+_source line 797 · 2026-05-22T16:21:51.587678+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Redirecting output to 'wget-log.4'.\\n  Downloading special_tokens_map.json...\\n\\nRedirecting output to 'wget-log.5'.\\n  Downloading model.safetensors...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.99}}"}
 
@@ -7086,7 +7063,7 @@ _source line 799 · 2026-05-22T16:21:51.587678+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-22T16:22:01.022633+00:00_
+_source line 798 · 2026-05-22T16:22:01.022633+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7122,7 +7099,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 801 · 2026-05-22T16:22:01.424445+00:00_
+_source line 799 · 2026-05-22T16:22:01.424445+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7158,7 +7135,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 802 · 2026-05-22T16:22:04.034804+00:00_
+_source line 800 · 2026-05-22T16:22:04.034804+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.02}}"}
 
@@ -7180,7 +7157,7 @@ _source line 802 · 2026-05-22T16:22:04.034804+00:00_
 
 ### Tool result
 
-_source line 803 · 2026-05-22T16:22:07.429836+00:00_
+_source line 801 · 2026-05-22T16:22:07.429836+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/models/transformer_340M_baseline\\n/root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.39}}"}
 
@@ -7202,7 +7179,7 @@ _source line 803 · 2026-05-22T16:22:07.429836+00:00_
 
 ### Tool call
 
-_source line 804 · 2026-05-22T16:22:18.465979+00:00_
+_source line 802 · 2026-05-22T16:22:18.465979+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7238,7 +7215,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 805 · 2026-05-22T16:22:22.315857+00:00_
+_source line 803 · 2026-05-22T16:22:22.315857+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4.4M May 23 00:22 /root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure/model.safetensors\\n-rw-r--r-- 1 root root 1.3G May 23 00:19 /root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.82}}"}
 
@@ -7260,7 +7237,7 @@ _source line 805 · 2026-05-22T16:22:22.315857+00:00_
 
 ### Assistant
 
-_source line 806 · 2026-05-22T16:22:33.290541+00:00_
+_source line 804 · 2026-05-22T16:22:33.290541+00:00_
 
 Agent 正确推进了 pure baseline 下载和评估。当前状态：
 
@@ -7292,7 +7269,7 @@ Agent 正确推进了 pure baseline 下载和评估。当前状态：
 
 ### User
 
-_source line 807 · 2026-05-22T16:26:08.709369+00:00_
+_source line 805 · 2026-05-22T16:26:08.709369+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-hgrn-eval-submit_20260522T162135]:
 Worker worker_exp_exp-005-hgrn-eval-submit_20260522T162135 已完成（status=done），请审查 Agent 的处理结果。
@@ -7314,7 +7291,7 @@ Worker worker_exp_exp-005-hgrn-eval-submit_20260522T162135 已完成（status=do
 
 ### Tool call
 
-_source line 808 · 2026-05-22T16:26:16.067811+00:00_
+_source line 806 · 2026-05-22T16:26:16.067811+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7350,7 +7327,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 809 · 2026-05-22T16:26:16.519819+00:00_
+_source line 807 · 2026-05-22T16:26:16.519819+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7386,7 +7363,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 810 · 2026-05-22T16:26:23.198115+00:00_
+_source line 808 · 2026-05-22T16:26:23.198115+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Status Legend:\\n(ERR):error occurred.\\n\\naria2 will resume download if the transfer is restarted.\\nIf there are any errors, then see the log file. See '-l' option in help/man page for details.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.12}}"}
 
@@ -7408,7 +7385,7 @@ _source line 810 · 2026-05-22T16:26:23.198115+00:00_
 
 ### Tool result
 
-_source line 811 · 2026-05-22T16:26:28.802466+00:00_
+_source line 809 · 2026-05-22T16:26:28.802466+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1.3G May 23 00:26 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.61}}"}
 
@@ -7430,7 +7407,7 @@ _source line 811 · 2026-05-22T16:26:28.802466+00:00_
 
 ### Tool call
 
-_source line 812 · 2026-05-22T16:26:33.870042+00:00_
+_source line 810 · 2026-05-22T16:26:33.870042+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7466,7 +7443,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 813 · 2026-05-22T16:26:34.573830+00:00_
+_source line 811 · 2026-05-22T16:26:34.573830+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7502,7 +7479,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 814 · 2026-05-22T16:26:36.480864+00:00_
+_source line 812 · 2026-05-22T16:26:36.480864+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.61}}"}
 
@@ -7524,7 +7501,7 @@ _source line 814 · 2026-05-22T16:26:36.480864+00:00_
 
 ### Tool result
 
-_source line 815 · 2026-05-22T16:26:41.103404+00:00_
+_source line 813 · 2026-05-22T16:26:41.103404+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 127, in __iter__\\n    for chunk in self._stream:\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", line 115, in __iter__\\n    with map_httpcore_exceptions():\\n  File \\\"/root/miniconda3/lib/python3.12/contextlib.py\\\", line 158, in __exit__\\n    self.gen.throw(value)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", line 89, in map_httpcore_exceptions\\n    raise mapped_exc(message) from exc\\nhttpx.RemoteProtocolError: peer closed connection without sending complete message body (received 200869700 bytes, expected 1366868064)\\nEXIT_CODE=129\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.61}}"}
 
@@ -7546,7 +7523,7 @@ _source line 815 · 2026-05-22T16:26:41.103404+00:00_
 
 ### Tool call
 
-_source line 816 · 2026-05-22T16:26:48.741262+00:00_
+_source line 814 · 2026-05-22T16:26:48.741262+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7582,7 +7559,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 817 · 2026-05-22T16:26:49.293558+00:00_
+_source line 815 · 2026-05-22T16:26:49.293558+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7618,7 +7595,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 818 · 2026-05-22T16:26:51.953211+00:00_
+_source line 816 · 2026-05-22T16:26:51.953211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2}}"}
 
@@ -7640,7 +7617,7 @@ _source line 818 · 2026-05-22T16:26:51.953211+00:00_
 
 ### Tool result
 
-_source line 819 · 2026-05-22T16:26:54.411886+00:00_
+_source line 817 · 2026-05-22T16:26:54.411886+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.43}}"}
 
@@ -7662,7 +7639,7 @@ _source line 819 · 2026-05-22T16:26:54.411886+00:00_
 
 ### Tool call
 
-_source line 820 · 2026-05-22T16:27:07.546910+00:00_
+_source line 818 · 2026-05-22T16:27:07.546910+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7698,7 +7675,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 821 · 2026-05-22T16:27:11.920887+00:00_
+_source line 819 · 2026-05-22T16:27:11.920887+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -7720,7 +7697,7 @@ _source line 821 · 2026-05-22T16:27:11.920887+00:00_
 
 ### Assistant
 
-_source line 822 · 2026-05-22T16:27:14.215811+00:00_
+_source line 820 · 2026-05-22T16:27:14.215811+00:00_
 
 GPU 空闲（0% utilization, 0 MiB used）。Pure eval 脚本已死，HGRN h3-1 eval 未启动，没有任何进程在使用 GPU。
 
@@ -7747,7 +7724,7 @@ GPU 空闲（0% utilization, 0 MiB used）。Pure eval 脚本已死，HGRN h3-1 
 
 ### User
 
-_source line 823 · 2026-05-22T16:28:09.085601+00:00_
+_source line 821 · 2026-05-22T16:28:09.085601+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-hgrn-chain_20260522T162706]:
 Worker worker_exp_exp-005-hgrn-chain_20260522T162706 已完成（status=done），请审查 Agent 的处理结果。
@@ -7769,7 +7746,7 @@ Worker worker_exp_exp-005-hgrn-chain_20260522T162706 已完成（status=done）�
 
 ### Tool call
 
-_source line 824 · 2026-05-22T16:28:14.881812+00:00_
+_source line 822 · 2026-05-22T16:28:14.881812+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7805,7 +7782,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 825 · 2026-05-22T16:28:21.454795+00:00_
+_source line 823 · 2026-05-22T16:28:21.454795+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.54}}"}
 
@@ -7827,7 +7804,7 @@ _source line 825 · 2026-05-22T16:28:21.454795+00:00_
 
 ### Tool call
 
-_source line 826 · 2026-05-22T16:28:24.805356+00:00_
+_source line 824 · 2026-05-22T16:28:24.805356+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7863,7 +7840,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 827 · 2026-05-22T16:28:25.608557+00:00_
+_source line 825 · 2026-05-22T16:28:25.608557+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7899,7 +7876,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 828 · 2026-05-22T16:28:43.551414+00:00_
+_source line 826 · 2026-05-22T16:28:43.551414+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 18.72}}"}
 
@@ -7921,7 +7898,7 @@ _source line 828 · 2026-05-22T16:28:43.551414+00:00_
 
 ### Tool result
 
-_source line 829 · 2026-05-22T16:28:46.329306+00:00_
+_source line 827 · 2026-05-22T16:28:46.329306+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/entrainment_gated_ft/exp-005-hgrn-gla-pure.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.79}}"}
 
@@ -7943,7 +7920,7 @@ _source line 829 · 2026-05-22T16:28:46.329306+00:00_
 
 ### Tool call
 
-_source line 830 · 2026-05-22T16:28:49.764937+00:00_
+_source line 828 · 2026-05-22T16:28:49.764937+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7979,7 +7956,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 831 · 2026-05-22T16:28:51.272131+00:00_
+_source line 829 · 2026-05-22T16:28:51.272131+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root    187 May 23 00:27 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
 
@@ -8001,7 +7978,7 @@ _source line 831 · 2026-05-22T16:28:51.272131+00:00_
 
 ### Tool call
 
-_source line 832 · 2026-05-22T16:28:54.447843+00:00_
+_source line 830 · 2026-05-22T16:28:54.447843+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8037,7 +8014,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 833 · 2026-05-22T16:28:58.015113+00:00_
+_source line 831 · 2026-05-22T16:28:58.015113+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n=== HGRN CHAIN START Sat May 23 00:27:46 CST 2026 ===\\nWaiting for HGRN download...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.55}}"}
 
@@ -8059,7 +8036,7 @@ _source line 833 · 2026-05-22T16:28:58.015113+00:00_
 
 ### Tool call
 
-_source line 834 · 2026-05-22T16:29:04.990493+00:00_
+_source line 832 · 2026-05-22T16:29:04.990493+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8095,7 +8072,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 835 · 2026-05-22T16:29:05.391914+00:00_
+_source line 833 · 2026-05-22T16:29:05.391914+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8131,7 +8108,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 836 · 2026-05-22T16:29:06.948346+00:00_
+_source line 834 · 2026-05-22T16:29:06.948346+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1331213216\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
 
@@ -8153,7 +8130,7 @@ _source line 836 · 2026-05-22T16:29:06.948346+00:00_
 
 ### Tool result
 
-_source line 837 · 2026-05-22T16:29:09.725742+00:00_
+_source line 835 · 2026-05-22T16:29:09.725742+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1332498184\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.77}}"}
 
@@ -8175,7 +8152,7 @@ _source line 837 · 2026-05-22T16:29:09.725742+00:00_
 
 ### Assistant
 
-_source line 838 · 2026-05-22T16:29:20.598209+00:00_
+_source line 836 · 2026-05-22T16:29:20.598209+00:00_
 
 HGRN h3-1 模型已完整（1.33GB，与 GLA 的 1.33GB 一致），但 chain 脚本卡在 "Waiting for HGRN download..." 循环中——可能在检查 aria2c 进程而非文件完整性。GPU 仍然空闲。
 
@@ -8204,7 +8181,7 @@ HGRN h3-1 模型已完整（1.33GB，与 GLA 的 1.33GB 一致），但 chain �
 
 ### User
 
-_source line 839 · 2026-05-22T16:31:09.713679+00:00_
+_source line 837 · 2026-05-22T16:31:09.713679+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-eval-and-download_20260522T162822]:
 Worker worker_exp_exp-005-eval-and-download_20260522T162822 已完成（status=done），请审查 Agent 的处理结果。
@@ -8226,7 +8203,7 @@ Worker worker_exp_exp-005-eval-and-download_20260522T162822 已完成（status=d
 
 ### Tool call
 
-_source line 840 · 2026-05-22T16:31:16.925274+00:00_
+_source line 838 · 2026-05-22T16:31:16.925274+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8262,7 +8239,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 841 · 2026-05-22T16:31:21.599607+00:00_
+_source line 839 · 2026-05-22T16:31:21.599607+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.64}}"}
 
@@ -8284,7 +8261,7 @@ _source line 841 · 2026-05-22T16:31:21.599607+00:00_
 
 ### Tool call
 
-_source line 842 · 2026-05-22T16:31:24.861279+00:00_
+_source line 840 · 2026-05-22T16:31:24.861279+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8320,7 +8297,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 843 · 2026-05-22T16:31:25.263127+00:00_
+_source line 841 · 2026-05-22T16:31:25.263127+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8356,7 +8333,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 844 · 2026-05-22T16:31:26.568032+00:00_
+_source line 842 · 2026-05-22T16:31:26.568032+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
 
@@ -8378,7 +8355,7 @@ _source line 844 · 2026-05-22T16:31:26.568032+00:00_
 
 ### Tool result
 
-_source line 845 · 2026-05-22T16:31:28.978180+00:00_
+_source line 843 · 2026-05-22T16:31:28.978180+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   3935 May 23 00:30 /root/runs/entrainment_gated_ft/exp-005-batch.log\\n-rw-r--r-- 1 root root    187 May 23 00:27 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.39}}"}
 
@@ -8400,7 +8377,7 @@ _source line 845 · 2026-05-22T16:31:28.978180+00:00_
 
 ### Tool call
 
-_source line 846 · 2026-05-22T16:31:32.345049+00:00_
+_source line 844 · 2026-05-22T16:31:32.345049+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8436,7 +8413,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 847 · 2026-05-22T16:31:34.502648+00:00_
+_source line 845 · 2026-05-22T16:31:34.502648+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\", line 60, in execute\\n    args.func(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/run.py\\\", line 391, in _execute\\n    results = simple_evaluate(\\n              ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/utils.py\\\", line 575, in _wrapper\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/evaluator.py\\\", line 242, in simple_evaluate\\n    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/api/model.py\\\", line 169, in create_from_arg_obj\\n    return cls(**arg_dict, **additional_config)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 365, in __init__\\n    self._create_model(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/models/huggingface.py\\\", line 813, in _create_model\\n    self._model = self.AUTO_MODEL_CLASS.from_pretrained(\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py\\\", line 405, in from_pretrained\\n    return model_class.from_pretrained(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 4245, in from_pretrained\\n    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)\\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.1
 …[truncated 469 chars]
@@ -8459,7 +8436,7 @@ _source line 847 · 2026-05-22T16:31:34.502648+00:00_
 
 ### Tool call
 
-_source line 848 · 2026-05-22T16:31:42.070911+00:00_
+_source line 846 · 2026-05-22T16:31:42.070911+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8495,7 +8472,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 849 · 2026-05-22T16:31:43.676680+00:00_
+_source line 847 · 2026-05-22T16:31:43.676680+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n=== START Sat May 23 00:30:39 CST 2026 ===\\nBG: Downloading DeltaNet pure... Sat May 23 00:30:39 CST 2026\\nEVAL HGRN h3-1 START Sat May 23 00:30:39 CST 2026\\n\\rFetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n\\rFetching 7 files:  14%|█▍        | 1/7 [00:01<00:10,  1.80s/it]\\rFetching 7 files:  43%|████▎     | 3/7 [00:02<00:03,  1.31it/s]2026-05-23:00:30:51 INFO     [_cli.run:388] Selected Tasks: ['lambada_openai', 'arc_easy']\\n2026-05-23:00:30:51 INFO     [evaluator:214] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234\\n2026-05-23:00:30:51 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1', 'trust_remote_code': True}\\n2026-05-23:00:30:51 INFO     [models.huggingface:286] Using device 'cuda:0'\\n2026-05-23:00:30:51 INFO     [models.huggingface:719] Model type cannot be determined. Using default model type 'causal'\\n2026-05-23:00:30:51 INFO     [models.huggingface:578] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}\\nTraceback (most recent call last):\\n  File \\\"/tmp/eval_with_patch.py\\\", line 2, in &lt;module>\\n    exec(open(os.environ.get(\\\"FLA_PATCH\\\", \\\"/root/entrainment_gated_ft/scripts/patch_fla_eval.py\\\")).read())\\n  File \\\"&lt;string>\\\", line 36, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/__main__.py\\\", line 10, in cli_evaluate\\n    parser.execute(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/_cli/harness.py\\\", line 60, in execute\\n    args.func(args)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packag
 …[truncated 763 chars]
@@ -8518,7 +8495,7 @@ _source line 849 · 2026-05-22T16:31:43.676680+00:00_
 
 ### Tool call
 
-_source line 850 · 2026-05-22T16:32:06.158440+00:00_
+_source line 848 · 2026-05-22T16:32:06.158440+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8554,7 +8531,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 851 · 2026-05-22T16:32:09.847876+00:00_
+_source line 849 · 2026-05-22T16:32:09.847876+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -8583,7 +8560,7 @@ _source line 851 · 2026-05-22T16:32:09.847876+00:00_
 
 ### User
 
-_source line 852 · 2026-05-22T16:32:13.138786+00:00_
+_source line 850 · 2026-05-22T16:32:13.138786+00:00_
 
 [系统通知 — cron:on_failed:exp-005-batch]:
 实验 exp-005-batch failed，请审查。
@@ -8605,7 +8582,7 @@ _source line 852 · 2026-05-22T16:32:13.138786+00:00_
 
 ### Assistant
 
-_source line 853 · 2026-05-22T16:32:22.167913+00:00_
+_source line 851 · 2026-05-22T16:32:22.167913+00:00_
 
 已在上条审查中覆盖——HGRN h3-1 model.safetensors 损坏导致 exp-005-batch 失败。无新信息。
 
@@ -8632,7 +8609,7 @@ _source line 853 · 2026-05-22T16:32:22.167913+00:00_
 
 ### User
 
-_source line 854 · 2026-05-22T16:36:40.892869+00:00_
+_source line 852 · 2026-05-22T16:36:40.892869+00:00_
 
 [系统通知 — worker_done:worker_diagnose_exp-005-batch_20260522T163242]:
 Worker worker_diagnose_exp-005-batch_20260522T163242 已完成（status=done），请审查 Agent 的处理结果。
@@ -8654,7 +8631,7 @@ Worker worker_diagnose_exp-005-batch_20260522T163242 已完成（status=done）�
 
 ### Tool call
 
-_source line 855 · 2026-05-22T16:36:49.107279+00:00_
+_source line 853 · 2026-05-22T16:36:49.107279+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8690,7 +8667,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 856 · 2026-05-22T16:36:49.408660+00:00_
+_source line 854 · 2026-05-22T16:36:49.408660+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8726,7 +8703,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 857 · 2026-05-22T16:36:53.522491+00:00_
+_source line 855 · 2026-05-22T16:36:53.522491+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.39}}"}
 
@@ -8748,7 +8725,7 @@ _source line 857 · 2026-05-22T16:36:53.522491+00:00_
 
 ### Tool result
 
-_source line 858 · 2026-05-22T16:36:57.046496+00:00_
+_source line 856 · 2026-05-22T16:36:57.046496+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.49}}"}
 
@@ -8770,7 +8747,7 @@ _source line 858 · 2026-05-22T16:36:57.046496+00:00_
 
 ### Assistant
 
-_source line 859 · 2026-05-22T16:37:00.492858+00:00_
+_source line 857 · 2026-05-22T16:37:00.492858+00:00_
 
 No new eval outputs. GPU still idle. Same state as my last report — diagnose worker confirmed the HGRN h3-1 corruption but no new evals were launched.
 
@@ -8797,7 +8774,7 @@ No new eval outputs. GPU still idle. Same state as my last report — diagnose w
 
 ### User
 
-_source line 860 · 2026-05-22T16:40:41.563034+00:00_
+_source line 858 · 2026-05-22T16:40:41.563034+00:00_
 
 [系统通知 — worker_done:worker_exp_exp-005-gla-pure-now_20260522T163259]:
 Worker worker_exp_exp-005-gla-pure-now_20260522T163259 已完成（status=done），请审查 Agent 的处理结果。
@@ -8819,7 +8796,7 @@ Worker worker_exp_exp-005-gla-pure-now_20260522T163259 已完成（status=done�
 
 ### Tool call
 
-_source line 861 · 2026-05-22T16:40:49.493868+00:00_
+_source line 859 · 2026-05-22T16:40:49.493868+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8855,7 +8832,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 862 · 2026-05-22T16:40:56.526956+00:00_
+_source line 860 · 2026-05-22T16:40:56.526956+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.03}}"}
 
@@ -8877,7 +8854,7 @@ _source line 862 · 2026-05-22T16:40:56.526956+00:00_
 
 ### Tool call
 
-_source line 863 · 2026-05-22T16:40:59.595174+00:00_
+_source line 861 · 2026-05-22T16:40:59.595174+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8913,7 +8890,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 864 · 2026-05-22T16:41:01.653217+00:00_
+_source line 862 · 2026-05-22T16:41:01.653217+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  21443 May 23 00:40 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log\\n-rw-r--r-- 1 root root    305 May 23 00:37 /root/runs/entrainment_gated_ft/exp-005-pure-v5.log\\n-rw-r--r-- 1 root root    458 May 23 00:35 /root/runs/entrainment_gated_ft/exp-005-pure-v4.log\\n-rw-r--r-- 1 root root   3842 May 23 00:32 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log\\n-rw-r--r-- 1 root root    626 May 23 00:32 /root/runs/entrainment_gated_ft/exp-005-pure-v3.log\\n-rw-r--r-- 1 root root   3935 May 23 00:30 /root/runs/entrainment_gated_ft/exp-005-batch.log\\n-rw-r--r-- 1 root root  38644 May 23 00:22 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v5.log\\n-rw-r--r-- 1 root root   6914 May 23 00:20 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log\\n-rw-r--r-- 1 root root   3233 May 23 00:16 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v4.log\\n-rw-r--r-- 1 root root  21682 May 23 00:09 /root/runs/entrainment_gated_ft/exp-005-dn-eval.log\\n-rw-r--r-- 1 root root   2535 May 23 00:07 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v3.log\\n-rw-r--r-- 1 root root    527 May 23 00:06 /root/runs/entrainment_gated_ft/exp-005-p1-eval-v2.log\\n-rw-r--r-- 1 root root   1694 May 23 00:01 /root/runs/entrainment_gated_ft/exp-005-p1-eval.log\\n-rw-r--r-- 1 root root   3479 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-deltanet.log\\n-rw-r--r-- 1 root root  22398 May 22 23:51 /root/runs/entrainment_gated_ft/exp-005-gla.log\\n-rw-r--r-- 1 root root   3577 May 22 23:42 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log\\n-rw-r--r-- 1 root root   6374 May 22 23:17 /root/runs/entrainment_gated_ft/exp-005-p1-v4.log\\n-rw-r--r-- 1 root root 291423 May 22 22:48 /root/runs/entrainment_gated_ft/exp-005.log\\n-rw-r--r-- 1 root root    346 May 22 22:22 /root/runs/entrainment_gated_ft/exp-005-eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.06
 …[truncated 4 chars]
@@ -8936,7 +8913,7 @@ _source line 864 · 2026-05-22T16:41:01.653217+00:00_
 
 ### Tool call
 
-_source line 865 · 2026-05-22T16:41:04.714792+00:00_
+_source line 863 · 2026-05-22T16:41:04.714792+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -8972,7 +8949,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 866 · 2026-05-22T16:41:08.130117+00:00_
+_source line 864 · 2026-05-22T16:41:08.130117+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23:00:40:28 INFO     [evaluator_utils:446] Selected tasks:\\n2026-05-23:00:40:28 INFO     [evaluator_utils:480] Task: arc_easy (arc/arc_easy.yaml)\\n2026-05-23:00:40:28 INFO     [evaluator_utils:480] Task: lambada_openai (lambada/lambada_openai.yaml)\\n2026-05-23:00:40:28 INFO     [api.task:312] Building contexts for lambada_openai on rank 0...\\n\\r  0%|          | 0/5153 [00:00<?, ?it/s]\\r  1%|          | 60/5153 [00:00<00:08, 591.16it/s]\\r  2%|▏         | 121/5153 [00:00<00:08, 598.72it/s]\\r  4%|▎         | 182/5153 [00:00<00:08, 602.71it/s]\\r  5%|▍         | 244/5153 [00:00<00:08, 606.20it/s]\\r  6%|▌         | 305/5153 [00:00<00:08, 604.94it/s]\\r  7%|▋         | 367/5153 [00:00<00:07, 607.78it/s]\\r  8%|▊         | 428/5153 [00:00<00:08, 571.93it/s]\\r  9%|▉         | 486/5153 [00:00<00:09, 515.93it/s]\\r 11%|█         | 548/5153 [00:00<00:08, 544.10it/s]\\r 12%|█▏        | 610/5153 [00:01<00:08, 563.60it/s]\\r 13%|█▎        | 672/5153 [00:01<00:07, 578.91it/s]\\r 14%|█▍        | 734/5153 [00:01<00:07, 589.14it/s]\\r 15%|█▌        | 795/5153 [00:01<00:07, 594.77it/s]\\r 17%|█▋        | 856/5153 [00:01<00:07, 598.82it/s]\\r 18%|█▊        | 917/5153 [00:01<00:07, 600.81it/s]\\r 19%|█▉        | 978/5153 [00:01<00:06, 603.45it/s]\\r 20%|██        | 1039/5153 [00:01<00:06, 605.34it/s]\\r 21%|██▏       | 1101/5153 [00:01<00:06, 606.79it/s]\\r 23%|██▎       | 1163/5153 [00:01<00:06, 608.09it/s]\\r 24%|██▍       | 1225/5153 [00:02<00:06, 609.14it/s]\\r 25%|██▍       | 1286/5153 [00:02<00:06, 576.68it/s]\\r 26%|██▌       | 1347/5153 [00:02<00:06, 586.21it/s]\\r 27%|██▋       | 1409/5153 [00:02<00:06, 594.12it/s]\\r 29%|██▊       | 1471/5153 [00:02<00:06, 599.90it/s]\\r 30%|██▉       | 1532/5153 [00:02<00:06, 599.11it/s]\\r 31%|███       | 1594/5153 [00:02<00:05, 603.21it/s]\\r 32%|███▏      | 1656/5153 [00:02<00:05, 605.80it/s]\\r 33%|███▎      | 1717/5153 [00:02<00:05, 606.74it/s]\\r 35%|███▍      | 1
 …[truncated 6445 chars]
@@ -8995,7 +8972,7 @@ _source line 866 · 2026-05-22T16:41:08.130117+00:00_
 
 ### Tool call
 
-_source line 867 · 2026-05-22T16:41:14.074337+00:00_
+_source line 865 · 2026-05-22T16:41:14.074337+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9031,7 +9008,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 868 · 2026-05-22T16:41:17.687406+00:00_
+_source line 866 · 2026-05-22T16:41:17.687406+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.61}}"}
 
@@ -9053,7 +9030,7 @@ _source line 868 · 2026-05-22T16:41:17.687406+00:00_
 
 ### Assistant
 
-_source line 869 · 2026-05-22T16:41:20.536465+00:00_
+_source line 867 · 2026-05-22T16:41:20.536465+00:00_
 
 No response requested.
 
@@ -9080,7 +9057,7 @@ No response requested.
 
 ### User
 
-_source line 870 · 2026-05-22T16:41:32.915628+00:00_
+_source line 868 · 2026-05-22T16:41:32.915628+00:00_
 
 [系统通知 — cron:on_complete:exp-005-gla-pure]:
 实验 exp-005-gla-pure complete，请审查。
@@ -9102,7 +9079,7 @@ _source line 870 · 2026-05-22T16:41:32.915628+00:00_
 
 ### Tool call
 
-_source line 871 · 2026-05-22T16:41:40.910926+00:00_
+_source line 869 · 2026-05-22T16:41:40.910926+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9138,7 +9115,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 872 · 2026-05-22T16:41:45.229989+00:00_
+_source line 870 · 2026-05-22T16:41:45.229989+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.28}}"}
 
@@ -9160,7 +9137,7 @@ _source line 872 · 2026-05-22T16:41:45.229989+00:00_
 
 ### Tool call
 
-_source line 873 · 2026-05-22T16:41:49.800697+00:00_
+_source line 871 · 2026-05-22T16:41:49.800697+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9196,7 +9173,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 874 · 2026-05-22T16:41:50.002812+00:00_
+_source line 872 · 2026-05-22T16:41:50.002812+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9232,7 +9209,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 875 · 2026-05-22T16:41:52.410791+00:00_
+_source line 873 · 2026-05-22T16:41:52.410791+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    5153 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\\n    2376 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\n    7529 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.61}}"}
 
@@ -9254,7 +9231,7 @@ _source line 875 · 2026-05-22T16:41:52.410791+00:00_
 
 ### Tool result
 
-_source line 876 · 2026-05-22T16:41:55.171211+00:00_
+_source line 874 · 2026-05-22T16:41:55.171211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"|lambada_openai|      1|none  |     0|acc       |↑  | 0.3392|±  |0.0066|\\n|              |       |none  |     0|perplexity|↓  |32.0061|±  |1.1929|\\n\\nGLA_PURE_EVAL_DONE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.75}}"}
 
@@ -9276,7 +9253,7 @@ _source line 876 · 2026-05-22T16:41:55.171211+00:00_
 
 ### Tool call
 
-_source line 877 · 2026-05-22T16:42:10.289590+00:00_
+_source line 875 · 2026-05-22T16:42:10.289590+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9312,7 +9289,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 878 · 2026-05-22T16:42:13.801418+00:00_
+_source line 876 · 2026-05-22T16:42:13.801418+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -9334,7 +9311,7 @@ _source line 878 · 2026-05-22T16:42:13.801418+00:00_
 
 ### Assistant
 
-_source line 879 · 2026-05-22T16:42:16.239833+00:00_
+_source line 877 · 2026-05-22T16:42:16.239833+00:00_
 
 GLA pure eval 成功完成。LAMBADA 5,153 + ARC-Easy 2,376 samples，GLA pure LAMBADA acc = 0.3392。
 
@@ -9363,7 +9340,7 @@ GLA pure eval 成功完成。LAMBADA 5,153 + ARC-Easy 2,376 samples，GLA pure L
 
 ### User
 
-_source line 880 · 2026-05-22T16:47:12.616059+00:00_
+_source line 878 · 2026-05-22T16:47:12.616059+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-005-gla-pure-results_20260522T164258]:
 Worker worker_analysis_exp-005-gla-pure-results_20260522T164258 已完成（status=done），请审查 Agent 的处理结果。
@@ -9385,7 +9362,7 @@ Worker worker_analysis_exp-005-gla-pure-results_20260522T164258 已完成（stat
 
 ### Tool call
 
-_source line 881 · 2026-05-22T16:47:20.145672+00:00_
+_source line 879 · 2026-05-22T16:47:20.145672+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9423,7 +9400,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 882 · 2026-05-22T16:47:20.296685+00:00_
+_source line 880 · 2026-05-22T16:47:20.296685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1298}}"}
 
@@ -9445,7 +9422,7 @@ _source line 882 · 2026-05-22T16:47:20.296685+00:00_
 
 ### Tool call
 
-_source line 883 · 2026-05-22T16:47:23.813800+00:00_
+_source line 881 · 2026-05-22T16:47:23.813800+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9483,7 +9460,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 884 · 2026-05-22T16:47:24.115443+00:00_
+_source line 882 · 2026-05-22T16:47:24.115443+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-gla-pure\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:33:56.971Z\", \"updated_at\": \"2026-05-22T16:46:53.504Z\", \"spec\": {\"command\": \"python patch_fla_eval.py --tasks lambada_openai,arc_easy\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"904591\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"submitted_at\": \"2026-05-22T16:39:54.061Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/lambada_openai + allenai/ai2_arc\", \"data_count\": 7529, \"model_name\": \"340M-20B-GLA-pure-baseline\", \"seed\": 0, \"wall_clock_seconds\": 419.4, \"gpu_hours\": 0.12}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:41:30.660Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:41:32.936910+00:00\"}]}, \"metrics\": {\"lambada_openai\": {\"acc\": 0.3392, \"acc_stderr\": 0.0066, \"perplexity\": 32.006, \"perplexity_stderr\": 1.193}, \"arc_easy\": {\"acc\": 0.5829, \"acc_stderr\": 0.0101, \"acc_norm\": 0.5114, \"acc_norm_stderr\": 0.0103}, \"log_samples\": true}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"hypothesis\": \"GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\", \"completed_at\": \"2026-05-22T16:46:53.504Z\"}, \"exp-005-pure-v5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:37:28.872Z\", \"updated_at\": \"2026-05-22T16:37:28.872Z\", \"spec\": {\
 …[truncated 1064 chars]
@@ -9506,7 +9483,7 @@ _source line 884 · 2026-05-22T16:47:24.115443+00:00_
 
 ### Tool call
 
-_source line 885 · 2026-05-22T16:47:29.133406+00:00_
+_source line 883 · 2026-05-22T16:47:29.133406+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9542,7 +9519,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 886 · 2026-05-22T16:47:30.387716+00:00_
+_source line 884 · 2026-05-22T16:47:30.387716+00:00_
 
 called Glob
 
@@ -9578,7 +9555,7 @@ called Glob
 
 ### Tool result
 
-_source line 887 · 2026-05-22T16:47:39.724832+00:00_
+_source line 885 · 2026-05-22T16:47:39.724832+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.56}}"}
 
@@ -9600,7 +9577,7 @@ _source line 887 · 2026-05-22T16:47:39.724832+00:00_
 
 ### Tool result
 
-_source line 888 · 2026-05-22T16:47:39.725301+00:00_
+_source line 886 · 2026-05-22T16:47:39.725301+00:00_
 
 No files found
 
@@ -9622,7 +9599,7 @@ No files found
 
 ### Tool call
 
-_source line 889 · 2026-05-22T16:47:42.914564+00:00_
+_source line 887 · 2026-05-22T16:47:42.914564+00:00_
 
 called Glob
 
@@ -9658,7 +9635,7 @@ called Glob
 
 ### Tool result
 
-_source line 890 · 2026-05-22T16:47:42.965158+00:00_
+_source line 888 · 2026-05-22T16:47:42.965158+00:00_
 
 No files found
 
@@ -9680,7 +9657,7 @@ No files found
 
 ### Assistant
 
-_source line 891 · 2026-05-22T16:47:48.818112+00:00_
+_source line 889 · 2026-05-22T16:47:48.818112+00:00_
 
 Registry 记录正确（GLA pure DONE, acc=0.3392, arc_easy acc=0.5829），但尚无 per-example Jaccard 分析产出。Worker 可能只是记录了评估结果而未运行分析脚本。分析需要对比 GLA pure vs h3-1 的逐样本 acc 差异，再与 GDN/RetNet/HGRN2 的 helped/hurt sets 计算 pairwise Jaccard。
 
@@ -9709,7 +9686,7 @@ Registry 记录正确（GLA pure DONE, acc=0.3392, arc_easy acc=0.5829），但�
 
 ### User
 
-_source line 892 · 2026-05-22T17:10:46.517148+00:00_
+_source line 890 · 2026-05-22T17:10:46.517148+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-005-gla-jaccard_20260522T164331]:
 Worker worker_analysis_exp-005-gla-jaccard_20260522T164331 已完成（status=done），请审查 Agent 的处理结果。
@@ -9731,7 +9708,7 @@ Worker worker_analysis_exp-005-gla-jaccard_20260522T164331 已完成（status=do
 
 ### Tool call
 
-_source line 893 · 2026-05-22T17:10:53.992872+00:00_
+_source line 891 · 2026-05-22T17:10:53.992872+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -9769,7 +9746,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 894 · 2026-05-22T17:10:54.245285+00:00_
+_source line 892 · 2026-05-22T17:10:54.245285+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-pure-v10\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:08:41.299Z\", \"updated_at\": \"2026-05-22T17:08:41.299Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.sh 2>&1 | tee /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"918435\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-pure-v10.log\", \"submitted_at\": \"2026-05-22T17:08:41.209Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-005-pure-v9\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:03:18.395Z\", \"updated_at\": \"2026-05-22T17:03:18.395Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v9.sh 2>&1 | tee /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v9.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"915618\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-pure-v9.log\", \"submitted_at\": \"2026-05-22T17:03:18.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 2, \"total\": 45, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2166}}"}
 
@@ -9791,7 +9768,7 @@ _source line 894 · 2026-05-22T17:10:54.245285+00:00_
 
 ### Tool call
 
-_source line 895 · 2026-05-22T17:10:58.865839+00:00_
+_source line 893 · 2026-05-22T17:10:58.865839+00:00_
 
 called Glob
 
@@ -9827,7 +9804,7 @@ called Glob
 
 ### Tool result
 
-_source line 896 · 2026-05-22T17:10:59.418122+00:00_
+_source line 894 · 2026-05-22T17:10:59.418122+00:00_
 
 No files found
 
@@ -9849,7 +9826,7 @@ No files found
 
 ### Tool call
 
-_source line 897 · 2026-05-22T17:10:59.819765+00:00_
+_source line 895 · 2026-05-22T17:10:59.819765+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9885,7 +9862,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 898 · 2026-05-22T17:11:04.438707+00:00_
+_source line 896 · 2026-05-22T17:11:04.438707+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.61}}"}
 
@@ -9907,7 +9884,7 @@ _source line 898 · 2026-05-22T17:11:04.438707+00:00_
 
 ### Tool call
 
-_source line 899 · 2026-05-22T17:11:07.901280+00:00_
+_source line 897 · 2026-05-22T17:11:07.901280+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9943,7 +9920,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 900 · 2026-05-22T17:11:09.962331+00:00_
+_source line 898 · 2026-05-22T17:11:09.962331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"4-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.088452,\\n          \\\"J_hurt\\\": 0.113475,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 190,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 223,\\n          \\\"|helped_intersection|\\\": 36,\\n          \\\"|hurt_intersection|\\\": 48\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.121588,\\n          \\\"J_hurt\\\": 0.104878,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 199,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"
 …[truncated 8435 chars]
@@ -9966,7 +9943,7 @@ _source line 900 · 2026-05-22T17:11:09.962331+00:00_
 
 ### Tool call
 
-_source line 901 · 2026-05-22T17:11:43.391417+00:00_
+_source line 899 · 2026-05-22T17:11:43.391417+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10002,7 +9979,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 902 · 2026-05-22T17:11:46.923678+00:00_
+_source line 900 · 2026-05-22T17:11:46.923678+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -10024,7 +10001,7 @@ _source line 902 · 2026-05-22T17:11:46.923678+00:00_
 
 ### Tool call
 
-_source line 903 · 2026-05-22T17:13:52.193835+00:00_
+_source line 901 · 2026-05-22T17:13:52.193835+00:00_
 
 called ToolSearch
 
@@ -10060,7 +10037,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 904 · 2026-05-22T17:13:52.244499+00:00_
+_source line 902 · 2026-05-22T17:13:52.244499+00:00_
 
 
 
@@ -10082,7 +10059,7 @@ _source line 904 · 2026-05-22T17:13:52.244499+00:00_
 
 ### Tool call
 
-_source line 905 · 2026-05-22T17:13:55.356224+00:00_
+_source line 903 · 2026-05-22T17:13:55.356224+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10120,7 +10097,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 906 · 2026-05-22T17:13:55.859416+00:00_
+_source line 904 · 2026-05-22T17:13:55.859416+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1004}}"}
 
@@ -10142,7 +10119,7 @@ _source line 906 · 2026-05-22T17:13:55.859416+00:00_
 
 ### Tool call
 
-_source line 907 · 2026-05-22T17:13:56.361739+00:00_
+_source line 905 · 2026-05-22T17:13:56.361739+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10178,7 +10155,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 908 · 2026-05-22T17:13:57.165149+00:00_
+_source line 906 · 2026-05-22T17:13:57.165149+00:00_
 
 called Read
 
@@ -10216,7 +10193,7 @@ called Read
 
 ### Tool result
 
-_source line 909 · 2026-05-22T17:13:57.868977+00:00_
+_source line 907 · 2026-05-22T17:13:57.868977+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 672\\n-rw-r--r-- 1 root root  57497 May 23 01:13 run_pure_v9.log\\n-rw-r--r-- 1 root root  23494 May 23 01:13 run_pure_v10.log\\ndrwxr-xr-x 3 root root     82 May 23 01:13 DeltaNet_pure_baseline\\n-rw-r--r-- 1 root root   9995 May 23 01:09 jaccard_4arch.json\\n-rw-r--r-- 1 root root  10364 May 23 01:08 analyze_4arch_jaccard.py\\n-rwxr-xr-x 1 root root   3307 May 23 01:08 run_pure_v10.sh\\n-rw-r--r-- 1 root root   6322 May 23 01:08 pure_v3.log\\ndrwxr-xr-x 3 root root     85 May 23 01:07 HGRN2_h3-1_lambada\\ndrwxr-xr-x 3 root root     88 May 23 01:05 HGRN2_pure_lambada\\n-rwxr-xr-x 1 root root   3361 May 23 01:03 run_pure_v9.sh\\ndrwxr-xr-x 3 root root     86 May 23 01:02 RetNet_h3-1_lambada\\n-rw-r--r-- 1 root root   5067 May 23 01:00 pure_wget_eval.log\\ndrwxr-xr-x 3 root root     80 May 23 01:00 RetNet_pure_lambada\\n-rw-r--r-- 1 root root  41899 May 23 01:00 run_pure_v8.log\\ndrwxr-xr-x 3 root root     86 May 23 00:59 GLA_pure_baseline\\n-rwxr-xr-x 1 root root   2240 May 23 00:57 run_pure_v8.sh\\ndrwxr-xr-x 3 root root     93 May 23 00:57 GDN_h3-1_lambada\\n-rw-r--r-- 1 root root   3709 May 23 00:56 run_pure_v7.log\\n-rwxr-xr-x 1 root root   1649 May 23 00:55 run_pure_v7.sh\\n-rw-r--r-- 1 root root    402 May 23 00:55 run_pure_v6.log\\ndrwxr-xr-x 3 root root     96 May 23 00:55 GDN_pure_lambada\\n-rwxr-xr-x 1 root root   1653 May 23 00:55 run_pure_v6.sh\\n-rw-r--r-- 1 root root   1749 May 23 00:54 bg_downloads.log\\n-rw-r--r-- 1 root root   2327 May 23 00:51 pure_v5.log\\n-rw-r--r-- 1 root root   9617 May 23 00:47 eval_download.log\\ndrwxr-xr-x 3 root root     86 May 23 00:41 GLA_pure\\n-rwxr-xr-x 1 root root   4189 May 23 00:37 run_pure_v5.sh\\n-rw-r--r-- 1 root root    354 May 23 00:35 pure_v4.log\\n-rwxr-xr-x 1 root root   3156 May 23 00:34 run_pure_v4.sh\\n-rw-r--r-- 1 root root   3724 May 23 00:32 hgrn_chain.log\\n-rwxr-xr-x 1 root root   3010 May 23 00:32 run_pure_v3.sh\\n-rwxr-xr-x 1 root root  
 …[truncated 1651 chars]
@@ -10239,7 +10216,7 @@ _source line 909 · 2026-05-22T17:13:57.868977+00:00_
 
 ### Tool result
 
-_source line 910 · 2026-05-22T17:13:57.920630+00:00_
+_source line 908 · 2026-05-22T17:13:57.920630+00:00_
 
 720	\end{tabular}
 721	\end{table}
@@ -10275,7 +10252,7 @@ _source line 910 · 2026-05-22T17:13:57.920630+00:00_
 
 ### Tool call
 
-_source line 911 · 2026-05-22T17:14:08.174123+00:00_
+_source line 909 · 2026-05-22T17:14:08.174123+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10311,7 +10288,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 912 · 2026-05-22T17:14:08.475617+00:00_
+_source line 910 · 2026-05-22T17:14:08.475617+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10347,7 +10324,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 913 · 2026-05-22T17:14:08.827467+00:00_
+_source line 911 · 2026-05-22T17:14:08.827467+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10383,7 +10360,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 914 · 2026-05-22T17:14:10.233725+00:00_
+_source line 912 · 2026-05-22T17:14:10.233725+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"4-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.088452,\\n          \\\"J_hurt\\\": 0.113475,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 190,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 223,\\n          \\\"|helped_intersection|\\\": 36,\\n          \\\"|hurt_intersection|\\\": 48\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.121588,\\n          \\\"J_hurt\\\": 0.104878,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 199,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"
 …[truncated 8435 chars]
@@ -10406,7 +10383,7 @@ _source line 914 · 2026-05-22T17:14:10.233725+00:00_
 
 ### Tool result
 
-_source line 915 · 2026-05-22T17:14:13.296733+00:00_
+_source line 913 · 2026-05-22T17:14:13.296733+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n2026-05-23:01:09:12 INFO     [evaluator_utils:446] Selected tasks:\\n2026-05-23:01:09:12 INFO     [evaluator_utils:480] Task: arc_easy (arc/arc_easy.yaml)\\n2026-05-23:01:09:12 INFO     [evaluator_utils:480] Task: lambada_openai (lambada/lambada_openai.yaml)\\n2026-05-23:01:09:12 INFO     [api.task:312] Building contexts for lambada_openai on rank 0...\\n\\r  0%|          | 0/5153 [00:00<?, ?it/s]\\r  1%|          | 57/5153 [00:00<00:08, 568.02it/s]\\r  2%|▏         | 118/5153 [00:00<00:08, 589.87it/s]\\r  3%|▎         | 179/5153 [00:00<00:08, 598.94it/s]\\r  5%|▍         | 240/5153 [00:00<00:08, 603.05it/s]\\r  6%|▌         | 301/5153 [00:00<00:08, 604.65it/s]\\r  7%|▋         | 362/5153 [00:00<00:07, 606.00it/s]\\r  8%|▊         | 423/5153 [00:00<00:07, 607.29it/s]\\r  9%|▉         | 485/5153 [00:00<00:07, 608.49it/s]\\r 11%|█         | 546/5153 [00:00<00:07, 603.68it/s]\\r 12%|█▏        | 607/5153 [00:01<00:07, 600.77it/s]\\r 13%|█▎        | 668/5153 [00:01<00:07, 601.84it/s]\\r 14%|█▍        | 729/5153 [00:01<00:07, 602.72it/s]\\r 15%|█▌        | 790/5153 [00:01<00:07, 604.24it/s]\\r 17%|█▋        | 851/5153 [00:01<00:07, 605.94it/s]\\r 18%|█▊        | 912/5153 [00:01<00:07, 605.55it/s]\\r 19%|█▉        | 973/5153 [00:01<00:06, 606.18it/s]\\r 20%|██        | 1034/5153 [00:01<00:06, 607.23it/s]\\r 21%|██▏       | 1096/5153 [00:01<00:06, 608.26it/s]\\r 22%|██▏       | 1157/5153 [00:01<00:06, 607.88it/s]\\r 24%|██▎       | 1219/5153 [00:02<00:06, 609.19it/s]\\r 25%|██▍       | 1280/5153 [00:02<00:06, 609.31it/s]\\r 26%|██▌       | 1342/5153 [00:02<00:06, 610.25it/s]\\r 27%|██▋       | 1404/5153 [00:02<00:06, 602.21it/s]\\r 28%|██▊       | 1465/5153 [00:02<00:06, 604.31it/s]\\r 30%|██▉       | 1526/5153 [00:02<00:06, 601.84it/s]\\r 31%|███       | 1587/5153 [00:02<00:05, 60
 …[truncated 6512 chars]
@@ -10429,7 +10406,7 @@ _source line 915 · 2026-05-22T17:14:13.296733+00:00_
 
 ### Tool result
 
-_source line 916 · 2026-05-22T17:14:13.398087+00:00_
+_source line 914 · 2026-05-22T17:14:13.398087+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-22T17:12:42.479Z\", \"hypothesis\": \"Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.\", \"parent\": \"exp-001\", \"metrics\": {\"4arch_lambada_mean_J_helped\": 0.1219, \"4arch_lambada_mean_J_hurt\": 0.0965, \"4arch_arceasy_mean_J_helped\": 0.1034, \"4arch_arceasy_mean_J_hurt\": 0.1059, \"4arch_all_z_min\": 3.78, \"4arch_all_z_max\": 12.04, \"4arch_all_p\": \"<0.001\", \"gla_h31_lambada_acc\": 0.3819, \"gla_h31_arc_acc\": 0.5673, \"gla_pure_lambada_acc\": 0.3392, \"gla_pure_arc_acc\": 0.5829, \"deltanet_h31_lambada_acc\": 0.3536, \"deltanet_h31_arc_acc\": 0.601, \"architectures_completed\": [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\"], \"architectures_pending\": [\"DeltaNet\", \"HGRN\"]}, \"conclusion\": \"success\", \"notes\": \"Partial success: 4/6 architectures completed (GDN/RetNet/HGRN2/GLA). DeltaNet/HGRN still downloading. 4-arch results already strong: all 24 permutation tests p<0.001, z=3.78-12.04. If DeltaNet/HGRN complete before final compilation, upgrade to 5/6 arch.\"}, \"exp-005-pure-v10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T17:08:41.299Z\", \"updated_at\": \"2026-05-22T17:08:41.299Z\"}, \"exp-005-pure-v9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T17:03:18.395Z\", \"updated_at\": \"2026-05-22T17:03:18.395Z\"}, \"exp-005-pure-v8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T16:57:53.603Z\", \"updated_at\": \"2026-05-22T16:57:53.603Z\"}, \"exp-005-pure-v7\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T16:55:53.426Z\", \"updated_at\": \"2026-05-22T16:55:53.427Z\"}, \"exp-005-pure-v6\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-2
 …[truncated 1386 chars]
@@ -10452,7 +10429,7 @@ _source line 916 · 2026-05-22T17:14:13.398087+00:00_
 
 ### Tool call
 
-_source line 917 · 2026-05-22T17:15:11.278656+00:00_
+_source line 915 · 2026-05-22T17:15:11.278656+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10488,7 +10465,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 918 · 2026-05-22T17:15:12.182197+00:00_
+_source line 916 · 2026-05-22T17:15:12.182197+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10524,7 +10501,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 919 · 2026-05-22T17:15:12.734788+00:00_
+_source line 917 · 2026-05-22T17:15:12.734788+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10560,7 +10537,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 920 · 2026-05-22T17:15:12.785334+00:00_
+_source line 918 · 2026-05-22T17:15:12.785334+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 189 May 23 01:13 __root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
 
@@ -10582,7 +10559,7 @@ _source line 920 · 2026-05-22T17:15:12.785334+00:00_
 
 ### Tool result
 
-_source line 921 · 2026-05-22T17:15:12.785709+00:00_
+_source line 919 · 2026-05-22T17:15:12.785709+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -10604,7 +10581,7 @@ _source line 921 · 2026-05-22T17:15:12.785709+00:00_
 
 ### Tool result
 
-_source line 922 · 2026-05-22T17:15:14.543860+00:00_
+_source line 920 · 2026-05-22T17:15:14.543860+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rDownloading [model.safetensors]:  14%|█▍        | 179M/1.27G [00:51<36:14, 541kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 180M/1.27G [00:54<37:37, 521kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 181M/1.27G [00:56<39:34, 495kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 182M/1.27G [00:58<39:04, 501kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 183M/1.27G [01:01<41:00, 477kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 184M/1.27G [01:03<41:04, 475kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 185M/1.27G [01:05<40:19, 484kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 186M/1.27G [01:06<36:00, 541kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 187M/1.27G [01:08<36:14, 537kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  14%|█▍        | 188M/1.27G [01:10<36:50, 528kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 189M/1.27G [01:12<37:17, 521kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 190M/1.27G [01:15<38:48, 500kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 191M/1.27G [01:17<37:23, 519kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 192M/1.27G [01:19<39:03, 496kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 193M/1.27G [01:21<40:32, 478kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 194M/1.27G [01:23<40:39, 476kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▍        | 195M/1.27G [01:26<39:59, 483kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▌        | 196M/1.27G [01:27<38:43, 499kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▌        | 197M/1.27G [01:29<36:13, 533kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  15%|█▌        | 198M/1.27G [01:32<38:32, 500k
 …[truncated 117 chars]
@@ -10627,7 +10604,7 @@ _source line 922 · 2026-05-22T17:15:14.543860+00:00_
 
 ### Tool call
 
-_source line 923 · 2026-05-22T17:15:44.342785+00:00_
+_source line 921 · 2026-05-22T17:15:44.342785+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10663,7 +10640,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 924 · 2026-05-22T17:15:45.045428+00:00_
+_source line 922 · 2026-05-22T17:15:45.045428+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10699,7 +10676,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 925 · 2026-05-22T17:15:46.915305+00:00_
+_source line 923 · 2026-05-22T17:15:46.915305+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 10000\\ndrwxr-xr-x 2 root root     189 May 23 01:13 .\\ndrwxr-xr-x 3 root root      82 May 23 01:13 ..\\n-rw-r--r-- 1 root root   12285 May 23 01:13 results_2026-05-23T01-13-35.906959.json\\n-rw-r--r-- 1 root root 4081209 May 23 01:13 samples_arc_easy_2026-05-23T01-13-35.906959.jsonl\\n-rw-r--r-- 1 root root 6142880 May 23 01:13 samples_lambada_openai_2026-05-23T01-13-35.906959.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.52}}"}
 
@@ -10721,7 +10698,7 @@ _source line 925 · 2026-05-22T17:15:46.915305+00:00_
 
 ### Tool result
 
-_source line 926 · 2026-05-22T17:15:46.915802+00:00_
+_source line 924 · 2026-05-22T17:15:46.915802+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -10743,7 +10720,7 @@ _source line 926 · 2026-05-22T17:15:46.915802+00:00_
 
 ### Tool call
 
-_source line 927 · 2026-05-22T17:15:50.428796+00:00_
+_source line 925 · 2026-05-22T17:15:50.428796+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10779,7 +10756,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 928 · 2026-05-22T17:15:52.988904+00:00_
+_source line 926 · 2026-05-22T17:15:52.988904+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2884 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724384 22068 ?        Sl   May18 111:34 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6895316 104196 ?      Sl   May18  20:29 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  4704 ?        S    May18   0:34 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1206  0.0  0.0 3831864 17152 ?       Sl   May18   2:49 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 18932 ?       Sl   May18   5:35 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 108892 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     797898  0.0  0.0  16692  9660 ?        Ss   May22   0:04 sshd: root@notty\\nroot     882351  0.0  0.0  16824 10884 ?        Ss   May22   0:01 sshd: root@notty\\nroot     914936  1.0  0.0 7741276 535444 ?      Ssl  01:01   0:08 python3 -c  from modelscope import snapshot_download model_dir = snapshot_download('m-a-p/340M-20B-HGRN-pure-baseline', cache_dir='/root/autodl-tmp/.ms_cache') print('Downloaded to:', model_dir) \\nroot     915575  0.0  0.0  16804 11000 ?        Ss   01:02   0:00 sshd: root@notty\\nroot     915618  0.0  0.0   4496  3552 ?        Ss   01:03   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-005-pure-v9.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/entrainment_gated_ft/exp-005-pure-v9.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-005-pure-v9.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/entrainment_gated_ft && export CUDA_VISIBLE_DEVICES=0 && timeout 14400 env bash -c 'bash -c \\\"bash /root/ent
 …[truncated 4247 chars]
@@ -10802,7 +10779,7 @@ _source line 928 · 2026-05-22T17:15:52.988904+00:00_
 
 ### Tool call
 
-_source line 929 · 2026-05-22T17:17:13.913969+00:00_
+_source line 927 · 2026-05-22T17:17:13.913969+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10838,7 +10815,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 930 · 2026-05-22T17:17:15.067994+00:00_
+_source line 928 · 2026-05-22T17:17:15.067994+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -10860,7 +10837,7 @@ _source line 930 · 2026-05-22T17:17:15.067994+00:00_
 
 ### Tool call
 
-_source line 931 · 2026-05-22T17:17:25.287388+00:00_
+_source line 929 · 2026-05-22T17:17:25.287388+00:00_
 
 called Grep
 
@@ -10900,7 +10877,7 @@ called Grep
 
 ### Tool result
 
-_source line 932 · 2026-05-22T17:17:25.338195+00:00_
+_source line 930 · 2026-05-22T17:17:25.338195+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:44:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:82:[Omitted long matching line]
@@ -10928,7 +10905,7 @@ _source line 932 · 2026-05-22T17:17:25.338195+00:00_
 
 ### Tool call
 
-_source line 933 · 2026-05-22T17:17:28.963219+00:00_
+_source line 931 · 2026-05-22T17:17:28.963219+00:00_
 
 called Read
 
@@ -10966,7 +10943,7 @@ called Read
 
 ### Tool result
 
-_source line 934 · 2026-05-22T17:17:29.014900+00:00_
+_source line 932 · 2026-05-22T17:17:29.014900+00:00_
 
 78	Cross-scale analysis on all four benchmarks reveals that the qualitative pattern of per-example multiplicity is scale-robust: pairwise Jaccard remains stable across scales ($\bar{J} = 0.08$--$0.10$ at 340M vs.\ $0.09$--$0.095$ at 1.3B), and configuration-specific helped/hurt profiles persist. While $\alpha$ is systematically higher at 340M ($\Delta \leq 8$\,pp), this inflation does not correlate with accuracy loss across benchmarks (HellaSwag shows the largest accuracy gap yet one of the smallest $\alpha$ increases), suggesting capacity-related but not accuracy-driven modulation. At 340M, aggregate convergence is absent on all benchmarks ($\rho = -0.50$, $p = .45$ for LAMBADA). This dissociation suggests that the \emph{pattern} of per-example multiplicity (which architectures affect which examples) reflects structural differences in recurrent processing, while absolute $\alpha$ magnitude is partially modulated by model capacity (Appendix~\ref{app:scale_per_example}).
 79	
@@ -10993,7 +10970,7 @@ _source line 934 · 2026-05-22T17:17:29.014900+00:00_
 
 ### Tool call
 
-_source line 935 · 2026-05-22T17:17:45.681049+00:00_
+_source line 933 · 2026-05-22T17:17:45.681049+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11029,7 +11006,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 936 · 2026-05-22T17:17:46.133053+00:00_
+_source line 934 · 2026-05-22T17:17:46.133053+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11065,7 +11042,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 937 · 2026-05-22T17:17:47.217706+00:00_
+_source line 935 · 2026-05-22T17:17:47.217706+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   88 May 23 00:09 .\\ndrwxr-xr-x 14 root root 4096 May 23 01:08 ..\\ndrwxr-xr-x  2 root root  189 May 23 00:09 __root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
 
@@ -11087,7 +11064,7 @@ _source line 937 · 2026-05-22T17:17:47.217706+00:00_
 
 ### Tool result
 
-_source line 938 · 2026-05-22T17:17:49.024799+00:00_
+_source line 936 · 2026-05-22T17:17:49.024799+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline/samples_lambada_openai_2026-05-23T00-55-12.446919.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T01-04-47.578552.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T01-04-47.578552.jsonl\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-57-27.658457.jsonl\\n/root
 …[truncated 1278 chars]
@@ -11110,7 +11087,7 @@ _source line 938 · 2026-05-22T17:17:49.024799+00:00_
 
 ### Assistant
 
-_source line 939 · 2026-05-22T17:18:09.775310+00:00_
+_source line 937 · 2026-05-22T17:18:09.775310+00:00_
 
 All 5 architectures have per-example data for both benchmarks. DeltaNet has complete h3-1 + pure jsonl files for LAMBADA and ARC-Easy. GDN/RetNet/HGRN2 ARC-Easy results are in the original per-example directory from the main experiments.
 
@@ -11146,7 +11123,7 @@ Standing by for further paper changes or Agent activity.
 
 ### User
 
-_source line 940 · 2026-05-22T17:24:11.390827+00:00_
+_source line 938 · 2026-05-22T17:24:11.390827+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-005-5arch-jaccard_20260522T171842]:
 Worker worker_analysis_exp-005-5arch-jaccard_20260522T171842 已完成（status=done），请审查 Agent 的处理结果。
@@ -11168,7 +11145,7 @@ Worker worker_analysis_exp-005-5arch-jaccard_20260522T171842 已完成（status=
 
 ### Tool call
 
-_source line 941 · 2026-05-22T17:24:18.681571+00:00_
+_source line 939 · 2026-05-22T17:24:18.681571+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11208,7 +11185,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 942 · 2026-05-22T17:24:19.134497+00:00_
+_source line 940 · 2026-05-22T17:24:19.134497+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-gla-pure\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:33:56.971Z\", \"updated_at\": \"2026-05-22T16:46:53.504Z\", \"spec\": {\"command\": \"python patch_fla_eval.py --tasks lambada_openai,arc_easy\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"904591\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"submitted_at\": \"2026-05-22T16:39:54.061Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/lambada_openai + allenai/ai2_arc\", \"data_count\": 7529, \"model_name\": \"340M-20B-GLA-pure-baseline\", \"seed\": 0, \"wall_clock_seconds\": 419.4, \"gpu_hours\": 0.12}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:41:30.660Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:41:32.936910+00:00\"}]}, \"metrics\": {\"lambada_openai\": {\"acc\": 0.3392, \"acc_stderr\": 0.0066, \"perplexity\": 32.006, \"perplexity_stderr\": 1.193}, \"arc_easy\": {\"acc\": 0.5829, \"acc_stderr\": 0.0101, \"acc_norm\": 0.5114, \"acc_norm_stderr\": 0.0103}, \"log_samples\": true}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"hypothesis\": \"GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\", \"completed_at\": \"2026-05-22T16:46:53.504Z\"}, \"e4-pythia-seed-calibration\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:17:05.445Z\", \"updated_at\": \"2026-05-22T11:44:42.532Z\", \"hypo
 …[truncated 8919 chars]
@@ -11231,7 +11208,7 @@ _source line 942 · 2026-05-22T17:24:19.134497+00:00_
 
 ### Tool call
 
-_source line 943 · 2026-05-22T17:24:19.235230+00:00_
+_source line 941 · 2026-05-22T17:24:19.235230+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11267,7 +11244,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 944 · 2026-05-22T17:24:22.396418+00:00_
+_source line 942 · 2026-05-22T17:24:22.396418+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.15}}"}
 
@@ -11289,7 +11266,7 @@ _source line 944 · 2026-05-22T17:24:22.396418+00:00_
 
 ### Tool call
 
-_source line 945 · 2026-05-22T17:24:26.460910+00:00_
+_source line 943 · 2026-05-22T17:24:26.460910+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11325,7 +11302,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 946 · 2026-05-22T17:24:28.368153+00:00_
+_source line 944 · 2026-05-22T17:24:28.368153+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 197,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -8,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.60101\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.088452,\\n          \\\"J_hurt\\\": 0.113475,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 190,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 223,\\n          \\\"|helped_inter|\\\": 36,\\n          \\\"|hurt_inter|\\\": 48\\n        },\\n     
 …[truncated 8468 chars]
@@ -11348,7 +11325,7 @@ _source line 946 · 2026-05-22T17:24:28.368153+00:00_
 
 ### Tool call
 
-_source line 947 · 2026-05-22T17:24:53.405851+00:00_
+_source line 945 · 2026-05-22T17:24:53.405851+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11384,7 +11361,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 948 · 2026-05-22T17:24:54.660073+00:00_
+_source line 946 · 2026-05-22T17:24:54.660073+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 197,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -8,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.60101\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.088452,\\n          \\\"J_hurt\\\": 0.113475,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 190,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 223,\\n          \\\"|helped_inter|\\\": 36,\\n          \\\"|hurt_inter|\\\": 48\\n        },\\n     
 …[truncated 4711 chars]
@@ -11407,7 +11384,7 @@ _source line 948 · 2026-05-22T17:24:54.660073+00:00_
 
 ### Tool call
 
-_source line 949 · 2026-05-22T17:25:03.745106+00:00_
+_source line 947 · 2026-05-22T17:25:03.745106+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11443,7 +11420,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 950 · 2026-05-22T17:25:04.849979+00:00_
+_source line 948 · 2026-05-22T17:25:04.849979+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11479,7 +11456,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 951 · 2026-05-22T17:25:05.453789+00:00_
+_source line 949 · 2026-05-22T17:25:05.453789+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.68}}"}
 
@@ -11501,7 +11478,7 @@ _source line 951 · 2026-05-22T17:25:05.453789+00:00_
 
 ### Tool result
 
-_source line 952 · 2026-05-22T17:25:05.454181+00:00_
+_source line 950 · 2026-05-22T17:25:05.454181+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -11523,7 +11500,7 @@ _source line 952 · 2026-05-22T17:25:05.454181+00:00_
 
 ### Tool call
 
-_source line 953 · 2026-05-22T17:25:08.792345+00:00_
+_source line 951 · 2026-05-22T17:25:08.792345+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11559,7 +11536,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 954 · 2026-05-22T17:25:09.996816+00:00_
+_source line 952 · 2026-05-22T17:25:09.996816+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n--\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 197,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -8,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.60101\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n--\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.084337,\\n          \\\"J_hurt\\\": 0.10219,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 197,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 205,\\n          \\\"|helped_inter|\\\": 35,\\n          \\\"|hurt_inter|\\\": 42\\n--\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.138235,\\n          \\\"J_hurt\\\": 0.12336,\\n          \\\"|helped_a|\\\": 190,\\n          \\\"|helped_b|\\\": 197,\\n          \\\"|hurt_a|\\\": 223,\\n          \\\"|hurt_b|\\\": 205,\\n          \\\"|helped_inter|\\\": 47,\\n          \\\"|hurt_inter|\\\": 47\\n--\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.109244,\\n          \\\"J_hurt\\\": 0.087533,\\n          \\\"|helped_a|\\\": 199,\\n          \\\"|helped_b|\\\": 197,\\n          \\\"|hurt_a|\\\": 205,\\n          \\\"|hurt_b|\\\": 205,\\n          \\\"|helped_inter|\\\": 39,\\n          \\\"|hurt_inter|\\\": 33\\n--\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.128852,\\n          \\\"J_hurt\\\": 0.098039,\\n          \\\"|helped_a|\\\": 206,\\n          \\\"|helped_b|\\\": 197,\\n          \\\"|hurt_a|\\\": 243,\\n          \\\"|hurt_b|\\\": 205,\\n          \\\"|helped_inter|\\\": 46,\\n          \\\"|hurt_inter|\\\": 40\\n--\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.084337
 …[truncated 6284 chars]
@@ -11582,7 +11559,7 @@ _source line 954 · 2026-05-22T17:25:09.996816+00:00_
 
 ### Tool call
 
-_source line 955 · 2026-05-22T17:25:38.204807+00:00_
+_source line 953 · 2026-05-22T17:25:38.204807+00:00_
 
 called Read
 
@@ -11620,7 +11597,7 @@ called Read
 
 ### Tool result
 
-_source line 956 · 2026-05-22T17:25:38.269359+00:00_
+_source line 954 · 2026-05-22T17:25:38.269359+00:00_
 
 735	\section{Extended Architecture Validation}\label{app:four_arch}
 736	
@@ -11675,7 +11652,7 @@ _source line 956 · 2026-05-22T17:25:38.269359+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-22T17:26:05.001663+00:00_
+_source line 955 · 2026-05-22T17:26:05.001663+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11711,7 +11688,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 958 · 2026-05-22T17:26:08.520406+00:00_
+_source line 956 · 2026-05-22T17:26:08.520406+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -11733,7 +11710,7 @@ _source line 958 · 2026-05-22T17:26:08.520406+00:00_
 
 ### Tool call
 
-_source line 959 · 2026-05-22T17:26:21.255796+00:00_
+_source line 957 · 2026-05-22T17:26:21.255796+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11769,7 +11746,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 960 · 2026-05-22T17:26:22.962042+00:00_
+_source line 958 · 2026-05-22T17:26:22.962042+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rDownloading [model.safetensors]:  39%|███▊      | 502M/1.27G [12:32<31:04, 450kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  39%|███▊      | 503M/1.27G [12:34<30:23, 459kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  39%|███▊      | 504M/1.27G [12:36<29:54, 466kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  39%|███▉      | 505M/1.27G [12:38<28:33, 487kB/s]\\u001b[A\\n\\rDownloading [model.safetensors]:  39%|███▉      | 506M/1.27G [12:40<28:17, 491kB/s]\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
 
@@ -11791,7 +11768,7 @@ _source line 960 · 2026-05-22T17:26:22.962042+00:00_
 
 ### Assistant
 
-_source line 961 · 2026-05-22T17:26:31.027356+00:00_
+_source line 959 · 2026-05-22T17:26:31.027356+00:00_
 
 HGRN pure 下载在 39%（506M/1.27G），约 28 分钟后完成。5-arch 数据已完整可用，审查已提交。等待 Director 决策是否升级论文到 5-arch 以及 HGRN 是否完成后再升级到 6-arch。
 
@@ -11818,7 +11795,7 @@ HGRN pure 下载在 39%（506M/1.27G），约 28 分钟后完成。5-arch 数据
 
 ### User
 
-_source line 962 · 2026-05-22T17:37:28.874856+00:00_
+_source line 960 · 2026-05-22T17:37:28.874856+00:00_
 
 [System 触发审查]:
 ## Round 15 审稿报告反审请求
@@ -11882,7 +11859,7 @@ _source line 962 · 2026-05-22T17:37:28.874856+00:00_
 
 ### Tool call
 
-_source line 963 · 2026-05-22T17:37:41.896684+00:00_
+_source line 961 · 2026-05-22T17:37:41.896684+00:00_
 
 called Read
 
@@ -11916,7 +11893,7 @@ called Read
 
 ### Tool result
 
-_source line 964 · 2026-05-22T17:37:42.449246+00:00_
+_source line 962 · 2026-05-22T17:37:42.449246+00:00_
 
 1	\section{Introduction}
 2	
@@ -11945,7 +11922,7 @@ _source line 964 · 2026-05-22T17:37:42.449246+00:00_
 
 ### Tool call
 
-_source line 965 · 2026-05-22T17:37:42.449726+00:00_
+_source line 963 · 2026-05-22T17:37:42.449726+00:00_
 
 called Read
 
@@ -11983,7 +11960,7 @@ called Read
 
 ### Tool result
 
-_source line 966 · 2026-05-22T17:37:43.421676+00:00_
+_source line 964 · 2026-05-22T17:37:43.421676+00:00_
 
 0	\section{Experiments}\label{sec:experiments}
 1	
@@ -12033,7 +12010,7 @@ _source line 966 · 2026-05-22T17:37:43.421676+00:00_
 
 ### Tool call
 
-_source line 967 · 2026-05-22T17:37:49.597069+00:00_
+_source line 965 · 2026-05-22T17:37:49.597069+00:00_
 
 called Agent
 
@@ -12073,7 +12050,7 @@ called Agent
 
 ### Tool result
 
-_source line 968 · 2026-05-22T17:37:49.647905+00:00_
+_source line 966 · 2026-05-22T17:37:49.647905+00:00_
 
 Async agent launched successfully.
 agentId: a455ae64fbe6f8500 (internal ID - do not mention to user. Use SendMessage with to: 'a455ae64fbe6f8500' to continue this agent.)
@@ -12100,7 +12077,7 @@ Do NOT Read or tail this file via the shell tool — it is the full sub-agent JS
 
 ### Tool call
 
-_source line 969 · 2026-05-22T17:38:03.618151+00:00_
+_source line 967 · 2026-05-22T17:38:03.618151+00:00_
 
 called Grep
 
@@ -12140,7 +12117,7 @@ called Grep
 
 ### Tool result
 
-_source line 970 · 2026-05-22T17:38:04.070185+00:00_
+_source line 968 · 2026-05-22T17:38:04.070185+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:44:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:82:[Omitted long matching line]
@@ -12169,7 +12146,7 @@ _source line 970 · 2026-05-22T17:38:04.070185+00:00_
 
 ### Tool call
 
-_source line 971 · 2026-05-22T17:38:04.622465+00:00_
+_source line 969 · 2026-05-22T17:38:04.622465+00:00_
 
 called Grep
 
@@ -12209,7 +12186,7 @@ called Grep
 
 ### Tool result
 
-_source line 972 · 2026-05-22T17:38:05.124604+00:00_
+_source line 970 · 2026-05-22T17:38:05.124604+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex:99:\item \textbf{Per-example audit}: When hybrid architectures achieve comparable aggregate scores, compute pairwise Jaccard on helped/hurt sets. $\bar{J} \leq 0.10$ (as observed here) indicates ${\sim}90\%$ non-overlap---architectures are affecting nearly disjoint examples.
@@ -12233,7 +12210,7 @@ _source line 972 · 2026-05-22T17:38:05.124604+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-22T17:38:05.927775+00:00_
+_source line 971 · 2026-05-22T17:38:05.927775+00:00_
 
 called Grep
 
@@ -12273,7 +12250,7 @@ called Grep
 
 ### Tool result
 
-_source line 974 · 2026-05-22T17:38:06.029093+00:00_
+_source line 972 · 2026-05-22T17:38:06.029093+00:00_
 
 No matches found
 
@@ -12295,7 +12272,7 @@ No matches found
 
 ### Tool call
 
-_source line 975 · 2026-05-22T17:38:20.006971+00:00_
+_source line 973 · 2026-05-22T17:38:20.006971+00:00_
 
 called Read
 
@@ -12333,7 +12310,7 @@ called Read
 
 ### Tool call
 
-_source line 976 · 2026-05-22T17:38:20.007425+00:00_
+_source line 974 · 2026-05-22T17:38:20.007425+00:00_
 
 called Read
 
@@ -12367,7 +12344,7 @@ called Read
 
 ### Tool call
 
-_source line 977 · 2026-05-22T17:38:20.007798+00:00_
+_source line 975 · 2026-05-22T17:38:20.007798+00:00_
 
 called Read
 
@@ -12405,7 +12382,7 @@ called Read
 
 ### Tool result
 
-_source line 978 · 2026-05-22T17:38:20.008122+00:00_
+_source line 976 · 2026-05-22T17:38:20.008122+00:00_
 
 23	
 24	\begin{abstract}
@@ -12436,7 +12413,7 @@ _source line 978 · 2026-05-22T17:38:20.008122+00:00_
 
 ### Tool result
 
-_source line 979 · 2026-05-22T17:38:20.008417+00:00_
+_source line 977 · 2026-05-22T17:38:20.008417+00:00_
 
 1	\section{Conclusion}
 2	
@@ -12463,7 +12440,7 @@ _source line 979 · 2026-05-22T17:38:20.008417+00:00_
 
 ### Tool result
 
-_source line 980 · 2026-05-22T17:38:20.013650+00:00_
+_source line 978 · 2026-05-22T17:38:20.013650+00:00_
 
 735	\section{Extended Architecture Validation (Five Architectures)}\label{app:extended_arch}
 736	
@@ -12526,7 +12503,7 @@ _source line 980 · 2026-05-22T17:38:20.013650+00:00_
 
 ### Tool call
 
-_source line 981 · 2026-05-22T17:41:22.600436+00:00_
+_source line 979 · 2026-05-22T17:41:22.600436+00:00_
 
 called Read
 
@@ -12564,7 +12541,7 @@ called Read
 
 ### Tool result
 
-_source line 982 · 2026-05-22T17:41:23.604944+00:00_
+_source line 980 · 2026-05-22T17:41:23.604944+00:00_
 
 38	\section*{Limitations}
 39	
@@ -12599,7 +12576,7 @@ _source line 982 · 2026-05-22T17:41:23.604944+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-22T17:41:23.956430+00:00_
+_source line 981 · 2026-05-22T17:41:23.956430+00:00_
 
 called Grep
 
@@ -12639,7 +12616,7 @@ called Grep
 
 ### Tool result
 
-_source line 984 · 2026-05-22T17:41:24.007482+00:00_
+_source line 982 · 2026-05-22T17:41:24.007482+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:41:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:13:\includegraphics[width=\columnwidth]{figures/fig1_decoupling_hero.pdf}
@@ -12662,7 +12639,7 @@ _source line 984 · 2026-05-22T17:41:24.007482+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-22T17:42:51.929912+00:00_
+_source line 983 · 2026-05-22T17:42:51.929912+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12698,7 +12675,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 986 · 2026-05-22T17:42:55.493032+00:00_
+_source line 984 · 2026-05-22T17:42:55.493032+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -12720,7 +12697,7 @@ _source line 986 · 2026-05-22T17:42:55.493032+00:00_
 
 ### Assistant
 
-_source line 987 · 2026-05-22T17:43:01.896298+00:00_
+_source line 985 · 2026-05-22T17:43:01.896298+00:00_
 
 已发送综合审查报告。核心发现：
 
@@ -12752,7 +12729,7 @@ _source line 987 · 2026-05-22T17:43:01.896298+00:00_
 
 ### User
 
-_source line 988 · 2026-05-22T17:53:59.212923+00:00_
+_source line 986 · 2026-05-22T17:53:59.212923+00:00_
 
 [System 触发审查]:
 R15 综合修复包已完成，请验证以下关键修改：
@@ -12791,7 +12768,7 @@ R15 综合修复包已完成，请验证以下关键修改：
 
 ### Tool call
 
-_source line 989 · 2026-05-22T17:54:07.505834+00:00_
+_source line 987 · 2026-05-22T17:54:07.505834+00:00_
 
 called Read
 
@@ -12829,7 +12806,7 @@ called Read
 
 ### Tool result
 
-_source line 990 · 2026-05-22T17:54:08.057988+00:00_
+_source line 988 · 2026-05-22T17:54:08.057988+00:00_
 
 735	\section{Extended Architecture Validation (Five Architectures)}\label{app:extended_arch}
 736	
@@ -12891,7 +12868,7 @@ _source line 990 · 2026-05-22T17:54:08.057988+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-22T17:54:08.058434+00:00_
+_source line 989 · 2026-05-22T17:54:08.058434+00:00_
 
 called Read
 
@@ -12925,7 +12902,7 @@ called Read
 
 ### Tool result
 
-_source line 992 · 2026-05-22T17:54:08.660800+00:00_
+_source line 990 · 2026-05-22T17:54:08.660800+00:00_
 
 1	\section{Introduction}
 2	
@@ -12954,7 +12931,7 @@ _source line 992 · 2026-05-22T17:54:08.660800+00:00_
 
 ### Tool call
 
-_source line 993 · 2026-05-22T17:54:08.811722+00:00_
+_source line 991 · 2026-05-22T17:54:08.811722+00:00_
 
 called Read
 
@@ -12992,7 +12969,7 @@ called Read
 
 ### Tool result
 
-_source line 994 · 2026-05-22T17:54:08.912462+00:00_
+_source line 992 · 2026-05-22T17:54:08.912462+00:00_
 
 22	\begin{document}
 23	\maketitle
@@ -13023,7 +13000,7 @@ _source line 994 · 2026-05-22T17:54:08.912462+00:00_
 
 ### Tool call
 
-_source line 995 · 2026-05-22T17:54:57.299915+00:00_
+_source line 993 · 2026-05-22T17:54:57.299915+00:00_
 
 called Read
 
@@ -13057,7 +13034,7 @@ called Read
 
 ### Tool result
 
-_source line 996 · 2026-05-22T17:54:57.852455+00:00_
+_source line 994 · 2026-05-22T17:54:57.852455+00:00_
 
 1	\section{Conclusion}
 2	
@@ -13084,7 +13061,7 @@ _source line 996 · 2026-05-22T17:54:57.852455+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-22T17:54:57.852951+00:00_
+_source line 995 · 2026-05-22T17:54:57.852951+00:00_
 
 called Read
 
@@ -13118,7 +13095,7 @@ called Read
 
 ### Tool result
 
-_source line 998 · 2026-05-22T17:54:58.204385+00:00_
+_source line 996 · 2026-05-22T17:54:58.204385+00:00_
 
 1	\section{Related Work}
 2	
@@ -13150,7 +13127,7 @@ _source line 998 · 2026-05-22T17:54:58.204385+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-22T17:54:58.556082+00:00_
+_source line 997 · 2026-05-22T17:54:58.556082+00:00_
 
 called Grep
 
@@ -13190,7 +13167,7 @@ called Grep
 
 ### Tool result
 
-_source line 1000 · 2026-05-22T17:54:58.606681+00:00_
+_source line 998 · 2026-05-22T17:54:58.606681+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.bbl:175:\bibitem[{Jain et~al.(2025)Jain, Wang, Creel, and Wilson}]{jain2025allocation}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.bbl:176:Suyash Jain, Yuanjun Wang, Kathleen Creel, and Christo Wilson. 2025.
@@ -13218,7 +13195,7 @@ _source line 1000 · 2026-05-22T17:54:58.606681+00:00_
 
 ### Tool call
 
-_source line 1001 · 2026-05-22T17:55:10.560198+00:00_
+_source line 999 · 2026-05-22T17:55:10.560198+00:00_
 
 called Read
 
@@ -13256,7 +13233,7 @@ called Read
 
 ### Tool result
 
-_source line 1002 · 2026-05-22T17:55:11.012110+00:00_
+_source line 1000 · 2026-05-22T17:55:11.012110+00:00_
 
 42	\subsection{Statistical Methods}\label{ssec:statistical_methods}
 43	
@@ -13291,7 +13268,7 @@ _source line 1002 · 2026-05-22T17:55:11.012110+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-22T17:55:11.469757+00:00_
+_source line 1001 · 2026-05-22T17:55:11.469757+00:00_
 
 called Read
 
@@ -13329,7 +13306,7 @@ called Read
 
 ### Tool result
 
-_source line 1004 · 2026-05-22T17:55:11.939383+00:00_
+_source line 1002 · 2026-05-22T17:55:11.939383+00:00_
 
 38	
 39	\paragraph{Confidence margin predictor.} No surface-level feature (token count, word frequency, syntactic complexity) reliably separates helped from hurt examples. However, pure-model confidence on the target token is strongly predictive within each architecture: hurt examples have lower target-token probability among pure-correct examples ($d = 0.83$--$0.92$), and helped examples have higher probability among pure-wrong examples ($d = 0.73$--$0.77$); see Appendix~\ref{app:confidence_margin}. A Kruskal-Wallis test confirms cross-architecture structure in both hurt ($p = .0005$) and helped ($p = .020$) distributions. The confidence margin thus identifies a per-example predictor of which examples will be affected: marginally correct predictions are more likely to transition to incorrect, and near-miss errors are more likely to transition to correct, but with configuration-specific thresholds associated with the observed cross-architecture divergence. Cross-architecture threshold differences may partly reflect calibration variation across backbones \citep{guo2017calibration}; however, ECE spread across architectures (17\%) is less than half the disruption threshold spread (47\%; Appendix~\ref{app:calibration}), indicating that calibration differences alone do not account for the observed threshold divergence. Formalizing this as a prediction task (Appendix~\ref{app:prediction_framework}), pure-model confidence achieves AUC 0.70--0.74 within each architecture. Rescue thresholds are architecture-invariant (relative spread 1\%), meaning near-miss errors transition to correct at the same confidence level across all three backbones. In contrast, disruption thresholds vary 47\% across architectures (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14 in $|\log p|$), providing a quantitative basis for the observed cross-architecture Jaccard divergence: since each backbone assigns different confidences to the same input, even a shared rescue rule affects different examples per archite
@@ -13353,7 +13330,7 @@ _source line 1004 · 2026-05-22T17:55:11.939383+00:00_
 
 ### Tool call
 
-_source line 1005 · 2026-05-22T17:55:12.140600+00:00_
+_source line 1003 · 2026-05-22T17:55:12.140600+00:00_
 
 called Read
 
@@ -13391,7 +13368,7 @@ called Read
 
 ### Tool result
 
-_source line 1006 · 2026-05-22T17:55:12.191189+00:00_
+_source line 1004 · 2026-05-22T17:55:12.191189+00:00_
 
 28	\subsection{Per-Example Decomposition}\label{ssec:per_example_decomposition}
 29	
@@ -13426,7 +13403,7 @@ _source line 1006 · 2026-05-22T17:55:12.191189+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-22T17:57:16.676857+00:00_
+_source line 1005 · 2026-05-22T17:57:16.676857+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13462,7 +13439,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1008 · 2026-05-22T17:57:20.911587+00:00_
+_source line 1006 · 2026-05-22T17:57:20.911587+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -13484,7 +13461,7 @@ _source line 1008 · 2026-05-22T17:57:20.911587+00:00_
 
 ### Assistant
 
-_source line 1009 · 2026-05-22T17:57:25.382986+00:00_
+_source line 1007 · 2026-05-22T17:57:25.382986+00:00_
 
 R15 综合修复包验证完成。P0 DeltaNet 数据全部修正正确（16/16 cells match JSON），P1/P2 措辞和 caveats 全部到位，无新增 overclaiming。剩余 3 个 minor 项（z_max caption、Figure CI caveat 需看 PDF、LaTeX orphan line）均为 non-blocking。
 
@@ -13511,7 +13488,7 @@ R15 综合修复包验证完成。P0 DeltaNet 数据全部修正正确（16/16 c
 
 ### User
 
-_source line 1010 · 2026-05-22T17:57:25.856075+00:00_
+_source line 1008 · 2026-05-22T17:57:25.856075+00:00_
 
 [System 触发审查]:
 Paper Agent 完成了 R15 综合修复包，请逐项验证：
@@ -13557,7 +13534,7 @@ ARC-Easy: GDN-DN .084/.102, Ret-DN .138/.123, HG-DN .109/.088, GLA-DN .129/.098
 
 ### Tool call
 
-_source line 1011 · 2026-05-22T17:57:40.016794+00:00_
+_source line 1009 · 2026-05-22T17:57:40.016794+00:00_
 
 called Read
 
@@ -13595,7 +13572,7 @@ called Read
 
 ### Tool result
 
-_source line 1012 · 2026-05-22T17:57:40.017144+00:00_
+_source line 1010 · 2026-05-22T17:57:40.017144+00:00_
 
 739	\begin{center}
 740	\small
@@ -13650,7 +13627,7 @@ _source line 1012 · 2026-05-22T17:57:40.017144+00:00_
 
 ### Assistant
 
-_source line 1013 · 2026-05-22T17:57:47.787842+00:00_
+_source line 1011 · 2026-05-22T17:57:47.787842+00:00_
 
 数据与上轮验证结果一致，无回归。逐格确认：
 
@@ -13691,7 +13668,7 @@ _source line 1013 · 2026-05-22T17:57:47.787842+00:00_
 
 ### User
 
-_source line 1014 · 2026-05-22T18:09:57.132309+00:00_
+_source line 1012 · 2026-05-22T18:09:57.132309+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp-005-6arch-jaccard_20260522T173937]:
 Worker worker_analysis_exp-005-6arch-jaccard_20260522T173937 已完成（status=done），请审查 Agent 的处理结果。
@@ -13713,7 +13690,7 @@ Worker worker_analysis_exp-005-6arch-jaccard_20260522T173937 已完成（status=
 
 ### Tool call
 
-_source line 1015 · 2026-05-22T18:10:07.239666+00:00_
+_source line 1013 · 2026-05-22T18:10:07.239666+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13749,7 +13726,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1016 · 2026-05-22T18:10:07.792261+00:00_
+_source line 1014 · 2026-05-22T18:10:07.792261+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13787,7 +13764,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1017 · 2026-05-22T18:10:10.251229+00:00_
+_source line 1015 · 2026-05-22T18:10:10.251229+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.99}}"}
 
@@ -13809,7 +13786,7 @@ _source line 1017 · 2026-05-22T18:10:10.251229+00:00_
 
 ### Tool result
 
-_source line 1018 · 2026-05-22T18:10:10.352360+00:00_
+_source line 1016 · 2026-05-22T18:10:10.352360+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-gla-pure\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:33:56.971Z\", \"updated_at\": \"2026-05-22T16:46:53.504Z\", \"metrics\": {\"lambada_openai\": {\"acc\": 0.3392, \"acc_stderr\": 0.0066, \"perplexity\": 32.006, \"perplexity_stderr\": 1.193}, \"arc_easy\": {\"acc\": 0.5829, \"acc_stderr\": 0.0101, \"acc_norm\": 0.5114, \"acc_norm_stderr\": 0.0103}, \"log_samples\": true}, \"conclusion\": \"success\", \"hypothesis\": \"GLA pure (no attention) baseline at 340M scale will show lower LAMBADA accuracy and higher perplexity than GLA hybrid-3-1 counterpart, consistent with the pattern that attention layers selectively improve context-dependent word prediction tasks while having minimal or negative effect on knowledge-oriented tasks like ARC-Easy.\"}, \"e4-pythia-seed-calibration\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:17:05.445Z\", \"updated_at\": \"2026-05-22T11:44:42.532Z\", \"hypothesis\": \"Pythia 70M 9-seed variants 的 within-seed per-example Jaccard (same architecture, different random seed) 显著高于 cross-architecture Jaccard (~0.10), 证明 within-arch overlap >> cross-arch overlap, 即 cross-arch 信号不能被 seed noise 解释。\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"lambada_J_helped\": 0.273, \"lambada_J_hurt\": 0.393, \"lambada_alpha\": 0.355, \"arc_J_helped\": 0.312, \"arc_alpha\": 0.491, \"cross_arch_ref_J_helped\": 0.1, \"ratio_lambada\": 2.73, \"ratio_arc\": 3.12}}, \"exp-340m-multi-bench\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:23:25.467Z\", \"updated_at\": \"2026-05-22T00:34:02.116Z\", \"hypothesis\": \"340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the s
 …[truncated 1345 chars]
@@ -13832,7 +13809,7 @@ _source line 1018 · 2026-05-22T18:10:10.352360+00:00_
 
 ### Tool call
 
-_source line 1019 · 2026-05-22T18:10:13.921361+00:00_
+_source line 1017 · 2026-05-22T18:10:13.921361+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13868,7 +13845,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1020 · 2026-05-22T18:10:15.126025+00:00_
+_source line 1018 · 2026-05-22T18:10:15.126025+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"6-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"n_architectures\\\": 6,\\n  \\\"n_pairs\\\": 15,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\",\\n    \\\"GLA\\\",\\n    \\\"DeltaNet\\\",\\n    \\\"HGRN\\\"\\n  ],\\n  \\\"n_permutations\\\": 1000,\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\",\\n        \\\"HGRN\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 197,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -8,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.60101\\n        },\\n        \\\"HGRN\\\": {\\n          \\\"helped\\\": 196,\\n          \\\"hurt\\\": 218,\\n          \\\"net\\\":
 …[truncated 1906 chars]
@@ -13891,7 +13868,7 @@ _source line 1020 · 2026-05-22T18:10:15.126025+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-22T18:10:20.344580+00:00_
+_source line 1019 · 2026-05-22T18:10:20.344580+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13927,7 +13904,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1022 · 2026-05-22T18:10:21.047972+00:00_
+_source line 1020 · 2026-05-22T18:10:21.047972+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13963,7 +13940,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1023 · 2026-05-22T18:10:21.902037+00:00_
+_source line 1021 · 2026-05-22T18:10:21.902037+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"HGRN\\\"\\n  ],\\n  \\\"n_permutations\\\": 1000,\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n--\\n        \\\"HGRN\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n--\\n        \\\"HGRN\\\": {\\n          \\\"helped\\\": 196,\\n          \\\"hurt\\\": 218,\\n          \\\"net\\\": -22,\\n          \\\"pure_acc\\\": 0.615741,\\n--\\n        \\\"GDN-HGRN\\\": {\\n          \\\"J_helped\\\": 0.111386,\\n          \\\"J_hurt\\\": 0.081206,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 196,\\n--\\n        \\\"RetNet-HGRN\\\": {\\n          \\\"J_helped\\\": 0.118841,\\n          \\\"J_hurt\\\": 0.097015,\\n          \\\"|helped_a|\\\": 190,\\n          \\\"|helped_b|\\\": 196,\\n--\\n        \\\"HGRN2-HGRN\\\": {\\n          \\\"J_helped\\\": 0.115819,\\n          \\\"J_hurt\\\": 0.104439,\\n          \\\"|helped_a|\\\": 199,\\n          \\\"|helped_b|\\\": 196,\\n--\\n        \\\"GLA-HGRN\\\": {\\n          \\\"J_helped\\\": 0.116667,\\n          \\\"J_hurt\\\": 0.113527,\\n          \\\"|helped_a|\\\": 206,\\n          \\\"|helped_b|\\\": 196,\\n--\\n        \\\"DeltaNet-HGRN\\\": {\\n          \\\"J_helped\\\": 0.119658,\\n          \\\"J_hurt\\\": 0.104439,\\n          \\\"|helped_a|\\\": 197,\\n          \\\"|helped_b|\\\": 196,\\n--\\n        \\\"GDN-HGRN\\\": {\\n          \\\"J_obs\\\": 0.111386,\\n          \\\"J_null_mean\\\": 0.048681,\\n          \\\"J_null_std\\\": 0.010425,\\n          \\\"z\\\": 6.01,\\n--\\n        \\\"RetNet-HGRN\\\": {\\n          \\\"J_obs\\\": 0.118841,\\n          \\\"J_null_mean\\\": 0.042246,\\n          \\\"J_null_std\\\": 0.010275,\\n          \\\"z\\\": 7.45,\\n--\\n        \\\"HGRN2-HGRN\\\": {\\n          \\\"J_obs\\\": 0.115819,\\n          \\\"J_null_mean\\\": 0.04338,\\n          \\\"J_null_std\\\": 0.010432,\\n          \\\"z\\\": 6.94,\\n--\\n        \\\"GLA-HGRN\\\": {\\n
 …[truncated 4499 chars]
@@ -13986,7 +13963,7 @@ _source line 1023 · 2026-05-22T18:10:21.902037+00:00_
 
 ### Tool result
 
-_source line 1024 · 2026-05-22T18:10:23.673312+00:00_
+_source line 1022 · 2026-05-22T18:10:23.673312+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"mean_J_helped\\\": 0.110911,\\n      \\\"mean_J_hurt\\\": 0.103163,\\n          \\\"mean_J_helped\\\": 0.098877,\\n          \\\"mean_J_hurt\\\": 0.110979,\\n          \\\"mean_J_helped\\\": 0.103439,\\n          \\\"mean_J_hurt\\\": 0.105949,\\n          \\\"mean_J_helped\\\": 0.10813,\\n          \\\"mean_J_hurt\\\": 0.104682,\\n          \\\"mean_J_helped\\\": 0.110911,\\n          \\\"mean_J_hurt\\\": 0.103163,\\n      \\\"mean_J_helped\\\": 0.129461,\\n      \\\"mean_J_hurt\\\": 0.090552,\\n          \\\"mean_J_helped\\\": 0.119363,\\n          \\\"mean_J_hurt\\\": 0.095533,\\n          \\\"mean_J_helped\\\": 0.121913,\\n          \\\"mean_J_hurt\\\": 0.096536,\\n          \\\"mean_J_helped\\\": 0.122107,\\n          \\\"mean_J_hurt\\\": 0.094597,\\n          \\\"mean_J_helped\\\": 0.129461,\\n          \\\"mean_J_hurt\\\": 0.090552,\\n    \\\"mean_J_helped_arc_easy\\\": 0.110911,\\n    \\\"mean_J_hurt_arc_easy\\\": 0.103163,\\n    \\\"mean_J_helped_lambada\\\": 0.129461,\\n    \\\"mean_J_hurt_lambada\\\": 0.090552,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
 
@@ -14008,7 +13985,7 @@ _source line 1024 · 2026-05-22T18:10:23.673312+00:00_
 
 ### Tool call
 
-_source line 1025 · 2026-05-22T18:11:11.463947+00:00_
+_source line 1023 · 2026-05-22T18:11:11.463947+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14044,7 +14021,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 1026 · 2026-05-22T18:11:12.368487+00:00_
+_source line 1024 · 2026-05-22T18:11:12.368487+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14080,7 +14057,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1027 · 2026-05-22T18:11:13.522775+00:00_
+_source line 1025 · 2026-05-22T18:11:13.522775+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"cross_benchmark_summary\\\": {\\n    \\\"mean_J_helped_arc_easy\\\": 0.110911,\\n    \\\"mean_J_hurt_arc_easy\\\": 0.103163,\\n    \\\"mean_J_helped_lambada\\\": 0.129461,\\n    \\\"mean_J_hurt_lambada\\\": 0.090552,\\n    \\\"reference_5arch_J_helped_lambada\\\": 0.122107,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
 
@@ -14102,7 +14079,7 @@ _source line 1027 · 2026-05-22T18:11:13.522775+00:00_
 
 ### Tool result
 
-_source line 1028 · 2026-05-22T18:11:15.279309+00:00_
+_source line 1026 · 2026-05-22T18:11:15.279309+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"J_helped\\\": 0.084337,\\n          \\\"J_hurt\\\": 0.10219,\\n          \\\"|helped_a|\\\": 253,\\n--\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.10219,\\n          \\\"J_null_mean\\\": 0.049835,\\n          \\\"J_null_std\\\": 0.010219,\\n          \\\"z\\\": 5.12,\\n--\\n          \\\"J_null_std\\\": 0.010331,\\n          \\\"z\\\": 2.9,\\n          \\\"p\\\": 0.006\\n--\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_helped\\\": 0.122699,\\n          \\\"J_hurt\\\": 0.106742,\\n--\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_obs\\\": 0.122699,\\n          \\\"J_null_mean\\\": 0.045131,\\n--\\n        \\\"4arch (+GLA)\\\": {\\n          \\\"mean_J_helped\\\": 0.121913,\\n          \\\"mean_J_hurt\\\": 0.096536,\\n--\\n    \\\"reference_5arch_J_hurt_arceasy\\\": 0.104682,\\n    \\\"reference_4arch_J_helped_lambada\\\": 0.1219,\\n    \\\"reference_4arch_J_hurt_lambada\\\": 0.0965,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
 
@@ -14124,7 +14101,7 @@ _source line 1028 · 2026-05-22T18:11:15.279309+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-22T18:11:50.008809+00:00_
+_source line 1027 · 2026-05-22T18:11:50.008809+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14160,7 +14137,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1030 · 2026-05-22T18:11:53.573932+00:00_
+_source line 1028 · 2026-05-22T18:11:53.573932+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -14182,7 +14159,7 @@ _source line 1030 · 2026-05-22T18:11:53.573932+00:00_
 
 ### Assistant
 
-_source line 1031 · 2026-05-22T18:11:55.882657+00:00_
+_source line 1029 · 2026-05-22T18:11:55.882657+00:00_
 
 关键发现：HGRN 数据有两个会破坏当前 claim 的问题。
 
@@ -14209,7 +14186,7 @@ _source line 1031 · 2026-05-22T18:11:55.882657+00:00_
 
 ### User
 
-_source line 1032 · 2026-05-22T18:13:23.466175+00:00_
+_source line 1030 · 2026-05-22T18:13:23.466175+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -14291,7 +14268,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1033 · 2026-05-22T18:14:12.783966+00:00_
+_source line 1031 · 2026-05-22T18:14:12.783966+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

@@ -4,1482 +4,11 @@
 
 [← Part 5](part-005.md) · [Transcript overview](../coordination-coordination.md) · [Structured JSON](../../../sessions/36/36adc894b6149fbba9ba.json)
 
-## Round 124
-
-### Tool call
-
-_source line 3296 · 2026-05-29T20:12:10.097157+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-````json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/demo_curation_proposal.md",
-  "content": "# Demo Curation Experiment Proposal\n\nGenerated: 2026-05-29\nStatus: DESIGN (awaiting Director approval)\nClaim: Supports Claim 3 (avoidance source attribution) and extends to positive contribution for ICRA\n\n---\n\n## Motivation\n\nClaim 3 establishes that collision-free demonstrations account for nearly all CAR gains (~26pp), while SDF auxiliary supervision provides no statistically significant additional benefit (p=0.155). Demo curation directly operationalizes this finding: if avoidance is demonstration-driven, then systematically varying the collision-free fraction in training data should produce a monotonic CAR response, providing both (a) causal evidence for the demo-driven hypothesis and (b) a practical method for improving VLA safety without architectural changes.\n\n---\n\n## 1. Demo Collision Labeling\n\n### 1.1 Background: Why Labeling is Needed\n\nSafeLIBERO environments ADD obstacles to standard LIBERO scenes. The original LIBERO demonstrations were collected via teleoperation WITHOUT these obstacles present. When replayed in obstacle-augmented SafeLIBERO environments, some demo trajectories naturally avoid the obstacle volumes (collision-free) while others pass through them (collision-containing). This creates a natural collision-free/collision-containing split in the existing data — no new data collection needed.\n\n### 1.2 Labeling Method A: MuJoCo Replay (Gold Standard)\n\n**Approach**: Replay each demo episode in the SafeLIBERO MuJoCo environment with obstacles, tracking obstacle displacement at each timestep (identical to eval code `check_collision()` in `eval_safelibero.py`).\n\n**Collision criterion**: Episode is labeled **collision-containing** if any obstacle displacement exceeds 1mm (same `COLLISION_THRESHOLD = 0.001` used in all evaluations).\n\n**Implementation**:\n```python\n# Pseudocode for demo labeling\nfor task_id in range(4):\n    demos = load_libero_demos(suite=\"safelibero_object\", task_id=task_id)\n    for ep_idx, demo in enumerate(demos):\n        env.reset()\n        env.set_init_state(demo.init_state)\n        initial_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n        \n        collided = False\n        for t, action in enumerate(demo.actions):\n            env.step(action)\n            current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n            hit, name, disp = check_collision(initial_positions, current_positions)\n            if hit:\n                collided = True\n                collision_timestep = t\n                collision_obstacle = name\n                break\n        \n        labels[task_id][ep_idx] = {\n            \"collision_free\": not collided,\n            \"collision_timestep\": collision_timestep if collided else None,\n            \"collision_obstacle\": collision_obstacle if collided else None,\n            \"max_obstacle_displacement\": max_disp,\n        }\n```\n\n**Advantages**:\n- Full-body collision detection (EE + arm links + gripper)\n- Identical metric to evaluation, ensuring apples-to-apples comparison\n- Captures all collision types (not just EE)\n\n**Cost**: ~200 demos × ~300 steps × MuJoCo step ≈ **5–10 minutes on CPU** (MuJoCo is very fast without rendering). No GPU needed.\n\n### 1.3 Labeling Method B: SDF-Based EE Trajectory Check (Fast Sanity Check)\n\n**Approach**: Extract EE positions from demo `observation/state` (first 3 dimensions = ee_pos), query precomputed SDF grid at each position.\n\n**Collision criterion**: Episode labeled collision-containing if `SDF(ee_pos) < 0` at any timestep (EE inside obstacle volume).\n\n**Implementation**:\n```python\nsdf_data = np.load(\"sdf_gt_object_chocolate.npz\")\nsdf_grid = build_sdf_interpolator(sdf_data)  # scipy RegularGridInterpolator\n\nfor ep in demos:\n    ee_trajectory = ep[\"observation/state\"][:, :3]  # [T, 3]\n    sdf_values = sdf_grid(ee_trajectory)             # [T]\n    ee_collides = np.any(sdf_values < 0)\n```\n\n**Advantages**: CPU-only, <1 minute for all demos, no MuJoCo needed\n**Limitation**: Only detects EE collisions, misses arm-link collisions. This is a known limitation aligned with the paper's finding about EE-only monitoring gaps.\n\n**Recommendation**: Use Method A (MuJoCo replay) as primary labeling. Method B as quick sanity check and for analysis (what fraction of collisions are EE vs arm-link?).\n\n### 1.4 Labeling Granularity\n\n**Episode-level binary** (primary): collision-free = 1, collision-containing = 0. This is the granularity needed for curation (include/exclude entire episodes).\n\n**Timestep-level** (secondary, for analysis): Record first collision timestep and which obstacle was hit. Useful for understanding:\n- Early vs. late collisions (approach phase vs. manipulation phase)\n- Per-obstacle collision rates (which obstacles are hit most?)\n- Per-task collision rates (which tasks have more collision-containing demos?)\n\n### 1.5 Expected Demo Collision Statistics\n\nEstimate (to be confirmed by labeling):\n- LIBERO object_pudding has **50 demos per task × 4 tasks = 200 total demos**\n- Typical obstacle placement in SafeLIBERO Level II puts obstacles in the workspace between start and goal positions\n- Expected collision-free rate: **40–70%** (substantial fraction of demos naturally avoid obstacles since teleoperation aimed at task completion, not obstacle avoidance)\n- This rate varies significantly by task — BBQ sauce (lowest CAR in eval) likely has the fewest collision-free demos\n\n---\n\n## 2. Curation Pipeline\n\n### 2.1 Pipeline Overview\n\n```\nSafeLIBERO demo dataset (HuggingFace LeRobot)\n    │\n    ▼\n[Step 1] MuJoCo Replay Labeling\n    │  Output: per-episode collision labels (JSON)\n    ▼\n[Step 2] Stratification by collision-free ratio\n    │  Output: episode index lists per curation level\n    ▼\n[Step 3] Training data construction\n    │  Filter LeRobot dataset by episode indices\n    ▼\n[Step 4] Training runs (one per curation level × seed)\n```\n\n### 2.2 Curation Levels\n\nGiven ~200 demos with estimated 40–70% natural collision-free rate (N_cf), we construct **5 curation levels** by varying the fraction of collision-free demos in the training set:\n\n| Level | Collision-Free Fraction | Construction Method |\n|-------|------------------------|---------------------|\n| **L0** (uncurated) | Natural rate (~40–70%) | All 200 demos, no filtering |\n| **L1** (25% cf) | 25% | Subsample collision-free demos to reduce cf ratio |\n| **L2** (50% cf) | 50% | Balance collision-free and collision-containing |\n| **L3** (75% cf) | 75% | Oversample collision-free, undersample collision-containing |\n| **L4** (100% cf) | 100% | Only collision-free demos |\n\n**Important design decisions**:\n\n1. **Fixed total dataset size vs. fixed cf count**: Two options:\n   - **Option A (fixed total)**: All levels have ~200 demos, varying the cf ratio by subsampling/oversampling. Pros: controls for dataset size. Cons: requires oversampling, may introduce repetition bias.\n   - **Option B (fixed cf count, variable total)**: Keep all collision-free demos in every level, vary collision-containing count. Pros: simpler. Cons: dataset size confound.\n   - **Recommendation: Option A** (fixed total = 200 demos per level). This controls for dataset size, isolating the collision-free ratio as the only variable. For levels above the natural cf rate, collision-free demos are repeated (with different augmentation via LeRobot's standard data augmentation).\n\n2. **Task balance**: Maintain equal demos per task (50/task) at each level. If a task has few collision-free demos, that becomes a natural bottleneck — this is informative (tasks with fewer collision-free demos should show less CAR improvement).\n\n3. **Actual curation levels will be determined after labeling**: If natural cf rate is 60%, then L0=60%, and we can create levels at {25%, 50%, 60%(natural), 75%, 100%}. Adjust grid after labeling.\n\n### 2.3 Implementation: LeRobot Dataset Filtering\n\nThe openpi training pipeline uses `LeRobotLiberoDataConfig(repo_id=...)` which loads a HuggingFace dataset. To curate:\n\n**Option 1 (simplest): Create separate HF datasets per level**\n```python\n# After labeling, create curated datasets\nfrom datasets import load_dataset\n\nds = load_dataset(\"safelibero_object\")\ncf_indices = [i for i, label in enumerate(labels) if label[\"collision_free\"]]\ncc_indices = [i for i, label in enumerate(labels) if not label[\"collision_free\"]]\n\n# For each curation level, select indices and push to HF\nfor level_name, selected_indices in curation_levels.items():\n    curated_ds = ds.select(selected_indices)\n    curated_ds.push_to_hub(f\"safelibero_object_curated_{level_name}\")\n```\n\n**Option 2 (no dataset duplication): Episode index filtering in dataloader**\n```python\n# Modify training config to accept episode filter\n_config.LeRobotLiberoDataConfig(\n    repo_id=\"safelibero_object\",\n    episode_indices=selected_indices,  # NEW: filter at load time\n    ...\n)\n```\n\nThis requires a small patch to the LeRobot dataloader (add `episode_indices` filter). More elegant but needs code change.\n\n**Recommendation**: Option 1 for reliability. Disk cost is minimal (~200 demos × ~1MB each ≈ 200MB per level × 5 levels = 1GB total).\n\n---\n\n## 3. Experiment Design\n\n### 3.1 Training Matrix\n\n| Condition | CF Ratio | Model | Seeds | Training Steps | λ_sdf |\n|-----------|----------|-------|-------|---------------|-------|\n| L0-LoRA | Natural | Pi0.5 LoRA | 3 | 30K | 0 |\n| L1-LoRA | 25% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L2-LoRA | 50% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L3-LoRA | 75% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L4-LoRA | 100% | Pi0.5 LoRA | 3 | 30K | 0 |\n| **L4-SDF** | **100%** | **Pi0.5 LoRA+SDF** | **3** | **30K** | **0.1** |\n\n**Total: 6 conditions × 3 seeds = 18 training runs**\n\nKey design choices:\n- **LoRA-only (no SDF)** for L0–L4: isolates the effect of demo curation from SDF supervision\n- **L4-SDF**: 100% collision-free + SDF supervision. Tests whether SDF adds value on top of maximally curated data (directly extends Claim 3)\n- **3 seeds each**: Sufficient for permutation test significance (matches existing experimental protocol)\n- **30K steps**: Same training budget as all existing experiments\n\n### 3.2 Evaluation Protocol\n\nIdentical to existing protocol:\n- 4 tasks × 50 episodes = 200 episodes per seed\n- Evaluation seed = 7\n- Metrics: **CAR, TSR, dfCAR, SSR** (SSR = TSR ∩ CAR)\n\nAdditional analysis:\n- **Per-task CAR fingerprint** at each curation level (does task ordering change?)\n- **CAR vs. curation ratio curve** (monotonic? saturating? linear?)\n- **TSR vs. curation ratio curve** (does curation hurt task performance?)\n- **Pareto frontier**: CAR vs. TSR tradeoff across curation levels\n\n### 3.3 Hypotheses and Expected Results\n\n**H1 (primary)**: CAR increases monotonically with collision-free demo fraction.\n- Evidence for: Demo distribution is the causal driver of avoidance\n- Evidence against: If CAR is flat across curation levels, avoidance comes from architecture/training, not data\n\n**H2 (secondary)**: L4-SDF ≈ L4-LoRA (no additional SDF benefit even with maximally curated data).\n- Strengthens Claim 3: SDF is redundant even under the best-case data condition\n- If L4-SDF > L4-LoRA: SDF synergizes with curated data (interesting new finding)\n\n**H3 (tertiary)**: Per-task CAR fingerprint is preserved across curation levels.\n- Supports: Task geometry (not curation) determines relative avoidance difficulty\n- Against: Curation changes the task-difficulty ordering\n\n**Expected quantitative range** (estimated):\n| Level | Expected CAR | Expected TSR |\n|-------|-------------|-------------|\n| L1 (25% cf) | ~35–45% | ~55–60% |\n| L2 (50% cf) | ~45–52% | ~50–55% |\n| L0 (natural) | ~55% (matches existing LoRA-only) | ~50% |\n| L3 (75% cf) | ~58–63% | ~48–52% |\n| L4 (100% cf) | ~60–68% | ~45–50% |\n\nThe TSR may decrease at high curation levels because removing collision-containing demos reduces trajectory diversity (distribution narrowing).\n\n### 3.4 Statistical Analysis Plan\n\n- **Primary test**: Spearman rank correlation between curation ratio and CAR (across all 5 levels × 3 seeds = 15 data points). Significant positive correlation confirms H1.\n- **Pairwise tests**: Permutation tests between adjacent curation levels (L0 vs L1, L1 vs L2, etc.) to identify where the effect saturates.\n- **L4-SDF vs L4-LoRA**: Same permutation test protocol as existing Claim 3 analysis.\n- **Effect size**: Report CAR gain per 25pp increase in curation ratio (dose-response).\n\n---\n\n## 4. Cost Estimation\n\n### 4.1 Labeling (One-Time)\n\n| Task | Method | Time | GPU |\n|------|--------|------|-----|\n| MuJoCo replay labeling | Method A | 10 min | None (CPU) |\n| SDF-based EE check | Method B | <1 min | None (CPU) |\n| Label analysis + visualization | Manual | 30 min | None |\n| Create curated datasets | Script | 15 min | None |\n| **Total labeling** | | **~1 hour** | **0 GPU** |\n\n### 4.2 Training\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Training runs | 18 (6 conditions × 3 seeds) | ~38h (30K steps on RTX PRO 6000) | **684 GPU-hours** |\n| Evaluation runs | 18 | ~4h per run | **72 GPU-hours** |\n| **Total compute** | | | **~756 GPU-hours** |\n\nWith 2 GPUs: ~756 / 2 = **378 hours ≈ 16 days sequential**\nWith parallel scheduling (2 runs per GPU if memory allows): **~8 days**\n\n### 4.3 Timeline\n\n| Phase | Duration | Notes |\n|-------|----------|-------|\n| Phase 0: Labeling script + execution | 1 day | CPU-only, can start immediately |\n| Phase 1: Dataset construction | 1 day | Create curated HF datasets |\n| Phase 2: Training (18 runs) | 8–16 days | Depends on GPU availability |\n| Phase 3: Evaluation (18 runs) | 3–4 days | Can overlap with late training |\n| Phase 4: Analysis + figures | 2 days | Statistical tests + Pareto curves |\n| **Total** | **~2–3 weeks** | Fits within ICRA 2027 timeline (~3.5 months to DDL) |\n\n### 4.4 GPU Requirements\n\n- **Minimum**: 1× RTX PRO 6000 (96GB) — runs sequentially, ~24 days total\n- **Recommended**: 2× RTX PRO 6000 — parallel training, ~12 days\n- **Ideal**: 4× GPU — can run 4 seeds simultaneously, ~6 days\n\n---\n\n## 5. Deliverables\n\n1. **collision_labels.json**: Per-episode collision labels for all SafeLIBERO demos\n2. **Curated datasets**: 5 HuggingFace datasets at different curation levels\n3. **Training checkpoints**: 18 checkpoints (6 conditions × 3 seeds)\n4. **Evaluation results**: 18 JSON files with per-episode metrics\n5. **Figures**:\n   - CAR vs. curation ratio curve (with error bars)\n   - TSR vs. curation ratio curve\n   - CAR-TSR Pareto frontier\n   - Per-task CAR fingerprint across curation levels\n6. **Paper section**: Updated Claim 3 text for ICRA version incorporating curation results\n\n---\n\n## 6. Risk Assessment\n\n| Risk | Likelihood | Mitigation |\n|------|-----------|-----------|\n| Natural collision-free rate is very high (>90%) | Low–Medium | If most demos are already collision-free, curation levels L1–L3 require aggressive oversampling of collision-containing demos. Fallback: use per-task curation (some tasks likely have lower cf rate) |\n| Natural collision-free rate is very low (<20%) | Low | Few collision-free demos → L4 has very small dataset. Fallback: use episode-segment curation (remove collision-containing segments, not entire episodes) |\n| CAR is flat across curation levels | Low | Would contradict Claim 3's existing evidence. If observed: suggests avoidance comes from training dynamics (optimizer, LoRA structure) rather than data distribution. This is a falsifiable and interesting result. |\n| TSR drops severely at high curation levels | Medium | Expected to some degree. If TSR < 30%: the curation approach has a fundamental CAR-TSR tradeoff that limits practical utility. Mitigation: add curation levels at finer granularity near the Pareto knee. |\n\n---\n\n## 7. Narrative Integration (ICRA Paper)\n\n**Current Claim 3**: \"Collision-free demonstrations are sufficient for collision avoidance\" — supported by LoRA vs LoRA+SDF comparison showing SDF adds no significant benefit.\n\n**With curation results, Claim 3 becomes**: \"Collision-free demonstrations are the primary driver of collision avoidance, and systematic demo curation produces monotonic CAR improvements\" — now a positive, actionable contribution rather than just a negative result.\n\n**ICRA framing advantage**: Demo curation is a practical method that requires no architectural changes, no SDF computation, no additional sensor data. Any VLA pipeline can adopt it. This transforms a negative finding (SDF doesn't work) into a positive recommendation (curate your demos instead).\n"
-}
-````
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-````json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/demo_curation_proposal.md",
-    "content": "# Demo Curation Experiment Proposal\n\nGenerated: 2026-05-29\nStatus: DESIGN (awaiting Director approval)\nClaim: Supports Claim 3 (avoidance source attribution) and extends to positive contribution for ICRA\n\n---\n\n## Motivation\n\nClaim 3 establishes that collision-free demonstrations account for nearly all CAR gains (~26pp), while SDF auxiliary supervision provides no statistically significant additional benefit (p=0.155). Demo curation directly operationalizes this finding: if avoidance is demonstration-driven, then systematically varying the collision-free fraction in training data should produce a monotonic CAR response, providing both (a) causal evidence for the demo-driven hypothesis and (b) a practical method for improving VLA safety without architectural changes.\n\n---\n\n## 1. Demo Collision Labeling\n\n### 1.1 Background: Why Labeling is Needed\n\nSafeLIBERO environments ADD obstacles to standard LIBERO scenes. The original LIBERO demonstrations were collected via teleoperation WITHOUT these obstacles present. When replayed in obstacle-augmented SafeLIBERO environments, some demo trajectories naturally avoid the obstacle volumes (collision-free) while others pass through them (collision-containing). This creates a natural collision-free/collision-containing split in the existing data — no new data collection needed.\n\n### 1.2 Labeling Method A: MuJoCo Replay (Gold Standard)\n\n**Approach**: Replay each demo episode in the SafeLIBERO MuJoCo environment with obstacles, tracking obstacle displacement at each timestep (identical to eval code `check_collision()` in `eval_safelibero.py`).\n\n**Collision criterion**: Episode is labeled **collision-containing** if any obstacle displacement exceeds 1mm (same `COLLISION_THRESHOLD = 0.001` used in all evaluations).\n\n**Implementation**:\n```python\n# Pseudocode for demo labeling\nfor task_id in range(4):\n    demos = load_libero_demos(suite=\"safelibero_object\", task_id=task_id)\n    for ep_idx, demo in enumerate(demos):\n        env.reset()\n        env.set_init_state(demo.init_state)\n        initial_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n        \n        collided = False\n        for t, action in enumerate(demo.actions):\n            env.step(action)\n            current_positions = get_obstacle_positions(env.sim, OBSTACLE_NAMES)\n            hit, name, disp = check_collision(initial_positions, current_positions)\n            if hit:\n                collided = True\n                collision_timestep = t\n                collision_obstacle = name\n                break\n        \n        labels[task_id][ep_idx] = {\n            \"collision_free\": not collided,\n            \"collision_timestep\": collision_timestep if collided else None,\n            \"collision_obstacle\": collision_obstacle if collided else None,\n            \"max_obstacle_displacement\": max_disp,\n        }\n```\n\n**Advantages**:\n- Full-body collision detection (EE + arm links + gripper)\n- Identical metric to evaluation, ensuring apples-to-apples comparison\n- Captures all collision types (not just EE)\n\n**Cost**: ~200 demos × ~300 steps × MuJoCo step ≈ **5–10 minutes on CPU** (MuJoCo is very fast without rendering). No GPU needed.\n\n### 1.3 Labeling Method B: SDF-Based EE Trajectory Check (Fast Sanity Check)\n\n**Approach**: Extract EE positions from demo `observation/state` (first 3 dimensions = ee_pos), query precomputed SDF grid at each position.\n\n**Collision criterion**: Episode labeled collision-containing if `SDF(ee_pos) < 0` at any timestep (EE inside obstacle volume).\n\n**Implementation**:\n```python\nsdf_data = np.load(\"sdf_gt_object_chocolate.npz\")\nsdf_grid = build_sdf_interpolator(sdf_data)  # scipy RegularGridInterpolator\n\nfor ep in demos:\n    ee_trajectory = ep[\"observation/state\"][:, :3]  # [T, 3]\n    sdf_values = sdf_grid(ee_trajectory)             # [T]\n    ee_collides = np.any(sdf_values < 0)\n```\n\n**Advantages**: CPU-only, <1 minute for all demos, no MuJoCo needed\n**Limitation**: Only detects EE collisions, misses arm-link collisions. This is a known limitation aligned with the paper's finding about EE-only monitoring gaps.\n\n**Recommendation**: Use Method A (MuJoCo replay) as primary labeling. Method B as quick sanity check and for analysis (what fraction of collisions are EE vs arm-link?).\n\n### 1.4 Labeling Granularity\n\n**Episode-level binary** (primary): collision-free = 1, collision-containing = 0. This is the granularity needed for curation (include/exclude entire episodes).\n\n**Timestep-level** (secondary, for analysis): Record first collision timestep and which obstacle was hit. Useful for understanding:\n- Early vs. late collisions (approach phase vs. manipulation phase)\n- Per-obstacle collision rates (which obstacles are hit most?)\n- Per-task collision rates (which tasks have more collision-containing demos?)\n\n### 1.5 Expected Demo Collision Statistics\n\nEstimate (to be confirmed by labeling):\n- LIBERO object_pudding has **50 demos per task × 4 tasks = 200 total demos**\n- Typical obstacle placement in SafeLIBERO Level II puts obstacles in the workspace between start and goal positions\n- Expected collision-free rate: **40–70%** (substantial fraction of demos naturally avoid obstacles since teleoperation aimed at task completion, not obstacle avoidance)\n- This rate varies significantly by task — BBQ sauce (lowest CAR in eval) likely has the fewest collision-free demos\n\n---\n\n## 2. Curation Pipeline\n\n### 2.1 Pipeline Overview\n\n```\nSafeLIBERO demo dataset (HuggingFace LeRobot)\n    │\n    ▼\n[Step 1] MuJoCo Replay Labeling\n    │  Output: per-episode collision labels (JSON)\n    ▼\n[Step 2] Stratification by collision-free ratio\n    │  Output: episode index lists per curation level\n    ▼\n[Step 3] Training data construction\n    │  Filter LeRobot dataset by episode indices\n    ▼\n[Step 4] Training runs (one per curation level × seed)\n```\n\n### 2.2 Curation Levels\n\nGiven ~200 demos with estimated 40–70% natural collision-free rate (N_cf), we construct **5 curation levels** by varying the fraction of collision-free demos in the training set:\n\n| Level | Collision-Free Fraction | Construction Method |\n|-------|------------------------|---------------------|\n| **L0** (uncurated) | Natural rate (~40–70%) | All 200 demos, no filtering |\n| **L1** (25% cf) | 25% | Subsample collision-free demos to reduce cf ratio |\n| **L2** (50% cf) | 50% | Balance collision-free and collision-containing |\n| **L3** (75% cf) | 75% | Oversample collision-free, undersample collision-containing |\n| **L4** (100% cf) | 100% | Only collision-free demos |\n\n**Important design decisions**:\n\n1. **Fixed total dataset size vs. fixed cf count**: Two options:\n   - **Option A (fixed total)**: All levels have ~200 demos, varying the cf ratio by subsampling/oversampling. Pros: controls for dataset size. Cons: requires oversampling, may introduce repetition bias.\n   - **Option B (fixed cf count, variable total)**: Keep all collision-free demos in every level, vary collision-containing count. Pros: simpler. Cons: dataset size confound.\n   - **Recommendation: Option A** (fixed total = 200 demos per level). This controls for dataset size, isolating the collision-free ratio as the only variable. For levels above the natural cf rate, collision-free demos are repeated (with different augmentation via LeRobot's standard data augmentation).\n\n2. **Task balance**: Maintain equal demos per task (50/task) at each level. If a task has few collision-free demos, that becomes a natural bottleneck — this is informative (tasks with fewer collision-free demos should show less CAR improvement).\n\n3. **Actual curation levels will be determined after labeling**: If natural cf rate is 60%, then L0=60%, and we can create levels at {25%, 50%, 60%(natural), 75%, 100%}. Adjust grid after labeling.\n\n### 2.3 Implementation: LeRobot Dataset Filtering\n\nThe openpi training pipeline uses `LeRobotLiberoDataConfig(repo_id=...)` which loads a HuggingFace dataset. To curate:\n\n**Option 1 (simplest): Create separate HF datasets per level**\n```python\n# After labeling, create curated datasets\nfrom datasets import load_dataset\n\nds = load_dataset(\"safelibero_object\")\ncf_indices = [i for i, label in enumerate(labels) if label[\"collision_free\"]]\ncc_indices = [i for i, label in enumerate(labels) if not label[\"collision_free\"]]\n\n# For each curation level, select indices and push to HF\nfor level_name, selected_indices in curation_levels.items():\n    curated_ds = ds.select(selected_indices)\n    curated_ds.push_to_hub(f\"safelibero_object_curated_{level_name}\")\n```\n\n**Option 2 (no dataset duplication): Episode index filtering in dataloader**\n```python\n# Modify training config to accept episode filter\n_config.LeRobotLiberoDataConfig(\n    repo_id=\"safelibero_object\",\n    episode_indices=selected_indices,  # NEW: filter at load time\n    ...\n)\n```\n\nThis requires a small patch to the LeRobot dataloader (add `episode_indices` filter). More elegant but needs code change.\n\n**Recommendation**: Option 1 for reliability. Disk cost is minimal (~200 demos × ~1MB each ≈ 200MB per level × 5 levels = 1GB total).\n\n---\n\n## 3. Experiment Design\n\n### 3.1 Training Matrix\n\n| Condition | CF Ratio | Model | Seeds | Training Steps | λ_sdf |\n|-----------|----------|-------|-------|---------------|-------|\n| L0-LoRA | Natural | Pi0.5 LoRA | 3 | 30K | 0 |\n| L1-LoRA | 25% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L2-LoRA | 50% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L3-LoRA | 75% | Pi0.5 LoRA | 3 | 30K | 0 |\n| L4-LoRA | 100% | Pi0.5 LoRA | 3 | 30K | 0 |\n| **L4-SDF** | **100%** | **Pi0.5 LoRA+SDF** | **3** | **30K** | **0.1** |\n\n**Total: 6 conditions × 3 seeds = 18 training runs**\n\nKey design choices:\n- **LoRA-only (no SDF)** for L0–L4: isolates the effect of demo curation from SDF supervision\n- **L4-SDF**: 100% collision-free + SDF supervision. Tests whether SDF adds value on top of maximally curated data (directly extends Claim 3)\n- **3 seeds each**: Sufficient for permutation test significance (matches existing experimental protocol)\n- **30K steps**: Same training budget as all existing experiments\n\n### 3.2 Evaluation Protocol\n\nIdentical to existing protocol:\n- 4 tasks × 50 episodes = 200 episodes per seed\n- Evaluation seed = 7\n- Metrics: **CAR, TSR, dfCAR, SSR** (SSR = TSR ∩ CAR)\n\nAdditional analysis:\n- **Per-task CAR fingerprint** at each curation level (does task ordering change?)\n- **CAR vs. curation ratio curve** (monotonic? saturating? linear?)\n- **TSR vs. curation ratio curve** (does curation hurt task performance?)\n- **Pareto frontier**: CAR vs. TSR tradeoff across curation levels\n\n### 3.3 Hypotheses and Expected Results\n\n**H1 (primary)**: CAR increases monotonically with collision-free demo fraction.\n- Evidence for: Demo distribution is the causal driver of avoidance\n- Evidence against: If CAR is flat across curation levels, avoidance comes from architecture/training, not data\n\n**H2 (secondary)**: L4-SDF ≈ L4-LoRA (no additional SDF benefit even with maximally curated data).\n- Strengthens Claim 3: SDF is redundant even under the best-case data condition\n- If L4-SDF > L4-LoRA: SDF synergizes with curated data (interesting new finding)\n\n**H3 (tertiary)**: Per-task CAR fingerprint is preserved across curation levels.\n- Supports: Task geometry (not curation) determines relative avoidance difficulty\n- Against: Curation changes the task-difficulty ordering\n\n**Expected quantitative range** (estimated):\n| Level | Expected CAR | Expected TSR |\n|-------|-------------|-------------|\n| L1 (25% cf) | ~35–45% | ~55–60% |\n| L2 (50% cf) | ~45–52% | ~50–55% |\n| L0 (natural) | ~55% (matches existing LoRA-only) | ~50% |\n| L3 (75% cf) | ~58–63% | ~48–52% |\n| L4 (100% cf) | ~60–68% | ~45–50% |\n\nThe TSR may decrease at high curation levels because removing collision-containing demos reduces trajectory diversity (distribution narrowing).\n\n### 3.4 Statistical Analysis Plan\n\n- **Primary test**: Spearman rank correlation between curation ratio and CAR (across all 5 levels × 3 seeds = 15 data points). Significant positive correlation confirms H1.\n- **Pairwise tests**: Permutation tests between adjacent curation levels (L0 vs L1, L1 vs L2, etc.) to identify where the effect saturates.\n- **L4-SDF vs L4-LoRA**: Same permutation test protocol as existing Claim 3 analysis.\n- **Effect size**: Report CAR gain per 25pp increase in curation ratio (dose-response).\n\n---\n\n## 4. Cost Estimation\n\n### 4.1 Labeling (One-Time)\n\n| Task | Method | Time | GPU |\n|------|--------|------|-----|\n| MuJoCo replay labeling | Method A | 10 min | None (CPU) |\n| SDF-based EE check | Method B | <1 min | None (CPU) |\n| Label analysis + visualization | Manual | 30 min | None |\n| Create curated datasets | Script | 15 min | None |\n| **Total labeling** | | **~1 hour** | **0 GPU** |\n\n### 4.2 Training\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Training runs | 18 (6 conditions × 3 seeds) | ~38h (30K steps on RTX PRO 6000) | **684 GPU-hours** |\n| Evaluation runs | 18 | ~4h per run | **72 GPU-hours** |\n| **Total compute** | | | **~756 GPU-hours** |\n\nWith 2 GPUs: ~756 / 2 = **378 hours ≈ 16 days sequential**\nWith parallel scheduling (2 runs per GPU if memory allows): **~8 days**\n\n### 4.3 Timeline\n\n| Phase | Duration | Notes |\n|-------|----------|-------|\n| Phase 0: Labeling script + execution | 1 day | CPU-only, can start immediately |\n| Phase 1: Dataset construction | 1 day | Create curated HF datasets |\n| Phase 2: Training (18 runs) | 8–16 days | Depends on GPU availability |\n| Phase 3: Evaluation (18 runs) | 3–4 days | Can overlap with late training |\n| Phase 4: Analysis + figures | 2 days | Statistical tests + Pareto curves |\n| **Total** | **~2–3 weeks** | Fits within ICRA 2027 timeline (~3.5 months to DDL) |\n\n### 4.4 GPU Requirements\n\n- **Minimum**: 1× RTX PRO 6000 (96GB) — runs sequentially, ~24 days total\n- **Recommended**: 2× RTX PRO 6000 — parallel training, ~12 days\n- **Ideal**: 4× GPU — can run 4 seeds simultaneously, ~6 days\n\n---\n\n## 5. Deliverables\n\n1. **collision_labels.json**: Per-episode collision labels for all SafeLIBERO demos\n2. **Curated datasets**: 5 HuggingFace datasets at different curation levels\n3. **Training checkpoints**: 18 checkpoints (6 conditions × 3 seeds)\n4. **Evaluation results**: 18 JSON files with per-episode metrics\n5. **Figures**:\n   - CAR vs. curation ratio curve (with error bars)\n   - TSR vs. curation ratio curve\n   - CAR-TSR Pareto frontier\n   - Per-task CAR fingerprint across curation levels\n6. **Paper section**: Updated Claim 3 text for ICRA version incorporating curation results\n\n---\n\n## 6. Risk Assessment\n\n| Risk | Likelihood | Mitigation |\n|------|-----------|-----------|\n| Natural collision-free rate is very high (>90%) | Low–Medium | If most demos are already collision-free, curation levels L1–L3 require aggressive oversampling of collision-containing demos. Fallback: use per-task curation (some tasks likely have lower cf rate) |\n| Natural collision-free rate is very low (<20%) | Low | Few collision-free demos → L4 has very small dataset. Fallback: use episode-segment curation (remove collision-containing segments, not entire episodes) |\n| CAR is flat across curation levels | Low | Would contradict Claim 3's existing evidence. If observed: suggests avoidance comes from training dynamics (optimizer, LoRA structure) rather than data distribution. This is a falsifiable and interesting result. |\n| TSR drops severely at high curation levels | Medium | Expected to some degree. If TSR < 30%: the curation approach has a fundamental CAR-TSR tradeoff that limits practical utility. Mitigation: add curation levels at finer granularity near the Pareto knee. |\n\n---\n\n## 7. Narrative Integration (ICRA Paper)\n\n**Current Claim 3**: \"Collision-free demonstrations are sufficient for collision avoidance\" — supported by LoRA vs LoRA+SDF comparison showing SDF adds no significant benefit.\n\n**With curation results, Claim 3 becomes**: \"Collision-free demonstrations are the primary driver of collision avoidance, and systematic demo curation produces monotonic CAR improvements\" — now a positive, actionable contribution rather than just a negative result.\n\n**ICRA framing advantage**: Demo curation is a practical method that requires no architectural changes, no SDF computation, no additional sensor data. Any VLA pipeline can adopt it. This transforms a negative finding (SDF doesn't work) into a positive recommendation (curate your demos instead).\n"
-  }
-}
-````
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3297 · 2026-05-29T20:12:10.148226+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/demo_curation_proposal.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3298 · 2026-05-29T20:12:16.526714+00:00_
-
-called mcp__agent-ml-research__register_artifact
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
-
-```json
-{
-  "name": "demo_curation_proposal",
-  "type": "report",
-  "description": "Demo curation实验完整方案：碰撞标注(MuJoCo replay + SDF)、curation pipeline、训练矩阵(6条件×3seeds=18runs)、成本估算(756 GPU-hours)",
-  "project": "diff_collision_sdf",
-  "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/demo_curation_proposal.md",
-  "tags": "['demo-curation', 'experiment-design', 'icra2027', 'claim3']"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "tool_args": {
-    "name": "demo_curation_proposal",
-    "type": "report",
-    "description": "Demo curation实验完整方案：碰撞标注(MuJoCo replay + SDF)、curation pipeline、训练矩阵(6条件×3seeds=18runs)、成本估算(756 GPU-hours)",
-    "project": "diff_collision_sdf",
-    "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/demo_curation_proposal.md",
-    "tags": "['demo-curation', 'experiment-design', 'icra2027', 'claim3']"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3299 · 2026-05-29T20:12:17.681560+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_8c5a12\", \"name\": \"demo_curation_proposal\", \"type\": \"report\", \"description\": \"Demo curation实验完整方案：碰撞标注(MuJoCo replay + SDF)、curation pipeline、训练矩阵(6条件×3seeds=18runs)、成本估算(756 GPU-hours)\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/report/demo_curation_proposal.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T20:12:16.525260+00:00\", \"tags\": [\"demo-curation\", \"experiment-design\", \"icra2027\", \"claim3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "elapsed_ms": 1154
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3300 · 2026-05-29T20:12:17.681999+00:00_
-
-called TodoWrite
-
-<details open><summary>🔧 Tool call — TodoWrite</summary>
-
-```json
-{
-  "todos": "[{'content': 'Investigate SafeLIBERO demo data format and collision signals', 'status': 'completed', 'activeForm': 'Investigating SafeLIBERO demo data format'}, {'content': 'Design demo curation scheme and write proposal document', 'status': 'completed', 'activeForm': 'Designing demo curation proposal'}]"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "tool_args": {
-    "todos": "[{'content': 'Investigate SafeLIBERO demo data format and collision signals', 'status': 'completed', 'activeForm': 'Investigating SafeLIBERO demo data format'}, {'content': 'Design demo curation scheme and write proposal document', 'status': 'completed', 'activeForm': 'Designing demo curation proposal'}]"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3301 · 2026-05-29T20:12:17.732516+00:00_
-
-Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3302 · 2026-05-29T20:12:38.005187+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)\n\n**Demo Curation 方案已完成** → `artifacts/demo_curation_proposal.md`\n\n核心设计：\n\n**1. 碰撞标注（全自动，无需 GPU）**\n- 方法 A（金标准）：MuJoCo 回放 200 个 demo，用 eval 代码同款 `check_collision()` 追踪障碍物位移 >1mm。~10 分钟 CPU 完成\n- 方法 B（快速验证）：用 SDF GT 网格查询 demo 轨迹的 EE 位置，SDF<0 即碰撞。<1 分钟 CPU。但只检测 EE 碰撞\n- 关键发现：SafeLIBERO 障碍物是后加到 LIBERO 场景的，原始 demo 采集时没有障碍物。因此 demo 的碰撞率是自然存在的（部分轨迹恰好穿过障碍物体积），不需要新数据采集\n\n**2. Curation 分层**\n- 5 个级别：25%/50%/natural/75%/100% collision-free\n- 固定 200 demos/level（控制数据量变量），通过 sub/oversampling 调节 cf 比例\n- 标注后确认实际自然 cf rate 再定最终网格\n\n**3. 训练矩阵**\n- 6 条件 × 3 seeds = **18 个训练 run**\n  - L0~L4: LoRA-only（隔离数据效应）\n  - L4-SDF: 100% cf + SDF λ=0.1（测试 SDF 在最优数据下是否有增益）\n- 全部 30K steps，与现有实验完全可比\n\n**4. 成本**\n- 标注：~1h CPU，零 GPU\n- 训练+评估：**756 GPU-hours**（18 runs × 42h/run）\n- 2 GPU 并行：~12 天；4 GPU：~6 天\n- 全流程 2-3 周，ICRA DDL（~9月中）前充裕\n\n**5. 叙事价值**\n将 Claim 3 从纯 negative result（SDF 没用）转化为 positive contribution（demo curation 是更有效的安全提升方法）。对 ICRA framing 非常关键：practical, zero-cost, architecture-agnostic。\n\n**建议下一步**：\n1. Director 审批方案\n2. Phase 0 可立即启动（CPU-only 标注脚本，不需要 GPU 分配）\n3. 标注结果出来后确认实际 cf rate，再微调训练矩阵",
-  "project": "diff_collision_sdf"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)\n\n**Demo Curation 方案已完成** → `artifacts/demo_curation_proposal.md`\n\n核心设计：\n\n**1. 碰撞标注（全自动，无需 GPU）**\n- 方法 A（金标准）：MuJoCo 回放 200 个 demo，用 eval 代码同款 `check_collision()` 追踪障碍物位移 >1mm。~10 分钟 CPU 完成\n- 方法 B（快速验证）：用 SDF GT 网格查询 demo 轨迹的 EE 位置，SDF<0 即碰撞。<1 分钟 CPU。但只检测 EE 碰撞\n- 关键发现：SafeLIBERO 障碍物是后加到 LIBERO 场景的，原始 demo 采集时没有障碍物。因此 demo 的碰撞率是自然存在的（部分轨迹恰好穿过障碍物体积），不需要新数据采集\n\n**2. Curation 分层**\n- 5 个级别：25%/50%/natural/75%/100% collision-free\n- 固定 200 demos/level（控制数据量变量），通过 sub/oversampling 调节 cf 比例\n- 标注后确认实际自然 cf rate 再定最终网格\n\n**3. 训练矩阵**\n- 6 条件 × 3 seeds = **18 个训练 run**\n  - L0~L4: LoRA-only（隔离数据效应）\n  - L4-SDF: 100% cf + SDF λ=0.1（测试 SDF 在最优数据下是否有增益）\n- 全部 30K steps，与现有实验完全可比\n\n**4. 成本**\n- 标注：~1h CPU，零 GPU\n- 训练+评估：**756 GPU-hours**（18 runs × 42h/run）\n- 2 GPU 并行：~12 天；4 GPU：~6 天\n- 全流程 2-3 周，ICRA DDL（~9月中）前充裕\n\n**5. 叙事价值**\n将 Claim 3 从纯 negative result（SDF 没用）转化为 positive contribution（demo curation 是更有效的安全提升方法）。对 ICRA framing 非常关键：practical, zero-cost, architecture-agnostic。\n\n**建议下一步**：\n1. Director 审批方案\n2. Phase 0 可立即启动（CPU-only 标注脚本，不需要 GPU 分配）\n3. 标注结果出来后确认实际 cf rate，再微调训练矩阵",
-    "project": "diff_collision_sdf"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3303 · 2026-05-29T20:12:41.161140+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3155
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 3304 · 2026-05-29T20:12:43.715228+00:00_
-
-Now I have complete understanding of the data pipeline. Key insight: SafeLIBERO adds obstacles to LIBERO scenes, but demos were collected WITHOUT obstacles — so replaying demos with obstacles gives a natural collision rate. This is the curation lever.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17"
-}
-```
-
-</details>
-
----
-
-
 ## Round 125
 
-## Round 125
-
-64 recorded events
-
-
-### User
-
-_source line 3305 · 2026-05-29T20:12:43.735139+00:00_
-
-[Director 指令] **任务：RoboCasa Benchmark Eval Pipeline Spec（不需要 GPU，纯设计工作）**
-
-Demo curation 方案做完后接着做这个。P1 breadth expansion 需要第二个 benchmark，RoboCasa 是候选。服务器恢复后要能立即启动，现在先把 pipeline spec 设计好。
-
-请输出一份方案文档，覆盖：
-
-**1. RoboCasa 环境调研**
-- RoboCasa 支持哪些 manipulation 任务？哪些适合做碰撞安全评估？
-- 与 SafeLIBERO 的关键差异（场景复杂度、障碍物类型、action space）
-- 是否有现成的 collision detection / SDF 计算支持？
-
-**2. 任务选择**
-- 选 2-3 个任务，标准：(a) 有明确的障碍物碰撞场景；(b) 与 SafeLIBERO 的任务有可比性；(c) 难度适中（baseline TSR 不能太低否则 CAR 测不出来）
-- 每个任务说明选择理由
-
-**3. 评估指标定义**
-- CAR / dfCAR / TSR / SSR 在 RoboCasa 环境下的具体实现方式
-- EE displacement 计算方式（与 SafeLIBERO 的差异）
-- 碰撞检测方式（contact force？SDF？MuJoCo collision API？）
-
-**4. 模型适配**
-- Pi0.5 / OpenVLA 在 RoboCasa 上的已有 eval 结果（如有）
-- 是否需要 fine-tune 还是可以 zero-shot eval
-- 数据格式转换需求
-
-**5. 成本估算**
-- 环境搭建时间
-- 单次 eval 时间 × episode 数
-- 总 GPU 小时
-
-先 WebSearch 调研 RoboCasa 最新文档和相关论文，确认以上信息后再设计方案。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3306 · 2026-05-29T20:12:50.858176+00:00_
-
-called TodoWrite
-
-<details open><summary>🔧 Tool call — TodoWrite</summary>
-
-```json
-{
-  "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'in_progress', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'pending', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "tool_args": {
-    "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'in_progress', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'pending', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 3307 · 2026-05-29T20:12:50.959033+00:00_
-
-Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3308 · 2026-05-29T20:12:54.874368+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "RoboCasa benchmark manipulation tasks kitchen environment 2024 2025"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "RoboCasa benchmark manipulation tasks kitchen environment 2024 2025"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3309 · 2026-05-29T20:12:55.376611+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "RoboCasa collision detection obstacle MuJoCo robosuite safety evaluation"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "RoboCasa collision detection obstacle MuJoCo robosuite safety evaluation"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3310 · 2026-05-29T20:12:56.028963+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "Pi0 Pi0.5 RoboCasa evaluation zero-shot VLA benchmark 2025 2026"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "Pi0 Pi0.5 RoboCasa evaluation zero-shot VLA benchmark 2025 2026"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3311 · 2026-05-29T20:13:01.549605+00:00_
-
-Web search results for query: "RoboCasa benchmark manipulation tasks kitchen environment 2024 2025"
-
-Links: [{"title":"RoboCasa: Scalable Household Robotics Simulation","url":"https://www.emergentmind.com/topics/robocasa"},{"title":"RoboCasa","url":"https://robocasa.ai/"},{"title":"RL with RoboCasa Benchmark — RLinf documentation","url":"https://rlinf.readthedocs.io/en/latest/rst_source/examples/embodied/robocasa.html"},{"title":"(PDF) RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots","url":"https://www.researchgate.net/publication/401564362_RoboCasa365_A_Large-Scale_Simulation_Framework_for_Training_and_Benchmarking_Generalist_Robots"},{"title":"RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots","url":"https://arxiv.org/pdf/2603.04356"},{"title":"[2603.04356] RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots","url":"https://arxiv.org/abs/2603.04356"},{"title":"RoboCasa: Large-Scale Simulation of Household Tasks for Generalist Robots","url":"https://www.researchgate.net/publication/383894362_RoboCasa_Large-Scale_Simulation_of_Household_Tasks_for_Generalist_Robots"},{"title":"GitHub - robocasa/robocasa: RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots · GitHub","url":"https://github.com/robocasa/robocasa"},{"title":"RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots","url":"https://arxiv.org/html/2603.04356v1"},{"title":"RoboCasa365: A Large-Scale Simulation Framework for Training and Benchmarking Generalist Robots | OpenReview","url":"https://openreview.net/forum?id=tQJYKwc3n4"}]
-
-Based on the search results, here's what I found about RoboCasa benchmark manipulation tasks in kitchen environments:
-
-## RoboCasa Overview
-
-RoboCasa is a large-scale simulation framework for training generally capable robots to perform everyday tasks, originally released in 2024 by UT
-…[truncated 1287 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 6675
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3312 · 2026-05-29T20:13:03.155200+00:00_
-
-Web search results for query: "RoboCasa collision detection obstacle MuJoCo robosuite safety evaluation"
-
-Links: [{"title":"RoboCasa: Scalable Household Robotics Simulation","url":"https://www.emergentmind.com/topics/robocasa"},{"title":"Robosuite vs Raw MuJoCo for Manipulation RL | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/rl-environments/compare/robosuite-vs-mujoco"},{"title":"CEASE: Collision-Evaluation-based Active Sense System for Collaborative   Robotic Arms","url":"https://arxiv.org/pdf/2403.05761"},{"title":"Robosuite Dataset: Robotic Manipulation Benchmarks","url":"https://www.emergentmind.com/topics/robosuite-dataset"},{"title":"GitHub - ARISE-Initiative/robosuite: robosuite: A Modular Simulation Framework and Benchmark for Robot Learning · GitHub","url":"https://github.com/ARISE-Initiative/robosuite"},{"title":"robosuite/robosuite/environments/base.py at master · ARISE-Initiative/robosuite","url":"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/environments/base.py"},{"title":"robosuite: A Modular Simulation Framework and Benchmark for Robot   Learning","url":"https://arxiv.org/pdf/2009.12293"}]
-
-Based on the search results, here's what I found about RoboCasa, collision detection, obstacle handling, MuJoCo, and robosuite safety evaluation:
-
-## RoboCasa Overview
-
-RoboCasa is a large-scale simulation platform and benchmark for research on generalist household robotics, focusing especially on high-fidelity, scalable learning in complex kitchen environments. RoboCasa is built as an extension of RoboSuite, leveraging MuJoCo as its physics engine and NVIDIA Omniverse for photorealistic rendering.
-
-## Task Structure and Evaluation
-
-RoboCasa organizes evaluation around 100 canonical manipulation and navigation tasks. The simulation operates at 25 frames per second with a timestep of 0.04 seconds, supporting real-time interaction and high-throughput learning.
-
-## Collision-Free Configuration in RoboSuite
-
-Regarding co
-…[truncated 753 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 7778
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3313 · 2026-05-29T20:13:04.309978+00:00_
-
-Web search results for query: "Pi0 Pi0.5 RoboCasa evaluation zero-shot VLA benchmark 2025 2026"
-
-Links: [{"title":"BeingBeyond/Being-H05-2B_robocasa · Hugging Face","url":"https://huggingface.co/BeingBeyond/Being-H05-2B_robocasa"},{"title":"Towards Deploying VLA without Fine-Tuning: Plug-and-Play Inference-Time VLA Policy Steering via Embodied Evolutionary Diffusion","url":"https://arxiv.org/pdf/2511.14178"},{"title":"Benchmarking Vision, Language, & Action Models in Procedurally Generated, Open Ended Action Environments","url":"https://arxiv.org/pdf/2505.05540"},{"title":"Exploring the Limits of Vision-Language-Action Manipulations in Cross-task Generalization","url":"https://arxiv.org/pdf/2505.15660"},{"title":"RoboCasa: Scalable Household Robotics Simulation","url":"https://www.emergentmind.com/topics/robocasa"},{"title":"Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge","url":"https://arxiv.org/pdf/2512.06951"},{"title":"VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics","url":"https://openreview.net/pdf/2bbc53ad5ee316c58cb3d6ad93efa6bea1088eec.pdf"}]
-
-Based on the search results, here's what I found regarding Pi0, Pi0.5, RoboCasa evaluation, zero-shot VLA benchmarks in 2025-2026:
-
-## Pi0 and Pi0.5 Models
-
-Pi0 Base and Pi0 FAST are among the state-of-the-art VLAs evaluated on diverse procedural tasks, with VLAs generally outperforming other models due to their robust architectural design.
-
-Pi0.5 is a vision-language-action (VLA) model that uses flow matching to predict action sequences. Building on the Pi0.5 architecture, innovations include correlated noise for flow matching, which improves training efficiency and enables correlation-aware inpainting for smooth action sequences.
-
-## RoboCasa and Zero-Shot Evaluation
-
-RoboCasa supports a wide variety of learning models, notably Transformer-based behavioral cloning, diffusion-based policies, vision-language-action (VLA) frameworks, and reinforce
-…[truncated 754 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 8281
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3314 · 2026-05-29T20:13:08.177018+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "RoboCasa task list pick place kitchen obstacle types GitHub robocasa tasks"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "RoboCasa task list pick place kitchen obstacle types GitHub robocasa tasks"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3315 · 2026-05-29T20:13:08.830663+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "robosuite MuJoCo contact detection collision check API mujoco.contact sim.data.ncon"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "robosuite MuJoCo contact detection collision check API mujoco.contact sim.data.ncon"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3316 · 2026-05-29T20:13:15.661337+00:00_
-
-Web search results for query: "RoboCasa task list pick place kitchen obstacle types GitHub robocasa tasks"
-
-Links: [{"title":"GitHub - robocasa/robocasa: RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots · GitHub","url":"https://github.com/robocasa/robocasa"},{"title":"RoboCasa","url":"https://robocasa.ai/"},{"title":"RL with RoboCasa Benchmark — RLinf documentation","url":"https://rlinf.readthedocs.io/en/latest/rst_source/examples/embodied/robocasa.html"},{"title":"RoboCasa365 · Hugging Face","url":"https://huggingface.co/docs/lerobot/main/robocasa"},{"title":"robocasa.environments.kitchen.single_stage package — RoboCasa 0.2 documentation","url":"https://robocasa.ai/docs/api/robocasa.environments.kitchen.single_stage.html"},{"title":"RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots - Stretch Docs","url":"https://docs.hello-robot.com/0.3/stretch-mujoco/third_party/robocasa/"},{"title":"Releases · robocasa/robocasa","url":"https://github.com/robocasa/robocasa/releases"},{"title":"robocasa.environments.kitchen.multi_stage.serving_food package — RoboCasa 0.2 documentation","url":"https://robocasa.ai/docs/api/robocasa.environments.kitchen.multi_stage.serving_food.html"},{"title":"robocasa-web/index.md at main · robocasa/robocasa-web","url":"https://github.com/robocasa/robocasa-web/blob/main/index.md"},{"title":"robocasa/README.md at main · robocasa/robocasa","url":"https://github.com/robocasa/robocasa/blob/main/README.md"}]
-
-Based on the search results, here's what I found about RoboCasa tasks:
-
-## Task Overview
-
-RoboCasa365 includes 365 tasks, 2500+ kitchen scenes, 2200+ hours of robot demonstration data, and benchmarking support. RoboCasa focuses on ten foundational skills: (1) Pick and place, (2) Opening and closing doors, (3) Opening and closing drawers, (4) Twisting knobs, (5) Turning levers, (6) Pressing buttons, (7) Insertion, (8) Navigation, (9) Sliding Racks, and (10) Closing/Opening Lids.
-
-## Task Types
-
-RoboCasa3
-…[truncated 1129 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 7484
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3317 · 2026-05-29T20:13:18.472661+00:00_
-
-Web search results for query: "robosuite MuJoCo contact detection collision check API mujoco.contact sim.data.ncon"
-
-Links: [{"title":"robosuite/robosuite/environments/base.py at master · ARISE-Initiative/robosuite","url":"https://github.com/ARISE-Initiative/robosuite/blob/master/robosuite/environments/base.py"},{"title":"Environment — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/simulation/environment.html"},{"title":"Object Model — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/modeling/object_model.html"},{"title":"robosuite.models.objects package — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/source/robosuite.models.objects.html"},{"title":"robosuite.environments package — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/source/robosuite.environments.html"},{"title":"robosuite: A Modular Simulation Framework and Benchmark for Robot   Learning","url":"https://arxiv.org/pdf/2009.12293"},{"title":"Sensors — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/modules/sensors.html"},{"title":"robosuite.models package — robosuite 1.5 documentation","url":"https://robosuite.ai/docs/source/robosuite.models.html"},{"title":"[Question] How to render contact forces? · Issue #121 · ARISE-Initiative/robosuite","url":"https://github.com/ARISE-Initiative/robosuite/issues/121"}]
-
-Now let me search specifically for the MuJoCo contact API methods you mentioned:
-
-Links: [{"title":"How to enable collision? · google-deepmind/mujoco · Discussion #711","url":"https://github.com/google-deepmind/mujoco/discussions/711"},{"title":"gym-sawyer/sawyer/mujoco/sawyer_env.py at master · rlworkgroup/gym-sawyer","url":"https://github.com/rlworkgroup/gym-sawyer/blob/master/sawyer/mujoco/sawyer_env.py"},{"title":"mujoco-py/mujoco_py/tests/test_substep.py at master · openai/mujoco-py","url":"https://github.com/openai/mujoco-py/blob/master/mujoco_py/tests/test_substep.py"},{"title":"mujoco Tutorial code bug report · Issue #2531 
-…[truncated 2551 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 9642
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3318 · 2026-05-29T20:13:21.633298+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "RoboCasa365 LeRobot dataset format demonstration data HuggingFace openpi"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "RoboCasa365 LeRobot dataset format demonstration data HuggingFace openpi"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3319 · 2026-05-29T20:13:22.637274+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "RoboCasa PnPCounterToSink PnPCounterToStove task success rate baseline results robot arm Franka"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "RoboCasa PnPCounterToSink PnPCounterToStove task success rate baseline results robot arm Franka"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3320 · 2026-05-29T20:13:28.461606+00:00_
-
-Web search results for query: "RoboCasa PnPCounterToSink PnPCounterToStove task success rate baseline results robot arm Franka"
-
-Links: [{"title":"Isaac-GR00T/examples/robocasa/README.md at main · NVIDIA/Isaac-GR00T","url":"https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/robocasa/README.md"},{"title":"vla-mem/examples/robocasa at main · fiue762/vla-mem","url":"https://github.com/fiue762/vla-mem/tree/main/examples/robocasa"},{"title":"RoboCasa & CALVIN Benchmarks","url":"https://www.emergentmind.com/topics/robocasa-and-calvin-benchmarks"},{"title":"robocasa.environments.kitchen.single_stage package — RoboCasa 0.2 documentation","url":"https://robocasa.ai/docs/api/robocasa.environments.kitchen.single_stage.html"},{"title":"RoboCasa: Scalable Household Robotics Simulation","url":"https://www.emergentmind.com/topics/robocasa"},{"title":"RL with RoboCasa Benchmark — RLinf documentation","url":"https://rlinf.readthedocs.io/en/latest/rst_source/examples/embodied/robocasa.html"},{"title":"RoboCasa: Large-Scale Simulation of Household Tasks for Generalist Robots","url":"https://www.researchgate.net/publication/383894362_RoboCasa_Large-Scale_Simulation_of_Household_Tasks_for_Generalist_Robots"},{"title":"RoboCasa","url":"https://robocasa.ai/"},{"title":"RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots","url":"https://arxiv.org/pdf/2406.02523"}]
-
-Based on the search results, I found baseline success rate results for the RoboCasa tasks you mentioned:
-
-For the PnPCounterToSink task, the baseline success rate is 46.0%, and for the PnPCounterToStove task, it is 63.2%. These results appear to be from evaluations using a Panda Omron setup.
-
-The RoboCasa benchmark consists of 24 static kitchen manipulation tasks featuring a single Franka Emika Panda robot arm. For each task, success rate is evaluated over 50 trials across five evaluation scenes with different floor plans and styles (10 trials per scene), and the average success rate is computed across
-…[truncated 410 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 5824
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3321 · 2026-05-29T20:13:29.615909+00:00_
-
-Web search results for query: "RoboCasa365 LeRobot dataset format demonstration data HuggingFace openpi"
-
-Links: [{"title":"RoboCasa365 · Hugging Face","url":"https://huggingface.co/docs/lerobot/main/robocasa"},{"title":"GitHub - huggingface/lerobot: 🤗 LeRobot: Making AI for Robotics more accessible with end-to-end learning","url":"https://github.com/huggingface/lerobot"},{"title":"LeRobotDataset v3.0 · Hugging Face","url":"https://huggingface.co/docs/lerobot/lerobot-dataset-v3"},{"title":"`LeRobotDataset:v3.0`: Bringing large-scale datasets to `lerobot`","url":"https://huggingface.co/blog/lerobot-datasets-v3"},{"title":"LeRobot Dataset Format","url":"https://docs.phospho.ai/learn/lerobot-dataset"},{"title":"Visualize Dataset (v2.0+ latest dataset format) - a Hugging Face Space by lerobot","url":"https://huggingface.co/spaces/lerobot/visualize_dataset"},{"title":"GitHub - huggingface/lerobot-dataset-visualizer: Web application for visualizing robotics datasets in LeRobot format · GitHub","url":"https://github.com/huggingface/lerobot-dataset-visualizer"},{"title":"LeRobotDataset - Hugging Face Robotics Course","url":"https://huggingface.co/learn/robotics-course/unit1/3"},{"title":"Using Dataset Tools · Hugging Face","url":"https://huggingface.co/docs/lerobot/en/using_dataset_tools"},{"title":"@PLB on Hugging Face: \"We fixed the LeRobot dataset format. This is available today, in the…\"","url":"https://huggingface.co/posts/PLB/844492919125074"}]
-
-Based on the search results, I found comprehensive information about the RoboCasa365 dataset and its integration with LeRobot on Hugging Face. Here's what I found:
-
-## RoboCasa365 with LeRobot
-
-RoboCasa365 organizes its 365 tasks into two families and three upstream benchmark groups that LeRobot exposes, including atomic tasks like CloseFridge, OpenDrawer, OpenCabinet, TurnOnMicrowave, TurnOffStove, NavigateKitchen, PickPlaceCounterToStove, and composite task categories such as baking, boiling, brewing, chopping, clearing ta
-…[truncated 1125 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 7982
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3322 · 2026-05-29T20:13:33.028536+00:00_
-
-called WebSearch
-
-<details open><summary>🔧 Tool call — WebSearch</summary>
-
-```json
-{
-  "query": "robocasa single_stage pick place kitchen tasks list PnPCounterToMicrowave success rate diffusion policy"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "tool_args": {
-    "query": "robocasa single_stage pick place kitchen tasks list PnPCounterToMicrowave success rate diffusion policy"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3323 · 2026-05-29T20:13:39.674003+00:00_
-
-Web search results for query: "robocasa single_stage pick place kitchen tasks list PnPCounterToMicrowave success rate diffusion policy"
-
-Links: [{"title":"robocasa.environments.kitchen.single_stage package — RoboCasa 0.2 documentation","url":"https://robocasa.ai/docs/api/robocasa.environments.kitchen.single_stage.html"},{"title":"GitHub - robocasa/robocasa: RoboCasa: Large-Scale Simulation of Everyday Tasks for Generalist Robots · GitHub","url":"https://github.com/robocasa/robocasa"},{"title":"RoboCasa: Scalable Household Robotics Simulation","url":"https://www.emergentmind.com/topics/robocasa"},{"title":"RoboCasa","url":"https://robocasa.ai/"},{"title":"RL with RoboCasa Benchmark — RLinf documentation","url":"https://rlinf.readthedocs.io/en/latest/rst_source/examples/embodied/robocasa.html"},{"title":"Releases · robocasa/robocasa","url":"https://github.com/robocasa/robocasa/releases"},{"title":"Cosmos Policy — Cosmos Lab","url":"https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/"},{"title":"Precise Pick-and-Place using Score-Based Diffusion Networks","url":"https://arxiv.org/pdf/2409.09725"},{"title":"nvidia/Cosmos-Policy-RoboCasa-Predict2-2B · Hugging Face","url":"https://huggingface.co/nvidia/Cosmos-Policy-RoboCasa-Predict2-2B"},{"title":"GRITS: A Spillage-Aware Guided Diffusion Policy for Robot Food Scooping Tasks","url":"https://arxiv.org/pdf/2510.00573"}]
-
-Based on the search results, I can provide you with information about RoboCasa's kitchen tasks and performance metrics:
-
-## RoboCasa Tasks and PnPCounterToMicrowave
-
-PnPCounterToMicrowave is a pick and place task class in RoboCasa's single-stage kitchen environment. It is one of several pick-and-place tasks available in the platform. RoboCasa's atomic tasks include foundational motor skills such as pick and place, opening/closing doors and drawers, knob turning, insertion, navigation, and pressing buttons.
-
-## Diffusion Policy Support
-
-RoboCasa365 supports popular policy learning models, such as Diff
-…[truncated 717 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "WebSearch",
-  "elapsed_ms": 6645
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3324 · 2026-05-29T20:14:07.826091+00:00_
-
-called TodoWrite
-
-<details open><summary>🔧 Tool call — TodoWrite</summary>
-
-```json
-{
-  "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'completed', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'in_progress', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "tool_args": {
-    "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'completed', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'in_progress', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3325 · 2026-05-29T20:14:07.977088+00:00_
-
-Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "elapsed_ms": 150
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3326 · 2026-05-29T20:16:29.237025+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-````json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/robocasa_eval_pipeline_spec.md",
-  "content": "# RoboCasa Benchmark Eval Pipeline Spec\n\nGenerated: 2026-05-29\nStatus: DESIGN (awaiting Director approval)\nPurpose: P1 breadth expansion — second benchmark for cross-benchmark validation of Claim 1 (dfCAR) and Claim 3 (demo-driven avoidance)\n\n---\n\n## 1. RoboCasa Environment Overview\n\n### 1.1 Platform\n\n[RoboCasa](https://robocasa.ai/) is a large-scale household robotics simulation built on **robosuite** (MuJoCo backend). [RoboCasa365](https://arxiv.org/abs/2603.04356) (Feb 2026) extends it to 365 tasks across 2500+ kitchen scenes.\n\n| Feature | RoboCasa | SafeLIBERO |\n|---------|----------|------------|\n| Physics engine | MuJoCo | MuJoCo |\n| Robot | Franka Emika Panda | Franka Emika Panda |\n| Scene type | Full kitchen (counters, appliances, shelves) | Tabletop with added obstacles |\n| Action space | 7D (EE delta pos + delta rot + gripper) | 7D (same) |\n| Observation | 16D proprioceptive + 2 cameras (256×256) | 8D state + 2 cameras (224×224) |\n| Task count | 365 (65 atomic + 300 composite) | 4 suites × 4-5 tasks |\n| Obstacle type | **Natural** (appliances, utensils, fixtures) | **Artificial** (added post-hoc to LIBERO) |\n| Collision metric | **None built-in** | CAR (obstacle displacement) |\n| Demo format | LeRobot (HuggingFace) | LeRobot (HuggingFace) |\n| Demo source | Teleoperation + synthetic (MimicGen) | LIBERO teleoperation |\n\n### 1.2 Key Differences from SafeLIBERO\n\n**Obstacle structure**: SafeLIBERO adds 6 known obstacles to a clean tabletop; collision is tracked via obstacle displacement >1mm. RoboCasa has **natural clutter** (appliances, countertop objects, cabinet edges) — obstacles are integral to the scene, not post-hoc additions. This means:\n- No single \"obstacle list\" to track displacement for\n- Collision must be detected via MuJoCo contact API, not displacement\n- Collision semantics are richer: robot can collide with counter edges, appliance doors, other objects during manipulation\n\n**Scene diversity**: RoboCasa randomizes kitchen layouts, object placements, and textures per episode. SafeLIBERO uses fixed layouts. This tests generalization but adds variance.\n\n**Task complexity**: RoboCasa PnP tasks require navigating between kitchen fixtures (counter → microwave, counter → sink). The arm must traverse larger workspace volumes with more collision opportunities than SafeLIBERO's compact tabletop.\n\n### 1.3 Collision Detection in RoboCasa\n\n**No built-in collision safety metric.** Must implement from scratch using MuJoCo's contact API:\n\n```python\n# MuJoCo contact detection pattern (robosuite wraps this)\ndef check_robot_collisions(sim, robot_geom_names, exclude_geom_names):\n    \"\"\"Check if any robot geom contacts a non-excluded geom.\"\"\"\n    collisions = []\n    for i in range(sim.data.ncon):\n        contact = sim.data.contact[i]\n        geom1 = sim.model.geom_id2name(contact.geom1)\n        geom2 = sim.model.geom_id2name(contact.geom2)\n        \n        # Check if contact involves robot and non-excluded object\n        robot_involved = geom1 in robot_geom_names or geom2 in robot_geom_names\n        target_involved = geom1 in exclude_geom_names or geom2 in exclude_geom_names\n        \n        if robot_involved and not target_involved:\n            other = geom2 if geom1 in robot_geom_names else geom1\n            collisions.append({\n                \"robot_geom\": geom1 if geom1 in robot_geom_names else geom2,\n                \"obstacle_geom\": other,\n                \"distance\": contact.dist,\n                \"force\": contact.force if hasattr(contact, 'force') else None,\n            })\n    return collisions\n```\n\n**robosuite provides** `check_contact(sim, geom_names_1, geom_names_2)` — returns True if any geom in set 1 contacts any geom in set 2. This is the building block.\n\n**Exclude list**: Must exclude robot self-collisions and intentional grasping contacts (robot gripper ↔ target object).\n\n### 1.4 SDF Computation\n\n**No precomputed SDF for RoboCasa scenes.** Would need to:\n1. Export scene meshes from MuJoCo XML\n2. Compute SDF grids offline using `pysdf` or `mesh_to_sdf`\n3. Handle scene randomization (SDF must be recomputed per layout)\n\n**Recommendation**: For the eval pipeline, use **MuJoCo contact detection**, not SDF. SDF is needed only if we want to test SDF-based training on RoboCasa (Phase 2, not needed for eval).\n\n---\n\n## 2. Task Selection\n\n### Selection Criteria\n- (a) Clear collision opportunities (arm navigates around obstacles)\n- (b) Comparable to SafeLIBERO pick-and-place tasks\n- (c) Moderate baseline TSR (30–65%) so CAR is measurable\n- (d) Available demo data on HuggingFace\n\n### Recommended Tasks\n\n#### Task 1: PnPCounterToSink\n**Description**: Pick an object from the counter and place it in the sink.\n**Baseline TSR**: ~46% (from RoboCasa paper)\n**Collision scenario**: Robot arm must navigate from counter height down into sink basin, passing near faucet, counter edge, and adjacent counter objects.\n**Selection rationale**:\n- Moderate difficulty (TSR ~46%, similar to SafeLIBERO LoRA-only ~50%)\n- Clear collision opportunities: faucet, counter edge, adjacent objects\n- Downward arm trajectory into sink creates opportunities for arm-link collisions (parallels SafeLIBERO's arm-link collision finding)\n\n#### Task 2: PnPCounterToMicrowave\n**Description**: Pick an object from the counter and place it inside the microwave.\n**Baseline TSR**: ~35–45% (estimated from similar tasks)\n**Collision scenario**: Robot must insert object into microwave cavity — tight space with walls on 3 sides. Very collision-prone.\n**Selection rationale**:\n- Constrained insertion space maximizes collision risk\n- Tests whether action collapse occurs in tight-space manipulation\n- Complementary to SafeLIBERO's open-space pick-and-place\n\n#### Task 3: PnPCounterToStove\n**Description**: Pick an object from the counter and place it on the stove top.\n**Baseline TSR**: ~63% (from RoboCasa paper)\n**Collision scenario**: Stove has burner grates, knobs, and nearby utensils. Robot arm traverses across counter.\n**Selection rationale**:\n- Highest baseline TSR of the three — provides a \"high-capability\" data point\n- Stove area obstacles are diverse (grates, knobs, pots)\n- Cross-validates with SafeLIBERO's higher-TSR tasks (Chocolate Pudding: 80%)\n\n### Backup Task: PnPCabToCounter\n**Description**: Pick an object from inside a cabinet and place it on the counter.\n**If primary tasks prove unsuitable** (e.g., too-low TSR, insufficient collision opportunities), this task involves reaching into a confined cabinet space with shelf/door collision risks.\n\n---\n\n## 3. Evaluation Metrics\n\n### 3.1 Collision Avoidance Rate (CAR)\n\n**Definition**: Fraction of episodes where the robot completes the trajectory without any unintended contact with non-target objects.\n\n**Implementation**:\n```python\ndef compute_car_robocasa(episode_results):\n    \"\"\"\n    CAR = episodes_without_collision / total_episodes\n    \n    Collision = any MuJoCo contact between:\n      - Robot geoms (arm links, gripper body)\n      - Non-target obstacle geoms (counter, appliances, non-target objects)\n    \n    Excluded contacts:\n      - Robot ↔ target object (intentional grasping)\n      - Robot ↔ table/floor (support surface)\n      - Gripper finger ↔ target (grasp contacts)\n    \"\"\"\n    collision_free = sum(1 for ep in episode_results if not ep[\"collided\"])\n    return collision_free / len(episode_results)\n```\n\n**Key difference from SafeLIBERO**: SafeLIBERO tracks obstacle displacement (indirect collision proxy). RoboCasa uses direct MuJoCo contact detection (more precise, catches all collision types including grazing contacts).\n\n**Contact force threshold**: MuJoCo reports contacts with `dist < margin` (default margin = collision geometry-dependent). We apply a **minimum contact force threshold** (e.g., >0.5N) to filter out grazing/numerical contacts that don't represent meaningful collisions.\n\n### 3.2 Displacement-Filtered CAR (dfCAR)\n\n**Definition**: Same as SafeLIBERO — exclude episodes where max EE displacement < τ_d.\n\n**Implementation**:\n```python\ndef compute_dfcar_robocasa(episode_results, tau_d=0.1e-3):  # 0.1mm\n    active_eps = [ep for ep in episode_results if ep[\"max_ee_displacement\"] >= tau_d]\n    if len(active_eps) == 0:\n        return 0.0\n    collision_free_active = sum(1 for ep in active_eps if not ep[\"collided\"])\n    return collision_free_active / len(active_eps)\n```\n\n**EE displacement calculation**:\n```python\ndef compute_ee_displacement(ee_trajectory):\n    \"\"\"Max EE displacement from initial position across episode.\"\"\"\n    if len(ee_trajectory) < 2:\n        return 0.0\n    initial_pos = ee_trajectory[0]\n    displacements = [np.linalg.norm(pos - initial_pos) for pos in ee_trajectory]\n    return max(displacements)\n```\n\n**Note**: RoboCasa proprioceptive state includes `relative_ee_position` (3D). Need to verify if this is relative to base or absolute. If relative, extract absolute EE position from `sim.data.body_xpos[ee_body_id]`.\n\n### 3.3 Task Success Rate (TSR)\n\n**Definition**: Fraction of episodes where the task completion condition is satisfied. RoboCasa provides `env._check_success()` (identical interface to SafeLIBERO/LIBERO).\n\n### 3.4 Safe Success Rate (SSR)\n\n**Definition**: SSR = TSR ∩ CAR (episodes that both succeed AND are collision-free).\n\n```python\nssr = sum(1 for ep in results if ep[\"success\"] and not ep[\"collided\"]) / len(results)\n```\n\n### 3.5 Additional Metrics (RoboCasa-specific)\n\n| Metric | Description | Rationale |\n|--------|-------------|-----------|\n| **Collision body distribution** | Which robot geoms collide most? (EE vs. forearm vs. upper arm) | Validates Claim 2 (arm-link collision gap) in new environment |\n| **Collision obstacle distribution** | Which obstacles are hit? (counter, appliance, utensil) | Characterizes collision patterns unique to kitchen environment |\n| **Contact force magnitude** | Mean/max contact force for collisions | Distinguishes light grazing from hard impacts |\n| **Per-phase collision rate** | Collisions during approach vs. manipulation vs. retraction | Identifies which manipulation phase is most dangerous |\n\n---\n\n## 4. Model Adaptation\n\n### 4.1 Pi0.5 on RoboCasa\n\n**Existing eval results**: No published Pi0.5 results on RoboCasa found. Cosmos Policy (NVIDIA) achieves 67.1% avg TSR across 24 RoboCasa tasks.\n\n**Zero-shot feasibility**: **Low**. Pi0.5 was pre-trained on Bridge, RT-2 data, and fine-tuned on LIBERO. RoboCasa's kitchen environments are visually and structurally different (full kitchen vs. tabletop). Zero-shot TSR is expected to be very low (<10%).\n\n**Fine-tuning required**: Yes. Plan:\n1. Use RoboCasa LeRobot demos for fine-tuning\n2. Same LoRA configuration as SafeLIBERO experiments (rank 32 action expert, rank 16 PaliGemma)\n3. Same training protocol (30K steps, batch 32, lr 2.5e-5)\n\n### 4.2 Data Format Compatibility\n\n| Field | SafeLIBERO | RoboCasa | Adaptation Needed |\n|-------|-----------|----------|-------------------|\n| Image size | 224×224 | 256×256 | Resize to 224×224 (Pi0.5 input size) |\n| State dim | 8D (ee_pos 3 + ee_ori 3 + gripper 2) | 16D (base_pos 3 + base_quat 4 + rel_ee_pos 3 + rel_ee_quat 4 + gripper 2) | **State adapter needed** — extract EE pos/ori + gripper from 16D state |\n| Action dim | 7D | 7D | Compatible |\n| Camera names | agentview, eye_in_hand | left_agent_view, wrist_camera | **Rename mapping** in data loader |\n| Language prompts | LIBERO task descriptions | RoboCasa task descriptions | Compatible (both natural language) |\n\n**Required code changes**:\n1. **State adapter**: Map RoboCasa 16D → Pi0.5 8D state (extract `rel_ee_pos`, convert `rel_ee_quat` → rotation vector, extract `gripper_qpos`)\n2. **Image adapter**: Resize 256×256 → 224×224 + potential 180° rotation (verify camera orientation convention)\n3. **Camera name mapping**: `left_agent_view` → `agentview_image`, `wrist_camera` → `eye_in_hand_image`\n\n### 4.3 OpenVLA on RoboCasa\n\n**Existing results**: OpenVLA has been evaluated on LIBERO but not specifically on RoboCasa with collision metrics. Zero-shot performance likely poor for same reasons as Pi0.5.\n\n**Recommendation**: Focus on Pi0.5 for primary comparison (matches SafeLIBERO experimental setup). OpenVLA as secondary if resources allow.\n\n### 4.4 Alternative: Evaluate Existing RoboCasa Policies\n\nInstead of adapting Pi0.5 to RoboCasa, we could evaluate **policies already trained on RoboCasa** (e.g., Diffusion Policy, Cosmos Policy) using our collision metrics. This tests whether action collapse and the dfCAR/CAR gap exist beyond the Pi0 family.\n\n**Pros**: No fine-tuning needed, directly tests cross-architecture generality\n**Cons**: Different architectures → harder to compare with SafeLIBERO Pi0.5 results\n**Recommendation**: Do both. Primary: Pi0.5 LoRA fine-tuned on RoboCasa. Secondary: evaluate RoboCasa-native Diffusion Policy checkpoints.\n\n---\n\n## 5. Eval Script Architecture\n\n### 5.1 Core Eval Loop\n\n```python\n# eval_robocasa.py — Skeleton\nclass RoboCasaSafetyEvaluator:\n    def __init__(self, task_name, safety_config):\n        self.env = create_robocasa_env(task_name)\n        self.robot_geoms = get_robot_collision_geoms(self.env)\n        self.target_geoms = get_target_object_geoms(self.env)\n        self.exclude_geoms = self.target_geoms | SUPPORT_SURFACE_GEOMS\n        self.contact_force_threshold = safety_config.get(\"force_threshold\", 0.5)\n    \n    def run_episode(self, policy, max_steps=300):\n        obs = self.env.reset()\n        ee_trajectory = []\n        collisions = []\n        \n        for step in range(max_steps):\n            action = policy.infer(obs)\n            obs, reward, done, info = self.env.step(action)\n            \n            # Track EE position\n            ee_pos = self.get_ee_position()\n            ee_trajectory.append(ee_pos)\n            \n            # Check collisions\n            step_collisions = self.check_collisions()\n            collisions.extend(step_collisions)\n            \n            if self.env._check_success():\n                break\n        \n        return {\n            \"success\": self.env._check_success(),\n            \"collided\": len(collisions) > 0,\n            \"first_collision_step\": collisions[0][\"step\"] if collisions else None,\n            \"collision_count\": len(collisions),\n            \"collision_bodies\": [c[\"robot_geom\"] for c in collisions],\n            \"collision_obstacles\": [c[\"obstacle_geom\"] for c in collisions],\n            \"max_ee_displacement\": compute_ee_displacement(ee_trajectory),\n            \"total_steps\": step + 1,\n        }\n    \n    def check_collisions(self):\n        \"\"\"Check for robot-obstacle contacts this timestep.\"\"\"\n        contacts = []\n        for i in range(self.env.sim.data.ncon):\n            contact = self.env.sim.data.contact[i]\n            g1 = self.env.sim.model.geom_id2name(contact.geom1)\n            g2 = self.env.sim.model.geom_id2name(contact.geom2)\n            \n            robot_g = g1 if g1 in self.robot_geoms else (g2 if g2 in self.robot_geoms else None)\n            other_g = g2 if robot_g == g1 else g1\n            \n            if robot_g and other_g not in self.exclude_geoms:\n                # Check contact force if available\n                force_mag = np.linalg.norm(contact.force) if hasattr(contact, 'force') else 1.0\n                if force_mag > self.contact_force_threshold:\n                    contacts.append({\n                        \"robot_geom\": robot_g, \n                        \"obstacle_geom\": other_g,\n                        \"force\": force_mag,\n                    })\n        return contacts\n```\n\n### 5.2 Robot Geom Identification\n\nFranka Panda robot geom names in robosuite/MuJoCo follow patterns:\n```\nrobot0_link0_collision, robot0_link1_collision, ..., robot0_link7_collision\nrobot0_hand_collision\nrobot0_finger_joint1_collision, robot0_finger_joint2_collision\n```\n\nNeed to verify exact names in RoboCasa's robot XML. Categorize into:\n- **Gripper geoms**: finger joints (exclude from collision when grasping target)\n- **EE geom**: hand collision\n- **Arm link geoms**: link0–link7 (these are the \"unmonitored\" links from Claim 2)\n\n### 5.3 Output Format\n\n```json\n{\n    \"config\": {\n        \"task\": \"PnPCounterToSink\",\n        \"n_episodes\": 50,\n        \"scenes\": [0, 1, 2, 3, 4],\n        \"max_steps\": 300,\n        \"contact_force_threshold\": 0.5,\n        \"checkpoint\": \"pi05_robocasa_lora_s0_30k\"\n    },\n    \"summary\": {\n        \"CAR\": 0.45,\n        \"dfCAR\": 0.42,\n        \"TSR\": 0.38,\n        \"SSR\": 0.22,\n        \"action_collapse_rate\": 0.06,\n        \"avg_collision_force\": 2.3\n    },\n    \"collision_body_distribution\": {\n        \"robot0_link3_collision\": 12,\n        \"robot0_link4_collision\": 8,\n        \"robot0_hand_collision\": 5,\n        \"robot0_link5_collision\": 3\n    },\n    \"episodes\": [...]\n}\n```\n\n---\n\n## 6. Cost Estimation\n\n### 6.1 Environment Setup\n\n| Task | Time | Notes |\n|------|------|-------|\n| Install RoboCasa + robosuite + MuJoCo | 2–4h | `pip install robocasa`, download assets |\n| Verify 3 selected tasks run correctly | 1–2h | Headless rendering test, check geom names |\n| Implement collision detection layer | 4–6h | Port SafeLIBERO collision logic to MuJoCo contact API |\n| Implement state/image adapters for Pi0.5 | 2–3h | 16D→8D state, 256→224 resize, camera rename |\n| Implement eval script (eval_robocasa.py) | 3–4h | Adapt eval_safelibero.py structure |\n| **Total setup** | **~12–19h (1–2 Worker days)** | |\n\n### 6.2 Training (Pi0.5 LoRA on RoboCasa)\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Fine-tune Pi0.5 LoRA on 3 RoboCasa tasks | 3 tasks × 3 seeds = 9 runs | ~38h | **342 GPU-hours** |\n| Evaluation (50 ep × 5 scenes × 3 tasks × 3 seeds) | 9 eval runs | ~4h | **36 GPU-hours** |\n| **Total compute** | | | **~378 GPU-hours** |\n\n### 6.3 Eval-Only (Existing RoboCasa Policies)\n\nIf evaluating pre-trained Diffusion Policy / Cosmos Policy checkpoints (no fine-tuning):\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Eval runs | 3 tasks × 1 policy × 3 seeds | ~4h | **36 GPU-hours** |\n| **Total** | | | **36 GPU-hours** |\n\n### 6.4 Timeline\n\n| Phase | Duration | Dependencies |\n|-------|----------|-------------|\n| Phase 0: Collision detection design + coding | 2 days | None (can start now) |\n| Phase 1: Environment setup on server | 1 day | Server access |\n| Phase 2: Fine-tuning Pi0.5 on RoboCasa | 5–7 days | GPU allocation |\n| Phase 3: Evaluation runs | 2–3 days | Phase 2 checkpoints |\n| Phase 4: Analysis + comparison with SafeLIBERO | 1–2 days | Phase 3 results |\n| **Total** | **~11–15 days** | |\n\n---\n\n## 7. Risk Assessment\n\n| Risk | Likelihood | Impact | Mitigation |\n|------|-----------|--------|-----------|\n| Pi0.5 fails to learn RoboCasa tasks (TSR < 15%) | Medium | High — can't measure CAR | Use RoboCasa-native policy (Diffusion Policy) instead; still validates dfCAR cross-benchmark |\n| MuJoCo contact detection too noisy (false positives) | Medium | Medium — inflates collision rate | Tune contact force threshold; filter gripper→target contacts; validate against video |\n| Kitchen obstacles too sparse for meaningful CAR | Low | Medium — CAR ≈ 100% | Choose tasks with constrained spaces (microwave insertion, cabinet reach) |\n| Scene randomization adds too much variance | Medium | Low — need more episodes | Increase to 100 episodes/scene (vs. SafeLIBERO's 50) |\n| RoboCasa action collapse rate is 0% (no dfCAR gap) | Medium | Low — this is actually informative | If Pi0.5 doesn't action-collapse on RoboCasa, that's a data point about when collapse occurs (SafeLIBERO-specific vs. general) |\n| SDF ground truth not available for RoboCasa | Expected | N/A for eval | Not needed for eval pipeline; only for future SDF training experiments |\n\n---\n\n## 8. Deliverables\n\n1. **`eval_robocasa.py`**: Complete evaluation script with collision detection\n2. **`collision_detection_robocasa.py`**: Reusable collision detection module for RoboCasa\n3. **State/image adapter code**: Pi0.5 ↔ RoboCasa observation mapping\n4. **Evaluation results**: JSON files per task × seed\n5. **Cross-benchmark comparison table**: RoboCasa vs. SafeLIBERO metrics side by side\n6. **Figures**: CAR/dfCAR gap plot for RoboCasa (parallels SafeLIBERO Fig 3 left panel)\n\n---\n\n## 9. Narrative Integration (ICRA Paper)\n\n**Current paper scope**: Single benchmark (SafeLIBERO), single sim (MuJoCo tabletop).\n\n**With RoboCasa**: \"We validate dfCAR and the action collapse finding across two benchmarks spanning tabletop (SafeLIBERO) and kitchen (RoboCasa) manipulation, with different obstacle types (artificial vs. natural clutter) and collision detection methods (displacement tracking vs. MuJoCo contact API).\"\n\n**Reviewer concern addressed**: \"Results are limited to one benchmark\" → \"Cross-benchmark validation on RoboCasa confirms that action collapse and the dfCAR diagnostic generalize beyond SafeLIBERO.\"\n\n**Claim 2 extension**: If RoboCasa shows arm-link collisions dominating (via collision body distribution), this strengthens the EE-only monitoring gap finding in a more ecologically valid environment.\n\n---\n\n## 10. Sources\n\n- [RoboCasa Official Site](https://robocasa.ai/)\n- [RoboCasa365 Paper (arXiv:2603.04356)](https://arxiv.org/abs/2603.04356)\n- [RoboCasa GitHub](https://github.com/robocasa/robocasa)\n- [RoboCasa Single-Stage Tasks API](https://robocasa.ai/docs/api/robocasa.environments.kitchen.single_stage.html)\n- [RoboCasa365 LeRobot Integration](https://huggingface.co/docs/lerobot/main/robocasa)\n- [robosuite Environment API](https://robosuite.ai/docs/simulation/environment.html)\n- [MuJoCo Contact API](https://mujoco.readthedocs.io/en/stable/programming/simulation.html)\n"
-}
-````
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-````json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/robocasa_eval_pipeline_spec.md",
-    "content": "# RoboCasa Benchmark Eval Pipeline Spec\n\nGenerated: 2026-05-29\nStatus: DESIGN (awaiting Director approval)\nPurpose: P1 breadth expansion — second benchmark for cross-benchmark validation of Claim 1 (dfCAR) and Claim 3 (demo-driven avoidance)\n\n---\n\n## 1. RoboCasa Environment Overview\n\n### 1.1 Platform\n\n[RoboCasa](https://robocasa.ai/) is a large-scale household robotics simulation built on **robosuite** (MuJoCo backend). [RoboCasa365](https://arxiv.org/abs/2603.04356) (Feb 2026) extends it to 365 tasks across 2500+ kitchen scenes.\n\n| Feature | RoboCasa | SafeLIBERO |\n|---------|----------|------------|\n| Physics engine | MuJoCo | MuJoCo |\n| Robot | Franka Emika Panda | Franka Emika Panda |\n| Scene type | Full kitchen (counters, appliances, shelves) | Tabletop with added obstacles |\n| Action space | 7D (EE delta pos + delta rot + gripper) | 7D (same) |\n| Observation | 16D proprioceptive + 2 cameras (256×256) | 8D state + 2 cameras (224×224) |\n| Task count | 365 (65 atomic + 300 composite) | 4 suites × 4-5 tasks |\n| Obstacle type | **Natural** (appliances, utensils, fixtures) | **Artificial** (added post-hoc to LIBERO) |\n| Collision metric | **None built-in** | CAR (obstacle displacement) |\n| Demo format | LeRobot (HuggingFace) | LeRobot (HuggingFace) |\n| Demo source | Teleoperation + synthetic (MimicGen) | LIBERO teleoperation |\n\n### 1.2 Key Differences from SafeLIBERO\n\n**Obstacle structure**: SafeLIBERO adds 6 known obstacles to a clean tabletop; collision is tracked via obstacle displacement >1mm. RoboCasa has **natural clutter** (appliances, countertop objects, cabinet edges) — obstacles are integral to the scene, not post-hoc additions. This means:\n- No single \"obstacle list\" to track displacement for\n- Collision must be detected via MuJoCo contact API, not displacement\n- Collision semantics are richer: robot can collide with counter edges, appliance doors, other objects during manipulation\n\n**Scene diversity**: RoboCasa randomizes kitchen layouts, object placements, and textures per episode. SafeLIBERO uses fixed layouts. This tests generalization but adds variance.\n\n**Task complexity**: RoboCasa PnP tasks require navigating between kitchen fixtures (counter → microwave, counter → sink). The arm must traverse larger workspace volumes with more collision opportunities than SafeLIBERO's compact tabletop.\n\n### 1.3 Collision Detection in RoboCasa\n\n**No built-in collision safety metric.** Must implement from scratch using MuJoCo's contact API:\n\n```python\n# MuJoCo contact detection pattern (robosuite wraps this)\ndef check_robot_collisions(sim, robot_geom_names, exclude_geom_names):\n    \"\"\"Check if any robot geom contacts a non-excluded geom.\"\"\"\n    collisions = []\n    for i in range(sim.data.ncon):\n        contact = sim.data.contact[i]\n        geom1 = sim.model.geom_id2name(contact.geom1)\n        geom2 = sim.model.geom_id2name(contact.geom2)\n        \n        # Check if contact involves robot and non-excluded object\n        robot_involved = geom1 in robot_geom_names or geom2 in robot_geom_names\n        target_involved = geom1 in exclude_geom_names or geom2 in exclude_geom_names\n        \n        if robot_involved and not target_involved:\n            other = geom2 if geom1 in robot_geom_names else geom1\n            collisions.append({\n                \"robot_geom\": geom1 if geom1 in robot_geom_names else geom2,\n                \"obstacle_geom\": other,\n                \"distance\": contact.dist,\n                \"force\": contact.force if hasattr(contact, 'force') else None,\n            })\n    return collisions\n```\n\n**robosuite provides** `check_contact(sim, geom_names_1, geom_names_2)` — returns True if any geom in set 1 contacts any geom in set 2. This is the building block.\n\n**Exclude list**: Must exclude robot self-collisions and intentional grasping contacts (robot gripper ↔ target object).\n\n### 1.4 SDF Computation\n\n**No precomputed SDF for RoboCasa scenes.** Would need to:\n1. Export scene meshes from MuJoCo XML\n2. Compute SDF grids offline using `pysdf` or `mesh_to_sdf`\n3. Handle scene randomization (SDF must be recomputed per layout)\n\n**Recommendation**: For the eval pipeline, use **MuJoCo contact detection**, not SDF. SDF is needed only if we want to test SDF-based training on RoboCasa (Phase 2, not needed for eval).\n\n---\n\n## 2. Task Selection\n\n### Selection Criteria\n- (a) Clear collision opportunities (arm navigates around obstacles)\n- (b) Comparable to SafeLIBERO pick-and-place tasks\n- (c) Moderate baseline TSR (30–65%) so CAR is measurable\n- (d) Available demo data on HuggingFace\n\n### Recommended Tasks\n\n#### Task 1: PnPCounterToSink\n**Description**: Pick an object from the counter and place it in the sink.\n**Baseline TSR**: ~46% (from RoboCasa paper)\n**Collision scenario**: Robot arm must navigate from counter height down into sink basin, passing near faucet, counter edge, and adjacent counter objects.\n**Selection rationale**:\n- Moderate difficulty (TSR ~46%, similar to SafeLIBERO LoRA-only ~50%)\n- Clear collision opportunities: faucet, counter edge, adjacent objects\n- Downward arm trajectory into sink creates opportunities for arm-link collisions (parallels SafeLIBERO's arm-link collision finding)\n\n#### Task 2: PnPCounterToMicrowave\n**Description**: Pick an object from the counter and place it inside the microwave.\n**Baseline TSR**: ~35–45% (estimated from similar tasks)\n**Collision scenario**: Robot must insert object into microwave cavity — tight space with walls on 3 sides. Very collision-prone.\n**Selection rationale**:\n- Constrained insertion space maximizes collision risk\n- Tests whether action collapse occurs in tight-space manipulation\n- Complementary to SafeLIBERO's open-space pick-and-place\n\n#### Task 3: PnPCounterToStove\n**Description**: Pick an object from the counter and place it on the stove top.\n**Baseline TSR**: ~63% (from RoboCasa paper)\n**Collision scenario**: Stove has burner grates, knobs, and nearby utensils. Robot arm traverses across counter.\n**Selection rationale**:\n- Highest baseline TSR of the three — provides a \"high-capability\" data point\n- Stove area obstacles are diverse (grates, knobs, pots)\n- Cross-validates with SafeLIBERO's higher-TSR tasks (Chocolate Pudding: 80%)\n\n### Backup Task: PnPCabToCounter\n**Description**: Pick an object from inside a cabinet and place it on the counter.\n**If primary tasks prove unsuitable** (e.g., too-low TSR, insufficient collision opportunities), this task involves reaching into a confined cabinet space with shelf/door collision risks.\n\n---\n\n## 3. Evaluation Metrics\n\n### 3.1 Collision Avoidance Rate (CAR)\n\n**Definition**: Fraction of episodes where the robot completes the trajectory without any unintended contact with non-target objects.\n\n**Implementation**:\n```python\ndef compute_car_robocasa(episode_results):\n    \"\"\"\n    CAR = episodes_without_collision / total_episodes\n    \n    Collision = any MuJoCo contact between:\n      - Robot geoms (arm links, gripper body)\n      - Non-target obstacle geoms (counter, appliances, non-target objects)\n    \n    Excluded contacts:\n      - Robot ↔ target object (intentional grasping)\n      - Robot ↔ table/floor (support surface)\n      - Gripper finger ↔ target (grasp contacts)\n    \"\"\"\n    collision_free = sum(1 for ep in episode_results if not ep[\"collided\"])\n    return collision_free / len(episode_results)\n```\n\n**Key difference from SafeLIBERO**: SafeLIBERO tracks obstacle displacement (indirect collision proxy). RoboCasa uses direct MuJoCo contact detection (more precise, catches all collision types including grazing contacts).\n\n**Contact force threshold**: MuJoCo reports contacts with `dist < margin` (default margin = collision geometry-dependent). We apply a **minimum contact force threshold** (e.g., >0.5N) to filter out grazing/numerical contacts that don't represent meaningful collisions.\n\n### 3.2 Displacement-Filtered CAR (dfCAR)\n\n**Definition**: Same as SafeLIBERO — exclude episodes where max EE displacement < τ_d.\n\n**Implementation**:\n```python\ndef compute_dfcar_robocasa(episode_results, tau_d=0.1e-3):  # 0.1mm\n    active_eps = [ep for ep in episode_results if ep[\"max_ee_displacement\"] >= tau_d]\n    if len(active_eps) == 0:\n        return 0.0\n    collision_free_active = sum(1 for ep in active_eps if not ep[\"collided\"])\n    return collision_free_active / len(active_eps)\n```\n\n**EE displacement calculation**:\n```python\ndef compute_ee_displacement(ee_trajectory):\n    \"\"\"Max EE displacement from initial position across episode.\"\"\"\n    if len(ee_trajectory) < 2:\n        return 0.0\n    initial_pos = ee_trajectory[0]\n    displacements = [np.linalg.norm(pos - initial_pos) for pos in ee_trajectory]\n    return max(displacements)\n```\n\n**Note**: RoboCasa proprioceptive state includes `relative_ee_position` (3D). Need to verify if this is relative to base or absolute. If relative, extract absolute EE position from `sim.data.body_xpos[ee_body_id]`.\n\n### 3.3 Task Success Rate (TSR)\n\n**Definition**: Fraction of episodes where the task completion condition is satisfied. RoboCasa provides `env._check_success()` (identical interface to SafeLIBERO/LIBERO).\n\n### 3.4 Safe Success Rate (SSR)\n\n**Definition**: SSR = TSR ∩ CAR (episodes that both succeed AND are collision-free).\n\n```python\nssr = sum(1 for ep in results if ep[\"success\"] and not ep[\"collided\"]) / len(results)\n```\n\n### 3.5 Additional Metrics (RoboCasa-specific)\n\n| Metric | Description | Rationale |\n|--------|-------------|-----------|\n| **Collision body distribution** | Which robot geoms collide most? (EE vs. forearm vs. upper arm) | Validates Claim 2 (arm-link collision gap) in new environment |\n| **Collision obstacle distribution** | Which obstacles are hit? (counter, appliance, utensil) | Characterizes collision patterns unique to kitchen environment |\n| **Contact force magnitude** | Mean/max contact force for collisions | Distinguishes light grazing from hard impacts |\n| **Per-phase collision rate** | Collisions during approach vs. manipulation vs. retraction | Identifies which manipulation phase is most dangerous |\n\n---\n\n## 4. Model Adaptation\n\n### 4.1 Pi0.5 on RoboCasa\n\n**Existing eval results**: No published Pi0.5 results on RoboCasa found. Cosmos Policy (NVIDIA) achieves 67.1% avg TSR across 24 RoboCasa tasks.\n\n**Zero-shot feasibility**: **Low**. Pi0.5 was pre-trained on Bridge, RT-2 data, and fine-tuned on LIBERO. RoboCasa's kitchen environments are visually and structurally different (full kitchen vs. tabletop). Zero-shot TSR is expected to be very low (<10%).\n\n**Fine-tuning required**: Yes. Plan:\n1. Use RoboCasa LeRobot demos for fine-tuning\n2. Same LoRA configuration as SafeLIBERO experiments (rank 32 action expert, rank 16 PaliGemma)\n3. Same training protocol (30K steps, batch 32, lr 2.5e-5)\n\n### 4.2 Data Format Compatibility\n\n| Field | SafeLIBERO | RoboCasa | Adaptation Needed |\n|-------|-----------|----------|-------------------|\n| Image size | 224×224 | 256×256 | Resize to 224×224 (Pi0.5 input size) |\n| State dim | 8D (ee_pos 3 + ee_ori 3 + gripper 2) | 16D (base_pos 3 + base_quat 4 + rel_ee_pos 3 + rel_ee_quat 4 + gripper 2) | **State adapter needed** — extract EE pos/ori + gripper from 16D state |\n| Action dim | 7D | 7D | Compatible |\n| Camera names | agentview, eye_in_hand | left_agent_view, wrist_camera | **Rename mapping** in data loader |\n| Language prompts | LIBERO task descriptions | RoboCasa task descriptions | Compatible (both natural language) |\n\n**Required code changes**:\n1. **State adapter**: Map RoboCasa 16D → Pi0.5 8D state (extract `rel_ee_pos`, convert `rel_ee_quat` → rotation vector, extract `gripper_qpos`)\n2. **Image adapter**: Resize 256×256 → 224×224 + potential 180° rotation (verify camera orientation convention)\n3. **Camera name mapping**: `left_agent_view` → `agentview_image`, `wrist_camera` → `eye_in_hand_image`\n\n### 4.3 OpenVLA on RoboCasa\n\n**Existing results**: OpenVLA has been evaluated on LIBERO but not specifically on RoboCasa with collision metrics. Zero-shot performance likely poor for same reasons as Pi0.5.\n\n**Recommendation**: Focus on Pi0.5 for primary comparison (matches SafeLIBERO experimental setup). OpenVLA as secondary if resources allow.\n\n### 4.4 Alternative: Evaluate Existing RoboCasa Policies\n\nInstead of adapting Pi0.5 to RoboCasa, we could evaluate **policies already trained on RoboCasa** (e.g., Diffusion Policy, Cosmos Policy) using our collision metrics. This tests whether action collapse and the dfCAR/CAR gap exist beyond the Pi0 family.\n\n**Pros**: No fine-tuning needed, directly tests cross-architecture generality\n**Cons**: Different architectures → harder to compare with SafeLIBERO Pi0.5 results\n**Recommendation**: Do both. Primary: Pi0.5 LoRA fine-tuned on RoboCasa. Secondary: evaluate RoboCasa-native Diffusion Policy checkpoints.\n\n---\n\n## 5. Eval Script Architecture\n\n### 5.1 Core Eval Loop\n\n```python\n# eval_robocasa.py — Skeleton\nclass RoboCasaSafetyEvaluator:\n    def __init__(self, task_name, safety_config):\n        self.env = create_robocasa_env(task_name)\n        self.robot_geoms = get_robot_collision_geoms(self.env)\n        self.target_geoms = get_target_object_geoms(self.env)\n        self.exclude_geoms = self.target_geoms | SUPPORT_SURFACE_GEOMS\n        self.contact_force_threshold = safety_config.get(\"force_threshold\", 0.5)\n    \n    def run_episode(self, policy, max_steps=300):\n        obs = self.env.reset()\n        ee_trajectory = []\n        collisions = []\n        \n        for step in range(max_steps):\n            action = policy.infer(obs)\n            obs, reward, done, info = self.env.step(action)\n            \n            # Track EE position\n            ee_pos = self.get_ee_position()\n            ee_trajectory.append(ee_pos)\n            \n            # Check collisions\n            step_collisions = self.check_collisions()\n            collisions.extend(step_collisions)\n            \n            if self.env._check_success():\n                break\n        \n        return {\n            \"success\": self.env._check_success(),\n            \"collided\": len(collisions) > 0,\n            \"first_collision_step\": collisions[0][\"step\"] if collisions else None,\n            \"collision_count\": len(collisions),\n            \"collision_bodies\": [c[\"robot_geom\"] for c in collisions],\n            \"collision_obstacles\": [c[\"obstacle_geom\"] for c in collisions],\n            \"max_ee_displacement\": compute_ee_displacement(ee_trajectory),\n            \"total_steps\": step + 1,\n        }\n    \n    def check_collisions(self):\n        \"\"\"Check for robot-obstacle contacts this timestep.\"\"\"\n        contacts = []\n        for i in range(self.env.sim.data.ncon):\n            contact = self.env.sim.data.contact[i]\n            g1 = self.env.sim.model.geom_id2name(contact.geom1)\n            g2 = self.env.sim.model.geom_id2name(contact.geom2)\n            \n            robot_g = g1 if g1 in self.robot_geoms else (g2 if g2 in self.robot_geoms else None)\n            other_g = g2 if robot_g == g1 else g1\n            \n            if robot_g and other_g not in self.exclude_geoms:\n                # Check contact force if available\n                force_mag = np.linalg.norm(contact.force) if hasattr(contact, 'force') else 1.0\n                if force_mag > self.contact_force_threshold:\n                    contacts.append({\n                        \"robot_geom\": robot_g, \n                        \"obstacle_geom\": other_g,\n                        \"force\": force_mag,\n                    })\n        return contacts\n```\n\n### 5.2 Robot Geom Identification\n\nFranka Panda robot geom names in robosuite/MuJoCo follow patterns:\n```\nrobot0_link0_collision, robot0_link1_collision, ..., robot0_link7_collision\nrobot0_hand_collision\nrobot0_finger_joint1_collision, robot0_finger_joint2_collision\n```\n\nNeed to verify exact names in RoboCasa's robot XML. Categorize into:\n- **Gripper geoms**: finger joints (exclude from collision when grasping target)\n- **EE geom**: hand collision\n- **Arm link geoms**: link0–link7 (these are the \"unmonitored\" links from Claim 2)\n\n### 5.3 Output Format\n\n```json\n{\n    \"config\": {\n        \"task\": \"PnPCounterToSink\",\n        \"n_episodes\": 50,\n        \"scenes\": [0, 1, 2, 3, 4],\n        \"max_steps\": 300,\n        \"contact_force_threshold\": 0.5,\n        \"checkpoint\": \"pi05_robocasa_lora_s0_30k\"\n    },\n    \"summary\": {\n        \"CAR\": 0.45,\n        \"dfCAR\": 0.42,\n        \"TSR\": 0.38,\n        \"SSR\": 0.22,\n        \"action_collapse_rate\": 0.06,\n        \"avg_collision_force\": 2.3\n    },\n    \"collision_body_distribution\": {\n        \"robot0_link3_collision\": 12,\n        \"robot0_link4_collision\": 8,\n        \"robot0_hand_collision\": 5,\n        \"robot0_link5_collision\": 3\n    },\n    \"episodes\": [...]\n}\n```\n\n---\n\n## 6. Cost Estimation\n\n### 6.1 Environment Setup\n\n| Task | Time | Notes |\n|------|------|-------|\n| Install RoboCasa + robosuite + MuJoCo | 2–4h | `pip install robocasa`, download assets |\n| Verify 3 selected tasks run correctly | 1–2h | Headless rendering test, check geom names |\n| Implement collision detection layer | 4–6h | Port SafeLIBERO collision logic to MuJoCo contact API |\n| Implement state/image adapters for Pi0.5 | 2–3h | 16D→8D state, 256→224 resize, camera rename |\n| Implement eval script (eval_robocasa.py) | 3–4h | Adapt eval_safelibero.py structure |\n| **Total setup** | **~12–19h (1–2 Worker days)** | |\n\n### 6.2 Training (Pi0.5 LoRA on RoboCasa)\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Fine-tune Pi0.5 LoRA on 3 RoboCasa tasks | 3 tasks × 3 seeds = 9 runs | ~38h | **342 GPU-hours** |\n| Evaluation (50 ep × 5 scenes × 3 tasks × 3 seeds) | 9 eval runs | ~4h | **36 GPU-hours** |\n| **Total compute** | | | **~378 GPU-hours** |\n\n### 6.3 Eval-Only (Existing RoboCasa Policies)\n\nIf evaluating pre-trained Diffusion Policy / Cosmos Policy checkpoints (no fine-tuning):\n\n| Item | Count | Per-run | Total |\n|------|-------|---------|-------|\n| Eval runs | 3 tasks × 1 policy × 3 seeds | ~4h | **36 GPU-hours** |\n| **Total** | | | **36 GPU-hours** |\n\n### 6.4 Timeline\n\n| Phase | Duration | Dependencies |\n|-------|----------|-------------|\n| Phase 0: Collision detection design + coding | 2 days | None (can start now) |\n| Phase 1: Environment setup on server | 1 day | Server access |\n| Phase 2: Fine-tuning Pi0.5 on RoboCasa | 5–7 days | GPU allocation |\n| Phase 3: Evaluation runs | 2–3 days | Phase 2 checkpoints |\n| Phase 4: Analysis + comparison with SafeLIBERO | 1–2 days | Phase 3 results |\n| **Total** | **~11–15 days** | |\n\n---\n\n## 7. Risk Assessment\n\n| Risk | Likelihood | Impact | Mitigation |\n|------|-----------|--------|-----------|\n| Pi0.5 fails to learn RoboCasa tasks (TSR < 15%) | Medium | High — can't measure CAR | Use RoboCasa-native policy (Diffusion Policy) instead; still validates dfCAR cross-benchmark |\n| MuJoCo contact detection too noisy (false positives) | Medium | Medium — inflates collision rate | Tune contact force threshold; filter gripper→target contacts; validate against video |\n| Kitchen obstacles too sparse for meaningful CAR | Low | Medium — CAR ≈ 100% | Choose tasks with constrained spaces (microwave insertion, cabinet reach) |\n| Scene randomization adds too much variance | Medium | Low — need more episodes | Increase to 100 episodes/scene (vs. SafeLIBERO's 50) |\n| RoboCasa action collapse rate is 0% (no dfCAR gap) | Medium | Low — this is actually informative | If Pi0.5 doesn't action-collapse on RoboCasa, that's a data point about when collapse occurs (SafeLIBERO-specific vs. general) |\n| SDF ground truth not available for RoboCasa | Expected | N/A for eval | Not needed for eval pipeline; only for future SDF training experiments |\n\n---\n\n## 8. Deliverables\n\n1. **`eval_robocasa.py`**: Complete evaluation script with collision detection\n2. **`collision_detection_robocasa.py`**: Reusable collision detection module for RoboCasa\n3. **State/image adapter code**: Pi0.5 ↔ RoboCasa observation mapping\n4. **Evaluation results**: JSON files per task × seed\n5. **Cross-benchmark comparison table**: RoboCasa vs. SafeLIBERO metrics side by side\n6. **Figures**: CAR/dfCAR gap plot for RoboCasa (parallels SafeLIBERO Fig 3 left panel)\n\n---\n\n## 9. Narrative Integration (ICRA Paper)\n\n**Current paper scope**: Single benchmark (SafeLIBERO), single sim (MuJoCo tabletop).\n\n**With RoboCasa**: \"We validate dfCAR and the action collapse finding across two benchmarks spanning tabletop (SafeLIBERO) and kitchen (RoboCasa) manipulation, with different obstacle types (artificial vs. natural clutter) and collision detection methods (displacement tracking vs. MuJoCo contact API).\"\n\n**Reviewer concern addressed**: \"Results are limited to one benchmark\" → \"Cross-benchmark validation on RoboCasa confirms that action collapse and the dfCAR diagnostic generalize beyond SafeLIBERO.\"\n\n**Claim 2 extension**: If RoboCasa shows arm-link collisions dominating (via collision body distribution), this strengthens the EE-only monitoring gap finding in a more ecologically valid environment.\n\n---\n\n## 10. Sources\n\n- [RoboCasa Official Site](https://robocasa.ai/)\n- [RoboCasa365 Paper (arXiv:2603.04356)](https://arxiv.org/abs/2603.04356)\n- [RoboCasa GitHub](https://github.com/robocasa/robocasa)\n- [RoboCasa Single-Stage Tasks API](https://robocasa.ai/docs/api/robocasa.environments.kitchen.single_stage.html)\n- [RoboCasa365 LeRobot Integration](https://huggingface.co/docs/lerobot/main/robocasa)\n- [robosuite Environment API](https://robosuite.ai/docs/simulation/environment.html)\n- [MuJoCo Contact API](https://mujoco.readthedocs.io/en/stable/programming/simulation.html)\n"
-  }
-}
-````
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3327 · 2026-05-29T20:16:29.288107+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/robocasa_eval_pipeline_spec.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3328 · 2026-05-29T20:16:37.267088+00:00_
-
-called mcp__agent-ml-research__register_artifact
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
-
-```json
-{
-  "name": "robocasa_eval_pipeline_spec",
-  "type": "report",
-  "description": "RoboCasa benchmark eval pipeline设计：任务选择(3个PnP任务)、碰撞检测(MuJoCo contact API)、模型适配(Pi0.5 state adapter)、成本估算(378 GPU-hours)",
-  "project": "diff_collision_sdf",
-  "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/robocasa_eval_pipeline_spec.md",
-  "tags": "['robocasa', 'benchmark', 'eval-pipeline', 'icra2027', 'breadth-expansion']"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "tool_args": {
-    "name": "robocasa_eval_pipeline_spec",
-    "type": "report",
-    "description": "RoboCasa benchmark eval pipeline设计：任务选择(3个PnP任务)、碰撞检测(MuJoCo contact API)、模型适配(Pi0.5 state adapter)、成本估算(378 GPU-hours)",
-    "project": "diff_collision_sdf",
-    "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/robocasa_eval_pipeline_spec.md",
-    "tags": "['robocasa', 'benchmark', 'eval-pipeline', 'icra2027', 'breadth-expansion']"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3329 · 2026-05-29T20:16:38.572121+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_7a23a2\", \"name\": \"robocasa_eval_pipeline_spec\", \"type\": \"report\", \"description\": \"RoboCasa benchmark eval pipeline设计：任务选择(3个PnP任务)、碰撞检测(MuJoCo contact API)、模型适配(Pi0.5 state adapter)、成本估算(378 GPU-hours)\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/report/robocasa_eval_pipeline_spec.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T20:16:37.241557+00:00\", \"tags\": [\"robocasa\", \"benchmark\", \"eval-pipeline\", \"icra2027\", \"breadth-expansion\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "elapsed_ms": 1305
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3330 · 2026-05-29T20:16:38.572505+00:00_
-
-called TodoWrite
-
-<details open><summary>🔧 Tool call — TodoWrite</summary>
-
-```json
-{
-  "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'completed', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'completed', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "tool_args": {
-    "todos": "[{'content': 'Research RoboCasa benchmark capabilities and collision support', 'status': 'completed', 'activeForm': 'Researching RoboCasa benchmark'}, {'content': 'Write RoboCasa eval pipeline spec document', 'status': 'completed', 'activeForm': 'Writing RoboCasa eval pipeline spec'}]"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3331 · 2026-05-29T20:16:38.673160+00:00_
-
-Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "TodoWrite",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3332 · 2026-05-29T20:17:03.387607+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)\n\n**RoboCasa Eval Pipeline Spec 已完成** → `artifacts/robocasa_eval_pipeline_spec.md`\n\n核心设计：\n\n**1. 环境调研**\n- RoboCasa 基于 robosuite + MuJoCo，Franka Panda 臂，365 个厨房任务\n- 与 SafeLIBERO 关键差异：**自然障碍物**（厨具、电器、台面边缘）vs SafeLIBERO 的人工添加障碍物；**无内置碰撞指标**\n- 碰撞检测方案：使用 MuJoCo contact API（`sim.data.contact`），而非 SafeLIBERO 的障碍物位移法。需排除 gripper↔target 的抓取接触和自碰撞\n\n**2. 任务选择（3 个 PnP 任务）**\n- **PnPCounterToSink** (TSR~46%)：手臂需伸入水槽，经过水龙头和台面边缘\n- **PnPCounterToMicrowave** (TSR~35-45%)：狭窄微波炉内部，三面受限，高碰撞风险\n- **PnPCounterToStove** (TSR~63%)：炉灶区障碍物多样（炉架、旋钮、锅）\n\n**3. 模型适配**\n- Pi0.5 零样本不可行（不同场景分布），需 LoRA fine-tune\n- 需要 state adapter（16D→8D）、image adapter（256→224）、camera rename\n- 备选：直接评估 RoboCasa 原生 Diffusion Policy checkpoint（不需 fine-tune，测跨架构泛化）\n\n**4. 成本**\n- 环境搭建 + eval 脚本：**1-2 Worker days**（可立即启动，不需 GPU）\n- Pi0.5 fine-tune + eval：**378 GPU-hours**（9 runs × 42h）\n- Eval-only（已有 checkpoint）：仅 36 GPU-hours\n- 总时间线：~11-15 天\n\n**5. 叙事价值**\n回答 Reviewer 最可能的 concern：\"results limited to one benchmark\"。RoboCasa 提供：(1) 不同障碍物类型验证 (2) 不同碰撞检测方法验证 (3) arm-link collision 在真实厨房环境的验证\n\n**建议下一步**：\n1. Phase 0（碰撞检测 + eval 脚本编码）可立即启动，不需 GPU\n2. 等 Director 审批后分配 GPU 做 fine-tune\n3. 优先级：demo curation (P0) > RoboCasa (P1)",
-  "project": "diff_collision_sdf"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (纯设计工作)\n\n**RoboCasa Eval Pipeline Spec 已完成** → `artifacts/robocasa_eval_pipeline_spec.md`\n\n核心设计：\n\n**1. 环境调研**\n- RoboCasa 基于 robosuite + MuJoCo，Franka Panda 臂，365 个厨房任务\n- 与 SafeLIBERO 关键差异：**自然障碍物**（厨具、电器、台面边缘）vs SafeLIBERO 的人工添加障碍物；**无内置碰撞指标**\n- 碰撞检测方案：使用 MuJoCo contact API（`sim.data.contact`），而非 SafeLIBERO 的障碍物位移法。需排除 gripper↔target 的抓取接触和自碰撞\n\n**2. 任务选择（3 个 PnP 任务）**\n- **PnPCounterToSink** (TSR~46%)：手臂需伸入水槽，经过水龙头和台面边缘\n- **PnPCounterToMicrowave** (TSR~35-45%)：狭窄微波炉内部，三面受限，高碰撞风险\n- **PnPCounterToStove** (TSR~63%)：炉灶区障碍物多样（炉架、旋钮、锅）\n\n**3. 模型适配**\n- Pi0.5 零样本不可行（不同场景分布），需 LoRA fine-tune\n- 需要 state adapter（16D→8D）、image adapter（256→224）、camera rename\n- 备选：直接评估 RoboCasa 原生 Diffusion Policy checkpoint（不需 fine-tune，测跨架构泛化）\n\n**4. 成本**\n- 环境搭建 + eval 脚本：**1-2 Worker days**（可立即启动，不需 GPU）\n- Pi0.5 fine-tune + eval：**378 GPU-hours**（9 runs × 42h）\n- Eval-only（已有 checkpoint）：仅 36 GPU-hours\n- 总时间线：~11-15 天\n\n**5. 叙事价值**\n回答 Reviewer 最可能的 concern：\"results limited to one benchmark\"。RoboCasa 提供：(1) 不同障碍物类型验证 (2) 不同碰撞检测方法验证 (3) arm-link collision 在真实厨房环境的验证\n\n**建议下一步**：\n1. Phase 0（碰撞检测 + eval 脚本编码）可立即启动，不需 GPU\n2. 等 Director 审批后分配 GPU 做 fine-tune\n3. 优先级：demo curation (P0) > RoboCasa (P1)",
-    "project": "diff_collision_sdf"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3333 · 2026-05-29T20:17:06.348277+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 2960
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3334 · 2026-05-29T20:19:15.230712+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
-  "max_results": "4"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
-    "max_results": "4"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3335 · 2026-05-29T20:19:15.281236+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3336 · 2026-05-29T20:19:17.839748+00:00_
-
-called mcp__agent-ml-research__read_registry
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
-
-```json
-{
-  "project": "diff_collision_sdf",
-  "limit": "0"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "tool_args": {
-    "project": "diff_collision_sdf",
-    "limit": "0"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3337 · 2026-05-29T20:19:17.840153+00:00_
-
-called mcp__agent-ml-research__reconcile_crons
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
-
-```json
-Arguments not recorded in this source.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__reconcile_crons"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3338 · 2026-05-29T20:19:18.392137+00:00_
-
-called mcp__agent-ml-research__read_project_file
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
-
-```json
-{
-  "project": "diff_collision_sdf",
-  "file": "report.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__read_project_file",
-  "tool_args": {
-    "project": "diff_collision_sdf",
-    "file": "report.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3339 · 2026-05-29T20:19:18.594581+00:00_
-
-Error: result (109,004 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780085958440.txt.
-Format: JSON with schema: {result: string}
-- For targeted queries (find a value, filter by field): use jq on the file directly.
-- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780085958440.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
-- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780085958440.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__read_registry",
-  "elapsed_ms": 754
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3340 · 2026-05-29T20:19:18.595024+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__reconcile_crons",
-  "elapsed_ms": 754
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3341 · 2026-05-29T20:19:18.595439+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 137 个实验 — DONE 136, PREPARING 1\\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-35807**: ❌ 连接失败\\n- **westd-45947**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 o\\n- `train_pi05_a1_obj_s3_l01_v2` [failed] — 2026-05-29T11:41:43 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 o\\n- `train_pi05_a1_obj_s3_l01` [failed] — 2026-05-29T04:44:32 — Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at \\n- `train_pi05_lora_baseline_s3` [failed] — 2026-05-29T04:02:03 — LeRobot dataset API incompatibility: torch.stack() received HF Column instead of\\n- `eval_oracle_pi05_lora_s0` [success] — 2026-05-29T01:34:39\\n\\n### 🔴 最近失败原因 (top 3)\\n- `train_pi05_lora_baseline_s3_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01`: Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-29\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- eval_oracle_pi05
-…[truncated 3218 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__read_project_file",
-  "elapsed_ms": 203
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3342 · 2026-05-29T20:19:18.595687+00:00_
-
-called mcp__agent-ml-research__read_roadmap
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
-
-```json
-{
-  "project": "diff_collision_sdf"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__read_roadmap",
-  "tool_args": {
-    "project": "diff_collision_sdf"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3343 · 2026-05-29T20:19:18.646241+00:00_
+_source line 3275 · 2026-05-29T20:19:18.646241+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 20:11 UTC | 更新原因: D048: P1 SDF-as-obs 降级 P3，P2 full-body SDF 砍掉，breadth expansion 升 P1，资源重新分配\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Post-DDL 战略规划，等用户确认提交状态\\n- **CoRL 2026**: DDL 5/28 AoE 已过（M067），用户可能已提交（有 abstract slot），Feishu 不可用无法确认\\n- **转投准备**: ICRA 2027 venue 分析完成，DDL ~Sep 2026（~3.5 月窗口）\\n- **方法改进**: D048 重组——P0 demo curation + P1 breadth expansion，砍掉 geometric variants\\n- **论文材料**: 6/6 PASS + 25 Q&A rebuttal + seed3 双版本 contingency + camera-ready 修复完成\\n- **通信阻塞**: Feishu API 月配额耗尽，已四次报 Manager\\n\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n\\n> LoRA TSR=49.7% 来自 per-seed {46.0, 51.5, 51.5}，与论文一致。\\n\\n## 方法改进路线图（D048 重组，ICRA 2027）\\n\\n| 优先级 | 方向 | 成本 | 风险 | 状态 |\\n|--------|------|------|------|------|\\n| **P0** | Demo curation（collision-free ratio → Pareto 曲线）| 3 周 | ★ 极低 | Agent 设计方案中 |\\n| **P1** | OpenVLA zero-shot eval（第 3 model family）| 1 周 | ★★ | 待服务器恢复 |\\n| **P1** | RoboCasa benchmark（跨 benchmark 泛化）| 2-3 周 | ★★ | 待服务器恢复 |\\n| P2 | 全条件 5-seed + Pi0.5 baseline 多 seed | 2 周 | ★ | 待服务器恢复 |\\n| P2 | Phase 2 多 seed | 1-2 周 | ★ | 待服务器恢复 |\\n| P3 | SDF-as-observation（快速单 seed 验证）| 1 周 | ★★★ | 仅在有余量时做 |\\n| ~~P2~~ | ~~Full-body SDF auxiliary~~ | — | — | ❌ D048 砍掉 |\\n\\n## 关键时间线\\n\\n| 事件 | 时间 | 状态 |\\n|------|------|------|\\n| Pre-submission 6/6 PASS | 5/29 | ✅ |\\n| **CoRL DDL** | **5/28 AoE** | **
 …[truncated 1984 chars]
@@ -1502,7 +31,7 @@ _source line 3343 · 2026-05-29T20:19:18.646241+00:00_
 
 ### Tool call
 
-_source line 3344 · 2026-05-29T20:19:39.070000+00:00_
+_source line 3276 · 2026-05-29T20:19:39.070000+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1540,7 +69,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3345 · 2026-05-29T20:19:39.171650+00:00_
+_source line 3277 · 2026-05-29T20:19:39.171650+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 137 个实验 — DONE 136, PREPARING 1\\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-35807**: ❌ 连接失败\\n- **westd-45947**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 o\\n- `train_pi05_a1_obj_s3_l01_v2` [failed] — 2026-05-29T11:41:43 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 o\\n- `train_pi05_a1_obj_s3_l01` [failed] — 2026-05-29T04:44:32 — Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at \\n- `train_pi05_lora_baseline_s3` [failed] — 2026-05-29T04:02:03 — LeRobot dataset API incompatibility: torch.stack() received HF Column instead of\\n- `eval_oracle_pi05_lora_s0` [success] — 2026-05-29T01:34:39\\n\\n### 🔴 最近失败原因 (top 3)\\n- `train_pi05_lora_baseline_s3_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01`: Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-29\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- eval_oracle_pi05
 …[truncated 3218 chars]
@@ -1563,7 +92,7 @@ _source line 3345 · 2026-05-29T20:19:39.171650+00:00_
 
 ### Tool call
 
-_source line 3346 · 2026-05-29T20:19:45.867287+00:00_
+_source line 3278 · 2026-05-29T20:19:45.867287+00:00_
 
 called ToolSearch
 
@@ -1599,7 +128,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3347 · 2026-05-29T20:19:45.968081+00:00_
+_source line 3279 · 2026-05-29T20:19:45.968081+00:00_
 
 
 
@@ -1621,7 +150,7 @@ _source line 3347 · 2026-05-29T20:19:45.968081+00:00_
 
 ### Tool call
 
-_source line 3348 · 2026-05-29T20:19:49.580494+00:00_
+_source line 3280 · 2026-05-29T20:19:49.580494+00:00_
 
 called ToolSearch
 
@@ -1657,7 +186,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3349 · 2026-05-29T20:19:49.681201+00:00_
+_source line 3281 · 2026-05-29T20:19:49.681201+00:00_
 
 No matching deferred tools found
 
@@ -1679,7 +208,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 3350 · 2026-05-29T20:19:53.294611+00:00_
+_source line 3282 · 2026-05-29T20:19:53.294611+00:00_
 
 called ToolSearch
 
@@ -1715,7 +244,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3351 · 2026-05-29T20:19:53.345176+00:00_
+_source line 3283 · 2026-05-29T20:19:53.345176+00:00_
 
 
 
@@ -1737,7 +266,7 @@ _source line 3351 · 2026-05-29T20:19:53.345176+00:00_
 
 ### Tool call
 
-_source line 3352 · 2026-05-29T20:20:03.131052+00:00_
+_source line 3284 · 2026-05-29T20:20:03.131052+00:00_
 
 called Glob
 
@@ -1771,7 +300,7 @@ called Glob
 
 ### Tool result
 
-_source line 3353 · 2026-05-29T20:20:03.231932+00:00_
+_source line 3285 · 2026-05-29T20:20:03.231932+00:00_
 
 No files found
 
@@ -1793,7 +322,7 @@ No files found
 
 ### Tool call
 
-_source line 3354 · 2026-05-29T20:20:06.344635+00:00_
+_source line 3286 · 2026-05-29T20:20:06.344635+00:00_
 
 called Bash
 
@@ -1829,7 +358,7 @@ called Bash
 
 ### Tool result
 
-_source line 3355 · 2026-05-29T20:20:06.495588+00:00_
+_source line 3287 · 2026-05-29T20:20:06.495588+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md
 
@@ -1851,7 +380,7 @@ _source line 3355 · 2026-05-29T20:20:06.495588+00:00_
 
 ### Tool call
 
-_source line 3356 · 2026-05-29T20:20:08.703990+00:00_
+_source line 3288 · 2026-05-29T20:20:08.703990+00:00_
 
 called Read
 
@@ -1885,7 +414,7 @@ called Read
 
 ### Tool result
 
-_source line 3357 · 2026-05-29T20:20:08.704583+00:00_
+_source line 3289 · 2026-05-29T20:20:08.704583+00:00_
 
 1	# diff_collision_sdf — Research Dashboard
 2	
@@ -1957,7 +486,7 @@ _source line 3357 · 2026-05-29T20:20:08.704583+00:00_
 
 ### Tool call
 
-_source line 3358 · 2026-05-29T20:20:15.729701+00:00_
+_source line 3290 · 2026-05-29T20:20:15.729701+00:00_
 
 called Edit
 
@@ -1997,7 +526,7 @@ called Edit
 
 ### Tool result
 
-_source line 3359 · 2026-05-29T20:20:15.830660+00:00_
+_source line 3291 · 2026-05-29T20:20:15.830660+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -2019,7 +548,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3360 · 2026-05-29T20:20:19.594377+00:00_
+_source line 3292 · 2026-05-29T20:20:19.594377+00:00_
 
 called Edit
 
@@ -2059,7 +588,7 @@ called Edit
 
 ### Tool result
 
-_source line 3361 · 2026-05-29T20:20:19.695292+00:00_
+_source line 3293 · 2026-05-29T20:20:19.695292+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -2081,7 +610,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3362 · 2026-05-29T20:20:32.541681+00:00_
+_source line 3294 · 2026-05-29T20:20:32.541681+00:00_
 
 called Edit
 
@@ -2121,7 +650,7 @@ called Edit
 
 ### Tool result
 
-_source line 3363 · 2026-05-29T20:20:32.592427+00:00_
+_source line 3295 · 2026-05-29T20:20:32.592427+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -2143,7 +672,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3364 · 2026-05-29T20:20:43.006619+00:00_
+_source line 3296 · 2026-05-29T20:20:43.006619+00:00_
 
 called Edit
 
@@ -2183,7 +712,7 @@ called Edit
 
 ### Tool result
 
-_source line 3365 · 2026-05-29T20:20:43.107499+00:00_
+_source line 3297 · 2026-05-29T20:20:43.107499+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -2205,7 +734,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3366 · 2026-05-29T20:20:59.466950+00:00_
+_source line 3298 · 2026-05-29T20:20:59.466950+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2241,7 +770,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3367 · 2026-05-29T20:21:00.221135+00:00_
+_source line 3299 · 2026-05-29T20:21:00.221135+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -2263,7 +792,7 @@ _source line 3367 · 2026-05-29T20:21:00.221135+00:00_
 
 ### Assistant
 
-_source line 3368 · 2026-05-29T20:21:02.975834+00:00_
+_source line 3300 · 2026-05-29T20:21:02.975834+00:00_
 
 Session 初始化完成，已向 Director 汇报。
 
@@ -2292,7 +821,7 @@ Session 初始化完成，已向 Director 汇报。
 
 ### User
 
-_source line 3369 · 2026-05-29T20:21:02.993528+00:00_
+_source line 3301 · 2026-05-29T20:21:02.993528+00:00_
 
 [Director 指令] **Demo Curation 方案审批通过（D048 P0 方向）**
 
@@ -2325,7 +854,7 @@ RoboCasa spec 做完后，开始写标注脚本。
 
 ### Tool call
 
-_source line 3370 · 2026-05-29T20:21:14.561967+00:00_
+_source line 3302 · 2026-05-29T20:21:14.561967+00:00_
 
 called Read
 
@@ -2359,7 +888,7 @@ called Read
 
 ### Tool result
 
-_source line 3371 · 2026-05-29T20:21:14.612913+00:00_
+_source line 3303 · 2026-05-29T20:21:14.612913+00:00_
 
 1	"""
 2	Evaluate a VLA model on SafeLIBERO benchmark.
@@ -2444,7 +973,7 @@ _source line 3371 · 2026-05-29T20:21:14.612913+00:00_
 
 ### Tool call
 
-_source line 3372 · 2026-05-29T20:21:20.534268+00:00_
+_source line 3304 · 2026-05-29T20:21:20.534268+00:00_
 
 called Read
 
@@ -2478,7 +1007,7 @@ called Read
 
 ### Tool result
 
-_source line 3373 · 2026-05-29T20:21:20.585143+00:00_
+_source line 3305 · 2026-05-29T20:21:20.585143+00:00_
 
 1	"""
 2	A1-Pi0.5: Pi0.5 + SDF auxiliary task training via openpi train_loop hooks.
@@ -2549,7 +1078,7 @@ _source line 3373 · 2026-05-29T20:21:20.585143+00:00_
 
 ### Tool call
 
-_source line 3374 · 2026-05-29T20:21:42.305578+00:00_
+_source line 3306 · 2026-05-29T20:21:42.305578+00:00_
 
 called Bash
 
@@ -2585,7 +1114,7 @@ called Bash
 
 ### Tool result
 
-_source line 3375 · 2026-05-29T20:21:42.456862+00:00_
+_source line 3307 · 2026-05-29T20:21:42.456862+00:00_
 
 DIR_NOT_EXISTS
 
@@ -2607,7 +1136,7 @@ DIR_NOT_EXISTS
 
 ### Tool call
 
-_source line 3376 · 2026-05-29T20:21:44.665082+00:00_
+_source line 3308 · 2026-05-29T20:21:44.665082+00:00_
 
 called Bash
 
@@ -2643,7 +1172,7 @@ called Bash
 
 ### Tool result
 
-_source line 3377 · 2026-05-29T20:21:44.716185+00:00_
+_source line 3309 · 2026-05-29T20:21:44.716185+00:00_
 
 (Bash completed with no output)
 
@@ -2665,7 +1194,7 @@ _source line 3377 · 2026-05-29T20:21:44.716185+00:00_
 
 ### Tool call
 
-_source line 3378 · 2026-05-29T20:23:21.636763+00:00_
+_source line 3310 · 2026-05-29T20:23:21.636763+00:00_
 
 called Write
 
@@ -2701,7 +1230,7 @@ called Write
 
 ### Tool result
 
-_source line 3379 · 2026-05-29T20:23:21.637891+00:00_
+_source line 3311 · 2026-05-29T20:23:21.637891+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/scripts/demo_collision_label.py
 
@@ -2723,7 +1252,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool call
 
-_source line 3380 · 2026-05-29T20:23:26.154016+00:00_
+_source line 3312 · 2026-05-29T20:23:26.154016+00:00_
 
 called ToolSearch
 
@@ -2759,7 +1288,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3381 · 2026-05-29T20:23:26.254739+00:00_
+_source line 3313 · 2026-05-29T20:23:26.254739+00:00_
 
 
 
@@ -2781,7 +1310,7 @@ _source line 3381 · 2026-05-29T20:23:26.254739+00:00_
 
 ### Tool call
 
-_source line 3382 · 2026-05-29T20:23:33.581217+00:00_
+_source line 3314 · 2026-05-29T20:23:33.581217+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -2825,7 +1354,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 3383 · 2026-05-29T20:23:33.782432+00:00_
+_source line 3315 · 2026-05-29T20:23:33.782432+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_c18a72\", \"name\": \"demo_collision_label.py\", \"type\": \"data\", \"description\": \"Demo collision labeling script for SafeLIBERO curation experiment. Method A (MuJoCo replay, full-body) + Method B (SDF EE-only sanity check). Outputs collision_labels.json with per-episode labels.\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/data/demo_collision_label.py\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T20:23:33.547476+00:00\", \"tags\": [\"demo_curation\", \"labeling\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2847,7 +1376,7 @@ _source line 3383 · 2026-05-29T20:23:33.782432+00:00_
 
 ### Tool call
 
-_source line 3384 · 2026-05-29T20:23:49.767127+00:00_
+_source line 3316 · 2026-05-29T20:23:49.767127+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2883,7 +1412,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3385 · 2026-05-29T20:23:52.778005+00:00_
+_source line 3317 · 2026-05-29T20:23:52.778005+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -2905,7 +1434,7 @@ _source line 3385 · 2026-05-29T20:23:52.778005+00:00_
 
 ### Assistant
 
-_source line 3386 · 2026-05-29T20:23:57.246558+00:00_
+_source line 3318 · 2026-05-29T20:23:57.246558+00:00_
 
 标注脚本已完成并汇报 Director。脚本位于 `artifacts/scripts/demo_collision_label.py`，使用与 eval 完全相同的碰撞检测逻辑，输出 per-episode 标签和汇总统计。等待 Director 下一步指令。
 
@@ -2932,7 +1461,7 @@ _source line 3386 · 2026-05-29T20:23:57.246558+00:00_
 
 ### User
 
-_source line 3387 · 2026-05-29T20:23:57.256251+00:00_
+_source line 3319 · 2026-05-29T20:23:57.256251+00:00_
 
 [Director 指令] **补充指令（接 Demo Curation 审批）**
 
@@ -2974,7 +1503,7 @@ _source line 3387 · 2026-05-29T20:23:57.256251+00:00_
 
 ### Tool call
 
-_source line 3388 · 2026-05-29T20:24:06.525730+00:00_
+_source line 3320 · 2026-05-29T20:24:06.525730+00:00_
 
 called Read
 
@@ -3008,7 +1537,7 @@ called Read
 
 ### Tool result
 
-_source line 3389 · 2026-05-29T20:24:06.526693+00:00_
+_source line 3321 · 2026-05-29T20:24:06.526693+00:00_
 
 1	# RoboCasa Benchmark Eval Pipeline Spec
 2	
@@ -3063,7 +1592,7 @@ _source line 3389 · 2026-05-29T20:24:06.526693+00:00_
 
 ### Tool call
 
-_source line 3390 · 2026-05-29T20:26:27.285964+00:00_
+_source line 3322 · 2026-05-29T20:26:27.285964+00:00_
 
 called Write
 
@@ -3099,7 +1628,7 @@ called Write
 
 ### Tool result
 
-_source line 3391 · 2026-05-29T20:26:27.337577+00:00_
+_source line 3323 · 2026-05-29T20:26:27.337577+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/scripts/robocasa_eval.py
 
@@ -3121,7 +1650,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool call
 
-_source line 3392 · 2026-05-29T20:27:40.278937+00:00_
+_source line 3324 · 2026-05-29T20:27:40.278937+00:00_
 
 called Write
 
@@ -3157,7 +1686,7 @@ called Write
 
 ### Tool result
 
-_source line 3393 · 2026-05-29T20:27:40.279831+00:00_
+_source line 3325 · 2026-05-29T20:27:40.279831+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/scripts/robocasa_finetune_config.py
 
@@ -3179,7 +1708,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool call
 
-_source line 3394 · 2026-05-29T20:27:46.816773+00:00_
+_source line 3326 · 2026-05-29T20:27:46.816773+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -3223,7 +1752,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 3395 · 2026-05-29T20:27:47.318996+00:00_
+_source line 3327 · 2026-05-29T20:27:47.318996+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_01c907\", \"name\": \"robocasa_eval.py\", \"type\": \"data\", \"description\": \"RoboCasa safety evaluation script with MuJoCo contact-based collision detection, dfCAR computation, collision body distribution tracking. Supports Pi0.5 policy server or local checkpoint.\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/data/robocasa_eval.py\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T20:27:46.789158+00:00\", \"tags\": [\"robocasa\", \"eval\", \"collision_detection\", \"P1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3245,7 +1774,7 @@ _source line 3395 · 2026-05-29T20:27:47.318996+00:00_
 
 ### Tool call
 
-_source line 3396 · 2026-05-29T20:27:49.276348+00:00_
+_source line 3328 · 2026-05-29T20:27:49.276348+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -3289,7 +1818,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 3397 · 2026-05-29T20:27:49.478774+00:00_
+_source line 3329 · 2026-05-29T20:27:49.478774+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_701acf\", \"name\": \"robocasa_finetune_config.py\", \"type\": \"data\", \"description\": \"RoboCasa Pi0.5 LoRA fine-tuning config with 16D→8D state adapter, 256→224 image adapter, and LoRA injection matching SafeLIBERO protocol (rank 32/16, 30K steps).\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/data/robocasa_finetune_config.py\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T20:27:49.264521+00:00\", \"tags\": [\"robocasa\", \"finetune\", \"lora\", \"P1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3311,7 +1840,7 @@ _source line 3397 · 2026-05-29T20:27:49.478774+00:00_
 
 ### Tool call
 
-_source line 3398 · 2026-05-29T20:28:12.613622+00:00_
+_source line 3330 · 2026-05-29T20:28:12.613622+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3347,7 +1876,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3399 · 2026-05-29T20:28:15.899713+00:00_
+_source line 3331 · 2026-05-29T20:28:15.899713+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -3369,7 +1898,7 @@ _source line 3399 · 2026-05-29T20:28:15.899713+00:00_
 
 ### Assistant
 
-_source line 3400 · 2026-05-29T20:28:20.032441+00:00_
+_source line 3332 · 2026-05-29T20:28:20.032441+00:00_
 
 所有三个脚本完成并汇报 Director：
 - `demo_collision_label.py` — MuJoCo 回放标注
@@ -3401,7 +1930,7 @@ _source line 3400 · 2026-05-29T20:28:20.032441+00:00_
 
 ### User
 
-_source line 3401 · 2026-05-29T20:28:20.044093+00:00_
+_source line 3333 · 2026-05-29T20:28:20.044093+00:00_
 
 [Director 指令] [Director 指令] 标注脚本确认收到。继续推进以下两项，按顺序做：
 
@@ -3433,7 +1962,7 @@ _source line 3401 · 2026-05-29T20:28:20.044093+00:00_
 
 ### Tool call
 
-_source line 3402 · 2026-05-29T20:28:37.530968+00:00_
+_source line 3334 · 2026-05-29T20:28:37.530968+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3469,7 +1998,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3403 · 2026-05-29T20:28:40.591404+00:00_
+_source line 3335 · 2026-05-29T20:28:40.591404+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -3491,7 +2020,7 @@ _source line 3403 · 2026-05-29T20:28:40.591404+00:00_
 
 ### Assistant
 
-_source line 3404 · 2026-05-29T20:28:42.587993+00:00_
+_source line 3336 · 2026-05-29T20:28:42.587993+00:00_
 
 两项均已在上一轮完成并注册：
 
@@ -3532,7 +2061,7 @@ Director 的上一条汇报可能与本指令交叉发送。向 Director 确认�
 
 ### User
 
-_source line 3405 · 2026-05-29T21:06:39.729605+00:00_
+_source line 3337 · 2026-05-29T21:06:39.729605+00:00_
 
 [Director 指令] [Director 指令] experiment_plan.yaml 维护——Reviewer 审查发现覆盖率追踪严重失效
 
@@ -3573,7 +2102,7 @@ experiment_plan.yaml 中大量已完成实验的 registry_id 未链接，导致 
 
 ### Tool call
 
-_source line 3406 · 2026-05-29T21:06:46.567527+00:00_
+_source line 3338 · 2026-05-29T21:06:46.567527+00:00_
 
 called ToolSearch
 
@@ -3609,7 +2138,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3407 · 2026-05-29T21:06:46.618087+00:00_
+_source line 3339 · 2026-05-29T21:06:46.618087+00:00_
 
 
 
@@ -3631,7 +2160,7 @@ _source line 3407 · 2026-05-29T21:06:46.618087+00:00_
 
 ### Tool call
 
-_source line 3408 · 2026-05-29T21:06:48.786218+00:00_
+_source line 3340 · 2026-05-29T21:06:48.786218+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -3665,7 +2194,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool result
 
-_source line 3409 · 2026-05-29T21:06:49.188116+00:00_
+_source line 3341 · 2026-05-29T21:06:49.188116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim 1 的 fake safety 定量数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\"}, {\"id\": \"plan_003\", \"claim\": 3, \"description\": \"LoRA baseline eval (2 seeds): 训练完成后立即 eval，确定 LoRA-only CAR。决定 SDF 的归因强度——是 SDF 贡献还是 LoRA capacity 贡献\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [\"plan_004\"], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"LoRA 训练 ETA ~09:30 UTC May 26, eval 紧跟其后\"}, {\"id\": \"plan_004\", \"claim\": 3, \"description\": \"LoRA baseline training completion (2 seeds, westd-45947): Pi0.5 + LoRA only (无 SDF loss) 训练到 30K\", \"priority\": \"P0\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"train_pi05_lora_baseline_s0\", \"status\": \"DONE\", \"notes\": \"step 26000/30000, ETA ~09:30 UTC\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.01343, \"best_loss\": 0.01025, \"best_step\": 24000, \"total_steps\": 30000, \"grad_norm\": 0.10538, \"time_per_step\": 4.613}}, {\"id\": \"plan_005\", \"claim\": 3, \"description\": \"Phase 2 λ=0 ablation (seed2): 从 10K SDF checkpoint resume 训练 with λ=0，验证 safety encoding 能否在去除 SDF loss 后保留，同时恢复 task performance\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \
 …[truncated 4188 chars]
@@ -3688,7 +2217,7 @@ _source line 3409 · 2026-05-29T21:06:49.188116+00:00_
 
 ### Tool call
 
-_source line 3410 · 2026-05-29T21:06:56.347079+00:00_
+_source line 3342 · 2026-05-29T21:06:56.347079+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3728,7 +2257,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3411 · 2026-05-29T21:06:57.050652+00:00_
+_source line 3343 · 2026-05-29T21:06:57.050652+00:00_
 
 Error: result (75,625 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780088817009.txt.
 Format: JSON with schema: {result: string}
@@ -3755,7 +2284,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 3412 · 2026-05-29T21:07:12.418525+00:00_
+_source line 3344 · 2026-05-29T21:07:12.418525+00:00_
 
 called Agent
 
@@ -3793,7 +2322,7 @@ called Agent
 
 ### Tool call
 
-_source line 3413 · 2026-05-29T21:07:15.729096+00:00_
+_source line 3345 · 2026-05-29T21:07:15.729096+00:00_
 
 called Read
 
@@ -3829,7 +2358,7 @@ called Read
 
 ### Tool result
 
-_source line 3414 · 2026-05-29T21:07:16.030213+00:00_
+_source line 3346 · 2026-05-29T21:07:16.030213+00:00_
 
 File content (30630 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -3851,7 +2380,7 @@ File content (30630 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 3415 · 2026-05-29T21:07:19.442911+00:00_
+_source line 3347 · 2026-05-29T21:07:19.442911+00:00_
 
 called Read
 
@@ -3889,7 +2418,7 @@ called Read
 
 ### Tool result
 
-_source line 3416 · 2026-05-29T21:07:19.743997+00:00_
+_source line 3348 · 2026-05-29T21:07:19.743997+00:00_
 
 File content (30630 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -3911,7 +2440,7 @@ File content (30630 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 3417 · 2026-05-29T21:07:35.954596+00:00_
+_source line 3349 · 2026-05-29T21:07:35.954596+00:00_
 
 called Bash
 
@@ -3947,7 +2476,7 @@ called Bash
 
 ### Tool result
 
-_source line 3418 · 2026-05-29T21:07:36.055602+00:00_
+_source line 3350 · 2026-05-29T21:07:36.055602+00:00_
 
 0 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780088817009.txt
 
@@ -3969,7 +2498,7 @@ _source line 3418 · 2026-05-29T21:07:36.055602+00:00_
 
 ### Tool call
 
-_source line 3419 · 2026-05-29T21:07:54.644692+00:00_
+_source line 3351 · 2026-05-29T21:07:54.644692+00:00_
 
 called Bash
 
@@ -4007,7 +2536,7 @@ called Bash
 
 ### Tool result
 
-_source line 3420 · 2026-05-29T21:07:54.746613+00:00_
+_source line 3352 · 2026-05-29T21:07:54.746613+00:00_
 
 Total experiments: 4
 
@@ -4035,7 +2564,7 @@ Total experiments: 4
 
 ### Tool call
 
-_source line 3421 · 2026-05-29T21:08:05.087089+00:00_
+_source line 3353 · 2026-05-29T21:08:05.087089+00:00_
 
 called Bash
 
@@ -4071,7 +2600,7 @@ called Bash
 
 ### Tool result
 
-_source line 3422 · 2026-05-29T21:08:05.187943+00:00_
+_source line 3354 · 2026-05-29T21:08:05.187943+00:00_
 
 Top-level keys: ['success', 'data', 'error', 'metadata']
   success: bool = True
@@ -4102,7 +2631,7 @@ Top-level keys: ['success', 'data', 'error', 'metadata']
 
 ### Tool call
 
-_source line 3423 · 2026-05-29T21:08:10.108693+00:00_
+_source line 3355 · 2026-05-29T21:08:10.108693+00:00_
 
 called Bash
 
@@ -4138,7 +2667,7 @@ called Bash
 
 ### Tool result
 
-_source line 3424 · 2026-05-29T21:08:10.159392+00:00_
+_source line 3356 · 2026-05-29T21:08:10.159392+00:00_
 
 count=136, total=136
 Type of experiments: dict
@@ -4228,7 +2757,7 @@ Number of experiments: 136
 
 ### Tool call
 
-_source line 3425 · 2026-05-29T21:08:32.226823+00:00_
+_source line 3357 · 2026-05-29T21:08:32.226823+00:00_
 
 called Bash
 
@@ -4266,7 +2795,7 @@ called Bash
 
 ### Tool result
 
-_source line 3426 · 2026-05-29T21:08:32.327884+00:00_
+_source line 3358 · 2026-05-29T21:08:32.327884+00:00_
 
 ======================================================================
 CATEGORY 1: LoRA baseline eval experiments (plan_003)
@@ -4322,7 +2851,7 @@ CATEGORY 1: LoRA baseline eval experiments (plan_003)
 
 ### Tool result
 
-_source line 3427 · 2026-05-29T21:09:01.742795+00:00_
+_source line 3359 · 2026-05-29T21:09:01.742795+00:00_
 
 Here are the results, grouped by category:
 
@@ -4387,7 +2916,7 @@ Here are the results, grouped by category:
 
 ### Tool call
 
-_source line 3428 · 2026-05-29T21:09:28.425935+00:00_
+_source line 3360 · 2026-05-29T21:09:28.425935+00:00_
 
 called Bash
 
@@ -4423,7 +2952,7 @@ called Bash
 
 ### Tool result
 
-_source line 3429 · 2026-05-29T21:09:28.476631+00:00_
+_source line 3361 · 2026-05-29T21:09:28.476631+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml
 
@@ -4445,7 +2974,7 @@ _source line 3429 · 2026-05-29T21:09:28.476631+00:00_
 
 ### Tool call
 
-_source line 3430 · 2026-05-29T21:09:30.684475+00:00_
+_source line 3362 · 2026-05-29T21:09:30.684475+00:00_
 
 called Read
 
@@ -4479,7 +3008,7 @@ called Read
 
 ### Tool result
 
-_source line 3431 · 2026-05-29T21:09:30.685078+00:00_
+_source line 3363 · 2026-05-29T21:09:30.685078+00:00_
 
 1	experiments:
 2	- id: plan_001
@@ -4563,7 +3092,7 @@ _source line 3431 · 2026-05-29T21:09:30.685078+00:00_
 
 ### Tool call
 
-_source line 3432 · 2026-05-29T21:09:55.153490+00:00_
+_source line 3364 · 2026-05-29T21:09:55.153490+00:00_
 
 called Edit
 
@@ -4603,7 +3132,7 @@ called Edit
 
 ### Tool result
 
-_source line 3433 · 2026-05-29T21:09:55.204306+00:00_
+_source line 3365 · 2026-05-29T21:09:55.204306+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4625,7 +3154,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3434 · 2026-05-29T21:10:01.778031+00:00_
+_source line 3366 · 2026-05-29T21:10:01.778031+00:00_
 
 called Edit
 
@@ -4665,7 +3194,7 @@ called Edit
 
 ### Tool result
 
-_source line 3435 · 2026-05-29T21:10:01.829718+00:00_
+_source line 3367 · 2026-05-29T21:10:01.829718+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4687,7 +3216,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3436 · 2026-05-29T21:10:09.507134+00:00_
+_source line 3368 · 2026-05-29T21:10:09.507134+00:00_
 
 called Edit
 
@@ -4727,7 +3256,7 @@ called Edit
 
 ### Tool result
 
-_source line 3437 · 2026-05-29T21:10:09.557899+00:00_
+_source line 3369 · 2026-05-29T21:10:09.557899+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4749,7 +3278,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3438 · 2026-05-29T21:10:16.030763+00:00_
+_source line 3370 · 2026-05-29T21:10:16.030763+00:00_
 
 called Edit
 
@@ -4789,7 +3318,7 @@ called Edit
 
 ### Tool result
 
-_source line 3439 · 2026-05-29T21:10:16.081512+00:00_
+_source line 3371 · 2026-05-29T21:10:16.081512+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4811,7 +3340,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3440 · 2026-05-29T21:10:24.441931+00:00_
+_source line 3372 · 2026-05-29T21:10:24.441931+00:00_
 
 called Edit
 
@@ -4851,7 +3380,7 @@ called Edit
 
 ### Tool result
 
-_source line 3441 · 2026-05-29T21:10:24.492614+00:00_
+_source line 3373 · 2026-05-29T21:10:24.492614+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4873,7 +3402,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3442 · 2026-05-29T21:10:31.417567+00:00_
+_source line 3374 · 2026-05-29T21:10:31.417567+00:00_
 
 called Edit
 
@@ -4913,7 +3442,7 @@ called Edit
 
 ### Tool result
 
-_source line 3443 · 2026-05-29T21:10:31.468187+00:00_
+_source line 3375 · 2026-05-29T21:10:31.468187+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4935,7 +3464,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3444 · 2026-05-29T21:10:38.894854+00:00_
+_source line 3376 · 2026-05-29T21:10:38.894854+00:00_
 
 called Edit
 
@@ -4975,7 +3504,7 @@ called Edit
 
 ### Tool result
 
-_source line 3445 · 2026-05-29T21:10:38.995700+00:00_
+_source line 3377 · 2026-05-29T21:10:38.995700+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -4997,7 +3526,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3446 · 2026-05-29T21:10:47.774945+00:00_
+_source line 3378 · 2026-05-29T21:10:47.774945+00:00_
 
 called Edit
 
@@ -5037,7 +3566,7 @@ called Edit
 
 ### Tool result
 
-_source line 3447 · 2026-05-29T21:10:47.825676+00:00_
+_source line 3379 · 2026-05-29T21:10:47.825676+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -5059,7 +3588,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3448 · 2026-05-29T21:10:57.024812+00:00_
+_source line 3380 · 2026-05-29T21:10:57.024812+00:00_
 
 called Edit
 
@@ -5099,7 +3628,7 @@ called Edit
 
 ### Tool result
 
-_source line 3449 · 2026-05-29T21:10:57.025390+00:00_
+_source line 3381 · 2026-05-29T21:10:57.025390+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -5121,7 +3650,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3450 · 2026-05-29T21:11:03.798783+00:00_
+_source line 3382 · 2026-05-29T21:11:03.798783+00:00_
 
 called Edit
 
@@ -5161,7 +3690,7 @@ called Edit
 
 ### Tool result
 
-_source line 3451 · 2026-05-29T21:11:03.899791+00:00_
+_source line 3383 · 2026-05-29T21:11:03.899791+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -5183,7 +3712,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3452 · 2026-05-29T21:11:07.662761+00:00_
+_source line 3384 · 2026-05-29T21:11:07.662761+00:00_
 
 called Read
 
@@ -5219,7 +3748,7 @@ called Read
 
 ### Tool result
 
-_source line 3453 · 2026-05-29T21:11:07.763761+00:00_
+_source line 3385 · 2026-05-29T21:11:07.763761+00:00_
 
 140	  deps: []
 141	  registry_id: analysis_threshold_sensitivity
@@ -5255,7 +3784,7 @@ _source line 3453 · 2026-05-29T21:11:07.763761+00:00_
 
 ### Tool call
 
-_source line 3454 · 2026-05-29T21:11:29.174824+00:00_
+_source line 3386 · 2026-05-29T21:11:29.174824+00:00_
 
 called Edit
 
@@ -5295,7 +3824,7 @@ called Edit
 
 ### Tool result
 
-_source line 3455 · 2026-05-29T21:11:29.175294+00:00_
+_source line 3387 · 2026-05-29T21:11:29.175294+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -5317,7 +3846,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3456 · 2026-05-29T21:11:33.039371+00:00_
+_source line 3388 · 2026-05-29T21:11:33.039371+00:00_
 
 called mcp__agent-ml-research__compute_coverage_matrix
 
@@ -5351,7 +3880,7 @@ called mcp__agent-ml-research__compute_coverage_matrix
 
 ### Tool result
 
-_source line 3457 · 2026-05-29T21:11:33.442647+00:00_
+_source line 3389 · 2026-05-29T21:11:33.442647+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"claims\": [1, 3], \"matrix\": {\"1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim 1 的 fake safety 定量数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\"}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"Claim 1 术语验证完成后，决定是否需要 full A1 re-eval (800ep with fixed script) 还是 50ep sanity check 足够\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"已有 800ep obstacle displacement + TSR=0% 双证据，无需重跑\"}, {\"id\": \"plan_014\", \"claim\": 1, \"description\": \"dfCAR threshold sensitivity analysis (CPU-only): 在 δ={2mm, 5mm, 10mm, 20mm, 50mm, 100mm} 上计算 filtered CAR/FSR，展示 threshold robustness\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"analysis_threshold_sensitivity\", \"status\": \"DONE\", \"notes\": \"threshold_sensitivity.csv 已产出。Dream 三档均要求。δ∈[2mm, 200mm] dfCAR 完全不变\", \"conclusion\": \"success\", \"metrics\": {\"dfCAR_stable_range_mm\": \"[2, 200]\", \"n_models\": 8, \"n_thresholds\": 8, \"n_active_equals_n_total_at_200mm\": true, \"max_dfCAR_variation_2_to_200mm\": 0, \"min_displacement_m\": 0.271, \"conclusion\": \"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below thresho
 …[truncated 8940 chars]
@@ -5374,7 +3903,7 @@ _source line 3457 · 2026-05-29T21:11:33.442647+00:00_
 
 ### Tool call
 
-_source line 3458 · 2026-05-29T21:12:16.551886+00:00_
+_source line 3390 · 2026-05-29T21:12:16.551886+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5410,7 +3939,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3459 · 2026-05-29T21:12:19.462334+00:00_
+_source line 3391 · 2026-05-29T21:12:19.462334+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -5432,7 +3961,7 @@ _source line 3459 · 2026-05-29T21:12:19.462334+00:00_
 
 ### Assistant
 
-_source line 3460 · 2026-05-29T21:12:21.265885+00:00_
+_source line 3392 · 2026-05-29T21:12:21.265885+00:00_
 
 Coverage matrix 结果：
 
@@ -5467,7 +3996,7 @@ Claim 3 大幅提升（8 个 done 被正确链接）。Claim 1 因新增 3 个 p
 
 ### User
 
-_source line 3461 · 2026-05-30T02:04:08.406070+00:00_
+_source line 3393 · 2026-05-30T02:04:08.406070+00:00_
 
 [Director 指令] [Director 指令] 服务器恢复执行 checklist
 
@@ -5517,7 +4046,7 @@ _source line 3461 · 2026-05-30T02:04:08.406070+00:00_
 
 ### Tool call
 
-_source line 3462 · 2026-05-30T02:04:20.973538+00:00_
+_source line 3394 · 2026-05-30T02:04:20.973538+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5555,7 +4084,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3463 · 2026-05-30T02:04:21.478603+00:00_
+_source line 3395 · 2026-05-30T02:04:21.478603+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3797}}"}
 
@@ -5577,7 +4106,7 @@ _source line 3463 · 2026-05-30T02:04:21.478603+00:00_
 
 ### Tool call
 
-_source line 3464 · 2026-05-30T02:04:21.579466+00:00_
+_source line 3396 · 2026-05-30T02:04:21.579466+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5615,7 +4144,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3465 · 2026-05-30T02:04:21.680115+00:00_
+_source line 3397 · 2026-05-30T02:04:21.680115+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/memory.md\", \"content\": \"# Memory\\n\\n## Fig 5 数据更新 (2026-05-27)\\n- λ=0 现在有 3 seeds: s0=57%, s1=52.5%, s2=55% → CAR 54.83±2.26%\\n- λ=0.1 只有 2 seeds: s0=58%, s1=58.5% → CAR 58.25±0.35% (s2 training)\\n\\n## CoRL 2026 提交要求 (2026-05-28)\\n- **平台**: OpenReview (https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference)\\n- **DDL**: Abstract 2026-05-25, Full Paper 2026-05-29\\n- **会议**: 2026-11-09 ~ 11-12, Austin, TX\\n- **页数**: 正文 8 页（含 Limitations），Acknowledgments/References/Appendix 不计入\\n- **模板**: `\\\\usepackage{corl_2026}`（submission），`\\\\usepackage[final]{corl_2026}`（camera-ready 9 页）\\n- **附录**: 放在同一 PDF 末尾，不另交文件\\n- **Supplementary**: 通过 OpenReview 上传单个 zip（可含代码/数据，不含视频）\\n- **视频**: 鼓励提交，≤250MB / ~3分钟，必须外部托管（YouTube 等），PMLR 不允许视频在 supplementary 中\\n- **代码/数据**: 鼓励提供链接，写在论文正文中\\n- **AI 声明**: 提交时必须简要说明 LLM/生成式 AI 使用情况\\n- **审稿**: 每位有 3+ 篇投稿的作者必须同意担任审稿人，否则可能 desk-reject\\n- **匿名**: 提交阶段必须匿名\\n\\n### 当前 PDF 状态\\n- main.pdf: 18 页（正文 8 页 + References 2 页 + Appendix 8 页）\\n- ⚠️ Limitations 段末尾溢出 ~2 行到第 9 页，需要修剪\\n- 已匿名，使用 submission 模式模板\\n- paper_switch.py --verify 全部通过\\n\", \"total_chars\": 1024, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
 
@@ -5637,7 +4166,7 @@ _source line 3465 · 2026-05-30T02:04:21.680115+00:00_
 
 ### Tool call
 
-_source line 3466 · 2026-05-30T02:04:28.506623+00:00_
+_source line 3398 · 2026-05-30T02:04:28.506623+00:00_
 
 called Bash
 
@@ -5673,7 +4202,7 @@ called Bash
 
 ### Tool result
 
-_source line 3467 · 2026-05-30T02:04:28.809099+00:00_
+_source line 3399 · 2026-05-30T02:04:28.809099+00:00_
 
 File not found, trying alternative
 
@@ -5695,7 +4224,7 @@ File not found, trying alternative
 
 ### Tool call
 
-_source line 3468 · 2026-05-30T02:04:31.744834+00:00_
+_source line 3400 · 2026-05-30T02:04:31.744834+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5735,7 +4264,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3469 · 2026-05-30T02:04:32.198916+00:00_
+_source line 3401 · 2026-05-30T02:04:32.198916+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_oracle_pi05_lora_s0\": {\"spec\": {\"command\": \"eval_pi05_safelibero.py --true_oracle --adaptive_alpha --sdf_gt_path /root/colliforce-vla/data/sdf_gt_object_chocolate.npz --n_episodes 40 --seed 7 --suite safelibero_object\", \"server\": \"westd-35807\", \"data_path\": \"/root/colliforce-vla/data/sdf_gt_object_chocolate.npz\", \"data_count\": 160, \"model_name\": \"pi05_lora_baseline_object_pudding_seed0\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/pi05_lora_baseline_object_pudding_seed0/30000\", \"eval_data\": \"safelibero_object level II\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\", \"failure_reason\": \"Worker context exhausted before eval launched\"}, \"metrics\": {\"avg_TSR\": 0.506, \"avg_CAR\": 0.519, \"per_task\": {\"orange_juice\": {\"TSR\": 0.25, \"CAR\": 0.5, \"smoothness\": 0.000786, \"max_disp\": 0.0513}, \"chocolate_pudding\": {\"TSR\": 0.9, \"CAR\": 0.75, \"smoothness\": 0.000776, \"max_disp\": 0.047}, \"milk\": {\"TSR\": 0.275, \"CAR\": 0.7, \"smoothness\": 0.000574, \"max_disp\": 0.0388}, \"bbq_sauce\": {\"TSR\": 0.6, \"CAR\": 0.125, \"smoothness\": 0.000618, \"max_disp\": 0.0944}}, \"suite\": \"safelibero_object\", \"eval_seed\": 7, \"n_episodes\": 40, \"true_oracle\": true, \"adaptive_alpha\": true, \"refine_alpha\": 0.01, \"refine_margin\": 0.05, \"collision_threshold\": 0.001}}, \"eval_multiseed_sdf_l01_s0_eseed99\": {\"spec\": {\"command\": \"eval completed\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:3\"], \"pid\": \"85399\", \"log_path\": \"~/runs/diff_collision_sdf/eval_multiseed_sdf_l01_s0_eseed99.log\", \"submitted_at\": \"2026-05-28T09:11:32.469Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"a1_sdf_pi05_object_pudding_seed0_l01\", \"seed\": 99, \"checkpoint_source\": \"/root/autodl-tmp
 …[truncated 3010 chars]
@@ -5758,7 +4287,7 @@ _source line 3469 · 2026-05-30T02:04:32.198916+00:00_
 
 ### Tool call
 
-_source line 3470 · 2026-05-30T02:04:42.686017+00:00_
+_source line 3402 · 2026-05-30T02:04:42.686017+00:00_
 
 called Agent
 
@@ -5796,7 +4325,7 @@ called Agent
 
 ### Tool call
 
-_source line 3471 · 2026-05-30T02:04:47.352247+00:00_
+_source line 3403 · 2026-05-30T02:04:47.352247+00:00_
 
 called ToolSearch
 
@@ -5832,7 +4361,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3472 · 2026-05-30T02:04:47.453092+00:00_
+_source line 3404 · 2026-05-30T02:04:47.453092+00:00_
 
 
 
@@ -5854,7 +4383,7 @@ _source line 3472 · 2026-05-30T02:04:47.453092+00:00_
 
 ### Tool call
 
-_source line 3473 · 2026-05-30T02:04:51.166288+00:00_
+_source line 3405 · 2026-05-30T02:04:51.166288+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5892,7 +4421,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 3474 · 2026-05-30T02:04:51.216961+00:00_
+_source line 3406 · 2026-05-30T02:04:51.216961+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -5921,7 +4450,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 3475 · 2026-05-30T02:04:51.669893+00:00_
+_source line 3407 · 2026-05-30T02:04:51.669893+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5957,7 +4486,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3476 · 2026-05-30T02:04:51.971314+00:00_
+_source line 3408 · 2026-05-30T02:04:51.971314+00:00_
 
 Error: result (231,438 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780106691893.txt.
 Format: JSON with schema: {result: string}
@@ -5984,7 +4513,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 3477 · 2026-05-30T02:04:51.971795+00:00_
+_source line 3409 · 2026-05-30T02:04:51.971795+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -6018,7 +4547,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 3478 · 2026-05-30T02:04:52.072695+00:00_
+_source line 3410 · 2026-05-30T02:04:52.072695+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -6040,7 +4569,7 @@ _source line 3478 · 2026-05-30T02:04:52.072695+00:00_
 
 ### Tool result
 
-_source line 3479 · 2026-05-30T02:04:52.073583+00:00_
+_source line 3411 · 2026-05-30T02:04:52.073583+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 137 个实验 — DONE 136, PREPARING 1\\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-35807**: ❌ 连接失败\\n- **westd-45947**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 o\\n- `train_pi05_a1_obj_s3_l01_v2` [failed] — 2026-05-29T11:41:43 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 o\\n- `train_pi05_a1_obj_s3_l01` [failed] — 2026-05-29T04:44:32 — Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at \\n- `train_pi05_lora_baseline_s3` [failed] — 2026-05-29T04:02:03 — LeRobot dataset API incompatibility: torch.stack() received HF Column instead of\\n- `eval_oracle_pi05_lora_s0` [success] — 2026-05-29T01:34:39\\n\\n### 🔴 最近失败原因 (top 3)\\n- `train_pi05_lora_baseline_s3_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01`: Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-29\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- eval_oracle_pi05
 …[truncated 3218 chars]
@@ -6063,7 +4592,7 @@ _source line 3479 · 2026-05-30T02:04:52.073583+00:00_
 
 ### Tool result
 
-_source line 3480 · 2026-05-30T02:04:52.073987+00:00_
+_source line 3412 · 2026-05-30T02:04:52.073987+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 23:49 UTC | 更新原因: Offensive 论文升级完成，更新真实状态\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Post-DDL，ICRA 2027 准备（DDL ~Sep 2026，~3.5 月窗口）\\n- **CoRL 2026**: DDL 已过（M067），用户提交状态待确认\\n- **论文**: ICRA 双栏 6+1 页，6 项 offensive 升级完成（positioning、practical implications、系统性排除表、两 regime 结构、eval-seed robustness、demo curation 钩子），Reviewer 最终验证中\\n- **代码全部就绪**: Demo curation 标注 + RoboCasa eval + fine-tune config 三件套\\n- **通信阻塞**: Feishu API 月配额耗尽，6/1 重置\\n\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n| Pi0.5 LoRA oracle | 1 | 51.9% | 50.6% | — |\\n\\n## 服务器恢复后 Ablation 优先级（D049）\\n\\n| # | Ablation | 成本 | 防御目标 |\\n|---|----------|------|----------|\\n| **1** | Pi0.5 baseline +2 seeds | 10 GPU-hrs | Claim 1 基准稳定性 |\\n| **2** | Demo collision-free 标注 | CPU 10min | P0 demo curation 前置 |\\n| **3** | Demo curation training 多 ratio | 756 GPU-hrs | R3 正向贡献 |\\n| **4** | OpenVLA zero-shot eval | 5 GPU-hrs | R1 generalizability |\\n| **5** | seed3 λ=0.1 重启 | 40 GPU-hrs | 统计功效 |\\n| **6** | RoboCasa benchmark | 378 GPU-hrs | R1 跨 benchmark |\\n\\n## 基础设施\\n- **westd-35807/45947**: 离线（已向 Manager 报告，无回复，Feishu 配额耗尽无法跟进）\\n- **Feishu API**: 6/1 重置\\n- 137 实验：136 DONE + 1 PREPARING\\n\\n## 近期任务\\n- [x] Demo curation 标注脚本 + RoboCasa eval + config\\n- [x] ICRA 双栏格式转换 + 6 项 offensive 升级\\n- [x] paper_framing.md D049 补强\\n- [x] experiment_plan.yaml registry_id
 …[truncated 1557 chars]
@@ -6086,7 +4615,7 @@ _source line 3480 · 2026-05-30T02:04:52.073987+00:00_
 
 ### Tool call
 
-_source line 3481 · 2026-05-30T02:05:08.302298+00:00_
+_source line 3413 · 2026-05-30T02:05:08.302298+00:00_
 
 called Bash
 
@@ -6122,7 +4651,7 @@ called Bash
 
 ### Tool result
 
-_source line 3482 · 2026-05-30T02:05:08.605257+00:00_
+_source line 3414 · 2026-05-30T02:05:08.605257+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -6149,7 +4678,7 @@ AttributeError: 'NoneType' object has no attribute 'get'
 
 ### Tool call
 
-_source line 3483 · 2026-05-30T02:05:15.330999+00:00_
+_source line 3415 · 2026-05-30T02:05:15.330999+00:00_
 
 called Bash
 
@@ -6185,7 +4714,7 @@ called Bash
 
 ### Tool result
 
-_source line 3484 · 2026-05-30T02:05:15.431840+00:00_
+_source line 3416 · 2026-05-30T02:05:15.431840+00:00_
 
 Top keys: ['success', 'data', 'error', 'metadata']
 Data keys (first 20): ['experiments', 'count', 'total', 'baseline']
@@ -6211,7 +4740,7 @@ First entry keys: ['train_pi05_lora_baseline_s3_v2', 'train_pi05_a1_obj_s3_l01_v
 
 ### Tool call
 
-_source line 3485 · 2026-05-30T02:05:31.704199+00:00_
+_source line 3417 · 2026-05-30T02:05:31.704199+00:00_
 
 called Bash
 
@@ -6247,7 +4776,7 @@ called Bash
 
 ### Tool result
 
-_source line 3486 · 2026-05-30T02:05:31.855585+00:00_
+_source line 3418 · 2026-05-30T02:05:31.855585+00:00_
 
 Found 37 matching experiments:
   baseline_lora_object_pudding_s0: status=DONE, conclusion=success, CAR=, TSR=
@@ -6296,7 +4825,7 @@ Found 37 matching experiments:
 
 ### Tool call
 
-_source line 3487 · 2026-05-30T02:05:45.806073+00:00_
+_source line 3419 · 2026-05-30T02:05:45.806073+00:00_
 
 called Bash
 
@@ -6332,7 +4861,7 @@ called Bash
 
 ### Tool result
 
-_source line 3488 · 2026-05-30T02:05:45.906983+00:00_
+_source line 3420 · 2026-05-30T02:05:45.906983+00:00_
 
 === eval_pi05_safelibero_object_v11 ===
 {
@@ -6404,7 +4933,7 @@ _source line 3488 · 2026-05-30T02:05:45.906983+00:00_
 
 ### Tool call
 
-_source line 3489 · 2026-05-30T02:05:59.555643+00:00_
+_source line 3421 · 2026-05-30T02:05:59.555643+00:00_
 
 called Bash
 
@@ -6440,7 +4969,7 @@ called Bash
 
 ### Tool result
 
-_source line 3490 · 2026-05-30T02:05:59.606358+00:00_
+_source line 3422 · 2026-05-30T02:05:59.606358+00:00_
 
 === eval_lora_baseline_30k_s0_reeval ===
 {
@@ -6512,7 +5041,7 @@ _source line 3490 · 2026-05-30T02:05:59.606358+00:00_
 
 ### Tool result
 
-_source line 3491 · 2026-05-30T02:06:22.840716+00:00_
+_source line 3423 · 2026-05-30T02:06:22.840716+00:00_
 
 Now I have all the information. Here are the results:
 
@@ -6575,7 +5104,7 @@ python scripts/eval_pi05_safelibero.py --suite safelibero_object --safety_level 
 
 ### Tool call
 
-_source line 3492 · 2026-05-30T02:08:19.917237+00:00_
+_source line 3424 · 2026-05-30T02:08:19.917237+00:00_
 
 called Write
 
@@ -6611,7 +5140,7 @@ called Write
 
 ### Tool result
 
-_source line 3493 · 2026-05-30T02:08:19.968479+00:00_
+_source line 3425 · 2026-05-30T02:08:19.968479+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/recovery_checklist.md
 
@@ -6633,7 +5162,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool call
 
-_source line 3494 · 2026-05-30T02:08:28.398744+00:00_
+_source line 3426 · 2026-05-30T02:08:28.398744+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -6677,7 +5206,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 3495 · 2026-05-30T02:08:28.599904+00:00_
+_source line 3427 · 2026-05-30T02:08:28.599904+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260530_cb35b7\", \"name\": \"recovery_checklist.md\", \"type\": \"report\", \"description\": \"Server recovery execution checklist — zero-debug commands for Pi0.5 baseline +2 seeds eval, demo collision labeling, D049 #3-6 prep, and fault handling. All commands copy-paste ready.\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/report/recovery_checklist.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-30T02:08:28.385796+00:00\", \"tags\": [\"recovery\", \"checklist\", \"D049\", \"ICRA\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6699,7 +5228,7 @@ _source line 3495 · 2026-05-30T02:08:28.599904+00:00_
 
 ### Tool call
 
-_source line 3496 · 2026-05-30T02:08:49.245604+00:00_
+_source line 3428 · 2026-05-30T02:08:49.245604+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -6735,7 +5264,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3497 · 2026-05-30T02:08:52.308327+00:00_
+_source line 3429 · 2026-05-30T02:08:52.308327+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -6757,7 +5286,7 @@ _source line 3497 · 2026-05-30T02:08:52.308327+00:00_
 
 ### Assistant
 
-_source line 3498 · 2026-05-30T02:08:54.450911+00:00_
+_source line 3430 · 2026-05-30T02:08:54.450911+00:00_
 
 Now I have all the context. Let me write the recovery checklist.
 
@@ -6784,7 +5313,7 @@ Now I have all the context. Let me write the recovery checklist.
 
 ### User
 
-_source line 3499 · 2026-05-30T02:13:14.905141+00:00_
+_source line 3431 · 2026-05-30T02:13:14.905141+00:00_
 
 [Director 指令] [Director 指令] experiment_plan.yaml 补录 Claim 2 + 状态清理
 
@@ -6818,7 +5347,7 @@ status=PREPARING 但实际未执行（服务器离线），标为 failed 或删�
 
 ### Tool call
 
-_source line 3500 · 2026-05-30T02:13:21.359309+00:00_
+_source line 3432 · 2026-05-30T02:13:21.359309+00:00_
 
 called Read
 
@@ -6854,7 +5383,7 @@ called Read
 
 ### Tool result
 
-_source line 3501 · 2026-05-30T02:13:21.410669+00:00_
+_source line 3433 · 2026-05-30T02:13:21.410669+00:00_
 
 170	  status: planned
 171	  notes: 'CPU-only ~10min。脚本已完成: artifacts/scripts/demo_collision_label.py (art_20260529_c18a72)'
@@ -6906,7 +5435,7 @@ _source line 3501 · 2026-05-30T02:13:21.410669+00:00_
 
 ### Tool call
 
-_source line 3502 · 2026-05-30T02:13:29.440126+00:00_
+_source line 3434 · 2026-05-30T02:13:29.440126+00:00_
 
 called Agent
 
@@ -6944,7 +5473,7 @@ called Agent
 
 ### Tool call
 
-_source line 3503 · 2026-05-30T02:13:33.251896+00:00_
+_source line 3435 · 2026-05-30T02:13:33.251896+00:00_
 
 called ToolSearch
 
@@ -6980,7 +5509,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3504 · 2026-05-30T02:13:33.252342+00:00_
+_source line 3436 · 2026-05-30T02:13:33.252342+00:00_
 
 
 
@@ -7002,7 +5531,7 @@ _source line 3504 · 2026-05-30T02:13:33.252342+00:00_
 
 ### Tool call
 
-_source line 3505 · 2026-05-30T02:13:39.927810+00:00_
+_source line 3437 · 2026-05-30T02:13:39.927810+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7040,7 +5569,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3506 · 2026-05-30T02:13:40.329645+00:00_
+_source line 3438 · 2026-05-30T02:13:40.329645+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3737}}"}
 
@@ -7062,7 +5591,7 @@ _source line 3506 · 2026-05-30T02:13:40.329645+00:00_
 
 ### Tool call
 
-_source line 3507 · 2026-05-30T02:13:40.831844+00:00_
+_source line 3439 · 2026-05-30T02:13:40.831844+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7100,7 +5629,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3508 · 2026-05-30T02:13:41.337282+00:00_
+_source line 3440 · 2026-05-30T02:13:41.337282+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.347}}"}
 
@@ -7122,7 +5651,7 @@ _source line 3508 · 2026-05-30T02:13:41.337282+00:00_
 
 ### Tool call
 
-_source line 3509 · 2026-05-30T02:13:41.337735+00:00_
+_source line 3441 · 2026-05-30T02:13:41.337735+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7160,7 +5689,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3510 · 2026-05-30T02:13:41.789615+00:00_
+_source line 3442 · 2026-05-30T02:13:41.789615+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3637}}"}
 
@@ -7182,7 +5711,7 @@ _source line 3510 · 2026-05-30T02:13:41.789615+00:00_
 
 ### Tool call
 
-_source line 3511 · 2026-05-30T02:13:42.743340+00:00_
+_source line 3443 · 2026-05-30T02:13:42.743340+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7220,7 +5749,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3512 · 2026-05-30T02:13:43.195294+00:00_
+_source line 3444 · 2026-05-30T02:13:43.195294+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3413}}"}
 
@@ -7242,7 +5771,7 @@ _source line 3512 · 2026-05-30T02:13:43.195294+00:00_
 
 ### Tool call
 
-_source line 3513 · 2026-05-30T02:13:43.296769+00:00_
+_source line 3445 · 2026-05-30T02:13:43.296769+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7280,7 +5809,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3514 · 2026-05-30T02:13:43.648388+00:00_
+_source line 3446 · 2026-05-30T02:13:43.648388+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3461}}"}
 
@@ -7302,7 +5831,7 @@ _source line 3514 · 2026-05-30T02:13:43.648388+00:00_
 
 ### Tool call
 
-_source line 3515 · 2026-05-30T02:13:49.821177+00:00_
+_source line 3447 · 2026-05-30T02:13:49.821177+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7340,7 +5869,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3516 · 2026-05-30T02:13:50.775856+00:00_
+_source line 3448 · 2026-05-30T02:13:50.775856+00:00_
 
 Error: result (231,438 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-projects-diff-collision-sdf--claude-sessions-agent-e2e2cb9d/abf6c99c-7679-49b2-a571-d9580bb7af2c/tool-results/mcp-agent-ml-research-read_registry-1780107230759.txt.
 Format: JSON with schema: {result: string}
@@ -7367,7 +5896,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 3517 · 2026-05-30T02:14:01.682850+00:00_
+_source line 3449 · 2026-05-30T02:14:01.682850+00:00_
 
 called Bash
 
@@ -7403,7 +5932,7 @@ called Bash
 
 ### Tool result
 
-_source line 3518 · 2026-05-30T02:14:01.909835+00:00_
+_source line 3450 · 2026-05-30T02:14:01.909835+00:00_
 
 EXP_ID: oracle_true_gt_adaptive_alpha_v11
   status: DONE
@@ -7464,7 +5993,7 @@ EXP_ID: eval_oracle_pi05_lora_s0_r1
 
 ### Tool call
 
-_source line 3519 · 2026-05-30T02:14:13.149814+00:00_
+_source line 3451 · 2026-05-30T02:14:13.149814+00:00_
 
 called Bash
 
@@ -7500,7 +6029,7 @@ called Bash
 
 ### Tool result
 
-_source line 3520 · 2026-05-30T02:14:13.200471+00:00_
+_source line 3452 · 2026-05-30T02:14:13.200471+00:00_
 
 oracle_true_gt_adaptive_alpha_v11|DONE|negative|75|0|True oracle SDF with adaptive alpha (min(0.1, 0.5*action_norm)) prevents overcor...
 oracle_true_gt_fixed_alpha_v11|DONE|negative|73.1|0|True oracle SDF with conservative fixed alpha=0.005 (≈0.5x typical action_norm) ...
@@ -7527,7 +6056,7 @@ eval_oracle_pi05_lora_s0_r1|PREPARING|failed|N/A|N/A|EE-only oracle SDF refineme
 
 ### Tool result
 
-_source line 3521 · 2026-05-30T02:14:24.592318+00:00_
+_source line 3453 · 2026-05-30T02:14:24.592318+00:00_
 
 Results:
 
@@ -7568,7 +6097,7 @@ duration_ms: 55176&lt;/usage>
 
 ### Tool call
 
-_source line 3522 · 2026-05-30T02:14:40.774795+00:00_
+_source line 3454 · 2026-05-30T02:14:40.774795+00:00_
 
 called Edit
 
@@ -7608,7 +6137,7 @@ called Edit
 
 ### Tool result
 
-_source line 3523 · 2026-05-30T02:14:40.775287+00:00_
+_source line 3455 · 2026-05-30T02:14:40.775287+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/experiment_plan.yaml has been updated successfully.
 
@@ -7630,7 +6159,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 3524 · 2026-05-30T02:14:44.738031+00:00_
+_source line 3456 · 2026-05-30T02:14:44.738031+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7670,7 +6199,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3525 · 2026-05-30T02:14:45.091744+00:00_
+_source line 3457 · 2026-05-30T02:14:45.091744+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3478}}"}
 
@@ -7692,7 +6221,7 @@ _source line 3525 · 2026-05-30T02:14:45.091744+00:00_
 
 ### Tool call
 
-_source line 3526 · 2026-05-30T02:14:47.851742+00:00_
+_source line 3458 · 2026-05-30T02:14:47.851742+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7732,7 +6261,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3527 · 2026-05-30T02:14:48.504176+00:00_
+_source line 3459 · 2026-05-30T02:14:48.504176+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_oracle_pi05_lora_s0_r1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T01:23:37.027Z\", \"updated_at\": \"2026-05-30T02:14:48.224Z\", \"hypothesis\": \"EE-only oracle SDF refinement reduces CAR on non-action-collapsed Pi0.5 LoRA models (CAR=54.83%, 0% frozen), confirming that the counterproductive effect (Claim 2) is structural rather than an artifact of action-collapsed baselines\", \"parent\": \"eval_oracle_pi05_lora_s0\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6246}}"}
 
@@ -7754,7 +6283,7 @@ _source line 3527 · 2026-05-30T02:14:48.504176+00:00_
 
 ### Tool call
 
-_source line 3528 · 2026-05-30T02:14:52.117626+00:00_
+_source line 3460 · 2026-05-30T02:14:52.117626+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7794,7 +6323,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3529 · 2026-05-30T02:14:52.720345+00:00_
+_source line 3461 · 2026-05-30T02:14:52.720345+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_oracle_pi05_lora_s0_r1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T01:23:37.027Z\", \"updated_at\": \"2026-05-30T02:14:52.433Z\", \"hypothesis\": \"EE-only oracle SDF refinement reduces CAR on non-action-collapsed Pi0.5 LoRA models (CAR=54.83%, 0% frozen), confirming that the counterproductive effect (Claim 2) is structural rather than an artifact of action-collapsed baselines\", \"parent\": \"eval_oracle_pi05_lora_s0\", \"conclusion\": \"failed\", \"notes\": \"Never executed — servers went offline before launch. Superseded by eval_oracle_pi05_lora_s0 which already confirmed the hypothesis.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6086}}"}
 
@@ -7816,7 +6345,7 @@ _source line 3529 · 2026-05-30T02:14:52.720345+00:00_
 
 ### Tool call
 
-_source line 3530 · 2026-05-30T02:14:55.079333+00:00_
+_source line 3462 · 2026-05-30T02:14:55.079333+00:00_
 
 called mcp__agent-ml-research__compute_coverage_matrix
 
@@ -7850,7 +6379,7 @@ called mcp__agent-ml-research__compute_coverage_matrix
 
 ### Tool result
 
-_source line 3531 · 2026-05-30T02:14:55.432186+00:00_
+_source line 3463 · 2026-05-30T02:14:55.432186+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"claims\": [1, 2, 3], \"matrix\": {\"1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"A1 EE displacement re-eval: 用修复后脚本重跑 A1 model eval (50 episodes)，获取真实 EE displacement 验证 Claim 1 的 fake safety 定量数据\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"旧 Pi0 A1 checkpoint 已删除无法恢复; 现有 800ep obstacle disp + TSR=0% 双证据链足够\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OpenVLA zero-shot SafeLIBERO eval: 验证 fake safety (或 geometric path safety) 在第三 model family 上存在。Base OpenVLA-7B on object_pudding 200 episodes\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"模型下载损坏 + 无 eval script; 论文改为 scope limitation acknowledgment\"}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"Claim 1 术语验证完成后，决定是否需要 full A1 re-eval (800ep with fixed script) 还是 50ep sanity check 足够\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\", \"notes\": \"已有 800ep obstacle displacement + TSR=0% 双证据，无需重跑\"}, {\"id\": \"plan_014\", \"claim\": 1, \"description\": \"dfCAR threshold sensitivity analysis (CPU-only): 在 δ={2mm, 5mm, 10mm, 20mm, 50mm, 100mm} 上计算 filtered CAR/FSR，展示 threshold robustness\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"analysis_threshold_sensitivity\", \"status\": \"DONE\", \"notes\": \"threshold_sensitivity.csv 已产出。Dream 三档均要求。δ∈[2mm, 200mm] dfCAR 完全不变\", \"conclusion\": \"success\", \"metrics\": {\"dfCAR_stable_range_mm\": \"[2, 200]\", \"n_models\": 8, \"n_thresholds\": 8, \"n_active_equals_n_total_at_200mm\": true, \"max_dfCAR_variation_2_to_200mm\": 0, \"min_displacement_m\": 0.271, \"conclusion\": \"dfCAR perfectly invariant across tau_d in [2, 200] mm for all 8 model-seed combinations; only at 300mm do 1-2 episodes fall below thre
 …[truncated 13743 chars]
@@ -7873,7 +6402,7 @@ _source line 3531 · 2026-05-30T02:14:55.432186+00:00_
 
 ### Tool call
 
-_source line 3532 · 2026-05-30T02:17:10.748337+00:00_
+_source line 3464 · 2026-05-30T02:17:10.748337+00:00_
 
 called ToolSearch
 
@@ -7909,7 +6438,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3533 · 2026-05-30T02:17:10.748721+00:00_
+_source line 3465 · 2026-05-30T02:17:10.748721+00:00_
 
 
 
@@ -7931,7 +6460,7 @@ _source line 3533 · 2026-05-30T02:17:10.748721+00:00_
 
 ### Tool call
 
-_source line 3534 · 2026-05-30T02:17:13.257646+00:00_
+_source line 3466 · 2026-05-30T02:17:13.257646+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7965,7 +6494,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 3535 · 2026-05-30T02:17:13.759744+00:00_
+_source line 3467 · 2026-05-30T02:17:13.759744+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_best_s0_l005\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-27T23:03:13.282Z\", \"updated_at\": \"2026-05-27T23:03:27.166Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, lambda=0.005) using final checkpoint step 30000. No separate best/ saved for seed0; 30000 is the only available checkpoint. Completes 3-seed best-checkpoint coverage.\", \"parent\": \"train_pi05_a1_obj_s0_l005\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0111}}"}
 
@@ -7987,7 +6516,7 @@ _source line 3535 · 2026-05-30T02:17:13.759744+00:00_
 
 ### Tool call
 
-_source line 3536 · 2026-05-30T02:17:13.760152+00:00_
+_source line 3468 · 2026-05-30T02:17:13.760152+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8021,7 +6550,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 3537 · 2026-05-30T02:17:13.760383+00:00_
+_source line 3469 · 2026-05-30T02:17:13.760383+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -8050,7 +6579,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 3538 · 2026-05-30T02:17:14.212253+00:00_
+_source line 3470 · 2026-05-30T02:17:14.212253+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"train_pi05_a1_obj_s0_l005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T00:39:52.298Z\", \"updated_at\": \"2026-05-23T00:39:52.298Z\", \"notes\": \"Restarted from step 0 after P0 checkpoint collision fix. Speed ~1.21s/step (faster than initial 1.8s estimate). ETA ~10h from 00:14 UTC start → ~10:14 UTC. Loss at step ~717: action ~0.14, sdf ~0.035, ee ~0.10.\"}, \"a1_sdf_object_pudding_s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T14:44:11.030Z\", \"updated_at\": \"2026-05-20T14:51:12.103Z\", \"hypothesis\": \"SDF auxiliary task (decoder+EE extractor) improves collision awareness on object_pudding Level I — Phase 1 warmup SDF decoder (frozen backbone), Phase 2 unfreeze LoRA+SDF, expecting CAR improvement over baseline with TSR drop <10%. Paired with a1_sdf_spatial_bowl_s0_v3 to validate A1 method across both collision scenarios.\", \"notes\": \"[2026-05-20 14:49] 启动成功。PID 227389, cuda:1, step 4/30000, loss ~0.22, ~4.7s/it, VRAM 13376MiB. 注意：train_a1_sdf_aux.py 内部会 os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"]=str(args.gpu)，必须用 --gpu 1 而非 CUDA_VISIBLE_DEVICES=1 --gpu 0。\"}, \"baseline_object_pudding_s0_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T14:41:15.949Z\", \"updated_at\": \"2026-05-20T14:41:15.949Z\", \"notes\": \"[2026-05-20 14:39] Deep cleanup + restart: 清理旧 ckpt (6K/8K/10K/12K), 保留 14K/16K. Kill PID 95429, 新 PID 222982 via submit_training_job, cuda:2, 从 step 16000 resume. SAVE_TOTAL_LIMIT=2 生效. 磁盘 121G/350G (35%).\"}, \"baseline_spatial_bowl_s0_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T14:41:14.769Z\", \"updated_at\": \"2026-05-20T14:41:14.769Z\", \"notes\": \"[2026-05-20 14:39] Deep cleanup + restart: 清理旧 ckpt (6K/8K/10K), 保留 12K/14K. Kill PID 100319, 新 PID 222903 via submit_training_job, cuda:0, 从 step 14000 resume. SAVE_TOTAL_LIMIT=2 生效. 磁盘 121G/350G (35%).\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"me
 …[truncated 42 chars]
@@ -8073,7 +6602,7 @@ _source line 3538 · 2026-05-30T02:17:14.212253+00:00_
 
 ### Tool result
 
-_source line 3539 · 2026-05-30T02:17:14.212647+00:00_
+_source line 3471 · 2026-05-30T02:17:14.212647+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -8095,7 +6624,7 @@ _source line 3539 · 2026-05-30T02:17:14.212647+00:00_
 
 ### Tool call
 
-_source line 3540 · 2026-05-30T02:17:14.313260+00:00_
+_source line 3472 · 2026-05-30T02:17:14.313260+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -8131,7 +6660,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 3541 · 2026-05-30T02:17:14.364226+00:00_
+_source line 3473 · 2026-05-30T02:17:14.364226+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 137 个实验 — DONE 136, PREPARING 1\\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-35807**: ❌ 连接失败\\n- **westd-45947**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 o\\n- `train_pi05_a1_obj_s3_l01_v2` [failed] — 2026-05-29T11:41:43 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 o\\n- `train_pi05_a1_obj_s3_l01` [failed] — 2026-05-29T04:44:32 — Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at \\n- `train_pi05_lora_baseline_s3` [failed] — 2026-05-29T04:02:03 — LeRobot dataset API incompatibility: torch.stack() received HF Column instead of\\n- `eval_oracle_pi05_lora_s0` [success] — 2026-05-29T01:34:39\\n\\n### 🔴 最近失败原因 (top 3)\\n- `train_pi05_lora_baseline_s3_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 35807 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01_v2`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 45947 on 36.103.198.204\\n- `train_pi05_a1_obj_s3_l01`: Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-29\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- eval_oracle_pi05
 …[truncated 3218 chars]
@@ -8154,7 +6683,7 @@ _source line 3541 · 2026-05-30T02:17:14.364226+00:00_
 
 ### Tool call
 
-_source line 3542 · 2026-05-30T02:17:26.055922+00:00_
+_source line 3474 · 2026-05-30T02:17:26.055922+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -8188,7 +6717,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 3543 · 2026-05-30T02:17:26.106662+00:00_
+_source line 3475 · 2026-05-30T02:17:26.106662+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-30 02:09 UTC | 更新原因: 所有非 GPU 工作完成，等待服务器恢复\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Post-DDL，ICRA 2027 准备（DDL ~Sep 2026，~3.5 月窗口）\\n- **论文**: ICRA 双栏 6+1 页定稿——6 项 offensive 升级 + holistic read 修复 + Reviewer 全 PASS\\n- **审稿**: 已提交 Review Director（apr_20260530T002444_1cx4），等用户确认 review mode\\n- **代码**: 标注脚本 + RoboCasa eval + fine-tune config + recovery checklist 全部就绪\\n- **Negative 安全**: Reviewer 确认 25 个 negative 无一威胁当前 claims，22 个 failed 全技术原因无选择性排除\\n- **通信阻塞**: Feishu 6/1 重置\\n\\n## 可信 Reeval 数据汇总（seed=7, 200ep, rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n| Pi0.5 LoRA oracle | 1 | 51.9% | 50.6% | — |\\n\\n## 服务器恢复后执行计划（D049，recovery_checklist art_20260530_cb35b7）\\n\\n| Phase | 任务 | 耗时 | 服务器 |\\n|-------|------|------|--------|\\n| 0 | SSH + GPU + 磁盘 + 环境验证 | 5min | 两台 |\\n| 1 | Pi0.5 baseline eval seed42+99 | 2.5h | westd-35807 |\\n| 2 | Demo collision-free 标注 | 10min | 任一台 CPU |\\n| 3 | 前置准备（sync 脚本 + 依赖检查）| 30min | 两台 |\\n| 4 | Demo curation 训练（依赖 Phase 2 结果）| ~756 GPU-hrs | 两台 |\\n\\nPhase 1+2 同时启动，T+2.5h 完成两项最高优先。\\n\\n## 基础设施\\n- **westd-35807/45947**: 离线（已向 Manager 报告）\\n- **Feishu API**: 6/1 重置\\n- 137 实验：136 DONE + 1 PREPARING\\n\\n## 近期任务\\n- [x] 论文 ICRA 双栏定稿（offensive 升级 + holistic read 修复）\\n- [x] Reviewer 全文质检 PASS + negative results 威胁分析 PASS\\n- [x] Recovery checklist（art_20260530_cb35b7）\\n- [x] experiment_plan.yaml 修复（Claim 3 覆盖率 36%→62%）\
 …[truncated 1536 chars]
@@ -8211,7 +6740,7 @@ _source line 3543 · 2026-05-30T02:17:26.106662+00:00_
 
 ### Tool call
 
-_source line 3544 · 2026-05-30T02:17:40.134354+00:00_
+_source line 3476 · 2026-05-30T02:17:40.134354+00:00_
 
 called ToolSearch
 
@@ -8247,7 +6776,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3545 · 2026-05-30T02:17:40.185613+00:00_
+_source line 3477 · 2026-05-30T02:17:40.185613+00:00_
 
 
 
@@ -8269,7 +6798,7 @@ _source line 3545 · 2026-05-30T02:17:40.185613+00:00_
 
 ### Tool call
 
-_source line 3546 · 2026-05-30T02:18:03.510947+00:00_
+_source line 3478 · 2026-05-30T02:18:03.510947+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8305,7 +6834,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3547 · 2026-05-30T02:18:06.622867+00:00_
+_source line 3479 · 2026-05-30T02:18:06.622867+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -8327,7 +6856,7 @@ _source line 3547 · 2026-05-30T02:18:06.622867+00:00_
 
 ### Assistant
 
-_source line 3548 · 2026-05-30T02:18:13.932326+00:00_
+_source line 3480 · 2026-05-30T02:18:13.932326+00:00_
 
 Session 初始化完成。项目完全阻塞在服务器恢复——所有非 GPU 准备工作（脚本、checklist、论文、experiment plan）已就绪，服务器恢复后可立即按 recovery checklist 执行。已向 Director 汇报当前状态。
 

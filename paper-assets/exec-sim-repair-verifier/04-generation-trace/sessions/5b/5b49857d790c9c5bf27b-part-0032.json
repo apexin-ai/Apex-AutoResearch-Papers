@@ -1657,208 +1657,6 @@
         },
         {
           "source_line": 5664,
-          "timestamp": "2026-05-21T08:50:21.939241+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md",
-              "offset": "0",
-              "limit": "100"
-            }
-          },
-          "id": "event-005664"
-        },
-        {
-          "source_line": 5665,
-          "timestamp": "2026-05-21T08:50:21.990427+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "0\t# Rebuttal Framework — Pre-Submission Attack Surface Analysis\n1\t\n2\tDate: 2026-05-20 | Venue: EMNLP 2026 ARR\n3\t\n4\t---\n5\t\n6\t## Attack #1: CWM ≤8B LoRA ≠ Real 32B CWM\n7\t\n8\t### Reviewer 可能措辞\n9\t\n10\t> \"The CWM baseline is a ≤8B LoRA fine-tuned model, not the original 32B Code World Model with execution trace mid-training. The comparison is unfair—CWM was designed to operate at much larger scale with specialized pretraining. The paper's conclusion that 'generation degrades at repo level' may simply reflect insufficient model capacity rather than a fundamental formulation limitation.\"\n11\t\n12\t### 回应要点\n13\t\n14\t**核心论点：matched comparison at controlled capacity isolates formulation effect from scale confounds, which is complementary to—not competing with—scaling studies.**\n15\t\n16\t1. **Function-level 证明 LoRA 可以成功适配 CWM formulation。** CLS 和 CWM 在 function-level 达到统计等价（TOST p=0.007, 5 seeds, ±2pp margin），证明同一 LoRA 配置下 CWM formulation 能完全发挥作用。退化仅在 repo-level 出现，不是 LoRA 容量不足的全局问题。\n17\t\n18\t2. **退化模式指向 formulation 本身，而非容量瓶颈——四种标准干预全部失败。**\n19\t   - Format collapse (53–74% unparseable outputs) 是输出空间复杂度问题：function-level 输出为短字符串（integers, booleans），repo-level 输出为无约束执行轨迹（均值 ~477 tokens），错误呈乘性积累\n20\t   - 即使在可解析输出中，accuracy (38–43%) 仍低于 majority baseline (72.96%)，表明存在超越格式合规的语义鸿沟\n21\t   - **LoRA rank-32 ablation（双倍参数）：无改善（−0.51pp）**，排除 adapter 容量瓶颈\n22\t   - **Majority voting K=3：accuracy 反降 0.68pp**（87.51→86.83%），93.3% 样本三次一致，errors 是系统性偏差非随机噪声\n23\t   - **Relaxed matching（放宽格式要求）：accuracy 反降 1.06pp**（58.04→56.98%），因为 unparseable 默认为 majority class 比模型自身预测更准\n24\t   - **Model scaling 4B→8B：parseable-only accuracy 反降**（42.88→38.52%），表面 accuracy 提升完全是 default-assignment artifact\n25\t   - Matched-context ablation：输入差异仅解释 <3% 的 gap\n26\t   \n27\t   **每种干预分别靶向不同的替代解释（容量不足 / 随机噪声 / 解析严格 / 模型规模），全部失败。这构成 formulation-level bottleneck 的最强证据链。**\n28\t\n29\t   **Convergent null results summary (rebuttal 可直接引用):**\n30\t   > \"Four convergent null results strengthen this argument: (1) doubling model size yields +0.16pp (flat)\n…[truncated 4330 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-005665"
-        },
-        {
-          "source_line": 5666,
-          "timestamp": "2026-05-21T08:50:26.909749+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md",
-              "offset": "100",
-              "limit": "100"
-            }
-          },
-          "id": "event-005666"
-        },
-        {
-          "source_line": 5667,
-          "timestamp": "2026-05-21T08:50:27.060947+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "100\t   - Cross-model LPM：CWM deficit −22pp, z=−64.4, p<0.001\n101\t   - Formulation 解释 >95% of predictable variance\n102\t   - 这不是 \"suggestive evidence\"，而是 overwhelming statistical evidence for the interaction\n103\t\n104\t2. **Cross-model 方向一致性。** Qwen3 和 DeepSeek-Coder 两个架构不同的模型家族展现相同方向（CLS > CWM），model identity 仅调节 gap magnitude (+1.6pp interaction, z=2.8) 而不改变方向。\n105\t\n106\t3. **Gap magnitude 超过所有已评估 confounds。** §4.5 逐一评估 5 个潜在混淆因素，19–26pp gap 超过任何单个 confound（checkpoint <1pp, seq_length ~1.5pp, preprocessing ~8pp cross-config variance）。即使 confounds 相关，gap 的量级提供 substantial margin。\n107\t\n108\t4. **Holm-Bonferroni 控制 FWER。** 两个核心 claim 在校正后仍然 significant（adjusted p=0.012 and p=0.021）。\n109\t\n110\t5. **Variant-level power 分析。** 即使在 variant-level (n=48)，MDE (minimum detectable effect) ≈ 25pp（two-sided, α=0.05, power=0.8, McNemar's test）。观测到的 CLS–CWM gap 为 29–35pp（视配置），超过 MDE。也就是说：即使在 n=48 的严苛条件下，观测 gap 仍足够大以被统计检测到。这不是 underpowered——是 gap 太大了。\n111\t\n112\t### 回应要点（增补版：CWM multi-seed 数据到齐后）\n113\t\n114\t> \"We have completed multi-seed CWM replication. The [N]-seed mean CWM accuracy is [X]% ± [Y]%, confirming the single-seed finding. The CLS–CWM gap at repo level is [Z]pp (p=[value], [N] seeds), consistent with the per-test interaction effect (z=−23.7). This addresses the reviewer's concern about seed-specific artifacts.\"\n115\t\n116\t如果 multi-seed 方差大于预期：\n117\t> \"The multi-seed variance is [较大], but the gap remains directionally consistent across all seeds. The per-test interaction (z=−23.7, n=56,480) remains the primary evidence for complexity-dependent divergence; variant-level accuracy provides a practical summary statistic.\"\n118\t\n119\t### 支撑证据\n120\t\n121\t| Evidence | Location |\n122\t|----------|----------|\n123\t| Per-test LPM z=−23.7, n=56,480 | §4.3 |\n124\t| Cross-model z=−64.4 | §4.3 |\n125\t| Formulation explains >95% variance | §4.3 |\n126\t| 5 confounds assessed | §4.5, Appendix F |\n127\t| Holm-Bonferroni adjusted p | §4.5, Table 5 |\n128\t| Cross-model consistency | §4.3 |\n129\t\n130\t---\n131\t\n132\t#\n…[truncated 5153 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 151
-          },
-          "id": "event-005667"
-        },
-        {
-          "source_line": 5668,
-          "timestamp": "2026-05-21T08:50:31.076883+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md",
-              "offset": "200",
-              "limit": "60"
-            }
-          },
-          "id": "event-005668"
-        },
-        {
-          "source_line": 5669,
-          "timestamp": "2026-05-21T08:50:31.127612+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "200\t   - Failure localization（哪些测试失败）\n201\t   - Confidence estimation（多少测试通过 / 总测试数）\n202\t   - Selective re-execution（只重跑可疑测试）\n203\t   - 这些 downstream applications 未被 re-repair pilot 覆盖\n204\t\n205\t4. **诚实承认 limitation。** 论文已在 Limitations 中明确标注 re-repair negative + insufficient power。这是透明的科学报告，不是 weakness——reviewer 如果因此降分，可以在 rebuttal 中指出这恰恰是 rigorous self-assessment。\n206\t\n207\t---\n208\t\n209\t## 状态标注\n210\t\n211\t| 攻击面 | 当前防御强度 | 数据到齐后 |\n212\t|--------|------------|----------|\n213\t| #1 CWM scale | ★★★★ (4 convergent nulls + exec trace reframing + methodology argument) | ★★★★+ if 14B pilot confirms |\n214\t| #2 Single seed | ★★★★ (per-test LPM overwhelming + MDE analysis + variant gap > MDE) | ★★★★+ with multi-seed CWM |\n215\t| #3 Synthetic data | ★★★☆ (coupling effect + gold parse rate counter + 3 uniform-shift counters) | 不变（需要 real-bug training data 才能完全 close，超出 scope） |\n216\t| Q2 Re-repair | ★★★☆ (power analysis + oracle ceiling + broader diagnostic utility) | 需要 n≈200 re-repair 才能 close |\n217\t\n218\t---\n219\t\n220\t## 储备/待用\n221\t\n222\t以下素材已有数据支撑或数据部分就绪，reviewer 问到时可快速出图或展开论述。\n223\t\n224\t### Checkpoint Selection Sensitivity（储备，reviewer 问时出图）\n225\t\n226\t28 个 val/test checkpoint sweep 数据点已存在 registry，覆盖：\n227\t- CLS 8B: ckpt-1000 到 ckpt-6400，多个 seq_length\n228\t- CLS 4B: ckpt-800 到 ckpt-4600\n229\t- 跨 checkpoint 的 accuracy 波动 <1pp（例：s42 三个 ckpt = 85.34/84.48/85.29）\n230\t\n231\tReviewer 如果质疑 checkpoint selection bias，可在 rebuttal 期间 <1h 画出 sensitivity 图。\n232\t\n233\t### CWM Epoch-wise Accuracy Curve（储备，等数据到齐后画）\n234\t\n235\t已有数据点：\n236\t- s42: epoch 2 = 66.85% (partial coverage 31.2%), epoch 3 = 61.49%\n237\t- s123-v2: epoch 1 = 75.45% (checkpoint-4209)\n238\t- s456-v2: 训练中，epoch 2 eval_loss = 4.727\n239\t\n240\t完整 multi-seed epoch 曲线需要：\n241\t- s123-v3 和 s456-v2 完成 3-epoch 训练后的 final accuracy\n242\t- 各 seed 的 epoch 1/2 checkpoint eval（如果 checkpoint 保留了的话）\n243\t\n244\t用途：证明 CWM 在 repo-level 随训练推进而退化，支撑 \"CWM generation + long traces = fundamental mismatch\" 的论点。\n245\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-005669"
-        },
-        {
-          "source_line": 5670,
-          "timestamp": "2026-05-21T08:50:47.360641+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md",
-              "old_string": "   数据来源：\n   - CLS: registry cls8b-s42 系列\n   - CWM epoch 2→3: deepseek-cwm-repo-s42 (66.85% → 61.49%, -5.36pp)\n   - CWM epoch 1: deepseek-cwm-repo-s123-eval-1epoch (75.45%, unparseable 66.4%)",
-              "new_string": "   数据来源：\n   - CLS: registry cls8b-s42 系列\n   - CWM epoch 2→3: deepseek-cwm-repo-s42 (66.85% → 61.49%, -5.36pp)（within-seed，但 epoch 2 仅 31.2% coverage）\n   - CWM epoch 1: deepseek-cwm-repo-s123-eval-1epoch (75.45%, unparseable 66.4%)（⚠️ **cross-seed estimate**：s123 epoch 1 vs s42 epoch 3，seed variance 未解耦）\n   \n   **论文一致性**：Appendix Threats §E 原有 \"No CWM overtraining (<2pp)\" 声明已删除（3 个事实错误：实际 5.36pp、settings 不 matched、coverage 不完整）。当前论文不做过拟合的正向或反向声明，等 multi-seed 数据确认后决定。"
-            }
-          },
-          "id": "event-005670"
-        },
-        {
-          "source_line": 5671,
-          "timestamp": "2026-05-21T08:50:47.411609+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-005671"
-        },
-        {
-          "source_line": 5672,
-          "timestamp": "2026-05-21T08:50:53.034854+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md",
-              "old_string": "### CWM Epoch-wise Accuracy Curve（储备，等数据到齐后画）\n\n已有数据点：\n- s42: epoch 2 = 66.85% (partial coverage 31.2%), epoch 3 = 61.49%\n- s123-v2: epoch 1 = 75.45% (checkpoint-4209)\n- s456-v2: 训练中，epoch 2 eval_loss = 4.727",
-              "new_string": "### CWM Epoch-wise Accuracy Curve（储备，等数据到齐后画）\n\n已有数据点（⚠️ 跨 seed，不可直接对比 epoch 趋势）：\n- s42: epoch 2 = 66.85% (partial coverage 31.2%, seq2048), epoch 3 = 61.49% (full, seq4096)\n- s123-v2: epoch 1 = 75.45% (checkpoint-4209, full coverage)\n- s456-v2: 训练中，epoch 2 eval_loss = 4.727"
-            }
-          },
-          "id": "event-005672"
-        },
-        {
-          "source_line": 5673,
-          "timestamp": "2026-05-21T08:50:53.035578+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rebuttal_framework.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-005673"
-        },
-        {
-          "source_line": 5674,
           "timestamp": "2026-05-21T08:51:05.882980+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1876,10 +1674,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-005674"
+          "id": "event-005664"
         },
         {
-          "source_line": 5675,
+          "source_line": 5665,
           "timestamp": "2026-05-21T08:51:10.085154+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1894,10 +1692,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4202
           },
-          "id": "event-005675"
+          "id": "event-005665"
         },
         {
-          "source_line": 5676,
+          "source_line": 5666,
           "timestamp": "2026-05-21T08:51:11.824667+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1910,7 +1708,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-005676"
+          "id": "event-005666"
         }
       ]
     },
@@ -1918,7 +1716,7 @@
       "number": 425,
       "messages": [
         {
-          "source_line": 5677,
+          "source_line": 5667,
           "timestamp": "2026-05-21T09:23:12.927288+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1932,10 +1730,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "director"
           },
-          "id": "event-005677"
+          "id": "event-005667"
         },
         {
-          "source_line": 5678,
+          "source_line": 5668,
           "timestamp": "2026-05-21T09:23:53.003030+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1956,10 +1754,10 @@
               "tools": "['register_artifact']"
             }
           },
-          "id": "event-005678"
+          "id": "event-005668"
         },
         {
-          "source_line": 5679,
+          "source_line": 5669,
           "timestamp": "2026-05-21T09:23:59.382427+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1974,10 +1772,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6379
           },
-          "id": "event-005679"
+          "id": "event-005669"
         },
         {
-          "source_line": 5680,
+          "source_line": 5670,
           "timestamp": "2026-05-21T09:24:07.369166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1995,10 +1793,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-005680"
+          "id": "event-005670"
         },
         {
-          "source_line": 5681,
+          "source_line": 5671,
           "timestamp": "2026-05-21T09:24:08.802345+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2013,10 +1811,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 1433
           },
-          "id": "event-005681"
+          "id": "event-005671"
         },
         {
-          "source_line": 5682,
+          "source_line": 5672,
           "timestamp": "2026-05-21T09:24:10.458955+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2029,7 +1827,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-005682"
+          "id": "event-005672"
         }
       ]
     },
@@ -2037,7 +1835,7 @@
       "number": 426,
       "messages": [
         {
-          "source_line": 5683,
+          "source_line": 5673,
           "timestamp": "2026-05-21T09:44:17.319082+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2051,10 +1849,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "worker:done"
           },
-          "id": "event-005683"
+          "id": "event-005673"
         },
         {
-          "source_line": 5684,
+          "source_line": 5674,
           "timestamp": "2026-05-21T09:44:44.446171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2071,10 +1869,10 @@
               "worker_id": "worker_audit_paper-number-consistency_20260521T092353"
             }
           },
-          "id": "event-005684"
+          "id": "event-005674"
         },
         {
-          "source_line": 5685,
+          "source_line": 5675,
           "timestamp": "2026-05-21T09:44:44.548284+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2089,10 +1887,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-005685"
+          "id": "event-005675"
         },
         {
-          "source_line": 5686,
+          "source_line": 5676,
           "timestamp": "2026-05-21T09:44:53.251509+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2110,10 +1908,10 @@
               "limit": "150"
             }
           },
-          "id": "event-005686"
+          "id": "event-005676"
         },
         {
-          "source_line": 5687,
+          "source_line": 5677,
           "timestamp": "2026-05-21T09:44:53.302436+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2128,10 +1926,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005687"
+          "id": "event-005677"
         },
         {
-          "source_line": 5688,
+          "source_line": 5678,
           "timestamp": "2026-05-21T09:44:57.521144+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2150,10 +1948,10 @@
               "limit": "150"
             }
           },
-          "id": "event-005688"
+          "id": "event-005678"
         },
         {
-          "source_line": 5689,
+          "source_line": 5679,
           "timestamp": "2026-05-21T09:44:57.572072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2168,10 +1966,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005689"
+          "id": "event-005679"
         },
         {
-          "source_line": 5690,
+          "source_line": 5680,
           "timestamp": "2026-05-21T09:45:02.877855+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2190,10 +1988,10 @@
               "limit": "80"
             }
           },
-          "id": "event-005690"
+          "id": "event-005680"
         },
         {
-          "source_line": 5691,
+          "source_line": 5681,
           "timestamp": "2026-05-21T09:45:02.978832+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2208,10 +2006,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-005691"
+          "id": "event-005681"
         },
         {
-          "source_line": 5692,
+          "source_line": 5682,
           "timestamp": "2026-05-21T09:45:08.500939+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2230,10 +2028,10 @@
               "limit": "40"
             }
           },
-          "id": "event-005692"
+          "id": "event-005682"
         },
         {
-          "source_line": 5693,
+          "source_line": 5683,
           "timestamp": "2026-05-21T09:45:08.551626+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2248,10 +2046,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005693"
+          "id": "event-005683"
         },
         {
-          "source_line": 5694,
+          "source_line": 5684,
           "timestamp": "2026-05-21T09:45:33.052120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2269,10 +2067,10 @@
               "project": "exec-sim-repair-verifier"
             }
           },
-          "id": "event-005694"
+          "id": "event-005684"
         },
         {
-          "source_line": 5695,
+          "source_line": 5685,
           "timestamp": "2026-05-21T09:45:37.823590+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2287,10 +2085,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4771
           },
-          "id": "event-005695"
+          "id": "event-005685"
         },
         {
-          "source_line": 5696,
+          "source_line": 5686,
           "timestamp": "2026-05-21T09:45:39.907198+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2303,7 +2101,7 @@
           "metadata": {
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8"
           },
-          "id": "event-005696"
+          "id": "event-005686"
         }
       ]
     },
@@ -2311,7 +2109,7 @@
       "number": 427,
       "messages": [
         {
-          "source_line": 5697,
+          "source_line": 5687,
           "timestamp": "2026-05-21T09:46:08.478052+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2325,10 +2123,10 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "source": "director"
           },
-          "id": "event-005697"
+          "id": "event-005687"
         },
         {
-          "source_line": 5698,
+          "source_line": 5688,
           "timestamp": "2026-05-21T09:46:41.182961+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2347,10 +2145,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005698"
+          "id": "event-005688"
         },
         {
-          "source_line": 5699,
+          "source_line": 5689,
           "timestamp": "2026-05-21T09:46:41.685209+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2365,10 +2163,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-005699"
+          "id": "event-005689"
         },
         {
-          "source_line": 5700,
+          "source_line": 5690,
           "timestamp": "2026-05-21T09:46:41.936563+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2387,10 +2185,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005700"
+          "id": "event-005690"
         },
         {
-          "source_line": 5701,
+          "source_line": 5691,
           "timestamp": "2026-05-21T09:46:42.137886+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2405,10 +2203,10 @@
             "tool": "Grep",
             "elapsed_ms": 201
           },
-          "id": "event-005701"
+          "id": "event-005691"
         },
         {
-          "source_line": 5702,
+          "source_line": 5692,
           "timestamp": "2026-05-21T09:46:44.699837+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2427,10 +2225,10 @@
               "limit": "5"
             }
           },
-          "id": "event-005702"
+          "id": "event-005692"
         },
         {
-          "source_line": 5703,
+          "source_line": 5693,
           "timestamp": "2026-05-21T09:46:44.802935+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2445,10 +2243,10 @@
             "tool": "Read",
             "elapsed_ms": 103
           },
-          "id": "event-005703"
+          "id": "event-005693"
         },
         {
-          "source_line": 5704,
+          "source_line": 5694,
           "timestamp": "2026-05-21T09:49:15.048213+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2467,10 +2265,10 @@
               "limit": "10"
             }
           },
-          "id": "event-005704"
+          "id": "event-005694"
         },
         {
-          "source_line": 5705,
+          "source_line": 5695,
           "timestamp": "2026-05-21T09:49:15.550568+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2485,10 +2283,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-005705"
+          "id": "event-005695"
         },
         {
-          "source_line": 5706,
+          "source_line": 5696,
           "timestamp": "2026-05-21T09:49:15.701720+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2507,10 +2305,10 @@
               "limit": "10"
             }
           },
-          "id": "event-005706"
+          "id": "event-005696"
         },
         {
-          "source_line": 5707,
+          "source_line": 5697,
           "timestamp": "2026-05-21T09:49:15.953360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2525,10 +2323,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-005707"
+          "id": "event-005697"
         },
         {
-          "source_line": 5708,
+          "source_line": 5698,
           "timestamp": "2026-05-21T09:49:21.499032+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2548,10 +2346,10 @@
               "new_string": "formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 19--26\\pp{})."
             }
           },
-          "id": "event-005708"
+          "id": "event-005698"
         },
         {
-          "source_line": 5709,
+          "source_line": 5699,
           "timestamp": "2026-05-21T09:49:21.800964+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2566,10 +2364,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-005709"
+          "id": "event-005699"
         },
         {
-          "source_line": 5710,
+          "source_line": 5700,
           "timestamp": "2026-05-21T09:49:22.152716+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2589,10 +2387,10 @@
               "new_string": "0-shot (DeepSeek) & 48.54 & --- & --- & --- \\\\"
             }
           },
-          "id": "event-005710"
+          "id": "event-005700"
         },
         {
-          "source_line": 5711,
+          "source_line": 5701,
           "timestamp": "2026-05-21T09:49:22.203524+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2607,10 +2405,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005711"
+          "id": "event-005701"
         },
         {
-          "source_line": 5712,
+          "source_line": 5702,
           "timestamp": "2026-05-21T09:49:43.089052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2629,10 +2427,10 @@
               "subagent_type": "Explore"
             }
           },
-          "id": "event-005712"
+          "id": "event-005702"
         },
         {
-          "source_line": 5713,
+          "source_line": 5703,
           "timestamp": "2026-05-21T09:49:44.998014+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2649,10 +2447,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -type f -name \"*.tex\" | head -20"
             }
           },
-          "id": "event-005713"
+          "id": "event-005703"
         },
         {
-          "source_line": 5714,
+          "source_line": 5704,
           "timestamp": "2026-05-21T09:49:45.149069+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2667,10 +2465,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-005714"
+          "id": "event-005704"
         },
         {
-          "source_line": 5715,
+          "source_line": 5705,
           "timestamp": "2026-05-21T09:49:47.767079+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2690,10 +2488,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005715"
+          "id": "event-005705"
         },
         {
-          "source_line": 5716,
+          "source_line": 5706,
           "timestamp": "2026-05-21T09:49:48.068954+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2708,10 +2506,10 @@
             "tool": "Grep",
             "elapsed_ms": 301
           },
-          "id": "event-005716"
+          "id": "event-005706"
         },
         {
-          "source_line": 5717,
+          "source_line": 5707,
           "timestamp": "2026-05-21T09:49:48.219907+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2729,10 +2527,10 @@
               "limit": "200"
             }
           },
-          "id": "event-005717"
+          "id": "event-005707"
         },
         {
-          "source_line": 5718,
+          "source_line": 5708,
           "timestamp": "2026-05-21T09:49:48.471460+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2747,10 +2545,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-005718"
+          "id": "event-005708"
         },
         {
-          "source_line": 5719,
+          "source_line": 5709,
           "timestamp": "2026-05-21T09:49:48.722808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2767,10 +2565,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
             }
           },
-          "id": "event-005719"
+          "id": "event-005709"
         },
         {
-          "source_line": 5720,
+          "source_line": 5710,
           "timestamp": "2026-05-21T09:49:48.775355+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2785,10 +2583,10 @@
             "tool": "Read",
             "elapsed_ms": 52
           },
-          "id": "event-005720"
+          "id": "event-005710"
         },
         {
-          "source_line": 5721,
+          "source_line": 5711,
           "timestamp": "2026-05-21T09:49:48.826017+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2805,10 +2603,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -name \"tost_sensitivity.py\" -type f"
             }
           },
-          "id": "event-005721"
+          "id": "event-005711"
         },
         {
-          "source_line": 5722,
+          "source_line": 5712,
           "timestamp": "2026-05-21T09:49:48.926982+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2823,10 +2621,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-005722"
+          "id": "event-005712"
         },
         {
-          "source_line": 5723,
+          "source_line": 5713,
           "timestamp": "2026-05-21T09:49:50.834935+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2843,10 +2641,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/tost_sensitivity.py"
             }
           },
-          "id": "event-005723"
+          "id": "event-005713"
         },
         {
-          "source_line": 5724,
+          "source_line": 5714,
           "timestamp": "2026-05-21T09:49:51.236885+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2861,10 +2659,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-005724"
+          "id": "event-005714"
         },
         {
-          "source_line": 5725,
+          "source_line": 5715,
           "timestamp": "2026-05-21T09:49:51.438188+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2883,10 +2681,10 @@
               "limit": "100"
             }
           },
-          "id": "event-005725"
+          "id": "event-005715"
         },
         {
-          "source_line": 5726,
+          "source_line": 5716,
           "timestamp": "2026-05-21T09:49:51.643692+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2901,10 +2699,10 @@
             "tool": "Read",
             "elapsed_ms": 205
           },
-          "id": "event-005726"
+          "id": "event-005716"
         },
         {
-          "source_line": 5727,
+          "source_line": 5717,
           "timestamp": "2026-05-21T09:49:51.844976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2923,10 +2721,10 @@
               "limit": "50"
             }
           },
-          "id": "event-005727"
+          "id": "event-005717"
         },
         {
-          "source_line": 5728,
+          "source_line": 5718,
           "timestamp": "2026-05-21T09:49:51.996124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2941,10 +2739,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-005728"
+          "id": "event-005718"
         },
         {
-          "source_line": 5729,
+          "source_line": 5719,
           "timestamp": "2026-05-21T09:49:51.996635+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2961,10 +2759,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -name \"*tost*\" -type f"
             }
           },
-          "id": "event-005729"
+          "id": "event-005719"
         },
         {
-          "source_line": 5730,
+          "source_line": 5720,
           "timestamp": "2026-05-21T09:49:52.097559+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2979,10 +2777,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-005730"
+          "id": "event-005720"
         },
         {
-          "source_line": 5731,
+          "source_line": 5721,
           "timestamp": "2026-05-21T09:49:54.259121+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2999,10 +2797,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity.json"
             }
           },
-          "id": "event-005731"
+          "id": "event-005721"
         },
         {
-          "source_line": 5732,
+          "source_line": 5722,
           "timestamp": "2026-05-21T09:49:54.861881+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3017,10 +2815,10 @@
             "tool": "Read",
             "elapsed_ms": 602
           },
-          "id": "event-005732"
+          "id": "event-005722"
         },
         {
-          "source_line": 5733,
+          "source_line": 5723,
           "timestamp": "2026-05-21T09:49:54.914000+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3037,10 +2835,10 @@
               "command": "grep -n \"qwen.*4b\\|qwen3.*4b\\|8b\\|TRAJ\\|CLS\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -100"
             }
           },
-          "id": "event-005733"
+          "id": "event-005723"
         },
         {
-          "source_line": 5734,
+          "source_line": 5724,
           "timestamp": "2026-05-21T09:49:54.964779+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3055,10 +2853,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-005734"
+          "id": "event-005724"
         },
         {
-          "source_line": 5735,
+          "source_line": 5725,
           "timestamp": "2026-05-21T09:49:57.626753+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3075,10 +2873,10 @@
               "command": "grep -A 20 \"exp_id:.*traj4b.*s42\\|exp_id:.*traj4b.*s123\\|exp_id:.*cls4b.*s42\\|exp_id:.*cls4b.*s123\\|exp_id:.*cls8b.*s123\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml | head -200"
             }
           },
-          "id": "event-005735"
+          "id": "event-005725"
         },
         {
-          "source_line": 5736,
+          "source_line": 5726,
           "timestamp": "2026-05-21T09:49:57.677404+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3093,10 +2891,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-005736"
+          "id": "event-005726"
         },
         {
-          "source_line": 5737,
+          "source_line": 5727,
           "timestamp": "2026-05-21T09:50:00.439025+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3113,10 +2911,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Find relevant experiments\ntarget_exps = ['model-size-scaling-cls4b', 'model-size-scaling-traj4b', 'model-size-scaling-cls8b', 'cls8b-seed123']\nfor exp_id in registry.get('experiments', {}).keys():\n    if any(target in exp_id for target in ['traj4b', 'cls4b', 'cls8b']):\n        print(f\"\\n{exp_id}:\")\n        exp = registry['experiments'][exp_id]\n        # Print relevant fields\n        for key in ['hypothesis', 'metrics', 'status', 'conclusion', 'spec']:\n            if key in exp:\n                print(f\"  {key}: {exp[key]}\")\nEOF\n"
             }
           },
-          "id": "event-005737"
+          "id": "event-005727"
         },
         {
-          "source_line": 5738,
+          "source_line": 5728,
           "timestamp": "2026-05-21T09:50:01.142017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3131,10 +2929,10 @@
             "tool": "Bash",
             "elapsed_ms": 702
           },
-          "id": "event-005738"
+          "id": "event-005728"
         },
         {
-          "source_line": 5739,
+          "source_line": 5729,
           "timestamp": "2026-05-21T09:50:04.054530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3152,10 +2950,10 @@
               "limit": "300"
             }
           },
-          "id": "event-005739"
+          "id": "event-005729"
         },
         {
-          "source_line": 5740,
+          "source_line": 5730,
           "timestamp": "2026-05-21T09:50:06.515550+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3170,10 +2968,10 @@
             "tool": "Read",
             "elapsed_ms": 2461
           },
-          "id": "event-005740"
+          "id": "event-005730"
         },
         {
-          "source_line": 5741,
+          "source_line": 5731,
           "timestamp": "2026-05-21T09:50:06.716665+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3190,10 +2988,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Find experiments related to table 2 (4B/8B scaling)\nprint(\"=== CLS 4B (seed 42) ===\")\nif 'model-size-scaling-cls4b' in registry['experiments']:\n    exp = registry['experiments']['model-size-scaling-cls4b']\n    print(f\"Status: {exp['status']}\")\n    print(f\"Metrics: {exp.get('metrics', {})}\")\n\nprint(\"\\n=== TRAJ 4B (seed 42) ===\")\nfor exp_id in registry['experiments']:\n    if 'traj4b' in exp_id.lower() and 'seed42' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        print(f\"Found: {exp_id}\")\n        print(f\"Metrics: {exp.get('metrics', {})}\")\n\nprint(\"\\n=== CLS 8B ===\")\nfor exp_id in registry['experiments']:\n    if 'cls8b' in exp_id and any(s in exp_id for s in ['seed42', 'seed123', 'seed456']):\n        exp = registry['experiments'][exp_id]\n        print(f\"{exp_id}: metrics={exp.get('metrics', {})}\")\n\nprint(\"\\n=== TRAJ 4B ===\")\nfor exp_id in registry['experiments']:\n    if 'traj4b' in exp_id.lower() or 'traj' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        print(f\"{exp_id}: metrics={exp.get('metrics', {})}\")\nEOF\n"
             }
           },
-          "id": "event-005741"
+          "id": "event-005731"
         },
         {
-          "source_line": 5742,
+          "source_line": 5732,
           "timestamp": "2026-05-21T09:50:07.421471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3208,10 +3006,10 @@
             "tool": "Bash",
             "elapsed_ms": 704
           },
-          "id": "event-005742"
+          "id": "event-005732"
         },
         {
-          "source_line": 5743,
+          "source_line": 5733,
           "timestamp": "2026-05-21T09:50:11.639577+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3228,10 +3026,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Find CLS 4B baseline\nprint(\"=== CLS 4B baseline (seed 42) ===\")\nif 'model-size-scaling-cls4b' in registry['experiments']:\n    exp = registry['experiments']['model-size-scaling-cls4b']\n    print(f\"Status: {exp['status']}\")\n    print(f\"Metrics: {exp.get('metrics', {})}\")\nelse:\n    print(\"Not found, searching for cls4b in exp names:\")\n    for exp_id in registry['experiments']:\n        if 'cls4b' in exp_id.lower():\n            print(f\"  {exp_id}\")\n\n# Find all CWM 4B\nprint(\"\\n=== CWM 4B ===\")\nfor exp_id in registry['experiments']:\n    if 'cwm4b' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        print(f\"{exp_id}: {exp.get('metrics', {})}\")\nEOF\n"
             }
           },
-          "id": "event-005743"
+          "id": "event-005733"
         },
         {
-          "source_line": 5744,
+          "source_line": 5734,
           "timestamp": "2026-05-21T09:50:12.342356+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3246,10 +3044,10 @@
             "tool": "Bash",
             "elapsed_ms": 702
           },
-          "id": "event-005744"
+          "id": "event-005734"
         },
         {
-          "source_line": 5745,
+          "source_line": 5735,
           "timestamp": "2026-05-21T09:50:15.253429+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3266,10 +3064,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Look for function-level 4B models\nprint(\"=== Function-level CLS/CWMTRAJ 4B (looking at metrics) ===\")\ntargets = ['model-size-scaling', '4B', 'function']\nfor exp_id in sorted(registry['experiments'].keys()):\n    exp = registry['experiments'][exp_id]\n    # Look for experiments with accuracy in 85-90 range (function level)\n    metrics = exp.get('metrics', {})\n    if isinstance(metrics, dict):\n        acc = metrics.get('accuracy')\n        if acc and 85 < acc < 92:  # function level range\n            print(f\"{exp_id}: accuracy={acc}, {metrics}\")\nEOF\n"
             }
           },
-          "id": "event-005745"
+          "id": "event-005735"
         },
         {
-          "source_line": 5746,
+          "source_line": 5736,
           "timestamp": "2026-05-21T09:50:15.957976+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3284,10 +3082,10 @@
             "tool": "Bash",
             "elapsed_ms": 704
           },
-          "id": "event-005746"
+          "id": "event-005736"
         },
         {
-          "source_line": 5747,
+          "source_line": 5737,
           "timestamp": "2026-05-21T09:50:19.810434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3304,10 +3102,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Looking for the \"primary\" experiments mentioned in the paper\nprint(\"=== Looking for function-level seed42/123/456 experiments ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if any(x in exp_id.lower() for x in ['cls-seed', 'cwm-seed', 'traj-level-seed']):\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        if isinstance(metrics, dict) and 'accuracy' in metrics:\n            print(f\"{exp_id}: {metrics}\")\nEOF\n"
             }
           },
-          "id": "event-005747"
+          "id": "event-005737"
         },
         {
-          "source_line": 5748,
+          "source_line": 5738,
           "timestamp": "2026-05-21T09:50:20.513134+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3322,10 +3120,10 @@
             "tool": "Bash",
             "elapsed_ms": 702
           },
-          "id": "event-005748"
+          "id": "event-005738"
         },
         {
-          "source_line": 5749,
+          "source_line": 5739,
           "timestamp": "2026-05-21T09:50:22.169790+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3344,10 +3142,10 @@
               "limit": "30"
             }
           },
-          "id": "event-005749"
+          "id": "event-005739"
         },
         {
-          "source_line": 5750,
+          "source_line": 5740,
           "timestamp": "2026-05-21T09:50:24.379221+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3362,10 +3160,10 @@
             "tool": "Read",
             "elapsed_ms": 2209
           },
-          "id": "event-005750"
+          "id": "event-005740"
         },
         {
-          "source_line": 5751,
+          "source_line": 5741,
           "timestamp": "2026-05-21T09:50:24.530357+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3382,10 +3180,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Get the main 4B/8B function-level experiments\nprint(\"=== Main function-level CLS 4B and 8B ===\")\nkey_exps = ['per-test-precision-recall', 'model-size-scaling-cls4b', 'model-size-scaling-cls8b', 'model-size-scaling-cwm4b', 'model-size-scaling-cwm8b', 'traj-level-finetuned']\nfor exp_id in key_exps:\n    if exp_id in registry['experiments']:\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        print(f\"{exp_id}:\")\n        print(f\"  accuracy: {metrics.get('accuracy')}\")\n    else:\n        print(f\"{exp_id}: NOT FOUND\")\n\n# Look for any that might be the primary scaling table\nprint(\"\\n=== All experiments with 'model-size' in name ===\")\nfor exp_id in registry['experiments']:\n    if 'model-size' in exp_id:\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        if isinstance(metrics, dict) and metrics:\n            print(f\"{exp_id}: {metrics}\")\nEOF\n"
             }
           },
-          "id": "event-005751"
+          "id": "event-005741"
         },
         {
-          "source_line": 5752,
+          "source_line": 5742,
           "timestamp": "2026-05-21T09:50:25.284341+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3400,10 +3198,10 @@
             "tool": "Bash",
             "elapsed_ms": 753
           },
-          "id": "event-005752"
+          "id": "event-005742"
         },
         {
-          "source_line": 5753,
+          "source_line": 5743,
           "timestamp": "2026-05-21T09:50:31.861159+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3420,10 +3218,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# The table says TRAJ 4B s42=85.27 and s123=86.72\n# Look for TRAJ function-level experiments with these values\nprint(\"=== TRAJ 4B function-level experiments ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'traj' in exp_id.lower() and 'func' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        if isinstance(metrics, dict) and 'accuracy' in metrics:\n            print(f\"{exp_id}: {metrics.get('accuracy')}\")\n            if 84 < metrics.get('accuracy', 0) < 88:\n                print(f\"  MATCH! Full metrics: {metrics}\")\n\n# Try a broader search\nprint(\"\\n=== All TRAJ experiments (function level range 84-88%) ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'traj' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        acc = metrics.get('test_accuracy') or metrics.get('accuracy')\n        if acc and 84 < acc < 88:\n            print(f\"{exp_id}: {acc}, full_id={exp_id}\")\n            print(f\"  Full metrics: {metrics}\")\nEOF\n"
             }
           },
-          "id": "event-005753"
+          "id": "event-005743"
         },
         {
-          "source_line": 5754,
+          "source_line": 5744,
           "timestamp": "2026-05-21T09:50:32.564013+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3438,10 +3236,10 @@
             "tool": "Bash",
             "elapsed_ms": 702
           },
-          "id": "event-005754"
+          "id": "event-005744"
         },
         {
-          "source_line": 5755,
+          "source_line": 5745,
           "timestamp": "2026-05-21T09:50:36.982181+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3458,10 +3256,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# The table says TRAJ 4B s42=85.27 and s123=86.72  and 8B s42=87.60, s123=87.79\n# Let me search for all TRAJ with seeds 42, 123, 456\nprint(\"=== TRAJ function-level (looking for s42, s123) ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'traj' in exp_id.lower() and ('s42' in exp_id or 's123' in exp_id or 'seed42' in exp_id or 'seed123' in exp_id):\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        if isinstance(metrics, dict):\n            acc = metrics.get('test_accuracy') or metrics.get('accuracy')\n            if acc:\n                print(f\"{exp_id}: {acc}\")\n                print(f\"  Full: {metrics}\")\n\n# Let me list all TRAJ function-level experiments\nprint(\"\\n=== ALL TRAJ function-level (checking for 4B variants) ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'traj' in exp_id.lower() and 'func' in exp_id.lower():\n        print(f\"  {exp_id}\")\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        acc = metrics.get('test_accuracy') or metrics.get('accuracy')\n        if acc:\n            print(f\"    accuracy: {acc}\")\nEOF\n"
             }
           },
-          "id": "event-005755"
+          "id": "event-005745"
         },
         {
-          "source_line": 5756,
+          "source_line": 5746,
           "timestamp": "2026-05-21T09:50:37.787485+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3476,10 +3274,10 @@
             "tool": "Bash",
             "elapsed_ms": 805
           },
-          "id": "event-005756"
+          "id": "event-005746"
         },
         {
-          "source_line": 5757,
+          "source_line": 5747,
           "timestamp": "2026-05-21T09:50:44.063018+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3496,10 +3294,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# The table values are: TRAJ 4B s42=85.27, s123=86.72, 8B s42=87.60, s123=87.79\n# I found 8B s42=87.6 and 8B s123=87.79 (match!)\n# Now searching for 4B variants with value close to 85.27 or 86.72\nprint(\"=== TRAJ with values 85.x or 86.x (4B candidates) ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'traj' in exp_id.lower():\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        acc = metrics.get('overall_accuracy') or metrics.get('test_accuracy') or metrics.get('accuracy')\n        if acc and 85 < float(acc) < 87:\n            print(f\"{exp_id}: {acc}\")\n            print(f\"  Metrics: {metrics}\")\nEOF\n"
             }
           },
-          "id": "event-005757"
+          "id": "event-005747"
         },
         {
-          "source_line": 5758,
+          "source_line": 5748,
           "timestamp": "2026-05-21T09:50:44.816942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3514,10 +3312,10 @@
             "tool": "Bash",
             "elapsed_ms": 753
           },
-          "id": "event-005758"
+          "id": "event-005748"
         },
         {
-          "source_line": 5759,
+          "source_line": 5749,
           "timestamp": "2026-05-21T09:50:47.957028+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3534,10 +3332,10 @@
               "command": "python3 << 'EOF'\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml', 'r') as f:\n    registry = yaml.safe_load(f)\n\n# Print ALL qwen3 traj experiments to find 4B ones\nprint(\"=== All Qwen3 TRAJ experiments ===\")\nfor exp_id in sorted(registry['experiments'].keys()):\n    if 'qwen' in exp_id.lower() and 'traj' in exp_id.lower():\n        print(f\"  {exp_id}\")\n        exp = registry['experiments'][exp_id]\n        metrics = exp.get('metrics', {})\n        acc = metrics.get('test_accuracy') or metrics.get('variant_accuracy') or metrics.get('overall_accuracy') or metrics.get('accuracy')\n        if acc:\n            print(f\"    accuracy: {acc}\")\n            # Check model size hint\n            spec = exp.get('spec', {})\n            if 'model_name' in spec:\n                print(f\"    model: {spec.get('model_name')}\")\nEOF\n"
             }
           },
-          "id": "event-005759"
+          "id": "event-005749"
         },
         {
-          "source_line": 5760,
+          "source_line": 5750,
           "timestamp": "2026-05-21T09:50:48.863088+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3551,6 +3349,208 @@
             "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
             "tool": "Bash",
             "elapsed_ms": 906
+          },
+          "id": "event-005750"
+        },
+        {
+          "source_line": 5751,
+          "timestamp": "2026-05-21T09:51:02.566204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I see there's no Qwen3 4B TRAJ function-level in the registry. The paper mentions TRAJ at 4B in Table 2, but the registry might have them under different names. Let me read the specific table values from the .tex once more and check what the experiments actually say about reporting these numbers:\n\nBased on my thorough investigation, let me now compile the findings:\n\n## FINDINGS REPORT\n\n### H2: TOST p-value inconsistency\n\n**Paper mentions TOST p-values in 3 locations:**\n1. experiments.tex line 98: p = 0.007\n2. checklist.tex line 45: p = 0.007\n3. appendix.tex line 405: p = 0.0071\n4. appendix.tex line 347: mentions 0.0087\n\n**Ground truth from tost_sensitivity.py:**\n- The tost_sensitivity.py script (line 29) computes TOST p-values\n- Output file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity.json shows:\n  - At margin ±2.0 pp: **p = 0.007** (exactly)\n  - This matches qwen3_4b with 5 seeds, mean diff = 1.24pp\n  \n**Discrepancy Analysis:**\n- Line 347 in appendix.tex shows \"0.0087\" which appears to be a CLS vs CWM comparison at margin 2.0 (different comparison, not the TRAJ equivalence)\n- Line 405 in appendix.tex shows \"0.0071\" which is the Holm-Bonferroni corrected p-value for the primary comparison (raw p=0.007, adjusted p=0.0071 after ×3 correction factor)\n\n**Correct Value:** p = 0.007 is the ground-truth value from tost_sensitivity.json. The 0.0071 is the corrected value for hypothesis testing, and 0.0087 is a different metric.\n\n---\n\n### H3: Table 2 TRAJ 4B values discrepancy\n\n**Paper Table 2 (experiments.tex lines 84-85):**\n- TRAJ 4B s42 = 85.27%\n- TRAJ 4B s123 = 86.72%\n- TRAJ 8B s42 = 87.60%\n- TRAJ 8B s123 = 87.79%\n\n**Registry values found:**\n- qwen3-8b-traj-func-s42: test_accuracy = 87.6% ✓ MATCHES paper\n- qwen3-8b-traj-func-s123: test_accuracy = 87.79% ✓ MATCHES paper\n- **4B TRAJ values NOT FOUND in registry** - There is no Qwen3 4B TRAJ function-level experiment with seeds 42 or 123 in the registry\n\n**Reg\n…[truncated 1760 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Agent",
+            "elapsed_ms": 79477
+          },
+          "id": "event-005751"
+        },
+        {
+          "source_line": 5752,
+          "timestamp": "2026-05-21T09:51:14.861456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "65",
+              "limit": "30"
+            }
+          },
+          "id": "event-005752"
+        },
+        {
+          "source_line": 5753,
+          "timestamp": "2026-05-21T09:51:15.363945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "65\t\n66\tBeyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\\ref{tab:scaling} compares all three formulations at 4B and 8B using seeds 42 and 123 in full bfloat16 precision (excluding NF4 seeds to isolate the size effect).\n67\t\n68\t\\begin{table}[t]\n69\t\\centering\n70\t\\small\n71\t\\caption{Model-size scaling: accuracy (\\%) at 4B and 8B (Qwen3, seeds 42/123, full bfloat16 precision). \\cls{} and \\traj{} scale positively; \\cwm{} does not.}\n72\t\\label{tab:scaling}\n73\t\\setlength{\\tabcolsep}{4pt}\n74\t\\begin{tabular}{llcccc}\n75\t\\toprule\n76\t\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{Mean} & \\textbf{$\\Delta$ 4B$\\to$8B} \\\\\n77\t\\midrule\n78\t\\cls{} & 4B & 87.83 & 89.52 & \\textbf{88.68} & \\multirow{2}{*}{+1.27} \\\\\n79\t\\cls{} & 8B & \\textbf{90.48} & 89.40 & \\textbf{89.94} & \\\\\n80\t\\midrule\n81\t\\cwm{} & 4B & 87.51 & 87.20 & \\underline{87.36} & \\multirow{2}{*}{$-$0.03} \\\\\n82\t\\cwm{} & 8B & 87.67 & 86.98 & 87.33 & \\\\\n83\t\\midrule\n84\t\\traj{} & 4B & 85.27 & 86.72 & 86.00 & \\multirow{2}{*}{+1.70} \\\\\n85\t\\traj{} & 8B & 87.60 & 87.79 & \\underline{87.70} & \\\\\n86\t\\bottomrule\n87\t\\end{tabular}\n88\t\\end{table}\n89\t\n90\t\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +1.70\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \\cls{}/\\cwm{}) yields $p = 0.0066$ (95\\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.\n91\t\n92\t\\cwm{} flat scaling ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. At function level, outputs are short (integers, booleans) and format compliance is near-perfect; at repo level, output length grows to ${\\sim}$4\n…[truncated 277 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-005753"
+        },
+        {
+          "source_line": 5754,
+          "timestamp": "2026-05-21T09:51:15.565212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "93",
+              "limit": "10"
+            }
+          },
+          "id": "event-005754"
+        },
+        {
+          "source_line": 5755,
+          "timestamp": "2026-05-21T09:51:15.967421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "93\t\n94\t\n95\t\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n96\t\\label{sec:equivalence}\n97\t\n98\tWe compare \\cls{} (aggregated via all-pass rule) against \\traj{} on 523 variant-level instances across five seeds.\\footnote{Seeds 789 and 0 use NF4 quantized inference; the remaining three use bfloat16. Restricting to bfloat16 seeds only (3 seeds) yields $p{=}0.128$: consistent in direction but underpowered due to reduced seed coverage.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); the TOST equivalence test confirms statistical equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin, Holm-Bonferroni corrected). Our $\\pm$2\\pp{} threshold follows the SESOI framework~\\cite{lakens2017}, set independently of the observed gap and grounded in deployment relevance: at function-level accuracy (85--88\\%), a 2\\pp{} difference corresponds to ${\\sim}$38 per-test predictions across 1,890 tests (${\\sim}$2--3 problems out of 114)---comparable to between-seed variation (0.37--0.97\\pp{} std, Table~\\ref{tab:main_results}) and checkpoint selection noise ($<$1\\pp{}, \\S\\ref{sec:threats}). A difference within this range is indistinguishable from training noise for pipeline selection decisions. Equivalence holds at margins as tight as $\\pm$1.52\\pp{} (Table~\\ref{tab:tost_sensitivity}), well below the pre-specified threshold. Within-problem predictions are correlated (intraclass correlation ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered. The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent rather than universal, while the \\cls{}--\\cwm{} equivalence is robust across both families. Per-test classification provides diagnostic information (which specific tests fail) at no cost to variant-level accuracy. This parallel\n…[truncated 375 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-005755"
+        },
+        {
+          "source_line": 5756,
+          "timestamp": "2026-05-21T09:51:30.654551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "offset": "340",
+              "limit": "20"
+            }
+          },
+          "id": "event-005756"
+        },
+        {
+          "source_line": 5757,
+          "timestamp": "2026-05-21T09:51:31.658967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "340\t\\toprule\n341\t\\textbf{Margin ($\\pm$\\pp{})} & \\textbf{$p$-value} & \\textbf{Equivalent ($\\alpha{=}0.05$)?} \\\\\n342\t\\midrule\n343\t1.0 & $\\gg$0.05 & No \\\\\n344\t1.5 & 0.054 & No (borderline) \\\\\n345\t\\textbf{1.52} & ${\\sim}$\\textbf{0.05} & \\textbf{Smallest margin} \\\\\n346\t1.71 & 0.027 & Yes \\\\\n347\t2.0 & 0.0087 & Yes \\\\\n348\t3.0 & $4.6{\\times}10^{-5}$ & Yes \\\\\n349\t5.0 & $\\ll$0.001 & Yes \\\\\n350\t\\bottomrule\n351\t\\end{tabular}\n352\t\\end{table}\n353\t\n354\tThe minimum equivalence margin is $\\pm$1.52\\pp{}, 0.48\\pp{} below our pre-specified $\\pm$2\\pp{} threshold. The $\\pm$2\\pp{} threshold was set based on deployment relevance rather than observed data: at function-level accuracy (85--88\\%), a 2\\pp{} per-test difference corresponds to ${\\sim}$38 additional errors across 1,890 tests (${\\sim}$2--3 problems out of 114), comparable in magnitude to between-seed standard deviation (0.37--0.97\\pp{}) and checkpoint selection noise ($<$1\\pp{}). Differences within this range do not reliably distinguish formulations from training noise in pipeline selection decisions.\n355\t\n356\t\n357\t\\section{Variant-Level Effect Sizes}\n358\t\\label{app:power}\n359\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 1004
+          },
+          "id": "event-005757"
+        },
+        {
+          "source_line": 5758,
+          "timestamp": "2026-05-21T09:51:31.960610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "offset": "398",
+              "limit": "15"
+            }
+          },
+          "id": "event-005758"
+        },
+        {
+          "source_line": 5759,
+          "timestamp": "2026-05-21T09:51:32.865270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "398\t\\label{tab:holm}\n399\t\\setlength{\\tabcolsep}{3pt}\n400\t\\begin{tabular}{clcccc}\n401\t\\toprule\n402\t\\textbf{Rank} & \\textbf{Comparison} & \\textbf{Raw $p$} & \\textbf{Factor} & \\textbf{Adj $p$} & \\textbf{Sig.?} \\\\\n403\t\\midrule\n404\t1 & Repo: \\cls{} vs \\cwm{} & 0.003 & $\\times$4 & 0.012 & \\checkmark \\\\\n405\t2 & Func: \\cls{} vs \\traj{} (TOST $\\pm$2\\pp{}) & 0.0071 & $\\times$3 & 0.021 & \\checkmark \\\\\n406\t3 & Repo: \\cwm{} vs \\traj{} & 0.039 & $\\times$2 & 0.078 & --- \\\\\n407\t4 & Repo: \\cls{} vs \\traj{} & 0.385 & $\\times$1 & 0.385 & --- \\\\\n408\t\\bottomrule\n409\t\\end{tabular}\n410\t\\end{table}\n411\t\n412\tThe two core claims survive correction: the repo-level \\cls{}--\\cwm{} gap (adjusted $p{=}0.012$) and function-level \\cls{}--\\traj{} equivalence (adjusted $p{=}0.021$). The repo-level \\cwm{}--\\traj{} comparison does not survive correction (adjusted $p{=}0.078$); we interpret this difference as directionally consistent but not confirmatory."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Read",
+            "elapsed_ms": 904
+          },
+          "id": "event-005759"
+        },
+        {
+          "source_line": 5760,
+          "timestamp": "2026-05-21T09:51:33.518230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "traj.*4b|4b.*traj|qwen3-4b.*traj|traj.*qwen.*4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-i": "True"
+            }
           },
           "id": "event-005760"
         }

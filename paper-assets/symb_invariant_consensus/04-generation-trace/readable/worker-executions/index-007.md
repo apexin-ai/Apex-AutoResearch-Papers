@@ -12,7 +12,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | fix caption and narrative correction | 59 | 0 | [Read transcript](fix-caption-and-narrative-correction.md) | [JSON](../../sessions/cb/cb1315694c8ec59c55ac.json) |
 | fix experiments tex multiseed consistency | 36 | 0 | [Read transcript](fix-experiments-tex-multiseed-consistency.md) | [JSON](../../sessions/6f/6fdc295d9a15102f39f6.json) |
 | analysis cil computation | 211 | 0 | [Read transcript](analysis-cil-computation.md) | [JSON](../../sessions/24/24f071c1003616d17aab.json) |
-| analysis q5 q6 review answers | 229 | 0 | [Read transcript](analysis-q5-q6-review-answers.md) | [JSON](../../sessions/da/da65d13cafa9cda212e4.json) |
 | theory scb proposition proof — In /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/, fin | 73 | 1 | [Read transcript](theory-scb-proposition-proof.md) | [JSON](../../sessions/74/74ac73da04f6ad5befca.json) |
 | theory causal dag tikz | 11 | 0 | [Read transcript](theory-causal-dag-tikz.md) | [JSON](../../sessions/28/2860128ef9923e1350e2.json) |
 | paper writing step1 method | 18 | 0 | [Read transcript](paper-writing-step1-method.md) | [JSON](../../sessions/44/445450f201c507c13a25.json) |

@@ -6,1613 +6,9 @@
 
 ## Round 336
 
-### Tool call
-
-_source line 5564 · 2026-05-24T11:03:42.481455+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-  "old_string": "\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\n\\paragraph{Entity-level construction.}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), a non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$ entity-construction comparisons), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$; the family partition was not pre-registered (Appendix~\\ref{app:holm}).\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$; Table~\\ref{tab:cross_selection}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates LP gains (selection: $+1.39{\\to}+0.12$\\,pp; construction: $+0.88{\\to}+0.20$\\,pp) as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound}).",
-  "new_string": "\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring (Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), but non-significant on SciERC ($+0.32$\\,pp) and negative on CoNLL ($-0.39$\\,pp).\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$ (family partition not pre-registered; Appendix~\\ref{app:holm}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates gains as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-    "old_string": "\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\n\\paragraph{Entity-level construction.}\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring ($\\theta$ stable in $[0.15, 0.35]$; Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), a non-significant $+0.32$\\,pp on SciERC, and no gain on CoNLL ($-0.39$\\,pp).\\footnote{Degenerate instances contribute $\\Delta{=}0$ by construction; all gains concentrate in the non-degenerate subset.}\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$ entity-construction comparisons), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$; the family partition was not pre-registered (Appendix~\\ref{app:holm}).\nConstruction and LP selection are complementary ($\\rho_{\\text{adj}}$: Few-NERD $0.516$; Table~\\ref{tab:cross_selection}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates LP gains (selection: $+1.39{\\to}+0.12$\\,pp; construction: $+0.88{\\to}+0.20$\\,pp) as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound}).",
-    "new_string": "\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring (Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), but non-significant on SciERC ($+0.32$\\,pp) and negative on CoNLL ($-0.39$\\,pp).\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$ (family partition not pre-registered; Appendix~\\ref{app:holm}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates gains as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound})."
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 5565 · 2026-05-24T11:03:42.532184+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5566 · 2026-05-24T11:03:52.355905+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-  "old_string": "MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.6$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode, \\textit{diversity among failures} rather than quality-differentiated outputs, despite comparable degeneracy ($10.1$\\% vs.\\ SciERC NER $12.2$\\%; Appendix~\\ref{app:re_extension},~\\ref{app:ood}).",
-  "new_string": "MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent.\nThe framework extends to RE, where upstream entity span errors create a distinct failure mode (Appendix~\\ref{app:re_extension})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-    "old_string": "MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent (LP-best $+1.4$\\,pp on Few-NERD vs.\\ MV $+0.6$\\,pp on CoNLL).\nThe framework extends to RE, where $40$\\% zero-F1 from upstream entity span errors creates a distinct failure mode, \\textit{diversity among failures} rather than quality-differentiated outputs, despite comparable degeneracy ($10.1$\\% vs.\\ SciERC NER $12.2$\\%; Appendix~\\ref{app:re_extension},~\\ref{app:ood}).",
-    "new_string": "MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent.\nThe framework extends to RE, where upstream entity span errors create a distinct failure mode (Appendix~\\ref{app:re_extension})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5567 · 2026-05-24T11:03:52.356411+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5568 · 2026-05-24T11:04:08.167019+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-  "old_string": "\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking (Appendices~\\ref{app:failure_gallery},~\\ref{app:objections}).\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework, which identifies these co-occurring conditions, is our primary contribution (Appendix~\\ref{app:cost_benefit}); pretrained Qwen2.5-7B at $N{=}32$ achieves $+3.85$\\,pp MV gain where the framework predicts favorable conditions ($D{=}5.4$\\%; Appendix~\\ref{app:n_scaling}).\nAt $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default (Appendix~\\ref{app:recommendations}).",
-  "new_string": "\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking (Appendices~\\ref{app:failure_gallery},~\\ref{app:objections}).\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework is our primary contribution (Appendix~\\ref{app:cost_benefit}): at $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default (Appendix~\\ref{app:recommendations})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
-    "old_string": "\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking (Appendices~\\ref{app:failure_gallery},~\\ref{app:objections}).\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework, which identifies these co-occurring conditions, is our primary contribution (Appendix~\\ref{app:cost_benefit}); pretrained Qwen2.5-7B at $N{=}32$ achieves $+3.85$\\,pp MV gain where the framework predicts favorable conditions ($D{=}5.4$\\%; Appendix~\\ref{app:n_scaling}).\nAt $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default (Appendix~\\ref{app:recommendations}).",
-    "new_string": "\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking (Appendices~\\ref{app:failure_gallery},~\\ref{app:objections}).\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework is our primary contribution (Appendix~\\ref{app:cost_benefit}): at $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default (Appendix~\\ref{app:recommendations})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5569 · 2026-05-24T11:04:08.217858+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5570 · 2026-05-24T11:04:12.936423+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "offset": "1125",
-  "limit": "30"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "offset": "1125",
-    "limit": "30"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5571 · 2026-05-24T11:04:12.987189+00:00_
-
-1125	\subsection{MBR Framework and Proof}\label{app:mbr_proof}
-1126	
-1127	Entity-level construction (\S\ref{sec:prescriptive}) is a special case of minimum Bayes risk (MBR) decoding \cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\arg\max_{y \in \{y_1,\ldots,y_N\}}$) to construction over all subsets of $E_\cup{=}\bigcup_i y_i$.
-1128	
-1129	\begin{proposition}[Entity construction as MBR for balanced set-overlap]\label{prop:construction_mbr}
-1130	Under entity-wise independence with utility $u(\hat{y}, y') = |\hat{y} \cap y'| - \alpha|\hat{y} \setminus y'|$ ($\alpha \geq 1$), the MBR-optimal constructed set is
-1131	\begin{equation}\label{eq:mbr_construction}
-1132	\hat{y}_{\textup{MBR}} \!=\! \bigl\{e \!{\in}\! E_\cup \!:\! \hat{p}(e) \!>\! \tfrac{\alpha}{\alpha{+}1}\bigr\},\; \hat{p}(e) \!=\! \tfrac{1}{N} \textstyle\sum\nolimits_{i} \mathbf{1}[e \!{\in}\! y_i]
-1133	\end{equation}
-1134	The special case $\alpha{=}1$ yields $\hat{p}(e) > \tfrac{1}{2}$, the majority-vote threshold.
-1135	\end{proposition}
-1136	
-1137	\noindent\textbf{Remark.}
-1138	Set-level F1 is non-linear and admits no closed-form threshold rule \cite{dembczynski2011exact}. We use balanced linear utility ($\alpha{=}1$ throughout); balanced set-overlap and F1 induce similar optimal thresholds for typical NER output sizes ($|E_\cup| \leq 30$).
-1139	
-1140	\paragraph{Proof.}
-1141	We show that under entity-wise independence, the MBR-optimal constructed set with utility $u(\hat{y}, y') = |\hat{y} \cap y'| - \alpha|\hat{y} \setminus y'|$ ($\alpha \geq 1$) includes entity $e$ iff $\hat{p}(e) > \alpha/(\alpha+1)$.
-1142	Consider constructing $\hat{y} \subseteq E_\cup$ to maximize expected utility against the empirical sample distribution.
-1143	Under entity-wise independence, each entity inclusion is an independent binary decision.
-1144	For entity $e$ with empirical frequency $\hat{p}(e) = \frac{1}{N} \sum_i \mathbf{1}[e \in y_i]$, including $e$ contributes $+1$ when $e \in y_i$ (probabilit
-…[truncated 1806 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5572 · 2026-05-24T11:04:23.676721+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "Under entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\alpha}{\\alpha{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\alpha{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold.",
-  "new_string": "Under entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\beta}{\\beta{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\beta{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "Under entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\alpha}{\\alpha{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\alpha{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold.",
-    "new_string": "Under entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\beta}{\\beta{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\beta{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5573 · 2026-05-24T11:04:23.779161+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 102
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5574 · 2026-05-24T11:04:34.019687+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "We use balanced linear utility ($\\alpha{=}1$ throughout); balanced set-overlap and F1",
-  "new_string": "We use balanced linear utility ($\\beta{=}1$ throughout); balanced set-overlap and F1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "We use balanced linear utility ($\\alpha{=}1$ throughout); balanced set-overlap and F1",
-    "new_string": "We use balanced linear utility ($\\beta{=}1$ throughout); balanced set-overlap and F1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5575 · 2026-05-24T11:04:34.071678+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5576 · 2026-05-24T11:04:38.733312+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.",
-  "new_string": "the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\beta/(\\beta+1)$."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\alpha|\\hat{y} \\setminus y'|$ ($\\alpha \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.",
-    "new_string": "the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\beta/(\\beta+1)$."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5577 · 2026-05-24T11:04:38.785489+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5578 · 2026-05-24T11:04:47.920995+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "and $-\\alpha$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\alpha(1{-}\\hat{p}(e)) = (1{+}\\alpha)\\hat{p}(e) - \\alpha$, which is positive iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nThe special case $\\alpha{=}1$ yields the majority-vote threshold",
-  "new_string": "and $-\\beta$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\beta(1{-}\\hat{p}(e)) = (1{+}\\beta)\\hat{p}(e) - \\beta$, which is positive iff $\\hat{p}(e) > \\beta/(\\beta+1)$.\nThe special case $\\beta{=}1$ yields the majority-vote threshold"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "and $-\\alpha$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\alpha(1{-}\\hat{p}(e)) = (1{+}\\alpha)\\hat{p}(e) - \\alpha$, which is positive iff $\\hat{p}(e) > \\alpha/(\\alpha+1)$.\nThe special case $\\alpha{=}1$ yields the majority-vote threshold",
-    "new_string": "and $-\\beta$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\beta(1{-}\\hat{p}(e)) = (1{+}\\beta)\\hat{p}(e) - \\beta$, which is positive iff $\\hat{p}(e) > \\beta/(\\beta+1)$.\nThe special case $\\beta{=}1$ yields the majority-vote threshold"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5579 · 2026-05-24T11:04:51.419844+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 3498
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5580 · 2026-05-24T11:04:55.886934+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "consistent with marginal-entity precision falling below $\\alpha_{\\textup{crit}}$.",
-  "new_string": "consistent with marginal-entity precision falling below $\\beta_{\\textup{crit}}$."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "consistent with marginal-entity precision falling below $\\alpha_{\\textup{crit}}$.",
-    "new_string": "consistent with marginal-entity precision falling below $\\beta_{\\textup{crit}}$."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5581 · 2026-05-24T11:04:55.938739+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5582 · 2026-05-24T11:04:59.050691+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "offset": "1215",
-  "limit": "55"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "offset": "1215",
-    "limit": "55"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5583 · 2026-05-24T11:04:59.101396+00:00_
-
-1215	\subsection{Entity Selection Bound: Proof and Validation}\label{app:alpha_crit}
-1216	
-1217	\begin{proposition}[Entity Selection Diagnostic]\label{prop:entity_selection_bound}
-1218	Let $\mathcal{M}^+ {=} \hat{y}_{\textup{MV}} \setminus \hat{y}_{\textup{gr}}$ be entities added by majority vote (precision $\pi_{\mathcal{M}^+}$) and $\delta$ the instance degeneracy rate.
-1219	\begin{enumerate}[label=\textup{(\alph*)},nosep,leftmargin=*]
-1220	\item On degenerate instances, $\hat{y}_{\textup{MV}} {=} \hat{y}_{\textup{gr}}$ and $\Delta F_1 {=} 0$.
-1221	\item $\mathbb{E}[\Delta F_1] = (1{-}\delta) \cdot \mathbb{E}[\Delta F_1 \mid \textup{non-deg.}]$.
-1222	\item $\Delta F_1 > 0$ only if $\pi_{\mathcal{M}^+} > \alpha_{\textup{crit}} \triangleq F_1^{\textup{gr}}/2$.
-1223	\end{enumerate}
-1224	\end{proposition}
-1225	
-1226	\begin{proof}[Proof of Proposition~\ref{prop:entity_selection_bound}]
-1227	\textbf{Part (a).} On a degenerate instance, all $N$ samples produce the same entity set: $\textup{entities}(y_1) = \cdots = \textup{entities}(y_N)$. For every entity $e \in E_\cup$, the agreement count satisfies $k(e) = N$ (if $e$ appears) or $k(e) = 0$ (if not). Hence $k(e)/N \in \{0,1\}$, and the majority-vote threshold $k(e)/N \geq 1/2$ selects exactly the entities present in any single sample---identical to the greedy output. Thus $\hat{y}_{\textup{MV}} = \hat{y}_{\textup{gr}}$ and $\Delta F_1 = 0$.
-1228	
-1229	\textbf{Part (b).} Partition instances into degenerate (fraction $\delta$) and non-degenerate (fraction $1{-}\delta$). By the law of total expectation:
-1230	\[
-1231	\mathbb{E}[\Delta F_1] = \delta \cdot \underbrace{\mathbb{E}[\Delta F_1 \mid \textup{deg.}]}_{= 0 \;\textup{by (a)}} + (1{-}\delta) \cdot \mathbb{E}[\Delta F_1 \mid \textup{non-deg.}].
-1232	\]
-1233	
-1234	\textbf{Part (c).} Assume $\mathcal{M}^- = \hat{y}_{\textup{gr}} \setminus \hat{y}_{\textup{MV}} \approx \varnothing$ (greedy entities typically have agreement $k(e)/N \approx 1$). Let $m = |\mathcal{M}^+|$ an
-…[truncated 3504 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5584 · 2026-05-24T11:05:06.684198+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.",
-  "new_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\beta_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.",
-    "new_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\beta_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5585 · 2026-05-24T11:05:06.786328+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 102
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5586 · 2026-05-24T11:05:10.299631+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\alpha_{\\textup{crit}}$.",
-  "new_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\beta_{\\textup{crit}}$."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\alpha_{\\textup{crit}}$.",
-    "new_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\beta_{\\textup{crit}}$."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5587 · 2026-05-24T11:05:10.351498+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5588 · 2026-05-24T11:05:17.929528+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\alpha_{\\textup{crit}}$.\nEquivalently, defining $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\alpha_{\\textup{crit,eff}}$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality.",
-  "new_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\beta_{\\textup{crit}}$.\nEquivalently, defining $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\beta_{\\textup{crit,eff}}$; when $\\beta_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\alpha_{\\textup{crit}}$.\nEquivalently, defining $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\alpha_{\\textup{crit,eff}}$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality.",
-    "new_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\beta_{\\textup{crit}}$.\nEquivalently, defining $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\beta_{\\textup{crit,eff}}$; when $\\beta_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5589 · 2026-05-24T11:05:17.933629+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 4
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5590 · 2026-05-24T11:05:29.077296+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "We define the effective precision threshold $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\alpha_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).",
-  "new_string": "We define the effective precision threshold $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$; when $\\beta_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\beta_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\beta_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\beta_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "We define the effective precision threshold $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\alpha_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).",
-    "new_string": "We define the effective precision threshold $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$; when $\\beta_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\beta_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\beta_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\beta_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5591 · 2026-05-24T11:05:29.078850+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 1
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5592 · 2026-05-24T11:05:36.759282+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\alpha_{\\textup{crit,eff}} = \\alpha_{\\textup{crit}} / (1{-}\\delta)$. When $\\alpha_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}",
-  "new_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\beta_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\beta_{\\textup{crit,eff}} = \\beta_{\\textup{crit}} / (1{-}\\delta)$. When $\\beta_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\alpha_{\\textup{crit,eff}} = \\alpha_{\\textup{crit}} / (1{-}\\delta)$. When $\\alpha_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}",
-    "new_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\beta_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\beta_{\\textup{crit,eff}} = \\beta_{\\textup{crit}} / (1{-}\\delta)$. When $\\beta_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5593 · 2026-05-24T11:05:36.760838+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 1
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5594 · 2026-05-24T11:05:40.988087+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-  "old_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\",
-  "new_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\beta_{\\textup{crit}}$ & $\\beta_{\\textup{crit,eff}}$ & Prediction \\\\"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
-    "old_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\",
-    "new_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\beta_{\\textup{crit}}$ & $\\beta_{\\textup{crit,eff}}$ & Prediction \\\\"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5595 · 2026-05-24T11:05:40.992841+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 4
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5596 · 2026-05-24T11:05:46.814407+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "\\\\alpha_\\{\\\\textup\\{crit",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "\\\\alpha_\\{\\\\textup\\{crit",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5597 · 2026-05-24T11:05:47.216426+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Grep",
-  "elapsed_ms": 402
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5598 · 2026-05-24T11:05:47.468221+00:00_
-
-called Glob
-
-<details open><summary>🔧 Tool call — Glob</summary>
-
-```json
-{
-  "pattern": "**/discussion.tex",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Glob",
-  "tool_args": {
-    "pattern": "**/discussion.tex",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5599 · 2026-05-24T11:05:47.619251+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Glob",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5600 · 2026-05-24T11:05:50.935871+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5601 · 2026-05-24T11:05:50.936283+00:00_
-
-1	\section{Discussion and Conclusion}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
-2	
-3	\paragraph{When test-time scaling fails for NER.}
-4	For discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\%) reduces candidate diversity while signal alignment collapse ($\alpha{\to}0$) limits ranking.
-5	The degeneracy decomposition (\S\ref{sec:theory}) identifies $\alpha$---not degeneracy---as the binding constraint ($8$--$33{\times}$ tighter); this persists across families \cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\ref{app:freeform_ablation}).
-6	The diagnostic framework---identifying these co-occurring conditions---is our primary contribution.
-7	At $N{=}8$, high degeneracy ($>50$\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default.
-8	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5602 · 2026-05-24T11:06:00.019646+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5603 · 2026-05-24T11:06:00.070362+00:00_
-
-1	\documentclass[11pt]{article}
-2	
-3	\usepackage[review]{acl}
-4	
-5	\usepackage{times}
-6	\usepackage{latexsym}
-7	\usepackage[T1]{fontenc}
-8	\usepackage[utf8]{inputenc}
-9	\usepackage{microtype}
-10	\usepackage{inconsolata}
-11	\usepackage{graphicx}
-12	\usepackage{booktabs}
-13	\usepackage{amsmath}
-14	\usepackage{amssymb}
-15	\usepackage{amsthm}
-16	\newtheorem{proposition}{Proposition}
-17	\newtheorem{theorem}{Theorem}
-18	\newtheorem{corollary}{Corollary}
-19	\newtheorem{definition}{Definition}
-20	\usepackage{multirow}
-21	\usepackage{xcolor}
-22	\usepackage{subcaption}
-23	\usepackage{alphalph}
-24	\usepackage{enumitem}
-25	
-26	\graphicspath{{figures/}}
-27	
-28	\title{When Self-Consistency Fails for NER:\\ Degeneracy, Signal Collapse, and the Correlation-Selection Gap}
-29	
-30	\author{Anonymous}
-31	
-32	\begin{document}
-33	\maketitle
-34	
-35	\input{sections/abstract}
-36	\input{sections/introduction}
-37	\input{sections/background}
-38	\input{sections/diagnostic}
-39	\input{sections/single_signal}
-40	\input{sections/adaptive}
-41	\input{sections/theory}
-42	\input{sections/experiments_main}
-43	
-44	\section*{Limitations}
-45	\input{sections/limitations}
-46	
-47	\bibliography{references}
-48	
-49	\appendix
-50	\renewcommand{\thesection}{\alphalph{\value{section}}}
-51	\input{sections/appendix}
-52	
-53	\end{document}
-54	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5604 · 2026-05-24T11:06:06.100691+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "\\\\input.*theoretical|\\\\input.*mechanistic",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "\\\\input.*theoretical|\\\\input.*mechanistic",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5605 · 2026-05-24T11:06:06.151331+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5606 · 2026-05-24T11:06:10.826245+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
-  "offset": "5",
-  "limit": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
-    "offset": "5",
-    "limit": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5607 · 2026-05-24T11:06:10.926977+00:00_
-
-5	The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance; selection failure is a design property, not an empirical finding.
-6	The second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\times}$; Appendices~\ref{app:freeform_ablation},~\ref{app:lp_failure_stability}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
-7	Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5608 · 2026-05-24T11:06:15.243319+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
-  "old_string": "LP---the only per-sample signal---suffers compression",
-  "new_string": "LP, the only per-sample signal, suffers compression"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
-    "old_string": "LP---the only per-sample signal---suffers compression",
-    "new_string": "LP, the only per-sample signal, suffers compression"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5609 · 2026-05-24T11:06:15.344229+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5610 · 2026-05-24T11:06:21.173823+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
-  "offset": "11",
-  "limit": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
-    "offset": "11",
-    "limit": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5611 · 2026-05-24T11:06:21.224550+00:00_
-
-11	Oracle F1 follows $F_1(N) = a - b \cdot N^{-c}$ ($R^2 > 0.999$; Figure~\ref{fig:oracle_scaling}): Few-NERD ($c{\approx}0.61$) scales comparably to reasoning tasks \cite{brown2024monkeys}, SciERC converges more slowly ($c{\approx}0.35$), yet confidence-based aggregation recovers ${<}1$\,pp, a persistent gap.
-12	The gap persists across scales and families: scaling from 8B to 14B FT increases oracle headroom ($+1.2$\,pp) with minimal greedy gain ($+0.9$\,pp), and GPT-5.5 (200 Few-NERD instances, zero-shot) exhibits the same pattern---50\% degeneracy, SJ $\rho{=}0.346$, MV $+1.4$\,pp yet 6.8\,pp oracle headroom unrealized.\footnote{Of the 10.1\% of GPT-5.5 samples producing empty entity sets, 88\% correspond to gold-empty instances; true parse failures affect only 1.2\% of samples (19/1{,}600) and shift all reported metrics by ${<}0.5$\,pp. See Appendix~\ref{app:frontier_sc}.}
-13	Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\% vs.\ Qwen3: $13.0$\% vs.\ GPT-5.5: $50$\% on Few-NERD; Appendix~\ref{app:cross_scale}).
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5612 · 2026-05-24T11:06:25.139285+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
-  "old_string": "the same pattern---50\\% degeneracy",
-  "new_string": "the same pattern: 50\\% degeneracy"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
-    "old_string": "the same pattern---50\\% degeneracy",
-    "new_string": "the same pattern: 50\\% degeneracy"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5613 · 2026-05-24T11:06:25.189965+00:00_
+_source line 5577 · 2026-05-24T11:06:25.189965+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex has been updated successfully.
 
@@ -1634,7 +30,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_co
 
 ### Tool call
 
-_source line 5614 · 2026-05-24T11:06:29.255335+00:00_
+_source line 5578 · 2026-05-24T11:06:29.255335+00:00_
 
 called Grep
 
@@ -1676,7 +72,7 @@ called Grep
 
 ### Tool result
 
-_source line 5615 · 2026-05-24T11:06:29.356336+00:00_
+_source line 5579 · 2026-05-24T11:06:29.356336+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theoretical.tex:10:Across 16 configurations, all gains respect the bound (ratio 3--12\%; Figure~\ref{fig:bound}); the bound is loose because $\alpha$---not $D$---is the bottleneck.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex:5:[Omitted long matching line]
@@ -1707,7 +103,7 @@ _source line 5615 · 2026-05-24T11:06:29.356336+00:00_
 
 ### Tool call
 
-_source line 5616 · 2026-05-24T11:06:40.959187+00:00_
+_source line 5580 · 2026-05-24T11:06:40.959187+00:00_
 
 called Bash
 
@@ -1745,7 +141,7 @@ called Bash
 
 ### Tool result
 
-_source line 5617 · 2026-05-24T11:06:43.218793+00:00_
+_source line 5581 · 2026-05-24T11:06:43.218793+00:00_
 
 ts/type1/public/amsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
@@ -1787,7 +183,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5618 · 2026-05-24T11:06:46.030344+00:00_
+_source line 5582 · 2026-05-24T11:06:46.030344+00:00_
 
 called Bash
 
@@ -1823,7 +219,7 @@ called Bash
 
 ### Tool result
 
-_source line 5619 · 2026-05-24T11:06:46.131212+00:00_
+_source line 5583 · 2026-05-24T11:06:46.131212+00:00_
 
 0
 ---
@@ -1848,7 +244,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5620 · 2026-05-24T11:06:52.027749+00:00_
+_source line 5584 · 2026-05-24T11:06:52.027749+00:00_
 
 called Bash
 
@@ -1884,7 +280,7 @@ called Bash
 
 ### Tool result
 
-_source line 5621 · 2026-05-24T11:06:52.078312+00:00_
+_source line 5585 · 2026-05-24T11:06:52.078312+00:00_
 
 (./main.bbl [9]
 ---
@@ -1908,7 +304,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5622 · 2026-05-24T11:06:56.695756+00:00_
+_source line 5586 · 2026-05-24T11:06:56.695756+00:00_
 
 called Bash
 
@@ -1944,7 +340,7 @@ called Bash
 
 ### Tool result
 
-_source line 5623 · 2026-05-24T11:06:56.746488+00:00_
+_source line 5587 · 2026-05-24T11:06:56.746488+00:00_
 
 grep: main.log: binary file matches
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -2013,7 +409,7 @@ grep: main.log: binary file matches
 
 ### Tool call
 
-_source line 5624 · 2026-05-24T11:07:15.539003+00:00_
+_source line 5588 · 2026-05-24T11:07:15.539003+00:00_
 
 called Bash
 
@@ -2049,7 +445,7 @@ called Bash
 
 ### Tool result
 
-_source line 5625 · 2026-05-24T11:07:15.740256+00:00_
+_source line 5589 · 2026-05-24T11:07:15.740256+00:00_
 
 [1
 [2
@@ -2116,7 +512,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5626 · 2026-05-24T11:07:19.052913+00:00_
+_source line 5590 · 2026-05-24T11:07:19.052913+00:00_
 
 called Bash
 
@@ -2152,7 +548,7 @@ called Bash
 
 ### Tool result
 
-_source line 5627 · 2026-05-24T11:07:19.103539+00:00_
+_source line 5591 · 2026-05-24T11:07:19.103539+00:00_
 
 (./sections/experiments_main.tex
 ) [8 <./figures/fig_degeneracy_lp_scatter.pdf>] (./sections/limitations.tex)
@@ -2177,7 +573,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5628 · 2026-05-24T11:07:33.860045+00:00_
+_source line 5592 · 2026-05-24T11:07:33.860045+00:00_
 
 called Bash
 
@@ -2215,7 +611,7 @@ called Bash
 
 ### Tool result
 
-_source line 5629 · 2026-05-24T11:07:35.967885+00:00_
+_source line 5593 · 2026-05-24T11:07:35.967885+00:00_
 
 Output written on main.pdf (46 pages, 4854949 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/agent_70248b8a
@@ -2238,7 +634,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5630 · 2026-05-24T11:07:38.807323+00:00_
+_source line 5594 · 2026-05-24T11:07:38.807323+00:00_
 
 called Bash
 
@@ -2274,7 +670,7 @@ called Bash
 
 ### Tool result
 
-_source line 5631 · 2026-05-24T11:07:38.869303+00:00_
+_source line 5595 · 2026-05-24T11:07:38.869303+00:00_
 
 (./sections/experiments_main.tex
 ) [8 <./figures/fig_degeneracy_lp_scatter.pdf>] (./sections/limitations.tex)
@@ -2299,7 +695,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/
 
 ### Tool call
 
-_source line 5632 · 2026-05-24T11:07:44.671803+00:00_
+_source line 5596 · 2026-05-24T11:07:44.671803+00:00_
 
 called ToolSearch
 
@@ -2335,7 +731,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5633 · 2026-05-24T11:07:44.772686+00:00_
+_source line 5597 · 2026-05-24T11:07:44.772686+00:00_
 
 
 
@@ -2357,7 +753,7 @@ _source line 5633 · 2026-05-24T11:07:44.772686+00:00_
 
 ### Tool call
 
-_source line 5634 · 2026-05-24T11:08:06.577498+00:00_
+_source line 5598 · 2026-05-24T11:08:06.577498+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2393,7 +789,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5635 · 2026-05-24T11:08:10.209509+00:00_
+_source line 5599 · 2026-05-24T11:08:10.209509+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -2415,7 +811,7 @@ _source line 5635 · 2026-05-24T11:08:10.209509+00:00_
 
 ### Assistant
 
-_source line 5636 · 2026-05-24T11:08:16.382064+00:00_
+_source line 5600 · 2026-05-24T11:08:16.382064+00:00_
 
 三个任务全部完成并已汇报 Director：
 
@@ -2448,7 +844,7 @@ _source line 5636 · 2026-05-24T11:08:16.382064+00:00_
 
 ### User
 
-_source line 5637 · 2026-05-24T11:16:54.037672+00:00_
+_source line 5601 · 2026-05-24T11:16:54.037672+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -2469,7 +865,7 @@ _source line 5637 · 2026-05-24T11:16:54.037672+00:00_
 
 ### Tool call
 
-_source line 5638 · 2026-05-24T11:17:06.309979+00:00_
+_source line 5602 · 2026-05-24T11:17:06.309979+00:00_
 
 called ToolSearch
 
@@ -2505,7 +901,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5639 · 2026-05-24T11:17:06.411448+00:00_
+_source line 5603 · 2026-05-24T11:17:06.411448+00:00_
 
 
 
@@ -2527,7 +923,7 @@ _source line 5639 · 2026-05-24T11:17:06.411448+00:00_
 
 ### Tool call
 
-_source line 5640 · 2026-05-24T11:17:09.473584+00:00_
+_source line 5604 · 2026-05-24T11:17:09.473584+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2563,7 +959,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 5641 · 2026-05-24T11:17:09.524180+00:00_
+_source line 5605 · 2026-05-24T11:17:09.524180+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -2592,7 +988,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 5642 · 2026-05-24T11:17:10.075764+00:00_
+_source line 5606 · 2026-05-24T11:17:10.075764+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -2628,7 +1024,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 5643 · 2026-05-24T11:17:10.378276+00:00_
+_source line 5607 · 2026-05-24T11:17:10.378276+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -2662,7 +1058,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 5644 · 2026-05-24T11:17:10.833602+00:00_
+_source line 5608 · 2026-05-24T11:17:10.833602+00:00_
 
 Error: result (260,603 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-70248b8a/4d919e51-e26e-459d-b362-daaa80b2ab0a/tool-results/mcp-agent-ml-research-read_registry-1779621430778.txt.
 Format: JSON with schema: {result: string}
@@ -2691,7 +1087,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool result
 
-_source line 5645 · 2026-05-24T11:17:10.884302+00:00_
+_source line 5609 · 2026-05-24T11:17:10.884302+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -2713,7 +1109,7 @@ _source line 5645 · 2026-05-24T11:17:10.884302+00:00_
 
 ### Tool result
 
-_source line 5646 · 2026-05-24T11:17:10.884846+00:00_
+_source line 5610 · 2026-05-24T11:17:10.884846+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp_fewnerd_mf4v2_s42_v4: Superseded: v3 (exp_fewnerd_mf4v2_s42_v3) already succeeded. This v4 retry is no longer needed.（准备中）\\n- exp_fewnerd_mf4v2_s123_v2: FewNERD MF4v2 s123 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=123, N=8, T=1.0.（准备中）\\n- exp_fewnerd_mf4v2_s42_v2: FewNERD MF4v2 s42 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=42, N=8, T=1.0.（准备中）\\n- eval_scd_fewnerd_fallback（准备中）\\n- exp_a1_spider_sql_sc: Cross-task universality: SC diagnostic cascade (degeneracy, LP-quality gap, agreement-correctness correlation) applies to SQL structured generation on Spider. Qwen2.5-7B-Instruct base model, 200 dev examples, N=8 T=1.0, execution accuracy evaluation. If F1-F4 failure modes exist in SQL, the framework generalizes beyond NER.（准备中）\\n- exp_b2_v4_inverse_frequency: Inverse-frequency weighting of entity features (agreement_count, vc, sj normalized by log(1+type_freq)) improves cross-domain generalization by reducing dominance of high-frequency entity types. Two variants: A) replace original features, B) augment as additional features.（准备中）\\n- exp_b2_v3_domain_invariant: Removing domain-specific features (dataset_enc, entity_type distributions) forces the verifier to rely on domain-invariant signals, improving cross-domain generalization at the cost of some discriminative power. If LGB AUC improves on held-out domains, domain features were causing negative transfer.（准备中）\\n- exp_b2_v2_multi_domain_joint: Joint multi-domain training (CoNLL+SciERC+FewNERD LODO) improves entity verifier AUC and cross-domain construction F1 by exposing the model 
 …[truncated 4429 chars]
@@ -2736,7 +1132,7 @@ _source line 5646 · 2026-05-24T11:17:10.884846+00:00_
 
 ### Tool result
 
-_source line 5647 · 2026-05-24T11:17:10.935678+00:00_
+_source line 5611 · 2026-05-24T11:17:10.935678+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"content\": \"# struct_self_consist_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-24 01:58 UTC | 更新原因: 全部修复完成，论文 submission-ready，待办全部 blocked on 用户\\n\\n## 核心方向\\n**Self-Consistency for NER: Correlation-Selection Gap 诊断与分析**。详见 paper_framing.md。\\n\\n## 当前阶段\\n**🔴 DDL Sprint — EMNLP 2026 DDL 2026-05-25 (明天)**\\n\\n## 目标校准\\n- **Realistic target: 3.5 (Borderline Conference)**\\n- 当前 Fresh mode 最高 R1=3.5 / R2=3.0 (R39)\\n\\n## 审稿历史\\n| Round | Mode | Score | 关键问题 |\\n|-------|------|-------|---------|\\n| R39 | Fresh | 3.0 (R1=3.5, R2=3.0) | 页数溢出+epoch confound+novelty |\\n| R41 | Continue | **submitted, 待用户确认** | 全部修复+n16/n32整合 |\\n\\n## 论文状态：✅ SUBMISSION-READY\\n- 编译：46 pages, 0 errors, 0 undefined refs, 主文 ≤ 8 pages\\n- 匿名 repo：commit `58d1be8`（补齐缺失文件 + response letter 修正 + caption 脚注）\\n- Reviewer 验证：所有数值一致，格式合规，匿名通过\\n- Response letter：过时数据已修正（SciERC +0.32pp, selective prediction 引用 appendix）\\n- ARR checklist：15/15\\n\\n## 待办（全部 blocked on 用户）\\n- [ ] 用户在 OpenReview 提交\\n- [ ] 用户确认 R41 审稿模式（可选）\\n- [ ] 用户确认 Figure 1 最终版（可选）\\n\\n## GPU 预算\\nautodl-5090: 4×RTX 5090，全部空闲。研究已收敛（D243），18 个 PREPARING 实验留作 rebuttal 备用。\\n\\n## 硬约束\\n- GPU 仅限 autodl-5090 cuda:0-3\\n- SciERC construction 保持 +0.32pp n.s.（单种子 seed42）\\n- tab:scale_comparison: entity-type-averaged macro-F1（.667）；tab:selection: macro-F1（.645）；tab:fewnerd: instance-averaged（.663）——各表内部一致\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D248 | 2026-05-24 | Reviewer critical 降级为 info：micro-F1 不是 constructio | — |\\n| D247 | 2026-05-24 | 确认 SciERC +0.32pp metric 自洽（entity-type-averaged m | — |\\n| D246 | 2026-05-24 | R45 回退完成，冻结论文内容，DDL 前不追查 SciERC +0.32pp metric 一致性 | — |\\n| D245 | 2026-05-24 | DDL eve 最后冲刺：P0-A SciERC multi-seed construction ( | — |\\n| D244 | 2026-05-24 | DDL eve GPU 决策：不启动新实验，4×5090 保留给 rebuttal 期间使用 | — |\\n| 
 …[truncated 625 chars]
@@ -2759,7 +1155,7 @@ _source line 5647 · 2026-05-24T11:17:10.935678+00:00_
 
 ### Assistant
 
-_source line 5648 · 2026-05-24T11:17:25.383977+00:00_
+_source line 5612 · 2026-05-24T11:17:25.383977+00:00_
 
 Session-start 初始化完成：
 
@@ -2793,7 +1189,7 @@ Session-start 初始化完成：
 
 ### User
 
-_source line 5649 · 2026-05-24T11:18:45.103201+00:00_
+_source line 5613 · 2026-05-24T11:18:45.103201+00:00_
 
 [Director 指令] Reviewer 发现 exp_fewnerd_mf4v2_s123_v4 的 registry 状态有误。服务器数据显示实验已成功完成（samples.jsonl 37648 行，report.json 完整），但 registry 误标为 killed。
 
@@ -2818,7 +1214,7 @@ _source line 5649 · 2026-05-24T11:18:45.103201+00:00_
 
 ### Tool call
 
-_source line 5650 · 2026-05-24T11:18:52.856959+00:00_
+_source line 5614 · 2026-05-24T11:18:52.856959+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2856,7 +1252,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 5651 · 2026-05-24T11:18:52.958514+00:00_
+_source line 5615 · 2026-05-24T11:18:52.958514+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -2885,7 +1281,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 5652 · 2026-05-24T11:18:53.761820+00:00_
+_source line 5616 · 2026-05-24T11:18:53.761820+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8804}}"}
 
@@ -2907,7 +1303,7 @@ _source line 5652 · 2026-05-24T11:18:53.761820+00:00_
 
 ### Tool result
 
-_source line 5653 · 2026-05-24T11:18:53.813057+00:00_
+_source line 5617 · 2026-05-24T11:18:53.813057+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -2929,7 +1325,7 @@ _source line 5653 · 2026-05-24T11:18:53.813057+00:00_
 
 ### Tool call
 
-_source line 5654 · 2026-05-24T11:18:57.818458+00:00_
+_source line 5618 · 2026-05-24T11:18:57.818458+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -2967,7 +1363,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5655 · 2026-05-24T11:18:58.672792+00:00_
+_source line 5619 · 2026-05-24T11:18:58.672792+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_mf4v2_s123_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:44:24.500Z\", \"updated_at\": \"2026-05-24T09:47:47.780Z\", \"hypothesis\": \"FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.\", \"parent\": \"exp_fewnerd_mf4v2_s123_v2\", \"conclusion\": \"killed\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123_v4/\", \"server\": \"autodl-5090\", \"data_path\": \"data/fewnerd/\", \"data_count\": 0, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-fewnerd-exp021-merged\", \"eval_data\": \"data/fewnerd/test.json\"}, \"completed_at\": \"2026-05-24T09:47:47.780Z\"}, \"exp_fewnerd_pretrained_n32_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:49:35.691Z\", \"updated_at\": \"2026-05-23T12:00:19.327Z\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).\", \"parent\": \"exp_fewnerd_pretrained_n32_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qw
 …[truncated 8937 chars]
@@ -2990,7 +1386,7 @@ _source line 5655 · 2026-05-24T11:18:58.672792+00:00_
 
 ### Tool call
 
-_source line 5656 · 2026-05-24T11:19:05.849612+00:00_
+_source line 5620 · 2026-05-24T11:19:05.849612+00:00_
 
 called ToolSearch
 
@@ -3026,7 +1422,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5657 · 2026-05-24T11:19:05.849937+00:00_
+_source line 5621 · 2026-05-24T11:19:05.849937+00:00_
 
 
 
@@ -3048,7 +1444,7 @@ _source line 5657 · 2026-05-24T11:19:05.849937+00:00_
 
 ### Tool call
 
-_source line 5658 · 2026-05-24T11:19:11.120028+00:00_
+_source line 5622 · 2026-05-24T11:19:11.120028+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3088,7 +1484,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 5659 · 2026-05-24T11:19:11.923775+00:00_
+_source line 5623 · 2026-05-24T11:19:11.923775+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3128,7 +1524,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5660 · 2026-05-24T11:19:12.927741+00:00_
+_source line 5624 · 2026-05-24T11:19:12.927741+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4v2_s123_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:44:24.500Z\", \"updated_at\": \"2026-05-24T11:19:11.913Z\", \"hypothesis\": \"FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.\", \"parent\": \"exp_fewnerd_mf4v2_s123_v2\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123_v4/\", \"server\": \"autodl-5090\", \"data_path\": \"data/fewnerd/\", \"data_count\": 0, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-fewnerd-exp021-merged\", \"eval_data\": \"data/fewnerd/test.json\"}, \"completed_at\": \"2026-05-24T09:47:47.780Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7929}}"}
 
@@ -3150,7 +1546,7 @@ _source line 5660 · 2026-05-24T11:19:12.927741+00:00_
 
 ### Tool result
 
-_source line 5661 · 2026-05-24T11:19:13.783397+00:00_
+_source line 5625 · 2026-05-24T11:19:13.783397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_mf4v2_s123_v4\": {\"hypothesis\": \"FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123_v4/\", \"server\": \"autodl-5090\", \"data_path\": \"data/fewnerd/\", \"data_count\": 0, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-fewnerd-exp021-merged\", \"eval_data\": \"data/fewnerd/test.json\"}}, \"exp_fewnerd_pretrained_n32_s42_v2\": {\"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 32 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n32_seed42/\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"157469\", \"data_count\": 37648, \"data_path\": \"data/fewnerd/\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"n_samples\": 32, \"log_p
 …[truncated 42037 chars]
@@ -3173,7 +1569,7 @@ _source line 5661 · 2026-05-24T11:19:13.783397+00:00_
 
 ### Tool call
 
-_source line 5662 · 2026-05-24T11:19:41.418693+00:00_
+_source line 5626 · 2026-05-24T11:19:41.418693+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3213,7 +1609,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5663 · 2026-05-24T11:19:42.873831+00:00_
+_source line 5627 · 2026-05-24T11:19:42.873831+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4v2_s123_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:44:24.500Z\", \"updated_at\": \"2026-05-24T11:19:42.239Z\", \"hypothesis\": \"FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.\", \"parent\": \"exp_fewnerd_mf4v2_s123_v2\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123_v4/\", \"server\": \"autodl-5090\", \"data_path\": \"data/fewnerd/\", \"data_count\": 0, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-fewnerd-exp021-merged\", \"eval_data\": \"data/fewnerd/test.json\"}, \"completed_at\": \"2026-05-24T09:47:47.780Z\", \"metrics\": {\"greedy_f1\": 0.7885, \"oracle_f1\": 0.889, \"note\": \"Director 从服务器数据确认。samples.jsonl 37648行，report.json完整。待 3-seed unified recompute。\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4094}}"}
 
@@ -3235,7 +1631,7 @@ _source line 5663 · 2026-05-24T11:19:42.873831+00:00_
 
 ### Tool call
 
-_source line 5664 · 2026-05-24T11:20:09.314525+00:00_
+_source line 5628 · 2026-05-24T11:20:09.314525+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3275,7 +1671,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5665 · 2026-05-24T11:20:15.643509+00:00_
+_source line 5629 · 2026-05-24T11:20:15.643509+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_fewnerd_3seed_unified_20260524T112009\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_analysis_fewnerd_3seed_unified_20260524T112009.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_fewnerd_3seed_unified_20260524T112009 started. Use get_worker_status('worker_analysis_fewnerd_3seed_unified_20260524T112009') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3297,7 +1693,7 @@ _source line 5665 · 2026-05-24T11:20:15.643509+00:00_
 
 ### Assistant
 
-_source line 5666 · 2026-05-24T11:20:22.311760+00:00_
+_source line 5630 · 2026-05-24T11:20:22.311760+00:00_
 
 Task 1 完成：exp_fewnerd_mf4v2_s123_v4 的 conclusion 已改为 success，metrics 已补充（greedy_f1=0.7885, oracle_f1=0.889）。
 
@@ -3326,7 +1722,7 @@ Task 2：Worker 已派发，正在 SSH 到 autodl-5090 计算 FewNERD 3-seed MV/
 
 ### User
 
-_source line 5667 · 2026-05-24T11:24:24.143517+00:00_
+_source line 5631 · 2026-05-24T11:24:24.143517+00:00_
 
 [WORKER DONE] Worker worker_analysis_fewnerd_3seed_unified_20260524T112009 已完成（status=done）。用 `get_worker_status('worker_analysis_fewnerd_3seed_unified_20260524T112009')` 读取结果，然后处理。
 
@@ -3351,7 +1747,7 @@ _source line 5667 · 2026-05-24T11:24:24.143517+00:00_
 
 ### Tool call
 
-_source line 5668 · 2026-05-24T11:24:32.221232+00:00_
+_source line 5632 · 2026-05-24T11:24:32.221232+00:00_
 
 called ToolSearch
 
@@ -3387,7 +1783,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5669 · 2026-05-24T11:24:32.271794+00:00_
+_source line 5633 · 2026-05-24T11:24:32.271794+00:00_
 
 
 
@@ -3409,7 +1805,7 @@ _source line 5669 · 2026-05-24T11:24:32.271794+00:00_
 
 ### Tool call
 
-_source line 5670 · 2026-05-24T11:24:34.580271+00:00_
+_source line 5634 · 2026-05-24T11:24:34.580271+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3443,7 +1839,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5671 · 2026-05-24T11:24:34.813872+00:00_
+_source line 5635 · 2026-05-24T11:24:34.813872+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_fewnerd_3seed_unified_20260524T112009\", \"status\": \"done\", \"task_type\": \"analysis:fewnerd_3seed_unified\", \"project\": \"struct_self_consist_ie\", \"started_at\": \"2026-05-24T11:20:10.074903+00:00\", \"ended_at\": \"2026-05-24T11:24:22.034573+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"结果：\\n\\n```\\nFewNERD 3-seed (s42, s456, s123) N=8 T=1.0 Qwen3-8B FT\\nMetric: entity-type-averaged macro-F1\\n\\n| Seed   | Greedy | MV    | MV Δ(pp) | LP    | LP Δ(pp) | Oracle | Degen% |\\n|--------|--------|-------|----------|-------|----------|--------|--------|\\n| 42     | 75.07  | 70.44 | -4.63    | 75.30 | +0.23    | 85.52  | 9.1    |\\n| 456    | 75.12  | 71.93 | -3.20    | 75.11 | -0.01    | 86.30  | 8.1    |\\n| 123    | 75.06  | 71.44 | -3.62    | 75.22 | +0.15    | 86.81  | 9.2    |\\n| Mean±σ | 75.08±0.03 | 71.27±0.62 | -3.82±0.60 | 75.21±0.08 | +0.12±0.10 | 86.21±0.53 | 8.80±0.48 |\\n```\\n\\n要点：\\n- **MV strict 在 macro-F1 下大幅损伤** (-3.82 pp)，所有 8 个 entity type 均为负 delta，\\\"other\\\" 和 \\\"event\\\" 最严重（-7.69, -5.17 pp）\\n- **LP 基本持平** (+0.12 pp)，方差极小（±0.10）\\n- **Oracle headroom** 约 +11.13 pp，说明 sample diversity 足够\\n- 数据来源：`fewnerd_mf4v2_seed42_v3`、`fewnerd_mf4v2_seed456`、`fewnerd_mf4v2_seed123_v4`（任务指定的 seed42/seed456 原路径为空目录）\\n\\n已写入 `artifacts/fewnerd_3seed_unified_stats.txt` 并注册。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3465,7 +1861,7 @@ _source line 5671 · 2026-05-24T11:24:34.813872+00:00_
 
 ### Tool call
 
-_source line 5672 · 2026-05-24T11:24:48.176210+00:00_
+_source line 5636 · 2026-05-24T11:24:48.176210+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -3505,7 +1901,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5673 · 2026-05-24T11:24:49.681808+00:00_
+_source line 5637 · 2026-05-24T11:24:49.681808+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewnerd_mf4v2_s123_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:44:24.500Z\", \"updated_at\": \"2026-05-24T11:24:49.039Z\", \"hypothesis\": \"FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.\", \"parent\": \"exp_fewnerd_mf4v2_s123_v2\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 123 --collect_logprobs --output_dir output/fewnerd_mf4v2_seed123_v4/\", \"server\": \"autodl-5090\", \"data_path\": \"data/fewnerd/\", \"data_count\": 0, \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/qwen3-8b-fewnerd-exp021-merged\", \"eval_data\": \"data/fewnerd/test.json\"}, \"completed_at\": \"2026-05-24T09:47:47.780Z\", \"metrics\": {\"greedy_f1\": 0.7885, \"oracle_f1\": 0.889, \"greedy_macro_f1\": 0.7506, \"mv_strict_macro_f1\": 0.7144, \"mv_delta_macro_pp\": -3.62, \"lp_macro_f1\": 0.7522, \"lp_delta_macro_pp\": 0.15, \"oracle_macro_f1\": 0.8681, \"degeneracy_rate\": 0.092, \"metric_type\": \"entity-type-averaged macro-F1\", \"note\": \"3-seed unified recompute complete. Source: fewnerd_mf4v2_seed123_v4/samples.jsonl (37648 lines).\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4879}}"}
 
@@ -3527,7 +1923,7 @@ _source line 5673 · 2026-05-24T11:24:49.681808+00:00_
 
 ### Tool call
 
-_source line 5674 · 2026-05-24T11:24:52.978627+00:00_
+_source line 5638 · 2026-05-24T11:24:52.978627+00:00_
 
 called ToolSearch
 
@@ -3563,7 +1959,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5675 · 2026-05-24T11:24:53.029242+00:00_
+_source line 5639 · 2026-05-24T11:24:53.029242+00:00_
 
 
 
@@ -3585,7 +1981,7 @@ _source line 5675 · 2026-05-24T11:24:53.029242+00:00_
 
 ### Tool call
 
-_source line 5676 · 2026-05-24T11:25:11.208452+00:00_
+_source line 5640 · 2026-05-24T11:25:11.208452+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3621,7 +2017,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5677 · 2026-05-24T11:25:14.772341+00:00_
+_source line 5641 · 2026-05-24T11:25:14.772341+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -3643,7 +2039,7 @@ _source line 5677 · 2026-05-24T11:25:14.772341+00:00_
 
 ### Assistant
 
-_source line 5678 · 2026-05-24T11:25:19.742672+00:00_
+_source line 5642 · 2026-05-24T11:25:19.742672+00:00_
 
 两项任务完成，已汇报 Director。Registry 已修正（s123_v4 → success），3-seed FewNERD macro-F1 统计已计算：MV -3.82±0.60 pp, LP +0.12±0.10 pp。
 
@@ -3670,7 +2066,7 @@ _source line 5678 · 2026-05-24T11:25:19.742672+00:00_
 
 ### User
 
-_source line 5679 · 2026-05-24T23:33:28.139501+00:00_
+_source line 5643 · 2026-05-24T23:33:28.139501+00:00_
 
 [Director 指令] 清理 autodl-5090 上两个孤儿进程：
 
@@ -3699,7 +2095,7 @@ kill 282369 282468
 
 ### Tool call
 
-_source line 5680 · 2026-05-24T23:33:39.617612+00:00_
+_source line 5644 · 2026-05-24T23:33:39.617612+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3739,7 +2135,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5681 · 2026-05-24T23:33:45.758656+00:00_
+_source line 5645 · 2026-05-24T23:33:45.758656+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_kill_orphan_processes_20260524T233340\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ops_kill_orphan_processes_20260524T233340.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_kill_orphan_processes_20260524T233340 started. Use get_worker_status('worker_ops_kill_orphan_processes_20260524T233340') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3761,7 +2157,7 @@ _source line 5681 · 2026-05-24T23:33:45.758656+00:00_
 
 ### Assistant
 
-_source line 5682 · 2026-05-24T23:33:48.036753+00:00_
+_source line 5646 · 2026-05-24T23:33:48.036753+00:00_
 
 已派 Worker 处理。等待回调。
 
@@ -3788,7 +2184,7 @@ _source line 5682 · 2026-05-24T23:33:48.036753+00:00_
 
 ### User
 
-_source line 5683 · 2026-05-24T23:34:27.136046+00:00_
+_source line 5647 · 2026-05-24T23:34:27.136046+00:00_
 
 [WORKER DONE] Worker worker_ops_kill_orphan_processes_20260524T233340 已完成（status=done）。用 `get_worker_status('worker_ops_kill_orphan_processes_20260524T233340')` 读取结果，然后处理。
 
@@ -3813,7 +2209,7 @@ _source line 5683 · 2026-05-24T23:34:27.136046+00:00_
 
 ### Tool call
 
-_source line 5684 · 2026-05-24T23:34:40.379494+00:00_
+_source line 5648 · 2026-05-24T23:34:40.379494+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3847,7 +2243,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5685 · 2026-05-24T23:34:40.530727+00:00_
+_source line 5649 · 2026-05-24T23:34:40.530727+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_kill_orphan_processes_20260524T233340\", \"status\": \"done\", \"task_type\": \"ops:kill_orphan_processes\", \"project\": \"struct_self_consist_ie\", \"started_at\": \"2026-05-24T23:33:40.480392+00:00\", \"ended_at\": \"2026-05-24T23:34:24.994695+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个孤儿进程已清除，无残留 `micro_f1_recompute.py` 进程。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3869,7 +2265,7 @@ _source line 5685 · 2026-05-24T23:34:40.530727+00:00_
 
 ### Tool call
 
-_source line 5686 · 2026-05-24T23:34:54.406305+00:00_
+_source line 5650 · 2026-05-24T23:34:54.406305+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3905,7 +2301,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5687 · 2026-05-24T23:34:59.516717+00:00_
+_source line 5651 · 2026-05-24T23:34:59.516717+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -3927,7 +2323,7 @@ _source line 5687 · 2026-05-24T23:34:59.516717+00:00_
 
 ### Assistant
 
-_source line 5688 · 2026-05-24T23:35:03.829748+00:00_
+_source line 5652 · 2026-05-24T23:35:03.829748+00:00_
 
 孤儿进程已清理，已汇报 Director。
 
@@ -3954,7 +2350,7 @@ _source line 5688 · 2026-05-24T23:35:03.829748+00:00_
 
 ### User
 
-_source line 5689 · 2026-05-25T08:37:41.992882+00:00_
+_source line 5653 · 2026-05-25T08:37:41.992882+00:00_
 
 [Director 指令] **匿名仓库重整任务**
 
@@ -3998,7 +2394,7 @@ _source line 5689 · 2026-05-25T08:37:41.992882+00:00_
 
 ### Tool call
 
-_source line 5690 · 2026-05-25T08:38:14.881864+00:00_
+_source line 5654 · 2026-05-25T08:38:14.881864+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4038,7 +2434,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5691 · 2026-05-25T08:38:21.762794+00:00_
+_source line 5655 · 2026-05-25T08:38:21.762794+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_audit_push_20260525T083815\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ops_anon_repo_audit_push_20260525T083815.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_anon_repo_audit_push_20260525T083815 started. Use get_worker_status('worker_ops_anon_repo_audit_push_20260525T083815') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4060,7 +2456,7 @@ _source line 5691 · 2026-05-25T08:38:21.762794+00:00_
 
 ### Assistant
 
-_source line 5692 · 2026-05-25T08:38:24.448628+00:00_
+_source line 5656 · 2026-05-25T08:38:24.448628+00:00_
 
 Worker 已派发执行匿名仓库重整（密钥验证 → 自检 → force-push）。等待回调。
 
@@ -4087,7 +2483,7 @@ Worker 已派发执行匿名仓库重整（密钥验证 → 自检 → force-pus
 
 ### User
 
-_source line 5693 · 2026-05-25T08:41:45.030387+00:00_
+_source line 5657 · 2026-05-25T08:41:45.030387+00:00_
 
 [WORKER DONE] Worker worker_ops_anon_repo_audit_push_20260525T083815 已完成（status=done）。用 `get_worker_status('worker_ops_anon_repo_audit_push_20260525T083815')` 读取结果，然后处理。
 
@@ -4112,7 +2508,7 @@ _source line 5693 · 2026-05-25T08:41:45.030387+00:00_
 
 ### Tool call
 
-_source line 5694 · 2026-05-25T08:41:51.924496+00:00_
+_source line 5658 · 2026-05-25T08:41:51.924496+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4146,7 +2542,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5695 · 2026-05-25T08:41:52.026331+00:00_
+_source line 5659 · 2026-05-25T08:41:52.026331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_audit_push_20260525T083815\", \"status\": \"done\", \"task_type\": \"ops:anon_repo_audit_push\", \"project\": \"struct_self_consist_ie\", \"started_at\": \"2026-05-25T08:38:15.784718+00:00\", \"ended_at\": \"2026-05-25T08:41:42.505604+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"审计完成。结果：\\n\\n- **密钥**: PAT 有效，推送权限确认\\n- **匿名性**: 全部通过，无泄露\\n- **完整性**: README/requirements.txt/核心代码/configs 齐全\\n- **干净度**: 无垃圾文件、无大二进制、无敏感信息\\n- **推送**: 仓库已是最新，无需 force-push\\n\\n报告已写入 `artifacts/anon_repo_audit_report.txt`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4168,7 +2564,7 @@ _source line 5695 · 2026-05-25T08:41:52.026331+00:00_
 
 ### Tool call
 
-_source line 5696 · 2026-05-25T08:41:54.790335+00:00_
+_source line 5660 · 2026-05-25T08:41:54.790335+00:00_
 
 called Read
 
@@ -4202,7 +2598,7 @@ called Read
 
 ### Tool result
 
-_source line 5697 · 2026-05-25T08:41:54.790824+00:00_
+_source line 5661 · 2026-05-25T08:41:54.790824+00:00_
 
 1	Anonymous Repository Audit Report
 2	===================================
@@ -4272,7 +2668,7 @@ _source line 5697 · 2026-05-25T08:41:54.790824+00:00_
 
 ### Tool call
 
-_source line 5698 · 2026-05-25T08:42:04.043372+00:00_
+_source line 5662 · 2026-05-25T08:42:04.043372+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4308,7 +2704,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5699 · 2026-05-25T08:42:08.564329+00:00_
+_source line 5663 · 2026-05-25T08:42:08.564329+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -4337,7 +2733,7 @@ _source line 5699 · 2026-05-25T08:42:08.564329+00:00_
 
 ### User
 
-_source line 5700 · 2026-05-25T11:42:29.617946+00:00_
+_source line 5664 · 2026-05-25T11:42:29.617946+00:00_
 
 [Director 指令] 今天是 EMNLP 2026 DDL。匿名仓库需要同步最新代码。
 
@@ -4374,7 +2770,7 @@ _source line 5700 · 2026-05-25T11:42:29.617946+00:00_
 
 ### Tool call
 
-_source line 5701 · 2026-05-25T11:42:38.741461+00:00_
+_source line 5665 · 2026-05-25T11:42:38.741461+00:00_
 
 called ToolSearch
 
@@ -4410,7 +2806,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5702 · 2026-05-25T11:42:38.792307+00:00_
+_source line 5666 · 2026-05-25T11:42:38.792307+00:00_
 
 
 
@@ -4432,7 +2828,7 @@ _source line 5702 · 2026-05-25T11:42:38.792307+00:00_
 
 ### Tool call
 
-_source line 5703 · 2026-05-25T11:42:41.703034+00:00_
+_source line 5667 · 2026-05-25T11:42:41.703034+00:00_
 
 called mcp__agent-ml-research__request_secret
 
@@ -4470,7 +2866,7 @@ called mcp__agent-ml-research__request_secret
 
 ### Tool result
 
-_source line 5704 · 2026-05-25T11:42:44.765335+00:00_
+_source line 5668 · 2026-05-25T11:42:44.765335+00:00_
 
 {"result":"{\"status\": \"pending_approval\", \"request_id\": \"secret_req_github_anon_pat_1779709361\", \"key_id\": \"github_anon_pat\", \"routed_to_director\": false, \"message\": \"已发送审批卡片到飞书A群。等待批准后调用 poll_secret_request('secret_req_github_anon_pat_1779709361', 'struct_self_consist_ie') 获取密钥。\"}"}
 
@@ -4492,7 +2888,7 @@ _source line 5704 · 2026-05-25T11:42:44.765335+00:00_
 
 ### Tool call
 
-_source line 5705 · 2026-05-25T11:44:21.518309+00:00_
+_source line 5669 · 2026-05-25T11:44:21.518309+00:00_
 
 called ToolSearch
 
@@ -4528,7 +2924,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5706 · 2026-05-25T11:44:21.518753+00:00_
+_source line 5670 · 2026-05-25T11:44:21.518753+00:00_
 
 
 
@@ -4550,7 +2946,7 @@ _source line 5706 · 2026-05-25T11:44:21.518753+00:00_
 
 ### Tool call
 
-_source line 5707 · 2026-05-25T11:44:24.381298+00:00_
+_source line 5671 · 2026-05-25T11:44:24.381298+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4586,7 +2982,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 5708 · 2026-05-25T11:44:24.381707+00:00_
+_source line 5672 · 2026-05-25T11:44:24.381707+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -4615,7 +3011,7 @@ Arguments not recorded in this source.
 
 ### Tool call
 
-_source line 5709 · 2026-05-25T11:44:25.820300+00:00_
+_source line 5673 · 2026-05-25T11:44:25.820300+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -4651,7 +3047,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 5710 · 2026-05-25T11:44:26.038091+00:00_
+_source line 5674 · 2026-05-25T11:44:26.038091+00:00_
 
 called mcp__agent-ml-research__poll_secret_request
 
@@ -4687,7 +3083,7 @@ called mcp__agent-ml-research__poll_secret_request
 
 ### Tool result
 
-_source line 5711 · 2026-05-25T11:44:26.772397+00:00_
+_source line 5675 · 2026-05-25T11:44:26.772397+00:00_
 
 Error: result (261,030 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-agent-70248b8a/4d919e51-e26e-459d-b362-daaa80b2ab0a/tool-results/mcp-agent-ml-research-read_registry-1779709466717.txt.
 Format: JSON with schema: {result: string}
@@ -4716,7 +3112,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool result
 
-_source line 5712 · 2026-05-25T11:44:26.928397+00:00_
+_source line 5676 · 2026-05-25T11:44:26.928397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -4738,7 +3134,7 @@ _source line 5712 · 2026-05-25T11:44:26.928397+00:00_
 
 ### Tool result
 
-_source line 5713 · 2026-05-25T11:44:26.929010+00:00_
+_source line 5677 · 2026-05-25T11:44:26.929010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp_fewnerd_mf4v2_s42_v4: Superseded: v3 (exp_fewnerd_mf4v2_s42_v3) already succeeded. This v4 retry is no longer needed.（准备中）\\n- exp_fewnerd_mf4v2_s123_v2: FewNERD MF4v2 s123 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=123, N=8, T=1.0.（准备中）\\n- exp_fewnerd_mf4v2_s42_v2: FewNERD MF4v2 s42 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=42, N=8, T=1.0.（准备中）\\n- eval_scd_fewnerd_fallback（准备中）\\n- exp_a1_spider_sql_sc: Cross-task universality: SC diagnostic cascade (degeneracy, LP-quality gap, agreement-correctness correlation) applies to SQL structured generation on Spider. Qwen2.5-7B-Instruct base model, 200 dev examples, N=8 T=1.0, execution accuracy evaluation. If F1-F4 failure modes exist in SQL, the framework generalizes beyond NER.（准备中）\\n- exp_b2_v4_inverse_frequency: Inverse-frequency weighting of entity features (agreement_count, vc, sj normalized by log(1+type_freq)) improves cross-domain generalization by reducing dominance of high-frequency entity types. Two variants: A) replace original features, B) augment as additional features.（准备中）\\n- exp_b2_v3_domain_invariant: Removing domain-specific features (dataset_enc, entity_type distributions) forces the verifier to rely on domain-invariant signals, improving cross-domain generalization at the cost of some discriminative power. If LGB AUC improves on held-out domains, domain features were causing negative transfer.（准备中）\\n- exp_b2_v2_multi_domain_joint: Joint multi-domain training (CoNLL+SciERC+FewNERD LODO) improves entity verifier AUC and cross-domain construction F1 by exposing the model 
 …[truncated 4429 chars]
@@ -4761,7 +3157,7 @@ _source line 5713 · 2026-05-25T11:44:26.929010+00:00_
 
 ### Tool result
 
-_source line 5714 · 2026-05-25T11:44:27.079835+00:00_
+_source line 5678 · 2026-05-25T11:44:27.079835+00:00_
 
 {"result":"{\"status\": \"approved\", \"key_id\": \"github_anon_pat\", \"value\": \"[REDACTED_GITHUB_TOKEN]\"}"}
 
@@ -4783,7 +3179,7 @@ _source line 5714 · 2026-05-25T11:44:27.079835+00:00_
 
 ### Tool call
 
-_source line 5715 · 2026-05-25T11:44:49.108443+00:00_
+_source line 5679 · 2026-05-25T11:44:49.108443+00:00_
 
 called ToolSearch
 
@@ -4819,7 +3215,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5716 · 2026-05-25T11:44:49.108773+00:00_
+_source line 5680 · 2026-05-25T11:44:49.108773+00:00_
 
 
 
@@ -4841,7 +3237,7 @@ _source line 5716 · 2026-05-25T11:44:49.108773+00:00_
 
 ### Tool call
 
-_source line 5717 · 2026-05-25T11:45:15.259533+00:00_
+_source line 5681 · 2026-05-25T11:45:15.259533+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -4881,7 +3277,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5718 · 2026-05-25T11:45:19.077868+00:00_
+_source line 5682 · 2026-05-25T11:45:19.077868+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_force_push_20260525T114515\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ops_anon_repo_force_push_20260525T114515.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_anon_repo_force_push_20260525T114515 started. Use get_worker_status('worker_ops_anon_repo_force_push_20260525T114515') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4903,7 +3299,7 @@ _source line 5718 · 2026-05-25T11:45:19.077868+00:00_
 
 ### Tool call
 
-_source line 5719 · 2026-05-25T11:45:24.171600+00:00_
+_source line 5683 · 2026-05-25T11:45:24.171600+00:00_
 
 called ToolSearch
 
@@ -4939,7 +3335,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5720 · 2026-05-25T11:45:24.172038+00:00_
+_source line 5684 · 2026-05-25T11:45:24.172038+00:00_
 
 
 
@@ -4961,7 +3357,7 @@ _source line 5720 · 2026-05-25T11:45:24.172038+00:00_
 
 ### Tool call
 
-_source line 5721 · 2026-05-25T11:45:29.764802+00:00_
+_source line 5685 · 2026-05-25T11:45:29.764802+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4997,7 +3393,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5722 · 2026-05-25T11:45:31.170233+00:00_
+_source line 5686 · 2026-05-25T11:45:31.170233+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -5019,7 +3415,7 @@ _source line 5722 · 2026-05-25T11:45:31.170233+00:00_
 
 ### Assistant
 
-_source line 5723 · 2026-05-25T11:45:33.720764+00:00_
+_source line 5687 · 2026-05-25T11:45:33.720764+00:00_
 
 已向 Director 汇报 force-push 进行中。等待 Worker 完成回调。
 
@@ -5046,7 +3442,7 @@ _source line 5723 · 2026-05-25T11:45:33.720764+00:00_
 
 ### User
 
-_source line 5724 · 2026-05-25T11:45:34.261116+00:00_
+_source line 5688 · 2026-05-25T11:45:34.261116+00:00_
 
 [SECRET APPROVED] 密钥 `github_anon_pat` 已批准。请调用 `poll_secret_request('secret_req_github_anon_pat_1779709361', 'struct_self_consist_ie')` 获取密钥值并继续原任务。
 
@@ -5067,7 +3463,7 @@ _source line 5724 · 2026-05-25T11:45:34.261116+00:00_
 
 ### Assistant
 
-_source line 5725 · 2026-05-25T11:45:39.490788+00:00_
+_source line 5689 · 2026-05-25T11:45:39.490788+00:00_
 
 Worker 已在运行中，PAT 已在派发时传入。等待 Worker 完成回调。
 
@@ -5094,7 +3490,7 @@ Worker 已在运行中，PAT 已在派发时传入。等待 Worker 完成回调�
 
 ### User
 
-_source line 5726 · 2026-05-25T11:49:32.812795+00:00_
+_source line 5690 · 2026-05-25T11:49:32.812795+00:00_
 
 [WORKER DONE] Worker worker_ops_anon_repo_force_push_20260525T114515 已完成（status=done）。用 `get_worker_status('worker_ops_anon_repo_force_push_20260525T114515')` 读取结果，然后处理。
 
@@ -5119,7 +3515,7 @@ _source line 5726 · 2026-05-25T11:49:32.812795+00:00_
 
 ### Tool call
 
-_source line 5727 · 2026-05-25T11:49:39.024138+00:00_
+_source line 5691 · 2026-05-25T11:49:39.024138+00:00_
 
 called ToolSearch
 
@@ -5155,7 +3551,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5728 · 2026-05-25T11:49:39.127539+00:00_
+_source line 5692 · 2026-05-25T11:49:39.127539+00:00_
 
 
 
@@ -5177,7 +3573,7 @@ _source line 5728 · 2026-05-25T11:49:39.127539+00:00_
 
 ### Tool call
 
-_source line 5729 · 2026-05-25T11:49:41.146178+00:00_
+_source line 5693 · 2026-05-25T11:49:41.146178+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5211,7 +3607,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5730 · 2026-05-25T11:49:41.247060+00:00_
+_source line 5694 · 2026-05-25T11:49:41.247060+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_force_push_20260525T114515\", \"status\": \"done\", \"task_type\": \"ops:anon_repo_force_push\", \"project\": \"struct_self_consist_ie\", \"started_at\": \"2026-05-25T11:45:16.045194+00:00\", \"ended_at\": \"2026-05-25T11:49:30.633828+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n**结果汇总：**\\n- **Push 状态**: 成功 (`b91180e..f3a74af main -> main`)\\n- **变更规模**: 456 files changed, 37614 insertions(+), 7029 deletions(-)\\n- **压缩包大小**: 4.7MB\\n- **匿名性检查**: 通过（无姓名、邮箱、机构名、硬编码 token 泄露）\\n- **Remote URL token**: 已清除\\n- **完成时间**: 2026-05-25 19:48 UTC+8\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5233,7 +3629,7 @@ _source line 5730 · 2026-05-25T11:49:41.247060+00:00_
 
 ### Tool call
 
-_source line 5731 · 2026-05-25T11:49:49.378767+00:00_
+_source line 5695 · 2026-05-25T11:49:49.378767+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5269,7 +3665,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5732 · 2026-05-25T11:49:53.093579+00:00_
+_source line 5696 · 2026-05-25T11:49:53.093579+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -5291,7 +3687,7 @@ _source line 5732 · 2026-05-25T11:49:53.093579+00:00_
 
 ### Assistant
 
-_source line 5733 · 2026-05-25T11:49:55.139386+00:00_
+_source line 5697 · 2026-05-25T11:49:55.139386+00:00_
 
 匿名仓库 force-push 完成：456 files changed, 匿名性检查通过, token 已清除。已汇报 Director。
 
@@ -5318,7 +3714,7 @@ _source line 5733 · 2026-05-25T11:49:55.139386+00:00_
 
 ### User
 
-_source line 5734 · 2026-05-25T11:55:39.285050+00:00_
+_source line 5698 · 2026-05-25T11:55:39.285050+00:00_
 
 [Director 指令] **紧急：匿名仓库 commit 作者泄漏，立即修复**
 
@@ -5361,7 +3757,7 @@ git remote set-url origin https://github.com/anonymous-nlp-2026/struct_self_cons
 
 ### Tool call
 
-_source line 5735 · 2026-05-25T11:56:17.845349+00:00_
+_source line 5699 · 2026-05-25T11:56:17.845349+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -5401,7 +3797,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5736 · 2026-05-25T11:56:24.174836+00:00_
+_source line 5700 · 2026-05-25T11:56:24.174836+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_author_fix_20260525T115618\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_ops_anon_repo_author_fix_20260525T115618.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_anon_repo_author_fix_20260525T115618 started. Use get_worker_status('worker_ops_anon_repo_author_fix_20260525T115618') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5423,7 +3819,7 @@ _source line 5736 · 2026-05-25T11:56:24.174836+00:00_
 
 ### Assistant
 
-_source line 5737 · 2026-05-25T11:56:27.529456+00:00_
+_source line 5701 · 2026-05-25T11:56:27.529456+00:00_
 
 Worker `worker_ops_anon_repo_author_fix_20260525T115618` 已派发，正在修复 commit author 泄漏。完成后回调处理。
 
@@ -5450,7 +3846,7 @@ Worker `worker_ops_anon_repo_author_fix_20260525T115618` 已派发，正在修�
 
 ### User
 
-_source line 5738 · 2026-05-25T11:58:06.378527+00:00_
+_source line 5702 · 2026-05-25T11:58:06.378527+00:00_
 
 [WORKER DONE] Worker worker_ops_anon_repo_author_fix_20260525T115618 已完成（status=done）。用 `get_worker_status('worker_ops_anon_repo_author_fix_20260525T115618')` 读取结果，然后处理。
 
@@ -5475,7 +3871,7 @@ _source line 5738 · 2026-05-25T11:58:06.378527+00:00_
 
 ### Tool call
 
-_source line 5739 · 2026-05-25T11:58:12.933316+00:00_
+_source line 5703 · 2026-05-25T11:58:12.933316+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -5509,7 +3905,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5740 · 2026-05-25T11:58:13.084337+00:00_
+_source line 5704 · 2026-05-25T11:58:13.084337+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_anon_repo_author_fix_20260525T115618\", \"status\": \"done\", \"task_type\": \"ops:anon_repo_author_fix\", \"project\": \"struct_self_consist_ie\", \"started_at\": \"2026-05-25T11:56:18.752415+00:00\", \"ended_at\": \"2026-05-25T11:58:04.170002+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"服务器上该目录不是 git 仓库，无需修复 git config。\\n\\n---\\n\\n### 修复报告\\n\\n| 项目 | 结果 |\\n|------|------|\\n| **本地 commit author** | `48849f5 Anonymous &lt;anonymous@example.com>` ✓ |\\n| **Force-push** | 成功，`f3a74af → 48849f5` |\\n| **旧 hash f3a74af 可访问性** | GitHub API 返回 **404** ✓ |\\n| **所有历史 commit author** | 全部 8 个 commit 均为 `Anonymous &lt;anonymous@example.com>`，无泄漏 ✓ |\\n| **Remote URL** | PAT 已清除，当前为 `https://github.com/anonymous-nlp-2026/struct_self_consist_ie.git` ✓ |\\n| **服务器 git config** | 服务器上 `/root/autodl-tmp/struct_self_consist_ie` 不是 git 仓库，无需修复 |\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -5531,7 +3927,7 @@ _source line 5740 · 2026-05-25T11:58:13.084337+00:00_
 
 ### Tool call
 
-_source line 5741 · 2026-05-25T11:58:19.711079+00:00_
+_source line 5705 · 2026-05-25T11:58:19.711079+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5567,7 +3963,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5742 · 2026-05-25T11:58:23.475475+00:00_
+_source line 5706 · 2026-05-25T11:58:23.475475+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -5589,7 +3985,7 @@ _source line 5742 · 2026-05-25T11:58:23.475475+00:00_
 
 ### Assistant
 
-_source line 5743 · 2026-05-25T11:58:25.055024+00:00_
+_source line 5707 · 2026-05-25T11:58:25.055024+00:00_
 
 修复完成，向 Director 汇报。
 
@@ -5616,7 +4012,7 @@ _source line 5743 · 2026-05-25T11:58:25.055024+00:00_
 
 ### User
 
-_source line 5744 · 2026-05-25T19:17:45.543897+00:00_
+_source line 5708 · 2026-05-25T19:17:45.543897+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -5698,7 +4094,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 5745 · 2026-05-25T19:18:17.643982+00:00_
+_source line 5709 · 2026-05-25T19:18:17.643982+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

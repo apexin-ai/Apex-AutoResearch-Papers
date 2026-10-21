@@ -16,7 +16,7 @@
 - **M3**: ~~Length-only ablation 缺 Qwen 数据~~ → **已解决** (qwen_length_only_gsm8k, 2026-04-27)
 - **M4**: Qwen oracle TOST p=0.048 卡线。Defense: primary claim 是 non-inferiority δ=-3pp (p<0.001)
 - **M6**: Gemma κ=0.35 低于阈值但仍计入 "three backbones"。建议改为 "two primary + one exploratory"
-- 优先修复: (1) 弱化 scale-stable 措辞 (2) ~~补 Qwen length-only~~ ✅ (3) 预写 C2/M2 rebuttal
+- 优先修复: (1) 弱化 scale-stable 措辞 (2) ~~补 Qwen length-only~~ ✅
 
 ## D202: Qwen3 重新定性为 heuristic non-transferability (2026-04-27)
 - Qwen3 -14pp 不是 "cross-generational failure"，是 "heuristic non-transferability"

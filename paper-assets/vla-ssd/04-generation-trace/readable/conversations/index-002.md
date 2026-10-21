@@ -43,8 +43,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code libero finetuned probe | 71 | 0 | [Read transcript](code-libero-finetuned-probe.md) | [JSON](../../sessions/a5/a53787c5f0e4cdac78b1.json) |
 | debug compile upload pdf | 17 | 0 | [Read transcript](debug-compile-upload-pdf.md) | [JSON](../../sessions/ac/ac6b490714ecd755668c.json) |
 | analysis collect probe results | 41 | 0 | [Read transcript](analysis-collect-probe-results.md) | [JSON](../../sessions/32/3277ce0ca2bcb1286bf9.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 westd-19183 的  | 1,734 | 251 | [Read transcript](director-coordination-20260521-014221.md) | [JSON](../../sessions/a9/a914d2a5b44fb2f25be9.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：west | 1,709 | 367 | [Read transcript](reviewer-coordination-20260523-194913.md) | [JSON](../../sessions/7f/7ff0b1262504abec619b.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 westd-19183 的  | 1,732 | 251 | [Read transcript](director-coordination-20260521-014221.md) | [JSON](../../sessions/a9/a914d2a5b44fb2f25be9.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：west | 1,707 | 367 | [Read transcript](reviewer-coordination-20260523-194913.md) | [JSON](../../sessions/7f/7ff0b1262504abec619b.json) |
 | research second vla survey | 69 | 0 | [Read transcript](research-second-vla-survey.md) | [JSON](../../sessions/9c/9cbb837b35ed35a9fa39.json) |
 | exp official checkpoint sr test | 469 | 0 | [Read transcript](exp-official-checkpoint-sr-test.md) | [JSON](../../sessions/dc/dc8509688de140351dde.json) |
 | code phi3v probe trained | 129 | 0 | [Read transcript](code-phi3v-probe-trained.md) | [JSON](../../sessions/f5/f56a223ffc7fce66a318.json) |
@@ -56,7 +56,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis r2 mse correlation | 79 | 0 | [Read transcript](analysis-r2-mse-correlation.md) | [JSON](../../sessions/6b/6b34905c2ab2720db651.json) |
 | paper figure | 63 | 0 | [Read transcript](paper-figure.md) | [JSON](../../sessions/35/35e81bbe8566bb02d9a3.json) |
 | research intermediate checkpoints | 65 | 0 | [Read transcript](research-intermediate-checkpoints.md) | [JSON](../../sessions/81/81a4255d904c241696b0.json) |
-| research rebuttal material | 199 | 0 | [Read transcript](research-rebuttal-material.md) | [JSON](../../sessions/ae/ae4177dc34eb996547b6.json) |
 | exp counterfactual 10tasks | 87 | 0 | [Read transcript](exp-counterfactual-10tasks.md) | [JSON](../../sessions/4e/4e3ef9673d3b3f31a489.json) |
 | sync permutation 10k results | 9 | 0 | [Read transcript](sync-permutation-10k-results.md) | [JSON](../../sessions/e2/e2e9d9714ac25f16b901.json) |
 | analysis bonferroni global | 89 | 0 | [Read transcript](analysis-bonferroni-global.md) | [JSON](../../sessions/c3/c3c2e8d0b0636c93b0da.json) |
@@ -91,7 +90,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | diag urgent gpu recovery 20260521T1610 | 53 | 0 | [Read transcript](diag-urgent-gpu-recovery-20260521t1610.md) | [JSON](../../sessions/31/31c4e4328a98c692a5cf.json) |
 | verify startup tracvla long goal 20260521T1641 | 11 | 0 | [Read transcript](verify-startup-tracvla-long-goal-20260521t1641.md) | [JSON](../../sessions/af/af289f224ed61a681389.json) |
 | code counterfactual batch template | 85 | 0 | [Read transcript](code-counterfactual-batch-template.md) | [JSON](../../sessions/91/91b576f5739954374f72.json) |
-| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-19183 | 4,636 | 360 | [Read transcript](coordination-coordination-20260525-221842.md) | [JSON](../../sessions/78/78c66883f47dbddfc656.json) |
+| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-19183 | 4,622 | 360 | [Read transcript](coordination-coordination-20260525-221842.md) | [JSON](../../sessions/78/78c66883f47dbddfc656.json) |
 | cron hook phi3v r2 seed expansion — [HANDOFF] 你是 Main Agent，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-19183  | 48 | 1 | [Read transcript](cron-hook-phi3v-r2-seed-expansion.md) | [JSON](../../sessions/aa/aaa66e9b557d7e20b2b8.json) |
 | cron hook phi3v r2 untrained probe — [HANDOFF] 你是 Main Agent，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-19183 | 24 | 1 | [Read transcript](cron-hook-phi3v-r2-untrained-probe.md) | [JSON](../../sessions/e0/e0638d7e7cabaed2e31b.json) |
 | cron hook tracvla spatial pipeline — [HANDOFF] 你是 Main Agent，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-19183  | 20 | 1 | [Read transcript](cron-hook-tracvla-spatial-pipeline.md) | [JSON](../../sessions/a1/a16feb75618a31e5fe41.json) |
@@ -138,13 +137,13 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | file transfer download figures | 53 | 0 | [Read transcript](file-transfer-download-figures.md) | [JSON](../../sessions/6f/6f8a1ce42b563248fd54.json) |
 | compile paper pdf | 71 | 0 | [Read transcript](compile-paper-pdf.md) | [JSON](../../sessions/59/59404c278d5038de4845.json) |
 | draw fig2 r2 profile fix | 77 | 0 | [Read transcript](draw-fig2-r2-profile-fix.md) | [JSON](../../sessions/7b/7b1cd164b917348f049e.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #12。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: wes | 1,048 | 84 | [Read transcript](reviewer-coordination-20260525-221823.md) | [JSON](../../sessions/9f/9f61d021e8f89780b787.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #12。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: wes | 1,044 | 84 | [Read transcript](reviewer-coordination-20260525-221823.md) | [JSON](../../sessions/9f/9f61d021e8f89780b787.json) |
 | draw fig4 l1 attention and fig5 claim | 75 | 0 | [Read transcript](draw-fig4-l1-attention-and-fig5-claim.md) | [JSON](../../sessions/d4/d4bc2f3c47934b275a04.json) |
 | draw fig6 appendix untrained to reference | 223 | 0 | [Read transcript](draw-fig6-appendix-untrained-to-reference.md) | [JSON](../../sessions/1a/1af6cd6bfefa109251ac.json) |
 | draw fig3 cf bar split | 97 | 0 | [Read transcript](draw-fig3-cf-bar-split.md) | [JSON](../../sessions/ae/aec971973fe761b29b86.json) |
 | check intermediate checkpoints | 61 | 0 | [Read transcript](check-intermediate-checkpoints.md) | [JSON](../../sessions/f7/f76360cbc4dd9061ad16.json) |
 | cron hook clustered bootstrap reanalysis v3 — [HANDOFF] 你是 Main Agent，这是 Loop #13。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-19183 | 38 | 1 | [Read transcript](cron-hook-clustered-bootstrap-reanalysis-v3.md) | [JSON](../../sessions/23/23a31927c2efa6b1bf6f.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-19183 的  | 1,506 | 195 | [Read transcript](director-coordination-20260525-191500.md) | [JSON](../../sessions/c5/c55c573039117ff2e1b2.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westd-19183 的  | 1,504 | 195 | [Read transcript](director-coordination-20260525-191500.md) | [JSON](../../sessions/c5/c55c573039117ff2e1b2.json) |
 | check phi3 full r2 profile | 19 | 0 | [Read transcript](check-phi3-full-r2-profile.md) | [JSON](../../sessions/01/016159329b625d6a2cbc.json) |
 | check behavioral ablation feasibility | 143 | 0 | [Read transcript](check-behavioral-ablation-feasibility.md) | [JSON](../../sessions/88/88be48112208f0125f79.json) |
 | research related work gap check | 57 | 0 | [Read transcript](research-related-work-gap-check.md) | [JSON](../../sessions/f3/f3426070642f2b0b1bcf.json) |

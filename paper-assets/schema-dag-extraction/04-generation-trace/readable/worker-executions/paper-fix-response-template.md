@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 53
+- **Events:** 41
 - **Recorded user turns:** 0
-- **Tool calls:** 17
+- **Tool calls:** 11
 - **Original source:** `logs/workers/worker_paper_fix_response_template_20260522T082121.log`
 - **Structured JSON:** [`b3faa17da0a886dc7efd.json`](../../sessions/b3/b3faa17da0a886dc7efd.json)
 
 ## Before a recorded user message
 
-53 recorded events
+41 recorded events
 
 ### Log line
 
@@ -199,149 +199,6 @@ I'll start by reading the template file and checking the paper's aux file for ac
 
 _source line 5_
 
-<details open><summary>🔧 Tool call — Read · `toolu_01N9JMpfM7cjj4ehFqEJLpE6`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "428ecc19-aeaa-4f1a-8a52-8ddea38c8e7a",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_012rHHdcbw6x15VFB1ECSQdX",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 2,
-      "cache_creation_input_tokens": 11932,
-      "cache_read_input_tokens": 11841,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 11932
-      },
-      "output_tokens": 2,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 6 · 2026-05-22T08:21:34.404Z_
-
-<details><summary>↩ Tool result · `toolu_01N9JMpfM7cjj4ehFqEJLpE6`</summary>
-
-```text
-1	# Author Response Template — Schema-DAG-Extraction
-2	
-3	Prepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.
-4	
-5	---
-6	
-7	### Q1: BCS scope limited to FewRel RE
-8	
-9	**Anticipated Reviewer Question**: "BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable."
-10	
-11	**Response Draft**:
-12	
-13	> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix D.4). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.
-14	
-15	---
-16	
-17	### Q2: DocRED VIF = 50.9
-18	
-19	**Anticipated Reviewer Question**: "DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?"
-20	
-21	**Response Draft**:
-22	
-23	> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as "directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support" (§4.3). Second, we report semipartial R²\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.
-24	
-25	---
-26	
-27	### Q3: TOST logit-scale inconclusive
-28	
-29	**Anticipated Reviewer Question**: "Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?"
-30	
-31	**Response Draft**:
-32	
-33	> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as "approximately additive on the probability scale" and report the logit limitation explicitly (§4.4, Limitations §1).
-34	
-35	---
-36	
-37	### Q4: NER batch-level null
-38	
-39	**Anticipated Reviewer Question**: "BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?"
-40	
-41	**Response Draft**:
-42	
-43	> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix D.4). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as "absence of evidence rather than evidence of absence" (§4.4).
-44	
-45	---
-46	
-47	### Q5: "First controlled study" claim
-48	
-49	**Anticipated Reviewer Question**: "The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?"
-50	
-51	**Response Draft**:
-52	
-53	> We scope this claim carefully: "the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier "to our knowledge" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.
-54	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "28b5e5a5-6a94-40d2-a7dd-8af97217ddf2",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-      "content": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix D.4). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix D.4). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.\n",
-      "numLines": 54,
-      "startLine": 1,
-      "totalLines": 54
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 7_
-
 <details open><summary>🔧 Tool call — Bash · `toolu_0116A75JstaabVgVii7vxUGn`</summary>
 
 ```json
@@ -393,7 +250,7 @@ _source line 7_
 
 ### Tool result
 
-_source line 8 · 2026-05-22T08:21:36.084Z_
+_source line 6 · 2026-05-22T08:21:36.084Z_
 
 <details><summary>↩ Tool result · `toolu_0116A75JstaabVgVii7vxUGn`</summary>
 
@@ -428,7 +285,7 @@ NO_AUX
 
 ### Tool call
 
-_source line 9_
+_source line 7_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01SjT7UBHPuFk6hzxTScAXqz`</summary>
 
@@ -481,7 +338,7 @@ _source line 9_
 
 ### Tool result
 
-_source line 10 · 2026-05-22T08:21:36.288Z_
+_source line 8 · 2026-05-22T08:21:36.288Z_
 
 <details><summary>↩ Tool result · `toolu_01SjT7UBHPuFk6hzxTScAXqz`</summary>
 
@@ -516,7 +373,7 @@ NO_PDF
 
 ### Assistant
 
-_source line 11_
+_source line 9_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -570,7 +427,7 @@ Let me first fix Q5, then compile the paper.
 
 ### Assistant
 
-_source line 12_
+_source line 10_
 
 No aux file exists yet. I'll fix Q5 now and compile the paper in parallel.
 
@@ -614,113 +471,7 @@ No aux file exists yet. I'll fix Q5 now and compile the paper in parallel.
 
 ### Tool call
 
-_source line 13_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_01YXbhb4P6QLs4MtFXefkNBs`</summary>
-
-```json
-{
-  "replace_all": false,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-  "old_string": "We already use the qualifier \"to our knowledge\" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.",
-  "new_string": "We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "3e17f741-54c6-4274-8641-591eb20d8a03",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01X59XDRfeCZ7UvwVJswkNjY",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2412,
-      "cache_read_input_tokens": 23773,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2412
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 14 · 2026-05-22T08:21:41.619Z_
-
-<details><summary>↩ Tool result · `toolu_01YXbhb4P6QLs4MtFXefkNBs`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md has been updated successfully.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "757c734d-d698-431e-9b7c-b90b093cbbd5",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-    "oldString": "We already use the qualifier \"to our knowledge\" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.",
-    "newString": "We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.",
-    "originalFile": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix D.4). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix D.4). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.\n",
-    "structuredPatch": [
-      {
-        "oldStart": 50,
-        "oldLines": 4,
-        "newStart": 50,
-        "newLines": 4,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract and would welcome the reviewer identifying any prior study achieving this specific controlled isolation.",
-          "+> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked."
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": false
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 15_
+_source line 11_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01LJJXz9UZTpKJUTviZoFbPE`</summary>
 
@@ -774,7 +525,7 @@ _source line 15_
 
 ### Tool result
 
-_source line 16 · 2026-05-22T08:21:44.876Z_
+_source line 12 · 2026-05-22T08:21:44.876Z_
 
 <details><summary>↩ Tool result · `toolu_01LJJXz9UZTpKJUTviZoFbPE`</summary>
 
@@ -810,7 +561,7 @@ COMPILE_FAIL
 
 ### Tool call
 
-_source line 17_
+_source line 13_
 
 <details open><summary>🔧 Tool call — Glob · `toolu_01WC2rybK6jYMME9QVrrPyBU`</summary>
 
@@ -863,7 +614,7 @@ _source line 17_
 
 ### Tool result
 
-_source line 18 · 2026-05-22T08:21:49.606Z_
+_source line 14 · 2026-05-22T08:21:49.606Z_
 
 <details><summary>↩ Tool result · `toolu_01WC2rybK6jYMME9QVrrPyBU`</summary>
 
@@ -965,7 +716,7 @@ docs/paper/main.tex
 
 ### Tool call
 
-_source line 19_
+_source line 15_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01Argqt4vsvyVaXwYkWwENuA`</summary>
 
@@ -1018,7 +769,7 @@ _source line 19_
 
 ### Tool result
 
-_source line 20 · 2026-05-22T08:21:49.727Z_
+_source line 16 · 2026-05-22T08:21:49.727Z_
 
 <details><summary>↩ Tool result · `toolu_01Argqt4vsvyVaXwYkWwENuA`</summary>
 
@@ -1091,7 +842,7 @@ writing_plan.yaml
 
 ### Assistant
 
-_source line 21_
+_source line 17_
 
 Paper is at `docs/paper/main.tex`. Let me compile it.
 
@@ -1135,7 +886,7 @@ Paper is at `docs/paper/main.tex`. Let me compile it.
 
 ### Tool call
 
-_source line 22_
+_source line 18_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01PuJJ6RK44XgLx7UxrNfNrt`</summary>
 
@@ -1189,7 +940,7 @@ _source line 22_
 
 ### System
 
-_source line 23_
+_source line 19_
 
 ```json
 {
@@ -1208,7 +959,7 @@ _source line 23_
 
 ### System
 
-_source line 24_
+_source line 20_
 
 ```json
 {
@@ -1228,7 +979,7 @@ _source line 24_
 
 ### Tool result
 
-_source line 25 · 2026-05-22T08:21:57.035Z_
+_source line 21 · 2026-05-22T08:21:57.035Z_
 
 <details><summary>↩ Tool result · `toolu_01PuJJ6RK44XgLx7UxrNfNrt`</summary>
 
@@ -1263,7 +1014,7 @@ COMPILE_OK
 
 ### Tool call
 
-_source line 26_
+_source line 22_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_01QnAmKX79e1Z9Se2kn3ERse`</summary>
 
@@ -1316,7 +1067,7 @@ _source line 26_
 
 ### Tool result
 
-_source line 27 · 2026-05-22T08:22:00.929Z_
+_source line 23 · 2026-05-22T08:22:00.929Z_
 
 <details><summary>↩ Tool result · `toolu_01QnAmKX79e1Z9Se2kn3ERse`</summary>
 
@@ -1430,7 +1181,7 @@ _source line 27 · 2026-05-22T08:22:00.929Z_
 
 ### Assistant
 
-_source line 28_
+_source line 24_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1514,7 +1265,7 @@ I need to look at the actual supplementary.tex file to see the full appendix str
 
 ### Assistant
 
-_source line 29_
+_source line 25_
 
 Good, compilation succeeded. Let me also check the supplementary tex to understand appendix structure, since some template references (D.3, D.4) don't appear in the aux labels.
 
@@ -1558,7 +1309,7 @@ Good, compilation succeeded. Let me also check the supplementary tex to understa
 
 ### Tool call
 
-_source line 30_
+_source line 26_
 
 <details open><summary>🔧 Tool call — Read · `toolu_01HRsy8HrmEaQYfy8i9p6pnX`</summary>
 
@@ -1610,7 +1361,7 @@ _source line 30_
 
 ### Tool result
 
-_source line 31 · 2026-05-22T08:22:57.075Z_
+_source line 27 · 2026-05-22T08:22:57.075Z_
 
 <details><summary>↩ Tool result · `toolu_01HRsy8HrmEaQYfy8i9p6pnX`</summary>
 
@@ -1668,7 +1419,7 @@ _source line 31 · 2026-05-22T08:22:57.075Z_
 
 ### Assistant
 
-_source line 32_
+_source line 28_
 
 All appendices are in main.tex. Let me check the actual appendix sections to find what D.3/D.4 would map to.
 
@@ -1712,7 +1463,7 @@ All appendices are in main.tex. Let me check the actual appendix sections to fin
 
 ### Tool call
 
-_source line 33_
+_source line 29_
 
 <details open><summary>🔧 Tool call — Grep · `toolu_01GoCCN4gK2xPM4AtzriU2uH`</summary>
 
@@ -1767,7 +1518,7 @@ _source line 33_
 
 ### Tool result
 
-_source line 34 · 2026-05-22T08:23:02.551Z_
+_source line 30 · 2026-05-22T08:23:02.551Z_
 
 <details><summary>↩ Tool result · `toolu_01GoCCN4gK2xPM4AtzriU2uH`</summary>
 
@@ -1862,7 +1613,7 @@ _source line 34 · 2026-05-22T08:23:02.551Z_
 
 ### Assistant
 
-_source line 35_
+_source line 31_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1914,7 +1665,7 @@ Actually, looking at my earlier grep of aux, I only showed head -80. There may b
 
 ### Assistant
 
-_source line 36_
+_source line 32_
 
 There's a "Relaxed Matching Evaluation (NER)" appendix too. Let me get the full aux labels.
 
@@ -1958,7 +1709,7 @@ There's a "Relaxed Matching Evaluation (NER)" appendix too. Let me get the full 
 
 ### Tool call
 
-_source line 37_
+_source line 33_
 
 <details open><summary>🔧 Tool call — Bash · `toolu_017Tvv3QsWDBBpNWgtvctYMB`</summary>
 
@@ -2011,7 +1762,7 @@ _source line 37_
 
 ### Tool result
 
-_source line 38 · 2026-05-22T08:23:08.703Z_
+_source line 34 · 2026-05-22T08:23:08.703Z_
 
 <details><summary>↩ Tool result · `toolu_017Tvv3QsWDBBpNWgtvctYMB`</summary>
 
@@ -2065,7 +1816,7 @@ _source line 38 · 2026-05-22T08:23:08.703Z_
 
 ### Tool call
 
-_source line 39_
+_source line 35_
 
 <details open><summary>🔧 Tool call — Grep · `toolu_01UZR72EHtHsbi9rjTpHN7tc`</summary>
 
@@ -2120,7 +1871,7 @@ _source line 39_
 
 ### Tool result
 
-_source line 40 · 2026-05-22T08:23:09.451Z_
+_source line 36 · 2026-05-22T08:23:09.451Z_
 
 <details><summary>↩ Tool result · `toolu_01UZR72EHtHsbi9rjTpHN7tc`</summary>
 
@@ -2155,7 +1906,7 @@ No matches found
 
 ### Assistant
 
-_source line 41_
+_source line 37_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -2221,7 +1972,7 @@ I've identified three key mismatches to correct: the Appendix D.4 reference need
 
 ### Assistant
 
-_source line 42_
+_source line 38_
 
 Now I have the complete mapping. Here are the mismatches I found:
 
@@ -2271,368 +2022,9 @@ Fixing all three now.
 
 ---
 
-### Tool call
-
-_source line 43_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_011U47R99Q2VhU5EPMYNbirm`</summary>
-
-```json
-{
-  "replace_all": true,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-  "old_string": "Appendix D.4",
-  "new_string": "Appendix E.2"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "a3661d57-5a47-47e3-91fa-3587a4f80698",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01R9RDvu3xaSRi6jvdyeMeSp",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2440,
-      "cache_read_input_tokens": 37922,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2440
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 44 · 2026-05-22T08:23:35.876Z_
-
-<details><summary>↩ Tool result · `toolu_011U47R99Q2VhU5EPMYNbirm`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md has been updated. All occurrences were successfully replaced.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "a940501f-838f-40dc-91d3-9f24c7a34021",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-    "oldString": "Appendix D.4",
-    "newString": "Appendix E.2",
-    "originalFile": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix D.4). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix D.4). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.\n",
-    "structuredPatch": [
-      {
-        "oldStart": 10,
-        "oldLines": 7,
-        "newStart": 10,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix D.4). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.",
-          "+> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.",
-          " ",
-          " ---",
-          " "
-        ]
-      },
-      {
-        "oldStart": 40,
-        "oldLines": 7,
-        "newStart": 40,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix D.4). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).",
-          "+> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).",
-          " ",
-          " ---",
-          " "
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": true
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 45_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_01Kuh8WXmWZebGb1QnWj8jsU`</summary>
-
-```json
-{
-  "replace_all": true,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-  "old_string": "Appendix D.3",
-  "new_string": "Appendix Y"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "f1770aff-c438-461b-be08-abc7d7a98de6",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01R9RDvu3xaSRi6jvdyeMeSp",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2440,
-      "cache_read_input_tokens": 37922,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2440
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 46 · 2026-05-22T08:23:36.825Z_
-
-<details><summary>↩ Tool result · `toolu_01Kuh8WXmWZebGb1QnWj8jsU`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md has been updated. All occurrences were successfully replaced.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "0673c301-6f1b-4642-b4ca-04638c0478a9",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-    "oldString": "Appendix D.3",
-    "newString": "Appendix Y",
-    "originalFile": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.\n",
-    "structuredPatch": [
-      {
-        "oldStart": 10,
-        "oldLines": 7,
-        "newStart": 10,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix D.3). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.",
-          "+> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix Y). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.",
-          " ",
-          " ---",
-          " "
-        ]
-      },
-      {
-        "oldStart": 40,
-        "oldLines": 7,
-        "newStart": 40,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix D.3). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).",
-          "+> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix Y). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).",
-          " ",
-          " ---",
-          " "
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": true
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 47_
-
-<details open><summary>🔧 Tool call — Edit · `toolu_01MfnNoygouVcVcfGHPMVtQ2`</summary>
-
-```json
-{
-  "replace_all": false,
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-  "old_string": "Table 7)",
-  "new_string": "Table 10)"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "80afa85f-0058-4848-bdef-be990adb1d00",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01R9RDvu3xaSRi6jvdyeMeSp",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2440,
-      "cache_read_input_tokens": 37922,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2440
-      },
-      "output_tokens": 8,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 48 · 2026-05-22T08:23:37.625Z_
-
-<details><summary>↩ Tool result · `toolu_01MfnNoygouVcVcfGHPMVtQ2`</summary>
-
-```text
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md has been updated successfully.
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "1ffab40f-61ed-4996-9886-70ef6771f8bd",
-  "tool_use_result": {
-    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-    "oldString": "Table 7)",
-    "newString": "Table 10)",
-    "originalFile": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix Y). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix Y). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.\n",
-    "structuredPatch": [
-      {
-        "oldStart": 30,
-        "oldLines": 7,
-        "newStart": 30,
-        "newLines": 7,
-        "lines": [
-          " ",
-          " **Response Draft**:",
-          " ",
-          "-> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 7) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).",
-          "+> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 10) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).",
-          " ",
-          " ---",
-          " "
-        ]
-      }
-    ],
-    "userModified": false,
-    "replaceAll": false
-  }
-}
-```
-
-</details>
-
----
-
 ### Assistant
 
-_source line 49_
+_source line 39_
 
 Let me verify the final state.
 
@@ -2674,152 +2066,9 @@ Let me verify the final state.
 
 ---
 
-### Tool call
-
-_source line 50_
-
-<details open><summary>🔧 Tool call — Read · `toolu_01K1ZExnQdoXMKtDvLWeM9ns`</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "9dcd2858-7b63-4157-87d2-8917477de596",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_018FMFYDMW173vbowCk684WW",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 1829,
-      "cache_read_input_tokens": 40362,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 1829
-      },
-      "output_tokens": 1,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 51 · 2026-05-22T08:23:39.919Z_
-
-<details><summary>↩ Tool result · `toolu_01K1ZExnQdoXMKtDvLWeM9ns`</summary>
-
-```text
-1	# Author Response Template — Schema-DAG-Extraction
-2	
-3	Prepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.
-4	
-5	---
-6	
-7	### Q1: BCS scope limited to FewRel RE
-8	
-9	**Anticipated Reviewer Question**: "BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable."
-10	
-11	**Response Draft**:
-12	
-13	> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix Y). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.
-14	
-15	---
-16	
-17	### Q2: DocRED VIF = 50.9
-18	
-19	**Anticipated Reviewer Question**: "DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?"
-20	
-21	**Response Draft**:
-22	
-23	> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as "directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support" (§4.3). Second, we report semipartial R²\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.
-24	
-25	---
-26	
-27	### Q3: TOST logit-scale inconclusive
-28	
-29	**Anticipated Reviewer Question**: "Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?"
-30	
-31	**Response Draft**:
-32	
-33	> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 10) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as "approximately additive on the probability scale" and report the logit limitation explicitly (§4.4, Limitations §1).
-34	
-35	---
-36	
-37	### Q4: NER batch-level null
-38	
-39	**Anticipated Reviewer Question**: "BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?"
-40	
-41	**Response Draft**:
-42	
-43	> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix Y). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as "absence of evidence rather than evidence of absence" (§4.4).
-44	
-45	---
-46	
-47	### Q5: "First controlled study" claim
-48	
-49	**Anticipated Reviewer Question**: "The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?"
-50	
-51	**Response Draft**:
-52	
-53	> We scope this claim carefully: "the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier "to our knowledge" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.
-54	
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "99f5f865-1e47-4cd4-8fb9-4767bc77bac8",
-  "uuid": "1c99ccb5-cfda-4c89-868a-191842775887",
-  "tool_use_result": {
-    "type": "text",
-    "file": {
-      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/author_response_template.md",
-      "content": "# Author Response Template — Schema-DAG-Extraction\n\nPrepared 2026-05-22. Based on v34+ paper (post semipartial R² fix, post cross-model error taxonomy). Covers 5 anticipated attack surfaces from R29.\n\n---\n\n### Q1: BCS scope limited to FewRel RE\n\n**Anticipated Reviewer Question**: \"BCS batch-level prediction only works on FewRel RE. The generalizability of your confusability framework is questionable.\"\n\n**Response Draft**:\n\n> Thank you for this important point. Our design deliberately uses FewRel as the primary testbed for batch-level BCS analysis because its balanced design (700 instances per type) and low multicollinearity (VIF = 1.18; §4.3) cleanly isolate the confusability effect — semipartial R² = 0.273 after partialing centrality. DocRED shows directional consistency (ridge β\\_BCS < 0 across all λ ≥ 0; Appendix E.1), but VIF = 50.9 prevents reliable quantification; we explicitly report this as directional evidence (§4.3). The NER batch-level null is consistent across three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) and two prompts, with power analysis confirming minimum detectable |r| ≈ 0.132 (Appendix E.2). Crucially, the *pairwise* confusability signal generalizes across all three tasks: Few-NERD r = 0.112 [0.076, 0.156], MAVEN r = 0.129 [0.104, 0.156] (Table 2), both CIs excluding zero. The NER–RE asymmetry has a structural explanation: NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion (Appendix Y). Using FewRel to establish the clean effect and other datasets to characterize boundary conditions is a principled analytical strategy, not a limitation of the metric.\n\n---\n\n### Q2: DocRED VIF = 50.9\n\n**Anticipated Reviewer Question**: \"DocRED's VIF is 50.9. How can you trust any partial correlation or regression result on this dataset?\"\n\n**Response Draft**:\n\n> We agree that VIF = 50.9 renders standard partial correlations unstable on DocRED, and we take three precautions. First, the main text explicitly frames DocRED as \"directional evidence that the BCS–accuracy relationship extends beyond FewRel's schema, not as independent quantitative support\" (§4.3). Second, we report semipartial R²\\_BCS = 5.6% after partialing degree centrality, transparently noting that ~90% of explained variance is shared with centrality (§4.3). Third, ridge regression across a range of λ values confirms the BCS coefficient remains negative (Appendix E.1), establishing directional robustness under regularization. All quantitative claims for BCS's independent contribution rest on FewRel, where VIF = 1.18 and semipartial R² = 0.273 (§4.3). We believe transparently reporting the DocRED collinearity — rather than omitting the dataset — strengthens the paper by showing both where the signal is clean and where BCS and centrality cannot be isolated.\n\n---\n\n### Q3: TOST logit-scale inconclusive\n\n**Anticipated Reviewer Question**: \"Dimensional separability only holds on the linear scale. The logit-scale TOST is inconclusive (p = 0.209). Aren't logit transforms standard for bounded accuracy data?\"\n\n**Response Draft**:\n\n> We designate probability-scale TOST as the primary analysis because practitioners interpret accuracy differences directly — a 3 pp gap has immediate practical meaning — and our accuracy values (0.37–0.86) remain in the mid-range where logit and linear scales yield similar inference (§4.4). The interaction point estimate is 0.47 pp, well within the ±3 pp equivalence margin on both scales. The logit inconclusive result (p = 0.209; regression-based: p = 0.050; Appendix C) reflects logit variance inflation in the 0.37–0.86 range rather than a qualitative divergence (Limitations §1). Margin sensitivity analysis (Table 10) shows equivalence holds from ±2 pp (p = 0.047) through ±5 pp, confirming the ±3 pp choice does not drive the conclusion. On DocRED, range-matched analysis reduces the raw interaction from −9.4 pp to 0.93 pp (CI [−7.13, 7.44]; Appendix C). We qualify our claim as \"approximately additive on the probability scale\" and report the logit limitation explicitly (§4.4, Limitations §1).\n\n---\n\n### Q4: NER batch-level null\n\n**Anticipated Reviewer Question**: \"BCS has no predictive power for NER. Doesn't this undermine the generality of your confusability framework?\"\n\n**Response Draft**:\n\n> Three models (Qwen3-32B, LLaMA-8B, LLaMA-70B) × two prompt variants consistently show no batch-level BCS–F1 correlation for NER (r ≈ 0, n = 450; Table 5, §4.3). Power analysis shows minimum detectable |r| ≈ 0.132 at α = 0.05, power = 0.80 (Appendix E.2). Two structural factors explain the asymmetry. First, NER errors distribute across miss (43–65%), boundary, and type substitution modes rather than concentrating in type confusion — relaxed matching confirms this is not a metric artifact (Appendix Y). Second, BCS range compression (SD ratio 19% of FewRel's) limits signal-to-noise. Importantly, the *pairwise* SCS signal is significant for NER (r = 0.112, p < 0.001; Table 2), and IntraSub scales monotonically with BCS (ρ = 1.0; Figure 2). The framework's contribution is characterizing *when* confusability aggregates to batch-level prediction (RE) and *when* dispersed error modes prevent aggregation (NER). We explicitly frame this as \"absence of evidence rather than evidence of absence\" (§4.4).\n\n---\n\n### Q5: \"First controlled study\" claim\n\n**Anticipated Reviewer Question**: \"The claim of being the 'first controlled study' seems overclaimed. How does this differ from LLM-PEE, GoLLIE, or Reflect-then-Learn?\"\n\n**Response Draft**:\n\n> We scope this claim carefully: \"the first controlled study simultaneously isolating type count and inter-type confusability as independent dimensions via embedding-based metrics and stratified batch design in zero-shot LLM IE\" (§1). Each prior work addresses a distinct goal without this controlled isolation. LLM-PEE (Chen et al., 2025) uses embedding similarity to *partition* schemas for improved extraction — an engineering solution that conflates count and confusability without controlled manipulation (§2). GoLLIE (Sainz et al., 2024) explores instruction-based annotation guidelines without isolating count from confusability as independent experimental dimensions. Reflect-then-Learn (Chen et al., 2026) selects in-context examples via introspective confusion but does not employ BCS-controlled batch design that varies confusability while holding count fixed. Our methodological contribution — BCS-controlled batches enabling the factorial analysis (§4.4) and R² attribution (§4.3) — is what prior work could not perform. We already use the qualifier \"to our knowledge\" in the abstract. We are not aware of such a study but would appreciate any references we may have overlooked.\n",
-      "numLines": 54,
-      "startLine": 1,
-      "totalLines": 54
-    }
-  }
-}
-```
-
-</details>
-
----
-
 ### Assistant
 
-_source line 52_
+_source line 40_
 
 All changes verified. Summary:
 
@@ -2881,7 +2130,7 @@ All changes verified. Summary:
 
 ### Task result
 
-_source line 53_
+_source line 41_
 
 All changes verified. Summary:
 

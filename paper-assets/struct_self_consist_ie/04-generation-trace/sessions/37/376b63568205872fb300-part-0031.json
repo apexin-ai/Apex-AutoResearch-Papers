@@ -7,705 +7,6 @@
       "messages": [
         {
           "source_line": 5401,
-          "timestamp": "2026-05-24T10:21:13.608502+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Optimized fig_selection_gap: 2-panel vertical (ρ bars + ΔF1 dots).\n3\tEliminates dual y-axis; emphasizes the correlation-selection disconnect.\"\"\"\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.patheffects as pe\n8\timport numpy as np\n9\tfrom pathlib import Path\n10\t\n11\tplt.rcParams.update({\n12\t    'font.family': 'DejaVu Sans',\n13\t    'font.size': 10,\n14\t    'axes.titlesize': 11,\n15\t    'axes.labelsize': 10,\n16\t    'xtick.labelsize': 9,\n17\t    'ytick.labelsize': 9,\n18\t    'legend.fontsize': 8.5,\n19\t    'figure.dpi': 300,\n20\t    'savefig.dpi': 300,\n21\t    'savefig.bbox': 'tight',\n22\t    'savefig.pad_inches': 0.05,\n23\t    'axes.spines.top': False,\n24\t    'axes.spines.right': False,\n25\t    'lines.linewidth': 1.5,\n26\t    'axes.linewidth': 0.7,\n27\t    'xtick.major.width': 0.7,\n28\t    'ytick.major.width': 0.7,\n29\t    'xtick.major.size': 3,\n30\t    'ytick.major.size': 3,\n31\t    'mathtext.fontset': 'dejavusans',\n32\t    'pdf.fonttype': 42,\n33\t    'ps.fonttype': 42,\n34\t})\n35\t\n36\tFIG_DIR = Path(__file__).parent\n37\t\n38\tsignal_labels = ['SJ', 'FK', 'EM', 'VC', 'LP']\n39\trho_vals = np.array([0.359, 0.266, 0.294, 0.379, 0.205])\n40\tdelta_f1 = np.array([-0.45, -0.46, -1.19, -2.65, +0.04])\n41\toracle_delta = 13.0\n42\trandom_delta = -3.9\n43\t\n44\tCOL_BAR = '#CC6677'\n45\tCOL_BAR_EDGE = '#99445A'\n46\tCOL_DOT = '#3C3C3C'\n47\tCOL_ORACLE = '#228833'\n48\tCOL_RANDOM = '#999999'\n49\t\n50\tx = np.arange(len(signal_labels))\n51\t\n52\tfig, (ax1, ax2) = plt.subplots(\n53\t    2, 1, figsize=(3.4, 3.6),\n54\t    gridspec_kw={'height_ratios': [1, 1.4], 'hspace': 0.10},\n55\t    sharex=True,\n56\t)\n57\t\n58\t# ──── Top panel: Spearman ρ bars ────\n59\tbars = ax1.bar(x, rho_vals, width=0.50, color=COL_BAR, alpha=0.82,\n60\t               edgecolor=COL_BAR_EDGE, linewidth=0.5, zorder=2)\n61\t\n62\tfor xi, rv in zip(x, rho_vals):\n63\t    ax1.text(xi, rv + 0.012, f'.{int(rv*1000):03d}', ha='center', va='bottom',\n64\t             fontsize=7.5, color=COL_BAR_EDGE, font\n…[truncated 2074 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 552
-          },
-          "id": "event-005401"
-        },
-        {
-          "source_line": 5402,
-          "timestamp": "2026-05-24T10:21:13.608893+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_n_scaling.py"
-            }
-          },
-          "id": "event-005402"
-        },
-        {
-          "source_line": 5403,
-          "timestamp": "2026-05-24T10:21:13.659360+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\"\"\"Optimized fig_n_scaling_mv: MV ΔF1 vs log2(N).\n2\tDirect labels instead of legend box, refined styling.\"\"\"\n3\timport os\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport numpy as np\n8\t\n9\tplt.rcParams.update({\n10\t    'font.family': 'DejaVu Sans',\n11\t    'font.size': 10,\n12\t    'axes.titlesize': 11,\n13\t    'axes.labelsize': 10,\n14\t    'xtick.labelsize': 9,\n15\t    'ytick.labelsize': 9,\n16\t    'legend.fontsize': 8.5,\n17\t    'figure.dpi': 300,\n18\t    'savefig.dpi': 300,\n19\t    'savefig.bbox': 'tight',\n20\t    'savefig.pad_inches': 0.05,\n21\t    'axes.spines.top': False,\n22\t    'axes.spines.right': False,\n23\t    'lines.linewidth': 1.5,\n24\t    'axes.linewidth': 0.7,\n25\t    'xtick.major.width': 0.7,\n26\t    'ytick.major.width': 0.7,\n27\t    'xtick.major.size': 3,\n28\t    'ytick.major.size': 3,\n29\t    'mathtext.fontset': 'dejavusans',\n30\t    'pdf.fonttype': 42,\n31\t    'ps.fonttype': 42,\n32\t})\n33\t\n34\tCOL_CONLL = '#228833'\n35\tCOL_SCIERC = '#EE6677'\n36\tCOL_FEWNERD = '#4477AA'\n37\t\n38\tn_vals_full = np.array([8, 16, 32, 64])\n39\tlog2n_full = np.log2(n_vals_full)\n40\t\n41\tscierc = np.array([-1.24, -0.61, +0.24, +0.53])\n42\tconll = np.array([+0.20, +0.32, +0.44, +0.61])\n43\t\n44\tn_vals_fn = np.array([8, 16, 32])\n45\tlog2n_fn = np.log2(n_vals_fn)\n46\tfewnerd = np.array([-2.71, -1.65, -0.91])\n47\t\n48\tfig, ax = plt.subplots(figsize=(3.4, 2.6))\n49\t\n50\t# Break-even line\n51\tax.axhline(y=0, color='#999999', linestyle='-', linewidth=0.5, zorder=1)\n52\t\n53\t# Dataset lines\n54\tax.plot(log2n_full, conll, '-', color=COL_CONLL, marker='s', markersize=6,\n55\t        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\n56\tax.plot(log2n_full, scierc, '-', color=COL_SCIERC, marker='^', markersize=6,\n57\t        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\n58\tax.plot(log2n_fn, fewnerd, '-', color=COL_FEWNERD, marker='o', markersize=6,\n59\t        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\n60\t\n61\t# Direct labels — offset to avoid overlap between CoNLL(0.\n…[truncated 953 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-005403"
-        },
-        {
-          "source_line": 5404,
-          "timestamp": "2026-05-24T10:22:15.275439+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py"
-            }
-          },
-          "id": "event-005404"
-        },
-        {
-          "source_line": 5405,
-          "timestamp": "2026-05-24T10:22:15.578421+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\"\"\"Optimized fig_bound: SC gain vs degeneracy bound (2-panel vertical).\n2\tStacked vertically for readability at column width, reduced height.\"\"\"\n3\timport json\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport numpy as np\n8\tfrom pathlib import Path\n9\tfrom matplotlib.lines import Line2D\n10\t\n11\tOUT_DIR = Path(__file__).parent\n12\t\n13\twith open(Path(__file__).resolve().parents[3] / \"artifacts\" / \"p_impossibility\" / \"bound_verification.json\") as f:\n14\t    data = json.load(f)\n15\t\n16\tconfigs = data[\"per_config\"]\n17\t\n18\tALPHA = 0.068\n19\tG_ND_REF = 14.8\n20\tEPSILON = 0.3\n21\tTHETA_CRIT = 0.70\n22\t\n23\tSTYLE = {\n24\t    \"FewNERD\": {\"color\": \"#4477AA\", \"marker\": \"o\"},\n25\t    \"SciERC\":  {\"color\": \"#EE6677\", \"marker\": \"^\"},\n26\t    \"CoNLL\":   {\"color\": \"#228833\", \"marker\": \"s\"},\n27\t}\n28\t\n29\tplt.rcParams.update({\n30\t    'font.family': 'DejaVu Sans',\n31\t    'font.size': 10,\n32\t    'axes.titlesize': 10,\n33\t    'axes.labelsize': 10,\n34\t    'xtick.labelsize': 9,\n35\t    'ytick.labelsize': 9,\n36\t    'legend.fontsize': 7.5,\n37\t    'figure.dpi': 300,\n38\t    'savefig.dpi': 300,\n39\t    'savefig.bbox': 'tight',\n40\t    'savefig.pad_inches': 0.05,\n41\t    'axes.spines.top': False,\n42\t    'axes.spines.right': False,\n43\t    'lines.linewidth': 1.5,\n44\t    'axes.linewidth': 0.7,\n45\t    'xtick.major.width': 0.7,\n46\t    'ytick.major.width': 0.7,\n47\t    'xtick.major.size': 3,\n48\t    'ytick.major.size': 3,\n49\t    'mathtext.fontset': 'dejavusans',\n50\t    'pdf.fonttype': 42,\n51\t    'ps.fonttype': 42,\n52\t})\n53\t\n54\tMS = 48\n55\tEW = 0.5\n56\t\n57\tfig, (ax1, ax2) = plt.subplots(2, 1, figsize=(3.4, 4.5),\n58\t                                gridspec_kw={\"hspace\": 0.38})\n59\t\n60\t# ===== Top panel: SC gain vs Degeneracy =====\n61\tfor c in configs:\n62\t    s = STYLE[c[\"dataset\"]]\n63\t    ax1.scatter(c[\"D\"], c[\"actual_best_delta_pp\"],\n64\t                color=s[\"color\"], marker=s[\"marker\"],\n65\t                s=MS, zorder=5, edgecolors=\"white\",\n66\t                linewidths=EW, alpha=0.90)\n\n…[truncated 3165 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 302
-          },
-          "id": "event-005405"
-        },
-        {
-          "source_line": 5406,
-          "timestamp": "2026-05-24T10:22:15.629209+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_degeneracy_lp_scatter.py"
-            }
-          },
-          "id": "event-005406"
-        },
-        {
-          "source_line": 5407,
-          "timestamp": "2026-05-24T10:22:15.679917+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\"\"\"Optimized fig_degeneracy_lp_scatter: LP Selection ΔF1 vs degeneracy rate.\n2\tConsistent styling with other paper figures.\"\"\"\n3\timport json\n4\timport os\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\timport numpy as np\n9\tfrom matplotlib.lines import Line2D\n10\tfrom scipy import stats\n11\t\n12\tplt.rcParams.update({\n13\t    'font.family': 'DejaVu Sans',\n14\t    'font.size': 10,\n15\t    'axes.titlesize': 11,\n16\t    'axes.labelsize': 10,\n17\t    'xtick.labelsize': 9,\n18\t    'ytick.labelsize': 9,\n19\t    'legend.fontsize': 8,\n20\t    'figure.dpi': 300,\n21\t    'savefig.dpi': 300,\n22\t    'savefig.bbox': 'tight',\n23\t    'savefig.pad_inches': 0.05,\n24\t    'axes.spines.top': False,\n25\t    'axes.spines.right': False,\n26\t    'lines.linewidth': 1.5,\n27\t    'axes.linewidth': 0.7,\n28\t    'xtick.major.width': 0.7,\n29\t    'ytick.major.width': 0.7,\n30\t    'xtick.major.size': 3,\n31\t    'ytick.major.size': 3,\n32\t    'mathtext.fontset': 'dejavusans',\n33\t    'pdf.fonttype': 42,\n34\t    'ps.fonttype': 42,\n35\t})\n36\t\n37\tHERE = os.path.dirname(os.path.abspath(__file__))\n38\tPROJECT_ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))\n39\tDATA_JSON = os.path.join(PROJECT_ROOT, 'artifacts', 'scatter_v2_data.json')\n40\t\n41\tCATEGORY_STYLE = {\n42\t    'Qwen3-8B (canonical)':  {'color': '#1f5fa8', 'marker': 'o', 'size': 90, 'edge': 'white'},\n43\t    'Qwen3-8B (multi-seed)': {'color': '#9fc1e6', 'marker': 'o', 'size': 50, 'edge': 'white'},\n44\t    'LLaMA3.1-8B':           {'color': '#d8553b', 'marker': 's', 'size': 60, 'edge': 'white'},\n45\t    'Epoch ablation':        {'color': '#3aa757', 'marker': '^', 'size': 65, 'edge': 'white'},\n46\t    'Rank ablation':         {'color': '#7b3294', 'marker': 'D', 'size': 55, 'edge': 'white'},\n47\t    'Temperature ablation':  {'color': '#e88c2a', 'marker': 'v', 'size': 60, 'edge': 'white'},\n48\t    'Qwen3-4B':              {'color': '#1a8f8a', 'marker': 'P', 'size': 65, 'edge': 'white'},\n49\t}\n50\t\n51\tCATEGORY_MAP = {\n52\t    'cross-dataset'\n…[truncated 2926 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-005407"
-        },
-        {
-          "source_line": 5408,
-          "timestamp": "2026-05-24T10:22:34.643664+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_oracle_scaling.py"
-            }
-          },
-          "id": "event-005408"
-        },
-        {
-          "source_line": 5409,
-          "timestamp": "2026-05-24T10:22:34.644340+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\"\"\"Optimized fig_oracle_scaling: Oracle F1 vs N with power-law fits.\n2\tCleaner legend, subtler greedy baselines, refined styling.\"\"\"\n3\timport os\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport numpy as np\n8\tfrom matplotlib.lines import Line2D\n9\t\n10\tplt.rcParams.update({\n11\t    'font.family': 'DejaVu Sans',\n12\t    'font.size': 10,\n13\t    'axes.titlesize': 11,\n14\t    'axes.labelsize': 10,\n15\t    'xtick.labelsize': 9,\n16\t    'ytick.labelsize': 9,\n17\t    'legend.fontsize': 8,\n18\t    'figure.dpi': 300,\n19\t    'savefig.dpi': 300,\n20\t    'savefig.bbox': 'tight',\n21\t    'savefig.pad_inches': 0.05,\n22\t    'axes.spines.top': False,\n23\t    'axes.spines.right': False,\n24\t    'lines.linewidth': 1.5,\n25\t    'axes.linewidth': 0.7,\n26\t    'xtick.major.width': 0.7,\n27\t    'ytick.major.width': 0.7,\n28\t    'xtick.major.size': 3,\n29\t    'ytick.major.size': 3,\n30\t    'mathtext.fontset': 'dejavusans',\n31\t    'pdf.fonttype': 42,\n32\t    'ps.fonttype': 42,\n33\t})\n34\t\n35\tSTYLE = {\n36\t    'CoNLL':   {'color': '#228833', 'marker': 's'},\n37\t    'SciERC':  {'color': '#EE6677', 'marker': '^'},\n38\t    'FewNERD': {'color': '#4477AA', 'marker': 'o'},\n39\t}\n40\tDATASETS = ['SciERC', 'CoNLL', 'FewNERD']\n41\tMODELS = ['Qwen2.5-7B', 'LLaMA-3.1-8B']\n42\tLSTYLE = {'Qwen2.5-7B': '-', 'LLaMA-3.1-8B': '--'}\n43\t\n44\tFITS = {\n45\t    ('SciERC',  'Qwen2.5-7B'):   {'a': 0.914, 'b': 0.282, 'c': 0.390},\n46\t    ('SciERC',  'LLaMA-3.1-8B'): {'a': 0.938, 'b': 0.296, 'c': 0.302},\n47\t    ('CoNLL',   'Qwen2.5-7B'):   {'a': 0.972, 'b': 0.099, 'c': 0.839},\n48\t    ('CoNLL',   'LLaMA-3.1-8B'): {'a': 0.969, 'b': 0.043, 'c': 0.329},\n49\t    ('FewNERD', 'Qwen2.5-7B'):   {'a': 0.957, 'b': 0.251, 'c': 0.612},\n50\t    ('FewNERD', 'LLaMA-3.1-8B'): {'a': 0.941, 'b': 0.192, 'c': 0.609},\n51\t}\n52\t\n53\tN_GRID = {\n54\t    'SciERC':  [1, 2, 4, 8, 16, 32],\n55\t    'CoNLL':   [1, 2, 4, 8, 16],\n56\t    'FewNERD': [1, 2, 4, 8, 16],\n57\t}\n58\t\n59\tGREEDY = {\n60\t    ('SciERC',  'Qwen2.5-7B'):   0.665,\n61\t    ('SciERC',\n…[truncated 3153 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-005409"
-        },
-        {
-          "source_line": 5410,
-          "timestamp": "2026-05-24T10:23:36.431505+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py",
-              "content": "\"\"\"Generate fig_bound: SC gain vs degeneracy bound (2-panel vertical).\"\"\"\nimport json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\nfrom matplotlib.lines import Line2D\n\nOUT_DIR = Path(__file__).parent\n\nwith open(Path(__file__).resolve().parents[3] / \"artifacts\" / \"p_impossibility\" / \"bound_verification.json\") as f:\n    data = json.load(f)\n\nconfigs = data[\"per_config\"]\n\nALPHA = 0.068\nG_ND_REF = 14.8\nEPSILON = 0.3\nTHETA_CRIT = 0.70\n\nSTYLE = {\n    \"FewNERD\": {\"color\": \"#4477AA\", \"marker\": \"o\"},\n    \"SciERC\":  {\"color\": \"#EE6677\", \"marker\": \"^\"},\n    \"CoNLL\":   {\"color\": \"#228833\", \"marker\": \"s\"},\n}\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 10,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 7.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.5,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.8,\n    'ytick.major.width': 0.8,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'mathtext.fontset': 'dejavusans',\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nMS = 55\nEW = 0.6\n\nfig, (ax1, ax2) = plt.subplots(2, 1, figsize=(3.4, 4.5),\n                                gridspec_kw={\"hspace\": 0.38})\nfig.patch.set_facecolor('#FAFAFA')\n\ndef style_ax(ax):\n    ax.set_facecolor('#F5F7FA')\n    for spine in ['bottom', 'left']:\n        ax.spines[spine].set_color('#CCCCCC')\n        ax.spines[spine].set_linewidth(0.8)\n    ax.tick_params(colors='#555555', which='both')\n    ax.grid(True, alpha=0.15, linewidth=0.5, color='#888888')\n    ax.set_axisbelow(True)\n\nLEGEND_BOX = dict(frameon=True, fancybox=True, edgecolor='#CCCCCC',\n                  facecolor='white', framealpha=0.95)\n\n# ===== Top panel: SC gain vs Degeneracy =====\nstyle_ax(ax1)\n\nfor c in configs:\n    s = STYLE[c[\"dataset\"]]\n    ax1.scatter(c[\"D\"], c[\"actual_best_delta_pp\"],\n                color=s[\"color\"], marker=s[\"marker\"],\n                s=MS, zorder=5, edgecolors=\"white\",\n                linewidths=EW, alpha=0.90)\n\nD_range = np.linspace(0, 0.85, 200)\nbound_curve = (1 - D_range) * G_ND_REF * ALPHA\nax1.plot(D_range, bound_curve, color=\"#CC3333\", linewidth=1.6, zorder=4)\n\nax1.axvline(x=THETA_CRIT, color=\"0.50\", linestyle=\"--\", linewidth=0.8, zorder=3)\nax1.axhline(y=EPSILON, color=\"0.50\", linestyle=\":\", linewidth=0.8, zorder=3)\nax1.axhline(y=0, color=\"0.65\", linewidth=0.4, zorder=2)\n\nax1.set_xlabel(r\"Degeneracy rate $D$\")\nax1.set_ylabel(r\"SC gain $\\Delta F_1$ (pp)\")\nax1.set_xlim(-0.02, 0.85)\nax1.set_ylim(-1.0, 2.1)\nax1.set_title(\"(a) All gains respect the bound\", fontsize=9, pad=5,\n              fontstyle='italic', loc='left')\n\nhandles = [\n    Line2D([0], [0], marker=STYLE[ds]['marker'], color='w',\n           markerfacecolor=STYLE[ds]['color'], markeredgecolor='white',\n           markeredgewidth=EW, markersize=6, label=ds)\n    for ds in [\"FewNERD\", \"SciERC\", \"CoNLL\"]\n] + [\n    Line2D([0], [0], color='#CC3333', linewidth=1.4,\n           label=fr'Bound ($\\alpha$={ALPHA})'),\n    Line2D([0], [0], color='0.50', linestyle='--', linewidth=0.8,\n           label=fr'$\\theta_{{\\mathrm{{crit}}}}$={THETA_CRIT}'),\n    Line2D([0], [0], color='0.50', linestyle=':', linewidth=0.8,\n           label=fr'$\\varepsilon$={EPSILON} pp'),\n]\nax1.legend(handles=handles, loc=\"lower left\",\n           handletextpad=0.3, borderpad=0.4, labelspacing=0.25,\n           columnspacing=0.7, fontsize=7, ncol=2, **LEGEND_BOX)\n\n# ===== Bottom panel: Ratio to weak bound =====\nstyle_ax(ax2)\n\npositive = [c for c in configs if c[\"actual_best_delta_pp\"] > 0]\nfor c in positive:\n    s = STYLE[c[\"dataset\"]]\n    ax2.scatter(c[\"D\"], c[\"bound_ratio\"],\n                color=s[\"color\"], marker=s[\"marker\"],\n                s=MS, zorder=5, edgecolors=\"white\",\n                linewidths=EW, alpha=0.90)\n\nax2.axhline(y=0.13, color=\"#CC3333\", linestyle=\"--\", linewidth=1.2, zorder=4)\nax2.axhline(y=0, color=\"0.65\", linewidth=0.4, zorder=2)\n\nhandles2 = [\n    Line2D([0], [0], marker=STYLE[ds]['marker'], color='w',\n           markerfacecolor=STYLE[ds]['color'], markeredgecolor='white',\n           markeredgewidth=EW, markersize=6, label=ds)\n    for ds in [\"FewNERD\", \"SciERC\", \"CoNLL\"]\n] + [\n    Line2D([0], [0], color='#CC3333', linestyle='--', linewidth=1.2,\n           label=r'Empirical ceiling $\\approx$ 0.13'),\n]\n\nax2.set_xlabel(r\"Degeneracy rate $D$\")\nax2.set_ylabel(\"Ratio to weak bound\")\nax2.set_xlim(-0.02, 0.85)\nax2.set_ylim(-0.005, 0.19)\nax2.set_title(\"(b) Low recovery ratio confirms bound looseness\", fontsize=9,\n              pad=5, fontstyle='italic', loc='left')\nax2.legend(handles=handles2, loc=\"upper right\",\n           handletextpad=0.3, borderpad=0.4, labelspacing=0.25, fontsize=7,\n           **LEGEND_BOX)\n\nfig.savefig(OUT_DIR / \"fig_bound.pdf\")\nfig.savefig(OUT_DIR / \"fig_bound.png\")\nprint(\"Saved fig_bound.pdf and fig_bound.png\")\n"
-            }
-          },
-          "id": "event-005410"
-        },
-        {
-          "source_line": 5411,
-          "timestamp": "2026-05-24T10:23:36.683080+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "elapsed_ms": 251
-          },
-          "id": "event-005411"
-        },
-        {
-          "source_line": 5412,
-          "timestamp": "2026-05-24T10:24:02.139509+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_selection_gap.py",
-              "content": "#!/usr/bin/env python3\n\"\"\"Generate fig_selection_gap: 2-panel vertical (rho bars + delta-F1 dots).\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 11,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.5,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.8,\n    'ytick.major.width': 0.8,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'mathtext.fontset': 'dejavusans',\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nFIG_DIR = Path(__file__).parent\n\nsignal_labels = ['SJ', 'FK', 'EM', 'VC', 'LP']\nrho_vals = np.array([0.359, 0.266, 0.294, 0.379, 0.205])\ndelta_f1 = np.array([-0.45, -0.46, -1.19, -2.65, +0.04])\noracle_delta = 13.0\nrandom_delta = -3.9\n\nCOL_BAR = '#CC6677'\nCOL_BAR_EDGE = '#99445A'\nCOL_DOT = '#3C3C3C'\nCOL_ORACLE = '#228833'\nCOL_RANDOM = '#999999'\n\nx = np.arange(len(signal_labels))\n\nfig, (ax1, ax2) = plt.subplots(\n    2, 1, figsize=(3.4, 3.6),\n    gridspec_kw={'height_ratios': [1, 1.4], 'hspace': 0.10},\n    sharex=True,\n)\nfig.patch.set_facecolor('#FAFAFA')\n\ndef style_ax(ax):\n    ax.set_facecolor('#F5F7FA')\n    for spine in ['bottom', 'left']:\n        ax.spines[spine].set_color('#CCCCCC')\n        ax.spines[spine].set_linewidth(0.8)\n    ax.tick_params(colors='#555555', which='both')\n    ax.set_axisbelow(True)\n\n# ---- Top panel: Spearman rho bars ----\nstyle_ax(ax1)\n\nbars = ax1.bar(x, rho_vals, width=0.50, color=COL_BAR, alpha=0.82,\n               edgecolor=COL_BAR_EDGE, linewidth=0.7, zorder=2)\n\nfor xi, rv in zip(x, rho_vals):\n    ax1.text(xi, rv + 0.012, f'.{int(rv*1000):03d}', ha='center', va='bottom',\n             fontsize=7.5, color=COL_BAR_EDGE, fontweight='medium')\n\nax1.set_ylabel(r'Spearman $\\rho$', labelpad=4)\nax1.set_ylim(0, 0.47)\nax1.set_yticks([0, 0.1, 0.2, 0.3, 0.4])\nax1.grid(axis='y', alpha=0.15, linewidth=0.5, color='#888888', zorder=0)\nax1.tick_params(axis='x', length=0)\nax1.set_title('SciERC NER, $N{=}8$, $T{=}1.0$', fontsize=10, pad=6)\n\n# ---- Bottom panel: delta-F1 dots + line ----\nstyle_ax(ax2)\n\nax2.plot(x, delta_f1, 'o-', color=COL_DOT, markersize=5.5,\n         markerfacecolor=COL_DOT, markeredgecolor='white',\n         markeredgewidth=0.8, linewidth=1.2, zorder=3)\n\nfor xi, d in zip(x, delta_f1):\n    oy = 6 if d >= 0 else -8\n    va = 'bottom' if d >= 0 else 'top'\n    ax2.annotate(f'{d:+.2f}', xy=(xi, d), xytext=(0, oy),\n                 textcoords='offset points', ha='center', va=va,\n                 fontsize=7, color=COL_DOT)\n\n# Greedy = 0 line with pill label\nax2.axhline(y=0, color='#888888', linestyle='-', linewidth=0.7, zorder=1)\nax2.text(4.35, 0.12, 'Greedy', fontsize=6.5, color='#6C757D',\n         ha='right', va='bottom', fontstyle='italic',\n         bbox=dict(boxstyle='round,pad=0.2', facecolor='white',\n                   edgecolor='#CCCCCC', linewidth=0.5, alpha=0.9))\n\n# Random baseline with pill label\nax2.axhline(y=random_delta, color=COL_RANDOM, linestyle=':', linewidth=0.8,\n            alpha=0.5, zorder=1)\nax2.text(4.35, random_delta + 0.12, 'Random', fontsize=6.5, color='#6C757D',\n         ha='right', va='bottom', fontstyle='italic',\n         bbox=dict(boxstyle='round,pad=0.2', facecolor='white',\n                   edgecolor='#CCCCCC', linewidth=0.5, alpha=0.9))\n\n# Oracle headroom annotation\nax2.annotate(\n    f'Oracle: +{oracle_delta:.1f} pp', xy=(4.15, 1.45),\n    fontsize=7.5, color=COL_ORACLE, ha='right', va='bottom',\n    bbox=dict(boxstyle='round,pad=0.3', facecolor='#eaf5ea',\n              edgecolor=COL_ORACLE, linewidth=0.6, alpha=0.95),\n)\n\nax2.set_ylabel(r'$\\Delta$F1 vs Greedy (pp)', labelpad=4)\nax2.set_ylim(-4.8, 1.8)\nax2.set_xticks(x)\nax2.set_xticklabels(signal_labels)\nax2.grid(axis='y', alpha=0.15, linewidth=0.5, color='#888888', zorder=0)\n\nfig.savefig(FIG_DIR / 'fig_selection_gap.pdf', format='pdf')\nfig.savefig(FIG_DIR / 'fig_selection_gap.png', format='png')\nplt.close(fig)\nprint('Done: fig_selection_gap')\n"
-            }
-          },
-          "id": "event-005412"
-        },
-        {
-          "source_line": 5413,
-          "timestamp": "2026-05-24T10:24:02.190505+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_selection_gap.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "elapsed_ms": 50
-          },
-          "id": "event-005413"
-        },
-        {
-          "source_line": 5414,
-          "timestamp": "2026-05-24T10:24:36.484383+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_oracle_scaling.py",
-              "content": "\"\"\"Generate fig_oracle_scaling: Oracle F1 vs N with power-law fits.\"\"\"\nimport os\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.lines import Line2D\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 11,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.5,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.8,\n    'ytick.major.width': 0.8,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'mathtext.fontset': 'dejavusans',\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nSTYLE = {\n    'CoNLL':   {'color': '#228833', 'marker': 's'},\n    'SciERC':  {'color': '#EE6677', 'marker': '^'},\n    'FewNERD': {'color': '#4477AA', 'marker': 'o'},\n}\nDATASETS = ['SciERC', 'CoNLL', 'FewNERD']\nMODELS = ['Qwen2.5-7B', 'LLaMA-3.1-8B']\nLSTYLE = {'Qwen2.5-7B': '-', 'LLaMA-3.1-8B': '--'}\n\nFITS = {\n    ('SciERC',  'Qwen2.5-7B'):   {'a': 0.914, 'b': 0.282, 'c': 0.390},\n    ('SciERC',  'LLaMA-3.1-8B'): {'a': 0.938, 'b': 0.296, 'c': 0.302},\n    ('CoNLL',   'Qwen2.5-7B'):   {'a': 0.972, 'b': 0.099, 'c': 0.839},\n    ('CoNLL',   'LLaMA-3.1-8B'): {'a': 0.969, 'b': 0.043, 'c': 0.329},\n    ('FewNERD', 'Qwen2.5-7B'):   {'a': 0.957, 'b': 0.251, 'c': 0.612},\n    ('FewNERD', 'LLaMA-3.1-8B'): {'a': 0.941, 'b': 0.192, 'c': 0.609},\n}\n\nN_GRID = {\n    'SciERC':  [1, 2, 4, 8, 16, 32],\n    'CoNLL':   [1, 2, 4, 8, 16],\n    'FewNERD': [1, 2, 4, 8, 16],\n}\n\nGREEDY = {\n    ('SciERC',  'Qwen2.5-7B'):   0.665,\n    ('SciERC',  'LLaMA-3.1-8B'): 0.661,\n    ('CoNLL',   'Qwen2.5-7B'):   0.912,\n    ('CoNLL',   'LLaMA-3.1-8B'): 0.930,\n    ('FewNERD', 'Qwen2.5-7B'):   0.793,\n    ('FewNERD', 'LLaMA-3.1-8B'): 0.799,\n}\n\n\ndef f1_at(ds, model, N):\n    p = FITS[(ds, model)]\n    return p['a'] - p['b'] * np.power(np.asarray(N, dtype=float), -p['c'])\n\n\ndef main():\n    fig, ax = plt.subplots(figsize=(3.4, 2.8))\n    fig.patch.set_facecolor('#FAFAFA')\n    ax.set_facecolor('#F5F7FA')\n    for spine in ['bottom', 'left']:\n        ax.spines[spine].set_color('#CCCCCC')\n        ax.spines[spine].set_linewidth(0.8)\n    ax.tick_params(colors='#555555', which='both')\n    ax.grid(True, alpha=0.15, linewidth=0.5, color='#888888')\n    ax.set_axisbelow(True)\n\n    N_curve = np.geomspace(1, 32, 400)\n\n    # Greedy baselines (mean)\n    for ds in DATASETS:\n        gy = 0.5 * (GREEDY[(ds, 'Qwen2.5-7B')] + GREEDY[(ds, 'LLaMA-3.1-8B')])\n        ax.axhline(y=gy, color=STYLE[ds]['color'], linestyle=':',\n                   linewidth=0.7, alpha=0.35, zorder=1)\n\n    # Power-law curves + data points\n    for ds in DATASETS:\n        color = STYLE[ds]['color']\n        marker = STYLE[ds]['marker']\n        for model in MODELS:\n            ls = LSTYLE[model]\n            ax.plot(N_curve, f1_at(ds, model, N_curve),\n                    linestyle=ls, color=color, alpha=0.6, linewidth=1.4,\n                    zorder=2)\n            N_pts = np.array(N_GRID[ds], dtype=float)\n            ax.scatter(N_pts, f1_at(ds, model, N_pts),\n                       marker=marker, facecolor=color,\n                       edgecolor='white', linewidth=0.5, s=40, zorder=4)\n\n    ax.set_xscale('log', base=2)\n    ax.set_xticks([1, 2, 4, 8, 16, 32])\n    ax.set_xticklabels(['1', '2', '4', '8', '16', '32'])\n    ax.set_xlim(0.85, 38)\n    ax.set_ylim(0.60, 1.00)\n    ax.set_xlabel(r'Number of Samples ($N$)')\n    ax.set_ylabel(r'Oracle $F_1$')\n\n    # Unified legend with rounded box\n    handles = []\n    for ds in DATASETS:\n        handles.append(\n            Line2D([0], [0], color=STYLE[ds]['color'],\n                   marker=STYLE[ds]['marker'], linestyle='-',\n                   linewidth=1.2, markersize=5, markeredgecolor='white',\n                   markeredgewidth=0.4, label=ds)\n        )\n    handles.append(Line2D([0], [0], color='#555555', linestyle='-',\n                          linewidth=1.2, label='Qwen2.5-7B'))\n    handles.append(Line2D([0], [0], color='#555555', linestyle='--',\n                          linewidth=1.2, label='LLaMA-3.1-8B'))\n    handles.append(Line2D([0], [0], color='#555555', linestyle=':',\n                          linewidth=0.7, alpha=0.6, label=r'Greedy ($T{=}0$)'))\n\n    ax.legend(handles=handles, loc='lower right',\n              bbox_to_anchor=(0.99, 0.01),\n              fontsize=7.5, handlelength=1.8, labelspacing=0.3,\n              ncol=2, columnspacing=1.0,\n              frameon=True, fancybox=True, edgecolor='#CCCCCC',\n              facecolor='white', framealpha=0.95)\n\n    out_dir = os.path.dirname(os.path.abspath(__file__))\n    fig.savefig(os.path.join(out_dir, 'fig_oracle_scaling.pdf'), format='pdf')\n    fig.savefig(os.path.join(out_dir, 'fig_oracle_scaling.png'), format='png')\n    plt.close(fig)\n    print('Saved fig_oracle_scaling.pdf and .png')\n\n\nif __name__ == '__main__':\n    main()\n"
-            }
-          },
-          "id": "event-005414"
-        },
-        {
-          "source_line": 5415,
-          "timestamp": "2026-05-24T10:24:51.992326+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_oracle_scaling.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "elapsed_ms": 15507
-          },
-          "id": "event-005415"
-        },
-        {
-          "source_line": 5416,
-          "timestamp": "2026-05-24T10:24:52.381958+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_n_scaling.py",
-              "content": "\"\"\"Generate fig_n_scaling_mv: MV delta-F1 vs log2(N).\"\"\"\nimport os\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 11,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.5,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.8,\n    'ytick.major.width': 0.8,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'mathtext.fontset': 'dejavusans',\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nCOL_CONLL = '#228833'\nCOL_SCIERC = '#EE6677'\nCOL_FEWNERD = '#4477AA'\n\nn_vals_full = np.array([8, 16, 32, 64])\nlog2n_full = np.log2(n_vals_full)\n\nscierc = np.array([-1.24, -0.61, +0.24, +0.53])\nconll = np.array([+0.20, +0.32, +0.44, +0.61])\n\nn_vals_fn = np.array([8, 16, 32])\nlog2n_fn = np.log2(n_vals_fn)\nfewnerd = np.array([-2.71, -1.65, -0.91])\n\nfig, ax = plt.subplots(figsize=(3.4, 2.6))\nfig.patch.set_facecolor('#FAFAFA')\nax.set_facecolor('#F5F7FA')\nfor spine in ['bottom', 'left']:\n    ax.spines[spine].set_color('#CCCCCC')\n    ax.spines[spine].set_linewidth(0.8)\nax.tick_params(colors='#555555', which='both')\nax.grid(True, alpha=0.15, linewidth=0.5, color='#888888')\nax.set_axisbelow(True)\n\n# Break-even line\nax.axhline(y=0, color='#999999', linestyle='-', linewidth=0.5, zorder=1)\n\n# Dataset lines\nax.plot(log2n_full, conll, '-', color=COL_CONLL, marker='s', markersize=6,\n        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\nax.plot(log2n_full, scierc, '-', color=COL_SCIERC, marker='^', markersize=6,\n        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\nax.plot(log2n_fn, fewnerd, '-', color=COL_FEWNERD, marker='o', markersize=6,\n        markeredgecolor='white', markeredgewidth=0.5, zorder=3)\n\n# Direct labels with rounded background boxes\nlabel_box = dict(boxstyle='round,pad=0.15', facecolor='white',\n                 edgecolor='#CCCCCC', linewidth=0.4, alpha=0.9)\nax.text(6.12, conll[-1] + 0.08, 'CoNLL', fontsize=7.5, color=COL_CONLL,\n        va='bottom', ha='left', fontweight='medium', bbox=label_box)\nax.text(6.12, scierc[-1] - 0.08, 'SciERC', fontsize=7.5, color=COL_SCIERC,\n        va='top', ha='left', fontweight='medium', bbox=label_box)\nax.text(5.12, fewnerd[-1] - 0.12, 'FewNERD', fontsize=7.5, color=COL_FEWNERD,\n        va='top', ha='left', fontweight='medium', bbox=label_box)\n\nax.set_xlabel(r'$\\log_2 N$')\nax.set_ylabel(r'MV $\\Delta$F1 (pp)')\nax.set_xticks([3, 4, 5, 6])\nax.set_xticklabels(['8', '16', '32', '64'])\nax.set_xlim(2.8, 6.9)\nax.set_ylim(-3.2, 1.2)\n\nout_dir = os.path.dirname(os.path.abspath(__file__))\nfig.savefig(os.path.join(out_dir, 'fig_n_scaling_mv.pdf'), format='pdf')\nfig.savefig(os.path.join(out_dir, 'fig_n_scaling_mv.png'), format='png')\nplt.close()\nprint('Done: fig_n_scaling_mv.pdf/png')\n"
-            }
-          },
-          "id": "event-005416"
-        },
-        {
-          "source_line": 5417,
-          "timestamp": "2026-05-24T10:24:52.941687+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_n_scaling.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "elapsed_ms": 559
-          },
-          "id": "event-005417"
-        },
-        {
-          "source_line": 5418,
-          "timestamp": "2026-05-24T10:25:17.193589+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_degeneracy_lp_scatter.py",
-              "content": "\"\"\"Generate fig_degeneracy_lp_scatter: LP Selection delta-F1 vs degeneracy rate.\"\"\"\nimport json\nimport os\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.lines import Line2D\nfrom scipy import stats\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 11,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.5,\n    'axes.linewidth': 0.8,\n    'xtick.major.width': 0.8,\n    'ytick.major.width': 0.8,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'mathtext.fontset': 'dejavusans',\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\nHERE = os.path.dirname(os.path.abspath(__file__))\nPROJECT_ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))\nDATA_JSON = os.path.join(PROJECT_ROOT, 'artifacts', 'scatter_v2_data.json')\n\nCATEGORY_STYLE = {\n    'Qwen3-8B (canonical)':  {'color': '#1f5fa8', 'marker': 'o', 'size': 90, 'edge': 'white'},\n    'Qwen3-8B (multi-seed)': {'color': '#9fc1e6', 'marker': 'o', 'size': 50, 'edge': 'white'},\n    'LLaMA3.1-8B':           {'color': '#d8553b', 'marker': 's', 'size': 60, 'edge': 'white'},\n    'Epoch ablation':        {'color': '#3aa757', 'marker': '^', 'size': 65, 'edge': 'white'},\n    'Rank ablation':         {'color': '#7b3294', 'marker': 'D', 'size': 55, 'edge': 'white'},\n    'Temperature ablation':  {'color': '#e88c2a', 'marker': 'v', 'size': 60, 'edge': 'white'},\n    'Qwen3-4B':              {'color': '#1a8f8a', 'marker': 'P', 'size': 65, 'edge': 'white'},\n}\n\nCATEGORY_MAP = {\n    'cross-dataset': 'Qwen3-8B (canonical)',\n    'multi-seed':    'Qwen3-8B (multi-seed)',\n    'LLaMA3.1-8B':   'LLaMA3.1-8B',\n    'epoch':         'Epoch ablation',\n    'rank':          'Rank ablation',\n    'temperature':   'Temperature ablation',\n    'Qwen3-4B':      'Qwen3-4B',\n}\n\n\ndef main():\n    with open(DATA_JSON) as f:\n        rows = json.load(f)\n\n    x = np.array([r['degen_pct'] for r in rows])\n    y = np.array([r['lp_delta_pp'] for r in rows])\n    cats = [CATEGORY_MAP[r['category']] for r in rows]\n\n    rho, pval = stats.spearmanr(x, y)\n    n = len(rows)\n\n    fig, ax = plt.subplots(figsize=(3.4, 2.8))\n    fig.patch.set_facecolor('#FAFAFA')\n    ax.set_facecolor('#F5F7FA')\n    for spine in ['bottom', 'left']:\n        ax.spines[spine].set_color('#CCCCCC')\n        ax.spines[spine].set_linewidth(0.8)\n    ax.tick_params(colors='#555555', which='both')\n    ax.grid(True, alpha=0.15, linewidth=0.5, color='#888888')\n    ax.set_axisbelow(True)\n\n    ax.axhline(y=0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\n\n    for disp_cat, sty in CATEGORY_STYLE.items():\n        mask = np.array([c == disp_cat for c in cats])\n        if not mask.any():\n            continue\n        ax.scatter(\n            x[mask], y[mask],\n            marker=sty['marker'],\n            facecolor=sty['color'],\n            edgecolor=sty['edge'],\n            linewidth=0.5,\n            s=sty['size'],\n            alpha=0.88,\n            zorder=4,\n            label=disp_cat,\n        )\n\n    ax.set_xlabel('Degeneracy Rate (%)')\n    ax.set_ylabel(r'LP Selection $\\Delta F_1$ (pp)')\n\n    xmin = max(0, x.min() - 4)\n    xmax = min(100, x.max() + 4)\n    ax.set_xlim(xmin, xmax)\n    ymin = float(y.min()) - 0.25\n    ymax = float(y.max()) + 0.30\n    ax.set_ylim(ymin, ymax)\n\n    annot = f'$\\\\rho = {rho:.3f}$  ($p = {pval:.2f}$, $n = {n}$)'\n    ax.text(0.98, 0.03, annot, transform=ax.transAxes,\n            ha='right', va='bottom', fontsize=7.5,\n            bbox=dict(boxstyle='round,pad=0.35', facecolor='white',\n                      edgecolor='#CCCCCC', linewidth=0.6, alpha=0.95))\n\n    handles = [\n        Line2D([0], [0], marker=sty['marker'], color='w',\n               markerfacecolor=sty['color'], markeredgecolor=sty['edge'],\n               markeredgewidth=0.5,\n               markersize=np.sqrt(sty['size']) * 0.7, label=cat)\n        for cat, sty in CATEGORY_STYLE.items()\n    ]\n    ax.legend(handles=handles, loc='lower center',\n              bbox_to_anchor=(0.5, 1.01), ncol=4,\n              fontsize=6.5, handletextpad=0.25,\n              columnspacing=0.7, borderpad=0.0, labelspacing=0.3,\n              frameon=True, fancybox=True, edgecolor='#CCCCCC',\n              facecolor='#FAFAFA', framealpha=0.95)\n\n    fig.savefig(os.path.join(HERE, 'fig_degeneracy_lp_scatter.pdf'), format='pdf')\n    fig.savefig(os.path.join(HERE, 'fig_degeneracy_lp_scatter.png'), format='png')\n    plt.close(fig)\n    print(f'Saved fig_degeneracy_lp_scatter.pdf and .png  '\n          f'(rho={rho:.3f}, p={pval:.4f}, n={n})')\n\n\nif __name__ == '__main__':\n    main()\n"
-            }
-          },
-          "id": "event-005418"
-        },
-        {
-          "source_line": 5419,
-          "timestamp": "2026-05-24T10:25:17.245260+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_degeneracy_lp_scatter.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Write",
-            "elapsed_ms": 51
-          },
-          "id": "event-005419"
-        },
-        {
-          "source_line": 5420,
-          "timestamp": "2026-05-24T10:25:22.485302+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures && python3 _gen_fig_bound.py 2>&1 && python3 _gen_selection_gap.py 2>&1 && python3 _gen_fig_oracle_scaling.py 2>&1 && python3 _gen_n_scaling.py 2>&1 && python3 _gen_fig_degeneracy_lp_scatter.py 2>&1",
-              "description": "Generate all 5 figures round 1"
-            }
-          },
-          "id": "event-005420"
-        },
-        {
-          "source_line": 5421,
-          "timestamp": "2026-05-24T10:25:30.806631+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Saved fig_bound.pdf and fig_bound.png\nDone: fig_selection_gap\nSaved fig_oracle_scaling.pdf and .png\nDone: fig_n_scaling_mv.pdf/png\nSaved fig_degeneracy_lp_scatter.pdf and .png  (rho=0.052, p=0.8141, n=23)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/agent_70248b8a"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Bash",
-            "elapsed_ms": 8321
-          },
-          "id": "event-005421"
-        },
-        {
-          "source_line": 5422,
-          "timestamp": "2026-05-24T10:25:35.877323+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_bound.png"
-            }
-          },
-          "id": "event-005422"
-        },
-        {
-          "source_line": 5423,
-          "timestamp": "2026-05-24T10:25:36.229862+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 352
-          },
-          "id": "event-005423"
-        },
-        {
-          "source_line": 5424,
-          "timestamp": "2026-05-24T10:25:36.230298+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png"
-            }
-          },
-          "id": "event-005424"
-        },
-        {
-          "source_line": 5425,
-          "timestamp": "2026-05-24T10:25:36.283583+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 53
-          },
-          "id": "event-005425"
-        },
-        {
-          "source_line": 5426,
-          "timestamp": "2026-05-24T10:25:49.586256+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_oracle_scaling.png"
-            }
-          },
-          "id": "event-005426"
-        },
-        {
-          "source_line": 5427,
-          "timestamp": "2026-05-24T10:25:50.390994+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 804
-          },
-          "id": "event-005427"
-        },
-        {
-          "source_line": 5428,
-          "timestamp": "2026-05-24T10:25:50.441549+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_n_scaling_mv.png"
-            }
-          },
-          "id": "event-005428"
-        },
-        {
-          "source_line": 5429,
-          "timestamp": "2026-05-24T10:25:50.944464+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 502
-          },
-          "id": "event-005429"
-        },
-        {
-          "source_line": 5430,
-          "timestamp": "2026-05-24T10:25:50.944800+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_degeneracy_lp_scatter.png"
-            }
-          },
-          "id": "event-005430"
-        },
-        {
-          "source_line": 5431,
-          "timestamp": "2026-05-24T10:25:51.046794+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-005431"
-        },
-        {
-          "source_line": 5432,
-          "timestamp": "2026-05-24T10:27:00.285320+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_oracle_scaling.py",
-              "old_string": "            ax.plot(N_curve, f1_at(ds, model, N_curve),\n                    linestyle=ls, color=color, alpha=0.6, linewidth=1.4,",
-              "new_string": "            ax.plot(N_curve, f1_at(ds, model, N_curve),\n                    linestyle=ls, color=color, alpha=0.7, linewidth=1.4,"
-            }
-          },
-          "id": "event-005432"
-        },
-        {
-          "source_line": 5433,
-          "timestamp": "2026-05-24T10:27:01.188793+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_oracle_scaling.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Edit",
-            "elapsed_ms": 903
-          },
-          "id": "event-005433"
-        },
-        {
-          "source_line": 5434,
-          "timestamp": "2026-05-24T10:27:02.644347+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py",
-              "old_string": "ax1.set_title(\"(a) All gains respect the bound\", fontsize=9, pad=5,\n              fontstyle='italic', loc='left')",
-              "new_string": "ax1.set_title(\"(a) All gains respect the bound\", fontsize=9, pad=5,\n              fontweight='medium', loc='left')"
-            }
-          },
-          "id": "event-005434"
-        },
-        {
-          "source_line": 5435,
-          "timestamp": "2026-05-24T10:27:03.046235+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Edit",
-            "elapsed_ms": 401
-          },
-          "id": "event-005435"
-        },
-        {
-          "source_line": 5436,
-          "timestamp": "2026-05-24T10:27:04.050793+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/_gen_fig_bound.py",
-              "old_string": "ax2.set_title(\"(b) Low recovery ratio confirms bound looseness\", fontsize=9,\n              pad=5, fontstyle='italic', loc='left')",
-              "new_string": "ax2.set_title(\"(b) Low recovery ratio confirms bound looseness\", fontsize=9,\n              pad=5, fontweight='medium', loc='left')"
-            }
-          },
-          "id": "event-005436"
-        },
-        {
-          "source_line": 5437,
           "timestamp": "2026-05-24T10:27:04.954780+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -720,10 +21,10 @@
             "tool": "Edit",
             "elapsed_ms": 903
           },
-          "id": "event-005437"
+          "id": "event-005401"
         },
         {
-          "source_line": 5438,
+          "source_line": 5402,
           "timestamp": "2026-05-24T10:27:05.607507+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -743,10 +44,10 @@
               "new_string": "ax.grid(axis='y', alpha=0.15, linewidth=0.5, color='#888888')"
             }
           },
-          "id": "event-005438"
+          "id": "event-005402"
         },
         {
-          "source_line": 5439,
+          "source_line": 5403,
           "timestamp": "2026-05-24T10:27:05.658206+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -761,10 +62,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005439"
+          "id": "event-005403"
         },
         {
-          "source_line": 5440,
+          "source_line": 5404,
           "timestamp": "2026-05-24T10:27:10.728512+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -782,10 +83,10 @@
               "description": "Regenerate all 5 figures round 2"
             }
           },
-          "id": "event-005440"
+          "id": "event-005404"
         },
         {
-          "source_line": 5441,
+          "source_line": 5405,
           "timestamp": "2026-05-24T10:27:18.204174+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -800,10 +101,10 @@
             "tool": "Bash",
             "elapsed_ms": 7475
           },
-          "id": "event-005441"
+          "id": "event-005405"
         },
         {
-          "source_line": 5442,
+          "source_line": 5406,
           "timestamp": "2026-05-24T10:27:24.584490+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -820,10 +121,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_bound.png"
             }
           },
-          "id": "event-005442"
+          "id": "event-005406"
         },
         {
-          "source_line": 5443,
+          "source_line": 5407,
           "timestamp": "2026-05-24T10:27:25.038865+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -838,10 +139,10 @@
             "tool": "Read",
             "elapsed_ms": 454
           },
-          "id": "event-005443"
+          "id": "event-005407"
         },
         {
-          "source_line": 5444,
+          "source_line": 5408,
           "timestamp": "2026-05-24T10:27:25.039367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -858,10 +159,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_oracle_scaling.png"
             }
           },
-          "id": "event-005444"
+          "id": "event-005408"
         },
         {
-          "source_line": 5445,
+          "source_line": 5409,
           "timestamp": "2026-05-24T10:27:25.342540+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -876,10 +177,10 @@
             "tool": "Read",
             "elapsed_ms": 303
           },
-          "id": "event-005445"
+          "id": "event-005409"
         },
         {
-          "source_line": 5446,
+          "source_line": 5410,
           "timestamp": "2026-05-24T10:27:25.342863+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -896,10 +197,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/figures/fig_n_scaling_mv.png"
             }
           },
-          "id": "event-005446"
+          "id": "event-005410"
         },
         {
-          "source_line": 5447,
+          "source_line": 5411,
           "timestamp": "2026-05-24T10:27:25.444277+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -914,10 +215,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-005447"
+          "id": "event-005411"
         },
         {
-          "source_line": 5448,
+          "source_line": 5412,
           "timestamp": "2026-05-24T10:27:38.714353+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -936,10 +237,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-005448"
+          "id": "event-005412"
         },
         {
-          "source_line": 5449,
+          "source_line": 5413,
           "timestamp": "2026-05-24T10:27:40.872334+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -954,10 +255,10 @@
             "tool": "Bash",
             "elapsed_ms": 2157
           },
-          "id": "event-005449"
+          "id": "event-005413"
         },
         {
-          "source_line": 5450,
+          "source_line": 5414,
           "timestamp": "2026-05-24T10:27:45.589817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -977,10 +278,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-005450"
+          "id": "event-005414"
         },
         {
-          "source_line": 5451,
+          "source_line": 5415,
           "timestamp": "2026-05-24T10:27:46.746318+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -995,10 +296,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1156
           },
-          "id": "event-005451"
+          "id": "event-005415"
         },
         {
-          "source_line": 5452,
+          "source_line": 5416,
           "timestamp": "2026-05-24T10:27:50.810463+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1015,10 +316,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-005452"
+          "id": "event-005416"
         },
         {
-          "source_line": 5453,
+          "source_line": 5417,
           "timestamp": "2026-05-24T10:27:51.011689+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1035,10 +336,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-005453"
+          "id": "event-005417"
         },
         {
-          "source_line": 5454,
+          "source_line": 5418,
           "timestamp": "2026-05-24T10:27:51.716005+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1053,10 +354,10 @@
             "tool": "Read",
             "elapsed_ms": 905
           },
-          "id": "event-005454"
+          "id": "event-005418"
         },
         {
-          "source_line": 5455,
+          "source_line": 5419,
           "timestamp": "2026-05-24T10:27:51.869300+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1071,10 +372,10 @@
             "tool": "Read",
             "elapsed_ms": 857
           },
-          "id": "event-005455"
+          "id": "event-005419"
         },
         {
-          "source_line": 5456,
+          "source_line": 5420,
           "timestamp": "2026-05-24T10:27:55.395676+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1091,10 +392,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-005456"
+          "id": "event-005420"
         },
         {
-          "source_line": 5457,
+          "source_line": 5421,
           "timestamp": "2026-05-24T10:27:55.597069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1111,10 +412,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-005457"
+          "id": "event-005421"
         },
         {
-          "source_line": 5458,
+          "source_line": 5422,
           "timestamp": "2026-05-24T10:27:56.353121+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1129,10 +430,10 @@
             "tool": "Read",
             "elapsed_ms": 957
           },
-          "id": "event-005458"
+          "id": "event-005422"
         },
         {
-          "source_line": 5459,
+          "source_line": 5423,
           "timestamp": "2026-05-24T10:27:56.554689+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1147,10 +448,10 @@
             "tool": "Read",
             "elapsed_ms": 957
           },
-          "id": "event-005459"
+          "id": "event-005423"
         },
         {
-          "source_line": 5460,
+          "source_line": 5424,
           "timestamp": "2026-05-24T10:28:10.769925+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1167,10 +468,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-005460"
+          "id": "event-005424"
         },
         {
-          "source_line": 5461,
+          "source_line": 5425,
           "timestamp": "2026-05-24T10:28:11.124331+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1185,10 +486,10 @@
             "tool": "Read",
             "elapsed_ms": 354
           },
-          "id": "event-005461"
+          "id": "event-005425"
         },
         {
-          "source_line": 5462,
+          "source_line": 5426,
           "timestamp": "2026-05-24T10:28:40.769979+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1208,10 +509,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-005462"
+          "id": "event-005426"
         },
         {
-          "source_line": 5463,
+          "source_line": 5427,
           "timestamp": "2026-05-24T10:28:40.972965+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1226,10 +527,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 202
           },
-          "id": "event-005463"
+          "id": "event-005427"
         },
         {
-          "source_line": 5464,
+          "source_line": 5428,
           "timestamp": "2026-05-24T10:28:47.345314+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1246,10 +547,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-005464"
+          "id": "event-005428"
         },
         {
-          "source_line": 5465,
+          "source_line": 5429,
           "timestamp": "2026-05-24T10:28:47.949147+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1264,10 +565,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-005465"
+          "id": "event-005429"
         },
         {
-          "source_line": 5466,
+          "source_line": 5430,
           "timestamp": "2026-05-24T10:29:31.248751+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1284,10 +585,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/_pdf_images"
             }
           },
-          "id": "event-005466"
+          "id": "event-005430"
         },
         {
-          "source_line": 5467,
+          "source_line": 5431,
           "timestamp": "2026-05-24T10:29:49.316363+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1302,10 +603,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 18067
           },
-          "id": "event-005467"
+          "id": "event-005431"
         },
         {
-          "source_line": 5468,
+          "source_line": 5432,
           "timestamp": "2026-05-24T10:29:49.467316+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1323,10 +624,10 @@
               "project": "struct_self_consist_ie"
             }
           },
-          "id": "event-005468"
+          "id": "event-005432"
         },
         {
-          "source_line": 5469,
+          "source_line": 5433,
           "timestamp": "2026-05-24T10:29:53.081568+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1341,10 +642,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3614
           },
-          "id": "event-005469"
+          "id": "event-005433"
         },
         {
-          "source_line": 5470,
+          "source_line": 5434,
           "timestamp": "2026-05-24T10:30:01.119815+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1357,7 +658,7 @@
           "metadata": {
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3"
           },
-          "id": "event-005470"
+          "id": "event-005434"
         }
       ]
     },
@@ -1365,7 +666,7 @@
       "number": 336,
       "messages": [
         {
-          "source_line": 5471,
+          "source_line": 5435,
           "timestamp": "2026-05-24T10:52:13.123409+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1379,10 +680,10 @@
             "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
             "source": "director"
           },
-          "id": "event-005471"
+          "id": "event-005435"
         },
         {
-          "source_line": 5472,
+          "source_line": 5436,
           "timestamp": "2026-05-24T10:52:32.474043+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1401,10 +702,10 @@
               "prompt": "Find all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/ - list their paths. Quick search."
             }
           },
-          "id": "event-005472"
+          "id": "event-005436"
         },
         {
-          "source_line": 5473,
+          "source_line": 5437,
           "timestamp": "2026-05-24T10:52:34.155970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1421,10 +722,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/**/*.tex"
             }
           },
-          "id": "event-005473"
+          "id": "event-005437"
         },
         {
-          "source_line": 5474,
+          "source_line": 5438,
           "timestamp": "2026-05-24T10:52:34.156407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1439,10 +740,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-005474"
+          "id": "event-005438"
         },
         {
-          "source_line": 5475,
+          "source_line": 5439,
           "timestamp": "2026-05-24T10:52:38.371851+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1457,10 +758,10 @@
             "tool": "Agent",
             "elapsed_ms": 5897
           },
-          "id": "event-005475"
+          "id": "event-005439"
         },
         {
-          "source_line": 5476,
+          "source_line": 5440,
           "timestamp": "2026-05-24T10:52:41.784574+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1477,10 +778,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
             }
           },
-          "id": "event-005476"
+          "id": "event-005440"
         },
         {
-          "source_line": 5477,
+          "source_line": 5441,
           "timestamp": "2026-05-24T10:52:42.587822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1495,10 +796,10 @@
             "tool": "Read",
             "elapsed_ms": 803
           },
-          "id": "event-005477"
+          "id": "event-005441"
         },
         {
-          "source_line": 5478,
+          "source_line": 5442,
           "timestamp": "2026-05-24T10:52:42.738822+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1515,10 +816,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex"
             }
           },
-          "id": "event-005478"
+          "id": "event-005442"
         },
         {
-          "source_line": 5479,
+          "source_line": 5443,
           "timestamp": "2026-05-24T10:52:42.789528+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1533,10 +834,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005479"
+          "id": "event-005443"
         },
         {
-          "source_line": 5480,
+          "source_line": 5444,
           "timestamp": "2026-05-24T10:52:42.789917+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1553,10 +854,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
             }
           },
-          "id": "event-005480"
+          "id": "event-005444"
         },
         {
-          "source_line": 5481,
+          "source_line": 5445,
           "timestamp": "2026-05-24T10:52:42.840573+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1571,10 +872,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005481"
+          "id": "event-005445"
         },
         {
-          "source_line": 5482,
+          "source_line": 5446,
           "timestamp": "2026-05-24T10:53:17.601234+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1595,10 +896,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005482"
+          "id": "event-005446"
         },
         {
-          "source_line": 5483,
+          "source_line": 5447,
           "timestamp": "2026-05-24T10:53:17.601715+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1613,10 +914,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-005483"
+          "id": "event-005447"
         },
         {
-          "source_line": 5484,
+          "source_line": 5448,
           "timestamp": "2026-05-24T10:53:17.652121+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1636,10 +937,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005484"
+          "id": "event-005448"
         },
         {
-          "source_line": 5485,
+          "source_line": 5449,
           "timestamp": "2026-05-24T10:53:17.702829+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1654,10 +955,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-005485"
+          "id": "event-005449"
         },
         {
-          "source_line": 5486,
+          "source_line": 5450,
           "timestamp": "2026-05-24T10:53:24.980652+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1675,10 +976,10 @@
               "limit": "100"
             }
           },
-          "id": "event-005486"
+          "id": "event-005450"
         },
         {
-          "source_line": 5487,
+          "source_line": 5451,
           "timestamp": "2026-05-24T10:53:25.032743+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1693,10 +994,10 @@
             "tool": "Read",
             "elapsed_ms": 52
           },
-          "id": "event-005487"
+          "id": "event-005451"
         },
         {
-          "source_line": 5488,
+          "source_line": 5452,
           "timestamp": "2026-05-24T10:54:00.501504+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1716,10 +1017,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005488"
+          "id": "event-005452"
         },
         {
-          "source_line": 5489,
+          "source_line": 5453,
           "timestamp": "2026-05-24T10:54:01.505718+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1734,10 +1035,10 @@
             "tool": "Grep",
             "elapsed_ms": 1004
           },
-          "id": "event-005489"
+          "id": "event-005453"
         },
         {
-          "source_line": 5490,
+          "source_line": 5454,
           "timestamp": "2026-05-24T10:54:01.907469+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1757,10 +1058,10 @@
               "-n": "True"
             }
           },
-          "id": "event-005490"
+          "id": "event-005454"
         },
         {
-          "source_line": 5491,
+          "source_line": 5455,
           "timestamp": "2026-05-24T10:54:01.958076+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1775,10 +1076,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-005491"
+          "id": "event-005455"
         },
         {
-          "source_line": 5492,
+          "source_line": 5456,
           "timestamp": "2026-05-24T10:54:58.096120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1796,10 +1097,10 @@
               "limit": "60"
             }
           },
-          "id": "event-005492"
+          "id": "event-005456"
         },
         {
-          "source_line": 5493,
+          "source_line": 5457,
           "timestamp": "2026-05-24T10:54:58.096641+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1814,10 +1115,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-005493"
+          "id": "event-005457"
         },
         {
-          "source_line": 5494,
+          "source_line": 5458,
           "timestamp": "2026-05-24T10:57:00.778701+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1834,10 +1135,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex"
             }
           },
-          "id": "event-005494"
+          "id": "event-005458"
         },
         {
-          "source_line": 5495,
+          "source_line": 5459,
           "timestamp": "2026-05-24T10:57:01.230837+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1852,10 +1153,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-005495"
+          "id": "event-005459"
         },
         {
-          "source_line": 5496,
+          "source_line": 5460,
           "timestamp": "2026-05-24T10:57:01.231244+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1872,10 +1173,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex"
             }
           },
-          "id": "event-005496"
+          "id": "event-005460"
         },
         {
-          "source_line": 5497,
+          "source_line": 5461,
           "timestamp": "2026-05-24T10:57:01.582889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1890,10 +1191,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-005497"
+          "id": "event-005461"
         },
         {
-          "source_line": 5498,
+          "source_line": 5462,
           "timestamp": "2026-05-24T10:57:01.583378+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1910,10 +1211,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
             }
           },
-          "id": "event-005498"
+          "id": "event-005462"
         },
         {
-          "source_line": 5499,
+          "source_line": 5463,
           "timestamp": "2026-05-24T10:57:01.633892+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1928,10 +1229,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005499"
+          "id": "event-005463"
         },
         {
-          "source_line": 5500,
+          "source_line": 5464,
           "timestamp": "2026-05-24T10:57:06.127268+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1948,10 +1249,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-005500"
+          "id": "event-005464"
         },
         {
-          "source_line": 5501,
+          "source_line": 5465,
           "timestamp": "2026-05-24T10:57:06.479164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1966,10 +1267,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-005501"
+          "id": "event-005465"
         },
         {
-          "source_line": 5502,
+          "source_line": 5466,
           "timestamp": "2026-05-24T10:57:06.630123+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1986,10 +1287,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/background.tex"
             }
           },
-          "id": "event-005502"
+          "id": "event-005466"
         },
         {
-          "source_line": 5503,
+          "source_line": 5467,
           "timestamp": "2026-05-24T10:57:06.932389+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2004,10 +1305,10 @@
             "tool": "Read",
             "elapsed_ms": 302
           },
-          "id": "event-005503"
+          "id": "event-005467"
         },
         {
-          "source_line": 5504,
+          "source_line": 5468,
           "timestamp": "2026-05-24T10:57:06.932908+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2024,10 +1325,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/diagnostic.tex"
             }
           },
-          "id": "event-005504"
+          "id": "event-005468"
         },
         {
-          "source_line": 5505,
+          "source_line": 5469,
           "timestamp": "2026-05-24T10:57:07.887974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2042,10 +1343,10 @@
             "tool": "Read",
             "elapsed_ms": 955
           },
-          "id": "event-005505"
+          "id": "event-005469"
         },
         {
-          "source_line": 5506,
+          "source_line": 5470,
           "timestamp": "2026-05-24T10:57:07.988815+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2062,10 +1363,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex"
             }
           },
-          "id": "event-005506"
+          "id": "event-005470"
         },
         {
-          "source_line": 5507,
+          "source_line": 5471,
           "timestamp": "2026-05-24T10:57:08.139978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2080,10 +1381,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-005507"
+          "id": "event-005471"
         },
         {
-          "source_line": 5508,
+          "source_line": 5472,
           "timestamp": "2026-05-24T10:57:08.140409+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2100,10 +1401,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex"
             }
           },
-          "id": "event-005508"
+          "id": "event-005472"
         },
         {
-          "source_line": 5509,
+          "source_line": 5473,
           "timestamp": "2026-05-24T10:57:08.191043+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2118,10 +1419,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005509"
+          "id": "event-005473"
         },
         {
-          "source_line": 5510,
+          "source_line": 5474,
           "timestamp": "2026-05-24T10:57:20.589511+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2140,10 +1441,10 @@
               "limit": "30"
             }
           },
-          "id": "event-005510"
+          "id": "event-005474"
         },
         {
-          "source_line": 5511,
+          "source_line": 5475,
           "timestamp": "2026-05-24T10:57:21.092418+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2158,10 +1459,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-005511"
+          "id": "event-005475"
         },
         {
-          "source_line": 5512,
+          "source_line": 5476,
           "timestamp": "2026-05-24T10:57:21.143021+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2178,10 +1479,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex"
             }
           },
-          "id": "event-005512"
+          "id": "event-005476"
         },
         {
-          "source_line": 5513,
+          "source_line": 5477,
           "timestamp": "2026-05-24T10:57:21.193719+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2196,10 +1497,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005513"
+          "id": "event-005477"
         },
         {
-          "source_line": 5514,
+          "source_line": 5478,
           "timestamp": "2026-05-24T11:00:13.227115+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2218,10 +1519,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-005514"
+          "id": "event-005478"
         },
         {
-          "source_line": 5515,
+          "source_line": 5479,
           "timestamp": "2026-05-24T11:00:13.779492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2236,10 +1537,10 @@
             "tool": "Grep",
             "elapsed_ms": 552
           },
-          "id": "event-005515"
+          "id": "event-005479"
         },
         {
-          "source_line": 5516,
+          "source_line": 5480,
           "timestamp": "2026-05-24T11:00:14.231530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2260,10 +1561,10 @@
               "head_limit": "80"
             }
           },
-          "id": "event-005516"
+          "id": "event-005480"
         },
         {
-          "source_line": 5517,
+          "source_line": 5481,
           "timestamp": "2026-05-24T11:00:14.282370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2278,10 +1579,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-005517"
+          "id": "event-005481"
         },
         {
-          "source_line": 5518,
+          "source_line": 5482,
           "timestamp": "2026-05-24T11:00:27.281071+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2301,10 +1602,10 @@
               "head_limit": "50"
             }
           },
-          "id": "event-005518"
+          "id": "event-005482"
         },
         {
-          "source_line": 5519,
+          "source_line": 5483,
           "timestamp": "2026-05-24T11:00:27.332364+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2319,10 +1620,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-005519"
+          "id": "event-005483"
         },
         {
-          "source_line": 5520,
+          "source_line": 5484,
           "timestamp": "2026-05-24T11:00:58.047218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2342,10 +1643,10 @@
               "new_string": "Test-time compute scaling (repeated sampling with self-consistency or best-of-$N$) yields large gains on discrete-answer reasoning, but whether these gains transfer to NER remains open."
             }
           },
-          "id": "event-005520"
+          "id": "event-005484"
         },
         {
-          "source_line": 5521,
+          "source_line": 5485,
           "timestamp": "2026-05-24T11:00:58.047731+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2360,10 +1661,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005521"
+          "id": "event-005485"
         },
         {
-          "source_line": 5522,
+          "source_line": 5486,
           "timestamp": "2026-05-24T11:01:02.414029+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2383,10 +1684,10 @@
               "new_string": "A diagnostic framework identifies two co-occurring conditions, \\textit{degeneracy} (i.e., multiple outputs collapsing to identical predictions) and signal alignment collapse, that are jointly associated with scaling returns"
             }
           },
-          "id": "event-005522"
+          "id": "event-005486"
         },
         {
-          "source_line": 5523,
+          "source_line": 5487,
           "timestamp": "2026-05-24T11:01:02.414527+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2401,10 +1702,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005523"
+          "id": "event-005487"
         },
         {
-          "source_line": 5524,
+          "source_line": 5488,
           "timestamp": "2026-05-24T11:01:09.880954+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2424,10 +1725,10 @@
               "new_string": "Test-time compute scaling, including self-consistency \\cite{wang2023selfconsistency}, best-of-$N$ \\cite{snell2025scaling, brown2024monkeys}, and extended reasoning \\cite{muennighoff2025s1}, yields large gains on discrete-answer tasks"
             }
           },
-          "id": "event-005524"
+          "id": "event-005488"
         },
         {
-          "source_line": 5525,
+          "source_line": 5489,
           "timestamp": "2026-05-24T11:01:09.881615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2442,10 +1743,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005525"
+          "id": "event-005489"
         },
         {
-          "source_line": 5526,
+          "source_line": 5490,
           "timestamp": "2026-05-24T11:01:16.507179+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2465,10 +1766,10 @@
               "new_string": "two co-occurring conditions, degeneracy ($12$--$68$\\%) and signal alignment collapse ($\\alpha{\\to}0$; $\\alpha$ here denotes LP-F1 alignment), which co-occur with selection failure"
             }
           },
-          "id": "event-005526"
+          "id": "event-005490"
         },
         {
-          "source_line": 5527,
+          "source_line": 5491,
           "timestamp": "2026-05-24T11:01:16.507762+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2483,10 +1784,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005527"
+          "id": "event-005491"
         },
         {
-          "source_line": 5528,
+          "source_line": 5492,
           "timestamp": "2026-05-24T11:01:25.693002+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2506,10 +1807,10 @@
               "new_string": "Entity-level construction selects $\\hat{y}_{\\textup{MBR}} = \\{e \\in E_\\cup : \\hat{p}(e) > \\beta/(\\beta{+}1)\\}$ under balanced set-overlap utility; $\\beta{=}1$ recovers majority vote"
             }
           },
-          "id": "event-005528"
+          "id": "event-005492"
         },
         {
-          "source_line": 5529,
+          "source_line": 5493,
           "timestamp": "2026-05-24T11:01:25.744061+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2524,10 +1825,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005529"
+          "id": "event-005493"
         },
         {
-          "source_line": 5530,
+          "source_line": 5494,
           "timestamp": "2026-05-24T11:01:31.867725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2547,10 +1848,10 @@
               "new_string": "yet confidence-based aggregation recovers ${<}1$\\,pp, a persistent gap."
             }
           },
-          "id": "event-005530"
+          "id": "event-005494"
         },
         {
-          "source_line": 5531,
+          "source_line": 5495,
           "timestamp": "2026-05-24T11:01:31.968648+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2565,10 +1866,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005531"
+          "id": "event-005495"
         },
         {
-          "source_line": 5532,
+          "source_line": 5496,
           "timestamp": "2026-05-24T11:01:36.135357+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2588,10 +1889,10 @@
               "new_string": "reduces the delta to $-0.87$/$-0.60$\\,pp, reflecting severity reduction, not immunity"
             }
           },
-          "id": "event-005532"
+          "id": "event-005496"
         },
         {
-          "source_line": 5533,
+          "source_line": 5497,
           "timestamp": "2026-05-24T11:01:36.186395+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2606,10 +1907,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005533"
+          "id": "event-005497"
         },
         {
-          "source_line": 5534,
+          "source_line": 5498,
           "timestamp": "2026-05-24T11:01:40.318068+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2629,10 +1930,10 @@
               "new_string": "It identifies \\textit{where} aggregation fails, screening for favorable conditions, rather than quantitatively predicting gains."
             }
           },
-          "id": "event-005534"
+          "id": "event-005498"
         },
         {
-          "source_line": 5535,
+          "source_line": 5499,
           "timestamp": "2026-05-24T11:01:40.418958+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2647,10 +1948,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005535"
+          "id": "event-005499"
         },
         {
-          "source_line": 5536,
+          "source_line": 5500,
           "timestamp": "2026-05-24T11:01:45.990730+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2670,10 +1971,10 @@
               "new_string": "$\\alpha$, not $D$, is the binding constraint ($\\alpha{=}0.000$--$0.121$; $8$--$33{\\times}$ tighter)"
             }
           },
-          "id": "event-005536"
+          "id": "event-005500"
         },
         {
-          "source_line": 5537,
+          "source_line": 5501,
           "timestamp": "2026-05-24T11:01:46.041380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2688,10 +1989,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005537"
+          "id": "event-005501"
         },
         {
-          "source_line": 5538,
+          "source_line": 5502,
           "timestamp": "2026-05-24T11:01:50.779024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2711,10 +2012,10 @@
               "new_string": "(1)~the entity independence assumption, since split-half correlation $r{=}0.395$--$0.578$ (Table~\\ref{tab:fk_independence}) reveals substantial inter-entity correlation structure within instances"
             }
           },
-          "id": "event-005538"
+          "id": "event-005502"
         },
         {
-          "source_line": 5539,
+          "source_line": 5503,
           "timestamp": "2026-05-24T11:01:50.830287+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2729,10 +2030,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005539"
+          "id": "event-005503"
         },
         {
-          "source_line": 5540,
+          "source_line": 5504,
           "timestamp": "2026-05-24T11:01:58.006256+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2752,10 +2053,10 @@
               "new_string": "CoNLL ($\\beta_{\\textup{crit,eff}}{=}1.148 {>} 1$) makes MV gain structurally impossible."
             }
           },
-          "id": "event-005540"
+          "id": "event-005504"
         },
         {
-          "source_line": 5541,
+          "source_line": 5505,
           "timestamp": "2026-05-24T11:01:58.057521+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2770,10 +2071,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005541"
+          "id": "event-005505"
         },
         {
-          "source_line": 5542,
+          "source_line": 5506,
           "timestamp": "2026-05-24T11:02:03.378323+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2793,10 +2094,10 @@
               "new_string": "When LP fails, as in few-shot regimes where LP $\\rho{\\to}0$ (\\S\\ref{sec:scaling}), no alternative per-sample signal exists."
             }
           },
-          "id": "event-005542"
+          "id": "event-005506"
         },
         {
-          "source_line": 5543,
+          "source_line": 5507,
           "timestamp": "2026-05-24T11:02:03.428965+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2811,10 +2112,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005543"
+          "id": "event-005507"
         },
         {
-          "source_line": 5544,
+          "source_line": 5508,
           "timestamp": "2026-05-24T11:02:08.397481+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2834,10 +2135,10 @@
               "new_string": "four \\textit{agreement signals} computed across samples (\\textit{structural}: Soft Jaccard [SJ], entity voting confidence [VC]; \\textit{surface}: exact match [EM], Fleiss' $\\kappa$ [FK]) and log-probability [LP]"
             }
           },
-          "id": "event-005544"
+          "id": "event-005508"
         },
         {
-          "source_line": 5545,
+          "source_line": 5509,
           "timestamp": "2026-05-24T11:02:08.448164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2852,10 +2153,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005545"
+          "id": "event-005509"
         },
         {
-          "source_line": 5546,
+          "source_line": 5510,
           "timestamp": "2026-05-24T11:02:11.962172+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2875,10 +2176,10 @@
               "new_string": "cannot rank candidates within an instance; selection failure is a design property, not an empirical finding."
             }
           },
-          "id": "event-005546"
+          "id": "event-005510"
         },
         {
-          "source_line": 5547,
+          "source_line": 5511,
           "timestamp": "2026-05-24T11:02:12.063028+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2893,10 +2194,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005547"
+          "id": "event-005511"
         },
         {
-          "source_line": 5548,
+          "source_line": 5512,
           "timestamp": "2026-05-24T11:02:21.899002+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2916,10 +2217,10 @@
               "new_string": "inaccessible through the generation interface, consistent with the signal alignment collapse"
             }
           },
-          "id": "event-005548"
+          "id": "event-005512"
         },
         {
-          "source_line": 5549,
+          "source_line": 5513,
           "timestamp": "2026-05-24T11:02:21.999822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2934,10 +2235,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005549"
+          "id": "event-005513"
         },
         {
-          "source_line": 5550,
+          "source_line": 5514,
           "timestamp": "2026-05-24T11:02:30.932315+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2957,10 +2258,10 @@
               "new_string": "cannot distinguish instances where scaling helps from those where it harms; our entity-level decomposition"
             }
           },
-          "id": "event-005550"
+          "id": "event-005514"
         },
         {
-          "source_line": 5551,
+          "source_line": 5515,
           "timestamp": "2026-05-24T11:02:31.183594+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2975,10 +2276,10 @@
             "tool": "Edit",
             "elapsed_ms": 251
           },
-          "id": "event-005551"
+          "id": "event-005515"
         },
         {
-          "source_line": 5552,
+          "source_line": 5516,
           "timestamp": "2026-05-24T11:02:45.258191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2998,10 +2299,10 @@
               "new_string": "\\textit{(a)~domain}: reasoning (scalar judgments) vs.\\ NER/RE (entity sets with partial overlap);\n\\textit{(b)~failure mechanism}: prompt-level baseline effects vs.\\ degeneracy ($12$--$68$\\%) and signal alignment collapse ($\\alpha{\\to}0$), mechanisms specific to structured prediction;\n\\textit{(c)~granularity}: prompt-level $r$ decomposition vs.\\ instance- and entity-level diagnostics ($D$, $G_{\\textup{nd}}$, $\\alpha$);\n\\textit{(d)~prescriptive}: no constructive remedy vs.\\ entity-level construction with MBR grounding (Proposition~\\ref{prop:construction_mbr})."
             }
           },
-          "id": "event-005552"
+          "id": "event-005516"
         },
         {
-          "source_line": 5553,
+          "source_line": 5517,
           "timestamp": "2026-05-24T11:02:45.309289+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3016,10 +2317,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005553"
+          "id": "event-005517"
         },
         {
-          "source_line": 5554,
+          "source_line": 5518,
           "timestamp": "2026-05-24T11:02:57.098649+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3039,10 +2340,10 @@
               "new_string": "shifts across entity-type complexity; even near-perfect entity classification cannot close the gap."
             }
           },
-          "id": "event-005554"
+          "id": "event-005518"
         },
         {
-          "source_line": 5555,
+          "source_line": 5519,
           "timestamp": "2026-05-24T11:02:57.149350+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3057,10 +2358,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005555"
+          "id": "event-005519"
         },
         {
-          "source_line": 5556,
+          "source_line": 5520,
           "timestamp": "2026-05-24T11:03:02.167111+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3080,10 +2381,10 @@
               "new_string": "correlation, which we treat as supplementary evidence; Figure~\\ref{fig:degeneracy_scatter})"
             }
           },
-          "id": "event-005556"
+          "id": "event-005520"
         },
         {
-          "source_line": 5557,
+          "source_line": 5521,
           "timestamp": "2026-05-24T11:03:02.268005+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3098,10 +2399,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-005557"
+          "id": "event-005521"
         },
         {
-          "source_line": 5558,
+          "source_line": 5522,
           "timestamp": "2026-05-24T11:03:05.679631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3121,10 +2422,10 @@
               "new_string": "a distinct failure mode, \\textit{diversity among failures} rather than quality-differentiated outputs, despite comparable degeneracy"
             }
           },
-          "id": "event-005558"
+          "id": "event-005522"
         },
         {
-          "source_line": 5559,
+          "source_line": 5523,
           "timestamp": "2026-05-24T11:03:05.730450+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3139,10 +2440,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005559"
+          "id": "event-005523"
         },
         {
-          "source_line": 5560,
+          "source_line": 5524,
           "timestamp": "2026-05-24T11:03:11.407642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3162,10 +2463,10 @@
               "new_string": "identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter)"
             }
           },
-          "id": "event-005560"
+          "id": "event-005524"
         },
         {
-          "source_line": 5561,
+          "source_line": 5525,
           "timestamp": "2026-05-24T11:03:11.458370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3180,10 +2481,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005561"
+          "id": "event-005525"
         },
         {
-          "source_line": 5562,
+          "source_line": 5526,
           "timestamp": "2026-05-24T11:03:15.875952+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3203,10 +2504,10 @@
               "new_string": "The diagnostic framework, which identifies these co-occurring conditions, is our primary contribution"
             }
           },
-          "id": "event-005562"
+          "id": "event-005526"
         },
         {
-          "source_line": 5563,
+          "source_line": 5527,
           "timestamp": "2026-05-24T11:03:15.926654+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3221,10 +2522,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005563"
+          "id": "event-005527"
         },
         {
-          "source_line": 5564,
+          "source_line": 5528,
           "timestamp": "2026-05-24T11:03:42.481455+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3244,10 +2545,10 @@
               "new_string": "\\subsection{Entity Construction (Exploratory)}\\label{sec:prescriptive}\n\nWe aggregate entities across samples, retaining those exceeding $\\theta{=}2/N$ with LP-weighted scoring (Appendix~\\ref{app:theta_sweep}).\nLP-weighted construction yields $+1.40{\\pm}0.51$\\,pp on Few-NERD (4-seed mean; $p{<}0.001$; Table~\\ref{tab:entity_construction}), consistent with favorable diagnostic conditions ($D{=}13$\\%, headroom${=}12.4$\\,pp), but non-significant on SciERC ($+0.32$\\,pp) and negative on CoNLL ($-0.39$\\,pp).\nUnder per-family Holm--Bonferroni \\cite{holm1979simple} correction ($k{=}10$), $p_{\\text{adj}}{=}0.006$; global ($k{=}57$): $p_{\\text{adj}}{=}0.055$ (family partition not pre-registered; Appendix~\\ref{app:holm}).\nTraining convergence modulates returns: 5-epoch Few-NERD eliminates gains as degeneracy rises from $9$\\% to $26$\\% (Appendix~\\ref{app:epoch_confound})."
             }
           },
-          "id": "event-005564"
+          "id": "event-005528"
         },
         {
-          "source_line": 5565,
+          "source_line": 5529,
           "timestamp": "2026-05-24T11:03:42.532184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3262,10 +2563,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005565"
+          "id": "event-005529"
         },
         {
-          "source_line": 5566,
+          "source_line": 5530,
           "timestamp": "2026-05-24T11:03:52.355905+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3285,10 +2586,10 @@
               "new_string": "MV gains range from $-2.71$\\,pp (Few-NERD) to $+0.6$\\,pp (CoNLL at $N{=}64$; Figure~\\ref{fig:n_scaling}); the optimal strategy is dataset-dependent.\nThe framework extends to RE, where upstream entity span errors create a distinct failure mode (Appendix~\\ref{app:re_extension})."
             }
           },
-          "id": "event-005566"
+          "id": "event-005530"
         },
         {
-          "source_line": 5567,
+          "source_line": 5531,
           "timestamp": "2026-05-24T11:03:52.356411+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3303,10 +2604,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005567"
+          "id": "event-005531"
         },
         {
-          "source_line": 5568,
+          "source_line": 5532,
           "timestamp": "2026-05-24T11:04:08.167019+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3326,10 +2627,10 @@
               "new_string": "\\paragraph{Discussion and conclusion.}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\nFor NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking (Appendices~\\ref{app:failure_gallery},~\\ref{app:objections}).\nThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$, not degeneracy, as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\nThe diagnostic framework is our primary contribution (Appendix~\\ref{app:cost_benefit}): at $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default (Appendix~\\ref{app:recommendations})."
             }
           },
-          "id": "event-005568"
+          "id": "event-005532"
         },
         {
-          "source_line": 5569,
+          "source_line": 5533,
           "timestamp": "2026-05-24T11:04:08.217858+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3344,10 +2645,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005569"
+          "id": "event-005533"
         },
         {
-          "source_line": 5570,
+          "source_line": 5534,
           "timestamp": "2026-05-24T11:04:12.936423+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3366,10 +2667,10 @@
               "limit": "30"
             }
           },
-          "id": "event-005570"
+          "id": "event-005534"
         },
         {
-          "source_line": 5571,
+          "source_line": 5535,
           "timestamp": "2026-05-24T11:04:12.987189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3384,10 +2685,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005571"
+          "id": "event-005535"
         },
         {
-          "source_line": 5572,
+          "source_line": 5536,
           "timestamp": "2026-05-24T11:04:23.676721+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3407,10 +2708,10 @@
               "new_string": "Under entity-wise independence with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$), the MBR-optimal constructed set is\n\\begin{equation}\\label{eq:mbr_construction}\n\\hat{y}_{\\textup{MBR}} \\!=\\! \\bigl\\{e \\!{\\in}\\! E_\\cup \\!:\\! \\hat{p}(e) \\!>\\! \\tfrac{\\beta}{\\beta{+}1}\\bigr\\},\\; \\hat{p}(e) \\!=\\! \\tfrac{1}{N} \\textstyle\\sum\\nolimits_{i} \\mathbf{1}[e \\!{\\in}\\! y_i]\n\\end{equation}\nThe special case $\\beta{=}1$ yields $\\hat{p}(e) > \\tfrac{1}{2}$, the majority-vote threshold."
             }
           },
-          "id": "event-005572"
+          "id": "event-005536"
         },
         {
-          "source_line": 5573,
+          "source_line": 5537,
           "timestamp": "2026-05-24T11:04:23.779161+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3425,10 +2726,10 @@
             "tool": "Edit",
             "elapsed_ms": 102
           },
-          "id": "event-005573"
+          "id": "event-005537"
         },
         {
-          "source_line": 5574,
+          "source_line": 5538,
           "timestamp": "2026-05-24T11:04:34.019687+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3448,10 +2749,10 @@
               "new_string": "We use balanced linear utility ($\\beta{=}1$ throughout); balanced set-overlap and F1"
             }
           },
-          "id": "event-005574"
+          "id": "event-005538"
         },
         {
-          "source_line": 5575,
+          "source_line": 5539,
           "timestamp": "2026-05-24T11:04:34.071678+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3466,10 +2767,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005575"
+          "id": "event-005539"
         },
         {
-          "source_line": 5576,
+          "source_line": 5540,
           "timestamp": "2026-05-24T11:04:38.733312+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3489,10 +2790,10 @@
               "new_string": "the MBR-optimal constructed set with utility $u(\\hat{y}, y') = |\\hat{y} \\cap y'| - \\beta|\\hat{y} \\setminus y'|$ ($\\beta \\geq 1$) includes entity $e$ iff $\\hat{p}(e) > \\beta/(\\beta+1)$."
             }
           },
-          "id": "event-005576"
+          "id": "event-005540"
         },
         {
-          "source_line": 5577,
+          "source_line": 5541,
           "timestamp": "2026-05-24T11:04:38.785489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3507,10 +2808,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-005577"
+          "id": "event-005541"
         },
         {
-          "source_line": 5578,
+          "source_line": 5542,
           "timestamp": "2026-05-24T11:04:47.920995+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3530,10 +2831,10 @@
               "new_string": "and $-\\beta$ when $e \\notin y_i$ (probability $1{-}\\hat{p}(e)$).\nThe expected marginal contribution is $\\hat{p}(e) - \\beta(1{-}\\hat{p}(e)) = (1{+}\\beta)\\hat{p}(e) - \\beta$, which is positive iff $\\hat{p}(e) > \\beta/(\\beta+1)$.\nThe special case $\\beta{=}1$ yields the majority-vote threshold"
             }
           },
-          "id": "event-005578"
+          "id": "event-005542"
         },
         {
-          "source_line": 5579,
+          "source_line": 5543,
           "timestamp": "2026-05-24T11:04:51.419844+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3548,10 +2849,10 @@
             "tool": "Edit",
             "elapsed_ms": 3498
           },
-          "id": "event-005579"
+          "id": "event-005543"
         },
         {
-          "source_line": 5580,
+          "source_line": 5544,
           "timestamp": "2026-05-24T11:04:55.886934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3569,6 +2870,731 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
               "old_string": "consistent with marginal-entity precision falling below $\\alpha_{\\textup{crit}}$.",
               "new_string": "consistent with marginal-entity precision falling below $\\beta_{\\textup{crit}}$."
+            }
+          },
+          "id": "event-005544"
+        },
+        {
+          "source_line": 5545,
+          "timestamp": "2026-05-24T11:04:55.938739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-005545"
+        },
+        {
+          "source_line": 5546,
+          "timestamp": "2026-05-24T11:04:59.050691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "offset": "1215",
+              "limit": "55"
+            }
+          },
+          "id": "event-005546"
+        },
+        {
+          "source_line": 5547,
+          "timestamp": "2026-05-24T11:04:59.101396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1215\t\\subsection{Entity Selection Bound: Proof and Validation}\\label{app:alpha_crit}\n1216\t\n1217\t\\begin{proposition}[Entity Selection Diagnostic]\\label{prop:entity_selection_bound}\n1218\tLet $\\mathcal{M}^+ {=} \\hat{y}_{\\textup{MV}} \\setminus \\hat{y}_{\\textup{gr}}$ be entities added by majority vote (precision $\\pi_{\\mathcal{M}^+}$) and $\\delta$ the instance degeneracy rate.\n1219\t\\begin{enumerate}[label=\\textup{(\\alph*)},nosep,leftmargin=*]\n1220\t\\item On degenerate instances, $\\hat{y}_{\\textup{MV}} {=} \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 {=} 0$.\n1221\t\\item $\\mathbb{E}[\\Delta F_1] = (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}]$.\n1222\t\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.\n1223\t\\end{enumerate}\n1224\t\\end{proposition}\n1225\t\n1226\t\\begin{proof}[Proof of Proposition~\\ref{prop:entity_selection_bound}]\n1227\t\\textbf{Part (a).} On a degenerate instance, all $N$ samples produce the same entity set: $\\textup{entities}(y_1) = \\cdots = \\textup{entities}(y_N)$. For every entity $e \\in E_\\cup$, the agreement count satisfies $k(e) = N$ (if $e$ appears) or $k(e) = 0$ (if not). Hence $k(e)/N \\in \\{0,1\\}$, and the majority-vote threshold $k(e)/N \\geq 1/2$ selects exactly the entities present in any single sample---identical to the greedy output. Thus $\\hat{y}_{\\textup{MV}} = \\hat{y}_{\\textup{gr}}$ and $\\Delta F_1 = 0$.\n1228\t\n1229\t\\textbf{Part (b).} Partition instances into degenerate (fraction $\\delta$) and non-degenerate (fraction $1{-}\\delta$). By the law of total expectation:\n1230\t\\[\n1231\t\\mathbb{E}[\\Delta F_1] = \\delta \\cdot \\underbrace{\\mathbb{E}[\\Delta F_1 \\mid \\textup{deg.}]}_{= 0 \\;\\textup{by (a)}} + (1{-}\\delta) \\cdot \\mathbb{E}[\\Delta F_1 \\mid \\textup{non-deg.}].\n1232\t\\]\n1233\t\n1234\t\\textbf{Part (c).} Assume $\\mathcal{M}^- = \\hat{y}_{\\textup{gr}} \\setminus \\hat{y}_{\\textup{MV}} \\approx \\varnothing$ (greedy entities typically have agreement $k(e)/N \\approx 1$). Let $m = |\\mathcal{M}^+|$ an\n…[truncated 3504 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-005547"
+        },
+        {
+          "source_line": 5548,
+          "timestamp": "2026-05-24T11:05:06.684198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\alpha_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$.",
+              "new_string": "\\item $\\Delta F_1 > 0$ only if $\\pi_{\\mathcal{M}^+} > \\beta_{\\textup{crit}} \\triangleq F_1^{\\textup{gr}}/2$."
+            }
+          },
+          "id": "event-005548"
+        },
+        {
+          "source_line": 5549,
+          "timestamp": "2026-05-24T11:05:06.786328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-005549"
+        },
+        {
+          "source_line": 5550,
+          "timestamp": "2026-05-24T11:05:10.299631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\alpha_{\\textup{crit}}$.",
+              "new_string": "which is positive if and only if $\\pi > F_1^{\\textup{gr}}/2 \\triangleq \\beta_{\\textup{crit}}$."
+            }
+          },
+          "id": "event-005550"
+        },
+        {
+          "source_line": 5551,
+          "timestamp": "2026-05-24T11:05:10.351498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-005551"
+        },
+        {
+          "source_line": 5552,
+          "timestamp": "2026-05-24T11:05:17.929528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\alpha_{\\textup{crit}}$.\nEquivalently, defining $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\alpha_{\\textup{crit,eff}}$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality.",
+              "new_string": "From parts (b) and (c), MV gain is attenuated by $(1{-}\\delta)$ and requires marginal-entity precision $> \\beta_{\\textup{crit}}$.\nEquivalently, defining $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$, MV gain requires marginal-entity precision $> \\beta_{\\textup{crit,eff}}$; when $\\beta_{\\textup{crit,eff}} > 1$, the required precision exceeds 1.0 and MV gain is structurally impossible regardless of entity quality."
+            }
+          },
+          "id": "event-005552"
+        },
+        {
+          "source_line": 5553,
+          "timestamp": "2026-05-24T11:05:17.933629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 4
+          },
+          "id": "event-005553"
+        },
+        {
+          "source_line": 5554,
+          "timestamp": "2026-05-24T11:05:29.077296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "We define the effective precision threshold $\\alpha_{\\textup{crit,eff}} {=} \\alpha_{\\textup{crit}} / (1{-}\\delta)$; when $\\alpha_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\alpha_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\alpha_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\alpha_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp).",
+              "new_string": "We define the effective precision threshold $\\beta_{\\textup{crit,eff}} {=} \\beta_{\\textup{crit}} / (1{-}\\delta)$; when $\\beta_{\\textup{crit,eff}} > 1$, the required marginal-entity precision exceeds 1.0, making MV gain structurally impossible.\nCoNLL ($\\beta_{\\textup{crit,eff}}{=}1.148$) confirms this: $\\Delta{=}{-}0.04{\\pm}0.15$\\,pp is indistinguishable from zero.\nFew-NERD and SciERC ($\\beta_{\\textup{crit,eff}} {<} 1$) show significantly negative $\\Delta$, indicating that even where structural headroom exists, marginal-entity precision is insufficient.\nSciERC's lower $\\beta_{\\textup{crit}}$ ($0.334$, vs.\\ $0.396$ for Few-NERD and $0.456$ for CoNLL) is consistent with it being the only dataset where a trained entity verifier (AUC${=}0.923$) achieves positive gain ($+1.28$\\,pp)."
+            }
+          },
+          "id": "event-005554"
+        },
+        {
+          "source_line": 5555,
+          "timestamp": "2026-05-24T11:05:29.078850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-005555"
+        },
+        {
+          "source_line": 5556,
+          "timestamp": "2026-05-24T11:05:36.759282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\alpha_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\alpha_{\\textup{crit,eff}} = \\alpha_{\\textup{crit}} / (1{-}\\delta)$. When $\\alpha_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}",
+              "new_string": "\\caption{MV performance under strict majority (count $> N/2$; Qwen3-8B FT, $N{=}8$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$). $\\beta_{\\textup{crit}} = F_1^{\\textup{gr}}/2$; $\\beta_{\\textup{crit,eff}} = \\beta_{\\textup{crit}} / (1{-}\\delta)$. When $\\beta_{\\textup{crit,eff}} > 1$, MV gain is structurally impossible.}"
+            }
+          },
+          "id": "event-005556"
+        },
+        {
+          "source_line": 5557,
+          "timestamp": "2026-05-24T11:05:36.760838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 1
+          },
+          "id": "event-005557"
+        },
+        {
+          "source_line": 5558,
+          "timestamp": "2026-05-24T11:05:40.988087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+              "old_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\alpha_{\\textup{crit}}$ & $\\alpha_{\\textup{crit,eff}}$ & Prediction \\\\",
+              "new_string": "Dataset & Seeds & Greedy & MV & Oracle & $\\Delta_{\\textup{SC}}$ (pp) & $\\delta$ & $\\beta_{\\textup{crit}}$ & $\\beta_{\\textup{crit,eff}}$ & Prediction \\\\"
+            }
+          },
+          "id": "event-005558"
+        },
+        {
+          "source_line": 5559,
+          "timestamp": "2026-05-24T11:05:40.992841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 4
+          },
+          "id": "event-005559"
+        },
+        {
+          "source_line": 5560,
+          "timestamp": "2026-05-24T11:05:46.814407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\alpha_\\{\\\\textup\\{crit",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-005560"
+        },
+        {
+          "source_line": 5561,
+          "timestamp": "2026-05-24T11:05:47.216426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "elapsed_ms": 402
+          },
+          "id": "event-005561"
+        },
+        {
+          "source_line": 5562,
+          "timestamp": "2026-05-24T11:05:47.468221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/discussion.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections"
+            }
+          },
+          "id": "event-005562"
+        },
+        {
+          "source_line": 5563,
+          "timestamp": "2026-05-24T11:05:47.619251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-005563"
+        },
+        {
+          "source_line": 5564,
+          "timestamp": "2026-05-24T11:05:50.935871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-005564"
+        },
+        {
+          "source_line": 5565,
+          "timestamp": "2026-05-24T11:05:50.936283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:discussion}\\label{sec:selection_method}\\label{sec:conclusion}\n2\t\n3\t\\paragraph{When test-time scaling fails for NER.}\n4\tFor discrete-answer reasoning, sample diversity reflects diverse reasoning paths; for NER, degeneracy ($12$--$68$\\%) reduces candidate diversity while signal alignment collapse ($\\alpha{\\to}0$) limits ranking.\n5\tThe degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\n6\tThe diagnostic framework---identifying these co-occurring conditions---is our primary contribution.\n7\tAt $N{=}8$, high degeneracy ($>50$\\%) suggests scaling will not help; low degeneracy with strong LP-F1 alignment may warrant exploratory entity construction; otherwise, greedy decoding remains the default.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-005565"
+        },
+        {
+          "source_line": 5566,
+          "timestamp": "2026-05-24T11:06:00.019646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+            }
+          },
+          "id": "event-005566"
+        },
+        {
+          "source_line": 5567,
+          "timestamp": "2026-05-24T11:06:00.070362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{amsthm}\n16\t\\newtheorem{proposition}{Proposition}\n17\t\\newtheorem{theorem}{Theorem}\n18\t\\newtheorem{corollary}{Corollary}\n19\t\\newtheorem{definition}{Definition}\n20\t\\usepackage{multirow}\n21\t\\usepackage{xcolor}\n22\t\\usepackage{subcaption}\n23\t\\usepackage{alphalph}\n24\t\\usepackage{enumitem}\n25\t\n26\t\\graphicspath{{figures/}}\n27\t\n28\t\\title{When Self-Consistency Fails for NER:\\\\ Degeneracy, Signal Collapse, and the Correlation-Selection Gap}\n29\t\n30\t\\author{Anonymous}\n31\t\n32\t\\begin{document}\n33\t\\maketitle\n34\t\n35\t\\input{sections/abstract}\n36\t\\input{sections/introduction}\n37\t\\input{sections/background}\n38\t\\input{sections/diagnostic}\n39\t\\input{sections/single_signal}\n40\t\\input{sections/adaptive}\n41\t\\input{sections/theory}\n42\t\\input{sections/experiments_main}\n43\t\n44\t\\section*{Limitations}\n45\t\\input{sections/limitations}\n46\t\n47\t\\bibliography{references}\n48\t\n49\t\\appendix\n50\t\\renewcommand{\\thesection}{\\alphalph{\\value{section}}}\n51\t\\input{sections/appendix}\n52\t\n53\t\\end{document}\n54\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-005567"
+        },
+        {
+          "source_line": 5568,
+          "timestamp": "2026-05-24T11:06:06.100691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\input.*theoretical|\\\\input.*mechanistic",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-005568"
+        },
+        {
+          "source_line": 5569,
+          "timestamp": "2026-05-24T11:06:06.151331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-005569"
+        },
+        {
+          "source_line": 5570,
+          "timestamp": "2026-05-24T11:06:10.826245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+              "offset": "5",
+              "limit": "3"
+            }
+          },
+          "id": "event-005570"
+        },
+        {
+          "source_line": 5571,
+          "timestamp": "2026-05-24T11:06:10.926977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5\tThe first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\\S\\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance; selection failure is a design property, not an empirical finding.\n6\tThe second layer is empirical and constitutes the core diagnostic: LP---the only per-sample signal---suffers compression under constrained decoding, with 60\\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\\times}$; Appendices~\\ref{app:freeform_ablation},~\\ref{app:lp_failure_stability}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.\n7\tCross-instance $\\rho$ (Table~\\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-005571"
+        },
+        {
+          "source_line": 5572,
+          "timestamp": "2026-05-24T11:06:15.243319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex",
+              "old_string": "LP---the only per-sample signal---suffers compression",
+              "new_string": "LP, the only per-sample signal, suffers compression"
+            }
+          },
+          "id": "event-005572"
+        },
+        {
+          "source_line": 5573,
+          "timestamp": "2026-05-24T11:06:15.344229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/single_signal.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-005573"
+        },
+        {
+          "source_line": 5574,
+          "timestamp": "2026-05-24T11:06:21.173823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
+              "offset": "11",
+              "limit": "3"
+            }
+          },
+          "id": "event-005574"
+        },
+        {
+          "source_line": 5575,
+          "timestamp": "2026-05-24T11:06:21.224550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11\tOracle F1 follows $F_1(N) = a - b \\cdot N^{-c}$ ($R^2 > 0.999$; Figure~\\ref{fig:oracle_scaling}): Few-NERD ($c{\\approx}0.61$) scales comparably to reasoning tasks \\cite{brown2024monkeys}, SciERC converges more slowly ($c{\\approx}0.35$), yet confidence-based aggregation recovers ${<}1$\\,pp, a persistent gap.\n12\tThe gap persists across scales and families: scaling from 8B to 14B FT increases oracle headroom ($+1.2$\\,pp) with minimal greedy gain ($+0.9$\\,pp), and GPT-5.5 (200 Few-NERD instances, zero-shot) exhibits the same pattern---50\\% degeneracy, SJ $\\rho{=}0.346$, MV $+1.4$\\,pp yet 6.8\\,pp oracle headroom unrealized.\\footnote{Of the 10.1\\% of GPT-5.5 samples producing empty entity sets, 88\\% correspond to gold-empty instances; true parse failures affect only 1.2\\% of samples (19/1{,}600) and shift all reported metrics by ${<}0.5$\\,pp. See Appendix~\\ref{app:frontier_sc}.}\n13\tDegeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\\% vs.\\ Qwen3: $13.0$\\% vs.\\ GPT-5.5: $50$\\% on Few-NERD; Appendix~\\ref{app:cross_scale})."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-005575"
+        },
+        {
+          "source_line": 5576,
+          "timestamp": "2026-05-24T11:06:25.139285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex",
+              "old_string": "the same pattern---50\\% degeneracy",
+              "new_string": "the same pattern: 50\\% degeneracy"
+            }
+          },
+          "id": "event-005576"
+        },
+        {
+          "source_line": 5577,
+          "timestamp": "2026-05-24T11:06:25.189965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theory.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-005577"
+        },
+        {
+          "source_line": 5578,
+          "timestamp": "2026-05-24T11:06:29.255335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "---",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "head_limit": "60"
+            }
+          },
+          "id": "event-005578"
+        },
+        {
+          "source_line": 5579,
+          "timestamp": "2026-05-24T11:06:29.356336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/theoretical.tex:10:Across 16 configurations, all gains respect the bound (ratio 3--12\\%; Figure~\\ref{fig:bound}); the bound is loose because $\\alpha$---not $D$---is the bottleneck.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex:5:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex:9:Entity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/mechanistic.tex:28:LODO transfer drops to $0.56$\\textendash$0.67$, so even direct hidden-state access would not yield a universal quality signal---consistent with the negative cross-dataset verifier transfer (\\S\\ref{sec:verifier}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:5:The degeneracy decomposition (\\S\\ref{sec:theory}) identifies $\\alpha$---not degeneracy---as the binding constraint ($8$--$33{\\times}$ tighter); this persists across families \\cite{yun2025price}, scales (4B--72B), and decoding modes (Appendix~\\ref{app:freeform_ablation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:6:The diagnostic framework---identifying these co-occurring conditions---is our primary contribution.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex:69:Oracle & $0.775 \\pm 0.001$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex:70:Greedy ($T{=}0$) & $0.645 \\pm 0.001$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_g\n…[truncated 10381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-005579"
+        },
+        {
+          "source_line": 5580,
+          "timestamp": "2026-05-24T11:06:40.959187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "description": "Compile LaTeX paper to check for errors",
+              "timeout": "60000"
             }
           },
           "id": "event-005580"

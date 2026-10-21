@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r2_data_fix_URGENT_20260522T084608.log",
     "occurrence": 1,
-    "bytes": 843137,
-    "sha256": "d2c35c5b35b9f7855551860d9c2fe9797067885883accb897983e53127123c18"
+    "bytes": 826379,
+    "sha256": "4729b0410129a0635f65d0346effc89fef20229dd09f6d03dc9e7b634f559e24"
   },
   "statistics": {
-    "messages": 116,
+    "messages": 112,
     "user_turns": 0,
-    "tool_calls": 44,
+    "tool_calls": 42,
     "roles": {
       "log": 1,
       "system": 3,
       "record": 1,
       "assistant": 22,
-      "tool_call": 44,
-      "tool_result": 44,
+      "tool_call": 42,
+      "tool_result": 42,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -32,11 +32,11 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 116,
+      "message_count": 112,
       "chunks": [
         {
           "path": "f203bc87a6642e96c864-part-0001.json",
-          "message_count": 85
+          "message_count": 81
         },
         {
           "path": "f203bc87a6642e96c864-part-0002.json",

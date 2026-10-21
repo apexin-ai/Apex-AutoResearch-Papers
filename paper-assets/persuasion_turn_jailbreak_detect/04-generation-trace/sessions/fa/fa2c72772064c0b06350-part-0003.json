@@ -7,83 +7,6 @@
       "messages": [
         {
           "source_line": 361,
-          "timestamp": "2026-05-23T23:36:07.025Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01XMXNpeG5HFKmNribrA1cZb",
-              "type": "tool_result",
-              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"r16\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9466,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0117,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9902,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9342,\\\\n      0.9433,\\\\n      0.9622\\\\n    ]\\\\n  },\\\\n  \\\\\\\"r8\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9621,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0133,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9904,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9715,\\\\n      0.9433,\\\\n      0.9715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"baseline_full_dapt\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.997,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.005,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.972,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.026\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "57ae9570-ef8c-4bb8-b2de-d70f85b68f23",
-            "uuid": "0f9ad0a6-2d14-4eb3-a831-140fe1b97c0f",
-            "tool_use_result": {
-              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"r16\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9466,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0117,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9902,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9342,\\\\n      0.9433,\\\\n      0.9622\\\\n    ]\\\\n  },\\\\n  \\\\\\\"r8\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.9935,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.0046,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.9621,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.0133,\\\\n    \\\\\\\"dd_seeds\\\\\\\": [\\\\n      0.9904,\\\\n      0.9902,\\\\n      1.0\\\\n    ],\\\\n    \\\\\\\"aa_seeds\\\\\\\": [\\\\n      0.9715,\\\\n      0.9433,\\\\n      0.9715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"baseline_full_dapt\\\\\\\": {\\\\n    \\\\\\\"dd_mean\\\\\\\": 0.997,\\\\n    \\\\\\\"dd_std\\\\\\\": 0.005,\\\\n    \\\\\\\"aa_mean\\\\\\\": 0.972,\\\\n    \\\\\\\"aa_std\\\\\\\": 0.026\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
-              "structuredContent": {
-                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"r16\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9466,\\n    \\\"aa_std\\\": 0.0117,\\n    \\\"dd_seeds\\\": [\\n      0.9902,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9342,\\n      0.9433,\\n      0.9622\\n    ]\\n  },\\n  \\\"r8\\\": {\\n    \\\"dd_mean\\\": 0.9935,\\n    \\\"dd_std\\\": 0.0046,\\n    \\\"aa_mean\\\": 0.9621,\\n    \\\"aa_std\\\": 0.0133,\\n    \\\"dd_seeds\\\": [\\n      0.9904,\\n      0.9902,\\n      1.0\\n    ],\\n    \\\"aa_seeds\\\": [\\n      0.9715,\\n      0.9433,\\n      0.9715\\n    ]\\n  },\\n  \\\"baseline_full_dapt\\\": {\\n    \\\"dd_mean\\\": 0.997,\\n    \\\"dd_std\\\": 0.005,\\n    \\\"aa_mean\\\": 0.972,\\n    \\\"aa_std\\\": 0.026\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
-              }
-            }
-          },
-          "id": "event-000361"
-        },
-        {
-          "source_line": 362,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01Mz7MKxWsZqwABkir6MDEX4",
-              "name": "mcp__agent-ml-research__update_registry",
-              "input": {
-                "exp_id": "exp68_lora_comparison",
-                "field": "status",
-                "value": "DONE",
-                "project": "persuasion_turn_jailbreak_detect"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "57ae9570-ef8c-4bb8-b2de-d70f85b68f23",
-            "uuid": "353eaddf-704f-4561-b63e-07a04a15ea43",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01KRNnUVFrPuyaHSkS7UWQE2",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 775,
-                "cache_read_input_tokens": 148465,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 775
-                },
-                "output_tokens": 8,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000362"
-        },
-        {
-          "source_line": 363,
           "timestamp": "2026-05-23T23:36:08.045Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -106,10 +29,10 @@
               }
             }
           },
-          "id": "event-000363"
+          "id": "event-000361"
         },
         {
-          "source_line": 364,
+          "source_line": 362,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -157,10 +80,10 @@
               "context_management": null
             }
           },
-          "id": "event-000364"
+          "id": "event-000362"
         },
         {
-          "source_line": 365,
+          "source_line": 363,
           "timestamp": "2026-05-23T23:36:11.557Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -183,10 +106,10 @@
               }
             }
           },
-          "id": "event-000365"
+          "id": "event-000363"
         },
         {
-          "source_line": 366,
+          "source_line": 364,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -243,10 +166,10 @@
               "context_management": null
             }
           },
-          "id": "event-000366"
+          "id": "event-000364"
         },
         {
-          "source_line": 367,
+          "source_line": 365,
           "timestamp": "2026-05-23T23:36:17.514Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -269,10 +192,10 @@
               }
             }
           },
-          "id": "event-000367"
+          "id": "event-000365"
         },
         {
-          "source_line": 368,
+          "source_line": 366,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -320,10 +243,10 @@
               "context_management": null
             }
           },
-          "id": "event-000368"
+          "id": "event-000366"
         },
         {
-          "source_line": 369,
+          "source_line": 367,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -371,10 +294,10 @@
               "context_management": null
             }
           },
-          "id": "event-000369"
+          "id": "event-000367"
         },
         {
-          "source_line": 370,
+          "source_line": 368,
           "timestamp": "2026-05-23T23:36:19.449Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -397,10 +320,10 @@
               }
             }
           },
-          "id": "event-000370"
+          "id": "event-000368"
         },
         {
-          "source_line": 371,
+          "source_line": 369,
           "timestamp": "2026-05-23T23:36:20.060Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -423,10 +346,10 @@
               }
             }
           },
-          "id": "event-000371"
+          "id": "event-000369"
         },
         {
-          "source_line": 372,
+          "source_line": 370,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -474,10 +397,10 @@
               "context_management": null
             }
           },
-          "id": "event-000372"
+          "id": "event-000370"
         },
         {
-          "source_line": 373,
+          "source_line": 371,
           "timestamp": "2026-05-23T23:36:28.499Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -500,10 +423,10 @@
               }
             }
           },
-          "id": "event-000373"
+          "id": "event-000371"
         },
         {
-          "source_line": 374,
+          "source_line": 372,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -558,10 +481,10 @@
               "context_management": null
             }
           },
-          "id": "event-000374"
+          "id": "event-000372"
         },
         {
-          "source_line": 375,
+          "source_line": 373,
           "timestamp": "2026-05-23T23:36:30.956Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -584,10 +507,10 @@
               }
             }
           },
-          "id": "event-000375"
+          "id": "event-000373"
         },
         {
-          "source_line": 376,
+          "source_line": 374,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -626,10 +549,10 @@
               "context_management": null
             }
           },
-          "id": "event-000376"
+          "id": "event-000374"
         },
         {
-          "source_line": 377,
+          "source_line": 375,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -685,10 +608,10 @@
               "context_management": null
             }
           },
-          "id": "event-000377"
+          "id": "event-000375"
         },
         {
-          "source_line": 378,
+          "source_line": 376,
           "timestamp": "2026-05-23T23:36:40.578Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -707,10 +630,10 @@
             "uuid": "b3f9d815-ce26-4318-94d1-24b15c8b45c1",
             "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'r8': {'dd_mean': 0.9935...0.972, 'aa_std': 0.026}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
           },
-          "id": "event-000378"
+          "id": "event-000376"
         },
         {
-          "source_line": 379,
+          "source_line": 377,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -766,10 +689,10 @@
               "context_management": null
             }
           },
-          "id": "event-000379"
+          "id": "event-000377"
         },
         {
-          "source_line": 380,
+          "source_line": 378,
           "timestamp": "2026-05-23T23:36:46.313Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -788,10 +711,10 @@
             "uuid": "10d6482a-0217-43c3-bce6-a23d0e1fd107",
             "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'r8': {'dd_mean': 0.9935...0.972, 'aa_std': 0.026}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
           },
-          "id": "event-000380"
+          "id": "event-000378"
         },
         {
-          "source_line": 381,
+          "source_line": 379,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -845,10 +768,10 @@
               "context_management": null
             }
           },
-          "id": "event-000381"
+          "id": "event-000379"
         },
         {
-          "source_line": 382,
+          "source_line": 380,
           "timestamp": "2026-05-23T23:36:51.164Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -871,10 +794,10 @@
               }
             }
           },
-          "id": "event-000382"
+          "id": "event-000380"
         },
         {
-          "source_line": 383,
+          "source_line": 381,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -920,10 +843,10 @@
               "context_management": null
             }
           },
-          "id": "event-000383"
+          "id": "event-000381"
         },
         {
-          "source_line": 384,
+          "source_line": 382,
           "timestamp": "2026-05-23T23:36:54.792Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -948,10 +871,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000384"
+          "id": "event-000382"
         },
         {
-          "source_line": 385,
+          "source_line": 383,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -997,10 +920,10 @@
               "context_management": null
             }
           },
-          "id": "event-000385"
+          "id": "event-000383"
         },
         {
-          "source_line": 386,
+          "source_line": 384,
           "timestamp": "2026-05-23T23:37:01.228Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1025,10 +948,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000386"
+          "id": "event-000384"
         },
         {
-          "source_line": 387,
+          "source_line": 385,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1083,10 +1006,10 @@
               "context_management": null
             }
           },
-          "id": "event-000387"
+          "id": "event-000385"
         },
         {
-          "source_line": 388,
+          "source_line": 386,
           "timestamp": "2026-05-23T23:37:07.044Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1109,10 +1032,10 @@
               }
             }
           },
-          "id": "event-000388"
+          "id": "event-000386"
         },
         {
-          "source_line": 389,
+          "source_line": 387,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -1150,10 +1073,10 @@
               "context_management": null
             }
           },
-          "id": "event-000389"
+          "id": "event-000387"
         },
         {
-          "source_line": 390,
+          "source_line": 388,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -1230,10 +1153,10 @@
             "fast_mode_state": "off",
             "uuid": "d40863b5-6bca-4718-bd73-cc833960ca78"
           },
-          "id": "event-000390"
+          "id": "event-000388"
         },
         {
-          "source_line": 391,
+          "source_line": 389,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1252,10 +1175,10 @@
               }
             }
           ],
-          "id": "event-000391"
+          "id": "event-000389"
         },
         {
-          "source_line": 392,
+          "source_line": 390,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1274,10 +1197,10 @@
               }
             }
           ],
-          "id": "event-000392"
+          "id": "event-000390"
         },
         {
-          "source_line": 393,
+          "source_line": 391,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1296,10 +1219,10 @@
               }
             }
           ],
-          "id": "event-000393"
+          "id": "event-000391"
         },
         {
-          "source_line": 394,
+          "source_line": 392,
           "timestamp": null,
           "role": "system",
           "content": [
@@ -1407,7 +1330,7 @@
               }
             }
           ],
-          "id": "event-000394"
+          "id": "event-000392"
         }
       ]
     }

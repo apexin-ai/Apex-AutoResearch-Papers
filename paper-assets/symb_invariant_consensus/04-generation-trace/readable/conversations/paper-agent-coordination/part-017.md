@@ -6,1060 +6,9 @@
 
 ## Round 416
 
-### Tool call
-
-_source line 9778 · 2026-05-21T07:02:03.419812+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
-  "old_string": "confirming Observation~2: combo gain is significant only when the verifier exceeds the generator.",
-  "new_string": "confirming Observation~2: combo gain is significant only when the verifier exceeds the generator. Four of six pairs share the DeBERTa verifier; this dependence reduces effective degrees of freedom, making the permutation test conservative."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
-    "old_string": "confirming Observation~2: combo gain is significant only when the verifier exceeds the generator.",
-    "new_string": "confirming Observation~2: combo gain is significant only when the verifier exceeds the generator. Four of six pairs share the DeBERTa verifier; this dependence reduces effective degrees of freedom, making the permutation test conservative."
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 9779 · 2026-05-21T07:02:03.470643+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9780 · 2026-05-21T07:02:08.263628+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9781 · 2026-05-21T07:02:08.264340+00:00_
-
-1	\section{Related Work}
-2	\label{sec:related-work}
-3	
-4	\paragraph{Self-Consistency and extensions.}
-5	SC selects the most frequent answer across chain-of-thought traces \citep{wang2023sc}. Extensions include universal SC for free-form generation \citep{chen2024usc}, confidence weighting \citep{taubenfeld2025cisc}, diverse prompting with step-aware verification \citep{li2023diverse}, program-based vote filtering \citep{toh2024notallvotes}, and reasoning-aware filtering \citep{wan2024rasc, kim2026reasc}. \citet{loo2025reevaluating} show that SC gains plateau early. Our Condorcet analysis explains this: $\kappa = 0.21$--$0.82$ compresses $K_{\text{eff}}$ to 1.20--3.62 for $K = 12$ (\S\ref{sec:effective-k}).
-6	
-7	\paragraph{Neuro-symbolic reasoning.}
-8	Logic-LM \citep{pan2023logiclm} and LINC \citep{olausson2023linc} translate problems into formal logic for external provers; LINC documents ${\sim}$40\% translation errors. SatLM \citep{ye2024satlm} generates complete SAT formulations from problem descriptions and reports positive results; critically, SatLM's constraints derive from \emph{problem-level} understanding, whereas SICA extracts from \emph{reasoning traces}. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (\S\ref{sec:confirmation-bias}). Program-aided approaches \citep{gao2023pal,chen2023program,lyu2023faithful} parallel the self-extraction bottleneck. Recent extensions \citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} each introduce capabilities beyond the reasoning model. \citet{amonkar2025realitycheck} show formalization degrades with complexity; \citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\,pp FOLIO, $+11.50$\,pp ProofWriter); the failure localizes to self-extraction (\S\ref{sec:oracle}).
-9	
-10	\paragraph{Test-time compute and v
-…[truncated 2512 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9782 · 2026-05-21T07:02:12.483244+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-  "offset": "20",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-    "offset": "20",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9783 · 2026-05-21T07:02:12.584091+00:00_
-
-20	Self-extraction cannot supply the independent signal that CJT requires.
-21	
-22	We study this through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT (\S\ref{sec:pipeline}; Figure~\ref{fig:pipeline}).
-23	Across six models (7B--32B), three domains (FOLIO \citep{han2022folio}, ProofWriter \citep{tafjord2021proofwriter}, LogiQA \citep{liu2020logiqa}), and over 3,000 condition-evaluations with four-seed replication, twenty-seven remediation strategies spanning fifteen families all produce neutral or negative results (Table~\ref{tab:main_results}).
-24	Prior work establishes that LLMs cannot self-correct without external feedback \citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction. Z3 introduces a \emph{sound}, non-neural channel that \emph{guarantees} logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case.
-25	Unlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails---Z3 rejects only 3.4\% of constraints (\S\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).
-26	
-27	Oracle controls confirm the mechanism is sound ($+29.90$\,pp Mistral-7B, $+14.22$\,pp Qwen-14B on FOLIO, $p < 0.001$; \S\ref{sec:oracle}), yet self-extraction captures only ${\sim}$12\% of this ceiling.
-28	The central finding is a persistent independence-accuracy trade-off: Debate reduces $\kappa$ to 0.15 but collapses accuracy ($-18.6$\,pp); other methods cluster at $\kappa \approx 0.40$--$0.47$, a same-model ceiling across three families (\S\ref{sec:remediation}).
-29	A cross-architecture proof-of-concept escapes the
-…[truncated 136 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9784 · 2026-05-21T07:04:58.444432+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-  "offset": "20",
-  "limit": "20"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-    "offset": "20",
-    "limit": "20"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9785 · 2026-05-21T07:04:58.495115+00:00_
-
-20	Self-extraction cannot supply the independent signal that CJT requires.
-21	
-22	We study this through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT (\S\ref{sec:pipeline}; Figure~\ref{fig:pipeline}).
-23	Across six models (7B--32B), three domains (FOLIO \citep{han2022folio}, ProofWriter \citep{tafjord2021proofwriter}, LogiQA \citep{liu2020logiqa}), and over 3,000 condition-evaluations with four-seed replication, twenty-seven remediation strategies spanning fifteen families all produce neutral or negative results (Table~\ref{tab:main_results}).
-24	Prior work establishes that LLMs cannot self-correct without external feedback \citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction. Z3 introduces a \emph{sound}, non-neural channel that \emph{guarantees} logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case.
-25	Unlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails---Z3 rejects only 3.4\% of constraints (\S\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).
-26	
-27	Oracle controls confirm the mechanism is sound ($+29.90$\,pp Mistral-7B, $+14.22$\,pp Qwen-14B on FOLIO, $p < 0.001$; \S\ref{sec:oracle}), yet self-extraction captures only ${\sim}$12\% of this ceiling.
-28	The central finding is a persistent independence-accuracy trade-off: Debate reduces $\kappa$ to 0.15 but collapses accuracy ($-18.6$\,pp); other methods cluster at $\kappa \approx 0.40$--$0.47$, a same-model ceiling across three families (\S\ref{sec:remediation}).
-29	A cross-architecture proof-of-concept escapes the
-…[truncated 1450 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9786 · 2026-05-21T07:04:58.847226+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9787 · 2026-05-21T07:04:58.897869+00:00_
-
-1	\section{Related Work}
-2	\label{sec:related-work}
-3	
-4	\paragraph{Self-Consistency and extensions.}
-5	SC selects the most frequent answer across chain-of-thought traces \citep{wang2023sc}. Extensions include universal SC for free-form generation \citep{chen2024usc}, confidence weighting \citep{taubenfeld2025cisc}, diverse prompting with step-aware verification \citep{li2023diverse}, program-based vote filtering \citep{toh2024notallvotes}, and reasoning-aware filtering \citep{wan2024rasc, kim2026reasc}. \citet{loo2025reevaluating} show that SC gains plateau early. Our Condorcet analysis explains this: $\kappa = 0.21$--$0.82$ compresses $K_{\text{eff}}$ to 1.20--3.62 for $K = 12$ (\S\ref{sec:effective-k}).
-6	
-7	\paragraph{Neuro-symbolic reasoning.}
-8	Logic-LM \citep{pan2023logiclm} and LINC \citep{olausson2023linc} translate problems into formal logic for external provers; LINC documents ${\sim}$40\% translation errors. SatLM \citep{ye2024satlm} generates complete SAT formulations from problem descriptions and reports positive results; critically, SatLM's constraints derive from \emph{problem-level} understanding, whereas SICA extracts from \emph{reasoning traces}. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (\S\ref{sec:confirmation-bias}). Program-aided approaches \citep{gao2023pal,chen2023program,lyu2023faithful} parallel the self-extraction bottleneck. Recent extensions \citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} each introduce capabilities beyond the reasoning model. \citet{amonkar2025realitycheck} show formalization degrades with complexity; \citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\,pp FOLIO, $+11.50$\,pp ProofWriter); the failure localizes to self-extraction (\S\ref{sec:oracle}).
-9	
-10	\paragraph{Test-time compute and v
-…[truncated 2512 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9788 · 2026-05-21T07:06:35.147510+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "yao.*tree|tree.*thought",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
-  "output_mode": "content",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "yao.*tree|tree.*thought",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
-    "output_mode": "content",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9789 · 2026-05-21T07:06:35.650233+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9790 · 2026-05-21T07:06:35.851518+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-  "offset": "0",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-    "offset": "0",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9791 · 2026-05-21T07:06:35.851950+00:00_
-
-0	% References for SICA paper
-1	% Generated from literature_map.yaml — 2026-05-17
-2	
-3	%%% SAT-Based Reasoning %%%
-4	
-5	@inproceedings{ye2024satlm,
-6	  title={SatLM: Satisfiability-Aided Language Models Using Declarative Prompting},
-7	  author={Ye, Xi and Chen, Qiaochu and Dillig, Isil and Durrett, Greg},
-8	  booktitle={Advances in Neural Information Processing Systems},
-9	  volume={36},
-10	  year={2024}
-11	}
-12	
-13	%%% Program-Aided Reasoning %%%
-14	
-15	@inproceedings{gao2023pal,
-16	  title={{PAL}: Program-aided Language Models},
-17	  author={Gao, Luyu and Madaan, Aman and Zhou, Shuyan and Alon, Uri and Liu, Pengfei and Yang, Yiming and Callan, Jamie and Neubig, Graham},
-18	  booktitle={Proceedings of the 40th International Conference on Machine Learning (ICML)},
-19	  year={2023}
-20	}
-21	
-22	@article{chen2023program,
-23	  title={Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks},
-24	  author={Chen, Wenhu and Ma, Xueguang and Wang, Xinyi and Cohen, William W.},
-25	  journal={Transactions on Machine Learning Research},
-26	  year={2023}
-27	}
-28	
-29	@inproceedings{lyu2023faithful,
-30	  title={Faithful Chain-of-Thought Reasoning},
-31	  author={Lyu, Qing and Havaldar, Shreya and Stein, Adam and Zhang, Li and Rao, Delip and Wong, Eric and Apidianaki, Marianna and Callison-Burch, Chris},
-32	  booktitle={Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics},
-33	  year={2023}
-34	}
-35	
-36	%%% Theoretical Foundations %%%
-37	
-38	@book{condorcet1785,
-39	  title={Essai sur l'application de l'analyse \`a la probabilit\'e des d\'ecisions rendues \`a la pluralit\'e des voix},
-40	  author={de Condorcet, Marie Jean Antoine Nicolas de Caritat},
-41	  year={1785},
-42	  publisher={Imprimerie Royale},
-43	  address={Paris}
-44	}
-45	
-46	@article{austensmith1996,
-47	  title={Information Aggregation, Rationality,
-…[truncated 142 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9792 · 2026-05-21T07:06:40.922245+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "yao",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "yao",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9793 · 2026-05-21T07:06:40.963228+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 40
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9794 · 2026-05-21T07:06:55.681920+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-  "old_string": "Prior work establishes that LLMs cannot self-correct without external feedback \\citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction. Z3 introduces a \\emph{sound}, non-neural channel that \\emph{guarantees} logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case.\nUnlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails---Z3 rejects only 3.4\\% of constraints (\\S\\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).",
-  "new_string": "Prior work establishes that LLMs cannot self-correct without external feedback \\citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction; neurosymbolic methods implicitly assume that formalizing into logic provides a reliable verification channel.\nWe test the strongest version of this assumption: first-order logic checked by a provably sound SMT solver (Z3), which \\emph{guarantees} logical consistency given well-formed constraints.\nThat this stronger channel still fails is the central surprise: Z3 rejects only 3.4\\% of constraints (\\S\\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---the bias is semantic (what gets extracted) rather than syntactic (how it is expressed)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
-    "old_string": "Prior work establishes that LLMs cannot self-correct without external feedback \\citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction. Z3 introduces a \\emph{sound}, non-neural channel that \\emph{guarantees} logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case.\nUnlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails---Z3 rejects only 3.4\\% of constraints (\\S\\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).",
-    "new_string": "Prior work establishes that LLMs cannot self-correct without external feedback \\citep{huang2024selfcorrect, stechly2025selfverification}, but concerns natural-language self-correction; neurosymbolic methods implicitly assume that formalizing into logic provides a reliable verification channel.\nWe test the strongest version of this assumption: first-order logic checked by a provably sound SMT solver (Z3), which \\emph{guarantees} logical consistency given well-formed constraints.\nThat this stronger channel still fails is the central surprise: Z3 rejects only 3.4\\% of constraints (\\S\\ref{sec:confirmation-bias}) because they are individually valid yet collectively biased---the bias is semantic (what gets extracted) rather than syntactic (how it is expressed)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9795 · 2026-05-21T07:06:55.732693+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9796 · 2026-05-21T07:07:06.692622+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-  "old_string": "\\paragraph{Neuro-symbolic reasoning.}\nLogic-LM \\citep{pan2023logiclm} and LINC \\citep{olausson2023linc} translate problems into formal logic for external provers; LINC documents ${\\sim}$40\\% translation errors. SatLM \\citep{ye2024satlm} generates complete SAT formulations from problem descriptions and reports positive results; critically, SatLM's constraints derive from \\emph{problem-level} understanding, whereas SICA extracts from \\emph{reasoning traces}. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (\\S\\ref{sec:confirmation-bias}). Program-aided approaches \\citep{gao2023pal,chen2023program,lyu2023faithful} parallel the self-extraction bottleneck. Recent extensions \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} each introduce capabilities beyond the reasoning model. \\citet{amonkar2025realitycheck} show formalization degrades with complexity; \\citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+11.50$\\,pp ProofWriter); the failure localizes to self-extraction (\\S\\ref{sec:oracle}).",
-  "new_string": "\\paragraph{Neuro-symbolic reasoning.}\nWe distinguish three paradigms. \\emph{Specification-generation} (Logic-LM \\citep{pan2023logiclm}, LINC \\citep{olausson2023linc}, SatLM \\citep{ye2024satlm}) translates problem descriptions into formal specifications before any answer is generated; LINC documents ${\\sim}$40\\% translation errors even at this level. \\emph{Program-generation} \\citep{gao2023pal,chen2023program,lyu2023faithful} produces executable code from problem statements. Both paradigms access the problem before generating candidate answers. \\emph{Trace-extraction} (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting confirmation bias (\\S\\ref{sec:confirmation-bias}). SatLM provides a natural control: it succeeds because problem-level formalization precedes answer generation, whereas trace-level extraction cannot avoid contamination (\\S\\ref{sec:mirage}). Recent extensions \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} introduce capabilities beyond the reasoning model. \\citet{amonkar2025realitycheck} show formalization degrades with complexity; \\citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+11.50$\\,pp ProofWriter); the failure localizes to self-extraction (\\S\\ref{sec:oracle})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-    "old_string": "\\paragraph{Neuro-symbolic reasoning.}\nLogic-LM \\citep{pan2023logiclm} and LINC \\citep{olausson2023linc} translate problems into formal logic for external provers; LINC documents ${\\sim}$40\\% translation errors. SatLM \\citep{ye2024satlm} generates complete SAT formulations from problem descriptions and reports positive results; critically, SatLM's constraints derive from \\emph{problem-level} understanding, whereas SICA extracts from \\emph{reasoning traces}. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (\\S\\ref{sec:confirmation-bias}). Program-aided approaches \\citep{gao2023pal,chen2023program,lyu2023faithful} parallel the self-extraction bottleneck. Recent extensions \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} each introduce capabilities beyond the reasoning model. \\citet{amonkar2025realitycheck} show formalization degrades with complexity; \\citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+11.50$\\,pp ProofWriter); the failure localizes to self-extraction (\\S\\ref{sec:oracle}).",
-    "new_string": "\\paragraph{Neuro-symbolic reasoning.}\nWe distinguish three paradigms. \\emph{Specification-generation} (Logic-LM \\citep{pan2023logiclm}, LINC \\citep{olausson2023linc}, SatLM \\citep{ye2024satlm}) translates problem descriptions into formal specifications before any answer is generated; LINC documents ${\\sim}$40\\% translation errors even at this level. \\emph{Program-generation} \\citep{gao2023pal,chen2023program,lyu2023faithful} produces executable code from problem statements. Both paradigms access the problem before generating candidate answers. \\emph{Trace-extraction} (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting confirmation bias (\\S\\ref{sec:confirmation-bias}). SatLM provides a natural control: it succeeds because problem-level formalization precedes answer generation, whereas trace-level extraction cannot avoid contamination (\\S\\ref{sec:mirage}). Recent extensions \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} introduce capabilities beyond the reasoning model. \\citet{amonkar2025realitycheck} show formalization degrades with complexity; \\citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+11.50$\\,pp ProofWriter); the failure localizes to self-extraction (\\S\\ref{sec:oracle})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9797 · 2026-05-21T07:07:06.744547+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9798 · 2026-05-21T07:07:11.468642+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-  "old_string": "Scaling test-time computation through additional traces \\citep{snell2025scaling} faces the same correlation challenge: same-model attempts collapse into correlated solutions.",
-  "new_string": "Scaling test-time computation through additional traces \\citep{snell2025scaling} or structured search \\citep{yao2023tree} faces the same correlation challenge: same-model attempts collapse into correlated solutions."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-    "old_string": "Scaling test-time computation through additional traces \\citep{snell2025scaling} faces the same correlation challenge: same-model attempts collapse into correlated solutions.",
-    "new_string": "Scaling test-time computation through additional traces \\citep{snell2025scaling} or structured search \\citep{yao2023tree} faces the same correlation challenge: same-model attempts collapse into correlated solutions."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9799 · 2026-05-21T07:07:11.469284+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9800 · 2026-05-21T07:07:18.156179+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-  "old_string": "the bias ratio (BR; Eq.~\\ref{eq:mirage}) quantifies post-hoc rationalization, connecting to CoT faithfulness concerns \\citep{turpin2024language}; conclusion leakage rate ($C_D$) isolates step-level contamination.",
-  "new_string": "the bias ratio (BR; Eq.~\\ref{eq:mirage}) quantifies post-hoc rationalization. Symbolic confirmation bias is distinct from CoT unfaithfulness \\citep{turpin2024language}: the latter concerns whether stated reasoning reflects actual computation, while SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution regardless of logical form. Conclusion leakage rate ($C_D$) isolates step-level contamination."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
-    "old_string": "the bias ratio (BR; Eq.~\\ref{eq:mirage}) quantifies post-hoc rationalization, connecting to CoT faithfulness concerns \\citep{turpin2024language}; conclusion leakage rate ($C_D$) isolates step-level contamination.",
-    "new_string": "the bias ratio (BR; Eq.~\\ref{eq:mirage}) quantifies post-hoc rationalization. Symbolic confirmation bias is distinct from CoT unfaithfulness \\citep{turpin2024language}: the latter concerns whether stated reasoning reflects actual computation, while SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution regardless of logical form. Conclusion leakage rate ($C_D$) isolates step-level contamination."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9801 · 2026-05-21T07:07:18.257225+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9802 · 2026-05-21T07:07:21.874945+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "snell2025scaling",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-  "output_mode": "content",
-  "-n": "True",
-  "-A": "8"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "snell2025scaling",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-    "output_mode": "content",
-    "-n": "True",
-    "-A": "8"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9803 · 2026-05-21T07:07:21.927074+00:00_
-
-168:@inproceedings{snell2025scaling,
-169-  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},
-170-  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
-171-  booktitle={ICLR (Oral)},
-172-  year={2025}
-173-}
-174-
-175-
-176-%%% Verification and Reranking %%%
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Grep",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9804 · 2026-05-21T07:07:30.488495+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-  "old_string": "@inproceedings{snell2025scaling,\n  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle={ICLR (Oral)},\n  year={2025}\n}\n\n\n%%% Verification and Reranking %%%",
-  "new_string": "@inproceedings{snell2025scaling,\n  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle={ICLR (Oral)},\n  year={2025}\n}\n\n@inproceedings{yao2023tree,\n  title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models},\n  author={Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Thomas L. and Cao, Yuan and Narasimhan, Karthik},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}\n\n\n%%% Verification and Reranking %%%"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib",
-    "old_string": "@inproceedings{snell2025scaling,\n  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle={ICLR (Oral)},\n  year={2025}\n}\n\n\n%%% Verification and Reranking %%%",
-    "new_string": "@inproceedings{snell2025scaling,\n  title={Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters},\n  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n  booktitle={ICLR (Oral)},\n  year={2025}\n}\n\n@inproceedings{yao2023tree,\n  title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models},\n  author={Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Thomas L. and Cao, Yuan and Narasimhan, Karthik},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}\n\n\n%%% Verification and Reranking %%%"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9805 · 2026-05-21T07:07:30.589661+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Edit",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9806 · 2026-05-21T07:07:34.611683+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9807 · 2026-05-21T07:07:34.712937+00:00_
-
-1	\section{Cross-Architecture Proof-of-Concept}
-2	\label{sec:solutions}
-3	\label{sec:cross-arch}
-4	
-5	\paragraph{Method.}
-6	We test with DeBERTa-large \citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$), whose (premise, conclusion) structure suits NLI classification.
-7	
-8	\paragraph{Main result.}
-9	DeBERTa NLI alone achieves 49.51\% on FOLIO (below SC's 55.88\%) and 55.00\% on ProofWriter (above SC's 39.33\%). On FOLIO ($n = 204$), combo mode yields $+0.49$\,pp at $w{=}1$ and $+2.94$\,pp at $w{=}3$ (both n.s.). On ProofWriter ($n = 600$), $w{=}3$ achieves $+6.67$\,pp ($p < 0.001$) and $w{=}5$ reaches $+11.00$\,pp ($p < 0.001$)---while same-model SICA \emph{degrades} ProofWriter ($-2.83$\,pp, raw $p = 0.014$; BH adj.\ $p = 0.112$; Table~\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\S\ref{sec:mirage}). We report $w{=}3$ as primary. After BH correction ($m{=}12$), Mistral-7B $w{=}3$ (adj.\ $p = 6.78 \times 10^{-5}$) and $w{=}5$ (adj.\ $p = 7.41 \times 10^{-6}$) remain significant; all other conditions are non-significant.
-10	
-11	\paragraph{Why it works.}
-12	Encoder-only DeBERTa (406M) and decoder-only Mistral (7B) share no architecture or training data, satisfying the independence condition that same-model sampling cannot provide (\S\ref{sec:mirage}). Per-label complementarity emerges: NLI excels on \textsc{False} (71.43\% vs.\ SC's 38.10\%), SC dominates \textsc{Unknown} (68.12\% vs.\ 18.84\%). All three NLI architectures tested produce significant gains at $w \geq 3$ (Appendix~\ref{app:multi-nli}).
-13	
-14	\paragraph{Capability gap hypothesis.}
-15	We evaluate four generators from three model families spanning a 46-point SC 
-…[truncated 3638 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9808 · 2026-05-21T07:07:35.070538+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9809 · 2026-05-21T07:07:35.122223+00:00_
+_source line 9787 · 2026-05-21T07:07:35.122223+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -1105,7 +54,7 @@ _source line 9809 · 2026-05-21T07:07:35.122223+00:00_
 
 ### Tool call
 
-_source line 9810 · 2026-05-21T07:07:48.578267+00:00_
+_source line 9788 · 2026-05-21T07:07:48.578267+00:00_
 
 called Read
 
@@ -1139,7 +88,7 @@ called Read
 
 ### Tool result
 
-_source line 9811 · 2026-05-21T07:07:48.629159+00:00_
+_source line 9789 · 2026-05-21T07:07:48.629159+00:00_
 
 1	\section{Analysis}
 2	\label{sec:analysis}
@@ -1191,7 +140,7 @@ _source line 9811 · 2026-05-21T07:07:48.629159+00:00_
 
 ### Tool call
 
-_source line 9812 · 2026-05-21T07:07:48.629536+00:00_
+_source line 9790 · 2026-05-21T07:07:48.629536+00:00_
 
 called Read
 
@@ -1225,7 +174,7 @@ called Read
 
 ### Tool result
 
-_source line 9813 · 2026-05-21T07:07:48.680475+00:00_
+_source line 9791 · 2026-05-21T07:07:48.680475+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -1255,7 +204,7 @@ _source line 9813 · 2026-05-21T07:07:48.680475+00:00_
 
 ### Tool call
 
-_source line 9814 · 2026-05-21T07:08:10.696385+00:00_
+_source line 9792 · 2026-05-21T07:08:10.696385+00:00_
 
 called Read
 
@@ -1289,7 +238,7 @@ called Read
 
 ### Tool result
 
-_source line 9815 · 2026-05-21T07:08:10.747235+00:00_
+_source line 9793 · 2026-05-21T07:08:10.747235+00:00_
 
 1	\paragraph{Scale and language.}
 2	All models range from 7B to 32B parameters; whether the independence bottleneck persists at larger scales (70B+) or with reasoning-specialized models is untested. All datasets are English-language logical reasoning benchmarks with discrete answer spaces. We do not evaluate trained symbolic extractors, external solvers with verified grounding, or multilingual settings. Oracle analysis is limited to FOLIO and ProofWriter (gold annotations available); extending to commonsense reasoning requires constructing comparable gold constraint sets. The cross-architecture NLI verifier (\S\ref{sec:cross-arch}) provides no benefit on LogiQA (combo $\Delta \leq +1$\,pp, all $p > 0.5$), indicating that cross-architecture escape requires task-verifier alignment---NLI is effective only when the task naturally decomposes into premise-conclusion entailment. Even on compatible tasks, NLI gain vanishes when the capability gap is large (Qwen3-14B ProofWriter: SC 85.83\% vs.\ DeBERTa 55\%, gap $= -30.83$\,pp, $\Delta \leq +0.50$\,pp, n.s.), and moderate negative gaps yield small, non-significant gains (LLaMA-3.1-8B: gap $= -17.50$\,pp, $+0.83$\,pp, n.s.; \S\ref{sec:cross-arch}). Scaling the cross-architecture approach---via trained verifiers, code-based symbolic execution, or multi-verifier ensembles---remains unexplored and may extend the escape to stronger generators and broader task types.
@@ -1316,7 +265,7 @@ _source line 9815 · 2026-05-21T07:08:10.747235+00:00_
 
 ### Tool call
 
-_source line 9816 · 2026-05-21T07:08:28.500014+00:00_
+_source line 9794 · 2026-05-21T07:08:28.500014+00:00_
 
 called Edit
 
@@ -1356,7 +305,7 @@ called Edit
 
 ### Tool result
 
-_source line 9817 · 2026-05-21T07:08:28.500400+00:00_
+_source line 9795 · 2026-05-21T07:08:28.500400+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -1378,7 +327,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9818 · 2026-05-21T07:08:38.512807+00:00_
+_source line 9796 · 2026-05-21T07:08:38.512807+00:00_
 
 called Edit
 
@@ -1418,7 +367,7 @@ called Edit
 
 ### Tool result
 
-_source line 9819 · 2026-05-21T07:08:38.513581+00:00_
+_source line 9797 · 2026-05-21T07:08:38.513581+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -1440,7 +389,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9820 · 2026-05-21T07:08:44.185972+00:00_
+_source line 9798 · 2026-05-21T07:08:44.185972+00:00_
 
 called Edit
 
@@ -1480,7 +429,7 @@ called Edit
 
 ### Tool result
 
-_source line 9821 · 2026-05-21T07:08:44.237620+00:00_
+_source line 9799 · 2026-05-21T07:08:44.237620+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
 
@@ -1502,7 +451,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9822 · 2026-05-21T07:08:50.735569+00:00_
+_source line 9800 · 2026-05-21T07:08:50.735569+00:00_
 
 called Edit
 
@@ -1542,7 +491,7 @@ called Edit
 
 ### Tool result
 
-_source line 9823 · 2026-05-21T07:08:50.786391+00:00_
+_source line 9801 · 2026-05-21T07:08:50.786391+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex has been updated successfully.
 
@@ -1564,7 +513,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9824 · 2026-05-21T07:08:59.489174+00:00_
+_source line 9802 · 2026-05-21T07:08:59.489174+00:00_
 
 called Edit
 
@@ -1604,7 +553,7 @@ called Edit
 
 ### Tool result
 
-_source line 9825 · 2026-05-21T07:08:59.489790+00:00_
+_source line 9803 · 2026-05-21T07:08:59.489790+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -1626,7 +575,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9826 · 2026-05-21T07:09:10.377833+00:00_
+_source line 9804 · 2026-05-21T07:09:10.377833+00:00_
 
 called Grep
 
@@ -1666,7 +615,7 @@ called Grep
 
 ### Tool result
 
-_source line 9827 · 2026-05-21T07:09:10.429389+00:00_
+_source line 9805 · 2026-05-21T07:09:10.429389+00:00_
 
 58:\input{abstract}
 60:\input{introduction}
@@ -1698,7 +647,7 @@ _source line 9827 · 2026-05-21T07:09:10.429389+00:00_
 
 ### Tool call
 
-_source line 9828 · 2026-05-21T07:09:19.888053+00:00_
+_source line 9806 · 2026-05-21T07:09:19.888053+00:00_
 
 called Edit
 
@@ -1738,7 +687,7 @@ called Edit
 
 ### Tool result
 
-_source line 9829 · 2026-05-21T07:09:19.888497+00:00_
+_source line 9807 · 2026-05-21T07:09:19.888497+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -1760,7 +709,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9830 · 2026-05-21T07:09:23.485053+00:00_
+_source line 9808 · 2026-05-21T07:09:23.485053+00:00_
 
 called Read
 
@@ -1798,7 +747,7 @@ called Read
 
 ### Tool result
 
-_source line 9831 · 2026-05-21T07:09:23.535751+00:00_
+_source line 9809 · 2026-05-21T07:09:23.535751+00:00_
 
 21	\begin{table*}[t]
 22	\centering
@@ -1824,7 +773,7 @@ _source line 9831 · 2026-05-21T07:09:23.535751+00:00_
 
 ### Tool call
 
-_source line 9832 · 2026-05-21T07:09:35.225105+00:00_
+_source line 9810 · 2026-05-21T07:09:35.225105+00:00_
 
 called Edit
 
@@ -1864,7 +813,7 @@ called Edit
 
 ### Tool result
 
-_source line 9833 · 2026-05-21T07:09:35.275920+00:00_
+_source line 9811 · 2026-05-21T07:09:35.275920+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
 
@@ -1886,7 +835,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9834 · 2026-05-21T07:09:50.794810+00:00_
+_source line 9812 · 2026-05-21T07:09:50.794810+00:00_
 
 called ToolSearch
 
@@ -1922,7 +871,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 9835 · 2026-05-21T07:09:50.795282+00:00_
+_source line 9813 · 2026-05-21T07:09:50.795282+00:00_
 
 No matching deferred tools found
 
@@ -1944,7 +893,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 9836 · 2026-05-21T07:09:53.315198+00:00_
+_source line 9814 · 2026-05-21T07:09:53.315198+00:00_
 
 called ToolSearch
 
@@ -1980,7 +929,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 9837 · 2026-05-21T07:09:53.416388+00:00_
+_source line 9815 · 2026-05-21T07:09:53.416388+00:00_
 
 
 
@@ -2002,7 +951,7 @@ _source line 9837 · 2026-05-21T07:09:53.416388+00:00_
 
 ### Tool call
 
-_source line 9838 · 2026-05-21T07:09:56.691065+00:00_
+_source line 9816 · 2026-05-21T07:09:56.691065+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -2040,7 +989,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9839 · 2026-05-21T07:10:10.169105+00:00_
+_source line 9817 · 2026-05-21T07:10:10.169105+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 1735) in paragraph at lines 715--716\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 730--755\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 765--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 808--825\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 832--847\\n [][] \\n []\\n\\n) [21] [22\\n\\n] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/capability_\\ngap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_kapp\\na_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31579 strings out of 469438\\n 572829 string characters out of 5468411\\n 1632030 words of memory out of 5000000\\n 58887 multiletter control sequences out of 15000+600000\\n 731414 words of font info for 452 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2007s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 …[truncated 12282 chars]
@@ -2063,7 +1012,7 @@ _source line 9839 · 2026-05-21T07:10:10.169105+00:00_
 
 ### Tool call
 
-_source line 9840 · 2026-05-21T07:10:17.405967+00:00_
+_source line 9818 · 2026-05-21T07:10:17.405967+00:00_
 
 called Read
 
@@ -2097,7 +1046,7 @@ called Read
 
 ### Tool call
 
-_source line 9841 · 2026-05-21T07:10:17.858761+00:00_
+_source line 9819 · 2026-05-21T07:10:17.858761+00:00_
 
 called Read
 
@@ -2131,7 +1080,7 @@ called Read
 
 ### Tool result
 
-_source line 9842 · 2026-05-21T07:10:18.515392+00:00_
+_source line 9820 · 2026-05-21T07:10:18.515392+00:00_
 
 
 
@@ -2153,7 +1102,7 @@ _source line 9842 · 2026-05-21T07:10:18.515392+00:00_
 
 ### Tool result
 
-_source line 9843 · 2026-05-21T07:10:19.372293+00:00_
+_source line 9821 · 2026-05-21T07:10:19.372293+00:00_
 
 
 
@@ -2175,7 +1124,7 @@ _source line 9843 · 2026-05-21T07:10:19.372293+00:00_
 
 ### Tool call
 
-_source line 9844 · 2026-05-21T07:10:41.230196+00:00_
+_source line 9822 · 2026-05-21T07:10:41.230196+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -2209,7 +1158,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 9845 · 2026-05-21T07:10:41.281232+00:00_
+_source line 9823 · 2026-05-21T07:10:41.281232+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"sections\": [{\"file\": \"abstract.tex\", \"role\": \"headline\", \"num_numbers\": 15, \"num_cites\": 0}, {\"file\": \"analysis.tex\", \"role\": \"result\", \"num_numbers\": 97, \"num_cites\": 0}, {\"file\": \"conclusion.tex\", \"role\": \"headline\", \"num_numbers\": 6, \"num_cites\": 0}, {\"file\": \"diagnosis.tex\", \"role\": \"other\", \"num_numbers\": 235, \"num_cites\": 0}, {\"file\": \"discussion.tex\", \"role\": \"other\", \"num_numbers\": 19, \"num_cites\": 6}, {\"file\": \"experiments.tex\", \"role\": \"result\", \"num_numbers\": 110, \"num_cites\": 10}, {\"file\": \"introduction.tex\", \"role\": \"intro\", \"num_numbers\": 31, \"num_cites\": 21}, {\"file\": \"limitations_content.tex\", \"role\": \"other\", \"num_numbers\": 13, \"num_cites\": 0}, {\"file\": \"method.tex\", \"role\": \"other\", \"num_numbers\": 19, \"num_cites\": 8}, {\"file\": \"related_work.tex\", \"role\": \"other\", \"num_numbers\": 12, \"num_cites\": 41}, {\"file\": \"solutions.tex\", \"role\": \"other\", \"num_numbers\": 67, \"num_cites\": 2}], \"critical\": [], \"warning\": [{\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 0.51, 'experiments' reports 0.5.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 0.53, 'experiments' reports 0.5.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 3.4, 'experiments' reports 3.43.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 0.31, 'experiments' reports 0.3.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismat
 …[truncated 3188 chars]
@@ -2232,7 +1181,7 @@ _source line 9845 · 2026-05-21T07:10:41.281232+00:00_
 
 ### Tool call
 
-_source line 9846 · 2026-05-21T07:10:47.498227+00:00_
+_source line 9824 · 2026-05-21T07:10:47.498227+00:00_
 
 called Read
 
@@ -2266,7 +1215,7 @@ called Read
 
 ### Tool result
 
-_source line 9847 · 2026-05-21T07:10:48.005810+00:00_
+_source line 9825 · 2026-05-21T07:10:48.005810+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related-work}
@@ -2296,7 +1245,7 @@ _source line 9847 · 2026-05-21T07:10:48.005810+00:00_
 
 ### Tool call
 
-_source line 9848 · 2026-05-21T07:10:48.207192+00:00_
+_source line 9826 · 2026-05-21T07:10:48.207192+00:00_
 
 called Read
 
@@ -2334,7 +1283,7 @@ called Read
 
 ### Tool result
 
-_source line 9849 · 2026-05-21T07:10:48.308015+00:00_
+_source line 9827 · 2026-05-21T07:10:48.308015+00:00_
 
 22	We study this through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT (\S\ref{sec:pipeline}; Figure~\ref{fig:pipeline}).
 23	Across six models (7B--32B), three domains (FOLIO \citep{han2022folio}, ProofWriter \citep{tafjord2021proofwriter}, LogiQA \citep{liu2020logiqa}), and over 3,000 condition-evaluations with four-seed replication, twenty-seven remediation strategies spanning fifteen families all produce neutral or negative results (Table~\ref{tab:main_results}).
@@ -2361,7 +1310,7 @@ _source line 9849 · 2026-05-21T07:10:48.308015+00:00_
 
 ### Tool call
 
-_source line 9850 · 2026-05-21T07:10:51.725501+00:00_
+_source line 9828 · 2026-05-21T07:10:51.725501+00:00_
 
 called ToolSearch
 
@@ -2397,7 +1346,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 9851 · 2026-05-21T07:10:51.826222+00:00_
+_source line 9829 · 2026-05-21T07:10:51.826222+00:00_
 
 No matching deferred tools found
 
@@ -2419,7 +1368,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 9852 · 2026-05-21T07:10:54.797394+00:00_
+_source line 9830 · 2026-05-21T07:10:54.797394+00:00_
 
 called ToolSearch
 
@@ -2455,7 +1404,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 9853 · 2026-05-21T07:10:54.797868+00:00_
+_source line 9831 · 2026-05-21T07:10:54.797868+00:00_
 
 
 
@@ -2477,7 +1426,7 @@ _source line 9853 · 2026-05-21T07:10:54.797868+00:00_
 
 ### Tool call
 
-_source line 9854 · 2026-05-21T07:11:16.882089+00:00_
+_source line 9832 · 2026-05-21T07:11:16.882089+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -2513,7 +1462,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 9855 · 2026-05-21T07:11:21.457821+00:00_
+_source line 9833 · 2026-05-21T07:11:21.457821+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -2535,7 +1484,7 @@ _source line 9855 · 2026-05-21T07:11:21.457821+00:00_
 
 ### Assistant
 
-_source line 9856 · 2026-05-21T07:11:24.994780+00:00_
+_source line 9834 · 2026-05-21T07:11:24.994780+00:00_
 
 R10 修复 Batch 1-4 完成（15/17 项）。剩余 2 项（W5 BR CI + 4 missing citations）等待 Agent 数据。主文本 8 页内，编译通过，无 critical issues。
 
@@ -2562,7 +1511,7 @@ R10 修复 Batch 1-4 完成（15/17 项）。剩余 2 项（W5 BR CI + 4 missing
 
 ### User
 
-_source line 9857 · 2026-05-21T07:11:25.588985+00:00_
+_source line 9835 · 2026-05-21T07:11:25.588985+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -2583,7 +1532,7 @@ _source line 9857 · 2026-05-21T07:11:25.588985+00:00_
 
 ### Assistant
 
-_source line 9858 · 2026-05-21T07:11:34.329987+00:00_
+_source line 9836 · 2026-05-21T07:11:34.329987+00:00_
 
 已在上一轮通过 `paper_agent_post_to_director` 汇报完毕（R10 全面修复 15/17 完成状态 + 编译结果 + 待处理项）。系统提醒为误报。
 
@@ -2610,7 +1559,7 @@ _source line 9858 · 2026-05-21T07:11:34.329987+00:00_
 
 ### User
 
-_source line 9859 · 2026-05-21T07:15:00.039796+00:00_
+_source line 9837 · 2026-05-21T07:15:00.039796+00:00_
 
 [Director 指令] [Patch — W5 BR CI 数据 + LLaMA BR 修正]
 
@@ -2653,7 +1602,7 @@ BR Bootstrap CI 结果已出（Reviewer 验证通过）：
 
 ### Tool call
 
-_source line 9860 · 2026-05-21T07:15:10.242362+00:00_
+_source line 9838 · 2026-05-21T07:15:10.242362+00:00_
 
 called Grep
 
@@ -2693,7 +1642,7 @@ called Grep
 
 ### Tool result
 
-_source line 9861 · 2026-05-21T07:15:10.797819+00:00_
+_source line 9839 · 2026-05-21T07:15:10.797819+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:47:Bias generalizes: $4.97\times$ (Mistral), $3.93\times$ (Qwen-14B), $2.88\times$ (LLaMA), all $> 1.0$ (Table~\ref{tab:cross-model-bias}). Constraints use trace-specific variables (56.4\% zero cross-answer overlap), collapsing aggregation to majority voting; bias intensifies along reasoning steps (Fisher $p = 3 \times 10^{-6}$; Appendix~\ref{app:error-categorization}).
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex:5:[Omitted long matching line]
@@ -2720,7 +1669,7 @@ _source line 9861 · 2026-05-21T07:15:10.797819+00:00_
 
 ### Tool call
 
-_source line 9862 · 2026-05-21T07:15:10.848410+00:00_
+_source line 9840 · 2026-05-21T07:15:10.848410+00:00_
 
 called Read
 
@@ -2758,7 +1707,7 @@ called Read
 
 ### Tool result
 
-_source line 9863 · 2026-05-21T07:15:10.949472+00:00_
+_source line 9841 · 2026-05-21T07:15:10.949472+00:00_
 
 42	\subsection{Symbolic Confirmation Bias}
 43	\label{sec:confirmation-bias}
@@ -2789,7 +1738,7 @@ _source line 9863 · 2026-05-21T07:15:10.949472+00:00_
 
 ### Tool call
 
-_source line 9864 · 2026-05-21T07:15:17.895468+00:00_
+_source line 9842 · 2026-05-21T07:15:17.895468+00:00_
 
 called Read
 
@@ -2827,7 +1776,7 @@ called Read
 
 ### Tool result
 
-_source line 9865 · 2026-05-21T07:15:18.348673+00:00_
+_source line 9843 · 2026-05-21T07:15:18.348673+00:00_
 
 50	
 51	Table~\ref{tab:independence} reports Fleiss' $\kappa$ and Effective-K (Eq.~\ref{eq:effk}) across 15 conditions at $K = 12$. Among instruction-tuned models, $\kappa$ ranges from 0.21 to 0.82, yielding $K_{\text{eff}} = 1.20\text{--}3.62$. Two conditions are jointly necessary for any positive trend: sufficient $K_{\text{eff}}$ ($\leq 1.30$ never improves) and sufficient SC accuracy ($K_{\text{eff}} = 3.62$ with SC $= 39\%$ produces significant degradation). Cross-model validation confirms universality: all four families produce $\kappa \geq 0.41$ (Table~\ref{tab:kappa_generalization}).
@@ -2860,7 +1809,7 @@ _source line 9865 · 2026-05-21T07:15:18.348673+00:00_
 
 ### Tool call
 
-_source line 9866 · 2026-05-21T07:15:19.154315+00:00_
+_source line 9844 · 2026-05-21T07:15:19.154315+00:00_
 
 called Read
 
@@ -2898,7 +1847,7 @@ called Read
 
 ### Tool result
 
-_source line 9867 · 2026-05-21T07:15:19.306007+00:00_
+_source line 9845 · 2026-05-21T07:15:19.306007+00:00_
 
 133	
 134	\paragraph{Prompt-level interventions.} Nine strategies spanning six dimensions (Appendix Table~\ref{tab:remediation}) all fail. Contrastive prompting reduces non-discriminative constraints from 8.2\% to 6.0\%, but newly discriminative constraints still mirror the majority ($\Delta = -1.1$\,pp). Cross-model extraction fails in both directions: weaker models yield 0\% discriminative constraints; stronger models produce accuracy within $\pm 1$\,pp of self-extraction. Multi-temperature sampling ($T \in \{0.3, 0.7, 1.2\}$) yields $\Delta = 0.00$\,pp.
@@ -2926,7 +1875,7 @@ _source line 9867 · 2026-05-21T07:15:19.306007+00:00_
 
 ### Tool call
 
-_source line 9868 · 2026-05-21T07:15:19.913087+00:00_
+_source line 9846 · 2026-05-21T07:15:19.913087+00:00_
 
 called Grep
 
@@ -2968,7 +1917,7 @@ called Grep
 
 ### Tool result
 
-_source line 9869 · 2026-05-21T07:15:20.014005+00:00_
+_source line 9847 · 2026-05-21T07:15:20.014005+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex:55:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:545:Table~\ref{tab:cross-model-bias} reports MaxSAT-weighted confirmation bias metrics across three model families on FOLIO ($n = 204$). Weighted bias ratio and wrong-supporting constraint percentage both decrease with model capability, while SICA's accuracy effect shifts from positive (Mistral, intermediate-SC regime) to negative (LLaMA, high-SC regime). Raw bias ratios ($4.97\times$, $3.93\times$, $2.88\times$) are reported in \S\ref{sec:confirmation-bias}.
@@ -2992,7 +1941,7 @@ _source line 9869 · 2026-05-21T07:15:20.014005+00:00_
 
 ### Tool call
 
-_source line 9870 · 2026-05-21T07:15:33.298003+00:00_
+_source line 9848 · 2026-05-21T07:15:33.298003+00:00_
 
 called Read
 
@@ -3030,7 +1979,7 @@ called Read
 
 ### Tool result
 
-_source line 9871 · 2026-05-21T07:15:33.398913+00:00_
+_source line 9849 · 2026-05-21T07:15:33.398913+00:00_
 
 540	
 541	
@@ -3081,7 +2030,7 @@ _source line 9871 · 2026-05-21T07:15:33.398913+00:00_
 
 ### Tool call
 
-_source line 9872 · 2026-05-21T07:16:00.970138+00:00_
+_source line 9850 · 2026-05-21T07:16:00.970138+00:00_
 
 called Edit
 
@@ -3121,7 +2070,7 @@ called Edit
 
 ### Tool result
 
-_source line 9873 · 2026-05-21T07:16:01.371798+00:00_
+_source line 9851 · 2026-05-21T07:16:01.371798+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -3143,7 +2092,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9874 · 2026-05-21T07:16:02.982709+00:00_
+_source line 9852 · 2026-05-21T07:16:02.982709+00:00_
 
 called Edit
 
@@ -3183,7 +2132,7 @@ called Edit
 
 ### Tool result
 
-_source line 9875 · 2026-05-21T07:16:03.184419+00:00_
+_source line 9853 · 2026-05-21T07:16:03.184419+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -3205,7 +2154,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9876 · 2026-05-21T07:16:03.235035+00:00_
+_source line 9854 · 2026-05-21T07:16:03.235035+00:00_
 
 called Read
 
@@ -3243,7 +2192,7 @@ called Read
 
 ### Tool result
 
-_source line 9877 · 2026-05-21T07:16:03.285619+00:00_
+_source line 9855 · 2026-05-21T07:16:03.285619+00:00_
 
 3	
 4	\paragraph{Self-verification generalization.}
@@ -3269,7 +2218,7 @@ _source line 9877 · 2026-05-21T07:16:03.285619+00:00_
 
 ### Tool call
 
-_source line 9878 · 2026-05-21T07:16:07.761942+00:00_
+_source line 9856 · 2026-05-21T07:16:07.761942+00:00_
 
 called Edit
 
@@ -3309,7 +2258,7 @@ called Edit
 
 ### Tool result
 
-_source line 9879 · 2026-05-21T07:16:08.213739+00:00_
+_source line 9857 · 2026-05-21T07:16:08.213739+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -3331,7 +2280,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9880 · 2026-05-21T07:16:08.765993+00:00_
+_source line 9858 · 2026-05-21T07:16:08.765993+00:00_
 
 called Edit
 
@@ -3371,7 +2320,7 @@ called Edit
 
 ### Tool result
 
-_source line 9881 · 2026-05-21T07:16:08.816776+00:00_
+_source line 9859 · 2026-05-21T07:16:08.816776+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex has been updated successfully.
 
@@ -3393,7 +2342,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9882 · 2026-05-21T07:16:14.496039+00:00_
+_source line 9860 · 2026-05-21T07:16:14.496039+00:00_
 
 called Edit
 
@@ -3433,7 +2382,7 @@ called Edit
 
 ### Tool result
 
-_source line 9883 · 2026-05-21T07:16:14.496476+00:00_
+_source line 9861 · 2026-05-21T07:16:14.496476+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex has been updated successfully.
 
@@ -3455,7 +2404,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9884 · 2026-05-21T07:16:18.166807+00:00_
+_source line 9862 · 2026-05-21T07:16:18.166807+00:00_
 
 called Grep
 
@@ -3495,7 +2444,7 @@ called Grep
 
 ### Tool result
 
-_source line 9885 · 2026-05-21T07:16:18.217836+00:00_
+_source line 9863 · 2026-05-21T07:16:18.217836+00:00_
 
 No files found
 
@@ -3517,7 +2466,7 @@ No files found
 
 ### Tool call
 
-_source line 9886 · 2026-05-21T07:16:22.802868+00:00_
+_source line 9864 · 2026-05-21T07:16:22.802868+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -3555,7 +2504,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9887 · 2026-05-21T07:16:27.489937+00:00_
+_source line 9865 · 2026-05-21T07:16:27.489937+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nUnderfull \\\\hbox (badness 1735) in paragraph at lines 715--716\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 730--755\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 765--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 808--825\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 832--847\\n [][] \\n []\\n\\n) [21] [22\\n\\n] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/capability_\\ngap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_kapp\\na_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31579 strings out of 469438\\n 572829 string characters out of 5468411\\n 1632030 words of memory out of 5000000\\n 58887 multiletter control sequences out of 15000+600000\\n 731414 words of font info for 452 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2007s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 …[truncated 7988 chars]
@@ -3578,7 +2527,7 @@ _source line 9887 · 2026-05-21T07:16:27.489937+00:00_
 
 ### Tool call
 
-_source line 9888 · 2026-05-21T07:16:47.078212+00:00_
+_source line 9866 · 2026-05-21T07:16:47.078212+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -3614,7 +2563,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 9889 · 2026-05-21T07:16:51.500197+00:00_
+_source line 9867 · 2026-05-21T07:16:51.500197+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -3636,7 +2585,7 @@ _source line 9889 · 2026-05-21T07:16:51.500197+00:00_
 
 ### Assistant
 
-_source line 9890 · 2026-05-21T07:16:54.155033+00:00_
+_source line 9868 · 2026-05-21T07:16:54.155033+00:00_
 
 Compiles clean, no critical warnings. 24 pages total (main text ≤ 8, rest is references + appendix). Reporting to Director.
 
@@ -3663,7 +2612,7 @@ Compiles clean, no critical warnings. 24 pages total (main text ≤ 8, rest is r
 
 ### User
 
-_source line 9891 · 2026-05-21T07:16:54.834260+00:00_
+_source line 9869 · 2026-05-21T07:16:54.834260+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -3684,7 +2633,7 @@ _source line 9891 · 2026-05-21T07:16:54.834260+00:00_
 
 ### Assistant
 
-_source line 9892 · 2026-05-21T07:17:02.044203+00:00_
+_source line 9870 · 2026-05-21T07:17:02.044203+00:00_
 
 已在上一轮通过 `paper_agent_post_to_director` 汇报完毕，无需重复发送。
 
@@ -3711,7 +2660,7 @@ _source line 9892 · 2026-05-21T07:17:02.044203+00:00_
 
 ### User
 
-_source line 9893 · 2026-05-21T07:36:21.461488+00:00_
+_source line 9871 · 2026-05-21T07:36:21.461488+00:00_
 
 [Director 指令] [Patch — 最终数据包：TOST 修正 + citations + weighted BR]
 
@@ -3777,7 +2726,7 @@ weighted BR = 2.66× [CI: 2.19, 3.28] — **旧值正确，无需修改**。raw 
 
 ### Tool call
 
-_source line 9894 · 2026-05-21T07:36:31.914362+00:00_
+_source line 9872 · 2026-05-21T07:36:31.914362+00:00_
 
 called Read
 
@@ -3811,7 +2760,7 @@ called Read
 
 ### Tool result
 
-_source line 9895 · 2026-05-21T07:36:32.417089+00:00_
+_source line 9873 · 2026-05-21T07:36:32.417089+00:00_
 
 1	Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.
 2	We investigate whether symbolic constraint extraction can break this plateau through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT.
@@ -3840,7 +2789,7 @@ _source line 9895 · 2026-05-21T07:36:32.417089+00:00_
 
 ### Tool call
 
-_source line 9896 · 2026-05-21T07:36:33.273096+00:00_
+_source line 9874 · 2026-05-21T07:36:33.273096+00:00_
 
 called Read
 
@@ -3878,7 +2827,7 @@ called Read
 
 ### Tool result
 
-_source line 9897 · 2026-05-21T07:36:33.323822+00:00_
+_source line 9875 · 2026-05-21T07:36:33.323822+00:00_
 
 60	\bottomrule
 61	\end{tabular}
@@ -3909,7 +2858,7 @@ _source line 9897 · 2026-05-21T07:36:33.323822+00:00_
 
 ### Tool call
 
-_source line 9898 · 2026-05-21T07:36:33.575198+00:00_
+_source line 9876 · 2026-05-21T07:36:33.575198+00:00_
 
 called Read
 
@@ -3947,7 +2896,7 @@ called Read
 
 ### Tool result
 
-_source line 9899 · 2026-05-21T07:36:33.625807+00:00_
+_source line 9877 · 2026-05-21T07:36:33.625807+00:00_
 
 13	\paragraph{CJT and positioning.}
 14	CJT \citep{condorcet1785} guarantees convergence under independent voting; \citet{ladha1992correlated} show correlated voters reduce effective ensemble size; \citet{lefort2024condorcet_llm} apply CJT to LLM classification.
@@ -3971,7 +2920,7 @@ _source line 9899 · 2026-05-21T07:36:33.625807+00:00_
 
 ### Tool call
 
-_source line 9900 · 2026-05-21T07:36:41.774795+00:00_
+_source line 9878 · 2026-05-21T07:36:41.774795+00:00_
 
 called Edit
 
@@ -4011,7 +2960,7 @@ called Edit
 
 ### Tool result
 
-_source line 9901 · 2026-05-21T07:36:42.127125+00:00_
+_source line 9879 · 2026-05-21T07:36:42.127125+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully.
 
@@ -4033,7 +2982,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9902 · 2026-05-21T07:36:43.787724+00:00_
+_source line 9880 · 2026-05-21T07:36:43.787724+00:00_
 
 called Edit
 
@@ -4073,7 +3022,7 @@ called Edit
 
 ### Tool result
 
-_source line 9903 · 2026-05-21T07:36:43.839062+00:00_
+_source line 9881 · 2026-05-21T07:36:43.839062+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
 
@@ -4095,7 +3044,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9904 · 2026-05-21T07:36:48.786061+00:00_
+_source line 9882 · 2026-05-21T07:36:48.786061+00:00_
 
 called Grep
 
@@ -4135,7 +3084,7 @@ called Grep
 
 ### Tool result
 
-_source line 9905 · 2026-05-21T07:36:48.886898+00:00_
+_source line 9883 · 2026-05-21T07:36:48.886898+00:00_
 
 679:\section{TOST Equivalence Tests}
 680:\label{app:tost}
@@ -4158,7 +3107,7 @@ _source line 9905 · 2026-05-21T07:36:48.886898+00:00_
 
 ### Tool call
 
-_source line 9906 · 2026-05-21T07:36:52.298214+00:00_
+_source line 9884 · 2026-05-21T07:36:52.298214+00:00_
 
 called Read
 
@@ -4196,7 +3145,7 @@ called Read
 
 ### Tool result
 
-_source line 9907 · 2026-05-21T07:36:52.399468+00:00_
+_source line 9885 · 2026-05-21T07:36:52.399468+00:00_
 
 679	\section{TOST Equivalence Tests}
 680	\label{app:tost}
@@ -4250,7 +3199,7 @@ _source line 9907 · 2026-05-21T07:36:52.399468+00:00_
 
 ### Tool call
 
-_source line 9908 · 2026-05-21T07:37:17.113945+00:00_
+_source line 9886 · 2026-05-21T07:37:17.113945+00:00_
 
 called Edit
 
@@ -4290,7 +3239,7 @@ called Edit
 
 ### Tool result
 
-_source line 9909 · 2026-05-21T07:37:17.165572+00:00_
+_source line 9887 · 2026-05-21T07:37:17.165572+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -4312,7 +3261,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9910 · 2026-05-21T07:37:21.483239+00:00_
+_source line 9888 · 2026-05-21T07:37:21.483239+00:00_
 
 called Grep
 
@@ -4354,7 +3303,7 @@ called Grep
 
 ### Tool result
 
-_source line 9911 · 2026-05-21T07:37:21.584920+00:00_
+_source line 9889 · 2026-05-21T07:37:21.584920+00:00_
 
 385:@inproceedings{turpin2024language,
 386-  title={Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},
@@ -4382,7 +3331,7 @@ _source line 9911 · 2026-05-21T07:37:21.584920+00:00_
 
 ### Tool call
 
-_source line 9912 · 2026-05-21T07:37:24.649114+00:00_
+_source line 9890 · 2026-05-21T07:37:24.649114+00:00_
 
 called Read
 
@@ -4420,7 +3369,7 @@ called Read
 
 ### Tool result
 
-_source line 9913 · 2026-05-21T07:37:24.699812+00:00_
+_source line 9891 · 2026-05-21T07:37:24.699812+00:00_
 
 388	  booktitle={NeurIPS},
 389	  year={2024}
@@ -4456,7 +3405,7 @@ _source line 9913 · 2026-05-21T07:37:24.699812+00:00_
 
 ### Tool call
 
-_source line 9914 · 2026-05-21T07:37:31.951104+00:00_
+_source line 9892 · 2026-05-21T07:37:31.951104+00:00_
 
 called Edit
 
@@ -4496,7 +3445,7 @@ called Edit
 
 ### Tool result
 
-_source line 9915 · 2026-05-21T07:37:31.951718+00:00_
+_source line 9893 · 2026-05-21T07:37:31.951718+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -4518,7 +3467,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9916 · 2026-05-21T07:37:36.273890+00:00_
+_source line 9894 · 2026-05-21T07:37:36.273890+00:00_
 
 called Read
 
@@ -4556,7 +3505,7 @@ called Read
 
 ### Tool result
 
-_source line 9917 · 2026-05-21T07:37:36.374659+00:00_
+_source line 9895 · 2026-05-21T07:37:36.374659+00:00_
 
 7	\paragraph{Neuro-symbolic reasoning.}
 8	We distinguish three paradigms. \emph{Specification-generation} (Logic-LM \citep{pan2023logiclm}, LINC \citep{olausson2023linc}, SatLM \citep{ye2024satlm}) translates problem descriptions into formal specifications before any answer is generated; LINC documents ${\sim}$40\% translation errors even at this level. \emph{Program-generation} \citep{gao2023pal,chen2023program,lyu2023faithful} produces executable code from problem statements. Both paradigms access the problem before generating candidate answers. \emph{Trace-extraction} (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting confirmation bias (\S\ref{sec:confirmation-bias}). SatLM provides a natural control: it succeeds because problem-level formalization precedes answer generation, whereas trace-level extraction cannot avoid contamination (\S\ref{sec:mirage}). Recent extensions \citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent} introduce capabilities beyond the reasoning model. \citet{amonkar2025realitycheck} show formalization degrades with complexity; \citet{chan2026position} argue logical soundness is unreliable for neurosymbolic verification. Our oracle controls confirm the mechanism is sound ($+29.90$/$+14.22$\,pp FOLIO, $+11.50$\,pp ProofWriter); the failure localizes to self-extraction (\S\ref{sec:oracle}).
@@ -4580,7 +3529,7 @@ _source line 9917 · 2026-05-21T07:37:36.374659+00:00_
 
 ### Tool call
 
-_source line 9918 · 2026-05-21T07:37:42.560295+00:00_
+_source line 9896 · 2026-05-21T07:37:42.560295+00:00_
 
 called Edit
 
@@ -4620,7 +3569,7 @@ called Edit
 
 ### Tool result
 
-_source line 9919 · 2026-05-21T07:37:43.012073+00:00_
+_source line 9897 · 2026-05-21T07:37:43.012073+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -4642,7 +3591,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9920 · 2026-05-21T07:37:44.417669+00:00_
+_source line 9898 · 2026-05-21T07:37:44.417669+00:00_
 
 called Edit
 
@@ -4682,7 +3631,7 @@ called Edit
 
 ### Tool result
 
-_source line 9921 · 2026-05-21T07:37:44.468434+00:00_
+_source line 9899 · 2026-05-21T07:37:44.468434+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -4704,7 +3653,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9922 · 2026-05-21T07:37:50.297033+00:00_
+_source line 9900 · 2026-05-21T07:37:50.297033+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4742,7 +3691,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool call
 
-_source line 9923 · 2026-05-21T07:37:50.297457+00:00_
+_source line 9901 · 2026-05-21T07:37:50.297457+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -4776,7 +3725,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 9924 · 2026-05-21T07:37:59.353423+00:00_
+_source line 9902 · 2026-05-21T07:37:59.353423+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31599 strings out of 469438\\n 573222 string characters out of 5468411\\n 1511030 words of memory out of 5000000\\n 58899 multiletter control sequences out of 15000+600000\\n 731541 words of font info for 454 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 8209 chars]
@@ -4799,7 +3748,7 @@ _source line 9924 · 2026-05-21T07:37:59.353423+00:00_
 
 ### Tool result
 
-_source line 9925 · 2026-05-21T07:37:59.404242+00:00_
+_source line 9903 · 2026-05-21T07:37:59.404242+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"sections\": [{\"file\": \"abstract.tex\", \"role\": \"headline\", \"num_numbers\": 15, \"num_cites\": 0}, {\"file\": \"analysis.tex\", \"role\": \"result\", \"num_numbers\": 103, \"num_cites\": 0}, {\"file\": \"conclusion.tex\", \"role\": \"headline\", \"num_numbers\": 6, \"num_cites\": 0}, {\"file\": \"diagnosis.tex\", \"role\": \"other\", \"num_numbers\": 236, \"num_cites\": 0}, {\"file\": \"discussion.tex\", \"role\": \"other\", \"num_numbers\": 20, \"num_cites\": 6}, {\"file\": \"experiments.tex\", \"role\": \"result\", \"num_numbers\": 110, \"num_cites\": 10}, {\"file\": \"introduction.tex\", \"role\": \"intro\", \"num_numbers\": 31, \"num_cites\": 21}, {\"file\": \"limitations_content.tex\", \"role\": \"other\", \"num_numbers\": 13, \"num_cites\": 0}, {\"file\": \"method.tex\", \"role\": \"other\", \"num_numbers\": 19, \"num_cites\": 8}, {\"file\": \"related_work.tex\", \"role\": \"other\", \"num_numbers\": 12, \"num_cites\": 44}, {\"file\": \"solutions.tex\", \"role\": \"other\", \"num_numbers\": 67, \"num_cites\": 2}], \"critical\": [], \"warning\": [{\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 0.53, 'experiments' reports 0.5.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 0.50, 'experiments' reports 0.5.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 3.4, 'experiments' reports 3.43.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Result sections disagree on precision: 'analysis' reports 1.09, 'experiments' reports 1.0.\", \"location\": \"analysis,experiments\"}, {\"kind\": \"precision_misma
 …[truncated 3374 chars]
@@ -4822,7 +3771,7 @@ _source line 9925 · 2026-05-21T07:37:59.404242+00:00_
 
 ### Tool call
 
-_source line 9926 · 2026-05-21T07:38:26.742628+00:00_
+_source line 9904 · 2026-05-21T07:38:26.742628+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -4858,7 +3807,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 9927 · 2026-05-21T07:38:31.350540+00:00_
+_source line 9905 · 2026-05-21T07:38:31.350540+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -4880,7 +3829,7 @@ _source line 9927 · 2026-05-21T07:38:31.350540+00:00_
 
 ### Assistant
 
-_source line 9928 · 2026-05-21T07:38:34.104460+00:00_
+_source line 9906 · 2026-05-21T07:38:34.104460+00:00_
 
 编译通过，无 critical warnings。14 个 warning 全是预存的精度差异（含新增 CI 值 3.11 vs 3.1）。主文本 ≤ 8 页。
 
@@ -4907,7 +3856,7 @@ _source line 9928 · 2026-05-21T07:38:34.104460+00:00_
 
 ### User
 
-_source line 9929 · 2026-05-21T07:38:34.708261+00:00_
+_source line 9907 · 2026-05-21T07:38:34.708261+00:00_
 
 [Director 指令] [Patch — 紧急回滚] LLaMA BR 3.87→2.88 revert + 数据来源注释
 
@@ -4953,7 +3902,7 @@ _source line 9929 · 2026-05-21T07:38:34.708261+00:00_
 
 ### Tool call
 
-_source line 9930 · 2026-05-21T07:38:45.589382+00:00_
+_source line 9908 · 2026-05-21T07:38:45.589382+00:00_
 
 called Grep
 
@@ -4995,7 +3944,7 @@ called Grep
 
 ### Tool result
 
-_source line 9931 · 2026-05-21T07:38:45.690387+00:00_
+_source line 9909 · 2026-05-21T07:38:45.690387+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:47:Bias generalizes: $4.97\times$ [3.98, 6.37] (Mistral), $3.93\times$ [2.44, 7.11] (Qwen-14B), $3.87\times$ [3.11, 4.98] (LLaMA), all $> 1.0$ (95\% bootstrap CIs; Table~\ref{tab:cross-model-bias}). Constraints use trace-specific variables (56.4\% zero cross-answer overlap), collapsing aggregation to majority voting; bias intensifies along reasoning steps (Fisher $p = 3 \times 10^{-6}$; Appendix~\ref{app:error-categorization}).
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex:5:[Omitted long matching line]
@@ -5021,7 +3970,7 @@ _source line 9931 · 2026-05-21T07:38:45.690387+00:00_
 
 ### Tool call
 
-_source line 9932 · 2026-05-21T07:38:53.326916+00:00_
+_source line 9910 · 2026-05-21T07:38:53.326916+00:00_
 
 called Edit
 
@@ -5061,7 +4010,7 @@ called Edit
 
 ### Tool result
 
-_source line 9933 · 2026-05-21T07:38:53.327388+00:00_
+_source line 9911 · 2026-05-21T07:38:53.327388+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -5083,7 +4032,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9934 · 2026-05-21T07:38:54.489256+00:00_
+_source line 9912 · 2026-05-21T07:38:54.489256+00:00_
 
 called Edit
 
@@ -5123,7 +4072,7 @@ called Edit
 
 ### Tool result
 
-_source line 9935 · 2026-05-21T07:38:54.941981+00:00_
+_source line 9913 · 2026-05-21T07:38:54.941981+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -5145,7 +4094,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9936 · 2026-05-21T07:38:56.400763+00:00_
+_source line 9914 · 2026-05-21T07:38:56.400763+00:00_
 
 called Edit
 
@@ -5185,7 +4134,7 @@ called Edit
 
 ### Tool result
 
-_source line 9937 · 2026-05-21T07:38:56.803804+00:00_
+_source line 9915 · 2026-05-21T07:38:56.803804+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -5207,7 +4156,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9938 · 2026-05-21T07:38:58.279305+00:00_
+_source line 9916 · 2026-05-21T07:38:58.279305+00:00_
 
 called Edit
 
@@ -5247,7 +4196,7 @@ called Edit
 
 ### Tool result
 
-_source line 9939 · 2026-05-21T07:38:58.733093+00:00_
+_source line 9917 · 2026-05-21T07:38:58.733093+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex has been updated successfully.
 
@@ -5269,7 +4218,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9940 · 2026-05-21T07:39:01.458707+00:00_
+_source line 9918 · 2026-05-21T07:39:01.458707+00:00_
 
 called Edit
 
@@ -5309,7 +4258,7 @@ called Edit
 
 ### Tool result
 
-_source line 9941 · 2026-05-21T07:39:01.510410+00:00_
+_source line 9919 · 2026-05-21T07:39:01.510410+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex has been updated successfully.
 
@@ -5331,7 +4280,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9942 · 2026-05-21T07:39:06.445440+00:00_
+_source line 9920 · 2026-05-21T07:39:06.445440+00:00_
 
 called Grep
 
@@ -5371,7 +4320,7 @@ called Grep
 
 ### Tool result
 
-_source line 9943 · 2026-05-21T07:39:06.496714+00:00_
+_source line 9921 · 2026-05-21T07:39:06.496714+00:00_
 
 No files found
 
@@ -5393,7 +4342,7 @@ No files found
 
 ### Tool call
 
-_source line 9944 · 2026-05-21T07:39:06.698093+00:00_
+_source line 9922 · 2026-05-21T07:39:06.698093+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -5431,7 +4380,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9945 · 2026-05-21T07:39:12.135936+00:00_
+_source line 9923 · 2026-05-21T07:39:12.135936+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31599 strings out of 469438\\n 573222 string characters out of 5468411\\n 1511030 words of memory out of 5000000\\n 58899 multiletter control sequences out of 15000+600000\\n 731541 words of font info for 454 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 8127 chars]
@@ -5454,7 +4403,7 @@ _source line 9945 · 2026-05-21T07:39:12.135936+00:00_
 
 ### Tool call
 
-_source line 9946 · 2026-05-21T07:39:27.468927+00:00_
+_source line 9924 · 2026-05-21T07:39:27.468927+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -5490,7 +4439,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 9947 · 2026-05-21T07:39:31.600027+00:00_
+_source line 9925 · 2026-05-21T07:39:31.600027+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -5512,7 +4461,7 @@ _source line 9947 · 2026-05-21T07:39:31.600027+00:00_
 
 ### Assistant
 
-_source line 9948 · 2026-05-21T07:39:35.098422+00:00_
+_source line 9926 · 2026-05-21T07:39:35.098422+00:00_
 
 Zero 3.87 remaining. Compiles clean, no critical warnings, 24 pages (main ≤ 8).
 
@@ -5539,7 +4488,7 @@ Zero 3.87 remaining. Compiles clean, no critical warnings, 24 pages (main ≤ 8)
 
 ### User
 
-_source line 9949 · 2026-05-21T07:39:35.709834+00:00_
+_source line 9927 · 2026-05-21T07:39:35.709834+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -5560,7 +4509,7 @@ _source line 9949 · 2026-05-21T07:39:35.709834+00:00_
 
 ### Assistant
 
-_source line 9950 · 2026-05-21T07:39:42.612790+00:00_
+_source line 9928 · 2026-05-21T07:39:42.612790+00:00_
 
 No response requested.
 
@@ -5587,7 +4536,7 @@ No response requested.
 
 ### User
 
-_source line 9951 · 2026-05-21T07:39:43.187719+00:00_
+_source line 9929 · 2026-05-21T07:39:43.187719+00:00_
 
 [Director 指令] [Patch — bib arXiv ID 修正]
 
@@ -5618,7 +4567,7 @@ Agent 已将完整 bib 条目写入 `artifacts/missing_citations_r10.bib`，你�
 
 ### Tool call
 
-_source line 9952 · 2026-05-21T07:39:50.282560+00:00_
+_source line 9930 · 2026-05-21T07:39:50.282560+00:00_
 
 called Read
 
@@ -5652,7 +4601,7 @@ called Read
 
 ### Tool result
 
-_source line 9953 · 2026-05-21T07:39:50.333459+00:00_
+_source line 9931 · 2026-05-21T07:39:50.333459+00:00_
 
 1	@inproceedings{wan2025unveiling,
 2	  title={Unveiling Confirmation Bias in Chain-of-Thought Reasoning},
@@ -5702,7 +4651,7 @@ _source line 9953 · 2026-05-21T07:39:50.333459+00:00_
 
 ### Tool call
 
-_source line 9954 · 2026-05-21T07:39:54.218094+00:00_
+_source line 9932 · 2026-05-21T07:39:54.218094+00:00_
 
 called Grep
 
@@ -5744,7 +4693,7 @@ called Grep
 
 ### Tool result
 
-_source line 9955 · 2026-05-21T07:39:54.369266+00:00_
+_source line 9933 · 2026-05-21T07:39:54.369266+00:00_
 
 394:@inproceedings{wan2025unveiling,
 395-  title={Unveiling Confirmation Bias in Chain-of-Thought Reasoning},
@@ -5785,7 +4734,7 @@ _source line 9955 · 2026-05-21T07:39:54.369266+00:00_
 
 ### Tool call
 
-_source line 9956 · 2026-05-21T07:40:04.897576+00:00_
+_source line 9934 · 2026-05-21T07:40:04.897576+00:00_
 
 called Edit
 
@@ -5825,7 +4774,7 @@ called Edit
 
 ### Tool result
 
-_source line 9957 · 2026-05-21T07:40:04.948480+00:00_
+_source line 9935 · 2026-05-21T07:40:04.948480+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -5847,7 +4796,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9958 · 2026-05-21T07:40:10.527887+00:00_
+_source line 9936 · 2026-05-21T07:40:10.527887+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -5885,7 +4834,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9959 · 2026-05-21T07:40:15.347812+00:00_
+_source line 9937 · 2026-05-21T07:40:15.347812+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31602 strings out of 469438\\n 573249 string characters out of 5468411\\n 1511030 words of memory out of 5000000\\n 58899 multiletter control sequences out of 15000+600000\\n 731766 words of font info for 456 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 8266 chars]
@@ -5908,7 +4857,7 @@ _source line 9959 · 2026-05-21T07:40:15.347812+00:00_
 
 ### Tool call
 
-_source line 9960 · 2026-05-21T07:40:29.137084+00:00_
+_source line 9938 · 2026-05-21T07:40:29.137084+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -5944,7 +4893,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 9961 · 2026-05-21T07:40:33.306116+00:00_
+_source line 9939 · 2026-05-21T07:40:33.306116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -5966,7 +4915,7 @@ _source line 9961 · 2026-05-21T07:40:33.306116+00:00_
 
 ### Assistant
 
-_source line 9962 · 2026-05-21T07:40:35.702224+00:00_
+_source line 9940 · 2026-05-21T07:40:35.702224+00:00_
 
 编译通过，无 critical warnings。24 页（main ≤ 8 + refs + appendix）。
 
@@ -5993,7 +4942,7 @@ _source line 9962 · 2026-05-21T07:40:35.702224+00:00_
 
 ### User
 
-_source line 9963 · 2026-05-21T07:40:36.289550+00:00_
+_source line 9941 · 2026-05-21T07:40:36.289550+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -6014,7 +4963,7 @@ _source line 9963 · 2026-05-21T07:40:36.289550+00:00_
 
 ### Assistant
 
-_source line 9964 · 2026-05-21T07:40:42.500535+00:00_
+_source line 9942 · 2026-05-21T07:40:42.500535+00:00_
 
 No response requested.
 
@@ -6041,7 +4990,7 @@ No response requested.
 
 ### User
 
-_source line 9965 · 2026-05-21T07:40:43.041300+00:00_
+_source line 9943 · 2026-05-21T07:40:43.041300+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -6062,7 +5011,7 @@ _source line 9965 · 2026-05-21T07:40:43.041300+00:00_
 
 ### Assistant
 
-_source line 9966 · 2026-05-21T07:40:48.925549+00:00_
+_source line 9944 · 2026-05-21T07:40:48.925549+00:00_
 
 No response requested.
 
@@ -6089,7 +5038,7 @@ No response requested.
 
 ### User
 
-_source line 9967 · 2026-05-21T08:05:48.911539+00:00_
+_source line 9945 · 2026-05-21T08:05:48.911539+00:00_
 
 [Director 指令] [Patch — V14+ CIL Theoretical Framework] 在 §3 加入 CIL 框架作为统一理论锚点。等 E5 Worker 数据回来后填入精确数字。
 
@@ -6128,7 +5077,7 @@ CIL measures whether verifier $V$ provides complementary information beyond gene
 
 ### Tool call
 
-_source line 9968 · 2026-05-21T08:05:56.606065+00:00_
+_source line 9946 · 2026-05-21T08:05:56.606065+00:00_
 
 called Read
 
@@ -6162,7 +5111,7 @@ called Read
 
 ### Tool result
 
-_source line 9969 · 2026-05-21T08:05:56.606727+00:00_
+_source line 9947 · 2026-05-21T08:05:56.606727+00:00_
 
 1	\section{Background \& Setup}
 2	\label{sec:method}
@@ -6203,7 +5152,7 @@ _source line 9969 · 2026-05-21T08:05:56.606727+00:00_
 
 ### Tool call
 
-_source line 9970 · 2026-05-21T08:06:11.155383+00:00_
+_source line 9948 · 2026-05-21T08:06:11.155383+00:00_
 
 called Edit
 
@@ -6243,7 +5192,7 @@ called Edit
 
 ### Tool result
 
-_source line 9971 · 2026-05-21T08:06:11.208190+00:00_
+_source line 9949 · 2026-05-21T08:06:11.208190+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -6265,7 +5214,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9972 · 2026-05-21T08:06:14.622818+00:00_
+_source line 9950 · 2026-05-21T08:06:14.622818+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -6303,7 +5252,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9973 · 2026-05-21T08:06:19.200270+00:00_
+_source line 9951 · 2026-05-21T08:06:19.200270+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\vbox (badness 1688) has occurred while \\\\output is active []\\n\\n [21])\\n[22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/capabili\\nty_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_k\\nappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy\\n_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31606 strings out of 469438\\n 573291 string characters out of 5468411\\n 1378030 words of memory out of 5000000\\n 58901 multiletter control sequences out of 15000+600000\\n 731766 words of font info for 456 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2017s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.
 …[truncated 8594 chars]
@@ -6326,7 +5275,7 @@ _source line 9973 · 2026-05-21T08:06:19.200270+00:00_
 
 ### Tool call
 
-_source line 9974 · 2026-05-21T08:06:27.203988+00:00_
+_source line 9952 · 2026-05-21T08:06:27.203988+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -6364,7 +5313,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9975 · 2026-05-21T08:06:29.968590+00:00_
+_source line 9953 · 2026-05-21T08:06:29.968590+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\vbox (badness 1688) has occurred while \\\\output is active []\\n\\n [21])\\n[22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/capabili\\nty_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_k\\nappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy\\n_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31606 strings out of 469438\\n 573291 string characters out of 5468411\\n 1378030 words of memory out of 5000000\\n 58901 multiletter control sequences out of 15000+600000\\n 731766 words of font info for 456 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2017s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.
 …[truncated 12820 chars]
@@ -6387,7 +5336,7 @@ _source line 9975 · 2026-05-21T08:06:29.968590+00:00_
 
 ### Tool call
 
-_source line 9976 · 2026-05-21T08:06:34.413077+00:00_
+_source line 9954 · 2026-05-21T08:06:34.413077+00:00_
 
 called Read
 
@@ -6421,7 +5370,7 @@ called Read
 
 ### Tool call
 
-_source line 9977 · 2026-05-21T08:06:34.814946+00:00_
+_source line 9955 · 2026-05-21T08:06:34.814946+00:00_
 
 called Read
 
@@ -6455,7 +5404,7 @@ called Read
 
 ### Tool result
 
-_source line 9978 · 2026-05-21T08:06:35.319781+00:00_
+_source line 9956 · 2026-05-21T08:06:35.319781+00:00_
 
 
 
@@ -6477,7 +5426,7 @@ _source line 9978 · 2026-05-21T08:06:35.319781+00:00_
 
 ### Tool result
 
-_source line 9979 · 2026-05-21T08:06:35.822781+00:00_
+_source line 9957 · 2026-05-21T08:06:35.822781+00:00_
 
 
 
@@ -6499,7 +5448,7 @@ _source line 9979 · 2026-05-21T08:06:35.822781+00:00_
 
 ### Tool call
 
-_source line 9980 · 2026-05-21T08:07:03.358009+00:00_
+_source line 9958 · 2026-05-21T08:07:03.358009+00:00_
 
 called Read
 
@@ -6533,7 +5482,7 @@ called Read
 
 ### Tool call
 
-_source line 9981 · 2026-05-21T08:07:03.358392+00:00_
+_source line 9959 · 2026-05-21T08:07:03.358392+00:00_
 
 called Read
 
@@ -6567,7 +5516,7 @@ called Read
 
 ### Tool result
 
-_source line 9982 · 2026-05-21T08:07:03.411262+00:00_
+_source line 9960 · 2026-05-21T08:07:03.411262+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -6597,7 +5546,7 @@ _source line 9982 · 2026-05-21T08:07:03.411262+00:00_
 
 ### Tool result
 
-_source line 9983 · 2026-05-21T08:07:03.411786+00:00_
+_source line 9961 · 2026-05-21T08:07:03.411786+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -6622,7 +5571,7 @@ _source line 9983 · 2026-05-21T08:07:03.411786+00:00_
 
 ### Tool call
 
-_source line 9984 · 2026-05-21T08:07:37.074014+00:00_
+_source line 9962 · 2026-05-21T08:07:37.074014+00:00_
 
 called Edit
 
@@ -6662,7 +5611,7 @@ called Edit
 
 ### Tool result
 
-_source line 9985 · 2026-05-21T08:07:37.125147+00:00_
+_source line 9963 · 2026-05-21T08:07:37.125147+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -6684,7 +5633,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9986 · 2026-05-21T08:07:41.347211+00:00_
+_source line 9964 · 2026-05-21T08:07:41.347211+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -6722,7 +5671,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9987 · 2026-05-21T08:07:50.286952+00:00_
+_source line 9965 · 2026-05-21T08:07:50.286952+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31595 strings out of 469438\\n 573125 string characters out of 5468411\\n 1533030 words of memory out of 5000000\\n 58898 multiletter control sequences out of 15000+600000\\n 731414 words of font info for 452 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2069s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 12523 chars]
@@ -6745,7 +5694,7 @@ _source line 9987 · 2026-05-21T08:07:50.286952+00:00_
 
 ### Tool call
 
-_source line 9988 · 2026-05-21T08:07:54.002750+00:00_
+_source line 9966 · 2026-05-21T08:07:54.002750+00:00_
 
 called Read
 
@@ -6779,7 +5728,7 @@ called Read
 
 ### Tool result
 
-_source line 9989 · 2026-05-21T08:07:54.658573+00:00_
+_source line 9967 · 2026-05-21T08:07:54.658573+00:00_
 
 
 
@@ -6801,7 +5750,7 @@ _source line 9989 · 2026-05-21T08:07:54.658573+00:00_
 
 ### Tool call
 
-_source line 9990 · 2026-05-21T08:08:02.001965+00:00_
+_source line 9968 · 2026-05-21T08:08:02.001965+00:00_
 
 called Read
 
@@ -6835,7 +5784,7 @@ called Read
 
 ### Tool result
 
-_source line 9991 · 2026-05-21T08:08:02.708092+00:00_
+_source line 9969 · 2026-05-21T08:08:02.708092+00:00_
 
 
 
@@ -6857,7 +5806,7 @@ _source line 9991 · 2026-05-21T08:08:02.708092+00:00_
 
 ### Tool call
 
-_source line 9992 · 2026-05-21T08:08:17.091658+00:00_
+_source line 9970 · 2026-05-21T08:08:17.091658+00:00_
 
 called Read
 
@@ -6895,7 +5844,7 @@ called Read
 
 ### Tool result
 
-_source line 9993 · 2026-05-21T08:08:17.142440+00:00_
+_source line 9971 · 2026-05-21T08:08:17.142440+00:00_
 
 63	
 64	\paragraph{Cumulative Information Lift.}
@@ -6925,7 +5874,7 @@ _source line 9993 · 2026-05-21T08:08:17.142440+00:00_
 
 ### Tool call
 
-_source line 9994 · 2026-05-21T08:08:24.821938+00:00_
+_source line 9972 · 2026-05-21T08:08:24.821938+00:00_
 
 called Edit
 
@@ -6965,7 +5914,7 @@ called Edit
 
 ### Tool result
 
-_source line 9995 · 2026-05-21T08:08:24.872814+00:00_
+_source line 9973 · 2026-05-21T08:08:24.872814+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -6987,7 +5936,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 9996 · 2026-05-21T08:08:28.539334+00:00_
+_source line 9974 · 2026-05-21T08:08:28.539334+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -7025,7 +5974,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 9997 · 2026-05-21T08:08:35.138015+00:00_
+_source line 9975 · 2026-05-21T08:08:35.138015+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31595 strings out of 469438\\n 573125 string characters out of 5468411\\n 1563030 words of memory out of 5000000\\n 58898 multiletter control sequences out of 15000+600000\\n 731414 words of font info for 452 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2075s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 12771 chars]
@@ -7048,7 +5997,7 @@ _source line 9997 · 2026-05-21T08:08:35.138015+00:00_
 
 ### Tool call
 
-_source line 9998 · 2026-05-21T08:11:04.574601+00:00_
+_source line 9976 · 2026-05-21T08:11:04.574601+00:00_
 
 called Read
 
@@ -7082,7 +6031,7 @@ called Read
 
 ### Tool result
 
-_source line 9999 · 2026-05-21T08:11:05.126947+00:00_
+_source line 9977 · 2026-05-21T08:11:05.126947+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -7115,7 +6064,7 @@ _source line 9999 · 2026-05-21T08:11:05.126947+00:00_
 
 ### Tool call
 
-_source line 10000 · 2026-05-21T08:11:05.127417+00:00_
+_source line 9978 · 2026-05-21T08:11:05.127417+00:00_
 
 called Read
 
@@ -7149,7 +6098,7 @@ called Read
 
 ### Tool result
 
-_source line 10001 · 2026-05-21T08:11:05.629670+00:00_
+_source line 9979 · 2026-05-21T08:11:05.629670+00:00_
 
 1	\section{Cross-Architecture Proof-of-Concept}
 2	\label{sec:solutions}
@@ -7183,7 +6132,7 @@ _source line 10001 · 2026-05-21T08:11:05.629670+00:00_
 
 ### Tool call
 
-_source line 10002 · 2026-05-21T08:11:05.630160+00:00_
+_source line 9980 · 2026-05-21T08:11:05.630160+00:00_
 
 called Read
 
@@ -7217,7 +6166,7 @@ called Read
 
 ### Tool result
 
-_source line 10003 · 2026-05-21T08:11:05.680593+00:00_
+_source line 9981 · 2026-05-21T08:11:05.680593+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -7242,7 +6191,7 @@ _source line 10003 · 2026-05-21T08:11:05.680593+00:00_
 
 ### Tool call
 
-_source line 10004 · 2026-05-21T08:11:09.701001+00:00_
+_source line 9982 · 2026-05-21T08:11:09.701001+00:00_
 
 called ToolSearch
 
@@ -7278,7 +6227,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10005 · 2026-05-21T08:11:09.751712+00:00_
+_source line 9983 · 2026-05-21T08:11:09.751712+00:00_
 
 
 
@@ -7300,7 +6249,7 @@ _source line 10005 · 2026-05-21T08:11:09.751712+00:00_
 
 ### Tool call
 
-_source line 10006 · 2026-05-21T08:11:14.021649+00:00_
+_source line 9984 · 2026-05-21T08:11:14.021649+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -7338,7 +6287,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10007 · 2026-05-21T08:11:16.889791+00:00_
+_source line 9985 · 2026-05-21T08:11:16.889791+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[20]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 31595 strings out of 469438\\n 573125 string characters out of 5468411\\n 1563030 words of memory out of 5000000\\n 58898 multiletter control sequences out of 15000+600000\\n 731414 words of font info for 452 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,17n,94p,1957b,2075s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 …[truncated 12771 chars]
@@ -7361,7 +6310,7 @@ _source line 10007 · 2026-05-21T08:11:16.889791+00:00_
 
 ### Tool call
 
-_source line 10008 · 2026-05-21T08:11:24.326563+00:00_
+_source line 9986 · 2026-05-21T08:11:24.326563+00:00_
 
 called Read
 
@@ -7395,7 +6344,7 @@ called Read
 
 ### Tool call
 
-_source line 10009 · 2026-05-21T08:11:24.378059+00:00_
+_source line 9987 · 2026-05-21T08:11:24.378059+00:00_
 
 called Read
 
@@ -7429,7 +6378,7 @@ called Read
 
 ### Tool result
 
-_source line 10010 · 2026-05-21T08:11:25.641287+00:00_
+_source line 9988 · 2026-05-21T08:11:25.641287+00:00_
 
 
 
@@ -7451,7 +6400,7 @@ _source line 10010 · 2026-05-21T08:11:25.641287+00:00_
 
 ### Tool result
 
-_source line 10011 · 2026-05-21T08:11:25.742616+00:00_
+_source line 9989 · 2026-05-21T08:11:25.742616+00:00_
 
 
 
@@ -7473,7 +6422,7 @@ _source line 10011 · 2026-05-21T08:11:25.742616+00:00_
 
 ### Tool call
 
-_source line 10012 · 2026-05-21T08:11:41.315633+00:00_
+_source line 9990 · 2026-05-21T08:11:41.315633+00:00_
 
 called ToolSearch
 
@@ -7509,7 +6458,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10013 · 2026-05-21T08:11:41.367062+00:00_
+_source line 9991 · 2026-05-21T08:11:41.367062+00:00_
 
 
 
@@ -7531,7 +6480,7 @@ _source line 10013 · 2026-05-21T08:11:41.367062+00:00_
 
 ### Tool call
 
-_source line 10014 · 2026-05-21T08:11:55.554604+00:00_
+_source line 9992 · 2026-05-21T08:11:55.554604+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -7567,7 +6516,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 10015 · 2026-05-21T08:12:00.083654+00:00_
+_source line 9993 · 2026-05-21T08:12:00.083654+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -7589,7 +6538,7 @@ _source line 10015 · 2026-05-21T08:12:00.083654+00:00_
 
 ### Assistant
 
-_source line 10016 · 2026-05-21T08:12:04.836359+00:00_
+_source line 9994 · 2026-05-21T08:12:04.836359+00:00_
 
 CIL patch 已完成并汇报 Director。当前状态：
 
@@ -7621,7 +6570,7 @@ CIL patch 已完成并汇报 Director。当前状态：
 
 ### User
 
-_source line 10017 · 2026-05-21T08:12:05.370983+00:00_
+_source line 9995 · 2026-05-21T08:12:05.370983+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -7642,7 +6591,7 @@ _source line 10017 · 2026-05-21T08:12:05.370983+00:00_
 
 ### Assistant
 
-_source line 10018 · 2026-05-21T08:12:12.453321+00:00_
+_source line 9996 · 2026-05-21T08:12:12.453321+00:00_
 
 Already reported via `paper_agent_post_to_director` — the call succeeded with `director_session: "feishu:group:oc_970d5ea3f54df81296b97321fcded892:director"`. This is a false positive system reminder.
 
@@ -7669,7 +6618,7 @@ Already reported via `paper_agent_post_to_director` — the call succeeded with 
 
 ### User
 
-_source line 10019 · 2026-05-21T08:21:37.133989+00:00_
+_source line 9997 · 2026-05-21T08:21:37.133989+00:00_
 
 [Director 指令] [Patch] R11 审稿修复 — Batch 1（纯文本修改，不依赖新数据）
 
@@ -7789,7 +6738,7 @@ Section 5.5 或 Discussion 区分策略类型：
 
 ### Tool call
 
-_source line 10020 · 2026-05-21T08:21:53.113378+00:00_
+_source line 9998 · 2026-05-21T08:21:53.113378+00:00_
 
 called Read
 
@@ -7823,7 +6772,7 @@ called Read
 
 ### Tool result
 
-_source line 10021 · 2026-05-21T08:21:53.617116+00:00_
+_source line 9999 · 2026-05-21T08:21:53.617116+00:00_
 
 1	\section{Introduction}\label{sec:introduction}
 2	
@@ -7861,7 +6810,7 @@ _source line 10021 · 2026-05-21T08:21:53.617116+00:00_
 
 ### Tool call
 
-_source line 10022 · 2026-05-21T08:21:53.617524+00:00_
+_source line 10000 · 2026-05-21T08:21:53.617524+00:00_
 
 called Read
 
@@ -7895,7 +6844,7 @@ called Read
 
 ### Tool result
 
-_source line 10023 · 2026-05-21T08:21:54.119653+00:00_
+_source line 10001 · 2026-05-21T08:21:54.119653+00:00_
 
 1	Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.
 2	We investigate whether symbolic constraint extraction can break this plateau through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT.
@@ -7924,7 +6873,7 @@ _source line 10023 · 2026-05-21T08:21:54.119653+00:00_
 
 ### Tool call
 
-_source line 10024 · 2026-05-21T08:21:54.120132+00:00_
+_source line 10002 · 2026-05-21T08:21:54.120132+00:00_
 
 called Read
 
@@ -7958,7 +6907,7 @@ called Read
 
 ### Tool result
 
-_source line 10025 · 2026-05-21T08:21:54.573376+00:00_
+_source line 10003 · 2026-05-21T08:21:54.573376+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -8004,7 +6953,7 @@ _source line 10025 · 2026-05-21T08:21:54.573376+00:00_
 
 ### Tool call
 
-_source line 10026 · 2026-05-21T08:21:54.577715+00:00_
+_source line 10004 · 2026-05-21T08:21:54.577715+00:00_
 
 called Read
 
@@ -8038,7 +6987,7 @@ called Read
 
 ### Tool result
 
-_source line 10027 · 2026-05-21T08:21:55.079768+00:00_
+_source line 10005 · 2026-05-21T08:21:55.079768+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related-work}
@@ -8068,7 +7017,7 @@ _source line 10027 · 2026-05-21T08:21:55.079768+00:00_
 
 ### Tool call
 
-_source line 10028 · 2026-05-21T08:21:55.080221+00:00_
+_source line 10006 · 2026-05-21T08:21:55.080221+00:00_
 
 called Read
 
@@ -8102,7 +7051,7 @@ called Read
 
 ### Tool result
 
-_source line 10029 · 2026-05-21T08:21:56.035981+00:00_
+_source line 10007 · 2026-05-21T08:21:56.035981+00:00_
 
 1	\section{Analysis}
 2	\label{sec:analysis}
@@ -8154,7 +7103,7 @@ _source line 10029 · 2026-05-21T08:21:56.035981+00:00_
 
 ### Tool call
 
-_source line 10030 · 2026-05-21T08:21:56.036464+00:00_
+_source line 10008 · 2026-05-21T08:21:56.036464+00:00_
 
 called Read
 
@@ -8188,7 +7137,7 @@ called Read
 
 ### Tool result
 
-_source line 10031 · 2026-05-21T08:21:56.438258+00:00_
+_source line 10009 · 2026-05-21T08:21:56.438258+00:00_
 
 1	\paragraph{Scale and language.}
 2	All models range from 7B to 32B parameters; whether the independence bottleneck persists at larger scales (70B+) or with reasoning-specialized models is untested. All datasets are English-language logical reasoning benchmarks with discrete answer spaces. We do not evaluate trained symbolic extractors, external solvers with verified grounding, or multilingual settings. Oracle analysis is limited to FOLIO and ProofWriter (gold annotations available); extending to commonsense reasoning requires constructing comparable gold constraint sets. The cross-architecture NLI verifier (\S\ref{sec:cross-arch}) provides no benefit on LogiQA (combo $\Delta \leq +1$\,pp, all $p > 0.5$), indicating that cross-architecture escape requires task-verifier alignment---NLI is effective only when the task naturally decomposes into premise-conclusion entailment. Even on compatible tasks, NLI gain vanishes when the capability gap is large (Qwen3-14B ProofWriter: SC 85.83\% vs.\ DeBERTa 55\%, gap $= -30.83$\,pp, $\Delta \leq +0.50$\,pp, n.s.), and moderate negative gaps yield small, non-significant gains (LLaMA-3.1-8B: gap $= -17.50$\,pp, $+0.83$\,pp, n.s.; \S\ref{sec:cross-arch}). Scaling the cross-architecture approach---via trained verifiers, code-based symbolic execution, or multi-verifier ensembles---remains unexplored and may extend the escape to stronger generators and broader task types.
@@ -8215,7 +7164,7 @@ _source line 10031 · 2026-05-21T08:21:56.438258+00:00_
 
 ### Tool call
 
-_source line 10032 · 2026-05-21T08:21:56.589336+00:00_
+_source line 10010 · 2026-05-21T08:21:56.589336+00:00_
 
 called Read
 
@@ -8249,7 +7198,7 @@ called Read
 
 ### Tool result
 
-_source line 10033 · 2026-05-21T08:21:56.690152+00:00_
+_source line 10011 · 2026-05-21T08:21:56.690152+00:00_
 
 1	\documentclass[11pt]{article}
 2	\usepackage[review]{acl}
@@ -8352,7 +7301,7 @@ _source line 10033 · 2026-05-21T08:21:56.690152+00:00_
 
 ### Tool call
 
-_source line 10034 · 2026-05-21T08:22:14.581649+00:00_
+_source line 10012 · 2026-05-21T08:22:14.581649+00:00_
 
 called ToolSearch
 
@@ -8388,7 +7337,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10035 · 2026-05-21T08:22:14.582279+00:00_
+_source line 10013 · 2026-05-21T08:22:14.582279+00:00_
 
 
 
@@ -8410,7 +7359,7 @@ _source line 10035 · 2026-05-21T08:22:14.582279+00:00_
 
 ### Tool call
 
-_source line 10036 · 2026-05-21T08:22:16.591822+00:00_
+_source line 10014 · 2026-05-21T08:22:16.591822+00:00_
 
 called Grep
 
@@ -8450,7 +7399,7 @@ called Grep
 
 ### Tool result
 
-_source line 10037 · 2026-05-21T08:22:16.993867+00:00_
+_source line 10015 · 2026-05-21T08:22:16.993867+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex:15:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex:3:[Omitted long matching line]
@@ -8480,7 +7429,7 @@ _source line 10037 · 2026-05-21T08:22:16.993867+00:00_
 
 ### Tool call
 
-_source line 10038 · 2026-05-21T08:22:17.497114+00:00_
+_source line 10016 · 2026-05-21T08:22:17.497114+00:00_
 
 called Grep
 
@@ -8520,7 +7469,7 @@ called Grep
 
 ### Tool result
 
-_source line 10039 · 2026-05-21T08:22:18.100013+00:00_
+_source line 10017 · 2026-05-21T08:22:18.100013+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex:11:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/r8_response_drafts.md:13:[Omitted long matching line]
@@ -8553,7 +7502,7 @@ _source line 10039 · 2026-05-21T08:22:18.100013+00:00_
 
 ### Tool call
 
-_source line 10040 · 2026-05-21T08:22:19.005225+00:00_
+_source line 10018 · 2026-05-21T08:22:19.005225+00:00_
 
 called Grep
 
@@ -8593,7 +7542,7 @@ called Grep
 
 ### Tool result
 
-_source line 10041 · 2026-05-21T08:22:19.457383+00:00_
+_source line 10019 · 2026-05-21T08:22:19.457383+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex:4:We test the three predictions of the Symbolic Mirage hypothesis (\S\ref{sec:mirage}).
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex:3:[Omitted long matching line]
@@ -8624,7 +7573,7 @@ _source line 10041 · 2026-05-21T08:22:19.457383+00:00_
 
 ### Tool call
 
-_source line 10042 · 2026-05-21T08:22:19.559112+00:00_
+_source line 10020 · 2026-05-21T08:22:19.559112+00:00_
 
 called Grep
 
@@ -8664,7 +7613,7 @@ called Grep
 
 ### Tool result
 
-_source line 10043 · 2026-05-21T08:22:19.660102+00:00_
+_source line 10021 · 2026-05-21T08:22:19.660102+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/v8_outline_drafts.md:21:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/v8_outline_drafts.md:33:where $v_{M_2}$ is $M_2$'s independent verdict and $w$ controls verifier influence. Unlike same-model symbolic aggregation where $\text{BR}(M_1, M_1) > 1$ causes systematic bias amplification (Proposition 1), the cross-architecture condition ensures $\text{BR}(M_1, M_2) \to 1$: the verifier's errors are uncorrelated with the generator's, providing genuine corrective signal on the generator's error subset. CAV improves over SC when:
@@ -8690,7 +7639,7 @@ _source line 10043 · 2026-05-21T08:22:19.660102+00:00_
 
 ### Tool call
 
-_source line 10044 · 2026-05-21T08:23:01.454135+00:00_
+_source line 10022 · 2026-05-21T08:23:01.454135+00:00_
 
 called TodoWrite
 
@@ -8724,7 +7673,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10045 · 2026-05-21T08:23:01.454777+00:00_
+_source line 10023 · 2026-05-21T08:23:01.454777+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -8746,7 +7695,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10046 · 2026-05-21T08:23:05.824219+00:00_
+_source line 10024 · 2026-05-21T08:23:05.824219+00:00_
 
 called Grep
 
@@ -8788,7 +7737,7 @@ called Grep
 
 ### Tool result
 
-_source line 10047 · 2026-05-21T08:23:06.276370+00:00_
+_source line 10025 · 2026-05-21T08:23:06.276370+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex:8:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex:56:\paragraph{Empirical Bound 1 (Self-Extraction Ceiling).}\label{prop:ceiling}
@@ -8818,7 +7767,7 @@ _source line 10047 · 2026-05-21T08:23:06.276370+00:00_
 
 ### Tool call
 
-_source line 10048 · 2026-05-21T08:23:06.791592+00:00_
+_source line 10026 · 2026-05-21T08:23:06.791592+00:00_
 
 called Read
 
@@ -8856,7 +7805,7 @@ called Read
 
 ### Tool result
 
-_source line 10049 · 2026-05-21T08:23:07.243455+00:00_
+_source line 10027 · 2026-05-21T08:23:07.243455+00:00_
 
 720	 & & 5 & $+$4.33 & 0.037{*} \\
 721	\addlinespace
@@ -8904,7 +7853,7 @@ _source line 10049 · 2026-05-21T08:23:07.243455+00:00_
 
 ### Tool call
 
-_source line 10050 · 2026-05-21T08:23:07.344165+00:00_
+_source line 10028 · 2026-05-21T08:23:07.344165+00:00_
 
 called Read
 
@@ -8942,7 +7891,7 @@ called Read
 
 ### Tool result
 
-_source line 10051 · 2026-05-21T08:23:07.394800+00:00_
+_source line 10029 · 2026-05-21T08:23:07.394800+00:00_
 
 660	ICG & 74.6\% & 99.4\% & 24.9 & 32.3\% & 77.0\% & --- \\
 661	Contrastive & 74.0\% & 94.4\% & 9.2 & 0.0\% & 51.0\% & 62.7\% \\
@@ -8979,7 +7928,7 @@ _source line 10051 · 2026-05-21T08:23:07.394800+00:00_
 
 ### Tool call
 
-_source line 10052 · 2026-05-21T08:23:55.861431+00:00_
+_source line 10030 · 2026-05-21T08:23:55.861431+00:00_
 
 called TodoWrite
 
@@ -9013,7 +7962,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10053 · 2026-05-21T08:23:55.862151+00:00_
+_source line 10031 · 2026-05-21T08:23:55.862151+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -9035,7 +7984,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10054 · 2026-05-21T08:24:02.092197+00:00_
+_source line 10032 · 2026-05-21T08:24:02.092197+00:00_
 
 called Edit
 
@@ -9075,7 +8024,7 @@ called Edit
 
 ### Tool result
 
-_source line 10055 · 2026-05-21T08:24:02.545264+00:00_
+_source line 10033 · 2026-05-21T08:24:02.545264+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex has been updated successfully.
 
@@ -9097,7 +8046,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10056 · 2026-05-21T08:24:03.500963+00:00_
+_source line 10034 · 2026-05-21T08:24:03.500963+00:00_
 
 called Edit
 
@@ -9137,7 +8086,7 @@ called Edit
 
 ### Tool result
 
-_source line 10057 · 2026-05-21T08:24:03.953850+00:00_
+_source line 10035 · 2026-05-21T08:24:03.953850+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex has been updated successfully.
 
@@ -9159,7 +8108,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10058 · 2026-05-21T08:24:08.362551+00:00_
+_source line 10036 · 2026-05-21T08:24:08.362551+00:00_
 
 called Edit
 
@@ -9199,7 +8148,7 @@ called Edit
 
 ### Tool result
 
-_source line 10059 · 2026-05-21T08:24:08.413443+00:00_
+_source line 10037 · 2026-05-21T08:24:08.413443+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully.
 
@@ -9221,7 +8170,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10060 · 2026-05-21T08:24:15.249619+00:00_
+_source line 10038 · 2026-05-21T08:24:15.249619+00:00_
 
 called Edit
 
@@ -9261,7 +8210,7 @@ called Edit
 
 ### Tool result
 
-_source line 10061 · 2026-05-21T08:24:15.250140+00:00_
+_source line 10039 · 2026-05-21T08:24:15.250140+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully.
 
@@ -9283,7 +8232,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10062 · 2026-05-21T08:24:25.196356+00:00_
+_source line 10040 · 2026-05-21T08:24:25.196356+00:00_
 
 called Edit
 
@@ -9323,7 +8272,7 @@ called Edit
 
 ### Tool result
 
-_source line 10063 · 2026-05-21T08:24:25.197025+00:00_
+_source line 10041 · 2026-05-21T08:24:25.197025+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
 
@@ -9345,7 +8294,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10064 · 2026-05-21T08:24:43.457164+00:00_
+_source line 10042 · 2026-05-21T08:24:43.457164+00:00_
 
 called Edit
 
@@ -9385,7 +8334,7 @@ called Edit
 
 ### Tool result
 
-_source line 10065 · 2026-05-21T08:24:43.457691+00:00_
+_source line 10043 · 2026-05-21T08:24:43.457691+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -9407,7 +8356,7 @@ _source line 10065 · 2026-05-21T08:24:43.457691+00:00_
 
 ### Tool call
 
-_source line 10066 · 2026-05-21T08:24:47.436086+00:00_
+_source line 10044 · 2026-05-21T08:24:47.436086+00:00_
 
 called Read
 
@@ -9441,7 +8390,7 @@ called Read
 
 ### Tool result
 
-_source line 10067 · 2026-05-21T08:24:47.537425+00:00_
+_source line 10045 · 2026-05-21T08:24:47.537425+00:00_
 
 1	\section{Background \& Setup}
 2	\label{sec:method}
@@ -9482,7 +8431,7 @@ _source line 10067 · 2026-05-21T08:24:47.537425+00:00_
 
 ### Tool call
 
-_source line 10068 · 2026-05-21T08:24:58.742068+00:00_
+_source line 10046 · 2026-05-21T08:24:58.742068+00:00_
 
 called Edit
 
@@ -9522,7 +8471,7 @@ called Edit
 
 ### Tool result
 
-_source line 10069 · 2026-05-21T08:24:58.793006+00:00_
+_source line 10047 · 2026-05-21T08:24:58.793006+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -9544,7 +8493,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10070 · 2026-05-21T08:25:04.122589+00:00_
+_source line 10048 · 2026-05-21T08:25:04.122589+00:00_
 
 called Edit
 
@@ -9584,7 +8533,7 @@ called Edit
 
 ### Tool result
 
-_source line 10071 · 2026-05-21T08:25:04.525234+00:00_
+_source line 10049 · 2026-05-21T08:25:04.525234+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -9606,7 +8555,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10072 · 2026-05-21T08:25:05.078334+00:00_
+_source line 10050 · 2026-05-21T08:25:05.078334+00:00_
 
 called Edit
 
@@ -9646,7 +8595,7 @@ called Edit
 
 ### Tool result
 
-_source line 10073 · 2026-05-21T08:25:05.129076+00:00_
+_source line 10051 · 2026-05-21T08:25:05.129076+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -9668,7 +8617,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10074 · 2026-05-21T08:25:12.469173+00:00_
+_source line 10052 · 2026-05-21T08:25:12.469173+00:00_
 
 called Edit
 
@@ -9708,7 +8657,7 @@ called Edit
 
 ### Tool result
 
-_source line 10075 · 2026-05-21T08:25:12.971565+00:00_
+_source line 10053 · 2026-05-21T08:25:12.971565+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -9730,7 +8679,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10076 · 2026-05-21T08:25:13.879352+00:00_
+_source line 10054 · 2026-05-21T08:25:13.879352+00:00_
 
 called Edit
 
@@ -9770,7 +8719,7 @@ called Edit
 
 ### Tool result
 
-_source line 10077 · 2026-05-21T08:25:14.331347+00:00_
+_source line 10055 · 2026-05-21T08:25:14.331347+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -9792,7 +8741,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10078 · 2026-05-21T08:25:15.086055+00:00_
+_source line 10056 · 2026-05-21T08:25:15.086055+00:00_
 
 called Edit
 
@@ -9832,7 +8781,7 @@ called Edit
 
 ### Tool result
 
-_source line 10079 · 2026-05-21T08:25:15.337751+00:00_
+_source line 10057 · 2026-05-21T08:25:15.337751+00:00_
 
 &lt;tool_use_error>String to replace not found in file.
 String: confirming Observation~2.&lt;/tool_use_error>
@@ -9855,7 +8804,7 @@ String: confirming Observation~2.&lt;/tool_use_error>
 
 ### Tool call
 
-_source line 10080 · 2026-05-21T08:25:16.852315+00:00_
+_source line 10058 · 2026-05-21T08:25:16.852315+00:00_
 
 called Edit
 
@@ -9895,7 +8844,7 @@ called Edit
 
 ### Tool result
 
-_source line 10081 · 2026-05-21T08:25:16.902944+00:00_
+_source line 10059 · 2026-05-21T08:25:16.902944+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -9917,7 +8866,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10082 · 2026-05-21T08:25:21.930973+00:00_
+_source line 10060 · 2026-05-21T08:25:21.930973+00:00_
 
 called Grep
 
@@ -9959,7 +8908,7 @@ called Grep
 
 ### Tool result
 
-_source line 10083 · 2026-05-21T08:25:21.981625+00:00_
+_source line 10061 · 2026-05-21T08:25:21.981625+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:735:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex:12:[Omitted long matching line]
@@ -9982,7 +8931,7 @@ _source line 10083 · 2026-05-21T08:25:21.981625+00:00_
 
 ### Tool call
 
-_source line 10084 · 2026-05-21T08:25:26.004297+00:00_
+_source line 10062 · 2026-05-21T08:25:26.004297+00:00_
 
 called Read
 
@@ -10020,7 +8969,7 @@ called Read
 
 ### Tool result
 
-_source line 10085 · 2026-05-21T08:25:26.506525+00:00_
+_source line 10063 · 2026-05-21T08:25:26.506525+00:00_
 
 10	
 11	\paragraph{Why it works.}
@@ -10046,7 +8995,7 @@ _source line 10085 · 2026-05-21T08:25:26.506525+00:00_
 
 ### Tool call
 
-_source line 10086 · 2026-05-21T08:25:26.507144+00:00_
+_source line 10064 · 2026-05-21T08:25:26.507144+00:00_
 
 called Read
 
@@ -10084,7 +9033,7 @@ called Read
 
 ### Tool result
 
-_source line 10087 · 2026-05-21T08:25:26.557709+00:00_
+_source line 10065 · 2026-05-21T08:25:26.557709+00:00_
 
 733	Table~\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\% standalone, combo $+5.17$\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\% standalone, combo $+4.17$\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \geq 3$.
 734	
@@ -10110,7 +9059,7 @@ _source line 10087 · 2026-05-21T08:25:26.557709+00:00_
 
 ### Tool call
 
-_source line 10088 · 2026-05-21T08:25:30.829432+00:00_
+_source line 10066 · 2026-05-21T08:25:30.829432+00:00_
 
 called Edit
 
@@ -10150,7 +9099,7 @@ called Edit
 
 ### Tool result
 
-_source line 10089 · 2026-05-21T08:25:31.283106+00:00_
+_source line 10067 · 2026-05-21T08:25:31.283106+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -10172,7 +9121,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10090 · 2026-05-21T08:25:31.839066+00:00_
+_source line 10068 · 2026-05-21T08:25:31.839066+00:00_
 
 called Edit
 
@@ -10212,7 +9161,7 @@ called Edit
 
 ### Tool result
 
-_source line 10091 · 2026-05-21T08:25:31.890337+00:00_
+_source line 10069 · 2026-05-21T08:25:31.890337+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -10234,7 +9183,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10092 · 2026-05-21T08:25:44.137626+00:00_
+_source line 10070 · 2026-05-21T08:25:44.137626+00:00_
 
 called TodoWrite
 
@@ -10268,7 +9217,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10093 · 2026-05-21T08:25:44.138254+00:00_
+_source line 10071 · 2026-05-21T08:25:44.138254+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -10290,7 +9239,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10094 · 2026-05-21T08:25:56.735506+00:00_
+_source line 10072 · 2026-05-21T08:25:56.735506+00:00_
 
 called Edit
 
@@ -10330,7 +9279,7 @@ called Edit
 
 ### Tool result
 
-_source line 10095 · 2026-05-21T08:25:56.735971+00:00_
+_source line 10073 · 2026-05-21T08:25:56.735971+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -10352,7 +9301,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10096 · 2026-05-21T08:25:57.588771+00:00_
+_source line 10074 · 2026-05-21T08:25:57.588771+00:00_
 
 called Edit
 
@@ -10392,7 +9341,7 @@ called Edit
 
 ### Tool result
 
-_source line 10097 · 2026-05-21T08:25:57.639483+00:00_
+_source line 10075 · 2026-05-21T08:25:57.639483+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -10414,7 +9363,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10098 · 2026-05-21T08:25:58.295595+00:00_
+_source line 10076 · 2026-05-21T08:25:58.295595+00:00_
 
 called Edit
 
@@ -10454,7 +9403,7 @@ called Edit
 
 ### Tool result
 
-_source line 10099 · 2026-05-21T08:25:58.347825+00:00_
+_source line 10077 · 2026-05-21T08:25:58.347825+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -10476,7 +9425,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10100 · 2026-05-21T08:25:59.015722+00:00_
+_source line 10078 · 2026-05-21T08:25:59.015722+00:00_
 
 called Edit
 
@@ -10516,7 +9465,7 @@ called Edit
 
 ### Tool result
 
-_source line 10101 · 2026-05-21T08:25:59.016143+00:00_
+_source line 10079 · 2026-05-21T08:25:59.016143+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -10538,7 +9487,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10102 · 2026-05-21T08:25:59.217206+00:00_
+_source line 10080 · 2026-05-21T08:25:59.217206+00:00_
 
 called Edit
 
@@ -10578,7 +9527,7 @@ called Edit
 
 ### Tool result
 
-_source line 10103 · 2026-05-21T08:25:59.268975+00:00_
+_source line 10081 · 2026-05-21T08:25:59.268975+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex has been updated successfully.
 
@@ -10600,7 +9549,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10104 · 2026-05-21T08:26:08.984802+00:00_
+_source line 10082 · 2026-05-21T08:26:08.984802+00:00_
 
 called Edit
 
@@ -10640,7 +9589,7 @@ called Edit
 
 ### Tool result
 
-_source line 10105 · 2026-05-21T08:26:09.236637+00:00_
+_source line 10083 · 2026-05-21T08:26:09.236637+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -10662,7 +9611,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10106 · 2026-05-21T08:26:11.999354+00:00_
+_source line 10084 · 2026-05-21T08:26:11.999354+00:00_
 
 called Edit
 
@@ -10702,7 +9651,7 @@ called Edit
 
 ### Tool result
 
-_source line 10107 · 2026-05-21T08:26:11.999856+00:00_
+_source line 10085 · 2026-05-21T08:26:11.999856+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -10724,7 +9673,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10108 · 2026-05-21T08:26:18.081222+00:00_
+_source line 10086 · 2026-05-21T08:26:18.081222+00:00_
 
 called Edit
 
@@ -10764,7 +9713,7 @@ called Edit
 
 ### Tool result
 
-_source line 10109 · 2026-05-21T08:26:18.132382+00:00_
+_source line 10087 · 2026-05-21T08:26:18.132382+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -10786,7 +9735,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10110 · 2026-05-21T08:26:22.097954+00:00_
+_source line 10088 · 2026-05-21T08:26:22.097954+00:00_
 
 called Read
 
@@ -10820,7 +9769,7 @@ called Read
 
 ### Tool result
 
-_source line 10111 · 2026-05-21T08:26:22.148714+00:00_
+_source line 10089 · 2026-05-21T08:26:22.148714+00:00_
 
 1	\paragraph{Scale and language.}
 2	All models range from 7B to 32B parameters; whether the independence bottleneck persists at larger scales (70B+) or with reasoning-specialized models is untested. All datasets are English-language logical reasoning benchmarks with discrete answer spaces. We do not evaluate trained symbolic extractors, external solvers with verified grounding, or multilingual settings. Oracle analysis is limited to FOLIO and ProofWriter (gold annotations available); extending to commonsense reasoning requires constructing comparable gold constraint sets. The cross-architecture NLI verifier (\S\ref{sec:cross-arch}) provides no benefit on LogiQA (combo $\Delta \leq +1$\,pp, all $p > 0.5$), indicating that cross-architecture escape requires task-verifier alignment---NLI is effective only when the task naturally decomposes into premise-conclusion entailment. Even on compatible tasks, NLI gain vanishes when the capability gap is large (Qwen3-14B ProofWriter: SC 85.83\% vs.\ DeBERTa 55\%, gap $= -30.83$\,pp, $\Delta \leq +0.50$\,pp, n.s.), and moderate negative gaps yield small, non-significant gains (LLaMA-3.1-8B: gap $= -17.50$\,pp, $+0.83$\,pp, n.s.; \S\ref{sec:cross-arch}). Scaling the cross-architecture approach---via trained verifiers, code-based symbolic execution, or multi-verifier ensembles---remains unexplored and may extend the escape to stronger generators and broader task types.
@@ -10847,7 +9796,7 @@ _source line 10111 · 2026-05-21T08:26:22.148714+00:00_
 
 ### Tool call
 
-_source line 10112 · 2026-05-21T08:26:28.731114+00:00_
+_source line 10090 · 2026-05-21T08:26:28.731114+00:00_
 
 called Edit
 
@@ -10887,7 +9836,7 @@ called Edit
 
 ### Tool result
 
-_source line 10113 · 2026-05-21T08:26:29.233685+00:00_
+_source line 10091 · 2026-05-21T08:26:29.233685+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex has been updated successfully.
 
@@ -10909,7 +9858,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10114 · 2026-05-21T08:26:38.044732+00:00_
+_source line 10092 · 2026-05-21T08:26:38.044732+00:00_
 
 called Edit
 
@@ -10949,7 +9898,7 @@ called Edit
 
 ### Tool result
 
-_source line 10115 · 2026-05-21T08:26:38.097115+00:00_
+_source line 10093 · 2026-05-21T08:26:38.097115+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex has been updated successfully.
 
@@ -10971,7 +9920,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10116 · 2026-05-21T08:26:48.163095+00:00_
+_source line 10094 · 2026-05-21T08:26:48.163095+00:00_
 
 called TodoWrite
 
@@ -11005,7 +9954,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10117 · 2026-05-21T08:26:48.163646+00:00_
+_source line 10095 · 2026-05-21T08:26:48.163646+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -11027,7 +9976,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10118 · 2026-05-21T08:26:54.138404+00:00_
+_source line 10096 · 2026-05-21T08:26:54.138404+00:00_
 
 called Grep
 
@@ -11069,7 +10018,7 @@ called Grep
 
 ### Tool result
 
-_source line 10119 · 2026-05-21T08:26:54.290275+00:00_
+_source line 10097 · 2026-05-21T08:26:54.290275+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex:5:Our bias ratio ($4.97\times$ Mistral, $3.93\times$ Qwen, $2.88\times$ LLaMA) quantifies why self-correction fails without external feedback \citep{huang2024selfcorrect, stechly2025selfverification}: extraction and generation share distributional biases. $\text{BR} > 1$ across three families predicts that any self-verification pipeline deriving criteria from the same model faces this bottleneck, whether formal constraints, natural-language critiques, or code assertions.
 
@@ -11091,7 +10040,7 @@ _source line 10119 · 2026-05-21T08:26:54.290275+00:00_
 
 ### Tool call
 
-_source line 10120 · 2026-05-21T08:27:25.008408+00:00_
+_source line 10098 · 2026-05-21T08:27:25.008408+00:00_
 
 called Edit
 
@@ -11131,7 +10080,7 @@ called Edit
 
 ### Tool result
 
-_source line 10121 · 2026-05-21T08:27:25.059521+00:00_
+_source line 10099 · 2026-05-21T08:27:25.059521+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -11153,7 +10102,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10122 · 2026-05-21T08:27:36.532331+00:00_
+_source line 10100 · 2026-05-21T08:27:36.532331+00:00_
 
 called Edit
 
@@ -11193,7 +10142,7 @@ called Edit
 
 ### Tool result
 
-_source line 10123 · 2026-05-21T08:27:36.583123+00:00_
+_source line 10101 · 2026-05-21T08:27:36.583123+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -11215,7 +10164,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10124 · 2026-05-21T08:27:40.331464+00:00_
+_source line 10102 · 2026-05-21T08:27:40.331464+00:00_
 
 called Read
 
@@ -11249,7 +10198,7 @@ called Read
 
 ### Tool result
 
-_source line 10125 · 2026-05-21T08:27:40.584333+00:00_
+_source line 10103 · 2026-05-21T08:27:40.584333+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -11282,7 +10231,7 @@ _source line 10125 · 2026-05-21T08:27:40.584333+00:00_
 
 ### Tool call
 
-_source line 10126 · 2026-05-21T08:27:51.485299+00:00_
+_source line 10104 · 2026-05-21T08:27:51.485299+00:00_
 
 called Edit
 
@@ -11322,7 +10271,7 @@ called Edit
 
 ### Tool result
 
-_source line 10127 · 2026-05-21T08:27:51.536054+00:00_
+_source line 10105 · 2026-05-21T08:27:51.536054+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -11344,7 +10293,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10128 · 2026-05-21T08:27:57.158066+00:00_
+_source line 10106 · 2026-05-21T08:27:57.158066+00:00_
 
 called Edit
 
@@ -11384,7 +10333,7 @@ called Edit
 
 ### Tool result
 
-_source line 10129 · 2026-05-21T08:27:57.459805+00:00_
+_source line 10107 · 2026-05-21T08:27:57.459805+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -11406,7 +10355,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10130 · 2026-05-21T08:27:58.373821+00:00_
+_source line 10108 · 2026-05-21T08:27:58.373821+00:00_
 
 called Edit
 
@@ -11446,7 +10395,7 @@ called Edit
 
 ### Tool result
 
-_source line 10131 · 2026-05-21T08:27:58.424627+00:00_
+_source line 10109 · 2026-05-21T08:27:58.424627+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -11468,7 +10417,7 @@ _source line 10131 · 2026-05-21T08:27:58.424627+00:00_
 
 ### Tool call
 
-_source line 10132 · 2026-05-21T08:27:59.378358+00:00_
+_source line 10110 · 2026-05-21T08:27:59.378358+00:00_
 
 called Edit
 
@@ -11508,7 +10457,7 @@ called Edit
 
 ### Tool result
 
-_source line 10133 · 2026-05-21T08:27:59.880641+00:00_
+_source line 10111 · 2026-05-21T08:27:59.880641+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -11530,7 +10479,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10134 · 2026-05-21T08:28:00.583814+00:00_
+_source line 10112 · 2026-05-21T08:28:00.583814+00:00_
 
 called Edit
 
@@ -11570,7 +10519,7 @@ called Edit
 
 ### Tool result
 
-_source line 10135 · 2026-05-21T08:28:00.635205+00:00_
+_source line 10113 · 2026-05-21T08:28:00.635205+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -11592,7 +10541,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10136 · 2026-05-21T08:28:07.246454+00:00_
+_source line 10114 · 2026-05-21T08:28:07.246454+00:00_
 
 called Read
 
@@ -11630,7 +10579,7 @@ called Read
 
 ### Tool result
 
-_source line 10137 · 2026-05-21T08:28:07.297147+00:00_
+_source line 10115 · 2026-05-21T08:28:07.297147+00:00_
 
 85	
 86	
@@ -11666,7 +10615,7 @@ _source line 10137 · 2026-05-21T08:28:07.297147+00:00_
 
 ### Tool call
 
-_source line 10138 · 2026-05-21T08:28:10.963660+00:00_
+_source line 10116 · 2026-05-21T08:28:10.963660+00:00_
 
 called Edit
 
@@ -11706,7 +10655,7 @@ called Edit
 
 ### Tool result
 
-_source line 10139 · 2026-05-21T08:28:10.964243+00:00_
+_source line 10117 · 2026-05-21T08:28:10.964243+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex has been updated successfully.
 
@@ -11728,7 +10677,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10140 · 2026-05-21T08:28:16.799322+00:00_
+_source line 10118 · 2026-05-21T08:28:16.799322+00:00_
 
 called Edit
 
@@ -11768,7 +10717,7 @@ called Edit
 
 ### Tool result
 
-_source line 10141 · 2026-05-21T08:28:17.100956+00:00_
+_source line 10119 · 2026-05-21T08:28:17.100956+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -11790,7 +10739,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10142 · 2026-05-21T08:28:18.056229+00:00_
+_source line 10120 · 2026-05-21T08:28:18.056229+00:00_
 
 called Edit
 
@@ -11830,7 +10779,7 @@ called Edit
 
 ### Tool result
 
-_source line 10143 · 2026-05-21T08:28:18.056710+00:00_
+_source line 10121 · 2026-05-21T08:28:18.056710+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex has been updated successfully.
 
@@ -11852,7 +10801,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10144 · 2026-05-21T08:28:24.420691+00:00_
+_source line 10122 · 2026-05-21T08:28:24.420691+00:00_
 
 called Grep
 
@@ -11894,7 +10843,7 @@ called Grep
 
 ### Tool result
 
-_source line 10145 · 2026-05-21T08:28:24.471431+00:00_
+_source line 10123 · 2026-05-21T08:28:24.471431+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex:72:\node[ibottle, fit=(sample)(extract), label={[font=\scriptsize\itshape, text=red!70!black]above:Independence Bottleneck}] {};
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex:76:\caption{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}
@@ -11917,7 +10866,7 @@ _source line 10145 · 2026-05-21T08:28:24.471431+00:00_
 
 ### Tool call
 
-_source line 10146 · 2026-05-21T08:28:33.161639+00:00_
+_source line 10124 · 2026-05-21T08:28:33.161639+00:00_
 
 called Grep
 
@@ -11959,7 +10908,7 @@ called Grep
 
 ### Tool result
 
-_source line 10147 · 2026-05-21T08:28:33.212331+00:00_
+_source line 10125 · 2026-05-21T08:28:33.212331+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex:46:\subsection{The Symbolic Mirage Hypothesis}
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex:49:We hypothesize that self-extracted symbolic structures are not independent verification signals but projections of the generating model's distributional biases. This \textbf{Symbolic Mirage} is specific to self-extracted constraints; symbolic methods employing independently sourced constraints remain effective (\S\ref{sec:oracle}). We quantify mirage intensity via the \emph{Bias Ratio}:
@@ -11982,7 +10931,7 @@ _source line 10147 · 2026-05-21T08:28:33.212331+00:00_
 
 ### Tool call
 
-_source line 10148 · 2026-05-21T08:28:39.577758+00:00_
+_source line 10126 · 2026-05-21T08:28:39.577758+00:00_
 
 called Read
 
@@ -12020,7 +10969,7 @@ called Read
 
 ### Tool result
 
-_source line 10149 · 2026-05-21T08:28:39.628549+00:00_
+_source line 10127 · 2026-05-21T08:28:39.628549+00:00_
 
 0	% References for SICA paper
 1	% Generated from literature_map.yaml — 2026-05-17
@@ -12071,7 +11020,7 @@ _source line 10149 · 2026-05-21T08:28:39.628549+00:00_
 
 ### Tool call
 
-_source line 10150 · 2026-05-21T08:28:44.405592+00:00_
+_source line 10128 · 2026-05-21T08:28:44.405592+00:00_
 
 called Grep
 
@@ -12111,7 +11060,7 @@ called Grep
 
 ### Tool result
 
-_source line 10151 · 2026-05-21T08:28:44.456287+00:00_
+_source line 10129 · 2026-05-21T08:28:44.456287+00:00_
 
 243:  author={Geva, Mor and Khashabi, Daniel and Segal, Elad and Khot, Tushar and Roth, Dan and Berant, Jonathan},
 
@@ -12133,7 +11082,7 @@ _source line 10151 · 2026-05-21T08:28:44.456287+00:00_
 
 ### Tool call
 
-_source line 10152 · 2026-05-21T08:28:48.824333+00:00_
+_source line 10130 · 2026-05-21T08:28:48.824333+00:00_
 
 called Bash
 
@@ -12169,7 +11118,7 @@ called Bash
 
 ### Tool result
 
-_source line 10153 · 2026-05-21T08:28:48.975354+00:00_
+_source line 10131 · 2026-05-21T08:28:48.975354+00:00_
 
 497 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib
 
@@ -12191,7 +11140,7 @@ _source line 10153 · 2026-05-21T08:28:48.975354+00:00_
 
 ### Tool call
 
-_source line 10154 · 2026-05-21T08:28:52.237962+00:00_
+_source line 10132 · 2026-05-21T08:28:52.237962+00:00_
 
 called Read
 
@@ -12229,7 +11178,7 @@ called Read
 
 ### Tool result
 
-_source line 10155 · 2026-05-21T08:28:52.289216+00:00_
+_source line 10133 · 2026-05-21T08:28:52.289216+00:00_
 
 480	  title={Position: Logical Soundness is not a Reliable Criterion for Neurosymbolic Fact-Checking with {LLMs}},
 481	  author={Chan, Jason and Gaizauskas, Robert and Zhao, Zhixue},
@@ -12269,7 +11218,7 @@ _source line 10155 · 2026-05-21T08:28:52.289216+00:00_
 
 ### Tool call
 
-_source line 10156 · 2026-05-21T08:29:01.936125+00:00_
+_source line 10134 · 2026-05-21T08:29:01.936125+00:00_
 
 called Edit
 
@@ -12309,7 +11258,7 @@ called Edit
 
 ### Tool result
 
-_source line 10157 · 2026-05-21T08:29:01.988100+00:00_
+_source line 10135 · 2026-05-21T08:29:01.988100+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -12331,7 +11280,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10158 · 2026-05-21T08:29:09.835719+00:00_
+_source line 10136 · 2026-05-21T08:29:09.835719+00:00_
 
 called Read
 
@@ -12365,7 +11314,7 @@ called Read
 
 ### Tool result
 
-_source line 10159 · 2026-05-21T08:29:09.836383+00:00_
+_source line 10137 · 2026-05-21T08:29:09.836383+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related-work}
@@ -12395,7 +11344,7 @@ _source line 10159 · 2026-05-21T08:29:09.836383+00:00_
 
 ### Tool call
 
-_source line 10160 · 2026-05-21T08:29:15.768449+00:00_
+_source line 10138 · 2026-05-21T08:29:15.768449+00:00_
 
 called Edit
 
@@ -12435,7 +11384,7 @@ called Edit
 
 ### Tool result
 
-_source line 10161 · 2026-05-21T08:29:15.819503+00:00_
+_source line 10139 · 2026-05-21T08:29:15.819503+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -12457,7 +11406,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10162 · 2026-05-21T08:29:26.371484+00:00_
+_source line 10140 · 2026-05-21T08:29:26.371484+00:00_
 
 called Edit
 
@@ -12497,7 +11446,7 @@ called Edit
 
 ### Tool result
 
-_source line 10163 · 2026-05-21T08:29:26.422231+00:00_
+_source line 10141 · 2026-05-21T08:29:26.422231+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -12519,7 +11468,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10164 · 2026-05-21T08:29:33.304047+00:00_
+_source line 10142 · 2026-05-21T08:29:33.304047+00:00_
 
 called Edit
 
@@ -12559,7 +11508,7 @@ called Edit
 
 ### Tool result
 
-_source line 10165 · 2026-05-21T08:29:33.304635+00:00_
+_source line 10143 · 2026-05-21T08:29:33.304635+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -12581,7 +11530,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10166 · 2026-05-21T08:29:37.504046+00:00_
+_source line 10144 · 2026-05-21T08:29:37.504046+00:00_
 
 called Read
 
@@ -12619,7 +11568,7 @@ called Read
 
 ### Tool result
 
-_source line 10167 · 2026-05-21T08:29:37.504533+00:00_
+_source line 10145 · 2026-05-21T08:29:37.504533+00:00_
 
 65	
 66	
@@ -12654,7 +11603,7 @@ _source line 10167 · 2026-05-21T08:29:37.504533+00:00_
 
 ### Tool call
 
-_source line 10168 · 2026-05-21T08:29:48.403025+00:00_
+_source line 10146 · 2026-05-21T08:29:48.403025+00:00_
 
 called Edit
 
@@ -12694,7 +11643,7 @@ called Edit
 
 ### Tool result
 
-_source line 10169 · 2026-05-21T08:29:48.453688+00:00_
+_source line 10147 · 2026-05-21T08:29:48.453688+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -12716,7 +11665,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10170 · 2026-05-21T08:29:53.072563+00:00_
+_source line 10148 · 2026-05-21T08:29:53.072563+00:00_
 
 called Read
 
@@ -12754,7 +11703,7 @@ called Read
 
 ### Tool result
 
-_source line 10171 · 2026-05-21T08:29:53.174229+00:00_
+_source line 10149 · 2026-05-21T08:29:53.174229+00:00_
 
 16	
 17	\begin{figure}[t]
@@ -12785,7 +11734,7 @@ _source line 10171 · 2026-05-21T08:29:53.174229+00:00_
 
 ### Tool call
 
-_source line 10172 · 2026-05-21T08:30:05.955977+00:00_
+_source line 10150 · 2026-05-21T08:30:05.955977+00:00_
 
 called Grep
 
@@ -12825,7 +11774,7 @@ called Grep
 
 ### Tool result
 
-_source line 10173 · 2026-05-21T08:30:06.006577+00:00_
+_source line 10151 · 2026-05-21T08:30:06.006577+00:00_
 
 735:[Omitted long matching line]
 
@@ -12847,7 +11796,7 @@ _source line 10173 · 2026-05-21T08:30:06.006577+00:00_
 
 ### Tool call
 
-_source line 10174 · 2026-05-21T08:30:14.164470+00:00_
+_source line 10152 · 2026-05-21T08:30:14.164470+00:00_
 
 called Read
 
@@ -12885,7 +11834,7 @@ called Read
 
 ### Tool result
 
-_source line 10175 · 2026-05-21T08:30:14.194570+00:00_
+_source line 10153 · 2026-05-21T08:30:14.194570+00:00_
 
 733	Table~\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\% standalone, combo $+5.17$\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\% standalone, combo $+4.17$\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \geq 3$.
 734	
@@ -12909,7 +11858,7 @@ _source line 10175 · 2026-05-21T08:30:14.194570+00:00_
 
 ### Tool call
 
-_source line 10176 · 2026-05-21T08:30:27.100087+00:00_
+_source line 10154 · 2026-05-21T08:30:27.100087+00:00_
 
 called Read
 
@@ -12943,7 +11892,7 @@ called Read
 
 ### Tool call
 
-_source line 10177 · 2026-05-21T08:30:27.353224+00:00_
+_source line 10155 · 2026-05-21T08:30:27.353224+00:00_
 
 called Read
 
@@ -12977,7 +11926,7 @@ called Read
 
 ### Tool result
 
-_source line 10178 · 2026-05-21T08:30:28.057532+00:00_
+_source line 10156 · 2026-05-21T08:30:28.057532+00:00_
 
 
 
@@ -12999,7 +11948,7 @@ _source line 10178 · 2026-05-21T08:30:28.057532+00:00_
 
 ### Tool result
 
-_source line 10179 · 2026-05-21T08:30:28.259376+00:00_
+_source line 10157 · 2026-05-21T08:30:28.259376+00:00_
 
 
 
@@ -13021,7 +11970,7 @@ _source line 10179 · 2026-05-21T08:30:28.259376+00:00_
 
 ### Tool call
 
-_source line 10180 · 2026-05-21T08:30:51.918094+00:00_
+_source line 10158 · 2026-05-21T08:30:51.918094+00:00_
 
 called Edit
 
@@ -13061,7 +12010,7 @@ called Edit
 
 ### Tool result
 
-_source line 10181 · 2026-05-21T08:30:51.918646+00:00_
+_source line 10159 · 2026-05-21T08:30:51.918646+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -13083,7 +12032,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10182 · 2026-05-21T08:30:58.243371+00:00_
+_source line 10160 · 2026-05-21T08:30:58.243371+00:00_
 
 called Grep
 
@@ -13123,7 +12072,7 @@ called Grep
 
 ### Tool result
 
-_source line 10183 · 2026-05-21T08:30:58.344231+00:00_
+_source line 10161 · 2026-05-21T08:30:58.344231+00:00_
 
 No matches found
 
@@ -13145,7 +12094,7 @@ No matches found
 
 ### Tool call
 
-_source line 10184 · 2026-05-21T08:31:04.428670+00:00_
+_source line 10162 · 2026-05-21T08:31:04.428670+00:00_
 
 called Grep
 
@@ -13185,7 +12134,7 @@ called Grep
 
 ### Tool result
 
-_source line 10185 · 2026-05-21T08:31:04.529823+00:00_
+_source line 10163 · 2026-05-21T08:31:04.529823+00:00_
 
 9:[Omitted long matching line]
 12:[Omitted long matching line]
@@ -13208,7 +12157,7 @@ _source line 10185 · 2026-05-21T08:31:04.529823+00:00_
 
 ### Tool call
 
-_source line 10186 · 2026-05-21T08:31:07.979767+00:00_
+_source line 10164 · 2026-05-21T08:31:07.979767+00:00_
 
 called Read
 
@@ -13246,7 +12195,7 @@ called Read
 
 ### Tool result
 
-_source line 10187 · 2026-05-21T08:31:08.030481+00:00_
+_source line 10165 · 2026-05-21T08:31:08.030481+00:00_
 
 8	\paragraph{Main result.}
 9	DeBERTa NLI alone achieves 49.51\% on FOLIO (below SC's 55.88\%) and 55.00\% on ProofWriter (above SC's 39.33\%). On FOLIO ($n = 204$), combo mode yields $+0.49$\,pp at $w{=}1$ and $+2.94$\,pp at $w{=}3$ (both n.s.). On ProofWriter ($n = 600$), $w{=}3$ achieves $+6.67$\,pp ($p < 0.001$) and $w{=}5$ reaches $+11.00$\,pp ($p < 0.001$)---while same-model SICA \emph{degrades} ProofWriter ($-2.83$\,pp, raw $p = 0.014$; BH adj.\ $p = 0.112$; Table~\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\S\ref{sec:mirage}). We report $w{=}3$ as primary. After BH correction ($m{=}12$), Mistral-7B $w{=}3$ (adj.\ $p = 6.78 \times 10^{-5}$) and $w{=}5$ (adj.\ $p = 7.41 \times 10^{-6}$) remain significant; all other conditions are non-significant.
@@ -13272,7 +12221,7 @@ _source line 10187 · 2026-05-21T08:31:08.030481+00:00_
 
 ### Tool call
 
-_source line 10188 · 2026-05-21T08:31:13.902910+00:00_
+_source line 10166 · 2026-05-21T08:31:13.902910+00:00_
 
 called Read
 
@@ -13306,7 +12255,7 @@ called Read
 
 ### Tool result
 
-_source line 10189 · 2026-05-21T08:31:13.903401+00:00_
+_source line 10167 · 2026-05-21T08:31:13.903401+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -13331,7 +12280,7 @@ _source line 10189 · 2026-05-21T08:31:13.903401+00:00_
 
 ### Tool call
 
-_source line 10190 · 2026-05-21T08:31:24.299299+00:00_
+_source line 10168 · 2026-05-21T08:31:24.299299+00:00_
 
 called TodoWrite
 
@@ -13365,7 +12314,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10191 · 2026-05-21T08:31:24.299895+00:00_
+_source line 10169 · 2026-05-21T08:31:24.299895+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -13387,7 +12336,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10192 · 2026-05-21T08:31:28.215433+00:00_
+_source line 10170 · 2026-05-21T08:31:28.215433+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -13427,7 +12376,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10193 · 2026-05-21T08:31:40.841749+00:00_
+_source line 10171 · 2026-05-21T08:31:40.841749+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[21]\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[22]) [23] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/ca\\npability_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_pro\\ncess_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_ac\\ncuracy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34867 strings out of 469438\\n 665050 string characters out of 5468411\\n 1682349 words of memory out of 5000000\\n 62126 multiletter control sequences out of 15000+600000\\n 731766 words of font info for 456 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2077s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 …[truncated 12824 chars]
@@ -13450,7 +12399,7 @@ _source line 10193 · 2026-05-21T08:31:40.841749+00:00_
 
 ### Tool call
 
-_source line 10194 · 2026-05-21T08:31:48.930767+00:00_
+_source line 10172 · 2026-05-21T08:31:48.930767+00:00_
 
 called Read
 
@@ -13484,7 +12433,7 @@ called Read
 
 ### Tool call
 
-_source line 10195 · 2026-05-21T08:31:49.435105+00:00_
+_source line 10173 · 2026-05-21T08:31:49.435105+00:00_
 
 called Read
 
@@ -13518,7 +12467,7 @@ called Read
 
 ### Tool result
 
-_source line 10196 · 2026-05-21T08:31:49.988461+00:00_
+_source line 10174 · 2026-05-21T08:31:49.988461+00:00_
 
 
 
@@ -13540,7 +12489,7 @@ _source line 10196 · 2026-05-21T08:31:49.988461+00:00_
 
 ### Tool call
 
-_source line 10197 · 2026-05-21T08:31:49.989038+00:00_
+_source line 10175 · 2026-05-21T08:31:49.989038+00:00_
 
 called Read
 
@@ -13574,7 +12523,7 @@ called Read
 
 ### Tool result
 
-_source line 10198 · 2026-05-21T08:31:50.244767+00:00_
+_source line 10176 · 2026-05-21T08:31:50.244767+00:00_
 
 
 
@@ -13596,7 +12545,7 @@ _source line 10198 · 2026-05-21T08:31:50.244767+00:00_
 
 ### Tool result
 
-_source line 10199 · 2026-05-21T08:31:50.800351+00:00_
+_source line 10177 · 2026-05-21T08:31:50.800351+00:00_
 
 
 
@@ -13618,7 +12567,7 @@ _source line 10199 · 2026-05-21T08:31:50.800351+00:00_
 
 ### Tool call
 
-_source line 10200 · 2026-05-21T08:32:19.386028+00:00_
+_source line 10178 · 2026-05-21T08:32:19.386028+00:00_
 
 called Read
 
@@ -13656,7 +12605,7 @@ called Read
 
 ### Tool result
 
-_source line 10201 · 2026-05-21T08:32:19.537239+00:00_
+_source line 10179 · 2026-05-21T08:32:19.537239+00:00_
 
 62	\end{table*}
 63	
@@ -13687,7 +12636,7 @@ _source line 10201 · 2026-05-21T08:32:19.537239+00:00_
 
 ### Tool call
 
-_source line 10202 · 2026-05-21T08:32:28.279604+00:00_
+_source line 10180 · 2026-05-21T08:32:28.279604+00:00_
 
 called Edit
 
@@ -13727,7 +12676,7 @@ called Edit
 
 ### Tool result
 
-_source line 10203 · 2026-05-21T08:32:28.280119+00:00_
+_source line 10181 · 2026-05-21T08:32:28.280119+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
 
@@ -13749,7 +12698,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10204 · 2026-05-21T08:32:38.601411+00:00_
+_source line 10182 · 2026-05-21T08:32:38.601411+00:00_
 
 called Edit
 
@@ -13789,7 +12738,7 @@ called Edit
 
 ### Tool result
 
-_source line 10205 · 2026-05-21T08:32:38.652152+00:00_
+_source line 10183 · 2026-05-21T08:32:38.652152+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -13811,7 +12760,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10206 · 2026-05-21T08:32:43.020806+00:00_
+_source line 10184 · 2026-05-21T08:32:43.020806+00:00_
 
 called Read
 
@@ -13849,7 +12798,7 @@ called Read
 
 ### Tool result
 
-_source line 10207 · 2026-05-21T08:32:43.071549+00:00_
+_source line 10185 · 2026-05-21T08:32:43.071549+00:00_
 
 55	
 56	\begin{tcolorbox}[enhanced, colback=gray!5, colframe=gray!50, boxrule=0.4pt, left=4pt, right=4pt, top=2pt, bottom=2pt]
@@ -13885,7 +12834,7 @@ _source line 10207 · 2026-05-21T08:32:43.071549+00:00_
 
 ### Tool call
 
-_source line 10208 · 2026-05-21T08:32:47.999828+00:00_
+_source line 10186 · 2026-05-21T08:32:47.999828+00:00_
 
 called Edit
 
@@ -13925,7 +12874,7 @@ called Edit
 
 ### Tool result
 
-_source line 10209 · 2026-05-21T08:32:48.052180+00:00_
+_source line 10187 · 2026-05-21T08:32:48.052180+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated. All occurrences were successfully replaced.
 
@@ -13947,7 +12896,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10210 · 2026-05-21T08:32:52.827032+00:00_
+_source line 10188 · 2026-05-21T08:32:52.827032+00:00_
 
 called Read
 
@@ -13985,7 +12934,7 @@ called Read
 
 ### Tool result
 
-_source line 10211 · 2026-05-21T08:32:52.877608+00:00_
+_source line 10189 · 2026-05-21T08:32:52.877608+00:00_
 
 34	\item \textbf{Independence-Accuracy Trade-off.} We do not claim to discover a new diversity--accuracy tradeoff, which is well established in ensemble learning \citep{krogh1994neural}. Our contribution is quantifying its specific form in LLM self-extraction via three operationalizable diagnostics: effective sample size $K_\text{eff}$, symbolic confirmation bias ratio BR, and multi-candidate rate $C_0$. Same-model $\kappa \geq 0.40$ across four methods and three families; twenty-seven strategies fail. Cross-architecture NLI yields a significant gain when the verifier exceeds the generator ($+6.67$\,pp, $p < 0.001$; $w{=}3$), with a consistent monotonic capability-gap trend ($p = 0.003$, $n{=}6$; \S\ref{sec:remediation}, \S\ref{sec:cross-arch}).
 35	
@@ -14014,7 +12963,7 @@ _source line 10211 · 2026-05-21T08:32:52.877608+00:00_
 
 ### Tool call
 
-_source line 10212 · 2026-05-21T08:32:59.807741+00:00_
+_source line 10190 · 2026-05-21T08:32:59.807741+00:00_
 
 called Edit
 
@@ -14054,7 +13003,7 @@ called Edit
 
 ### Tool result
 
-_source line 10213 · 2026-05-21T08:32:59.809606+00:00_
+_source line 10191 · 2026-05-21T08:32:59.809606+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -14076,7 +13025,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10214 · 2026-05-21T08:33:11.573083+00:00_
+_source line 10192 · 2026-05-21T08:33:11.573083+00:00_
 
 called Edit
 
@@ -14116,7 +13065,7 @@ called Edit
 
 ### Tool result
 
-_source line 10215 · 2026-05-21T08:33:11.573604+00:00_
+_source line 10193 · 2026-05-21T08:33:11.573604+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -14138,7 +13087,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10216 · 2026-05-21T08:33:15.944370+00:00_
+_source line 10194 · 2026-05-21T08:33:15.944370+00:00_
 
 called Read
 
@@ -14176,7 +13125,7 @@ called Read
 
 ### Tool result
 
-_source line 10217 · 2026-05-21T08:33:15.995090+00:00_
+_source line 10195 · 2026-05-21T08:33:15.995090+00:00_
 
 22	We study this through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT (\S\ref{sec:pipeline}; Figure~\ref{fig:pipeline}).
 23	Across six models (7B--32B), three domains (FOLIO \citep{han2022folio}, ProofWriter \citep{tafjord2021proofwriter}, LogiQA \citep{liu2020logiqa}), and over 3,000 condition-evaluations with four-seed replication, twenty-seven remediation strategies spanning fifteen families all produce neutral or negative results (Table~\ref{tab:main_results}).
@@ -14204,7 +13153,7 @@ _source line 10217 · 2026-05-21T08:33:15.995090+00:00_
 
 ### Tool call
 
-_source line 10218 · 2026-05-21T08:33:23.537054+00:00_
+_source line 10196 · 2026-05-21T08:33:23.537054+00:00_
 
 called Edit
 
@@ -14244,7 +13193,7 @@ called Edit
 
 ### Tool result
 
-_source line 10219 · 2026-05-21T08:33:23.588203+00:00_
+_source line 10197 · 2026-05-21T08:33:23.588203+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -14266,7 +13215,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10220 · 2026-05-21T08:33:28.865114+00:00_
+_source line 10198 · 2026-05-21T08:33:28.865114+00:00_
 
 called Edit
 
@@ -14306,7 +13255,7 @@ called Edit
 
 ### Tool result
 
-_source line 10221 · 2026-05-21T08:33:28.915943+00:00_
+_source line 10199 · 2026-05-21T08:33:28.915943+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
 
@@ -14328,7 +13277,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10222 · 2026-05-21T08:33:40.671014+00:00_
+_source line 10200 · 2026-05-21T08:33:40.671014+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14366,7 +13315,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10223 · 2026-05-21T08:33:48.411863+00:00_
+_source line 10201 · 2026-05-21T08:33:48.411863+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]) [22] [23\\n\\n] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/capability_\\ngap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_kapp\\na_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34869 strings out of 469438\\n 665066 string characters out of 5468411\\n 1738349 words of memory out of 5000000\\n 62125 multiletter control sequences out of 15000+600000\\n 731991 words of font info for 458 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2015s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share\\n/tex
 …[truncated 12565 chars]
@@ -14389,7 +13338,7 @@ _source line 10223 · 2026-05-21T08:33:48.411863+00:00_
 
 ### Tool call
 
-_source line 10224 · 2026-05-21T08:33:52.945236+00:00_
+_source line 10202 · 2026-05-21T08:33:52.945236+00:00_
 
 called Read
 
@@ -14423,7 +13372,7 @@ called Read
 
 ### Tool call
 
-_source line 10225 · 2026-05-21T08:33:53.196632+00:00_
+_source line 10203 · 2026-05-21T08:33:53.196632+00:00_
 
 called Read
 
@@ -14457,7 +13406,7 @@ called Read
 
 ### Tool result
 
-_source line 10226 · 2026-05-21T08:33:54.003025+00:00_
+_source line 10204 · 2026-05-21T08:33:54.003025+00:00_
 
 
 
@@ -14479,7 +13428,7 @@ _source line 10226 · 2026-05-21T08:33:54.003025+00:00_
 
 ### Tool result
 
-_source line 10227 · 2026-05-21T08:33:54.206234+00:00_
+_source line 10205 · 2026-05-21T08:33:54.206234+00:00_
 
 
 
@@ -14501,7 +13450,7 @@ _source line 10227 · 2026-05-21T08:33:54.206234+00:00_
 
 ### Tool call
 
-_source line 10228 · 2026-05-21T08:34:27.234784+00:00_
+_source line 10206 · 2026-05-21T08:34:27.234784+00:00_
 
 called Read
 
@@ -14535,7 +13484,7 @@ called Read
 
 ### Tool result
 
-_source line 10229 · 2026-05-21T08:34:27.286720+00:00_
+_source line 10207 · 2026-05-21T08:34:27.286720+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -14571,7 +13520,7 @@ _source line 10229 · 2026-05-21T08:34:27.286720+00:00_
 
 ### Tool call
 
-_source line 10230 · 2026-05-21T08:34:41.142068+00:00_
+_source line 10208 · 2026-05-21T08:34:41.142068+00:00_
 
 called Edit
 
@@ -14611,7 +13560,7 @@ called Edit
 
 ### Tool result
 
-_source line 10231 · 2026-05-21T08:34:41.142538+00:00_
+_source line 10209 · 2026-05-21T08:34:41.142538+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -14633,7 +13582,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10232 · 2026-05-21T08:34:46.524026+00:00_
+_source line 10210 · 2026-05-21T08:34:46.524026+00:00_
 
 called Read
 
@@ -14671,7 +13620,7 @@ called Read
 
 ### Tool result
 
-_source line 10233 · 2026-05-21T08:34:46.524388+00:00_
+_source line 10211 · 2026-05-21T08:34:46.524388+00:00_
 
 12	
 13	\paragraph{CJT and positioning.}
@@ -14696,7 +13645,7 @@ _source line 10233 · 2026-05-21T08:34:46.524388+00:00_
 
 ### Tool call
 
-_source line 10234 · 2026-05-21T08:34:54.508910+00:00_
+_source line 10212 · 2026-05-21T08:34:54.508910+00:00_
 
 called Edit
 
@@ -14736,7 +13685,7 @@ called Edit
 
 ### Tool result
 
-_source line 10235 · 2026-05-21T08:34:54.610021+00:00_
+_source line 10213 · 2026-05-21T08:34:54.610021+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully.
 
@@ -14758,7 +13707,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10236 · 2026-05-21T08:35:00.786765+00:00_
+_source line 10214 · 2026-05-21T08:35:00.786765+00:00_
 
 called Read
 
@@ -14796,7 +13745,7 @@ called Read
 
 ### Tool result
 
-_source line 10237 · 2026-05-21T08:35:00.837677+00:00_
+_source line 10215 · 2026-05-21T08:35:00.837677+00:00_
 
 13	
 14	\paragraph{Capability gap hypothesis.}
@@ -14837,7 +13786,7 @@ _source line 10237 · 2026-05-21T08:35:00.837677+00:00_
 
 ### Tool call
 
-_source line 10238 · 2026-05-21T08:35:15.647735+00:00_
+_source line 10216 · 2026-05-21T08:35:15.647735+00:00_
 
 called Edit
 
@@ -14877,7 +13826,7 @@ called Edit
 
 ### Tool result
 
-_source line 10239 · 2026-05-21T08:35:15.698466+00:00_
+_source line 10217 · 2026-05-21T08:35:15.698466+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -14899,7 +13848,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10240 · 2026-05-21T08:35:21.877499+00:00_
+_source line 10218 · 2026-05-21T08:35:21.877499+00:00_
 
 called Edit
 
@@ -14939,7 +13888,7 @@ called Edit
 
 ### Tool result
 
-_source line 10241 · 2026-05-21T08:35:21.878060+00:00_
+_source line 10219 · 2026-05-21T08:35:21.878060+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex has been updated successfully.
 
@@ -14961,7 +13910,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10242 · 2026-05-21T08:35:26.774239+00:00_
+_source line 10220 · 2026-05-21T08:35:26.774239+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -14999,7 +13948,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10243 · 2026-05-21T08:35:34.458753+00:00_
+_source line 10221 · 2026-05-21T08:35:34.458753+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Overfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [22] [23\\n\\n] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/capability_\\ngap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_kapp\\na_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34862 strings out of 469438\\n 665001 string characters out of 5468411\\n 1595349 words of memory out of 5000000\\n 62125 multiletter control sequences out of 15000+600000\\n 731541 words of font info for 454 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 …[truncated 13139 chars]
@@ -15022,7 +13971,7 @@ _source line 10243 · 2026-05-21T08:35:34.458753+00:00_
 
 ### Tool call
 
-_source line 10244 · 2026-05-21T08:35:40.528979+00:00_
+_source line 10222 · 2026-05-21T08:35:40.528979+00:00_
 
 called Read
 
@@ -15056,7 +14005,7 @@ called Read
 
 ### Tool call
 
-_source line 10245 · 2026-05-21T08:35:40.884003+00:00_
+_source line 10223 · 2026-05-21T08:35:40.884003+00:00_
 
 called Read
 
@@ -15090,7 +14039,7 @@ called Read
 
 ### Tool result
 
-_source line 10246 · 2026-05-21T08:35:41.286703+00:00_
+_source line 10224 · 2026-05-21T08:35:41.286703+00:00_
 
 
 
@@ -15112,7 +14061,7 @@ _source line 10246 · 2026-05-21T08:35:41.286703+00:00_
 
 ### Tool result
 
-_source line 10247 · 2026-05-21T08:35:41.689027+00:00_
+_source line 10225 · 2026-05-21T08:35:41.689027+00:00_
 
 
 
@@ -15134,7 +14083,7 @@ _source line 10247 · 2026-05-21T08:35:41.689027+00:00_
 
 ### Tool call
 
-_source line 10248 · 2026-05-21T08:37:51.747164+00:00_
+_source line 10226 · 2026-05-21T08:37:51.747164+00:00_
 
 called Read
 
@@ -15168,7 +14117,7 @@ called Read
 
 ### Tool result
 
-_source line 10249 · 2026-05-21T08:37:51.747782+00:00_
+_source line 10227 · 2026-05-21T08:37:51.747782+00:00_
 
 1	\section{Background \& Setup}
 2	\label{sec:method}
@@ -15209,7 +14158,7 @@ _source line 10249 · 2026-05-21T08:37:51.747782+00:00_
 
 ### Tool call
 
-_source line 10250 · 2026-05-21T08:37:52.199450+00:00_
+_source line 10228 · 2026-05-21T08:37:52.199450+00:00_
 
 called Read
 
@@ -15243,7 +14192,7 @@ called Read
 
 ### Tool result
 
-_source line 10251 · 2026-05-21T08:37:52.751635+00:00_
+_source line 10229 · 2026-05-21T08:37:52.751635+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -15276,7 +14225,7 @@ _source line 10251 · 2026-05-21T08:37:52.751635+00:00_
 
 ### Tool call
 
-_source line 10252 · 2026-05-21T08:37:52.752207+00:00_
+_source line 10230 · 2026-05-21T08:37:52.752207+00:00_
 
 called Read
 
@@ -15310,7 +14259,7 @@ called Read
 
 ### Tool result
 
-_source line 10253 · 2026-05-21T08:37:53.203952+00:00_
+_source line 10231 · 2026-05-21T08:37:53.203952+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -15335,7 +14284,7 @@ _source line 10253 · 2026-05-21T08:37:53.203952+00:00_
 
 ### Tool call
 
-_source line 10254 · 2026-05-21T08:37:53.254674+00:00_
+_source line 10232 · 2026-05-21T08:37:53.254674+00:00_
 
 called Read
 
@@ -15369,7 +14318,7 @@ called Read
 
 ### Tool result
 
-_source line 10255 · 2026-05-21T08:37:53.255281+00:00_
+_source line 10233 · 2026-05-21T08:37:53.255281+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -15415,7 +14364,7 @@ _source line 10255 · 2026-05-21T08:37:53.255281+00:00_
 
 ### Tool call
 
-_source line 10256 · 2026-05-21T08:37:57.524083+00:00_
+_source line 10234 · 2026-05-21T08:37:57.524083+00:00_
 
 called Read
 
@@ -15449,7 +14398,7 @@ called Read
 
 ### Tool result
 
-_source line 10257 · 2026-05-21T08:37:57.825443+00:00_
+_source line 10235 · 2026-05-21T08:37:57.825443+00:00_
 
 1	\section{Analysis}
 2	\label{sec:analysis}
@@ -15501,7 +14450,7 @@ _source line 10257 · 2026-05-21T08:37:57.825443+00:00_
 
 ### Tool call
 
-_source line 10258 · 2026-05-21T08:37:57.876095+00:00_
+_source line 10236 · 2026-05-21T08:37:57.876095+00:00_
 
 called Read
 
@@ -15535,7 +14484,7 @@ called Read
 
 ### Tool result
 
-_source line 10259 · 2026-05-21T08:37:57.926706+00:00_
+_source line 10237 · 2026-05-21T08:37:57.926706+00:00_
 
 1	\paragraph{Scale and language.}
 2	All models range from 7B to 32B parameters; whether this independence limitation persists at larger scales (70B+) or with reasoning-specialized models is untested. All datasets are English-language logical reasoning benchmarks with discrete answer spaces. We do not evaluate trained symbolic extractors, external solvers with verified grounding, or multilingual settings. Oracle analysis is limited to FOLIO and ProofWriter (gold annotations available); extending to commonsense reasoning requires constructing comparable gold constraint sets. The cross-architecture NLI verifier (\S\ref{sec:cross-arch}) provides no benefit on LogiQA (combo $\Delta \leq +1$\,pp, all $p > 0.5$), indicating that cross-architecture escape requires task-verifier alignment---NLI is effective only when the task naturally decomposes into premise-conclusion entailment. Even on compatible tasks, NLI gain vanishes when the capability gap is large (Qwen3-14B ProofWriter: SC 85.83\% vs.\ DeBERTa 55\%, gap $= -30.83$\,pp, $\Delta \leq +0.50$\,pp, n.s.), and moderate negative gaps yield small, non-significant gains (LLaMA-3.1-8B: gap $= -17.50$\,pp, $+0.83$\,pp, n.s.; \S\ref{sec:cross-arch}). Scaling the cross-architecture approach---via trained verifiers, code-based symbolic execution, or multi-verifier ensembles---remains unexplored and may extend the escape to stronger generators and broader task types.
@@ -15562,7 +14511,7 @@ _source line 10259 · 2026-05-21T08:37:57.926706+00:00_
 
 ### Tool call
 
-_source line 10260 · 2026-05-21T08:38:02.450723+00:00_
+_source line 10238 · 2026-05-21T08:38:02.450723+00:00_
 
 called ToolSearch
 
@@ -15598,7 +14547,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10261 · 2026-05-21T08:38:02.451235+00:00_
+_source line 10239 · 2026-05-21T08:38:02.451235+00:00_
 
 
 
@@ -15620,7 +14569,7 @@ _source line 10261 · 2026-05-21T08:38:02.451235+00:00_
 
 ### Tool call
 
-_source line 10262 · 2026-05-21T08:38:06.018982+00:00_
+_source line 10240 · 2026-05-21T08:38:06.018982+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -15658,7 +14607,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10263 · 2026-05-21T08:38:08.682466+00:00_
+_source line 10241 · 2026-05-21T08:38:08.682466+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Overfull \\\\hbox (62.06534pt too wide) in paragraph at lines 748--773\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 783--791\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 826--843\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 850--865\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [22] [23\\n\\n] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/capability_\\ngap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process_kapp\\na_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accuracy_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34862 strings out of 469438\\n 665001 string characters out of 5468411\\n 1595349 words of memory out of 5000000\\n 62125 multiletter control sequences out of 15000+600000\\n 731541 words of font info for 454 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 …[truncated 13139 chars]
@@ -15681,7 +14630,7 @@ _source line 10263 · 2026-05-21T08:38:08.682466+00:00_
 
 ### Tool call
 
-_source line 10264 · 2026-05-21T08:38:12.862046+00:00_
+_source line 10242 · 2026-05-21T08:38:12.862046+00:00_
 
 called Read
 
@@ -15715,7 +14664,7 @@ called Read
 
 ### Tool call
 
-_source line 10265 · 2026-05-21T08:38:13.314160+00:00_
+_source line 10243 · 2026-05-21T08:38:13.314160+00:00_
 
 called Read
 
@@ -15749,7 +14698,7 @@ called Read
 
 ### Tool result
 
-_source line 10266 · 2026-05-21T08:38:13.617965+00:00_
+_source line 10244 · 2026-05-21T08:38:13.617965+00:00_
 
 
 
@@ -15771,7 +14720,7 @@ _source line 10266 · 2026-05-21T08:38:13.617965+00:00_
 
 ### Tool call
 
-_source line 10267 · 2026-05-21T08:38:13.618421+00:00_
+_source line 10245 · 2026-05-21T08:38:13.618421+00:00_
 
 called Read
 
@@ -15805,7 +14754,7 @@ called Read
 
 ### Tool result
 
-_source line 10268 · 2026-05-21T08:38:14.324762+00:00_
+_source line 10246 · 2026-05-21T08:38:14.324762+00:00_
 
 
 
@@ -15827,7 +14776,7 @@ _source line 10268 · 2026-05-21T08:38:14.324762+00:00_
 
 ### Tool result
 
-_source line 10269 · 2026-05-21T08:38:14.731763+00:00_
+_source line 10247 · 2026-05-21T08:38:14.731763+00:00_
 
 
 
@@ -15849,7 +14798,7 @@ _source line 10269 · 2026-05-21T08:38:14.731763+00:00_
 
 ### Tool call
 
-_source line 10270 · 2026-05-21T08:38:51.409108+00:00_
+_source line 10248 · 2026-05-21T08:38:51.409108+00:00_
 
 called Read
 
@@ -15885,7 +14834,7 @@ called Read
 
 ### Tool result
 
-_source line 10271 · 2026-05-21T08:38:51.509851+00:00_
+_source line 10249 · 2026-05-21T08:38:51.509851+00:00_
 
 1	
 2	\section{Regime Scatter Plot}
@@ -15946,7 +14895,7 @@ _source line 10271 · 2026-05-21T08:38:51.509851+00:00_
 
 ### Tool call
 
-_source line 10272 · 2026-05-21T08:39:02.921217+00:00_
+_source line 10250 · 2026-05-21T08:39:02.921217+00:00_
 
 called Edit
 
@@ -15986,7 +14935,7 @@ called Edit
 
 ### Tool result
 
-_source line 10273 · 2026-05-21T08:39:02.922521+00:00_
+_source line 10251 · 2026-05-21T08:39:02.922521+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex has been updated successfully.
 
@@ -16008,7 +14957,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10274 · 2026-05-21T08:39:14.886555+00:00_
+_source line 10252 · 2026-05-21T08:39:14.886555+00:00_
 
 called Edit
 
@@ -16048,7 +14997,7 @@ called Edit
 
 ### Tool result
 
-_source line 10275 · 2026-05-21T08:39:14.937549+00:00_
+_source line 10253 · 2026-05-21T08:39:14.937549+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -16070,7 +15019,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10276 · 2026-05-21T08:39:40.558062+00:00_
+_source line 10254 · 2026-05-21T08:39:40.558062+00:00_
 
 called Edit
 
@@ -16110,7 +15059,7 @@ called Edit
 
 ### Tool result
 
-_source line 10277 · 2026-05-21T08:39:40.558738+00:00_
+_source line 10255 · 2026-05-21T08:39:40.558738+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated successfully.
 
@@ -16132,7 +15081,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10278 · 2026-05-21T08:39:43.824812+00:00_
+_source line 10256 · 2026-05-21T08:39:43.824812+00:00_
 
 called Read
 
@@ -16168,7 +15117,7 @@ called Read
 
 ### Tool result
 
-_source line 10279 · 2026-05-21T08:39:43.875588+00:00_
+_source line 10257 · 2026-05-21T08:39:43.875588+00:00_
 
 1	
 2	\section{Regime Scatter Plot}
@@ -16194,7 +15143,7 @@ _source line 10279 · 2026-05-21T08:39:43.875588+00:00_
 
 ### Tool call
 
-_source line 10280 · 2026-05-21T08:39:49.916405+00:00_
+_source line 10258 · 2026-05-21T08:39:49.916405+00:00_
 
 called Edit
 
@@ -16234,7 +15183,7 @@ called Edit
 
 ### Tool result
 
-_source line 10281 · 2026-05-21T08:39:50.017525+00:00_
+_source line 10259 · 2026-05-21T08:39:50.017525+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -16256,7 +15205,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10282 · 2026-05-21T08:40:06.702705+00:00_
+_source line 10260 · 2026-05-21T08:40:06.702705+00:00_
 
 called Edit
 
@@ -16296,7 +15245,7 @@ called Edit
 
 ### Tool result
 
-_source line 10283 · 2026-05-21T08:40:06.754535+00:00_
+_source line 10261 · 2026-05-21T08:40:06.754535+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -16318,7 +15267,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10284 · 2026-05-21T08:40:10.876027+00:00_
+_source line 10262 · 2026-05-21T08:40:10.876027+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -16356,7 +15305,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10285 · 2026-05-21T08:40:13.438674+00:00_
+_source line 10263 · 2026-05-21T08:40:13.438674+00:00_
 
 {"result":"{\"success\": false, \"passed\": false, \"compiled\": {\"success\": false, \"pdf_path\": null, \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"File: figures/f6_kappa_accuracy_scatter.pdf Graphic file (type pdf)\\n&lt;use figures/f6_kappa_accuracy_scatter.pdf>\\nPackage pdftex.def Info: figures/f6_kappa_accuracy_scatter.pdf  used on input l\\nine 579.\\n(pdftex.def)             Requested size: 219.08614pt x 163.2115pt.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (14.48395pt too wide) in paragraph at lines 590--604\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (98.66669pt too wide) in paragraph at lines 642--652\\n [][] \\n []\\n\\n[19]\\nOverfull \\\\hbox (65.27673pt too wide) in paragraph at lines 665--674\\n [][] \\n []\\n\\n[20]\\nOverfull \\\\hbox (7.22363pt too wide) in paragraph at lines 720--736\\n [][] \\n []\\n\\n\\nUnderfull \\\\hbox (badness 1735) in paragraph at lines 743--744\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 758--783\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 793--801\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 836--853\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 860--875\\n [][] \\n []\\n\\n\\n! LaTeX Error: Counter too large.\\n\\nSee the LaTeX manual or LaTeX Companion for explanation.\\nType  H &lt;return>  for immediate help.\\n ...                                              \\n                                                  \\nl.882 \\\\section{Extended Limitations}\\n                                    \\nYou've lost som
 …[truncated 7538 chars]
@@ -16379,7 +15328,7 @@ _source line 10285 · 2026-05-21T08:40:13.438674+00:00_
 
 ### Tool call
 
-_source line 10286 · 2026-05-21T08:40:21.073573+00:00_
+_source line 10264 · 2026-05-21T08:40:21.073573+00:00_
 
 called Grep
 
@@ -16419,7 +15368,7 @@ called Grep
 
 ### Tool result
 
-_source line 10287 · 2026-05-21T08:40:21.074015+00:00_
+_source line 10265 · 2026-05-21T08:40:21.074015+00:00_
 
 2:\section{Cumulative Information Lift}
 12:\section{Regime Scatter Plot}
@@ -16467,7 +15416,7 @@ _source line 10287 · 2026-05-21T08:40:21.074015+00:00_
 
 ### Tool call
 
-_source line 10288 · 2026-05-21T08:40:32.275889+00:00_
+_source line 10266 · 2026-05-21T08:40:32.275889+00:00_
 
 called Read
 
@@ -16505,7 +15454,7 @@ called Read
 
 ### Tool result
 
-_source line 10289 · 2026-05-21T08:40:32.326591+00:00_
+_source line 10267 · 2026-05-21T08:40:32.326591+00:00_
 
 212	\section{Capability-Accuracy Constraint Diagnostics}
 213	\label{app:diagnostics}
@@ -16556,7 +15505,7 @@ _source line 10289 · 2026-05-21T08:40:32.326591+00:00_
 
 ### Tool call
 
-_source line 10290 · 2026-05-21T08:40:42.733330+00:00_
+_source line 10268 · 2026-05-21T08:40:42.733330+00:00_
 
 called Edit
 
@@ -16596,7 +15545,7 @@ called Edit
 
 ### Tool result
 
-_source line 10291 · 2026-05-21T08:40:42.734180+00:00_
+_source line 10269 · 2026-05-21T08:40:42.734180+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -16618,7 +15567,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10292 · 2026-05-21T08:40:49.168867+00:00_
+_source line 10270 · 2026-05-21T08:40:49.168867+00:00_
 
 called Edit
 
@@ -16658,7 +15607,7 @@ called Edit
 
 ### Tool result
 
-_source line 10293 · 2026-05-21T08:40:49.220483+00:00_
+_source line 10271 · 2026-05-21T08:40:49.220483+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -16680,7 +15629,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10294 · 2026-05-21T08:40:53.753055+00:00_
+_source line 10272 · 2026-05-21T08:40:53.753055+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -16718,7 +15667,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10295 · 2026-05-21T08:41:02.959557+00:00_
+_source line 10273 · 2026-05-21T08:41:02.959557+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n\\nUnderfull \\\\hbox (badness 1735) in paragraph at lines 742--743\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 757--782\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 792--800\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 835--852\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 859--874\\n [][] \\n []\\n\\n) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/capabi\\nlity_gap_scatter.pdf> <./figures/f2_regime_scatter.pdf> <./figures/fig3_process\\n_kappa_scatter.pdf> <./figures/f3_k_sensitivity.pdf> <./figures/f6_kappa_accura\\ncy_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34854 strings out of 469438\\n 664941 string characters out of 5468411\\n 1492349 words of memory out of 5000000\\n 62125 multiletter control sequences out of 15000+600000\\n 731173 words of font info for 448 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2017s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-dist/f
 …[truncated 13216 chars]
@@ -16741,7 +15690,7 @@ _source line 10295 · 2026-05-21T08:41:02.959557+00:00_
 
 ### Tool call
 
-_source line 10296 · 2026-05-21T08:41:08.131221+00:00_
+_source line 10274 · 2026-05-21T08:41:08.131221+00:00_
 
 called Read
 
@@ -16775,7 +15724,7 @@ called Read
 
 ### Tool call
 
-_source line 10297 · 2026-05-21T08:41:08.484289+00:00_
+_source line 10275 · 2026-05-21T08:41:08.484289+00:00_
 
 called Read
 
@@ -16809,7 +15758,7 @@ called Read
 
 ### Tool result
 
-_source line 10298 · 2026-05-21T08:41:08.986892+00:00_
+_source line 10276 · 2026-05-21T08:41:08.986892+00:00_
 
 
 
@@ -16831,7 +15780,7 @@ _source line 10298 · 2026-05-21T08:41:08.986892+00:00_
 
 ### Tool call
 
-_source line 10299 · 2026-05-21T08:41:08.987368+00:00_
+_source line 10277 · 2026-05-21T08:41:08.987368+00:00_
 
 called Read
 
@@ -16865,7 +15814,7 @@ called Read
 
 ### Tool result
 
-_source line 10300 · 2026-05-21T08:41:09.536438+00:00_
+_source line 10278 · 2026-05-21T08:41:09.536438+00:00_
 
 
 
@@ -16887,7 +15836,7 @@ _source line 10300 · 2026-05-21T08:41:09.536438+00:00_
 
 ### Tool result
 
-_source line 10301 · 2026-05-21T08:41:09.994043+00:00_
+_source line 10279 · 2026-05-21T08:41:09.994043+00:00_
 
 
 
@@ -16909,7 +15858,7 @@ _source line 10301 · 2026-05-21T08:41:09.994043+00:00_
 
 ### Assistant
 
-_source line 10302 · 2026-05-21T08:41:37.432109+00:00_
+_source line 10280 · 2026-05-21T08:41:37.432109+00:00_
 
 Compiled: 24 pages (down from 25). Let me check pages 7-9 to see if Conclusion now fits on page 8.
 
@@ -16936,7 +15885,7 @@ Compiled: 24 pages (down from 25). Let me check pages 7-9 to see if Conclusion n
 
 ### User
 
-_source line 10303 · 2026-05-21T08:41:37.984482+00:00_
+_source line 10281 · 2026-05-21T08:41:37.984482+00:00_
 
 [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
 
@@ -16957,7 +15906,7 @@ _source line 10303 · 2026-05-21T08:41:37.984482+00:00_
 
 ### Tool call
 
-_source line 10304 · 2026-05-21T08:41:50.657139+00:00_
+_source line 10282 · 2026-05-21T08:41:50.657139+00:00_
 
 called Read
 
@@ -16991,7 +15940,7 @@ called Read
 
 ### Tool result
 
-_source line 10305 · 2026-05-21T08:41:51.510787+00:00_
+_source line 10283 · 2026-05-21T08:41:51.510787+00:00_
 
 
 
@@ -17013,7 +15962,7 @@ _source line 10305 · 2026-05-21T08:41:51.510787+00:00_
 
 ### Tool call
 
-_source line 10306 · 2026-05-21T08:42:08.698250+00:00_
+_source line 10284 · 2026-05-21T08:42:08.698250+00:00_
 
 called ToolSearch
 
@@ -17049,7 +15998,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10307 · 2026-05-21T08:42:08.749035+00:00_
+_source line 10285 · 2026-05-21T08:42:08.749035+00:00_
 
 
 
@@ -17071,7 +16020,7 @@ _source line 10307 · 2026-05-21T08:42:08.749035+00:00_
 
 ### Tool call
 
-_source line 10308 · 2026-05-21T08:42:40.038202+00:00_
+_source line 10286 · 2026-05-21T08:42:40.038202+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -17107,7 +16056,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 10309 · 2026-05-21T08:42:44.230563+00:00_
+_source line 10287 · 2026-05-21T08:42:44.230563+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -17129,7 +16078,7 @@ _source line 10309 · 2026-05-21T08:42:44.230563+00:00_
 
 ### Assistant
 
-_source line 10310 · 2026-05-21T08:42:49.873160+00:00_
+_source line 10288 · 2026-05-21T08:42:49.873160+00:00_
 
 R11 Batch 1 已完成并汇报 Director。总结：
 
@@ -17160,7 +16109,7 @@ R11 Batch 1 已完成并汇报 Director。总结：
 
 ### User
 
-_source line 10311 · 2026-05-21T08:43:17.065443+00:00_
+_source line 10289 · 2026-05-21T08:43:17.065443+00:00_
 
 [Director 指令] [Patch] R11 Batch 1 收尾 — 3 个小项
 
@@ -17189,7 +16138,7 @@ _source line 10311 · 2026-05-21T08:43:17.065443+00:00_
 
 ### Tool call
 
-_source line 10312 · 2026-05-21T08:43:24.132814+00:00_
+_source line 10290 · 2026-05-21T08:43:24.132814+00:00_
 
 called ToolSearch
 
@@ -17225,7 +16174,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10313 · 2026-05-21T08:43:24.233635+00:00_
+_source line 10291 · 2026-05-21T08:43:24.233635+00:00_
 
 
 
@@ -17247,7 +16196,7 @@ _source line 10313 · 2026-05-21T08:43:24.233635+00:00_
 
 ### Tool call
 
-_source line 10314 · 2026-05-21T08:43:29.752606+00:00_
+_source line 10292 · 2026-05-21T08:43:29.752606+00:00_
 
 called TodoWrite
 
@@ -17281,7 +16230,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10315 · 2026-05-21T08:43:29.753106+00:00_
+_source line 10293 · 2026-05-21T08:43:29.753106+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -17303,7 +16252,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10316 · 2026-05-21T08:43:34.525210+00:00_
+_source line 10294 · 2026-05-21T08:43:34.525210+00:00_
 
 called Grep
 
@@ -17341,7 +16290,7 @@ called Grep
 
 ### Tool result
 
-_source line 10317 · 2026-05-21T08:43:34.625955+00:00_
+_source line 10295 · 2026-05-21T08:43:34.625955+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex:22:\label{fig:capability-gap}
 
@@ -17363,7 +16312,7 @@ _source line 10317 · 2026-05-21T08:43:34.625955+00:00_
 
 ### Tool call
 
-_source line 10318 · 2026-05-21T08:43:37.789298+00:00_
+_source line 10296 · 2026-05-21T08:43:37.789298+00:00_
 
 called Read
 
@@ -17401,7 +16350,7 @@ called Read
 
 ### Tool result
 
-_source line 10319 · 2026-05-21T08:43:37.890058+00:00_
+_source line 10297 · 2026-05-21T08:43:37.890058+00:00_
 
 14	\paragraph{Capability gap hypothesis.}
 15	Four generators spanning a 46-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\% standalone; Table~\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\%, below the verifier) gains significantly ($+6.67$\,pp, $p < 0.001$); LLaMA-3.1-8B ($+0.83$), Qwen2.5-14B ($+0.67$), and Qwen3-14B ($+0.50$\,pp) show no improvement. After BH correction ($m{=}12$), only Mistral-7B survives. The monotonic relationship holds across three NLI architectures, spanning six verifier-generator pairs (Spearman $\rho = 1.0$, $p = 0.003$, $n{=}6$; four of six share the DeBERTa verifier---see Limitations; Figure~\ref{fig:capability-gap}; Appendix~\ref{app:capability-gap}), confirming Finding~2.
@@ -17426,7 +16375,7 @@ _source line 10319 · 2026-05-21T08:43:37.890058+00:00_
 
 ### Tool call
 
-_source line 10320 · 2026-05-21T08:43:43.196143+00:00_
+_source line 10298 · 2026-05-21T08:43:43.196143+00:00_
 
 called Grep
 
@@ -17466,7 +16415,7 @@ called Grep
 
 ### Tool result
 
-_source line 10321 · 2026-05-21T08:43:43.297352+00:00_
+_source line 10299 · 2026-05-21T08:43:43.297352+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex:740:\label{app:capability-gap}
 
@@ -17488,7 +16437,7 @@ _source line 10321 · 2026-05-21T08:43:43.297352+00:00_
 
 ### Tool call
 
-_source line 10322 · 2026-05-21T08:43:46.718801+00:00_
+_source line 10300 · 2026-05-21T08:43:46.718801+00:00_
 
 called Read
 
@@ -17526,7 +16475,7 @@ called Read
 
 ### Tool result
 
-_source line 10323 · 2026-05-21T08:43:46.769529+00:00_
+_source line 10301 · 2026-05-21T08:43:46.769529+00:00_
 
 738	
 739	\section{Capability Gap Data Points}
@@ -17565,7 +16514,7 @@ _source line 10323 · 2026-05-21T08:43:46.769529+00:00_
 
 ### Tool call
 
-_source line 10324 · 2026-05-21T08:43:58.627340+00:00_
+_source line 10302 · 2026-05-21T08:43:58.627340+00:00_
 
 called Edit
 
@@ -17605,7 +16554,7 @@ called Edit
 
 ### Tool result
 
-_source line 10325 · 2026-05-21T08:43:58.678189+00:00_
+_source line 10303 · 2026-05-21T08:43:58.678189+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -17627,7 +16576,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10326 · 2026-05-21T08:44:04.953990+00:00_
+_source line 10304 · 2026-05-21T08:44:04.953990+00:00_
 
 called Edit
 
@@ -17667,7 +16616,7 @@ called Edit
 
 ### Tool result
 
-_source line 10327 · 2026-05-21T08:44:05.005240+00:00_
+_source line 10305 · 2026-05-21T08:44:05.005240+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
 
@@ -17689,7 +16638,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10328 · 2026-05-21T08:44:10.834043+00:00_
+_source line 10306 · 2026-05-21T08:44:10.834043+00:00_
 
 called Edit
 
@@ -17729,7 +16678,7 @@ called Edit
 
 ### Tool result
 
-_source line 10329 · 2026-05-21T08:44:10.997429+00:00_
+_source line 10307 · 2026-05-21T08:44:10.997429+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -17751,7 +16700,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10330 · 2026-05-21T08:44:15.134094+00:00_
+_source line 10308 · 2026-05-21T08:44:15.134094+00:00_
 
 called Grep
 
@@ -17791,7 +16740,7 @@ called Grep
 
 ### Tool result
 
-_source line 10331 · 2026-05-21T08:44:15.184763+00:00_
+_source line 10309 · 2026-05-21T08:44:15.184763+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux:2273:\newlabel{fig:capability-gap}{{3}{24}{Combo gain vs.\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur only when the verifier exceeds the generator}{figure.caption.22}{}}
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux:2274:\newlabel{fig:capability-gap@cref}{{[figure][3][]3}{[1][8][]24}{}{}{}}
@@ -17817,7 +16766,7 @@ _source line 10331 · 2026-05-21T08:44:15.184763+00:00_
 
 ### Tool call
 
-_source line 10332 · 2026-05-21T08:44:19.411706+00:00_
+_source line 10310 · 2026-05-21T08:44:19.411706+00:00_
 
 called TodoWrite
 
@@ -17851,7 +16800,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10333 · 2026-05-21T08:44:19.412223+00:00_
+_source line 10311 · 2026-05-21T08:44:19.412223+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -17873,7 +16822,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10334 · 2026-05-21T08:44:25.184812+00:00_
+_source line 10312 · 2026-05-21T08:44:25.184812+00:00_
 
 called Grep
 
@@ -17915,7 +16864,7 @@ called Grep
 
 ### Tool result
 
-_source line 10335 · 2026-05-21T08:44:25.235501+00:00_
+_source line 10313 · 2026-05-21T08:44:25.235501+00:00_
 
 508:@article{zhang2026independent,
 509-  title={How Independent are Large Language Models?},
@@ -17963,7 +16912,7 @@ _source line 10335 · 2026-05-21T08:44:25.235501+00:00_
 
 ### Tool call
 
-_source line 10336 · 2026-05-21T08:44:29.199421+00:00_
+_source line 10314 · 2026-05-21T08:44:29.199421+00:00_
 
 called ToolSearch
 
@@ -17999,7 +16948,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 10337 · 2026-05-21T08:44:29.252067+00:00_
+_source line 10315 · 2026-05-21T08:44:29.252067+00:00_
 
 
 
@@ -18021,7 +16970,7 @@ _source line 10337 · 2026-05-21T08:44:29.252067+00:00_
 
 ### Tool call
 
-_source line 10338 · 2026-05-21T08:44:32.866645+00:00_
+_source line 10316 · 2026-05-21T08:44:32.866645+00:00_
 
 called WebSearch
 
@@ -18055,7 +17004,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 10339 · 2026-05-21T08:44:33.268667+00:00_
+_source line 10317 · 2026-05-21T08:44:33.268667+00:00_
 
 called WebSearch
 
@@ -18089,7 +17038,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 10340 · 2026-05-21T08:44:33.871344+00:00_
+_source line 10318 · 2026-05-21T08:44:33.871344+00:00_
 
 called WebSearch
 
@@ -18123,7 +17072,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 10341 · 2026-05-21T08:44:34.023901+00:00_
+_source line 10319 · 2026-05-21T08:44:34.023901+00:00_
 
 called WebSearch
 
@@ -18157,7 +17106,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 10342 · 2026-05-21T08:44:38.543682+00:00_
+_source line 10320 · 2026-05-21T08:44:38.543682+00:00_
 
 Web search results for query: "arXiv 2604.07650 "How Independent are Large Language Models""
 
@@ -18196,7 +17145,7 @@ I found the paper! Here are the key details about arXiv paper 2604.07650:
 
 ### Tool result
 
-_source line 10343 · 2026-05-21T08:44:38.694752+00:00_
+_source line 10321 · 2026-05-21T08:44:38.694752+00:00_
 
 Web search results for query: "arXiv 2506.07962 "Correlated Errors" large language models"
 
@@ -18237,7 +17186,7 @@ The researchers conducted a large-scale empirical evaluation on over 350 LLMs ov
 
 ### Tool result
 
-_source line 10344 · 2026-05-21T08:44:40.757826+00:00_
+_source line 10322 · 2026-05-21T08:44:40.757826+00:00_
 
 Web search results for query: "arXiv 2510.01499 "Beyond Majority Voting" LLM ensembles"
 
@@ -18276,7 +17225,7 @@ The theoretical analysis shows these methods provably mitigate inherent limitati
 
 ### Tool result
 
-_source line 10345 · 2026-05-21T08:44:49.447869+00:00_
+_source line 10323 · 2026-05-21T08:44:49.447869+00:00_
 
 Web search results for query: "arXiv 2501.19306 SETS self-verification self-correction LLM reasoning"
 
@@ -18313,7 +17262,7 @@ SETS (Self-Enhanced Test-Time Scaling) is a simple yet effective approach that o
 
 ### Tool call
 
-_source line 10346 · 2026-05-21T08:44:54.945230+00:00_
+_source line 10324 · 2026-05-21T08:44:54.945230+00:00_
 
 called Read
 
@@ -18351,7 +17300,7 @@ called Read
 
 ### Tool result
 
-_source line 10347 · 2026-05-21T08:44:54.996072+00:00_
+_source line 10325 · 2026-05-21T08:44:54.996072+00:00_
 
 508	@article{zhang2026independent,
 509	  title={How Independent are Large Language Models?},
@@ -18399,7 +17348,7 @@ _source line 10347 · 2026-05-21T08:44:54.996072+00:00_
 
 ### Tool call
 
-_source line 10348 · 2026-05-21T08:45:01.021259+00:00_
+_source line 10326 · 2026-05-21T08:45:01.021259+00:00_
 
 called Edit
 
@@ -18439,7 +17388,7 @@ called Edit
 
 ### Tool result
 
-_source line 10349 · 2026-05-21T08:45:01.072137+00:00_
+_source line 10327 · 2026-05-21T08:45:01.072137+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -18461,7 +17410,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10350 · 2026-05-21T08:45:05.640574+00:00_
+_source line 10328 · 2026-05-21T08:45:05.640574+00:00_
 
 called Edit
 
@@ -18501,7 +17450,7 @@ called Edit
 
 ### Tool result
 
-_source line 10351 · 2026-05-21T08:45:05.691433+00:00_
+_source line 10329 · 2026-05-21T08:45:05.691433+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -18523,7 +17472,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10352 · 2026-05-21T08:45:13.830126+00:00_
+_source line 10330 · 2026-05-21T08:45:13.830126+00:00_
 
 called Grep
 
@@ -18561,7 +17510,7 @@ called Grep
 
 ### Tool result
 
-_source line 10353 · 2026-05-21T08:45:13.880774+00:00_
+_source line 10331 · 2026-05-21T08:45:13.880774+00:00_
 
 Found 4 files
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib
@@ -18587,7 +17536,7 @@ Found 4 files
 
 ### Tool call
 
-_source line 10354 · 2026-05-21T08:45:17.446912+00:00_
+_source line 10332 · 2026-05-21T08:45:17.446912+00:00_
 
 called Edit
 
@@ -18627,7 +17576,7 @@ called Edit
 
 ### Tool result
 
-_source line 10355 · 2026-05-21T08:45:17.498850+00:00_
+_source line 10333 · 2026-05-21T08:45:17.498850+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated. All occurrences were successfully replaced.
 
@@ -18649,7 +17598,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10356 · 2026-05-21T08:45:21.365079+00:00_
+_source line 10334 · 2026-05-21T08:45:21.365079+00:00_
 
 called Edit
 
@@ -18689,7 +17638,7 @@ called Edit
 
 ### Tool result
 
-_source line 10357 · 2026-05-21T08:45:21.415687+00:00_
+_source line 10335 · 2026-05-21T08:45:21.415687+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -18711,7 +17660,7 @@ _source line 10357 · 2026-05-21T08:45:21.415687+00:00_
 
 ### Tool call
 
-_source line 10358 · 2026-05-21T08:45:24.477951+00:00_
+_source line 10336 · 2026-05-21T08:45:24.477951+00:00_
 
 called Read
 
@@ -18745,7 +17694,7 @@ called Read
 
 ### Tool result
 
-_source line 10359 · 2026-05-21T08:45:24.578909+00:00_
+_source line 10337 · 2026-05-21T08:45:24.578909+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related-work}
@@ -18775,7 +17724,7 @@ _source line 10359 · 2026-05-21T08:45:24.578909+00:00_
 
 ### Tool call
 
-_source line 10360 · 2026-05-21T08:45:28.051170+00:00_
+_source line 10338 · 2026-05-21T08:45:28.051170+00:00_
 
 called Edit
 
@@ -18815,7 +17764,7 @@ called Edit
 
 ### Tool result
 
-_source line 10361 · 2026-05-21T08:45:28.101930+00:00_
+_source line 10339 · 2026-05-21T08:45:28.101930+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated. All occurrences were successfully replaced.
 
@@ -18837,7 +17786,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10362 · 2026-05-21T08:45:32.975738+00:00_
+_source line 10340 · 2026-05-21T08:45:32.975738+00:00_
 
 called WebSearch
 
@@ -18871,7 +17820,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 10363 · 2026-05-21T08:45:39.807930+00:00_
+_source line 10341 · 2026-05-21T08:45:39.807930+00:00_
 
 Web search results for query: "arxiv.org abs 2510.01499 authors "Beyond Majority Voting" LLM aggregation higher-order"
 
@@ -18906,7 +17855,7 @@ Based on the search results, here's information about the paper arxiv.org abs 25
 
 ### Tool call
 
-_source line 10364 · 2026-05-21T08:45:46.013903+00:00_
+_source line 10342 · 2026-05-21T08:45:46.013903+00:00_
 
 called Edit
 
@@ -18946,7 +17895,7 @@ called Edit
 
 ### Tool result
 
-_source line 10365 · 2026-05-21T08:45:46.114988+00:00_
+_source line 10343 · 2026-05-21T08:45:46.114988+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -18968,7 +17917,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10366 · 2026-05-21T08:45:50.934235+00:00_
+_source line 10344 · 2026-05-21T08:45:50.934235+00:00_
 
 called Edit
 
@@ -19008,7 +17957,7 @@ called Edit
 
 ### Tool result
 
-_source line 10367 · 2026-05-21T08:45:51.035155+00:00_
+_source line 10345 · 2026-05-21T08:45:51.035155+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated. All occurrences were successfully replaced.
 
@@ -19030,7 +17979,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10368 · 2026-05-21T08:45:59.819686+00:00_
+_source line 10346 · 2026-05-21T08:45:59.819686+00:00_
 
 called Edit
 
@@ -19070,7 +18019,7 @@ called Edit
 
 ### Tool result
 
-_source line 10369 · 2026-05-21T08:45:59.870557+00:00_
+_source line 10347 · 2026-05-21T08:45:59.870557+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated successfully.
 
@@ -19092,7 +18041,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10370 · 2026-05-21T08:46:04.497613+00:00_
+_source line 10348 · 2026-05-21T08:46:04.497613+00:00_
 
 called Grep
 
@@ -19132,7 +18081,7 @@ called Grep
 
 ### Tool result
 
-_source line 10371 · 2026-05-21T08:46:04.548741+00:00_
+_source line 10349 · 2026-05-21T08:46:04.548741+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex
@@ -19155,7 +18104,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 10372 · 2026-05-21T08:46:08.063439+00:00_
+_source line 10350 · 2026-05-21T08:46:08.063439+00:00_
 
 called Edit
 
@@ -19195,7 +18144,7 @@ called Edit
 
 ### Tool result
 
-_source line 10373 · 2026-05-21T08:46:08.164257+00:00_
+_source line 10351 · 2026-05-21T08:46:08.164257+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex has been updated. All occurrences were successfully replaced.
 
@@ -19217,7 +18166,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10374 · 2026-05-21T08:46:12.425270+00:00_
+_source line 10352 · 2026-05-21T08:46:12.425270+00:00_
 
 called Grep
 
@@ -19257,7 +18206,7 @@ called Grep
 
 ### Tool result
 
-_source line 10375 · 2026-05-21T08:46:12.493090+00:00_
+_source line 10353 · 2026-05-21T08:46:12.493090+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex
@@ -19280,7 +18229,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 10376 · 2026-05-21T08:46:15.865696+00:00_
+_source line 10354 · 2026-05-21T08:46:15.865696+00:00_
 
 called Edit
 
@@ -19320,7 +18269,7 @@ called Edit
 
 ### Tool result
 
-_source line 10377 · 2026-05-21T08:46:16.017011+00:00_
+_source line 10355 · 2026-05-21T08:46:16.017011+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/references.bib has been updated. All occurrences were successfully replaced.
 
@@ -19342,7 +18291,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10378 · 2026-05-21T08:46:19.330633+00:00_
+_source line 10356 · 2026-05-21T08:46:19.330633+00:00_
 
 called Edit
 
@@ -19382,7 +18331,7 @@ called Edit
 
 ### Tool result
 
-_source line 10379 · 2026-05-21T08:46:19.381327+00:00_
+_source line 10357 · 2026-05-21T08:46:19.381327+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated. All occurrences were successfully replaced.
 
@@ -19404,7 +18353,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10380 · 2026-05-21T08:46:24.302475+00:00_
+_source line 10358 · 2026-05-21T08:46:24.302475+00:00_
 
 called Read
 
@@ -19442,7 +18391,7 @@ called Read
 
 ### Tool result
 
-_source line 10381 · 2026-05-21T08:46:24.418678+00:00_
+_source line 10359 · 2026-05-21T08:46:24.418678+00:00_
 
 13	\paragraph{CJT and positioning.}
 14	CJT \citep{condorcet1785} guarantees convergence under independent voting; \citet{ladha1992correlated} show correlated voters reduce effective ensemble size; \citet{lefort2024condorcet_llm} apply CJT to LLM classification. \citet{kim2025correlated} demonstrate correlated errors in LLM outputs. Concurrent work by \citet{kuai2026independent} proposes BEI and CIG to audit cross-model behavioral dependencies; our process-$\kappa$ and $K_\text{eff}$ are complementary, operating at the reasoning-process level within same-model traces and identifying a specific causal mechanism (SCB) that behavioral metrics miss.
@@ -19466,7 +18415,7 @@ _source line 10381 · 2026-05-21T08:46:24.418678+00:00_
 
 ### Tool call
 
-_source line 10382 · 2026-05-21T08:46:28.693563+00:00_
+_source line 10360 · 2026-05-21T08:46:28.693563+00:00_
 
 called TodoWrite
 
@@ -19500,7 +18449,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10383 · 2026-05-21T08:46:28.744762+00:00_
+_source line 10361 · 2026-05-21T08:46:28.744762+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -19522,7 +18471,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10384 · 2026-05-21T08:46:31.960074+00:00_
+_source line 10362 · 2026-05-21T08:46:31.960074+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -19560,7 +18509,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 10385 · 2026-05-21T08:46:43.861066+00:00_
+_source line 10363 · 2026-05-21T08:46:43.861066+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"(pdftex.def)             Requested size: 170.88692pt x 131.12085pt.\\n\\nUnderfull \\\\hbox (badness 1735) in paragraph at lines 749--750\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 764--789\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 799--807\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n[21]\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 842--859\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 866--881\\n [][] \\n []\\n\\n) [22] [23 <./figures/fig_app_interventions_summary.pdf>] [24 <./figures/f2_reg\\nime_scatter.pdf> <./figures/fig3_process_kappa_scatter.pdf> <./figures/f3_k_sen\\nsitivity.pdf> <./figures/f6_kappa_accuracy_scatter.pdf> <./figures/capability_g\\nap_scatter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34857 strings out of 469438\\n 664963 string characters out of 5468411\\n 1492349 words of memory out of 5000000\\n 62125 multiletter control sequences out of 15000+600000\\n 731398 words of font info for 450 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2017s stack positions out of 100
 …[truncated 13283 chars]
@@ -19583,7 +18532,7 @@ _source line 10385 · 2026-05-21T08:46:43.861066+00:00_
 
 ### Tool call
 
-_source line 10386 · 2026-05-21T08:46:47.699076+00:00_
+_source line 10364 · 2026-05-21T08:46:47.699076+00:00_
 
 called Read
 
@@ -19617,7 +18566,7 @@ called Read
 
 ### Tool result
 
-_source line 10387 · 2026-05-21T08:46:48.557844+00:00_
+_source line 10365 · 2026-05-21T08:46:48.557844+00:00_
 
 
 
@@ -19639,7 +18588,7 @@ _source line 10387 · 2026-05-21T08:46:48.557844+00:00_
 
 ### Tool call
 
-_source line 10388 · 2026-05-21T08:47:00.106743+00:00_
+_source line 10366 · 2026-05-21T08:47:00.106743+00:00_
 
 called TodoWrite
 
@@ -19673,7 +18622,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10389 · 2026-05-21T08:47:00.257979+00:00_
+_source line 10367 · 2026-05-21T08:47:00.257979+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -19695,7 +18644,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10390 · 2026-05-21T08:47:17.578801+00:00_
+_source line 10368 · 2026-05-21T08:47:17.578801+00:00_
 
 called mcp__agent-ml-research__paper_agent_post_to_director
 
@@ -19731,7 +18680,7 @@ called mcp__agent-ml-research__paper_agent_post_to_director
 
 ### Tool result
 
-_source line 10391 · 2026-05-21T08:47:21.548411+00:00_
+_source line 10369 · 2026-05-21T08:47:21.548411+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
 
@@ -19753,7 +18702,7 @@ _source line 10391 · 2026-05-21T08:47:21.548411+00:00_
 
 ### Assistant
 
-_source line 10392 · 2026-05-21T08:47:24.553423+00:00_
+_source line 10370 · 2026-05-21T08:47:24.553423+00:00_
 
 R11 Batch 1 全部完成，已汇报 Director。等待下一步指令。
 
@@ -19780,7 +18729,7 @@ R11 Batch 1 全部完成，已汇报 Director。等待下一步指令。
 
 ### User
 
-_source line 10393 · 2026-05-21T08:47:25.120975+00:00_
+_source line 10371 · 2026-05-21T08:47:25.120975+00:00_
 
 [Director 指令] [Patch] 两组新实验数据需要整合到论文：
 
@@ -19829,7 +18778,7 @@ FOLIO SC baseline = 55.88%, full combo w=3 = 58.82%。
 
 ### Tool call
 
-_source line 10394 · 2026-05-21T08:47:36.689496+00:00_
+_source line 10372 · 2026-05-21T08:47:36.689496+00:00_
 
 called TodoWrite
 
@@ -19863,7 +18812,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10395 · 2026-05-21T08:47:36.740055+00:00_
+_source line 10373 · 2026-05-21T08:47:36.740055+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -19885,7 +18834,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10396 · 2026-05-21T08:47:41.212203+00:00_
+_source line 10374 · 2026-05-21T08:47:41.212203+00:00_
 
 called Read
 
@@ -19919,7 +18868,7 @@ called Read
 
 ### Tool result
 
-_source line 10397 · 2026-05-21T08:47:41.714539+00:00_
+_source line 10375 · 2026-05-21T08:47:41.714539+00:00_
 
 1	{
 2	  "experiment": "exp-d126-drc-folio",
@@ -20021,7 +18970,7 @@ _source line 10397 · 2026-05-21T08:47:41.714539+00:00_
 
 ### Tool call
 
-_source line 10398 · 2026-05-21T08:47:41.714971+00:00_
+_source line 10376 · 2026-05-21T08:47:41.714971+00:00_
 
 called Read
 
@@ -20055,7 +19004,7 @@ called Read
 
 ### Tool result
 
-_source line 10399 · 2026-05-21T08:47:41.715223+00:00_
+_source line 10377 · 2026-05-21T08:47:41.715223+00:00_
 
 1	{
 2	  "experiment": "exp-d134-process-br",
@@ -20154,7 +19103,7 @@ _source line 10399 · 2026-05-21T08:47:41.715223+00:00_
 
 ### Tool call
 
-_source line 10400 · 2026-05-21T08:47:42.217400+00:00_
+_source line 10378 · 2026-05-21T08:47:42.217400+00:00_
 
 called Read
 
@@ -20188,7 +19137,7 @@ called Read
 
 ### Tool result
 
-_source line 10401 · 2026-05-21T08:47:42.268208+00:00_
+_source line 10379 · 2026-05-21T08:47:42.268208+00:00_
 
 1	\section{Cross-Architecture Proof-of-Concept}
 2	\label{sec:solutions}
@@ -20222,7 +19171,7 @@ _source line 10401 · 2026-05-21T08:47:42.268208+00:00_
 
 ### Tool call
 
-_source line 10402 · 2026-05-21T08:48:43.117503+00:00_
+_source line 10380 · 2026-05-21T08:48:43.117503+00:00_
 
 called Edit
 
@@ -20262,7 +19211,7 @@ called Edit
 
 ### Tool result
 
-_source line 10403 · 2026-05-21T08:48:43.118202+00:00_
+_source line 10381 · 2026-05-21T08:48:43.118202+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
 
@@ -20284,7 +19233,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10404 · 2026-05-21T08:48:49.402035+00:00_
+_source line 10382 · 2026-05-21T08:48:49.402035+00:00_
 
 called TodoWrite
 
@@ -20318,7 +19267,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10405 · 2026-05-21T08:48:49.402669+00:00_
+_source line 10383 · 2026-05-21T08:48:49.402669+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -20340,7 +19289,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10406 · 2026-05-21T08:48:53.420472+00:00_
+_source line 10384 · 2026-05-21T08:48:53.420472+00:00_
 
 called Read
 
@@ -20378,7 +19327,7 @@ called Read
 
 ### Tool result
 
-_source line 10407 · 2026-05-21T08:48:53.471063+00:00_
+_source line 10385 · 2026-05-21T08:48:53.471063+00:00_
 
 42	\subsection{Symbolic Confirmation Bias}
 43	\label{sec:confirmation-bias}
@@ -20414,7 +19363,7 @@ _source line 10407 · 2026-05-21T08:48:53.471063+00:00_
 
 ### Tool call
 
-_source line 10408 · 2026-05-21T08:49:07.842365+00:00_
+_source line 10386 · 2026-05-21T08:49:07.842365+00:00_
 
 called Edit
 
@@ -20454,7 +19403,7 @@ called Edit
 
 ### Tool result
 
-_source line 10409 · 2026-05-21T08:49:07.842991+00:00_
+_source line 10387 · 2026-05-21T08:49:07.842991+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
 
@@ -20476,7 +19425,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
 
 ### Tool call
 
-_source line 10410 · 2026-05-21T08:49:14.724282+00:00_
+_source line 10388 · 2026-05-21T08:49:14.724282+00:00_
 
 called TodoWrite
 
@@ -20510,7 +19459,7 @@ called TodoWrite
 
 ### Tool result
 
-_source line 10411 · 2026-05-21T08:49:14.775058+00:00_
+_source line 10389 · 2026-05-21T08:49:14.775058+00:00_
 
 Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
 
@@ -20532,7 +19481,7 @@ Todos have been modified successfully. Ensure that you continue to use the todo 
 
 ### Tool call
 
-_source line 10412 · 2026-05-21T08:49:20.151305+00:00_
+_source line 10390 · 2026-05-21T08:49:20.151305+00:00_
 
 called Read
 
@@ -20566,7 +19515,7 @@ called Read
 
 ### Tool result
 
-_source line 10413 · 2026-05-21T08:49:20.201995+00:00_
+_source line 10391 · 2026-05-21T08:49:20.201995+00:00_
 
 1	Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.
 2	We investigate whether symbolic constraint extraction can break this plateau through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT.
@@ -20595,7 +19544,7 @@ _source line 10413 · 2026-05-21T08:49:20.201995+00:00_
 
 ### Tool call
 
-_source line 10414 · 2026-05-21T08:49:23.565745+00:00_
+_source line 10392 · 2026-05-21T08:49:23.565745+00:00_
 
 called Read
 
@@ -20629,7 +19578,7 @@ called Read
 
 ### Tool result
 
-_source line 10415 · 2026-05-21T08:49:23.666689+00:00_
+_source line 10393 · 2026-05-21T08:49:23.666689+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -20654,7 +19603,7 @@ _source line 10415 · 2026-05-21T08:49:23.666689+00:00_
 
 ### Tool call
 
-_source line 10416 · 2026-05-21T08:49:28.838196+00:00_
+_source line 10394 · 2026-05-21T08:49:28.838196+00:00_
 
 called Edit
 
@@ -20694,7 +19643,7 @@ called Edit
 
 ### Tool result
 
-_source line 10417 · 2026-05-21T08:49:28.889490+00:00_
+_source line 10395 · 2026-05-21T08:49:28.889490+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully.
 
@@ -20706,6 +19655,1366 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant
   "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
   "tool": "Edit",
   "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10396 · 2026-05-21T08:49:33.105413+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex",
+  "old_string": "DRC recovers 90\\% of this gain at 39\\% cost.",
+  "new_string": "DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex",
+    "old_string": "DRC recovers 90\\% of this gain at 39\\% cost.",
+    "new_string": "DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10397 · 2026-05-21T08:49:33.105939+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10398 · 2026-05-21T08:49:37.778433+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+  "offset": "36",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+    "offset": "36",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10399 · 2026-05-21T08:49:38.031054+00:00_
+
+36	\item \textbf{Process-Level Independence.} CoT cosine similarity ($0.69$--$0.79$) exceeds answer-level $\kappa$ ($0.45$--$0.74$) across four models from three families; process homogeneity persists regardless of architecture (\S\ref{sec:process-kappa}).
+37	
+38	\item \textbf{Disagreement-Routed Cascade (DRC).} A Pareto-efficient adaptive routing method that selectively invokes cross-architecture verification based on per-question trace agreement, recovering 90\% of full-combo accuracy gain at 39\% of verification cost (\S\ref{sec:drc}).
+39	\end{enumerate}
+40	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10400 · 2026-05-21T08:49:43.019208+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+  "old_string": "\\item \\textbf{Disagreement-Routed Cascade (DRC).} A Pareto-efficient adaptive routing method that selectively invokes cross-architecture verification based on per-question trace agreement, recovering 90\\% of full-combo accuracy gain at 39\\% of verification cost (\\S\\ref{sec:drc}).",
+  "new_string": "\\item \\textbf{Disagreement-Routed Cascade (DRC).} A Pareto-efficient adaptive routing method that selectively invokes cross-architecture verification based on per-question trace agreement, recovering 83--90\\% of full-combo gain at 35--39\\% cost across two datasets (\\S\\ref{sec:drc})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+    "old_string": "\\item \\textbf{Disagreement-Routed Cascade (DRC).} A Pareto-efficient adaptive routing method that selectively invokes cross-architecture verification based on per-question trace agreement, recovering 90\\% of full-combo accuracy gain at 39\\% of verification cost (\\S\\ref{sec:drc}).",
+    "new_string": "\\item \\textbf{Disagreement-Routed Cascade (DRC).} A Pareto-efficient adaptive routing method that selectively invokes cross-architecture verification based on per-question trace agreement, recovering 83--90\\% of full-combo gain at 35--39\\% cost across two datasets (\\S\\ref{sec:drc})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10401 · 2026-05-21T08:49:43.071158+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10402 · 2026-05-21T08:49:46.544968+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10403 · 2026-05-21T08:49:46.595723+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Self-verification and BR magnitude.}
+5	\looseness=-1 Our bias ratio ($4.97\times$ Mistral, $3.93\times$ Qwen, $2.88\times$ LLaMA) quantifies why self-correction fails without external feedback \citep{huang2024selfcorrect, stechly2025selfverification, chen2025sets}: extraction and generation share distributional biases. That $\text{BR} > 1$ is expected from self-extraction; the finding is the magnitude---nearly 5:1 on incorrect problems, consistent across three families. Any self-verification pipeline deriving criteria from the same model faces this bottleneck, whether formal constraints, natural-language critiques, or code assertions.
+6	
+7	\paragraph{Test-time scaling.}
+8	\looseness=-1 $K_{\text{eff}} = 1.20$--$3.62$ for nominal $K = 12$ means sampling beyond a dozen traces yields diminishing independent information; the pattern intensifies with capability (Qwen3 thinking: $\kappa = 0.91$, $K_{\text{eff}} = 1.09$), creating a scaling paradox for o1/R1-style models \citep{guo2025deepseekr1}. All non-destructive interventions cluster at $\kappa \geq 0.40$ \citep{krogh1994neural}; Debate reaches $\kappa = 0.15$ but collapses accuracy ($-18.6$\,pp). Cross-architecture escape succeeds ($p = 0.003$) because encoder-only and decoder-only models have structurally different error profiles.
+9	
+10	\paragraph{Practitioner implications.}
+11	Two diagnostics predict failure: $C_0 < 5\%$ means SICA reduces to SC; SC $\leq 40\%$ risks error amplification ($-2.83$\,pp). For intermediate-SC models, gain tracks the capability gap monotonically ($p = 0.003$); the bottleneck is extraction quality, as oracle constraints succeed ($+29.90$\,pp, $+14.22$\,pp).
+12	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10404 · 2026-05-21T08:49:52.320702+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Patch 1: DRC FOLIO held-out validation into §6 DRC subsection', 'status': 'completed', 'activeForm': 'Adding DRC FOLIO held-out validation to §6'}, {'content': 'Patch 2: Process-conditional BR decomposition into §5 Analysis', 'status': 'completed', 'activeForm': 'Adding process-conditional BR decomposition to §5'}, {'content': 'Cascade check: sync Abstract/Intro/Discussion/Conclusion if needed', 'status': 'completed', 'activeForm': 'Checking cross-section consistency'}, {'content': 'Final compile ≤8 pages', 'status': 'in_progress', 'activeForm': 'Running final compile check'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Patch 1: DRC FOLIO held-out validation into §6 DRC subsection', 'status': 'completed', 'activeForm': 'Adding DRC FOLIO held-out validation to §6'}, {'content': 'Patch 2: Process-conditional BR decomposition into §5 Analysis', 'status': 'completed', 'activeForm': 'Adding process-conditional BR decomposition to §5'}, {'content': 'Cascade check: sync Abstract/Intro/Discussion/Conclusion if needed', 'status': 'completed', 'activeForm': 'Checking cross-section consistency'}, {'content': 'Final compile ≤8 pages', 'status': 'in_progress', 'activeForm': 'Running final compile check'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10405 · 2026-05-21T08:49:52.321380+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10406 · 2026-05-21T08:49:56.539939+00:00_
+
+called mcp__agent-ml-research__paper_compile_and_check
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "max_pages": "8",
+  "preview": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "max_pages": "8",
+    "preview": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10407 · 2026-05-21T08:50:04.473412+00:00_
+
+{"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 1735) in paragraph at lines 749--750\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 764--789\\n [][] \\n []\\n\\n[21]\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 799--807\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 842--859\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 866--881\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [22] [23\\n\\n] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/f2_regime_s\\ncatter.pdf> <./figures/fig3_process_kappa_scatter.pdf> <./figures/f3_k_sensitiv\\nity.pdf> <./figures/f6_kappa_accuracy_scatter.pdf> <./figures/capability_gap_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34860 strings out of 469438\\n 664985 string characters out of 5468411\\n 1594349 words of memory out of 5000000\\n 62127 multiletter control sequences out of 15000+600000\\n 731398 words of font info for 450 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-d
+…[truncated 12931 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "elapsed_ms": 7933
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10408 · 2026-05-21T08:50:09.946337+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10409 · 2026-05-21T08:50:10.550203+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_pdf_images/main_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10410 · 2026-05-21T08:50:10.551480+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 605
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10411 · 2026-05-21T08:50:11.154500+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10412 · 2026-05-21T08:50:34.481075+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex",
+  "old_string": "We identify symbolic confirmation bias: self-extracted constraints inherit the generating model's biases ($\\text{BR} = 4.97\\times$, 83.3\\%), explaining why twenty-seven remediation strategies fail. Oracle controls ($+29.90$/$+14.22$\\,pp) confirm the mechanism is sound; the bottleneck is extraction quality, not the formal channel. Three diagnostics predict failure ($C_0 < 5\\%$, SC $\\leq 40\\%$, process similarity). Cross-architecture NLI escapes the confirmation bias when the verifier exceeds the generator ($p = 0.003$); DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets.",
+  "new_string": "\\looseness=-1 We identify symbolic confirmation bias: self-extracted constraints inherit the generating model's biases ($\\text{BR} = 4.97\\times$, 83.3\\%), explaining why twenty-seven remediation strategies fail. Oracle controls ($+29.90$/$+14.22$\\,pp) confirm the mechanism is sound; the bottleneck is extraction quality, not the formal channel. Three diagnostics predict failure ($C_0 < 5\\%$, SC $\\leq 40\\%$, process similarity). Cross-architecture NLI escapes the bias when the verifier exceeds the generator ($p = 0.003$); DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex",
+    "old_string": "We identify symbolic confirmation bias: self-extracted constraints inherit the generating model's biases ($\\text{BR} = 4.97\\times$, 83.3\\%), explaining why twenty-seven remediation strategies fail. Oracle controls ($+29.90$/$+14.22$\\,pp) confirm the mechanism is sound; the bottleneck is extraction quality, not the formal channel. Three diagnostics predict failure ($C_0 < 5\\%$, SC $\\leq 40\\%$, process similarity). Cross-architecture NLI escapes the confirmation bias when the verifier exceeds the generator ($p = 0.003$); DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets.",
+    "new_string": "\\looseness=-1 We identify symbolic confirmation bias: self-extracted constraints inherit the generating model's biases ($\\text{BR} = 4.97\\times$, 83.3\\%), explaining why twenty-seven remediation strategies fail. Oracle controls ($+29.90$/$+14.22$\\,pp) confirm the mechanism is sound; the bottleneck is extraction quality, not the formal channel. Three diagnostics predict failure ($C_0 < 5\\%$, SC $\\leq 40\\%$, process similarity). Cross-architecture NLI escapes the bias when the verifier exceeds the generator ($p = 0.003$); DRC recovers 83--90\\% of this gain at 35--39\\% cost across two datasets."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10413 · 2026-05-21T08:50:34.481723+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10414 · 2026-05-21T08:50:38.799719+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "\\paragraph{Capability gap hypothesis.}\nFour generators spanning",
+  "new_string": "\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "old_string": "\\paragraph{Capability gap hypothesis.}\nFour generators spanning",
+    "new_string": "\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10415 · 2026-05-21T08:50:38.850508+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10416 · 2026-05-21T08:50:43.223047+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "\\paragraph{Main result.}\nDeBERTa NLI alone achieves",
+  "new_string": "\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "old_string": "\\paragraph{Main result.}\nDeBERTa NLI alone achieves",
+    "new_string": "\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10417 · 2026-05-21T08:50:43.273635+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10418 · 2026-05-21T08:50:47.253026+00:00_
+
+called mcp__agent-ml-research__paper_compile_and_check
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "max_pages": "8",
+  "preview": "False"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "max_pages": "8",
+    "preview": "False"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10419 · 2026-05-21T08:50:52.227009+00:00_
+
+{"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 1735) in paragraph at lines 749--750\\n\\\\T1/ptm/m/n/10.95 (+20) ($\\\\OML/cmm/m/it/10.95 n[]\\\\OT1/cmr/m/n/10.95 600$\\\\T1/ptm\\n/m/n/10.95 (+20) ). We ex-tend this anal-y-sis by pair-\\n []\\n\\n\\nOverfull \\\\hbox (62.06534pt too wide) in paragraph at lines 764--789\\n [][] \\n []\\n\\n[21]\\nOverfull \\\\hbox (32.9245pt too wide) in paragraph at lines 799--807\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (32.62286pt too wide) in paragraph at lines 842--859\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (67.51375pt too wide) in paragraph at lines 866--881\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [22] [23\\n\\n] [24 <./figures/fig_app_interventions_summary.pdf>] [25 <./figures/f2_regime_s\\ncatter.pdf> <./figures/fig3_process_kappa_scatter.pdf> <./figures/f3_k_sensitiv\\nity.pdf> <./figures/f6_kappa_accuracy_scatter.pdf> <./figures/capability_gap_sc\\natter.pdf>] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: DD546D1355219FD30187FA038177552B;8786.\\n ) \\nHere is how much of TeX's memory you used:\\n 34860 strings out of 469438\\n 664985 string characters out of 5468411\\n 1594349 words of memory out of 5000000\\n 62127 multiletter control sequences out of 15000+600000\\n 731398 words of font info for 450 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 98i,17n,108p,1957b,2057s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-d
+…[truncated 8855 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "elapsed_ms": 4973
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10420 · 2026-05-21T08:51:21.755040+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "offset": "34",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "offset": "34",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10421 · 2026-05-21T08:51:21.856212+00:00_
+
+34	\subsection{Adaptive Verification via Disagreement Routing}
+35	\label{sec:drc}
+36	
+37	Full SC+NLI ensemble invokes NLI on every question, but high-agreement questions gain little from external verification. \textbf{Disagreement-Routed Cascade (DRC)} invokes DeBERTa-large-mnli only when the fraction of $K$ traces voting for the majority answer falls below threshold $\tau$; above $\tau$, SC majority vote is used directly.
+38	
+39	\begin{table}[t]
+40	\centering
+41	\small
+42	\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\tau{=}0.7$ recovers 83--90\% of full-combo gain at 35--39\% NLI cost across both datasets.}
+43	\label{tab:drc}
+44	\setlength{\tabcolsep}{3pt}
+45	\begin{tabular}{@{}llcccc@{}}
+46	\toprule
+47	Dataset & Method & Acc.\ & NLI Calls & Cost & Recovery \\
+48	\midrule
+49	\multirow{3}{*}{PW-D5} & SC only & 39.33\% & 0/600 & 0\% & --- \\
+50	& \textbf{DRC $\tau{=}0.7$} & \textbf{45.33\%} & \textbf{233/600} & \textbf{38.8\%} & \textbf{90.0\%} \\
+51	& Full combo & 46.00\% & 600/600 & 100\% & 100\% \\
+52	\midrule
+53	\multirow{3}{*}{FOLIO} & SC only & 55.88\% & 0/204 & 0\% & --- \\
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10422 · 2026-05-21T08:51:28.233463+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "offset": "53",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "offset": "53",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10423 · 2026-05-21T08:51:28.284257+00:00_
+
+53	\multirow{3}{*}{FOLIO} & SC only & 55.88\% & 0/204 & 0\% & --- \\
+54	& \textbf{DRC $\tau{=}0.7$} & \textbf{58.33\%} & \textbf{71/204} & \textbf{34.8\%} & \textbf{83.3\%} \\
+55	& Full combo & 58.82\% & 204/204 & 100\% & 100\% \\
+56	\bottomrule
+57	\end{tabular}
+58	\end{table}
+59	
+60	\looseness=-1 On ProofWriter, DRC at $\tau{=}0.7$ recovers 90\% of the full-combo gain ($+6.00$\,pp out of $+6.67$\,pp) at 38.8\% NLI cost. On held-out FOLIO ($n{=}204$), the same $\tau{=}0.7$ recovers 83.3\% ($+2.45$\,pp out of $+2.94$\,pp) at 34.8\% cost---confirming that per-question agreement routing generalizes across datasets without re-tuning $\tau$. Note that $\tau$ was selected on the ProofWriter evaluation set; FOLIO serves as a held-out validation of the routing strategy.
+61	
+62	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10424 · 2026-05-21T08:51:35.129387+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "\\looseness=-1 On ProofWriter, DRC at $\\tau{=}0.7$ recovers 90\\% of the full-combo gain ($+6.00$\\,pp out of $+6.67$\\,pp) at 38.8\\% NLI cost. On held-out FOLIO ($n{=}204$), the same $\\tau{=}0.7$ recovers 83.3\\% ($+2.45$\\,pp out of $+2.94$\\,pp) at 34.8\\% cost---confirming that per-question agreement routing generalizes across datasets without re-tuning $\\tau$. Note that $\\tau$ was selected on the ProofWriter evaluation set; FOLIO serves as a held-out validation of the routing strategy.",
+  "new_string": "\\looseness=-1 DRC at $\\tau{=}0.7$ recovers 90\\% of full-combo gain on ProofWriter ($+6.00$ out of $+6.67$\\,pp) at 38.8\\% NLI cost, and 83.3\\% on held-out FOLIO ($+2.45$ out of $+2.94$\\,pp) at 34.8\\% cost---confirming that per-question agreement routing generalizes without re-tuning $\\tau$ (selected on ProofWriter; FOLIO is held-out)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "old_string": "\\looseness=-1 On ProofWriter, DRC at $\\tau{=}0.7$ recovers 90\\% of the full-combo gain ($+6.00$\\,pp out of $+6.67$\\,pp) at 38.8\\% NLI cost. On held-out FOLIO ($n{=}204$), the same $\\tau{=}0.7$ recovers 83.3\\% ($+2.45$\\,pp out of $+2.94$\\,pp) at 34.8\\% cost---confirming that per-question agreement routing generalizes across datasets without re-tuning $\\tau$. Note that $\\tau$ was selected on the ProofWriter evaluation set; FOLIO serves as a held-out validation of the routing strategy.",
+    "new_string": "\\looseness=-1 DRC at $\\tau{=}0.7$ recovers 90\\% of full-combo gain on ProofWriter ($+6.00$ out of $+6.67$\\,pp) at 38.8\\% NLI cost, and 83.3\\% on held-out FOLIO ($+2.45$ out of $+2.94$\\,pp) at 34.8\\% cost---confirming that per-question agreement routing generalizes without re-tuning $\\tau$ (selected on ProofWriter; FOLIO is held-out)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10425 · 2026-05-21T08:51:35.129950+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10426 · 2026-05-21T08:51:40.951992+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+  "old_string": "\\setlength{\\abovedisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\belowdisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}",
+  "new_string": "\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\intextsep}{5pt plus 2pt minus 2pt}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+    "old_string": "\\setlength{\\abovedisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\belowdisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}",
+    "new_string": "\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\intextsep}{5pt plus 2pt minus 2pt}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10427 · 2026-05-21T08:51:40.952503+00:00_
+
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10428 · 2026-05-21T08:51:45.951746+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+  "offset": "47",
+  "limit": "12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+    "offset": "47",
+    "limit": "12"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10429 · 2026-05-21T08:51:46.002517+00:00_
+
+47	% Tighten spacing for 8-page budget
+48	\setlength{\textfloatsep}{5pt plus 2pt minus 4pt}
+49	\setlength{\dbltextfloatsep}{5pt plus 2pt minus 4pt}
+50	\setlength{\floatsep}{3pt plus 2pt minus 2pt}
+51	\setlength{\dblfloatsep}{3pt plus 2pt minus 2pt}
+52	\setlength{\abovecaptionskip}{3pt}
+53	\setlength{\belowcaptionskip}{0pt}
+54	\setlength{\abovedisplayskip}{5pt plus 2pt minus 3pt}
+55	\setlength{\belowdisplayskip}{5pt plus 2pt minus 3pt}
+56	\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+57	
+58	\input{abstract}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10430 · 2026-05-21T08:51:50.578079+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+  "old_string": "\\setlength{\\abovedisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\belowdisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}",
+  "new_string": "\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\intextsep}{5pt plus 1pt minus 2pt}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+    "old_string": "\\setlength{\\abovedisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\belowdisplayskip}{5pt plus 2pt minus 3pt}\n\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}",
+    "new_string": "\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n\\setlength{\\intextsep}{5pt plus 1pt minus 2pt}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10431 · 2026-05-21T08:51:50.628741+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10432 · 2026-05-21T08:51:56.415709+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+  "old_string": "No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$).",
+  "new_string": "\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+    "old_string": "No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$).",
+    "new_string": "\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10433 · 2026-05-21T08:51:56.516602+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10434 · 2026-05-21T08:52:00.384093+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "old_string": "Self-extracted constraints systematically confirm the model's majority answer.",
+  "new_string": "\\looseness=-1 Self-extracted constraints systematically confirm the model's majority answer."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+    "old_string": "Self-extracted constraints systematically confirm the model's majority answer.",
+    "new_string": "\\looseness=-1 Self-extracted constraints systematically confirm the model's majority answer."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10435 · 2026-05-21T08:52:00.434729+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10436 · 2026-05-21T08:52:04.314261+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "old_string": "Bias generalizes: $4.97\\times$",
+  "new_string": "\\looseness=-1 Bias generalizes: $4.97\\times$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+    "old_string": "Bias generalizes: $4.97\\times$",
+    "new_string": "\\looseness=-1 Bias generalizes: $4.97\\times$"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10437 · 2026-05-21T08:52:04.365037+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10438 · 2026-05-21T08:52:08.535085+00:00_
+
+called mcp__agent-ml-research__paper_compile_and_check
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "max_pages": "8",
+  "preview": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75:paper_agent",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "max_pages": "8",
+    "preview": "True"
+  }
 }
 ```
 

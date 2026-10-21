@@ -1,25 +1,5 @@
 # Memory — causal_style_decomp_judge
 
-## Rebuttal 备弹: Llama-70B Cross-Benchmark (2026-05-24)
-
-AEval formality BT=95.7% (n=47), AEval verbosity BT=97.0% (n=66), MTB formality BT=91.7% (n=36)。
-三组 Likert 全部显著 (d=0.21-0.30)，Blindspot 消失。MTB verbosity 数据缺失。
-**解读**: Blindspot 是 effect-size dependent——LLMBar 小效应 (BT~70%) 时 Likert 失灵，AEval/MTB 大效应 (BT>90%) 时 Likert 可检测。
-GEE 因 near-perfect separation 全部 degenerate/不可靠。
-
-## Rebuttal 备弹: Rewriter Independence (2026-05-24)
-
-Llama-70B 重写器 + Qwen3 judge: BT=71.1% [64.3, 77.5], Likert NS (d=0.013).
-与 Qwen3 重写器 baseline (BT=66.5%) 差 +4.6pp，CI 重叠。
-**结论**: Formality bias 在 judge 端，与重写器独立。Blindspot 复现。
-
-## Rebuttal 备弹: Llama-70B Scaled n=355 (2026-05-24)
-
-BT=72.5% (非 Worker 误报的 88.1%——那是 consistent-pair win rate)。
-LLMBar 子集 (n=89) BT=74.4%, Likert NS → Blindspot YES。
-Full n=355 Likert 终于显著 (d=0.048, p=.026) → Blindspot NO。
-**教训**: Likert 可以检测 formality bias，但需要 ~355 对才勉强显著，BT 在 88 对就极显著。效率差距 4x+。
-
 ## Verbosity n=355 Scaling Insights (2026-05-23)
 
 GEE Style OR 大幅缩水证实 n=86 小样本上偏：Qwen 13.1→3.83 (-71%), Llama 8.21→4.01 (-51%)。

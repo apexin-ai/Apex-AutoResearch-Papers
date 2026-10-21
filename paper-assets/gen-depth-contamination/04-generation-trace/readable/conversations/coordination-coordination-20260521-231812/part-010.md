@@ -4,60 +4,11 @@
 
 [← Part 9](part-009.md) · [Transcript overview](../coordination-coordination-20260521-231812.md) · [Part 11 →](part-011.md) · [Structured JSON](../../../sessions/89/89de8bcb298365a239f4.json)
 
-## Round 487
-
-### Tool result
-
-_source line 5635 · 2026-05-20T14:58:36.177704+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_olmo_retrain_v3\", \"success\": true, \"actions\": [\"Stale cron removed (registry status=DONE)\"]}]}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "mcp__agent-ml-research__reconcile_crons",
-  "elapsed_ms": 1973
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 5636 · 2026-05-20T14:58:39.429025+00:00_
-
-Cron 已清理。exp_olmo_retrain_v3 的残留监控已移除。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
-}
-```
-
-</details>
-
----
-
-
 ## Round 488
-
-## Round 488
-
-68 recorded events
-
 
 ### User
 
-_source line 5637 · 2026-05-20T15:07:59.942645+00:00_
+_source line 5633 · 2026-05-20T15:07:59.942645+00:00_
 
 [Director 指令] ## Round 21 修复 — 数据任务
 
@@ -106,7 +57,7 @@ WebSearch 验证：
 
 ### Tool call
 
-_source line 5638 · 2026-05-20T15:08:18.666098+00:00_
+_source line 5634 · 2026-05-20T15:08:18.666098+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -148,7 +99,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 5639 · 2026-05-20T15:08:20.121947+00:00_
+_source line 5635 · 2026-05-20T15:08:20.121947+00:00_
 
 called Grep
 
@@ -186,7 +137,7 @@ called Grep
 
 ### Tool call
 
-_source line 5640 · 2026-05-20T15:08:21.077220+00:00_
+_source line 5636 · 2026-05-20T15:08:21.077220+00:00_
 
 called Grep
 
@@ -224,7 +175,7 @@ called Grep
 
 ### Tool call
 
-_source line 5641 · 2026-05-20T15:08:21.930273+00:00_
+_source line 5637 · 2026-05-20T15:08:21.930273+00:00_
 
 called Grep
 
@@ -264,7 +215,7 @@ called Grep
 
 ### Tool result
 
-_source line 5642 · 2026-05-20T15:08:24.392762+00:00_
+_source line 5638 · 2026-05-20T15:08:24.392762+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_reference_verification_r21_20260520T150819\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_reference_verification_r21_20260520T150819.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_reference_verification_r21_20260520T150819 started. Use get_worker_status('worker_research_reference_verification_r21_20260520T150819') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -286,7 +237,7 @@ _source line 5642 · 2026-05-20T15:08:24.392762+00:00_
 
 ### Tool result
 
-_source line 5643 · 2026-05-20T15:08:24.393229+00:00_
+_source line 5639 · 2026-05-20T15:08:24.393229+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib:447:@inproceedings{holtzman2020curious,
 
@@ -308,7 +259,7 @@ _source line 5643 · 2026-05-20T15:08:24.393229+00:00_
 
 ### Tool result
 
-_source line 5644 · 2026-05-20T15:08:24.443727+00:00_
+_source line 5640 · 2026-05-20T15:08:24.443727+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex:19:Recent work extends beyond binary labels to collaboration degree~\cite{cheng2025beyond}, contamination hierarchies~\cite{mehta2025beyond}, and multigenerator benchmarks~\cite{wang2024semeval}; robustness concerns arise under paraphrasing~\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\cite{hao2025rewrite}; CoDeC~\cite{zawalski2026codec} addresses contamination via membership inference.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.bbl:228:\bibitem[{Mehta(2025)}]{mehta2025beyond}
@@ -334,7 +285,7 @@ _source line 5644 · 2026-05-20T15:08:24.443727+00:00_
 
 ### Tool result
 
-_source line 5645 · 2026-05-20T15:08:24.444357+00:00_
+_source line 5641 · 2026-05-20T15:08:24.444357+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-875-\label{tab:multi_source_pools}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-876-\end{table}
@@ -367,7 +318,7 @@ _source line 5645 · 2026-05-20T15:08:24.444357+00:00_
 
 ### Tool call
 
-_source line 5646 · 2026-05-20T15:08:37.968307+00:00_
+_source line 5642 · 2026-05-20T15:08:37.968307+00:00_
 
 called Grep
 
@@ -407,7 +358,7 @@ called Grep
 
 ### Tool result
 
-_source line 5647 · 2026-05-20T15:08:38.972277+00:00_
+_source line 5643 · 2026-05-20T15:08:38.972277+00:00_
 
 No matches found
 
@@ -429,7 +380,7 @@ No matches found
 
 ### Tool call
 
-_source line 5648 · 2026-05-20T15:08:39.925913+00:00_
+_source line 5644 · 2026-05-20T15:08:39.925913+00:00_
 
 called Grep
 
@@ -471,7 +422,7 @@ called Grep
 
 ### Tool result
 
-_source line 5649 · 2026-05-20T15:08:40.327582+00:00_
+_source line 5645 · 2026-05-20T15:08:40.327582+00:00_
 
 No matches found
 
@@ -493,7 +444,7 @@ No matches found
 
 ### Tool call
 
-_source line 5650 · 2026-05-20T15:08:40.528596+00:00_
+_source line 5646 · 2026-05-20T15:08:40.528596+00:00_
 
 called Glob
 
@@ -529,7 +480,7 @@ called Glob
 
 ### Tool result
 
-_source line 5651 · 2026-05-20T15:08:40.579219+00:00_
+_source line 5647 · 2026-05-20T15:08:40.579219+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig_kstar_theta.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png
@@ -554,7 +505,7 @@ _source line 5651 · 2026-05-20T15:08:40.579219+00:00_
 
 ### Tool call
 
-_source line 5652 · 2026-05-20T15:08:51.144985+00:00_
+_source line 5648 · 2026-05-20T15:08:51.144985+00:00_
 
 called Bash
 
@@ -590,7 +541,7 @@ called Bash
 
 ### Tool result
 
-_source line 5653 · 2026-05-20T15:08:51.596932+00:00_
+_source line 5649 · 2026-05-20T15:08:51.596932+00:00_
 
 holtzman2020curious
 oren2024proving
@@ -614,7 +565,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/
 
 ### Tool call
 
-_source line 5654 · 2026-05-20T15:08:52.149129+00:00_
+_source line 5650 · 2026-05-20T15:08:52.149129+00:00_
 
 called Read
 
@@ -652,7 +603,7 @@ called Read
 
 ### Tool result
 
-_source line 5655 · 2026-05-20T15:08:53.052727+00:00_
+_source line 5651 · 2026-05-20T15:08:53.052727+00:00_
 
 177	@article{mehta2025beyond,
 178	  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},
@@ -688,7 +639,7 @@ _source line 5655 · 2026-05-20T15:08:53.052727+00:00_
 
 ### Tool call
 
-_source line 5656 · 2026-05-20T15:08:53.404364+00:00_
+_source line 5652 · 2026-05-20T15:08:53.404364+00:00_
 
 called Grep
 
@@ -730,7 +681,7 @@ called Grep
 
 ### Tool result
 
-_source line 5657 · 2026-05-20T15:08:53.455099+00:00_
+_source line 5653 · 2026-05-20T15:08:53.455099+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex-40-\label{fig:auc_decay}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex-41-\end{figure}
@@ -763,7 +714,7 @@ _source line 5657 · 2026-05-20T15:08:53.455099+00:00_
 
 ### Tool call
 
-_source line 5658 · 2026-05-20T15:09:14.296751+00:00_
+_source line 5654 · 2026-05-20T15:09:14.296751+00:00_
 
 called Grep
 
@@ -801,7 +752,7 @@ called Grep
 
 ### Tool result
 
-_source line 5659 · 2026-05-20T15:09:14.548982+00:00_
+_source line 5655 · 2026-05-20T15:09:14.548982+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex:27:DSIR~\cite{xie2023dsir}, D4~\cite{tirumala2023d4}, DoReMi~\cite{xie2023doremi}, and FineWeb~\cite{penedo2024fineweb} address corpus quality through domain-aware filtering but are depth-agnostic; \citet{drayson2025} combined binary detection with importance resampling ($\Kstar{=}1$); \citet{oren2024proving} address pre-training contamination without depth-granular resolution.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.bbl:252:  Hashimoto}]{oren2024proving}
@@ -827,7 +778,7 @@ _source line 5659 · 2026-05-20T15:09:14.548982+00:00_
 
 ### Tool call
 
-_source line 5660 · 2026-05-20T15:09:14.549408+00:00_
+_source line 5656 · 2026-05-20T15:09:14.549408+00:00_
 
 called Bash
 
@@ -863,7 +814,7 @@ called Bash
 
 ### Tool result
 
-_source line 5661 · 2026-05-20T15:09:15.054954+00:00_
+_source line 5657 · 2026-05-20T15:09:15.054954+00:00_
 
 newlabel{tab:setup}{{1}
 newlabel{tab:kstar_ci}{{2}
@@ -899,7 +850,7 @@ newlabel{tab:s6_lgbm_params}{{15}
 
 ### Tool call
 
-_source line 5662 · 2026-05-20T15:09:15.105581+00:00_
+_source line 5658 · 2026-05-20T15:09:15.105581+00:00_
 
 called Glob
 
@@ -935,7 +886,7 @@ called Glob
 
 ### Tool result
 
-_source line 5663 · 2026-05-20T15:09:15.156203+00:00_
+_source line 5659 · 2026-05-20T15:09:15.156203+00:00_
 
 No files found
 
@@ -957,7 +908,7 @@ No files found
 
 ### Tool call
 
-_source line 5664 · 2026-05-20T15:09:27.256641+00:00_
+_source line 5660 · 2026-05-20T15:09:27.256641+00:00_
 
 called Bash
 
@@ -993,7 +944,7 @@ called Bash
 
 ### Tool result
 
-_source line 5665 · 2026-05-20T15:09:27.407669+00:00_
+_source line 5661 · 2026-05-20T15:09:27.407669+00:00_
 
 === ORPHAN BIB ENTRIES ===
 holtzman2020curious
@@ -1018,7 +969,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/
 
 ### Tool call
 
-_source line 5666 · 2026-05-20T15:09:27.909617+00:00_
+_source line 5662 · 2026-05-20T15:09:27.909617+00:00_
 
 called Grep
 
@@ -1060,7 +1011,7 @@ called Grep
 
 ### Tool result
 
-_source line 5667 · 2026-05-20T15:09:28.060663+00:00_
+_source line 5663 · 2026-05-20T15:09:28.060663+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex-15-$\leq$1.5B models use self-scoring; 7B/14B use Qwen-1.5B scorer ($^\ddagger$).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:16:Extended results in Table~\ref{tab:kstar_ci_extended}.}
@@ -1093,7 +1044,7 @@ _source line 5667 · 2026-05-20T15:09:28.060663+00:00_
 
 ### Tool call
 
-_source line 5668 · 2026-05-20T15:09:28.161620+00:00_
+_source line 5664 · 2026-05-20T15:09:28.161620+00:00_
 
 called Glob
 
@@ -1129,7 +1080,7 @@ called Glob
 
 ### Tool result
 
-_source line 5669 · 2026-05-20T15:09:28.212829+00:00_
+_source line 5665 · 2026-05-20T15:09:28.212829+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py
 
@@ -1151,7 +1102,7 @@ _source line 5669 · 2026-05-20T15:09:28.212829+00:00_
 
 ### Tool call
 
-_source line 5670 · 2026-05-20T15:09:38.462617+00:00_
+_source line 5666 · 2026-05-20T15:09:38.462617+00:00_
 
 called Read
 
@@ -1185,7 +1136,7 @@ called Read
 
 ### Tool call
 
-_source line 5671 · 2026-05-20T15:09:38.466369+00:00_
+_source line 5667 · 2026-05-20T15:09:38.466369+00:00_
 
 called Bash
 
@@ -1221,7 +1172,7 @@ called Bash
 
 ### Tool result
 
-_source line 5672 · 2026-05-20T15:09:38.617521+00:00_
+_source line 5668 · 2026-05-20T15:09:38.617521+00:00_
 
 1	#!/usr/bin/env python3
 2	"""K* as a function of theta: auto-discovers bootstrap CI JSONs.
@@ -1298,7 +1249,7 @@ _source line 5672 · 2026-05-20T15:09:38.617521+00:00_
 
 ### Tool result
 
-_source line 5673 · 2026-05-20T15:09:38.618044+00:00_
+_source line 5669 · 2026-05-20T15:09:38.618044+00:00_
 
 newlabel{fig:pipeline}{{1}
 newlabel{fig:auc_decay}{{2}
@@ -1329,7 +1280,7 @@ newlabel{fig:power_curve}{{10}
 
 ### Tool call
 
-_source line 5674 · 2026-05-20T15:09:38.618318+00:00_
+_source line 5670 · 2026-05-20T15:09:38.618318+00:00_
 
 called Read
 
@@ -1367,7 +1318,7 @@ called Read
 
 ### Tool result
 
-_source line 5675 · 2026-05-20T15:09:38.670931+00:00_
+_source line 5671 · 2026-05-20T15:09:38.670931+00:00_
 
 447	@inproceedings{holtzman2020curious,
 448	  title={The Curious Case of Neural Text Degeneration},
@@ -1400,7 +1351,7 @@ _source line 5675 · 2026-05-20T15:09:38.670931+00:00_
 
 ### Tool call
 
-_source line 5676 · 2026-05-20T15:10:16.386006+00:00_
+_source line 5672 · 2026-05-20T15:10:16.386006+00:00_
 
 called Glob
 
@@ -1436,7 +1387,7 @@ called Glob
 
 ### Tool call
 
-_source line 5677 · 2026-05-20T15:10:16.386412+00:00_
+_source line 5673 · 2026-05-20T15:10:16.386412+00:00_
 
 called Read
 
@@ -1470,7 +1421,7 @@ called Read
 
 ### Tool result
 
-_source line 5678 · 2026-05-20T15:10:16.486997+00:00_
+_source line 5674 · 2026-05-20T15:10:16.486997+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_summary_auc_decay.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_auc_decay_ci.py
@@ -1493,7 +1444,7 @@ _source line 5678 · 2026-05-20T15:10:16.486997+00:00_
 
 ### Tool result
 
-_source line 5679 · 2026-05-20T15:10:16.487531+00:00_
+_source line 5675 · 2026-05-20T15:10:16.487531+00:00_
 
 PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf (32.9KB)
 
@@ -1515,7 +1466,7 @@ PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-dept
 
 ### Tool call
 
-_source line 5680 · 2026-05-20T15:10:16.789020+00:00_
+_source line 5676 · 2026-05-20T15:10:16.789020+00:00_
 
 called Read
 
@@ -1553,7 +1504,7 @@ called Read
 
 ### Tool result
 
-_source line 5681 · 2026-05-20T15:10:16.939892+00:00_
+_source line 5677 · 2026-05-20T15:10:16.939892+00:00_
 
 30	\multicolumn{11}{l}{\footnotesize $^*$Permutation $p < 0.001$ for all 1v2 comparisons shown.} \\
 31	\multicolumn{11}{l}{\footnotesize $^\dagger$Rewrite mode (ablation); excluded from continuation-mode $\Kempirical$ claim.} \\
@@ -1589,7 +1540,7 @@ _source line 5681 · 2026-05-20T15:10:16.939892+00:00_
 
 ### Tool call
 
-_source line 5682 · 2026-05-20T15:10:44.562081+00:00_
+_source line 5678 · 2026-05-20T15:10:44.562081+00:00_
 
 called Glob
 
@@ -1625,7 +1576,7 @@ called Glob
 
 ### Tool result
 
-_source line 5683 · 2026-05-20T15:10:44.662907+00:00_
+_source line 5679 · 2026-05-20T15:10:44.662907+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/fig2_auc_decay.pdf
@@ -1654,7 +1605,7 @@ _source line 5683 · 2026-05-20T15:10:44.662907+00:00_
 
 ### Tool call
 
-_source line 5684 · 2026-05-20T15:10:44.763718+00:00_
+_source line 5680 · 2026-05-20T15:10:44.763718+00:00_
 
 called Grep
 
@@ -1696,7 +1647,7 @@ called Grep
 
 ### Tool result
 
-_source line 5685 · 2026-05-20T15:10:44.814303+00:00_
+_source line 5681 · 2026-05-20T15:10:44.814303+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex-36-\begin{figure}[t]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex-37-\centering
@@ -1728,7 +1679,7 @@ _source line 5685 · 2026-05-20T15:10:44.814303+00:00_
 
 ### Tool call
 
-_source line 5686 · 2026-05-20T15:10:56.001886+00:00_
+_source line 5682 · 2026-05-20T15:10:56.001886+00:00_
 
 called Read
 
@@ -1762,7 +1713,7 @@ called Read
 
 ### Tool result
 
-_source line 5687 · 2026-05-20T15:10:56.052576+00:00_
+_source line 5683 · 2026-05-20T15:10:56.052576+00:00_
 
 PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf (20.6KB)
 
@@ -1784,7 +1735,7 @@ PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-dept
 
 ### Tool call
 
-_source line 5688 · 2026-05-20T15:11:07.958224+00:00_
+_source line 5684 · 2026-05-20T15:11:07.958224+00:00_
 
 called Grep
 
@@ -1824,7 +1775,7 @@ called Grep
 
 ### Tool result
 
-_source line 5689 · 2026-05-20T15:11:08.510612+00:00_
+_source line 5685 · 2026-05-20T15:11:08.510612+00:00_
 
 29-The downstream filtering evaluation (Section~\ref{sec:filtering}) uses OBD without re-optimizing $\theta$, avoiding circularity.
 30:A leave-one-family-out (LOFO) cross-validation yields $\hat{\theta} \in [0.5725, 0.6004]$ with 8/9 $\Kempirical$ predictions matching; arXiv corroborates with 6/6 agreement (Appendix~\ref{sec:theta_lofo}).
@@ -1852,7 +1803,7 @@ _source line 5689 · 2026-05-20T15:11:08.510612+00:00_
 
 ### Tool call
 
-_source line 5690 · 2026-05-20T15:11:08.511056+00:00_
+_source line 5686 · 2026-05-20T15:11:08.511056+00:00_
 
 called Read
 
@@ -1888,7 +1839,7 @@ called Read
 
 ### Tool result
 
-_source line 5691 · 2026-05-20T15:11:08.562453+00:00_
+_source line 5687 · 2026-05-20T15:11:08.562453+00:00_
 
 1	#!/usr/bin/env python3
 2	"""Pairwise AUC decay curves: auto-discovers experiment JSONs and plots all configs.
@@ -1966,7 +1917,7 @@ _source line 5691 · 2026-05-20T15:11:08.562453+00:00_
 
 ### Tool call
 
-_source line 5692 · 2026-05-20T15:11:13.630750+00:00_
+_source line 5688 · 2026-05-20T15:11:13.630750+00:00_
 
 called Grep
 
@@ -2006,7 +1957,7 @@ called Grep
 
 ### Tool result
 
-_source line 5693 · 2026-05-20T15:11:13.731672+00:00_
+_source line 5689 · 2026-05-20T15:11:13.731672+00:00_
 
 173-    ax.set_xlabel("Depth Pair")
 174:    ax.set_ylabel("Pairwise AUC")
@@ -2030,7 +1981,7 @@ _source line 5693 · 2026-05-20T15:11:13.731672+00:00_
 
 ### Tool call
 
-_source line 5694 · 2026-05-20T15:11:22.764558+00:00_
+_source line 5690 · 2026-05-20T15:11:22.764558+00:00_
 
 called Grep
 
@@ -2070,7 +2021,7 @@ called Grep
 
 ### Tool result
 
-_source line 5695 · 2026-05-20T15:11:23.166346+00:00_
+_source line 5691 · 2026-05-20T15:11:23.166346+00:00_
 
 173-    ax.set_xlabel(r"Threshold $\theta$")
 174:    ax.set_ylabel(r"$K^*(\theta)$")
@@ -2094,7 +2045,7 @@ _source line 5695 · 2026-05-20T15:11:23.166346+00:00_
 
 ### Tool call
 
-_source line 5696 · 2026-05-20T15:11:23.768831+00:00_
+_source line 5692 · 2026-05-20T15:11:23.768831+00:00_
 
 called Glob
 
@@ -2130,7 +2081,7 @@ called Glob
 
 ### Tool result
 
-_source line 5697 · 2026-05-20T15:11:24.020970+00:00_
+_source line 5693 · 2026-05-20T15:11:24.020970+00:00_
 
 No files found
 
@@ -2152,7 +2103,7 @@ No files found
 
 ### Tool call
 
-_source line 5698 · 2026-05-20T15:11:24.021376+00:00_
+_source line 5694 · 2026-05-20T15:11:24.021376+00:00_
 
 called Glob
 
@@ -2188,7 +2139,7 @@ called Glob
 
 ### Tool result
 
-_source line 5699 · 2026-05-20T15:11:24.071856+00:00_
+_source line 5695 · 2026-05-20T15:11:24.071856+00:00_
 
 No files found
 
@@ -2210,7 +2161,7 @@ No files found
 
 ### Tool call
 
-_source line 5700 · 2026-05-20T15:11:34.684354+00:00_
+_source line 5696 · 2026-05-20T15:11:34.684354+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -2244,7 +2195,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5701 · 2026-05-20T15:11:34.785927+00:00_
+_source line 5697 · 2026-05-20T15:11:34.785927+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_reference_verification_r21_20260520T150819\", \"status\": \"done\", \"task_type\": \"research:reference_verification_r21\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T15:08:19.321580+00:00\", \"ended_at\": \"2026-05-20T15:09:18.437594+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 验证结果\\n\\n---\\n\\n### 1. Wang et al. (ACL 2025) — ✅ 验证通过\\n\\n| 项目 | 结果 |\\n|------|------|\\n| **Anthology ID** | `2025.acl-long.624` ✅ 存在 |\\n| **URL** | https://aclanthology.org/2025.acl-long.624/ |\\n| **arXiv** | https://arxiv.org/abs/2502.15208 |\\n| **实际 Title** | \\\"Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing\\\" ✅ 与声称一致 |\\n| **作者** | Zhilin Wang, Yafu Li, Jianhao Yan, Yu Cheng, Yue Zhang |\\n| **发表状态** | ACL 2025 (Volume 1: Long Papers), pp. 12740–12755, Vienna, Austria, July 2025 |\\n| **Abstract 摘要** | 该论文从动力系统理论视角分析 LLM 的连续改写行为。发现 LLM 在反复改写（successive paraphrasing）过程中会收敛到稳定的周期状态（如 2 周期吸引子环），限制了语言多样性。这归因于 LLM 的自我强化特性——在迭代中偏好并放大某些文本形式。即使增加生成随机性或交替使用不同 prompt/模型，这种模式依然存在。 |\\n\\n---\\n\\n### 2. Shahriar et al. (2025) — ✅ 验证通过\\n\\n| 项目 | 结果 |\\n|------|------|\\n| **arXiv ID** | `2512.05311` ✅ 存在 |\\n| **URL** | https://arxiv.org/abs/2512.05311 |\\n| **实际 Title** | \\\"The Erosion of LLM Signatures: Can We Still Distinguish Human and LLM-Generated Scientific Ideas After Iterative Paraphrasing?\\\" ✅ 与声称一致（声称标题为简写，完整标题含副标题） |\\n| **作者** | Sadat Shahriar, Navid Ayoobi, Arjun Mukherjee (University of Houston) |\\n| **发表状态** | arXiv preprint, 2025年12月4日提交 |\\n| **\\\"25.4%\\\" 数字** | ✅ 确认存在。原文 abstract 明确写道：detection performance declining by an average of **25.4%** after five consecutive paraphrasing stages |\\n| **Abstract 摘要** | 随着 LLM 日益被用作研究代理，区分 LLM 与人类生成的科学想法变得至关重要。虽然检测 LLM 生成文本已被广泛研究，但区分人类与 LLM 生成的科学**想法**仍是未探索领域。本文系统评估了 SOTA 机器学习模型在连续改写后区分人类与 LLM 生成想法的能力。结果显示：经过 5 轮连续
 …[truncated 374 chars]
@@ -2267,7 +2218,7 @@ _source line 5701 · 2026-05-20T15:11:34.785927+00:00_
 
 ### Tool call
 
-_source line 5702 · 2026-05-20T15:12:19.367500+00:00_
+_source line 5698 · 2026-05-20T15:12:19.367500+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2303,7 +2254,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5703 · 2026-05-20T15:12:20.572183+00:00_
+_source line 5699 · 2026-05-20T15:12:20.572183+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -2325,7 +2276,7 @@ _source line 5703 · 2026-05-20T15:12:20.572183+00:00_
 
 ### Assistant
 
-_source line 5704 · 2026-05-20T15:12:24.022215+00:00_
+_source line 5700 · 2026-05-20T15:12:24.022215+00:00_
 
 全部 5 个任务数据已收集完毕。汇报 Director。
 
@@ -2352,7 +2303,7 @@ _source line 5704 · 2026-05-20T15:12:24.022215+00:00_
 
 ### User
 
-_source line 5705 · 2026-05-20T15:12:24.484242+00:00_
+_source line 5701 · 2026-05-20T15:12:24.484242+00:00_
 
 [WORKER DONE] Worker worker_research_reference_verification_r21_20260520T150819 已完成（status=done）。用 `get_worker_status('worker_research_reference_verification_r21_20260520T150819')` 读取结果，然后处理。
 
@@ -2377,7 +2328,7 @@ _source line 5705 · 2026-05-20T15:12:24.484242+00:00_
 
 ### Assistant
 
-_source line 5706 · 2026-05-20T15:12:31.529005+00:00_
+_source line 5702 · 2026-05-20T15:12:31.529005+00:00_
 
 该 Worker 结果已在汇报前读取并纳入 Round 21 Task 1 汇报中（3 篇论文全部验证通过），无需重复处理。
 
@@ -2404,7 +2355,7 @@ _source line 5706 · 2026-05-20T15:12:31.529005+00:00_
 
 ### User
 
-_source line 5707 · 2026-05-20T15:12:48.108625+00:00_
+_source line 5703 · 2026-05-20T15:12:48.108625+00:00_
 
 [Director 指令] ## 两个小任务
 
@@ -2438,7 +2389,7 @@ _source line 5707 · 2026-05-20T15:12:48.108625+00:00_
 
 ### Tool call
 
-_source line 5708 · 2026-05-20T15:12:59.858152+00:00_
+_source line 5704 · 2026-05-20T15:12:59.858152+00:00_
 
 called Edit
 
@@ -2478,7 +2429,7 @@ called Edit
 
 ### Tool result
 
-_source line 5709 · 2026-05-20T15:12:59.858481+00:00_
+_source line 5705 · 2026-05-20T15:12:59.858481+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -2500,7 +2451,7 @@ _source line 5709 · 2026-05-20T15:12:59.858481+00:00_
 
 ### Tool call
 
-_source line 5710 · 2026-05-20T15:13:00.868754+00:00_
+_source line 5706 · 2026-05-20T15:13:00.868754+00:00_
 
 called Read
 
@@ -2538,7 +2489,7 @@ called Read
 
 ### Tool result
 
-_source line 5711 · 2026-05-20T15:13:01.320740+00:00_
+_source line 5707 · 2026-05-20T15:13:01.320740+00:00_
 
 160	
 161	    for i, (name, aucs) in enumerate(models.items()):
@@ -2579,7 +2530,7 @@ _source line 5711 · 2026-05-20T15:13:01.320740+00:00_
 
 ### Tool call
 
-_source line 5712 · 2026-05-20T15:13:01.321096+00:00_
+_source line 5708 · 2026-05-20T15:13:01.321096+00:00_
 
 called Read
 
@@ -2617,7 +2568,7 @@ called Read
 
 ### Tool result
 
-_source line 5713 · 2026-05-20T15:13:01.371516+00:00_
+_source line 5709 · 2026-05-20T15:13:01.371516+00:00_
 
 445	}
 446	
@@ -2653,7 +2604,7 @@ _source line 5713 · 2026-05-20T15:13:01.371516+00:00_
 
 ### Tool call
 
-_source line 5714 · 2026-05-20T15:13:08.753730+00:00_
+_source line 5710 · 2026-05-20T15:13:08.753730+00:00_
 
 called Read
 
@@ -2691,7 +2642,7 @@ called Read
 
 ### Tool result
 
-_source line 5715 · 2026-05-20T15:13:08.804375+00:00_
+_source line 5711 · 2026-05-20T15:13:08.804375+00:00_
 
 170	
 171	    ax.set_xticks(x)
@@ -2722,7 +2673,7 @@ _source line 5715 · 2026-05-20T15:13:08.804375+00:00_
 
 ### Tool call
 
-_source line 5716 · 2026-05-20T15:13:13.021091+00:00_
+_source line 5712 · 2026-05-20T15:13:13.021091+00:00_
 
 called Edit
 
@@ -2762,7 +2713,7 @@ called Edit
 
 ### Tool result
 
-_source line 5717 · 2026-05-20T15:13:13.523910+00:00_
+_source line 5713 · 2026-05-20T15:13:13.523910+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_summary_auc_decay.py has been updated successfully.
 
@@ -2784,7 +2735,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-cont
 
 ### Tool call
 
-_source line 5718 · 2026-05-20T15:13:14.678851+00:00_
+_source line 5714 · 2026-05-20T15:13:14.678851+00:00_
 
 called Edit
 
@@ -2824,7 +2775,7 @@ called Edit
 
 ### Tool result
 
-_source line 5719 · 2026-05-20T15:13:14.730918+00:00_
+_source line 5715 · 2026-05-20T15:13:14.730918+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib has been updated successfully.
 
@@ -2846,7 +2797,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-cont
 
 ### Tool call
 
-_source line 5720 · 2026-05-20T15:13:29.235965+00:00_
+_source line 5716 · 2026-05-20T15:13:29.235965+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -2886,7 +2837,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5721 · 2026-05-20T15:13:34.987535+00:00_
+_source line 5717 · 2026-05-20T15:13:34.987535+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_regenerate_fig2_auc_decay_20260520T151329\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_regenerate_fig2_auc_decay_20260520T151329.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_regenerate_fig2_auc_decay_20260520T151329 started. Use get_worker_status('worker_ops_regenerate_fig2_auc_decay_20260520T151329') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2908,7 +2859,7 @@ _source line 5721 · 2026-05-20T15:13:34.987535+00:00_
 
 ### Tool call
 
-_source line 5722 · 2026-05-20T15:13:43.524089+00:00_
+_source line 5718 · 2026-05-20T15:13:43.524089+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -2944,7 +2895,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Assistant
 
-_source line 5723 · 2026-05-20T15:32:48.333927+00:00_
+_source line 5719 · 2026-05-20T15:32:48.333927+00:00_
 
 本地编辑完成。派 Worker 到服务器重新生成 Figure 2 PDF。
 
@@ -2971,7 +2922,7 @@ _source line 5723 · 2026-05-20T15:32:48.333927+00:00_
 
 ### User
 
-_source line 5724 · 2026-05-20T15:32:48.829266+00:00_
+_source line 5720 · 2026-05-20T15:32:48.829266+00:00_
 
 [WORKER DONE] Worker worker_ops_regenerate_fig2_auc_decay_20260520T151329 已完成（status=done）。用 `get_worker_status('worker_ops_regenerate_fig2_auc_decay_20260520T151329')` 读取结果，然后处理。
 
@@ -2996,7 +2947,7 @@ _source line 5724 · 2026-05-20T15:32:48.829266+00:00_
 
 ### Tool call
 
-_source line 5725 · 2026-05-20T15:32:55.863376+00:00_
+_source line 5721 · 2026-05-20T15:32:55.863376+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3030,7 +2981,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5726 · 2026-05-20T15:32:55.965212+00:00_
+_source line 5722 · 2026-05-20T15:32:55.965212+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_regenerate_fig2_auc_decay_20260520T151329\", \"status\": \"done\", \"task_type\": \"ops:regenerate_fig2_auc_decay\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T15:13:29.871665+00:00\", \"ended_at\": \"2026-05-20T15:14:31.210613+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Figure 2 已重新生成，y 轴标签已更新为 \\\"Pairwise AUC (5-fold CV)\\\"。文件位置：\\n\\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/fig2_auc_decay.pdf` (39.5 KB)\\n- PNG: 同目录 `fig2_auc_decay.png` (504.7 KB)\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -3052,7 +3003,7 @@ _source line 5726 · 2026-05-20T15:32:55.965212+00:00_
 
 ### Tool call
 
-_source line 5727 · 2026-05-20T15:33:03.902071+00:00_
+_source line 5723 · 2026-05-20T15:33:03.902071+00:00_
 
 called Bash
 
@@ -3088,7 +3039,7 @@ called Bash
 
 ### Tool result
 
-_source line 5728 · 2026-05-20T15:33:04.103287+00:00_
+_source line 5724 · 2026-05-20T15:33:04.103287+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  40437 May 20 15:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf
 -rw-r--r-- 1 ubuntu ubuntu 516855 May 20 15:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png
@@ -3111,7 +3062,7 @@ _source line 5728 · 2026-05-20T15:33:04.103287+00:00_
 
 ### Tool call
 
-_source line 5729 · 2026-05-20T15:33:10.427213+00:00_
+_source line 5725 · 2026-05-20T15:33:10.427213+00:00_
 
 called Read
 
@@ -3145,7 +3096,7 @@ called Read
 
 ### Tool result
 
-_source line 5730 · 2026-05-20T15:33:10.433937+00:00_
+_source line 5726 · 2026-05-20T15:33:10.433937+00:00_
 
 PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf (39.5KB)
 
@@ -3167,7 +3118,7 @@ PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-dept
 
 ### Tool call
 
-_source line 5731 · 2026-05-20T15:33:32.170149+00:00_
+_source line 5727 · 2026-05-20T15:33:32.170149+00:00_
 
 called Bash
 
@@ -3203,7 +3154,7 @@ called Bash
 
 ### Tool result
 
-_source line 5732 · 2026-05-20T15:33:33.174199+00:00_
+_source line 5728 · 2026-05-20T15:33:33.174199+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 21088 May 16 00:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig2_auc_decay.pdf
 
@@ -3225,7 +3176,7 @@ _source line 5732 · 2026-05-20T15:33:33.174199+00:00_
 
 ### Tool call
 
-_source line 5733 · 2026-05-20T15:33:33.174531+00:00_
+_source line 5729 · 2026-05-20T15:33:33.174531+00:00_
 
 called Read
 
@@ -3263,7 +3214,7 @@ called Read
 
 ### Tool result
 
-_source line 5734 · 2026-05-20T15:33:33.225010+00:00_
+_source line 5730 · 2026-05-20T15:33:33.225010+00:00_
 
 60	def discover_auc_files(root: Path) -> list[Path]:
 61	    """Find all pairwise_auc.json under results_*/, results/*/, data_*/."""
@@ -3339,7 +3290,7 @@ _source line 5734 · 2026-05-20T15:33:33.225010+00:00_
 
 ### Tool call
 
-_source line 5735 · 2026-05-20T15:33:46.233450+00:00_
+_source line 5731 · 2026-05-20T15:33:46.233450+00:00_
 
 called Bash
 
@@ -3375,7 +3326,7 @@ called Bash
 
 ### Tool result
 
-_source line 5736 · 2026-05-20T15:33:46.334334+00:00_
+_source line 5732 · 2026-05-20T15:33:46.334334+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 21088 May 20 15:33 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf
 
@@ -3397,7 +3348,7 @@ _source line 5736 · 2026-05-20T15:33:46.334334+00:00_
 
 ### Tool call
 
-_source line 5737 · 2026-05-20T15:34:09.116751+00:00_
+_source line 5733 · 2026-05-20T15:34:09.116751+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -3433,7 +3384,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5738 · 2026-05-20T15:34:13.053482+00:00_
+_source line 5734 · 2026-05-20T15:34:13.053482+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -3455,7 +3406,7 @@ _source line 5738 · 2026-05-20T15:34:13.053482+00:00_
 
 ### Assistant
 
-_source line 5739 · 2026-05-20T15:34:16.150059+00:00_
+_source line 5735 · 2026-05-20T15:34:16.150059+00:00_
 
 原始图仍在 paper/ 目录。先恢复，然后需要用正确的子集重新生成。
 
@@ -3482,7 +3433,7 @@ _source line 5739 · 2026-05-20T15:34:16.150059+00:00_
 
 ### User
 
-_source line 5740 · 2026-05-20T16:22:10.392802+00:00_
+_source line 5736 · 2026-05-20T16:22:10.392802+00:00_
 
 [Director 指令] ## Round 22 审稿修复 — 计算任务（优先级最高，Day 1）
 
@@ -3553,7 +3504,7 @@ Appendix D.21 (sec:f1_validation) 被主文引用但未给汇总数值。计算�
 
 ### Tool call
 
-_source line 5741 · 2026-05-20T16:22:46.582611+00:00_
+_source line 5737 · 2026-05-20T16:22:46.582611+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3595,7 +3546,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5742 · 2026-05-20T16:23:01.376988+00:00_
+_source line 5738 · 2026-05-20T16:23:01.376988+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_reference_verification_r22_20260520T162247\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_reference_verification_r22_20260520T162247.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_reference_verification_r22_20260520T162247 started. Use get_worker_status('worker_research_reference_verification_r22_20260520T162247') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3617,7 +3568,7 @@ _source line 5742 · 2026-05-20T16:23:01.376988+00:00_
 
 ### Tool call
 
-_source line 5743 · 2026-05-20T16:23:01.729053+00:00_
+_source line 5739 · 2026-05-20T16:23:01.729053+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3657,7 +3608,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Assistant
 
-_source line 5744 · 2026-05-20T16:42:10.637904+00:00_
+_source line 5740 · 2026-05-20T16:42:10.637904+00:00_
 
 8 个任务并行执行。T8 已完成（上轮处理），T5 派 WebSearch worker，T2/T3/T4 需要服务器数据派 SSH worker，T1/T6/T7 从论文表格直接提取。
 
@@ -3684,7 +3635,7 @@ _source line 5744 · 2026-05-20T16:42:10.637904+00:00_
 
 ### User
 
-_source line 5745 · 2026-05-20T16:42:11.120856+00:00_
+_source line 5741 · 2026-05-20T16:42:11.120856+00:00_
 
 [WORKER DONE] Worker worker_research_reference_verification_r22_20260520T162247 已完成（status=done）。用 `get_worker_status('worker_research_reference_verification_r22_20260520T162247')` 读取结果，然后处理。
 
@@ -3709,7 +3660,7 @@ _source line 5745 · 2026-05-20T16:42:11.120856+00:00_
 
 ### Tool call
 
-_source line 5746 · 2026-05-20T16:42:19.292073+00:00_
+_source line 5742 · 2026-05-20T16:42:19.292073+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -3743,7 +3694,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5747 · 2026-05-20T16:42:19.393078+00:00_
+_source line 5743 · 2026-05-20T16:42:19.393078+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_reference_verification_r22_20260520T162247\", \"status\": \"done\", \"task_type\": \"research:reference_verification_r22\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T16:22:47.278875+00:00\", \"ended_at\": \"2026-05-20T16:23:55.466337+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 参考文献验证结果\\n\\n### 1. ✅ \\\"Can Generative AI Survive Data Contamination?\\\" — arXiv:2602.16065\\n\\n| 字段 | 审稿人声称 | 实际 |\\n|------|-----------|------|\\n| arXiv ID | 2602.16065 | **确认存在** |\\n| 标题 | Can Generative AI Survive Data Contamination? | **Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training**（审稿人用了缩略标题） |\\n| 作者 | 未提及 | Kevin Wang, Hongqian Niu, Didong Li |\\n| 日期 | 2026 | 2026-02-17 |\\n| 发表状态 | arXiv preprint | arXiv preprint |\\n\\n**摘要**：研究网络数据中 AI 生成内容混入后，生成模型递归训练（后代模型在前代合成数据上训练）的理论保证。现有理论仅分析离散/高斯简化设定下的 model collapse，本文扩展到更现实的数据分布和灵活的生成模型。\\n\\n**与本项目相关性**：🔴 **高度相关**。直接研究 contaminated recursive training 的理论框架，与 generational depth estimation 的核心问题（递归合成文本的代际追踪）高度对口。\\n\\n---\\n\\n### 2. ✅ \\\"Beyond the Final Actor\\\" — arXiv:2604.04932\\n\\n| 字段 | 审稿人声称 | 实际 |\\n|------|-----------|------|\\n| arXiv ID | 2604.04932 | **确认存在** |\\n| 标题 | Beyond the Final Actor | **Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection**（审稿人用了缩略标题） |\\n| 作者 | 未提及 | Yang Li, Qiang Sheng, Zhengjia Wang, Yehan Yang, Danding Wang, Juan Cao |\\n| 日期 | 2026 | 2026-04-06 |\\n| 发表状态 | arXiv preprint | arXiv preprint |\\n\\n**摘要**：提出细粒度 LLM 生成文本检测的四分类设定（纯人写、纯 LLM 写、LLM 润色人写文本、人修改 LLM 文本），方法 RACE 利用修辞结构理论（RST）构建逻辑图刻画\\\"创作者\\\"签名，提取篇章单元级特征刻画\\\"编辑者\\\"风格，超越 12 个 baseline。\\n\\n**与本项目相关性**：🟡 **中等相关**。关注 LLM 生成文本的细粒度检测，但其四分类设定（creator vs editor）与 generational depth estimation（追踪递归生成代数）是不同的维度。可作为 related work 中 fine-grained d
 …[truncated 1507 chars]
@@ -3766,7 +3717,7 @@ _source line 5747 · 2026-05-20T16:42:19.393078+00:00_
 
 ### Tool call
 
-_source line 5748 · 2026-05-20T16:42:45.822940+00:00_
+_source line 5744 · 2026-05-20T16:42:45.822940+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -3806,7 +3757,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 5749 · 2026-05-20T16:42:46.786330+00:00_
+_source line 5745 · 2026-05-20T16:42:46.786330+00:00_
 
 called Read
 
@@ -3844,7 +3795,7 @@ called Read
 
 ### Tool call
 
-_source line 5750 · 2026-05-20T16:42:47.440288+00:00_
+_source line 5746 · 2026-05-20T16:42:47.440288+00:00_
 
 called Read
 
@@ -3882,7 +3833,7 @@ called Read
 
 ### Tool result
 
-_source line 5751 · 2026-05-20T16:42:51.714977+00:00_
+_source line 5747 · 2026-05-20T16:42:51.714977+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_extract_r22_raw_data_20260520T164246\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_extract_r22_raw_data_20260520T164246.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_extract_r22_raw_data_20260520T164246 started. Use get_worker_status('worker_ops_extract_r22_raw_data_20260520T164246') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3904,7 +3855,7 @@ _source line 5751 · 2026-05-20T16:42:51.714977+00:00_
 
 ### Tool result
 
-_source line 5752 · 2026-05-20T16:42:51.715468+00:00_
+_source line 5748 · 2026-05-20T16:42:51.715468+00:00_
 
 75	
 76	\emph{Threshold sensitivity.}
@@ -3955,7 +3906,7 @@ _source line 5752 · 2026-05-20T16:42:51.715468+00:00_
 
 ### Tool result
 
-_source line 5753 · 2026-05-20T16:42:51.715821+00:00_
+_source line 5749 · 2026-05-20T16:42:51.715821+00:00_
 
 878	
 879	\subsection{F1@0.50 Boundary Validation}
@@ -4006,7 +3957,7 @@ _source line 5753 · 2026-05-20T16:42:51.715821+00:00_
 
 ### Tool call
 
-_source line 5754 · 2026-05-20T16:43:30.377825+00:00_
+_source line 5750 · 2026-05-20T16:43:30.377825+00:00_
 
 called Grep
 
@@ -4048,7 +3999,7 @@ called Grep
 
 ### Tool result
 
-_source line 5755 · 2026-05-20T16:43:31.482363+00:00_
+_source line 5751 · 2026-05-20T16:43:31.482363+00:00_
 
 Found 5 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex
@@ -4075,7 +4026,7 @@ Found 5 files
 
 ### Tool call
 
-_source line 5756 · 2026-05-20T16:43:31.834140+00:00_
+_source line 5752 · 2026-05-20T16:43:31.834140+00:00_
 
 called Grep
 
@@ -4115,7 +4066,7 @@ called Grep
 
 ### Tool result
 
-_source line 5757 · 2026-05-20T16:43:31.934974+00:00_
+_source line 5753 · 2026-05-20T16:43:31.934974+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:10:\label{tab:crossscorer}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:386:\label{tab:arxiv_crossscorer_ci}
@@ -4139,7 +4090,7 @@ _source line 5757 · 2026-05-20T16:43:31.934974+00:00_
 
 ### Tool call
 
-_source line 5758 · 2026-05-20T16:43:36.502176+00:00_
+_source line 5754 · 2026-05-20T16:43:36.502176+00:00_
 
 called Read
 
@@ -4177,7 +4128,7 @@ called Read
 
 ### Tool result
 
-_source line 5759 · 2026-05-20T16:43:36.953958+00:00_
+_source line 5755 · 2026-05-20T16:43:36.953958+00:00_
 
 130	Removing LaTeX markup reduces 2v3 AUC by ${\sim}$1.8\,pp but preserves $\Kempirical{=}3$ (CI lower $= 0.610$; Table~\ref{tab:latex_ablation}).
 131	OLMo-1B is a capacity failure (0v1 JSD $= 0.33$), not a counter-example; Mistral-7B provides the strongest domain-dependence evidence ($\Kempirical{=}1$ on C4 but $\Kempirical{=}3$ on arXiv).
@@ -4212,7 +4163,7 @@ _source line 5759 · 2026-05-20T16:43:36.953958+00:00_
 
 ### Tool call
 
-_source line 5760 · 2026-05-20T16:43:36.954350+00:00_
+_source line 5756 · 2026-05-20T16:43:36.954350+00:00_
 
 called Read
 
@@ -4250,7 +4201,7 @@ called Read
 
 ### Tool result
 
-_source line 5761 · 2026-05-20T16:43:37.806945+00:00_
+_source line 5757 · 2026-05-20T16:43:37.806945+00:00_
 
 1	\section{Extended Analysis and Limitations}
 2	\label{sec:extended_discussion}
@@ -4300,7 +4251,7 @@ _source line 5761 · 2026-05-20T16:43:37.806945+00:00_
 
 ### Tool call
 
-_source line 5762 · 2026-05-20T16:43:37.958970+00:00_
+_source line 5758 · 2026-05-20T16:43:37.958970+00:00_
 
 called Read
 
@@ -4338,7 +4289,7 @@ called Read
 
 ### Tool result
 
-_source line 5763 · 2026-05-20T16:43:38.009677+00:00_
+_source line 5759 · 2026-05-20T16:43:38.009677+00:00_
 
 375	\bottomrule
 376	\end{tabular}}
@@ -4394,7 +4345,7 @@ _source line 5763 · 2026-05-20T16:43:38.009677+00:00_
 
 ### Tool call
 
-_source line 5764 · 2026-05-20T16:43:47.560872+00:00_
+_source line 5760 · 2026-05-20T16:43:47.560872+00:00_
 
 called Grep
 
@@ -4440,7 +4391,7 @@ called Grep
 
 ### Tool result
 
-_source line 5765 · 2026-05-20T16:43:48.012411+00:00_
+_source line 5761 · 2026-05-20T16:43:48.012411+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-442-\label{sec:boundary_extended}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-443-
@@ -4472,7 +4423,7 @@ _source line 5765 · 2026-05-20T16:43:48.012411+00:00_
 
 ### Tool call
 
-_source line 5766 · 2026-05-20T16:43:48.163079+00:00_
+_source line 5762 · 2026-05-20T16:43:48.163079+00:00_
 
 called Read
 
@@ -4510,7 +4461,7 @@ called Read
 
 ### Tool result
 
-_source line 5767 · 2026-05-20T16:43:48.163572+00:00_
+_source line 5763 · 2026-05-20T16:43:48.163572+00:00_
 
 85	\resizebox{\columnwidth}{!}{%
 86	\begin{tabular}{llcccc}
@@ -4546,7 +4497,7 @@ _source line 5767 · 2026-05-20T16:43:48.163572+00:00_
 
 ### Tool call
 
-_source line 5768 · 2026-05-20T16:43:54.989014+00:00_
+_source line 5764 · 2026-05-20T16:43:54.989014+00:00_
 
 called Grep
 
@@ -4590,7 +4541,7 @@ called Grep
 
 ### Tool result
 
-_source line 5769 · 2026-05-20T16:43:55.442345+00:00_
+_source line 5765 · 2026-05-20T16:43:55.442345+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:385:\caption{Bootstrap 95\% CI for arXiv cross-scorer (Pythia-1.4B) 2v3 boundary $\auc$ (10{,}000 resamples). Point estimates classify 3/4 generators as $\Kempirical{=}3$; strict CI lower-bound criterion confirms 2/4.}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:414:arXiv & Pythia-1.4B  & 2v3 & 3 & 3 & .654 / .655 & $+$0.1\,pp \\
@@ -4620,7 +4571,7 @@ _source line 5769 · 2026-05-20T16:43:55.442345+00:00_
 
 ### Tool call
 
-_source line 5770 · 2026-05-20T16:43:56.445508+00:00_
+_source line 5766 · 2026-05-20T16:43:56.445508+00:00_
 
 called Grep
 
@@ -4666,7 +4617,7 @@ called Grep
 
 ### Tool result
 
-_source line 5771 · 2026-05-20T16:43:56.496146+00:00_
+_source line 5767 · 2026-05-20T16:43:56.496146+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-440-
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex-441-\subsection{Boundary Cases and Scale Effect}
@@ -4699,7 +4650,7 @@ _source line 5771 · 2026-05-20T16:43:56.496146+00:00_
 
 ### Tool call
 
-_source line 5772 · 2026-05-20T16:44:15.697667+00:00_
+_source line 5768 · 2026-05-20T16:44:15.697667+00:00_
 
 called Read
 
@@ -4737,7 +4688,7 @@ called Read
 
 ### Tool result
 
-_source line 5773 · 2026-05-20T16:44:15.999315+00:00_
+_source line 5769 · 2026-05-20T16:44:15.999315+00:00_
 
 700	\caption{Code domain (Python, CodeSearchNet~\cite{husain2019codesearchnet}) pairwise AUC for Qwen2.5-1.5B. $\Kempirical{=}2$: 1v2 exceeds $\theta{=}0.60$; 2v3 drops to chance. JSD ratio (1v2/2v3) $= 11.7\times$, comparable to C4's cliff structure.}
 701	\label{tab:code_domain_qwen}
@@ -4791,7 +4742,7 @@ _source line 5773 · 2026-05-20T16:44:15.999315+00:00_
 
 ### Tool call
 
-_source line 5774 · 2026-05-20T16:44:15.999698+00:00_
+_source line 5770 · 2026-05-20T16:44:15.999698+00:00_
 
 called Grep
 
@@ -4833,7 +4784,7 @@ called Grep
 
 ### Tool result
 
-_source line 5775 · 2026-05-20T16:44:16.050158+00:00_
+_source line 5771 · 2026-05-20T16:44:16.050158+00:00_
 
 374-Mistral-7B & Pythia   & .660 & .575 & 2 \\
 375-\bottomrule
@@ -4865,7 +4816,7 @@ _source line 5775 · 2026-05-20T16:44:16.050158+00:00_
 
 ### Tool call
 
-_source line 5776 · 2026-05-20T16:46:34.225827+00:00_
+_source line 5772 · 2026-05-20T16:46:34.225827+00:00_
 
 called ToolSearch
 
@@ -4901,7 +4852,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5777 · 2026-05-20T16:46:34.276940+00:00_
+_source line 5773 · 2026-05-20T16:46:34.276940+00:00_
 
 
 
@@ -4923,7 +4874,7 @@ _source line 5777 · 2026-05-20T16:46:34.276940+00:00_
 
 ### Tool call
 
-_source line 5778 · 2026-05-20T16:46:37.488968+00:00_
+_source line 5774 · 2026-05-20T16:46:37.488968+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -4959,7 +4910,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5779 · 2026-05-20T16:46:38.342802+00:00_
+_source line 5775 · 2026-05-20T16:46:38.342802+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_extract_r22_raw_data_20260520T164246\", \"status\": \"running\", \"task_type\": \"ops:extract_r22_raw_data\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T16:42:46.628096+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"让我获取更多 fold-level AUC 数据和检查是否有额外的 generator identity 指标。\", \"turn_count\": 9}}, \"error\": null, \"metadata\": {}}"}
 
@@ -4981,7 +4932,7 @@ _source line 5779 · 2026-05-20T16:46:38.342802+00:00_
 
 ### Tool call
 
-_source line 5780 · 2026-05-20T16:46:38.343172+00:00_
+_source line 5776 · 2026-05-20T16:46:38.343172+00:00_
 
 called Read
 
@@ -5019,7 +4970,7 @@ called Read
 
 ### Tool result
 
-_source line 5781 · 2026-05-20T16:46:39.198015+00:00_
+_source line 5777 · 2026-05-20T16:46:39.198015+00:00_
 
 370	\midrule
 371	Qwen-7B   & OLMo      & .492 & .489 & 1 \\
@@ -5090,7 +5041,7 @@ _source line 5781 · 2026-05-20T16:46:39.198015+00:00_
 
 ### Tool call
 
-_source line 5782 · 2026-05-20T16:46:39.248595+00:00_
+_source line 5778 · 2026-05-20T16:46:39.248595+00:00_
 
 called Read
 
@@ -5128,7 +5079,7 @@ called Read
 
 ### Tool result
 
-_source line 5783 · 2026-05-20T16:46:39.299404+00:00_
+_source line 5779 · 2026-05-20T16:46:39.299404+00:00_
 
 180	HellaSwag differences are negligible across all strategies.
 181	
@@ -5187,7 +5138,7 @@ _source line 5783 · 2026-05-20T16:46:39.299404+00:00_
 
 ### Tool call
 
-_source line 5784 · 2026-05-20T16:46:49.384518+00:00_
+_source line 5780 · 2026-05-20T16:46:49.384518+00:00_
 
 called Read
 
@@ -5225,7 +5176,7 @@ called Read
 
 ### Tool result
 
-_source line 5785 · 2026-05-20T16:46:49.636049+00:00_
+_source line 5781 · 2026-05-20T16:46:49.636049+00:00_
 
 235	\label{sec:wiki_domain}
 236	
@@ -5276,7 +5227,7 @@ _source line 5785 · 2026-05-20T16:46:49.636049+00:00_
 
 ### Tool call
 
-_source line 5786 · 2026-05-20T16:46:49.636532+00:00_
+_source line 5782 · 2026-05-20T16:46:49.636532+00:00_
 
 called Read
 
@@ -5314,7 +5265,7 @@ called Read
 
 ### Tool result
 
-_source line 5787 · 2026-05-20T16:46:50.138710+00:00_
+_source line 5783 · 2026-05-20T16:46:50.138710+00:00_
 
 80	\begin{table}[htbp]
 81	\centering
@@ -5365,7 +5316,7 @@ _source line 5787 · 2026-05-20T16:46:50.138710+00:00_
 
 ### Tool call
 
-_source line 5788 · 2026-05-20T16:46:50.490408+00:00_
+_source line 5784 · 2026-05-20T16:46:50.490408+00:00_
 
 called Read
 
@@ -5403,7 +5354,7 @@ called Read
 
 ### Tool result
 
-_source line 5789 · 2026-05-20T16:46:50.541056+00:00_
+_source line 5785 · 2026-05-20T16:46:50.541056+00:00_
 
 290	Pythia-1.4B   & .585 & .545 & 1 & ---   & .614 & 3 \\
 291	OLMo-1B       & .498 & .504 & 1 & .518  & .512 & 1 \\
@@ -5465,7 +5416,7 @@ _source line 5789 · 2026-05-20T16:46:50.541056+00:00_
 
 ### Tool call
 
-_source line 5790 · 2026-05-20T16:47:23.111454+00:00_
+_source line 5786 · 2026-05-20T16:47:23.111454+00:00_
 
 called Read
 
@@ -5503,7 +5454,7 @@ called Read
 
 ### Tool result
 
-_source line 5791 · 2026-05-20T16:47:23.563539+00:00_
+_source line 5787 · 2026-05-20T16:47:23.563539+00:00_
 
 118	\end{table*}
 119	
@@ -5545,7 +5496,7 @@ _source line 5791 · 2026-05-20T16:47:23.563539+00:00_
 
 ### Tool call
 
-_source line 5792 · 2026-05-20T16:47:26.273626+00:00_
+_source line 5788 · 2026-05-20T16:47:26.273626+00:00_
 
 called Agent
 
@@ -5583,7 +5534,7 @@ called Agent
 
 ### Tool call
 
-_source line 5793 · 2026-05-20T16:47:27.929756+00:00_
+_source line 5789 · 2026-05-20T16:47:27.929756+00:00_
 
 called Read
 
@@ -5617,7 +5568,7 @@ called Read
 
 ### Tool result
 
-_source line 5794 · 2026-05-20T16:47:28.281253+00:00_
+_source line 5790 · 2026-05-20T16:47:28.281253+00:00_
 
 File content (26380 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -5639,7 +5590,7 @@ File content (26380 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 5795 · 2026-05-20T16:47:30.288443+00:00_
+_source line 5791 · 2026-05-20T16:47:30.288443+00:00_
 
 called Grep
 
@@ -5679,7 +5630,7 @@ called Grep
 
 ### Tool result
 
-_source line 5796 · 2026-05-20T16:47:30.288922+00:00_
+_source line 5792 · 2026-05-20T16:47:30.288922+00:00_
 
 295-\bottomrule
 296-\end{tabular}}
@@ -5737,7 +5688,7 @@ _source line 5796 · 2026-05-20T16:47:30.288922+00:00_
 
 ### Tool call
 
-_source line 5797 · 2026-05-20T16:47:32.396605+00:00_
+_source line 5793 · 2026-05-20T16:47:32.396605+00:00_
 
 called Read
 
@@ -5775,7 +5726,7 @@ called Read
 
 ### Tool result
 
-_source line 5798 · 2026-05-20T16:47:32.447356+00:00_
+_source line 5794 · 2026-05-20T16:47:32.447356+00:00_
 
 299	\paragraph{ArXiv DeBERTa vs.\ OBD.}
 300	Table~\ref{tab:deberta_arxiv} compares DeBERTa-v3-base and OBD-LightGBM on arXiv (Qwen-1.5B generations).
@@ -5835,7 +5786,7 @@ _source line 5798 · 2026-05-20T16:47:32.447356+00:00_
 
 ### Tool call
 
-_source line 5799 · 2026-05-20T16:47:32.548098+00:00_
+_source line 5795 · 2026-05-20T16:47:32.548098+00:00_
 
 called Read
 
@@ -5873,7 +5824,7 @@ called Read
 
 ### Tool result
 
-_source line 5800 · 2026-05-20T16:47:32.598659+00:00_
+_source line 5796 · 2026-05-20T16:47:32.598659+00:00_
 
 379	\subsection{ArXiv Cross-Scorer Bootstrap CIs}
 380	\label{sec:arxiv_crossscorer_ci}
@@ -5941,7 +5892,7 @@ _source line 5800 · 2026-05-20T16:47:32.598659+00:00_
 
 ### Tool result
 
-_source line 5801 · 2026-05-20T16:47:37.666659+00:00_
+_source line 5797 · 2026-05-20T16:47:37.666659+00:00_
 
 Perfect! I found the arXiv pairwise AUC tables with bootstrap CIs. Here are the key findings:
 
@@ -5993,7 +5944,7 @@ The most comprehensive arXiv results are in Table 1 (lines 304-319) for Qwen-1.5
 
 ### Tool call
 
-_source line 5802 · 2026-05-20T16:49:39.389795+00:00_
+_source line 5798 · 2026-05-20T16:49:39.389795+00:00_
 
 called Read
 
@@ -6031,7 +5982,7 @@ called Read
 
 ### Tool result
 
-_source line 5803 · 2026-05-20T16:49:40.042648+00:00_
+_source line 5799 · 2026-05-20T16:49:40.042648+00:00_
 
 455	
 456	To disentangle content-level depth signal from formatting artifacts on arXiv, we strip all LaTeX markup (commands, environments, inline math delimiters) and re-extract features from the plain-text residual (Qwen-1.5B continuation, $n{=}2{,}200$; Table~\ref{tab:latex_ablation}).
@@ -6083,7 +6034,7 @@ _source line 5803 · 2026-05-20T16:49:40.042648+00:00_
 
 ### Tool call
 
-_source line 5804 · 2026-05-20T16:49:40.093217+00:00_
+_source line 5800 · 2026-05-20T16:49:40.093217+00:00_
 
 called Read
 
@@ -6121,7 +6072,7 @@ called Read
 
 ### Tool result
 
-_source line 5805 · 2026-05-20T16:49:40.143987+00:00_
+_source line 5801 · 2026-05-20T16:49:40.143987+00:00_
 
 875	\caption{Generator pools for multi-source experiments. C4 and arXiv share the same pool; Code and Wikipedia use 7B-class models that produce higher-quality domain-specific outputs.}
 876	\label{tab:multi_source_pools}
@@ -6177,7 +6128,7 @@ _source line 5805 · 2026-05-20T16:49:40.143987+00:00_
 
 ### Tool call
 
-_source line 5806 · 2026-05-20T16:50:08.679532+00:00_
+_source line 5802 · 2026-05-20T16:50:08.679532+00:00_
 
 called Grep
 
@@ -6219,7 +6170,7 @@ called Grep
 
 ### Tool result
 
-_source line 5807 · 2026-05-20T16:50:09.583148+00:00_
+_source line 5803 · 2026-05-20T16:50:09.583148+00:00_
 
 98:arXiv    & Pythia-1.4B (cont.)    & 4 & 3 & 3 & 2 \\
 385:\caption{Bootstrap 95\% CI for arXiv cross-scorer (Pythia-1.4B) 2v3 boundary $\auc$ (10{,}000 resamples). Point estimates classify 3/4 generators as $\Kempirical{=}3$; strict CI lower-bound criterion confirms 2/4.}
@@ -6247,7 +6198,7 @@ _source line 5807 · 2026-05-20T16:50:09.583148+00:00_
 
 ### Tool call
 
-_source line 5808 · 2026-05-20T16:50:10.286447+00:00_
+_source line 5804 · 2026-05-20T16:50:10.286447+00:00_
 
 called Grep
 
@@ -6289,7 +6240,7 @@ called Grep
 
 ### Tool result
 
-_source line 5809 · 2026-05-20T16:50:10.337434+00:00_
+_source line 5805 · 2026-05-20T16:50:10.337434+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:100:Cross-scorer & Qwen-cont/Pythia-scored & 2 & 1 & 1 & 1 \\
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:101:Cross-scorer & Qwen-cont/OLMo-scored   & 2 & 1 & 1 & 1 \\
@@ -6316,7 +6267,7 @@ _source line 5809 · 2026-05-20T16:50:10.337434+00:00_
 
 ### Tool call
 
-_source line 5810 · 2026-05-20T16:50:23.976197+00:00_
+_source line 5806 · 2026-05-20T16:50:23.976197+00:00_
 
 called Read
 
@@ -6354,7 +6305,7 @@ called Read
 
 ### Tool result
 
-_source line 5811 · 2026-05-20T16:50:24.077012+00:00_
+_source line 5807 · 2026-05-20T16:50:24.077012+00:00_
 
 660	\midrule
 661	C4 & Pythia & Pythia-1.4B & 0.6539 & 0.5515 & 0.5914 & 2 & 2 & \cmark \\
@@ -6412,7 +6363,7 @@ _source line 5811 · 2026-05-20T16:50:24.077012+00:00_
 
 ### Tool call
 
-_source line 5812 · 2026-05-20T16:50:32.607882+00:00_
+_source line 5808 · 2026-05-20T16:50:32.607882+00:00_
 
 called Read
 
@@ -6450,7 +6401,7 @@ called Read
 
 ### Tool result
 
-_source line 5813 · 2026-05-20T16:50:32.708625+00:00_
+_source line 5809 · 2026-05-20T16:50:32.708625+00:00_
 
 640	Table~\ref{tab:theta_lofo} reports results across all three domains.
 641	
@@ -6489,7 +6440,7 @@ _source line 5813 · 2026-05-20T16:50:32.708625+00:00_
 
 ### Tool call
 
-_source line 5814 · 2026-05-20T16:51:21.660858+00:00_
+_source line 5810 · 2026-05-20T16:51:21.660858+00:00_
 
 called Grep
 
@@ -6531,7 +6482,7 @@ called Grep
 
 ### Tool result
 
-_source line 5815 · 2026-05-20T16:51:22.062984+00:00_
+_source line 5811 · 2026-05-20T16:51:22.062984+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex:3:\caption{Generative depth $K^*$ across domains and models (scorer: Qwen2.5-1.5B, $\theta{=}0.60$). Bold values indicate the dominant mode per domain. $K^*$ is remarkably consistent within each domain: C4 yields $K^*{=}2$, arXiv yields $K^*{=}3$, and Wikipedia yields $K^*{=}1$, confirming that generative depth is domain-dependent and low-bounded.}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:238:A scorer confound ablation resolves this apparent split.
@@ -6561,7 +6512,7 @@ _source line 5815 · 2026-05-20T16:51:22.062984+00:00_
 
 ### Tool call
 
-_source line 5816 · 2026-05-20T16:51:22.113619+00:00_
+_source line 5812 · 2026-05-20T16:51:22.113619+00:00_
 
 called Read
 
@@ -6599,7 +6550,7 @@ called Read
 
 ### Tool result
 
-_source line 5817 · 2026-05-20T16:51:22.164244+00:00_
+_source line 5813 · 2026-05-20T16:51:22.164244+00:00_
 
 700	\caption{Code domain (Python, CodeSearchNet~\cite{husain2019codesearchnet}) pairwise AUC for Qwen2.5-1.5B. $\Kempirical{=}2$: 1v2 exceeds $\theta{=}0.60$; 2v3 drops to chance. JSD ratio (1v2/2v3) $= 11.7\times$, comparable to C4's cliff structure.}
 701	\label{tab:code_domain_qwen}
@@ -6653,7 +6604,7 @@ _source line 5817 · 2026-05-20T16:51:22.164244+00:00_
 
 ### Tool call
 
-_source line 5818 · 2026-05-20T16:51:27.242462+00:00_
+_source line 5814 · 2026-05-20T16:51:27.242462+00:00_
 
 called Grep
 
@@ -6695,7 +6646,7 @@ called Grep
 
 ### Tool result
 
-_source line 5819 · 2026-05-20T16:51:27.293056+00:00_
+_source line 5815 · 2026-05-20T16:51:27.293056+00:00_
 
 4:This section provides supporting tables for cross-scorer validation (Tables~\ref{tab:crossscorer}--\ref{tab:anova_crossscorer}), followed by extended limitations, ablation studies, and domain-specific analyses.
 10:\label{tab:crossscorer}
@@ -6724,7 +6675,7 @@ _source line 5819 · 2026-05-20T16:51:27.293056+00:00_
 
 ### Tool call
 
-_source line 5820 · 2026-05-20T16:51:30.956715+00:00_
+_source line 5816 · 2026-05-20T16:51:30.956715+00:00_
 
 called Read
 
@@ -6762,7 +6713,7 @@ called Read
 
 ### Tool result
 
-_source line 5821 · 2026-05-20T16:51:31.609630+00:00_
+_source line 5817 · 2026-05-20T16:51:31.609630+00:00_
 
 4	This section provides supporting tables for cross-scorer validation (Tables~\ref{tab:crossscorer}--\ref{tab:anova_crossscorer}), followed by extended limitations, ablation studies, and domain-specific analyses.
 5	
@@ -6803,7 +6754,7 @@ _source line 5821 · 2026-05-20T16:51:31.609630+00:00_
 
 ### Tool call
 
-_source line 5822 · 2026-05-20T16:51:31.710973+00:00_
+_source line 5818 · 2026-05-20T16:51:31.710973+00:00_
 
 called Bash
 
@@ -6839,7 +6790,7 @@ called Bash
 
 ### Tool result
 
-_source line 5823 · 2026-05-20T16:51:31.862019+00:00_
+_source line 5819 · 2026-05-20T16:51:31.862019+00:00_
 
 {\small
 \begin{tabular}{llcccc}
@@ -6880,7 +6831,7 @@ Qwen-1.5B        & Qwen-7B-cont & 2 & 0.9644 & 0.6178 & --- \\
 
 ### Tool call
 
-_source line 5824 · 2026-05-20T16:53:05.535962+00:00_
+_source line 5820 · 2026-05-20T16:53:05.535962+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -6916,7 +6867,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5825 · 2026-05-20T16:53:05.636902+00:00_
+_source line 5821 · 2026-05-20T16:53:05.636902+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_extract_r22_raw_data_20260520T164246\", \"status\": \"done\", \"task_type\": \"ops:extract_r22_raw_data\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T16:42:46.628096+00:00\", \"ended_at\": \"2026-05-20T16:49:42.772728+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完整数据已提取并写入 `artifacts/round22_raw_data_extraction.md`。\\n\\n---\\n\\n## 摘要\\n\\n### T4: Permutation test p-values\\n- **所有 boundary pair 的 perm_p 均为 0.0001** (= 0/10000 permutations 超过观测值), 包括 exp016, exp018, exp019, exp024, exp025, exp027, exp_gemma2b, 和全部 crossscorer configs\\n- 例外: retrain-chain 的 permutation_test.json 用不同编码, 其中 exp_008 3v4 p=0.304, exp_olmo 2v3 p=0.998 (这些是 K* 之后的第一个下降对, 不是 boundary pair)\\n- **exp_gemma2b** 的 3v4 (p=0.2919) 和 4v5 (p=0.3418) 不显著, 符合预期 (K*=1)\\n\\n### T3: PELT changepoint\\n- 37 configs 完整列表已提取。18/37 (48.6%) K*_OBD = K*_PELT; 19/37 不一致\\n- PELT 系统性偏保守 (K*_PELT ≤ K*_OBD), 差值主要为 1\\n\\n### T2: Fold-level AUC\\n- 所有 configs 的 1v2 和 2v3 五折 AUC 均已提取 (从 pairwise_auc.json 和 bootstrap_ci.json)\\n- 数据可直接用于 Youden's J optimal θ 计算\\n\\n### T6: Generator identity AUC\\n- **不存在独立的 generator identity classification AUC 指标**\\n- multi_source 实验仅测量加入 generator label 后 depth classifier 的 AUC 增量\\n- 增量极小: 平均 Δ(1v2) ≈ +0.01; K* 在所有 domain/config 中未因此改变\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6938,7 +6889,7 @@ _source line 5825 · 2026-05-20T16:53:05.636902+00:00_
 
 ### Tool call
 
-_source line 5826 · 2026-05-20T16:53:12.210958+00:00_
+_source line 5822 · 2026-05-20T16:53:12.210958+00:00_
 
 called Read
 
@@ -6972,7 +6923,7 @@ called Read
 
 ### Tool result
 
-_source line 5827 · 2026-05-20T16:53:12.312264+00:00_
+_source line 5823 · 2026-05-20T16:53:12.312264+00:00_
 
 1	# Round 22 审稿修复原始数据提取
 2	
@@ -7060,7 +7011,7 @@ _source line 5827 · 2026-05-20T16:53:12.312264+00:00_
 
 ### Tool call
 
-_source line 5828 · 2026-05-20T16:57:26.175070+00:00_
+_source line 5824 · 2026-05-20T16:57:26.175070+00:00_
 
 called ToolSearch
 
@@ -7096,7 +7047,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5829 · 2026-05-20T16:57:26.225659+00:00_
+_source line 5825 · 2026-05-20T16:57:26.225659+00:00_
 
 
 
@@ -7118,7 +7069,7 @@ _source line 5829 · 2026-05-20T16:57:26.225659+00:00_
 
 ### Tool call
 
-_source line 5830 · 2026-05-20T17:01:19.252171+00:00_
+_source line 5826 · 2026-05-20T17:01:19.252171+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -7154,7 +7105,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5831 · 2026-05-20T17:01:20.557250+00:00_
+_source line 5827 · 2026-05-20T17:01:20.557250+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -7176,7 +7127,7 @@ _source line 5831 · 2026-05-20T17:01:20.557250+00:00_
 
 ### Tool call
 
-_source line 5832 · 2026-05-20T17:01:26.522815+00:00_
+_source line 5828 · 2026-05-20T17:01:26.522815+00:00_
 
 called ToolSearch
 
@@ -7212,7 +7163,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5833 · 2026-05-20T17:01:26.623549+00:00_
+_source line 5829 · 2026-05-20T17:01:26.623549+00:00_
 
 
 
@@ -7234,7 +7185,7 @@ _source line 5833 · 2026-05-20T17:01:26.623549+00:00_
 
 ### Tool call
 
-_source line 5834 · 2026-05-20T17:01:29.434425+00:00_
+_source line 5830 · 2026-05-20T17:01:29.434425+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -7272,7 +7223,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 5835 · 2026-05-20T17:01:29.535325+00:00_
+_source line 5831 · 2026-05-20T17:01:29.535325+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- arxiv_multi_source（准备中）\\n- 7b-cross-transfer（准备中）\\n- exp_olmo_retrain_v2: OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_olmo_retrain_v3** (success): OLMo-1B retrain-chain K*>=4 (matching Pythia/Qwen retrain-chain), confirming retrain-chain K* is protocol-determined not architecture-determined. LoRA rank=16, alpha=32, 1 epoch per generation, C4 5K docs, depth 0-4.\\n- **exp_7b_scorer_arxiv** (success): Qwen2.5-7B scorer yields same K*=3 as Qwen2.5-1.5B scorer on arXiv depth chains, confirming K* is robust to scorer scale across domains (C4 + arXiv). ← 基于 exp_024_arxiv_domain\\n- **exp_014_naturalistic** (success): OBD depth predictions on real-world Common Crawl text correlate with independent text quality metrics (vocabulary richness), validating that the depth signal captures meaningful text degradation beyond the synthetic training distribution.\\n\\n## 趋势\\n成功 85 / 负向 11 / 失败 11 / 共 107\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\nwestd-42896: 无 GPU 信息\\n\\n## 告警\\n- exp-008-retrain-chain: 训练失败 — unknown\\n- exp_009_dose_10pct: 训练失败 — unknown\\n- exp_
 …[truncated 454 chars]
@@ -7295,7 +7246,7 @@ _source line 5835 · 2026-05-20T17:01:29.535325+00:00_
 
 ### Tool call
 
-_source line 5836 · 2026-05-20T17:01:42.878524+00:00_
+_source line 5832 · 2026-05-20T17:01:42.878524+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -7333,7 +7284,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 5837 · 2026-05-20T17:01:42.879012+00:00_
+_source line 5833 · 2026-05-20T17:01:42.879012+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'report.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use (auto-generated, not manually writable) instead.\", \"metadata\": {}}"}
 
@@ -7355,7 +7306,7 @@ _source line 5837 · 2026-05-20T17:01:42.879012+00:00_
 
 ### Tool call
 
-_source line 5838 · 2026-05-20T17:01:47.057683+00:00_
+_source line 5834 · 2026-05-20T17:01:47.057683+00:00_
 
 called ToolSearch
 
@@ -7391,7 +7342,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5839 · 2026-05-20T17:01:47.108317+00:00_
+_source line 5835 · 2026-05-20T17:01:47.108317+00:00_
 
 
 
@@ -7413,7 +7364,7 @@ _source line 5839 · 2026-05-20T17:01:47.108317+00:00_
 
 ### Tool call
 
-_source line 5840 · 2026-05-20T17:01:53.180953+00:00_
+_source line 5836 · 2026-05-20T17:01:53.180953+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -7457,7 +7408,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 5841 · 2026-05-20T17:01:53.432557+00:00_
+_source line 5837 · 2026-05-20T17:01:53.432557+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_e196ed\", \"name\": \"round22_raw_data_extraction\", \"type\": \"data\", \"description\": \"Round 22 审稿修复原始数据: permutation p-values (T4), PELT 37-config pairs (T3), fold-level AUC (T2), generator identity Δ (T6). Extracted from cqa1-22115.\", \"path\": \"projects/gen-depth-contamination/artifacts/_project/data/round22_raw_data_extraction.md\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T17:01:53.165198+00:00\", \"tags\": [\"review-fix\", \"round22\", \"data-extraction\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7479,7 +7430,7 @@ _source line 5841 · 2026-05-20T17:01:53.432557+00:00_
 
 ### Assistant
 
-_source line 5842 · 2026-05-20T17:01:58.295222+00:00_
+_source line 5838 · 2026-05-20T17:01:58.295222+00:00_
 
 Round 22 全部 8 项任务完成，报告已提交 Director。等待 Director 对 3 个决策点的回复:
 1. θ-sensitivity 表现有 3 处错误是否修正
@@ -7509,7 +7460,7 @@ Round 22 全部 8 项任务完成，报告已提交 Director。等待 Director �
 
 ### User
 
-_source line 5843 · 2026-05-20T17:01:58.819423+00:00_
+_source line 5839 · 2026-05-20T17:01:58.819423+00:00_
 
 [Director 指令] ## 紧急：3 个新实验（Round 22 结构性问题修复，D093）
 
@@ -7610,7 +7561,7 @@ _source line 5843 · 2026-05-20T17:01:58.819423+00:00_
 
 ### Tool call
 
-_source line 5844 · 2026-05-20T17:02:18.464473+00:00_
+_source line 5840 · 2026-05-20T17:02:18.464473+00:00_
 
 called ToolSearch
 
@@ -7646,7 +7597,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5845 · 2026-05-20T17:02:18.565298+00:00_
+_source line 5841 · 2026-05-20T17:02:18.565298+00:00_
 
 
 
@@ -7668,7 +7619,7 @@ _source line 5845 · 2026-05-20T17:02:18.565298+00:00_
 
 ### Tool call
 
-_source line 5846 · 2026-05-20T17:02:21.776886+00:00_
+_source line 5842 · 2026-05-20T17:02:21.776886+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -7704,7 +7655,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 5847 · 2026-05-20T17:02:21.827549+00:00_
+_source line 5843 · 2026-05-20T17:02:21.827549+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\", \"autodl-4090d:cuda:1\", \"autodl-4090d:cuda:2\", \"autodl-4090d:cuda:3\", \"westd-42896:cuda:0\", \"westd-42896:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"cqa1-22115\", \"westd-42896\"]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -7726,7 +7677,7 @@ _source line 5847 · 2026-05-20T17:02:21.827549+00:00_
 
 ### Tool call
 
-_source line 5848 · 2026-05-20T17:02:46.847077+00:00_
+_source line 5844 · 2026-05-20T17:02:46.847077+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7766,7 +7717,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 5849 · 2026-05-20T17:02:47.553413+00:00_
+_source line 5845 · 2026-05-20T17:02:47.553413+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7806,7 +7757,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 5850 · 2026-05-20T17:02:48.106721+00:00_
+_source line 5846 · 2026-05-20T17:02:48.106721+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7846,7 +7797,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5851 · 2026-05-20T17:02:48.459100+00:00_
+_source line 5847 · 2026-05-20T17:02:48.459100+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_expanded_downstream_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:47.262Z\", \"updated_at\": \"2026-05-20T17:02:47.262Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.58}}"}
 
@@ -7868,7 +7819,7 @@ _source line 5851 · 2026-05-20T17:02:48.459100+00:00_
 
 ### Tool result
 
-_source line 5852 · 2026-05-20T17:02:49.915366+00:00_
+_source line 5848 · 2026-05-20T17:02:49.915366+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_contamination_rate_sweep\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:02:48.807Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4448}}"}
 
@@ -7890,7 +7841,7 @@ _source line 5852 · 2026-05-20T17:02:49.915366+00:00_
 
 ### Tool result
 
-_source line 5853 · 2026-05-20T17:02:51.370889+00:00_
+_source line 5849 · 2026-05-20T17:02:51.370889+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T17:02:50.272Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4297}}"}
 
@@ -7912,7 +7863,7 @@ _source line 5853 · 2026-05-20T17:02:51.370889+00:00_
 
 ### Tool call
 
-_source line 5854 · 2026-05-20T17:02:57.392581+00:00_
+_source line 5850 · 2026-05-20T17:02:57.392581+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -7952,7 +7903,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5855 · 2026-05-20T17:02:59.248967+00:00_
+_source line 5851 · 2026-05-20T17:02:59.248967+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_expanded_downstream_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:47.262Z\", \"updated_at\": \"2026-05-20T17:02:57.767Z\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6547}}"}
 
@@ -7974,7 +7925,7 @@ _source line 5855 · 2026-05-20T17:02:59.248967+00:00_
 
 ### Tool call
 
-_source line 5856 · 2026-05-20T17:02:59.700932+00:00_
+_source line 5852 · 2026-05-20T17:02:59.700932+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8014,7 +7965,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5857 · 2026-05-20T17:03:03.867447+00:00_
+_source line 5853 · 2026-05-20T17:03:03.867447+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_contamination_rate_sweep\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:03:00.057Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6238}}"}
 
@@ -8036,7 +7987,7 @@ _source line 5857 · 2026-05-20T17:03:03.867447+00:00_
 
 ### Tool call
 
-_source line 5858 · 2026-05-20T17:03:04.168952+00:00_
+_source line 5854 · 2026-05-20T17:03:04.168952+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8076,7 +8027,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5859 · 2026-05-20T17:03:04.821414+00:00_
+_source line 5855 · 2026-05-20T17:03:04.821414+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T17:03:04.557Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient and resolving the DeBERTa self-contradiction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6376}}"}
 
@@ -8098,7 +8049,7 @@ _source line 5859 · 2026-05-20T17:03:04.821414+00:00_
 
 ### Tool call
 
-_source line 5860 · 2026-05-20T17:03:17.391983+00:00_
+_source line 5856 · 2026-05-20T17:03:17.391983+00:00_
 
 called ToolSearch
 
@@ -8134,7 +8085,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5861 · 2026-05-20T17:03:17.442634+00:00_
+_source line 5857 · 2026-05-20T17:03:17.442634+00:00_
 
 
 
@@ -8156,7 +8107,7 @@ _source line 5861 · 2026-05-20T17:03:17.442634+00:00_
 
 ### Tool call
 
-_source line 5862 · 2026-05-20T17:03:51.868757+00:00_
+_source line 5858 · 2026-05-20T17:03:51.868757+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8198,7 +8149,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5863 · 2026-05-20T17:04:22.146552+00:00_
+_source line 5859 · 2026-05-20T17:04:22.146552+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_expanded_downstream_eval_20260520T170352\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_expanded_downstream_eval_20260520T170352.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_expanded_downstream_eval_20260520T170352 started. Use get_worker_status('worker_ops_exp_expanded_downstream_eval_20260520T170352') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8220,7 +8171,7 @@ _source line 5863 · 2026-05-20T17:04:22.146552+00:00_
 
 ### Tool call
 
-_source line 5864 · 2026-05-20T17:04:22.548445+00:00_
+_source line 5860 · 2026-05-20T17:04:22.548445+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8262,7 +8213,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5865 · 2026-05-20T17:04:52.251379+00:00_
+_source line 5861 · 2026-05-20T17:04:52.251379+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_20260520T170422\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_contamination_rate_sweep_20260520T170422.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_contamination_rate_sweep_20260520T170422 started. Use get_worker_status('worker_ops_exp_contamination_rate_sweep_20260520T170422') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8284,7 +8235,7 @@ _source line 5865 · 2026-05-20T17:04:52.251379+00:00_
 
 ### Tool call
 
-_source line 5866 · 2026-05-20T17:04:52.653124+00:00_
+_source line 5862 · 2026-05-20T17:04:52.653124+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8326,7 +8277,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Assistant
 
-_source line 5867 · 2026-05-20T17:21:59.092766+00:00_
+_source line 5863 · 2026-05-20T17:21:59.092766+00:00_
 
 Spawning all 3 workers in parallel.
 
@@ -8353,7 +8304,7 @@ Spawning all 3 workers in parallel.
 
 ### User
 
-_source line 5868 · 2026-05-20T17:21:59.579053+00:00_
+_source line 5864 · 2026-05-20T17:21:59.579053+00:00_
 
 [WORKER DONE] Worker worker_ops_extract_r22_raw_data_20260520T164246 已完成（status=done）。用 `get_worker_status('worker_ops_extract_r22_raw_data_20260520T164246')` 读取结果，然后处理。
 
@@ -8378,7 +8329,7 @@ _source line 5868 · 2026-05-20T17:21:59.579053+00:00_
 
 ### Tool call
 
-_source line 5869 · 2026-05-20T17:22:38.375180+00:00_
+_source line 5865 · 2026-05-20T17:22:38.375180+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8420,7 +8371,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5870 · 2026-05-20T17:22:43.985113+00:00_
+_source line 5866 · 2026-05-20T17:22:43.985113+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_comparison_20260520T172238\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_deberta_filtering_comparison_20260520T172238.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_deberta_filtering_comparison_20260520T172238 started. Use get_worker_status('worker_ops_exp_deberta_filtering_comparison_20260520T172238') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8442,7 +8393,7 @@ _source line 5870 · 2026-05-20T17:22:43.985113+00:00_
 
 ### Tool call
 
-_source line 5871 · 2026-05-20T17:22:59.631366+00:00_
+_source line 5867 · 2026-05-20T17:22:59.631366+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8478,7 +8429,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5872 · 2026-05-20T17:23:00.785151+00:00_
+_source line 5868 · 2026-05-20T17:23:00.785151+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -8500,7 +8451,7 @@ _source line 5872 · 2026-05-20T17:23:00.785151+00:00_
 
 ### Assistant
 
-_source line 5873 · 2026-05-20T17:23:05.045226+00:00_
+_source line 5869 · 2026-05-20T17:23:05.045226+00:00_
 
 3 个 Worker 已派发，Director 已通知。等待 Worker 回调。
 
@@ -8531,7 +8482,7 @@ _source line 5873 · 2026-05-20T17:23:05.045226+00:00_
 
 ### User
 
-_source line 5874 · 2026-05-20T17:23:05.606688+00:00_
+_source line 5870 · 2026-05-20T17:23:05.606688+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_expanded_downstream_eval_20260520T170352 已完成（status=done）。用 `get_worker_status('worker_ops_exp_expanded_downstream_eval_20260520T170352')` 读取结果，然后处理。
 
@@ -8556,7 +8507,7 @@ _source line 5874 · 2026-05-20T17:23:05.606688+00:00_
 
 ### Tool call
 
-_source line 5875 · 2026-05-20T17:23:17.517927+00:00_
+_source line 5871 · 2026-05-20T17:23:17.517927+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -8592,7 +8543,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5876 · 2026-05-20T17:23:17.618800+00:00_
+_source line 5872 · 2026-05-20T17:23:17.618800+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_expanded_downstream_eval_20260520T170352\", \"status\": \"done\", \"task_type\": \"ops:exp_expanded_downstream_eval\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:03:52.526216+00:00\", \"ended_at\": \"2026-05-20T17:18:29.651427+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"PIQA 评估正常运行中，loglikelihood 推理进行中。任务正常启动，预计总运行时间约 15-20 小时（1 base + 9 策略模型，每个需训练+5 benchmark评估）。\\n\\n任务总结：\\n- 脚本已创建并提交到 `cqa1-22115` 服务器\\n- 任务 `exp_expanded_downstream_eval` 已在 tmux 中运行\\n- 流程：base model eval → 3 策略 x 3 seeds 的 LoRA 训练+评估 → 统计分析\\n- 5 benchmarks: PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\\n- 每个模型训练后 merge LoRA、评估、然后清理 checkpoint 节省磁盘\\n- 结果会输出到 `results/exp_expanded_downstream_eval/summary.json`\\n- 日志：`~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8614,7 +8565,7 @@ _source line 5876 · 2026-05-20T17:23:17.618800+00:00_
 
 ### Tool call
 
-_source line 5877 · 2026-05-20T17:23:29.561043+00:00_
+_source line 5873 · 2026-05-20T17:23:29.561043+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -8656,7 +8607,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5878 · 2026-05-20T17:24:00.514031+00:00_
+_source line 5874 · 2026-05-20T17:24:00.514031+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_expanded_downstream_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:47.262Z\", \"updated_at\": \"2026-05-20T17:23:30.016Z\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\", \"spec\": {\"command\": \"python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"pid\": \"334626\", \"log_path\": \"~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log\", \"submitted_at\": \"2026-05-20T17:17:37.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": \"42,123,456\", \"benchmarks\": \"PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5825}}"}
 
@@ -8678,7 +8629,7 @@ _source line 5878 · 2026-05-20T17:24:00.514031+00:00_
 
 ### Tool call
 
-_source line 5879 · 2026-05-20T17:24:07.440061+00:00_
+_source line 5875 · 2026-05-20T17:24:07.440061+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -8720,7 +8671,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5880 · 2026-05-20T17:24:07.992486+00:00_
+_source line 5876 · 2026-05-20T17:24:07.992486+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Worker of type 'ops:exp_deberta_filtering_comparison' is already active for project 'gen-depth-contamination'. worker_id=worker_ops_exp_deberta_filtering_comparison_20260520T172238\", \"metadata\": {}}"}
 
@@ -8742,7 +8693,7 @@ _source line 5880 · 2026-05-20T17:24:07.992486+00:00_
 
 ### Tool call
 
-_source line 5881 · 2026-05-20T17:24:13.913957+00:00_
+_source line 5877 · 2026-05-20T17:24:13.913957+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -8778,7 +8729,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5882 · 2026-05-20T17:24:14.265542+00:00_
+_source line 5878 · 2026-05-20T17:24:14.265542+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_comparison_20260520T172238\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_comparison\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:22:39.039493+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"检查 OBD 基线结果和 exp026 完整脚本。\", \"turn_count\": 14}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8800,7 +8751,7 @@ _source line 5882 · 2026-05-20T17:24:14.265542+00:00_
 
 ### Tool call
 
-_source line 5883 · 2026-05-20T17:24:14.367943+00:00_
+_source line 5879 · 2026-05-20T17:24:14.367943+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -8836,7 +8787,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5884 · 2026-05-20T17:24:14.468708+00:00_
+_source line 5880 · 2026-05-20T17:24:14.468708+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_20260520T170422\", \"status\": \"running\", \"task_type\": \"ops:exp_contamination_rate_sweep\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:04:22.806693+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Bash\", \"Bash\"], \"last_text\": \"Uploading fixed script to both servers simultaneously.\", \"turn_count\": 7}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8858,7 +8809,7 @@ _source line 5884 · 2026-05-20T17:24:14.468708+00:00_
 
 ### Tool call
 
-_source line 5885 · 2026-05-20T17:24:29.423922+00:00_
+_source line 5881 · 2026-05-20T17:24:29.423922+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8894,7 +8845,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5886 · 2026-05-20T17:24:32.837451+00:00_
+_source line 5882 · 2026-05-20T17:24:32.837451+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -8916,7 +8867,7 @@ _source line 5886 · 2026-05-20T17:24:32.837451+00:00_
 
 ### Assistant
 
-_source line 5887 · 2026-05-20T17:24:36.541515+00:00_
+_source line 5883 · 2026-05-20T17:24:36.541515+00:00_
 
 已向 Director 汇报。3 个实验 Worker 全部在运行中，等待回调。
 
@@ -8943,7 +8894,7 @@ _source line 5887 · 2026-05-20T17:24:36.541515+00:00_
 
 ### User
 
-_source line 5888 · 2026-05-20T17:24:37.109079+00:00_
+_source line 5884 · 2026-05-20T17:24:37.109079+00:00_
 
 [Director 指令] ## 补注册：exp_contamination_rate_sweep 进程
 
@@ -8973,7 +8924,7 @@ Reviewer 发现 3 个 contamination rate sweep 进程未在 registry 注册：
 
 ### Tool call
 
-_source line 5889 · 2026-05-20T17:24:47.369428+00:00_
+_source line 5885 · 2026-05-20T17:24:47.369428+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9015,7 +8966,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5890 · 2026-05-20T17:24:47.821403+00:00_
+_source line 5886 · 2026-05-20T17:24:47.821403+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.4297}}"}
 
@@ -9037,7 +8988,7 @@ _source line 5890 · 2026-05-20T17:24:47.821403+00:00_
 
 ### Tool call
 
-_source line 5891 · 2026-05-20T17:24:51.134467+00:00_
+_source line 5887 · 2026-05-20T17:24:51.134467+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9077,7 +9028,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5892 · 2026-05-20T17:24:52.639395+00:00_
+_source line 5888 · 2026-05-20T17:24:52.639395+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_contamination_rate_sweep\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:24:51.519Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4697}}"}
 
@@ -9099,7 +9050,7 @@ _source line 5892 · 2026-05-20T17:24:52.639395+00:00_
 
 ### Tool call
 
-_source line 5893 · 2026-05-20T17:24:55.799699+00:00_
+_source line 5889 · 2026-05-20T17:24:55.799699+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9139,7 +9090,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5894 · 2026-05-20T17:24:57.254753+00:00_
+_source line 5890 · 2026-05-20T17:24:57.254753+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_contamination_rate_sweep\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:24:56.171Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4569}}"}
 
@@ -9161,7 +9112,7 @@ _source line 5894 · 2026-05-20T17:24:57.254753+00:00_
 
 ### Tool call
 
-_source line 5895 · 2026-05-20T17:25:04.628952+00:00_
+_source line 5891 · 2026-05-20T17:25:04.628952+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9203,7 +9154,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5896 · 2026-05-20T17:25:06.137300+00:00_
+_source line 5892 · 2026-05-20T17:25:06.137300+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_contamination_rate_sweep\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:25:05.021Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\", \"spec\": {\"command\": \"python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1,cuda:2,cuda:3\", \"pid\": \"333220,333297,333439\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 42, \"training_config\": \"LoRA rank=16 alpha=32 1epoch\", \"current_round\": \"rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)\", \"remaining_rounds\": \"rate=30%,50%,100%\", \"eval_benchmarks\": \"MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4652}}"}
 
@@ -9225,7 +9176,7 @@ _source line 5896 · 2026-05-20T17:25:06.137300+00:00_
 
 ### Tool call
 
-_source line 5897 · 2026-05-20T17:25:39.413698+00:00_
+_source line 5893 · 2026-05-20T17:25:39.413698+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -9267,7 +9218,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5898 · 2026-05-20T17:25:45.238387+00:00_
+_source line 5894 · 2026-05-20T17:25:45.238387+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_regenerate_fig_kstar_theta_20260520T172539\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_regenerate_fig_kstar_theta_20260520T172539.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_regenerate_fig_kstar_theta_20260520T172539 started. Use get_worker_status('worker_ops_regenerate_fig_kstar_theta_20260520T172539') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -9289,7 +9240,7 @@ _source line 5898 · 2026-05-20T17:25:45.238387+00:00_
 
 ### Tool call
 
-_source line 5899 · 2026-05-20T17:25:57.280537+00:00_
+_source line 5895 · 2026-05-20T17:25:57.280537+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -9325,7 +9276,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5900 · 2026-05-20T17:25:58.434889+00:00_
+_source line 5896 · 2026-05-20T17:25:58.434889+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -9347,7 +9298,7 @@ _source line 5900 · 2026-05-20T17:25:58.434889+00:00_
 
 ### Assistant
 
-_source line 5901 · 2026-05-20T17:26:01.279347+00:00_
+_source line 5897 · 2026-05-20T17:26:01.279347+00:00_
 
 向 Director 确认。
 
@@ -9374,7 +9325,7 @@ _source line 5901 · 2026-05-20T17:26:01.279347+00:00_
 
 ### User
 
-_source line 5902 · 2026-05-20T17:32:49.197992+00:00_
+_source line 5898 · 2026-05-20T17:32:49.197992+00:00_
 
 [WORKER DONE] Worker worker_ops_regenerate_fig_kstar_theta_20260520T172539 已完成（status=done）。用 `get_worker_status('worker_ops_regenerate_fig_kstar_theta_20260520T172539')` 读取结果，然后处理。
 
@@ -9399,7 +9350,7 @@ _source line 5902 · 2026-05-20T17:32:49.197992+00:00_
 
 ### Tool call
 
-_source line 5903 · 2026-05-20T17:32:57.447478+00:00_
+_source line 5899 · 2026-05-20T17:32:57.447478+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -9435,7 +9386,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5904 · 2026-05-20T17:32:57.548388+00:00_
+_source line 5900 · 2026-05-20T17:32:57.548388+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_regenerate_fig_kstar_theta_20260520T172539\", \"status\": \"done\", \"task_type\": \"ops:regenerate_fig_kstar_theta\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:25:39.996507+00:00\", \"ended_at\": \"2026-05-20T17:32:47.638818+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。`fig_kstar_theta.pdf` 已重新生成，Qwen-7B（紫色）已添加到两个 panel：\\n\\n- **Panel (a)**: 5 条 AUC decay 曲线（原 4 条 + Qwen-7B），含 CI shaded band\\n- **Panel (b)**: 5 条 K*(θ) step function（原 4 条 + Qwen-7B），含 unanimous K*=2 shaded region\\n\\n文件已更新到：\\n- `docs/paper/figures/fig_kstar_theta.pdf` / `.png`（本地 + 远程）\\n- `paper/figures/fig_kstar_theta.pdf`\\n- `scripts/draw_kstar_theta.py` 已同步更新（数据硬编码，包含 5 个 C4 模型的 CI 数据）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -9457,7 +9408,7 @@ _source line 5904 · 2026-05-20T17:32:57.548388+00:00_
 
 ### Tool call
 
-_source line 5905 · 2026-05-20T17:33:03.219955+00:00_
+_source line 5901 · 2026-05-20T17:33:03.219955+00:00_
 
 called Glob
 
@@ -9493,7 +9444,7 @@ called Glob
 
 ### Tool result
 
-_source line 5906 · 2026-05-20T17:33:03.270602+00:00_
+_source line 5902 · 2026-05-20T17:33:03.270602+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf
@@ -9518,7 +9469,7 @@ _source line 5906 · 2026-05-20T17:33:03.270602+00:00_
 
 ### Tool call
 
-_source line 5907 · 2026-05-20T17:33:06.432266+00:00_
+_source line 5903 · 2026-05-20T17:33:06.432266+00:00_
 
 called Read
 
@@ -9552,7 +9503,7 @@ called Read
 
 ### Tool result
 
-_source line 5908 · 2026-05-20T17:33:06.935522+00:00_
+_source line 5904 · 2026-05-20T17:33:06.935522+00:00_
 
 
 
@@ -9574,7 +9525,7 @@ _source line 5908 · 2026-05-20T17:33:06.935522+00:00_
 
 ### Tool call
 
-_source line 5909 · 2026-05-20T17:33:19.649598+00:00_
+_source line 5905 · 2026-05-20T17:33:19.649598+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -9610,7 +9561,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5910 · 2026-05-20T17:33:23.113559+00:00_
+_source line 5906 · 2026-05-20T17:33:23.113559+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -9632,7 +9583,7 @@ _source line 5910 · 2026-05-20T17:33:23.113559+00:00_
 
 ### Assistant
 
-_source line 5911 · 2026-05-20T17:33:25.764179+00:00_
+_source line 5907 · 2026-05-20T17:33:25.764179+00:00_
 
 图表验证通过。Qwen-7B 紫色曲线已正确添加到两个 panel，数据与论文一致。
 
@@ -9659,7 +9610,7 @@ _source line 5911 · 2026-05-20T17:33:25.764179+00:00_
 
 ### User
 
-_source line 5912 · 2026-05-20T17:49:51.044470+00:00_
+_source line 5908 · 2026-05-20T17:49:51.044470+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_deberta_filtering_comparison_20260520T172238 已完成（status=done）。用 `get_worker_status('worker_ops_exp_deberta_filtering_comparison_20260520T172238')` 读取结果，然后处理。
 
@@ -9684,7 +9635,7 @@ _source line 5912 · 2026-05-20T17:49:51.044470+00:00_
 
 ### Tool call
 
-_source line 5913 · 2026-05-20T17:49:58.390471+00:00_
+_source line 5909 · 2026-05-20T17:49:58.390471+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -9720,7 +9671,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5914 · 2026-05-20T17:49:58.441358+00:00_
+_source line 5910 · 2026-05-20T17:49:58.441358+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_comparison_20260520T172238\", \"status\": \"done\", \"task_type\": \"ops:exp_deberta_filtering_comparison\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:22:39.039493+00:00\", \"ended_at\": \"2026-05-20T17:49:49.569438+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -9742,7 +9693,7 @@ _source line 5914 · 2026-05-20T17:49:58.441358+00:00_
 
 ### Tool call
 
-_source line 5915 · 2026-05-20T17:50:03.006932+00:00_
+_source line 5911 · 2026-05-20T17:50:03.006932+00:00_
 
 called Read
 
@@ -9780,7 +9731,7 @@ called Read
 
 ### Tool call
 
-_source line 5916 · 2026-05-20T17:50:03.458991+00:00_
+_source line 5912 · 2026-05-20T17:50:03.458991+00:00_
 
 called Glob
 
@@ -9816,7 +9767,7 @@ called Glob
 
 ### Tool result
 
-_source line 5917 · 2026-05-20T17:50:03.560011+00:00_
+_source line 5913 · 2026-05-20T17:50:03.560011+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/checkpoints/exp_deberta_filtering_comparison_PREPARING_20260520T170250.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_deberta_filtering_predict.py
@@ -9840,7 +9791,7 @@ _source line 5917 · 2026-05-20T17:50:03.560011+00:00_
 
 ### Tool result
 
-_source line 5918 · 2026-05-20T17:50:03.560415+00:00_
+_source line 5914 · 2026-05-20T17:50:03.560415+00:00_
 
 File content (174579 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -9862,7 +9813,7 @@ File content (174579 tokens) exceeds maximum allowed tokens (25000). Use offset 
 
 ### Tool call
 
-_source line 5919 · 2026-05-20T17:50:08.580569+00:00_
+_source line 5915 · 2026-05-20T17:50:08.580569+00:00_
 
 called Bash
 
@@ -9898,7 +9849,7 @@ called Bash
 
 ### Tool result
 
-_source line 5920 · 2026-05-20T17:50:08.733401+00:00_
+_source line 5916 · 2026-05-20T17:50:08.733401+00:00_
 
 &lt;persisted-output>
 Output too large (221.9KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/9e4f1c71-8ac9-4f0f-9e8b-d05038b5545e/tool-results/brun7gxpd.txt
@@ -9925,7 +9876,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 5921 · 2026-05-20T17:50:13.500999+00:00_
+_source line 5917 · 2026-05-20T17:50:13.500999+00:00_
 
 called Bash
 
@@ -9961,7 +9912,7 @@ called Bash
 
 ### Tool result
 
-_source line 5922 · 2026-05-20T17:50:13.552263+00:00_
+_source line 5918 · 2026-05-20T17:50:13.552263+00:00_
 
 &lt;persisted-output>
 Output too large (363.1KB). Full output saved to: /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/9e4f1c71-8ac9-4f0f-9e8b-d05038b5545e/tool-results/b92dhv27s.txt
@@ -9988,7 +9939,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 5923 · 2026-05-20T17:50:18.117827+00:00_
+_source line 5919 · 2026-05-20T17:50:18.117827+00:00_
 
 called Read
 
@@ -10026,7 +9977,7 @@ called Read
 
 ### Tool result
 
-_source line 5924 · 2026-05-20T17:50:18.168452+00:00_
+_source line 5920 · 2026-05-20T17:50:18.168452+00:00_
 
 &lt;system-reminder>Warning: the file exists but is shorter than the provided offset (4300). The file has 158 lines.&lt;/system-reminder>
 
@@ -10048,7 +9999,7 @@ _source line 5924 · 2026-05-20T17:50:18.168452+00:00_
 
 ### Tool call
 
-_source line 5925 · 2026-05-20T17:50:21.394612+00:00_
+_source line 5921 · 2026-05-20T17:50:21.394612+00:00_
 
 called Read
 
@@ -10086,7 +10037,7 @@ called Read
 
 ### Tool result
 
-_source line 5926 · 2026-05-20T17:50:21.946925+00:00_
+_source line 5922 · 2026-05-20T17:50:21.946925+00:00_
 
 File content (93499 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -10108,7 +10059,7 @@ File content (93499 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 5927 · 2026-05-20T17:50:27.768881+00:00_
+_source line 5923 · 2026-05-20T17:50:27.768881+00:00_
 
 called Read
 
@@ -10146,7 +10097,7 @@ called Read
 
 ### Tool result
 
-_source line 5928 · 2026-05-20T17:50:27.819577+00:00_
+_source line 5924 · 2026-05-20T17:50:27.819577+00:00_
 
 150	{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01KUDJAxjwRbDZdvMZtdLfmX","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01QEamWsaEzF9iWHgG6utTAX","name":"ToolSearch","input":{"query":"select:TodoWrite","max_results":1},"caller":{"type":"direct"}}],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":264,"cache_read_input_tokens":36866,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":264},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"},"diagnostics":null,"context_management":null},"parent_tool_use_id":null,"session_id":"76e501b9-6153-474e-8829-f19234e034f1","uuid":"2251d9c2-29ce-49a7-89b8-adba89d9b452"}
 151	{"type":"user","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01QEamWsaEzF9iWHgG6utTAX","content":[{"type":"tool_reference","tool_name":"TodoWrite"}]}]},"parent_tool_use_id":null,"session_id":"76e501b9-6153-474e-8829-f19234e034f1","uuid":"a730e9e5-302e-499e-bb20-dd71a1140359","timestamp":"2026-05-20T17:49:07.388Z","tool_use_result":{"matches":["TodoWrite"],"query":"select:TodoWrite","total_deferred_tools":27}}
@@ -10171,7 +10122,7 @@ _source line 5928 · 2026-05-20T17:50:27.819577+00:00_
 
 ### Tool call
 
-_source line 5929 · 2026-05-20T17:50:38.759685+00:00_
+_source line 5925 · 2026-05-20T17:50:38.759685+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10211,7 +10162,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 5930 · 2026-05-20T17:50:40.317716+00:00_
+_source line 5926 · 2026-05-20T17:50:40.317716+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T17:50:39.164Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient and resolving the DeBERTa self-contradiction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5543}}"}
 
@@ -10233,7 +10184,7 @@ _source line 5930 · 2026-05-20T17:50:40.317716+00:00_
 
 ### Tool call
 
-_source line 5931 · 2026-05-20T17:52:23.003336+00:00_
+_source line 5927 · 2026-05-20T17:52:23.003336+00:00_
 
 called ToolSearch
 
@@ -10269,7 +10220,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5932 · 2026-05-20T17:52:23.053898+00:00_
+_source line 5928 · 2026-05-20T17:52:23.053898+00:00_
 
 
 
@@ -10291,7 +10242,7 @@ _source line 5932 · 2026-05-20T17:52:23.053898+00:00_
 
 ### Tool call
 
-_source line 5933 · 2026-05-20T17:52:26.165366+00:00_
+_source line 5929 · 2026-05-20T17:52:26.165366+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10329,7 +10280,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 5934 · 2026-05-20T17:52:26.668961+00:00_
+_source line 5930 · 2026-05-20T17:52:26.668961+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -10358,7 +10309,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 5935 · 2026-05-20T17:52:26.669480+00:00_
+_source line 5931 · 2026-05-20T17:52:26.669480+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_contamination_rate_sweep\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T17:25:05.021Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\", \"spec\": {\"command\": \"python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1,cuda:2,cuda:3\", \"pid\": \"333220,333297,333439\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 42, \"training_config\": \"LoRA rank=16 alpha=32 1epoch\", \"current_round\": \"rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)\", \"remaining_rounds\": \"rate=30%,50%,100%\", \"eval_benchmarks\": \"MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot\"}}, \"exp_expanded_downstream_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:47.262Z\", \"updated_at\": \"2026-05-20T17:23:30.016Z\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\", \"spec\": {\"command\": \"python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"pid\": \"334626\", \"log_path\": \"~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log\", \"submitted_at\": \"2026-05-20T17:17:37.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\"
 …[truncated 353 chars]
@@ -10381,7 +10332,7 @@ _source line 5935 · 2026-05-20T17:52:26.669480+00:00_
 
 ### Tool result
 
-_source line 5936 · 2026-05-20T17:52:27.121203+00:00_
+_source line 5932 · 2026-05-20T17:52:27.121203+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -10403,7 +10354,7 @@ _source line 5936 · 2026-05-20T17:52:27.121203+00:00_
 
 ### Tool call
 
-_source line 5937 · 2026-05-20T17:52:27.121639+00:00_
+_source line 5933 · 2026-05-20T17:52:27.121639+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -10439,7 +10390,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 5938 · 2026-05-20T17:52:27.573469+00:00_
+_source line 5934 · 2026-05-20T17:52:27.573469+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_20260520T170422\", \"task_type\": \"ops:exp_contamination_rate_sweep\", \"project\": \"gen-depth-contamination\", \"status\": \"running\", \"started_at\": \"2026-05-20T17:04:22.806693+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
 
@@ -10461,7 +10412,7 @@ _source line 5938 · 2026-05-20T17:52:27.573469+00:00_
 
 ### Tool call
 
-_source line 5939 · 2026-05-20T17:52:27.573922+00:00_
+_source line 5935 · 2026-05-20T17:52:27.573922+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10499,7 +10450,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 5940 · 2026-05-20T17:52:27.975428+00:00_
+_source line 5936 · 2026-05-20T17:52:27.975428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T17:50:39.164Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient and resolving the DeBERTa self-contradiction.\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4037}}"}
 
@@ -10521,7 +10472,7 @@ _source line 5940 · 2026-05-20T17:52:27.975428+00:00_
 
 ### Tool call
 
-_source line 5941 · 2026-05-20T17:52:44.178564+00:00_
+_source line 5937 · 2026-05-20T17:52:44.178564+00:00_
 
 called ToolSearch
 
@@ -10557,7 +10508,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5942 · 2026-05-20T17:52:44.179006+00:00_
+_source line 5938 · 2026-05-20T17:52:44.179006+00:00_
 
 
 
@@ -10579,7 +10530,7 @@ _source line 5942 · 2026-05-20T17:52:44.179006+00:00_
 
 ### Tool call
 
-_source line 5943 · 2026-05-20T17:52:44.179236+00:00_
+_source line 5939 · 2026-05-20T17:52:44.179236+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -10615,7 +10566,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 5944 · 2026-05-20T17:52:44.229763+00:00_
+_source line 5940 · 2026-05-20T17:52:44.229763+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_contamination_rate_sweep | Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination. | — | — | — |\\n| exp_expanded_downstream_eval | K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5. | — | — | — |\\n\\n## 待处理\\n- exp_deberta_filtering_comparison: DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient and resolving the DeBERTa self-contradiction.（等待人工审批）\\n- sweep_r50_binary（准备中）\\n- deberta_filtering_predict（准备中）\\n- sweep_r50_nf（准备中）\\n- sweep_r30_graduated（准备中）\\n- sweep_r30_binary（准备中）\\n- sweep_eval_r10_nf_v2（准备中）\\n- sweep_eval_r30_nf（准备中）\\n- sweep_eval_r10_grad（准备中）\\n- sweep_eval_r10_bin（准备中）\\n- …另有 13 项\\n\\n## 近期结论\\n- **exp_olmo_retrain_v3** (success): OLMo-1B retrain-chain K*>=4 (matching Pythia/Qwen retrain-chain), confirming retrain-chain K* is protocol-determined not architecture-determined. LoRA rank=16, alpha=32, 1 epoch per generation, C4 5K docs, depth 0-4.\\n- **exp_7b_scorer_arxiv** (success): Qwen2.5-7B scorer yields same K*=3 as Qwen2.5-1.5B scorer on arXiv depth chains, confirming K* is robust to scorer scale across domains (C4 + arXiv). ← 基于 exp_024_arxiv_domain\\n- **exp_014
 …[truncated 989 chars]
@@ -10638,7 +10589,7 @@ _source line 5944 · 2026-05-20T17:52:44.229763+00:00_
 
 ### Tool call
 
-_source line 5945 · 2026-05-20T17:52:50.512496+00:00_
+_source line 5941 · 2026-05-20T17:52:50.512496+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -10674,7 +10625,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 5946 · 2026-05-20T17:52:50.964428+00:00_
+_source line 5942 · 2026-05-20T17:52:50.964428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\", \"autodl-4090d:cuda:1\", \"autodl-4090d:cuda:2\", \"autodl-4090d:cuda:3\", \"westd-42896:cuda:0\", \"westd-42896:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"cqa1-22115\", \"westd-42896\"]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10696,7 +10647,7 @@ _source line 5946 · 2026-05-20T17:52:50.964428+00:00_
 
 ### Tool call
 
-_source line 5947 · 2026-05-20T17:52:51.015089+00:00_
+_source line 5943 · 2026-05-20T17:52:51.015089+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -10732,7 +10683,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5948 · 2026-05-20T17:52:51.166045+00:00_
+_source line 5944 · 2026-05-20T17:52:51.166045+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_20260520T170422\", \"status\": \"running\", \"task_type\": \"ops:exp_contamination_rate_sweep\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:04:22.806693+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"r50/binary adapter wasn't saved (OOM during training). GPUs 2,3 free on cqa1, both free on westd. Let me check running sessions and clean up.\", \"turn_count\": 13}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10754,7 +10705,7 @@ _source line 5948 · 2026-05-20T17:52:51.166045+00:00_
 
 ### Tool call
 
-_source line 5949 · 2026-05-20T17:53:32.695492+00:00_
+_source line 5945 · 2026-05-20T17:53:32.695492+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -10796,7 +10747,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5950 · 2026-05-20T17:53:38.369113+00:00_
+_source line 5946 · 2026-05-20T17:53:38.369113+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333 started. Use get_worker_status('worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10818,7 +10769,7 @@ _source line 5950 · 2026-05-20T17:53:38.369113+00:00_
 
 ### Tool call
 
-_source line 5951 · 2026-05-20T17:53:49.813660+00:00_
+_source line 5947 · 2026-05-20T17:53:49.813660+00:00_
 
 called ToolSearch
 
@@ -10854,7 +10805,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5952 · 2026-05-20T17:53:49.864208+00:00_
+_source line 5948 · 2026-05-20T17:53:49.864208+00:00_
 
 
 
@@ -10876,7 +10827,7 @@ _source line 5952 · 2026-05-20T17:53:49.864208+00:00_
 
 ### Tool call
 
-_source line 5953 · 2026-05-20T17:53:52.582967+00:00_
+_source line 5949 · 2026-05-20T17:53:52.582967+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -10910,7 +10861,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 5954 · 2026-05-20T17:53:52.633728+00:00_
+_source line 5950 · 2026-05-20T17:53:52.633728+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-20 13:31 UTC | 更新原因: All experiments complete, Round 19 preparation\\n\\n## 核心方向\\nPrompt-chain recursive generation 下 K* discrimination boundary 的 empirical characterization：domain ordering invariance 为主发现，K*=2 (web text) 为 θ=0.60 下的具体实例化。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 完成 → 审稿进行中（Round 19 准备提交）\\n- **实验**: 111 个完成（84 success），1 个运行中（bootstrap CI，不阻塞提交）\\n- **Core claims**: 全部站住\\n  - C1 K*=2: 7/9 configs, 4/6 families ✓\\n  - C2 Domain ordering: arXiv(3)>C4(2)=Code(2)>Wiki(1), θ-invariant ✓\\n  - C3 Filtering: 降级为 consistency check ✓\\n  - Two-tier ceiling (DeBERTa): C4/Code =OBD, Wiki/arXiv +1 ✓\\n  - Multi-source: 4 domains preserved ✓\\n  - Retrain-chain: K*≥4, 3/3 families ✓\\n  - 7B scorer: K* identical, 2 domains × 2 generators ✓\\n- **Round 18 修复**: 4 critical MF + 5 warning SF 全部落地（Reviewer 确认一致性）\\n- **OLMo C4 事件**: D091(K*→1) 已被 D092 撤销。原始 K*=2 有效（数据版本差异，非方法论问题）\\n\\n## 近期任务\\n- [x] 7B scorer arXiv 实验 (SF5)\\n- [x] OLMo retrain v3 (K*≥4, 3rd family)\\n- [x] D091→D092 revert 全文一致性\\n- [x] Reviewer 全文一致性审查 PASS\\n- [ ] Paper Agent 最终 patch（7B scorer 句 + appendix table）\\n- [ ] 编译论文 + Round 19 提交\\n\\n## GPU 预算\\ncqa1-22115: 4×RTX4090D（cuda:0,1,3 空闲; cuda:2 bootstrap CI ~90min）\\nwestd-42896: 2×GPU（无活跃任务）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D093 | 2026-05-20 | Round 22 3.5→4.0 push: 3 new experiments to addres | — |\\n| D092 | 2026-05-20 | Revert D091: OLMo C4 K*=2 retained, 7/9 headline u | exp_7b_scorer_arxiv, exp_olmo_scorer_confound |\\n| D091 | 2026-05-20 | OLMo C4 K*=2 → K*=1: correct paper, not regenerate | exp_olmo_scorer_confound |\\n| D090 | 2026-05-20 | D090: Round 18 Action Matrix — 4 MF + 5 SF + 7B sc | exp_008_retrain_chain_v2, exp_olmo_retrain_v3 
 …[truncated 811 chars]
@@ -10933,7 +10884,7 @@ _source line 5954 · 2026-05-20T17:53:52.633728+00:00_
 
 ### Tool call
 
-_source line 5955 · 2026-05-20T17:54:11.126800+00:00_
+_source line 5951 · 2026-05-20T17:54:11.126800+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -10969,7 +10920,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5956 · 2026-05-20T17:54:12.297921+00:00_
+_source line 5952 · 2026-05-20T17:54:12.297921+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -10991,7 +10942,7 @@ _source line 5956 · 2026-05-20T17:54:12.297921+00:00_
 
 ### Assistant
 
-_source line 5957 · 2026-05-20T17:54:18.968710+00:00_
+_source line 5953 · 2026-05-20T17:54:18.968710+00:00_
 
 状态同步完成。当前：
 - **3 个 D093 实验全在推进中**：expanded_eval RUNNING (~15-20h), contamination_sweep Worker B 处理 OOM, deberta_filtering Worker D 刚 spawn 续接
@@ -11023,7 +10974,7 @@ _source line 5957 · 2026-05-20T17:54:18.968710+00:00_
 
 ### User
 
-_source line 5958 · 2026-05-20T17:54:21.864914+00:00_
+_source line 5954 · 2026-05-20T17:54:21.864914+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_contamination_rate_sweep_20260520T170422 已完成（status=failed）。用 `get_worker_status('worker_ops_exp_contamination_rate_sweep_20260520T170422')` 读取结果，然后处理。
 
@@ -11048,7 +10999,7 @@ _source line 5958 · 2026-05-20T17:54:21.864914+00:00_
 
 ### Tool call
 
-_source line 5959 · 2026-05-20T17:54:29.874904+00:00_
+_source line 5955 · 2026-05-20T17:54:29.874904+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -11084,7 +11035,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 5960 · 2026-05-20T17:54:32.698368+00:00_
+_source line 5956 · 2026-05-20T17:54:32.698368+00:00_
 
 Error: result (2,638,287 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/9e4f1c71-8ac9-4f0f-9e8b-d05038b5545e/tool-results/mcp-agent-ml-research-get_worker_status-1779299672572.txt.
 Format: JSON with schema: {result: string}
@@ -11111,7 +11062,7 @@ Format: JSON with schema: {result: string}
 
 ### Tool call
 
-_source line 5961 · 2026-05-20T17:54:42.438002+00:00_
+_source line 5957 · 2026-05-20T17:54:42.438002+00:00_
 
 called Agent
 
@@ -11149,7 +11100,7 @@ called Agent
 
 ### Tool call
 
-_source line 5962 · 2026-05-20T17:54:46.608054+00:00_
+_source line 5958 · 2026-05-20T17:54:46.608054+00:00_
 
 called Bash
 
@@ -11185,7 +11136,7 @@ called Bash
 
 ### Tool result
 
-_source line 5963 · 2026-05-20T17:54:46.759199+00:00_
+_source line 5959 · 2026-05-20T17:54:46.759199+00:00_
 
 2702725 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/9e4f1c71-8ac9-4f0f-9e8b-d05038b5545e/tool-results/mcp-agent-ml-research-get_worker_status-1779299672572.txt
 
@@ -11207,7 +11158,7 @@ _source line 5963 · 2026-05-20T17:54:46.759199+00:00_
 
 ### Tool call
 
-_source line 5964 · 2026-05-20T17:54:50.351815+00:00_
+_source line 5960 · 2026-05-20T17:54:50.351815+00:00_
 
 called Bash
 
@@ -11243,7 +11194,7 @@ called Bash
 
 ### Tool result
 
-_source line 5965 · 2026-05-20T17:54:50.452595+00:00_
+_source line 5961 · 2026-05-20T17:54:50.452595+00:00_
 
 [
   "success",
@@ -11270,7 +11221,7 @@ _source line 5965 · 2026-05-20T17:54:50.452595+00:00_
 
 ### Tool call
 
-_source line 5966 · 2026-05-20T17:54:56.135975+00:00_
+_source line 5962 · 2026-05-20T17:54:56.135975+00:00_
 
 called Bash
 
@@ -11306,7 +11257,7 @@ called Bash
 
 ### Tool result
 
-_source line 5967 · 2026-05-20T17:54:56.286909+00:00_
+_source line 5963 · 2026-05-20T17:54:56.286909+00:00_
 
 Keys: ['worker_id', 'status', 'task_type', 'project', 'started_at', 'ended_at', 'setup', 'teardown', 'setup_data', 'result']
 Status: failed
@@ -11332,7 +11283,7 @@ Last text (first 500):
 
 ### Tool call
 
-_source line 5968 · 2026-05-20T17:55:00.952985+00:00_
+_source line 5964 · 2026-05-20T17:55:00.952985+00:00_
 
 called Bash
 
@@ -11368,7 +11319,7 @@ called Bash
 
 ### Tool result
 
-_source line 5969 · 2026-05-20T17:55:01.053722+00:00_
+_source line 5965 · 2026-05-20T17:55:01.053722+00:00_
 
 Result type: &lt;class 'dict'>
 Result keys: ['raw']
@@ -11394,7 +11345,7 @@ Warning: no stdin data received in 3s, proceeding without it. If piping from a s
 
 ### Tool call
 
-_source line 5970 · 2026-05-20T17:55:11.669967+00:00_
+_source line 5966 · 2026-05-20T17:55:11.669967+00:00_
 
 called Bash
 
@@ -11430,7 +11381,7 @@ called Bash
 
 ### Tool result
 
-_source line 5971 · 2026-05-20T17:55:11.842801+00:00_
+_source line 5967 · 2026-05-20T17:55:11.842801+00:00_
 
 Total lines: 648
 {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01VoaRWmV4Vg5RVuEpxZ1cAT","type":"tool_result","content":"{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"341368\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r10_nf_v2.log\\\", \\\"
@@ -11460,7 +11411,7 @@ Total lines: 648
 
 ### Tool call
 
-_source line 5972 · 2026-05-20T17:55:21.741553+00:00_
+_source line 5968 · 2026-05-20T17:55:21.741553+00:00_
 
 called Bash
 
@@ -11496,7 +11447,7 @@ called Bash
 
 ### Tool result
 
-_source line 5973 · 2026-05-20T17:55:21.892721+00:00_
+_source line 5969 · 2026-05-20T17:55:21.892721+00:00_
 
 === LAST TEXT ===
 Now let me check cqa1 job progress. The r10/no_filter v2 should be downloading data, and the r30 training jobs should be in progress.
@@ -11543,7 +11494,7 @@ westd r30/no_filter inference completed (101023/101023)! The "fatal: not a git r
 
 ### Tool call
 
-_source line 5974 · 2026-05-20T17:55:28.618521+00:00_
+_source line 5970 · 2026-05-20T17:55:28.618521+00:00_
 
 called Bash
 
@@ -11579,7 +11530,7 @@ called Bash
 
 ### Tool result
 
-_source line 5975 · 2026-05-20T17:55:28.769557+00:00_
+_source line 5971 · 2026-05-20T17:55:28.769557+00:00_
 
 Line 146: submit_training_job server=cqa1-22115, gpu=['cuda:1'], cmd_snippet=bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamin
 Line 147: submit_training_job server=cqa1-22115, gpu=['cuda:2'], cmd_snippet=bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamin
@@ -11612,7 +11563,7 @@ Line 346: submit_t
 
 ### Tool call
 
-_source line 5976 · 2026-05-20T17:55:36.245001+00:00_
+_source line 5972 · 2026-05-20T17:55:36.245001+00:00_
 
 called Bash
 
@@ -11648,7 +11599,7 @@ called Bash
 
 ### Tool result
 
-_source line 5977 · 2026-05-20T17:55:36.397316+00:00_
+_source line 5973 · 2026-05-20T17:55:36.397316+00:00_
 
 Let me check in a bigger increment this time.
 ...
@@ -11699,7 +11650,7 @@ These will take a while - M
 
 ### Tool call
 
-_source line 5978 · 2026-05-20T17:55:41.717021+00:00_
+_source line 5974 · 2026-05-20T17:55:41.717021+00:00_
 
 called Bash
 
@@ -11735,7 +11686,7 @@ called Bash
 
 ### Tool result
 
-_source line 5979 · 2026-05-20T17:55:41.817850+00:00_
+_source line 5975 · 2026-05-20T17:55:41.817850+00:00_
 
 status: failed
 ended_at: 2026-05-20T17:54:20.370883+00:00
@@ -11762,7 +11713,7 @@ teardown: None
 
 ### Tool call
 
-_source line 5980 · 2026-05-20T17:55:52.815108+00:00_
+_source line 5976 · 2026-05-20T17:55:52.815108+00:00_
 
 called Bash
 
@@ -11798,7 +11749,7 @@ called Bash
 
 ### Tool result
 
-_source line 5981 · 2026-05-20T17:55:52.915975+00:00_
+_source line 5977 · 2026-05-20T17:55:52.915975+00:00_
 
 === ASSISTANT TEXT ===
 Now let me check cqa1 job progress. The r10/no_filter v2 should be downloading data, and the r30 training jobs should be in progress.
@@ -11828,7 +11779,7 @@ RAW: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01
 
 ### Tool call
 
-_source line 5982 · 2026-05-20T17:56:00.041150+00:00_
+_source line 5978 · 2026-05-20T17:56:00.041150+00:00_
 
 called Bash
 
@@ -11864,7 +11815,7 @@ called Bash
 
 ### Tool result
 
-_source line 5983 · 2026-05-20T17:56:00.141946+00:00_
+_source line 5979 · 2026-05-20T17:56:00.141946+00:00_
 
 (Bash completed with no output)
 
@@ -11886,7 +11837,7 @@ _source line 5983 · 2026-05-20T17:56:00.141946+00:00_
 
 ### Tool call
 
-_source line 5984 · 2026-05-20T17:56:07.368001+00:00_
+_source line 5980 · 2026-05-20T17:56:07.368001+00:00_
 
 called Bash
 
@@ -11922,7 +11873,7 @@ called Bash
 
 ### Tool result
 
-_source line 5985 · 2026-05-20T17:56:07.468765+00:00_
+_source line 5981 · 2026-05-20T17:56:07.468765+00:00_
 
 (Bash completed with no output)
 
@@ -11944,7 +11895,7 @@ _source line 5985 · 2026-05-20T17:56:07.468765+00:00_
 
 ### Tool call
 
-_source line 5986 · 2026-05-20T17:56:14.504949+00:00_
+_source line 5982 · 2026-05-20T17:56:14.504949+00:00_
 
 called Bash
 
@@ -11980,7 +11931,7 @@ called Bash
 
 ### Tool result
 
-_source line 5987 · 2026-05-20T17:56:14.608547+00:00_
+_source line 5983 · 2026-05-20T17:56:14.608547+00:00_
 
 Line 638: type=user, stop_reason=, content_types=['tool_result'], input_tokens=-, output_tokens=-
 Line 639: type=assistant, stop_reason=None, content_types=['thinking'], input_tokens=1, output_tokens=8
@@ -12011,7 +11962,7 @@ Line 647: parse error, first 200 chars: {"type":"user","message":{"role":"user",
 
 ### Tool call
 
-_source line 5988 · 2026-05-20T17:56:23.747993+00:00_
+_source line 5984 · 2026-05-20T17:56:23.747993+00:00_
 
 called Bash
 
@@ -12047,7 +11998,7 @@ called Bash
 
 ### Tool result
 
-_source line 5989 · 2026-05-20T17:56:23.848853+00:00_
+_source line 5985 · 2026-05-20T17:56:23.848853+00:00_
 
 Line 148: PID=333215, log=~/runs/gen-depth-contamination/sweep_r10_nofilter.log, gpu=['cuda:1']
 Line 150: PID=333292, log=~/runs/gen-depth-contamination/sweep_r10_binary.log, gpu=['cuda:2']
@@ -12084,7 +12035,7 @@ Line 642: PID=225683, log=~/runs/gen-depth-contamination/sweep_r50_nf.log, gpu=[
 
 ### Tool call
 
-_source line 5990 · 2026-05-20T17:56:29.219990+00:00_
+_source line 5986 · 2026-05-20T17:56:29.219990+00:00_
 
 called Bash
 
@@ -12120,7 +12071,7 @@ called Bash
 
 ### Tool result
 
-_source line 5991 · 2026-05-20T17:56:29.320824+00:00_
+_source line 5987 · 2026-05-20T17:56:29.320824+00:00_
 
 - cqa1 **no_filter**: still stuck on
 Line 502: Excellent! cqa1 **binary** and **graduated** are now in the **tokenization phase** - tokenizing 101K inputs for model inference. They're at ~30% tokenization at ~4K tokens/s. This is the main inferenc
@@ -12165,7 +12116,7 @@ Line 604: All 3 jobs submitted on cqa1. Let me verify they'
 
 ### Tool result
 
-_source line 5992 · 2026-05-20T17:56:42.868276+00:00_
+_source line 5988 · 2026-05-20T17:56:42.868276+00:00_
 
 Here is the analysis:
 
@@ -12212,7 +12163,7 @@ duration_ms: 12045
 
 ### Tool call
 
-_source line 5993 · 2026-05-20T17:57:17.290305+00:00_
+_source line 5989 · 2026-05-20T17:57:17.290305+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -12254,7 +12205,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 5994 · 2026-05-20T17:57:22.872491+00:00_
+_source line 5990 · 2026-05-20T17:57:22.872491+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_continue_20260520T175717\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_contamination_rate_sweep_continue_20260520T175717.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_contamination_rate_sweep_continue_20260520T175717 started. Use get_worker_status('worker_ops_exp_contamination_rate_sweep_continue_20260520T175717') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12276,7 +12227,7 @@ _source line 5994 · 2026-05-20T17:57:22.872491+00:00_
 
 ### Assistant
 
-_source line 5995 · 2026-05-20T17:57:27.859455+00:00_
+_source line 5991 · 2026-05-20T17:57:27.859455+00:00_
 
 Worker B 续接（sweep continue）已启动。当前 Worker 池：
 - Worker D: exp_deberta_filtering_comparison_continue（刚启动）
@@ -12308,7 +12259,7 @@ Worker B 续接（sweep continue）已启动。当前 Worker 池：
 
 ### User
 
-_source line 5996 · 2026-05-20T17:57:28.446312+00:00_
+_source line 5992 · 2026-05-20T17:57:28.446312+00:00_
 
 [Director 指令] 这些决策已经做完并已由 Paper Agent 执行：
 
@@ -12343,7 +12294,7 @@ westd cuda:0,1 空闲——如果 C 的 DeBERTa predictions.npz 还没就绪，�
 
 ### Tool call
 
-_source line 5997 · 2026-05-20T17:57:34.677955+00:00_
+_source line 5993 · 2026-05-20T17:57:34.677955+00:00_
 
 called ToolSearch
 
@@ -12379,7 +12330,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5998 · 2026-05-20T17:57:34.728623+00:00_
+_source line 5994 · 2026-05-20T17:57:34.728623+00:00_
 
 
 
@@ -12401,7 +12352,7 @@ _source line 5998 · 2026-05-20T17:57:34.728623+00:00_
 
 ### Tool call
 
-_source line 5999 · 2026-05-20T17:57:48.880233+00:00_
+_source line 5995 · 2026-05-20T17:57:48.880233+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -12437,7 +12388,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6000 · 2026-05-20T17:57:49.182210+00:00_
+_source line 5996 · 2026-05-20T17:57:49.182210+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333\", \"status\": \"done\", \"task_type\": \"ops:exp_deberta_filtering_comparison_continue\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:53:33.334117+00:00\", \"ended_at\": \"2026-05-20T17:55:20.167401+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Prediction job 正在 cqa1-22115 cuda:1 上运行，4.5 分钟后自动检查进度。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -12459,7 +12410,7 @@ _source line 6000 · 2026-05-20T17:57:49.182210+00:00_
 
 ### Tool call
 
-_source line 6001 · 2026-05-20T17:57:49.182623+00:00_
+_source line 5997 · 2026-05-20T17:57:49.182623+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -12495,7 +12446,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6002 · 2026-05-20T17:57:49.233118+00:00_
+_source line 5998 · 2026-05-20T17:57:49.233118+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_continue_20260520T175717\", \"status\": \"running\", \"task_type\": \"ops:exp_contamination_rate_sweep_continue\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:57:17.869976+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"read_registry\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"The `>` redirect got blocked. Let me retry the process checks without redirects, and search for results more broadly.\", \"turn_count\": 15}}, \"error\": null, \"metadata\": {}}"}
 
@@ -12517,7 +12468,7 @@ _source line 6002 · 2026-05-20T17:57:49.233118+00:00_
 
 ### Tool call
 
-_source line 6003 · 2026-05-20T17:58:43.305984+00:00_
+_source line 5999 · 2026-05-20T17:58:43.305984+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -12559,7 +12510,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6004 · 2026-05-20T17:58:48.929405+00:00_
+_source line 6000 · 2026-05-20T17:58:48.929405+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_v2_20260520T175843\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_deberta_filtering_v2_20260520T175843.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_deberta_filtering_v2_20260520T175843 started. Use get_worker_status('worker_ops_exp_deberta_filtering_v2_20260520T175843') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12581,7 +12532,7 @@ _source line 6004 · 2026-05-20T17:58:48.929405+00:00_
 
 ### Tool call
 
-_source line 6005 · 2026-05-20T17:59:02.868979+00:00_
+_source line 6001 · 2026-05-20T17:59:02.868979+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -12617,7 +12568,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6006 · 2026-05-20T17:59:04.022722+00:00_
+_source line 6002 · 2026-05-20T17:59:04.022722+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -12639,7 +12590,7 @@ _source line 6006 · 2026-05-20T17:59:04.022722+00:00_
 
 ### Assistant
 
-_source line 6007 · 2026-05-20T17:59:07.630209+00:00_
+_source line 6003 · 2026-05-20T17:59:07.630209+00:00_
 
 已向 Director 汇报。等待 Worker E/F 回调。
 
@@ -12666,7 +12617,7 @@ _source line 6007 · 2026-05-20T17:59:07.630209+00:00_
 
 ### User
 
-_source line 6008 · 2026-05-20T17:59:08.100301+00:00_
+_source line 6004 · 2026-05-20T17:59:08.100301+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333 已完成（status=done）。用 `get_worker_status('worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333')` 读取结果，然后处理。
 
@@ -12691,7 +12642,7 @@ _source line 6008 · 2026-05-20T17:59:08.100301+00:00_
 
 ### Assistant
 
-_source line 6009 · 2026-05-20T17:59:15.738044+00:00_
+_source line 6005 · 2026-05-20T17:59:15.738044+00:00_
 
 已处理过。Worker D 之前确认 prediction job 在跑后退出，我已 spawn Worker F（deberta filtering v2）接替全流程。无需额外动作。
 
@@ -12718,7 +12669,7 @@ _source line 6009 · 2026-05-20T17:59:15.738044+00:00_
 
 ### User
 
-_source line 6010 · 2026-05-20T18:02:52.466319+00:00_
+_source line 6006 · 2026-05-20T18:02:52.466319+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_contamination_rate_sweep_continue_20260520T175717 已完成（status=done）。用 `get_worker_status('worker_ops_exp_contamination_rate_sweep_continue_20260520T175717')` 读取结果，然后处理。
 
@@ -12743,7 +12694,7 @@ _source line 6010 · 2026-05-20T18:02:52.466319+00:00_
 
 ### Tool call
 
-_source line 6011 · 2026-05-20T18:02:59.407301+00:00_
+_source line 6007 · 2026-05-20T18:02:59.407301+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -12779,7 +12730,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6012 · 2026-05-20T18:02:59.459047+00:00_
+_source line 6008 · 2026-05-20T18:02:59.459047+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_contamination_rate_sweep_continue_20260520T175717\", \"status\": \"done\", \"task_type\": \"ops:exp_contamination_rate_sweep_continue\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:57:17.869976+00:00\", \"ended_at\": \"2026-05-20T18:02:51.008268+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"实验完成。汇总如下：\\n\\n## exp_contamination_rate_sweep 最终结果\\n\\n| Rate | Strategy | MMLU | HellaSwag | ARC-C |\\n|------|----------|------|-----------|-------|\\n| 10% | no_filter | 0.5878 | 0.6652 | 0.4471 |\\n| 10% | binary | 0.5868 | **0.6709** | 0.4462 |\\n| 10% | graduated | 0.5873 | 0.6672 | 0.4428 |\\n| 30% | no_filter | 0.5885 | 0.6625 | 0.4334 |\\n| 30% | binary | 0.5867 | **0.6702** | **0.4480** |\\n| 30% | graduated | 0.5873 | 0.6640 | 0.4334 |\\n| 50% | no_filter | 0.5858 | 0.6582 | 0.4300 |\\n| 50% | binary | **0.5913** | **0.6700** | **0.4505** |\\n| 50% | graduated | 0.5848 | 0.6606 | 0.4292 |\\n| 100% | no_filter | 0.5707 | 0.6217 | 0.3891 |\\n| 100% | binary | N/A | N/A | N/A |\\n| 100% | graduated | 0.5701 | 0.6215 | 0.3933 |\\n\\n**关键发现：**\\n- Binary filtering 在 10-50% 污染率上的 HellaSwag 和 ARC-C 均优于 no_filter，效果随污染率增大而增强\\n- 50% 时 binary 优势最大：HellaSwag +1.18pp，ARC-C +2.05pp\\n- 100% 时 binary 不可用（所有数据被过滤掉，0 samples）\\n- Graduated 介于 no_filter 和 binary 之间，但更靠近 no_filter\\n- no_filter 有清晰的剂量反应：污染越高分数越低\\n\\n`summary.json` 已写入两台服务器，registry 已更新为 DONE。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -12801,7 +12752,7 @@ _source line 6012 · 2026-05-20T18:02:59.459047+00:00_
 
 ### Tool call
 
-_source line 6013 · 2026-05-20T18:03:08.839528+00:00_
+_source line 6009 · 2026-05-20T18:03:08.839528+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12839,7 +12790,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 6014 · 2026-05-20T18:03:08.992483+00:00_
+_source line 6010 · 2026-05-20T18:03:08.992483+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -12875,7 +12826,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6015 · 2026-05-20T18:03:09.293706+00:00_
+_source line 6011 · 2026-05-20T18:03:09.293706+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4582}}"}
 
@@ -12897,7 +12848,7 @@ _source line 6015 · 2026-05-20T18:03:09.293706+00:00_
 
 ### Tool result
 
-_source line 6016 · 2026-05-20T18:03:09.344483+00:00_
+_source line 6012 · 2026-05-20T18:03:09.344483+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_v2_20260520T175843\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_v2\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:58:43.945029+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"submit_training_job\", \"update_registry\", \"update_registry\", \"update_registry\", \"ScheduleWakeup\"], \"last_text\": \"DeBERTa 预测任务已提交到 cqa1-22115 GPU 1（tmux: `deberta_filtering_predict`）。\\n\\n**当前进度：**\\n- predictions.npz 不存在，已在 cqa1 GPU 1 上启动 5-fold DeBERTa OOF 预测\\n- 跳过了跨服务器传输（westd），因为 cqa1 有 3 块空闲 GPU\\n- Registry 状态已更新为 RUNNING\\n- 预计预测任务需要 30-60 分钟，2 分钟后自动检查进度\\n\\n完成后会自动提交 4 个策略的过滤比较实验。\", \"turn_count\": 31}}, \"error\": null, \"metadata\": {}}"}
 
@@ -12919,7 +12870,7 @@ _source line 6016 · 2026-05-20T18:03:09.344483+00:00_
 
 ### Tool call
 
-_source line 6017 · 2026-05-20T18:03:14.961693+00:00_
+_source line 6013 · 2026-05-20T18:03:14.961693+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12957,7 +12908,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 6018 · 2026-05-20T18:03:15.413949+00:00_
+_source line 6014 · 2026-05-20T18:03:15.413949+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_contamination_rate_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T18:02:19.878Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\", \"metrics\": {\"rate_10\": {\"no_filter\": {\"mmlu\": 0.5878, \"hellaswag\": 0.6652, \"arc_c\": 0.4471}, \"binary\": {\"mmlu\": 0.5868, \"hellaswag\": 0.6709, \"arc_c\": 0.4462}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.6672, \"arc_c\": 0.4428}}, \"rate_30\": {\"no_filter\": {\"mmlu\": 0.5885, \"hellaswag\": 0.6625, \"arc_c\": 0.4334}, \"binary\": {\"mmlu\": 0.5867, \"hellaswag\": 0.6702, \"arc_c\": 0.448}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.664, \"arc_c\": 0.4334}}, \"rate_50\": {\"no_filter\": {\"mmlu\": 0.5858, \"hellaswag\": 0.6582, \"arc_c\": 0.43}, \"binary\": {\"mmlu\": 0.5913, \"hellaswag\": 0.67, \"arc_c\": 0.4505}, \"graduated\": {\"mmlu\": 0.5848, \"hellaswag\": 0.6606, \"arc_c\": 0.4292}}, \"rate_100\": {\"no_filter\": {\"mmlu\": 0.5707, \"hellaswag\": 0.6217, \"arc_c\": 0.3891}, \"binary\": null, \"graduated\": {\"mmlu\": 0.5701, \"hellaswag\": 0.6215, \"arc_c\": 0.3933}}}, \"conclusion\": \"success\"}, \"exp_olmo_retrain_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:47:22.000Z\", \"updated_at\": \"2026-05-20T14:57:53.008Z\", \"hypothesis\": \"OLMo-1B retrain-chain K*>=4 (matching Pythia/Qwen retrain-chain), confirming retrain-chain K* is protocol-determined not architecture-determined. LoRA rank=16, alpha=32, 1 epoch per generation, C4 5K docs, depth 0-4.\", \"metrics\": {\"k_star\": 4, \"pairwise_auc\": {\"0v1\": 0.9873, \"1v2\": 0.8889, \"2v3\": 0.7036, \"3v4\": 0.6817}, \"bootstrap_ci_10k\": {\"0v1\": {\"mean\": 0.9972, \"ci_95\": 
 …[truncated 3136 chars]
@@ -12980,7 +12931,7 @@ _source line 6018 · 2026-05-20T18:03:15.413949+00:00_
 
 ### Tool call
 
-_source line 6019 · 2026-05-20T18:03:35.651903+00:00_
+_source line 6015 · 2026-05-20T18:03:35.651903+00:00_
 
 called Read
 
@@ -13014,7 +12965,7 @@ called Read
 
 ### Tool result
 
-_source line 6020 · 2026-05-20T18:03:35.652386+00:00_
+_source line 6016 · 2026-05-20T18:03:35.652386+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55.
 
@@ -13036,7 +12987,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 6021 · 2026-05-20T18:03:38.311932+00:00_
+_source line 6017 · 2026-05-20T18:03:38.311932+00:00_
 
 called Glob
 
@@ -13072,7 +13023,7 @@ called Glob
 
 ### Tool result
 
-_source line 6022 · 2026-05-20T18:03:38.412644+00:00_
+_source line 6018 · 2026-05-20T18:03:38.412644+00:00_
 
 No files found
 
@@ -13094,7 +13045,7 @@ No files found
 
 ### Tool call
 
-_source line 6023 · 2026-05-20T18:03:41.320505+00:00_
+_source line 6019 · 2026-05-20T18:03:41.320505+00:00_
 
 called Glob
 
@@ -13130,7 +13081,7 @@ called Glob
 
 ### Tool result
 
-_source line 6024 · 2026-05-20T18:03:41.622618+00:00_
+_source line 6020 · 2026-05-20T18:03:41.622618+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
 
@@ -13152,7 +13103,7 @@ _source line 6024 · 2026-05-20T18:03:41.622618+00:00_
 
 ### Tool call
 
-_source line 6025 · 2026-05-20T18:03:43.932475+00:00_
+_source line 6021 · 2026-05-20T18:03:43.932475+00:00_
 
 called Read
 
@@ -13186,7 +13137,7 @@ called Read
 
 ### Tool result
 
-_source line 6026 · 2026-05-20T18:03:43.984205+00:00_
+_source line 6022 · 2026-05-20T18:03:43.984205+00:00_
 
 1	---
 2	name: resource-saturation
@@ -13257,7 +13208,7 @@ _source line 6026 · 2026-05-20T18:03:43.984205+00:00_
 
 ### Tool call
 
-_source line 6027 · 2026-05-20T18:03:55.338167+00:00_
+_source line 6023 · 2026-05-20T18:03:55.338167+00:00_
 
 called ToolSearch
 
@@ -13293,7 +13244,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6028 · 2026-05-20T18:03:55.338498+00:00_
+_source line 6024 · 2026-05-20T18:03:55.338498+00:00_
 
 
 
@@ -13315,7 +13266,7 @@ _source line 6028 · 2026-05-20T18:03:55.338498+00:00_
 
 ### Tool call
 
-_source line 6029 · 2026-05-20T18:03:58.518555+00:00_
+_source line 6025 · 2026-05-20T18:03:58.518555+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13351,7 +13302,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 6030 · 2026-05-20T18:03:59.978630+00:00_
+_source line 6026 · 2026-05-20T18:03:59.978630+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T18:02:43.265Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\"}, \"exp_expanded_downstream_eval\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T17:02:47.262Z\", \"updated_at\": \"2026-05-20T17:23:30.016Z\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4412}}"}
 
@@ -13373,7 +13324,7 @@ _source line 6030 · 2026-05-20T18:03:59.978630+00:00_
 
 ### Tool call
 
-_source line 6031 · 2026-05-20T18:04:38.106683+00:00_
+_source line 6027 · 2026-05-20T18:04:38.106683+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -13409,7 +13360,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6032 · 2026-05-20T18:04:41.469970+00:00_
+_source line 6028 · 2026-05-20T18:04:41.469970+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -13431,7 +13382,7 @@ _source line 6032 · 2026-05-20T18:04:41.469970+00:00_
 
 ### Tool call
 
-_source line 6033 · 2026-05-20T18:05:09.690370+00:00_
+_source line 6029 · 2026-05-20T18:05:09.690370+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -13473,7 +13424,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6034 · 2026-05-20T18:05:13.056157+00:00_
+_source line 6030 · 2026-05-20T18:05:13.056157+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_sweep_analysis_figure_20260520T180510\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_sweep_analysis_figure_20260520T180510.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_sweep_analysis_figure_20260520T180510 started. Use get_worker_status('worker_research_sweep_analysis_figure_20260520T180510') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -13495,7 +13446,7 @@ _source line 6034 · 2026-05-20T18:05:13.056157+00:00_
 
 ### Tool call
 
-_source line 6035 · 2026-05-20T18:05:20.907601+00:00_
+_source line 6031 · 2026-05-20T18:05:20.907601+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -13533,7 +13484,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Assistant
 
-_source line 6036 · 2026-05-20T18:22:52.776416+00:00_
+_source line 6032 · 2026-05-20T18:22:52.776416+00:00_
 
 Worker 池 = 2（Worker F: deberta GPU + Worker G: sweep figure CPU）。
 
@@ -13562,7 +13513,7 @@ Worker 池 = 2（Worker F: deberta GPU + Worker G: sweep figure CPU）。
 
 ### User
 
-_source line 6037 · 2026-05-20T18:22:53.604554+00:00_
+_source line 6033 · 2026-05-20T18:22:53.604554+00:00_
 
 [WORKER DONE] Worker worker_ops_exp_deberta_filtering_v2_20260520T175843 已完成（status=done）。用 `get_worker_status('worker_ops_exp_deberta_filtering_v2_20260520T175843')` 读取结果，然后处理。
 
@@ -13587,7 +13538,7 @@ _source line 6037 · 2026-05-20T18:22:53.604554+00:00_
 
 ### Tool call
 
-_source line 6038 · 2026-05-20T18:23:01.888956+00:00_
+_source line 6034 · 2026-05-20T18:23:01.888956+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -13623,7 +13574,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6039 · 2026-05-20T18:23:01.939607+00:00_
+_source line 6035 · 2026-05-20T18:23:01.939607+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_v2_20260520T175843\", \"status\": \"done\", \"task_type\": \"ops:exp_deberta_filtering_v2\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T17:58:43.945029+00:00\", \"ended_at\": \"2026-05-20T18:03:21.055766+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"DeBERTa 预测任务已提交到 cqa1-22115 GPU 1（tmux: `deberta_filtering_predict`）。\\n\\n**当前进度：**\\n- predictions.npz 不存在，已在 cqa1 GPU 1 上启动 5-fold DeBERTa OOF 预测\\n- 跳过了跨服务器传输（westd），因为 cqa1 有 3 块空闲 GPU\\n- Registry 状态已更新为 RUNNING\\n- 预计预测任务需要 30-60 分钟，2 分钟后自动检查进度\\n\\n完成后会自动提交 4 个策略的过滤比较实验。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -13645,7 +13596,7 @@ _source line 6039 · 2026-05-20T18:23:01.939607+00:00_
 
 ### Tool call
 
-_source line 6040 · 2026-05-20T18:23:28.110954+00:00_
+_source line 6036 · 2026-05-20T18:23:28.110954+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -13683,7 +13634,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 6041 · 2026-05-20T18:23:28.161970+00:00_
+_source line 6037 · 2026-05-20T18:23:28.161970+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 决策与经验\\n\\n### [CRITICAL] OLMo C4 数据版本混淆 — K*=2 不可复现 (2026-05-20)\\n- **发现**: 所有当前 OLMo C4 数据（三种 scorer）均给出 K*=1，与论文声称的 K*=2 矛盾\\n  - OLMo self-scored: 1v2 AUC = 0.507\\n  - Qwen-1.5B scored: 1v2 AUC = 0.4977\\n  - Qwen-7B scored: 1v2 AUC = 0.4965\\n- **根因**: 所有 OLMo C4 数据文件在 2026-05-20 被重新生成，覆盖了原始数据\\n- **论文当前数字**: OLMo C4 K*=2 (1v2=0.6145) 来自更早版本数据，已不存在\\n- **影响**: headline claim 从 \\\"7/8 prompt-chain yield K*≥2\\\" 变为 \\\"6/8\\\"；OLMo 降为 K*=1 阵营\\n- **状态**: 已汇报 Director，等待决策（查备份 / 重生成 / 修正论文）\\n\\n### Multi-Source Scorer Confound 三重排除 (2026-05-20)\\n- **结论**: Scorer confound 不影响 multi-source K* 判定，三条独立证据线：\\n  1. **vocab-only** (6 scorer-independent features): v1 K*=2 (1v2=0.676), v2 K*=2 (1v2=0.683)\\n  2. **unified Qwen2.5-1.5B scorer**: mixed K*=2 (1v2=0.7105)，反而高于 confounded (0.7007)\\n  3. **generator label 无增益**: +label K*=2 (1v2=0.7183)，仅 +0.008 AUC\\n- **LLaMA-8B cross-family**: 统一 Qwen scorer 下 LLaMA-8B 单源 K*=1 (1v2=0.6077)，cross-family scoring 更难\\n- **论文策略**: 主表用 unified scorer 结果，appendix 放 vocab-only 作为额外验证\\n\\n### 7B Scorer Scale Robustness 确认 (2026-05-20)\\n- **C4 结果**: Qwen2.5-7B scorer 与 1.5B scorer 给出相同 K* (Pythia K*=2, OLMo K*=1)\\n- **arXiv**: 实验进行中 (exp_7b_scorer_arxiv)，等待结果\\n- **论文意义**: K* 对 scorer 规模鲁棒，4.7x 参数增加不改变判定\\n\\n### Changepoint K* Framing 指导 (2026-05-20)\\n- **排除 retrain-chain outlier**: 2 个 retrain-chain 实验的 AUC 序列长度和衰减模式与 prompt-chain 完全不同，在 PELT 分析中应排除或单独分析\\n- **Bracket framing**: 论文表述方向为 \\\"K*_CP and K*_θ bracket the discrimination boundary\\\"，不要声称 CP 比 θ 更准\\n- **关键数据**: exact agreement 45.9% (17/37)，within ±1 agreement 94.6% (35/37)，CP 总是 conservative（K*_CP ≤ K*_θ）\\n- **Disagreement AUC range**: [0.607, 0.654]——所有不一致的实验 AUC 都在阈值附近，CP 在 borderline 区域默认保守\\n- **论文用法**: CP 作为 model-free validation，证明 K* 不是 θ=0.60 选择的 a
 …[truncated 4565 chars]
@@ -13706,7 +13657,7 @@ _source line 6041 · 2026-05-20T18:23:28.161970+00:00_
 
 ### Tool call
 
-_source line 6042 · 2026-05-20T18:23:36.807910+00:00_
+_source line 6038 · 2026-05-20T18:23:36.807910+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -13744,7 +13695,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 6043 · 2026-05-20T18:23:36.858876+00:00_
+_source line 6039 · 2026-05-20T18:23:36.858876+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 决策与经验\\n\\n### [CRITICAL] OLMo C4 数据版本混淆 — K*=2 不可复现 (2026-05-20)\\n- **发现**: 所有当前 OLMo C4 数据（三种 scorer）均给出 K*=1，与论文声称的 K*=2 矛盾\\n  - OLMo self-scored: 1v2 AUC = 0.507\\n  - Qwen-1.5B scored: 1v2 AUC = 0.4977\\n  - Qwen-7B scored: 1v2 AUC = 0.4965\\n- **根因**: 所有 OLMo C4 数据文件在 2026-05-20 被重新生成，覆盖了原始数据\\n- **论文当前数字**: OLMo C4 K*=2 (1v2=0.6145) 来自更早版本数据，已不存在\\n- **影响**: headline claim 从 \\\"7/8 prompt-chain yield K*≥2\\\" 变为 \\\"6/8\\\"；OLMo 降为 K*=1 阵营\\n- **状态**: 已汇报 Director，等待决策（查备份 / 重生成 / 修正论文）\\n\\n### Multi-Source Scorer Confound 三重排除 (2026-05-20)\\n- **结论**: Scorer confound 不影响 multi-source K* 判定，三条独立证据线：\\n  1. **vocab-only** (6 scorer-independent features): v1 K*=2 (1v2=0.676), v2 K*=2 (1v2=0.683)\\n  2. **unified Qwen2.5-1.5B scorer**: mixed K*=2 (1v2=0.7105)，反而高于 confounded (0.7007)\\n  3. **generator label 无增益**: +label K*=2 (1v2=0.7183)，仅 +0.008 AUC\\n- **LLaMA-8B cross-family**: 统一 Qwen scorer 下 LLaMA-8B 单源 K*=1 (1v2=0.6077)，cross-family scoring 更难\\n- **论文策略**: 主表用 unified scorer 结果，appendix 放 vocab-only 作为额外验证\\n\\n### 7B Scorer Scale Robustness 确认 (2026-05-20)\\n- **C4 结果**: Qwen2.5-7B scorer 与 1.5B scorer 给出相同 K* (Pythia K*=2, OLMo K*=1)\\n- **arXiv**: 实验进行中 (exp_7b_scorer_arxiv)，等待结果\\n- **论文意义**: K* 对 scorer 规模鲁棒，4.7x 参数增加不改变判定\\n\\n### Changepoint K* Framing 指导 (2026-05-20)\\n- **排除 retrain-chain outlier**: 2 个 retrain-chain 实验的 AUC 序列长度和衰减模式与 prompt-chain 完全不同，在 PELT 分析中应排除或单独分析\\n- **Bracket framing**: 论文表述方向为 \\\"K*_CP and K*_θ bracket the discrimination boundary\\\"，不要声称 CP 比 θ 更准\\n- **关键数据**: exact agreement 45.9% (17/37)，within ±1 agreement 94.6% (35/37)，CP 总是 conservative（K*_CP ≤ K*_θ）\\n- **Disagreement AUC range**: [0.607, 0.654]——所有不一致的实验 AUC 都在阈值附近，CP 在 borderline 区域默认保守\\n- **论文用法**: CP 作为 model-free validation，证明 K* 不是 θ=0.60 选择的 a
 …[truncated 6826 chars]
@@ -13767,7 +13718,7 @@ _source line 6043 · 2026-05-20T18:23:36.858876+00:00_
 
 ### Tool call
 
-_source line 6044 · 2026-05-20T18:24:51.851892+00:00_
+_source line 6040 · 2026-05-20T18:24:51.851892+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -13805,7 +13756,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 6045 · 2026-05-20T18:24:51.852520+00:00_
+_source line 6041 · 2026-05-20T18:24:51.852520+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -13827,7 +13778,7 @@ _source line 6045 · 2026-05-20T18:24:51.852520+00:00_
 
 ### Tool call
 
-_source line 6046 · 2026-05-20T18:25:05.657725+00:00_
+_source line 6042 · 2026-05-20T18:25:05.657725+00:00_
 
 called ToolSearch
 
@@ -13863,7 +13814,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6047 · 2026-05-20T18:25:05.708838+00:00_
+_source line 6043 · 2026-05-20T18:25:05.708838+00:00_
 
 
 
@@ -13885,7 +13836,7 @@ _source line 6047 · 2026-05-20T18:25:05.708838+00:00_
 
 ### Tool call
 
-_source line 6048 · 2026-05-20T18:25:08.569957+00:00_
+_source line 6044 · 2026-05-20T18:25:08.569957+00:00_
 
 called mcp__agent-ml-research__list_workers
 
@@ -13921,7 +13872,7 @@ called mcp__agent-ml-research__list_workers
 
 ### Tool result
 
-_source line 6049 · 2026-05-20T18:25:08.620587+00:00_
+_source line 6045 · 2026-05-20T18:25:08.620587+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
 
@@ -13943,7 +13894,7 @@ _source line 6049 · 2026-05-20T18:25:08.620587+00:00_
 
 ### Tool call
 
-_source line 6050 · 2026-05-20T18:25:12.685802+00:00_
+_source line 6046 · 2026-05-20T18:25:12.685802+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -13979,7 +13930,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6051 · 2026-05-20T18:25:12.787147+00:00_
+_source line 6047 · 2026-05-20T18:25:12.787147+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_sweep_analysis_figure_20260520T180510\", \"status\": \"done\", \"task_type\": \"research:sweep_analysis_figure\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:05:10.350073+00:00\", \"ended_at\": \"2026-05-20T18:07:25.023630+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。\\n\\n- **脚本**: `/root/autodl-tmp/gen-depth-contamination/scripts/draw_sweep_figure.py`\\n- **PDF**: `/root/autodl-tmp/gen-depth-contamination/results/contamination_sweep/fig_contamination_sweep.pdf`\\n- **PNG**: 同目录 `.png`，已注册为 `art_20260520_97acff`\\n\\n图中可见：Binary Filter 在 10%~50% 污染率下性能几乎持平（HellaSwag ~0.670, ARC-C ~0.45），而 No Filter 和 Graduated 随污染率单调下降。50% 处 Binary 相对 No Filter 的优势为 HellaSwag +1.18pp、ARC-C +2.05pp。100% 时 Binary 因全部样本被过滤标注为 N/A。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -14001,7 +13952,7 @@ _source line 6051 · 2026-05-20T18:25:12.787147+00:00_
 
 ### Tool call
 
-_source line 6052 · 2026-05-20T18:25:27.291839+00:00_
+_source line 6048 · 2026-05-20T18:25:27.291839+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -14030,7 +13981,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 6053 · 2026-05-20T18:25:27.342512+00:00_
+_source line 6049 · 2026-05-20T18:25:27.342512+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -14052,7 +14003,7 @@ _source line 6053 · 2026-05-20T18:25:27.342512+00:00_
 
 ### Tool call
 
-_source line 6054 · 2026-05-20T18:25:47.119535+00:00_
+_source line 6050 · 2026-05-20T18:25:47.119535+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -14094,7 +14045,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6055 · 2026-05-20T18:25:52.740265+00:00_
+_source line 6051 · 2026-05-20T18:25:52.740265+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_sweep_literature_liaison_20260520T182547\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_sweep_literature_liaison_20260520T182547.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_sweep_literature_liaison_20260520T182547 started. Use get_worker_status('worker_research_sweep_literature_liaison_20260520T182547') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14116,7 +14067,7 @@ _source line 6055 · 2026-05-20T18:25:52.740265+00:00_
 
 ### Assistant
 
-_source line 6056 · 2026-05-20T18:25:59.024139+00:00_
+_source line 6052 · 2026-05-20T18:25:59.024139+00:00_
 
 Worker H（literature liaison）已启动。Worker 池 = 1。
 
@@ -14149,7 +14100,7 @@ DeBERTa prediction 完成后 cron 会回调，届时立即 spawn worker 提交 4
 
 ### User
 
-_source line 6057 · 2026-05-20T18:25:59.536137+00:00_
+_source line 6053 · 2026-05-20T18:25:59.536137+00:00_
 
 [WORKER DONE] Worker worker_research_sweep_analysis_figure_20260520T180510 已完成（status=done）。用 `get_worker_status('worker_research_sweep_analysis_figure_20260520T180510')` 读取结果，然后处理。
 
@@ -14174,7 +14125,7 @@ _source line 6057 · 2026-05-20T18:25:59.536137+00:00_
 
 ### Assistant
 
-_source line 6058 · 2026-05-20T18:26:05.705944+00:00_
+_source line 6054 · 2026-05-20T18:26:05.705944+00:00_
 
 已处理过此 Worker（sweep figure，art_20260520_97acff）。不重复处理。
 
@@ -14201,7 +14152,7 @@ _source line 6058 · 2026-05-20T18:26:05.705944+00:00_
 
 ### User
 
-_source line 6059 · 2026-05-20T18:30:25.537356+00:00_
+_source line 6055 · 2026-05-20T18:30:25.537356+00:00_
 
 [WORKER DONE] Worker worker_research_sweep_literature_liaison_20260520T182547 已完成（status=done）。用 `get_worker_status('worker_research_sweep_literature_liaison_20260520T182547')` 读取结果，然后处理。
 
@@ -14226,7 +14177,7 @@ _source line 6059 · 2026-05-20T18:30:25.537356+00:00_
 
 ### Tool call
 
-_source line 6060 · 2026-05-20T18:30:33.179789+00:00_
+_source line 6056 · 2026-05-20T18:30:33.179789+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -14262,7 +14213,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6061 · 2026-05-20T18:30:33.230582+00:00_
+_source line 6057 · 2026-05-20T18:30:33.230582+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_sweep_literature_liaison_20260520T182547\", \"status\": \"done\", \"task_type\": \"research:sweep_literature_liaison\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:25:47.775493+00:00\", \"ended_at\": \"2026-05-20T18:30:24.092862+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。总结：\\n\\n**报告已注册** → `artifacts/exp_contamination_rate_sweep/report/contamination_rate_sweep_literature_analysis.md`\\n\\n**核心发现：**\\n\\n1. **Dose-response 一致**：Du et al. (2025) 的 20-30% 阈值和 Dohmatob et al. (ICLR 2025) 的理论结果都预测了我们观察到的 \\\"污染越高，binary filtering 收益越大\\\" 模式。没有论文做过我们这样的系统性 contamination rate × filtering strategy 矩阵。\\n\\n2. **Graduated ≈ no_filter 是新发现**：没有论文直接比较过 binary vs depth-graduated filtering。现有 weighting 文献 (He et al. golden ratio, Kuo et al. ICLR 2025) 的 weighting 都在 real/synthetic 二元轴上，不在 depth 轴上。我们的 graduated 失败可以被 K\\\\*=2 自洽解释：depth≥1 特征已收敛，depth-graduated weights 是在 noise 上加权。\\n\\n3. **100% binary 不可用**：这是 trivial 的边界条件，Amin et al. 的 β>0 最低要求隐含了这一点，不构成新贡献。\\n\\n4. **新增 5 篇论文到 literature_map.yaml**：Du et al., He et al., Bakshi & Chakraborty, Nait Saada et al., Zhu et al.\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -14284,7 +14235,7 @@ _source line 6061 · 2026-05-20T18:30:33.230582+00:00_
 
 ### Assistant
 
-_source line 6062 · 2026-05-20T18:30:45.779201+00:00_
+_source line 6058 · 2026-05-20T18:30:45.779201+00:00_
 
 文献联动完成。核心发现：graduated ≈ no_filter 是新发现（无先例比较 binary vs depth-graduated filtering），dose-response pattern 与 Du et al. (2025) / Dohmatob et al. (ICLR 2025) 一致。5 篇论文已补入 literature_map.yaml。
 
@@ -14318,7 +14269,7 @@ Worker 池 = 0，两个 RUNNING 实验均为 GPU-bound 等待 cron 回调，无�
 
 ### User
 
-_source line 6063 · 2026-05-20T18:37:00.448455+00:00_
+_source line 6059 · 2026-05-20T18:37:00.448455+00:00_
 
 [Director 指令] ## 空闲 GPU 利用 + DeBERTa 实验推进
 
@@ -14347,7 +14298,7 @@ cqa1 cuda:1,2,3 当前空闲。contamination sweep 已完成，这 3 张卡释�
 
 ### Tool call
 
-_source line 6064 · 2026-05-20T18:37:26.812157+00:00_
+_source line 6060 · 2026-05-20T18:37:26.812157+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -14389,7 +14340,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6065 · 2026-05-20T18:37:32.434974+00:00_
+_source line 6061 · 2026-05-20T18:37:32.434974+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_exp_deberta_filtering_submit4_20260520T183727.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_exp_deberta_filtering_submit4_20260520T183727 started. Use get_worker_status('worker_ops_exp_deberta_filtering_submit4_20260520T183727') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14411,7 +14362,7 @@ _source line 6065 · 2026-05-20T18:37:32.434974+00:00_
 
 ### Tool call
 
-_source line 6066 · 2026-05-20T18:37:41.280669+00:00_
+_source line 6062 · 2026-05-20T18:37:41.280669+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -14447,7 +14398,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6067 · 2026-05-20T18:37:42.435234+00:00_
+_source line 6063 · 2026-05-20T18:37:42.435234+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -14469,7 +14420,7 @@ _source line 6067 · 2026-05-20T18:37:42.435234+00:00_
 
 ### Assistant
 
-_source line 6068 · 2026-05-20T18:37:44.919427+00:00_
+_source line 6064 · 2026-05-20T18:37:44.919427+00:00_
 
 Worker H 已 spawn，检查 predictions.npz 状态并提交 4 策略训练（cqa1 cuda:1,2,3 + westd cuda:0）。
 
@@ -14496,7 +14447,7 @@ Worker H 已 spawn，检查 predictions.npz 状态并提交 4 策略训练（cqa
 
 ### User
 
-_source line 6069 · 2026-05-20T19:18:28.586811+00:00_
+_source line 6065 · 2026-05-20T19:18:28.586811+00:00_
 
 [Director 指令] 紧急检查：report.md 显示 cqa1 四张卡全部空闲，但 exp_expanded_downstream_eval 和 exp_deberta_filtering_comparison 仍标记 RUNNING。
 
@@ -14529,7 +14480,7 @@ _source line 6069 · 2026-05-20T19:18:28.586811+00:00_
 
 ### Tool call
 
-_source line 6070 · 2026-05-20T19:18:43.968154+00:00_
+_source line 6066 · 2026-05-20T19:18:43.968154+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -14569,7 +14520,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6071 · 2026-05-20T19:18:54.295677+00:00_
+_source line 6067 · 2026-05-20T19:18:54.295677+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_urgent_check_expanded_eval_20260520T191844\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_urgent_check_expanded_eval_20260520T191844.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_urgent_check_expanded_eval_20260520T191844 started. Use get_worker_status('worker_ops_urgent_check_expanded_eval_20260520T191844') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14591,7 +14542,7 @@ _source line 6071 · 2026-05-20T19:18:54.295677+00:00_
 
 ### Tool call
 
-_source line 6072 · 2026-05-20T19:18:54.446672+00:00_
+_source line 6068 · 2026-05-20T19:18:54.446672+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -14631,7 +14582,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6073 · 2026-05-20T19:18:57.569692+00:00_
+_source line 6069 · 2026-05-20T19:18:57.569692+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_urgent_check_deberta_filtering_20260520T191854\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_urgent_check_deberta_filtering_20260520T191854.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_urgent_check_deberta_filtering_20260520T191854 started. Use get_worker_status('worker_ops_urgent_check_deberta_filtering_20260520T191854') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14653,7 +14604,7 @@ _source line 6073 · 2026-05-20T19:18:57.569692+00:00_
 
 ### Tool call
 
-_source line 6074 · 2026-05-20T19:19:03.245113+00:00_
+_source line 6070 · 2026-05-20T19:19:03.245113+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -14689,7 +14640,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6075 · 2026-05-20T19:19:03.296832+00:00_
+_source line 6071 · 2026-05-20T19:19:03.296832+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_submit4\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:37:27.446037+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"MMLU download proceeding slowly (503 from datasets-server, falling back to individual file downloads). This will take a while. Let me check in 5 minutes.\", \"turn_count\": 27}}, \"error\": null, \"metadata\": {}}"}
 
@@ -14711,7 +14662,7 @@ _source line 6075 · 2026-05-20T19:19:03.296832+00:00_
 
 ### Tool call
 
-_source line 6076 · 2026-05-20T19:19:12.519616+00:00_
+_source line 6072 · 2026-05-20T19:19:12.519616+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -14747,7 +14698,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6077 · 2026-05-20T19:19:13.623978+00:00_
+_source line 6073 · 2026-05-20T19:19:13.623978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -14769,7 +14720,7 @@ _source line 6077 · 2026-05-20T19:19:13.623978+00:00_
 
 ### Assistant
 
-_source line 6078 · 2026-05-20T19:19:15.664973+00:00_
+_source line 6074 · 2026-05-20T19:19:15.664973+00:00_
 
 Worker H 仍在运行（turn 27），遇到 MMLU 下载慢（503 错误）。Workers I 和 J 并行检查中，结果到手后立即汇报 Director。
 
@@ -14796,7 +14747,7 @@ Worker H 仍在运行（turn 27），遇到 MMLU 下载慢（503 错误）。Wor
 
 ### User
 
-_source line 6079 · 2026-05-20T19:21:06.793688+00:00_
+_source line 6075 · 2026-05-20T19:21:06.793688+00:00_
 
 [WORKER DONE] Worker worker_ops_urgent_check_expanded_eval_20260520T191844 已完成（status=done）。用 `get_worker_status('worker_ops_urgent_check_expanded_eval_20260520T191844')` 读取结果，然后处理。
 
@@ -14821,7 +14772,7 @@ _source line 6079 · 2026-05-20T19:21:06.793688+00:00_
 
 ### Tool call
 
-_source line 6080 · 2026-05-20T19:21:12.525974+00:00_
+_source line 6076 · 2026-05-20T19:21:12.525974+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -14857,7 +14808,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6081 · 2026-05-20T19:21:12.576866+00:00_
+_source line 6077 · 2026-05-20T19:21:12.576866+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_urgent_check_expanded_eval_20260520T191844\", \"status\": \"done\", \"task_type\": \"ops:urgent_check_expanded_eval\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:18:44.645497+00:00\", \"ended_at\": \"2026-05-20T19:21:05.486063+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"实验 **仍在运行**，约完成 60%（6/10 evals done）。当前正在训练 graduated_seed1。GSM8K 所有结果均为 null。\\n\\n## 当前状态\\n\\n- **GPU 0**: 活跃运行（64% util, 327W, 11GB），PID 334631\\n- **进度**: base + seed0×3 + seed1×2 = 6 evals 完成，剩余 graduated_seed1_eval + seed2×3 = 4 evals\\n- **预估剩余时间**: ~80 min（每轮 ~20 min）\\n- **GSM8K**: 所有结果为 null，可能评估失败\\n\\n## 已有结果（seed0 + seed1，部分数据）\\n\\n| Benchmark | Base | no_filter (2s) | binary (2s) | graduated (1s) | binary-nf delta |\\n|-----------|------|----------------|-------------|----------------|-----------------|\\n| PIQA | 0.7579 | 0.7514 | 0.7527 | 0.7514 | +0.13pp |\\n| TruthfulQA | 0.4659 | 0.4230 | 0.4408 | 0.4225 | +1.78pp |\\n| WinoGrande | 0.6456 | 0.6488 | 0.6405 | 0.6488 | -0.83pp |\\n| ARC-C | 0.5486 | 0.5171 | 0.5192 | 0.5128 | +0.21pp |\\n| GSM8K | null | null | null | null | - |\\n\\n初步趋势：binary 在 TruthfulQA 上有较明显优势（+1.78pp），其他 benchmark 差异很小。所有策略相比 base model 均有退化（尤其 TruthfulQA、ARC-C），说明 contaminated data 训练损害了通用能力。\\n\\n## 建议\\n\\n实验仍在运行，不更新 registry。GSM8K 全部为 null 需要排查——等实验完成后再统一处理结果收集和 registry 更新。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -14879,7 +14830,7 @@ _source line 6081 · 2026-05-20T19:21:12.576866+00:00_
 
 ### Assistant
 
-_source line 6082 · 2026-05-20T19:21:19.436081+00:00_
+_source line 6078 · 2026-05-20T19:21:19.436081+00:00_
 
 exp_expanded_downstream_eval 仍在运行（~60% 完成，cqa1 cuda:0 活跃，预计还需 ~80min）。GSM8K 全部 null 需要排查。等 Worker J 的 deberta filtering 检查结果。
 
@@ -14906,7 +14857,7 @@ exp_expanded_downstream_eval 仍在运行（~60% 完成，cqa1 cuda:0 活跃，�
 
 ### User
 
-_source line 6083 · 2026-05-20T19:22:06.966579+00:00_
+_source line 6079 · 2026-05-20T19:22:06.966579+00:00_
 
 [WORKER DONE] Worker worker_ops_urgent_check_deberta_filtering_20260520T191854 已完成（status=done）。用 `get_worker_status('worker_ops_urgent_check_deberta_filtering_20260520T191854')` 读取结果，然后处理。
 
@@ -14931,7 +14882,7 @@ _source line 6083 · 2026-05-20T19:22:06.966579+00:00_
 
 ### Tool call
 
-_source line 6084 · 2026-05-20T19:22:13.593570+00:00_
+_source line 6080 · 2026-05-20T19:22:13.593570+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -14967,7 +14918,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6085 · 2026-05-20T19:22:13.694592+00:00_
+_source line 6081 · 2026-05-20T19:22:13.694592+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_urgent_check_deberta_filtering_20260520T191854\", \"status\": \"done\", \"task_type\": \"ops:urgent_check_deberta_filtering\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:18:54.809639+00:00\", \"ended_at\": \"2026-05-20T19:22:05.619461+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 实验状态汇总\\n\\n### exp_deberta_filtering_comparison — 仍在运行\\n\\n**Phase 1（DeBERTa OOF 预测）：** 已完成，`predictions.npz` 已保存\\n\\n**Phase 2（LoRA 训练 + 评估）：**\\n\\n| 策略 | GPU | 训练 | 评估 |\\n|------|-----|------|------|\\n| no_filter | cuda:1 | 完成（03:18 merged） | 进行中（下载 MMLU） |\\n| obd_binary | cuda:2 | 完成（03:15 merged） | 进行中（下载 MMLU） |\\n| deberta_binary | cuda:3 | 完成（03:16 merged） | 进行中（下载 MMLU） |\\n| **deberta_graduated** | — | **未提交** | **未提交** |\\n\\n3 个策略的 MMLU eval 正在通过 hf-mirror 逐个下载 subject（datasets-server 503，速度慢）。无 eval 结果 JSON 产出。\\n\\n### exp_expanded_downstream_eval — 仍在运行（GPU 0）\\n- 当前：`graduated_seed1` 训练中，步骤 1457/1875（78%）\\n- 已出结果：`binary_ours_seed1` → piqa=0.752, truthfulqa=0.446, winogrande=0.642, arc=0.519, gsm8k=None（xethub 401 失败）\\n- GSM8K 下载持续失败（401 Unauthorized from xethub）\\n\\n### 其他\\n- `sweep_r10_nofilter`：已失败（exit code 1，无法下载 ai2_arc 数据集，OfflineModeIsEnabled）\\n- westd-42896：完全空闲\\n\\n### 问题\\n1. **deberta_graduated 未提交** — registry spec 中标记为 `\\\"pending\\\"`，需要手动提交到空闲 GPU 或等 westd\\n2. **GSM8K 基准持续 401 错误** — xethub 认证问题，影响 expanded_eval 实验\\n3. **MMLU 下载缓慢** — datasets-server 503，逐个 subject 下载，3 个策略的 eval 预计还需较长时间\\n\\n需要我执行什么操作？比如：\\n- 提交 deberta_graduated 到空闲 GPU\\n- 等 eval 完成后再收集结果\\n- 处理 GSM8K 401 问题\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -14989,7 +14940,7 @@ _source line 6085 · 2026-05-20T19:22:13.694592+00:00_
 
 ### Tool call
 
-_source line 6086 · 2026-05-20T19:22:27.416542+00:00_
+_source line 6082 · 2026-05-20T19:22:27.416542+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15025,7 +14976,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6087 · 2026-05-20T19:22:27.467339+00:00_
+_source line 6083 · 2026-05-20T19:22:27.467339+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_submit4\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:37:27.446037+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"Tokenizing 101K inputs (35% done). GPU inference will start shortly after tokenization.\", \"turn_count\": 8}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15047,7 +14998,7 @@ _source line 6087 · 2026-05-20T19:22:27.467339+00:00_
 
 ### Tool call
 
-_source line 6088 · 2026-05-20T19:22:59.400966+00:00_
+_source line 6084 · 2026-05-20T19:22:59.400966+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -15089,7 +15040,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6089 · 2026-05-20T19:23:05.026078+00:00_
+_source line 6085 · 2026-05-20T19:23:05.026078+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259 started. Use get_worker_status('worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15111,7 +15062,7 @@ _source line 6089 · 2026-05-20T19:23:05.026078+00:00_
 
 ### Tool call
 
-_source line 6090 · 2026-05-20T19:23:24.642037+00:00_
+_source line 6086 · 2026-05-20T19:23:24.642037+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15147,7 +15098,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6091 · 2026-05-20T19:23:25.746087+00:00_
+_source line 6087 · 2026-05-20T19:23:25.746087+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -15169,7 +15120,7 @@ _source line 6091 · 2026-05-20T19:23:25.746087+00:00_
 
 ### Assistant
 
-_source line 6092 · 2026-05-20T19:23:27.941685+00:00_
+_source line 6088 · 2026-05-20T19:23:27.941685+00:00_
 
 Worker H 仍在运行但进度不明确。需要立即处理两个 gap：deberta_graduated 未提交 + GSM8K 401。
 
@@ -15196,7 +15147,7 @@ Worker H 仍在运行但进度不明确。需要立即处理两个 gap：deberta
 
 ### User
 
-_source line 6093 · 2026-05-20T19:23:33.292242+00:00_
+_source line 6089 · 2026-05-20T19:23:33.292242+00:00_
 
 [Director 指令] Reviewer 发现两个操作问题，立即处理：
 
@@ -15230,7 +15181,7 @@ exp_expanded_downstream_eval 的 GSM8K 因 xethub 401 全 seed 为 null。4/5 be
 
 ### Tool call
 
-_source line 6094 · 2026-05-20T19:23:39.444510+00:00_
+_source line 6090 · 2026-05-20T19:23:39.444510+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15266,7 +15217,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6095 · 2026-05-20T19:23:39.896496+00:00_
+_source line 6091 · 2026-05-20T19:23:39.896496+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259\", \"status\": \"running\", \"task_type\": \"ops:deberta_graduated_and_gsm8k_fix\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:23:00.049397+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"westd 有项目代码。继续检查 westd 是否有所需数据文件，以及 cqa1 的 GSM8K 错误详情。\", \"turn_count\": 18}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15288,7 +15239,7 @@ _source line 6095 · 2026-05-20T19:23:39.896496+00:00_
 
 ### Tool call
 
-_source line 6096 · 2026-05-20T19:23:39.896932+00:00_
+_source line 6092 · 2026-05-20T19:23:39.896932+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15324,7 +15275,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6097 · 2026-05-20T19:23:39.997541+00:00_
+_source line 6093 · 2026-05-20T19:23:39.997541+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_submit4\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:37:27.446037+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ToolSearch\", \"ssh_read_only\"], \"last_text\": \"Tokenizing 101K inputs (35% done). GPU inference will start shortly after tokenization.\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15346,7 +15297,7 @@ _source line 6097 · 2026-05-20T19:23:39.997541+00:00_
 
 ### Tool call
 
-_source line 6098 · 2026-05-20T19:24:04.844993+00:00_
+_source line 6094 · 2026-05-20T19:24:04.844993+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -15386,7 +15337,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6099 · 2026-05-20T19:24:11.587652+00:00_
+_source line 6095 · 2026-05-20T19:24:11.587652+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_collect_d093_results_20260520T192405\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_collect_d093_results_20260520T192405.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_collect_d093_results_20260520T192405 started. Use get_worker_status('worker_ops_collect_d093_results_20260520T192405') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15408,7 +15359,7 @@ _source line 6099 · 2026-05-20T19:24:11.587652+00:00_
 
 ### Assistant
 
-_source line 6100 · 2026-05-20T19:24:16.552047+00:00_
+_source line 6096 · 2026-05-20T19:24:16.552047+00:00_
 
 Worker L（结果收集）已启动。当前 Worker 池 = 3（H: deberta-submit4, K: graduated+fix, L: results collection）。等 Worker L 返回后立即汇报 Director。
 
@@ -15435,7 +15386,7 @@ Worker L（结果收集）已启动。当前 Worker 池 = 3（H: deberta-submit4
 
 ### User
 
-_source line 6101 · 2026-05-20T19:27:07.865652+00:00_
+_source line 6097 · 2026-05-20T19:27:07.865652+00:00_
 
 [WORKER DONE] Worker worker_ops_collect_d093_results_20260520T192405 已完成（status=done）。用 `get_worker_status('worker_ops_collect_d093_results_20260520T192405')` 读取结果，然后处理。
 
@@ -15460,7 +15411,7 @@ _source line 6101 · 2026-05-20T19:27:07.865652+00:00_
 
 ### Tool call
 
-_source line 6102 · 2026-05-20T19:27:14.923429+00:00_
+_source line 6098 · 2026-05-20T19:27:14.923429+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15496,7 +15447,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6103 · 2026-05-20T19:27:14.975143+00:00_
+_source line 6099 · 2026-05-20T19:27:14.975143+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_collect_d093_results_20260520T192405\", \"status\": \"done\", \"task_type\": \"ops:collect_d093_results\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:24:05.496153+00:00\", \"ended_at\": \"2026-05-20T19:27:06.349168+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All data collected. Here's the complete report.\\n\\n---\\n\\n## 实验 1: exp_expanded_downstream_eval\\n\\n### 完成度矩阵\\n\\n```\\nseed0: no_filter ✅  binary_ours ✅  graduated ✅\\nseed1: no_filter ✅  binary_ours ✅  graduated ⏳ (eval running, ~66% piqa)\\nseed2: no_filter ⏳  binary_ours ⏳  graduated ⏳ (未开始)\\n```\\n\\n`exp_expanded_downstream_eval.py --num_seeds 3` 仍在 GPU 0 上运行，graduated_seed1 eval 进行中，seed2 全部待跑。\\n\\n### 原始分数（所有 benchmark 使用 acc_norm 或 acc 视具体 benchmark）\\n\\n| Model | PIQA | TruthfulQA_mc2 | WinoGrande | ARC-C (norm) |\\n|---|---|---|---|---|\\n| **Base** | 0.7579 | 0.4659 | 0.6456 | 0.5486 |\\n| no_filter seed0 | 0.7519 | 0.4224 | 0.6519 | 0.5128 |\\n| no_filter seed1 | 0.7508 | 0.4237 | 0.6456 | 0.5213 |\\n| binary_ours seed0 | 0.7530 | 0.4359 | 0.6385 | 0.5196 |\\n| binary_ours seed1 | 0.7524 | 0.4456 | 0.6425 | 0.5188 |\\n| graduated seed0 | 0.7514 | 0.4225 | 0.6488 | 0.5128 |\\n\\nGSM8K 全部为 null（已确认跳过）。\\n\\n### Mean ± Std 汇总（仅含已完成 seed）\\n\\n| Benchmark | Base | no_filter (n=2) | binary_ours (n=2) | graduated (n=1) | binary-nf Δ |\\n|---|---|---|---|---|---|\\n| PIQA | 0.7579 | 0.7514±0.0008 | 0.7527±0.0004 | 0.7514 | +0.0013 |\\n| TruthfulQA | 0.4659 | 0.4230±0.0009 | 0.4408±0.0069 | 0.4225 | +0.0178 |\\n| WinoGrande | 0.6456 | 0.6488±0.0045 | 0.6405±0.0028 | 0.6488 | -0.0083 |\\n| ARC-C | 0.5486 | 0.5171±0.0060 | 0.5192±0.0006 | 0.5128 | +0.0021 |\\n\\n注：graduated 仅 1 个 seed，无法算 std。binary-nf Δ = binary_ours mean - no_filter mean。\\n\\n---\\n\\n## 实验 2: exp_deberta_filtering_comparison\\n\\n### 完成度\\n\\n```\\nno_filter:        train ✅  eval ✅  (E
 …[truncated 1050 chars]
@@ -15519,7 +15470,7 @@ _source line 6103 · 2026-05-20T19:27:14.975143+00:00_
 
 ### Tool call
 
-_source line 6104 · 2026-05-20T19:27:28.790083+00:00_
+_source line 6100 · 2026-05-20T19:27:28.790083+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15555,7 +15506,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6105 · 2026-05-20T19:27:28.890851+00:00_
+_source line 6101 · 2026-05-20T19:27:28.890851+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259\", \"status\": \"running\", \"task_type\": \"ops:deberta_graduated_and_gsm8k_fix\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:23:00.049397+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_read_only\", \"ssh_execute\", \"submit_training_job\", \"ssh_execute\"], \"last_text\": \"注意 CUDA_VISIBLE_DEVICES=1 会让 GPU 1 映射为 cuda:0。检查是否需要改为 `--device cuda:0`。\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15577,7 +15528,7 @@ _source line 6105 · 2026-05-20T19:27:28.890851+00:00_
 
 ### Tool call
 
-_source line 6106 · 2026-05-20T19:27:58.812464+00:00_
+_source line 6102 · 2026-05-20T19:27:58.812464+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15613,7 +15564,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6107 · 2026-05-20T19:28:03.337860+00:00_
+_source line 6103 · 2026-05-20T19:28:03.337860+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -15635,7 +15586,7 @@ _source line 6107 · 2026-05-20T19:28:03.337860+00:00_
 
 ### Assistant
 
-_source line 6108 · 2026-05-20T19:28:05.484456+00:00_
+_source line 6104 · 2026-05-20T19:28:05.484456+00:00_
 
 Worker K 已调用 `submit_training_job`，deberta_graduated 正在提交中。向 Director 汇报完整结果。
 
@@ -15662,7 +15613,7 @@ Worker K 已调用 `submit_training_job`，deberta_graduated 正在提交中。�
 
 ### User
 
-_source line 6109 · 2026-05-20T19:31:38.355937+00:00_
+_source line 6105 · 2026-05-20T19:31:38.355937+00:00_
 
 [WORKER DONE] Worker worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259 已完成（status=done）。用 `get_worker_status('worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259')` 读取结果，然后处理。
 
@@ -15687,7 +15638,7 @@ _source line 6109 · 2026-05-20T19:31:38.355937+00:00_
 
 ### Tool call
 
-_source line 6110 · 2026-05-20T19:31:45.250650+00:00_
+_source line 6106 · 2026-05-20T19:31:45.250650+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15723,7 +15674,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6111 · 2026-05-20T19:31:45.301358+00:00_
+_source line 6107 · 2026-05-20T19:31:45.301358+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259\", \"status\": \"done\", \"task_type\": \"ops:deberta_graduated_and_gsm8k_fix\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T19:23:00.049397+00:00\", \"ended_at\": \"2026-05-20T19:31:36.844588+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个任务状态总结：\\n\\n## 修复 1：deberta_graduated\\n\\n已成功提交到 cqa1 cuda:1（PID 359411）。训练进行中：373/825 steps (45%)，约 2.5 it/s，预计 ~8 分钟后完成训练+eval。\\n\\n注意修正了两个原始命令中的问题：\\n- `--gpu 1` → `--device cuda:0`（脚本只接受 `--strategy`/`--device`/`--seed`/`--skip_eval`）\\n- 因为 `submit_training_job` 设置 `CUDA_VISIBLE_DEVICES=1`，物理 GPU 1 映射为 cuda:0\\n\\n## 修复 2：GSM8K 401 问题\\n\\n**根因**：lm_eval 下载 `openai/gsm8k` 时走了 xethub 后端（`cas-server.xethub.hf.co`），返回 401 Unauthorized。3 次重试均失败，所有 eval JSON 中 gsm8k 记为 null。\\n\\n**已完成**：\\n- GSM8K 数据已用 `HF_HUB_DISABLE_XET=1` + `HF_ENDPOINT=https://hf-mirror.com` 预下载缓存（1319 test examples）\\n- Arrow 缓存已复制到 HF_HOME 路径下\\n\\n**GSM8K 补跑方案**（当前实验完成后执行）：\\n1. 当前 expanded_downstream_eval 仍在运行（已完成 6/10 模型，GPU 0），进程内未设 `HF_HUB_DISABLE_XET=1`，剩余模型的 GSM8K 仍会失败\\n2. 等当前实验跑完后，删除所有 `*_eval.json`\\n3. 用 `HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com` 重跑\\n4. 预计耗时 ~30-40 分钟（10 个模型重新训练+全 benchmark eval）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15745,7 +15696,7 @@ _source line 6111 · 2026-05-20T19:31:45.301358+00:00_
 
 ### Tool call
 
-_source line 6112 · 2026-05-20T19:31:55.987248+00:00_
+_source line 6108 · 2026-05-20T19:31:55.987248+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15781,7 +15732,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6113 · 2026-05-20T19:31:56.037932+00:00_
+_source line 6109 · 2026-05-20T19:31:56.037932+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_submit4\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:37:27.446037+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\", \"Bash\", \"ToolSearch\", \"Bash\"], \"last_text\": \"Waiting for the first job to finish. I'll be notified when an exit file appears.\", \"turn_count\": 10}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15803,7 +15754,7 @@ _source line 6113 · 2026-05-20T19:31:56.037932+00:00_
 
 ### Tool call
 
-_source line 6114 · 2026-05-20T19:32:10.203090+00:00_
+_source line 6110 · 2026-05-20T19:32:10.203090+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -15839,7 +15790,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6115 · 2026-05-20T19:32:13.564428+00:00_
+_source line 6111 · 2026-05-20T19:32:13.564428+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -15861,7 +15812,7 @@ _source line 6115 · 2026-05-20T19:32:13.564428+00:00_
 
 ### Assistant
 
-_source line 6116 · 2026-05-20T19:32:15.698647+00:00_
+_source line 6112 · 2026-05-20T19:32:15.698647+00:00_
 
 deberta_graduated 已提交到 cqa1 cuda:1（PID 359411），训练 45%，约 8 分钟完成。GSM8K 数据已预下载缓存，但 Director 确认跳过不重跑。
 
@@ -15888,7 +15839,7 @@ deberta_graduated 已提交到 cqa1 cuda:1（PID 359411），训练 45%，约 8 
 
 ### User
 
-_source line 6117 · 2026-05-20T19:54:36.869157+00:00_
+_source line 6113 · 2026-05-20T19:54:36.869157+00:00_
 
 [系统告警] Worker 日志 30 分钟无更新，可能卡死 (第 1/3 次告警)：
 
@@ -15915,7 +15866,7 @@ project: gen-depth-contamination
 
 ### Tool call
 
-_source line 6118 · 2026-05-20T19:54:43.274427+00:00_
+_source line 6114 · 2026-05-20T19:54:43.274427+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15951,7 +15902,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6119 · 2026-05-20T19:54:43.375211+00:00_
+_source line 6115 · 2026-05-20T19:54:43.375211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"running\", \"task_type\": \"ops:exp_deberta_filtering_submit4\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T18:37:27.446037+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\", \"Bash\", \"ToolSearch\", \"Bash\"], \"last_text\": \"Waiting for the first job to finish. I'll be notified when an exit file appears.\", \"turn_count\": 10}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15973,7 +15924,7 @@ _source line 6119 · 2026-05-20T19:54:43.375211+00:00_
 
 ### Tool call
 
-_source line 6120 · 2026-05-20T19:54:50.499936+00:00_
+_source line 6116 · 2026-05-20T19:54:50.499936+00:00_
 
 called ToolSearch
 
@@ -16009,7 +15960,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 6121 · 2026-05-20T19:54:50.600745+00:00_
+_source line 6117 · 2026-05-20T19:54:50.600745+00:00_
 
 
 
@@ -16031,7 +15982,7 @@ _source line 6121 · 2026-05-20T19:54:50.600745+00:00_
 
 ### Tool call
 
-_source line 6122 · 2026-05-20T19:54:53.662067+00:00_
+_source line 6118 · 2026-05-20T19:54:53.662067+00:00_
 
 called mcp__agent-ml-research__cancel_worker
 
@@ -16065,7 +16016,7 @@ called mcp__agent-ml-research__cancel_worker
 
 ### Tool result
 
-_source line 6123 · 2026-05-20T19:54:54.016452+00:00_
+_source line 6119 · 2026-05-20T19:54:54.016452+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_exp_deberta_filtering_submit4_20260520T183727\", \"status\": \"cancelled\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16087,7 +16038,7 @@ _source line 6123 · 2026-05-20T19:54:54.016452+00:00_
 
 ### Assistant
 
-_source line 6124 · 2026-05-20T19:54:58.116109+00:00_
+_source line 6120 · 2026-05-20T19:54:58.116109+00:00_
 
 Worker H 已取消。当前等待两个 cron 回调：
 - deberta_graduated 训练+eval（cqa1 cuda:1，预计几分钟内完成）
@@ -16116,7 +16067,7 @@ Worker H 已取消。当前等待两个 cron 回调：
 
 ### User
 
-_source line 6125 · 2026-05-20T20:03:36.513109+00:00_
+_source line 6121 · 2026-05-20T20:03:36.513109+00:00_
 
 [Director 指令] 三项任务，按优先级执行：
 
@@ -16152,7 +16103,7 @@ nvidia-smi 截一次，报告每张卡当前跑什么、哪些空闲。
 
 ### Tool call
 
-_source line 6126 · 2026-05-20T20:03:59.216461+00:00_
+_source line 6122 · 2026-05-20T20:03:59.216461+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -16194,7 +16145,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6127 · 2026-05-20T20:04:04.789966+00:00_
+_source line 6123 · 2026-05-20T20:04:04.789966+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359 started. Use get_worker_status('worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16216,7 +16167,7 @@ _source line 6127 · 2026-05-20T20:04:04.789966+00:00_
 
 ### Assistant
 
-_source line 6128 · 2026-05-20T20:04:08.600925+00:00_
+_source line 6124 · 2026-05-20T20:04:08.600925+00:00_
 
 Worker L 已 spawn 执行三项任务：收集 deberta_graduated 结果 → 检查 expanded_eval 并行加速可能 → GPU 快照。
 
@@ -16243,7 +16194,7 @@ Worker L 已 spawn 执行三项任务：收集 deberta_graduated 结果 → 检�
 
 ### User
 
-_source line 6129 · 2026-05-20T20:06:12.312375+00:00_
+_source line 6125 · 2026-05-20T20:06:12.312375+00:00_
 
 [WORKER DONE] Worker worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359 已完成（status=done）。用 `get_worker_status('worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359')` 读取结果，然后处理。
 
@@ -16268,7 +16219,7 @@ _source line 6129 · 2026-05-20T20:06:12.312375+00:00_
 
 ### Tool call
 
-_source line 6130 · 2026-05-20T20:06:19.517913+00:00_
+_source line 6126 · 2026-05-20T20:06:19.517913+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -16304,7 +16255,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6131 · 2026-05-20T20:06:19.618846+00:00_
+_source line 6127 · 2026-05-20T20:06:19.618846+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_deberta_grad_collect_and_gpu_audit_20260520T200359\", \"status\": \"done\", \"task_type\": \"ops:deberta_grad_collect_and_gpu_audit\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T20:03:59.838061+00:00\", \"ended_at\": \"2026-05-20T20:06:10.836966+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"汇总完毕。\\n\\n---\\n\\n## 优先级 1：deberta_graduated 结果 ✅ 已完成\\n\\n`eval_results.json` 已存在，提取得分：\\n\\n| Strategy | MMLU | HellaSwag (acc_norm) | ARC-C (acc_norm) |\\n|---|---|---|---|\\n| no_filter | 0.5895 | 0.6591 | 0.4352 |\\n| obd_binary | 0.5880 | 0.6599 | 0.4522 |\\n| deberta_binary | 0.5870 | 0.6593 | 0.4471 |\\n| **deberta_graduated** | **0.5884** | **0.6586** | **0.4420** |\\n\\n4/4 策略完整。各策略差异很小（MMLU ±0.25pp, HellaSwag ±0.13pp, ARC-C ±1.7pp）。obd_binary 在 ARC-C 上最优（0.4522），no_filter 在 MMLU 上最优（0.5895）。\\n\\n---\\n\\n## 优先级 2：expanded_downstream_eval\\n\\n**当前进度**：graduated_seed1 刚完成，正在训练 **no_filter_seed2**（507/1875 steps, 27%）。已完成 6/9 runs（seed0 全部 + seed1 全部），剩余 seed2 的 3 个策略。\\n\\n**graduated_seed1 刚出的分数**：piqa=0.7508, truthfulqa=0.4234, winogrande=0.6440, arc_c=0.5230, gsm8k=0.5618\\n\\n**脚本不支持单独指定 strategy**。参数仅有 `--device`, `--num_seeds`, `--seed_start`, `--skip_base`。无法按 strategy 拆分到多张卡并行。要实现并行需改脚本加 `--strategy` 参数。\\n\\n**sweep_r10_nofilter 已失败**（exit code 1）：`ConnectionError: Couldn't reach 'allenai/ai2_arc' on the Hub (OfflineModeIsEnabled)`。需要加 `HF_ENDPOINT` 和网络代理环境变量后重跑。\\n\\n---\\n\\n## 优先级 3：GPU 状态\\n\\n| GPU | 型号 | 利用率 | 显存 | 当前任务 |\\n|---|---|---|---|---|\\n| 0 | RTX 4090 D | 81% | 11091/24564 MiB | exp_expanded_downstream_eval (seed2 训练中) |\\n| 1 | RTX 4090 D | 0% | 0 MiB | **空闲**（sweep_r10_nofilter 已失败退出） |\\n| 2 | RTX 4090 D | 0% | 0 MiB | **空闲** |\\n| 3 | RTX 4090 D | 0% | 0 MiB | **空闲** |\\n\\ntmux 活跃会话：`exp_expanded_downstream_eval`\\n\\n**3 张卡空闲**。expanded_eval 脚本无法拆分策略并行，sweep_r10_nofilter 需要修复网络配置后重新提交。\"}}, \"err
 …[truncated 31 chars]
@@ -16327,7 +16278,7 @@ _source line 6131 · 2026-05-20T20:06:19.618846+00:00_
 
 ### Tool call
 
-_source line 6132 · 2026-05-20T20:06:44.711938+00:00_
+_source line 6128 · 2026-05-20T20:06:44.711938+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16367,7 +16318,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 6133 · 2026-05-20T20:06:45.114492+00:00_
+_source line 6129 · 2026-05-20T20:06:45.114492+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16407,7 +16358,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 6134 · 2026-05-20T20:06:45.517746+00:00_
+_source line 6130 · 2026-05-20T20:06:45.517746+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T20:06:45.155Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}, \"metrics\": {\"no_filter\": {\"mmlu\": 0.5895, \"hellaswag\": 0.6591, \"arc_c\": 0.4352}, \"obd_binary\": {\"mmlu\": 0.588, \"hellaswag\": 0.6599, \"arc_c\": 0.4522}, \"deberta_binary\": {\"mmlu\": 0.587, \"hellaswag\": 0.6593, \"arc_c\": 0.4471}, \"deberta_graduated\": {\"mmlu\": 0.5884, \"hellaswag\": 0.6586, \"arc_c\": 0.442}, \"summary\": \"obd_binary (15D) >= deberta_binary on all 3 benchmarks. DeBERTa K*=4 does not yield better filtering than 15D K*=3. Graduated < binary for both OBD and DeBERTa
 …[truncated 71 chars]
@@ -16430,7 +16381,7 @@ _source line 6134 · 2026-05-20T20:06:45.517746+00:00_
 
 ### Tool result
 
-_source line 6135 · 2026-05-20T20:06:46.221682+00:00_
+_source line 6131 · 2026-05-20T20:06:46.221682+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T20:06:45.911Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}, \"metrics\": {\"no_filter\": {\"mmlu\": 0.5895, \"hellaswag\": 0.6591, \"arc_c\": 0.4352}, \"obd_binary\": {\"mmlu\": 0.588, \"hellaswag\": 0.6599, \"arc_c\": 0.4522}, \"deberta_binary\": {\"mmlu\": 0.587, \"hellaswag\": 0.6593, \"arc_c\": 0.4471}, \"deberta_graduated\": {\"mmlu\": 0.5884, \"hellaswag\": 0.6586, \"arc_c\": 0.442}, \"summary\": \"obd_binary (15D) >= deberta_binary on all 3 benchmarks. DeBERTa K*=4 does not yield better filtering than 15D K*=3. Graduated < binary for both OBD and DeBERTa
 …[truncated 100 chars]
@@ -16453,7 +16404,7 @@ _source line 6135 · 2026-05-20T20:06:46.221682+00:00_
 
 ### Tool call
 
-_source line 6136 · 2026-05-20T20:06:50.738658+00:00_
+_source line 6132 · 2026-05-20T20:06:50.738658+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16495,7 +16446,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 6137 · 2026-05-20T20:06:52.246114+00:00_
+_source line 6133 · 2026-05-20T20:06:52.246114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T20:06:51.128Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/\"}, \"metrics\": {\"no_filter\": {\"mmlu\": 0.5895, \"hellaswag\": 0.6591, \"arc_c\": 0.4352}, \"obd_binary\": {\"mmlu\": 0.588, \"hellaswag\": 0.6599, \"arc_c\": 0.4522}, \"deberta_binary\": {\"mmlu\": 0.587, \"hellaswag\": 0.6593, \"arc_c\": 0.4471}, \"deberta_graduated\": {\"mmlu\": 0.5884, \"hellas
 …[truncated 407 chars]
@@ -16518,7 +16469,7 @@ _source line 6137 · 2026-05-20T20:06:52.246114+00:00_
 
 ### Tool call
 
-_source line 6138 · 2026-05-20T20:07:19.570393+00:00_
+_source line 6134 · 2026-05-20T20:07:19.570393+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -16554,7 +16505,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6139 · 2026-05-20T20:07:22.982707+00:00_
+_source line 6135 · 2026-05-20T20:07:22.982707+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -16576,7 +16527,7 @@ _source line 6139 · 2026-05-20T20:07:22.982707+00:00_
 
 ### Assistant
 
-_source line 6140 · 2026-05-20T20:07:25.122013+00:00_
+_source line 6136 · 2026-05-20T20:07:25.122013+00:00_
 
 deberta_graduated 完成！4/4 策略结果齐全。还有一个重要发现：graduated_seed1 的 GSM8K = 0.5618（非 null），说明 Worker K 的缓存修复生效了。
 
@@ -16605,7 +16556,7 @@ deberta_graduated 完成！4/4 策略结果齐全。还有一个重要发现：g
 
 ### User
 
-_source line 6141 · 2026-05-20T20:07:48.878561+00:00_
+_source line 6137 · 2026-05-20T20:07:48.878561+00:00_
 
 [Director 指令] **批准方案 A + GSM8K 补跑，立即执行：**
 
@@ -16636,7 +16587,7 @@ seed2 的 GSM8K 已恢复，但 seed0 和 seed1 早期 runs 的 GSM8K 为 null�
 
 ### Tool call
 
-_source line 6142 · 2026-05-20T20:08:21.531413+00:00_
+_source line 6138 · 2026-05-20T20:08:21.531413+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -16678,7 +16629,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6143 · 2026-05-20T20:08:27.104890+00:00_
+_source line 6139 · 2026-05-20T20:08:27.104890+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_expanded_eval_parallel_seed2_20260520T200822\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_expanded_eval_parallel_seed2_20260520T200822.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_expanded_eval_parallel_seed2_20260520T200822 started. Use get_worker_status('worker_ops_expanded_eval_parallel_seed2_20260520T200822') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16700,7 +16651,7 @@ _source line 6143 · 2026-05-20T20:08:27.104890+00:00_
 
 ### Tool call
 
-_source line 6144 · 2026-05-20T20:08:31.973163+00:00_
+_source line 6140 · 2026-05-20T20:08:31.973163+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -16740,7 +16691,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 6145 · 2026-05-20T20:08:33.686010+00:00_
+_source line 6141 · 2026-05-20T20:08:33.686010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_filtering_comparison\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T20:08:32.368Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/\"}, \"metrics\": {\"no_filter\": {\"mmlu\": 0.5895, \"hellaswag\": 0.6591, \"arc_c\": 0.4352}, \"obd_binary\": {\"mmlu\": 0.588, \"hellaswag\": 0.6599, \"arc_c\": 0.4522}, \"deberta_binary\": {\"mmlu\": 0.587, \"hellaswag\": 0.6593, \"arc_c\": 0.4471}, \"deberta_graduated\": {\"mmlu\": 0.5884, \"hellas
 …[truncated 407 chars]
@@ -16763,7 +16714,7 @@ _source line 6145 · 2026-05-20T20:08:33.686010+00:00_
 
 ### Tool call
 
-_source line 6146 · 2026-05-20T20:08:50.065508+00:00_
+_source line 6142 · 2026-05-20T20:08:50.065508+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -16799,7 +16750,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 6147 · 2026-05-20T20:08:51.119180+00:00_
+_source line 6143 · 2026-05-20T20:08:51.119180+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -16821,7 +16772,7 @@ _source line 6147 · 2026-05-20T20:08:51.119180+00:00_
 
 ### Assistant
 
-_source line 6148 · 2026-05-20T20:08:53.415095+00:00_
+_source line 6144 · 2026-05-20T20:08:53.415095+00:00_
 
 Worker L spawn，执行改脚本 + 并行 seed2 + GSM8K 补跑。
 
@@ -16850,7 +16801,7 @@ Worker L spawn，执行改脚本 + 并行 seed2 + GSM8K 补跑。
 
 ### User
 
-_source line 6149 · 2026-05-20T20:21:44.231903+00:00_
+_source line 6145 · 2026-05-20T20:21:44.231903+00:00_
 
 [WORKER DONE] Worker worker_ops_expanded_eval_parallel_seed2_20260520T200822 已完成（status=done）。用 `get_worker_status('worker_ops_expanded_eval_parallel_seed2_20260520T200822')` 读取结果，然后处理。
 
@@ -16875,7 +16826,7 @@ _source line 6149 · 2026-05-20T20:21:44.231903+00:00_
 
 ### Tool call
 
-_source line 6150 · 2026-05-20T20:21:53.284870+00:00_
+_source line 6146 · 2026-05-20T20:21:53.284870+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -16911,7 +16862,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6151 · 2026-05-20T20:21:53.335582+00:00_
+_source line 6147 · 2026-05-20T20:21:53.335582+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_expanded_eval_parallel_seed2_20260520T200822\", \"status\": \"done\", \"task_type\": \"ops:expanded_eval_parallel_seed2\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T20:08:22.176543+00:00\", \"ended_at\": \"2026-05-20T20:21:42.779088+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"当前状态总结：\\n\\n**已完成：**\\n- 脚本修改：加了 `--strategy`（单策略过滤）、`--skip_train`（跳过训练）、null benchmark 自动检测（发现 eval 文件有 null 值时只重训+补跑缺失 benchmark）\\n- seed2 三个策略已并行提交：\\n  - cuda:1 → `seed2_no_filter`\\n  - cuda:2 → `seed2_binary_ours`  \\n  - cuda:3 → `seed2_graduated`\\n\\n**待处理：**\\n- cuda:0 上原进程还在跑（也在跑 seed2 串行版，与并行 job 存在重叠但不会冲突——先完成的写 eval 文件，后来的会跳过）\\n- seed0/seed1 GSM8K 补跑需要重训（checkpoint 已被清理），每个 run 约 15-20 min（训练+仅 GSM8K eval）\\n- 6 个 GSM8K 补跑 run（3 strategies × 2 seeds），等 GPU 空出后再提交\\n\\n**计划：** 等 seed2 任一 GPU 空出后，提交 GSM8K 补跑 job。需要我现在轮询监控进度，还是你想稍后手动检查？\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -16933,7 +16884,7 @@ _source line 6151 · 2026-05-20T20:21:53.335582+00:00_
 
 ### Tool call
 
-_source line 6152 · 2026-05-20T20:22:09.798815+00:00_
+_source line 6148 · 2026-05-20T20:22:09.798815+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -16971,7 +16922,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 6153 · 2026-05-20T20:22:09.899692+00:00_
+_source line 6149 · 2026-05-20T20:22:09.899692+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 决策与经验\\n\\n### Contamination Rate Sweep — Graduated 无效，Binary 优势随 Rate 递增 (2026-05-20)\\n- **核心发现**: Graduated filtering (加权方案) ≈ no_filter，几乎无效。Binary (depth≥1 移除) 才是唯一有效策略\\n- **设计启示**: 不需要复杂的加权/概率过滤，简单的 binary cutoff 在 K*=2 boundary 上就足够\\n- **Dose-response 规律**: Binary 优势随污染率单调递增 (HellaSwag: +0.57pp@10% → +0.77pp@30% → +1.18pp@50%)\\n- **Benchmark 敏感度差异**: HellaSwag/ARC-C 对污染敏感，MMLU 不敏感 (<0.5pp 差异)\\n- **100% 限制**: Binary 在 100% 污染时不可用（所有数据被过滤），需在 limitations 讨论\\n- **论文策略**: 建议做 dose-response figure (x=rate, y=score, 3 strategy lines)，可视化 binary 优势\\n\\n### [CRITICAL] OLMo C4 数据版本混淆 — K*=2 不可复现 (2026-05-20)\\n- **发现**: 所有当前 OLMo C4 数据（三种 scorer）均给出 K*=1，与论文声称的 K*=2 矛盾\\n  - OLMo self-scored: 1v2 AUC = 0.507\\n  - Qwen-1.5B scored: 1v2 AUC = 0.4977\\n  - Qwen-7B scored: 1v2 AUC = 0.4965\\n- **根因**: 所有 OLMo C4 数据文件在 2026-05-20 被重新生成，覆盖了原始数据\\n- **论文当前数字**: OLMo C4 K*=2 (1v2=0.6145) 来自更早版本数据，已不存在\\n- **影响**: headline claim 从 \\\"7/8 prompt-chain yield K*≥2\\\" 变为 \\\"6/8\\\"；OLMo 降为 K*=1 阵营\\n- **状态**: 已汇报 Director，等待决策（查备份 / 重生成 / 修正论文）\\n\\n### Multi-Source Scorer Confound 三重排除 (2026-05-20)\\n- **结论**: Scorer confound 不影响 multi-source K* 判定，三条独立证据线：\\n  1. **vocab-only** (6 scorer-independent features): v1 K*=2 (1v2=0.676), v2 K*=2 (1v2=0.683)\\n  2. **unified Qwen2.5-1.5B scorer**: mixed K*=2 (1v2=0.7105)，反而高于 confounded (0.7007)\\n  3. **generator label 无增益**: +label K*=2 (1v2=0.7183)，仅 +0.008 AUC\\n- **LLaMA-8B cross-family**: 统一 Qwen scorer 下 LLaMA-8B 单源 K*=1 (1v2=0.6077)，cross-family scoring 更难\\n- **论文策略**: 主表用 unified scorer 结果，appendix 放 vocab-only 作为额外验证\\n\\n### 7B Scorer Scale Robustness 确认 (2026-05-20)\\n- **C4 结果**: Qwen2.5-7B scorer 与 1.5B scorer 给出相同 K* (Pythia K*=2, OLMo K*=1)\\n- **arXiv**: 实验进行中 (exp_7b_scorer_arxiv)，等待结果\\n- **论文意义**: K* 对 s
 …[truncated 384 chars]
@@ -16994,7 +16945,7 @@ _source line 6153 · 2026-05-20T20:22:09.899692+00:00_
 
 ### Tool call
 
-_source line 6154 · 2026-05-20T20:22:12.975751+00:00_
+_source line 6150 · 2026-05-20T20:22:12.975751+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -17032,7 +16983,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 6155 · 2026-05-20T20:22:13.026571+00:00_
+_source line 6151 · 2026-05-20T20:22:13.026571+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 决策与经验\\n\\n### Contamination Rate Sweep — Graduated 无效，Binary 优势随 Rate 递增 (2026-05-20)\\n- **核心发现**: Graduated filtering (加权方案) ≈ no_filter，几乎无效。Binary (depth≥1 移除) 才是唯一有效策略\\n- **设计启示**: 不需要复杂的加权/概率过滤，简单的 binary cutoff 在 K*=2 boundary 上就足够\\n- **Dose-response 规律**: Binary 优势随污染率单调递增 (HellaSwag: +0.57pp@10% → +0.77pp@30% → +1.18pp@50%)\\n- **Benchmark 敏感度差异**: HellaSwag/ARC-C 对污染敏感，MMLU 不敏感 (<0.5pp 差异)\\n- **100% 限制**: Binary 在 100% 污染时不可用（所有数据被过滤），需在 limitations 讨论\\n- **论文策略**: 建议做 dose-response figure (x=rate, y=score, 3 strategy lines)，可视化 binary 优势\\n\\n### [CRITICAL] OLMo C4 数据版本混淆 — K*=2 不可复现 (2026-05-20)\\n- **发现**: 所有当前 OLMo C4 数据（三种 scorer）均给出 K*=1，与论文声称的 K*=2 矛盾\\n  - OLMo self-scored: 1v2 AUC = 0.507\\n  - Qwen-1.5B scored: 1v2 AUC = 0.4977\\n  - Qwen-7B scored: 1v2 AUC = 0.4965\\n- **根因**: 所有 OLMo C4 数据文件在 2026-05-20 被重新生成，覆盖了原始数据\\n- **论文当前数字**: OLMo C4 K*=2 (1v2=0.6145) 来自更早版本数据，已不存在\\n- **影响**: headline claim 从 \\\"7/8 prompt-chain yield K*≥2\\\" 变为 \\\"6/8\\\"；OLMo 降为 K*=1 阵营\\n- **状态**: 已汇报 Director，等待决策（查备份 / 重生成 / 修正论文）\\n\\n### Multi-Source Scorer Confound 三重排除 (2026-05-20)\\n- **结论**: Scorer confound 不影响 multi-source K* 判定，三条独立证据线：\\n  1. **vocab-only** (6 scorer-independent features): v1 K*=2 (1v2=0.676), v2 K*=2 (1v2=0.683)\\n  2. **unified Qwen2.5-1.5B scorer**: mixed K*=2 (1v2=0.7105)，反而高于 confounded (0.7007)\\n  3. **generator label 无增益**: +label K*=2 (1v2=0.7183)，仅 +0.008 AUC\\n- **LLaMA-8B cross-family**: 统一 Qwen scorer 下 LLaMA-8B 单源 K*=1 (1v2=0.6077)，cross-family scoring 更难\\n- **论文策略**: 主表用 unified scorer 结果，appendix 放 vocab-only 作为额外验证\\n\\n### 7B Scorer Scale Robustness 确认 (2026-05-20)\\n- **C4 结果**: Qwen2.5-7B scorer 与 1.5B scorer 给出相同 K* (Pythia K*=2, OLMo K*=1)\\n- **arXiv**: 实验进行中 (exp_7b_scorer_arxiv)，等待结果\\n- **论文意义**: K* 对 s
 …[truncated 7380 chars]
@@ -17055,7 +17006,7 @@ _source line 6155 · 2026-05-20T20:22:13.026571+00:00_
 
 ### Tool call
 
-_source line 6156 · 2026-05-20T20:23:36.328262+00:00_
+_source line 6152 · 2026-05-20T20:23:36.328262+00:00_
 
 called mcp__agent-ml-research__save_project_file
 
@@ -17093,7 +17044,7 @@ called mcp__agent-ml-research__save_project_file
 
 ### Tool result
 
-_source line 6157 · 2026-05-20T20:23:36.379219+00:00_
+_source line 6153 · 2026-05-20T20:23:36.379219+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
 
@@ -17115,7 +17066,7 @@ _source line 6157 · 2026-05-20T20:23:36.379219+00:00_
 
 ### Assistant
 
-_source line 6158 · 2026-05-20T20:23:44.815626+00:00_
+_source line 6154 · 2026-05-20T20:23:44.815626+00:00_
 
 memory.md 更新完成（新增 DeBERTa filtering 发现 + cqa1 HF_HUB_DISABLE_XET 修复记录）。
 
@@ -17144,7 +17095,7 @@ memory.md 更新完成（新增 DeBERTa filtering 发现 + cqa1 HF_HUB_DISABLE_X
 
 ### User
 
-_source line 6159 · 2026-05-20T20:40:26.721908+00:00_
+_source line 6155 · 2026-05-20T20:40:26.721908+00:00_
 
 [Director 指令] 状态检查 + registry 同步，立即回复：
 
@@ -17171,7 +17122,7 @@ _source line 6159 · 2026-05-20T20:40:26.721908+00:00_
 
 ### Tool call
 
-_source line 6160 · 2026-05-20T20:40:44.714136+00:00_
+_source line 6156 · 2026-05-20T20:40:44.714136+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -17211,7 +17162,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 6161 · 2026-05-20T20:40:50.286664+00:00_
+_source line 6157 · 2026-05-20T20:40:50.286664+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_status_check_nvidia_smi_20260520T204045\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_status_check_nvidia_smi_20260520T204045.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_status_check_nvidia_smi_20260520T204045 started. Use get_worker_status('worker_ops_status_check_nvidia_smi_20260520T204045') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17240,7 +17191,7 @@ _source line 6161 · 2026-05-20T20:40:50.286664+00:00_
 
 ### User
 
-_source line 6162 · 2026-05-20T20:43:05.748180+00:00_
+_source line 6158 · 2026-05-20T20:43:05.748180+00:00_
 
 [WORKER DONE] Worker worker_ops_status_check_nvidia_smi_20260520T204045 已完成（status=done）。用 `get_worker_status('worker_ops_status_check_nvidia_smi_20260520T204045')` 读取结果，然后处理。
 
@@ -17265,7 +17216,7 @@ _source line 6162 · 2026-05-20T20:43:05.748180+00:00_
 
 ### Tool call
 
-_source line 6163 · 2026-05-20T20:43:19.057703+00:00_
+_source line 6159 · 2026-05-20T20:43:19.057703+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17301,7 +17252,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 6164 · 2026-05-20T20:43:19.208855+00:00_
+_source line 6160 · 2026-05-20T20:43:19.208855+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_status_check_nvidia_smi_20260520T204045\", \"status\": \"done\", \"task_type\": \"ops:status_check_nvidia_smi\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-20T20:40:45.348439+00:00\", \"ended_at\": \"2026-05-20T20:43:04.232547+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部数据收集完毕。以下是完整状态报告：\\n\\n---\\n\\n## cqa1-22115 状态报告\\n\\n### 1. nvidia-smi\\n\\n| GPU | 型号 | 显存占用 | GPU-Util | 温度 | 功耗 |\\n|-----|------|----------|----------|------|------|\\n| 0 | RTX 4090 D | 8261 / 24564 MiB | 95% | 60°C | 326W |\\n| 1 | RTX 4090 D | 22613 / 24564 MiB | 100% | 68°C | 413W |\\n| 2 | RTX 4090 D | 5327 / 24564 MiB | 95% | 62°C | 331W |\\n| 3 | RTX 4090 D | 22613 / 24564 MiB | 100% | 66°C | 391W |\\n\\n4 张卡全部在跑。GPU 进程：\\n- GPU 0: PID 334631 — `python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3`\\n- GPU 1: PID 362958 — seed2 任务之一\\n- GPU 2: PID 363100 — seed2 任务之一\\n- GPU 3: PID 363247 — seed2 任务之一\\n\\n### 2. Python 进程\\n\\n主要实验进程：\\n- **PID 334631** (GPU 0): `exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3`，启动于 01:17，CPU 107%\\n- **PID 362958** (GPU 1): seed2 并行任务\\n- **PID 363100** (GPU 2): seed2 并行任务\\n- **PID 363247** (GPU 3): seed2 并行任务\\n\\n另有大量 torch inductor compile_worker 子进程（每个主进程约 32 个 worker）。\\n\\n还有一个已死的 sweep_r10_nofilter 进程（tmux session 仍在但进程已退出）。\\n\\n### 3. tmux sessions\\n\\n```\\nexp_expanded_downstream_eval: 1 windows (created Thu May 21 01:17:37 2026)\\nseed2_binary_ours:            1 windows (created Thu May 21 04:20:47 2026)\\nseed2_graduated:              1 windows (created Thu May 21 04:20:48 2026)\\nseed2_no_filter:              1 windows (created Thu May 21 04:20:44 2026)\\n```\\n\\n`sweep_r10_nofilter` session 不存在（已消失或被清理）。\\n\\n### 4. seed2 并行任务进度\\n\\n训练目录已创建（merged 子目录存在 = 训练完成，正在 eval 阶段）：\\n\\n| 任务 | 训练目录 | 状态 |\\n|------|----------|------|\\n| no_filter_seed2 | `no_filte
 …[truncated 2321 chars]

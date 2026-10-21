@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_w2_rectangularity_20260515T085632_retry1.log",
     "occurrence": 1,
-    "bytes": 408120,
-    "sha256": "8e1604262ac7e93425e4996dbdbce7b0040fc8bb3b3ce183cd879e9a5c8c9b7a"
+    "bytes": 379669,
+    "sha256": "9a47a755bd6340e0eb6e95de9faeb93a858664184ec7b2faa0e42442497e2e7f"
   },
   "statistics": {
-    "messages": 90,
+    "messages": 88,
     "user_turns": 0,
-    "tool_calls": 35,
+    "tool_calls": 34,
     "roles": {
       "log": 1,
       "system": 1,
       "record": 1,
       "assistant": 16,
-      "tool_call": 35,
-      "tool_result": 35,
+      "tool_call": 34,
+      "tool_result": 34,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -3460,83 +3460,6 @@
           "content": [
             {
               "type": "tool_use",
-              "id": "toolu_01YF91VP5PFcibzVNDRrTmLd",
-              "name": "Write",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md",
-                "content": "# W2 Rectangularity Verification — Quantitative Evidence for Pair-Based Constraint Enforcement\n\n**生成日期:** 2026-05-15\n**目的:** Reviewer 指出代码做了 pair-based enforcement，但论文 §3 描述的是 independent dom/range。本报告量化两者差距，支持论文修改。\n\n---\n\n## 1. Code Logic Confirmation\n\n**Pair-based check 已在代码中实现，论文描述偏宽松。**\n\n### head_type masking (`type_mask_processor.py` `_mask_head_type`)\n```python\nallowed_dr = constraint.valid_head_types() if constraint else None\n```\n仅看 `dom(r)`，与 tail 无关 → **independent check** on head side.\n\n### tail_type masking (`type_mask_processor.py:323` `_mask_tail_type`)\n```python\nif head_type is not None:\n    allowed_dr = constraint.valid_tail_types_for_head(head_type)\nelse:\n    allowed_dr = constraint.valid_tail_types()\n```\n其中 `valid_tail_types_for_head(head_type)` 在 `ontology_compiler.py:38` 定义为：\n```python\ndef valid_tail_types_for_head(self, head_type: str) -> set[str]:\n    return {t for h, t in self.valid_pairs if h == head_type}\n```\n即：在 head_type 已确定的条件下，仅允许 `σ(r)` 中以该 head_type 为头的 valid tail types。\n\n### 结论\n- Decoding 顺序：`head_type` → `tail_type`。\n- head 端独立检查 `h ∈ dom(r)`；tail 端条件检查 `t ∈ {t' : (h, t') ∈ σ(r)}`。\n- **最终生成的 pair `(h, t)` 必然 ∈ σ(r)** —— 这就是 pair-based enforcement，比论文 §3 描述的 `(h ∈ dom(r)) ∧ (t ∈ range(r))` 更严格。\n\n---\n\n## 2. Rectangularity Definition\n\n对每个 relation `r`：\n- `σ(r)` = 实际 valid (head, tail) pairs 集合\n- `dom(r) = {h : ∃t, (h,t) ∈ σ(r)}`\n- `range(r) = {t : ∃h, (h,t) ∈ σ(r)}`\n- **Rectangular** iff `|σ(r)| = |dom(r)| × |range(r)|`，即 `σ(r) = dom(r) × range(r)`。\n- **Gap** = `|dom(r)| × |range(r)| - |σ(r)|`（若假定 rectangular，会被错误允许的 pair 数量）\n\n**Head-only over-permissiveness**：若 §3 表述被字面执行（仅检查 `h ∈ dom(r)`，tail 不约束），允许的 pair 数 = `|dom(r)| × |T|`，其中 `|T|` = 所有 entity types。\n\n---\n\n## 3. SciERC Results\n\n- entity types: 6, relations: 7\n- **rectangular: 0/7 (0.0%)**\n- non-rect 平均 gap: 12.00\n- total |σ| = 168, total |dom×range| = 252, global gap = 84\n- head-only over-permissive ratio (head_only/pair_based): **1.500×**\n\n### Per-relation table (SciERC)\n\n| Relation | \\|σ(r)\\| | \\|dom(r)\\| | \\|range(r)\\| | dom×range | Rectangular? | Gap | head-only/pair |\n|---|---:|---:|---:|---:|:---:|---:|---:|\n| Used-for | 35 | 6 | 6 | 36 | ✗ | 1 | 1.03× |\n| Feature-of | 26 | 6 | 6 | 36 | ✗ | 10 | 1.38× |\n| Hyponym-of | 21 | 6 | 6 | 36 | ✗ | 15 | 1.71× |\n| Part-of | 21 | 6 | 6 | 36 | ✗ | 15 | 1.71× |\n| Compare | 17 | 6 | 6 | 36 | ✗ | 19 | 2.12× |\n| Conjunction | 25 | 6 | 6 | 36 | ✗ | 11 | 1.44× |\n| Evaluate-for | 23 | 6 | 6 | 36 | ✗ | 13 | 1.57× |\n\n**关键观察 (SciERC):**\n- 7/7 relations 全部 **非 rectangular**。\n- 所有 relations 的 `dom = range = 全部 6 个 entity types`（这是 SciERC 的特点：同类型间也可能成立关系），但 `σ(r)` 远小于 36。\n- 例：`Compare` 只有 17 个 valid pairs，rectangular 假设会多允许 19 个（gap=19），over-permissive 2.12×。\n- 若按 §3 字面 head-only check：global 1.5× over-permissive — SciERC 的 head 几乎可以是任意类型，所以差距主要在 tail conditional。\n\n---\n\n## 4. DocRED Results\n\n- entity types: 6, relations: 96\n- **rectangular: 23/96 (24.0%)**\n- non-rect 平均 gap: 4.34\n- total |σ| = 545, total |dom×range| = 862, global gap = 317\n- head-only over-permissive ratio: **3.457×**\n\n### DocRED over-permissive ratio 分布 (head-only vs pair-based)\n\n| Bucket | Count | %  |\n|---|---:|---:|\n| 1.0-1.5 | 0 | 0.0% |\n| 1.5-2.0 | 2 | 2.1% |\n| 2.0-3.0 | 17 | 17.7% |\n| 3.0-5.0 | 59 | 61.5% |\n| 5.0-10.0 | 18 | 18.8% |\n| 10.0+ | 0 | 0.0% |\n\n- 中位数 over_ratio = 3.60×\n- 均值 over_ratio = 3.84×\n- 最大 over_ratio = 6.00×\n\n### Per-relation table (DocRED, 96 relations)\n\n| Pid | Name | \\|σ\\| | \\|dom\\| | \\|range\\| | dom×range | Rect? | Gap | head-only/pair |\n|---|---|---:|---:|---:|---:|:---:|---:|---:|\n| P6 | head of government | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P17 | country | 13 | 6 | 4 | 24 | ✗ | 11 | 2.77× |\n| P19 | place of birth | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P20 | place of death | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P22 | father | 7 | 3 | 4 | 12 | ✗ | 5 | 2.57× |\n| P25 | mother | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P26 | spouse | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P27 | country of citizenship | 7 | 4 | 4 | 16 | ✗ | 9 | 3.43× |\n| P30 | continent | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P31 | instance of | 9 | 4 | 3 | 12 | ✗ | 3 | 2.67× |\n| P35 | head of state | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P36 | capital | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P37 | official language | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P39 | position held | 4 | 1 | 4 | 4 | ✓ | 0 | 1.50× |\n| P40 | child | 6 | 4 | 2 | 8 | ✗ | 2 | 4.00× |\n| P50 | author | 8 | 5 | 4 | 20 | ✗ | 12 | 3.75× |\n| P54 | member of sports team | 10 | 3 | 5 | 15 | ✗ | 5 | 1.80× |\n| P57 | director | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P58 | screenwriter | 2 | 2 | 1 | 2 | ✓ | 0 | 6.00× |\n| P69 | educated at | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P86 | composer | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P102 | member of political party | 7 | 4 | 4 | 16 | ✗ | 9 | 3.43× |\n| P108 | employer | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P112 | founded by | 8 | 4 | 4 | 16 | ✗ | 8 | 3.00× |\n| P118 | league | 8 | 4 | 3 | 12 | ✗ | 4 | 3.00× |\n| P123 | publisher | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P127 | owned by | 9 | 4 | 3 | 12 | ✗ | 3 | 2.67× |\n| P131 | located in the administrative territorial entity | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P136 | genre | 9 | 4 | 4 | 16 | ✗ | 7 | 2.67× |\n| P137 | operator | 7 | 4 | 2 | 8 | ✗ | 1 | 3.43× |\n| P140 | religion | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P150 | contains administrative territorial entity | 8 | 4 | 4 | 16 | ✗ | 8 | 3.00× |\n| P155 | follows | 9 | 5 | 4 | 20 | ✗ | 11 | 3.33× |\n| P156 | followed by | 9 | 4 | 5 | 20 | ✗ | 11 | 2.67× |\n| P159 | headquarters location | 8 | 4 | 3 | 12 | ✗ | 4 | 3.00× |\n| P161 | cast member | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P162 | producer | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P166 | award received | 6 | 4 | 2 | 8 | ✗ | 2 | 4.00× |\n| P170 | creator | 8 | 5 | 2 | 10 | ✗ | 2 | 3.75× |\n| P171 | parent taxon | 4 | 2 | 2 | 4 | ✓ | 0 | 3.00× |\n| P172 | ethnic group | 7 | 3 | 3 | 9 | ✗ | 2 | 2.57× |\n| P175 | performer | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P176 | manufacturer | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P178 | developer | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P179 | series | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P190 | sister city | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P194 | legislative body | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P205 | basin country | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P206 | located in or next to body of water | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P241 | military branch | 5 | 3 | 2 | 6 | ✗ | 1 | 3.60× |\n| P264 | record label | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P272 | production company | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P276 | location | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P279 | subclass of | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P355 | subsidiary | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P361 | part of | 14 | 5 | 5 | 25 | ✗ | 11 | 2.14× |\n| P364 | original language of work | 7 | 3 | 3 | 9 | ✗ | 2 | 2.57× |\n| P400 | platform | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P403 | mouth of the watercourse | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P449 | original network | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P463 | member of | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P488 | chairperson | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P495 | country of origin | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P527 | has part | 15 | 5 | 5 | 25 | ✗ | 10 | 2.00× |\n| P551 | residence | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P569 | date of birth | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P570 | date of death | 6 | 5 | 2 | 10 | ✗ | 4 | 5.00× |\n| P571 | inception | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P576 | dissolved, abolished or demolished | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P577 | publication date | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P580 | start time | 5 | 5 | 1 | 5 | ✓ | 0 | 6.00× |\n| P582 | end time | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P585 | point in time | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P607 | conflict | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P674 | characters | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P676 | lyrics by | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P706 | located on terrain feature | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P710 | participant | 8 | 3 | 4 | 12 | ✗ | 4 | 2.25× |\n| P737 | influenced by | 4 | 3 | 3 | 9 | ✗ | 5 | 4.50× |\n| P740 | location of formation | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P749 | parent organization | 5 | 3 | 2 | 6 | ✗ | 1 | 3.60× |\n| P800 | notable work | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P807 | separated from | 2 | 2 | 2 | 4 | ✗ | 2 | 6.00× |\n| P840 | narrative location | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P937 | work location | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P1001 | applies to jurisdiction | 8 | 3 | 3 | 9 | ✗ | 1 | 2.25× |\n| P1056 | product or material produced | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P1198 | unemployment rate | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P1336 | territory claimed by | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P1344 | participant of | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P1365 | replaces | 4 | 3 | 3 | 9 | ✗ | 5 | 4.50× |\n| P1366 | replaced by | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P1376 | capital of | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P1412 | languages spoken, written or signed | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P1441 | present in work | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P3373 | sibling | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n\n**关键观察 (DocRED):**\n- 24% 的 relations 是 rectangular —— 但都是 |σ| 很小的小型 relation (e.g., dom=range=1)。\n- 76% 非 rectangular，平均 gap=4.34（若假定 rectangular 会多允许 4.34 个非法 pair）。\n- head-only 假设全局多允许 3.5× — DocRED 上 §3 字面执行会严重过宽。\n- 多个 relations over_ratio ≥ 5×（dom 大但 |σ| 小的稀疏 pair 集合，rectangular 假设崩溃最严重）。\n\n---\n\n## 5. 综合诊断\n\n### 三种约束严格度对比\n\n| Mode | 公式 | 总允许 pair (SciERC) | 总允许 pair (DocRED) |\n|---|---|---:|---:|\n| Head-only (§3 字面) | `h ∈ dom(r)`，tail 任意 | 252 | 1884 |\n| Independent dom/range | `h ∈ dom(r) ∧ t ∈ range(r)` | 252 | 862 |\n| **Pair-based (代码实际)** | `(h, t) ∈ σ(r)` | **168** | **545** |\n\n- Independent dom/range 假设的 over-permissive 在 SciERC 上 = 252/168 ≈ 1.50×；在 DocRED 上 = 862/545 ≈ 1.58×。\n- Head-only 假设（论文 §3 字面）的 over-permissive：SciERC 1.50×，**DocRED 3.46×**（DocRED 是更严苛的诊断信号）。\n- Pair-based vs Independent 差距来自非 rectangular schema：SciERC 100% 非 rect，DocRED 76% 非 rect。\n\n### 结论\n1. **代码实际执行的是 pair-based check**（决策依据：`ontology_compiler.py:38` + `type_mask_processor.py:323`，输出 pair 必然 ∈ σ(r)）。\n2. **论文 §3 描述偏宽松**（写成 independent dom/range 或 head-only）。\n3. **非 rectangular 在两个数据集上都是主流形态**（SciERC 100%, DocRED 76%）—— 论文必须区分这两种 mode，不能默认 σ(r) = dom(r) × range(r)。\n\n---\n\n## 6. 论文修改建议\n\n### §3 描述应修正为 pair-based formulation\n\n**Before (§3 当前表述，宽松):**\n> A relation `r(h, t)` is valid iff `type(h) ∈ dom(r)` and `type(t) ∈ range(r)`.\n\n**After (与代码一致):**\n> Each relation `r` is specified by its valid type signature `σ(r) ⊆ T × T`. A relation `r(h, t)` is valid iff `(type(h), type(t)) ∈ σ(r)`. Equivalently, the decoder enforces `type(h) ∈ dom(r)` and, conditional on `type(h)=τ`, `type(t) ∈ {t' : (τ, t') ∈ σ(r)}`. This is stricter than the independent dom/range check used in prior work — necessary because **0% of SciERC relations and 76% of DocRED relations are non-rectangular** (Table X), so `σ(r) ⊊ dom(r) × range(r)` for the majority of cases.\n\n### 建议加入论文的新表 (Table: Schema rectangularity)\n\n| Dataset | # relations | % rectangular | mean over-permissive (head-only) | mean over-permissive (independent dom/range) |\n|---|---:|---:|---:|---:|\n| SciERC  | 7 | 0.0% | 1.57× | 1.57× |\n| DocRED  | 96 | 24.0% | 3.84× | 1.49× |\n\n### Rebuttal 写法要点\n- 承认 §3 表述与代码实际不一致是 expository gap，代码本身正确。\n- 引用本报告：SciERC 100% / DocRED 76% 非 rectangular，head-only 假设在 DocRED 上多放过 3.46× 的非法 pair。\n- 强调：pair-based 实现是为应对真实 ontology 的非 rectangular 特性，**这正是 reviewer 注意到的代码-论文差距的合理性来源**。\n"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "59c79253-ded7-4bed-af76-195a2284b1cc",
-            "uuid": "37b65668-9a60-42cd-8761-c41eecd9d263",
-            "message": {
-              "model": "claude-opus-4-7",
-              "id": "msg_01VFM2UjUPtJYynn5SHnrg2R",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 1422,
-                "cache_read_input_tokens": 102436,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 1422
-                },
-                "output_tokens": 43,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000083"
-        },
-        {
-          "source_line": 84,
-          "timestamp": "2026-05-15T09:02:38.841Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01YF91VP5PFcibzVNDRrTmLd",
-              "type": "tool_result",
-              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "59c79253-ded7-4bed-af76-195a2284b1cc",
-            "uuid": "0cc560a3-fe57-4b95-b837-73a98f579a98",
-            "tool_use_result": {
-              "type": "create",
-              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md",
-              "content": "# W2 Rectangularity Verification — Quantitative Evidence for Pair-Based Constraint Enforcement\n\n**生成日期:** 2026-05-15\n**目的:** Reviewer 指出代码做了 pair-based enforcement，但论文 §3 描述的是 independent dom/range。本报告量化两者差距，支持论文修改。\n\n---\n\n## 1. Code Logic Confirmation\n\n**Pair-based check 已在代码中实现，论文描述偏宽松。**\n\n### head_type masking (`type_mask_processor.py` `_mask_head_type`)\n```python\nallowed_dr = constraint.valid_head_types() if constraint else None\n```\n仅看 `dom(r)`，与 tail 无关 → **independent check** on head side.\n\n### tail_type masking (`type_mask_processor.py:323` `_mask_tail_type`)\n```python\nif head_type is not None:\n    allowed_dr = constraint.valid_tail_types_for_head(head_type)\nelse:\n    allowed_dr = constraint.valid_tail_types()\n```\n其中 `valid_tail_types_for_head(head_type)` 在 `ontology_compiler.py:38` 定义为：\n```python\ndef valid_tail_types_for_head(self, head_type: str) -> set[str]:\n    return {t for h, t in self.valid_pairs if h == head_type}\n```\n即：在 head_type 已确定的条件下，仅允许 `σ(r)` 中以该 head_type 为头的 valid tail types。\n\n### 结论\n- Decoding 顺序：`head_type` → `tail_type`。\n- head 端独立检查 `h ∈ dom(r)`；tail 端条件检查 `t ∈ {t' : (h, t') ∈ σ(r)}`。\n- **最终生成的 pair `(h, t)` 必然 ∈ σ(r)** —— 这就是 pair-based enforcement，比论文 §3 描述的 `(h ∈ dom(r)) ∧ (t ∈ range(r))` 更严格。\n\n---\n\n## 2. Rectangularity Definition\n\n对每个 relation `r`：\n- `σ(r)` = 实际 valid (head, tail) pairs 集合\n- `dom(r) = {h : ∃t, (h,t) ∈ σ(r)}`\n- `range(r) = {t : ∃h, (h,t) ∈ σ(r)}`\n- **Rectangular** iff `|σ(r)| = |dom(r)| × |range(r)|`，即 `σ(r) = dom(r) × range(r)`。\n- **Gap** = `|dom(r)| × |range(r)| - |σ(r)|`（若假定 rectangular，会被错误允许的 pair 数量）\n\n**Head-only over-permissiveness**：若 §3 表述被字面执行（仅检查 `h ∈ dom(r)`，tail 不约束），允许的 pair 数 = `|dom(r)| × |T|`，其中 `|T|` = 所有 entity types。\n\n---\n\n## 3. SciERC Results\n\n- entity types: 6, relations: 7\n- **rectangular: 0/7 (0.0%)**\n- non-rect 平均 gap: 12.00\n- total |σ| = 168, total |dom×range| = 252, global gap = 84\n- head-only over-permissive ratio (head_only/pair_based): **1.500×**\n\n### Per-relation table (SciERC)\n\n| Relation | \\|σ(r)\\| | \\|dom(r)\\| | \\|range(r)\\| | dom×range | Rectangular? | Gap | head-only/pair |\n|---|---:|---:|---:|---:|:---:|---:|---:|\n| Used-for | 35 | 6 | 6 | 36 | ✗ | 1 | 1.03× |\n| Feature-of | 26 | 6 | 6 | 36 | ✗ | 10 | 1.38× |\n| Hyponym-of | 21 | 6 | 6 | 36 | ✗ | 15 | 1.71× |\n| Part-of | 21 | 6 | 6 | 36 | ✗ | 15 | 1.71× |\n| Compare | 17 | 6 | 6 | 36 | ✗ | 19 | 2.12× |\n| Conjunction | 25 | 6 | 6 | 36 | ✗ | 11 | 1.44× |\n| Evaluate-for | 23 | 6 | 6 | 36 | ✗ | 13 | 1.57× |\n\n**关键观察 (SciERC):**\n- 7/7 relations 全部 **非 rectangular**。\n- 所有 relations 的 `dom = range = 全部 6 个 entity types`（这是 SciERC 的特点：同类型间也可能成立关系），但 `σ(r)` 远小于 36。\n- 例：`Compare` 只有 17 个 valid pairs，rectangular 假设会多允许 19 个（gap=19），over-permissive 2.12×。\n- 若按 §3 字面 head-only check：global 1.5× over-permissive — SciERC 的 head 几乎可以是任意类型，所以差距主要在 tail conditional。\n\n---\n\n## 4. DocRED Results\n\n- entity types: 6, relations: 96\n- **rectangular: 23/96 (24.0%)**\n- non-rect 平均 gap: 4.34\n- total |σ| = 545, total |dom×range| = 862, global gap = 317\n- head-only over-permissive ratio: **3.457×**\n\n### DocRED over-permissive ratio 分布 (head-only vs pair-based)\n\n| Bucket | Count | %  |\n|---|---:|---:|\n| 1.0-1.5 | 0 | 0.0% |\n| 1.5-2.0 | 2 | 2.1% |\n| 2.0-3.0 | 17 | 17.7% |\n| 3.0-5.0 | 59 | 61.5% |\n| 5.0-10.0 | 18 | 18.8% |\n| 10.0+ | 0 | 0.0% |\n\n- 中位数 over_ratio = 3.60×\n- 均值 over_ratio = 3.84×\n- 最大 over_ratio = 6.00×\n\n### Per-relation table (DocRED, 96 relations)\n\n| Pid | Name | \\|σ\\| | \\|dom\\| | \\|range\\| | dom×range | Rect? | Gap | head-only/pair |\n|---|---|---:|---:|---:|---:|:---:|---:|---:|\n| P6 | head of government | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P17 | country | 13 | 6 | 4 | 24 | ✗ | 11 | 2.77× |\n| P19 | place of birth | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P20 | place of death | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P22 | father | 7 | 3 | 4 | 12 | ✗ | 5 | 2.57× |\n| P25 | mother | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P26 | spouse | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P27 | country of citizenship | 7 | 4 | 4 | 16 | ✗ | 9 | 3.43× |\n| P30 | continent | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P31 | instance of | 9 | 4 | 3 | 12 | ✗ | 3 | 2.67× |\n| P35 | head of state | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P36 | capital | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P37 | official language | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P39 | position held | 4 | 1 | 4 | 4 | ✓ | 0 | 1.50× |\n| P40 | child | 6 | 4 | 2 | 8 | ✗ | 2 | 4.00× |\n| P50 | author | 8 | 5 | 4 | 20 | ✗ | 12 | 3.75× |\n| P54 | member of sports team | 10 | 3 | 5 | 15 | ✗ | 5 | 1.80× |\n| P57 | director | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P58 | screenwriter | 2 | 2 | 1 | 2 | ✓ | 0 | 6.00× |\n| P69 | educated at | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P86 | composer | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P102 | member of political party | 7 | 4 | 4 | 16 | ✗ | 9 | 3.43× |\n| P108 | employer | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P112 | founded by | 8 | 4 | 4 | 16 | ✗ | 8 | 3.00× |\n| P118 | league | 8 | 4 | 3 | 12 | ✗ | 4 | 3.00× |\n| P123 | publisher | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P127 | owned by | 9 | 4 | 3 | 12 | ✗ | 3 | 2.67× |\n| P131 | located in the administrative territorial entity | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P136 | genre | 9 | 4 | 4 | 16 | ✗ | 7 | 2.67× |\n| P137 | operator | 7 | 4 | 2 | 8 | ✗ | 1 | 3.43× |\n| P140 | religion | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P150 | contains administrative territorial entity | 8 | 4 | 4 | 16 | ✗ | 8 | 3.00× |\n| P155 | follows | 9 | 5 | 4 | 20 | ✗ | 11 | 3.33× |\n| P156 | followed by | 9 | 4 | 5 | 20 | ✗ | 11 | 2.67× |\n| P159 | headquarters location | 8 | 4 | 3 | 12 | ✗ | 4 | 3.00× |\n| P161 | cast member | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P162 | producer | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P166 | award received | 6 | 4 | 2 | 8 | ✗ | 2 | 4.00× |\n| P170 | creator | 8 | 5 | 2 | 10 | ✗ | 2 | 3.75× |\n| P171 | parent taxon | 4 | 2 | 2 | 4 | ✓ | 0 | 3.00× |\n| P172 | ethnic group | 7 | 3 | 3 | 9 | ✗ | 2 | 2.57× |\n| P175 | performer | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P176 | manufacturer | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P178 | developer | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P179 | series | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P190 | sister city | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P194 | legislative body | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P205 | basin country | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P206 | located in or next to body of water | 4 | 3 | 2 | 6 | ✗ | 2 | 4.50× |\n| P241 | military branch | 5 | 3 | 2 | 6 | ✗ | 1 | 3.60× |\n| P264 | record label | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P272 | production company | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P276 | location | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P279 | subclass of | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P355 | subsidiary | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P361 | part of | 14 | 5 | 5 | 25 | ✗ | 11 | 2.14× |\n| P364 | original language of work | 7 | 3 | 3 | 9 | ✗ | 2 | 2.57× |\n| P400 | platform | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P403 | mouth of the watercourse | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n| P449 | original network | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P463 | member of | 10 | 4 | 4 | 16 | ✗ | 6 | 2.40× |\n| P488 | chairperson | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P495 | country of origin | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P527 | has part | 15 | 5 | 5 | 25 | ✗ | 10 | 2.00× |\n| P551 | residence | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P569 | date of birth | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P570 | date of death | 6 | 5 | 2 | 10 | ✗ | 4 | 5.00× |\n| P571 | inception | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P576 | dissolved, abolished or demolished | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P577 | publication date | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P580 | start time | 5 | 5 | 1 | 5 | ✓ | 0 | 6.00× |\n| P582 | end time | 3 | 3 | 1 | 3 | ✓ | 0 | 6.00× |\n| P585 | point in time | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P607 | conflict | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P674 | characters | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P676 | lyrics by | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P706 | located on terrain feature | 4 | 4 | 1 | 4 | ✓ | 0 | 6.00× |\n| P710 | participant | 8 | 3 | 4 | 12 | ✗ | 4 | 2.25× |\n| P737 | influenced by | 4 | 3 | 3 | 9 | ✗ | 5 | 4.50× |\n| P740 | location of formation | 6 | 4 | 3 | 12 | ✗ | 6 | 4.00× |\n| P749 | parent organization | 5 | 3 | 2 | 6 | ✗ | 1 | 3.60× |\n| P800 | notable work | 4 | 2 | 3 | 6 | ✗ | 2 | 3.00× |\n| P807 | separated from | 2 | 2 | 2 | 4 | ✗ | 2 | 6.00× |\n| P840 | narrative location | 5 | 4 | 2 | 8 | ✗ | 3 | 4.80× |\n| P937 | work location | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P1001 | applies to jurisdiction | 8 | 3 | 3 | 9 | ✗ | 1 | 2.25× |\n| P1056 | product or material produced | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P1198 | unemployment rate | 2 | 1 | 2 | 2 | ✓ | 0 | 3.00× |\n| P1336 | territory claimed by | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P1344 | participant of | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P1365 | replaces | 4 | 3 | 3 | 9 | ✗ | 5 | 4.50× |\n| P1366 | replaced by | 5 | 3 | 3 | 9 | ✗ | 4 | 3.60× |\n| P1376 | capital of | 3 | 2 | 2 | 4 | ✗ | 1 | 4.00× |\n| P1412 | languages spoken, written or signed | 6 | 3 | 3 | 9 | ✗ | 3 | 3.00× |\n| P1441 | present in work | 7 | 4 | 3 | 12 | ✗ | 5 | 3.43× |\n| P3373 | sibling | 1 | 1 | 1 | 1 | ✓ | 0 | 6.00× |\n\n**关键观察 (DocRED):**\n- 24% 的 relations 是 rectangular —— 但都是 |σ| 很小的小型 relation (e.g., dom=range=1)。\n- 76% 非 rectangular，平均 gap=4.34（若假定 rectangular 会多允许 4.34 个非法 pair）。\n- head-only 假设全局多允许 3.5× — DocRED 上 §3 字面执行会严重过宽。\n- 多个 relations over_ratio ≥ 5×（dom 大但 |σ| 小的稀疏 pair 集合，rectangular 假设崩溃最严重）。\n\n---\n\n## 5. 综合诊断\n\n### 三种约束严格度对比\n\n| Mode | 公式 | 总允许 pair (SciERC) | 总允许 pair (DocRED) |\n|---|---|---:|---:|\n| Head-only (§3 字面) | `h ∈ dom(r)`，tail 任意 | 252 | 1884 |\n| Independent dom/range | `h ∈ dom(r) ∧ t ∈ range(r)` | 252 | 862 |\n| **Pair-based (代码实际)** | `(h, t) ∈ σ(r)` | **168** | **545** |\n\n- Independent dom/range 假设的 over-permissive 在 SciERC 上 = 252/168 ≈ 1.50×；在 DocRED 上 = 862/545 ≈ 1.58×。\n- Head-only 假设（论文 §3 字面）的 over-permissive：SciERC 1.50×，**DocRED 3.46×**（DocRED 是更严苛的诊断信号）。\n- Pair-based vs Independent 差距来自非 rectangular schema：SciERC 100% 非 rect，DocRED 76% 非 rect。\n\n### 结论\n1. **代码实际执行的是 pair-based check**（决策依据：`ontology_compiler.py:38` + `type_mask_processor.py:323`，输出 pair 必然 ∈ σ(r)）。\n2. **论文 §3 描述偏宽松**（写成 independent dom/range 或 head-only）。\n3. **非 rectangular 在两个数据集上都是主流形态**（SciERC 100%, DocRED 76%）—— 论文必须区分这两种 mode，不能默认 σ(r) = dom(r) × range(r)。\n\n---\n\n## 6. 论文修改建议\n\n### §3 描述应修正为 pair-based formulation\n\n**Before (§3 当前表述，宽松):**\n> A relation `r(h, t)` is valid iff `type(h) ∈ dom(r)` and `type(t) ∈ range(r)`.\n\n**After (与代码一致):**\n> Each relation `r` is specified by its valid type signature `σ(r) ⊆ T × T`. A relation `r(h, t)` is valid iff `(type(h), type(t)) ∈ σ(r)`. Equivalently, the decoder enforces `type(h) ∈ dom(r)` and, conditional on `type(h)=τ`, `type(t) ∈ {t' : (τ, t') ∈ σ(r)}`. This is stricter than the independent dom/range check used in prior work — necessary because **0% of SciERC relations and 76% of DocRED relations are non-rectangular** (Table X), so `σ(r) ⊊ dom(r) × range(r)` for the majority of cases.\n\n### 建议加入论文的新表 (Table: Schema rectangularity)\n\n| Dataset | # relations | % rectangular | mean over-permissive (head-only) | mean over-permissive (independent dom/range) |\n|---|---:|---:|---:|---:|\n| SciERC  | 7 | 0.0% | 1.57× | 1.57× |\n| DocRED  | 96 | 24.0% | 3.84× | 1.49× |\n\n### Rebuttal 写法要点\n- 承认 §3 表述与代码实际不一致是 expository gap，代码本身正确。\n- 引用本报告：SciERC 100% / DocRED 76% 非 rectangular，head-only 假设在 DocRED 上多放过 3.46× 的非法 pair。\n- 强调：pair-based 实现是为应对真实 ontology 的非 rectangular 特性，**这正是 reviewer 注意到的代码-论文差距的合理性来源**。\n",
-              "structuredPatch": [],
-              "originalFile": null,
-              "userModified": false
-            }
-          },
-          "id": "event-000084"
-        },
-        {
-          "source_line": 85,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
               "id": "toolu_018h24Z1Ui9PKXiCFudRyCEG",
               "name": "Bash",
               "input": {
@@ -3576,10 +3499,10 @@
               "context_management": null
             }
           },
-          "id": "event-000085"
+          "id": "event-000083"
         },
         {
-          "source_line": 86,
+          "source_line": 84,
           "timestamp": "2026-05-15T09:02:44.013Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3604,10 +3527,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000086"
+          "id": "event-000084"
         },
         {
-          "source_line": 87,
+          "source_line": 85,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -3678,10 +3601,10 @@
               "context_management": null
             }
           },
-          "id": "event-000087"
+          "id": "event-000085"
         },
         {
-          "source_line": 88,
+          "source_line": 86,
           "timestamp": "2026-05-15T09:02:48.692Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -3755,10 +3678,10 @@
               "verificationNudgeNeeded": false
             }
           },
-          "id": "event-000088"
+          "id": "event-000086"
         },
         {
-          "source_line": 89,
+          "source_line": 87,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -3796,10 +3719,10 @@
               "context_management": null
             }
           },
-          "id": "event-000089"
+          "id": "event-000087"
         },
         {
-          "source_line": 90,
+          "source_line": 88,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -3876,10 +3799,10 @@
             "fast_mode_state": "off",
             "uuid": "69ebc8fe-0a86-4240-9cdc-e964842af322"
           },
-          "id": "event-000090"
+          "id": "event-000088"
         }
       ],
-      "message_count": 90
+      "message_count": 88
     }
   ],
   "readable_path": "readable/worker-executions/analysis-w2-rectangularity-20260515t085632-retry1.md"

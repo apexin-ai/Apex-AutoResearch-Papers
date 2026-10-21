@@ -9,20 +9,20 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_holdout-split-validation_20260519T005549.log",
     "occurrence": 1,
-    "bytes": 138644,
-    "sha256": "3bc4bd3171b3cd00fff56aec187657ebd0a6948bbe822e319f79091b7fe43031"
+    "bytes": 122636,
+    "sha256": "219c9db786e1145862d6c00305f91567c37cb5babf3f8a09c3223261b2046d7c"
   },
   "statistics": {
-    "messages": 62,
+    "messages": 58,
     "user_turns": 0,
-    "tool_calls": 21,
+    "tool_calls": 19,
     "roles": {
       "log": 1,
       "system": 1,
       "record": 1,
       "assistant": 16,
-      "tool_call": 21,
-      "tool_result": 21,
+      "tool_call": 19,
+      "tool_result": 19,
       "result": 1
     },
     "unparsed_lines_preserved": 1,
@@ -1731,83 +1731,6 @@
         {
           "source_line": 44,
           "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01BAWTYknaUi89w6QhLS4r67",
-              "name": "Write",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json",
-                "content": "{\n  \"pythia-1b\": {\n    \"entropy_mean\": -0.712,\n    \"entropy_std\": -0.2414,\n    \"entropy_min\": -0.5051,\n    \"entropy_max\": 0.0048,\n    \"tail_decay\": 0.0904,\n    \"ttr\": -0.6568,\n    \"hapax_ratio\": -0.6741\n  },\n  \"pythia-2.8b\": {\n    \"entropy_mean\": -0.6754,\n    \"entropy_std\": -0.153,\n    \"entropy_min\": -0.4797,\n    \"entropy_max\": -0.0351,\n    \"tail_decay\": 0.0633,\n    \"ttr\": -0.6333,\n    \"hapax_ratio\": -0.6553\n  },\n  \"olmo-2-1b\": {\n    \"entropy_mean\": -0.6386,\n    \"entropy_std\": -0.2958,\n    \"entropy_min\": -0.3874,\n    \"entropy_max\": 0.0672,\n    \"tail_decay\": -0.1411,\n    \"ttr\": -0.6996,\n    \"hapax_ratio\": -0.7124\n  },\n  \"qwen3-0.6b\": {\n    \"entropy_mean\": -0.5656,\n    \"entropy_std\": -0.2294,\n    \"entropy_min\": -0.3587,\n    \"entropy_max\": 0.0857,\n    \"tail_decay\": -0.0902,\n    \"ttr\": -0.6111,\n    \"hapax_ratio\": -0.6273\n  },\n  \"qwen3-1.7b\": {\n    \"entropy_mean\": -0.6022,\n    \"entropy_std\": -0.1882,\n    \"entropy_min\": -0.4062,\n    \"entropy_max\": 0.0884,\n    \"tail_decay\": -0.0698,\n    \"ttr\": -0.6523,\n    \"hapax_ratio\": -0.6696\n  },\n  \"qwen3-8b\": {\n    \"entropy_mean\": -0.4754,\n    \"entropy_std\": -0.0755,\n    \"entropy_min\": -0.3029,\n    \"entropy_max\": 0.0946,\n    \"tail_decay\": -0.0894,\n    \"ttr\": -0.5419,\n    \"hapax_ratio\": -0.5578\n  },\n  \"llama-3.2-3b\": {\n    \"entropy_mean\": -0.5687,\n    \"entropy_std\": -0.2826,\n    \"entropy_min\": -0.2834,\n    \"entropy_max\": -0.0187,\n    \"tail_decay\": -0.066,\n    \"ttr\": -0.5425,\n    \"hapax_ratio\": -0.5532\n  },\n  \"mistral-7b-v0.3\": {\n    \"entropy_mean\": -0.4814,\n    \"entropy_std\": -0.1222,\n    \"entropy_min\": -0.2826,\n    \"entropy_max\": 0.007,\n    \"tail_decay\": -0.1169,\n    \"ttr\": -0.4354,\n    \"hapax_ratio\": -0.4466\n  }\n}\n"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "4ab9faa9-4501-41e7-93e8-54e1472cc7f1",
-            "uuid": "4b691093-6f50-470d-8274-991dd5192998",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01EXqKVHywEe39wVcaNfCK6A",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 266,
-                "cache_read_input_tokens": 40635,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 266
-                },
-                "output_tokens": 65,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000044"
-        },
-        {
-          "source_line": 45,
-          "timestamp": "2026-05-19T00:57:10.490Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01BAWTYknaUi89w6QhLS4r67",
-              "type": "tool_result",
-              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "4ab9faa9-4501-41e7-93e8-54e1472cc7f1",
-            "uuid": "c2411155-e69e-4496-801e-e7b704286be6",
-            "tool_use_result": {
-              "type": "create",
-              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/spearman_per_generator.json",
-              "content": "{\n  \"pythia-1b\": {\n    \"entropy_mean\": -0.712,\n    \"entropy_std\": -0.2414,\n    \"entropy_min\": -0.5051,\n    \"entropy_max\": 0.0048,\n    \"tail_decay\": 0.0904,\n    \"ttr\": -0.6568,\n    \"hapax_ratio\": -0.6741\n  },\n  \"pythia-2.8b\": {\n    \"entropy_mean\": -0.6754,\n    \"entropy_std\": -0.153,\n    \"entropy_min\": -0.4797,\n    \"entropy_max\": -0.0351,\n    \"tail_decay\": 0.0633,\n    \"ttr\": -0.6333,\n    \"hapax_ratio\": -0.6553\n  },\n  \"olmo-2-1b\": {\n    \"entropy_mean\": -0.6386,\n    \"entropy_std\": -0.2958,\n    \"entropy_min\": -0.3874,\n    \"entropy_max\": 0.0672,\n    \"tail_decay\": -0.1411,\n    \"ttr\": -0.6996,\n    \"hapax_ratio\": -0.7124\n  },\n  \"qwen3-0.6b\": {\n    \"entropy_mean\": -0.5656,\n    \"entropy_std\": -0.2294,\n    \"entropy_min\": -0.3587,\n    \"entropy_max\": 0.0857,\n    \"tail_decay\": -0.0902,\n    \"ttr\": -0.6111,\n    \"hapax_ratio\": -0.6273\n  },\n  \"qwen3-1.7b\": {\n    \"entropy_mean\": -0.6022,\n    \"entropy_std\": -0.1882,\n    \"entropy_min\": -0.4062,\n    \"entropy_max\": 0.0884,\n    \"tail_decay\": -0.0698,\n    \"ttr\": -0.6523,\n    \"hapax_ratio\": -0.6696\n  },\n  \"qwen3-8b\": {\n    \"entropy_mean\": -0.4754,\n    \"entropy_std\": -0.0755,\n    \"entropy_min\": -0.3029,\n    \"entropy_max\": 0.0946,\n    \"tail_decay\": -0.0894,\n    \"ttr\": -0.5419,\n    \"hapax_ratio\": -0.5578\n  },\n  \"llama-3.2-3b\": {\n    \"entropy_mean\": -0.5687,\n    \"entropy_std\": -0.2826,\n    \"entropy_min\": -0.2834,\n    \"entropy_max\": -0.0187,\n    \"tail_decay\": -0.066,\n    \"ttr\": -0.5425,\n    \"hapax_ratio\": -0.5532\n  },\n  \"mistral-7b-v0.3\": {\n    \"entropy_mean\": -0.4814,\n    \"entropy_std\": -0.1222,\n    \"entropy_min\": -0.2826,\n    \"entropy_max\": 0.007,\n    \"tail_decay\": -0.1169,\n    \"ttr\": -0.4354,\n    \"hapax_ratio\": -0.4466\n  }\n}\n",
-              "structuredPatch": [],
-              "originalFile": null,
-              "userModified": false
-            }
-          },
-          "id": "event-000045"
-        },
-        {
-          "source_line": 46,
-          "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
           "content": [
@@ -1844,10 +1767,10 @@
               "context_management": null
             }
           },
-          "id": "event-000046"
+          "id": "event-000044"
         },
         {
-          "source_line": 47,
+          "source_line": 45,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -1894,10 +1817,10 @@
               "context_management": null
             }
           },
-          "id": "event-000047"
+          "id": "event-000045"
         },
         {
-          "source_line": 48,
+          "source_line": 46,
           "timestamp": "2026-05-19T00:57:58.054Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -1922,10 +1845,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000048"
+          "id": "event-000046"
         },
         {
-          "source_line": 49,
+          "source_line": 47,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -1963,10 +1886,10 @@
               "context_management": null
             }
           },
-          "id": "event-000049"
+          "id": "event-000047"
         },
         {
-          "source_line": 50,
+          "source_line": 48,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2011,10 +1934,10 @@
               "context_management": null
             }
           },
-          "id": "event-000050"
+          "id": "event-000048"
         },
         {
-          "source_line": 51,
+          "source_line": 49,
           "timestamp": "2026-05-19T00:58:01.615Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2048,10 +1971,10 @@
               }
             }
           },
-          "id": "event-000051"
+          "id": "event-000049"
         },
         {
-          "source_line": 52,
+          "source_line": 50,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2090,10 +2013,10 @@
               "context_management": null
             }
           },
-          "id": "event-000052"
+          "id": "event-000050"
         },
         {
-          "source_line": 53,
+          "source_line": 51,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2131,10 +2054,10 @@
               "context_management": null
             }
           },
-          "id": "event-000053"
+          "id": "event-000051"
         },
         {
-          "source_line": 54,
+          "source_line": 52,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2181,10 +2104,10 @@
               "context_management": null
             }
           },
-          "id": "event-000054"
+          "id": "event-000052"
         },
         {
-          "source_line": 55,
+          "source_line": 53,
           "timestamp": "2026-05-19T00:58:52.568Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2209,10 +2132,10 @@
               "noOutputExpected": false
             }
           },
-          "id": "event-000055"
+          "id": "event-000053"
         },
         {
-          "source_line": 56,
+          "source_line": 54,
           "timestamp": null,
           "role": "tool_call",
           "recorded_role": "assistant",
@@ -2257,10 +2180,10 @@
               "context_management": null
             }
           },
-          "id": "event-000056"
+          "id": "event-000054"
         },
         {
-          "source_line": 57,
+          "source_line": 55,
           "timestamp": "2026-05-19T00:58:58.766Z",
           "role": "tool_result",
           "recorded_role": "user",
@@ -2294,10 +2217,10 @@
               }
             }
           },
-          "id": "event-000057"
+          "id": "event-000055"
         },
         {
-          "source_line": 58,
+          "source_line": 56,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2335,88 +2258,10 @@
               "context_management": null
             }
           },
-          "id": "event-000058"
+          "id": "event-000056"
         },
         {
-          "source_line": 59,
-          "timestamp": null,
-          "role": "tool_call",
-          "recorded_role": "assistant",
-          "content": [
-            {
-              "type": "tool_use",
-              "id": "toolu_01QxhzqGb7XFkxG2WWJ8oT3D",
-              "name": "Read",
-              "input": {
-                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/holdout_split_results.json"
-              },
-              "caller": {
-                "type": "direct"
-              }
-            }
-          ],
-          "metadata": {
-            "type": "assistant",
-            "parent_tool_use_id": null,
-            "session_id": "4ab9faa9-4501-41e7-93e8-54e1472cc7f1",
-            "uuid": "4b71b93d-10f4-49d2-a268-e5cb04fcd40e",
-            "message": {
-              "model": "claude-opus-4-6",
-              "id": "msg_01AvYsriRaHKjEx5B6KemVzi",
-              "type": "message",
-              "stop_reason": null,
-              "stop_sequence": null,
-              "stop_details": null,
-              "usage": {
-                "input_tokens": 1,
-                "cache_creation_input_tokens": 1580,
-                "cache_read_input_tokens": 52136,
-                "cache_creation": {
-                  "ephemeral_5m_input_tokens": 0,
-                  "ephemeral_1h_input_tokens": 1580
-                },
-                "output_tokens": 1,
-                "service_tier": "standard",
-                "inference_geo": "not_available"
-              },
-              "diagnostics": null,
-              "context_management": null
-            }
-          },
-          "id": "event-000059"
-        },
-        {
-          "source_line": 60,
-          "timestamp": "2026-05-19T00:59:03.733Z",
-          "role": "tool_result",
-          "recorded_role": "user",
-          "content": [
-            {
-              "tool_use_id": "toolu_01QxhzqGb7XFkxG2WWJ8oT3D",
-              "type": "tool_result",
-              "content": "1\t{\n2\t  \"split_a\": {\n3\t    \"selection_generators\": [\n4\t      \"pythia-2.8b\",\n5\t      \"qwen3-1.7b\",\n6\t      \"olmo-2-1b\",\n7\t      \"mistral-7b-v0.3\"\n8\t    ],\n9\t    \"validation_generators\": [\n10\t      \"pythia-1b\",\n11\t      \"qwen3-0.6b\",\n12\t      \"qwen3-8b\",\n13\t      \"llama-3.2-3b\"\n14\t    ],\n15\t    \"selection\": {\n16\t      \"entropy_mean\": {\n17\t        \"rho\": 0.5994,\n18\t        \"d\": 1.0982,\n19\t        \"zone\": \"drifting\"\n20\t      },\n21\t      \"entropy_std\": {\n22\t        \"rho\": 0.1898,\n23\t        \"d\": 0.4354,\n24\t        \"zone\": \"intermediate\"\n25\t      },\n26\t      \"entropy_min\": {\n27\t        \"rho\": 0.389,\n28\t        \"d\": 0.0467,\n29\t        \"zone\": \"intermediate\"\n30\t      },\n31\t      \"entropy_max\": {\n32\t        \"rho\": 0.0494,\n33\t        \"d\": 0.0842,\n34\t        \"zone\": \"near-stationary\"\n35\t      },\n36\t      \"tail_decay\": {\n37\t        \"rho\": 0.0978,\n38\t        \"d\": 0.1346,\n39\t        \"zone\": \"near-stationary\"\n40\t      },\n41\t      \"ttr\": {\n42\t        \"rho\": 0.6052,\n43\t        \"d\": 0.8984,\n44\t        \"zone\": \"drifting\"\n45\t      },\n46\t      \"hapax_ratio\": {\n47\t        \"rho\": 0.621,\n48\t        \"d\": 0.8304,\n49\t        \"zone\": \"drifting\"\n50\t      }\n51\t    },\n52\t    \"validation\": {\n53\t      \"entropy_mean\": {\n54\t        \"rho\": 0.5804,\n55\t        \"d\": 1.0831,\n56\t        \"zone\": \"drifting\"\n57\t      },\n58\t      \"entropy_std\": {\n59\t        \"rho\": 0.2072,\n60\t        \"d\": 0.4898,\n61\t        \"zone\": \"intermediate\"\n62\t      },\n63\t      \"entropy_min\": {\n64\t        \"rho\": 0.3625,\n65\t        \"d\": 0.0341,\n66\t        \"zone\": \"intermediate\"\n67\t      },\n68\t      \"entropy_max\": {\n69\t        \"rho\": 0.0509,\n70\t        \"d\": 0.0668,\n71\t        \"zone\": \"near-stationary\"\n72\t      },\n73\t      \"tail_decay\": {\n74\t        \"rho\": 0.084,\n75\t        \"d\": 0.1277,\n76\t        \"zone\": \"near-stationary\"\n77\t      },\n78\t      \"ttr\": {\n79\t        \"rho\": 0.5881,\n80\t        \"d\": 0.7928,\n81\t        \"zone\": \"drifting\"\n82\t      },\n83\t      \"hapax_ratio\": {\n84\t        \"rho\": 0.6031,\n85\t        \"d\": 0.6983,\n86\t        \"zone\": \"drifting\"\n87\t      }\n88\t    },\n89\t    \"partition_consistent\": true,\n90\t    \"mismatched_features\": []\n91\t  },\n92\t  \"split_b\": {\n93\t    \"selection_generators\": [\n94\t      \"pythia-1b\",\n95\t      \"qwen3-0.6b\",\n96\t      \"olmo-2-1b\",\n97\t      \"mistral-7b-v0.3\"\n98\t    ],\n99\t    \"validation_generators\": [\n100\t      \"pythia-2.8b\",\n101\t      \"qwen3-1.7b\",\n102\t      \"qwen3-8b\",\n103\t      \"llama-3.2-3b\"\n104\t    ],\n105\t    \"selection\": {\n106\t      \"entropy_mean\": {\n107\t        \"rho\": 0.5994,\n108\t        \"d\": 1.1004,\n109\t        \"zone\": \"drifting\"\n110\t      },\n111\t      \"entropy_std\": {\n112\t        \"rho\": 0.2222,\n113\t        \"d\": 0.4817,\n114\t        \"zone\": \"intermediate\"\n115\t      },\n116\t      \"entropy_min\": {\n117\t        \"rho\": 0.3834,\n118\t        \"d\": 0.0575,\n119\t        \"zone\": \"intermediate\"\n120\t      },\n121\t      \"entropy_max\": {\n122\t        \"rho\": 0.0412,\n123\t        \"d\": 0.0707,\n124\t        \"zone\": \"near-stationary\"\n125\t      },\n126\t      \"tail_decay\": {\n127\t        \"rho\": 0.1096,\n128\t        \"d\": 0.1379,\n129\t        \"zone\": \"near-stationary\"\n130\t      },\n131\t      \"ttr\": {\n132\t        \"rho\": 0.6007,\n133\t        \"d\": 0.8306,\n134\t        \"zone\": \"drifting\"\n135\t      },\n136\t      \"hapax_ratio\": {\n137\t        \"rho\": 0.6151,\n138\t        \"d\": 0.7438,\n139\t        \"zone\": \"drifting\"\n140\t      }\n141\t    },\n142\t    \"validation\": {\n143\t      \"entropy_mean\": {\n144\t        \"rho\": 0.5804,\n145\t        \"d\": 1.0809,\n146\t        \"zone\": \"drifting\"\n147\t      },\n148\t      \"entropy_std\": {\n149\t        \"rho\": 0.1748,\n150\t        \"d\": 0.4435,\n151\t        \"zone\": \"intermediate\"\n152\t      },\n153\t      \"entropy_min\": {\n154\t        \"rho\": 0.368,\n155\t        \"d\": 0.0233,\n156\t        \"zone\": \"intermediate\"\n157\t      },\n158\t      \"entropy_max\": {\n159\t        \"rho\": 0.0592,\n160\t        \"d\": 0.0803,\n161\t        \"zone\": \"near-stationary\"\n162\t      },\n163\t      \"tail_decay\": {\n164\t        \"rho\": 0.0721,\n165\t        \"d\": 0.1244,\n166\t        \"zone\": \"near-stationary\"\n167\t      },\n168\t      \"ttr\": {\n169\t        \"rho\": 0.5925,\n170\t        \"d\": 0.8606,\n171\t        \"zone\": \"drifting\"\n172\t      },\n173\t      \"hapax_ratio\": {\n174\t        \"rho\": 0.609,\n175\t        \"d\": 0.7848,\n176\t        \"zone\": \"drifting\"\n177\t      }\n178\t    },\n179\t    \"partition_consistent\": true,\n180\t    \"mismatched_features\": []\n181\t  }\n182\t}"
-            }
-          ],
-          "metadata": {
-            "type": "user",
-            "parent_tool_use_id": null,
-            "session_id": "4ab9faa9-4501-41e7-93e8-54e1472cc7f1",
-            "uuid": "0afe93af-728d-48e0-9946-b0d9b6b51fb6",
-            "tool_use_result": {
-              "type": "text",
-              "file": {
-                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/rebuttal/holdout_split_results.json",
-                "content": "{\n  \"split_a\": {\n    \"selection_generators\": [\n      \"pythia-2.8b\",\n      \"qwen3-1.7b\",\n      \"olmo-2-1b\",\n      \"mistral-7b-v0.3\"\n    ],\n    \"validation_generators\": [\n      \"pythia-1b\",\n      \"qwen3-0.6b\",\n      \"qwen3-8b\",\n      \"llama-3.2-3b\"\n    ],\n    \"selection\": {\n      \"entropy_mean\": {\n        \"rho\": 0.5994,\n        \"d\": 1.0982,\n        \"zone\": \"drifting\"\n      },\n      \"entropy_std\": {\n        \"rho\": 0.1898,\n        \"d\": 0.4354,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_min\": {\n        \"rho\": 0.389,\n        \"d\": 0.0467,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_max\": {\n        \"rho\": 0.0494,\n        \"d\": 0.0842,\n        \"zone\": \"near-stationary\"\n      },\n      \"tail_decay\": {\n        \"rho\": 0.0978,\n        \"d\": 0.1346,\n        \"zone\": \"near-stationary\"\n      },\n      \"ttr\": {\n        \"rho\": 0.6052,\n        \"d\": 0.8984,\n        \"zone\": \"drifting\"\n      },\n      \"hapax_ratio\": {\n        \"rho\": 0.621,\n        \"d\": 0.8304,\n        \"zone\": \"drifting\"\n      }\n    },\n    \"validation\": {\n      \"entropy_mean\": {\n        \"rho\": 0.5804,\n        \"d\": 1.0831,\n        \"zone\": \"drifting\"\n      },\n      \"entropy_std\": {\n        \"rho\": 0.2072,\n        \"d\": 0.4898,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_min\": {\n        \"rho\": 0.3625,\n        \"d\": 0.0341,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_max\": {\n        \"rho\": 0.0509,\n        \"d\": 0.0668,\n        \"zone\": \"near-stationary\"\n      },\n      \"tail_decay\": {\n        \"rho\": 0.084,\n        \"d\": 0.1277,\n        \"zone\": \"near-stationary\"\n      },\n      \"ttr\": {\n        \"rho\": 0.5881,\n        \"d\": 0.7928,\n        \"zone\": \"drifting\"\n      },\n      \"hapax_ratio\": {\n        \"rho\": 0.6031,\n        \"d\": 0.6983,\n        \"zone\": \"drifting\"\n      }\n    },\n    \"partition_consistent\": true,\n    \"mismatched_features\": []\n  },\n  \"split_b\": {\n    \"selection_generators\": [\n      \"pythia-1b\",\n      \"qwen3-0.6b\",\n      \"olmo-2-1b\",\n      \"mistral-7b-v0.3\"\n    ],\n    \"validation_generators\": [\n      \"pythia-2.8b\",\n      \"qwen3-1.7b\",\n      \"qwen3-8b\",\n      \"llama-3.2-3b\"\n    ],\n    \"selection\": {\n      \"entropy_mean\": {\n        \"rho\": 0.5994,\n        \"d\": 1.1004,\n        \"zone\": \"drifting\"\n      },\n      \"entropy_std\": {\n        \"rho\": 0.2222,\n        \"d\": 0.4817,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_min\": {\n        \"rho\": 0.3834,\n        \"d\": 0.0575,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_max\": {\n        \"rho\": 0.0412,\n        \"d\": 0.0707,\n        \"zone\": \"near-stationary\"\n      },\n      \"tail_decay\": {\n        \"rho\": 0.1096,\n        \"d\": 0.1379,\n        \"zone\": \"near-stationary\"\n      },\n      \"ttr\": {\n        \"rho\": 0.6007,\n        \"d\": 0.8306,\n        \"zone\": \"drifting\"\n      },\n      \"hapax_ratio\": {\n        \"rho\": 0.6151,\n        \"d\": 0.7438,\n        \"zone\": \"drifting\"\n      }\n    },\n    \"validation\": {\n      \"entropy_mean\": {\n        \"rho\": 0.5804,\n        \"d\": 1.0809,\n        \"zone\": \"drifting\"\n      },\n      \"entropy_std\": {\n        \"rho\": 0.1748,\n        \"d\": 0.4435,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_min\": {\n        \"rho\": 0.368,\n        \"d\": 0.0233,\n        \"zone\": \"intermediate\"\n      },\n      \"entropy_max\": {\n        \"rho\": 0.0592,\n        \"d\": 0.0803,\n        \"zone\": \"near-stationary\"\n      },\n      \"tail_decay\": {\n        \"rho\": 0.0721,\n        \"d\": 0.1244,\n        \"zone\": \"near-stationary\"\n      },\n      \"ttr\": {\n        \"rho\": 0.5925,\n        \"d\": 0.8606,\n        \"zone\": \"drifting\"\n      },\n      \"hapax_ratio\": {\n        \"rho\": 0.609,\n        \"d\": 0.7848,\n        \"zone\": \"drifting\"\n      }\n    },\n    \"partition_consistent\": true,\n    \"mismatched_features\": []\n  }\n}",
-                "numLines": 182,
-                "startLine": 1,
-                "totalLines": 182
-              }
-            }
-          },
-          "id": "event-000060"
-        },
-        {
-          "source_line": 61,
+          "source_line": 57,
           "timestamp": null,
           "role": "assistant",
           "recorded_role": "assistant",
@@ -2454,10 +2299,10 @@
               "context_management": null
             }
           },
-          "id": "event-000061"
+          "id": "event-000057"
         },
         {
-          "source_line": 62,
+          "source_line": 58,
           "timestamp": null,
           "role": "result",
           "content": [
@@ -2534,10 +2379,10 @@
             "fast_mode_state": "off",
             "uuid": "7dc3b18f-620a-4a8c-b1d1-097153018513"
           },
-          "id": "event-000062"
+          "id": "event-000058"
         }
       ],
-      "message_count": 62
+      "message_count": 58
     }
   ],
   "readable_path": "readable/worker-executions/analysis-holdout-split-validation.md"

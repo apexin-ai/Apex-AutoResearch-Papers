@@ -4,7 +4,7 @@
 
 | Source record | Events | User turns | Readable Markdown | JSON |
 |---|---:|---:|---|---|
-| `logs/chats/feishu_group_oc_ca838cd3ed4c7e2d9c8e3459edd98b90_director.jsonl` (occurrence 1) | 13,968 | 817 | [Read transcript](../readable/conversations/director-coordination-copy-2.md) | [Open JSON](../sessions/14/14a1684fd29bbe5b5703.json) |
+| `logs/chats/feishu_group_oc_ca838cd3ed4c7e2d9c8e3459edd98b90_director.jsonl` (occurrence 1) | 13,962 | 817 | [Read transcript](../readable/conversations/director-coordination-copy-2.md) | [Open JSON](../sessions/14/14a1684fd29bbe5b5703.json) |
 | `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_reviewer_20260521T012909_333441.jsonl` (occurrence 1) | 1,975 | 131 | [Read transcript](../readable/conversations/reviewer-coordination-20260521-012909.md) | [Open JSON](../sessions/fb/fbafdba1220263114b9f.json) |
 | `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_20260521T175453_416101.jsonl` (occurrence 1) | 2,709 | 206 | [Read transcript](../readable/conversations/coordination-coordination-20260521-175453.md) | [Open JSON](../sessions/e2/e2274da717b7c221dc43.json) |
 | `logs/chats/worker_research_protest-dataset-search_20260520T092905.jsonl` (occurrence 1) | 171 | 0 | [Read transcript](../readable/conversations/research-protest-dataset-search.md) | [Open JSON](../sessions/bf/bfc04dfa146bbd72bffe.json) |
@@ -44,8 +44,8 @@
 | `logs/chats/cron_hook_plan009_pathological_matrices.jsonl` (occurrence 1) | 30 | 1 | [Read transcript](../readable/conversations/cron-hook-plan009-pathological-matrices.md) | [Open JSON](../sessions/2f/2f3dc752e0b47641259d.json) |
 | `logs/chats/cron_hook_plan007_correction_guidance.jsonl` (occurrence 1) | 39 | 1 | [Read transcript](../readable/conversations/cron-hook-plan007-correction-guidance.md) | [Open JSON](../sessions/40/409ed2b428eb4d584d8a.json) |
 | `logs/chats/worker_analysis_plan011_frontier_check_20260521T110109.jsonl` (occurrence 1) | 37 | 0 | [Read transcript](../readable/conversations/analysis-plan011-frontier-check.md) | [Open JSON](../sessions/d4/d4c860e11f11954c232c.json) |
-| `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_reviewer_20260522T181545_505555.jsonl` (occurrence 1) | 1,502 | 51 | [Read transcript](../readable/conversations/reviewer-coordination-20260522-181545.md) | [Open JSON](../sessions/cd/cd201f029eb379548bdc.json) |
-| `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_20260525T055729_473667.jsonl` (occurrence 1) | 8,034 | 196 | [Read transcript](../readable/conversations/coordination-coordination-20260525-055729.md) | [Open JSON](../sessions/51/51171fdab9751d74b501.json) |
+| `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_reviewer_20260522T181545_505555.jsonl` (occurrence 1) | 1,496 | 51 | [Read transcript](../readable/conversations/reviewer-coordination-20260522-181545.md) | [Open JSON](../sessions/cd/cd201f029eb379548bdc.json) |
+| `logs/chats/archive/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_20260525T055729_473667.jsonl` (occurrence 1) | 7,990 | 196 | [Read transcript](../readable/conversations/coordination-coordination-20260525-055729.md) | [Open JSON](../sessions/51/51171fdab9751d74b501.json) |
 | `logs/chats/cron_hook_plan003_empirical_confusion_matrices.jsonl` (occurrence 1) | 16 | 1 | [Read transcript](../readable/conversations/cron-hook-plan003-empirical-confusion-matrices.md) | [Open JSON](../sessions/30/30291a3699bfee50d43f.json) |
 | `logs/chats/worker_ssh_check_vast_annotation_20260521T175849.jsonl` (occurrence 1) | 38 | 0 | [Read transcript](../readable/conversations/ssh-check-vast-annotation.md) | [Open JSON](../sessions/c5/c53826685323c53c8c6a.json) |
 | `logs/chats/worker_check_vast_annotation_status_20260521T175952.jsonl` (occurrence 1) | 54 | 0 | [Read transcript](../readable/conversations/check-vast-annotation-status.md) | [Open JSON](../sessions/40/403498a899b77578a969.json) |

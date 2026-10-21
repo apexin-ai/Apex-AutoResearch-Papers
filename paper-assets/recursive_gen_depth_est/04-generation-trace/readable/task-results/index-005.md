@@ -36,8 +36,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | writing r6 final fixes | 1 | 0 | [Read transcript](writing-r6-final-fixes.md) | [JSON](../../sessions/81/8195dcfeb791c3eceba8.json) |
 | writing r6 tables ci | 1 | 0 | [Read transcript](writing-r6-tables-ci.md) | [JSON](../../sessions/b3/b3c3420fb917283c8954.json) |
 | writing r9 text fixes | 1 | 0 | [Read transcript](writing-r9-text-fixes.md) | [JSON](../../sessions/67/67674263e56bd5e8dd4c.json) |
-| writing rebuttal draft | 1 | 0 | [Read transcript](writing-rebuttal-draft.md) | [JSON](../../sessions/48/484d8393cd0ce1f0a402.json) |
-| writing rebuttal templates | 1 | 0 | [Read transcript](writing-rebuttal-templates.md) | [JSON](../../sessions/69/691e67c62effb37d50cf.json) |
 | writing ref ablation fix | 1 | 0 | [Read transcript](writing-ref-ablation-fix.md) | [JSON](../../sessions/6b/6b039ae1f20ecbdbe7e5.json) |
 | writing ref ablation writeup | 1 | 0 | [Read transcript](writing-ref-ablation-writeup.md) | [JSON](../../sessions/9f/9f32fd738b792703febb.json) |
 | writing restore content | 1 | 0 | [Read transcript](writing-restore-content.md) | [JSON](../../sessions/e0/e0c2ea510d691835d54c.json) |

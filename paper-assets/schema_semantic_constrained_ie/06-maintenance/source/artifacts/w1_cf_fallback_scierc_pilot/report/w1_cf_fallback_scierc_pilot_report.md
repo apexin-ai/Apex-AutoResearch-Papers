@@ -85,15 +85,6 @@ Against the task's success criteria:
 
 DR fails the criterion → **conclusion: NEGATIVE** (the mechanism shifts violations from CF onto DR rather than eliminating them).
 
-## 6. Implications for W1 (rebuttal)
-
-- The current "grammar-first fallback when semantic mask is empty" implementation is **not a Pareto improvement** — it strictly increases total ontology violations on SciERC + Qwen3-8B.
-- The CF reduction is real and dramatic, but the framing of W1 as "fallback that protects CF without harming other constraints" is **not supported** by these numbers.
-- Two plausible next moves before the rebuttal:
-  1. **Replace grammar-first fallback with a CF-registry-only fallback** (keep DR enforcement, fall back only on CF). The current `cf_registry_fallback_rate` (4.48 %) suggests this would still capture most CF gains without re-introducing DR violations.
-  2. **Report this trade-off honestly** in the rebuttal and characterise W1 as a "violation re-routing" rather than reduction; pair with a Pareto plot (auto-generated at `outputs/cf_analysis_w1_pilot/dr_vs_cf_pareto.pdf`).
-- Pilot is on Qwen3-8B / SciERC only. DocRED and Llama runs are still pending — the pattern may differ.
-
 ## 7. Provenance
 
 - Output: `outputs/w1_cf_fallback_scierc_pilot.jsonl` (1 322 087 B, 551 lines)

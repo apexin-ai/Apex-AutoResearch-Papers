@@ -1,4 +1,4 @@
-# Project coordination (archived snapshot) — Part 9 of 14
+# Project coordination (archived snapshot) — Part 9 of 13
 
 **Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Conversation logs
 
@@ -6,2198 +6,9 @@
 
 ## Round 103
 
-### Tool call
-
-_source line 4790 · 2026-05-23T10:32:59.090958+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check proportional effects claims\nwith open('exp_proportional_effects_results.json') as f:\n    data = json.load(f)\n\nprint('=== Proportional Effects Results ===')\nfor r in data['results']:\n    print(f'{r[\\\"degree\\\"]}: sign_failure_rate={r[\\\"sign_failure_rate\\\"]:.4f} ({1-r[\\\"sign_failure_rate\\\"]:.4f} preservation), lambda_oob_rate={r[\\\"lambda_oob_rate\\\"]:.4f}')\n\n# Claim: >=97% sign preservation across all four DGP conditions\n# Check: exact_proportional, near_proportional (sigma 0.1,0.3,0.5), independent\nprint()\nprint('Sign preservation rates:')\nfor r in data['results']:\n    if r['degree'] in ['exact_proportional', 'near_proportional_sigma_0.1', 'near_proportional_sigma_0.3', 'near_proportional_sigma_0.5', 'independent']:\n        pres = 1 - r['sign_failure_rate']\n        print(f'  {r[\\\"degree\\\"]}: {pres*100:.2f}% (>= 97%? {pres >= 0.97})')\n\n# Claim: lambda(C) exceeds [0,1] in up to 23% of random configurations\nprint()\nprint('Lambda OOB rates:')\nfor r in data['results']:\n    print(f'  {r[\\\"degree\\\"]}: {r[\\\"lambda_oob_rate\\\"]*100:.2f}%')\nmax_oob = max(r['lambda_oob_rate'] for r in data['results'])\nprint(f'Max lambda OOB rate: {max_oob*100:.2f}%')\n\"\n",
-  "description": "Check proportional effects sign preservation and lambda OOB rates"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check proportional effects claims\nwith open('exp_proportional_effects_results.json') as f:\n    data = json.load(f)\n\nprint('=== Proportional Effects Results ===')\nfor r in data['results']:\n    print(f'{r[\\\"degree\\\"]}: sign_failure_rate={r[\\\"sign_failure_rate\\\"]:.4f} ({1-r[\\\"sign_failure_rate\\\"]:.4f} preservation), lambda_oob_rate={r[\\\"lambda_oob_rate\\\"]:.4f}')\n\n# Claim: >=97% sign preservation across all four DGP conditions\n# Check: exact_proportional, near_proportional (sigma 0.1,0.3,0.5), independent\nprint()\nprint('Sign preservation rates:')\nfor r in data['results']:\n    if r['degree'] in ['exact_proportional', 'near_proportional_sigma_0.1', 'near_proportional_sigma_0.3', 'near_proportional_sigma_0.5', 'independent']:\n        pres = 1 - r['sign_failure_rate']\n        print(f'  {r[\\\"degree\\\"]}: {pres*100:.2f}% (>= 97%? {pres >= 0.97})')\n\n# Claim: lambda(C) exceeds [0,1] in up to 23% of random configurations\nprint()\nprint('Lambda OOB rates:')\nfor r in data['results']:\n    print(f'  {r[\\\"degree\\\"]}: {r[\\\"lambda_oob_rate\\\"]*100:.2f}%')\nmax_oob = max(r['lambda_oob_rate'] for r in data['results'])\nprint(f'Max lambda OOB rate: {max_oob*100:.2f}%')\n\"\n",
-    "description": "Check proportional effects sign preservation and lambda OOB rates"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 4791 · 2026-05-23T10:32:59.191882+00:00_
-
-=== Proportional Effects Results ===
-exact_proportional: sign_failure_rate=0.0085 (0.9915 preservation), lambda_oob_rate=0.0000
-near_proportional_sigma_0.1: sign_failure_rate=0.0087 (0.9913 preservation), lambda_oob_rate=0.1028
-near_proportional_sigma_0.3: sign_failure_rate=0.0096 (0.9904 preservation), lambda_oob_rate=0.1904
-near_proportional_sigma_0.5: sign_failure_rate=0.0093 (0.9907 preservation), lambda_oob_rate=0.2240
-independent: sign_failure_rate=0.0017 (0.9983 preservation), lambda_oob_rate=0.2295
-default_plan006: sign_failure_rate=0.0000 (1.0000 preservation), lambda_oob_rate=0.0007
-
-Sign preservation rates:
-  exact_proportional: 99.15% (>= 97%? True)
-  near_proportional_sigma_0.1: 99.13% (>= 97%? True)
-  near_proportional_sigma_0.3: 99.04% (>= 97%? True)
-  near_proportional_sigma_0.5: 99.07% (>= 97%? True)
-  independent: 99.83% (>= 97%? True)
-
-Lambda OOB rates:
-  exact_proportional: 0.00%
-  near_proportional_sigma_0.1: 10.28%
-  near_proportional_sigma_0.3: 19.04%
-  near_proportional_sigma_0.5: 22.40%
-  independent: 22.95%
-  default_plan006: 0.07%
-Max lambda OOB rate: 22.95%
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4792 · 2026-05-23T10:32:59.242491+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py",
-  "limit": "100"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py",
-    "limit": "100"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4793 · 2026-05-23T10:33:00.198036+00:00_
-
-1	#!/usr/bin/env python3
-2	"""
-3	Three computational tasks for the causal annotation error attribution paper.
-4	
-5	Task 1: Theory-Empirical MAPE (extend existing humaid-only to all 18 valid configs)
-6	Task 2: PPI++ Empirical Validation (simulate gold labels, apply PPI++ correction)
-7	Task 3: Dirichlet Subspace Overlay (regenerated with improved styling)
-8	
-9	Author: auto-generated for paper artifacts
-10	"""
-11	
-12	import json
-13	import sys
-14	import time
-15	import numpy as np
-16	from pathlib import Path
-17	from collections import defaultdict
-18	
-19	PROJ = Path("/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib")
-20	sys.path.insert(0, str(PROJ))
-21	
-22	# Import the plan_006 module for DGP generators matching the paper's setup
-23	import importlib.util
-24	spec = importlib.util.spec_from_file_location(
-25	    "plan_006",
-26	    str(PROJ / "plan_006_asv_empirical.py")
-27	)
-28	plan_006 = importlib.util.module_from_spec(spec)
-29	spec.loader.exec_module(plan_006)
-30	
-31	from annot_sensitivity.correction import correct_ppi, correct_naive_plugin, correct_mla
-32	from annot_sensitivity.utils import misclassify
-33	
-34	# ============================================================================
-35	# Common data loading
-36	# ============================================================================
-37	
-38	TOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',
-39	              'mbias', 'iv', 'frontdoor']
-40	HAS_TREATMENT = {'confounding', 'mediation', 'collider', 'mbias', 'frontdoor'}
-41	
-42	
-43	def load_all_data():
-44	    """Load confusion matrices and bias records for all 18 valid configs."""
-45	    # Load humaid confusion matrices (full 10x10)
-46	    with open(PROJ / "artifacts/plan006/asv_empirical_results.json") as f:
-47	        plan006 = json.load(f)
-48	    humaid_cms = {k: np.array(v) for k, v in plan006["confusion_matrices"].items()}
-49	    bias_records = plan006["biases"]
-50	
-51	    # Load filter info
-52	    with open(PROJ / "artif
-…[truncated 2257 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 955
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4794 · 2026-05-23T10:33:00.248989+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "spearman|f1_range|f1_min|f1_max|0\\.614|0\\.690|rho.*-0\\.10|power.*0\\.57",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts",
-  "output_mode": "files_with_matches",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "spearman|f1_range|f1_min|f1_max|0\\.614|0\\.690|rho.*-0\\.10|power.*0\\.57",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts",
-    "output_mode": "files_with_matches",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4795 · 2026-05-23T10:33:01.153046+00:00_
-
-Found 28 files
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_topic_stratified_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity.py
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_9.md
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_realistic_epsilon_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_7.md
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_c_bootstrap_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_cms.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/updated_empirical_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/plan011_frontier_cms.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/delta_max_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan007/correction_guidance_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/paper/experiments.tex
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/pla
-…[truncated 1470 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 904
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4796 · 2026-05-23T10:33:01.806305+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "55\\.4|asv_diag|magnitude.unsafe|100.*CivilComments",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts",
-  "output_mode": "files_with_matches",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "55\\.4|asv_diag|magnitude.unsafe|100.*CivilComments",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts",
-    "output_mode": "files_with_matches",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4797 · 2026-05-23T10:33:01.857045+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "1090",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "1090",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4798 · 2026-05-23T10:33:01.857620+00:00_
-
-Found 18 files
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity_results.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_6.md
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/paper/experiments.tex
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/meta.yaml
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/paper_framing.md
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/experiment_data.json
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/imagined_experiments.yaml
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/logs/phase2_best_attempt0.log
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/logs/phase1_attempt0.log
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/meta.yaml
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/logs/review_worst.log
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/logs/review_median.log
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/median/review_context.yaml
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/logs/paper_agent_median.log
-/home/ubuntu/.agent-ml
-…[truncated 579 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4799 · 2026-05-23T10:33:01.908237+00:00_
-
-1090	
-1091	\subsection{Extended Conjecture Verification}
-1092	\label{sec:conjecture_verify}
-1093	
-1094	We test envelope monotonicity (Conjecture~\ref{conj:monotone}) by sampling 10{,}000 random $C_0$ matrices from Dirichlet$(1,\dots,1)$ per topology for $K \in \{3,5,7\}$ (210{,}000 total), sweeping $\delta$ in steps of 0.01, and counting matrices with at least one non-monotonic step exceeding tolerance $10^{-12}$. Bias at each $\delta$ is computed via analytic probability limits using Gauss--Hermite quadrature (100 points), eliminating sampling noise entirely.
-1095	
-1096	\begin{table}[h]
-1097	\centering
-1098	\small
-1099	\caption{Envelope monotonicity violations per 10{,}000 random $C_0$ matrices. ``Worst mag.''\ is the largest single-step deviation $|B(\delta_{i+1})|-|B(\delta_i)|$ in the non-monotonic direction.}
-1100	\label{tab:conjecture_verify}
-1101	\begin{tabular}{lccccc}
-1102	\toprule
-1103	\textbf{Topology} & $K{=}3$ & $K{=}5$ & $K{=}7$ & \textbf{Worst mag.} & \textbf{Direction} \\
-1104	\midrule
-1105	Confounding & 8467 & 8063 & 7892 & 0.011 & non-dec \\
-1106	Mediation   & 8236 & 7905 & 7893 & 0.013 & non-dec \\
-1107	Collider    & 8683 & 7669 & 7570 & 0.005 & non-inc \\
-1108	Exposure    & 485  & 205  & 77   & 0.056 & non-dec \\
-1109	M-bias      & 9791 & 7783 & 7399 & 0.002 & non-inc \\
-1110	IV          & 7433 & 6015 & 5711 & $>10^6$ & non-dec \\
-1111	Front-door  & 8429 & 8079 & 7899 & 0.013 & non-dec \\
-1112	\bottomrule
-1113	\end{tabular}
-1114	\end{table}
-1115	
-1116	Violation counts are high (60--97\% of matrices), but magnitudes are negligible for non-IV topologies: all worst-case deviations fall below 0.06 ($<$6\% of the respective $\tau$). These results are computed from analytic probability limits with zero sampling noise, confirming the violations are structural properties of multi-class confusion matrices rather than numerical artifacts. IV deviations reflect Wald estimator singularities when the first-stage coefficient passes near zero---this is a proper
-…[truncated 5045 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4800 · 2026-05-23T10:33:06.739303+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-  "limit": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-    "limit": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4801 · 2026-05-23T10:33:06.795028+00:00_
-
-1	#!/usr/bin/env python3
-2	"""Figure 2: 2×4 Bias Distribution Across 7 DAG Topologies under K=3 Misclassification."""
-3	
-4	import matplotlib
-5	matplotlib.use('Agg')
-6	import matplotlib.pyplot as plt
-7	import matplotlib.patheffects as pe
-8	import matplotlib.transforms as mtransforms
-9	import numpy as np
-10	from scipy.stats import gaussian_kde
-11	import os
-12	
-13	plt.rcParams.update({
-14	    'font.family': 'DejaVu Sans',
-15	    'font.size': 11,
-16	    'axes.titlesize': 12,
-17	    'axes.labelsize': 11,
-18	    'xtick.labelsize': 9,
-19	    'ytick.labelsize': 9,
-20	    'legend.fontsize': 9,
-21	    'figure.dpi': 300,
-22	    'savefig.dpi': 300,
-23	    'savefig.bbox': 'tight',
-24	    'savefig.pad_inches': 0.05,
-25	    'axes.spines.top': False,
-26	    'axes.spines.right': False,
-27	    'pdf.fonttype': 42,
-28	    'ps.fonttype': 42,
-29	    'lines.linewidth': 1.8,
-30	})
-31	
-32	SAFE = '#0072B2'    # blue (colorblind-friendly)
-33	DANGER = '#E69F00'  # orange (colorblind-friendly)
-34	DIST = '#0072B2'
-35	REF = '#555555'
-36	N_MC = 100_000
-37	N_POP = 2_000_000
-38	
-39	rng_main = np.random.default_rng(42)
-40	Cs = np.zeros((N_MC, 3, 3))
-41	for j in range(3):
-42	    Cs[:, :, j] = rng_main.dirichlet(np.ones(3), size=N_MC)
-43	
-44	
-45	def softmax_vec(x):
-46	    e = np.exp(x - x.max())
-47	    return e / e.sum()
-48	
-49	
-50	def softmax_sample_batch(logits, rng):
-51	    e = np.exp(logits - logits.max(axis=1, keepdims=True))
-52	    p = e / e.sum(axis=1, keepdims=True)
-53	    cu = np.cumsum(p, axis=1)
-54	    u = rng.uniform(size=logits.shape[0])
-55	    return (u >= cu[:, 0]).astype(int) + (u >= cu[:, 1]).astype(int)
-56	
-57	
-58	def safe_batch_solve(A, b):
-59	    try:
-60	        return np.linalg.solve(A, b[:, :, None])[:, :, 0]
-61	    except np.linalg.LinAlgError:
-62	        n = A.shape[0]
-63	        results = np.full((n, A.shape[1]), np.nan)
-64	        for i in range(n):
-65	            try:
-66	                results[i] = np.linalg.solve(A[i], b[i])
-67	            except np.linalg.LinAlgError:
-68	 
-…[truncated 483 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 55
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4802 · 2026-05-23T10:33:07.689195+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check real matrices proportional effects\nwith open('exp_proportional_real_matrices_results.json') as f:\n    data = json.load(f)\n\n# Claim: 85% of empirical configurations under non-proportional DGPs\nprint('Non-proportional sign preservation:', data['non_proportional']['sign_preservation_rate'])\nprint('Non-proportional prop_in_01:', data['non_proportional']['prop_in_01'])\n\n# Claim: >=99% under proportional DGPs with 100% sign preservation\nprint()\nprint('Proportional DGPs:')\nfor lam, vals in data['proportional'].items():\n    print(f'  {lam}: sign_pres={vals[\\\"sign_preservation_rate\\\"]}, prop_in_01={vals[\\\"prop_in_01\\\"]}')\n\nprint()\nprint('Near-proportional:')\nfor lam, vals in data['near_proportional'].items():\n    print(f'  {lam}: sign_pres={vals[\\\"sign_preservation_rate\\\"]}, prop_in_01={vals[\\\"prop_in_01\\\"]}')\n\"\n",
-  "description": "Check real matrices proportional effects results"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check real matrices proportional effects\nwith open('exp_proportional_real_matrices_results.json') as f:\n    data = json.load(f)\n\n# Claim: 85% of empirical configurations under non-proportional DGPs\nprint('Non-proportional sign preservation:', data['non_proportional']['sign_preservation_rate'])\nprint('Non-proportional prop_in_01:', data['non_proportional']['prop_in_01'])\n\n# Claim: >=99% under proportional DGPs with 100% sign preservation\nprint()\nprint('Proportional DGPs:')\nfor lam, vals in data['proportional'].items():\n    print(f'  {lam}: sign_pres={vals[\\\"sign_preservation_rate\\\"]}, prop_in_01={vals[\\\"prop_in_01\\\"]}')\n\nprint()\nprint('Near-proportional:')\nfor lam, vals in data['near_proportional'].items():\n    print(f'  {lam}: sign_pres={vals[\\\"sign_preservation_rate\\\"]}, prop_in_01={vals[\\\"prop_in_01\\\"]}')\n\"\n",
-    "description": "Check real matrices proportional effects results"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4803 · 2026-05-23T10:33:07.739904+00:00_
-
-Non-proportional sign preservation: 0.9730434782608696
-Non-proportional prop_in_01: 0.8495652173913043
-
-Proportional DGPs:
-  lambda_0.5: sign_pres=1.0, prop_in_01=0.9947826086956522
-  lambda_1.0: sign_pres=1.0, prop_in_01=0.9991304347826087
-  lambda_2.0: sign_pres=1.0, prop_in_01=1.0
-
-Near-proportional:
-  lambda_0.5: sign_pres=1.0, prop_in_01=0.9852173913043478
-  lambda_1.0: sign_pres=1.0, prop_in_01=0.991304347826087
-  lambda_2.0: sign_pres=1.0, prop_in_01=0.9982608695652174
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4804 · 2026-05-23T10:33:08.493307+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_realistic_epsilon.py",
-  "limit": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_realistic_epsilon.py",
-    "limit": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4805 · 2026-05-23T10:33:08.594126+00:00_
-
-1	#!/usr/bin/env python3
-2	"""
-3	exp_realistic_epsilon.py — Estimate realistic differential misclassification
-4	ε thresholds for 23 LLM configurations.
-5	
-6	For each empirical confusion matrix C (from updated_empirical_results.json),
-7	we sweep ε ∈ [0, 0.50] and run Monte Carlo trials to estimate the sign
-8	reversal rate under Y-stratified differential misclassification:
-9	    C_high = renormalize(C + ε * Δ)   (applied to Y > median stratum)
-10	    C_low  = renormalize(C - ε * Δ)   (applied to Y ≤ median stratum)
-11	where Δ is a random off-diagonal perturbation matrix.
-12	
-13	The "safe ε threshold" is the max ε where sign reversal rate < 5%.
-14	
-15	Input:  artifacts/updated_empirical_results.json  (23 confusion matrices)
-16	Output: artifacts/exp_realistic_epsilon_results.json
-17	
-18	Dependencies: numpy, plan_006_asv_empirical.py (for DGP + plim functions)
-19	"""
-20	
-21	import numpy as np
-22	import json
-23	import time
-24	import sys
-25	import importlib.util
-26	from pathlib import Path
-27	
-28	# ---------------------------------------------------------------------------
-29	# Import plan_006 for DGP / plim infrastructure
-30	# ---------------------------------------------------------------------------
-31	PROJ = Path("/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib")
-32	sys.path.insert(0, str(PROJ))
-33	spec = importlib.util.spec_from_file_location("plan_006", str(PROJ / "plan_006_asv_empirical.py"))
-34	plan_006 = importlib.util.module_from_spec(spec)
-35	spec.loader.exec_module(plan_006)
-36	
-37	# ---------------------------------------------------------------------------
-38	# Config
-39	# ---------------------------------------------------------------------------
-40	N_EPSILON = 51                 # ε grid points
-41	EPSILON_MAX = 0.50             # max ε
-42	N_MC = 500                     # Monte Carlo trials per ε
-43	SIGN_REVERSAL_THRESHOLD = 0.05 # 5% threshold
-44	TOPOLOGY = "exposure"          # use exposure topology
-45	N_PRECOMP = 2_000_000    
-…[truncated 1305 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4806 · 2026-05-23T10:33:13.812649+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "sign_flip|violation|amplif",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-  "output_mode": "content",
-  "head_limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "sign_flip|violation|amplif",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-    "output_mode": "content",
-    "head_limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4807 · 2026-05-23T10:33:13.863309+00:00_
-
-367:    dict(label='(c) Mediation', sub='Direct-effect amplification',
-431:    box_txt = (f'sign_flip={sf_rate:.1%}\n'
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4808 · 2026-05-23T10:33:13.964011+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('delta_max_results.json') as f:\n    d = json.load(f)\nprint('Top keys:', list(d.keys())[:20])\nif 'f1' in str(d.keys()).lower() or 'spearman' in str(d).lower()[:2000]:\n    print('Contains f1/spearman')\nprint(json.dumps(d, indent=2)[:3000])\n\"\n",
-  "description": "Check delta_max_results.json for F1/Spearman data"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('delta_max_results.json') as f:\n    d = json.load(f)\nprint('Top keys:', list(d.keys())[:20])\nif 'f1' in str(d.keys()).lower() or 'spearman' in str(d).lower()[:2000]:\n    print('Contains f1/spearman')\nprint(json.dumps(d, indent=2)[:3000])\n\"\n",
-    "description": "Check delta_max_results.json for F1/Spearman data"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4809 · 2026-05-23T10:33:14.516557+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "0\\.45.*0\\.81|diagonal.*0\\.45|0\\.81",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "0\\.45.*0\\.81|diagonal.*0\\.45|0\\.81",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4810 · 2026-05-23T10:33:14.717726+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:24:The IV topology is the sole non-exposure exception: 52.6\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Under the full Dirichlet$(1,1,1)$ prior, diagonal dominance ($C_{kk} > 0.8$) reduces but does not eliminate IV sign reversal (Appendix~\ref{sec:iv_dirichlet_subspace}); however, across all 23 empirical LLM configurations---including low-accuracy annotators (mean diagonal as low as 0.45)---IV exhibits zero sign reversal.
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:575:  \mathbb{E}[\operatorname{Var}(T\mid A)] = 0.813,\\
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:576:  \bar{B}_{\mathrm{col}} &= \sqrt{0.187\times 0.076}\;/\;0.813 = 0.147.
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex:2:[Omitted long matching line]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4811 · 2026-05-23T10:33:16.022892+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "seven canonical|seven topolog",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "seven canonical|seven topolog",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4812 · 2026-05-23T10:33:17.127382+00:00_
-
-Top keys: ['meta', 'per_confusion_matrix', 'table3_asv_checks', 'humaid_empirical_asv_checks', 'sign_flip_validity', 'summary']
-{
-  "meta": {
-    "description": "Delta_max constraint analysis for ASV parameterization",
-    "formula": "delta_max = min_j 1/(1 - (C0)_{jj})",
-    "property": "delta_max >= 1 always (diagonal entries in [0,1])",
-    "code_implementation": "annot_sensitivity/confusion.py:delta_range() computes this, ASV search bounded by [0, delta_max]"
-  },
-  "per_confusion_matrix": {
-    "humaid": {
-      "humaid_deepseek_few-shot-3": {
-        "name": "humaid_deepseek_few-shot-3",
-        "K": 10,
-        "diagonal": [
-          0.579545,
-          0.7,
-          0.617834,
-          0.936,
-          1.0,
-          0.715909,
-          0.384937,
-          0.754717,
-          0.831492,
-          0.726708
-        ],
-        "min_diagonal": 0.384937,
-        "min_diagonal_class": 6,
-        "delta_max": 1.62585,
-        "delta_max_code": 1.62585,
-        "trace": 7.247143,
-        "macro_recall": 0.724714
-      },
-      "humaid_deepseek_few-shot-5": {
-        "name": "humaid_deepseek_few-shot-5",
-        "K": 10,
-        "diagonal": [
-          0.575758,
-          0.762712,
-          0.620155,
-          0.936364,
-          1.0,
-          0.802198,
-          0.374429,
-          0.634146,
-          0.811912,
-          0.721519
-        ],
-        "min_diagonal": 0.374429,
-        "min_diagonal_class": 6,
-        "delta_max": 1.59854,
-        "delta_max_code": 1.59854,
-        "trace": 7.239193,
-        "macro_recall": 0.723919
-      },
-      "humaid_deepseek_zero-shot": {
-        "name": "humaid_deepseek_zero-shot",
-        "K": 10,
-        "diagonal": [
-          0.611111,
-          0.861111,
-          0.785714,
-          0.933333,
-          1.0,
-          0.699029,
-          0.294118,
-          0.578947,
-          0.780928,
-          0.691892
-        ],
-        "min_diagonal": 0.294118,
-        "min_diagonal_class": 6,
-        "delta_max": 1.416667,
-        "
-…[truncated 1128 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 3163
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4813 · 2026-05-23T10:33:17.127786+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-  "offset": "420",
-  "limit": "60"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-    "offset": "420",
-    "limit": "60"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4814 · 2026-05-23T10:33:17.178398+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('plan006/asv_empirical_results.json') as f:\n    d = json.load(f)\nprint('Top keys:', list(d.keys())[:20])\n# Check for f1 or spearman\ns = json.dumps(d)\nif 'f1' in s.lower()[:5000]:\n    print('Contains f1')\nif 'spearman' in s.lower():\n    print('Contains spearman')\n# Print a summary\nfor k in d.keys():\n    if isinstance(d[k], dict):\n        print(f'{k}: {list(d[k].keys())[:10]}')\n    elif isinstance(d[k], list):\n        print(f'{k}: list of {len(d[k])}')\n    else:\n        print(f'{k}: {d[k]}')\n\"\n",
-  "description": "Check plan006/asv_empirical_results.json structure"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('plan006/asv_empirical_results.json') as f:\n    d = json.load(f)\nprint('Top keys:', list(d.keys())[:20])\n# Check for f1 or spearman\ns = json.dumps(d)\nif 'f1' in s.lower()[:5000]:\n    print('Contains f1')\nif 'spearman' in s.lower():\n    print('Contains spearman')\n# Print a summary\nfor k in d.keys():\n    if isinstance(d[k], dict):\n        print(f'{k}: {list(d[k].keys())[:10]}')\n    elif isinstance(d[k], list):\n        print(f'{k}: list of {len(d[k])}')\n    else:\n        print(f'{k}: {d[k]}')\n\"\n",
-    "description": "Check plan006/asv_empirical_results.json structure"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4815 · 2026-05-23T10:33:17.229217+00:00_
-
-420	    ax.axvline(tau, color=REF, ls='--', lw=1.2, alpha=0.7, zorder=4)
-421	
-422	    # ── Title + subtitle ─────────────────────────────────────────────────────
-423	    ax.set_title(cfg['label'], fontsize=12, fontweight='bold', pad=16)
-424	    ax.text(0.5, 1.01, cfg['sub'], transform=ax.transAxes,
-425	            fontsize=9, ha='center', va='bottom', color=cfg['sub_color'],
-426	            fontstyle='italic')
-427	
-428	    # ── Stats box ────────────────────────────────────────────────────────────
-429	    sf_rate = np.nanmean(d * tau < 0)
-430	    viol_rate = np.nanmean(np.abs(d - tau) / max(abs(tau), 1e-8) > 0.10)
-431	    box_txt = (f'sign_flip={sf_rate:.1%}\n'
-432	               f'viol>10%={viol_rate:.1%}\n'
-433	               f'n={len(d):,}')
-434	    ax.text(0.97, 0.95, box_txt, transform=ax.transAxes,
-435	            fontsize=7.5, ha='right', va='top', family='monospace',
-436	            bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.85,
-437	                      ec='#cccccc', lw=0.5))
-438	
-439	    # ── Axis limits ──────────────────────────────────────────────────────────
-440	    ax.set_xlim(x_range)
-441	    ax.set_ylim(bottom=0)
-442	
-443	    # ── τ_true label (after ylim is set) ─────────────────────────────────────
-444	    trans = mtransforms.blended_transform_factory(ax.transData, ax.transAxes)
-445	    offset = 0.03 * (x_range[1] - x_range[0])
-446	    t = ax.text(tau + offset, 0.75, r'$\tau_{true}$', fontsize=8,
-447	                color=REF, alpha=0.6, va='center', transform=trans)
-448	    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])
-449	
-450	for ax in axes[1, :]:
-451	    if ax.get_visible():
-452	        ax.set_xlabel(r'plim $\hat{\tau}$', fontsize=11)
-453	for ax in axes[:, 0]:
-454	    ax.set_ylabel('Density', fontsize=13)
-455	
-456	fig.suptitle(
-457	    'Bias Distribution Under K=3 Non-Differential Misclassification\n'
-458	    '100,000 Random Confusion Matrices (Dirichlet(1,1,1) per column)',
-459	    fontsize=13, y=1.04)
-460	
-…[truncated 524 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4816 · 2026-05-23T10:33:17.279895+00:00_
-
-Top keys: ['confusion_matrices', 'biases', 'asvs', 'f1_vs_bias', 'type1_type2', 'inter_model_correlation', 'summary']
-confusion_matrices: ['humaid_llama4_zero-shot', 'humaid_llama4_few-shot-3', 'humaid_llama4_few-shot-5', 'humaid_qwen3_zero-shot', 'humaid_qwen3_few-shot-3', 'humaid_qwen3_few-shot-5', 'humaid_deepseek_zero-shot', 'humaid_deepseek_few-shot-3', 'humaid_deepseek_few-shot-5']
-biases: list of 63
-asvs: list of 189
-f1_vs_bias: list of 63
-type1_type2: list of 63
-inter_model_correlation: ['civil_comments_zero-shot', 'civil_comments_few-shot-3', 'civil_comments_few-shot-5', 'vast_zero-shot', 'vast_few-shot-3', 'vast_few-shot-5', 'humaid_zero-shot', 'humaid_few-shot-3', 'humaid_few-shot-5']
-summary: ['f1_gt_093_total', 'f1_gt_093_with_high_bias_pct', 'ppi_recommended_scenarios', 'total_scenarios', 'ppi_recommended_pct']
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4817 · 2026-05-23T10:33:18.334099+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:9:For each of the seven topologies (confounding, exposure, mediation, collider, M-bias, front-door, IV), we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute the analytical probability limit of the causal estimator, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\delta) = (1{-}\delta)I + \delta C_0$.
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:82:We evaluate five correction methods (naive plug-in, MLA, DSL~\cite{egami_hinck_stewart_wei2023}, MC-SIMEX, PPI++~\cite{angelopoulos2023}) across all seven topologies under six error structures (210 configurations; full results in Table~\ref{tab:correction}, Appendix~\ref{app:supplementary}).
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:19:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1015:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1020:We replace the linear structural equations with $Y \sim \text{Bernoulli}(\sigma(\mathbf{x}^\top\boldsymbol{\beta}))$ and estimate via logistic regression (control function for IV) for all seven topologies, using $K{=}3$, six real VAST confusion matrices, 500 MC replications, and $N{=}10{,}000$. Mean sign-flip rates across the six CMs:
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1039:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1290:We test whether
-…[truncated 768 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 2311
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4818 · 2026-05-23T10:33:18.384809+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "14/23|14 of 23",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "14/23|14 of 23",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4819 · 2026-05-23T10:33:18.485614+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:69:Of all $K{-}1$ exposure coefficients, 14/23 configurations (61\%) exhibit sign reversal---all in secondary coefficients (Numerical Verification~2); zero across 138 non-exposure scenarios. ASV diagnostics flag 55.4\% of HumAID and 100\% of CivilComments as magnitude-unsafe (Appendix~\ref{sec:asv_diagnostics}).
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4820 · 2026-05-23T10:33:19.138757+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check verify_lambda_bound_results for Observation 2: 20,000 random triples per K\nwith open('verify_lambda_bound_results.json') as f:\n    data = json.load(f)\n\n# Check per_K data\nfor k, kdata in data['per_K'].items():\n    prop = kdata['proportional']\n    print(f'{k}: proportional n_trials={prop[\\\"n_trials\\\"]}')\n\n# Check Conjecture 1: 30,000 random matrices per topology\nwith open('exp_d_conjecture_results_v2.json') as f:\n    conj = json.load(f)\n\nprint()\nprint('Conjecture verification n_tested per topology per K:')\nfor topo, tdata in conj['random_verification'].items():\n    for k, kdata in tdata.items():\n        print(f'  {topo} {k}: n_tested={kdata[\\\"n_tested\\\"]}')\n    break  # Just show one topology as example\n\n# Total per topology\nfor topo, tdata in conj['random_verification'].items():\n    total = sum(kdata['n_tested'] for kdata in tdata.values())\n    print(f'{topo}: total across K = {total}')\n\"\n",
-  "description": "Check sample sizes for Observation 2 and Conjecture 1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check verify_lambda_bound_results for Observation 2: 20,000 random triples per K\nwith open('verify_lambda_bound_results.json') as f:\n    data = json.load(f)\n\n# Check per_K data\nfor k, kdata in data['per_K'].items():\n    prop = kdata['proportional']\n    print(f'{k}: proportional n_trials={prop[\\\"n_trials\\\"]}')\n\n# Check Conjecture 1: 30,000 random matrices per topology\nwith open('exp_d_conjecture_results_v2.json') as f:\n    conj = json.load(f)\n\nprint()\nprint('Conjecture verification n_tested per topology per K:')\nfor topo, tdata in conj['random_verification'].items():\n    for k, kdata in tdata.items():\n        print(f'  {topo} {k}: n_tested={kdata[\\\"n_tested\\\"]}')\n    break  # Just show one topology as example\n\n# Total per topology\nfor topo, tdata in conj['random_verification'].items():\n    total = sum(kdata['n_tested'] for kdata in tdata.values())\n    print(f'{topo}: total across K = {total}')\n\"\n",
-    "description": "Check sample sizes for Observation 2 and Conjecture 1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4821 · 2026-05-23T10:33:19.190375+00:00_
-
-3: proportional n_trials=10000
-5: proportional n_trials=10000
-7: proportional n_trials=10000
-
-Conjecture verification n_tested per topology per K:
-  confounding K3: n_tested=10000
-  confounding K5: n_tested=10000
-  confounding K7: n_tested=10000
-confounding: total across K = 30000
-mediation: total across K = 30000
-collider: total across K = 30000
-exposure: total across K = 30000
-mbias: total across K = 30000
-iv: total across K = 30000
-frontdoor: total across K = 30000
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4822 · 2026-05-23T10:33:19.493939+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/verify_lambda_bound.py",
-  "limit": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/verify_lambda_bound.py",
-    "limit": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4823 · 2026-05-23T10:33:19.544741+00:00_
-
-1	"""
-2	Numerical verification for Proposition (Mediation leakage boundedness).
-3	
-4	The leakage coefficient is *implicitly* defined by the mediation bias equation
-5	
-6	    plim tau_hat_direct(A*) = tau_direct + (1 - lambda(C)) * tau_indirect
-7	
-8	i.e. lambda(C) := 1 - B(C) / tau_ind, where
-9	    B(C)       = (Cov(g, f) - Cov(E[g|A*], E[f|A*])) / (sigma^2 + V_W)
-10	    tau_ind    = Cov(g, f) / Var(T) = W / (sigma^2 + V),
-11	    V          = Var(g(A)),
-12	    V_B(C)     = Var(E[g|A*]),  V_W = V - V_B,
-13	    W          = Cov(g, f) (population, under marginal pi),
-14	    W_B(C)     = Cov(E[g|A*], E[f|A*]),  W_W = W - W_B.
-15	
-16	Closed form:
-17	    1 - lambda(C) = B(C) / tau_ind = W_W (sigma^2 + V) / [W (sigma^2 + V_W)].
-18	
-19	We verify:
-20	  (1) Proportional effects f = lambda0 * g:  lambda(C) in [0,1] for every C.
-21	  (2) Non-proportional f (independent of g): lambda(C) can escape [0,1]; we
-22	      report the empirical OOB rate (filtering trials with |tau_ind| < threshold
-23	      since lambda = 1 - B/tau_ind is ill-conditioned near a zero indirect effect).
-24	  (3) The diagnostic between-variance ratio lambda_V := V_B/V is always in [0,1]
-25	      (law of total variance), independent of regime.
-26	  (4) Endpoint identities: lambda(I) = 1 and lambda(rank-one C) = 0.
-27	
-28	We additionally tag each non-proportional trial by the implied DGP sign
-29	relationship (with tau_dir drawn independently): "sign-preserving" if
-30	sign(tau_dir) = sign(tau_dir + tau_ind), else "sign-violating". This shows the
-31	two are *not* equivalent in general: lambda(C) can fall outside [0,1] in either
-32	regime, since lambda depends only on (pi, C, g, f, sigma^2), not on tau_dir.
-33	"""
-34	
-35	import json
-36	from pathlib import Path
-37	
-38	import numpy as np
-39	
-40	
-41	RNG = np.random.default_rng(20260522)
-42	N_TRIALS_PER_K = 10_000
-43	KS = (3, 5, 7)
-44	ATOL = 1e-9
-45	SIGMA2_RANGE = (0.1, 2.0)
-46	# Minimum |tau_ind| to avoid degenerate division (when f is near-orthogonal to g
-47	# the in
-…[truncated 1151 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4824 · 2026-05-23T10:33:22.105125+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4825 · 2026-05-23T10:33:22.156070+00:00_
-
-1	\section{Related Work}
-2	\label{sec:related_work}
-3	
-4	\paragraph{Measurement error in causal inference.}
-5	The foundations are established in \citet{carroll2006}, \citet{gustafson2004}, \citet{buonaccorsi2010}, and \citet{bound2001measurement}, with starred-node DAGs formalized by \citet{hernan_cole2009} and DAG-based correction theory developed by \citet{kuroki_pearl2014}. For binary variables, non-differential misclassification biases toward the null~\cite{brenner1993, ogburn_vanderweele2012}, with \citet{neuhaus1999} quantifying the attenuation and efficiency loss in binary regression under known misclassification rates; but this fails for polytomous exposures~\cite{dosemeci1990, jurek2005, veirod_laake2001}. \citet{edwards_lessler_naimi2021} showed dependent misclassification can bias in either direction, and \citet{shu_yi2019a, shu_yi2019b} develop weighted estimators that jointly handle mismeasured covariates and misclassified outcomes under IPW---a concern that also drives mediation analyses with mismeasured mediators~\cite{imai_keele_tingley2010, valeri_vanderweele2013}. All analyze a single DAG topology; ours is the first to characterize how the \emph{same} confusion matrix produces qualitatively different bias across seven topologies.
-6	
-7	\paragraph{Text classifiers and LLM annotation.}
-8	\citet{grimmer2022} and \citet{feder_etal2022} provide foundations for text-as-data and causal inference in NLP. \citet{wood_doughty2018} first applied DAG reasoning to classifier error; \citet{teblunthuis2024} gave the most complete binary treatment ($K{=}2$, four DAGs); \citet{lee_wood_doughty2024} extended to categorical LLM classifiers but covered only confounding. On annotation quality, \citet{gilardi2023chatgpt} and \citet{ziems2024can} document the rapid adoption of LLM annotators, \citet{baumann2025} found 31\% incorrect conclusions, \citet{pangakis_wolken_fasching2023} demonstrated that automated annotations require task-specific validation, \citet{cheng_mayy
-…[truncated 2268 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4826 · 2026-05-23T10:33:24.716485+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4827 · 2026-05-23T10:33:24.817510+00:00_
-
-1	\section{Proofs of Proposition~\ref{prop:signflip} and Theorem~\ref{thm:monotone}}
-2	\label{app:proof}
-3	
-4	We provide algebraic proofs of sign preservation for the confounding and collider topologies (Proposition~\ref{prop:signflip}(a)--(b)), an explicit counterexample for exposure (Proposition~\ref{prop:signflip}(c)), numerical verification for mediation, M-bias, and front-door (Numerical Verification~1), and the monotonicity proof for confounding (Theorem~\ref{thm:monotone}).
-5	Throughout, $A\in\{0,1,\dots,K{-}1\}$ with prior $p_k=P(A{=}k)$, and $C$ is a $K{\times}K$ column-stochastic confusion matrix with $C_{jk}=P(A^*{=}j\mid A{=}k)$.
-6	We use category~0 as the reference and let $D_j=\mathbf{1}(A{=}j)$, $D_j^*=\mathbf{1}(A^*{=}j)$ for $j=1,\dots,K{-}1$.
-7	
-8	\subsection{Notation and Key Identities}
-9	\label{app:notation}
-10	
-11	Under non-differential misclassification, the misclassified moments factor linearly through $C$.
-12	Define the population vectors:
-13	\begin{align}
-14	  q_j &= P(A^*{=}j) = \textstyle\sum_k C_{jk}\,p_k, \label{eq:q}\\
-15	  \mathrm{ct}_j &= \mathbb{E}[T\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[T\cdot D_k], \label{eq:ct}\\
-16	  \mathrm{cy}_j &= \mathbb{E}[Y\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[Y\cdot D_k]. \label{eq:cy}
-17	\end{align}
-18	Write $q = Cp$, $\mathrm{ct} = C\,\mathbb{E}[T\cdot D]$, and $\mathrm{cy} = C\,\mathbb{E}[Y\cdot D]$, where $D=(D_0,\dots,D_{K-1})^\top$.
-19	
-20	\subsection{Frisch--Waugh--Lovell Decomposition}
-21	\label{app:fwl}
-22	
-23	For topologies where $T$ is directly observed (confounding, mediation, collider, M-bias, front-door), the estimator regresses $Y$ on $Z^*=(1,T,D_1^*,\dots,D_{K-1}^*)$.
-24	By the Frisch--Waugh--Lovell (FWL) theorem, the coefficient on $T$ satisfies:
-25	\begin{equation}
-26	  \operatorname{plim}\hat{\tau}(C)
-27	  = \frac{\mathbb{E}[\tilde{T}\,\tilde{Y}]}{\mathbb{E}[\tilde{T}^2]},
-28	  \label{eq:fwl}
-29	\end{equation}
-30	where $\tilde{T}=T-\mathbb{E}[T\mid A^*]$ and $\ti
-…[truncated 8484 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4828 · 2026-05-23T10:33:24.818072+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check Observation 2 claim: 20,000 random triples per K\n# verify_lambda_bound_results shows 10,000 per K for proportional regime\n# But Observation 2 says 20,000. Let's check pooled across regimes\nwith open('verify_lambda_bound_results.json') as f:\n    data = json.load(f)\n\nfor k, kdata in data['per_K'].items():\n    total = 0\n    for regime, rdata in kdata.items():\n        print(f'  {k} {regime}: n_trials={rdata[\\\"n_trials\\\"]}')\n        total += rdata['n_trials']\n    print(f'  {k} TOTAL: {total}')\n    print()\n\"\n",
-  "description": "Check total trials per K across all regimes in verify_lambda_bound"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check Observation 2 claim: 20,000 random triples per K\n# verify_lambda_bound_results shows 10,000 per K for proportional regime\n# But Observation 2 says 20,000. Let's check pooled across regimes\nwith open('verify_lambda_bound_results.json') as f:\n    data = json.load(f)\n\nfor k, kdata in data['per_K'].items():\n    total = 0\n    for regime, rdata in kdata.items():\n        print(f'  {k} {regime}: n_trials={rdata[\\\"n_trials\\\"]}')\n        total += rdata['n_trials']\n    print(f'  {k} TOTAL: {total}')\n    print()\n\"\n",
-    "description": "Check total trials per K across all regimes in verify_lambda_bound"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4829 · 2026-05-23T10:33:24.919893+00:00_
-
-  3 proportional: n_trials=10000
-  3 nonprop_sign_preserving: n_trials=6626
-  3 nonprop_sign_violating: n_trials=709
-  3 lambda_V: n_trials=10000
-  3 TOTAL: 27335
-
-  5 proportional: n_trials=10000
-  5 nonprop_sign_preserving: n_trials=7127
-  5 nonprop_sign_violating: n_trials=686
-  5 lambda_V: n_trials=10000
-  5 TOTAL: 27813
-
-  7 proportional: n_trials=10000
-  7 nonprop_sign_preserving: n_trials=7106
-  7 nonprop_sign_violating: n_trials=672
-  7 lambda_V: n_trials=10000
-  7 TOTAL: 27778
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4830 · 2026-05-23T10:33:26.575654+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && python3 -c \"\nimport numpy as np\nrng = np.random.default_rng(42)\nN_MC = 100000\nCs = np.zeros((N_MC, 3, 3))\nfor j in range(3):\n    Cs[:, :, j] = rng.dirichlet(np.ones(3), size=N_MC)\nprint('Cs shape:', Cs.shape)\nprint('Column sums (should be 1):', Cs[0].sum(axis=0))\n\"\n",
-  "description": "Generate Dirichlet matrices to validate Table 1",
-  "timeout": "30000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && python3 -c \"\nimport numpy as np\nrng = np.random.default_rng(42)\nN_MC = 100000\nCs = np.zeros((N_MC, 3, 3))\nfor j in range(3):\n    Cs[:, :, j] = rng.dirichlet(np.ones(3), size=N_MC)\nprint('Cs shape:', Cs.shape)\nprint('Column sums (should be 1):', Cs[0].sum(axis=0))\n\"\n",
-    "description": "Generate Dirichlet matrices to validate Table 1",
-    "timeout": "30000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4831 · 2026-05-23T10:33:26.778050+00:00_
-
-Cs shape: (100000, 3, 3)
-Column sums (should be 1): [1. 1. 1.]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 202
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4832 · 2026-05-23T10:33:27.180026+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('plan006/asv_empirical_results.json') as f:\n    d = json.load(f)\n\n# F1 vs bias data\nf1_bias = d['f1_vs_bias']\nprint('f1_vs_bias first entry:', json.dumps(f1_bias[0], indent=2))\nprint()\n\n# Get HumAID entries\nhumaid_f1 = [e for e in f1_bias if 'humaid' in e.get('config','').lower() or e.get('dataset','') == 'humaid']\nprint(f'HumAID f1_vs_bias entries: {len(humaid_f1)}')\nif humaid_f1:\n    f1_vals = [e.get('f1', e.get('macro_f1', None)) for e in humaid_f1 if e.get('f1') or e.get('macro_f1')]\n    print(f'F1 values: {f1_vals}')\n    if f1_vals:\n        print(f'F1 range: {min(f1_vals):.3f} - {max(f1_vals):.3f}')\n\"\n",
-  "description": "Extract F1 vs bias data from plan006 results"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\nwith open('plan006/asv_empirical_results.json') as f:\n    d = json.load(f)\n\n# F1 vs bias data\nf1_bias = d['f1_vs_bias']\nprint('f1_vs_bias first entry:', json.dumps(f1_bias[0], indent=2))\nprint()\n\n# Get HumAID entries\nhumaid_f1 = [e for e in f1_bias if 'humaid' in e.get('config','').lower() or e.get('dataset','') == 'humaid']\nprint(f'HumAID f1_vs_bias entries: {len(humaid_f1)}')\nif humaid_f1:\n    f1_vals = [e.get('f1', e.get('macro_f1', None)) for e in humaid_f1 if e.get('f1') or e.get('macro_f1')]\n    print(f'F1 values: {f1_vals}')\n    if f1_vals:\n        print(f'F1 range: {min(f1_vals):.3f} - {max(f1_vals):.3f}')\n\"\n",
-    "description": "Extract F1 vs bias data from plan006 results"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4833 · 2026-05-23T10:33:27.230795+00:00_
-
-f1_vs_bias first entry: {
-  "dataset": "humaid",
-  "model": "llama4",
-  "prompt": "zero-shot",
-  "K": 10,
-  "topology": "confounding",
-  "macro_f1": 0.6144302991883744,
-  "weighted_f1": 0.6466720766954748,
-  "abs_bias": 0.12069570526147011,
-  "bias_pct": 0.06034065176464822,
-  "sign_flip": false
-}
-
-HumAID f1_vs_bias entries: 63
-F1 values: [0.6144302991883744, 0.6144302991883744, 0.6144302991883744, 0.6144302991883744, 0.6144302991883744, 0.6144302991883744, 0.6144302991883744, 0.6157321052348829, 0.6157321052348829, 0.6157321052348829, 0.6157321052348829, 0.6157321052348829, 0.6157321052348829, 0.6157321052348829, 0.6242855183452943, 0.6242855183452943, 0.6242855183452943, 0.6242855183452943, 0.6242855183452943, 0.6242855183452943, 0.6242855183452943, 0.6776464165672691, 0.6776464165672691, 0.6776464165672691, 0.6776464165672691, 0.6776464165672691, 0.6776464165672691, 0.6776464165672691, 0.6749099031385263, 0.6749099031385263, 0.6749099031385263, 0.6749099031385263, 0.6749099031385263, 0.6749099031385263, 0.6749099031385263, 0.6896163310588191, 0.6896163310588191, 0.6896163310588191, 0.6896163310588191, 0.6896163310588191, 0.6896163310588191, 0.6896163310588191, 0.686332528254669, 0.686332528254669, 0.686332528254669, 0.686332528254669, 0.686332528254669, 0.686332528254669, 0.686332528254669, 0.6854961636228544, 0.6854961636228544, 0.6854961636228544, 0.6854961636228544, 0.6854961636228544, 0.6854961636228544, 0.6854961636228544]
-F1 range: 0.614 - 0.690
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4834 · 2026-05-23T10:33:30.722893+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-  "offset": "75",
-  "limit": "300"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py",
-    "offset": "75",
-    "limit": "300"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4835 · 2026-05-23T10:33:30.774552+00:00_
-
-75	def compute_confounding(Cs):
-76	    P_A = np.array([0.4, 0.35, 0.25])
-77	    a1, a2 = 1.5, -1.0
-78	    beta = np.array([0.0, 1.0, 1.0, -0.5])
-79	    p0, p1, p2 = P_A
-80	    n = len(Cs)
-81	
-82	    ET = a1 * p1 + a2 * p2
-83	    ET2 = a1**2 * p1 + a2**2 * p2 + 1.0
-84	    q = Cs @ P_A
-85	    ET_Ds = a1 * Cs[:, :, 1] * p1 + a2 * Cs[:, :, 2] * p2
-86	
-87	    EZZ = np.zeros((n, 4, 4))
-88	    EZZ[:, 0, 0] = 1
-89	    EZZ[:, 0, 1] = EZZ[:, 1, 0] = ET
-90	    EZZ[:, 0, 2] = EZZ[:, 2, 0] = q[:, 1]
-91	    EZZ[:, 0, 3] = EZZ[:, 3, 0] = q[:, 2]
-92	    EZZ[:, 1, 1] = ET2
-93	    EZZ[:, 1, 2] = EZZ[:, 2, 1] = ET_Ds[:, 1]
-94	    EZZ[:, 1, 3] = EZZ[:, 3, 1] = ET_Ds[:, 2]
-95	    EZZ[:, 2, 2] = q[:, 1]
-96	    EZZ[:, 3, 3] = q[:, 2]
-97	
-98	    EZX = np.zeros((n, 4, 4))
-99	    EZX[:, 0, :] = [1, ET, p1, p2]
-100	    EZX[:, 1, :] = [ET, ET2, a1 * p1, a2 * p2]
-101	    EZX[:, 2, 0] = q[:, 1]
-102	    EZX[:, 2, 1] = ET_Ds[:, 1]
-103	    EZX[:, 2, 2] = Cs[:, 1, 1] * p1
-104	    EZX[:, 2, 3] = Cs[:, 1, 2] * p2
-105	    EZX[:, 3, 0] = q[:, 2]
-106	    EZX[:, 3, 1] = ET_Ds[:, 2]
-107	    EZX[:, 3, 2] = Cs[:, 2, 1] * p1
-108	    EZX[:, 3, 3] = Cs[:, 2, 2] * p2
-109	
-110	    rhs = np.einsum('nij,j->ni', EZX, beta)
-111	    return safe_batch_solve(EZZ, rhs)[:, 1]
-112	
-113	
-114	# ═══════════════════════════════════════════════════════════════════════════════
-115	# 2. EXPOSURE: A→Y.  OLS: Y ~ 1+D*₁+D*₂.  Coeff on D*₁.
-116	# ═══════════════════════════════════════════════════════════════════════════════
-117	def compute_exposure(Cs):
-118	    P_A = np.array([0.4, 0.35, 0.25])
-119	    BETA = np.array([0.0, 1.0, -0.5])
-120	    p0, p1, p2 = P_A
-121	    n = len(Cs)
-122	
-123	    q = Cs @ P_A
-124	    EZZ = np.zeros((n, 3, 3))
-125	    EZZ[:, 0, 0] = 1
-126	    EZZ[:, 0, 1] = EZZ[:, 1, 0] = q[:, 1]
-127	    EZZ[:, 0, 2] = EZZ[:, 2, 0] = q[:, 2]
-128	    EZZ[:, 1, 1] = q[:, 1]
-129	    EZZ[:, 2, 2] = q[:, 2]
-130	
-131	    EZX = np.zeros((n, 3, 3))
-132	    EZX[:, 0, :] = [1, p1, p2]
-133	    EZX[:, 1, 0] = q[:, 1]
-134	    EZX[:, 
-…[truncated 9543 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4836 · 2026-05-23T10:33:30.876388+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "200",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "200",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4837 · 2026-05-23T10:33:30.977438+00:00_
-
-200	  &\leq \mathbb{E}\bigl[\sqrt{\operatorname{Var}(g\mid A^*)\,\operatorname{Var}(f\mid A^*)}\bigr]\\
-201	  &\leq \sqrt{\mathbb{E}[\operatorname{Var}(g\mid A^*)]\;\mathbb{E}[\operatorname{Var}(f\mid A^*)]}\\
-202	  &\leq \sqrt{\operatorname{Var}(g(A))\;\operatorname{Var}(f(A))},
-203	\end{align*}
-204	where the last step uses $\mathbb{E}[\operatorname{Var}(X\mid Y)]\leq\operatorname{Var}(X)$ (law of total variance).
-205	
-206	\emph{Step 2: Conclude.}
-207	The bias satisfies
-208	\[
-209	  |B(C)| = \frac{|R(C)|}{D(C)} \leq \frac{\sqrt{\operatorname{Var}(g)\,\operatorname{Var}(f)}}{\sigma_T^2} = \bar{B}.
-210	\]
-211	When $|\tau|>\bar{B}$, the bias cannot cancel $\tau$, so $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ for all $C$.
-212	\end{proof}
-213	
-214	\paragraph{Relationship to the omitted-variable condition.}
-215	A weaker (necessary) condition for sign preservation is $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ where $\tau_{\mathrm{OV}}=\tau+\operatorname{Cov}(g,f)/\operatorname{Var}(T)$.
-216	If this fails, then $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform noise) already flips the sign.
-217	The rigorous sufficient condition $|\tau|>\bar{B}$ implies the weaker condition, since $|B_{\mathrm{OV}}|=|\operatorname{Cov}(g,f)|/\operatorname{Var}(T)\leq\bar{B}$ by Cauchy--Schwarz and $\operatorname{Var}(T)\geq\sigma_T^2$.
-218	
-219	\paragraph{Verification for paper parameters ($K{=}3$).}
-220	With $\tau{=}2.0$, $\boldsymbol{\alpha}{=}(1.5,{-}1.0)$, $\boldsymbol{\beta}^{(A)}{=}(1.0,{-}0.5)$, $\sigma_T{=}1.0$, $\mathbf{p}{=}(0.40,0.35,0.25)$:
-221	\begin{align*}
-222	  \operatorname{Var}(g) &= \sum_k p_k\alpha_k^2 - \bigl(\textstyle\sum_k p_k\alpha_k\bigr)^2 = 0.962,\\
-223	  \operatorname{Var}(f) &= \sum_k p_k(\beta_k^{(A)})^2 - \bigl(\textstyle\sum_k p_k\beta_k^{(A)}\bigr)^2 = 0.362,\\
-224	  \bar{B} &= \sqrt{0.962\times 0.362}\;/\;1.0^2 = 0.590.
-225	\end{align*}
-226	Since $|\tau|{=}2.0 > \bar{B}{=}0.590$, sign preservation 
-…[truncated 12542 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4838 · 2026-05-23T10:33:34.846751+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "85\\%",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "85\\%",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4839 · 2026-05-23T10:33:35.349247+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4840 · 2026-05-23T10:33:35.901757+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "13\\.7",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "13\\.7",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4841 · 2026-05-23T10:33:36.403919+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:18:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:969:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1007:[Omitted long matching line]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4842 · 2026-05-23T10:33:36.554861+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "11\\.9",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "11\\.9",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4843 · 2026-05-23T10:33:36.605458+00:00_
+_source line 4799 · 2026-05-23T10:33:36.605458+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:18:[Omitted long matching line]
 
@@ -2219,7 +30,7 @@ _source line 4843 · 2026-05-23T10:33:36.605458+00:00_
 
 ### Tool call
 
-_source line 4844 · 2026-05-23T10:33:39.517314+00:00_
+_source line 4800 · 2026-05-23T10:33:39.517314+00:00_
 
 called Bash
 
@@ -2255,7 +66,7 @@ called Bash
 
 ### Tool call
 
-_source line 4845 · 2026-05-23T10:33:39.769533+00:00_
+_source line 4801 · 2026-05-23T10:33:39.769533+00:00_
 
 called Bash
 
@@ -2291,7 +102,7 @@ called Bash
 
 ### Tool result
 
-_source line 4846 · 2026-05-23T10:33:39.921643+00:00_
+_source line 4802 · 2026-05-23T10:33:39.921643+00:00_
 
 === Primary Coefficient Breakdown ===
 ratio=1.0: n_diag_pass=69
@@ -2342,7 +153,7 @@ Primary flip rates (diag>=0.7): [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 ### Tool call
 
-_source line 4847 · 2026-05-23T10:33:40.324863+00:00_
+_source line 4803 · 2026-05-23T10:33:40.324863+00:00_
 
 called Read
 
@@ -2380,7 +191,7 @@ called Read
 
 ### Tool result
 
-_source line 4848 · 2026-05-23T10:33:40.376061+00:00_
+_source line 4804 · 2026-05-23T10:33:40.376061+00:00_
 
 400	\emph{Step 2: Reduce the numerator.}
 401	Since $f=\lambda g$:
@@ -2437,7 +248,7 @@ _source line 4848 · 2026-05-23T10:33:40.376061+00:00_
 
 ### Tool result
 
-_source line 4849 · 2026-05-23T10:33:40.829763+00:00_
+_source line 4805 · 2026-05-23T10:33:40.829763+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -2464,7 +275,7 @@ TypeError: bad operand type for abs(): 'NoneType'
 
 ### Tool call
 
-_source line 4850 · 2026-05-23T10:33:41.031011+00:00_
+_source line 4806 · 2026-05-23T10:33:41.031011+00:00_
 
 called Grep
 
@@ -2502,7 +313,7 @@ called Grep
 
 ### Tool result
 
-_source line 4851 · 2026-05-23T10:33:41.985343+00:00_
+_source line 4807 · 2026-05-23T10:33:41.985343+00:00_
 
 18:[Omitted long matching line]
 36:Exposure & 85\% & 83.4\% & 14.1\% & No \\
@@ -2525,7 +336,7 @@ _source line 4851 · 2026-05-23T10:33:41.985343+00:00_
 
 ### Tool call
 
-_source line 4852 · 2026-05-23T10:33:42.236867+00:00_
+_source line 4808 · 2026-05-23T10:33:42.236867+00:00_
 
 called Grep
 
@@ -2563,7 +374,7 @@ called Grep
 
 ### Tool result
 
-_source line 4853 · 2026-05-23T10:33:42.287594+00:00_
+_source line 4809 · 2026-05-23T10:33:42.287594+00:00_
 
 18:[Omitted long matching line]
 
@@ -2585,7 +396,7 @@ _source line 4853 · 2026-05-23T10:33:42.287594+00:00_
 
 ### Tool call
 
-_source line 4854 · 2026-05-23T10:33:44.949382+00:00_
+_source line 4810 · 2026-05-23T10:33:44.949382+00:00_
 
 called Read
 
@@ -2623,7 +434,7 @@ called Read
 
 ### Tool result
 
-_source line 4855 · 2026-05-23T10:33:45.000013+00:00_
+_source line 4811 · 2026-05-23T10:33:45.000013+00:00_
 
 17	\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
 18	Under realistic LLM accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal; even at diagonal $\geq 0.9$, violation persists at 11.9\%. Under the full Dirichlet$(1,1,1)$ prior, 85\% of $K{=}3$ confusion matrices violate the binary ``toward-null'' guarantee, and 83.4\% cause sign reversal of at least one coefficient. The $K{=}2$ control confirms that all tested binary matrices maintain classical attenuation~\cite{brenner1993}, establishing that the multi-class failure is structurally distinct.
@@ -2647,7 +458,7 @@ _source line 4855 · 2026-05-23T10:33:45.000013+00:00_
 
 ### Tool call
 
-_source line 4856 · 2026-05-23T10:33:50.472357+00:00_
+_source line 4812 · 2026-05-23T10:33:50.472357+00:00_
 
 called Grep
 
@@ -2685,7 +496,7 @@ called Grep
 
 ### Tool result
 
-_source line 4857 · 2026-05-23T10:33:50.924542+00:00_
+_source line 4813 · 2026-05-23T10:33:50.924542+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1053:Exposure & 0.937 & [0.602, 1.363] & 907 \\
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1054:IV & 0.754 & [0.435, 1.290] & 902 \\
@@ -2708,7 +519,7 @@ _source line 4857 · 2026-05-23T10:33:50.924542+00:00_
 
 ### Tool call
 
-_source line 4858 · 2026-05-23T10:33:51.477026+00:00_
+_source line 4814 · 2026-05-23T10:33:51.477026+00:00_
 
 called Grep
 
@@ -2746,7 +557,7 @@ called Grep
 
 ### Tool result
 
-_source line 4859 · 2026-05-23T10:33:51.979616+00:00_
+_source line 4815 · 2026-05-23T10:33:51.979616+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:69:Of all $K{-}1$ exposure coefficients, 14/23 configurations (61\%) exhibit sign reversal---all in secondary coefficients (Numerical Verification~2); zero across 138 non-exposure scenarios. ASV diagnostics flag 55.4\% of HumAID and 100\% of CivilComments as magnitude-unsafe (Appendix~\ref{sec:asv_diagnostics}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1076:For HumAID ($K{=}10$, 56 scenarios), 55.4\% are flagged as magnitude-ASV-unsafe---IV, mediation, front-door, and exposure all trigger, while confounding, collider, and M-bias remain below 10\% bias (Figure~\ref{fig:asv_heatmap}). For CivilComments ($K{=}2$), 100\% of scenarios are ASV-unsafe despite $F_1$ ranging from $0.69$ (7B) to $0.82$ (frontier).
@@ -2770,7 +581,7 @@ _source line 4859 · 2026-05-23T10:33:51.979616+00:00_
 
 ### Tool call
 
-_source line 4860 · 2026-05-23T10:33:52.431980+00:00_
+_source line 4816 · 2026-05-23T10:33:52.431980+00:00_
 
 called Grep
 
@@ -2808,7 +619,7 @@ called Grep
 
 ### Tool result
 
-_source line 4861 · 2026-05-23T10:33:52.482950+00:00_
+_source line 4817 · 2026-05-23T10:33:52.482950+00:00_
 
 No matches found
 
@@ -2830,7 +641,7 @@ No matches found
 
 ### Tool call
 
-_source line 4862 · 2026-05-23T10:33:53.988987+00:00_
+_source line 4818 · 2026-05-23T10:33:53.988987+00:00_
 
 called Bash
 
@@ -2866,7 +677,7 @@ called Bash
 
 ### Tool result
 
-_source line 4863 · 2026-05-23T10:33:55.043832+00:00_
+_source line 4819 · 2026-05-23T10:33:55.043832+00:00_
 
 None bias_pct: {'dataset': 'humaid', 'model': 'qwen3', 'prompt': 'few-shot-5', 'K': 10, 'topology': 'confounding', 'macro_f1': 0.0, 'weighted_f1': 0.0, 'abs_bias': None, 'bias_pct': None, 'sign_flip': False}
 None bias_pct: {'dataset': 'humaid', 'model': 'qwen3', 'prompt': 'few-shot-5', 'K': 10, 'topology': 'mediation', 'macro_f1': 0.0, 'weighted_f1': 0.0, 'abs_bias': None, 'bias_pct': None, 'sign_flip': False}
@@ -2897,7 +708,7 @@ Spearman rho=-0.1620, p=0.2329
 
 ### Tool call
 
-_source line 4864 · 2026-05-23T10:33:55.395505+00:00_
+_source line 4820 · 2026-05-23T10:33:55.395505+00:00_
 
 called Read
 
@@ -2935,7 +746,7 @@ called Read
 
 ### Tool result
 
-_source line 4865 · 2026-05-23T10:33:55.496447+00:00_
+_source line 4821 · 2026-05-23T10:33:55.496447+00:00_
 
 600	  \operatorname{plim}\hat\tau(C) = \frac{\mathbb{E}[\operatorname{Cov}(T,\,Y\mid A^*)]}{\mathbb{E}[\operatorname{Var}(T\mid A^*)]}.
 601	\]
@@ -2987,7 +798,7 @@ _source line 4865 · 2026-05-23T10:33:55.496447+00:00_
 
 ### Tool call
 
-_source line 4866 · 2026-05-23T10:34:01.519407+00:00_
+_source line 4822 · 2026-05-23T10:34:01.519407+00:00_
 
 called Bash
 
@@ -3023,7 +834,7 @@ called Bash
 
 ### Tool result
 
-_source line 4867 · 2026-05-23T10:34:01.620345+00:00_
+_source line 4823 · 2026-05-23T10:34:01.620345+00:00_
 
 14/23 = 60.9%
 K=3 MC-SIMEX grand mean: 42.7%
@@ -3071,7 +882,7 @@ MC-SIMEX positive reductions across all K:
 
 ### Tool call
 
-_source line 4868 · 2026-05-23T10:34:02.323796+00:00_
+_source line 4824 · 2026-05-23T10:34:02.323796+00:00_
 
 called Grep
 
@@ -3109,7 +920,7 @@ called Grep
 
 ### Tool result
 
-_source line 4869 · 2026-05-23T10:34:02.776189+00:00_
+_source line 4825 · 2026-05-23T10:34:02.776189+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1219:For confounding and exposure, PPI++ achieves $>$75\% RMSE reduction even at 5\% gold labels; IV requires ${\geq}20\%$ gold to reach 50\% reduction, reflecting the Wald estimator's higher variance. M-bias exhibits harmful correction at ${\leq}20\%$ gold ($-125\%$ at 5\%), because PPI++ re-exposes the M-bias pathway that annotation error had attenuated; only at ${\geq}50\%$ gold does the estimator become weakly beneficial ($+6\%$).
@@ -3134,7 +945,7 @@ _source line 4869 · 2026-05-23T10:34:02.776189+00:00_
 
 ### Tool call
 
-_source line 4870 · 2026-05-23T10:34:02.826831+00:00_
+_source line 4826 · 2026-05-23T10:34:02.826831+00:00_
 
 called Grep
 
@@ -3172,7 +983,7 @@ called Grep
 
 ### Tool result
 
-_source line 4871 · 2026-05-23T10:34:02.878365+00:00_
+_source line 4827 · 2026-05-23T10:34:02.878365+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:ClinicalBERT validation (Appendix~\ref{app:case_study}) confirms FWL invariance in clinical NLP. PPI++ requires ${\geq}20\%$ gold labels for IV but harms M-bias ($-125\%$ RMSE at 5\% gold; Appendix~\ref{sec:ppi_gold_ratio}). ASV case studies show $3{\times}$ higher error tolerance for confounder vs.\ exposure (Appendix~\ref{sec:asv_case_study}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1219:For confounding and exposure, PPI++ achieves $>$75\% RMSE reduction even at 5\% gold labels; IV requires ${\geq}20\%$ gold to reach 50\% reduction, reflecting the Wald estimator's higher variance. M-bias exhibits harmful correction at ${\leq}20\%$ gold ($-125\%$ at 5\%), because PPI++ re-exposes the M-bias pathway that annotation error had attenuated; only at ${\geq}50\%$ gold does the estimator become weakly beneficial ($+6\%$).
@@ -3195,7 +1006,7 @@ _source line 4871 · 2026-05-23T10:34:02.878365+00:00_
 
 ### Tool call
 
-_source line 4872 · 2026-05-23T10:34:03.581771+00:00_
+_source line 4828 · 2026-05-23T10:34:03.581771+00:00_
 
 called Grep
 
@@ -3239,7 +1050,7 @@ called Grep
 
 ### Tool call
 
-_source line 4873 · 2026-05-23T10:34:03.933572+00:00_
+_source line 4829 · 2026-05-23T10:34:03.933572+00:00_
 
 called Read
 
@@ -3277,7 +1088,7 @@ called Read
 
 ### Tool result
 
-_source line 4874 · 2026-05-23T10:34:04.084687+00:00_
+_source line 4830 · 2026-05-23T10:34:04.084687+00:00_
 
 No matches found
 
@@ -3299,7 +1110,7 @@ No matches found
 
 ### Tool result
 
-_source line 4875 · 2026-05-23T10:34:04.135438+00:00_
+_source line 4831 · 2026-05-23T10:34:04.135438+00:00_
 
 800	\caption{Empirical LLM confusion matrices overlaid on theoretical violation-rate curves (exposure, left; IV, right). Theoretical curves are derived from $K{=}3$ Dirichlet random matrices; empirical points are positioned at their minimum diagonal entry. Markers denote datasets (circles: HumAID $K{=}10$; squares: VAST $K{=}3$; triangles: CivilComments $K{=}2$).}
 801	\label{fig:dirichlet_overlay}
@@ -3351,7 +1162,7 @@ _source line 4875 · 2026-05-23T10:34:04.135438+00:00_
 
 ### Tool call
 
-_source line 4876 · 2026-05-23T10:34:04.537547+00:00_
+_source line 4832 · 2026-05-23T10:34:04.537547+00:00_
 
 called Grep
 
@@ -3393,7 +1204,7 @@ called Grep
 
 ### Tool result
 
-_source line 4877 · 2026-05-23T10:34:04.588313+00:00_
+_source line 4833 · 2026-05-23T10:34:04.588313+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py:359:                    for e in data['f1_vs_bias'] if e['macro_f1'] == 0}
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity.py:352:    rho_3v5, pval_3v5 = stats.spearmanr(rank_k3, rank_k5)
@@ -3427,7 +1238,7 @@ _source line 4877 · 2026-05-23T10:34:04.588313+00:00_
 
 ### Tool call
 
-_source line 4878 · 2026-05-23T10:34:07.248700+00:00_
+_source line 4834 · 2026-05-23T10:34:07.248700+00:00_
 
 called Grep
 
@@ -3465,7 +1276,7 @@ called Grep
 
 ### Tool call
 
-_source line 4879 · 2026-05-23T10:34:09.972680+00:00_
+_source line 4835 · 2026-05-23T10:34:09.972680+00:00_
 
 called Read
 
@@ -3503,7 +1314,7 @@ called Read
 
 ### Tool result
 
-_source line 4880 · 2026-05-23T10:34:10.073389+00:00_
+_source line 4836 · 2026-05-23T10:34:10.073389+00:00_
 
 1000	0.20 & 9.7 & 23.7 & 32.6 \\
 1001	0.30 & 15.5 & 28.7 & 42.8 \\
@@ -3541,7 +1352,7 @@ _source line 4880 · 2026-05-23T10:34:10.073389+00:00_
 
 ### Tool call
 
-_source line 4881 · 2026-05-23T10:34:10.577385+00:00_
+_source line 4837 · 2026-05-23T10:34:10.577385+00:00_
 
 called Grep
 
@@ -3583,7 +1394,7 @@ called Grep
 
 ### Tool result
 
-_source line 4882 · 2026-05-23T10:34:11.582215+00:00_
+_source line 4838 · 2026-05-23T10:34:11.582215+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity.py:352:    rho_3v5, pval_3v5 = stats.spearmanr(rank_k3, rank_k5)
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/correction_k_sensitivity.py:353:    rho_3v10, pval_3v10 = stats.spearmanr(rank_k3, rank_k10)
@@ -3615,7 +1426,7 @@ _source line 4882 · 2026-05-23T10:34:11.582215+00:00_
 
 ### Tool result
 
-_source line 4883 · 2026-05-23T10:34:11.783923+00:00_
+_source line 4839 · 2026-05-23T10:34:11.783923+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:ClinicalBERT validation (Appendix~\ref{app:case_study}) confirms FWL invariance in clinical NLP. PPI++ requires ${\geq}20\%$ gold labels for IV but harms M-bias ($-125\%$ RMSE at 5\% gold; Appendix~\ref{sec:ppi_gold_ratio}). ASV case studies show $3{\times}$ higher error tolerance for confounder vs.\ exposure (Appendix~\ref{sec:asv_case_study}).
@@ -3640,7 +1451,7 @@ _source line 4883 · 2026-05-23T10:34:11.783923+00:00_
 
 ### Tool call
 
-_source line 4884 · 2026-05-23T10:34:12.290518+00:00_
+_source line 4840 · 2026-05-23T10:34:12.290518+00:00_
 
 called Grep
 
@@ -3682,7 +1493,7 @@ called Grep
 
 ### Tool result
 
-_source line 4885 · 2026-05-23T10:34:12.645888+00:00_
+_source line 4841 · 2026-05-23T10:34:12.645888+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/experiments.tex:62:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper/experiments.tex:84:Mediation & 0.076--0.454 & 0\% & --- & 4 \\
@@ -3716,7 +1527,7 @@ _source line 4885 · 2026-05-23T10:34:12.645888+00:00_
 
 ### Tool call
 
-_source line 4886 · 2026-05-23T10:34:12.698371+00:00_
+_source line 4842 · 2026-05-23T10:34:12.698371+00:00_
 
 called Grep
 
@@ -3754,7 +1565,7 @@ called Grep
 
 ### Tool result
 
-_source line 4887 · 2026-05-23T10:34:13.102517+00:00_
+_source line 4843 · 2026-05-23T10:34:13.102517+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:At $\tau{=}0.05$, significance ASV achieves 100\% power for confounding, front-door, and M-bias, but 0\% for mediation, collider, and IV (correct behavior; Type~I error is 0\%). Sign-flip ASV: 83.4\% of exposure matrices yield $\tau_{\text{sign\_flip}} < 1$; IV ranges 1.1--6.7. The complete ranking (Figure~\ref{fig:asv_ranking}, Table~\ref{tab:asv_grid}, Appendix~\ref{app:supplementary}) confirms IV as maximally fragile and M-bias as immune (ASV $= \infty$).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:[Omitted long matching line]
@@ -3784,7 +1595,7 @@ _source line 4887 · 2026-05-23T10:34:13.102517+00:00_
 
 ### Tool call
 
-_source line 4888 · 2026-05-23T10:34:15.965491+00:00_
+_source line 4844 · 2026-05-23T10:34:15.965491+00:00_
 
 called Read
 
@@ -3822,7 +1633,7 @@ called Read
 
 ### Tool result
 
-_source line 4889 · 2026-05-23T10:34:16.016515+00:00_
+_source line 4845 · 2026-05-23T10:34:16.016515+00:00_
 
 1198	
 1199	We test PPI++ correction performance as a function of gold label fraction ($K{=}3$, $N{=}10{,}000$, 100 MC replications, 5 Dirichlet confusion matrices with $\min_k C_{kk}{\geq}0.6$).
@@ -3871,7 +1682,7 @@ _source line 4889 · 2026-05-23T10:34:16.016515+00:00_
 
 ### Tool call
 
-_source line 4890 · 2026-05-23T10:34:18.124626+00:00_
+_source line 4846 · 2026-05-23T10:34:18.124626+00:00_
 
 called Grep
 
@@ -3911,7 +1722,7 @@ called Grep
 
 ### Tool result
 
-_source line 4891 · 2026-05-23T10:34:18.175237+00:00_
+_source line 4847 · 2026-05-23T10:34:18.175237+00:00_
 
 1214-M-bias & $-$125.3 & $-$43.6 & $-$19.6 & $+$6.0 & $+$18.5 \\
 1215-\bottomrule
@@ -3943,7 +1754,7 @@ _source line 4891 · 2026-05-23T10:34:18.175237+00:00_
 
 ### Tool call
 
-_source line 4892 · 2026-05-23T10:34:18.276120+00:00_
+_source line 4848 · 2026-05-23T10:34:18.276120+00:00_
 
 called Bash
 
@@ -3979,7 +1790,7 @@ called Bash
 
 ### Tool result
 
-_source line 4893 · 2026-05-23T10:34:18.377022+00:00_
+_source line 4849 · 2026-05-23T10:34:18.377022+00:00_
 
 plan007 MC-SIMEX grand mean rmse_reduction: 13.3
 plan007 MC-SIMEX by topology (rmse_reduction):
@@ -4018,7 +1829,7 @@ PPI++ IV results by gold fraction:
 
 ### Tool call
 
-_source line 4894 · 2026-05-23T10:34:21.086442+00:00_
+_source line 4850 · 2026-05-23T10:34:21.086442+00:00_
 
 called Glob
 
@@ -4054,7 +1865,7 @@ called Glob
 
 ### Tool result
 
-_source line 4895 · 2026-05-23T10:34:21.187339+00:00_
+_source line 4851 · 2026-05-23T10:34:21.187339+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/best/experiment_data.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/median/experiment_data.json
@@ -4091,7 +1902,7 @@ _source line 4895 · 2026-05-23T10:34:21.187339+00:00_
 
 ### Tool call
 
-_source line 4896 · 2026-05-23T10:34:22.141420+00:00_
+_source line 4852 · 2026-05-23T10:34:22.141420+00:00_
 
 called Grep
 
@@ -4133,7 +1944,7 @@ called Grep
 
 ### Tool result
 
-_source line 4897 · 2026-05-23T10:34:22.292543+00:00_
+_source line 4853 · 2026-05-23T10:34:22.292543+00:00_
 
 2-\label{app:proof}
 3-
@@ -4182,7 +1993,7 @@ _source line 4897 · 2026-05-23T10:34:22.292543+00:00_
 
 ### Tool call
 
-_source line 4898 · 2026-05-23T10:34:26.910270+00:00_
+_source line 4854 · 2026-05-23T10:34:26.910270+00:00_
 
 called Read
 
@@ -4218,7 +2029,7 @@ called Read
 
 ### Tool result
 
-_source line 4899 · 2026-05-23T10:34:26.960919+00:00_
+_source line 4855 · 2026-05-23T10:34:26.960919+00:00_
 
 1	{
 2	  "experiment": "nondiff_stress_test",
@@ -4313,7 +2124,7 @@ _source line 4899 · 2026-05-23T10:34:26.960919+00:00_
 
 ### Tool call
 
-_source line 4900 · 2026-05-23T10:34:27.312734+00:00_
+_source line 4856 · 2026-05-23T10:34:27.312734+00:00_
 
 called Bash
 
@@ -4349,7 +2160,7 @@ called Bash
 
 ### Tool result
 
-_source line 4901 · 2026-05-23T10:34:27.413524+00:00_
+_source line 4857 · 2026-05-23T10:34:27.413524+00:00_
 
 5 x 7 x 6 = 210
 
@@ -4371,7 +2182,7 @@ _source line 4901 · 2026-05-23T10:34:27.413524+00:00_
 
 ### Tool call
 
-_source line 4902 · 2026-05-23T10:34:28.166862+00:00_
+_source line 4858 · 2026-05-23T10:34:28.166862+00:00_
 
 called Grep
 
@@ -4411,7 +2222,7 @@ called Grep
 
 ### Tool result
 
-_source line 4903 · 2026-05-23T10:34:28.217494+00:00_
+_source line 4859 · 2026-05-23T10:34:28.217494+00:00_
 
 833-Exposure & $-$44.8 & $-$89.0 & $-$59.5 & \underline{$-$9.8} & \textbf{75.5} \\
 834-IV & $-$40.4 & $-$58.7 & $-$206.1 & \underline{59.4} & \textbf{79.4} \\
@@ -4439,7 +2250,7 @@ _source line 4903 · 2026-05-23T10:34:28.217494+00:00_
 
 ### Tool call
 
-_source line 4904 · 2026-05-23T10:34:30.078969+00:00_
+_source line 4860 · 2026-05-23T10:34:30.078969+00:00_
 
 called Grep
 
@@ -4479,7 +2290,7 @@ called Grep
 
 ### Tool result
 
-_source line 4905 · 2026-05-23T10:34:30.631462+00:00_
+_source line 4861 · 2026-05-23T10:34:30.631462+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py
@@ -4502,7 +2313,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 4906 · 2026-05-23T10:34:30.933041+00:00_
+_source line 4862 · 2026-05-23T10:34:30.933041+00:00_
 
 called Glob
 
@@ -4538,7 +2349,7 @@ called Glob
 
 ### Tool call
 
-_source line 4907 · 2026-05-23T10:34:30.983703+00:00_
+_source line 4863 · 2026-05-23T10:34:30.983703+00:00_
 
 called Glob
 
@@ -4574,7 +2385,7 @@ called Glob
 
 ### Tool result
 
-_source line 4908 · 2026-05-23T10:34:31.034426+00:00_
+_source line 4864 · 2026-05-23T10:34:31.034426+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig5_f1_vs_bias.pdf
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig5_f1_vs_bias.png
@@ -4597,7 +2408,7 @@ _source line 4908 · 2026-05-23T10:34:31.034426+00:00_
 
 ### Tool result
 
-_source line 4909 · 2026-05-23T10:34:31.034812+00:00_
+_source line 4865 · 2026-05-23T10:34:31.034812+00:00_
 
 No files found
 
@@ -4619,7 +2430,7 @@ No files found
 
 ### Tool call
 
-_source line 4910 · 2026-05-23T10:34:31.436655+00:00_
+_source line 4866 · 2026-05-23T10:34:31.436655+00:00_
 
 called Glob
 
@@ -4655,7 +2466,7 @@ called Glob
 
 ### Tool result
 
-_source line 4911 · 2026-05-23T10:34:31.888913+00:00_
+_source line 4867 · 2026-05-23T10:34:31.888913+00:00_
 
 No files found
 
@@ -4677,7 +2488,7 @@ No files found
 
 ### Tool call
 
-_source line 4912 · 2026-05-23T10:34:31.889314+00:00_
+_source line 4868 · 2026-05-23T10:34:31.889314+00:00_
 
 called Glob
 
@@ -4713,7 +2524,7 @@ called Glob
 
 ### Tool result
 
-_source line 4913 · 2026-05-23T10:34:31.939737+00:00_
+_source line 4869 · 2026-05-23T10:34:31.939737+00:00_
 
 No files found
 
@@ -4735,7 +2546,7 @@ No files found
 
 ### Tool call
 
-_source line 4914 · 2026-05-23T10:34:34.903221+00:00_
+_source line 4870 · 2026-05-23T10:34:34.903221+00:00_
 
 called Glob
 
@@ -4771,7 +2582,7 @@ called Glob
 
 ### Tool result
 
-_source line 4915 · 2026-05-23T10:34:34.953921+00:00_
+_source line 4871 · 2026-05-23T10:34:34.953921+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_a_stress_test_results.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_c_bootstrap_results.json
@@ -4804,7 +2615,7 @@ _source line 4915 · 2026-05-23T10:34:34.953921+00:00_
 
 ### Tool call
 
-_source line 4916 · 2026-05-23T10:34:35.607750+00:00_
+_source line 4872 · 2026-05-23T10:34:35.607750+00:00_
 
 called Read
 
@@ -4842,7 +2653,7 @@ called Read
 
 ### Tool result
 
-_source line 4917 · 2026-05-23T10:34:35.608123+00:00_
+_source line 4873 · 2026-05-23T10:34:35.608123+00:00_
 
 820	\caption{RMSE reduction (\%) by correction method and DAG topology (mean across 6 error structures, $N_{\text{sim}}{=}1{,}000$). Positive = reduced RMSE; negative = increased RMSE. Naive/MLA show 0.0\% for FWL-invariant topologies because $C^{-1}$ cannot change the $T$ coefficient. \textbf{Bold}: best method per topology; \underline{underline}: best gold-free method.}
 821	\label{tab:correction}
@@ -4888,7 +2699,7 @@ _source line 4917 · 2026-05-23T10:34:35.608123+00:00_
 
 ### Tool call
 
-_source line 4918 · 2026-05-23T10:34:36.612546+00:00_
+_source line 4874 · 2026-05-23T10:34:36.612546+00:00_
 
 called Grep
 
@@ -4928,7 +2739,7 @@ called Grep
 
 ### Tool result
 
-_source line 4919 · 2026-05-23T10:34:36.663321+00:00_
+_source line 4875 · 2026-05-23T10:34:36.663321+00:00_
 
 7:  fig5_f1_vs_bias.pdf / .png  — F1 vs downstream bias scatter (HumAID only)
 25:                for e in data['f1_vs_bias'] if e['macro_f1'] == 0}
@@ -4954,7 +2765,7 @@ _source line 4919 · 2026-05-23T10:34:36.663321+00:00_
 
 ### Tool call
 
-_source line 4920 · 2026-05-23T10:34:40.088546+00:00_
+_source line 4876 · 2026-05-23T10:34:40.088546+00:00_
 
 called Read
 
@@ -4988,7 +2799,7 @@ called Read
 
 ### Tool result
 
-_source line 4921 · 2026-05-23T10:34:40.139801+00:00_
+_source line 4877 · 2026-05-23T10:34:40.139801+00:00_
 
 1	"""Generate diagnostic plots for §4.6 empirical validation.
 2	
@@ -5065,7 +2876,7 @@ _source line 4921 · 2026-05-23T10:34:40.139801+00:00_
 
 ### Tool call
 
-_source line 4922 · 2026-05-23T10:34:44.359584+00:00_
+_source line 4878 · 2026-05-23T10:34:44.359584+00:00_
 
 called Read
 
@@ -5103,7 +2914,7 @@ called Read
 
 ### Tool result
 
-_source line 4923 · 2026-05-23T10:34:44.410337+00:00_
+_source line 4879 · 2026-05-23T10:34:44.410337+00:00_
 
 80	      "method": "mc_differential"
 81	    },
@@ -5152,7 +2963,7 @@ _source line 4923 · 2026-05-23T10:34:44.410337+00:00_
 
 ### Tool call
 
-_source line 4924 · 2026-05-23T10:34:45.665796+00:00_
+_source line 4880 · 2026-05-23T10:34:45.665796+00:00_
 
 called Bash
 
@@ -5190,7 +3001,7 @@ called Bash
 
 ### Tool call
 
-_source line 4925 · 2026-05-23T10:34:47.826412+00:00_
+_source line 4881 · 2026-05-23T10:34:47.826412+00:00_
 
 called Read
 
@@ -5226,7 +3037,7 @@ called Read
 
 ### Tool result
 
-_source line 4926 · 2026-05-23T10:34:47.877293+00:00_
+_source line 4882 · 2026-05-23T10:34:47.877293+00:00_
 
 1	{
 2	  "method": "analytic_plim",
@@ -5317,7 +3128,7 @@ _source line 4926 · 2026-05-23T10:34:47.877293+00:00_
 
 ### Tool call
 
-_source line 4927 · 2026-05-23T10:34:48.683413+00:00_
+_source line 4883 · 2026-05-23T10:34:48.683413+00:00_
 
 called Grep
 
@@ -5355,7 +3166,7 @@ called Grep
 
 ### Tool result
 
-_source line 4928 · 2026-05-23T10:34:49.085560+00:00_
+_source line 4884 · 2026-05-23T10:34:49.085560+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.log:812:0.95 62.4%). Rank-ings
@@ -5379,7 +3190,7 @@ _source line 4928 · 2026-05-23T10:34:49.085560+00:00_
 
 ### Tool result
 
-_source line 4929 · 2026-05-23T10:34:49.492404+00:00_
+_source line 4885 · 2026-05-23T10:34:49.492404+00:00_
 
 Computing collider...
 Computing mbias...
@@ -5414,7 +3225,7 @@ Exposure (diag>=0.7): n=65, violation=100.0%, sign_flip=1.5%
 
 ### Tool call
 
-_source line 4930 · 2026-05-23T10:34:49.643534+00:00_
+_source line 4886 · 2026-05-23T10:34:49.643534+00:00_
 
 called Grep
 
@@ -5452,7 +3263,7 @@ called Grep
 
 ### Tool result
 
-_source line 4931 · 2026-05-23T10:34:49.995353+00:00_
+_source line 4887 · 2026-05-23T10:34:49.995353+00:00_
 
 69:Of all $K{-}1$ exposure coefficients, 14/23 configurations (61\%) exhibit sign reversal---all in secondary coefficients (Numerical Verification~2); zero across 138 non-exposure scenarios. ASV diagnostics flag 55.4\% of HumAID and 100\% of CivilComments as magnitude-unsafe (Appendix~\ref{sec:asv_diagnostics}).
 
@@ -5474,7 +3285,7 @@ _source line 4931 · 2026-05-23T10:34:49.995353+00:00_
 
 ### Tool call
 
-_source line 4932 · 2026-05-23T10:34:50.196451+00:00_
+_source line 4888 · 2026-05-23T10:34:50.196451+00:00_
 
 called Grep
 
@@ -5512,7 +3323,7 @@ called Grep
 
 ### Tool result
 
-_source line 4933 · 2026-05-23T10:34:50.247061+00:00_
+_source line 4889 · 2026-05-23T10:34:50.247061+00:00_
 
 8:[Omitted long matching line]
 
@@ -5534,7 +3345,7 @@ _source line 4933 · 2026-05-23T10:34:50.247061+00:00_
 
 ### Tool call
 
-_source line 4934 · 2026-05-23T10:34:53.157489+00:00_
+_source line 4890 · 2026-05-23T10:34:53.157489+00:00_
 
 called Read
 
@@ -5572,7 +3383,7 @@ called Read
 
 ### Tool result
 
-_source line 4935 · 2026-05-23T10:34:53.208248+00:00_
+_source line 4891 · 2026-05-23T10:34:53.208248+00:00_
 
 100	      },
 101	      "K7": {
@@ -5661,7 +3472,7 @@ _source line 4935 · 2026-05-23T10:34:53.208248+00:00_
 
 ### Tool call
 
-_source line 4936 · 2026-05-23T10:34:54.512546+00:00_
+_source line 4892 · 2026-05-23T10:34:54.512546+00:00_
 
 called Grep
 
@@ -5699,7 +3510,7 @@ called Grep
 
 ### Tool result
 
-_source line 4937 · 2026-05-23T10:34:54.613453+00:00_
+_source line 4893 · 2026-05-23T10:34:54.613453+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:15:Analytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\% across 161 scenarios (23 LLM configurations $\times$ 7 topologies, $N{=}10{,}000$). Per-topology MAPE ranges from 0.3\% (confounding) to 3.7\% (IV); the IV maximum reflects the Wald estimator's small-denominator variance amplification.
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:64:We validate using real LLM confusion matrices from HumAID~\cite{alam2021humaid} ($K{=}10$), VAST ($K{=}3$), and CivilComments ($K{=}2$), with four LLMs producing 23 configurations under zero-shot and few-shot prompting (161 bias scenarios).
@@ -5731,7 +3542,7 @@ _source line 4937 · 2026-05-23T10:34:54.613453+00:00_
 
 ### Tool call
 
-_source line 4938 · 2026-05-23T10:34:56.018874+00:00_
+_source line 4894 · 2026-05-23T10:34:56.018874+00:00_
 
 called Bash
 
@@ -5767,7 +3578,7 @@ called Bash
 
 ### Tool result
 
-_source line 4939 · 2026-05-23T10:34:56.170094+00:00_
+_source line 4895 · 2026-05-23T10:34:56.170094+00:00_
 
 Valid configs: 8: {('deepseek', 'few-shot-3'), ('deepseek', 'zero-shot'), ('deepseek', 'few-shot-5'), ('llama4', 'few-shot-3'), ('llama4', 'few-shot-5'), ('llama4', 'zero-shot'), ('qwen3', 'few-shot-3'), ('qwen3', 'zero-shot')}
 Valid entries: 56 (should be 56 = 8 configs * 7 topos)
@@ -5801,7 +3612,7 @@ Overall HumAID unsafe: 31/56 (55.4%)
 
 ### Tool call
 
-_source line 4940 · 2026-05-23T10:34:58.735345+00:00_
+_source line 4896 · 2026-05-23T10:34:58.735345+00:00_
 
 called Read
 
@@ -5837,7 +3648,7 @@ called Read
 
 ### Tool result
 
-_source line 4941 · 2026-05-23T10:34:58.836102+00:00_
+_source line 4897 · 2026-05-23T10:34:58.836102+00:00_
 
 1	{
 2	  "topology": "iv",
@@ -5938,7 +3749,7 @@ _source line 4941 · 2026-05-23T10:34:58.836102+00:00_
 
 ### Tool call
 
-_source line 4942 · 2026-05-23T10:35:00.192541+00:00_
+_source line 4898 · 2026-05-23T10:35:00.192541+00:00_
 
 called Bash
 
@@ -5974,7 +3785,7 @@ called Bash
 
 ### Tool result
 
-_source line 4943 · 2026-05-23T10:35:00.294647+00:00_
+_source line 4899 · 2026-05-23T10:35:00.294647+00:00_
 
 n_configs: 100000
 exact_proportional sign_failure_rate: 0.008466245360617915
@@ -6002,7 +3813,7 @@ for confounding, mediation, front-door, collider, M-bias
 
 ### Tool call
 
-_source line 4944 · 2026-05-23T10:35:01.349959+00:00_
+_source line 4900 · 2026-05-23T10:35:01.349959+00:00_
 
 called Grep
 
@@ -6040,7 +3851,7 @@ called Grep
 
 ### Tool result
 
-_source line 4945 · 2026-05-23T10:35:01.752095+00:00_
+_source line 4901 · 2026-05-23T10:35:01.752095+00:00_
 
 28:\caption{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). $\tau_{\text{sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Yes$^*$; Proposition~\ref{prop:signflip}), or not (No). Amplif.\ denotes $|\hat{\tau}(A^*)| > |\tau|$. For collider, 100\% amplification reflects Berkson bias from conditioning, not error amplification---misclassification is protective ($|B(A^*)| \leq |B(A)|$; Section~\ref{sec:method}).}
 74:\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times}$ (IV 42.1\% vs.\ collider $<$5.6\%).}
@@ -6063,7 +3874,7 @@ _source line 4945 · 2026-05-23T10:35:01.752095+00:00_
 
 ### Tool call
 
-_source line 4946 · 2026-05-23T10:35:02.204351+00:00_
+_source line 4902 · 2026-05-23T10:35:02.204351+00:00_
 
 called Grep
 
@@ -6101,7 +3912,7 @@ called Grep
 
 ### Tool result
 
-_source line 4947 · 2026-05-23T10:35:02.204890+00:00_
+_source line 4903 · 2026-05-23T10:35:02.204890+00:00_
 
 No matches found
 
@@ -6123,7 +3934,7 @@ No matches found
 
 ### Tool call
 
-_source line 4948 · 2026-05-23T10:35:03.814633+00:00_
+_source line 4904 · 2026-05-23T10:35:03.814633+00:00_
 
 called Read
 
@@ -6161,7 +3972,7 @@ called Read
 
 ### Tool result
 
-_source line 4949 · 2026-05-23T10:35:03.815013+00:00_
+_source line 4905 · 2026-05-23T10:35:03.815013+00:00_
 
 80	          0.005032940532749807
 81	        ],
@@ -6255,7 +4066,7 @@ _source line 4949 · 2026-05-23T10:35:03.815013+00:00_
 
 ### Tool call
 
-_source line 4950 · 2026-05-23T10:35:05.678426+00:00_
+_source line 4906 · 2026-05-23T10:35:05.678426+00:00_
 
 called Grep
 
@@ -6293,7 +4104,7 @@ called Grep
 
 ### Tool result
 
-_source line 4951 · 2026-05-23T10:35:05.829795+00:00_
+_source line 4907 · 2026-05-23T10:35:05.829795+00:00_
 
 51:where $\lambda(C) \in [0,1]$ under proportional effects (Appendix~\ref{app:proof}, Proposition~\ref{prop:lambda_bound}), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
 88:[Omitted long matching line]
@@ -6316,7 +4127,7 @@ _source line 4951 · 2026-05-23T10:35:05.829795+00:00_
 
 ### Tool call
 
-_source line 4952 · 2026-05-23T10:35:07.702860+00:00_
+_source line 4908 · 2026-05-23T10:35:07.702860+00:00_
 
 called Read
 
@@ -6352,7 +4163,7 @@ called Read
 
 ### Tool result
 
-_source line 4953 · 2026-05-23T10:35:07.753613+00:00_
+_source line 4909 · 2026-05-23T10:35:07.753613+00:00_
 
 1	{
 2	  "per_K": {
@@ -6435,7 +4246,7 @@ _source line 4953 · 2026-05-23T10:35:07.753613+00:00_
 
 ### Tool call
 
-_source line 4954 · 2026-05-23T10:35:08.908084+00:00_
+_source line 4910 · 2026-05-23T10:35:08.908084+00:00_
 
 called Grep
 
@@ -6473,7 +4284,7 @@ called Grep
 
 ### Tool result
 
-_source line 4955 · 2026-05-23T10:35:08.958806+00:00_
+_source line 4911 · 2026-05-23T10:35:08.958806+00:00_
 
 No matches found
 
@@ -6495,7 +4306,7 @@ No matches found
 
 ### Tool call
 
-_source line 4956 · 2026-05-23T10:35:09.676766+00:00_
+_source line 4912 · 2026-05-23T10:35:09.676766+00:00_
 
 called Grep
 
@@ -6533,7 +4344,7 @@ called Grep
 
 ### Tool result
 
-_source line 4957 · 2026-05-23T10:35:10.097267+00:00_
+_source line 4913 · 2026-05-23T10:35:10.097267+00:00_
 
 No matches found
 
@@ -6555,7 +4366,7 @@ No matches found
 
 ### Tool call
 
-_source line 4958 · 2026-05-23T10:35:10.208500+00:00_
+_source line 4914 · 2026-05-23T10:35:10.208500+00:00_
 
 called Grep
 
@@ -6593,7 +4404,7 @@ called Grep
 
 ### Tool result
 
-_source line 4959 · 2026-05-23T10:35:10.268707+00:00_
+_source line 4915 · 2026-05-23T10:35:10.268707+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.fls:329:INPUT /home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:74:\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times}$ (IV 42.1\% vs.\ collider $<$5.6\%).}
@@ -6624,7 +4435,7 @@ _source line 4959 · 2026-05-23T10:35:10.268707+00:00_
 
 ### Tool call
 
-_source line 4960 · 2026-05-23T10:35:12.039284+00:00_
+_source line 4916 · 2026-05-23T10:35:12.039284+00:00_
 
 called Grep
 
@@ -6662,7 +4473,7 @@ called Grep
 
 ### Tool result
 
-_source line 4961 · 2026-05-23T10:35:12.089850+00:00_
+_source line 4917 · 2026-05-23T10:35:12.089850+00:00_
 
 No matches found
 
@@ -6684,7 +4495,7 @@ No matches found
 
 ### Tool call
 
-_source line 4962 · 2026-05-23T10:35:13.647357+00:00_
+_source line 4918 · 2026-05-23T10:35:13.647357+00:00_
 
 called Read
 
@@ -6722,7 +4533,7 @@ called Read
 
 ### Tool result
 
-_source line 4963 · 2026-05-23T10:35:13.699406+00:00_
+_source line 4919 · 2026-05-23T10:35:13.699406+00:00_
 
 100	        "p99": 0.44461854977618886
 101	      }
@@ -6804,7 +4615,7 @@ _source line 4963 · 2026-05-23T10:35:13.699406+00:00_
 
 ### Tool call
 
-_source line 4964 · 2026-05-23T10:35:15.358485+00:00_
+_source line 4920 · 2026-05-23T10:35:15.358485+00:00_
 
 called Bash
 
@@ -6840,7 +4651,7 @@ called Bash
 
 ### Tool result
 
-_source line 4965 · 2026-05-23T10:35:15.409242+00:00_
+_source line 4921 · 2026-05-23T10:35:15.409242+00:00_
 
 (Bash completed with no output)
 
@@ -6862,7 +4673,7 @@ _source line 4965 · 2026-05-23T10:35:15.409242+00:00_
 
 ### Tool call
 
-_source line 4966 · 2026-05-23T10:35:17.215822+00:00_
+_source line 4922 · 2026-05-23T10:35:17.215822+00:00_
 
 called Grep
 
@@ -6900,7 +4711,7 @@ called Grep
 
 ### Tool result
 
-_source line 4967 · 2026-05-23T10:35:17.216203+00:00_
+_source line 4923 · 2026-05-23T10:35:17.216203+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:978:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex:8:[Omitted long matching line]
@@ -6923,7 +4734,7 @@ _source line 4967 · 2026-05-23T10:35:17.216203+00:00_
 
 ### Tool call
 
-_source line 4968 · 2026-05-23T10:35:17.519831+00:00_
+_source line 4924 · 2026-05-23T10:35:17.519831+00:00_
 
 called Bash
 
@@ -6959,7 +4770,7 @@ called Bash
 
 ### Tool result
 
-_source line 4969 · 2026-05-23T10:35:18.625560+00:00_
+_source line 4925 · 2026-05-23T10:35:18.625560+00:00_
 
 HumAID entries: 56
 plan006 Spearman: rho=-0.1620, p=0.2329
@@ -6992,7 +4803,7 @@ plan006 Spearman (abs_bias): rho=-0.1027, p=0.4513
 
 ### Tool call
 
-_source line 4970 · 2026-05-23T10:35:19.078258+00:00_
+_source line 4926 · 2026-05-23T10:35:19.078258+00:00_
 
 called Grep
 
@@ -7030,7 +4841,7 @@ called Grep
 
 ### Tool result
 
-_source line 4971 · 2026-05-23T10:35:19.128823+00:00_
+_source line 4927 · 2026-05-23T10:35:19.128823+00:00_
 
 18:[Omitted long matching line]
 36:Exposure & 85\% & 83.4\% & 14.1\% & No \\
@@ -7053,7 +4864,7 @@ _source line 4971 · 2026-05-23T10:35:19.128823+00:00_
 
 ### Tool call
 
-_source line 4972 · 2026-05-23T10:35:19.329742+00:00_
+_source line 4928 · 2026-05-23T10:35:19.329742+00:00_
 
 called Read
 
@@ -7089,7 +4900,7 @@ called Read
 
 ### Tool result
 
-_source line 4973 · 2026-05-23T10:35:19.380380+00:00_
+_source line 4929 · 2026-05-23T10:35:19.380380+00:00_
 
 1	{
 2	  "metadata": {
@@ -7174,7 +4985,7 @@ _source line 4973 · 2026-05-23T10:35:19.380380+00:00_
 
 ### Tool call
 
-_source line 4974 · 2026-05-23T10:35:20.334469+00:00_
+_source line 4930 · 2026-05-23T10:35:20.334469+00:00_
 
 called Read
 
@@ -7212,7 +5023,7 @@ called Read
 
 ### Tool result
 
-_source line 4975 · 2026-05-23T10:35:20.385183+00:00_
+_source line 4931 · 2026-05-23T10:35:20.385183+00:00_
 
 975	
 976	To provide empirical support beyond the design argument, we examine topic-stratified confusion matrices using the VAST dataset ($K{=}3$, stance detection), where the \texttt{topic} field (e.g., ``gun control,'' ``college'') serves as a proxy for latent factors correlated with $Y$. Across 10 model configurations (3 LLMs $\times$ 2--4 prompt types) and 19 qualifying topics (minimum 10 samples per topic), we compute per-topic confusion matrices $C_{\text{topic}}(t) = P(A^*{=}j \mid A{=}k, \text{topic}{=}t)$ and compare against the overall $C = P(A^*{=}j \mid A{=}k)$.
@@ -7241,7 +5052,7 @@ _source line 4975 · 2026-05-23T10:35:20.385183+00:00_
 
 ### Tool call
 
-_source line 4976 · 2026-05-23T10:35:23.300226+00:00_
+_source line 4932 · 2026-05-23T10:35:23.300226+00:00_
 
 called Grep
 
@@ -7279,7 +5090,7 @@ called Grep
 
 ### Tool result
 
-_source line 4977 · 2026-05-23T10:35:23.350983+00:00_
+_source line 4933 · 2026-05-23T10:35:23.350983+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:28:\caption{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). $\tau_{\text{sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Yes$^*$; Proposition~\ref{prop:signflip}), or not (No). Amplif.\ denotes $|\hat{\tau}(A^*)| > |\tau|$. For collider, 100\% amplification reflects Berkson bias from conditioning, not error amplification---misclassification is protective ($|B(A^*)| \leq |B(A)|$; Section~\ref{sec:method}).}
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:85:[Omitted long matching line]
@@ -7309,7 +5120,7 @@ _source line 4977 · 2026-05-23T10:35:23.350983+00:00_
 
 ### Tool call
 
-_source line 4978 · 2026-05-23T10:35:24.454792+00:00_
+_source line 4934 · 2026-05-23T10:35:24.454792+00:00_
 
 called Read
 
@@ -7347,7 +5158,7 @@ called Read
 
 ### Tool result
 
-_source line 4979 · 2026-05-23T10:35:24.505345+00:00_
+_source line 4935 · 2026-05-23T10:35:24.505345+00:00_
 
 80	    {
 81	      "degree": "near_proportional_sigma_0.5",
@@ -7422,7 +5233,7 @@ _source line 4979 · 2026-05-23T10:35:24.505345+00:00_
 
 ### Tool call
 
-_source line 4980 · 2026-05-23T10:35:26.815350+00:00_
+_source line 4936 · 2026-05-23T10:35:26.815350+00:00_
 
 called Read
 
@@ -7460,7 +5271,7 @@ called Read
 
 ### Tool result
 
-_source line 4981 · 2026-05-23T10:35:26.866007+00:00_
+_source line 4937 · 2026-05-23T10:35:26.866007+00:00_
 
 1020	We replace the linear structural equations with $Y \sim \text{Bernoulli}(\sigma(\mathbf{x}^\top\boldsymbol{\beta}))$ and estimate via logistic regression (control function for IV) for all seven topologies, using $K{=}3$, six real VAST confusion matrices, 500 MC replications, and $N{=}10{,}000$. Mean sign-flip rates across the six CMs:
 1021	
@@ -7507,7 +5318,7 @@ _source line 4981 · 2026-05-23T10:35:26.866007+00:00_
 
 ### Tool call
 
-_source line 4982 · 2026-05-23T10:35:28.069960+00:00_
+_source line 4938 · 2026-05-23T10:35:28.069960+00:00_
 
 called Grep
 
@@ -7545,7 +5356,7 @@ called Grep
 
 ### Tool result
 
-_source line 4983 · 2026-05-23T10:35:28.121182+00:00_
+_source line 4939 · 2026-05-23T10:35:28.121182+00:00_
 
 67:HumAID ($K{=}10$) matches predictions: IV (12.4--42.1\%) and exposure (9.0--17.4\%) dominate; remaining topologies $<$15\%. Bias varies substantially across $K$: VAST ($K{=}3$) IV reaches 326\% versus 42\% for HumAID. Across all 56 HumAID scenarios ($K{=}10$), $F_1$ and $|\text{bias}|$ show no significant rank correlation (Spearman $\rho = -0.10$, 95\% CI $[-0.36, 0.17]$, $p = 0.45$; power to detect $|\rho| \geq 0.3$: 0.57; Figure~\ref{fig:f1_vs_bias}).
 74:\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times}$ (IV 42.1\% vs.\ collider $<$5.6\%).}
@@ -7568,7 +5379,7 @@ _source line 4983 · 2026-05-23T10:35:28.121182+00:00_
 
 ### Tool call
 
-_source line 4984 · 2026-05-23T10:35:32.949415+00:00_
+_source line 4940 · 2026-05-23T10:35:32.949415+00:00_
 
 called Bash
 
@@ -7604,7 +5415,7 @@ called Bash
 
 ### Tool call
 
-_source line 4985 · 2026-05-23T10:35:33.805595+00:00_
+_source line 4941 · 2026-05-23T10:35:33.805595+00:00_
 
 called Read
 
@@ -7640,7 +5451,7 @@ called Read
 
 ### Tool result
 
-_source line 4986 · 2026-05-23T10:35:33.907369+00:00_
+_source line 4942 · 2026-05-23T10:35:33.907369+00:00_
 
 1	{
 2	  "proportional": {
@@ -7729,7 +5540,7 @@ _source line 4986 · 2026-05-23T10:35:33.907369+00:00_
 
 ### Tool call
 
-_source line 4987 · 2026-05-23T10:35:36.320975+00:00_
+_source line 4943 · 2026-05-23T10:35:36.320975+00:00_
 
 called Grep
 
@@ -7767,7 +5578,7 @@ called Grep
 
 ### Tool result
 
-_source line 4988 · 2026-05-23T10:35:39.139576+00:00_
+_source line 4944 · 2026-05-23T10:35:39.139576+00:00_
 
 97:For non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$, $|B(C(\delta))|$ is monotonic up to $\varepsilon = 0.06$ deviations across all tested configurations (collider/M-bias non-increasing, others non-decreasing). Verified across 30{,}000 random matrices per topology, $K \in \{3,5,7\}$, $\tau \in \{0.1, 0.5, 1.0, 2.0, 5.0\}$; per-topology bounds in Appendix~\ref{sec:conjecture_verify}.
 102:[Omitted long matching line]
@@ -7790,7 +5601,7 @@ _source line 4988 · 2026-05-23T10:35:39.139576+00:00_
 
 ### Tool call
 
-_source line 4989 · 2026-05-23T10:35:39.694925+00:00_
+_source line 4945 · 2026-05-23T10:35:39.694925+00:00_
 
 called Grep
 
@@ -7828,7 +5639,7 @@ called Grep
 
 ### Tool result
 
-_source line 4990 · 2026-05-23T10:35:39.745671+00:00_
+_source line 4946 · 2026-05-23T10:35:39.745671+00:00_
 
 52:The ASV envelope is $\varepsilon$-approximately monotonic for non-IV topologies ($\varepsilon < 0.06$; Conjecture~\ref{conj:monotone}), confirming $\delta$ as a meaningful severity dial. IV is excluded due to first-stage singularities.
 53:Table~\ref{tab:asv_grid} reports magnitude ASV ranges at $\tau{=}0.5$ with a 10\% bias threshold, ranking from most fragile to most robust: front-door (0.064--0.387) $<$ mediation $<$ confounding $<$ IV (0.101--0.607) $<$ collider (0.338--2.028) $<$ M-bias ($\infty$). M-bias achieves infinite ASV because annotation error only reduces the already-small spurious path.
@@ -7851,7 +5662,7 @@ _source line 4990 · 2026-05-23T10:35:39.745671+00:00_
 
 ### Tool call
 
-_source line 4991 · 2026-05-23T10:35:39.997852+00:00_
+_source line 4947 · 2026-05-23T10:35:39.997852+00:00_
 
 called Read
 
@@ -7889,7 +5700,7 @@ called Read
 
 ### Tool result
 
-_source line 4992 · 2026-05-23T10:35:40.050400+00:00_
+_source line 4948 · 2026-05-23T10:35:40.050400+00:00_
 
 80	        "mean": 0.2787137656884362,
 81	        "median": 0.2426073827145277,
@@ -7973,7 +5784,7 @@ _source line 4992 · 2026-05-23T10:35:40.050400+00:00_
 
 ### Tool result
 
-_source line 4993 · 2026-05-23T10:35:40.708802+00:00_
+_source line 4949 · 2026-05-23T10:35:40.708802+00:00_
 
 Spearman rho=-0.1027, p=0.4513
 95% CI: [-0.37, 0.17]
@@ -7997,7 +5808,7 @@ Power to detect |rho|>=0.3: 0.62
 
 ### Tool call
 
-_source line 4994 · 2026-05-23T10:35:41.114038+00:00_
+_source line 4950 · 2026-05-23T10:35:41.114038+00:00_
 
 called Bash
 
@@ -8033,7 +5844,7 @@ called Bash
 
 ### Tool result
 
-_source line 4995 · 2026-05-23T10:35:41.217519+00:00_
+_source line 4951 · 2026-05-23T10:35:41.217519+00:00_
 
 IV gold sensitivity:
   gold=0.05: rmse_reduction=1.4%, effective=True
@@ -8063,7 +5874,7 @@ So >= 20% is the threshold for *substantial* correction, not for any positive co
 
 ### Tool call
 
-_source line 4996 · 2026-05-23T10:35:45.396631+00:00_
+_source line 4952 · 2026-05-23T10:35:45.396631+00:00_
 
 called Read
 
@@ -8099,7 +5910,7 @@ called Read
 
 ### Tool result
 
-_source line 4997 · 2026-05-23T10:35:45.447304+00:00_
+_source line 4953 · 2026-05-23T10:35:45.447304+00:00_
 
 1	{
 2	  "meta": {
@@ -8200,7 +6011,7 @@ _source line 4997 · 2026-05-23T10:35:45.447304+00:00_
 
 ### Tool call
 
-_source line 4998 · 2026-05-23T10:35:47.961518+00:00_
+_source line 4954 · 2026-05-23T10:35:47.961518+00:00_
 
 called Grep
 
@@ -8238,7 +6049,7 @@ called Grep
 
 ### Tool result
 
-_source line 4999 · 2026-05-23T10:35:48.313884+00:00_
+_source line 4955 · 2026-05-23T10:35:48.313884+00:00_
 
 53:Table~\ref{tab:asv_grid} reports magnitude ASV ranges at $\tau{=}0.5$ with a 10\% bias threshold, ranking from most fragile to most robust: front-door (0.064--0.387) $<$ mediation $<$ confounding $<$ IV (0.101--0.607) $<$ collider (0.338--2.028) $<$ M-bias ($\infty$). M-bias achieves infinite ASV because annotation error only reduces the already-small spurious path.
 56:At $\tau{=}0.05$, significance ASV achieves 100\% power for confounding, front-door, and M-bias, but 0\% for mediation, collider, and IV (correct behavior; Type~I error is 0\%). Sign-flip ASV: 83.4\% of exposure matrices yield $\tau_{\text{sign\_flip}} < 1$; IV ranges 1.1--6.7. The complete ranking (Figure~\ref{fig:asv_ranking}, Table~\ref{tab:asv_grid}, Appendix~\ref{app:supplementary}) confirms IV as maximally fragile and M-bias as immune (ASV $= \infty$).
@@ -8264,7 +6075,7 @@ _source line 4999 · 2026-05-23T10:35:48.313884+00:00_
 
 ### Tool call
 
-_source line 5000 · 2026-05-23T10:35:48.868548+00:00_
+_source line 4956 · 2026-05-23T10:35:48.868548+00:00_
 
 called Grep
 
@@ -8302,7 +6113,7 @@ called Grep
 
 ### Tool call
 
-_source line 5001 · 2026-05-23T10:35:49.121054+00:00_
+_source line 4957 · 2026-05-23T10:35:49.121054+00:00_
 
 called Bash
 
@@ -8338,7 +6149,7 @@ called Bash
 
 ### Tool result
 
-_source line 5002 · 2026-05-23T10:35:49.171754+00:00_
+_source line 4958 · 2026-05-23T10:35:49.171754+00:00_
 
 Non-IV worst violation magnitudes:
   confounding K3: worst=0.010868
@@ -8381,7 +6192,7 @@ Claim epsilon < 0.06: True
 
 ### Tool result
 
-_source line 5003 · 2026-05-23T10:35:49.423124+00:00_
+_source line 4959 · 2026-05-23T10:35:49.423124+00:00_
 
 2:[Omitted long matching line]
 
@@ -8403,7 +6214,7 @@ _source line 5003 · 2026-05-23T10:35:49.423124+00:00_
 
 ### Tool call
 
-_source line 5004 · 2026-05-23T10:35:49.875318+00:00_
+_source line 4960 · 2026-05-23T10:35:49.875318+00:00_
 
 called Grep
 
@@ -8441,7 +6252,7 @@ called Grep
 
 ### Tool result
 
-_source line 5005 · 2026-05-23T10:35:49.976226+00:00_
+_source line 4961 · 2026-05-23T10:35:49.976226+00:00_
 
 4:We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.
 8:[Omitted long matching line]
@@ -8464,7 +6275,7 @@ _source line 5005 · 2026-05-23T10:35:49.976226+00:00_
 
 ### Tool call
 
-_source line 5006 · 2026-05-23T10:35:50.829638+00:00_
+_source line 4962 · 2026-05-23T10:35:50.829638+00:00_
 
 called Read
 
@@ -8502,7 +6313,7 @@ called Read
 
 ### Tool result
 
-_source line 5007 · 2026-05-23T10:35:50.880309+00:00_
+_source line 4963 · 2026-05-23T10:35:50.880309+00:00_
 
 80	      "frontdoor": {
 81	        "ppi": 82.91,
@@ -8606,7 +6417,7 @@ _source line 5007 · 2026-05-23T10:35:50.880309+00:00_
 
 ### Tool call
 
-_source line 5008 · 2026-05-23T10:35:58.577892+00:00_
+_source line 4964 · 2026-05-23T10:35:58.577892+00:00_
 
 called Read
 
@@ -8642,7 +6453,7 @@ called Read
 
 ### Tool result
 
-_source line 5009 · 2026-05-23T10:35:58.687115+00:00_
+_source line 4965 · 2026-05-23T10:35:58.687115+00:00_
 
 1	{
 2	  "meta": {
@@ -8744,7 +6555,7 @@ _source line 5009 · 2026-05-23T10:35:58.687115+00:00_
 
 ### Tool call
 
-_source line 5010 · 2026-05-23T10:35:59.190553+00:00_
+_source line 4966 · 2026-05-23T10:35:59.190553+00:00_
 
 called Bash
 
@@ -8780,7 +6591,7 @@ called Bash
 
 ### Tool result
 
-_source line 5011 · 2026-05-23T10:35:59.292606+00:00_
+_source line 4967 · 2026-05-23T10:35:59.292606+00:00_
 
 Sign preservation rates across real matrix DGP conditions:
   proportional/lambda_0.5: 100.00%
@@ -8810,7 +6621,7 @@ Sign preservation rates across real matrix DGP conditions:
 
 ### Tool call
 
-_source line 5012 · 2026-05-23T10:36:00.396730+00:00_
+_source line 4968 · 2026-05-23T10:36:00.396730+00:00_
 
 called Grep
 
@@ -8848,7 +6659,7 @@ called Grep
 
 ### Tool result
 
-_source line 5013 · 2026-05-23T10:36:00.397073+00:00_
+_source line 4969 · 2026-05-23T10:36:00.397073+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex:2:[Omitted long matching line]
 
@@ -8870,7 +6681,7 @@ _source line 5013 · 2026-05-23T10:36:00.397073+00:00_
 
 ### Tool call
 
-_source line 5014 · 2026-05-23T10:36:02.555632+00:00_
+_source line 4970 · 2026-05-23T10:36:02.555632+00:00_
 
 called Read
 
@@ -8908,7 +6719,7 @@ called Read
 
 ### Tool result
 
-_source line 5015 · 2026-05-23T10:36:02.556251+00:00_
+_source line 4971 · 2026-05-23T10:36:02.556251+00:00_
 
 80	        "ci_width": 0.1231135752353314,
 81	        "n_valid": 1000,
@@ -8989,7 +6800,7 @@ _source line 5015 · 2026-05-23T10:36:02.556251+00:00_
 
 ### Tool call
 
-_source line 5016 · 2026-05-23T10:36:06.630297+00:00_
+_source line 4972 · 2026-05-23T10:36:06.630297+00:00_
 
 called Bash
 
@@ -9027,7 +6838,7 @@ called Bash
 
 ### Tool call
 
-_source line 5017 · 2026-05-23T10:36:06.783644+00:00_
+_source line 4973 · 2026-05-23T10:36:06.783644+00:00_
 
 called Read
 
@@ -9063,7 +6874,7 @@ called Read
 
 ### Tool result
 
-_source line 5018 · 2026-05-23T10:36:06.884481+00:00_
+_source line 4974 · 2026-05-23T10:36:06.884481+00:00_
 
 1	{
 2	  "meta": {
@@ -9164,7 +6975,7 @@ _source line 5018 · 2026-05-23T10:36:06.884481+00:00_
 
 ### Tool call
 
-_source line 5019 · 2026-05-23T10:36:08.395426+00:00_
+_source line 4975 · 2026-05-23T10:36:08.395426+00:00_
 
 called Grep
 
@@ -9202,7 +7013,7 @@ called Grep
 
 ### Tool result
 
-_source line 5020 · 2026-05-23T10:36:09.001018+00:00_
+_source line 4976 · 2026-05-23T10:36:09.001018+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.log:1635:<../../figures/paper/fig3_asv_ranking.pdf, id=1046, 696.81705pt x 386.71475pt>
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:873:        \STATE $M \gets \text{PPI++}$ \COMMENT{47.0\% RMSE red., 96.8\% coverage}
@@ -9225,7 +7036,7 @@ _source line 5020 · 2026-05-23T10:36:09.001018+00:00_
 
 ### Tool call
 
-_source line 5021 · 2026-05-23T10:36:09.404868+00:00_
+_source line 4977 · 2026-05-23T10:36:09.404868+00:00_
 
 called Grep
 
@@ -9263,7 +7074,7 @@ called Grep
 
 ### Tool result
 
-_source line 5022 · 2026-05-23T10:36:09.455561+00:00_
+_source line 4978 · 2026-05-23T10:36:09.455561+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:67:HumAID ($K{=}10$) matches predictions: IV (12.4--42.1\%) and exposure (9.0--17.4\%) dominate; remaining topologies $<$15\%. Bias varies substantially across $K$: VAST ($K{=}3$) IV reaches 326\% versus 42\% for HumAID. Across all 56 HumAID scenarios ($K{=}10$), $F_1$ and $|\text{bias}|$ show no significant rank correlation (Spearman $\rho = -0.10$, 95\% CI $[-0.36, 0.17]$, $p = 0.45$; power to detect $|\rho| \geq 0.3$: 0.57; Figure~\ref{fig:f1_vs_bias}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.bbl:370:\newblock \href {https://doi.org/10.7326/M16-2607} {Sensitivity analysis in
@@ -9296,7 +7107,7 @@ _source line 5022 · 2026-05-23T10:36:09.455561+00:00_
 
 ### Tool call
 
-_source line 5023 · 2026-05-23T10:36:10.412021+00:00_
+_source line 4979 · 2026-05-23T10:36:10.412021+00:00_
 
 called Grep
 
@@ -9334,7 +7145,7 @@ called Grep
 
 ### Tool result
 
-_source line 5024 · 2026-05-23T10:36:10.512860+00:00_
+_source line 4980 · 2026-05-23T10:36:10.512860+00:00_
 
 Collider: tau_causal=1.0, tau_cond_true=0.8869
   plim_col range: [0.8992, 1.0128], mean=0.9835
@@ -9376,7 +7187,7 @@ Front-door: tau_causal=?, tau_cond_true=0.2496
 
 ### Tool result
 
-_source line 5025 · 2026-05-23T10:36:11.312464+00:00_
+_source line 4981 · 2026-05-23T10:36:11.312464+00:00_
 
 15:Analytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\% across 161 scenarios (23 LLM configurations $\times$ 7 topologies, $N{=}10{,}000$). Per-topology MAPE ranges from 0.3\% (confounding) to 3.7\% (IV); the IV maximum reflects the Wald estimator's small-denominator variance amplification.
 18:[Omitted long matching line]
@@ -9399,7 +7210,7 @@ _source line 5025 · 2026-05-23T10:36:11.312464+00:00_
 
 ### Tool call
 
-_source line 5026 · 2026-05-23T10:36:11.423490+00:00_
+_source line 4982 · 2026-05-23T10:36:11.423490+00:00_
 
 called Grep
 
@@ -9437,7 +7248,7 @@ called Grep
 
 ### Tool result
 
-_source line 5027 · 2026-05-23T10:36:11.552055+00:00_
+_source line 4983 · 2026-05-23T10:36:11.552055+00:00_
 
 No matches found
 
@@ -9459,7 +7270,7 @@ No matches found
 
 ### Tool call
 
-_source line 5028 · 2026-05-23T10:36:13.329432+00:00_
+_source line 4984 · 2026-05-23T10:36:13.329432+00:00_
 
 called Bash
 
@@ -9495,7 +7306,7 @@ called Bash
 
 ### Tool call
 
-_source line 5029 · 2026-05-23T10:36:14.085226+00:00_
+_source line 4985 · 2026-05-23T10:36:14.085226+00:00_
 
 called Bash
 
@@ -9531,7 +7342,7 @@ called Bash
 
 ### Tool result
 
-_source line 5030 · 2026-05-23T10:36:14.340900+00:00_
+_source line 4986 · 2026-05-23T10:36:14.340900+00:00_
 
 K=3:
   proportional: 10000
@@ -9572,7 +7383,7 @@ Checking if proportional + lambda_V = 20,000...
 
 ### Tool call
 
-_source line 5031 · 2026-05-23T10:36:14.645486+00:00_
+_source line 4987 · 2026-05-23T10:36:14.645486+00:00_
 
 called Read
 
@@ -9610,7 +7421,7 @@ called Read
 
 ### Tool result
 
-_source line 5032 · 2026-05-23T10:36:14.748495+00:00_
+_source line 4988 · 2026-05-23T10:36:14.748495+00:00_
 
 80	        0.10899921106151322,
 81	        0.9192323513966418
@@ -9691,7 +7502,7 @@ _source line 5032 · 2026-05-23T10:36:14.748495+00:00_
 
 ### Tool result
 
-_source line 5033 · 2026-05-23T10:36:15.200366+00:00_
+_source line 4989 · 2026-05-23T10:36:15.200366+00:00_
 
 ncp = 2.2533
 Power (two-sided, |rho|>=0.3): 0.6154
@@ -9721,7 +7532,7 @@ Power exact = 0.6154
 
 ### Tool call
 
-_source line 5034 · 2026-05-23T10:36:19.327664+00:00_
+_source line 4990 · 2026-05-23T10:36:19.327664+00:00_
 
 called Read
 
@@ -9759,7 +7570,7 @@ called Read
 
 ### Tool result
 
-_source line 5035 · 2026-05-23T10:36:19.379216+00:00_
+_source line 4991 · 2026-05-23T10:36:19.379216+00:00_
 
 140	        "naive_rmse": 0.36074669237035345,
 141	        "ppi_rmse": 0.0466212757071508,
@@ -9833,7 +7644,7 @@ _source line 5035 · 2026-05-23T10:36:19.379216+00:00_
 
 ### Tool call
 
-_source line 5036 · 2026-05-23T10:36:21.142925+00:00_
+_source line 4992 · 2026-05-23T10:36:21.142925+00:00_
 
 called Grep
 
@@ -9875,7 +7686,7 @@ called Grep
 
 ### Tool result
 
-_source line 5037 · 2026-05-23T10:36:21.243470+00:00_
+_source line 4993 · 2026-05-23T10:36:21.243470+00:00_
 
 No matches found
 
@@ -9897,7 +7708,7 @@ No matches found
 
 ### Tool call
 
-_source line 5038 · 2026-05-23T10:36:23.958413+00:00_
+_source line 4994 · 2026-05-23T10:36:23.958413+00:00_
 
 called Read
 
@@ -9935,7 +7746,7 @@ called Read
 
 ### Tool result
 
-_source line 5039 · 2026-05-23T10:36:24.059370+00:00_
+_source line 4995 · 2026-05-23T10:36:24.059370+00:00_
 
 1225	
 1226	\begin{table}[h]
@@ -9980,7 +7791,7 @@ _source line 5039 · 2026-05-23T10:36:24.059370+00:00_
 
 ### Tool call
 
-_source line 5040 · 2026-05-23T10:36:25.163777+00:00_
+_source line 4996 · 2026-05-23T10:36:25.163777+00:00_
 
 called Grep
 
@@ -10020,7 +7831,7 @@ called Grep
 
 ### Tool result
 
-_source line 5041 · 2026-05-23T10:36:25.215904+00:00_
+_source line 4997 · 2026-05-23T10:36:25.215904+00:00_
 
 Found 7 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_topic_stratified.py
@@ -10049,7 +7860,7 @@ Found 7 files
 
 ### Tool call
 
-_source line 5042 · 2026-05-23T10:36:25.268374+00:00_
+_source line 4998 · 2026-05-23T10:36:25.268374+00:00_
 
 called Bash
 
@@ -10085,7 +7896,7 @@ called Bash
 
 ### Tool result
 
-_source line 5043 · 2026-05-23T10:36:26.325133+00:00_
+_source line 4999 · 2026-05-23T10:36:26.325133+00:00_
 
 n=8: power=0.1064
 n=16: power=0.2004
@@ -10113,7 +7924,7 @@ n=56: power=0.6154
 
 ### Tool call
 
-_source line 5044 · 2026-05-23T10:36:26.927508+00:00_
+_source line 5000 · 2026-05-23T10:36:26.927508+00:00_
 
 called Read
 
@@ -10151,7 +7962,7 @@ called Read
 
 ### Tool result
 
-_source line 5045 · 2026-05-23T10:36:27.028337+00:00_
+_source line 5001 · 2026-05-23T10:36:27.028337+00:00_
 
 260	    },
 261	    "mediation": {
@@ -10228,7 +8039,7 @@ _source line 5045 · 2026-05-23T10:36:27.028337+00:00_
 
 ### Tool call
 
-_source line 5046 · 2026-05-23T10:36:29.693303+00:00_
+_source line 5002 · 2026-05-23T10:36:29.693303+00:00_
 
 called Grep
 
@@ -10270,7 +8081,7 @@ called Grep
 
 ### Tool call
 
-_source line 5047 · 2026-05-23T10:36:29.846485+00:00_
+_source line 5003 · 2026-05-23T10:36:29.846485+00:00_
 
 called Bash
 
@@ -10306,7 +8117,7 @@ called Bash
 
 ### Tool result
 
-_source line 5048 · 2026-05-23T10:36:29.950374+00:00_
+_source line 5004 · 2026-05-23T10:36:29.950374+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/experiment_data.json:44:            "14.1",
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/experiment_data.json:63:            "53.2",
@@ -10337,7 +8148,7 @@ _source line 5048 · 2026-05-23T10:36:29.950374+00:00_
 
 ### Tool result
 
-_source line 5049 · 2026-05-23T10:36:30.051250+00:00_
+_source line 5005 · 2026-05-23T10:36:30.051250+00:00_
 
 Proportional DGP prop_in_01 rates:
   lambda_0.5: prop_in_01=99.48%, sign_pres=100.0%
@@ -10362,7 +8173,7 @@ Proportional DGP prop_in_01 rates:
 
 ### Tool call
 
-_source line 5050 · 2026-05-23T10:36:33.217371+00:00_
+_source line 5006 · 2026-05-23T10:36:33.217371+00:00_
 
 called Read
 
@@ -10398,7 +8209,7 @@ called Read
 
 ### Tool result
 
-_source line 5051 · 2026-05-23T10:36:33.268146+00:00_
+_source line 5007 · 2026-05-23T10:36:33.268146+00:00_
 
 1	[
 2	  {
@@ -10488,7 +8299,7 @@ _source line 5051 · 2026-05-23T10:36:33.268146+00:00_
 
 ### Tool call
 
-_source line 5052 · 2026-05-23T10:36:33.619884+00:00_
+_source line 5008 · 2026-05-23T10:36:33.619884+00:00_
 
 called Grep
 
@@ -10526,7 +8337,7 @@ called Grep
 
 ### Tool result
 
-_source line 5053 · 2026-05-23T10:36:34.072012+00:00_
+_source line 5009 · 2026-05-23T10:36:34.072012+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:64:We validate using real LLM confusion matrices from HumAID~\cite{alam2021humaid} ($K{=}10$), VAST ($K{=}3$), and CivilComments ($K{=}2$), with four LLMs producing 23 configurations under zero-shot and few-shot prompting (161 bias scenarios).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:[Omitted long matching line]
@@ -10549,7 +8360,7 @@ _source line 5053 · 2026-05-23T10:36:34.072012+00:00_
 
 ### Tool call
 
-_source line 5054 · 2026-05-23T10:36:34.477398+00:00_
+_source line 5010 · 2026-05-23T10:36:34.477398+00:00_
 
 called Grep
 
@@ -10587,7 +8398,7 @@ called Grep
 
 ### Tool result
 
-_source line 5055 · 2026-05-23T10:36:34.528147+00:00_
+_source line 5011 · 2026-05-23T10:36:34.528147+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:[Omitted long matching line]
 
@@ -10609,7 +8420,7 @@ _source line 5055 · 2026-05-23T10:36:34.528147+00:00_
 
 ### Tool call
 
-_source line 5056 · 2026-05-23T10:36:35.286372+00:00_
+_source line 5012 · 2026-05-23T10:36:35.286372+00:00_
 
 called Read
 
@@ -10645,7 +8456,7 @@ called Read
 
 ### Tool result
 
-_source line 5057 · 2026-05-23T10:36:35.337044+00:00_
+_source line 5013 · 2026-05-23T10:36:35.337044+00:00_
 
 1	{
 2	  "meta": {
@@ -10726,7 +8537,7 @@ _source line 5057 · 2026-05-23T10:36:35.337044+00:00_
 
 ### Tool call
 
-_source line 5058 · 2026-05-23T10:36:37.295143+00:00_
+_source line 5014 · 2026-05-23T10:36:37.295143+00:00_
 
 called Bash
 
@@ -10762,7 +8573,7 @@ called Bash
 
 ### Tool result
 
-_source line 5059 · 2026-05-23T10:36:37.396161+00:00_
+_source line 5015 · 2026-05-23T10:36:37.396161+00:00_
 
 === Non-IV worst violations (random verification) ===
 confounding K3: worst_violation=0.010868
@@ -10805,7 +8616,7 @@ epsilon < 0.06? True
 
 ### Tool call
 
-_source line 5060 · 2026-05-23T10:36:41.262129+00:00_
+_source line 5016 · 2026-05-23T10:36:41.262129+00:00_
 
 called Read
 
@@ -10843,7 +8654,7 @@ called Read
 
 ### Tool result
 
-_source line 5061 · 2026-05-23T10:36:41.262576+00:00_
+_source line 5017 · 2026-05-23T10:36:41.262576+00:00_
 
 1104	\midrule
 1105	Confounding & 8467 & 8063 & 7892 & 0.011 & non-dec \\
@@ -10878,7 +8689,7 @@ _source line 5061 · 2026-05-23T10:36:41.262576+00:00_
 
 ### Tool call
 
-_source line 5062 · 2026-05-23T10:36:42.618466+00:00_
+_source line 5018 · 2026-05-23T10:36:42.618466+00:00_
 
 called Read
 
@@ -10914,7 +8725,7 @@ called Read
 
 ### Tool result
 
-_source line 5063 · 2026-05-23T10:36:42.719379+00:00_
+_source line 5019 · 2026-05-23T10:36:42.719379+00:00_
 
 1	"""
 2	Collider + M-bias + Instrument DAG: bias via large-sample moments + MC verification.
@@ -10985,7 +8796,7 @@ _source line 5063 · 2026-05-23T10:36:42.719379+00:00_
 
 ### Tool call
 
-_source line 5064 · 2026-05-23T10:36:42.820402+00:00_
+_source line 5020 · 2026-05-23T10:36:42.820402+00:00_
 
 called Bash
 
@@ -11021,7 +8832,7 @@ called Bash
 
 ### Tool result
 
-_source line 5065 · 2026-05-23T10:36:42.925489+00:00_
+_source line 5021 · 2026-05-23T10:36:42.925489+00:00_
 
 === Summary ===
 {
@@ -11076,7 +8887,7 @@ vast_qwen3_zero-shot: K=3, dataset=vast, safe_threshold=N/A
 
 ### Tool call
 
-_source line 5066 · 2026-05-23T10:36:50.309066+00:00_
+_source line 5022 · 2026-05-23T10:36:50.309066+00:00_
 
 called Bash
 
@@ -11112,7 +8923,7 @@ called Bash
 
 ### Tool result
 
-_source line 5067 · 2026-05-23T10:36:50.410458+00:00_
+_source line 5023 · 2026-05-23T10:36:50.410458+00:00_
 
 === Dataset Summary ===
 {}
@@ -11194,7 +9005,7 @@ _source line 5067 · 2026-05-23T10:36:50.410458+00:00_
 
 ### Tool call
 
-_source line 5068 · 2026-05-23T10:36:52.022096+00:00_
+_source line 5024 · 2026-05-23T10:36:52.022096+00:00_
 
 called Bash
 
@@ -11230,7 +9041,7 @@ called Bash
 
 ### Tool result
 
-_source line 5069 · 2026-05-23T10:36:52.126305+00:00_
+_source line 5025 · 2026-05-23T10:36:52.126305+00:00_
 
 Available topologies: ['confounding', 'exposure', 'iv']
 Per_C0 topologies: ['confounding', 'exposure', 'iv']
@@ -11257,7 +9068,7 @@ iv: mag_asv_10pct range = 0.122 - 0.607
 
 ### Tool call
 
-_source line 5070 · 2026-05-23T10:36:54.943381+00:00_
+_source line 5026 · 2026-05-23T10:36:54.943381+00:00_
 
 called Grep
 
@@ -11295,7 +9106,7 @@ called Grep
 
 ### Tool result
 
-_source line 5071 · 2026-05-23T10:36:54.994081+00:00_
+_source line 5027 · 2026-05-23T10:36:54.994081+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1116:[Omitted long matching line]
 
@@ -11317,7 +9128,7 @@ _source line 5071 · 2026-05-23T10:36:54.994081+00:00_
 
 ### Tool call
 
-_source line 5072 · 2026-05-23T10:36:56.801735+00:00_
+_source line 5028 · 2026-05-23T10:36:56.801735+00:00_
 
 called Bash
 
@@ -11353,7 +9164,7 @@ called Bash
 
 ### Tool result
 
-_source line 5073 · 2026-05-23T10:36:56.952956+00:00_
+_source line 5029 · 2026-05-23T10:36:56.952956+00:00_
 
 Max abs median logistic bias reduction (covariate): 0.006270%
   entry: mbias N=50000 err=low
@@ -11379,7 +9190,7 @@ As percentage of tau: 0.1638%
 
 ### Tool call
 
-_source line 5074 · 2026-05-23T10:36:58.460012+00:00_
+_source line 5030 · 2026-05-23T10:36:58.460012+00:00_
 
 called Grep
 
@@ -11417,7 +9228,7 @@ called Grep
 
 ### Tool result
 
-_source line 5075 · 2026-05-23T10:36:58.510752+00:00_
+_source line 5031 · 2026-05-23T10:36:58.510752+00:00_
 
 88:[Omitted long matching line]
 
@@ -11439,7 +9250,7 @@ _source line 5075 · 2026-05-23T10:36:58.510752+00:00_
 
 ### Tool call
 
-_source line 5076 · 2026-05-23T10:37:00.527404+00:00_
+_source line 5032 · 2026-05-23T10:37:00.527404+00:00_
 
 called Grep
 
@@ -11479,7 +9290,7 @@ called Grep
 
 ### Tool result
 
-_source line 5077 · 2026-05-23T10:37:01.432761+00:00_
+_source line 5033 · 2026-05-23T10:37:01.432761+00:00_
 
 Found 28 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_13.md
@@ -11517,7 +9328,7 @@ Found 28 files
 
 ### Tool call
 
-_source line 5078 · 2026-05-23T10:37:02.087378+00:00_
+_source line 5034 · 2026-05-23T10:37:02.087378+00:00_
 
 called Bash
 
@@ -11553,7 +9364,7 @@ called Bash
 
 ### Tool call
 
-_source line 5079 · 2026-05-23T10:37:02.190279+00:00_
+_source line 5035 · 2026-05-23T10:37:02.190279+00:00_
 
 called Grep
 
@@ -11593,7 +9404,7 @@ called Grep
 
 ### Tool result
 
-_source line 5080 · 2026-05-23T10:37:02.294525+00:00_
+_source line 5036 · 2026-05-23T10:37:02.294525+00:00_
 
 === nondiff_stress_test baseline (eps=0.0, K=3, diag>=0.7) ===
   violation_rate = 13.3%
@@ -11628,7 +9439,7 @@ _source line 5080 · 2026-05-23T10:37:02.294525+00:00_
 
 ### Tool result
 
-_source line 5081 · 2026-05-23T10:37:02.345314+00:00_
+_source line 5037 · 2026-05-23T10:37:02.345314+00:00_
 
 Found 92 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/chats/feishu_group_oc_ffca2972572580adcf5da6bc7a846270.jsonl
@@ -11666,7 +9477,7 @@ Found 92 files
 
 ### Tool call
 
-_source line 5082 · 2026-05-23T10:37:06.261589+00:00_
+_source line 5038 · 2026-05-23T10:37:06.261589+00:00_
 
 called Bash
 
@@ -11702,7 +9513,7 @@ called Bash
 
 ### Tool result
 
-_source line 5083 · 2026-05-23T10:37:06.362471+00:00_
+_source line 5039 · 2026-05-23T10:37:06.362471+00:00_
 
 civil_comments: n=7, eps*=0 count needs more careful check
   reversal >= 5% at eps=0.01: 0/7
@@ -11729,7 +9540,7 @@ humaid: n=8, eps*=0 count needs more careful check
 
 ### Tool call
 
-_source line 5084 · 2026-05-23T10:37:06.463525+00:00_
+_source line 5040 · 2026-05-23T10:37:06.463525+00:00_
 
 called Read
 
@@ -11767,7 +9578,7 @@ called Read
 
 ### Tool result
 
-_source line 5085 · 2026-05-23T10:37:06.564299+00:00_
+_source line 5041 · 2026-05-23T10:37:06.564299+00:00_
 
 86	\end{theorem}
 87	
@@ -11792,7 +9603,7 @@ _source line 5085 · 2026-05-23T10:37:06.564299+00:00_
 
 ### Tool call
 
-_source line 5086 · 2026-05-23T10:37:10.027050+00:00_
+_source line 5042 · 2026-05-23T10:37:10.027050+00:00_
 
 called Read
 
@@ -11830,7 +9641,7 @@ called Read
 
 ### Tool result
 
-_source line 5087 · 2026-05-23T10:37:10.027639+00:00_
+_source line 5043 · 2026-05-23T10:37:10.027639+00:00_
 
 1254	\begin{tabular}{lcccc}
 1255	\toprule
@@ -11871,7 +9682,7 @@ _source line 5087 · 2026-05-23T10:37:10.027639+00:00_
 
 ### Tool call
 
-_source line 5088 · 2026-05-23T10:37:11.036580+00:00_
+_source line 5044 · 2026-05-23T10:37:11.036580+00:00_
 
 called Bash
 
@@ -11907,7 +9718,7 @@ called Bash
 
 ### Tool result
 
-_source line 5089 · 2026-05-23T10:37:11.138498+00:00_
+_source line 5045 · 2026-05-23T10:37:11.138498+00:00_
 
 Per CM logistic differences:
   deepseek_zero-shot: mean_diff=0.000094, max_diff=0.000814, bias_red=-0.000902 (-0.0902%)
@@ -11941,7 +9752,7 @@ Mean abs logistic diff across CMs:
 
 ### Tool call
 
-_source line 5090 · 2026-05-23T10:37:12.092398+00:00_
+_source line 5046 · 2026-05-23T10:37:12.092398+00:00_
 
 called Read
 
@@ -11977,7 +9788,7 @@ called Read
 
 ### Tool result
 
-_source line 5091 · 2026-05-23T10:37:12.193249+00:00_
+_source line 5047 · 2026-05-23T10:37:12.193249+00:00_
 
 1	{
 2	  "config": {
@@ -12047,7 +9858,7 @@ _source line 5091 · 2026-05-23T10:37:12.193249+00:00_
 
 ### Tool call
 
-_source line 5092 · 2026-05-23T10:37:12.294331+00:00_
+_source line 5048 · 2026-05-23T10:37:12.294331+00:00_
 
 called Grep
 
@@ -12087,7 +9898,7 @@ called Grep
 
 ### Tool result
 
-_source line 5093 · 2026-05-23T10:37:12.344993+00:00_
+_source line 5049 · 2026-05-23T10:37:12.344993+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:53:Table~\ref{tab:asv_grid} reports magnitude ASV ranges at $\tau{=}0.5$ with a 10\% bias threshold, ranking from most fragile to most robust: front-door (0.064--0.387) $<$ mediation $<$ confounding $<$ IV (0.101--0.607) $<$ collider (0.338--2.028) $<$ M-bias ($\infty$). M-bias achieves infinite ASV because annotation error only reduces the already-small spurious path.
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:At $\tau{=}0.05$, significance ASV achieves 100\% power for confounding, front-door, and M-bias, but 0\% for mediation, collider, and IV (correct behavior; Type~I error is 0\%). Sign-flip ASV: 83.4\% of exposure matrices yield $\tau_{\text{sign\_flip}} < 1$; IV ranges 1.1--6.7. The complete ranking (Figure~\ref{fig:asv_ranking}, Table~\ref{tab:asv_grid}, Appendix~\ref{app:supplementary}) confirms IV as maximally fragile and M-bias as immune (ASV $= \infty$).
@@ -12112,7 +9923,7 @@ _source line 5093 · 2026-05-23T10:37:12.344993+00:00_
 
 ### Tool call
 
-_source line 5094 · 2026-05-23T10:37:13.000840+00:00_
+_source line 5050 · 2026-05-23T10:37:13.000840+00:00_
 
 called Grep
 
@@ -12154,7 +9965,7 @@ called Grep
 
 ### Tool result
 
-_source line 5095 · 2026-05-23T10:37:13.061348+00:00_
+_source line 5051 · 2026-05-23T10:37:13.061348+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json:192:        "mc_tau_se": 0.021949500130879453,
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json:304:        "mc_bias": 0.13748957192832578,
@@ -12189,7 +10000,7 @@ _source line 5095 · 2026-05-23T10:37:13.061348+00:00_
 
 ### Tool call
 
-_source line 5096 · 2026-05-23T10:37:16.403620+00:00_
+_source line 5052 · 2026-05-23T10:37:16.403620+00:00_
 
 called Read
 
@@ -12227,7 +10038,7 @@ called Read
 
 ### Tool result
 
-_source line 5097 · 2026-05-23T10:37:16.504550+00:00_
+_source line 5053 · 2026-05-23T10:37:16.504550+00:00_
 
 770	\centering
 771	\includegraphics[width=\textwidth]{fig3_asv_ranking.pdf}
@@ -12287,7 +10098,7 @@ _source line 5097 · 2026-05-23T10:37:16.504550+00:00_
 
 ### Tool call
 
-_source line 5098 · 2026-05-23T10:37:16.805782+00:00_
+_source line 5054 · 2026-05-23T10:37:16.805782+00:00_
 
 called Grep
 
@@ -12325,7 +10136,7 @@ called Grep
 
 ### Tool result
 
-_source line 5099 · 2026-05-23T10:37:17.156828+00:00_
+_source line 5055 · 2026-05-23T10:37:17.156828+00:00_
 
 40:M-bias & 53.2\% & 0\% & 10.4\% & Yes \\
 
@@ -12347,7 +10158,7 @@ _source line 5099 · 2026-05-23T10:37:17.156828+00:00_
 
 ### Tool call
 
-_source line 5100 · 2026-05-23T10:37:17.509025+00:00_
+_source line 5056 · 2026-05-23T10:37:17.509025+00:00_
 
 called Grep
 
@@ -12385,7 +10196,7 @@ called Grep
 
 ### Tool result
 
-_source line 5101 · 2026-05-23T10:37:17.559647+00:00_
+_source line 5057 · 2026-05-23T10:37:17.559647+00:00_
 
 36:Exposure & 85\% & 83.4\% & 14.1\% & No \\
 
@@ -12407,7 +10218,7 @@ _source line 5101 · 2026-05-23T10:37:17.559647+00:00_
 
 ### Tool call
 
-_source line 5102 · 2026-05-23T10:37:19.366684+00:00_
+_source line 5058 · 2026-05-23T10:37:19.366684+00:00_
 
 called Read
 
@@ -12443,7 +10254,7 @@ called Read
 
 ### Tool result
 
-_source line 5103 · 2026-05-23T10:37:19.417350+00:00_
+_source line 5059 · 2026-05-23T10:37:19.417350+00:00_
 
 1	{
 2	  "tau_values": [
@@ -12537,7 +10348,7 @@ _source line 5103 · 2026-05-23T10:37:19.417350+00:00_
 
 ### Tool call
 
-_source line 5104 · 2026-05-23T10:37:20.723265+00:00_
+_source line 5060 · 2026-05-23T10:37:20.723265+00:00_
 
 called Bash
 
@@ -12573,7 +10384,7 @@ called Bash
 
 ### Tool result
 
-_source line 5105 · 2026-05-23T10:37:20.824154+00:00_
+_source line 5061 · 2026-05-23T10:37:20.824154+00:00_
 
 FWL-related files: ['exp_fwl_nonlinear_scaling.py', 'exp_fwl_logistic_results.json', 'exp_fwl_logistic_breakdown.log', 'exp_fwl_nonlinear_scaling_results.json', 'exp_fwl_logistic_breakdown.py']
 
@@ -12595,7 +10406,7 @@ FWL-related files: ['exp_fwl_nonlinear_scaling.py', 'exp_fwl_logistic_results.js
 
 ### Tool call
 
-_source line 5106 · 2026-05-23T10:37:26.044274+00:00_
+_source line 5062 · 2026-05-23T10:37:26.044274+00:00_
 
 called Grep
 
@@ -12635,7 +10446,7 @@ called Grep
 
 ### Tool result
 
-_source line 5107 · 2026-05-23T10:37:26.094873+00:00_
+_source line 5063 · 2026-05-23T10:37:26.094873+00:00_
 
 1165-[Omitted long context line]
 1166-
@@ -12671,7 +10482,7 @@ _source line 5107 · 2026-05-23T10:37:26.094873+00:00_
 
 ### Tool call
 
-_source line 5108 · 2026-05-23T10:37:27.551545+00:00_
+_source line 5064 · 2026-05-23T10:37:27.551545+00:00_
 
 called Grep
 
@@ -12709,7 +10520,7 @@ called Grep
 
 ### Tool result
 
-_source line 5109 · 2026-05-23T10:37:27.551979+00:00_
+_source line 5065 · 2026-05-23T10:37:27.551979+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:82:We evaluate five correction methods (naive plug-in, MLA, DSL~\cite{egami_hinck_stewart_wei2023}, MC-SIMEX, PPI++~\cite{angelopoulos2023}) across all seven topologies under six error structures (210 configurations; full results in Table~\ref{tab:correction}, Appendix~\ref{app:supplementary}).
 
@@ -12731,7 +10542,7 @@ _source line 5109 · 2026-05-23T10:37:27.551979+00:00_
 
 ### Tool call
 
-_source line 5110 · 2026-05-23T10:37:29.058477+00:00_
+_source line 5066 · 2026-05-23T10:37:29.058477+00:00_
 
 called Bash
 
@@ -12767,7 +10578,7 @@ called Bash
 
 ### Tool result
 
-_source line 5111 · 2026-05-23T10:37:29.163342+00:00_
+_source line 5067 · 2026-05-23T10:37:29.163342+00:00_
 
 === Primary Coefficient Breakdown ===
 Config: K=3, n_matrices=100000, diag_threshold=0.7
@@ -12798,7 +10609,7 @@ ratio=50: n_diag=78, prim_sf_diag=0.0%, sec_sf_diag=44.9%, prim_sf_all=49.8%, se
 
 ### Tool call
 
-_source line 5112 · 2026-05-23T10:37:29.266414+00:00_
+_source line 5068 · 2026-05-23T10:37:29.266414+00:00_
 
 called Bash
 
@@ -12834,7 +10645,7 @@ called Bash
 
 ### Tool result
 
-_source line 5113 · 2026-05-23T10:37:29.367328+00:00_
+_source line 5069 · 2026-05-23T10:37:29.367328+00:00_
 
 === plan004_asv_framework/report/plan_004_asv_v3_summary.txt ===
 - Magnitude ASV (10% relative): 0.076–0.487 (higher accuracy C0 → higher ASV → more robust)
@@ -12861,7 +10672,7 @@ _source line 5113 · 2026-05-23T10:37:29.367328+00:00_
 
 ### Tool call
 
-_source line 5114 · 2026-05-23T10:37:33.332702+00:00_
+_source line 5070 · 2026-05-23T10:37:33.332702+00:00_
 
 called Bash
 
@@ -12897,7 +10708,7 @@ called Bash
 
 ### Tool result
 
-_source line 5115 · 2026-05-23T10:37:33.383435+00:00_
+_source line 5071 · 2026-05-23T10:37:33.383435+00:00_
 
 Keys: ['meta', 'grand_mape', 'per_topology', 'per_config']
 meta: {'n_mc': 200, 'n_samples': 10000, 'scope': 'All 23 configs from updated_empirical_results.json (K=2,3,10)', 'n_valid_configs': 23, 'n_scenarios_total': 161, 'topologies': ['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor'], 'note': 'Unified with Empirical Validation section (same 23 configs).'}
@@ -12925,7 +10736,7 @@ per_config: 23 configs
 
 ### Tool call
 
-_source line 5116 · 2026-05-23T10:37:33.735368+00:00_
+_source line 5072 · 2026-05-23T10:37:33.735368+00:00_
 
 called Read
 
@@ -12963,7 +10774,7 @@ called Read
 
 ### Tool result
 
-_source line 5117 · 2026-05-23T10:37:33.785994+00:00_
+_source line 5073 · 2026-05-23T10:37:33.785994+00:00_
 
 1165	The $\lambda$ OOB rate rises steeply from 0\% to ${\sim}10$\% at $\sigma{=}0.1$ and saturates near 23\% for independent $(f,g)$. Sign failure rates remain below 1\% across all conditions because $\lambda$ excursions outside $[0,1]$ are typically small and do not reverse the dominant effect direction. The NLP-realistic DGP ($\delta{=}[0, 0.8, {-}0.6]$, $\beta{=}[0, 1.0, {-}0.5]$) exhibits near-zero OOB (0.07\%) and zero sign failures, confirming that proportional effects hold approximately in practice.
 1166	
@@ -13008,7 +10819,7 @@ _source line 5117 · 2026-05-23T10:37:33.785994+00:00_
 
 ### Tool call
 
-_source line 5118 · 2026-05-23T10:37:36.697305+00:00_
+_source line 5074 · 2026-05-23T10:37:36.697305+00:00_
 
 called Read
 
@@ -13042,7 +10853,7 @@ called Read
 
 ### Tool result
 
-_source line 5119 · 2026-05-23T10:37:36.748212+00:00_
+_source line 5075 · 2026-05-23T10:37:36.748212+00:00_
 
 1	See server file: /home/sonny/causal_annot_error_attrib/plan_004_asv_v3_output.log
 2	
@@ -13089,7 +10900,7 @@ _source line 5119 · 2026-05-23T10:37:36.748212+00:00_
 
 ### Tool call
 
-_source line 5120 · 2026-05-23T10:37:38.907963+00:00_
+_source line 5076 · 2026-05-23T10:37:38.907963+00:00_
 
 called Read
 
@@ -13127,7 +10938,7 @@ called Read
 
 ### Tool call
 
-_source line 5121 · 2026-05-23T10:37:38.908476+00:00_
+_source line 5077 · 2026-05-23T10:37:38.908476+00:00_
 
 called Read
 
@@ -13163,7 +10974,7 @@ called Read
 
 ### Tool result
 
-_source line 5122 · 2026-05-23T10:37:38.958975+00:00_
+_source line 5078 · 2026-05-23T10:37:38.958975+00:00_
 
 0	{
 1	  "confusion_matrices": {
@@ -13194,7 +11005,7 @@ _source line 5122 · 2026-05-23T10:37:38.958975+00:00_
 
 ### Tool result
 
-_source line 5123 · 2026-05-23T10:37:38.959477+00:00_
+_source line 5079 · 2026-05-23T10:37:38.959477+00:00_
 
 1	{
 2	  "results": [
@@ -13275,7 +11086,7 @@ _source line 5123 · 2026-05-23T10:37:38.959477+00:00_
 
 ### Tool call
 
-_source line 5124 · 2026-05-23T10:37:42.525138+00:00_
+_source line 5080 · 2026-05-23T10:37:42.525138+00:00_
 
 called Grep
 
@@ -13313,7 +11124,7 @@ called Grep
 
 ### Tool result
 
-_source line 5125 · 2026-05-23T10:37:42.977308+00:00_
+_source line 5081 · 2026-05-23T10:37:42.977308+00:00_
 
 88:[Omitted long matching line]
 
@@ -13335,7 +11146,7 @@ _source line 5125 · 2026-05-23T10:37:42.977308+00:00_
 
 ### Tool call
 
-_source line 5126 · 2026-05-23T10:37:43.179529+00:00_
+_source line 5082 · 2026-05-23T10:37:43.179529+00:00_
 
 called Grep
 
@@ -13373,7 +11184,7 @@ called Grep
 
 ### Tool result
 
-_source line 5127 · 2026-05-23T10:37:43.280418+00:00_
+_source line 5083 · 2026-05-23T10:37:43.280418+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:88:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:[Omitted long matching line]
@@ -13397,7 +11208,7 @@ _source line 5127 · 2026-05-23T10:37:43.280418+00:00_
 
 ### Tool call
 
-_source line 5128 · 2026-05-23T10:37:43.432684+00:00_
+_source line 5084 · 2026-05-23T10:37:43.432684+00:00_
 
 called Grep
 
@@ -13437,7 +11248,7 @@ called Grep
 
 ### Tool result
 
-_source line 5129 · 2026-05-23T10:37:43.483411+00:00_
+_source line 5085 · 2026-05-23T10:37:43.483411+00:00_
 
 Found 31 files
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_gold_ratio_results.json
@@ -13477,7 +11288,7 @@ Found 31 files
 
 ### Tool call
 
-_source line 5130 · 2026-05-23T10:37:43.735262+00:00_
+_source line 5086 · 2026-05-23T10:37:43.735262+00:00_
 
 called Glob
 
@@ -13513,7 +11324,7 @@ called Glob
 
 ### Tool result
 
-_source line 5131 · 2026-05-23T10:37:43.735703+00:00_
+_source line 5087 · 2026-05-23T10:37:43.735703+00:00_
 
 No files found
 
@@ -13535,7 +11346,7 @@ No files found
 
 ### Tool call
 
-_source line 5132 · 2026-05-23T10:37:44.388461+00:00_
+_source line 5088 · 2026-05-23T10:37:44.388461+00:00_
 
 called Glob
 
@@ -13571,7 +11382,7 @@ called Glob
 
 ### Tool result
 
-_source line 5133 · 2026-05-23T10:37:44.439143+00:00_
+_source line 5089 · 2026-05-23T10:37:44.439143+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/checkpoints/plan005_asv_extended_PENDING_20260520T135035.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/checkpoints/plan005_asv_extended_QUEUED_20260520T135049.json
@@ -13603,7 +11414,7 @@ _source line 5133 · 2026-05-23T10:37:44.439143+00:00_
 
 ### Tool call
 
-_source line 5134 · 2026-05-23T10:37:46.397100+00:00_
+_source line 5090 · 2026-05-23T10:37:46.397100+00:00_
 
 called Bash
 
@@ -13639,7 +11450,7 @@ called Bash
 
 ### Tool result
 
-_source line 5135 · 2026-05-23T10:37:46.449415+00:00_
+_source line 5091 · 2026-05-23T10:37:46.449415+00:00_
 
 confounding low: mean=-0.003%
 confounding medium: mean=-0.000%
@@ -13678,7 +11489,7 @@ mbias low mean: -0.049%
 
 ### Tool call
 
-_source line 5136 · 2026-05-23T10:37:48.156337+00:00_
+_source line 5092 · 2026-05-23T10:37:48.156337+00:00_
 
 called Read
 
@@ -13712,7 +11523,7 @@ called Read
 
 ### Tool result
 
-_source line 5137 · 2026-05-23T10:37:48.206982+00:00_
+_source line 5093 · 2026-05-23T10:37:48.206982+00:00_
 
 1	{
 2	  "exp_id": "plan005_asv_extended",
@@ -13777,7 +11588,7 @@ _source line 5137 · 2026-05-23T10:37:48.206982+00:00_
 
 ### Tool call
 
-_source line 5138 · 2026-05-23T10:37:48.910017+00:00_
+_source line 5094 · 2026-05-23T10:37:48.910017+00:00_
 
 called Grep
 
@@ -13819,7 +11630,7 @@ called Grep
 
 ### Tool result
 
-_source line 5139 · 2026-05-23T10:37:48.960633+00:00_
+_source line 5095 · 2026-05-23T10:37:48.960633+00:00_
 
 No matches found
 
@@ -13841,7 +11652,7 @@ No matches found
 
 ### Tool call
 
-_source line 5140 · 2026-05-23T10:37:54.938374+00:00_
+_source line 5096 · 2026-05-23T10:37:54.938374+00:00_
 
 called Bash
 
@@ -13877,7 +11688,7 @@ called Bash
 
 ### Tool result
 
-_source line 5141 · 2026-05-23T10:37:55.039146+00:00_
+_source line 5097 · 2026-05-23T10:37:55.039146+00:00_
 
 eps=0: max sign_flip_rate = 0.0
 eps=0.10: max sign_flip_rate = 0.07, topology=iv, K=3, quality=low
@@ -13901,7 +11712,7 @@ K=10: max sign_flip_rate = 0.0
 
 ### Tool call
 
-_source line 5142 · 2026-05-23T10:37:56.797402+00:00_
+_source line 5098 · 2026-05-23T10:37:56.797402+00:00_
 
 called Grep
 
@@ -13941,7 +11752,7 @@ called Grep
 
 ### Tool result
 
-_source line 5143 · 2026-05-23T10:37:56.848080+00:00_
+_source line 5099 · 2026-05-23T10:37:56.848080+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_3.md:51:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md:60:[Omitted long matching line]
@@ -13975,7 +11786,7 @@ _source line 5143 · 2026-05-23T10:37:56.848080+00:00_
 
 ### Tool call
 
-_source line 5144 · 2026-05-23T10:37:59.258081+00:00_
+_source line 5100 · 2026-05-23T10:37:59.258081+00:00_
 
 called Read
 
@@ -14011,7 +11822,7 @@ called Read
 
 ### Tool result
 
-_source line 5145 · 2026-05-23T10:37:59.258511+00:00_
+_source line 5101 · 2026-05-23T10:37:59.258511+00:00_
 
 1	{
 2	  "dgp_configs": [
@@ -14092,7 +11903,7 @@ _source line 5145 · 2026-05-23T10:37:59.258511+00:00_
 
 ### Tool call
 
-_source line 5146 · 2026-05-23T10:38:02.424979+00:00_
+_source line 5102 · 2026-05-23T10:38:02.424979+00:00_
 
 called Read
 
@@ -14128,7 +11939,7 @@ called Read
 
 ### Tool result
 
-_source line 5147 · 2026-05-23T10:38:02.525866+00:00_
+_source line 5103 · 2026-05-23T10:38:02.525866+00:00_
 
 1	{
 2	  "results": [
@@ -14209,7 +12020,7 @@ _source line 5147 · 2026-05-23T10:38:02.525866+00:00_
 
 ### Tool call
 
-_source line 5148 · 2026-05-23T10:38:04.937947+00:00_
+_source line 5104 · 2026-05-23T10:38:04.937947+00:00_
 
 called Bash
 
@@ -14245,7 +12056,7 @@ called Bash
 
 ### Tool result
 
-_source line 5149 · 2026-05-23T10:38:05.088847+00:00_
+_source line 5105 · 2026-05-23T10:38:05.088847+00:00_
 
 === exp_c_bootstrap_results.json ===
 Exposure: delta_star_point=0.9366, CI=[0.6023, 1.3631]
@@ -14282,7 +12093,7 @@ iv N=50000: point=0.5345, CI=[0.5189, 0.5539]
 
 ### Tool call
 
-_source line 5150 · 2026-05-23T10:38:07.954955+00:00_
+_source line 5106 · 2026-05-23T10:38:07.954955+00:00_
 
 called Bash
 
@@ -14318,7 +12129,7 @@ called Bash
 
 ### Tool result
 
-_source line 5151 · 2026-05-23T10:38:08.005757+00:00_
+_source line 5107 · 2026-05-23T10:38:08.005757+00:00_
 
 K=3: mean=42.7%, min=3.2%, max=72.5%
 K=5: mean=56.9%, min=30.4%, max=68.0%
@@ -14354,7 +12165,7 @@ K=10 positive only: mean=52.8%, min=27.1%, max=70.1%
 
 ### Tool call
 
-_source line 5152 · 2026-05-23T10:38:09.815442+00:00_
+_source line 5108 · 2026-05-23T10:38:09.815442+00:00_
 
 called Bash
 
@@ -14390,7 +12201,7 @@ called Bash
 
 ### Tool result
 
-_source line 5153 · 2026-05-23T10:38:09.916291+00:00_
+_source line 5109 · 2026-05-23T10:38:09.916291+00:00_
 
 Total K>=3 configs: 16
   humaid_deepseek_few-shot-3: K=10, eps=0.01 reversal=1.000, safe_threshold=0.0
@@ -14431,7 +12242,7 @@ K>=3 with safe_epsilon_threshold=0: 14/16
 
 ### Tool call
 
-_source line 5154 · 2026-05-23T10:38:15.930735+00:00_
+_source line 5110 · 2026-05-23T10:38:15.930735+00:00_
 
 called Bash
 
@@ -14467,7 +12278,7 @@ called Bash
 
 ### Tool result
 
-_source line 5155 · 2026-05-23T10:38:16.031533+00:00_
+_source line 5111 · 2026-05-23T10:38:16.031533+00:00_
 
 Topology | Linear SF_tau | Logistic SF_tau | Linear SF_any | Logistic SF_any
 confounding     |          0.0 |             0.0 | 0.5726666666666667 | 0.5593333333333333
@@ -14496,7 +12307,7 @@ iv              |          N/A |             N/A |           N/A |             N
 
 ### Tool call
 
-_source line 5156 · 2026-05-23T10:38:21.659316+00:00_
+_source line 5112 · 2026-05-23T10:38:21.659316+00:00_
 
 called Bash
 
@@ -14532,7 +12343,7 @@ called Bash
 
 ### Tool result
 
-_source line 5157 · 2026-05-23T10:38:21.760240+00:00_
+_source line 5113 · 2026-05-23T10:38:21.760240+00:00_
 
 Sign flips (summary): 14
 Exposure coef-level sign flips: 15
@@ -14566,7 +12377,7 @@ HumAID frontdoor max bias: 14.7%
 
 ### Tool call
 
-_source line 5158 · 2026-05-23T10:38:23.871635+00:00_
+_source line 5114 · 2026-05-23T10:38:23.871635+00:00_
 
 called Bash
 
@@ -14602,7 +12413,7 @@ called Bash
 
 ### Tool result
 
-_source line 5159 · 2026-05-23T10:38:24.122763+00:00_
+_source line 5115 · 2026-05-23T10:38:24.122763+00:00_
 
 iv control_function deepseek_zero-shot tau_sf=0.098 any_sf=0.592
 iv linear_2sls deepseek_zero-shot tau_sf=0.114 any_sf=0.114
@@ -14627,7 +12438,7 @@ iv linear_2sls llama4_few-shot-3 tau_sf=0.076 any_sf=0.076
 
 ### Tool call
 
-_source line 5160 · 2026-05-23T10:38:24.473924+00:00_
+_source line 5116 · 2026-05-23T10:38:24.473924+00:00_
 
 called Bash
 
@@ -14663,7 +12474,7 @@ called Bash
 
 ### Tool result
 
-_source line 5161 · 2026-05-23T10:38:24.574935+00:00_
+_source line 5117 · 2026-05-23T10:38:24.574935+00:00_
 
 === Theory-MC Agreement ===
 Grand MAPE: 0.0159 = 1.6%
@@ -14699,7 +12510,7 @@ Per-topology MAPE:
 
 ### Tool call
 
-_source line 5162 · 2026-05-23T10:38:30.505228+00:00_
+_source line 5118 · 2026-05-23T10:38:30.505228+00:00_
 
 called Bash
 
@@ -14735,7 +12546,7 @@ called Bash
 
 ### Tool result
 
-_source line 5163 · 2026-05-23T10:38:30.606159+00:00_
+_source line 5119 · 2026-05-23T10:38:30.606159+00:00_
 
 IV control_function: mean tau_sf=0.074, mean any_sf=0.560 (n=6)
 IV linear_2sls: mean tau_sf=0.086, mean any_sf=0.086 (n=6)
@@ -14758,7 +12569,7 @@ IV linear_2sls: mean tau_sf=0.086, mean any_sf=0.086 (n=6)
 
 ### Tool call
 
-_source line 5164 · 2026-05-23T10:38:32.569001+00:00_
+_source line 5120 · 2026-05-23T10:38:32.569001+00:00_
 
 called Bash
 
@@ -14794,7 +12605,7 @@ called Bash
 
 ### Tool result
 
-_source line 5165 · 2026-05-23T10:38:32.670474+00:00_
+_source line 5121 · 2026-05-23T10:38:32.670474+00:00_
 
 CivilComments type1_type2: 34/63 unsafe (54.0%)
 
@@ -14816,7 +12627,7 @@ CivilComments type1_type2: 34/63 unsafe (54.0%)
 
 ### Tool call
 
-_source line 5166 · 2026-05-23T10:38:33.673244+00:00_
+_source line 5122 · 2026-05-23T10:38:33.673244+00:00_
 
 called Grep
 
@@ -14858,7 +12669,7 @@ called Grep
 
 ### Tool result
 
-_source line 5167 · 2026-05-23T10:38:33.774279+00:00_
+_source line 5123 · 2026-05-23T10:38:33.774279+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/experiment_data.json:94:      "iv_sign_flip_K3": 0.526,
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260521T054528/best/experiment_data.json:95:      "iv_sign_flip_K5": 0.514,
@@ -14883,7 +12694,7 @@ _source line 5167 · 2026-05-23T10:38:33.774279+00:00_
 
 ### Tool call
 
-_source line 5168 · 2026-05-23T10:38:39.598877+00:00_
+_source line 5124 · 2026-05-23T10:38:39.598877+00:00_
 
 called Glob
 
@@ -14919,7 +12730,7 @@ called Glob
 
 ### Tool result
 
-_source line 5169 · 2026-05-23T10:38:39.950093+00:00_
+_source line 5125 · 2026-05-23T10:38:39.950093+00:00_
 
 No files found
 
@@ -14941,7 +12752,7 @@ No files found
 
 ### Tool call
 
-_source line 5170 · 2026-05-23T10:38:40.301458+00:00_
+_source line 5126 · 2026-05-23T10:38:40.301458+00:00_
 
 called Glob
 
@@ -14977,7 +12788,7 @@ called Glob
 
 ### Tool result
 
-_source line 5171 · 2026-05-23T10:38:40.452385+00:00_
+_source line 5127 · 2026-05-23T10:38:40.452385+00:00_
 
 No files found
 
@@ -14999,7 +12810,7 @@ No files found
 
 ### Tool call
 
-_source line 5172 · 2026-05-23T10:38:40.703805+00:00_
+_source line 5128 · 2026-05-23T10:38:40.703805+00:00_
 
 called Bash
 
@@ -15035,7 +12846,7 @@ called Bash
 
 ### Tool result
 
-_source line 5173 · 2026-05-23T10:38:40.804807+00:00_
+_source line 5129 · 2026-05-23T10:38:40.804807+00:00_
 
 collider: 0/9 unsafe (0.0%)
 confounding: 0/9 unsafe (0.0%)
@@ -15079,7 +12890,7 @@ First civil entry: {
 
 ### Tool call
 
-_source line 5174 · 2026-05-23T10:38:43.669751+00:00_
+_source line 5130 · 2026-05-23T10:38:43.669751+00:00_
 
 called Glob
 
@@ -15115,7 +12926,7 @@ called Glob
 
 ### Tool result
 
-_source line 5175 · 2026-05-23T10:38:44.171345+00:00_
+_source line 5131 · 2026-05-23T10:38:44.171345+00:00_
 
 No files found
 
@@ -15137,7 +12948,7 @@ No files found
 
 ### Tool call
 
-_source line 5176 · 2026-05-23T10:38:45.025277+00:00_
+_source line 5132 · 2026-05-23T10:38:45.025277+00:00_
 
 called Grep
 
@@ -15177,7 +12988,7 @@ called Grep
 
 ### Tool result
 
-_source line 5177 · 2026-05-23T10:38:45.076003+00:00_
+_source line 5133 · 2026-05-23T10:38:45.076003+00:00_
 
 No files found
 
@@ -15199,7 +13010,7 @@ No files found
 
 ### Tool call
 
-_source line 5178 · 2026-05-23T10:38:45.528552+00:00_
+_source line 5134 · 2026-05-23T10:38:45.528552+00:00_
 
 called Bash
 
@@ -15235,7 +13046,7 @@ called Bash
 
 ### Tool result
 
-_source line 5179 · 2026-05-23T10:38:45.579255+00:00_
+_source line 5135 · 2026-05-23T10:38:45.579255+00:00_
 
 deepseek_zero-shot             OLS_max_diff=2.3e-15  Log_max_diff=8.1e-04  OLS_bias_red=-0.00%  Log_bias_red=-0.09%
 llama4_few-shot-3              OLS_max_diff=5.2e-15  Log_max_diff=6.8e-04  OLS_bias_red=+0.00%  Log_bias_red=-0.07%
@@ -15262,7 +13073,7 @@ qwen2.5-7b_few-shot-5          OLS_max_diff=8.2e-15  Log_max_diff=5.6e-04  OLS_b
 
 ### Tool call
 
-_source line 5180 · 2026-05-23T10:38:49.945347+00:00_
+_source line 5136 · 2026-05-23T10:38:49.945347+00:00_
 
 called Read
 
@@ -15298,7 +13109,7 @@ called Read
 
 ### Tool result
 
-_source line 5181 · 2026-05-23T10:38:49.996130+00:00_
+_source line 5137 · 2026-05-23T10:38:49.996130+00:00_
 
 1	{
 2	  "config": {
@@ -15379,7 +13190,7 @@ _source line 5181 · 2026-05-23T10:38:49.996130+00:00_
 
 ### Tool call
 
-_source line 5182 · 2026-05-23T10:38:50.950689+00:00_
+_source line 5138 · 2026-05-23T10:38:50.950689+00:00_
 
 called Grep
 
@@ -15421,7 +13232,7 @@ called Grep
 
 ### Tool result
 
-_source line 5183 · 2026-05-23T10:38:51.001236+00:00_
+_source line 5139 · 2026-05-23T10:38:51.001236+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json:559:        "theory_bias": 0.11901939731030953,
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/verify_lambda_bound_results.json:35:        "mean": 0.11934097493969786,
@@ -15454,7 +13265,7 @@ _source line 5183 · 2026-05-23T10:38:51.001236+00:00_
 
 ### Tool call
 
-_source line 5184 · 2026-05-23T10:38:56.976284+00:00_
+_source line 5140 · 2026-05-23T10:38:56.976284+00:00_
 
 called Bash
 
@@ -15490,7 +13301,7 @@ called Bash
 
 ### Tool result
 
-_source line 5185 · 2026-05-23T10:38:57.026932+00:00_
+_source line 5141 · 2026-05-23T10:38:57.026932+00:00_
 
 CivilComments with magnitude_asv < 1: 34/63 (54.0%)
 CivilComments configs: 9
@@ -15522,7 +13333,7 @@ CivilComments configs: 9
 
 ### Tool result
 
-_source line 5186 · 2026-05-23T10:38:58.783590+00:00_
+_source line 5142 · 2026-05-23T10:38:58.783590+00:00_
 
 Experiments line 88: "Rankings are stable across K (Spearman rho >= 0.80)". Conclusion line 8: "Spearman rho >= 0.80". Appendix: "rho_{3,5} = 0.80, rho_{3,10} = 0.84, rho_{5,10} = 0.93". The minimum is 0.80, so ">=0.80" is correct. Consistent.
 
@@ -15561,7 +13372,7 @@ Now let me compile the final report.
 
 ### Tool call
 
-_source line 5187 · 2026-05-23T10:39:03.662158+00:00_
+_source line 5143 · 2026-05-23T10:39:03.662158+00:00_
 
 called Bash
 
@@ -15597,7 +13408,7 @@ called Bash
 
 ### Tool result
 
-_source line 5188 · 2026-05-23T10:39:03.813265+00:00_
+_source line 5144 · 2026-05-23T10:39:03.813265+00:00_
 
 (Bash completed with no output)
 
@@ -15619,7 +13430,7 @@ _source line 5188 · 2026-05-23T10:39:03.813265+00:00_
 
 ### Tool call
 
-_source line 5189 · 2026-05-23T10:39:06.878662+00:00_
+_source line 5145 · 2026-05-23T10:39:06.878662+00:00_
 
 called Bash
 
@@ -15655,7 +13466,7 @@ called Bash
 
 ### Tool result
 
-_source line 5190 · 2026-05-23T10:39:06.929556+00:00_
+_source line 5146 · 2026-05-23T10:39:06.929556+00:00_
 
 HumAID configs with any unsafe: 8/8 (100.0%)
 
@@ -15677,7 +13488,7 @@ HumAID configs with any unsafe: 8/8 (100.0%)
 
 ### Tool call
 
-_source line 5191 · 2026-05-23T10:39:09.341832+00:00_
+_source line 5147 · 2026-05-23T10:39:09.341832+00:00_
 
 called Bash
 
@@ -15713,7 +13524,7 @@ called Bash
 
 ### Tool result
 
-_source line 5192 · 2026-05-23T10:39:09.542924+00:00_
+_source line 5148 · 2026-05-23T10:39:09.542924+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -15740,7 +13551,7 @@ AttributeError: 'list' object has no attribute 'keys'
 
 ### Tool call
 
-_source line 5193 · 2026-05-23T10:39:16.737428+00:00_
+_source line 5149 · 2026-05-23T10:39:16.737428+00:00_
 
 called Bash
 
@@ -15776,7 +13587,7 @@ called Bash
 
 ### Tool result
 
-_source line 5194 · 2026-05-23T10:39:16.938491+00:00_
+_source line 5150 · 2026-05-23T10:39:16.938491+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -15806,7 +13617,7 @@ First item keys: ['topology', 'N', 'error_level', 'diag_val', 'logistic_mean_bia
 
 ### Tool result
 
-_source line 5195 · 2026-05-23T10:39:17.943336+00:00_
+_source line 5151 · 2026-05-23T10:39:17.943336+00:00_
 
 Now I can see the pattern. The "27--70%" likely comes from the minimum of all K's minimum positive reductions (27.1% from K=10 IV) and the maximum of all K's maximum positive reductions (72.5% from K=3 exposure, or 70.1% from K=10 frontdoor). The paper says 70%, which would match K=10 frontdoor (70.1%) rounded down, but the actual maximum is 72.5% from K=3. The lower bound 27% matches K=10 IV (27.1%). The range is valid if interpreted as "min-max across the K-specific ranges" but the true maximum is 72.5%, not 70%.
 
@@ -15845,7 +13656,7 @@ Here is the complete verification audit:
 
 ### Tool call
 
-_source line 5196 · 2026-05-23T10:39:25.133142+00:00_
+_source line 5152 · 2026-05-23T10:39:25.133142+00:00_
 
 called Bash
 
@@ -15881,7 +13692,7 @@ called Bash
 
 ### Tool result
 
-_source line 5197 · 2026-05-23T10:39:25.234244+00:00_
+_source line 5153 · 2026-05-23T10:39:25.234244+00:00_
 
 Appendix Table: Mean logistic bias reduction (%) averaged over N
 confounding     low    (C_kk=0.9): -0.003%
@@ -15921,7 +13732,7 @@ exposure        high   (C_kk=0.5): -0.225%
 
 ### Tool call
 
-_source line 5198 · 2026-05-23T10:39:33.984040+00:00_
+_source line 5154 · 2026-05-23T10:39:33.984040+00:00_
 
 called Bash
 
@@ -15957,7 +13768,7 @@ called Bash
 
 ### Tool result
 
-_source line 5199 · 2026-05-23T10:39:34.085099+00:00_
+_source line 5155 · 2026-05-23T10:39:34.085099+00:00_
 
 Updated CivilComments configs (7): {('qwen3', 'few-shot-3'), ('qwen2.5-7b', 'few-shot-3'), ('qwen3', 'zero-shot'), ('qwen2.5-7b', 'zero-shot'), ('qwen3', 'few-shot-5'), ('deepseek', 'few-shot-5'), ('qwen2.5-7b', 'few-shot-5')}
 CivilComments scenarios: 49
@@ -15989,7 +13800,7 @@ Unsafe: 14/28 (50.0%)
 
 ### Tool call
 
-_source line 5200 · 2026-05-23T10:39:34.386658+00:00_
+_source line 5156 · 2026-05-23T10:39:34.386658+00:00_
 
 called Bash
 
@@ -16025,7 +13836,7 @@ called Bash
 
 ### Tool result
 
-_source line 5201 · 2026-05-23T10:39:34.487425+00:00_
+_source line 5157 · 2026-05-23T10:39:34.487425+00:00_
 
 exact_proportional                 : OOB=0.0%, SF=0.85%
 near_proportional_sigma_0.1        : OOB=10.3%, SF=0.87%
@@ -16052,7 +13863,7 @@ default_plan006                    : OOB=0.1%, SF=0.00%
 
 ### Tool call
 
-_source line 5202 · 2026-05-23T10:39:41.221084+00:00_
+_source line 5158 · 2026-05-23T10:39:41.221084+00:00_
 
 called Bash
 
@@ -16088,7 +13899,7 @@ called Bash
 
 ### Tool result
 
-_source line 5203 · 2026-05-23T10:39:41.321852+00:00_
+_source line 5159 · 2026-05-23T10:39:41.321852+00:00_
 
 tau_true = 1.41
 d >= 0.0: violation=100.0%, sign_flip=51.7%, amplif=48.3%, worst=106206.4x
@@ -16114,7 +13925,7 @@ d >= 0.9: violation=100.0%, sign_flip=0.0%, amplif=100.0%, worst=1.2x
 
 ### Tool call
 
-_source line 5204 · 2026-05-23T10:39:49.517241+00:00_
+_source line 5160 · 2026-05-23T10:39:49.517241+00:00_
 
 called Bash
 
@@ -16150,7 +13961,7 @@ called Bash
 
 ### Tool result
 
-_source line 5205 · 2026-05-23T10:39:49.618092+00:00_
+_source line 5161 · 2026-05-23T10:39:49.618092+00:00_
 
 bootstrap_ci_convergence_results.json: N_values = [500, 1000, 2000, 5000, 10000, 50000]
 Grand MAPE: 1.6%
@@ -16183,7 +13994,7 @@ frontdoor: MAPE=0.6%
 
 ### Tool call
 
-_source line 5206 · 2026-05-23T10:39:54.796879+00:00_
+_source line 5162 · 2026-05-23T10:39:54.796879+00:00_
 
 called Bash
 
@@ -16219,7 +14030,7 @@ called Bash
 
 ### Tool result
 
-_source line 5207 · 2026-05-23T10:39:54.898305+00:00_
+_source line 5163 · 2026-05-23T10:39:54.898305+00:00_
 
 Proportional pooled: n=30000, OOB=0, range=[1.2e-05, 0.850]
 Non-proportional pooled: n=22926, OOB=3843, OOB%=16.8%
@@ -16246,7 +14057,7 @@ lambda_V: n=30000, OOB=0
 
 ### Tool call
 
-_source line 5208 · 2026-05-23T10:40:01.290474+00:00_
+_source line 5164 · 2026-05-23T10:40:01.290474+00:00_
 
 called Bash
 
@@ -16282,7 +14093,7 @@ called Bash
 
 ### Tool result
 
-_source line 5209 · 2026-05-23T10:40:01.441441+00:00_
+_source line 5165 · 2026-05-23T10:40:01.441441+00:00_
 
 llama4_few-shot-5: bias_pct=42.16%
 deepseek_few-shot-3: bias_pct=41.57%
@@ -16324,7 +14135,7 @@ Ratio: 7.5x
 
 ### Tool result
 
-_source line 5210 · 2026-05-23T10:40:04.853971+00:00_
+_source line 5166 · 2026-05-23T10:40:04.853971+00:00_
 
 The 11.9% violation at diagonal >= 0.9 is not found in any JSON file. This may come from the "dream" (imagined) data or from a separate computation not stored. Let me now compile all findings into the verification table. I have enough data.
 
@@ -16370,7 +14181,7 @@ Here is the complete verification table:
 
 ### Tool call
 
-_source line 5211 · 2026-05-23T10:40:06.059896+00:00_
+_source line 5167 · 2026-05-23T10:40:06.059896+00:00_
 
 called Bash
 
@@ -16406,7 +14217,7 @@ called Bash
 
 ### Tool result
 
-_source line 5212 · 2026-05-23T10:40:06.162513+00:00_
+_source line 5168 · 2026-05-23T10:40:06.162513+00:00_
 
 confounding    : +84.8, +88.6, +91.8, +94.2, +95.2
 exposure       : +75.2, +83.1, +87.1, +91.2, +93.8
@@ -16432,7 +14243,7 @@ mbias          : -125.3, -43.6, -19.6, +6.0, +18.5
 
 ### Tool call
 
-_source line 5213 · 2026-05-23T10:40:09.528521+00:00_
+_source line 5169 · 2026-05-23T10:40:09.528521+00:00_
 
 called Bash
 
@@ -16468,7 +14279,7 @@ called Bash
 
 ### Tool result
 
-_source line 5214 · 2026-05-23T10:40:09.579214+00:00_
+_source line 5170 · 2026-05-23T10:40:09.579214+00:00_
 
 qwen2.5-7b_few-shot-5: bias_pct=325.5%
 qwen2.5-7b_few-shot-3: bias_pct=319.4%
@@ -16500,7 +14311,7 @@ Paper says: VAST 326% vs HumAID 42%
 
 ### Tool call
 
-_source line 5215 · 2026-05-23T10:40:21.598572+00:00_
+_source line 5171 · 2026-05-23T10:40:21.598572+00:00_
 
 called Bash
 
@@ -16536,7 +14347,7 @@ called Bash
 
 ### Tool call
 
-_source line 5216 · 2026-05-23T10:40:21.701410+00:00_
+_source line 5172 · 2026-05-23T10:40:21.701410+00:00_
 
 called Bash
 
@@ -16572,7 +14383,7 @@ called Bash
 
 ### Tool result
 
-_source line 5217 · 2026-05-23T10:40:21.752111+00:00_
+_source line 5173 · 2026-05-23T10:40:21.752111+00:00_
 
 Proportional: mean lambda = 0.271, in [0,1] = 99.8%, sign pres = 100%
 Near-prop: mean lambda = 0.285, in [0,1] = 99.2%, sign pres = 100%, CV = 1.06
@@ -16597,7 +14408,7 @@ Sparse: mean lambda = 0.296, in [0,1] = 75.8%, sign pres = 98.6%, CV = 6.59
 
 ### Tool result
 
-_source line 5218 · 2026-05-23T10:40:21.802763+00:00_
+_source line 5174 · 2026-05-23T10:40:21.802763+00:00_
 
 Exposure sign_flip_asv values: [1.334, 1.667, 2.2232223222322234, 3.334000000000001, 6.667, 1.334, 1.667, 2.2232223222322234, 3.334000000000001, 6.667, 1.334, 1.667, 2.2232223222322234, 3.334000000000001, 6.667]
 Range: 1.334 - 6.667
@@ -16621,7 +14432,7 @@ Exposure sign_flip_asv < 1: 0/15 (0.0%)
 
 ### Tool call
 
-_source line 5219 · 2026-05-23T10:40:35.112210+00:00_
+_source line 5175 · 2026-05-23T10:40:35.112210+00:00_
 
 called Bash
 
@@ -16657,7 +14468,7 @@ called Bash
 
 ### Tool result
 
-_source line 5220 · 2026-05-23T10:40:35.162879+00:00_
+_source line 5176 · 2026-05-23T10:40:35.162879+00:00_
 
 Top keys: ['experiment', 'topology', 'K', 'diag_threshold', 'n_confusion_matrices', 'n_mc_per_trial', 'P_A', 'beta', 'mechanism', 'perturbation']
 Results keys: ['0.0', '0.01', '0.05', '0.1', '0.2', '0.3', '0.5']
@@ -16680,7 +14491,7 @@ Results keys: ['0.0', '0.01', '0.05', '0.1', '0.2', '0.3', '0.5']
 
 ### Tool call
 
-_source line 5221 · 2026-05-23T10:40:39.881827+00:00_
+_source line 5177 · 2026-05-23T10:40:39.881827+00:00_
 
 called Bash
 
@@ -16716,7 +14527,7 @@ called Bash
 
 ### Tool result
 
-_source line 5222 · 2026-05-23T10:40:39.983511+00:00_
+_source line 5178 · 2026-05-23T10:40:39.983511+00:00_
 
 confounding    : ppi=85.57, ppi=76.43, ppi=75.64
 mediation      : ppi=57.08, mcsimex=59.69, mcsimex=58.96
@@ -16746,7 +14557,7 @@ Spearman: rho_3,5=0.80, rho_3,10=0.84, rho_5,10=0.93
 
 ### Tool call
 
-_source line 5223 · 2026-05-23T10:40:48.362367+00:00_
+_source line 5179 · 2026-05-23T10:40:48.362367+00:00_
 
 called Bash
 
@@ -16782,7 +14593,7 @@ called Bash
 
 ### Tool result
 
-_source line 5224 · 2026-05-23T10:40:48.514499+00:00_
+_source line 5180 · 2026-05-23T10:40:48.514499+00:00_
 
 exposure:
   N=500   : width=0.60, width*sqrt(N)=13.37
@@ -16817,7 +14628,7 @@ iv:
 
 ### Tool call
 
-_source line 5225 · 2026-05-23T10:40:59.780398+00:00_
+_source line 5181 · 2026-05-23T10:40:59.780398+00:00_
 
 called Bash
 
@@ -16853,7 +14664,7 @@ called Bash
 
 ### Tool result
 
-_source line 5226 · 2026-05-23T10:40:59.881322+00:00_
+_source line 5182 · 2026-05-23T10:40:59.881322+00:00_
 
 confounding : K3=8467, K5=8063, K7=7892, worst=0.011, dir=non-dec
 mediation   : K3=8236, K5=7905, K7=7893, worst=0.013, dir=non-dec
@@ -16881,7 +14692,7 @@ frontdoor   : K3=8429, K5=8079, K7=7899, worst=0.013, dir=non-dec
 
 ### Tool call
 
-_source line 5227 · 2026-05-23T10:41:10.434618+00:00_
+_source line 5183 · 2026-05-23T10:41:10.434618+00:00_
 
 called Bash
 
@@ -16917,7 +14728,7 @@ called Bash
 
 ### Tool result
 
-_source line 5228 · 2026-05-23T10:41:10.586622+00:00_
+_source line 5184 · 2026-05-23T10:41:10.586622+00:00_
 
 eps=0.00: SF=2.0%, Amp=11.5%, Viol=13.3%
 eps=0.01: SF=2.4%, Amp=12.4%, Viol=14.7%
@@ -16945,7 +14756,7 @@ eps=0.50: SF=22.9%, Amp=34.9%, Viol=54.6%
 
 ### Tool call
 
-_source line 5229 · 2026-05-23T10:41:25.899136+00:00_
+_source line 5185 · 2026-05-23T10:41:25.899136+00:00_
 
 called Bash
 
@@ -16981,7 +14792,7 @@ called Bash
 
 ### Tool result
 
-_source line 5230 · 2026-05-23T10:41:26.000056+00:00_
+_source line 5186 · 2026-05-23T10:41:26.000056+00:00_
 
 Topology       | Low (C=0.9) | Med (C=0.7) | High (C=0.5)
 confounding     |    -0.003%  |    -0.000%   |    -0.000%
@@ -17023,7 +14834,7 @@ Exposure raw values:
 
 ### Tool call
 
-_source line 5231 · 2026-05-23T10:41:33.684683+00:00_
+_source line 5187 · 2026-05-23T10:41:33.684683+00:00_
 
 called Read
 
@@ -17061,7 +14872,7 @@ called Read
 
 ### Tool result
 
-_source line 5232 · 2026-05-23T10:41:33.785336+00:00_
+_source line 5188 · 2026-05-23T10:41:33.785336+00:00_
 
 1174	\small
 1175	\caption{Mean logistic bias reduction (\%) from matrix-based correction, by topology and error level (averaged over $N \in \{1K, 5K, 10K, 50K\}$; 200 MC reps each). Under linear OLS, all covariate topologies yield exactly 0\%. Exposure is shown for comparison.}
@@ -17102,7 +14913,7 @@ _source line 5232 · 2026-05-23T10:41:33.785336+00:00_
 
 ### Tool call
 
-_source line 5233 · 2026-05-23T10:41:43.034480+00:00_
+_source line 5189 · 2026-05-23T10:41:43.034480+00:00_
 
 called Bash
 
@@ -17138,7 +14949,7 @@ called Bash
 
 ### Tool result
 
-_source line 5234 · 2026-05-23T10:41:43.085259+00:00_
+_source line 5190 · 2026-05-23T10:41:43.085259+00:00_
 
 N=1000, error=low: linear_br=-0.03840946411670899, logistic_br=-0.4369119510134019
 N=1000, error=medium: linear_br=-0.06364832676197657, logistic_br=-0.5144153875176722
@@ -17171,7 +14982,7 @@ N=50000, error=high: linear_br=-0.04445262704016246, logistic_br=-0.219877865139
 
 ### Tool call
 
-_source line 5235 · 2026-05-23T10:41:52.181401+00:00_
+_source line 5191 · 2026-05-23T10:41:52.181401+00:00_
 
 called Grep
 
@@ -17207,7 +15018,7 @@ called Grep
 
 ### Tool result
 
-_source line 5236 · 2026-05-23T10:41:52.231984+00:00_
+_source line 5192 · 2026-05-23T10:41:52.231984+00:00_
 
 Found 1 file
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_fwl_nonlinear_scaling.py
@@ -17230,7 +15041,7 @@ Found 1 file
 
 ### Tool call
 
-_source line 5237 · 2026-05-23T10:41:56.454392+00:00_
+_source line 5193 · 2026-05-23T10:41:56.454392+00:00_
 
 called Bash
 
@@ -17266,7 +15077,7 @@ called Bash
 
 ### Tool result
 
-_source line 5238 · 2026-05-23T10:41:56.505371+00:00_
+_source line 5194 · 2026-05-23T10:41:56.505371+00:00_
 
 350:      - logistic_bias_reduction_pcts: list of per-rep bias reduction %
 351:      - linear_bias_reduction_pcts: list of per-rep bias reduction %
@@ -17302,7 +15113,7 @@ _source line 5238 · 2026-05-23T10:41:56.505371+00:00_
 
 ### Tool call
 
-_source line 5239 · 2026-05-23T10:42:00.427861+00:00_
+_source line 5195 · 2026-05-23T10:42:00.427861+00:00_
 
 called Read
 
@@ -17340,7 +15151,7 @@ called Read
 
 ### Tool result
 
-_source line 5240 · 2026-05-23T10:42:00.528811+00:00_
+_source line 5196 · 2026-05-23T10:42:00.528811+00:00_
 
 380	                bias_corr = np.mean(np.abs(coefs_corr - true_coefs))
 381	                if bias_uncorr > 1e-10:
@@ -17401,7 +15212,7 @@ _source line 5240 · 2026-05-23T10:42:00.528811+00:00_
 
 ### Tool call
 
-_source line 5241 · 2026-05-23T10:42:23.097356+00:00_
+_source line 5197 · 2026-05-23T10:42:23.097356+00:00_
 
 called Bash
 
@@ -17437,7 +15248,7 @@ called Bash
 
 ### Tool result
 
-_source line 5242 · 2026-05-23T10:42:23.249840+00:00_
+_source line 5198 · 2026-05-23T10:42:23.249840+00:00_
 
 Confounding N=1000 low: logistic_br = 0.0004455665542252402
 Confounding low values: [0.0004455665542252402, -0.0027432883494885422, -0.006854961591573993, -0.003899106202569337]
@@ -17462,7 +15273,7 @@ Average * 100: -0.3262947397351658
 
 ### Tool call
 
-_source line 5243 · 2026-05-23T10:42:33.401854+00:00_
+_source line 5199 · 2026-05-23T10:42:33.401854+00:00_
 
 called Read
 
@@ -17500,7 +15311,7 @@ called Read
 
 ### Tool result
 
-_source line 5244 · 2026-05-23T10:42:33.502696+00:00_
+_source line 5200 · 2026-05-23T10:42:33.502696+00:00_
 
 500	            for level_name, diag_val in ERROR_LEVELS.items():
 501	                idx += 1
@@ -17568,7 +15379,7 @@ _source line 5244 · 2026-05-23T10:42:33.502696+00:00_
 
 ### Tool call
 
-_source line 5245 · 2026-05-23T10:42:48.478027+00:00_
+_source line 5201 · 2026-05-23T10:42:48.478027+00:00_
 
 called Bash
 
@@ -17604,7 +15415,7 @@ called Bash
 
 ### Tool result
 
-_source line 5246 · 2026-05-23T10:42:48.578895+00:00_
+_source line 5202 · 2026-05-23T10:42:48.578895+00:00_
 
 confounding low: avg fraction = -0.003263, avg pct = -0.326%
   N=1000: fraction=0.000446, pct=0.045%
@@ -17640,7 +15451,7 @@ confounding high: avg fraction = -0.000488, avg pct = -0.049%
 
 ### Tool call
 
-_source line 5247 · 2026-05-23T10:42:55.917545+00:00_
+_source line 5203 · 2026-05-23T10:42:55.917545+00:00_
 
 called Bash
 
@@ -17676,7 +15487,7 @@ called Bash
 
 ### Tool result
 
-_source line 5248 · 2026-05-23T10:42:56.019088+00:00_
+_source line 5204 · 2026-05-23T10:42:56.019088+00:00_
 
 HumAID entries: 56
 HumAID IV bias_pct range: 0.1% - 0.4%
@@ -17714,7 +15525,7 @@ Expected non-exposure: 23 * 6 = 138
 
 ### Tool call
 
-_source line 5249 · 2026-05-23T10:43:08.139016+00:00_
+_source line 5205 · 2026-05-23T10:43:08.139016+00:00_
 
 called Bash
 
@@ -17750,7 +15561,7 @@ called Bash
 
 ### Tool result
 
-_source line 5250 · 2026-05-23T10:43:08.239993+00:00_
+_source line 5206 · 2026-05-23T10:43:08.239993+00:00_
 
 {'dataset': 'humaid', 'model': 'deepseek', 'prompt': 'few-shot-3', 'K': 10, 'topology': 'iv', 'tau_true': 1.1307568929761165, 'tau_hat': 1.6008402740556653, 'bias': 0.47008338107954883, 'bias_pct': 0.41572453283243244, 'sign_flip': False, 'source': 'plan006'}
 {'dataset': 'humaid', 'model': 'deepseek', 'prompt': 'few-shot-5', 'K': 10, 'topology': 'iv', 'tau_true': 1.1307568929761165, 'tau_hat': 1.4772921511701045, 'bias': 0.346535258193988, 'bias_pct': 0.30646309595506255, 'sign_flip': False, 'source': 'plan006'}
@@ -17782,7 +15593,7 @@ As percentage: 42.2%
 
 ### Tool call
 
-_source line 5251 · 2026-05-23T10:43:11.859596+00:00_
+_source line 5207 · 2026-05-23T10:43:11.859596+00:00_
 
 called Bash
 
@@ -17818,7 +15629,7 @@ called Bash
 
 ### Tool result
 
-_source line 5252 · 2026-05-23T10:43:11.960663+00:00_
+_source line 5208 · 2026-05-23T10:43:11.960663+00:00_
 
 === compute_all_tasks.py ===
   [no seed found in first 80 lines]
@@ -17870,7 +15681,7 @@ RNG = np.random.default_rng(20260522)
 
 ### Tool call
 
-_source line 5253 · 2026-05-23T10:43:16.737991+00:00_
+_source line 5209 · 2026-05-23T10:43:16.737991+00:00_
 
 called Bash
 
@@ -17906,7 +15717,7 @@ called Bash
 
 ### Tool result
 
-_source line 5254 · 2026-05-23T10:43:16.839099+00:00_
+_source line 5210 · 2026-05-23T10:43:16.839099+00:00_
 
 187:                seed = (hash(config_key + topo) & 0xFFFFFFFF) + mc_i * 7919
 189:                    rng = np.random.default_rng(seed)
@@ -17957,7 +15768,7 @@ _source line 5254 · 2026-05-23T10:43:16.839099+00:00_
 
 ### Tool call
 
-_source line 5255 · 2026-05-23T10:43:21.124748+00:00_
+_source line 5211 · 2026-05-23T10:43:21.124748+00:00_
 
 called Bash
 
@@ -17993,7 +15804,7 @@ called Bash
 
 ### Tool result
 
-_source line 5256 · 2026-05-23T10:43:21.175560+00:00_
+_source line 5212 · 2026-05-23T10:43:21.175560+00:00_
 
 HumAID IV: 12.4% - 42.2%
 HumAID Exposure: 9.0% - 17.4%
@@ -18047,7 +15858,7 @@ civilcomments: 0 configs, 0 entries
 
 ### Tool call
 
-_source line 5257 · 2026-05-23T10:43:23.335516+00:00_
+_source line 5213 · 2026-05-23T10:43:23.335516+00:00_
 
 called Bash
 
@@ -18083,7 +15894,7 @@ called Bash
 
 ### Tool result
 
-_source line 5258 · 2026-05-23T10:43:23.486544+00:00_
+_source line 5214 · 2026-05-23T10:43:23.486544+00:00_
 
 === compute_all_tasks.py ===
 12:import json
@@ -18151,7 +15962,7 @@ _source line 5258 · 2026-05-23T10:43:23.486544+00:00_
 
 ### Tool call
 
-_source line 5259 · 2026-05-23T10:43:31.631514+00:00_
+_source line 5215 · 2026-05-23T10:43:31.631514+00:00_
 
 called Bash
 
@@ -18187,7 +15998,7 @@ called Bash
 
 ### Tool result
 
-_source line 5260 · 2026-05-23T10:43:31.782477+00:00_
+_source line 5216 · 2026-05-23T10:43:31.782477+00:00_
 
 Total unique (model, prompt) configs: 12
 Total unique (dataset, model, prompt): 23
@@ -18212,7 +16023,7 @@ Keys in ppi_empirical_validation.json: ['meta', 'tau_true', 'per_config', 'grand
 
 ### Tool call
 
-_source line 5261 · 2026-05-23T10:43:32.534906+00:00_
+_source line 5217 · 2026-05-23T10:43:32.534906+00:00_
 
 called Bash
 
@@ -18248,7 +16059,7 @@ called Bash
 
 ### Tool result
 
-_source line 5262 · 2026-05-23T10:43:32.686232+00:00_
+_source line 5218 · 2026-05-23T10:43:32.686232+00:00_
 
 Exit code 1
 === compute_all_tasks.py ===
@@ -18298,7 +16109,7 @@ import importlib.util
 
 ### Tool call
 
-_source line 5263 · 2026-05-23T10:43:37.359968+00:00_
+_source line 5219 · 2026-05-23T10:43:37.359968+00:00_
 
 called Bash
 
@@ -18334,7 +16145,7 @@ called Bash
 
 ### Tool result
 
-_source line 5264 · 2026-05-23T10:43:37.410791+00:00_
+_source line 5220 · 2026-05-23T10:43:37.410791+00:00_
 
 Datasets: {'vast', 'civil_comments', 'humaid'}
 vast: 8 configs, 56 entries
@@ -18359,7 +16170,7 @@ humaid: 8 configs, 56 entries
 
 ### Tool call
 
-_source line 5265 · 2026-05-23T10:43:37.813241+00:00_
+_source line 5221 · 2026-05-23T10:43:37.813241+00:00_
 
 called Read
 
@@ -18395,7 +16206,7 @@ called Read
 
 ### Tool result
 
-_source line 5266 · 2026-05-23T10:43:37.863921+00:00_
+_source line 5222 · 2026-05-23T10:43:37.863921+00:00_
 
 1	{
 2	  "source_cm": "humaid/deepseek_zero-shot",
@@ -18476,7 +16287,7 @@ _source line 5266 · 2026-05-23T10:43:37.863921+00:00_
 
 ### Tool call
 
-_source line 5267 · 2026-05-23T10:43:45.208416+00:00_
+_source line 5223 · 2026-05-23T10:43:45.208416+00:00_
 
 called Bash
 
@@ -18512,7 +16323,7 @@ called Bash
 
 ### Tool result
 
-_source line 5268 · 2026-05-23T10:43:45.309292+00:00_
+_source line 5224 · 2026-05-23T10:43:45.309292+00:00_
 
 confounding: point=None, CI=[None, None], valid=0/1000
 exposure: point=0.936568823660218, CI=[0.6023033301315043, 1.3630706297885458], valid=907/1000
@@ -18536,7 +16347,7 @@ iv: point=0.7541694462975318, CI=[0.4347908340923292, 1.2895572430855435], valid
 
 ### Tool call
 
-_source line 5269 · 2026-05-23T10:43:52.444934+00:00_
+_source line 5225 · 2026-05-23T10:43:52.444934+00:00_
 
 called Bash
 
@@ -18572,7 +16383,7 @@ called Bash
 
 ### Tool result
 
-_source line 5270 · 2026-05-23T10:43:52.545777+00:00_
+_source line 5226 · 2026-05-23T10:43:52.545777+00:00_
 
 CivilComments configs (7):
   ('deepseek', 'few-shot-5')
@@ -18624,7 +16435,7 @@ Non-exposure scenarios: 138
 
 ### Tool call
 
-_source line 5271 · 2026-05-23T10:43:59.243418+00:00_
+_source line 5227 · 2026-05-23T10:43:59.243418+00:00_
 
 called Bash
 
@@ -18660,7 +16471,7 @@ called Bash
 
 ### Tool result
 
-_source line 5272 · 2026-05-23T10:43:59.344307+00:00_
+_source line 5228 · 2026-05-23T10:43:59.344307+00:00_
 
 civil_comments: n=7, mean=0.500, median=0.50
 vast: n=8, mean=0.003, median=0.00
@@ -18690,7 +16501,7 @@ humaid: eps*=0 count = 7/8
 
 ### Tool call
 
-_source line 5273 · 2026-05-23T10:44:09.143478+00:00_
+_source line 5229 · 2026-05-23T10:44:09.143478+00:00_
 
 called Bash
 
@@ -18726,7 +16537,7 @@ called Bash
 
 ### Tool result
 
-_source line 5274 · 2026-05-23T10:44:10.200016+00:00_
+_source line 5230 · 2026-05-23T10:44:10.200016+00:00_
 
 Total f1_vs_bias entries: 63
 Valid entries: 63
@@ -18760,7 +16571,7 @@ Paper claims: 0.57
 
 ### Tool call
 
-_source line 5275 · 2026-05-23T10:44:15.933035+00:00_
+_source line 5231 · 2026-05-23T10:44:15.933035+00:00_
 
 called Bash
 
@@ -18796,7 +16607,7 @@ called Bash
 
 ### Tool result
 
-_source line 5276 · 2026-05-23T10:44:16.033899+00:00_
+_source line 5232 · 2026-05-23T10:44:16.033899+00:00_
 
 confounding : 0.118(200), 0.027(0), 0.014(0), 0.007(0), 0.002(0)
 mediation   : 0.130(1950), 0.026(0), 0.013(0), 0.112(1), 0.003(0)
@@ -18823,7 +16634,7 @@ frontdoor   : 0.003(0), 0.013(0), 0.027(0), 0.051(0), 0.139(664)
 
 ### Tool call
 
-_source line 5277 · 2026-05-23T10:44:25.423559+00:00_
+_source line 5233 · 2026-05-23T10:44:25.423559+00:00_
 
 called Bash
 
@@ -18859,7 +16670,7 @@ called Bash
 
 ### Tool result
 
-_source line 5278 · 2026-05-23T10:44:25.524540+00:00_
+_source line 5234 · 2026-05-23T10:44:25.524540+00:00_
 
 Exposure tau=5.0:
   aggregate max_eps = 0.1474828687818115
@@ -18891,7 +16702,7 @@ M-bias tau=1.0:
 
 ### Tool call
 
-_source line 5279 · 2026-05-23T10:44:26.832101+00:00_
+_source line 5235 · 2026-05-23T10:44:26.832101+00:00_
 
 called Bash
 
@@ -18927,7 +16738,7 @@ called Bash
 
 ### Tool result
 
-_source line 5280 · 2026-05-23T10:45:43.835206+00:00_
+_source line 5236 · 2026-05-23T10:45:43.835206+00:00_
 
 Method 1 (Fisher Z two-sided): 0.6154
 Method 2 (simulation, Spearman): 0.5717
@@ -18956,7 +16767,7 @@ Method 3 (Pearson noncentral-t): 0.6216
 
 ### Tool call
 
-_source line 5281 · 2026-05-23T10:46:01.733478+00:00_
+_source line 5237 · 2026-05-23T10:46:01.733478+00:00_
 
 called Bash
 
@@ -18992,7 +16803,7 @@ called Bash
 
 ### Tool result
 
-_source line 5282 · 2026-05-23T10:46:01.834545+00:00_
+_source line 5238 · 2026-05-23T10:46:01.834545+00:00_
 
 IV max: 42.2%
 Collider max: 5.6%
@@ -19028,7 +16839,7 @@ qwen3/few-shot-3: IV=21.6% vs collider=4.7% = 4.6x
 
 ### Tool result
 
-_source line 5283 · 2026-05-23T10:46:03.242029+00:00_
+_source line 5239 · 2026-05-23T10:46:03.242029+00:00_
 
 So:
 - Exposure tau=5.0: JSON = 0.1475, which rounds to 0.148 (appendix is correct)
@@ -19071,7 +16882,7 @@ Now I have all the data needed to compile both reports. Here is the comprehensiv
 
 ### Tool call
 
-_source line 5284 · 2026-05-23T10:46:14.249774+00:00_
+_source line 5240 · 2026-05-23T10:46:14.249774+00:00_
 
 called Bash
 
@@ -19107,7 +16918,7 @@ called Bash
 
 ### Tool result
 
-_source line 5285 · 2026-05-23T10:46:14.451013+00:00_
+_source line 5241 · 2026-05-23T10:46:14.451013+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -19134,7 +16945,7 @@ AttributeError: 'list' object has no attribute 'keys'
 
 ### Tool call
 
-_source line 5286 · 2026-05-23T10:46:21.589082+00:00_
+_source line 5242 · 2026-05-23T10:46:21.589082+00:00_
 
 called Bash
 
@@ -19170,7 +16981,7 @@ called Bash
 
 ### Tool result
 
-_source line 5287 · 2026-05-23T10:46:21.690075+00:00_
+_source line 5243 · 2026-05-23T10:46:21.690075+00:00_
 
 Top-level keys: ['confusion_matrices', 'biases', 'asvs', 'f1_vs_bias', 'type1_type2', 'inter_model_correlation', 'summary']
 type1_type2 type: &lt;class 'list'>, len: 63
@@ -19197,7 +17008,7 @@ asv_diagnostics type: &lt;class 'list'>, len: 0
 
 ### Tool call
 
-_source line 5288 · 2026-05-23T10:46:30.770790+00:00_
+_source line 5244 · 2026-05-23T10:46:30.770790+00:00_
 
 called Bash
 
@@ -19233,7 +17044,7 @@ called Bash
 
 ### Tool result
 
-_source line 5289 · 2026-05-23T10:46:30.872248+00:00_
+_source line 5245 · 2026-05-23T10:46:30.872248+00:00_
 
 HumAID entries: 63
 HumAID magnitude-unsafe: 31/63 = 49.2%
@@ -19262,7 +17073,7 @@ HumAID magnitude_asv < 1: 0/189 = 0.0%
 
 ### Tool call
 
-_source line 5290 · 2026-05-23T10:46:41.162424+00:00_
+_source line 5246 · 2026-05-23T10:46:41.162424+00:00_
 
 called Bash
 
@@ -19298,7 +17109,7 @@ called Bash
 
 ### Tool result
 
-_source line 5291 · 2026-05-23T10:46:41.263701+00:00_
+_source line 5247 · 2026-05-23T10:46:41.263701+00:00_
 
 HumAID configs in type1_type2: 9
   ('deepseek', 'few-shot-3')
@@ -19333,7 +17144,7 @@ Unsafe (valid): 31/56 = 55.4%
 
 ### Tool call
 
-_source line 5292 · 2026-05-23T10:46:49.445655+00:00_
+_source line 5248 · 2026-05-23T10:46:49.445655+00:00_
 
 called Bash
 
@@ -19369,7 +17180,7 @@ called Bash
 
 ### Tool result
 
-_source line 5293 · 2026-05-23T10:46:49.548125+00:00_
+_source line 5249 · 2026-05-23T10:46:49.548125+00:00_
 
 Keys: ['confusion_matrices', 'biases', 'asvs', 'f1_vs_bias', 'type1_type2', 'inter_model_correlation', 'summary']
 type1_type2 entries: 189
@@ -19396,7 +17207,7 @@ Configs with at least one unsafe topology: 9/9 = 100%
 
 ### Tool call
 
-_source line 5294 · 2026-05-23T10:47:05.921568+00:00_
+_source line 5250 · 2026-05-23T10:47:05.921568+00:00_
 
 called Bash
 
@@ -19432,7 +17243,7 @@ called Bash
 
 ### Tool result
 
-_source line 5295 · 2026-05-23T10:47:06.072640+00:00_
+_source line 5251 · 2026-05-23T10:47:06.072640+00:00_
 
 Max bias for remaining topologies: 14.7%
 Paper says: <15%
@@ -19463,7 +17274,7 @@ Paper says: as low as 0.45
 
 ### Tool call
 
-_source line 5296 · 2026-05-23T10:47:19.274440+00:00_
+_source line 5252 · 2026-05-23T10:47:19.274440+00:00_
 
 called Bash
 
@@ -19499,7 +17310,7 @@ called Bash
 
 ### Tool result
 
-_source line 5297 · 2026-05-23T10:47:19.576238+00:00_
+_source line 5253 · 2026-05-23T10:47:19.576238+00:00_
 
 Traceback (most recent call last):
   File "&lt;string>", line 11, in &lt;module>
@@ -19526,7 +17337,7 @@ Number of confusion matrices: 9
 
 ### Tool call
 
-_source line 5298 · 2026-05-23T10:47:33.328816+00:00_
+_source line 5254 · 2026-05-23T10:47:33.328816+00:00_
 
 called Bash
 
@@ -19562,7 +17373,7 @@ called Bash
 
 ### Tool result
 
-_source line 5299 · 2026-05-23T10:47:33.530041+00:00_
+_source line 5255 · 2026-05-23T10:47:33.530041+00:00_
 
 Type: &lt;class 'dict'>
 Keys: ['humaid_llama4_zero-shot', 'humaid_llama4_few-shot-3', 'humaid_llama4_few-shot-5', 'humaid_qwen3_zero-shot', 'humaid_qwen3_few-shot-3', 'humaid_qwen3_few-shot-5', 'humaid_deepseek_zero-shot', 'humaid_deepseek_few-shot-3', 'humaid_deepseek_few-shot-5']
@@ -19590,7 +17401,7 @@ Min mean diagonal: 0.709 (humaid_llama4_zero-shot)
 
 ### Tool call
 
-_source line 5300 · 2026-05-23T10:47:43.534509+00:00_
+_source line 5256 · 2026-05-23T10:47:43.534509+00:00_
 
 called Bash
 
@@ -19626,7 +17437,7 @@ called Bash
 
 ### Tool result
 
-_source line 5301 · 2026-05-23T10:47:43.685674+00:00_
+_source line 5257 · 2026-05-23T10:47:43.685674+00:00_
 
 CivilComments CMs: ['civil_comments_llama4_zero-shot', 'civil_comments_llama4_few-shot-3', 'civil_comments_llama4_few-shot-5', 'civil_comments_qwen3_zero-shot', 'civil_comments_qwen3_few-shot-3', 'civil_comments_qwen3_few-shot-5', 'civil_comments_deepseek_zero-shot', 'civil_comments_deepseek_few-shot-3', 'civil_comments_deepseek_few-shot-5', 'vast_llama4_zero-shot', 'vast_llama4_few-shot-3', 'vast_llama4_few-shot-5', 'vast_qwen3_zero-shot', 'vast_qwen3_few-shot-3', 'vast_qwen3_few-shot-5', 'vast_deepseek_zero-shot', 'vast_deepseek_few-shot-3', 'vast_deepseek_few-shot-5', 'humaid_llama4_zero-shot', 'humaid_llama4_few-shot-3', 'humaid_llama4_few-shot-5', 'humaid_qwen3_zero-shot', 'humaid_qwen3_few-shot-3', 'humaid_qwen3_few-shot-5', 'humaid_deepseek_zero-shot', 'humaid_deepseek_few-shot-3', 'humaid_deepseek_few-shot-5']
   civil_comments_llama4_zero-shot: shape=(2, 2), mean_diag=0.877
@@ -19669,7 +17480,7 @@ CivilComments CMs: ['civil_comments_llama4_zero-shot', 'civil_comments_llama4_fe
 
 ### Tool call
 
-_source line 5302 · 2026-05-23T10:47:57.360416+00:00_
+_source line 5258 · 2026-05-23T10:47:57.360416+00:00_
 
 called Bash
 
@@ -19705,7 +17516,7 @@ called Bash
 
 ### Tool result
 
-_source line 5303 · 2026-05-23T10:47:57.511383+00:00_
+_source line 5259 · 2026-05-23T10:47:57.511383+00:00_
 
 Type: &lt;class 'dict'>, keys or len: 23
 
@@ -19731,7 +17542,7 @@ ppi per_config keys: ['humaid_llama4_zero-shot', 'humaid_llama4_few-shot-3', 'hu
 
 ### Tool call
 
-_source line 5304 · 2026-05-23T10:48:03.046268+00:00_
+_source line 5260 · 2026-05-23T10:48:03.046268+00:00_
 
 called Bash
 
@@ -19767,7 +17578,7 @@ called Bash
 
 ### Tool result
 
-_source line 5305 · 2026-05-23T10:48:03.247316+00:00_
+_source line 5261 · 2026-05-23T10:48:03.247316+00:00_
 
 Keys: ['civil_comments_deepseek_few-shot-5', 'civil_comments_qwen2.5-7b_few-shot-3', 'civil_comments_qwen2.5-7b_few-shot-5', 'civil_comments_qwen2.5-7b_zero-shot', 'civil_comments_qwen3_few-shot-3', 'civil_comments_qwen3_few-shot-5', 'civil_comments_qwen3_zero-shot', 'humaid_deepseek_few-shot-3', 'humaid_deepseek_few-shot-5', 'humaid_deepseek_zero-shot', 'humaid_llama4_few-shot-3', 'humaid_llama4_few-shot-5', 'humaid_llama4_zero-shot', 'humaid_qwen3_few-shot-3', 'humaid_qwen3_zero-shot', 'vast_deepseek_few-shot-3', 'vast_deepseek_few-shot-5', 'vast_llama4_few-shot-3', 'vast_llama4_zero-shot', 'vast_qwen2.5-7b_few-shot-3', 'vast_qwen2.5-7b_few-shot-5', 'vast_qwen2.5-7b_zero-shot', 'vast_qwen3_zero-shot']
 civil_comments_deepseek_few-shot-5: shape=(2, 2), mean_diag=0.769
@@ -19812,7 +17623,7 @@ vast_qwen2.5-7b_zero-shot: sha
 
 ### Tool result
 
-_source line 5306 · 2026-05-23T10:49:08.774131+00:00_
+_source line 5262 · 2026-05-23T10:49:08.774131+00:00_
 
 The minimum mean diagonal is 0.445 (vast_qwen2.5-7b_few-shot-5), which rounds to 0.45. The paper's claim of "mean diagonal as low as 0.45" is confirmed.
 
@@ -19865,7 +17676,7 @@ Now let me compile the complete verification table.
 
 ### Tool call
 
-_source line 5307 · 2026-05-23T10:49:38.383811+00:00_
+_source line 5263 · 2026-05-23T10:49:38.383811+00:00_
 
 called Read
 
@@ -19901,7 +17712,7 @@ called Read
 
 ### Tool result
 
-_source line 5308 · 2026-05-23T10:49:38.785850+00:00_
+_source line 5264 · 2026-05-23T10:49:38.785850+00:00_
 
 1	{
 2	  "zero_configs": [
@@ -19990,7 +17801,7 @@ _source line 5308 · 2026-05-23T10:49:38.785850+00:00_
 
 ### Tool call
 
-_source line 5309 · 2026-05-23T10:49:38.886801+00:00_
+_source line 5265 · 2026-05-23T10:49:38.886801+00:00_
 
 called Read
 
@@ -20016,6 +17827,1944 @@ called Read
     "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json",
     "limit": "80"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5266 · 2026-05-23T10:49:38.937386+00:00_
+
+1	{
+2	  "confusion_matrices": {
+3	    "civil_comments_deepseek_few-shot-5": [
+4	      [
+5	        0.7341211225997046,
+6	        0.19863013698630136
+7	      ],
+8	      [
+9	        0.2658788774002954,
+10	        0.8013698630136986
+11	      ]
+12	    ],
+13	    "civil_comments_qwen2.5-7b_few-shot-3": [
+14	      [
+15	        0.6787296898079763,
+16	        0.2191780821917808
+17	      ],
+18	      [
+19	        0.3212703101920236,
+20	        0.7808219178082192
+21	      ]
+22	    ],
+23	    "civil_comments_qwen2.5-7b_few-shot-5": [
+24	      [
+25	        0.7370753323485968,
+26	        0.23972602739726026
+27	      ],
+28	      [
+29	        0.26292466765140327,
+30	        0.7602739726027398
+31	      ]
+32	    ],
+33	    "civil_comments_qwen2.5-7b_zero-shot": [
+34	      [
+35	        0.7481536189069424,
+36	        0.3150684931506849
+37	      ],
+38	      [
+39	        0.2518463810930576,
+40	        0.684931506849315
+41	      ]
+42	    ],
+43	    "civil_comments_qwen3_few-shot-3": [
+44	      [
+45	        0.8179126572908957,
+46	        0.25517241379310346
+47	      ],
+48	      [
+49	        0.18208734270910437,
+50	        0.7448275862068966
+51	      ]
+52	    ],
+53	    "civil_comments_qwen3_few-shot-5": [
+54	      [
+55	        0.8240534521158129,
+56	        0.20689655172413793
+57	      ],
+58	      [
+59	        0.1759465478841871,
+60	        0.7931034482758621
+61	      ]
+62	    ],
+63	    "civil_comments_qwen3_zero-shot": [
+64	      [
+65	        0.778118609406953,
+66	        0.25742574257425743
+67	      ],
+68	      [
+69	        0.22188139059304704,
+70	        0.7425742574257426
+71	      ]
+72	    ],
+73	    "humaid_deepseek_few-shot-3": [
+74	      [
+75	        0.5795454545454546,
+76	        0.15,
+77	        0.050955414012738856,
+78	        0.0,
+79	        0.0,
+80	        0.011363636363636364,
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5267 · 2026-05-23T10:49:49.994416+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check mean diagonal for VAST configs to verify 0.45\nwith open('updated_empirical_results.json') as f:\n    data = json.load(f)\n\nprint('=== Mean diagonal (trace/K) for all configs ===')\nmin_diag = 999\nmax_diag = 0\nfor name, cm in sorted(data['confusion_matrices'].items()):\n    K = len(cm)\n    trace = sum(cm[i][i] for i in range(K))\n    mean_diag = trace / K\n    if mean_diag < min_diag:\n        min_diag = mean_diag\n        min_name = name\n    if mean_diag > max_diag:\n        max_diag = mean_diag\n        max_name = name\n    if 'vast' in name:\n        print(f'  {name}: K={K}, mean_diag={mean_diag:.4f}')\n\nprint(f'\\nMin: {min_name} = {min_diag:.4f}')\nprint(f'Max: {max_name} = {max_diag:.4f}')\nprint(f'Range: {min_diag:.2f}--{max_diag:.2f}')\n\"\n",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check mean diagonal for VAST configs to verify 0.45\nwith open('updated_empirical_results.json') as f:\n    data = json.load(f)\n\nprint('=== Mean diagonal (trace/K) for all configs ===')\nmin_diag = 999\nmax_diag = 0\nfor name, cm in sorted(data['confusion_matrices'].items()):\n    K = len(cm)\n    trace = sum(cm[i][i] for i in range(K))\n    mean_diag = trace / K\n    if mean_diag < min_diag:\n        min_diag = mean_diag\n        min_name = name\n    if mean_diag > max_diag:\n        max_diag = mean_diag\n        max_name = name\n    if 'vast' in name:\n        print(f'  {name}: K={K}, mean_diag={mean_diag:.4f}')\n\nprint(f'\\nMin: {min_name} = {min_diag:.4f}')\nprint(f'Max: {max_name} = {max_diag:.4f}')\nprint(f'Range: {min_diag:.2f}--{max_diag:.2f}')\n\"\n",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5268 · 2026-05-23T10:49:54.596297+00:00_
+
+5 个 agent 审计完成。在汇报前，我需要亲自核实最关键的几个发现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
+}
+```
+
+</details>
+
+---
+
+
+## Round 104
+
+## Round 104
+
+134 recorded events
+
+
+### User
+
+_source line 5269 · 2026-05-23T11:06:11.921109+00:00_
+
+[Director 指令] **[紧急] R14 审稿修复 — 全部写作修改，DDL 2026-05-25**
+
+审稿人明确指出 W1-W3 解决可达 4.0。以下按优先级执行。
+
+---
+
+## P0: 三个关键 should-fix
+
+### W1: Section 3.3 新增 Remark 1 (ASV vs E-value 形式化对比)
+
+在 Section 3.3 ASV 定义之后，新增 Remark 1，约 10 行。内容：
+
+```
+\begin{remark}[Structural distinctions from E-values]
+ASV diagnostics differ from E-values \citep{vanderweele_ding2017} in three respects:
+(i)~\emph{Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_T(C)$ depending on the DAG role of $A$ (Eqs.~\ref{eq:...}--\ref{eq:...}), whereas E-values treat all confounding identically via a scalar risk ratio $\gamma$.
+(ii)~\emph{Sign-flip diagnostic}: E-values diagnose magnitude robustness (the minimum confounding strength to nullify an effect) but do not address sign reversal. The sign-flip ASV $\delta^*_{\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.
+(iii)~\emph{Parametric structure}: E-values use a one-dimensional monotone parameterization ($\gamma \geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via the diagonal path $C(\delta)$, but the resulting bias function $B(\delta)$ is topology-specific and can be non-monotone (IV).
+\end{remark}
+```
+
+注意 point (ii) **不要说** E-value "structurally excludes sign change"——E-value 只是 **定义上不问 sign reversal 问题**，用上面的措辞。
+
+如果需要腾页面空间，压缩现有 method.tex 中 ASV 与 E-value 的描述性文字（已有 Table 18 交叉引用的那段）。
+
+### W2: Algorithm 1 + Conjecture 1 修复（3 处改动）
+
+**(a) Algorithm 1 脚注**：Algorithm 1 用的是拓扑分类（不是 ASV 数值阈值），脚注措辞：
+> "This topology-based classification is robust to $\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\varepsilon < 0.06$ approximation (Conjecture~\ref{conj:monotone}, Section~\ref{sec:asv})."
+
+**(b) Conjecture 1 正文措辞修正** [CRITICAL 不一致]：
+当前 Conjecture 1 声称 "ε = 0.06 deviations across all tested configurations"，但 Appendix Table tab:conjecture_tau_sens 显示多个超过 0.06 的案例（exposure 0.152, mediation 0.130, front-door 0.139）。
+修正为："$\varepsilon < 0.06$ for non-IV topologies under $\tau \geq 0.5$" 或 "$\varepsilon < 0.06$ under default DGP parameters (see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds)"。
+
+**(c) ε 实践含义**（Conjecture 1 之后加 1 句）：
+> "Under $\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds)."
+
+### W3: 正文新增 NLP-realistic 0.07%
+
+Section 3.2 Proposition 1 讨论附近（proportional effects 相关段落），添加 2-3 句：
+
+> "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\% with zero sign failures (Table~\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains $\geq$97.3\% (Table~\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\%) unlikely in balanced NLP classification."
+
+确认引用的表名/label 正确——Appendix D.5 的 tab:proportional_effects 和 D.6 的 tab:proportional_empirical。
+
+---
+
+## P1: 其他修改
+
+### W5: IV 替代方案（Section 4.2 或 Limitations）
+IV 段落末尾添加 2 句：
+> "For IV designs where annotation error is unavoidable, practitioners may consider bounds approaches \citep{manski1990}, robust IV methods, or two-sample IV designs where the instrument is measured without error in a separate sample."
+
+如果 Manski 1990 不在 bib 中，添加。
+
+### W7: Table 1 标注改进
+Yes* 改为 "Cond." 或在 caption 中直接解释 "(Yes* = conditional on proportional effects; Proposition~\ref{prop:signflip})"
+
+### W8: Algorithm 1 阈值说明
+Algorithm 1 caption 添加："Thresholds are calibrated from $K{=}3$ linear SEM; practitioners should recalibrate for their specific $K$ and model class."（如果已有类似语句，检查是否需要更新）
+
+### W9: 混淆矩阵可获得性（Limitations）
+添加 1 句："Our framework assumes $C$ is known or estimable from held-out gold-standard labels; obtaining accurate $C$ itself requires gold annotations, a bootstrapping constraint mitigated by cross-validation or expert subset labeling."
+
+### Q1-Q5 简要回应
+- **Q1**: Appendix 添加 1-2 句说明可用 bootstrap 从观测数据估计 Var(g(A)), Var(f(A)) 的上界
+- **Q2**: Section 4.5 或 Appendix 提及 bias-corrected bootstrap 作为 logistic 下替代
+- **Q3**: 正文添加交叉引用 "Failures concentrate in Sparse DGP (24.2\%); see Appendix~\ref{sec:proportional_effects}"——已被 W3 覆盖
+- **Q4**: Algorithm 1 添加 Step 0 注释："If the DAG is uncertain, repeat Steps 1--3 under each candidate topology and report the range"
+- **Q5**: Appendix B.18 添加交叉引用即可
+
+---
+
+## 不做的项
+
+- **W4 (NLP running example)**：SKIP。页面已满，W1-W3 已占空间，且审稿人未将 W4 列为提分因素。
+- **W6 (Abstract density)**：维持现状，R1 REBUT 有效。
+- **W10 (Models coverage)**：Limitations 已覆盖。
+
+---
+
+## 执行要求
+
+1. 按 P0 → P1 顺序执行
+2. 每项修改后检查页面预算——Section 5 + Limitations 必须在 p8 内
+3. W1 Remark 如需腾空间，压缩现有 ASV 描述性文字
+4. **W2(b) Conjecture 1 ε 不一致是新发现的 CRITICAL 问题**，务必修正
+5. 全部完成后 `latexmk` 编译，报告总页数和 warnings
+6. 把 W1 (Remark 1 全文)、W2(b) (Conjecture 1 修正措辞)、W3 (0.07% 段落) 的修后文本发给我
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5270 · 2026-05-23T11:06:28.341837+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5271 · 2026-05-23T11:06:29.346342+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Setup and Notation}
+5	\label{sec:notation}
+6	
+7	Let $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \mid A{=}k)$, where each column sums to one. Following \citet{hernan_cole2009}, we represent this measurement process using \emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.
+8	
+9	\paragraph{Notation conventions.}
+10	Our analysis characterizes systematic bias---the value an estimator converges to as $N \to \infty$ (the probability limit, or plim)---rather than finite-sample variance. The Frisch--Waugh--Lovell (FWL) theorem guarantees that each regression coefficient equals the coefficient from a simple regression after residualizing all other variables; this is why matrix-based corrections fail for covariate topologies (Section~\ref{sec:correction}): replacing the mismeasured variable with a corrected version does not change the residualized relationship. Table~\ref{tab:notation} (Appendix~\ref{app:notation_table}) collects all notation.
+11	
+12	\begin{definition}[Non-differential misclassification]
+13	\label{def:nondiff}
+14	Misclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\mathbf{Z}$ if $P(A^*{=}j \mid A{=}k, Y, \mathbf{Z}) = P(A^*{=}j \mid A{=}k) = C_{jk}$ for all $j,k$.
+15	\end{definition}
+16	
+17	This holds in standard annotation pipelines where the LLM receives only source text and classifies without observing the outcome or covariates---the typical setup in computational social science~\cite{ziems2024can}. Empirical verification using topic-stratified confusion matrices confirms cross-group stability (Appendix~\ref{sec:nondiff_verify}). Violations
+…[truncated 13202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5272 · 2026-05-23T11:06:29.397030+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5273 · 2026-05-23T11:06:29.447787+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three NLP tasks ($K{=}2,3,10$).
+5	
+6	\subsection{Setup}
+7	\label{sec:setup}
+8	
+9	For each of the seven topologies (confounding, exposure, mediation, collider, M-bias, front-door, IV), we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute the analytical probability limit of the causal estimator, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\delta) = (1{-}\delta)I + \delta C_0$.
+10	
+11	\subsection{Bias Taxonomy}
+12	\label{sec:taxonomy_results}
+13	
+14	\paragraph{Theory-MC agreement.}
+15	Analytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\% across 161 scenarios (23 LLM configurations $\times$ 7 topologies, $N{=}10{,}000$). Per-topology MAPE ranges from 0.3\% (confounding) to 3.7\% (IV); the IV maximum reflects the Wald estimator's small-denominator variance amplification.
+16	
+17	\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
+18	Under realistic LLM accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal; even at diagonal $\geq 0.9$, violation persists at 11.9\%. Under the full Dirichlet$(1,1,1)$ prior, 85\% of $K{=}3$ confusion matrices violate the binary ``toward-null'' guarantee, and 83.4\% cause sign reversal of at least one coefficient. The $K{=}2$ control confirms that all tested binary matrices maintain classical attenuation~\cite{brenner1993}, establishing that the multi-class failure is structurally distinct.
+19	
+20	\paragraph{Structural guarantee for non-exposure topologies.}
+21	Five topologies exhibit zero sign-flip rate (Table~\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\% amplification~\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C
+…[truncated 6951 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5274 · 2026-05-23T11:06:29.448156+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5275 · 2026-05-23T11:06:29.498784+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.
+5	
+6	\section*{Limitations}
+7	
+8	Our framework assumes non-differential misclassification ($P(A^*|A, Y, \mathbf{Z}) = P(A^*|A)$), which holds when the LLM does not observe $Y$ but may be violated when it accesses $Y$-correlated information; a stress test (Appendix~\ref{sec:nondiff_stress}) shows that structured violation patterns can exceed or fall below uniform predictions. Closed-form expressions are derived under $K{=}3$ linear structural equations; extensions to arbitrary $K$ and nonlinear models~\cite{schennach2020mismeasured} remain open (Appendix~\ref{sec:logistic_dgp}), though correction method rankings are stable across $K{=}3,5,10$ (Spearman $\rho \geq 0.80$, with PPI++ degrading at $K{=}10$; Appendix~\ref{sec:correction_k_sensitivity}). The ASV diagonal parameterization $C(\delta) = (1{-}\delta)I + \delta C_0$ assumes uniform degradation across categories; rare-class-specific degradation would require multi-dimensional extensions. When the true DAG is uncertain, practitioners can apply Algorithm~1 under each candidate topology and report the range of conclusions as a form of specification sensitivity analysis. FWL invariance holds under linear OLS and approximately under logistic regression; applicability to non-parametric methods (doubly robust estimators, TMLE) remains unverified. Our 23 configurations span four open-weight LLMs (7B--235B) with diagonal accuracy 0.45--0.81; commercial models and ordinal tasks remain untested.
+9	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5276 · 2026-05-23T11:06:37.138325+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\begin\\{algorithm\\}",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-n": "True",
+  "-A": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\begin\\{algorithm\\}",
+    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+    "output_mode": "content",
+    "-n": "True",
+    "-A": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5277 · 2026-05-23T11:06:37.640755+00:00_
+
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:851:\begin{algorithm}[h]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-852-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-853-\label{alg:correction}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-854-\small
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5278 · 2026-05-23T11:06:38.645143+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "manski",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib",
+  "output_mode": "content",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "manski",
+    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib",
+    "output_mode": "content",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5279 · 2026-05-23T11:06:39.097543+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5280 · 2026-05-23T11:06:39.599913+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tab:proportional_effects|tab:proportional_empirical",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tab:proportional_effects|tab:proportional_empirical",
+    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5281 · 2026-05-23T11:06:39.651417+00:00_
+
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:88:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1143:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1149:\label{tab:proportional_effects}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1253:\label{tab:proportional_empirical}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.aux:2592:\newlabel{tab:proportional_effects}{{12}{28}{$\lambda (C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row)}{table.caption.84}{}}
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.aux:2715:\newlabel{tab:proportional_empirical}{{16}{29}{Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda (C) \in [0,1]$: proportion satisfying the Theorem~\ref {thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate}{table.caption.88}{}}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5282 · 2026-05-23T11:06:44.471039+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "845",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "845",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5283 · 2026-05-23T11:06:44.973388+00:00_
+
+845	(3)~\emph{Near-permutation}: $C_{kk}{=}0.4$, largest off-diagonal 0.5;
+846	(4)~\emph{Asymmetric}: $C_{kk}$ varies (0.8, 0.5, 0.3);
+847	(5)~\emph{Block confusion}: two classes confused ($C_{12}{=}C_{21}{=}0.4$), third clean;
+848	(6)~\emph{Heavy noise}: $C_{kk}{=}0.4$, off-diagonal uniform.
+849	All are column-stochastic with $K{=}3$. Results are averaged across all six structures.
+850	
+851	\begin{algorithm}[h]
+852	\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\ref{sec:logistic_dgp}). The magnitude ASV threshold $\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}
+853	\label{alg:correction}
+854	\small
+855	\begin{algorithmic}[1]
+856	\REQUIRE DAG topology $\mathcal{T}$, gold-label availability $G \in \{\textsc{yes}, \textsc{no}\}$
+857	\ENSURE Recommended method $M$, risk level $R$
+858	\STATE
+859	\STATE \textbf{Step 1: Assess risk level}
+860	\IF{$\mathcal{T} \in \{\text{M-bias}\}$}
+861	    \STATE $R \gets \textsc{Low}$ \COMMENT{$|\text{bias}| < 0.04$ for all $C$}
+862	\ELSIF{$\mathcal{T} \in \{\text{Conf., Med., Coll., Front-door}\}$}
+863	    \STATE $R \gets \textsc{Medium}$ \COMMENT{bounded bias, no sign reversal}
+864	\ELSE
+865	    \STATE $R \gets \textsc{High}$ \COMMENT{Exposure, IV: sign reversal 83.4\% / 52.6\%}
+866	\ENDIF
+867	\STATE
+868	\STATE \textbf{Step 2: Select correction method}
+869	\IF{$G = \textsc{yes}$}
+870	    \IF{$\mathcal{T} = \text{M-bias}$}
+871	        \STATE $M \gets \textsc{None}$ \COMMENT{PPI++ RMSE red.\ $-$88.0\%; no correction preferred}
+872	    \ELSE
+873	        \STATE $M \gets \text{PPI++}$ \COMMENT{47.0\% RMSE red., 96.8\% coverage}
+874	    \ENDIF
+875	\ELSE
+876	    \STATE \COMMENT{no gold label
+…[truncated 841 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5284 · 2026-05-23T11:06:45.726544+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tab:conjecture_tau_sens",
+  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "output_mode": "content",
+  "-n": "True",
+  "-B": "2",
+  "-A": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tab:conjecture_tau_sens",
+    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "output_mode": "content",
+    "-n": "True",
+    "-B": "2",
+    "-A": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5285 · 2026-05-23T11:06:45.827581+00:00_
+
+1117-
+1118-\paragraph{DGP parameter sensitivity.}
+1119:[Omitted long matching line]
+1120-
+1121-\begin{table}[h]
+1122-\centering
+1123-\small
+1124:\caption{$\varepsilon \equiv \max_\delta(|B(\delta{+}\Delta)|{-}|B(\delta)|)/|\tau_{\text{true}}|$ in the non-monotonic direction (max over $K \in \{3,5,7\}$; 10{,}000 random $C_0$ per cell). Bold marks $\varepsilon > 0.06$. Counts in parentheses are violations / 30{,}000. Tables~\ref{tab:conjecture_verify} and~\ref{tab:conjecture_tau_sens} use independent random seeds; for topologies with low violation rates (exposure $<$0.02\%), the worst-case $\varepsilon$ is sample-sensitive.}
+1125:\label{tab:conjecture_tau_sens}
+1126-\begin{tabular}{lccccc}
+1127-\toprule
+1128-\textbf{Topology} & $\tau{=}0.1$ & $\tau{=}0.5$ & $\tau{=}1.0$ & $\tau{=}2.0$ & $\tau{=}5.0$ \\
+1129-\midrule
+1130-Confounding & \textbf{0.118} (200) & 0.027 (0) & 0.014 (0) & 0.007 (0) & 0.002 (0) \\
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Grep",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5286 · 2026-05-23T11:06:50.846006+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "1126",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "1126",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5287 · 2026-05-23T11:06:50.896759+00:00_
+
+1126	\begin{tabular}{lccccc}
+1127	\toprule
+1128	\textbf{Topology} & $\tau{=}0.1$ & $\tau{=}0.5$ & $\tau{=}1.0$ & $\tau{=}2.0$ & $\tau{=}5.0$ \\
+1129	\midrule
+1130	Confounding & \textbf{0.118} (200) & 0.027 (0) & 0.014 (0) & 0.007 (0) & 0.002 (0) \\
+1131	Mediation   & \textbf{0.130} (1950) & 0.026 (0) & 0.013 (0) & \textbf{0.112} (1) & 0.003 (0) \\
+1132	Collider    & 0.022 (0) & 0.006 (0) & 0.005 (0) & 0.004 (0) & 0.002 (0) \\
+1133	Exposure    & \textbf{0.111} (5) & \textbf{0.122} (2) & \textbf{0.152} (2) & \textbf{0.089} (3) & \textbf{0.148} (3) \\
+1134	M-bias      & 0.014 (0) & 0.003 (0) & 0.001 (0) & 0.001 (0) & 0.000 (0) \\
+1135	Front-door  & 0.003 (0) & 0.013 (0) & 0.027 (0) & 0.051 (0) & \textbf{0.139} (664) \\
+1136	\bottomrule
+1137	\end{tabular}
+1138	\end{table}
+1139	
+1140	\subsection{Proportional Effects Breakdown}
+1141	\label{sec:proportional_effects}
+1142	
+1143	Theorem~\ref{thm:monotone} requires proportional effects ($f = \lambda g$); here we quantify how $\lambda(C)$ out-of-bounds (OOB) rates depend on the degree of departure from proportionality. We simulate $K{=}3$ mediation with 100{,}000 random confusion matrices (diagonal $\geq 0.5$, Dirichlet off-diagonal) at five proportionality degrees: exact ($f_j {-} f_0 = \lambda(g_j {-} g_0)$), near-proportional ($f = \lambda g + \epsilon$, $\epsilon \sim \mathcal{N}(0,\sigma^2)$, $\sigma \in \{0.1, 0.3, 0.5\}$), and fully independent ($f \perp g$). Table~\ref{tab:proportional_effects} reports the $\lambda(C) \notin [0,1]$ rate.
+1144	
+1145	\begin{table}[h]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5288 · 2026-05-23T11:06:58.778411+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "1145",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "1145",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5289 · 2026-05-23T11:06:58.830472+00:00_
+
+1145	\begin{table}[h]
+1146	\centering
+1147	\small
+1148	\caption{$\lambda(C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row).}
+1149	\label{tab:proportional_effects}
+1150	\begin{tabular}{lcc}
+1151	\toprule
+1152	\textbf{Proportionality degree} & $\lambda(C) \notin [0,1]$ & Sign failure \\
+1153	\midrule
+1154	Exact ($\sigma{=}0$) & 0.0\% & 0.85\% \\
+1155	Near ($\sigma{=}0.1$) & 10.3\% & 0.87\% \\
+1156	Near ($\sigma{=}0.3$) & 19.0\% & 0.96\% \\
+1157	Near ($\sigma{=}0.5$) & 22.4\% & 0.93\% \\
+1158	Independent ($f \perp g$) & 22.9\% & 0.17\% \\
+1159	\midrule
+1160	NLP-realistic (plan\_006 DGP) & 0.07\% & 0.0\% \\
+1161	\bottomrule
+1162	\end{tabular}
+1163	\end{table}
+1164	
+1165	The $\lambda$ OOB rate rises steeply from 0\% to ${\sim}10$\% at $\sigma{=}0.1$ and saturates near 23\% for independent $(f,g)$. Sign failure rates remain below 1\% across all conditions because $\lambda$ excursions outside $[0,1]$ are typically small and do not reverse the dominant effect direction. The NLP-realistic DGP ($\delta{=}[0, 0.8, {-}0.6]$, $\beta{=}[0, 1.0, {-}0.5]$) exhibits near-zero OOB (0.07\%) and zero sign failures, confirming that proportional effects hold approximately in practice.
+1166	
+1167	\subsection{FWL Invariance Under Nonlinear Models}
+1168	\label{sec:fwl_nonlinear}
+1169	
+1170	FWL invariance guarantees exactly 0\% bias reduction from matrix-based corrections (MLA, naive plug-in) under linear OLS for covariate topologies (confounding, mediation, collider, M-bias). Here we test whether this invariance persists under logistic regression across sample sizes $N \in \{1000, 5000, 10{,}000, 50{,}000\}$ and three error levels ($C_{kk} \in \{0.9, 0.7, 0.5\}$), with 200 Monte Carlo replicates per cell. Table~\ref{tab:fwl_nonlinear} reports the mean logistic bias reduction (positive = correction helps).
+1171	
+1172	\begin{table}[h]
+1173	\centering
+1174	\small
+1175	\caption{Mean logistic 
+…[truncated 673 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5290 · 2026-05-23T11:07:06.971883+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "1240",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "1240",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5291 · 2026-05-23T11:07:07.173294+00:00_
+
+1240	\end{table}
+1241	
+1242	The distribution is sharply bimodal: all $K{=}2$ configurations are immune to differential misclassification within the tested range ($\varepsilon^*_{\text{safe}}{=}0.50$), consistent with the binary sign-preservation guarantee (Proposition~\ref{prop:signflip}(c)). For $K{\geq}3$, 14 of 16 configurations have $\varepsilon^*_{\text{safe}}{=}0$---sign reversal occurs at the smallest tested $\varepsilon{=}0.01$. Two outliers (VAST: $\varepsilon^*{=}0.02$; HuMAID: $\varepsilon^*{=}0.36$) have atypically structured confusion matrices. This confirms that even small violations of non-differential misclassification are consequential for multi-class exposure, underscoring the practical importance of validating $P(A^*{\mid}A,Y) \approx P(A^*{\mid}A)$ on gold-labeled subsets when $K \geq 3$.
+1243	
+1244	\subsection{Proportional Effects with Empirical Confusion Matrices}
+1245	\label{sec:proportional_real_matrices}
+1246	
+1247	Theorem~\ref{thm:monotone} assumes proportional effects ($f = \lambda g$). We evaluate this assumption using all 23 empirical LLM confusion matrices under four DGP groups in the mediation topology (23 matrices $\times$ 50 seeds $\times$ 100{,}000 precomputed samples per seed).
+1248	
+1249	\begin{table}[h]
+1250	\centering
+1251	\small
+1252	\caption{Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda(C) \in [0,1]$: proportion satisfying the Theorem~\ref{thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate.}
+1253	\label{tab:proportional_empirical}
+1254	\begin{tabular}{lcccc}
+1255	\toprule
+1256	\textbf{DGP Group} & $\lambda(C)$ \textbf{mean} & $\lambda(C) \in [0,1]$ & \textbf{Sign pres.} & \textbf{CV} \\
+1257	\midrule
+1258	Proportional ($f{=}\lambda g$) & 0.271 & 99.8\% & 100\% & 0.00 \\
+1259	Near-prop.\ ($\sigma{=}0.1$) & 0.285 & 99.2\% & 100\% & 1.06 \\
+1260	Non-proportional & 0.240 & 85.0\% & 97.3\% & 3.60 \\
+1261	Sparse & 0.296 & 75.8\% & 98.6\% & 6.59 \\
+…[truncated 1755 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5292 · 2026-05-23T11:07:37.290104+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "old_string": "Unlike E-values~\\cite{vanderweele_ding2017}, ASVs parametrize $K{\\times}K$ annotation error along a topology-specific path where monotonicity requires proof (Theorem~\\ref{thm:monotone}). The sign-flip ASV has no E-value counterpart, and the vulnerability ranking is topology-dependent (Table~\\ref{tab:sensitivity_comparison}, Appendix; cf.~\\citealt{rosenbaum2002}).\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}), with $\\delta^*$ thresholds robust to $\\varepsilon$-approximate deviations ($\\varepsilon < 0.06$). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization}).",
+  "new_string": "\\begin{remark}[Structural distinctions from E-values]\n\\label{rem:evalue}\nASV diagnostics differ from E-values~\\cite{vanderweele_ding2017} in three respects.\n\\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\\ref{eq:confounding}--\\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.\n\\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\\delta^*_{\\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.\n\\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\\gamma \\geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\\delta)$, but the resulting bias function $B(\\delta)$ is topology-specific and can be non-monotone (IV). See Table~\\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.\n\\end{remark}\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "old_string": "Unlike E-values~\\cite{vanderweele_ding2017}, ASVs parametrize $K{\\times}K$ annotation error along a topology-specific path where monotonicity requires proof (Theorem~\\ref{thm:monotone}). The sign-flip ASV has no E-value counterpart, and the vulnerability ranking is topology-dependent (Table~\\ref{tab:sensitivity_comparison}, Appendix; cf.~\\citealt{rosenbaum2002}).\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}), with $\\delta^*$ thresholds robust to $\\varepsilon$-approximate deviations ($\\varepsilon < 0.06$). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization}).",
+    "new_string": "\\begin{remark}[Structural distinctions from E-values]\n\\label{rem:evalue}\nASV diagnostics differ from E-values~\\cite{vanderweele_ding2017} in three respects.\n\\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\\ref{eq:confounding}--\\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.\n\\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\\delta^*_{\\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.\n\\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\\gamma \\geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\\delta)$, but the resulting bias function $B(\\delta)$ is topology-specific and can be non-monotone (IV). See Table~\\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.\n\\end{remark}\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5293 · 2026-05-23T11:07:37.341215+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5294 · 2026-05-23T11:07:47.982730+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "old_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon = 0.06$ deviations across all tested configurations (collider/M-bias non-increasing, others non-decreasing). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$; per-topology bounds in Appendix~\\ref{sec:conjecture_verify}.",
+  "new_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "old_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon = 0.06$ deviations across all tested configurations (collider/M-bias non-increasing, others non-decreasing). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$; per-topology bounds in Appendix~\\ref{sec:conjecture_verify}.",
+    "new_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5295 · 2026-05-23T11:07:48.033639+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5296 · 2026-05-23T11:07:51.923181+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "offset": "95",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "offset": "95",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5297 · 2026-05-23T11:07:51.973949+00:00_
+
+95	\begin{conjecture}[$\varepsilon$-approximate envelope monotonicity]
+96	\label{conj:monotone}
+97	For non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$, $|B(C(\delta))|$ is monotonic up to $\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \in \{3,5,7\}$, $\tau \in \{0.1, 0.5, 1.0, 2.0, 5.0\}$.
+98	\end{conjecture}
+99	
+100	\begin{remark}[Structural distinctions from E-values]
+101	\label{rem:evalue}
+102	ASV diagnostics differ from E-values~\cite{vanderweele_ding2017} in three respects.
+103	\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\ref{eq:confounding}--\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.
+104	\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\delta^*_{\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.
+105	\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\gamma \geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\delta)$, but the resulting bias function $B(\delta)$ is topology-specific and can be non-monotone (IV). See Table~\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.
+106	\end{remark}
+107	
+108	For $K{=}2$, Theorem~\ref{thm:monotone} guarantees exact monotonicity; for $K{\geq}3$, monotonicity rests on numerical evidence (Conjecture~\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \delta_{\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\ref{sec:asv_stabilit
+…[truncated 103 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5298 · 2026-05-23T11:07:58.248939+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "old_string": "\\end{conjecture}\n\n\\begin{remark}[Structural distinctions from E-values]",
+  "new_string": "\\end{conjecture}\n\nUnder $\\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (Appendix~\\ref{sec:conjecture_verify}).\n\n\\begin{remark}[Structural distinctions from E-values]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "old_string": "\\end{conjecture}\n\n\\begin{remark}[Structural distinctions from E-values]",
+    "new_string": "\\end{conjecture}\n\nUnder $\\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (Appendix~\\ref{sec:conjecture_verify}).\n\n\\begin{remark}[Structural distinctions from E-values]"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5299 · 2026-05-23T11:07:58.249754+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5300 · 2026-05-23T11:08:11.152278+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "old_string": "\\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
+  "new_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "old_string": "\\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
+    "new_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5301 · 2026-05-23T11:08:11.153302+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5302 · 2026-05-23T11:08:19.541388+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "old_string": "\\end{algorithmic}\n\\end{algorithm}",
+  "new_string": "\\end{algorithmic}\n\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "old_string": "\\end{algorithmic}\n\\end{algorithm}",
+    "new_string": "\\end{algorithmic}\n\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5303 · 2026-05-23T11:08:19.592810+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5304 · 2026-05-23T11:08:24.563528+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "offset": "86",
+  "limit": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "offset": "86",
+    "limit": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5305 · 2026-05-23T11:08:24.614156+00:00_
+
+86	\end{theorem}
+87	
+88	The proof (Appendix~\ref{app:monotonicity_proof},~\ref{par:med_monotone}) exploits perspective function convexity; $(C_0)_{jj}{\geq}\tfrac{1}{2}$ excludes degenerate matrices. Proportional effects ($f = \lambda g$) holds when a single latent factor drives both paths---a natural assumption in CSS annotation tasks, where a single quality dimension typically governs both the treatment--covariate and mediator--outcome relationships. Sign preservation holds in ${\geq}97$\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\ref{tab:proportional_empirical}, Appendix~\ref{sec:proportional_effects}); when violated, Proposition~\ref{prop:conf_gen} provides a complementary bound ($|\tau| > \bar{B}$).
+89	
+90	\begin{observation}[Envelope monotonicity---$K{\geq}3$]
+91	\label{prop:monotone_general}
+92	For $K{\geq}3$ under the same conditions, numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K$ shows worst-case deviations $< 0.005$ from strict monotonicity (Appendix~\ref{app:monotonicity_proof}).
+93	\end{observation}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5306 · 2026-05-23T11:08:37.623521+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "old_string": "Sign preservation holds in ${\\geq}97$\\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\\ref{tab:proportional_empirical}, Appendix~\\ref{sec:proportional_effects}); when violated, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$).",
+  "new_string": "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\\% with zero sign failures (Table~\\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains ${\\geq}97.3$\\% (Table~\\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\\% OOB) unlikely in balanced NLP classification. When $\\lambda(C) \\notin [0,1]$, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "old_string": "Sign preservation holds in ${\\geq}97$\\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\\ref{tab:proportional_empirical}, Appendix~\\ref{sec:proportional_effects}); when violated, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$).",
+    "new_string": "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\\% with zero sign failures (Table~\\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains ${\\geq}97.3$\\% (Table~\\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\\% OOB) unlikely in balanced NLP classification. When $\\lambda(C) \\notin [0,1]$, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5307 · 2026-05-23T11:08:37.674352+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5308 · 2026-05-23T11:08:48.066381+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Error|! \" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [6, 7, 8]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'=== Page {i+1} ===')\n    print(f'  First: {plines[0][:100] if plines else \\\"EMPTY\\\"}')\n    print(f'  Last:  {plines[-1][:100] if plines else \\\"EMPTY\\\"}')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Error|! \" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [6, 7, 8]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'=== Page {i+1} ===')\n    print(f'  First: {plines[0][:100] if plines else \\\"EMPTY\\\"}')\n    print(f'  Last:  {plines[-1][:100] if plines else \\\"EMPTY\\\"}')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5309 · 2026-05-23T11:08:49.723409+00:00_
+
+! LaTeX Error: Environment remark undefined.
+! LaTeX Error: \begin{document} ended by \end{remark}.
+! Argument of \caption@ydblarg has an extra }.
+! Paragraph ended before \caption@ydblarg was complete.
+Output written on main.pdf (31 pages, 921439 bytes).
+=== Page 7 ===
+  First: Bias Distribution Under K=3 Non-Differential Misclassification
+  Last:  601
+=== Page 8 ===
+  First: 603
+  Last:  681
+=== Page 9 ===
+  First: 5
+  Last:  785
+  >>> Conclusion
+  >>> Limitations
+  >>> References
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 1657
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5310 · 2026-05-23T11:08:58.561347+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
+  "old_string": "\\newtheorem{observation}{Observation}",
+  "new_string": "\\newtheorem{observation}{Observation}\n\\newtheorem{remark}{Remark}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
+    "old_string": "\\newtheorem{observation}{Observation}",
+    "new_string": "\\newtheorem{observation}{Observation}\n\\newtheorem{remark}{Remark}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5311 · 2026-05-23T11:08:58.612184+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5312 · 2026-05-23T11:09:17.639595+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "old_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
+  "new_string": "\\caption{Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "old_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
+    "new_string": "\\caption{Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5313 · 2026-05-23T11:09:17.691858+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5314 · 2026-05-23T11:09:22.062817+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "old_string": "\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}",
+  "new_string": "\\end{algorithm}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "old_string": "\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}",
+    "new_string": "\\end{algorithm}"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5315 · 2026-05-23T11:09:22.114259+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5316 · 2026-05-23T11:09:32.657906+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|Error\" && echo \"---\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [7, 8, 9]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'Page {i+1}: first=[{plines[0][:80] if plines else \\\"EMPTY\\\"}] last=[{plines[-1][:80] if plines else \\\"EMPTY\\\"}]')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|Error\" && echo \"---\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [7, 8, 9]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'Page {i+1}: first=[{plines[0][:80] if plines else \\\"EMPTY\\\"}] last=[{plines[-1][:80] if plines else \\\"EMPTY\\\"}]')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5317 · 2026-05-23T11:09:33.812384+00:00_
+
+Exit code 1
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 1154
 }
 ```
 

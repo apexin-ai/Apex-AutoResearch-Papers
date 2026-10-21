@@ -6,129 +6,9 @@
 
 ## Round 92
 
-### Tool result
-
-_source line 670 · 2026-05-29T21:05:25.517103+00:00_
-
-1	# ColliForce-VLA Paper Framing
-2	
-3	> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase
-4	
-5	## Core Insight
-6	
-7	VLA safety 评估存在系统性缺陷：collision avoidance rate (CAR) 被 action collapse 和几何路径安全严重污染，导致 "安全" 指标虚高。我们通过大规模实证分析（90+ 实验, 6000+ episodes）揭示这一系统性缺陷，提出 EE displacement-filtered CAR 作为修正指标，并证明碰撞避免能力隐式来自 collision-free demonstration data，而非显式几何监督——SDF auxiliary loss 在全测试范围 λ∈[0.005, 0.1] 完全冗余，binding constraint 是 EE-only 的结构性不匹配。
-8	
-9	## Working Title
-10	
-11	"Rethinking VLA Safety Evaluation: When 98% of Collision Avoidance is an Illusion"
-12	
-13	> 聚焦评估方法论贡献（影响面广、scope-proof），SDF 作为验证工具而非主贡献
-14	
-15	## Target Venue
-16	
-17	**Primary**: CoRL 2026 Main / ICRA 2027 (用户明确要求主会)
-18	**定位**: Diagnostic/evaluation methodology paper with positive method contribution
-19	**Fit**: Robotics safety track — "VLA safety metrics are fundamentally broken" 对社区有直接影响
-20	
-21	## Core Claims (D028 重组: 4→3 claims)
-22	
-23	### Claim 1: CAR Metric Contaminated by Fake Safety (Primary — 证据强度 ★★★★★)
-24	
-25	Standard CAR metric is systematically contaminated by two distinct mechanisms: (a) action collapse producing frozen robots falsely counted as "safe", and (b) geometric path safety where capable robots happen to avoid obstacles without any avoidance behavior. "Collision-free" ≠ "collision-avoiding."
-26	
-27	**Primary evidence — Action collapse (fake safety)**:
-28	- 800 episodes A1 per-episode analysis: CAR=91.5%, but 99.6% of safe episodes show obstacle displacement < 0.1mm (~5nm median) — robot is frozen
-29	- TSR=0% 独立确认 action collapse
-30	- 术语修正 (D023): fake safety 判定以 TSR=0% + obstacle displacement < 0.1mm 双证据链为主
-31	
-32	**Supporting evidence — Capability-safety anti-correlation (原 Claim 2)**:
-33	- Pi0.5 3-seed eval: TSR=74.7±1.5%, CAR=26.8±1.6% — 更强模型完成更多任务但碰撞更多
-34	- Pi0 baseline: TSR≈0%, CAR=82% — "高 CAR" 来自 action collapse
-35	- Capability↑ → motion↑ → collision↑; 表面安全要么是 frozen (Pi0) 要么是 path geometry (Pi0.5)
-36	- 限制: 仅 2 model
-…[truncated 9753 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 671 · 2026-05-29T21:05:35.701926+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
-  "old_string": "> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase",
-  "new_string": "> 维护者: Director | 最后更新: 2026-05-29 UTC | D049: Reviewer 证据链审查——补入 Pi0.5 oracle + multi-eval-seed | Post-MVP research phase"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md",
-    "old_string": "> 维护者: Director | 最后更新: 2026-05-27 01:15 UTC | D035: Scenario B 双 seed 确认，Core Insight 修正 | Post-MVP research phase",
-    "new_string": "> 维护者: Director | 最后更新: 2026-05-29 UTC | D049: Reviewer 证据链审查——补入 Pi0.5 oracle + multi-eval-seed | Post-MVP research phase"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 672 · 2026-05-29T21:05:35.752624+00:00_
-
-The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 673 · 2026-05-29T21:05:47.184590+00:00_
+_source line 671 · 2026-05-29T21:05:47.184590+00:00_
 
 called Edit
 
@@ -168,7 +48,7 @@ called Edit
 
 ### Tool result
 
-_source line 674 · 2026-05-29T21:05:47.235320+00:00_
+_source line 672 · 2026-05-29T21:05:47.235320+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
 
@@ -190,7 +70,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 675 · 2026-05-29T21:05:55.153661+00:00_
+_source line 673 · 2026-05-29T21:05:55.153661+00:00_
 
 called Edit
 
@@ -230,7 +110,7 @@ called Edit
 
 ### Tool result
 
-_source line 676 · 2026-05-29T21:05:55.204365+00:00_
+_source line 674 · 2026-05-29T21:05:55.204365+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
 
@@ -252,7 +132,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 677 · 2026-05-29T21:06:06.045677+00:00_
+_source line 675 · 2026-05-29T21:06:06.045677+00:00_
 
 called Edit
 
@@ -292,7 +172,7 @@ called Edit
 
 ### Tool result
 
-_source line 678 · 2026-05-29T21:06:06.096359+00:00_
+_source line 676 · 2026-05-29T21:06:06.096359+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
 
@@ -314,7 +194,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 679 · 2026-05-29T21:06:15.983271+00:00_
+_source line 677 · 2026-05-29T21:06:15.983271+00:00_
 
 called Edit
 
@@ -354,7 +234,7 @@ called Edit
 
 ### Tool result
 
-_source line 680 · 2026-05-29T21:06:16.084166+00:00_
+_source line 678 · 2026-05-29T21:06:16.084166+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/paper_framing.md has been updated successfully.
 
@@ -376,7 +256,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 681 · 2026-05-29T21:06:36.785614+00:00_
+_source line 679 · 2026-05-29T21:06:36.785614+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -412,7 +292,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 682 · 2026-05-29T21:07:07.741718+00:00_
+_source line 680 · 2026-05-29T21:07:07.741718+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -434,7 +314,7 @@ _source line 682 · 2026-05-29T21:07:07.741718+00:00_
 
 ### Tool call
 
-_source line 683 · 2026-05-29T21:07:07.943409+00:00_
+_source line 681 · 2026-05-29T21:07:07.943409+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -472,7 +352,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 684 · 2026-05-29T21:07:08.553353+00:00_
+_source line 682 · 2026-05-29T21:07:08.553353+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 84, \"reason\": \"D049 Reviewer 证据链审查后修正优先级\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -494,7 +374,7 @@ _source line 684 · 2026-05-29T21:07:08.553353+00:00_
 
 ### Assistant
 
-_source line 685 · 2026-05-29T21:07:16.923364+00:00_
+_source line 683 · 2026-05-29T21:07:16.923364+00:00_
 
 三路并行已全部发出：
 
@@ -529,7 +409,7 @@ GPU 空置期间三个角色（Agent/Paper Agent/Reviewer）全部有活干，�
 
 ### User
 
-_source line 686 · 2026-05-29T21:07:36.709582+00:00_
+_source line 684 · 2026-05-29T21:07:36.709582+00:00_
 
 [Reviewer 回复]:
 [severity: info] ROADMAP D049 更新确认——优先级调整正确落实。
@@ -557,7 +437,7 @@ _source line 686 · 2026-05-29T21:07:36.709582+00:00_
 
 ### Tool call
 
-_source line 687 · 2026-05-29T21:07:42.232124+00:00_
+_source line 685 · 2026-05-29T21:07:42.232124+00:00_
 
 called Read
 
@@ -593,7 +473,7 @@ called Read
 
 ### Tool result
 
-_source line 688 · 2026-05-29T21:07:42.282743+00:00_
+_source line 686 · 2026-05-29T21:07:42.282743+00:00_
 
 1	# diff_collision_sdf — Research Dashboard
 2	
@@ -624,7 +504,7 @@ _source line 688 · 2026-05-29T21:07:42.282743+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-29T21:07:48.799884+00:00_
+_source line 687 · 2026-05-29T21:07:48.799884+00:00_
 
 called Edit
 
@@ -664,7 +544,7 @@ called Edit
 
 ### Tool result
 
-_source line 690 · 2026-05-29T21:07:48.850630+00:00_
+_source line 688 · 2026-05-29T21:07:48.850630+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -686,7 +566,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 691 · 2026-05-29T21:07:52.807609+00:00_
+_source line 689 · 2026-05-29T21:07:52.807609+00:00_
 
 called Edit
 
@@ -726,7 +606,7 @@ called Edit
 
 ### Tool result
 
-_source line 692 · 2026-05-29T21:07:53.159268+00:00_
+_source line 690 · 2026-05-29T21:07:53.159268+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -755,7 +635,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### User
 
-_source line 693 · 2026-05-29T21:12:20.914153+00:00_
+_source line 691 · 2026-05-29T21:12:20.914153+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (均离线) | Worker 0 | 磁盘: 不可达
@@ -808,7 +688,7 @@ _source line 693 · 2026-05-29T21:12:20.914153+00:00_
 
 ### Assistant
 
-_source line 694 · 2026-05-29T21:12:28.958928+00:00_
+_source line 692 · 2026-05-29T21:12:28.958928+00:00_
 
 No response requested.
 
@@ -835,7 +715,7 @@ No response requested.
 
 ### User
 
-_source line 695 · 2026-05-29T21:19:55.847457+00:00_
+_source line 693 · 2026-05-29T21:19:55.847457+00:00_
 
 [Paper Agent 回复]:
 [写作进展] ICRA 2027 双栏转换完成
@@ -893,7 +773,7 @@ _source line 695 · 2026-05-29T21:19:55.847457+00:00_
 
 ### Tool call
 
-_source line 696 · 2026-05-29T21:20:32.588735+00:00_
+_source line 694 · 2026-05-29T21:20:32.588735+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -929,7 +809,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 697 · 2026-05-29T21:20:35.803600+00:00_
+_source line 695 · 2026-05-29T21:20:35.803600+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -951,7 +831,7 @@ _source line 697 · 2026-05-29T21:20:35.803600+00:00_
 
 ### Assistant
 
-_source line 698 · 2026-05-29T21:20:39.308831+00:00_
+_source line 696 · 2026-05-29T21:20:39.308831+00:00_
 
 Paper Agent 完成了 ICRA 格式转换，正文 5 页 + 1 页参考文献，低于 6+1 上限 1 页。这个余量正好用来补入 D049 识别的证据。
 
@@ -978,7 +858,7 @@ Paper Agent 完成了 ICRA 格式转换，正文 5 页 + 1 页参考文献，低
 
 ### User
 
-_source line 699 · 2026-05-29T21:28:59.498823+00:00_
+_source line 697 · 2026-05-29T21:28:59.498823+00:00_
 
 [Paper Agent 回复]:
 [写作进展] D049 证据补强 — 完成
@@ -1028,7 +908,7 @@ _source line 699 · 2026-05-29T21:28:59.498823+00:00_
 
 ### Assistant
 
-_source line 700 · 2026-05-29T21:29:04.310054+00:00_
+_source line 698 · 2026-05-29T21:29:04.310054+00:00_
 
 No response requested.
 
@@ -1055,7 +935,7 @@ No response requested.
 
 ### User
 
-_source line 701 · 2026-05-29T22:00:53.660459+00:00_
+_source line 699 · 2026-05-29T22:00:53.660459+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -1099,7 +979,7 @@ Paper Agent 的 ICRA 双栏转换和 D049 证据补强都完成得很好，Revie
 
 ### Tool call
 
-_source line 702 · 2026-05-29T22:01:10.564589+00:00_
+_source line 700 · 2026-05-29T22:01:10.564589+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -1137,7 +1017,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 703 · 2026-05-29T22:01:10.966607+00:00_
+_source line 701 · 2026-05-29T22:01:10.966607+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -1159,7 +1039,7 @@ _source line 703 · 2026-05-29T22:01:10.966607+00:00_
 
 ### Tool call
 
-_source line 704 · 2026-05-29T22:01:32.228138+00:00_
+_source line 702 · 2026-05-29T22:01:32.228138+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -1195,7 +1075,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 705 · 2026-05-29T22:01:37.107932+00:00_
+_source line 703 · 2026-05-29T22:01:37.107932+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -1217,7 +1097,7 @@ _source line 705 · 2026-05-29T22:01:37.107932+00:00_
 
 ### Tool call
 
-_source line 706 · 2026-05-29T22:01:37.258892+00:00_
+_source line 704 · 2026-05-29T22:01:37.258892+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -1253,7 +1133,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 707 · 2026-05-29T22:01:38.170251+00:00_
+_source line 705 · 2026-05-29T22:01:38.170251+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -1282,7 +1162,7 @@ _source line 707 · 2026-05-29T22:01:38.170251+00:00_
 
 ### User
 
-_source line 708 · 2026-05-29T22:03:11.056438+00:00_
+_source line 706 · 2026-05-29T22:03:11.056438+00:00_
 
 [Paper Agent 回复]:
 [审查结果] Figure/Table 双栏排版视觉验证 — 完成
@@ -1339,7 +1219,7 @@ _source line 708 · 2026-05-29T22:03:11.056438+00:00_
 
 ### Assistant
 
-_source line 709 · 2026-05-29T22:03:15.913990+00:00_
+_source line 707 · 2026-05-29T22:03:15.913990+00:00_
 
 No response requested.
 
@@ -1366,7 +1246,7 @@ No response requested.
 
 ### User
 
-_source line 710 · 2026-05-29T22:05:40.027028+00:00_
+_source line 708 · 2026-05-29T22:05:40.027028+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — Paper Agent D049 文本写入 + Claim 1 覆盖率分析
@@ -1528,7 +1408,7 @@ Claim 1 ~1.0 页合理——不过多展开机制（深度分析放 Appendix）�
 
 ### Tool call
 
-_source line 711 · 2026-05-29T22:06:01.296361+00:00_
+_source line 709 · 2026-05-29T22:06:01.296361+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -1564,7 +1444,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 712 · 2026-05-29T22:06:04.565631+00:00_
+_source line 710 · 2026-05-29T22:06:04.565631+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -1586,7 +1466,7 @@ _source line 712 · 2026-05-29T22:06:04.565631+00:00_
 
 ### Assistant
 
-_source line 713 · 2026-05-29T22:06:08.470530+00:00_
+_source line 711 · 2026-05-29T22:06:08.470530+00:00_
 
 Reviewer 分析确认：Claim 1 覆盖率 14.3% 是追踪假象（实际证据完成度 ~70%），story 三段式结构不需要调整。两个 warning（数字溯源 + caption overclaim）已派 Paper Agent 修复。
 
@@ -1613,7 +1493,7 @@ Reviewer 分析确认：Claim 1 覆盖率 14.3% 是追踪假象（实际证据�
 
 ### User
 
-_source line 714 · 2026-05-29T22:08:51.220587+00:00_
+_source line 712 · 2026-05-29T22:08:51.220587+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Reviewer warning 修复 — 完成
@@ -1652,7 +1532,7 @@ _source line 714 · 2026-05-29T22:08:51.220587+00:00_
 
 ### Assistant
 
-_source line 715 · 2026-05-29T22:09:19.178725+00:00_
+_source line 713 · 2026-05-29T22:09:19.178725+00:00_
 
 Appendix 处理正确——Table XIV 用 160ep 做 apples-to-apples 对比，57.0% 是该 eval 条件下的正确数字，保留。§H null distribution 同理，不需要级联修改。主文和 Appendix 用不同精度的数据源是合理的，关键是各自内部一致。
 
@@ -1679,7 +1559,7 @@ Appendix 处理正确——Table XIV 用 160ep 做 apples-to-apples 对比，57.
 
 ### User
 
-_source line 716 · 2026-05-29T22:40:31.953647+00:00_
+_source line 714 · 2026-05-29T22:40:31.953647+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -1723,7 +1603,7 @@ _source line 716 · 2026-05-29T22:40:31.953647+00:00_
 
 ### Tool call
 
-_source line 717 · 2026-05-29T22:40:41.985151+00:00_
+_source line 715 · 2026-05-29T22:40:41.985151+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -1761,7 +1641,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 718 · 2026-05-29T22:40:42.336988+00:00_
+_source line 716 · 2026-05-29T22:40:42.336988+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -1783,7 +1663,7 @@ _source line 718 · 2026-05-29T22:40:42.336988+00:00_
 
 ### Tool call
 
-_source line 719 · 2026-05-29T22:41:08.142850+00:00_
+_source line 717 · 2026-05-29T22:41:08.142850+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -1819,7 +1699,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 720 · 2026-05-29T22:41:17.637496+00:00_
+_source line 718 · 2026-05-29T22:41:17.637496+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -1841,7 +1721,7 @@ _source line 720 · 2026-05-29T22:41:17.637496+00:00_
 
 ### Tool call
 
-_source line 721 · 2026-05-29T22:41:17.788414+00:00_
+_source line 719 · 2026-05-29T22:41:17.788414+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -1877,7 +1757,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 722 · 2026-05-29T22:41:18.653894+00:00_
+_source line 720 · 2026-05-29T22:41:18.653894+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -1899,7 +1779,7 @@ _source line 722 · 2026-05-29T22:41:18.653894+00:00_
 
 ### Tool call
 
-_source line 723 · 2026-05-29T22:41:22.418490+00:00_
+_source line 721 · 2026-05-29T22:41:22.418490+00:00_
 
 called ToolSearch
 
@@ -1935,7 +1815,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 724 · 2026-05-29T22:41:22.468979+00:00_
+_source line 722 · 2026-05-29T22:41:22.468979+00:00_
 
 
 
@@ -1957,7 +1837,7 @@ _source line 724 · 2026-05-29T22:41:22.468979+00:00_
 
 ### Tool call
 
-_source line 725 · 2026-05-29T22:41:28.737171+00:00_
+_source line 723 · 2026-05-29T22:41:28.737171+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -1993,7 +1873,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 726 · 2026-05-29T22:41:29.138717+00:00_
+_source line 724 · 2026-05-29T22:41:29.138717+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\", \"metadata\": {}}"}
 
@@ -2015,7 +1895,7 @@ _source line 726 · 2026-05-29T22:41:29.138717+00:00_
 
 ### Assistant
 
-_source line 727 · 2026-05-29T22:41:38.442904+00:00_
+_source line 725 · 2026-05-29T22:41:38.442904+00:00_
 
 Feishu API 配额耗尽，无法查看 Manager 是否回复。服务器恢复和通信都要等 6/1 配额重置。当前已最大化利用等待时间——Paper Agent 在处理 Appendix 数据一致性，Reviewer 在做 offensive 质量审查。
 
@@ -2042,7 +1922,7 @@ Feishu API 配额耗尽，无法查看 Manager 是否回复。服务器恢复和
 
 ### User
 
-_source line 728 · 2026-05-29T22:43:13.804171+00:00_
+_source line 726 · 2026-05-29T22:43:13.804171+00:00_
 
 [Reviewer 回复]:
 ## Offensive 审查：Story 升级空间
@@ -2210,7 +2090,7 @@ ICRA 审稿人会立即想到："SafeVLA / CAPE / CoFreeEVLA / SafeDiffuser 都�
 
 ### Tool call
 
-_source line 729 · 2026-05-29T22:43:55.939623+00:00_
+_source line 727 · 2026-05-29T22:43:55.939623+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -2246,7 +2126,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 730 · 2026-05-29T22:43:59.214302+00:00_
+_source line 728 · 2026-05-29T22:43:59.214302+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -2268,7 +2148,7 @@ _source line 730 · 2026-05-29T22:43:59.214302+00:00_
 
 ### Tool call
 
-_source line 731 · 2026-05-29T22:44:03.770834+00:00_
+_source line 729 · 2026-05-29T22:44:03.770834+00:00_
 
 called ToolSearch
 
@@ -2304,7 +2184,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 732 · 2026-05-29T22:44:03.871623+00:00_
+_source line 730 · 2026-05-29T22:44:03.871623+00:00_
 
 
 
@@ -2326,7 +2206,7 @@ _source line 732 · 2026-05-29T22:44:03.871623+00:00_
 
 ### Tool call
 
-_source line 733 · 2026-05-29T22:44:34.902606+00:00_
+_source line 731 · 2026-05-29T22:44:34.902606+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -2360,7 +2240,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 734 · 2026-05-29T22:44:35.254156+00:00_
+_source line 732 · 2026-05-29T22:44:35.254156+00:00_
 
 {"result":"{\"success\": false, \"error\": \"Feishu API error: 99991403 — This month's API call quota has been exceeded\"}"}
 
@@ -2382,7 +2262,7 @@ _source line 734 · 2026-05-29T22:44:35.254156+00:00_
 
 ### Assistant
 
-_source line 735 · 2026-05-29T22:44:43.721774+00:00_
+_source line 733 · 2026-05-29T22:44:43.721774+00:00_
 
 Feishu 配额耗尽，无法联系用户。继续推进所有不依赖用户确认和服务器的工作——Paper Agent 正在执行 6 项升级，等 5/31 配额重置后再联系用户确认标题和服务器状态。
 
@@ -2409,7 +2289,7 @@ Feishu 配额耗尽，无法联系用户。继续推进所有不依赖用户确�
 
 ### User
 
-_source line 736 · 2026-05-29T22:44:45.233776+00:00_
+_source line 734 · 2026-05-29T22:44:45.233776+00:00_
 
 [Paper Agent 回复]:
 [数据溯源] Appendix §H 确认 + 上一 patch 数据问题
@@ -2455,7 +2335,7 @@ _source line 736 · 2026-05-29T22:44:45.233776+00:00_
 
 ### Tool call
 
-_source line 737 · 2026-05-29T22:45:04.468586+00:00_
+_source line 735 · 2026-05-29T22:45:04.468586+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -2491,7 +2371,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 738 · 2026-05-29T22:45:07.581103+00:00_
+_source line 736 · 2026-05-29T22:45:07.581103+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false, \"paper_agent_busy\": true, \"paper_agent_queue_depth\": 0, \"paper_agent_processing\": \"[Director 指令] [Patch] Offensive 论文质量升级——6 项文本改动，按 ROI 排序\\n\\nReviewer 做了 offensive 审查，发现当前论文有 6 个高 ROI 的升级空间，全部是文本级修改。按优先级执行：\\n\\n**#1 Related Work 结尾加 positioning paragraph（最高优先）**\\n在 Related Work section 末\"}, \"error\": \"\"}"}
 
@@ -2513,7 +2393,7 @@ _source line 738 · 2026-05-29T22:45:07.581103+00:00_
 
 ### Tool call
 
-_source line 739 · 2026-05-29T22:45:17.667610+00:00_
+_source line 737 · 2026-05-29T22:45:17.667610+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -2555,7 +2435,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 740 · 2026-05-29T22:45:17.718607+00:00_
+_source line 738 · 2026-05-29T22:45:17.718607+00:00_
 
 Error executing tool log_mistake: 2 validation errors for log_mistakeArguments
 root_cause
@@ -2583,7 +2463,7 @@ prevention
 
 ### Tool call
 
-_source line 741 · 2026-05-29T22:45:20.479035+00:00_
+_source line 739 · 2026-05-29T22:45:20.479035+00:00_
 
 called ToolSearch
 
@@ -2619,7 +2499,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 742 · 2026-05-29T22:45:20.529572+00:00_
+_source line 740 · 2026-05-29T22:45:20.529572+00:00_
 
 
 
@@ -2641,7 +2521,7 @@ _source line 742 · 2026-05-29T22:45:20.529572+00:00_
 
 ### Tool call
 
-_source line 743 · 2026-05-29T22:45:42.872537+00:00_
+_source line 741 · 2026-05-29T22:45:42.872537+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -2689,7 +2569,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 744 · 2026-05-29T22:45:43.024480+00:00_
+_source line 742 · 2026-05-29T22:45:43.024480+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M068\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2711,7 +2591,7 @@ _source line 744 · 2026-05-29T22:45:43.024480+00:00_
 
 ### Assistant
 
-_source line 745 · 2026-05-29T22:45:45.620108+00:00_
+_source line 743 · 2026-05-29T22:45:45.620108+00:00_
 
 Paper Agent 的数据溯源正确——reeval_lora_s0_30k_v2 的 CAR 确实是 57.0%（per-task 加总验证通过）。Reviewer 之前把 eval_seed=42 的 56.5% 误认为 eval_seed=7 的数据。批准回退。
 
@@ -2738,7 +2618,7 @@ Paper Agent 的数据溯源正确——reeval_lora_s0_30k_v2 的 CAR 确实是 5
 
 ### User
 
-_source line 746 · 2026-05-29T22:48:58.975708+00:00_
+_source line 744 · 2026-05-29T22:48:58.975708+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Offensive 论文质量升级 — 6 项全部完成
@@ -2793,7 +2673,7 @@ claim3.tex 末尾新增一段：fingerprint invariance → demo distribution as 
 
 ### Assistant
 
-_source line 747 · 2026-05-29T22:49:12.198702+00:00_
+_source line 745 · 2026-05-29T22:49:12.198702+00:00_
 
 回退指令已在队列中，Paper Agent 会自动处理。6 项 offensive 升级全部到位——正文扩展到 6 页，符合 ICRA 6+1 限制。
 
@@ -2820,7 +2700,7 @@ _source line 747 · 2026-05-29T22:49:12.198702+00:00_
 
 ### User
 
-_source line 748 · 2026-05-29T22:49:57.773208+00:00_
+_source line 746 · 2026-05-29T22:49:57.773208+00:00_
 
 [Paper Agent 回复]:
 [写作进展] 回退 + Offensive 升级 — 全部完成
@@ -2867,7 +2747,7 @@ _source line 748 · 2026-05-29T22:49:57.773208+00:00_
 
 ### Tool call
 
-_source line 749 · 2026-05-29T22:50:16.293636+00:00_
+_source line 747 · 2026-05-29T22:50:16.293636+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -2903,7 +2783,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 750 · 2026-05-29T22:50:20.517628+00:00_
+_source line 748 · 2026-05-29T22:50:20.517628+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -2925,7 +2805,7 @@ _source line 750 · 2026-05-29T22:50:20.517628+00:00_
 
 ### Assistant
 
-_source line 751 · 2026-05-29T22:50:23.070789+00:00_
+_source line 749 · 2026-05-29T22:50:23.070789+00:00_
 
 论文回退和 6 项 offensive 升级全部完成，数据链一致性验证通过。让 Reviewer 做最终审查。
 
@@ -2952,7 +2832,7 @@ _source line 751 · 2026-05-29T22:50:23.070789+00:00_
 
 ### User
 
-_source line 752 · 2026-05-29T22:50:57.530895+00:00_
+_source line 750 · 2026-05-29T22:50:57.530895+00:00_
 
 [Paper Agent 回复]:
 [Paper Agent 会话就绪]
@@ -2981,7 +2861,7 @@ _source line 752 · 2026-05-29T22:50:57.530895+00:00_
 
 ### Assistant
 
-_source line 753 · 2026-05-29T22:51:10.284523+00:00_
+_source line 751 · 2026-05-29T22:51:10.284523+00:00_
 
 No response requested.
 
@@ -3008,7 +2888,7 @@ No response requested.
 
 ### User
 
-_source line 754 · 2026-05-29T22:54:55.671020+00:00_
+_source line 752 · 2026-05-29T22:54:55.671020+00:00_
 
 [Reviewer 回复]:
 ## 最终审查报告 — Offensive 升级 + 数据回退
@@ -3135,7 +3015,7 @@ Claim 1 文字偏薄但视觉元素充足，Claim 2 因 Pi0.5 oracle 两 Regime 
 
 ### Tool call
 
-_source line 755 · 2026-05-29T22:55:14.875769+00:00_
+_source line 753 · 2026-05-29T22:55:14.875769+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -3171,7 +3051,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 756 · 2026-05-29T22:55:18.104625+00:00_
+_source line 754 · 2026-05-29T22:55:18.104625+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -3193,7 +3073,7 @@ _source line 756 · 2026-05-29T22:55:18.104625+00:00_
 
 ### Assistant
 
-_source line 757 · 2026-05-29T22:55:20.335978+00:00_
+_source line 755 · 2026-05-29T22:55:20.335978+00:00_
 
 Reviewer 确认 5/6 项准确落实 + 整体质量实质性提升。两个 warning 需要修复。
 
@@ -3220,7 +3100,7 @@ Reviewer 确认 5/6 项准确落实 + 整体质量实质性提升。两个 warni
 
 ### User
 
-_source line 758 · 2026-05-29T23:16:58.381132+00:00_
+_source line 756 · 2026-05-29T23:16:58.381132+00:00_
 
 [Paper Agent 回复]:
 [Patch 完成] Reviewer 最终审查 — 2 个 warning 已修复
@@ -3258,7 +3138,7 @@ _source line 758 · 2026-05-29T23:16:58.381132+00:00_
 
 ### Assistant
 
-_source line 759 · 2026-05-29T23:17:29.526897+00:00_
+_source line 757 · 2026-05-29T23:17:29.526897+00:00_
 
 No response requested.
 
@@ -3285,7 +3165,7 @@ No response requested.
 
 ### User
 
-_source line 760 · 2026-05-29T23:48:12.809620+00:00_
+_source line 758 · 2026-05-29T23:48:12.809620+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3327,7 +3207,7 @@ Paper Agent 修完 Reviewer 的两个 warning 已经 30 分钟了，你没有任
 
 ### Tool call
 
-_source line 761 · 2026-05-29T23:48:23.692471+00:00_
+_source line 759 · 2026-05-29T23:48:23.692471+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3365,7 +3245,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 762 · 2026-05-29T23:48:24.145649+00:00_
+_source line 760 · 2026-05-29T23:48:24.145649+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -3387,7 +3267,7 @@ _source line 762 · 2026-05-29T23:48:24.145649+00:00_
 
 ### Tool call
 
-_source line 763 · 2026-05-29T23:48:36.035447+00:00_
+_source line 761 · 2026-05-29T23:48:36.035447+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -3423,7 +3303,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 764 · 2026-05-29T23:48:39.208600+00:00_
+_source line 762 · 2026-05-29T23:48:39.208600+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -3445,7 +3325,7 @@ _source line 764 · 2026-05-29T23:48:39.208600+00:00_
 
 ### Tool call
 
-_source line 765 · 2026-05-29T23:49:10.569302+00:00_
+_source line 763 · 2026-05-29T23:49:10.569302+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -3483,7 +3363,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 766 · 2026-05-29T23:49:11.021325+00:00_
+_source line 764 · 2026-05-29T23:49:11.021325+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 74, \"reason\": \"Offensive 论文升级完成，更新真实状态\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3505,7 +3385,7 @@ _source line 766 · 2026-05-29T23:49:11.021325+00:00_
 
 ### Tool call
 
-_source line 767 · 2026-05-29T23:49:18.705079+00:00_
+_source line 765 · 2026-05-29T23:49:18.705079+00:00_
 
 called Edit
 
@@ -3545,7 +3425,7 @@ called Edit
 
 ### Tool result
 
-_source line 768 · 2026-05-29T23:49:18.755677+00:00_
+_source line 766 · 2026-05-29T23:49:18.755677+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -3574,7 +3454,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### User
 
-_source line 769 · 2026-05-29T23:50:39.329726+00:00_
+_source line 767 · 2026-05-29T23:50:39.329726+00:00_
 
 [Reviewer 回复]:
 ## 验证报告 — 最后两项修复
@@ -3642,7 +3522,7 @@ Paper Agent 报告"主文 8 页 + 附录 3 页"与实际不符——差 1 页。
 
 ### Assistant
 
-_source line 770 · 2026-05-29T23:50:53.106902+00:00_
+_source line 768 · 2026-05-29T23:50:53.106902+00:00_
 
 No response requested.
 
@@ -3669,7 +3549,7 @@ No response requested.
 
 ### User
 
-_source line 771 · 2026-05-29T23:51:26.368789+00:00_
+_source line 769 · 2026-05-29T23:51:26.368789+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 审查 — Offensive 升级完成后状态同步
@@ -3704,7 +3584,7 @@ _source line 771 · 2026-05-29T23:51:26.368789+00:00_
 
 ### Tool call
 
-_source line 772 · 2026-05-29T23:51:33.745655+00:00_
+_source line 770 · 2026-05-29T23:51:33.745655+00:00_
 
 called Edit
 
@@ -3744,7 +3624,7 @@ called Edit
 
 ### Tool result
 
-_source line 773 · 2026-05-29T23:51:33.796270+00:00_
+_source line 771 · 2026-05-29T23:51:33.796270+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -3773,7 +3653,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### User
 
-_source line 774 · 2026-05-30T00:23:17.907710+00:00_
+_source line 772 · 2026-05-30T00:23:17.907710+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -3813,7 +3693,7 @@ GPU 两张还是连不上，你已经确认死等 6/1，这个我记着。但到
 
 ### Tool call
 
-_source line 775 · 2026-05-30T00:23:48.795752+00:00_
+_source line 773 · 2026-05-30T00:23:48.795752+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -3851,7 +3731,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 776 · 2026-05-30T00:23:49.199277+00:00_
+_source line 774 · 2026-05-30T00:23:49.199277+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -3873,7 +3753,7 @@ _source line 776 · 2026-05-30T00:23:49.199277+00:00_
 
 ### Tool call
 
-_source line 777 · 2026-05-30T00:23:53.967469+00:00_
+_source line 775 · 2026-05-30T00:23:53.967469+00:00_
 
 called ToolSearch
 
@@ -3909,7 +3789,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 778 · 2026-05-30T00:23:53.967792+00:00_
+_source line 776 · 2026-05-30T00:23:53.967792+00:00_
 
 
 
@@ -3931,7 +3811,7 @@ _source line 778 · 2026-05-30T00:23:53.967792+00:00_
 
 ### Tool call
 
-_source line 779 · 2026-05-30T00:23:58.133097+00:00_
+_source line 777 · 2026-05-30T00:23:58.133097+00:00_
 
 called ToolSearch
 
@@ -3967,7 +3847,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 780 · 2026-05-30T00:23:58.183749+00:00_
+_source line 778 · 2026-05-30T00:23:58.183749+00:00_
 
 
 
@@ -3989,7 +3869,7 @@ _source line 780 · 2026-05-30T00:23:58.183749+00:00_
 
 ### Tool call
 
-_source line 781 · 2026-05-30T00:24:02.701579+00:00_
+_source line 779 · 2026-05-30T00:24:02.701579+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -4029,7 +3909,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 782 · 2026-05-30T00:24:13.792692+00:00_
+_source line 780 · 2026-05-30T00:24:13.792692+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[8\\n\\n]\\nUnderfull \\\\hbox (badness 2334) in paragraph at lines 213--214\\n \\\\OT1/ptm/m/it/10 a) Al-ter-na-tive null con-struc-tion (Null A).: [][] \\\\OT1/pt\\nm/m/n/10 If only\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1910) in paragraph at lines 213--214\\n\\\\OT1/ptm/m/n/10 the three LoRA-only seeds are used as the null pool\\n []\\n\\n[9]\\nUnderfull \\\\hbox (badness 1590) in paragraph at lines 243--244\\n[]\\\\OT1/ptm/m/n/10 Individual seeds ex-hibit checkpoint-to-checkpoint CAR\\n []\\n\\n[10]\\nLaTeX Font Info:    Trying to load font information for OMS+ptm on input line 3\\n53.\\n (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd\\nFile: omsptm.fd \\n)\\nLaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available\\n(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 353.\\n)\\n\\n** Conference Paper **\\nBefore submitting the final camera ready copy, remember to:\\n\\n 1. Manually equalize the lengths of two columns on the last page\\n of your paper;\\n\\n 2. Ensure that any PostScript and/or PDF output post-processing\\n uses only Type 1 fonts and that every step in the generation\\n process uses the appropriate paper size.\\n\\n[11] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 4D6E53B02A3064A54967B4C997FC7C05;5959.\\n ) \\nHere is how much of TeX's memory you used:\\n 12036 strings out of 469438\\n 188253 string characters out of 5468411\\n 642483 words of memory out of 5000000\\n 40376 multiletter con
 …[truncated 3541 chars]
@@ -4052,7 +3932,7 @@ _source line 782 · 2026-05-30T00:24:13.792692+00:00_
 
 ### Tool call
 
-_source line 783 · 2026-05-30T00:24:13.943604+00:00_
+_source line 781 · 2026-05-30T00:24:13.943604+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -4088,7 +3968,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 784 · 2026-05-30T00:24:17.149056+00:00_
+_source line 782 · 2026-05-30T00:24:17.149056+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -4110,7 +3990,7 @@ _source line 784 · 2026-05-30T00:24:17.149056+00:00_
 
 ### Tool call
 
-_source line 785 · 2026-05-30T00:24:38.232543+00:00_
+_source line 783 · 2026-05-30T00:24:38.232543+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -4160,7 +4040,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 786 · 2026-05-30T00:24:38.284641+00:00_
+_source line 784 · 2026-05-30T00:24:38.284641+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"PDF 文件不存在: projects/diff_collision_sdf/docs/paper/main.pdf。请先编译论文再提交审稿。\"}"}
 
@@ -4182,7 +4062,7 @@ _source line 786 · 2026-05-30T00:24:38.284641+00:00_
 
 ### Tool call
 
-_source line 787 · 2026-05-30T00:24:44.406202+00:00_
+_source line 785 · 2026-05-30T00:24:44.406202+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -4232,7 +4112,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 788 · 2026-05-30T00:24:44.858078+00:00_
+_source line 786 · 2026-05-30T00:24:44.858078+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260530T002444_1cx4\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -4254,7 +4134,7 @@ _source line 788 · 2026-05-30T00:24:44.858078+00:00_
 
 ### Assistant
 
-_source line 789 · 2026-05-30T00:24:49.236897+00:00_
+_source line 787 · 2026-05-30T00:24:49.236897+00:00_
 
 论文已提交审稿审批（apr_20260530T002444_1cx4），等待用户在 A 群确认 review mode（推荐 fresh）。Reviewer 同时在做全文 holistic read。
 
@@ -4281,7 +4161,7 @@ _source line 789 · 2026-05-30T00:24:49.236897+00:00_
 
 ### User
 
-_source line 790 · 2026-05-30T00:29:01.066392+00:00_
+_source line 788 · 2026-05-30T00:29:01.066392+00:00_
 
 [Reviewer 回复]:
 ## Holistic Read 审查报告 — 提交前最终质检
@@ -4415,7 +4295,7 @@ n=3 seeds，MDE ≈ 5.6pp（80% power）。2-5pp 的 SDF 效果无法被检测�
 
 ### Tool call
 
-_source line 791 · 2026-05-30T00:29:29.894469+00:00_
+_source line 789 · 2026-05-30T00:29:29.894469+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -4451,7 +4331,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 792 · 2026-05-30T00:29:33.108046+00:00_
+_source line 790 · 2026-05-30T00:29:33.108046+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -4473,7 +4353,7 @@ _source line 792 · 2026-05-30T00:29:33.108046+00:00_
 
 ### Assistant
 
-_source line 793 · 2026-05-30T00:29:35.958819+00:00_
+_source line 791 · 2026-05-30T00:29:35.958819+00:00_
 
 Reviewer holistic read 发现两个 warning，都是措辞级修复。派 Paper Agent 修正。
 
@@ -4500,7 +4380,7 @@ Reviewer holistic read 发现两个 warning，都是措辞级修复。派 Paper 
 
 ### User
 
-_source line 794 · 2026-05-30T00:31:56.952856+00:00_
+_source line 792 · 2026-05-30T00:31:56.952856+00:00_
 
 [Paper Agent 回复]:
 [Patch 完成] Holistic read 最终修复 — 2 个 warning 已修复
@@ -4542,7 +4422,7 @@ _source line 794 · 2026-05-30T00:31:56.952856+00:00_
 
 ### Assistant
 
-_source line 795 · 2026-05-30T00:32:03.056943+00:00_
+_source line 793 · 2026-05-30T00:32:03.056943+00:00_
 
 No response requested.
 
@@ -4569,7 +4449,7 @@ No response requested.
 
 ### User
 
-_source line 796 · 2026-05-30T01:02:50.501903+00:00_
+_source line 794 · 2026-05-30T01:02:50.501903+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -4613,7 +4493,7 @@ Holistic read 的两个 warning 修完了，Paper Agent 回复你也确认了，
 
 ### Tool call
 
-_source line 797 · 2026-05-30T01:03:03.721380+00:00_
+_source line 795 · 2026-05-30T01:03:03.721380+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -4651,7 +4531,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 798 · 2026-05-30T01:03:04.124649+00:00_
+_source line 796 · 2026-05-30T01:03:04.124649+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"WAIT\", \"minutes\": 60, \"next_nudge_in_minutes\": 60}"}
 
@@ -4680,7 +4560,7 @@ _source line 798 · 2026-05-30T01:03:04.124649+00:00_
 
 ### User
 
-_source line 799 · 2026-05-30T02:03:30.495568+00:00_
+_source line 797 · 2026-05-30T02:03:30.495568+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -4722,7 +4602,7 @@ _source line 799 · 2026-05-30T02:03:30.495568+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-30T02:03:40.026597+00:00_
+_source line 798 · 2026-05-30T02:03:40.026597+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -4760,7 +4640,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 801 · 2026-05-30T02:03:40.479858+00:00_
+_source line 799 · 2026-05-30T02:03:40.479858+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -4782,7 +4662,7 @@ _source line 801 · 2026-05-30T02:03:40.479858+00:00_
 
 ### Tool call
 
-_source line 802 · 2026-05-30T02:03:57.240354+00:00_
+_source line 800 · 2026-05-30T02:03:57.240354+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -4818,7 +4698,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 803 · 2026-05-30T02:04:07.532798+00:00_
+_source line 801 · 2026-05-30T02:04:07.532798+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -4840,7 +4720,7 @@ _source line 803 · 2026-05-30T02:04:07.532798+00:00_
 
 ### Tool call
 
-_source line 804 · 2026-05-30T02:04:07.683868+00:00_
+_source line 802 · 2026-05-30T02:04:07.683868+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -4876,7 +4756,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 805 · 2026-05-30T02:04:08.596482+00:00_
+_source line 803 · 2026-05-30T02:04:08.596482+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -4905,7 +4785,7 @@ _source line 805 · 2026-05-30T02:04:08.596482+00:00_
 
 ### User
 
-_source line 806 · 2026-05-30T02:08:14.422989+00:00_
+_source line 804 · 2026-05-30T02:08:14.422989+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — Holistic Warning 修复 + 25 Negative Results 威胁分析
@@ -5042,7 +4922,7 @@ _source line 806 · 2026-05-30T02:08:14.422989+00:00_
 
 ### Assistant
 
-_source line 807 · 2026-05-30T02:08:19.977771+00:00_
+_source line 805 · 2026-05-30T02:08:19.977771+00:00_
 
 No response requested.
 
@@ -5069,7 +4949,7 @@ No response requested.
 
 ### User
 
-_source line 808 · 2026-05-30T02:08:53.789524+00:00_
+_source line 806 · 2026-05-30T02:08:53.789524+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (均离线) | Worker 0 | 磁盘: 不可达
@@ -5123,7 +5003,7 @@ _source line 808 · 2026-05-30T02:08:53.789524+00:00_
 
 ### Tool call
 
-_source line 809 · 2026-05-30T02:09:33.122296+00:00_
+_source line 807 · 2026-05-30T02:09:33.122296+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -5161,7 +5041,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 810 · 2026-05-30T02:09:35.882865+00:00_
+_source line 808 · 2026-05-30T02:09:35.882865+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 77, \"reason\": \"所有非 GPU 工作完成，等待服务器恢复\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5183,7 +5063,7 @@ _source line 810 · 2026-05-30T02:09:35.882865+00:00_
 
 ### Tool call
 
-_source line 811 · 2026-05-30T02:09:42.859860+00:00_
+_source line 809 · 2026-05-30T02:09:42.859860+00:00_
 
 called Edit
 
@@ -5223,7 +5103,7 @@ called Edit
 
 ### Tool result
 
-_source line 812 · 2026-05-30T02:09:42.910537+00:00_
+_source line 810 · 2026-05-30T02:09:42.910537+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -5245,7 +5125,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Assistant
 
-_source line 813 · 2026-05-30T02:09:45.307035+00:00_
+_source line 811 · 2026-05-30T02:09:45.307035+00:00_
 
 Reviewer 确认论文无 negative result 威胁 + warning 修复全部 PASS。Agent 完成 recovery checklist。更新 ROADMAP 反映最终状态。
 
@@ -5272,7 +5152,7 @@ Reviewer 确认论文无 negative result 威胁 + warning 修复全部 PASS。Ag
 
 ### User
 
-_source line 814 · 2026-05-30T02:12:51.714852+00:00_
+_source line 812 · 2026-05-30T02:12:51.714852+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 审查报告 — 2026-05-30 更新
@@ -5315,7 +5195,7 @@ _source line 814 · 2026-05-30T02:12:51.714852+00:00_
 
 ### Tool call
 
-_source line 815 · 2026-05-30T02:13:01.479604+00:00_
+_source line 813 · 2026-05-30T02:13:01.479604+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -5349,7 +5229,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 816 · 2026-05-30T02:13:01.635785+00:00_
+_source line 814 · 2026-05-30T02:13:01.635785+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":247}"}
 
@@ -5371,7 +5251,7 @@ _source line 816 · 2026-05-30T02:13:01.635785+00:00_
 
 ### Tool call
 
-_source line 817 · 2026-05-30T02:13:11.822833+00:00_
+_source line 815 · 2026-05-30T02:13:11.822833+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -5407,7 +5287,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 818 · 2026-05-30T02:13:15.141889+00:00_
+_source line 816 · 2026-05-30T02:13:15.141889+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -5436,7 +5316,7 @@ _source line 818 · 2026-05-30T02:13:15.141889+00:00_
 
 ### User
 
-_source line 819 · 2026-05-30T02:18:08.072143+00:00_
+_source line 817 · 2026-05-30T02:18:08.072143+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/2 (两台均离线) | Worker 0 | 磁盘: westd-35807/45947 均不可达
@@ -5475,7 +5355,7 @@ _source line 819 · 2026-05-30T02:18:08.072143+00:00_
 
 ### Assistant
 
-_source line 820 · 2026-05-30T02:18:13.525362+00:00_
+_source line 818 · 2026-05-30T02:18:13.525362+00:00_
 
 No response requested.
 
@@ -5502,7 +5382,7 @@ No response requested.
 
 ### User
 
-_source line 821 · 2026-05-30T02:49:11.557702+00:00_
+_source line 819 · 2026-05-30T02:49:11.557702+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -5548,7 +5428,7 @@ _source line 821 · 2026-05-30T02:49:11.557702+00:00_
 
 ### Tool call
 
-_source line 822 · 2026-05-30T02:49:27.102596+00:00_
+_source line 820 · 2026-05-30T02:49:27.102596+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -5586,7 +5466,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 823 · 2026-05-30T02:49:27.554623+00:00_
+_source line 821 · 2026-05-30T02:49:27.554623+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"WAIT\", \"minutes\": 60, \"next_nudge_in_minutes\": 60}"}
 
@@ -5615,7 +5495,7 @@ _source line 823 · 2026-05-30T02:49:27.554623+00:00_
 
 ### User
 
-_source line 824 · 2026-05-30T03:50:01.536525+00:00_
+_source line 822 · 2026-05-30T03:50:01.536525+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -5657,7 +5537,7 @@ _source line 824 · 2026-05-30T03:50:01.536525+00:00_
 
 ### Tool call
 
-_source line 825 · 2026-05-30T03:50:13.069574+00:00_
+_source line 823 · 2026-05-30T03:50:13.069574+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -5695,7 +5575,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 826 · 2026-05-30T03:50:13.521616+00:00_
+_source line 824 · 2026-05-30T03:50:13.521616+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -5717,7 +5597,7 @@ _source line 826 · 2026-05-30T03:50:13.521616+00:00_
 
 ### Tool call
 
-_source line 827 · 2026-05-30T03:50:27.522383+00:00_
+_source line 825 · 2026-05-30T03:50:27.522383+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -5753,7 +5633,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 828 · 2026-05-30T03:50:30.820749+00:00_
+_source line 826 · 2026-05-30T03:50:30.820749+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer\"}, \"error\": \"\"}"}
 
@@ -5775,7 +5655,7 @@ _source line 828 · 2026-05-30T03:50:30.820749+00:00_
 
 ### Tool call
 
-_source line 829 · 2026-05-30T03:50:35.242140+00:00_
+_source line 827 · 2026-05-30T03:50:35.242140+00:00_
 
 called Read
 
@@ -5811,7 +5691,7 @@ called Read
 
 ### Tool result
 
-_source line 830 · 2026-05-30T03:50:35.293039+00:00_
+_source line 828 · 2026-05-30T03:50:35.293039+00:00_
 
 1	# Server Recovery Execution Checklist
 2	
@@ -5842,7 +5722,7 @@ _source line 830 · 2026-05-30T03:50:35.293039+00:00_
 
 ### Tool call
 
-_source line 831 · 2026-05-30T03:50:55.767295+00:00_
+_source line 829 · 2026-05-30T03:50:55.767295+00:00_
 
 called Write
 
@@ -5878,7 +5758,7 @@ called Write
 
 ### Tool result
 
-_source line 832 · 2026-05-30T03:50:55.767790+00:00_
+_source line 830 · 2026-05-30T03:50:55.767790+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/feishu_restore_messages.md
 
@@ -5900,7 +5780,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Assistant
 
-_source line 833 · 2026-05-30T03:50:58.064075+00:00_
+_source line 831 · 2026-05-30T03:50:58.064075+00:00_
 
 Now let me prepare the Feishu messages for 6/1.
 
@@ -5927,7 +5807,7 @@ Now let me prepare the Feishu messages for 6/1.
 
 ### User
 
-_source line 834 · 2026-05-30T03:54:27.036404+00:00_
+_source line 832 · 2026-05-30T03:54:27.036404+00:00_
 
 [Reviewer 回复]:
 ## 模拟 ICRA 审稿报告 — ColliForce-VLA
@@ -6099,7 +5979,7 @@ _source line 834 · 2026-05-30T03:54:27.036404+00:00_
 
 ### Tool call
 
-_source line 835 · 2026-05-30T03:55:04.915887+00:00_
+_source line 833 · 2026-05-30T03:55:04.915887+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -6141,7 +6021,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 836 · 2026-05-30T03:55:13.496638+00:00_
+_source line 834 · 2026-05-30T03:55:13.496638+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D050\", \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6163,7 +6043,7 @@ _source line 836 · 2026-05-30T03:55:13.496638+00:00_
 
 ### Tool call
 
-_source line 837 · 2026-05-30T03:55:13.647568+00:00_
+_source line 835 · 2026-05-30T03:55:13.647568+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -6199,7 +6079,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 838 · 2026-05-30T03:55:16.919162+00:00_
+_source line 836 · 2026-05-30T03:55:16.919162+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -6221,7 +6101,7 @@ _source line 838 · 2026-05-30T03:55:16.919162+00:00_
 
 ### Tool call
 
-_source line 839 · 2026-05-30T03:55:22.545107+00:00_
+_source line 837 · 2026-05-30T03:55:22.545107+00:00_
 
 called Read
 
@@ -6255,7 +6135,7 @@ called Read
 
 ### Tool result
 
-_source line 840 · 2026-05-30T03:55:22.646439+00:00_
+_source line 838 · 2026-05-30T03:55:22.646439+00:00_
 
 1	# Server Recovery Execution Checklist
 2	
@@ -6337,7 +6217,7 @@ _source line 840 · 2026-05-30T03:55:22.646439+00:00_
 
 ### Tool call
 
-_source line 841 · 2026-05-30T03:56:13.120098+00:00_
+_source line 839 · 2026-05-30T03:56:13.120098+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -6375,7 +6255,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 842 · 2026-05-30T03:56:13.825748+00:00_
+_source line 840 · 2026-05-30T03:56:13.825748+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"lines\": 85, \"reason\": \"D050 模拟审稿后明确 Accept 路径\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6397,7 +6277,7 @@ _source line 842 · 2026-05-30T03:56:13.825748+00:00_
 
 ### Tool call
 
-_source line 843 · 2026-05-30T03:59:10.154388+00:00_
+_source line 841 · 2026-05-30T03:59:10.154388+00:00_
 
 called ToolSearch
 
@@ -6433,7 +6313,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 844 · 2026-05-30T03:59:10.255190+00:00_
+_source line 842 · 2026-05-30T03:59:10.255190+00:00_
 
 No matching deferred tools found
 
@@ -6455,7 +6335,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 845 · 2026-05-30T03:59:12.815782+00:00_
+_source line 843 · 2026-05-30T03:59:12.815782+00:00_
 
 called ToolSearch
 
@@ -6491,7 +6371,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 846 · 2026-05-30T03:59:12.866377+00:00_
+_source line 844 · 2026-05-30T03:59:12.866377+00:00_
 
 No matching deferred tools found
 
@@ -6513,7 +6393,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 847 · 2026-05-30T03:59:17.585241+00:00_
+_source line 845 · 2026-05-30T03:59:17.585241+00:00_
 
 called ToolSearch
 
@@ -6549,7 +6429,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 848 · 2026-05-30T03:59:17.635814+00:00_
+_source line 846 · 2026-05-30T03:59:17.635814+00:00_
 
 No matching deferred tools found
 
@@ -6571,7 +6451,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 849 · 2026-05-30T03:59:24.110413+00:00_
+_source line 847 · 2026-05-30T03:59:24.110413+00:00_
 
 called ToolSearch
 
@@ -6607,7 +6487,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 850 · 2026-05-30T03:59:24.211263+00:00_
+_source line 848 · 2026-05-30T03:59:24.211263+00:00_
 
 
 
@@ -6629,7 +6509,7 @@ _source line 850 · 2026-05-30T03:59:24.211263+00:00_
 
 ### Tool call
 
-_source line 851 · 2026-05-30T03:59:31.139638+00:00_
+_source line 849 · 2026-05-30T03:59:31.139638+00:00_
 
 called ToolSearch
 
@@ -6665,7 +6545,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 852 · 2026-05-30T03:59:31.240488+00:00_
+_source line 850 · 2026-05-30T03:59:31.240488+00:00_
 
 No matching deferred tools found
 
@@ -6687,7 +6567,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 853 · 2026-05-30T03:59:38.039622+00:00_
+_source line 851 · 2026-05-30T03:59:38.039622+00:00_
 
 called ToolSearch
 
@@ -6723,7 +6603,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 854 · 2026-05-30T03:59:38.090172+00:00_
+_source line 852 · 2026-05-30T03:59:38.090172+00:00_
 
 
 
@@ -6745,7 +6625,7 @@ _source line 854 · 2026-05-30T03:59:38.090172+00:00_
 
 ### Tool call
 
-_source line 855 · 2026-05-30T03:59:40.451593+00:00_
+_source line 853 · 2026-05-30T03:59:40.451593+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -6779,7 +6659,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 856 · 2026-05-30T03:59:40.502231+00:00_
+_source line 854 · 2026-05-30T03:59:40.502231+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":6087}"}
 
@@ -6801,7 +6681,7 @@ _source line 856 · 2026-05-30T03:59:40.502231+00:00_
 
 ### Tool call
 
-_source line 857 · 2026-05-30T03:59:40.954346+00:00_
+_source line 855 · 2026-05-30T03:59:40.954346+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -6835,7 +6715,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 858 · 2026-05-30T03:59:41.506650+00:00_
+_source line 856 · 2026-05-30T03:59:41.506650+00:00_
 
 {"result":"**项目**: `diff_collision_sdf`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westd-35807 (connect.westd.seetacloud.com) [root] + westd-45947 (connect.westd.seetacloud.com) [root]\n✓ 代码路径  /root/colliforce-vla\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 50 条记录\n**论文溯源**: 覆盖率 79/83\n\n── 📊 研究进度 ──\n实验: 137 个 (待处理 1 | 完成 136 | 成功 73)\n\n  a1_sdf_spatial_bowl_s0_v3    DONE (killed)\n  a1_sdf_object_pudding_s0     DONE (killed)\n  baseline_spatial_bowl_s1_v2  DONE (failed)\n  a1_sdf_spatial_bowl_s0_v2    DONE (failed)\n  a1_sdf_spatial_bowl_s0       DONE (failed)\n  baseline_spatial_bowl_s0     DONE (failed)\n  baseline_spatial_bowl_s1     DONE (failed)\n  baseline_object_pudding_s0   DONE (failed)\n\n── 📝 最新报告 ──\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-29T11:41:54Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 137 个实验 — DONE 136, PREPARING 1\n**DONE 分布**: failed 22, killed 16, negative 25, success 73\n\n### GPU 占用\n- **分配**: 2 张 — westd-35807:cuda:0, westd-45947:cuda:0\n- **空闲（分配了没跑）**: westd-35807:cuda:0, westd-45947:cuda:0\n\n### 💾 磁盘余量\n- **westd-35807**: ❌ 连接失败\n- **westd-45947**: ❌ 连接失败\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `train_pi05_lora_baseline_s3_v2` [failed] — 2026-05-29T11:41:52 — SSH check failed 5x — last error: [Errno None] Unable"}
 
@@ -6857,7 +6737,7 @@ _source line 858 · 2026-05-30T03:59:41.506650+00:00_
 
 ### Tool call
 
-_source line 859 · 2026-05-30T03:59:56.459976+00:00_
+_source line 857 · 2026-05-30T03:59:56.459976+00:00_
 
 called Grep
 
@@ -6895,7 +6775,7 @@ called Grep
 
 ### Tool result
 
-_source line 860 · 2026-05-30T03:59:56.911919+00:00_
+_source line 858 · 2026-05-30T03:59:56.911919+00:00_
 
 Found 2 files
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.bbl
@@ -6919,7 +6799,7 @@ Found 2 files
 
 ### Tool call
 
-_source line 861 · 2026-05-30T03:59:57.917790+00:00_
+_source line 859 · 2026-05-30T03:59:57.917790+00:00_
 
 called Grep
 
@@ -6959,7 +6839,7 @@ called Grep
 
 ### Tool result
 
-_source line 862 · 2026-05-30T03:59:58.370586+00:00_
+_source line 860 · 2026-05-30T03:59:58.370586+00:00_
 
 Found 4 files
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.fdb_latexmk
@@ -6985,7 +6865,7 @@ Found 4 files
 
 ### Tool call
 
-_source line 863 · 2026-05-30T03:59:59.073497+00:00_
+_source line 861 · 2026-05-30T03:59:59.073497+00:00_
 
 called Grep
 
@@ -7025,7 +6905,7 @@ called Grep
 
 ### Tool result
 
-_source line 864 · 2026-05-30T03:59:59.225083+00:00_
+_source line 862 · 2026-05-30T03:59:59.225083+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.bbl
@@ -7050,7 +6930,7 @@ Found 3 files
 
 ### Tool call
 
-_source line 865 · 2026-05-30T04:00:05.728950+00:00_
+_source line 863 · 2026-05-30T04:00:05.728950+00:00_
 
 called Grep
 
@@ -7094,7 +6974,7 @@ called Grep
 
 ### Tool result
 
-_source line 866 · 2026-05-30T04:00:05.779606+00:00_
+_source line 864 · 2026-05-30T04:00:05.779606+00:00_
 
 80-
 81:@article{khatib1986potential,
@@ -7122,7 +7002,7 @@ _source line 866 · 2026-05-30T04:00:05.779606+00:00_
 
 ### Tool call
 
-_source line 867 · 2026-05-30T04:00:09.843736+00:00_
+_source line 865 · 2026-05-30T04:00:09.843736+00:00_
 
 called Grep
 
@@ -7164,7 +7044,7 @@ called Grep
 
 ### Tool result
 
-_source line 868 · 2026-05-30T04:00:09.894287+00:00_
+_source line 866 · 2026-05-30T04:00:09.894287+00:00_
 
 105:@inproceedings{zhao2020simtoreal,
 106-  title={Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: a Survey},
@@ -7190,7 +7070,7 @@ _source line 868 · 2026-05-30T04:00:09.894287+00:00_
 
 ### Tool call
 
-_source line 869 · 2026-05-30T04:00:13.006454+00:00_
+_source line 867 · 2026-05-30T04:00:13.006454+00:00_
 
 called Grep
 
@@ -7234,7 +7114,7 @@ called Grep
 
 ### Tool result
 
-_source line 870 · 2026-05-30T04:00:13.057097+00:00_
+_source line 868 · 2026-05-30T04:00:13.057097+00:00_
 
 No matches found
 
@@ -7256,7 +7136,7 @@ No matches found
 
 ### Tool call
 
-_source line 871 · 2026-05-30T04:00:16.720699+00:00_
+_source line 869 · 2026-05-30T04:00:16.720699+00:00_
 
 called Grep
 
@@ -7300,7 +7180,7 @@ called Grep
 
 ### Tool result
 
-_source line 872 · 2026-05-30T04:00:16.771258+00:00_
+_source line 870 · 2026-05-30T04:00:16.771258+00:00_
 
 89-}
 90-
@@ -7328,7 +7208,7 @@ _source line 872 · 2026-05-30T04:00:16.771258+00:00_
 
 ### Tool call
 
-_source line 873 · 2026-05-30T04:00:22.391965+00:00_
+_source line 871 · 2026-05-30T04:00:22.391965+00:00_
 
 called Grep
 
@@ -7368,7 +7248,7 @@ called Grep
 
 ### Tool result
 
-_source line 874 · 2026-05-30T04:00:22.442598+00:00_
+_source line 872 · 2026-05-30T04:00:22.442598+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex:7:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex:10:[Omitted long matching line]
@@ -7392,7 +7272,7 @@ _source line 874 · 2026-05-30T04:00:22.442598+00:00_
 
 ### Assistant
 
-_source line 875 · 2026-05-30T04:00:35.089074+00:00_
+_source line 873 · 2026-05-30T04:00:35.089074+00:00_
 
 M5 references all done — Khatib 1986, Singletary 2022 (CBF), Zhao 2020 (sim-to-real) are cited in related_work.tex and discussion.tex. Paper Agent completed this task.
 
@@ -7435,7 +7315,7 @@ M5 references all done — Khatib 1986, Singletary 2022 (CBF), Zhao 2020 (sim-to
 
 ### User
 
-_source line 876 · 2026-05-30T04:00:35.099154+00:00_
+_source line 874 · 2026-05-30T04:00:35.099154+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 审查报告 — D050 Accept 路径更新
@@ -7491,7 +7371,7 @@ references.bib 已包含完整元数据（volume/number/pages/booktitle）。
 
 ### Tool call
 
-_source line 877 · 2026-05-30T04:00:51.248737+00:00_
+_source line 875 · 2026-05-30T04:00:51.248737+00:00_
 
 called Read
 
@@ -7527,7 +7407,7 @@ called Read
 
 ### Tool result
 
-_source line 878 · 2026-05-30T04:00:51.299289+00:00_
+_source line 876 · 2026-05-30T04:00:51.299289+00:00_
 
 1	# diff_collision_sdf — Research Dashboard
 2	
@@ -7554,7 +7434,7 @@ _source line 878 · 2026-05-30T04:00:51.299289+00:00_
 
 ### Tool call
 
-_source line 879 · 2026-05-30T04:00:55.364171+00:00_
+_source line 877 · 2026-05-30T04:00:55.364171+00:00_
 
 called Edit
 
@@ -7594,7 +7474,7 @@ called Edit
 
 ### Tool result
 
-_source line 880 · 2026-05-30T04:00:55.465113+00:00_
+_source line 878 · 2026-05-30T04:00:55.465113+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -7616,7 +7496,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 881 · 2026-05-30T04:00:58.727298+00:00_
+_source line 879 · 2026-05-30T04:00:58.727298+00:00_
 
 called Read
 
@@ -7654,7 +7534,7 @@ called Read
 
 ### Tool result
 
-_source line 882 · 2026-05-30T04:00:58.778097+00:00_
+_source line 880 · 2026-05-30T04:00:58.778097+00:00_
 
 54	## 近期任务
 55	- [x] 论文定稿 + Reviewer 全 PASS + negative results 安全
@@ -7690,7 +7570,7 @@ _source line 882 · 2026-05-30T04:00:58.778097+00:00_
 
 ### Tool call
 
-_source line 883 · 2026-05-30T04:01:03.018016+00:00_
+_source line 881 · 2026-05-30T04:01:03.018016+00:00_
 
 called Edit
 
@@ -7730,7 +7610,7 @@ called Edit
 
 ### Tool result
 
-_source line 884 · 2026-05-30T04:01:03.092794+00:00_
+_source line 882 · 2026-05-30T04:01:03.092794+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -7752,7 +7632,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 885 · 2026-05-30T04:01:06.689610+00:00_
+_source line 883 · 2026-05-30T04:01:06.689610+00:00_
 
 called Read
 
@@ -7790,7 +7670,7 @@ called Read
 
 ### Tool result
 
-_source line 886 · 2026-05-30T04:01:06.689951+00:00_
+_source line 884 · 2026-05-30T04:01:06.689951+00:00_
 
 8	## 当前进展
 9	- **阶段**: Post-DDL，ICRA 2027 准备（DDL ~Sep 2026）
@@ -7821,7 +7701,7 @@ _source line 886 · 2026-05-30T04:01:06.689951+00:00_
 
 ### Tool call
 
-_source line 887 · 2026-05-30T04:01:10.404482+00:00_
+_source line 885 · 2026-05-30T04:01:10.404482+00:00_
 
 called Edit
 
@@ -7861,7 +7741,7 @@ called Edit
 
 ### Tool result
 
-_source line 888 · 2026-05-30T04:01:11.159037+00:00_
+_source line 886 · 2026-05-30T04:01:11.159037+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -7883,7 +7763,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Assistant
 
-_source line 889 · 2026-05-30T04:01:20.028150+00:00_
+_source line 887 · 2026-05-30T04:01:20.028150+00:00_
 
 全部非 GPU 工作完成。当前项目状态：
 
@@ -7924,7 +7804,7 @@ _source line 889 · 2026-05-30T04:01:20.028150+00:00_
 
 ### User
 
-_source line 890 · 2026-05-30T04:32:39.059129+00:00_
+_source line 888 · 2026-05-30T04:32:39.059129+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -7966,7 +7846,7 @@ _source line 890 · 2026-05-30T04:32:39.059129+00:00_
 
 ### Tool call
 
-_source line 891 · 2026-05-30T04:33:07.200857+00:00_
+_source line 889 · 2026-05-30T04:33:07.200857+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -8004,7 +7884,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 892 · 2026-05-30T04:33:07.603578+00:00_
+_source line 890 · 2026-05-30T04:33:07.603578+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 15, \"next_nudge_in_minutes\": 30}"}
 
@@ -8026,7 +7906,7 @@ _source line 892 · 2026-05-30T04:33:07.603578+00:00_
 
 ### Tool call
 
-_source line 893 · 2026-05-30T04:33:18.135800+00:00_
+_source line 891 · 2026-05-30T04:33:18.135800+00:00_
 
 called Read
 
@@ -8062,7 +7942,7 @@ called Read
 
 ### Tool result
 
-_source line 894 · 2026-05-30T04:33:18.186472+00:00_
+_source line 892 · 2026-05-30T04:33:18.186472+00:00_
 
 1	\documentclass[conference]{IEEEtran}
 2	
@@ -8128,7 +8008,7 @@ _source line 894 · 2026-05-30T04:33:18.186472+00:00_
 
 ### Tool call
 
-_source line 895 · 2026-05-30T04:33:23.155216+00:00_
+_source line 893 · 2026-05-30T04:33:23.155216+00:00_
 
 called Read
 
@@ -8162,7 +8042,7 @@ called Read
 
 ### Tool result
 
-_source line 896 · 2026-05-30T04:33:23.155593+00:00_
+_source line 894 · 2026-05-30T04:33:23.155593+00:00_
 
 1	\begin{abstract}
 2	Vision-Language-Action (VLA) models report high Collision Avoidance Rate (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance. We introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, revealing that over 99\% of safe episodes in Pi0-family models are action-collapse artifacts. We further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance: ground-truth oracle refinement reduces CAR below unrefined baselines by redistributing collisions to unmonitored arm links, and SDF training supervision shows no statistically significant benefit beyond collision-free demonstrations alone, a null result robust across three training seeds and five evaluation seeds. These findings suggest that collision avoidance primarily arises from demonstration data rather than EE-only geometric supervision.
@@ -8187,7 +8067,7 @@ _source line 896 · 2026-05-30T04:33:23.155593+00:00_
 
 ### Tool call
 
-_source line 897 · 2026-05-30T04:33:23.256136+00:00_
+_source line 895 · 2026-05-30T04:33:23.256136+00:00_
 
 called Read
 
@@ -8221,7 +8101,7 @@ called Read
 
 ### Tool result
 
-_source line 898 · 2026-05-30T04:33:23.306776+00:00_
+_source line 896 · 2026-05-30T04:33:23.306776+00:00_
 
 1	\section{Introduction}\label{sec:intro}
 2	
@@ -8255,7 +8135,7 @@ _source line 898 · 2026-05-30T04:33:23.306776+00:00_
 
 ### Tool call
 
-_source line 899 · 2026-05-30T04:34:08.379280+00:00_
+_source line 897 · 2026-05-30T04:34:08.379280+00:00_
 
 called Read
 
@@ -8289,7 +8169,7 @@ called Read
 
 ### Tool result
 
-_source line 900 · 2026-05-30T04:34:08.429942+00:00_
+_source line 898 · 2026-05-30T04:34:08.429942+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -8337,7 +8217,7 @@ _source line 900 · 2026-05-30T04:34:08.429942+00:00_
 
 ### Tool call
 
-_source line 901 · 2026-05-30T04:34:35.955095+00:00_
+_source line 899 · 2026-05-30T04:34:35.955095+00:00_
 
 called ToolSearch
 
@@ -8373,7 +8253,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 902 · 2026-05-30T04:34:36.106173+00:00_
+_source line 900 · 2026-05-30T04:34:36.106173+00:00_
 
 No matching deferred tools found
 
@@ -8395,7 +8275,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 903 · 2026-05-30T04:34:38.807606+00:00_
+_source line 901 · 2026-05-30T04:34:38.807606+00:00_
 
 called ToolSearch
 
@@ -8431,7 +8311,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 904 · 2026-05-30T04:34:38.908470+00:00_
+_source line 902 · 2026-05-30T04:34:38.908470+00:00_
 
 
 
@@ -8453,7 +8333,7 @@ _source line 904 · 2026-05-30T04:34:38.908470+00:00_
 
 ### Tool call
 
-_source line 905 · 2026-05-30T04:34:54.689605+00:00_
+_source line 903 · 2026-05-30T04:34:54.689605+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -8487,7 +8367,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 906 · 2026-05-30T04:34:57.907612+00:00_
+_source line 904 · 2026-05-30T04:34:57.907612+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -8509,7 +8389,7 @@ _source line 906 · 2026-05-30T04:34:57.907612+00:00_
 
 ### Tool call
 
-_source line 907 · 2026-05-30T04:35:03.733284+00:00_
+_source line 905 · 2026-05-30T04:35:03.733284+00:00_
 
 called Glob
 
@@ -8545,7 +8425,7 @@ called Glob
 
 ### Tool result
 
-_source line 908 · 2026-05-30T04:35:03.834210+00:00_
+_source line 906 · 2026-05-30T04:35:03.834210+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/dream_reports/dream_20260525T223036/best/paper_framing.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/dream_reports/dream_20260525T223036/median/paper_framing.md
@@ -8579,7 +8459,7 @@ _source line 908 · 2026-05-30T04:35:03.834210+00:00_
 
 ### Tool call
 
-_source line 909 · 2026-05-30T04:35:09.353893+00:00_
+_source line 907 · 2026-05-30T04:35:09.353893+00:00_
 
 called Glob
 
@@ -8615,7 +8495,7 @@ called Glob
 
 ### Tool result
 
-_source line 910 · 2026-05-30T04:35:09.405795+00:00_
+_source line 908 · 2026-05-30T04:35:09.405795+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/review_reports/round_1.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/review_reports/round_2.md
@@ -8640,7 +8520,7 @@ _source line 910 · 2026-05-30T04:35:09.405795+00:00_
 
 ### Tool call
 
-_source line 911 · 2026-05-30T04:35:12.634376+00:00_
+_source line 909 · 2026-05-30T04:35:12.634376+00:00_
 
 called Read
 
@@ -8674,7 +8554,7 @@ called Read
 
 ### Tool result
 
-_source line 912 · 2026-05-30T04:35:12.685359+00:00_
+_source line 910 · 2026-05-30T04:35:12.685359+00:00_
 
 1	---
 2	round: 4
@@ -8745,7 +8625,7 @@ _source line 912 · 2026-05-30T04:35:12.685359+00:00_
 
 ### Tool call
 
-_source line 913 · 2026-05-30T04:35:38.468502+00:00_
+_source line 911 · 2026-05-30T04:35:38.468502+00:00_
 
 called Grep
 
@@ -8785,7 +8665,7 @@ called Grep
 
 ### Tool result
 
-_source line 914 · 2026-05-30T04:35:38.556482+00:00_
+_source line 912 · 2026-05-30T04:35:38.556482+00:00_
 
 No matches found
 
@@ -8807,7 +8687,7 @@ No matches found
 
 ### Tool call
 
-_source line 915 · 2026-05-30T04:35:55.295244+00:00_
+_source line 913 · 2026-05-30T04:35:55.295244+00:00_
 
 called ToolSearch
 
@@ -8843,7 +8723,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 916 · 2026-05-30T04:35:55.345854+00:00_
+_source line 914 · 2026-05-30T04:35:55.345854+00:00_
 
 
 
@@ -8865,7 +8745,7 @@ _source line 916 · 2026-05-30T04:35:55.345854+00:00_
 
 ### Tool call
 
-_source line 917 · 2026-05-30T04:35:58.556309+00:00_
+_source line 915 · 2026-05-30T04:35:58.556309+00:00_
 
 called WebSearch
 
@@ -8899,7 +8779,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 918 · 2026-05-30T04:36:04.978655+00:00_
+_source line 916 · 2026-05-30T04:36:04.978655+00:00_
 
 Web search results for query: "Demystifying Diffusion Policies action memorization Zheng arXiv 2505.05787"
 
@@ -8935,7 +8815,7 @@ Diffusion policies have demonstrated re
 
 ### Tool call
 
-_source line 919 · 2026-05-30T04:36:33.130786+00:00_
+_source line 917 · 2026-05-30T04:36:33.130786+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -8969,7 +8849,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 920 · 2026-05-30T04:36:34.093464+00:00_
+_source line 918 · 2026-05-30T04:36:34.093464+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -8991,7 +8871,7 @@ _source line 920 · 2026-05-30T04:36:34.093464+00:00_
 
 ### Tool call
 
-_source line 921 · 2026-05-30T04:36:45.421657+00:00_
+_source line 919 · 2026-05-30T04:36:45.421657+00:00_
 
 called Grep
 
@@ -9033,7 +8913,7 @@ called Grep
 
 ### Tool result
 
-_source line 922 · 2026-05-30T04:36:45.522378+00:00_
+_source line 920 · 2026-05-30T04:36:45.522378+00:00_
 
 36:The displacement distribution is sharply bimodal (collapsed episodes below 1\,$\mu$m, active above 200\,mm), making $\tau_d$ robust across $[2, 200]$\,mm (Appendix~\ref{sec:appendix_threshold}). For Pi0 under A1, $d_{\max}$ uses obstacle displacement due to an inconsistent EE reference frame; Pi0.5 uses standard EE displacement.
 
@@ -9055,7 +8935,7 @@ _source line 922 · 2026-05-30T04:36:45.522378+00:00_
 
 ### Assistant
 
-_source line 923 · 2026-05-30T04:37:04.126904+00:00_
+_source line 921 · 2026-05-30T04:37:04.126904+00:00_
 
 Bimodal gap 已在 method.tex 主文讨论（"sharply bimodal, collapsed below 1 μm, active above 200 mm"），Round 4 W8 已覆盖。
 
@@ -9091,7 +8971,7 @@ Paper Agent 完成后会汇报，届时派 Reviewer 验证。
 
 ### User
 
-_source line 924 · 2026-05-30T04:37:05.637562+00:00_
+_source line 922 · 2026-05-30T04:37:05.637562+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch #4 完成 — Novelty framing 强化
@@ -9135,7 +9015,7 @@ _source line 924 · 2026-05-30T04:37:05.637562+00:00_
 
 ### Assistant
 
-_source line 925 · 2026-05-30T04:37:16.705681+00:00_
+_source line 923 · 2026-05-30T04:37:16.705681+00:00_
 
 Patch #4 质量好——三处改动精准，dfCAR 从"纸内诊断工具"升级为"通用 sanity check"，action collapse 从"Pi0 问题"升级为"diffusion-based VLA 系统性风险"。等 Patch #5（Demystifying Diffusion Policies 引用）完成。
 
@@ -9162,7 +9042,7 @@ Patch #4 质量好——三处改动精准，dfCAR 从"纸内诊断工具"升级
 
 ### User
 
-_source line 926 · 2026-05-30T04:37:54.257774+00:00_
+_source line 924 · 2026-05-30T04:37:54.257774+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch #5 完成 — 补充 "Demystifying Diffusion Policies" 引用
@@ -9215,7 +9095,7 @@ _source line 926 · 2026-05-30T04:37:54.257774+00:00_
 
 ### Tool call
 
-_source line 927 · 2026-05-30T04:38:06.965957+00:00_
+_source line 925 · 2026-05-30T04:38:06.965957+00:00_
 
 called Grep
 
@@ -9255,7 +9135,7 @@ called Grep
 
 ### Tool result
 
-_source line 928 · 2026-05-30T04:38:07.417879+00:00_
+_source line 926 · 2026-05-30T04:38:07.417879+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/abstract.tex:2:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/introduction.tex:22:[Omitted long matching line]
@@ -9278,7 +9158,7 @@ _source line 928 · 2026-05-30T04:38:07.417879+00:00_
 
 ### Tool call
 
-_source line 929 · 2026-05-30T04:38:08.020694+00:00_
+_source line 927 · 2026-05-30T04:38:08.020694+00:00_
 
 called Grep
 
@@ -9316,7 +9196,7 @@ called Grep
 
 ### Tool result
 
-_source line 930 · 2026-05-30T04:38:08.121520+00:00_
+_source line 928 · 2026-05-30T04:38:08.121520+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/related_work.tex:4:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/main.bbl:67:\bibitem{he2025demystifying}
@@ -9344,7 +9224,7 @@ _source line 930 · 2026-05-30T04:38:08.121520+00:00_
 
 ### Tool call
 
-_source line 931 · 2026-05-30T04:38:15.919628+00:00_
+_source line 929 · 2026-05-30T04:38:15.919628+00:00_
 
 called Read
 
@@ -9382,7 +9262,7 @@ called Read
 
 ### Tool result
 
-_source line 932 · 2026-05-30T04:38:15.920092+00:00_
+_source line 930 · 2026-05-30T04:38:15.920092+00:00_
 
 7	
 8	## 当前进展
@@ -9411,7 +9291,7 @@ _source line 932 · 2026-05-30T04:38:15.920092+00:00_
 
 ### Tool call
 
-_source line 933 · 2026-05-30T04:38:24.199807+00:00_
+_source line 931 · 2026-05-30T04:38:24.199807+00:00_
 
 called Edit
 
@@ -9451,7 +9331,7 @@ called Edit
 
 ### Tool result
 
-_source line 934 · 2026-05-30T04:38:24.300709+00:00_
+_source line 932 · 2026-05-30T04:38:24.300709+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md has been updated successfully.
 
@@ -9473,7 +9353,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Assistant
 
-_source line 935 · 2026-05-30T04:38:31.462909+00:00_
+_source line 933 · 2026-05-30T04:38:31.462909+00:00_
 
 当前状态：全部非 GPU 工作完成。写作层面做了两项额外改进：(1) dfCAR 通用性定位 + action collapse 社区级风险定位提升 novelty 感知，(2) He et al. 2025 action memorization 引用建立理论联系。论文 27 篇引用，编译 clean。
 

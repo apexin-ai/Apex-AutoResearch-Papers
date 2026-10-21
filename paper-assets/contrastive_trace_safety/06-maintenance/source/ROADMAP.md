@@ -29,15 +29,6 @@ Reasoning model 安全轨迹的对比隐状态分析：揭示 layer selection bi
 - westd-15904 (1×RTX PRO 6000): 已通知 Manager 释放（所有实验+分析完成）
 - 当前无 GPU 占用
 
-## Rebuttal 备弹
-- Bootstrap CI: 31.7pp (p=0.015)，full-data 58pp vs bootstrap 31.7pp 差异解释
-- Classifier sensitivity: threshold ≥1 32.2pp / ≥2 16.1pp / ≥3 12.9pp（标签质量退化预期行为）
-- Ensemble 5-fold CV: non-CV→CV 精度降幅仅 1.3pp
-- FPR 层选择不稳定性（5 折 5 不同层），反向支持 C1
-- 20 个阴性实验的 mechanistic taxonomy
-- Gemma cross-arch geometric analysis
-- Label noise robustness（v1 42pp → v2 58pp full-data）
-
 ## 关键决策日志
 
 | ID | 日期 | 摘要 | 关联实验 |

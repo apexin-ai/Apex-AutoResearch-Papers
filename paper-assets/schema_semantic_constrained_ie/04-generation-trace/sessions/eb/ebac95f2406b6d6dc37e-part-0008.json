@@ -7,122 +7,6 @@
       "messages": [
         {
           "source_line": 1261,
-          "timestamp": "2026-05-20T18:34:01.143915+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:director_get_project_overview,read_project_file,dispatch_visual_check,request_external_review,get_external_review_status,get_visual_check_status,director_post_to_reviewer,submit_review_report_to_research_director,update_review_issues,WebSearch,read_local_file",
-              "max_results": "11"
-            }
-          },
-          "id": "event-001261"
-        },
-        {
-          "source_line": 1262,
-          "timestamp": "2026-05-20T18:34:01.194568+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "ToolSearch",
-            "elapsed_ms": 50
-          },
-          "id": "event-001262"
-        },
-        {
-          "source_line": 1263,
-          "timestamp": "2026-05-20T18:34:05.061576+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__dispatch_visual_check,mcp__agent-ml-research__request_external_review,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_local_file",
-              "max_results": "10"
-            }
-          },
-          "id": "event-001263"
-        },
-        {
-          "source_line": 1264,
-          "timestamp": "2026-05-20T18:34:05.162560+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "ToolSearch",
-            "elapsed_ms": 100
-          },
-          "id": "event-001264"
-        },
-        {
-          "source_line": 1265,
-          "timestamp": "2026-05-20T18:34:09.430391+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__director_get_project_overview"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "mcp__agent-ml-research__director_get_project_overview",
-            "tool_args": {
-              "project": "schema_semantic_constrained_ie"
-            }
-          },
-          "id": "event-001265"
-        },
-        {
-          "source_line": 1266,
-          "timestamp": "2026-05-20T18:34:10.886776+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"# 项目 schema_semantic_constrained_ie 概况\\n\\n## 实验状态 (124 个)\\n\\n- **llama_scierc_full_s1**: DONE (success) — \\n- **llama_scierc_unconstrained**: DONE (success) — \\n- **phase2_scierc_full_s1**: DONE (success) — \\n- **phase2_scierc_semantic_only**: DONE (success) — \\n- **phase2_scierc_grammar_only**: DONE (success) — \\n- **phase2_scierc_unconstrained**: DONE (success) — \\n- **phase2_docred_full_s1**: DONE (success) — \\n- **phase2_docred_semantic_only**: DONE (success) — \\n- **phase2_docred_unconstrained**: DONE (success) — \\n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \\n- **phase2_s2_pilot50**: DONE (success) — \\n- **mvp_phase0_docred_schema**: DONE (success) — \\n- **mvp_phase0_violation_rate_docred**: DONE (success) — \\n- **mvp_phase0_scierc_schema**: DONE (success) — \\n- **mvp_phase0_violation_rate**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| d066_beam_sweep | Beam width k∈{1,2,4,8} on SciERC (LoRA, Qwen3-8B) will show monotonic DR/CF reduction with diminishing returns past k=4, establishing the cost-effectiveness trade-off for the beam search appendix Pareto analysis. | — | — | — |\\n\\n## 待处理\\n- d066_sweep_llama_docred_beam4_s1（准备中）\\n- p1_llama_ee_ft（准备中）\\n\\n## 近期结论\\n- **d066_sweep_llama_scierc_beam4_s1_551** (success): d066 SciERC beam sweep: Llama beam4 constrained (full_s1) on 551-sentence test set. Beam width k=4 with schema constraints should eliminate all four violation types (ET/RV/DR/CF=0) while maintaining R-F1 within ±1pp of unconstrained.\\n- **d066_sweep_llama_docred_beam4_unc** (success): d066 DocRED beam sweep sub-task: Llama beam4 unconstrained on 200-doc subset (westd-16980 GPU1). Part of d066_beam_sweep. DocRED data needed for Pareto dual-panel figure. ← 基于 d066_beam_sweep\\n- **d066_sweep_llama_docred_beam1_s1** (success): d066 DocRED beam sweep sub-task: Llama beam1 (greedy) constrained (full_s1) \n…[truncated 1052 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "mcp__agent-ml-research__director_get_project_overview",
-            "elapsed_ms": 1456
-          },
-          "id": "event-001266"
-        },
-        {
-          "source_line": 1267,
           "timestamp": "2026-05-20T18:34:11.037861+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -140,10 +24,10 @@
               "limit": "80"
             }
           },
-          "id": "event-001267"
+          "id": "event-001261"
         },
         {
-          "source_line": 1268,
+          "source_line": 1262,
           "timestamp": "2026-05-20T18:34:11.390313+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -158,10 +42,10 @@
             "tool": "Read",
             "elapsed_ms": 352
           },
-          "id": "event-001268"
+          "id": "event-001262"
         },
         {
-          "source_line": 1269,
+          "source_line": 1263,
           "timestamp": "2026-05-20T18:34:11.390702+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -178,10 +62,10 @@
               "query": "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org"
             }
           },
-          "id": "event-001269"
+          "id": "event-001263"
         },
         {
-          "source_line": 1270,
+          "source_line": 1264,
           "timestamp": "2026-05-20T18:34:17.917181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -196,10 +80,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6526
           },
-          "id": "event-001270"
+          "id": "event-001264"
         },
         {
-          "source_line": 1271,
+          "source_line": 1265,
           "timestamp": "2026-05-20T18:34:23.151037+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -216,10 +100,10 @@
               "query": "EMNLP 2026 main conference call for papers submission deadline ARR"
             }
           },
-          "id": "event-001271"
+          "id": "event-001265"
         },
         {
-          "source_line": 1272,
+          "source_line": 1266,
           "timestamp": "2026-05-20T18:34:24.105248+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -236,10 +120,10 @@
               "query": "ARR 2026 submission guidelines page limit formatting requirements"
             }
           },
-          "id": "event-001272"
+          "id": "event-001266"
         },
         {
-          "source_line": 1273,
+          "source_line": 1267,
           "timestamp": "2026-05-20T18:34:24.607741+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -257,10 +141,10 @@
               "file": "paper_checklist.yaml"
             }
           },
-          "id": "event-001273"
+          "id": "event-001267"
         },
         {
-          "source_line": 1274,
+          "source_line": 1268,
           "timestamp": "2026-05-20T18:34:29.528655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -275,10 +159,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6377
           },
-          "id": "event-001274"
+          "id": "event-001268"
         },
         {
-          "source_line": 1275,
+          "source_line": 1269,
           "timestamp": "2026-05-20T18:34:31.186110+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -293,10 +177,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 7080
           },
-          "id": "event-001275"
+          "id": "event-001269"
         },
         {
-          "source_line": 1276,
+          "source_line": 1270,
           "timestamp": "2026-05-20T18:34:31.186645+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -311,10 +195,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 6578
           },
-          "id": "event-001276"
+          "id": "event-001270"
         },
         {
-          "source_line": 1277,
+          "source_line": 1271,
           "timestamp": "2026-05-20T18:34:38.115284+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -331,10 +215,10 @@
               "query": "\"EMNLP 2026\" \"call for papers\" \"double-blind\" OR \"anonymity\" OR \"appendix\" submission requirements site:2026.emnlp.org"
             }
           },
-          "id": "event-001277"
+          "id": "event-001271"
         },
         {
-          "source_line": 1278,
+          "source_line": 1272,
           "timestamp": "2026-05-20T18:34:38.768690+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -352,10 +236,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001278"
+          "id": "event-001272"
         },
         {
-          "source_line": 1279,
+          "source_line": 1273,
           "timestamp": "2026-05-20T18:34:38.819371+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -370,10 +254,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001279"
+          "id": "event-001273"
         },
         {
-          "source_line": 1280,
+          "source_line": 1274,
           "timestamp": "2026-05-20T18:34:48.512889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -388,10 +272,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 10397
           },
-          "id": "event-001280"
+          "id": "event-001274"
         },
         {
-          "source_line": 1281,
+          "source_line": 1275,
           "timestamp": "2026-05-20T18:34:55.375073+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -408,10 +292,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-001281"
+          "id": "event-001275"
         },
         {
-          "source_line": 1282,
+          "source_line": 1276,
           "timestamp": "2026-05-20T18:34:56.280799+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -426,10 +310,10 @@
             "tool": "Read",
             "elapsed_ms": 905
           },
-          "id": "event-001282"
+          "id": "event-001276"
         },
         {
-          "source_line": 1283,
+          "source_line": 1277,
           "timestamp": "2026-05-20T18:34:56.331659+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -447,10 +331,10 @@
               "description": "Check external review config setting"
             }
           },
-          "id": "event-001283"
+          "id": "event-001277"
         },
         {
-          "source_line": 1284,
+          "source_line": 1278,
           "timestamp": "2026-05-20T18:34:57.738459+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -465,10 +349,10 @@
             "tool": "Bash",
             "elapsed_ms": 1406
           },
-          "id": "event-001284"
+          "id": "event-001278"
         },
         {
-          "source_line": 1285,
+          "source_line": 1279,
           "timestamp": "2026-05-20T18:34:57.890154+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -486,10 +370,10 @@
               "description": "List paper files and line counts"
             }
           },
-          "id": "event-001285"
+          "id": "event-001279"
         },
         {
-          "source_line": 1286,
+          "source_line": 1280,
           "timestamp": "2026-05-20T18:34:57.941072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -504,10 +388,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001286"
+          "id": "event-001280"
         },
         {
-          "source_line": 1287,
+          "source_line": 1281,
           "timestamp": "2026-05-20T18:35:07.783749+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -524,10 +408,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-001287"
+          "id": "event-001281"
         },
         {
-          "source_line": 1288,
+          "source_line": 1282,
           "timestamp": "2026-05-20T18:35:08.135666+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -542,10 +426,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-001288"
+          "id": "event-001282"
         },
         {
-          "source_line": 1289,
+          "source_line": 1283,
           "timestamp": "2026-05-20T18:35:08.336917+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -562,10 +446,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-001289"
+          "id": "event-001283"
         },
         {
-          "source_line": 1290,
+          "source_line": 1284,
           "timestamp": "2026-05-20T18:35:08.638887+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -580,10 +464,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-001290"
+          "id": "event-001284"
         },
         {
-          "source_line": 1291,
+          "source_line": 1285,
           "timestamp": "2026-05-20T18:35:08.639408+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -600,10 +484,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
             }
           },
-          "id": "event-001291"
+          "id": "event-001285"
         },
         {
-          "source_line": 1292,
+          "source_line": 1286,
           "timestamp": "2026-05-20T18:35:09.041531+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -618,10 +502,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-001292"
+          "id": "event-001286"
         },
         {
-          "source_line": 1293,
+          "source_line": 1287,
           "timestamp": "2026-05-20T18:35:09.041935+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -638,10 +522,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-001293"
+          "id": "event-001287"
         },
         {
-          "source_line": 1294,
+          "source_line": 1288,
           "timestamp": "2026-05-20T18:35:10.046913+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -656,10 +540,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-001294"
+          "id": "event-001288"
         },
         {
-          "source_line": 1295,
+          "source_line": 1289,
           "timestamp": "2026-05-20T18:35:10.097633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -676,10 +560,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
             }
           },
-          "id": "event-001295"
+          "id": "event-001289"
         },
         {
-          "source_line": 1296,
+          "source_line": 1290,
           "timestamp": "2026-05-20T18:35:10.549914+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -694,10 +578,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001296"
+          "id": "event-001290"
         },
         {
-          "source_line": 1297,
+          "source_line": 1291,
           "timestamp": "2026-05-20T18:35:10.700967+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -715,10 +599,10 @@
               "description": "Read project config"
             }
           },
-          "id": "event-001297"
+          "id": "event-001291"
         },
         {
-          "source_line": 1298,
+          "source_line": 1292,
           "timestamp": "2026-05-20T18:35:10.751697+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -733,10 +617,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001298"
+          "id": "event-001292"
         },
         {
-          "source_line": 1299,
+          "source_line": 1293,
           "timestamp": "2026-05-20T18:35:15.923070+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -753,10 +637,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex"
             }
           },
-          "id": "event-001299"
+          "id": "event-001293"
         },
         {
-          "source_line": 1300,
+          "source_line": 1294,
           "timestamp": "2026-05-20T18:35:16.877507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -771,10 +655,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-001300"
+          "id": "event-001294"
         },
         {
-          "source_line": 1301,
+          "source_line": 1295,
           "timestamp": "2026-05-20T18:35:16.928192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -791,10 +675,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
             }
           },
-          "id": "event-001301"
+          "id": "event-001295"
         },
         {
-          "source_line": 1302,
+          "source_line": 1296,
           "timestamp": "2026-05-20T18:35:17.380745+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -809,10 +693,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001302"
+          "id": "event-001296"
         },
         {
-          "source_line": 1303,
+          "source_line": 1297,
           "timestamp": "2026-05-20T18:35:17.381125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -829,10 +713,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
             }
           },
-          "id": "event-001303"
+          "id": "event-001297"
         },
         {
-          "source_line": 1304,
+          "source_line": 1298,
           "timestamp": "2026-05-20T18:35:17.783077+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -847,10 +731,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-001304"
+          "id": "event-001298"
         },
         {
-          "source_line": 1305,
+          "source_line": 1299,
           "timestamp": "2026-05-20T18:35:17.783461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -867,10 +751,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
             }
           },
-          "id": "event-001305"
+          "id": "event-001299"
         },
         {
-          "source_line": 1306,
+          "source_line": 1300,
           "timestamp": "2026-05-20T18:35:18.787866+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -885,10 +769,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-001306"
+          "id": "event-001300"
         },
         {
-          "source_line": 1307,
+          "source_line": 1301,
           "timestamp": "2026-05-20T18:35:18.838510+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -905,10 +789,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex"
             }
           },
-          "id": "event-001307"
+          "id": "event-001301"
         },
         {
-          "source_line": 1308,
+          "source_line": 1302,
           "timestamp": "2026-05-20T18:35:19.140322+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -923,10 +807,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-001308"
+          "id": "event-001302"
         },
         {
-          "source_line": 1309,
+          "source_line": 1303,
           "timestamp": "2026-05-20T18:35:19.190971+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -943,10 +827,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
             }
           },
-          "id": "event-001309"
+          "id": "event-001303"
         },
         {
-          "source_line": 1310,
+          "source_line": 1304,
           "timestamp": "2026-05-20T18:35:19.241650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -961,10 +845,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001310"
+          "id": "event-001304"
         },
         {
-          "source_line": 1311,
+          "source_line": 1305,
           "timestamp": "2026-05-20T18:35:23.996403+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -981,10 +865,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex"
             }
           },
-          "id": "event-001311"
+          "id": "event-001305"
         },
         {
-          "source_line": 1312,
+          "source_line": 1306,
           "timestamp": "2026-05-20T18:35:24.348283+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -999,10 +883,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-001312"
+          "id": "event-001306"
         },
         {
-          "source_line": 1313,
+          "source_line": 1307,
           "timestamp": "2026-05-20T18:35:24.499310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1019,10 +903,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-001313"
+          "id": "event-001307"
         },
         {
-          "source_line": 1314,
+          "source_line": 1308,
           "timestamp": "2026-05-20T18:35:25.303321+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1037,10 +921,10 @@
             "tool": "Read",
             "elapsed_ms": 804
           },
-          "id": "event-001314"
+          "id": "event-001308"
         },
         {
-          "source_line": 1315,
+          "source_line": 1309,
           "timestamp": "2026-05-20T18:35:25.303870+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1057,10 +941,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/fig1_framework.tex"
             }
           },
-          "id": "event-001315"
+          "id": "event-001309"
         },
         {
-          "source_line": 1316,
+          "source_line": 1310,
           "timestamp": "2026-05-20T18:35:25.304136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1075,10 +959,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001316"
+          "id": "event-001310"
         },
         {
-          "source_line": 1317,
+          "source_line": 1311,
           "timestamp": "2026-05-20T18:35:25.856863+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1096,10 +980,10 @@
               "offset": "80"
             }
           },
-          "id": "event-001317"
+          "id": "event-001311"
         },
         {
-          "source_line": 1318,
+          "source_line": 1312,
           "timestamp": "2026-05-20T18:35:25.957762+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1114,10 +998,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001318"
+          "id": "event-001312"
         },
         {
-          "source_line": 1319,
+          "source_line": 1313,
           "timestamp": "2026-05-20T18:35:31.079246+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1135,10 +1019,10 @@
               "description": "Find project config file"
             }
           },
-          "id": "event-001319"
+          "id": "event-001313"
         },
         {
-          "source_line": 1320,
+          "source_line": 1314,
           "timestamp": "2026-05-20T18:35:31.632089+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1153,10 +1037,10 @@
             "tool": "Bash",
             "elapsed_ms": 552
           },
-          "id": "event-001320"
+          "id": "event-001314"
         },
         {
-          "source_line": 1321,
+          "source_line": 1315,
           "timestamp": "2026-05-20T18:35:31.632545+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1173,10 +1057,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_pumping_lemma.tex"
             }
           },
-          "id": "event-001321"
+          "id": "event-001315"
         },
         {
-          "source_line": 1322,
+          "source_line": 1316,
           "timestamp": "2026-05-20T18:35:31.684038+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1191,10 +1075,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-001322"
+          "id": "event-001316"
         },
         {
-          "source_line": 1323,
+          "source_line": 1317,
           "timestamp": "2026-05-20T18:35:35.400052+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1212,10 +1096,10 @@
               "description": "Find config files for the project"
             }
           },
-          "id": "event-001323"
+          "id": "event-001317"
         },
         {
-          "source_line": 1324,
+          "source_line": 1318,
           "timestamp": "2026-05-20T18:35:35.501086+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1230,10 +1114,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-001324"
+          "id": "event-001318"
         },
         {
-          "source_line": 1325,
+          "source_line": 1319,
           "timestamp": "2026-05-20T18:35:39.467808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1251,10 +1135,10 @@
               "description": "Check external review config"
             }
           },
-          "id": "event-001325"
+          "id": "event-001319"
         },
         {
-          "source_line": 1326,
+          "source_line": 1320,
           "timestamp": "2026-05-20T18:35:39.518773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1269,10 +1153,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001326"
+          "id": "event-001320"
         },
         {
-          "source_line": 1327,
+          "source_line": 1321,
           "timestamp": "2026-05-20T18:35:42.983631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1290,10 +1174,10 @@
               "description": "Search for external review settings"
             }
           },
-          "id": "event-001327"
+          "id": "event-001321"
         },
         {
-          "source_line": 1328,
+          "source_line": 1322,
           "timestamp": "2026-05-20T18:35:43.084549+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1308,10 +1192,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001328"
+          "id": "event-001322"
         },
         {
-          "source_line": 1329,
+          "source_line": 1323,
           "timestamp": "2026-05-20T18:35:56.081703+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1329,10 +1213,10 @@
               "description": "Check PDF page count"
             }
           },
-          "id": "event-001329"
+          "id": "event-001323"
         },
         {
-          "source_line": 1330,
+          "source_line": 1324,
           "timestamp": "2026-05-20T18:35:56.182512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1347,10 +1231,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001330"
+          "id": "event-001324"
         },
         {
-          "source_line": 1331,
+          "source_line": 1325,
           "timestamp": "2026-05-20T18:36:30.394992+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1368,10 +1252,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-001331"
+          "id": "event-001325"
         },
         {
-          "source_line": 1332,
+          "source_line": 1326,
           "timestamp": "2026-05-20T18:36:50.051390+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1386,10 +1270,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 19656
           },
-          "id": "event-001332"
+          "id": "event-001326"
         },
         {
-          "source_line": 1333,
+          "source_line": 1327,
           "timestamp": "2026-05-20T18:36:50.107192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1409,10 +1293,10 @@
               "text": "你是 Reviewer 1，负责**方法严谨性 + 实验有效性**。\n\n## 论文信息\n- 标题: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- 论文路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`\n- 目标 venue: EMNLP 2026（via ARR May cycle）\n- Deadline: 2026-05-25\n\n## Venue 要求\n- 长文正文 ≤ 8 页，参考文献无限制\n- Limitations 必须有，不计入页数\n- ACL 模板，double-blind 审稿\n- 附录不要求审稿人审查\n\n## 你的审查侧重\n\n### A. 形式化声称与证明\n1. Proposition 1 声称 Level 2 约束非 context-free——proof sketch 是否充分？附录 pumping lemma 完整证明是否严密？\n2. \"best-effort pair-based enforcement\" 的精确含义——是否有遗漏的 corner case？\n3. 三级 decidability taxonomy 是否 well-motivated？分类边界是否清晰？\n4. 论文声称 \"formally compiles\"——实际实现是否匹配这一措辞？\n5. grammar-first fallback 是否有严格的正确性保证？级联失败分析是否充分？\n\n### B. 实验设计与统计严谨性\n1. 五路消融实验设计是否充分隔离各层贡献？\n2. CF trade-off：论文声称 CF 是 \"resolvable via beam search\"——证据是否充分（特别是 DocRED）？\n3. 统计显著性：bootstrap 检验设置是否合理？样本量是否足够？\n4. WikiEvents EE fine-tuning 仅 20 文档测试集——统计效力如何？\n5. DocRED beam search 零样本仅 50 文档子集——是否影响结论可靠性？\n6. 70B 评估仅为 \"preliminary\"——声称范围是否合理？\n7. Constraint tightness κ̄ 作为 \"descriptive metric\"——是否有足够的预测性证据支持其 deployment guidance 价值？\n\n### C. 实验公平性\n1. Baseline 选择是否充分？是否遗漏了最接近的 IE constrained decoding 基线（如 BoostCD、IterGen）？\n2. 与 GoLLIE 等 schema-aware IE 系统的对比是否公平？\n3. Post-hoc filtering 对比是否公平？\n\n### D. 输出格式\n请按以下结构输出审稿意见：\n1. **Summary** (2-3 句)\n2. **Strengths** (逐条 S1, S2, ...)\n3. **Weaknesses** (逐条 W1, W2, ... 区分 Must-Fix / Should-Fix / Minor)\n4. **Questions** (需要作者澄清的)\n5. **Missing References**\n6. **Scores**: Soundness (1-5), Excitement (1-5), Overall (1-5, 按 EMNLP 2026 ARR 评分标准: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit), Confidence (1-5)\n\n严格评审，不留情面。"
             }
           },
-          "id": "event-001333"
+          "id": "event-001327"
         },
         {
-          "source_line": 1334,
+          "source_line": 1328,
           "timestamp": "2026-05-20T18:37:07.620224+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1427,10 +1311,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 17513
           },
-          "id": "event-001334"
+          "id": "event-001328"
         },
         {
-          "source_line": 1335,
+          "source_line": 1329,
           "timestamp": "2026-05-20T18:37:07.921705+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1450,10 +1334,10 @@
               "text": "你是 Reviewer 2，负责**新颖性 + 完整性 + 写作质量**。\n\n## 论文信息\n- 标题: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- 论文路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`\n- 目标 venue: EMNLP 2026（via ARR May cycle）\n- Deadline: 2026-05-25\n\n## Venue 要求\n- 长文正文 ≤ 8 页，参考文献无限制\n- Limitations 必须有，不计入页数\n- ACL 模板，double-blind 审稿\n- 附录不要求审稿人审查\n\n## 你的审查侧重\n\n### A. 新颖性与贡献定位\n1. 与最接近工作（PICARD、IterGen、BoostCD、GoLLIE、GCD、DCCD）的技术区分是否清晰？\n2. \"Preventive forward-only masking\" vs \"corrective backtracking\" 的 novelty 论证是否站得住脚？\n3. 三个 contribution 是否都成立？是否有过度声称？\n4. κ̄ 作为 \"descriptive metric\" 的定位是否合适？是否被过度包装为 contribution？\n5. \"formally compiles\" 的声称——与 code generation 领域的 type-constrained decoding 有何本质区别？\n\n### B. Related Work 覆盖与定位\n1. 是否遗漏了重要的相关工作？特别是：\n   - IE-specific constrained decoding（BoostCD、IterGen、EnriCo、DCCD）\n   - Schema-aware IE（GoLLIE、KnowCoder、GUIDEX、InstructUIE）\n   - Constrained decoding 对推理的影响（CRANE、HiddenCost、FormatTax）\n2. 引用格式和完整性\n3. 自引比例是否合理？\n\n### C. 写作质量与清晰度\n1. Abstract 信息密度是否合适？关键 message 是否清晰？\n2. Introduction 的 motivation 是否 compelling？gap 论证是否充分？\n3. §3 Method 描述是否清晰？Figure 1 是否 informative？\n4. 实验结果叙述是否平衡？CF 代价是否在 Abstract/Introduction 中透明呈现？\n5. 命名一致性：S1/S2 命名是否清晰？术语是否前后一致？\n6. 模型规模声称（\"any autoregressive LM\" vs 实际仅 7-8B 主测试）是否准确？\n\n### D. 格式合规\n1. 正文是否 ≤ 8 页？（检查 Limitations 前的页数）\n2. 匿名性：是否有泄露作者身份的信息？\n3. 表格/图形是否清晰可读？字体是否过小？\n4. 引用格式是否正确？\n5. ARR Responsible NLP Research Checklist 是否存在？\n\n### E. 输出格式\n请按以下结构输出审稿意见：\n1. **Summary** (2-3 句)\n2. **Strengths** (逐条 S1, S2, ...)\n3. **Weaknesses** (逐条 W1, W2, ... 区分 Must-Fix / Should-Fix / Minor)\n4. **Questions** (需要作者澄清的)\n5. **Missing References**\n6. **Scores**: Novelty (1-5), Clarity (1-5), Overall (1-5, 按 EMNLP 2026 ARR 评分标准: 5=Award, 4=Conference, 3=Findings, 2=Resubmit, 1=Do not resubmit), Confidence (1-5)\n\n严格评审，不留情面。"
             }
           },
-          "id": "event-001335"
+          "id": "event-001329"
         },
         {
-          "source_line": 1336,
+          "source_line": 1330,
           "timestamp": "2026-05-20T18:37:09.233953+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1468,10 +1352,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1312
           },
-          "id": "event-001336"
+          "id": "event-001330"
         },
         {
-          "source_line": 1337,
+          "source_line": 1331,
           "timestamp": "2026-05-20T18:37:15.010207+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1484,7 +1368,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001337"
+          "id": "event-001331"
         }
       ]
     },
@@ -1492,7 +1376,7 @@
       "number": 92,
       "messages": [
         {
-          "source_line": 1338,
+          "source_line": 1332,
           "timestamp": "2026-05-20T18:42:57.672251+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1506,10 +1390,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001338"
+          "id": "event-001332"
         },
         {
-          "source_line": 1339,
+          "source_line": 1333,
           "timestamp": "2026-05-20T18:43:06.454987+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1522,7 +1406,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001339"
+          "id": "event-001333"
         }
       ]
     },
@@ -1530,7 +1414,7 @@
       "number": 93,
       "messages": [
         {
-          "source_line": 1340,
+          "source_line": 1334,
           "timestamp": "2026-05-20T18:43:19.536995+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1544,10 +1428,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001340"
+          "id": "event-001334"
         },
         {
-          "source_line": 1341,
+          "source_line": 1335,
           "timestamp": "2026-05-20T18:43:27.929002+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1560,7 +1444,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001341"
+          "id": "event-001335"
         }
       ]
     },
@@ -1568,7 +1452,7 @@
       "number": 94,
       "messages": [
         {
-          "source_line": 1342,
+          "source_line": 1336,
           "timestamp": "2026-05-20T18:44:59.958567+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1582,10 +1466,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-001342"
+          "id": "event-001336"
         },
         {
-          "source_line": 1343,
+          "source_line": 1337,
           "timestamp": "2026-05-20T18:45:48.814239+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1605,10 +1489,10 @@
               "text": "## 交叉分享：Reviewer 2 的完整审稿意见\n\n请逐条回应以下 Reviewer 2 的意见。对每条使用 **[AGREE]** 同意并说明理由，或 **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n以下是 Reviewer 2 的完整审稿意见：\n\n### Summary\n本文提出 OntoCoDec，一个将 IE 本体编译为 token 级解码约束的框架。设计基于 decidability analysis 的分层架构：grammar layer（CFG）保证 JSON 结构和词汇约束，semantic layer（prefix-decidable with state）通过运行时 entity registry 执行 domain/range 类型约束。在 SciERC、DocRED、WikiEvents 上对 3–4 个模型（7–70B）进行了系统评估，表明 LoRA + S1 可将 DR 违规降至 ≤0.09%，R-F1 变化在 ±0.6pp 内。论文同时引入 constraint tightness κ̄ 作为描述性指标。\n\n### Must-Fix\n\n**W1 [critical] 正文超过 8 页限制。**\nDiscussion and Conclusion 的最后约 11 行溢出到第 9 页。EMNLP 2026 (via ARR) 严格限制长文正文 ≤ 8 页。格式违规可能导致 desk reject。\n\n**W2 [critical] CF 代价在 Abstract 和 Introduction 中被系统性低估。**\nAbstract 用 \"modest\" 描述零样本 SciERC 9.90% 和 WikiEvents 15–21% 的 CF 率是误导性的。Introduction 完全没提 CF。隐藏主要副作用降低论文可信度。\n\n**W3 [critical] κ̄ 作为独立贡献（Contribution 2）的定位过高。**\nκ̄ = 1 − |σ(r)|/|E|² 本质上是约束表的归一化密度。仅在 2 个数据集上验证（SciERC κ̄=0.333 vs DocRED κ̄=0.842），且 κ̄ 无法独立预测 enforcement 效果（Mistral SciERC DR 降幅仅 76% vs Qwen/Llama 94–99%）。\n\n### Should-Fix\n\n**W4 [warning] \"any autoregressive LM\" 声称与实际验证范围不符。**\n主要实验在 7–8B 模型上，70B 仅初步结果，无小模型/API-only 验证。\n\n**W5 [warning] DocRED 零样本 DR 降幅仅 45%（vs SciERC 94%），讨论不充分。**\n论文将此归因于 κ̄ 差异，但这只是 restate 了问题。残余 DR 10.21% 对 \"type-safe extraction\" 目标构成挑战。\n\n**W6 [warning] WikiEvents 评估局限性。**\nFine-tuning 基于 20-doc test set，CIs 很宽。零样本 entity F1 从 0→12-18% 主要来自格式修复而非语义改善。Grammar-only 行缺少 F1。\n\n**W7 [warning] \"formally compiles\" 措辞与实际技术贡献不匹配。**\nGrammar layer 是编译，但 semantic layer 是运行时规则解释。\"Compile\" 隐含离线、静态转换，与 semantic layer 的动态维护不符。\n\n### Minor\n**M1.** 孤立 bib entry（schmidt2025grammar）\n**M2.** 表格字体偏小（Table 1, 3, 4）\n**M3.** S1/S2 命名不直观，混用 \"S1 (joint extraction)\" 和 \"Full (S1)\"\n**M4.** §4 脚注 1 关于对称 relation 的处理应在正文讨论\n**M5.** formattax2026 和 regino2025kgcurator 在 OpenAlex 未找到\n\n### Scores\nSoundness 3.5/5, Excitement 2.5/5, Overall 3.0/5 (Findings), Confidence 4/5, Novelty 2.5/5, Clarity 3.5/5\n\n---\n\n请逐条回应，特别关注：\n1. 你是否同意正文超页是 must-fix？\n2. 你是否同意 CF 代价被低估？R2 认为 \"modest\" 描述 9.90% CF 是误导——你的判断？\n3. R2 给 Excitement 2.5/5 vs 你给 3/5——分歧在哪？\n4. R2 的 Overall 3.0 vs 你的 3.5——你认为差距的核心原因是什么？"
             }
           },
-          "id": "event-001343"
+          "id": "event-001337"
         },
         {
-          "source_line": 1344,
+          "source_line": 1338,
           "timestamp": "2026-05-20T18:46:07.406578+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1623,10 +1507,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 18592
           },
-          "id": "event-001344"
+          "id": "event-001338"
         },
         {
-          "source_line": 1345,
+          "source_line": 1339,
           "timestamp": "2026-05-20T18:46:07.708201+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1646,10 +1530,10 @@
               "text": "## 交叉分享：Reviewer 1 的完整审稿意见\n\n请逐条回应以下 Reviewer 1 的意见。对每条使用 **[AGREE]** 同意并说明理由，或 **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n以下是 Reviewer 1 的完整审稿意见：\n\n### Summary\n本文提出 OntoCoDec，一个将 IE 本体编译为 token 级约束的框架。系统采用双层架构：grammar layer（EBNF + XGrammar）和 semantic layer（有状态 logits processor）。论文提出三级 decidability taxonomy，用 pumping lemma 证明 Level 2 约束非 context-free，并在 SciERC、DocRED、WikiEvents 三个数据集上用 4 个模型验证。\n\n### Must-Fix\n\n**W1. [critical] 缺少最直接可比的 constrained decoding baseline 对比**\nBoostCD (Sakota et al., 2025) 和 IterGen (Ugare et al., 2025) 在 Related Work 中被引用但实验中完全没有对比。BoostCD 发表于 EMNLP 2025，专门做 IE constrained decoding，是最自然的 baseline。如果它们在相同 benchmark 上能达到类似效果，OntoCoDec 的增量贡献将大幅缩水。\n\n**W2. [critical] WikiEvents EE 评估统计效力严重不足**\nWikiEvents 测试集仅 20 篇文档。Contribution 3 将 WikiEvents EE 列为三大贡献之一（\"systematic evaluation\"），但 20 篇文档无法支撑此措辞。建议限定为 \"preliminary demonstration\"。\n\n### Should-Fix\n\n**W3. [warning] Pumping lemma 证明的形式化与实际系统存在 gap**\n证明假设实体引用基于位置索引，而实际 JSON 使用实体名称（字符串引用）。在名称引用下 pumping 的破坏机制需要更明确说明。\n\n**W4. [warning] DocRED beam search 仅用 50 文档子集评估**\n关键 claim \"CF is resolvable via beam search\" 在 DocRED 上的证据基础仅为 5% 子集。Table 15（Appendix F）显示 DocRED beam CF 从 28.4%→21.4%，远未 \"resolve\"。\n\n**W5. [warning] \"Formally compiles\" 措辞过度**\nGrammar layer 是编译，但 semantic layer 是运行时规则解释。\n\n**W6. [warning] 与 GoLLIE 等 schema-aware IE 系统缺乏量化对比**\n读者需要知道 OntoCoDec + unconstrained LLM 与 GoLLIE 的 F1 差距。\n\n**W7. [warning] κ̄ 部署指导的证据不足**\n仅 2 个数据集，样本量极小，无法建立有意义的预测关系。\n\n### Minor\n**M1.** 主文似超 8 页（Section 7 延伸至 page 9 约 10 行）\n**M2.** Table 密度极高，部分可用图表替代\n**M3.** \"Best-effort pair-based enforcement\" 精确含义可更明确\n**M4.** 1 orphan bib entry, 2 篇在 OpenAlex 未找到\n**M5.** Grammar-first fallback 的极端情况（G(t)=∅）未讨论\n\n### Scores\nSoundness 3.5/5, Excitement 3/5, Overall 3.5/5 (Borderline Conference), Confidence 4/5, Reproducibility 4/5\n\n---\n\n请逐条回应，特别关注：\n1. 你是否同意 BoostCD/IterGen 缺失对比是 must-fix？你此前未将此列为 must-fix，而是 should-fix (你的 W5)——为什么？\n2. R1 对 pumping lemma 的形式化 gap 分析（位置索引 vs 名称引用）——你是否同意这是一个问题？\n3. R1 给 Overall 3.5 vs 你给 3.0——分歧在哪？你认为差距的核心原因是什么？\n4. R1 给 Excitement 3/5 vs 你给 2.5/5——decidability taxonomy 的理论价值是否被你低估了？"
             }
           },
-          "id": "event-001345"
+          "id": "event-001339"
         },
         {
-          "source_line": 1346,
+          "source_line": 1340,
           "timestamp": "2026-05-20T18:46:09.017262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1664,10 +1548,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1309
           },
-          "id": "event-001346"
+          "id": "event-001340"
         },
         {
-          "source_line": 1347,
+          "source_line": 1341,
           "timestamp": "2026-05-20T18:46:12.372191+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1680,7 +1564,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001347"
+          "id": "event-001341"
         }
       ]
     },
@@ -1688,7 +1572,7 @@
       "number": 95,
       "messages": [
         {
-          "source_line": 1348,
+          "source_line": 1342,
           "timestamp": "2026-05-20T18:46:14.827029+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1702,10 +1586,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-001348"
+          "id": "event-001342"
         },
         {
-          "source_line": 1349,
+          "source_line": 1343,
           "timestamp": "2026-05-20T18:46:19.656324+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1718,7 +1602,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001349"
+          "id": "event-001343"
         }
       ]
     },
@@ -1726,7 +1610,7 @@
       "number": 96,
       "messages": [
         {
-          "source_line": 1350,
+          "source_line": 1344,
           "timestamp": "2026-05-20T18:48:16.934567+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1740,10 +1624,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-001350"
+          "id": "event-001344"
         },
         {
-          "source_line": 1351,
+          "source_line": 1345,
           "timestamp": "2026-05-20T18:48:21.853458+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1756,7 +1640,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001351"
+          "id": "event-001345"
         }
       ]
     },
@@ -1764,7 +1648,7 @@
       "number": 97,
       "messages": [
         {
-          "source_line": 1352,
+          "source_line": 1346,
           "timestamp": "2026-05-20T18:48:27.057695+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1778,10 +1662,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-001352"
+          "id": "event-001346"
         },
         {
-          "source_line": 1353,
+          "source_line": 1347,
           "timestamp": "2026-05-20T18:48:32.222157+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1794,7 +1678,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001353"
+          "id": "event-001347"
         }
       ]
     },
@@ -1802,7 +1686,7 @@
       "number": 98,
       "messages": [
         {
-          "source_line": 1354,
+          "source_line": 1348,
           "timestamp": "2026-05-20T18:48:52.650795+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1816,10 +1700,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001354"
+          "id": "event-001348"
         },
         {
-          "source_line": 1355,
+          "source_line": 1349,
           "timestamp": "2026-05-20T18:49:14.189989+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1720,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-001355"
+          "id": "event-001349"
         },
         {
-          "source_line": 1356,
+          "source_line": 1350,
           "timestamp": "2026-05-20T18:49:14.240791+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1738,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 50
           },
-          "id": "event-001356"
+          "id": "event-001350"
         },
         {
-          "source_line": 1357,
+          "source_line": 1351,
           "timestamp": "2026-05-20T18:49:14.492195+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1874,10 +1758,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-001357"
+          "id": "event-001351"
         },
         {
-          "source_line": 1358,
+          "source_line": 1352,
           "timestamp": "2026-05-20T18:49:14.542970+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1892,10 +1776,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 50
           },
-          "id": "event-001358"
+          "id": "event-001352"
         },
         {
-          "source_line": 1359,
+          "source_line": 1353,
           "timestamp": "2026-05-20T18:52:09.623903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1913,10 +1797,10 @@
               "issues_yaml": "# Review Issues Tracker — schema_semantic_constrained_ie\n# Updated: Round 13 (fresh review, 2026-05-20)\n\n# ============================================================\n# Round 13 Must-Fix (Full Consensus)\n# ============================================================\n\n- id: \"R13-MF1\"\n  summary: \"正文超 8 页限制（§7 约 11 行溢出至第 9 页）\"\n  category: format\n  severity: critical\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-W1 raised as critical, R1 初审列为 minor 后升级为 must-fix。Visual Check 同时发现。Section 7 结论溢出至 p9 约 11 行。EMNLP 2026 严格限制 8 页正文。\"\n  action_items:\n    - round: 13\n      action: \"压缩 §7 Discussion and Conclusion / §6 Related Work / §5 实验叙述，确保正文在第 8 页底部结束\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-MF2\"\n  summary: \"CF 代价在 Abstract/Introduction 中被系统性低估（'modest' 描述 9.90%–21% CF 是误导）\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-SF4: CF 代价在 Abstract/Contribution 中不够透明\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-W2 raised as critical, R1 AGREE 并升级。Abstract 'modest CF costs' 用于描述 SciERC 9.90%、WikiEvents 15–21% 有误导性。Introduction 完全未提 CF。\"\n  action_items:\n    - round: 13\n      action: \"Abstract 明确写出 CF 范围（如 'with CF rates of 0–9.9% depending on schema complexity, reduced to ≤1.2% with fine-tuning'）；Introduction 增加 DR↔CF trade-off 段落\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-MF3\"\n  summary: \"缺少最直接可比的 IE constrained decoding baseline（BoostCD、IterGen）的量化对比\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-SF2: 无直接实验对比 BoostCD（should-fix）\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W1 raised as critical, R2 AGREE 并采纳。BoostCD (EMNLP 2025) 与 GCD 同团队，极可能覆盖 SciERC。§6 称 'different benchmarks preclude direct comparison' 但未提供证据。从 R12 should-fix 升级为 must-fix。\"\n  action_items:\n    - round: 13\n      action: \"在 SciERC 上至少复现 BoostCD/GCD 的 DR 降幅和 F1 进行对比；如无法复现，引用其报告数字进行间接对比并详细讨论不可比原因\"\n      assigned_to: agent\n      status: open\n    - round: 13\n      action: \"§5 或 §6 增加与 BoostCD/IterGen 的量化对比表或讨论段落\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-MF4\"\n  summary: \"WikiEvents fine-tuning 仅 20 文档测试集，Contribution 3 'systematic evaluation' 措辞过度\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-MF4: WikiEvents fine-tuning 仅 20 文档测试集。Action: 标注 n=246/n=20 + 'preliminary' 限定\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W2 raised as critical, R2 AGREE。§5.4 已标注 'preliminary' 但 Contribution 3 仍声称 'systematic evaluation' 和 'framework generalizes to event extraction'。零样本 246 docs 尚可，但 FT composability 的 20 docs 无法支撑此措辞。\"\n  action_items:\n    - round: 13\n      action: \"Contribution 3 将 EE 部分降级为 'preliminary demonstration'；讨论统计效力限制\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 13 Must-Fix (Contested — R2 critical, R1 should-fix)\n# ============================================================\n\n- id: \"R13-MF5\"\n  summary: \"κ̄ 作为独立 Contribution 2 定位过高（仅 2 数据点的描述统计量）\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-MF2: κ̄ 作为 'analytical linking framework' 被过度声称。Action: 降级为 'descriptive metric'\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-W3 must-fix, R1 AGREE with nuance (prefers should-fix)。论文已改称 'descriptive metric' 但仍列为 Contribution 2。κ̄ 对 Mistral 预测失效（SciERC DR 降幅 76% vs 期望 94–99%）。R1 认为方向性指导仍有价值；R2 认为 2 数据点不应列为独立贡献。\"\n  action_items:\n    - round: 13\n      action: \"将 κ̄ 从独立 Contribution 降级为分析工具（'we additionally introduce...'），整合入实验讨论\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 13 Should-Fix\n# ============================================================\n\n- id: \"R13-SF1\"\n  summary: \"'any autoregressive LM' 声称超出验证范围（主要 7–8B，无 <7B / API-only）\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-SF3: 模型规模声称过宽\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-W4 raised, R1 AGREE。Abstract 已改为 'validated primarily on 7–8B' 但 §1 仍有 'applies to any autoregressive LM'。\"\n  action_items:\n    - round: 13\n      action: \"§1 改为 'applicable to autoregressive LMs with logits access' 或 'validated on 7–70B parameter models'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-SF2\"\n  summary: \"DocRED 零样本 DR 降幅仅 45%（vs SciERC 94%）的深层原因讨论不充分\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-W5 raised, R1 AGREE。论文将此归因于 κ̄ 差异，但这只是 restate 了现象。残余 DR 10.21% 对 'type-safe extraction' 目标构成挑战。R1 补充：63.3% CF violations 来自 GENERIC←→X 歧义，属 schema 设计固有模糊性而非约束失败。\"\n  action_items:\n    - round: 13\n      action: \"正文中明确讨论 tight-schema 场景下的约束局限性，区分 schema 模糊性 vs 约束执行失败\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-SF3\"\n  summary: \"DocRED beam search 零样本仅 50-doc 子集；'resolvable via beam search' 声称适用范围过宽\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-SF8: DocRED beam search 仅 50 文档子集\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W4 raised, R2 AGREE with stronger evidence。Appendix Table 15 显示 DocRED ZS beam CF 仅 28.4%→21.4%，远未 'resolve'。'Resolvable' 仅在 FT 或低 κ̄ 下成立。\"\n  action_items:\n    - round: 13\n      action: \"Abstract/§5 限定 beam search claim（'substantially reduces' 而非 'resolves'）；报告 50-doc vs 全集分布差异\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-SF4\"\n  summary: \"'formally compiles' 措辞对 semantic layer 过度（运行时规则解释非传统编译）\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2-W7, full consensus。Grammar layer 是编译（ontology→EBNF→PDA），semantic layer 是 runtime rule-based masking。'Compile' 隐含离线静态转换，与 semantic layer 动态维护不符。\"\n  action_items:\n    - round: 13\n      action: \"区分两层编译性质：grammar = ahead-of-time compilation, semantic = rule-based runtime enforcement；或改用 'translates...into composable constraints'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-SF5\"\n  summary: \"缺乏与 GoLLIE 等 schema-aware IE 系统的量化参考（读者缺乏 F1 水平锚定）\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W6 raised, R2 AGREE（优先级低于 BoostCD）。不需要重跑实验，引用 GoLLIE published numbers 提供 reference point 即可。\"\n  action_items:\n    - round: 13\n      action: \"§6 或 Discussion 引用 GoLLIE 在 SciERC/DocRED 上的 published numbers，提供 F1 context\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-SF6\"\n  summary: \"Pumping lemma 证明使用位置索引模型，但实际 JSON 格式使用名称引用——形式化 gap\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-W3 raised, R2 AGREE（presentation gap not correctness gap）。核心论证在名称引用下仍成立（name→type 随机访问同样超出 PDA 能力），但 proof sketch 应明确说明 abstraction 关系。\"\n  action_items:\n    - round: 13\n      action: \"Appendix O 增加一段说明位置索引模型是名称引用模型的 abstraction，random-access 困难在两种模型下均成立\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 13 Minor\n# ============================================================\n\n- id: \"R13-M1\"\n  summary: \"S1/S2 命名不直观，混用 'S1 (joint extraction)' 和 'Full (S1)'\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-M2: S1/S2 命名易混淆\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-M3, R1 AGREE。首次出现时需给出描述性名称。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-M2\"\n  summary: \"Orphan bib entry (schmidt2025grammar) + 2 篇 unverified citations (formattax2026, regino2025kgcurator)\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - round: 12\n      reviewers: [1, 2]\n      note: \"R12-M1: 10 orphan entries + 1 duplicate key\"\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-M1/M5 + R1-M4。orphan 从 10 减至 1（大部分已清理），formattax2026 和 regino2025kgcurator 在 OpenAlex 未找到。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-M3\"\n  summary: \"表格字体偏小（Table 1/3/4 用 resizebox 压缩 8+ 列），打印可读性受影响\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R2-M2, R1-M2 同意（cosmetic issue）。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-M4\"\n  summary: \"§4 脚注 1（对称 relation 的 κ 计算）应在正文讨论\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [2]\n      note: \"R2-M4, R1 AGREE。影响 κ̄ 计算和约束 asymmetry 语义。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-M5\"\n  summary: \"'Best-effort pair-based enforcement' 首次出现时需完整 inline definition\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1]\n      note: \"R1-M3, R2 AGREE。定义跨 §3.1 和 §3.3 分散。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-M6\"\n  summary: \"Table 25 红绿色标注违规/修正，色盲不友好\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: []\n      note: \"Visual Check 发现。建议补充删除线+加粗等非颜色视觉线索。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 13 Divergence\n# ============================================================\n\n- id: \"R13-DIV1\"\n  summary: \"κ̄ 严重度分歧：R2 must-fix vs R1 should-fix\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1：'descriptive' 措辞已降低期望，方向性指导有价值，prefer should-fix。R2：2 数据点 trivial metric 不应列为独立 contribution，insist must-fix。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-DIV2\"\n  summary: \"Overall 评分分歧：R1=3.5 (Borderline Conference) vs R2=3.0 (Findings)\"\n  category: framing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1 更看重实质贡献（decidability taxonomy + 全面评估）和修订路径；R2 认为 overclaiming pattern 累积损害可信度。R1：overclaiming 是 presentation 问题非 substance。R2：3 个 must-fix 叠加使 3.0 更准确。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R13-DIV3\"\n  summary: \"Excitement 分歧：R1=3.0 vs R2=2.5（decidability taxonomy 的理论价值）\"\n  category: framing\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1：taxonomy 可迁移到其他 structured generation 任务，cross-pollination 价值。R2：taxonomy insight density 有限，三级分类相当直观，Proposition 1 是 confirmatory 而非 surprising。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 13 — R2 REBUT（记录但不采纳）\n# ============================================================\n\n- id: \"R13-REB1\"\n  summary: \"G(t)=∅ 边界情况：R1 minor concern, R2 REBUT\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - round: 13\n      reviewers: [1, 2]\n      note: \"R1-M5：G(t)=∅ 在极端 tokenizer edge case 下行为未讨论。R2 REBUT：XGrammar PDA 保证合法 JSON 路径上 G(t)≠∅，G(t)=∅ 属 XGrammar 实现 bug 而非 OntoCoDec 问题。不采纳为 issue。\"\n  action_items: []\n  resolution: \"R2 REBUT 成立：属 XGrammar 层 invariant 保证，非本文范围\"\n  resolution_round: 13\n\n# ============================================================\n# Prior rounds — resolved (carried forward for tracking)\n# ============================================================\n\n- id: \"R12-MF1\"\n  summary: \"'Exact enforcement' → 'best-effort' 全文替换\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"Abstract/§3.3 已改为 'best-effort pair-based'。CF 透明度问题在 R13-MF2 继续追踪。\"\n  resolution_round: 13\n\n- id: \"R12-MF3\"\n  summary: \"Proposition 1 proof sketch 不完整\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"Appendix O 已补完整 pumping lemma 证明。新发现的形式化 gap（位置索引 vs 名称引用）在 R13-SF6 追踪。\"\n  resolution_round: 13\n\n- id: \"R12-SF1\"\n  summary: \"语义层核心机制与 IterGen/PICARD 的概念区分不充分\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"§6 已增加 preventive vs corrective vs incremental parsing 对比。R13 未再标记。\"\n  resolution_round: 13\n\n- id: \"R12-SF6\"\n  summary: \"Entity registry 顺序依赖导致全局次优类型赋值\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"§4 已讨论贪心赋值局限性，定位为 Level 3 non-local 约束。\"\n  resolution_round: 13\n\n- id: \"R12-SF7\"\n  summary: \"'Ontology-agnostic' → 更精确表述\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"已改为 'applicable to formal ontologies and empirically-derived type constraints'。\"\n  resolution_round: 13\n\n- id: \"R12-VL1\"\n  summary: \"主文前 4 页无任何 display item，框架论文缺架构图\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"Figure 1 框架图已加入 §3（page 3）。Visual Check 确认其为全文首个视觉锚点。\"\n  resolution_round: 13\n\n- id: \"R12-VL2\"\n  summary: \"主文 8 页正文零 Figure，全部 Figure 在附录\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"Figure 1 已入主文。主文 1 figure + 5 tables = 6 display items。\"\n  resolution_round: 13\n\n- id: \"R12-M4\"\n  summary: \"Eq.(2) conjunction 未明确为 element-wise AND\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 13\n  resolution: \"Eq.(2) 已加注 'element-wise AND over vocabulary V'。\"\n  resolution_round: 13\n\n- id: \"R11-MF1\"\n  summary: \"'Near-lossless' 叙事未充分呈现 CF trade-off\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 11\n  resolution: \"R11 Paper Agent 完成 two-tier narrative 重构。\"\n  resolution_round: 11\n\n- id: \"R11-MF2\"\n  summary: \"缺少与 schema-aware IE 系统（GoLLIE 等）的 violation rate 对比\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 11\n  resolution: \"d063 GoLLIE 实验完成。§6 已加 qualitative positioning。\"\n  resolution_round: 11\n\n- id: \"R10-MF1\"\n  summary: \"'Ontology Constraints' → 'Schema Constraints'\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 11\n  resolution: \"Title 已更新。\"\n  resolution_round: 11\n\n- id: \"R10-MF2\"\n  summary: \"缺少 ARR Responsible NLP Research Checklist\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 10\n  last_seen_round: 11\n  resolution: \"checklist.tex 已添加。\"\n  resolution_round: 11\n"
             }
           },
-          "id": "event-001359"
+          "id": "event-001353"
         },
         {
-          "source_line": 1360,
+          "source_line": 1354,
           "timestamp": "2026-05-20T18:52:09.777195+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1931,10 +1815,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 153
           },
-          "id": "event-001360"
+          "id": "event-001354"
         },
         {
-          "source_line": 1361,
+          "source_line": 1355,
           "timestamp": "2026-05-20T18:54:51.240759+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1956,10 +1840,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-001361"
+          "id": "event-001355"
         },
         {
-          "source_line": 1362,
+          "source_line": 1356,
           "timestamp": "2026-05-20T18:54:55.221340+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1974,10 +1858,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 3980
           },
-          "id": "event-001362"
+          "id": "event-001356"
         },
         {
-          "source_line": 1363,
+          "source_line": 1357,
           "timestamp": "2026-05-20T18:55:06.469534+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1990,7 +1874,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001363"
+          "id": "event-001357"
         }
       ]
     },
@@ -1998,7 +1882,7 @@
       "number": 99,
       "messages": [
         {
-          "source_line": 1364,
+          "source_line": 1358,
           "timestamp": "2026-05-20T18:55:09.092380+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2012,10 +1896,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001364"
+          "id": "event-001358"
         },
         {
-          "source_line": 1365,
+          "source_line": 1359,
           "timestamp": "2026-05-20T18:55:22.314072+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2028,7 +1912,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001365"
+          "id": "event-001359"
         }
       ]
     },
@@ -2036,7 +1920,7 @@
       "number": 100,
       "messages": [
         {
-          "source_line": 1366,
+          "source_line": 1360,
           "timestamp": "2026-05-20T19:43:03.307821+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2050,10 +1934,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "system"
           },
-          "id": "event-001366"
+          "id": "event-001360"
         },
         {
-          "source_line": 1367,
+          "source_line": 1361,
           "timestamp": "2026-05-20T19:43:10.900306+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2070,10 +1954,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-001367"
+          "id": "event-001361"
         },
         {
-          "source_line": 1368,
+          "source_line": 1362,
           "timestamp": "2026-05-20T19:43:10.901009+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2088,10 +1972,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001368"
+          "id": "event-001362"
         },
         {
-          "source_line": 1369,
+          "source_line": 1363,
           "timestamp": "2026-05-20T19:43:15.569653+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2109,10 +1993,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-001369"
+          "id": "event-001363"
         },
         {
-          "source_line": 1370,
+          "source_line": 1364,
           "timestamp": "2026-05-20T19:43:15.570149+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2127,10 +2011,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-001370"
+          "id": "event-001364"
         },
         {
-          "source_line": 1371,
+          "source_line": 1365,
           "timestamp": "2026-05-20T19:43:23.753840+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2147,10 +2031,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-001371"
+          "id": "event-001365"
         },
         {
-          "source_line": 1372,
+          "source_line": 1366,
           "timestamp": "2026-05-20T19:43:25.209977+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2165,10 +2049,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 1456
           },
-          "id": "event-001372"
+          "id": "event-001366"
         },
         {
-          "source_line": 1373,
+          "source_line": 1367,
           "timestamp": "2026-05-20T19:43:25.210358+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2185,10 +2069,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
             }
           },
-          "id": "event-001373"
+          "id": "event-001367"
         },
         {
-          "source_line": 1374,
+          "source_line": 1368,
           "timestamp": "2026-05-20T19:43:25.260948+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2203,10 +2087,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001374"
+          "id": "event-001368"
         },
         {
-          "source_line": 1375,
+          "source_line": 1369,
           "timestamp": "2026-05-20T19:43:33.746026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2224,10 +2108,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001375"
+          "id": "event-001369"
         },
         {
-          "source_line": 1376,
+          "source_line": 1370,
           "timestamp": "2026-05-20T19:43:33.797875+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2242,10 +2126,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-001376"
+          "id": "event-001370"
         },
         {
-          "source_line": 1377,
+          "source_line": 1371,
           "timestamp": "2026-05-20T19:43:36.426443+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2262,10 +2146,10 @@
               "query": "EMNLP 2026 call for papers ARR submission guidelines"
             }
           },
-          "id": "event-001377"
+          "id": "event-001371"
         },
         {
-          "source_line": 1378,
+          "source_line": 1372,
           "timestamp": "2026-05-20T19:43:37.380856+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2282,10 +2166,10 @@
               "query": "ACL Rolling Review 2026 author guidelines page limit formatting"
             }
           },
-          "id": "event-001378"
+          "id": "event-001372"
         },
         {
-          "source_line": 1379,
+          "source_line": 1373,
           "timestamp": "2026-05-20T19:43:38.034900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2303,10 +2187,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001379"
+          "id": "event-001373"
         },
         {
-          "source_line": 1380,
+          "source_line": 1374,
           "timestamp": "2026-05-20T19:43:38.035384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2321,10 +2205,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-001380"
+          "id": "event-001374"
         },
         {
-          "source_line": 1381,
+          "source_line": 1375,
           "timestamp": "2026-05-20T19:43:43.759262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2339,10 +2223,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6378
           },
-          "id": "event-001381"
+          "id": "event-001375"
         },
         {
-          "source_line": 1382,
+          "source_line": 1376,
           "timestamp": "2026-05-20T19:43:47.274554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2357,10 +2241,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 10848
           },
-          "id": "event-001382"
+          "id": "event-001376"
         },
         {
-          "source_line": 1383,
+          "source_line": 1377,
           "timestamp": "2026-05-20T19:43:54.382859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2377,10 +2261,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-001383"
+          "id": "event-001377"
         },
         {
-          "source_line": 1384,
+          "source_line": 1378,
           "timestamp": "2026-05-20T19:43:55.394846+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2395,10 +2279,10 @@
             "tool": "Read",
             "elapsed_ms": 1011
           },
-          "id": "event-001384"
+          "id": "event-001378"
         },
         {
-          "source_line": 1385,
+          "source_line": 1379,
           "timestamp": "2026-05-20T19:43:55.445438+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2415,10 +2299,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-001385"
+          "id": "event-001379"
         },
         {
-          "source_line": 1386,
+          "source_line": 1380,
           "timestamp": "2026-05-20T19:43:55.897745+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2433,10 +2317,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001386"
+          "id": "event-001380"
         },
         {
-          "source_line": 1387,
+          "source_line": 1381,
           "timestamp": "2026-05-20T19:43:55.948374+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2453,10 +2337,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-001387"
+          "id": "event-001381"
         },
         {
-          "source_line": 1388,
+          "source_line": 1382,
           "timestamp": "2026-05-20T19:43:56.902801+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2471,10 +2355,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-001388"
+          "id": "event-001382"
         },
         {
-          "source_line": 1389,
+          "source_line": 1383,
           "timestamp": "2026-05-20T19:43:56.903203+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2491,10 +2375,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
             }
           },
-          "id": "event-001389"
+          "id": "event-001383"
         },
         {
-          "source_line": 1390,
+          "source_line": 1384,
           "timestamp": "2026-05-20T19:43:57.857125+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2509,10 +2393,10 @@
             "tool": "Read",
             "elapsed_ms": 953
           },
-          "id": "event-001390"
+          "id": "event-001384"
         },
         {
-          "source_line": 1391,
+          "source_line": 1385,
           "timestamp": "2026-05-20T19:43:57.857515+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2529,10 +2413,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
             }
           },
-          "id": "event-001391"
+          "id": "event-001385"
         },
         {
-          "source_line": 1392,
+          "source_line": 1386,
           "timestamp": "2026-05-20T19:43:58.110272+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2547,10 +2431,10 @@
             "tool": "Read",
             "elapsed_ms": 252
           },
-          "id": "event-001392"
+          "id": "event-001386"
         },
         {
-          "source_line": 1393,
+          "source_line": 1387,
           "timestamp": "2026-05-20T19:43:58.110738+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2569,10 +2453,10 @@
               "max_chars": "5000"
             }
           },
-          "id": "event-001393"
+          "id": "event-001387"
         },
         {
-          "source_line": 1394,
+          "source_line": 1388,
           "timestamp": "2026-05-20T19:43:58.161366+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2587,10 +2471,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-001394"
+          "id": "event-001388"
         },
         {
-          "source_line": 1395,
+          "source_line": 1389,
           "timestamp": "2026-05-20T19:44:04.804570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2607,10 +2491,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
             }
           },
-          "id": "event-001395"
+          "id": "event-001389"
         },
         {
-          "source_line": 1396,
+          "source_line": 1390,
           "timestamp": "2026-05-20T19:44:05.658480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2625,10 +2509,10 @@
             "tool": "Read",
             "elapsed_ms": 853
           },
-          "id": "event-001396"
+          "id": "event-001390"
         },
         {
-          "source_line": 1397,
+          "source_line": 1391,
           "timestamp": "2026-05-20T19:44:05.809560+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2645,10 +2529,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
             }
           },
-          "id": "event-001397"
+          "id": "event-001391"
         },
         {
-          "source_line": 1398,
+          "source_line": 1392,
           "timestamp": "2026-05-20T19:44:06.161589+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2663,10 +2547,10 @@
             "tool": "Read",
             "elapsed_ms": 352
           },
-          "id": "event-001398"
+          "id": "event-001392"
         },
         {
-          "source_line": 1399,
+          "source_line": 1393,
           "timestamp": "2026-05-20T19:44:06.162023+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2683,10 +2567,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
             }
           },
-          "id": "event-001399"
+          "id": "event-001393"
         },
         {
-          "source_line": 1400,
+          "source_line": 1394,
           "timestamp": "2026-05-20T19:44:07.116052+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2701,10 +2585,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-001400"
+          "id": "event-001394"
         },
         {
-          "source_line": 1401,
+          "source_line": 1395,
           "timestamp": "2026-05-20T19:44:07.116444+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2721,10 +2605,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex"
             }
           },
-          "id": "event-001401"
+          "id": "event-001395"
         },
         {
-          "source_line": 1402,
+          "source_line": 1396,
           "timestamp": "2026-05-20T19:44:07.568640+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2739,10 +2623,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001402"
+          "id": "event-001396"
         },
         {
-          "source_line": 1403,
+          "source_line": 1397,
           "timestamp": "2026-05-20T19:44:07.569159+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2759,10 +2643,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
             }
           },
-          "id": "event-001403"
+          "id": "event-001397"
         },
         {
-          "source_line": 1404,
+          "source_line": 1398,
           "timestamp": "2026-05-20T19:44:08.071630+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2777,10 +2661,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001404"
+          "id": "event-001398"
         },
         {
-          "source_line": 1405,
+          "source_line": 1399,
           "timestamp": "2026-05-20T19:44:08.122263+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2797,10 +2681,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex"
             }
           },
-          "id": "event-001405"
+          "id": "event-001399"
         },
         {
-          "source_line": 1406,
+          "source_line": 1400,
           "timestamp": "2026-05-20T19:44:08.172950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2815,10 +2699,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001406"
+          "id": "event-001400"
         },
         {
-          "source_line": 1407,
+          "source_line": 1401,
           "timestamp": "2026-05-20T19:44:17.714447+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2835,10 +2719,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-001407"
+          "id": "event-001401"
         },
         {
-          "source_line": 1408,
+          "source_line": 1402,
           "timestamp": "2026-05-20T19:44:18.719272+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2853,10 +2737,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-001408"
+          "id": "event-001402"
         },
         {
-          "source_line": 1409,
+          "source_line": 1403,
           "timestamp": "2026-05-20T19:44:18.719738+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2873,10 +2757,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex"
             }
           },
-          "id": "event-001409"
+          "id": "event-001403"
         },
         {
-          "source_line": 1410,
+          "source_line": 1404,
           "timestamp": "2026-05-20T19:44:19.724249+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2891,10 +2775,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-001410"
+          "id": "event-001404"
         },
         {
-          "source_line": 1411,
+          "source_line": 1405,
           "timestamp": "2026-05-20T19:44:20.176633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2912,10 +2796,10 @@
               "description": "Check external review config"
             }
           },
-          "id": "event-001411"
+          "id": "event-001405"
         },
         {
-          "source_line": 1412,
+          "source_line": 1406,
           "timestamp": "2026-05-20T19:44:21.083915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2930,10 +2814,10 @@
             "tool": "Bash",
             "elapsed_ms": 907
           },
-          "id": "event-001412"
+          "id": "event-001406"
         },
         {
-          "source_line": 1413,
+          "source_line": 1407,
           "timestamp": "2026-05-20T19:44:21.084371+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2951,10 +2835,10 @@
               "description": "Check existing review issues tracker"
             }
           },
-          "id": "event-001413"
+          "id": "event-001407"
         },
         {
-          "source_line": 1414,
+          "source_line": 1408,
           "timestamp": "2026-05-20T19:44:21.135385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2969,10 +2853,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-001414"
+          "id": "event-001408"
         },
         {
-          "source_line": 1415,
+          "source_line": 1409,
           "timestamp": "2026-05-20T19:44:50.675842+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2990,10 +2874,10 @@
               "description": "Read full project config"
             }
           },
-          "id": "event-001415"
+          "id": "event-001409"
         },
         {
-          "source_line": 1416,
+          "source_line": 1410,
           "timestamp": "2026-05-20T19:44:51.580114+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3008,10 +2892,10 @@
             "tool": "Bash",
             "elapsed_ms": 904
           },
-          "id": "event-001416"
+          "id": "event-001410"
         },
         {
-          "source_line": 1417,
+          "source_line": 1411,
           "timestamp": "2026-05-20T19:44:51.831449+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3029,10 +2913,10 @@
               "description": "Check if PDF exists"
             }
           },
-          "id": "event-001417"
+          "id": "event-001411"
         },
         {
-          "source_line": 1418,
+          "source_line": 1412,
           "timestamp": "2026-05-20T19:44:51.882296+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3047,10 +2931,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001418"
+          "id": "event-001412"
         },
         {
-          "source_line": 1419,
+          "source_line": 1413,
           "timestamp": "2026-05-20T19:44:54.644258+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3068,10 +2952,10 @@
               "description": "Read full project config"
             }
           },
-          "id": "event-001419"
+          "id": "event-001413"
         },
         {
-          "source_line": 1420,
+          "source_line": 1414,
           "timestamp": "2026-05-20T19:44:54.695895+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3086,10 +2970,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-001420"
+          "id": "event-001414"
         },
         {
-          "source_line": 1421,
+          "source_line": 1415,
           "timestamp": "2026-05-20T19:45:00.992181+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3107,10 +2991,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
             }
           },
-          "id": "event-001421"
+          "id": "event-001415"
         },
         {
-          "source_line": 1422,
+          "source_line": 1416,
           "timestamp": "2026-05-20T19:45:01.093027+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3125,10 +3009,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-001422"
+          "id": "event-001416"
         },
         {
-          "source_line": 1423,
+          "source_line": 1417,
           "timestamp": "2026-05-20T19:45:03.705416+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3146,10 +3030,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects"
             }
           },
-          "id": "event-001423"
+          "id": "event-001417"
         },
         {
-          "source_line": 1424,
+          "source_line": 1418,
           "timestamp": "2026-05-20T19:45:03.806446+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3164,10 +3048,10 @@
             "tool": "Glob",
             "elapsed_ms": 101
           },
-          "id": "event-001424"
+          "id": "event-001418"
         },
         {
-          "source_line": 1425,
+          "source_line": 1419,
           "timestamp": "2026-05-20T19:45:09.909993+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3184,10 +3068,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-001425"
+          "id": "event-001419"
         },
         {
-          "source_line": 1426,
+          "source_line": 1420,
           "timestamp": "2026-05-20T19:45:10.263012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3202,10 +3086,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 353
           },
-          "id": "event-001426"
+          "id": "event-001420"
         },
         {
-          "source_line": 1427,
+          "source_line": 1421,
           "timestamp": "2026-05-20T19:45:16.039140+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3223,10 +3107,10 @@
               "description": "Search for external review config"
             }
           },
-          "id": "event-001427"
+          "id": "event-001421"
         },
         {
-          "source_line": 1428,
+          "source_line": 1422,
           "timestamp": "2026-05-20T19:45:16.492051+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3241,10 +3125,10 @@
             "tool": "Bash",
             "elapsed_ms": 452
           },
-          "id": "event-001428"
+          "id": "event-001422"
         },
         {
-          "source_line": 1429,
+          "source_line": 1423,
           "timestamp": "2026-05-20T19:45:42.832641+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3262,10 +3146,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-001429"
+          "id": "event-001423"
         },
         {
-          "source_line": 1430,
+          "source_line": 1424,
           "timestamp": "2026-05-20T19:46:06.267880+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3280,10 +3164,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 23435
           },
-          "id": "event-001430"
+          "id": "event-001424"
         },
         {
-          "source_line": 1431,
+          "source_line": 1425,
           "timestamp": "2026-05-20T19:46:06.368759+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3302,10 +3186,10 @@
               "text": "你是 Reviewer 1，负责审查 **方法严谨性 + 实验设计与评估**。\n\n## 论文信息\n- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- **论文路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`\n- **目标 venue**: EMNLP 2026 (ARR May 2026 cycle)\n- **截止日期**: 2026-05-25\n\n## Venue 格式要求（已从 CFP 实时确认）\n- 正文严格 **8 页**限制，参考文献不限页数\n- Limitations 和 Ethics 章节不计入页数（不含过多额外内容）\n- ACL 模板，`[review]` 选项\n- Double-blind 审稿\n- 必须有 Limitations section\n- ARR Responsible NLP Research Checklist 必须提交\n- Overall Assessment 评分标准：5=Consider for Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n\n### 1. 方法严谨性\n- Proposition 1 及其 proof sketch 的正确性和严谨度\n- 三级 decidability taxonomy（context-free / prefix-decidable with state / non-local）分类是否准确\n- Grammar-first fallback 设计是否合理，\"best-effort pair-based enforcement\" 的保证边界\n- Entity registry 的正确性保证（顺序依赖、动态构建）\n- Continuation masking 的 tokenizer-agnostic 声称是否有充分支持\n- Constraint tightness κ̄ 作为描述性指标的合理性（仅 2 个数据点 SciERC/DocRED）\n\n### 2. 实验设计与评估\n- 五路消融设计（SciERC Table 1）和四路消融（DocRED Table 2）是否充分证明 enabling dependency\n- Fine-tuning composability 实验的统计显著性（bootstrap 10,000, paired）\n- Cross-model validation（3 models × 2 datasets）的设计合理性\n- WikiEvents EE 扩展的证据强度（20-doc test set 的局限性）\n- Beam search 评估的完整性（DocRED zero-shot 仅 50-doc 子集）\n- 70B 评估作为 \"preliminary\" 的定位是否充分\n- 缺少哪些关键 baseline（特别是 BoostCD、GCD、IterGen 等同领域 constrained decoding 方法）\n- 运行时开销评估的充分性\n- 统计检验方法是否恰当\n\n### 3. 格式检查\n- 正文是否在 8 页以内\n- 是否符合 double-blind 要求\n\n请按以下格式输出审稿报告：\n1. Summary（2-3 句）\n2. Strengths（逐条，S1/S2/...）\n3. Weaknesses（逐条，W1/W2/...，标注严重度：[critical]/[major]/[minor]）\n4. Questions for Authors（Q1/Q2/...）\n5. Missing References\n6. Overall Assessment（评分 + 置信度 + 1-2 句总评）"
             }
           },
-          "id": "event-001431"
+          "id": "event-001425"
         },
         {
-          "source_line": 1432,
+          "source_line": 1426,
           "timestamp": "2026-05-20T19:46:22.311786+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3320,10 +3204,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 15943
           },
-          "id": "event-001432"
+          "id": "event-001426"
         },
         {
-          "source_line": 1433,
+          "source_line": 1427,
           "timestamp": "2026-05-20T19:46:22.463605+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3342,10 +3226,10 @@
               "text": "你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。\n\n## 论文信息\n- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- **论文路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`\n- **目标 venue**: EMNLP 2026 (ARR May 2026 cycle)\n- **截止日期**: 2026-05-25\n\n## Venue 格式要求（已从 CFP 实时确认）\n- 正文严格 **8 页**限制，参考文献不限页数\n- Limitations 和 Ethics 章节不计入页数（不含过多额外内容）\n- ACL 模板，`[review]` 选项\n- Double-blind 审稿\n- 必须有 Limitations section\n- ARR Responsible NLP Research Checklist 必须提交\n- Overall Assessment 评分标准：5=Consider for Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n\n### 1. 新颖性评估\n- 相对于 XGrammar、Outlines、SynCode 等 grammar-constrained decoding 工作的增量贡献\n- 相对于 GoLLIE、KnowCoder、GUIDEX 等 schema-aware IE 工作的定位\n- 相对于 BoostCD、GCD、IterGen、EnriCo 等 constraint enforcement 工作的区分度\n- Decidability taxonomy（三级分类）的理论迁移价值\n- \"Enabling dependency\" 概念的原创性和实用价值\n\n### 2. 论文完整性\n- Abstract 是否准确反映论文实际贡献（是否有 overclaiming）\n- Introduction 的 claims 是否都有实验支持\n- Contribution 列表是否恰当（数量、粒度、claim 强度）\n- Limitations section 是否全面、诚实\n- Ethics statement 是否充分\n- 论文叙事的完整性（是否有逻辑缺口）\n\n### 3. 写作质量\n- 论文结构和叙事流畅度\n- 术语一致性（S1/S2 命名、\"compile\"/\"interpret\" 措辞分层）\n- 表格和图表的清晰度、可读性\n- 数学符号的规范性\n- 是否有 AI 生成痕迹（过度使用 hedge words、不自然的措辞）\n\n### 4. Related Work\n- 覆盖面是否充分（grammar-constrained decoding、schema-aware IE、constraint enforcement、constrained decoding degradation）\n- 是否有遗漏的重要工作\n- 与竞品的定位是否清晰和公正\n- 引用是否真实、完整（注意 unverified/hallucinated citations）\n\n请按以下格式输出审稿报告：\n1. Summary（2-3 句）\n2. Strengths（逐条，S1/S2/...）\n3. Weaknesses（逐条，W1/W2/...，标注严重度：[critical]/[major]/[minor]）\n4. Questions for Authors（Q1/Q2/...）\n5. Missing References\n6. Overall Assessment（评分 + 置信度 + 1-2 句总评）"
             }
           },
-          "id": "event-001433"
+          "id": "event-001427"
         },
         {
-          "source_line": 1434,
+          "source_line": 1428,
           "timestamp": "2026-05-20T19:46:23.723875+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3360,10 +3244,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1260
           },
-          "id": "event-001434"
+          "id": "event-001428"
         },
         {
-          "source_line": 1435,
+          "source_line": 1429,
           "timestamp": "2026-05-20T19:46:35.585460+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3376,7 +3260,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001435"
+          "id": "event-001429"
         }
       ]
     },
@@ -3384,7 +3268,7 @@
       "number": 101,
       "messages": [
         {
-          "source_line": 1436,
+          "source_line": 1430,
           "timestamp": "2026-05-20T19:52:28.421322+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3398,10 +3282,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001436"
+          "id": "event-001430"
         },
         {
-          "source_line": 1437,
+          "source_line": 1431,
           "timestamp": "2026-05-20T19:52:35.598175+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3414,7 +3298,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001437"
+          "id": "event-001431"
         }
       ]
     },
@@ -3422,7 +3306,7 @@
       "number": 102,
       "messages": [
         {
-          "source_line": 1438,
+          "source_line": 1432,
           "timestamp": "2026-05-20T19:52:46.466538+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3436,10 +3320,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-001438"
+          "id": "event-001432"
         },
         {
-          "source_line": 1439,
+          "source_line": 1433,
           "timestamp": "2026-05-20T19:53:02.178058+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3452,7 +3336,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-001439"
+          "id": "event-001433"
         }
       ]
     },
@@ -3460,7 +3344,7 @@
       "number": 103,
       "messages": [
         {
-          "source_line": 1440,
+          "source_line": 1434,
           "timestamp": "2026-05-20T19:53:52.232851+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3468,6 +3352,124 @@
             {
               "type": "text",
               "text": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 审稿报告：OntoCoDec\n\n**论文**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints  \n**Venue**: EMNLP 2026 (ARR May 2026 cycle)  \n**审查侧重**: 方法严谨性 + 实验设计与评估\n\n---\n\n## 1. Summary\n\n本文提出 OntoCoDec，一个将 IE ontology 编译为两层 token-level 解码约束的框架：grammar layer（context-free，基于 XGrammar）保证 JSON 结构有效性和词汇准入，semantic layer（prefix-decidable with state）通过动态 entity registry 实现 domain/range type 约束。核心理论贡献是 Proposition 1（证明带无界实体集的 domain/range 约束不是 context-free 的）及三级 decidability 分类。在 SciERC、DocRED 和 WikiEvents 上跨 3 个 7-8B 模型评估，展示 zero-shot DR 降至 0.09%（SciERC, LoRA + beam S1）且 F1 影响极小（R-F1 ≤ 0.03 pp）。\n\n---\n\n## 2. Strengths\n\n**S1. 理论基础扎实且有原创性。** Proposition 1 的 pumping lemma 证明（Appendix O, pp. 31-32）正确地建立了 domain/range type constraint 超出 context-free 语言能力的结论，为两层架构提供了形式化动机。三级 decidability taxonomy（context-free / prefix-decidable with state / non-local）是对 constrained decoding 领域的概念性贡献，清晰地界定了不同约束类别的计算复杂度。\n\n**S2. 消融设计严谨，enabling dependency 论证清晰。** SciERC 五路消融（Table 1）和 DocRED 四路消融（Table 2-3）有效证明了各层的独立贡献：grammar-only 仅减少 24% DR（Section 5.1），semantic layer 是消除 domain/range violations 的关键，fine-tuning 与约束可组合（DR ≤ 0.09% across all fine-tuned settings）。层间 enabling dependency 的论证是本文的一大亮点。\n\n**S3. 统计检验规范。** Bootstrap 10,000 paired significance tests（§5.1, §5.2）覆盖关键对比，p 值均有报告。fine-tuning composability 的显著性检验（p<0.001 for DR, p=0.06 for R-F1）展现了负责任的统计实践。\n\n**S4. 跨模型一致性好。** 3 models（Qwen3-8B, Llama-3.1-8B, Mistral-7B）× 2 datasets 的交叉验证（Tables 1-4）显示约束效果在不同 tokenizer 家族间一致，支持了 tokenizer-agnostic 的声称。\n\n**S5. 工程贡献实用。** 运行时开销低（S1: +13.1% SciERC, +2.43% DocRED），continuation masking 的 tokenizer-agnostic 设计（§4）和 grammar-first fallback（§4）都是实际可部署的设计选择。Appendix G 的完整复现细节（rank, lr, epochs, batch size, prompt templates）值得肯定。\n\n**S6. 论文写作清晰，结构合理。** 正文 8 页内完成了理论动机→方法→实验→讨论的完整叙事，appendix 提供了充分的补充材料（32 页总计）。Figure 1 的架构概览信息密度高。\n\n---\n\n## 3. Weaknesses\n\n**W1 [critical] 缺少与最相关 constrained decoding baselines 的实验对比。**\n\n- 具体位置：Section 5 全部实验表格\n- 问题：论文在 Related Work（Section 6, p.8; Appendix B, pp.14-18）中引用了 BoostCD（Sakota et al., 2025）、GCD（Geng et al., 2023）、IterGen（Ugare et al., 2025）、SynCode（Ugare et al., 2024）和 DOMINO（Beurer-Kellner et al., 2024），但实验中未与任何一个进行实验对比。特别是 **BoostCD 是唯一一个明确将 constrained decoding 应用于 IE 的工作**（论文自己在 p.8 引用 \"BoostCD ... application to information extraction\"），完全没有实验对比是不可接受的。GCD 作为 grammar-constrained decoding for structured NLP 的直接前驱，也应纳入 baseline。\n- 为什么影响接收：Without head-to-head comparisons, the paper cannot substantiate its claim of being superior to existing constrained decoding approaches for IE. The current baselines (unconstrained vs. grammar-only vs. full system) only demonstrate internal ablation, not external competitive positioning.\n- 建议：至少添加 BoostCD 和 GCD 在 SciERC/DocRED 上的对比实验。如果这些方法不直接适用于论文的 ontology 设定，需明确说明 why not 并提供 adaptation 的 best-effort 结果。\n\n**W2 [critical] Grammar-first fallback 频率过高（36.6%），削弱了 type constraint enforcement 的核心声称。**\n\n- 具体位置：Table 7 (p. 19), Section 4 \"Grammar-First Fallback\"\n- 问题：在 SciERC 上，grammar-first fallback 在 36.64% 的 type-bearing positions 触发（Table 7）。这意味着超过三分之一的关键位置上，semantic layer 的 type constraints 被完全放弃，仅保留 grammar layer 的结构约束。论文称 fallback 的 CF 消除\"只 re-routes violations to DR\"（p. 19），但这实际上意味着系统在大量位置上退化为 grammar-only 模式——正是消融实验证明不足的配置（grammar-only 仅减少 24% DR）。\n- 为什么影响接收：这严重影响了论文的核心 value proposition——\"type-constrained information extraction\"。如果 type constraints 在 36.6% 的关键位置不被执行，那么系统的实际保证比论文暗示的弱得多。Table 7 的消融（移除 fallback 后 DR+CF 从 5.39 pp 降至 3.99 pp）进一步表明 fallback 机制本身引入了额外的 type violations。\n- 建议：(1) 在主文中更诚实地讨论 fallback 频率及其对 guarantee 边界的影响；(2) 分析 fallback 的 root causes（是 ontology 设计问题？tokenizer 冲突？还是 model 偏好与 constraint 的系统性矛盾？）；(3) 探索降低 fallback 频率的方法（如更细粒度的 constraint relaxation 而非完全 fallback）。\n\n**W3 [major] WikiEvents 评估（20-doc test set）统计功效极低。**\n\n- 具体位置：Section 5.4 (p. 7), Table 5\n- 问题：WikiEvents 使用标准 194/20/20 split（Li et al., 2021），test set 仅 20 篇文档，涵盖 56 event types, 30 argument roles, 27 entity types。在如此小的测试集上，violation rate 和 F1 的变化受单个文档影响极大。论文自己承认\"results are preliminary due to the 20-document test set\"（p. 7），但仍基于此得出 event extraction 扩展性的结论（如 \"Full S1 eliminates RoV\"、\"semantic layer enforces per-event type compatibility\"）。\n- 为什么影响接收：20 个文档不足以支撑对 56 event types 的约束效果评估——平均每个 event type 不到 0.4 个测试文档。置信区间宽到无法区分有意义的改进和噪声。\n- 建议：(1) 报告 WikiEvents 所有指标的置信区间；(2) 考虑扩大评估（如使用完整 246 docs 的 zero-shot 设置）；(3) 或将 WikiEvents 定位为 \"proof of concept\" 而非实验证据，相应降低结论的强度。\n\n**W4 [major] Proposition 1 证明中的 position-indexing 简化未被充分讨论。**\n\n- 具体位置：Appendix O (pp. 31-32), 特别是 \"Position indexing vs. name referencing\" 段落\n- 问题：Proposition 1 的完整证明（Appendix O）使用 position-based entity indexing（e_n at position δ），但 OntoCoDec 的实际 JSON 输出通过 name strings 引用实体。证明末尾的 \"Position indexing vs. name referencing\" 段落以非形式化方式论证了 transfer（\"the core argument transfers: validating type consistency requires a name-type lookup...\"），但这不构成严格证明。Name-based referencing 确实不比 position-based 容易（需要 random-access retrieval by key），但从简化版本到实际系统的 gap 需要更精确的处理。\n- 为什么影响接收：作为论文的核心理论基础，Proposition 1 的严谨性直接影响整个两层架构的形式化动机。如果 transfer argument 不成立，两层分离的必要性未被充分证明。\n- 建议：(1) 将 name-based variant 作为 Corollary 形式化证明，而非仅以 informal paragraph 处理；(2) 或明确标注 Proposition 1 的 scope 仅限 position-indexed variant，name-based 的推广作为 conjecture 或 informal argument。\n\n**W5 [major] Constraint tightness κ̄ 的 predictive value 基于仅 2 个数据点。**\n\n- 具体位置：Section 4 \"Constraint Tightness\" (p. 4-5), Appendix D \"Dual-Factor Quantitative Analysis\" (p. 20)\n- 问题：κ̄ 仅在 SciERC（0.833）和 DocRED（0.812）上计算。Appendix D 的 dual-factor analysis 报告 Spearman ρ = -0.77 with n=6（3 models × 2 datasets），但 (1) n=6 的 rank correlation 统计功效极低；(2) 两个 κ̄ 值相差仅 0.021，无法建立有意义的 κ̄-DR 关系；(3) 论文声称 \"residual DR is governed by the product of schema tightness and baseline violation rate\"（p. 20），但这个 multiplicative model 基于 2 个 tightness 值拟合，自由度为零。\n- 建议：(1) 在更多数据集上计算 κ̄（如 TACRED, ACE05, CoNLL04 等常用 RE benchmarks）以建立更可信的 κ̄-DR 关系；(2) 或将 κ̄ 明确定位为仅描述性指标而非 predictive metric，避免 overclaim。\n\n**W6 [major] Beam search 评估不完整：DocRED 仅 50-doc 子集。**\n\n- 具体位置：Appendix F (p. 24-25), Table 15\n- 问题：DocRED zero-shot beam search 仅在 50-doc 子集上评估（Table 15），而非完整 998-doc dev set。论文解释了计算成本原因（\"LoRA beam uses the full 998-document set\"），但 zero-shot beam search 是论文的重要 contribution之一（beam search 是处理 Level 3 non-local constraints 的主要策略），在缩减集上评估削弱了结论。SciERC 倒是用了完整 551 docs。\n- 建议：至少在完整 DocRED 上报告一个 model 的 beam search 结果，或提供计算成本的具体数字让读者评估 50-doc subset 的代表性。\n\n**W7 [minor] 70B 评估过于 preliminary，贡献有限。**\n\n- 具体位置：Section 5.4 最后一段 (p. 8), Appendix K\n- 问题：Llama-3.1-70B（AWQ INT4）仅在 SciERC 和 DocRED 上各报告一个配置的结果（DR=0%, R-F1≤0.04 pp）。虽然 DR=0% 是强结果，但(1) 仅量化推理，未测试 70B+LoRA fine-tuning；(2) INT4 量化可能影响 baseline 质量；(3) 没有 beam search 或消融变体。\n- 建议：要么充实 70B 评估（多个配置、消融），要么删除该部分以节省页面空间给更重要的实验（如添加 baselines）。\n\n**W8 [minor] Entity registry 的顺序依赖假设缺少量化验证。**\n\n- 具体位置：Section 3.3 \"Entity registry\" (p. 4)\n- 问题：Semantic layer 假设实体在关系之前生成（\"ensuring the relation type r_i is known before entity type fields\"）。S2 two-pass pipeline 通过设计保证了这一点，但 S1 single-pass 依赖 LLM 的生成顺序。论文未报告 S1 下实体-关系生成顺序违反的频率。\n- 建议：报告 S1 模式下有多少比例的 relation fields 在对应 entity 生成前被访问，以量化该假设的 robustness。\n\n---\n\n## 4. Questions for Authors\n\n**Q1.** BoostCD（Sakota et al., 2025）是目前唯一将 constrained decoding 直接应用于 IE 的工作。能否解释为什么未将其作为 experimental baseline？如果是因为 BoostCD 不支持 ontology-level constraints，能否提供一个 fair adaptation 并报告结果？\n\n**Q2.** Grammar-first fallback 在 SciERC 36.6% 的 type-bearing positions 触发。在 DocRED 上该比例是多少？fallback 的 root causes 分布如何（tokenizer collision vs. schema ambiguity vs. model preference）？\n\n**Q3.** Proposition 1 的证明使用 position-based indexing。如果 output format 改为 entity mentions 使用固定 canonical forms（如 Wikidata QID）而非 free-text names，该证明是否仍然成立？这会影响 decidability taxonomy 吗？\n\n**Q4.** Table 7 的 fallback ablation 显示移除 fallback 后 DR+CF 仅从 5.39 pp 降至 3.99 pp。这是否意味着一个更 aggressive 的 constraint enforcement 策略（不 fallback，而是 backtrack 或 resample）可以同时降低 DR 和 CF？\n\n**Q5.** 论文提到 \"constraint scope is model-dependent: for well-calibrated models ... S1 substantially reduces CF\"（Limitations, p. 9）。能否量化 \"well-calibrated\" 的具体条件？是否有 metric 可以预测哪些 model-dataset 组合会从 OntoCoDec 获益最多？\n\n**Q6.** WikiEvents 的 20-doc test set 上，LoRA + S1 的 F1 within ±1.1 pp 的置信区间是多少？能否报告 document-level variance？\n\n---\n\n## 5. Missing References\n\n引用覆盖基本完整，以下可考虑补充：\n\n- **SPIRES/OntologyGPT 类方法在 IE 上的 constrained decoding 对比**：虽然 SPIRES（Caufield et al., 2024）已被引用，但缺少与 ontology-based IE constraint 方法的直接实验对比。\n- 2 篇 orphan bib entries（chen2024agentre, fan2024fsn）在 .bib 文件中存在但未在正文中引用，应清理。\n- formattax2026（\"The Format Tax\", Lee et al., 2026）在 OpenAlex 上未找到——如果是非常新的 preprint，确认 arXiv ID 正确性。\n\n---\n\n## 6. Overall Assessment\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | Proposition 1 证明正确但简化假设的 transfer 不够 formal；grammar-first fallback 36.6% 触发率削弱 type enforcement 声称；消融设计严谨但缺少外部 baseline 对比 |\n| **Excitement** | 3.5/5 | Ontology→两层 token-level constraint 编译是新颖且实用的 idea；decidability taxonomy 是概念性贡献；但执行层面的 gaps（missing baselines, limited evaluation scale）降低了 excitement |\n| **Reproducibility** | 4/5 | Appendix G 提供完整超参数、prompt templates、软硬件配置；代码声明将发布；唯一顾虑是 continuation masking 的 tokenizer-specific 实现细节描述不够详细 |\n| **Overall Assessment** | **3.5 — Borderline Conference** | |\n\n### Reviewer Confidence\n**4/5** — Quite sure. 我仔细阅读了全文（含 32 页 appendix），核查了 Proposition 1 的完整证明，验证了所有引用，并对 constrained decoding 和 IE 领域有充分的了解。\n\n### 总评\n\nOntoCoDec 提出了一个有理论深度和实践价值的框架：将 IE ontology 自动编译为两层 token-level 约束（grammar + semantic），通过 decidability analysis 指导架构设计。消融实验设计严谨，enabling dependency 论证令人信服，跨模型一致性好。\n\n但论文有两个影响接收决定的关键问题：**(1) 缺少与 BoostCD/GCD 等最直接竞争方法的实验对比**，使得论文无法证明其相对于现有 constrained decoding 方法的优势；**(2) grammar-first fallback 在 36.6% 的 type-bearing positions 触发**，意味着系统的实际 type enforcement 保证显著弱于论文所暗示的。此外，WikiEvents 20-doc evaluation、50-doc beam search subset、以及 κ̄ metric 基于 2 个数据点等问题进一步削弱了实验证据的说服力。\n\n如果作者能添加 BoostCD/GCD 对比实验，并更坦诚地讨论 fallback 频率对 guarantee 边界的影响，本文有望达到 Conference 水平（4.0）。当前版本推荐 **Borderline Conference (3.5)**。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001434"
+        },
+        {
+          "source_line": 1435,
+          "timestamp": "2026-05-20T19:54:46.050765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每条 Weakness 和 Question，使用 [AGREE] 表示同意并说明理由，或 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 1 审稿报告：OntoCoDec\n\n**审查侧重**: 方法严谨性 + 实验设计与评估\n\n## 2. Strengths\n\n**S1. 理论基础扎实且有原创性。** Proposition 1 的 pumping lemma 证明（Appendix O, pp. 31-32）正确地建立了 domain/range type constraint 超出 context-free 语言能力的结论，为两层架构提供了形式化动机。三级 decidability taxonomy（context-free / prefix-decidable with state / non-local）是对 constrained decoding 领域的概念性贡献，清晰地界定了不同约束类别的计算复杂度。\n\n**S2. 消融设计严谨，enabling dependency 论证清晰。** SciERC 五路消融（Table 1）和 DocRED 四路消融（Table 2-3）有效证明了各层的独立贡献：grammar-only 仅减少 24% DR（Section 5.1），semantic layer 是消除 domain/range violations 的关键，fine-tuning 与约束可组合（DR ≤ 0.09% across all fine-tuned settings）。层间 enabling dependency 的论证是本文的一大亮点。\n\n**S3. 统计检验规范。** Bootstrap 10,000 paired significance tests（§5.1, §5.2）覆盖关键对比，p 值均有报告。fine-tuning composability 的显著性检验（p<0.001 for DR, p=0.06 for R-F1）展现了负责任的统计实践。\n\n**S4. 跨模型一致性好。** 3 models（Qwen3-8B, Llama-3.1-8B, Mistral-7B）× 2 datasets 的交叉验证（Tables 1-4）显示约束效果在不同 tokenizer 家族间一致，支持了 tokenizer-agnostic 的声称。\n\n**S5. 工程贡献实用。** 运行时开销低（S1: +13.1% SciERC, +2.43% DocRED），continuation masking 的 tokenizer-agnostic 设计（§4）和 grammar-first fallback（§4）都是实际可部署的设计选择。Appendix G 的完整复现细节值得肯定。\n\n**S6. 论文写作清晰，结构合理。** 正文 8 页内完成了理论动机→方法→实验→讨论的完整叙事，appendix 提供了充分的补充材料。Figure 1 的架构概览信息密度高。\n\n## 3. Weaknesses\n\n**W1 [critical] 缺少与最相关 constrained decoding baselines 的实验对比。**\n论文在 Related Work 中引用了 BoostCD、GCD、IterGen、SynCode 和 DOMINO，但实验中未与任何一个进行实验对比。特别是 BoostCD 是唯一一个明确将 constrained decoding 应用于 IE 的工作，完全没有实验对比是不可接受的。GCD 作为 grammar-constrained decoding for structured NLP 的直接前驱，也应纳入 baseline。\n\n**W2 [critical] Grammar-first fallback 频率过高（36.6%），削弱了 type constraint enforcement 的核心声称。**\n在 SciERC 上，grammar-first fallback 在 36.64% 的 type-bearing positions 触发（Table 7）。这意味着超过三分之一的关键位置上，semantic layer 的 type constraints 被完全放弃，仅保留 grammar layer 的结构约束。论文称 fallback 的 CF 消除\"只 re-routes violations to DR\"，但这实际上意味着系统在大量位置上退化为 grammar-only 模式。\n\n**W3 [major] WikiEvents 评估（20-doc test set）统计功效极低。**\n20 个文档不足以支撑对 56 event types 的约束效果评估——平均每个 event type 不到 0.4 个测试文档。\n\n**W4 [major] Proposition 1 证明中的 position-indexing 简化未被充分讨论。**\nProposition 1 的完整证明使用 position-based entity indexing，但 OntoCoDec 的实际 JSON 输出通过 name strings 引用实体。从简化版本到实际系统的 gap 需要更精确的处理。\n\n**W5 [major] Constraint tightness κ̄ 的 predictive value 基于仅 2 个数据点。**\nκ̄ 仅在 SciERC 和 DocRED 上计算。Appendix D 的 dual-factor analysis 报告 Spearman ρ = -0.77 with n=6，统计功效极低。\n\n**W6 [major] Beam search 评估不完整：DocRED 仅 50-doc 子集。**\nDocRED zero-shot beam search 仅在 50-doc 子集上评估，而非完整 998-doc dev set。\n\n**W7 [minor] 70B 评估过于 preliminary，贡献有限。**\n仅量化推理，未测试 70B+LoRA fine-tuning，INT4 量化可能影响 baseline 质量。\n\n**W8 [minor] Entity registry 的顺序依赖假设缺少量化验证。**\n论文未报告 S1 下实体-关系生成顺序违反的频率。\n\n## 4. Questions\n\nQ1. BoostCD 为何未作为 experimental baseline？\nQ2. Grammar-first fallback 在 DocRED 上的触发比例？fallback root causes 分布？\nQ3. 如果 output format 改为 canonical entity IDs，Proposition 1 是否仍然成立？\nQ4. 更 aggressive 的约束策略（backtrack/resample）能否同时降低 DR 和 CF？\nQ5. 能否量化 \"well-calibrated\" 的具体条件？\nQ6. WikiEvents 20-doc test set 上的 document-level variance？\n\n## 6. Overall Assessment\n- Soundness: 3.5/5\n- Excitement: 3.5/5\n- Reproducibility: 4/5\n- **Overall: 3.5 — Borderline Conference**\n- Confidence: 4/5"
+            }
+          },
+          "id": "event-001435"
+        },
+        {
+          "source_line": 1436,
+          "timestamp": "2026-05-20T19:55:15.938652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 29887
+          },
+          "id": "event-001436"
+        },
+        {
+          "source_line": 1437,
+          "timestamp": "2026-05-20T19:55:16.190153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "以下是 Reviewer 2 的完整审稿意见，请逐条回应。对每条 Weakness 和 Question，使用 [AGREE] 表示同意并说明理由，或 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 2 审稿报告：OntoCoDec\n\n**审查侧重**: 新颖性 + 论文完整性 + 写作质量 + Related Work\n\n## 2. Strengths\n\n**S1. 理论基础扎实：decidability taxonomy 提供了清晰的形式化框架。**\n三级分类为理解不同约束执行机制的能力边界提供了干净的理论基础。Proposition 1 通过 pumping lemma 证明正确且直接支撑了两层设计的必要性。\n\n**S2. 消融实验极其充分。**\n全面消融：层级贡献分析、S1 vs S2 配置对比、与 fine-tuning 的组合性、跨数据集验证、beam search 兼容性、文档长度分析、prompt 敏感性分析、以及 4 个 case study。32 页附录提供了实质性的深度。\n\n**S3. \"Enabling dependency\" 是一个有价值的概念贡献。**\nTable 1 清楚地展示了层间相互依赖关系并不显而易见，具有实际指导意义。\n\n**S4. 工程设计干净、可复用。**\n系统从任意 IE 本体自动编译约束，无需约束专属训练。tokenizer-agnostic masking 和 grammar-first fallback 是合理的设计选择。\n\n**S5. violation 消除效果强。**\nSciERC + LoRA fine-tuning 下实现零违规。与 fine-tuning 的组合性得到充分验证。\n\n## 3. Weaknesses\n\n**W1 [major] 新颖性适中——架构本质上是已有技术的 well-motivated 组合。**\nGrammar layer 明确是 XGrammar 应用于 IE JSON schema。Semantic layer 是一个带状态的查找表。Decidability taxonomy 将已知的形式语言理论结果重述于 IE 语境。主要新颖性在于 *组合* 和 *形式化*，而非单个组件。\n\n**W2 [major] 评估范围相对于泛化性声明偏窄。**\n仅 3 个数据集（全部英语、常用 benchmark），所有模型均为 7B-8B。Abstract 和 Contribution 3 声称 \"compiles constraints automatically from any IE ontology\"，但实际仅测试了 3 个本体。\n\n**W3 [major] 约束执行对下游任务性能（F1）的实际影响不够清晰。**\nF1 基本不变或轻微提升，增益小且可能在置信区间内。\"violation reduction → practical value\" 的论证缺口。\n\n**W4 [minor] Related Work 压缩过度，关键定位论述被推至 Appendix B。**\n正文 Related Work 仅约 0.6 页。TANL（Paolini et al., 2021, ICLR）未被引用。\n\n**W5 [minor] 部分术语和符号密度较高，可能影响可读性。**\nSection 2-4 中形式化密度较高。\n\n**W6 [minor] 两个孤立 bib 条目和轻微引用问题。**\n`chen2024agentre` 和 `fan2024fsn` 在 bibliography 中但从未被引用。`formattax2026` 和 `regino2025kgcurator` 无法通过 OpenAlex 验证。\n\n## 4. Questions\n\nQ1. Enabling dependency 能否提供更受控的消融（grammar 有词汇约束但无 domain/range vs semantic 有 domain/range 但无 grammar 词汇保证）？\nQ2. OntoCoDec 在 Wikidata 等大规模本体上表现如何？\nQ3. Latency overhead 如何随序列长度和 schema 复杂度缩放？\nQ4. 为什么 EE 对 grammar-constrained 方法特别具有挑战性？\nQ5. CF→DR trade-off 是任何两层约束系统的固有限制还是 OntoCoDec 的特定产物？\n\n## 5. Missing References\n1. TANL（Paolini et al., 2021, ICLR）\n2. SLOT（2025, EMNLP Industry）\n\n## 6. Overall Assessment\n- Soundness: 3.5/5\n- Excitement: 3/5\n- Reproducibility: 4/5\n- **Overall: 3.5 — Borderline Conference**\n- Confidence: 4/5"
+            }
+          },
+          "id": "event-001437"
+        },
+        {
+          "source_line": 1438,
+          "timestamp": "2026-05-20T19:55:17.504326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1314
+          },
+          "id": "event-001438"
+        },
+        {
+          "source_line": 1439,
+          "timestamp": "2026-05-20T19:55:26.490054+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 2 交叉分享已发出。等待两位 Reviewer 的逐条回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
+          },
+          "id": "event-001439"
+        }
+      ]
+    },
+    {
+      "number": 104,
+      "messages": [
+        {
+          "source_line": 1440,
+          "timestamp": "2026-05-20T19:55:28.959738+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿报告已提交给 Review Director。\n\n核心结论：**Overall 3.5 — Borderline Conference**。\n\n两个关键问题影响接收：\n1. **缺少 BoostCD/GCD 等最直接竞争方法的实验对比** — 论文引用了这些工作但未做实验比较，无法证明相对优势\n2. **Grammar-first fallback 触发率 36.6%** — 超过三分之一的 type-bearing positions 放弃了 semantic constraint，实际保证弱于论文暗示\n\n其他 major issues 包括 WikiEvents 20-doc 测试集统计功效不足、Proposition 1 证明中 position-indexing 简化的 transfer argument 不够 formal、κ̄ metric 仅基于 2 个数据点。\n\n优势方面：消融设计严谨（enabling dependency 论证清晰）、统计检验规范、跨模型一致性好、工程贡献实用、写作清晰。"
             }
           ],
           "metadata": {

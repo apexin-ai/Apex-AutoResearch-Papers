@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 402
+- **Events:** 400
 - **Recorded user turns:** 31
-- **Tool calls:** 179
+- **Tool calls:** 178
 - **Original source:** `logs/chats/archive/feishu_group_oc_08c152bc06b6b60d10dd15b4d91ab1f1_20260515T115029_823112.jsonl`
 - **Structured JSON:** [`064e3232d6a4868d91ce.json`](../../sessions/06/064e3232d6a4868d91ce.json)
 
@@ -10723,7 +10723,7 @@ _source line 366 · 2026-05-15T11:47:10.645412+00:00_
 
 ## Round 30
 
-34 recorded events
+32 recorded events
 
 ### User
 
@@ -11135,114 +11135,7 @@ _source line 379 · 2026-05-15T11:48:01.323302+00:00_
 
 ### Tool call
 
-_source line 380 · 2026-05-15T11:48:01.323740+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md"
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 381 · 2026-05-15T11:48:01.375140+00:00_
-
-1	# W4: Table 1 vs Table 3 DocRED Unconstrained 数据不一致 — 根因报告
-2	
-3	**调研日期**: 2026-05-15
-4	**服务器**: westd-16980
-5	**项目代码**: `/root/schema_semantic_constrained_ie/`
-6	
-7	---
-8	
-9	## 1. 审稿人观察的数字差异
-10	
-11	| 表 | 章节 | DR | RV | ET | CF |
-12	|---|---|---|---|---|---|
-13	| Table 1 (`tab:prompt_comparison`) | §5.1 / `section3_violation_landscape.tex` | **18.7** | **28.9** | **7.5** | 0.1 |
-14	| Table 3 (`tab:cross-model`) | §5.2 / `section5_crossmodel_draft.tex` | **18.46** | **29.66** | **2.48** | 0.10 |
-15	
-16	两个表都标注为同一实验 (`phase0_docred_unconstrained` ↔ `phase2_docred_unconstrained`)，使用同一模型 (Qwen3-8B)。
-17	
-18	---
-19	
-20	## 2. 关键发现
-21	
-22	### 2.1 Prompt 完全一致 ✅
-23	
-24	`run_extraction_docred.py:91 build_prompt(document_text, relation_list_str, schema_informed=False)` 是项目里唯一的 prompt 构造函数。Phase 0 unconstrained 与 Phase 2 unconstrained **调用的是同一个函数 + 同一个 `schema_informed=False` 参数**，没有任何 prompt 差异。所以差异不来自 prompt。
-25	
-26	### 2.2 输入 JSONL 完全一致 ✅
-27	
-28	服务器上当前只有 **一个** DocRED unconstrained 推理输出文件：
-29	
-30	```
-31	/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl
-32	  size = 10,503,924 bytes
-33	  mtime = 2026-05-14 21:09:47
-34	  lines = 998 docs
-35	```
-36	
-37	所有 4 个相关的 violation report 都基于这同一个文件，可由共同字段验证：
-38	- `total_documents=998, documents_checked=986, parse_failures=12`
-39	- `total_triples_extracted=17497, total_entities_extracted=20171`
-40	- 都报告 `domain_range_violations=3230`, `relation_vocabulary_violations=5189`
-41	
-42	所以差异 **不来自不同的推理输出**。
-43	
-44	### 2.3 差异完全来自 checker 版本 ✅
-45	
-46	`violation_checker_docred.py` 有两个版本：
-47	
-48	| 版本 | 行 | ET 计数逻辑 | 别名归一 |
-49	|---|---|---|---|
-50	| **v1** (`.bak` / `.bak2`) | 99-135 | triple-count: 每个 entity 在 `entities` 列表中算一次，在 relation 的 head 中算一次，tail 中算一次 | 只有 `.upper()` |
-51	| **v2** (当前 `violation_checker_docred.py`) | 109-148 | unique-count: 用 `(text.lower().strip(), normalized_type)` 去重，每个 unique entity 只算一次违规 | `ENTITY_TYPE_ALIASES` 映射 `PERSON→PER, ORGANIZATION→ORG, ...` |
-52	
-53	注意：v2 的 docstring 显式说明了「`v2: ET violation
-…[truncated 5984 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 382 · 2026-05-15T11:48:31.912608+00:00_
+_source line 380 · 2026-05-15T11:48:31.912608+00:00_
 
 called ToolSearch
 
@@ -11277,7 +11170,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 383 · 2026-05-15T11:48:32.165349+00:00_
+_source line 381 · 2026-05-15T11:48:32.165349+00:00_
 
 
 
@@ -11298,7 +11191,7 @@ _source line 383 · 2026-05-15T11:48:32.165349+00:00_
 
 ### Tool call
 
-_source line 384 · 2026-05-15T11:48:39.340847+00:00_
+_source line 382 · 2026-05-15T11:48:39.340847+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -11341,7 +11234,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 385 · 2026-05-15T11:48:40.138994+00:00_
+_source line 383 · 2026-05-15T11:48:40.138994+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_4e9f6d\", \"name\": \"CF Fallback Dry-Run Verification\", \"type\": \"report\", \"description\": \"4个CF fallback实验的dry-run验证报告：代码/模型/数据/路径全部检查，发现3处路径错误并给出修正命令\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/report/dryrun_verification.md\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:48:39.311877+00:00\", \"tags\": [\"w1\", \"cf-fallback\", \"dryrun\", \"rebuttal\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11362,7 +11255,7 @@ _source line 385 · 2026-05-15T11:48:40.138994+00:00_
 
 ### Tool call
 
-_source line 386 · 2026-05-15T11:48:40.191844+00:00_
+_source line 384 · 2026-05-15T11:48:40.191844+00:00_
 
 called Bash
 
@@ -11397,7 +11290,7 @@ called Bash
 
 ### Tool result
 
-_source line 387 · 2026-05-15T11:48:40.344773+00:00_
+_source line 385 · 2026-05-15T11:48:40.344773+00:00_
 
 DIR_NOT_EXISTS
 
@@ -11418,7 +11311,7 @@ DIR_NOT_EXISTS
 
 ### Tool call
 
-_source line 388 · 2026-05-15T11:48:44.261890+00:00_
+_source line 386 · 2026-05-15T11:48:44.261890+00:00_
 
 called Bash
 
@@ -11453,7 +11346,7 @@ called Bash
 
 ### Tool result
 
-_source line 389 · 2026-05-15T11:48:44.312721+00:00_
+_source line 387 · 2026-05-15T11:48:44.312721+00:00_
 
 (Bash completed with no output)
 
@@ -11474,7 +11367,7 @@ _source line 389 · 2026-05-15T11:48:44.312721+00:00_
 
 ### Tool call
 
-_source line 390 · 2026-05-15T11:49:00.631285+00:00_
+_source line 388 · 2026-05-15T11:49:00.631285+00:00_
 
 called Write
 
@@ -11509,7 +11402,7 @@ called Write
 
 ### Tool result
 
-_source line 391 · 2026-05-15T11:49:01.535443+00:00_
+_source line 389 · 2026-05-15T11:49:01.535443+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w4_table1_v2/table1_docred_v2.json
 
@@ -11530,7 +11423,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/pr
 
 ### Tool call
 
-_source line 392 · 2026-05-15T11:49:03.544207+00:00_
+_source line 390 · 2026-05-15T11:49:03.544207+00:00_
 
 called Write
 
@@ -11565,7 +11458,7 @@ called Write
 
 ### Tool result
 
-_source line 393 · 2026-05-15T11:49:03.645278+00:00_
+_source line 391 · 2026-05-15T11:49:03.645278+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w4_table1_v2/table1_docred_v2.csv
 
@@ -11586,7 +11479,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/pr
 
 ### Tool call
 
-_source line 394 · 2026-05-15T11:49:08.420703+00:00_
+_source line 392 · 2026-05-15T11:49:08.420703+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -11629,7 +11522,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 395 · 2026-05-15T11:49:08.471486+00:00_
+_source line 393 · 2026-05-15T11:49:08.471486+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_9edf5c\", \"name\": \"W4 Table 1 DocRED v2 Checker Data\", \"type\": \"data\", \"description\": \"W4审稿回复用：DocRED violation rates统一为v2 checker版本，JSON+CSV格式，含v1/v2对比\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/data/table1_docred_v2.json\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:49:08.383331+00:00\", \"tags\": [\"w4\", \"rebuttal\", \"violation-checker\", \"v2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11650,7 +11543,7 @@ _source line 395 · 2026-05-15T11:49:08.471486+00:00_
 
 ### Tool call
 
-_source line 396 · 2026-05-15T11:49:18.672706+00:00_
+_source line 394 · 2026-05-15T11:49:18.672706+00:00_
 
 called ToolSearch
 
@@ -11685,7 +11578,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 397 · 2026-05-15T11:49:18.773545+00:00_
+_source line 395 · 2026-05-15T11:49:18.773545+00:00_
 
 
 
@@ -11706,7 +11599,7 @@ _source line 397 · 2026-05-15T11:49:18.773545+00:00_
 
 ### Tool call
 
-_source line 398 · 2026-05-15T11:49:38.576865+00:00_
+_source line 396 · 2026-05-15T11:49:38.576865+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11741,7 +11634,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 399 · 2026-05-15T11:49:42.528755+00:00_
+_source line 397 · 2026-05-15T11:49:42.528755+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -11762,7 +11655,7 @@ _source line 399 · 2026-05-15T11:49:42.528755+00:00_
 
 ### Assistant
 
-_source line 400 · 2026-05-15T11:49:46.691116+00:00_
+_source line 398 · 2026-05-15T11:49:46.691116+00:00_
 
 3 个 CPU 任务全部完成，已向 Director 汇报：
 
@@ -11791,7 +11684,7 @@ _source line 400 · 2026-05-15T11:49:46.691116+00:00_
 
 ### User
 
-_source line 401 · 2026-05-15T11:49:47.535212+00:00_
+_source line 399 · 2026-05-15T11:49:47.535212+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -11872,7 +11765,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 402 · 2026-05-15T11:50:29.821283+00:00_
+_source line 400 · 2026-05-15T11:50:29.821283+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

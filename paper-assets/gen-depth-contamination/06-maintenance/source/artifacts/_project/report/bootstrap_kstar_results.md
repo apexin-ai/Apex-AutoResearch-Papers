@@ -34,9 +34,6 @@
 
 4. **Stronger generators produce more stable K*.** Configs with large AUC margins above theta (e.g., Pythia-1.4B with 1v2 AUC=0.879) show zero K* variability. Only configs with AUC close to theta show any bootstrap fluctuation.
 
-## Conclusion for Rebuttal
-K* is empirically stable: the 95% bootstrap CI has width <= 1 for all configs, and 8/10 configs show zero variability. The two borderline cases (Gemma-2B C4, LLaMA-8B Wiki) have 1v2 AUC within 0.005 of theta, making them intrinsically ambiguous at the decision boundary — this is expected behavior, not instability.
-
 ## Data Location
 - Raw results (1000 K* samples per config): `/root/autodl-tmp/gen-depth-contamination/results/bootstrap_kstar/bootstrap_kstar_raw.json`
 - Summary CSV: `/root/autodl-tmp/gen-depth-contamination/results/bootstrap_kstar/bootstrap_kstar_summary.csv`

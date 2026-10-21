@@ -22339,7 +22339,7 @@ Worker 已启动 (worker_paper_anticipated_rebuttal_v1_20260525T194948)，正在
 
 ## Round 348
 
-12 recorded events
+10 recorded events
 
 
 ### User
@@ -22483,80 +22483,7 @@ _source line 4354 · 2026-05-25T19:52:51.718090+00:00_
 
 ### Tool call
 
-_source line 4355 · 2026-05-25T19:52:55.030654+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/anticipated_rebuttal_v1.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/anticipated_rebuttal_v1.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 4356 · 2026-05-25T19:52:55.131678+00:00_
-
-1	# Anticipated Reviewer Response Letter
-2	
-3	We thank the reviewers for their careful evaluation. Below we address six anticipated questions, referencing specific sections, tables, and figures in the manuscript and appendix.
-4	
-5	---
-6	
-7	## Q1: Behavioral correlation underpowered (ρ=0.583, p=0.10, n=9)
-8	
-9	The sample size **n=9** is determined by the cross-architecture matrix design: 3 architectures × 4 LIBERO suites yields 12 cells, of which 10 are filled (NORA Object and Long-Horizon checkpoints are unavailable; §3.1, Table 1). One cell (NORA Goal) is excluded due to bootstrap CI instability from an exit-layer R² ≈ −0.006 artifact (Table 1, footnote b), leaving **9 usable cells**. Expanding n requires either additional VLA architectures with published LIBERO success rates or additional benchmark suites—both beyond the scope of this initial cross-architecture characterization.
-10	
-11	We attempted closed-loop evaluation but achieved **SR=0/3** across tested configurations, consistent with known reproducibility challenges in the VLA community (the OpenVLA authors report substantial variation across hardware setups; Fang et al. [2026] similarly document closed-loop difficulties on LIBERO). This negative result is reported in Appendix §A.16 (Extended Discussion: "closed-loop behavioral validation... remains a priority for future work").
-12	
-13	Regarding statistical interpretation: **|ρ|=0.583 constitutes a large effect size** by conventional criteria (|ρ|>0.5; Cohen 1988). The p=0.10 reflects insufficient statistical power at n=9, not absence of effect. Within-suite comparisons are uniformly positive: on Goal (n=3 architectures), ΔR² and success rate are perfectly rank-correlated (ρ=1.0), and every remaining suite shows the same direction (Appendix §A.16). The paper explicitly qualifies this as "directionally consistent but underpowered" (§6) and frames it as observational evidence rather than a confirmed causal link.
-14	
-15	---
-16	
-17	## Q2: Only validated on LIBER
-…[truncated 10114 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 4357 · 2026-05-25T19:53:11.760036+00:00_
+_source line 4355 · 2026-05-25T19:53:11.760036+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -22600,7 +22527,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 4358 · 2026-05-25T19:53:12.061563+00:00_
+_source line 4356 · 2026-05-25T19:53:12.061563+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_543afa\", \"name\": \"anticipated_rebuttal_v1\", \"type\": \"paper\", \"description\": \"Anticipated reviewer response letter v1 — 6 个预期审稿问题的回复（behavioral correlation, LIBERO generalization, closed-loop, first claim, NLP controls, effect size threshold）+ preemptive measures 清单\", \"path\": \"projects/vla-ssd/artifacts/_project/paper/anticipated_rebuttal_v1.md\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T19:53:11.748965+00:00\", \"tags\": [\"rebuttal\", \"corl2026\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -22622,7 +22549,7 @@ _source line 4358 · 2026-05-25T19:53:12.061563+00:00_
 
 ### Tool call
 
-_source line 4359 · 2026-05-25T19:53:33.792814+00:00_
+_source line 4357 · 2026-05-25T19:53:33.792814+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -22658,7 +22585,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 4360 · 2026-05-25T19:53:37.256225+00:00_
+_source line 4358 · 2026-05-25T19:53:37.256225+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -22680,7 +22607,7 @@ _source line 4360 · 2026-05-25T19:53:37.256225+00:00_
 
 ### Assistant
 
-_source line 4361 · 2026-05-25T19:53:41.401884+00:00_
+_source line 4359 · 2026-05-25T19:53:41.401884+00:00_
 
 Rebuttal 质量很好——6 个问题全覆盖，引用了具体 section/table/figure 编号，数字全部来自论文。注册 artifact 并汇报。
 
@@ -22707,7 +22634,7 @@ Rebuttal 质量很好——6 个问题全覆盖，引用了具体 section/table/
 
 ### User
 
-_source line 4362 · 2026-05-25T19:54:31.814507+00:00_
+_source line 4360 · 2026-05-25T19:54:31.814507+00:00_
 
 [Director 指令] 第二个 DDL 前任务：**论文数字一致性交叉验证**。
 

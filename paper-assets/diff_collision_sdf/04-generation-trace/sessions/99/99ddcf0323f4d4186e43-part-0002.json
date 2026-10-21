@@ -2437,44 +2437,6 @@
         },
         {
           "source_line": 307,
-          "timestamp": "2026-05-29T15:00:37.571456+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-            }
-          },
-          "id": "event-000307"
-        },
-        {
-          "source_line": 308,
-          "timestamp": "2026-05-29T15:00:37.622273+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Preparation: Negative Experiment Analysis\n2\t\n3\t## Summary\n4\t- Total negative experiments: 25\n5\t- Engineering Rigor: 3 (trust-building — bug discovery→fix→re-eval)\n6\t- Method Negative: 8\n7\t- Hyperparameter Sensitivity: 6\n8\t- Scale/Generalization: 5\n9\t- Evaluation Artifact: 3\n10\t\n11\t---\n12\t\n13\t## Category 1: Engineering Rigor (3 experiments)\n14\t\n15\tImplementation bugs that, once identified and fixed, still resulted in negative outcomes — confirming the method-level failure is not caused by engineering errors. The bug discovery→fix→re-eval narrative demonstrates scientific rigor and builds trust in the remaining results.\n16\t\n17\t### Experiments\n18\t\n19\t| exp_id | hypothesis (short) | key metric |\n20\t|--------|-------------------|------------|\n21\t| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |\n22\t| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |\n23\t| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |\n24\t\n25\t### Anticipated Questions & Responses\n26\t\n27\t**Q: \"How do you know the negative results aren't just caused by implementation bugs?\"**\n28\t\n29\tA: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the \"ground-truth\" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivate\n…[truncated 20552 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000308"
-        },
-        {
-          "source_line": 309,
           "timestamp": "2026-05-29T15:01:09.972624+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2492,10 +2454,10 @@
               "text": "**[Rebuttal 覆盖度审计请求]**\n\nartifacts/rebuttal_prep.md 已完成 25 个 negative 结果的 5 类分析 + 13 个 Q&A。请审查以下维度：\n\n1. **覆盖完整性**：25 个 negative 是否全部有合理的 rebuttal 路径？有没有遗漏的 negative 结果？\n2. **话术强度**：每个 Q&A 的回应是否足够有说服力？有没有弱点可能被审稿人进一步追问？\n3. **缺口识别**：\n   - Phase 2 只有 1 seed（plan_012 还是 planned）的回应策略是否足够？\n   - LoRA baseline 2 seeds vs SDF 3 seeds 的不平衡如何应对？\n   - 论文 Claim 3 的 p=0.155 不显著——审稿人可能要求更多 seeds，rebuttal 准备了吗？\n4. **per-task error case 分析**：bbq_sauce task 方差最大（l01=23.3% vs l005=20% vs LoRA=26%），审稿人可能逐 task 追问，准备好了吗？\n5. **与 paper_framing.md 的 6 个 Anticipated Reviewer Concerns（R1-R6）是否一一对应？有没有 framing 里的 concern 在 rebuttal_prep 中缺失？**\n\n请 severity 分级标注每个缺口。"
             }
           },
-          "id": "event-000309"
+          "id": "event-000307"
         },
         {
-          "source_line": 310,
+          "source_line": 308,
           "timestamp": "2026-05-29T15:01:17.854739+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2510,10 +2472,10 @@
             "tool": "mcp__agent-ml-research__post_to_reviewer",
             "elapsed_ms": 7882
           },
-          "id": "event-000310"
+          "id": "event-000308"
         },
         {
-          "source_line": 311,
+          "source_line": 309,
           "timestamp": "2026-05-29T15:01:17.905537+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2531,10 +2493,10 @@
               "text": "[Director 指令] **Seed3 Restart Plan + Rebuttal 深化**\n\n两台服务器（westd-35807/westd-45947）当前不可达，但需要提前准备好 restart plan。同时利用等待时间深化 rebuttal 准备。\n\n**任务 1: Seed3 Restart Plan（写文档，不执行）**\n准备一份 seed3_restart_plan.md，包含：\n- westd-35807: train_pi05_lora_baseline_s3_v2 的 restart 指令（是否能从某个 checkpoint resume？需要重新 patch LeRobot 吗？）\n- westd-45947: train_pi05_a1_obj_s3_l01_v2 的 restart 指令（step 2000 checkpoint 是否可用？磁盘清理计划？）\n- 两台服务器恢复后的第一步操作清单（端口可能已变）\n\n**任务 2: Per-task Error Case Analysis**\n基于现有 eval 数据，做 per-task CAR breakdown 分析：\n- 哪些 task 在 SDF vs LoRA-only 对比中方差最大？\n- bbq_sauce 的 seed-to-seed 方差分析（为什么 s0=34%→s2=14%？）\n- 每个 task 的 rebuttal 应对要点\n\n输出到 artifacts/per_task_analysis.md。"
             }
           },
-          "id": "event-000311"
+          "id": "event-000309"
         },
         {
-          "source_line": 312,
+          "source_line": 310,
           "timestamp": "2026-05-29T15:01:18.813857+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2549,10 +2511,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 908
           },
-          "id": "event-000312"
+          "id": "event-000310"
         },
         {
-          "source_line": 313,
+          "source_line": 311,
           "timestamp": "2026-05-29T15:01:33.295582+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2569,10 +2531,10 @@
               "text": "Supplementary zip 已更新（rebuttal_prep.md 修复 3 项数据精度问题 + 重新打包）。\n\n提交材料全部就绪：PDF v11 ✅ | Supplementary zip（最新）✅ | Title/Abstract/Keyword ✅\n\n如果已上传旧版 supplementary 到 OpenReview，建议替换为最新版。需要我发最新 zip 文件到这里吗？\n\n另：两台服务器仍不可达，已准备 seed3 restart plan，服务器恢复后立即启动 rebuttal 统计储备实验。"
             }
           },
-          "id": "event-000313"
+          "id": "event-000311"
         },
         {
-          "source_line": 314,
+          "source_line": 312,
           "timestamp": "2026-05-29T15:01:33.797641+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2587,10 +2549,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 502
           },
-          "id": "event-000314"
+          "id": "event-000312"
         },
         {
-          "source_line": 315,
+          "source_line": 313,
           "timestamp": "2026-05-29T15:01:46.210204+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2603,7 +2565,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000315"
+          "id": "event-000313"
         }
       ]
     },
@@ -2611,7 +2573,7 @@
       "number": 42,
       "messages": [
         {
-          "source_line": 316,
+          "source_line": 314,
           "timestamp": "2026-05-29T15:04:03.606864+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2625,10 +2587,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "reviewer"
           },
-          "id": "event-000316"
+          "id": "event-000314"
         },
         {
-          "source_line": 317,
+          "source_line": 315,
           "timestamp": "2026-05-29T15:04:18.960704+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2645,10 +2607,10 @@
               "project": "diff_collision_sdf"
             }
           },
-          "id": "event-000317"
+          "id": "event-000315"
         },
         {
-          "source_line": 318,
+          "source_line": 316,
           "timestamp": "2026-05-29T15:04:19.061574+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2663,10 +2625,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 100
           },
-          "id": "event-000318"
+          "id": "event-000316"
         },
         {
-          "source_line": 319,
+          "source_line": 317,
           "timestamp": "2026-05-29T15:04:42.956630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2684,10 +2646,10 @@
               "text": "[Director 指令] **Rebuttal Prep 缺口修复（Reviewer 审计结果）**\n\nReviewer 审查 `artifacts/rebuttal_prep.md`，发现 1 个 critical + 3 个 warning 缺口。完成当前任务后立即修复。\n\n**必修 1 [CRITICAL]: 新增 R6 Q&A — TSR Collapse / Catastrophic Forgetting**\n\n在 General Anticipated Questions section 新增：\n\nQ: \"TSR drops from 73% to 50% — isn't your 'collision avoidance' just catastrophic forgetting making the robot too conservative to reach obstacles?\"\n\n回应要点（用数据论证，不要空话）：\n- SSR/TSR ratio 从 Pi0.5 baseline 0.39 提升到 LoRA 0.51-0.60，证明是 safer execution 不是 reduced exposure\n- EE displacement >0.37m + frozen=0% 证明 robot 在主动运动\n- LoRA baseline（无 SDF）的 TSR 崩溃幅度 = SDF 条件（-68.4% vs -68.7%），SDF 不是 TSR 崩溃原因\n- M041 分析：composite mechanism (task semantic forgetting + retained collision avoidance)\n- Fine-tuning on 30K steps of collision-free demos 改变行为模式是 expected（robot learns conservative reaching patterns from safe demonstrations）\n\n**必修 2 [WARNING]: 新增 Per-Task Error Case Q&A**\n\nQ: \"Is the null result driven by BBQ sauce noise masking a real signal on other tasks?\"\n\n回应要点：\n- BBQ sauce λ=0.01 range=20pp（s0=34% vs s2=14%）是整个实验最大单 task 波动\n- 但即使排除 BBQ sauce，剩余 3 tasks 的 SDF vs LoRA 差异同样 <2pp\n- chocolate_pudding 和 milk 在所有条件下 CAR 稳定（68-76% 和 62-74%），per-task null 成立\n- BBQ sauce 高方差反映 task 固有难度（obstacle 位置导致更多必经碰撞路径），不是 SDF 信号\n- 从 supplementary_checklist S1d 提取具体数字支撑\n\n**必修 3 [WARNING]: Phase 2 单 seed 应急策略**\n\n在 Phase 2 Q&A 末尾补充：\n- Phase 2 是 supporting evidence，主证据是多 seed 多 λ flat curve\n- 如审稿人要求补 seeds：每个 seed ~32h 训练，rebuttal 期间完全可行\n- 即使 Phase 2 效应在某个 seed 出现，也无法改变 Claim 3 主证据（3v3 seeds flat curve + per-task fingerprint）\n\n**建议改进 4-6（如有余力）：**\n4. 强化 R2：\"EE-only 限制不 obvious，因为无先验定量证据表明 arm-body 碰撞比例有多高\"\n5. 强化 R4：直接补一句 \"action collapse 的原因可能 trivial，但 80+ pp 的 metric contamination 后果 non-trivial\"\n6. R5 motivation：补 \"SDF 在 motion planning 领域广泛使用，测试其在 VLA fine-tuning 中的有效性是合理的先验假设\""
             }
           },
-          "id": "event-000319"
+          "id": "event-000317"
         },
         {
-          "source_line": 320,
+          "source_line": 318,
           "timestamp": "2026-05-29T15:04:46.068483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2702,10 +2664,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3111
           },
-          "id": "event-000320"
+          "id": "event-000318"
         },
         {
-          "source_line": 321,
+          "source_line": 319,
           "timestamp": "2026-05-29T15:04:54.238915+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2718,7 +2680,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000321"
+          "id": "event-000319"
         }
       ]
     },
@@ -2726,7 +2688,7 @@
       "number": 43,
       "messages": [
         {
-          "source_line": 322,
+          "source_line": 320,
           "timestamp": "2026-05-29T15:04:55.749504+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2740,10 +2702,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000322"
+          "id": "event-000320"
         },
         {
-          "source_line": 323,
+          "source_line": 321,
           "timestamp": "2026-05-29T15:05:01.222803+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2760,10 +2722,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-000323"
+          "id": "event-000321"
         },
         {
-          "source_line": 324,
+          "source_line": 322,
           "timestamp": "2026-05-29T15:05:01.323636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2778,10 +2740,10 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-000324"
+          "id": "event-000322"
         },
         {
-          "source_line": 325,
+          "source_line": 323,
           "timestamp": "2026-05-29T15:05:04.923946+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2794,7 +2756,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000325"
+          "id": "event-000323"
         }
       ]
     },
@@ -2802,7 +2764,7 @@
       "number": 44,
       "messages": [
         {
-          "source_line": 326,
+          "source_line": 324,
           "timestamp": "2026-05-29T15:05:06.437631+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2816,10 +2778,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000326"
+          "id": "event-000324"
         },
         {
-          "source_line": 327,
+          "source_line": 325,
           "timestamp": "2026-05-29T15:05:11.672172+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2836,10 +2798,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-000327"
+          "id": "event-000325"
         },
         {
-          "source_line": 328,
+          "source_line": 326,
           "timestamp": "2026-05-29T15:05:11.822894+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2854,7 +2816,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 150
           },
-          "id": "event-000328"
+          "id": "event-000326"
         }
       ]
     },
@@ -2862,7 +2824,7 @@
       "number": 45,
       "messages": [
         {
-          "source_line": 329,
+          "source_line": 327,
           "timestamp": "2026-05-29T15:06:51.664315+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2876,11 +2838,49 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "reviewer"
           },
+          "id": "event-000327"
+        },
+        {
+          "source_line": 328,
+          "timestamp": "2026-05-29T15:07:04.922370+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
+          },
+          "id": "event-000328"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "messages": [
+        {
+          "source_line": 329,
+          "timestamp": "2026-05-29T15:08:07.884330+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: info] Per-Task Analysis 审查 — worker_paper_per-task-analysis_20260529T150201\n\n## 总体评价：PASS — 高质量分析，直接回应了我上轮审计中标注的 BBQ 高方差缺口\n\n## 数据一致性核验\n\n逐条与 supplementary_checklist S1d 和 registry 交叉核对：\n\n- LoRA s0-s2、SDF λ=0.005 s0-s2、SDF λ=0.01 s0-s2：全部 36 个 per-task 值与 supplementary_checklist S1d 完全一致 ✅\n- SDF λ=0.1 聚合值：s0=58.0, s1=58.5, s2=54.5 与 claim3.tex Table 3 一致 ✅\n- Per-task grand statistics 均值抽验：BBQ mean=22.0（12 值求和=264, 264/12=22.0）✅；CP mean=73.0 ✅\n- 94% 方差分解（between-task=409.5, within-task=26.2）数量级合理 ✅\n\n### [severity: info] SDF λ=0.1 s0 per-task 数据与 supplementary 不一致\nsupplementary_checklist S1d 中 SDF λ=0.1 s0 标注为 \"—\"（缺失），但本分析提供了完整 per-task 数据（OJ=60, CP=74, Milk=68, BBQ=30，聚合 58.0 与主表一致）。说明 supplementary_checklist 是旧版未更新。建议同步更新 supplementary_checklist 以消除不一致。\n\n## 分析质量评估\n\n| 分析项 | 质量 | 评价 |\n|--------|------|------|\n| BBQ 高方差解释 | ★★★★★ | 三层论证（binomial noise + obstacle geometry + collision body mismatch）全面且可信 |\n| Per-task ordering 一致性 | ★★★★★ | BBQ last 12/12, CP first 10/12, condition-mean 完美不变——fingerprint claim 的最强数据支撑 |\n| Variance decomposition | ★★★★ | 94% between-task 是有力论据；建议注明是 one-way ANOVA η² 还是其他分解方法 |\n| Eval-seed 交叉验证 | ★★★★★ | 5 eval seeds 确认 ordering 是 policy 属性而非 eval noise |\n| Rebuttal framing | ★★★★ | 每个 task 都有防守策略，BBQ 的 \"SDF should help most but doesn't\" 反转论证尤其有力 |\n\n## 唯一建议\n\n[severity: info] Milk +4.2pp 的讨论可再强化一句：如果审稿人揪住 Milk 的 +4.2pp 说 \"这不就是 SDF 帮了吗？\"，当前回应是 \"<1σ within-task noise\"。建议补充一个更直接的反驳：λ=0.1 的 Milk mean (69.3) 反而低于 λ=0.01 (72.0)——如果 SDF 真有效，更高的 λ 应产生更大的 Milk 改善，但实际呈非单调关系，进一步证明 +4.2pp 是噪声。\n\n## 结论\n直接填补了我在 rebuttal 覆盖度审计中标注的 \"维度 4: per-task 分析缺失\" 缺口。数据准确、论证严密、rebuttal 可用性强。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+            "source": "reviewer"
+          },
           "id": "event-000329"
         },
         {
           "source_line": 330,
-          "timestamp": "2026-05-29T15:07:04.922370+00:00",
+          "timestamp": "2026-05-29T15:08:17.242091+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -2897,48 +2897,10 @@
       ]
     },
     {
-      "number": 46,
-      "messages": [
-        {
-          "source_line": 331,
-          "timestamp": "2026-05-29T15:08:07.884330+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 回复]:\n[severity: info] Per-Task Analysis 审查 — worker_paper_per-task-analysis_20260529T150201\n\n## 总体评价：PASS — 高质量分析，直接回应了我上轮审计中标注的 BBQ 高方差缺口\n\n## 数据一致性核验\n\n逐条与 supplementary_checklist S1d 和 registry 交叉核对：\n\n- LoRA s0-s2、SDF λ=0.005 s0-s2、SDF λ=0.01 s0-s2：全部 36 个 per-task 值与 supplementary_checklist S1d 完全一致 ✅\n- SDF λ=0.1 聚合值：s0=58.0, s1=58.5, s2=54.5 与 claim3.tex Table 3 一致 ✅\n- Per-task grand statistics 均值抽验：BBQ mean=22.0（12 值求和=264, 264/12=22.0）✅；CP mean=73.0 ✅\n- 94% 方差分解（between-task=409.5, within-task=26.2）数量级合理 ✅\n\n### [severity: info] SDF λ=0.1 s0 per-task 数据与 supplementary 不一致\nsupplementary_checklist S1d 中 SDF λ=0.1 s0 标注为 \"—\"（缺失），但本分析提供了完整 per-task 数据（OJ=60, CP=74, Milk=68, BBQ=30，聚合 58.0 与主表一致）。说明 supplementary_checklist 是旧版未更新。建议同步更新 supplementary_checklist 以消除不一致。\n\n## 分析质量评估\n\n| 分析项 | 质量 | 评价 |\n|--------|------|------|\n| BBQ 高方差解释 | ★★★★★ | 三层论证（binomial noise + obstacle geometry + collision body mismatch）全面且可信 |\n| Per-task ordering 一致性 | ★★★★★ | BBQ last 12/12, CP first 10/12, condition-mean 完美不变——fingerprint claim 的最强数据支撑 |\n| Variance decomposition | ★★★★ | 94% between-task 是有力论据；建议注明是 one-way ANOVA η² 还是其他分解方法 |\n| Eval-seed 交叉验证 | ★★★★★ | 5 eval seeds 确认 ordering 是 policy 属性而非 eval noise |\n| Rebuttal framing | ★★★★ | 每个 task 都有防守策略，BBQ 的 \"SDF should help most but doesn't\" 反转论证尤其有力 |\n\n## 唯一建议\n\n[severity: info] Milk +4.2pp 的讨论可再强化一句：如果审稿人揪住 Milk 的 +4.2pp 说 \"这不就是 SDF 帮了吗？\"，当前回应是 \"<1σ within-task noise\"。建议补充一个更直接的反驳：λ=0.1 的 Milk mean (69.3) 反而低于 λ=0.01 (72.0)——如果 SDF 真有效，更高的 λ 应产生更大的 Milk 改善，但实际呈非单调关系，进一步证明 +4.2pp 是噪声。\n\n## 结论\n直接填补了我在 rebuttal 覆盖度审计中标注的 \"维度 4: per-task 分析缺失\" 缺口。数据准确、论证严密、rebuttal 可用性强。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
-            "source": "reviewer"
-          },
-          "id": "event-000331"
-        },
-        {
-          "source_line": 332,
-          "timestamp": "2026-05-29T15:08:17.242091+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
-          },
-          "id": "event-000332"
-        }
-      ]
-    },
-    {
       "number": 47,
       "messages": [
         {
-          "source_line": 333,
+          "source_line": 331,
           "timestamp": "2026-05-29T15:08:18.753369+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2952,10 +2914,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000333"
+          "id": "event-000331"
         },
         {
-          "source_line": 334,
+          "source_line": 332,
           "timestamp": "2026-05-29T15:08:24.170836+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2972,10 +2934,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-000334"
+          "id": "event-000332"
         },
         {
-          "source_line": 335,
+          "source_line": 333,
           "timestamp": "2026-05-29T15:08:24.271604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2990,7 +2952,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-000335"
+          "id": "event-000333"
         }
       ]
     },
@@ -2998,7 +2960,7 @@
       "number": 48,
       "messages": [
         {
-          "source_line": 336,
+          "source_line": 334,
           "timestamp": "2026-05-29T15:23:23.878457+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3012,10 +2974,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "agent"
           },
-          "id": "event-000336"
+          "id": "event-000334"
         },
         {
-          "source_line": 337,
+          "source_line": 335,
           "timestamp": "2026-05-29T15:23:39.764130+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3028,7 +2990,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000337"
+          "id": "event-000335"
         }
       ]
     },
@@ -3036,7 +2998,7 @@
       "number": 49,
       "messages": [
         {
-          "source_line": 338,
+          "source_line": 336,
           "timestamp": "2026-05-29T15:23:41.327111+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3050,10 +3012,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000338"
+          "id": "event-000336"
         },
         {
-          "source_line": 339,
+          "source_line": 337,
           "timestamp": "2026-05-29T15:23:49.653572+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3070,10 +3032,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-000339"
+          "id": "event-000337"
         },
         {
-          "source_line": 340,
+          "source_line": 338,
           "timestamp": "2026-05-29T15:23:49.754308+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3088,7 +3050,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 100
           },
-          "id": "event-000340"
+          "id": "event-000338"
         }
       ]
     },
@@ -3096,7 +3058,7 @@
       "number": 50,
       "messages": [
         {
-          "source_line": 341,
+          "source_line": 339,
           "timestamp": "2026-05-29T15:24:00.445816+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3110,10 +3072,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "agent"
           },
-          "id": "event-000341"
+          "id": "event-000339"
         },
         {
-          "source_line": 342,
+          "source_line": 340,
           "timestamp": "2026-05-29T15:24:21.503592+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3131,10 +3093,10 @@
               "text": "[Director 指令] **Supplementary Checklist 数据同步**\n\nReviewer 标注：supplementary_checklist S1d 中 SDF λ=0.1 s0 per-task 数据标为 \"—\"（缺失），但 per_task_analysis.md 已有完整数据（OJ=60, CP=74, Milk=68, BBQ=30，聚合 58.0）。\n\n请同步更新 supplementary_checklist，消除这个不一致。如果 supplementary zip 需要重打包，一并处理。"
             }
           },
-          "id": "event-000342"
+          "id": "event-000340"
         },
         {
-          "source_line": 343,
+          "source_line": 341,
           "timestamp": "2026-05-29T15:24:24.768604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3149,10 +3111,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3265
           },
-          "id": "event-000343"
+          "id": "event-000341"
         },
         {
-          "source_line": 344,
+          "source_line": 342,
           "timestamp": "2026-05-29T15:24:27.482747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3170,10 +3132,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000344"
+          "id": "event-000342"
         },
         {
-          "source_line": 345,
+          "source_line": 343,
           "timestamp": "2026-05-29T15:24:27.533377+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3188,10 +3150,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000345"
+          "id": "event-000343"
         },
         {
-          "source_line": 346,
+          "source_line": 344,
           "timestamp": "2026-05-29T15:24:55.016599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3210,10 +3172,10 @@
               "reason": "Rebuttal 准备完成（16 Q&A + per-task 分析 + seed3 restart plan），更新阻塞状态"
             }
           },
-          "id": "event-000346"
+          "id": "event-000344"
         },
         {
-          "source_line": 347,
+          "source_line": 345,
           "timestamp": "2026-05-29T15:24:55.624655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3228,10 +3190,10 @@
             "tool": "mcp__agent-ml-research__update_roadmap",
             "elapsed_ms": 608
           },
-          "id": "event-000347"
+          "id": "event-000345"
         },
         {
-          "source_line": 348,
+          "source_line": 346,
           "timestamp": "2026-05-29T15:25:00.132859+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3244,7 +3206,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000348"
+          "id": "event-000346"
         }
       ]
     },
@@ -3252,7 +3214,7 @@
       "number": 51,
       "messages": [
         {
-          "source_line": 349,
+          "source_line": 347,
           "timestamp": "2026-05-29T15:25:10.786157+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3266,10 +3228,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "agent"
           },
-          "id": "event-000349"
+          "id": "event-000347"
         },
         {
-          "source_line": 350,
+          "source_line": 348,
           "timestamp": "2026-05-29T15:25:21.841911+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3282,7 +3244,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000350"
+          "id": "event-000348"
         }
       ]
     },
@@ -3290,7 +3252,7 @@
       "number": 52,
       "messages": [
         {
-          "source_line": 351,
+          "source_line": 349,
           "timestamp": "2026-05-29T15:25:49.734774+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3304,10 +3266,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "reviewer"
           },
-          "id": "event-000351"
+          "id": "event-000349"
         },
         {
-          "source_line": 352,
+          "source_line": 350,
           "timestamp": "2026-05-29T15:26:09.364543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3325,10 +3287,10 @@
               "text": "[Director 指令] **紧急：2 个提交阻塞修复（DDL 今天）**\n\nReviewer 审查发现 2 个 critical 提交阻塞问题，必须立即修复。\n\n**任务 1 [CRITICAL]: Page Overflow 验证与修复**\nsubmission_checklist.md 标注 \"Limitations section last sentence spills onto page 9\"。CoRL 硬性 8 页限制。\n- 先验证当前 v11 PDF 是否确实溢出（编译并检查）\n- 如果溢出：精简 Limitations 尾部 ~2 行，确保第 8 页内结束\n- 如果 checklist 过时（v11 已修复）：更新 checklist 标记为 ✅\n- 修复后重新编译 PDF\n\n**任务 2 [CRITICAL]: Supplementary README 超参错误修复**\nReviewer 标注 3 处 critical 超参错误：\n- learning rate: `5e-5` → 应为 `2.5e-5`\n- batch size: `4` → 应为 `32`  \n- lambda range: `{0, 0.005, 0.05, 0.1}` → 应为 `{0.005, 0.01, 0.1}`\n\n修复后重新打包 supplementary zip。\n\n**任务 3 [INFO]: openreview_fields.md 页数统一**\n写的 \"20 pages\" 与实际 18 页不一致，更正为 18。\n\n三个任务一起做，Worker 可并行。完成后汇报修复结果 + 最终 PDF/zip 路径。"
             }
           },
-          "id": "event-000352"
+          "id": "event-000350"
         },
         {
-          "source_line": 353,
+          "source_line": 351,
           "timestamp": "2026-05-29T15:26:12.685724+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3343,10 +3305,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 3321
           },
-          "id": "event-000353"
+          "id": "event-000351"
         },
         {
-          "source_line": 354,
+          "source_line": 352,
           "timestamp": "2026-05-29T15:26:15.278268+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3359,7 +3321,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000354"
+          "id": "event-000352"
         }
       ]
     },
@@ -3367,7 +3329,7 @@
       "number": 53,
       "messages": [
         {
-          "source_line": 355,
+          "source_line": 353,
           "timestamp": "2026-05-29T15:26:16.796570+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3381,10 +3343,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000355"
+          "id": "event-000353"
         },
         {
-          "source_line": 356,
+          "source_line": 354,
           "timestamp": "2026-05-29T15:26:21.908503+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3401,10 +3363,10 @@
               "decision": "RESET_REVIEWER"
             }
           },
-          "id": "event-000356"
+          "id": "event-000354"
         },
         {
-          "source_line": 357,
+          "source_line": 355,
           "timestamp": "2026-05-29T15:26:21.960604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3419,7 +3381,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 52
           },
-          "id": "event-000357"
+          "id": "event-000355"
         }
       ]
     },
@@ -3427,7 +3389,7 @@
       "number": 54,
       "messages": [
         {
-          "source_line": 358,
+          "source_line": 356,
           "timestamp": "2026-05-29T15:26:57.946721+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3441,10 +3403,10 @@
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "agent"
           },
-          "id": "event-000358"
+          "id": "event-000356"
         },
         {
-          "source_line": 359,
+          "source_line": 357,
           "timestamp": "2026-05-29T15:27:08.622101+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3457,7 +3419,7 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director"
           },
-          "id": "event-000359"
+          "id": "event-000357"
         }
       ]
     },
@@ -3465,7 +3427,7 @@
       "number": 55,
       "messages": [
         {
-          "source_line": 360,
+          "source_line": 358,
           "timestamp": "2026-05-29T15:27:10.135439+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3478,6 +3440,44 @@
           "metadata": {
             "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
             "source": "system:ralph_loop"
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": "2026-05-29T15:27:15.430604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": "2026-05-29T15:27:15.431104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 0
           },
           "id": "event-000360"
         }

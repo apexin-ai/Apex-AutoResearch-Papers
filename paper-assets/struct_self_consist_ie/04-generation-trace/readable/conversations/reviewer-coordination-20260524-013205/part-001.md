@@ -15578,7 +15578,7 @@ _source line 467 · 2026-05-22T21:48:51.805334+00:00_
 
 ## Round 17
 
-7 recorded events
+3 recorded events
 
 
 ### User
@@ -15605,166 +15605,7 @@ Worker worker_paper_r41-response-draft_20260522T214841 已完成（status=done�
 
 ### Tool call
 
-_source line 469 · 2026-05-22T21:50:43.085657+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_paper_r41-response-draft_20260522T214841_result.json",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/logs/workers/worker_paper_r41-response-draft_20260522T214841_result.json",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 470 · 2026-05-22T21:50:43.186506+00:00_
-
-1	{
-2	  "raw": "已写入 `artifacts/r41_response_draft.md`。\n\n检查清单：\n- 7 条全部覆盖（1-3 Tier 1, 4-7 Tier 2）\n- 每条均有 before/after 对比（item 4 用表格，item 5 用表格，item 7 用引用块）\n- 约 550 words，控制在 1 页以内\n- 语言专业简洁，无冗余"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 471 · 2026-05-22T21:50:45.846632+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r41_response_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/r41_response_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 472 · 2026-05-22T21:50:45.847023+00:00_
-
-1	# Response to R39 Review — Revision Summary
-2	
-3	We thank the reviewers for their thorough feedback. Below we detail all changes made, organized by direct reviewer concerns followed by proactive improvements.
-4	
-5	---
-6	
-7	## Tier 1: Direct Responses to R39 Concerns
-8	
-9	### 1. Statistical Significance (W4 / N2)
-10	
-11	**Concern:** 3-seed Holm-Bonferroni p_adj=0.055 does not survive alpha=0.05; core positive claim borderline.
-12	
-13	**What we did:** Added 2 seeds (2024, 3141) for 5-seed coverage on core configurations. Ran seed-replication Fisher z-test with Holm correction (k=5), yielding p_adj=0.013.
-14	
-15	> **Before:** "Holm p_adj=0.055" reported alone; abstract uses "statistically significant."
-16	>
-17	> **After:** Main text retains global Holm p=0.055 (honest reporting). Section 4.2 adds seed-replication p=0.013 as complementary evidence. Appendix bootstrap signal section provides full analysis.
-18	
-19	### 2. Claim Calibration
-20	
-21	**Concern:** Abstract/intro state "statistically significant" while Holm p=0.055 > alpha=0.05 -- a direct contradiction.
-22	
-23	> **Before:** "statistically significant conditional gains ... Holm p_adj=0.055"
-24	>
-25	> **After:** "conditional gains ... significant under per-family correction p_adj=0.006, global Holm p_adj=0.055"
-26	
-27	Removed the phrase "statistically significant." Both p-values are reported; the reader draws their own conclusion.
-28	
-29	### 3. Metric Transparency
-30	
-31	**Concern:** Table 4 LP +1.39pp lacks metric annotation; 15x discrepancy with corpus micro-F1 (+0.09pp) unexplained.
-32	
-33	> **Before:** Table 4 caption has no metric label; +1.39pp cited without micro-F1 counterpart.
-34	>
-35	> **After:** Table 4 caption adds "(instance-averaged F1)." All +1.39pp references include footnote: "Under corpus micro-F1, LP Delta=+0.09 +/- 0.03pp; the larger instance-averaged gains concentrate on few-entity instances."
-36	
-37	---
-38	
-39	## Tier 2: Proactive Improvements
-40	
-41	### 4. ESJ Cross-Dataset Baseline
-42	
-4
-…[truncated 1902 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 473 · 2026-05-22T21:51:30.529345+00:00_
+_source line 469 · 2026-05-22T21:51:30.529345+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15800,7 +15641,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 474 · 2026-05-22T21:51:34.363270+00:00_
+_source line 470 · 2026-05-22T21:51:34.363270+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -15829,7 +15670,7 @@ _source line 474 · 2026-05-22T21:51:34.363270+00:00_
 
 ### User
 
-_source line 475 · 2026-05-22T22:01:30.296678+00:00_
+_source line 471 · 2026-05-22T22:01:30.296678+00:00_
 
 [System 触发审查]:
 请验证主文压缩结果：
@@ -15856,7 +15697,7 @@ _source line 475 · 2026-05-22T22:01:30.296678+00:00_
 
 ### Tool call
 
-_source line 476 · 2026-05-22T22:01:42.509439+00:00_
+_source line 472 · 2026-05-22T22:01:42.509439+00:00_
 
 called Read
 
@@ -15890,7 +15731,7 @@ called Read
 
 ### Tool result
 
-_source line 477 · 2026-05-22T22:01:42.811921+00:00_
+_source line 473 · 2026-05-22T22:01:42.811921+00:00_
 
 1	\section{Discussion and Conclusion}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
 2	
@@ -15930,7 +15771,7 @@ _source line 477 · 2026-05-22T22:01:42.811921+00:00_
 
 ### Tool call
 
-_source line 478 · 2026-05-22T22:01:42.812428+00:00_
+_source line 474 · 2026-05-22T22:01:42.812428+00:00_
 
 called Read
 
@@ -15964,7 +15805,7 @@ called Read
 
 ### Tool result
 
-_source line 479 · 2026-05-22T22:01:42.864341+00:00_
+_source line 475 · 2026-05-22T22:01:42.864341+00:00_
 
 1	\section{Related Work}\label{sec:related}
 2	
@@ -16002,7 +15843,7 @@ _source line 479 · 2026-05-22T22:01:42.864341+00:00_
 
 ### Tool call
 
-_source line 480 · 2026-05-22T22:01:43.165785+00:00_
+_source line 476 · 2026-05-22T22:01:43.165785+00:00_
 
 called Read
 
@@ -16036,7 +15877,7 @@ called Read
 
 ### Tool result
 
-_source line 481 · 2026-05-22T22:01:43.218314+00:00_
+_source line 477 · 2026-05-22T22:01:43.218314+00:00_
 
 1	Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\Delta_{\text{SC}}{=}{-}0.74{\pm}0.46$\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.
 2	Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \S\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), no core NER claim survives ($p_{\text{adj}}{=}0.055$); under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\ref{app:holm}).
@@ -16062,7 +15903,7 @@ _source line 481 · 2026-05-22T22:01:43.218314+00:00_
 
 ### Tool call
 
-_source line 482 · 2026-05-22T22:04:34.427396+00:00_
+_source line 478 · 2026-05-22T22:04:34.427396+00:00_
 
 called Grep
 
@@ -16100,7 +15941,7 @@ called Grep
 
 ### Tool result
 
-_source line 483 · 2026-05-22T22:04:34.929628+00:00_
+_source line 479 · 2026-05-22T22:04:34.929628+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:18:The diagnostic framework---localizing failure to degeneracy and signal alignment collapse---is our primary contribution; entity-level construction yields conditional gains where the framework predicts success (Appendix~\ref{app:recommendations}). RE, SQL, and cross-model extensions are exploratory.
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:2504:\section{Practical Recommendations}\label{app:recommendations}
@@ -16124,7 +15965,7 @@ _source line 483 · 2026-05-22T22:04:34.929628+00:00_
 
 ### Tool call
 
-_source line 484 · 2026-05-22T22:04:35.431780+00:00_
+_source line 480 · 2026-05-22T22:04:35.431780+00:00_
 
 called Grep
 
@@ -16162,7 +16003,7 @@ called Grep
 
 ### Tool result
 
-_source line 485 · 2026-05-22T22:04:36.134644+00:00_
+_source line 481 · 2026-05-22T22:04:36.134644+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex:2504:\section{Practical Recommendations}\label{app:recommendations}
 
@@ -16184,7 +16025,7 @@ _source line 485 · 2026-05-22T22:04:36.134644+00:00_
 
 ### Tool call
 
-_source line 486 · 2026-05-22T22:04:36.185318+00:00_
+_source line 482 · 2026-05-22T22:04:36.185318+00:00_
 
 called Read
 
@@ -16218,7 +16059,7 @@ called Read
 
 ### Tool result
 
-_source line 487 · 2026-05-22T22:04:36.236160+00:00_
+_source line 483 · 2026-05-22T22:04:36.236160+00:00_
 
 1	\section{Related Work}\label{sec:related}
 2	
@@ -16256,7 +16097,7 @@ _source line 487 · 2026-05-22T22:04:36.236160+00:00_
 
 ### Tool call
 
-_source line 488 · 2026-05-22T22:04:40.392575+00:00_
+_source line 484 · 2026-05-22T22:04:40.392575+00:00_
 
 called Read
 
@@ -16294,7 +16135,7 @@ called Read
 
 ### Tool result
 
-_source line 489 · 2026-05-22T22:04:41.296056+00:00_
+_source line 485 · 2026-05-22T22:04:41.296056+00:00_
 
 2500	\end{itemize}
 2501	
@@ -16323,7 +16164,7 @@ _source line 489 · 2026-05-22T22:04:41.296056+00:00_
 
 ### Tool call
 
-_source line 490 · 2026-05-22T22:04:41.597612+00:00_
+_source line 486 · 2026-05-22T22:04:41.597612+00:00_
 
 called Grep
 
@@ -16361,7 +16202,7 @@ called Grep
 
 ### Tool result
 
-_source line 491 · 2026-05-22T22:04:41.648285+00:00_
+_source line 487 · 2026-05-22T22:04:41.648285+00:00_
 
 687:\newlabel{sec:discussion}{{8}{8}{Discussion and Conclusion}{section.8}{}}
 689:\newlabel{sec:conclusion}{{8}{8}{Discussion and Conclusion}{section.8}{}}
@@ -16384,7 +16225,7 @@ _source line 491 · 2026-05-22T22:04:41.648285+00:00_
 
 ### Tool call
 
-_source line 492 · 2026-05-22T22:04:44.960544+00:00_
+_source line 488 · 2026-05-22T22:04:44.960544+00:00_
 
 called Grep
 
@@ -16422,7 +16263,7 @@ called Grep
 
 ### Tool result
 
-_source line 493 · 2026-05-22T22:04:48.020650+00:00_
+_source line 489 · 2026-05-22T22:04:48.020650+00:00_
 
 3204:\@writefile{toc}{\contentsline {paragraph}{Limitations.}{39}{section*.177}\protected@file@percent }
 
@@ -16444,7 +16285,7 @@ _source line 493 · 2026-05-22T22:04:48.020650+00:00_
 
 ### Tool call
 
-_source line 494 · 2026-05-22T22:04:48.271697+00:00_
+_source line 490 · 2026-05-22T22:04:48.271697+00:00_
 
 called Read
 
@@ -16478,7 +16319,7 @@ called Read
 
 ### Tool result
 
-_source line 495 · 2026-05-22T22:04:48.322230+00:00_
+_source line 491 · 2026-05-22T22:04:48.322230+00:00_
 
 1	Our primary evidence is from NER (four English datasets, 7--14B open-weight fine-tuned); cross-scale observations (4B--72B, GPT-5.5) are tentative. The RE extension ($n{=}397$, single dataset) and SQL pilot ($n{=}196$) are exploratory. SciERC results are validated across three training seeds ($n{=}529$ test instances; $\Delta_{\text{SC}}{=}{-}0.74{\pm}0.46$\,pp, consistent negative). Frontier models exhibit markedly different degeneracy profiles (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), suggesting findings from fine-tuned open-weight models may not fully generalize to proprietary systems.
 2	Our framework is diagnostic, not causal: stages resist decomposition into independent effects ($R^2{<}0$; \S\ref{sec:selection_gap}). Under global Holm--Bonferroni ($k{=}57$), no core NER claim survives ($p_{\text{adj}}{=}0.055$); under BH FDR, $19/57$ tests are significant at FDR${<}0.05$ including $6/10$ construction comparisons (Appendix~\ref{app:holm}).
@@ -16504,7 +16345,7 @@ _source line 495 · 2026-05-22T22:04:48.322230+00:00_
 
 ### Tool call
 
-_source line 496 · 2026-05-22T22:04:55.499041+00:00_
+_source line 492 · 2026-05-22T22:04:55.499041+00:00_
 
 called Read
 
@@ -16538,7 +16379,7 @@ called Read
 
 ### Tool result
 
-_source line 497 · 2026-05-22T22:04:55.549785+00:00_
+_source line 493 · 2026-05-22T22:04:55.549785+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -16619,7 +16460,7 @@ _source line 497 · 2026-05-22T22:04:55.549785+00:00_
 
 ### Tool call
 
-_source line 498 · 2026-05-22T22:05:01.120441+00:00_
+_source line 494 · 2026-05-22T22:05:01.120441+00:00_
 
 called Grep
 
@@ -16657,7 +16498,7 @@ called Grep
 
 ### Tool result
 
-_source line 499 · 2026-05-22T22:05:02.024231+00:00_
+_source line 495 · 2026-05-22T22:05:02.024231+00:00_
 
 631:\newlabel{sec:related}{{7}{8}{Related Work}{section.7}{}}
 687:\newlabel{sec:discussion}{{8}{8}{Discussion and Conclusion}{section.8}{}}
@@ -16680,7 +16521,7 @@ _source line 499 · 2026-05-22T22:05:02.024231+00:00_
 
 ### Tool call
 
-_source line 500 · 2026-05-22T22:05:02.426056+00:00_
+_source line 496 · 2026-05-22T22:05:02.426056+00:00_
 
 called Grep
 
@@ -16718,7 +16559,7 @@ called Grep
 
 ### Tool result
 
-_source line 501 · 2026-05-22T22:05:02.476770+00:00_
+_source line 497 · 2026-05-22T22:05:02.476770+00:00_
 
 44:\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 135:\@writefile{toc}{\contentsline {section}{\numberline {2}Diagnostic Framework}{2}{section.2}\protected@file@percent }
@@ -16756,7 +16597,7 @@ _source line 501 · 2026-05-22T22:05:02.476770+00:00_
 
 ### Tool call
 
-_source line 502 · 2026-05-22T22:05:33.289506+00:00_
+_source line 498 · 2026-05-22T22:05:33.289506+00:00_
 
 called Glob
 
@@ -16792,7 +16633,7 @@ called Glob
 
 ### Tool result
 
-_source line 503 · 2026-05-22T22:05:34.795369+00:00_
+_source line 499 · 2026-05-22T22:05:34.795369+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.log
 
@@ -16814,7 +16655,7 @@ _source line 503 · 2026-05-22T22:05:34.795369+00:00_
 
 ### Tool call
 
-_source line 504 · 2026-05-22T22:05:35.447954+00:00_
+_source line 500 · 2026-05-22T22:05:35.447954+00:00_
 
 called Grep
 
@@ -16854,7 +16695,7 @@ called Grep
 
 ### Tool result
 
-_source line 505 · 2026-05-22T22:05:35.498584+00:00_
+_source line 501 · 2026-05-22T22:05:35.498584+00:00_
 
 No matches found
 
@@ -16876,7 +16717,7 @@ No matches found
 
 ### Tool call
 
-_source line 506 · 2026-05-22T22:05:39.124120+00:00_
+_source line 502 · 2026-05-22T22:05:39.124120+00:00_
 
 called Grep
 
@@ -16916,7 +16757,7 @@ called Grep
 
 ### Tool result
 
-_source line 507 · 2026-05-22T22:05:39.224900+00:00_
+_source line 503 · 2026-05-22T22:05:39.224900+00:00_
 
 No matches found
 
@@ -16938,7 +16779,7 @@ No matches found
 
 ### Tool call
 
-_source line 508 · 2026-05-22T22:05:39.634101+00:00_
+_source line 504 · 2026-05-22T22:05:39.634101+00:00_
 
 called Grep
 
@@ -16976,7 +16817,7 @@ called Grep
 
 ### Tool result
 
-_source line 509 · 2026-05-22T22:05:39.735462+00:00_
+_source line 505 · 2026-05-22T22:05:39.735462+00:00_
 
 1578:Output written on main.pdf (46 pages, 937264 bytes).
 
@@ -16998,7 +16839,7 @@ _source line 509 · 2026-05-22T22:05:39.735462+00:00_
 
 ### Tool call
 
-_source line 510 · 2026-05-22T22:05:42.897883+00:00_
+_source line 506 · 2026-05-22T22:05:42.897883+00:00_
 
 called Grep
 
@@ -17036,7 +16877,7 @@ called Grep
 
 ### Tool result
 
-_source line 511 · 2026-05-22T22:05:42.898435+00:00_
+_source line 507 · 2026-05-22T22:05:42.898435+00:00_
 
 16
 
@@ -17060,7 +16901,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 512 · 2026-05-22T22:05:43.400887+00:00_
+_source line 508 · 2026-05-22T22:05:43.400887+00:00_
 
 called Grep
 
@@ -17098,7 +16939,7 @@ called Grep
 
 ### Tool result
 
-_source line 513 · 2026-05-22T22:05:43.501715+00:00_
+_source line 509 · 2026-05-22T22:05:43.501715+00:00_
 
 133
 
@@ -17122,7 +16963,7 @@ Found 0 total occurrences across 0 files.
 
 ### Tool call
 
-_source line 514 · 2026-05-22T22:05:46.110594+00:00_
+_source line 510 · 2026-05-22T22:05:46.110594+00:00_
 
 called Grep
 
@@ -17162,7 +17003,7 @@ called Grep
 
 ### Tool result
 
-_source line 515 · 2026-05-22T22:05:46.161178+00:00_
+_source line 511 · 2026-05-22T22:05:46.161178+00:00_
 
 904:LaTeX Warning: `h' float specifier changed to `ht'.
 931:LaTeX Warning: Float too large for page by 25.58675pt on input line 404.
@@ -17199,7 +17040,7 @@ _source line 515 · 2026-05-22T22:05:46.161178+00:00_
 
 ### Tool call
 
-_source line 516 · 2026-05-22T22:06:19.404314+00:00_
+_source line 512 · 2026-05-22T22:06:19.404314+00:00_
 
 called ToolSearch
 
@@ -17235,7 +17076,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 517 · 2026-05-22T22:06:19.454969+00:00_
+_source line 513 · 2026-05-22T22:06:19.454969+00:00_
 
 
 
@@ -17257,7 +17098,7 @@ _source line 517 · 2026-05-22T22:06:19.454969+00:00_
 
 ### Tool call
 
-_source line 518 · 2026-05-22T22:06:45.500427+00:00_
+_source line 514 · 2026-05-22T22:06:45.500427+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17293,7 +17134,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 519 · 2026-05-22T22:06:49.214950+00:00_
+_source line 515 · 2026-05-22T22:06:49.214950+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -17315,7 +17156,7 @@ _source line 519 · 2026-05-22T22:06:49.214950+00:00_
 
 ### Assistant
 
-_source line 520 · 2026-05-22T22:06:54.935382+00:00_
+_source line 516 · 2026-05-22T22:06:54.935382+00:00_
 
 主文压缩验证报告已发送，5 项全部 PASS：
 
@@ -17348,7 +17189,7 @@ _source line 520 · 2026-05-22T22:06:54.935382+00:00_
 
 ### User
 
-_source line 521 · 2026-05-22T23:15:56.657940+00:00_
+_source line 517 · 2026-05-22T23:15:56.657940+00:00_
 
 [系统通知 — worker_done:worker_status_n16_n32_check_20260522T231322]:
 Worker worker_status_n16_n32_check_20260522T231322 已完成（status=done），请审查 Agent 的处理结果。
@@ -17370,7 +17211,7 @@ Worker worker_status_n16_n32_check_20260522T231322 已完成（status=done），
 
 ### Tool call
 
-_source line 522 · 2026-05-22T23:16:05.087268+00:00_
+_source line 518 · 2026-05-22T23:16:05.087268+00:00_
 
 called ToolSearch
 
@@ -17406,7 +17247,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 523 · 2026-05-22T23:16:05.188084+00:00_
+_source line 519 · 2026-05-22T23:16:05.188084+00:00_
 
 
 
@@ -17428,7 +17269,7 @@ _source line 523 · 2026-05-22T23:16:05.188084+00:00_
 
 ### Tool call
 
-_source line 524 · 2026-05-22T23:16:08.048383+00:00_
+_source line 520 · 2026-05-22T23:16:08.048383+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17466,7 +17307,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 525 · 2026-05-22T23:16:08.951638+00:00_
+_source line 521 · 2026-05-22T23:16:08.951638+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_scierc_n8_s456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:01:42.040Z\", \"updated_at\": \"2026-05-22T18:47:05.350Z\", \"hypothesis\": \"R35-N2 SciERC validation: SciERC N=8 T=1.0 seed=456 finetuned model. Third seed to complete 3-seed mean±σ for SciERC. Uses unified run_mvp_pilot.py pipeline (micro-F1). With s42 and s123, enables statistical power for SciERC core claims.\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"135921\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log\", \"submitted_at\": \"2026-05-22T11:27:51.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3976.7, \"gpu_hours\": 1.1}, \"pid\": \"135921\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_scierc_n8_s456.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 8 --temperature 1.0 --seed 456 --collect_logprobs --output_dir output/scierc_n8_seed456/\\\"\", \"finished_at\": \"2026-05-22T11:35:04.266Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T11:35:24.223164+00:00\"}]}, \"metrics\": {\"greedy_f1
 …[truncated 9552 chars]
@@ -17489,7 +17330,7 @@ _source line 525 · 2026-05-22T23:16:08.951638+00:00_
 
 ### Tool call
 
-_source line 526 · 2026-05-22T23:16:16.829286+00:00_
+_source line 522 · 2026-05-22T23:16:16.829286+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17527,7 +17368,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 527 · 2026-05-22T23:16:18.134673+00:00_
+_source line 523 · 2026-05-22T23:16:18.134673+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_pretrained_n16_s42_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:21:18.896Z\", \"updated_at\": \"2026-05-22T17:57:51.488Z\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=16 with Qwen2.5-7B-Instruct. v1 crashed at 72% due to UnicodeEncodeError (vLLM lone surrogates). Fix applied (errors='replace' in sampling.py). Same hypothesis: fills pretrained N-scaling curve (N=8/16/32).\", \"parent\": \"exp_fewnerd_pretrained_n16_s42\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n16_seed42/\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"pid\": 452387, \"log_path\": \"/root/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42_v2.log\", \"submitted_at\": \"2026-05-22T15:21:43.507Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/\", \"data_count\": 602368, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (pretrained model, retry of v1)\", \"eval_data\": \"data/fewnerd/\"}}, \"exp_fewnerd_pretrained_n32_s42_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:49:35.691Z\", \"updated_at\": \"2026-05-22T17:56:47.370Z\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).\", \"parent\": \"exp_fewnerd_pretrained_n32_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct
 …[truncated 983 chars]
@@ -17550,7 +17391,7 @@ _source line 527 · 2026-05-22T23:16:18.134673+00:00_
 
 ### Tool call
 
-_source line 528 · 2026-05-22T23:16:27.538804+00:00_
+_source line 524 · 2026-05-22T23:16:27.538804+00:00_
 
 called ToolSearch
 
@@ -17586,7 +17427,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 529 · 2026-05-22T23:16:27.539748+00:00_
+_source line 525 · 2026-05-22T23:16:27.539748+00:00_
 
 
 
@@ -17608,7 +17449,7 @@ _source line 529 · 2026-05-22T23:16:27.539748+00:00_
 
 ### Tool call
 
-_source line 530 · 2026-05-22T23:16:31.051500+00:00_
+_source line 526 · 2026-05-22T23:16:31.051500+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17644,7 +17485,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 531 · 2026-05-22T23:16:31.576356+00:00_
+_source line 527 · 2026-05-22T23:16:31.576356+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17680,7 +17521,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 532 · 2026-05-22T23:16:42.726538+00:00_
+_source line 528 · 2026-05-22T23:16:42.726538+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=452661) INFO 05-22 23:22:02 [backends.py:1048] Dynamo bytecode transform time: 1.74 s\\n(EngineCore pid=452661) INFO 05-22 23:22:03 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 1.034 s\\n(EngineCore pid=452661) INFO 05-22 23:22:03 [monitor.py:48] torch.compile took 2.96 s in total\\n(EngineCore pid=452661) INFO 05-22 23:22:03 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/1e5d92e69f1a54f6823d0893106200eac429896a5085fc9fcced541c5c6c11e8/rank_0_0/model\\n(EngineCore pid=452661) INFO 05-22 23:22:03 [monitor.py:76] Initial profiling/warmup run took 0.15 s\\n(EngineCore pid=452661) INFO 05-22 23:22:04 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=452661) INFO 05-22 23:22:04 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=452661) INFO 05-22 23:22:06 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.38 GiB total\\n(EngineCore pid=452661) INFO 05-22 23:22:07 [gpu_worker.py:456] Available KV cache memory: 12.74 GiB\\n(EngineCore pid=452661) INFO 05-22 23:22:07 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9122 to maintain the same effective KV cache size.\\n(EngineCore pid=452661) INFO 05-22 23:22:07 [kv_cache_utils.py:1316] GPU KV cache size: 238,624 tokens\\n(EngineCore pid=452661) INFO 05-22 23:22:07 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 58.26x\\n(EngineCore pid=452661) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWI
 …[truncated 6333 chars]
@@ -17703,7 +17544,7 @@ _source line 532 · 2026-05-22T23:16:42.726538+00:00_
 
 ### Tool result
 
-_source line 533 · 2026-05-22T23:16:44.081708+00:00_
+_source line 529 · 2026-05-22T23:16:44.081708+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=157469) INFO 05-23 00:15:29 [backends.py:1048] Dynamo bytecode transform time: 1.81 s\\n(EngineCore pid=157469) INFO 05-23 00:15:30 [backends.py:284] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 1.039 s\\n(EngineCore pid=157469) INFO 05-23 00:15:30 [monitor.py:48] torch.compile took 3.03 s in total\\n(EngineCore pid=157469) INFO 05-23 00:15:30 [decorators.py:296] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/22f7e91f49e4a31d59d51e97d9e906caa57484b7221ddb2cadb95af75b0f20cb/rank_0_0/model\\n(EngineCore pid=157469) INFO 05-23 00:15:30 [monitor.py:76] Initial profiling/warmup run took 0.15 s\\n(EngineCore pid=157469) INFO 05-23 00:15:31 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512\\n(EngineCore pid=157469) INFO 05-23 00:15:31 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=51 (largest=512), FULL=35 (largest=256)\\n(EngineCore pid=157469) INFO 05-23 00:15:33 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.45 GiB total\\n(EngineCore pid=157469) INFO 05-23 00:15:34 [gpu_worker.py:456] Available KV cache memory: 12.71 GiB\\n(EngineCore pid=157469) INFO 05-23 00:15:34 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.9000 to 0.9144 to maintain the same effective KV cache size.\\n(EngineCore pid=157469) INFO 05-23 00:15:34 [kv_cache_utils.py:1316] GPU KV cache size: 238,080 tokens\\n(EngineCore pid=157469) INFO 05-23 00:15:34 [kv_cache_utils.py:1321] Maximum concurrency for 4,096 tokens per request: 58.12x\\n(EngineCore pid=157469) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWI
 …[truncated 6330 chars]
@@ -17726,7 +17567,7 @@ _source line 533 · 2026-05-22T23:16:44.081708+00:00_
 
 ### Tool call
 
-_source line 534 · 2026-05-22T23:17:10.163124+00:00_
+_source line 530 · 2026-05-22T23:17:10.163124+00:00_
 
 called ToolSearch
 
@@ -17762,7 +17603,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 535 · 2026-05-22T23:17:10.265049+00:00_
+_source line 531 · 2026-05-22T23:17:10.265049+00:00_
 
 
 
@@ -17784,7 +17625,7 @@ _source line 535 · 2026-05-22T23:17:10.265049+00:00_
 
 ### Tool call
 
-_source line 536 · 2026-05-22T23:17:16.788776+00:00_
+_source line 532 · 2026-05-22T23:17:16.788776+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17820,7 +17661,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 537 · 2026-05-22T23:17:17.341221+00:00_
+_source line 533 · 2026-05-22T23:17:17.341221+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17856,7 +17697,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 538 · 2026-05-22T23:17:18.044059+00:00_
+_source line 534 · 2026-05-22T23:17:18.044059+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 32607 MiB\\n1, 78 %, 29901 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 0 %, 0 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
 
@@ -17878,7 +17719,7 @@ _source line 538 · 2026-05-22T23:17:18.044059+00:00_
 
 ### Tool result
 
-_source line 539 · 2026-05-22T23:17:18.546108+00:00_
+_source line 535 · 2026-05-22T23:17:18.546108+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 2 MiB, 32607 MiB\\n1, 0 %, 2 MiB, 32607 MiB\\n2, 0 %, 2 MiB, 32607 MiB\\n3, 64 %, 29844 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -17900,7 +17741,7 @@ _source line 539 · 2026-05-22T23:17:18.546108+00:00_
 
 ### Tool call
 
-_source line 540 · 2026-05-22T23:17:44.760673+00:00_
+_source line 536 · 2026-05-22T23:17:44.760673+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17936,7 +17777,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 541 · 2026-05-22T23:17:48.272306+00:00_
+_source line 537 · 2026-05-22T23:17:48.272306+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -17958,7 +17799,7 @@ _source line 541 · 2026-05-22T23:17:48.272306+00:00_
 
 ### Assistant
 
-_source line 542 · 2026-05-22T23:17:51.173973+00:00_
+_source line 538 · 2026-05-22T23:17:51.173973+00:00_
 
 状态核实完毕。N=16 实验约 20 分钟后完成，N=32 约 12 小时后完成。两个实验 GPU 使用合规，运行正常。
 
@@ -17985,7 +17826,7 @@ _source line 542 · 2026-05-22T23:17:51.173973+00:00_
 
 ### User
 
-_source line 543 · 2026-05-23T00:17:23.035765+00:00_
+_source line 539 · 2026-05-23T00:17:23.035765+00:00_
 
 [系统通知 — worker_done:worker_status_n16_progress_check_20260523T001458]:
 Worker worker_status_n16_progress_check_20260523T001458 已完成（status=done），请审查 Agent 的处理结果。
@@ -18007,7 +17848,7 @@ Worker worker_status_n16_progress_check_20260523T001458 已完成（status=done�
 
 ### Tool call
 
-_source line 544 · 2026-05-23T00:17:30.146114+00:00_
+_source line 540 · 2026-05-23T00:17:30.146114+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18043,7 +17884,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 545 · 2026-05-23T00:17:52.568024+00:00_
+_source line 541 · 2026-05-23T00:17:52.568024+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/37648 [00:00<?, ?it/s]\\rRendering prompts:   0%|          | 35/37648 [00:00<01:48, 345.73it/s]\\rRendering prompts:   0%|          | 87/37648 [00:00<01:23, 447.45it/s]\\rRendering prompts:   0%|          | 140/37648 [00:00<01:17, 484.86it/s]\\rRendering prompts:   1%|          | 192/37648 [00:00<01:15, 497.88it/s]\\rRendering prompts:   1%|          | 242/37648 [00:00<01:20, 465.36it/s]\\rRendering prompts:   1%|          | 294/37648 [00:00<01:17, 480.31it/s]\\rRendering prompts:   1%|          | 344/37648 [00:00<01:17, 483.06it/s]\\rRendering prompts:   1%|          | 393/37648 [00:00<01:21, 455.50it/s]\\rRendering prompts:   1%|          | 439/37648 [00:00<01:23, 443.65it/s]\\rRendering prompts:   1%|▏         | 484/37648 [00:01<01:25, 436.64it/s]\\rRendering prompts:   1%|▏         | 528/37648 [00:01<01:26, 428.94it/s]\\rRendering prompts:   2%|▏         | 572/37648 [00:01<01:27, 424.64it/s]\\rRendering prompts:   2%|▏         | 615/37648 [00:01<01:27, 421.07it/s]\\rRendering prompts:   2%|▏         | 659/37648 [00:01<01:26, 425.83it/s]\\rRendering prompts:   2%|▏         | 702/37648 [00:02<04:02, 152.32it/s]\\rRendering prompts:   2%|▏         | 754/37648 [00:02<03:04, 199.72it/s]\\rRendering prompts:   2%|▏         | 807/37648 [00:02<02:26, 250.65it/s]\\rRendering prompts:   2%|▏         | 860/37648 [00:02<02:02, 300.77it/s]\\rRendering prompts:   2%|▏         | 913/37648 [00:02<01:46, 346.54it/s]\\rRendering prompts:   3%|▎         | 964/37648 [00:02<01:35, 382.30it/s]\\rRendering prompts:   3%|▎         | 1017/37648 [00:02<01:27, 417.14it/s]\\rRendering prompts:   3%|▎         | 1070/37648 [00:02<01:22, 445.45it/s]\\rRendering prompts:   3%|▎         | 1123/37648 [00:03<01:18, 466.04it/s]\\rRendering prompts:   3%|▎         | 1176/37648 [00:03<01:15, 482.34it/s]\\rRendering prompts:   3%|▎         | 1228/37648 [00:03<01:13, 492.85it/s]\\rRendering prompts:   3%|▎
 …[truncated 6379 chars]
@@ -18066,7 +17907,7 @@ _source line 545 · 2026-05-23T00:17:52.568024+00:00_
 
 ### Tool call
 
-_source line 546 · 2026-05-23T00:18:05.391287+00:00_
+_source line 542 · 2026-05-23T00:18:05.391287+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18104,7 +17945,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 547 · 2026-05-23T00:18:06.495863+00:00_
+_source line 543 · 2026-05-23T00:18:06.495863+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_pretrained_n16_s42_v2\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T17:57:51.488Z\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=16 with Qwen2.5-7B-Instruct. v1 crashed at 72% due to UnicodeEncodeError (vLLM lone surrogates). Fix applied (errors='replace' in sampling.py). Same hypothesis: fills pretrained N-scaling curve (N=8/16/32).\"}, \"exp_fewnerd_pretrained_n32_s42_v2\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-22T17:56:47.370Z\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.905}}"}
 
@@ -18126,7 +17967,7 @@ _source line 547 · 2026-05-23T00:18:06.495863+00:00_
 
 ### Tool call
 
-_source line 548 · 2026-05-23T00:18:06.496300+00:00_
+_source line 544 · 2026-05-23T00:18:06.496300+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18162,7 +18003,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 549 · 2026-05-23T00:18:07.601008+00:00_
+_source line 545 · 2026-05-23T00:18:07.601008+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4008396\\ndrwxr-xr-x  2 root root         58 May 23 08:17 .\\ndrwxr-xr-x 86 root root       8192 May 22 23:49 ..\\n-rw-r--r--  1 root root       1676 May 23 08:17 report.json\\n-rw-r--r--  1 root root 4104578833 May 23 08:16 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
 
@@ -18184,7 +18025,7 @@ _source line 549 · 2026-05-23T00:18:07.601008+00:00_
 
 ### Tool call
 
-_source line 550 · 2026-05-23T00:18:15.781671+00:00_
+_source line 546 · 2026-05-23T00:18:15.781671+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18220,7 +18061,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 551 · 2026-05-23T00:18:16.886386+00:00_
+_source line 547 · 2026-05-23T00:18:16.886386+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 37648,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.5109413080999505,\\n  \\\"oracle_f1\\\": 0.6433378196500673,\\n  \\\"oracle_headroom\\\": 0.13239651155011678,\\n  \\\"fleiss_kappa_mean\\\": 0.5234376898294592,\\n  \\\"soft_jaccard_mean\\\": 0.690773011038843,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.40084377495936724,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.45302326821276084,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3796782494073855,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 26896\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.4579066076471132,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 26896\\n  },\\n  \\\"n_gold_empty_filtered\\\": 5083,\\n  \\\"n_greedy_f1_zero_filtered\\\": 5669,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.052179493253393605,\\n  \\\"sample_f1_mean\\\": 0.5219586311665352,\\n  \\\"sample_f1_std\\\": 0.3303160032577359,\\n  \\\"sample_f1_pct_zero\\\": 18.11473207431291,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.19156463153071898,\\n      \\\"p_rho\\\": 9.970467856855555e-267,\\n      \\\"tau\\\": 0.13525562556130932,\\n      \\\"p_tau\\\": 3.7177908125352167e-270,\\n      \\\"auroc\\\": 0.5969336915831847,\\n      \\\"n\\\": 32565\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.18082462077855177,\\n      \\\"p_rho\\\": 1.929733323475241e-196,\\n      \\\"tau\\\": 0.1268234782385536,\\n      \\\"p_tau\\\": 3.266801493981257e-197,\\n      \\\"auroc\\\": 0.5955737399814731,\\n      \\\"n\\\": 26896\\n 
 …[truncated 283 chars]
@@ -18243,7 +18084,7 @@ _source line 551 · 2026-05-23T00:18:16.886386+00:00_
 
 ### Tool call
 
-_source line 552 · 2026-05-23T00:18:47.454510+00:00_
+_source line 548 · 2026-05-23T00:18:47.454510+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18279,7 +18120,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 553 · 2026-05-23T00:18:51.016354+00:00_
+_source line 549 · 2026-05-23T00:18:51.016354+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -18301,7 +18142,7 @@ _source line 553 · 2026-05-23T00:18:51.016354+00:00_
 
 ### Assistant
 
-_source line 554 · 2026-05-23T00:18:54.526842+00:00_
+_source line 550 · 2026-05-23T00:18:54.526842+00:00_
 
 报告已提交。N=16 实验成功完成，指标与论文叙事一致。已提醒 Director registry 需从 RUNNING 更新为 DONE。N=32 仍在运行（约 37%，预计还需 ~12h）。
 
@@ -18328,7 +18169,7 @@ _source line 554 · 2026-05-23T00:18:54.526842+00:00_
 
 ### User
 
-_source line 555 · 2026-05-23T00:19:14.863926+00:00_
+_source line 551 · 2026-05-23T00:19:14.863926+00:00_
 
 [系统通知 — cron:on_complete:exp_fewnerd_pretrained_n16_s42_v2]:
 实验 exp_fewnerd_pretrained_n16_s42_v2 complete，请审查。
@@ -18350,7 +18191,7 @@ _source line 555 · 2026-05-23T00:19:14.863926+00:00_
 
 ### Tool call
 
-_source line 556 · 2026-05-23T00:19:29.012379+00:00_
+_source line 552 · 2026-05-23T00:19:29.012379+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18390,7 +18231,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 557 · 2026-05-23T00:19:30.391413+00:00_
+_source line 553 · 2026-05-23T00:19:30.391413+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3544}}"}
 
@@ -18412,7 +18253,7 @@ _source line 557 · 2026-05-23T00:19:30.391413+00:00_
 
 ### Tool call
 
-_source line 558 · 2026-05-23T00:19:35.415274+00:00_
+_source line 554 · 2026-05-23T00:19:35.415274+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18450,7 +18291,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 559 · 2026-05-23T00:19:36.370560+00:00_
+_source line 555 · 2026-05-23T00:19:36.370560+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_pretrained_n16_s42_v2\": {\"status\": \"ANALYZING\", \"updated_at\": \"2026-05-23T00:19:09.865Z\"}, \"exp_scierc_n8_s456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T18:47:05.350Z\", \"conclusion\": \"success\"}, \"exp_scierc_n8_s123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T18:47:03.049Z\", \"conclusion\": \"success\"}}, \"count\": 3, \"total\": 329, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9134}}"}
 
@@ -18472,7 +18313,7 @@ _source line 559 · 2026-05-23T00:19:36.370560+00:00_
 
 ### Assistant
 
-_source line 560 · 2026-05-23T00:19:47.604423+00:00_
+_source line 556 · 2026-05-23T00:19:47.604423+00:00_
 
 Registry 已更新为 `ANALYZING`（Agent 正在处理结果）。此实验我已完成独立审查（PASS），无需重复。等待 Agent 完成分析并将 status 推进到 DONE。
 
@@ -18499,7 +18340,7 @@ Registry 已更新为 `ANALYZING`（Agent 正在处理结果）。此实验我�
 
 ### User
 
-_source line 561 · 2026-05-23T00:19:48.103609+00:00_
+_source line 557 · 2026-05-23T00:19:48.103609+00:00_
 
 [系统通知 — cron:on_complete:exp_fewnerd_pretrained_n16_s42_v2]:
 实验 exp_fewnerd_pretrained_n16_s42_v2 complete，请审查。
@@ -18521,7 +18362,7 @@ _source line 561 · 2026-05-23T00:19:48.103609+00:00_
 
 ### Assistant
 
-_source line 562 · 2026-05-23T00:19:54.022429+00:00_
+_source line 558 · 2026-05-23T00:19:54.022429+00:00_
 
 重复通知，已审查过。Registry 已更新为 `ANALYZING`，等待 Agent 完成分析后标为 DONE。无需再次操作。
 
@@ -18548,7 +18389,7 @@ _source line 562 · 2026-05-23T00:19:54.022429+00:00_
 
 ### User
 
-_source line 563 · 2026-05-23T00:25:57.234447+00:00_
+_source line 559 · 2026-05-23T00:25:57.234447+00:00_
 
 [系统通知 — worker_done:worker_analysis_n16_mv_delta_20260523T002046]:
 Worker worker_analysis_n16_mv_delta_20260523T002046 已完成（status=done），请审查 Agent 的处理结果。
@@ -18570,7 +18411,7 @@ Worker worker_analysis_n16_mv_delta_20260523T002046 已完成（status=done）�
 
 ### Tool call
 
-_source line 564 · 2026-05-23T00:26:07.714422+00:00_
+_source line 560 · 2026-05-23T00:26:07.714422+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18610,7 +18451,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 565 · 2026-05-23T00:26:08.618896+00:00_
+_source line 561 · 2026-05-23T00:26:08.618896+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8885}}"}
 
@@ -18632,7 +18473,7 @@ _source line 565 · 2026-05-23T00:26:08.618896+00:00_
 
 ### Tool call
 
-_source line 566 · 2026-05-23T00:26:10.976898+00:00_
+_source line 562 · 2026-05-23T00:26:10.976898+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18670,7 +18511,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 567 · 2026-05-23T00:26:11.832999+00:00_
+_source line 563 · 2026-05-23T00:26:11.832999+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_pretrained_n16_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:21:18.896Z\", \"updated_at\": \"2026-05-23T00:26:04.898Z\", \"hypothesis\": \"Pretrained N-scaling: FewNERD N=16 T=1.0 seed=42 with unfinetuned Qwen2.5-7B-Instruct. Fills the N=16 point on the pretrained N-scaling curve (N=8/16/32). Tests whether doubling sample budget from N=8 increases MV delta and oracle headroom for pretrained models.\", \"parent\": \"exp_fewnerd_pretrained_n16_s42\", \"spec\": {\"command\": \"python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n16_seed42/\", \"server\": \"autodl-5090-c\", \"gpu\": \"cuda:1\", \"pid\": 452387, \"log_path\": \"/root/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n16_s42_v2.log\", \"submitted_at\": \"2026-05-22T15:21:43.507Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/fewnerd/\", \"data_count\": 602368, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (pretrained model, retry of v1)\", \"eval_data\": \"data/fewnerd/\", \"wall_clock_seconds\": 32661.4, \"gpu_hours\": 9.07}, \"reproduce\": {\"finished_at\": \"2026-05-23T00:19:06.784Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T00:19:17.288300+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"greedy_f1\": 0.5373, \"mv_strict_f1\": 0.5779, \"mv_delta_strict_pp\": 4.06, \"mv_incl_f1\": 0.5722, \"oracle_f1\": 0.6786, \"degeneracy_rate\": 0.076, \"alpha_crit_eff_strict\": 0.4398, \"alpha_crit_strict\": 0.4064, \"mv_capture_rate\": 0.2876, \"n_total\": 37648, \"n_gold_nonempty\": 32565, \"greedy_f1_all\": 0.5109, \"oracle_f1_all\"
 …[truncated 5472 chars]
@@ -18693,7 +18534,7 @@ _source line 567 · 2026-05-23T00:26:11.832999+00:00_
 
 ### Tool call
 
-_source line 568 · 2026-05-23T00:26:45.187313+00:00_
+_source line 564 · 2026-05-23T00:26:45.187313+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18729,7 +18570,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 569 · 2026-05-23T00:26:48.801579+00:00_
+_source line 565 · 2026-05-23T00:26:48.801579+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -18751,7 +18592,7 @@ _source line 569 · 2026-05-23T00:26:48.801579+00:00_
 
 ### Assistant
 
-_source line 570 · 2026-05-23T00:26:54.281175+00:00_
+_source line 566 · 2026-05-23T00:26:54.281175+00:00_
 
 Registry 已更新为 DONE。核实 analysis worker 的计算结果。
 
@@ -18778,7 +18619,7 @@ Registry 已更新为 DONE。核实 analysis worker 的计算结果。
 
 ### User
 
-_source line 571 · 2026-05-23T00:26:54.789938+00:00_
+_source line 567 · 2026-05-23T00:26:54.789938+00:00_
 
 [系统通知 — worker_done:worker_analysis_exp_fewnerd_pretrained_n16_s42_v2_20260523T002055]:
 Worker worker_analysis_exp_fewnerd_pretrained_n16_s42_v2_20260523T002055 已完成（status=done），请审查 Agent 的处理结果。
@@ -18800,7 +18641,7 @@ Worker worker_analysis_exp_fewnerd_pretrained_n16_s42_v2_20260523T002055 已完�
 
 ### Assistant
 
-_source line 572 · 2026-05-23T00:27:04.538532+00:00_
+_source line 568 · 2026-05-23T00:27:04.538532+00:00_
 
 已在上一轮对 exp_fewnerd_pretrained_n16_s42_v2 完成完整审查（PASS，metrics 验算通过，叙事一致）。此为同一实验的重复分析 worker 通知，无需二次审查。
 
@@ -18827,7 +18668,7 @@ _source line 572 · 2026-05-23T00:27:04.538532+00:00_
 
 ### User
 
-_source line 573 · 2026-05-23T00:29:36.560986+00:00_
+_source line 569 · 2026-05-23T00:29:36.560986+00:00_
 
 [System 触发审查]:
 请验证 n16 pretrained 结果的论文整合：
@@ -18853,7 +18694,7 @@ _source line 573 · 2026-05-23T00:29:36.560986+00:00_
 
 ### Tool call
 
-_source line 574 · 2026-05-23T00:29:44.353032+00:00_
+_source line 570 · 2026-05-23T00:29:44.353032+00:00_
 
 called Grep
 
@@ -18893,7 +18734,7 @@ called Grep
 
 ### Tool result
 
-_source line 575 · 2026-05-23T00:29:44.831095+00:00_
+_source line 571 · 2026-05-23T00:29:44.831095+00:00_
 
 37:\caption{Signal robustness across configurations (Spearman $\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\pm\sigma$). $^\dagger$Mean over 3 seeds ($\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\sigma$ computed as sample standard deviation.}
 53:\quad SJ & $N{=}16$ & 0.411$^\dagger$ & 0.281 \\
@@ -18927,7 +18768,7 @@ _source line 575 · 2026-05-23T00:29:44.831095+00:00_
 
 ### Tool call
 
-_source line 576 · 2026-05-23T00:29:44.857303+00:00_
+_source line 572 · 2026-05-23T00:29:44.857303+00:00_
 
 called Read
 
@@ -18961,7 +18802,7 @@ called Read
 
 ### Tool result
 
-_source line 577 · 2026-05-23T00:29:44.922869+00:00_
+_source line 573 · 2026-05-23T00:29:44.922869+00:00_
 
 1	\section{Discussion and Conclusion}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
 2	
@@ -19001,7 +18842,7 @@ _source line 577 · 2026-05-23T00:29:44.922869+00:00_
 
 ### Tool call
 
-_source line 578 · 2026-05-23T00:29:53.601465+00:00_
+_source line 574 · 2026-05-23T00:29:53.601465+00:00_
 
 called Grep
 
@@ -19041,7 +18882,7 @@ called Grep
 
 ### Tool result
 
-_source line 579 · 2026-05-23T00:29:53.652327+00:00_
+_source line 575 · 2026-05-23T00:29:53.652327+00:00_
 
 1610-The ceiling grows with model capability: larger models improve both greedy and oracle performance, but the aggregation gap widens rather than closes.
 1611-
@@ -19076,7 +18917,7 @@ _source line 579 · 2026-05-23T00:29:53.652327+00:00_
 
 ### Tool call
 
-_source line 580 · 2026-05-23T00:29:56.764780+00:00_
+_source line 576 · 2026-05-23T00:29:56.764780+00:00_
 
 called Read
 
@@ -19114,7 +18955,7 @@ called Read
 
 ### Tool result
 
-_source line 581 · 2026-05-23T00:29:56.816407+00:00_
+_source line 577 · 2026-05-23T00:29:56.816407+00:00_
 
 1616	\begin{table}[t]
 1617	\centering
@@ -19164,7 +19005,7 @@ _source line 581 · 2026-05-23T00:29:56.816407+00:00_
 
 ### Tool call
 
-_source line 582 · 2026-05-23T00:30:40.044395+00:00_
+_source line 578 · 2026-05-23T00:30:40.044395+00:00_
 
 called Grep
 
@@ -19208,7 +19049,7 @@ called Grep
 
 ### Tool result
 
-_source line 583 · 2026-05-23T00:30:40.195326+00:00_
+_source line 579 · 2026-05-23T00:30:40.195326+00:00_
 
 No matches found
 
@@ -19230,7 +19071,7 @@ No matches found
 
 ### Tool call
 
-_source line 584 · 2026-05-23T00:30:43.058724+00:00_
+_source line 580 · 2026-05-23T00:30:43.058724+00:00_
 
 called Grep
 
@@ -19270,7 +19111,7 @@ called Grep
 
 ### Tool result
 
-_source line 585 · 2026-05-23T00:30:43.109254+00:00_
+_source line 581 · 2026-05-23T00:30:43.109254+00:00_
 
 11075:  exp_e2_pretrained_fewnerd:
 11081:      agreement-correctness correlation) is model-intrinsic and exists even in pretrained
@@ -19313,7 +19154,7 @@ _source line 585 · 2026-05-23T00:30:43.109254+00:00_
 
 ### Tool call
 
-_source line 586 · 2026-05-23T00:30:46.657572+00:00_
+_source line 582 · 2026-05-23T00:30:46.657572+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19351,7 +19192,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 587 · 2026-05-23T00:30:47.805518+00:00_
+_source line 583 · 2026-05-23T00:30:47.805518+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1714}}"}
 
@@ -19373,7 +19214,7 @@ _source line 587 · 2026-05-23T00:30:47.805518+00:00_
 
 ### Tool call
 
-_source line 588 · 2026-05-23T00:30:50.980346+00:00_
+_source line 584 · 2026-05-23T00:30:50.980346+00:00_
 
 called Grep
 
@@ -19413,7 +19254,7 @@ called Grep
 
 ### Tool result
 
-_source line 589 · 2026-05-23T00:30:51.030886+00:00_
+_source line 585 · 2026-05-23T00:30:51.030886+00:00_
 
 11075:  exp_e2_pretrained_fewnerd:
 11076-    status: DONE
@@ -19475,7 +19316,7 @@ _source line 589 · 2026-05-23T00:30:51.030886+00:00_
 
 ### Tool call
 
-_source line 590 · 2026-05-23T00:30:57.548315+00:00_
+_source line 586 · 2026-05-23T00:30:57.548315+00:00_
 
 called Grep
 
@@ -19515,7 +19356,7 @@ called Grep
 
 ### Tool result
 
-_source line 591 · 2026-05-23T00:30:57.598920+00:00_
+_source line 587 · 2026-05-23T00:30:57.598920+00:00_
 
 11075:  exp_e2_pretrained_fewnerd:
 11076-    status: DONE
@@ -19581,7 +19422,7 @@ _source line 591 · 2026-05-23T00:30:57.598920+00:00_
 
 ### Tool call
 
-_source line 592 · 2026-05-23T00:31:27.365913+00:00_
+_source line 588 · 2026-05-23T00:31:27.365913+00:00_
 
 called Grep
 
@@ -19619,7 +19460,7 @@ called Grep
 
 ### Tool result
 
-_source line 593 · 2026-05-23T00:31:27.416859+00:00_
+_source line 589 · 2026-05-23T00:31:27.416859+00:00_
 
 631:\newlabel{sec:related}{{7}{8}{Related Work}{section.7}{}}
 687:\newlabel{sec:discussion}{{8}{8}{Discussion and Conclusion}{section.8}{}}
@@ -19642,7 +19483,7 @@ _source line 593 · 2026-05-23T00:31:27.416859+00:00_
 
 ### Tool call
 
-_source line 594 · 2026-05-23T00:31:43.675303+00:00_
+_source line 590 · 2026-05-23T00:31:43.675303+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19678,7 +19519,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 595 · 2026-05-23T00:31:47.592328+00:00_
+_source line 591 · 2026-05-23T00:31:47.592328+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -19700,7 +19541,7 @@ _source line 595 · 2026-05-23T00:31:47.592328+00:00_
 
 ### Assistant
 
-_source line 596 · 2026-05-23T00:31:50.249781+00:00_
+_source line 592 · 2026-05-23T00:31:50.249781+00:00_
 
 发现一个数值问题需要深入核实。
 
@@ -19727,7 +19568,7 @@ _source line 596 · 2026-05-23T00:31:50.249781+00:00_
 
 ### User
 
-_source line 597 · 2026-05-23T00:33:31.533609+00:00_
+_source line 593 · 2026-05-23T00:33:31.533609+00:00_
 
 [System 触发审查]:
 请验证最新一轮修改：
@@ -19759,7 +19600,7 @@ _source line 597 · 2026-05-23T00:33:31.533609+00:00_
 
 ### Tool call
 
-_source line 598 · 2026-05-23T00:33:39.484329+00:00_
+_source line 594 · 2026-05-23T00:33:39.484329+00:00_
 
 called Read
 
@@ -19793,7 +19634,7 @@ called Read
 
 ### Tool result
 
-_source line 599 · 2026-05-23T00:33:40.487966+00:00_
+_source line 595 · 2026-05-23T00:33:40.487966+00:00_
 
 1	\section{Discussion and Conclusion}\label{sec:discussion}\label{sec:selection_method}\label{sec:conclusion}
 2	
@@ -19830,7 +19671,7 @@ _source line 599 · 2026-05-23T00:33:40.487966+00:00_
 
 ### Tool call
 
-_source line 600 · 2026-05-23T00:33:40.939844+00:00_
+_source line 596 · 2026-05-23T00:33:40.939844+00:00_
 
 called Read
 
@@ -19868,7 +19709,7 @@ called Read
 
 ### Tool result
 
-_source line 601 · 2026-05-23T00:33:40.940221+00:00_
+_source line 597 · 2026-05-23T00:33:40.940221+00:00_
 
 1640	Signal quality is comparable ($\rho_{\textup{SJ}}{=}0.47$ pretrained vs.\ $0.41$--$0.45$ finetuned).
 1641	
@@ -19899,7 +19740,7 @@ _source line 601 · 2026-05-23T00:33:40.940221+00:00_
 
 ### Tool call
 
-_source line 602 · 2026-05-23T00:33:41.943818+00:00_
+_source line 598 · 2026-05-23T00:33:41.943818+00:00_
 
 called Grep
 
@@ -19939,7 +19780,7 @@ called Grep
 
 ### Tool result
 
-_source line 603 · 2026-05-23T00:33:41.994518+00:00_
+_source line 599 · 2026-05-23T00:33:41.994518+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.bbl:222:\bibitem[{Landesberg(2026)}]{landesberg2026bon}
 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.bbl:223:Eddie Landesberg. 2026.
@@ -19969,7 +19810,7 @@ _source line 603 · 2026-05-23T00:33:41.994518+00:00_
 
 ### Tool call
 
-_source line 604 · 2026-05-23T00:34:13.164187+00:00_
+_source line 600 · 2026-05-23T00:34:13.164187+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20005,7 +19846,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 605 · 2026-05-23T00:34:14.368970+00:00_
+_source line 601 · 2026-05-23T00:34:14.368970+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 37648,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.5121318400500658,\\n  \\\"oracle_f1\\\": 0.6175413241802907,\\n  \\\"oracle_headroom\\\": 0.10540948413022488,\\n  \\\"fleiss_kappa_mean\\\": 0.450091181971992,\\n  \\\"soft_jaccard_mean\\\": 0.688141982278897,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.38281007752292456,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.43286768339747067,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 32565\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3706175202241505,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 26903\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.439728575837821,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n\\\": 26903\\n  },\\n  \\\"n_gold_empty_filtered\\\": 5083,\\n  \\\"n_greedy_f1_zero_filtered\\\": 5662,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.05005760587454611,\\n  \\\"sample_f1_mean\\\": 0.5229158533963159,\\n  \\\"sample_f1_std\\\": 0.33150380421904685,\\n  \\\"sample_f1_pct_zero\\\": 18.206663595885153,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.1886088068976437,\\n      \\\"p_rho\\\": 1.774901536998061e-258,\\n      \\\"tau\\\": 0.13320626207043312,\\n      \\\"p_tau\\\": 5.034422017182722e-262,\\n      \\\"auroc\\\": 0.5961370229191391,\\n      \\\"n\\\": 32565\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.17616069812745358,\\n      \\\"p_rho\\\": 1.95941542691711e-186,\\n      \\\"tau\\\": 0.12352484653872901,\\n      \\\"p_tau\\\": 3.646413867205832e-187,\\n      \\\"auroc\\\": 0.5930242257516504,\\n      \\\"n\\\": 26903\\n    }
 …[truncated 279 chars]
@@ -20028,7 +19869,7 @@ _source line 605 · 2026-05-23T00:34:14.368970+00:00_
 
 ### Tool call
 
-_source line 606 · 2026-05-23T00:34:14.519961+00:00_
+_source line 602 · 2026-05-23T00:34:14.519961+00:00_
 
 called Grep
 
@@ -20068,7 +19909,7 @@ called Grep
 
 ### Tool result
 
-_source line 607 · 2026-05-23T00:34:15.925611+00:00_
+_source line 603 · 2026-05-23T00:34:15.925611+00:00_
 
 11627:  exp_e2_pretrained_fewnerd_s123:
 11628-    status: DONE
@@ -20132,7 +19973,7 @@ _source line 607 · 2026-05-23T00:34:15.925611+00:00_
 
 ### Tool call
 
-_source line 608 · 2026-05-23T00:35:08.148758+00:00_
+_source line 604 · 2026-05-23T00:35:08.148758+00:00_
 
 called Grep
 
@@ -20172,7 +20013,7 @@ called Grep
 
 ### Tool result
 
-_source line 609 · 2026-05-23T00:35:09.905457+00:00_
+_source line 605 · 2026-05-23T00:35:09.905457+00:00_
 
 12088:  exp_e2_pretrained_fewnerd_s456:
 12089-    status: DONE
@@ -20240,7 +20081,7 @@ _source line 609 · 2026-05-23T00:35:09.905457+00:00_
 
 ### Tool call
 
-_source line 610 · 2026-05-23T00:35:42.348961+00:00_
+_source line 606 · 2026-05-23T00:35:42.348961+00:00_
 
 called Grep
 
@@ -20278,7 +20119,7 @@ called Grep
 
 ### Tool result
 
-_source line 611 · 2026-05-23T00:35:42.600330+00:00_
+_source line 607 · 2026-05-23T00:35:42.600330+00:00_
 
 1587:Output written on main.pdf (46 pages, 937610 bytes).
 
@@ -20300,7 +20141,7 @@ _source line 611 · 2026-05-23T00:35:42.600330+00:00_
 
 ### Tool call
 
-_source line 612 · 2026-05-23T00:35:42.752036+00:00_
+_source line 608 · 2026-05-23T00:35:42.752036+00:00_
 
 called Grep
 
@@ -20338,7 +20179,7 @@ called Grep
 
 ### Tool result
 
-_source line 613 · 2026-05-23T00:35:44.308202+00:00_
+_source line 609 · 2026-05-23T00:35:44.308202+00:00_
 
 686:\newlabel{sec:discussion}{{8}{8}{Discussion and Conclusion}{section.8}{}}
 
@@ -20360,7 +20201,7 @@ _source line 613 · 2026-05-23T00:35:44.308202+00:00_
 
 ### Tool call
 
-_source line 614 · 2026-05-23T00:36:10.774340+00:00_
+_source line 610 · 2026-05-23T00:36:10.774340+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -20396,7 +20237,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 615 · 2026-05-23T00:36:14.337464+00:00_
+_source line 611 · 2026-05-23T00:36:14.337464+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -20425,7 +20266,7 @@ _source line 615 · 2026-05-23T00:36:14.337464+00:00_
 
 ### User
 
-_source line 616 · 2026-05-23T01:07:54.703948+00:00_
+_source line 612 · 2026-05-23T01:07:54.703948+00:00_
 
 [System 触发审查]:
 n16 结果已整合（MV +4.06pp plateau）。两个问题需要你的判断：
@@ -20460,7 +20301,7 @@ n32 ETA ~7h。两种可能：
 
 ### Tool call
 
-_source line 617 · 2026-05-23T01:08:01.038401+00:00_
+_source line 613 · 2026-05-23T01:08:01.038401+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -20498,7 +20339,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 618 · 2026-05-23T01:08:01.942041+00:00_
+_source line 614 · 2026-05-23T01:08:01.942041+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_fewnerd_pretrained_n32_s42_v2\": {\"status\": \"RUNNING\", \"hypothesis\": \"Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 32 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_pretrained_n32_seed42/\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"157469\", \"data_count\": 37648, \"data_path\": \"data/fewnerd/\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"n_samples\": 32, \"log_path\": \"~/runs/struct_self_consist_ie/exp_fewnerd_pretrained_n32_s42_v2.log\", \"checkpoint_source\": \"Qwen2.5-7B-Instruct (pretrained, no finetuning)\", \"eval_data\": \"data/fewnerd/ (37648 instances)\", \"note\": \"Restarted with verified fix. Old PID 155692 killed (loaded pre-fix code). Server corrected: autodl-5090 (not autodl-5090-c).\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8906}}"}
 
@@ -20520,7 +20361,7 @@ _source line 618 · 2026-05-23T01:08:01.942041+00:00_
 
 ### Tool call
 
-_source line 619 · 2026-05-23T01:08:41.976334+00:00_
+_source line 615 · 2026-05-23T01:08:41.976334+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -20556,7 +20397,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 620 · 2026-05-23T01:08:45.688946+00:00_
+_source line 616 · 2026-05-23T01:08:45.688946+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -20585,7 +20426,7 @@ _source line 620 · 2026-05-23T01:08:45.688946+00:00_
 
 ### User
 
-_source line 621 · 2026-05-23T01:09:09.497770+00:00_
+_source line 617 · 2026-05-23T01:09:09.497770+00:00_
 
 [System 触发审查]:
 快速确认：discussion.tex:14 是否已将 "oracle headroom doubles (7.9→14.2pp)" 修正为 "oracle headroom expands (11.2→14.1pp)"？只需确认这一处。
@@ -20607,7 +20448,7 @@ _source line 621 · 2026-05-23T01:09:09.497770+00:00_
 
 ### Tool call
 
-_source line 622 · 2026-05-23T01:09:16.193233+00:00_
+_source line 618 · 2026-05-23T01:09:16.193233+00:00_
 
 called Read
 
@@ -20645,7 +20486,7 @@ called Read
 
 ### Tool result
 
-_source line 623 · 2026-05-23T01:09:16.243905+00:00_
+_source line 619 · 2026-05-23T01:09:16.243905+00:00_
 
 13	The gap persists from 4B fine-tuned to 72B zero-shot and GPT-5.5, with degeneracy varying by model family rather than scale (Qwen2.5: $32$--$46$\%, Qwen3: $13$\%, GPT-5.5: $50$\%; \S\ref{sec:scaling}).
 14	The MV advantage persists at $N{=}16$ for pretrained models ($+4.1$\,pp, capturing $29$\% of oracle headroom), though it plateaus rather than scales---oracle headroom expands ($11.2{\to}14.1$\,pp) while MV gains remain flat, suggesting a voting aggregation ceiling even when diversity is available (Table~\ref{tab:pretrained_summary}).
@@ -20669,7 +20510,7 @@ _source line 623 · 2026-05-23T01:09:16.243905+00:00_
 
 ### Tool call
 
-_source line 624 · 2026-05-23T01:09:23.468219+00:00_
+_source line 620 · 2026-05-23T01:09:23.468219+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -20705,7 +20546,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 625 · 2026-05-23T01:09:27.581875+00:00_
+_source line 621 · 2026-05-23T01:09:27.581875+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
 
@@ -20727,7 +20568,7 @@ _source line 625 · 2026-05-23T01:09:27.581875+00:00_
 
 ### Assistant
 
-_source line 626 · 2026-05-23T01:09:30.347547+00:00_
+_source line 622 · 2026-05-23T01:09:30.347547+00:00_
 
 已修正。"doubles ($7.9{\to}14.2$\,pp)" → "expands ($11.2{\to}14.1$\,pp)"，与 registry 数据一致（N=8 3-seed mean headroom 11.17pp ≈ 11.2, N=16 headroom 14.13pp ≈ 14.1）。
 
@@ -20754,7 +20595,7 @@ _source line 626 · 2026-05-23T01:09:30.347547+00:00_
 
 ### User
 
-_source line 627 · 2026-05-23T02:18:38.991371+00:00_
+_source line 623 · 2026-05-23T02:18:38.991371+00:00_
 
 [System 触发审查]:
 **[系统性 gap analysis 请求]**
@@ -20790,7 +20631,7 @@ _source line 627 · 2026-05-23T02:18:38.991371+00:00_
 
 ### Tool call
 
-_source line 628 · 2026-05-23T02:18:46.787193+00:00_
+_source line 624 · 2026-05-23T02:18:46.787193+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -20828,7 +20669,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 629 · 2026-05-23T02:18:47.163365+00:00_
+_source line 625 · 2026-05-23T02:18:47.163365+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md\", \"content\": \"# Paper Framing — struct_self_consist_ie\\n\\n> Updated 2026-05-22 — **D237 FRAMING OVERHAUL**: dataset-dependent optimal aggregation strategy + diagnostic cascade as primary contribution. N-scaling unified data (N=8/16/32/64) confirms MV gains are monotonically increasing but universally <1pp. LP-best saturates at N=8. Optimal strategy is dataset-dependent: LP dominates on FewNERD (+8pp), MV dominates on CoNLL (+0.61pp vs LP -2.34pp), SciERC approximately neutral.\\n\\n## Target Venue\\n- Primary: EMNLP 2026 **Main Conference** (via ARR May 2026)\\n- Deadline: ARR May cycle, 2026-05-25\\n\\n## Core Claims (D237 — TRIPLE CONTRIBUTION: QE + diagnostic + prescriptive)\\n\\n### Claim 1 (PRIMARY — QE Framework + Selection Diagnostic)\\n**Positive contribution (A)**: Confidence signals reliably predict structured IE output quality at the population level (AUROC up to 0.82, ρ up to 0.45), enabling practical QE/selective prediction.\\n\\n**Diagnostic contribution (B)** (D237 revised): The optimal aggregation strategy is **dataset-dependent**, determined by a four-stage diagnostic cascade:\\n1. **Instance degeneracy** (21-58% of instances produce identical F1 across N samples)\\n2. **LP compression** (within-instance LP range median 0.041 nats)\\n3. **LP-F1 alignment** (primary cross-dataset predictor: FewNERD ρ~0.5-0.7 → LP works; SciERC ρ~0.2 → LP fails; cross-dataset degeneracy-LP ρ=0.052, p=0.81)\\n4. **Structural signal limitation** (4/5 signals are instance-level aggregates → cannot rank candidates by construction)\\n\\n**N-scaling evidence** (unified baseline, N=8/16/32/64, seed=42):\\n- SciERC: MV Δ = -1.24/-0.61/+0.24/+0.53 (monotonic ↑, crosses ~N=28, 3-seed mean ≈0 at N=32)\\n- CoNLL: MV Δ = +0.20/+0.32/+0.44/+0.61 (always positive, always <1pp)\\n- FewNERD: MV Δ = -2.71/-1.65/TBD (N=32 pending, s
 …[truncated 5109 chars]
@@ -20851,7 +20692,7 @@ _source line 629 · 2026-05-23T02:18:47.163365+00:00_
 
 ### Tool call
 
-_source line 630 · 2026-05-23T02:18:47.185338+00:00_
+_source line 626 · 2026-05-23T02:18:47.185338+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -20878,6 +20719,136 @@ called mcp__agent-ml-research__read_project_file
     "project": "struct_self_consist_ie",
     "file": "report.md",
     "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 627 · 2026-05-23T02:18:47.185971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_fewnerd_pretrained_n32_s42_v2 | Pretrained N-scaling rerun: FewNERD N=32 with Qwen2.5-7B-Instruct. v1 killed at 70% to prevent UnicodeEncodeError crash at save stage (no incremental checkpoint). Fix (errors='replace') deployed. Same hypothesis: tests pretrained MV advantage at 4× budget (N=32). | — | — | — |\\n\\n## 待处理\\n- exp_fewnerd_mf4v2_s123_v4: FewNERD MF4v2 s123 v4: regenerate finetuned FewNERD seed=123 instance-level samples.jsonl on autodl-5090-c for v4 MV unified recompute. N=8, T=1.0, seed=123. Model: qwen3-8b-fewnerd-exp021-merged. Parent retries v2 (failed on 5090) and v3 (killed). Using confirmed-working 5090-c environment from s456_v3.（准备中）\\n- exp_fewnerd_mf4v2_s42_v4: Superseded: v3 (exp_fewnerd_mf4v2_s42_v3) already succeeded. This v4 retry is no longer needed.（准备中）\\n- exp_fewnerd_mf4v2_s123_v2: FewNERD MF4v2 s123 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=123, N=8, T=1.0.（准备中）\\n- exp_fewnerd_mf4v2_s42_v2: FewNERD MF4v2 s42 re-run: original died without output on autodl-5090. Generating instance-level samples.jsonl for MV unified recompute with seed=42, N=8, T=1.0.（准备中）\\n- eval_scd_fewnerd_fallback（准备中）\\n- exp_a1_spider_sql_sc: Cross-task universality: SC diagnostic cascade (degeneracy, LP-quality gap, agreement-correctness correlation) applies to SQL structured generation on Spider. Qwen2.5-7B-Instruct base model, 200 dev examples, N=8 T=1.0, execution accuracy evaluation. If F1-F4 failure modes exist in SQL, the framework generalizes beyond NER.（准备中）\\n- exp_b2_v4_inverse_frequency: Inverse-frequency weighting of entity features (agreement_
+…[truncated 4713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 628 · 2026-05-23T02:18:52.262593+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tab:method_summary|tab:robustness|tab:frontier",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "head_limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tab:method_summary|tab:robustness|tab:frontier",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+    "output_mode": "content",
+    "head_limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 629 · 2026-05-23T02:18:53.216316+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex:4:Table~\ref{tab:method_summary} summarizes all 9 method categories evaluated; only cross-model ensembles yield a positive result, though on a single dataset.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/adaptive.tex:10:\label{tab:method_summary}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex:6:This capability-diversity tradeoff \cite{yun2025price} persists across model families (5.5--74\%; Table~\ref{tab:frontier_sc_cross}), scales (4B--72B; \S\ref{sec:scaling}), and decoding modes (LP std ratio ${\approx}0.97{\times}$; \S\ref{sec:selection_gap}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex:25:\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\sigma{\leq}0.026$ in Table~\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf{bold}. RE in Appendix~\ref{app:re_extension}; $N{=}16$ in Table~\ref{tab:robustness}.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/_archived/experiments_OLD.tex:146:Consistency signals are robust across $T{\in}\{0.7, 1.0\}$ with sublinear $N$-scaling gains (Table~\ref{tab:robustness}); signal rankings are stable across seeds ($W{=}1.0$; Table~\ref{tab:ranking-stability}). NER calibration is reasonable (ECE 0.069--0.096; Appendix~\ref{app:calibration}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex:1:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex:29:\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 5-seed $\sigma
+…[truncated 2282 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+  "tool": "Grep",
+  "elapsed_ms": 953
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 630 · 2026-05-23T02:18:53.216791+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+  "offset": "95",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments_main.tex",
+    "offset": "95",
+    "limit": "30"
   }
 }
 ```

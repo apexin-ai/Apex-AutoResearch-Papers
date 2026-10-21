@@ -4,516 +4,11 @@
 
 [← Part 13](part-013.md) · [Transcript overview](../director-coordination-20260521-014101.md) · [Structured JSON](../../../sessions/79/796e9fb62a327a2e399b.json)
 
-## Round 1006
-
-### Tool result
-
-_source line 7836 · 2026-05-20T19:12:40.090436+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd434be14a8b48059a96066b57\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 34, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] cuda:3 立即分配，不空等。\\n\\n**cuda:3 → 第二个 RE 数据集 SC pilot**\\n\\nSciERC RE 已在 cuda:1 上跑。cuda:3 跑**另一个 RE 数据集**，两个 RE 结果互相印证。\\n\\n**数据集选择优先级**（Agent 选可行的第一个）：\\n1. **DocRED** — 基于 Wikipedia，免\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
-  "elapsed_ms": 3561
-}
-```
-
-</details>
-
----
-
-
-## Round 1007
-
-## Round 1007
-
-4 recorded events
-
-
-### User
-
-_source line 7837 · 2026-05-20T19:17:00.980442+00:00_
-
-[Agent 回复]:
-[资源] GPU 5/12 运行中 | Worker 1 (GPU 0 / CPU 1) | autodl-5090-b 全 4 卡空闲, autodl-5090-c 3 卡空闲
-
-**exp_b1_scd_fewnerd_standard: Cron 误判 — 训练实际已完成**
-
-与 exp_b1_scd_fewnerd_curriculum_q 相同的已知模式：LLaMA-Factory 训练未配置 W&B report_to，cron 依赖 W&B sentinel 判断完成状态，进程正常退出后被误判为 failed。
-
-训练指标（已验证）:
-- 4706/4706 steps, epoch=2.0
-- train_loss=0.023, eval_loss=0.0329
-- 运行时间 7h08m
-- Checkpoint: `/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/`
-
-Registry 已更新：failure_reason 标记 RETRACTED，metrics 和 checkpoint_path 已记录。
-
-**下一步**: 需要 eval inference（greedy F1 on FewNERD）来验证 hypothesis（目标: greedy F1 接近 N=8 construction F1 0.764 vs 当前 0.748）。autodl-5090-b:0 已空闲，可立即启动。请批准 eval。
-
-⚠️ **系统性问题**: B1 SCD 三个实验均因同一 bug 被误判。建议后续 LLaMA-Factory 训练配置统一加 `report_to: wandb`，或让 cron 增加 checkpoint/trainer_state.json 备用检测。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "source": "agent"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7838 · 2026-05-20T19:17:17.900676+00:00_
-
-called mcp__agent-ml-research__director_post_to_main_agent
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent</summary>
-
-```json
-{
-  "text": "[Director 指令] SCD eval 批准，5090-b:0 立即跑 greedy inference。\n\n用 qwen3-8b-fewnerd-scd-lora checkpoint 在 FewNERD test set 上跑 greedy F1。目标：对比 post-SCD greedy vs pre-SCD greedy (0.748) vs SC construction (0.764)。\n\n另外：5090-b 全 4 卡空闲？Spider SQL (5090-b:2) 什么状态？threshold_ablation 什么状态？简要汇报。",
-  "project": "struct_self_consist_ie"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
-  "tool_args": {
-    "text": "[Director 指令] SCD eval 批准，5090-b:0 立即跑 greedy inference。\n\n用 qwen3-8b-fewnerd-scd-lora checkpoint 在 FewNERD test set 上跑 greedy F1。目标：对比 post-SCD greedy vs pre-SCD greedy (0.748) vs SC construction (0.764)。\n\n另外：5090-b 全 4 卡空闲？Spider SQL (5090-b:2) 什么状态？threshold_ablation 什么状态？简要汇报。",
-    "project": "struct_self_consist_ie"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7839 · 2026-05-20T19:17:21.580478+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd4c2c660a8b3eb1976175dd18\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 35, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] cuda:3 立即分配，不空等。\\n\\n**cuda:3 → 第二个 RE 数据集 SC pilot**\\n\\nSciERC RE 已在 cuda:1 上跑。cuda:3 跑**另一个 RE 数据集**，两个 RE 结果互相印证。\\n\\n**数据集选择优先级**（Agent 选可行的第一个）：\\n1. **DocRED** — 基于 Wikipedia，免\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
-  "elapsed_ms": 3679
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 7840 · 2026-05-20T19:17:24.469558+00:00_
-
-Queue depth is 35, Agent is still processing DocRED dispatch. Messages will be processed in order. No further action needed until Agent catches up.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-}
-```
-
-</details>
-
----
-
-
-## Round 1008
-
-## Round 1008
-
-2 recorded events
-
-
-### User
-
-_source line 7841 · 2026-05-20T19:19:04.692514+00:00_
-
-[Agent 回复]:
-Backup 3 已完成（negative）。现在并行派出剩余 4 个 Worker：cross_model + A2 HumanEval + B Frontier SC + DocRED RE。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "source": "main_agent"
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 7842 · 2026-05-20T19:19:09.896417+00:00_
-
-No response requested.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-}
-```
-
-</details>
-
----
-
-
-## Round 1009
-
-## Round 1009
-
-2 recorded events
-
-
-### User
-
-_source line 7843 · 2026-05-20T19:21:06.478170+00:00_
-
-[Agent 回复]:
-[资源] GPU 12/12 分配 | 实际在跑 5 (5090:0-3 32B训练, 5090-c:2 tlow推理) | 空闲 4 (5090-b:1,2, 5090-c:1,3) + threshold_ablation/14B推理进程在跑但GPU编号待确认 | Worker 2 (GPU eval 1 / CPU diagnose 1) | 磁盘: 5090-b 427G/879G 可用(49%)
-
-**[Cron 回调] exp_b1_scd_fewnerd_standard — 已知 cron 误判，已处理**
-
-failure_reason: "process dead 5× with no sentinel/W&B" — 这是 LLaMA-Factory 未配 W&B 的已知模式（memory.md 已记录）。
-
-**实际状态**: 训练正常完成 4706/4706 steps, train_loss=0.023, eval_loss=0.0329, 耗时 7h08m。Checkpoint 在 /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-fewnerd-scd-lora/。
-
-**已派 Worker** (eval:exp_b1_scd_fewnerd_standard) 在 5090-b:cuda:1 验证 checkpoint 有效性 + 跑 greedy inference 测 F1。Baseline greedy F1=0.748, hypothesis 目标接近 N=8 construction F1=0.764。
-
-等 Worker 回调后汇报 eval 结果。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "source": "agent"
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 7844 · 2026-05-20T19:21:11.994003+00:00_
-
-No response requested.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director"
-}
-```
-
-</details>
-
----
-
-
-## Round 1010
-
-## Round 1010
-
-3 recorded events
-
-
-### User
-
-_source line 7845 · 2026-05-20T19:21:14.013159+00:00_
-
-[Agent 回复]:
-[资源] GPU 5/12 在跑 | autodl-5090: 4/4 (32B训练) | autodl-5090-b: 1/4 (threshold_ablation cuda:3 仍跑, **cuda:0/1/2 已释放** — SCD standard FAILED + curriculum_q FAILED) | autodl-5090-c: 1-2/4 (14B推理 cuda:0 + T_low cuda:2, **cuda:1→A3 RE, cuda:3→DocRED RE 代码准备中**) | Worker 6 running | 磁盘充足
-
----
-
-## 执行状态汇报
-
-### Director 指令执行进度
-
-| 任务 | Worker | 状态 |
-|------|--------|------|
-| Backup 3 Distill Verifier | 已完成 | **DONE (negative)** — 分类器无法持续超越 MV |
-| Cross-model Consistency | 已完成 | **DONE (success)** — mixed pool > pure models |
-| A2 HumanEval SC | `worker_run_exp_a2_humaneval_sc` | 运行中（修 MV bug + 跑实验, ~30-60min） |
-| B Frontier SC | `worker_run_exp_b_frontier_sc` | 运行中（修 micro-F1 + 跑实验, ~1-2h） |
-| DocRED RE SC (cuda:3) | `worker_code_exp_docred_re_sc` | 运行中（数据准备 + 代码适配） |
-| 14B N=16 截断 | `worker_ops_14b_kill_after_n8` | 运行中（监控脚本已部署） |
-
-### 新发现：B1 SCD 两个实验异常
-
-| 实验 | 结论 | 详情 |
-|------|------|------|
-| exp_b1_scd_fewnerd_standard | **FAILED** | process dead 5×, no sentinel/W&B |
-| exp_b1_scd_fewnerd_curriculum_q | **FAILED (可能误判)** | Cron 报 process dead 5×, 但注释说 "RETRACTED: cron false positive — training completed successfully (4706/4706 steps, loss=0.023)" |
-
-curriculum_q 可能实际已成功完成但被 cron 误判为 failed。需要诊断：
-- standard 是否真的失败？
-- curriculum_q 是否有 checkpoint 和 eval 结果？
-
-**autodl-5090-b cuda:0/1/2 已释放**（仅 threshold_ablation 在 cuda:3 仍跑）。
-
-### 建议
-1. 派 Worker 诊断 B1 SCD 两个实验的真实状态（查 log、checkpoint）
-2. autodl-5090-b 新释放的 cuda:0/1/2 可分配给其他 GPU 任务（如 A1 Spider SQL 或 A3 SciERC RE）
-3. cross_model success 结果详情待 Worker 回调后完整汇报
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "source": "agent"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7846 · 2026-05-20T19:21:32.151465+00:00_
-
-called mcp__agent-ml-research__director_post_to_main_agent
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent</summary>
-
-```json
-{
-  "text": "[Director 指令 — 简要，不要重新诊断已知问题]\n\n**SCD 两个实验都已确认完成（上一轮已诊断过）：**\n- standard: 4706/4706 steps, loss=0.023, checkpoint 在 `qwen3-8b-fewnerd-scd-lora/`。你之前已派 eval Worker。\n- curriculum_q: 同上，checkpoint 在 `qwen3-8b-fewnerd-scd-fallback-lora/`。已确认 cron false positive。\n\n**不要再派诊断 Worker。** 等 eval Worker 回调汇报 post-SCD greedy F1 即可。\n\n**5090-b cuda:0/1/2 空闲** — 当 A1 Spider SQL 代码修复完成或有其他 GPU 任务就绪时，汇报给我分配。",
-  "project": "struct_self_consist_ie"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
-  "tool_args": {
-    "text": "[Director 指令 — 简要，不要重新诊断已知问题]\n\n**SCD 两个实验都已确认完成（上一轮已诊断过）：**\n- standard: 4706/4706 steps, loss=0.023, checkpoint 在 `qwen3-8b-fewnerd-scd-lora/`。你之前已派 eval Worker。\n- curriculum_q: 同上，checkpoint 在 `qwen3-8b-fewnerd-scd-fallback-lora/`。已确认 cron false positive。\n\n**不要再派诊断 Worker。** 等 eval Worker 回调汇报 post-SCD greedy F1 即可。\n\n**5090-b cuda:0/1/2 空闲** — 当 A1 Spider SQL 代码修复完成或有其他 GPU 任务就绪时，汇报给我分配。",
-    "project": "struct_self_consist_ie"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7847 · 2026-05-20T19:21:35.874301+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd4d53df4a4b11ef141be9a38c\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 34, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090 检查日志 `/tmp/14b_fewnerd.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp_14b_inferenc\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
-  "elapsed_ms": 3722
-}
-```
-
-</details>
-
----
-
-
-## Round 1011
-
-## Round 1011
-
-3 recorded events
-
-
-### User
-
-_source line 7848 · 2026-05-20T19:21:47.676237+00:00_
-
-[Reviewer 回复]:
-## 审查报告 — 全局状态巡检 (2026-05-21 03:20 UTC)
-
-**结论**: WARNING
-
-### GPU 资源审计 (L1 #4)
-
-所有进程均在项目白名单内，无越界。
-
-| 服务器 | GPU | 占用 | 进程 |
-|--------|-----|------|------|
-| autodl-5090 | 0,1,2,3 | 98-100% | 32B QLoRA (PID 804438) ✓ |
-| autodl-5090-b | 0 | 97% | SCD fallback eval (PID 270938) ✓ |
-| autodl-5090-b | 3 | 71% | SCD theta3 训练 (PID 205991) ✓ |
-| autodl-5090-b | **1,2** | **0%** | **空闲** ⚠ |
-| autodl-5090-c | 0 | 97% | 14B N=2 推理 (PID 217960) ✓ |
-| autodl-5090-c | 2 | 80% | T_low 推理 (PID 221771) ✓ |
-| autodl-5090-c | **1,3** | **0%** | **空闲** ⚠ |
-
-### 发现
-
-- [severity: warning] **4 张 GPU 空闲（autodl-5090-b GPU 1,2; autodl-5090-c GPU 1,3），SCD eval 被串行瓶颈**。当前 SCD fallback eval 独占 autodl-5090-b GPU 0，进度 13% (~2h)。Standard SCD 的 LoRA 已保存（02:53 UTC）但尚未 merge，要等 fallback eval 完成后才能 merge+eval。Theta3 训练 ~23min 完成后也需排队。三个 SCD 变体的 eval 串行执行将耗时 ~6h+。建议在 GPU 1 或 GPU 2 上并行运行 standard SCD merge+eval，可节约 ~2h。
-
-- [severity: warning] **Registry 结论错误：exp_b1_scd_fewnerd_standard 和 exp_b1_scd_fewnerd_curriculum_q 均标为 "failed"，实际训练已正常完成**。两者都是 Cron 误判（无 W&B sentinel 触发 process-dead 告警）。Standard: 8142 steps, 2 epochs, train_loss=0.023, eval_loss=0.033。Fallback: 同样完成 4706 steps。Registry conclusion 需修正为 "success" 或至少标注 cron false positive，避免后续论文溯源引用错误结论。
-
-- [severity: info] **32B QLoRA 训练进展**：最新 checkpoint 在 step 35000/41180（85%），保存于 02:25 UTC。每 1000 步约 58min。预计 ~06:30 UTC 训练完成（还剩 ~4h）。4 GPU 利用率均 98-100%，正常。
-
-- [severity: info] **SCD CoNLL greedy eval 结果**：SCD-CoNLL 模型在 CoNLL 上 greedy_f1=0.9184。此前 base model greedy F1 约 0.907（registry exp_asb 数据），SCD 后 +1.14pp。但此结果有此前已报告的 confound（不能区分 pseudo-label 收益 vs 额外 gold 训练 epochs 的贡献）。
-
-- [severity: info] **14B N=2 推理**：28% (10542/37648)，~7-10 it/s，ETA ~1h。
-
-- [severity: info] **T_low FewNERD**：新一轮 vllm 推理启动于 01:45 UTC，当前 16% (6009/37648)。
-
-- [severity: info] **exp_e_theta_adaptive**：Registry RUNNING，local-CPU，无远程进程可核实。
-
-### 建议
-
-1. 在 autodl-5090-b 空闲 GPU 上并行 merge+eval SCD standard，避免串行等待
-2. 修正 exp_b1_scd_fewnerd_standard 和 exp_b1_scd_fewnerd_curriculum_q 的 registry conclusion
-3. 考虑将 autodl-5090-c GPU 1,3 分配给排队中的实验（exp_a3_ace05_re 等）
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "source": "reviewer"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 7849 · 2026-05-20T19:22:02.996525+00:00_
-
-called mcp__agent-ml-research__urgent_agent_message
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__urgent_agent_message</summary>
-
-```json
-{
-  "project": "struct_self_consist_ie",
-  "message": "[Director 指令] 4 张 GPU 空闲，三件事立即执行：\n\n**1. SCD standard eval 并行化（5090-b:1 或 :2）**\n不要等 fallback eval 完成再跑 standard。在 5090-b 空闲卡上立即 merge qwen3-8b-fewnerd-scd-lora + 跑 greedy eval。两个 SCD eval 并行。\n\n**2. Registry 修正**\n- exp_b1_scd_fewnerd_standard → conclusion 改为 \"success\"（训练完成 8142 steps）\n- exp_b1_scd_fewnerd_curriculum_q → conclusion 改为 \"success\"（训练完成 4706 steps）\n- exp_e_theta_adaptive → status 改为 DONE, conclusion 改为 \"negative\"\n\n**3. 5090-c cuda:1 和 cuda:3**\n之前已分配：cuda:1 → A3 SciERC RE，cuda:3 → DocRED RE。这两个代码 Worker 完成了吗？如果完成了立即上机推理。"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__urgent_agent_message",
-  "tool_args": {
-    "project": "struct_self_consist_ie",
-    "message": "[Director 指令] 4 张 GPU 空闲，三件事立即执行：\n\n**1. SCD standard eval 并行化（5090-b:1 或 :2）**\n不要等 fallback eval 完成再跑 standard。在 5090-b 空闲卡上立即 merge qwen3-8b-fewnerd-scd-lora + 跑 greedy eval。两个 SCD eval 并行。\n\n**2. Registry 修正**\n- exp_b1_scd_fewnerd_standard → conclusion 改为 \"success\"（训练完成 8142 steps）\n- exp_b1_scd_fewnerd_curriculum_q → conclusion 改为 \"success\"（训练完成 4706 steps）\n- exp_e_theta_adaptive → status 改为 DONE, conclusion 改为 \"negative\"\n\n**3. 5090-c cuda:1 和 cuda:3**\n之前已分配：cuda:1 → A3 SciERC RE，cuda:3 → DocRED RE。这两个代码 Worker 完成了吗？如果完成了立即上机推理。"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 7850 · 2026-05-20T19:22:03.943114+00:00_
-
-{"result":"{\"inserted\":true,\"queue_depth\":35,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director",
-  "tool": "mcp__agent-ml-research__urgent_agent_message",
-  "elapsed_ms": 946
-}
-```
-
-</details>
-
----
-
-
 ## Round 1012
 
-## Round 1012
-
-2 recorded events
-
-
 ### User
 
-_source line 7851 · 2026-05-20T19:25:24.808346+00:00_
+_source line 7849 · 2026-05-20T19:25:24.808346+00:00_
 
 [Agent 回复]:
 [资源] GPU 5/12 在跑 | autodl-5090: 4/4 (32B) | autodl-5090-b: 1/4 (threshold_ablation cuda:3, eval_standard cuda:1 刚启动) | autodl-5090-c: 1/4 (T_low cuda:2, 14B cuda:0 待确认) | **cuda idle: 5090-b:0/2, 5090-c:1/3** | Worker 6/6 (满) | 磁盘充足
@@ -566,7 +61,7 @@ _source line 7851 · 2026-05-20T19:25:24.808346+00:00_
 
 ### Assistant
 
-_source line 7852 · 2026-05-20T19:25:34.038418+00:00_
+_source line 7850 · 2026-05-20T19:25:34.038418+00:00_
 
 No response requested.
 
@@ -593,7 +88,7 @@ No response requested.
 
 ### User
 
-_source line 7853 · 2026-05-20T19:25:36.032570+00:00_
+_source line 7851 · 2026-05-20T19:25:36.032570+00:00_
 
 [Agent 回复]:
 Registry 修正全部完成。向 Director 汇报当前状态。
@@ -615,7 +110,7 @@ Registry 修正全部完成。向 Director 汇报当前状态。
 
 ### Assistant
 
-_source line 7854 · 2026-05-20T19:25:41.865575+00:00_
+_source line 7852 · 2026-05-20T19:25:41.865575+00:00_
 
 No response requested.
 
@@ -642,7 +137,7 @@ No response requested.
 
 ### User
 
-_source line 7855 · 2026-05-20T19:28:11.817491+00:00_
+_source line 7853 · 2026-05-20T19:28:11.817491+00:00_
 
 [Agent 回复]:
 [资源] GPU 5/12 在跑 | autodl-5090: 4/4 (32B) | autodl-5090-b: 3/4 (threshold cuda:3 + eval_standard cuda:1 + eval_curriculum cuda:2) | autodl-5090-c: 1/4 (T_low cuda:2, 14B cuda:0 仍在跑N=2@82%) | Worker 6/6 (满) | 磁盘充足
@@ -706,7 +201,7 @@ _source line 7855 · 2026-05-20T19:28:11.817491+00:00_
 
 ### Tool call
 
-_source line 7856 · 2026-05-20T19:28:32.904096+00:00_
+_source line 7854 · 2026-05-20T19:28:32.904096+00:00_
 
 called mcp__agent-ml-research__approve_experiment
 
@@ -742,7 +237,7 @@ called mcp__agent-ml-research__approve_experiment
 
 ### Tool result
 
-_source line 7857 · 2026-05-20T19:28:33.156041+00:00_
+_source line 7855 · 2026-05-20T19:28:33.156041+00:00_
 
 {"result":"{\"error\": \"\\\"Approval 'apr_exp_spider_sc_pilot' not found\\\"\"}"}
 
@@ -764,7 +259,7 @@ _source line 7857 · 2026-05-20T19:28:33.156041+00:00_
 
 ### Tool call
 
-_source line 7858 · 2026-05-20T19:28:42.892503+00:00_
+_source line 7856 · 2026-05-20T19:28:42.892503+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -800,7 +295,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7859 · 2026-05-20T19:28:46.404510+00:00_
+_source line 7857 · 2026-05-20T19:28:46.404510+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd4f81414a4b291cdf22ec61b8\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 31, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[SECRET APPROVED] 密钥 `openrouter_api_key` 已批准。请调用 `poll_secret_request('secret_req_openrouter_api_key_1779300909', 'struct_self_consist_ie')` 获取密钥值并继续原任务。\"}, \"error\": \"\"}"}
 
@@ -822,7 +317,7 @@ _source line 7859 · 2026-05-20T19:28:46.404510+00:00_
 
 ### Assistant
 
-_source line 7860 · 2026-05-20T19:28:48.699951+00:00_
+_source line 7858 · 2026-05-20T19:28:48.699951+00:00_
 
 Spider SQL 审批失败——registry 中无此实验。Agent 需要先注册再提交审批。
 
@@ -849,7 +344,7 @@ Spider SQL 审批失败——registry 中无此实验。Agent 需要先注册再
 
 ### User
 
-_source line 7861 · 2026-05-20T19:32:38.738925+00:00_
+_source line 7859 · 2026-05-20T19:32:38.738925+00:00_
 
 [CRON 需要判断] 实验 **exp_tlow_fewnerd_inference** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -872,7 +367,7 @@ _source line 7861 · 2026-05-20T19:32:38.738925+00:00_
 
 ### Tool call
 
-_source line 7862 · 2026-05-20T19:32:46.555406+00:00_
+_source line 7860 · 2026-05-20T19:32:46.555406+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -908,7 +403,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7863 · 2026-05-20T19:32:50.547516+00:00_
+_source line 7861 · 2026-05-20T19:32:50.547516+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd488d6d8a0b3ebf4b718dcb0f\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 33, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[WORKER DONE] Worker worker_run_exp_backup1_het_temp_scierc_20260520T181112 已完成（status=done）。用 `get_worker_status('worker_run_exp_backup1_het_temp_scierc_20260520T181112')` 读取结果，然后处理。\\n\\n- worker_id: wo\"}, \"error\": \"\"}"}
 
@@ -937,7 +432,7 @@ _source line 7863 · 2026-05-20T19:32:50.547516+00:00_
 
 ### User
 
-_source line 7864 · 2026-05-20T19:34:04.345635+00:00_
+_source line 7862 · 2026-05-20T19:34:04.345635+00:00_
 
 [Agent 回复]:
 [资源] GPU 12/12 分配 | Worker 6/6 (GPU 4 / CPU 2) | 磁盘: 未检查
@@ -988,7 +483,7 @@ Worker 回调到达后立即处理并释放槽位。
 
 ### Assistant
 
-_source line 7865 · 2026-05-20T19:34:09.400318+00:00_
+_source line 7863 · 2026-05-20T19:34:09.400318+00:00_
 
 No response requested.
 
@@ -1015,7 +510,7 @@ No response requested.
 
 ### User
 
-_source line 7866 · 2026-05-20T19:34:26.879014+00:00_
+_source line 7864 · 2026-05-20T19:34:26.879014+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — SCD FewNERD Fallback Eval (exp_b1_scd_fewnerd_curriculum_q)
@@ -1067,7 +562,7 @@ Worker 报告 SCD fallback 在 FewNERD 上 greedy F1 从 0.7482 提升至 **0.78
 
 ### Tool call
 
-_source line 7867 · 2026-05-20T19:34:50.250145+00:00_
+_source line 7865 · 2026-05-20T19:34:50.250145+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -1103,7 +598,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7868 · 2026-05-20T19:34:53.920911+00:00_
+_source line 7866 · 2026-05-20T19:34:53.920911+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd4831c08a0b2030716b9a69e2\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 34, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[APPROVAL GRANTED] 实验 **exp_cross_model_consistency** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。\"}, \"error\": \"\"}"}
 
@@ -1125,7 +620,7 @@ _source line 7868 · 2026-05-20T19:34:53.920911+00:00_
 
 ### Tool call
 
-_source line 7869 · 2026-05-20T19:35:05.186600+00:00_
+_source line 7867 · 2026-05-20T19:35:05.186600+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -1159,7 +654,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7870 · 2026-05-20T19:35:05.789304+00:00_
+_source line 7868 · 2026-05-20T19:35:05.789304+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -1181,7 +676,7 @@ _source line 7870 · 2026-05-20T19:35:05.789304+00:00_
 
 ### Assistant
 
-_source line 7871 · 2026-05-20T19:35:08.431619+00:00_
+_source line 7869 · 2026-05-20T19:35:08.431619+00:00_
 
 SCD +3.84pp 是强正向结果，但 Reviewer 的两个 concern 都成立——需要 gold-only control 隔离贡献。
 
@@ -1208,7 +703,7 @@ SCD +3.84pp 是强正向结果，但 Reviewer 的两个 concern 都成立——�
 
 ### User
 
-_source line 7872 · 2026-05-20T19:41:14.888624+00:00_
+_source line 7870 · 2026-05-20T19:41:14.888624+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_asb_adaptive_budget v2 Bugfix
@@ -1261,7 +756,7 @@ Worker 修复了此前标记的 4 个 critical bugs 并重跑实验，registry �
 
 ### Tool call
 
-_source line 7873 · 2026-05-20T19:41:44.794150+00:00_
+_source line 7871 · 2026-05-20T19:41:44.794150+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -1297,7 +792,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 7874 · 2026-05-20T19:41:49.910325+00:00_
+_source line 7872 · 2026-05-20T19:41:49.910325+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":40,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -1319,7 +814,7 @@ _source line 7874 · 2026-05-20T19:41:49.910325+00:00_
 
 ### Tool call
 
-_source line 7875 · 2026-05-20T19:41:49.910883+00:00_
+_source line 7873 · 2026-05-20T19:41:49.910883+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -1353,7 +848,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7876 · 2026-05-20T19:41:52.928572+00:00_
+_source line 7874 · 2026-05-20T19:41:52.928572+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -1375,7 +870,7 @@ _source line 7876 · 2026-05-20T19:41:52.928572+00:00_
 
 ### Assistant
 
-_source line 7877 · 2026-05-20T19:41:55.926577+00:00_
+_source line 7875 · 2026-05-20T19:41:55.926577+00:00_
 
 ASB 修复后完全 negative（bugs 驱动的虚假正向）。更严重的是 Reviewer 发现 SCD 可能也是 metric 错位的假象。
 
@@ -1402,7 +897,7 @@ ASB 修复后完全 negative（bugs 驱动的虚假正向）。更严重的是 R
 
 ### User
 
-_source line 7878 · 2026-05-20T19:44:44.050716+00:00_
+_source line 7876 · 2026-05-20T19:44:44.050716+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — SCD Standard Eval (exp_b1_scd_fewnerd_standard) + 两变体对比
@@ -1459,7 +954,7 @@ _source line 7878 · 2026-05-20T19:44:44.050716+00:00_
 
 ### Tool call
 
-_source line 7879 · 2026-05-20T19:45:07.884310+00:00_
+_source line 7877 · 2026-05-20T19:45:07.884310+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -1493,7 +988,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7880 · 2026-05-20T19:45:10.884349+00:00_
+_source line 7878 · 2026-05-20T19:45:10.884349+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -1522,7 +1017,7 @@ _source line 7880 · 2026-05-20T19:45:10.884349+00:00_
 
 ### User
 
-_source line 7881 · 2026-05-20T20:02:02.260595+00:00_
+_source line 7879 · 2026-05-20T20:02:02.260595+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — SCD Metric Verification 结果确认
@@ -1586,7 +1081,7 @@ Worker 独立验证了我此前提出的 [severity: critical] 度量口径问题
 
 ### Tool call
 
-_source line 7882 · 2026-05-20T20:02:27.993633+00:00_
+_source line 7880 · 2026-05-20T20:02:27.993633+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -1632,7 +1127,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 7883 · 2026-05-20T20:02:28.947012+00:00_
+_source line 7881 · 2026-05-20T20:02:28.947012+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M046\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -1654,7 +1149,7 @@ _source line 7883 · 2026-05-20T20:02:28.947012+00:00_
 
 ### Tool call
 
-_source line 7884 · 2026-05-20T20:02:33.663191+00:00_
+_source line 7882 · 2026-05-20T20:02:33.663191+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -1696,7 +1191,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 7885 · 2026-05-20T20:02:34.114928+00:00_
+_source line 7883 · 2026-05-20T20:02:34.114928+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D205\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -1718,7 +1213,7 @@ _source line 7885 · 2026-05-20T20:02:34.114928+00:00_
 
 ### Tool call
 
-_source line 7886 · 2026-05-20T20:05:23.900184+00:00_
+_source line 7884 · 2026-05-20T20:05:23.900184+00:00_
 
 called ToolSearch
 
@@ -1754,7 +1249,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7887 · 2026-05-20T20:05:23.950795+00:00_
+_source line 7885 · 2026-05-20T20:05:23.950795+00:00_
 
 No matching deferred tools found
 
@@ -1776,7 +1271,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 7888 · 2026-05-20T20:05:27.110699+00:00_
+_source line 7886 · 2026-05-20T20:05:27.110699+00:00_
 
 called ToolSearch
 
@@ -1812,7 +1307,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7889 · 2026-05-20T20:05:27.161325+00:00_
+_source line 7887 · 2026-05-20T20:05:27.161325+00:00_
 
 
 
@@ -1834,7 +1329,7 @@ _source line 7889 · 2026-05-20T20:05:27.161325+00:00_
 
 ### Tool call
 
-_source line 7890 · 2026-05-20T20:05:29.996270+00:00_
+_source line 7888 · 2026-05-20T20:05:29.996270+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -1868,7 +1363,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool call
 
-_source line 7891 · 2026-05-20T20:05:30.046867+00:00_
+_source line 7889 · 2026-05-20T20:05:30.046867+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -1902,7 +1397,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7892 · 2026-05-20T20:05:30.902356+00:00_
+_source line 7890 · 2026-05-20T20:05:30.902356+00:00_
 
 {"result":"**项目**: `struct_self_consist_ie`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    autodl-5090 (connect.bjb1.seetacloud.com) [root] + autodl-5090-b (connect.bjb2.seetacloud.com) [root] + autodl-5090-c (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/autodl-tmp/struct_self_consist_ie\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n**当前阶段**:\n  **🔴 Writing v3 + Method Sprint (R26 → R27)**\n  R26: 3.5/3.0 = avg 3.25。R2 新 attack: May 2025 EL4NER scoop + hobelsberger 疑似虚构 + entity construction overclaim。\n  策略: 双线并行 — Track A writing v3 (citation fix + scope tighten) + Track B method breakthrough (E_θ + ESJ)。\n  目标: v4 整合后 R27 → 4.0+ (Conference)\n\n**决策日志**: 205 条记录\n**论文溯源**: 覆盖率 59/92\n\n── 📊 研究进度 ──\n实验: 208 个 (运行中 3 | 待处理 19 | 完成 186 | 成功 111)\n\n  e1_component_wise_re_sj  DONE (negative)\n  mvp_pilot_004            DONE (negative)\n  ft_002_v2                DONE (success)\n  mvp_pilot_002            DONE (failed)\n  ft_002                   DONE (killed)\n  ft_001                   DONE (success)\n  mvp_pilot_003            DONE (negative)\n  mvp_pilot_001            DONE (negative)\n\n── 📝 最新报告 ──\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T20:00:56Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 206 个实验 — ALLOCATED 1, DONE 185, PENDING 2, PREPARING 15, RUNNING 3\n**DONE 分布**: failed 5, killed 30, negative 43, success 107\n\n### GPU 占用\n- **分配**: 12 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3, autodl-5090-b:cuda:0, autodl-5090-b:cuda:1, autodl-5090-b:cuda:2, autodl-5090-b:cuda:3, autodl-5090-c:cuda:0, autodl-5090-c:cuda:1, autodl-5090-c:cuda:2, autodl-5090-c:cuda:3\n- **实际运行**: 4 张 — autodl-5090"}
 
@@ -1924,7 +1419,7 @@ _source line 7892 · 2026-05-20T20:05:30.902356+00:00_
 
 ### Tool result
 
-_source line 7893 · 2026-05-20T20:05:30.953539+00:00_
+_source line 7891 · 2026-05-20T20:05:30.953539+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":47,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令 — 最高优先级] SCD 结论可能因 metric 错位而虚假，必须立即验证。\\n\\n**问题**：\\n- SCD fallback eval 报告 baseline greedy F1 \"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 低优先级] 补充 MRSC 和 ESJ 的 registry metrics 字段：\\n\\n**exp_esj_entity_self_judgment**:\\n```\\nmetrics:\\n\",\"queued_at\":1779301068.7338355},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_exp_a2_humaneval_sc_20260520T181633 已完成（status=done）。用 `get_worker_status('worker_code_\",\"queued_at\":1779301186.0677145},{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] exp_a2_humaneval_sc 代码修复，运行前必须完成：\\n\\n**Bug（必修）**：`evaluate()` 中的 `mv_pass_rate` 仅在 test-passin\",\"queued_at\":1779301349.2139301},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_exp_b_frontier_sc_20260520T181716 已完成（status=done）。用 `get_worker_status('worker_code_ex\",\"queued_at\":1779301512.5312839},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_exp_a3_ace05_re_20260520T181651 已完成（status=done）。用 `get_worker_status('worker_code_exp_\",\"queued_at\":1779301536.309242},{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 全局决策，影响多个实验]\\n\\n**决策 1: F1 统一为 micro-F1**\\n所有 NER 类实验统一使用 micro-average F1（aggregate TP/FP/FN \",\"queued_at\":1779301817.4288294},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_ops_14b_kill_after_n8_20260520T183707 已完成（status=done）。用 `get_worker_status('worker_ops_14b_\",\"queued_at\":1779302337.7956672},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_code_exp_a1_spider_sql_sc_20260520T181611 已完成（status=done）。用 `get_worker_status('worker_code\",\"queued_at\":1779302568.101486},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_run_exp_backup3_distill_verifier_20260520T184111 已完成（status=done）。用 `get_wo
 …[truncated 7594 chars]
@@ -1947,7 +1442,7 @@ _source line 7893 · 2026-05-20T20:05:30.953539+00:00_
 
 ### Tool call
 
-_source line 7894 · 2026-05-20T20:05:43.542468+00:00_
+_source line 7892 · 2026-05-20T20:05:43.542468+00:00_
 
 called ToolSearch
 
@@ -1983,7 +1478,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7895 · 2026-05-20T20:05:43.542788+00:00_
+_source line 7893 · 2026-05-20T20:05:43.542788+00:00_
 
 
 
@@ -2005,7 +1500,7 @@ _source line 7895 · 2026-05-20T20:05:43.542788+00:00_
 
 ### Tool call
 
-_source line 7896 · 2026-05-20T20:06:11.063327+00:00_
+_source line 7894 · 2026-05-20T20:06:11.063327+00:00_
 
 called ToolSearch
 
@@ -2041,7 +1536,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7897 · 2026-05-20T20:06:11.113882+00:00_
+_source line 7895 · 2026-05-20T20:06:11.113882+00:00_
 
 
 
@@ -2063,7 +1558,7 @@ _source line 7897 · 2026-05-20T20:06:11.113882+00:00_
 
 ### Tool call
 
-_source line 7898 · 2026-05-20T20:06:14.625038+00:00_
+_source line 7896 · 2026-05-20T20:06:14.625038+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -2101,7 +1596,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool call
 
-_source line 7899 · 2026-05-20T20:06:14.625415+00:00_
+_source line 7897 · 2026-05-20T20:06:14.625415+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -2130,7 +1625,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 7900 · 2026-05-20T20:06:14.676092+00:00_
+_source line 7898 · 2026-05-20T20:06:14.676092+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T20:00:56Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 206 个实验 — ALLOCATED 1, DONE 185, PENDING 2, PREPARING 15, RUNNING 3\\n**DONE 分布**: failed 5, killed 30, negative 43, success 107\\n\\n### GPU 占用\\n- **分配**: 12 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3, autodl-5090-b:cuda:0, autodl-5090-b:cuda:1, autodl-5090-b:cuda:2, autodl-5090-b:cuda:3, autodl-5090-c:cuda:0, autodl-5090-c:cuda:1, autodl-5090-c:cuda:2, autodl-5090-c:cuda:3\\n- **实际运行**: 4 张 — autodl-5090:cuda:0(exp_qwen25_32b_fewnerd), autodl-5090:cuda:1(exp_qwen25_32b_fewnerd), autodl-5090:cuda:2(exp_qwen25_32b_fewnerd), autodl-5090:cuda:3(exp_qwen25_32b_fewnerd)\\n- **空闲（分配了没跑）**: autodl-5090-b:cuda:0, autodl-5090-b:cuda:1, autodl-5090-b:cuda:2, autodl-5090-b:cuda:3, autodl-5090-c:cuda:1, autodl-5090-c:cuda:2, autodl-5090-c:cuda:3\\n\\n### 💾 磁盘余量\\n- **autodl-5090**:\\n  - `/autodl-pub`: 9.0T/14T 可用（已用 36%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\n- **autodl-5090-b**:\\n  - `/autodl-pub`: 11T/14T 可用（已用 24%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 427G/879G 可用（已用 49%）\\n- **autodl-5090-c**:\\n  - `/autodl-pub`: 7.0T/14T 可用（已用 50%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_qwen25_32b_fewnerd` | autodl-5090 | cuda:0,cuda:1,cuda:2,cuda:3 | 804438 | `…truct_self_consist_ie/logs/train_qwen25_32b_fewnerd_s42.log` |\\n| `exp_14b_inference_fewnerd` | autodl-5090-c | ? | 217960 | `—` |\\n| `exp_b_frontier_sc_fewnerd` | local (CPU + OpenRouter API) | ? | ? | `—` |\\
 …[truncated 7735 chars]
@@ -2153,7 +1648,7 @@ _source line 7900 · 2026-05-20T20:06:14.676092+00:00_
 
 ### Tool result
 
-_source line 7901 · 2026-05-20T20:06:14.676570+00:00_
+_source line 7899 · 2026-05-20T20:06:14.676570+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -2175,7 +1670,7 @@ _source line 7901 · 2026-05-20T20:06:14.676570+00:00_
 
 ### Tool call
 
-_source line 7902 · 2026-05-20T20:07:22.098996+00:00_
+_source line 7900 · 2026-05-20T20:07:22.098996+00:00_
 
 called mcp__agent-ml-research__replace_agent_queue
 
@@ -2211,7 +1706,7 @@ called mcp__agent-ml-research__replace_agent_queue
 
 ### Tool result
 
-_source line 7903 · 2026-05-20T20:07:22.750824+00:00_
+_source line 7901 · 2026-05-20T20:07:22.750824+00:00_
 
 {"result":"{\"cancelled\":47,\"new_message_queued\":true,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -2233,7 +1728,7 @@ _source line 7903 · 2026-05-20T20:07:22.750824+00:00_
 
 ### Tool call
 
-_source line 7904 · 2026-05-20T20:07:34.467219+00:00_
+_source line 7902 · 2026-05-20T20:07:34.467219+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -2267,7 +1762,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7905 · 2026-05-20T20:07:37.327379+00:00_
+_source line 7903 · 2026-05-20T20:07:37.327379+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -2289,7 +1784,7 @@ _source line 7905 · 2026-05-20T20:07:37.327379+00:00_
 
 ### Tool call
 
-_source line 7906 · 2026-05-20T20:07:40.086999+00:00_
+_source line 7904 · 2026-05-20T20:07:40.086999+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -2323,7 +1818,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool result
 
-_source line 7907 · 2026-05-20T20:07:40.790446+00:00_
+_source line 7905 · 2026-05-20T20:07:40.790446+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-012\", \"name\": \"baseline_logprob\", \"claim\": 1, \"description\": \"Compute sequence log-probability for all existing pilot samples (SciERC NER+RE) and new dataset pilots. Correlate log-prob with F1 (ρ, AUROC, τ). If SJ does NOT beat log-prob, the 16x inference cost is unjustified and paper contribution weakens drastically. THIS IS THE MAKE-OR-BREAK EXPERIMENT.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"note\": \"Needs vLLM forward pass to extract log-probs from existing samples. ~1h per dataset on 1 GPU. For new datasets, capture log-probs during pilot inference. Also compute on pilot_004/005 existing data if log-probs weren't saved.\\n\", \"registry_id\": \"exp_012_logprob_baseline\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ner_full_rho_sj\": 0.3565, \"ner_full_rho_fk\": 0.2651, \"ner_full_rho_logprob\": 0.1396, \"ner_full_rho_greedy_logprob\": 0.1615, \"ner_full_tau_sj\": 0.2658, \"ner_full_tau_logprob\": 0.1006, \"ner_full_auroc_sj\": 0.6892, \"ner_full_auroc_fk\": 0.6292, \"ner_full_auroc_logprob\": 0.5907, \"ner_full_n\": 529, \"ner_sj_vs_logprob_delta\": 0.2169, \"re_full_rho_sj\": 0.2112, \"re_full_rho_fk\": 0.2528, \"re_full_rho_logprob\": 0.2467, \"re_full_auroc_sj\": 0.5916, \"re_full_auroc_fk\": 0.6262, \"re_full_auroc_logprob\": 0.6186, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3683, \"re_cond_rho_fk\": 0.3168, \"re_cond_rho_logprob\": 0.1457, \"re_cond_auroc_sj\": 0.6839, \"re_cond_auroc_logprob\": 0.5487, \"re_cond_n\": 296, \"diagnosis\": \"NER: SJ crushes logprob (rho +0.217). RE full: logprob slightly ahead. RE cond: SJ crushes logprob (rho +0.223). SJ unique value CONFIRMED.\"}}, {\"id\": \"exp-013\", \"name\": \"baseline_exact_match\", \"claim\": 1, \"description\": \"Exact-match voting rate: what fraction of N samples produce identical entity/relation sets? Correlate with F1. This is the direct analogue of Wang et a
 …[truncated 31659 chars]
@@ -2346,7 +1841,7 @@ _source line 7907 · 2026-05-20T20:07:40.790446+00:00_
 
 ### Tool call
 
-_source line 7908 · 2026-05-20T20:07:57.830167+00:00_
+_source line 7906 · 2026-05-20T20:07:57.830167+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -2384,7 +1879,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 7909 · 2026-05-20T20:07:57.881602+00:00_
+_source line 7907 · 2026-05-20T20:07:57.881602+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/paper_framing.md\", \"content\": \"# Paper Framing — struct_self_consist_ie\\n\\n> Updated 2026-05-20 — D189/D190 B2 LEAKAGE FIX + P DOWNGRADE. Title: \\\"Strong Predictors, Weak Selectors: Addressing the Correlation-Selection Gap in Self-Consistency for Named Entity Recognition\\\". **Round 10 critical fixes**: (1) B2 in-domain +3.62pp CONFIRMED LEAKED (train-on-test) — deleted from paper, awaiting out-of-fold re-evaluation; cross-dataset negative transfer valid; (2) P \\\"Impossibility Theorem\\\" downgraded to \\\"Degeneracy Decomposition\\\" — Theorem 1 trivial, Theorem 2 tautological, \\\"information-theoretic\\\" overclaim removed; (3) Ceiling-gap framing retained; (4) MBR v3 retained; (5) FewNERD-primary retained; (6) N Inverse Scaling core finding solid (θ=0.5 immune). Target: Main 4.3+. Scale: 7B→14B→32B→72B Qwen2.5 + 8B cross-family (Qwen3+LLaMA). 14B/32B training in progress.\\n\\n## Target Venue\\n- Primary: EMNLP 2026 **Main Conference** (via ARR May 2026)\\n- Deadline: ARR May cycle, 2026-05-25\\n\\n## Core Claims (D157 updated — TRIPLE CONTRIBUTION: QE + diagnostic + prescriptive)\\n\\n### Claim 1 (PRIMARY — Dual Contribution: QE Framework + Selection Diagnostic)\\n**Positive contribution (A)**: Confidence signals reliably predict structured IE output quality at the population level (AUROC up to 0.82, ρ up to 0.45), enabling practical QE/selective prediction.\\n**Diagnostic contribution (B)** (D154 revised): Selection viability depends on LP signal quality and dataset characteristics, not degeneracy alone:\\n- **Degeneracy as headroom predictor**: High degeneracy eliminates selection headroom (CoNLL 47.4% degen → 0 net gain). Within fixed dataset-model settings, degeneracy causally modulates LP effectiveness (SciERC epoch ablation: −1.18/+0.74/+0.99pp at 3/5/10 epochs; per-entity-type within Few-NERD ρ=−0.881). But acro
 …[truncated 40324 chars]
@@ -2407,7 +1902,7 @@ _source line 7909 · 2026-05-20T20:07:57.881602+00:00_
 
 ### Tool call
 
-_source line 7910 · 2026-05-20T20:08:29.322006+00:00_
+_source line 7908 · 2026-05-20T20:08:29.322006+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -2441,7 +1936,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 7911 · 2026-05-20T20:08:29.372927+00:00_
+_source line 7909 · 2026-05-20T20:08:29.372927+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"content\": \"# struct_self_consist_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-20 14:43 UTC | 更新原因: R26 3.5/3.0 — dual-track sprint (writing v3 + method E_θ/ESJ), Pre-Review Gate Step 6\\n\\n## 核心方向\\n**Self-Consistency for NER: Ceiling-Gap Diagnostic → Prescriptive Framework**。QE vs selection 正交分解 + correlation-selection gap (two-tier) + threshold-adaptive SC + entity-level self-judgment。详见 paper_framing.md。\\n\\n## 当前阶段\\n**🔴 Writing v3 + Method Sprint (R26 → R27)**\\nR26: 3.5/3.0 = avg 3.25。R2 新 attack: May 2025 EL4NER scoop + hobelsberger 疑似虚构 + entity construction overclaim。\\n策略: 双线并行 — Track A writing v3 (citation fix + scope tighten) + Track B method breakthrough (E_θ + ESJ)。\\n目标: v4 整合后 R27 → 4.0+ (Conference)\\n\\n## 审稿回溯\\n\\n**R25 (3.5/3.5)**: SYSTEMIC_A Framing Overclaim + SYSTEMIC_B Statistical Claim Strength → v2 修复全落地\\n**R26 (3.5/3.0)**: R1 认可 v2 修复; R2 新发现:\\n- Missing citations (EL4NER May 2025, Xie 2023 entity voting)\\n- hobelsberger2025systematic 疑似虚构 (integrity risk)\\n- Entity construction = MBR direct application, not novel method\\n- Unqualified \\\"first\\\" claims without \\\"for NER\\\" scope\\n\\n## Track A: Writing v3 (30-45 min, CPU)\\n- [ ] A1: Citation integrity — Semantic Scholar verify 96 entries, hobelsberger 重点 (Worker dispatched)\\n- [ ] A2: 补引 EL4NER + Xie 2023 + 4 others (Paper Agent, 依赖 A1)\\n- [ ] A3: grep \\\"first\\\" → all qualified to \\\"for NER\\\" (Worker dispatched)\\n- [ ] A4: Entity construction → MBR-grounded diagnostic ablation (Paper Agent)\\n\\n## Track B: Method Breakthrough\\n| 实验 | 类型 | 资源 | 状态 | ETA |\\n|------|------|------|------|-----|\\n| B1 SCD ×3 (std/fall/θ3) | GPU | 5090-b:0,1,3 | RUNNING | ~01:00 UTC 05-21 |\\n| E_θ Threshold-Adaptive SC ×5 | CPU | 5 Workers | 提交审批中 | +2-3h |\\n| ESJ Entity Self-Judgment | GPU | 5090-c:1 or 3 | 提交审批中 | +3-4h |\\n| 
 …[truncated 2015 chars]
@@ -2464,7 +1959,7 @@ _source line 7911 · 2026-05-20T20:08:29.372927+00:00_
 
 ### Tool call
 
-_source line 7912 · 2026-05-20T20:08:44.480382+00:00_
+_source line 7910 · 2026-05-20T20:08:44.480382+00:00_
 
 called ToolSearch
 
@@ -2500,7 +1995,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7913 · 2026-05-20T20:08:44.531024+00:00_
+_source line 7911 · 2026-05-20T20:08:44.531024+00:00_
 
 
 
@@ -2522,7 +2017,7 @@ _source line 7913 · 2026-05-20T20:08:44.531024+00:00_
 
 ### Tool call
 
-_source line 7914 · 2026-05-20T20:09:13.696026+00:00_
+_source line 7912 · 2026-05-20T20:09:13.696026+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -2560,7 +2055,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 7915 · 2026-05-20T20:09:14.506326+00:00_
+_source line 7913 · 2026-05-20T20:09:14.506326+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"lines\": 77, \"reason\": \"4.5 mandate sprint — SCD negative confirmed, Direction A/B/C/D expansion, 7 GPUs idle crisis\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2582,7 +2077,7 @@ _source line 7915 · 2026-05-20T20:09:14.506326+00:00_
 
 ### Tool call
 
-_source line 7916 · 2026-05-20T20:09:34.070088+00:00_
+_source line 7914 · 2026-05-20T20:09:34.070088+00:00_
 
 called ToolSearch
 
@@ -2618,7 +2113,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7917 · 2026-05-20T20:09:34.125788+00:00_
+_source line 7915 · 2026-05-20T20:09:34.125788+00:00_
 
 
 
@@ -2640,7 +2135,7 @@ _source line 7917 · 2026-05-20T20:09:34.125788+00:00_
 
 ### Tool call
 
-_source line 7918 · 2026-05-20T20:09:38.403099+00:00_
+_source line 7916 · 2026-05-20T20:09:38.403099+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -2676,7 +2171,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 7919 · 2026-05-20T20:09:39.106107+00:00_
+_source line 7917 · 2026-05-20T20:09:39.106107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6fd5065c60a0b35b87fcb1a6bb3\", \"senderId\": \"cli_a97ee92a41b81cb1\", \"createTime\": \"1779307657196\", \"msgType\": \"post\", \"content\": \"队列清理 + 状态同步 Agent 队列积压到 47 条（含 18+ 重复 cron 告警），已全部清理并发送合并指令。 当前 GPU 状态 ： -  5090 (4卡): 32B QLoRA 训练中 ✅ -  5090-b (4卡):  全部空闲  ← 已指令 Agent 立即填满 -  5090-c: cuda:0 跑 14B inference，cuda:1/2/3 空闲 ← SciERC RE + DocRED RE 待启动 关键进展 ： -  SCD 三组实验全部确认为 metric artifact（M046），已指令清理 registry 并取消相关后续 -  Direction A (cross-task) 四个实验代码 Worker 已完成，等 Agent 处理后立即上线 -  Direction B (Frontier SC) 系统报 30min 无日志，已让 Agent 检查是否卡死 -  T_ low inference 已成功，ASB bugfix 后确认 negative 7 张 GPU 空闲是当前最大问题 ，合并指令中 P1-P4 都在解决这个。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6fd4baa75ca8b16ee7374df40d6\", \"senderId\": \"cli_a97ee92a41b81cb1\", \"createTime\": \"1779306310764\", \"msgType\": \"post\", \"content\": \"SCD metric 错位风险升级为 confirmed Reviewer 独立交叉验证发现： -  Baseline greedy micro-F1 ≈ 0.791（从 ASB/T_ low 两个独立实验） -  SCD standard micro-F1 = 0.781 → 实际  -1.0pp -  SCD fallback micro-F1 = 0.787 → 实际  -0.5pp Worker 声称的 +3.84pp 是拿 macro-F1 baseline (0.748) 对比 micro-F1 result (0.787)——metric 口径 + eval scope 双重不一致。 已发 urgent 指令要求 Agent 用 SCD eval 的同一脚本、同一 37648 instances 跑一次 base model greedy eval 获得 ground truth baseline。  在此之前 SCD claim 全部挂起。 如果 SCD 确认为 negative，论文 prescriptive contribution 重心转移到： 1.  Cross-task diagnostic framework （Direction A 正在铺） 2.  Cross-model diversity  (+0.42pp, p <0.001) 3.  Unified negative finding （6 种方法统一证明 entity-level 后处理不超越 MV）→ 这本身是 contribution Direction A/B/C/D 扩展的战略价值在这种情况下更大——cross-task universality + frontier model validation + hallucination reframe 一起撑 4.5。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6fd4a6c758a8b28b270b0824643\", \"senderId\": \"cli_a97ee92a41b81cb1\", \"createTime\": \"1779306112764\", \"msgType\": \"post\", \"content\": \"⚠️ 风险预警：SCD +3.84pp 可能是 metric 错位假象 ASB bugfix 后发现 FewNERD pre-SCD greedy micro-F1 = 0.7911，但 SCD 
 …[truncated 9925 chars]
@@ -2699,7 +2194,7 @@ _source line 7919 · 2026-05-20T20:09:39.106107+00:00_
 
 ### Tool call
 
-_source line 7920 · 2026-05-20T20:10:16.865902+00:00_
+_source line 7918 · 2026-05-20T20:10:16.865902+00:00_
 
 called ToolSearch
 
@@ -2735,7 +2230,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7921 · 2026-05-20T20:10:16.968345+00:00_
+_source line 7919 · 2026-05-20T20:10:16.968345+00:00_
 
 
 
@@ -2757,7 +2252,7 @@ _source line 7921 · 2026-05-20T20:10:16.968345+00:00_
 
 ### Tool call
 
-_source line 7922 · 2026-05-20T20:10:20.980099+00:00_
+_source line 7920 · 2026-05-20T20:10:20.980099+00:00_
 
 called ToolSearch
 
@@ -2793,7 +2288,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7923 · 2026-05-20T20:10:21.031298+00:00_
+_source line 7921 · 2026-05-20T20:10:21.031298+00:00_
 
 
 
@@ -2815,7 +2310,7 @@ _source line 7923 · 2026-05-20T20:10:21.031298+00:00_
 
 ### Tool call
 
-_source line 7924 · 2026-05-20T20:10:32.725114+00:00_
+_source line 7922 · 2026-05-20T20:10:32.725114+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -2849,7 +2344,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7925 · 2026-05-20T20:10:32.775665+00:00_
+_source line 7923 · 2026-05-20T20:10:32.775665+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令 — 最高优先级] SCD 结论可能因 metric 错位而虚假，必须立即验证。\\n\\n**问题**：\\n- SCD fallback eval 报告 baseline greedy F1 \"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 队列清理后合并指令，替代之前 47 条消息]\\n\\n之前队列积压了大量重复 cron 告警和过时指令，已全部清理。以下是当前需要执行的全部任务，按优先级排序。\\n\\n---\\n\\n## P0: \",\"queued_at\":1779307642.713297}],\"idle_seconds\":981}"}
 
@@ -2871,7 +2366,7 @@ _source line 7925 · 2026-05-20T20:10:32.775665+00:00_
 
 ### Tool call
 
-_source line 7926 · 2026-05-20T20:11:02.731066+00:00_
+_source line 7924 · 2026-05-20T20:11:02.731066+00:00_
 
 called Read
 
@@ -2905,7 +2400,7 @@ called Read
 
 ### Tool result
 
-_source line 7927 · 2026-05-20T20:11:02.781868+00:00_
+_source line 7925 · 2026-05-20T20:11:02.781868+00:00_
 
 1	experiments:
 2	- id: exp-012
@@ -2978,7 +2473,7 @@ _source line 7927 · 2026-05-20T20:11:02.781868+00:00_
 
 ### Tool call
 
-_source line 7928 · 2026-05-20T20:11:38.807424+00:00_
+_source line 7926 · 2026-05-20T20:11:38.807424+00:00_
 
 called Edit
 
@@ -3018,7 +2513,7 @@ called Edit
 
 ### Tool result
 
-_source line 7929 · 2026-05-20T20:11:38.808041+00:00_
+_source line 7927 · 2026-05-20T20:11:38.808041+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/experiment_plan.yaml has been updated successfully.
 
@@ -3040,7 +2535,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_co
 
 ### Tool call
 
-_source line 7930 · 2026-05-20T20:11:57.687555+00:00_
+_source line 7928 · 2026-05-20T20:11:57.687555+00:00_
 
 called ToolSearch
 
@@ -3076,7 +2571,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7931 · 2026-05-20T20:11:57.738035+00:00_
+_source line 7929 · 2026-05-20T20:11:57.738035+00:00_
 
 
 
@@ -3098,7 +2593,7 @@ _source line 7931 · 2026-05-20T20:11:57.738035+00:00_
 
 ### Tool call
 
-_source line 7932 · 2026-05-20T20:12:00.448279+00:00_
+_source line 7930 · 2026-05-20T20:12:00.448279+00:00_
 
 called mcp__agent-ml-research__read_mistakes
 
@@ -3134,7 +2629,7 @@ called mcp__agent-ml-research__read_mistakes
 
 ### Tool result
 
-_source line 7933 · 2026-05-20T20:12:00.448696+00:00_
+_source line 7931 · 2026-05-20T20:12:00.448696+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"invalid severity 'critical'. Must be one of: ['high', 'low', 'medium']\", \"metadata\": {}}"}
 
@@ -3156,7 +2651,7 @@ _source line 7933 · 2026-05-20T20:12:00.448696+00:00_
 
 ### Tool call
 
-_source line 7934 · 2026-05-20T20:12:03.037972+00:00_
+_source line 7932 · 2026-05-20T20:12:03.037972+00:00_
 
 called mcp__agent-ml-research__read_mistakes
 
@@ -3192,7 +2687,7 @@ called mcp__agent-ml-research__read_mistakes
 
 ### Tool result
 
-_source line 7935 · 2026-05-20T20:12:03.089447+00:00_
+_source line 7933 · 2026-05-20T20:12:03.089447+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistakes\": [{\"id\": \"M016\", \"date\": \"2026-05-18\", \"category\": \"code_bug\", \"severity\": \"high\", \"summary\": \"Migration audit 声称旧/新 F1 函数完全一致，但 FewNERD LP global ρ 从 0.42 降至 0.22（50% 降幅），论文 4 处引用了旧值\", \"root_cause\": \"migration_audit worker 只比对了 F1 值本身（差异极小），未检查下游指标（ρ、AUROC、selection delta）。微小的 F1 差异在聚合为 ρ 时被放大。同时论文 .tex 文件中的数字在 unified_metrics 迁移后未被系统性扫描更新。\", \"prevention\": \"1. 迁移审计不能只比 primary metric（F1），必须同时比所有下游派生指标（ρ、AUROC、selection delta）。2. 每次指标管道变更后，必须对论文 .tex 做全文 grep 扫描所有数值，与新管道输出交叉验证。3. claim_audit 应包含\\\"数值来源管道版本\\\"字段。\", \"status\": \"active\", \"context\": \"FewNERD LP global ρ: 旧 pipeline (evaluation.per_instance_f1) = 0.42, 新 pipeline (unified_metrics) = 0.22 (4-seed mean 0.217, CI [0.173, 0.260])。论文 4 处 (experiments.tex:123/125, appendix.tex:1219, introduction.tex:23) 引用 0.42。D154 叙事依赖 within-instance ρ (0.5-0.66) 不受影响，但 QE 相关的 global ρ 必须更新。\", \"fix\": \"Paper Agent 紧急修正 4 处：selection 语境改 within-instance ρ≈0.5，QE 语境改 global ρ=0.22。全文定义 global vs within-instance ρ 术语。\", \"related_decisions\": [\"D153\", \"D154\"]}, {\"id\": \"M018\", \"date\": \"2026-05-19\", \"category\": \"communication\", \"severity\": \"high\", \"summary\": \"Abstract ρ=0.50 修改基于 registry 数据而非论文表格交叉验证，导致 claim 无表格支撑\", \"root_cause\": \"R24 Action Matrix 中采纳了将 Abstract ρ 从 0.45 改为 0.50 的建议，该数字来自 exp_015 registry (voting_rho_full=0.5018)，但未与论文表格 (tab:quality_estimation 最大 ρ=0.451) 交叉验证。两个数据源对 SciERC VC 给出 .379 vs .502 的巨大差异，根因是数据管线不同。\", \"prevention\": \"论文中的定量 claim 修改必须以论文表格中的实际数字为准，不能用 registry/实验日志中的数字直接替换。修改前必须 grep 论文 .tex 文件确认目标数字在哪个表格中出现。\", \"status\": \"active\", \"fix\": \"Paper Agent 回滚 ρ=0.50 → 恢复 ρ up to 0.45（由 CoNLL EM .451 支撑）。\", \"related_decisions\": [\"D161\"]}, {\"id\": \"M021\", \"date\": \"2026-05-19\", \"category\": \"agent_behavior\", \"severity\": \"high\", \"summary\": \"Worker 超时导致 registry 误标实验为 FAILED，但远程训练进程实际正常运行\", \"root_cause\": \"Worker 在 07:51 UTC 启动，运行约 5h 后超时/失败，系统自动将关联实验标记为
 …[truncated 14417 chars]
@@ -3215,7 +2710,7 @@ _source line 7935 · 2026-05-20T20:12:03.089447+00:00_
 
 ### Tool call
 
-_source line 7936 · 2026-05-20T20:12:58.210707+00:00_
+_source line 7934 · 2026-05-20T20:12:58.210707+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -3249,7 +2744,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7937 · 2026-05-20T20:12:58.262015+00:00_
+_source line 7935 · 2026-05-20T20:12:58.262015+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":2,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令 — 最高优先级] SCD 结论可能因 metric 错位而虚假，必须立即验证。\\n\\n**问题**：\\n- SCD fallback eval 报告 baseline greedy F1 \"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 队列清理后合并指令，替代之前 47 条消息]\\n\\n之前队列积压了大量重复 cron 告警和过时指令，已全部清理。以下是当前需要执行的全部任务，按优先级排序。\\n\\n---\\n\\n## P0: \",\"queued_at\":1779307642.713297},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/t\",\"queued_at\":1779307900.1004648}],\"idle_seconds\":1126}"}
 
@@ -3271,7 +2766,7 @@ _source line 7937 · 2026-05-20T20:12:58.262015+00:00_
 
 ### Tool call
 
-_source line 7938 · 2026-05-20T20:13:40.935446+00:00_
+_source line 7936 · 2026-05-20T20:13:40.935446+00:00_
 
 called ToolSearch
 
@@ -3307,7 +2802,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7939 · 2026-05-20T20:13:41.033878+00:00_
+_source line 7937 · 2026-05-20T20:13:41.033878+00:00_
 
 
 
@@ -3329,7 +2824,7 @@ _source line 7939 · 2026-05-20T20:13:41.033878+00:00_
 
 ### Tool call
 
-_source line 7940 · 2026-05-20T20:14:15.427393+00:00_
+_source line 7938 · 2026-05-20T20:14:15.427393+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -3363,7 +2858,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7941 · 2026-05-20T20:14:15.477921+00:00_
+_source line 7939 · 2026-05-20T20:14:15.477921+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 队列清理后合并指令，替代之前 47 条消息]\\n\\n之前队列积压了大量重复 cron 告警和过时指令，已全部清理。以下是当前需要执行的全部任务，按优先级排序。\\n\\n---\\n\\n## P0: \"},\"pending\":[{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/t\",\"queued_at\":1779307900.1004648}],\"idle_seconds\":3}"}
 
@@ -3385,7 +2880,7 @@ _source line 7941 · 2026-05-20T20:14:15.477921+00:00_
 
 ### Assistant
 
-_source line 7942 · 2026-05-20T20:14:35.777969+00:00_
+_source line 7940 · 2026-05-20T20:14:35.777969+00:00_
 
 Agent has moved on to my consolidated instruction (idle_seconds=3 — just started). The SCD verification is done. Good progress.
 
@@ -3424,7 +2919,7 @@ Current state summary:
 
 ### User
 
-_source line 7943 · 2026-05-20T20:14:36.255665+00:00_
+_source line 7941 · 2026-05-20T20:14:36.255665+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — ROADMAP 更新审查 (2026-05-20 20:09 UTC)
@@ -3506,7 +3001,7 @@ Worker 已派发。同时检查 ASB bugfix Worker 结果（它报告的 micro-F1
 
 ### Tool call
 
-_source line 7944 · 2026-05-20T20:15:32.369611+00:00_
+_source line 7942 · 2026-05-20T20:15:32.369611+00:00_
 
 called ToolSearch
 
@@ -3542,7 +3037,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7945 · 2026-05-20T20:15:32.420219+00:00_
+_source line 7943 · 2026-05-20T20:15:32.420219+00:00_
 
 
 
@@ -3564,7 +3059,7 @@ _source line 7945 · 2026-05-20T20:15:32.420219+00:00_
 
 ### Tool call
 
-_source line 7946 · 2026-05-20T20:16:03.184801+00:00_
+_source line 7944 · 2026-05-20T20:16:03.184801+00:00_
 
 called ToolSearch
 
@@ -3600,7 +3095,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7947 · 2026-05-20T20:16:03.285393+00:00_
+_source line 7945 · 2026-05-20T20:16:03.285393+00:00_
 
 
 
@@ -3622,7 +3117,7 @@ _source line 7947 · 2026-05-20T20:16:03.285393+00:00_
 
 ### Tool call
 
-_source line 7948 · 2026-05-20T20:16:06.375315+00:00_
+_source line 7946 · 2026-05-20T20:16:06.375315+00:00_
 
 called mcp__agent-ml-research__approve_experiment
 
@@ -3658,7 +3153,7 @@ called mcp__agent-ml-research__approve_experiment
 
 ### Tool result
 
-_source line 7949 · 2026-05-20T20:16:06.627318+00:00_
+_source line 7947 · 2026-05-20T20:16:06.627318+00:00_
 
 {"result":"{\"error\": \"\\\"Approval 'apr_exp_spider_sc_pilot' not found\\\"\"}"}
 
@@ -3680,7 +3175,7 @@ _source line 7949 · 2026-05-20T20:16:06.627318+00:00_
 
 ### Tool call
 
-_source line 7950 · 2026-05-20T20:16:22.965230+00:00_
+_source line 7948 · 2026-05-20T20:16:22.965230+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -3714,7 +3209,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7951 · 2026-05-20T20:16:23.015731+00:00_
+_source line 7949 · 2026-05-20T20:16:23.015731+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令 — 队列清理后合并指令，替代之前 47 条消息]\\n\\n之前队列积压了大量重复 cron 告警和过时指令，已全部清理。以下是当前需要执行的全部任务，按优先级排序。\\n\\n---\\n\\n## P0: \"},\"pending\":[{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/t\",\"queued_at\":1779307900.1004648}],\"idle_seconds\":131}"}
 
@@ -3736,7 +3231,7 @@ _source line 7951 · 2026-05-20T20:16:23.015731+00:00_
 
 ### Assistant
 
-_source line 7952 · 2026-05-20T20:16:38.912836+00:00_
+_source line 7950 · 2026-05-20T20:16:38.912836+00:00_
 
 Agent actively processing the consolidated instruction (131s in). It's likely spawning multiple Workers for the P0-P5 tasks. This is a complex instruction so processing time is expected.
 
@@ -3770,7 +3265,7 @@ No further action needed from me until the Agent responds or the 30-minute GPU v
 
 ### User
 
-_source line 7953 · 2026-05-20T20:34:15.094513+00:00_
+_source line 7951 · 2026-05-20T20:34:15.094513+00:00_
 
 [Agent 回复]:
 P0 registry 清理完成（6个 SCD 相关实验已标记 negative/killed）。现在并行派 5 个 Worker 处理 P1-P4。
@@ -3792,7 +3287,7 @@ P0 registry 清理完成（6个 SCD 相关实验已标记 negative/killed）。�
 
 ### Assistant
 
-_source line 7954 · 2026-05-20T20:34:31.852671+00:00_
+_source line 7952 · 2026-05-20T20:34:31.852671+00:00_
 
 Agent 执行正确——P0 SCD 清理完成，5 个 Worker 并行派出处理 P1-P4。等 Worker 回报，重点关注 RE 实验是否在 30 分钟内上 GPU。
 
@@ -3819,7 +3314,7 @@ Agent 执行正确——P0 SCD 清理完成，5 个 Worker 并行派出处理 P1
 
 ### User
 
-_source line 7955 · 2026-05-20T20:37:56.384296+00:00_
+_source line 7953 · 2026-05-20T20:37:56.384296+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_14b_inference_fewnerd 误判为 failed
@@ -3876,7 +3371,7 @@ Worker 可能检查了错误的路径或在 /tmp 日志丢失后误判整个实�
 
 ### Tool call
 
-_source line 7956 · 2026-05-20T20:38:09.166603+00:00_
+_source line 7954 · 2026-05-20T20:38:09.166603+00:00_
 
 called ToolSearch
 
@@ -3912,7 +3407,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 7957 · 2026-05-20T20:38:09.268198+00:00_
+_source line 7955 · 2026-05-20T20:38:09.268198+00:00_
 
 
 
@@ -3934,7 +3429,7 @@ _source line 7957 · 2026-05-20T20:38:09.268198+00:00_
 
 ### Tool call
 
-_source line 7958 · 2026-05-20T20:38:18.154417+00:00_
+_source line 7956 · 2026-05-20T20:38:18.154417+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -3970,7 +3465,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 7959 · 2026-05-20T20:38:19.609294+00:00_
+_source line 7957 · 2026-05-20T20:38:19.609294+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":6,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -3992,7 +3487,7 @@ _source line 7959 · 2026-05-20T20:38:19.609294+00:00_
 
 ### Tool call
 
-_source line 7960 · 2026-05-20T20:38:30.089367+00:00_
+_source line 7958 · 2026-05-20T20:38:30.089367+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -4040,7 +3535,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 7961 · 2026-05-20T20:38:30.263182+00:00_
+_source line 7959 · 2026-05-20T20:38:30.263182+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M047\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4062,7 +3557,7 @@ _source line 7961 · 2026-05-20T20:38:30.263182+00:00_
 
 ### Assistant
 
-_source line 7962 · 2026-05-20T20:38:48.477899+00:00_
+_source line 7960 · 2026-05-20T20:38:48.477899+00:00_
 
 M047 logged, urgent message inserted at queue front. Positive note from the Reviewer: DocRED RE SC already launched (PID 233024) — Direction A is in motion.
 
@@ -4091,7 +3586,7 @@ This is the **4th time** a Worker has given a false "failed" diagnosis on a runn
 
 ### User
 
-_source line 7963 · 2026-05-20T20:41:08.797258+00:00_
+_source line 7961 · 2026-05-20T20:41:08.797258+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — HumanEval SC Bugfix (exp_a2_humaneval_sc)
@@ -4126,7 +3621,7 @@ _source line 7963 · 2026-05-20T20:41:08.797258+00:00_
 
 ### Assistant
 
-_source line 7964 · 2026-05-20T20:41:25.004358+00:00_
+_source line 7962 · 2026-05-20T20:41:25.004358+00:00_
 
 HumanEval 的 greedy baseline 实际是 T=1.0 single sample（OpenRouter 不支持 T=0）。实验设计仍然有效——比较的是 single sample vs MV at same T，这是更干净的 controlled comparison。论文写作时用 "pass@1 (single sample)" 不用 "greedy"。已记录，Paper Agent 整合时注意术语。
 
@@ -4155,7 +3650,7 @@ HumanEval 的 greedy baseline 实际是 T=1.0 single sample（OpenRouter 不支�
 
 ### User
 
-_source line 7965 · 2026-05-20T20:57:38.609407+00:00_
+_source line 7963 · 2026-05-20T20:57:38.609407+00:00_
 
 [Agent 回复]:
 [资源] GPU 8/12 在跑 (5090: 4/4, 5090-b: 0/4 ⚠️, 5090-c: 3/4) | Worker 3/6 (GPU 1 / CPU 2) | 磁盘: 未检查
@@ -4236,7 +3731,7 @@ Worker 仍在运行 (turn 15)，正在等待第一个 instance 完成以估算 t
 
 ### Tool call
 
-_source line 7966 · 2026-05-20T20:58:47.252330+00:00_
+_source line 7964 · 2026-05-20T20:58:47.252330+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -4270,7 +3765,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7967 · 2026-05-20T20:58:51.229534+00:00_
+_source line 7965 · 2026-05-20T20:58:51.229534+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd6466ba4a4b2260f3fa2c6c44\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 12, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 紧急指令] exp_14b_inference_fewnerd registry 误标为 DONE/failed，必须立即恢复为 RUNNING。\\n\\n**Reviewer 独立核实结论**：\\n- PID 230885 仍在运行（VLLM on 5090-c:cuda:0, 31052 MiB）\\n- FewNERD N=1 完成（greedy_f1=0\"}, \"error\": \"\"}"}
 
@@ -4292,7 +3787,7 @@ _source line 7967 · 2026-05-20T20:58:51.229534+00:00_
 
 ### Tool call
 
-_source line 7968 · 2026-05-20T20:59:13.052580+00:00_
+_source line 7966 · 2026-05-20T20:59:13.052580+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -4326,7 +3821,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7969 · 2026-05-20T20:59:13.654663+00:00_
+_source line 7967 · 2026-05-20T20:59:13.654663+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -4348,7 +3843,7 @@ _source line 7969 · 2026-05-20T20:59:13.654663+00:00_
 
 ### Assistant
 
-_source line 7970 · 2026-05-20T20:59:17.099846+00:00_
+_source line 7968 · 2026-05-20T20:59:17.099846+00:00_
 
 Direction A experiments running, first results in ~30 minutes. 14B registry fixed. 5090-b reallocation instruction sent. Now waiting for Direction A results to evaluate cross-task universality and decide on Paper Agent integration.
 
@@ -4375,7 +3870,7 @@ Direction A experiments running, first results in ~30 minutes. 14B registry fixe
 
 ### User
 
-_source line 7971 · 2026-05-20T20:59:19.104668+00:00_
+_source line 7969 · 2026-05-20T20:59:19.104668+00:00_
 
 [Agent 回复]:
 Director 指令全部执行完毕：
@@ -4409,7 +3904,7 @@ Director 指令全部执行完毕：
 
 ### Assistant
 
-_source line 7972 · 2026-05-20T20:59:29.898576+00:00_
+_source line 7970 · 2026-05-20T20:59:29.898576+00:00_
 
 No response requested.
 
@@ -4436,7 +3931,7 @@ No response requested.
 
 ### User
 
-_source line 7973 · 2026-05-20T21:10:42.523749+00:00_
+_source line 7971 · 2026-05-20T21:10:42.523749+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — Direction A 跨任务 RE 实验（exp_a3_scierc_re + exp_docred_re_sc）
@@ -4493,7 +3988,7 @@ _source line 7973 · 2026-05-20T21:10:42.523749+00:00_
 
 ### Tool call
 
-_source line 7974 · 2026-05-20T21:11:20.630458+00:00_
+_source line 7972 · 2026-05-20T21:11:20.630458+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -4535,7 +4030,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 7975 · 2026-05-20T21:11:21.083189+00:00_
+_source line 7973 · 2026-05-20T21:11:21.083189+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D206\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -4557,7 +4052,7 @@ _source line 7975 · 2026-05-20T21:11:21.083189+00:00_
 
 ### Tool call
 
-_source line 7976 · 2026-05-20T21:11:32.829156+00:00_
+_source line 7974 · 2026-05-20T21:11:32.829156+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -4591,7 +4086,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7977 · 2026-05-20T21:11:36.334456+00:00_
+_source line 7975 · 2026-05-20T21:11:36.334456+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd676ba1ca4b242095ef61500c\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 10, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] P4 方案 A/B 都不采纳。14B 是 FewNERD-only 模型，CoNLL inference 已完成但 F1<0.05，无论文价值。\\n\\n**5090-b 分配决策**：\\n\\n1. **cuda:0 → ACE05 RE SC**（Direction A 第三个 RE 数据集）。用 Qwen2.5-7B-Instruct few-sh\"}, \"error\": \"\"}"}
 
@@ -4613,7 +4108,7 @@ _source line 7977 · 2026-05-20T21:11:36.334456+00:00_
 
 ### Tool call
 
-_source line 7978 · 2026-05-20T21:12:04.109626+00:00_
+_source line 7976 · 2026-05-20T21:12:04.109626+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -4647,7 +4142,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 7979 · 2026-05-20T21:12:04.711750+00:00_
+_source line 7977 · 2026-05-20T21:12:04.711750+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -4669,7 +4164,7 @@ _source line 7979 · 2026-05-20T21:12:04.711750+00:00_
 
 ### Assistant
 
-_source line 7980 · 2026-05-20T21:12:11.526563+00:00_
+_source line 7978 · 2026-05-20T21:12:11.526563+00:00_
 
 Now waiting for HumanEval and Spider SQL results — these are the make-or-break experiments for cross-task universality. Also waiting for Frontier SC (Direction B). 
 
@@ -4702,7 +4197,7 @@ Current state:
 
 ### User
 
-_source line 7981 · 2026-05-20T21:12:11.995392+00:00_
+_source line 7979 · 2026-05-20T21:12:11.995392+00:00_
 
 [Reviewer 回复]:
 ## 资源审查 — GPU 空闲危机（第二次提醒）
@@ -4780,7 +4275,7 @@ Direction B（Frontier Model Validation）是 4.5 mandate 的关键支柱。如�
 
 ### Tool call
 
-_source line 7982 · 2026-05-20T21:12:31.520409+00:00_
+_source line 7980 · 2026-05-20T21:12:31.520409+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -4814,7 +4309,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 7983 · 2026-05-20T21:12:31.571445+00:00_
+_source line 7981 · 2026-05-20T21:12:31.571445+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":11,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] P4 方案 A/B 都不采纳。14B 是 FewNERD-only 模型，CoNLL inference 已完成但 F1<0.05，无论文价值。\\n\\n**5090-b 分配决策**：\\n\\n\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_verify_kill_after_n8_20260520T205629 已完成（status=done）。用 `get_worker_status('worker_verify_ki\",\"queued_at\":1779310773.1738465},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310857.5380464},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310859.4343047},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310862.1043153},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310864.5582173},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310985.569085},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310993.1590993},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_diagnose_a3_scierc_re_done_20260520T210241 已完成（status=done）。用 `get_worker_status('worker_dia\",\"queued_at\":1779311074.6598427},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_setup_5090b_32b_inference_prep_20260520T210456 已完成（status=done）。用 `get_worker_status('worker\",\"queu
 …[truncated 456 chars]
@@ -4837,7 +4332,7 @@ _source line 7983 · 2026-05-20T21:12:31.571445+00:00_
 
 ### Tool call
 
-_source line 7984 · 2026-05-20T21:12:54.103842+00:00_
+_source line 7982 · 2026-05-20T21:12:54.103842+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -4873,7 +4368,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 7985 · 2026-05-20T21:12:54.706357+00:00_
+_source line 7983 · 2026-05-20T21:12:54.706357+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":12,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -4895,7 +4390,7 @@ _source line 7985 · 2026-05-20T21:12:54.706357+00:00_
 
 ### Assistant
 
-_source line 7986 · 2026-05-20T21:13:20.377717+00:00_
+_source line 7984 · 2026-05-20T21:13:20.377717+00:00_
 
 Frontier SC fix urgent message inserted at queue front. Agent is finishing P4 processing, then will immediately handle the crash.
 
@@ -4931,7 +4426,7 @@ The ACE05 RE cron alerts suggest the Agent already attempted to start it but the
 
 ### User
 
-_source line 7987 · 2026-05-20T21:14:49.040384+00:00_
+_source line 7985 · 2026-05-20T21:14:49.040384+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_a2_humaneval_sc (Direction A: HumanEval Code Gen)
@@ -4975,7 +4470,7 @@ _source line 7987 · 2026-05-20T21:14:49.040384+00:00_
 
 ### Tool call
 
-_source line 7988 · 2026-05-20T21:15:14.846007+00:00_
+_source line 7986 · 2026-05-20T21:15:14.846007+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -5011,7 +4506,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 7989 · 2026-05-20T21:15:15.499298+00:00_
+_source line 7987 · 2026-05-20T21:15:15.499298+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":13,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -5033,7 +4528,7 @@ _source line 7989 · 2026-05-20T21:15:15.499298+00:00_
 
 ### Tool call
 
-_source line 7990 · 2026-05-20T21:15:26.533301+00:00_
+_source line 7988 · 2026-05-20T21:15:26.533301+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -5081,7 +4576,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 7991 · 2026-05-20T21:15:26.735441+00:00_
+_source line 7989 · 2026-05-20T21:15:26.735441+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M048\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5103,7 +4598,7 @@ _source line 7991 · 2026-05-20T21:15:26.735441+00:00_
 
 ### Assistant
 
-_source line 7992 · 2026-05-20T21:15:50.201354+00:00_
+_source line 7990 · 2026-05-20T21:15:50.201354+00:00_
 
 M048 logged. Direction A/B 四个扩展实验的当前状态：
 
@@ -5139,7 +4634,7 @@ M048 logged. Direction A/B 四个扩展实验的当前状态：
 
 ### User
 
-_source line 7993 · 2026-05-20T21:15:52.184289+00:00_
+_source line 7991 · 2026-05-20T21:15:52.184289+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP / 实验计划审查 — 2026-05-21 05:15 UTC
@@ -5185,7 +4680,7 @@ _source line 7993 · 2026-05-20T21:15:52.184289+00:00_
 
 ### Tool call
 
-_source line 7994 · 2026-05-20T21:16:37.627374+00:00_
+_source line 7992 · 2026-05-20T21:16:37.627374+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -5223,7 +4718,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 7995 · 2026-05-20T21:16:40.696974+00:00_
+_source line 7993 · 2026-05-20T21:16:40.696974+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"lines\": 73, \"reason\": \"Direction A RE done (negative), HumanEval/Frontier SC both need bugfix, Spider SQL only experiment on track\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5245,7 +4740,7 @@ _source line 7995 · 2026-05-20T21:16:40.696974+00:00_
 
 ### Tool call
 
-_source line 7996 · 2026-05-20T21:16:49.573382+00:00_
+_source line 7994 · 2026-05-20T21:16:49.573382+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -5279,7 +4774,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 7997 · 2026-05-20T21:16:50.777190+00:00_
+_source line 7995 · 2026-05-20T21:16:50.777190+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd602d2aca0b26fc79870d1a03\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 13, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] P4 方案 A/B 都不采纳。14B 是 FewNERD-only 模型，CoNLL inference 已完成但 F1<0.05，无论文价值。\\n\\n**5090-b 分配决策**：\\n\\n1. **cuda:0 → ACE05 RE SC**（Direction A 第三个 RE 数据集）。用 Qwen2.5-7B-Instruct few-sh\"}, \"error\": \"\"}"}
 
@@ -5301,7 +4796,7 @@ _source line 7997 · 2026-05-20T21:16:50.777190+00:00_
 
 ### Assistant
 
-_source line 7998 · 2026-05-20T21:17:09.364835+00:00_
+_source line 7996 · 2026-05-20T21:17:09.364835+00:00_
 
 ROADMAP updated, registry fix and claim audit queued as non-urgent. The two critical bugfixes (Frontier SC + HumanEval) are at the front of the Agent queue via urgent messages.
 
@@ -5332,7 +4827,7 @@ Waiting for Spider SQL results and the Agent to process the urgent bugfix messag
 
 ### User
 
-_source line 7999 · 2026-05-20T21:17:43.872911+00:00_
+_source line 7997 · 2026-05-20T21:17:43.872911+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_setup_5090b_32b_inference_prep + exp_fewrel_re_sc
@@ -5365,7 +4860,7 @@ _source line 7999 · 2026-05-20T21:17:43.872911+00:00_
 
 ### Assistant
 
-_source line 8000 · 2026-05-20T21:18:11.270602+00:00_
+_source line 7998 · 2026-05-20T21:18:11.270602+00:00_
 
 Reviewer 发现 5090-b 缺 32B 基座模型（~65GB），以及 FewRel RE 注册在被占用的 5090:cuda:0。Agent 正在处理 P4 指令，这些问题应该在 P4 执行中被解决。但 32B 基座下载可以提前开始节省时间。
 
@@ -5394,7 +4889,7 @@ Reviewer 发现 5090-b 缺 32B 基座模型（~65GB），以及 FewRel RE 注册
 
 ### User
 
-_source line 8001 · 2026-05-20T21:19:13.989946+00:00_
+_source line 7999 · 2026-05-20T21:19:13.989946+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 审查 — 2026-05-20 21:16 UTC 更新
@@ -5445,7 +4940,7 @@ _source line 8001 · 2026-05-20T21:19:13.989946+00:00_
 
 ### Tool call
 
-_source line 8002 · 2026-05-20T21:20:53.578356+00:00_
+_source line 8000 · 2026-05-20T21:20:53.578356+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -5479,7 +4974,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8003 · 2026-05-20T21:20:53.682076+00:00_
+_source line 8001 · 2026-05-20T21:20:53.682076+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":14,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] P4 方案 A/B 都不采纳。14B 是 FewNERD-only 模型，CoNLL inference 已完成但 F1<0.05，无论文价值。\\n\\n**5090-b 分配决策**：\\n\\n\"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] HumanEval SC (exp_a2_humaneval_sc) 100% 失败 — 系统性缩进 bug。\\n\\n**Reviewer CRITICAL 发现**：\\n- 157/1\",\"queued_at\":1779311715.480055},{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] Frontier SC (exp_b_frontier_sc_fewnerd) 已崩溃，Direction B 完全停摆。\\n\\n**崩溃信息**（Reviewer 独立核实）：\\n- \",\"queued_at\":1779311574.6947417},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_verify_kill_after_n8_20260520T205629 已完成（status=done）。用 `get_worker_status('worker_verify_ki\",\"queued_at\":1779310773.1738465},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310857.5380464},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310859.4343047},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310862.1043153},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310864.5582173},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310985.569085},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\
 …[truncated 1062 chars]
@@ -5502,7 +4997,7 @@ _source line 8003 · 2026-05-20T21:20:53.682076+00:00_
 
 ### Tool call
 
-_source line 8004 · 2026-05-20T21:23:23.508461+00:00_
+_source line 8002 · 2026-05-20T21:23:23.508461+00:00_
 
 called ToolSearch
 
@@ -5538,7 +5033,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8005 · 2026-05-20T21:23:23.559015+00:00_
+_source line 8003 · 2026-05-20T21:23:23.559015+00:00_
 
 No matching deferred tools found
 
@@ -5560,7 +5055,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8006 · 2026-05-20T21:23:26.074150+00:00_
+_source line 8004 · 2026-05-20T21:23:26.074150+00:00_
 
 called ToolSearch
 
@@ -5596,7 +5091,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8007 · 2026-05-20T21:23:26.124687+00:00_
+_source line 8005 · 2026-05-20T21:23:26.124687+00:00_
 
 No matching deferred tools found
 
@@ -5618,7 +5113,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8008 · 2026-05-20T21:23:28.504177+00:00_
+_source line 8006 · 2026-05-20T21:23:28.504177+00:00_
 
 called ToolSearch
 
@@ -5654,7 +5149,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8009 · 2026-05-20T21:23:28.554707+00:00_
+_source line 8007 · 2026-05-20T21:23:28.554707+00:00_
 
 
 
@@ -5676,7 +5171,7 @@ _source line 8009 · 2026-05-20T21:23:28.554707+00:00_
 
 ### Tool call
 
-_source line 8010 · 2026-05-20T21:23:31.464273+00:00_
+_source line 8008 · 2026-05-20T21:23:31.464273+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -5710,7 +5205,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool call
 
-_source line 8011 · 2026-05-20T21:23:31.464656+00:00_
+_source line 8009 · 2026-05-20T21:23:31.464656+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -5744,7 +5239,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 8012 · 2026-05-20T21:23:31.515325+00:00_
+_source line 8010 · 2026-05-20T21:23:31.515325+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":16,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] P4 方案 A/B 都不采纳。14B 是 FewNERD-only 模型，CoNLL inference 已完成但 F1<0.05，无论文价值。\\n\\n**5090-b 分配决策**：\\n\\n\"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] HumanEval SC (exp_a2_humaneval_sc) 100% 失败 — 系统性缩进 bug。\\n\\n**Reviewer CRITICAL 发现**：\\n- 157/1\",\"queued_at\":1779311715.480055},{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] Frontier SC (exp_b_frontier_sc_fewnerd) 已崩溃，Direction B 完全停摆。\\n\\n**崩溃信息**（Reviewer 独立核实）：\\n- \",\"queued_at\":1779311574.6947417},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_verify_kill_after_n8_20260520T205629 已完成（status=done）。用 `get_worker_status('worker_verify_ki\",\"queued_at\":1779310773.1738465},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310857.5380464},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310859.4343047},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310862.1043153},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\"queued_at\":1779310864.5582173},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_a3_ace05_re** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `/root/autodl\",\"queued_at\":1779310985.569085},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_docred_re_sc** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `None` 最后几行，\",\
 …[truncated 1469 chars]
@@ -5767,7 +5262,7 @@ _source line 8012 · 2026-05-20T21:23:31.515325+00:00_
 
 ### Tool result
 
-_source line 8013 · 2026-05-20T21:23:32.418980+00:00_
+_source line 8011 · 2026-05-20T21:23:32.418980+00:00_
 
 {"result":"**项目**: `struct_self_consist_ie`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    autodl-5090 (connect.bjb1.seetacloud.com) [root] + autodl-5090-b (connect.bjb2.seetacloud.com) [root] + autodl-5090-c (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/autodl-tmp/struct_self_consist_ie\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n**当前阶段**:\n  **🔴 4.5 Mandate Sprint — DDL 2026-05-25 (~4 days)**\n\n**决策日志**: 206 条记录\n**论文溯源**: 覆盖率 59/92\n\n── 📊 研究进度 ──\n实验: 209 个 (运行中 5 | 待处理 15 | 完成 189 | 成功 111)\n\n  e1_component_wise_re_sj  DONE (negative)\n  mvp_pilot_004            DONE (negative)\n  ft_002_v2                DONE (success)\n  mvp_pilot_002            DONE (failed)\n  ft_002                   DONE (killed)\n  ft_001                   DONE (success)\n  mvp_pilot_003            DONE (negative)\n  mvp_pilot_001            DONE (negative)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-20\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_b_frontier_sc_fewnerd | The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue. | — | — | — |\n| exp_spider_sc_pilot | SC diagnostic cascade (degeneracy, agreement-corre"}
 
@@ -5789,7 +5284,7 @@ _source line 8013 · 2026-05-20T21:23:32.418980+00:00_
 
 ### Tool call
 
-_source line 8014 · 2026-05-20T21:23:56.557320+00:00_
+_source line 8012 · 2026-05-20T21:23:56.557320+00:00_
 
 called ToolSearch
 
@@ -5825,7 +5320,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8015 · 2026-05-20T21:23:56.659071+00:00_
+_source line 8013 · 2026-05-20T21:23:56.659071+00:00_
 
 No matching deferred tools found
 
@@ -5847,7 +5342,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8016 · 2026-05-20T21:23:59.217441+00:00_
+_source line 8014 · 2026-05-20T21:23:59.217441+00:00_
 
 called ToolSearch
 
@@ -5883,7 +5378,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8017 · 2026-05-20T21:23:59.267983+00:00_
+_source line 8015 · 2026-05-20T21:23:59.267983+00:00_
 
 
 
@@ -5905,7 +5400,7 @@ _source line 8017 · 2026-05-20T21:23:59.267983+00:00_
 
 ### Tool call
 
-_source line 8018 · 2026-05-20T21:24:40.605715+00:00_
+_source line 8016 · 2026-05-20T21:24:40.605715+00:00_
 
 called mcp__agent-ml-research__replace_agent_queue
 
@@ -5941,7 +5436,7 @@ called mcp__agent-ml-research__replace_agent_queue
 
 ### Tool result
 
-_source line 8019 · 2026-05-20T21:24:41.258221+00:00_
+_source line 8017 · 2026-05-20T21:24:41.258221+00:00_
 
 {"result":"{\"cancelled\":15,\"new_message_queued\":true,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -5963,7 +5458,7 @@ _source line 8019 · 2026-05-20T21:24:41.258221+00:00_
 
 ### Tool call
 
-_source line 8020 · 2026-05-20T21:24:49.490960+00:00_
+_source line 8018 · 2026-05-20T21:24:49.490960+00:00_
 
 called ToolSearch
 
@@ -5999,7 +5494,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8021 · 2026-05-20T21:24:49.541571+00:00_
+_source line 8019 · 2026-05-20T21:24:49.541571+00:00_
 
 No matching deferred tools found
 
@@ -6021,7 +5516,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8022 · 2026-05-20T21:24:52.050146+00:00_
+_source line 8020 · 2026-05-20T21:24:52.050146+00:00_
 
 called ToolSearch
 
@@ -6057,7 +5552,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8023 · 2026-05-20T21:24:52.100668+00:00_
+_source line 8021 · 2026-05-20T21:24:52.100668+00:00_
 
 
 
@@ -6079,7 +5574,7 @@ _source line 8023 · 2026-05-20T21:24:52.100668+00:00_
 
 ### Tool call
 
-_source line 8024 · 2026-05-20T21:24:54.910834+00:00_
+_source line 8022 · 2026-05-20T21:24:54.910834+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -6113,7 +5608,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool result
 
-_source line 8025 · 2026-05-20T21:24:55.564455+00:00_
+_source line 8023 · 2026-05-20T21:24:55.564455+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-012\", \"name\": \"baseline_logprob\", \"claim\": 1, \"description\": \"Compute sequence log-probability for all existing pilot samples (SciERC NER+RE) and new dataset pilots. Correlate log-prob with F1 (ρ, AUROC, τ). If SJ does NOT beat log-prob, the 16x inference cost is unjustified and paper contribution weakens drastically. THIS IS THE MAKE-OR-BREAK EXPERIMENT.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [], \"note\": \"Needs vLLM forward pass to extract log-probs from existing samples. ~1h per dataset on 1 GPU. For new datasets, capture log-probs during pilot inference. Also compute on pilot_004/005 existing data if log-probs weren't saved.\\n\", \"registry_id\": \"exp_012_logprob_baseline\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ner_full_rho_sj\": 0.3565, \"ner_full_rho_fk\": 0.2651, \"ner_full_rho_logprob\": 0.1396, \"ner_full_rho_greedy_logprob\": 0.1615, \"ner_full_tau_sj\": 0.2658, \"ner_full_tau_logprob\": 0.1006, \"ner_full_auroc_sj\": 0.6892, \"ner_full_auroc_fk\": 0.6292, \"ner_full_auroc_logprob\": 0.5907, \"ner_full_n\": 529, \"ner_sj_vs_logprob_delta\": 0.2169, \"re_full_rho_sj\": 0.2112, \"re_full_rho_fk\": 0.2528, \"re_full_rho_logprob\": 0.2467, \"re_full_auroc_sj\": 0.5916, \"re_full_auroc_fk\": 0.6262, \"re_full_auroc_logprob\": 0.6186, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3683, \"re_cond_rho_fk\": 0.3168, \"re_cond_rho_logprob\": 0.1457, \"re_cond_auroc_sj\": 0.6839, \"re_cond_auroc_logprob\": 0.5487, \"re_cond_n\": 296, \"diagnosis\": \"NER: SJ crushes logprob (rho +0.217). RE full: logprob slightly ahead. RE cond: SJ crushes logprob (rho +0.223). SJ unique value CONFIRMED.\"}}, {\"id\": \"exp-013\", \"name\": \"baseline_exact_match\", \"claim\": 1, \"description\": \"Exact-match voting rate: what fraction of N samples produce identical entity/relation sets? Correlate with F1. This is the direct analogue of Wang et a
 …[truncated 36751 chars]
@@ -6136,7 +5631,7 @@ _source line 8025 · 2026-05-20T21:24:55.564455+00:00_
 
 ### Tool call
 
-_source line 8026 · 2026-05-20T21:25:31.009023+00:00_
+_source line 8024 · 2026-05-20T21:25:31.009023+00:00_
 
 called ToolSearch
 
@@ -6172,7 +5667,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8027 · 2026-05-20T21:25:31.059659+00:00_
+_source line 8025 · 2026-05-20T21:25:31.059659+00:00_
 
 No matching deferred tools found
 
@@ -6194,7 +5689,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8028 · 2026-05-20T21:25:33.677439+00:00_
+_source line 8026 · 2026-05-20T21:25:33.677439+00:00_
 
 called ToolSearch
 
@@ -6230,7 +5725,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8029 · 2026-05-20T21:25:33.727926+00:00_
+_source line 8027 · 2026-05-20T21:25:33.727926+00:00_
 
 
 
@@ -6252,7 +5747,7 @@ _source line 8029 · 2026-05-20T21:25:33.727926+00:00_
 
 ### Tool call
 
-_source line 8030 · 2026-05-20T21:25:36.736205+00:00_
+_source line 8028 · 2026-05-20T21:25:36.736205+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -6290,7 +5785,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 8031 · 2026-05-20T21:25:37.037616+00:00_
+_source line 8029 · 2026-05-20T21:25:37.037616+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_b_frontier_sc_fewnerd | The correlation-selection gap in structured self-consistency (where agreement correlates with accuracy but majority voting fails to improve over greedy) persists even with frontier models (GPT-5.5, Claude Opus 4.6), indicating it is a fundamental structural limitation of entity-level majority voting rather than a model capability issue. | — | — | — |\\n| exp_spider_sc_pilot | SC diagnostic cascade (degeneracy, agreement-correctness correlation, failure mode classification F1-F4) validated on NER structured generation will also manifest in SQL structured generation with GPT-5.5 on Spider-dev (200 examples, N=8, T=1.0), demonstrating cross-task universality. Key adaptation: uses execution-result equivalence (not SQL text) for agreement/degeneracy, since semantically equivalent SQL can have different surface forms. | — | — | — |\\n| exp_14b_inference_fewnerd | 14B Qwen2.5 inference on FewNERD (N∈{1,2,4,8}): primary dataset should show oracle scaling law F1(N)=a-b*N^(-c) consistent at 14B scale, filling the scaling curve between 7B and 32B. N=16 cut per Director decision. | — | — | — |\\n\\n## 待处理\\n- exp_b1_scd: Self-Consistency Distillation via theta2n construction pseudo-labels can teach Qwen3-8B-FT to internalize SC benefits: after iterative SCD (M0→M1→M2→M3), greedy F1 should approach N=8 construction F1 (FewNERD target: 0.764 vs current greedy 0.748). CoNLL serves as negative control (construction Δ=-0.4pp, SCD should not help). Transductive setting: pseudo-labels from test set SC outputs.（等待人工审批）\\n- eval_scd_fewnerd_fallback（准备中）\\n- exp_a1_spider_sql_sc: Cross-task universality: SC diagnostic cascade (degeneracy, LP-qu
 …[truncated 5885 chars]
@@ -6313,7 +5808,7 @@ _source line 8031 · 2026-05-20T21:25:37.037616+00:00_
 
 ### Tool call
 
-_source line 8032 · 2026-05-20T21:26:16.404142+00:00_
+_source line 8030 · 2026-05-20T21:26:16.404142+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -6347,7 +5842,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 8033 · 2026-05-20T21:26:16.454958+00:00_
+_source line 8031 · 2026-05-20T21:26:16.454958+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"content\": \"# struct_self_consist_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-20 21:16 UTC | 更新原因: Direction A RE done (negative), HumanEval/Frontier SC both need bugfix, Spider SQL only experiment on track\\n\\n## 核心方向\\n**Self-Consistency for Structured IE: Ceiling-Gap Diagnostic + Cross-Task Universality**。Triple contribution: QE framework (AUROC 0.82) + correlation-selection gap diagnostic + entity-level construction。详见 paper_framing.md。\\n\\n## 当前阶段\\n**🔴 4.5 Mandate Sprint — DDL 2026-05-25 (~4 days)**\\n\\n## Direction A/B 实际状态\\n\\n| 实验 | 状态 | 结论 | 论文定位 |\\n|------|------|------|----------|\\n| SciERC RE | ✅ DONE | negative (F1=0.078, model too weak) | Capability floor 案例 |\\n| DocRED RE | ✅ DONE | negative (F1=0.028, model too weak) | Capability floor 案例 |\\n| Spider SQL | 🔄 RUNNING (125/200) | — | **跨任务主力证据** |\\n| HumanEval | ❌ 100% 失败 (M048: 缩进 bug) | 需修复重跑 | **跨任务主力证据** |\\n| Frontier SC | ❌ CRASHED (TypeError 解析 bug) | 需修复重跑 | **4.5 关键支柱** |\\n| ACE05 RE | cron 报进程退出 | 待诊断 | 补充 RE 数据点 |\\n\\n**风险**：Spider SQL 是唯一正常推进的跨任务实验。HumanEval + Frontier SC 都需 bugfix + 全量重跑。\\n\\n## RUNNING 实验\\n\\n| 实验 | 资源 | 进度 | ETA |\\n|------|------|------|-----|\\n| 32B QLoRA | 5090:cuda:0-3 | 92.28% | ~08:10 UTC |\\n| 14B FewNERD | 5090-c:cuda:0 | N=4 25% | ~08:00 UTC |\\n| Spider SQL | local CPU+API | 125/200 | ~1h |\\n| HumanEval | ❌ 需修复 | 0/164 valid | bugfix + ~2h |\\n| Frontier SC | ❌ 需修复 | 0/200 | bugfix + ~2h |\\n\\n## GPU 状态 (12 张)\\n- **autodl-5090** (4×5090): 32B QLoRA 92% ✅\\n- **autodl-5090-b** (4×5090): **全部空闲 ⚠️** — 等 Agent 处理 P4 分配指令\\n- **autodl-5090-c** (4×5090): cuda:0 = 14B; cuda:1,2,3 空闲\\n\\n## 关键负面结论\\n- ❌ Entity-level methods 全线失败 (ESJ/MRSC/LSC/Het-T/ASB)\\n- ❌ SCD metric artifact (-0.73pp)\\n- ❌ RE 零样本能力不足 (F1<0.1)\\n- ✅ Cross-model diversity +0.42pp, Entity construction +1.02-1.53pp, LP selection on 
 …[truncated 1785 chars]
@@ -6370,7 +5865,7 @@ _source line 8033 · 2026-05-20T21:26:16.454958+00:00_
 
 ### Tool call
 
-_source line 8034 · 2026-05-20T21:26:46.293518+00:00_
+_source line 8032 · 2026-05-20T21:26:46.293518+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -6404,7 +5899,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 8035 · 2026-05-20T21:26:49.274004+00:00_
+_source line 8033 · 2026-05-20T21:26:49.274004+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -6426,7 +5921,7 @@ _source line 8035 · 2026-05-20T21:26:49.274004+00:00_
 
 ### Tool call
 
-_source line 8036 · 2026-05-20T21:26:56.396565+00:00_
+_source line 8034 · 2026-05-20T21:26:56.396565+00:00_
 
 called ToolSearch
 
@@ -6462,7 +5957,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8037 · 2026-05-20T21:26:56.447073+00:00_
+_source line 8035 · 2026-05-20T21:26:56.447073+00:00_
 
 No matching deferred tools found
 
@@ -6484,7 +5979,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8038 · 2026-05-20T21:26:59.256309+00:00_
+_source line 8036 · 2026-05-20T21:26:59.256309+00:00_
 
 called ToolSearch
 
@@ -6520,7 +6015,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8039 · 2026-05-20T21:26:59.306858+00:00_
+_source line 8037 · 2026-05-20T21:26:59.306858+00:00_
 
 
 
@@ -6542,7 +6037,7 @@ _source line 8039 · 2026-05-20T21:26:59.306858+00:00_
 
 ### Tool call
 
-_source line 8040 · 2026-05-20T21:27:01.814640+00:00_
+_source line 8038 · 2026-05-20T21:27:01.814640+00:00_
 
 called mcp__agent-ml-research__get_gpu_health
 
@@ -6571,7 +6066,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 8041 · 2026-05-20T21:27:01.865206+00:00_
+_source line 8039 · 2026-05-20T21:27:01.865206+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"servers\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6593,7 +6088,7 @@ _source line 8041 · 2026-05-20T21:27:01.865206+00:00_
 
 ### Tool call
 
-_source line 8042 · 2026-05-20T21:27:07.735063+00:00_
+_source line 8040 · 2026-05-20T21:27:07.735063+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -6627,7 +6122,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8043 · 2026-05-20T21:27:07.785755+00:00_
+_source line 8041 · 2026-05-20T21:27:07.785755+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] HumanEval SC (exp_a2_humaneval_sc) 100% 失败 — 系统性缩进 bug。\\n\\n**Reviewer CRITICAL 发现**：\\n- 157/1\"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 合并指令 — 队列已清理，旧消息全部作废]\\n\\nDDL 2026-05-25，4天倒计时。以下按优先级排序，**并行派 Worker 处理所有独立任务**。\\n\\n## P0 CRITICAL: F\",\"queued_at\":1779312281.2295294}],\"idle_seconds\":199}"}
 
@@ -6649,7 +6144,7 @@ _source line 8043 · 2026-05-20T21:27:07.785755+00:00_
 
 ### Assistant
 
-_source line 8044 · 2026-05-20T21:27:28.459451+00:00_
+_source line 8042 · 2026-05-20T21:27:28.459451+00:00_
 
 Agent 已完成 P4 处理，现在正在处理 HumanEval bugfix 指令（idle 199 秒，正常工作中）。我的合并指令排在下一条，Frontier SC bugfix 作为 P0 在里面。
 
@@ -6680,7 +6175,7 @@ Agent 已完成 P4 处理，现在正在处理 HumanEval bugfix 指令（idle 19
 
 ### User
 
-_source line 8045 · 2026-05-20T21:27:30.435721+00:00_
+_source line 8043 · 2026-05-20T21:27:30.435721+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_fewrel_re_sc
@@ -6726,7 +6221,7 @@ _source line 8045 · 2026-05-20T21:27:30.435721+00:00_
 
 ### Assistant
 
-_source line 8046 · 2026-05-20T21:27:53.025461+00:00_
+_source line 8044 · 2026-05-20T21:27:53.025461+00:00_
 
 Reviewer 报告确认 FewRel RE 与 SciERC/DocRED 模式一致——模型基本不具备 RE 能力。三组 RE 实验全部印证 D206（capability floor）。
 
@@ -6761,7 +6256,7 @@ Agent 当前正在处理 HumanEval bugfix（队列深度 1，合并指令在后�
 
 ### User
 
-_source line 8047 · 2026-05-20T21:42:00.052517+00:00_
+_source line 8045 · 2026-05-20T21:42:00.052517+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — API 余额耗尽 + Spider SQL / HumanEval v2 双崩溃
@@ -6813,7 +6308,7 @@ API 充值前，所有通过 `http://47.94.22.126/v1` 调用 GPT-5.5 的实验�
 
 ### Tool call
 
-_source line 8048 · 2026-05-20T21:42:19.764778+00:00_
+_source line 8046 · 2026-05-20T21:42:19.764778+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -6847,7 +6342,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 8049 · 2026-05-20T21:42:22.726293+00:00_
+_source line 8047 · 2026-05-20T21:42:22.726293+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -6869,7 +6364,7 @@ _source line 8049 · 2026-05-20T21:42:22.726293+00:00_
 
 ### Tool call
 
-_source line 8050 · 2026-05-20T21:42:25.937899+00:00_
+_source line 8048 · 2026-05-20T21:42:25.937899+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -6903,7 +6398,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8051 · 2026-05-20T21:42:26.039375+00:00_
+_source line 8049 · 2026-05-20T21:42:26.039375+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":4,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] HumanEval SC (exp_a2_humaneval_sc) 100% 失败 — 系统性缩进 bug。\\n\\n**Reviewer CRITICAL 发现**：\\n- 157/1\"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 合并指令 — 队列已清理，旧消息全部作废]\\n\\nDDL 2026-05-25，4天倒计时。以下按优先级排序，**并行派 Worker 处理所有独立任务**。\\n\\n## P0 CRITICAL: F\",\"queued_at\":1779312281.2295294},{\"source\":\"system_monitor\",\"preview\":\"[系统告警] Worker 日志 30 分钟无更新，可能卡死 (第 1/3 次告警)：\\n\\nworker_id: worker_run_frontier_sc_v2_20260520T210051\\nproject: struct_self_c\",\"queued_at\":1779312934.1654022},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_bugfix_a1_spider_sql_sc_20260520T203519 已完成（status=done）。用 `get_worker_status('worker_bugfix\",\"queued_at\":1779313154.6266224},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_bugfix_humaneval_indent_v2_20260520T212459 已完成（status=done）。用 `get_worker_status('worker_bug\",\"queued_at\":1779313171.6932967}],\"idle_seconds\":1117}"}
 
@@ -6925,7 +6420,7 @@ _source line 8051 · 2026-05-20T21:42:26.039375+00:00_
 
 ### Tool call
 
-_source line 8052 · 2026-05-20T21:42:59.599892+00:00_
+_source line 8050 · 2026-05-20T21:42:59.599892+00:00_
 
 called mcp__agent-ml-research__replace_agent_queue
 
@@ -6961,7 +6456,7 @@ called mcp__agent-ml-research__replace_agent_queue
 
 ### Tool result
 
-_source line 8053 · 2026-05-20T21:43:00.202465+00:00_
+_source line 8051 · 2026-05-20T21:43:00.202465+00:00_
 
 {"result":"{\"cancelled\":4,\"new_message_queued\":true,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -6983,7 +6478,7 @@ _source line 8053 · 2026-05-20T21:43:00.202465+00:00_
 
 ### Tool call
 
-_source line 8054 · 2026-05-20T21:43:26.202913+00:00_
+_source line 8052 · 2026-05-20T21:43:26.202913+00:00_
 
 called ToolSearch
 
@@ -7019,7 +6514,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8055 · 2026-05-20T21:43:26.253572+00:00_
+_source line 8053 · 2026-05-20T21:43:26.253572+00:00_
 
 No matching deferred tools found
 
@@ -7041,7 +6536,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8056 · 2026-05-20T21:43:28.910721+00:00_
+_source line 8054 · 2026-05-20T21:43:28.910721+00:00_
 
 called ToolSearch
 
@@ -7077,7 +6572,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8057 · 2026-05-20T21:43:28.961220+00:00_
+_source line 8055 · 2026-05-20T21:43:28.961220+00:00_
 
 
 
@@ -7099,7 +6594,7 @@ _source line 8057 · 2026-05-20T21:43:28.961220+00:00_
 
 ### Tool call
 
-_source line 8058 · 2026-05-20T21:43:36.935860+00:00_
+_source line 8056 · 2026-05-20T21:43:36.935860+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -7141,7 +6636,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 8059 · 2026-05-20T21:43:59.807528+00:00_
+_source line 8057 · 2026-05-20T21:43:59.807528+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D207\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7163,7 +6658,7 @@ _source line 8059 · 2026-05-20T21:43:59.807528+00:00_
 
 ### Tool call
 
-_source line 8060 · 2026-05-20T21:44:00.310314+00:00_
+_source line 8058 · 2026-05-20T21:44:00.310314+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -7201,7 +6696,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 8061 · 2026-05-20T21:44:01.166567+00:00_
+_source line 8059 · 2026-05-20T21:44:01.166567+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"lines\": 75, \"reason\": \"API 余额耗尽 (402)，Direction A 全线阻塞，优先级重新调整为 Frontier SC only\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7223,7 +6718,7 @@ _source line 8061 · 2026-05-20T21:44:01.166567+00:00_
 
 ### Assistant
 
-_source line 8062 · 2026-05-20T21:44:31.272701+00:00_
+_source line 8060 · 2026-05-20T21:44:31.272701+00:00_
 
 D207 已记录，ROADMAP 已更新。当前等待两件事：
 1. Agent 完成当前任务后执行 Frontier SC bugfix
@@ -7254,7 +6749,7 @@ D207 已记录，ROADMAP 已更新。当前等待两件事：
 
 ### User
 
-_source line 8063 · 2026-05-20T21:44:33.253425+00:00_
+_source line 8061 · 2026-05-20T21:44:33.253425+00:00_
 
 [Agent 回复]:
 PID 已退出（API 费用已停止）。4 个 Worker 槽位空闲。立即派 HumanEval 修复 Worker。
@@ -7276,7 +6771,7 @@ PID 已退出（API 费用已停止）。4 个 Worker 槽位空闲。立即派 H
 
 ### Assistant
 
-_source line 8064 · 2026-05-20T21:44:50.141230+00:00_
+_source line 8062 · 2026-05-20T21:44:50.141230+00:00_
 
 Agent 在处理旧的 HumanEval 指令（API 402 之前发的）。它派出的 Worker 会很快碰到余额不足而失败。Agent 完成当前指令后会拿到我的合并指令，那里已经说明了 API 阻塞情况和正确的优先级（Frontier SC first）。不需要额外干预。
 
@@ -7303,7 +6798,7 @@ Agent 在处理旧的 HumanEval 指令（API 402 之前发的）。它派出的 
 
 ### User
 
-_source line 8065 · 2026-05-20T21:45:00.197963+00:00_
+_source line 8063 · 2026-05-20T21:45:00.197963+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP 审查 — D207 优先级调整
@@ -7351,7 +6846,7 @@ _source line 8065 · 2026-05-20T21:45:00.197963+00:00_
 
 ### Tool call
 
-_source line 8066 · 2026-05-20T21:45:13.569371+00:00_
+_source line 8064 · 2026-05-20T21:45:13.569371+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -7385,7 +6880,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8067 · 2026-05-20T21:45:13.619939+00:00_
+_source line 8065 · 2026-05-20T21:45:13.619939+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 合并指令 — API 余额耗尽，优先级全面调整]\\n\\n**重大变化**：`http://47.94.22.126/v1` API 余额耗尽（402），Spider SQL / HumanEval\"},\"pending\":[],\"idle_seconds\":84}"}
 
@@ -7407,7 +6902,7 @@ _source line 8067 · 2026-05-20T21:45:13.619939+00:00_
 
 ### Tool call
 
-_source line 8068 · 2026-05-20T21:45:30.357177+00:00_
+_source line 8066 · 2026-05-20T21:45:30.357177+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -7443,7 +6938,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8069 · 2026-05-20T21:45:30.960290+00:00_
+_source line 8067 · 2026-05-20T21:45:30.960290+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":1,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -7465,7 +6960,7 @@ _source line 8069 · 2026-05-20T21:45:30.960290+00:00_
 
 ### Tool call
 
-_source line 8070 · 2026-05-20T21:45:44.811635+00:00_
+_source line 8068 · 2026-05-20T21:45:44.811635+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -7503,7 +6998,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 8071 · 2026-05-20T21:45:48.040664+00:00_
+_source line 8069 · 2026-05-20T21:45:48.040664+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"lines\": 67, \"reason\": \"修正 32B 进度（92.28% not 57%），registry 僵尸清理，5090-b 准备 merge\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7525,7 +7020,7 @@ _source line 8071 · 2026-05-20T21:45:48.040664+00:00_
 
 ### Assistant
 
-_source line 8072 · 2026-05-20T21:45:52.854616+00:00_
+_source line 8070 · 2026-05-20T21:45:52.854616+00:00_
 
 D207 已记录，ROADMAP 已更新（32B 进度修正为 92.28%，ETA ~2.5h）。紧急指令已发给 Agent：5090-b 下载 32B 基座模型 + registry 清理 + Spider SQL 数据质量确认。
 
@@ -7557,7 +7052,7 @@ D207 已记录，ROADMAP 已更新（32B 进度修正为 92.28%，ETA ~2.5h）�
 
 ### User
 
-_source line 8073 · 2026-05-20T22:03:51.701455+00:00_
+_source line 8071 · 2026-05-20T22:03:51.701455+00:00_
 
 [Agent 回复]:
 Frontier SC 运行在 local（CPU-only），Spider SC 也是 local。现在并行执行：
@@ -7583,7 +7078,7 @@ Frontier SC 运行在 local（CPU-only），Spider SC 也是 local。现在并�
 
 ### Assistant
 
-_source line 8074 · 2026-05-20T22:03:57.468532+00:00_
+_source line 8072 · 2026-05-20T22:03:57.468532+00:00_
 
 No response requested.
 
@@ -7610,7 +7105,7 @@ No response requested.
 
 ### User
 
-_source line 8075 · 2026-05-20T22:10:25.191907+00:00_
+_source line 8073 · 2026-05-20T22:10:25.191907+00:00_
 
 [Agent 回复]:
 [资源] GPU 12/12 分配 | 实际在跑 5/12 (5090:4×32B训练 92%, 5090-c:1×14B推理) | 空闲 7 GPU (5090-b:4, 5090-c:3) | Worker 池 0 (刚全部完成) | 磁盘: 5090 97G可用, 5090-b 95G可用
@@ -7680,7 +7175,7 @@ Notes 已添加 micro/mean 方向相反的说明，论文统一用 micro_f1 per 
 
 ### Tool call
 
-_source line 8076 · 2026-05-20T22:11:04.179375+00:00_
+_source line 8074 · 2026-05-20T22:11:04.179375+00:00_
 
 called ToolSearch
 
@@ -7716,7 +7211,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8077 · 2026-05-20T22:11:04.279930+00:00_
+_source line 8075 · 2026-05-20T22:11:04.279930+00:00_
 
 No matching deferred tools found
 
@@ -7738,7 +7233,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8078 · 2026-05-20T22:11:07.139576+00:00_
+_source line 8076 · 2026-05-20T22:11:07.139576+00:00_
 
 called ToolSearch
 
@@ -7774,7 +7269,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8079 · 2026-05-20T22:11:07.190049+00:00_
+_source line 8077 · 2026-05-20T22:11:07.190049+00:00_
 
 
 
@@ -7796,7 +7291,7 @@ _source line 8079 · 2026-05-20T22:11:07.190049+00:00_
 
 ### Tool call
 
-_source line 8080 · 2026-05-20T22:11:09.798077+00:00_
+_source line 8078 · 2026-05-20T22:11:09.798077+00:00_
 
 called mcp__agent-ml-research__list_secrets
 
@@ -7830,7 +7325,7 @@ called mcp__agent-ml-research__list_secrets
 
 ### Tool result
 
-_source line 8081 · 2026-05-20T22:11:09.849242+00:00_
+_source line 8079 · 2026-05-20T22:11:09.849242+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"struct_self_consist_ie\", \"secrets\": [{\"key_id\": \"autodl_5090_b_password\", \"provider\": \"AutoDL\", \"purpose\": \"SSH password for autodl-5090-b (bjb2-11496)\", \"created_at\": \"2026-05-18T15:48:57.428532+00:00\", \"exists\": true}, {\"key_id\": \"autodl_5090_c_password\", \"provider\": \"AutoDL\", \"purpose\": \"SSH password for autodl-5090-c (westb-25965)\", \"created_at\": \"2026-05-18T15:48:58.190559+00:00\", \"exists\": true}, {\"key_id\": \"autodl_5090_password\", \"provider\": \"AutoDL\", \"purpose\": \"SSH password for autodl-5090 server (RTX 5090 x4)\", \"created_at\": \"2026-05-14T04:46:17.028384+00:00\", \"exists\": true}, {\"key_id\": \"openrouter_api_key\", \"provider\": \"OpenRouter (self-hosted proxy)\", \"purpose\": \"R8 closed-source LLM baseline: GPT-5.5 + Claude Opus 4.6 on SciERC NER N=8 SC. base_url=http://47.94.22.126/v1, OpenRouter 调用格式。\", \"created_at\": \"2026-05-20T09:48:05.687210+00:00\", \"exists\": true}]}, \"error\": null, \"metadata\": {}}"}
 
@@ -7852,7 +7347,7 @@ _source line 8081 · 2026-05-20T22:11:09.849242+00:00_
 
 ### Tool call
 
-_source line 8082 · 2026-05-20T22:11:36.591404+00:00_
+_source line 8080 · 2026-05-20T22:11:36.591404+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -7886,7 +7381,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 8083 · 2026-05-20T22:11:39.759981+00:00_
+_source line 8081 · 2026-05-20T22:11:39.759981+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -7908,7 +7403,7 @@ _source line 8083 · 2026-05-20T22:11:39.759981+00:00_
 
 ### Tool call
 
-_source line 8084 · 2026-05-20T22:11:55.422079+00:00_
+_source line 8082 · 2026-05-20T22:11:55.422079+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -7942,7 +7437,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 8085 · 2026-05-20T22:11:56.627313+00:00_
+_source line 8083 · 2026-05-20T22:11:56.627313+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd7547110a0b4c7eccff3c6878\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 3, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 紧急指令] 32B 即将完成，5090-b 必须立即准备\\n\\n**Reviewer 核实：32B 训练已到 92.28% (38000/41180)，ETA ~08:10 UTC May 21（约 2.5h 后）。**\\n\\n## 立即执行（并行派 Worker）\\n\\n### 1. 5090-b 下载 32B 基座模型\\nSSH 到 autodl-5090-b\"}, \"error\": \"\"}"}
 
@@ -7964,7 +7459,7 @@ _source line 8085 · 2026-05-20T22:11:56.627313+00:00_
 
 ### Assistant
 
-_source line 8086 · 2026-05-20T22:12:17.289671+00:00_
+_source line 8084 · 2026-05-20T22:12:17.289671+00:00_
 
 Agent 队列深度 3，正在处理 32B 准备指令。后续合并指令和 GPU 利用指令已排队。
 
@@ -7997,7 +7492,7 @@ Agent 队列深度 3，正在处理 32B 准备指令。后续合并指令和 GPU
 
 ### User
 
-_source line 8087 · 2026-05-20T22:12:19.272903+00:00_
+_source line 8085 · 2026-05-20T22:12:19.272903+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_spider_sc_pilot (Direction A: Spider SQL) + Frontier SC bugfix
@@ -8051,7 +7546,7 @@ checkpoint 文件 198 条记录已验证，关键指标与 registry 一致：
 
 ### Tool call
 
-_source line 8088 · 2026-05-20T22:12:52.257282+00:00_
+_source line 8086 · 2026-05-20T22:12:52.257282+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -8085,7 +7580,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8089 · 2026-05-20T22:12:52.308703+00:00_
+_source line 8087 · 2026-05-20T22:12:52.308703+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":4,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] 32B 即将完成，5090-b 必须立即准备\\n\\n**Reviewer 核实：32B 训练已到 92.28% (38000/41180)，ETA ~08:10 UTC May 21（\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_bugfix_frontier_sc_v3_20260520T220547 已完成（status=done）。用 `get_worker_status('worker_bugfix_f\",\"queued_at\":1779314871.9280295},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_analysis_spider_sql_partial_20260520T214803 已完成（status=done）。用 `get_worker_status('worker_an\",\"queued_at\":1779314903.0200286},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_setup_5090b_download_32b_20260520T220604 已完成（status=done）。用 `get_worker_status('worker_setup\",\"queued_at\":1779314915.7906358},{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] GPU 利用 + 32B merge 准备\\n\\n**API 全线阻塞，但 GPU 实验不受影响。7 张卡不能空着。**\\n\\n## 立即并行执行\\n\\n### 1. 32B merge 准备（5\",\"queued_at\":1779315116.601851}],\"idle_seconds\":542}"}
 
@@ -8107,7 +7602,7 @@ _source line 8089 · 2026-05-20T22:12:52.308703+00:00_
 
 ### Assistant
 
-_source line 8090 · 2026-05-20T22:13:12.762536+00:00_
+_source line 8088 · 2026-05-20T22:13:12.762536+00:00_
 
 Agent 正在处理 32B 准备指令，队列中有 3 个 worker 完成回调 + 我的 GPU 利用指令。顺序合理，不需要干预。等待 Agent 和用户响应。
 
@@ -8134,7 +7629,7 @@ Agent 正在处理 32B 准备指令，队列中有 3 个 worker 完成回调 + �
 
 ### User
 
-_source line 8091 · 2026-05-20T22:13:25.072879+00:00_
+_source line 8089 · 2026-05-20T22:13:25.072879+00:00_
 
 [Agent 回复]:
 执行完毕：
@@ -8167,7 +7662,7 @@ _source line 8091 · 2026-05-20T22:13:25.072879+00:00_
 
 ### Assistant
 
-_source line 8092 · 2026-05-20T22:13:40.202458+00:00_
+_source line 8090 · 2026-05-20T22:13:40.202458+00:00_
 
 No response requested.
 
@@ -8194,7 +7689,7 @@ No response requested.
 
 ### User
 
-_source line 8093 · 2026-05-20T22:35:04.976959+00:00_
+_source line 8091 · 2026-05-20T22:35:04.976959+00:00_
 
 [Agent 回复]:
 [资源] GPU 12/12 分配 | 实际在跑 5/12 (5090:4×32B训练, 5090-c:cuda:0 14B推理) | 空闲 7 GPU (5090-b:4, 5090-c:3) | Worker 池 3 (5090c_t_ablation, spider_data_quality, 5090b_inventory) | 磁盘: 5090 97G, 5090-b 95G(32B下载中)
@@ -8260,7 +7755,7 @@ _source line 8093 · 2026-05-20T22:35:04.976959+00:00_
 
 ### Tool call
 
-_source line 8094 · 2026-05-20T22:35:38.766292+00:00_
+_source line 8092 · 2026-05-20T22:35:38.766292+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -8294,7 +7789,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 8095 · 2026-05-20T22:35:42.278453+00:00_
+_source line 8093 · 2026-05-20T22:35:42.278453+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd73d1b24a4b3549bbd54a39ad\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 1, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[WORKER DONE] Worker worker_run_5090c_t_ablation_20260520T221637 已完成（status=done）。用 `get_worker_status('worker_run_5090c_t_ablation_20260520T221637')` 读取结果，然后处理。\\n\\n- worker_id: worker_run_5090c_t_ablat\"}, \"error\": \"\"}"}
 
@@ -8316,7 +7811,7 @@ _source line 8095 · 2026-05-20T22:35:42.278453+00:00_
 
 ### Assistant
 
-_source line 8096 · 2026-05-20T22:35:53.947286+00:00_
+_source line 8094 · 2026-05-20T22:35:53.947286+00:00_
 
 Agent 在处理 5090-c T-ablation worker 回调，我的 GPU 分配指令已排队。当前情况稳定：
 
@@ -8348,7 +7843,7 @@ Agent 在处理 5090-c T-ablation worker 回调，我的 GPU 分配指令已排�
 
 ### User
 
-_source line 8097 · 2026-05-20T22:51:14.585213+00:00_
+_source line 8095 · 2026-05-20T22:51:14.585213+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — 状态更新 (2026-05-21 ~07:00 UTC)
@@ -8433,7 +7928,7 @@ T=0.5 下高 kappa（0.896）符合预期（低温→高一致性），但 sampl
 
 ### Assistant
 
-_source line 8098 · 2026-05-20T22:51:46.873652+00:00_
+_source line 8096 · 2026-05-20T22:51:46.873652+00:00_
 
 Reviewer 第四次催 Frontier SC，但仍基于错误假设（"OpenRouter 不受 API 阻塞"）。实际情况 Agent 已确认：存储的 key 是 TUM proxy key，不是 OpenRouter 直连 key，所有 API 实验均被阻塞。这是用户侧 blocker，不是执行侧问题。
 
@@ -8467,7 +7962,7 @@ Reviewer 第四次催 Frontier SC，但仍基于错误假设（"OpenRouter 不�
 
 ### User
 
-_source line 8099 · 2026-05-20T22:59:01.776600+00:00_
+_source line 8097 · 2026-05-20T22:59:01.776600+00:00_
 
 [Agent 回复]:
 [资源] GPU 12/12 分配 | 实际在跑 **12/12** ✓ | Worker 池 0 (全部完成，实验在跑) | 磁盘: 5090 97G, 5090-b 95G
@@ -8527,7 +8022,7 @@ _source line 8099 · 2026-05-20T22:59:01.776600+00:00_
 
 ### Assistant
 
-_source line 8100 · 2026-05-20T22:59:19.557242+00:00_
+_source line 8098 · 2026-05-20T22:59:19.557242+00:00_
 
 GPU 12/12 饱和，Spider SQL 数据质量确认，T-ablation 矩阵在跑。一切可控的都在推进中，唯一阻塞项是 API key（已通知用户）。等实验结果回调。
 
@@ -8554,7 +8049,7 @@ GPU 12/12 饱和，Spider SQL 数据质量确认，T-ablation 矩阵在跑。一
 
 ### User
 
-_source line 8101 · 2026-05-20T23:30:27.584790+00:00_
+_source line 8099 · 2026-05-20T23:30:27.584790+00:00_
 
 🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。
 调用规范：
@@ -8598,7 +8093,7 @@ _source line 8101 · 2026-05-20T23:30:27.584790+00:00_
 
 ### Tool call
 
-_source line 8102 · 2026-05-20T23:30:33.268981+00:00_
+_source line 8100 · 2026-05-20T23:30:33.268981+00:00_
 
 called ToolSearch
 
@@ -8634,7 +8129,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8103 · 2026-05-20T23:30:33.319682+00:00_
+_source line 8101 · 2026-05-20T23:30:33.319682+00:00_
 
 No matching deferred tools found
 
@@ -8656,7 +8151,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8104 · 2026-05-20T23:30:36.028784+00:00_
+_source line 8102 · 2026-05-20T23:30:36.028784+00:00_
 
 called ToolSearch
 
@@ -8692,7 +8187,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8105 · 2026-05-20T23:30:36.079733+00:00_
+_source line 8103 · 2026-05-20T23:30:36.079733+00:00_
 
 
 
@@ -8714,7 +8209,7 @@ _source line 8105 · 2026-05-20T23:30:36.079733+00:00_
 
 ### Tool call
 
-_source line 8106 · 2026-05-20T23:30:43.708055+00:00_
+_source line 8104 · 2026-05-20T23:30:43.708055+00:00_
 
 called mcp__agent-ml-research__keepalive_respond
 
@@ -8752,7 +8247,7 @@ called mcp__agent-ml-research__keepalive_respond
 
 ### Tool result
 
-_source line 8107 · 2026-05-20T23:30:44.310569+00:00_
+_source line 8105 · 2026-05-20T23:30:44.310569+00:00_
 
 {"result":"{\"success\": true, \"kind\": \"ACK\", \"minutes\": 10, \"next_nudge_in_minutes\": 30}"}
 
@@ -8774,7 +8269,7 @@ _source line 8107 · 2026-05-20T23:30:44.310569+00:00_
 
 ### Tool call
 
-_source line 8108 · 2026-05-20T23:30:54.446706+00:00_
+_source line 8106 · 2026-05-20T23:30:54.446706+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -8808,7 +8303,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 8109 · 2026-05-20T23:31:01.521341+00:00_
+_source line 8107 · 2026-05-20T23:31:01.521341+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -8830,7 +8325,7 @@ _source line 8109 · 2026-05-20T23:31:01.521341+00:00_
 
 ### Tool call
 
-_source line 8110 · 2026-05-20T23:31:01.672270+00:00_
+_source line 8108 · 2026-05-20T23:31:01.672270+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -8866,7 +8361,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8111 · 2026-05-20T23:31:02.481615+00:00_
+_source line 8109 · 2026-05-20T23:31:02.481615+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":1,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -8888,7 +8383,7 @@ _source line 8111 · 2026-05-20T23:31:02.481615+00:00_
 
 ### Assistant
 
-_source line 8112 · 2026-05-20T23:31:23.184517+00:00_
+_source line 8110 · 2026-05-20T23:31:23.184517+00:00_
 
 三件事已启动：用户已收到 API 充值再确认，Agent 收到紧急 GPU 核查指令。等 Agent 回复 CoNLL T-ablation 结果后，派 Reviewer 审查跨数据集 temperature pattern。
 
@@ -8915,7 +8410,7 @@ _source line 8112 · 2026-05-20T23:31:23.184517+00:00_
 
 ### User
 
-_source line 8113 · 2026-05-20T23:31:52.535389+00:00_
+_source line 8111 · 2026-05-20T23:31:52.535389+00:00_
 
 [Agent 回复]:
 Worker 已派发检查 5090-b 和 5090-c 所有 GPU 状态。完成后立即收集结果、更新 registry、并在空闲 GPU 上启动额外 seed 实验。
@@ -8937,7 +8432,7 @@ Worker 已派发检查 5090-b 和 5090-c 所有 GPU 状态。完成后立即收�
 
 ### Assistant
 
-_source line 8114 · 2026-05-20T23:31:57.417629+00:00_
+_source line 8112 · 2026-05-20T23:31:57.417629+00:00_
 
 No response requested.
 
@@ -8964,7 +8459,7 @@ No response requested.
 
 ### User
 
-_source line 8115 · 2026-05-20T23:38:50.160023+00:00_
+_source line 8113 · 2026-05-20T23:38:50.160023+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — CoNLL T-ablation 结果 + GPU 空闲 + 32B 即将完成
@@ -9035,7 +8530,7 @@ Step 40650/41180 = **98.71%**，剩余 ~30 分钟。Loss 稳定在 0.005。
 
 ### Tool call
 
-_source line 8116 · 2026-05-20T23:39:23.390490+00:00_
+_source line 8114 · 2026-05-20T23:39:23.390490+00:00_
 
 called ToolSearch
 
@@ -9071,7 +8566,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8117 · 2026-05-20T23:39:23.390908+00:00_
+_source line 8115 · 2026-05-20T23:39:23.390908+00:00_
 
 No matching deferred tools found
 
@@ -9093,7 +8588,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8118 · 2026-05-20T23:39:26.198552+00:00_
+_source line 8116 · 2026-05-20T23:39:26.198552+00:00_
 
 called ToolSearch
 
@@ -9129,7 +8624,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8119 · 2026-05-20T23:39:26.249277+00:00_
+_source line 8117 · 2026-05-20T23:39:26.249277+00:00_
 
 
 
@@ -9151,7 +8646,7 @@ _source line 8119 · 2026-05-20T23:39:26.249277+00:00_
 
 ### Tool call
 
-_source line 8120 · 2026-05-20T23:39:34.550863+00:00_
+_source line 8118 · 2026-05-20T23:39:34.550863+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -9185,7 +8680,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 8121 · 2026-05-20T23:39:44.196441+00:00_
+_source line 8119 · 2026-05-20T23:39:44.196441+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_523053f5a039428dc15666668fa856b3:reviewer\"}, \"error\": \"\"}"}
 
@@ -9207,7 +8702,7 @@ _source line 8121 · 2026-05-20T23:39:44.196441+00:00_
 
 ### Tool call
 
-_source line 8122 · 2026-05-20T23:39:44.547846+00:00_
+_source line 8120 · 2026-05-20T23:39:44.547846+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -9243,7 +8738,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8123 · 2026-05-20T23:39:45.150040+00:00_
+_source line 8121 · 2026-05-20T23:39:45.150040+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":1,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -9265,7 +8760,7 @@ _source line 8123 · 2026-05-20T23:39:45.150040+00:00_
 
 ### Assistant
 
-_source line 8124 · 2026-05-20T23:40:10.824893+00:00_
+_source line 8122 · 2026-05-20T23:40:10.824893+00:00_
 
 已向 Reviewer 澄清 Frontier SC API 阻塞情况，并给 Agent 下达空闲 GPU 分配指令。
 
@@ -9298,7 +8793,7 @@ _source line 8124 · 2026-05-20T23:40:10.824893+00:00_
 
 ### User
 
-_source line 8125 · 2026-05-20T23:43:17.069855+00:00_
+_source line 8123 · 2026-05-20T23:43:17.069855+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_run_5090c_conll_extra_seeds
@@ -9332,7 +8827,7 @@ _source line 8125 · 2026-05-20T23:43:17.069855+00:00_
 
 ### Assistant
 
-_source line 8126 · 2026-05-20T23:43:23.150546+00:00_
+_source line 8124 · 2026-05-20T23:43:23.150546+00:00_
 
 No response requested.
 
@@ -9359,7 +8854,7 @@ No response requested.
 
 ### User
 
-_source line 8127 · 2026-05-20T23:57:08.397795+00:00_
+_source line 8125 · 2026-05-20T23:57:08.397795+00:00_
 
 [Agent 回复]:
 [资源] GPU 12/12 分配 | 在跑 8/12 (5090:4×32B 98.7%, 5090-b:3×FewNERD T-abl ~50%, 5090-c:cuda:0 14B) | 重新分配中 4 (5090-c:1-3 + 5090-b:3) | Worker 池 1
@@ -9409,7 +8904,7 @@ CoNLL T=0.5 重复（5090-b + 5090-c）已记录。后续 T-ablation 派发前�
 
 ### Assistant
 
-_source line 8128 · 2026-05-20T23:57:32.466048+00:00_
+_source line 8126 · 2026-05-20T23:57:32.466048+00:00_
 
 No response requested.
 
@@ -9436,7 +8931,7 @@ No response requested.
 
 ### User
 
-_source line 8129 · 2026-05-20T23:57:34.457629+00:00_
+_source line 8127 · 2026-05-20T23:57:34.457629+00:00_
 
 [Agent 回复]:
 5090-c seed=123 worker 已在 Director 指令前派发（worker_run_5090c_conll_extra_seeds，正在运行中）。
@@ -9458,7 +8953,7 @@ _source line 8129 · 2026-05-20T23:57:34.457629+00:00_
 
 ### Assistant
 
-_source line 8130 · 2026-05-20T23:57:39.264310+00:00_
+_source line 8128 · 2026-05-20T23:57:39.264310+00:00_
 
 No response requested.
 
@@ -9485,7 +8980,7 @@ No response requested.
 
 ### User
 
-_source line 8131 · 2026-05-21T00:17:12.247974+00:00_
+_source line 8129 · 2026-05-21T00:17:12.247974+00:00_
 
 [CRON 需要判断] 实验 **exp_qwen25_32b_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -9508,7 +9003,7 @@ _source line 8131 · 2026-05-21T00:17:12.247974+00:00_
 
 ### Tool call
 
-_source line 8132 · 2026-05-21T00:17:27.419006+00:00_
+_source line 8130 · 2026-05-21T00:17:27.419006+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -9542,7 +9037,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8133 · 2026-05-21T00:17:27.471765+00:00_
+_source line 8131 · 2026-05-21T00:17:27.471765+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_qwen25_32b_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090 检查日志 `None` 最\"},\"pending\":[{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_qwen25_32b_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090 检查日志 `None` 最\",\"queued_at\":1779322541.2913334}],\"idle_seconds\":1194}"}
 
@@ -9564,7 +9059,7 @@ _source line 8133 · 2026-05-21T00:17:27.471765+00:00_
 
 ### Tool call
 
-_source line 8134 · 2026-05-21T00:17:35.241981+00:00_
+_source line 8132 · 2026-05-21T00:17:35.241981+00:00_
 
 called mcp__agent-ml-research__cancel_agent_queue_item
 
@@ -9600,7 +9095,7 @@ called mcp__agent-ml-research__cancel_agent_queue_item
 
 ### Tool result
 
-_source line 8135 · 2026-05-21T00:17:35.292747+00:00_
+_source line 8133 · 2026-05-21T00:17:35.292747+00:00_
 
 {"result":"{\"cancelled\":true,\"index\":0,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -9622,7 +9117,7 @@ _source line 8135 · 2026-05-21T00:17:35.292747+00:00_
 
 ### Tool call
 
-_source line 8136 · 2026-05-21T00:17:44.032450+00:00_
+_source line 8134 · 2026-05-21T00:17:44.032450+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -9658,7 +9153,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8137 · 2026-05-21T00:17:44.685536+00:00_
+_source line 8135 · 2026-05-21T00:17:44.685536+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":2,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -9680,7 +9175,7 @@ _source line 8137 · 2026-05-21T00:17:44.685536+00:00_
 
 ### Assistant
 
-_source line 8138 · 2026-05-21T00:17:46.779846+00:00_
+_source line 8136 · 2026-05-21T00:17:46.779846+00:00_
 
 Agent 在处理 32B cron 但已 idle 1194 秒。重复 cron 在队列里，取消它并发紧急 merge 指令。
 
@@ -9707,7 +9202,7 @@ Agent 在处理 32B cron 但已 idle 1194 秒。重复 cron 在队列里，取�
 
 ### User
 
-_source line 8139 · 2026-05-21T00:23:25.578271+00:00_
+_source line 8137 · 2026-05-21T00:23:25.578271+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_merge_32b_fewnerd + 32B 推理启动
@@ -9745,7 +9240,7 @@ _source line 8139 · 2026-05-21T00:23:25.578271+00:00_
 
 ### Assistant
 
-_source line 8140 · 2026-05-21T00:23:30.609755+00:00_
+_source line 8138 · 2026-05-21T00:23:30.609755+00:00_
 
 No response requested.
 
@@ -9772,7 +9267,7 @@ No response requested.
 
 ### User
 
-_source line 8141 · 2026-05-21T00:34:31.559078+00:00_
+_source line 8139 · 2026-05-21T00:34:31.559078+00:00_
 
 [CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -9795,7 +9290,7 @@ _source line 8141 · 2026-05-21T00:34:31.559078+00:00_
 
 ### Tool call
 
-_source line 8142 · 2026-05-21T00:34:39.974763+00:00_
+_source line 8140 · 2026-05-21T00:34:39.974763+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -9829,7 +9324,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8143 · 2026-05-21T00:34:40.026396+00:00_
+_source line 8141 · 2026-05-21T00:34:40.026396+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":2,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 紧急指令] 32B 训练完成 — 立即 merge + inference\\n\\nexp_qwen25_32b_fewnerd 进程已退出。**这是本项目 scale story 的关键节点。**\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_merge_32b_fewnerd_20260521T001425 已完成（status=done）。用 `get_worker_status('worker_merge_32b_fe\",\"queued_at\":1779322917.1889954},{\"source\":\"cron\",\"preview\":\"[CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\\n\\n请派 Worker SSH 到 autodl-5090-c 检查日志 `No\",\"queued_at\":1779323549.0723472}],\"idle_seconds\":60}"}
 
@@ -9851,7 +9346,7 @@ _source line 8143 · 2026-05-21T00:34:40.026396+00:00_
 
 ### Assistant
 
-_source line 8144 · 2026-05-21T00:34:44.031564+00:00_
+_source line 8142 · 2026-05-21T00:34:44.031564+00:00_
 
 Agent 正在处理 32B merge 紧急指令（idle 60s，刚开始），14B cron 已在队列中排第二。两个都会被按序处理，无需干预。
 
@@ -9878,7 +9373,7 @@ Agent 正在处理 32B merge 紧急指令（idle 60s，刚开始），14B cron �
 
 ### User
 
-_source line 8145 · 2026-05-21T00:37:05.056718+00:00_
+_source line 8143 · 2026-05-21T00:37:05.056718+00:00_
 
 [Agent 回复]:
 [资源] GPU 分配 12 / 实际在跑待确认 | Worker 3 (GPU 0 / CPU 3 诊断)
@@ -9922,7 +9417,7 @@ Worker `merge:32b_fewnerd` 已于 00:21 UTC 完成全部步骤：
 
 ### Assistant
 
-_source line 8146 · 2026-05-21T00:37:11.669596+00:00_
+_source line 8144 · 2026-05-21T00:37:11.669596+00:00_
 
 No response requested.
 
@@ -9949,7 +9444,7 @@ No response requested.
 
 ### User
 
-_source line 8147 · 2026-05-21T00:37:13.702231+00:00_
+_source line 8145 · 2026-05-21T00:37:13.702231+00:00_
 
 [Agent 回复]:
 已向 Director 汇报。等待 3 个诊断 Worker 回调。
@@ -9971,7 +9466,7 @@ _source line 8147 · 2026-05-21T00:37:13.702231+00:00_
 
 ### Assistant
 
-_source line 8148 · 2026-05-21T00:37:18.666479+00:00_
+_source line 8146 · 2026-05-21T00:37:18.666479+00:00_
 
 No response requested.
 
@@ -9998,7 +9493,7 @@ No response requested.
 
 ### User
 
-_source line 8149 · 2026-05-21T00:40:49.826242+00:00_
+_source line 8147 · 2026-05-21T00:40:49.826242+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — FewNERD T=1.2 结果 + 实验进度
@@ -10058,7 +9553,7 @@ exp_fewnerd_t12_s42 已完成（registry 仍显示 RUNNING，需更新为 DONE�
 
 ### Assistant
 
-_source line 8150 · 2026-05-21T00:41:09.868000+00:00_
+_source line 8148 · 2026-05-21T00:41:09.868000+00:00_
 
 No response requested.
 
@@ -10085,7 +9580,7 @@ No response requested.
 
 ### User
 
-_source line 8151 · 2026-05-21T00:41:38.898410+00:00_
+_source line 8149 · 2026-05-21T00:41:38.898410+00:00_
 
 [CRON 需要判断] 实验 **exp_14b_inference_fewnerd** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -10108,7 +9603,7 @@ _source line 8151 · 2026-05-21T00:41:38.898410+00:00_
 
 ### Assistant
 
-_source line 8152 · 2026-05-21T00:41:43.707468+00:00_
+_source line 8150 · 2026-05-21T00:41:43.707468+00:00_
 
 No response requested.
 
@@ -10135,7 +9630,7 @@ No response requested.
 
 ### User
 
-_source line 8153 · 2026-05-21T00:42:03.402562+00:00_
+_source line 8151 · 2026-05-21T00:42:03.402562+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_diagnose_5090c_14b_conll + CoNLL s123 结果
@@ -10190,7 +9685,7 @@ N=4: greedy_f1=0.7984, oracle_f1=0.8544, headroom=5.60pp。Oracle scaling 趋势
 
 ### Tool call
 
-_source line 8154 · 2026-05-21T00:42:24.956293+00:00_
+_source line 8152 · 2026-05-21T00:42:24.956293+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -10224,7 +9719,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 8155 · 2026-05-21T00:42:25.006971+00:00_
+_source line 8153 · 2026-05-21T00:42:25.006971+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_diagnose_5090c_14b_conll_20260521T003634 已完成（status=done）。用 `get_worker_status('worker_diagn\"},\"pending\":[],\"idle_seconds\":160}"}
 
@@ -10246,7 +9741,7 @@ _source line 8155 · 2026-05-21T00:42:25.006971+00:00_
 
 ### Tool call
 
-_source line 8156 · 2026-05-21T00:42:39.033319+00:00_
+_source line 8154 · 2026-05-21T00:42:39.033319+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -10280,7 +9775,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 8157 · 2026-05-21T00:42:42.840607+00:00_
+_source line 8155 · 2026-05-21T00:42:42.840607+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd11ed2f0acb2e545b16664ec1\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[WORKER DONE] Worker worker_diagnose_5090c_14b_conll_20260521T003634 已完成（status=done）。用 `get_worker_status('worker_diagnose_5090c_14b_conll_20260521T003634')` 读取结果，然后处理。\\n\\n- worker_id: worker_diagnose_\"}, \"error\": \"\"}"}
 
@@ -10302,7 +9797,7 @@ _source line 8157 · 2026-05-21T00:42:42.840607+00:00_
 
 ### Assistant
 
-_source line 8158 · 2026-05-21T00:42:45.997876+00:00_
+_source line 8156 · 2026-05-21T00:42:45.997876+00:00_
 
 Agent 正在处理 14B/CoNLL 诊断 worker 结果，队列空。发指令处理空闲 GPU 和 registry。
 
@@ -10329,7 +9824,7 @@ Agent 正在处理 14B/CoNLL 诊断 worker 结果，队列空。发指令处理�
 
 ### User
 
-_source line 8159 · 2026-05-21T00:48:49.348750+00:00_
+_source line 8157 · 2026-05-21T00:48:49.348750+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — exp_14b_inference_fewnerd "失败"
@@ -10385,7 +9880,7 @@ CoNLL s456 (第三种子) 正在 PREPARING/QUEUED，5090-c:cuda:1,2,3 已被重�
 
 ### Tool call
 
-_source line 8160 · 2026-05-21T00:49:09.008578+00:00_
+_source line 8158 · 2026-05-21T00:49:09.008578+00:00_
 
 called mcp__agent-ml-research__log_mistake
 
@@ -10433,7 +9928,7 @@ called mcp__agent-ml-research__log_mistake
 
 ### Tool result
 
-_source line 8161 · 2026-05-21T00:49:09.413443+00:00_
+_source line 8159 · 2026-05-21T00:49:09.413443+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"mistake_id\": \"M049\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/mistakes.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10455,7 +9950,7 @@ _source line 8161 · 2026-05-21T00:49:09.413443+00:00_
 
 ### Tool call
 
-_source line 8162 · 2026-05-21T00:49:14.438247+00:00_
+_source line 8160 · 2026-05-21T00:49:14.438247+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -10491,7 +9986,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8163 · 2026-05-21T00:49:15.358350+00:00_
+_source line 8161 · 2026-05-21T00:49:15.358350+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":3,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -10513,7 +10008,7 @@ _source line 8163 · 2026-05-21T00:49:15.358350+00:00_
 
 ### Assistant
 
-_source line 8164 · 2026-05-21T00:49:25.916520+00:00_
+_source line 8162 · 2026-05-21T00:49:25.916520+00:00_
 
 FewNERD T-ablation 全部完成，结果很好。T=0.8 的 rho_advantage=0.102 是所有实验中最大的——结构化一致性在中高温下优势最大。这和 CoNLL 的 pattern 一致（rho_advantage 随 T 增大），但 FewNERD 的优势幅度大得多（0.102 vs 0.028），因为 FewNERD 是中等难度任务，CoNLL 太"简单"（高 degeneracy 压缩了差异空间）。
 
@@ -10545,7 +10040,7 @@ FewNERD T-ablation 全部完成，结果很好。T=0.8 的 rho_advantage=0.102 �
 
 ### User
 
-_source line 8165 · 2026-05-21T00:50:06.964543+00:00_
+_source line 8163 · 2026-05-21T00:50:06.964543+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_run_conll_t_ablation_s456 + GPU 状态
@@ -10590,7 +10085,7 @@ PID 252310 确认仍在运行（elapsed 17:51，cuda:0 98% util）。上一条�
 
 ### Assistant
 
-_source line 8166 · 2026-05-21T00:50:11.903605+00:00_
+_source line 8164 · 2026-05-21T00:50:11.903605+00:00_
 
 No response requested.
 
@@ -10617,7 +10112,7 @@ No response requested.
 
 ### User
 
-_source line 8167 · 2026-05-21T00:52:06.883522+00:00_
+_source line 8165 · 2026-05-21T00:52:06.883522+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — worker_run_fewnerd_t_ablation_collect_and_next
@@ -10673,7 +10168,7 @@ fewnerd_t05_s123 日志显示 104/301184 prompts 在 ~72 秒内完成（~1.4 pro
 
 ### Assistant
 
-_source line 8168 · 2026-05-21T00:52:21.498531+00:00_
+_source line 8166 · 2026-05-21T00:52:21.498531+00:00_
 
 No response requested.
 
@@ -10700,7 +10195,7 @@ No response requested.
 
 ### User
 
-_source line 8169 · 2026-05-21T01:02:56.033488+00:00_
+_source line 8167 · 2026-05-21T01:02:56.033488+00:00_
 
 [Agent 回复]:
 [资源] GPU 分配 12 / 实际在跑 12 (确认中) | Worker 2 (GPU 2 / CPU 0)
@@ -10748,7 +10243,7 @@ _source line 8169 · 2026-05-21T01:02:56.033488+00:00_
 
 ### Assistant
 
-_source line 8170 · 2026-05-21T01:03:12.077874+00:00_
+_source line 8168 · 2026-05-21T01:03:12.077874+00:00_
 
 No response requested.
 
@@ -10775,7 +10270,7 @@ No response requested.
 
 ### User
 
-_source line 8171 · 2026-05-21T01:03:14.143111+00:00_
+_source line 8169 · 2026-05-21T01:03:14.143111+00:00_
 
 [Agent 回复]:
 14B registry 恢复完成，cron 重注册，memory.md 已更新诊断硬约束。等待 2 个 GPU Worker 回调。
@@ -10797,7 +10292,7 @@ _source line 8171 · 2026-05-21T01:03:14.143111+00:00_
 
 ### Assistant
 
-_source line 8172 · 2026-05-21T01:03:21.421564+00:00_
+_source line 8170 · 2026-05-21T01:03:21.421564+00:00_
 
 No response requested.
 
@@ -10824,7 +10319,7 @@ No response requested.
 
 ### User
 
-_source line 8173 · 2026-05-21T01:04:47.182278+00:00_
+_source line 8171 · 2026-05-21T01:04:47.182278+00:00_
 
 [Agent 回复]:
 [资源] GPU 分配 12 / 实际在跑 12 ✅ | Worker 0 (刚完成 2 个)
@@ -10889,7 +10384,7 @@ Workers 在 Director 指令到达前已启动，导致分配不完全一致：
 
 ### Assistant
 
-_source line 8174 · 2026-05-21T01:05:06.021689+00:00_
+_source line 8172 · 2026-05-21T01:05:06.021689+00:00_
 
 No response requested.
 
@@ -10916,7 +10411,7 @@ No response requested.
 
 ### User
 
-_source line 8175 · 2026-05-21T01:34:21.922533+00:00_
+_source line 8173 · 2026-05-21T01:34:21.922533+00:00_
 
 [曹小玉]
 
@@ -11016,7 +10511,7 @@ Cross-model +0.42pp 是唯一 working direction。**扩展到 3+ model ensemble*
 
 ### Tool call
 
-_source line 8176 · 2026-05-21T01:35:14.600991+00:00_
+_source line 8174 · 2026-05-21T01:35:14.600991+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -11058,7 +10553,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 8177 · 2026-05-21T01:35:15.103106+00:00_
+_source line 8175 · 2026-05-21T01:35:15.103106+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D208\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11080,7 +10575,7 @@ _source line 8177 · 2026-05-21T01:35:15.103106+00:00_
 
 ### Tool call
 
-_source line 8178 · 2026-05-21T01:35:37.975830+00:00_
+_source line 8176 · 2026-05-21T01:35:37.975830+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -11116,7 +10611,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 8179 · 2026-05-21T01:35:39.237317+00:00_
+_source line 8177 · 2026-05-21T01:35:39.237317+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":1,\"agent_key\":\"feishu:group:oc_523053f5a039428dc15666668fa856b3\"}"}
 
@@ -11138,7 +10633,7 @@ _source line 8179 · 2026-05-21T01:35:39.237317+00:00_
 
 ### Tool call
 
-_source line 8180 · 2026-05-21T01:35:43.260645+00:00_
+_source line 8178 · 2026-05-21T01:35:43.260645+00:00_
 
 called ToolSearch
 
@@ -11174,7 +10669,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8181 · 2026-05-21T01:35:43.311292+00:00_
+_source line 8179 · 2026-05-21T01:35:43.311292+00:00_
 
 No matching deferred tools found
 
@@ -11196,7 +10691,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 8182 · 2026-05-21T01:35:47.176244+00:00_
+_source line 8180 · 2026-05-21T01:35:47.176244+00:00_
 
 called ToolSearch
 
@@ -11232,7 +10727,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 8183 · 2026-05-21T01:35:47.329036+00:00_
+_source line 8181 · 2026-05-21T01:35:47.329036+00:00_
 
 
 
@@ -11254,7 +10749,7 @@ _source line 8183 · 2026-05-21T01:35:47.329036+00:00_
 
 ### Tool call
 
-_source line 8184 · 2026-05-21T01:36:13.627313+00:00_
+_source line 8182 · 2026-05-21T01:36:13.627313+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -11288,7 +10783,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 8185 · 2026-05-21T01:36:17.811331+00:00_
+_source line 8183 · 2026-05-21T01:36:17.811331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd257c4ad1cb29e40c3cbeb9e3\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -11310,7 +10805,7 @@ _source line 8185 · 2026-05-21T01:36:17.811331+00:00_
 
 ### Tool call
 
-_source line 8186 · 2026-05-21T01:36:29.751311+00:00_
+_source line 8184 · 2026-05-21T01:36:29.751311+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11344,7 +10839,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 8187 · 2026-05-21T01:36:30.556577+00:00_
+_source line 8185 · 2026-05-21T01:36:30.556577+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11366,7 +10861,7 @@ _source line 8187 · 2026-05-21T01:36:30.556577+00:00_
 
 ### Tool call
 
-_source line 8188 · 2026-05-21T01:36:54.651162+00:00_
+_source line 8186 · 2026-05-21T01:36:54.651162+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -11404,7 +10899,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 8189 · 2026-05-21T01:36:55.618347+00:00_
+_source line 8187 · 2026-05-21T01:36:55.618347+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"lines\": 62, \"reason\": \"D208 4.5 战略跃迁：Impossibility Reframe + Mechanistic Probe + Multi-Model Scaling 三线并行\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11426,7 +10921,7 @@ _source line 8189 · 2026-05-21T01:36:55.618347+00:00_
 
 ### Assistant
 
-_source line 8190 · 2026-05-21T01:37:00.026475+00:00_
+_source line 8188 · 2026-05-21T01:37:00.026475+00:00_
 
 D208 已记录，ROADMAP 已更新，三件 P0 全部 dispatch：
 - P0-1 Mechanistic Probe → Agent (urgent)
@@ -11458,7 +10953,7 @@ D208 已记录，ROADMAP 已更新，三件 P0 全部 dispatch：
 
 ### User
 
-_source line 8191 · 2026-05-21T01:38:27.521694+00:00_
+_source line 8189 · 2026-05-21T01:38:27.521694+00:00_
 
 [Reviewer 回复]:
 ## 审查报告 — ROADMAP D208 战略跃迁审查
@@ -11521,7 +11016,7 @@ CPU-only 分析，不占 GPU。如果 7B/14B/32B/不同 family 在相同 instanc
 
 ### Tool call
 
-_source line 8192 · 2026-05-21T01:39:19.957693+00:00_
+_source line 8190 · 2026-05-21T01:39:19.957693+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -11555,7 +11050,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 8193 · 2026-05-21T01:39:23.912397+00:00_
+_source line 8191 · 2026-05-21T01:39:23.912397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6fd26a616894b2210c15d303bdc\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_523053f5a039428dc15666668fa856b3:paper_agent\", \"created_new_session\": false, \"paper_agent_busy\": true, \"paper_agent_queue_depth\": 0, \"paper_agent_processing\": \"[Director 指令] [Reframe] 论文重新定位为 \\\"Impossibility Result\\\" — EMNLP 2026 Main Conference, DDL 2026-05-25\\n\\n**D208 决策：4.5 战略跃迁。**\\n\\n## 新 Framing（替代当前 \\\"Triple Contribution\\\" framing）\\n\\n**Core Thesis**: Entity-le\"}, \"error\": \"\"}"}
 
@@ -11577,7 +11072,7 @@ _source line 8193 · 2026-05-21T01:39:23.912397+00:00_
 
 ### Assistant
 
-_source line 8194 · 2026-05-21T01:39:29.235298+00:00_
+_source line 8192 · 2026-05-21T01:39:29.235298+00:00_
 
 Paper Agent 已收到 scope 修正。Reviewer 的三个 concern 都已处理：
 1. 避免 IB theorem 路径，走 empirical exhaustion
@@ -11607,7 +11102,7 @@ Paper Agent 已收到 scope 修正。Reviewer 的三个 concern 都已处理：
 
 ### User
 
-_source line 8195 · 2026-05-21T01:39:31.315842+00:00_
+_source line 8193 · 2026-05-21T01:39:31.315842+00:00_
 
 [RESET REQUEST] Research Reviewer 达到硬限
   触发原因：运行时长 16h13m
@@ -11638,7 +11133,7 @@ _source line 8195 · 2026-05-21T01:39:31.315842+00:00_
 
 ### Tool call
 
-_source line 8196 · 2026-05-21T01:39:49.215274+00:00_
+_source line 8194 · 2026-05-21T01:39:49.215274+00:00_
 
 called mcp__agent-ml-research__ralph_respond
 
@@ -11672,7 +11167,7 @@ called mcp__agent-ml-research__ralph_respond
 
 ### Tool result
 
-_source line 8197 · 2026-05-21T01:39:49.316081+00:00_
+_source line 8195 · 2026-05-21T01:39:49.316081+00:00_
 
 {"result":"{\"success\": true, \"decision\": \"RESET_BOTH\", \"minutes\": 0, \"reason\": \"\"}"}
 
@@ -11701,7 +11196,7 @@ _source line 8197 · 2026-05-21T01:39:49.316081+00:00_
 
 ### User
 
-_source line 8198 · 2026-05-21T01:39:56.470056+00:00_
+_source line 8196 · 2026-05-21T01:39:56.470056+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Reframe Phase A — 范围评估 + 执行计划
@@ -11761,7 +11256,7 @@ abstract → intro → diagnostic(→§2 Framework) → **mechanistic(新§3)** 
 
 ### Assistant
 
-_source line 8199 · 2026-05-21T01:40:05.932186+00:00_
+_source line 8197 · 2026-05-21T01:40:05.932186+00:00_
 
 No response requested.
 
@@ -11788,7 +11283,7 @@ No response requested.
 
 ### User
 
-_source line 8200 · 2026-05-21T01:40:06.571059+00:00_
+_source line 8198 · 2026-05-21T01:40:06.571059+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -11870,7 +11365,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 8201 · 2026-05-21T01:41:01.503610+00:00_
+_source line 8199 · 2026-05-21T01:41:01.503610+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

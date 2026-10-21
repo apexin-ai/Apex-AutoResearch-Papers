@@ -15,7 +15,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis boolq hellaswag v2 | 1 | 0 | [Read transcript](analysis-boolq-hellaswag-v2.md) | [JSON](../../sessions/f2/f2db3058da5e51b73f8a.json) |
 | analysis bootstrap ci alpha | 1 | 0 | [Read transcript](analysis-bootstrap-ci-alpha.md) | [JSON](../../sessions/98/981623209c0c680a15fc.json) |
 | analysis bootstrap ci decoupling | 1 | 0 | [Read transcript](analysis-bootstrap-ci-decoupling.md) | [JSON](../../sessions/0c/0c93bc37bd80914638b1.json) |
-| analysis confidence margin rebuttal v2 | 1 | 0 | [Read transcript](analysis-confidence-margin-rebuttal-v2.md) | [JSON](../../sessions/52/521afe6fd73178ea81e5.json) |
 | analysis confidence margin within category | 1 | 0 | [Read transcript](analysis-confidence-margin-within-category.md) | [JSON](../../sessions/4e/4e175053a421d6181836.json) |
 | analysis copa rho recompute | 1 | 0 | [Read transcript](analysis-copa-rho-recompute.md) | [JSON](../../sessions/d6/d699db0a7f2278cd3582.json) |
 | analysis cross benchmark confidence margin | 1 | 0 | [Read transcript](analysis-cross-benchmark-confidence-margin.md) | [JSON](../../sessions/6b/6b30d16ac01604d9d45f.json) |

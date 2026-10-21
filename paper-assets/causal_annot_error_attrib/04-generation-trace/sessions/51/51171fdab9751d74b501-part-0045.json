@@ -3,879 +3,10 @@
   "session_id": "51171fdab9751d74b501",
   "rounds": [
     {
-      "number": 191,
-      "messages": [
-        {
-          "source_line": 7921,
-          "timestamp": "2026-05-24T12:35:14.540362+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
-            "elapsed_ms": 101
-          },
-          "id": "event-007921"
-        },
-        {
-          "source_line": 7922,
-          "timestamp": "2026-05-24T12:35:30.278365+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "text": "**Figure 6 (binarization) & Figure 7 (asv_heatmap) 优化完成**\n\n## Figure 6 (gen_fig4.py)\n\n| 调整项 | 改动 |\n|--------|------|\n| figsize | (8, 4.5) → (7.5, 3.5) |\n| 数值标注 | fontsize 8.5 → 10 |\n| \"150×\" 注释 | alpha 0.3→0.6, fontsize 14→16 |\n| 标题 | 双行→单行，fontsize 11→12 |\n| 图例 | 右上角→底部居中，ncol=4, frameon=False |\n| 坐标轴标签 | fontsize 10→11 |\n| tex | `figure` → `figure*`, `\\columnwidth` → `\\textwidth` |\n\n## Figure 7 (gen_diagnostic_plots.py)\n\n| 调整项 | 改动 |\n|--------|------|\n| figsize | (6.0, 2.8) → (7.5, 3.2) |\n| 范围标注 | fontsize 6.5 → 9 |\n| \"safe\" 标签 | fontsize 7 → 9 |\n| topology 标签 | fontsize 8 → 10 |\n| 坐标轴标签 | fontsize 9 → 11 |\n| 标题 | fontsize 9 → 11 |\n| \"δ*=1 reference\" | fontsize 6→8, 颜色加深 #666 |\n| 百分比标签 | fontsize 6.5 → 8.5 |\n| wspace | 0.08 → 0.12 |\n| tex | `figure` → `figure*`, `\\columnwidth` → `\\textwidth` |\n\n## 编译验证\n\n- 38 pages total（+1 page 因附录图变大，主文仍 ≤ 8 页）✓\n- Page 25: 两张图全宽渲染，标注/标签均清晰可读 ✓",
-              "project": "causal_annot_error_attrib"
-            }
-          },
-          "id": "event-007922"
-        },
-        {
-          "source_line": 7923,
-          "timestamp": "2026-05-24T12:35:33.793298+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "elapsed_ms": 3514
-          },
-          "id": "event-007923"
-        },
-        {
-          "source_line": 7924,
-          "timestamp": "2026-05-24T12:35:36.772338+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "Both figures render well at full width on page 25. Main text remains 8 pages. Let me clean up and report."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
-          },
-          "id": "event-007924"
-        }
-      ]
-    },
-    {
-      "number": 192,
-      "messages": [
-        {
-          "source_line": 7925,
-          "timestamp": "2026-05-24T12:36:18.367710+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] **任务：Figure 7（fig6_asv_heatmap）微调 — 两个可读性问题**\n\n修改 `figures/paper/gen_diagnostic_plots.py` 的 Figure 6 部分（第 88-168 行）。\n\n### 问题 1：范围标注（0.62--0.90 等）黑色文字在橙色条上看不清\n当前代码（约 L129-130）：\n```python\nax_asv.text(mid, i + 0.35, f'{lo:.2f}--{hi:.2f}', ha='center',\n            va='bottom', fontsize=6.5)\n```\n修复方案：\n- 给文字加**白色半透明背景框**：`bbox=dict(boxstyle='round,pad=0.15', fc='white', ec='none', alpha=0.8)`\n- 或改为白色文字直接写在条上：`color='white', fontweight='bold'`，位置改为 `va='center'`（居中在条内）\n- 推荐用白色背景框方案，更通用\n\n### 问题 2：\"δ*=1 reference\" 与 x 轴标签重叠\n当前代码（约 L138）：\n```python\nax_asv.text(1.02, 6.5, '$\\\\delta^*{=}1$\\n(reference)', fontsize=6, color='grey', va='top')\n```\n修复：\n- 位置上移，避免与 x 轴标签 \"Magnitude ASV (δ*)\" 重叠\n- 可以把 y 坐标从 6.5 改到 5.5 或更高\n- 或者改为在 axvline 旁边用更紧凑的单行标注\n\n### 执行\n1. 修改 gen_diagnostic_plots.py\n2. `cd figures/paper && python3 gen_diagnostic_plots.py`\n3. Read fig6_asv_heatmap.png 确认\n4. 编译验证"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "source": "director"
-          },
-          "id": "event-007925"
-        },
-        {
-          "source_line": 7926,
-          "timestamp": "2026-05-24T12:36:30.630391+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "offset": "126",
-              "limit": "20"
-            }
-          },
-          "id": "event-007926"
-        },
-        {
-          "source_line": 7927,
-          "timestamp": "2026-05-24T12:36:30.688318+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "126\t        width = hi - lo\n127\t        color = '#d62728' if hi < 0.5 else '#ff7f0e' if hi < 1.0 else '#ffc107'\n128\t        ax_asv.barh(i, width, left=lo, color=color, edgecolor='k',\n129\t                    linewidth=0.5, height=0.6, alpha=0.8)\n130\t        ax_asv.plot([lo, hi], [i, i], 'k-', lw=1.5)\n131\t        ax_asv.plot(lo, i, 'k|', markersize=8)\n132\t        ax_asv.plot(hi, i, 'k|', markersize=8)\n133\t        ax_asv.text(mid, i + 0.35, f'{lo:.2f}--{hi:.2f}', ha='center',\n134\t                    va='bottom', fontsize=9)\n135\t\n136\tax_asv.set_xlim(0, 2.0)\n137\tax_asv.set_yticks(y_pos)\n138\tax_asv.set_yticklabels(TOPOS, fontsize=10)\n139\tax_asv.set_xlabel('Magnitude ASV ($\\\\delta^*$)', fontsize=11)\n140\tax_asv.set_title('ASV Range (HumAID, K=10)', fontsize=11, pad=6)\n141\tax_asv.axvline(1.0, color='grey', ls=':', lw=0.6, alpha=0.5)\n142\tax_asv.text(1.02, 6.5, '$\\\\delta^*{=}1$\\n(reference)', fontsize=8, color='#666666', va='top')\n143\tax_asv.invert_yaxis()\n144\t\n145\tunsafe_pcts = [asv_unsafe[tk][0] / asv_unsafe[tk][1] * 100 for tk in TOPO_KEYS]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 57
-          },
-          "id": "event-007927"
-        },
-        {
-          "source_line": 7928,
-          "timestamp": "2026-05-24T12:36:38.366477+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "old_string": "        ax_asv.text(mid, i + 0.35, f'{lo:.2f}--{hi:.2f}', ha='center',\n                    va='bottom', fontsize=9)",
-              "new_string": "        ax_asv.text(mid, i + 0.35, f'{lo:.2f}--{hi:.2f}', ha='center',\n                    va='bottom', fontsize=9,\n                    bbox=dict(boxstyle='round,pad=0.15', fc='white', ec='none', alpha=0.8))"
-            }
-          },
-          "id": "event-007928"
-        },
-        {
-          "source_line": 7929,
-          "timestamp": "2026-05-24T12:36:38.417203+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-007929"
-        },
-        {
-          "source_line": 7930,
-          "timestamp": "2026-05-24T12:36:42.831445+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "old_string": "ax_asv.text(1.02, 6.5, '$\\\\delta^*{=}1$\\n(reference)', fontsize=8, color='#666666', va='top')",
-              "new_string": "ax_asv.text(1.02, 5.5, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666666', va='center')"
-            }
-          },
-          "id": "event-007930"
-        },
-        {
-          "source_line": 7931,
-          "timestamp": "2026-05-24T12:36:42.932359+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-007931"
-        },
-        {
-          "source_line": 7932,
-          "timestamp": "2026-05-24T12:36:48.805368+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper && python3 gen_diagnostic_plots.py 2>&1 | grep fig6",
-              "description": "Regenerate Figure 7"
-            }
-          },
-          "id": "event-007932"
-        },
-        {
-          "source_line": 7933,
-          "timestamp": "2026-05-24T12:36:50.712864+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "fig6: ASV ranges and unsafe counts computed from JSON\nGenerated: fig5_f1_vs_bias.pdf/.png, fig6_asv_heatmap.pdf/.png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "elapsed_ms": 1907
-          },
-          "id": "event-007933"
-        },
-        {
-          "source_line": 7934,
-          "timestamp": "2026-05-24T12:36:53.926219+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.png"
-            }
-          },
-          "id": "event-007934"
-        },
-        {
-          "source_line": 7935,
-          "timestamp": "2026-05-24T12:36:54.429110+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 502
-          },
-          "id": "event-007935"
-        },
-        {
-          "source_line": 7936,
-          "timestamp": "2026-05-24T12:37:06.581142+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.pdf /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.png /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
-              "description": "Copy figure and compile",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-007936"
-        },
-        {
-          "source_line": 7937,
-          "timestamp": "2026-05-24T12:37:07.736622+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (38 pages, 981755 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "elapsed_ms": 1155
-          },
-          "id": "event-007937"
-        },
-        {
-          "source_line": 7938,
-          "timestamp": "2026-05-24T12:37:31.693833+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "text": "**Figure 7 (asv_heatmap) 微调完成**\n\n| 问题 | 修复 |\n|------|------|\n| 范围标注在橙色条上看不清 | 加白色半透明背景框 `bbox(fc='white', alpha=0.8)` |\n| \"δ*=1 reference\" 与 x 轴标签重叠 | y 6.5→5.5，改为单行 \"δ*=1 (ref.)\" |\n\n编译验证：38 pages，主文 ≤ 8 页 ✓",
-              "project": "causal_annot_error_attrib"
-            }
-          },
-          "id": "event-007938"
-        },
-        {
-          "source_line": 7939,
-          "timestamp": "2026-05-24T12:37:35.582070+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "elapsed_ms": 3888
-          },
-          "id": "event-007939"
-        },
-        {
-          "source_line": 7940,
-          "timestamp": "2026-05-24T12:37:38.073432+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "38 pages, main text ≤ 8 pages."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
-          },
-          "id": "event-007940"
-        }
-      ]
-    },
-    {
       "number": 193,
       "messages": [
         {
-          "source_line": 7941,
-          "timestamp": "2026-05-24T12:40:30.286601+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] **任务：修复 Figure 6 和 Figure 7 的视觉问题**\n\n---\n\n### Figure 6（gen_fig4.py）— 散点/标记风格问题\n\n**当前问题**：mean 用 `'o'` 圆点，median 用 `'|'` 竖线，两个独立元素叠在一起看起来不统一不美观。需要改为干净的 forest plot 标准风格。\n\n**修复方案**：\n\n标准 forest plot 风格：\n- **范围线**：从 median 到 P95 用粗线，P95 到 max 用细线（这个保持不变）\n- **Mean 标记**：保持实心圆 `'o'`，白色边缘，这是主标记\n- **端点标记**：在线段两端（median 和 max）用短竖线 cap，但不要用 `'|'` marker — 改用 `solid_capstyle='butt'` 或用 `ax.vlines()` 画固定长度的端点 tick：\n\n```python\n# 替换当前的 '|' marker，改用 vlines 画 tick marks\ntick_h = 0.2  # tick 半高\nax.vlines(d['D_med'], y_pos[i] - tick_h, y_pos[i] + tick_h, \n          color=color, lw=1.5, zorder=3)\nax.vlines(d['D_max'], y_pos[i] - tick_h, y_pos[i] + tick_h, \n          color=color, lw=1.0, zorder=3, alpha=0.5)\n```\n\n- 确保 mean 圆点在所有元素之上（zorder 最高）\n- 所有 topology 的标记大小、线宽要完全一致\n- M-bias 的 ∞ 箭头保持不变\n\n---\n\n### Figure 7（gen_diagnostic_plots.py 第 88-168 行）— 文字与边框重合\n\n**问题 1：左半图 \"δ*=1 (ref.)\" 灰色文字与底部边框重合**\n\n当前代码约 L138：\n```python\nax_asv.text(1.02, 5.5, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666', va='top')\n```\n\n修复：\n- y 坐标再上移到 4.5 或更高，确保文字完全在图框内\n- 或者把这个标注改为在 axvline 旁边用 `ax_asv.annotate` 配合箭头指向虚线\n- 最简单：y 从 5.5 → 4.0，va='center'\n\n**问题 2：右半图百分比数字与右边框重合**\n\n当前代码约 L152：\n```python\nax_bar.text(pct + 2, i, label, va='center', fontsize=6.5)\n```\n\n修复：\n- 当 pct=100 时，`pct + 2 = 102`，但 xlim 是 115，文字可能被右 spine 裁切\n- 加大 xlim：115 → 125，给文字更多空间\n- 或者对 pct=100 的标签改为放在条内部（右对齐白色文字）：\n```python\nif pct >= 80:\n    ax_bar.text(pct - 3, i, label, va='center', ha='right', fontsize=8.5, color='white', fontweight='bold')\nelse:\n    ax_bar.text(pct + 3, i, label, va='center', ha='left', fontsize=8.5)\n```\n\n---\n\n### 执行\n1. 修改两个脚本\n2. 运行重新生成\n3. Read PNG 视觉检查\n4. 编译验证\n\n汇报最终效果 + 附 Read PNG 截图描述。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "source": "director"
-          },
-          "id": "event-007941"
-        },
-        {
-          "source_line": 7942,
-          "timestamp": "2026-05-24T12:40:42.155500+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig4.py",
-              "offset": "60",
-              "limit": "30"
-            }
-          },
-          "id": "event-007942"
-        },
-        {
-          "source_line": 7943,
-          "timestamp": "2026-05-24T12:40:42.206415+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "60\t\n61\tfor i, topo in enumerate(topos):\n62\t    d = data[topo]\n63\t    color = get_color(d['D_mean'])\n64\t\n65\t    # Range bar: median to P95\n66\t    ax.plot([d['D_med'], d['D_P95']], [y_pos[i], y_pos[i]],\n67\t            color=color, linewidth=2.5, zorder=3, alpha=0.6)\n68\t\n69\t    # Extend thin line to max\n70\t    ax.plot([d['D_P95'], d['D_max']], [y_pos[i], y_pos[i]],\n71\t            color=color, linewidth=1, zorder=3, alpha=0.4)\n72\t\n73\t    # Mean marker\n74\t    ax.plot(d['D_mean'], y_pos[i], 'o', color=color, markersize=9, zorder=4,\n75\t            markeredgecolor='white', markeredgewidth=1)\n76\t\n77\t    # Median marker (smaller)\n78\t    ax.plot(d['D_med'], y_pos[i], '|', color=color, markersize=12, zorder=4,\n79\t            markeredgewidth=2)\n80\t\n81\t    # Numeric label\n82\t    label = f\"Δ̄={d['D_mean']:.3f}\"\n83\t    if d['sign_flip'] > 0:\n84\t        label += f\"  ⚠ {d['sign_flip']*100:.0f}% sign flip\"\n85\t    ax.text(d['D_max'] + 0.03, y_pos[i], label,\n86\t            va='center', ha='left', fontsize=10, color=color, fontweight='bold')\n87\t\n88\tax.set_yticks(y_pos)\n89\tax.set_yticklabels(topos, fontsize=11)"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-007943"
-        },
-        {
-          "source_line": 7944,
-          "timestamp": "2026-05-24T12:40:48.887861+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig4.py",
-              "old_string": "    # Mean marker\n    ax.plot(d['D_mean'], y_pos[i], 'o', color=color, markersize=9, zorder=4,\n            markeredgecolor='white', markeredgewidth=1)\n\n    # Median marker (smaller)\n    ax.plot(d['D_med'], y_pos[i], '|', color=color, markersize=12, zorder=4,\n            markeredgewidth=2)",
-              "new_string": "    # Tick marks at median and max\n    tick_h = 0.2\n    ax.vlines(d['D_med'], y_pos[i] - tick_h, y_pos[i] + tick_h,\n              color=color, lw=1.5, zorder=3)\n    ax.vlines(d['D_max'], y_pos[i] - tick_h, y_pos[i] + tick_h,\n              color=color, lw=1.0, zorder=3, alpha=0.5)\n\n    # Mean marker (topmost)\n    ax.plot(d['D_mean'], y_pos[i], 'o', color=color, markersize=9, zorder=5,\n            markeredgecolor='white', markeredgewidth=1)"
-            }
-          },
-          "id": "event-007944"
-        },
-        {
-          "source_line": 7945,
-          "timestamp": "2026-05-24T12:40:48.938592+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig4.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-007945"
-        },
-        {
-          "source_line": 7946,
-          "timestamp": "2026-05-24T12:40:53.406266+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "offset": "140",
-              "limit": "20"
-            }
-          },
-          "id": "event-007946"
-        },
-        {
-          "source_line": 7947,
-          "timestamp": "2026-05-24T12:40:53.406791+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "140\tax_asv.set_xlabel('Magnitude ASV ($\\\\delta^*$)', fontsize=11)\n141\tax_asv.set_title('ASV Range (HumAID, K=10)', fontsize=11, pad=6)\n142\tax_asv.axvline(1.0, color='grey', ls=':', lw=0.6, alpha=0.5)\n143\tax_asv.text(1.02, 5.5, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666666', va='center')\n144\tax_asv.invert_yaxis()\n145\t\n146\tunsafe_pcts = [asv_unsafe[tk][0] / asv_unsafe[tk][1] * 100 for tk in TOPO_KEYS]\n147\tcolors_bar = ['#d62728' if p > 50 else '#ff7f0e' if p > 0 else '#2ca02c' for p in unsafe_pcts]\n148\tax_bar.barh(y_pos, unsafe_pcts, color=colors_bar, edgecolor='white', linewidth=0.5, height=0.6)\n149\tax_bar.set_xlim(0, 115)\n150\tax_bar.set_yticks([])\n151\tax_bar.set_xlabel('% Unsafe', fontsize=11)\n152\tax_bar.set_title('ASV Filter', fontsize=11, pad=6)\n153\tax_bar.tick_params(labelsize=9)\n154\t\n155\tfor i, pct in enumerate(unsafe_pcts):\n156\t    label = f'{pct:.0f}%' if pct == 0 or pct == 100 else f'{pct:.1f}%'\n157\t    ax_bar.text(pct + 2, i, label, va='center', fontsize=8.5)\n158\t\n159\tax_bar.invert_yaxis()"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-007947"
-        },
-        {
-          "source_line": 7948,
-          "timestamp": "2026-05-24T12:40:59.279982+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "old_string": "ax_asv.text(1.02, 5.5, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666666', va='center')",
-              "new_string": "ax_asv.text(1.02, 4.0, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666666', va='center')"
-            }
-          },
-          "id": "event-007948"
-        },
-        {
-          "source_line": 7949,
-          "timestamp": "2026-05-24T12:40:59.331456+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-007949"
-        },
-        {
-          "source_line": 7950,
-          "timestamp": "2026-05-24T12:41:04.902980+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "old_string": "for i, pct in enumerate(unsafe_pcts):\n    label = f'{pct:.0f}%' if pct == 0 or pct == 100 else f'{pct:.1f}%'\n    ax_bar.text(pct + 2, i, label, va='center', fontsize=8.5)",
-              "new_string": "for i, pct in enumerate(unsafe_pcts):\n    label = f'{pct:.0f}%' if pct == 0 or pct == 100 else f'{pct:.1f}%'\n    if pct >= 80:\n        ax_bar.text(pct - 3, i, label, va='center', ha='right',\n                    fontsize=8.5, color='white', fontweight='bold')\n    else:\n        ax_bar.text(pct + 3, i, label, va='center', ha='left', fontsize=8.5)"
-            }
-          },
-          "id": "event-007950"
-        },
-        {
-          "source_line": 7951,
-          "timestamp": "2026-05-24T12:41:05.003892+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-007951"
-        },
-        {
-          "source_line": 7952,
-          "timestamp": "2026-05-24T12:41:11.835097+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper && python3 gen_fig4.py && python3 gen_diagnostic_plots.py 2>&1 | head -5",
-              "description": "Regenerate both figures"
-            }
-          },
-          "id": "event-007952"
-        },
-        {
-          "source_line": 7953,
-          "timestamp": "2026-05-24T12:41:15.048482+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Saved: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization.pdf and .png\nfig5: plotted 56 exact data points from JSON\nfig6: ASV ranges and unsafe counts computed from JSON\n  confounding: 0/8 unsafe (0.0%), ASV range: safe\n  mediation: 8/8 unsafe (100.0%), ASV range: 0.6194--0.9013\n  collider: 0/8 unsafe (0.0%), ASV range: safe\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "elapsed_ms": 3213
-          },
-          "id": "event-007953"
-        },
-        {
-          "source_line": 7954,
-          "timestamp": "2026-05-24T12:41:19.116995+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization.png"
-            }
-          },
-          "id": "event-007954"
-        },
-        {
-          "source_line": 7955,
-          "timestamp": "2026-05-24T12:41:19.620834+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 503
-          },
-          "id": "event-007955"
-        },
-        {
-          "source_line": 7956,
-          "timestamp": "2026-05-24T12:41:29.712509+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.png"
-            }
-          },
-          "id": "event-007956"
-        },
-        {
-          "source_line": 7957,
-          "timestamp": "2026-05-24T12:41:30.119460+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 406
-          },
-          "id": "event-007957"
-        },
-        {
-          "source_line": 7958,
-          "timestamp": "2026-05-24T12:42:12.407842+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py",
-              "old_string": "ax_asv.text(1.02, 4.0, '$\\\\delta^*{=}1$ (ref.)', fontsize=8, color='#666666', va='center')",
-              "new_string": "ax_asv.text(1.05, 5.5, '$\\\\delta^*{=}1$\\n(ref.)', fontsize=8, color='#666666', va='center', ha='left')"
-            }
-          },
-          "id": "event-007958"
-        },
-        {
-          "source_line": 7959,
-          "timestamp": "2026-05-24T12:42:12.408468+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-007959"
-        },
-        {
-          "source_line": 7960,
-          "timestamp": "2026-05-24T12:42:16.627088+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper && python3 gen_diagnostic_plots.py 2>&1 | head -3",
-              "description": "Regenerate Figure 7"
-            }
-          },
-          "id": "event-007960"
-        },
-        {
-          "source_line": 7961,
-          "timestamp": "2026-05-24T12:42:18.484068+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "fig5: plotted 56 exact data points from JSON\nfig6: ASV ranges and unsafe counts computed from JSON\n  confounding: 0/8 unsafe (0.0%), ASV range: safe\nShell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "elapsed_ms": 1856
-          },
-          "id": "event-007961"
-        },
-        {
-          "source_line": 7962,
-          "timestamp": "2026-05-24T12:42:22.048111+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.png"
-            }
-          },
-          "id": "event-007962"
-        },
-        {
-          "source_line": 7963,
-          "timestamp": "2026-05-24T12:42:22.500742+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Read",
-            "elapsed_ms": 452
-          },
-          "id": "event-007963"
-        },
-        {
-          "source_line": 7964,
-          "timestamp": "2026-05-24T12:42:36.058638+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization.pdf /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.pdf /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.png /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cp /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization.png /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/ && cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
-              "description": "Copy figures and compile",
-              "timeout": "120000"
-            }
-          },
-          "id": "event-007964"
-        },
-        {
-          "source_line": 7965,
+          "source_line": 7921,
           "timestamp": "2026-05-24T12:42:37.215368+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -890,10 +21,10 @@
             "tool": "Bash",
             "elapsed_ms": 1156
           },
-          "id": "event-007965"
+          "id": "event-007921"
         },
         {
-          "source_line": 7966,
+          "source_line": 7922,
           "timestamp": "2026-05-24T12:42:49.941776+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -911,10 +42,10 @@
               "project": "causal_annot_error_attrib"
             }
           },
-          "id": "event-007966"
+          "id": "event-007922"
         },
         {
-          "source_line": 7967,
+          "source_line": 7923,
           "timestamp": "2026-05-24T12:42:53.507187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -929,10 +60,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3565
           },
-          "id": "event-007967"
+          "id": "event-007923"
         },
         {
-          "source_line": 7968,
+          "source_line": 7924,
           "timestamp": "2026-05-24T12:42:56.161195+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -945,7 +76,7 @@
           "metadata": {
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
           },
-          "id": "event-007968"
+          "id": "event-007924"
         }
       ]
     },
@@ -953,7 +84,7 @@
       "number": 194,
       "messages": [
         {
-          "source_line": 7969,
+          "source_line": 7925,
           "timestamp": "2026-05-24T12:46:33.635340+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -967,10 +98,10 @@
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
             "source": "director"
           },
-          "id": "event-007969"
+          "id": "event-007925"
         },
         {
-          "source_line": 7970,
+          "source_line": 7926,
           "timestamp": "2026-05-24T12:46:42.256303+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -987,10 +118,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig3.py"
             }
           },
-          "id": "event-007970"
+          "id": "event-007926"
         },
         {
-          "source_line": 7971,
+          "source_line": 7927,
           "timestamp": "2026-05-24T12:46:42.257017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1005,10 +136,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-007971"
+          "id": "event-007927"
         },
         {
-          "source_line": 7972,
+          "source_line": 7928,
           "timestamp": "2026-05-24T12:46:51.222473+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1027,10 +158,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-007972"
+          "id": "event-007928"
         },
         {
-          "source_line": 7973,
+          "source_line": 7929,
           "timestamp": "2026-05-24T12:46:51.222944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1045,10 +176,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-007973"
+          "id": "event-007929"
         },
         {
-          "source_line": 7974,
+          "source_line": 7930,
           "timestamp": "2026-05-24T12:47:48.872906+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1066,10 +197,10 @@
               "content": "#!/usr/bin/env python3\n\"\"\"Generate fig3_asv_ranking: Forest-plot comparison of ASV sensitivity rankings.\n\nTwo-panel layout: Magnitude ASV | Significance Power.\nStats table moved to LaTeX (Table in experiments.tex).\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport matplotlib.patheffects as pe\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 11,\n    'legend.fontsize': 9.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\n# ── Colors ────────────────────────────────────────────────────────────────\nC_MAG  = '#0072B2'\nC_SIG  = '#E69F00'\nC_SIGN = '#D55E00'\nC_FRAG = '#D55E00'\nC_IMMUNE = '#009E73'\nC_ROW_ALT = '#f0f2f5'\nC_TEXT = '#333333'\nC_TEXT_SEC = '#777777'\nC_TEXT_DIM = '#c0c0c0'\nC_RULE = '#e0e0e0'\n\n# ── Data ──────────────────────────────────────────────────────────────────\ntopologies = [\n    'IV', 'Front-door', 'Exposure', 'Confounding',\n    'Mediation', 'Collider', 'M-bias',\n]\nN = len(topologies)\n\nmag_asv = {\n    'IV':          (0.101, 0.607),\n    'Front-door':  (0.064, 0.387),\n    'Exposure':    None,\n    'Confounding': (0.081, 0.487),\n    'Mediation':   (0.076, 0.454),\n    'Collider':    (0.338, 2.028),\n    'M-bias':      'inf',\n}\n\nsig_power = {\n    'IV':          0,\n    'Front-door':  100,\n    'Exposure':    None,\n    'Confounding': 100,\n    'Mediation':   0,\n    'Collider':    0,\n    'M-bias':      98,\n}\n\nsig_note = {\n    'Mediation': 'attenuating',\n    'Collider':  'attenuating',\n    'IV':        'Wald underpowered',\n}\n\n# ══════════════════════════════════════════════════════════════════════════\n#  BUILD FIGURE\n# ══════════════════════════════════════════════════════════════════════════\nfig = plt.figure(figsize=(7, 3.2))\ngs = fig.add_gridspec(1, 2, width_ratios=[3, 2], wspace=0.15)\n\nax_mag = fig.add_subplot(gs[0])\nax_sig = fig.add_subplot(gs[1])\n\nROW_H = 0.5\n\nfor ax in (ax_mag, ax_sig):\n    ax.set_ylim(N - ROW_H, -ROW_H)\n    for i in range(N):\n        if i % 2 == 0:\n            ax.axhspan(i - ROW_H, i + ROW_H, color=C_ROW_ALT, zorder=0, lw=0)\n\n# ── Panel 1: Magnitude ASV ────────────────────────────────────────────────\nax_mag.axvspan(0, 0.3, alpha=0.10, color=C_FRAG, zorder=0)\nax_mag.axvline(0.3, color=C_FRAG, lw=0.5, ls=':', alpha=0.30, zorder=0)\n\nfor i, t in enumerate(topologies):\n    v = mag_asv[t]\n    if v is None:\n        ax_mag.text(0.8, i, 'N/A', fontsize=9, color=C_TEXT_DIM,\n                    ha='center', va='center', fontstyle='italic')\n    elif v == 'inf':\n        ax_mag.annotate(\n            '', xy=(2.45, i), xytext=(1.5, i),\n            arrowprops=dict(arrowstyle='-|>', color=C_IMMUNE, lw=2.0,\n                            mutation_scale=13))\n        ax_mag.text(2.52, i, '∞', fontsize=15, color=C_IMMUNE,\n                    ha='left', va='center', fontweight='bold')\n    else:\n        lo, hi = v\n        mid = (lo + hi) / 2\n        ax_mag.plot([lo, hi], [i, i], color=C_MAG, lw=2.5,\n                    solid_capstyle='round', zorder=2, alpha=0.60)\n        ax_mag.plot(mid, i, 'o', color=C_MAG, ms=7.5, zorder=3,\n                    mec='white', mew=1.0)\n        ax_mag.plot(lo, i, '|', color=C_MAG, ms=5, mew=1.0, zorder=3)\n        ax_mag.plot(hi, i, '|', color=C_MAG, ms=5, mew=1.0, zorder=3)\n\nax_mag.set_xlim(-0.02, 2.8)\nax_mag.set_xlabel('ASV value  (lower → more fragile)', fontsize=9,\n                  color=C_TEXT_SEC, labelpad=6)\nax_mag.set_title('Magnitude ASV', fontweight='bold', color=C_MAG,\n                 loc='left', pad=10, fontsize=12)\nax_mag.set_yticks(range(N))\nax_mag.set_yticklabels(topologies, fontsize=10.5, color=C_TEXT)\nax_mag.grid(True, axis='x', alpha=0.10, zorder=0, lw=0.4)\nax_mag.spines['left'].set_visible(False)\nax_mag.spines['bottom'].set_color(C_RULE)\nax_mag.tick_params(axis='y', length=0)\nax_mag.tick_params(axis='x', colors='#888888', labelsize=9)\n\nfor lbl in ax_mag.get_yticklabels():\n    if lbl.get_text() == 'Exposure':\n        lbl.set_fontstyle('italic')\n        lbl.set_color('#aaaaaa')\n\n# ── Panel 2: Significance Power ───────────────────────────────────────────\nax_sig.axvspan(0, 50, alpha=0.10, color=C_FRAG, zorder=0)\nax_sig.axvline(50, color=C_FRAG, lw=0.5, ls=':', alpha=0.30, zorder=0)\n\nfor i, t in enumerate(topologies):\n    v = sig_power[t]\n    if v is None:\n        ax_sig.text(50, i, 'N/A', fontsize=9, color=C_TEXT_DIM,\n                    ha='center', va='center', fontstyle='italic')\n    else:\n        ax_sig.plot([0, v], [i, i], color=C_SIG, lw=1.3, alpha=0.30, zorder=2)\n        ax_sig.plot(v, i, '^', color=C_SIG, ms=8.5, zorder=3,\n                    mec='white', mew=0.8)\n        if t in sig_note:\n            txt = ax_sig.text(\n                v + 8, i, sig_note[t], fontsize=8.5,\n                color=C_TEXT_SEC, fontstyle='italic', va='center',\n                ha='left')\n            txt.set_path_effects([\n                pe.withStroke(linewidth=3.0, foreground='white')])\n\nax_sig.set_xlim(-5, 115)\nax_sig.set_xlabel('Power (%)', fontsize=9, color=C_TEXT_SEC, labelpad=6)\nax_sig.set_title('Significance Power', fontweight='bold', color=C_SIG,\n                 loc='left', pad=10, fontsize=12)\nax_sig.set_yticks(range(N))\nax_sig.set_yticklabels([])\nax_sig.grid(True, axis='x', alpha=0.10, zorder=0, lw=0.4)\nax_sig.spines['left'].set_visible(False)\nax_sig.spines['bottom'].set_color(C_RULE)\nax_sig.tick_params(axis='y', length=0)\nax_sig.tick_params(axis='x', colors='#888888', labelsize=9)\n\n# ── Legend ─────────────────────────────────────────────────────────────────\nhandles = [\n    plt.Line2D([0], [0], marker='o', color=C_MAG, ls='-', lw=2,\n               ms=6, mec='white', mew=0.8, alpha=0.6,\n               label='Magnitude ASV (range)'),\n    plt.Line2D([0], [0], marker='^', color=C_SIG, ls='-', lw=1.2,\n               ms=7, mec='white', mew=0.8, alpha=0.5,\n               label='Significance power'),\n    mpatches.Patch(fc=C_FRAG, alpha=0.12, ec=C_FRAG, linewidth=0.5,\n                   label='Fragile zone'),\n]\nfig.legend(handles=handles, loc='lower center', ncol=3,\n           bbox_to_anchor=(0.5, -0.05), frameon=False, fontsize=8.5,\n           handletextpad=0.4, columnspacing=1.5)\n\nfig.subplots_adjust(left=0.10, right=0.98, top=0.88, bottom=0.20, wspace=0.15)\n\n# ── Save ──────────────────────────────────────────────────────────────────\noutdir = os.path.dirname(os.path.abspath(__file__))\nbase = os.path.join(outdir, 'fig3_asv_ranking')\nfig.savefig(f'{base}.pdf')\nfig.savefig(f'{base}.png', dpi=300)\nplt.close()\nprint(f'Saved: {base}.pdf')\nprint(f'Saved: {base}.png')\n"
             }
           },
-          "id": "event-007974"
+          "id": "event-007930"
         },
         {
-          "source_line": 7975,
+          "source_line": 7931,
           "timestamp": "2026-05-24T12:47:48.924109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1084,10 +215,10 @@
             "tool": "Write",
             "elapsed_ms": 51
           },
-          "id": "event-007975"
+          "id": "event-007931"
         },
         {
-          "source_line": 7976,
+          "source_line": 7932,
           "timestamp": "2026-05-24T12:47:54.396326+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1106,10 +237,10 @@
               "limit": "30"
             }
           },
-          "id": "event-007976"
+          "id": "event-007932"
         },
         {
-          "source_line": 7977,
+          "source_line": 7933,
           "timestamp": "2026-05-24T12:47:54.497212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1124,10 +255,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-007977"
+          "id": "event-007933"
         },
         {
-          "source_line": 7978,
+          "source_line": 7934,
           "timestamp": "2026-05-24T12:47:59.366021+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1146,10 +277,10 @@
               "limit": "6"
             }
           },
-          "id": "event-007978"
+          "id": "event-007934"
         },
         {
-          "source_line": 7979,
+          "source_line": 7935,
           "timestamp": "2026-05-24T12:47:59.416830+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1164,10 +295,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-007979"
+          "id": "event-007935"
         },
         {
-          "source_line": 7980,
+          "source_line": 7936,
           "timestamp": "2026-05-24T12:48:17.793727+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1187,10 +318,10 @@
               "new_string": "\\end{figure*}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{ASV summary across topologies ($K{=}3$, $\\tau{=}0.5$). ---: not applicable.}\n\\label{tab:asv_summary}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Topology} & \\textbf{Mag ASV} & \\textbf{Power} & \\textbf{Sign-flip} \\\\\n\\midrule\nIV          & 0.10--0.61 & 0\\%   & 1.1--6.7 \\\\\nFront-door  & 0.06--0.39 & 100\\% & --- \\\\\nConfounding & 0.08--0.49 & 100\\% & --- \\\\\nMediation   & 0.08--0.45 & 0\\%   & --- \\\\\nCollider    & 0.34--2.03 & 0\\%   & --- \\\\\nM-bias      & $\\infty$   & 98\\%  & --- \\\\\nExposure    & ---        & ---   & 83.4\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{ASV results.}\nThe ASV envelope is $\\varepsilon$-approximately monotonic for non-IV topologies ($\\varepsilon < 0.02$ for non-exposure under moderate effects, larger for exposure; Conjecture~\\ref{conj:monotone}). Figure~\\ref{fig:asv_ranking} shows the vulnerability ranking: IV is maximally fragile, M-bias is immune ($\\text{ASV} = \\infty$). Sign-flip ASV: 83.4\\% of exposure matrices yield $\\delta^*_{\\text{sf}} < 1$; IV ranges 1.1--6.7 (Table~\\ref{tab:asv_summary})."
             }
           },
-          "id": "event-007980"
+          "id": "event-007936"
         },
         {
-          "source_line": 7981,
+          "source_line": 7937,
           "timestamp": "2026-05-24T12:48:17.845464+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1205,10 +336,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-007981"
+          "id": "event-007937"
         },
         {
-          "source_line": 7982,
+          "source_line": 7938,
           "timestamp": "2026-05-24T12:48:22.818761+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1226,10 +357,10 @@
               "description": "Generate 2-panel Figure 3"
             }
           },
-          "id": "event-007982"
+          "id": "event-007938"
         },
         {
-          "source_line": 7983,
+          "source_line": 7939,
           "timestamp": "2026-05-24T12:48:24.325454+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1244,10 +375,10 @@
             "tool": "Bash",
             "elapsed_ms": 1506
           },
-          "id": "event-007983"
+          "id": "event-007939"
         },
         {
-          "source_line": 7984,
+          "source_line": 7940,
           "timestamp": "2026-05-24T12:48:32.005548+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1264,10 +395,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig3_asv_ranking.png"
             }
           },
-          "id": "event-007984"
+          "id": "event-007940"
         },
         {
-          "source_line": 7985,
+          "source_line": 7941,
           "timestamp": "2026-05-24T12:48:32.411539+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1282,10 +413,10 @@
             "tool": "Read",
             "elapsed_ms": 405
           },
-          "id": "event-007985"
+          "id": "event-007941"
         },
         {
-          "source_line": 7986,
+          "source_line": 7942,
           "timestamp": "2026-05-24T12:48:42.860817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1304,10 +435,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-007986"
+          "id": "event-007942"
         },
         {
-          "source_line": 7987,
+          "source_line": 7943,
           "timestamp": "2026-05-24T12:48:44.083932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1322,10 +453,10 @@
             "tool": "Bash",
             "elapsed_ms": 1223
           },
-          "id": "event-007987"
+          "id": "event-007943"
         },
         {
-          "source_line": 7988,
+          "source_line": 7944,
           "timestamp": "2026-05-24T12:48:50.070411+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1344,10 +475,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-007988"
+          "id": "event-007944"
         },
         {
-          "source_line": 7989,
+          "source_line": 7945,
           "timestamp": "2026-05-24T12:48:51.174389+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1362,10 +493,10 @@
             "tool": "Bash",
             "elapsed_ms": 1103
           },
-          "id": "event-007989"
+          "id": "event-007945"
         },
         {
-          "source_line": 7990,
+          "source_line": 7946,
           "timestamp": "2026-05-24T12:48:56.196623+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1385,10 +516,10 @@
               "project": "causal_annot_error_attrib"
             }
           },
-          "id": "event-007990"
+          "id": "event-007946"
         },
         {
-          "source_line": 7991,
+          "source_line": 7947,
           "timestamp": "2026-05-24T12:48:56.648853+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1403,10 +534,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 452
           },
-          "id": "event-007991"
+          "id": "event-007947"
         },
         {
-          "source_line": 7992,
+          "source_line": 7948,
           "timestamp": "2026-05-24T12:49:00.969081+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1423,10 +554,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-007992"
+          "id": "event-007948"
         },
         {
-          "source_line": 7993,
+          "source_line": 7949,
           "timestamp": "2026-05-24T12:49:01.523890+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1441,10 +572,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-007993"
+          "id": "event-007949"
         },
         {
-          "source_line": 7994,
+          "source_line": 7950,
           "timestamp": "2026-05-24T12:49:09.260779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1461,10 +592,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-007994"
+          "id": "event-007950"
         },
         {
-          "source_line": 7995,
+          "source_line": 7951,
           "timestamp": "2026-05-24T12:49:09.664185+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1479,10 +610,10 @@
             "tool": "Read",
             "elapsed_ms": 403
           },
-          "id": "event-007995"
+          "id": "event-007951"
         },
         {
-          "source_line": 7996,
+          "source_line": 7952,
           "timestamp": "2026-05-24T12:49:23.974084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1499,10 +630,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-007996"
+          "id": "event-007952"
         },
         {
-          "source_line": 7997,
+          "source_line": 7953,
           "timestamp": "2026-05-24T12:49:24.527021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1517,10 +648,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-007997"
+          "id": "event-007953"
         },
         {
-          "source_line": 7998,
+          "source_line": 7954,
           "timestamp": "2026-05-24T12:49:31.858859+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1537,10 +668,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images"
             }
           },
-          "id": "event-007998"
+          "id": "event-007954"
         },
         {
-          "source_line": 7999,
+          "source_line": 7955,
           "timestamp": "2026-05-24T12:49:31.909514+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1555,10 +686,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-007999"
+          "id": "event-007955"
         },
         {
-          "source_line": 8000,
+          "source_line": 7956,
           "timestamp": "2026-05-24T12:49:58.253334+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1576,10 +707,10 @@
               "project": "causal_annot_error_attrib"
             }
           },
-          "id": "event-008000"
+          "id": "event-007956"
         },
         {
-          "source_line": 8001,
+          "source_line": 7957,
           "timestamp": "2026-05-24T12:50:01.819483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1594,10 +725,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3566
           },
-          "id": "event-008001"
+          "id": "event-007957"
         },
         {
-          "source_line": 8002,
+          "source_line": 7958,
           "timestamp": "2026-05-24T12:50:05.481858+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1610,7 +741,7 @@
           "metadata": {
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
           },
-          "id": "event-008002"
+          "id": "event-007958"
         }
       ]
     },
@@ -1618,7 +749,7 @@
       "number": 195,
       "messages": [
         {
-          "source_line": 8003,
+          "source_line": 7959,
           "timestamp": "2026-05-24T12:59:27.116634+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1632,10 +763,10 @@
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
             "source": "director"
           },
-          "id": "event-008003"
+          "id": "event-007959"
         },
         {
-          "source_line": 8004,
+          "source_line": 7960,
           "timestamp": "2026-05-24T12:59:44.010306+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1654,10 +785,10 @@
               "limit": "40"
             }
           },
-          "id": "event-008004"
+          "id": "event-007960"
         },
         {
-          "source_line": 8005,
+          "source_line": 7961,
           "timestamp": "2026-05-24T12:59:44.161195+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1672,10 +803,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-008005"
+          "id": "event-007961"
         },
         {
-          "source_line": 8006,
+          "source_line": 7962,
           "timestamp": "2026-05-24T12:59:53.459679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1695,10 +826,10 @@
               "new_string": "# Fix panel (e) M-bias x-tick overlap\nax_e = axes[1, 0]\nax_e.set_xticks([0.98, 1.00, 1.02])\n\nfig.suptitle("
             }
           },
-          "id": "event-008006"
+          "id": "event-007962"
         },
         {
-          "source_line": 8007,
+          "source_line": 7963,
           "timestamp": "2026-05-24T12:59:53.560507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1713,10 +844,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-008007"
+          "id": "event-007963"
         },
         {
-          "source_line": 8008,
+          "source_line": 7964,
           "timestamp": "2026-05-24T12:59:59.227828+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1735,10 +866,10 @@
               "timeout": "600000"
             }
           },
-          "id": "event-008008"
+          "id": "event-007964"
         },
         {
-          "source_line": 8009,
+          "source_line": 7965,
           "timestamp": "2026-05-24T13:00:10.690276+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1753,10 +884,10 @@
             "tool": "Bash",
             "elapsed_ms": 11462
           },
-          "id": "event-008009"
+          "id": "event-007965"
         },
         {
-          "source_line": 8010,
+          "source_line": 7966,
           "timestamp": "2026-05-24T13:00:16.814203+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1773,10 +904,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.png"
             }
           },
-          "id": "event-008010"
+          "id": "event-007966"
         },
         {
-          "source_line": 8011,
+          "source_line": 7967,
           "timestamp": "2026-05-24T13:00:17.470972+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1791,10 +922,10 @@
             "tool": "Read",
             "elapsed_ms": 656
           },
-          "id": "event-008011"
+          "id": "event-007967"
         },
         {
-          "source_line": 8012,
+          "source_line": 7968,
           "timestamp": "2026-05-24T13:02:39.270236+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1811,10 +942,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.png"
             }
           },
-          "id": "event-008012"
+          "id": "event-007968"
         },
         {
-          "source_line": 8013,
+          "source_line": 7969,
           "timestamp": "2026-05-24T13:02:39.928839+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1829,10 +960,10 @@
             "tool": "Read",
             "elapsed_ms": 658
           },
-          "id": "event-008013"
+          "id": "event-007969"
         },
         {
-          "source_line": 8014,
+          "source_line": 7970,
           "timestamp": "2026-05-24T13:02:47.157300+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1851,10 +982,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008014"
+          "id": "event-007970"
         },
         {
-          "source_line": 8015,
+          "source_line": 7971,
           "timestamp": "2026-05-24T13:02:47.258413+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1869,10 +1000,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-008015"
+          "id": "event-007971"
         },
         {
-          "source_line": 8016,
+          "source_line": 7972,
           "timestamp": "2026-05-24T13:02:53.732895+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1892,10 +1023,10 @@
               "new_string": "# Fix panel (e) M-bias x-tick overlap (narrow range ~0.975-1.025)\nax_e = axes[1, 0]\nax_e.set_xticks([0.98, 1.02])\nax_e.tick_params(axis='x', labelsize=8)"
             }
           },
-          "id": "event-008016"
+          "id": "event-007972"
         },
         {
-          "source_line": 8017,
+          "source_line": 7973,
           "timestamp": "2026-05-24T13:02:53.783762+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1910,10 +1041,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008017"
+          "id": "event-007973"
         },
         {
-          "source_line": 8018,
+          "source_line": 7974,
           "timestamp": "2026-05-24T13:02:58.905355+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1932,10 +1063,10 @@
               "timeout": "300000"
             }
           },
-          "id": "event-008018"
+          "id": "event-007974"
         },
         {
-          "source_line": 8019,
+          "source_line": 7975,
           "timestamp": "2026-05-24T13:03:11.543268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1950,10 +1081,10 @@
             "tool": "Bash",
             "elapsed_ms": 12637
           },
-          "id": "event-008019"
+          "id": "event-007975"
         },
         {
-          "source_line": 8020,
+          "source_line": 7976,
           "timestamp": "2026-05-24T13:03:15.309211+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1970,10 +1101,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.png"
             }
           },
-          "id": "event-008020"
+          "id": "event-007976"
         },
         {
-          "source_line": 8021,
+          "source_line": 7977,
           "timestamp": "2026-05-24T13:03:15.913099+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1988,10 +1119,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-008021"
+          "id": "event-007977"
         },
         {
-          "source_line": 8022,
+          "source_line": 7978,
           "timestamp": "2026-05-24T13:03:22.145186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2009,10 +1140,10 @@
               "description": "Copy fig2 PDF and PNG to docs/paper/"
             }
           },
-          "id": "event-008022"
+          "id": "event-007978"
         },
         {
-          "source_line": 8023,
+          "source_line": 7979,
           "timestamp": "2026-05-24T13:03:22.246052+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2027,10 +1158,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-008023"
+          "id": "event-007979"
         },
         {
-          "source_line": 8024,
+          "source_line": 7980,
           "timestamp": "2026-05-24T13:03:26.110317+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2049,10 +1180,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-008024"
+          "id": "event-007980"
         },
         {
-          "source_line": 8025,
+          "source_line": 7981,
           "timestamp": "2026-05-24T13:03:27.318452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2067,10 +1198,10 @@
             "tool": "Bash",
             "elapsed_ms": 1208
           },
-          "id": "event-008025"
+          "id": "event-007981"
         },
         {
-          "source_line": 8026,
+          "source_line": 7982,
           "timestamp": "2026-05-24T13:03:32.798679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2088,10 +1219,10 @@
               "description": "Check compilation warnings and page count"
             }
           },
-          "id": "event-008026"
+          "id": "event-007982"
         },
         {
-          "source_line": 8027,
+          "source_line": 7983,
           "timestamp": "2026-05-24T13:03:32.899472+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2106,10 +1237,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-008027"
+          "id": "event-007983"
         },
         {
-          "source_line": 8028,
+          "source_line": 7984,
           "timestamp": "2026-05-24T13:03:39.172825+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2127,10 +1258,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008028"
+          "id": "event-007984"
         },
         {
-          "source_line": 8029,
+          "source_line": 7985,
           "timestamp": "2026-05-24T13:03:39.223361+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2145,10 +1276,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-008029"
+          "id": "event-007985"
         },
         {
-          "source_line": 8030,
+          "source_line": 7986,
           "timestamp": "2026-05-24T13:03:51.272624+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2166,10 +1297,10 @@
               "project": "causal_annot_error_attrib"
             }
           },
-          "id": "event-008030"
+          "id": "event-007986"
         },
         {
-          "source_line": 8031,
+          "source_line": 7987,
           "timestamp": "2026-05-24T13:03:54.785931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2184,10 +1315,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3513
           },
-          "id": "event-008031"
+          "id": "event-007987"
         },
         {
-          "source_line": 8032,
+          "source_line": 7988,
           "timestamp": "2026-05-24T13:04:00.050797+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2200,7 +1331,7 @@
           "metadata": {
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
           },
-          "id": "event-008032"
+          "id": "event-007988"
         }
       ]
     },
@@ -2208,7 +1339,7 @@
       "number": 196,
       "messages": [
         {
-          "source_line": 8033,
+          "source_line": 7989,
           "timestamp": "2026-05-25T05:56:49.797587+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2222,10 +1353,10 @@
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
             "source": "system:ralph_loop"
           },
-          "id": "event-008033"
+          "id": "event-007989"
         },
         {
-          "source_line": 8034,
+          "source_line": 7990,
           "timestamp": "2026-05-25T05:57:29.472040+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2238,7 +1369,7 @@
           "metadata": {
             "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
           },
-          "id": "event-008034"
+          "id": "event-007990"
         }
       ]
     }

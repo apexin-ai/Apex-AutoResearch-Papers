@@ -4,7 +4,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 
 | Record | Events | User turns | Markdown | JSON |
 |---|---:|---:|---|---|
-| Director coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: irt_equated_bench_regen \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDE | 5,510 | 434 | [Read transcript](director-coordination-20260522-191605.md) | [JSON](../../sessions/e9/e921ddcece89d1f5b9ae.json) |
+| Director coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: irt_equated_bench_regen \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDE | 5,508 | 434 | [Read transcript](director-coordination-20260522-191605.md) | [JSON](../../sessions/e9/e921ddcece89d1f5b9ae.json) |
 | Reviewer coordination (archived snapshot) — [PROJECT BOOTSTRAP] 项目: irt_equated_bench_regen \| Loop #1 \| 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDE | 3,447 | 206 | [Read transcript](reviewer-coordination-20260522-191606.md) | [JSON](../../sessions/e3/e32c2a330da11c7ac5ca.json) |
 | Project coordination (archived snapshot) — [Director 指令] ## MVP 任务：DIF 污染检测功效 Monte Carlo 模拟 ### 目标 验证 DIF (Differential Item Functioning) 能否以足 | 3,899 | 272 | [Read transcript](coordination-coordination-20260525-061056.md) | [JSON](../../sessions/1f/1f1d3a10fb25188e04dc.json) |
 | research psn irt data survey | 51 | 0 | [Read transcript](research-psn-irt-data-survey.md) | [JSON](../../sessions/ef/efb6ee2622e52140d6bb.json) |
@@ -48,9 +48,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code r17 deff reclassification | 13 | 0 | [Read transcript](code-r17-deff-reclassification.md) | [JSON](../../sessions/f0/f049e29001ba4bc0d3f8.json) |
 | code r17 k sensitivity | 27 | 0 | [Read transcript](code-r17-k-sensitivity.md) | [JSON](../../sessions/97/977638ecff75f2b1de5d.json) |
 | code r17 m3 gema enrichment ci | 33 | 0 | [Read transcript](code-r17-m3-gema-enrichment-ci.md) | [JSON](../../sessions/84/848dbb24bc95514b24c6.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 分配，无远程服务器配置。所 | 5,147 | 214 | [Read transcript](director-coordination-20260525-061049.md) | [JSON](../../sessions/4b/4b5ee607f60807111f97.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是纯分析项目（MET | 1,441 | 67 | [Read transcript](reviewer-coordination-20260523-203205.md) | [JSON](../../sessions/0a/0a3e1c15eedfbe401e23.json) |
-| paper rebuttal b1 b7 branch | 51 | 0 | [Read transcript](paper-rebuttal-b1-b7-branch.md) | [JSON](../../sessions/a7/a7c7defc4636d4a50910.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 分配，无远程服务器配置。所 | 5,139 | 214 | [Read transcript](director-coordination-20260525-061049.md) | [JSON](../../sessions/4b/4b5ee607f60807111f97.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是纯分析项目（MET | 1,425 | 67 | [Read transcript](reviewer-coordination-20260523-203205.md) | [JSON](../../sessions/0a/0a3e1c15eedfbe401e23.json) |
 | paper w1 k3 power writeup | 19 | 0 | [Read transcript](paper-w1-k3-power-writeup.md) | [JSON](../../sessions/33/3365d97a88e48a6683ac.json) |
 | paper w2 interaction writeup | 21 | 0 | [Read transcript](paper-w2-interaction-writeup.md) | [JSON](../../sessions/a5/a53faa4a5552eb020dd1.json) |
 | code r16 random split null | 55 | 0 | [Read transcript](code-r16-random-split-null.md) | [JSON](../../sessions/a2/a2c42b2034eaa07f1d99.json) |

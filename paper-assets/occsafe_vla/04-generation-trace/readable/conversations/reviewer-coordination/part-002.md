@@ -5176,7 +5176,7 @@ _source line 929 · 2026-05-29T12:48:52.389751+00:00_
 
 ## Round 49
 
-20 recorded events
+16 recorded events
 
 
 ### User
@@ -5337,137 +5337,7 @@ _source line 934 · 2026-05-29T13:22:31.563898+00:00_
 
 ### Tool call
 
-_source line 935 · 2026-05-29T13:22:31.614442+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 936 · 2026-05-29T13:22:31.665372+00:00_
-
-1	---
-2	name: rebuttal
-3	description: 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。
-4	scope: global
-5	tags:
-6	- workflow
-7	- review
-8	- writing
-9	priority: 8
-10	version: 1
-11	roles:
-12	- agent
-13	- review_reviewer
-14	- worker
-15	---
-16	
-17	# 学术 Rebuttal 撰写与优化
-18	
-19	Rebuttal 是受 venue 约束的回应流程，不只是写作任务。目标：澄清误解、解决关键问题、将审稿分析转化为可执行任务清单、生成符合目标 venue 要求的提交产物。
-20	
-21	## 输入处理
-22	
-23	审稿意见可能以多种格式到达：
-24	
-25	- **粘贴文本**：直接使用，确认是否完整
-26	- **PDF 审稿**：读取 PDF，提取所有审稿文本、评分和 confidence
-27	- **截图**：读取图片转录所有可见内容，标记截断或不清晰的部分
-28	- **OpenReview / CMT 链接**：请用户粘贴审稿文本
-29	- **LaTeX 源码或论文 PDF**：按需读取以交叉核对 reviewer 质疑的 claim
-30	
-31	如果审稿不完整（缺评分或 confidence），先确认再继续。
-32	
-33	## 流程
-34	
-35	### Stage 1：审稿分析与 Issue Board
-36	
-37	分析所有审稿意见，识别核心主题、关键技术问题和共性疑问。
-38	
-39	**关键动作**：
-40	
-41	- **评分矩阵**：列出 Reviewer ID、评分、confidence、决策逻辑摘要
-42	- **立场分类**：
-43	  - Champion（分数 >= 7，正面语言）
-44	  - Persuadable（4-6 分，摇摆）
-45	  - Entrenched（<= 3 分，强烈负面）
-46	- **决策关键问题**：低分 + 高 confidence + 多 reviewer 重复提及 + AC 可能关注的
-47	- **归类**：soundness / novelty / significance / clarity / missing baselines / missing ablations / theory gaps / limitations / ethics / minor edits
-48	- **严重性分级**：
-49	
-50	| 严重性 | 定义 |
-51	|--------|------|
-52	| **Major-Blocking** | 单独可导致拒稿（方法论缺陷、novelty 挑战） |
-53	| **Major-Addressable** | 重大但可用证据或修改解决 |
-54	| **Minor** | 清晰度、格式、typo——对决策影响小 |
-55	| **Misunderstanding** | Reviewer 遗漏了论文中已有的内容 |
-56	
-57	**输出：Issue Board**
-58	
-59	```
-60	issue_id | reviewer | severity          | category   | strategy | status
-61	R1-1     | R1       | Major-Blocking    | baselines  | (TBD)    | open
-62	R1-2     | R1       | Minor             | clarity    | (TBD)    | open
-63	R2-1     | R2       | Misunderstanding  | novelty    | (TBD)    | open
-64	```
-65	
-66	如果用户只需要分析，到此为止。
-67	
-68	### Stage 2：策略选择
-69	
-70	为 Issue Board 中每个问题选择回应策略：
-71	
-72	| 策略 | 适用场景 | 示例 |
-73	|------|---------|------|
-74	| **Accept and fix** | Reviewer 说得对，deadline 前可修 | 缺少
-…[truncated 3901 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 937 · 2026-05-29T13:22:35.877855+00:00_
+_source line 935 · 2026-05-29T13:22:35.877855+00:00_
 
 called Glob
 
@@ -5503,7 +5373,7 @@ called Glob
 
 ### Tool result
 
-_source line 938 · 2026-05-29T13:22:35.928465+00:00_
+_source line 936 · 2026-05-29T13:22:35.928465+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_issues.yaml
 
@@ -5525,7 +5395,7 @@ _source line 938 · 2026-05-29T13:22:35.928465+00:00_
 
 ### Tool call
 
-_source line 939 · 2026-05-29T13:22:38.588396+00:00_
+_source line 937 · 2026-05-29T13:22:38.588396+00:00_
 
 called Read
 
@@ -5559,7 +5429,7 @@ called Read
 
 ### Tool result
 
-_source line 940 · 2026-05-29T13:22:38.639626+00:00_
+_source line 938 · 2026-05-29T13:22:38.639626+00:00_
 
 1	- id: "R1-C9"
 2	  summary: "v1/v2 mixing — 实验使用了混合版本的模型/数据"
@@ -5647,7 +5517,7 @@ _source line 940 · 2026-05-29T13:22:38.639626+00:00_
 
 ### Tool call
 
-_source line 941 · 2026-05-29T13:22:48.929233+00:00_
+_source line 939 · 2026-05-29T13:22:48.929233+00:00_
 
 called Bash
 
@@ -5683,7 +5553,7 @@ called Bash
 
 ### Tool result
 
-_source line 942 · 2026-05-29T13:22:49.080229+00:00_
+_source line 940 · 2026-05-29T13:22:49.080229+00:00_
 
 10894_health_check.md
 _project
@@ -5788,7 +5658,7 @@ gradient_cka_summary.
 
 ### Tool call
 
-_source line 943 · 2026-05-29T13:22:52.695124+00:00_
+_source line 941 · 2026-05-29T13:22:52.695124+00:00_
 
 called Read
 
@@ -5826,7 +5696,7 @@ called Read
 
 ### Tool result
 
-_source line 944 · 2026-05-29T13:22:52.795873+00:00_
+_source line 942 · 2026-05-29T13:22:52.795873+00:00_
 
 1	
 2	\section{Results}
@@ -5859,65 +5729,7 @@ _source line 944 · 2026-05-29T13:22:52.795873+00:00_
 
 ### Tool call
 
-_source line 945 · 2026-05-29T13:24:58.218262+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-````json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_response_draft_r4.md",
-  "content": "# Round 4 审稿回复骨架\n\n> 起草者：Reviewer Agent | 日期：2026-05-29\n> 状态：框架稿，实验数据位以 `[待填]` 标记\n> 覆盖 issue：RD2-N1, RD2-N2, RD2-W4, RD3-W3 (+ 关联 R1-C9)\n\n---\n\n## 总览\n\nWe thank the reviewers for their thorough and constructive feedback across three rounds. This revision addresses the four remaining open issues—all experimental—with new results from [待填: 总运行数] additional training runs (~100 GPU·h). The key updates:\n\n1. **Statistical power (RD2-N1)**: All factorial cells expanded to n≥5; ANOVA power substantially increased.\n2. **Content irrelevance under v2 (RD2-N2 + R1-C9)**: Random OCC replicated under v2, resolving the v1/v2 mixing confound.\n3. **BN mechanism verification (RD2-W4)**: BN eval-mode ablation directly tests the running-statistics hypothesis.\n4. **Loss weight robustness (RD3-W3)**: λ₀ ∈ {0.001, 0.01, 0.1} sweep confirms [待填: 是否 robust].\n\n---\n\n## Issue 1: RD2-N1 — 统计功效不足 [CRITICAL]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: With n=3, Cohen's d=0.93 has 95% CI approximately [−0.8, 2.7]. ANOVA main effects (p=0.104, p=0.060) do not reach significance. Post-hoc power is ~0.35–0.45.\n>\n> **R1 (Round 3, 深化)**: Interaction effect power <20% (the 4× sample size rule of thumb for detecting interactions). Non-significant p=0.753 cannot be interpreted as \"confirms additive\"—this is an absence-of-evidence ≠ evidence-of-absence error.\n>\n> **R2 (Round 2)**: n=3 per cell is insufficient for causal claims in a factorial design.\n\n### 回应\n\nWe agree that n=3–4 per cell limited statistical power, particularly for the interaction term. We have expanded all factorial cells to n≥5 and the Vanilla baseline accordingly:\n\n| Cell | Condition | Previous n | Updated n | Previous CAR (mean±SD) | Updated CAR (mean±SD) |\n|------|-----------|-----------|-----------|----------------------|---------------------|\n| 1 | Full OCC BN (GF ON + BN) | 3 | [待填] | 0.725 ± 0.064 | [待填] |\n| 2 | Full OCC LN (GF ON + LN) | 4 | [待填] | 0.773 ± 0.027 | [待填] |\n| 3 | Detach OCC (GF OFF + BN) | 4 | [待填] | 0.767 ± 0.024 | [待填] |\n| 4 | Detach+LN (GF OFF + LN) | 3 | [待填] | 0.802 ± 0.024 | [待填] |\n| — | Vanilla | 3 | [待填] | 0.745 ± 0.024 | [待填] |\n\n**Updated ANOVA (permutation, 10,000 permutations)**:\n\n| Source | Previous p_perm | Updated p_perm | Previous η² | Updated η² |\n|--------|----------------|----------------|-------------|------------|\n| Gradient flow | 0.090 | [待填] | 0.180 | [待填] |\n| Normalization | 0.041 | [待填] | 0.253 | [待填] |\n| Interaction | 0.794 | [待填] | 0.005 | [待填] |\n\n**Updated pairwise comparisons**:\n- Detach+LN vs Vanilla: Hedges' g = [待填], bootstrap 95% CI for Δ = [待填], p_perm = [待填]\n- Interaction power at n=[待填]: [待填]%\n\n**Addressing the \"absence of evidence\" concern (R1 Round 3)**:\nWith n≥5 per cell (N≥[待填] total), the design achieves [待填]% power for detecting medium-sized interactions (f=0.25). [待填: 如果 interaction 仍不显著] The non-significant interaction (p_perm=[待填], η²=[待填]) under improved power strengthens the additive interpretation. We have revised the language from \"confirms additive\" to [待填: 根据结果选择表述——见下方 fallback 分析].\n\n### 论文修改\n\n- **Table 1 (tab:main_results)**: 更新所有 n 和 CAR 数值 → 依赖 RD2-N1 实验完成\n- **Table 2 (tab:factorial)**: 更新 2×2 数据 → 依赖 RD2-N1 实验完成\n- **Table 3 (tab:anova)**: 更新 ANOVA F/p/η² → 依赖 RD2-N1 实验完成\n- **Table 4 (tab:permanova)**: 更新 permutation p → 依赖 RD2-N1 实验完成\n- **Table 5 (tab:pairwise)**: 更新 Hedges' g → 依赖 RD2-N1 实验完成\n- **Results §4.1**: 更新数字和统计表述 → 依赖 RD2-N1\n- **Appendix stat_power**: 更新 power 分析 → 依赖 RD2-N1\n- **Abstract, Intro, Conclusion**: 如有数字引用需同步更新\n\n---\n\n## Issue 2: RD2-N2 + R1-C9 — Content Irrelevance 缺 v2 验证 [CRITICAL]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: v1→v2 Full OCC CAR shifted from 0.797 to 0.725 and the crossover effect disappeared. Any cross-codebase comparison, including content irrelevance (Random OCC vs Full OCC), is confounded.\n>\n> **R1 (Round 3, 深化)**: Gradient orthogonality as indirect support for content irrelevance is logically flawed—orthogonality held under v1 as well, yet the conclusion still reversed. Two reviewers converge: R2 from a credibility standpoint (publishing unverified claims is unacceptable) and R1 from a statistical standpoint (v1/v2 confound).\n>\n> **R2 (Round 3)**: The v1/v2 confound also aggravates the interaction framing issue—supplementary conditions (v1) in Table 1 cannot be directly compared with core conditions (v2).\n\n### 回应\n\nWe agree that content irrelevance must be verified under v2 before it can be presented as a finding. We trained Random OCC under the v2 codebase with [待填: n] seeds:\n\n| Condition | Codebase | n | CAR (mean ± SD) | Hedges' g vs Full OCC (v2) |\n|-----------|----------|---|-----------------|---------------------------|\n| Full OCC BN (v2) | v2 | [待填] | [待填] | — |\n| Random OCC (v1, previous) | v1 | 3 | 0.789 ± 0.031 | — |\n| Random OCC (v2, new) | v2 | [待填] | [待填] | [待填] |\n\n[待填: 三种可能结果之一]\n\n**场景 A — Random OCC (v2) ≈ Full OCC BN (v2)**:\nContent irrelevance is confirmed cross-codebase. We update the claim to: \"Spatial content does not detectably affect collision avoidance under either codebase version (v1: p=[v1 p-value]; v2: p=[待填]).\"\n\n**场景 B — Random OCC (v2) ≠ Full OCC BN (v2)**:\nContent irrelevance does not hold under v2. We downgrade the claim to a preliminary observation: \"Under the v1 codebase, spatial content did not detectably affect outcomes (Random OCC ≈ Full OCC, p>0.4). Under v2, [待填: 描述差异]. The content effect may interact with implementation details, consistent with the codebase sensitivity documented in §5.\"\n\n**场景 C — 结果 ambiguous (差异方向不稳 / CI 重叠大)**:\nWe present both v1 and v2 results and conclude: \"The content effect is not robust across codebase versions, and we cannot rule out either content relevance or irrelevance with current evidence.\"\n\nThis directly resolves R1-C9 (v1/v2 mixing) for the content irrelevance claim, the last remaining v1-dependent finding.\n\n### 论文修改\n\n- **Table 1**: Random OCC 行更新为 v2 数据（或保留 v1 + 新增 v2 行） → 依赖 RD2-N2\n- **Results §4.1**: Content irrelevance 表述更新 → 依赖 RD2-N2 结果\n- **Introduction C1**: Content irrelevance 限定词更新 → 依赖 RD2-N2\n- **Discussion \"Content irrelevance\"**: 更新证据来源 → 依赖 RD2-N2\n- **Conclusion**: 同步 → 依赖 RD2-N2\n- ✅ **Limitations**: 若场景 A，删除 \"Content and temporal ablations were conducted under the original codebase only\" 中的 content 部分\n\n---\n\n## Issue 3: RD2-W4 — BN Running Statistics 假说缺直接验证 [WARNING]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: Eval mode or momentum=0 is a low-cost verification.\n>\n> **R2 (Round 3)**: The BN corruption mechanism does not require gradient conflict—forward pass alone updates running stats. The paper neither clearly proposes this mechanism nor verifies it.\n>\n> **R1 (Round 3)**: Discussion L5 explicitly acknowledges \"hypothesize but do not directly test.\"\n\n### 回应\n\nWe agree this is an important gap. We conducted a BN eval-mode ablation: training with `model.occ_head.eval()` called before each forward pass, which freezes BN running mean/variance to their initialization values while retaining gradient flow through the auxiliary head.\n\n| Condition | BN Mode | Gradient Flow | n | CAR (mean ± SD) | Hedges' g vs Full OCC BN |\n|-----------|---------|---------------|---|-----------------|--------------------------|\n| Full OCC BN (standard) | Train | ON | [待填] | [待填] | — |\n| Full OCC BN (eval mode) | Eval | ON | [待填] | [待填] | [待填] |\n| Detach OCC (reference) | Train | OFF | [待填] | [待填] | — |\n| Vanilla (reference) | — | — | [待填] | [待填] | — |\n\n[待填: 三种可能结果之一]\n\n**场景 A — Eval mode 消除 deficit (CAR ≈ Vanilla or higher)**:\n\"Freezing BN running statistics eliminates the safety deficit associated with the BN + gradient flow combination (eval-mode CAR [待填] vs standard-mode [待填], g=[待填]). This confirms that the BN running-statistics corruption mechanism is the primary driver: auxiliary head forward passes shift the running mean/variance used at inference, even when gradients are orthogonal to the action loss. LayerNorm, which computes per-token statistics without cross-batch dependencies, is naturally immune to this mechanism.\"\n\n论文影响：Discussion 从 \"hypothesize\" 升级为 \"confirmed\"；Contribution 增强\n\n**场景 B — Eval mode 不消除 deficit (CAR ≈ Full OCC BN standard)**:\n\"Freezing BN running statistics does not eliminate the safety deficit (eval-mode CAR [待填] ≈ standard-mode [待填]), indicating that the BN running-statistics mechanism is not the primary driver. The deficit likely originates from the BN forward-pass computation itself (mini-batch mean/variance normalization altering gradient signal quality) rather than inference-time running statistics drift.\"\n\n论文影响：Discussion 修改假说方向；机制仍 \"open\"\n\n**场景 C — 部分消除 (Eval mode 介于 standard 和 Vanilla 之间)**:\n\"BN running statistics contribute to but do not fully explain the deficit. Both running-statistics drift and gradient-mediated optimization effects contribute.\"\n\n### 论文修改\n\n- **Discussion \"Hypothesis: BN forward-pass statistics corruption\"**: 根据结果升/降级 → 依赖 RD2-W4\n- **Appendix**: 新增 BN eval-mode ablation 表 → 依赖 RD2-W4\n- **Table 1**: 可选新增 eval-mode 行 → 依赖 RD2-W4 + 页数限制\n\n---\n\n## Issue 4: RD3-W3 — λ₀ Loss Weight 敏感度 [WARNING]\n\n### 审稿人原始意见\n\n> **R1+R2 (Round 3)**: λ₀ directly controls auxiliary gradient magnitude. At very small λ₀ the gradient flow effect may vanish; at large λ₀ it may be amplified. The current finding could be highly dependent on λ₀=0.01. At minimum, three λ₀ values are needed.\n\n### 回应\n\nWe conducted a λ₀ sensitivity analysis under the Full OCC BN condition (gradient flow ON + BN), which is the cell most affected by auxiliary gradient magnitude:\n\n| λ₀ | Effective λ at step 25K | n | CAR (mean ± SD) | Hedges' g vs Vanilla |\n|----|------------------------|---|-----------------|---------------------|\n| 0.001 | 6.1×10⁻⁴ | [待填] | [待填] | [待填] |\n| 0.01 (default) | 6.1×10⁻³ | [待填] | [待填] | [待填] |\n| 0.1 | 6.1×10⁻² | [待填] | [待填] | [待填] |\n\nNote: λ(t) = λ₀ · exp(−t/50000), so at step 25K the effective weight is λ₀ × 0.607.\n\n[待填: 根据结果选择之一]\n\n**场景 A — 结果对 λ₀ 不敏感 (三值 CAR 差异 < cross-seed SD)**:\n\"The gradient flow safety deficit is robust across an order-of-magnitude range of auxiliary loss weights (λ₀ ∈ {0.001, 0.01, 0.1}; Table [待填]). All three values produce CAR below the Detach+LN optimum, confirming that the finding is not an artifact of a specific loss weight.\"\n\n**场景 B — 显著 dose-response (λ₀=0.1 更差, λ₀=0.001 接近 Vanilla)**:\n\"The safety deficit exhibits a dose-response relationship with auxiliary loss weight: λ₀=0.001 yields CAR [待填] (near Vanilla), while λ₀=0.1 reduces CAR to [待填]. This pattern is consistent with the running-statistics mechanism: higher λ₀ drives larger auxiliary activations, amplifying BN running-statistics drift. The practical guideline remains unchanged—detaching gradients eliminates the mechanism regardless of λ₀—but loss weight should be considered when gradient flow is retained.\"\n\n**场景 C — 非单调 (λ₀=0.001 或 0.1 意外优于 default)**:\n\"The relationship between λ₀ and safety is non-monotonic, suggesting competing mechanisms at different loss weight scales. [待填: 具体分析].\"\n\n### 论文修改\n\n- **Appendix**: 新增 λ₀ sensitivity table → 依赖 RD3-W3\n- **Discussion \"Practical guideline\"**: 根据结果补充 λ₀ 鲁棒性声明 → 依赖 RD3-W3\n- **Method**: 可选补充对 λ₀ 选择的 justification → 依赖 RD3-W3\n- **Table 1**: 暂不新增行（appendix 足够），除非场景 B/C 需在主文讨论\n\n---\n\n## 附录：Gradient Flow 效应 p>0.05 时的 Fallback 分析\n\n### 问题\n\n如果 RD2-N1 完成后 gradient flow 主效应仍 p>0.05（当前 p_perm=0.090），\"Two additive main effects\" 的 claim 是否需要根本性调整？\n\n### Reviewer 判断\n\n**不需要根本性调整，但需要措辞精确化。** 理由如下：\n\n#### 1. \"Two main effects\" claim 的核心不依赖两个都显著\n\n论文的核心论点是 Detach+LN 优于 Vanilla，且这个优势由两个独立（非交互）因素驱动。这个论点需要：\n- ✅ 交互项不显著（当前 p=0.794，极度充分）\n- ✅ 至少一个主效应显著（normalization p=0.041）\n- ⚠️ 另一个主效应方向一致、效应量大（gradient flow η²=0.180, g=0.78）\n\ngradient flow 效应**方向一致**（BN 和 LN 行都显示 ON < OFF）且**效应量大**（g=0.78），即使 p 未达 0.05，这仍然是有意义的信号。在 n=3–4 的样本下，p=0.090 的未通过更多反映 power 不足而非效应不存在。\n\n#### 2. 如果 n≥5 后仍 p>0.05\n\n需要区分两个子场景：\n\n**2a. p 在 0.05–0.10 范围且 η² 仍 large (≥0.14)**:\n- 效应存在但 underpowered → 不改变叙事结构\n- 措辞调整：\"The normalization main effect reaches significance (p=[值]); the gradient flow main effect shows a large effect size (η²=[值]) consistent with a detrimental effect of auxiliary gradients, though it does not reach conventional significance (p=[值]) under the current sample size.\"\n- \"Two additive main effects\" → \"Two directionally consistent main effects, one significant and one large but sub-threshold\"\n- **核心 claim 保持：Detach+LN 最优，因为两个因素的方向都有利**\n\n**2b. η² 缩小到 medium 或 small (<0.06)**:\n- 效应可能确实弱 → 需要调整叙事\n- **Fallback framing**: \"The dominant factor is normalization type (LN > BN, p=[值], η²=[值]); gradient flow shows a directional but modest association with lower safety that does not reach significance. The factorial design establishes that these effects are additive.\"\n- \"Two additive main effects\" → \"One significant main effect (normalization) with a directional but modest gradient flow association\"\n- Contribution #1 重心从 \"two protections\" 偏移到 \"normalization is the key design choice; detaching is a conservative safeguard\"\n\n#### 3. 建议的弹性表述（现在可以预写）\n\n无论 p 值如何，以下表述都是安全的：\n\n> \"The $2{\\times}2$ factorial reveals two directionally consistent main effects with negligible interaction: normalization type (LN > BN) and gradient flow (OFF > ON). The normalization effect is the stronger and more robust of the two [待填: 统计细节]. The practical implication is unchanged: Detach+LN provides the best safety outcome by combining both favorable design choices.\"\n\n这个表述：\n- 不依赖两个都显著\n- 正确描述 additive 结构（交互项零）\n- 不 overclaim gradient flow 的显著性\n- 保留 practical guideline 不变\n\n#### 4. 最坏情景\n\n如果 n≥5 后 gradient flow 效应 η² 降到 <0.06 且 normalization 效应也弱化：\n- 论文核心 claim 需大幅重构\n- 但**这种情景概率极低**：当前 4 cell 的方向一致性（BN 和 LN 行都 ON < OFF）在 n≥5 下几乎不可能完全消失\n- 更可能的是中间值偏移（均值微调 1–2pp），效应方向保持\n\n**结论：预先准备 2a 的弹性表述即可，无需为根本性重构做计划。**\n\n---\n\n## 修改依赖关系总览\n\n```\nRD2-N1 (n≥5) ──→ Table 1, 2, 3, 4, 5 + Results + Appendix + Abstract/Intro/Conclusion\nRD2-N2 (Random OCC v2) ──→ Table 1 + Results (content claim) + Discussion + Intro C1\nRD2-W4 (BN eval) ──→ Discussion (mechanism) + Appendix\nRD3-W3 (λ sweep) ──→ Appendix + Discussion (guideline)\nR1-C9 ──→ 关联 RD2-N2 完成即 resolved\n\n关键路径：RD2-N1 > RD2-N2 > RD2-W4 ≈ RD3-W3\n```\n\n所有 4 个实验已由 Agent 准备提交配置，等 AutoDL 服务器恢复（2×4 GPU）后立即启动。预计 8 卡并行 12–15h 完成全部 ~100 GPU·h。\n"
-}
-````
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-````json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_response_draft_r4.md",
-    "content": "# Round 4 审稿回复骨架\n\n> 起草者：Reviewer Agent | 日期：2026-05-29\n> 状态：框架稿，实验数据位以 `[待填]` 标记\n> 覆盖 issue：RD2-N1, RD2-N2, RD2-W4, RD3-W3 (+ 关联 R1-C9)\n\n---\n\n## 总览\n\nWe thank the reviewers for their thorough and constructive feedback across three rounds. This revision addresses the four remaining open issues—all experimental—with new results from [待填: 总运行数] additional training runs (~100 GPU·h). The key updates:\n\n1. **Statistical power (RD2-N1)**: All factorial cells expanded to n≥5; ANOVA power substantially increased.\n2. **Content irrelevance under v2 (RD2-N2 + R1-C9)**: Random OCC replicated under v2, resolving the v1/v2 mixing confound.\n3. **BN mechanism verification (RD2-W4)**: BN eval-mode ablation directly tests the running-statistics hypothesis.\n4. **Loss weight robustness (RD3-W3)**: λ₀ ∈ {0.001, 0.01, 0.1} sweep confirms [待填: 是否 robust].\n\n---\n\n## Issue 1: RD2-N1 — 统计功效不足 [CRITICAL]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: With n=3, Cohen's d=0.93 has 95% CI approximately [−0.8, 2.7]. ANOVA main effects (p=0.104, p=0.060) do not reach significance. Post-hoc power is ~0.35–0.45.\n>\n> **R1 (Round 3, 深化)**: Interaction effect power <20% (the 4× sample size rule of thumb for detecting interactions). Non-significant p=0.753 cannot be interpreted as \"confirms additive\"—this is an absence-of-evidence ≠ evidence-of-absence error.\n>\n> **R2 (Round 2)**: n=3 per cell is insufficient for causal claims in a factorial design.\n\n### 回应\n\nWe agree that n=3–4 per cell limited statistical power, particularly for the interaction term. We have expanded all factorial cells to n≥5 and the Vanilla baseline accordingly:\n\n| Cell | Condition | Previous n | Updated n | Previous CAR (mean±SD) | Updated CAR (mean±SD) |\n|------|-----------|-----------|-----------|----------------------|---------------------|\n| 1 | Full OCC BN (GF ON + BN) | 3 | [待填] | 0.725 ± 0.064 | [待填] |\n| 2 | Full OCC LN (GF ON + LN) | 4 | [待填] | 0.773 ± 0.027 | [待填] |\n| 3 | Detach OCC (GF OFF + BN) | 4 | [待填] | 0.767 ± 0.024 | [待填] |\n| 4 | Detach+LN (GF OFF + LN) | 3 | [待填] | 0.802 ± 0.024 | [待填] |\n| — | Vanilla | 3 | [待填] | 0.745 ± 0.024 | [待填] |\n\n**Updated ANOVA (permutation, 10,000 permutations)**:\n\n| Source | Previous p_perm | Updated p_perm | Previous η² | Updated η² |\n|--------|----------------|----------------|-------------|------------|\n| Gradient flow | 0.090 | [待填] | 0.180 | [待填] |\n| Normalization | 0.041 | [待填] | 0.253 | [待填] |\n| Interaction | 0.794 | [待填] | 0.005 | [待填] |\n\n**Updated pairwise comparisons**:\n- Detach+LN vs Vanilla: Hedges' g = [待填], bootstrap 95% CI for Δ = [待填], p_perm = [待填]\n- Interaction power at n=[待填]: [待填]%\n\n**Addressing the \"absence of evidence\" concern (R1 Round 3)**:\nWith n≥5 per cell (N≥[待填] total), the design achieves [待填]% power for detecting medium-sized interactions (f=0.25). [待填: 如果 interaction 仍不显著] The non-significant interaction (p_perm=[待填], η²=[待填]) under improved power strengthens the additive interpretation. We have revised the language from \"confirms additive\" to [待填: 根据结果选择表述——见下方 fallback 分析].\n\n### 论文修改\n\n- **Table 1 (tab:main_results)**: 更新所有 n 和 CAR 数值 → 依赖 RD2-N1 实验完成\n- **Table 2 (tab:factorial)**: 更新 2×2 数据 → 依赖 RD2-N1 实验完成\n- **Table 3 (tab:anova)**: 更新 ANOVA F/p/η² → 依赖 RD2-N1 实验完成\n- **Table 4 (tab:permanova)**: 更新 permutation p → 依赖 RD2-N1 实验完成\n- **Table 5 (tab:pairwise)**: 更新 Hedges' g → 依赖 RD2-N1 实验完成\n- **Results §4.1**: 更新数字和统计表述 → 依赖 RD2-N1\n- **Appendix stat_power**: 更新 power 分析 → 依赖 RD2-N1\n- **Abstract, Intro, Conclusion**: 如有数字引用需同步更新\n\n---\n\n## Issue 2: RD2-N2 + R1-C9 — Content Irrelevance 缺 v2 验证 [CRITICAL]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: v1→v2 Full OCC CAR shifted from 0.797 to 0.725 and the crossover effect disappeared. Any cross-codebase comparison, including content irrelevance (Random OCC vs Full OCC), is confounded.\n>\n> **R1 (Round 3, 深化)**: Gradient orthogonality as indirect support for content irrelevance is logically flawed—orthogonality held under v1 as well, yet the conclusion still reversed. Two reviewers converge: R2 from a credibility standpoint (publishing unverified claims is unacceptable) and R1 from a statistical standpoint (v1/v2 confound).\n>\n> **R2 (Round 3)**: The v1/v2 confound also aggravates the interaction framing issue—supplementary conditions (v1) in Table 1 cannot be directly compared with core conditions (v2).\n\n### 回应\n\nWe agree that content irrelevance must be verified under v2 before it can be presented as a finding. We trained Random OCC under the v2 codebase with [待填: n] seeds:\n\n| Condition | Codebase | n | CAR (mean ± SD) | Hedges' g vs Full OCC (v2) |\n|-----------|----------|---|-----------------|---------------------------|\n| Full OCC BN (v2) | v2 | [待填] | [待填] | — |\n| Random OCC (v1, previous) | v1 | 3 | 0.789 ± 0.031 | — |\n| Random OCC (v2, new) | v2 | [待填] | [待填] | [待填] |\n\n[待填: 三种可能结果之一]\n\n**场景 A — Random OCC (v2) ≈ Full OCC BN (v2)**:\nContent irrelevance is confirmed cross-codebase. We update the claim to: \"Spatial content does not detectably affect collision avoidance under either codebase version (v1: p=[v1 p-value]; v2: p=[待填]).\"\n\n**场景 B — Random OCC (v2) ≠ Full OCC BN (v2)**:\nContent irrelevance does not hold under v2. We downgrade the claim to a preliminary observation: \"Under the v1 codebase, spatial content did not detectably affect outcomes (Random OCC ≈ Full OCC, p>0.4). Under v2, [待填: 描述差异]. The content effect may interact with implementation details, consistent with the codebase sensitivity documented in §5.\"\n\n**场景 C — 结果 ambiguous (差异方向不稳 / CI 重叠大)**:\nWe present both v1 and v2 results and conclude: \"The content effect is not robust across codebase versions, and we cannot rule out either content relevance or irrelevance with current evidence.\"\n\nThis directly resolves R1-C9 (v1/v2 mixing) for the content irrelevance claim, the last remaining v1-dependent finding.\n\n### 论文修改\n\n- **Table 1**: Random OCC 行更新为 v2 数据（或保留 v1 + 新增 v2 行） → 依赖 RD2-N2\n- **Results §4.1**: Content irrelevance 表述更新 → 依赖 RD2-N2 结果\n- **Introduction C1**: Content irrelevance 限定词更新 → 依赖 RD2-N2\n- **Discussion \"Content irrelevance\"**: 更新证据来源 → 依赖 RD2-N2\n- **Conclusion**: 同步 → 依赖 RD2-N2\n- ✅ **Limitations**: 若场景 A，删除 \"Content and temporal ablations were conducted under the original codebase only\" 中的 content 部分\n\n---\n\n## Issue 3: RD2-W4 — BN Running Statistics 假说缺直接验证 [WARNING]\n\n### 审稿人原始意见\n\n> **R1 (Round 2)**: Eval mode or momentum=0 is a low-cost verification.\n>\n> **R2 (Round 3)**: The BN corruption mechanism does not require gradient conflict—forward pass alone updates running stats. The paper neither clearly proposes this mechanism nor verifies it.\n>\n> **R1 (Round 3)**: Discussion L5 explicitly acknowledges \"hypothesize but do not directly test.\"\n\n### 回应\n\nWe agree this is an important gap. We conducted a BN eval-mode ablation: training with `model.occ_head.eval()` called before each forward pass, which freezes BN running mean/variance to their initialization values while retaining gradient flow through the auxiliary head.\n\n| Condition | BN Mode | Gradient Flow | n | CAR (mean ± SD) | Hedges' g vs Full OCC BN |\n|-----------|---------|---------------|---|-----------------|--------------------------|\n| Full OCC BN (standard) | Train | ON | [待填] | [待填] | — |\n| Full OCC BN (eval mode) | Eval | ON | [待填] | [待填] | [待填] |\n| Detach OCC (reference) | Train | OFF | [待填] | [待填] | — |\n| Vanilla (reference) | — | — | [待填] | [待填] | — |\n\n[待填: 三种可能结果之一]\n\n**场景 A — Eval mode 消除 deficit (CAR ≈ Vanilla or higher)**:\n\"Freezing BN running statistics eliminates the safety deficit associated with the BN + gradient flow combination (eval-mode CAR [待填] vs standard-mode [待填], g=[待填]). This confirms that the BN running-statistics corruption mechanism is the primary driver: auxiliary head forward passes shift the running mean/variance used at inference, even when gradients are orthogonal to the action loss. LayerNorm, which computes per-token statistics without cross-batch dependencies, is naturally immune to this mechanism.\"\n\n论文影响：Discussion 从 \"hypothesize\" 升级为 \"confirmed\"；Contribution 增强\n\n**场景 B — Eval mode 不消除 deficit (CAR ≈ Full OCC BN standard)**:\n\"Freezing BN running statistics does not eliminate the safety deficit (eval-mode CAR [待填] ≈ standard-mode [待填]), indicating that the BN running-statistics mechanism is not the primary driver. The deficit likely originates from the BN forward-pass computation itself (mini-batch mean/variance normalization altering gradient signal quality) rather than inference-time running statistics drift.\"\n\n论文影响：Discussion 修改假说方向；机制仍 \"open\"\n\n**场景 C — 部分消除 (Eval mode 介于 standard 和 Vanilla 之间)**:\n\"BN running statistics contribute to but do not fully explain the deficit. Both running-statistics drift and gradient-mediated optimization effects contribute.\"\n\n### 论文修改\n\n- **Discussion \"Hypothesis: BN forward-pass statistics corruption\"**: 根据结果升/降级 → 依赖 RD2-W4\n- **Appendix**: 新增 BN eval-mode ablation 表 → 依赖 RD2-W4\n- **Table 1**: 可选新增 eval-mode 行 → 依赖 RD2-W4 + 页数限制\n\n---\n\n## Issue 4: RD3-W3 — λ₀ Loss Weight 敏感度 [WARNING]\n\n### 审稿人原始意见\n\n> **R1+R2 (Round 3)**: λ₀ directly controls auxiliary gradient magnitude. At very small λ₀ the gradient flow effect may vanish; at large λ₀ it may be amplified. The current finding could be highly dependent on λ₀=0.01. At minimum, three λ₀ values are needed.\n\n### 回应\n\nWe conducted a λ₀ sensitivity analysis under the Full OCC BN condition (gradient flow ON + BN), which is the cell most affected by auxiliary gradient magnitude:\n\n| λ₀ | Effective λ at step 25K | n | CAR (mean ± SD) | Hedges' g vs Vanilla |\n|----|------------------------|---|-----------------|---------------------|\n| 0.001 | 6.1×10⁻⁴ | [待填] | [待填] | [待填] |\n| 0.01 (default) | 6.1×10⁻³ | [待填] | [待填] | [待填] |\n| 0.1 | 6.1×10⁻² | [待填] | [待填] | [待填] |\n\nNote: λ(t) = λ₀ · exp(−t/50000), so at step 25K the effective weight is λ₀ × 0.607.\n\n[待填: 根据结果选择之一]\n\n**场景 A — 结果对 λ₀ 不敏感 (三值 CAR 差异 < cross-seed SD)**:\n\"The gradient flow safety deficit is robust across an order-of-magnitude range of auxiliary loss weights (λ₀ ∈ {0.001, 0.01, 0.1}; Table [待填]). All three values produce CAR below the Detach+LN optimum, confirming that the finding is not an artifact of a specific loss weight.\"\n\n**场景 B — 显著 dose-response (λ₀=0.1 更差, λ₀=0.001 接近 Vanilla)**:\n\"The safety deficit exhibits a dose-response relationship with auxiliary loss weight: λ₀=0.001 yields CAR [待填] (near Vanilla), while λ₀=0.1 reduces CAR to [待填]. This pattern is consistent with the running-statistics mechanism: higher λ₀ drives larger auxiliary activations, amplifying BN running-statistics drift. The practical guideline remains unchanged—detaching gradients eliminates the mechanism regardless of λ₀—but loss weight should be considered when gradient flow is retained.\"\n\n**场景 C — 非单调 (λ₀=0.001 或 0.1 意外优于 default)**:\n\"The relationship between λ₀ and safety is non-monotonic, suggesting competing mechanisms at different loss weight scales. [待填: 具体分析].\"\n\n### 论文修改\n\n- **Appendix**: 新增 λ₀ sensitivity table → 依赖 RD3-W3\n- **Discussion \"Practical guideline\"**: 根据结果补充 λ₀ 鲁棒性声明 → 依赖 RD3-W3\n- **Method**: 可选补充对 λ₀ 选择的 justification → 依赖 RD3-W3\n- **Table 1**: 暂不新增行（appendix 足够），除非场景 B/C 需在主文讨论\n\n---\n\n## 附录：Gradient Flow 效应 p>0.05 时的 Fallback 分析\n\n### 问题\n\n如果 RD2-N1 完成后 gradient flow 主效应仍 p>0.05（当前 p_perm=0.090），\"Two additive main effects\" 的 claim 是否需要根本性调整？\n\n### Reviewer 判断\n\n**不需要根本性调整，但需要措辞精确化。** 理由如下：\n\n#### 1. \"Two main effects\" claim 的核心不依赖两个都显著\n\n论文的核心论点是 Detach+LN 优于 Vanilla，且这个优势由两个独立（非交互）因素驱动。这个论点需要：\n- ✅ 交互项不显著（当前 p=0.794，极度充分）\n- ✅ 至少一个主效应显著（normalization p=0.041）\n- ⚠️ 另一个主效应方向一致、效应量大（gradient flow η²=0.180, g=0.78）\n\ngradient flow 效应**方向一致**（BN 和 LN 行都显示 ON < OFF）且**效应量大**（g=0.78），即使 p 未达 0.05，这仍然是有意义的信号。在 n=3–4 的样本下，p=0.090 的未通过更多反映 power 不足而非效应不存在。\n\n#### 2. 如果 n≥5 后仍 p>0.05\n\n需要区分两个子场景：\n\n**2a. p 在 0.05–0.10 范围且 η² 仍 large (≥0.14)**:\n- 效应存在但 underpowered → 不改变叙事结构\n- 措辞调整：\"The normalization main effect reaches significance (p=[值]); the gradient flow main effect shows a large effect size (η²=[值]) consistent with a detrimental effect of auxiliary gradients, though it does not reach conventional significance (p=[值]) under the current sample size.\"\n- \"Two additive main effects\" → \"Two directionally consistent main effects, one significant and one large but sub-threshold\"\n- **核心 claim 保持：Detach+LN 最优，因为两个因素的方向都有利**\n\n**2b. η² 缩小到 medium 或 small (<0.06)**:\n- 效应可能确实弱 → 需要调整叙事\n- **Fallback framing**: \"The dominant factor is normalization type (LN > BN, p=[值], η²=[值]); gradient flow shows a directional but modest association with lower safety that does not reach significance. The factorial design establishes that these effects are additive.\"\n- \"Two additive main effects\" → \"One significant main effect (normalization) with a directional but modest gradient flow association\"\n- Contribution #1 重心从 \"two protections\" 偏移到 \"normalization is the key design choice; detaching is a conservative safeguard\"\n\n#### 3. 建议的弹性表述（现在可以预写）\n\n无论 p 值如何，以下表述都是安全的：\n\n> \"The $2{\\times}2$ factorial reveals two directionally consistent main effects with negligible interaction: normalization type (LN > BN) and gradient flow (OFF > ON). The normalization effect is the stronger and more robust of the two [待填: 统计细节]. The practical implication is unchanged: Detach+LN provides the best safety outcome by combining both favorable design choices.\"\n\n这个表述：\n- 不依赖两个都显著\n- 正确描述 additive 结构（交互项零）\n- 不 overclaim gradient flow 的显著性\n- 保留 practical guideline 不变\n\n#### 4. 最坏情景\n\n如果 n≥5 后 gradient flow 效应 η² 降到 <0.06 且 normalization 效应也弱化：\n- 论文核心 claim 需大幅重构\n- 但**这种情景概率极低**：当前 4 cell 的方向一致性（BN 和 LN 行都 ON < OFF）在 n≥5 下几乎不可能完全消失\n- 更可能的是中间值偏移（均值微调 1–2pp），效应方向保持\n\n**结论：预先准备 2a 的弹性表述即可，无需为根本性重构做计划。**\n\n---\n\n## 修改依赖关系总览\n\n```\nRD2-N1 (n≥5) ──→ Table 1, 2, 3, 4, 5 + Results + Appendix + Abstract/Intro/Conclusion\nRD2-N2 (Random OCC v2) ──→ Table 1 + Results (content claim) + Discussion + Intro C1\nRD2-W4 (BN eval) ──→ Discussion (mechanism) + Appendix\nRD3-W3 (λ sweep) ──→ Appendix + Discussion (guideline)\nR1-C9 ──→ 关联 RD2-N2 完成即 resolved\n\n关键路径：RD2-N1 > RD2-N2 > RD2-W4 ≈ RD3-W3\n```\n\n所有 4 个实验已由 Agent 准备提交配置，等 AutoDL 服务器恢复（2×4 GPU）后立即启动。预计 8 卡并行 12–15h 完成全部 ~100 GPU·h。\n"
-  }
-}
-````
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 946 · 2026-05-29T13:24:58.219224+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_response_draft_r4.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Write",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 947 · 2026-05-29T13:25:18.778468+00:00_
+_source line 943 · 2026-05-29T13:25:18.778468+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5953,7 +5765,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 948 · 2026-05-29T13:25:21.889532+00:00_
+_source line 944 · 2026-05-29T13:25:21.889532+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -5975,7 +5787,7 @@ _source line 948 · 2026-05-29T13:25:21.889532+00:00_
 
 ### Assistant
 
-_source line 949 · 2026-05-29T13:25:28.694117+00:00_
+_source line 945 · 2026-05-29T13:25:28.694117+00:00_
 
 Round 4 审稿回复骨架已输出到 `artifacts/review_response_draft_r4.md` 并提交给 Director。
 
@@ -6004,7 +5816,7 @@ Round 4 审稿回复骨架已输出到 `artifacts/review_response_draft_r4.md` �
 
 ### User
 
-_source line 950 · 2026-05-29T13:57:26.275650+00:00_
+_source line 946 · 2026-05-29T13:57:26.275650+00:00_
 
 [System 触发审查]:
 **最坏情况预演：4 个 open issue 的审稿人追击风险排序**
@@ -6040,7 +5852,7 @@ _source line 950 · 2026-05-29T13:57:26.275650+00:00_
 
 ### Tool call
 
-_source line 951 · 2026-05-29T14:00:07.968428+00:00_
+_source line 947 · 2026-05-29T14:00:07.968428+00:00_
 
 called Write
 
@@ -6076,7 +5888,7 @@ called Write
 
 ### Tool result
 
-_source line 952 · 2026-05-29T14:00:08.039082+00:00_
+_source line 948 · 2026-05-29T14:00:08.039082+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/worst_case_contingency.md
 
@@ -6098,7 +5910,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/proj
 
 ### Tool call
 
-_source line 953 · 2026-05-29T14:00:23.977562+00:00_
+_source line 949 · 2026-05-29T14:00:23.977562+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6134,7 +5946,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 954 · 2026-05-29T14:00:27.142241+00:00_
+_source line 950 · 2026-05-29T14:00:27.142241+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -6156,7 +5968,7 @@ _source line 954 · 2026-05-29T14:00:27.142241+00:00_
 
 ### Assistant
 
-_source line 955 · 2026-05-29T14:00:30.286184+00:00_
+_source line 951 · 2026-05-29T14:00:30.286184+00:00_
 
 逐个分析 4 个 issue 的最坏情况。我已有充分的论文和数据上下文，直接起草。
 
@@ -6183,7 +5995,7 @@ _source line 955 · 2026-05-29T14:00:30.286184+00:00_
 
 ### User
 
-_source line 956 · 2026-05-29T14:35:42.830366+00:00_
+_source line 952 · 2026-05-29T14:35:42.830366+00:00_
 
 [System 触发审查]:
 请审查当前 paper_framing.md 的统计脆弱性并给出应对预案：
@@ -6215,7 +6027,7 @@ _source line 956 · 2026-05-29T14:35:42.830366+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-29T14:36:47.286172+00:00_
+_source line 953 · 2026-05-29T14:36:47.286172+00:00_
 
 called Read
 
@@ -6253,7 +6065,7 @@ called Read
 
 ### Tool result
 
-_source line 958 · 2026-05-29T14:36:47.387013+00:00_
+_source line 954 · 2026-05-29T14:36:47.387013+00:00_
 
 39	### D074 v2 Factorial — Dual Main Effects（当前权威数据）
 40	
@@ -6294,7 +6106,7 @@ _source line 958 · 2026-05-29T14:36:47.387013+00:00_
 
 ### Tool call
 
-_source line 959 · 2026-05-29T14:36:50.759603+00:00_
+_source line 955 · 2026-05-29T14:36:50.759603+00:00_
 
 called Read
 
@@ -6332,7 +6144,7 @@ called Read
 
 ### Tool result
 
-_source line 960 · 2026-05-29T14:36:50.810302+00:00_
+_source line 956 · 2026-05-29T14:36:50.810302+00:00_
 
 160	
 161	### v2 Factorial Evidence (D043, 权威数据)
@@ -6368,7 +6180,7 @@ _source line 960 · 2026-05-29T14:36:50.810302+00:00_
 
 ### Tool call
 
-_source line 961 · 2026-05-29T14:39:23.827204+00:00_
+_source line 957 · 2026-05-29T14:39:23.827204+00:00_
 
 called Write
 
@@ -6404,7 +6216,7 @@ called Write
 
 ### Tool result
 
-_source line 962 · 2026-05-29T14:39:23.878309+00:00_
+_source line 958 · 2026-05-29T14:39:23.878309+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/statistical_vulnerability_analysis.md
 
@@ -6426,7 +6238,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/proj
 
 ### Tool call
 
-_source line 963 · 2026-05-29T14:39:45.017562+00:00_
+_source line 959 · 2026-05-29T14:39:45.017562+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6462,7 +6274,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 964 · 2026-05-29T14:39:48.113647+00:00_
+_source line 960 · 2026-05-29T14:39:48.113647+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -6484,7 +6296,7 @@ _source line 964 · 2026-05-29T14:39:48.113647+00:00_
 
 ### Assistant
 
-_source line 965 · 2026-05-29T14:39:51.085099+00:00_
+_source line 961 · 2026-05-29T14:39:51.085099+00:00_
 
 有了所有原始数据。进行定量分析后撰写报告。
 
@@ -6511,7 +6323,7 @@ _source line 965 · 2026-05-29T14:39:51.085099+00:00_
 
 ### User
 
-_source line 966 · 2026-05-29T14:41:40.700416+00:00_
+_source line 962 · 2026-05-29T14:41:40.700416+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：追加 Reviewer 推荐的零成本统计加固分析；更新阻塞状态），请审查研究方向和计划的合理性。
@@ -6533,7 +6345,7 @@ _source line 966 · 2026-05-29T14:41:40.700416+00:00_
 
 ### Tool call
 
-_source line 967 · 2026-05-29T14:41:47.594765+00:00_
+_source line 963 · 2026-05-29T14:41:47.594765+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -6567,7 +6379,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 968 · 2026-05-29T14:41:47.797209+00:00_
+_source line 964 · 2026-05-29T14:41:47.797209+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-29 14:41 UTC | 更新原因: 追加 Reviewer 推荐的零成本统计加固分析；更新阻塞状态\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（GPU 停机期间，零成本）\\n\\nReviewer 统计脆弱性分析发现 η²=0.180 依赖 Cell 1 outlier (0.654)，方差异质性 7.1:1。\\n已派 Agent 执行以下分析（无需 GPU）：\\n\\n- [ ] Task-level CAR 效应分层（hard/medium/easy tasks × 条件交互）\\n- [ ] **Bayesian ANOVA** — BF₀₁(interaction) 正面证明 additivity\\n- [ ] **TSR factorial ANOVA** — 证明效应是 safety-specific\\n- [ ] Leave-one-out 敏感性分析 + Levene's test + Welch-corrected ANOVA\\n\\n**contingency**：如果 RD2-N1 后 η²<0.06，framing 调整为 \\\"normalization dominant + gradient flow consistent trend\\\"，不降级投稿。\\n\\n## 基础设施\\n- 2× AutoDL 服务器（westd-34685, westd-10894），各 4×RTX PRO 6000 98GB\\n- **当前状态：🔴 GPU 不可用** — 两台均 SSH 不可达（>2h），已通知 Manager 升级\\n- 论文源码：`projects/occsafe_vla/docs/pa
 …[truncated 1636 chars]
@@ -6590,7 +6402,7 @@ _source line 968 · 2026-05-29T14:41:47.797209+00:00_
 
 ### Tool call
 
-_source line 969 · 2026-05-29T14:42:20.178839+00:00_
+_source line 965 · 2026-05-29T14:42:20.178839+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6626,7 +6438,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 970 · 2026-05-29T14:42:23.342887+00:00_
+_source line 966 · 2026-05-29T14:42:23.342887+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -6648,7 +6460,7 @@ _source line 970 · 2026-05-29T14:42:23.342887+00:00_
 
 ### Assistant
 
-_source line 971 · 2026-05-29T14:42:25.484483+00:00_
+_source line 967 · 2026-05-29T14:42:25.484483+00:00_
 
 审查更新后的 ROADMAP。
 
@@ -6675,7 +6487,7 @@ _source line 971 · 2026-05-29T14:42:25.484483+00:00_
 
 ### User
 
-_source line 972 · 2026-05-29T14:59:11.817215+00:00_
+_source line 968 · 2026-05-29T14:59:11.817215+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：零成本统计分析全部完成并插入论文；标记完成项），请审查研究方向和计划的合理性。
@@ -6697,7 +6509,7 @@ _source line 972 · 2026-05-29T14:59:11.817215+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-29T14:59:17.202136+00:00_
+_source line 969 · 2026-05-29T14:59:17.202136+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -6731,7 +6543,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 974 · 2026-05-29T14:59:17.303262+00:00_
+_source line 970 · 2026-05-29T14:59:17.303262+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-29 14:59 UTC | 更新原因: 零成本统计分析全部完成并插入论文；标记完成项\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文已加固**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex:196 |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex:198 |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex:200 |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex:202 |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex:11 |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex:17 |\\n\\n编译通过，主体 8 页合规。\\n\\n## 基础设施\\n- 2× AutoDL 服务器（westd-34685, westd-10894），各 4×RTX PRO 6000 98GB\\n- **当前状态：🔴 GPU 不可用** — 两台均 SSH 不可达（>3h），已多次通知用户+Manager\\n- 论文源码：`projects/occsafe_vla/docs/
 …[truncated 1605 chars]
@@ -6754,7 +6566,7 @@ _source line 974 · 2026-05-29T14:59:17.303262+00:00_
 
 ### Tool call
 
-_source line 975 · 2026-05-29T14:59:29.569810+00:00_
+_source line 971 · 2026-05-29T14:59:29.569810+00:00_
 
 called Read
 
@@ -6792,7 +6604,7 @@ called Read
 
 ### Tool result
 
-_source line 976 · 2026-05-29T14:59:30.022016+00:00_
+_source line 972 · 2026-05-29T14:59:30.022016+00:00_
 
 124	\section{Statistical Power Analysis}
 125	\label{app:stat_power}
@@ -6835,7 +6647,7 @@ _source line 976 · 2026-05-29T14:59:30.022016+00:00_
 
 ### Tool call
 
-_source line 977 · 2026-05-29T14:59:30.072765+00:00_
+_source line 973 · 2026-05-29T14:59:30.072765+00:00_
 
 called Read
 
@@ -6873,7 +6685,7 @@ called Read
 
 ### Tool result
 
-_source line 978 · 2026-05-29T14:59:30.124626+00:00_
+_source line 974 · 2026-05-29T14:59:30.124626+00:00_
 
 15	\textbf{Content irrelevance.} Structured, random, and depth labels produce indistinguishable safety outcomes (observed under the original codebase), consistent with action--auxiliary orthogonality. No ground-truth spatial annotations are required; CKA similarity ($\geq 0.95$) confirms the effect operates at the optimization rather than the representational level.
 16	
@@ -6899,7 +6711,7 @@ _source line 978 · 2026-05-29T14:59:30.124626+00:00_
 
 ### Tool call
 
-_source line 979 · 2026-05-29T15:01:44.804621+00:00_
+_source line 975 · 2026-05-29T15:01:44.804621+00:00_
 
 called Read
 
@@ -6937,7 +6749,7 @@ called Read
 
 ### Tool result
 
-_source line 980 · 2026-05-29T15:01:45.357314+00:00_
+_source line 976 · 2026-05-29T15:01:45.357314+00:00_
 
 190	\bottomrule
 191	\end{tabular}
@@ -6970,7 +6782,7 @@ _source line 980 · 2026-05-29T15:01:45.357314+00:00_
 
 ### Tool call
 
-_source line 981 · 2026-05-29T15:01:45.458106+00:00_
+_source line 977 · 2026-05-29T15:01:45.458106+00:00_
 
 called Read
 
@@ -7008,7 +6820,7 @@ called Read
 
 ### Tool result
 
-_source line 982 · 2026-05-29T15:01:45.558853+00:00_
+_source line 978 · 2026-05-29T15:01:45.558853+00:00_
 
 10	
 11	\textbf{Additive protection model.} Detach+LN achieves the best safety (CAR $0.802$), reliably outperforming Vanilla ($g{=}1.89$, bootstrap 95\% CI for $\Delta$: $[0.025, 0.089]$). The advantage arises from two independent protections, detaching gradients and switching to LayerNorm, each contributing ${\approx}$4--5\,pp, with negligible interaction ($\eta^2{=}0.005$; Table~\ref{tab:anova}). Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety.
@@ -7040,7 +6852,7 @@ _source line 982 · 2026-05-29T15:01:45.558853+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-29T15:01:49.624430+00:00_
+_source line 979 · 2026-05-29T15:01:49.624430+00:00_
 
 called ToolSearch
 
@@ -7076,7 +6888,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 984 · 2026-05-29T15:01:49.624864+00:00_
+_source line 980 · 2026-05-29T15:01:49.624864+00:00_
 
 
 
@@ -7098,7 +6910,7 @@ _source line 984 · 2026-05-29T15:01:49.624864+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-29T15:01:52.535606+00:00_
+_source line 981 · 2026-05-29T15:01:52.535606+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -7132,7 +6944,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 986 · 2026-05-29T15:01:52.837271+00:00_
+_source line 982 · 2026-05-29T15:01:52.837271+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-29 14:59 UTC | 更新原因: 零成本统计分析全部完成并插入论文；标记完成项\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文已加固**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex:196 |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex:198 |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex:200 |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex:202 |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex:11 |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex:17 |\\n\\n编译通过，主体 8 页合规。\\n\\n## 基础设施\\n- 2× AutoDL 服务器（westd-34685, westd-10894），各 4×RTX PRO 6000 98GB\\n- **当前状态：🔴 GPU 不可用** — 两台均 SSH 不可达（>3h），已多次通知用户+Manager\\n- 论文源码：`projects/occsafe_vla/docs/
 …[truncated 1605 chars]
@@ -7155,7 +6967,7 @@ _source line 986 · 2026-05-29T15:01:52.837271+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-29T15:02:20.454889+00:00_
+_source line 983 · 2026-05-29T15:02:20.454889+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7191,7 +7003,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 988 · 2026-05-29T15:02:23.567265+00:00_
+_source line 984 · 2026-05-29T15:02:23.567265+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -7213,7 +7025,7 @@ _source line 988 · 2026-05-29T15:02:23.567265+00:00_
 
 ### Assistant
 
-_source line 989 · 2026-05-29T15:02:27.925062+00:00_
+_source line 985 · 2026-05-29T15:02:27.925062+00:00_
 
 审查已提交。零成本统计加固 6 项全部核实通过，附 2 个 warning：Levene 低功效陷阱（建议补 caveat）和 Welch vs permutation p 值差异（Round 4 rebuttal 准备解释）。ROADMAP 状态合理，4 个 GPU 实验继续阻塞于服务器离线。
 
@@ -7235,12 +7047,12 @@ _source line 989 · 2026-05-29T15:02:27.925062+00:00_
 
 ## Round 54
 
-36 recorded events
+34 recorded events
 
 
 ### User
 
-_source line 990 · 2026-05-29T16:45:13.433163+00:00_
+_source line 986 · 2026-05-29T16:45:13.433163+00:00_
 
 [System 触发审查]:
 **整体论文质量审查 + Rebuttal 草稿审阅**
@@ -7283,7 +7095,7 @@ GPU 停机期间，请对当前论文做全面质量审查。论文源码在 `pr
 
 ### Tool call
 
-_source line 991 · 2026-05-29T16:45:20.669731+00:00_
+_source line 987 · 2026-05-29T16:45:20.669731+00:00_
 
 called Read
 
@@ -7317,7 +7129,7 @@ called Read
 
 ### Tool result
 
-_source line 992 · 2026-05-29T16:45:21.222018+00:00_
+_source line 988 · 2026-05-29T16:45:21.222018+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/reviewer_3a7b38ec.
 
@@ -7339,7 +7151,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 993 · 2026-05-29T16:45:21.222364+00:00_
+_source line 989 · 2026-05-29T16:45:21.222364+00:00_
 
 called Read
 
@@ -7373,7 +7185,7 @@ called Read
 
 ### Tool result
 
-_source line 994 · 2026-05-29T16:45:21.724323+00:00_
+_source line 990 · 2026-05-29T16:45:21.724323+00:00_
 
 1	\section{Introduction}
 2	
@@ -7405,7 +7217,7 @@ _source line 994 · 2026-05-29T16:45:21.724323+00:00_
 
 ### Tool call
 
-_source line 995 · 2026-05-29T16:45:21.724716+00:00_
+_source line 991 · 2026-05-29T16:45:21.724716+00:00_
 
 called Read
 
@@ -7439,7 +7251,7 @@ called Read
 
 ### Tool result
 
-_source line 996 · 2026-05-29T16:45:22.176583+00:00_
+_source line 992 · 2026-05-29T16:45:22.176583+00:00_
 
 1	
 2	\section{Method}
@@ -7474,7 +7286,7 @@ _source line 996 · 2026-05-29T16:45:22.176583+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-29T16:45:22.177009+00:00_
+_source line 993 · 2026-05-29T16:45:22.177009+00:00_
 
 called Read
 
@@ -7508,7 +7320,7 @@ called Read
 
 ### Tool result
 
-_source line 998 · 2026-05-29T16:45:22.328053+00:00_
+_source line 994 · 2026-05-29T16:45:22.328053+00:00_
 
 1	
 2	\section{Results}
@@ -7541,7 +7353,7 @@ _source line 998 · 2026-05-29T16:45:22.328053+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-29T16:45:23.331884+00:00_
+_source line 995 · 2026-05-29T16:45:23.331884+00:00_
 
 called Read
 
@@ -7575,7 +7387,7 @@ called Read
 
 ### Tool result
 
-_source line 1000 · 2026-05-29T16:45:23.633387+00:00_
+_source line 996 · 2026-05-29T16:45:23.633387+00:00_
 
 1	
 2	\section{Discussion}
@@ -7610,7 +7422,7 @@ _source line 1000 · 2026-05-29T16:45:23.633387+00:00_
 
 ### Tool call
 
-_source line 1001 · 2026-05-29T16:45:23.633767+00:00_
+_source line 997 · 2026-05-29T16:45:23.633767+00:00_
 
 called Read
 
@@ -7644,7 +7456,7 @@ called Read
 
 ### Tool result
 
-_source line 1002 · 2026-05-29T16:45:24.135790+00:00_
+_source line 998 · 2026-05-29T16:45:24.135790+00:00_
 
 1	
 2	\section{Related Work}
@@ -7678,7 +7490,7 @@ _source line 1002 · 2026-05-29T16:45:24.135790+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-29T16:45:24.136160+00:00_
+_source line 999 · 2026-05-29T16:45:24.136160+00:00_
 
 called Read
 
@@ -7712,7 +7524,7 @@ called Read
 
 ### Tool result
 
-_source line 1004 · 2026-05-29T16:45:24.587963+00:00_
+_source line 1000 · 2026-05-29T16:45:24.587963+00:00_
 
 1	
 2	\section{Conclusion}
@@ -7738,7 +7550,7 @@ _source line 1004 · 2026-05-29T16:45:24.587963+00:00_
 
 ### Tool call
 
-_source line 1005 · 2026-05-29T16:45:24.588302+00:00_
+_source line 1001 · 2026-05-29T16:45:24.588302+00:00_
 
 called Read
 
@@ -7772,7 +7584,7 @@ called Read
 
 ### Tool result
 
-_source line 1006 · 2026-05-29T16:45:24.939827+00:00_
+_source line 1002 · 2026-05-29T16:45:24.939827+00:00_
 
 1	
 2	\section{Limitations}
@@ -7806,7 +7618,7 @@ _source line 1006 · 2026-05-29T16:45:24.939827+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-29T16:45:24.990853+00:00_
+_source line 1003 · 2026-05-29T16:45:24.990853+00:00_
 
 called Glob
 
@@ -7842,7 +7654,7 @@ called Glob
 
 ### Tool result
 
-_source line 1008 · 2026-05-29T16:45:25.041515+00:00_
+_source line 1004 · 2026-05-29T16:45:25.041515+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/_project/paper/round4_rebuttal_draft.md
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md
@@ -7865,89 +7677,7 @@ _source line 1008 · 2026-05-29T16:45:25.041515+00:00_
 
 ### Tool call
 
-_source line 1009 · 2026-05-29T16:45:29.485712+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1010 · 2026-05-29T16:45:30.389852+00:00_
-
-1	# Round 4 Author Response — Draft
-2	
-3	We thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.
-4	
-5	## Summary of Changes
-6	
-7	- **Framing**: Entire paper restructured from "normalization-dependent gradient flow effect" to "two independent additive main effects" (RD3-C1)
-8	- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)
-9	- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)
-10	- **Scope**: Title, guidelines, and conclusions explicitly limited to "OpenVLA with LoRA fine-tuning on tabletop manipulation" (RD2-W3, RD2-W5)
-11	- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)
-12	- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation
-13	
-14	---
-15	
-16	## Resolved Issues
-17	
-18	### RD3-C1 [Critical] — Framing contradiction: "normalization-dependent" vs zero interaction
-19	
-20	**Issue**: The "normalization-dependent gradient flow effect" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.
-21	
-22	**Fix**: Complete reframing across all sections:
-23	- Abstract (main.tex L23): "two independent mechanisms" replacing interaction language
-24	- Introduction (L22): Contribution 1 rewritten as "A 2×2 factorial identifies two additive mechanisms: gradient flow through BatchNorm degrades safety; LayerNorm provides a consistent protective effect"
-25	- Results (results.tex L11): "Two additive main effects explain the advantage" with permutation ANOVA p-values
-26	- Discussion (discussion.tex L11): "Additive protection model" framing; "two independent protections...with 
-…[truncated 19568 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 904
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1011 · 2026-05-29T16:45:30.390203+00:00_
+_source line 1005 · 2026-05-29T16:45:30.390203+00:00_
 
 called Read
 
@@ -7981,7 +7711,7 @@ called Read
 
 ### Tool result
 
-_source line 1012 · 2026-05-29T16:45:30.591463+00:00_
+_source line 1006 · 2026-05-29T16:45:30.591463+00:00_
 
 1	
 2	\section{Extended Per-Task Results}
@@ -8036,7 +7766,7 @@ _source line 1012 · 2026-05-29T16:45:30.591463+00:00_
 
 ### Tool call
 
-_source line 1013 · 2026-05-29T16:45:30.592004+00:00_
+_source line 1007 · 2026-05-29T16:45:30.592004+00:00_
 
 called Read
 
@@ -8070,7 +7800,7 @@ called Read
 
 ### Tool result
 
-_source line 1014 · 2026-05-29T16:45:30.643161+00:00_
+_source line 1008 · 2026-05-29T16:45:30.643161+00:00_
 
 1	# OccSafe-VLA — Paper Framing
 2	
@@ -8125,7 +7855,7 @@ _source line 1014 · 2026-05-29T16:45:30.643161+00:00_
 
 ### Tool call
 
-_source line 1015 · 2026-05-29T16:45:37.016238+00:00_
+_source line 1009 · 2026-05-29T16:45:37.016238+00:00_
 
 called Grep
 
@@ -8165,7 +7895,7 @@ called Grep
 
 ### Tool result
 
-_source line 1016 · 2026-05-29T16:45:37.418041+00:00_
+_source line 1010 · 2026-05-29T16:45:37.418041+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex:22:\begin{abstract}
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex-23-[Omitted long context line]
@@ -8206,7 +7936,7 @@ _source line 1016 · 2026-05-29T16:45:37.418041+00:00_
 
 ### Tool call
 
-_source line 1017 · 2026-05-29T16:45:37.518774+00:00_
+_source line 1011 · 2026-05-29T16:45:37.518774+00:00_
 
 called Read
 
@@ -8242,7 +7972,7 @@ called Read
 
 ### Tool result
 
-_source line 1018 · 2026-05-29T16:45:37.519129+00:00_
+_source line 1012 · 2026-05-29T16:45:37.519129+00:00_
 
 1	\documentclass{article}
 2	
@@ -8290,7 +8020,7 @@ _source line 1018 · 2026-05-29T16:45:37.519129+00:00_
 
 ### Tool call
 
-_source line 1019 · 2026-05-29T16:45:41.734985+00:00_
+_source line 1013 · 2026-05-29T16:45:41.734985+00:00_
 
 called Read
 
@@ -8324,7 +8054,7 @@ called Read
 
 ### Tool result
 
-_source line 1020 · 2026-05-29T16:45:42.187388+00:00_
+_source line 1014 · 2026-05-29T16:45:42.187388+00:00_
 
 1	# VLA Safety + 3D: Distilled Writing Patterns
 2	
@@ -8377,7 +8107,7 @@ _source line 1020 · 2026-05-29T16:45:42.187388+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-29T16:45:42.187932+00:00_
+_source line 1015 · 2026-05-29T16:45:42.187932+00:00_
 
 called Glob
 
@@ -8413,7 +8143,7 @@ called Glob
 
 ### Tool result
 
-_source line 1022 · 2026-05-29T16:45:42.288531+00:00_
+_source line 1016 · 2026-05-29T16:45:42.288531+00:00_
 
 No files found
 
@@ -8435,7 +8165,7 @@ No files found
 
 ### Tool call
 
-_source line 1023 · 2026-05-29T16:49:35.364571+00:00_
+_source line 1017 · 2026-05-29T16:49:35.364571+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8471,7 +8201,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1024 · 2026-05-29T16:49:38.525188+00:00_
+_source line 1018 · 2026-05-29T16:49:38.525188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -8493,7 +8223,7 @@ _source line 1024 · 2026-05-29T16:49:38.525188+00:00_
 
 ### Assistant
 
-_source line 1025 · 2026-05-29T16:49:45.243202+00:00_
+_source line 1019 · 2026-05-29T16:49:45.243202+00:00_
 
 审查已提交。核心发现：
 
@@ -8519,12 +8249,12 @@ _source line 1025 · 2026-05-29T16:49:45.243202+00:00_
 
 ## Round 55
 
-30 recorded events
+28 recorded events
 
 
 ### User
 
-_source line 1026 · 2026-05-29T18:30:38.222273+00:00_
+_source line 1020 · 2026-05-29T18:30:38.222273+00:00_
 
 [System 触发审查]:
 **全文连贯性通读 + 修订 Rebuttal 复核**
@@ -8568,7 +8298,7 @@ _source line 1026 · 2026-05-29T18:30:38.222273+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-29T18:30:46.068610+00:00_
+_source line 1021 · 2026-05-29T18:30:46.068610+00:00_
 
 called Read
 
@@ -8602,7 +8332,7 @@ called Read
 
 ### Tool result
 
-_source line 1028 · 2026-05-29T18:30:46.620391+00:00_
+_source line 1022 · 2026-05-29T18:30:46.620391+00:00_
 
 1	\documentclass{article}
 2	
@@ -8650,7 +8380,7 @@ _source line 1028 · 2026-05-29T18:30:46.620391+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-29T18:30:46.620957+00:00_
+_source line 1023 · 2026-05-29T18:30:46.620957+00:00_
 
 called Read
 
@@ -8684,7 +8414,7 @@ called Read
 
 ### Tool result
 
-_source line 1030 · 2026-05-29T18:30:47.122938+00:00_
+_source line 1024 · 2026-05-29T18:30:47.122938+00:00_
 
 1	\section{Introduction}
 2	
@@ -8716,7 +8446,7 @@ _source line 1030 · 2026-05-29T18:30:47.122938+00:00_
 
 ### Tool call
 
-_source line 1031 · 2026-05-29T18:30:47.123368+00:00_
+_source line 1025 · 2026-05-29T18:30:47.123368+00:00_
 
 called Read
 
@@ -8750,7 +8480,7 @@ called Read
 
 ### Tool result
 
-_source line 1032 · 2026-05-29T18:30:47.327138+00:00_
+_source line 1026 · 2026-05-29T18:30:47.327138+00:00_
 
 1	
 2	\section{Method}
@@ -8785,7 +8515,7 @@ _source line 1032 · 2026-05-29T18:30:47.327138+00:00_
 
 ### Tool call
 
-_source line 1033 · 2026-05-29T18:30:47.377801+00:00_
+_source line 1027 · 2026-05-29T18:30:47.377801+00:00_
 
 called Read
 
@@ -8819,7 +8549,7 @@ called Read
 
 ### Tool result
 
-_source line 1034 · 2026-05-29T18:30:47.428593+00:00_
+_source line 1028 · 2026-05-29T18:30:47.428593+00:00_
 
 1	
 2	\section{Results}
@@ -8852,7 +8582,7 @@ _source line 1034 · 2026-05-29T18:30:47.428593+00:00_
 
 ### Tool call
 
-_source line 1035 · 2026-05-29T18:30:52.527846+00:00_
+_source line 1029 · 2026-05-29T18:30:52.527846+00:00_
 
 called Read
 
@@ -8886,7 +8616,7 @@ called Read
 
 ### Tool result
 
-_source line 1036 · 2026-05-29T18:30:53.080297+00:00_
+_source line 1030 · 2026-05-29T18:30:53.080297+00:00_
 
 1	
 2	\section{Discussion}
@@ -8919,7 +8649,7 @@ _source line 1036 · 2026-05-29T18:30:53.080297+00:00_
 
 ### Tool call
 
-_source line 1037 · 2026-05-29T18:30:53.080749+00:00_
+_source line 1031 · 2026-05-29T18:30:53.080749+00:00_
 
 called Read
 
@@ -8953,7 +8683,7 @@ called Read
 
 ### Tool result
 
-_source line 1038 · 2026-05-29T18:30:53.582918+00:00_
+_source line 1032 · 2026-05-29T18:30:53.582918+00:00_
 
 1	
 2	\section{Conclusion}
@@ -8979,7 +8709,7 @@ _source line 1038 · 2026-05-29T18:30:53.582918+00:00_
 
 ### Tool call
 
-_source line 1039 · 2026-05-29T18:30:53.583414+00:00_
+_source line 1033 · 2026-05-29T18:30:53.583414+00:00_
 
 called Read
 
@@ -9013,7 +8743,7 @@ called Read
 
 ### Tool result
 
-_source line 1040 · 2026-05-29T18:30:54.035523+00:00_
+_source line 1034 · 2026-05-29T18:30:54.035523+00:00_
 
 1	
 2	\section{Limitations}
@@ -9047,7 +8777,7 @@ _source line 1040 · 2026-05-29T18:30:54.035523+00:00_
 
 ### Tool call
 
-_source line 1041 · 2026-05-29T18:30:54.035929+00:00_
+_source line 1035 · 2026-05-29T18:30:54.035929+00:00_
 
 called Read
 
@@ -9081,7 +8811,7 @@ called Read
 
 ### Tool result
 
-_source line 1042 · 2026-05-29T18:30:54.487651+00:00_
+_source line 1036 · 2026-05-29T18:30:54.487651+00:00_
 
 1	
 2	\section{Extended Per-Task Results}
@@ -9136,87 +8866,7 @@ _source line 1042 · 2026-05-29T18:30:54.487651+00:00_
 
 ### Tool call
 
-_source line 1043 · 2026-05-29T18:30:54.488100+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1044 · 2026-05-29T18:30:54.589219+00:00_
-
-1	# Round 4 Author Response — Draft
-2	
-3	We thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.
-4	
-5	## Summary of Changes
-6	
-7	- **Framing**: Entire paper restructured from "normalization-dependent gradient flow effect" to "two independent additive main effects" (RD3-C1)
-8	- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)
-9	- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)
-10	- **Scope**: Title, guidelines, and conclusions explicitly limited to "OpenVLA with LoRA fine-tuning on tabletop manipulation" (RD2-W3, RD2-W5)
-11	- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)
-12	- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation
-13	
-14	---
-15	
-16	## Resolved Issues
-17	
-18	### RD3-C1 [Critical] — Framing contradiction: "normalization-dependent" vs zero interaction
-19	
-20	**Issue**: The "normalization-dependent gradient flow effect" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.
-21	
-22	**Fix**: Complete reframing. Every section now uses "two additive factors/effects" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of "normalization-dependent", "confirms additive", and interaction-implying language removed.
-23	
-24	**Verification**: Grep for "normalization-dependent", "confirms additive", "mechanisms", and "protections" returns zero hits across all .tex files. Terminology i
-…[truncated 19797 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1045 · 2026-05-29T18:33:46.827787+00:00_
+_source line 1037 · 2026-05-29T18:33:46.827787+00:00_
 
 called Grep
 
@@ -9256,7 +8906,7 @@ called Grep
 
 ### Tool result
 
-_source line 1046 · 2026-05-29T18:33:47.279746+00:00_
+_source line 1038 · 2026-05-29T18:33:47.279746+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex:22:[Omitted long matching line]
@@ -9280,7 +8930,7 @@ _source line 1046 · 2026-05-29T18:33:47.279746+00:00_
 
 ### Tool call
 
-_source line 1047 · 2026-05-29T18:33:47.731520+00:00_
+_source line 1039 · 2026-05-29T18:33:47.731520+00:00_
 
 called Grep
 
@@ -9320,7 +8970,7 @@ called Grep
 
 ### Tool result
 
-_source line 1048 · 2026-05-29T18:33:48.133968+00:00_
+_source line 1040 · 2026-05-29T18:33:48.133968+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.bbl:170:  mechanisms.
 
@@ -9342,7 +8992,7 @@ _source line 1048 · 2026-05-29T18:33:48.133968+00:00_
 
 ### Tool call
 
-_source line 1049 · 2026-05-29T18:33:48.686207+00:00_
+_source line 1041 · 2026-05-29T18:33:48.686207+00:00_
 
 called Grep
 
@@ -9382,7 +9032,7 @@ called Grep
 
 ### Tool result
 
-_source line 1050 · 2026-05-29T18:33:48.736924+00:00_
+_source line 1042 · 2026-05-29T18:33:48.736924+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex:10:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:78:% Figure~\ref{fig:gradient_analysis} is in the main text (Section~\ref{sec:mechanism}).
@@ -9415,7 +9065,7 @@ _source line 1050 · 2026-05-29T18:33:48.736924+00:00_
 
 ### Tool call
 
-_source line 1051 · 2026-05-29T18:34:14.188276+00:00_
+_source line 1043 · 2026-05-29T18:34:14.188276+00:00_
 
 called Grep
 
@@ -9457,7 +9107,7 @@ called Grep
 
 ### Tool result
 
-_source line 1052 · 2026-05-29T18:34:14.238873+00:00_
+_source line 1044 · 2026-05-29T18:34:14.238873+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex:4:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:105:[Omitted long matching line]
@@ -9482,7 +9132,7 @@ _source line 1052 · 2026-05-29T18:34:14.238873+00:00_
 
 ### Tool call
 
-_source line 1053 · 2026-05-29T18:35:44.740092+00:00_
+_source line 1045 · 2026-05-29T18:35:44.740092+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9518,7 +9168,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1054 · 2026-05-29T18:35:47.803859+00:00_
+_source line 1046 · 2026-05-29T18:35:47.803859+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -9540,7 +9190,7 @@ _source line 1054 · 2026-05-29T18:35:47.803859+00:00_
 
 ### Assistant
 
-_source line 1055 · 2026-05-29T18:35:51.881122+00:00_
+_source line 1047 · 2026-05-29T18:35:51.881122+00:00_
 
 审查已提交。论文修改质量良好——术语统一、数字一致、新增内容自然融入。唯一实质 warning 是 Rebuttal L287 的 "4 locations" 应改为 "3 locations"（"reliably" 已从 6 处减为 3 处）。
 
@@ -9567,7 +9217,7 @@ _source line 1055 · 2026-05-29T18:35:51.881122+00:00_
 
 ### User
 
-_source line 1056 · 2026-05-29T21:10:12.729433+00:00_
+_source line 1048 · 2026-05-29T21:10:12.729433+00:00_
 
 [System 触发审查]:
 **论文 Positioning 深度审查——claim 锐度与竞品差异化**
@@ -9615,7 +9265,7 @@ _source line 1056 · 2026-05-29T21:10:12.729433+00:00_
 
 ### Tool call
 
-_source line 1057 · 2026-05-29T21:12:14.272351+00:00_
+_source line 1049 · 2026-05-29T21:12:14.272351+00:00_
 
 called Read
 
@@ -9649,7 +9299,7 @@ called Read
 
 ### Tool result
 
-_source line 1058 · 2026-05-29T21:12:14.573628+00:00_
+_source line 1050 · 2026-05-29T21:12:14.573628+00:00_
 
 1	
 2	\section{Related Work}
@@ -9683,7 +9333,7 @@ _source line 1058 · 2026-05-29T21:12:14.573628+00:00_
 
 ### Tool call
 
-_source line 1059 · 2026-05-29T21:12:14.925138+00:00_
+_source line 1051 · 2026-05-29T21:12:14.925138+00:00_
 
 called Read
 
@@ -9721,7 +9371,7 @@ called Read
 
 ### Tool result
 
-_source line 1060 · 2026-05-29T21:12:14.975899+00:00_
+_source line 1052 · 2026-05-29T21:12:14.975899+00:00_
 
 0	\section{Introduction}
 1	
@@ -9753,7 +9403,7 @@ _source line 1060 · 2026-05-29T21:12:14.975899+00:00_
 
 ### Tool call
 
-_source line 1061 · 2026-05-29T21:12:20.043329+00:00_
+_source line 1053 · 2026-05-29T21:12:20.043329+00:00_
 
 called Read
 
@@ -9787,7 +9437,7 @@ called Read
 
 ### Tool result
 
-_source line 1062 · 2026-05-29T21:12:20.144937+00:00_
+_source line 1054 · 2026-05-29T21:12:20.144937+00:00_
 
 1	# VLA Safety + 3D: Distilled Research Patterns
 2	
@@ -9847,7 +9497,7 @@ _source line 1062 · 2026-05-29T21:12:20.144937+00:00_
 
 ### Tool call
 
-_source line 1063 · 2026-05-29T21:14:47.237915+00:00_
+_source line 1055 · 2026-05-29T21:14:47.237915+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9883,7 +9533,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1064 · 2026-05-29T21:14:50.299429+00:00_
+_source line 1056 · 2026-05-29T21:14:50.299429+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -9905,7 +9555,7 @@ _source line 1064 · 2026-05-29T21:14:50.299429+00:00_
 
 ### Assistant
 
-_source line 1065 · 2026-05-29T21:14:55.368388+00:00_
+_source line 1057 · 2026-05-29T21:14:55.368388+00:00_
 
 审查已提交。核心发现：论文质量扎实但有 6 处可提升锐度的机会，最高优先是 Abstract 加入 TSR safety-specificity 句（解释文献 gap 为何存在）和 Discussion 加入 "为什么 additive" 的理论解释（填补审稿人最可能追问的思维空白）。全部修改在 ~165 词内，不改变整体 framing。
 
@@ -9932,7 +9582,7 @@ _source line 1065 · 2026-05-29T21:14:55.368388+00:00_
 
 ### User
 
-_source line 1066 · 2026-05-29T21:22:05.066161+00:00_
+_source line 1058 · 2026-05-29T21:22:05.066161+00:00_
 
 [System 触发审查]:
 **锐度提升后验证——重点检查压缩段落**
@@ -9964,7 +9614,7 @@ Agent 实施了 5/7 锐度建议，为腾页面空间额外压缩了 8 处段落
 
 ### Tool call
 
-_source line 1067 · 2026-05-29T21:22:12.210452+00:00_
+_source line 1059 · 2026-05-29T21:22:12.210452+00:00_
 
 called Read
 
@@ -10002,7 +9652,7 @@ called Read
 
 ### Tool result
 
-_source line 1068 · 2026-05-29T21:22:12.734453+00:00_
+_source line 1060 · 2026-05-29T21:22:12.734453+00:00_
 
 20	\maketitle
 21	
@@ -10029,7 +9679,7 @@ _source line 1068 · 2026-05-29T21:22:12.734453+00:00_
 
 ### Tool call
 
-_source line 1069 · 2026-05-29T21:22:12.734819+00:00_
+_source line 1061 · 2026-05-29T21:22:12.734819+00:00_
 
 called Read
 
@@ -10063,7 +9713,7 @@ called Read
 
 ### Tool result
 
-_source line 1070 · 2026-05-29T21:22:12.735070+00:00_
+_source line 1062 · 2026-05-29T21:22:12.735070+00:00_
 
 1	\section{Introduction}
 2	
@@ -10095,7 +9745,7 @@ _source line 1070 · 2026-05-29T21:22:12.735070+00:00_
 
 ### Tool call
 
-_source line 1071 · 2026-05-29T21:22:13.738591+00:00_
+_source line 1063 · 2026-05-29T21:22:13.738591+00:00_
 
 called Read
 
@@ -10129,7 +9779,7 @@ called Read
 
 ### Tool result
 
-_source line 1072 · 2026-05-29T21:22:14.140481+00:00_
+_source line 1064 · 2026-05-29T21:22:14.140481+00:00_
 
 1	
 2	\section{Results}
@@ -10162,7 +9812,7 @@ _source line 1072 · 2026-05-29T21:22:14.140481+00:00_
 
 ### Tool call
 
-_source line 1073 · 2026-05-29T21:22:14.140931+00:00_
+_source line 1065 · 2026-05-29T21:22:14.140931+00:00_
 
 called Read
 
@@ -10196,7 +9846,7 @@ called Read
 
 ### Tool result
 
-_source line 1074 · 2026-05-29T21:22:14.642958+00:00_
+_source line 1066 · 2026-05-29T21:22:14.642958+00:00_
 
 1	
 2	\section{Discussion}
@@ -10229,7 +9879,7 @@ _source line 1074 · 2026-05-29T21:22:14.642958+00:00_
 
 ### Tool call
 
-_source line 1075 · 2026-05-29T21:22:14.643308+00:00_
+_source line 1067 · 2026-05-29T21:22:14.643308+00:00_
 
 called Read
 
@@ -10263,7 +9913,7 @@ called Read
 
 ### Tool result
 
-_source line 1076 · 2026-05-29T21:22:14.944543+00:00_
+_source line 1068 · 2026-05-29T21:22:14.944543+00:00_
 
 1	
 2	\section{Conclusion}
@@ -10289,7 +9939,7 @@ _source line 1076 · 2026-05-29T21:22:14.944543+00:00_
 
 ### Tool call
 
-_source line 1077 · 2026-05-29T21:22:14.995178+00:00_
+_source line 1069 · 2026-05-29T21:22:14.995178+00:00_
 
 called Read
 
@@ -10323,7 +9973,7 @@ called Read
 
 ### Tool result
 
-_source line 1078 · 2026-05-29T21:22:15.045787+00:00_
+_source line 1070 · 2026-05-29T21:22:15.045787+00:00_
 
 1	
 2	\section{Limitations}
@@ -10355,7 +10005,7 @@ _source line 1078 · 2026-05-29T21:22:15.045787+00:00_
 
 ### Tool call
 
-_source line 1079 · 2026-05-29T21:24:18.808548+00:00_
+_source line 1071 · 2026-05-29T21:24:18.808548+00:00_
 
 called Read
 
@@ -10393,7 +10043,7 @@ called Read
 
 ### Tool result
 
-_source line 1080 · 2026-05-29T21:24:19.110085+00:00_
+_source line 1072 · 2026-05-29T21:24:19.110085+00:00_
 
 194	The permutation test yields stronger evidence for the normalization main effect ($p_\text{perm}{=}0.041$, significant at $\alpha{=}0.05$) than the parametric $F$-test ($p{=}0.060$), consistent with the parametric test being conservative for small, non-normal samples. The gradient flow effect does not reach significance under permutation ($p_\text{perm}{=}0.090$) but retains a large effect size ($\eta^2{=}0.180$). The interaction remains negligible ($p_\text{perm}{=}0.794$), confirming the additive pattern.
 195	
@@ -10424,7 +10074,7 @@ _source line 1080 · 2026-05-29T21:24:19.110085+00:00_
 
 ### Tool call
 
-_source line 1081 · 2026-05-29T21:24:19.110553+00:00_
+_source line 1073 · 2026-05-29T21:24:19.110553+00:00_
 
 called Read
 
@@ -10458,7 +10108,7 @@ called Read
 
 ### Tool result
 
-_source line 1082 · 2026-05-29T21:24:19.261459+00:00_
+_source line 1074 · 2026-05-29T21:24:19.261459+00:00_
 
 1	
 2	\section{Related Work}
@@ -10492,7 +10142,7 @@ _source line 1082 · 2026-05-29T21:24:19.261459+00:00_
 
 ### Tool call
 
-_source line 1083 · 2026-05-29T21:24:24.129731+00:00_
+_source line 1075 · 2026-05-29T21:24:24.129731+00:00_
 
 called Grep
 
@@ -10534,7 +10184,7 @@ called Grep
 
 ### Tool result
 
-_source line 1084 · 2026-05-29T21:24:24.631993+00:00_
+_source line 1076 · 2026-05-29T21:24:24.631993+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex:10:\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.
 
@@ -10556,7 +10206,7 @@ _source line 1084 · 2026-05-29T21:24:24.631993+00:00_
 
 ### Tool call
 
-_source line 1085 · 2026-05-29T21:24:24.983647+00:00_
+_source line 1077 · 2026-05-29T21:24:24.983647+00:00_
 
 called Grep
 
@@ -10598,7 +10248,7 @@ called Grep
 
 ### Tool result
 
-_source line 1086 · 2026-05-29T21:24:25.034332+00:00_
+_source line 1078 · 2026-05-29T21:24:25.034332+00:00_
 
 No matches found
 
@@ -10620,7 +10270,7 @@ No matches found
 
 ### Tool call
 
-_source line 1087 · 2026-05-29T21:25:58.989945+00:00_
+_source line 1079 · 2026-05-29T21:25:58.989945+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10656,7 +10306,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1088 · 2026-05-29T21:26:02.051192+00:00_
+_source line 1080 · 2026-05-29T21:26:02.051192+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -10678,7 +10328,7 @@ _source line 1088 · 2026-05-29T21:26:02.051192+00:00_
 
 ### Tool call
 
-_source line 1089 · 2026-05-29T21:28:12.470149+00:00_
+_source line 1081 · 2026-05-29T21:28:12.470149+00:00_
 
 called ToolSearch
 
@@ -10714,7 +10364,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1090 · 2026-05-29T21:28:12.520886+00:00_
+_source line 1082 · 2026-05-29T21:28:12.520886+00:00_
 
 
 
@@ -10736,7 +10386,7 @@ _source line 1090 · 2026-05-29T21:28:12.520886+00:00_
 
 ### Tool call
 
-_source line 1091 · 2026-05-29T21:28:15.513165+00:00_
+_source line 1083 · 2026-05-29T21:28:15.513165+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10772,7 +10422,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1092 · 2026-05-29T21:28:15.664189+00:00_
+_source line 1084 · 2026-05-29T21:28:15.664189+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -10806,7 +10456,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1093 · 2026-05-29T21:28:16.120130+00:00_
+_source line 1085 · 2026-05-29T21:28:16.120130+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"random_occ_v2_s0_r4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T23:11:19.398Z\", \"updated_at\": \"2026-05-29T11:57:14.784Z\", \"hypothesis\": \"Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed.\", \"parent\": \"random_occ_v2_s0_r3\", \"conclusion\": \"failed\"}, \"full_occ_bn_v2_s2_r5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-28T23:11:17.181Z\", \"updated_at\": \"2026-05-29T11:57:13.594Z\", \"hypothesis\": \"Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1422@step0 confirmed.\", \"parent\": \"full_occ_bn_v2_s2_r4\", \"conclusion\": \"failed\"}, \"vanilla_v2_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-29T03:39:54.752Z\", \"updated_at\": \"2026-05-29T04:20:24.945Z\", \"hypothesis\": \"Vanilla baseline seed 45 expansion for statistical power. Current n=2; targets n=3 to match factorial cell sample sizes and tighten CI on baseline CAR estimate.\", \"conclusion\": \"failed\"}, \"full_occ_bn_v2_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-29T03:39:52.702Z\", \"updated_at\": \"2026-05-29T04:20:22.968Z\", \"hypothesis\": \"Cell 1 (Full OCC BN, GF ON + BN) seed 46 expansion for statistical power. Current n=2 done + 1 running; adding seed 46 targets n≥4 for robust effect size estimation.\", \"conclusion\": \"failed\"}, \"full_occ_bn_lambda01_v2_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-29T03:39:50.029Z\", \"updated_at\": \"2026-05-29T04:20:21.123Z\", \"hypothesis\": \"Lambda sensitivity: increasing auxiliary loss weight to λ₀=0.1 (10x higher than default 0.01) should amplify gradient interference. If CAR degrades further, confirms dose-response; if not, suggests non-linear threshold.\", \"conclusion\": \"failed\"}, \"full_occ_bn_eval_v2_s0\": {\"sta
 …[truncated 2094 chars]
@@ -10829,7 +10479,7 @@ _source line 1093 · 2026-05-29T21:28:16.120130+00:00_
 
 ### Tool result
 
-_source line 1094 · 2026-05-29T21:28:16.120780+00:00_
+_source line 1086 · 2026-05-29T21:28:16.120780+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-29 14:59 UTC | 更新原因: 零成本统计分析全部完成并插入论文；标记完成项\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文已加固**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex:196 |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex:198 |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex:200 |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex:202 |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex:11 |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex:17 |\\n\\n编译通过，主体 8 页合规。\\n\\n## 基础设施\\n- 2× AutoDL 服务器（westd-34685, westd-10894），各 4×RTX PRO 6000 98GB\\n- **当前状态：🔴 GPU 不可用** — 两台均 SSH 不可达（>3h），已多次通知用户+Manager\\n- 论文源码：`projects/occsafe_vla/docs/
 …[truncated 1605 chars]
@@ -10852,7 +10502,7 @@ _source line 1094 · 2026-05-29T21:28:16.120780+00:00_
 
 ### Tool call
 
-_source line 1095 · 2026-05-29T21:28:26.709318+00:00_
+_source line 1087 · 2026-05-29T21:28:26.709318+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10892,7 +10542,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1096 · 2026-05-29T21:28:27.313135+00:00_
+_source line 1088 · 2026-05-29T21:28:27.313135+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"random_occ_v2_s0_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T23:11:19.398Z\", \"updated_at\": \"2026-05-29T11:57:14.784Z\", \"hypothesis\": \"Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed.\", \"parent\": \"random_occ_v2_s0_r3\", \"spec\": {\"command\": \"torchrun ... --random_occ True --occ_data_dir /root/occsafe_vla/occ_data\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:0\"], \"pid\": \"49565\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 4600, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/runs/occsafe_vla/random_occ_v2_s0_r4.log\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}, \"failure_reason\": \"AutoDL 服务器 westd-10894 下线（SSH port 10894 连接失败 5 次）。实验进程随服务器关闭而终止。需等用户在 AutoDL 控制台重启实例后重新提交。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-29T11:56:10.297Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-29T11:56:20.688428+00:00\"}]}}, \"full_occ_bn_v2_s2_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T23:11:17.181Z\", \"updated_at\": \"2026-05-29T11:57:13.594Z\", \"hypothesis\": \"Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1422@step0 confirmed.\", \"parent\": \"full_occ_bn_v2_s2_r4\", \"spec\": {\"command\": \"torchrun ... --occ_data_dir /root/occsafe_vla/occ_data\", \"server\": \"westd-34685\", \"gpu\": [\"cuda:0\"], \"pid\": \"30149\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 4600, \"model_name\": \"openvla-7b\", \"seed\": 44, \"log_path\": \"/root/runs/occsafe_v
 …[truncated 12141 chars]
@@ -10915,7 +10565,7 @@ _source line 1096 · 2026-05-29T21:28:27.313135+00:00_
 
 ### Tool call
 
-_source line 1097 · 2026-05-29T21:28:57.027246+00:00_
+_source line 1089 · 2026-05-29T21:28:57.027246+00:00_
 
 called ToolSearch
 
@@ -10951,7 +10601,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1098 · 2026-05-29T21:28:57.077841+00:00_
+_source line 1090 · 2026-05-29T21:28:57.077841+00:00_
 
 
 
@@ -10973,7 +10623,7 @@ _source line 1098 · 2026-05-29T21:28:57.077841+00:00_
 
 ### Tool call
 
-_source line 1099 · 2026-05-29T21:29:00.340000+00:00_
+_source line 1091 · 2026-05-29T21:29:00.340000+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11011,7 +10661,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1100 · 2026-05-29T21:29:01.395211+00:00_
+_source line 1092 · 2026-05-29T21:29:01.395211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7035}}"}
 
@@ -11033,7 +10683,7 @@ _source line 1100 · 2026-05-29T21:29:01.395211+00:00_
 
 ### Tool call
 
-_source line 1101 · 2026-05-29T21:29:01.395581+00:00_
+_source line 1093 · 2026-05-29T21:29:01.395581+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11069,7 +10719,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1102 · 2026-05-29T21:29:01.747204+00:00_
+_source line 1094 · 2026-05-29T21:29:01.747204+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 10894 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
 
@@ -11091,7 +10741,7 @@ _source line 1102 · 2026-05-29T21:29:01.747204+00:00_
 
 ### Tool call
 
-_source line 1103 · 2026-05-29T21:29:01.747546+00:00_
+_source line 1095 · 2026-05-29T21:29:01.747546+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -11127,7 +10777,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 1104 · 2026-05-29T21:29:01.848188+00:00_
+_source line 1096 · 2026-05-29T21:29:01.848188+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 34685 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.08}}"}
 
@@ -11149,7 +10799,7 @@ _source line 1104 · 2026-05-29T21:29:01.848188+00:00_
 
 ### Tool call
 
-_source line 1105 · 2026-05-29T21:29:18.125652+00:00_
+_source line 1097 · 2026-05-29T21:29:18.125652+00:00_
 
 called ToolSearch
 
@@ -11185,7 +10835,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1106 · 2026-05-29T21:29:18.276698+00:00_
+_source line 1098 · 2026-05-29T21:29:18.276698+00:00_
 
 
 
@@ -11207,7 +10857,7 @@ _source line 1106 · 2026-05-29T21:29:18.276698+00:00_
 
 ### Tool call
 
-_source line 1107 · 2026-05-29T21:29:21.291722+00:00_
+_source line 1099 · 2026-05-29T21:29:21.291722+00:00_
 
 called mcp__agent-ml-research__list_constraints
 
@@ -11241,7 +10891,7 @@ called mcp__agent-ml-research__list_constraints
 
 ### Tool result
 
-_source line 1108 · 2026-05-29T21:29:21.493024+00:00_
+_source line 1100 · 2026-05-29T21:29:21.493024+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"constraints\": [{\"id\": \"C001\", \"added\": \"2026-05-25 03:34 UTC\", \"summary\": \"GPU 白名单：仅 westd-10894 cuda:0-3 和 westd-34685 cuda:0-3（共 8 张），禁止使用其他服务器或 GPU\", \"scope\": \"all\", \"reason\": \"项目分配的 GPU 资源边界，防止占用其他项目的 GPU\"}, {\"id\": \"C002\", \"added\": \"2026-05-25 03:34 UTC\", \"summary\": \"cutoff/reverse_cutoff 实验禁止使用 --resume，必须从 pretrained 权重从头训练\", \"scope\": \"worker\", \"reason\": \"M052: finetune.py resume 后 batch_idx 从 0 重新计数，导致 cutoff 阈值不可达。cutoff_45k_s1 因此浪费 5.5h GPU 时间。\"}, {\"id\": \"C003\", \"added\": \"2026-05-26 15:12 UTC\", \"summary\": \"所有实验必须在 2026-05-28 12:00 UTC (北京时间 20:00) 前完成，允许少量超时但总体不能超过\", \"scope\": \"all\", \"reason\": \"用户硬性要求，CoRL DDL 临近\"}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
 
@@ -11263,7 +10913,7 @@ _source line 1108 · 2026-05-29T21:29:21.493024+00:00_
 
 ### Tool call
 
-_source line 1109 · 2026-05-29T21:29:21.493352+00:00_
+_source line 1101 · 2026-05-29T21:29:21.493352+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -11301,7 +10951,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1110 · 2026-05-29T21:29:21.594783+00:00_
+_source line 1102 · 2026-05-29T21:29:21.594783+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/decisions.yaml\", \"content\": \"_next_id: 81\\ndecisions:\\n- id: D001\\n  date: 2026-05-20 04:03 UTC\\n  summary: MVP 方案：vanilla OpenVLA-OFT vs OpenVLA-OFT+占据辅助 在 SafeLIBERO 上对比 CAR\\n  rationale: '核心假设是空间表征影响碰撞安全，MVP 需验证最基本的信号：占据辅助监督是否改变碰撞行为。选 OpenVLA-OFT 因为是 factorial\\n    study 的 base architecture，SafeLIBERO 因为是唯一带碰撞标注的 VLA benchmark。2 条件对比是验证交互存在的最小实验。Pass:\\n    CAR ≥5% 提升且 TSR ≤3% 下降。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-20 04:06 UTC\\n  summary: 根据 Reviewer 反馈完善 MVP 判定标准：≥3 seeds、paired t-test、灰色地带规则、Level I 优先\\n  rationale: Reviewer 指出 4 个 warning：(1) pass/fail 灰色地带未覆盖 → 新增有条件通过规则；(2) 未指定 seeds\\n    → 改为 ≥3 seeds + paired t-test p<0.05；(3) SafeLIBERO level 未指定 → Level I 为主；(4)\\n    占据 GT 可行性是关键路径 → 提升为 P0。同时记录 MVP 局限性：无法区分占据特有效应与任意 3D 监督效应。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-20 04:22 UTC\\n  summary: MVP 范围缩小：单 suite (spatial) + 50K steps，训练用原始 LIBERO 评估用 SafeLIBERO\\n  rationale: Reviewer 发现两个问题：(1) GPU 预算低估 3-4x（150K steps × 6 runs = 288-432h），缩到\\n    50K steps 降至 120-170h；(2) 训练数据不应包含障碍物场景，否则测的是避障学习而非空间理解迁移。修正为：在原始 LIBERO-Spatial（无障碍物）上训练\\n    + 占据 GT，在 SafeLIBERO Level I（有障碍物）上评估。这是科学上更强的设计——若 pass 证明占据监督赋予了通用碰撞意识。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-20 05:33 UTC\\n  summary: CoRL 2026 不可行（Reviewer critical），建议用户确认 AAAI 2027 为主目标\\n  rationale: Reviewer 独立评估确认：CoRL 2026 (May 29 deadline) 串行依赖最短路径 6-9 天仅够 MVP，不够投稿论文。完整研究需\\n    870-1470 GPU-hours + 多步串行依赖（代码→训练→评估→OCC-CBF 设计）。AAAI 2027 (Jul 28) 提供 10 周 runway，时间线环境搭建+MVP\\n    (1周) → factorial (2-3周) → OCC-CBF (2周) → 论文 (2周) → buffer (1-2周)，宽裕可行。\\n  related_experiments: []\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-20 13:50 UTC\\n  summary: Post-MVP 实验扩展计划：5 条件 minimum + 2 suite + 2 level，利用 occ_data_dummy 作为 random\\n    
 …[truncated 4610 chars]
@@ -11324,7 +10974,7 @@ _source line 1110 · 2026-05-29T21:29:21.594783+00:00_
 
 ### Tool call
 
-_source line 1111 · 2026-05-29T21:29:38.157686+00:00_
+_source line 1103 · 2026-05-29T21:29:38.157686+00:00_
 
 called Bash
 
@@ -11360,7 +11010,7 @@ called Bash
 
 ### Tool result
 
-_source line 1112 · 2026-05-29T21:29:39.112030+00:00_
+_source line 1104 · 2026-05-29T21:29:39.112030+00:00_
 
 1780089989.0792100080 Fri May 29 21:26:29 2026 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex
 1780089987.9342039720 Fri May 29 21:26:27 2026 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex
@@ -11392,7 +11042,7 @@ _source line 1112 · 2026-05-29T21:29:39.112030+00:00_
 
 ### Tool call
 
-_source line 1113 · 2026-05-29T21:29:39.263056+00:00_
+_source line 1105 · 2026-05-29T21:29:39.263056+00:00_
 
 called Bash
 
@@ -11428,7 +11078,7 @@ called Bash
 
 ### Tool result
 
-_source line 1114 · 2026-05-29T21:29:39.315131+00:00_
+_source line 1106 · 2026-05-29T21:29:39.315131+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  13444 May 29 21:26 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/AGENTS.md
 -rw-r--r-- 1 ubuntu ubuntu  13444 May 29 21:26 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/CLAUDE.md
@@ -11465,7 +11115,7 @@ _source line 1114 · 2026-05-29T21:29:39.315131+00:00_
 
 ### Tool call
 
-_source line 1115 · 2026-05-29T21:29:59.435309+00:00_
+_source line 1107 · 2026-05-29T21:29:59.435309+00:00_
 
 called Read
 
@@ -11499,7 +11149,7 @@ called Read
 
 ### Tool result
 
-_source line 1116 · 2026-05-29T21:29:59.837212+00:00_
+_source line 1108 · 2026-05-29T21:29:59.837212+00:00_
 
 1	\section{Introduction}
 2	
@@ -11531,7 +11181,7 @@ _source line 1116 · 2026-05-29T21:29:59.837212+00:00_
 
 ### Tool call
 
-_source line 1117 · 2026-05-29T21:29:59.887797+00:00_
+_source line 1109 · 2026-05-29T21:29:59.887797+00:00_
 
 called Read
 
@@ -11567,7 +11217,7 @@ called Read
 
 ### Tool result
 
-_source line 1118 · 2026-05-29T21:29:59.988579+00:00_
+_source line 1110 · 2026-05-29T21:29:59.988579+00:00_
 
 1	\documentclass{article}
 2	
@@ -11612,7 +11262,7 @@ _source line 1118 · 2026-05-29T21:29:59.988579+00:00_
 
 ### Tool call
 
-_source line 1119 · 2026-05-29T21:30:54.337318+00:00_
+_source line 1111 · 2026-05-29T21:30:54.337318+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11648,7 +11298,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1120 · 2026-05-29T21:30:55.190830+00:00_
+_source line 1112 · 2026-05-29T21:30:55.190830+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -11670,7 +11320,7 @@ _source line 1120 · 2026-05-29T21:30:55.190830+00:00_
 
 ### Assistant
 
-_source line 1121 · 2026-05-29T21:31:00.258778+00:00_
+_source line 1113 · 2026-05-29T21:31:00.258778+00:00_
 
 状态汇总：
 
@@ -11704,7 +11354,7 @@ _source line 1121 · 2026-05-29T21:31:00.258778+00:00_
 
 ### User
 
-_source line 1122 · 2026-05-29T23:35:20.233069+00:00_
+_source line 1114 · 2026-05-29T23:35:20.233069+00:00_
 
 [System 触发审查]:
 **GPU 恢复后实验提交清单审查 + Table/Figure 呈现审查**
@@ -11761,7 +11411,7 @@ GPU 恢复后需提交 5 组实验（142 GPU·h）。请审查以下提交计划
 
 ### Tool call
 
-_source line 1123 · 2026-05-29T23:35:37.954931+00:00_
+_source line 1115 · 2026-05-29T23:35:37.954931+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -11795,7 +11445,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool result
 
-_source line 1124 · 2026-05-29T23:35:39.210632+00:00_
+_source line 1116 · 2026-05-29T23:35:39.210632+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": \"C1\", \"description\": \"Full OCC 3-seed (BEV occupancy with gradient flow)\", \"priority\": \"P0\", \"registry_id\": \"mvp_occ_s0\", \"gpu_budget_hours\": 13, \"deps\": [], \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"TSR\": 0.91, \"CAR\": 0.73, \"collisions\": 54, \"total_episodes\": 200, \"checkpoint_step\": 47500, \"per_task\": {\"T0\": {\"TSR\": 1, \"CAR\": 0.95}, \"T1\": {\"TSR\": 0.85, \"CAR\": 0.85}, \"T2\": {\"TSR\": 0.85, \"CAR\": 0.85}, \"T3\": {\"TSR\": 0.95, \"CAR\": 0.2}, \"T4\": {\"TSR\": 0.8, \"CAR\": 1}, \"T5\": {\"TSR\": 0.75, \"CAR\": 0.2}, \"T6\": {\"TSR\": 1, \"CAR\": 0.25}, \"T7\": {\"TSR\": 1, \"CAR\": 1}, \"T8\": {\"TSR\": 0.95, \"CAR\": 1}, \"T9\": {\"TSR\": 0.95, \"CAR\": 1}}, \"at_47500_50r\": {\"TSR\": 0.892, \"CAR\": 0.75, \"collisions\": 125, \"total_episodes\": 500, \"per_task\": {\"T0\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.86, \"CAR\": 0.86}, \"T2\": {\"TSR\": 0.88, \"CAR\": 0.88}, \"T3\": {\"TSR\": 0.94, \"CAR\": 0.2}, \"T4\": {\"TSR\": 0.78, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.6, \"CAR\": 0.26}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.36}, \"T7\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.96, \"CAR\": 1}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1}}}, \"at_50000_50r\": {\"TSR\": 0.904, \"CAR\": 0.832, \"collisions\": 84, \"total_episodes\": 500, \"per_task\": {\"T0\": {\"TSR\": 1, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.96, \"CAR\": 0.82}, \"T2\": {\"TSR\": 0.96, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.8}, \"T4\": {\"TSR\": 0.9, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.38, \"CAR\": 0.2}, \"T6\": {\"TSR\": 0.98, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.96, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1}, \"T9\": {\"TSR\": 1, \"CAR\": 1}}}}}, {\"id\": \"plan_002\", \"claim\": \"C1\", \"description\": \"Full OCC 3-seed — seed 43\", \"priority\": \"P0\", \"registry_id\": \"occ_s1_fresh\", \"gpu_budget_hour
 …[truncated 25906 chars]
@@ -11818,7 +11468,7 @@ _source line 1124 · 2026-05-29T23:35:39.210632+00:00_
 
 ### Tool call
 
-_source line 1125 · 2026-05-29T23:35:39.311482+00:00_
+_source line 1117 · 2026-05-29T23:35:39.311482+00:00_
 
 called Read
 
@@ -11852,7 +11502,7 @@ called Read
 
 ### Tool result
 
-_source line 1126 · 2026-05-29T23:35:39.613108+00:00_
+_source line 1118 · 2026-05-29T23:35:39.613108+00:00_
 
 1	
 2	\section{Method}
@@ -11887,7 +11537,7 @@ _source line 1126 · 2026-05-29T23:35:39.613108+00:00_
 
 ### Tool call
 
-_source line 1127 · 2026-05-29T23:35:39.814192+00:00_
+_source line 1119 · 2026-05-29T23:35:39.814192+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -11925,7 +11575,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1128 · 2026-05-29T23:35:39.866007+00:00_
+_source line 1120 · 2026-05-29T23:35:39.866007+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\", \"content\": \"# OccSafe-VLA — Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-29 13:30 UTC | 状态: Draft — **D074 Dual Main Effects (D076 N=14 sync)** — v2 factorial: gradient flow 主效应 (Δ=-3.0pp) + normalization 主效应 (LN>BN, Δ=+3.6pp, d≈1.05); ANOVA interaction ≈ 0 (F=0.10, p=0.763); BN+Grad ON 是唯一 < Vanilla 的配置。Cell 1 n=3, Cell 2 n=4, Cell 3 n=4, Cell 4 n=3。CoRL 2026 target (Paper May 29)\\n>\\n> ⚠️ **D074 Dual Main Effects Transition (2026-05-27)**: Reviewer 审查发现 ANOVA 交互项 F=0.10, p=0.763，数学上不可能显著。\\\"ordinal interaction\\\" framing 改为 \\\"dual main effects + practical threshold crossing\\\"。新增 normalization 主效应 (d≈1.05) 作为 secondary claim。详见 D074。\\n\\n## Architecture Facts (from code, verified)\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\n- **FocalLoss**: α=0.25, γ=2.0\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\n\\n### 叙事含义\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\n  比\\\"仅改善 DINOv2\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\"lightweight auxiliary\\\" 叙事\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\"放手\\\"让 action loss 主导，\\n  可论证为\\\"先学空间结构，再精化动作\\\"的课程学习效果\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\n\\n### DepthHead (新增, 2026-05-22)\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 
 …[truncated 14526 chars]
@@ -11948,7 +11598,7 @@ _source line 1128 · 2026-05-29T23:35:39.866007+00:00_
 
 ### Tool call
 
-_source line 1129 · 2026-05-29T23:36:51.607884+00:00_
+_source line 1121 · 2026-05-29T23:36:51.607884+00:00_
 
 called Glob
 
@@ -11984,7 +11634,7 @@ called Glob
 
 ### Tool result
 
-_source line 1130 · 2026-05-29T23:36:51.758769+00:00_
+_source line 1122 · 2026-05-29T23:36:51.758769+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gradient_analysis_combined.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/cka_analysis.pdf
@@ -12022,7 +11672,7 @@ _source line 1130 · 2026-05-29T23:36:51.758769+00:00_
 
 ### Tool call
 
-_source line 1131 · 2026-05-29T23:36:52.160483+00:00_
+_source line 1123 · 2026-05-29T23:36:52.160483+00:00_
 
 called Read
 
@@ -12060,7 +11710,7 @@ called Read
 
 ### Tool result
 
-_source line 1132 · 2026-05-29T23:36:52.211872+00:00_
+_source line 1124 · 2026-05-29T23:36:52.211872+00:00_
 
 180	\centering
 181	\caption{Permutation-based ANOVA for the $2{\times}2$ factorial (10{,}000 permutations). Both main effects are significant or near-significant; the interaction remains negligible.}
@@ -12103,7 +11753,7 @@ _source line 1132 · 2026-05-29T23:36:52.211872+00:00_
 
 ### Tool call
 
-_source line 1133 · 2026-05-29T23:37:05.560277+00:00_
+_source line 1125 · 2026-05-29T23:37:05.560277+00:00_
 
 called Glob
 
@@ -12139,7 +11789,7 @@ called Glob
 
 ### Tool result
 
-_source line 1134 · 2026-05-29T23:37:05.661155+00:00_
+_source line 1126 · 2026-05-29T23:37:05.661155+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/gradient_analysis_combined.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/cka_analysis.pdf
@@ -12179,7 +11829,7 @@ _source line 1134 · 2026-05-29T23:37:05.661155+00:00_
 
 ### Tool call
 
-_source line 1135 · 2026-05-29T23:37:11.030705+00:00_
+_source line 1127 · 2026-05-29T23:37:11.030705+00:00_
 
 called ToolSearch
 
@@ -12215,7 +11865,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1136 · 2026-05-29T23:37:11.131519+00:00_
+_source line 1128 · 2026-05-29T23:37:11.131519+00:00_
 
 
 
@@ -12237,7 +11887,7 @@ _source line 1136 · 2026-05-29T23:37:11.131519+00:00_
 
 ### Tool call
 
-_source line 1137 · 2026-05-29T23:37:13.591143+00:00_
+_source line 1129 · 2026-05-29T23:37:13.591143+00:00_
 
 called mcp__agent-ml-research__check_figures_and_layout
 
@@ -12271,7 +11921,7 @@ called mcp__agent-ml-research__check_figures_and_layout
 
 ### Tool result
 
-_source line 1138 · 2026-05-29T23:37:14.093373+00:00_
+_source line 1130 · 2026-05-29T23:37:14.093373+00:00_
 
 {"result":"{\"passed\": true, \"critical\": [], \"warning\": [{\"kind\": \"label_without_ref\", \"message\": \"\\\\label{sec:mechanism} is never referenced\", \"location\": \"cross-file\"}, {\"kind\": \"label_without_ref\", \"message\": \"\\\\label{tab:permanova} is never referenced\", \"location\": \"cross-file\"}], \"info\": [], \"summary\": \"0 critical, 2 warning, 0 info\"}"}
 
@@ -12293,7 +11943,7 @@ _source line 1138 · 2026-05-29T23:37:14.093373+00:00_
 
 ### Tool call
 
-_source line 1139 · 2026-05-29T23:37:14.496824+00:00_
+_source line 1131 · 2026-05-29T23:37:14.496824+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -12333,7 +11983,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1140 · 2026-05-29T23:37:15.601086+00:00_
+_source line 1132 · 2026-05-29T23:37:15.601086+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p1.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 307.0}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p2.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 664.3}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p3.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 343.6}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p4.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 330.6}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p5.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 353.7}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p6.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 320.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 313.7}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 369.3}], \"total_pages\": 19, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12355,7 +12005,7 @@ _source line 1140 · 2026-05-29T23:37:15.601086+00:00_
 
 ### Tool call
 
-_source line 1141 · 2026-05-29T23:37:24.723855+00:00_
+_source line 1133 · 2026-05-29T23:37:24.723855+00:00_
 
 called Read
 
@@ -12389,7 +12039,7 @@ called Read
 
 ### Tool result
 
-_source line 1142 · 2026-05-29T23:37:25.177647+00:00_
+_source line 1134 · 2026-05-29T23:37:25.177647+00:00_
 
 
 
@@ -12411,7 +12061,7 @@ _source line 1142 · 2026-05-29T23:37:25.177647+00:00_
 
 ### Tool call
 
-_source line 1143 · 2026-05-29T23:37:25.229880+00:00_
+_source line 1135 · 2026-05-29T23:37:25.229880+00:00_
 
 called Read
 
@@ -12445,7 +12095,7 @@ called Read
 
 ### Tool result
 
-_source line 1144 · 2026-05-29T23:37:25.583530+00:00_
+_source line 1136 · 2026-05-29T23:37:25.583530+00:00_
 
 
 
@@ -12467,7 +12117,7 @@ _source line 1144 · 2026-05-29T23:37:25.583530+00:00_
 
 ### Tool call
 
-_source line 1145 · 2026-05-29T23:37:25.584027+00:00_
+_source line 1137 · 2026-05-29T23:37:25.584027+00:00_
 
 called Read
 
@@ -12501,7 +12151,7 @@ called Read
 
 ### Tool result
 
-_source line 1146 · 2026-05-29T23:37:25.937425+00:00_
+_source line 1138 · 2026-05-29T23:37:25.937425+00:00_
 
 
 
@@ -12523,7 +12173,7 @@ _source line 1146 · 2026-05-29T23:37:25.937425+00:00_
 
 ### Tool call
 
-_source line 1147 · 2026-05-29T23:37:45.714859+00:00_
+_source line 1139 · 2026-05-29T23:37:45.714859+00:00_
 
 called Read
 
@@ -12557,7 +12207,7 @@ called Read
 
 ### Tool call
 
-_source line 1148 · 2026-05-29T23:37:45.715297+00:00_
+_source line 1140 · 2026-05-29T23:37:45.715297+00:00_
 
 called Read
 
@@ -12591,7 +12241,7 @@ called Read
 
 ### Tool call
 
-_source line 1149 · 2026-05-29T23:37:45.715524+00:00_
+_source line 1141 · 2026-05-29T23:37:45.715524+00:00_
 
 called Read
 
@@ -12625,7 +12275,7 @@ called Read
 
 ### Tool call
 
-_source line 1150 · 2026-05-29T23:37:45.766861+00:00_
+_source line 1142 · 2026-05-29T23:37:45.766861+00:00_
 
 called Read
 
@@ -12659,7 +12309,7 @@ called Read
 
 ### Tool result
 
-_source line 1151 · 2026-05-29T23:37:47.141111+00:00_
+_source line 1143 · 2026-05-29T23:37:47.141111+00:00_
 
 
 
@@ -12681,7 +12331,7 @@ _source line 1151 · 2026-05-29T23:37:47.141111+00:00_
 
 ### Tool result
 
-_source line 1152 · 2026-05-29T23:37:47.243968+00:00_
+_source line 1144 · 2026-05-29T23:37:47.243968+00:00_
 
 
 
@@ -12703,7 +12353,7 @@ _source line 1152 · 2026-05-29T23:37:47.243968+00:00_
 
 ### Tool result
 
-_source line 1153 · 2026-05-29T23:37:47.346593+00:00_
+_source line 1145 · 2026-05-29T23:37:47.346593+00:00_
 
 
 
@@ -12725,7 +12375,7 @@ _source line 1153 · 2026-05-29T23:37:47.346593+00:00_
 
 ### Tool result
 
-_source line 1154 · 2026-05-29T23:37:47.451076+00:00_
+_source line 1146 · 2026-05-29T23:37:47.451076+00:00_
 
 
 
@@ -12747,7 +12397,7 @@ _source line 1154 · 2026-05-29T23:37:47.451076+00:00_
 
 ### Tool call
 
-_source line 1155 · 2026-05-29T23:37:53.572992+00:00_
+_source line 1147 · 2026-05-29T23:37:53.572992+00:00_
 
 called Read
 
@@ -12781,7 +12431,7 @@ called Read
 
 ### Tool result
 
-_source line 1156 · 2026-05-29T23:37:53.926901+00:00_
+_source line 1148 · 2026-05-29T23:37:53.926901+00:00_
 
 
 
@@ -12803,7 +12453,7 @@ _source line 1156 · 2026-05-29T23:37:53.926901+00:00_
 
 ### Tool call
 
-_source line 1157 · 2026-05-29T23:40:00.106200+00:00_
+_source line 1149 · 2026-05-29T23:40:00.106200+00:00_
 
 called ToolSearch
 
@@ -12839,7 +12489,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1158 · 2026-05-29T23:40:00.156787+00:00_
+_source line 1150 · 2026-05-29T23:40:00.156787+00:00_
 
 
 
@@ -12861,7 +12511,7 @@ _source line 1158 · 2026-05-29T23:40:00.156787+00:00_
 
 ### Tool call
 
-_source line 1159 · 2026-05-29T23:40:04.491524+00:00_
+_source line 1151 · 2026-05-29T23:40:04.491524+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -12895,7 +12545,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1160 · 2026-05-29T23:40:04.592331+00:00_
+_source line 1152 · 2026-05-29T23:40:04.592331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12917,7 +12567,7 @@ _source line 1160 · 2026-05-29T23:40:04.592331+00:00_
 
 ### Tool call
 
-_source line 1161 · 2026-05-29T23:41:16.938919+00:00_
+_source line 1153 · 2026-05-29T23:41:16.938919+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12953,7 +12603,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1162 · 2026-05-29T23:41:20.039966+00:00_
+_source line 1154 · 2026-05-29T23:41:20.039966+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -12975,7 +12625,7 @@ _source line 1162 · 2026-05-29T23:41:20.039966+00:00_
 
 ### Assistant
 
-_source line 1163 · 2026-05-29T23:41:31.010474+00:00_
+_source line 1155 · 2026-05-29T23:41:31.010474+00:00_
 
 审查完成。
 
@@ -13006,7 +12656,7 @@ _source line 1163 · 2026-05-29T23:41:31.010474+00:00_
 
 ### User
 
-_source line 1164 · 2026-05-29T23:47:24.614361+00:00_
+_source line 1156 · 2026-05-29T23:47:24.614361+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：GPU 预算修正 100→216 GPU·h；标记 Agent 收尾修复（Figure 3/labels/rebuttal budget）完成；合并论文质量加固清单），请审查研究方向和计划的合理性。
@@ -13028,7 +12678,7 @@ _source line 1164 · 2026-05-29T23:47:24.614361+00:00_
 
 ### Tool call
 
-_source line 1165 · 2026-05-29T23:47:30.661003+00:00_
+_source line 1157 · 2026-05-29T23:47:30.661003+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -13062,7 +12712,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1166 · 2026-05-29T23:47:30.661505+00:00_
+_source line 1158 · 2026-05-29T23:47:30.661505+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-29 23:47 UTC | 更新原因: GPU 预算修正 100→216 GPU·h；标记 Agent 收尾修复（Figure 3/labels/rebuttal budget）完成；合并论文质量加固清单\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文已加固 + 3 项 Agent 收尾修复已完成**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex:196 |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex:198 |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex:200 |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex:202 |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex:11 |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex:17 |\\n\\n## 论文质量加固（全部完成）\\n\\n- ✅ 论文修复 6 项（Abstract/terminology/reliably 7→3/per-task/Results split/TSR in Conclusion
 …[truncated 2531 chars]
@@ -13085,7 +12735,7 @@ _source line 1166 · 2026-05-29T23:47:30.661505+00:00_
 
 ### Tool call
 
-_source line 1167 · 2026-05-29T23:47:43.408138+00:00_
+_source line 1159 · 2026-05-29T23:47:43.408138+00:00_
 
 called Grep
 
@@ -13123,7 +12773,7 @@ called Grep
 
 ### Tool result
 
-_source line 1168 · 2026-05-29T23:47:43.709717+00:00_
+_source line 1160 · 2026-05-29T23:47:43.709717+00:00_
 
 No matches found
 
@@ -13145,7 +12795,7 @@ No matches found
 
 ### Tool call
 
-_source line 1169 · 2026-05-29T23:47:44.211890+00:00_
+_source line 1161 · 2026-05-29T23:47:44.211890+00:00_
 
 called Grep
 
@@ -13183,7 +12833,7 @@ called Grep
 
 ### Tool result
 
-_source line 1170 · 2026-05-29T23:47:44.714106+00:00_
+_source line 1162 · 2026-05-29T23:47:44.714106+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:182:\label{tab:permanova}
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex:11:[Omitted long matching line]
@@ -13207,7 +12857,7 @@ _source line 1170 · 2026-05-29T23:47:44.714106+00:00_
 
 ### Tool call
 
-_source line 1171 · 2026-05-29T23:47:45.517368+00:00_
+_source line 1163 · 2026-05-29T23:47:45.517368+00:00_
 
 called Grep
 
@@ -13247,7 +12897,7 @@ called Grep
 
 ### Tool result
 
-_source line 1172 · 2026-05-29T23:47:45.670979+00:00_
+_source line 1164 · 2026-05-29T23:47:45.670979+00:00_
 
 6-
 7:[Omitted long matching line]
@@ -13287,7 +12937,7 @@ _source line 1172 · 2026-05-29T23:47:45.670979+00:00_
 
 ### Tool call
 
-_source line 1173 · 2026-05-29T23:48:31.946077+00:00_
+_source line 1165 · 2026-05-29T23:48:31.946077+00:00_
 
 called Bash
 
@@ -13323,7 +12973,7 @@ called Bash
 
 ### Tool result
 
-_source line 1174 · 2026-05-29T23:48:32.147150+00:00_
+_source line 1166 · 2026-05-29T23:48:32.147150+00:00_
 
 1780089356 2026-05-29 21:15:56.607864688 +0000
 1780089989 2026-05-29 21:26:29.079210008 +0000
@@ -13348,7 +12998,7 @@ _source line 1174 · 2026-05-29T23:48:32.147150+00:00_
 
 ### Tool call
 
-_source line 1175 · 2026-05-29T23:48:39.627461+00:00_
+_source line 1167 · 2026-05-29T23:48:39.627461+00:00_
 
 called Read
 
@@ -13382,7 +13032,7 @@ called Read
 
 ### Tool result
 
-_source line 1176 · 2026-05-29T23:48:39.828788+00:00_
+_source line 1168 · 2026-05-29T23:48:39.828788+00:00_
 
 1	
 2	\section{Results}
@@ -13415,7 +13065,7 @@ _source line 1176 · 2026-05-29T23:48:39.828788+00:00_
 
 ### Tool call
 
-_source line 1177 · 2026-05-29T23:49:09.505493+00:00_
+_source line 1169 · 2026-05-29T23:49:09.505493+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13451,7 +13101,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1178 · 2026-05-29T23:49:12.515895+00:00_
+_source line 1170 · 2026-05-29T23:49:12.515895+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -13473,7 +13123,7 @@ _source line 1178 · 2026-05-29T23:49:12.515895+00:00_
 
 ### Assistant
 
-_source line 1179 · 2026-05-29T23:49:16.528503+00:00_
+_source line 1171 · 2026-05-29T23:49:16.528503+00:00_
 
 验证完成。所有 3 个 tex 修改正确实施：
 
@@ -13501,12 +13151,12 @@ ROADMAP 内容与实际代码一致，无需报告新问题。
 
 ## Round 60
 
-14 recorded events
+10 recorded events
 
 
 ### User
 
-_source line 1180 · 2026-05-30T00:21:11.191515+00:00_
+_source line 1172 · 2026-05-30T00:21:11.191515+00:00_
 
 [System 触发审查]:
 请做一次 "claim 最大化 + 呈现优化" 深度审查。背景：论文已提交 SafeRL Workshop @ RSS 2025，当前 112 个成功实验，12/17 审稿 issue resolved，统计加固 6 项 PASS，锐化 PASS。GPU 阻塞中（两台服务器不可达 10+h），趁此窗口做非 GPU 优化。
@@ -13547,87 +13197,7 @@ _source line 1180 · 2026-05-30T00:21:11.191515+00:00_
 
 ### Tool call
 
-_source line 1181 · 2026-05-30T00:21:23.797061+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1182 · 2026-05-30T00:21:24.199102+00:00_
-
-1	# Round 4 Author Response — Draft
-2	
-3	We thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.
-4	
-5	## Summary of Changes
-6	
-7	- **Framing**: Entire paper restructured from "normalization-dependent gradient flow effect" to "two independent additive main effects" (RD3-C1)
-8	- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)
-9	- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)
-10	- **Scope**: Title, guidelines, and conclusions explicitly limited to "OpenVLA with LoRA fine-tuning on tabletop manipulation" (RD2-W3, RD2-W5)
-11	- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)
-12	- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation
-13	
-14	---
-15	
-16	## Resolved Issues
-17	
-18	### RD3-C1 [Critical] — Framing contradiction: "normalization-dependent" vs zero interaction
-19	
-20	**Issue**: The "normalization-dependent gradient flow effect" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.
-21	
-22	**Fix**: Complete reframing. Every section now uses "two additive factors/effects" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of "normalization-dependent", "confirms additive", and interaction-implying language removed.
-23	
-24	**Verification**: Grep for "normalization-dependent", "confirms additive", "mechanisms", and "protections" returns zero hits across all .tex files. Terminology i
-…[truncated 19868 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 402
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1183 · 2026-05-30T00:21:24.751541+00:00_
+_source line 1173 · 2026-05-30T00:21:24.751541+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13665,7 +13235,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1184 · 2026-05-30T00:21:25.820782+00:00_
+_source line 1174 · 2026-05-30T00:21:25.820782+00:00_
 
 Error: result (96,831 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-reviewer-3a7b38ec/530d8a29-b9a7-4c56-af6f-cdf725405d7d/tool-results/mcp-agent-ml-research-read_registry-1780100485757.txt.
 Format: JSON with schema: {result: string}
@@ -13694,7 +13264,7 @@ REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
 
 ### Tool call
 
-_source line 1185 · 2026-05-30T00:21:34.267518+00:00_
+_source line 1175 · 2026-05-30T00:21:34.267518+00:00_
 
 called Read
 
@@ -13730,7 +13300,7 @@ called Read
 
 ### Tool result
 
-_source line 1186 · 2026-05-30T00:21:34.270025+00:00_
+_source line 1176 · 2026-05-30T00:21:34.270025+00:00_
 
 1	
 2	\section{Extended Per-Task Results}
@@ -13785,75 +13355,7 @@ _source line 1186 · 2026-05-30T00:21:34.270025+00:00_
 
 ### Tool call
 
-_source line 1187 · 2026-05-30T00:22:54.250193+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "4 locations|3 locations",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content",
-  "context": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "4 locations|3 locations",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content",
-    "context": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1188 · 2026-05-30T00:22:54.802511+00:00_
-
-286-- Deliverables: Updated ANOVA with balanced design, tighter CIs, recomputed Hedges' g and permutation p-values
-287:- Wording contingency prepared: "reliably" retained if g≥1.5 and p<0.01; downgraded to "consistently" otherwise (3 locations × 2 versions pre-written)
-288-
---
-304-- If v2 Random OCC ≈ Full OCC BN (within cross-seed variance): strengthen claim to "cross-codebase replication"
-305:- If v2 Random OCC ≠ Full OCC BN: downgrade to "codebase-dependent" with specific text (pre-written in wording contingency, 4 locations × 2 versions)
-306-- Estimated cost: ~39 GPU·hours (3 runs × 13h)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 552
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1189 · 2026-05-30T00:22:54.953469+00:00_
+_source line 1177 · 2026-05-30T00:22:54.953469+00:00_
 
 called Grep
 
@@ -13893,7 +13395,7 @@ called Grep
 
 ### Tool result
 
-_source line 1190 · 2026-05-30T00:22:55.004126+00:00_
+_source line 1178 · 2026-05-30T00:22:55.004126+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex:22:[Omitted long matching line]
@@ -13917,7 +13419,7 @@ _source line 1190 · 2026-05-30T00:22:55.004126+00:00_
 
 ### Tool call
 
-_source line 1191 · 2026-05-30T00:24:35.498461+00:00_
+_source line 1179 · 2026-05-30T00:24:35.498461+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13953,7 +13455,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1192 · 2026-05-30T00:24:38.612459+00:00_
+_source line 1180 · 2026-05-30T00:24:38.612459+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -13975,7 +13477,7 @@ _source line 1192 · 2026-05-30T00:24:38.612459+00:00_
 
 ### Assistant
 
-_source line 1193 · 2026-05-30T00:24:47.143490+00:00_
+_source line 1181 · 2026-05-30T00:24:47.143490+00:00_
 
 审查已提交。三维度核心发现：
 
@@ -14003,12 +13505,12 @@ _source line 1193 · 2026-05-30T00:24:47.143490+00:00_
 
 ## Round 61
 
-32 recorded events
+24 recorded events
 
 
 ### User
 
-_source line 1194 · 2026-05-30T00:37:12.568281+00:00_
+_source line 1182 · 2026-05-30T00:37:12.568281+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D081 claim 最大化 7 项全部完成（interaction plot + TSR/per-task/instability 贡献升级 + rebuttal 4 项修正）），请审查研究方向和计划的合理性。
@@ -14030,7 +13532,7 @@ _source line 1194 · 2026-05-30T00:37:12.568281+00:00_
 
 ### Tool call
 
-_source line 1195 · 2026-05-30T00:37:19.612839+00:00_
+_source line 1183 · 2026-05-30T00:37:19.612839+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -14064,7 +13566,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1196 · 2026-05-30T00:37:19.663793+00:00_
+_source line 1184 · 2026-05-30T00:37:19.663793+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-30 00:37 UTC | 更新原因: D081 claim 最大化 7 项全部完成（interaction plot + TSR/per-task/instability 贡献升级 + rebuttal 4 项修正）\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved + 论文全面加固 + GPU 恢复脚本就绪**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 统计加固（D080，全部完成）\\n\\n| 分析 | 结果 | 论文位置 |\\n|------|------|---------|\\n| ✅ Bayesian ANOVA | BF₀₁=3.50 (moderate additivity) | appendix.tex + Table 2 caption |\\n| ✅ TSR factorial ANOVA | All p>0.27 (safety-specific) | appendix.tex |\\n| ✅ Leave-one-out | 14/14 方向一致 | appendix.tex |\\n| ✅ Levene + Welch | W=0.71, p=0.57 | appendix.tex |\\n| ✅ Per-task 放大效应 | Norm 4× on hard tasks | results.tex |\\n| ✅ discussion.tex 修复 | \\\"highest TSR\\\" → 正确措辞 | discussion.tex |\\n\\n## 论文质量加固（全部完成）\\n\\n**Phase 1（锐化+修复）：**\\n- ✅ 论文修复 6 项 + 锐化 5/7 项 + 一致性验证 PASS\\n- ✅ Figure 3 caption v1 annot
 …[truncated 2411 chars]
@@ -14087,7 +13589,7 @@ _source line 1196 · 2026-05-30T00:37:19.663793+00:00_
 
 ### Tool call
 
-_source line 1197 · 2026-05-30T00:37:30.000052+00:00_
+_source line 1185 · 2026-05-30T00:37:30.000052+00:00_
 
 called Read
 
@@ -14125,7 +13627,7 @@ called Read
 
 ### Tool result
 
-_source line 1198 · 2026-05-30T00:37:30.485335+00:00_
+_source line 1186 · 2026-05-30T00:37:30.485335+00:00_
 
 48	\end{table}
 49	
@@ -14176,7 +13678,7 @@ _source line 1198 · 2026-05-30T00:37:30.485335+00:00_
 
 ### Tool call
 
-_source line 1199 · 2026-05-30T00:37:30.761972+00:00_
+_source line 1187 · 2026-05-30T00:37:30.761972+00:00_
 
 called Read
 
@@ -14214,7 +13716,7 @@ called Read
 
 ### Tool result
 
-_source line 1200 · 2026-05-30T00:37:30.812555+00:00_
+_source line 1188 · 2026-05-30T00:37:30.812555+00:00_
 
 20	Our contributions:
 21	\begin{enumerate}[nosep,leftmargin=*]
@@ -14245,7 +13747,7 @@ _source line 1200 · 2026-05-30T00:37:30.812555+00:00_
 
 ### Tool call
 
-_source line 1201 · 2026-05-30T00:37:43.529870+00:00_
+_source line 1189 · 2026-05-30T00:37:43.529870+00:00_
 
 called Bash
 
@@ -14281,7 +13783,7 @@ called Bash
 
 ### Tool result
 
-_source line 1202 · 2026-05-30T00:37:44.534150+00:00_
+_source line 1190 · 2026-05-30T00:37:44.534150+00:00_
 
 1780101181 2026-05-30 00:33:01.182645363 +0000 38033
 
@@ -14303,283 +13805,7 @@ _source line 1202 · 2026-05-30T00:37:44.534150+00:00_
 
 ### Tool call
 
-_source line 1203 · 2026-05-30T00:37:45.488035+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "breadth.*depth|deliberately prioritized",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content",
-  "context": "2"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "breadth.*depth|deliberately prioritized",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content",
-    "context": "2"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1204 · 2026-05-30T00:37:45.940159+00:00_
-
-279-### RD2-N1 [Critical] — Statistical power: seed expansion to n≥5
-280-
-281:We deliberately prioritized breadth (12 conditions, 5 factors) over per-cell depth in the initial submission, as our primary research question concerns the factorial structure of effects rather than precise effect estimates. The planned seed expansion to n≥5 per cell will tighten confidence intervals, while the current n=3–4 design already identifies the additive pattern with large effect sizes (g=0.78–1.89).
-282-
-283-**Status**: Experiments designed. Two seeds in progress (random_occ_v2_s0, full_occ_bn_v2_s2) were interrupted by server downtime. Queue includes seed expansion for Cell 1 (s4), Cell 4 (s3, s4), and Vanilla (s3).
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1205 · 2026-05-30T00:37:46.643308+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "convergence of|convergent|unlikely.*artifactual",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content",
-  "context": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "convergence of|convergent|unlikely.*artifactual",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content",
-    "context": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1206 · 2026-05-30T00:37:46.744599+00:00_
-
-270-
-271:While any individual test may be debatable at n=3–4, the convergence of five independent lines of evidence makes it unlikely that the observed pattern is artifactual. The planned seed expansion (RD2-N1, n≥5 per cell) will stabilize Cell 1's variance estimate, at which point the two approaches are expected to converge.
-272-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1207 · 2026-05-30T00:37:54.573951+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "wall time|wall clock",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content",
-  "context": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "wall time|wall clock",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content",
-    "context": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1208 · 2026-05-30T00:37:55.527355+00:00_
-
-295-
-296:[PENDING GPU — estimated ~104 GPU·h, ~13h wall time with 8-GPU parallelism]
-297-
---
-314-
-315:[PENDING GPU — estimated ~39 GPU·h. All pending experiments: ~27h total wall time with 8-GPU parallelism]
-316-
---
-338-
-339:[PENDING GPU — estimated ~15 GPU·h, ~13h wall time (single GPU, full 50K training)]
-340-
---
-352-
-353:[PENDING GPU — estimated ~36 GPU·h. All pending experiments: ~27h total wall time with 8-GPU parallelism]
-354-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 953
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1209 · 2026-05-30T00:37:56.079546+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "codebase-dependent|downgrade.*content|contingency.*text",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-  "output_mode": "content",
-  "context": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "codebase-dependent|downgrade.*content|contingency.*text",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-    "output_mode": "content",
-    "context": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1210 · 2026-05-30T00:37:56.080015+00:00_
-
-304-**Plan**:
-305-- Train v2 Random OCC (3 seeds) and compare CAR with v2 Full OCC BN
-306-- If v2 Random OCC ≈ Full OCC BN (within cross-seed variance): strengthen claim to "cross-codebase replication"
-307:- If v2 Random OCC ≠ Full OCC BN: downgrade to "codebase-dependent" with specific text changes:
-308:  - Abstract: "the spatial content of the labels has no detectable effect" → "the spatial content effect is codebase-dependent: absent under v2 but present under v1"
-309:  - Results §Content irrelevance: "Spatial content does not detectably affect outcomes" → "Spatial content effects are codebase-dependent: no detectable difference under v1, but v2 Random OCC diverges from Full OCC BN by X.Xpp (p=Y.YY), suggesting implementation details modulate content sensitivity"
-310-  - Discussion §Content irrelevance: add "The v1/v2 discrepancy suggests that content irrelevance is not an intrinsic property of the auxiliary head architecture but depends on implementation details such as data loading and normalization order"
-311-- Estimated cost: ~39 GPU·hours (3 runs × 13h)
-312-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1211 · 2026-05-30T00:38:05.979762+00:00_
+_source line 1191 · 2026-05-30T00:38:05.979762+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -14619,7 +13845,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1212 · 2026-05-30T00:38:06.180939+00:00_
+_source line 1192 · 2026-05-30T00:38:06.180939+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/_pdf_images/fig_car_factorial_combined_p1.png\", \"width\": 984, \"height\": 439, \"size_kb\": 52.1}], \"total_pages\": 1, \"rendered_pages\": 1, \"dpi\": 165, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14641,7 +13867,7 @@ _source line 1212 · 2026-05-30T00:38:06.180939+00:00_
 
 ### Tool call
 
-_source line 1213 · 2026-05-30T00:38:08.540200+00:00_
+_source line 1193 · 2026-05-30T00:38:08.540200+00:00_
 
 called Read
 
@@ -14675,7 +13901,7 @@ called Read
 
 ### Tool result
 
-_source line 1214 · 2026-05-30T00:38:08.591355+00:00_
+_source line 1194 · 2026-05-30T00:38:08.591355+00:00_
 
 
 
@@ -14697,7 +13923,7 @@ _source line 1214 · 2026-05-30T00:38:08.591355+00:00_
 
 ### Tool call
 
-_source line 1215 · 2026-05-30T00:38:33.783678+00:00_
+_source line 1195 · 2026-05-30T00:38:33.783678+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -14737,7 +13963,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1216 · 2026-05-30T00:38:33.885042+00:00_
+_source line 1196 · 2026-05-30T00:38:33.885042+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images/main_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 374.2}], \"total_pages\": 19, \"rendered_pages\": 1, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14759,7 +13985,7 @@ _source line 1216 · 2026-05-30T00:38:33.885042+00:00_
 
 ### Tool call
 
-_source line 1217 · 2026-05-30T00:38:36.583626+00:00_
+_source line 1197 · 2026-05-30T00:38:36.583626+00:00_
 
 called Read
 
@@ -14793,7 +14019,7 @@ called Read
 
 ### Tool result
 
-_source line 1218 · 2026-05-30T00:38:36.986872+00:00_
+_source line 1198 · 2026-05-30T00:38:36.986872+00:00_
 
 
 
@@ -14815,7 +14041,7 @@ _source line 1218 · 2026-05-30T00:38:36.986872+00:00_
 
 ### Tool call
 
-_source line 1219 · 2026-05-30T00:38:49.080354+00:00_
+_source line 1199 · 2026-05-30T00:38:49.080354+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -14849,7 +14075,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1220 · 2026-05-30T00:38:49.682971+00:00_
+_source line 1200 · 2026-05-30T00:38:49.682971+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14871,7 +14097,7 @@ _source line 1220 · 2026-05-30T00:38:49.682971+00:00_
 
 ### Tool call
 
-_source line 1221 · 2026-05-30T00:38:49.683301+00:00_
+_source line 1201 · 2026-05-30T00:38:49.683301+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -14905,7 +14131,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1222 · 2026-05-30T00:38:49.733803+00:00_
+_source line 1202 · 2026-05-30T00:38:49.733803+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14927,7 +14153,7 @@ _source line 1222 · 2026-05-30T00:38:49.733803+00:00_
 
 ### Tool call
 
-_source line 1223 · 2026-05-30T00:39:21.890742+00:00_
+_source line 1203 · 2026-05-30T00:39:21.890742+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14963,7 +14189,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1224 · 2026-05-30T00:39:24.902075+00:00_
+_source line 1204 · 2026-05-30T00:39:24.902075+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -14985,7 +14211,7 @@ _source line 1224 · 2026-05-30T00:39:24.902075+00:00_
 
 ### Assistant
 
-_source line 1225 · 2026-05-30T00:39:26.974946+00:00_
+_source line 1205 · 2026-05-30T00:39:26.974946+00:00_
 
 8 页合规确认——Limitations 仍含全部 4 个子节，References 从 page 8 底部开始。
 
@@ -15012,7 +14238,7 @@ _source line 1225 · 2026-05-30T00:39:26.974946+00:00_
 
 ### User
 
-_source line 1226 · 2026-05-30T01:10:34.892246+00:00_
+_source line 1206 · 2026-05-30T01:10:34.892246+00:00_
 
 [System 触发审查]:
 请做一次论文整体通读审查（full narrative coherence pass）。
@@ -15061,7 +14287,7 @@ _source line 1226 · 2026-05-30T01:10:34.892246+00:00_
 
 ### Tool call
 
-_source line 1227 · 2026-05-30T01:10:43.532546+00:00_
+_source line 1207 · 2026-05-30T01:10:43.532546+00:00_
 
 called Read
 
@@ -15097,7 +14323,7 @@ called Read
 
 ### Tool result
 
-_source line 1228 · 2026-05-30T01:10:43.935251+00:00_
+_source line 1208 · 2026-05-30T01:10:43.935251+00:00_
 
 1	\documentclass{article}
 2	
@@ -15142,7 +14368,7 @@ _source line 1228 · 2026-05-30T01:10:43.935251+00:00_
 
 ### Tool call
 
-_source line 1229 · 2026-05-30T01:10:43.986028+00:00_
+_source line 1209 · 2026-05-30T01:10:43.986028+00:00_
 
 called Read
 
@@ -15176,7 +14402,7 @@ called Read
 
 ### Tool result
 
-_source line 1230 · 2026-05-30T01:10:44.337908+00:00_
+_source line 1210 · 2026-05-30T01:10:44.337908+00:00_
 
 1	\section{Introduction}
 2	
@@ -15208,7 +14434,7 @@ _source line 1230 · 2026-05-30T01:10:44.337908+00:00_
 
 ### Tool call
 
-_source line 1231 · 2026-05-30T01:10:44.388612+00:00_
+_source line 1211 · 2026-05-30T01:10:44.388612+00:00_
 
 called Read
 
@@ -15242,7 +14468,7 @@ called Read
 
 ### Tool result
 
-_source line 1232 · 2026-05-30T01:10:44.439454+00:00_
+_source line 1212 · 2026-05-30T01:10:44.439454+00:00_
 
 1	
 2	\section{Related Work}
@@ -15276,7 +14502,7 @@ _source line 1232 · 2026-05-30T01:10:44.439454+00:00_
 
 ### Tool call
 
-_source line 1233 · 2026-05-30T01:10:49.459402+00:00_
+_source line 1213 · 2026-05-30T01:10:49.459402+00:00_
 
 called Read
 
@@ -15310,7 +14536,7 @@ called Read
 
 ### Tool result
 
-_source line 1234 · 2026-05-30T01:10:49.961633+00:00_
+_source line 1214 · 2026-05-30T01:10:49.961633+00:00_
 
 1	
 2	\section{Method}
@@ -15345,7 +14571,7 @@ _source line 1234 · 2026-05-30T01:10:49.961633+00:00_
 
 ### Tool call
 
-_source line 1235 · 2026-05-30T01:10:49.962024+00:00_
+_source line 1215 · 2026-05-30T01:10:49.962024+00:00_
 
 called Read
 
@@ -15379,7 +14605,7 @@ called Read
 
 ### Tool result
 
-_source line 1236 · 2026-05-30T01:10:50.012697+00:00_
+_source line 1216 · 2026-05-30T01:10:50.012697+00:00_
 
 1	
 2	\section{Results}
@@ -15412,7 +14638,7 @@ _source line 1236 · 2026-05-30T01:10:50.012697+00:00_
 
 ### Tool call
 
-_source line 1237 · 2026-05-30T01:13:05.479846+00:00_
+_source line 1217 · 2026-05-30T01:13:05.479846+00:00_
 
 called Read
 
@@ -15446,7 +14672,7 @@ called Read
 
 ### Tool result
 
-_source line 1238 · 2026-05-30T01:13:05.982243+00:00_
+_source line 1218 · 2026-05-30T01:13:05.982243+00:00_
 
 1	
 2	\section{Discussion}
@@ -15479,7 +14705,7 @@ _source line 1238 · 2026-05-30T01:13:05.982243+00:00_
 
 ### Tool call
 
-_source line 1239 · 2026-05-30T01:13:05.982773+00:00_
+_source line 1219 · 2026-05-30T01:13:05.982773+00:00_
 
 called Read
 
@@ -15513,7 +14739,7 @@ called Read
 
 ### Tool result
 
-_source line 1240 · 2026-05-30T01:13:06.484934+00:00_
+_source line 1220 · 2026-05-30T01:13:06.484934+00:00_
 
 1	
 2	\section{Conclusion}
@@ -15539,7 +14765,7 @@ _source line 1240 · 2026-05-30T01:13:06.484934+00:00_
 
 ### Tool call
 
-_source line 1241 · 2026-05-30T01:13:06.485292+00:00_
+_source line 1221 · 2026-05-30T01:13:06.485292+00:00_
 
 called Read
 
@@ -15573,7 +14799,7 @@ called Read
 
 ### Tool result
 
-_source line 1242 · 2026-05-30T01:13:06.987423+00:00_
+_source line 1222 · 2026-05-30T01:13:06.987423+00:00_
 
 1	
 2	\section{Limitations}
@@ -15605,7 +14831,7 @@ _source line 1242 · 2026-05-30T01:13:06.987423+00:00_
 
 ### Tool call
 
-_source line 1243 · 2026-05-30T01:13:06.987918+00:00_
+_source line 1223 · 2026-05-30T01:13:06.987918+00:00_
 
 called Read
 
@@ -15639,7 +14865,7 @@ called Read
 
 ### Tool result
 
-_source line 1244 · 2026-05-30T01:13:07.440400+00:00_
+_source line 1224 · 2026-05-30T01:13:07.440400+00:00_
 
 1	
 2	\section{Extended Per-Task Results}
@@ -15694,7 +14920,7 @@ _source line 1244 · 2026-05-30T01:13:07.440400+00:00_
 
 ### Tool call
 
-_source line 1245 · 2026-05-30T01:13:07.440936+00:00_
+_source line 1225 · 2026-05-30T01:13:07.440936+00:00_
 
 called Read
 
@@ -15728,7 +14954,7 @@ called Read
 
 ### Tool result
 
-_source line 1246 · 2026-05-30T01:13:07.541652+00:00_
+_source line 1226 · 2026-05-30T01:13:07.541652+00:00_
 
 1	
 2	\section{Method}
@@ -15763,7 +14989,7 @@ _source line 1246 · 2026-05-30T01:13:07.541652+00:00_
 
 ### Tool call
 
-_source line 1247 · 2026-05-30T01:15:40.705169+00:00_
+_source line 1227 · 2026-05-30T01:15:40.705169+00:00_
 
 called Grep
 
@@ -15801,7 +15027,7 @@ called Grep
 
 ### Tool result
 
-_source line 1248 · 2026-05-30T01:15:41.006744+00:00_
+_source line 1228 · 2026-05-30T01:15:41.006744+00:00_
 
 No matches found
 
@@ -15823,7 +15049,7 @@ No matches found
 
 ### Tool call
 
-_source line 1249 · 2026-05-30T01:15:41.509197+00:00_
+_source line 1229 · 2026-05-30T01:15:41.509197+00:00_
 
 called Grep
 
@@ -15861,7 +15087,7 @@ called Grep
 
 ### Tool result
 
-_source line 1250 · 2026-05-30T01:15:41.810811+00:00_
+_source line 1230 · 2026-05-30T01:15:41.810811+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex:23:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex:22:[Omitted long matching line]
@@ -15885,7 +15111,7 @@ _source line 1250 · 2026-05-30T01:15:41.810811+00:00_
 
 ### Tool call
 
-_source line 1251 · 2026-05-30T01:15:41.811299+00:00_
+_source line 1231 · 2026-05-30T01:15:41.811299+00:00_
 
 called Grep
 
@@ -15923,7 +15149,7 @@ called Grep
 
 ### Tool result
 
-_source line 1252 · 2026-05-30T01:15:41.912108+00:00_
+_source line 1232 · 2026-05-30T01:15:41.912108+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex:4:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:105:[Omitted long matching line]
@@ -15951,7 +15177,7 @@ _source line 1252 · 2026-05-30T01:15:41.912108+00:00_
 
 ### Tool call
 
-_source line 1253 · 2026-05-30T01:15:49.791955+00:00_
+_source line 1233 · 2026-05-30T01:15:49.791955+00:00_
 
 called Grep
 
@@ -15991,7 +15217,7 @@ called Grep
 
 ### Tool result
 
-_source line 1254 · 2026-05-30T01:15:50.243929+00:00_
+_source line 1234 · 2026-05-30T01:15:50.243929+00:00_
 
 No matches found
 
@@ -16013,7 +15239,7 @@ No matches found
 
 ### Tool call
 
-_source line 1255 · 2026-05-30T01:15:51.097379+00:00_
+_source line 1235 · 2026-05-30T01:15:51.097379+00:00_
 
 called Grep
 
@@ -16055,7 +15281,7 @@ called Grep
 
 ### Tool result
 
-_source line 1256 · 2026-05-30T01:15:51.147973+00:00_
+_source line 1236 · 2026-05-30T01:15:51.147973+00:00_
 
 No matches found
 
@@ -16077,7 +15303,7 @@ No matches found
 
 ### Tool call
 
-_source line 1257 · 2026-05-30T01:15:54.912259+00:00_
+_source line 1237 · 2026-05-30T01:15:54.912259+00:00_
 
 called Grep
 
@@ -16119,7 +15345,7 @@ called Grep
 
 ### Tool result
 
-_source line 1258 · 2026-05-30T01:15:55.364304+00:00_
+_source line 1238 · 2026-05-30T01:15:55.364304+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex:5:\textbf{Excluded mechanism: gradient conflict.} Near-zero action--auxiliary cosine similarity (${\approx}$46\% conflict rate; Figure~\ref{fig:gradient_analysis}) and comparable action gradient norms (Figure~\ref{fig:gradient_analysis}) rule out PCGrad-style gradient conflict~\cite{yu2020pcgrad}.
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex:9:\textbf{Normalization independently affects safety.} LN provides a consistent $+$3.5--4.8\,pp advantage over BN ($g{=}0.88$--$1.24$). This advantage amplifies fourfold on the three physically constrained tasks ($+6.9$\,pp vs.\ $+1.7$\,pp; Appendix~\ref{app:per_task_factorial}), concentrating where safety margins are thinnest. Normalization type, typically treated as an implementation detail, has outsized consequences for safety-critical VLA fine-tuning.
@@ -16148,7 +15374,7 @@ _source line 1258 · 2026-05-30T01:15:55.364304+00:00_
 
 ### Tool call
 
-_source line 1259 · 2026-05-30T01:15:55.916594+00:00_
+_source line 1239 · 2026-05-30T01:15:55.916594+00:00_
 
 called Grep
 
@@ -16188,7 +15414,7 @@ called Grep
 
 ### Tool result
 
-_source line 1260 · 2026-05-30T01:15:55.967263+00:00_
+_source line 1240 · 2026-05-30T01:15:55.967263+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:202:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex:26:    \item \textbf{Actionable guidelines at zero cost.} Do not add auxiliary spatial heads with gradient flow under BN. If required, use detached gradients with LayerNorm. BN + gradient flow additionally exhibits $7{\times}$ cross-seed variance, making safety outcomes unpredictable across training runs. No ground-truth spatial labels are needed; the auxiliary head is discarded at inference (\S\ref{sec:discussion}).
@@ -16211,7 +15437,7 @@ _source line 1260 · 2026-05-30T01:15:55.967263+00:00_
 
 ### Tool call
 
-_source line 1261 · 2026-05-30T01:16:39.202800+00:00_
+_source line 1241 · 2026-05-30T01:16:39.202800+00:00_
 
 called ToolSearch
 
@@ -16247,7 +15473,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1262 · 2026-05-30T01:16:39.253356+00:00_
+_source line 1242 · 2026-05-30T01:16:39.253356+00:00_
 
 
 
@@ -16269,7 +15495,7 @@ _source line 1262 · 2026-05-30T01:16:39.253356+00:00_
 
 ### Tool call
 
-_source line 1263 · 2026-05-30T01:17:41.660867+00:00_
+_source line 1243 · 2026-05-30T01:17:41.660867+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16305,7 +15531,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1264 · 2026-05-30T01:17:44.721615+00:00_
+_source line 1244 · 2026-05-30T01:17:44.721615+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
 
@@ -16317,6 +15543,932 @@ _source line 1264 · 2026-05-30T01:17:44.721615+00:00_
   "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
   "tool": "mcp__agent-ml-research__reviewer_post_to_director",
   "elapsed_ms": 3060
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1245 · 2026-05-30T01:17:52.997565+00:00_
+
+审查报告已提交。总结：
+
+- **整体结论：WARNING**（无 critical）
+- **叙事一致性**：Abstract↔Intro↔Results↔Discussion↔Conclusion 核心故事完全对齐，无漂移
+- **D081 集成**：TSR invisibility、4× amplification、interaction plot 数据在各章节间一致
+- **3 个 WARNING**：
+  1. Appendix "7× variance" 括号内数字 (0.0040/0.0007=5.7) 与 "7×" 声明不匹配
+  2. Limitations 约 134 词，低于 150 词阈值
+  3. 缺 v2 per-task 支撑表格，仅有 v1 per-task 表，4× amplification 数据的审稿攻击面
+- **术语一致**："reliably" 3 处、"consistently" 用于不同语境、"additive"/"negligible interaction" 全文统一
+- **无悬挂引用**，无过度声明
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
+}
+```
+
+</details>
+
+---
+
+
+## Round 63
+
+## Round 63
+
+18 recorded events
+
+
+### User
+
+_source line 1246 · 2026-05-30T01:57:21.895646+00:00_
+
+[System 触发审查]:
+请做一次全文数据一致性扫描（data consistency audit）。
+
+背景：最近 3 轮修复暴露了同类问题——数据在多处重复出现但没有 single source of truth（7× vs 5-7×、+1.7pp vs +1.3pp、"seven easy" vs "six easy"）。需要系统性排查论文中所有类似的定时炸弹。
+
+**扫描范围**：main.tex + introduction.tex + results.tex + discussion.tex + conclusion.tex + limitations.tex + appendix.tex + Table captions + Figure captions
+
+**扫描内容**：
+
+1. **核心数字一致性** — 以下数字在多处出现，逐一核对是否全部一致：
+   - CAR 均值：Cell 1 (0.725), Cell 2 (0.773), Cell 3 (0.767), Cell 4 (0.802), Vanilla (0.745)
+   - 标准差：Cell 1 (±0.064), Cell 2 (±0.027), Cell 3 (±0.024), Cell 4 (±0.024), Vanilla (±0.024)
+   - Sample sizes：Cell 1 (n=3), Cell 2 (n=4), Cell 3 (n=4), Cell 4 (n=3), Vanilla (n=3), Total (N=14)
+   - ANOVA F/p/η²：gradient (3.20/0.104/0.180), norm (4.49/0.060/0.253), interaction (0.10/0.763/0.005)
+   - Effect sizes：gradient g=0.78, norm g=0.88, Cell 4 vs Vanilla g=1.89
+   - BF₀₁=3.50
+   - TSR ANOVA：all p>0.27
+   - Levene：W=0.71, p=0.57
+   - Per-task：+6.9pp hard vs +1.7pp easy, 4× amplification
+   - Δ values：gradient -3.0pp, norm +3.6pp
+
+2. **分组/定义一致性**：
+   - "hard tasks" 始终指 T3/T5/T6？
+   - "easy tasks" 始终指 T0-T2/T7-T9（不含 T4）？
+   - "non-hard tasks" 始终指 T0-T2/T4/T7-T9？
+   - "12 conditions" / "twelve conditions" 一致？
+   - Factorial cells 的命名/描述一致？
+
+3. **Table ↔ 正文 交叉核对**：
+   - Table 1 中的数字与正文引用是否一致
+   - Table 2 中的 F/p 值与正文引用是否一致
+   - 新 Table (per_task_norm) 的数字与 appendix 正文一致
+
+4. **Figure caption ↔ 正文 交叉核对**：
+   - Figure 2 caption 中的数字与 results 正文是否一致
+   - Figure 3 caption 中的描述与 results/appendix 一致
+
+5. **跨章节引用检查**：
+   - Intro 的 contribution 中引用的数字是否与 Results 中的数字一致
+   - Conclusion 中总结的数字是否与前文一致
+
+逐项列出，每个发现标注 severity（critical/warning/info）+ 具体位置（file:line）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1247 · 2026-05-30T01:57:31.191780+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1248 · 2026-05-30T01:57:31.593186+00:00_
+
+1	\documentclass{article}
+2	
+3	\usepackage[dvipsnames]{xcolor}
+4	\usepackage{corl_2026}
+5	
+6	\usepackage{graphicx}
+7	\usepackage{amsmath,amssymb}
+8	\usepackage{booktabs}
+9	\usepackage{enumitem}
+10	\usepackage{subcaption}
+11	
+12	
+13	\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ An Empirical Investigation}
+14	
+15	\author{
+16	Anonymous Author(s)
+17	}
+18	
+19	\begin{document}
+20	\maketitle
+21	
+22	\begin{abstract}
+23	Fine-tuned Vision-Language-Action (VLA) models achieve high task success yet remain collision-prone. We ask whether auxiliary spatial supervision during fine-tuning can improve collision avoidance, and conduct a systematic $2{\times}2$ factorial study crossing gradient flow with normalization type, supplemented by ablations of label content, reference frame, and temporal extent (twelve conditions in total). The answer depends critically on \emph{how} the auxiliary head is attached. The best configuration, detached gradients with LayerNorm, reliably outperforms the no-auxiliary baseline, raising Collision Avoidance Rate from $0.745$ to $0.802$ with a large effect size. The naive default, BatchNorm with full gradient flow, is associated with reduced safety relative to baseline. A factorial analysis disentangles two additive factors: gradient flow through BatchNorm reduces safety, possibly mediated by running-statistics corruption during auxiliary forward passes; LayerNorm, which normalizes per-token without shared batch statistics, provides a consistent safety advantage regardless of gradient flow. Surprisingly, the spatial content of the labels (ground-truth occupancy, random noise, or depth) has no detectable effect under the original codebase; the gradient pathway, not spatial information, appears to determine the outcome. These safety effects are invisible to standard task-success benchmarks (TSR ANOVA all $p{>}0.27$), explaining why fifteen prior spatial VLA methods did not detect them. The auxiliary head is discarde
+…[truncated 458 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1249 · 2026-05-30T01:57:31.593517+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1250 · 2026-05-30T01:57:31.994855+00:00_
+
+1	\section{Introduction}
+2	
+3	Vision-language-action (VLA) models achieve high task success on manipulation benchmarks~\cite{brohan2023rt2, kim2024openvla, kim2025oft}, but behavioral safety does not follow. On SafeLIBERO Level~I~\cite{hu2025vlsa}, OpenVLA-7B reaches 87.8\% Task Success Rate but only 74.5\% Collision Avoidance Rate (CAR), with per-task collision rates reaching 43--93\% on the three most constrained tasks (Appendix, Table~\ref{tab:per_task}).
+4	
+5	Two active research threads address related but distinct aspects. The first enriches VLAs with auxiliary spatial prediction (occupancy grids, depth maps, point clouds)~\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. At least fifteen such methods have appeared in the past year~\cite{wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2025pointvla, sun2025geovla, bhat20253dcavla, li2025qdepthvla, abouzeid2025geoaware, rao2026augvla3d, li2026corridorvla}, all reporting improved task success under the implicit assumption that spatial awareness yields safer behavior. The second targets VLA safety directly through runtime action filtering~\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf} or constrained RL~\cite{zhang2025safevla}. These lines are disconnected: no spatial method evaluates collision avoidance, and no safety method examines spatial representations. A recent survey~\cite{li2026vlasafety} confirms this gap. Moreover, single-factor ablations, the dominant methodology, cannot decompose joint effects of multiple design choices; only a factorial design can determine whether factors like gradient flow and normalization type interact or combine independently.
+6	
+7	\begin{figure*}[t]
+8	\centering
+9	\includegraphics[width=\textwidth]{figures/fig1_architecture_pb.pdf}
+10	\caption{\textbf{Training setup and factorial design.} \textbf{(a)}~OpenVLA-7B with dual vision encoders (DINOv2 + SigLIP) and an auxiliary spatial head (bird's-eye view occupancy or depth), discarded
+…[truncated 3590 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1251 · 2026-05-30T01:57:32.045524+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1252 · 2026-05-30T01:57:32.196558+00:00_
+
+1	
+2	\section{Results}
+3	\label{sec:results}
+4	
+5	\subsection{Main Results}
+6	
+7	Table~\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\times$ 10 tasks per seed). $\Delta$CAR is computed against the matched-codebase Vanilla baseline (v2: $0.745 \pm 0.024$, 3 seeds, for factorial conditions above the midrule; v1: 0.780 for supplementary conditions below). Random OCC ($^\star$) uses v1 code but is included above the midrule as a factorial control; its $\Delta$CAR is omitted due to the cross-codebase baseline mismatch. Statistical comparisons use permutation tests and Hedges' $g$ (bias-corrected effect size for small samples) against the Vanilla baseline.
+8	
+9	\textbf{Detach+LN reliably outperforms Vanilla.} The best factorial configuration, detached gradients with LayerNorm, achieves CAR $0.802 \pm 0.024$ ($n{=}3$), a $+5.7$\,pp advantage over Vanilla ($0.745 \pm 0.024$, $n{=}3$; Hedges' $g{=}1.89$, very large; bootstrap 95\% CI for $\Delta$: $[0.025, 0.089]$; Welch $t$ $p{=}0.045$).
+10	
+11	\textbf{Two additive main effects explain the advantage.} The $2{\times}2$ factorial (Table~\ref{tab:factorial}, Figure~\ref{fig:car_factorial}b) reveals two large main effects with negligible interaction (permutation ANOVA, 10{,}000 permutations: gradient flow $p_\text{perm}{=}0.090$; normalization $p_\text{perm}{=}0.041$; interaction $p_\text{perm}{=}0.794$; Appendix~\ref{app:permutation}, Table~\ref{tab:permanova}). Bayesian model comparison provides moderate evidence favoring the additive model ($\text{BF}_{01}{=}3.5$; Appendix~\ref{app:permutation}). Parametric ANOVA yields consistent trends (Appendix~\ref{app:stat_power}). Under BatchNorm, gradient flow is associated with lower safety: Full OCC (CAR $0.725$, $\Delta{=}-2.0$\,pp) is the sole cell below Vanilla, while Detach OCC recovers ($0.767$, $\Delta{=}+2.2$\,pp); the within-row deficit is 4.2\,pp (Hedges' $g{=}0.78$, large). Under LayerNorm, gradient flow is benign: Full OCC+LN ($0.773$, $\De
+…[truncated 8399 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1253 · 2026-05-30T01:57:32.649104+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1254 · 2026-05-30T01:57:32.649488+00:00_
+
+1	
+2	\section{Discussion}
+3	\label{sec:discussion}
+4	
+5	\textbf{Excluded mechanism: gradient conflict.} Near-zero action--auxiliary cosine similarity (${\approx}$46\% conflict rate; Figure~\ref{fig:gradient_analysis}) and comparable action gradient norms (Figure~\ref{fig:gradient_analysis}) rule out PCGrad-style gradient conflict~\cite{yu2020pcgrad}.
+6	%
+7	\textbf{Hypothesis: BN forward-pass statistics corruption.} BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches Vanilla ($0.767$ vs.\ $0.745$, $p{=}0.28$); the deficit requires the joint presence of BN and gradient flow. We hypothesize a \emph{forward-pass} mechanism: BN running mean/variance update during each forward pass regardless of gradient conflict, so the auxiliary head shifts the running statistics used at inference. LayerNorm, normalizing per-token without cross-batch statistics, lacks this coupling. CKA confirms intact encoder representations (CKA $\geq$ 0.95), localizing the effect to optimization dynamics rather than representational corruption (a targeted test: comparing BN in train vs.\ eval mode at inference would isolate the running-statistics channel).
+8	
+9	\textbf{Normalization independently affects safety.} LN provides a consistent $+$3.5--4.8\,pp advantage over BN ($g{=}0.88$--$1.24$). This advantage amplifies fourfold on the three physically constrained tasks ($+6.9$\,pp vs.\ $+1.7$\,pp; Appendix~\ref{app:per_task_factorial}), concentrating where safety margins are thinnest. Normalization type, typically treated as an implementation detail, has outsized consequences for safety-critical VLA fine-tuning.
+10	
+11	\textbf{Additive effects.} Detach+LN achieves the best safety (CAR $0.802$), outperforming Vanilla ($g{=}1.89$, bootstrap 95\% CI for $\Delta$: $[0.025, 0.089]$). The advantage arises from two independent effects (each ${\approx}$4--5\,pp; interaction $\eta^2{=}0.005$). Only BN + gradient flow falls below Vanilla; removing either condition restores safety. Additivi
+…[truncated 1895 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1255 · 2026-05-30T01:57:33.000902+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1256 · 2026-05-30T01:57:33.452644+00:00_
+
+1	
+2	\section{Conclusion}
+3	
+4	We presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \emph{what} the auxiliary head predicts but \emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three zero-cost guidelines follow: detach gradients under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1257 · 2026-05-30T01:57:33.453105+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1258 · 2026-05-30T01:57:33.954929+00:00_
+
+1	
+2	\section{Limitations}
+3	
+4	\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Real-world contact dynamics, sensor noise, and control latency introduce failure modes absent in simulation that may alter the relative safety ranking. Validating on physical hardware is a necessary next step.
+5	%
+6	\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects may differ for other VLA families, model scales, or collision definitions. Architectures with different normalization defaults (e.g., $\pi_0$ with GroupNorm, Octo with LayerNorm) may exhibit different sensitivity profiles. Extending to additional architectures would strengthen generalizability.
+7	%
+8	\textbf{Codebase sensitivity.} A code revision shifted CAR by up to 8.6\,pp, exceeding the largest experimental effect; conclusions may not transfer across codebases without re-verification.
+9	%
+10	\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested; a targeted BN eval-mode ablation would isolate this channel. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.
+11	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1259 · 2026-05-30T01:57:34.206087+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1260 · 2026-05-30T01:57:34.708251+00:00_
+
+1	
+2	\section{Extended Per-Task Results}
+3	\label{app:per_task}
+4	
+5	Table~\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven non-hard tasks.
+6	
+7	\begin{table}[h]
+8	\centering
+9	\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table reports v1 codebase results retained for completeness; all main analyses use v2 data (Table~\ref{tab:main_results}). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown).}
+10	\label{tab:per_task}
+11	\begin{tabular}{clccccccc}
+12	\toprule
+13	 & & \multicolumn{7}{c}{Mean CAR by Condition} \\
+14	\cmidrule(lr){3-9}
+15	Task & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\
+16	\midrule
+17	T0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\
+18	T1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\
+19	T2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\
+20	T3 & Hard  & 0.38 & 0.37 & 0.31 & \textbf{0.11} & 0.44 & 0.50 & 0.55 \\
+21	T4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\
+22	T5 & Hard  & 0.07 & 0.17 & 0.23 & \textbf{0.05} & 0.12 & 0.08 & 0.04 \\
+23	T6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\
+24	T7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\
+25	T8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\
+26	T9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\
+27	\midrule
+28	\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\
+29	\bottomrule
+30	\end{tabular}
+31	\end{table}
+32	
+33	\textbf{Ceiling effects.} On the seven non-hard tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\geq$ 0.89, leaving minimal roo
+…[truncated 20927 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1261 · 2026-05-30T02:04:07.072089+00:00_
+
+called mcp__agent-ml-research__reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## 全文数据一致性扫描报告（Data Consistency Audit）\n\n**审查范围**：main.tex + introduction.tex + results.tex + discussion.tex + conclusion.tex + limitations.tex + appendix.tex（全文）\n**结论**：WARNING（0 critical，4 warning，多 info）\n\n---\n\n### 1. 核心数字一致性\n\n#### CAR 均值（全部一致 ✓）\n\n| Cell | 真值 | 出现位置（已验证） |\n|------|------|-------------------|\n| Cell 1 (Full OCC BN) | 0.725 | Tab1 L31, Results L11, Tab2 L58, Discussion L17, App codebase L116 |\n| Cell 2 (Full OCC+LN) | 0.773 | Tab1 L33, Results L11, Tab2 L59 |\n| Cell 3 (Detach OCC) | 0.767 | Tab1 L32, Results L11, Tab2 L58, Discussion L7, App additional L105 |\n| Cell 4 (Detach+LN) | 0.802 | Tab1 L34, Abstract L23, Intro L18, Results L9/L11, Tab2 L59, Fig2 caption L77, Results L83, Discussion L11, App extended L80 |\n| Vanilla (v2) | 0.745 | Tab1 L36, Abstract L23, Intro L3/L18, Results L7/L9, Fig2 caption L77, Discussion L7/L11, App additional L105 |\n\n[severity: info] 所有 CAR 均值、标准差（±0.064/±0.027/±0.024/±0.024/±0.024）、样本量（3/4/4/3/3, N=14）在全文所有出现位置均一致。\n\n#### ΔCAR（全部一致 ✓）\n\n[severity: info] Cell 1 Δ=-2.0, Cell 2 Δ=+2.8, Cell 3 Δ=+2.2, Cell 4 Δ=+5.7 在 Table 1、正文、factorial interpretation 中一致。Table 2 的 row/column marginals（-4.2, -2.9, -4.8, -3.5）与 cell 差值算术一致（已验证）。所有 supplementary condition ΔCAR 与 Table 1 数值匹配。\n\n#### ANOVA F/p/η²\n\n[severity: info] 参数 ANOVA 三行 (gradient: 3.20/0.104/0.180; norm: 4.49/0.060/0.253; interaction: 0.10/0.763/0.005) 在 Tab:anova (App L141-143)、stat_power 正文 (L131)、Tab:permanova p_parametric 列 (L187-189) 完全一致。\n\n[severity: warning] **Interaction p 值精度不一致**：Appendix codebase L120 写 \"p=0.76\"，其余所有位置（Tab:anova L143, Tab:permanova L189, stat_power L131）均为 \"p=0.763\"。虽为四舍五入，但同一论文内 p 值精度不统一，审稿人可能质疑。**建议**：L120 改为 \"p=0.763\" 或 \"p≈0.76\" 以表明是近似。\n\n#### Permutation ANOVA p 值（全部一致 ✓）\n\n[severity: info] gradient p_perm=0.090 出现 3 处（Results L11, Tab:permanova L187, App L194）一致；norm p_perm=0.041 同 3 处一致；interaction p_perm=0.794 出现 5 处（Results L11, Tab:permanova L189, Tab2 caption L52, Fig2 caption L77, App L194）全部一致。\n\n#### Effect sizes Hedges' g（全部一致 ✓）\n\n[severity: info] Cell 4 vs Vanilla g=1.89 出现 7 处（Results L9/L11/L83, Fig2 caption L77, Discussion L11, Tab:pairwise L169, App extended L80）全部一致。Gradient g=0.78 出现 3 处（Results L11, Tab2 caption L52, Tab:pairwise L160）一致。Norm g=0.88-1.24 出现 4 处（Results L11, Tab2 L61, Tab2 caption L52, Discussion L9）一致。\n\n#### 其他统计量（全部一致 ✓）\n\n[severity: info] BF₀₁=3.5/3.50（Results L11, Tab2 caption L52, App L196）— 格式差异，值一致。Bootstrap CI [0.025, 0.089] 3 处一致（Results L9/L83, Discussion L11）。Levene W=0.71/p=0.57 仅 1 处（App L202）。TSR ANOVA \"all p>0.27\" 3 处一致（Abstract, Intro C1, Conclusion），与 App L198 详细值 min(0.380,0.274,0.322)=0.274>0.27 匹配。CKA≥0.95 2 处一致（Results L100, Discussion L7）。\n\n---\n\n### 2. 分组/定义一致性\n\n[severity: warning] **T4 分类矛盾**：\n- Per-task 表 (App L21)：T4 标记为 **\"Easy\"**\n- Per-task 正文 (App L33)：T4 归入 **\"七个 non-hard tasks (T0-T2, T4, T7-T9)\"**\n- Per-task normalization 表 (App L215 caption)：**\"T4 excluded (medium difficulty)\"**\n- Per-task factorial 正文 (App L209)：\"+1.7pp on easy tasks\" — 此 \"easy\" = 6 tasks (不含 T4)\n\n**矛盾**：T4 在 Tab 5 被标 \"Easy\" 但在 Tab per_task_norm 被排除为 \"medium difficulty\"。主文 Results L15 和 Discussion L9 的 \"+1.7pp on easy tasks\" 是基于 6 tasks 计算的，但读者对照 Tab 5 会认为 easy = 7 tasks（含 T4），数字就对不上了。**建议**：(a) 在 Tab 5 将 T4 标记为 \"Med\" 而非 \"Easy\"；(b) 或在 per_task_norm 表的 \"Easy\" 行改为 \"Easy (excl. T4)\" 并在主文首次出现处注明。\n\n[severity: info] **\"twelve conditions\" 一致**：Abstract、Intro L16、App stat_power L127 均为 12。实际计数：5 factorial + 7 supplementary = 12 ✓。\"hard tasks\" = T3/T5/T6 在 4 处一致。\n\n---\n\n### 3. Table ↔ 正文 交叉核对\n\n[severity: info] **Table 1 ↔ 正文**：全部 12 行的 CAR/TSR/n/ΔCAR 与正文引用一致（逐行验证完成）。\n\n[severity: info] **Table 2 ↔ 正文**：4 cell 值 (0.725/0.767/0.773/0.802)、row deltas (-4.2/-2.9)、column deltas (-4.8/-3.5) 与 Results L11、Fig2 caption L77 一致。Caption 统计量 (g=0.78, g=0.88-1.24, p_perm=0.794, BF₀₁=3.50) 与正文一致。\n\n[severity: info] **Table per_task_norm ↔ 正文**：Hard Δ=+6.9pp (0.357-0.288)、Easy Δ=+1.7pp (0.962-0.945)，算术验证通过。与 Results L15、Discussion L9、App L209 一致。4× ratio = 6.9/1.7 = 4.06 ✓。\n\n---\n\n### 4. Figure caption ↔ 正文 交叉核对\n\n[severity: info] **Fig 2 (car_factorial_combined)**：Caption (L77) 中 0.802±0.024/n=3/0.745/g=1.89/p_perm=0.794/3.5-4.8pp 全部与 Results 正文和 Table 1/2 一致。\n\n[severity: info] **Fig 3 (gradient_analysis_v2)**：Caption (L94) \"v2, seed 42, 200 batches\" + \"Random OCC data obtained under v1 codebase\" + \"≈46% conflict rate\" 与 Results L98 一致。\n\n---\n\n### 5. 跨章节引用检查\n\n[severity: info] **Intro contributions ↔ Results**：\n- C1 \"reliably outperforming\" + \"TSR ANOVA all p>0.27\" + \"fourfold\" ↔ Results L9/L15/App L198 ✓\n- C3 \"5-7× cross-seed variance\" ↔ App L202 \"5-7× the variance\" ✓\n- C4 \"8.6pp, exceeding ≤5.7pp\" ↔ Discussion L13, App codebase L116 ✓\n\n[severity: info] **Conclusion ↔ 前文**：\"consistently outperforms\" + \"additively\" + \"fourfold\" + \"TSR ANOVA all p>0.27\" + \"three zero-cost guidelines\" — 全部与 Results/Discussion 一致。\n\n---\n\n### 6. 新发现的数据问题\n\n[severity: warning] **Appendix \"CAR ≥ 0.89\" 声明错误**（App per_task L33）：\"On the seven non-hard tasks (T0--T2, T4, T7--T9), all conditions achieve CAR ≥ 0.89\" — **实际 Tab 5 中 Det+LN T1 = 0.78，明显低于 0.89**。Detach T1 = 0.89（恰好在边界）。此句为 factual error。**建议**：改为 \"most conditions achieve CAR ≥ 0.78 on non-hard tasks\" 或 \"Vanilla achieves CAR ≥ 0.92 on all seven non-hard tasks\"（仅限 Vanilla 的声明是正确的）。\n\n[severity: warning] **Discussion \"each ≈4-5pp\" 偏高**（discussion.tex L11）：\"The advantage arises from two independent effects (each ≈4--5pp)\" — 实际：\n- Gradient effect：within-BN 4.2pp, within-LN 2.9pp, 加权边际 3.0pp\n- Norm effect：within-ON 4.8pp, within-OFF 3.5pp, 加权边际 3.6pp\n\nGradient effect 的下限为 2.9pp，不在 \"4-5pp\" 范围内。\"each ≈3-5pp\" 更准确。当前措辞过度统一了两个效应的大小，略微夸大了 gradient effect。**建议**：改为 \"two independent effects (gradient flow ${\\approx}$3--4\\,pp, normalization ${\\approx}$4--5\\,pp)\" 或 \"two independent effects (${\\approx}$3--5\\,pp each)\"。\n\n---\n\n### 7. 数据点完整清单\n\n| 数据点 | 位置数 | 一致 | 备注 |\n|--------|--------|------|------|\n| Cell 1-4 + Vanilla CAR | 5-10 | ✓ | |\n| 所有 σ 值 | 2-3 | ✓ | |\n| N=14 | 4 | ✓ | |\n| 12 conditions | 3 | ✓ | |\n| ANOVA F/p/η² (3 rows) | 3-5 | ✓* | *L120 p=0.76 vs 0.763 |\n| Perm ANOVA p (3 rows) | 3-5 | ✓ | |\n| BF₀₁ = 3.5 | 3 | ✓ | |\n| g = 1.89 | 7 | ✓ | |\n| g = 0.78 | 3 | ✓ | |\n| g = 0.88-1.24 | 4 | ✓ | |\n| Bootstrap CI | 3 | ✓ | |\n| TSR all p>0.27 | 3+1 | ✓ | 详细值验证通过 |\n| 8.6pp codebase shift | 4 | ✓ | |\n| +6.9/+1.7/4× | 5 | ✓ | |\n| 5-7× variance | 2 | ✓ | 上轮已修正 |\n| 43-93% collision | 1+tab | ✓ | v1 data, 算术验证通过 |\n| Levene W/p | 1 | ✓ | |\n| \"each ≈4-5pp\" | 1 | ✗ | WARNING: 偏高 |\n| \"CAR ≥ 0.89\" | 1 | ✗ | WARNING: 事实错误 |\n| T4 classification | 2 vs 1 | ✗ | WARNING: 矛盾 |\n| Interaction p precision | 1 vs 4 | ✗ | WARNING: 0.76 vs 0.763 |\n\n**总结**：核心数字一致性良好（34/38 数据点完全一致），发现 4 个 WARNING 级问题，均为局部修正即可解决的边缘问题，不影响核心结论。建议优先修复 \"CAR ≥ 0.89\" factual error 和 T4 分类矛盾，其余两项为措辞精度改进。",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "tool_args": {
+    "text": "## 全文数据一致性扫描报告（Data Consistency Audit）\n\n**审查范围**：main.tex + introduction.tex + results.tex + discussion.tex + conclusion.tex + limitations.tex + appendix.tex（全文）\n**结论**：WARNING（0 critical，4 warning，多 info）\n\n---\n\n### 1. 核心数字一致性\n\n#### CAR 均值（全部一致 ✓）\n\n| Cell | 真值 | 出现位置（已验证） |\n|------|------|-------------------|\n| Cell 1 (Full OCC BN) | 0.725 | Tab1 L31, Results L11, Tab2 L58, Discussion L17, App codebase L116 |\n| Cell 2 (Full OCC+LN) | 0.773 | Tab1 L33, Results L11, Tab2 L59 |\n| Cell 3 (Detach OCC) | 0.767 | Tab1 L32, Results L11, Tab2 L58, Discussion L7, App additional L105 |\n| Cell 4 (Detach+LN) | 0.802 | Tab1 L34, Abstract L23, Intro L18, Results L9/L11, Tab2 L59, Fig2 caption L77, Results L83, Discussion L11, App extended L80 |\n| Vanilla (v2) | 0.745 | Tab1 L36, Abstract L23, Intro L3/L18, Results L7/L9, Fig2 caption L77, Discussion L7/L11, App additional L105 |\n\n[severity: info] 所有 CAR 均值、标准差（±0.064/±0.027/±0.024/±0.024/±0.024）、样本量（3/4/4/3/3, N=14）在全文所有出现位置均一致。\n\n#### ΔCAR（全部一致 ✓）\n\n[severity: info] Cell 1 Δ=-2.0, Cell 2 Δ=+2.8, Cell 3 Δ=+2.2, Cell 4 Δ=+5.7 在 Table 1、正文、factorial interpretation 中一致。Table 2 的 row/column marginals（-4.2, -2.9, -4.8, -3.5）与 cell 差值算术一致（已验证）。所有 supplementary condition ΔCAR 与 Table 1 数值匹配。\n\n#### ANOVA F/p/η²\n\n[severity: info] 参数 ANOVA 三行 (gradient: 3.20/0.104/0.180; norm: 4.49/0.060/0.253; interaction: 0.10/0.763/0.005) 在 Tab:anova (App L141-143)、stat_power 正文 (L131)、Tab:permanova p_parametric 列 (L187-189) 完全一致。\n\n[severity: warning] **Interaction p 值精度不一致**：Appendix codebase L120 写 \"p=0.76\"，其余所有位置（Tab:anova L143, Tab:permanova L189, stat_power L131）均为 \"p=0.763\"。虽为四舍五入，但同一论文内 p 值精度不统一，审稿人可能质疑。**建议**：L120 改为 \"p=0.763\" 或 \"p≈0.76\" 以表明是近似。\n\n#### Permutation ANOVA p 值（全部一致 ✓）\n\n[severity: info] gradient p_perm=0.090 出现 3 处（Results L11, Tab:permanova L187, App L194）一致；norm p_perm=0.041 同 3 处一致；interaction p_perm=0.794 出现 5 处（Results L11, Tab:permanova L189, Tab2 caption L52, Fig2 caption L77, App L194）全部一致。\n\n#### Effect sizes Hedges' g（全部一致 ✓）\n\n[severity: info] Cell 4 vs Vanilla g=1.89 出现 7 处（Results L9/L11/L83, Fig2 caption L77, Discussion L11, Tab:pairwise L169, App extended L80）全部一致。Gradient g=0.78 出现 3 处（Results L11, Tab2 caption L52, Tab:pairwise L160）一致。Norm g=0.88-1.24 出现 4 处（Results L11, Tab2 L61, Tab2 caption L52, Discussion L9）一致。\n\n#### 其他统计量（全部一致 ✓）\n\n[severity: info] BF₀₁=3.5/3.50（Results L11, Tab2 caption L52, App L196）— 格式差异，值一致。Bootstrap CI [0.025, 0.089] 3 处一致（Results L9/L83, Discussion L11）。Levene W=0.71/p=0.57 仅 1 处（App L202）。TSR ANOVA \"all p>0.27\" 3 处一致（Abstract, Intro C1, Conclusion），与 App L198 详细值 min(0.380,0.274,0.322)=0.274>0.27 匹配。CKA≥0.95 2 处一致（Results L100, Discussion L7）。\n\n---\n\n### 2. 分组/定义一致性\n\n[severity: warning] **T4 分类矛盾**：\n- Per-task 表 (App L21)：T4 标记为 **\"Easy\"**\n- Per-task 正文 (App L33)：T4 归入 **\"七个 non-hard tasks (T0-T2, T4, T7-T9)\"**\n- Per-task normalization 表 (App L215 caption)：**\"T4 excluded (medium difficulty)\"**\n- Per-task factorial 正文 (App L209)：\"+1.7pp on easy tasks\" — 此 \"easy\" = 6 tasks (不含 T4)\n\n**矛盾**：T4 在 Tab 5 被标 \"Easy\" 但在 Tab per_task_norm 被排除为 \"medium difficulty\"。主文 Results L15 和 Discussion L9 的 \"+1.7pp on easy tasks\" 是基于 6 tasks 计算的，但读者对照 Tab 5 会认为 easy = 7 tasks（含 T4），数字就对不上了。**建议**：(a) 在 Tab 5 将 T4 标记为 \"Med\" 而非 \"Easy\"；(b) 或在 per_task_norm 表的 \"Easy\" 行改为 \"Easy (excl. T4)\" 并在主文首次出现处注明。\n\n[severity: info] **\"twelve conditions\" 一致**：Abstract、Intro L16、App stat_power L127 均为 12。实际计数：5 factorial + 7 supplementary = 12 ✓。\"hard tasks\" = T3/T5/T6 在 4 处一致。\n\n---\n\n### 3. Table ↔ 正文 交叉核对\n\n[severity: info] **Table 1 ↔ 正文**：全部 12 行的 CAR/TSR/n/ΔCAR 与正文引用一致（逐行验证完成）。\n\n[severity: info] **Table 2 ↔ 正文**：4 cell 值 (0.725/0.767/0.773/0.802)、row deltas (-4.2/-2.9)、column deltas (-4.8/-3.5) 与 Results L11、Fig2 caption L77 一致。Caption 统计量 (g=0.78, g=0.88-1.24, p_perm=0.794, BF₀₁=3.50) 与正文一致。\n\n[severity: info] **Table per_task_norm ↔ 正文**：Hard Δ=+6.9pp (0.357-0.288)、Easy Δ=+1.7pp (0.962-0.945)，算术验证通过。与 Results L15、Discussion L9、App L209 一致。4× ratio = 6.9/1.7 = 4.06 ✓。\n\n---\n\n### 4. Figure caption ↔ 正文 交叉核对\n\n[severity: info] **Fig 2 (car_factorial_combined)**：Caption (L77) 中 0.802±0.024/n=3/0.745/g=1.89/p_perm=0.794/3.5-4.8pp 全部与 Results 正文和 Table 1/2 一致。\n\n[severity: info] **Fig 3 (gradient_analysis_v2)**：Caption (L94) \"v2, seed 42, 200 batches\" + \"Random OCC data obtained under v1 codebase\" + \"≈46% conflict rate\" 与 Results L98 一致。\n\n---\n\n### 5. 跨章节引用检查\n\n[severity: info] **Intro contributions ↔ Results**：\n- C1 \"reliably outperforming\" + \"TSR ANOVA all p>0.27\" + \"fourfold\" ↔ Results L9/L15/App L198 ✓\n- C3 \"5-7× cross-seed variance\" ↔ App L202 \"5-7× the variance\" ✓\n- C4 \"8.6pp, exceeding ≤5.7pp\" ↔ Discussion L13, App codebase L116 ✓\n\n[severity: info] **Conclusion ↔ 前文**：\"consistently outperforms\" + \"additively\" + \"fourfold\" + \"TSR ANOVA all p>0.27\" + \"three zero-cost guidelines\" — 全部与 Results/Discussion 一致。\n\n---\n\n### 6. 新发现的数据问题\n\n[severity: warning] **Appendix \"CAR ≥ 0.89\" 声明错误**（App per_task L33）：\"On the seven non-hard tasks (T0--T2, T4, T7--T9), all conditions achieve CAR ≥ 0.89\" — **实际 Tab 5 中 Det+LN T1 = 0.78，明显低于 0.89**。Detach T1 = 0.89（恰好在边界）。此句为 factual error。**建议**：改为 \"most conditions achieve CAR ≥ 0.78 on non-hard tasks\" 或 \"Vanilla achieves CAR ≥ 0.92 on all seven non-hard tasks\"（仅限 Vanilla 的声明是正确的）。\n\n[severity: warning] **Discussion \"each ≈4-5pp\" 偏高**（discussion.tex L11）：\"The advantage arises from two independent effects (each ≈4--5pp)\" — 实际：\n- Gradient effect：within-BN 4.2pp, within-LN 2.9pp, 加权边际 3.0pp\n- Norm effect：within-ON 4.8pp, within-OFF 3.5pp, 加权边际 3.6pp\n\nGradient effect 的下限为 2.9pp，不在 \"4-5pp\" 范围内。\"each ≈3-5pp\" 更准确。当前措辞过度统一了两个效应的大小，略微夸大了 gradient effect。**建议**：改为 \"two independent effects (gradient flow ${\\approx}$3--4\\,pp, normalization ${\\approx}$4--5\\,pp)\" 或 \"two independent effects (${\\approx}$3--5\\,pp each)\"。\n\n---\n\n### 7. 数据点完整清单\n\n| 数据点 | 位置数 | 一致 | 备注 |\n|--------|--------|------|------|\n| Cell 1-4 + Vanilla CAR | 5-10 | ✓ | |\n| 所有 σ 值 | 2-3 | ✓ | |\n| N=14 | 4 | ✓ | |\n| 12 conditions | 3 | ✓ | |\n| ANOVA F/p/η² (3 rows) | 3-5 | ✓* | *L120 p=0.76 vs 0.763 |\n| Perm ANOVA p (3 rows) | 3-5 | ✓ | |\n| BF₀₁ = 3.5 | 3 | ✓ | |\n| g = 1.89 | 7 | ✓ | |\n| g = 0.78 | 3 | ✓ | |\n| g = 0.88-1.24 | 4 | ✓ | |\n| Bootstrap CI | 3 | ✓ | |\n| TSR all p>0.27 | 3+1 | ✓ | 详细值验证通过 |\n| 8.6pp codebase shift | 4 | ✓ | |\n| +6.9/+1.7/4× | 5 | ✓ | |\n| 5-7× variance | 2 | ✓ | 上轮已修正 |\n| 43-93% collision | 1+tab | ✓ | v1 data, 算术验证通过 |\n| Levene W/p | 1 | ✓ | |\n| \"each ≈4-5pp\" | 1 | ✗ | WARNING: 偏高 |\n| \"CAR ≥ 0.89\" | 1 | ✗ | WARNING: 事实错误 |\n| T4 classification | 2 vs 1 | ✗ | WARNING: 矛盾 |\n| Interaction p precision | 1 vs 4 | ✗ | WARNING: 0.76 vs 0.763 |\n\n**总结**：核心数字一致性良好（34/38 数据点完全一致），发现 4 个 WARNING 级问题，均为局部修正即可解决的边缘问题，不影响核心结论。建议优先修复 \"CAR ≥ 0.89\" factual error 和 T4 分类矛盾，其余两项为措辞精度改进。",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1262 · 2026-05-30T02:04:10.133059+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "elapsed_ms": 3060
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1263 · 2026-05-30T02:04:19.779958+00:00_
+
+全文数据一致性扫描完成。38 个数据点中 34 个完全一致，发现 4 个 WARNING 级问题：
+
+1. **Appendix "CAR ≥ 0.89" 事实错误** — Det+LN T1 = 0.78，明显低于声明的 ≥0.89
+2. **T4 分类矛盾** — Tab 5 标 "Easy" 但 per_task_norm 表排除为 "medium difficulty"
+3. **Discussion "each ≈4-5pp" 偏高** — gradient effect 实际 2.9-4.2pp，不全在 4-5 范围内
+4. **Interaction p 值精度不一致** — L120 写 0.76，其余 4 处写 0.763
+
+核心数字（CAR/σ/n/ΔCAR/ANOVA/g/BF₀₁/Bootstrap CI/TSR/8.6pp）全文一致，无 critical 问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
+}
+```
+
+</details>
+
+---
+
+
+## Round 64
+
+## Round 64
+
+10 recorded events
+
+
+### User
+
+_source line 1264 · 2026-05-30T03:37:44.347693+00:00_
+
+[System 触发审查]:
+请做一次投稿竞争力评估（submission competitiveness assessment）。
+
+背景：论文已提交 SafeRL Workshop @ RSS 2025。当前 112 个成功实验、4 Core Claims、D080 统计加固 + D081 claim 最大化 + 整体通读 + 数据一致性修复全部完成。GPU 阻塞中。
+
+**评估维度：**
+
+1. **Framing 最优性**
+   - 当前 framing "Does Auxiliary Spatial Supervision Make VLA Models Safer?" 是最强的切入角度吗？
+   - 有没有更吸引 reviewer 注意力的方式来 frame 这个问题？
+   - "empirical investigation" 副标题是加分还是减分？
+
+2. **Contribution Statement 是否低估了结果**
+   - C1 (two additive factors) — 数据支撑 g=0.78-1.89，这个 claim 的表述够强吗？
+   - C2 (factorial methodology) — 对 workshop paper 这个贡献是否多余？
+   - C3 (zero-cost guidelines) — 实用性很强但表述是否太工程化？
+   - C4 (codebase sensitivity) — 8.6pp > 最大实验效应 5.7pp，这个发现被充分利用了吗？
+   - TSR invisibility 作为子发现是否应该升级？
+
+3. **Related Work Positioning**
+   - 与最近的 spatial VLA 工作（如 SPA-VL, 3D Diffuser Actor 等）的对比够锐利吗？
+   - "fifteen prior methods" 的引用是否需要更具体地解释它们为什么没检测到安全问题？
+   - 有没有遗漏的关键竞争者或参考点？
+
+4. **Workshop 特定考量**
+   - SafeRL Workshop 的 reviewer 更看重什么？（safety 实证？方法新颖性？practical impact？）
+   - 论文在 safety 社区的定位是否最优？
+   - 有没有 safety 领域特有的术语或框架应该用但没用的？
+
+5. **整体 accept/reject 预测**
+   - 基于当前论文质量，给出 accept 概率估算
+   - 最大的 reject 风险是什么？
+   - 如果只能改一件事来最大化 accept 概率，改什么？
+
+请给出具体、可操作的建议，每条标注优先级和预估影响。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1265 · 2026-05-30T03:37:53.293408+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1266 · 2026-05-30T03:37:53.344858+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1267 · 2026-05-30T03:37:56.105558+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1268 · 2026-05-30T03:37:56.608751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\", \"content\": \"# OccSafe-VLA — Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-29 13:30 UTC | 状态: Draft — **D074 Dual Main Effects (D076 N=14 sync)** — v2 factorial: gradient flow 主效应 (Δ=-3.0pp) + normalization 主效应 (LN>BN, Δ=+3.6pp, d≈1.05); ANOVA interaction ≈ 0 (F=0.10, p=0.763); BN+Grad ON 是唯一 < Vanilla 的配置。Cell 1 n=3, Cell 2 n=4, Cell 3 n=4, Cell 4 n=3。CoRL 2026 target (Paper May 29)\\n>\\n> ⚠️ **D074 Dual Main Effects Transition (2026-05-27)**: Reviewer 审查发现 ANOVA 交互项 F=0.10, p=0.763，数学上不可能显著。\\\"ordinal interaction\\\" framing 改为 \\\"dual main effects + practical threshold crossing\\\"。新增 normalization 主效应 (d≈1.05) 作为 secondary claim。详见 D074。\\n\\n## Architecture Facts (from code, verified)\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\n- **FocalLoss**: α=0.25, γ=2.0\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\n\\n### 叙事含义\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\n  比\\\"仅改善 DINOv2\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\"lightweight auxiliary\\\" 叙事\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\"放手\\\"让 action loss 主导，\\n  可论证为\\\"先学空间结构，再精化动作\\\"的课程学习效果\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\n\\n### DepthHead (新增, 2026-05-22)\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 
+…[truncated 14526 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1269 · 2026-05-30T03:37:56.609285+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1270 · 2026-05-30T03:37:56.961968+00:00_
+
+Error: result (63,460 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-reviewer-3a7b38ec/530d8a29-b9a7-4c56-af6f-cdf725405d7d/tool-results/mcp-agent-ml-research-read_project_file-1780112276933.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-reviewer-3a7b38ec/530d8a29-b9a7-4c56-af6f-cdf725405d7d/tool-results/mcp-agent-ml-research-read_project_file-1780112276933.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 352
 }
 ```
 

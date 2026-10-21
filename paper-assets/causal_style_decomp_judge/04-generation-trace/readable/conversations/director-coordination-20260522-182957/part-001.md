@@ -10859,7 +10859,7 @@ _source line 321 · 2026-05-22T08:31:34.775482+00:00_
 
 ## Round 48
 
-112 recorded events
+110 recorded events
 
 
 ### User
@@ -13483,89 +13483,7 @@ _source line 399 · 2026-05-22T08:43:38.590065+00:00_
 
 ### Tool call
 
-_source line 400 · 2026-05-22T08:43:41.050141+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/response_letter_draft.md",
-  "limit": "100"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/response_letter_draft.md",
-    "limit": "100"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 401 · 2026-05-22T08:43:41.201270+00:00_
-
-1	# Response to Reviewers
-2	
-3	We thank all reviewers for their thorough and constructive feedback. The revision addresses all 19 identified issues (18 resolved, 1 acknowledged as a structural limitation). We summarize the major changes before responding point-by-point:
-4	
-5	**Key improvements in revision:**
-6	- Evidence expanded from 1 judge x 1 axis to **2 judges (GPT-4o, Qwen3-32B) x 3 axes (formality, verbosity, register)**, with all 6 cells showing the Blindspot pattern (Table 1)
-7	- **GEE logistic decomposition** added for all 6 cells, revealing a cross-judge-replicated confound gradient: verbosity (pure style) > formality (mixed) > register (originality-dominated) (Table 3)
-8	- **7-method sensitivity hierarchy** including ordinal regression (p=0.769) and GEE (p=0.587) definitively rules out interval-scale assumptions as the cause (Table 2)
-9	- **Statistical framework upgraded**: Bradley-Terry as primary analysis with pair-level bootstrap CIs, Holm-Bonferroni correction on the primary 3x3 family, primary/exploratory/confirmatory trichotomy
-10	- **3 figures added**: pipeline diagram (Figure 1), forest plot (Figure 2), power curve (Figure 3)
-11	- **22 verified references**, 0 broken citations, 0 undefined LaTeX references
-12	
-13	---
-14	
-15	## Critical Issues
-16	
-17	### R1-N1 + R1-W3 (shared): Causal language mismatch — no DAG, SUTVA, or sensitivity analysis
-18	
-19	> *"Extensive use of 'counterfactual', 'interventional', 'ATE' terminology but no DAG, SUTVA discussion, or sensitivity analysis for unmeasured confounders."*
-20	
-21	**Response:** We agree that our original causal language overstated the framework's formal guarantees. The revision makes three changes:
-22	
-23	1. **Language downgraded throughout** from "counterfactual" to "interventional" — we now explicitly state that CSD provides "interventional rather than formal causal evidence" (Section 1) and do not invoke SUTVA or consistency assumptions.
-24	2. **DAG added** (Section 3.5, Figure 2 in the DAG): A t
-…[truncated 5721 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
-  "tool": "Read",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 402 · 2026-05-22T08:43:46.177453+00:00_
+_source line 400 · 2026-05-22T08:43:46.177453+00:00_
 
 called Read
 
@@ -13601,7 +13519,7 @@ called Read
 
 ### Tool result
 
-_source line 403 · 2026-05-22T08:43:47.936812+00:00_
+_source line 401 · 2026-05-22T08:43:47.936812+00:00_
 
 1	issues:
 2	  # ============================================================
@@ -13672,7 +13590,7 @@ _source line 403 · 2026-05-22T08:43:47.936812+00:00_
 
 ### Tool call
 
-_source line 404 · 2026-05-22T08:43:48.239556+00:00_
+_source line 402 · 2026-05-22T08:43:48.239556+00:00_
 
 called Bash
 
@@ -13708,7 +13626,7 @@ called Bash
 
 ### Tool result
 
-_source line 405 · 2026-05-22T08:43:48.290149+00:00_
+_source line 403 · 2026-05-22T08:43:48.290149+00:00_
 
 (Bash completed with no output)
 
@@ -13730,7 +13648,7 @@ _source line 405 · 2026-05-22T08:43:48.290149+00:00_
 
 ### Tool call
 
-_source line 406 · 2026-05-22T08:43:51.154620+00:00_
+_source line 404 · 2026-05-22T08:43:51.154620+00:00_
 
 called Read
 
@@ -13766,7 +13684,7 @@ called Read
 
 ### Tool result
 
-_source line 407 · 2026-05-22T08:43:51.205187+00:00_
+_source line 405 · 2026-05-22T08:43:51.205187+00:00_
 
 1	---
 2	round: 7
@@ -13821,7 +13739,7 @@ _source line 407 · 2026-05-22T08:43:51.205187+00:00_
 
 ### Tool call
 
-_source line 408 · 2026-05-22T08:43:55.571766+00:00_
+_source line 406 · 2026-05-22T08:43:55.571766+00:00_
 
 called Read
 
@@ -13859,7 +13777,7 @@ called Read
 
 ### Tool result
 
-_source line 409 · 2026-05-22T08:43:55.572269+00:00_
+_source line 407 · 2026-05-22T08:43:55.572269+00:00_
 
 80	
 81	**W3 [warning, 共识] Verbosity direction-aware gating 可能引入 selection bias。**
@@ -13915,7 +13833,7 @@ _source line 409 · 2026-05-22T08:43:55.572269+00:00_
 
 ### Tool call
 
-_source line 410 · 2026-05-22T08:44:02.960513+00:00_
+_source line 408 · 2026-05-22T08:44:02.960513+00:00_
 
 called Bash
 
@@ -13951,7 +13869,7 @@ called Bash
 
 ### Tool result
 
-_source line 411 · 2026-05-22T08:44:03.061336+00:00_
+_source line 409 · 2026-05-22T08:44:03.061336+00:00_
 
 &lt;persisted-output>
 Output too large (77.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge--claude-sessions-director-8259c065/b762cdeb-d56a-4afd-b1f7-8f9ef1358818/tool-results/b8tpb8d5r.txt
@@ -13984,7 +13902,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 412 · 2026-05-22T08:44:07.284861+00:00_
+_source line 410 · 2026-05-22T08:44:07.284861+00:00_
 
 called Bash
 
@@ -14020,7 +13938,7 @@ called Bash
 
 ### Tool result
 
-_source line 413 · 2026-05-22T08:44:08.439371+00:00_
+_source line 411 · 2026-05-22T08:44:08.439371+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/writing_plan.yaml
 
@@ -14042,7 +13960,7 @@ _source line 413 · 2026-05-22T08:44:08.439371+00:00_
 
 ### Tool call
 
-_source line 414 · 2026-05-22T08:44:08.640580+00:00_
+_source line 412 · 2026-05-22T08:44:08.640580+00:00_
 
 called Bash
 
@@ -14078,7 +13996,7 @@ called Bash
 
 ### Tool result
 
-_source line 415 · 2026-05-22T08:44:08.741218+00:00_
+_source line 413 · 2026-05-22T08:44:08.741218+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/AGENTS.md
@@ -14111,7 +14029,7 @@ _source line 415 · 2026-05-22T08:44:08.741218+00:00_
 
 ### Tool call
 
-_source line 416 · 2026-05-22T08:44:11.302419+00:00_
+_source line 414 · 2026-05-22T08:44:11.302419+00:00_
 
 called Read
 
@@ -14145,7 +14063,7 @@ called Read
 
 ### Tool result
 
-_source line 417 · 2026-05-22T08:44:11.353107+00:00_
+_source line 415 · 2026-05-22T08:44:11.353107+00:00_
 
 1	meta:
 2	  venue: "EMNLP 2026 Main via ARR"
@@ -14202,7 +14120,7 @@ _source line 417 · 2026-05-22T08:44:11.353107+00:00_
 
 ### Tool result
 
-_source line 418 · 2026-05-22T08:44:28.972713+00:00_
+_source line 416 · 2026-05-22T08:44:28.972713+00:00_
 
 Now I have all the information needed. Let me compile the findings:
 
@@ -14257,7 +14175,7 @@ Now I have all the information needed. Let me compile the findings:
 
 ### Tool call
 
-_source line 419 · 2026-05-22T08:44:53.200553+00:00_
+_source line 417 · 2026-05-22T08:44:53.200553+00:00_
 
 called ToolSearch
 
@@ -14293,7 +14211,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 420 · 2026-05-22T08:44:53.251119+00:00_
+_source line 418 · 2026-05-22T08:44:53.251119+00:00_
 
 
 
@@ -14315,7 +14233,7 @@ _source line 420 · 2026-05-22T08:44:53.251119+00:00_
 
 ### Tool call
 
-_source line 421 · 2026-05-22T08:45:18.983422+00:00_
+_source line 419 · 2026-05-22T08:45:18.983422+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -14351,7 +14269,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 422 · 2026-05-22T08:45:20.627614+00:00_
+_source line 420 · 2026-05-22T08:45:20.627614+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e35373a90b8c215b0f8f53d54f\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent\", \"created_new_session\": false, \"paper_agent_busy\": true, \"paper_agent_queue_depth\": 0, \"paper_agent_processing\": \"[Director 指令] [Major Patch — 写作质量最大化，P0-P6 全部执行]\\n\\n投稿目标 EMNLP 2026 ARR，DDL 5/25。当前 R8 修复 20/20 已完成，论文 evidence 和 methodology 已是 4.0 水平，瓶颈在 presentation。以下改动按优先级排序，全部执行。\\n\\n**⚠️ 硬约束**：不改变任何数据/claim/实验结论。只\"}, \"error\": \"\"}"}
 
@@ -14373,7 +14291,7 @@ _source line 422 · 2026-05-22T08:45:20.627614+00:00_
 
 ### Tool call
 
-_source line 423 · 2026-05-22T08:45:30.467356+00:00_
+_source line 421 · 2026-05-22T08:45:30.467356+00:00_
 
 called ToolSearch
 
@@ -14409,7 +14327,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 424 · 2026-05-22T08:45:30.467691+00:00_
+_source line 422 · 2026-05-22T08:45:30.467691+00:00_
 
 
 
@@ -14431,7 +14349,7 @@ _source line 424 · 2026-05-22T08:45:30.467691+00:00_
 
 ### Tool call
 
-_source line 425 · 2026-05-22T08:45:37.202790+00:00_
+_source line 423 · 2026-05-22T08:45:37.202790+00:00_
 
 called mcp__agent-ml-research__cancel_agent_queue_item
 
@@ -14467,7 +14385,7 @@ called mcp__agent-ml-research__cancel_agent_queue_item
 
 ### Tool result
 
-_source line 426 · 2026-05-22T08:45:37.253376+00:00_
+_source line 424 · 2026-05-22T08:45:37.253376+00:00_
 
 {"result":"{\"cancelled\":false,\"index\":0,\"agent_key\":\"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee\"}"}
 
@@ -14489,7 +14407,7 @@ _source line 426 · 2026-05-22T08:45:37.253376+00:00_
 
 ### Tool call
 
-_source line 427 · 2026-05-22T08:45:55.498280+00:00_
+_source line 425 · 2026-05-22T08:45:55.498280+00:00_
 
 called Read
 
@@ -14523,7 +14441,7 @@ called Read
 
 ### Tool result
 
-_source line 428 · 2026-05-22T08:45:55.548991+00:00_
+_source line 426 · 2026-05-22T08:45:55.548991+00:00_
 
 1	"""Analyze human NLI gate annotations vs DeBERTa NLI decisions.
 2	
@@ -14605,7 +14523,7 @@ _source line 428 · 2026-05-22T08:45:55.548991+00:00_
 
 ### Tool call
 
-_source line 429 · 2026-05-22T08:46:14.850621+00:00_
+_source line 427 · 2026-05-22T08:46:14.850621+00:00_
 
 called ToolSearch
 
@@ -14641,7 +14559,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 430 · 2026-05-22T08:46:15.051563+00:00_
+_source line 428 · 2026-05-22T08:46:15.051563+00:00_
 
 
 
@@ -14663,7 +14581,7 @@ _source line 430 · 2026-05-22T08:46:15.051563+00:00_
 
 ### Tool call
 
-_source line 431 · 2026-05-22T08:46:44.921614+00:00_
+_source line 429 · 2026-05-22T08:46:44.921614+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -14701,7 +14619,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 432 · 2026-05-22T08:46:45.827082+00:00_
+_source line 430 · 2026-05-22T08:46:45.827082+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/ROADMAP.md\", \"lines\": 65, \"reason\": \"P0-P6 写作优化进行中, 更新待办状态\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -14723,7 +14641,7 @@ _source line 432 · 2026-05-22T08:46:45.827082+00:00_
 
 ### Assistant
 
-_source line 433 · 2026-05-22T08:47:01.389070+00:00_
+_source line 431 · 2026-05-22T08:47:01.389070+00:00_
 
 状态清晰。Paper Agent 正在处理 P0-P6（已工作约 4 小时，预计总共 6-8 小时），孙震标注预计今晚北京时间返回。ROADMAP 已更新。
 
@@ -14756,7 +14674,7 @@ Paper Agent 完成后的下一步：验证改动 → Reviewer 审查 → 编译 
 
 ### User
 
-_source line 434 · 2026-05-22T08:47:28.114184+00:00_
+_source line 432 · 2026-05-22T08:47:28.114184+00:00_
 
 [Reviewer 回复]:
 ## Report #101 — ROADMAP 审查（P0-P6 写作优化阶段）
@@ -14786,7 +14704,7 @@ _source line 434 · 2026-05-22T08:47:28.114184+00:00_
 
 ### Assistant
 
-_source line 435 · 2026-05-22T08:47:43.222559+00:00_
+_source line 433 · 2026-05-22T08:47:43.222559+00:00_
 
 Reviewer #101 三点都合理，纳入执行计划：
 
@@ -14819,7 +14737,7 @@ Reviewer #101 三点都合理，纳入执行计划：
 
 ### User
 
-_source line 436 · 2026-05-22T09:04:07.752378+00:00_
+_source line 434 · 2026-05-22T09:04:07.752378+00:00_
 
 [Paper Agent 回复]:
 [写作进展] P0-P6 全部完成
@@ -14883,7 +14801,7 @@ _source line 436 · 2026-05-22T09:04:07.752378+00:00_
 
 ### Tool call
 
-_source line 437 · 2026-05-22T09:04:16.437085+00:00_
+_source line 435 · 2026-05-22T09:04:16.437085+00:00_
 
 called ToolSearch
 
@@ -14919,7 +14837,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 438 · 2026-05-22T09:04:16.487708+00:00_
+_source line 436 · 2026-05-22T09:04:16.487708+00:00_
 
 
 
@@ -14941,7 +14859,7 @@ _source line 438 · 2026-05-22T09:04:16.487708+00:00_
 
 ### Tool call
 
-_source line 439 · 2026-05-22T09:04:27.899499+00:00_
+_source line 437 · 2026-05-22T09:04:27.899499+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -14977,7 +14895,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 440 · 2026-05-22T09:04:32.921470+00:00_
+_source line 438 · 2026-05-22T09:04:32.921470+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:reviewer\"}, \"error\": \"\"}"}
 
@@ -14999,7 +14917,7 @@ _source line 440 · 2026-05-22T09:04:32.921470+00:00_
 
 ### Tool call
 
-_source line 441 · 2026-05-22T09:04:39.153549+00:00_
+_source line 439 · 2026-05-22T09:04:39.153549+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -15035,7 +14953,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 442 · 2026-05-22T09:04:39.957695+00:00_
+_source line 440 · 2026-05-22T09:04:39.957695+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6e352e5b00b4c3777cebe51bc3b\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779439113519\", \"msgType\": \"post\", \"content\": \"Reviewer 完成逐 section 写作诊断（Report #100）。核心发现： 最大问题 ：§4-5 结构把论文第二主要贡献（C2b per-axis taxonomy）埋在 §5.6（全文最后一个分析 subsection），审稿人读到那里注意力已衰减。NLI validation（robustness check）却占了 §5.1 的黄金位置。 改进计划 （按优先级）： 1.  P0 §4-5 重构 （★★★★★）：C2b 前移到 §5.2，NLI validation 压缩后移到 Robustness 2.  P1 Abstract 重写 （★★★★）：hook 更强，拆长句 3.  P2 Conclusion （★★★）：opening 直切 findings，提升最有影响力的句子 4.  P3-P6 ：Intro/Method 微调 + 2 处事实修正 预计 Paper Agent 6-8h 完成全部。正在派单。 建议先暂缓 R9 审批 ——等这轮写作优化完成后再提交审稿，否则 R9 审的是旧版本。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e3508aa78e4c2125641099f83e\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779438694639\", \"msgType\": \"text\", \"content\": \"R9 审稿卡在审批卡片——方便的话请审批，审稿系统需要你确认 review mode（推荐 continue）。\\n\\n另外正在派 Reviewer 做逐 section 写作改进评估，聚焦 Abstract/Intro framing 和 C2b prominence——这不依赖任何外部输入，现在就在推。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e350bc58ca4c37fa7471e7365f\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779438672617\", \"msgType\": \"post\", \"content\": \"📋  [ACK 10m]  派 Reviewer 做逐 section 写作改进建议（聚焦 Abstract/Intro hook + C2b prominence），同时检查 R9 审批状态和孙震标注进度。R9 不需要 GPU（纯 AI 审稿），卡在用户审批卡片。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e350aa460a4c4d8bb4232429ef\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779438662751\", \"msgType\": \"post\", \"content\": \"⏰  [System → Director] 进展不错——Reviewer #99 的 ROI 评估很清晰，GEE interaction table 也已插入，论文在往 submission-ready 靠拢。几个事情追一下： GPU 利用率 ：westb-29275 四张卡依然全空，0%。你和 Reviewer 刚结论\\\"没有值得做的新实验\\\"，我理解逻辑——但 R9 审稿验证修复效果还在 pending approval，这个跑起来不需要 GPU 吗？如果真不需要，那 R9 卡在哪？是等用户审批还是你能推？DDL 5/25，卡着不动的东西要主动催。 ROADMAP 进度 ：0/5 完成，5 个全待完成。你 180 分钟前说等两项外部输入（R9 审稿回传 + 孙震标注），现在时间到了——孙震标注回来了吗？R9 审批通过了吗？下一步什么安排？ 并行利用 ：Agent、Reviewer 都空闲，你也 46 分钟没动作了。Reviewer 刚说差距在写作/fr
 …[truncated 3758 chars]
@@ -15058,7 +14976,7 @@ _source line 442 · 2026-05-22T09:04:39.957695+00:00_
 
 ### Tool call
 
-_source line 443 · 2026-05-22T09:04:55.279562+00:00_
+_source line 441 · 2026-05-22T09:04:55.279562+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -15092,7 +15010,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 444 · 2026-05-22T09:04:55.981700+00:00_
+_source line 442 · 2026-05-22T09:04:55.981700+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -15114,7 +15032,7 @@ _source line 444 · 2026-05-22T09:04:55.981700+00:00_
 
 ### Assistant
 
-_source line 445 · 2026-05-22T09:04:59.184813+00:00_
+_source line 443 · 2026-05-22T09:04:59.184813+00:00_
 
 Reviewer 验证中，等报告返回后重新提交审稿。
 
@@ -15141,7 +15059,7 @@ Reviewer 验证中，等报告返回后重新提交审稿。
 
 ### User
 
-_source line 446 · 2026-05-22T09:08:20.037440+00:00_
+_source line 444 · 2026-05-22T09:08:20.037440+00:00_
 
 [Reviewer 回复]:
 ## Report #102 — P0-P6 写作重构 Mode B 验证
@@ -15255,7 +15173,7 @@ Director 报告 16 页、0 critical warnings。我无法运行编译器。**建�
 
 ### Tool call
 
-_source line 447 · 2026-05-22T09:08:31.181620+00:00_
+_source line 445 · 2026-05-22T09:08:31.181620+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -15291,7 +15209,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 448 · 2026-05-22T09:08:35.049725+00:00_
+_source line 446 · 2026-05-22T09:08:35.049725+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e359fd20090c33029cd4d37d7a\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -15313,7 +15231,7 @@ _source line 448 · 2026-05-22T09:08:35.049725+00:00_
 
 ### Assistant
 
-_source line 449 · 2026-05-22T09:08:46.030525+00:00_
+_source line 447 · 2026-05-22T09:08:46.030525+00:00_
 
 Paper Agent 将修复这一句。修复完成后下一步：重新编译 → 提交审稿（fresh mode）。同时继续等待孙震标注结果。
 
@@ -15340,7 +15258,7 @@ Paper Agent 将修复这一句。修复完成后下一步：重新编译 → 提
 
 ### User
 
-_source line 450 · 2026-05-22T09:09:03.278218+00:00_
+_source line 448 · 2026-05-22T09:09:03.278218+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Reviewer #102 修复完成
@@ -15369,7 +15287,7 @@ _source line 450 · 2026-05-22T09:09:03.278218+00:00_
 
 ### Tool call
 
-_source line 451 · 2026-05-22T09:09:11.338481+00:00_
+_source line 449 · 2026-05-22T09:09:11.338481+00:00_
 
 called ToolSearch
 
@@ -15405,7 +15323,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 452 · 2026-05-22T09:09:11.338929+00:00_
+_source line 450 · 2026-05-22T09:09:11.338929+00:00_
 
 
 
@@ -15427,7 +15345,7 @@ _source line 452 · 2026-05-22T09:09:11.338929+00:00_
 
 ### Tool call
 
-_source line 453 · 2026-05-22T09:09:15.656080+00:00_
+_source line 451 · 2026-05-22T09:09:15.656080+00:00_
 
 called ToolSearch
 
@@ -15463,7 +15381,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 454 · 2026-05-22T09:09:15.756897+00:00_
+_source line 452 · 2026-05-22T09:09:15.756897+00:00_
 
 
 
@@ -15485,7 +15403,7 @@ _source line 454 · 2026-05-22T09:09:15.756897+00:00_
 
 ### Tool call
 
-_source line 455 · 2026-05-22T09:09:18.870345+00:00_
+_source line 453 · 2026-05-22T09:09:18.870345+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -15521,7 +15439,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 456 · 2026-05-22T09:09:19.121946+00:00_
+_source line 454 · 2026-05-22T09:09:19.121946+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"[11]\\nOverfull \\\\hbox (1.18979pt too wide) in paragraph at lines 302--314\\n [][] \\n []\\n\\n\\nOverfull \\\\hbox (5.18329pt too wide) in paragraph at lines 327--342\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\vbox (badness 1721) has occurred while \\\\output is active []\\n\\n [12]\\nUnderfull \\\\hbox (badness 2990) in paragraph at lines 419--423\\n\\\\T1/ptm/m/n/10.95 (+20) ac-cessed April--May 2026), Qwen3-32B (lo-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1983) in paragraph at lines 419--423\\n\\\\T1/ptm/m/n/10.95 (+20) cally hosted), Llama-3.3-70B (lo-cally hosted\\n []\\n\\n) (./main.bbl\\nUnderfull \\\\hbox (badness 2970) in paragraph at lines 14--21\\n\\\\T1/ptm/m/n/10 (+20) lazzi, Ar-i-anna Bisazza, Da-vide Ceron, Omid\\n []\\n\\n[13]\\nUnderfull \\\\hbox (badness 1275) in paragraph at lines 122--128\\n[]\\\\T1/ptm/m/n/10 (+20) Pengcheng He, Jian-feng Gao, and Weizhu Chen.\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1584) in paragraph at lines 122--128\\n\\\\T1/ptm/m/n/10 (+20) ing ELECTRA-style pre-training with gradient-\\n []\\n\\n[14] [15]) [16\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 794FF8DDD417DBB9CD8DCFEA46783222;5781.\\n ) \\nHere is how much of TeX's memory you used:\\n 26652 strings out of 469438\\n 484957 string characters out of 5468411\\n 925258 words of memory out of 5000000\\n 54259 multiletter control sequences out of 15000+600000\\n 699244 words of font info 
 …[truncated 4040 chars]
@@ -15544,7 +15462,7 @@ _source line 456 · 2026-05-22T09:09:19.121946+00:00_
 
 ### Tool call
 
-_source line 457 · 2026-05-22T09:09:29.162048+00:00_
+_source line 455 · 2026-05-22T09:09:29.162048+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -15592,7 +15510,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 458 · 2026-05-22T09:09:29.212664+00:00_
+_source line 456 · 2026-05-22T09:09:29.212664+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"PDF 文件不存在: projects/causal_style_decomp_judge/docs/paper/main.pdf。请先编译论文再提交审稿。\"}"}
 
@@ -15614,7 +15532,7 @@ _source line 458 · 2026-05-22T09:09:29.212664+00:00_
 
 ### Tool call
 
-_source line 459 · 2026-05-22T09:09:35.085754+00:00_
+_source line 457 · 2026-05-22T09:09:35.085754+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -15662,7 +15580,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 460 · 2026-05-22T09:09:43.263813+00:00_
+_source line 458 · 2026-05-22T09:09:43.263813+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260522T090935_mncn\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -15684,7 +15602,7 @@ _source line 460 · 2026-05-22T09:09:43.263813+00:00_
 
 ### Tool call
 
-_source line 461 · 2026-05-22T09:09:49.586115+00:00_
+_source line 459 · 2026-05-22T09:09:49.586115+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -15718,7 +15636,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 462 · 2026-05-22T09:09:50.238969+00:00_
+_source line 460 · 2026-05-22T09:09:50.238969+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -15740,7 +15658,7 @@ _source line 462 · 2026-05-22T09:09:50.238969+00:00_
 
 ### Tool call
 
-_source line 463 · 2026-05-22T09:10:14.665246+00:00_
+_source line 461 · 2026-05-22T09:10:14.665246+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -15778,7 +15696,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 464 · 2026-05-22T09:10:15.573769+00:00_
+_source line 462 · 2026-05-22T09:10:15.573769+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/ROADMAP.md\", \"lines\": 64, \"reason\": \"P0-P6 完成 + Reviewer #102 验证 PASS + R10 提交\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15800,7 +15718,7 @@ _source line 464 · 2026-05-22T09:10:15.573769+00:00_
 
 ### Assistant
 
-_source line 465 · 2026-05-22T09:10:19.177044+00:00_
+_source line 463 · 2026-05-22T09:10:19.177044+00:00_
 
 ROADMAP 已更新。当前等待两项外部输入：R10 审稿报告（pending 用户审批）+ 孙震人工标注（今晚北京时间）。
 
@@ -15827,7 +15745,7 @@ ROADMAP 已更新。当前等待两项外部输入：R10 审稿报告（pending 
 
 ### User
 
-_source line 466 · 2026-05-22T09:10:38.447461+00:00_
+_source line 464 · 2026-05-22T09:10:38.447461+00:00_
 
 [Reviewer 回复]:
 ## Report #103 — ROADMAP 审查（R10 提交阶段）
@@ -15858,7 +15776,7 @@ _source line 466 · 2026-05-22T09:10:38.447461+00:00_
 
 ### Assistant
 
-_source line 467 · 2026-05-22T09:10:44.035010+00:00_
+_source line 465 · 2026-05-22T09:10:44.035010+00:00_
 
 No response requested.
 
@@ -15885,7 +15803,7 @@ No response requested.
 
 ### User
 
-_source line 468 · 2026-05-22T09:35:45.323733+00:00_
+_source line 466 · 2026-05-22T09:35:45.323733+00:00_
 
 [审稿报告]
 Overall: 3.5
@@ -16138,7 +16056,7 @@ Q6. 是否有办法量化 pairwise 的放大倍数（amplification factor），�
 
 ### Tool call
 
-_source line 469 · 2026-05-22T09:36:19.643067+00:00_
+_source line 467 · 2026-05-22T09:36:19.643067+00:00_
 
 called Read
 
@@ -16172,7 +16090,7 @@ called Read
 
 ### Tool result
 
-_source line 470 · 2026-05-22T09:36:19.694054+00:00_
+_source line 468 · 2026-05-22T09:36:19.694054+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065.
 
@@ -16194,7 +16112,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 471 · 2026-05-22T09:36:23.108486+00:00_
+_source line 469 · 2026-05-22T09:36:23.108486+00:00_
 
 called Glob
 
@@ -16230,7 +16148,7 @@ called Glob
 
 ### Tool result
 
-_source line 472 · 2026-05-22T09:36:23.259480+00:00_
+_source line 470 · 2026-05-22T09:36:23.259480+00:00_
 
 No files found
 
@@ -16252,7 +16170,7 @@ No files found
 
 ### Tool call
 
-_source line 473 · 2026-05-22T09:36:26.623630+00:00_
+_source line 471 · 2026-05-22T09:36:26.623630+00:00_
 
 called Glob
 
@@ -16288,7 +16206,7 @@ called Glob
 
 ### Tool result
 
-_source line 474 · 2026-05-22T09:36:26.925078+00:00_
+_source line 472 · 2026-05-22T09:36:26.925078+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/review-report-action.skill.md
 
@@ -16310,7 +16228,7 @@ _source line 474 · 2026-05-22T09:36:26.925078+00:00_
 
 ### Tool call
 
-_source line 475 · 2026-05-22T09:36:29.685145+00:00_
+_source line 473 · 2026-05-22T09:36:29.685145+00:00_
 
 called Read
 
@@ -16344,7 +16262,7 @@ called Read
 
 ### Tool result
 
-_source line 476 · 2026-05-22T09:36:29.736278+00:00_
+_source line 474 · 2026-05-22T09:36:29.736278+00:00_
 
 1	---
 2	name: review-report-action
@@ -16419,7 +16337,7 @@ _source line 476 · 2026-05-22T09:36:29.736278+00:00_
 
 ### Tool call
 
-_source line 477 · 2026-05-22T09:37:46.348576+00:00_
+_source line 475 · 2026-05-22T09:37:46.348576+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -16455,7 +16373,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 478 · 2026-05-22T09:37:50.267493+00:00_
+_source line 476 · 2026-05-22T09:37:50.267493+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:reviewer\"}, \"error\": \"\"}"}
 
@@ -16477,7 +16395,7 @@ _source line 478 · 2026-05-22T09:37:50.267493+00:00_
 
 ### Tool call
 
-_source line 479 · 2026-05-22T09:38:01.362930+00:00_
+_source line 477 · 2026-05-22T09:38:01.362930+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -16511,7 +16429,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 480 · 2026-05-22T09:38:02.016097+00:00_
+_source line 478 · 2026-05-22T09:38:02.016097+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -16533,7 +16451,7 @@ _source line 480 · 2026-05-22T09:38:02.016097+00:00_
 
 ### Assistant
 
-_source line 481 · 2026-05-22T09:38:05.316276+00:00_
+_source line 479 · 2026-05-22T09:38:05.316276+00:00_
 
 Reviewer 已收到完整 Action Matrix 初稿，等待独立审视反馈。同时通知用户 R10 结果。
 
@@ -16560,7 +16478,7 @@ Reviewer 已收到完整 Action Matrix 初稿，等待独立审视反馈。同�
 
 ### User
 
-_source line 482 · 2026-05-22T09:40:14.460912+00:00_
+_source line 480 · 2026-05-22T09:40:14.460912+00:00_
 
 [Reviewer 回复]:
 ## Report #104 — R10 Action Matrix 独立评估
@@ -16660,7 +16578,7 @@ _source line 482 · 2026-05-22T09:40:14.460912+00:00_
 
 ### Tool call
 
-_source line 483 · 2026-05-22T09:40:27.119005+00:00_
+_source line 481 · 2026-05-22T09:40:27.119005+00:00_
 
 called ToolSearch
 
@@ -16696,7 +16614,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 484 · 2026-05-22T09:40:27.170489+00:00_
+_source line 482 · 2026-05-22T09:40:27.170489+00:00_
 
 
 
@@ -16718,7 +16636,7 @@ _source line 484 · 2026-05-22T09:40:27.170489+00:00_
 
 ### Tool call
 
-_source line 485 · 2026-05-22T09:40:31.035357+00:00_
+_source line 483 · 2026-05-22T09:40:31.035357+00:00_
 
 called ToolSearch
 
@@ -16754,7 +16672,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 486 · 2026-05-22T09:40:31.085926+00:00_
+_source line 484 · 2026-05-22T09:40:31.085926+00:00_
 
 No matching deferred tools found
 
@@ -16776,7 +16694,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 487 · 2026-05-22T09:40:35.817473+00:00_
+_source line 485 · 2026-05-22T09:40:35.817473+00:00_
 
 called Read
 
@@ -16810,7 +16728,7 @@ called Read
 
 ### Tool call
 
-_source line 488 · 2026-05-22T09:40:35.945191+00:00_
+_source line 486 · 2026-05-22T09:40:35.945191+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -16844,7 +16762,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 489 · 2026-05-22T09:40:36.039874+00:00_
+_source line 487 · 2026-05-22T09:40:36.039874+00:00_
 
 1	issues:
 2	  # ============================================================
@@ -16920,7 +16838,7 @@ _source line 489 · 2026-05-22T09:40:36.039874+00:00_
 
 ### Tool result
 
-_source line 490 · 2026-05-22T09:40:36.158561+00:00_
+_source line 488 · 2026-05-22T09:40:36.158561+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":16963}"}
 
@@ -16942,7 +16860,7 @@ _source line 490 · 2026-05-22T09:40:36.158561+00:00_
 
 ### Tool call
 
-_source line 491 · 2026-05-22T09:41:14.737224+00:00_
+_source line 489 · 2026-05-22T09:41:14.737224+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -16984,7 +16902,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 492 · 2026-05-22T09:41:14.888467+00:00_
+_source line 490 · 2026-05-22T09:41:14.888467+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D066\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17006,7 +16924,7 @@ _source line 492 · 2026-05-22T09:41:14.888467+00:00_
 
 ### Tool call
 
-_source line 493 · 2026-05-22T09:41:31.300406+00:00_
+_source line 491 · 2026-05-22T09:41:31.300406+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -17042,7 +16960,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 494 · 2026-05-22T09:41:53.457304+00:00_
+_source line 492 · 2026-05-22T09:41:53.457304+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36022dfc90c280adcb88e480e\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -17064,7 +16982,7 @@ _source line 494 · 2026-05-22T09:41:53.457304+00:00_
 
 ### Tool call
 
-_source line 495 · 2026-05-22T09:41:53.809640+00:00_
+_source line 493 · 2026-05-22T09:41:53.809640+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -17100,7 +17018,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 496 · 2026-05-22T09:41:55.271500+00:00_
+_source line 494 · 2026-05-22T09:41:55.271500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e3600ee6868c3a1cb31249292c\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -17122,7 +17040,7 @@ _source line 496 · 2026-05-22T09:41:55.271500+00:00_
 
 ### Tool call
 
-_source line 497 · 2026-05-22T09:45:07.076568+00:00_
+_source line 495 · 2026-05-22T09:45:07.076568+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -17158,7 +17076,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 498 · 2026-05-22T09:45:07.281304+00:00_
+_source line 496 · 2026-05-22T09:45:07.281304+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/review_issues.yaml\", \"bytes\": 32619}, \"error\": \"\"}"}
 
@@ -17180,7 +17098,7 @@ _source line 498 · 2026-05-22T09:45:07.281304+00:00_
 
 ### Assistant
 
-_source line 499 · 2026-05-22T09:45:17.923829+00:00_
+_source line 497 · 2026-05-22T09:45:17.923829+00:00_
 
 Phase 1 全部启动完成：
 - Agent: SF6 cross-axis 计算 + REF1-3 验证（已派单）
@@ -17213,7 +17131,7 @@ Phase 1 全部启动完成：
 
 ### User
 
-_source line 500 · 2026-05-22T09:45:18.428607+00:00_
+_source line 498 · 2026-05-22T09:45:18.428607+00:00_
 
 [Agent 回复]:
 [资源] GPU 4/4 (vLLM 状态未确认) | Worker 2 (cross-axis-contamination / ref-verification) | 磁盘: westb-29275 / 未查
@@ -17291,7 +17209,7 @@ R10 Phase 1 两项任务已并行派发，等待完成后汇总汇报。
 
 ### Tool call
 
-_source line 501 · 2026-05-22T09:45:34.299629+00:00_
+_source line 499 · 2026-05-22T09:45:34.299629+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -17327,7 +17245,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 502 · 2026-05-22T09:45:37.568498+00:00_
+_source line 500 · 2026-05-22T09:45:37.568498+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6e367111b534c4d2cc586f45adf\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779442685883\", \"msgType\": \"text\", \"content\": \"Reviewer 已收到完整 Action Matrix 初稿，等待独立审视反馈。同时通知用户 R10 结果。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e3671510cbcc24bd4cdba59e1c\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779442681905\", \"msgType\": \"post\", \"content\": \"R10 审稿返回： Overall 3.5 （fresh mode） 好消息：审稿人明确说  \\\"增加 human evaluation + reframe novelty → 可上调至 4.0\\\" 。 两个 Must-Fix： 1.  MF1 NLI gate 人工验证  — 孙震标注直接解决，今晚返回 2.  MF2 Novelty reframe  — \\\"reveal\\\" → \\\"quantify\\\"，per-axis confound structure 提升为 co-equal contribution P0-P6 重构效果：§5 结构、Abstract hook、Cross-judge synthesis 均被肯定（S1-S6 全正面），但 novelty 措辞仍需微调。 已派 Reviewer 做独立审视 Action Matrix，定稿后立即执行。\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36783a7488c2a9dc2f59bb44f\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779442543661\", \"msgType\": \"post\", \"content\": \"🔄 [ 重新审稿] 📋  [审稿群 → Research Director] 审稿报告 Round 8 \\n Overall:  3.5 Round 9 审稿报告（Fresh Review） 论文 : \\\"The Likert Blindspot: Detecting Hidden Style Bias in LLM Judges via Controlled Style Decomposition\\\"\\n Venue : EMNLP 2026 (ARR May 2026 cycle)\\n Reviewer 编排 : 2 人（R1: 方法严谨性/实验设计/统计方法论; R2: 新颖性/完整性/Related Work/写作质量）\\n 交叉轮次 : 1 轮（Round 1 初审 + 交叉分享 + 收敛） Summary 本文提出 Controlled Style Decomposition (CSD) 框架，结合 NLI-gated content control、per-axis style decomposition 和 position-controlled pairwise comparison，量化 LLM judge 中的风格偏差。核心发现称为\\\"Likert Blindspot\\\"：Likert 评分系统性地遗漏 pairwise comparison 能检测到的风格偏差——在中等效应量时完全衰减（d → 0），在较强效应时衰减 >60%。实验跨 4 个 target judge（GPT-4o, Qwen3-32B, Llama-3.3-70B, Gemini-2.5-Flash）、1 个负对照（Claude Sonnet 4）、3 个 benchmark、3 个 style axis 验证。GEE conditional decomposition 揭示 per-axis confound structure：verbosity style-dominated，formality conditional，register judge-dependent。 Strengths S1. 实验设计多维
 …[truncated 21178 chars]
@@ -17350,7 +17268,7 @@ _source line 502 · 2026-05-22T09:45:37.568498+00:00_
 
 ### Assistant
 
-_source line 503 · 2026-05-22T09:45:48.609796+00:00_
+_source line 501 · 2026-05-22T09:45:48.609796+00:00_
 
 Phase 1 进展良好：
 - Paper Agent 8 项写作修复 ✅
@@ -17383,7 +17301,7 @@ Phase 1 进展良好：
 
 ### User
 
-_source line 504 · 2026-05-22T09:51:10.202990+00:00_
+_source line 502 · 2026-05-22T09:51:10.202990+00:00_
 
 [Agent 回复]:
 [资源] GPU 4/4 (vLLM 状态未确认) | Worker 0 (idle) | 磁盘: westb-29275 / 未查
@@ -17462,7 +17380,7 @@ BibTeX 条目已备好，需要时可直接添加到 references.bib。
 
 ### Tool call
 
-_source line 505 · 2026-05-22T09:51:37.774406+00:00_
+_source line 503 · 2026-05-22T09:51:37.774406+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -17498,7 +17416,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 506 · 2026-05-22T09:51:41.592500+00:00_
+_source line 504 · 2026-05-22T09:51:41.592500+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e363c04a4acc31c4b5502e8083\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -17520,7 +17438,7 @@ _source line 506 · 2026-05-22T09:51:41.592500+00:00_
 
 ### Assistant
 
-_source line 507 · 2026-05-22T09:51:48.861052+00:00_
+_source line 505 · 2026-05-22T09:51:48.861052+00:00_
 
 Phase 1 全部任务已完成或在收尾中（Paper Agent 写入 SF6）。
 
@@ -17556,7 +17474,7 @@ Phase 1 全部任务已完成或在收尾中（Paper Agent 写入 SF6）。
 
 ### User
 
-_source line 508 · 2026-05-22T09:51:50.467603+00:00_
+_source line 506 · 2026-05-22T09:51:50.467603+00:00_
 
 [Reviewer 回复]:
 ## Report #106 — Cross-Axis Contamination 分析审查
@@ -17607,7 +17525,7 @@ SF6 数据支持 axis isolation claim。建议：
 
 ### Tool call
 
-_source line 509 · 2026-05-22T09:52:00.688731+00:00_
+_source line 507 · 2026-05-22T09:52:00.688731+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -17641,7 +17559,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 510 · 2026-05-22T09:52:03.751840+00:00_
+_source line 508 · 2026-05-22T09:52:03.751840+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -17670,7 +17588,7 @@ _source line 510 · 2026-05-22T09:52:03.751840+00:00_
 
 ### User
 
-_source line 511 · 2026-05-22T09:52:36.840870+00:00_
+_source line 509 · 2026-05-22T09:52:36.840870+00:00_
 
 [飞书用户 曹晓玉 (ou_d36454ae1a137f0f269e83876827f458)]: [引用消息] @孙震 标注结果好了吗？填完的 CSV 发到群里就行。这是论文从 3.5 上 4.0 的关键一步 🙏
 
@@ -17693,7 +17611,7 @@ _source line 511 · 2026-05-22T09:52:36.840870+00:00_
 
 ### Tool call
 
-_source line 512 · 2026-05-22T09:52:49.803571+00:00_
+_source line 510 · 2026-05-22T09:52:49.803571+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -17727,7 +17645,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 513 · 2026-05-22T09:52:52.798883+00:00_
+_source line 511 · 2026-05-22T09:52:52.798883+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -17749,7 +17667,7 @@ _source line 513 · 2026-05-22T09:52:52.798883+00:00_
 
 ### Tool call
 
-_source line 514 · 2026-05-22T09:54:45.819704+00:00_
+_source line 512 · 2026-05-22T09:54:45.819704+00:00_
 
 called ToolSearch
 
@@ -17785,7 +17703,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 515 · 2026-05-22T09:54:46.340182+00:00_
+_source line 513 · 2026-05-22T09:54:46.340182+00:00_
 
 No matching deferred tools found
 
@@ -17807,7 +17725,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 516 · 2026-05-22T09:54:49.201657+00:00_
+_source line 514 · 2026-05-22T09:54:49.201657+00:00_
 
 called ToolSearch
 
@@ -17843,7 +17761,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 517 · 2026-05-22T09:54:49.202036+00:00_
+_source line 515 · 2026-05-22T09:54:49.202036+00:00_
 
 
 
@@ -17865,7 +17783,7 @@ _source line 517 · 2026-05-22T09:54:49.202036+00:00_
 
 ### Tool call
 
-_source line 518 · 2026-05-22T09:54:52.214181+00:00_
+_source line 516 · 2026-05-22T09:54:52.214181+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -17899,7 +17817,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 519 · 2026-05-22T09:54:52.706929+00:00_
+_source line 517 · 2026-05-22T09:54:52.706929+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":220}"}
 
@@ -17921,7 +17839,7 @@ _source line 519 · 2026-05-22T09:54:52.706929+00:00_
 
 ### Tool call
 
-_source line 520 · 2026-05-22T09:54:52.707355+00:00_
+_source line 518 · 2026-05-22T09:54:52.707355+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -17955,7 +17873,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 521 · 2026-05-22T09:54:53.523118+00:00_
+_source line 519 · 2026-05-22T09:54:53.523118+00:00_
 
 {"result":"**项目**: `causal_style_decomp_judge`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westb-29275 (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/causal_style_decomp_judge\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n**当前阶段**:\n  ### 实验完成度\n  - 54 experiments (53 done, 1 blocked)\n  - 成功 38 / 负向 12 / 失败 0\n  - **8/8 Blindspot cells confirmed** (4 judges × 2 primary axes)\n  \n\n**决策日志**: 66 条记录\n\n── 📊 研究进度 ──\n实验: 54 个 (完成 54 | 成功 38)\n\n  exp014_logistic_decomposition  DONE (success)\n  exp012_consistency_bias        DONE (success)\n  exp011_nli_sensitivity         DONE (success)\n  exp010_binarized_likert        DONE (success)\n  tone_pilot                     DONE (negative)\n  pairwise_32b                   DONE (success)\n  mvp_32b_ate                    DONE (negative)\n  mvp_8b_ate                     DONE (negative)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **register_100_cf** (killed): Register axis (academic/conversational) produces detectable style bias in GPT-4o judge comparable to formality axis, with pairwise win rate >= 60% and p < 0.05, demonstrating axis-dependent bias generalizes beyond formality\n- **gemini_flash_fourth_judge** (success): Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B, and Claude judges, confirming the blindspot i"}
 
@@ -17977,7 +17895,7 @@ _source line 521 · 2026-05-22T09:54:53.523118+00:00_
 
 ### Tool call
 
-_source line 522 · 2026-05-22T09:54:53.523521+00:00_
+_source line 520 · 2026-05-22T09:54:53.523521+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -18013,7 +17931,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 523 · 2026-05-22T09:54:54.410625+00:00_
+_source line 521 · 2026-05-22T09:54:54.410625+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6e36331e88bcc4d0d1bae8cd54c\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779443677403\", \"msgType\": \"interactive\", \"content\": \"[interactive card]\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36336ea86cc42cf131395226f\", \"senderId\": \"ou_1cf66dc8880ee0be753722a237331418\", \"createTime\": \"1779443674286\", \"msgType\": \"text\", \"content\": \"@_user_1 这是其中一位同学的标注结果，另一个还要等一等，你先分析分析这个标注结果合不合理\", \"rootId\": \"om_x100b6e3635c6dcacc4d1683e25c2746\"}, {\"messageId\": \"om_x100b6e3635c6dcacc4d1683e25c2746\", \"senderId\": \"ou_1cf66dc8880ee0be753722a237331418\", \"createTime\": \"1779443632796\", \"msgType\": \"file\", \"content\": \"[file: annotation_sheet.csv]\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e3636061430c423452b741add5\", \"senderId\": \"ou_1cf66dc8880ee0be753722a237331418\", \"createTime\": \"1779443596810\", \"msgType\": \"text\", \"content\": \"我来发\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36367394a4b261f4c420481c9\", \"senderId\": \"ou_d36454ae1a137f0f269e83876827f458\", \"createTime\": \"1779443595990\", \"msgType\": \"text\", \"content\": \"必须的\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36367f4c88c3c5365344bad37\", \"senderId\": \"ou_1cf66dc8880ee0be753722a237331418\", \"createTime\": \"1779443595251\", \"msgType\": \"text\", \"content\": \"[笑哭]\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36391af8a0c4d611cc00220d5\", \"senderId\": \"ou_12dd9ff08637b7e6e17c57e4b4a96048\", \"createTime\": \"1779443581563\", \"msgType\": \"text\", \"content\": \"@_user_1 必须催上[坏笑]\", \"rootId\": \"om_x100b6e363af58480c28491a61c42480\"}, {\"messageId\": \"om_x100b6e36398550b0c34f91ff7d4cc0c\", \"senderId\": \"cli_a97eead968381cca\", \"createTime\": \"1779443572665\", \"msgType\": \"text\", \"content\": \"@_user_1 标注结果好了吗？填完的 CSV 发到群里就行。这是论文从 3.5 上 4.0 的关键一步 🙏\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e3638931084c2dfa74c6a435f6\",
 …[truncated 25841 chars]
@@ -18036,7 +17954,7 @@ _source line 523 · 2026-05-22T09:54:54.410625+00:00_
 
 ### Tool call
 
-_source line 524 · 2026-05-22T09:55:14.232176+00:00_
+_source line 522 · 2026-05-22T09:55:14.232176+00:00_
 
 called Glob
 
@@ -18072,7 +17990,7 @@ called Glob
 
 ### Tool result
 
-_source line 525 · 2026-05-22T09:55:14.758650+00:00_
+_source line 523 · 2026-05-22T09:55:14.758650+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/human_annotation/annotation_samples.json
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/human_annotation/annotation_sheet.csv
@@ -18098,7 +18016,7 @@ _source line 525 · 2026-05-22T09:55:14.758650+00:00_
 
 ### Tool call
 
-_source line 526 · 2026-05-22T09:55:14.758944+00:00_
+_source line 524 · 2026-05-22T09:55:14.758944+00:00_
 
 called ToolSearch
 
@@ -18134,7 +18052,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 527 · 2026-05-22T09:55:15.276845+00:00_
+_source line 525 · 2026-05-22T09:55:15.276845+00:00_
 
 
 
@@ -18156,7 +18074,7 @@ _source line 527 · 2026-05-22T09:55:15.276845+00:00_
 
 ### Tool call
 
-_source line 528 · 2026-05-22T09:55:19.392352+00:00_
+_source line 526 · 2026-05-22T09:55:19.392352+00:00_
 
 called Read
 
@@ -18190,7 +18108,7 @@ called Read
 
 ### Tool result
 
-_source line 529 · 2026-05-22T09:55:19.877375+00:00_
+_source line 527 · 2026-05-22T09:55:19.877375+00:00_
 
 1	sample_id,original_text,rewritten_text,preserves_meaning,notes
 2	S001,"Subject: Request to Consider Environmentally Friendly Practices for Patio Heaters
@@ -18228,7 +18146,7 @@ _source line 529 · 2026-05-22T09:55:19.877375+00:00_
 
 ### Tool call
 
-_source line 530 · 2026-05-22T09:55:44.695129+00:00_
+_source line 528 · 2026-05-22T09:55:44.695129+00:00_
 
 called ToolSearch
 
@@ -18264,7 +18182,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 531 · 2026-05-22T09:55:45.225119+00:00_
+_source line 529 · 2026-05-22T09:55:45.225119+00:00_
 
 
 
@@ -18286,7 +18204,7 @@ _source line 531 · 2026-05-22T09:55:45.225119+00:00_
 
 ### Tool call
 
-_source line 532 · 2026-05-22T09:55:47.785905+00:00_
+_source line 530 · 2026-05-22T09:55:47.785905+00:00_
 
 called ListMcpResourcesTool
 
@@ -18320,7 +18238,7 @@ called ListMcpResourcesTool
 
 ### Tool result
 
-_source line 533 · 2026-05-22T09:55:48.318828+00:00_
+_source line 531 · 2026-05-22T09:55:48.318828+00:00_
 
 No resources found. MCP servers may still provide tools even if they have no resources.
 
@@ -18342,7 +18260,7 @@ No resources found. MCP servers may still provide tools even if they have no res
 
 ### Tool call
 
-_source line 534 · 2026-05-22T09:56:01.388206+00:00_
+_source line 532 · 2026-05-22T09:56:01.388206+00:00_
 
 called Glob
 
@@ -18378,7 +18296,7 @@ called Glob
 
 ### Tool result
 
-_source line 535 · 2026-05-22T09:56:01.917028+00:00_
+_source line 533 · 2026-05-22T09:56:01.917028+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/_project/data/annotation_samples.json
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/human_annotation/annotation_samples.json
@@ -18405,7 +18323,7 @@ _source line 535 · 2026-05-22T09:56:01.917028+00:00_
 
 ### Tool call
 
-_source line 536 · 2026-05-22T09:56:02.017800+00:00_
+_source line 534 · 2026-05-22T09:56:02.017800+00:00_
 
 called Glob
 
@@ -18441,7 +18359,7 @@ called Glob
 
 ### Tool result
 
-_source line 537 · 2026-05-22T09:56:02.068583+00:00_
+_source line 535 · 2026-05-22T09:56:02.068583+00:00_
 
 No files found
 
@@ -18463,7 +18381,7 @@ No files found
 
 ### Tool call
 
-_source line 538 · 2026-05-22T09:56:13.983381+00:00_
+_source line 536 · 2026-05-22T09:56:13.983381+00:00_
 
 called ToolSearch
 
@@ -18499,7 +18417,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 539 · 2026-05-22T09:56:14.466655+00:00_
+_source line 537 · 2026-05-22T09:56:14.466655+00:00_
 
 
 
@@ -18521,7 +18439,7 @@ _source line 539 · 2026-05-22T09:56:14.466655+00:00_
 
 ### Tool call
 
-_source line 540 · 2026-05-22T09:56:19.938581+00:00_
+_source line 538 · 2026-05-22T09:56:19.938581+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -18555,7 +18473,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 541 · 2026-05-22T09:56:20.599978+00:00_
+_source line 539 · 2026-05-22T09:56:20.599978+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -18577,7 +18495,7 @@ _source line 541 · 2026-05-22T09:56:20.599978+00:00_
 
 ### Tool call
 
-_source line 542 · 2026-05-22T09:56:30.640361+00:00_
+_source line 540 · 2026-05-22T09:56:30.640361+00:00_
 
 called ToolSearch
 
@@ -18613,7 +18531,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 543 · 2026-05-22T09:56:31.164868+00:00_
+_source line 541 · 2026-05-22T09:56:31.164868+00:00_
 
 
 
@@ -18635,7 +18553,7 @@ _source line 543 · 2026-05-22T09:56:31.164868+00:00_
 
 ### Tool call
 
-_source line 544 · 2026-05-22T09:56:34.828267+00:00_
+_source line 542 · 2026-05-22T09:56:34.828267+00:00_
 
 called Glob
 
@@ -18671,7 +18589,7 @@ called Glob
 
 ### Tool result
 
-_source line 545 · 2026-05-22T09:56:35.363819+00:00_
+_source line 543 · 2026-05-22T09:56:35.363819+00:00_
 
 No files found
 
@@ -18693,7 +18611,7 @@ No files found
 
 ### Tool call
 
-_source line 546 · 2026-05-22T09:56:35.564909+00:00_
+_source line 544 · 2026-05-22T09:56:35.564909+00:00_
 
 called Grep
 
@@ -18731,7 +18649,7 @@ called Grep
 
 ### Tool result
 
-_source line 547 · 2026-05-22T09:56:36.094025+00:00_
+_source line 545 · 2026-05-22T09:56:36.094025+00:00_
 
 No files found
 
@@ -18753,7 +18671,7 @@ No files found
 
 ### Tool call
 
-_source line 548 · 2026-05-22T09:56:39.706827+00:00_
+_source line 546 · 2026-05-22T09:56:39.706827+00:00_
 
 called Glob
 
@@ -18789,7 +18707,7 @@ called Glob
 
 ### Tool result
 
-_source line 549 · 2026-05-22T09:56:40.254257+00:00_
+_source line 547 · 2026-05-22T09:56:40.254257+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/introduction.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex
@@ -18818,7 +18736,7 @@ _source line 549 · 2026-05-22T09:56:40.254257+00:00_
 
 ### Tool call
 
-_source line 550 · 2026-05-22T09:56:44.219077+00:00_
+_source line 548 · 2026-05-22T09:56:44.219077+00:00_
 
 called Grep
 
@@ -18858,7 +18776,7 @@ called Grep
 
 ### Tool result
 
-_source line 551 · 2026-05-22T09:56:44.754879+00:00_
+_source line 549 · 2026-05-22T09:56:44.754879+00:00_
 
 3:\noindent\emph{Organization: confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R).}
 470:\label{app:cross_axis_contamination}
@@ -18884,7 +18802,7 @@ _source line 551 · 2026-05-22T09:56:44.754879+00:00_
 
 ### Tool call
 
-_source line 552 · 2026-05-22T09:56:50.374967+00:00_
+_source line 550 · 2026-05-22T09:56:50.374967+00:00_
 
 called Read
 
@@ -18911,6 +18829,156 @@ called Read
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
     "offset": "465",
     "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 551 · 2026-05-22T09:56:50.893827+00:00_
+
+465	\bottomrule
+466	\end{tabular}}
+467	\end{table}
+468	
+469	\section{Cross-Axis Contamination Analysis}
+470	\label{app:cross_axis_contamination}
+471	
+472	Our per-axis design assumes that rewriting along one style axis does not substantially alter the text along other axes.
+473	We quantify cross-axis contamination by measuring off-target surface proxies before and after rewriting.
+474	For formality rewrites ($n = 355$), we measure word count and sentence count as verbosity proxies; for verbosity rewrites ($n = 86$), we measure type-token ratio (TTR) as a lexical diversity proxy for formality, and Flesch-Kincaid (FK) grade level.
+475	
+476	\begin{table}[h]
+477	\centering
+478	\small
+479	\caption{Cross-axis contamination: effect of rewriting along one style axis on surface proxies of the other axis. Cohen's $d$ magnitudes below 0.20 indicate negligible contamination \citep{cohen1988statistical}.}
+480	\label{tab:cross_axis}
+481	\begin{tabular}{@{}llrrl@{}}
+482	\toprule
+483	Direction & Proxy & $\Delta$ & $d$ & Interp.\ \\
+484	\midrule
+485	Form.\ $\to$ Verb.\ & Word count & $-3.4\%$ & $-0.23$ & Small \\
+486	Form.\ $\to$ Verb.\ & Sent.\ count & $-0.2\%$ & $-0.03$ & Negligible \\
+487	Verb.\ $\to$ Form.\ & TTR & $-0.006$ & $-0.04$ & Negligible \\
+488	Verb.\ $\to$ Form.\ & FK grade & --- & $0.50$ & Confounded$^*$ \\
+489	\bottomrule
+490	\multicolumn{5}{l}{\footnotesize $^*$ FK $=$ $f$(sentence length, word length); sentence length change is}\\
+491	\multicolumn{5}{l}{\footnotesize inherent to verbosity manipulation, not formality contamination.}
+492	\end{tabular}
+493	\end{table}
+494	
+495	Formality rewrites leave sentence structure virtually unchanged ($d = -0.03$); the small word count shift ($d = -0.23$) reflects word-level adjustments (contractions, elaboration) that are directionally symmetric (formal$\to$casual $-5.0\%$, casual$\to$formal $+5.6\%$) and do not constitute verbosity contamination.
+496	Verbosity rewrites leave lexical diversity unchanged (TTR $d = -0.04$); the el
+…[truncated 367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
+  "tool": "Read",
+  "elapsed_ms": 518
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 552 · 2026-05-22T09:57:10.343378+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__paper_compile_and_check",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__paper_compile_and_check",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 553 · 2026-05-22T09:57:10.876508+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 533
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 554 · 2026-05-22T09:57:15.546859+00:00_
+
+called mcp__agent-ml-research__paper_compile_and_check
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "max_pages": "8",
+  "preview": "False"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
+  "tool": "mcp__agent-ml-research__paper_compile_and_check",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "max_pages": "8",
+    "preview": "False"
   }
 }
 ```

@@ -109,7 +109,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | prep 14b crossscorer ready | 81 | 0 | [Read transcript](prep-14b-crossscorer-ready.md) | [JSON](../../sessions/9a/9a657b53900d0ade1e17.json) |
 | analysis retrain chain v2 bootstrap | 179 | 0 | [Read transcript](analysis-retrain-chain-v2-bootstrap.md) | [JSON](../../sessions/52/52921be03939198d31d3.json) |
 | research exp014 feasibility | 23 | 0 | [Read transcript](research-exp014-feasibility.md) | [JSON](../../sessions/92/92023c0fb62407005ceb.json) |
-| audit paper vs data consistency | 181 | 0 | [Read transcript](audit-paper-vs-data-consistency.md) | [JSON](../../sessions/d2/d22f1530dcb5dc3a4209.json) |
+| audit paper vs data consistency | 173 | 0 | [Read transcript](audit-paper-vs-data-consistency.md) | [JSON](../../sessions/d2/d22f1530dcb5dc3a4209.json) |
 | diagnose exp 14b c4 | 27 | 0 | [Read transcript](diagnose-exp-14b-c4.md) | [JSON](../../sessions/59/5985e57be536ebd2d43b.json) |
 | fix exp 14b c4 resubmit | 38 | 0 | [Read transcript](fix-exp-14b-c4-resubmit.md) | [JSON](../../sessions/3d/3dae9c37704b4cf2548e.json) |
 | research paper audit values | 144 | 0 | [Read transcript](research-paper-audit-values.md) | [JSON](../../sessions/60/606d82a0b2e48570fc10.json) |

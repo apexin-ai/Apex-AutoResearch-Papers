@@ -153,4 +153,3 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper p2 discussion paragraph | 1 | 0 | [Read transcript](paper-p2-discussion-paragraph.md) | [JSON](../../sessions/02/02db25ce0af17d1fd69a.json) |
 | paper p3 should fix | 1 | 0 | [Read transcript](paper-p3-should-fix.md) | [JSON](../../sessions/e9/e95e4660f7d65efa30ab.json) |
 | paper prewrite discussion limitations | 1 | 0 | [Read transcript](paper-prewrite-discussion-limitations.md) | [JSON](../../sessions/b5/b542fddeebcc01d9e83c.json) |
-| paper rebuttal evidence matrix | 1 | 0 | [Read transcript](paper-rebuttal-evidence-matrix.md) | [JSON](../../sessions/7f/7f63c273e3dbcc9661f3.json) |

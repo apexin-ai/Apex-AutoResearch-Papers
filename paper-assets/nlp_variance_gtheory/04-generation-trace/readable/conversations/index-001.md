@@ -68,7 +68,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper research cluster2 infra | 61 | 0 | [Read transcript](paper-research-cluster2-infra.md) | [JSON](../../sessions/b0/b08e17a256c79883e1b7.json) |
 | paper research cluster3 prompt | 39 | 0 | [Read transcript](paper-research-cluster3-prompt.md) | [JSON](../../sessions/49/493ac9fa70ad3ac0dc79.json) |
 | paper research cluster4 irt | 37 | 0 | [Read transcript](paper-research-cluster4-irt.md) | [JSON](../../sessions/da/dad604a32080dd9cffdb.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-32570:cu | 4,837 | 510 | [Read transcript](director-coordination-20260525-060132.md) | [JSON](../../sessions/17/17e870e6e84f8c823a4a.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-32570:cu | 4,831 | 510 | [Read transcript](director-coordination-20260525-060132.md) | [JSON](../../sessions/17/17e870e6e84f8c823a4a.json) |
 | cron hook exp001 gemma — [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **GPU 白名单**: westd-3 | 34 | 1 | [Read transcript](cron-hook-exp001-gemma.md) | [JSON](../../sessions/9c/9ceca19859c49d021bc9.json) |
 | infra gpu status check both servers | 51 | 0 | [Read transcript](infra-gpu-status-check-both-servers.md) | [JSON](../../sessions/1b/1b175919dabb2409f9ba.json) |
 | paper research cluster5 6 combined | 91 | 0 | [Read transcript](paper-research-cluster5-6-combined.md) | [JSON](../../sessions/2e/2eb78439820f29a41b93.json) |
@@ -111,13 +111,12 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis budget sensitivity delta g | 15 | 0 | [Read transcript](analysis-budget-sensitivity-delta-g.md) | [JSON](../../sessions/8c/8cb2394f423876aef02e.json) |
 | ops 72b status and probit check | 45 | 0 | [Read transcript](ops-72b-status-and-probit-check.md) | [JSON](../../sessions/0d/0dbed24f6505600a8a59.json) |
 | analysis ff residual regression | 109 | 0 | [Read transcript](analysis-ff-residual-regression.md) | [JSON](../../sessions/53/53e86fb67730dd1f3c35.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 westd-325 | 1,216 | 72 | [Read transcript](reviewer-coordination-20260523-201152.md) | [JSON](../../sessions/84/8422cd8bef811bb808c5.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 westd-325 | 1,208 | 72 | [Read transcript](reviewer-coordination-20260523-201152.md) | [JSON](../../sessions/84/8422cd8bef811bb808c5.json) |
 | ops 72b gpu status urgent | 23 | 0 | [Read transcript](ops-72b-gpu-status-urgent.md) | [JSON](../../sessions/14/14f06273d1365f949850.json) |
 | analysis mmlu subject gstudy | 55 | 0 | [Read transcript](analysis-mmlu-subject-gstudy.md) | [JSON](../../sessions/72/721cc5dfea438516f3b8.json) |
 | analysis budget sensitivity figure | 57 | 0 | [Read transcript](analysis-budget-sensitivity-figure.md) | [JSON](../../sessions/13/13da6f358e41bf1706a1.json) |
 | ops gpu status check | 15 | 0 | [Read transcript](ops-gpu-status-check.md) | [JSON](../../sessions/1a/1a838262757033999194.json) |
 | analysis 72b vs 7b item correlation | 67 | 0 | [Read transcript](analysis-72b-vs-7b-item-correlation.md) | [JSON](../../sessions/88/880492eaff0d245cbe8f.json) |
-| writing rebuttal framework | 45 | 0 | [Read transcript](writing-rebuttal-framework.md) | [JSON](../../sessions/b6/b6e67b1b0da5561cd603.json) |
 | analysis probit mape | 31 | 0 | [Read transcript](analysis-probit-mape.md) | [JSON](../../sessions/3e/3e7d25581e0e789ad100.json) |
 | audit data end to end | 131 | 0 | [Read transcript](audit-data-end-to-end.md) | [JSON](../../sessions/e9/e988a071cc20de8c6663.json) |
 | ops anon repo verify | 31 | 0 | [Read transcript](ops-anon-repo-verify.md) | [JSON](../../sessions/e5/e55505e0298dea5e082f.json) |
@@ -125,7 +124,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | review reference audit | 35 | 0 | [Read transcript](review-reference-audit.md) | [JSON](../../sessions/0c/0c50251fe9107f425074.json) |
 | review caption consistency | 37 | 0 | [Read transcript](review-caption-consistency.md) | [JSON](../../sessions/82/82bcaea2d8fc110c9243.json) |
 | review spelling grammar | 53 | 0 | [Read transcript](review-spelling-grammar.md) | [JSON](../../sessions/89/8941c2558fe95f69251e.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd | 438 | 35 | [Read transcript](reviewer-coordination-20260525-060126.md) | [JSON](../../sessions/7e/7e8bb22b12084102136f.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd | 434 | 35 | [Read transcript](reviewer-coordination-20260525-060126.md) | [JSON](../../sessions/7e/7e8bb22b12084102136f.json) |
 | ops check westd 13176 | 5 | 0 | [Read transcript](ops-check-westd-13176.md) | [JSON](../../sessions/b5/b54911828f8f53eae9a9.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - EMNLP 2026 ma | 22 | 2 | [Read transcript](reviewer-coordination-20260525-141559.md) | [JSON](../../sessions/20/206aec94273847d9a8cd.json) |
 | Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用项目配置 `execution | 812 | 50 | [Read transcript](director-coordination-20260525-141607.md) | [JSON](../../sessions/5d/5d0418c3bfcd7f047b23.json) |

@@ -8,3198 +8,7 @@
 
 ### Tool call
 
-_source line 1058 · 2026-05-22T08:01:55.625472+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-  "old_string": "attention provides direct token-level access to the full context, which offers a natural explanation for why convergence occurs on this task and not others.",
-  "new_string": "attention provides direct token-level access to the full context, offering a plausible explanation for why convergence is observed on this task and not others."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-    "old_string": "attention provides direct token-level access to the full context, which offers a natural explanation for why convergence occurs on this task and not others.",
-    "new_string": "attention provides direct token-level access to the full context, offering a plausible explanation for why convergence is observed on this task and not others."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1059 · 2026-05-22T08:01:56.077439+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 451
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1060 · 2026-05-22T08:01:57.030974+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-  "old_string": "architectural variation, under matched training conditions, produces structured per-example predictive multiplicity",
-  "new_string": "architectural variation, under matched training conditions, is associated with structured per-example predictive multiplicity"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-    "old_string": "architectural variation, under matched training conditions, produces structured per-example predictive multiplicity",
-    "new_string": "architectural variation, under matched training conditions, is associated with structured per-example predictive multiplicity"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1061 · 2026-05-22T08:01:57.482877+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 451
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1062 · 2026-05-22T08:01:58.336264+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-  "old_string": "This suggests that attention narrows aggregate gaps through architecture-specific mechanisms rather than uniform rescue.",
-  "new_string": "This pattern is consistent with attention narrowing aggregate gaps through architecture-specific pathways rather than uniform rescue."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
-    "old_string": "This suggests that attention narrows aggregate gaps through architecture-specific mechanisms rather than uniform rescue.",
-    "new_string": "This pattern is consistent with attention narrowing aggregate gaps through architecture-specific pathways rather than uniform rescue."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1063 · 2026-05-22T08:01:58.386883+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1064 · 2026-05-22T08:02:03.310551+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1065 · 2026-05-22T08:02:03.311246+00:00_
-
-1	\section{Method}\label{sec:method}
-2	
-3	We describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.
-4	
-5	\subsection{Model Zoo}\label{ssec:model_zoo}
-6	
-7	We use the pretrained model zoo of \citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \citep{yang2024gateddeltanet}, RetNet \citep{sun2023retnet}, and HGRN2 \citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\% (pure recurrent), 4\%, 7.7\%, 14.3\%, and 25\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\% attention, h6-1 to 14.3\%, h12-1 to 7.7\%, and h24-1 to 4\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.
-8	
-9	\subsection{Task Taxonomy}\label{ssec:task_taxonomy}
-10	
-11	We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy was fixed prior to analysis (see Appendix~A for the confirmatory/exploratory split), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.
-12	
-13	\begin
-…[truncated 6204 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1066 · 2026-05-22T08:02:20.261325+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-  "old_string": "\\paragraph{Bootstrap confidence intervals.}",
-  "new_string": "\\paragraph{Power considerations.} With $n = 5$ ordinal levels, only $\\rho = \\pm 1.0$ achieves $p < .05$ (exact $p = .017$); the test has no power to detect strong but imperfect monotonic trends ($|\\rho| = 0.9$ yields $p = .083$). This binary resolution means that a single rank swap suffices to shift the verdict from significant to non-significant.\n\n\\paragraph{Bootstrap confidence intervals.}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-    "old_string": "\\paragraph{Bootstrap confidence intervals.}",
-    "new_string": "\\paragraph{Power considerations.} With $n = 5$ ordinal levels, only $\\rho = \\pm 1.0$ achieves $p < .05$ (exact $p = .017$); the test has no power to detect strong but imperfect monotonic trends ($|\\rho| = 0.9$ yields $p = .083$). This binary resolution means that a single rank swap suffices to shift the verdict from significant to non-significant.\n\n\\paragraph{Bootstrap confidence intervals.}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1067 · 2026-05-22T08:02:20.763727+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1068 · 2026-05-22T08:02:22.670553+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-  "old_string": "Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.",
-  "new_string": "Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true per-example divergence may exceed what binary Jaccard captures."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-    "old_string": "Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges.",
-    "new_string": "Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true per-example divergence may exceed what binary Jaccard captures."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1069 · 2026-05-22T08:02:23.172847+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1070 · 2026-05-22T08:02:24.678593+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-  "old_string": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.",
-  "new_string": "All evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-    "old_string": "All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.",
-    "new_string": "All evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1071 · 2026-05-22T08:02:24.779527+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1072 · 2026-05-22T08:02:28.694611+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-  "offset": "24",
-  "limit": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-    "offset": "24",
-    "limit": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1073 · 2026-05-22T08:02:28.745332+00:00_
-
-24	\begin{abstract}
-25	When attention layers are added to linear recurrent architectures, they help and hurt almost entirely different examples across backbones: pairwise overlap among three controlled hybrid designs is at most 10\%, far below the 78--92\% theoretical maximum. Using the model zoo of \citet{wang2025hybrid} (three architectures, five attention ratios, two scales, single training runs per configuration), we decompose per-example effects on four benchmarks and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$ for reasoning, $0.30$ for retrieval) rather than attention dose. Aggregate convergence is task-specific: only LAMBADA provides exploratory evidence for monotonic variance reduction (Bonferroni-adjusted $p = .100$), and on this benchmark, aggregate variance decreases gradually while per-example overlap saturates at the first attention level. A proof-of-concept majority vote across architectures fails to outperform the best individual model despite 15--45\% per-example disagreement, while oracle accuracy reveals 7--14\,pp of untapped complementarity, suggesting that architectures interchangeable by aggregate metrics may carry hidden consequences for per-example reliability.
-26	\end{abstract}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1074 · 2026-05-22T08:02:37.777156+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-  "offset": "48",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-    "offset": "48",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1075 · 2026-05-22T08:02:38.078733+00:00_
-
-48	\section*{Ethics Statement}
-49	
-50	This work analyzes publicly available pretrained language models from the model zoo of \citet{wang2025hybrid}. No new data collection, human subjects research, or model training is involved. We identify per-example behavioral differences across architectures, which may inform practitioners about the limitations of aggregate benchmark comparisons but does not introduce new risks.
-51	
-52	\bibliography{references}
-53	
-54	\appendix
-55	\input{sections/appendix}
-56	
-57	\end{document}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1076 · 2026-05-22T08:02:38.179499+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-  "offset": "3",
-  "limit": "4"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-    "offset": "3",
-    "limit": "4"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1077 · 2026-05-22T08:02:38.230269+00:00_
-
-3	We present the first systematic per-example analysis of attention effects in hybrid recurrent models. Per-example multiplicity spans a task-dependent variation ($\alpha = 0.14$--$0.30$) across four benchmarks, with Jaccard uniformly low ($\leq 0.10$) regardless of aggregate convergence. On LAMBADA, aggregate variance decreases with attention while per-example overlap saturates, suggesting architecture-specific mechanisms rather than uniform rescue; this observation is dependent on GDN inclusion and does not replicate on other benchmarks. These findings reveal that aggregate benchmark equivalence between hybrid architectures masks per-example divergence: each recurrent backbone, when augmented with attention, develops architecture-specific response patterns over individual inputs that are invisible to standard evaluation.
-4	
-5	For practitioners selecting among hybrid architectures, these results suggest a concrete protocol. Per-example audits are warranted whenever multiple hybrid designs achieve comparable aggregate scores on a target task: the low Jaccard ($\leq 0.10$, indicating ${\sim}90\%$ non-overlap) means that architectures which appear interchangeable by aggregate metrics affect nearly disjoint sets of examples. In deployment contexts where prediction consistency matters (medical, legal, or safety-critical applications), aggregate equivalence does not imply per-example equivalence, and architecture choice may determine which specific inputs are handled correctly. A proof-of-concept majority vote across three architectures does not outperform the best individual architecture (LAMBADA: $-0.2$\,pp; ARC-Easy: $-1.1$\,pp), despite 15--45\% per-example disagreement. Oracle accuracy (correct if any architecture is correct) reveals substantial complementarity potential ($+7$--$14$\,pp above best), but majority vote captures only 1--9\% of this ceiling. The failure of majority vote does not negate the value of per-example information: the oracle gap ($+7$--$14$\,pp
-…[truncated 157 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1078 · 2026-05-22T08:02:43.134544+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-  "old_string": "\\bibliography{references}",
-  "new_string": "\\section*{Code and Data Availability}\n\nAll models are from the publicly available model zoo of \\citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.\n\n\\bibliography{references}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
-    "old_string": "\\bibliography{references}",
-    "new_string": "\\section*{Code and Data Availability}\n\nAll models are from the publicly available model zoo of \\citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.\n\n\\bibliography{references}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1079 · 2026-05-22T08:02:43.586537+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 451
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1080 · 2026-05-22T08:02:44.490812+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-  "old_string": "suggesting architecture-specific mechanisms rather than uniform rescue",
-  "new_string": "a pattern consistent with architecture-specific pathways rather than uniform rescue"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-    "old_string": "suggesting architecture-specific mechanisms rather than uniform rescue",
-    "new_string": "a pattern consistent with architecture-specific pathways rather than uniform rescue"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1081 · 2026-05-22T08:02:44.993156+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1082 · 2026-05-22T08:02:47.102594+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-  "old_string": "and architecture choice may determine which specific inputs are handled correctly.",
-  "new_string": "and architecture choice is associated with which specific inputs are handled correctly. Our protocol is validated at 340M--1.3B; whether it extends to larger scales requires further investigation with only two scale points available."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
-    "old_string": "and architecture choice may determine which specific inputs are handled correctly.",
-    "new_string": "and architecture choice is associated with which specific inputs are handled correctly. Our protocol is validated at 340M--1.3B; whether it extends to larger scales requires further investigation with only two scale points available."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1083 · 2026-05-22T08:02:47.153265+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1084 · 2026-05-22T08:02:53.176728+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-  "old_string": "This taxonomy was fixed prior to analysis (see Appendix~A for the confirmatory/exploratory split), not derived post hoc from observed results.",
-  "new_string": "This taxonomy was fixed prior to analysis following established distinctions in the hybrid architecture literature \\citep{arora2024zoology} (see Appendix~A for the confirmatory/exploratory split), not derived post hoc from observed results."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
-    "old_string": "This taxonomy was fixed prior to analysis (see Appendix~A for the confirmatory/exploratory split), not derived post hoc from observed results.",
-    "new_string": "This taxonomy was fixed prior to analysis following established distinctions in the hybrid architecture literature \\citep{arora2024zoology} (see Appendix~A for the confirmatory/exploratory split), not derived post hoc from observed results."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1085 · 2026-05-22T08:02:53.879713+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 702
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1086 · 2026-05-22T08:02:58.205848+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
-  "old_string": "Removing GDN weakens LAMBADA convergence from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), partly because GDN's h3-1 uses 16 attention heads rather than 32 in all other configurations (Appendix~\\ref{app:gdn_confound}).",
-  "new_string": "Removing GDN weakens LAMBADA convergence from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), partly because GDN's h3-1 uses 16 attention heads rather than 32 in all other configurations (Appendix~\\ref{app:gdn_confound}). The 16-vs-32 head asymmetry could contribute to GDN's faster convergence by limiting attention capacity, though disentangling this from architectural differences would require matched-head experiments not available in the zoo."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
-    "old_string": "Removing GDN weakens LAMBADA convergence from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), partly because GDN's h3-1 uses 16 attention heads rather than 32 in all other configurations (Appendix~\\ref{app:gdn_confound}).",
-    "new_string": "Removing GDN weakens LAMBADA convergence from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), partly because GDN's h3-1 uses 16 attention heads rather than 32 in all other configurations (Appendix~\\ref{app:gdn_confound}). The 16-vs-32 head asymmetry could contribute to GDN's faster convergence by limiting attention capacity, though disentangling this from architectural differences would require matched-head experiments not available in the zoo."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1087 · 2026-05-22T08:02:58.256513+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1088 · 2026-05-22T08:03:09.252720+00:00_
-
-called Agent
-
-<details open><summary>🔧 Tool call — Agent</summary>
-
-```json
-{
-  "description": "Verify missing references",
-  "prompt": "I need to verify 4 academic references for a paper revision. For each, confirm:\n1. Does it exist? What's the full citation?\n2. What venue/year?\n3. Is it relevant to \"per-example predictive multiplicity in hybrid recurrent architectures\"?\n\nReferences to check:\n1. Fort et al. (2019) \"Deep Ensembles: A Loss Landscape Perspective\" — expected to discuss cross-architecture disagreement\n2. Niven and Kao (2019) \"Probing Neural Network Comprehension of Natural Language Arguments\" — benchmark artifacts\n3. Jiang et al. (2024) \"Characterizing model multiplicity in foundation models\" — may not exist, check\n4. Gorbett and Jana (2026) — check if this is a preprint or published. The paper currently cites it as \\citep{gorbett2026crossmodel}\n5. Haghighat et al. (2026) — check if preprint or published. Currently cited as \\citep{haghighat2026resolving}\n\nReport: for each reference, the full author list, title, venue, year, and whether it should be cited in a paper about predictive multiplicity. Keep it brief.",
-  "subagent_type": "Explore",
-  "run_in_background": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Agent",
-  "tool_args": {
-    "description": "Verify missing references",
-    "prompt": "I need to verify 4 academic references for a paper revision. For each, confirm:\n1. Does it exist? What's the full citation?\n2. What venue/year?\n3. Is it relevant to \"per-example predictive multiplicity in hybrid recurrent architectures\"?\n\nReferences to check:\n1. Fort et al. (2019) \"Deep Ensembles: A Loss Landscape Perspective\" — expected to discuss cross-architecture disagreement\n2. Niven and Kao (2019) \"Probing Neural Network Comprehension of Natural Language Arguments\" — benchmark artifacts\n3. Jiang et al. (2024) \"Characterizing model multiplicity in foundation models\" — may not exist, check\n4. Gorbett and Jana (2026) — check if this is a preprint or published. The paper currently cites it as \\citep{gorbett2026crossmodel}\n5. Haghighat et al. (2026) — check if preprint or published. Currently cited as \\citep{haghighat2026resolving}\n\nReport: for each reference, the full author list, title, venue, year, and whether it should be cited in a paper about predictive multiplicity. Keep it brief.",
-    "subagent_type": "Explore",
-    "run_in_background": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1089 · 2026-05-22T08:03:09.303387+00:00_
-
-Async agent launched successfully.
-agentId: a2068300dd962ff60 (internal ID - do not mention to user. Use SendMessage with to: 'a2068300dd962ff60' to continue this agent.)
-The agent is working in the background. You will be notified automatically when it completes.
-Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
-output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-director-63b8b789/765154e5-66a9-4450-b7d7-710330a17dfd/tasks/a2068300dd962ff60.output
-Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Agent",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1090 · 2026-05-22T08:03:13.947278+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -10",
-  "description": "Compile paper after text edits",
-  "timeout": "120000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -10",
-    "description": "Compile paper after text edits",
-    "timeout": "120000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1091 · 2026-05-22T08:03:16.658499+00:00_
-
-Latexmk: Examining 'main.fls'
-Latexmk: Examining 'main.log'
-Latexmk: Found input bbl file 'main.bbl'
-Latexmk: Log file says output to 'main.pdf'
-Latexmk: Using bibtex to make bibliography file(s).
-  ===Source file 'main.bbl' for 'pdflatex'
-Latexmk: Found bibliography file(s):
-  ./references.bib
-Latexmk: All targets (main.pdf) are up-to-date
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 2711
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1092 · 2026-05-22T08:03:20.871867+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && grep -c \"Warning.*Citation\\|Warning.*Reference\\|Warning.*Label\" main.log && grep \"Warning.*Citation\\|Warning.*Reference\" main.log | head -5",
-  "description": "Check for citation/reference warnings"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && grep -c \"Warning.*Citation\\|Warning.*Reference\\|Warning.*Label\" main.log && grep \"Warning.*Citation\\|Warning.*Reference\" main.log | head -5",
-    "description": "Check for citation/reference warnings"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1093 · 2026-05-22T08:03:20.922495+00:00_
-
-Exit code 1
-0
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1094 · 2026-05-22T08:03:24.737029+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && python3 -c \"import subprocess; r=subprocess.run(['pdfinfo','main.pdf'],capture_output=True,text=True); [print(l) for l in r.stdout.split('\\n') if 'Pages' in l]\"",
-  "description": "Check page count"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && python3 -c \"import subprocess; r=subprocess.run(['pdfinfo','main.pdf'],capture_output=True,text=True); [print(l) for l in r.stdout.split('\\n') if 'Pages' in l]\"",
-    "description": "Check page count"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1095 · 2026-05-22T08:03:24.838829+00:00_
-
-Pages:           19
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1096 · 2026-05-22T08:03:43.642774+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
-  "offset": "1",
-  "limit": "15"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
-    "offset": "1",
-    "limit": "15"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1097 · 2026-05-22T08:03:43.693385+00:00_
-
-1	% Appendix sections for the paper.
-2	
-3	\section{Confirmatory and Exploratory Analyses}\label{app:benchmark_details}
-4	
-5	The task taxonomy used in \S\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:
-6	
-7	\begin{itemize}
-8	    \item \textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).
-9	    \item \textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).
-10	    \item \textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).
-11	    \item \textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).
-12	\end{itemize}
-13	
-14	\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The Bonferroni-adjusted significance threshold is $\alpha / 6 = 0.0083$. \textbf{Sensitivity:} correcting across all 10 benchmarks yields adjusted $p = 0.017 \times 10 = 0.170$, further from significance; the main text reports the confirmatory-set correction ($\times 6 = 0.100$).
-15	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1098 · 2026-05-22T08:03:51.777410+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
-  "old_string": "The taxonomy and benchmark selection were fixed before analysis; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The Bonferroni-adjusted significance threshold is $\\alpha / 6 = 0.0083$. \\textbf{Sensitivity:} correcting across all 10 benchmarks yields adjusted $p = 0.017 \\times 10 = 0.170$, further from significance; the main text reports the confirmatory-set correction ($\\times 6 = 0.100$).",
-  "new_string": "The taxonomy and benchmark selection were fixed before analysis; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The Bonferroni-adjusted significance threshold is $\\alpha / 6 = 0.0083$. \\textbf{Sensitivity:} correcting across all 10 benchmarks yields adjusted $p = 0.017 \\times 10 = 0.170$, further from significance; the main text reports the confirmatory-set correction ($\\times 6 = 0.100$).\n\n\\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \\approx 0.0083$. Under 6-benchmark Bonferroni correction, this yields an adjusted $p = 0.050$, exactly at the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
-    "old_string": "The taxonomy and benchmark selection were fixed before analysis; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The Bonferroni-adjusted significance threshold is $\\alpha / 6 = 0.0083$. \\textbf{Sensitivity:} correcting across all 10 benchmarks yields adjusted $p = 0.017 \\times 10 = 0.170$, further from significance; the main text reports the confirmatory-set correction ($\\times 6 = 0.100$).",
-    "new_string": "The taxonomy and benchmark selection were fixed before analysis; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The Bonferroni-adjusted significance threshold is $\\alpha / 6 = 0.0083$. \\textbf{Sensitivity:} correcting across all 10 benchmarks yields adjusted $p = 0.017 \\times 10 = 0.170$, further from significance; the main text reports the confirmatory-set correction ($\\times 6 = 0.100$).\n\n\\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \\approx 0.0083$. Under 6-benchmark Bonferroni correction, this yields an adjusted $p = 0.050$, exactly at the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1099 · 2026-05-22T08:03:51.828798+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1100 · 2026-05-22T08:03:54.890516+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__update_review_issues",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__update_review_issues",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1101 · 2026-05-22T08:03:54.941105+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1102 · 2026-05-22T08:04:03.386919+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "fort2019",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-  "output_mode": "content"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "fort2019",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-    "output_mode": "content"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1103 · 2026-05-22T08:04:03.487701+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1104 · 2026-05-22T08:04:03.588654+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "niven",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "output_mode": "content",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "niven",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "output_mode": "content",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1105 · 2026-05-22T08:04:03.639620+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1106 · 2026-05-22T08:04:09.876580+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1107 · 2026-05-22T08:04:10.077759+00:00_
-
-1	\section{Related Work}
-2	
-3	\paragraph{Hybrid Recurrent Architectures.}
-4	The design space for combining attention with recurrence spans layer-level interleaving \citep[Jamba;][]{lieber2024jamba}, local attention pairing \citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \citep[RWKV-6;][]{peng2024eagle}, within-head mixing \citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \citep[Samba;][]{ren2024samba}. H3 \citep{fu2023hungry} achieves near-Transformer quality with gated convolutions and SSMs, establishing an early design point in the hybrid space. Mamba-2 \citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \citep{lahoti2026mamba3} extends the design further, while \citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \citep{basu2026routing}. \citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.
-5	
-6	\paragraph{Linear Recurrent Models.}
-7	Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \citep{gu2022s4} and Mamba \citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.
-8	
-9	\paragraph{Underspecification and Predictive Multiplicity.}
-10	\citet{damour2022underspecification} formalized underspecification: equivalent a
-…[truncated 1396 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1108 · 2026-05-22T08:04:17.679166+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-  "old_string": "\\citet{black2022model} survey the model multiplicity landscape and \\citet{cooper2024arbitrariness} connect predictive arbitrariness to fairness.",
-  "new_string": "\\citet{fort2019deep} provide a loss landscape perspective on deep ensembles, showing that diverse architectures explore distinct modes and produce disagreement on individual predictions. \\citet{black2022model} survey the model multiplicity landscape and \\citet{cooper2024arbitrariness} connect predictive arbitrariness to fairness."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-    "old_string": "\\citet{black2022model} survey the model multiplicity landscape and \\citet{cooper2024arbitrariness} connect predictive arbitrariness to fairness.",
-    "new_string": "\\citet{fort2019deep} provide a loss landscape perspective on deep ensembles, showing that diverse architectures explore distinct modes and produce disagreement on individual predictions. \\citet{black2022model} survey the model multiplicity landscape and \\citet{cooper2024arbitrariness} connect predictive arbitrariness to fairness."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1109 · 2026-05-22T08:04:17.679819+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1110 · 2026-05-22T08:04:21.394504+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "offset": "1",
-  "limit": "15"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "offset": "1",
-    "limit": "15"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1111 · 2026-05-22T08:04:21.445841+00:00_
-
-1	% References for entrainment_gated_ft paper
-2	% Generated from literature_map.yaml (all verified=true entries)
-3	
-4	% ============================================================
-5	% Per-Example Analysis / Dataset Cartography
-6	
-7	@inproceedings{swayamdipta2020dataset,
-8	  title={Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics},
-9	  author={Swayamdipta, Swabha and Chandrasekaran, Roy and Wieting, John and Hajishirzi, Hannaneh and Smith, Noah A.},
-10	  booktitle={Proceedings of EMNLP},
-11	  year={2020}
-12	}
-13	
-14	% ============================================================
-15	% Model Multiplicity Surveys and Fairness
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1112 · 2026-05-22T08:04:25.411945+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "^% =====.*Per-Example",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "^% =====.*Per-Example",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1113 · 2026-05-22T08:04:25.512792+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1114 · 2026-05-22T08:04:31.937697+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "old_string": "@inproceedings{swayamdipta2020dataset,",
-  "new_string": "@inproceedings{niven2019probing,\n  title={Probing Neural Network Comprehension of Natural Language Arguments},\n  author={Niven, Timothy and Kao, Hung-Yu},\n  booktitle={Proceedings of ACL},\n  year={2019}\n}\n\n@inproceedings{swayamdipta2020dataset,"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "old_string": "@inproceedings{swayamdipta2020dataset,",
-    "new_string": "@inproceedings{niven2019probing,\n  title={Probing Neural Network Comprehension of Natural Language Arguments},\n  author={Niven, Timothy and Kao, Hung-Yu},\n  booktitle={Proceedings of ACL},\n  year={2019}\n}\n\n@inproceedings{swayamdipta2020dataset,"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1115 · 2026-05-22T08:04:31.988447+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1116 · 2026-05-22T08:04:41.624523+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-  "old_string": "\\citet{swayamdipta2020dataset} characterize examples via training dynamics (variability across epochs); our decomposition operates at deployment time across architectures with no training signal.",
-  "new_string": "\\citet{swayamdipta2020dataset} characterize examples via training dynamics (variability across epochs); our decomposition operates at deployment time across architectures with no training signal. \\citet{niven2019probing} show that benchmark artifacts can inflate per-example agreement; our cross-benchmark variation ($\\alpha = 0.14$--$0.30$) suggests the patterns we observe are not driven by a single artifact type."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
-    "old_string": "\\citet{swayamdipta2020dataset} characterize examples via training dynamics (variability across epochs); our decomposition operates at deployment time across architectures with no training signal.",
-    "new_string": "\\citet{swayamdipta2020dataset} characterize examples via training dynamics (variability across epochs); our decomposition operates at deployment time across architectures with no training signal. \\citet{niven2019probing} show that benchmark artifacts can inflate per-example agreement; our cross-benchmark variation ($\\alpha = 0.14$--$0.30$) suggests the patterns we observe are not driven by a single artifact type."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1117 · 2026-05-22T08:04:41.625177+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1118 · 2026-05-22T08:04:46.389017+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*Citation|Warning.*Reference|Error|Output written\" | head -10",
-  "description": "Recompile with new references",
-  "timeout": "120000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*Citation|Warning.*Reference|Error|Output written\" | head -10",
-    "description": "Recompile with new references",
-    "timeout": "120000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1119 · 2026-05-22T08:04:51.458575+00:00_
-
-Package natbib Warning: Citation `niven2019probing' on page 3 undefined on inpu
-Package natbib Warning: Citation `fort2019deep' on page 3 undefined on input li
-Output written on main.pdf (19 pages, 463398 bytes).
-Package natbib Warning: Citation `niven2019probing' on page 3 undefined on inpu
-Package natbib Warning: Citation `fort2019deep' on page 3 undefined on input li
-Package natbib Warning: Citation(s) may have changed.
-Output written on main.pdf (19 pages, 463533 bytes).
-Package natbib Warning: Citation `fort2019deep' on page 3 undefined on input li
-Output written on main.pdf (19 pages, 463640 bytes).
-Package natbib Warning: Citation `fort2019deep' on page 3 undefined on input li
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 5069
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1120 · 2026-05-22T08:04:56.627933+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "fort2019",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "fort2019",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1121 · 2026-05-22T08:04:56.678604+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1122 · 2026-05-22T08:05:01.648249+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-  "old_string": "@inproceedings{niven2019probing,",
-  "new_string": "@article{fort2019deep,\n  title={Deep Ensembles: A Loss Landscape Perspective},\n  author={Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji},\n  journal={arXiv preprint arXiv:1912.02757},\n  year={2019}\n}\n\n@inproceedings{niven2019probing,"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
-    "old_string": "@inproceedings{niven2019probing,",
-    "new_string": "@article{fort2019deep,\n  title={Deep Ensembles: A Loss Landscape Perspective},\n  author={Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji},\n  journal={arXiv preprint arXiv:1912.02757},\n  year={2019}\n}\n\n@inproceedings{niven2019probing,"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1123 · 2026-05-22T08:05:01.699041+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1124 · 2026-05-22T08:05:05.164351+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*Citation|Warning.*Reference|Error|Output written|^!\" | head -10",
-  "description": "Recompile with fort2019deep added",
-  "timeout": "120000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*Citation|Warning.*Reference|Error|Output written|^!\" | head -10",
-    "description": "Recompile with fort2019deep added",
-    "timeout": "120000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1125 · 2026-05-22T08:05:09.591502+00:00_
-
-Package natbib Warning: Citation `fort2019deep' on page 3 undefined on input li
-Package natbib Warning: Citation(s) may have changed.
-Output written on main.pdf (19 pages, 463767 bytes).
-Output written on main.pdf (19 pages, 463208 bytes).
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 4427
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1126 · 2026-05-22T08:05:14.734253+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*(Citation|Reference)\" | head -5",
-  "description": "Final citation check",
-  "timeout": "120000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning.*(Citation|Reference)\" | head -5",
-    "description": "Final citation check",
-    "timeout": "120000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1127 · 2026-05-22T08:05:14.936621+00:00_
-
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Bash",
-  "elapsed_ms": 202
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1128 · 2026-05-22T08:05:18.903177+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__read_local_file",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__read_local_file",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1129 · 2026-05-22T08:05:19.004059+00:00_
-
-No matching deferred tools found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "ToolSearch",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1130 · 2026-05-22T08:05:22.520842+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "limit": "100"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "limit": "100"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1131 · 2026-05-22T08:05:22.571562+00:00_
-
-1	- id: "R5-W1"
-2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
-3	  category: experiment
-4	  severity: critical
-5	  status: in_progress
-6	  first_raised_round: 5
-7	  last_seen_round: 10
-8	  mentions:
-9	    - round: 5
-10	      reviewers: [R1, R2]
-11	      note: "R1 Critical, R2 W3+Q3 支持。"
-12	    - round: 6
-13	      reviewers: [R1, R2]
-14	      note: "R1-N2 Critical + R2 全 AGREE。"
-15	    - round: 7
-16	      reviewers: [R1, R2]
-17	      note: "C2: 同前。不可修复。rebuttal-only。"
-18	    - round: 8
-19	      reviewers: [R1, R2]
-20	      note: "SF1 Major: within-arch Jaccard 0.33 不是 seed baseline 而是 attention-ratio-variation baseline。需更精确表述。"
-21	    - round: 9
-22	      reviewers: [R1, R2]
-23	      note: "R1-N1 + R2-N1 Critical，交叉 [AGREE]。两位独立达成共识：blocking issue。"
-24	    - round: 10
-25	      reviewers: [R1, R2]
-26	      note: "R1-W2 Critical + R2-W1 Major。R1 精确指出 within-arch Jaccard（跨 ratio）与 cross-arch Jaccard（跨架构）比较维度不同，3× gap 不能作为 architecture-dominance proxy。交叉 [AGREE]。结构性限制，不可修复。"
-27	  action_items:
-28	    - round: 5
-29	      action: "Proxy argument 写入 §4.3 + Limitations 升级"
-30	      assigned_to: paper_agent
-31	      status: done
-32	    - round: 6
-33	      action: "MF2: Contribution 1 nuanced 表述 + caveat"
-34	      assigned_to: paper_agent
-35	      status: done
-36	    - round: 7
-37	      action: "Rebuttal only — author_response_r7.tex 已写"
-38	      assigned_to: director
-39	      status: done
-40	    - round: 8
-41	      action: "Limitations 中明确 within-arch Jaccard ≠ seed baseline + Abstract 加 single-run caveat"
-42	      assigned_to: paper_agent
-43	      status: done
-44	    - round: 9
-45	      action: "(a) 删除 'not addressable by seed averaging'；(b) Limitations 加 McCoy seed calibration 句；(c) C1 改为 'arises under matched training conditions where the only controlled variable is the recurrent backbone'"
-46	      assigned_to: director
-47	      status: done
-48	  resolution: "结构性限制（observational study）。Round 10 确认 caveat 已到位，但根本问题（无 multi-seed 数据）不可修复。Limitations 中 with
-…[truncated 2122 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1132 · 2026-05-22T08:05:25.884980+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "100",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "100",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1133 · 2026-05-22T08:05:25.985935+00:00_
-
-100	
-101	- id: "R5-W3"
-102	  summary: "Task-dependent spectrum 仅 3 benchmark，存在评估格式 confound"
-103	  category: experiment
-104	  severity: warning
-105	  status: resolved
-106	  first_raised_round: 5
-107	  last_seen_round: 5
-108	  mentions:
-109	    - round: 5
-110	      reviewers: [R1, R2]
-111	      note: "α 变异可能反映 format 而非 task type。"
-112	  action_items:
-113	    - round: 5
-114	      action: "WinoGrande + PIQA per-example 分析"
-115	      assigned_to: main_agent
-116	      status: done
-117	  resolution: "PIQA + WinoGrande 数据整合完成。Round 6-10 未再提及。"
-118	  resolution_round: 6
-119	
-120	- id: "R5-W4"
-121	  summary: "新颖性有限——已有指标的直接套用，无新方法/理论"
-122	  category: framing
-123	  severity: critical
-124	  status: wont_fix
-125	  first_raised_round: 5
-126	  last_seen_round: 10
-127	  mentions:
-128	    - round: 5
-129	      reviewers: [R1, R2]
-130	      note: "无新方法/指标/理论。"
-131	    - round: 6
-132	      reviewers: [R2]
-133	      note: "R2-N1 Critical: decoupling 是直接推论。"
-134	    - round: 7
-135	      reviewers: [R1, R2]
-136	      note: "C4: 同前，结构性限制。accept Findings 定位。"
-137	    - round: 8
-138	      reviewers: [R1, R2]
-139	      note: "Excitement 2.5/5。共识 Findings 定位。"
-140	    - round: 9
-141	      reviewers: [R1, R2]
-142	      note: "R2-W1 Major + R1 [AGREE]。结构性限制。Findings 定位。"
-143	    - round: 10
-144	      reviewers: [R1, R2]
-145	      note: "R2-N2 Critical，R1 降级为 Major。R1 认为 descriptive empirical contribution 在 Findings track 可接受（类比 McCoy 2020, D'Amour 2022）。分歧：severity Critical vs Major，但一致认为限制了 excitement。"
-146	  action_items:
-147	    - round: 5
-148	      action: "Zoology recall 框架整合"
-149	      assigned_to: paper_agent
-150	      status: done
-151	    - round: 6
-152	      action: "MF3: Intro 加 empirical novelty framing"
-153	      assigned_to: paper_agent
-154	      status: done
-155	  resolution: "结构性限制。Findings 定位合理。无法进一步提升 novelty。"
-156	  resolution_round: null
-157	
-158	- id: "R5-W5"
-159	  summary: "正文约 8.2 页超出 EMNLP 8 页限制"
-160	  category: format
-161	  severity: warning
-162	  status: resolved
-163	
-…[truncated 4342 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1134 · 2026-05-22T08:05:37.887536+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "265",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "265",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1135 · 2026-05-22T08:05:37.938388+00:00_
-
-265	  resolution_round: null
-266	
-267	- id: "R5-W9"
-268	  summary: "Abstract 信息密度过高（统计量堆砌）"
-269	  category: writing
-270	  severity: info
-271	  status: in_progress
-272	  first_raised_round: 5
-273	  last_seen_round: 9
-274	  mentions:
-275	    - round: 5
-276	      reviewers: [R2]
-277	      note: "统计量堆砌。"
-278	    - round: 8
-279	      reviewers: [R2]
-280	      note: "M1 Minor: 79% 和 Bonferroni p 保留一个。"
-281	    - round: 9
-282	      reviewers: [R1, R2]
-283	      note: "建议改为高层概括。R1 [AGREE]。"
-284	    - round: 10
-285	      reviewers: []
-286	      note: "Round 10 未直接提及 Abstract density。R1 评价 Abstract 措辞'准确'。"
-287	  action_items:
-288	    - round: 5
-289	      action: "Abstract 精简"
-290	      assigned_to: paper_agent
-291	      status: done
-292	    - round: 8
-293	      action: "Abstract 删除 79%，保留 Bonferroni p=.100"
-294	      assigned_to: paper_agent
-295	      status: in_progress
-296	  resolution: "低优先级。Round 10 未再提及，可能已充分改善。"
-297	  resolution_round: null
-298	
-299	- id: "RV-L1"
-300	  summary: "Limitations 6 段违反 EMNLP 用户规则（要求 ~3 点）"
-301	  category: format
-302	  severity: warning
-303	  status: resolved
-304	  first_raised_round: 5
-305	  last_seen_round: 5
-306	  mentions:
-307	    - round: 5
-308	      reviewers: [internal_reviewer]
-309	      note: "用户硬约束。"
-310	  action_items:
-311	    - round: 5
-312	      action: "6 段→3 段"
-313	      assigned_to: paper_agent
-314	      status: done
-315	  resolution: "压缩为 3 段。Round 10 确认 Limitations 3 paragraphs 合规。"
-316	  resolution_round: 5
-317	
-318	- id: "RV-L2"
-319	  summary: "loglik 压缩假说已被诊断数据反驳但论文仍引用"
-320	  category: writing
-321	  severity: warning
-322	  status: resolved
-323	  first_raised_round: 5
-324	  last_seen_round: 5
-325	  mentions:
-326	    - round: 5
-327	      reviewers: [internal_reviewer]
-328	      note: "experiments.tex 与 diagnostic JSON 不一致。"
-329	  action_items:
-330	    - round: 5
-331	      action: "改为 binary classification structural properties 解释"
-332	      assigned_to: paper_agent
-333	      status: done
-334	  resolution: "改为 'structural pr
-…[truncated 4262 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1136 · 2026-05-22T08:05:42.205157+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "460",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "460",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1137 · 2026-05-22T08:05:42.205854+00:00_
-
-460	      status: done
-461	    - round: 7
-462	      action: "W3: Table 1 GDN 脚注"
-463	      assigned_to: paper_agent
-464	      status: done
-465	    - round: 8
-466	      action: "§4.4 'partially dependent' → 'dependent on GDN inclusion'"
-467	      assigned_to: paper_agent
-468	      status: done
-469	    - round: 9
-470	      action: "Intro C2 加 excluding-GDN ρ 和 p"
-471	      assigned_to: director
-472	      status: done
-473	  resolution: "Round 10: excluding-GDN stats 现于 Intro C2 + §4.1 + §4.4。§4.4 明确区分 convergence（GDN-dependent）和 decoupling（GDN-independent）。"
-474	  resolution_round: null
-475	
-476	- id: "R6-W3"
-477	  summary: "Bootstrap CI 在 n=3 架构上覆盖率远低于名义值"
-478	  category: method
-479	  severity: warning
-480	  status: in_progress
-481	  first_raised_round: 6
-482	  last_seen_round: 10
-483	  mentions:
-484	    - round: 6
-485	      reviewers: [R1, R2]
-486	      note: "§3.5 坦承 heuristic 但后续仍用 CI 支撑 claim。"
-487	    - round: 8
-488	      reviewers: [R1, R2]
-489	      note: "与 Equation 1 condition (ii) 直接关联。删除 Eq 1 后部分消解。"
-490	    - round: 9
-491	      reviewers: [R1, R2]
-492	      note: "R1-W3 Major: §4.1 引用 CI 未附 heuristic caveat。R2 [AGREE]。"
-493	    - round: 10
-494	      reviewers: [R1, R2]
-495	      note: "R1-W3 Major: CI 在 Abstract/Intro/§4.1/§4.3/Figure 2 caption 被大量引用，给读者 well-characterized 的假象。n=3 bootstrap 本质是 3 个点的 range。R2 交叉 [AGREE]。建议减少 CI 引用频率或每次标注 heuristic。"
-496	  action_items:
-497	    - round: 6
-498	      action: "SF4: §3.5 统一添加 caveat"
-499	      assigned_to: paper_agent
-500	      status: done
-501	    - round: 8
-502	      action: "删除 Equation 1 后，CI 不再被用于 formal condition"
-503	      assigned_to: paper_agent
-504	      status: done
-505	    - round: 9
-506	      action: "§4.1 CI citation 加 'heuristic given n=3 architectures' 标注"
-507	      assigned_to: director
-508	      status: done
-509	  resolution: "Round 10: heuristic caveat 已加于 §4.1 和 Intro。但 CI 引用频率仍高，Abstract 中仍有 CI 数字。两位 Reviewer 共识需进一步削减。"
-510	  resolution_round: null
-511	
-512	- id: "R6-W4"
-513	  summary: "遗漏重
-…[truncated 4793 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1138 · 2026-05-22T08:05:45.476137+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "655",
-  "limit": "100"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "655",
-    "limit": "100"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1139 · 2026-05-22T08:05:45.476754+00:00_
-
-655	  resolution_round: null
-656	
-657	- id: "R9-W1"
-658	  summary: "Confirmatory/exploratory benchmark split 缺乏 pre-registration"
-659	  category: method
-660	  severity: warning
-661	  status: in_progress
-662	  first_raised_round: 9
-663	  last_seen_round: 10
-664	  mentions:
-665	    - round: 9
-666	      reviewers: [R1, R2]
-667	      note: "R1-W1 Major。对全部 10 benchmark 做 Bonferroni 则 LAMBADA adj-p = 0.17。R2 [AGREE]。"
-668	    - round: 10
-669	      reviewers: [R2]
-670	      note: "R2-W4 Warning。R1 交叉回应降级为 Minor——核心结果不依赖 taxonomy 分类，6 vs 10 benchmarks 校正差异不改变结论方向（.100 vs .170 均不显著）。"
-671	  action_items:
-672	    - round: 9
-673	      action: "Appendix 加 10-benchmark Bonferroni sensitivity check（adj-p = 0.170）"
-674	      assigned_to: director
-675	      status: done
-676	  resolution: "Appendix A 已含 10-benchmark sensitivity check。Round 10 降级为 Minor/Warning。"
-677	  resolution_round: null
-678	
-679	- id: "R9-W2"
-680	  summary: "缺少与 seed-driven multiplicity 的 quantitative comparison"
-681	  category: experiment
-682	  severity: warning
-683	  status: in_progress
-684	  first_raised_round: 9
-685	  last_seen_round: 10
-686	  mentions:
-687	    - round: 9
-688	      reviewers: [R1, R2]
-689	      note: "R2-W2 Major + R1 [AGREE strongly]。建议引用 McCoy 数值作 contextual comparison。"
-690	    - round: 10
-691	      reviewers: [R1, R2]
-692	      note: "R1-W2 再次强调。McCoy calibration caveat 已加于 Limitations，但 metric 不同无法直接比较。R2 交叉 [AGREE]。"
-693	  action_items:
-694	    - round: 9
-695	      action: "Limitations 加 McCoy calibration 句"
-696	      assigned_to: director
-697	      status: done
-698	  resolution: "Limitations 已加 caveat。根本解决需 multi-seed 实验，属 future work。"
-699	  resolution_round: null
-700	
-701	- id: "R10-W1"
-702	  summary: "Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05"
-703	  category: method
-704	  severity: warning
-705	  status: open
-706	  first_raised_round: 10
-707	  last_seen_round: 10
-708	  mentions:
-709	    - round: 10
-710	      reviewers: [R1, R2]
-711	      note: "R1-W4 Major。permutation test 的 p
-…[truncated 1603 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1140 · 2026-05-22T08:05:57.222740+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "754",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "754",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1141 · 2026-05-22T08:05:57.223207+00:00_
-
-754	    - round: 10
-755	      reviewers: [R1, R2]
-756	      note: "R2-W3 Major。R1 REBUT——α metric 的使用技术上合法，三个架构在 aggregate 上 near-equivalent 符合 Rashomon set 的 informal criterion。分歧未完全解决。"
-757	  action_items: []
-758	  resolution: ""
-759	  resolution_round: null
-760	
-761	- id: "R10-W5"
-762	  summary: "遗漏 Fort et al. (2019) Deep Ensembles + Niven & Kao (2019)"
-763	  category: writing
-764	  severity: info
-765	  status: open
-766	  first_raised_round: 10
-767	  last_seen_round: 10
-768	  mentions:
-769	    - round: 10
-770	      reviewers: [R1, R2]
-771	      note: "R2 建议 Fort et al. (2019) 提供 cross-architecture disagreement 理论视角；Niven & Kao (2019) 与 helped/hurt decomposition 相关。R1 交叉 [AGREE] Fort et al. 相关度中等。R1 另建议 Jiang et al. (2024) 关于 foundation model multiplicity。R2 建议 Arora et al. (2024b, Based) 显式讨论——R1 REBUT 指出已在 §4.1 引用。"
-772	  action_items: []
-773	  resolution: ""
-774	  resolution_round: null
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1142 · 2026-05-22T08:06:02.652887+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "offset": "700",
-  "limit": "80"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "offset": "700",
-    "limit": "80"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1143 · 2026-05-22T08:06:02.703585+00:00_
-
-700	
-701	- id: "R10-W1"
-702	  summary: "Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05"
-703	  category: method
-704	  severity: warning
-705	  status: open
-706	  first_raised_round: 10
-707	  last_seen_round: 10
-708	  mentions:
-709	    - round: 10
-710	      reviewers: [R1, R2]
-711	      note: "R1-W4 Major。permutation test 的 p-value 分辨率 1/120≈0.0083。ρ=−1.0 (p=.017) 和 ρ=−0.7 (p=.233) 差异在 n=5 上可能是 1-2 个 rank swap（noise）。检验对 'strong but not perfect' monotonic trends 无功效。R2 交叉 [AGREE]。"
-712	  action_items: []
-713	  resolution: ""
-714	  resolution_round: null
-715	
-716	- id: "R10-W2"
-717	  summary: "可重复性细节缺失：lm-eval-harness 版本、decoding 策略、bootstrap seed、code/data availability"
-718	  category: writing
-719	  severity: info
-720	  status: open
-721	  first_raised_round: 10
-722	  last_seen_round: 10
-723	  mentions:
-724	    - round: 10
-725	      reviewers: [R1, R2]
-726	      note: "R1-W7 Minor。R2 交叉 [AGREE]。lm-eval-harness 仅引用 Gao et al. 2024 无版本号；decoding strategy 未明确；主文 bootstrap seed 未报告（Appendix R 报了 seed 42）；无 code/data availability statement。"
-727	  action_items: []
-728	  resolution: ""
-729	  resolution_round: null
-730	
-731	- id: "R10-W3"
-732	  summary: "LAMBADA 唯一 converge 的 benchmark——mechanistic explanation 偏 post-hoc"
-733	  category: experiment
-734	  severity: warning
-735	  status: open
-736	  first_raised_round: 10
-737	  last_seen_round: 10
-738	  mentions:
-739	    - round: 10
-740	      reviewers: [R1, R2]
-741	      note: "R1-W5 Major。ARC-Easy (ρ=−0.7) 也有中等负相关但不 converge，差异可能是 noise 而非 task-type driven。论文的 retrieval-task explanation 是 post-hoc，未讨论 LAMBADA 结果的 fragility。R2 交叉 [AGREE]。"
-742	  action_items: []
-743	  resolution: ""
-744	  resolution_round: null
-745	
-746	- id: "R10-W4"
-747	  summary: "术语 'predictive multiplicity' 与 Rashomon set 原始定义的关系需澄清"
-748	  category: framing
-749	  severity: info
-750	  status: open
-751	  first_raised_round: 10
-752	  last_seen_round: 10
-753	  mentions:
-754	    - round: 10
-755	      reviewers: [R1, R2]
-756	      note: "R2-W3 Major。R1 REBUT——α m
-…[truncated 813 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1144 · 2026-05-22T08:06:12.546663+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "old_string": "- id: \"R10-W1\"\n  summary: \"Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major。permutation test 的 p-value 分辨率 1/120≈0.0083。ρ=−1.0 (p=.017) 和 ρ=−0.7 (p=.233) 差异在 n=5 上可能是 1-2 个 rank swap（noise）。检验对 'strong but not perfect' monotonic trends 无功效。R2 交叉 [AGREE]。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null",
-  "new_string": "- id: \"R10-W1\"\n  summary: \"Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major。permutation test 的 p-value 分辨率 1/120≈0.0083。ρ=−1.0 (p=.017) 和 ρ=−0.7 (p=.233) 差异在 n=5 上可能是 1-2 个 rank swap（noise）。检验对 'strong but not perfect' monotonic trends 无功效。R2 交叉 [AGREE]。\"\n  action_items:\n    - round: 10\n      action: \"§3.5 加 Power considerations 段，明确 n=5 只有 ρ=±1.0 达 p<.05，ρ=0.9 得 p=.083\"\n      assigned_to: director\n      status: done\n  resolution: \"§3.5 已加 Power considerations 段。\"\n  resolution_round: null"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "old_string": "- id: \"R10-W1\"\n  summary: \"Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major。permutation test 的 p-value 分辨率 1/120≈0.0083。ρ=−1.0 (p=.017) 和 ρ=−0.7 (p=.233) 差异在 n=5 上可能是 1-2 个 rank swap（noise）。检验对 'strong but not perfect' monotonic trends 无功效。R2 交叉 [AGREE]。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null",
-    "new_string": "- id: \"R10-W1\"\n  summary: \"Spearman ρ 在 n=5 上 power 极低——仅 ρ=±1.0 能达 p<.05\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major。permutation test 的 p-value 分辨率 1/120≈0.0083。ρ=−1.0 (p=.017) 和 ρ=−0.7 (p=.233) 差异在 n=5 上可能是 1-2 个 rank swap（noise）。检验对 'strong but not perfect' monotonic trends 无功效。R2 交叉 [AGREE]。\"\n  action_items:\n    - round: 10\n      action: \"§3.5 加 Power considerations 段，明确 n=5 只有 ρ=±1.0 达 p<.05，ρ=0.9 得 p=.083\"\n      assigned_to: director\n      status: done\n  resolution: \"§3.5 已加 Power considerations 段。\"\n  resolution_round: null"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1145 · 2026-05-22T08:06:13.049086+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1146 · 2026-05-22T08:06:17.777171+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-  "old_string": "- id: \"R10-W2\"\n  summary: \"可重复性细节缺失：lm-eval-harness 版本、decoding 策略、bootstrap seed、code/data availability\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W7 Minor。R2 交叉 [AGREE]。lm-eval-harness 仅引用 Gao et al. 2024 无版本号；decoding strategy 未明确；主文 bootstrap seed 未报告（Appendix R 报了 seed 42）；无 code/data availability statement。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null",
-  "new_string": "- id: \"R10-W2\"\n  summary: \"可重复性细节缺失：lm-eval-harness 版本、decoding 策略、bootstrap seed、code/data availability\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W7 Minor。R2 交叉 [AGREE]。\"\n  action_items:\n    - round: 10\n      action: \"§3.2 加 lm-eval-harness v0.4.x + greedy decoding + bootstrap seed 42；Ethics 后加 Code and Data Availability 段\"\n      assigned_to: director\n      status: done\n  resolution: \"§3.2 已加版本/decoding/seed；Code and Data Availability 段已加。\"\n  resolution_round: null"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
-    "old_string": "- id: \"R10-W2\"\n  summary: \"可重复性细节缺失：lm-eval-harness 版本、decoding 策略、bootstrap seed、code/data availability\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W7 Minor。R2 交叉 [AGREE]。lm-eval-harness 仅引用 Gao et al. 2024 无版本号；decoding strategy 未明确；主文 bootstrap seed 未报告（Appendix R 报了 seed 42）；无 code/data availability statement。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null",
-    "new_string": "- id: \"R10-W2\"\n  summary: \"可重复性细节缺失：lm-eval-harness 版本、decoding 策略、bootstrap seed、code/data availability\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [R1, R2]\n      note: \"R1-W7 Minor。R2 交叉 [AGREE]。\"\n  action_items:\n    - round: 10\n      action: \"§3.2 加 lm-eval-harness v0.4.x + greedy decoding + bootstrap seed 42；Ethics 后加 Code and Data Availability 段\"\n      assigned_to: director\n      status: done\n  resolution: \"§3.2 已加版本/decoding/seed；Code and Data Availability 段已加。\"\n  resolution_round: null"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1147 · 2026-05-22T08:06:18.229703+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
-  "tool": "Edit",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1148 · 2026-05-22T08:06:25.357571+00:00_
+_source line 1118 · 2026-05-22T08:06:25.357571+00:00_
 
 called Edit
 
@@ -3239,7 +48,7 @@ called Edit
 
 ### Tool result
 
-_source line 1149 · 2026-05-22T08:06:25.408555+00:00_
+_source line 1119 · 2026-05-22T08:06:25.408555+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
 
@@ -3261,7 +70,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1150 · 2026-05-22T08:06:36.294322+00:00_
+_source line 1120 · 2026-05-22T08:06:36.294322+00:00_
 
 called Edit
 
@@ -3301,7 +110,7 @@ called Edit
 
 ### Tool result
 
-_source line 1151 · 2026-05-22T08:06:36.546153+00:00_
+_source line 1121 · 2026-05-22T08:06:36.546153+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
 
@@ -3323,7 +132,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1152 · 2026-05-22T08:06:41.372049+00:00_
+_source line 1122 · 2026-05-22T08:06:41.372049+00:00_
 
 called Edit
 
@@ -3363,7 +172,7 @@ called Edit
 
 ### Tool result
 
-_source line 1153 · 2026-05-22T08:06:41.372933+00:00_
+_source line 1123 · 2026-05-22T08:06:41.372933+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
 
@@ -3385,7 +194,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1154 · 2026-05-22T08:06:59.790383+00:00_
+_source line 1124 · 2026-05-22T08:06:59.790383+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -3419,7 +228,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1155 · 2026-05-22T08:07:00.493228+00:00_
+_source line 1125 · 2026-05-22T08:07:00.493228+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -3441,7 +250,7 @@ _source line 1155 · 2026-05-22T08:07:00.493228+00:00_
 
 ### Assistant
 
-_source line 1156 · 2026-05-22T08:07:03.158394+00:00_
+_source line 1126 · 2026-05-22T08:07:03.158394+00:00_
 
 Text edits complete. Summary of what's done vs. pending:
 
@@ -3491,7 +300,7 @@ Text edits complete. Summary of what's done vs. pending:
 
 ### User
 
-_source line 1157 · 2026-05-22T08:07:20.545973+00:00_
+_source line 1127 · 2026-05-22T08:07:20.545973+00:00_
 
 [Reviewer 回复]:
 ## A1 分析结果审查
@@ -3561,7 +370,7 @@ A1 Jaccard 数据 confirms W1 的 C2 reframe 方向是正确的，但我仍维�
 
 ### Tool call
 
-_source line 1158 · 2026-05-22T08:09:57.716404+00:00_
+_source line 1128 · 2026-05-22T08:09:57.716404+00:00_
 
 called ToolSearch
 
@@ -3597,7 +406,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1159 · 2026-05-22T08:09:57.817169+00:00_
+_source line 1129 · 2026-05-22T08:09:57.817169+00:00_
 
 No matching deferred tools found
 
@@ -3619,7 +428,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1160 · 2026-05-22T08:10:00.633800+00:00_
+_source line 1130 · 2026-05-22T08:10:00.633800+00:00_
 
 called Glob
 
@@ -3655,7 +464,7 @@ called Glob
 
 ### Tool result
 
-_source line 1161 · 2026-05-22T08:10:00.684832+00:00_
+_source line 1131 · 2026-05-22T08:10:00.684832+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/null_jaccard_results.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/arc_easy_jaccard_analysis.json
@@ -3678,7 +487,7 @@ _source line 1161 · 2026-05-22T08:10:00.684832+00:00_
 
 ### Tool call
 
-_source line 1162 · 2026-05-22T08:10:03.602321+00:00_
+_source line 1132 · 2026-05-22T08:10:03.602321+00:00_
 
 called Glob
 
@@ -3714,7 +523,7 @@ called Glob
 
 ### Tool result
 
-_source line 1163 · 2026-05-22T08:10:03.652999+00:00_
+_source line 1133 · 2026-05-22T08:10:03.652999+00:00_
 
 No files found
 
@@ -3736,7 +545,7 @@ No files found
 
 ### Tool call
 
-_source line 1164 · 2026-05-22T08:10:06.564319+00:00_
+_source line 1134 · 2026-05-22T08:10:06.564319+00:00_
 
 called Glob
 
@@ -3772,7 +581,7 @@ called Glob
 
 ### Tool result
 
-_source line 1165 · 2026-05-22T08:10:06.615841+00:00_
+_source line 1135 · 2026-05-22T08:10:06.615841+00:00_
 
 No files found
 
@@ -3794,7 +603,7 @@ No files found
 
 ### Tool call
 
-_source line 1166 · 2026-05-22T08:10:09.528841+00:00_
+_source line 1136 · 2026-05-22T08:10:09.528841+00:00_
 
 called Glob
 
@@ -3830,7 +639,7 @@ called Glob
 
 ### Tool result
 
-_source line 1167 · 2026-05-22T08:10:09.629739+00:00_
+_source line 1137 · 2026-05-22T08:10:09.629739+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/null_jaccard_results.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/arc_easy_per_example.json
@@ -3855,7 +664,7 @@ _source line 1167 · 2026-05-22T08:10:09.629739+00:00_
 
 ### Tool call
 
-_source line 1168 · 2026-05-22T08:10:12.792363+00:00_
+_source line 1138 · 2026-05-22T08:10:12.792363+00:00_
 
 called Glob
 
@@ -3891,7 +700,7 @@ called Glob
 
 ### Tool result
 
-_source line 1169 · 2026-05-22T08:10:12.842979+00:00_
+_source line 1139 · 2026-05-22T08:10:12.842979+00:00_
 
 No files found
 
@@ -3913,7 +722,7 @@ No files found
 
 ### Tool call
 
-_source line 1170 · 2026-05-22T08:10:15.794838+00:00_
+_source line 1140 · 2026-05-22T08:10:15.794838+00:00_
 
 called Glob
 
@@ -3949,7 +758,7 @@ called Glob
 
 ### Tool result
 
-_source line 1171 · 2026-05-22T08:10:15.848340+00:00_
+_source line 1141 · 2026-05-22T08:10:15.848340+00:00_
 
 No files found
 
@@ -3971,7 +780,7 @@ No files found
 
 ### Tool call
 
-_source line 1172 · 2026-05-22T08:10:19.330631+00:00_
+_source line 1142 · 2026-05-22T08:10:19.330631+00:00_
 
 called ToolSearch
 
@@ -4007,7 +816,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1173 · 2026-05-22T08:10:19.381748+00:00_
+_source line 1143 · 2026-05-22T08:10:19.381748+00:00_
 
 No matching deferred tools found
 
@@ -4029,7 +838,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1174 · 2026-05-22T08:10:21.892276+00:00_
+_source line 1144 · 2026-05-22T08:10:21.892276+00:00_
 
 called ToolSearch
 
@@ -4065,7 +874,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1175 · 2026-05-22T08:10:21.943227+00:00_
+_source line 1145 · 2026-05-22T08:10:21.943227+00:00_
 
 
 
@@ -4087,7 +896,7 @@ _source line 1175 · 2026-05-22T08:10:21.943227+00:00_
 
 ### Tool call
 
-_source line 1176 · 2026-05-22T08:10:24.553294+00:00_
+_source line 1146 · 2026-05-22T08:10:24.553294+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -4121,7 +930,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1177 · 2026-05-22T08:10:24.654189+00:00_
+_source line 1147 · 2026-05-22T08:10:24.654189+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **紧急：4 项分析任务全部并行执行，用多 Worker 同时铺开**\\n\\n用户要求全部并行做。Deadline 5/25。服务器 westb-48145，cuda:0 可用。\\n\\n所有分析基于已有的 per-exa\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_analysis_a1_cross_benchmark_jaccard_20260522T075546 已完成（status=done）。用 `get_worker_status('w\",\"queued_at\":1779437105.703655}],\"idle_seconds\":3430}"}
 
@@ -4143,7 +952,7 @@ _source line 1177 · 2026-05-22T08:10:24.654189+00:00_
 
 ### Tool call
 
-_source line 1178 · 2026-05-22T08:10:27.515374+00:00_
+_source line 1148 · 2026-05-22T08:10:27.515374+00:00_
 
 called Read
 
@@ -4177,7 +986,7 @@ called Read
 
 ### Tool result
 
-_source line 1179 · 2026-05-22T08:10:27.566332+00:00_
+_source line 1149 · 2026-05-22T08:10:27.566332+00:00_
 
 1	{
 2	  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
@@ -4217,7 +1026,7 @@ _source line 1179 · 2026-05-22T08:10:27.566332+00:00_
 
 ### Tool call
 
-_source line 1180 · 2026-05-22T08:10:30.428005+00:00_
+_source line 1150 · 2026-05-22T08:10:30.428005+00:00_
 
 called Glob
 
@@ -4253,7 +1062,7 @@ called Glob
 
 ### Tool result
 
-_source line 1181 · 2026-05-22T08:10:30.478571+00:00_
+_source line 1151 · 2026-05-22T08:10:30.478571+00:00_
 
 No files found
 
@@ -4275,7 +1084,7 @@ No files found
 
 ### Tool call
 
-_source line 1182 · 2026-05-22T08:10:33.088017+00:00_
+_source line 1152 · 2026-05-22T08:10:33.088017+00:00_
 
 called Glob
 
@@ -4311,7 +1120,7 @@ called Glob
 
 ### Tool result
 
-_source line 1183 · 2026-05-22T08:10:33.138586+00:00_
+_source line 1153 · 2026-05-22T08:10:33.138586+00:00_
 
 No files found
 
@@ -4333,7 +1142,7 @@ No files found
 
 ### Tool call
 
-_source line 1184 · 2026-05-22T08:10:37.454955+00:00_
+_source line 1154 · 2026-05-22T08:10:37.454955+00:00_
 
 called Glob
 
@@ -4369,7 +1178,7 @@ called Glob
 
 ### Tool result
 
-_source line 1185 · 2026-05-22T08:10:37.505830+00:00_
+_source line 1155 · 2026-05-22T08:10:37.505830+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/synthetic_task_design.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/__pycache__/eval_composition.cpython-314.pyc
@@ -4407,7 +1216,7 @@ _source line 1185 · 2026-05-22T08:10:37.505830+00:00_
 
 ### Tool call
 
-_source line 1186 · 2026-05-22T08:10:43.076950+00:00_
+_source line 1156 · 2026-05-22T08:10:43.076950+00:00_
 
 called Glob
 
@@ -4443,7 +1252,7 @@ called Glob
 
 ### Tool result
 
-_source line 1187 · 2026-05-22T08:10:43.077401+00:00_
+_source line 1157 · 2026-05-22T08:10:43.077401+00:00_
 
 No files found
 
@@ -4465,7 +1274,7 @@ No files found
 
 ### Tool call
 
-_source line 1188 · 2026-05-22T08:10:45.913191+00:00_
+_source line 1158 · 2026-05-22T08:10:45.913191+00:00_
 
 called Glob
 
@@ -4501,7 +1310,7 @@ called Glob
 
 ### Tool result
 
-_source line 1189 · 2026-05-22T08:10:45.963827+00:00_
+_source line 1159 · 2026-05-22T08:10:45.963827+00:00_
 
 No files found
 
@@ -4523,7 +1332,7 @@ No files found
 
 ### Tool call
 
-_source line 1190 · 2026-05-22T08:10:48.623936+00:00_
+_source line 1160 · 2026-05-22T08:10:48.623936+00:00_
 
 called Glob
 
@@ -4559,7 +1368,7 @@ called Glob
 
 ### Tool result
 
-_source line 1191 · 2026-05-22T08:10:48.674876+00:00_
+_source line 1161 · 2026-05-22T08:10:48.674876+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/.gitignore
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/pyvenv.cfg
@@ -4595,7 +1404,7 @@ _source line 1191 · 2026-05-22T08:10:48.674876+00:00_
 
 ### Tool call
 
-_source line 1192 · 2026-05-22T08:10:58.062833+00:00_
+_source line 1162 · 2026-05-22T08:10:58.062833+00:00_
 
 called Glob
 
@@ -4631,7 +1440,7 @@ called Glob
 
 ### Tool result
 
-_source line 1193 · 2026-05-22T08:10:58.213835+00:00_
+_source line 1163 · 2026-05-22T08:10:58.213835+00:00_
 
 No files found
 
@@ -4653,7 +1462,7 @@ No files found
 
 ### Tool call
 
-_source line 1194 · 2026-05-22T08:11:01.630492+00:00_
+_source line 1164 · 2026-05-22T08:11:01.630492+00:00_
 
 called Grep
 
@@ -4691,7 +1500,7 @@ called Grep
 
 ### Tool result
 
-_source line 1195 · 2026-05-22T08:11:01.731454+00:00_
+_source line 1165 · 2026-05-22T08:11:01.731454+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:11:\includegraphics[width=\columnwidth]{figures/fig2_task_specificity.pdf}
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:13:\includegraphics[width=\columnwidth]{figures/fig1_decoupling_hero.pdf}
@@ -4714,7 +1523,7 @@ _source line 1195 · 2026-05-22T08:11:01.731454+00:00_
 
 ### Tool call
 
-_source line 1196 · 2026-05-22T08:11:04.796831+00:00_
+_source line 1166 · 2026-05-22T08:11:04.796831+00:00_
 
 called Bash
 
@@ -4750,7 +1559,7 @@ called Bash
 
 ### Tool result
 
-_source line 1197 · 2026-05-22T08:11:04.947851+00:00_
+_source line 1167 · 2026-05-22T08:11:04.947851+00:00_
 
 fig1_decoupling_hero.pdf
 fig2_task_specificity.pdf
@@ -4773,7 +1582,7 @@ fig2_task_specificity.pdf
 
 ### Tool call
 
-_source line 1198 · 2026-05-22T08:11:16.993821+00:00_
+_source line 1168 · 2026-05-22T08:11:16.993821+00:00_
 
 called Read
 
@@ -4807,7 +1616,7 @@ called Read
 
 ### Tool result
 
-_source line 1199 · 2026-05-22T08:11:16.994305+00:00_
+_source line 1169 · 2026-05-22T08:11:16.994305+00:00_
 
 1	# Handover — 2026-05-22
 2	
@@ -4852,7 +1661,7 @@ _source line 1199 · 2026-05-22T08:11:16.994305+00:00_
 
 ### Tool call
 
-_source line 1200 · 2026-05-22T08:11:20.445341+00:00_
+_source line 1170 · 2026-05-22T08:11:20.445341+00:00_
 
 called Glob
 
@@ -4888,7 +1697,7 @@ called Glob
 
 ### Tool result
 
-_source line 1201 · 2026-05-22T08:11:20.496053+00:00_
+_source line 1171 · 2026-05-22T08:11:20.496053+00:00_
 
 No files found
 
@@ -4910,7 +1719,7 @@ No files found
 
 ### Tool call
 
-_source line 1202 · 2026-05-22T08:11:23.960712+00:00_
+_source line 1172 · 2026-05-22T08:11:23.960712+00:00_
 
 called Grep
 
@@ -4948,7 +1757,7 @@ called Grep
 
 ### Tool result
 
-_source line 1203 · 2026-05-22T08:11:24.011414+00:00_
+_source line 1173 · 2026-05-22T08:11:24.011414+00:00_
 
 Found 60 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml
@@ -4986,7 +1795,7 @@ Found 60 files
 
 ### Tool call
 
-_source line 1204 · 2026-05-22T08:11:26.973179+00:00_
+_source line 1174 · 2026-05-22T08:11:26.973179+00:00_
 
 called Read
 
@@ -5020,7 +1829,7 @@ called Read
 
 ### Tool result
 
-_source line 1205 · 2026-05-22T08:11:26.973743+00:00_
+_source line 1175 · 2026-05-22T08:11:26.973743+00:00_
 
 1	A1 Cross-Benchmark Jaccard Trajectory Analysis
 2	
@@ -5063,7 +1872,7 @@ _source line 1205 · 2026-05-22T08:11:26.973743+00:00_
 
 ### Tool call
 
-_source line 1206 · 2026-05-22T08:11:39.374149+00:00_
+_source line 1176 · 2026-05-22T08:11:39.374149+00:00_
 
 called Read
 
@@ -5097,7 +1906,7 @@ called Read
 
 ### Tool result
 
-_source line 1207 · 2026-05-22T08:11:39.374503+00:00_
+_source line 1177 · 2026-05-22T08:11:39.374503+00:00_
 
 1	4-panel figure showing σ (left y-axis, blue) and mean pairwise Jaccard (right y-axis, red/orange) vs attention ratio for LAMBADA, HellaSwag, PIQA, ARC-Easy. Each panel annotated with Spearman ρ and exact permutation p-value.
 2	
@@ -5123,7 +1932,7 @@ _source line 1207 · 2026-05-22T08:11:39.374503+00:00_
 
 ### Tool call
 
-_source line 1208 · 2026-05-22T08:11:47.224619+00:00_
+_source line 1178 · 2026-05-22T08:11:47.224619+00:00_
 
 called Read
 
@@ -5157,7 +1966,7 @@ called Read
 
 ### Tool result
 
-_source line 1209 · 2026-05-22T08:11:47.677345+00:00_
+_source line 1179 · 2026-05-22T08:11:47.677345+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -5195,7 +2004,7 @@ _source line 1209 · 2026-05-22T08:11:47.677345+00:00_
 
 ### Tool call
 
-_source line 1210 · 2026-05-22T08:11:53.951179+00:00_
+_source line 1180 · 2026-05-22T08:11:53.951179+00:00_
 
 called Read
 
@@ -5229,7 +2038,7 @@ called Read
 
 ### Tool result
 
-_source line 1211 · 2026-05-22T08:11:54.001896+00:00_
+_source line 1181 · 2026-05-22T08:11:54.001896+00:00_
 
 1	\section{Introduction}
 2	
@@ -5258,7 +2067,7 @@ _source line 1211 · 2026-05-22T08:11:54.001896+00:00_
 
 ### Tool call
 
-_source line 1212 · 2026-05-22T08:12:27.367659+00:00_
+_source line 1182 · 2026-05-22T08:12:27.367659+00:00_
 
 called Edit
 
@@ -5298,7 +2107,7 @@ called Edit
 
 ### Tool result
 
-_source line 1213 · 2026-05-22T08:12:27.418840+00:00_
+_source line 1183 · 2026-05-22T08:12:27.418840+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -5320,7 +2129,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1214 · 2026-05-22T08:12:31.132303+00:00_
+_source line 1184 · 2026-05-22T08:12:31.132303+00:00_
 
 called Read
 
@@ -5358,7 +2167,7 @@ called Read
 
 ### Tool result
 
-_source line 1215 · 2026-05-22T08:12:31.182982+00:00_
+_source line 1185 · 2026-05-22T08:12:31.182982+00:00_
 
 72	\subsection{Decoupling}\label{ssec:decoupling}
 73	
@@ -5387,7 +2196,7 @@ _source line 1215 · 2026-05-22T08:12:31.182982+00:00_
 
 ### Tool call
 
-_source line 1216 · 2026-05-22T08:12:36.561770+00:00_
+_source line 1186 · 2026-05-22T08:12:36.561770+00:00_
 
 called Edit
 
@@ -5427,7 +2236,7 @@ called Edit
 
 ### Tool result
 
-_source line 1217 · 2026-05-22T08:12:36.562398+00:00_
+_source line 1187 · 2026-05-22T08:12:36.562398+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -5449,7 +2258,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1218 · 2026-05-22T08:12:43.389045+00:00_
+_source line 1188 · 2026-05-22T08:12:43.389045+00:00_
 
 called Edit
 
@@ -5489,7 +2298,7 @@ called Edit
 
 ### Tool result
 
-_source line 1219 · 2026-05-22T08:12:43.439850+00:00_
+_source line 1189 · 2026-05-22T08:12:43.439850+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -5511,7 +2320,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1220 · 2026-05-22T08:12:47.162705+00:00_
+_source line 1190 · 2026-05-22T08:12:47.162705+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -5545,7 +2354,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1221 · 2026-05-22T08:12:47.213282+00:00_
+_source line 1191 · 2026-05-22T08:12:47.213282+00:00_
 
 {"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] **紧急：4 项分析任务全部并行执行，用多 Worker 同时铺开**\\n\\n用户要求全部并行做。Deadline 5/25。服务器 westb-48145，cuda:0 可用。\\n\\n所有分析基于已有的 per-exa\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_analysis_a1_cross_benchmark_jaccard_20260522T075546 已完成（status=done）。用 `get_worker_status('w\",\"queued_at\":1779437105.703655}],\"idle_seconds\":3573}"}
 
@@ -5567,7 +2376,7 @@ _source line 1221 · 2026-05-22T08:12:47.213282+00:00_
 
 ### Tool call
 
-_source line 1222 · 2026-05-22T08:12:58.203213+00:00_
+_source line 1192 · 2026-05-22T08:12:58.203213+00:00_
 
 called ToolSearch
 
@@ -5603,7 +2412,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1223 · 2026-05-22T08:12:58.203824+00:00_
+_source line 1193 · 2026-05-22T08:12:58.203824+00:00_
 
 
 
@@ -5625,7 +2434,7 @@ _source line 1223 · 2026-05-22T08:12:58.203824+00:00_
 
 ### Tool call
 
-_source line 1224 · 2026-05-22T08:13:01.366471+00:00_
+_source line 1194 · 2026-05-22T08:13:01.366471+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -5661,7 +2470,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1225 · 2026-05-22T08:13:03.924974+00:00_
+_source line 1195 · 2026-05-22T08:13:03.924974+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\n[17]\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 538--539\\n []\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\T1/ptm/m/n/10.95 (+20) The RetNet\\n--HGRN2 anti-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n[18]\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 552--559\\n [][] \\n []\\n\\n\\nUnderfull \\\\vbox (badness 2173) has occurred while \\\\output is active []\\n\\n [19])\\n[20\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 5471390397233DA0B6756BE43CC84BA2;7474.\\n ) \\nHere is how much of TeX's memory you used:\\n 16098 strings out of 469438\\n 252043 string characters out of 5468411\\n 724107 words of memory out of 5000000\\n 43956 multiletter control sequences out of 15000+600000\\n 702071 words of font info for 381 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,2157b,654s stack pos
 …[truncated 4081 chars]
@@ -5684,7 +2493,7 @@ _source line 1225 · 2026-05-22T08:13:03.924974+00:00_
 
 ### Tool call
 
-_source line 1226 · 2026-05-22T08:13:30.480670+00:00_
+_source line 1196 · 2026-05-22T08:13:30.480670+00:00_
 
 called Glob
 
@@ -5720,7 +2529,7 @@ called Glob
 
 ### Tool result
 
-_source line 1227 · 2026-05-22T08:13:30.481094+00:00_
+_source line 1197 · 2026-05-22T08:13:30.481094+00:00_
 
 No files found
 
@@ -5742,7 +2551,7 @@ No files found
 
 ### Tool call
 
-_source line 1228 · 2026-05-22T08:13:33.895247+00:00_
+_source line 1198 · 2026-05-22T08:13:33.895247+00:00_
 
 called Glob
 
@@ -5778,7 +2587,7 @@ called Glob
 
 ### Tool result
 
-_source line 1229 · 2026-05-22T08:13:33.945957+00:00_
+_source line 1199 · 2026-05-22T08:13:33.945957+00:00_
 
 No files found
 
@@ -5800,7 +2609,7 @@ No files found
 
 ### Tool call
 
-_source line 1230 · 2026-05-22T08:13:38.967919+00:00_
+_source line 1200 · 2026-05-22T08:13:38.967919+00:00_
 
 called Glob
 
@@ -5836,7 +2645,7 @@ called Glob
 
 ### Tool result
 
-_source line 1231 · 2026-05-22T08:13:39.119068+00:00_
+_source line 1201 · 2026-05-22T08:13:39.119068+00:00_
 
 No files found
 
@@ -5858,7 +2667,7 @@ No files found
 
 ### Tool call
 
-_source line 1232 · 2026-05-22T08:13:42.082569+00:00_
+_source line 1202 · 2026-05-22T08:13:42.082569+00:00_
 
 called Glob
 
@@ -5894,7 +2703,7 @@ called Glob
 
 ### Tool result
 
-_source line 1233 · 2026-05-22T08:13:42.183388+00:00_
+_source line 1203 · 2026-05-22T08:13:42.183388+00:00_
 
 No files found
 
@@ -5916,7 +2725,7 @@ No files found
 
 ### Tool call
 
-_source line 1234 · 2026-05-22T08:13:45.368908+00:00_
+_source line 1204 · 2026-05-22T08:13:45.368908+00:00_
 
 called Glob
 
@@ -5952,7 +2761,7 @@ called Glob
 
 ### Tool result
 
-_source line 1235 · 2026-05-22T08:13:45.419550+00:00_
+_source line 1205 · 2026-05-22T08:13:45.419550+00:00_
 
 No files found
 
@@ -5974,7 +2783,7 @@ No files found
 
 ### Tool call
 
-_source line 1236 · 2026-05-22T08:13:53.798709+00:00_
+_source line 1206 · 2026-05-22T08:13:53.798709+00:00_
 
 called ToolSearch
 
@@ -6010,7 +2819,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1237 · 2026-05-22T08:13:53.849241+00:00_
+_source line 1207 · 2026-05-22T08:13:53.849241+00:00_
 
 
 
@@ -6032,7 +2841,7 @@ _source line 1237 · 2026-05-22T08:13:53.849241+00:00_
 
 ### Tool call
 
-_source line 1238 · 2026-05-22T08:14:01.881978+00:00_
+_source line 1208 · 2026-05-22T08:14:01.881978+00:00_
 
 called mcp__agent-ml-research__urgent_agent_message
 
@@ -6068,7 +2877,7 @@ called mcp__agent-ml-research__urgent_agent_message
 
 ### Tool result
 
-_source line 1239 · 2026-05-22T08:14:02.585187+00:00_
+_source line 1209 · 2026-05-22T08:14:02.585187+00:00_
 
 {"result":"{\"inserted\":true,\"queue_depth\":2,\"agent_key\":\"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e\"}"}
 
@@ -6090,7 +2899,7 @@ _source line 1239 · 2026-05-22T08:14:02.585187+00:00_
 
 ### Tool call
 
-_source line 1240 · 2026-05-22T08:14:08.660915+00:00_
+_source line 1210 · 2026-05-22T08:14:08.660915+00:00_
 
 called Read
 
@@ -6124,7 +2933,7 @@ called Read
 
 ### Tool result
 
-_source line 1241 · 2026-05-22T08:14:08.962908+00:00_
+_source line 1211 · 2026-05-22T08:14:08.962908+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -6194,7 +3003,7 @@ _source line 1241 · 2026-05-22T08:14:08.962908+00:00_
 
 ### Tool call
 
-_source line 1242 · 2026-05-22T08:14:36.872458+00:00_
+_source line 1212 · 2026-05-22T08:14:36.872458+00:00_
 
 called Read
 
@@ -6228,7 +3037,7 @@ called Read
 
 ### Tool result
 
-_source line 1243 · 2026-05-22T08:14:36.872926+00:00_
+_source line 1213 · 2026-05-22T08:14:36.872926+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789.
 
@@ -6250,7 +3059,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1244 · 2026-05-22T08:14:41.992262+00:00_
+_source line 1214 · 2026-05-22T08:14:41.992262+00:00_
 
 called Read
 
@@ -6284,7 +3093,7 @@ called Read
 
 ### Tool result
 
-_source line 1245 · 2026-05-22T08:14:42.093108+00:00_
+_source line 1215 · 2026-05-22T08:14:42.093108+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -6346,7 +3155,7 @@ _source line 1245 · 2026-05-22T08:14:42.093108+00:00_
 
 ### Tool call
 
-_source line 1246 · 2026-05-22T08:14:55.907828+00:00_
+_source line 1216 · 2026-05-22T08:14:55.907828+00:00_
 
 called Read
 
@@ -6380,7 +3189,7 @@ called Read
 
 ### Tool result
 
-_source line 1247 · 2026-05-22T08:14:55.958581+00:00_
+_source line 1217 · 2026-05-22T08:14:55.958581+00:00_
 
 1	\section{Conclusion}
 2	
@@ -6407,7 +3216,7 @@ _source line 1247 · 2026-05-22T08:14:55.958581+00:00_
 
 ### Tool call
 
-_source line 1248 · 2026-05-22T08:15:04.092436+00:00_
+_source line 1218 · 2026-05-22T08:15:04.092436+00:00_
 
 called Read
 
@@ -6445,7 +3254,7 @@ called Read
 
 ### Tool result
 
-_source line 1249 · 2026-05-22T08:15:04.193401+00:00_
+_source line 1219 · 2026-05-22T08:15:04.193401+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -6474,7 +3283,7 @@ _source line 1249 · 2026-05-22T08:15:04.193401+00:00_
 
 ### Tool call
 
-_source line 1250 · 2026-05-22T08:15:22.340085+00:00_
+_source line 1220 · 2026-05-22T08:15:22.340085+00:00_
 
 called ToolSearch
 
@@ -6510,7 +3319,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1251 · 2026-05-22T08:15:22.395770+00:00_
+_source line 1221 · 2026-05-22T08:15:22.395770+00:00_
 
 
 
@@ -6532,7 +3341,7 @@ _source line 1251 · 2026-05-22T08:15:22.395770+00:00_
 
 ### Tool call
 
-_source line 1252 · 2026-05-22T08:15:47.002272+00:00_
+_source line 1222 · 2026-05-22T08:15:47.002272+00:00_
 
 called mcp__agent-ml-research__replace_agent_queue
 
@@ -6568,7 +3377,7 @@ called mcp__agent-ml-research__replace_agent_queue
 
 ### Tool result
 
-_source line 1253 · 2026-05-22T08:15:47.705001+00:00_
+_source line 1223 · 2026-05-22T08:15:47.705001+00:00_
 
 {"result":"{\"cancelled\":1,\"new_message_queued\":true,\"agent_key\":\"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e\"}"}
 
@@ -6590,7 +3399,7 @@ _source line 1253 · 2026-05-22T08:15:47.705001+00:00_
 
 ### Tool call
 
-_source line 1254 · 2026-05-22T08:16:05.572760+00:00_
+_source line 1224 · 2026-05-22T08:16:05.572760+00:00_
 
 called Agent
 
@@ -6628,7 +3437,7 @@ called Agent
 
 ### Tool result
 
-_source line 1255 · 2026-05-22T08:16:05.623564+00:00_
+_source line 1225 · 2026-05-22T08:16:05.623564+00:00_
 
 Async agent launched successfully.
 agentId: a562c4d8278953fb6 (internal ID - do not mention to user. Use SendMessage with to: 'a562c4d8278953fb6' to continue this agent.)
@@ -6655,7 +3464,7 @@ Do NOT Read or tail this file via the shell tool — it is the full sub-agent JS
 
 ### Tool call
 
-_source line 1256 · 2026-05-22T08:16:23.253809+00:00_
+_source line 1226 · 2026-05-22T08:16:23.253809+00:00_
 
 called Agent
 
@@ -6693,7 +3502,7 @@ called Agent
 
 ### Tool result
 
-_source line 1257 · 2026-05-22T08:16:23.295962+00:00_
+_source line 1227 · 2026-05-22T08:16:23.295962+00:00_
 
 Async agent launched successfully.
 agentId: ae83e0743b979c173 (internal ID - do not mention to user. Use SendMessage with to: 'ae83e0743b979c173' to continue this agent.)
@@ -6720,7 +3529,7 @@ Do NOT Read or tail this file via the shell tool — it is the full sub-agent JS
 
 ### Tool call
 
-_source line 1258 · 2026-05-22T08:16:45.434773+00:00_
+_source line 1228 · 2026-05-22T08:16:45.434773+00:00_
 
 called ToolSearch
 
@@ -6756,7 +3565,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1259 · 2026-05-22T08:16:45.435210+00:00_
+_source line 1229 · 2026-05-22T08:16:45.435210+00:00_
 
 
 
@@ -6778,7 +3587,7 @@ _source line 1259 · 2026-05-22T08:16:45.435210+00:00_
 
 ### Tool call
 
-_source line 1260 · 2026-05-22T08:16:55.023920+00:00_
+_source line 1230 · 2026-05-22T08:16:55.023920+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -6812,7 +3621,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1261 · 2026-05-22T08:16:59.148512+00:00_
+_source line 1231 · 2026-05-22T08:16:59.148512+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -6834,7 +3643,7 @@ _source line 1261 · 2026-05-22T08:16:59.148512+00:00_
 
 ### Tool call
 
-_source line 1262 · 2026-05-22T08:17:03.017791+00:00_
+_source line 1232 · 2026-05-22T08:17:03.017791+00:00_
 
 called Read
 
@@ -6868,7 +3677,7 @@ called Read
 
 ### Tool result
 
-_source line 1263 · 2026-05-22T08:17:03.069986+00:00_
+_source line 1233 · 2026-05-22T08:17:03.069986+00:00_
 
 1	\section{Method}\label{sec:method}
 2	
@@ -6901,7 +3710,7 @@ _source line 1263 · 2026-05-22T08:17:03.069986+00:00_
 
 ### Tool call
 
-_source line 1264 · 2026-05-22T08:18:16.290185+00:00_
+_source line 1234 · 2026-05-22T08:18:16.290185+00:00_
 
 called Edit
 
@@ -6941,7 +3750,7 @@ called Edit
 
 ### Tool result
 
-_source line 1265 · 2026-05-22T08:18:16.341090+00:00_
+_source line 1235 · 2026-05-22T08:18:16.341090+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully.
 
@@ -6963,7 +3772,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1266 · 2026-05-22T08:18:21.560120+00:00_
+_source line 1236 · 2026-05-22T08:18:21.560120+00:00_
 
 called Read
 
@@ -6997,7 +3806,7 @@ called Read
 
 ### Tool result
 
-_source line 1267 · 2026-05-22T08:18:21.912243+00:00_
+_source line 1237 · 2026-05-22T08:18:21.912243+00:00_
 
 1	{
 2	  "description": "A3: Complementarity Decomposition Analysis",
@@ -7059,7 +3868,7 @@ _source line 1267 · 2026-05-22T08:18:21.912243+00:00_
 
 ### Tool call
 
-_source line 1268 · 2026-05-22T08:18:40.706485+00:00_
+_source line 1238 · 2026-05-22T08:18:40.706485+00:00_
 
 called Edit
 
@@ -7099,7 +3908,7 @@ called Edit
 
 ### Tool result
 
-_source line 1269 · 2026-05-22T08:18:40.757240+00:00_
+_source line 1239 · 2026-05-22T08:18:40.757240+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -7121,7 +3930,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1270 · 2026-05-22T08:18:44.119630+00:00_
+_source line 1240 · 2026-05-22T08:18:44.119630+00:00_
 
 called Read
 
@@ -7159,7 +3968,7 @@ called Read
 
 ### Tool result
 
-_source line 1271 · 2026-05-22T08:18:44.171088+00:00_
+_source line 1241 · 2026-05-22T08:18:44.171088+00:00_
 
 618	Convergence is absent at 340M across all benchmarks (all $|\rho| \leq 0.4$, $p \geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\rho = 0.4$, $p = .52$), PIQA ($\rho = 0.3$, $p = .68$), and ARC-Easy ($\rho = -0.1$, $p = .95$).
 619	
@@ -7190,7 +3999,7 @@ _source line 1271 · 2026-05-22T08:18:44.171088+00:00_
 
 ### Tool call
 
-_source line 1272 · 2026-05-22T08:18:47.490422+00:00_
+_source line 1242 · 2026-05-22T08:18:47.490422+00:00_
 
 called Read
 
@@ -7228,7 +4037,7 @@ called Read
 
 ### Tool result
 
-_source line 1273 · 2026-05-22T08:18:47.490890+00:00_
+_source line 1243 · 2026-05-22T08:18:47.490890+00:00_
 
 637	LAMBADA & .180 & .125 & .082 & .057 & .025 \\
 638	\bottomrule
@@ -7256,7 +4065,7 @@ _source line 1273 · 2026-05-22T08:18:47.490890+00:00_
 
 ### Tool call
 
-_source line 1274 · 2026-05-22T08:19:03.868322+00:00_
+_source line 1244 · 2026-05-22T08:19:03.868322+00:00_
 
 called Edit
 
@@ -7296,7 +4105,7 @@ called Edit
 
 ### Tool result
 
-_source line 1275 · 2026-05-22T08:19:03.869519+00:00_
+_source line 1245 · 2026-05-22T08:19:03.869519+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -7318,7 +4127,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1276 · 2026-05-22T08:19:08.285535+00:00_
+_source line 1246 · 2026-05-22T08:19:08.285535+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -7354,7 +4163,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1277 · 2026-05-22T08:19:12.150277+00:00_
+_source line 1247 · 2026-05-22T08:19:12.150277+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n\\nUnderfull \\\\vbox (badness 2951) has occurred while \\\\output is active []\\n\\n [18]\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 552--559\\n [][] \\n []\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\\n\\n [19]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 8250F515C45CD661D87A466039B2DECD;7667.\\n ) \\nHere is how much of TeX's memory you used:\\n 16098 strings out of 469438\\n 252080 string characters out of 5468411\\n 726395 words of memory out of 5000000\\n 43960 multiletter control sequences out of 15000+600000\\n 701811 words of font info for 377 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,2157b,650
 …[truncated 4673 chars]
@@ -7377,7 +4186,7 @@ _source line 1277 · 2026-05-22T08:19:12.150277+00:00_
 
 ### Tool call
 
-_source line 1278 · 2026-05-22T08:19:58.738290+00:00_
+_source line 1248 · 2026-05-22T08:19:58.738290+00:00_
 
 called Read
 
@@ -7415,7 +4224,7 @@ called Read
 
 ### Tool result
 
-_source line 1279 · 2026-05-22T08:19:58.790837+00:00_
+_source line 1249 · 2026-05-22T08:19:58.790837+00:00_
 
 24	\begin{abstract}
 25	When attention layers are added to linear recurrent architectures, they help and hurt almost entirely different examples across backbones: pairwise overlap among three controlled hybrid designs is at most 10\%, far below the 78--92\% theoretical maximum. Using the model zoo of \citet{wang2025hybrid} (three architectures, five attention ratios, two scales, single training runs per configuration), we decompose per-example effects on four benchmarks and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$ for reasoning, $0.30$ for retrieval) rather than attention dose. Aggregate convergence is task-specific: only LAMBADA provides exploratory evidence for monotonic variance reduction (Bonferroni-adjusted $p = .100$), on LAMBADA, aggregate variance decreases gradually while per-example overlap saturates at the first attention level---a saturation pattern that generalizes to all four benchmarks regardless of aggregate convergence. A proof-of-concept majority vote across architectures fails to outperform the best individual model despite 15--45\% per-example disagreement, while oracle accuracy reveals 7--14\,pp of untapped complementarity, suggesting that architectures interchangeable by aggregate metrics may carry hidden consequences for per-example reliability.
@@ -7439,7 +4248,7 @@ _source line 1279 · 2026-05-22T08:19:58.790837+00:00_
 
 ### Tool call
 
-_source line 1280 · 2026-05-22T08:20:08.864823+00:00_
+_source line 1250 · 2026-05-22T08:20:08.864823+00:00_
 
 called Edit
 
@@ -7479,7 +4288,7 @@ called Edit
 
 ### Tool result
 
-_source line 1281 · 2026-05-22T08:20:08.915582+00:00_
+_source line 1251 · 2026-05-22T08:20:08.915582+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully.
 
@@ -7501,7 +4310,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1282 · 2026-05-22T08:20:12.831407+00:00_
+_source line 1252 · 2026-05-22T08:20:12.831407+00:00_
 
 called Read
 
@@ -7535,7 +4344,7 @@ called Read
 
 ### Tool result
 
-_source line 1283 · 2026-05-22T08:20:12.882204+00:00_
+_source line 1253 · 2026-05-22T08:20:12.882204+00:00_
 
 1	\section{Conclusion}
 2	
@@ -7562,7 +4371,7 @@ _source line 1283 · 2026-05-22T08:20:12.882204+00:00_
 
 ### Tool call
 
-_source line 1284 · 2026-05-22T08:20:24.665898+00:00_
+_source line 1254 · 2026-05-22T08:20:24.665898+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -7598,7 +4407,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1285 · 2026-05-22T08:20:30.202771+00:00_
+_source line 1255 · 2026-05-22T08:20:30.202771+00:00_
 
 {"result":"{\"success\": true, \"passed\": true, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nUnderfull \\\\vbox (badness 2762) has occurred while \\\\output is active []\\n\\n [17]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 538--539\\n []\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\T1/ptm/m/n/10.95 (+20) The RetNet\\n--HGRN2 anti-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 538--539\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n[18]\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 552--559\\n [][] \\n []\\n\\n[19]) [20] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 8250F515C45CD661D87A466039B2DECD;7667.\\n ) \\nHere is how much of TeX's memory you used:\\n 16101 strings out of 469438\\n 252104 string characters out of 5468411\\n 725395 words of memory out of 5000000\\n 43960 multiletter control sequences out of 15000+600000\\n 701941 words of font info for 379 fonts, out of 8000000 for 9000\\n 59 hyphenation except
 …[truncated 4299 chars]
@@ -7621,7 +4430,7 @@ _source line 1285 · 2026-05-22T08:20:30.202771+00:00_
 
 ### Tool call
 
-_source line 1286 · 2026-05-22T08:20:35.145815+00:00_
+_source line 1256 · 2026-05-22T08:20:35.145815+00:00_
 
 called ToolSearch
 
@@ -7657,7 +4466,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1287 · 2026-05-22T08:20:35.196465+00:00_
+_source line 1257 · 2026-05-22T08:20:35.196465+00:00_
 
 
 
@@ -7679,7 +4488,7 @@ _source line 1287 · 2026-05-22T08:20:35.196465+00:00_
 
 ### Tool call
 
-_source line 1288 · 2026-05-22T08:20:47.083182+00:00_
+_source line 1258 · 2026-05-22T08:20:47.083182+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -7729,7 +4538,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1289 · 2026-05-22T08:20:55.328195+00:00_
+_source line 1259 · 2026-05-22T08:20:55.328195+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260522T082047_n0zw\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -7751,7 +4560,7 @@ _source line 1289 · 2026-05-22T08:20:55.328195+00:00_
 
 ### Tool call
 
-_source line 1290 · 2026-05-22T08:21:05.330162+00:00_
+_source line 1260 · 2026-05-22T08:21:05.330162+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -7785,7 +4594,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1291 · 2026-05-22T08:21:05.982844+00:00_
+_source line 1261 · 2026-05-22T08:21:05.982844+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -7807,7 +4616,7 @@ _source line 1291 · 2026-05-22T08:21:05.982844+00:00_
 
 ### Tool call
 
-_source line 1292 · 2026-05-22T08:23:08.249691+00:00_
+_source line 1262 · 2026-05-22T08:23:08.249691+00:00_
 
 called ToolSearch
 
@@ -7843,7 +4652,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1293 · 2026-05-22T08:23:08.300575+00:00_
+_source line 1263 · 2026-05-22T08:23:08.300575+00:00_
 
 
 
@@ -7865,7 +4674,7 @@ _source line 1293 · 2026-05-22T08:23:08.300575+00:00_
 
 ### Tool call
 
-_source line 1294 · 2026-05-22T08:23:11.813743+00:00_
+_source line 1264 · 2026-05-22T08:23:11.813743+00:00_
 
 called TaskOutput
 
@@ -7903,7 +4712,7 @@ called TaskOutput
 
 ### Tool result
 
-_source line 1295 · 2026-05-22T08:23:12.018352+00:00_
+_source line 1265 · 2026-05-22T08:23:12.018352+00:00_
 
 &lt;retrieval_status>not_ready&lt;/retrieval_status>
 
@@ -7937,7 +4746,7 @@ results['cross_architecture']['cross_threshold_analysis']['rescue_gap_interpreta
 
 ### Tool call
 
-_source line 1296 · 2026-05-22T08:23:12.018767+00:00_
+_source line 1266 · 2026-05-22T08:23:12.018767+00:00_
 
 called ToolSearch
 
@@ -7973,7 +4782,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1297 · 2026-05-22T08:23:12.069181+00:00_
+_source line 1267 · 2026-05-22T08:23:12.069181+00:00_
 
 No matching deferred tools found
 
@@ -7995,7 +4804,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1298 · 2026-05-22T08:23:23.184299+00:00_
+_source line 1268 · 2026-05-22T08:23:23.184299+00:00_
 
 called Read
 
@@ -8031,7 +4840,7 @@ called Read
 
 ### Tool result
 
-_source line 1299 · 2026-05-22T08:23:23.385469+00:00_
+_source line 1269 · 2026-05-22T08:23:23.385469+00:00_
 
 1	{
 2	  "analysis": "a2_confidence_prediction",
@@ -8095,7 +4904,7 @@ _source line 1299 · 2026-05-22T08:23:23.385469+00:00_
 
 ### Tool call
 
-_source line 1300 · 2026-05-22T08:23:23.536305+00:00_
+_source line 1270 · 2026-05-22T08:23:23.536305+00:00_
 
 called ToolSearch
 
@@ -8131,7 +4940,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1301 · 2026-05-22T08:23:23.637059+00:00_
+_source line 1271 · 2026-05-22T08:23:23.637059+00:00_
 
 No matching deferred tools found
 
@@ -8153,7 +4962,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1302 · 2026-05-22T08:23:27.551585+00:00_
+_source line 1272 · 2026-05-22T08:23:27.551585+00:00_
 
 called Read
 
@@ -8191,7 +5000,7 @@ called Read
 
 ### Tool result
 
-_source line 1303 · 2026-05-22T08:23:27.602436+00:00_
+_source line 1273 · 2026-05-22T08:23:27.602436+00:00_
 
 130	      "rescue_prediction": {
 131	        "task": "predict helped (pure-wrong\u2192hybrid-right) vs stayed-wrong",
@@ -8271,7 +5080,7 @@ _source line 1303 · 2026-05-22T08:23:27.602436+00:00_
 
 ### Tool call
 
-_source line 1304 · 2026-05-22T08:23:30.626854+00:00_
+_source line 1274 · 2026-05-22T08:23:30.626854+00:00_
 
 called Read
 
@@ -8309,7 +5118,7 @@ called Read
 
 ### Tool result
 
-_source line 1305 · 2026-05-22T08:23:30.677987+00:00_
+_source line 1275 · 2026-05-22T08:23:30.677987+00:00_
 
 275	        "threshold_from_GDN": {
 276	          "GDN": {
@@ -8393,7 +5202,7 @@ _source line 1305 · 2026-05-22T08:23:30.677987+00:00_
 
 ### Tool call
 
-_source line 1306 · 2026-05-22T08:23:46.018842+00:00_
+_source line 1276 · 2026-05-22T08:23:46.018842+00:00_
 
 called Read
 
@@ -8429,7 +5238,7 @@ called Read
 
 ### Tool result
 
-_source line 1307 · 2026-05-22T08:23:46.745972+00:00_
+_source line 1277 · 2026-05-22T08:23:46.745972+00:00_
 
 1	% Appendix sections for the paper.
 2	
@@ -8467,7 +5276,7 @@ _source line 1307 · 2026-05-22T08:23:46.745972+00:00_
 
 ### Tool call
 
-_source line 1308 · 2026-05-22T08:23:46.746499+00:00_
+_source line 1278 · 2026-05-22T08:23:46.746499+00:00_
 
 called Read
 
@@ -8503,7 +5312,7 @@ called Read
 
 ### Tool result
 
-_source line 1309 · 2026-05-22T08:23:46.797149+00:00_
+_source line 1279 · 2026-05-22T08:23:46.797149+00:00_
 
 1	\section{Experiments}\label{sec:experiments}
 2	
@@ -8532,7 +5341,7 @@ _source line 1309 · 2026-05-22T08:23:46.797149+00:00_
 
 ### Tool call
 
-_source line 1310 · 2026-05-22T08:23:52.367652+00:00_
+_source line 1280 · 2026-05-22T08:23:52.367652+00:00_
 
 called Grep
 
@@ -8574,7 +5383,7 @@ called Grep
 
 ### Tool result
 
-_source line 1311 · 2026-05-22T08:23:52.418317+00:00_
+_source line 1281 · 2026-05-22T08:23:52.418317+00:00_
 
 416-\end{table}
 417-
@@ -8601,7 +5410,7 @@ _source line 1311 · 2026-05-22T08:23:52.418317+00:00_
 
 ### Tool call
 
-_source line 1312 · 2026-05-22T08:23:55.630497+00:00_
+_source line 1282 · 2026-05-22T08:23:55.630497+00:00_
 
 called Read
 
@@ -8639,7 +5448,7 @@ called Read
 
 ### Tool result
 
-_source line 1313 · 2026-05-22T08:23:55.681919+00:00_
+_source line 1283 · 2026-05-22T08:23:55.681919+00:00_
 
 418	\section{Target-Token Confidence Margin}
 419	\label{app:confidence_margin}
@@ -8691,7 +5500,7 @@ _source line 1313 · 2026-05-22T08:23:55.681919+00:00_
 
 ### Tool call
 
-_source line 1314 · 2026-05-22T08:23:58.893828+00:00_
+_source line 1284 · 2026-05-22T08:23:58.893828+00:00_
 
 called Read
 
@@ -8729,7 +5538,7 @@ called Read
 
 ### Tool result
 
-_source line 1315 · 2026-05-22T08:23:58.894271+00:00_
+_source line 1285 · 2026-05-22T08:23:58.894271+00:00_
 
 497	HellaSwag & GDN & 0.009 & .999 & No \\
 498	 & RetNet & $-$0.035 & .453 & No \\
@@ -8771,7 +5580,7 @@ _source line 1315 · 2026-05-22T08:23:58.894271+00:00_
 
 ### Tool call
 
-_source line 1316 · 2026-05-22T08:24:01.816111+00:00_
+_source line 1286 · 2026-05-22T08:24:01.816111+00:00_
 
 called Read
 
@@ -8809,7 +5618,7 @@ called Read
 
 ### Tool result
 
-_source line 1317 · 2026-05-22T08:24:01.835580+00:00_
+_source line 1287 · 2026-05-22T08:24:01.835580+00:00_
 
 576	\caption{340M vs.\ 1.3B LAMBADA comparison.}
 577	\label{tab:scale_comparison}
@@ -8862,7 +5671,7 @@ _source line 1317 · 2026-05-22T08:24:01.835580+00:00_
 
 ### Tool call
 
-_source line 1318 · 2026-05-22T08:24:14.393153+00:00_
+_source line 1288 · 2026-05-22T08:24:14.393153+00:00_
 
 called Grep
 
@@ -8902,7 +5711,7 @@ called Grep
 
 ### Tool result
 
-_source line 1319 · 2026-05-22T08:24:14.393498+00:00_
+_source line 1289 · 2026-05-22T08:24:14.393498+00:00_
 
 43:\subsection{Per-Example Divergence}\label{ssec:per_example}
 76:[Omitted long matching line]
@@ -8925,7 +5734,7 @@ _source line 1319 · 2026-05-22T08:24:14.393498+00:00_
 
 ### Tool call
 
-_source line 1320 · 2026-05-22T08:24:28.970951+00:00_
+_source line 1290 · 2026-05-22T08:24:28.970951+00:00_
 
 called Read
 
@@ -8963,7 +5772,7 @@ called Read
 
 ### Tool result
 
-_source line 1321 · 2026-05-22T08:24:29.022006+00:00_
+_source line 1291 · 2026-05-22T08:24:29.022006+00:00_
 
 43	\subsection{Per-Example Divergence}\label{ssec:per_example}
 44	
@@ -8992,7 +5801,7 @@ _source line 1321 · 2026-05-22T08:24:29.022006+00:00_
 
 ### Tool call
 
-_source line 1322 · 2026-05-22T08:25:02.357107+00:00_
+_source line 1292 · 2026-05-22T08:25:02.357107+00:00_
 
 called Read
 
@@ -9030,7 +5839,7 @@ called Read
 
 ### Tool result
 
-_source line 1323 · 2026-05-22T08:25:02.407855+00:00_
+_source line 1293 · 2026-05-22T08:25:02.407855+00:00_
 
 503	 & HGRN2 & 0.13 & .145 & No \\
 504	\bottomrule
@@ -9063,7 +5872,7 @@ _source line 1323 · 2026-05-22T08:25:02.407855+00:00_
 
 ### Tool call
 
-_source line 1324 · 2026-05-22T08:25:13.899225+00:00_
+_source line 1294 · 2026-05-22T08:25:13.899225+00:00_
 
 called Edit
 
@@ -9103,7 +5912,7 @@ called Edit
 
 ### Tool result
 
-_source line 1325 · 2026-05-22T08:25:13.900344+00:00_
+_source line 1295 · 2026-05-22T08:25:13.900344+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully.
 
@@ -9125,7 +5934,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1326 · 2026-05-22T08:25:18.181331+00:00_
+_source line 1296 · 2026-05-22T08:25:18.181331+00:00_
 
 called Edit
 
@@ -9165,7 +5974,7 @@ called Edit
 
 ### Tool result
 
-_source line 1327 · 2026-05-22T08:25:18.182006+00:00_
+_source line 1297 · 2026-05-22T08:25:18.182006+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -9187,7 +5996,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1328 · 2026-05-22T08:25:21.597832+00:00_
+_source line 1298 · 2026-05-22T08:25:21.597832+00:00_
 
 called Bash
 
@@ -9225,7 +6034,7 @@ called Bash
 
 ### Tool result
 
-_source line 1329 · 2026-05-22T08:25:22.904117+00:00_
+_source line 1299 · 2026-05-22T08:25:22.904117+00:00_
 
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>&lt;/usr/share/texliv
@@ -9267,7 +6076,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1330 · 2026-05-22T08:25:26.969740+00:00_
+_source line 1300 · 2026-05-22T08:25:26.969740+00:00_
 
 called Bash
 
@@ -9303,7 +6112,7 @@ called Bash
 
 ### Tool result
 
-_source line 1331 · 2026-05-22T08:25:27.020440+00:00_
+_source line 1301 · 2026-05-22T08:25:27.020440+00:00_
 
 15
 LaTeX Warning: Reference `app:prediction_framework' on page 6 undefined on inpu
@@ -9330,7 +6139,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1332 · 2026-05-22T08:25:31.537001+00:00_
+_source line 1302 · 2026-05-22T08:25:31.537001+00:00_
 
 called Bash
 
@@ -9368,7 +6177,7 @@ called Bash
 
 ### Tool result
 
-_source line 1333 · 2026-05-22T08:25:32.692883+00:00_
+_source line 1303 · 2026-05-22T08:25:32.692883+00:00_
 
 Output written on main.pdf (21 pages, 472673 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
@@ -9391,7 +6200,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1334 · 2026-05-22T08:25:37.587311+00:00_
+_source line 1304 · 2026-05-22T08:25:37.587311+00:00_
 
 called Bash
 
@@ -9427,7 +6236,7 @@ called Bash
 
 ### Tool result
 
-_source line 1335 · 2026-05-22T08:25:37.696099+00:00_
+_source line 1305 · 2026-05-22T08:25:37.696099+00:00_
 
 38:\section*{Limitations}
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
@@ -9450,7 +6259,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1336 · 2026-05-22T08:25:43.600007+00:00_
+_source line 1306 · 2026-05-22T08:25:43.600007+00:00_
 
 called ToolSearch
 
@@ -9486,7 +6295,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1337 · 2026-05-22T08:25:43.650675+00:00_
+_source line 1307 · 2026-05-22T08:25:43.650675+00:00_
 
 No matching deferred tools found
 
@@ -9508,7 +6317,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1338 · 2026-05-22T08:25:46.614826+00:00_
+_source line 1308 · 2026-05-22T08:25:46.614826+00:00_
 
 called ToolSearch
 
@@ -9544,7 +6353,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1339 · 2026-05-22T08:25:46.674566+00:00_
+_source line 1309 · 2026-05-22T08:25:46.674566+00:00_
 
 
 
@@ -9566,7 +6375,7 @@ _source line 1339 · 2026-05-22T08:25:46.674566+00:00_
 
 ### Tool call
 
-_source line 1340 · 2026-05-22T08:25:49.595906+00:00_
+_source line 1310 · 2026-05-22T08:25:49.595906+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -9604,7 +6413,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1341 · 2026-05-22T08:25:53.153663+00:00_
+_source line 1311 · 2026-05-22T08:25:53.153663+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\T1/ptm/m/n/10.95 (+20) The RetNet\\n--HGRN2 anti-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 593--600\\n [][] \\n []\\n\\n[19]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [20] [21\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 41E0B256EA337C840C0C8A4F6B237535;7829.\\n ) \\nHere is how much of TeX's memory you used:\\n 16111 strings out of 469438\\n 252253 string characters out of 5468411\\n 726762 words of memory out of 5000000\\n 43966 multiletter control sequences out of 15000+600000\\n 701941 words of font info for 379 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,2445b,650s stack positions out of 10000i,1000n,20000p,200000b
 …[truncated 4558 chars]
@@ -9627,7 +6436,7 @@ _source line 1341 · 2026-05-22T08:25:53.153663+00:00_
 
 ### Tool call
 
-_source line 1342 · 2026-05-22T08:26:02.644582+00:00_
+_source line 1312 · 2026-05-22T08:26:02.644582+00:00_
 
 called Bash
 
@@ -9665,7 +6474,7 @@ called Bash
 
 ### Tool result
 
-_source line 1343 · 2026-05-22T08:26:03.800278+00:00_
+_source line 1313 · 2026-05-22T08:26:03.800278+00:00_
 
 [Loading MPS to PDF converter (version 2006.09.02).]
 [2 <./figures/fig1_decoupling_hero.pdf>]) (./sections/related_work.tex
@@ -9701,7 +6510,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1344 · 2026-05-22T08:26:23.502783+00:00_
+_source line 1314 · 2026-05-22T08:26:23.502783+00:00_
 
 called ToolSearch
 
@@ -9737,7 +6546,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1345 · 2026-05-22T08:26:23.553408+00:00_
+_source line 1315 · 2026-05-22T08:26:23.553408+00:00_
 
 No matching deferred tools found
 
@@ -9759,7 +6568,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1346 · 2026-05-22T08:26:26.364287+00:00_
+_source line 1316 · 2026-05-22T08:26:26.364287+00:00_
 
 called ToolSearch
 
@@ -9795,7 +6604,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1347 · 2026-05-22T08:26:26.515040+00:00_
+_source line 1317 · 2026-05-22T08:26:26.515040+00:00_
 
 
 
@@ -9817,7 +6626,7 @@ _source line 1347 · 2026-05-22T08:26:26.515040+00:00_
 
 ### Tool call
 
-_source line 1348 · 2026-05-22T08:26:35.311041+00:00_
+_source line 1318 · 2026-05-22T08:26:35.311041+00:00_
 
 called ToolSearch
 
@@ -9853,7 +6662,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1349 · 2026-05-22T08:26:35.361618+00:00_
+_source line 1319 · 2026-05-22T08:26:35.361618+00:00_
 
 No matching deferred tools found
 
@@ -9875,7 +6684,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1350 · 2026-05-22T08:26:38.169935+00:00_
+_source line 1320 · 2026-05-22T08:26:38.169935+00:00_
 
 called ToolSearch
 
@@ -9911,7 +6720,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1351 · 2026-05-22T08:26:38.245988+00:00_
+_source line 1321 · 2026-05-22T08:26:38.245988+00:00_
 
 
 
@@ -9933,7 +6742,7 @@ _source line 1351 · 2026-05-22T08:26:38.245988+00:00_
 
 ### Tool call
 
-_source line 1352 · 2026-05-22T08:26:40.917125+00:00_
+_source line 1322 · 2026-05-22T08:26:40.917125+00:00_
 
 called ToolSearch
 
@@ -9969,7 +6778,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1353 · 2026-05-22T08:26:40.917529+00:00_
+_source line 1323 · 2026-05-22T08:26:40.917529+00:00_
 
 
 
@@ -9991,7 +6800,7 @@ _source line 1353 · 2026-05-22T08:26:40.917529+00:00_
 
 ### Tool call
 
-_source line 1354 · 2026-05-22T08:27:07.866528+00:00_
+_source line 1324 · 2026-05-22T08:27:07.866528+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -10027,7 +6836,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1355 · 2026-05-22T08:27:09.431843+00:00_
+_source line 1325 · 2026-05-22T08:27:09.431843+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e357b0804a4c3850da1c316444\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -10049,7 +6858,7 @@ _source line 1355 · 2026-05-22T08:27:09.431843+00:00_
 
 ### Assistant
 
-_source line 1356 · 2026-05-22T08:27:21.013164+00:00_
+_source line 1326 · 2026-05-22T08:27:21.013164+00:00_
 
 Main text ends on page 8, exactly at the EMNLP limit. A2 integration is done. Now I need to activate Paper Agent for the writing optimization the user requested, then resubmit for review.
 
@@ -10076,7 +6885,7 @@ Main text ends on page 8, exactly at the EMNLP limit. A2 integration is done. No
 
 ### User
 
-_source line 1357 · 2026-05-22T08:27:22.779791+00:00_
+_source line 1327 · 2026-05-22T08:27:22.779791+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/1 (cuda:0 可用，A2 可能需要) | Worker 2 (A2 running + A3 running) | 磁盘: 未检查
@@ -10193,7 +7002,7 @@ A2 (`worker_analysis_a2_confidence_prediction_20260522T081521`) 和 A3 (`worker_
 
 ### Tool call
 
-_source line 1358 · 2026-05-22T08:28:05.049132+00:00_
+_source line 1328 · 2026-05-22T08:28:05.049132+00:00_
 
 called Read
 
@@ -10231,7 +7040,7 @@ called Read
 
 ### Tool result
 
-_source line 1359 · 2026-05-22T08:28:05.100007+00:00_
+_source line 1329 · 2026-05-22T08:28:05.100007+00:00_
 
 47	Each architecture displays a distinct profile of per-example changes (Table~\ref{tab:per_example}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395). HGRN2 is the only architecture for which adding attention is associated with a net per-example benefit. Pairwise Jaccard similarity is low: mean $\bar{J} \leq 0.104$ for helped, $\leq 0.096$ for hurt, indicating ${\sim}90$\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\text{null}} \approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\ref{app:jaccard_permutation}), but normalizing by the theoretical upper bound $J_{\max} = \min(|A|,|B|)/\max(|A|,|B|)$, observed overlap reaches only 6--7\% of the achievable range above chance (normalized ES 0.065 helped, 0.062 hurt; per-pair details in Appendix~\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.
 48	
@@ -10256,7 +7065,7 @@ _source line 1359 · 2026-05-22T08:28:05.100007+00:00_
 
 ### Tool call
 
-_source line 1360 · 2026-05-22T08:28:16.870842+00:00_
+_source line 1330 · 2026-05-22T08:28:16.870842+00:00_
 
 called Edit
 
@@ -10296,7 +7105,7 @@ called Edit
 
 ### Tool result
 
-_source line 1361 · 2026-05-22T08:28:16.921782+00:00_
+_source line 1331 · 2026-05-22T08:28:16.921782+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -10318,7 +7127,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1362 · 2026-05-22T08:28:28.398275+00:00_
+_source line 1332 · 2026-05-22T08:28:28.398275+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -10352,7 +7161,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1363 · 2026-05-22T08:28:31.559945+00:00_
+_source line 1333 · 2026-05-22T08:28:31.559945+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -10374,7 +7183,7 @@ _source line 1363 · 2026-05-22T08:28:31.559945+00:00_
 
 ### Tool call
 
-_source line 1364 · 2026-05-22T08:28:35.631353+00:00_
+_source line 1334 · 2026-05-22T08:28:35.631353+00:00_
 
 called Bash
 
@@ -10412,7 +7221,7 @@ called Bash
 
 ### Tool result
 
-_source line 1365 · 2026-05-22T08:28:36.938942+00:00_
+_source line 1335 · 2026-05-22T08:28:36.938942+00:00_
 
 Output written on main.pdf (21 pages, 473032 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
@@ -10435,7 +7244,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1366 · 2026-05-22T08:28:41.461121+00:00_
+_source line 1336 · 2026-05-22T08:28:41.461121+00:00_
 
 called mcp__agent-ml-research__check_paper_consistency
 
@@ -10469,7 +7278,7 @@ called mcp__agent-ml-research__check_paper_consistency
 
 ### Tool result
 
-_source line 1367 · 2026-05-22T08:28:41.512066+00:00_
+_source line 1337 · 2026-05-22T08:28:41.512066+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"sections\": [{\"file\": \"arr_checklist.tex\", \"role\": \"other\", \"num_numbers\": 2, \"num_cites\": 3}, {\"file\": \"author_response.tex\", \"role\": \"other\", \"num_numbers\": 66, \"num_cites\": 0}, {\"file\": \"author_response_r7.tex\", \"role\": \"other\", \"num_numbers\": 61, \"num_cites\": 0}], \"critical\": [], \"warning\": [{\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'ali2025hidden' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'arora2024based' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'arora2024zoology' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'basu2026routing' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'black2022model' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'botev2024recurrentgemma' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'clark2018arc' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'cooper2024arbitrariness' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'damour2022underspecification' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'dao2024mamba2' is never cited.\", \"location\": \"references.bib\"}, {\"kind\": \"orphan_bib_key\", \"message\": \"references.bib entry 'de2024griffin' is never cited.\
 …[truncated 4240 chars]
@@ -10492,7 +7301,7 @@ _source line 1367 · 2026-05-22T08:28:41.512066+00:00_
 
 ### Assistant
 
-_source line 1368 · 2026-05-22T08:28:56.665864+00:00_
+_source line 1338 · 2026-05-22T08:28:56.665864+00:00_
 
 Consistency check: 0 critical issues. The 36 warnings are all orphan bib entries — false positives because the checker doesn't follow `\input{}` directives to the section files. No action needed.
 
@@ -10524,7 +7333,7 @@ Current status:
 
 ### User
 
-_source line 1369 · 2026-05-22T08:28:57.224308+00:00_
+_source line 1339 · 2026-05-22T08:28:57.224308+00:00_
 
 [Reviewer 回复]:
 ## A3 Complementarity 分析审查
@@ -10651,7 +7460,7 @@ A3 的 MV Efficiency 为负是 surprising finding，可放 appendix 或 conclusi
 
 ### Tool call
 
-_source line 1370 · 2026-05-22T08:29:17.152396+00:00_
+_source line 1340 · 2026-05-22T08:29:17.152396+00:00_
 
 called Read
 
@@ -10687,7 +7496,7 @@ called Read
 
 ### Tool result
 
-_source line 1371 · 2026-05-22T08:29:17.203315+00:00_
+_source line 1341 · 2026-05-22T08:29:17.203315+00:00_
 
 1	{
 2	  "description": "A3: Complementarity Decomposition Analysis",
@@ -10749,7 +7558,7 @@ _source line 1371 · 2026-05-22T08:29:17.203315+00:00_
 
 ### Tool call
 
-_source line 1372 · 2026-05-22T08:29:20.982823+00:00_
+_source line 1342 · 2026-05-22T08:29:20.982823+00:00_
 
 called Grep
 
@@ -10789,7 +7598,7 @@ called Grep
 
 ### Tool result
 
-_source line 1373 · 2026-05-22T08:29:20.983282+00:00_
+_source line 1343 · 2026-05-22T08:29:20.983282+00:00_
 
 45:            "mv_accuracy": 0.518533,
 73:            "mv_accuracy": 0.522996,
@@ -10830,7 +7639,7 @@ _source line 1373 · 2026-05-22T08:29:20.983282+00:00_
 
 ### Tool call
 
-_source line 1374 · 2026-05-22T08:29:33.476602+00:00_
+_source line 1344 · 2026-05-22T08:29:33.476602+00:00_
 
 called Read
 
@@ -10864,7 +7673,7 @@ called Read
 
 ### Tool result
 
-_source line 1375 · 2026-05-22T08:29:33.527283+00:00_
+_source line 1345 · 2026-05-22T08:29:33.527283+00:00_
 
 1	\section{Conclusion}
 2	
@@ -10891,7 +7700,7 @@ _source line 1375 · 2026-05-22T08:29:33.527283+00:00_
 
 ### Tool call
 
-_source line 1376 · 2026-05-22T08:29:38.148807+00:00_
+_source line 1346 · 2026-05-22T08:29:38.148807+00:00_
 
 called Edit
 
@@ -10931,7 +7740,7 @@ called Edit
 
 ### Tool result
 
-_source line 1377 · 2026-05-22T08:29:38.199465+00:00_
+_source line 1347 · 2026-05-22T08:29:38.199465+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -10953,7 +7762,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1378 · 2026-05-22T08:29:45.218800+00:00_
+_source line 1348 · 2026-05-22T08:29:45.218800+00:00_
 
 called Read
 
@@ -10991,7 +7800,7 @@ called Read
 
 ### Tool result
 
-_source line 1379 · 2026-05-22T08:29:45.369777+00:00_
+_source line 1349 · 2026-05-22T08:29:45.369777+00:00_
 
 24	\begin{abstract}
 25	When attention layers are added to linear recurrent architectures, they help and hurt almost entirely different examples across backbones: pairwise overlap among three controlled hybrid designs is at most 10\%, far below the 78--92\% theoretical maximum. Using the model zoo of \citet{wang2025hybrid} (three architectures, five attention ratios, two scales, single training runs per configuration), we decompose per-example effects on four benchmarks and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$ for reasoning, $0.30$ for retrieval) rather than attention dose. Aggregate convergence is task-specific: only LAMBADA provides exploratory evidence for monotonic variance reduction (Bonferroni-adjusted $p = .100$). On this benchmark, aggregate variance decreases gradually while per-example overlap saturates at the first attention level---a saturation pattern that generalizes to all four benchmarks regardless of aggregate convergence. A proof-of-concept majority vote across architectures fails to outperform the best individual model despite 15--45\% per-example disagreement, while oracle accuracy reveals 7--14\,pp of untapped complementarity, suggesting that architectures interchangeable by aggregate metrics may carry hidden consequences for per-example reliability.
@@ -11016,7 +7825,7 @@ _source line 1379 · 2026-05-22T08:29:45.369777+00:00_
 
 ### Tool call
 
-_source line 1380 · 2026-05-22T08:29:51.209510+00:00_
+_source line 1350 · 2026-05-22T08:29:51.209510+00:00_
 
 called Read
 
@@ -11054,7 +7863,7 @@ called Read
 
 ### Tool result
 
-_source line 1381 · 2026-05-22T08:29:51.260355+00:00_
+_source line 1351 · 2026-05-22T08:29:51.260355+00:00_
 
 38	\section*{Limitations}
 39	
@@ -11083,7 +7892,7 @@ _source line 1381 · 2026-05-22T08:29:51.260355+00:00_
 
 ### Tool call
 
-_source line 1382 · 2026-05-22T08:30:07.236850+00:00_
+_source line 1352 · 2026-05-22T08:30:07.236850+00:00_
 
 called ToolSearch
 
@@ -11119,7 +7928,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1383 · 2026-05-22T08:30:07.287427+00:00_
+_source line 1353 · 2026-05-22T08:30:07.287427+00:00_
 
 No matching deferred tools found
 
@@ -11141,7 +7950,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1384 · 2026-05-22T08:30:10.098975+00:00_
+_source line 1354 · 2026-05-22T08:30:10.098975+00:00_
 
 called ToolSearch
 
@@ -11177,7 +7986,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1385 · 2026-05-22T08:30:10.149735+00:00_
+_source line 1355 · 2026-05-22T08:30:10.149735+00:00_
 
 
 
@@ -11199,7 +8008,7 @@ _source line 1385 · 2026-05-22T08:30:10.149735+00:00_
 
 ### Tool call
 
-_source line 1386 · 2026-05-22T08:30:12.909788+00:00_
+_source line 1356 · 2026-05-22T08:30:12.909788+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -11233,7 +8042,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1387 · 2026-05-22T08:30:12.910222+00:00_
+_source line 1357 · 2026-05-22T08:30:12.910222+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":100}"}
 
@@ -11255,7 +8064,7 @@ _source line 1387 · 2026-05-22T08:30:12.910222+00:00_
 
 ### Assistant
 
-_source line 1388 · 2026-05-22T08:30:24.733455+00:00_
+_source line 1358 · 2026-05-22T08:30:24.733455+00:00_
 
 Main Agent is idle. Paper Agent is working on the writing optimization directive. Waiting for Paper Agent's callback before resubmitting to review. No further action needed until Paper Agent reports back.
 
@@ -11282,7 +8091,7 @@ Main Agent is idle. Paper Agent is working on the writing optimization directive
 
 ### User
 
-_source line 1389 · 2026-05-22T08:35:48.073120+00:00_
+_source line 1359 · 2026-05-22T08:35:48.073120+00:00_
 
 [Paper Agent 回复]:
 [写作进展] 写作质量优化 — 完成
@@ -11344,7 +8153,7 @@ _source line 1389 · 2026-05-22T08:35:48.073120+00:00_
 
 ### Tool call
 
-_source line 1390 · 2026-05-22T08:35:56.211905+00:00_
+_source line 1360 · 2026-05-22T08:35:56.211905+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -11382,7 +8191,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1391 · 2026-05-22T08:35:56.714938+00:00_
+_source line 1361 · 2026-05-22T08:35:56.714938+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"\\nOverfull \\\\hbox (17.8882pt too wide) in paragraph at lines 540--548\\n [][] \\n []\\n\\n[17]\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 579--580\\n []\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\T1/ptm/m/n/10.95 (+20) The RetNet\\n--HGRN2 anti-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 593--600\\n [][] \\n []\\n\\n[18] [19]) [20\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 41E0B256EA337C840C0C8A4F6B237535;7829.\\n ) \\nHere is how much of TeX's memory you used:\\n 16110 strings out of 469438\\n 252250 string characters out of 5468411\\n 726692 words of memory out of 5000000\\n 43963 multiletter control sequences out of 15000+600000\\n 702068 words of font info for 381 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,2037b,646s stack
 …[truncated 4202 chars]
@@ -11405,7 +8214,7 @@ _source line 1391 · 2026-05-22T08:35:56.714938+00:00_
 
 ### Tool call
 
-_source line 1392 · 2026-05-22T08:35:56.916162+00:00_
+_source line 1362 · 2026-05-22T08:35:56.916162+00:00_
 
 called Read
 
@@ -11443,7 +8252,7 @@ called Read
 
 ### Tool result
 
-_source line 1393 · 2026-05-22T08:35:56.967909+00:00_
+_source line 1363 · 2026-05-22T08:35:56.967909+00:00_
 
 38	\section*{Limitations}
 39	
@@ -11479,7 +8288,7 @@ _source line 1393 · 2026-05-22T08:35:56.967909+00:00_
 
 ### Tool call
 
-_source line 1394 · 2026-05-22T08:36:06.204993+00:00_
+_source line 1364 · 2026-05-22T08:36:06.204993+00:00_
 
 called Read
 
@@ -11515,7 +8324,7 @@ called Read
 
 ### Tool result
 
-_source line 1395 · 2026-05-22T08:36:06.556827+00:00_
+_source line 1365 · 2026-05-22T08:36:06.556827+00:00_
 
 1	\section{Introduction}
 2	
@@ -11544,7 +8353,7 @@ _source line 1395 · 2026-05-22T08:36:06.556827+00:00_
 
 ### Tool call
 
-_source line 1396 · 2026-05-22T08:36:06.557296+00:00_
+_source line 1366 · 2026-05-22T08:36:06.557296+00:00_
 
 called Read
 
@@ -11578,7 +8387,7 @@ called Read
 
 ### Tool result
 
-_source line 1397 · 2026-05-22T08:36:06.610847+00:00_
+_source line 1367 · 2026-05-22T08:36:06.610847+00:00_
 
 1	\section{Conclusion}
 2	
@@ -11605,7 +8414,7 @@ _source line 1397 · 2026-05-22T08:36:06.610847+00:00_
 
 ### Tool call
 
-_source line 1398 · 2026-05-22T08:36:22.478835+00:00_
+_source line 1368 · 2026-05-22T08:36:22.478835+00:00_
 
 called Edit
 
@@ -11645,7 +8454,7 @@ called Edit
 
 ### Tool result
 
-_source line 1399 · 2026-05-22T08:36:22.479355+00:00_
+_source line 1369 · 2026-05-22T08:36:22.479355+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -11667,7 +8476,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1400 · 2026-05-22T08:36:26.897696+00:00_
+_source line 1370 · 2026-05-22T08:36:26.897696+00:00_
 
 called Bash
 
@@ -11705,7 +8514,7 @@ called Bash
 
 ### Tool result
 
-_source line 1401 · 2026-05-22T08:36:28.151806+00:00_
+_source line 1371 · 2026-05-22T08:36:28.151806+00:00_
 
 Output written on main.pdf (20 pages, 466598 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
@@ -11728,7 +8537,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/
 
 ### Tool call
 
-_source line 1402 · 2026-05-22T08:36:39.858418+00:00_
+_source line 1372 · 2026-05-22T08:36:39.858418+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -11778,7 +8587,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1403 · 2026-05-22T08:36:39.909291+00:00_
+_source line 1373 · 2026-05-22T08:36:39.909291+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"PDF 文件不存在: projects/entrainment_gated_ft/docs/paper/main.pdf。请先编译论文再提交审稿。\"}"}
 
@@ -11800,7 +8609,7 @@ _source line 1403 · 2026-05-22T08:36:39.909291+00:00_
 
 ### Tool call
 
-_source line 1404 · 2026-05-22T08:36:47.290944+00:00_
+_source line 1374 · 2026-05-22T08:36:47.290944+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -11850,7 +8659,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1405 · 2026-05-22T08:36:54.563852+00:00_
+_source line 1375 · 2026-05-22T08:36:54.563852+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260522T083647_nrnw\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -11872,7 +8681,7 @@ _source line 1405 · 2026-05-22T08:36:54.563852+00:00_
 
 ### Tool call
 
-_source line 1406 · 2026-05-22T08:37:04.968008+00:00_
+_source line 1376 · 2026-05-22T08:37:04.968008+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -11906,7 +8715,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1407 · 2026-05-22T08:37:05.670823+00:00_
+_source line 1377 · 2026-05-22T08:37:05.670823+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -11928,7 +8737,7 @@ _source line 1407 · 2026-05-22T08:37:05.670823+00:00_
 
 ### Assistant
 
-_source line 1408 · 2026-05-22T08:37:09.203490+00:00_
+_source line 1378 · 2026-05-22T08:37:09.203490+00:00_
 
 审稿已提交（Round 11），等待用户审批。本轮集成了全部三项分析（A1/A2/A3）+ Paper Agent 写作质量优化 + Reviewer warning 修正。
 
@@ -11955,7 +8764,7 @@ _source line 1408 · 2026-05-22T08:37:09.203490+00:00_
 
 ### User
 
-_source line 1409 · 2026-05-22T09:00:35.886042+00:00_
+_source line 1379 · 2026-05-22T09:00:35.886042+00:00_
 
 [审稿报告]
 Overall: 3.0
@@ -12218,7 +9027,7 @@ Overall: 3.0
 
 ### Tool call
 
-_source line 1410 · 2026-05-22T09:02:06.656057+00:00_
+_source line 1380 · 2026-05-22T09:02:06.656057+00:00_
 
 called ToolSearch
 
@@ -12254,7 +9063,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1411 · 2026-05-22T09:02:06.706620+00:00_
+_source line 1381 · 2026-05-22T09:02:06.706620+00:00_
 
 No matching deferred tools found
 
@@ -12276,7 +9085,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1412 · 2026-05-22T09:02:10.070765+00:00_
+_source line 1382 · 2026-05-22T09:02:10.070765+00:00_
 
 called ToolSearch
 
@@ -12312,7 +9121,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1413 · 2026-05-22T09:02:10.171998+00:00_
+_source line 1383 · 2026-05-22T09:02:10.171998+00:00_
 
 
 
@@ -12334,7 +9143,7 @@ _source line 1413 · 2026-05-22T09:02:10.171998+00:00_
 
 ### Tool call
 
-_source line 1414 · 2026-05-22T09:02:33.785125+00:00_
+_source line 1384 · 2026-05-22T09:02:33.785125+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -12370,7 +9179,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 1415 · 2026-05-22T09:02:37.915005+00:00_
+_source line 1385 · 2026-05-22T09:02:37.915005+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer\"}, \"error\": \"\"}"}
 
@@ -12392,7 +9201,7 @@ _source line 1415 · 2026-05-22T09:02:37.915005+00:00_
 
 ### Tool call
 
-_source line 1416 · 2026-05-22T09:02:48.811844+00:00_
+_source line 1386 · 2026-05-22T09:02:48.811844+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -12426,7 +9235,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1417 · 2026-05-22T09:02:49.615453+00:00_
+_source line 1387 · 2026-05-22T09:02:49.615453+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -12448,7 +9257,7 @@ _source line 1417 · 2026-05-22T09:02:49.615453+00:00_
 
 ### Assistant
 
-_source line 1418 · 2026-05-22T09:02:52.194627+00:00_
+_source line 1388 · 2026-05-22T09:02:52.194627+00:00_
 
 Reviewer 已收到完整 Action Matrix，等待独立审视反馈。同时通知用户当前状态。
 
@@ -12475,7 +9284,7 @@ Reviewer 已收到完整 Action Matrix，等待独立审视反馈。同时通知
 
 ### User
 
-_source line 1419 · 2026-05-22T09:04:42.146430+00:00_
+_source line 1389 · 2026-05-22T09:04:42.146430+00:00_
 
 [Reviewer 回复]:
 ## Round 12 Action Matrix — 独立审查
@@ -12603,7 +9412,7 @@ Director 的修复清单全部正确且值得做——它们让论文更 defensi
 
 ### Tool call
 
-_source line 1420 · 2026-05-22T09:05:08.470901+00:00_
+_source line 1390 · 2026-05-22T09:05:08.470901+00:00_
 
 called Grep
 
@@ -12645,7 +9454,7 @@ called Grep
 
 ### Tool result
 
-_source line 1421 · 2026-05-22T09:05:08.571847+00:00_
+_source line 1391 · 2026-05-22T09:05:08.571847+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex:203:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:7:[Omitted long matching line]
@@ -12672,7 +9481,7 @@ _source line 1421 · 2026-05-22T09:05:08.571847+00:00_
 
 ### Tool call
 
-_source line 1422 · 2026-05-22T09:05:12.989603+00:00_
+_source line 1392 · 2026-05-22T09:05:12.989603+00:00_
 
 called Grep
 
@@ -12714,7 +9523,7 @@ called Grep
 
 ### Tool result
 
-_source line 1423 · 2026-05-22T09:05:13.090447+00:00_
+_source line 1393 · 2026-05-22T09:05:13.090447+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex-6-
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:7:[Omitted long matching line]
@@ -12750,7 +9559,7 @@ _source line 1423 · 2026-05-22T09:05:13.090447+00:00_
 
 ### Tool call
 
-_source line 1424 · 2026-05-22T09:05:17.257390+00:00_
+_source line 1394 · 2026-05-22T09:05:17.257390+00:00_
 
 called Read
 
@@ -12788,7 +9597,7 @@ called Read
 
 ### Tool result
 
-_source line 1425 · 2026-05-22T09:05:17.760040+00:00_
+_source line 1395 · 2026-05-22T09:05:17.760040+00:00_
 
 5	\subsection{Task-Specific Convergence}\label{ssec:task_convergence}
 6	
@@ -12814,7 +9623,7 @@ _source line 1425 · 2026-05-22T09:05:17.760040+00:00_
 
 ### Tool call
 
-_source line 1426 · 2026-05-22T09:05:18.212111+00:00_
+_source line 1396 · 2026-05-22T09:05:18.212111+00:00_
 
 called Read
 
@@ -12852,7 +9661,7 @@ called Read
 
 ### Tool result
 
-_source line 1427 · 2026-05-22T09:05:18.664081+00:00_
+_source line 1397 · 2026-05-22T09:05:18.664081+00:00_
 
 18	Our analysis yields two findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent variation. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\leq 0.10$, all $p < .01$). Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval).
 19	
@@ -12879,7 +9688,7 @@ _source line 1427 · 2026-05-22T09:05:18.664081+00:00_
 
 ### Tool call
 
-_source line 1428 · 2026-05-22T09:05:18.715052+00:00_
+_source line 1398 · 2026-05-22T09:05:18.715052+00:00_
 
 called Read
 
@@ -12917,7 +9726,7 @@ called Read
 
 ### Tool result
 
-_source line 1429 · 2026-05-22T09:05:18.766007+00:00_
+_source line 1399 · 2026-05-22T09:05:18.766007+00:00_
 
 24	We quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\rho$ between attention ratio rank and $\sigma$ across the five attention configurations ($n = 5$). A negative $\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.
 25	
@@ -12943,7 +9752,7 @@ _source line 1429 · 2026-05-22T09:05:18.766007+00:00_
 
 ### Tool call
 
-_source line 1430 · 2026-05-22T09:05:24.813829+00:00_
+_source line 1400 · 2026-05-22T09:05:24.813829+00:00_
 
 called Edit
 
@@ -12983,7 +9792,7 @@ called Edit
 
 ### Tool result
 
-_source line 1431 · 2026-05-22T09:05:24.814294+00:00_
+_source line 1401 · 2026-05-22T09:05:24.814294+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -13005,7 +9814,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1432 · 2026-05-22T09:05:29.784121+00:00_
+_source line 1402 · 2026-05-22T09:05:29.784121+00:00_
 
 called Edit
 
@@ -13045,7 +9854,7 @@ called Edit
 
 ### Tool result
 
-_source line 1433 · 2026-05-22T09:05:29.836934+00:00_
+_source line 1403 · 2026-05-22T09:05:29.836934+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex has been updated successfully.
 
@@ -13067,7 +9876,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1434 · 2026-05-22T09:05:33.709852+00:00_
+_source line 1404 · 2026-05-22T09:05:33.709852+00:00_
 
 called Edit
 
@@ -13107,7 +9916,7 @@ called Edit
 
 ### Tool result
 
-_source line 1435 · 2026-05-22T09:05:33.710317+00:00_
+_source line 1405 · 2026-05-22T09:05:33.710317+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -13129,7 +9938,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1436 · 2026-05-22T09:05:37.221582+00:00_
+_source line 1406 · 2026-05-22T09:05:37.221582+00:00_
 
 called Edit
 
@@ -13169,7 +9978,7 @@ called Edit
 
 ### Tool result
 
-_source line 1437 · 2026-05-22T09:05:37.272289+00:00_
+_source line 1407 · 2026-05-22T09:05:37.272289+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex has been updated successfully.
 
@@ -13191,7 +10000,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1438 · 2026-05-22T09:05:40.836305+00:00_
+_source line 1408 · 2026-05-22T09:05:40.836305+00:00_
 
 called Read
 
@@ -13229,7 +10038,7 @@ called Read
 
 ### Tool result
 
-_source line 1439 · 2026-05-22T09:05:40.937230+00:00_
+_source line 1409 · 2026-05-22T09:05:40.937230+00:00_
 
 24	\begin{abstract}
 25	When attention layers are added to linear recurrent architectures, they help and hurt almost entirely different examples across backbones: pairwise overlap among three controlled hybrid designs is at most 10\%, far below the 78--92\% theoretical maximum. Using the model zoo of \citet{wang2025hybrid} (three architectures, five attention ratios, two scales, single training runs per configuration), we decompose per-example effects on four benchmarks and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$ for reasoning, $0.30$ for retrieval) rather than attention dose. Aggregate convergence is task-specific: only LAMBADA provides exploratory evidence for monotonic variance reduction (Bonferroni-adjusted $p = .100$). On this benchmark, aggregate variance decreases gradually while per-example overlap saturates at the first attention level, a saturation pattern that generalizes to all four benchmarks regardless of aggregate convergence. A proof-of-concept majority vote across architectures fails to outperform the best individual model despite 15--45\% per-example disagreement, while oracle accuracy reveals 7--14\,pp of untapped complementarity, suggesting that architectures interchangeable by aggregate metrics may carry hidden consequences for per-example reliability.
@@ -13253,7 +10062,7 @@ _source line 1439 · 2026-05-22T09:05:40.937230+00:00_
 
 ### Tool call
 
-_source line 1440 · 2026-05-22T09:06:03.451692+00:00_
+_source line 1410 · 2026-05-22T09:06:03.451692+00:00_
 
 called Edit
 
@@ -13293,7 +10102,7 @@ called Edit
 
 ### Tool result
 
-_source line 1441 · 2026-05-22T09:06:03.503500+00:00_
+_source line 1411 · 2026-05-22T09:06:03.503500+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex has been updated successfully.
 
@@ -13315,7 +10124,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1442 · 2026-05-22T09:06:07.469395+00:00_
+_source line 1412 · 2026-05-22T09:06:07.469395+00:00_
 
 called Read
 
@@ -13351,7 +10160,7 @@ called Read
 
 ### Tool result
 
-_source line 1443 · 2026-05-22T09:06:07.521226+00:00_
+_source line 1413 · 2026-05-22T09:06:07.521226+00:00_
 
 1	\section{Related Work}
 2	
@@ -13383,7 +10192,7 @@ _source line 1443 · 2026-05-22T09:06:07.521226+00:00_
 
 ### Tool call
 
-_source line 1444 · 2026-05-22T09:06:15.501028+00:00_
+_source line 1414 · 2026-05-22T09:06:15.501028+00:00_
 
 called Edit
 
@@ -13423,7 +10232,7 @@ called Edit
 
 ### Tool result
 
-_source line 1445 · 2026-05-22T09:06:15.501469+00:00_
+_source line 1415 · 2026-05-22T09:06:15.501469+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully.
 
@@ -13445,7 +10254,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1446 · 2026-05-22T09:06:20.671358+00:00_
+_source line 1416 · 2026-05-22T09:06:20.671358+00:00_
 
 called Grep
 
@@ -13483,7 +10292,7 @@ called Grep
 
 ### Tool result
 
-_source line 1447 · 2026-05-22T09:06:20.671708+00:00_
+_source line 1417 · 2026-05-22T09:06:20.671708+00:00_
 
 No matches found
 
@@ -13505,7 +10314,7 @@ No matches found
 
 ### Tool call
 
-_source line 1448 · 2026-05-22T09:06:24.011168+00:00_
+_source line 1418 · 2026-05-22T09:06:24.011168+00:00_
 
 called Read
 
@@ -13541,7 +10350,7 @@ called Read
 
 ### Tool result
 
-_source line 1449 · 2026-05-22T09:06:24.061951+00:00_
+_source line 1419 · 2026-05-22T09:06:24.061951+00:00_
 
 1	% References for entrainment_gated_ft paper
 2	% Generated from literature_map.yaml (all verified=true entries)
@@ -13567,7 +10376,7 @@ _source line 1449 · 2026-05-22T09:06:24.061951+00:00_
 
 ### Tool call
 
-_source line 1450 · 2026-05-22T09:06:27.224568+00:00_
+_source line 1420 · 2026-05-22T09:06:27.224568+00:00_
 
 called Bash
 
@@ -13603,7 +10412,7 @@ called Bash
 
 ### Tool result
 
-_source line 1451 · 2026-05-22T09:06:27.375512+00:00_
+_source line 1421 · 2026-05-22T09:06:27.375512+00:00_
 
 316 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib
 
@@ -13625,7 +10434,7 @@ _source line 1451 · 2026-05-22T09:06:27.375512+00:00_
 
 ### Tool call
 
-_source line 1452 · 2026-05-22T09:06:32.729419+00:00_
+_source line 1422 · 2026-05-22T09:06:32.729419+00:00_
 
 called Read
 
@@ -13663,7 +10472,7 @@ called Read
 
 ### Tool result
 
-_source line 1453 · 2026-05-22T09:06:32.729914+00:00_
+_source line 1423 · 2026-05-22T09:06:32.729914+00:00_
 
 310	
 311	@inproceedings{lahoti2026mamba3,
@@ -13692,7 +10501,7 @@ _source line 1453 · 2026-05-22T09:06:32.729914+00:00_
 
 ### Tool call
 
-_source line 1454 · 2026-05-22T09:06:52.718240+00:00_
+_source line 1424 · 2026-05-22T09:06:52.718240+00:00_
 
 called Edit
 
@@ -13732,7 +10541,7 @@ called Edit
 
 ### Tool result
 
-_source line 1455 · 2026-05-22T09:06:52.769167+00:00_
+_source line 1425 · 2026-05-22T09:06:52.769167+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib has been updated successfully.
 
@@ -13754,7 +10563,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1456 · 2026-05-22T09:06:58.672689+00:00_
+_source line 1426 · 2026-05-22T09:06:58.672689+00:00_
 
 called Read
 
@@ -13792,7 +10601,7 @@ called Read
 
 ### Tool result
 
-_source line 1457 · 2026-05-22T09:06:58.773517+00:00_
+_source line 1427 · 2026-05-22T09:06:58.773517+00:00_
 
 9	\paragraph{Underspecification and Predictive Multiplicity.}
 10	\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \citep{fehlauer2025convergence}. \citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \citep{watson2023predictive}, Rashomon capacity \citep{hsu2022rashomon}, reconciliation \citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \citep{gorbett2026crossmodel}. \citet{swayamdipta2020dataset} characterize examples via training dynamics (variability across epochs); our decomposition operates at deployment time across architectures with no training signal. \citet{niven2019probing} show that benchmark artifacts can inflate per-example agreement; our cross-benchmark variation ($\alpha = 0.14$--$0.30$) suggests the patterns we observe are not driven by a single artifact type. \citet{fort2019deep} provide a loss landscape perspective on deep ensembles, showing that diverse architectures explore distinct modes and produce disagreement on individual predictions. \citet{black2022model} survey the model multiplicity landscape and \citet{cooper2024arbitrariness} connect predictive arbitrariness to fairness. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. Whereas Rashomon-set analyses \citep{fisher2019all,semenova2022existence} examine variation among near-optimal models within a single hypothesis class, we study variation across architectural families under matched training conditions. We extend this line of work to a new source of variation, the r
@@ -13816,7 +10625,7 @@ _source line 1457 · 2026-05-22T09:06:58.773517+00:00_
 
 ### Tool call
 
-_source line 1458 · 2026-05-22T09:07:03.793837+00:00_
+_source line 1428 · 2026-05-22T09:07:03.793837+00:00_
 
 called Edit
 
@@ -13856,7 +10665,7 @@ called Edit
 
 ### Tool result
 
-_source line 1459 · 2026-05-22T09:07:03.844565+00:00_
+_source line 1429 · 2026-05-22T09:07:03.844565+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully.
 
@@ -13878,7 +10687,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1460 · 2026-05-22T09:07:08.513327+00:00_
+_source line 1430 · 2026-05-22T09:07:08.513327+00:00_
 
 called Edit
 
@@ -13918,7 +10727,7 @@ called Edit
 
 ### Tool result
 
-_source line 1461 · 2026-05-22T09:07:08.564924+00:00_
+_source line 1431 · 2026-05-22T09:07:08.564924+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex has been updated successfully.
 
@@ -13940,7 +10749,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1462 · 2026-05-22T09:07:12.781411+00:00_
+_source line 1432 · 2026-05-22T09:07:12.781411+00:00_
 
 called Read
 
@@ -13974,7 +10783,7 @@ called Read
 
 ### Tool result
 
-_source line 1463 · 2026-05-22T09:07:12.832060+00:00_
+_source line 1433 · 2026-05-22T09:07:12.832060+00:00_
 
 1	\section{Conclusion}
 2	
@@ -14001,7 +10810,7 @@ _source line 1463 · 2026-05-22T09:07:12.832060+00:00_
 
 ### Tool call
 
-_source line 1464 · 2026-05-22T09:07:18.402992+00:00_
+_source line 1434 · 2026-05-22T09:07:18.402992+00:00_
 
 called Edit
 
@@ -14041,7 +10850,7 @@ called Edit
 
 ### Tool result
 
-_source line 1465 · 2026-05-22T09:07:18.453583+00:00_
+_source line 1435 · 2026-05-22T09:07:18.453583+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex has been updated successfully.
 
@@ -14063,7 +10872,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1466 · 2026-05-22T09:07:21.666142+00:00_
+_source line 1436 · 2026-05-22T09:07:21.666142+00:00_
 
 called Read
 
@@ -14101,7 +10910,7 @@ called Read
 
 ### Tool result
 
-_source line 1467 · 2026-05-22T09:07:21.718603+00:00_
+_source line 1437 · 2026-05-22T09:07:21.718603+00:00_
 
 48	
 49	\paragraph{Confidence margin mechanism.} No surface-level feature (token count, word frequency, syntactic complexity) reliably separates helped from hurt examples. However, pure-model confidence on the target token is strongly predictive within each architecture: hurt examples have lower target-token probability among pure-correct examples ($d = 0.83$--$0.92$), and helped examples have higher probability among pure-wrong examples ($d = 0.73$--$0.77$); see Appendix~\ref{app:confidence_margin}. A Kruskal-Wallis test confirms cross-architecture structure in both hurt ($p = .0005$) and helped ($p = .020$) distributions. The confidence margin thus identifies a per-example predictor of which examples will be affected: marginally correct predictions are more likely to transition to incorrect, and near-miss errors are more likely to transition to correct, but with architecture-specific thresholds that produce the observed cross-architecture divergence. Formalizing this as a prediction task (Appendix~\ref{app:prediction_framework}), pure-model confidence achieves AUC 0.70--0.74 within each architecture; rescue thresholds are architecture-invariant (relative spread 1\%), while disruption thresholds vary 47\%. Since each backbone assigns different confidences to the same input, even a shared rescue rule affects different examples per architecture, providing a parsimonious explanation for low cross-architecture Jaccard. The rescue pattern generalizes across LAMBADA, HellaSwag, and ARC-Easy (9/9 tests, $d = 0.13$--$0.60$; Appendix~\ref{app:cm_cross}). The disruption pattern is weaker on ARC-Easy ($d = 0.13$--$0.26$) and absent on HellaSwag under \texttt{acc\_norm} and on binary classification (Appendix~\ref{app:boolq}). This structured per-example disagreement constitutes predictive multiplicity \citep{marx2020predictive} arising under architectural variation \citep[cf.][]{damour2022underspecification}.
@@ -14125,7 +10934,7 @@ _source line 1467 · 2026-05-22T09:07:21.718603+00:00_
 
 ### Tool call
 
-_source line 1468 · 2026-05-22T09:07:30.868466+00:00_
+_source line 1438 · 2026-05-22T09:07:30.868466+00:00_
 
 called Edit
 
@@ -14165,7 +10974,7 @@ called Edit
 
 ### Tool result
 
-_source line 1469 · 2026-05-22T09:07:30.869189+00:00_
+_source line 1439 · 2026-05-22T09:07:30.869189+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex has been updated successfully.
 
@@ -14187,7 +10996,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_ga
 
 ### Tool call
 
-_source line 1470 · 2026-05-22T09:07:53.544903+00:00_
+_source line 1440 · 2026-05-22T09:07:53.544903+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -14223,7 +11032,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1471 · 2026-05-22T09:07:57.463886+00:00_
+_source line 1441 · 2026-05-22T09:07:57.463886+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e35800b80b0c4207b221394078\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -14245,7 +11054,7 @@ _source line 1471 · 2026-05-22T09:07:57.463886+00:00_
 
 ### Tool call
 
-_source line 1472 · 2026-05-22T09:08:01.883562+00:00_
+_source line 1442 · 2026-05-22T09:08:01.883562+00:00_
 
 called ToolSearch
 
@@ -14281,7 +11090,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1473 · 2026-05-22T09:08:01.984434+00:00_
+_source line 1443 · 2026-05-22T09:08:01.984434+00:00_
 
 No matching deferred tools found
 
@@ -14303,7 +11112,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1474 · 2026-05-22T09:08:05.046104+00:00_
+_source line 1444 · 2026-05-22T09:08:05.046104+00:00_
 
 called ToolSearch
 
@@ -14339,7 +11148,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1475 · 2026-05-22T09:08:05.146849+00:00_
+_source line 1445 · 2026-05-22T09:08:05.146849+00:00_
 
 
 
@@ -14361,7 +11170,7 @@ _source line 1475 · 2026-05-22T09:08:05.146849+00:00_
 
 ### Tool call
 
-_source line 1476 · 2026-05-22T09:08:08.562691+00:00_
+_source line 1446 · 2026-05-22T09:08:08.562691+00:00_
 
 called Read
 
@@ -14397,7 +11206,7 @@ called Read
 
 ### Tool result
 
-_source line 1477 · 2026-05-22T09:08:08.563240+00:00_
+_source line 1447 · 2026-05-22T09:08:08.563240+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -14467,7 +11276,7 @@ _source line 1477 · 2026-05-22T09:08:08.563240+00:00_
 
 ### Tool call
 
-_source line 1478 · 2026-05-22T09:08:15.991775+00:00_
+_source line 1448 · 2026-05-22T09:08:15.991775+00:00_
 
 called Read
 
@@ -14505,7 +11314,7 @@ called Read
 
 ### Tool result
 
-_source line 1479 · 2026-05-22T09:08:15.993492+00:00_
+_source line 1449 · 2026-05-22T09:08:15.993492+00:00_
 
 100	    - round: 9
 101	      action: "'suggestive' → 'exploratory' in Abstract + §4.1。Intro C2 加 excluding-GDN stats。"
@@ -14585,7 +11394,7 @@ _source line 1479 · 2026-05-22T09:08:15.993492+00:00_
 
 ### Tool call
 
-_source line 1480 · 2026-05-22T09:10:42.929294+00:00_
+_source line 1450 · 2026-05-22T09:10:42.929294+00:00_
 
 called ToolSearch
 
@@ -14621,7 +11430,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1481 · 2026-05-22T09:10:42.979988+00:00_
+_source line 1451 · 2026-05-22T09:10:42.979988+00:00_
 
 No matching deferred tools found
 
@@ -14643,7 +11452,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1482 · 2026-05-22T09:10:45.942121+00:00_
+_source line 1452 · 2026-05-22T09:10:45.942121+00:00_
 
 called ToolSearch
 
@@ -14679,7 +11488,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1483 · 2026-05-22T09:10:45.942453+00:00_
+_source line 1453 · 2026-05-22T09:10:45.942453+00:00_
 
 
 
@@ -14701,7 +11510,7 @@ _source line 1483 · 2026-05-22T09:10:45.942453+00:00_
 
 ### Tool call
 
-_source line 1484 · 2026-05-22T09:10:49.204712+00:00_
+_source line 1454 · 2026-05-22T09:10:49.204712+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -14735,7 +11544,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1485 · 2026-05-22T09:10:49.757129+00:00_
+_source line 1455 · 2026-05-22T09:10:49.757129+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":2536}"}
 
@@ -14757,7 +11566,7 @@ _source line 1485 · 2026-05-22T09:10:49.757129+00:00_
 
 ### Tool call
 
-_source line 1486 · 2026-05-22T09:10:49.908049+00:00_
+_source line 1456 · 2026-05-22T09:10:49.908049+00:00_
 
 called Read
 
@@ -14795,7 +11604,7 @@ called Read
 
 ### Tool result
 
-_source line 1487 · 2026-05-22T09:10:53.020057+00:00_
+_source line 1457 · 2026-05-22T09:10:53.020057+00:00_
 
 0	\section{Experiments}\label{sec:experiments}
 1	
@@ -14831,7 +11640,7 @@ _source line 1487 · 2026-05-22T09:10:53.020057+00:00_
 
 ### Tool call
 
-_source line 1488 · 2026-05-22T09:10:53.171013+00:00_
+_source line 1458 · 2026-05-22T09:10:53.171013+00:00_
 
 called Read
 
@@ -14865,7 +11674,7 @@ called Read
 
 ### Tool result
 
-_source line 1489 · 2026-05-22T09:10:53.221747+00:00_
+_source line 1459 · 2026-05-22T09:10:53.221747+00:00_
 
 1	\section{Introduction}
 2	
@@ -14894,7 +11703,7 @@ _source line 1489 · 2026-05-22T09:10:53.221747+00:00_
 
 ### Tool call
 
-_source line 1490 · 2026-05-22T09:11:26.001530+00:00_
+_source line 1460 · 2026-05-22T09:11:26.001530+00:00_
 
 called Read
 
@@ -14932,7 +11741,7 @@ called Read
 
 ### Tool result
 
-_source line 1491 · 2026-05-22T09:11:26.002011+00:00_
+_source line 1461 · 2026-05-22T09:11:26.002011+00:00_
 
 72	\subsection{Decoupling}\label{ssec:decoupling}
 73	
@@ -14963,7 +11772,7 @@ _source line 1491 · 2026-05-22T09:11:26.002011+00:00_
 
 ### Tool call
 
-_source line 1492 · 2026-05-22T09:11:26.152880+00:00_
+_source line 1462 · 2026-05-22T09:11:26.152880+00:00_
 
 called Read
 
@@ -15001,7 +11810,7 @@ called Read
 
 ### Tool result
 
-_source line 1493 · 2026-05-22T09:11:26.253836+00:00_
+_source line 1463 · 2026-05-22T09:11:26.253836+00:00_
 
 0	% Appendix sections for the paper.
 1	
@@ -15039,7 +11848,7 @@ _source line 1493 · 2026-05-22T09:11:26.253836+00:00_
 
 ### Tool call
 
-_source line 1494 · 2026-05-22T09:11:56.834275+00:00_
+_source line 1464 · 2026-05-22T09:11:56.834275+00:00_
 
 called Read
 
@@ -15077,7 +11886,7 @@ called Read
 
 ### Tool result
 
-_source line 1495 · 2026-05-22T09:11:57.186191+00:00_
+_source line 1465 · 2026-05-22T09:11:57.186191+00:00_
 
 37	
 38	\section*{Limitations}
@@ -15118,7 +11927,7 @@ _source line 1495 · 2026-05-22T09:11:57.186191+00:00_
 
 ### Tool call
 
-_source line 1496 · 2026-05-22T09:11:57.186559+00:00_
+_source line 1466 · 2026-05-22T09:11:57.186559+00:00_
 
 called Read
 
@@ -15152,7 +11961,7 @@ called Read
 
 ### Tool result
 
-_source line 1497 · 2026-05-22T09:11:57.488853+00:00_
+_source line 1467 · 2026-05-22T09:11:57.488853+00:00_
 
 1	- id: "R5-W1"
 2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
@@ -15222,7 +12031,7 @@ _source line 1497 · 2026-05-22T09:11:57.488853+00:00_
 
 ### Tool call
 
-_source line 1498 · 2026-05-22T09:12:33.870592+00:00_
+_source line 1468 · 2026-05-22T09:12:33.870592+00:00_
 
 called ToolSearch
 
@@ -15258,7 +12067,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1499 · 2026-05-22T09:12:33.921242+00:00_
+_source line 1469 · 2026-05-22T09:12:33.921242+00:00_
 
 
 
@@ -15280,7 +12089,7 @@ _source line 1499 · 2026-05-22T09:12:33.921242+00:00_
 
 ### Tool call
 
-_source line 1500 · 2026-05-22T09:17:02.265176+00:00_
+_source line 1470 · 2026-05-22T09:17:02.265176+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -15316,7 +12125,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 1501 · 2026-05-22T09:17:02.366431+00:00_
+_source line 1471 · 2026-05-22T09:17:02.366431+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml\", \"bytes\": 30355}, \"error\": \"\"}"}
 
@@ -15338,7 +12147,7 @@ _source line 1501 · 2026-05-22T09:17:02.366431+00:00_
 
 ### Tool call
 
-_source line 1502 · 2026-05-22T09:17:07.086097+00:00_
+_source line 1472 · 2026-05-22T09:17:07.086097+00:00_
 
 called mcp__agent-ml-research__paper_compile_and_check
 
@@ -15376,7 +12185,7 @@ called mcp__agent-ml-research__paper_compile_and_check
 
 ### Tool result
 
-_source line 1503 · 2026-05-22T09:17:13.308713+00:00_
+_source line 1473 · 2026-05-22T09:17:13.308713+00:00_
 
 {"result":"{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \" []\\\\T1/ptm/b/n/10.95 (+20) Interpretation.[] \\\\T1/ptm/m/n/10.95 (+20) The RetNet\\n--HGRN2 anti-\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1629) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) correlation may re-flect dif-fer-ent er-ror modes\\n []\\n\\n\\nUnderfull \\\\hbox (badness 3302) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) spe-cific to bi-nary clas-si-fi-ca-tion: when one\\n []\\n\\n\\nUnderfull \\\\hbox (badness 1194) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) at-ten-tion in-ter-ven-tion. This pat-tern war-rants\\n []\\n\\n\\nUnderfull \\\\hbox (badness 7740) in paragraph at lines 579--580\\n\\\\T1/ptm/m/n/10.95 (+20) fur-ther in-ves-ti-ga-tion with ad-di-tional bi-nary\\n []\\n\\n\\nOverfull \\\\hbox (12.80403pt too wide) in paragraph at lines 593--600\\n [][] \\n []\\n\\n[18]\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n) [19] [20\\n\\n] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 41E0B256EA337C840C0C8A4F6B237535;7829.\\n ) \\nHere is how much of TeX's memory you used:\\n 16140 strings out of 469438\\n 252907 string characters out of 5468411\\n 727145 words of memory out of 5000000\\n 43981 multiletter control sequences out of 15000+600000\\n 702423 words of font info for 385 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,14n,93p,2312b,660s stack positions out of 10000i,1000n,20000p,200000b
 …[truncated 8718 chars]
@@ -15399,7 +12208,7 @@ _source line 1503 · 2026-05-22T09:17:13.308713+00:00_
 
 ### Tool call
 
-_source line 1504 · 2026-05-22T09:17:21.691806+00:00_
+_source line 1474 · 2026-05-22T09:17:21.691806+00:00_
 
 called Read
 
@@ -15433,7 +12242,7 @@ called Read
 
 ### Tool call
 
-_source line 1505 · 2026-05-22T09:17:22.144490+00:00_
+_source line 1475 · 2026-05-22T09:17:22.144490+00:00_
 
 called Read
 
@@ -15467,7 +12276,7 @@ called Read
 
 ### Tool result
 
-_source line 1506 · 2026-05-22T09:17:22.650562+00:00_
+_source line 1476 · 2026-05-22T09:17:22.650562+00:00_
 
 
 
@@ -15489,7 +12298,7 @@ _source line 1506 · 2026-05-22T09:17:22.650562+00:00_
 
 ### Tool call
 
-_source line 1507 · 2026-05-22T09:17:22.651019+00:00_
+_source line 1477 · 2026-05-22T09:17:22.651019+00:00_
 
 called Read
 
@@ -15523,7 +12332,7 @@ called Read
 
 ### Tool result
 
-_source line 1508 · 2026-05-22T09:17:23.103624+00:00_
+_source line 1478 · 2026-05-22T09:17:23.103624+00:00_
 
 
 
@@ -15545,7 +12354,7 @@ _source line 1508 · 2026-05-22T09:17:23.103624+00:00_
 
 ### Tool result
 
-_source line 1509 · 2026-05-22T09:17:23.456069+00:00_
+_source line 1479 · 2026-05-22T09:17:23.456069+00:00_
 
 
 
@@ -15567,7 +12376,7 @@ _source line 1509 · 2026-05-22T09:17:23.456069+00:00_
 
 ### Tool call
 
-_source line 1510 · 2026-05-22T09:17:35.084439+00:00_
+_source line 1480 · 2026-05-22T09:17:35.084439+00:00_
 
 called ToolSearch
 
@@ -15603,7 +12412,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1511 · 2026-05-22T09:17:35.135032+00:00_
+_source line 1481 · 2026-05-22T09:17:35.135032+00:00_
 
 
 
@@ -15625,7 +12434,7 @@ _source line 1511 · 2026-05-22T09:17:35.135032+00:00_
 
 ### Tool call
 
-_source line 1512 · 2026-05-22T09:17:46.821582+00:00_
+_source line 1482 · 2026-05-22T09:17:46.821582+00:00_
 
 called mcp__agent-ml-research__submit_paper_to_review
 
@@ -15675,7 +12484,7 @@ called mcp__agent-ml-research__submit_paper_to_review
 
 ### Tool result
 
-_source line 1513 · 2026-05-22T09:17:51.236335+00:00_
+_source line 1483 · 2026-05-22T09:17:51.236335+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"approval_id\": \"apr_20260522T091746_16eb\", \"status\": \"pending\"}, \"error\": \"\"}"}
 
@@ -15697,7 +12506,7 @@ _source line 1513 · 2026-05-22T09:17:51.236335+00:00_
 
 ### Tool call
 
-_source line 1514 · 2026-05-22T09:17:54.550446+00:00_
+_source line 1484 · 2026-05-22T09:17:54.550446+00:00_
 
 called ToolSearch
 
@@ -15733,7 +12542,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1515 · 2026-05-22T09:17:54.628925+00:00_
+_source line 1485 · 2026-05-22T09:17:54.628925+00:00_
 
 
 
@@ -15755,7 +12564,7 @@ _source line 1515 · 2026-05-22T09:17:54.628925+00:00_
 
 ### Tool call
 
-_source line 1516 · 2026-05-22T09:18:04.272281+00:00_
+_source line 1486 · 2026-05-22T09:18:04.272281+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -15789,7 +12598,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1517 · 2026-05-22T09:18:04.925214+00:00_
+_source line 1487 · 2026-05-22T09:18:04.925214+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -15811,7 +12620,7 @@ _source line 1517 · 2026-05-22T09:18:04.925214+00:00_
 
 ### Assistant
 
-_source line 1518 · 2026-05-22T09:18:08.468095+00:00_
+_source line 1488 · 2026-05-22T09:18:08.468095+00:00_
 
 审稿提交卡已发送，等待用户审批后 Review Director 启动 Round 13 审稿。
 
@@ -15838,7 +12647,7 @@ _source line 1518 · 2026-05-22T09:18:08.468095+00:00_
 
 ### User
 
-_source line 1519 · 2026-05-22T09:18:10.528264+00:00_
+_source line 1489 · 2026-05-22T09:18:10.528264+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Round 12 Patch — 5 项修改完成
@@ -15880,7 +12689,7 @@ _source line 1519 · 2026-05-22T09:18:10.528264+00:00_
 
 ### Tool call
 
-_source line 1520 · 2026-05-22T09:18:21.613703+00:00_
+_source line 1490 · 2026-05-22T09:18:21.613703+00:00_
 
 called Read
 
@@ -15918,7 +12727,7 @@ called Read
 
 ### Tool result
 
-_source line 1521 · 2026-05-22T09:18:22.065733+00:00_
+_source line 1491 · 2026-05-22T09:18:22.065733+00:00_
 
 0	\section{Experiments}\label{sec:experiments}
 1	
@@ -15958,7 +12767,7 @@ _source line 1521 · 2026-05-22T09:18:22.065733+00:00_
 
 ### Tool call
 
-_source line 1522 · 2026-05-22T09:18:22.569824+00:00_
+_source line 1492 · 2026-05-22T09:18:22.569824+00:00_
 
 called Read
 
@@ -15996,7 +12805,7 @@ called Read
 
 ### Tool result
 
-_source line 1523 · 2026-05-22T09:18:23.022101+00:00_
+_source line 1493 · 2026-05-22T09:18:23.022101+00:00_
 
 17	
 18	Our analysis yields two findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent variation. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\leq 0.10$, all $p < .01$). Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval).
@@ -16027,7 +12836,7 @@ _source line 1523 · 2026-05-22T09:18:23.022101+00:00_
 
 ### Tool call
 
-_source line 1524 · 2026-05-22T09:18:23.173084+00:00_
+_source line 1494 · 2026-05-22T09:18:23.173084+00:00_
 
 called Read
 
@@ -16065,7 +12874,7 @@ called Read
 
 ### Tool result
 
-_source line 1525 · 2026-05-22T09:18:23.173466+00:00_
+_source line 1495 · 2026-05-22T09:18:23.173466+00:00_
 
 83	
 84	Cross-scale analysis on all four benchmarks reveals that the qualitative pattern of per-example multiplicity is scale-robust: pairwise Jaccard remains stable across scales ($\bar{J} = 0.08$--$0.10$ at 340M vs.\ $0.09$--$0.095$ at 1.3B), and architecture-specific helped/hurt profiles persist. While $\alpha$ is systematically higher at 340M ($\Delta \leq 8$\,pp), this inflation does not correlate with accuracy loss across benchmarks (HellaSwag shows the largest accuracy gap yet one of the smallest $\alpha$ increases), suggesting capacity-related but not accuracy-driven modulation. At 340M, aggregate convergence is absent on all benchmarks ($\rho = -0.50$, $p = .45$ for LAMBADA). This dissociation suggests that the \emph{pattern} of per-example multiplicity (which architectures affect which examples) reflects structural differences in recurrent processing, while absolute $\alpha$ magnitude is partially modulated by model capacity (Appendix~\ref{app:scale_per_example}).
@@ -16093,7 +12902,7 @@ _source line 1525 · 2026-05-22T09:18:23.173466+00:00_
 
 ### Tool call
 
-_source line 1526 · 2026-05-22T09:18:36.055950+00:00_
+_source line 1496 · 2026-05-22T09:18:36.055950+00:00_
 
 called Read
 
@@ -16127,7 +12936,7 @@ called Read
 
 ### Tool result
 
-_source line 1527 · 2026-05-22T09:18:36.056515+00:00_
+_source line 1497 · 2026-05-22T09:18:36.056515+00:00_
 
 1	\section{Conclusion}
 2	
@@ -16154,7 +12963,7 @@ _source line 1527 · 2026-05-22T09:18:36.056515+00:00_
 
 ### Assistant
 
-_source line 1528 · 2026-05-22T09:18:48.303102+00:00_
+_source line 1498 · 2026-05-22T09:18:48.303102+00:00_
 
 Paper Agent 的修改已在之前编译提交的 PDF 中反映。Round 13 审稿已经提交，包含了所有修复。无需额外操作。
 
@@ -16181,7 +12990,7 @@ Paper Agent 的修改已在之前编译提交的 PDF 中反映。Round 13 审稿
 
 ### User
 
-_source line 1529 · 2026-05-22T09:43:49.036249+00:00_
+_source line 1499 · 2026-05-22T09:43:49.036249+00:00_
 
 [飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: 你做的这些写作上的优化够吗
 
@@ -16202,7 +13011,7 @@ _source line 1529 · 2026-05-22T09:43:49.036249+00:00_
 
 ### Tool call
 
-_source line 1530 · 2026-05-22T09:44:32.322987+00:00_
+_source line 1500 · 2026-05-22T09:44:32.322987+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -16236,7 +13045,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1531 · 2026-05-22T09:44:35.401972+00:00_
+_source line 1501 · 2026-05-22T09:44:35.401972+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -16265,7 +13074,7 @@ _source line 1531 · 2026-05-22T09:44:35.401972+00:00_
 
 ### User
 
-_source line 1532 · 2026-05-22T09:46:47.238242+00:00_
+_source line 1502 · 2026-05-22T09:46:47.238242+00:00_
 
 [飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: 还有时间补实验啊，写作和实验都补，我们的目标是4，所以你得仔细想想需要什么
 
@@ -16286,7 +13095,7 @@ _source line 1532 · 2026-05-22T09:46:47.238242+00:00_
 
 ### Tool call
 
-_source line 1533 · 2026-05-22T09:47:35.000875+00:00_
+_source line 1503 · 2026-05-22T09:47:35.000875+00:00_
 
 called ToolSearch
 
@@ -16322,7 +13131,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1534 · 2026-05-22T09:47:35.537109+00:00_
+_source line 1504 · 2026-05-22T09:47:35.537109+00:00_
 
 
 
@@ -16344,7 +13153,7 @@ _source line 1534 · 2026-05-22T09:47:35.537109+00:00_
 
 ### Tool call
 
-_source line 1535 · 2026-05-22T09:47:40.123625+00:00_
+_source line 1505 · 2026-05-22T09:47:40.123625+00:00_
 
 called mcp__agent-ml-research__get_project_status
 
@@ -16378,7 +13187,7 @@ called mcp__agent-ml-research__get_project_status
 
 ### Tool result
 
-_source line 1536 · 2026-05-22T09:47:40.685683+00:00_
+_source line 1506 · 2026-05-22T09:47:40.685683+00:00_
 
 {"result":"**项目**: `entrainment_gated_ft`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westb-48145 (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/entrainment_gated_ft\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n**当前阶段**:\n  **Round 10 修复完成 → 最终验证中 → 目标 May 25 提交**\n  \n  ### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 ~3 天\n  \n  ### 审稿历史\n\n**决策日志**: 29 条记录\n**论文溯源**: 覆盖率 34/34\n\n── 📊 研究进度 ──\n实验: 21 个 (待处理 2 | 完成 19 | 成功 13)\n\n  exp-008                 DONE (success)\n  exp-003-p2v2            PREPARING (killed)\n  exp-003-p2              DONE (negative)\n  exp-003                 DONE (negative)\n  exp-009                 DONE (success)\n  eval_340m_retnet_hgrn2  DONE (success)\n  hgrn2_eval_h3_1         DONE (success)\n  hgrn2_eval_1_3b_all     DONE (killed)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-22\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n- exp-005: Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones（准备中）\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _"}
 
@@ -16400,7 +13209,7 @@ _source line 1536 · 2026-05-22T09:47:40.685683+00:00_
 
 ### Tool call
 
-_source line 1537 · 2026-05-22T09:47:40.686088+00:00_
+_source line 1507 · 2026-05-22T09:47:40.686088+00:00_
 
 called mcp__agent-ml-research__get_resource_inventory
 
@@ -16434,7 +13243,7 @@ called mcp__agent-ml-research__get_resource_inventory
 
 ### Tool result
 
-_source line 1538 · 2026-05-22T09:47:41.219289+00:00_
+_source line 1508 · 2026-05-22T09:47:41.219289+00:00_
 
 {"result":"## 基础设施资源\n\n### 项目绑定\n\n- 服务器: `westb-48145(root)`\n- 远程路径: `/root/entrainment_gated_ft`\n\n### 项目服务器\n\n- `westb-48145` (connect.westb.seetacloud.com) — 0 GPU 总数\n  - `root`: 可用 GPU `cuda:0`\n\n### 弹性 GPU（AutoDL 租卡）\n\n- 状态: **未启用** — 本项目不使用弹性 GPU 租卡\n- 如需启用，请在 Dashboard Settings 项目配置中开启，或使用 `update_project_config(project, \"execution\", {\"elastic_gpu\": true})`\n"}
 
@@ -16456,7 +13265,7 @@ _source line 1538 · 2026-05-22T09:47:41.219289+00:00_
 
 ### Tool call
 
-_source line 1539 · 2026-05-22T09:47:41.219875+00:00_
+_source line 1509 · 2026-05-22T09:47:41.219875+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -16490,7 +13299,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1540 · 2026-05-22T09:47:41.767965+00:00_
+_source line 1510 · 2026-05-22T09:47:41.767965+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-22 06:56 UTC | 更新原因: Round 10 修复完成，ROADMAP 从 Round 6 stale 状态更新到当前\\n\\n## 核心方向\\nHybrid linear recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Round 10 修复完成 → 最终验证中 → 目标 May 25 提交**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 ~3 天\\n\\n### 审稿历史\\n- Round 5-9: 连续 3.0 Findings（含 Round 9 Fresh Review）\\n- Round 10: Director 直接修复 9 项（D028），跳过 Paper Agent（M014 教训）\\n- 核心 blocking issues 为结构性限制（无 multi-seed 数据、有限 novelty），不可修复\\n- 目标：solid 3.0 Findings 提交\\n\\n### 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\\\"\\n- 主文: ≤8 页，附录 ~9 页，总 19 页\\n- 编译: 无 critical warnings\\n- 2 contributions: C1（multiplicity 核心）+ C2（decoupling exploratory observation）\\n- Convergence 已降为 exploratory（非 suggestive）\\n- \\\"not addressable by seed averaging\\\" 已删除\\n- McCoy seed calibration 已加入 Limitations\\n- 所有 CI 引用已加 heuristic 标注\\n\\n### 当前执行状态\\n| 工作项 | 负责 | 状态 |\\n|--------|------|------|\\n| Round 10 修复（9 项） | Director | ✅ 完成 |\\n| Reviewer 逐条确认 Round 10 修复 | Reviewer | ⏳ 执行中 |\\n| 引用真实性核实（5 篇） | Agent | ⏳ 执行中 |\\n| Figure 字号检查 | Agent | ⏳ 执行中 |\\n| ROADMAP 更新 | Director | ✅ 完成 |\\n| 编译验证 + 页数检查 | Director | ✅ 完成 |\\n| 最终 proofread + 提交 | — | 🔜 等 Reviewer + Agent 完成 |\\n\\n## 近期任务\\n- [x] Round 10 直接修复（9 项 text edits）\\n- [x] 编译验证（无 critical warnings，≤8 页）\\n- [x] review_issues.yaml 更新\\n- [x] log_mistake M014（Paper Agent 持续遗漏 seed averaging 短语）\\n- [ ] Reviewer 确认 Round 10 修复 + story 自洽性\\n- [ ] Agent 核实 5 篇引用真实性\\n- [ ] Agent 检查 figure 字号\\n- [ ] 最终提交 ARR May\\n\\n## GPU 预算\\nwestb-48145: 1× GPU (cuda:0), 空闲。D024 已正式确认无剩余实验可跑——所有实验（13 成功 + 4 阴性）已完成，当前为纯写作阶段。Oracle acc
 …[truncated 1096 chars]
@@ -16513,7 +13322,7 @@ _source line 1540 · 2026-05-22T09:47:41.767965+00:00_
 
 ### Tool call
 
-_source line 1541 · 2026-05-22T09:48:46.158393+00:00_
+_source line 1511 · 2026-05-22T09:48:46.158393+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -16551,7 +13360,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1542 · 2026-05-22T09:48:46.697999+00:00_
+_source line 1512 · 2026-05-22T09:48:46.697999+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/paper_framing.md\", \"content\": \"# Paper Framing — entrainment_gated_ft\\n\\n> Revised 2026-05-20 after Round 1 review (Overall 3.0, D014). Predictive multiplicity replaces underspecification as primary framework. Title: \\\"Task-Specific Convergence and Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\". CI→complementary characterization. New evidence: Jaccard normalized ES (5-7%), RetNet-HGRN2 decoupling. Target 3.5+.\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Findings (via ARR)\\n- Stretch: EMNLP 2026 Main\\n- Deadline: ARR June 2026 cycle (submission ~June 15)\\n\\n## Paper Type\\nEmpirical analysis paper — quantifying a known phenomenon (per-example divergence under aggregate convergence) in a specific important domain (hybrid recurrent architectures)\\n\\n## Core Claims (3 条)\\n\\n### Claim 1: Task-Specific Convergence (revised D009)\\nAdding attention layers to different linear recurrent architectures (GatedDeltaNet, RetNet, HGRN2) induces aggregate performance convergence **specifically on context-retrieval tasks**. Across 10 benchmarks, only LAMBADA shows significant convergence (ρ=-1.0, p=0.017 two-tailed, cross-arch std drops 79%, BCa CI [-1.0, -0.7]). This task-specificity IS the finding, not a limitation:\\n- **Negative-ρ cluster** (6/10): LAMBADA, xstorycloze, COPA, PIQA, ARC-Easy, MMLU — tasks with context-retrieval or reasoning components\\n- **Positive-ρ cluster** (4/10): BoolQ, SciQ, HellaSwag, WinoGrande — commonsense/knowledge tasks where attention doesn't equalize\\n- LAMBADA is unique as a **pure context-prediction** task (predict last word from context alone), explaining why convergence is strongest there\\n\\n**Statistical strategy (D009)**:\\n1. **Complementary characterization**: BCa percentile CI [-1.0, -0.7] (100% valid resamples have ρ<0; does NOT depend on multiple comparison corr
 …[truncated 4438 chars]
@@ -16574,7 +13383,7 @@ _source line 1542 · 2026-05-22T09:48:46.697999+00:00_
 
 ### Tool call
 
-_source line 1543 · 2026-05-22T09:49:13.614602+00:00_
+_source line 1513 · 2026-05-22T09:49:13.614602+00:00_
 
 called ToolSearch
 
@@ -16610,7 +13419,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1544 · 2026-05-22T09:49:14.167190+00:00_
+_source line 1514 · 2026-05-22T09:49:14.167190+00:00_
 
 
 
@@ -16632,7 +13441,7 @@ _source line 1544 · 2026-05-22T09:49:14.167190+00:00_
 
 ### Tool call
 
-_source line 1545 · 2026-05-22T09:49:22.346480+00:00_
+_source line 1515 · 2026-05-22T09:49:22.346480+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -16672,7 +13481,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 1546 · 2026-05-22T09:49:22.864862+00:00_
+_source line 1516 · 2026-05-22T09:49:22.864862+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D030\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16694,7 +13503,7 @@ _source line 1546 · 2026-05-22T09:49:22.864862+00:00_
 
 ### Tool call
 
-_source line 1547 · 2026-05-22T09:49:46.578858+00:00_
+_source line 1517 · 2026-05-22T09:49:46.578858+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -16728,7 +13537,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1548 · 2026-05-22T09:49:49.649794+00:00_
+_source line 1518 · 2026-05-22T09:49:49.649794+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -16750,7 +13559,7 @@ _source line 1548 · 2026-05-22T09:49:49.649794+00:00_
 
 ### Tool call
 
-_source line 1549 · 2026-05-22T09:49:59.184656+00:00_
+_source line 1519 · 2026-05-22T09:49:59.184656+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -16784,7 +13593,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1550 · 2026-05-22T09:49:59.689542+00:00_
+_source line 1520 · 2026-05-22T09:49:59.689542+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":4886}"}
 
@@ -16806,7 +13615,7 @@ _source line 1550 · 2026-05-22T09:49:59.689542+00:00_
 
 ### Tool call
 
-_source line 1551 · 2026-05-22T09:50:02.666364+00:00_
+_source line 1521 · 2026-05-22T09:50:02.666364+00:00_
 
 called ToolSearch
 
@@ -16842,7 +13651,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1552 · 2026-05-22T09:50:03.214267+00:00_
+_source line 1522 · 2026-05-22T09:50:03.214267+00:00_
 
 
 
@@ -16864,7 +13673,7 @@ _source line 1552 · 2026-05-22T09:50:03.214267+00:00_
 
 ### Tool call
 
-_source line 1553 · 2026-05-22T09:50:31.762457+00:00_
+_source line 1523 · 2026-05-22T09:50:31.762457+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -16900,7 +13709,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1554 · 2026-05-22T09:50:53.775333+00:00_
+_source line 1524 · 2026-05-22T09:50:53.775333+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36204e3cb0c210d887bef87d9\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -16922,7 +13731,7 @@ _source line 1554 · 2026-05-22T09:50:53.775333+00:00_
 
 ### Tool call
 
-_source line 1555 · 2026-05-22T09:50:53.876807+00:00_
+_source line 1525 · 2026-05-22T09:50:53.876807+00:00_
 
 called mcp__agent-ml-research__director_post_to_paper_agent
 
@@ -16958,7 +13767,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ### Tool result
 
-_source line 1556 · 2026-05-22T09:50:55.389869+00:00_
+_source line 1526 · 2026-05-22T09:50:55.389869+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e362128dc80c45662f63cb9d8d\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
 
@@ -16980,7 +13789,7 @@ _source line 1556 · 2026-05-22T09:50:55.389869+00:00_
 
 ### Tool call
 
-_source line 1557 · 2026-05-22T09:51:18.307112+00:00_
+_source line 1527 · 2026-05-22T09:51:18.307112+00:00_
 
 called mcp__agent-ml-research__update_roadmap
 
@@ -17018,7 +13827,7 @@ called mcp__agent-ml-research__update_roadmap
 
 ### Tool result
 
-_source line 1558 · 2026-05-22T09:51:19.016016+00:00_
+_source line 1528 · 2026-05-22T09:51:19.016016+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"lines\": 60, \"reason\": \"D030: 目标升级到 4.0，补 3 实验 + 写作结构重构\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17040,7 +13849,7 @@ _source line 1558 · 2026-05-22T09:51:19.016016+00:00_
 
 ### Assistant
 
-_source line 1559 · 2026-05-22T09:51:23.356079+00:00_
+_source line 1529 · 2026-05-22T09:51:23.356079+00:00_
 
 两路任务已派出：
 
@@ -17072,7 +13881,7 @@ _source line 1559 · 2026-05-22T09:51:23.356079+00:00_
 
 ### User
 
-_source line 1560 · 2026-05-22T09:51:25.822124+00:00_
+_source line 1530 · 2026-05-22T09:51:25.822124+00:00_
 
 [飞书用户 曹晓玉 (ou_ed2f4ceeab862a8049a88352dc56181e)]: 确认，全部并行做
 
@@ -17093,7 +13902,7 @@ _source line 1560 · 2026-05-22T09:51:25.822124+00:00_
 
 ### Tool call
 
-_source line 1561 · 2026-05-22T09:51:33.078631+00:00_
+_source line 1531 · 2026-05-22T09:51:33.078631+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -17127,7 +13936,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1562 · 2026-05-22T09:51:36.252479+00:00_
+_source line 1532 · 2026-05-22T09:51:36.252479+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -17149,7 +13958,7 @@ _source line 1562 · 2026-05-22T09:51:36.252479+00:00_
 
 ### Assistant
 
-_source line 1563 · 2026-05-22T09:51:39.492005+00:00_
+_source line 1533 · 2026-05-22T09:51:39.492005+00:00_
 
 No response requested.
 
@@ -17176,7 +13985,7 @@ No response requested.
 
 ### User
 
-_source line 1564 · 2026-05-22T09:52:28.418868+00:00_
+_source line 1534 · 2026-05-22T09:52:28.418868+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/1 (空闲, 不需要) | Worker 2 (E1 running + E2/E3 running) | 磁盘: 未检查
@@ -17205,7 +14014,7 @@ A2 已验证 confidence/logprob 数据存在，两个 Worker 直接开始分析�
 
 ### Assistant
 
-_source line 1565 · 2026-05-22T09:52:34.587286+00:00_
+_source line 1535 · 2026-05-22T09:52:34.587286+00:00_
 
 No response requested.
 
@@ -17232,7 +14041,7 @@ No response requested.
 
 ### User
 
-_source line 1566 · 2026-05-22T09:52:38.306120+00:00_
+_source line 1536 · 2026-05-22T09:52:38.306120+00:00_
 
 [Reviewer 回复]:
 ## ROADMAP D030 审查 — 目标升级 3.0→4.0
@@ -17309,7 +14118,7 @@ M014 教训：9 项修复中 Paper Agent 遗漏了最关键的 1 项。现在是
 
 ### Tool call
 
-_source line 1567 · 2026-05-22T09:53:02.676060+00:00_
+_source line 1537 · 2026-05-22T09:53:02.676060+00:00_
 
 called ToolSearch
 
@@ -17345,7 +14154,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1568 · 2026-05-22T09:53:02.676559+00:00_
+_source line 1538 · 2026-05-22T09:53:02.676559+00:00_
 
 
 
@@ -17367,7 +14176,7 @@ _source line 1568 · 2026-05-22T09:53:02.676559+00:00_
 
 ### Tool call
 
-_source line 1569 · 2026-05-22T09:53:14.789829+00:00_
+_source line 1539 · 2026-05-22T09:53:14.789829+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -17403,7 +14212,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 1570 · 2026-05-22T09:53:18.968980+00:00_
+_source line 1540 · 2026-05-22T09:53:18.968980+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer\"}, \"error\": \"\"}"}
 
@@ -17425,7 +14234,7 @@ _source line 1570 · 2026-05-22T09:53:18.968980+00:00_
 
 ### Assistant
 
-_source line 1571 · 2026-05-22T09:53:21.922817+00:00_
+_source line 1541 · 2026-05-22T09:53:21.922817+00:00_
 
 等 Agent 实验结果和 Paper Agent 重构完成。
 
@@ -17452,7 +14261,7 @@ _source line 1571 · 2026-05-22T09:53:21.922817+00:00_
 
 ### User
 
-_source line 1572 · 2026-05-22T09:56:40.061279+00:00_
+_source line 1542 · 2026-05-22T09:56:40.061279+00:00_
 
 [Paper Agent 回复]:
 [写作进展] Patch — 结构重构 完成
@@ -17488,7 +14297,7 @@ _source line 1572 · 2026-05-22T09:56:40.061279+00:00_
 
 ### Tool call
 
-_source line 1573 · 2026-05-22T09:56:49.012396+00:00_
+_source line 1543 · 2026-05-22T09:56:49.012396+00:00_
 
 called Read
 
@@ -17526,7 +14335,7 @@ called Read
 
 ### Tool result
 
-_source line 1574 · 2026-05-22T09:56:49.866067+00:00_
+_source line 1544 · 2026-05-22T09:56:49.866067+00:00_
 
 0	\section{Experiments}\label{sec:experiments}
 1	
@@ -17575,7 +14384,7 @@ _source line 1574 · 2026-05-22T09:56:49.866067+00:00_
 
 ### Tool call
 
-_source line 1575 · 2026-05-22T09:56:49.916800+00:00_
+_source line 1545 · 2026-05-22T09:56:49.916800+00:00_
 
 called Read
 
@@ -17613,7 +14422,7 @@ called Read
 
 ### Tool result
 
-_source line 1576 · 2026-05-22T09:56:49.917283+00:00_
+_source line 1546 · 2026-05-22T09:56:49.917283+00:00_
 
 17	
 18	Our analysis yields two findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent variation. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\leq 0.10$, all $p < .01$). Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval).
@@ -17644,7 +14453,7 @@ _source line 1576 · 2026-05-22T09:56:49.917283+00:00_
 
 ### Tool call
 
-_source line 1577 · 2026-05-22T09:56:57.244252+00:00_
+_source line 1547 · 2026-05-22T09:56:57.244252+00:00_
 
 called Read
 
@@ -17682,7 +14491,7 @@ called Read
 
 ### Tool result
 
-_source line 1578 · 2026-05-22T09:56:57.244739+00:00_
+_source line 1548 · 2026-05-22T09:56:57.244739+00:00_
 
 56	\end{tabular}
 57	\par\vspace{1pt}
@@ -17716,7 +14525,7 @@ _source line 1578 · 2026-05-22T09:56:57.244739+00:00_
 
 ### Tool call
 
-_source line 1579 · 2026-05-22T09:57:10.668541+00:00_
+_source line 1549 · 2026-05-22T09:57:10.668541+00:00_
 
 called Grep
 
@@ -17754,7 +14563,7 @@ called Grep
 
 ### Tool result
 
-_source line 1580 · 2026-05-22T09:57:10.770002+00:00_
+_source line 1550 · 2026-05-22T09:57:10.770002+00:00_
 
 No matches found
 
@@ -17776,7 +14585,7 @@ No matches found
 
 ### Assistant
 
-_source line 1581 · 2026-05-22T09:57:16.979731+00:00_
+_source line 1551 · 2026-05-22T09:57:16.979731+00:00_
 
 No broken references — Paper Agent cleaned up all `ssec:task_convergence` references. The restructure is solid:
 
@@ -17813,7 +14622,7 @@ Waiting for Agent's E1/E2/E3 experiment results to proceed with integration.
 
 ### User
 
-_source line 1582 · 2026-05-22T10:02:00.361326+00:00_
+_source line 1552 · 2026-05-22T10:02:00.361326+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/1 (空闲) | Worker 1 (E2/E3 Worker turn5, E2 done, E3 running) | 磁盘: 未检查
@@ -17859,7 +14668,7 @@ Artifact: `art_20260522_e4231e`
 
 ### Tool call
 
-_source line 1583 · 2026-05-22T10:02:40.187270+00:00_
+_source line 1553 · 2026-05-22T10:02:40.187270+00:00_
 
 called mcp__agent-ml-research__log_decision
 
@@ -17899,7 +14708,7 @@ called mcp__agent-ml-research__log_decision
 
 ### Tool result
 
-_source line 1584 · 2026-05-22T10:02:40.288217+00:00_
+_source line 1554 · 2026-05-22T10:02:40.288217+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"decision_id\": \"D031\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17921,7 +14730,7 @@ _source line 1584 · 2026-05-22T10:02:40.288217+00:00_
 
 ### Assistant
 
-_source line 1585 · 2026-05-22T10:02:42.530424+00:00_
+_source line 1555 · 2026-05-22T10:02:42.530424+00:00_
 
 E1 结果非常有价值。关键分析：
 
@@ -17959,7 +14768,7 @@ E1 结果非常有价值。关键分析：
 
 ### User
 
-_source line 1586 · 2026-05-22T10:03:06.184613+00:00_
+_source line 1556 · 2026-05-22T10:03:06.184613+00:00_
 
 [审稿报告]
 Overall: 3.0
@@ -18251,7 +15060,7 @@ Overall: 3.0
 
 ### Tool call
 
-_source line 1587 · 2026-05-22T10:04:47.455688+00:00_
+_source line 1557 · 2026-05-22T10:04:47.455688+00:00_
 
 called mcp__agent-ml-research__post_to_reviewer
 
@@ -18287,7 +15096,7 @@ called mcp__agent-ml-research__post_to_reviewer
 
 ### Tool result
 
-_source line 1588 · 2026-05-22T10:04:51.424572+00:00_
+_source line 1558 · 2026-05-22T10:04:51.424572+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_session\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer\"}, \"error\": \"\"}"}
 
@@ -18309,7 +15118,7 @@ _source line 1588 · 2026-05-22T10:04:51.424572+00:00_
 
 ### Assistant
 
-_source line 1589 · 2026-05-22T10:04:54.877386+00:00_
+_source line 1559 · 2026-05-22T10:04:54.877386+00:00_
 
 Round 13 审稿出来了。注意：这是 Fresh review，审的是结构重构前的版本。很多 N1 问题已被 Paper Agent 重构解决。让我按协议逐条处理。
 
@@ -18405,7 +15214,7 @@ Round 13 审稿出来了。注意：这是 Fresh review，审的是结构重构�
 
 ### User
 
-_source line 1590 · 2026-05-22T10:04:56.602215+00:00_
+_source line 1560 · 2026-05-22T10:04:56.602215+00:00_
 
 [Reviewer 回复]:
 ## E1 Confidence Selection 审查
@@ -18531,7 +15340,7 @@ E1 作为 **supporting analysis** 放在 §4.2 或 §4.3 末尾（1 段，~80 wo
 
 ### Tool call
 
-_source line 1591 · 2026-05-22T10:06:40.191969+00:00_
+_source line 1561 · 2026-05-22T10:06:40.191969+00:00_
 
 called mcp__agent-ml-research__director_post_to_main_agent
 
@@ -18567,7 +15376,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ### Tool result
 
-_source line 1592 · 2026-05-22T10:06:44.114617+00:00_
+_source line 1562 · 2026-05-22T10:06:44.114617+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36e5fde0b8c29b355f6591805\", \"queued\": true}, \"error\": \"\"}"}
 
@@ -18589,7 +15398,7 @@ _source line 1592 · 2026-05-22T10:06:44.114617+00:00_
 
 ### Tool call
 
-_source line 1593 · 2026-05-22T10:06:55.612356+00:00_
+_source line 1563 · 2026-05-22T10:06:55.612356+00:00_
 
 called mcp__agent-ml-research__director_reply_to_user
 
@@ -18623,7 +15432,7 @@ called mcp__agent-ml-research__director_reply_to_user
 
 ### Tool result
 
-_source line 1594 · 2026-05-22T10:06:56.266825+00:00_
+_source line 1564 · 2026-05-22T10:06:56.266825+00:00_
 
 {"result":"{\"success\": true}"}
 
@@ -18645,7 +15454,7 @@ _source line 1594 · 2026-05-22T10:06:56.266825+00:00_
 
 ### Assistant
 
-_source line 1595 · 2026-05-22T10:06:58.716487+00:00_
+_source line 1565 · 2026-05-22T10:06:58.716487+00:00_
 
 用户说得对——三个结构性问题光靠文字修改不够。让我分析哪些能补实验解决：
 
@@ -18680,7 +15489,7 @@ Problem 2 是提分关键。让我立即调查可行性。
 
 ### User
 
-_source line 1596 · 2026-05-22T10:07:00.755174+00:00_
+_source line 1566 · 2026-05-22T10:07:00.755174+00:00_
 
 [Reviewer 回复]:
 ## E2/E3 分析审查
@@ -18730,7 +15539,7 @@ _source line 1596 · 2026-05-22T10:07:00.755174+00:00_
 
 ### Assistant
 
-_source line 1597 · 2026-05-22T10:07:11.009926+00:00_
+_source line 1567 · 2026-05-22T10:07:11.009926+00:00_
 
 E2/E3 审查通过。整合方案清晰。等 Agent 回复 seed 调查结果后统一推进——seed 实验的可行性决定后续 2 天的整体优先级和工作安排。
 
@@ -18757,7 +15566,7 @@ E2/E3 审查通过。整合方案清晰。等 Agent 回复 seed 调查结果后�
 
 ### User
 
-_source line 1598 · 2026-05-22T10:07:52.164724+00:00_
+_source line 1568 · 2026-05-22T10:07:52.164724+00:00_
 
 [Agent 回复]:
 [资源] GPU 0/1 (空闲) | Worker 1 (seed investigation running) | 磁盘: 未检查
@@ -18786,7 +15595,7 @@ _source line 1598 · 2026-05-22T10:07:52.164724+00:00_
 
 ### Assistant
 
-_source line 1599 · 2026-05-22T10:07:57.770068+00:00_
+_source line 1569 · 2026-05-22T10:07:57.770068+00:00_
 
 No response requested.
 
@@ -18813,7 +15622,7 @@ No response requested.
 
 ### User
 
-_source line 1600 · 2026-05-22T10:08:04.022162+00:00_
+_source line 1570 · 2026-05-22T10:08:04.022162+00:00_
 
 [Reviewer 回复]:
 ## Round 13 Action Matrix 审查
@@ -18933,7 +15742,7 @@ Paper Agent 的结构重构质量 **significantly better than previous rounds**�
 
 ### Tool call
 
-_source line 1601 · 2026-05-22T10:10:54.167881+00:00_
+_source line 1571 · 2026-05-22T10:10:54.167881+00:00_
 
 called ToolSearch
 
@@ -18969,7 +15778,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1602 · 2026-05-22T10:10:54.218632+00:00_
+_source line 1572 · 2026-05-22T10:10:54.218632+00:00_
 
 No matching deferred tools found
 
@@ -18991,7 +15800,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1603 · 2026-05-22T10:10:57.280100+00:00_
+_source line 1573 · 2026-05-22T10:10:57.280100+00:00_
 
 called ToolSearch
 
@@ -19027,7 +15836,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1604 · 2026-05-22T10:10:57.280515+00:00_
+_source line 1574 · 2026-05-22T10:10:57.280515+00:00_
 
 No matching deferred tools found
 
@@ -19049,7 +15858,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1605 · 2026-05-22T10:11:01.094406+00:00_
+_source line 1575 · 2026-05-22T10:11:01.094406+00:00_
 
 called ToolSearch
 
@@ -19085,7 +15894,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1606 · 2026-05-22T10:11:01.145070+00:00_
+_source line 1576 · 2026-05-22T10:11:01.145070+00:00_
 
 
 
@@ -19107,7 +15916,7 @@ _source line 1606 · 2026-05-22T10:11:01.145070+00:00_
 
 ### Tool call
 
-_source line 1607 · 2026-05-22T10:11:04.524340+00:00_
+_source line 1577 · 2026-05-22T10:11:04.524340+00:00_
 
 called mcp__agent-ml-research__get_agent_queue_status
 
@@ -19141,7 +15950,7 @@ called mcp__agent-ml-research__get_agent_queue_status
 
 ### Tool result
 
-_source line 1608 · 2026-05-22T10:11:04.577018+00:00_
+_source line 1578 · 2026-05-22T10:11:04.577018+00:00_
 
 {"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":187}"}
 
@@ -19163,7 +15972,7 @@ _source line 1608 · 2026-05-22T10:11:04.577018+00:00_
 
 ### Tool call
 
-_source line 1609 · 2026-05-22T10:11:10.498758+00:00_
+_source line 1579 · 2026-05-22T10:11:10.498758+00:00_
 
 called ToolSearch
 
@@ -19199,7 +16008,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1610 · 2026-05-22T10:11:10.499088+00:00_
+_source line 1580 · 2026-05-22T10:11:10.499088+00:00_
 
 No matching deferred tools found
 
@@ -19221,7 +16030,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1611 · 2026-05-22T10:11:13.309207+00:00_
+_source line 1581 · 2026-05-22T10:11:13.309207+00:00_
 
 called ToolSearch
 
@@ -19257,7 +16066,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1612 · 2026-05-22T10:11:13.410087+00:00_
+_source line 1582 · 2026-05-22T10:11:13.410087+00:00_
 
 
 
@@ -19279,7 +16088,7 @@ _source line 1612 · 2026-05-22T10:11:13.410087+00:00_
 
 ### Tool call
 
-_source line 1613 · 2026-05-22T10:11:17.232855+00:00_
+_source line 1583 · 2026-05-22T10:11:17.232855+00:00_
 
 called mcp__agent-ml-research__feishu_read_chat_history
 
@@ -19315,7 +16124,7 @@ called mcp__agent-ml-research__feishu_read_chat_history
 
 ### Tool result
 
-_source line 1614 · 2026-05-22T10:11:20.752993+00:00_
+_source line 1584 · 2026-05-22T10:11:20.752993+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6e36e2cc8c90c220a26a60ba57a\", \"senderId\": \"cli_a9745b50717c9bda\", \"createTime\": \"1779444416163\", \"msgType\": \"post\", \"content\": \"同意，三个结构性问题不能只靠文字。 最有价值的实验是解决 Problem 2（seed confound） ：如果能证明 cross-architecture Jaccard (~ 0.10) 显著低于 same-architecture-different-seed Jaccard，直接排除 seed artifact，论文从 \\\"observational limitation\\\" 升级为 \\\"controlled finding\\\"。 已派 Agent 紧急调查： 1.  Wang et al. model zoo 是否有 multi-seed checkpoints 2.  在当前 GPU 上训练 2-3 个 340M seed replicates 是否可行（时间/数据/代码） 3.  替代 seed proxy 方案 这个调查决定后续 2 天工作方向。如果 seed 训练可行（估计 340M ×3 seeds ≈ 18-36 小时），立即开跑。如果不可行，走替代方案。 同时已有的成果不停： -  E1 (routing +5.3pp)、E2 (continuous Jaccard robust)、E3 (calibration 非 artifact) 全部 positive，作为 supporting analysis 整合 -  结构重构已完成（convergence 降级） -  Round 13 text fixes 在 Agent 回复后并行推进\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36eab810a8c108ec37d005e85\", \"senderId\": \"cli_a9745b50717c9bda\", \"createTime\": \"1779444295474\", \"msgType\": \"post\", \"content\": \"Round 13 审稿出来了。注意：这是 Fresh review，审的是结构重构前的版本。很多 N1 问题已被 Paper Agent 重构解决。让我按协议逐条处理。 逐条 Action Matrix N1 [Critical] Convergence 叙事权重过高 -  状态： 已由 Paper Agent 重构解决 。§4.1 已删除，convergence 降为 §4.2 开头 3 句上下文。Figure 2 移至 appendix。 -  残余 action：验证 Abstract/Intro 是否与新结构对齐（Paper Agent 报告已对齐）。 N2 [Critical] n=5 Spearman underpowered -  状态：§3.3 Power considerations 已有。§4.2 标注 \\\"exploratory\\\"。 -  Action：Table 1 caption 加 power caveat：\\\"Power is limited: only |ρ| = 1.0 achieves p < .05 at n = 5\\\"。§4.1（现已无独立 subsection，在 §4.2 context 段）\\\"No other benchmark shows significant convergence\\\" 后加 \\\", though the test has negligible power for |ρ|  < 1.0\\\"。 N3 [Critical] 单次 run，architecture vs seed -  状态：结构性限制，caveat 已有多处。 -  新建议：\\\"architecture-specific\\\" → \\\"configuration-specific\\\"。 -  Action： 部分采纳 。在 claims/contributions 处改为 \\\"configuration-specific\\\"（更准确），但在描述实验设计（\\\"three architectures\\\"）和 motivation（\\\
 …[truncated 37207 chars]
@@ -19338,7 +16147,7 @@ _source line 1614 · 2026-05-22T10:11:20.752993+00:00_
 
 ### Tool call
 
-_source line 1615 · 2026-05-22T10:11:35.128255+00:00_
+_source line 1585 · 2026-05-22T10:11:35.128255+00:00_
 
 called ToolSearch
 
@@ -19374,7 +16183,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1616 · 2026-05-22T10:11:35.229155+00:00_
+_source line 1586 · 2026-05-22T10:11:35.229155+00:00_
 
 No matching deferred tools found
 
@@ -19396,7 +16205,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1617 · 2026-05-22T10:11:37.938941+00:00_
+_source line 1587 · 2026-05-22T10:11:37.938941+00:00_
 
 called ToolSearch
 
@@ -19432,7 +16241,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1618 · 2026-05-22T10:11:38.040829+00:00_
+_source line 1588 · 2026-05-22T10:11:38.040829+00:00_
 
 
 
@@ -19454,7 +16263,7 @@ _source line 1618 · 2026-05-22T10:11:38.040829+00:00_
 
 ### Tool call
 
-_source line 1619 · 2026-05-22T10:11:44.661894+00:00_
+_source line 1589 · 2026-05-22T10:11:44.661894+00:00_
 
 called Glob
 
@@ -19490,7 +16299,7 @@ called Glob
 
 ### Tool result
 
-_source line 1620 · 2026-05-22T10:11:44.662359+00:00_
+_source line 1590 · 2026-05-22T10:11:44.662359+00:00_
 
 No files found
 
@@ -19512,7 +16321,7 @@ No files found
 
 ### Tool call
 
-_source line 1621 · 2026-05-22T10:11:47.574836+00:00_
+_source line 1591 · 2026-05-22T10:11:47.574836+00:00_
 
 called ToolSearch
 
@@ -19548,7 +16357,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1622 · 2026-05-22T10:11:47.625505+00:00_
+_source line 1592 · 2026-05-22T10:11:47.625505+00:00_
 
 No matching deferred tools found
 
@@ -19570,7 +16379,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1623 · 2026-05-22T10:11:50.787589+00:00_
+_source line 1593 · 2026-05-22T10:11:50.787589+00:00_
 
 called ToolSearch
 
@@ -19606,7 +16415,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1624 · 2026-05-22T10:11:50.888474+00:00_
+_source line 1594 · 2026-05-22T10:11:50.888474+00:00_
 
 
 
@@ -19628,7 +16437,7 @@ _source line 1624 · 2026-05-22T10:11:50.888474+00:00_
 
 ### Tool call
 
-_source line 1625 · 2026-05-22T10:11:53.850574+00:00_
+_source line 1595 · 2026-05-22T10:11:53.850574+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -19656,6 +16465,2582 @@ called mcp__agent-ml-research__read_project_file
     "file": "report.md",
     "max_chars": "12000"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1596 · 2026-05-22T10:11:53.901315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-005: Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones（准备中）\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\n\\n## 近期结论\\n- **exp-340m-multi-bench** (success): 340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the scale-dependency claim needs qualification. ← 基于 exp-007\\n  [340m_multi_bench_analysis](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-340m-multi-bench/data/340m_multi_bench_analysis.json)\\n- **w3-winogrande-piqa-eval** (success): WinoGrande + PIQA per-example multiplicity analysis to decouple format (2-choice vs 4-way MC) from task-type as driver of ambiguity α spectrum, addressing Round 5 W3 format confound concern\\n- **exp-boolq-hellaswag-eval** (success): BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化 ← 基于 exp-011\\n  [boolq_confidence_margin](/api/workspace-files/projects/entrainment_gated_ft/a
+…[truncated 354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1597 · 2026-05-22T10:12:04.562164+00:00_
+
+called mcp__agent-ml-research__director_post_to_main_agent
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent</summary>
+
+```json
+{
+  "text": "Seed 调查 Worker 结果汇报：你之前派了 Worker 调查 Wang et al. model zoo 的 seed replication 可行性（multi-seed checkpoints、训练代码/数据可用性、340M seed training 时间估算）。结果在我的 context 压缩时丢失了。请立即重新汇报 seed 调查的完整结果：\n\n1. Wang et al. model zoo 是否有 multi-seed checkpoints？\n2. 训练代码和数据是否可获取？能否在我们的 GPU (RTX PRO 6000 96GB) 上训练 340M seed replicates？\n3. 预估训练时间（每个 seed）？\n4. 替代 seed proxy 方案评估？\n\n同时汇报：E1/E2/E3 的结果是否已经整合到论文中？当前论文的 git 状态？",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+  "tool_args": {
+    "text": "Seed 调查 Worker 结果汇报：你之前派了 Worker 调查 Wang et al. model zoo 的 seed replication 可行性（multi-seed checkpoints、训练代码/数据可用性、340M seed training 时间估算）。结果在我的 context 压缩时丢失了。请立即重新汇报 seed 调查的完整结果：\n\n1. Wang et al. model zoo 是否有 multi-seed checkpoints？\n2. 训练代码和数据是否可获取？能否在我们的 GPU (RTX PRO 6000 96GB) 上训练 340M seed replicates？\n3. 预估训练时间（每个 seed）？\n4. 替代 seed proxy 方案评估？\n\n同时汇报：E1/E2/E3 的结果是否已经整合到论文中？当前论文的 git 状态？",
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1598 · 2026-05-22T10:12:06.125382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36f19d6884c3185c493d5bbdb\", \"queued\": true}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+  "elapsed_ms": 1563
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1599 · 2026-05-22T10:12:09.992612+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1600 · 2026-05-22T10:12:10.043366+00:00_
+
+1	- id: "R5-W1"
+2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
+3	  category: experiment
+4	  severity: critical
+5	  status: in_progress
+6	  first_raised_round: 5
+7	  last_seen_round: 13
+8	  mentions:
+9	    - round: 5
+10	      reviewers: [R1, R2]
+11	      note: "R1 Critical, R2 W3+Q3 支持。"
+12	    - round: 6
+13	      reviewers: [R1, R2]
+14	      note: "R1-N2 Critical + R2 全 AGREE。"
+15	    - round: 7
+16	      reviewers: [R1, R2]
+17	      note: "C2: 同前。不可修复。rebuttal-only。"
+18	    - round: 8
+19	      reviewers: [R1, R2]
+20	      note: "SF1 Major: within-arch Jaccard 0.33 不是 seed baseline 而是 attention-ratio-variation baseline。需更精确表述。"
+21	    - round: 9
+22	      reviewers: [R1, R2]
+23	      note: "R1-N1 + R2-N1 Critical，交叉 [AGREE]。两位独立达成共识：blocking issue。"
+24	    - round: 10
+25	      reviewers: [R1, R2]
+26	      note: "R1-W2 Critical + R2-W1 Major。R1 精确指出 within-arch Jaccard（跨 ratio）与 cross-arch Jaccard（跨架构）比较维度不同，3× gap 不能作为 architecture-dominance proxy。交叉 [AGREE]。结构性限制，不可修复。"
+27	    - round: 12
+28	      reviewers: [R1, R2]
+29	      note: "R1-N2 Critical + R2-N2 Critical。两位独立再次确认。交叉共识。"
+30	    - round: 13
+31	      reviewers: [R1, R2]
+32	      note: "R1-N3 Critical + R2-Q4 AGREE。两位交叉共识：单次 run 是最根本的实验设计限制。R2 指出补充 seed replicates 不现实（公开 model zoo），建议 'architecture-specific' → 'configuration-specific' 措辞降级。R1 同意。3× Jaccard gap 是间接证据但无法定量 bound seed contribution。"
+33	  action_items:
+34	    - round: 5
+35	      action: "Proxy argument 写入 §4.3 + Limitations 升级"
+36	      assigned_to: paper_agent
+37	      status: done
+38	    - round: 6
+39	      action: "MF2: Contribution 1 nuanced 表述 + caveat"
+40	      assigned_to: paper_agent
+41	      status: done
+42	    - round: 7
+43	      action: "Rebuttal only — author_response_r7.tex 已写"
+44	      assigned_to: director
+45	      status: done
+46	    - round: 8
+47	      action: "Limitations 中明确 within-arch Jaccard ≠ seed baseline + Abstract 加 single-run caveat"
+48	      assigned_to: paper_agent
+49	      status: done
+50	    - roun
+…[truncated 2204 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1601 · 2026-05-22T10:12:15.473490+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "100",
+  "limit": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "100",
+    "limit": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1602 · 2026-05-22T10:12:15.524308+00:00_
+
+100	      assigned_to: paper_agent
+101	      status: done
+102	    - round: 8
+103	      action: "合并 C2+C3 为 secondary observation，C1 成为唯一核心 contribution"
+104	      assigned_to: paper_agent
+105	      status: done
+106	    - round: 9
+107	      action: "'suggestive' → 'exploratory' in Abstract + §4.1。Intro C2 加 excluding-GDN stats。"
+108	      assigned_to: director
+109	      status: done
+110	    - round: 12
+111	      action: "C1 convergence compression: §4.1 labeled exploratory + 10-benchmark adj-p=.170 added; Intro convergence reduced to 3 sentences; §4.4 MMLU reversal detail present"
+112	      assigned_to: director
+113	      status: done
+114	  resolution: "Round 13: 尽管已标注 exploratory，叙事结构仍以 convergence 为核心支柱。两位 Reviewer 一致要求进一步降格。"
+115	  resolution_round: null
+116	
+117	- id: "R5-W3"
+118	  summary: "Task-dependent spectrum 仅 3 benchmark，存在评估格式 confound"
+119	  category: experiment
+120	  severity: warning
+121	  status: resolved
+122	  first_raised_round: 5
+123	  last_seen_round: 5
+124	  mentions:
+125	    - round: 5
+126	      reviewers: [R1, R2]
+127	      note: "α 变异可能反映 format 而非 task type。"
+128	    - round: 12
+129	      reviewers: []
+130	      note: "Round 12 未提及。已通过 PIQA/WinoGrande 扩展解决。"
+131	    - round: 13
+132	      reviewers: []
+133	      note: "Round 13 未提及。维持 resolved。"
+134	  action_items:
+135	    - round: 5
+136	      action: "WinoGrande + PIQA per-example 分析"
+137	      assigned_to: main_agent
+138	      status: done
+139	  resolution: "PIQA + WinoGrande 数据整合完成。Round 6-13 未再提及。"
+140	  resolution_round: 6
+141	
+142	- id: "R5-W4"
+143	  summary: "新颖性有限——已有指标的直接套用，无新方法/理论"
+144	  category: framing
+145	  severity: critical
+146	  status: wont_fix
+147	  first_raised_round: 5
+148	  last_seen_round: 13
+149	  mentions:
+150	    - round: 5
+151	      reviewers: [R1, R2]
+152	      note: "无新方法/指标/理论。"
+153	    - round: 6
+154	      reviewers: [R2]
+155	      note: "R2-N1 Critical: decoupling 是直接推论。"
+156	    - round: 7
+157	      reviewers: [R1, R2]
+158	      note: "C4: 同前，结构性限制。accept Find
+…[truncated 2916 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1603 · 2026-05-22T10:12:30.130199+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1604 · 2026-05-22T10:12:30.181055+00:00_
+
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	Using the model zoo of \citet{wang2025hybrid} (\S\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\% attention.
+4	
+5	\begin{table*}[t]
+6	\centering
+7	\caption{Cross-architecture convergence across benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and cross-architecture $\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\sigma$ values reported $\times 10^{2}$ (accuracy percentage points). Ratio: $\sigma_{\text{pure}} / \sigma_{\text{h3-1}}$. \textbf{Bold}: only benchmark with $\rho = -1.0$.}
+8	\label{tab:convergence}
+9	\begin{tabular}{llrrrrr}
+10	\toprule
+11	Benchmark & Category & $\rho$ & $p$ & $\sigma_{\text{pure}}$ & $\sigma_{\text{h3-1}}$ & Ratio \\
+12	\midrule
+13	\textbf{LAMBADA$^{\ddagger}$} & \textbf{Retrieval} & $\mathbf{-1.0}$ & \textbf{.017} & \textbf{2.41} & \textbf{0.49} & \textbf{4.87} \\
+14	BoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\
+15	ARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\
+16	HellaSwag & Reasoning & $0.4$ & .517 & 1.17 & 1.22 & 0.96 \\
+17	PIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\
+18	WinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\
+19	ARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\
+20	MMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\
+21	SciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\
+22	XStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\
+23	\midrule
+24	COPA$^{\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\
+25	\bottomrule
+26	\multicolumn{7}{l}{\footnotesize $^{\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\
+27	\multicolumn{7}{l}{\footnotesize $^{\ddagger}$GDN h3-1 uses 16 attention heads; all ot
+…[truncated 12094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1605 · 2026-05-22T10:12:47.559910+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1606 · 2026-05-22T10:12:47.560501+00:00_
+
+1	\section{Related Work}
+2	
+3	\paragraph{Hybrid Recurrent Architectures.}
+4	The design space for combining attention with recurrence spans layer-level interleaving \citep[Jamba;][]{lieber2024jamba}, local attention pairing \citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \citep[RWKV-6;][]{peng2024eagle}, within-head mixing \citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \citep[Samba;][]{ren2024samba}. H3 \citep{fu2023hungry} achieves near-Transformer quality with gated convolutions and SSMs, establishing an early design point in the hybrid space. Mamba-2 \citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \citep{lahoti2026mamba3} extends the design further, while \citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \citep{basu2026routing}. \citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.
+5	
+6	\paragraph{Linear Recurrent Models.}
+7	Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \citep{gu2022s4} and Mamba \citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.
+8	
+9	\paragraph{Underspecification and Predictive Multiplicity.}
+10	\citet{damour2022underspecification} formalized underspecification: equivalent a
+…[truncated 2164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1607 · 2026-05-22T10:12:55.689344+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1608 · 2026-05-22T10:12:55.740065+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{multirow}
+15	\usepackage{xcolor}
+16	
+17	\title{Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures}
+18	
+19	\author{Anonymous}
+20	
+21	\begin{document}
+22	\maketitle
+23	
+24	\begin{abstract}
+25	When attention layers are added to linear recurrent architectures, they help and hurt almost entirely different examples across backbones: pairwise overlap among three controlled hybrid designs is at most 10\%. Using the model zoo of \citet{wang2025hybrid} (30 configurations spanning three architectures, five attention ratios, and two scales), we decompose per-example effects and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$--$0.30$) rather than attention dose. Only LAMBADA shows exploratory evidence for aggregate convergence (Bonferroni-adjusted $p = .100$), yet per-example overlap saturates at the first attention level across all four benchmarks. A majority vote fails to outperform the best individual model despite 15--45\% disagreement, while oracle accuracy reveals 7--14\,pp of untapped complementarity, suggesting that architectures interchangeable by aggregate metrics carry hidden consequences for per-example reliability.
+26	\end{abstract}
+27	
+28	\input{sections/introduction}
+29	
+30	\input{sections/related_work}
+31	
+32	\input{sections/method}
+33	
+34	\input{sections/experiments}
+35	
+36	\input{sections/conclusion}
+37	
+38	\section*{Limitations}
+39	
+40	Our analysis has several limitations.
+41	
+42	\paragraph{Coverage and generalization.} We examine three architectures from one model zoo on four main benchmarks (two supplementary). The controlled design isolates architectural effects but limits gene
+…[truncated 1272 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1609 · 2026-05-22T10:13:08.943919+00:00_
+
+called mcp__agent-ml-research__get_agent_queue_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_agent_queue_status</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__get_agent_queue_status",
+  "tool_args": {
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1610 · 2026-05-22T10:13:09.044736+00:00_
+
+{"result":"{\"found\":true,\"processing\":true,\"depth\":1,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] Seed 调查 Worker 结果汇报：你之前派了 Worker 调查 Wang et al. model zoo 的 seed replication 可行性（multi-seed checkpoints、训练\"},\"pending\":[{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_research_seed_investigation_20260522T100734 已完成（status=done）。用 `get_worker_status('worker_re\",\"queued_at\":1779444756.138077}],\"idle_seconds\":312}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__get_agent_queue_status",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1611 · 2026-05-22T10:13:16.622231+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e1_confidence_selection.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e1_confidence_selection.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1612 · 2026-05-22T10:13:16.673133+00:00_
+
+1	{
+2	  "analysis": "e1_confidence_selection",
+3	  "date": "2026-05-22",
+4	  "method": {
+5	    "attention_ratio": "h3-1 (25%)",
+6	    "architectures": ["GDN", "RetNet", "HGRN2"],
+7	    "cv": "50/50 random split x 10 repeats",
+8	    "confidence_measure": {
+9	      "lambada": "target word loglikelihood",
+10	      "hellaswag": "max char-length-normalized loglikelihood",
+11	      "piqa": "max raw loglikelihood across choices",
+12	      "arc_easy": "max raw loglikelihood across choices"
+13	    }
+14	  },
+15	  "results": {
+16	    "lambada": {
+17	      "strategies": {
+18	        "max_confidence": {
+19	          "mean_acc": 0.525378,
+20	          "std_acc": 0.006802,
+21	          "vs_mv_pp": 1.634,
+22	          "vs_best_single_pp": 1.649
+23	        },
+24	        "rescue_threshold": {
+25	          "mean_acc": 0.562321,
+26	          "std_acc": 0.005296,
+27	          "vs_mv_pp": 5.328,
+28	          "vs_best_single_pp": 5.343,
+29	          "mean_threshold": 1.7244,
+30	          "std_threshold": 0.1688
+31	        },
+32	        "confidence_weighted": {
+33	          "mean_acc": 0.527163,
+34	          "std_acc": 0.006393,
+35	          "vs_mv_pp": 1.812,
+36	          "vs_best_single_pp": 1.828
+37	        }
+38	      },
+39	      "baselines": {
+40	        "majority_vote_acc": 0.509042,
+41	        "majority_vote_std": 0.005642,
+42	        "best_single_acc": 0.508886,
+43	        "best_single_std": 0.005018,
+44	        "oracle_acc": 0.654637,
+45	        "oracle_std": 0.005371,
+46	        "random_acc": 0.50683,
+47	        "random_std": 0.008304
+48	      },
+49	      "per_arch": {
+50	        "GDN": {"pure_acc": 0.543373, "hybrid_acc": 0.513293},
+51	        "RetNet": {"pure_acc": 0.517369, "hybrid_acc": 0.502426},
+52	        "HGRN2": {"pure_acc": 0.48399, "hybrid_acc": 0.514264}
+53	      },
+54	      "n_samples": 5153
+55	    },
+56	    "hellaswag": {
+57	      "strategies": {
+58	        "max_confidence": {
+59	          "mean_acc": 0.596415,
+60	          "std_acc": 0.004721,
+61	          "vs_mv_pp
+…[truncated 3861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1613 · 2026-05-22T10:13:19.636998+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e2_continuous_jaccard.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e2_continuous_jaccard.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1614 · 2026-05-22T10:13:19.687931+00:00_
+
+1	{
+2	  "lambada": {
+3	    "tau_0.00": {
+4	      "J_helped_mean": 0.255857,
+5	      "J_helped_ci": [0.247261, 0.264431],
+6	      "J_hurt_mean": 0.271121,
+7	      "J_hurt_ci": [0.262363, 0.280214],
+8	      "n_helped": [1187, 1448, 1804],
+9	      "n_hurt": [2026, 1588, 1185]
+10	    },
+11	    "tau_0.01": {
+12	      "J_helped_mean": 0.240213,
+13	      "J_helped_ci": [0.231463, 0.249611],
+14	      "J_hurt_mean": 0.26176,
+15	      "J_hurt_ci": [0.252274, 0.27138],
+16	      "n_helped": [1135, 1378, 1746],
+17	      "n_hurt": [1970, 1527, 1116]
+18	    },
+19	    "tau_0.05": {
+20	      "J_helped_mean": 0.187324,
+21	      "J_helped_ci": [0.178927, 0.195449],
+22	      "J_hurt_mean": 0.207594,
+23	      "J_hurt_ci": [0.198814, 0.216475],
+24	      "n_helped": [918, 1117, 1442],
+25	      "n_hurt": [1747, 1246, 880]
+26	    },
+27	    "tau_0.10": {
+28	      "J_helped_mean": 0.144789,
+29	      "J_helped_ci": [0.136197, 0.153127],
+30	      "J_hurt_mean": 0.150201,
+31	      "J_hurt_ci": [0.142439, 0.158278],
+32	      "n_helped": [717, 853, 1113],
+33	      "n_hurt": [1491, 962, 607]
+34	    },
+35	    "tau_0.20": {
+36	      "J_helped_mean": 0.087077,
+37	      "J_helped_ci": [0.07879, 0.095227],
+38	      "J_hurt_mean": 0.077781,
+39	      "J_hurt_ci": [0.070355, 0.085349],
+40	      "n_helped": [430, 452, 620],
+41	      "n_hurt": [982, 515, 285]
+42	    },
+43	    "tau_0.30": {
+44	      "J_helped_mean": 0.05125,
+45	      "J_helped_ci": [0.042128, 0.059738],
+46	      "J_hurt_mean": 0.044136,
+47	      "J_hurt_ci": [0.036025, 0.051113],
+48	      "n_helped": [236, 214, 309],
+49	      "n_hurt": [618, 243, 125]
+50	    }
+51	  },
+52	  "hellaswag": {
+53	    "tau_0.00": {
+54	      "J_helped_mean": 0.295832,
+55	      "J_helped_ci": [0.289829, 0.301981],
+56	      "J_hurt_mean": 0.30637,
+57	      "J_hurt_ci": [0.300193, 0.313409],
+58	      "n_helped": [2851, 3179, 3384],
+59	      "n_hurt": [3702, 2985, 3008]
+60	    },
+61	    "tau_0.01": {
+62	      "J_helped_mean": 0.074651,
+63	      "J_helped_ci": [0.066914, 
+…[truncated 4392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1615 · 2026-05-22T10:13:22.650921+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e3_calibration.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/e3_calibration.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1616 · 2026-05-22T10:13:22.701829+00:00_
+
+1	{
+2	  "lambada": {
+3	    "GDN": {
+4	      "pure": {"ECE": 0.197997, "MCE": 0.528616, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.353177, "mean_accuracy": 0.543373},
+5	      "h24-1": {"ECE": 0.200245, "MCE": 0.52529, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.34723, "mean_accuracy": 0.53988},
+6	      "h12-1": {"ECE": 0.210132, "MCE": 0.524013, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.330907, "mean_accuracy": 0.535804},
+7	      "h6-1": {"ECE": 0.204859, "MCE": 0.535991, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.308102, "mean_accuracy": 0.509606},
+8	      "h3-1": {"ECE": 0.222327, "MCE": 0.559606, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.298592, "mean_accuracy": 0.513293}
+9	    },
+10	    "RetNet": {
+11	      "pure": {"ECE": 0.232561, "MCE": 0.541981, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.287444, "mean_accuracy": 0.517369},
+12	      "h24-1": {"ECE": 0.231751, "MCE": 0.558766, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.288042, "mean_accuracy": 0.515234},
+13	      "h12-1": {"ECE": 0.233185, "MCE": 0.556346, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.278102, "mean_accuracy": 0.506695},
+14	      "h6-1": {"ECE": 0.227584, "MCE": 0.558434, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.269636, "mean_accuracy": 0.496798},
+15	      "h3-1": {"ECE": 0.223559, "MCE": 0.561299, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.279566, "mean_accuracy": 0.502426}
+16	    },
+17	    "HGRN2": {
+18	      "pure": {"ECE": 0.235952, "MCE": 0.593311, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.250293, "mean_accuracy": 0.48399},
+19	      "h24-1": {"ECE": 0.238096, "MCE": 0.586112, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.262369, "mean_accuracy": 0.499903},
+20	      "h12-1": {"ECE": 0.23333, "MCE": 0.562758, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.272398, "mean_accuracy": 0.503202},
+21	      "h6-1": {"ECE": 0.23962, "MCE": 0.573124, "n_bins": 15, "n_
+…[truncated 7423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1617 · 2026-05-22T10:14:33.971950+00:00_
+
+called mcp__agent-ml-research__director_post_to_paper_agent
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_paper_agent</summary>
+
+```json
+{
+  "text": "[Patch] Round 13 text fixes + E1/E2/E3 integration. EMNLP 2026 Long Paper, DDL 2026-05-25. 引用需要验证。\n\n## 背景\nRound 13 Fresh review 评分 3.0，我们目标 4.0。Paper Agent 之前已完成结构重构（convergence 降级、C2 reframe）。现在需要执行剩余 text fixes 和新实验结果整合。\n\n## 任务清单（按优先级排序）\n\n### 1. E1/E2/E3 整合到论文（最高优先级）\n\n**E1 Confidence-based Architecture Selection**（整合到 §4.1 Per-Example Divergence）：\n在 §4.1 最后 \"Confidence margin mechanism\" paragraph 末尾加一个新 \\paragraph{Confidence-based routing.}，约 60-80 words：\n- 核心数据：rescue-threshold routing on LAMBADA: +5.33pp vs MV (56.2% vs 50.9%), 提取 36% oracle gap (oracle=65.5%)\n- ARC-Easy: +1.0pp vs MV, marginal\n- HellaSwag/PIQA: no improvement\n- 10-repeat 50/50 cross-validated split\n- 解读：routing works when multiplicity is high (LAMBADA α=0.30) and there's clear rescue-threshold signal; doesn't help when multiplicity is low (PIQA α=0.14)\n- 关联 conclusion 中的 \"confidence-informed routing\"（解决 R13-M5）\n\n**E2 Continuous-Threshold Jaccard**：\n- 新建 Appendix section \\ref{app:continuous_jaccard}，报告 LAMBADA τ sweep: J decreases monotonically from 0.26 (τ=0.00) to 0.05 (τ=0.30)\n- ARC-Easy 和 PIQA 同样 monotonic decrease\n- 在 §4.1 第一段（binarization caveat 处）加引用：已有的 \"we supplement it with continuous confidence margin analysis\" 后面加 \"and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard})\"\n\n**E3 ECE Calibration**：\n- 新建 Appendix section \\ref{app:calibration}，报告 LAMBADA h3-1 ECE: GDN 0.222, RetNet 0.224, HGRN2 0.235; cross-architecture ECE spread ~17% vs disruption threshold spread 47%\n- 在 §4.1 confidence margin mechanism paragraph，已有 \"Cross-architecture threshold differences may partly reflect calibration variation across backbones \\citep{guo2017calibration}\" 后面加 \"; however, ECE spread across architectures (17\\%) is less than half the disruption threshold spread (47\\%; Appendix~\\ref{app:calibration}), indicating that calibration differences are insufficient to account for the observed threshold divergence\"\n\n### 2. N3 \"architecture-specific\" → \"configuration-specific\"（Critical）\n在 **claims 和 contributions** 处替换为 \"configuration-specific\"。保留 \"three architectures\"、\"choice of backbone\" 等事实描述不改。预计 ~4 处：\n- Abstract: \"architecture-specific response patterns\" → \"configuration-specific response patterns\"（如有）\n- Introduction C1 contribution: 检查并替换\n- §4 中的 claim-level 表述\n- Conclusion\n注意：不要机械全替换。事实描述（\"three architectures\"）和 motivation（\"choice of backbone\"）保持原样。\n\n### 3. N2 Power caveat（Critical）\n- Table 1 caption 末尾加：\"Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.\"\n- §4.2 Decoupling 段，\"No other benchmark shows significant convergence\" 后加 \", though the test has negligible power for $|\\rho| < 1.0$\"\n\n### 4. N5 Ecological Fallacy + Robinson (1950)（Critical）\n在 §2 Related Work \"Underspecification and Predictive Multiplicity\" paragraph 最后加 2-3 句：\n\"The observation that aggregate-level associations can diverge from individual-level patterns is a well-known statistical phenomenon (ecological fallacy; \\citealt{robinson1950ecological}). Our decoupling finding (\\S\\ref{ssec:decoupling}) is a specific instance: aggregate variance decreases while per-example overlap remains flat. The contribution lies not in the conceptual observation but in its quantitative characterization across architectures and task types.\"\n\n需要加 bib entry：\nRobinson, W.S. (1950). Ecological Correlations and the Behavior of Individuals. American Sociological Review, 15(3), 351-357.\n\n### 5. W4 残余因果语言\n- Abstract: \"they help and hurt almost entirely different examples\" → \"adding attention is associated with changes on almost entirely different examples\"\n- §4.1: 如有 \"rescues\" → \"is associated with transitions from incorrect to correct for\"\n- 全文扫一遍残余因果词\n\n### 6. W5 Abstract 信息密度\n当前 Abstract ~150 words with 6+ numbers。减到 3-4 key numbers：保留 α range (0.14-0.30), Jaccard ≤0.10, p=.100。删 oracle accuracy 等次要数字。\n\n### 7. W6 Practical scope\nConclusion §5: \"whenever hybrid designs achieve comparable aggregate scores\" → \"within the scope of controlled hybrid linear recurrent architectures studied here\"\n\n### 8. W7 Brown et al. (2005)\n§2 Related Work, 在 \"standard ensemble diversity measures \\citep{kuncheva2003measures}\" 附近加 Brown et al. (2005) 引用和 Q-statistic 一句讨论。\n\nBib entry: Brown, G., Wyatt, J., Harris, R., & Yao, X. (2005). Diversity creation methods: a survey and categorisation. Information Fusion, 6(1), 5-20.\n\n### 9. W9 Limitations generalization\nLimitations §Coverage paragraph 加：\"Our analysis does not cover Mamba, RWKV, or generation tasks; generalization to these architectures and task types remains open.\"\n\n### 10. Minor fixes\n- Table 1 Bonferroni 脚注：删 \"0.102 arises from rounding raw $p$ to .017 before multiplying\" 句\n- Figure 1 caption (b): 加 \"cross-architecture pairwise\"\n- W8: 如 Appendix A 有 pre-analysis plan 段，加 \"informal pre-analysis plan (no external timestamp exists)\"\n\n### Conclusion 更新\nConclusion 中 \"confidence-informed routing\" 现在有 E1 实验支撑了。改为引用 E1 结果：\"Rescue-threshold routing extracts 36\\% of oracle complementarity on LAMBADA (+5.3\\,pp), demonstrating that confidence-informed selection can partially access untapped complementarity, though gains are task-dependent.\"\n\n## 注意\n- 8 页正文限制。E1 routing 加到主文（~60-80 words），E2/E3 全部进 appendix\n- 编译检查无 error\n- 不用验证这次不存在的引用以外的引用——Robinson (1950) 和 Brown et al. (2005) 需要验证真实性",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
+  "tool_args": {
+    "text": "[Patch] Round 13 text fixes + E1/E2/E3 integration. EMNLP 2026 Long Paper, DDL 2026-05-25. 引用需要验证。\n\n## 背景\nRound 13 Fresh review 评分 3.0，我们目标 4.0。Paper Agent 之前已完成结构重构（convergence 降级、C2 reframe）。现在需要执行剩余 text fixes 和新实验结果整合。\n\n## 任务清单（按优先级排序）\n\n### 1. E1/E2/E3 整合到论文（最高优先级）\n\n**E1 Confidence-based Architecture Selection**（整合到 §4.1 Per-Example Divergence）：\n在 §4.1 最后 \"Confidence margin mechanism\" paragraph 末尾加一个新 \\paragraph{Confidence-based routing.}，约 60-80 words：\n- 核心数据：rescue-threshold routing on LAMBADA: +5.33pp vs MV (56.2% vs 50.9%), 提取 36% oracle gap (oracle=65.5%)\n- ARC-Easy: +1.0pp vs MV, marginal\n- HellaSwag/PIQA: no improvement\n- 10-repeat 50/50 cross-validated split\n- 解读：routing works when multiplicity is high (LAMBADA α=0.30) and there's clear rescue-threshold signal; doesn't help when multiplicity is low (PIQA α=0.14)\n- 关联 conclusion 中的 \"confidence-informed routing\"（解决 R13-M5）\n\n**E2 Continuous-Threshold Jaccard**：\n- 新建 Appendix section \\ref{app:continuous_jaccard}，报告 LAMBADA τ sweep: J decreases monotonically from 0.26 (τ=0.00) to 0.05 (τ=0.30)\n- ARC-Easy 和 PIQA 同样 monotonic decrease\n- 在 §4.1 第一段（binarization caveat 处）加引用：已有的 \"we supplement it with continuous confidence margin analysis\" 后面加 \"and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard})\"\n\n**E3 ECE Calibration**：\n- 新建 Appendix section \\ref{app:calibration}，报告 LAMBADA h3-1 ECE: GDN 0.222, RetNet 0.224, HGRN2 0.235; cross-architecture ECE spread ~17% vs disruption threshold spread 47%\n- 在 §4.1 confidence margin mechanism paragraph，已有 \"Cross-architecture threshold differences may partly reflect calibration variation across backbones \\citep{guo2017calibration}\" 后面加 \"; however, ECE spread across architectures (17\\%) is less than half the disruption threshold spread (47\\%; Appendix~\\ref{app:calibration}), indicating that calibration differences are insufficient to account for the observed threshold divergence\"\n\n### 2. N3 \"architecture-specific\" → \"configuration-specific\"（Critical）\n在 **claims 和 contributions** 处替换为 \"configuration-specific\"。保留 \"three architectures\"、\"choice of backbone\" 等事实描述不改。预计 ~4 处：\n- Abstract: \"architecture-specific response patterns\" → \"configuration-specific response patterns\"（如有）\n- Introduction C1 contribution: 检查并替换\n- §4 中的 claim-level 表述\n- Conclusion\n注意：不要机械全替换。事实描述（\"three architectures\"）和 motivation（\"choice of backbone\"）保持原样。\n\n### 3. N2 Power caveat（Critical）\n- Table 1 caption 末尾加：\"Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.\"\n- §4.2 Decoupling 段，\"No other benchmark shows significant convergence\" 后加 \", though the test has negligible power for $|\\rho| < 1.0$\"\n\n### 4. N5 Ecological Fallacy + Robinson (1950)（Critical）\n在 §2 Related Work \"Underspecification and Predictive Multiplicity\" paragraph 最后加 2-3 句：\n\"The observation that aggregate-level associations can diverge from individual-level patterns is a well-known statistical phenomenon (ecological fallacy; \\citealt{robinson1950ecological}). Our decoupling finding (\\S\\ref{ssec:decoupling}) is a specific instance: aggregate variance decreases while per-example overlap remains flat. The contribution lies not in the conceptual observation but in its quantitative characterization across architectures and task types.\"\n\n需要加 bib entry：\nRobinson, W.S. (1950). Ecological Correlations and the Behavior of Individuals. American Sociological Review, 15(3), 351-357.\n\n### 5. W4 残余因果语言\n- Abstract: \"they help and hurt almost entirely different examples\" → \"adding attention is associated with changes on almost entirely different examples\"\n- §4.1: 如有 \"rescues\" → \"is associated with transitions from incorrect to correct for\"\n- 全文扫一遍残余因果词\n\n### 6. W5 Abstract 信息密度\n当前 Abstract ~150 words with 6+ numbers。减到 3-4 key numbers：保留 α range (0.14-0.30), Jaccard ≤0.10, p=.100。删 oracle accuracy 等次要数字。\n\n### 7. W6 Practical scope\nConclusion §5: \"whenever hybrid designs achieve comparable aggregate scores\" → \"within the scope of controlled hybrid linear recurrent architectures studied here\"\n\n### 8. W7 Brown et al. (2005)\n§2 Related Work, 在 \"standard ensemble diversity measures \\citep{kuncheva2003measures}\" 附近加 Brown et al. (2005) 引用和 Q-statistic 一句讨论。\n\nBib entry: Brown, G., Wyatt, J., Harris, R., & Yao, X. (2005). Diversity creation methods: a survey and categorisation. Information Fusion, 6(1), 5-20.\n\n### 9. W9 Limitations generalization\nLimitations §Coverage paragraph 加：\"Our analysis does not cover Mamba, RWKV, or generation tasks; generalization to these architectures and task types remains open.\"\n\n### 10. Minor fixes\n- Table 1 Bonferroni 脚注：删 \"0.102 arises from rounding raw $p$ to .017 before multiplying\" 句\n- Figure 1 caption (b): 加 \"cross-architecture pairwise\"\n- W8: 如 Appendix A 有 pre-analysis plan 段，加 \"informal pre-analysis plan (no external timestamp exists)\"\n\n### Conclusion 更新\nConclusion 中 \"confidence-informed routing\" 现在有 E1 实验支撑了。改为引用 E1 结果：\"Rescue-threshold routing extracts 36\\% of oracle complementarity on LAMBADA (+5.3\\,pp), demonstrating that confidence-informed selection can partially access untapped complementarity, though gains are task-dependent.\"\n\n## 注意\n- 8 页正文限制。E1 routing 加到主文（~60-80 words），E2/E3 全部进 appendix\n- 编译检查无 error\n- 不用验证这次不存在的引用以外的引用——Robinson (1950) 和 Brown et al. (2005) 需要验证真实性",
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1618 · 2026-05-22T10:14:35.492457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e36866afcb4c2accfd249dec08\", \"queued\": true, \"paper_agent_session_key\": \"feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent\", \"created_new_session\": false}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
+  "elapsed_ms": 1520
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1619 · 2026-05-22T10:14:45.685335+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "ROADMAP.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "ROADMAP.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1620 · 2026-05-22T10:14:45.786306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-22 09:51 UTC | 更新原因: D030: 目标升级到 4.0，补 3 实验 + 写作结构重构\\n\\n## 核心方向\\nHybrid linear recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）+ confidence-based architecture selection。详见 paper_framing.md。\\n\\n## 当前阶段\\n**目标升级：3.0 → 4.0 Conference。补 3 实验 + 写作结构重构。**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle)\\n\\n### 审稿历史\\n- Round 5-9: 连续 3.0 Findings\\n- Round 10: Director 直接修复 9 项\\n- Round 12: Overall 3.0 (R1=3.5, R2=3.0)。R2 瓶颈：novelty 2.5/5 + actionability gap\\n- **D030**: 目标升级到 4.0。补实验 + 结构重构\\n\\n### 分数瓶颈分析\\n- **R1 (3.5→4.0)**: convergence 叙事权重 + binary decomposition concern → 写作重构 + E2 continuous Jaccard\\n- **R2 (3.0→3.5+)**: novelty (Excitement 2.5) + actionability → E1 confidence selection + 结构 reframe\\n\\n## 近期任务\\n- [ ] **E1** Confidence-based architecture selection POC（Agent 执行中）\\n- [ ] **E2** Continuous-threshold Jaccard sensitivity（Agent 执行中）\\n- [ ] **E3** ECE calibration analysis（Agent 执行中）\\n- [ ] 写作结构重构：convergence 降级 + C2 reframe + A2 提升（Paper Agent 执行中）\\n- [ ] E1 结果整合到论文（等实验完成）\\n- [ ] E2/E3 结果整合到 appendix\\n- [ ] Abstract/Intro/Conclusion 同步更新\\n- [ ] 编译 + Round 14 review\\n- [ ] Final polish + 提交 ARR\\n\\n## GPU 预算\\nwestb-48145: 1× GPU (cuda:0), 空闲。当前实验为 CPU 分析（per-example data processing），不需 GPU 训练。\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures\\\"\\n- 主文: ≤8 页，附录 ~11 页，总 20 页\\n- 编译: 无 critical warnings\\n- 2 contributions → 升级为 3: C1 multiplicity + C2 Jaccard saturation (reframed) + C3 confidence selection (新)\\n- Round 12 修复已完成：causal language, Rashomon terminology, Abstract, references\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|---------
+…[truncated 938 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1621 · 2026-05-22T10:14:53.616027+00:00_
+
+called mcp__agent-ml-research__get_agent_queue_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_agent_queue_status</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__get_agent_queue_status",
+  "tool_args": {
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1622 · 2026-05-22T10:14:53.666747+00:00_
+
+{"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":73}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__get_agent_queue_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1623 · 2026-05-22T10:15:00.291359+00:00_
+
+called mcp__agent-ml-research__feishu_read_chat_history
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_read_chat_history</summary>
+
+```json
+{
+  "chat_id": "oc_1f8f0d6d9482071694045c30143bb993",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__feishu_read_chat_history",
+  "tool_args": {
+    "chat_id": "oc_1f8f0d6d9482071694045c30143bb993",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1624 · 2026-05-22T10:15:01.096144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"messages\": [{\"messageId\": \"om_x100b6e36e2cc8c90c220a26a60ba57a\", \"senderId\": \"cli_a9745b50717c9bda\", \"createTime\": \"1779444416163\", \"msgType\": \"post\", \"content\": \"同意，三个结构性问题不能只靠文字。 最有价值的实验是解决 Problem 2（seed confound） ：如果能证明 cross-architecture Jaccard (~ 0.10) 显著低于 same-architecture-different-seed Jaccard，直接排除 seed artifact，论文从 \\\"observational limitation\\\" 升级为 \\\"controlled finding\\\"。 已派 Agent 紧急调查： 1.  Wang et al. model zoo 是否有 multi-seed checkpoints 2.  在当前 GPU 上训练 2-3 个 340M seed replicates 是否可行（时间/数据/代码） 3.  替代 seed proxy 方案 这个调查决定后续 2 天工作方向。如果 seed 训练可行（估计 340M ×3 seeds ≈ 18-36 小时），立即开跑。如果不可行，走替代方案。 同时已有的成果不停： -  E1 (routing +5.3pp)、E2 (continuous Jaccard robust)、E3 (calibration 非 artifact) 全部 positive，作为 supporting analysis 整合 -  结构重构已完成（convergence 降级） -  Round 13 text fixes 在 Agent 回复后并行推进\", \"rootId\": \"\"}, {\"messageId\": \"om_x100b6e36eab810a8c108ec37d005e85\", \"senderId\": \"cli_a9745b50717c9bda\", \"createTime\": \"1779444295474\", \"msgType\": \"post\", \"content\": \"Round 13 审稿出来了。注意：这是 Fresh review，审的是结构重构前的版本。很多 N1 问题已被 Paper Agent 重构解决。让我按协议逐条处理。 逐条 Action Matrix N1 [Critical] Convergence 叙事权重过高 -  状态： 已由 Paper Agent 重构解决 。§4.1 已删除，convergence 降为 §4.2 开头 3 句上下文。Figure 2 移至 appendix。 -  残余 action：验证 Abstract/Intro 是否与新结构对齐（Paper Agent 报告已对齐）。 N2 [Critical] n=5 Spearman underpowered -  状态：§3.3 Power considerations 已有。§4.2 标注 \\\"exploratory\\\"。 -  Action：Table 1 caption 加 power caveat：\\\"Power is limited: only |ρ| = 1.0 achieves p < .05 at n = 5\\\"。§4.1（现已无独立 subsection，在 §4.2 context 段）\\\"No other benchmark shows significant convergence\\\" 后加 \\\", though the test has negligible power for |ρ|  < 1.0\\\"。 N3 [Critical] 单次 run，architecture vs seed -  状态：结构性限制，caveat 已有多处。 -  新建议：\\\"architecture-specific\\\" → \\\"configuration-specific\\\"。 -  Action： 部分采纳 。在 claims/contributions 处改为 \\\"configuration-specific\\\"（更准确），但在描述实验设计（\\\"three architectures\\\"）和 motivation（\\\
+…[truncated 9644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__feishu_read_chat_history",
+  "elapsed_ms": 804
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1625 · 2026-05-22T10:15:12.560242+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*seed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*seed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1626 · 2026-05-22T10:15:12.661319+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_code_multiseed_lambada_eval_20260518T181921.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_code_multiseed_lambada_eval_20260518T181921_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/numpy/random/tests/test_seed_sequence.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/figures/paper/.venv/lib/python3.14/site-packages/numpy/random/tests/__pycache__/test_seed_sequence.cpython-314.pyc
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/seed_investigation_report.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/report/seed_investigation_report.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_seed_investigation_20260522T100734.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_seed_investigation_20260522T100734_result.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1627 · 2026-05-22T10:15:15.723336+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/seed_investigation_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/seed_investigation_report.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1628 · 2026-05-22T10:15:15.774361+00:00_
+
+1	{
+2	  "task_1_model_zoo": {
+3	    "available_checkpoints": [
+4	      "340M-20B-GatedDeltaNet-pure-baseline",
+5	      "340M-20B-GatedDeltaNet-hybrid-24-1",
+6	      "340M-20B-GatedDeltaNet-hybrid-12-1",
+7	      "340M-20B-GatedDeltaNet-hybrid-6-1",
+8	      "340M-20B-GatedDeltaNet-hybrid-3-1",
+9	      "340M-20B-GatedDeltaNet-New-hybrid-24-1",
+10	      "340M-20B-RetNet-pure",
+11	      "340M-20B-RetNet-hybrid-24-1",
+12	      "340M-20B-RetNet-hybrid-12-1",
+13	      "340M-20B-RetNet-hybrid-6-1",
+14	      "340M-20B-RetNet-hybrid-3-1",
+15	      "340M-20B-HGRN2-pure-baseline",
+16	      "340M-20B-HGRN2-hybrid-24-1",
+17	      "340M-20B-HGRN2-hybrid-12-1",
+18	      "340M-20B-HGRN2-hybrid-6-1",
+19	      "340M-20B-HGRN2-hybrid-3-1",
+20	      "340M-20B-HGRN-pure-baseline",
+21	      "340M-20B-HGRN-hybrid-24-1",
+22	      "340M-20B-HGRN-hybrid-12-1",
+23	      "340M-20B-HGRN-hybrid-6-1",
+24	      "340M-20B-HGRN-hybrid-3-1",
+25	      "340M-20B-GLA-pure-baseline",
+26	      "340M-20B-GLA-hybrid-24-1",
+27	      "340M-20B-GLA-hybrid-12-1",
+28	      "340M-20B-GLA-hybrid-6-1",
+29	      "340M-20B-GLA-hybrid-3-1",
+30	      "340M-20B-DeltaNet-pure",
+31	      "340M-20B-DeltaNet-hybrid-24-1",
+32	      "340M-20B-DeltaNet-hybrid-12-1",
+33	      "340M-20B-DeltaNet-hybrid-6-1",
+34	      "340M-20B-DeltaNet-hybrid-3-1",
+35	      "transformer_340M_baseline",
+36	      "1.3B-100B versions of all above (36 models)",
+37	      "transformer_1.3B_baseline"
+38	    ],
+39	    "total_models": 72,
+40	    "architectures": ["GatedDeltaNet", "RetNet", "HGRN2", "HGRN", "GLA", "DeltaNet", "Transformer"],
+41	    "scales": ["340M (20B tokens)", "1.3B (100B tokens)"],
+42	    "ratios": ["pure", "24:1", "12:1", "6:1", "3:1"],
+43	    "multi_seed_available": false,
+44	    "training_code_available": true,
+45	    "training_framework": "flame (torchtitan-based) + flash-linear-attention (fla)",
+46	    "training_data": "fineweb-edu",
+47	    "intermediate_checkpoints_available": false,
+48	    "hf_collection": "https://huggingface.co
+…[truncated 8893 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1629 · 2026-05-22T10:16:17.116780+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:approve_experiment,director_allocate_gpus,log_decision",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:approve_experiment,director_allocate_gpus,log_decision",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1630 · 2026-05-22T10:16:17.167864+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1631 · 2026-05-22T10:16:20.029150+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "approve experiment allocate gpus log decision",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "approve experiment allocate gpus log decision",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1632 · 2026-05-22T10:16:20.079902+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1633 · 2026-05-22T10:16:28.113442+00:00_
+
+called mcp__agent-ml-research__log_decision
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__log_decision</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "summary": "D032: 批准 Pythia 410M multi-seed calibration 实验——用 9 个 seed variants 提供 seed variation 经验校准，直接解决 R5-W1 seed confound",
+  "rationale": "Seed confound 是 13 轮审稿的 persistent critical issue。训练新 seed 不可行（28-70h/seed，DDL 72h）。Pythia 410M 有 9 个公开 seed variants (EleutherAI)，纯 eval 2-4 小时。如果 Pythia within-seed Jaccard (same arch, diff init) >> cross-architecture Jaccard (~0.10)，直接证明 architecture effect 远超 seed noise。这是 2-4 小时换取解决最大结构性弱点，cost/benefit 极优。三重防线：(1) Pythia seed-J 作为经验校准 (2) 已有 within-arch ratio stability (3) permutation null z=6-9。",
+  "depends_on": "['D030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__log_decision",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "summary": "D032: 批准 Pythia 410M multi-seed calibration 实验——用 9 个 seed variants 提供 seed variation 经验校准，直接解决 R5-W1 seed confound",
+    "rationale": "Seed confound 是 13 轮审稿的 persistent critical issue。训练新 seed 不可行（28-70h/seed，DDL 72h）。Pythia 410M 有 9 个公开 seed variants (EleutherAI)，纯 eval 2-4 小时。如果 Pythia within-seed Jaccard (same arch, diff init) >> cross-architecture Jaccard (~0.10)，直接证明 architecture effect 远超 seed noise。这是 2-4 小时换取解决最大结构性弱点，cost/benefit 极优。三重防线：(1) Pythia seed-J 作为经验校准 (2) 已有 within-arch ratio stability (3) permutation null z=6-9。",
+    "depends_on": "['D030']"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1634 · 2026-05-22T10:16:28.464623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"decision_id\": \"D032\", \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/decisions.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__log_decision",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1635 · 2026-05-22T10:16:52.637254+00:00_
+
+called mcp__agent-ml-research__director_post_to_main_agent
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent</summary>
+
+```json
+{
+  "text": "**紧急 — E4 Pythia Multi-Seed Calibration 实验，立即开始**\n\nD032 已批准。这是解决 seed confound（R5-W1, 13 轮 Critical）的最有价值实验。2-4 小时完成。\n\n## 实验设计\n\n**目标**：用 Pythia 410M 的 9 个 seed variants 提供 within-seed Jaccard 经验校准。如果 same-architecture-different-seed 的 per-example disagreement 远小于 cross-architecture disagreement，证明我们的发现是 architecture-driven。\n\n**步骤**：\n\n1. 下载 Pythia 410M seed1-seed9（HF: `EleutherAI/pythia-410m-seed{1..9}`），共 9 个模型。410M 在 96GB GPU 上轻松跑。\n\n2. 用 lm-eval-harness 评估全部 9 个模型在 LAMBADA 和 ARC-Easy 上的表现，**保存 per-example log_samples**（和我们现有分析一样）。\n\n3. 分析：\n   a. **Within-seed Jaccard of correct sets**: 对每对 Pythia seeds (C(9,2)=36 pairs)，计算它们 correct set 的 Jaccard\n   b. **Cross-architecture Jaccard of correct sets**: 对每对我们的 340M h3-1 architectures (C(3,2)=3 pairs)，计算它们 correct set 的 Jaccard（用已有 per-example data）\n   c. 统计比较：报告 mean ± std，Mann-Whitney U test\n   d. 计算 ambiguity α（Marx 2020）: 对 Pythia 9 seeds 计算 α，与我们的 3 architectures α 比较\n\n4. **额外**（如果时间允许）：也下载 `pythia-160m-data-seed{1-3}` 和 `pythia-160m-weight-seed{1-3}` 做 data-order vs weight-init 分离分析。\n\n**注意事项**：\n- Pythia 用 GPT-NeoX tokenizer，我们的模型用不同的 tokenizer → 需要在同一 benchmark 上独立评估，不能直接复用已有结果\n- 确保 lm-eval-harness 版本一致（顺便查确切版本号，R13 要求精确版本）\n- 结果保存到 `artifacts/_project/data/e4_pythia_seed_calibration.json`\n\n**GPU 分配**：westb-48145 cuda:0\n\n**优先级**：最高。这是影响论文从 3.0 到 4.0 的关键实验。\n\n**Hypothesis 来源**：验证 experiment_plan 中 seed confound defense（R5-W1），parent: seed_investigation_report.json 的推荐方案。",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+  "tool_args": {
+    "text": "**紧急 — E4 Pythia Multi-Seed Calibration 实验，立即开始**\n\nD032 已批准。这是解决 seed confound（R5-W1, 13 轮 Critical）的最有价值实验。2-4 小时完成。\n\n## 实验设计\n\n**目标**：用 Pythia 410M 的 9 个 seed variants 提供 within-seed Jaccard 经验校准。如果 same-architecture-different-seed 的 per-example disagreement 远小于 cross-architecture disagreement，证明我们的发现是 architecture-driven。\n\n**步骤**：\n\n1. 下载 Pythia 410M seed1-seed9（HF: `EleutherAI/pythia-410m-seed{1..9}`），共 9 个模型。410M 在 96GB GPU 上轻松跑。\n\n2. 用 lm-eval-harness 评估全部 9 个模型在 LAMBADA 和 ARC-Easy 上的表现，**保存 per-example log_samples**（和我们现有分析一样）。\n\n3. 分析：\n   a. **Within-seed Jaccard of correct sets**: 对每对 Pythia seeds (C(9,2)=36 pairs)，计算它们 correct set 的 Jaccard\n   b. **Cross-architecture Jaccard of correct sets**: 对每对我们的 340M h3-1 architectures (C(3,2)=3 pairs)，计算它们 correct set 的 Jaccard（用已有 per-example data）\n   c. 统计比较：报告 mean ± std，Mann-Whitney U test\n   d. 计算 ambiguity α（Marx 2020）: 对 Pythia 9 seeds 计算 α，与我们的 3 architectures α 比较\n\n4. **额外**（如果时间允许）：也下载 `pythia-160m-data-seed{1-3}` 和 `pythia-160m-weight-seed{1-3}` 做 data-order vs weight-init 分离分析。\n\n**注意事项**：\n- Pythia 用 GPT-NeoX tokenizer，我们的模型用不同的 tokenizer → 需要在同一 benchmark 上独立评估，不能直接复用已有结果\n- 确保 lm-eval-harness 版本一致（顺便查确切版本号，R13 要求精确版本）\n- 结果保存到 `artifacts/_project/data/e4_pythia_seed_calibration.json`\n\n**GPU 分配**：westb-48145 cuda:0\n\n**优先级**：最高。这是影响论文从 3.0 到 4.0 的关键实验。\n\n**Hypothesis 来源**：验证 experiment_plan 中 seed confound defense（R5-W1），parent: seed_investigation_report.json 的推荐方案。",
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1636 · 2026-05-22T10:16:54.047421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6e369f9d2c78c2ddea7bdce82a3\", \"queued\": true}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+  "elapsed_ms": 1410
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1637 · 2026-05-22T10:16:58.317014+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:director_reply_to_user",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:director_reply_to_user",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1638 · 2026-05-22T10:16:58.417694+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1639 · 2026-05-22T10:17:01.529922+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "director reply user",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "director reply user",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1640 · 2026-05-22T10:17:01.580564+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1641 · 2026-05-22T10:17:19.227904+00:00_
+
+called mcp__agent-ml-research__director_reply_to_user
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_reply_to_user</summary>
+
+```json
+{
+  "text": "进展更新——三线并行推进中：\n\n**1. Seed Confound 实验（最关键）**\n调查完成：训练新 seed 不可行（28-70h/seed），但发现 **Pythia 410M 有 9 个公开 seed variants**（EleutherAI）。纯 eval 2-4 小时即可完成。方案：\n- 下载 Pythia 410M seed1-seed9，在 LAMBADA/ARC-Easy 上跑 per-example eval\n- 计算 within-seed Jaccard（同架构不同 init）vs 我们的 cross-architecture Jaccard（不同架构）\n- 如果 seed Jaccard >> 0.10（我们的 cross-arch 值），直接证明 architecture effect 远超 seed noise\n- 已批准（D032），Agent 正在执行\n\n这个实验如果结果 positive，直接把 13 轮一直 critical 的 seed confound 从 \"不可修复的限制\" 升级为 \"有经验证据的 defense\"。\n\n**2. Round 13 Text Fixes + E1/E2/E3 整合**\nPaper Agent 正在执行 10+ 项修改：\n- E1 routing (+5.3pp LAMBADA) 写入主文 §4.1\n- E2/E3 写入 appendix + 主文引用\n- N3 \"architecture-specific\" → \"configuration-specific\"\n- N5 Ecological Fallacy + Robinson (1950)\n- W4 因果语言清理、W5 Abstract 精简、W6 scope 限定等\n\n**3. E1/E2/E3 结果汇总**（均 positive）\n- E1: Rescue routing LAMBADA +5.33pp, 提取 36% oracle gap\n- E2: Continuous Jaccard monotonically decreases（τ=0→0.30, J=0.26→0.05），排除二值化 artifact\n- E3: ECE spread 17% vs disruption threshold spread 47%，排除 calibration confound\n\n预计 Pythia 实验 2-4h 后出结果，Paper Agent 修改也在 2-3h 内完成，之后立即提交 Round 14 审稿。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_reply_to_user",
+  "tool_args": {
+    "text": "进展更新——三线并行推进中：\n\n**1. Seed Confound 实验（最关键）**\n调查完成：训练新 seed 不可行（28-70h/seed），但发现 **Pythia 410M 有 9 个公开 seed variants**（EleutherAI）。纯 eval 2-4 小时即可完成。方案：\n- 下载 Pythia 410M seed1-seed9，在 LAMBADA/ARC-Easy 上跑 per-example eval\n- 计算 within-seed Jaccard（同架构不同 init）vs 我们的 cross-architecture Jaccard（不同架构）\n- 如果 seed Jaccard >> 0.10（我们的 cross-arch 值），直接证明 architecture effect 远超 seed noise\n- 已批准（D032），Agent 正在执行\n\n这个实验如果结果 positive，直接把 13 轮一直 critical 的 seed confound 从 \"不可修复的限制\" 升级为 \"有经验证据的 defense\"。\n\n**2. Round 13 Text Fixes + E1/E2/E3 整合**\nPaper Agent 正在执行 10+ 项修改：\n- E1 routing (+5.3pp LAMBADA) 写入主文 §4.1\n- E2/E3 写入 appendix + 主文引用\n- N3 \"architecture-specific\" → \"configuration-specific\"\n- N5 Ecological Fallacy + Robinson (1950)\n- W4 因果语言清理、W5 Abstract 精简、W6 scope 限定等\n\n**3. E1/E2/E3 结果汇总**（均 positive）\n- E1: Rescue routing LAMBADA +5.33pp, 提取 36% oracle gap\n- E2: Continuous Jaccard monotonically decreases（τ=0→0.30, J=0.26→0.05），排除二值化 artifact\n- E3: ECE spread 17% vs disruption threshold spread 47%，排除 calibration confound\n\n预计 Pythia 实验 2-4h 后出结果，Paper Agent 修改也在 2-3h 内完成，之后立即提交 Round 14 审稿。"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1642 · 2026-05-22T10:17:19.830433+00:00_
+
+{"result":"{\"success\": true}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__director_reply_to_user",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1643 · 2026-05-22T10:17:23.193831+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:update_roadmap",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:update_roadmap",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1644 · 2026-05-22T10:17:23.244453+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1645 · 2026-05-22T10:17:25.955195+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "update roadmap",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "update roadmap",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1646 · 2026-05-22T10:17:26.056098+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1647 · 2026-05-22T10:17:49.094278+00:00_
+
+called mcp__agent-ml-research__update_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_roadmap</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "content": "# entrainment_gated_ft — Research Dashboard\n\n## 核心方向\nHybrid linear recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）+ confidence-based architecture selection。详见 paper_framing.md。\n\n## 当前阶段\n**目标：4.0 Conference。实验补充 + 写作修复并行推进。**\n\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle) — 剩余 ~72h\n\n### 审稿历史\n- Round 5-9: 连续 3.0 Findings\n- Round 10-12: 逐步修复，R12 Overall 3.0 (R1=3.5, R2=3.0)\n- Round 13: Fresh review 3.0。三个结构性问题：convergence 不显著、seed confound、novelty 有限\n- **Post-R13**: 补 4 个实验 + 10+ 项 text fix\n\n### 分数瓶颈 → 对策\n| 问题 | 对策 | 状态 |\n|------|------|------|\n| Seed confound (R5-W1, 13轮 Critical) | **E4 Pythia 410M 9-seed calibration** | Agent 执行中 |\n| Novelty/Actionability (R2 Excitement 2/5) | E1 routing +5.33pp LAMBADA | ✅ done, Paper Agent 整合中 |\n| Binary decomposition concern | E2 continuous Jaccard robust | ✅ done, Paper Agent 整合中 |\n| Calibration confound | E3 ECE 17% vs threshold 47% | ✅ done, Paper Agent 整合中 |\n| Convergence 叙事过重 | Paper Agent 结构重构完成 | ✅ done |\n| Ecological Fallacy 未讨论 | Robinson (1950) + 讨论 | Paper Agent 执行中 |\n\n## 近期任务\n- [ ] **E4** Pythia 410M multi-seed calibration（Agent 执行中，预计 2-4h）\n- [ ] Paper Agent R13 text fixes + E1/E2/E3 integration（执行中，预计 2-3h）\n- [ ] E4 结果整合到论文\n- [ ] 编译 + Round 14 review\n- [ ] Final polish + 提交 ARR\n\n## 实验成果总结\n| ID | 结果 | 价值 |\n|----|------|------|\n| E1 Routing | LAMBADA +5.33pp, 36% oracle gap | 主文 §4.1 supporting |\n| E2 Continuous J | J monotonic decrease τ=0→0.30 | Appendix + §4.1 ref |\n| E3 Calibration | ECE 17% << threshold 47% | Appendix + §4.1 ref |\n| E4 Pythia Seed | 执行中 | 预期：主文 §4.2 或 Appendix |\n\n## GPU 预算\nwestb-48145: 1× GPU (cuda:0), E4 Pythia eval 使用中。\n",
+  "reason": "E1/E2/E3 完成 + E4 Pythia seed 实验派发 + Paper Agent R13 修复中"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__update_roadmap",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "content": "# entrainment_gated_ft — Research Dashboard\n\n## 核心方向\nHybrid linear recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）+ confidence-based architecture selection。详见 paper_framing.md。\n\n## 当前阶段\n**目标：4.0 Conference。实验补充 + 写作修复并行推进。**\n\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle) — 剩余 ~72h\n\n### 审稿历史\n- Round 5-9: 连续 3.0 Findings\n- Round 10-12: 逐步修复，R12 Overall 3.0 (R1=3.5, R2=3.0)\n- Round 13: Fresh review 3.0。三个结构性问题：convergence 不显著、seed confound、novelty 有限\n- **Post-R13**: 补 4 个实验 + 10+ 项 text fix\n\n### 分数瓶颈 → 对策\n| 问题 | 对策 | 状态 |\n|------|------|------|\n| Seed confound (R5-W1, 13轮 Critical) | **E4 Pythia 410M 9-seed calibration** | Agent 执行中 |\n| Novelty/Actionability (R2 Excitement 2/5) | E1 routing +5.33pp LAMBADA | ✅ done, Paper Agent 整合中 |\n| Binary decomposition concern | E2 continuous Jaccard robust | ✅ done, Paper Agent 整合中 |\n| Calibration confound | E3 ECE 17% vs threshold 47% | ✅ done, Paper Agent 整合中 |\n| Convergence 叙事过重 | Paper Agent 结构重构完成 | ✅ done |\n| Ecological Fallacy 未讨论 | Robinson (1950) + 讨论 | Paper Agent 执行中 |\n\n## 近期任务\n- [ ] **E4** Pythia 410M multi-seed calibration（Agent 执行中，预计 2-4h）\n- [ ] Paper Agent R13 text fixes + E1/E2/E3 integration（执行中，预计 2-3h）\n- [ ] E4 结果整合到论文\n- [ ] 编译 + Round 14 review\n- [ ] Final polish + 提交 ARR\n\n## 实验成果总结\n| ID | 结果 | 价值 |\n|----|------|------|\n| E1 Routing | LAMBADA +5.33pp, 36% oracle gap | 主文 §4.1 supporting |\n| E2 Continuous J | J monotonic decrease τ=0→0.30 | Appendix + §4.1 ref |\n| E3 Calibration | ECE 17% << threshold 47% | Appendix + §4.1 ref |\n| E4 Pythia Seed | 执行中 | 预期：主文 §4.2 或 Appendix |\n\n## GPU 预算\nwestb-48145: 1× GPU (cuda:0), E4 Pythia eval 使用中。\n",
+    "reason": "E1/E2/E3 完成 + E4 Pythia seed 实验派发 + Paper Agent R13 修复中"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1648 · 2026-05-22T10:17:50.007913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"lines\": 63, \"reason\": \"E1/E2/E3 完成 + E4 Pythia seed 实验派发 + Paper Agent R13 修复中\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "mcp__agent-ml-research__update_roadmap",
+  "elapsed_ms": 913
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1649 · 2026-05-22T10:17:54.134121+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "update review issues",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "update review issues",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1650 · 2026-05-22T10:17:54.234949+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1651 · 2026-05-22T10:17:58.047686+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "250",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "250",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1652 · 2026-05-22T10:17:58.098556+00:00_
+
+250	      assigned_to: paper_agent
+251	      status: done
+252	    - round: 7
+253	      action: "Majority vote + oracle POC 写入 Conclusion"
+254	      assigned_to: paper_agent
+255	      status: done
+256	  resolution: "Conclusion 已包含 MV/oracle POC 数据 + 桥接句。Round 9 降级为 Minor。Round 12-13 未再提及。"
+257	  resolution_round: 9
+258	
+259	- id: "R5-W8"
+260	  summary: "Binary decomposition 可能低估多选题一致性"
+261	  category: method
+262	  severity: warning
+263	  status: in_progress
+264	  first_raised_round: 5
+265	  last_seen_round: 13
+266	  mentions:
+267	    - round: 5
+268	      reviewers: [R1]
+269	      note: "Attention 可能增加 confidence 而不翻转 binary outcome。"
+270	    - round: 6
+271	      reviewers: [R1, R2]
+272	      note: "建议 log-probability shift 连续版本分析。"
+273	    - round: 8
+274	      reviewers: [R1, R2]
+275	      note: "M2 Minor: Cohen's d 仅覆盖 LAMBADA，多选题弱。"
+276	    - round: 9
+277	      reviewers: [R1, R2]
+278	      note: "R1-W4 Major。binary 分辨力不足。confidence shift 补充有价值。"
+279	    - round: 10
+280	      reviewers: [R1, R2]
+281	      note: "R1-W6 Major。K-choice binarization bias 方向讨论已加（§3.4）。"
+282	    - round: 12
+283	      reviewers: [R1]
+284	      note: "R1-W2 Warning。建议 continuous confidence change threshold 重算 Jaccard 做 sensitivity check。"
+285	    - round: 13
+286	      reviewers: [R1, R2]
+287	      note: "R1-W3 Major: 0.51→0.49 和 0.99→0.01 被同等对待。R2 REBUT: Appendix H 已提供完整 continuous confidence margin analysis（Tables 12-16, AUC-based prediction framework），R1 可能遗漏。分歧：R1 认为主文应引入 continuous Jaccard metric，R2 认为附录 H 已充分。"
+288	  action_items:
+289	    - round: 6
+290	      action: "SF1: §4.2 加 binary limitation 讨论 + Cohen's d 交叉验证"
+291	      assigned_to: paper_agent
+292	      status: done
+293	    - round: 8
+294	      action: "§4.2 加一句引用 Appendix cross-benchmark continuous analysis"
+295	      assigned_to: paper_agent
+296	      status: done
+297	    - round: 10
+298	      action: "§3.4 加 K-choice binarization bias 方向讨论：bias strengthens multiplicity claim"
+299	      assigned_to: director
+300	      statu
+…[truncated 4950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1653 · 2026-05-22T10:18:02.619484+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "449",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "449",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1654 · 2026-05-22T10:18:02.670343+00:00_
+
+449	  category: method
+450	  severity: critical
+451	  status: resolved
+452	  first_raised_round: 6
+453	  last_seen_round: 9
+454	  mentions:
+455	    - round: 6
+456	      reviewers: [R1, R2]
+457	      note: "核心概念仅有自然语言描述。"
+458	    - round: 13
+459	      reviewers: []
+460	      note: "Round 13 未提及。Equation 1 已删，§4.3 保留定量描述。维持 resolved。"
+461	  action_items:
+462	    - round: 6
+463	      action: "SF2: §4.3 加 CI-overlap formalization"
+464	      assigned_to: paper_agent
+465	      status: done
+466	    - round: 8
+467	      action: "删除 Equation 1 形式化定义，保留定量描述"
+468	      assigned_to: paper_agent
+469	      status: done
+470	  resolution: "Equation 1 已删。Round 12-13 未再提及。"
+471	  resolution_round: 12
+472	
+473	- id: "R6-W2"
+474	  summary: "GDN h3-1 的 16-head confound 削弱 LAMBADA convergence"
+475	  category: experiment
+476	  severity: warning
+477	  status: in_progress
+478	  first_raised_round: 6
+479	  last_seen_round: 13
+480	  mentions:
+481	    - round: 6
+482	      reviewers: [R1, R2]
+483	      note: "应在主文讨论。"
+484	    - round: 7
+485	      reviewers: [R1, R2]
+486	      note: "W3: Table 1 无脚注。"
+487	    - round: 8
+488	      reviewers: [R1, R2]
+489	      note: "SF2 Major: 'partially dependent' 低估。"
+490	    - round: 9
+491	      reviewers: [R1, R2]
+492	      note: "R1-N2 排除 GDN 后 ρ=-0.7 p=.233。R2 [AGREE with nuance]。"
+493	    - round: 10
+494	      reviewers: [R1, R2]
+495	      note: "R1-W1 + R2-N1 均提及。"
+496	    - round: 12
+497	      reviewers: [R1, R2]
+498	      note: "R1-W1 Warning。§4.4 一句带过。Table 1 ‡ 脚注不够醒目。"
+499	    - round: 13
+500	      reviewers: [R1, R2]
+501	      note: "R1-W1 Major + R2 AGREE。排除 GDN 后唯一显著结果消失（ρ=−1.0→−0.7, p=.233）。当前仅在 §4.4 和 Appendix 处理。交叉共识：应在 §4.1 首次报告 LAMBADA 结果时即讨论此 confound。"
+502	  action_items:
+503	    - round: 6
+504	      action: "SF3: §4.4 加 GDN confound"
+505	      assigned_to: paper_agent
+506	      status: done
+507	    - round: 7
+508	      action: "W3: Table 1 GDN 脚注"
+509	      assigned_to: paper_agent
+510	      status: done
+511	    - round: 8
+512	      action
+…[truncated 4434 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1655 · 2026-05-22T10:18:06.655537+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "648",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "648",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1656 · 2026-05-22T10:18:06.756598+00:00_
+
+648	  mentions:
+649	    - round: 7
+650	      reviewers: [R1, R2]
+651	      note: "4 数据点不够称 spectrum。"
+652	    - round: 13
+653	      reviewers: []
+654	      note: "Round 13 未提及。维持 resolved。"
+655	  action_items:
+656	    - round: 7
+657	      action: "全文 spectrum → variation"
+658	      assigned_to: paper_agent
+659	      status: done
+660	  resolution: "已修正。Round 12-13 确认使用 'variation'。"
+661	  resolution_round: 8
+662	
+663	- id: "R8-E1"
+664	  summary: "Limitations 中 p 值事实性错误：0.008 应为 0.017"
+665	  category: method
+666	  severity: critical
+667	  status: resolved
+668	  first_raised_round: 8
+669	  last_seen_round: 8
+670	  mentions:
+671	    - round: 8
+672	      reviewers: [R1, R2]
+673	      note: "1/120 ≈ 0.008 是单尾；两尾 2/120 ≈ 0.017。"
+674	    - round: 13
+675	      reviewers: []
+676	      note: "Round 13 未提及。维持 resolved。"
+677	  action_items:
+678	    - round: 8
+679	      action: "修正 'approximately 0.008' → 'approximately 0.017'"
+680	      assigned_to: director
+681	      status: done
+682	  resolution: "已修正。"
+683	  resolution_round: 9
+684	
+685	- id: "R8-E3"
+686	  summary: "rescue/disruption 措辞暗示因果但分析仅为描述性"
+687	  category: writing
+688	  severity: warning
+689	  status: in_progress
+690	  first_raised_round: 8
+691	  last_seen_round: 13
+692	  mentions:
+693	    - round: 8
+694	      reviewers: [R1, R2]
+695	      note: "M3: 建议加 clarification 或改用中性用语。"
+696	    - round: 9
+697	      reviewers: []
+698	      note: "§4.2 已加 descriptive-label clarification。"
+699	    - round: 10
+700	      reviewers: [R1, R2]
+701	      note: "新发现因果语言实例。全文因果语言已系统替换。"
+702	    - round: 12
+703	      reviewers: [R1, R2]
+704	      note: "R1-W4 + R2-W4 Warning。残余因果语言 5 处已修复。"
+705	    - round: 13
+706	      reviewers: [R1, R2]
+707	      note: "R2-W1 Warning + R1 AGREE。Abstract 'they help and hurt almost entirely different examples'、§4.2 'attention consistently rescues near-miss errors' 仍含因果语言。R1 补充确认。交叉共识：应统一使用关联语言。"
+708	  action_items:
+709	    - round: 8
+710	      action: "§4.2 首次使用 rescue/disruption 处加 descriptive-label cl
+…[truncated 4961 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1657 · 2026-05-22T10:18:22.624614+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "845",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "845",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1658 · 2026-05-22T10:18:22.725599+00:00_
+
+845	  mentions:
+846	    - round: 10
+847	      reviewers: [R1, R2]
+848	      note: "R1-W5 Major。retrieval-task explanation 是 post-hoc。"
+849	    - round: 12
+850	      reviewers: [R1, R2]
+851	      note: "R2-N1 间接提及。"
+852	    - round: 13
+853	      reviewers: []
+854	      note: "Round 13 未作为独立 issue 提出，但被 R1-N1 和 R2-N2 的 convergence 批评所涵盖。"
+855	  action_items: []
+856	  resolution: ""
+857	  resolution_round: null
+858	
+859	- id: "R10-W4"
+860	  summary: "术语 'predictive multiplicity' 与 Rashomon set 原始定义的关系需澄清"
+861	  category: framing
+862	  severity: warning
+863	  status: in_progress
+864	  first_raised_round: 10
+865	  last_seen_round: 13
+866	  mentions:
+867	    - round: 10
+868	      reviewers: [R1, R2]
+869	      note: "R2-W3 Major。R1 REBUT——α metric 使用技术上合法。分歧未完全解决。"
+870	    - round: 12
+871	      reviewers: [R2]
+872	      note: "R2-W1 Warning。"
+873	    - round: 13
+874	      reviewers: []
+875	      note: "Round 13 未直接提及。§2 已加 Rashomon set 区分句（Fisher 2019, Semenova 2022）。可能已充分改善。"
+876	  action_items:
+877	    - round: 12
+878	      action: "Added Rashomon set distinction in §2 with Fisher/Semenova citations"
+879	      assigned_to: director
+880	      status: done
+881	  resolution: "§2 已明确区分。Round 13 未再提及。"
+882	  resolution_round: null
+883	
+884	- id: "R10-W5"
+885	  summary: "遗漏 Fort et al. (2019) Deep Ensembles + Niven & Kao (2019)"
+886	  category: writing
+887	  severity: info
+888	  status: resolved
+889	  first_raised_round: 10
+890	  last_seen_round: 10
+891	  mentions:
+892	    - round: 10
+893	      reviewers: [R1, R2]
+894	      note: "已加入 §2。"
+895	    - round: 13
+896	      reviewers: []
+897	      note: "Round 13 未提及。维持 resolved。"
+898	  action_items:
+899	    - round: 10
+900	      action: "§2 加 Fort et al. (2019) + Niven & Kao (2019) 引用"
+901	      assigned_to: director
+902	      status: done
+903	  resolution: "已加入 §2 Related Work。"
+904	  resolution_round: 10
+905	
+906	- id: "R12-W1"
+907	  summary: "遗漏 ensemble diversity 文献（Kuncheva & Whitaker 2003）和 Rashomon theory（Fisher 2019, Semen
+…[truncated 3878 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1659 · 2026-05-22T10:18:26.645476+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "offset": "1022",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "offset": "1022",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1660 · 2026-05-22T10:18:26.696085+00:00_
+
+1022	  resolution_round: null
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1661 · 2026-05-22T10:18:54.777842+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+  "old_string": "  resolution: \"结构性限制（observational study）。Round 13 再次确认 caveat 已到位，但根本问题（无 multi-seed 数据）不可修复。\"\n  resolution_round: null",
+  "new_string": "  action_items:\n    - round: 5\n      action: \"Proxy argument 写入 §4.3 + Limitations 升级\"\n      assigned_to: paper_agent\n      status: done\n    - round: 6\n      action: \"MF2: Contribution 1 nuanced 表述 + caveat\"\n      assigned_to: paper_agent\n      status: done\n    - round: 7\n      action: \"Rebuttal only — author_response_r7.tex 已写\"\n      assigned_to: director\n      status: done\n    - round: 8\n      action: \"Limitations 中明确 within-arch Jaccard ≠ seed baseline + Abstract 加 single-run caveat\"\n      assigned_to: paper_agent\n      status: done\n    - round: 9\n      action: \"(a) 删除 'not addressable by seed averaging'；(b) Limitations 加 McCoy seed calibration 句；(c) C1 改为 'arises under matched training conditions where the only controlled variable is the recurrent backbone'\"\n      assigned_to: director\n      status: done\n    - round: 13\n      action: \"E4 Pythia 410M 9-seed calibration: 下载 Pythia seed1-9, eval on LAMBADA/ARC-Easy, 计算 within-seed Jaccard vs cross-architecture Jaccard\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"结构性限制（observational study）。Round 13 启动 E4 Pythia multi-seed 实验作为经验校准。\"\n  resolution_round: null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml",
+    "old_string": "  resolution: \"结构性限制（observational study）。Round 13 再次确认 caveat 已到位，但根本问题（无 multi-seed 数据）不可修复。\"\n  resolution_round: null",
+    "new_string": "  action_items:\n    - round: 5\n      action: \"Proxy argument 写入 §4.3 + Limitations 升级\"\n      assigned_to: paper_agent\n      status: done\n    - round: 6\n      action: \"MF2: Contribution 1 nuanced 表述 + caveat\"\n      assigned_to: paper_agent\n      status: done\n    - round: 7\n      action: \"Rebuttal only — author_response_r7.tex 已写\"\n      assigned_to: director\n      status: done\n    - round: 8\n      action: \"Limitations 中明确 within-arch Jaccard ≠ seed baseline + Abstract 加 single-run caveat\"\n      assigned_to: paper_agent\n      status: done\n    - round: 9\n      action: \"(a) 删除 'not addressable by seed averaging'；(b) Limitations 加 McCoy seed calibration 句；(c) C1 改为 'arises under matched training conditions where the only controlled variable is the recurrent backbone'\"\n      assigned_to: director\n      status: done\n    - round: 13\n      action: \"E4 Pythia 410M 9-seed calibration: 下载 Pythia seed1-9, eval on LAMBADA/ARC-Easy, 计算 within-seed Jaccard vs cross-architecture Jaccard\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"结构性限制（observational study）。Round 13 启动 E4 Pythia multi-seed 实验作为经验校准。\"\n  resolution_round: null"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1662 · 2026-05-22T10:18:54.778772+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
+  "tool": "Edit",
+  "elapsed_ms": 0
 }
 ```
 

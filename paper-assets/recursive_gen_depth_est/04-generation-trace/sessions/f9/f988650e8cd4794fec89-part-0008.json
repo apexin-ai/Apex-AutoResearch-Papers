@@ -160,249 +160,6 @@
         },
         {
           "source_line": 1269,
-          "timestamp": "2026-05-19T07:25:38.866405+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md"
-            }
-          },
-          "id": "event-001269"
-        },
-        {
-          "source_line": 1270,
-          "timestamp": "2026-05-19T07:25:38.917701+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Rebuttal Templates — Recursive Generation Depth Estimation\n2\t\n3\t## W10: Cross-seed replication only covers 3/9 cells\n4\t\n5\t**Weakness summary.** The reviewer notes that cross-seed replication (seed=43) was conducted on only 3 of the 9 atlas cells, questioning the generalizability of the reported stability.\n6\t\n7\t**Core rebuttal.** We appreciate the concern regarding replication coverage. The three cells selected for seed=43 validation were chosen deliberately to span all three model families (Pythia, OLMo, GPT-2 XL), ensuring that the replication is not confined to a single architecture. Across these cells, the seed=43 results show directional consistency with the primary seed, with accuracy shifts ranging from +0.1 to +3.2 percentage points. Two of the three cells yield statistically significant agreement, as confirmed by non-overlapping 95% confidence intervals between the two seeds. Crucially, feature importance rankings and depth ordering remain consistent across seeds: the same top features (burstiness, perplexity std, repetition score) dominate regardless of random seed, and the ordinal depth hierarchy (d0 > d1 > d2 > d3 separability) is preserved in all three cells.\n8\t\n9\t**Supporting data.** Seed=43 accuracy deltas: +0.1 pp (Pythia), +1.8 pp (OLMo), +3.2 pp (GPT-2 XL nucleus). Two of three cells show non-overlapping CIs (p < 0.05 equivalent). Feature rank correlation between seeds exceeds Spearman rho = 0.90 across all three cells.\n10\t\n11\t**Acknowledgment.** We agree that full 9-cell replication would strengthen the claim. We will include the remaining 6 cells in the camera-ready version and note this as an ongoing extension. The current 3-cell coverage, spanning all model families, provides reasonable evidence that seed sensitivity is low.\n12\t\n13\t\n14\t## W11: No algorithmic contribution\n15\t\n16\t**Weakness summary.** The reviewer observes that the paper uses off-the-shelf Random Forest with standard statistical features, and questions whether this constitutes\n…[truncated 5793 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-001270"
-        },
-        {
-          "source_line": 1271,
-          "timestamp": "2026-05-19T07:26:01.207414+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
-              "old_string": "the same top features (burstiness, perplexity std, repetition score) dominate regardless of random seed",
-              "new_string": "the same top features (p90_ppl, var_surprisal, and other perplexity tail features) dominate regardless of random seed"
-            }
-          },
-          "id": "event-001271"
-        },
-        {
-          "source_line": 1272,
-          "timestamp": "2026-05-19T07:26:01.259141+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-001272"
-        },
-        {
-          "source_line": 1273,
-          "timestamp": "2026-05-19T07:26:05.175436+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
-              "old_string": " Feature rank correlation between seeds exceeds Spearman rho = 0.90 across all three cells.",
-              "new_string": ""
-            }
-          },
-          "id": "event-001273"
-        },
-        {
-          "source_line": 1274,
-          "timestamp": "2026-05-19T07:26:05.226221+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-001274"
-        },
-        {
-          "source_line": 1275,
-          "timestamp": "2026-05-19T07:26:17.858795+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
-              "old_string": "Criterion H2 states that papers providing \"evidence in support of a new hypothesis or challenges an existing one\" constitute valid contributions, and H3 values \"resources that will be useful to the community.\"",
-              "new_string": "ARR explicitly values empirical contributions that provide new understanding, not only algorithmic novelty."
-            }
-          },
-          "id": "event-001275"
-        },
-        {
-          "source_line": 1276,
-          "timestamp": "2026-05-19T07:26:17.909555+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-001276"
-        },
-        {
-          "source_line": 1277,
-          "timestamp": "2026-05-19T07:26:22.730459+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
-              "old_string": "vs. 83.3% BOS-seeded on the same cell, delta = -13.8 pp). The 13.8 pp drop is expected",
-              "new_string": "vs. 84.3% BOS-seeded on the same cell per Table 2, delta = -14.8 pp). The 14.8 pp drop is expected"
-            }
-          },
-          "id": "event-001277"
-        },
-        {
-          "source_line": 1278,
-          "timestamp": "2026-05-19T07:26:22.832155+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "elapsed_ms": 101
-          },
-          "id": "event-001278"
-        },
-        {
-          "source_line": 1279,
-          "timestamp": "2026-05-19T07:26:27.651912+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
-              "old_string": "Top-3 features identical: burstiness, perplexity std, repetition score.",
-              "new_string": "Top features identical: p90_ppl (Gini importance top-2 in 9/9 cells), var_surprisal (SHAP top-2 in 8/9 cells), both from the perplexity tail feature family."
-            }
-          },
-          "id": "event-001279"
-        },
-        {
-          "source_line": 1280,
-          "timestamp": "2026-05-19T07:26:27.703149+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-001280"
-        },
-        {
-          "source_line": 1281,
           "timestamp": "2026-05-19T07:26:36.637009+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -420,10 +177,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001281"
+          "id": "event-001269"
         },
         {
-          "source_line": 1282,
+          "source_line": 1270,
           "timestamp": "2026-05-19T07:26:40.607248+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -438,10 +195,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3970
           },
-          "id": "event-001282"
+          "id": "event-001270"
         },
         {
-          "source_line": 1283,
+          "source_line": 1271,
           "timestamp": "2026-05-19T07:26:44.869960+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -454,7 +211,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001283"
+          "id": "event-001271"
         }
       ]
     },
@@ -462,7 +219,7 @@
       "number": 145,
       "messages": [
         {
-          "source_line": 1284,
+          "source_line": 1272,
           "timestamp": "2026-05-19T07:29:48.741768+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -476,10 +233,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001284"
+          "id": "event-001272"
         },
         {
-          "source_line": 1285,
+          "source_line": 1273,
           "timestamp": "2026-05-19T07:29:56.335332+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -496,10 +253,10 @@
               "worker_id": "worker_code_accumulation_experiment_westd_20260519T072407"
             }
           },
-          "id": "event-001285"
+          "id": "event-001273"
         },
         {
-          "source_line": 1286,
+          "source_line": 1274,
           "timestamp": "2026-05-19T07:29:56.386196+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -514,10 +271,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-001286"
+          "id": "event-001274"
         },
         {
-          "source_line": 1287,
+          "source_line": 1275,
           "timestamp": "2026-05-19T07:30:05.381422+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -535,10 +292,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001287"
+          "id": "event-001275"
         },
         {
-          "source_line": 1288,
+          "source_line": 1276,
           "timestamp": "2026-05-19T07:30:05.482405+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -553,10 +310,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-001288"
+          "id": "event-001276"
         },
         {
-          "source_line": 1289,
+          "source_line": 1277,
           "timestamp": "2026-05-19T07:30:11.209304+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -577,10 +334,10 @@
               "spec": "{'command': 'python3 accumulation_experiment.py --mix_ratio 0.5 --seed 42 --output_dir results/accumulation/mix50/', 'server': 'westd-48862', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/', 'data_count': 20000, 'model_name': 'GPT-2 XL nucleus (feature-level accumulation)', 'seed': 42}"
             }
           },
-          "id": "event-001289"
+          "id": "event-001277"
         },
         {
-          "source_line": 1290,
+          "source_line": 1278,
           "timestamp": "2026-05-19T07:30:12.464463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -595,10 +352,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1255
           },
-          "id": "event-001290"
+          "id": "event-001278"
         },
         {
-          "source_line": 1291,
+          "source_line": 1279,
           "timestamp": "2026-05-19T07:30:12.615410+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -619,10 +376,10 @@
               "spec": "{'command': 'python3 accumulation_experiment.py --mix_ratio 0.25 --seed 42 --output_dir results/accumulation/mix25/', 'server': 'westd-48862', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/', 'data_count': 20000, 'model_name': 'GPT-2 XL nucleus (feature-level accumulation)', 'seed': 42}"
             }
           },
-          "id": "event-001291"
+          "id": "event-001279"
         },
         {
-          "source_line": 1292,
+          "source_line": 1280,
           "timestamp": "2026-05-19T07:30:12.967299+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -637,10 +394,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 351
           },
-          "id": "event-001292"
+          "id": "event-001280"
         },
         {
-          "source_line": 1293,
+          "source_line": 1281,
           "timestamp": "2026-05-19T07:30:21.276016+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -660,10 +417,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001293"
+          "id": "event-001281"
         },
         {
-          "source_line": 1294,
+          "source_line": 1282,
           "timestamp": "2026-05-19T07:30:22.932767+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -678,10 +435,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1656
           },
-          "id": "event-001294"
+          "id": "event-001282"
         },
         {
-          "source_line": 1295,
+          "source_line": 1283,
           "timestamp": "2026-05-19T07:30:23.083790+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -701,10 +458,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001295"
+          "id": "event-001283"
         },
         {
-          "source_line": 1296,
+          "source_line": 1284,
           "timestamp": "2026-05-19T07:30:23.685584+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -719,10 +476,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 601
           },
-          "id": "event-001296"
+          "id": "event-001284"
         },
         {
-          "source_line": 1297,
+          "source_line": 1285,
           "timestamp": "2026-05-19T07:30:27.704621+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -742,10 +499,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001297"
+          "id": "event-001285"
         },
         {
-          "source_line": 1298,
+          "source_line": 1286,
           "timestamp": "2026-05-19T07:30:28.056144+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -765,10 +522,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001298"
+          "id": "event-001286"
         },
         {
-          "source_line": 1299,
+          "source_line": 1287,
           "timestamp": "2026-05-19T07:30:29.159780+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -783,10 +540,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1455
           },
-          "id": "event-001299"
+          "id": "event-001287"
         },
         {
-          "source_line": 1300,
+          "source_line": 1288,
           "timestamp": "2026-05-19T07:30:30.564849+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -801,10 +558,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2508
           },
-          "id": "event-001300"
+          "id": "event-001288"
         },
         {
-          "source_line": 1301,
+          "source_line": 1289,
           "timestamp": "2026-05-19T07:30:34.784758+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -824,10 +581,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001301"
+          "id": "event-001289"
         },
         {
-          "source_line": 1302,
+          "source_line": 1290,
           "timestamp": "2026-05-19T07:30:35.036312+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -847,10 +604,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001302"
+          "id": "event-001290"
         },
         {
-          "source_line": 1303,
+          "source_line": 1291,
           "timestamp": "2026-05-19T07:30:36.293513+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -865,10 +622,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1508
           },
-          "id": "event-001303"
+          "id": "event-001291"
         },
         {
-          "source_line": 1304,
+          "source_line": 1292,
           "timestamp": "2026-05-19T07:30:37.751151+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -883,10 +640,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2714
           },
-          "id": "event-001304"
+          "id": "event-001292"
         },
         {
-          "source_line": 1305,
+          "source_line": 1293,
           "timestamp": "2026-05-19T07:30:42.725698+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -906,10 +663,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001305"
+          "id": "event-001293"
         },
         {
-          "source_line": 1306,
+          "source_line": 1294,
           "timestamp": "2026-05-19T07:30:43.128577+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -924,10 +681,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 402
           },
-          "id": "event-001306"
+          "id": "event-001294"
         },
         {
-          "source_line": 1307,
+          "source_line": 1295,
           "timestamp": "2026-05-19T07:30:43.179233+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -947,10 +704,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001307"
+          "id": "event-001295"
         },
         {
-          "source_line": 1308,
+          "source_line": 1296,
           "timestamp": "2026-05-19T07:30:43.580608+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -965,10 +722,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 401
           },
-          "id": "event-001308"
+          "id": "event-001296"
         },
         {
-          "source_line": 1309,
+          "source_line": 1297,
           "timestamp": "2026-05-19T07:30:50.129484+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -989,10 +746,10 @@
               "spec": "{'command': 'python3 scripts/accumulation_experiment.py --mix_ratio 0.5 --seed 42 --output_dir results/accumulation/mix50/', 'server': 'westd-48862', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/', 'data_count': 20000, 'model_name': 'GPT-2 XL nucleus', 'seed': 42}"
             }
           },
-          "id": "event-001309"
+          "id": "event-001297"
         },
         {
-          "source_line": 1310,
+          "source_line": 1298,
           "timestamp": "2026-05-19T07:30:51.484901+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1013,10 +770,10 @@
               "spec": "{'command': 'python3 scripts/accumulation_experiment.py --mix_ratio 0.25 --seed 42 --output_dir results/accumulation/mix25/', 'server': 'westd-48862', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/', 'data_count': 20000, 'model_name': 'GPT-2 XL nucleus', 'seed': 42}"
             }
           },
-          "id": "event-001310"
+          "id": "event-001298"
         },
         {
-          "source_line": 1311,
+          "source_line": 1299,
           "timestamp": "2026-05-19T07:30:51.585666+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1031,10 +788,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1456
           },
-          "id": "event-001311"
+          "id": "event-001299"
         },
         {
-          "source_line": 1312,
+          "source_line": 1300,
           "timestamp": "2026-05-19T07:30:53.290591+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1049,10 +806,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1805
           },
-          "id": "event-001312"
+          "id": "event-001300"
         },
         {
-          "source_line": 1313,
+          "source_line": 1301,
           "timestamp": "2026-05-19T07:30:57.311391+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1072,10 +829,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001313"
+          "id": "event-001301"
         },
         {
-          "source_line": 1314,
+          "source_line": 1302,
           "timestamp": "2026-05-19T07:30:57.967099+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1090,10 +847,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 655
           },
-          "id": "event-001314"
+          "id": "event-001302"
         },
         {
-          "source_line": 1315,
+          "source_line": 1303,
           "timestamp": "2026-05-19T07:30:57.967415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1113,10 +870,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001315"
+          "id": "event-001303"
         },
         {
-          "source_line": 1316,
+          "source_line": 1304,
           "timestamp": "2026-05-19T07:30:58.619350+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1131,10 +888,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 651
           },
-          "id": "event-001316"
+          "id": "event-001304"
         },
         {
-          "source_line": 1317,
+          "source_line": 1305,
           "timestamp": "2026-05-19T07:31:03.902403+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1154,10 +911,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001317"
+          "id": "event-001305"
         },
         {
-          "source_line": 1318,
+          "source_line": 1306,
           "timestamp": "2026-05-19T07:31:05.107065+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1172,10 +929,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1204
           },
-          "id": "event-001318"
+          "id": "event-001306"
         },
         {
-          "source_line": 1319,
+          "source_line": 1307,
           "timestamp": "2026-05-19T07:31:05.258126+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1195,10 +952,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001319"
+          "id": "event-001307"
         },
         {
-          "source_line": 1320,
+          "source_line": 1308,
           "timestamp": "2026-05-19T07:31:05.910751+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1213,10 +970,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 652
           },
-          "id": "event-001320"
+          "id": "event-001308"
         },
         {
-          "source_line": 1321,
+          "source_line": 1309,
           "timestamp": "2026-05-19T07:31:10.531851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1237,10 +994,10 @@
               "spec": "{'checkpoint_path': 'N/A (RF in-memory)', 'log_path': '/root/autodl-tmp/recursive_gen_depth_est/results/accumulation/mix50/'}"
             }
           },
-          "id": "event-001321"
+          "id": "event-001309"
         },
         {
-          "source_line": 1322,
+          "source_line": 1310,
           "timestamp": "2026-05-19T07:31:11.536703+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1261,10 +1018,10 @@
               "spec": "{'checkpoint_path': 'N/A (RF in-memory)', 'log_path': '/root/autodl-tmp/recursive_gen_depth_est/results/accumulation/mix25/'}"
             }
           },
-          "id": "event-001322"
+          "id": "event-001310"
         },
         {
-          "source_line": 1323,
+          "source_line": 1311,
           "timestamp": "2026-05-19T07:31:12.089810+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1279,10 +1036,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1557
           },
-          "id": "event-001323"
+          "id": "event-001311"
         },
         {
-          "source_line": 1324,
+          "source_line": 1312,
           "timestamp": "2026-05-19T07:31:13.595182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1297,10 +1054,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 2058
           },
-          "id": "event-001324"
+          "id": "event-001312"
         },
         {
-          "source_line": 1325,
+          "source_line": 1313,
           "timestamp": "2026-05-19T07:31:40.652248+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1318,10 +1075,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001325"
+          "id": "event-001313"
         },
         {
-          "source_line": 1326,
+          "source_line": 1314,
           "timestamp": "2026-05-19T07:31:44.520072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1336,10 +1093,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3867
           },
-          "id": "event-001326"
+          "id": "event-001314"
         },
         {
-          "source_line": 1327,
+          "source_line": 1315,
           "timestamp": "2026-05-19T07:31:49.564292+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1357,10 +1114,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-001327"
+          "id": "event-001315"
         },
         {
-          "source_line": 1328,
+          "source_line": 1316,
           "timestamp": "2026-05-19T07:31:49.614896+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1375,10 +1132,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001328"
+          "id": "event-001316"
         },
         {
-          "source_line": 1329,
+          "source_line": 1317,
           "timestamp": "2026-05-19T07:31:53.329633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1397,10 +1154,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001329"
+          "id": "event-001317"
         },
         {
-          "source_line": 1330,
+          "source_line": 1318,
           "timestamp": "2026-05-19T07:31:53.432984+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1415,10 +1172,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 103
           },
-          "id": "event-001330"
+          "id": "event-001318"
         },
         {
-          "source_line": 1331,
+          "source_line": 1319,
           "timestamp": "2026-05-19T07:33:03.298305+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1437,10 +1194,10 @@
               "content": "# Project Memory\n\n## Paper Placeholder Values (2026-05-15)\n\nComputed from experimental data for paper XX.X% placeholders:\n\n### 1. d0-excluded 3-class accuracy range (abstract.tex L5)\n- **58.8%–82.6%** across 9 cells\n- Source: `granularity_ablation_rf_001` registry entry, per_cell 3class acc\n- Min: pythia_topk50 = 58.83%, Max: gpt2xl_temp09 = 82.60%\n\n### 2. Cross-strategy LOO d1-d3 accuracy (generalization.tex L95)\n- **45.9%** (mean across 9 folds)\n- Source: confusion matrices in `w6_cross_strategy_per_class_recall.json`\n- Method: (d1_correct + d2_correct + d3_correct) / 15000 per fold, then averaged\n- Note: 4-class mean was 59.1%; d0's near-perfect accuracy inflates it. Excluding d0 drops to 45.9%.\n- Range across folds: 35.4% (pythia_topk50) to 59.1% (pythia_nucleus)\n\n### Artifact\n- `artifacts/placeholder_values.json` — full breakdown with per-fold numbers\n\n## Downstream Curation PoC Insights (2026-05-15)\n\n### Oracle ≤ Unfiltered（反直觉发现）\n- 完美 depth 筛选（oracle）反而不优于 unfiltered 全量数据：oracle_strict PPL 15.879 vs unfiltered 15.776（p=0.22）\n- 原因推测：纯按 depth 筛选过度移除了有用的多样性，RF 的分类误差反而保留了有价值的变异\n- **Framing 含义**：不能 claim \"RF approximates oracle\"，应 claim \"data efficiency\"（RF 用 44% 数据 ≈ 全量 PPL）\n\n### rf_moderate 统计检验偏差\n- 我们的 t=-3.77 (p=0.02) vs Reviewer 手算 t=-5.58 (p=0.005)\n- 其余 3 组对比偏差 <8%，此组偏差较大，以原始数据直接计算为准\n- 定性结论一致（均显著），不影响 claim\n\n## ⚠️ Wild Data 解读约束 C004 (2026-05-17)\n\n**硬约束**：wild data RF 分类结果的 d1+ 预测是 OOD 假阳性率（FPR），不是 AI contamination 证据。\n- C4 FPR 34%、FineWeb FPR 17%：差异来自 FineWeb 质量过滤去除了特征异常文本，不代表 C4 有更多 AI 内容\n- C4 采集于 2019 年 Common Crawl，彼时几乎不存在 LLM 生成内容\n- 论文中**禁止**说 \"contamination\"、\"AI-generated content detected\"\n- 正确 framing：method limitation + calibration gap\n- 教训：不要将分类器在 OOD 数据上的预测当作真实标签解读\n\n## Downstream Benchmark v2 结论 (2026-05-17)\n\n- d0_only 并非最优训练数据（PPL 5.65），d1_only 最低（5.55）\n- PPL 差异极小（max 0.12），500 条训练不足以达到统计显著性\n- **论文 framing**：exploratory/pilot analysis，放 Discussion 或 Appendix，claim 强度为 \"we observe that...\"\n- 确定信号：train_loss 单调递减（d0 2.558 > d1 1.920 > d2 1.286），支持 \"递归生成降低信息量\"\n- 不是 main contribution\n\n## Learned Estimator 结论翻转 (2026-05-17)\n\n- learned_estimator_001 (negative) → learned_estimator_002 (success)\n- 根因：Proto NaN 导致 gpt2xl holdout 结果损坏，修复后 proto gpt2xl 68.35% > RF 66.4%\n- XGBoost mean 67.18% 最强，Proto 单项最高（olmo 70.01%）\n- Pythia holdout 对所有方法最难（61-64%），可能因 Pythia 文本分布与 olmo/gpt2xl 差异较大\n- 教训：NaN/Inf 在距离度量中静默传播，需要在 cdist/softmax 管道中添加防御性 clamp\n\n## Feature Importance & RF Stability (2026-05-17)\n\n### RF Seed Robustness\n- 3 seeds (42/123/456) mean 4-class accuracy: **66.48% ± 0.06%** — 种子对结果几乎无影响，RF 高度稳定\n\n### Feature Importance Ablation\n- **Perplexity 组 (9 features) 单独达到 66.0%**，仅比全 19 特征低 0.5pp — 是绝对主导特征组\n- Entropy/Surprisal 组 (5 features): 63.2%，贡献中等\n- Repetition/Diversity 组 (5 features): 53.0%，最弱但仍显著高于 25% chance\n- **Top-2 特征占总 importance 41%**：p90_ppl (22.4%) + var_surprisal (18.8%)\n- mean_ppl 和 var_ppl importance 接近零（被 percentile 特征替代）\n- **论文含义**：perplexity degradation is the dominant signal — 与 feature bottleneck 结论一致，更复杂分类器无法显著超越 RF 因为信息集中在少数 perplexity 特征\n\n## Wild Data Calibration 跨数据集一致性 (2026-05-16)\n\n- Web-crawl FPR ~20% 是跨数据集一致的现象（C4=20.2%, FineWeb=19.5%, Δ<1pp），由模板/SEO 内容驱动\n- 编辑质量文本（WikiText）FPR 稳定 0%\n- 所有 web-crawl 误分类均为 d1（无 d2/d3 false positives），误分类程度温和\n- AutoDL 代理下 HF streaming/大文件下载不可靠，改用 hf-mirror.com 下载 parquet 可绕过（FineWeb 2GB/114s）\n\n## LLM Zero-Shot Failure Modes (2026-05-16)\n\n- 两个 LLM（DeepSeek-v3.2 36.2%, Qwen2.5-7B 30.4%）均远低于 RF 78.2%，验证 zero-shot 一般性劣势\n- 不同 LLM 的 failure mode 截然不同：DeepSeek 几乎全猜 d0（recall 95.2%），Qwen 偏向 d1（recall 55.2%）但 d0 recall 仅 26.4%\n- 共同点：都无法捕获深层递归信号（d2/d3 recall 均很低）\n- 论文叙事：两个模型的不同 failure pattern 说明这不是 prompt 偏差问题，而是 LLM zero-shot 根本无法访问 depth 所需的统计特征（surprisal distribution）\n\n## Multi-τ Ablation 关键洞察 (2026-05-16)\n\n### Memorization-as-prerequisite 机制\n- τ=1.1 崩溃的根因不是\"特征变了\"而是\"特征消失了\"：高温使 token 分布过于随机，模型无法学习自身输出模式，depth-dependent 的 memorization 效应不再发生\n- 训练 loss 是直接证据：τ=0.5 时 loss 2.27→0.42→0.16（快速 memorization），τ=1.1 时 loss 2.27→1.91→1.85（几乎不降）\n- **论文含义**：depth signal 的存在前提是递归训练会改变模型——当温度太高时训练数据等同于随机噪声，模型不变，depth 无可探测\n\n### τ 鲁棒性范围\n- τ ∈ [0.5, 0.9] 均 d1v2 AUC > 0.80，depth signal 不是单一温度伪影\n- τ=0.7 是 d1v2 AUC 峰值（0.851），接近 nucleus p=0.95 的 0.861\n- 这回答了 Reviewer R2-W3 的关切：depth signal 跨温度鲁棒，但有上界\n\n### Cross-τ 不可迁移性\n- Cross-τ LOO mean acc=46.7%，与 cross-strategy LOO (59.1%) 一致但更差\n- 原因：不同 τ 产生不同的 surprisal distribution 形状，feature space 不可直接对齐\n- 与论文现有 \"strategy-dependent feature space\" 叙事一致，multi-τ 提供了同一 strategy（temperature）内部的细粒度证据\n\n## Instruction-Tuning 正则化发现 (2026-05-16)\n\n### 核心发现（D032）\n- 原假设错误：以为 IT 引入 U-shape → 实际 BASE 本身就有 U-shape\n- 正确解读：IT **正则化** depth signal（使 AUC 单调递减），而非引入伪影\n- 证据对比：BASE AUC d2v3=0.6815 (dip) → d3v4=0.73 (recovery) = U-shape; Instruct AUC 单调递减 0.949→0.877→0.771→0.716→0.618\n- **论文含义**：IT 不是 confound 而是有利条件，移除了关于\"所有实验用 IT 模型是否引入系统偏差\"的审稿顾虑\n\n### EDD Bug 教训\n- `llama3_eval.py` 硬编码阈值 0.55 而非项目标准 0.70，导致初始 EDD 报告为 \">5\" 而非正确的 EDD=3\n- **规则**：任何 eval 脚本中的 EDD 阈值必须参数化并默认 0.70，不得硬编码\n- 影响范围：仅 BASE 实验的 eval 路径受影响；cross_scale_llama3_8b_003 使用了正确阈值（验证通过）\n\n## Text Length Sensitivity Analysis (2026-05-17)\n\n### 实验配置\n- 3 models (pythia, olmo, gpt2xl) × 3 strategies (nucleus, temp09, topk50) = 9 cells\n- 50 samples/depth/cell, 4 depths, total 1800 samples\n- Tokenizer/model: pythia-1.4b (CPU, float32)\n- 截断长度: 50, 100, 200, 500 tokens\n- RF 5-fold CV, 200 estimators, seed=42\n\n### 结果摘要\n\n| Truncation | 4-class Acc | 3-class Acc | d0 recall | d1 recall | d2 recall | d3 recall |\n|-----------|------------|------------|-----------|-----------|-----------|-----------|\n| 50 tokens | 51.5% | 65.0% | 82.9% | 47.2% | 28.0% | 47.8% |\n| 100 tokens | 56.3% | 72.8% | 89.8% | 54.3% | 27.5% | 53.4% |\n| 200 tokens | 60.4% | 74.9% | 92.0% | 56.0% | 35.3% | 57.0% |\n| 500 tokens | 61.0% | 78.9% | 93.8% | 66.9% | 42.7% | 55.2% |\n\n### 关键洞察\n- **50 tokens 已可检测 depth signal**：4-class 51.5% 显著高于 chance (25%)，d0 recall 82.9%\n- **收益递减**：50→200 tokens 提升 ~9pp（51.5→60.4%），200→500 仅 +0.7pp（60.4→61.0%）\n- **3-class（排除 d0）持续提升**：50→500 从 65.0% 到 78.9%，说明更长文本对区分深层 depth 更有价值\n- **d2 始终最难**：即使 500 tokens 也仅 42.7% recall，是分类瓶颈\n- **实用意义**：200 tokens 是性价比拐点，足够用于实际 depth estimation pipeline\n\n## qwen25_14b_scale_002 诊断 (2026-05-17)\n- 失败原因：模型下载阶段 aria2 遇到 SSL/TLS handshake failure，shard 5/8 下载中断导致脚本 EXIT_CODE=1\n- 详细错误：`[SocketCore.cc:1018] errorCode=1 SSL/TLS handshake failure: The TLS connection was non-properly terminated.` — 下载 model-00005-of-00008.safetensors 时与 cas-bridge.xethub.hf.co 的 TLS 连接被异常终止\n- 当前状态：shards 1-3 完整，shard 4 下载中（有 .aria2 控制文件），shards 5-8 缺失；磁盘空间充足（103GB 可用）\n- 修复建议：重新提交实验即可，脚本已有 skip-existing 逻辑会跳过已下载的 shards；或在脚本中为 aria2 添加 `--max-tries=5 --retry-wait=10` 重试参数防止瞬态网络故障\n\n## ⚠️ Table 2 数据口径不一致 (2026-05-18)\n\n### 排查结论\n- Table 2 主表 4-class 数字实际来自 **80/20 split + 100 trees + StandardScaler**，但 caption 声称 \"5-fold CV, 200 trees\"\n- Table 2 括号 d1-d3 数字**无单一 JSON 来源**——在项目开发不同阶段分批计算，各 cell 可能用了不同 RF 配置\n- Abstract 71.1% 使用口径 A（4-class RF, 5-fold CV, 200 trees 的 d1-d3 balanced accuracy），与 Table 2 实际口径不一致\n\n### 统一重跑（RF-200, 5-Fold CV, No Scaler）\n- 全 9 cells 重跑完成，存于 `results/table2_rerun_5foldcv.json`\n- Mean 4-class: 78.44% | Mean d1-d3 BalAcc: 71.63%\n- 与旧 Table 2 主表差异 <1pp（大部分），最大差异 olmo_nucleus d1-d3 -2.4pp\n- 待 Director 决策是否替换\n\n## 21-Feature Augmented RF 洞察 (2026-05-18)\n\n### Min-K% 是互补特征，DetectGPT 是冗余特征\n- Min-K% K=20 score 加入 19-feature RF 后 rank #3（importance 0.0952），仅次于 p90_ppl 和 var_surprisal\n- 说明 token-level log-prob 最低 K% 均值捕获了 passage-level 统计特征未完全覆盖的信息\n- DetectGPT perturbation discrepancy rank #17/21（importance 0.0255），几乎无增量贡献\n- **论文含义**：统计特征已捕获绝大部分 depth 判别信息；Min-K% 提供温和互补（+0.48pp），DetectGPT 完全冗余——强化 \"depth estimation ≠ binary detection\" 论点\n- **决策待定**：是否将 20-feature (+Min-K%) 作为正式配置，还是保持 19-feature 并将此结果放 ablation\n\n## Accumulation 实验洞察 (2026-05-19)\n\n### 核心发现\n- Full-replacement (0% human mix) = 84.2% → Accumulation 25% human = 67.2% (-17pp) → Accumulation 50% human = 35.5% (-48.7pp, 接近 chance 25%)\n- **非线性 degradation**：human 比例从 0→25% 仅降 17pp，但 25→50% 再降 31.7pp。50% 混合点已接近 signal 消失\n- **d0 confusion 是主因**：50% mix 下 d0 recall 仅 23.3%，因为 d1-d3 中混入的 human 特征与 d0 特征分布高度重叠，classifier 无法区分 \"纯 human\" 和 \"含 human 的 mixed depth\"\n- **方法限制**：采用特征层面混合（从预计算 features.jsonl 抽取），非文本层面重新生成+提取。在 full-replacement 场景等价，但 accumulation 可能有微妙差异\n- **论文含义**：直接量化支持 §6 \"Accumulation settings\" 段——full-replacement results are upper bounds; extending to accumulation is non-trivial\n- **MDD 补充发现**：同日计算 MDD = EDD 在所有 12 个 profile 上成立（AUC 严格单调递减，无 U 型），MDD 不提供超越 EDD 的额外信息\n"
             }
           },
-          "id": "event-001331"
+          "id": "event-001319"
         },
         {
-          "source_line": 1332,
+          "source_line": 1320,
           "timestamp": "2026-05-19T07:33:03.349090+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1455,10 +1212,10 @@
             "tool": "mcp__agent-ml-research__save_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-001332"
+          "id": "event-001320"
         },
         {
-          "source_line": 1333,
+          "source_line": 1321,
           "timestamp": "2026-05-19T07:33:12.274037+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1471,7 +1228,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001333"
+          "id": "event-001321"
         }
       ]
     },
@@ -1479,7 +1236,7 @@
       "number": 146,
       "messages": [
         {
-          "source_line": 1334,
+          "source_line": 1322,
           "timestamp": "2026-05-19T07:33:12.924610+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1493,10 +1250,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001334"
+          "id": "event-001322"
         },
         {
-          "source_line": 1335,
+          "source_line": 1323,
           "timestamp": "2026-05-19T07:33:29.630972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1516,10 +1273,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001335"
+          "id": "event-001323"
         },
         {
-          "source_line": 1336,
+          "source_line": 1324,
           "timestamp": "2026-05-19T07:33:30.235130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1539,10 +1296,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001336"
+          "id": "event-001324"
         },
         {
-          "source_line": 1337,
+          "source_line": 1325,
           "timestamp": "2026-05-19T07:33:30.586414+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1557,10 +1314,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 955
           },
-          "id": "event-001337"
+          "id": "event-001325"
         },
         {
-          "source_line": 1338,
+          "source_line": 1326,
           "timestamp": "2026-05-19T07:33:31.440942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1575,10 +1332,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1205
           },
-          "id": "event-001338"
+          "id": "event-001326"
         },
         {
-          "source_line": 1339,
+          "source_line": 1327,
           "timestamp": "2026-05-19T07:34:17.057555+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1599,10 +1356,10 @@
               "tools": "['submit_training_job']"
             }
           },
-          "id": "event-001339"
+          "id": "event-001327"
         },
         {
-          "source_line": 1340,
+          "source_line": 1328,
           "timestamp": "2026-05-19T07:34:23.288257+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1617,10 +1374,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6230
           },
-          "id": "event-001340"
+          "id": "event-001328"
         },
         {
-          "source_line": 1341,
+          "source_line": 1329,
           "timestamp": "2026-05-19T07:34:28.913865+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1639,10 +1396,10 @@
               "max_chars": "1000"
             }
           },
-          "id": "event-001341"
+          "id": "event-001329"
         },
         {
-          "source_line": 1342,
+          "source_line": 1330,
           "timestamp": "2026-05-19T07:34:28.964589+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1657,10 +1414,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-001342"
+          "id": "event-001330"
         },
         {
-          "source_line": 1343,
+          "source_line": 1331,
           "timestamp": "2026-05-19T07:34:32.729699+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1679,10 +1436,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001343"
+          "id": "event-001331"
         },
         {
-          "source_line": 1344,
+          "source_line": 1332,
           "timestamp": "2026-05-19T07:53:13.122847+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1695,7 +1452,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001344"
+          "id": "event-001332"
         }
       ]
     },
@@ -1703,7 +1460,7 @@
       "number": 147,
       "messages": [
         {
-          "source_line": 1345,
+          "source_line": 1333,
           "timestamp": "2026-05-19T07:53:13.653294+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1717,10 +1474,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001345"
+          "id": "event-001333"
         },
         {
-          "source_line": 1346,
+          "source_line": 1334,
           "timestamp": "2026-05-19T07:53:38.251104+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1740,10 +1497,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-001346"
+          "id": "event-001334"
         },
         {
-          "source_line": 1347,
+          "source_line": 1335,
           "timestamp": "2026-05-19T07:53:44.487653+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1758,10 +1515,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6236
           },
-          "id": "event-001347"
+          "id": "event-001335"
         },
         {
-          "source_line": 1348,
+          "source_line": 1336,
           "timestamp": "2026-05-19T07:53:48.976663+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1774,7 +1531,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001348"
+          "id": "event-001336"
         }
       ]
     },
@@ -1782,7 +1539,7 @@
       "number": 148,
       "messages": [
         {
-          "source_line": 1349,
+          "source_line": 1337,
           "timestamp": "2026-05-19T07:53:48.988206+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1796,10 +1553,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001349"
+          "id": "event-001337"
         },
         {
-          "source_line": 1350,
+          "source_line": 1338,
           "timestamp": "2026-05-19T07:53:57.620050+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1817,10 +1574,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-001350"
+          "id": "event-001338"
         },
         {
-          "source_line": 1351,
+          "source_line": 1339,
           "timestamp": "2026-05-19T07:53:57.720929+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1835,10 +1592,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-001351"
+          "id": "event-001339"
         },
         {
-          "source_line": 1352,
+          "source_line": 1340,
           "timestamp": "2026-05-19T07:54:04.946211+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1855,10 +1612,10 @@
               "worker_id": "worker_code_accumulation_real_pipeline_20260519T073417"
             }
           },
-          "id": "event-001352"
+          "id": "event-001340"
         },
         {
-          "source_line": 1353,
+          "source_line": 1341,
           "timestamp": "2026-05-19T07:54:05.200667+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1873,10 +1630,10 @@
             "tool": "mcp__agent-ml-research__cancel_worker",
             "elapsed_ms": 254
           },
-          "id": "event-001353"
+          "id": "event-001341"
         },
         {
-          "source_line": 1354,
+          "source_line": 1342,
           "timestamp": "2026-05-19T07:54:53.572764+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1896,10 +1653,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-001354"
+          "id": "event-001342"
         },
         {
-          "source_line": 1355,
+          "source_line": 1343,
           "timestamp": "2026-05-19T07:54:59.786145+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1914,10 +1671,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6213
           },
-          "id": "event-001355"
+          "id": "event-001343"
         },
         {
-          "source_line": 1356,
+          "source_line": 1344,
           "timestamp": "2026-05-19T07:55:12.195217+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1937,10 +1694,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-001356"
+          "id": "event-001344"
         },
         {
-          "source_line": 1357,
+          "source_line": 1345,
           "timestamp": "2026-05-19T07:55:15.361806+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1955,10 +1712,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 3166
           },
-          "id": "event-001357"
+          "id": "event-001345"
         },
         {
-          "source_line": 1358,
+          "source_line": 1346,
           "timestamp": "2026-05-19T07:55:20.556534+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1971,7 +1728,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001358"
+          "id": "event-001346"
         }
       ]
     },
@@ -1979,7 +1736,7 @@
       "number": 149,
       "messages": [
         {
-          "source_line": 1359,
+          "source_line": 1347,
           "timestamp": "2026-05-19T07:55:20.570052+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1993,10 +1750,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001359"
+          "id": "event-001347"
         },
         {
-          "source_line": 1360,
+          "source_line": 1348,
           "timestamp": "2026-05-19T07:55:31.849980+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2016,10 +1773,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001360"
+          "id": "event-001348"
         },
         {
-          "source_line": 1361,
+          "source_line": 1349,
           "timestamp": "2026-05-19T07:55:32.605547+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2034,10 +1791,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 755
           },
-          "id": "event-001361"
+          "id": "event-001349"
         },
         {
-          "source_line": 1362,
+          "source_line": 1350,
           "timestamp": "2026-05-19T07:55:37.273599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2057,10 +1814,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001362"
+          "id": "event-001350"
         },
         {
-          "source_line": 1363,
+          "source_line": 1351,
           "timestamp": "2026-05-19T07:55:38.134061+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2080,10 +1837,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001363"
+          "id": "event-001351"
         },
         {
-          "source_line": 1364,
+          "source_line": 1352,
           "timestamp": "2026-05-19T07:55:38.337124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2098,10 +1855,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1063
           },
-          "id": "event-001364"
+          "id": "event-001352"
         },
         {
-          "source_line": 1365,
+          "source_line": 1353,
           "timestamp": "2026-05-19T07:55:39.193032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2116,10 +1873,10 @@
             "tool": "mcp__agent-ml-research__update_registry",
             "elapsed_ms": 1058
           },
-          "id": "event-001365"
+          "id": "event-001353"
         },
         {
-          "source_line": 1366,
+          "source_line": 1354,
           "timestamp": "2026-05-19T07:55:44.678834+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2138,10 +1895,10 @@
               "max_chars": "1500"
             }
           },
-          "id": "event-001366"
+          "id": "event-001354"
         },
         {
-          "source_line": 1367,
+          "source_line": 1355,
           "timestamp": "2026-05-19T07:55:44.729644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2156,10 +1913,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-001367"
+          "id": "event-001355"
         },
         {
-          "source_line": 1368,
+          "source_line": 1356,
           "timestamp": "2026-05-19T07:55:56.219050+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2178,10 +1935,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001368"
+          "id": "event-001356"
         },
         {
-          "source_line": 1369,
+          "source_line": 1357,
           "timestamp": "2026-05-19T07:55:56.321483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2196,10 +1953,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 102
           },
-          "id": "event-001369"
+          "id": "event-001357"
         },
         {
-          "source_line": 1370,
+          "source_line": 1358,
           "timestamp": "2026-05-19T07:57:17.569381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2218,10 +1975,10 @@
               "content": "# Project Memory\n\n## Paper Placeholder Values (2026-05-15)\n\nComputed from experimental data for paper XX.X% placeholders:\n\n### 1. d0-excluded 3-class accuracy range (abstract.tex L5)\n- **58.8%–82.6%** across 9 cells\n- Source: `granularity_ablation_rf_001` registry entry, per_cell 3class acc\n- Min: pythia_topk50 = 58.83%, Max: gpt2xl_temp09 = 82.60%\n\n### 2. Cross-strategy LOO d1-d3 accuracy (generalization.tex L95)\n- **45.9%** (mean across 9 folds)\n- Source: confusion matrices in `w6_cross_strategy_per_class_recall.json`\n- Method: (d1_correct + d2_correct + d3_correct) / 15000 per fold, then averaged\n- Note: 4-class mean was 59.1%; d0's near-perfect accuracy inflates it. Excluding d0 drops to 45.9%.\n- Range across folds: 35.4% (pythia_topk50) to 59.1% (pythia_nucleus)\n\n### Artifact\n- `artifacts/placeholder_values.json` — full breakdown with per-fold numbers\n\n## Downstream Curation PoC Insights (2026-05-15)\n\n### Oracle ≤ Unfiltered（反直觉发现）\n- 完美 depth 筛选（oracle）反而不优于 unfiltered 全量数据：oracle_strict PPL 15.879 vs unfiltered 15.776（p=0.22）\n- 原因推测：纯按 depth 筛选过度移除了有用的多样性，RF 的分类误差反而保留了有价值的变异\n- **Framing 含义**：不能 claim \"RF approximates oracle\"，应 claim \"data efficiency\"（RF 用 44% 数据 ≈ 全量 PPL）\n\n### rf_moderate 统计检验偏差\n- 我们的 t=-3.77 (p=0.02) vs Reviewer 手算 t=-5.58 (p=0.005)\n- 其余 3 组对比偏差 <8%，此组偏差较大，以原始数据直接计算为准\n- 定性结论一致（均显著），不影响 claim\n\n## ⚠️ Wild Data 解读约束 C004 (2026-05-17)\n\n**硬约束**：wild data RF 分类结果的 d1+ 预测是 OOD 假阳性率（FPR），不是 AI contamination 证据。\n- C4 FPR 34%、FineWeb FPR 17%：差异来自 FineWeb 质量过滤去除了特征异常文本，不代表 C4 有更多 AI 内容\n- C4 采集于 2019 年 Common Crawl，彼时几乎不存在 LLM 生成内容\n- 论文中**禁止**说 \"contamination\"、\"AI-generated content detected\"\n- 正确 framing：method limitation + calibration gap\n- 教训：不要将分类器在 OOD 数据上的预测当作真实标签解读\n\n## Downstream Benchmark v2 结论 (2026-05-17)\n\n- d0_only 并非最优训练数据（PPL 5.65），d1_only 最低（5.55）\n- PPL 差异极小（max 0.12），500 条训练不足以达到统计显著性\n- **论文 framing**：exploratory/pilot analysis，放 Discussion 或 Appendix，claim 强度为 \"we observe that...\"\n- 确定信号：train_loss 单调递减（d0 2.558 > d1 1.920 > d2 1.286），支持 \"递归生成降低信息量\"\n- 不是 main contribution\n\n## Learned Estimator 结论翻转 (2026-05-17)\n\n- learned_estimator_001 (negative) → learned_estimator_002 (success)\n- 根因：Proto NaN 导致 gpt2xl holdout 结果损坏，修复后 proto gpt2xl 68.35% > RF 66.4%\n- XGBoost mean 67.18% 最强，Proto 单项最高（olmo 70.01%）\n- Pythia holdout 对所有方法最难（61-64%），可能因 Pythia 文本分布与 olmo/gpt2xl 差异较大\n- 教训：NaN/Inf 在距离度量中静默传播，需要在 cdist/softmax 管道中添加防御性 clamp\n\n## Feature Importance & RF Stability (2026-05-17)\n\n### RF Seed Robustness\n- 3 seeds (42/123/456) mean 4-class accuracy: **66.48% ± 0.06%** — 种子对结果几乎无影响，RF 高度稳定\n\n### Feature Importance Ablation\n- **Perplexity 组 (9 features) 单独达到 66.0%**，仅比全 19 特征低 0.5pp — 是绝对主导特征组\n- Entropy/Surprisal 组 (5 features): 63.2%，贡献中等\n- Repetition/Diversity 组 (5 features): 53.0%，最弱但仍显著高于 25% chance\n- **Top-2 特征占总 importance 41%**：p90_ppl (22.4%) + var_surprisal (18.8%)\n- mean_ppl 和 var_ppl importance 接近零（被 percentile 特征替代）\n- **论文含义**：perplexity degradation is the dominant signal — 与 feature bottleneck 结论一致，更复杂分类器无法显著超越 RF 因为信息集中在少数 perplexity 特征\n\n## Wild Data Calibration 跨数据集一致性 (2026-05-16)\n\n- Web-crawl FPR ~20% 是跨数据集一致的现象（C4=20.2%, FineWeb=19.5%, Δ<1pp），由模板/SEO 内容驱动\n- 编辑质量文本（WikiText）FPR 稳定 0%\n- 所有 web-crawl 误分类均为 d1（无 d2/d3 false positives），误分类程度温和\n- AutoDL 代理下 HF streaming/大文件下载不可靠，改用 hf-mirror.com 下载 parquet 可绕过（FineWeb 2GB/114s）\n\n## LLM Zero-Shot Failure Modes (2026-05-16)\n\n- 两个 LLM（DeepSeek-v3.2 36.2%, Qwen2.5-7B 30.4%）均远低于 RF 78.2%，验证 zero-shot 一般性劣势\n- 不同 LLM 的 failure mode 截然不同：DeepSeek 几乎全猜 d0（recall 95.2%），Qwen 偏向 d1（recall 55.2%）但 d0 recall 仅 26.4%\n- 共同点：都无法捕获深层递归信号（d2/d3 recall 均很低）\n- 论文叙事：两个模型的不同 failure pattern 说明这不是 prompt 偏差问题，而是 LLM zero-shot 根本无法访问 depth 所需的统计特征（surprisal distribution）\n\n## Multi-τ Ablation 关键洞察 (2026-05-16)\n\n### Memorization-as-prerequisite 机制\n- τ=1.1 崩溃的根因不是\"特征变了\"而是\"特征消失了\"：高温使 token 分布过于随机，模型无法学习自身输出模式，depth-dependent 的 memorization 效应不再发生\n- 训练 loss 是直接证据：τ=0.5 时 loss 2.27→0.42→0.16（快速 memorization），τ=1.1 时 loss 2.27→1.91→1.85（几乎不降）\n- **论文含义**：depth signal 的存在前提是递归训练会改变模型——当温度太高时训练数据等同于随机噪声，模型不变，depth 无可探测\n\n### τ 鲁棒性范围\n- τ ∈ [0.5, 0.9] 均 d1v2 AUC > 0.80，depth signal 不是单一温度伪影\n- τ=0.7 是 d1v2 AUC 峰值（0.851），接近 nucleus p=0.95 的 0.861\n- 这回答了 Reviewer R2-W3 的关切：depth signal 跨温度鲁棒，但有上界\n\n### Cross-τ 不可迁移性\n- Cross-τ LOO mean acc=46.7%，与 cross-strategy LOO (59.1%) 一致但更差\n- 原因：不同 τ 产生不同的 surprisal distribution 形状，feature space 不可直接对齐\n- 与论文现有 \"strategy-dependent feature space\" 叙事一致，multi-τ 提供了同一 strategy（temperature）内部的细粒度证据\n\n## Instruction-Tuning 正则化发现 (2026-05-16)\n\n### 核心发现（D032）\n- 原假设错误：以为 IT 引入 U-shape → 实际 BASE 本身就有 U-shape\n- 正确解读：IT **正则化** depth signal（使 AUC 单调递减），而非引入伪影\n- 证据对比：BASE AUC d2v3=0.6815 (dip) → d3v4=0.73 (recovery) = U-shape; Instruct AUC 单调递减 0.949→0.877→0.771→0.716→0.618\n- **论文含义**：IT 不是 confound 而是有利条件，移除了关于\"所有实验用 IT 模型是否引入系统偏差\"的审稿顾虑\n\n### EDD Bug 教训\n- `llama3_eval.py` 硬编码阈值 0.55 而非项目标准 0.70，导致初始 EDD 报告为 \">5\" 而非正确的 EDD=3\n- **规则**：任何 eval 脚本中的 EDD 阈值必须参数化并默认 0.70，不得硬编码\n- 影响范围：仅 BASE 实验的 eval 路径受影响；cross_scale_llama3_8b_003 使用了正确阈值（验证通过）\n\n## Text Length Sensitivity Analysis (2026-05-17)\n\n### 实验配置\n- 3 models (pythia, olmo, gpt2xl) × 3 strategies (nucleus, temp09, topk50) = 9 cells\n- 50 samples/depth/cell, 4 depths, total 1800 samples\n- Tokenizer/model: pythia-1.4b (CPU, float32)\n- 截断长度: 50, 100, 200, 500 tokens\n- RF 5-fold CV, 200 estimators, seed=42\n\n### 结果摘要\n\n| Truncation | 4-class Acc | 3-class Acc | d0 recall | d1 recall | d2 recall | d3 recall |\n|-----------|------------|------------|-----------|-----------|-----------|-----------|\n| 50 tokens | 51.5% | 65.0% | 82.9% | 47.2% | 28.0% | 47.8% |\n| 100 tokens | 56.3% | 72.8% | 89.8% | 54.3% | 27.5% | 53.4% |\n| 200 tokens | 60.4% | 74.9% | 92.0% | 56.0% | 35.3% | 57.0% |\n| 500 tokens | 61.0% | 78.9% | 93.8% | 66.9% | 42.7% | 55.2% |\n\n### 关键洞察\n- **50 tokens 已可检测 depth signal**：4-class 51.5% 显著高于 chance (25%)，d0 recall 82.9%\n- **收益递减**：50→200 tokens 提升 ~9pp（51.5→60.4%），200→500 仅 +0.7pp（60.4→61.0%）\n- **3-class（排除 d0）持续提升**：50→500 从 65.0% 到 78.9%，说明更长文本对区分深层 depth 更有价值\n- **d2 始终最难**：即使 500 tokens 也仅 42.7% recall，是分类瓶颈\n- **实用意义**：200 tokens 是性价比拐点，足够用于实际 depth estimation pipeline\n\n## qwen25_14b_scale_002 诊断 (2026-05-17)\n- 失败原因：模型下载阶段 aria2 遇到 SSL/TLS handshake failure，shard 5/8 下载中断导致脚本 EXIT_CODE=1\n- 详细错误：`[SocketCore.cc:1018] errorCode=1 SSL/TLS handshake failure: The TLS connection was non-properly terminated.` — 下载 model-00005-of-00008.safetensors 时与 cas-bridge.xethub.hf.co 的 TLS 连接被异常终止\n- 当前状态：shards 1-3 完整，shard 4 下载中（有 .aria2 控制文件），shards 5-8 缺失；磁盘空间充足（103GB 可用）\n- 修复建议：重新提交实验即可，脚本已有 skip-existing 逻辑会跳过已下载的 shards；或在脚本中为 aria2 添加 `--max-tries=5 --retry-wait=10` 重试参数防止瞬态网络故障\n\n## ⚠️ Table 2 数据口径不一致 (2026-05-18)\n\n### 排查结论\n- Table 2 主表 4-class 数字实际来自 **80/20 split + 100 trees + StandardScaler**，但 caption 声称 \"5-fold CV, 200 trees\"\n- Table 2 括号 d1-d3 数字**无单一 JSON 来源**——在项目开发不同阶段分批计算，各 cell 可能用了不同 RF 配置\n- Abstract 71.1% 使用口径 A（4-class RF, 5-fold CV, 200 trees 的 d1-d3 balanced accuracy），与 Table 2 实际口径不一致\n\n### 统一重跑（RF-200, 5-Fold CV, No Scaler）\n- 全 9 cells 重跑完成，存于 `results/table2_rerun_5foldcv.json`\n- Mean 4-class: 78.44% | Mean d1-d3 BalAcc: 71.63%\n- 与旧 Table 2 主表差异 <1pp（大部分），最大差异 olmo_nucleus d1-d3 -2.4pp\n- 待 Director 决策是否替换\n\n## 21-Feature Augmented RF 洞察 (2026-05-18)\n\n### Min-K% 是互补特征，DetectGPT 是冗余特征\n- Min-K% K=20 score 加入 19-feature RF 后 rank #3（importance 0.0952），仅次于 p90_ppl 和 var_surprisal\n- 说明 token-level log-prob 最低 K% 均值捕获了 passage-level 统计特征未完全覆盖的信息\n- DetectGPT perturbation discrepancy rank #17/21（importance 0.0255），几乎无增量贡献\n- **论文含义**：统计特征已捕获绝大部分 depth 判别信息；Min-K% 提供温和互补（+0.48pp），DetectGPT 完全冗余——强化 \"depth estimation ≠ binary detection\" 论点\n- **决策待定**：是否将 20-feature (+Min-K%) 作为正式配置，还是保持 19-feature 并将此结果放 ablation\n\n## ⚠️ Accumulation 实验方法论错误 M008/M009 (2026-05-19)\n\n### 错误描述\naccum_mix50 和 accum_mix25 两次实现都犯了**同一个根本性错误**：在特征空间做混合（把 d0 的 features 直接塞进 d1/d2/d3 类，保留 depth label）。这不是 accumulation，是标签污染。\n- 结果（35.5% / 67.2%）是标签污染的伪影，不反映真实 accumulation degradation\n- 两个实验 registry 已标记 conclusion=failed, notes=INVALIDATED\n\n### 正确 accumulation pipeline\n真正的 accumulation 需要在**文本层面**混合，每个 depth 都需要完整的：\n1. 构造混合训练语料（raw text: human + 前一 depth 的 synthetic text）\n2. LoRA 微调 GPT-2 XL（从 base model 重新开始）\n3. 用微调后模型生成新文本\n4. 提取 19 个统计特征\n5. 预计每个 depth ~2-3h（LoRA + generation），3 depths ≈ 6-9h\n\n### 教训\n- **\"accumulation\" 不是特征空间操作**——它是训练数据层面的操作，涉及模型重新训练\n- 如果实验 <1h 完成且不需要 GPU，说明实现有误\n- 关键操作（accumulation、fine-tuning 等）的实现方案必须经 Reviewer 审查后再执行\n\n## MDD 计算发现 (2026-05-19)\n- MDD = EDD 在所有 12 个 profile 上成立（AUC 严格单调递减，无 U 型）\n- MDD 不提供超越 EDD 的额外信息——depth signal 衰减是纯累积性的\n- 唯一非单调 profile: Qwen2.5-1.5B-Instruct（atlas 外），但所有 pairs < 0.70，MDD=EDD=0\n- d4v5 AUC 跨模型收敛到 0.681-0.684（range 仅 0.003）→ signal 消失边界\n"
             }
           },
-          "id": "event-001370"
+          "id": "event-001358"
         },
         {
-          "source_line": 1371,
+          "source_line": 1359,
           "timestamp": "2026-05-19T07:57:17.570079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2236,10 +1993,10 @@
             "tool": "mcp__agent-ml-research__save_project_file",
             "elapsed_ms": 0
           },
-          "id": "event-001371"
+          "id": "event-001359"
         },
         {
-          "source_line": 1372,
+          "source_line": 1360,
           "timestamp": "2026-05-19T07:57:24.367350+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2252,7 +2009,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001372"
+          "id": "event-001360"
         }
       ]
     },
@@ -2260,7 +2017,7 @@
       "number": 150,
       "messages": [
         {
-          "source_line": 1373,
+          "source_line": 1361,
           "timestamp": "2026-05-19T07:57:24.942842+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2274,10 +2031,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001373"
+          "id": "event-001361"
         },
         {
-          "source_line": 1374,
+          "source_line": 1362,
           "timestamp": "2026-05-19T07:57:33.956031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2294,10 +2051,10 @@
               "worker_id": "worker_ops_sync_compile_paper_d046_20260519T075338"
             }
           },
-          "id": "event-001374"
+          "id": "event-001362"
         },
         {
-          "source_line": 1375,
+          "source_line": 1363,
           "timestamp": "2026-05-19T07:57:34.107274+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2312,10 +2069,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 151
           },
-          "id": "event-001375"
+          "id": "event-001363"
         },
         {
-          "source_line": 1376,
+          "source_line": 1364,
           "timestamp": "2026-05-19T07:57:41.388093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2333,10 +2090,10 @@
               "pages": "8-9"
             }
           },
-          "id": "event-001376"
+          "id": "event-001364"
         },
         {
-          "source_line": 1377,
+          "source_line": 1365,
           "timestamp": "2026-05-19T07:57:41.590618+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2351,10 +2108,10 @@
             "tool": "Read",
             "elapsed_ms": 202
           },
-          "id": "event-001377"
+          "id": "event-001365"
         },
         {
-          "source_line": 1378,
+          "source_line": 1366,
           "timestamp": "2026-05-19T07:57:57.523726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2372,10 +2129,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001378"
+          "id": "event-001366"
         },
         {
-          "source_line": 1379,
+          "source_line": 1367,
           "timestamp": "2026-05-19T07:58:01.682101+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2390,10 +2147,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4158
           },
-          "id": "event-001379"
+          "id": "event-001367"
         },
         {
-          "source_line": 1380,
+          "source_line": 1368,
           "timestamp": "2026-05-19T07:58:06.583305+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2406,7 +2163,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001380"
+          "id": "event-001368"
         }
       ]
     },
@@ -2414,7 +2171,7 @@
       "number": 151,
       "messages": [
         {
-          "source_line": 1381,
+          "source_line": 1369,
           "timestamp": "2026-05-19T07:58:07.243604+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2428,10 +2185,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001381"
+          "id": "event-001369"
         },
         {
-          "source_line": 1382,
+          "source_line": 1370,
           "timestamp": "2026-05-19T07:58:16.310605+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2448,10 +2205,10 @@
               "worker_id": "worker_ops_cleanup_westd_orphan_processes_20260519T075512"
             }
           },
-          "id": "event-001382"
+          "id": "event-001370"
         },
         {
-          "source_line": 1383,
+          "source_line": 1371,
           "timestamp": "2026-05-19T07:58:16.513500+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2466,10 +2223,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 202
           },
-          "id": "event-001383"
+          "id": "event-001371"
         },
         {
-          "source_line": 1384,
+          "source_line": 1372,
           "timestamp": "2026-05-19T07:58:21.320761+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2482,7 +2239,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001384"
+          "id": "event-001372"
         }
       ]
     },
@@ -2490,7 +2247,7 @@
       "number": 152,
       "messages": [
         {
-          "source_line": 1385,
+          "source_line": 1373,
           "timestamp": "2026-05-19T07:59:24.755992+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2504,10 +2261,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001385"
+          "id": "event-001373"
         },
         {
-          "source_line": 1386,
+          "source_line": 1374,
           "timestamp": "2026-05-19T07:59:47.345440+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2527,10 +2284,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-001386"
+          "id": "event-001374"
         },
         {
-          "source_line": 1387,
+          "source_line": 1375,
           "timestamp": "2026-05-19T07:59:53.629518+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2545,10 +2302,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6284
           },
-          "id": "event-001387"
+          "id": "event-001375"
         },
         {
-          "source_line": 1388,
+          "source_line": 1376,
           "timestamp": "2026-05-19T07:59:58.386478+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2561,7 +2318,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001388"
+          "id": "event-001376"
         }
       ]
     },
@@ -2569,7 +2326,7 @@
       "number": 153,
       "messages": [
         {
-          "source_line": 1389,
+          "source_line": 1377,
           "timestamp": "2026-05-19T08:01:56.621958+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2583,10 +2340,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001389"
+          "id": "event-001377"
         },
         {
-          "source_line": 1390,
+          "source_line": 1378,
           "timestamp": "2026-05-19T08:02:05.083153+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2603,10 +2360,10 @@
               "worker_id": "worker_ops_sync_compile_paper_d047_20260519T075947"
             }
           },
-          "id": "event-001390"
+          "id": "event-001378"
         },
         {
-          "source_line": 1391,
+          "source_line": 1379,
           "timestamp": "2026-05-19T08:02:05.185186+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2621,10 +2378,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 102
           },
-          "id": "event-001391"
+          "id": "event-001379"
         },
         {
-          "source_line": 1392,
+          "source_line": 1380,
           "timestamp": "2026-05-19T08:02:13.468451+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2642,10 +2399,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001392"
+          "id": "event-001380"
         },
         {
-          "source_line": 1393,
+          "source_line": 1381,
           "timestamp": "2026-05-19T08:02:17.690908+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2660,10 +2417,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4222
           },
-          "id": "event-001393"
+          "id": "event-001381"
         },
         {
-          "source_line": 1394,
+          "source_line": 1382,
           "timestamp": "2026-05-19T08:02:20.683376+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2676,7 +2433,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001394"
+          "id": "event-001382"
         }
       ]
     },
@@ -2684,7 +2441,7 @@
       "number": 154,
       "messages": [
         {
-          "source_line": 1395,
+          "source_line": 1383,
           "timestamp": "2026-05-19T08:02:26.553966+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2698,10 +2455,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001395"
+          "id": "event-001383"
         },
         {
-          "source_line": 1396,
+          "source_line": 1384,
           "timestamp": "2026-05-19T08:02:33.314042+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2718,10 +2475,10 @@
               "worker_id": "worker_code_accumulation_v3_script_only_20260519T075454"
             }
           },
-          "id": "event-001396"
+          "id": "event-001384"
         },
         {
-          "source_line": 1397,
+          "source_line": 1385,
           "timestamp": "2026-05-19T08:02:33.414966+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2736,10 +2493,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 100
           },
-          "id": "event-001397"
+          "id": "event-001385"
         },
         {
-          "source_line": 1398,
+          "source_line": 1386,
           "timestamp": "2026-05-19T08:02:38.059564+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2756,10 +2513,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/accumulation_v3/script_review.md"
             }
           },
-          "id": "event-001398"
+          "id": "event-001386"
         },
         {
-          "source_line": 1399,
+          "source_line": 1387,
           "timestamp": "2026-05-19T08:02:38.160918+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2774,10 +2531,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-001399"
+          "id": "event-001387"
         },
         {
-          "source_line": 1400,
+          "source_line": 1388,
           "timestamp": "2026-05-19T08:02:57.730081+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2795,10 +2552,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001400"
+          "id": "event-001388"
         },
         {
-          "source_line": 1401,
+          "source_line": 1389,
           "timestamp": "2026-05-19T08:03:01.842502+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2813,10 +2570,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 4112
           },
-          "id": "event-001401"
+          "id": "event-001389"
         },
         {
-          "source_line": 1402,
+          "source_line": 1390,
           "timestamp": "2026-05-19T08:03:05.301756+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2829,7 +2586,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001402"
+          "id": "event-001390"
         }
       ]
     },
@@ -2837,7 +2594,7 @@
       "number": 155,
       "messages": [
         {
-          "source_line": 1403,
+          "source_line": 1391,
           "timestamp": "2026-05-19T08:05:42.127454+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2851,10 +2608,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001403"
+          "id": "event-001391"
         },
         {
-          "source_line": 1404,
+          "source_line": 1392,
           "timestamp": "2026-05-19T08:06:12.839425+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2875,10 +2632,10 @@
               "tools": "['submit_training_job']"
             }
           },
-          "id": "event-001404"
+          "id": "event-001392"
         },
         {
-          "source_line": 1405,
+          "source_line": 1393,
           "timestamp": "2026-05-19T08:06:19.278118+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2893,10 +2650,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6438
           },
-          "id": "event-001405"
+          "id": "event-001393"
         },
         {
-          "source_line": 1406,
+          "source_line": 1394,
           "timestamp": "2026-05-19T08:06:22.529538+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2909,7 +2666,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001406"
+          "id": "event-001394"
         }
       ]
     },
@@ -2917,7 +2674,7 @@
       "number": 156,
       "messages": [
         {
-          "source_line": 1407,
+          "source_line": 1395,
           "timestamp": "2026-05-19T08:08:43.476433+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2931,10 +2688,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "director"
           },
-          "id": "event-001407"
+          "id": "event-001395"
         },
         {
-          "source_line": 1408,
+          "source_line": 1396,
           "timestamp": "2026-05-19T08:08:49.973066+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2952,10 +2709,10 @@
               "verbose": "True"
             }
           },
-          "id": "event-001408"
+          "id": "event-001396"
         },
         {
-          "source_line": 1409,
+          "source_line": 1397,
           "timestamp": "2026-05-19T08:08:50.023864+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2970,10 +2727,10 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "elapsed_ms": 50
           },
-          "id": "event-001409"
+          "id": "event-001397"
         },
         {
-          "source_line": 1410,
+          "source_line": 1398,
           "timestamp": "2026-05-19T08:08:55.047718+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2990,10 +2747,10 @@
               "worker_id": "worker_ops_accumulation_v3_deploy_and_launch_20260519T080613"
             }
           },
-          "id": "event-001410"
+          "id": "event-001398"
         },
         {
-          "source_line": 1411,
+          "source_line": 1399,
           "timestamp": "2026-05-19T08:08:55.249248+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3008,10 +2765,10 @@
             "tool": "mcp__agent-ml-research__cancel_worker",
             "elapsed_ms": 201
           },
-          "id": "event-001411"
+          "id": "event-001399"
         },
         {
-          "source_line": 1412,
+          "source_line": 1400,
           "timestamp": "2026-05-19T08:11:12.618299+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3029,10 +2786,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-001412"
+          "id": "event-001400"
         },
         {
-          "source_line": 1413,
+          "source_line": 1401,
           "timestamp": "2026-05-19T08:11:12.669000+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3047,10 +2804,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001413"
+          "id": "event-001401"
         },
         {
-          "source_line": 1414,
+          "source_line": 1402,
           "timestamp": "2026-05-19T08:11:15.941239+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3068,10 +2825,10 @@
               "limit": "0"
             }
           },
-          "id": "event-001414"
+          "id": "event-001402"
         },
         {
-          "source_line": 1415,
+          "source_line": 1403,
           "timestamp": "2026-05-19T08:11:16.443421+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3085,10 +2842,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "mcp__agent-ml-research__reconcile_crons"
           },
-          "id": "event-001415"
+          "id": "event-001403"
         },
         {
-          "source_line": 1416,
+          "source_line": 1404,
           "timestamp": "2026-05-19T08:11:16.594442+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3106,10 +2863,10 @@
               "file": "report.md"
             }
           },
-          "id": "event-001416"
+          "id": "event-001404"
         },
         {
-          "source_line": 1417,
+          "source_line": 1405,
           "timestamp": "2026-05-19T08:11:16.647477+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3124,10 +2881,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 706
           },
-          "id": "event-001417"
+          "id": "event-001405"
         },
         {
-          "source_line": 1418,
+          "source_line": 1406,
           "timestamp": "2026-05-19T08:11:16.700357+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3142,10 +2899,10 @@
             "tool": "mcp__agent-ml-research__reconcile_crons",
             "elapsed_ms": 256
           },
-          "id": "event-001418"
+          "id": "event-001406"
         },
         {
-          "source_line": 1419,
+          "source_line": 1407,
           "timestamp": "2026-05-19T08:11:16.700966+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3160,10 +2917,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 106
           },
-          "id": "event-001419"
+          "id": "event-001407"
         },
         {
-          "source_line": 1420,
+          "source_line": 1408,
           "timestamp": "2026-05-19T08:11:29.377079+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3181,10 +2938,10 @@
               "description": "Filter registry for RUNNING and accumulation experiments"
             }
           },
-          "id": "event-001420"
+          "id": "event-001408"
         },
         {
-          "source_line": 1421,
+          "source_line": 1409,
           "timestamp": "2026-05-19T08:11:29.779149+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3199,10 +2956,10 @@
             "tool": "Bash",
             "elapsed_ms": 402
           },
-          "id": "event-001421"
+          "id": "event-001409"
         },
         {
-          "source_line": 1422,
+          "source_line": 1410,
           "timestamp": "2026-05-19T08:11:36.006061+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3220,10 +2977,10 @@
               "description": "Probe registry JSON structure"
             }
           },
-          "id": "event-001422"
+          "id": "event-001410"
         },
         {
-          "source_line": 1423,
+          "source_line": 1411,
           "timestamp": "2026-05-19T08:11:36.108188+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3238,10 +2995,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-001423"
+          "id": "event-001411"
         },
         {
-          "source_line": 1424,
+          "source_line": 1412,
           "timestamp": "2026-05-19T08:11:42.883771+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3259,10 +3016,10 @@
               "description": "Filter registry for RUNNING and accumulation experiments"
             }
           },
-          "id": "event-001424"
+          "id": "event-001412"
         },
         {
-          "source_line": 1425,
+          "source_line": 1413,
           "timestamp": "2026-05-19T08:11:42.985440+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3277,10 +3034,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-001425"
+          "id": "event-001413"
         },
         {
-          "source_line": 1426,
+          "source_line": 1414,
           "timestamp": "2026-05-19T08:11:45.648549+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3298,10 +3055,10 @@
               "filters": "{'status': 'RUNNING'}"
             }
           },
-          "id": "event-001426"
+          "id": "event-001414"
         },
         {
-          "source_line": 1427,
+          "source_line": 1415,
           "timestamp": "2026-05-19T08:11:46.101417+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3316,10 +3073,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 452
           },
-          "id": "event-001427"
+          "id": "event-001415"
         },
         {
-          "source_line": 1428,
+          "source_line": 1416,
           "timestamp": "2026-05-19T08:11:53.129738+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3337,10 +3094,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001428"
+          "id": "event-001416"
         },
         {
-          "source_line": 1429,
+          "source_line": 1417,
           "timestamp": "2026-05-19T08:11:53.180437+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3355,10 +3112,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-001429"
+          "id": "event-001417"
         },
         {
-          "source_line": 1430,
+          "source_line": 1418,
           "timestamp": "2026-05-19T08:11:56.093591+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3376,10 +3133,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001430"
+          "id": "event-001418"
         },
         {
-          "source_line": 1431,
+          "source_line": 1419,
           "timestamp": "2026-05-19T08:11:56.094059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3394,10 +3151,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-001431"
+          "id": "event-001419"
         },
         {
-          "source_line": 1432,
+          "source_line": 1420,
           "timestamp": "2026-05-19T08:11:58.622381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3415,10 +3172,10 @@
               "section": "execution"
             }
           },
-          "id": "event-001432"
+          "id": "event-001420"
         },
         {
-          "source_line": 1433,
+          "source_line": 1421,
           "timestamp": "2026-05-19T08:11:58.673501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3433,10 +3190,10 @@
             "tool": "mcp__agent-ml-research__load_project_config",
             "elapsed_ms": 51
           },
-          "id": "event-001433"
+          "id": "event-001421"
         },
         {
-          "source_line": 1434,
+          "source_line": 1422,
           "timestamp": "2026-05-19T08:12:46.174100+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3456,10 +3213,10 @@
               "tool_groups": "['ssh']"
             }
           },
-          "id": "event-001434"
+          "id": "event-001422"
         },
         {
-          "source_line": 1435,
+          "source_line": 1423,
           "timestamp": "2026-05-19T08:12:52.249936+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3474,10 +3231,10 @@
             "tool": "mcp__agent-ml-research__spawn_worker",
             "elapsed_ms": 6075
           },
-          "id": "event-001435"
+          "id": "event-001423"
         },
         {
-          "source_line": 1436,
+          "source_line": 1424,
           "timestamp": "2026-05-19T08:13:06.051843+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3495,10 +3252,10 @@
               "project": "recursive_gen_depth_est"
             }
           },
-          "id": "event-001436"
+          "id": "event-001424"
         },
         {
-          "source_line": 1437,
+          "source_line": 1425,
           "timestamp": "2026-05-19T08:13:07.407949+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3513,10 +3270,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 1356
           },
-          "id": "event-001437"
+          "id": "event-001425"
         },
         {
-          "source_line": 1438,
+          "source_line": 1426,
           "timestamp": "2026-05-19T08:13:10.043455+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3529,7 +3286,7 @@
           "metadata": {
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d"
           },
-          "id": "event-001438"
+          "id": "event-001426"
         }
       ]
     },
@@ -3537,7 +3294,7 @@
       "number": 157,
       "messages": [
         {
-          "source_line": 1439,
+          "source_line": 1427,
           "timestamp": "2026-05-19T08:15:59.621869+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3551,10 +3308,10 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "source": "worker:done"
           },
-          "id": "event-001439"
+          "id": "event-001427"
         },
         {
-          "source_line": 1440,
+          "source_line": 1428,
           "timestamp": "2026-05-19T08:16:07.047257+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3569,6 +3326,255 @@
             "tool": "mcp__agent-ml-research__get_worker_status",
             "tool_args": {
               "worker_id": "worker_ops_accumulation_v3_bugfix_westd_20260519T081246"
+            }
+          },
+          "id": "event-001428"
+        },
+        {
+          "source_line": 1429,
+          "timestamp": "2026-05-19T08:16:07.148488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_accumulation_v3_bugfix_westd_20260519T081246\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:accumulation_v3_bugfix_westd\\\", \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"started_at\\\": \\\"2026-05-19T08:12:46.770592+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T08:15:57.682521+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"全部完成。报告如下：\\\\n\\\\n---\\\\n\\\\n### 结果汇总\\\\n\\\\n**1. 进程清理**\\\\n- 杀死 2 个 tmux session（`accum_v3_mix50`、`accum_v3_mix25`）+ 8 个孤儿进程（含 2 个 Python pipeline 进程）\\\\n- GPU 0/1 均空闲（0MiB / 97887MiB）\\\\n\\\\n**2. Bug 修复确认**（`accumulation_pipeline_gpt2xl.py`）\\\\n- **Bug 1** (L131): `target_modules=[\\\\\\\"c_attn\\\\\\\"]` → `target_modules=[\\\\\\\"c_attn\\\\\\\", \\\\\\\"c_proj\\\\\\\"]` ✓\\\\n- **Bug 2** (L374-379): 特征提取从 `load_model()`（gpt2-xl self-reference）→ 直接加载 `EleutherAI/pythia-1.4b`（cross-model reference）✓\\\\n- 备份在 `accumulation_pipeline_gpt2xl.py.bak`\\\\n\\\\n**3. 模型可用性**\\\\n- Pythia-1.4B: 已缓存 `/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/` ✓\\\\n- GPT-2 XL: 已缓存 `/root/autodl-tmp/.hf_cache/hub/models--gpt2-xl/` ✓\\\\n\\\\n**4. Python 环境**\\\\n- Python 3.10.12（无 conda）\\\\n- torch 2.11.0+cu128, transformers 5.8.1, peft 0.19.1, accelerate 1.13.0, scikit-learn 1.7.2, scipy 1.15.3, datasets 4.8.5\\\\n\\\\n**5. 数据文件**\\\\n- `data/gpt2xl/depth_0.jsonl`: 5000 条，字段 `[text, depth, source, token_count, seed_id]` ✓\\\\n- `data/gpt2xl/depth_1.jsonl`: 5000 条 ✓\\\\n\\\\n**6. 清理**\\\\n- 删除了 `results/accumulation_v2/`（buggy run 的部分输出）\\\\n- `results/accumulation/`（v1 实验结果）保留未动\\\\n- 无独立 pipeline 脚本（`lora_finetune.py` 等不存在，功能全部内联在 `accumulation_pipeline_gpt2xl.py` 中）\\\\n\\\\n**7. 运行命令**\\\\n```bash\\\\n# GPU 0: mix_ratio=0.5\\\\nCUDA_VISIBLE_DEVICES=0 bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\\\\n\\\\n# GPU 1: mix_ratio=0.25\\\\nCUDA_VISIBLE_DEVICES=1 bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.25 --cuda 1 --seed 42\\\\n```\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-001429"
+        },
+        {
+          "source_line": 1430,
+          "timestamp": "2026-05-19T08:16:53.421814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001430"
+        },
+        {
+          "source_line": 1431,
+          "timestamp": "2026-05-19T08:16:53.472621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001431"
+        },
+        {
+          "source_line": 1432,
+          "timestamp": "2026-05-19T08:16:59.134055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "accum_v3_mix50",
+              "field": "hypothesis",
+              "value": "Under 50/50 accumulation (mixing 50% human + 50% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates compared to full-replacement (84.2%), establishing that full-replacement results are a ceiling. Quantifies accumulation degradation for Discussion §6 accumulation paragraph. Parent: invalidated accum_mix50 (feature-space mixing error).",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001432"
+        },
+        {
+          "source_line": 1433,
+          "timestamp": "2026-05-19T08:17:00.546366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"accum_v3_mix50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T08:08:06.546Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:16:59.571Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-48862\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"113563\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/accum_v3_mix50.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T08:08:06.174Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Under 50/50 accumulation (mixing 50% human + 50% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates compared to full-replacement (84.2%), establishing that full-replacement results are a ceiling. Quantifies accumulation degradation for Discussion §6 accumulation paragraph. Parent: invalidated accum_mix50 (feature-space mixing error).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7511}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1412
+          },
+          "id": "event-001433"
+        },
+        {
+          "source_line": 1434,
+          "timestamp": "2026-05-19T08:17:00.747655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "accum_v3_mix25",
+              "field": "hypothesis",
+              "value": "Under 25/75 accumulation (mixing 25% human + 75% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates more than 50/50 mix but remains above chance (25%), establishing a degradation curve parameterized by human-text proportion. Together with mix50, characterizes how accumulation ratio affects depth separability.",
+              "project": "recursive_gen_depth_est"
+            }
+          },
+          "id": "event-001434"
+        },
+        {
+          "source_line": 1435,
+          "timestamp": "2026-05-19T08:17:01.451022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"accum_v3_mix25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T08:08:08.342Z\\\", \\\"updated_at\\\": \\\"2026-05-19T08:17:01.179Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.25 --cuda 1 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-48862\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"113702\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/accum_v3_mix25.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T08:08:07.966Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Under 25/75 accumulation (mixing 25% human + 75% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates more than 50/50 mix but remains above chance (25%), establishing a degradation curve parameterized by human-text proportion. Together with mix50, characterizes how accumulation ratio affects depth separability.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6826}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 703
+          },
+          "id": "event-001435"
+        },
+        {
+          "source_line": 1436,
+          "timestamp": "2026-05-19T08:17:12.710853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-48862",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\"",
+              "exp_id": "accum_v3_mix50",
+              "project": "recursive_gen_depth_est",
+              "timeout_hours": "10"
+            }
+          },
+          "id": "event-001436"
+        },
+        {
+          "source_line": 1437,
+          "timestamp": "2026-05-19T08:17:13.765640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-48862",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.25 --cuda 1 --seed 42\"",
+              "exp_id": "accum_v3_mix25",
+              "project": "recursive_gen_depth_est",
+              "timeout_hours": "10"
+            }
+          },
+          "id": "event-001437"
+        },
+        {
+          "source_line": 1438,
+          "timestamp": "2026-05-19T08:17:15.272441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"114330\\\", \\\"log_file\\\": \\\"~/runs/recursive_gen_depth_est/accum_v3_mix50.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-48862\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"accum_v3_mix50\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 2561
+          },
+          "id": "event-001438"
+        },
+        {
+          "source_line": 1439,
+          "timestamp": "2026-05-19T08:17:17.030098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"114471\\\", \\\"log_file\\\": \\\"~/runs/recursive_gen_depth_est/accum_v3_mix25.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-48862\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"accum_v3_mix25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 3264
+          },
+          "id": "event-001439"
+        },
+        {
+          "source_line": 1440,
+          "timestamp": "2026-05-19T08:17:26.166403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "accum_v3_mix50",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recursive_gen_depth_est",
+              "spec": "{'command': 'bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\"', 'server': 'westd-48862', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl + depth_1.jsonl', 'data_count': 5000, 'model_name': 'gpt2-xl (LoRA finetune) + EleutherAI/pythia-1.4b (feature ref)', 'seed': 42, 'gpu': ['cuda:0'], 'pid': '114330', 'mix_ratio': 0.5, 'depths': 'd1-d3', 'lora_config': 'r=16, alpha=32, target_modules=[c_attn, c_proj], dropout=0.05', 'feature_ref_model': 'EleutherAI/pythia-1.4b'}"
             }
           },
           "id": "event-001440"

@@ -96,8 +96,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper r2 consistency scan | 1 | 0 | [Read transcript](paper-r2-consistency-scan.md) | [JSON](../../sessions/cd/cdcfa9b1201250c24eaa.json) |
 | paper r2 group a rw disc app | 1 | 0 | [Read transcript](paper-r2-group-a-rw-disc-app.md) | [JSON](../../sessions/bc/bc1279f68bbccf3fbac7.json) |
 | paper r2 group b abs claim method | 1 | 0 | [Read transcript](paper-r2-group-b-abs-claim-method.md) | [JSON](../../sessions/72/72e2ef777b3e4312fb16.json) |
-| paper rebuttal prep | 1 | 0 | [Read transcript](paper-rebuttal-prep.md) | [JSON](../../sessions/74/74279699c9d5ff300a6b.json) |
-| paper rebuttal seed3 versions | 1 | 0 | [Read transcript](paper-rebuttal-seed3-versions.md) | [JSON](../../sessions/53/539e0287f8d0e23dae3f.json) |
 | paper ref fix scoped | 1 | 0 | [Read transcript](paper-ref-fix-scoped.md) | [JSON](../../sessions/c1/c1845c69f97af25ae250.json) |
 | paper reference audit | 1 | 0 | [Read transcript](paper-reference-audit.md) | [JSON](../../sessions/34/34fd3718fb43a79d76b5.json) |
 | paper related work collision sdf | 1 | 0 | [Read transcript](paper-related-work-collision-sdf.md) | [JSON](../../sessions/94/94700b88fa6fc44fb9ac.json) |

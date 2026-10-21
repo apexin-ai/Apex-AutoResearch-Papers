@@ -2928,120 +2928,6 @@
         },
         {
           "source_line": 691,
-          "timestamp": "2026-05-15T09:12:49.541304+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md"
-            }
-          },
-          "id": "event-000691"
-        },
-        {
-          "source_line": 692,
-          "timestamp": "2026-05-15T09:12:49.594050+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# W2 Rectangularity Verification — Quantitative Evidence for Pair-Based Constraint Enforcement\n2\t\n3\t**生成日期:** 2026-05-15\n4\t**目的:** Reviewer 指出代码做了 pair-based enforcement，但论文 §3 描述的是 independent dom/range。本报告量化两者差距，支持论文修改。\n5\t\n6\t---\n7\t\n8\t## 1. Code Logic Confirmation\n9\t\n10\t**Pair-based check 已在代码中实现，论文描述偏宽松。**\n11\t\n12\t### head_type masking (`type_mask_processor.py` `_mask_head_type`)\n13\t```python\n14\tallowed_dr = constraint.valid_head_types() if constraint else None\n15\t```\n16\t仅看 `dom(r)`，与 tail 无关 → **independent check** on head side.\n17\t\n18\t### tail_type masking (`type_mask_processor.py:323` `_mask_tail_type`)\n19\t```python\n20\tif head_type is not None:\n21\t    allowed_dr = constraint.valid_tail_types_for_head(head_type)\n22\telse:\n23\t    allowed_dr = constraint.valid_tail_types()\n24\t```\n25\t其中 `valid_tail_types_for_head(head_type)` 在 `ontology_compiler.py:38` 定义为：\n26\t```python\n27\tdef valid_tail_types_for_head(self, head_type: str) -> set[str]:\n28\t    return {t for h, t in self.valid_pairs if h == head_type}\n29\t```\n30\t即：在 head_type 已确定的条件下，仅允许 `σ(r)` 中以该 head_type 为头的 valid tail types。\n31\t\n32\t### 结论\n33\t- Decoding 顺序：`head_type` → `tail_type`。\n34\t- head 端独立检查 `h ∈ dom(r)`；tail 端条件检查 `t ∈ {t' : (h, t') ∈ σ(r)}`。\n35\t- **最终生成的 pair `(h, t)` 必然 ∈ σ(r)** —— 这就是 pair-based enforcement，比论文 §3 描述的 `(h ∈ dom(r)) ∧ (t ∈ range(r))` 更严格。\n36\t\n37\t---\n38\t\n39\t## 2. Rectangularity Definition\n40\t\n41\t对每个 relation `r`：\n42\t- `σ(r)` = 实际 valid (head, tail) pairs 集合\n43\t- `dom(r) = {h : ∃t, (h,t) ∈ σ(r)}`\n44\t- `range(r) = {t : ∃h, (h,t) ∈ σ(r)}`\n45\t- **Rectangular** iff `|σ(r)| = |dom(r)| × |range(r)|`，即 `σ(r) = dom(r) × range(r)`。\n46\t- **Gap** = `|dom(r)| × |range(r)| - |σ(r)|`（若假定 rectangular，会被错误允许的 pair 数量）\n47\t\n48\t**Head-only over-permissiveness**：若 §3 表述被字面执行（仅检查 `h ∈ dom(r)`，tail 不约束），允许的 pair 数 = `|dom(r)| × |T|`，其中 `|T|` = 所有 entity types。\n49\t\n50\t---\n51\t\n52\t## 3. SciERC Results\n53\t\n54\t- entity types: 6, relations: 7\n55\t- **rectangular: 0/7 (0.0%)**\n56\t- non-rect 平均 gap: 12.00\n57\t- total |σ\n…[truncated 10406 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 52
-          },
-          "id": "event-000692"
-        },
-        {
-          "source_line": 693,
-          "timestamp": "2026-05-15T09:12:49.594577+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md"
-            }
-          },
-          "id": "event-000693"
-        },
-        {
-          "source_line": 694,
-          "timestamp": "2026-05-15T09:12:49.946744+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# W3/W6 Runtime Overhead Report\n2\t\n3\t**Purpose:** Reviewer W3/W6 asked for the inference-time overhead of constrained decoding. This report extracts per-document inference times from the experimental JSONL outputs and computes overhead vs. the unconstrained baseline for each (model, dataset) cell.\n4\t\n5\t**Data source:** `/root/schema_semantic_constrained_ie/outputs/*.jsonl` on `westd-16980`. Every record carries an `inference_time_seconds` field written by the eval driver, so timings are read directly from the original runs—no re-runs required.\n6\t\n7\t**Hardware:** All runs executed on the same single-GPU server (`westd-16980`) under the same vLLM/transformers stack, so cross-mode comparisons within a (model, dataset) pair are apples-to-apples.\n8\t\n9\t---\n10\t\n11\t## 1. Headline Table\n12\t\n13\tPer-document inference time (seconds), wall-clock total (minutes), and overhead vs. the unconstrained baseline of the matching (model, dataset).\n14\t\n15\t| Model | Dataset | Mode          |    N | Avg (s) | Median (s) | Total (min) | Overhead (avg) |\n16\t|-------|---------|---------------|-----:|--------:|-----------:|------------:|---------------:|\n17\t| Qwen  | SciERC  | unconstrained |  551 |   8.694 |      8.526 |       79.84 | baseline       |\n18\t| Qwen  | SciERC  | grammar_only  |  551 |   8.815 |      8.354 |       80.95 | **+1.4 %**     |\n19\t| Qwen  | SciERC  | full_s1       |  551 |   6.761 |      5.981 |       62.09 | **−22.2 %**    |\n20\t| Qwen  | DocRED  | unconstrained |  998 |  19.755 |     18.248 |      328.59 | baseline       |\n21\t| Qwen  | DocRED  | grammar_only  |  998 |  20.576 |     18.730 |      342.25 | **+4.2 %**     |\n22\t| Qwen  | DocRED  | full_s1       |  998 |  20.395 |     18.812 |      339.23 | **+3.2 %**     |\n23\t| Llama | SciERC  | unconstrained |  551 |   2.813 |      2.570 |       25.83 | baseline       |\n24\t| Llama | SciERC  | full_s1       |  550 |   4.326 |      3.694 |       39.65 | **+53.8 %**    |\n25\t| Llama | DocRED  | unconstrained |  998 |  18.162\n…[truncated 5403 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 352
-          },
-          "id": "event-000694"
-        },
-        {
-          "source_line": 695,
-          "timestamp": "2026-05-15T09:12:49.947234+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q7_cf_distribution_report.md"
-            }
-          },
-          "id": "event-000695"
-        },
-        {
-          "source_line": 696,
-          "timestamp": "2026-05-15T09:12:49.997784+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Q7 — Complete Distribution of Cross-Field (CF) Consistency Violations\n2\t\n3\t**Date**: 2026-05-15\n4\t**Reproduced from**: server `westd-16980`, project `/root/schema_semantic_constrained_ie/`\n5\t**Checker**: `violation_checker.py` (`fixed_20260514_v2 (strip + alias + unique_et)`) / `violation_checker_docred.py`\n6\t\n7\t---\n8\t\n9\t## 1. CF violation definition (recap)\n10\t\n11\tFor each document, build a map `mention_text(lowercased+stripped) -> {predicted_types}` from:\n12\t- the `parsed_output.entities` list (after `normalize_type` filtering — invalid types are dropped first)\n13\t- the `head/tail` text and `head_type/tail_type` fields of every parsed relation\n14\t\n15\tA CF violation is a single `(doc_id, mention)` whose normalized type-set has cardinality > 1. The reported count is the **number of such (doc_id, mention) records**, *not* the number of pairwise conflicts. So a mention with three types is counted as one violation, but contributes one entry to the table under the sorted tuple of all its types (e.g. `Generic & Method & Task`).\n16\t\n17\t## 2. SciERC full_s1 (Qwen-2.5-7B, primary table)\n18\t\n19\tSource: `outputs/phase2_scierc_full_s1_v2.jsonl` (551 docs).\n20\tTotal CF violations = **245** (every conflict has exactly 2 types — no 3+ -way conflicts).\n21\t\n22\t### Complete distribution (15 unique type-pair sets)\n23\t\n24\t| Rank | Conflicting type pair | Count | % of 245 |\n25\t|------|----------------------|------:|---------:|\n26\t| 1 | Generic & OtherScientificTerm | **85** | 34.7% |\n27\t| 2 | Generic & Material | 35 | 14.3% |\n28\t| 3 | Generic & Metric | 30 | 12.2% |\n29\t| 4 | Method & Task | 20 |  8.2% |\n30\t| 5 | Material & Method | 17 |  6.9% |\n31\t| 6 | OtherScientificTerm & Task | 12 |  4.9% |\n32\t| 7 | Method & OtherScientificTerm | 8 |  3.3% |\n33\t| 8 | Material & OtherScientificTerm | 7 |  2.9% |\n34\t| 9 | Metric & OtherScientificTerm | 7 |  2.9% |\n35\t| 10 | Material & Task | 6 |  2.4% |\n36\t| 11 | Method & Metric | 6 |  2.4% |\n37\t| 12 | Material & Metric | 4 |  1.6% |\n38\t| 13 | Ge\n…[truncated 7646 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000696"
-        },
-        {
-          "source_line": 697,
           "timestamp": "2026-05-15T09:12:53.212743+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3059,10 +2945,10 @@
               "description": "Search for extraction script files in remote code root"
             }
           },
-          "id": "event-000697"
+          "id": "event-000691"
         },
         {
-          "source_line": 698,
+          "source_line": 692,
           "timestamp": "2026-05-15T09:12:53.313812+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3077,10 +2963,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-000698"
+          "id": "event-000692"
         },
         {
-          "source_line": 699,
+          "source_line": 693,
           "timestamp": "2026-05-15T09:12:54.369522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3098,10 +2984,10 @@
               "description": "Search for prompt-related files in remote code root"
             }
           },
-          "id": "event-000699"
+          "id": "event-000693"
         },
         {
-          "source_line": 700,
+          "source_line": 694,
           "timestamp": "2026-05-15T09:12:54.520772+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3116,10 +3002,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-000700"
+          "id": "event-000694"
         },
         {
-          "source_line": 701,
+          "source_line": 695,
           "timestamp": "2026-05-15T09:13:03.921358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3134,124 +3020,10 @@
             "tool": "Agent",
             "elapsed_ms": 20018
           },
-          "id": "event-000701"
+          "id": "event-000695"
         },
         {
-          "source_line": 702,
-          "timestamp": "2026-05-15T09:13:13.881623+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md"
-            }
-          },
-          "id": "event-000702"
-        },
-        {
-          "source_line": 703,
-          "timestamp": "2026-05-15T09:13:14.436878+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# W2 Rectangularity Verification — Quantitative Evidence for Pair-Based Constraint Enforcement\n2\t\n3\t**生成日期:** 2026-05-15\n4\t**目的:** Reviewer 指出代码做了 pair-based enforcement，但论文 §3 描述的是 independent dom/range。本报告量化两者差距，支持论文修改。\n5\t\n6\t---\n7\t\n8\t## 1. Code Logic Confirmation\n9\t\n10\t**Pair-based check 已在代码中实现，论文描述偏宽松。**\n11\t\n12\t### head_type masking (`type_mask_processor.py` `_mask_head_type`)\n13\t```python\n14\tallowed_dr = constraint.valid_head_types() if constraint else None\n15\t```\n16\t仅看 `dom(r)`，与 tail 无关 → **independent check** on head side.\n17\t\n18\t### tail_type masking (`type_mask_processor.py:323` `_mask_tail_type`)\n19\t```python\n20\tif head_type is not None:\n21\t    allowed_dr = constraint.valid_tail_types_for_head(head_type)\n22\telse:\n23\t    allowed_dr = constraint.valid_tail_types()\n24\t```\n25\t其中 `valid_tail_types_for_head(head_type)` 在 `ontology_compiler.py:38` 定义为：\n26\t```python\n27\tdef valid_tail_types_for_head(self, head_type: str) -> set[str]:\n28\t    return {t for h, t in self.valid_pairs if h == head_type}\n29\t```\n30\t即：在 head_type 已确定的条件下，仅允许 `σ(r)` 中以该 head_type 为头的 valid tail types。\n31\t\n32\t### 结论\n33\t- Decoding 顺序：`head_type` → `tail_type`。\n34\t- head 端独立检查 `h ∈ dom(r)`；tail 端条件检查 `t ∈ {t' : (h, t') ∈ σ(r)}`。\n35\t- **最终生成的 pair `(h, t)` 必然 ∈ σ(r)** —— 这就是 pair-based enforcement，比论文 §3 描述的 `(h ∈ dom(r)) ∧ (t ∈ range(r))` 更严格。\n36\t\n37\t---\n38\t\n39\t## 2. Rectangularity Definition\n40\t\n41\t对每个 relation `r`：\n42\t- `σ(r)` = 实际 valid (head, tail) pairs 集合\n43\t- `dom(r) = {h : ∃t, (h,t) ∈ σ(r)}`\n44\t- `range(r) = {t : ∃h, (h,t) ∈ σ(r)}`\n45\t- **Rectangular** iff `|σ(r)| = |dom(r)| × |range(r)|`，即 `σ(r) = dom(r) × range(r)`。\n46\t- **Gap** = `|dom(r)| × |range(r)| - |σ(r)|`（若假定 rectangular，会被错误允许的 pair 数量）\n47\t\n48\t**Head-only over-permissiveness**：若 §3 表述被字面执行（仅检查 `h ∈ dom(r)`，tail 不约束），允许的 pair 数 = `|dom(r)| × |T|`，其中 `|T|` = 所有 entity types。\n49\t\n50\t---\n51\t\n52\t## 3. SciERC Results\n53\t\n54\t- entity types: 6, relations: 7\n55\t- **rectangular: 0/7 (0.0%)**\n56\t- non-rect 平均 gap: 12.00\n57\t- total |σ\n…[truncated 10406 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 555
-          },
-          "id": "event-000703"
-        },
-        {
-          "source_line": 704,
-          "timestamp": "2026-05-15T09:13:14.437260+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md"
-            }
-          },
-          "id": "event-000704"
-        },
-        {
-          "source_line": 705,
-          "timestamp": "2026-05-15T09:13:14.688659+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# W3/W6 Runtime Overhead Report\n2\t\n3\t**Purpose:** Reviewer W3/W6 asked for the inference-time overhead of constrained decoding. This report extracts per-document inference times from the experimental JSONL outputs and computes overhead vs. the unconstrained baseline for each (model, dataset) cell.\n4\t\n5\t**Data source:** `/root/schema_semantic_constrained_ie/outputs/*.jsonl` on `westd-16980`. Every record carries an `inference_time_seconds` field written by the eval driver, so timings are read directly from the original runs—no re-runs required.\n6\t\n7\t**Hardware:** All runs executed on the same single-GPU server (`westd-16980`) under the same vLLM/transformers stack, so cross-mode comparisons within a (model, dataset) pair are apples-to-apples.\n8\t\n9\t---\n10\t\n11\t## 1. Headline Table\n12\t\n13\tPer-document inference time (seconds), wall-clock total (minutes), and overhead vs. the unconstrained baseline of the matching (model, dataset).\n14\t\n15\t| Model | Dataset | Mode          |    N | Avg (s) | Median (s) | Total (min) | Overhead (avg) |\n16\t|-------|---------|---------------|-----:|--------:|-----------:|------------:|---------------:|\n17\t| Qwen  | SciERC  | unconstrained |  551 |   8.694 |      8.526 |       79.84 | baseline       |\n18\t| Qwen  | SciERC  | grammar_only  |  551 |   8.815 |      8.354 |       80.95 | **+1.4 %**     |\n19\t| Qwen  | SciERC  | full_s1       |  551 |   6.761 |      5.981 |       62.09 | **−22.2 %**    |\n20\t| Qwen  | DocRED  | unconstrained |  998 |  19.755 |     18.248 |      328.59 | baseline       |\n21\t| Qwen  | DocRED  | grammar_only  |  998 |  20.576 |     18.730 |      342.25 | **+4.2 %**     |\n22\t| Qwen  | DocRED  | full_s1       |  998 |  20.395 |     18.812 |      339.23 | **+3.2 %**     |\n23\t| Llama | SciERC  | unconstrained |  551 |   2.813 |      2.570 |       25.83 | baseline       |\n24\t| Llama | SciERC  | full_s1       |  550 |   4.326 |      3.694 |       39.65 | **+53.8 %**    |\n25\t| Llama | DocRED  | unconstrained |  998 |  18.162\n…[truncated 5403 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 251
-          },
-          "id": "event-000705"
-        },
-        {
-          "source_line": 706,
-          "timestamp": "2026-05-15T09:13:14.689101+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/q7_cf_distribution_report.md"
-            }
-          },
-          "id": "event-000706"
-        },
-        {
-          "source_line": 707,
-          "timestamp": "2026-05-15T09:13:14.739834+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Q7 — Complete Distribution of Cross-Field (CF) Consistency Violations\n2\t\n3\t**Date**: 2026-05-15\n4\t**Reproduced from**: server `westd-16980`, project `/root/schema_semantic_constrained_ie/`\n5\t**Checker**: `violation_checker.py` (`fixed_20260514_v2 (strip + alias + unique_et)`) / `violation_checker_docred.py`\n6\t\n7\t---\n8\t\n9\t## 1. CF violation definition (recap)\n10\t\n11\tFor each document, build a map `mention_text(lowercased+stripped) -> {predicted_types}` from:\n12\t- the `parsed_output.entities` list (after `normalize_type` filtering — invalid types are dropped first)\n13\t- the `head/tail` text and `head_type/tail_type` fields of every parsed relation\n14\t\n15\tA CF violation is a single `(doc_id, mention)` whose normalized type-set has cardinality > 1. The reported count is the **number of such (doc_id, mention) records**, *not* the number of pairwise conflicts. So a mention with three types is counted as one violation, but contributes one entry to the table under the sorted tuple of all its types (e.g. `Generic & Method & Task`).\n16\t\n17\t## 2. SciERC full_s1 (Qwen-2.5-7B, primary table)\n18\t\n19\tSource: `outputs/phase2_scierc_full_s1_v2.jsonl` (551 docs).\n20\tTotal CF violations = **245** (every conflict has exactly 2 types — no 3+ -way conflicts).\n21\t\n22\t### Complete distribution (15 unique type-pair sets)\n23\t\n24\t| Rank | Conflicting type pair | Count | % of 245 |\n25\t|------|----------------------|------:|---------:|\n26\t| 1 | Generic & OtherScientificTerm | **85** | 34.7% |\n27\t| 2 | Generic & Material | 35 | 14.3% |\n28\t| 3 | Generic & Metric | 30 | 12.2% |\n29\t| 4 | Method & Task | 20 |  8.2% |\n30\t| 5 | Material & Method | 17 |  6.9% |\n31\t| 6 | OtherScientificTerm & Task | 12 |  4.9% |\n32\t| 7 | Method & OtherScientificTerm | 8 |  3.3% |\n33\t| 8 | Material & OtherScientificTerm | 7 |  2.9% |\n34\t| 9 | Metric & OtherScientificTerm | 7 |  2.9% |\n35\t| 10 | Material & Task | 6 |  2.4% |\n36\t| 11 | Method & Metric | 6 |  2.4% |\n37\t| 12 | Material & Metric | 4 |  1.6% |\n38\t| 13 | Ge\n…[truncated 7646 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000707"
-        },
-        {
-          "source_line": 708,
+          "source_line": 696,
           "timestamp": "2026-05-15T09:13:32.232037+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3268,10 +3040,10 @@
               "todos": "[{'content': 'W2: Fix §3 pair-based formalization + §2/§4 cascade', 'status': 'in_progress', 'activeForm': 'Fixing §3 pair-based formalization'}, {'content': 'W3/W6: Add runtime comparison table+paragraph to §5', 'status': 'pending', 'activeForm': 'Adding runtime comparison table'}, {'content': 'W5: Add zero-shot limitation paragraph', 'status': 'pending', 'activeForm': 'Adding zero-shot limitation'}, {'content': 'W9: Add single-token assumption limitation', 'status': 'pending', 'activeForm': 'Adding single-token limitation'}, {'content': 'W10: Add appendix prompt templates', 'status': 'pending', 'activeForm': 'Adding prompt templates to appendix'}, {'content': 'W11: Add DocRED dev set footnote', 'status': 'pending', 'activeForm': 'Adding DocRED footnote'}, {'content': \"W13: Fix '6 types each' in §3.3.2\", 'status': 'pending', 'activeForm': 'Fixing 6 types each description'}, {'content': 'Q7: Expand CF distribution in §7 + appendix', 'status': 'pending', 'activeForm': 'Expanding CF distribution discussion'}]"
             }
           },
-          "id": "event-000708"
+          "id": "event-000696"
         },
         {
-          "source_line": 709,
+          "source_line": 697,
           "timestamp": "2026-05-15T09:13:32.235079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3286,10 +3058,10 @@
             "tool": "TodoWrite",
             "elapsed_ms": 3
           },
-          "id": "event-000709"
+          "id": "event-000697"
         },
         {
-          "source_line": 710,
+          "source_line": 698,
           "timestamp": "2026-05-15T09:13:37.122161+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3306,10 +3078,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
             }
           },
-          "id": "event-000710"
+          "id": "event-000698"
         },
         {
-          "source_line": 711,
+          "source_line": 699,
           "timestamp": "2026-05-15T09:13:37.942619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3324,10 +3096,10 @@
             "tool": "Read",
             "elapsed_ms": 820
           },
-          "id": "event-000711"
+          "id": "event-000699"
         },
         {
-          "source_line": 712,
+          "source_line": 700,
           "timestamp": "2026-05-15T09:13:38.093669+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3344,10 +3116,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
             }
           },
-          "id": "event-000712"
+          "id": "event-000700"
         },
         {
-          "source_line": 713,
+          "source_line": 701,
           "timestamp": "2026-05-15T09:13:38.194796+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3362,10 +3134,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-000713"
+          "id": "event-000701"
         },
         {
-          "source_line": 714,
+          "source_line": 702,
           "timestamp": "2026-05-15T09:13:38.195177+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3382,10 +3154,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-000714"
+          "id": "event-000702"
         },
         {
-          "source_line": 715,
+          "source_line": 703,
           "timestamp": "2026-05-15T09:13:38.245696+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3400,10 +3172,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000715"
+          "id": "event-000703"
         },
         {
-          "source_line": 716,
+          "source_line": 704,
           "timestamp": "2026-05-15T09:14:03.731296+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3423,10 +3195,10 @@
               "new_string": "\\paragraph{Ontology schema.}\nAn ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$ defines entity types $\\mathcal{E}$, relation types $\\mathcal{R}$, and a mapping $\\sigma: \\mathcal{R} \\to \\mathcal{P}(\\mathcal{E} \\times \\mathcal{E})$ specifying valid (head type, tail type) pairs per relation.\nWe write $\\operatorname{dom}(r) = \\{\\tau^h : \\exists \\tau^t,\\, (\\tau^h, \\tau^t) \\in \\sigma(r)\\}$ for the set of domain-valid head types.\n\n\\paragraph{Ontology compliance.}\nA triple $(h, r, t)$ with $\\operatorname{type}(h) = \\tau^h$, $\\operatorname{type}(t) = \\tau^t$ is \\emph{type-valid} w.r.t.\\ $\\mathcal{O}$ iff:\n%\n\\begin{equation}\\label{eq:type-valid}\n  (\\tau^h, \\tau^t) \\in \\sigma(r).\n\\end{equation}\n%\nThis is strictly stronger than checking domain and range independently ($\\tau^h \\in \\operatorname{dom}(r) \\wedge \\tau^t \\in \\operatorname{range}(r)$), because most relations have non-rectangular type signatures: $\\sigma(r) \\subsetneq \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ for all 7 SciERC and 73/96 DocRED relations.\\footnote{An independent check would over-permit type pairs by $1.50\\times$ on SciERC and $1.58\\times$ on DocRED (details in Appendix~\\ref{app:discussion}).}\nOur goal is a decoding strategy maximizing $P(y \\mid x)$ subject to ontology compliance: all triples must be type-valid under $\\mathcal{O}$, and $y$ must be well-formed JSON conforming to Eq.~\\eqref{eq:output-schema}."
             }
           },
-          "id": "event-000716"
+          "id": "event-000704"
         },
         {
-          "source_line": 717,
+          "source_line": 705,
           "timestamp": "2026-05-15T09:14:03.782165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3441,10 +3213,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000717"
+          "id": "event-000705"
         },
         {
-          "source_line": 718,
+          "source_line": 706,
           "timestamp": "2026-05-15T09:14:22.112995+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3464,10 +3236,10 @@
               "new_string": "\\paragraph{Head type masking.}\nAt a \\textsc{HeadType} position, the processor considers the entity registry $\\mathcal{D}$ and the current relation type $r_j$ (if already generated).\nIf $h_j \\in \\mathcal{D}$ and $\\mathcal{D}[h_j] \\in \\operatorname{dom}(r_j)$, the mask allows only that registered type: $S(t) = \\{\\operatorname{tok}(\\mathcal{D}[h_j])\\}$, ensuring consistency with both the entity list and domain constraints.\nOtherwise, if $r_j$ is known, the mask falls back to all domain-valid types: $S(t) = \\{\\operatorname{tok}(\\tau) : \\tau \\in \\operatorname{dom}(r_j)\\}$.\nIf $r_j$ is unavailable, no semantic mask is applied.\n\n\\paragraph{Tail type masking.}\nAt a \\textsc{TailType} position, the head type $\\tau^h_j$ is already determined from the decoded prefix.\nThe processor computes the set of valid tail types \\emph{conditioned on} the head type: $\\{\\tau^t : (\\tau^h_j, \\tau^t) \\in \\sigma(r_j)\\}$.\nIf $t_j \\in \\mathcal{D}$, the mask further restricts to the registered type when it belongs to this set.\nThis pair-based check is strictly tighter than an independent range check $\\tau^t \\in \\operatorname{range}(r_j)$, because most relations have non-rectangular type signatures (\\S\\ref{sec:formulation})."
             }
           },
-          "id": "event-000718"
+          "id": "event-000706"
         },
         {
-          "source_line": 719,
+          "source_line": 707,
           "timestamp": "2026-05-15T09:14:22.113667+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3482,10 +3254,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000719"
+          "id": "event-000707"
         },
         {
-          "source_line": 720,
+          "source_line": 708,
           "timestamp": "2026-05-15T09:14:30.056476+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3502,6 +3274,244 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
               "offset": "113",
               "limit": "25"
+            }
+          },
+          "id": "event-000708"
+        },
+        {
+          "source_line": 709,
+          "timestamp": "2026-05-15T09:14:30.157397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "113\t\\paragraph{Implementation.}\n114\tEach $\\tau \\in \\mathcal{E}$ is mapped to the token ID of its first subword token; we pre-verify uniqueness across all entity types, which holds for both SciERC and DocRED (6 types each) with the Qwen3-8B tokenizer.\n115\tThe semantic mask is applied by setting logits of disallowed first-token IDs to $-\\infty$.\n116\t\n117\t\\subsubsection{Grammar-Semantic Interaction}\n118\t\\label{sec:interaction}\n119\t\n120\tThe final mask is the conjunction of $G(t)$ and $S(t)$, permitting only tokens satisfying both layers (formalized in \\S\\ref{sec:composition}).\n121\tThis embodies an \\emph{enabling dependency}: semantic lookup requires relation types to be valid members of $\\mathcal{R}$, guaranteed only by the grammar layer.\n122\tWithout grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\operatorname{dom}$/$\\operatorname{range}$ rules exist.\n123\tEmpirically, semantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) while failing to eliminate vocabulary violations; the full combination achieves 94\\% DR reduction.\n124\tWhen $S(t) \\cap G(t) = \\emptyset$---the semantic layer would mask out all grammar-valid tokens---the system falls back to grammar-only control, preserving structural validity at the cost of a potential type violation.\n125\tThis \\emph{grammar-first invariant} reflects a deliberate priority ordering: structural integrity is a hard constraint, while type violations are soft errors detectable by downstream validation.\n126\t\n127\t\n128\t\\subsection{Decoding Strategies}\n129\t\\label{sec:strategies}\n130\t\n131\t\\paragraph{S1: Single-pass decoding.}\n132\tBoth constraint layers are active throughout a single generation pass.\n133\tThe entity registry is populated as entities are generated and immediately available for relation-level type checking.\n134\tThis is the simpler and recommended strategy, achieving strong constraint enforcement with higher relation F1 than the two-pass alternative.\n135\t\n136\t\\paragraph{\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000709"
+        },
+        {
+          "source_line": 710,
+          "timestamp": "2026-05-15T09:14:35.991804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+              "old_string": "Without grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\operatorname{dom}$/$\\operatorname{range}$ rules exist.",
+              "new_string": "Without grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\sigma(r)$ rules exist."
+            }
+          },
+          "id": "event-000710"
+        },
+        {
+          "source_line": 711,
+          "timestamp": "2026-05-15T09:14:36.042525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000711"
+        },
+        {
+          "source_line": 712,
+          "timestamp": "2026-05-15T09:14:43.082329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+              "old_string": "which holds for both SciERC and DocRED (6 types each) with the Qwen3-8B tokenizer.",
+              "new_string": "which holds for both SciERC (6 entity types) and DocRED (6 entity types, disjoint from SciERC's) with both the Qwen3-8B and Llama-3.1-8B tokenizers."
+            }
+          },
+          "id": "event-000712"
+        },
+        {
+          "source_line": 713,
+          "timestamp": "2026-05-15T09:14:43.283699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-000713"
+        },
+        {
+          "source_line": 714,
+          "timestamp": "2026-05-15T09:14:48.606354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'W2: Fix §3 pair-based formalization + §2/§4 cascade', 'status': 'completed', 'activeForm': 'Fixing §3 pair-based formalization'}, {'content': 'W3/W6: Add runtime comparison table+paragraph to §5', 'status': 'in_progress', 'activeForm': 'Adding runtime comparison table'}, {'content': 'W5: Add zero-shot limitation paragraph', 'status': 'pending', 'activeForm': 'Adding zero-shot limitation'}, {'content': 'W9: Add single-token assumption limitation', 'status': 'pending', 'activeForm': 'Adding single-token limitation'}, {'content': 'W10: Add appendix prompt templates', 'status': 'pending', 'activeForm': 'Adding prompt templates to appendix'}, {'content': 'W11: Add DocRED dev set footnote', 'status': 'pending', 'activeForm': 'Adding DocRED footnote'}, {'content': \"W13: Fix '6 types each' in §3.3.2\", 'status': 'completed', 'activeForm': 'Fixing 6 types each description'}, {'content': 'Q7: Expand CF distribution in §7 + appendix', 'status': 'pending', 'activeForm': 'Expanding CF distribution discussion'}]"
+            }
+          },
+          "id": "event-000714"
+        },
+        {
+          "source_line": 715,
+          "timestamp": "2026-05-15T09:14:48.657162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 50
+          },
+          "id": "event-000715"
+        },
+        {
+          "source_line": 716,
+          "timestamp": "2026-05-15T09:15:08.823532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex",
+              "content": "% Section 5 — Runtime Analysis\n% Data source: artifacts/rebuttal/w3_runtime_report.md\n% Per-document inference times from JSONL outputs (inference_time_seconds field).\n% All runs on same single-GPU server (westd-16980), same vLLM/transformers stack.\n\n\\subsection{Runtime Overhead}\n\\label{sec:runtime}\n\nTable~\\ref{tab:runtime} reports per-document inference time for each configuration.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lll rr@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Dataset} & \\textbf{Mode} & \\textbf{Avg (s)} & \\textbf{Overhead} \\\\\n\\midrule\n\\multirow{3}{*}{Qwen}\n  & \\multirow{3}{*}{SciERC}\n    & Unconstrained & 8.69 & --- \\\\\n  & & Grammar       & 8.82 & $+$1.4\\% \\\\\n  & & Full (S1)     & 6.76 & $-$22.2\\% \\\\\n\\cmidrule(l){2-5}\n\\multirow{2}{*}{}\n  & \\multirow{2}{*}{DocRED}\n    & Unconstrained & 19.76 & --- \\\\\n  & & Full (S1)     & 20.40 & $+$3.2\\% \\\\\n\\midrule\n\\multirow{2}{*}{Llama}\n  & SciERC\n    & Unconstrained & 2.81 & --- \\\\\n  & & Full (S1)     & 4.33 & $+$53.8\\% \\\\\n\\cmidrule(l){2-5}\n  & \\multirow{2}{*}{DocRED}\n    & Unconstrained & 18.16 & --- \\\\\n  & & Full (S1)     & 20.52 & $+$13.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-document inference time (wall-clock seconds, same GPU).\nGrammar-only overhead is $\\leq$4.2\\% across all cells.\nPost-hoc filtering is an $O(n)$ pass over predicted triples and adds negligible time.}\n\\label{tab:runtime}\n\\end{table}\n\nConstrained decoding overhead ranges from $-$22\\% to $+$54\\% relative, with three of four (model, dataset) cells at $+$13\\% or less.\nThe outlier---Llama-SciERC at $+$53.8\\%---corresponds to only $+$1.5\\,s absolute per document.\nQwen-SciERC exhibits a \\emph{speedup} under full constraints ($-$22.2\\%): schema-constrained decoding produces tighter outputs and avoids long noisy continuations that the unconstrained model occasionally emits before EOS.\nGrammar-only overhead is consistently small ($\\leq$4.2\\%), indicating that the semantic layer's logit masking accounts for most of the incremental cost when present.\n"
+            }
+          },
+          "id": "event-000716"
+        },
+        {
+          "source_line": 717,
+          "timestamp": "2026-05-15T09:15:08.925731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Write",
+            "elapsed_ms": 102
+          },
+          "id": "event-000717"
+        },
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-15T09:17:24.047209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
+            }
+          },
+          "id": "event-000718"
+        },
+        {
+          "source_line": 719,
+          "timestamp": "2026-05-15T09:17:24.047770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{xcolor}\n17\t\n18\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Ontology Constraints}\n19\t\n20\t\\author{Anonymous ACL submission}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t% === Abstract ===\n26\t\\input{abstract}\n27\t\n28\t% === §1 Introduction ===\n29\t\\input{section1_introduction_draft}\n30\t\n31\t% === §2 Background ===\n32\t\\input{section2_background}\n33\t\n34\t% === §3 Method ===\n35\t\\input{section3_method_draft}\n36\t\n37\t% === §4 Constraint Composition ===\n38\t\\section{Constraint Composition}\n39\t\\label{sec:composition}\n40\t\\input{section4_composition_draft}\n41\t\n42\t% === §5 Experiments ===\n43\t\\section{Experiments}\n44\t\\label{sec:experiments}\n45\t\n46\t\\subsection{Violation Landscape}\n47\t\\input{section3_violation_landscape}\n48\t\n49\t\\input{section5_scierc_draft}\n50\t\\input{section5_docred_draft}\n51\t\\input{section5_crossmodel_draft}\n52\t\n53\t% === §6 Related Work ===\n54\t\\input{section6_related_work}\n55\t\n56\t% === §7 Discussion and Conclusion ===\n57\t\\section{Discussion and Conclusion}\n58\t\\label{sec:discussion}\n59\t\\input{section7_conclusion_compressed}\n60\t\n61\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n62\t\\section*{Limitations}\n63\t\n64\tThe semantic layer introduces cross-field consistency (CF) violations (up to 12.02\\%), a systematic consequence of per-relation independent enforcement that remains an open challenge.\n65\tEntity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\n66\tResults cover two 8B-class models under zero-shot prompting; integra\n…[truncated 912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": "2026-05-15T09:17:28.117670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+              "old_string": "\\input{section5_crossmodel_draft}\n\n% === §6 Related Work ===",
+              "new_string": "\\input{section5_crossmodel_draft}\n\\input{section5_runtime}\n\n% === §6 Related Work ==="
             }
           },
           "id": "event-000720"

@@ -1,1952 +1,14 @@
-# Project coordination (archived snapshot) — Part 10 of 14
+# Project coordination (archived snapshot) — Part 10 of 13
 
 **Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Conversation logs
 
 [← Part 9](part-009.md) · [Transcript overview](../coordination-coordination-20260525-055729.md) · [Part 11 →](part-011.md) · [Structured JSON](../../../sessions/51/51171fdab9751d74b501.json)
 
-## Round 103
-
-### Tool result
-
-_source line 5310 · 2026-05-23T10:49:38.937386+00:00_
-
-1	{
-2	  "confusion_matrices": {
-3	    "civil_comments_deepseek_few-shot-5": [
-4	      [
-5	        0.7341211225997046,
-6	        0.19863013698630136
-7	      ],
-8	      [
-9	        0.2658788774002954,
-10	        0.8013698630136986
-11	      ]
-12	    ],
-13	    "civil_comments_qwen2.5-7b_few-shot-3": [
-14	      [
-15	        0.6787296898079763,
-16	        0.2191780821917808
-17	      ],
-18	      [
-19	        0.3212703101920236,
-20	        0.7808219178082192
-21	      ]
-22	    ],
-23	    "civil_comments_qwen2.5-7b_few-shot-5": [
-24	      [
-25	        0.7370753323485968,
-26	        0.23972602739726026
-27	      ],
-28	      [
-29	        0.26292466765140327,
-30	        0.7602739726027398
-31	      ]
-32	    ],
-33	    "civil_comments_qwen2.5-7b_zero-shot": [
-34	      [
-35	        0.7481536189069424,
-36	        0.3150684931506849
-37	      ],
-38	      [
-39	        0.2518463810930576,
-40	        0.684931506849315
-41	      ]
-42	    ],
-43	    "civil_comments_qwen3_few-shot-3": [
-44	      [
-45	        0.8179126572908957,
-46	        0.25517241379310346
-47	      ],
-48	      [
-49	        0.18208734270910437,
-50	        0.7448275862068966
-51	      ]
-52	    ],
-53	    "civil_comments_qwen3_few-shot-5": [
-54	      [
-55	        0.8240534521158129,
-56	        0.20689655172413793
-57	      ],
-58	      [
-59	        0.1759465478841871,
-60	        0.7931034482758621
-61	      ]
-62	    ],
-63	    "civil_comments_qwen3_zero-shot": [
-64	      [
-65	        0.778118609406953,
-66	        0.25742574257425743
-67	      ],
-68	      [
-69	        0.22188139059304704,
-70	        0.7425742574257426
-71	      ]
-72	    ],
-73	    "humaid_deepseek_few-shot-3": [
-74	      [
-75	        0.5795454545454546,
-76	        0.15,
-77	        0.050955414012738856,
-78	        0.0,
-79	        0.0,
-80	        0.011363636363636364,
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5311 · 2026-05-23T10:49:49.994416+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check mean diagonal for VAST configs to verify 0.45\nwith open('updated_empirical_results.json') as f:\n    data = json.load(f)\n\nprint('=== Mean diagonal (trace/K) for all configs ===')\nmin_diag = 999\nmax_diag = 0\nfor name, cm in sorted(data['confusion_matrices'].items()):\n    K = len(cm)\n    trace = sum(cm[i][i] for i in range(K))\n    mean_diag = trace / K\n    if mean_diag < min_diag:\n        min_diag = mean_diag\n        min_name = name\n    if mean_diag > max_diag:\n        max_diag = mean_diag\n        max_name = name\n    if 'vast' in name:\n        print(f'  {name}: K={K}, mean_diag={mean_diag:.4f}')\n\nprint(f'\\nMin: {min_name} = {min_diag:.4f}')\nprint(f'Max: {max_name} = {max_diag:.4f}')\nprint(f'Range: {min_diag:.2f}--{max_diag:.2f}')\n\"\n",
-  "timeout": "30000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 -c \"\nimport json\n\n# Check mean diagonal for VAST configs to verify 0.45\nwith open('updated_empirical_results.json') as f:\n    data = json.load(f)\n\nprint('=== Mean diagonal (trace/K) for all configs ===')\nmin_diag = 999\nmax_diag = 0\nfor name, cm in sorted(data['confusion_matrices'].items()):\n    K = len(cm)\n    trace = sum(cm[i][i] for i in range(K))\n    mean_diag = trace / K\n    if mean_diag < min_diag:\n        min_diag = mean_diag\n        min_name = name\n    if mean_diag > max_diag:\n        max_diag = mean_diag\n        max_name = name\n    if 'vast' in name:\n        print(f'  {name}: K={K}, mean_diag={mean_diag:.4f}')\n\nprint(f'\\nMin: {min_name} = {min_diag:.4f}')\nprint(f'Max: {max_name} = {max_diag:.4f}')\nprint(f'Range: {min_diag:.2f}--{max_diag:.2f}')\n\"\n",
-    "timeout": "30000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 5312 · 2026-05-23T10:49:54.596297+00:00_
-
-5 个 agent 审计完成。在汇报前，我需要亲自核实最关键的几个发现。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
-}
-```
-
-</details>
-
----
-
-
 ## Round 104
 
-## Round 104
-
-134 recorded events
-
-
-### User
-
-_source line 5313 · 2026-05-23T11:06:11.921109+00:00_
-
-[Director 指令] **[紧急] R14 审稿修复 — 全部写作修改，DDL 2026-05-25**
-
-审稿人明确指出 W1-W3 解决可达 4.0。以下按优先级执行。
-
----
-
-## P0: 三个关键 should-fix
-
-### W1: Section 3.3 新增 Remark 1 (ASV vs E-value 形式化对比)
-
-在 Section 3.3 ASV 定义之后，新增 Remark 1，约 10 行。内容：
-
-```
-\begin{remark}[Structural distinctions from E-values]
-ASV diagnostics differ from E-values \citep{vanderweele_ding2017} in three respects:
-(i)~\emph{Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_T(C)$ depending on the DAG role of $A$ (Eqs.~\ref{eq:...}--\ref{eq:...}), whereas E-values treat all confounding identically via a scalar risk ratio $\gamma$.
-(ii)~\emph{Sign-flip diagnostic}: E-values diagnose magnitude robustness (the minimum confounding strength to nullify an effect) but do not address sign reversal. The sign-flip ASV $\delta^*_{\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.
-(iii)~\emph{Parametric structure}: E-values use a one-dimensional monotone parameterization ($\gamma \geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via the diagonal path $C(\delta)$, but the resulting bias function $B(\delta)$ is topology-specific and can be non-monotone (IV).
-\end{remark}
-```
-
-注意 point (ii) **不要说** E-value "structurally excludes sign change"——E-value 只是 **定义上不问 sign reversal 问题**，用上面的措辞。
-
-如果需要腾页面空间，压缩现有 method.tex 中 ASV 与 E-value 的描述性文字（已有 Table 18 交叉引用的那段）。
-
-### W2: Algorithm 1 + Conjecture 1 修复（3 处改动）
-
-**(a) Algorithm 1 脚注**：Algorithm 1 用的是拓扑分类（不是 ASV 数值阈值），脚注措辞：
-> "This topology-based classification is robust to $\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\varepsilon < 0.06$ approximation (Conjecture~\ref{conj:monotone}, Section~\ref{sec:asv})."
-
-**(b) Conjecture 1 正文措辞修正** [CRITICAL 不一致]：
-当前 Conjecture 1 声称 "ε = 0.06 deviations across all tested configurations"，但 Appendix Table tab:conjecture_tau_sens 显示多个超过 0.06 的案例（exposure 0.152, mediation 0.130, front-door 0.139）。
-修正为："$\varepsilon < 0.06$ for non-IV topologies under $\tau \geq 0.5$" 或 "$\varepsilon < 0.06$ under default DGP parameters (see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds)"。
-
-**(c) ε 实践含义**（Conjecture 1 之后加 1 句）：
-> "Under $\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds)."
-
-### W3: 正文新增 NLP-realistic 0.07%
-
-Section 3.2 Proposition 1 讨论附近（proportional effects 相关段落），添加 2-3 句：
-
-> "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\% with zero sign failures (Table~\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains $\geq$97.3\% (Table~\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\%) unlikely in balanced NLP classification."
-
-确认引用的表名/label 正确——Appendix D.5 的 tab:proportional_effects 和 D.6 的 tab:proportional_empirical。
-
----
-
-## P1: 其他修改
-
-### W5: IV 替代方案（Section 4.2 或 Limitations）
-IV 段落末尾添加 2 句：
-> "For IV designs where annotation error is unavoidable, practitioners may consider bounds approaches \citep{manski1990}, robust IV methods, or two-sample IV designs where the instrument is measured without error in a separate sample."
-
-如果 Manski 1990 不在 bib 中，添加。
-
-### W7: Table 1 标注改进
-Yes* 改为 "Cond." 或在 caption 中直接解释 "(Yes* = conditional on proportional effects; Proposition~\ref{prop:signflip})"
-
-### W8: Algorithm 1 阈值说明
-Algorithm 1 caption 添加："Thresholds are calibrated from $K{=}3$ linear SEM; practitioners should recalibrate for their specific $K$ and model class."（如果已有类似语句，检查是否需要更新）
-
-### W9: 混淆矩阵可获得性（Limitations）
-添加 1 句："Our framework assumes $C$ is known or estimable from held-out gold-standard labels; obtaining accurate $C$ itself requires gold annotations, a bootstrapping constraint mitigated by cross-validation or expert subset labeling."
-
-### Q1-Q5 简要回应
-- **Q1**: Appendix 添加 1-2 句说明可用 bootstrap 从观测数据估计 Var(g(A)), Var(f(A)) 的上界
-- **Q2**: Section 4.5 或 Appendix 提及 bias-corrected bootstrap 作为 logistic 下替代
-- **Q3**: 正文添加交叉引用 "Failures concentrate in Sparse DGP (24.2\%); see Appendix~\ref{sec:proportional_effects}"——已被 W3 覆盖
-- **Q4**: Algorithm 1 添加 Step 0 注释："If the DAG is uncertain, repeat Steps 1--3 under each candidate topology and report the range"
-- **Q5**: Appendix B.18 添加交叉引用即可
-
----
-
-## 不做的项
-
-- **W4 (NLP running example)**：SKIP。页面已满，W1-W3 已占空间，且审稿人未将 W4 列为提分因素。
-- **W6 (Abstract density)**：维持现状，R1 REBUT 有效。
-- **W10 (Models coverage)**：Limitations 已覆盖。
-
----
-
-## 执行要求
-
-1. 按 P0 → P1 顺序执行
-2. 每项修改后检查页面预算——Section 5 + Limitations 必须在 p8 内
-3. W1 Remark 如需腾空间，压缩现有 ASV 描述性文字
-4. **W2(b) Conjecture 1 ε 不一致是新发现的 CRITICAL 问题**，务必修正
-5. 全部完成后 `latexmk` 编译，报告总页数和 warnings
-6. 把 W1 (Remark 1 全文)、W2(b) (Conjecture 1 修正措辞)、W3 (0.07% 段落) 的修后文本发给我
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 5314 · 2026-05-23T11:06:28.341837+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5315 · 2026-05-23T11:06:29.346342+00:00_
-
-1	\section{Method}
-2	\label{sec:method}
-3	
-4	\subsection{Setup and Notation}
-5	\label{sec:notation}
-6	
-7	Let $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \mid A{=}k)$, where each column sums to one. Following \citet{hernan_cole2009}, we represent this measurement process using \emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.
-8	
-9	\paragraph{Notation conventions.}
-10	Our analysis characterizes systematic bias---the value an estimator converges to as $N \to \infty$ (the probability limit, or plim)---rather than finite-sample variance. The Frisch--Waugh--Lovell (FWL) theorem guarantees that each regression coefficient equals the coefficient from a simple regression after residualizing all other variables; this is why matrix-based corrections fail for covariate topologies (Section~\ref{sec:correction}): replacing the mismeasured variable with a corrected version does not change the residualized relationship. Table~\ref{tab:notation} (Appendix~\ref{app:notation_table}) collects all notation.
-11	
-12	\begin{definition}[Non-differential misclassification]
-13	\label{def:nondiff}
-14	Misclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\mathbf{Z}$ if $P(A^*{=}j \mid A{=}k, Y, \mathbf{Z}) = P(A^*{=}j \mid A{=}k) = C_{jk}$ for all $j,k$.
-15	\end{definition}
-16	
-17	This holds in standard annotation pipelines where the LLM receives only source text and classifies without observing the outcome or covariates---the typical setup in computational social science~\cite{ziems2024can}. Empirical verification using topic-stratified confusion matrices confirms cross-group stability (Appendix~\ref{sec:nondiff_verify}). Violations
-…[truncated 13202 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 1004
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5316 · 2026-05-23T11:06:29.397030+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5317 · 2026-05-23T11:06:29.447787+00:00_
-
-1	\section{Experiments}
-2	\label{sec:experiments}
-3	
-4	We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three NLP tasks ($K{=}2,3,10$).
-5	
-6	\subsection{Setup}
-7	\label{sec:setup}
-8	
-9	For each of the seven topologies (confounding, exposure, mediation, collider, M-bias, front-door, IV), we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute the analytical probability limit of the causal estimator, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\delta) = (1{-}\delta)I + \delta C_0$.
-10	
-11	\subsection{Bias Taxonomy}
-12	\label{sec:taxonomy_results}
-13	
-14	\paragraph{Theory-MC agreement.}
-15	Analytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\% across 161 scenarios (23 LLM configurations $\times$ 7 topologies, $N{=}10{,}000$). Per-topology MAPE ranges from 0.3\% (confounding) to 3.7\% (IV); the IV maximum reflects the Wald estimator's small-denominator variance amplification.
-16	
-17	\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
-18	Under realistic LLM accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal; even at diagonal $\geq 0.9$, violation persists at 11.9\%. Under the full Dirichlet$(1,1,1)$ prior, 85\% of $K{=}3$ confusion matrices violate the binary ``toward-null'' guarantee, and 83.4\% cause sign reversal of at least one coefficient. The $K{=}2$ control confirms that all tested binary matrices maintain classical attenuation~\cite{brenner1993}, establishing that the multi-class failure is structurally distinct.
-19	
-20	\paragraph{Structural guarantee for non-exposure topologies.}
-21	Five topologies exhibit zero sign-flip rate (Table~\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\% amplification~\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C
-…[truncated 6951 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5318 · 2026-05-23T11:06:29.448156+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5319 · 2026-05-23T11:06:29.498784+00:00_
-
-1	\section{Conclusion}
-2	\label{sec:conclusion}
-3	
-4	We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.
-5	
-6	\section*{Limitations}
-7	
-8	Our framework assumes non-differential misclassification ($P(A^*|A, Y, \mathbf{Z}) = P(A^*|A)$), which holds when the LLM does not observe $Y$ but may be violated when it accesses $Y$-correlated information; a stress test (Appendix~\ref{sec:nondiff_stress}) shows that structured violation patterns can exceed or fall below uniform predictions. Closed-form expressions are derived under $K{=}3$ linear structural equations; extensions to arbitrary $K$ and nonlinear models~\cite{schennach2020mismeasured} remain open (Appendix~\ref{sec:logistic_dgp}), though correction method rankings are stable across $K{=}3,5,10$ (Spearman $\rho \geq 0.80$, with PPI++ degrading at $K{=}10$; Appendix~\ref{sec:correction_k_sensitivity}). The ASV diagonal parameterization $C(\delta) = (1{-}\delta)I + \delta C_0$ assumes uniform degradation across categories; rare-class-specific degradation would require multi-dimensional extensions. When the true DAG is uncertain, practitioners can apply Algorithm~1 under each candidate topology and report the range of conclusions as a form of specification sensitivity analysis. FWL invariance holds under linear OLS and approximately under logistic regression; applicability to non-parametric methods (doubly robust estimators, TMLE) remains unverified. Our 23 configurations span four open-weight LLMs (7B--235B) with diagonal accuracy 0.45--0.81; commercial models and ordinal tasks remain untested.
-9	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5320 · 2026-05-23T11:06:37.138325+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "\\\\begin\\{algorithm\\}",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content",
-  "-n": "True",
-  "-A": "3"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "\\\\begin\\{algorithm\\}",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content",
-    "-n": "True",
-    "-A": "3"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5321 · 2026-05-23T11:06:37.640755+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:851:\begin{algorithm}[h]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-852-[Omitted long context line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-853-\label{alg:correction}
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex-854-\small
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5322 · 2026-05-23T11:06:38.645143+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "manski",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib",
-  "output_mode": "content",
-  "-i": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "manski",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib",
-    "output_mode": "content",
-    "-i": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5323 · 2026-05-23T11:06:39.097543+00:00_
-
-No matches found
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 452
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5324 · 2026-05-23T11:06:39.599913+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "tab:proportional_effects|tab:proportional_empirical",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "tab:proportional_effects|tab:proportional_empirical",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5325 · 2026-05-23T11:06:39.651417+00:00_
-
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:88:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1143:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1149:\label{tab:proportional_effects}
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1253:\label{tab:proportional_empirical}
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.aux:2592:\newlabel{tab:proportional_effects}{{12}{28}{$\lambda (C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row)}{table.caption.84}{}}
-/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.aux:2715:\newlabel{tab:proportional_empirical}{{16}{29}{Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda (C) \in [0,1]$: proportion satisfying the Theorem~\ref {thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate}{table.caption.88}{}}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5326 · 2026-05-23T11:06:44.471039+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "845",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "845",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5327 · 2026-05-23T11:06:44.973388+00:00_
-
-845	(3)~\emph{Near-permutation}: $C_{kk}{=}0.4$, largest off-diagonal 0.5;
-846	(4)~\emph{Asymmetric}: $C_{kk}$ varies (0.8, 0.5, 0.3);
-847	(5)~\emph{Block confusion}: two classes confused ($C_{12}{=}C_{21}{=}0.4$), third clean;
-848	(6)~\emph{Heavy noise}: $C_{kk}{=}0.4$, off-diagonal uniform.
-849	All are column-stochastic with $K{=}3$. Results are averaged across all six structures.
-850	
-851	\begin{algorithm}[h]
-852	\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\ref{sec:logistic_dgp}). The magnitude ASV threshold $\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}
-853	\label{alg:correction}
-854	\small
-855	\begin{algorithmic}[1]
-856	\REQUIRE DAG topology $\mathcal{T}$, gold-label availability $G \in \{\textsc{yes}, \textsc{no}\}$
-857	\ENSURE Recommended method $M$, risk level $R$
-858	\STATE
-859	\STATE \textbf{Step 1: Assess risk level}
-860	\IF{$\mathcal{T} \in \{\text{M-bias}\}$}
-861	    \STATE $R \gets \textsc{Low}$ \COMMENT{$|\text{bias}| < 0.04$ for all $C$}
-862	\ELSIF{$\mathcal{T} \in \{\text{Conf., Med., Coll., Front-door}\}$}
-863	    \STATE $R \gets \textsc{Medium}$ \COMMENT{bounded bias, no sign reversal}
-864	\ELSE
-865	    \STATE $R \gets \textsc{High}$ \COMMENT{Exposure, IV: sign reversal 83.4\% / 52.6\%}
-866	\ENDIF
-867	\STATE
-868	\STATE \textbf{Step 2: Select correction method}
-869	\IF{$G = \textsc{yes}$}
-870	    \IF{$\mathcal{T} = \text{M-bias}$}
-871	        \STATE $M \gets \textsc{None}$ \COMMENT{PPI++ RMSE red.\ $-$88.0\%; no correction preferred}
-872	    \ELSE
-873	        \STATE $M \gets \text{PPI++}$ \COMMENT{47.0\% RMSE red., 96.8\% coverage}
-874	    \ENDIF
-875	\ELSE
-876	    \STATE \COMMENT{no gold label
-…[truncated 841 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 502
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5328 · 2026-05-23T11:06:45.726544+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "tab:conjecture_tau_sens",
-  "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "output_mode": "content",
-  "-n": "True",
-  "-B": "2",
-  "-A": "5"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "tab:conjecture_tau_sens",
-    "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "output_mode": "content",
-    "-n": "True",
-    "-B": "2",
-    "-A": "5"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5329 · 2026-05-23T11:06:45.827581+00:00_
-
-1117-
-1118-\paragraph{DGP parameter sensitivity.}
-1119:[Omitted long matching line]
-1120-
-1121-\begin{table}[h]
-1122-\centering
-1123-\small
-1124:\caption{$\varepsilon \equiv \max_\delta(|B(\delta{+}\Delta)|{-}|B(\delta)|)/|\tau_{\text{true}}|$ in the non-monotonic direction (max over $K \in \{3,5,7\}$; 10{,}000 random $C_0$ per cell). Bold marks $\varepsilon > 0.06$. Counts in parentheses are violations / 30{,}000. Tables~\ref{tab:conjecture_verify} and~\ref{tab:conjecture_tau_sens} use independent random seeds; for topologies with low violation rates (exposure $<$0.02\%), the worst-case $\varepsilon$ is sample-sensitive.}
-1125:\label{tab:conjecture_tau_sens}
-1126-\begin{tabular}{lccccc}
-1127-\toprule
-1128-\textbf{Topology} & $\tau{=}0.1$ & $\tau{=}0.5$ & $\tau{=}1.0$ & $\tau{=}2.0$ & $\tau{=}5.0$ \\
-1129-\midrule
-1130-Confounding & \textbf{0.118} (200) & 0.027 (0) & 0.014 (0) & 0.007 (0) & 0.002 (0) \\
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Grep",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5330 · 2026-05-23T11:06:50.846006+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "1126",
-  "limit": "20"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "1126",
-    "limit": "20"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5331 · 2026-05-23T11:06:50.896759+00:00_
-
-1126	\begin{tabular}{lccccc}
-1127	\toprule
-1128	\textbf{Topology} & $\tau{=}0.1$ & $\tau{=}0.5$ & $\tau{=}1.0$ & $\tau{=}2.0$ & $\tau{=}5.0$ \\
-1129	\midrule
-1130	Confounding & \textbf{0.118} (200) & 0.027 (0) & 0.014 (0) & 0.007 (0) & 0.002 (0) \\
-1131	Mediation   & \textbf{0.130} (1950) & 0.026 (0) & 0.013 (0) & \textbf{0.112} (1) & 0.003 (0) \\
-1132	Collider    & 0.022 (0) & 0.006 (0) & 0.005 (0) & 0.004 (0) & 0.002 (0) \\
-1133	Exposure    & \textbf{0.111} (5) & \textbf{0.122} (2) & \textbf{0.152} (2) & \textbf{0.089} (3) & \textbf{0.148} (3) \\
-1134	M-bias      & 0.014 (0) & 0.003 (0) & 0.001 (0) & 0.001 (0) & 0.000 (0) \\
-1135	Front-door  & 0.003 (0) & 0.013 (0) & 0.027 (0) & 0.051 (0) & \textbf{0.139} (664) \\
-1136	\bottomrule
-1137	\end{tabular}
-1138	\end{table}
-1139	
-1140	\subsection{Proportional Effects Breakdown}
-1141	\label{sec:proportional_effects}
-1142	
-1143	Theorem~\ref{thm:monotone} requires proportional effects ($f = \lambda g$); here we quantify how $\lambda(C)$ out-of-bounds (OOB) rates depend on the degree of departure from proportionality. We simulate $K{=}3$ mediation with 100{,}000 random confusion matrices (diagonal $\geq 0.5$, Dirichlet off-diagonal) at five proportionality degrees: exact ($f_j {-} f_0 = \lambda(g_j {-} g_0)$), near-proportional ($f = \lambda g + \epsilon$, $\epsilon \sim \mathcal{N}(0,\sigma^2)$, $\sigma \in \{0.1, 0.3, 0.5\}$), and fully independent ($f \perp g$). Table~\ref{tab:proportional_effects} reports the $\lambda(C) \notin [0,1]$ rate.
-1144	
-1145	\begin{table}[h]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5332 · 2026-05-23T11:06:58.778411+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "1145",
-  "limit": "40"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "1145",
-    "limit": "40"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5333 · 2026-05-23T11:06:58.830472+00:00_
-
-1145	\begin{table}[h]
-1146	\centering
-1147	\small
-1148	\caption{$\lambda(C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row).}
-1149	\label{tab:proportional_effects}
-1150	\begin{tabular}{lcc}
-1151	\toprule
-1152	\textbf{Proportionality degree} & $\lambda(C) \notin [0,1]$ & Sign failure \\
-1153	\midrule
-1154	Exact ($\sigma{=}0$) & 0.0\% & 0.85\% \\
-1155	Near ($\sigma{=}0.1$) & 10.3\% & 0.87\% \\
-1156	Near ($\sigma{=}0.3$) & 19.0\% & 0.96\% \\
-1157	Near ($\sigma{=}0.5$) & 22.4\% & 0.93\% \\
-1158	Independent ($f \perp g$) & 22.9\% & 0.17\% \\
-1159	\midrule
-1160	NLP-realistic (plan\_006 DGP) & 0.07\% & 0.0\% \\
-1161	\bottomrule
-1162	\end{tabular}
-1163	\end{table}
-1164	
-1165	The $\lambda$ OOB rate rises steeply from 0\% to ${\sim}10$\% at $\sigma{=}0.1$ and saturates near 23\% for independent $(f,g)$. Sign failure rates remain below 1\% across all conditions because $\lambda$ excursions outside $[0,1]$ are typically small and do not reverse the dominant effect direction. The NLP-realistic DGP ($\delta{=}[0, 0.8, {-}0.6]$, $\beta{=}[0, 1.0, {-}0.5]$) exhibits near-zero OOB (0.07\%) and zero sign failures, confirming that proportional effects hold approximately in practice.
-1166	
-1167	\subsection{FWL Invariance Under Nonlinear Models}
-1168	\label{sec:fwl_nonlinear}
-1169	
-1170	FWL invariance guarantees exactly 0\% bias reduction from matrix-based corrections (MLA, naive plug-in) under linear OLS for covariate topologies (confounding, mediation, collider, M-bias). Here we test whether this invariance persists under logistic regression across sample sizes $N \in \{1000, 5000, 10{,}000, 50{,}000\}$ and three error levels ($C_{kk} \in \{0.9, 0.7, 0.5\}$), with 200 Monte Carlo replicates per cell. Table~\ref{tab:fwl_nonlinear} reports the mean logistic bias reduction (positive = correction helps).
-1171	
-1172	\begin{table}[h]
-1173	\centering
-1174	\small
-1175	\caption{Mean logistic 
-…[truncated 673 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5334 · 2026-05-23T11:07:06.971883+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "offset": "1240",
-  "limit": "40"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "offset": "1240",
-    "limit": "40"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5335 · 2026-05-23T11:07:07.173294+00:00_
-
-1240	\end{table}
-1241	
-1242	The distribution is sharply bimodal: all $K{=}2$ configurations are immune to differential misclassification within the tested range ($\varepsilon^*_{\text{safe}}{=}0.50$), consistent with the binary sign-preservation guarantee (Proposition~\ref{prop:signflip}(c)). For $K{\geq}3$, 14 of 16 configurations have $\varepsilon^*_{\text{safe}}{=}0$---sign reversal occurs at the smallest tested $\varepsilon{=}0.01$. Two outliers (VAST: $\varepsilon^*{=}0.02$; HuMAID: $\varepsilon^*{=}0.36$) have atypically structured confusion matrices. This confirms that even small violations of non-differential misclassification are consequential for multi-class exposure, underscoring the practical importance of validating $P(A^*{\mid}A,Y) \approx P(A^*{\mid}A)$ on gold-labeled subsets when $K \geq 3$.
-1243	
-1244	\subsection{Proportional Effects with Empirical Confusion Matrices}
-1245	\label{sec:proportional_real_matrices}
-1246	
-1247	Theorem~\ref{thm:monotone} assumes proportional effects ($f = \lambda g$). We evaluate this assumption using all 23 empirical LLM confusion matrices under four DGP groups in the mediation topology (23 matrices $\times$ 50 seeds $\times$ 100{,}000 precomputed samples per seed).
-1248	
-1249	\begin{table}[h]
-1250	\centering
-1251	\small
-1252	\caption{Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda(C) \in [0,1]$: proportion satisfying the Theorem~\ref{thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate.}
-1253	\label{tab:proportional_empirical}
-1254	\begin{tabular}{lcccc}
-1255	\toprule
-1256	\textbf{DGP Group} & $\lambda(C)$ \textbf{mean} & $\lambda(C) \in [0,1]$ & \textbf{Sign pres.} & \textbf{CV} \\
-1257	\midrule
-1258	Proportional ($f{=}\lambda g$) & 0.271 & 99.8\% & 100\% & 0.00 \\
-1259	Near-prop.\ ($\sigma{=}0.1$) & 0.285 & 99.2\% & 100\% & 1.06 \\
-1260	Non-proportional & 0.240 & 85.0\% & 97.3\% & 3.60 \\
-1261	Sparse & 0.296 & 75.8\% & 98.6\% & 6.59 \\
-…[truncated 1755 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5336 · 2026-05-23T11:07:37.290104+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "old_string": "Unlike E-values~\\cite{vanderweele_ding2017}, ASVs parametrize $K{\\times}K$ annotation error along a topology-specific path where monotonicity requires proof (Theorem~\\ref{thm:monotone}). The sign-flip ASV has no E-value counterpart, and the vulnerability ranking is topology-dependent (Table~\\ref{tab:sensitivity_comparison}, Appendix; cf.~\\citealt{rosenbaum2002}).\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}), with $\\delta^*$ thresholds robust to $\\varepsilon$-approximate deviations ($\\varepsilon < 0.06$). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization}).",
-  "new_string": "\\begin{remark}[Structural distinctions from E-values]\n\\label{rem:evalue}\nASV diagnostics differ from E-values~\\cite{vanderweele_ding2017} in three respects.\n\\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\\ref{eq:confounding}--\\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.\n\\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\\delta^*_{\\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.\n\\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\\gamma \\geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\\delta)$, but the resulting bias function $B(\\delta)$ is topology-specific and can be non-monotone (IV). See Table~\\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.\n\\end{remark}\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization})."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "old_string": "Unlike E-values~\\cite{vanderweele_ding2017}, ASVs parametrize $K{\\times}K$ annotation error along a topology-specific path where monotonicity requires proof (Theorem~\\ref{thm:monotone}). The sign-flip ASV has no E-value counterpart, and the vulnerability ranking is topology-dependent (Table~\\ref{tab:sensitivity_comparison}, Appendix; cf.~\\citealt{rosenbaum2002}).\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}), with $\\delta^*$ thresholds robust to $\\varepsilon$-approximate deviations ($\\varepsilon < 0.06$). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization}).",
-    "new_string": "\\begin{remark}[Structural distinctions from E-values]\n\\label{rem:evalue}\nASV diagnostics differ from E-values~\\cite{vanderweele_ding2017} in three respects.\n\\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\\ref{eq:confounding}--\\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.\n\\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\\delta^*_{\\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.\n\\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\\gamma \\geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\\delta)$, but the resulting bias function $B(\\delta)$ is topology-specific and can be non-monotone (IV). See Table~\\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.\n\\end{remark}\n\nFor $K{=}2$, Theorem~\\ref{thm:monotone} guarantees exact monotonicity; for $K{\\geq}3$, monotonicity rests on numerical evidence (Conjecture~\\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \\delta_{\\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\\ref{sec:asv_stability}); binarization introduces additional topology-dependent bias (Appendix~\\ref{app:binarization})."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5337 · 2026-05-23T11:07:37.341215+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5338 · 2026-05-23T11:07:47.982730+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "old_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon = 0.06$ deviations across all tested configurations (collider/M-bias non-increasing, others non-decreasing). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$; per-topology bounds in Appendix~\\ref{sec:conjecture_verify}.",
-  "new_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "old_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon = 0.06$ deviations across all tested configurations (collider/M-bias non-increasing, others non-decreasing). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$; per-topology bounds in Appendix~\\ref{sec:conjecture_verify}.",
-    "new_string": "For non-IV topologies under $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, $|B(C(\\delta))|$ is monotonic up to $\\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \\in \\{3,5,7\\}$, $\\tau \\in \\{0.1, 0.5, 1.0, 2.0, 5.0\\}$."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5339 · 2026-05-23T11:07:48.033639+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5340 · 2026-05-23T11:07:51.923181+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "offset": "95",
-  "limit": "20"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "offset": "95",
-    "limit": "20"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5341 · 2026-05-23T11:07:51.973949+00:00_
-
-95	\begin{conjecture}[$\varepsilon$-approximate envelope monotonicity]
-96	\label{conj:monotone}
-97	For non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$, $|B(C(\delta))|$ is monotonic up to $\varepsilon < 0.06$ deviations under default DGP parameters (collider/M-bias non-increasing, others non-decreasing; see Appendix~\ref{sec:conjecture_verify} for DGP-dependent bounds). Verified across 30{,}000 random matrices per topology, $K \in \{3,5,7\}$, $\tau \in \{0.1, 0.5, 1.0, 2.0, 5.0\}$.
-98	\end{conjecture}
-99	
-100	\begin{remark}[Structural distinctions from E-values]
-101	\label{rem:evalue}
-102	ASV diagnostics differ from E-values~\cite{vanderweele_ding2017} in three respects.
-103	\emph{(i)~Topology dependence}: the same confusion matrix $C$ maps to distinct bias expressions $B_{\mathcal{T}}(C)$ depending on the DAG role of $A$ (Eqs.~\ref{eq:confounding}--\ref{eq:mediation}), whereas E-values treat all confounding identically via a scalar risk ratio.
-104	\emph{(ii)~Sign-flip diagnostic}: E-values diagnose magnitude robustness but do not address sign reversal; the sign-flip ASV $\delta^*_{\mathrm{sf}}$ is a complementary diagnostic without E-value counterpart.
-105	\emph{(iii)~Parametric structure}: E-values use a one-dimensional monotone parameterization ($\gamma \geq 1$); ASV reduces the $K^2$-dimensional confusion matrix space to one dimension via $C(\delta)$, but the resulting bias function $B(\delta)$ is topology-specific and can be non-monotone (IV). See Table~\ref{tab:sensitivity_comparison} (Appendix) for a formal comparison.
-106	\end{remark}
-107	
-108	For $K{=}2$, Theorem~\ref{thm:monotone} guarantees exact monotonicity; for $K{\geq}3$, monotonicity rests on numerical evidence (Conjecture~\ref{conj:monotone}). Sign-flip ASV $< 1$ flags sign-reversal-prone pairs; magnitude ASV $< \delta_{\text{observed}}$ indicates bias exceeds tolerance (Algorithm~\ref{alg:correction}). Rankings are stable across DGP parameterizations (Appendix~\ref{sec:asv_stabilit
-…[truncated 103 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5342 · 2026-05-23T11:07:58.248939+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "old_string": "\\end{conjecture}\n\n\\begin{remark}[Structural distinctions from E-values]",
-  "new_string": "\\end{conjecture}\n\nUnder $\\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (Appendix~\\ref{sec:conjecture_verify}).\n\n\\begin{remark}[Structural distinctions from E-values]"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "old_string": "\\end{conjecture}\n\n\\begin{remark}[Structural distinctions from E-values]",
-    "new_string": "\\end{conjecture}\n\nUnder $\\varepsilon$-approximate monotonicity, ASV thresholds may be slightly optimistic: the bias envelope deviates from strict monotonicity by at most 0.06 in absolute bias units under default DGP conditions (Appendix~\\ref{sec:conjecture_verify}).\n\n\\begin{remark}[Structural distinctions from E-values]"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5343 · 2026-05-23T11:07:58.249754+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5344 · 2026-05-23T11:08:11.152278+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "old_string": "\\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
-  "new_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "old_string": "\\caption{Correction method selection for LLM-annotated causal inference. Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
-    "new_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5345 · 2026-05-23T11:08:11.153302+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 1
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5346 · 2026-05-23T11:08:19.541388+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "old_string": "\\end{algorithmic}\n\\end{algorithm}",
-  "new_string": "\\end{algorithmic}\n\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "old_string": "\\end{algorithmic}\n\\end{algorithm}",
-    "new_string": "\\end{algorithmic}\n\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5347 · 2026-05-23T11:08:19.592810+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5348 · 2026-05-23T11:08:24.563528+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "offset": "86",
-  "limit": "8"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "offset": "86",
-    "limit": "8"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5349 · 2026-05-23T11:08:24.614156+00:00_
-
-86	\end{theorem}
-87	
-88	The proof (Appendix~\ref{app:monotonicity_proof},~\ref{par:med_monotone}) exploits perspective function convexity; $(C_0)_{jj}{\geq}\tfrac{1}{2}$ excludes degenerate matrices. Proportional effects ($f = \lambda g$) holds when a single latent factor drives both paths---a natural assumption in CSS annotation tasks, where a single quality dimension typically governs both the treatment--covariate and mediator--outcome relationships. Sign preservation holds in ${\geq}97$\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\ref{tab:proportional_empirical}, Appendix~\ref{sec:proportional_effects}); when violated, Proposition~\ref{prop:conf_gen} provides a complementary bound ($|\tau| > \bar{B}$).
-89	
-90	\begin{observation}[Envelope monotonicity---$K{\geq}3$]
-91	\label{prop:monotone_general}
-92	For $K{\geq}3$ under the same conditions, numerical verification across 20{,}000 random $(C_0,p,g)$ triples per $K$ shows worst-case deviations $< 0.005$ from strict monotonicity (Appendix~\ref{app:monotonicity_proof}).
-93	\end{observation}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5350 · 2026-05-23T11:08:37.623521+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-  "old_string": "Sign preservation holds in ${\\geq}97$\\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\\ref{tab:proportional_empirical}, Appendix~\\ref{sec:proportional_effects}); when violated, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$).",
-  "new_string": "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\\% with zero sign failures (Table~\\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains ${\\geq}97.3$\\% (Table~\\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\\% OOB) unlikely in balanced NLP classification. When $\\lambda(C) \\notin [0,1]$, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$)."
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
-    "old_string": "Sign preservation holds in ${\\geq}97$\\% of cases across all four DGP conditions tested, including non-proportional effects (Table~\\ref{tab:proportional_empirical}, Appendix~\\ref{sec:proportional_effects}); when violated, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$).",
-    "new_string": "Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\\% with zero sign failures (Table~\\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains ${\\geq}97.3$\\% (Table~\\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\\% OOB) unlikely in balanced NLP classification. When $\\lambda(C) \\notin [0,1]$, Proposition~\\ref{prop:conf_gen} provides a complementary bound ($|\\tau| > \\bar{B}$)."
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5351 · 2026-05-23T11:08:37.674352+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5352 · 2026-05-23T11:08:48.066381+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Error|! \" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [6, 7, 8]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'=== Page {i+1} ===')\n    print(f'  First: {plines[0][:100] if plines else \\\"EMPTY\\\"}')\n    print(f'  Last:  {plines[-1][:100] if plines else \\\"EMPTY\\\"}')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
-  "timeout": "60000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Error|! \" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [6, 7, 8]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'=== Page {i+1} ===')\n    print(f'  First: {plines[0][:100] if plines else \\\"EMPTY\\\"}')\n    print(f'  Last:  {plines[-1][:100] if plines else \\\"EMPTY\\\"}')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
-    "timeout": "60000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5353 · 2026-05-23T11:08:49.723409+00:00_
-
-! LaTeX Error: Environment remark undefined.
-! LaTeX Error: \begin{document} ended by \end{remark}.
-! Argument of \caption@ydblarg has an extra }.
-! Paragraph ended before \caption@ydblarg was complete.
-Output written on main.pdf (31 pages, 921439 bytes).
-=== Page 7 ===
-  First: Bias Distribution Under K=3 Non-Differential Misclassification
-  Last:  601
-=== Page 8 ===
-  First: 603
-  Last:  681
-=== Page 9 ===
-  First: 5
-  Last:  785
-  >>> Conclusion
-  >>> Limitations
-  >>> References
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 1657
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5354 · 2026-05-23T11:08:58.561347+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
-  "old_string": "\\newtheorem{observation}{Observation}",
-  "new_string": "\\newtheorem{observation}{Observation}\n\\newtheorem{remark}{Remark}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex",
-    "old_string": "\\newtheorem{observation}{Observation}",
-    "new_string": "\\newtheorem{observation}{Observation}\n\\newtheorem{remark}{Remark}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5355 · 2026-05-23T11:08:58.612184+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5356 · 2026-05-23T11:09:17.639595+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "old_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
-  "new_string": "\\caption{Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "old_string": "\\caption{Correction method selection for LLM-annotated causal inference.\\footnotemark\\ Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). The magnitude ASV threshold $\\epsilon$ (Step~1 risk levels) is researcher-chosen; we use 10\\% relative bias throughout, but practitioners should calibrate to their inferential context. Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}",
-    "new_string": "\\caption{Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\\ref{sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5357 · 2026-05-23T11:09:17.691858+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5358 · 2026-05-23T11:09:22.062817+00:00_
-
-called Edit
-
-<details open><summary>🔧 Tool call — Edit</summary>
-
-```json
-{
-  "replace_all": "False",
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-  "old_string": "\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}",
-  "new_string": "\\end{algorithm}"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "tool_args": {
-    "replace_all": "False",
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
-    "old_string": "\\end{algorithm}\n\\footnotetext{This topology-based classification is robust to $\\varepsilon$-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\\varepsilon < 0.06$ approximation (Conjecture~\\ref{conj:monotone}, Section~\\ref{sec:asv}).}",
-    "new_string": "\\end{algorithm}"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5359 · 2026-05-23T11:09:22.114259+00:00_
-
-The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Edit",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5360 · 2026-05-23T11:09:32.657906+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|Error\" && echo \"---\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [7, 8, 9]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'Page {i+1}: first=[{plines[0][:80] if plines else \\\"EMPTY\\\"}] last=[{plines[-1][:80] if plines else \\\"EMPTY\\\"}]')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
-  "timeout": "60000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|Error\" && echo \"---\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i in [7, 8, 9]:\n    plines = [l.strip() for l in pages[i].strip().split('\\n') if l.strip()]\n    print(f'Page {i+1}: first=[{plines[0][:80] if plines else \\\"EMPTY\\\"}] last=[{plines[-1][:80] if plines else \\\"EMPTY\\\"}]')\n    for line in plines:\n        if 'Conclusion' in line or 'Limitation' in line or 'References' in line:\n            print(f'  >>> {line[:100]}')\n\"",
-    "timeout": "60000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 5361 · 2026-05-23T11:09:33.812384+00:00_
-
-Exit code 1
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
-  "tool": "Bash",
-  "elapsed_ms": 1154
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 5362 · 2026-05-23T11:09:37.477870+00:00_
+_source line 5318 · 2026-05-23T11:09:37.477870+00:00_
 
 called Bash
 
@@ -1982,7 +44,7 @@ called Bash
 
 ### Tool result
 
-_source line 5363 · 2026-05-23T11:09:38.583094+00:00_
+_source line 5319 · 2026-05-23T11:09:38.583094+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
 
@@ -2004,7 +66,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5364 · 2026-05-23T11:09:41.795752+00:00_
+_source line 5320 · 2026-05-23T11:09:41.795752+00:00_
 
 called Bash
 
@@ -2040,7 +102,7 @@ called Bash
 
 ### Tool result
 
-_source line 5365 · 2026-05-23T11:09:43.000661+00:00_
+_source line 5321 · 2026-05-23T11:09:43.000661+00:00_
 
 /type1/public/amsfonts/symbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/
 type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/za
@@ -2067,7 +129,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5366 · 2026-05-23T11:09:48.022410+00:00_
+_source line 5322 · 2026-05-23T11:09:48.022410+00:00_
 
 called Bash
 
@@ -2103,7 +165,7 @@ called Bash
 
 ### Tool result
 
-_source line 5367 · 2026-05-23T11:09:48.475059+00:00_
+_source line 5323 · 2026-05-23T11:09:48.475059+00:00_
 
 Page 8: first=[604] last=[682]
 Page 9: first=[683] last=[786]
@@ -2131,7 +193,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5368 · 2026-05-23T11:09:58.923115+00:00_
+_source line 5324 · 2026-05-23T11:09:58.923115+00:00_
 
 called Bash
 
@@ -2167,7 +229,7 @@ called Bash
 
 ### Tool result
 
-_source line 5369 · 2026-05-23T11:09:59.325769+00:00_
+_source line 5325 · 2026-05-23T11:09:59.325769+00:00_
 
 === Page 8 (last 30 lines) ===
 655
@@ -2252,7 +314,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5370 · 2026-05-23T11:11:02.575376+00:00_
+_source line 5326 · 2026-05-23T11:11:02.575376+00:00_
 
 called Edit
 
@@ -2292,7 +354,7 @@ called Edit
 
 ### Tool result
 
-_source line 5371 · 2026-05-23T11:11:02.626267+00:00_
+_source line 5327 · 2026-05-23T11:11:02.626267+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -2314,7 +376,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5372 · 2026-05-23T11:11:09.152942+00:00_
+_source line 5328 · 2026-05-23T11:11:09.152942+00:00_
 
 called Edit
 
@@ -2354,7 +416,7 @@ called Edit
 
 ### Tool result
 
-_source line 5373 · 2026-05-23T11:11:09.153727+00:00_
+_source line 5329 · 2026-05-23T11:11:09.153727+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -2376,7 +438,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5374 · 2026-05-23T11:11:18.341508+00:00_
+_source line 5330 · 2026-05-23T11:11:18.341508+00:00_
 
 called Edit
 
@@ -2416,7 +478,7 @@ called Edit
 
 ### Tool result
 
-_source line 5375 · 2026-05-23T11:11:18.342054+00:00_
+_source line 5331 · 2026-05-23T11:11:18.342054+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -2438,7 +500,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5376 · 2026-05-23T11:11:44.552812+00:00_
+_source line 5332 · 2026-05-23T11:11:44.552812+00:00_
 
 called Edit
 
@@ -2478,7 +540,7 @@ called Edit
 
 ### Tool result
 
-_source line 5377 · 2026-05-23T11:11:44.553381+00:00_
+_source line 5333 · 2026-05-23T11:11:44.553381+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -2500,7 +562,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5378 · 2026-05-23T11:11:56.347535+00:00_
+_source line 5334 · 2026-05-23T11:11:56.347535+00:00_
 
 called Edit
 
@@ -2540,7 +602,7 @@ called Edit
 
 ### Tool result
 
-_source line 5379 · 2026-05-23T11:11:56.399263+00:00_
+_source line 5335 · 2026-05-23T11:11:56.399263+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -2562,7 +624,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5380 · 2026-05-23T11:12:01.672200+00:00_
+_source line 5336 · 2026-05-23T11:12:01.672200+00:00_
 
 called Read
 
@@ -2600,7 +662,7 @@ called Read
 
 ### Tool result
 
-_source line 5381 · 2026-05-23T11:12:01.723394+00:00_
+_source line 5337 · 2026-05-23T11:12:01.723394+00:00_
 
 12	\begin{enumerate}
 13	\item \textbf{Multi-class bias taxonomy.} We derive bias expressions for seven canonical DAG topologies (Figure~\ref{fig:dag_taxonomy}) under $K$-class non-differential misclassification in linear structural equation models, prove sign preservation for confounding and collider, verify it numerically for mediation, M-bias, and front-door, and show that exposure and IV can produce sign reversal. Binarization amplifies the gap: collapsing $K{=}3$ to binary introduces additional bias varying 154$\times$ across topologies.\footnote{Computed as the ratio of maximum to minimum binarization-induced bias across seven topologies under $K{=}3$ Dirichlet$(1,1,1)$ confusion matrices; see Appendix~\ref{app:binarization}.}
@@ -2629,7 +691,7 @@ _source line 5381 · 2026-05-23T11:12:01.723394+00:00_
 
 ### Tool call
 
-_source line 5382 · 2026-05-23T11:12:11.261807+00:00_
+_source line 5338 · 2026-05-23T11:12:11.261807+00:00_
 
 called Edit
 
@@ -2669,7 +731,7 @@ called Edit
 
 ### Tool result
 
-_source line 5383 · 2026-05-23T11:12:11.312540+00:00_
+_source line 5339 · 2026-05-23T11:12:11.312540+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex has been updated successfully.
 
@@ -2691,7 +753,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5384 · 2026-05-23T11:12:19.243758+00:00_
+_source line 5340 · 2026-05-23T11:12:19.243758+00:00_
 
 called Bash
 
@@ -2727,7 +789,7 @@ called Bash
 
 ### Tool result
 
-_source line 5385 · 2026-05-23T11:12:20.801525+00:00_
+_source line 5341 · 2026-05-23T11:12:20.801525+00:00_
 
 Output written on main.pdf (31 pages, 920420 bytes).
 Page 8: first=[HumAID (K=10): Topology Determines Bias, Not637] last=[682]
@@ -2755,7 +817,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5386 · 2026-05-23T11:12:26.173183+00:00_
+_source line 5342 · 2026-05-23T11:12:26.173183+00:00_
 
 called Read
 
@@ -2791,7 +853,7 @@ called Read
 
 ### Tool result
 
-_source line 5387 · 2026-05-23T11:12:26.223909+00:00_
+_source line 5343 · 2026-05-23T11:12:26.223909+00:00_
 
 1	% Auto-generated from literature_map.yaml — all verified=true entries
 2	% Last sync: 2026-05-20
@@ -2817,7 +879,7 @@ _source line 5387 · 2026-05-23T11:12:26.223909+00:00_
 
 ### Tool call
 
-_source line 5388 · 2026-05-23T11:12:30.946739+00:00_
+_source line 5344 · 2026-05-23T11:12:30.946739+00:00_
 
 called Read
 
@@ -2855,7 +917,7 @@ called Read
 
 ### Tool result
 
-_source line 5389 · 2026-05-23T11:12:30.997802+00:00_
+_source line 5345 · 2026-05-23T11:12:30.997802+00:00_
 
 0	% Auto-generated from literature_map.yaml — all verified=true entries
 1	% Last sync: 2026-05-20
@@ -2929,7 +991,7 @@ _source line 5389 · 2026-05-23T11:12:30.997802+00:00_
 
 ### Tool call
 
-_source line 5390 · 2026-05-23T11:12:37.223804+00:00_
+_source line 5346 · 2026-05-23T11:12:37.223804+00:00_
 
 called Grep
 
@@ -2971,7 +1033,7 @@ called Grep
 
 ### Tool result
 
-_source line 5391 · 2026-05-23T11:12:37.274551+00:00_
+_source line 5347 · 2026-05-23T11:12:37.274551+00:00_
 
 507:@book{rosenbaum2002,
 508-  author    = {Rosenbaum, Paul R.},
@@ -3005,7 +1067,7 @@ _source line 5391 · 2026-05-23T11:12:37.274551+00:00_
 
 ### Tool call
 
-_source line 5392 · 2026-05-23T11:12:44.754500+00:00_
+_source line 5348 · 2026-05-23T11:12:44.754500+00:00_
 
 called Edit
 
@@ -3045,7 +1107,7 @@ called Edit
 
 ### Tool result
 
-_source line 5393 · 2026-05-23T11:12:44.805491+00:00_
+_source line 5349 · 2026-05-23T11:12:44.805491+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib has been updated successfully.
 
@@ -3067,7 +1129,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5394 · 2026-05-23T11:12:57.232039+00:00_
+_source line 5350 · 2026-05-23T11:12:57.232039+00:00_
 
 called Edit
 
@@ -3107,7 +1169,7 @@ called Edit
 
 ### Tool result
 
-_source line 5395 · 2026-05-23T11:12:57.232727+00:00_
+_source line 5351 · 2026-05-23T11:12:57.232727+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -3129,7 +1191,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5396 · 2026-05-23T11:13:12.981417+00:00_
+_source line 5352 · 2026-05-23T11:13:12.981417+00:00_
 
 called Edit
 
@@ -3169,7 +1231,7 @@ called Edit
 
 ### Tool result
 
-_source line 5397 · 2026-05-23T11:13:12.981994+00:00_
+_source line 5353 · 2026-05-23T11:13:12.981994+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -3191,7 +1253,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5398 · 2026-05-23T11:13:17.398502+00:00_
+_source line 5354 · 2026-05-23T11:13:17.398502+00:00_
 
 called Edit
 
@@ -3231,7 +1293,7 @@ called Edit
 
 ### Tool result
 
-_source line 5399 · 2026-05-23T11:13:17.449255+00:00_
+_source line 5355 · 2026-05-23T11:13:17.449255+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated. All occurrences were successfully replaced.
 
@@ -3253,7 +1315,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5400 · 2026-05-23T11:13:25.480200+00:00_
+_source line 5356 · 2026-05-23T11:13:25.480200+00:00_
 
 called Edit
 
@@ -3293,7 +1355,7 @@ called Edit
 
 ### Tool result
 
-_source line 5401 · 2026-05-23T11:13:25.480721+00:00_
+_source line 5357 · 2026-05-23T11:13:25.480721+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -3315,7 +1377,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5402 · 2026-05-23T11:13:32.714527+00:00_
+_source line 5358 · 2026-05-23T11:13:32.714527+00:00_
 
 called Grep
 
@@ -3357,7 +1419,7 @@ called Grep
 
 ### Tool result
 
-_source line 5403 · 2026-05-23T11:13:32.966050+00:00_
+_source line 5359 · 2026-05-23T11:13:32.966050+00:00_
 
 150:  {\operatorname{Var}(g(A))\bigl(\operatorname{Var}(g(A))-\operatorname{Var}(\mathbb{E}[g(A)\mid A^*])+\sigma_T^2\bigr)}
 151-  \;\in\;[0,1].
@@ -3403,7 +1465,7 @@ _source line 5403 · 2026-05-23T11:13:32.966050+00:00_
 
 ### Tool call
 
-_source line 5404 · 2026-05-23T11:13:45.817954+00:00_
+_source line 5360 · 2026-05-23T11:13:45.817954+00:00_
 
 called Read
 
@@ -3441,7 +1503,7 @@ called Read
 
 ### Tool result
 
-_source line 5405 · 2026-05-23T11:13:45.918889+00:00_
+_source line 5361 · 2026-05-23T11:13:45.918889+00:00_
 
 548	Define
 549	\begin{equation}
@@ -3482,7 +1544,7 @@ _source line 5405 · 2026-05-23T11:13:45.918889+00:00_
 
 ### Tool call
 
-_source line 5406 · 2026-05-23T11:13:49.684385+00:00_
+_source line 5362 · 2026-05-23T11:13:49.684385+00:00_
 
 called Read
 
@@ -3520,7 +1582,7 @@ called Read
 
 ### Tool result
 
-_source line 5407 · 2026-05-23T11:13:49.684913+00:00_
+_source line 5363 · 2026-05-23T11:13:49.684913+00:00_
 
 567	When $|\tau|>\bar{B}_{\mathrm{col}}$, the bias cannot overwhelm $\tau$.
 568	\end{proof}
@@ -3551,7 +1613,7 @@ _source line 5407 · 2026-05-23T11:13:49.684913+00:00_
 
 ### Tool call
 
-_source line 5408 · 2026-05-23T11:13:58.286464+00:00_
+_source line 5364 · 2026-05-23T11:13:58.286464+00:00_
 
 called Edit
 
@@ -3591,7 +1653,7 @@ called Edit
 
 ### Tool result
 
-_source line 5409 · 2026-05-23T11:13:58.305446+00:00_
+_source line 5365 · 2026-05-23T11:13:58.305446+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -3613,7 +1675,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5410 · 2026-05-23T11:14:02.417593+00:00_
+_source line 5366 · 2026-05-23T11:14:02.417593+00:00_
 
 called Read
 
@@ -3651,7 +1713,7 @@ called Read
 
 ### Tool result
 
-_source line 5411 · 2026-05-23T11:14:02.468155+00:00_
+_source line 5367 · 2026-05-23T11:14:02.468155+00:00_
 
 1167	\subsection{FWL Invariance Under Nonlinear Models}
 1168	\label{sec:fwl_nonlinear}
@@ -3677,7 +1739,7 @@ _source line 5411 · 2026-05-23T11:14:02.468155+00:00_
 
 ### Tool call
 
-_source line 5412 · 2026-05-23T11:14:07.187501+00:00_
+_source line 5368 · 2026-05-23T11:14:07.187501+00:00_
 
 called Grep
 
@@ -3719,7 +1781,7 @@ called Grep
 
 ### Tool result
 
-_source line 5413 · 2026-05-23T11:14:07.238143+00:00_
+_source line 5369 · 2026-05-23T11:14:07.238143+00:00_
 
 852:[Omitted long matching line]
 853-\label{alg:correction}
@@ -3753,7 +1815,7 @@ _source line 5413 · 2026-05-23T11:14:07.238143+00:00_
 
 ### Tool call
 
-_source line 5414 · 2026-05-23T11:14:11.205383+00:00_
+_source line 5370 · 2026-05-23T11:14:11.205383+00:00_
 
 called Read
 
@@ -3791,7 +1853,7 @@ called Read
 
 ### Tool result
 
-_source line 5415 · 2026-05-23T11:14:11.205981+00:00_
+_source line 5371 · 2026-05-23T11:14:11.205981+00:00_
 
 1018	\label{sec:logistic_dgp}
 1019	
@@ -3840,7 +1902,7 @@ _source line 5415 · 2026-05-23T11:14:11.205981+00:00_
 
 ### Tool call
 
-_source line 5416 · 2026-05-23T11:14:17.379366+00:00_
+_source line 5372 · 2026-05-23T11:14:17.379366+00:00_
 
 called Edit
 
@@ -3880,7 +1942,7 @@ called Edit
 
 ### Tool result
 
-_source line 5417 · 2026-05-23T11:14:17.380914+00:00_
+_source line 5373 · 2026-05-23T11:14:17.380914+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -3902,7 +1964,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5418 · 2026-05-23T11:14:26.015520+00:00_
+_source line 5374 · 2026-05-23T11:14:26.015520+00:00_
 
 called Edit
 
@@ -3942,7 +2004,7 @@ called Edit
 
 ### Tool result
 
-_source line 5419 · 2026-05-23T11:14:26.066878+00:00_
+_source line 5375 · 2026-05-23T11:14:26.066878+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -3964,7 +2026,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5420 · 2026-05-23T11:14:32.945546+00:00_
+_source line 5376 · 2026-05-23T11:14:32.945546+00:00_
 
 called Grep
 
@@ -4004,7 +2066,7 @@ called Grep
 
 ### Tool result
 
-_source line 5421 · 2026-05-23T11:14:33.046547+00:00_
+_source line 5377 · 2026-05-23T11:14:33.046547+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:91:ClinicalBERT validation (Appendix~\ref{app:case_study}) confirms FWL invariance in clinical NLP. PPI++ requires ${\geq}20\%$ gold labels for IV but harms M-bias ($-125\%$ RMSE at 5\% gold; Appendix~\ref{sec:ppi_gold_ratio}). ASV case studies show $3{\times}$ higher error tolerance for confounder vs.\ exposure (Appendix~\ref{sec:asv_case_study}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:1271:\label{sec:asv_case_study}
@@ -4028,7 +2090,7 @@ _source line 5421 · 2026-05-23T11:14:33.046547+00:00_
 
 ### Tool call
 
-_source line 5422 · 2026-05-23T11:14:44.593397+00:00_
+_source line 5378 · 2026-05-23T11:14:44.593397+00:00_
 
 called Bash
 
@@ -4064,7 +2126,7 @@ called Bash
 
 ### Tool result
 
-_source line 5423 · 2026-05-23T11:14:46.099537+00:00_
+_source line 5379 · 2026-05-23T11:14:46.099537+00:00_
 
 Output written on main.pdf (31 pages, 921582 bytes).
 Page 8: first=[HumAID (K=10): Topology Determines Bias, Not F1] last=[684]
@@ -4092,7 +2154,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5424 · 2026-05-23T11:14:53.234755+00:00_
+_source line 5380 · 2026-05-23T11:14:53.234755+00:00_
 
 called Bash
 
@@ -4128,7 +2190,7 @@ called Bash
 
 ### Tool result
 
-_source line 5425 · 2026-05-23T11:14:55.497416+00:00_
+_source line 5381 · 2026-05-23T11:14:55.497416+00:00_
 
 This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
 The top-level auxiliary file: main.aux
@@ -4156,7 +2218,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5426 · 2026-05-23T11:15:04.965394+00:00_
+_source line 5382 · 2026-05-23T11:15:04.965394+00:00_
 
 called Bash
 
@@ -4192,7 +2254,7 @@ called Bash
 
 ### Tool result
 
-_source line 5427 · 2026-05-23T11:15:05.418932+00:00_
+_source line 5383 · 2026-05-23T11:15:05.418932+00:00_
 
 Page 8: first=[HumAID (K=10): Topology Determines Bias, Not640] last=[687]
   >>> Conclusion
@@ -4220,7 +2282,7 @@ Page 9: first=[721] last=[791]
 
 ### Tool call
 
-_source line 5428 · 2026-05-23T11:15:12.297296+00:00_
+_source line 5384 · 2026-05-23T11:15:12.297296+00:00_
 
 called Read
 
@@ -4258,7 +2320,7 @@ called Read
 
 ### Tool result
 
-_source line 5429 · 2026-05-23T11:15:12.347954+00:00_
+_source line 5385 · 2026-05-23T11:15:12.347954+00:00_
 
 95	\begin{conjecture}[$\varepsilon$-approximate envelope monotonicity]
 96	\label{conj:monotone}
@@ -4294,7 +2356,7 @@ _source line 5429 · 2026-05-23T11:15:12.347954+00:00_
 
 ### Tool call
 
-_source line 5430 · 2026-05-23T11:15:16.465182+00:00_
+_source line 5386 · 2026-05-23T11:15:16.465182+00:00_
 
 called Read
 
@@ -4332,7 +2394,7 @@ called Read
 
 ### Tool result
 
-_source line 5431 · 2026-05-23T11:15:16.566547+00:00_
+_source line 5387 · 2026-05-23T11:15:16.566547+00:00_
 
 48	\subsection{ASV Framework Validation}
 49	\label{sec:asv_results}
@@ -4358,7 +2420,7 @@ _source line 5431 · 2026-05-23T11:15:16.566547+00:00_
 
 ### Tool call
 
-_source line 5432 · 2026-05-23T11:15:23.344222+00:00_
+_source line 5388 · 2026-05-23T11:15:23.344222+00:00_
 
 called Edit
 
@@ -4398,7 +2460,7 @@ called Edit
 
 ### Tool result
 
-_source line 5433 · 2026-05-23T11:15:23.344868+00:00_
+_source line 5389 · 2026-05-23T11:15:23.344868+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -4420,7 +2482,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5434 · 2026-05-23T11:15:27.762512+00:00_
+_source line 5390 · 2026-05-23T11:15:27.762512+00:00_
 
 called Read
 
@@ -4454,7 +2516,7 @@ called Read
 
 ### Tool result
 
-_source line 5435 · 2026-05-23T11:15:27.762935+00:00_
+_source line 5391 · 2026-05-23T11:15:27.762935+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal occurs in 2.1\% of exposure configurations, exclusively in secondary coefficients with small effect sizes; across all 23 empirical LLM configurations (mean diagonal 0.45--0.81), sign reversal is confined exclusively to exposure, though IV reaches 52.6\% under uniform Dirichlet priors. We introduce Annotation Sensitivity Values (ASVs), with proved monotonicity ($K{=}2$; Theorem~1) and approximate monotonicity supported by 210{,}000-matrix numerical evidence ($K{\geq}3$; Conjecture~1), yielding an approximate vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -4479,7 +2541,7 @@ _source line 5435 · 2026-05-23T11:15:27.762935+00:00_
 
 ### Tool call
 
-_source line 5436 · 2026-05-23T11:15:36.598143+00:00_
+_source line 5392 · 2026-05-23T11:15:36.598143+00:00_
 
 called Read
 
@@ -4517,7 +2579,7 @@ called Read
 
 ### Tool result
 
-_source line 5437 · 2026-05-23T11:15:36.899761+00:00_
+_source line 5393 · 2026-05-23T11:15:36.899761+00:00_
 
 86	\end{theorem}
 87	
@@ -4546,7 +2608,7 @@ _source line 5437 · 2026-05-23T11:15:36.899761+00:00_
 
 ### Tool call
 
-_source line 5438 · 2026-05-23T11:15:42.573722+00:00_
+_source line 5394 · 2026-05-23T11:15:42.573722+00:00_
 
 called Bash
 
@@ -4582,7 +2644,7 @@ called Bash
 
 ### Tool result
 
-_source line 5439 · 2026-05-23T11:15:43.728384+00:00_
+_source line 5395 · 2026-05-23T11:15:43.728384+00:00_
 
 Output written on main.pdf (31 pages, 921454 bytes).
 ---WARNINGS---
@@ -4608,7 +2670,7 @@ Output written on main.pdf (31 pages, 921454 bytes).
 
 ### Tool call
 
-_source line 5440 · 2026-05-23T11:15:54.071649+00:00_
+_source line 5396 · 2026-05-23T11:15:54.071649+00:00_
 
 called Bash
 
@@ -4644,7 +2706,7 @@ called Bash
 
 ### Tool result
 
-_source line 5441 · 2026-05-23T11:15:54.172818+00:00_
+_source line 5397 · 2026-05-23T11:15:54.172818+00:00_
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -4676,7 +2738,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5442 · 2026-05-23T11:16:02.545531+00:00_
+_source line 5398 · 2026-05-23T11:16:02.545531+00:00_
 
 called Bash
 
@@ -4712,7 +2774,7 @@ called Bash
 
 ### Tool result
 
-_source line 5443 · 2026-05-23T11:16:02.999246+00:00_
+_source line 5399 · 2026-05-23T11:16:02.999246+00:00_
 
 Total pages: 31
 Page 1: [Multi-Class Annotation Errors in Causal Inference:...] markers=['Introduction']
@@ -4745,7 +2807,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5444 · 2026-05-23T11:16:52.614018+00:00_
+_source line 5400 · 2026-05-23T11:16:52.614018+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -4781,7 +2843,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5445 · 2026-05-23T11:16:56.480546+00:00_
+_source line 5401 · 2026-05-23T11:16:56.480546+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -4803,7 +2865,7 @@ _source line 5445 · 2026-05-23T11:16:56.480546+00:00_
 
 ### Assistant
 
-_source line 5446 · 2026-05-23T11:17:03.581822+00:00_
+_source line 5402 · 2026-05-23T11:17:03.581822+00:00_
 
 R14 全部完成。
 
@@ -4832,7 +2894,7 @@ R14 全部完成。
 
 ### User
 
-_source line 5447 · 2026-05-23T12:04:18.185617+00:00_
+_source line 5403 · 2026-05-23T12:04:18.185617+00:00_
 
 [Director 指令] ## R15 审稿修复 — 全量 Action Matrix
 
@@ -4931,7 +2993,7 @@ EMNLP 限制 ≤200 words。修复 P0-2 后用 texcount 或手动计数确认字
 
 ### Tool call
 
-_source line 5448 · 2026-05-23T12:04:30.035413+00:00_
+_source line 5404 · 2026-05-23T12:04:30.035413+00:00_
 
 called Read
 
@@ -4969,7 +3031,7 @@ called Read
 
 ### Tool result
 
-_source line 5449 · 2026-05-23T12:04:30.889125+00:00_
+_source line 5405 · 2026-05-23T12:04:30.889125+00:00_
 
 88	The proof (Appendix~\ref{app:monotonicity_proof},~\ref{par:med_monotone}) exploits perspective function convexity; $(C_0)_{jj}{\geq}\tfrac{1}{2}$ excludes degenerate matrices. Proportional effects ($f = \lambda g$) holds when a single latent factor drives both paths---a natural assumption in CSS annotation tasks, where a single quality dimension typically governs both the treatment--covariate and mediator--outcome relationships. Under NLP-realistic DGP conditions, the out-of-bound rate drops to 0.07\% with zero sign failures (Table~\ref{tab:proportional_effects}); even under non-proportional effects with 23 real LLM matrices, sign preservation remains ${\geq}97.3$\% (Table~\ref{tab:proportional_empirical}). Failures concentrate in extreme asymmetric DGPs (Sparse: 24.2\% OOB) unlikely in balanced NLP classification. When $\lambda(C) \notin [0,1]$, Proposition~\ref{prop:conf_gen} provides a complementary bound ($|\tau| > \bar{B}$).
 89	
@@ -5006,7 +3068,7 @@ _source line 5449 · 2026-05-23T12:04:30.889125+00:00_
 
 ### Tool call
 
-_source line 5450 · 2026-05-23T12:04:30.889646+00:00_
+_source line 5406 · 2026-05-23T12:04:30.889646+00:00_
 
 called Read
 
@@ -5040,7 +3102,7 @@ called Read
 
 ### Tool result
 
-_source line 5451 · 2026-05-23T12:04:31.391839+00:00_
+_source line 5407 · 2026-05-23T12:04:31.391839+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal occurs in 2.1\% of exposure configurations, exclusively in secondary coefficients with small effect sizes; across all 23 empirical LLM configurations (mean diagonal 0.45--0.81), sign reversal is confined exclusively to exposure, though IV reaches 52.6\% under uniform Dirichlet priors. We introduce Annotation Sensitivity Values (ASVs), with proved monotonicity ($K{=}2$; Theorem~1) and approximate monotonicity supported by 210{,}000-matrix numerical evidence ($K{\geq}3$; Conjecture~1), yielding an approximate vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -5065,7 +3127,7 @@ _source line 5451 · 2026-05-23T12:04:31.391839+00:00_
 
 ### Tool call
 
-_source line 5452 · 2026-05-23T12:04:32.497389+00:00_
+_source line 5408 · 2026-05-23T12:04:32.497389+00:00_
 
 called Grep
 
@@ -5107,7 +3169,7 @@ called Grep
 
 ### Tool result
 
-_source line 5453 · 2026-05-23T12:04:32.620456+00:00_
+_source line 5409 · 2026-05-23T12:04:32.620456+00:00_
 
 296-The proof requires $V_B'(1)\leq 0$, which is guaranteed for $K{=}2$ when $(C_0)_{jj}\geq\tfrac{1}{2}$ (Step~4).
 297-For $K\geq 3$, $V_B'(1)\leq 0$ holds for all $g$ and $p$ if and only if a certain matrix $M-W$ (depending on $C_0$ and $p$) is negative semi-definite; simple diagonal thresholds are sufficient in practice but not universal.
@@ -5157,7 +3219,7 @@ _source line 5453 · 2026-05-23T12:04:32.620456+00:00_
 
 ### Tool call
 
-_source line 5454 · 2026-05-23T12:04:49.622402+00:00_
+_source line 5410 · 2026-05-23T12:04:49.622402+00:00_
 
 called Read
 
@@ -5195,7 +3257,7 @@ called Read
 
 ### Tool result
 
-_source line 5455 · 2026-05-23T12:04:49.723284+00:00_
+_source line 5411 · 2026-05-23T12:04:49.723284+00:00_
 
 1093	\subsection{Extended Conjecture Verification}
 1094	\label{sec:conjecture_verify}
@@ -5243,7 +3305,7 @@ _source line 5455 · 2026-05-23T12:04:49.723284+00:00_
 
 ### Tool call
 
-_source line 5456 · 2026-05-23T12:05:01.211557+00:00_
+_source line 5412 · 2026-05-23T12:05:01.211557+00:00_
 
 called Edit
 
@@ -5283,7 +3345,7 @@ called Edit
 
 ### Tool result
 
-_source line 5457 · 2026-05-23T12:05:01.262469+00:00_
+_source line 5413 · 2026-05-23T12:05:01.262469+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -5305,7 +3367,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5458 · 2026-05-23T12:05:09.450375+00:00_
+_source line 5414 · 2026-05-23T12:05:09.450375+00:00_
 
 called Edit
 
@@ -5345,7 +3407,7 @@ called Edit
 
 ### Tool result
 
-_source line 5459 · 2026-05-23T12:05:09.752870+00:00_
+_source line 5415 · 2026-05-23T12:05:09.752870+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -5367,7 +3429,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5460 · 2026-05-23T12:05:16.128994+00:00_
+_source line 5416 · 2026-05-23T12:05:16.128994+00:00_
 
 called Edit
 
@@ -5407,7 +3469,7 @@ called Edit
 
 ### Tool result
 
-_source line 5461 · 2026-05-23T12:05:16.179714+00:00_
+_source line 5417 · 2026-05-23T12:05:16.179714+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex has been updated successfully.
 
@@ -5429,7 +3491,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5462 · 2026-05-23T12:05:25.169803+00:00_
+_source line 5418 · 2026-05-23T12:05:25.169803+00:00_
 
 called Bash
 
@@ -5465,7 +3527,7 @@ called Bash
 
 ### Tool result
 
-_source line 5463 · 2026-05-23T12:05:25.472105+00:00_
+_source line 5419 · 2026-05-23T12:05:25.472105+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -5509,7 +3571,7 @@ re.PatternError: bad escape \e at position 19
 
 ### Tool call
 
-_source line 5464 · 2026-05-23T12:05:30.595396+00:00_
+_source line 5420 · 2026-05-23T12:05:30.595396+00:00_
 
 called Bash
 
@@ -5545,7 +3607,7 @@ called Bash
 
 ### Tool result
 
-_source line 5465 · 2026-05-23T12:05:30.747508+00:00_
+_source line 5421 · 2026-05-23T12:05:30.747508+00:00_
 
 Word count: 209
 Words: Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates ...
@@ -5569,7 +3631,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5466 · 2026-05-23T12:05:38.382819+00:00_
+_source line 5422 · 2026-05-23T12:05:38.382819+00:00_
 
 called Edit
 
@@ -5609,7 +3671,7 @@ called Edit
 
 ### Tool result
 
-_source line 5467 · 2026-05-23T12:05:38.434415+00:00_
+_source line 5423 · 2026-05-23T12:05:38.434415+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex has been updated successfully.
 
@@ -5631,7 +3693,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5468 · 2026-05-23T12:05:42.852254+00:00_
+_source line 5424 · 2026-05-23T12:05:42.852254+00:00_
 
 called Edit
 
@@ -5671,7 +3733,7 @@ called Edit
 
 ### Tool result
 
-_source line 5469 · 2026-05-23T12:05:42.953109+00:00_
+_source line 5425 · 2026-05-23T12:05:42.953109+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex has been updated successfully.
 
@@ -5693,7 +3755,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5470 · 2026-05-23T12:05:47.622641+00:00_
+_source line 5426 · 2026-05-23T12:05:47.622641+00:00_
 
 called Bash
 
@@ -5729,7 +3791,7 @@ called Bash
 
 ### Tool result
 
-_source line 5471 · 2026-05-23T12:05:47.723530+00:00_
+_source line 5427 · 2026-05-23T12:05:47.723530+00:00_
 
 Word count: 196
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -5752,7 +3814,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5472 · 2026-05-23T12:05:54.055433+00:00_
+_source line 5428 · 2026-05-23T12:05:54.055433+00:00_
 
 called Read
 
@@ -5790,7 +3852,7 @@ called Read
 
 ### Tool result
 
-_source line 5473 · 2026-05-23T12:05:54.256463+00:00_
+_source line 5429 · 2026-05-23T12:05:54.256463+00:00_
 
 26	\begin{table}[t]
 27	\centering
@@ -5829,7 +3891,7 @@ _source line 5473 · 2026-05-23T12:05:54.256463+00:00_
 
 ### Tool call
 
-_source line 5474 · 2026-05-23T12:06:02.207747+00:00_
+_source line 5430 · 2026-05-23T12:06:02.207747+00:00_
 
 called Edit
 
@@ -5869,7 +3931,7 @@ called Edit
 
 ### Tool result
 
-_source line 5475 · 2026-05-23T12:06:02.259415+00:00_
+_source line 5431 · 2026-05-23T12:06:02.259415+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -5891,7 +3953,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5476 · 2026-05-23T12:06:12.808378+00:00_
+_source line 5432 · 2026-05-23T12:06:12.808378+00:00_
 
 called Edit
 
@@ -5931,7 +3993,7 @@ called Edit
 
 ### Tool result
 
-_source line 5477 · 2026-05-23T12:06:12.859224+00:00_
+_source line 5433 · 2026-05-23T12:06:12.859224+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -5953,7 +4015,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5478 · 2026-05-23T12:06:19.435027+00:00_
+_source line 5434 · 2026-05-23T12:06:19.435027+00:00_
 
 called Edit
 
@@ -5993,7 +4055,7 @@ called Edit
 
 ### Tool result
 
-_source line 5479 · 2026-05-23T12:06:19.435854+00:00_
+_source line 5435 · 2026-05-23T12:06:19.435854+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -6015,7 +4077,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5480 · 2026-05-23T12:06:29.325228+00:00_
+_source line 5436 · 2026-05-23T12:06:29.325228+00:00_
 
 called Grep
 
@@ -6055,7 +4117,7 @@ called Grep
 
 ### Tool result
 
-_source line 5481 · 2026-05-23T12:06:29.426054+00:00_
+_source line 5437 · 2026-05-23T12:06:29.426054+00:00_
 
 1109:Collider    & 8683 & 7669 & 7570 & 0.005 & non-inc \\
 1121:[Omitted long matching line]
@@ -6079,7 +4141,7 @@ _source line 5481 · 2026-05-23T12:06:29.426054+00:00_
 
 ### Tool call
 
-_source line 5482 · 2026-05-23T12:06:36.759496+00:00_
+_source line 5438 · 2026-05-23T12:06:36.759496+00:00_
 
 called Bash
 
@@ -6115,7 +4177,7 @@ called Bash
 
 ### Tool result
 
-_source line 5483 · 2026-05-23T12:06:40.172704+00:00_
+_source line 5439 · 2026-05-23T12:06:40.172704+00:00_
 
 Output written on main.pdf (31 pages, 922040 bytes).
 The top-level auxiliary file: main.aux
@@ -6143,7 +4205,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5484 · 2026-05-23T12:06:48.205534+00:00_
+_source line 5440 · 2026-05-23T12:06:48.205534+00:00_
 
 called Bash
 
@@ -6179,7 +4241,7 @@ called Bash
 
 ### Tool result
 
-_source line 5485 · 2026-05-23T12:06:48.256289+00:00_
+_source line 5441 · 2026-05-23T12:06:48.256289+00:00_
 
 Exit code 1
 === Errors ===
@@ -6203,7 +4265,7 @@ Exit code 1
 
 ### Tool call
 
-_source line 5486 · 2026-05-23T12:06:54.631755+00:00_
+_source line 5442 · 2026-05-23T12:06:54.631755+00:00_
 
 called Bash
 
@@ -6239,7 +4301,7 @@ called Bash
 
 ### Tool result
 
-_source line 5487 · 2026-05-23T12:06:55.083915+00:00_
+_source line 5443 · 2026-05-23T12:06:55.083915+00:00_
 
 0
 Page 8: first=[HumAID (K=10): Topology Determines Bias, Not F1] last=[683]
@@ -6267,7 +4329,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5488 · 2026-05-23T12:07:05.780973+00:00_
+_source line 5444 · 2026-05-23T12:07:05.780973+00:00_
 
 called Bash
 
@@ -6303,7 +4365,7 @@ called Bash
 
 ### Tool result
 
-_source line 5489 · 2026-05-23T12:07:06.183640+00:00_
+_source line 5445 · 2026-05-23T12:07:06.183640+00:00_
 
 === Conclusion on page 8 (after marker) ===
 Conclusion
@@ -6380,7 +4442,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5490 · 2026-05-23T12:07:29.650435+00:00_
+_source line 5446 · 2026-05-23T12:07:29.650435+00:00_
 
 called Edit
 
@@ -6420,7 +4482,7 @@ called Edit
 
 ### Tool result
 
-_source line 5491 · 2026-05-23T12:07:29.751386+00:00_
+_source line 5447 · 2026-05-23T12:07:29.751386+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -6442,7 +4504,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5492 · 2026-05-23T12:07:36.943232+00:00_
+_source line 5448 · 2026-05-23T12:07:36.943232+00:00_
 
 called Edit
 
@@ -6482,7 +4544,7 @@ called Edit
 
 ### Tool result
 
-_source line 5493 · 2026-05-23T12:07:37.044232+00:00_
+_source line 5449 · 2026-05-23T12:07:37.044232+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -6504,7 +4566,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5494 · 2026-05-23T12:07:44.577075+00:00_
+_source line 5450 · 2026-05-23T12:07:44.577075+00:00_
 
 called Bash
 
@@ -6540,7 +4602,7 @@ called Bash
 
 ### Tool result
 
-_source line 5495 · 2026-05-23T12:07:46.133368+00:00_
+_source line 5451 · 2026-05-23T12:07:46.133368+00:00_
 
 Output written on main.pdf (31 pages, 921568 bytes).
 Page 8 has: Conclusion
@@ -6566,7 +4628,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5496 · 2026-05-23T12:07:54.725952+00:00_
+_source line 5452 · 2026-05-23T12:07:54.725952+00:00_
 
 called Bash
 
@@ -6602,7 +4664,7 @@ called Bash
 
 ### Tool result
 
-_source line 5497 · 2026-05-23T12:07:55.278925+00:00_
+_source line 5453 · 2026-05-23T12:07:55.278925+00:00_
 
 === Page 8 last 20 lines ===
 '665'
@@ -6662,7 +4724,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5498 · 2026-05-23T12:08:02.336953+00:00_
+_source line 5454 · 2026-05-23T12:08:02.336953+00:00_
 
 called Bash
 
@@ -6698,7 +4760,7 @@ called Bash
 
 ### Tool result
 
-_source line 5499 · 2026-05-23T12:08:02.790004+00:00_
+_source line 5455 · 2026-05-23T12:08:02.790004+00:00_
 
 === After Conclusion on page 8 ===
 Conclusion
@@ -6774,7 +4836,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5500 · 2026-05-23T12:08:11.730362+00:00_
+_source line 5456 · 2026-05-23T12:08:11.730362+00:00_
 
 called Read
 
@@ -6808,7 +4870,7 @@ called Read
 
 ### Tool result
 
-_source line 5501 · 2026-05-23T12:08:11.730952+00:00_
+_source line 5457 · 2026-05-23T12:08:11.730952+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal occurs in 2.1\% of exposure configurations, in secondary coefficients with small effect sizes; across all 23 empirical LLM configurations (mean diagonal 0.45--0.81), sign reversal is confined exclusively to exposure, though IV reaches 52.6\% under uniform Dirichlet priors. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$) and numerically verified ($K{\geq}3$) monotonicity, yielding a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -6833,7 +4895,7 @@ _source line 5501 · 2026-05-23T12:08:11.730952+00:00_
 
 ### Tool call
 
-_source line 5502 · 2026-05-23T12:08:37.662911+00:00_
+_source line 5458 · 2026-05-23T12:08:37.662911+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -6869,7 +4931,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5503 · 2026-05-23T12:08:41.530655+00:00_
+_source line 5459 · 2026-05-23T12:08:41.530655+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -6891,7 +4953,7 @@ _source line 5503 · 2026-05-23T12:08:41.530655+00:00_
 
 ### Assistant
 
-_source line 5504 · 2026-05-23T12:08:49.002892+00:00_
+_source line 5460 · 2026-05-23T12:08:49.002892+00:00_
 
 R15 全部完成。
 
@@ -6924,7 +4986,7 @@ R15 全部完成。
 
 ### User
 
-_source line 5505 · 2026-05-23T12:08:49.534805+00:00_
+_source line 5461 · 2026-05-23T12:08:49.534805+00:00_
 
 [Director 指令] ## R15 第二批修复 — Should-Fix 补充 + Minor
 
@@ -6989,7 +5051,7 @@ Seven canonical DAG topologies showing the starred-node convention~\cite{hernan_
 
 ### Tool call
 
-_source line 5506 · 2026-05-23T12:08:57.622703+00:00_
+_source line 5462 · 2026-05-23T12:08:57.622703+00:00_
 
 called Read
 
@@ -7027,7 +5089,7 @@ called Read
 
 ### Tool result
 
-_source line 5507 · 2026-05-23T12:08:58.124986+00:00_
+_source line 5463 · 2026-05-23T12:08:58.124986+00:00_
 
 73	\subsection{Annotation Sensitivity Values}
 74	\label{sec:asv}
@@ -7056,7 +5118,7 @@ _source line 5507 · 2026-05-23T12:08:58.124986+00:00_
 
 ### Tool call
 
-_source line 5508 · 2026-05-23T12:08:58.125409+00:00_
+_source line 5464 · 2026-05-23T12:08:58.125409+00:00_
 
 called Read
 
@@ -7094,7 +5156,7 @@ called Read
 
 ### Tool result
 
-_source line 5509 · 2026-05-23T12:08:58.627527+00:00_
+_source line 5465 · 2026-05-23T12:08:58.627527+00:00_
 
 10	We address these gaps with three contributions:
 11	
@@ -7125,7 +5187,7 @@ _source line 5509 · 2026-05-23T12:08:58.627527+00:00_
 
 ### Tool call
 
-_source line 5510 · 2026-05-23T12:08:59.097352+00:00_
+_source line 5466 · 2026-05-23T12:08:59.097352+00:00_
 
 called Read
 
@@ -7163,7 +5225,7 @@ called Read
 
 ### Tool result
 
-_source line 5511 · 2026-05-23T12:08:59.460424+00:00_
+_source line 5467 · 2026-05-23T12:08:59.460424+00:00_
 
 37	
 38	\begin{figure*}[t]
@@ -7192,7 +5254,7 @@ _source line 5511 · 2026-05-23T12:08:59.460424+00:00_
 
 ### Tool call
 
-_source line 5512 · 2026-05-23T12:08:59.475621+00:00_
+_source line 5468 · 2026-05-23T12:08:59.475621+00:00_
 
 called Read
 
@@ -7226,7 +5288,7 @@ called Read
 
 ### Tool result
 
-_source line 5513 · 2026-05-23T12:08:59.476051+00:00_
+_source line 5469 · 2026-05-23T12:08:59.476051+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -7256,7 +5318,7 @@ _source line 5513 · 2026-05-23T12:08:59.476051+00:00_
 
 ### Tool call
 
-_source line 5514 · 2026-05-23T12:11:17.260009+00:00_
+_source line 5470 · 2026-05-23T12:11:17.260009+00:00_
 
 called Read
 
@@ -7294,7 +5356,7 @@ called Read
 
 ### Tool result
 
-_source line 5515 · 2026-05-23T12:11:17.762740+00:00_
+_source line 5471 · 2026-05-23T12:11:17.762740+00:00_
 
 70	\paragraph{Numerical Verification 1: Non-exposure sign preservation.}
 71	Sign preservation holds under topology-specific conditions (mediation: $\operatorname{sign}(\tau_{\mathrm{dir}}) {=} \operatorname{sign}(\tau_{\mathrm{total}})$; front-door: $\operatorname{sign}(\lambda\alpha_U) {=} \operatorname{sign}(\lambda\alpha_U {+} \operatorname{Cov}(T,f(A)))$; M-bias: attenuating for all $C$). Verified across 100{,}000 random matrices with zero violations (Table~\ref{tab:sign_conditions}, Appendix~\ref{app:conditions}); analytic proofs for general $K$ remain open. Since these conditions involve true DGP parameters, the ASV framework (§\ref{sec:asv}) provides a complementary assessment.
@@ -7328,7 +5390,7 @@ _source line 5515 · 2026-05-23T12:11:17.762740+00:00_
 
 ### Tool call
 
-_source line 5516 · 2026-05-23T12:11:18.265291+00:00_
+_source line 5472 · 2026-05-23T12:11:18.265291+00:00_
 
 called Read
 
@@ -7366,7 +5428,7 @@ called Read
 
 ### Tool result
 
-_source line 5517 · 2026-05-23T12:11:18.767883+00:00_
+_source line 5473 · 2026-05-23T12:11:18.767883+00:00_
 
 10	We address these gaps with three contributions:
 11	
@@ -7397,7 +5459,7 @@ _source line 5517 · 2026-05-23T12:11:18.767883+00:00_
 
 ### Tool call
 
-_source line 5518 · 2026-05-23T12:11:18.768310+00:00_
+_source line 5474 · 2026-05-23T12:11:18.768310+00:00_
 
 called Read
 
@@ -7435,7 +5497,7 @@ called Read
 
 ### Tool result
 
-_source line 5519 · 2026-05-23T12:11:19.270739+00:00_
+_source line 5475 · 2026-05-23T12:11:19.270739+00:00_
 
 38	\begin{figure*}[t]
 39	\centering
@@ -7466,7 +5528,7 @@ _source line 5519 · 2026-05-23T12:11:19.270739+00:00_
 
 ### Tool call
 
-_source line 5520 · 2026-05-23T12:11:19.271096+00:00_
+_source line 5476 · 2026-05-23T12:11:19.271096+00:00_
 
 called Read
 
@@ -7500,7 +5562,7 @@ called Read
 
 ### Tool result
 
-_source line 5521 · 2026-05-23T12:11:19.371996+00:00_
+_source line 5477 · 2026-05-23T12:11:19.371996+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -7522,7 +5584,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 5522 · 2026-05-23T12:11:28.257770+00:00_
+_source line 5478 · 2026-05-23T12:11:28.257770+00:00_
 
 called Edit
 
@@ -7562,7 +5624,7 @@ called Edit
 
 ### Tool result
 
-_source line 5523 · 2026-05-23T12:11:28.308647+00:00_
+_source line 5479 · 2026-05-23T12:11:28.308647+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -7584,7 +5646,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5524 · 2026-05-23T12:11:30.768439+00:00_
+_source line 5480 · 2026-05-23T12:11:30.768439+00:00_
 
 called Edit
 
@@ -7624,7 +5686,7 @@ called Edit
 
 ### Tool result
 
-_source line 5525 · 2026-05-23T12:11:31.070001+00:00_
+_source line 5481 · 2026-05-23T12:11:31.070001+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex has been updated successfully.
 
@@ -7646,7 +5708,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5526 · 2026-05-23T12:11:33.984441+00:00_
+_source line 5482 · 2026-05-23T12:11:33.984441+00:00_
 
 called Edit
 
@@ -7686,7 +5748,7 @@ called Edit
 
 ### Tool result
 
-_source line 5527 · 2026-05-23T12:11:34.437271+00:00_
+_source line 5483 · 2026-05-23T12:11:34.437271+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex has been updated successfully.
 
@@ -7708,7 +5770,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5528 · 2026-05-23T12:11:36.547367+00:00_
+_source line 5484 · 2026-05-23T12:11:36.547367+00:00_
 
 called Edit
 
@@ -7748,7 +5810,7 @@ called Edit
 
 ### Tool result
 
-_source line 5529 · 2026-05-23T12:11:36.597990+00:00_
+_source line 5485 · 2026-05-23T12:11:36.597990+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex has been updated successfully.
 
@@ -7770,7 +5832,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5530 · 2026-05-23T12:11:39.861799+00:00_
+_source line 5486 · 2026-05-23T12:11:39.861799+00:00_
 
 called Edit
 
@@ -7810,7 +5872,7 @@ called Edit
 
 ### Tool result
 
-_source line 5531 · 2026-05-23T12:11:39.912611+00:00_
+_source line 5487 · 2026-05-23T12:11:39.912611+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -7832,7 +5894,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5532 · 2026-05-23T12:11:45.284742+00:00_
+_source line 5488 · 2026-05-23T12:11:45.284742+00:00_
 
 called Grep
 
@@ -7870,7 +5932,7 @@ called Grep
 
 ### Tool result
 
-_source line 5533 · 2026-05-23T12:11:45.385511+00:00_
+_source line 5489 · 2026-05-23T12:11:45.385511+00:00_
 
 89:@article{hernan_cole2009,
 
@@ -7892,7 +5954,7 @@ _source line 5533 · 2026-05-23T12:11:45.385511+00:00_
 
 ### Tool call
 
-_source line 5534 · 2026-05-23T12:11:50.205376+00:00_
+_source line 5490 · 2026-05-23T12:11:50.205376+00:00_
 
 called Bash
 
@@ -7928,7 +5990,7 @@ called Bash
 
 ### Tool result
 
-_source line 5535 · 2026-05-23T12:11:53.316415+00:00_
+_source line 5491 · 2026-05-23T12:11:53.316415+00:00_
 
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>&lt;/usr/share/texlive/texmf-dis
@@ -7979,7 +6041,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5536 · 2026-05-23T12:12:02.817058+00:00_
+_source line 5492 · 2026-05-23T12:12:02.817058+00:00_
 
 called Bash
 
@@ -8015,7 +6077,7 @@ called Bash
 
 ### Tool result
 
-_source line 5537 · 2026-05-23T12:12:03.030835+00:00_
+_source line 5493 · 2026-05-23T12:12:03.030835+00:00_
 
 19
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -8038,7 +6100,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5538 · 2026-05-23T12:12:06.389503+00:00_
+_source line 5494 · 2026-05-23T12:12:06.389503+00:00_
 
 called Bash
 
@@ -8074,7 +6136,7 @@ called Bash
 
 ### Tool result
 
-_source line 5539 · 2026-05-23T12:12:06.440252+00:00_
+_source line 5495 · 2026-05-23T12:12:06.440252+00:00_
 
 (Bash completed with no output)
 
@@ -8096,7 +6158,7 @@ _source line 5539 · 2026-05-23T12:12:06.440252+00:00_
 
 ### Tool call
 
-_source line 5540 · 2026-05-23T12:12:17.585416+00:00_
+_source line 5496 · 2026-05-23T12:12:17.585416+00:00_
 
 called Bash
 
@@ -8132,7 +6194,7 @@ called Bash
 
 ### Tool result
 
-_source line 5541 · 2026-05-23T12:12:18.037703+00:00_
+_source line 5497 · 2026-05-23T12:12:18.037703+00:00_
 
 References starts at page 9
 Total pages: 32
@@ -8156,7 +6218,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5542 · 2026-05-23T12:12:31.189145+00:00_
+_source line 5498 · 2026-05-23T12:12:31.189145+00:00_
 
 called Bash
 
@@ -8192,7 +6254,7 @@ called Bash
 
 ### Tool result
 
-_source line 5543 · 2026-05-23T12:12:31.591232+00:00_
+_source line 5499 · 2026-05-23T12:12:31.591232+00:00_
 
 Limitations starts at page 9
 Conclusion starts at page 8
@@ -8216,7 +6278,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5544 · 2026-05-23T12:12:37.314757+00:00_
+_source line 5500 · 2026-05-23T12:12:37.314757+00:00_
 
 called Read
 
@@ -8254,7 +6316,7 @@ called Read
 
 ### Tool result
 
-_source line 5545 · 2026-05-23T12:12:37.766848+00:00_
+_source line 5501 · 2026-05-23T12:12:37.766848+00:00_
 
 75	
 76	How much annotation error can a study tolerate before conclusions change? We adapt the sensitivity analysis paradigm---E-values~\cite{vanderweele_ding2017} (the minimum confounding strength needed to explain away an observed effect), partial-$R^2$ bounds~\cite{cinelli2020making}---to $K{\times}K$ annotation error, defining Annotation Sensitivity Values (ASVs). Our approach: (1)~prove $\varepsilon$-approximate monotonicity along a 1D path $C(\delta)$ (Theorem~\ref{thm:monotone}), reducing the $K^2$-dimensional problem to a scalar threshold; (2)~define three ASV diagnostics addressing topology-dependent failure modes; (3)~combine ASVs with FWL invariance to route practitioners to topology-appropriate corrections.
@@ -8278,7 +6340,7 @@ _source line 5545 · 2026-05-23T12:12:37.766848+00:00_
 
 ### Tool call
 
-_source line 5546 · 2026-05-23T12:12:38.269496+00:00_
+_source line 5502 · 2026-05-23T12:12:38.269496+00:00_
 
 called Read
 
@@ -8316,7 +6378,7 @@ called Read
 
 ### Tool result
 
-_source line 5547 · 2026-05-23T12:12:38.721868+00:00_
+_source line 5503 · 2026-05-23T12:12:38.721868+00:00_
 
 12	\begin{enumerate}
 13	\item \textbf{Multi-class bias taxonomy.} We derive bias expressions for seven canonical DAG topologies\footnote{These span the four structural roles of the annotated variable: treatment (exposure), outcome-side covariate (confounding, mediation, M-bias, front-door), selection variable (collider), and instrument (IV).} (Figure~\ref{fig:dag_taxonomy}) under $K$-class non-differential misclassification in linear structural equation models, prove sign preservation for confounding and collider, verify it numerically for mediation, M-bias, and front-door, and show that exposure and IV can produce sign reversal. Binarization amplifies the gap: collapsing $K{=}3$ to binary introduces additional bias varying $154{\times}$ across topologies (Appendix~\ref{app:binarization}).
@@ -8345,7 +6407,7 @@ _source line 5547 · 2026-05-23T12:12:38.721868+00:00_
 
 ### Tool call
 
-_source line 5548 · 2026-05-23T12:12:39.174046+00:00_
+_source line 5504 · 2026-05-23T12:12:39.174046+00:00_
 
 called Read
 
@@ -8383,7 +6445,7 @@ called Read
 
 ### Tool result
 
-_source line 5549 · 2026-05-23T12:12:39.676473+00:00_
+_source line 5505 · 2026-05-23T12:12:39.676473+00:00_
 
 41	\vspace{-6pt}
 42	\caption{Seven canonical DAG topologies with starred-node annotation~\cite{hernan_cole2009}. $A$ (latent) $\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}
@@ -8407,7 +6469,7 @@ _source line 5549 · 2026-05-23T12:12:39.676473+00:00_
 
 ### Tool call
 
-_source line 5550 · 2026-05-23T12:12:39.777290+00:00_
+_source line 5506 · 2026-05-23T12:12:39.777290+00:00_
 
 called Read
 
@@ -8445,7 +6507,7 @@ called Read
 
 ### Tool result
 
-_source line 5551 · 2026-05-23T12:12:39.828347+00:00_
+_source line 5507 · 2026-05-23T12:12:39.828347+00:00_
 
 7	
 8	Our framework assumes non-differential misclassification ($P(A^*|A, Y, \mathbf{Z}) = P(A^*|A)$), which holds when the LLM does not observe $Y$ but may be violated when it accesses $Y$-correlated information; a stress test (Appendix~\ref{sec:nondiff_stress}) shows that structured violation patterns can exceed or fall below uniform predictions. Closed-form expressions are derived under $K{=}3$ linear structural equations; extensions to arbitrary $K$ and nonlinear models~\cite{schennach2020mismeasured} remain open (Appendix~\ref{sec:logistic_dgp}), though correction method rankings are stable across $K{=}3,5,10$ (Spearman $\rho \geq 0.80$, with PPI++ degrading at $K{=}10$; Appendix~\ref{sec:correction_k_sensitivity}). The ASV diagonal parameterization $C(\delta) = (1{-}\delta)I + \delta C_0$ assumes uniform degradation across categories; rare-class-specific degradation would require multi-dimensional extensions. Algorithm~1 thresholds are calibrated under our default DGP; practitioners should re-calibrate under domain-specific structural parameters. When the true DAG is uncertain, practitioners can apply Algorithm~1 under each candidate topology and report the range of conclusions as a form of specification sensitivity analysis. FWL invariance holds under linear OLS and approximately under logistic regression; applicability to non-parametric methods (doubly robust estimators, TMLE) remains unverified. Our framework assumes $C$ is known or estimable from held-out gold-standard labels; obtaining accurate $C$ itself requires gold annotations, a bootstrapping constraint mitigated by cross-validation or expert subset labeling. Our 23 configurations span four open-weight LLMs (7B--235B) with diagonal accuracy 0.45--0.81; commercial models and ordinal tasks remain untested.
@@ -8469,7 +6531,7 @@ _source line 5551 · 2026-05-23T12:12:39.828347+00:00_
 
 ### Tool call
 
-_source line 5552 · 2026-05-23T12:12:44.447363+00:00_
+_source line 5508 · 2026-05-23T12:12:44.447363+00:00_
 
 called ToolSearch
 
@@ -8505,7 +6567,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5553 · 2026-05-23T12:12:44.498060+00:00_
+_source line 5509 · 2026-05-23T12:12:44.498060+00:00_
 
 
 
@@ -8527,7 +6589,7 @@ _source line 5553 · 2026-05-23T12:12:44.498060+00:00_
 
 ### Tool call
 
-_source line 5554 · 2026-05-23T12:13:04.868397+00:00_
+_source line 5510 · 2026-05-23T12:13:04.868397+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -8563,7 +6625,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5555 · 2026-05-23T12:13:08.683876+00:00_
+_source line 5511 · 2026-05-23T12:13:08.683876+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -8585,7 +6647,7 @@ _source line 5555 · 2026-05-23T12:13:08.683876+00:00_
 
 ### Assistant
 
-_source line 5556 · 2026-05-23T12:13:11.521988+00:00_
+_source line 5512 · 2026-05-23T12:13:11.521988+00:00_
 
 R15 第二批 SF-1~SF-5 全部完成。编译通过，主文 ≤ 8 页，已向 Director 汇报。
 
@@ -8612,7 +6674,7 @@ R15 第二批 SF-1~SF-5 全部完成。编译通过，主文 ≤ 8 页，已向 
 
 ### User
 
-_source line 5557 · 2026-05-23T12:44:59.701785+00:00_
+_source line 5513 · 2026-05-23T12:44:59.701785+00:00_
 
 [Director 指令] ## 匿名仓库准备 — EMNLP 2026 投稿
 
@@ -8765,7 +6827,7 @@ Push 完成后删除 $ANON_DIR 中的 .git/config（含 token）。
 
 ### Tool call
 
-_source line 5558 · 2026-05-23T12:45:17.426952+00:00_
+_source line 5514 · 2026-05-23T12:45:17.426952+00:00_
 
 called Bash
 
@@ -8801,7 +6863,7 @@ called Bash
 
 ### Tool result
 
-_source line 5559 · 2026-05-23T12:45:18.382756+00:00_
+_source line 5515 · 2026-05-23T12:45:18.382756+00:00_
 
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: will change to "main" in Git 3.0. To configure the initial branch name
@@ -8837,7 +6899,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5560 · 2026-05-23T12:45:18.734693+00:00_
+_source line 5516 · 2026-05-23T12:45:18.734693+00:00_
 
 called Bash
 
@@ -8873,7 +6935,7 @@ called Bash
 
 ### Tool result
 
-_source line 5561 · 2026-05-23T12:45:18.785330+00:00_
+_source line 5517 · 2026-05-23T12:45:18.785330+00:00_
 
 AGENTS.md
 ROADMAP.lock
@@ -8938,7 +7000,7 @@ writing_plan.yaml
 
 ### Tool call
 
-_source line 5562 · 2026-05-23T12:45:27.471289+00:00_
+_source line 5518 · 2026-05-23T12:45:27.471289+00:00_
 
 called Bash
 
@@ -8974,7 +7036,7 @@ called Bash
 
 ### Tool result
 
-_source line 5563 · 2026-05-23T12:45:27.622480+00:00_
+_source line 5519 · 2026-05-23T12:45:27.622480+00:00_
 
 DONE copying
 
@@ -8996,7 +7058,7 @@ DONE copying
 
 ### Tool call
 
-_source line 5564 · 2026-05-23T12:45:42.699476+00:00_
+_source line 5520 · 2026-05-23T12:45:42.699476+00:00_
 
 called Bash
 
@@ -9032,7 +7094,7 @@ called Bash
 
 ### Tool result
 
-_source line 5565 · 2026-05-23T12:45:42.833313+00:00_
+_source line 5521 · 2026-05-23T12:45:42.833313+00:00_
 
 /tmp/anon_repo/patch_metrics.py
 /tmp/anon_repo/plan_010_ppi_empirical_validation.py
@@ -9097,7 +7159,7 @@ _source line 5565 · 2026-05-23T12:45:42.833313+00:00_
 
 ### Tool call
 
-_source line 5566 · 2026-05-23T12:45:48.311712+00:00_
+_source line 5522 · 2026-05-23T12:45:48.311712+00:00_
 
 called Bash
 
@@ -9133,7 +7195,7 @@ called Bash
 
 ### Tool result
 
-_source line 5567 · 2026-05-23T12:45:48.362659+00:00_
+_source line 5523 · 2026-05-23T12:45:48.362659+00:00_
 
 /tmp/anon_repo/artifacts/plan_002_k57_extended_7topo.py
 /tmp/anon_repo/artifacts/nondiff_topic_stratified.py
@@ -9195,7 +7257,7 @@ _source line 5567 · 2026-05-23T12:45:48.362659+00:00_
 
 ### Tool call
 
-_source line 5568 · 2026-05-23T12:45:54.144809+00:00_
+_source line 5524 · 2026-05-23T12:45:54.144809+00:00_
 
 called Bash
 
@@ -9231,7 +7293,7 @@ called Bash
 
 ### Tool result
 
-_source line 5569 · 2026-05-23T12:45:54.245594+00:00_
+_source line 5525 · 2026-05-23T12:45:54.245594+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
 
@@ -9253,7 +7315,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5570 · 2026-05-23T12:46:00.429372+00:00_
+_source line 5526 · 2026-05-23T12:46:00.429372+00:00_
 
 called Bash
 
@@ -9289,7 +7351,7 @@ called Bash
 
 ### Tool result
 
-_source line 5571 · 2026-05-23T12:46:00.480118+00:00_
+_source line 5527 · 2026-05-23T12:46:00.480118+00:00_
 
 docs/paper/references.bib
 docs/paper/main.tex
@@ -9317,7 +7379,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5572 · 2026-05-23T12:46:04.611346+00:00_
+_source line 5528 · 2026-05-23T12:46:04.611346+00:00_
 
 called Bash
 
@@ -9353,7 +7415,7 @@ called Bash
 
 ### Tool result
 
-_source line 5573 · 2026-05-23T12:46:04.712113+00:00_
+_source line 5529 · 2026-05-23T12:46:04.712113+00:00_
 
 docs/paper/appendix_proofs.tex:978:To provide empirical support beyond the design argument, we examine topic-stratified confusion matrices using the VAST dataset ($K{=}3$, stance detection), where the \texttt{topic} field (e.g., ``gun control,'' ``college'') serves as a proxy for latent factors correlated with $Y$. Across 10 model configurations (3 LLMs $\times$ 2--4 prompt types) and 19 qualifying topics (minimum 10 samples per topic), we compute per-topic confusion matrices $C_{\text{topic}}(t) = P(A^*{=}j \mid A{=}k, \text{topic}{=}t)$ and compare against the overall $C = P(A^*{=}j \mid A{=}k)$.
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -9376,7 +7438,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5574 · 2026-05-23T12:46:10.642349+00:00_
+_source line 5530 · 2026-05-23T12:46:10.642349+00:00_
 
 called Bash
 
@@ -9412,7 +7474,7 @@ called Bash
 
 ### Tool result
 
-_source line 5575 · 2026-05-23T12:46:10.692982+00:00_
+_source line 5531 · 2026-05-23T12:46:10.692982+00:00_
 
 \documentclass[11pt]{article}
 \usepackage[review]{acl}
@@ -9453,7 +7515,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5576 · 2026-05-23T12:46:15.618249+00:00_
+_source line 5532 · 2026-05-23T12:46:15.618249+00:00_
 
 called Bash
 
@@ -9489,7 +7551,7 @@ called Bash
 
 ### Tool result
 
-_source line 5577 · 2026-05-23T12:46:15.669212+00:00_
+_source line 5533 · 2026-05-23T12:46:15.669212+00:00_
 
 29:\author{Anonymous}
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -9512,7 +7574,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5578 · 2026-05-23T12:46:21.346935+00:00_
+_source line 5534 · 2026-05-23T12:46:21.346935+00:00_
 
 called Bash
 
@@ -9548,7 +7610,7 @@ called Bash
 
 ### Tool result
 
-_source line 5579 · 2026-05-23T12:46:21.397958+00:00_
+_source line 5535 · 2026-05-23T12:46:21.397958+00:00_
 
 artifacts/compute_updated_empirical.py:69:    # 1. HumAID K=10 from plan006 (authoritative, full matrices)
 artifacts/compute_all_tasks.py:9:Author: auto-generated for paper artifacts
@@ -9574,7 +7636,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5580 · 2026-05-23T12:46:26.321664+00:00_
+_source line 5536 · 2026-05-23T12:46:26.321664+00:00_
 
 called Bash
 
@@ -9610,7 +7672,7 @@ called Bash
 
 ### Tool result
 
-_source line 5581 · 2026-05-23T12:46:26.372709+00:00_
+_source line 5537 · 2026-05-23T12:46:26.372709+00:00_
 
 323:@article{cheng_mayya_sedoc2024,
 325:  author  = {Cheng, Xiang and Mayya, Raveesh and Sedoc, Jo{\~a}o},
@@ -9634,7 +7696,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5582 · 2026-05-23T12:46:31.254345+00:00_
+_source line 5538 · 2026-05-23T12:46:31.254345+00:00_
 
 called Bash
 
@@ -9670,7 +7732,7 @@ called Bash
 
 ### Tool result
 
-_source line 5583 · 2026-05-23T12:46:31.355224+00:00_
+_source line 5539 · 2026-05-23T12:46:31.355224+00:00_
 
 docs/paper/related_work.tex
 artifacts/annotate.py
@@ -9694,7 +7756,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5584 · 2026-05-23T12:46:34.772117+00:00_
+_source line 5540 · 2026-05-23T12:46:34.772117+00:00_
 
 called Bash
 
@@ -9730,7 +7792,7 @@ called Bash
 
 ### Tool result
 
-_source line 5585 · 2026-05-23T12:46:34.873027+00:00_
+_source line 5541 · 2026-05-23T12:46:34.873027+00:00_
 
 261:    def __init__(self, api_base, api_key, model_id, max_retries=5, timeout=60):
 263:        self.api_key = [REDACTED]
@@ -9763,7 +7825,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5586 · 2026-05-23T12:46:40.861018+00:00_
+_source line 5542 · 2026-05-23T12:46:40.861018+00:00_
 
 called Bash
 
@@ -9799,7 +7861,7 @@ called Bash
 
 ### Tool result
 
-_source line 5587 · 2026-05-23T12:46:40.911885+00:00_
+_source line 5543 · 2026-05-23T12:46:40.911885+00:00_
 
 (Bash completed with no output)
 
@@ -9821,7 +7883,7 @@ _source line 5587 · 2026-05-23T12:46:40.911885+00:00_
 
 ### Tool call
 
-_source line 5588 · 2026-05-23T12:46:52.123131+00:00_
+_source line 5544 · 2026-05-23T12:46:52.123131+00:00_
 
 called Write
 
@@ -9857,7 +7919,7 @@ called Write
 
 ### Tool result
 
-_source line 5589 · 2026-05-23T12:46:52.173952+00:00_
+_source line 5545 · 2026-05-23T12:46:52.173952+00:00_
 
 File created successfully at: /tmp/anon_repo/README.md
 
@@ -9879,7 +7941,7 @@ File created successfully at: /tmp/anon_repo/README.md
 
 ### Tool call
 
-_source line 5590 · 2026-05-23T12:46:56.948948+00:00_
+_source line 5546 · 2026-05-23T12:46:56.948948+00:00_
 
 called Bash
 
@@ -9915,7 +7977,7 @@ called Bash
 
 ### Tool result
 
-_source line 5591 · 2026-05-23T12:46:57.204683+00:00_
+_source line 5547 · 2026-05-23T12:46:57.204683+00:00_
 
 [master (root-commit) d623184] Anonymous submission: Multi-Class Annotation Errors in Causal Inference
  127 files changed, 64333 insertions(+)
@@ -9974,7 +8036,7 @@ _source line 5591 · 2026-05-23T12:46:57.204683+00:00_
 
 ### Tool call
 
-_source line 5592 · 2026-05-23T12:47:02.131645+00:00_
+_source line 5548 · 2026-05-23T12:47:02.131645+00:00_
 
 called Bash
 
@@ -10010,7 +8072,7 @@ called Bash
 
 ### Tool result
 
-_source line 5593 · 2026-05-23T12:47:02.238487+00:00_
+_source line 5549 · 2026-05-23T12:47:02.238487+00:00_
 
 d62318496e86bbf78fafcf203419a662ac180857 Anonymous &lt;anonymous@example.com> Anonymous submission: Multi-Class Annotation Errors in Causal Inference
 ---
@@ -10034,7 +8096,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5594 · 2026-05-23T12:47:13.280192+00:00_
+_source line 5550 · 2026-05-23T12:47:13.280192+00:00_
 
 called Bash
 
@@ -10072,7 +8134,7 @@ called Bash
 
 ### Tool result
 
-_source line 5595 · 2026-05-23T12:47:15.842762+00:00_
+_source line 5551 · 2026-05-23T12:47:15.842762+00:00_
 
 To https://github.com/anonymous-nlp-2026-2/causal_annot_error_attrib.git
  * [new branch]      main -> main
@@ -10097,7 +8159,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5596 · 2026-05-23T12:47:20.268948+00:00_
+_source line 5552 · 2026-05-23T12:47:20.268948+00:00_
 
 called Bash
 
@@ -10133,7 +8195,7 @@ called Bash
 
 ### Tool result
 
-_source line 5597 · 2026-05-23T12:47:20.370475+00:00_
+_source line 5553 · 2026-05-23T12:47:20.370475+00:00_
 
 Token cleaned
 
@@ -10155,7 +8217,7 @@ Token cleaned
 
 ### Tool call
 
-_source line 5598 · 2026-05-23T12:47:35.201562+00:00_
+_source line 5554 · 2026-05-23T12:47:35.201562+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -10191,7 +8253,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5599 · 2026-05-23T12:47:39.069567+00:00_
+_source line 5555 · 2026-05-23T12:47:39.069567+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -10213,7 +8275,7 @@ _source line 5599 · 2026-05-23T12:47:39.069567+00:00_
 
 ### Assistant
 
-_source line 5600 · 2026-05-23T12:47:50.596642+00:00_
+_source line 5556 · 2026-05-23T12:47:50.596642+00:00_
 
 匿名仓库已 push 到 `https://github.com/anonymous-nlp-2026-2/causal_annot_error_attrib`，127 files，1 anonymous commit，PII/token 检查通过，临时目录 token 已清理。
 
@@ -10240,7 +8302,7 @@ _source line 5600 · 2026-05-23T12:47:50.596642+00:00_
 
 ### User
 
-_source line 5601 · 2026-05-23T12:58:11.275459+00:00_
+_source line 5557 · 2026-05-23T12:58:11.275459+00:00_
 
 [Director 指令] R16 审稿修复——全量批次，DDL 5月25日，必须今天完成。
 
@@ -10401,7 +8463,7 @@ Schennach (2020) 已在 bib 中——确保在 related_work.tex 中引用（"Sch
 
 ### Tool call
 
-_source line 5602 · 2026-05-23T12:58:27.667579+00:00_
+_source line 5558 · 2026-05-23T12:58:27.667579+00:00_
 
 called Read
 
@@ -10435,7 +8497,7 @@ called Read
 
 ### Tool result
 
-_source line 5603 · 2026-05-23T12:58:28.069983+00:00_
+_source line 5559 · 2026-05-23T12:58:28.069983+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal occurs in 2.1\% of exposure configurations, in secondary coefficients with small effect sizes; across all 23 empirical LLM configurations (mean diagonal 0.45--0.81), sign reversal is confined exclusively to exposure, though IV reaches 52.6\% under uniform Dirichlet priors. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$) and numerically verified ($K{\geq}3$) monotonicity, yielding a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -10460,7 +8522,7 @@ _source line 5603 · 2026-05-23T12:58:28.069983+00:00_
 
 ### Tool call
 
-_source line 5604 · 2026-05-23T12:58:28.070441+00:00_
+_source line 5560 · 2026-05-23T12:58:28.070441+00:00_
 
 called Read
 
@@ -10494,7 +8556,7 @@ called Read
 
 ### Tool result
 
-_source line 5605 · 2026-05-23T12:58:29.176240+00:00_
+_source line 5561 · 2026-05-23T12:58:29.176240+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -10522,7 +8584,7 @@ _source line 5605 · 2026-05-23T12:58:29.176240+00:00_
 
 ### Tool call
 
-_source line 5606 · 2026-05-23T12:58:29.176688+00:00_
+_source line 5562 · 2026-05-23T12:58:29.176688+00:00_
 
 called Read
 
@@ -10556,7 +8618,7 @@ called Read
 
 ### Tool result
 
-_source line 5607 · 2026-05-23T12:58:29.678809+00:00_
+_source line 5563 · 2026-05-23T12:58:29.678809+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -10595,7 +8657,7 @@ _source line 5607 · 2026-05-23T12:58:29.678809+00:00_
 
 ### Tool call
 
-_source line 5608 · 2026-05-23T12:58:29.679256+00:00_
+_source line 5564 · 2026-05-23T12:58:29.679256+00:00_
 
 called Read
 
@@ -10629,7 +8691,7 @@ called Read
 
 ### Tool result
 
-_source line 5609 · 2026-05-23T12:58:30.131052+00:00_
+_source line 5565 · 2026-05-23T12:58:30.131052+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -10672,7 +8734,7 @@ _source line 5609 · 2026-05-23T12:58:30.131052+00:00_
 
 ### Tool call
 
-_source line 5610 · 2026-05-23T12:58:30.131642+00:00_
+_source line 5566 · 2026-05-23T12:58:30.131642+00:00_
 
 called Read
 
@@ -10706,7 +8768,7 @@ called Read
 
 ### Tool result
 
-_source line 5611 · 2026-05-23T12:58:30.633530+00:00_
+_source line 5567 · 2026-05-23T12:58:30.633530+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -10736,7 +8798,7 @@ _source line 5611 · 2026-05-23T12:58:30.633530+00:00_
 
 ### Tool call
 
-_source line 5612 · 2026-05-23T12:58:30.633915+00:00_
+_source line 5568 · 2026-05-23T12:58:30.633915+00:00_
 
 called Read
 
@@ -10770,7 +8832,7 @@ called Read
 
 ### Tool result
 
-_source line 5613 · 2026-05-23T12:58:31.136451+00:00_
+_source line 5569 · 2026-05-23T12:58:31.136451+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -10800,7 +8862,7 @@ _source line 5613 · 2026-05-23T12:58:31.136451+00:00_
 
 ### Tool call
 
-_source line 5614 · 2026-05-23T12:58:31.136821+00:00_
+_source line 5570 · 2026-05-23T12:58:31.136821+00:00_
 
 called Read
 
@@ -10834,7 +8896,7 @@ called Read
 
 ### Tool result
 
-_source line 5615 · 2026-05-23T12:58:31.639075+00:00_
+_source line 5571 · 2026-05-23T12:58:31.639075+00:00_
 
 1	% Auto-generated from literature_map.yaml — all verified=true entries
 2	% Last sync: 2026-05-20
@@ -10908,7 +8970,7 @@ _source line 5615 · 2026-05-23T12:58:31.639075+00:00_
 
 ### Tool call
 
-_source line 5616 · 2026-05-23T12:58:31.639531+00:00_
+_source line 5572 · 2026-05-23T12:58:31.639531+00:00_
 
 called Read
 
@@ -10942,7 +9004,7 @@ called Read
 
 ### Tool result
 
-_source line 5617 · 2026-05-23T12:58:31.690502+00:00_
+_source line 5573 · 2026-05-23T12:58:31.690502+00:00_
 
 1	#!/usr/bin/env python3
 2	"""Figure 2: 2×4 Bias Distribution Across 7 DAG Topologies under K=3 Misclassification."""
@@ -11032,7 +9094,7 @@ _source line 5617 · 2026-05-23T12:58:31.690502+00:00_
 
 ### Tool call
 
-_source line 5618 · 2026-05-23T13:01:11.061114+00:00_
+_source line 5574 · 2026-05-23T13:01:11.061114+00:00_
 
 called Edit
 
@@ -11072,7 +9134,7 @@ called Edit
 
 ### Tool result
 
-_source line 5619 · 2026-05-23T13:01:11.715765+00:00_
+_source line 5575 · 2026-05-23T13:01:11.715765+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex has been updated successfully.
 
@@ -11094,7 +9156,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5620 · 2026-05-23T13:01:16.383458+00:00_
+_source line 5576 · 2026-05-23T13:01:16.383458+00:00_
 
 called Edit
 
@@ -11134,7 +9196,7 @@ called Edit
 
 ### Tool result
 
-_source line 5621 · 2026-05-23T13:01:16.384099+00:00_
+_source line 5577 · 2026-05-23T13:01:16.384099+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex has been updated successfully.
 
@@ -11156,7 +9218,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5622 · 2026-05-23T13:01:16.735630+00:00_
+_source line 5578 · 2026-05-23T13:01:16.735630+00:00_
 
 called Edit
 
@@ -11196,7 +9258,7 @@ called Edit
 
 ### Tool result
 
-_source line 5623 · 2026-05-23T13:01:17.137434+00:00_
+_source line 5579 · 2026-05-23T13:01:17.137434+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -11218,7 +9280,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5624 · 2026-05-23T13:01:18.392394+00:00_
+_source line 5580 · 2026-05-23T13:01:18.392394+00:00_
 
 called Edit
 
@@ -11258,7 +9320,7 @@ called Edit
 
 ### Tool result
 
-_source line 5625 · 2026-05-23T13:01:18.494533+00:00_
+_source line 5581 · 2026-05-23T13:01:18.494533+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -11280,7 +9342,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5626 · 2026-05-23T13:01:26.827426+00:00_
+_source line 5582 · 2026-05-23T13:01:26.827426+00:00_
 
 called Edit
 
@@ -11320,7 +9382,7 @@ called Edit
 
 ### Tool result
 
-_source line 5627 · 2026-05-23T13:01:26.828029+00:00_
+_source line 5583 · 2026-05-23T13:01:26.828029+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib has been updated successfully.
 
@@ -11342,7 +9404,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5628 · 2026-05-23T13:01:28.936148+00:00_
+_source line 5584 · 2026-05-23T13:01:28.936148+00:00_
 
 called Edit
 
@@ -11382,7 +9444,7 @@ called Edit
 
 ### Tool result
 
-_source line 5629 · 2026-05-23T13:01:28.936874+00:00_
+_source line 5585 · 2026-05-23T13:01:28.936874+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -11404,7 +9466,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5630 · 2026-05-23T13:01:30.091552+00:00_
+_source line 5586 · 2026-05-23T13:01:30.091552+00:00_
 
 called Edit
 
@@ -11444,7 +9506,7 @@ called Edit
 
 ### Tool result
 
-_source line 5631 · 2026-05-23T13:01:30.092094+00:00_
+_source line 5587 · 2026-05-23T13:01:30.092094+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py has been updated successfully.
 
@@ -11466,7 +9528,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5632 · 2026-05-23T13:01:53.740750+00:00_
+_source line 5588 · 2026-05-23T13:01:53.740750+00:00_
 
 called Agent
 
@@ -11504,7 +9566,7 @@ called Agent
 
 ### Tool result
 
-_source line 5633 · 2026-05-23T13:01:53.741458+00:00_
+_source line 5589 · 2026-05-23T13:01:53.741458+00:00_
 
 Async agent launched successfully.
 agentId: a13c68d280c66960a (internal ID - do not mention to user. Use SendMessage with to: 'a13c68d280c66960a' to continue this agent.)
@@ -11531,7 +9593,7 @@ Do NOT Read or tail this file via the shell tool — it is the full sub-agent JS
 
 ### Tool call
 
-_source line 5634 · 2026-05-23T13:02:05.399670+00:00_
+_source line 5590 · 2026-05-23T13:02:05.399670+00:00_
 
 called Edit
 
@@ -11571,7 +9633,7 @@ called Edit
 
 ### Tool result
 
-_source line 5635 · 2026-05-23T13:02:05.701430+00:00_
+_source line 5591 · 2026-05-23T13:02:05.701430+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -11593,7 +9655,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5636 · 2026-05-23T13:02:14.385046+00:00_
+_source line 5592 · 2026-05-23T13:02:14.385046+00:00_
 
 called Edit
 
@@ -11633,7 +9695,7 @@ called Edit
 
 ### Tool result
 
-_source line 5637 · 2026-05-23T13:02:14.786930+00:00_
+_source line 5593 · 2026-05-23T13:02:14.786930+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -11655,7 +9717,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5638 · 2026-05-23T13:02:17.195860+00:00_
+_source line 5594 · 2026-05-23T13:02:17.195860+00:00_
 
 called Edit
 
@@ -11695,7 +9757,7 @@ called Edit
 
 ### Tool result
 
-_source line 5639 · 2026-05-23T13:02:17.196632+00:00_
+_source line 5595 · 2026-05-23T13:02:17.196632+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py has been updated successfully.
 
@@ -11717,7 +9779,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5640 · 2026-05-23T13:02:31.805491+00:00_
+_source line 5596 · 2026-05-23T13:02:31.805491+00:00_
 
 called Edit
 
@@ -11757,7 +9819,7 @@ called Edit
 
 ### Tool result
 
-_source line 5641 · 2026-05-23T13:02:32.258059+00:00_
+_source line 5597 · 2026-05-23T13:02:32.258059+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -11779,7 +9841,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5642 · 2026-05-23T13:02:36.476095+00:00_
+_source line 5598 · 2026-05-23T13:02:36.476095+00:00_
 
 called Edit
 
@@ -11819,7 +9881,7 @@ called Edit
 
 ### Tool result
 
-_source line 5643 · 2026-05-23T13:02:36.928707+00:00_
+_source line 5599 · 2026-05-23T13:02:36.928707+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -11841,7 +9903,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5644 · 2026-05-23T13:02:40.995825+00:00_
+_source line 5600 · 2026-05-23T13:02:40.995825+00:00_
 
 called Edit
 
@@ -11881,7 +9943,7 @@ called Edit
 
 ### Tool result
 
-_source line 5645 · 2026-05-23T13:02:41.047345+00:00_
+_source line 5601 · 2026-05-23T13:02:41.047345+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex has been updated successfully.
 
@@ -11903,7 +9965,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5646 · 2026-05-23T13:02:47.271939+00:00_
+_source line 5602 · 2026-05-23T13:02:47.271939+00:00_
 
 called Edit
 
@@ -11943,7 +10005,7 @@ called Edit
 
 ### Tool result
 
-_source line 5647 · 2026-05-23T13:02:47.324105+00:00_
+_source line 5603 · 2026-05-23T13:02:47.324105+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -11965,7 +10027,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5648 · 2026-05-23T13:02:52.244379+00:00_
+_source line 5604 · 2026-05-23T13:02:52.244379+00:00_
 
 called Bash
 
@@ -12003,7 +10065,7 @@ called Bash
 
 ### Tool result
 
-_source line 5649 · 2026-05-23T13:03:06.199442+00:00_
+_source line 5605 · 2026-05-23T13:03:06.199442+00:00_
 
 Exposure combined sign-flip rate: 83.4%
   Confounding    : median=1.2796, mean=1.2719, sf=0.0%, range=[1.184, 1.300]
@@ -12040,7 +10102,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5650 · 2026-05-23T13:03:25.974669+00:00_
+_source line 5606 · 2026-05-23T13:03:25.974669+00:00_
 
 called Bash
 
@@ -12076,7 +10138,7 @@ called Bash
 
 ### Tool result
 
-_source line 5651 · 2026-05-23T13:03:26.276508+00:00_
+_source line 5607 · 2026-05-23T13:03:26.276508+00:00_
 
 (Bash completed with no output)
 
@@ -12098,7 +10160,7 @@ _source line 5651 · 2026-05-23T13:03:26.276508+00:00_
 
 ### Tool call
 
-_source line 5652 · 2026-05-23T13:03:31.599387+00:00_
+_source line 5608 · 2026-05-23T13:03:31.599387+00:00_
 
 called Bash
 
@@ -12134,7 +10196,7 @@ called Bash
 
 ### Tool result
 
-_source line 5653 · 2026-05-23T13:03:37.579834+00:00_
+_source line 5609 · 2026-05-23T13:03:37.579834+00:00_
 
 Latexmk: Examining 'main.fls'
 Latexmk: Examining 'main.log'
@@ -12165,7 +10227,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5654 · 2026-05-23T13:03:42.700797+00:00_
+_source line 5610 · 2026-05-23T13:03:42.700797+00:00_
 
 called Bash
 
@@ -12201,7 +10263,7 @@ called Bash
 
 ### Tool result
 
-_source line 5655 · 2026-05-23T13:03:42.751493+00:00_
+_source line 5611 · 2026-05-23T13:03:42.751493+00:00_
 
 (Bash completed with no output)
 
@@ -12223,7 +10285,7 @@ _source line 5655 · 2026-05-23T13:03:42.751493+00:00_
 
 ### Tool call
 
-_source line 5656 · 2026-05-23T13:03:46.315877+00:00_
+_source line 5612 · 2026-05-23T13:03:46.315877+00:00_
 
 called Bash
 
@@ -12259,7 +10321,7 @@ called Bash
 
 ### Tool result
 
-_source line 5657 · 2026-05-23T13:03:46.417830+00:00_
+_source line 5613 · 2026-05-23T13:03:46.417830+00:00_
 
 (Bash completed with no output)
 
@@ -12281,7 +10343,7 @@ _source line 5657 · 2026-05-23T13:03:46.417830+00:00_
 
 ### Tool call
 
-_source line 5658 · 2026-05-23T13:03:53.295966+00:00_
+_source line 5614 · 2026-05-23T13:03:53.295966+00:00_
 
 called Bash
 
@@ -12317,7 +10379,7 @@ called Bash
 
 ### Tool result
 
-_source line 5659 · 2026-05-23T13:03:53.800539+00:00_
+_source line 5615 · 2026-05-23T13:03:53.800539+00:00_
 
 Conclusion starts at page 9
 Limitations starts at page 9
@@ -12343,7 +10405,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5660 · 2026-05-23T13:04:38.970199+00:00_
+_source line 5616 · 2026-05-23T13:04:38.970199+00:00_
 
 called Bash
 
@@ -12381,7 +10443,7 @@ called Bash
 
 ### Tool result
 
-_source line 5661 · 2026-05-23T13:04:39.222786+00:00_
+_source line 5617 · 2026-05-23T13:04:39.222786+00:00_
 
 The top-level auxiliary file: main.aux
 I found no \citation commands---while reading file main.aux
@@ -12418,7 +10480,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5662 · 2026-05-23T13:04:45.245784+00:00_
+_source line 5618 · 2026-05-23T13:04:45.245784+00:00_
 
 called Bash
 
@@ -12456,7 +10518,7 @@ called Bash
 
 ### Tool result
 
-_source line 5663 · 2026-05-23T13:04:48.409529+00:00_
+_source line 5619 · 2026-05-23T13:04:48.409529+00:00_
 
 This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
 The top-level auxiliary file: main.aux
@@ -12483,7 +10545,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5664 · 2026-05-23T13:05:01.910416+00:00_
+_source line 5620 · 2026-05-23T13:05:01.910416+00:00_
 
 called Bash
 
@@ -12519,7 +10581,7 @@ called Bash
 
 ### Tool result
 
-_source line 5665 · 2026-05-23T13:05:02.011418+00:00_
+_source line 5621 · 2026-05-23T13:05:02.011418+00:00_
 
 Exit code 1
 
@@ -12541,7 +10603,7 @@ Exit code 1
 
 ### Tool call
 
-_source line 5666 · 2026-05-23T13:05:07.772358+00:00_
+_source line 5622 · 2026-05-23T13:05:07.772358+00:00_
 
 called Bash
 
@@ -12577,7 +10639,7 @@ called Bash
 
 ### Tool result
 
-_source line 5667 · 2026-05-23T13:05:08.626927+00:00_
+_source line 5623 · 2026-05-23T13:05:08.626927+00:00_
 
 0
 ---
@@ -12605,7 +10667,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5668 · 2026-05-23T13:06:40.368888+00:00_
+_source line 5624 · 2026-05-23T13:06:40.368888+00:00_
 
 called Edit
 
@@ -12645,7 +10707,7 @@ called Edit
 
 ### Tool result
 
-_source line 5669 · 2026-05-23T13:06:40.871363+00:00_
+_source line 5625 · 2026-05-23T13:06:40.871363+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -12667,7 +10729,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5670 · 2026-05-23T13:06:43.883291+00:00_
+_source line 5626 · 2026-05-23T13:06:43.883291+00:00_
 
 called Edit
 
@@ -12707,7 +10769,7 @@ called Edit
 
 ### Tool result
 
-_source line 5671 · 2026-05-23T13:06:43.934040+00:00_
+_source line 5627 · 2026-05-23T13:06:43.934040+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -12729,7 +10791,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5672 · 2026-05-23T13:06:53.623361+00:00_
+_source line 5628 · 2026-05-23T13:06:53.623361+00:00_
 
 called Edit
 
@@ -12769,7 +10831,7 @@ called Edit
 
 ### Tool result
 
-_source line 5673 · 2026-05-23T13:06:54.427095+00:00_
+_source line 5629 · 2026-05-23T13:06:54.427095+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -12791,7 +10853,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5674 · 2026-05-23T13:06:57.588747+00:00_
+_source line 5630 · 2026-05-23T13:06:57.588747+00:00_
 
 called Edit
 
@@ -12831,7 +10893,7 @@ called Edit
 
 ### Tool result
 
-_source line 5675 · 2026-05-23T13:06:57.639475+00:00_
+_source line 5631 · 2026-05-23T13:06:57.639475+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -12853,7 +10915,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5676 · 2026-05-23T13:07:05.628159+00:00_
+_source line 5632 · 2026-05-23T13:07:05.628159+00:00_
 
 called Edit
 
@@ -12893,7 +10955,7 @@ called Edit
 
 ### Tool result
 
-_source line 5677 · 2026-05-23T13:07:06.130755+00:00_
+_source line 5633 · 2026-05-23T13:07:06.130755+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -12915,7 +10977,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5678 · 2026-05-23T13:07:09.966537+00:00_
+_source line 5634 · 2026-05-23T13:07:09.966537+00:00_
 
 called Edit
 
@@ -12955,7 +11017,7 @@ called Edit
 
 ### Tool result
 
-_source line 5679 · 2026-05-23T13:07:10.017604+00:00_
+_source line 5635 · 2026-05-23T13:07:10.017604+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -12977,7 +11039,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5680 · 2026-05-23T13:07:20.105192+00:00_
+_source line 5636 · 2026-05-23T13:07:20.105192+00:00_
 
 called Edit
 
@@ -13017,7 +11079,7 @@ called Edit
 
 ### Tool result
 
-_source line 5681 · 2026-05-23T13:07:20.607705+00:00_
+_source line 5637 · 2026-05-23T13:07:20.607705+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -13039,7 +11101,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5682 · 2026-05-23T13:07:25.476343+00:00_
+_source line 5638 · 2026-05-23T13:07:25.476343+00:00_
 
 called Edit
 
@@ -13079,7 +11141,7 @@ called Edit
 
 ### Tool result
 
-_source line 5683 · 2026-05-23T13:07:25.978875+00:00_
+_source line 5639 · 2026-05-23T13:07:25.978875+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -13101,7 +11163,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5684 · 2026-05-23T13:07:32.655532+00:00_
+_source line 5640 · 2026-05-23T13:07:32.655532+00:00_
 
 called Edit
 
@@ -13141,7 +11203,7 @@ called Edit
 
 ### Tool result
 
-_source line 5685 · 2026-05-23T13:07:32.756572+00:00_
+_source line 5641 · 2026-05-23T13:07:32.756572+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -13163,7 +11225,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5686 · 2026-05-23T13:07:42.696006+00:00_
+_source line 5642 · 2026-05-23T13:07:42.696006+00:00_
 
 called Edit
 
@@ -13203,7 +11265,7 @@ called Edit
 
 ### Tool result
 
-_source line 5687 · 2026-05-23T13:07:43.198566+00:00_
+_source line 5643 · 2026-05-23T13:07:43.198566+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -13225,7 +11287,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5688 · 2026-05-23T13:07:48.471073+00:00_
+_source line 5644 · 2026-05-23T13:07:48.471073+00:00_
 
 called Edit
 
@@ -13265,7 +11327,7 @@ called Edit
 
 ### Tool result
 
-_source line 5689 · 2026-05-23T13:07:48.873256+00:00_
+_source line 5645 · 2026-05-23T13:07:48.873256+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -13287,7 +11349,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5690 · 2026-05-23T13:07:52.437470+00:00_
+_source line 5646 · 2026-05-23T13:07:52.437470+00:00_
 
 called Edit
 
@@ -13327,7 +11389,7 @@ called Edit
 
 ### Tool result
 
-_source line 5691 · 2026-05-23T13:07:52.488197+00:00_
+_source line 5647 · 2026-05-23T13:07:52.488197+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -13349,7 +11411,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5692 · 2026-05-23T13:08:03.683202+00:00_
+_source line 5648 · 2026-05-23T13:08:03.683202+00:00_
 
 called Edit
 
@@ -13389,7 +11451,7 @@ called Edit
 
 ### Tool result
 
-_source line 5693 · 2026-05-23T13:08:03.784306+00:00_
+_source line 5649 · 2026-05-23T13:08:03.784306+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -13411,7 +11473,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5694 · 2026-05-23T13:08:16.754279+00:00_
+_source line 5650 · 2026-05-23T13:08:16.754279+00:00_
 
 called Bash
 
@@ -13449,7 +11511,7 @@ called Bash
 
 ### Tool result
 
-_source line 5695 · 2026-05-23T13:08:19.315683+00:00_
+_source line 5651 · 2026-05-23T13:08:19.315683+00:00_
 
 Conclusion starts at page 9
 Limitations starts at page 9
@@ -13474,7 +11536,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5696 · 2026-05-23T13:08:46.486906+00:00_
+_source line 5652 · 2026-05-23T13:08:46.486906+00:00_
 
 called Edit
 
@@ -13514,7 +11576,7 @@ called Edit
 
 ### Tool result
 
-_source line 5697 · 2026-05-23T13:08:46.537751+00:00_
+_source line 5653 · 2026-05-23T13:08:46.537751+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex has been updated successfully.
 
@@ -13536,7 +11598,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5698 · 2026-05-23T13:08:50.304100+00:00_
+_source line 5654 · 2026-05-23T13:08:50.304100+00:00_
 
 called Edit
 
@@ -13576,7 +11638,7 @@ called Edit
 
 ### Tool result
 
-_source line 5699 · 2026-05-23T13:08:50.756422+00:00_
+_source line 5655 · 2026-05-23T13:08:50.756422+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -13598,7 +11660,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5700 · 2026-05-23T13:08:58.736994+00:00_
+_source line 5656 · 2026-05-23T13:08:58.736994+00:00_
 
 called Edit
 
@@ -13638,7 +11700,7 @@ called Edit
 
 ### Tool result
 
-_source line 5701 · 2026-05-23T13:08:58.787752+00:00_
+_source line 5657 · 2026-05-23T13:08:58.787752+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -13660,7 +11722,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5702 · 2026-05-23T13:09:06.922382+00:00_
+_source line 5658 · 2026-05-23T13:09:06.922382+00:00_
 
 called Bash
 
@@ -13698,7 +11760,7 @@ called Bash
 
 ### Tool result
 
-_source line 5703 · 2026-05-23T13:09:09.485534+00:00_
+_source line 5659 · 2026-05-23T13:09:09.485534+00:00_
 
 Conclusion starts at page 9
 Limitations starts at page 9
@@ -13723,7 +11785,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5704 · 2026-05-23T13:09:19.383205+00:00_
+_source line 5660 · 2026-05-23T13:09:19.383205+00:00_
 
 called Bash
 
@@ -13759,7 +11821,7 @@ called Bash
 
 ### Tool result
 
-_source line 5705 · 2026-05-23T13:09:19.584746+00:00_
+_source line 5661 · 2026-05-23T13:09:19.584746+00:00_
 
 599
 600
@@ -13912,7 +11974,7 @@ remaining topologies <15%. Bias varies substantially across K
 
 ### Tool call
 
-_source line 5706 · 2026-05-23T13:09:35.050038+00:00_
+_source line 5662 · 2026-05-23T13:09:35.050038+00:00_
 
 called Bash
 
@@ -13948,7 +12010,7 @@ called Bash
 
 ### Tool result
 
-_source line 5707 · 2026-05-23T13:09:35.202707+00:00_
+_source line 5663 · 2026-05-23T13:09:35.202707+00:00_
 
 680
 681
@@ -14023,7 +12085,7 @@ FWL invariance holds under linear O
 
 ### Tool call
 
-_source line 5708 · 2026-05-23T13:10:19.082247+00:00_
+_source line 5664 · 2026-05-23T13:10:19.082247+00:00_
 
 called Edit
 
@@ -14063,7 +12125,7 @@ called Edit
 
 ### Tool result
 
-_source line 5709 · 2026-05-23T13:10:19.585475+00:00_
+_source line 5665 · 2026-05-23T13:10:19.585475+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14085,7 +12147,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5710 · 2026-05-23T13:10:22.500493+00:00_
+_source line 5666 · 2026-05-23T13:10:22.500493+00:00_
 
 called Edit
 
@@ -14125,7 +12187,7 @@ called Edit
 
 ### Tool result
 
-_source line 5711 · 2026-05-23T13:10:22.902650+00:00_
+_source line 5667 · 2026-05-23T13:10:22.902650+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14147,7 +12209,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5712 · 2026-05-23T13:10:24.809692+00:00_
+_source line 5668 · 2026-05-23T13:10:24.809692+00:00_
 
 called Edit
 
@@ -14187,7 +12249,7 @@ called Edit
 
 ### Tool result
 
-_source line 5713 · 2026-05-23T13:10:25.262023+00:00_
+_source line 5669 · 2026-05-23T13:10:25.262023+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14209,7 +12271,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5714 · 2026-05-23T13:10:27.120086+00:00_
+_source line 5670 · 2026-05-23T13:10:27.120086+00:00_
 
 called Edit
 
@@ -14249,7 +12311,7 @@ called Edit
 
 ### Tool result
 
-_source line 5715 · 2026-05-23T13:10:27.573467+00:00_
+_source line 5671 · 2026-05-23T13:10:27.573467+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14271,7 +12333,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5716 · 2026-05-23T13:10:29.531466+00:00_
+_source line 5672 · 2026-05-23T13:10:29.531466+00:00_
 
 called Edit
 
@@ -14311,7 +12373,7 @@ called Edit
 
 ### Tool result
 
-_source line 5717 · 2026-05-23T13:10:30.034470+00:00_
+_source line 5673 · 2026-05-23T13:10:30.034470+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14333,7 +12395,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5718 · 2026-05-23T13:10:31.892985+00:00_
+_source line 5674 · 2026-05-23T13:10:31.892985+00:00_
 
 called Edit
 
@@ -14373,7 +12435,7 @@ called Edit
 
 ### Tool result
 
-_source line 5719 · 2026-05-23T13:10:31.944465+00:00_
+_source line 5675 · 2026-05-23T13:10:31.944465+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14395,7 +12457,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5720 · 2026-05-23T13:10:45.957385+00:00_
+_source line 5676 · 2026-05-23T13:10:45.957385+00:00_
 
 called Edit
 
@@ -14435,7 +12497,7 @@ called Edit
 
 ### Tool result
 
-_source line 5721 · 2026-05-23T13:10:46.460013+00:00_
+_source line 5677 · 2026-05-23T13:10:46.460013+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14457,7 +12519,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5722 · 2026-05-23T13:10:55.746486+00:00_
+_source line 5678 · 2026-05-23T13:10:55.746486+00:00_
 
 called Edit
 
@@ -14497,7 +12559,7 @@ called Edit
 
 ### Tool result
 
-_source line 5723 · 2026-05-23T13:10:55.798603+00:00_
+_source line 5679 · 2026-05-23T13:10:55.798603+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -14519,7 +12581,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5724 · 2026-05-23T13:11:04.131368+00:00_
+_source line 5680 · 2026-05-23T13:11:04.131368+00:00_
 
 called Bash
 
@@ -14557,7 +12619,7 @@ called Bash
 
 ### Tool result
 
-_source line 5725 · 2026-05-23T13:11:09.014231+00:00_
+_source line 5681 · 2026-05-23T13:11:09.014231+00:00_
 
 Conclusion starts at page 8
 Limitations starts at page 9
@@ -14582,7 +12644,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5726 · 2026-05-23T13:11:14.962423+00:00_
+_source line 5682 · 2026-05-23T13:11:14.962423+00:00_
 
 called Bash
 
@@ -14618,7 +12680,7 @@ called Bash
 
 ### Tool result
 
-_source line 5727 · 2026-05-23T13:11:15.171919+00:00_
+_source line 5683 · 2026-05-23T13:11:15.171919+00:00_
 
 0
 
@@ -14640,7 +12702,7 @@ _source line 5727 · 2026-05-23T13:11:15.171919+00:00_
 
 ### Tool call
 
-_source line 5728 · 2026-05-23T13:11:15.172408+00:00_
+_source line 5684 · 2026-05-23T13:11:15.172408+00:00_
 
 called Read
 
@@ -14674,7 +12736,7 @@ called Read
 
 ### Tool result
 
-_source line 5729 · 2026-05-23T13:11:15.275803+00:00_
+_source line 5685 · 2026-05-23T13:11:15.275803+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal of secondary coefficients occurs under exposure; under empirical LLM matrices (diagonal 0.45--0.81), sign reversal is confined to exposure; IV is fragile only under adversarial priors. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$) and numerically verified ($K{\geq}3$) monotonicity, yielding a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -14699,7 +12761,7 @@ _source line 5729 · 2026-05-23T13:11:15.275803+00:00_
 
 ### Tool call
 
-_source line 5730 · 2026-05-23T13:11:24.582371+00:00_
+_source line 5686 · 2026-05-23T13:11:24.582371+00:00_
 
 called Bash
 
@@ -14735,7 +12797,7 @@ called Bash
 
 ### Tool result
 
-_source line 5731 · 2026-05-23T13:11:24.836782+00:00_
+_source line 5687 · 2026-05-23T13:11:24.836782+00:00_
 
 177
 
@@ -14757,7 +12819,7 @@ _source line 5731 · 2026-05-23T13:11:24.836782+00:00_
 
 ### Tool call
 
-_source line 5732 · 2026-05-23T13:11:40.201240+00:00_
+_source line 5688 · 2026-05-23T13:11:40.201240+00:00_
 
 called Read
 
@@ -14795,7 +12857,7 @@ called Read
 
 ### Tool result
 
-_source line 5733 · 2026-05-23T13:11:40.653841+00:00_
+_source line 5689 · 2026-05-23T13:11:40.653841+00:00_
 
 0	\section{Method}
 1	\label{sec:method}
@@ -14834,7 +12896,7 @@ _source line 5733 · 2026-05-23T13:11:40.653841+00:00_
 
 ### Tool call
 
-_source line 5734 · 2026-05-23T13:11:40.654379+00:00_
+_source line 5690 · 2026-05-23T13:11:40.654379+00:00_
 
 called Read
 
@@ -14868,7 +12930,7 @@ called Read
 
 ### Tool result
 
-_source line 5735 · 2026-05-23T13:11:40.805563+00:00_
+_source line 5691 · 2026-05-23T13:11:40.805563+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -14911,7 +12973,7 @@ _source line 5735 · 2026-05-23T13:11:40.805563+00:00_
 
 ### Tool call
 
-_source line 5736 · 2026-05-23T13:11:55.215867+00:00_
+_source line 5692 · 2026-05-23T13:11:55.215867+00:00_
 
 called Edit
 
@@ -14951,7 +13013,7 @@ called Edit
 
 ### Tool result
 
-_source line 5737 · 2026-05-23T13:11:55.316886+00:00_
+_source line 5693 · 2026-05-23T13:11:55.316886+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -14973,7 +13035,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5738 · 2026-05-23T13:12:09.882256+00:00_
+_source line 5694 · 2026-05-23T13:12:09.882256+00:00_
 
 called Bash
 
@@ -15011,7 +13073,7 @@ called Bash
 
 ### Tool result
 
-_source line 5739 · 2026-05-23T13:12:14.706293+00:00_
+_source line 5695 · 2026-05-23T13:12:14.706293+00:00_
 
 Conclusion starts at page 8
 Limitations starts at page 9
@@ -15037,7 +13099,7 @@ References starts at page 9
 
 ### Tool call
 
-_source line 5740 · 2026-05-23T13:12:23.079349+00:00_
+_source line 5696 · 2026-05-23T13:12:23.079349+00:00_
 
 called Bash
 
@@ -15073,7 +13135,7 @@ called Bash
 
 ### Tool result
 
-_source line 5741 · 2026-05-23T13:12:23.131368+00:00_
+_source line 5697 · 2026-05-23T13:12:23.131368+00:00_
 
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -15105,7 +13167,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Assistant
 
-_source line 5742 · 2026-05-23T13:18:11.530921+00:00_
+_source line 5698 · 2026-05-23T13:18:11.530921+00:00_
 
 Only float specifier warnings (normal for ACL format). Batch 1 is clean.
 
@@ -15151,7 +13213,7 @@ Let me prepare a summary of all Batch 1 changes while waiting for the Batch 2 ag
 
 ### User
 
-_source line 5743 · 2026-05-23T13:18:12.048080+00:00_
+_source line 5699 · 2026-05-23T13:18:12.048080+00:00_
 
 [Director 指令] ⚠️ R16 修复补丁——Reviewer 发现技术错误 + 范围调整，收到后立即合并到当前执行中。
 
@@ -15215,7 +13277,7 @@ Conjecture 1 采样量不变，保持 210,000。
 
 ### Tool call
 
-_source line 5744 · 2026-05-23T13:18:30.784373+00:00_
+_source line 5700 · 2026-05-23T13:18:30.784373+00:00_
 
 called Read
 
@@ -15253,7 +13315,7 @@ called Read
 
 ### Tool result
 
-_source line 5745 · 2026-05-23T13:18:31.236581+00:00_
+_source line 5701 · 2026-05-23T13:18:31.236581+00:00_
 
 95	\begin{conjecture}[$\varepsilon$-approximate envelope monotonicity]
 96	\label{conj:monotone}
@@ -15289,7 +13351,7 @@ _source line 5745 · 2026-05-23T13:18:31.236581+00:00_
 
 ### Tool call
 
-_source line 5746 · 2026-05-23T13:18:31.387716+00:00_
+_source line 5702 · 2026-05-23T13:18:31.387716+00:00_
 
 called Read
 
@@ -15327,7 +13389,7 @@ called Read
 
 ### Tool result
 
-_source line 5747 · 2026-05-23T13:18:31.439342+00:00_
+_source line 5703 · 2026-05-23T13:18:31.439342+00:00_
 
 79	\subsection{Correction Guidance}
 80	\label{sec:correction}
@@ -15362,7 +13424,7 @@ _source line 5747 · 2026-05-23T13:18:31.439342+00:00_
 
 ### Tool call
 
-_source line 5748 · 2026-05-23T13:18:41.396340+00:00_
+_source line 5704 · 2026-05-23T13:18:41.396340+00:00_
 
 called Edit
 
@@ -15402,7 +13464,7 @@ called Edit
 
 ### Tool result
 
-_source line 5749 · 2026-05-23T13:18:41.804573+00:00_
+_source line 5705 · 2026-05-23T13:18:41.804573+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -15424,7 +13486,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5750 · 2026-05-23T13:18:43.260521+00:00_
+_source line 5706 · 2026-05-23T13:18:43.260521+00:00_
 
 called Edit
 
@@ -15464,7 +13526,7 @@ called Edit
 
 ### Tool result
 
-_source line 5751 · 2026-05-23T13:18:43.712983+00:00_
+_source line 5707 · 2026-05-23T13:18:43.712983+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -15486,7 +13548,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5752 · 2026-05-23T13:18:47.031788+00:00_
+_source line 5708 · 2026-05-23T13:18:47.031788+00:00_
 
 called Edit
 
@@ -15526,7 +13588,7 @@ called Edit
 
 ### Tool result
 
-_source line 5753 · 2026-05-23T13:18:47.484433+00:00_
+_source line 5709 · 2026-05-23T13:18:47.484433+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -15548,7 +13610,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5754 · 2026-05-23T13:18:49.794387+00:00_
+_source line 5710 · 2026-05-23T13:18:49.794387+00:00_
 
 called Edit
 
@@ -15588,7 +13650,7 @@ called Edit
 
 ### Tool result
 
-_source line 5755 · 2026-05-23T13:18:49.846466+00:00_
+_source line 5711 · 2026-05-23T13:18:49.846466+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -15610,7 +13672,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5756 · 2026-05-23T13:18:57.833338+00:00_
+_source line 5712 · 2026-05-23T13:18:57.833338+00:00_
 
 called Edit
 
@@ -15650,7 +13712,7 @@ called Edit
 
 ### Tool result
 
-_source line 5757 · 2026-05-23T13:18:58.285464+00:00_
+_source line 5713 · 2026-05-23T13:18:58.285464+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py has been updated successfully.
 
@@ -15672,7 +13734,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5758 · 2026-05-23T13:19:00.444061+00:00_
+_source line 5714 · 2026-05-23T13:19:00.444061+00:00_
 
 called Edit
 
@@ -15712,7 +13774,7 @@ called Edit
 
 ### Tool result
 
-_source line 5759 · 2026-05-23T13:19:00.545621+00:00_
+_source line 5715 · 2026-05-23T13:19:00.545621+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py has been updated successfully.
 
@@ -15734,7 +13796,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5760 · 2026-05-23T13:19:10.216356+00:00_
+_source line 5716 · 2026-05-23T13:19:10.216356+00:00_
 
 called Bash
 
@@ -15772,7 +13834,7 @@ called Bash
 
 ### Tool result
 
-_source line 5761 · 2026-05-23T13:19:36.303842+00:00_
+_source line 5717 · 2026-05-23T13:19:36.303842+00:00_
 
 Saved: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.pdf
 Saved: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.png
@@ -15798,7 +13860,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5762 · 2026-05-23T13:19:50.115221+00:00_
+_source line 5718 · 2026-05-23T13:19:50.115221+00:00_
 
 called Bash
 
@@ -15834,7 +13896,7 @@ called Bash
 
 ### Tool result
 
-_source line 5763 · 2026-05-23T13:19:50.218985+00:00_
+_source line 5719 · 2026-05-23T13:19:50.218985+00:00_
 
 (Bash completed with no output)
 
@@ -15856,7 +13918,7 @@ _source line 5763 · 2026-05-23T13:19:50.218985+00:00_
 
 ### Tool call
 
-_source line 5764 · 2026-05-23T13:19:56.600399+00:00_
+_source line 5720 · 2026-05-23T13:19:56.600399+00:00_
 
 called Grep
 
@@ -15896,7 +13958,7 @@ called Grep
 
 ### Tool result
 
-_source line 5765 · 2026-05-23T13:19:59.967339+00:00_
+_source line 5721 · 2026-05-23T13:19:59.967339+00:00_
 
 No matches found
 
@@ -15918,7 +13980,7 @@ No matches found
 
 ### Tool call
 
-_source line 5766 · 2026-05-23T13:20:00.118866+00:00_
+_source line 5722 · 2026-05-23T13:20:00.118866+00:00_
 
 called Grep
 
@@ -15958,7 +14020,7 @@ called Grep
 
 ### Tool result
 
-_source line 5767 · 2026-05-23T13:20:00.169491+00:00_
+_source line 5723 · 2026-05-23T13:20:00.169491+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex:2:[Omitted long matching line]
 
@@ -15980,7 +14042,7 @@ _source line 5767 · 2026-05-23T13:20:00.169491+00:00_
 
 ### Tool call
 
-_source line 5768 · 2026-05-23T13:20:07.425018+00:00_
+_source line 5724 · 2026-05-23T13:20:07.425018+00:00_
 
 called Grep
 
@@ -16020,7 +14082,7 @@ called Grep
 
 ### Tool result
 
-_source line 5769 · 2026-05-23T13:20:07.477546+00:00_
+_source line 5725 · 2026-05-23T13:20:07.477546+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:85:Under linear OLS, FWL implies that any linear transformation of $\mathbf{D}^*$ preserves the column space relative to $T$ for the four covariate topologies, so naive plug-in and MLA achieve exactly 0.0\% bias reduction (Appendix~\ref{app:fwl_proof}); exposure and IV are excluded. Under logistic regression the invariance breaks ($|\Delta\,\text{SF}_\tau| < 0.02$; Appendix~\ref{sec:logistic_dgp},~\ref{sec:fwl_nonlinear}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:8:[Omitted long matching line]
@@ -16048,7 +14110,7 @@ _source line 5769 · 2026-05-23T13:20:07.477546+00:00_
 
 ### Tool call
 
-_source line 5770 · 2026-05-23T13:20:18.430376+00:00_
+_source line 5726 · 2026-05-23T13:20:18.430376+00:00_
 
 called Bash
 
@@ -16086,7 +14148,7 @@ called Bash
 
 ### Tool result
 
-_source line 5771 · 2026-05-23T13:20:23.503787+00:00_
+_source line 5727 · 2026-05-23T13:20:23.503787+00:00_
 
 Conclusion starts at page 8
 Limitations starts at page 9
@@ -16112,7 +14174,7 @@ References starts at page 9
 
 ### Tool call
 
-_source line 5772 · 2026-05-23T13:20:53.646140+00:00_
+_source line 5728 · 2026-05-23T13:20:53.646140+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -16148,7 +14210,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5773 · 2026-05-23T13:20:57.415220+00:00_
+_source line 5729 · 2026-05-23T13:20:57.415220+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -16170,7 +14232,7 @@ _source line 5773 · 2026-05-23T13:20:57.415220+00:00_
 
 ### Assistant
 
-_source line 5774 · 2026-05-23T13:21:03.138633+00:00_
+_source line 5730 · 2026-05-23T13:21:03.138633+00:00_
 
 R16 Batch 1 + 补丁全部完成。等待 Batch 2 ranking stability agent 返回结果。
 
@@ -16197,7 +14259,7 @@ R16 Batch 1 + 补丁全部完成。等待 Batch 2 ranking stability agent 返回
 
 ### User
 
-_source line 5775 · 2026-05-23T13:23:10.726963+00:00_
+_source line 5731 · 2026-05-23T13:23:10.726963+00:00_
 
 [Director 指令] 正文加图 + Limitations 压缩——用户强制要求，立即执行。
 
@@ -16279,7 +14341,7 @@ _source line 5775 · 2026-05-23T13:23:10.726963+00:00_
 
 ### Tool call
 
-_source line 5776 · 2026-05-23T13:23:19.263858+00:00_
+_source line 5732 · 2026-05-23T13:23:19.263858+00:00_
 
 called Read
 
@@ -16317,7 +14379,7 @@ called Read
 
 ### Tool result
 
-_source line 5777 · 2026-05-23T13:23:19.665776+00:00_
+_source line 5733 · 2026-05-23T13:23:19.665776+00:00_
 
 45	
 46	\input{related_work}
@@ -16358,7 +14420,7 @@ _source line 5777 · 2026-05-23T13:23:19.665776+00:00_
 
 ### Tool call
 
-_source line 5778 · 2026-05-23T13:23:20.268361+00:00_
+_source line 5734 · 2026-05-23T13:23:20.268361+00:00_
 
 called Read
 
@@ -16396,7 +14458,7 @@ called Read
 
 ### Tool result
 
-_source line 5779 · 2026-05-23T13:23:20.319002+00:00_
+_source line 5735 · 2026-05-23T13:23:20.319002+00:00_
 
 765	Collapsing $K$-class annotations to binary before analysis discards multi-class error structure. We quantify ``binarization collapse'' as $\Delta = |\text{bias}_{K} - \text{bias}_{K \to 2}|$.
 766	
@@ -16432,7 +14494,7 @@ _source line 5779 · 2026-05-23T13:23:20.319002+00:00_
 
 ### Tool call
 
-_source line 5780 · 2026-05-23T13:23:21.526657+00:00_
+_source line 5736 · 2026-05-23T13:23:21.526657+00:00_
 
 called Read
 
@@ -16470,7 +14532,7 @@ called Read
 
 ### Tool result
 
-_source line 5781 · 2026-05-23T13:23:21.527154+00:00_
+_source line 5737 · 2026-05-23T13:23:21.527154+00:00_
 
 47	
 48	\subsection{ASV Framework Validation}
@@ -16506,7 +14568,7 @@ _source line 5781 · 2026-05-23T13:23:21.527154+00:00_
 
 ### Tool call
 
-_source line 5782 · 2026-05-23T13:23:22.280445+00:00_
+_source line 5738 · 2026-05-23T13:23:22.280445+00:00_
 
 called Read
 
@@ -16544,7 +14606,7 @@ called Read
 
 ### Tool result
 
-_source line 5783 · 2026-05-23T13:23:22.331844+00:00_
+_source line 5739 · 2026-05-23T13:23:22.331844+00:00_
 
 33	
 34	\paragraph{Exposure ($A$ = treatment variable).}
@@ -16580,7 +14642,7 @@ _source line 5783 · 2026-05-23T13:23:22.331844+00:00_
 
 ### Tool call
 
-_source line 5784 · 2026-05-23T13:23:22.332275+00:00_
+_source line 5740 · 2026-05-23T13:23:22.332275+00:00_
 
 called Read
 
@@ -16614,7 +14676,7 @@ called Read
 
 ### Tool result
 
-_source line 5785 · 2026-05-23T13:23:22.432990+00:00_
+_source line 5741 · 2026-05-23T13:23:22.432990+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -16644,7 +14706,7 @@ _source line 5785 · 2026-05-23T13:23:22.432990+00:00_
 
 ### Tool call
 
-_source line 5786 · 2026-05-23T13:23:35.938462+00:00_
+_source line 5742 · 2026-05-23T13:23:35.938462+00:00_
 
 called Bash
 
@@ -16680,7 +14742,7 @@ called Bash
 
 ### Tool call
 
-_source line 5787 · 2026-05-23T13:23:36.090345+00:00_
+_source line 5743 · 2026-05-23T13:23:36.090345+00:00_
 
 called Grep
 
@@ -16720,7 +14782,7 @@ called Grep
 
 ### Tool result
 
-_source line 5788 · 2026-05-23T13:23:36.191307+00:00_
+_source line 5744 · 2026-05-23T13:23:36.191307+00:00_
 
 No matches found
 
@@ -16742,7 +14804,7 @@ No matches found
 
 ### Tool result
 
-_source line 5789 · 2026-05-23T13:23:36.191812+00:00_
+_source line 5745 · 2026-05-23T13:23:36.191812+00:00_
 
 ---
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig3_asv_ranking.pdf
@@ -16766,7 +14828,7 @@ _source line 5789 · 2026-05-23T13:23:36.191812+00:00_
 
 ### Tool call
 
-_source line 5790 · 2026-05-23T13:23:41.241062+00:00_
+_source line 5746 · 2026-05-23T13:23:41.241062+00:00_
 
 called Bash
 
@@ -16802,7 +14864,7 @@ called Bash
 
 ### Tool result
 
-_source line 5791 · 2026-05-23T13:23:41.693083+00:00_
+_source line 5747 · 2026-05-23T13:23:41.693083+00:00_
 
 (Bash completed with no output)
 
@@ -16824,7 +14886,7 @@ _source line 5791 · 2026-05-23T13:23:41.693083+00:00_
 
 ### Tool call
 
-_source line 5792 · 2026-05-23T13:23:46.411731+00:00_
+_source line 5748 · 2026-05-23T13:23:46.411731+00:00_
 
 called Edit
 
@@ -16864,7 +14926,7 @@ called Edit
 
 ### Tool result
 
-_source line 5793 · 2026-05-23T13:23:46.915113+00:00_
+_source line 5749 · 2026-05-23T13:23:46.915113+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -16886,7 +14948,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5794 · 2026-05-23T13:23:49.374295+00:00_
+_source line 5750 · 2026-05-23T13:23:49.374295+00:00_
 
 called Edit
 
@@ -16926,7 +14988,7 @@ called Edit
 
 ### Tool result
 
-_source line 5795 · 2026-05-23T13:23:49.374944+00:00_
+_source line 5751 · 2026-05-23T13:23:49.374944+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -16948,7 +15010,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5796 · 2026-05-23T13:23:53.641534+00:00_
+_source line 5752 · 2026-05-23T13:23:53.641534+00:00_
 
 called Edit
 
@@ -16988,7 +15050,7 @@ called Edit
 
 ### Tool result
 
-_source line 5797 · 2026-05-23T13:23:54.094442+00:00_
+_source line 5753 · 2026-05-23T13:23:54.094442+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex has been updated successfully.
 
@@ -17010,7 +15072,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5798 · 2026-05-23T13:23:56.554606+00:00_
+_source line 5754 · 2026-05-23T13:23:56.554606+00:00_
 
 called Edit
 
@@ -17050,7 +15112,7 @@ called Edit
 
 ### Tool result
 
-_source line 5799 · 2026-05-23T13:23:57.007334+00:00_
+_source line 5755 · 2026-05-23T13:23:57.007334+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -17072,7 +15134,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5800 · 2026-05-23T13:24:07.499758+00:00_
+_source line 5756 · 2026-05-23T13:24:07.499758+00:00_
 
 called Edit
 
@@ -17112,7 +15174,7 @@ called Edit
 
 ### Tool result
 
-_source line 5801 · 2026-05-23T13:24:07.551417+00:00_
+_source line 5757 · 2026-05-23T13:24:07.551417+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -17134,7 +15196,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5802 · 2026-05-23T13:26:44.017399+00:00_
+_source line 5758 · 2026-05-23T13:26:44.017399+00:00_
 
 called Bash
 
@@ -17170,7 +15232,7 @@ called Bash
 
 ### Tool call
 
-_source line 5803 · 2026-05-23T13:26:44.569900+00:00_
+_source line 5759 · 2026-05-23T13:26:44.569900+00:00_
 
 called Bash
 
@@ -17204,7 +15266,7 @@ called Bash
 
 ### Tool result
 
-_source line 5804 · 2026-05-23T13:26:45.122419+00:00_
+_source line 5760 · 2026-05-23T13:26:45.122419+00:00_
 
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/share/texlive/texmf-dist/font
@@ -17252,7 +15314,7 @@ s/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts
 
 ### Tool result
 
-_source line 5805 · 2026-05-23T13:26:45.173229+00:00_
+_source line 5761 · 2026-05-23T13:26:45.173229+00:00_
 
 179
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -17275,7 +15337,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5806 · 2026-05-23T13:26:52.853380+00:00_
+_source line 5762 · 2026-05-23T13:26:52.853380+00:00_
 
 called Bash
 
@@ -17311,7 +15373,7 @@ called Bash
 
 ### Tool result
 
-_source line 5807 · 2026-05-23T13:26:54.963925+00:00_
+_source line 5763 · 2026-05-23T13:26:54.963925+00:00_
 
 This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
 The top-level auxiliary file: main.aux
@@ -17361,7 +15423,7 @@ LaTeX
 
 ### Tool call
 
-_source line 5808 · 2026-05-23T13:27:01.439201+00:00_
+_source line 5764 · 2026-05-23T13:27:01.439201+00:00_
 
 called Bash
 
@@ -17397,7 +15459,7 @@ called Bash
 
 ### Tool result
 
-_source line 5809 · 2026-05-23T13:27:02.644785+00:00_
+_source line 5765 · 2026-05-23T13:27:02.644785+00:00_
 
 Output written on main.pdf (31 pages, 921407 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -17420,7 +15482,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5810 · 2026-05-23T13:27:06.761802+00:00_
+_source line 5766 · 2026-05-23T13:27:06.761802+00:00_
 
 called Bash
 
@@ -17456,7 +15518,7 @@ called Bash
 
 ### Tool result
 
-_source line 5811 · 2026-05-23T13:27:07.916438+00:00_
+_source line 5767 · 2026-05-23T13:27:07.916438+00:00_
 
 Output written on main.pdf (31 pages, 921324 bytes).
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
@@ -17479,7 +15541,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5812 · 2026-05-23T13:27:16.303446+00:00_
+_source line 5768 · 2026-05-23T13:27:16.303446+00:00_
 
 called Bash
 
@@ -17515,7 +15577,7 @@ called Bash
 
 ### Tool result
 
-_source line 5813 · 2026-05-23T13:27:16.757363+00:00_
+_source line 5769 · 2026-05-23T13:27:16.757363+00:00_
 
 Limitations found on page 1, line 1908: Limitations
 References found on page 1, line 1930: References
@@ -17541,7 +15603,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5814 · 2026-05-23T13:27:24.790109+00:00_
+_source line 5770 · 2026-05-23T13:27:24.790109+00:00_
 
 called Bash
 
@@ -17577,7 +15639,7 @@ called Bash
 
 ### Tool result
 
-_source line 5815 · 2026-05-23T13:27:25.242852+00:00_
+_source line 5771 · 2026-05-23T13:27:25.242852+00:00_
 
 Total pages: 32
 Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
@@ -17612,7 +15674,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5816 · 2026-05-23T13:27:35.885828+00:00_
+_source line 5772 · 2026-05-23T13:27:35.885828+00:00_
 
 called Read
 
@@ -17646,7 +15708,7 @@ called Read
 
 ### Tool result
 
-_source line 5817 · 2026-05-23T13:27:36.237640+00:00_
+_source line 5773 · 2026-05-23T13:27:36.237640+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -17668,7 +15730,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 5818 · 2026-05-23T13:27:36.238011+00:00_
+_source line 5774 · 2026-05-23T13:27:36.238011+00:00_
 
 called Read
 
@@ -17702,7 +15764,7 @@ called Read
 
 ### Tool result
 
-_source line 5819 · 2026-05-23T13:27:36.389221+00:00_
+_source line 5775 · 2026-05-23T13:27:36.389221+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -17741,7 +15803,7 @@ _source line 5819 · 2026-05-23T13:27:36.389221+00:00_
 
 ### Tool call
 
-_source line 5820 · 2026-05-23T13:28:12.691665+00:00_
+_source line 5776 · 2026-05-23T13:28:12.691665+00:00_
 
 called Edit
 
@@ -17781,7 +15843,7 @@ called Edit
 
 ### Tool result
 
-_source line 5821 · 2026-05-23T13:28:12.742462+00:00_
+_source line 5777 · 2026-05-23T13:28:12.742462+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -17803,7 +15865,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5822 · 2026-05-23T13:28:30.868945+00:00_
+_source line 5778 · 2026-05-23T13:28:30.868945+00:00_
 
 called Edit
 
@@ -17843,7 +15905,7 @@ called Edit
 
 ### Tool result
 
-_source line 5823 · 2026-05-23T13:28:30.919935+00:00_
+_source line 5779 · 2026-05-23T13:28:30.919935+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -17865,7 +15927,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5824 · 2026-05-23T13:28:40.408203+00:00_
+_source line 5780 · 2026-05-23T13:28:40.408203+00:00_
 
 called Edit
 
@@ -17905,7 +15967,7 @@ called Edit
 
 ### Tool result
 
-_source line 5825 · 2026-05-23T13:28:40.459187+00:00_
+_source line 5781 · 2026-05-23T13:28:40.459187+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -17927,7 +15989,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5826 · 2026-05-23T13:28:53.171443+00:00_
+_source line 5782 · 2026-05-23T13:28:53.171443+00:00_
 
 called Edit
 
@@ -17967,7 +16029,7 @@ called Edit
 
 ### Tool result
 
-_source line 5827 · 2026-05-23T13:28:53.322581+00:00_
+_source line 5783 · 2026-05-23T13:28:53.322581+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -17989,7 +16051,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5828 · 2026-05-23T13:28:59.396281+00:00_
+_source line 5784 · 2026-05-23T13:28:59.396281+00:00_
 
 called Bash
 
@@ -18025,7 +16087,7 @@ called Bash
 
 ### Tool result
 
-_source line 5829 · 2026-05-23T13:29:02.008925+00:00_
+_source line 5785 · 2026-05-23T13:29:02.008925+00:00_
 
 Total pages: 31
 Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
@@ -18060,7 +16122,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5830 · 2026-05-23T13:29:15.562588+00:00_
+_source line 5786 · 2026-05-23T13:29:15.562588+00:00_
 
 called Bash
 
@@ -18096,7 +16158,7 @@ called Bash
 
 ### Tool result
 
-_source line 5831 · 2026-05-23T13:29:15.965214+00:00_
+_source line 5787 · 2026-05-23T13:29:15.965214+00:00_
 
 === PAGE 8 ===
                                    HumAID (K=10): Topology Determines Bias, Not F1                  
@@ -18143,7 +16205,7 @@ _source line 5831 · 2026-05-23T13:29:15.965214+00:00_
 
 ### Tool call
 
-_source line 5832 · 2026-05-23T13:29:33.586536+00:00_
+_source line 5788 · 2026-05-23T13:29:33.586536+00:00_
 
 called Bash
 
@@ -18179,7 +16241,7 @@ called Bash
 
 ### Tool result
 
-_source line 5833 · 2026-05-23T13:29:34.040439+00:00_
+_source line 5789 · 2026-05-23T13:29:34.040439+00:00_
 
  47:                                                                                                                 five top
  48: 596   exposure coefficients, 14/23 configurations
@@ -18221,7 +16283,7 @@ _source line 5833 · 2026-05-23T13:29:34.040439+00:00_
 
 ### Tool call
 
-_source line 5834 · 2026-05-23T13:29:46.731271+00:00_
+_source line 5790 · 2026-05-23T13:29:46.731271+00:00_
 
 called Read
 
@@ -18255,7 +16317,7 @@ called Read
 
 ### Tool result
 
-_source line 5835 · 2026-05-23T13:29:46.890008+00:00_
+_source line 5791 · 2026-05-23T13:29:46.890008+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -18277,7 +16339,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 5836 · 2026-05-23T13:30:02.802340+00:00_
+_source line 5792 · 2026-05-23T13:30:02.802340+00:00_
 
 called Edit
 
@@ -18317,7 +16379,7 @@ called Edit
 
 ### Tool result
 
-_source line 5837 · 2026-05-23T13:30:02.853138+00:00_
+_source line 5793 · 2026-05-23T13:30:02.853138+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -18339,7 +16401,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5838 · 2026-05-23T13:30:09.730271+00:00_
+_source line 5794 · 2026-05-23T13:30:09.730271+00:00_
 
 called Bash
 
@@ -18375,7 +16437,7 @@ called Bash
 
 ### Tool result
 
-_source line 5839 · 2026-05-23T13:30:12.240876+00:00_
+_source line 5795 · 2026-05-23T13:30:12.240876+00:00_
 
 Total pages: 31
 Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
@@ -18410,7 +16472,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5840 · 2026-05-23T13:30:30.967247+00:00_
+_source line 5796 · 2026-05-23T13:30:30.967247+00:00_
 
 called Bash
 
@@ -18446,7 +16508,7 @@ called Bash
 
 ### Tool result
 
-_source line 5841 · 2026-05-23T13:30:31.319138+00:00_
+_source line 5797 · 2026-05-23T13:30:31.319138+00:00_
 
 Exit code 1
 0
@@ -18469,7 +16531,7 @@ Exit code 1
 
 ### Tool call
 
-_source line 5842 · 2026-05-23T13:30:31.470245+00:00_
+_source line 5798 · 2026-05-23T13:30:31.470245+00:00_
 
 called Bash
 
@@ -18505,7 +16567,7 @@ called Bash
 
 ### Tool result
 
-_source line 5843 · 2026-05-23T13:30:31.470661+00:00_
+_source line 5799 · 2026-05-23T13:30:31.470661+00:00_
 
 &lt;tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-prod_…) errored&lt;/tool_use_error>
 
@@ -18527,7 +16589,7 @@ _source line 5843 · 2026-05-23T13:30:31.470661+00:00_
 
 ### Tool call
 
-_source line 5844 · 2026-05-23T13:30:36.542701+00:00_
+_source line 5800 · 2026-05-23T13:30:36.542701+00:00_
 
 called Bash
 
@@ -18563,7 +16625,7 @@ called Bash
 
 ### Tool result
 
-_source line 5845 · 2026-05-23T13:30:36.643593+00:00_
+_source line 5801 · 2026-05-23T13:30:36.643593+00:00_
 
 0
 ---
@@ -18589,7 +16651,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5846 · 2026-05-23T13:30:42.525374+00:00_
+_source line 5802 · 2026-05-23T13:30:42.525374+00:00_
 
 called ToolSearch
 
@@ -18625,7 +16687,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5847 · 2026-05-23T13:30:42.576527+00:00_
+_source line 5803 · 2026-05-23T13:30:42.576527+00:00_
 
 
 
@@ -18647,7 +16709,7 @@ _source line 5847 · 2026-05-23T13:30:42.576527+00:00_
 
 ### Tool call
 
-_source line 5848 · 2026-05-23T13:31:42.998063+00:00_
+_source line 5804 · 2026-05-23T13:31:42.998063+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18683,7 +16745,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 5849 · 2026-05-23T13:31:46.763062+00:00_
+_source line 5805 · 2026-05-23T13:31:46.763062+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -18705,7 +16767,7 @@ _source line 5849 · 2026-05-23T13:31:46.763062+00:00_
 
 ### Assistant
 
-_source line 5850 · 2026-05-23T13:31:50.733759+00:00_
+_source line 5806 · 2026-05-23T13:31:50.733759+00:00_
 
 已向 Director 汇报完成。所有 5 项任务执行完毕，编译验证通过：正文 8 页、Abstract 179 词、0 errors、0 undefined refs。
 
@@ -18732,7 +16794,7 @@ _source line 5850 · 2026-05-23T13:31:50.733759+00:00_
 
 ### User
 
-_source line 5851 · 2026-05-23T14:20:03.131994+00:00_
+_source line 5807 · 2026-05-23T14:20:03.131994+00:00_
 
 [Director 指令] **R17 写作修复批次——共 10 项，需一次完成**
 
@@ -18826,7 +16888,7 @@ DDL 5/25，请高效执行以下修改。所有修改必须控制正文 ≤8 页
 
 ### Tool call
 
-_source line 5852 · 2026-05-23T14:20:15.964655+00:00_
+_source line 5808 · 2026-05-23T14:20:15.964655+00:00_
 
 called Read
 
@@ -18860,7 +16922,7 @@ called Read
 
 ### Tool result
 
-_source line 5853 · 2026-05-23T14:20:17.019616+00:00_
+_source line 5809 · 2026-05-23T14:20:17.019616+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -18899,7 +16961,7 @@ _source line 5853 · 2026-05-23T14:20:17.019616+00:00_
 
 ### Tool call
 
-_source line 5854 · 2026-05-23T14:20:17.019937+00:00_
+_source line 5810 · 2026-05-23T14:20:17.019937+00:00_
 
 called Read
 
@@ -18933,7 +16995,7 @@ called Read
 
 ### Tool result
 
-_source line 5855 · 2026-05-23T14:20:17.522464+00:00_
+_source line 5811 · 2026-05-23T14:20:17.522464+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -18976,7 +17038,7 @@ _source line 5855 · 2026-05-23T14:20:17.522464+00:00_
 
 ### Tool call
 
-_source line 5856 · 2026-05-23T14:20:17.522793+00:00_
+_source line 5812 · 2026-05-23T14:20:17.522793+00:00_
 
 called Read
 
@@ -19010,7 +17072,7 @@ called Read
 
 ### Tool result
 
-_source line 5857 · 2026-05-23T14:20:18.024867+00:00_
+_source line 5813 · 2026-05-23T14:20:18.024867+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -19040,7 +17102,7 @@ _source line 5857 · 2026-05-23T14:20:18.024867+00:00_
 
 ### Tool call
 
-_source line 5858 · 2026-05-23T14:20:18.025265+00:00_
+_source line 5814 · 2026-05-23T14:20:18.025265+00:00_
 
 called Read
 
@@ -19074,7 +17136,7 @@ called Read
 
 ### Tool result
 
-_source line 5859 · 2026-05-23T14:20:18.276579+00:00_
+_source line 5815 · 2026-05-23T14:20:18.276579+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy, sign reversal of secondary coefficients occurs under exposure; under empirical LLM matrices (diagonal 0.45--0.81), sign reversal is confined to exposure; IV is fragile under uniform Dirichlet priors but exhibits zero reversals under empirical LLM matrices. We introduce Annotation Sensitivity Values (ASVs), with proved ($K{=}2$) and numerically verified ($K{\geq}3$) monotonicity, yielding a vulnerability ranking from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective under linear regression for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -19099,7 +17161,7 @@ _source line 5859 · 2026-05-23T14:20:18.276579+00:00_
 
 ### Tool call
 
-_source line 5860 · 2026-05-23T14:20:18.276869+00:00_
+_source line 5816 · 2026-05-23T14:20:18.276869+00:00_
 
 called Read
 
@@ -19133,7 +17195,7 @@ called Read
 
 ### Tool result
 
-_source line 5861 · 2026-05-23T14:20:18.377544+00:00_
+_source line 5817 · 2026-05-23T14:20:18.377544+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -19163,7 +17225,7 @@ _source line 5861 · 2026-05-23T14:20:18.377544+00:00_
 
 ### Tool call
 
-_source line 5862 · 2026-05-23T14:20:28.374692+00:00_
+_source line 5818 · 2026-05-23T14:20:28.374692+00:00_
 
 called Grep
 
@@ -19201,7 +17263,7 @@ called Grep
 
 ### Tool result
 
-_source line 5863 · 2026-05-23T14:20:28.927376+00:00_
+_source line 5819 · 2026-05-23T14:20:28.927376+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib:496:@article{dawid1979,
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib:517:@book{rosenbaum2002,
@@ -19224,7 +17286,7 @@ _source line 5863 · 2026-05-23T14:20:28.927376+00:00_
 
 ### Tool call
 
-_source line 5864 · 2026-05-23T14:20:29.932781+00:00_
+_source line 5820 · 2026-05-23T14:20:29.932781+00:00_
 
 called Grep
 
@@ -19262,7 +17324,7 @@ called Grep
 
 ### Tool result
 
-_source line 5865 · 2026-05-23T14:20:30.385610+00:00_
+_source line 5821 · 2026-05-23T14:20:30.385610+00:00_
 
 759:\section{Supplementary Tables, Figures, and Algorithm}
 847:\label{alg:correction}
@@ -19287,7 +17349,7 @@ _source line 5865 · 2026-05-23T14:20:30.385610+00:00_
 
 ### Tool call
 
-_source line 5866 · 2026-05-23T14:20:30.939253+00:00_
+_source line 5822 · 2026-05-23T14:20:30.939253+00:00_
 
 called Grep
 
@@ -19325,7 +17387,7 @@ called Grep
 
 ### Tool result
 
-_source line 5867 · 2026-05-23T14:20:31.493658+00:00_
+_source line 5823 · 2026-05-23T14:20:31.493658+00:00_
 
 773:\label{tab:asv_grid}
 1077:\label{sec:asv_stability}
@@ -19350,7 +17412,7 @@ _source line 5867 · 2026-05-23T14:20:31.493658+00:00_
 
 ### Tool call
 
-_source line 5868 · 2026-05-23T14:20:31.946447+00:00_
+_source line 5824 · 2026-05-23T14:20:31.946447+00:00_
 
 called Grep
 
@@ -19388,7 +17450,7 @@ called Grep
 
 ### Tool result
 
-_source line 5869 · 2026-05-23T14:20:31.997036+00:00_
+_source line 5825 · 2026-05-23T14:20:31.997036+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.bbl:221:  Church}]{jurek2005}
@@ -19414,7 +17476,7 @@ _source line 5869 · 2026-05-23T14:20:31.997036+00:00_
 
 ### Tool call
 
-_source line 5870 · 2026-05-23T14:20:36.167812+00:00_
+_source line 5826 · 2026-05-23T14:20:36.167812+00:00_
 
 called Read
 
@@ -19452,7 +17514,7 @@ called Read
 
 ### Tool result
 
-_source line 5871 · 2026-05-23T14:20:36.620561+00:00_
+_source line 5827 · 2026-05-23T14:20:36.620561+00:00_
 
 770	\begin{table}[h]
 771	\centering
@@ -19513,7 +17575,7 @@ _source line 5871 · 2026-05-23T14:20:36.620561+00:00_
 
 ### Tool call
 
-_source line 5872 · 2026-05-23T14:20:36.620908+00:00_
+_source line 5828 · 2026-05-23T14:20:36.620908+00:00_
 
 called Read
 
@@ -19551,7 +17613,7 @@ called Read
 
 ### Tool result
 
-_source line 5873 · 2026-05-23T14:20:37.574925+00:00_
+_source line 5829 · 2026-05-23T14:20:37.574925+00:00_
 
 840	(4)~\emph{Asymmetric}: $C_{kk}$ varies (0.8, 0.5, 0.3);
 841	(5)~\emph{Block confusion}: two classes confused ($C_{12}{=}C_{21}{=}0.4$), third clean;
@@ -19602,7 +17664,7 @@ _source line 5873 · 2026-05-23T14:20:37.574925+00:00_
 
 ### Tool call
 
-_source line 5874 · 2026-05-23T14:20:37.575268+00:00_
+_source line 5830 · 2026-05-23T14:20:37.575268+00:00_
 
 called Read
 
@@ -19640,7 +17702,7 @@ called Read
 
 ### Tool result
 
-_source line 5875 · 2026-05-23T14:20:37.625793+00:00_
+_source line 5831 · 2026-05-23T14:20:37.625793+00:00_
 
 1075	
 1076	\subsection{ASV Stability Across DGP Parameters}
@@ -19673,7 +17735,7 @@ _source line 5875 · 2026-05-23T14:20:37.625793+00:00_
 
 ### Tool call
 
-_source line 5876 · 2026-05-23T14:20:57.416126+00:00_
+_source line 5832 · 2026-05-23T14:20:57.416126+00:00_
 
 called Bash
 
@@ -19707,7 +17769,7 @@ called Bash
 
 ### Tool result
 
-_source line 5877 · 2026-05-23T14:20:57.566995+00:00_
+_source line 5833 · 2026-05-23T14:20:57.566995+00:00_
 
 \begin{table}[t]
 \centering
@@ -19745,7 +17807,7 @@ Alt.\ small: $\boldsymbol{\beta}=[0,\,0.2,\,-0.1]$ & $\infty$ & 0.090 & 0.203 \\
 
 ### Tool call
 
-_source line 5878 · 2026-05-23T14:22:33.059401+00:00_
+_source line 5834 · 2026-05-23T14:22:33.059401+00:00_
 
 called ToolSearch
 
@@ -19781,7 +17843,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 5879 · 2026-05-23T14:22:33.160298+00:00_
+_source line 5835 · 2026-05-23T14:22:33.160298+00:00_
 
 
 
@@ -19803,7 +17865,7 @@ _source line 5879 · 2026-05-23T14:22:33.160298+00:00_
 
 ### Tool call
 
-_source line 5880 · 2026-05-23T14:22:38.838903+00:00_
+_source line 5836 · 2026-05-23T14:22:38.838903+00:00_
 
 called WebSearch
 
@@ -19837,7 +17899,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 5881 · 2026-05-23T14:22:39.808312+00:00_
+_source line 5837 · 2026-05-23T14:22:39.808312+00:00_
 
 called WebSearch
 
@@ -19871,7 +17933,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 5882 · 2026-05-23T14:22:41.215975+00:00_
+_source line 5838 · 2026-05-23T14:22:41.215975+00:00_
 
 called WebSearch
 
@@ -19905,7 +17967,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 5883 · 2026-05-23T14:22:41.467656+00:00_
+_source line 5839 · 2026-05-23T14:22:41.467656+00:00_
 
 called WebSearch
 
@@ -19939,7 +18001,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 5884 · 2026-05-23T14:22:46.017112+00:00_
+_source line 5840 · 2026-05-23T14:22:46.017112+00:00_
 
 Web search results for query: "Valeri VanderWeele 2014 mediation misclassified binary mediator biostatistics"
 
@@ -19968,7 +18030,7 @@ The paper is "The estimation of direct and
 
 ### Tool result
 
-_source line 5885 · 2026-05-23T14:22:47.279307+00:00_
+_source line 5841 · 2026-05-23T14:22:47.279307+00:00_
 
 Web search results for query: "Stefanski Carroll 1985 covariate measurement error logistic regression Annals Statistics"
 
@@ -19997,7 +18059,7 @@ I found the paper you're looking for!
 
 ### Tool result
 
-_source line 5886 · 2026-05-23T14:22:48.234495+00:00_
+_source line 5842 · 2026-05-23T14:22:48.234495+00:00_
 
 Web search results for query: "Tan 2024 LLM annotation survey large language model"
 
@@ -20028,7 +18090,7 @@ The survey addresses data annotation and synthesis, which refers to the labeling
 
 ### Tool result
 
-_source line 5887 · 2026-05-23T14:22:52.802066+00:00_
+_source line 5843 · 2026-05-23T14:22:52.802066+00:00_
 
 Web search results for query: "Oster 2019 unobservable selection coefficient stability Journal Business Economic Statistics"
 
@@ -20057,7 +18119,7 @@ O
 
 ### Tool call
 
-_source line 5888 · 2026-05-23T14:23:04.509077+00:00_
+_source line 5844 · 2026-05-23T14:23:04.509077+00:00_
 
 called Grep
 
@@ -20097,7 +18159,7 @@ called Grep
 
 ### Tool result
 
-_source line 5889 · 2026-05-23T14:23:04.610002+00:00_
+_source line 5845 · 2026-05-23T14:23:04.610002+00:00_
 
 No matches found
 
@@ -20119,7 +18181,7 @@ No matches found
 
 ### Tool call
 
-_source line 5890 · 2026-05-23T14:23:18.023725+00:00_
+_source line 5846 · 2026-05-23T14:23:18.023725+00:00_
 
 called Edit
 
@@ -20159,7 +18221,7 @@ called Edit
 
 ### Tool result
 
-_source line 5891 · 2026-05-23T14:23:18.074653+00:00_
+_source line 5847 · 2026-05-23T14:23:18.074653+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -20181,7 +18243,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5892 · 2026-05-23T14:23:26.365423+00:00_
+_source line 5848 · 2026-05-23T14:23:26.365423+00:00_
 
 called Edit
 
@@ -20221,7 +18283,7 @@ called Edit
 
 ### Tool result
 
-_source line 5893 · 2026-05-23T14:23:26.416341+00:00_
+_source line 5849 · 2026-05-23T14:23:26.416341+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -20243,7 +18305,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5894 · 2026-05-23T14:23:35.358337+00:00_
+_source line 5850 · 2026-05-23T14:23:35.358337+00:00_
 
 called Edit
 
@@ -20283,7 +18345,7 @@ called Edit
 
 ### Tool result
 
-_source line 5895 · 2026-05-23T14:23:35.409603+00:00_
+_source line 5851 · 2026-05-23T14:23:35.409603+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -20305,7 +18367,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5896 · 2026-05-23T14:23:54.863708+00:00_
+_source line 5852 · 2026-05-23T14:23:54.863708+00:00_
 
 called Edit
 
@@ -20345,7 +18407,7 @@ called Edit
 
 ### Tool result
 
-_source line 5897 · 2026-05-23T14:23:55.165716+00:00_
+_source line 5853 · 2026-05-23T14:23:55.165716+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -20367,7 +18429,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5898 · 2026-05-23T14:24:03.307505+00:00_
+_source line 5854 · 2026-05-23T14:24:03.307505+00:00_
 
 called Read
 
@@ -20405,7 +18467,7 @@ called Read
 
 ### Tool result
 
-_source line 5899 · 2026-05-23T14:24:03.358092+00:00_
+_source line 5855 · 2026-05-23T14:24:03.358092+00:00_
 
 118	Under alternating-sign effects ($\boldsymbol{\beta}{=}[0,\,1.0,\,-0.5]$), magnitude ASV is 0.09 for exposure, 0.20 for IV, 0.35 for confounding, and $\infty$ for M-bias (Table~\ref{tab:asv_stability})---the same annotator quality produces a $4{\times}$ difference in tolerable error, determined entirely by DAG topology. This topology-dependent diagnostic is unavailable in E-value frameworks, which treat all confounding structures identically.
 119	
@@ -20430,7 +18492,7 @@ _source line 5899 · 2026-05-23T14:24:03.358092+00:00_
 
 ### Tool call
 
-_source line 5900 · 2026-05-23T14:24:09.281709+00:00_
+_source line 5856 · 2026-05-23T14:24:09.281709+00:00_
 
 called Edit
 
@@ -20470,7 +18532,7 @@ called Edit
 
 ### Tool result
 
-_source line 5901 · 2026-05-23T14:24:09.332463+00:00_
+_source line 5857 · 2026-05-23T14:24:09.332463+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -20492,7 +18554,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5902 · 2026-05-23T14:24:19.029551+00:00_
+_source line 5858 · 2026-05-23T14:24:19.029551+00:00_
 
 called Edit
 
@@ -20532,7 +18594,7 @@ called Edit
 
 ### Tool result
 
-_source line 5903 · 2026-05-23T14:24:19.030137+00:00_
+_source line 5859 · 2026-05-23T14:24:19.030137+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -20554,7 +18616,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5904 · 2026-05-23T14:24:29.884349+00:00_
+_source line 5860 · 2026-05-23T14:24:29.884349+00:00_
 
 called Edit
 
@@ -20594,7 +18656,7 @@ called Edit
 
 ### Tool result
 
-_source line 5905 · 2026-05-23T14:24:29.935226+00:00_
+_source line 5861 · 2026-05-23T14:24:29.935226+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
 
@@ -20616,7 +18678,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5906 · 2026-05-23T14:24:36.119639+00:00_
+_source line 5862 · 2026-05-23T14:24:36.119639+00:00_
 
 called Edit
 
@@ -20656,7 +18718,7 @@ called Edit
 
 ### Tool result
 
-_source line 5907 · 2026-05-23T14:24:36.220438+00:00_
+_source line 5863 · 2026-05-23T14:24:36.220438+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex has been updated successfully.
 
@@ -20678,7 +18740,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5908 · 2026-05-23T14:24:43.717364+00:00_
+_source line 5864 · 2026-05-23T14:24:43.717364+00:00_
 
 called Edit
 
@@ -20718,7 +18780,7 @@ called Edit
 
 ### Tool result
 
-_source line 5909 · 2026-05-23T14:24:43.767986+00:00_
+_source line 5865 · 2026-05-23T14:24:43.767986+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
 
@@ -20740,7 +18802,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5910 · 2026-05-23T14:24:50.258486+00:00_
+_source line 5866 · 2026-05-23T14:24:50.258486+00:00_
 
 called Edit
 
@@ -20780,7 +18842,7 @@ called Edit
 
 ### Tool result
 
-_source line 5911 · 2026-05-23T14:24:50.259883+00:00_
+_source line 5867 · 2026-05-23T14:24:50.259883+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex has been updated successfully.
 
@@ -20802,7 +18864,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5912 · 2026-05-23T14:24:55.483816+00:00_
+_source line 5868 · 2026-05-23T14:24:55.483816+00:00_
 
 called Read
 
@@ -20840,7 +18902,7 @@ called Read
 
 ### Tool result
 
-_source line 5913 · 2026-05-23T14:24:55.585042+00:00_
+_source line 5869 · 2026-05-23T14:24:55.585042+00:00_
 
 490	  author    = {Grimmer, Justin and Roberts, Margaret E. and Stewart, Brandon M.},
 491	  publisher = {Princeton University Press},
@@ -20911,7 +18973,7 @@ _source line 5913 · 2026-05-23T14:24:55.585042+00:00_
 
 ### Tool call
 
-_source line 5914 · 2026-05-23T14:25:05.530128+00:00_
+_source line 5870 · 2026-05-23T14:25:05.530128+00:00_
 
 called Edit
 
@@ -20951,7 +19013,7 @@ called Edit
 
 ### Tool result
 
-_source line 5915 · 2026-05-23T14:25:05.581439+00:00_
+_source line 5871 · 2026-05-23T14:25:05.581439+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib has been updated successfully.
 
@@ -20973,7 +19035,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5916 · 2026-05-23T14:25:10.555101+00:00_
+_source line 5872 · 2026-05-23T14:25:10.555101+00:00_
 
 called Edit
 
@@ -21013,7 +19075,7 @@ called Edit
 
 ### Tool result
 
-_source line 5917 · 2026-05-23T14:25:10.606471+00:00_
+_source line 5873 · 2026-05-23T14:25:10.606471+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib has been updated successfully.
 
@@ -21035,7 +19097,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5918 · 2026-05-23T14:25:15.430891+00:00_
+_source line 5874 · 2026-05-23T14:25:15.430891+00:00_
 
 called Read
 
@@ -21073,7 +19135,7 @@ called Read
 
 ### Tool result
 
-_source line 5919 · 2026-05-23T14:25:15.481841+00:00_
+_source line 5875 · 2026-05-23T14:25:15.481841+00:00_
 
 1	% Auto-generated from literature_map.yaml — all verified=true entries
 2	% Last sync: 2026-05-20
@@ -21099,7 +19161,7 @@ _source line 5919 · 2026-05-23T14:25:15.481841+00:00_
 
 ### Tool call
 
-_source line 5920 · 2026-05-23T14:25:29.554839+00:00_
+_source line 5876 · 2026-05-23T14:25:29.554839+00:00_
 
 called Edit
 
@@ -21139,7 +19201,7 @@ called Edit
 
 ### Tool result
 
-_source line 5921 · 2026-05-23T14:25:29.605502+00:00_
+_source line 5877 · 2026-05-23T14:25:29.605502+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib has been updated successfully.
 
@@ -21161,7 +19223,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5922 · 2026-05-23T14:25:35.786425+00:00_
+_source line 5878 · 2026-05-23T14:25:35.786425+00:00_
 
 called Edit
 
@@ -21201,7 +19263,7 @@ called Edit
 
 ### Tool result
 
-_source line 5923 · 2026-05-23T14:25:35.837771+00:00_
+_source line 5879 · 2026-05-23T14:25:35.837771+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex has been updated successfully.
 
@@ -21223,7 +19285,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5924 · 2026-05-23T14:25:40.958495+00:00_
+_source line 5880 · 2026-05-23T14:25:40.958495+00:00_
 
 called Edit
 
@@ -21263,7 +19325,7 @@ called Edit
 
 ### Tool result
 
-_source line 5925 · 2026-05-23T14:25:41.009134+00:00_
+_source line 5881 · 2026-05-23T14:25:41.009134+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex has been updated successfully.
 
@@ -21285,7 +19347,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5926 · 2026-05-23T14:25:47.593021+00:00_
+_source line 5882 · 2026-05-23T14:25:47.593021+00:00_
 
 called Edit
 
@@ -21325,7 +19387,7 @@ called Edit
 
 ### Tool result
 
-_source line 5927 · 2026-05-23T14:25:47.744590+00:00_
+_source line 5883 · 2026-05-23T14:25:47.744590+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -21347,7 +19409,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5928 · 2026-05-23T14:25:54.447541+00:00_
+_source line 5884 · 2026-05-23T14:25:54.447541+00:00_
 
 called Edit
 
@@ -21387,7 +19449,7 @@ called Edit
 
 ### Tool result
 
-_source line 5929 · 2026-05-23T14:25:54.498528+00:00_
+_source line 5885 · 2026-05-23T14:25:54.498528+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -21409,7 +19471,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5930 · 2026-05-23T14:26:03.552715+00:00_
+_source line 5886 · 2026-05-23T14:26:03.552715+00:00_
 
 called Bash
 
@@ -21445,7 +19507,7 @@ called Bash
 
 ### Tool result
 
-_source line 5931 · 2026-05-23T14:26:06.161335+00:00_
+_source line 5887 · 2026-05-23T14:26:06.161335+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
 
@@ -21467,7 +19529,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5932 · 2026-05-23T14:26:12.349117+00:00_
+_source line 5888 · 2026-05-23T14:26:12.349117+00:00_
 
 called Bash
 
@@ -21503,7 +19565,7 @@ called Bash
 
 ### Tool result
 
-_source line 5933 · 2026-05-23T14:26:12.701120+00:00_
+_source line 5889 · 2026-05-23T14:26:12.701120+00:00_
 
 0
 ---
@@ -21540,7 +19602,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 5934 · 2026-05-23T14:26:24.970594+00:00_
+_source line 5890 · 2026-05-23T14:26:24.970594+00:00_
 
 called Bash
 
@@ -21576,7 +19638,7 @@ called Bash
 
 ### Tool result
 
-_source line 5935 · 2026-05-23T14:26:25.372413+00:00_
+_source line 5891 · 2026-05-23T14:26:25.372413+00:00_
 
 === PAGE 7 ===
 518   (β=[0, 1.0, −0.5]), magnitude ASV is 0.09 for           Table 1: Bias under K=3 non-differential misclas-
@@ -21618,7 +19680,7 @@ _source line 5935 · 2026-05-23T14:26:25.372413+00:00_
 
 ### Tool call
 
-_source line 5936 · 2026-05-23T14:26:30.556309+00:00_
+_source line 5892 · 2026-05-23T14:26:30.556309+00:00_
 
 called Bash
 
@@ -21654,7 +19716,7 @@ called Bash
 
 ### Tool result
 
-_source line 5937 · 2026-05-23T14:26:30.907624+00:00_
+_source line 5893 · 2026-05-23T14:26:30.907624+00:00_
 
 601   ing: IV is maximally fragile, M-bias is immune                                                                    
 602   (ASV = ∞). Sign-flip ASV: 83.4% of expo-
@@ -21695,7 +19757,7 @@ _source line 5937 · 2026-05-23T14:26:30.907624+00:00_
 
 ### Tool call
 
-_source line 5938 · 2026-05-23T14:26:48.154031+00:00_
+_source line 5894 · 2026-05-23T14:26:48.154031+00:00_
 
 called Read
 
@@ -21733,7 +19795,7 @@ called Read
 
 ### Tool result
 
-_source line 5939 · 2026-05-23T14:26:48.204626+00:00_
+_source line 5895 · 2026-05-23T14:26:48.204626+00:00_
 
 75	\emph{(c)}~Exposure can produce sign reversal for $K {\geq} 3$, even with $C_{kk} {>} 0.5$ (counterexample in Appendix~\ref{app:exposure}).
 76	\end{proposition}
@@ -21764,7 +19826,7 @@ _source line 5939 · 2026-05-23T14:26:48.204626+00:00_
 
 ### Tool call
 
-_source line 5940 · 2026-05-23T14:26:54.815686+00:00_
+_source line 5896 · 2026-05-23T14:26:54.815686+00:00_
 
 called Edit
 
@@ -21804,7 +19866,7 @@ called Edit
 
 ### Tool result
 
-_source line 5941 · 2026-05-23T14:26:54.866397+00:00_
+_source line 5897 · 2026-05-23T14:26:54.866397+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -21826,7 +19888,7 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
 
 ### Tool call
 
-_source line 5942 · 2026-05-23T14:27:08.679841+00:00_
+_source line 5898 · 2026-05-23T14:27:08.679841+00:00_
 
 called Edit
 
@@ -21866,7 +19928,7 @@ called Edit
 
 ### Tool result
 
-_source line 5943 · 2026-05-23T14:27:08.680685+00:00_
+_source line 5899 · 2026-05-23T14:27:08.680685+00:00_
 
 The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
 
@@ -21878,6 +19940,1690 @@ The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_a
   "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
   "tool": "Edit",
   "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5900 · 2026-05-23T14:27:17.522803+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "old_string": "\\paragraph{Parameterization.}\nWe parameterize the confusion matrix as $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $C_0$ is a reference confusion matrix and $\\delta \\in [0,1]$ controls severity ($\\delta{=}0$: perfect; $\\delta{=}1$: matches $C_0$). Non-negativity requires $\\delta \\leq \\delta_{\\max} = \\min_j 1/(1 - (C_0)_{jj}) \\geq 1$; we recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\\ref{sec:bootstrap_asv}).",
+  "new_string": "\\paragraph{Parameterization.}\nWe set $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $C_0$ is a reference confusion matrix and $\\delta \\in [0,1]$ controls severity ($\\delta{=}0$: perfect; $\\delta{=}1$: matches $C_0$); we recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\\ref{sec:bootstrap_asv})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "old_string": "\\paragraph{Parameterization.}\nWe parameterize the confusion matrix as $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $C_0$ is a reference confusion matrix and $\\delta \\in [0,1]$ controls severity ($\\delta{=}0$: perfect; $\\delta{=}1$: matches $C_0$). Non-negativity requires $\\delta \\leq \\delta_{\\max} = \\min_j 1/(1 - (C_0)_{jj}) \\geq 1$; we recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\\ref{sec:bootstrap_asv}).",
+    "new_string": "\\paragraph{Parameterization.}\nWe set $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $C_0$ is a reference confusion matrix and $\\delta \\in [0,1]$ controls severity ($\\delta{=}0$: perfect; $\\delta{=}1$: matches $C_0$); we recommend bootstrapping $C_0$ and reporting ASV confidence intervals (Appendix~\\ref{sec:bootstrap_asv})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5901 · 2026-05-23T14:27:17.523503+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5902 · 2026-05-23T14:27:27.118509+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+  "old_string": "\\paragraph{Theory-MC agreement.}\nAnalytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\\% across 161 scenarios (23 LLM configurations $\\times$ 7 topologies). Per-topology MAPE: 0.3\\% (confounding) to 3.7\\% (IV, reflecting Wald estimator variance amplification).",
+  "new_string": "\\paragraph{Theory-MC agreement.}\nAnalytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\\% across 161 scenarios (23 LLM configurations $\\times$ 7 topologies; per-topology range: 0.3\\%--3.7\\%)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+    "old_string": "\\paragraph{Theory-MC agreement.}\nAnalytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\\% across 161 scenarios (23 LLM configurations $\\times$ 7 topologies). Per-topology MAPE: 0.3\\% (confounding) to 3.7\\% (IV, reflecting Wald estimator variance amplification).",
+    "new_string": "\\paragraph{Theory-MC agreement.}\nAnalytical probability limits match Monte Carlo estimates with grand MAPE of 1.6\\% across 161 scenarios (23 LLM configurations $\\times$ 7 topologies; per-topology range: 0.3\\%--3.7\\%)."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5903 · 2026-05-23T14:27:27.169408+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5904 · 2026-05-23T14:27:36.920582+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+  "old_string": "The IV topology is the sole non-exposure exception: 52.6\\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.8$) reduces but does not eliminate IV reversal (Appendix~\\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal. Practitioners may consider bounds approaches~\\cite{manski1990} or two-sample designs where the instrument is measured without error.",
+  "new_string": "The IV topology is the sole non-exposure exception: 52.6\\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.8$) reduces but does not eliminate IV reversal (Appendix~\\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+    "old_string": "The IV topology is the sole non-exposure exception: 52.6\\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.8$) reduces but does not eliminate IV reversal (Appendix~\\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal. Practitioners may consider bounds approaches~\\cite{manski1990} or two-sample designs where the instrument is measured without error.",
+    "new_string": "The IV topology is the sole non-exposure exception: 52.6\\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.8$) reduces but does not eliminate IV reversal (Appendix~\\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5905 · 2026-05-23T14:27:36.971427+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5906 · 2026-05-23T14:27:47.733603+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+  "old_string": "At $K{=}3$, PPI++ achieves the highest grand-mean RMSE reduction (47.0\\%) but requires gold labels and is harmful for M-bias ($-$88\\%): misclassification attenuates the spurious M-bias path, and PPI++ removes this protective attenuation. PPI++ also degrades with $K$, becoming harmful for exposure at $K{=}10$. MC-SIMEX is more $K$-robust (27--70\\% reduction across $K{=}3,5,10$) and gold-free, though it harms front-door ($-$62.4\\%). Rankings are stable across $K$ (Spearman $\\rho \\geq 0.80$; Appendix~\\ref{sec:correction_k_sensitivity}); no single method dominates.",
+  "new_string": "At $K{=}3$, PPI++ achieves the highest grand-mean RMSE reduction (47.0\\%) but requires gold labels and is harmful for M-bias ($-$88\\%): misclassification attenuates the spurious M-bias path, and PPI++ removes this protective attenuation. MC-SIMEX is more $K$-robust (27--70\\% reduction across $K{=}3,5,10$) and gold-free, though it harms front-door ($-$62.4\\%). Rankings are stable across $K$ (Spearman $\\rho \\geq 0.80$; Appendix~\\ref{sec:correction_k_sensitivity})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+    "old_string": "At $K{=}3$, PPI++ achieves the highest grand-mean RMSE reduction (47.0\\%) but requires gold labels and is harmful for M-bias ($-$88\\%): misclassification attenuates the spurious M-bias path, and PPI++ removes this protective attenuation. PPI++ also degrades with $K$, becoming harmful for exposure at $K{=}10$. MC-SIMEX is more $K$-robust (27--70\\% reduction across $K{=}3,5,10$) and gold-free, though it harms front-door ($-$62.4\\%). Rankings are stable across $K$ (Spearman $\\rho \\geq 0.80$; Appendix~\\ref{sec:correction_k_sensitivity}); no single method dominates.",
+    "new_string": "At $K{=}3$, PPI++ achieves the highest grand-mean RMSE reduction (47.0\\%) but requires gold labels and is harmful for M-bias ($-$88\\%): misclassification attenuates the spurious M-bias path, and PPI++ removes this protective attenuation. MC-SIMEX is more $K$-robust (27--70\\% reduction across $K{=}3,5,10$) and gold-free, though it harms front-door ($-$62.4\\%). Rankings are stable across $K$ (Spearman $\\rho \\geq 0.80$; Appendix~\\ref{sec:correction_k_sensitivity})."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5907 · 2026-05-23T14:27:47.784390+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5908 · 2026-05-23T14:27:55.075860+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i, page in enumerate(pages[:12], 1):\n    lines = [l for l in page.split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i, page in enumerate(pages[:12], 1):\n    lines = [l for l in page.split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5909 · 2026-05-23T14:27:57.080087+00:00_
+
+Total pages: 31
+Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
+Page 2: first=085   tier LLMs, relative bias varies by an order                      | last=2
+Page 3: first=(a) Confounding                                    (b) Exposure        | last=3
+Page 4: first=254   P (A∗ =j | A=k), where each column sums                 tion mod | last=4
+Page 5: first=344   misclassification guarantees attenuation to-               first | last=5
+Page 6: first=Bias Distribution Under K=3 Non-Differential Misclassification | last=6
+Page 7: first=519   is two orders of magnitude smaller than inter-         Table 1:  | last=7
+Page 8: first=HumAID (K=10): Topology Determines Bias, Not F1                        | last=8
+Page 9: first=667   work assumes C is known or estimable from                 John P | last=9
+Page 10: first=772   Amir Feder, Katherine A. Keith, Emaad Manzoor,                of | last=10
+Page 11: first=878   Nicholas Pangakis, Samuel Wolken, and Neil                 Linda | last=11
+Page 12: first=983   C. Define the population vectors:                           A.3  | last=12
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 2004
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5910 · 2026-05-23T14:28:07.541601+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nlines = pages[7].split('\\n')  # page 8\nfor line in lines:\n    if line.strip():\n        print(line[:130])\n\" 2>&1 | tail -30",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nlines = pages[7].split('\\n')  # page 8\nfor line in lines:\n    if line.strip():\n        print(line[:130])\n\" 2>&1 | tail -30",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5911 · 2026-05-23T14:28:07.943520+00:00_
+
+594   (K=10) matches predictions:       IV (12.4–                                                                < 0.02 (Appendix 
+595   42.1%) and exposure (9.0–17.4%) dominate;
+596   remaining topologies <15%.        Across 56                                                                5   Conclusion   
+597   HumAID scenarios, F1 and |bias| show                                                                       We characterized 
+598   no significant rank correlation (Spearman                                                                  errors interact w
+599   ρ = −0.10, p = 0.45; Figure 4). Of K−1                                                                     binary attenuatio
+600   exposure coefficients, 14/23 configurations                                                                where exposure an
+601   (61%) exhibit sign reversal—all secondary;                                                                 five topologies p
+602   zero across 138 non-exposure scenarios.                                                                    a vulnerability r
+                                                                                                                 ile) to M-bias (i
+603   4.5                        Correction Guidance
+                                                                                                                 tions are provabl
+604   We evaluate five correction methods (naive                                                                 topologies due to
+605   plug-in, MLA, DSL (Egami et al., 2023), MC-                                                                data will be rele
+606   SIMEX, PPI++ (Angelopoulos et al., 2023))
+607   across all seven topologies under six error                                                                Limitations      
+608   structures (210 configurations; full results in
+                                                                                              
+…[truncated 1617 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5912 · 2026-05-23T14:28:16.344493+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5913 · 2026-05-23T14:28:16.395084+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.
+5	
+6	\section*{Limitations}
+7	
+8	Our framework assumes non-differential misclassification, which holds when the LLM classifies without observing $Y$ but may be violated when pretraining data encodes $A$--$Y$ associations (Appendix~\ref{sec:nondiff_stress}). Closed-form bias expressions assume $K{=}3$ linear SEMs; extensions to arbitrary $K$ and nonlinear models~\cite{schennach2020mismeasured} remain open---proving $K{\geq}3$ envelope monotonicity remains the primary open theoretical question---though rankings are stable across $K{=}3,5,10$. The framework assumes $C$ is known or estimable from held-out gold labels. Our experiments verify formulas via Monte Carlo simulation; end-to-end demonstration with ground-truth causal effects remains future work.
+9	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5914 · 2026-05-23T14:28:23.784657+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+  "old_string": "Our framework assumes non-differential misclassification, which holds when the LLM classifies without observing $Y$ but may be violated when pretraining data encodes $A$--$Y$ associations (Appendix~\\ref{sec:nondiff_stress}). Closed-form bias expressions assume $K{=}3$ linear SEMs; extensions to arbitrary $K$ and nonlinear models~\\cite{schennach2020mismeasured} remain open---proving $K{\\geq}3$ envelope monotonicity remains the primary open theoretical question---though rankings are stable across $K{=}3,5,10$. The framework assumes $C$ is known or estimable from held-out gold labels. Our experiments verify formulas via Monte Carlo simulation; end-to-end demonstration with ground-truth causal effects remains future work.",
+  "new_string": "We assume non-differential misclassification, which may be violated when pretraining data encodes $A$--$Y$ associations (Appendix~\\ref{sec:nondiff_stress}). Bias expressions assume $K{=}3$ linear SEMs; extensions to arbitrary $K$~\\cite{schennach2020mismeasured} remain open---proving $K{\\geq}3$ envelope monotonicity is the primary open theoretical question---though rankings are stable across $K{=}3,5,10$. The framework assumes $C$ is estimable from gold labels. Experiments are Monte Carlo; end-to-end causal benchmarks remain future work."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+    "old_string": "Our framework assumes non-differential misclassification, which holds when the LLM classifies without observing $Y$ but may be violated when pretraining data encodes $A$--$Y$ associations (Appendix~\\ref{sec:nondiff_stress}). Closed-form bias expressions assume $K{=}3$ linear SEMs; extensions to arbitrary $K$ and nonlinear models~\\cite{schennach2020mismeasured} remain open---proving $K{\\geq}3$ envelope monotonicity remains the primary open theoretical question---though rankings are stable across $K{=}3,5,10$. The framework assumes $C$ is known or estimable from held-out gold labels. Our experiments verify formulas via Monte Carlo simulation; end-to-end demonstration with ground-truth causal effects remains future work.",
+    "new_string": "We assume non-differential misclassification, which may be violated when pretraining data encodes $A$--$Y$ associations (Appendix~\\ref{sec:nondiff_stress}). Bias expressions assume $K{=}3$ linear SEMs; extensions to arbitrary $K$~\\cite{schennach2020mismeasured} remain open---proving $K{\\geq}3$ envelope monotonicity is the primary open theoretical question---though rankings are stable across $K{=}3,5,10$. The framework assumes $C$ is estimable from gold labels. Experiments are Monte Carlo; end-to-end causal benchmarks remain future work."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5915 · 2026-05-23T14:28:23.835623+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5916 · 2026-05-23T14:28:32.436868+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i, page in enumerate(pages[:11], 1):\n    lines = [l for l in page.split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i, page in enumerate(pages[:11], 1):\n    lines = [l for l in page.split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5917 · 2026-05-23T14:28:34.493308+00:00_
+
+Total pages: 31
+Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
+Page 2: first=085   tier LLMs, relative bias varies by an order                      | last=2
+Page 3: first=(a) Confounding                                    (b) Exposure        | last=3
+Page 4: first=254   P (A∗ =j | A=k), where each column sums                 tion mod | last=4
+Page 5: first=344   misclassification guarantees attenuation to-               first | last=5
+Page 6: first=Bias Distribution Under K=3 Non-Differential Misclassification | last=6
+Page 7: first=519   is two orders of magnitude smaller than inter-         Table 1:  | last=7
+Page 8: first=HumAID (K=10): Topology Determines Bias, Not F1                        | last=8
+Page 9: first=666   Monte Carlo; end-to-end causal benchmarks                 Riccar | last=9
+Page 10: first=774     Estimation, prediction, interpretation and be-            Mana | last=10
+Page 11: first=881   Reid Pryzant, Dallas Card, Dan Jurafsky, Vic-              Tyler | last=11
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 2056
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5918 · 2026-05-23T14:28:50.233300+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+  "old_string": "We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \\geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.",
+  "new_string": "We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \\geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex",
+    "old_string": "We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \\geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance. Code and data will be released.",
+    "new_string": "We characterized how multi-class annotation errors interact with causal DAG topology: the binary attenuation guarantee breaks at $K \\geq 3$, where exposure and IV can reverse signs while five topologies preserve them. ASVs yield a vulnerability ranking from IV (most fragile) to M-bias (immune); matrix-based corrections are provably ineffective for four covariate topologies due to FWL invariance."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5919 · 2026-05-23T14:28:50.284641+00:00_
+
+The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Edit",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5920 · 2026-05-23T14:28:56.375818+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in range(min(11, len(pages))):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i+1}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in range(min(11, len(pages))):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    if lines:\n        print(f'Page {i+1}: first={lines[0].strip()[:70]} | last={lines[-1].strip()[:70]}')\n\"",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5921 · 2026-05-23T14:28:58.533727+00:00_
+
+Total pages: 31
+Page 1: first=Multi-Class Annotation Errors in Causal Inference: | last=1
+Page 2: first=085   tier LLMs, relative bias varies by an order                      | last=2
+Page 3: first=(a) Confounding                                    (b) Exposure        | last=3
+Page 4: first=254   P (A∗ =j | A=k), where each column sums                 tion mod | last=4
+Page 5: first=344   misclassification guarantees attenuation to-               first | last=5
+Page 6: first=Bias Distribution Under K=3 Non-Differential Misclassification | last=6
+Page 7: first=519   is two orders of magnitude smaller than inter-         Table 1:  | last=7
+Page 8: first=HumAID (K=10): Topology Determines Bias, Not F1                        | last=8
+Page 9: first=667   References                                                Arnald | last=9
+Page 10: first=778     workers for text-annotation tasks. Proceed-               Timo | last=10
+Page 11: first=883     of the 2021 Conference of the North Ameri-               Marit | last=11
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 2157
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5922 · 2026-05-23T14:29:06.078965+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && grep -c \"undefined\" main.log; grep \"^!\" main.log | head -3; echo \"---ABSTRACT---\"; cat abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/--/-/g' | tr -s ' \\n' ' ' | wc -w",
+  "timeout": "10000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && grep -c \"undefined\" main.log; grep \"^!\" main.log | head -3; echo \"---ABSTRACT---\"; cat abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/--/-/g' | tr -s ' \\n' ' ' | wc -w",
+    "timeout": "10000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5923 · 2026-05-23T14:29:06.179615+00:00_
+
+0
+---ABSTRACT---
+184
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5924 · 2026-05-23T14:29:10.853213+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && grep -rn \"dawid1979\\|rosenbaum2002\" docs/paper/",
+  "timeout": "10000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && grep -rn \"dawid1979\\|rosenbaum2002\" docs/paper/",
+    "timeout": "10000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5925 · 2026-05-23T14:29:10.903917+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5926 · 2026-05-23T14:29:15.923820+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -c \"jurek2005\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib && grep -c \"jurek2005\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex",
+  "timeout": "10000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -c \"jurek2005\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib && grep -c \"jurek2005\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex",
+    "timeout": "10000"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5927 · 2026-05-23T14:29:15.974575+00:00_
+
+1
+1
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5928 · 2026-05-23T14:30:02.641132+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A（纯写作任务）\n\n**[R17 写作修复] 全部 10 项完成，编译验证通过。**\n\n## 验证结果\n- 编译 0 errors, 0 undefined references\n- **正文 ≤ 8 页**（References 从第 9 页开始）\n- **Abstract 184 词**（≤ 200）\n- `grep dawid1979|rosenbaum2002` 返回空（已清除）\n- `jurek2005` 在 bib + related_work 中均存在\n\n## 逐项详情\n\n**1. MF-2 (ε vs ASV gap)** — method.tex L120\n新增：\"The worst-case monotonicity deviation (ε ≤ 0.013; Table~\\ref{tab:conjecture_verify}) is two orders of magnitude smaller than inter-topology ASV gaps (spanning 0.09 to ∞), ensuring that the vulnerability ranking is robust to approximate monotonicity.\"\n\n**2. SF-3 (worked example)** — method.tex L118\n数字已核实（ASV stability table: alternating-large β=[0,1.0,-0.5]，median over diag 0.5-0.9）：exposure=0.090, IV=0.203, confounding=0.348, M-bias=∞。\n新增 2 句，以 \"Under alternating-sign effects...\" 开头。\n\n**3. SF-4 (直觉句)** — method.tex L24\n新增：\"Intuitively, misclassification redistributes probability mass across categories; the downstream effect depends on whether this redistribution aligns with or opposes the true causal structure.\"\n\n**4. SF-5 (logistic summary)** — experiments.tex §4.5 末尾\n新增：\"Under logistic regression, all structural patterns---sign preservation, topology ranking, FWL invariance breakdown---persist with deviations < 0.02 (Appendix B.7, B.14).\"\n\n**5. SF-8 (collider annotation)** — method.tex Proposition 1(b)\n在 Berkson attenuation 后追加 \"; empirically verified across 100,000 matrices with zero violations\"。\n\n**6. SF-9 (primary/secondary 定义)** — 3 处修改\n- method.tex NV2: \"primary coefficient (the category with the largest true effect |β_k|) ... secondary (non-dominant) coefficient\"\n- abstract.tex: \"secondary coefficients\" → \"non-dominant coefficients\"\n- Table 1 caption: 未加脚注（Violation/Sign Flip/Amplif 列定义已在 M2 中覆盖，Sign Flip 明确写为 \"any coefficient reverses sign\"，已涵盖该信息）\n\n**7. M2 (Table 1 caption 列定义)** — experiments.tex Table 1 caption\n新增：\"Violation: |bias| > 0; Sign Flip: any coefficient reverses sign; Amplif.: |τ̂| > |τ|.\"\n\n**8. M3 (Algorithm 1 阈值)** — appendix_proofs.tex Step 3\nFWL comment 改为：\"0% bias red. on T coeff. (Table 4: below 2%, no method improves)\"\n\n**9. M5+MR1 (Bib 清理+新引用)**\n- 移除：dawid1979, rosenbaum2002（grep 确认无 .tex 引用）\n- 新增 4 篇（全部 WebSearch 验证真实性）：\n  - valeri_vanderweele2014 → related_work mediation 段引用\n  - stefanski_carroll1985 → method.tex logistic regression 讨论处引用\n  - oster2019 → method.tex ASV 段引用\n  - tan2024llm → related_work LLM annotation 段引用\n- jurek2005 确认在 bib 且在 related_work 中被引用\n\n**10. MF-2 补充 (Limitations)** — conclusion.tex\n在 K≥3/nonlinear 句中插入 \"proving K≥3 envelope monotonicity is the primary open theoretical question\"。\n\n## 页面预算管理\n净新增约 +8 句。通过以下压缩抵消：\n- 三-tier hierarchy 句和 NV1 段合并压缩（-4 行）\n- ASV 开段和 parameterization 段压缩（-3 行）\n- Theory-MC 段压缩（-1 行）\n- IV 段删除 bounds/two-sample 建议句（-1 行）\n- Method ranking 删除 \"PPI++ degrades with K\" 句（-1 行）\n- Conclusion 删除 \"Code and data will be released\" 句（-1 行）\n- Limitations 进一步压缩（-2 行）",
+  "project": "causal_annot_error_attrib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A（纯写作任务）\n\n**[R17 写作修复] 全部 10 项完成，编译验证通过。**\n\n## 验证结果\n- 编译 0 errors, 0 undefined references\n- **正文 ≤ 8 页**（References 从第 9 页开始）\n- **Abstract 184 词**（≤ 200）\n- `grep dawid1979|rosenbaum2002` 返回空（已清除）\n- `jurek2005` 在 bib + related_work 中均存在\n\n## 逐项详情\n\n**1. MF-2 (ε vs ASV gap)** — method.tex L120\n新增：\"The worst-case monotonicity deviation (ε ≤ 0.013; Table~\\ref{tab:conjecture_verify}) is two orders of magnitude smaller than inter-topology ASV gaps (spanning 0.09 to ∞), ensuring that the vulnerability ranking is robust to approximate monotonicity.\"\n\n**2. SF-3 (worked example)** — method.tex L118\n数字已核实（ASV stability table: alternating-large β=[0,1.0,-0.5]，median over diag 0.5-0.9）：exposure=0.090, IV=0.203, confounding=0.348, M-bias=∞。\n新增 2 句，以 \"Under alternating-sign effects...\" 开头。\n\n**3. SF-4 (直觉句)** — method.tex L24\n新增：\"Intuitively, misclassification redistributes probability mass across categories; the downstream effect depends on whether this redistribution aligns with or opposes the true causal structure.\"\n\n**4. SF-5 (logistic summary)** — experiments.tex §4.5 末尾\n新增：\"Under logistic regression, all structural patterns---sign preservation, topology ranking, FWL invariance breakdown---persist with deviations < 0.02 (Appendix B.7, B.14).\"\n\n**5. SF-8 (collider annotation)** — method.tex Proposition 1(b)\n在 Berkson attenuation 后追加 \"; empirically verified across 100,000 matrices with zero violations\"。\n\n**6. SF-9 (primary/secondary 定义)** — 3 处修改\n- method.tex NV2: \"primary coefficient (the category with the largest true effect |β_k|) ... secondary (non-dominant) coefficient\"\n- abstract.tex: \"secondary coefficients\" → \"non-dominant coefficients\"\n- Table 1 caption: 未加脚注（Violation/Sign Flip/Amplif 列定义已在 M2 中覆盖，Sign Flip 明确写为 \"any coefficient reverses sign\"，已涵盖该信息）\n\n**7. M2 (Table 1 caption 列定义)** — experiments.tex Table 1 caption\n新增：\"Violation: |bias| > 0; Sign Flip: any coefficient reverses sign; Amplif.: |τ̂| > |τ|.\"\n\n**8. M3 (Algorithm 1 阈值)** — appendix_proofs.tex Step 3\nFWL comment 改为：\"0% bias red. on T coeff. (Table 4: below 2%, no method improves)\"\n\n**9. M5+MR1 (Bib 清理+新引用)**\n- 移除：dawid1979, rosenbaum2002（grep 确认无 .tex 引用）\n- 新增 4 篇（全部 WebSearch 验证真实性）：\n  - valeri_vanderweele2014 → related_work mediation 段引用\n  - stefanski_carroll1985 → method.tex logistic regression 讨论处引用\n  - oster2019 → method.tex ASV 段引用\n  - tan2024llm → related_work LLM annotation 段引用\n- jurek2005 确认在 bib 且在 related_work 中被引用\n\n**10. MF-2 补充 (Limitations)** — conclusion.tex\n在 K≥3/nonlinear 句中插入 \"proving K≥3 envelope monotonicity is the primary open theoretical question\"。\n\n## 页面预算管理\n净新增约 +8 句。通过以下压缩抵消：\n- 三-tier hierarchy 句和 NV1 段合并压缩（-4 行）\n- ASV 开段和 parameterization 段压缩（-3 行）\n- Theory-MC 段压缩（-1 行）\n- IV 段删除 bounds/two-sample 建议句（-1 行）\n- Method ranking 删除 \"PPI++ degrades with K\" 句（-1 行）\n- Conclusion 删除 \"Code and data will be released\" 句（-1 行）\n- Limitations 进一步压缩（-2 行）",
+    "project": "causal_annot_error_attrib"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5929 · 2026-05-23T14:30:06.003917+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3362
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5930 · 2026-05-23T14:30:11.418265+00:00_
+
+R17 全部 10 项修复完成。编译通过，正文 8 页，abstract 184 词，0 undefined，dawid1979/rosenbaum2002 已清除。已汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270"
+}
+```
+
+</details>
+
+---
+
+
+## Round 112
+
+## Round 112
+
+24 recorded events
+
+
+### User
+
+_source line 5931 · 2026-05-23T14:30:11.936744+00:00_
+
+[Director 指令] **[紧急] 3 个并行实验——全部纯 CPU Monte Carlo，不需要 GPU，spawn 3 个 worker 并行执行**
+
+DDL 5/25，这 3 个实验与当前写作修复独立，写作修复完成后立即开始（或 spawn worker 现在就开始）。
+
+---
+
+## 实验 1: Mini End-to-End Demo（最高优先级）
+
+**目标**：展示框架端到端可用性——从 C 估计到 ASV 诊断到校正改善
+**方法**：
+1. 选 2 个拓扑：confounding（FWL 使校正无效）和 exposure（PPI++/MC-SIMEX 有效）
+2. 对每个拓扑：
+   - 生成合成数据 N=10,000，true β 已知
+   - 用已知 C 生成 A* = misclassify(A, C)
+   - 从 held-out subset (20% gold labels) 估计 Ĉ
+   - 计算 ASV（magnitude, significance, sign-flip）
+   - Algorithm 1 路由：confounding → "no correction (FWL)"；exposure → "PPI++"
+   - 对比 naive bias vs corrected bias vs true
+3. 重复 100 次取 mean ± std
+**产出**：
+- 1 个 Table（放正文 §4.5 或新增 §4.6），列：Topology | Naive Bias | ASV Diagnosis | Routed Method | Corrected Bias | Improvement
+- 1 个 Python 脚本：`artifacts/e2e_demo.py`
+**脚本参考**：现有 `artifacts/compute_ppi_empirical.py` 和 `artifacts/correction_k_sensitivity.py` 的代码结构
+
+---
+
+## 实验 2: Non-default DGP Conjecture 验证
+
+**目标**：回应 R17 reviewer "仅 default DGP" 关切
+**方法**：
+1. 复用 `artifacts/` 中的 conjecture 验证代码
+2. 扫描参数网格：β ∈ {0.1, 0.5, 1.0, 2.0, 5.0} × σ² ∈ {0.5, 1.0, 2.0} × 7 topologies
+3. 每组 10,000 random C matrices
+4. 报告：per-(β, σ², topology) 的 worst-case ε 和 violation rate
+**产出**：
+- 1 个 Appendix Table（ε 随 DGP 参数变化）
+- 1 个 Python 脚本：`artifacts/conjecture_dgp_sensitivity.py`
+- JSON 结果文件
+**关键问题**：ε 是否在所有 DGP 下都 ≤ 0.06？如果某些极端 DGP 下 ε 更大，记录但不需要恐慌——只需诚实报告
+
+---
+
+## 实验 3: Structured Non-differential Violation
+
+**目标**：扩展 stress test 到 Y-dependent violation
+**方法**：
+1. 复用 `artifacts/nondiff_stress_test.py` 代码结构
+2. 构造 structured violation：C(Y=1) = C₀ + ε·Δ，C(Y=0) = C₀ - ε·Δ
+   - Δ 是 off-diagonal perturbation矩阵
+   - ε ∈ {0.01, 0.02, 0.05, 0.10}
+3. 对 7 topologies × 4 ε levels，计算 bias 相对于 non-differential baseline 的偏离
+4. 报告：哪些拓扑对 Y-dependent violation 最敏感
+**产出**：
+- Appendix 段落 + 1 个 Table
+- 1 个 Python 脚本：`artifacts/structured_nondiff_violation.py`
+- JSON 结果文件
+
+---
+
+## 执行要求
+- 3 个 worker 并行执行，互不依赖
+- 每个实验完成后立即汇报结果
+- 脚本放在 `artifacts/` 下，结果 JSON 也放 `artifacts/`
+- 如果实验 1 的结果足够好（corrected bias 显著降低），这将成为正文 Table——格式要清晰
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "source": "director"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5932 · 2026-05-23T14:30:25.208980+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5933 · 2026-05-23T14:30:25.310384+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5934 · 2026-05-23T14:30:33.749236+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -80 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py 2>/dev/null | head -60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -80 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py 2>/dev/null | head -60"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5935 · 2026-05-23T14:30:34.203399+00:00_
+
+#!/usr/bin/env python3
+"""
+Empirical Correction Validation — HumAID K=10
+
+Loads 8 valid HumAID confusion matrices from asv_empirical_results.json,
+generates synthetic MC data using plan_006's K=10 DGP for each of 7 topologies,
+runs all 5 correction methods (PPI++, naive plug-in, DSL, MC-SIMEX, MLA),
+and reports empirical bias reduction per topology × method.
+
+Input:  artifacts/plan006/asv_empirical_results.json
+Output: artifacts/ppi_empirical_validation.json
+
+Dependencies: numpy, annot_sensitivity (local package)
+"""
+
+import sys
+import os
+import json
+import time
+import numpy as np
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
+
+from annot_sensitivity.correction import (
+    correct_ppi, correct_naive_plugin, correct_dsl, correct_mcsimex, correct_mla
+)
+from annot_sensitivity.utils import misclassify, make_dummies, ols, ols_with_se
+
+# ── Plan 006 DGP Infrastructure (K-general) ────────────────────────
+
+_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]
+_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]
+_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]
+_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]
+_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]
+_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]
+_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2, 0.15, -0.1, 0.05]
+
+
+def softmax_rows(logits):
+    e = np.exp(logits - logits.max(axis=1, keepdims=True))
+    return e / e.sum(axis=1, keepdims=True)
+
+
+def sample_cat(probs, rng):
+    cum = np.cumsum(probs, axis=1)
+    u = rng.uniform(size=probs.shape[0])[:, None]
+    return (u >= cum[:, :-1]).sum(axis=1).astype(int)
+
+
+def make_p_A(K):
+    if K == 2:
+        return np.array([0.55, 0.45])
+    elif K == 3:
+        return np.array([0.40, 0.35, 0.25])
+    else:
+        raw = np.array([1.0 / (i + 1) for i in range(K)])
+        return raw / raw.sum()
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5936 · 2026-05-23T14:30:34.203945+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -80 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py 2>/dev/null | head -60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -80 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py 2>/dev/null | head -60"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5937 · 2026-05-23T14:30:34.807411+00:00_
+
+#!/usr/bin/env python3
+"""
+Non-Differential Misclassification Stress Test — Exposure DAG (K=3)
+
+Tests robustness of the paper's non-differential assumption by introducing
+controlled violations: the confusion matrix differs slightly between
+outcome-defined subgroups (Y > median vs Y <= median).
+
+Model:
+  DAG: A -> Y, A -> A*
+  DGP: Y = β₀ + β₁·1[A=1] + β₂·1[A=2] + ε,  ε ~ N(0,1)
+  Non-differential: P(A*|A) = C₀  (same for all units)
+  Differential:     P(A*|A, Y>med) = C_high,  P(A*|A, Y≤med) = C_low
+    where C_high = renormalize(C₀ + ε·Δ), C_low = C₀
+    Δ[j,i] = off-diagonal noise, re-normalized to column-stochastic
+
+For each ε ∈ {0, 0.01, 0.05, 0.10, 0.20, 0.30, 0.50}:
+  - Sample 10,000 base C₀ from truncated Dirichlet(1,1,1) with diag ≥ 0.7
+  - ε=0: compute bias via analytical plim (matches subspace analysis ~13.7%)
+  - ε>0: compute bias via MC (N=50,000 per trial) with differential C
+  - Report: sign-flip rate, amplification rate, violation rate
+
+Dependencies: numpy
+"""
+
+import numpy as np
+import json
+import time
+import sys
+
+# ─── DGP Parameters ─────────────────────────────────────────
+P_A = np.array([0.40, 0.35, 0.25])
+BETA = np.array([0.0, 1.0, -0.5])  # β₀, β₁, β₂
+K = 3
+DIAG_THRESH = 0.7
+
+N_MATRICES = 10_000       # confusion matrices per ε level
+N_MC = 50_000             # MC sample size per trial (for ε > 0)
+EPSILONS = [0.0, 0.01, 0.05, 0.10, 0.20, 0.30, 0.50]
+SEED = 42
+
+
+# ─── Sampling ────────────────────────────────────────────────
+def sample_truncated_dirichlet(n, K, diag_thresh, rng):
+    """Sample n column-stochastic KxK matrices with min(diag) >= diag_thresh.
+
+    Uses direct sampling: diagonal d ~ Beta(1,2) truncated to [thresh,1],
+    off-diagonal split uniformly on remaining mass.
+    """
+    C_batch = np.empty((n, K, K))
+    for col in range(K):
+        # Truncated Beta(1,2): d = 1 - (1-thresh)*sqrt(1-U)
+        U = rng.uniform(size=n)
+        d = 1.0 - (1.0 - diag_thresh) * np.sqrt(1.0 - U)
+        rem = 1.0 - d
+
+        # Uniform split of rem
+…[truncated 189 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5938 · 2026-05-23T14:30:34.858083+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/conjecture_*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/conjecture_*.py 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5939 · 2026-05-23T14:30:34.908718+00:00_
+
+Exit code 2
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5940 · 2026-05-23T14:30:40.434548+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/*conjecture* /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/*monoton* 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/*conjecture* /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/*monoton* 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5941 · 2026-05-23T14:30:40.685930+00:00_
+
+Exit code 2
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results.json
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5942 · 2026-05-23T14:30:40.736607+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/*.py 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5943 · 2026-05-23T14:30:40.736869+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(ls /home/ubuntu/.agent-ml-research-prod_…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5944 · 2026-05-23T14:30:45.460354+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/*.py 2>/dev/null && echo \"---\" && head -30 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/*.py 2>/dev/null && echo \"---\" && head -30 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify.py"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5945 · 2026-05-23T14:30:45.561459+00:00_
+
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/__init__.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/asv.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/bias.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/confusion.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/correction.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/dgp.py
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/utils.py
+---
+#!/usr/bin/env python3
+"""
+Exp-D: Conjecture 1 Extended Verification (Envelope Monotonicity)
+
+Part 1: 10,000 random Dirichlet(1,...,1) C0 per (topology, K) -- 210,000 total tests
+Part 2: Adversarial search via scipy.minimize for K in {3, 5} -- 500 starts per config
+
+Conjecture 1:
+  |B(delta)| non-decreasing for {confounding, mediation, exposure, frontdoor, iv}
+  |B(delta)| non-increasing for {collider, mbias}
+
+where B(delta) = plim(C(delta)) - tau_true, C(delta) = (1-delta)I + delta*C0.
+"""
+
+import numpy as np
+import json
+import time
+import sys
+import os
+from scipy.optimize import minimize as scipy_minimize
+
+# ====================================================================
+# Configuration
+# ====================================================================
+K_VALUES = [3, 5, 7]
+K_ADVERSARIAL = [3, 5]
+N_RANDOM = 10_000
+N_LARGE = 5_000_000
+DELTA_STEP = 0.01
+SEED = 12345
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5946 · 2026-05-23T14:31:28.436337+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:e2e_demo",
+  "project": "causal_annot_error_attrib",
+  "task_prompt": "## 任务：Mini End-to-End Demo 实验\n\n**目标**：展示框架端到端可用性——从 C 估计到 ASV 诊断到 Algorithm 1 路由到校正改善。\n\n**项目路径**：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/`\n\n### 具体步骤\n\n写 Python 脚本 `artifacts/e2e_demo.py`，执行以下流程：\n\n1. **选 2 个拓扑**：confounding（FWL 使校正无效）和 exposure（PPI++ 有效）\n2. **对每个拓扑**：\n   - 生成合成数据 N=10,000，K=3，true β 已知\n   - 用已知 C（diagonal-dominant，diag=0.7）生成 A* = misclassify(A, C)\n   - 从 held-out subset (20% gold labels, 即 2,000 个) 估计 Ĉ\n   - 计算 ASV（magnitude, significance, sign-flip）\n   - Algorithm 1 路由：confounding → \"no correction (FWL)\"；exposure → \"PPI++\"\n   - 应用校正方法（PPI++ for exposure; show that naive/MLA achieve 0% for confounding）\n   - 对比 naive bias vs corrected bias vs true\n3. **重复 100 次** 取 mean ± std\n\n### 代码参考\n\n- **DGP 和工具函数**：参考 `artifacts/compute_ppi_empirical.py` 的 DGP 结构（softmax_rows, sample_cat, make_p_A, misclassify 等函数）\n- **校正方法**：使用 `annot_sensitivity.correction` 中的 `correct_ppi`, `correct_naive_plugin`, `correct_mcsimex`, `correct_mla`\n- **ASV 计算**：使用 `annot_sensitivity.asv` 中的函数\n- **工具函数**：`annot_sensitivity.utils` 中的 `misclassify`, `make_dummies`, `ols`, `ols_with_se`\n- **bias 计算**：`annot_sensitivity.bias` 中的 plim 函数\n\n先 `Read` 这些模块了解 API，特别是 `annot_sensitivity/correction.py` 中 `correct_ppi` 的签名和参数。\n\n### DGP 设计\n\n**Confounding DAG**: Y = τ·X + γ₁·1[A=1] + γ₂·1[A=2] + ε\n- X = α₀ + α₁·1[A=1] + α₂·1[A=2] + ε_x\n- τ = 0.5 (target), γ = [0, 0.8, -0.4], α = [0, 0.6, -0.3]\n- 回归: OLS of Y on (X, D*), 关注 X 的系数 τ̂\n\n**Exposure DAG**: Y = β₁·1[A=1] + β₂·1[A=2] + ε\n- β = [0, 1.0, -0.5]\n- 回归: OLS of Y on D*, 关注 β̂₁, β̂₂\n\n**Confusion matrix C₀**: diagonal-dominant with diag=0.7, off-diagonal uniform\n```python\nC0 = np.array([[0.7, 0.15, 0.15],\n               [0.15, 0.7, 0.15],\n               [0.15, 0.15, 0.7]])\n```\n\n### Ĉ 估计\n从 held-out gold subset（20% of N）估计 confusion matrix：\n```python\ndef estimate_C(A_true_gold, A_star_gold, K):\n    C_hat = np.zeros((K, K))\n    for k in range(K):\n        mask = (A_true_gold == k)\n        if mask.sum() > 0:\n            for j in range(K):\n                C_hat[j, k] = (A_star_gold[mask] == j).sum() / mask.sum()\n    return C_hat\n```\n\n### ASV 计算\n对每个拓扑：\n- 用 Ĉ 作为 C₀ 参数化 C(δ) = (1-δ)I + δĈ\n- 扫描 δ 从 0 到 1，找到 magnitude ASV（bias 超过 10% threshold）\n- 找到 sign-flip ASV（如适用）\n\n### 产出\n\n1. **脚本** `artifacts/e2e_demo.py`\n2. **JSON 结果** `artifacts/e2e_demo_results.json`，包含：\n   - per-topology: naive_bias (mean±std), corrected_bias (mean±std), improvement_pct, asv_magnitude, asv_signflip, routed_method\n3. **LaTeX table** `artifacts/e2e_demo_table.tex`，列：\n   Topology | Naive Bias (%) | ASV δ*_mag | Routed Method | Corrected Bias (%) | Improvement (%)\n\n### 验证\n- 脚本写完后运行: `cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && python artifacts/e2e_demo.py`\n- 确认结果合理：confounding 的 naive/corrected 差异应该≈0%（FWL invariance）；exposure 的 PPI++ 应显著降低 bias\n- 如果 annot_sensitivity 模块中的函数 API 不匹配，检查实际签名并适配\n\n### 注意\n- 文件顶部加文件注释（说明目的、输入输出）\n- 代码要可复现（固定 seed=42）\n- 如果 PPI++ 需要 gold labels 参数，用 20% gold ratio\n- 100 次重复可能需要几分钟，可以先用 10 次验证正确性再跑 100 次",
+  "repo_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "tool_groups": "['knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:e2e_demo",
+    "project": "causal_annot_error_attrib",
+    "task_prompt": "## 任务：Mini End-to-End Demo 实验\n\n**目标**：展示框架端到端可用性——从 C 估计到 ASV 诊断到 Algorithm 1 路由到校正改善。\n\n**项目路径**：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/`\n\n### 具体步骤\n\n写 Python 脚本 `artifacts/e2e_demo.py`，执行以下流程：\n\n1. **选 2 个拓扑**：confounding（FWL 使校正无效）和 exposure（PPI++ 有效）\n2. **对每个拓扑**：\n   - 生成合成数据 N=10,000，K=3，true β 已知\n   - 用已知 C（diagonal-dominant，diag=0.7）生成 A* = misclassify(A, C)\n   - 从 held-out subset (20% gold labels, 即 2,000 个) 估计 Ĉ\n   - 计算 ASV（magnitude, significance, sign-flip）\n   - Algorithm 1 路由：confounding → \"no correction (FWL)\"；exposure → \"PPI++\"\n   - 应用校正方法（PPI++ for exposure; show that naive/MLA achieve 0% for confounding）\n   - 对比 naive bias vs corrected bias vs true\n3. **重复 100 次** 取 mean ± std\n\n### 代码参考\n\n- **DGP 和工具函数**：参考 `artifacts/compute_ppi_empirical.py` 的 DGP 结构（softmax_rows, sample_cat, make_p_A, misclassify 等函数）\n- **校正方法**：使用 `annot_sensitivity.correction` 中的 `correct_ppi`, `correct_naive_plugin`, `correct_mcsimex`, `correct_mla`\n- **ASV 计算**：使用 `annot_sensitivity.asv` 中的函数\n- **工具函数**：`annot_sensitivity.utils` 中的 `misclassify`, `make_dummies`, `ols`, `ols_with_se`\n- **bias 计算**：`annot_sensitivity.bias` 中的 plim 函数\n\n先 `Read` 这些模块了解 API，特别是 `annot_sensitivity/correction.py` 中 `correct_ppi` 的签名和参数。\n\n### DGP 设计\n\n**Confounding DAG**: Y = τ·X + γ₁·1[A=1] + γ₂·1[A=2] + ε\n- X = α₀ + α₁·1[A=1] + α₂·1[A=2] + ε_x\n- τ = 0.5 (target), γ = [0, 0.8, -0.4], α = [0, 0.6, -0.3]\n- 回归: OLS of Y on (X, D*), 关注 X 的系数 τ̂\n\n**Exposure DAG**: Y = β₁·1[A=1] + β₂·1[A=2] + ε\n- β = [0, 1.0, -0.5]\n- 回归: OLS of Y on D*, 关注 β̂₁, β̂₂\n\n**Confusion matrix C₀**: diagonal-dominant with diag=0.7, off-diagonal uniform\n```python\nC0 = np.array([[0.7, 0.15, 0.15],\n               [0.15, 0.7, 0.15],\n               [0.15, 0.15, 0.7]])\n```\n\n### Ĉ 估计\n从 held-out gold subset（20% of N）估计 confusion matrix：\n```python\ndef estimate_C(A_true_gold, A_star_gold, K):\n    C_hat = np.zeros((K, K))\n    for k in range(K):\n        mask = (A_true_gold == k)\n        if mask.sum() > 0:\n            for j in range(K):\n                C_hat[j, k] = (A_star_gold[mask] == j).sum() / mask.sum()\n    return C_hat\n```\n\n### ASV 计算\n对每个拓扑：\n- 用 Ĉ 作为 C₀ 参数化 C(δ) = (1-δ)I + δĈ\n- 扫描 δ 从 0 到 1，找到 magnitude ASV（bias 超过 10% threshold）\n- 找到 sign-flip ASV（如适用）\n\n### 产出\n\n1. **脚本** `artifacts/e2e_demo.py`\n2. **JSON 结果** `artifacts/e2e_demo_results.json`，包含：\n   - per-topology: naive_bias (mean±std), corrected_bias (mean±std), improvement_pct, asv_magnitude, asv_signflip, routed_method\n3. **LaTeX table** `artifacts/e2e_demo_table.tex`，列：\n   Topology | Naive Bias (%) | ASV δ*_mag | Routed Method | Corrected Bias (%) | Improvement (%)\n\n### 验证\n- 脚本写完后运行: `cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib && python artifacts/e2e_demo.py`\n- 确认结果合理：confounding 的 naive/corrected 差异应该≈0%（FWL invariance）；exposure 的 PPI++ 应显著降低 bias\n- 如果 annot_sensitivity 模块中的函数 API 不匹配，检查实际签名并适配\n\n### 注意\n- 文件顶部加文件注释（说明目的、输入输出）\n- 代码要可复现（固定 seed=42）\n- 如果 PPI++ 需要 gold labels 参数，用 20% gold ratio\n- 100 次重复可能需要几分钟，可以先用 10 次验证正确性再跑 100 次",
+    "repo_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+    "tool_groups": "['knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5947 · 2026-05-23T14:31:59.936543+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_e2e_demo_20260523T143128\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/workers/worker_code_e2e_demo_20260523T143128.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_e2e_demo_20260523T143128 started. Use get_worker_status('worker_code_e2e_demo_20260523T143128') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 31500
 }
 ```
 

@@ -78,11 +78,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper patch experiments | 1 | 0 | [Read transcript](paper-patch-experiments.md) | [JSON](../../sessions/ff/ff7ec64d9adccba1a570.json) |
 | paper patch narrative | 1 | 0 | [Read transcript](paper-patch-narrative.md) | [JSON](../../sessions/2c/2cc423c077e4a3c80c7c.json) |
 | paper phase1 page compression | 1 | 0 | [Read transcript](paper-phase1-page-compression.md) | [JSON](../../sessions/a2/a297d4b225ab5ad4bd65.json) |
-| paper r41 response draft | 1 | 0 | [Read transcript](paper-r41-response-draft.md) | [JSON](../../sessions/f6/f634841fc0f5c6eae4a2.json) |
-| paper r42 response letter | 1 | 0 | [Read transcript](paper-r42-response-letter.md) | [JSON](../../sessions/d8/d88ffc4e42ad28cfe538.json) |
 | paper r8 content patch | 1 | 0 | [Read transcript](paper-r8-content-patch.md) | [JSON](../../sessions/1e/1e35c7d210bbbca36b01.json) |
 | paper r8 framing compress | 1 | 0 | [Read transcript](paper-r8-framing-compress.md) | [JSON](../../sessions/21/21a13c0ada24040f0d81.json) |
-| paper rebuttal letter draft | 1 | 0 | [Read transcript](paper-rebuttal-letter-draft.md) | [JSON](../../sessions/52/523c90aafe857d07b99b.json) |
 | paper research bib sync | 1 | 0 | [Read transcript](paper-research-bib-sync.md) | [JSON](../../sessions/82/82011f8d7497ca628d3a.json) |
 | paper research cluster1 self consistency | 1 | 0 | [Read transcript](paper-research-cluster1-self-consistency.md) | [JSON](../../sessions/fd/fd0da28105912e85f9dd.json) |
 | paper research ie literature | 1 | 0 | [Read transcript](paper-research-ie-literature.md) | [JSON](../../sessions/d4/d4b9f02140f441bc0580.json) |
@@ -123,10 +120,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research citation verification r26 | 1 | 0 | [Read transcript](research-citation-verification-r26.md) | [JSON](../../sessions/10/100bb5a0c85a113a504d.json) |
 | research citation audit | 1 | 0 | [Read transcript](research-citation-audit.md) | [JSON](../../sessions/c4/c489cbd2b33b6181268a.json) |
 | research consistency vs correctness lit | 1 | 0 | [Read transcript](research-consistency-vs-correctness-lit.md) | [JSON](../../sessions/91/91b231fe79dc7a23adb3.json) |
-| research draft response letter outline | 1 | 0 | [Read transcript](research-draft-response-letter-outline.md) | [JSON](../../sessions/d7/d742a40fc1571c7f2145.json) |
 | research e4 dataset survey | 1 | 0 | [Read transcript](research-e4-dataset-survey.md) | [JSON](../../sessions/91/913b32139aa966482581.json) |
 | research first claims audit r26 | 1 | 0 | [Read transcript](research-first-claims-audit-r26.md) | [JSON](../../sessions/a9/a9b1e5caa4087d789f9c.json) |
-| research fix response letter | 1 | 0 | [Read transcript](research-fix-response-letter.md) | [JSON](../../sessions/71/71744471c80766f271c4.json) |
 | research hidden state probe | 1 | 0 | [Read transcript](research-hidden-state-probe.md) | [JSON](../../sessions/b3/b35e6122e912525f58e2.json) |
 | research luo bib lookup | 1 | 0 | [Read transcript](research-luo-bib-lookup.md) | [JSON](../../sessions/10/1076c203aa6545fd8351.json) |
 | research ma2024 author verify | 1 | 0 | [Read transcript](research-ma2024-author-verify.md) | [JSON](../../sessions/5c/5cc31b1324dd4502bbcb.json) |

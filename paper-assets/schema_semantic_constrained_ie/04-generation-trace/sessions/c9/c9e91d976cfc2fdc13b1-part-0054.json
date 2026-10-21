@@ -7,7 +7,7 @@
       "messages": [
         {
           "source_line": 9541,
-          "timestamp": "2026-05-23T10:15:06.390119+00:00",
+          "timestamp": "2026-05-23T10:15:55.227230+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -25,278 +25,6 @@
         },
         {
           "source_line": 9542,
-          "timestamp": "2026-05-23T10:15:11.312643+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
-            }
-          },
-          "id": "event-009542"
-        },
-        {
-          "source_line": 9543,
-          "timestamp": "2026-05-23T10:15:11.313224+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t% Section 7 — Discussion and Conclusion\n2\t\n3\tOntoCoDec compiles IE ontologies into composable token-level constraints, validated across 3 datasets, 3+ models, and 2 tasks.\n4\tBecause IE type constraints exceed context-free expressiveness (Proposition~1), the semantic layer is necessary to bridge the gap grammar-only enforcement cannot address (3\\% vs.\\ 94\\% DR reduction at 8B), using constructive forward masking over a dynamic entity registry.\n5\tThis scale-dependent interaction (\\S\\ref{sec:70b-results}) suggests grammar-constrained decoding is necessary but increasingly insufficient as models improve.\n6\tConstraint enforcement is preserved under INT4 quantization (4$\\times$ compression; Appendix~\\ref{app:quantization}), confirming deployment viability.\n7\t\n8\t\\paragraph{DR$\\leftrightarrow$CF trade-off.}\n9\tGreedy S1 reduces DR to ${<}$0.1\\% but introduces CF (zero-shot $+$9.82\\,pp, fine-tuned $+$1.18\\,pp).\n10\tThis is an architectural trade-off of per-triple independent enforcement: when multiple triples reference the same entity, first-seen type registration (\\S\\ref{sec:entity-registry}) may conflict with subsequent type requirements.\n11\tBeam search mitigates this: $k{=}2$ reduces CF to 0.11\\% at only 1.18$\\times$ latency (Pareto-optimal); $k{=}4$ eliminates all CF at 1.39$\\times$ (\\S\\ref{sec:beam-results}).\n12\tThe trade-off represents a net severity downgrade: DR is irrecoverable without re-extraction, while CF---individually valid triples with cross-triple type inconsistency---is amenable to post-hoc resolution (TCR eliminates 18--92\\%; Appendix~\\ref{app:tcr}).\n13\t\n14\t\\paragraph{Complementarity with training-based enforcement.}\n15\tGoLLIE and KnowCoder internalize schema knowledge via training but cannot guarantee runtime compliance.\n16\tOntoCoDec provides a runtime guarantee layer---the two approaches are complementary rather than competing.\n17\tLoRA + S1 validates this: training reduces DR to 1--2\\%, and constraints eliminate the residual; neither alone achieves both \n…[truncated 663 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-009543"
-        },
-        {
-          "source_line": 9544,
-          "timestamp": "2026-05-23T10:15:22.918075+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex",
-              "content": "% Section 7 — Discussion and Conclusion\n\nOntoCoDec compiles IE ontologies into composable token-level constraints, validated across 3 datasets, 3+ models, and 2 tasks.\nBecause IE type constraints exceed context-free expressiveness (Proposition~1), the semantic layer bridges the gap grammar-only enforcement cannot address (3\\% vs.\\ 94\\% DR reduction at 8B), using constructive forward masking over a dynamic entity registry.\nThis scale-dependent interaction (\\S\\ref{sec:70b-results}) suggests grammar-constrained decoding is necessary but increasingly insufficient as models improve; constraint enforcement is preserved under INT4 quantization (4$\\times$ compression; Appendix~\\ref{app:quantization}).\n\n\\paragraph{DR$\\leftrightarrow$CF trade-off.}\nGreedy S1 reduces DR to ${<}$0.1\\% but introduces CF (zero-shot $+$9.82\\,pp, fine-tuned $+$1.18\\,pp)---an architectural consequence of per-triple independent enforcement, where first-seen type registration (\\S\\ref{sec:entity-registry}) may conflict with subsequent requirements.\nBeam search mitigates this: $k{=}2$ reduces CF to 0.11\\% at 1.18$\\times$ latency (Pareto-optimal); $k{=}4$ eliminates all CF at 1.39$\\times$ (\\S\\ref{sec:beam-results}).\nThe trade-off is a net severity downgrade: DR is irrecoverable, while CF is amenable to post-hoc resolution (TCR eliminates 18--92\\%; Appendix~\\ref{app:tcr}).\n\n\\paragraph{Complementarity with training-based enforcement.}\nGoLLIE and KnowCoder internalize schema knowledge via training but cannot guarantee runtime compliance; OntoCoDec provides a complementary runtime guarantee layer.\nLoRA + S1 validates this: training reduces DR to 1--2\\%, constraints eliminate the residual; neither alone achieves both high R-F1 and near-zero DR.\n\n\\paragraph{Per-triple vs.\\ global enforcement.}\nPer-triple enforcement cannot coordinate cross-triple type assignments---the source of CF violations (Level~3 non-local constraints; \\S\\ref{sec:decidability}).\nGlobal enforcement requires entity-level type consensus across the full output, exceeding online per-token masking; beam search approximates this, TCR provides post-hoc correction, and integrating entity-level consensus into the decoding loop remains future work.\n"
-            }
-          },
-          "id": "event-009544"
-        },
-        {
-          "source_line": 9545,
-          "timestamp": "2026-05-23T10:15:22.969030+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Write",
-            "elapsed_ms": 50
-          },
-          "id": "event-009545"
-        },
-        {
-          "source_line": 9546,
-          "timestamp": "2026-05-23T10:15:27.839971+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__paper_compile_and_check"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "tool_args": {
-              "project": "schema_semantic_constrained_ie",
-              "max_pages": "8",
-              "preview": "False"
-            }
-          },
-          "id": "event-009546"
-        },
-        {
-          "source_line": 9547,
-          "timestamp": "2026-05-23T10:15:32.557414+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 1264) in paragraph at lines 7--8\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Schema am-bi-gu-ity anal-y-sis.[] \\\\\\\\T1/ptm/m/n/10.95 \\\\n(+20) We de-fine the\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (55.07407pt too wide) in paragraph at lines 56--71\\\\n [][] \\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_order_invariance.tex) (./appendix_pumping_lemma.tex [36] [37])\\\\n(./appendix_wikievents_pilot.tex\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_zs_crossmodel.tex\\\\nUnderfull \\\\\\\\hbox (badness 1546) in paragraph at lines 63--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) n$[]$20. CF re-mains low (0.77--1.18%); per-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1389) in paragraph at lines 63--3\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) document vari-ance is high (Arg-F1 std/mean\\\\n []\\\\n\\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n) (./appendix_quantization.tex [38]\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3\\\\n1.\\\\n\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n))\\\\n(./appendix_gollie_comparison.tex) [39] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 197ACA9BE50CEDD038274DD7D0771325;6869.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 28872 strings out of 469438\\\\n 527867 string characters out of 5468411\\\\n 1001549 words of memory out of 50\n…[truncated 11344 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__paper_compile_and_check",
-            "elapsed_ms": 4717
-          },
-          "id": "event-009547"
-        },
-        {
-          "source_line": 9548,
-          "timestamp": "2026-05-23T10:15:40.851214+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__pdf_to_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "tool_args": {
-              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
-              "pages": "8,9",
-              "dpi": "150",
-              "project": "schema_semantic_constrained_ie"
-            }
-          },
-          "id": "event-009548"
-        },
-        {
-          "source_line": 9549,
-          "timestamp": "2026-05-23T10:15:41.102596+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 549.1}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 565.9}], \\\"total_pages\\\": 39, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__pdf_to_images",
-            "elapsed_ms": 251
-          },
-          "id": "event-009549"
-        },
-        {
-          "source_line": 9550,
-          "timestamp": "2026-05-23T10:15:44.075891+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png"
-            }
-          },
-          "id": "event-009550"
-        },
-        {
-          "source_line": 9551,
-          "timestamp": "2026-05-23T10:15:44.628519+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png"
-            }
-          },
-          "id": "event-009551"
-        },
-        {
-          "source_line": 9552,
-          "timestamp": "2026-05-23T10:15:44.680207+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 604
-          },
-          "id": "event-009552"
-        },
-        {
-          "source_line": 9553,
-          "timestamp": "2026-05-23T10:15:45.285983+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 657
-          },
-          "id": "event-009553"
-        },
-        {
-          "source_line": 9554,
-          "timestamp": "2026-05-23T10:15:55.176590+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
-            "tool_args": {
-              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images"
-            }
-          },
-          "id": "event-009554"
-        },
-        {
-          "source_line": 9555,
-          "timestamp": "2026-05-23T10:15:55.227230+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
-            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
-            "elapsed_ms": 50
-          },
-          "id": "event-009555"
-        },
-        {
-          "source_line": 9556,
           "timestamp": "2026-05-23T10:16:23.714767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -314,10 +42,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-009556"
+          "id": "event-009542"
         },
         {
-          "source_line": 9557,
+          "source_line": 9543,
           "timestamp": "2026-05-23T10:16:27.532029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -332,10 +60,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_request_review",
             "elapsed_ms": 3817
           },
-          "id": "event-009557"
+          "id": "event-009543"
         },
         {
-          "source_line": 9558,
+          "source_line": 9544,
           "timestamp": "2026-05-23T10:16:39.650873+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -353,10 +81,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-009558"
+          "id": "event-009544"
         },
         {
-          "source_line": 9559,
+          "source_line": 9545,
           "timestamp": "2026-05-23T10:16:40.856157+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -371,10 +99,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 1205
           },
-          "id": "event-009559"
+          "id": "event-009545"
         },
         {
-          "source_line": 9560,
+          "source_line": 9546,
           "timestamp": "2026-05-23T10:16:47.275078+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -387,7 +115,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009560"
+          "id": "event-009546"
         }
       ]
     },
@@ -395,7 +123,7 @@
       "number": 380,
       "messages": [
         {
-          "source_line": 9561,
+          "source_line": 9547,
           "timestamp": "2026-05-23T10:16:47.750168+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -409,10 +137,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-009561"
+          "id": "event-009547"
         },
         {
-          "source_line": 9562,
+          "source_line": 9548,
           "timestamp": "2026-05-23T10:17:00.467712+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -432,10 +160,10 @@
               "context": "3"
             }
           },
-          "id": "event-009562"
+          "id": "event-009548"
         },
         {
-          "source_line": 9563,
+          "source_line": 9549,
           "timestamp": "2026-05-23T10:17:00.568647+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -450,10 +178,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-009563"
+          "id": "event-009549"
         },
         {
-          "source_line": 9564,
+          "source_line": 9550,
           "timestamp": "2026-05-23T10:17:04.585237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -473,10 +201,10 @@
               "context": "2"
             }
           },
-          "id": "event-009564"
+          "id": "event-009550"
         },
         {
-          "source_line": 9565,
+          "source_line": 9551,
           "timestamp": "2026-05-23T10:17:04.637085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -491,10 +219,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-009565"
+          "id": "event-009551"
         },
         {
-          "source_line": 9566,
+          "source_line": 9552,
           "timestamp": "2026-05-23T10:17:20.568137+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -513,10 +241,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009566"
+          "id": "event-009552"
         },
         {
-          "source_line": 9567,
+          "source_line": 9553,
           "timestamp": "2026-05-23T10:17:20.619909+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -531,10 +259,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-009567"
+          "id": "event-009553"
         },
         {
-          "source_line": 9568,
+          "source_line": 9554,
           "timestamp": "2026-05-23T10:17:34.282844+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -554,10 +282,10 @@
               "new_string": "For typical SciERC documents (median 17 entities, 6 types), a DFA would require $6^{17} \\approx 1.6{\\times}10^{13}$ states; for DocRED (median 19 entities, 6 types), $6^{19} \\approx 6.1{\\times}10^{14}$ states---well beyond practical construction for online decoding."
             }
           },
-          "id": "event-009568"
+          "id": "event-009554"
         },
         {
-          "source_line": 9569,
+          "source_line": 9555,
           "timestamp": "2026-05-23T10:17:34.434108+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -572,10 +300,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-009569"
+          "id": "event-009555"
         },
         {
-          "source_line": 9570,
+          "source_line": 9556,
           "timestamp": "2026-05-23T10:17:39.159830+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +322,10 @@
               "preview": "False"
             }
           },
-          "id": "event-009570"
+          "id": "event-009556"
         },
         {
-          "source_line": 9571,
+          "source_line": 9557,
           "timestamp": "2026-05-23T10:17:44.033827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +340,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4873
           },
-          "id": "event-009571"
+          "id": "event-009557"
         },
         {
-          "source_line": 9572,
+          "source_line": 9558,
           "timestamp": "2026-05-23T10:17:59.514930+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -633,10 +361,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-009572"
+          "id": "event-009558"
         },
         {
-          "source_line": 9573,
+          "source_line": 9559,
           "timestamp": "2026-05-23T10:18:03.701123+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -651,10 +379,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4186
           },
-          "id": "event-009573"
+          "id": "event-009559"
         },
         {
-          "source_line": 9574,
+          "source_line": 9560,
           "timestamp": "2026-05-23T10:18:08.488451+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -667,7 +395,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009574"
+          "id": "event-009560"
         }
       ]
     },
@@ -675,7 +403,7 @@
       "number": 381,
       "messages": [
         {
-          "source_line": 9575,
+          "source_line": 9561,
           "timestamp": "2026-05-23T10:18:08.983428+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -689,10 +417,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-009575"
+          "id": "event-009561"
         },
         {
-          "source_line": 9576,
+          "source_line": 9562,
           "timestamp": "2026-05-23T10:18:14.765266+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -705,7 +433,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009576"
+          "id": "event-009562"
         }
       ]
     },
@@ -713,7 +441,7 @@
       "number": 382,
       "messages": [
         {
-          "source_line": 9577,
+          "source_line": 9563,
           "timestamp": "2026-05-23T10:18:15.252078+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -727,10 +455,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-009577"
+          "id": "event-009563"
         },
         {
-          "source_line": 9578,
+          "source_line": 9564,
           "timestamp": "2026-05-23T10:18:26.927010+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -743,7 +471,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009578"
+          "id": "event-009564"
         }
       ]
     },
@@ -751,7 +479,7 @@
       "number": 383,
       "messages": [
         {
-          "source_line": 9579,
+          "source_line": 9565,
           "timestamp": "2026-05-23T10:18:27.383252+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -765,10 +493,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-009579"
+          "id": "event-009565"
         },
         {
-          "source_line": 9580,
+          "source_line": 9566,
           "timestamp": "2026-05-23T10:18:36.636629+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -781,7 +509,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009580"
+          "id": "event-009566"
         }
       ]
     },
@@ -789,7 +517,7 @@
       "number": 384,
       "messages": [
         {
-          "source_line": 9581,
+          "source_line": 9567,
           "timestamp": "2026-05-23T10:35:45.153762+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -803,10 +531,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-009581"
+          "id": "event-009567"
         },
         {
-          "source_line": 9582,
+          "source_line": 9568,
           "timestamp": "2026-05-23T10:35:55.867604+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -825,10 +553,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009582"
+          "id": "event-009568"
         },
         {
-          "source_line": 9583,
+          "source_line": 9569,
           "timestamp": "2026-05-23T10:35:56.420341+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -843,10 +571,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-009583"
+          "id": "event-009569"
         },
         {
-          "source_line": 9584,
+          "source_line": 9570,
           "timestamp": "2026-05-23T10:35:56.871935+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -865,10 +593,10 @@
               "limit": "15"
             }
           },
-          "id": "event-009584"
+          "id": "event-009570"
         },
         {
-          "source_line": 9585,
+          "source_line": 9571,
           "timestamp": "2026-05-23T10:35:57.323728+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -883,10 +611,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-009585"
+          "id": "event-009571"
         },
         {
-          "source_line": 9586,
+          "source_line": 9572,
           "timestamp": "2026-05-23T10:35:57.775876+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -905,10 +633,10 @@
               "limit": "10"
             }
           },
-          "id": "event-009586"
+          "id": "event-009572"
         },
         {
-          "source_line": 9587,
+          "source_line": 9573,
           "timestamp": "2026-05-23T10:35:58.728772+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -923,10 +651,10 @@
             "tool": "Read",
             "elapsed_ms": 952
           },
-          "id": "event-009587"
+          "id": "event-009573"
         },
         {
-          "source_line": 9588,
+          "source_line": 9574,
           "timestamp": "2026-05-23T10:35:58.879701+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -946,10 +674,10 @@
               "context": "1"
             }
           },
-          "id": "event-009588"
+          "id": "event-009574"
         },
         {
-          "source_line": 9589,
+          "source_line": 9575,
           "timestamp": "2026-05-23T10:35:58.930463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -964,10 +692,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009589"
+          "id": "event-009575"
         },
         {
-          "source_line": 9590,
+          "source_line": 9576,
           "timestamp": "2026-05-23T10:36:33.976586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -987,10 +715,10 @@
               "new_string": "A beam-width sweep ($k \\in \\{1,2,4,8\\}$) on SciERC reveals $k{=}2$ as Pareto-optimal: R-F1 44.60 (highest), CF 0.11\\%, at only 1.18$\\times$ greedy S1 latency; $k{=}4$ achieves CF${=}$0\\% but lower R-F1 (43.60) at 1.39$\\times$ (Table~\\ref{tab:beam-sweep}; latencies relative to greedy S1)."
             }
           },
-          "id": "event-009590"
+          "id": "event-009576"
         },
         {
-          "source_line": 9591,
+          "source_line": 9577,
           "timestamp": "2026-05-23T10:36:34.278247+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1005,10 +733,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-009591"
+          "id": "event-009577"
         },
         {
-          "source_line": 9592,
+          "source_line": 9578,
           "timestamp": "2026-05-23T10:36:35.232965+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1028,10 +756,10 @@
               "new_string": "SciERC with 6 entity types"
             }
           },
-          "id": "event-009592"
+          "id": "event-009578"
         },
         {
-          "source_line": 9593,
+          "source_line": 9579,
           "timestamp": "2026-05-23T10:36:35.734979+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1046,10 +774,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-009593"
+          "id": "event-009579"
         },
         {
-          "source_line": 9594,
+          "source_line": 9580,
           "timestamp": "2026-05-23T10:36:36.186750+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1069,10 +797,10 @@
               "new_string": "SciERC (6 entity types)"
             }
           },
-          "id": "event-009594"
+          "id": "event-009580"
         },
         {
-          "source_line": 9595,
+          "source_line": 9581,
           "timestamp": "2026-05-23T10:36:36.638476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1087,10 +815,10 @@
             "tool": "Edit",
             "elapsed_ms": 451
           },
-          "id": "event-009595"
+          "id": "event-009581"
         },
         {
-          "source_line": 9596,
+          "source_line": 9582,
           "timestamp": "2026-05-23T10:36:37.591822+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1110,10 +838,10 @@
               "new_string": "DocRED's larger ontology (96 relations, 6 entity types)"
             }
           },
-          "id": "event-009596"
+          "id": "event-009582"
         },
         {
-          "source_line": 9597,
+          "source_line": 9583,
           "timestamp": "2026-05-23T10:36:38.130303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1128,10 +856,10 @@
             "tool": "Edit",
             "elapsed_ms": 538
           },
-          "id": "event-009597"
+          "id": "event-009583"
         },
         {
-          "source_line": 9598,
+          "source_line": 9584,
           "timestamp": "2026-05-23T10:36:38.385083+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1151,10 +879,10 @@
               "new_string": "22 cross-field violations"
             }
           },
-          "id": "event-009598"
+          "id": "event-009584"
         },
         {
-          "source_line": 9599,
+          "source_line": 9585,
           "timestamp": "2026-05-23T10:36:38.519032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1169,10 +897,10 @@
             "tool": "Edit",
             "elapsed_ms": 133
           },
-          "id": "event-009599"
+          "id": "event-009585"
         },
         {
-          "source_line": 9600,
+          "source_line": 9586,
           "timestamp": "2026-05-23T10:36:46.497570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1192,10 +920,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-009600"
+          "id": "event-009586"
         },
         {
-          "source_line": 9601,
+          "source_line": 9587,
           "timestamp": "2026-05-23T10:36:46.550860+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1210,10 +938,10 @@
             "tool": "Grep",
             "elapsed_ms": 53
           },
-          "id": "event-009601"
+          "id": "event-009587"
         },
         {
-          "source_line": 9602,
+          "source_line": 9588,
           "timestamp": "2026-05-23T10:36:55.744174+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1232,10 +960,10 @@
               "preview": "False"
             }
           },
-          "id": "event-009602"
+          "id": "event-009588"
         },
         {
-          "source_line": 9603,
+          "source_line": 9589,
           "timestamp": "2026-05-23T10:37:00.666831+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1250,10 +978,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4922
           },
-          "id": "event-009603"
+          "id": "event-009589"
         },
         {
-          "source_line": 9604,
+          "source_line": 9590,
           "timestamp": "2026-05-23T10:37:19.660223+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1271,10 +999,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-009604"
+          "id": "event-009590"
         },
         {
-          "source_line": 9605,
+          "source_line": 9591,
           "timestamp": "2026-05-23T10:37:24.045063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1289,10 +1017,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4384
           },
-          "id": "event-009605"
+          "id": "event-009591"
         },
         {
-          "source_line": 9606,
+          "source_line": 9592,
           "timestamp": "2026-05-23T10:37:27.141117+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1305,7 +1033,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009606"
+          "id": "event-009592"
         }
       ]
     },
@@ -1313,7 +1041,7 @@
       "number": 385,
       "messages": [
         {
-          "source_line": 9607,
+          "source_line": 9593,
           "timestamp": "2026-05-23T10:37:27.636399+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1327,10 +1055,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "system"
           },
-          "id": "event-009607"
+          "id": "event-009593"
         },
         {
-          "source_line": 9608,
+          "source_line": 9594,
           "timestamp": "2026-05-23T10:37:33.338375+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1343,7 +1071,7 @@
           "metadata": {
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent"
           },
-          "id": "event-009608"
+          "id": "event-009594"
         }
       ]
     },
@@ -1351,7 +1079,7 @@
       "number": 386,
       "messages": [
         {
-          "source_line": 9609,
+          "source_line": 9595,
           "timestamp": "2026-05-23T10:39:11.390514+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1365,10 +1093,10 @@
             "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
             "source": "director"
           },
-          "id": "event-009609"
+          "id": "event-009595"
         },
         {
-          "source_line": 9610,
+          "source_line": 9596,
           "timestamp": "2026-05-23T10:39:31.036536+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1387,10 +1115,10 @@
               "limit": "50"
             }
           },
-          "id": "event-009610"
+          "id": "event-009596"
         },
         {
-          "source_line": 9611,
+          "source_line": 9597,
           "timestamp": "2026-05-23T10:39:31.538901+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1405,10 +1133,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-009611"
+          "id": "event-009597"
         },
         {
-          "source_line": 9612,
+          "source_line": 9598,
           "timestamp": "2026-05-23T10:39:31.539282+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1425,10 +1153,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-009612"
+          "id": "event-009598"
         },
         {
-          "source_line": 9613,
+          "source_line": 9599,
           "timestamp": "2026-05-23T10:39:32.091452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1443,10 +1171,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-009613"
+          "id": "event-009599"
         },
         {
-          "source_line": 9614,
+          "source_line": 9600,
           "timestamp": "2026-05-23T10:39:32.192616+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1463,10 +1191,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-009614"
+          "id": "event-009600"
         },
         {
-          "source_line": 9615,
+          "source_line": 9601,
           "timestamp": "2026-05-23T10:39:32.193226+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1481,10 +1209,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009615"
+          "id": "event-009601"
         },
         {
-          "source_line": 9616,
+          "source_line": 9602,
           "timestamp": "2026-05-23T10:39:39.022520+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1503,10 +1231,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009616"
+          "id": "event-009602"
         },
         {
-          "source_line": 9617,
+          "source_line": 9603,
           "timestamp": "2026-05-23T10:39:39.926822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1521,10 +1249,10 @@
             "tool": "Read",
             "elapsed_ms": 904
           },
-          "id": "event-009617"
+          "id": "event-009603"
         },
         {
-          "source_line": 9618,
+          "source_line": 9604,
           "timestamp": "2026-05-23T10:39:40.077821+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1541,10 +1269,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-009618"
+          "id": "event-009604"
         },
         {
-          "source_line": 9619,
+          "source_line": 9605,
           "timestamp": "2026-05-23T10:39:41.324204+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1559,10 +1287,10 @@
             "tool": "Read",
             "elapsed_ms": 1246
           },
-          "id": "event-009619"
+          "id": "event-009605"
         },
         {
-          "source_line": 9620,
+          "source_line": 9606,
           "timestamp": "2026-05-23T10:39:41.927886+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1582,10 +1310,10 @@
               "glob": "section*.tex"
             }
           },
-          "id": "event-009620"
+          "id": "event-009606"
         },
         {
-          "source_line": 9621,
+          "source_line": 9607,
           "timestamp": "2026-05-23T10:39:41.978661+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1600,10 +1328,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009621"
+          "id": "event-009607"
         },
         {
-          "source_line": 9622,
+          "source_line": 9608,
           "timestamp": "2026-05-23T10:42:28.614381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1622,10 +1350,10 @@
               "limit": "6"
             }
           },
-          "id": "event-009622"
+          "id": "event-009608"
         },
         {
-          "source_line": 9623,
+          "source_line": 9609,
           "timestamp": "2026-05-23T10:42:29.177920+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1640,10 +1368,10 @@
             "tool": "Read",
             "elapsed_ms": 563
           },
-          "id": "event-009623"
+          "id": "event-009609"
         },
         {
-          "source_line": 9624,
+          "source_line": 9610,
           "timestamp": "2026-05-23T10:42:29.881031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1662,10 +1390,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-009624"
+          "id": "event-009610"
         },
         {
-          "source_line": 9625,
+          "source_line": 9611,
           "timestamp": "2026-05-23T10:42:29.981919+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1680,10 +1408,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-009625"
+          "id": "event-009611"
         },
         {
-          "source_line": 9626,
+          "source_line": 9612,
           "timestamp": "2026-05-23T10:42:39.387219+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1703,10 +1431,10 @@
               "new_string": "    & Unconstr.\\ &  0.76 & 0.12 & 40.86 & 82.15 & --- \\\\\n  & & S1    & 0.01 & 0.41 & 40.56 & 81.43 & $\\downarrow$98.7\\% \\\\"
             }
           },
-          "id": "event-009626"
+          "id": "event-009612"
         },
         {
-          "source_line": 9627,
+          "source_line": 9613,
           "timestamp": "2026-05-23T10:42:39.691913+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1721,10 +1449,10 @@
             "tool": "Edit",
             "elapsed_ms": 304
           },
-          "id": "event-009627"
+          "id": "event-009613"
         },
         {
-          "source_line": 9628,
+          "source_line": 9614,
           "timestamp": "2026-05-23T10:42:41.865577+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1744,10 +1472,10 @@
               "new_string": "    & Unconstr.\\ &  0.49 & 0.08 & 43.72 & 83.93 & --- \\\\\n  & & S1    &  0.21 & 0.21 & 43.78 & 83.94 & $\\downarrow$57\\% \\\\"
             }
           },
-          "id": "event-009628"
+          "id": "event-009614"
         },
         {
-          "source_line": 9629,
+          "source_line": 9615,
           "timestamp": "2026-05-23T10:42:41.916379+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1762,10 +1490,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-009629"
+          "id": "event-009615"
         },
         {
-          "source_line": 9630,
+          "source_line": 9616,
           "timestamp": "2026-05-23T10:42:48.830230+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1785,10 +1513,10 @@
               "new_string": "OntoCoDec composed with LoRA fine-tuning reduces domain/range violations to near-zero ($\\leq$\\,0.21\\%) at F1 41--46\\%"
             }
           },
-          "id": "event-009630"
+          "id": "event-009616"
         },
         {
-          "source_line": 9631,
+          "source_line": 9617,
           "timestamp": "2026-05-23T10:42:49.282444+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1803,10 +1531,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-009631"
+          "id": "event-009617"
         },
         {
-          "source_line": 9632,
+          "source_line": 9618,
           "timestamp": "2026-05-23T10:42:52.294903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1826,10 +1554,10 @@
               "new_string": "LoRA + greedy S1 reduces DR to near-zero: DR\\,$\\leq$\\,0.21\\% at R-F1 41--46\\% ($\\pm$0.3\\,pp, $+$10\\% latency)"
             }
           },
-          "id": "event-009632"
+          "id": "event-009618"
         },
         {
-          "source_line": 9633,
+          "source_line": 9619,
           "timestamp": "2026-05-23T10:42:52.599808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1844,10 +1572,10 @@
             "tool": "Edit",
             "elapsed_ms": 304
           },
-          "id": "event-009633"
+          "id": "event-009619"
         },
         {
-          "source_line": 9634,
+          "source_line": 9620,
           "timestamp": "2026-05-23T10:42:53.906900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1867,10 +1595,10 @@
               "new_string": "demonstrating DR reduction to $\\leq$0.21\\% with R-F1 within $\\pm$0.3\\,pp"
             }
           },
-          "id": "event-009634"
+          "id": "event-009620"
         },
         {
-          "source_line": 9635,
+          "source_line": 9621,
           "timestamp": "2026-05-23T10:42:54.007888+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1885,10 +1613,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-009635"
+          "id": "event-009621"
         },
         {
-          "source_line": 9636,
+          "source_line": 9622,
           "timestamp": "2026-05-23T10:42:58.528084+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1907,10 +1635,10 @@
               "limit": "4"
             }
           },
-          "id": "event-009636"
+          "id": "event-009622"
         },
         {
-          "source_line": 9637,
+          "source_line": 9623,
           "timestamp": "2026-05-23T10:42:58.528539+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1925,10 +1653,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009637"
+          "id": "event-009623"
         },
         {
-          "source_line": 9638,
+          "source_line": 9624,
           "timestamp": "2026-05-23T10:43:03.349054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1948,10 +1676,10 @@
               "new_string": "greedy S1 (DR\\,$\\leq$\\,0.21\\%, $+$10\\% latency) and beam S1 (all violations\\,$\\to$\\,0\\%, 1.39$\\times$ latency); zero-shot evaluation (\\S\\ref{sec:scierc-results}; Appendix~\\ref{app:cross-model-zs}) serves as a diagnostic probe for the fine-tuned setting (R-F1 41--46\\%)."
             }
           },
-          "id": "event-009638"
+          "id": "event-009624"
         },
         {
-          "source_line": 9639,
+          "source_line": 9625,
           "timestamp": "2026-05-23T10:43:03.399915+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1966,10 +1694,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-009639"
+          "id": "event-009625"
         },
         {
-          "source_line": 9640,
+          "source_line": 9626,
           "timestamp": "2026-05-23T10:45:22.666930+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1988,10 +1716,10 @@
               "limit": "20"
             }
           },
-          "id": "event-009640"
+          "id": "event-009626"
         },
         {
-          "source_line": 9641,
+          "source_line": 9627,
           "timestamp": "2026-05-23T10:45:23.219469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2006,10 +1734,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-009641"
+          "id": "event-009627"
         },
         {
-          "source_line": 9642,
+          "source_line": 9628,
           "timestamp": "2026-05-23T10:45:23.522028+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2026,10 +1754,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-009642"
+          "id": "event-009628"
         },
         {
-          "source_line": 9643,
+          "source_line": 9629,
           "timestamp": "2026-05-23T10:45:24.174920+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2044,10 +1772,10 @@
             "tool": "Read",
             "elapsed_ms": 652
           },
-          "id": "event-009643"
+          "id": "event-009629"
         },
         {
-          "source_line": 9644,
+          "source_line": 9630,
           "timestamp": "2026-05-23T10:45:24.225761+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2066,10 +1794,10 @@
               "limit": "15"
             }
           },
-          "id": "event-009644"
+          "id": "event-009630"
         },
         {
-          "source_line": 9645,
+          "source_line": 9631,
           "timestamp": "2026-05-23T10:45:24.276505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2084,10 +1812,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-009645"
+          "id": "event-009631"
         },
         {
-          "source_line": 9646,
+          "source_line": 9632,
           "timestamp": "2026-05-23T10:45:34.703775+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2105,10 +1833,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-009646"
+          "id": "event-009632"
         },
         {
-          "source_line": 9647,
+          "source_line": 9633,
           "timestamp": "2026-05-23T10:45:34.754398+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2123,10 +1851,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-009647"
+          "id": "event-009633"
         },
         {
-          "source_line": 9648,
+          "source_line": 9634,
           "timestamp": "2026-05-23T10:45:38.921869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2145,10 +1873,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-009648"
+          "id": "event-009634"
         },
         {
-          "source_line": 9649,
+          "source_line": 9635,
           "timestamp": "2026-05-23T10:45:39.474777+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2163,10 +1891,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 552
           },
-          "id": "event-009649"
+          "id": "event-009635"
         },
         {
-          "source_line": 9650,
+          "source_line": 9636,
           "timestamp": "2026-05-23T10:45:43.116864+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2186,10 +1914,10 @@
               "limit": "50"
             }
           },
-          "id": "event-009650"
+          "id": "event-009636"
         },
         {
-          "source_line": 9651,
+          "source_line": 9637,
           "timestamp": "2026-05-23T10:45:43.669797+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2204,10 +1932,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 552
           },
-          "id": "event-009651"
+          "id": "event-009637"
         },
         {
-          "source_line": 9652,
+          "source_line": 9638,
           "timestamp": "2026-05-23T10:45:48.642805+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2226,10 +1954,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-009652"
+          "id": "event-009638"
         },
         {
-          "source_line": 9653,
+          "source_line": 9639,
           "timestamp": "2026-05-23T10:45:49.295272+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2244,10 +1972,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 652
           },
-          "id": "event-009653"
+          "id": "event-009639"
         },
         {
-          "source_line": 9654,
+          "source_line": 9640,
           "timestamp": "2026-05-23T10:45:49.346020+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2266,10 +1994,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-009654"
+          "id": "event-009640"
         },
         {
-          "source_line": 9655,
+          "source_line": 9641,
           "timestamp": "2026-05-23T10:45:49.798360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2284,10 +2012,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 452
           },
-          "id": "event-009655"
+          "id": "event-009641"
         },
         {
-          "source_line": 9656,
+          "source_line": 9642,
           "timestamp": "2026-05-23T10:45:52.816700+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2306,10 +2034,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-009656"
+          "id": "event-009642"
         },
         {
-          "source_line": 9657,
+          "source_line": 9643,
           "timestamp": "2026-05-23T10:45:53.573860+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2324,10 +2052,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 757
           },
-          "id": "event-009657"
+          "id": "event-009643"
         },
         {
-          "source_line": 9658,
+          "source_line": 9644,
           "timestamp": "2026-05-23T10:45:53.574308+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2346,10 +2074,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-009658"
+          "id": "event-009644"
         },
         {
-          "source_line": 9659,
+          "source_line": 9645,
           "timestamp": "2026-05-23T10:45:54.076126+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2364,10 +2092,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 501
           },
-          "id": "event-009659"
+          "id": "event-009645"
         },
         {
-          "source_line": 9660,
+          "source_line": 9646,
           "timestamp": "2026-05-23T10:45:59.394375+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2388,10 +2116,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-009660"
+          "id": "event-009646"
         },
         {
-          "source_line": 9661,
+          "source_line": 9647,
           "timestamp": "2026-05-23T10:45:59.445583+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2406,10 +2134,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-009661"
+          "id": "event-009647"
         },
         {
-          "source_line": 9662,
+          "source_line": 9648,
           "timestamp": "2026-05-23T10:46:15.875695+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2429,10 +2157,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-009662"
+          "id": "event-009648"
         },
         {
-          "source_line": 9663,
+          "source_line": 9649,
           "timestamp": "2026-05-23T10:46:16.327789+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2447,10 +2175,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-009663"
+          "id": "event-009649"
         },
         {
-          "source_line": 9664,
+          "source_line": 9650,
           "timestamp": "2026-05-23T10:46:16.529418+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2470,10 +2198,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-009664"
+          "id": "event-009650"
         },
         {
-          "source_line": 9665,
+          "source_line": 9651,
           "timestamp": "2026-05-23T10:46:16.580033+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2488,10 +2216,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009665"
+          "id": "event-009651"
         },
         {
-          "source_line": 9666,
+          "source_line": 9652,
           "timestamp": "2026-05-23T10:46:19.793837+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2510,10 +2238,10 @@
               "limit": "50"
             }
           },
-          "id": "event-009666"
+          "id": "event-009652"
         },
         {
-          "source_line": 9667,
+          "source_line": 9653,
           "timestamp": "2026-05-23T10:46:20.296035+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2528,10 +2256,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-009667"
+          "id": "event-009653"
         },
         {
-          "source_line": 9668,
+          "source_line": 9654,
           "timestamp": "2026-05-23T10:46:20.447559+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2550,10 +2278,10 @@
               "limit": "10"
             }
           },
-          "id": "event-009668"
+          "id": "event-009654"
         },
         {
-          "source_line": 9669,
+          "source_line": 9655,
           "timestamp": "2026-05-23T10:46:20.504230+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2568,10 +2296,10 @@
             "tool": "Read",
             "elapsed_ms": 56
           },
-          "id": "event-009669"
+          "id": "event-009655"
         },
         {
-          "source_line": 9670,
+          "source_line": 9656,
           "timestamp": "2026-05-23T10:46:48.895192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2591,10 +2319,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-009670"
+          "id": "event-009656"
         },
         {
-          "source_line": 9671,
+          "source_line": 9657,
           "timestamp": "2026-05-23T10:46:48.945893+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2609,10 +2337,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009671"
+          "id": "event-009657"
         },
         {
-          "source_line": 9672,
+          "source_line": 9658,
           "timestamp": "2026-05-23T10:46:54.159832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2631,10 +2359,10 @@
               "limit": "40"
             }
           },
-          "id": "event-009672"
+          "id": "event-009658"
         },
         {
-          "source_line": 9673,
+          "source_line": 9659,
           "timestamp": "2026-05-23T10:46:54.210518+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2649,10 +2377,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-009673"
+          "id": "event-009659"
         },
         {
-          "source_line": 9674,
+          "source_line": 9660,
           "timestamp": "2026-05-23T10:47:03.147185+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2672,10 +2400,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-009674"
+          "id": "event-009660"
         },
         {
-          "source_line": 9675,
+          "source_line": 9661,
           "timestamp": "2026-05-23T10:47:03.197863+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2690,10 +2418,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009675"
+          "id": "event-009661"
         },
         {
-          "source_line": 9676,
+          "source_line": 9662,
           "timestamp": "2026-05-23T10:47:09.071967+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2712,10 +2440,10 @@
               "limit": "30"
             }
           },
-          "id": "event-009676"
+          "id": "event-009662"
         },
         {
-          "source_line": 9677,
+          "source_line": 9663,
           "timestamp": "2026-05-23T10:47:09.072376+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2730,10 +2458,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009677"
+          "id": "event-009663"
         },
         {
-          "source_line": 9678,
+          "source_line": 9664,
           "timestamp": "2026-05-23T10:47:09.424110+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2752,10 +2480,10 @@
               "limit": "30"
             }
           },
-          "id": "event-009678"
+          "id": "event-009664"
         },
         {
-          "source_line": 9679,
+          "source_line": 9665,
           "timestamp": "2026-05-23T10:47:09.525619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2770,10 +2498,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-009679"
+          "id": "event-009665"
         },
         {
-          "source_line": 9680,
+          "source_line": 9666,
           "timestamp": "2026-05-23T10:47:18.350781+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2793,10 +2521,10 @@
               "head_limit": "5"
             }
           },
-          "id": "event-009680"
+          "id": "event-009666"
         },
         {
-          "source_line": 9681,
+          "source_line": 9667,
           "timestamp": "2026-05-23T10:47:18.351153+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2811,10 +2539,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-009681"
+          "id": "event-009667"
         },
         {
-          "source_line": 9682,
+          "source_line": 9668,
           "timestamp": "2026-05-23T10:47:22.520397+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2833,10 +2561,10 @@
               "limit": "35"
             }
           },
-          "id": "event-009682"
+          "id": "event-009668"
         },
         {
-          "source_line": 9683,
+          "source_line": 9669,
           "timestamp": "2026-05-23T10:47:22.571050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2851,10 +2579,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-009683"
+          "id": "event-009669"
         },
         {
-          "source_line": 9684,
+          "source_line": 9670,
           "timestamp": "2026-05-23T10:48:29.179757+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2871,10 +2599,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
             }
           },
-          "id": "event-009684"
+          "id": "event-009670"
         },
         {
-          "source_line": 9685,
+          "source_line": 9671,
           "timestamp": "2026-05-23T10:48:29.180308+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2889,10 +2617,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009685"
+          "id": "event-009671"
         },
         {
-          "source_line": 9686,
+          "source_line": 9672,
           "timestamp": "2026-05-23T10:49:04.927425+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2912,10 +2640,10 @@
               "new_string": "Fine-tuning alone reduces DR to 1--2\\% but leaves residual violations on tight-constraint relations (Table~\\ref{tab:composability}); adding S1 yields DR\\,$\\leq$\\,0.21\\% with no significant $\\Delta$R-F1 (Bonferroni-corrected; 95\\% CIs $\\subseteq [-0.69, {+}0.25]$\\,pp; removed triples are 97.6--100\\% false positives; Appendix~\\ref{app:downstream-impact})."
             }
           },
-          "id": "event-009686"
+          "id": "event-009672"
         },
         {
-          "source_line": 9687,
+          "source_line": 9673,
           "timestamp": "2026-05-23T10:49:05.229197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2930,10 +2658,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-009687"
+          "id": "event-009673"
         },
         {
-          "source_line": 9688,
+          "source_line": 9674,
           "timestamp": "2026-05-23T10:49:07.137611+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2953,10 +2681,10 @@
               "new_string": "despite this, DR reaches 0.09\\% on SciERC (0.21\\% on DocRED), confirming that even frequent fallback does not compromise enforcement."
             }
           },
-          "id": "event-009688"
+          "id": "event-009674"
         },
         {
-          "source_line": 9689,
+          "source_line": 9675,
           "timestamp": "2026-05-23T10:49:07.589940+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2971,10 +2699,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-009689"
+          "id": "event-009675"
         },
         {
-          "source_line": 9690,
+          "source_line": 9676,
           "timestamp": "2026-05-23T10:49:08.242851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2994,10 +2722,10 @@
               "new_string": "beam ($k{=}4$) eliminates all violation types (R-F1 43--46; \\S\\ref{sec:beam-results})."
             }
           },
-          "id": "event-009690"
+          "id": "event-009676"
         },
         {
-          "source_line": 9691,
+          "source_line": 9677,
           "timestamp": "2026-05-23T10:49:08.293644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3012,10 +2740,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-009691"
+          "id": "event-009677"
         },
         {
-          "source_line": 9692,
+          "source_line": 9678,
           "timestamp": "2026-05-23T10:49:12.761935+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3035,10 +2763,10 @@
               "new_string": "Greedy S1 reduces DR to $\\leq$\\,0.21\\% but introduces CF"
             }
           },
-          "id": "event-009692"
+          "id": "event-009678"
         },
         {
-          "source_line": 9693,
+          "source_line": 9679,
           "timestamp": "2026-05-23T10:49:13.236662+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3053,10 +2781,10 @@
             "tool": "Edit",
             "elapsed_ms": 474
           },
-          "id": "event-009693"
+          "id": "event-009679"
         },
         {
-          "source_line": 9694,
+          "source_line": 9680,
           "timestamp": "2026-05-23T10:49:15.444493+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3076,10 +2804,10 @@
               "new_string": "greedy S1 ($+$10\\% latency, DR${\\leq}$0.21\\%, CF${\\leq}$1.4\\%)"
             }
           },
-          "id": "event-009694"
+          "id": "event-009680"
         },
         {
-          "source_line": 9695,
+          "source_line": 9681,
           "timestamp": "2026-05-23T10:49:15.545439+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3094,10 +2822,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-009695"
+          "id": "event-009681"
         },
         {
-          "source_line": 9696,
+          "source_line": 9682,
           "timestamp": "2026-05-23T10:49:19.765226+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3116,10 +2844,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009696"
+          "id": "event-009682"
         },
         {
-          "source_line": 9697,
+          "source_line": 9683,
           "timestamp": "2026-05-23T10:49:20.669924+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3134,10 +2862,10 @@
             "tool": "Read",
             "elapsed_ms": 904
           },
-          "id": "event-009697"
+          "id": "event-009683"
         },
         {
-          "source_line": 9698,
+          "source_line": 9684,
           "timestamp": "2026-05-23T10:49:20.720701+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3156,10 +2884,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009698"
+          "id": "event-009684"
         },
         {
-          "source_line": 9699,
+          "source_line": 9685,
           "timestamp": "2026-05-23T10:49:20.721188+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3174,10 +2902,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009699"
+          "id": "event-009685"
         },
         {
-          "source_line": 9700,
+          "source_line": 9686,
           "timestamp": "2026-05-23T10:49:30.217707+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3197,10 +2925,10 @@
               "new_string": "Fine-tuning reduces residual DR to $\\leq$\\,0.21\\% (Table~\\ref{tab:composability}; residual decomposition in Appendix~\\ref{app:residual-dr-analysis})."
             }
           },
-          "id": "event-009700"
+          "id": "event-009686"
         },
         {
-          "source_line": 9701,
+          "source_line": 9687,
           "timestamp": "2026-05-23T10:49:30.569085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3215,10 +2943,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-009701"
+          "id": "event-009687"
         },
         {
-          "source_line": 9702,
+          "source_line": 9688,
           "timestamp": "2026-05-23T10:49:31.521917+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3238,10 +2966,10 @@
               "new_string": "Fine-tuning reduces residual DR to $\\leq$\\,0.21\\% (Table~\\ref{tab:composability}; residual decomposition in Appendix~\\ref{app:residual-dr-analysis})."
             }
           },
-          "id": "event-009702"
+          "id": "event-009688"
         },
         {
-          "source_line": 9703,
+          "source_line": 9689,
           "timestamp": "2026-05-23T10:49:31.572512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3256,10 +2984,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-009703"
+          "id": "event-009689"
         },
         {
-          "source_line": 9704,
+          "source_line": 9690,
           "timestamp": "2026-05-23T10:49:36.583234+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3279,10 +3007,10 @@
               "head_limit": "20"
             }
           },
-          "id": "event-009704"
+          "id": "event-009690"
         },
         {
-          "source_line": 9705,
+          "source_line": 9691,
           "timestamp": "2026-05-23T10:49:36.634926+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3297,10 +3025,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-009705"
+          "id": "event-009691"
         },
         {
-          "source_line": 9706,
+          "source_line": 9692,
           "timestamp": "2026-05-23T10:49:40.098891+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3321,10 +3049,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-009706"
+          "id": "event-009692"
         },
         {
-          "source_line": 9707,
+          "source_line": 9693,
           "timestamp": "2026-05-23T10:49:40.149650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3339,10 +3067,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-009707"
+          "id": "event-009693"
         },
         {
-          "source_line": 9708,
+          "source_line": 9694,
           "timestamp": "2026-05-23T10:49:48.605199+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3361,10 +3089,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009708"
+          "id": "event-009694"
         },
         {
-          "source_line": 9709,
+          "source_line": 9695,
           "timestamp": "2026-05-23T10:49:49.409781+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3379,10 +3107,10 @@
             "tool": "Read",
             "elapsed_ms": 804
           },
-          "id": "event-009709"
+          "id": "event-009695"
         },
         {
-          "source_line": 9710,
+          "source_line": 9696,
           "timestamp": "2026-05-23T10:49:49.560934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3401,10 +3129,10 @@
               "limit": "8"
             }
           },
-          "id": "event-009710"
+          "id": "event-009696"
         },
         {
-          "source_line": 9711,
+          "source_line": 9697,
           "timestamp": "2026-05-23T10:49:49.612925+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3419,10 +3147,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-009711"
+          "id": "event-009697"
         },
         {
-          "source_line": 9712,
+          "source_line": 9698,
           "timestamp": "2026-05-23T10:49:53.582269+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3442,10 +3170,10 @@
               "new_string": "Adding both layers achieves near-complete elimination (DR\\,$\\leq$\\,0.21\\% in all 4 settings)"
             }
           },
-          "id": "event-009712"
+          "id": "event-009698"
         },
         {
-          "source_line": 9713,
+          "source_line": 9699,
           "timestamp": "2026-05-23T10:49:54.085230+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3460,10 +3188,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-009713"
+          "id": "event-009699"
         },
         {
-          "source_line": 9714,
+          "source_line": 9700,
           "timestamp": "2026-05-23T10:49:55.046753+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3483,10 +3211,10 @@
               "new_string": "Structural constraints eliminate type-invalid outputs (DR$\\leq$0.21\\%)"
             }
           },
-          "id": "event-009714"
+          "id": "event-009700"
         },
         {
-          "source_line": 9715,
+          "source_line": 9701,
           "timestamp": "2026-05-23T10:49:55.047412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3501,10 +3229,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-009715"
+          "id": "event-009701"
         },
         {
-          "source_line": 9716,
+          "source_line": 9702,
           "timestamp": "2026-05-23T10:49:59.238458+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3523,10 +3251,10 @@
               "limit": "5"
             }
           },
-          "id": "event-009716"
+          "id": "event-009702"
         },
         {
-          "source_line": 9717,
+          "source_line": 9703,
           "timestamp": "2026-05-23T10:49:59.238989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3541,10 +3269,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-009717"
+          "id": "event-009703"
         },
         {
-          "source_line": 9718,
+          "source_line": 9704,
           "timestamp": "2026-05-23T10:50:08.178878+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3564,10 +3292,10 @@
               "new_string": "F1 cost is negligible: the maximum R-F1 decrease across S1 vs.\\ unconstrained is $-$0.30\\,pp (Qwen DocRED)."
             }
           },
-          "id": "event-009718"
+          "id": "event-009704"
         },
         {
-          "source_line": 9719,
+          "source_line": 9705,
           "timestamp": "2026-05-23T10:50:08.230337+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3582,10 +3310,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-009719"
+          "id": "event-009705"
         },
         {
-          "source_line": 9720,
+          "source_line": 9706,
           "timestamp": "2026-05-23T10:50:13.525529+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3600,6 +3328,292 @@
             "tool": "Grep",
             "tool_args": {
               "pattern": "41--47|41-47",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-009706"
+        },
+        {
+          "source_line": 9707,
+          "timestamp": "2026-05-23T10:50:13.576157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:9:At competitive quality (R-F1 41--47\\%), even 1--2\\% residual violations compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex:15:Our R-F1 range (41--47\\% under LoRA) is consistent with recent LLM-based generative RE evaluations on these benchmarks, where document-level closed IE without gold entity spans typically achieves 35--50\\%~\\cite{wadhwa2023revisiting}; supervised span-based methods operating under different assumptions (gold entity spans, dedicated architectures) are not directly comparable."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-009707"
+        },
+        {
+          "source_line": 9708,
+          "timestamp": "2026-05-23T10:50:33.464894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+              "old_string": "At competitive quality (R-F1 41--47\\%)",
+              "new_string": "At competitive quality (R-F1 41--46\\%)"
+            }
+          },
+          "id": "event-009708"
+        },
+        {
+          "source_line": 9709,
+          "timestamp": "2026-05-23T10:50:33.465354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-009709"
+        },
+        {
+          "source_line": 9710,
+          "timestamp": "2026-05-23T10:50:33.716491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+              "old_string": "Our R-F1 range (41--47\\% under LoRA)",
+              "new_string": "Our R-F1 range (41--46\\% under LoRA)"
+            }
+          },
+          "id": "event-009710"
+        },
+        {
+          "source_line": 9711,
+          "timestamp": "2026-05-23T10:50:33.817930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-009711"
+        },
+        {
+          "source_line": 9712,
+          "timestamp": "2026-05-23T10:50:40.585384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "43--47|43-47",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-009712"
+        },
+        {
+          "source_line": 9713,
+          "timestamp": "2026-05-23T10:50:40.636022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-009713"
+        },
+        {
+          "source_line": 9714,
+          "timestamp": "2026-05-23T10:50:46.432771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+            }
+          },
+          "id": "event-009714"
+        },
+        {
+          "source_line": 9715,
+          "timestamp": "2026-05-23T10:50:46.433343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLarge language models for information extraction generate structurally valid but ontologically invalid triples---where entity types violate the ontology's domain/range constraints.\n3\tThese violations persist across the capability spectrum and cannot be addressed by grammar-constrained decoding (which lacks cross-field type awareness) or post-hoc filtering (which discards valid predictions).\n4\t\n5\tWe present \\textsc{OntoCoDec}, a framework that compiles information extraction ontologies into composable token-level decoding constraints.\n6\tA decidability analysis shows that domain/range constraints exceed context-free expressiveness, yielding a two-layer architecture: a grammar layer enforces structural validity and vocabulary membership; a semantic layer enforces type constraints at runtime through stateful masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.\n7\t\n8\t% exp_ids: w5_lora_scierc_constrained_eval, w5_qwen_docred_lora_constrained_eval, w5_llama_lora_scierc_constrained_eval, w5_llama_docred_lora_constrained_eval\n9\tEvaluated across three 8B-class models and two relation extraction datasets (up to 96 relations), OntoCoDec composed with LoRA fine-tuning reduces domain/range violations to near-zero ($\\leq$\\,0.21\\%) at F1 41--46\\%, but introduces cross-field type inconsistencies ($\\leq$1.4\\%) as the dominant residual---an architectural consequence of per-triple independent enforcement.\n10\tBeam search ($k{=}2$) reduces CF to 0.11\\% at 1.18$\\times$ latency; $k{=}4$ eliminates all violation types at 1.39$\\times$.\n11\tIn zero-shot settings, cross-field rates are higher (up to 12\\%) but decrease with model calibration.\n12\tZero-shot domain/range reductions span 76--99\\% on SciERC and 42--90\\% on DocRED; violation rates follow an observed pattern consistent with schema restrictiveness across our three evaluation schemas ($n{=}3$; insufficient for statistical inference), with a scale-dependent relationship betwee\n…[truncated 39 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-009715"
+        },
+        {
+          "source_line": 9716,
+          "timestamp": "2026-05-23T10:50:50.852236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bootstrap|app:bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "head_limit": "15"
+            }
+          },
+          "id": "event-009716"
+        },
+        {
+          "source_line": 9717,
+          "timestamp": "2026-05-23T10:50:50.902994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs_cf83d1.tex:34:% exp_ids: d012_bootstrap_ci (DocRED +0.50pp p<0.001, SciERC +0.13pp p=0.58),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs_cf83d1.tex:39:% exp_id: d012_bootstrap_ci\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex:30:We therefore report single-run results without error bars; bootstrap confidence intervals (10{,}000 iterations) are provided for F1 metrics.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex:58:To verify that this subset provides sufficient statistical power, we conduct a bootstrap analysis using the full 998-document 8B LoRA results as a reference population.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_power_analysis.tex:7:Table~\\ref{tab:power-analysis} reports bootstrap confidence interval width and minimum detectable effect (MDE) for F1 across evaluation settings (${\\geq}$1{,}000 bootstrap resamples; MDE at 80\\% power, $\\alpha{=}0.05$, paired test, $\\rho{=}0.9$).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_power_analysis.tex:23:95\\% CI: bootstrap confidence interval half-width for per-configuration F1.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_power_analysis.tex:30:However, the primary WikiEvents claims concern violation elimination, not F1 improvement: RoV drops from 8.8--38.3\\% to exactly 0\\% across both models (bootstrap 95\\% CI $[0\\%,\\,0\\%]$ vs.\\ $[2.4\\%,\\,15.4\\%]$ / $[25.4\\%,\\,46.7\\%]$; power${\\app\n…[truncated 1919 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-009717"
+        },
+        {
+          "source_line": 9718,
+          "timestamp": "2026-05-23T10:50:54.266744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "offset": "165",
+              "limit": "45"
+            }
+          },
+          "id": "event-009718"
+        },
+        {
+          "source_line": 9719,
+          "timestamp": "2026-05-23T10:50:54.317374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "165\t% exp_ids: bootstrap_ci_ft_composability, r12_table2_bootstrap_ci\n166\t\n167\t\\paragraph{Bootstrap Confidence Intervals and Effect Sizes.}\n168\t\\label{app:bootstrap-effect-sizes}\n169\t\n170\tTable~\\ref{tab:bootstrap-effect-sizes} reports per-configuration bootstrap CIs and Cohen's $d$ effect sizes (10{,}000 iterations, document-level resampling, seed=42) for the fine-tuning composability results (Table~\\ref{tab:composability}).\n171\tAfter Bonferroni correction for $k{=}4$ comparisons ($\\alpha_{\\text{adj}}{=}0.0125$), no R-F1 difference reaches significance; all R-F1 effect sizes are negligible to small ($|d| \\leq 0.37$; Cohen, 1988).\n172\tPer-configuration corrected $p$-values: Qwen3-8B/SciERC $p_B{=}1.00$, Qwen3-8B/DocRED $p_B{=}0.224$, Llama-3.1-8B/SciERC $p_B{=}1.00$, Llama-3.1-8B/DocRED $p_B{=}1.00$.\n173\tConstraint enforcement thus preserves extraction quality while achieving large, highly significant reductions in domain-range violations ($|d| \\geq 3.0$, all $p_{\\text{Bonf}} < 0.005$).\n174\t\n175\t\\begin{table}[t]\n176\t\\centering\n177\t\\small\n178\t\\setlength{\\tabcolsep}{3pt}\n179\t\\begin{tabular}{@{}ll rrrr@{}}\n180\t\\toprule\n181\t\\textbf{Model} & \\textbf{Dataset} & $\\Delta$\\textbf{(pp)} & \\textbf{95\\% CI} & $p$ & $d$ \\\\\n182\t\\midrule\n183\t\\multicolumn{6}{@{}l}{\\textbf{R-F1 difference (S1 $-$ unconstrained):}} \\\\\n184\tQwen3-8B & SciERC & $-$0.10 & [$-$0.30, 0.00] & .726 & $-$0.05 \\\\\n185\tQwen3-8B & DocRED & $-$0.31 & [$-$0.69, $+$0.01] & .056 & $-$0.37 \\\\\n186\tLlama-3.1-8B & SciERC & $+$0.02 & [0.00, $+$0.07] & .736 & $+$0.01 \\\\\n187\tLlama-3.1-8B & DocRED & $+$0.06 & [$-$0.11, $+$0.25] & .535 & $+$0.07 \\\\\n188\t\\midrule\n189\t\\multicolumn{6}{@{}l}{\\textbf{DR\\% reduction:}} \\\\\n190\tQwen3-8B & SciERC & $-$1.95 & [$-$2.87, $-$1.11] & $<$.001 & $-$6.15 \\\\\n191\tQwen3-8B & DocRED & $-$0.75 & [$-$1.07, $-$0.48] & $<$.001 & $-$7.00 \\\\\n192\tLlama-3.1-8B & SciERC & $-$1.02 & [$-$1.98, $-$0.29] & $<$.001 & $-$3.17 \\\\\n193\tLlama-3.1-8B & DocRED & $-$0.29 & [$-$0.53, $-$0.10] & $<$.001 & $-$3.02 \\\\\n194\t\\\n…[truncated 1197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-009719"
+        },
+        {
+          "source_line": 9720,
+          "timestamp": "2026-05-23T10:51:15.109435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\leq.*0\\\\.09|near-eliminat|resolves.*entirely",
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
               "glob": "*.tex",
               "output_mode": "content",

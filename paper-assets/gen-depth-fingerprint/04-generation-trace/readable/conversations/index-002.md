@@ -127,8 +127,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper r13 text edits | 19 | 0 | [Read transcript](paper-r13-text-edits.md) | [JSON](../../sessions/9c/9caf853b776ec99baaa2.json) |
 | paper r14 ing cleanup | 169 | 0 | [Read transcript](paper-r14-ing-cleanup.md) | [JSON](../../sessions/49/49aa175dd770ca569a2a.json) |
 | research arr checklist | 75 | 0 | [Read transcript](research-arr-checklist.md) | [JSON](../../sessions/c5/c50309a68717835c6b1d.json) |
-| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: autodl-5090 | 6,287 | 419 | [Read transcript](coordination-coordination-20260521-175748.md) | [JSON](../../sessions/b9/b9b998528d0a5e47b6a3.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autod | 4,457 | 233 | [Read transcript](reviewer-coordination-20260521-014021.md) | [JSON](../../sessions/ed/ed9286c7e8b0f2719b6b.json) |
+| Project coordination (archived snapshot) — [HANDOFF] 你是 Main Agent，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单: autodl-5090 | 6,271 | 419 | [Read transcript](coordination-coordination-20260521-175748.md) | [JSON](../../sessions/b9/b9b998528d0a5e47b6a3.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：autod | 4,447 | 233 | [Read transcript](reviewer-coordination-20260521-014021.md) | [JSON](../../sessions/ed/ed9286c7e8b0f2719b6b.json) |
 | exp temp curve t05 t09 | 115 | 0 | [Read transcript](exp-temp-curve-t05-t09.md) | [JSON](../../sessions/85/85ee6e4de03b5ebc4e38.json) |
 | analysis bootstrap seed variance | 33 | 0 | [Read transcript](analysis-bootstrap-seed-variance.md) | [JSON](../../sessions/ab/abbad1818a87e1cedbbc.json) |
 | analysis feature importance kendall | 19 | 0 | [Read transcript](analysis-feature-importance-kendall.md) | [JSON](../../sessions/b4/b41c04b144b2cb810d9b.json) |
@@ -137,7 +137,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis seed demeaning logo | 39 | 0 | [Read transcript](analysis-seed-demeaning-logo.md) | [JSON](../../sessions/55/5524204e2466dcf40e34.json) |
 | analysis 5gen logo average | 25 | 0 | [Read transcript](analysis-5gen-logo-average.md) | [JSON](../../sessions/0b/0bc52e423616da1dc9ed.json) |
 | analysis roc auc baselines | 87 | 0 | [Read transcript](analysis-roc-auc-baselines.md) | [JSON](../../sessions/8c/8c7755b9236c285268cc.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 分配: autodl-5090 上  | 8,659 | 488 | [Read transcript](director-coordination-20260521-014019.md) | [JSON](../../sessions/11/1129bcfac9afb9c45d0f.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 分配: autodl-5090 上  | 8,647 | 488 | [Read transcript](director-coordination-20260521-014019.md) | [JSON](../../sessions/11/1129bcfac9afb9c45d0f.json) |
 | paper fig2 framework v3 | 57 | 0 | [Read transcript](paper-fig2-framework-v3.md) | [JSON](../../sessions/d3/d32b78622c2198f34c61.json) |
 | diag gpu tempcurve check | 25 | 0 | [Read transcript](diag-gpu-tempcurve-check.md) | [JSON](../../sessions/35/35e279cc64003639ab24.json) |
 | exp instruct qwen3 1 7b | 53 | 0 | [Read transcript](exp-instruct-qwen3-1-7b.md) | [JSON](../../sessions/b2/b285afdff16dcf006de0.json) |
@@ -148,9 +148,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | diag bjb2 status check | 47 | 0 | [Read transcript](diag-bjb2-status-check.md) | [JSON](../../sessions/d1/d18f790c0a3701a1bea6.json) |
 | compute tost d020 | 19 | 0 | [Read transcript](compute-tost-d020.md) | [JSON](../../sessions/db/db0f8335317addff6965.json) |
 | exp temp curve expansion gpu01 | 105 | 0 | [Read transcript](exp-temp-curve-expansion-gpu01.md) | [JSON](../../sessions/02/02c9b5168b2bfa861d65.json) |
-| analysis holdout split validation | 43 | 0 | [Read transcript](analysis-holdout-split-validation.md) | [JSON](../../sessions/b1/b12405ccffe517cb12ab.json) |
+| analysis holdout split validation | 39 | 0 | [Read transcript](analysis-holdout-split-validation.md) | [JSON](../../sessions/b1/b12405ccffe517cb12ab.json) |
 | analysis transfer ablation B | 27 | 0 | [Read transcript](analysis-transfer-ablation-b.md) | [JSON](../../sessions/48/48ef1ed4e3740420b8fb.json) |
 | review figure quality t1 | 15 | 0 | [Read transcript](review-figure-quality-t1.md) | [JSON](../../sessions/96/967abe3754b440f27737.json) |
-| rebuttal w1 crossmodel cv v2 | 73 | 0 | [Read transcript](rebuttal-w1-crossmodel-cv-v2.md) | [JSON](../../sessions/87/87aa16b2ac031e950d19.json) |
 | paper regen fig2 framework | 43 | 0 | [Read transcript](paper-regen-fig2-framework.md) | [JSON](../../sessions/b5/b59cdc99d26f6897ff97.json) |
 | audit exp data utilization | 129 | 0 | [Read transcript](audit-exp-data-utilization.md) | [JSON](../../sessions/88/8802dc8fd764df7d1858.json) |

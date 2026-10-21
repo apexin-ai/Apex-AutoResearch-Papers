@@ -3503,44 +3503,6 @@
         },
         {
           "source_line": 177,
-          "timestamp": "2026-05-23T07:56:47.523706+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/rebuttal_talking_points.md"
-            }
-          },
-          "id": "event-000177"
-        },
-        {
-          "source_line": 178,
-          "timestamp": "2026-05-23T07:56:47.524193+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-000178"
-        },
-        {
-          "source_line": 179,
           "timestamp": "2026-05-23T07:56:47.524447+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3559,10 +3521,10 @@
               "limit": "37"
             }
           },
-          "id": "event-000179"
+          "id": "event-000177"
         },
         {
-          "source_line": 180,
+          "source_line": 178,
           "timestamp": "2026-05-23T07:56:47.524754+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3570,6 +3532,44 @@
             {
               "type": "text",
               "text": "45\t\n46\t\\subsection{BCS-Controlled Experiments}\n47\t\\label{sec:bcs_controlled}\n48\t\n49\t\\looseness=-1\n50\tOn FewRel, BCS independently explains ${\\sim}$27\\% of cross-batch RE accuracy variance (semipartial $R^2 = 0.273$, $n = 204$, after controlling for degree centrality)---the primary quantitative evidence for confusability as a predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\\,=\\,1.18$). DocRED partial correlation ($r_{\\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\\,=\\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\\ref{sec:appendix_partial_corr}, Table~\\ref{tab:partial_corr}).} the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition. Adding domain entropy as a covariate leaves the BCS coefficient unchanged ($p_{\\text{entropy}} = 0.97$; all VIF${}\\,<\\,2$).\n51\t\n52\tIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.\n53\t\n54\t\\paragraph{Document-level RE (DocRED).}\n55\tDocRED exhibits severe multicollinearity (VIF${}\\,=\\,50.9$, BCS--centrality $r = 0.99$); all BCS-specific estimates below are directional evidence only.\\footnote{DocRED use\n…[truncated 6095 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-23T07:56:47.525124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-23T07:56:47.525386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Boundary conditions.}\n5\t\\looseness=-1\n6\tThe confusability signal applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). Modest pairwise $r^2$ compounds at the batch level because correlated type interactions aggregate within shared prompts (\\S\\ref{sec:bcs_controlled}). The NER--RE asymmetry reflects dispersed error modes and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n7\t\n8\t\\paragraph{Hypothesized mechanism: embedding similarity as a confusability proxy.}\n9\t\\looseness=-1\n10\tWe hypothesize that the predictive power of SCS rests on partial alignment between pretrained embedding spaces and LLM type representations. Both sentence encoders and autoregressive LLMs internalize distributional regularities from overlapping pretraining corpora, so types that are near neighbors in embedding space tend to occupy adjacent regions in the LLM's representation space. When the prompt schema forces discrimination among semantically close types, the model faces an interference effect: high-similarity competitors activate overlapping representations, increasing substitution errors---a pattern consistent with the ecological confusability framework of \\citet{baan-2023-ecological}. The remaining ${\\sim}$73\\% of FewRel batch-level accuracy variance likely reflects prompt formatting, type definition quality, sentence complexity, and mention ambiguity; direct confirmation via attention or representation analysis remains future work.\n11\t\n12\t\\looseness=-1\n13\tThis mechanism explains the NER--RE asymmetry at the batch level: NER errors distribute primarily across span boundary and missed-entity modes rather than type substitution (Figure~\\ref{fig:error_taxonomy}), so batch-level BCS---which aggregates \\emph{type-confusion} potential---lacks predictive power even when pairwise SCS correlates with NER confusion rates (Table~\\ref{tab:pair\n…[truncated 731 chars]"
             }
           ],
           "metadata": {

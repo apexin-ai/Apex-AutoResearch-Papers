@@ -7,129 +7,6 @@
       "messages": [
         {
           "source_line": 8641,
-          "timestamp": "2026-05-25T05:48:54.549288+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
-              "old_string": "\\paragraph{Binary structure and robustness.}\nAll 10 death-prone task types produce 100\\% death-asymmetry labels; only \\texttt{find-non-living-thing} (zero deaths) produces non-death signal (SCI $= 0.21$; Appendix~\\ref{app:sci}). Bootstrap 95\\% CIs: DAF $[81.3\\%, 99.1\\%]$; cluster-robust $[73.3\\%, 100.0\\%]$ ($K{=}11$; Appendix~\\ref{app:wild-cluster}). Two independent replications (Gemma-2-9B-it, DAF${=}89.7\\%$; seed=123, DAF${=}89.7\\%$) converge within 0.7~pp.",
-              "new_string": "\\paragraph{Binary structure and robustness.}\nAll 10 death-prone task types produce 100\\% death-asymmetry labels; only \\texttt{find-non-living-thing} (zero deaths) produces non-death signal (SCI $= 0.21$; Appendix~\\ref{app:sci}). Leave-one-task-out analysis (Table~\\ref{tab:loto-daf}) confirms robustness: removing any single death-prone task changes DAF by at most 3.0~pp. Bootstrap 95\\% CIs: DAF $[81.3\\%, 99.1\\%]$; cluster-robust $[73.3\\%, 100.0\\%]$ ($K{=}11$; Appendix~\\ref{app:wild-cluster}). Two independent replications (Gemma-2-9B-it, DAF${=}89.7\\%$; seed=123, DAF${=}89.7\\%$) converge within 0.7~pp.\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-task-out DAF sensitivity (label fraction). Removing any death-prone task changes DAF by $\\leq$3.0\\,pp. $\\dagger$\\,Sole death-free task; removal raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\end{table}"
-            }
-          },
-          "id": "event-008641"
-        },
-        {
-          "source_line": 8642,
-          "timestamp": "2026-05-25T05:48:54.600323+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-008642"
-        },
-        {
-          "source_line": 8643,
-          "timestamp": "2026-05-25T05:49:09.709207+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
-              "old_string": "\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.3$, $99.1$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap",
-              "new_string": "Table~\\ref{tab:penalty-sensitivity} (main text, \\S\\ref{sec:daf}) reports DAF sensitivity across penalty magnitudes.\n\nThe non-death score gap"
-            }
-          },
-          "id": "event-008643"
-        },
-        {
-          "source_line": 8644,
-          "timestamp": "2026-05-25T05:49:09.710277+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 1
-          },
-          "id": "event-008644"
-        },
-        {
-          "source_line": 8645,
-          "timestamp": "2026-05-25T05:49:22.835620+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
-              "old_string": "\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}",
-              "new_string": "Table~\\ref{tab:loto-daf} (main text, \\S\\ref{sec:death-decomp}) reports the full leave-one-task-out DAF sensitivity analysis."
-            }
-          },
-          "id": "event-008645"
-        },
-        {
-          "source_line": 8646,
-          "timestamp": "2026-05-25T05:49:22.938327+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 102
-          },
-          "id": "event-008646"
-        },
-        {
-          "source_line": 8647,
           "timestamp": "2026-05-25T05:49:28.732068+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -148,10 +25,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008647"
+          "id": "event-008641"
         },
         {
-          "source_line": 8648,
+          "source_line": 8642,
           "timestamp": "2026-05-25T05:49:35.323191+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -166,10 +43,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6591
           },
-          "id": "event-008648"
+          "id": "event-008642"
         },
         {
-          "source_line": 8649,
+          "source_line": 8643,
           "timestamp": "2026-05-25T05:49:48.988541+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -189,10 +66,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-008649"
+          "id": "event-008643"
         },
         {
-          "source_line": 8650,
+          "source_line": 8644,
           "timestamp": "2026-05-25T05:49:49.742375+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -212,10 +89,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-008650"
+          "id": "event-008644"
         },
         {
-          "source_line": 8651,
+          "source_line": 8645,
           "timestamp": "2026-05-25T05:49:50.147365+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -230,10 +107,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1158
           },
-          "id": "event-008651"
+          "id": "event-008645"
         },
         {
-          "source_line": 8652,
+          "source_line": 8646,
           "timestamp": "2026-05-25T05:49:50.653286+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -248,10 +125,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 910
           },
-          "id": "event-008652"
+          "id": "event-008646"
         },
         {
-          "source_line": 8653,
+          "source_line": 8647,
           "timestamp": "2026-05-25T05:49:55.829199+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -268,10 +145,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-008653"
+          "id": "event-008647"
         },
         {
-          "source_line": 8654,
+          "source_line": 8648,
           "timestamp": "2026-05-25T05:49:56.382453+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -288,10 +165,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-008654"
+          "id": "event-008648"
         },
         {
-          "source_line": 8655,
+          "source_line": 8649,
           "timestamp": "2026-05-25T05:49:56.887393+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -306,10 +183,10 @@
             "tool": "Read",
             "elapsed_ms": 1058
           },
-          "id": "event-008655"
+          "id": "event-008649"
         },
         {
-          "source_line": 8656,
+          "source_line": 8650,
           "timestamp": "2026-05-25T05:49:56.989195+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -326,10 +203,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008656"
+          "id": "event-008650"
         },
         {
-          "source_line": 8657,
+          "source_line": 8651,
           "timestamp": "2026-05-25T05:49:57.595345+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -344,10 +221,10 @@
             "tool": "Read",
             "elapsed_ms": 1212
           },
-          "id": "event-008657"
+          "id": "event-008651"
         },
         {
-          "source_line": 8658,
+          "source_line": 8652,
           "timestamp": "2026-05-25T05:49:57.697217+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -364,10 +241,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008658"
+          "id": "event-008652"
         },
         {
-          "source_line": 8659,
+          "source_line": 8653,
           "timestamp": "2026-05-25T05:49:58.001396+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -382,10 +259,10 @@
             "tool": "Read",
             "elapsed_ms": 1012
           },
-          "id": "event-008659"
+          "id": "event-008653"
         },
         {
-          "source_line": 8660,
+          "source_line": 8654,
           "timestamp": "2026-05-25T05:49:58.657158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -400,10 +277,10 @@
             "tool": "Read",
             "elapsed_ms": 959
           },
-          "id": "event-008660"
+          "id": "event-008654"
         },
         {
-          "source_line": 8661,
+          "source_line": 8655,
           "timestamp": "2026-05-25T05:50:26.760760+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -420,10 +297,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-008661"
+          "id": "event-008655"
         },
         {
-          "source_line": 8662,
+          "source_line": 8656,
           "timestamp": "2026-05-25T05:50:27.364805+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -438,10 +315,10 @@
             "tool": "Read",
             "elapsed_ms": 604
           },
-          "id": "event-008662"
+          "id": "event-008656"
         },
         {
-          "source_line": 8663,
+          "source_line": 8657,
           "timestamp": "2026-05-25T05:50:35.880371+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -461,10 +338,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-008663"
+          "id": "event-008657"
         },
         {
-          "source_line": 8664,
+          "source_line": 8658,
           "timestamp": "2026-05-25T05:50:36.031640+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -479,10 +356,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 151
           },
-          "id": "event-008664"
+          "id": "event-008658"
         },
         {
-          "source_line": 8665,
+          "source_line": 8659,
           "timestamp": "2026-05-25T05:50:40.209205+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -499,10 +376,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-008665"
+          "id": "event-008659"
         },
         {
-          "source_line": 8666,
+          "source_line": 8660,
           "timestamp": "2026-05-25T05:50:40.863779+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -517,10 +394,10 @@
             "tool": "Read",
             "elapsed_ms": 654
           },
-          "id": "event-008666"
+          "id": "event-008660"
         },
         {
-          "source_line": 8667,
+          "source_line": 8661,
           "timestamp": "2026-05-25T05:50:59.714879+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -537,10 +414,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images"
             }
           },
-          "id": "event-008667"
+          "id": "event-008661"
         },
         {
-          "source_line": 8668,
+          "source_line": 8662,
           "timestamp": "2026-05-25T05:50:59.765826+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -555,10 +432,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-008668"
+          "id": "event-008662"
         },
         {
-          "source_line": 8669,
+          "source_line": 8663,
           "timestamp": "2026-05-25T05:51:20.785896+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -576,10 +453,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008669"
+          "id": "event-008663"
         },
         {
-          "source_line": 8670,
+          "source_line": 8664,
           "timestamp": "2026-05-25T05:51:25.209821+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -594,10 +471,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4423
           },
-          "id": "event-008670"
+          "id": "event-008664"
         },
         {
-          "source_line": 8671,
+          "source_line": 8665,
           "timestamp": "2026-05-25T05:51:28.310387+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -610,7 +487,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008671"
+          "id": "event-008665"
         }
       ]
     },
@@ -618,7 +495,7 @@
       "number": 428,
       "messages": [
         {
-          "source_line": 8672,
+          "source_line": 8666,
           "timestamp": "2026-05-25T05:51:28.868527+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -632,10 +509,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008672"
+          "id": "event-008666"
         },
         {
-          "source_line": 8673,
+          "source_line": 8667,
           "timestamp": "2026-05-25T05:51:37.373154+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -648,7 +525,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008673"
+          "id": "event-008667"
         }
       ]
     },
@@ -656,7 +533,7 @@
       "number": 429,
       "messages": [
         {
-          "source_line": 8674,
+          "source_line": 8668,
           "timestamp": "2026-05-25T07:57:55.534563+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -670,10 +547,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008674"
+          "id": "event-008668"
         },
         {
-          "source_line": 8675,
+          "source_line": 8669,
           "timestamp": "2026-05-25T07:58:10.482847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -690,10 +567,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-008675"
+          "id": "event-008669"
         },
         {
-          "source_line": 8676,
+          "source_line": 8670,
           "timestamp": "2026-05-25T07:58:10.483383+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -708,10 +585,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008676"
+          "id": "event-008670"
         },
         {
-          "source_line": 8677,
+          "source_line": 8671,
           "timestamp": "2026-05-25T07:58:10.835237+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -728,10 +605,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
             }
           },
-          "id": "event-008677"
+          "id": "event-008671"
         },
         {
-          "source_line": 8678,
+          "source_line": 8672,
           "timestamp": "2026-05-25T07:58:10.936482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -746,10 +623,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-008678"
+          "id": "event-008672"
         },
         {
-          "source_line": 8679,
+          "source_line": 8673,
           "timestamp": "2026-05-25T07:59:24.142191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -769,10 +646,10 @@
               "new_string": "Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent and penalty-dependent metrics, and provides build-vs-buy signal from a ${\\sim}$50-episode pilot (Appendix~\\ref{app:decision-framework}); (2)~\\textbf{78.9\\% of non-tie routing labels} in ScienceWorld stem from death asymmetry---replicated across three 7--9B model families (DAF $88$--$90\\%$), four interventions, $10{\\times}$ scaling to two 70B-class models (DAF $92.4$--$101.0\\%$), and cross-environment probes (MATH, ALFWorld)---while a step-level router recovers only task-type classification (\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model}).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/pipeline_overview.pdf}\n\\caption{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\\ref{alg:labeling}.}\n\\label{fig:pipeline}\n\\end{figure*}\n"
             }
           },
-          "id": "event-008679"
+          "id": "event-008673"
         },
         {
-          "source_line": 8680,
+          "source_line": 8674,
           "timestamp": "2026-05-25T07:59:24.193116+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -787,10 +664,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008680"
+          "id": "event-008674"
         },
         {
-          "source_line": 8681,
+          "source_line": 8675,
           "timestamp": "2026-05-25T07:59:28.721554+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -810,10 +687,10 @@
               "new_string": "Consider an interactive environment"
             }
           },
-          "id": "event-008681"
+          "id": "event-008675"
         },
         {
-          "source_line": 8682,
+          "source_line": 8676,
           "timestamp": "2026-05-25T07:59:29.023297+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -828,10 +705,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-008682"
+          "id": "event-008676"
         },
         {
-          "source_line": 8683,
+          "source_line": 8677,
           "timestamp": "2026-05-25T07:59:46.298635+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -851,10 +728,10 @@
               "new_string": "Our diagnostic framework (Figure~\\ref{fig:pipeline}) quantifies what drives routing signal in interactive environments through two components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\\S\\ref{sec:collection}--\\ref{sec:labeling}); and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). A supplementary Signal Concentration Index (SCI; Appendix~\\ref{app:sci}) measures whether signal is concentrated in a few task types. Episode-level bootstrap resampling provides 95\\% confidence intervals for all metrics.\n\n\\subsection{Problem Setup}"
             }
           },
-          "id": "event-008683"
+          "id": "event-008677"
         },
         {
-          "source_line": 8684,
+          "source_line": 8678,
           "timestamp": "2026-05-25T07:59:46.299506+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -869,10 +746,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008684"
+          "id": "event-008678"
         },
         {
-          "source_line": 8685,
+          "source_line": 8679,
           "timestamp": "2026-05-25T07:59:55.289093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -892,10 +769,10 @@
               "new_string": "\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nWe define a labeling function $L$ that maps a counterfactual pair to a routing preference:"
             }
           },
-          "id": "event-008685"
+          "id": "event-008679"
         },
         {
-          "source_line": 8686,
+          "source_line": 8680,
           "timestamp": "2026-05-25T07:59:55.289739+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -910,10 +787,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008686"
+          "id": "event-008680"
         },
         {
-          "source_line": 8687,
+          "source_line": 8681,
           "timestamp": "2026-05-25T07:59:59.864085+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -932,10 +809,10 @@
               "limit": "50"
             }
           },
-          "id": "event-008687"
+          "id": "event-008681"
         },
         {
-          "source_line": 8688,
+          "source_line": 8682,
           "timestamp": "2026-05-25T07:59:59.965173+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -950,10 +827,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-008688"
+          "id": "event-008682"
         },
         {
-          "source_line": 8689,
+          "source_line": 8683,
           "timestamp": "2026-05-25T08:00:04.024670+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -972,10 +849,10 @@
               "limit": "30"
             }
           },
-          "id": "event-008689"
+          "id": "event-008683"
         },
         {
-          "source_line": 8690,
+          "source_line": 8684,
           "timestamp": "2026-05-25T08:00:04.127713+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -990,10 +867,10 @@
             "tool": "Read",
             "elapsed_ms": 103
           },
-          "id": "event-008690"
+          "id": "event-008684"
         },
         {
-          "source_line": 8691,
+          "source_line": 8685,
           "timestamp": "2026-05-25T08:00:14.238442+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1013,10 +890,10 @@
               "new_string": "\\subsection{Baselines}\n\\label{sec:baselines}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points (Table~\\ref{tab:baselines})."
             }
           },
-          "id": "event-008691"
+          "id": "event-008685"
         },
         {
-          "source_line": 8692,
+          "source_line": 8686,
           "timestamp": "2026-05-25T08:00:14.239208+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1031,10 +908,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008692"
+          "id": "event-008686"
         },
         {
-          "source_line": 8693,
+          "source_line": 8687,
           "timestamp": "2026-05-25T08:00:21.331398+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1054,10 +931,10 @@
               "new_string": "Deployed end-to-end, the best router (4B) scores $-10.70$, not exceeding always-deterministic ($-9.47$); this negative result is consistent with the death-dominance finding, as death avoidance cannot be predicted from pre-episode features when it depends on multi-step trajectory dynamics.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). $\\dagger$\\,Single seed (42); see Appendix~\\ref{app:seed-robustness} for 8-seed robustness.}\n\\label{tab:baselines}\n\\end{table}"
             }
           },
-          "id": "event-008693"
+          "id": "event-008687"
         },
         {
-          "source_line": 8694,
+          "source_line": 8688,
           "timestamp": "2026-05-25T08:00:21.382269+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1072,10 +949,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008694"
+          "id": "event-008688"
         },
         {
-          "source_line": 8695,
+          "source_line": 8689,
           "timestamp": "2026-05-25T08:00:25.100164+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1094,10 +971,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008695"
+          "id": "event-008689"
         },
         {
-          "source_line": 8696,
+          "source_line": 8690,
           "timestamp": "2026-05-25T08:00:29.756479+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1112,10 +989,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4656
           },
-          "id": "event-008696"
+          "id": "event-008690"
         },
         {
-          "source_line": 8697,
+          "source_line": 8691,
           "timestamp": "2026-05-25T08:02:18.466467+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1133,10 +1010,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008697"
+          "id": "event-008691"
         },
         {
-          "source_line": 8698,
+          "source_line": 8692,
           "timestamp": "2026-05-25T08:02:18.517280+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1151,10 +1028,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-008698"
+          "id": "event-008692"
         },
         {
-          "source_line": 8699,
+          "source_line": 8693,
           "timestamp": "2026-05-25T08:02:20.482352+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1172,10 +1049,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008699"
+          "id": "event-008693"
         },
         {
-          "source_line": 8700,
+          "source_line": 8694,
           "timestamp": "2026-05-25T08:02:20.633359+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1190,10 +1067,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 151
           },
-          "id": "event-008700"
+          "id": "event-008694"
         },
         {
-          "source_line": 8701,
+          "source_line": 8695,
           "timestamp": "2026-05-25T08:02:23.294825+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1213,10 +1090,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-008701"
+          "id": "event-008695"
         },
         {
-          "source_line": 8702,
+          "source_line": 8696,
           "timestamp": "2026-05-25T08:02:24.853783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1231,10 +1108,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1558
           },
-          "id": "event-008702"
+          "id": "event-008696"
         },
         {
-          "source_line": 8703,
+          "source_line": 8697,
           "timestamp": "2026-05-25T08:02:27.115385+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1251,10 +1128,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p1.png"
             }
           },
-          "id": "event-008703"
+          "id": "event-008697"
         },
         {
-          "source_line": 8704,
+          "source_line": 8698,
           "timestamp": "2026-05-25T08:02:27.618208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1271,10 +1148,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p2.png"
             }
           },
-          "id": "event-008704"
+          "id": "event-008698"
         },
         {
-          "source_line": 8705,
+          "source_line": 8699,
           "timestamp": "2026-05-25T08:02:28.070817+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1289,10 +1166,10 @@
             "tool": "Read",
             "elapsed_ms": 955
           },
-          "id": "event-008705"
+          "id": "event-008699"
         },
         {
-          "source_line": 8706,
+          "source_line": 8700,
           "timestamp": "2026-05-25T08:02:28.074500+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1309,10 +1186,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-008706"
+          "id": "event-008700"
         },
         {
-          "source_line": 8707,
+          "source_line": 8701,
           "timestamp": "2026-05-25T08:02:28.633226+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1327,10 +1204,10 @@
             "tool": "Read",
             "elapsed_ms": 1015
           },
-          "id": "event-008707"
+          "id": "event-008701"
         },
         {
-          "source_line": 8708,
+          "source_line": 8702,
           "timestamp": "2026-05-25T08:02:28.633656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1347,10 +1224,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-008708"
+          "id": "event-008702"
         },
         {
-          "source_line": 8709,
+          "source_line": 8703,
           "timestamp": "2026-05-25T08:02:28.892409+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1365,10 +1242,10 @@
             "tool": "Read",
             "elapsed_ms": 817
           },
-          "id": "event-008709"
+          "id": "event-008703"
         },
         {
-          "source_line": 8710,
+          "source_line": 8704,
           "timestamp": "2026-05-25T08:02:29.395581+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1383,10 +1260,10 @@
             "tool": "Read",
             "elapsed_ms": 761
           },
-          "id": "event-008710"
+          "id": "event-008704"
         },
         {
-          "source_line": 8711,
+          "source_line": 8705,
           "timestamp": "2026-05-25T08:02:33.414223+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1403,10 +1280,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008711"
+          "id": "event-008705"
         },
         {
-          "source_line": 8712,
+          "source_line": 8706,
           "timestamp": "2026-05-25T08:02:34.220623+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1421,10 +1298,10 @@
             "tool": "Read",
             "elapsed_ms": 806
           },
-          "id": "event-008712"
+          "id": "event-008706"
         },
         {
-          "source_line": 8713,
+          "source_line": 8707,
           "timestamp": "2026-05-25T08:02:34.272219+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1441,10 +1318,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-008713"
+          "id": "event-008707"
         },
         {
-          "source_line": 8714,
+          "source_line": 8708,
           "timestamp": "2026-05-25T08:02:34.774945+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1461,10 +1338,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-008714"
+          "id": "event-008708"
         },
         {
-          "source_line": 8715,
+          "source_line": 8709,
           "timestamp": "2026-05-25T08:02:35.077697+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1479,10 +1356,10 @@
             "tool": "Read",
             "elapsed_ms": 805
           },
-          "id": "event-008715"
+          "id": "event-008709"
         },
         {
-          "source_line": 8716,
+          "source_line": 8710,
           "timestamp": "2026-05-25T08:02:35.078160+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1499,10 +1376,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008716"
+          "id": "event-008710"
         },
         {
-          "source_line": 8717,
+          "source_line": 8711,
           "timestamp": "2026-05-25T08:02:35.734196+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1517,10 +1394,10 @@
             "tool": "Read",
             "elapsed_ms": 959
           },
-          "id": "event-008717"
+          "id": "event-008711"
         },
         {
-          "source_line": 8718,
+          "source_line": 8712,
           "timestamp": "2026-05-25T08:02:35.986436+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1535,10 +1412,10 @@
             "tool": "Read",
             "elapsed_ms": 908
           },
-          "id": "event-008718"
+          "id": "event-008712"
         },
         {
-          "source_line": 8719,
+          "source_line": 8713,
           "timestamp": "2026-05-25T08:03:22.436367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1555,10 +1432,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-008719"
+          "id": "event-008713"
         },
         {
-          "source_line": 8720,
+          "source_line": 8714,
           "timestamp": "2026-05-25T08:03:22.838697+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1573,10 +1450,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-008720"
+          "id": "event-008714"
         },
         {
-          "source_line": 8721,
+          "source_line": 8715,
           "timestamp": "2026-05-25T08:03:22.889486+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1593,10 +1470,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-008721"
+          "id": "event-008715"
         },
         {
-          "source_line": 8722,
+          "source_line": 8716,
           "timestamp": "2026-05-25T08:03:22.940435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1611,10 +1488,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008722"
+          "id": "event-008716"
         },
         {
-          "source_line": 8723,
+          "source_line": 8717,
           "timestamp": "2026-05-25T08:04:14.122869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1634,10 +1511,10 @@
               "new_string": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/pipeline_overview.pdf}\n\\caption{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\\ref{alg:labeling}.}\n\\label{fig:pipeline}\n\\end{figure*}\n\nLarge language models deployed as interactive agents"
             }
           },
-          "id": "event-008723"
+          "id": "event-008717"
         },
         {
-          "source_line": 8724,
+          "source_line": 8718,
           "timestamp": "2026-05-25T08:04:15.278629+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1652,10 +1529,10 @@
             "tool": "Edit",
             "elapsed_ms": 1155
           },
-          "id": "event-008724"
+          "id": "event-008718"
         },
         {
-          "source_line": 8725,
+          "source_line": 8719,
           "timestamp": "2026-05-25T08:04:15.836359+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1675,10 +1552,10 @@
               "new_string": "\n"
             }
           },
-          "id": "event-008725"
+          "id": "event-008719"
         },
         {
-          "source_line": 8726,
+          "source_line": 8720,
           "timestamp": "2026-05-25T08:04:15.887381+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1693,10 +1570,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008726"
+          "id": "event-008720"
         },
         {
-          "source_line": 8727,
+          "source_line": 8721,
           "timestamp": "2026-05-25T08:04:18.814410+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1713,10 +1590,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-008727"
+          "id": "event-008721"
         },
         {
-          "source_line": 8728,
+          "source_line": 8722,
           "timestamp": "2026-05-25T08:04:18.815029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1731,10 +1608,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008728"
+          "id": "event-008722"
         },
         {
-          "source_line": 8729,
+          "source_line": 8723,
           "timestamp": "2026-05-25T08:04:23.637221+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1754,10 +1631,10 @@
               "new_string": "(\\S\\ref{sec:death-decomp}--\\ref{sec:cross-model})."
             }
           },
-          "id": "event-008729"
+          "id": "event-008723"
         },
         {
-          "source_line": 8730,
+          "source_line": 8724,
           "timestamp": "2026-05-25T08:04:23.688032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1772,10 +1649,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008730"
+          "id": "event-008724"
         },
         {
-          "source_line": 8731,
+          "source_line": 8725,
           "timestamp": "2026-05-25T08:04:51.737929+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1795,10 +1672,10 @@
               "new_string": "\\subsection{Multi-Model Validation (7--9B Tier)}\n\\label{sec:cross-model}\n\nLlama-3.1-8B~\\citep{llama3-2024} ($N{=}220$) and Gemma-2-9B-it~\\citep{gemma2-2024} ($N{=}220$) independently replicate death dominance: DAF $= 88.2\\%$ and $89.7\\%$ respectively, with direction consistency 10/10 on death-prone tasks (Appendix~\\ref{app:cross-model}). Three architecturally distinct model families---Qwen (Alibaba), Llama (Meta), Gemma (Google)---converge on DAF $88$--$90\\%$ with a spread of only 2.2~pp, despite differences in pretraining data, architecture, and tokenization. This narrow convergence suggests that death dominance is an environment-level property rather than a model-specific artifact. Scaling $10{\\times}$ to two 70B-class models (\\S\\ref{sec:agent-improvement}) intensifies rather than attenuates the pattern (DAF${=}92.4$--$101.0\\%$), contrary to the intuition that larger models would reduce the failure gap.\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcrrrcl@{}}\n\\toprule\nModel & Env & $n$ & Int DR & Det DR & $\\Delta$DR & DAF [95\\% CI] & Signal \\\\\n\\midrule\nQwen2.5-7B & SW & 245 & 42.9 & 16.3 & +26.5 & 90.4 [81.3, 99.1] & death \\\\\nLlama-3.1-8B & SW & 220 & 41.4 & 11.4 & +30.0 & 88.2 [80.2, 95.1] & death \\\\\nGemma-2-9B & SW & 220 & 36.4 & 14.1 & +22.3 & 89.7 [79.5, 98.4] & death \\\\\nQwen2.5-72B & SW & 255 & 30.6 & 2.8 & +27.8 & 92.4 [86.1, 97.9] & death \\\\\nLlama-70B & SW & 220 & 48.6 & 20.0 & +28.6 & 101.0 [95.3, 107.5] & death \\\\\n\\midrule\nQwen2.5-7B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\\\\nLlama-3.1-8B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & --- & --- & --- & --- & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment summary. SW = ScienceWorld, ALF = ALFWorld. Death dominance replicates across three 7--9B families and intensifies under $10{\\times}$ scaling; ALFWorld shows information-asymmetry signal; MATH shows none. DR = death rate (\\%).}\n\\label{tab:cross-model-env}\n\\end{table}"
             }
           },
-          "id": "event-008731"
+          "id": "event-008725"
         },
         {
-          "source_line": 8732,
+          "source_line": 8726,
           "timestamp": "2026-05-25T08:04:51.738783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1813,10 +1690,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008732"
+          "id": "event-008726"
         },
         {
-          "source_line": 8733,
+          "source_line": 8727,
           "timestamp": "2026-05-25T08:04:55.153593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1834,10 +1711,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008733"
+          "id": "event-008727"
         },
         {
-          "source_line": 8734,
+          "source_line": 8728,
           "timestamp": "2026-05-25T08:04:55.355206+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1852,10 +1729,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 201
           },
-          "id": "event-008734"
+          "id": "event-008728"
         },
         {
-          "source_line": 8735,
+          "source_line": 8729,
           "timestamp": "2026-05-25T08:04:57.366172+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1873,10 +1750,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008735"
+          "id": "event-008729"
         },
         {
-          "source_line": 8736,
+          "source_line": 8730,
           "timestamp": "2026-05-25T08:05:03.731720+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1891,10 +1768,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6365
           },
-          "id": "event-008736"
+          "id": "event-008730"
         },
         {
-          "source_line": 8737,
+          "source_line": 8731,
           "timestamp": "2026-05-25T08:05:10.495535+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1914,10 +1791,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-008737"
+          "id": "event-008731"
         },
         {
-          "source_line": 8738,
+          "source_line": 8732,
           "timestamp": "2026-05-25T08:05:11.803236+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1932,10 +1809,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1307
           },
-          "id": "event-008738"
+          "id": "event-008732"
         },
         {
-          "source_line": 8739,
+          "source_line": 8733,
           "timestamp": "2026-05-25T08:05:14.163410+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1952,10 +1829,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p1.png"
             }
           },
-          "id": "event-008739"
+          "id": "event-008733"
         },
         {
-          "source_line": 8740,
+          "source_line": 8734,
           "timestamp": "2026-05-25T08:05:14.666391+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1972,10 +1849,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p2.png"
             }
           },
-          "id": "event-008740"
+          "id": "event-008734"
         },
         {
-          "source_line": 8741,
+          "source_line": 8735,
           "timestamp": "2026-05-25T08:05:15.169930+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1990,10 +1867,10 @@
             "tool": "Read",
             "elapsed_ms": 1006
           },
-          "id": "event-008741"
+          "id": "event-008735"
         },
         {
-          "source_line": 8742,
+          "source_line": 8736,
           "timestamp": "2026-05-25T08:05:15.170386+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2010,10 +1887,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-008742"
+          "id": "event-008736"
         },
         {
-          "source_line": 8743,
+          "source_line": 8737,
           "timestamp": "2026-05-25T08:05:15.725471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2028,10 +1905,10 @@
             "tool": "Read",
             "elapsed_ms": 1059
           },
-          "id": "event-008743"
+          "id": "event-008737"
         },
         {
-          "source_line": 8744,
+          "source_line": 8738,
           "timestamp": "2026-05-25T08:05:15.725905+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2048,11 +1925,125 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
+          "id": "event-008738"
+        },
+        {
+          "source_line": 8739,
+          "timestamp": "2026-05-25T08:05:15.927797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 757
+          },
+          "id": "event-008739"
+        },
+        {
+          "source_line": 8740,
+          "timestamp": "2026-05-25T08:05:16.481527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 755
+          },
+          "id": "event-008740"
+        },
+        {
+          "source_line": 8741,
+          "timestamp": "2026-05-25T08:05:20.503614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-008741"
+        },
+        {
+          "source_line": 8742,
+          "timestamp": "2026-05-25T08:05:21.314337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 810
+          },
+          "id": "event-008742"
+        },
+        {
+          "source_line": 8743,
+          "timestamp": "2026-05-25T08:05:21.314790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-008743"
+        },
+        {
+          "source_line": 8744,
+          "timestamp": "2026-05-25T08:05:21.820000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
           "id": "event-008744"
         },
         {
           "source_line": 8745,
-          "timestamp": "2026-05-25T08:05:15.927797+00:00",
+          "timestamp": "2026-05-25T08:05:22.072547+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
           "content": [
@@ -2070,120 +2061,6 @@
         },
         {
           "source_line": 8746,
-          "timestamp": "2026-05-25T08:05:16.481527+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 755
-          },
-          "id": "event-008746"
-        },
-        {
-          "source_line": 8747,
-          "timestamp": "2026-05-25T08:05:20.503614+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
-            }
-          },
-          "id": "event-008747"
-        },
-        {
-          "source_line": 8748,
-          "timestamp": "2026-05-25T08:05:21.314337+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 810
-          },
-          "id": "event-008748"
-        },
-        {
-          "source_line": 8749,
-          "timestamp": "2026-05-25T08:05:21.314790+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
-            }
-          },
-          "id": "event-008749"
-        },
-        {
-          "source_line": 8750,
-          "timestamp": "2026-05-25T08:05:21.820000+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
-            }
-          },
-          "id": "event-008750"
-        },
-        {
-          "source_line": 8751,
-          "timestamp": "2026-05-25T08:05:22.072547+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 757
-          },
-          "id": "event-008751"
-        },
-        {
-          "source_line": 8752,
           "timestamp": "2026-05-25T08:05:22.125643+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2200,10 +2077,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008752"
+          "id": "event-008746"
         },
         {
-          "source_line": 8753,
+          "source_line": 8747,
           "timestamp": "2026-05-25T08:05:22.779310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2218,10 +2095,10 @@
             "tool": "Read",
             "elapsed_ms": 959
           },
-          "id": "event-008753"
+          "id": "event-008747"
         },
         {
-          "source_line": 8754,
+          "source_line": 8748,
           "timestamp": "2026-05-25T08:05:23.082271+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2236,10 +2113,10 @@
             "tool": "Read",
             "elapsed_ms": 956
           },
-          "id": "event-008754"
+          "id": "event-008748"
         },
         {
-          "source_line": 8755,
+          "source_line": 8749,
           "timestamp": "2026-05-25T08:05:52.292780+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2257,10 +2134,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-008755"
+          "id": "event-008749"
         },
         {
-          "source_line": 8756,
+          "source_line": 8750,
           "timestamp": "2026-05-25T08:05:52.444623+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2275,10 +2152,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 151
           },
-          "id": "event-008756"
+          "id": "event-008750"
         },
         {
-          "source_line": 8757,
+          "source_line": 8751,
           "timestamp": "2026-05-25T08:05:57.075159+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2295,10 +2172,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images"
             }
           },
-          "id": "event-008757"
+          "id": "event-008751"
         },
         {
-          "source_line": 8758,
+          "source_line": 8752,
           "timestamp": "2026-05-25T08:05:57.125838+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2313,10 +2190,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-008758"
+          "id": "event-008752"
         },
         {
-          "source_line": 8759,
+          "source_line": 8753,
           "timestamp": "2026-05-25T08:06:11.263885+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2334,10 +2211,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008759"
+          "id": "event-008753"
         },
         {
-          "source_line": 8760,
+          "source_line": 8754,
           "timestamp": "2026-05-25T08:06:16.517938+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2352,10 +2229,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 5254
           },
-          "id": "event-008760"
+          "id": "event-008754"
         },
         {
-          "source_line": 8761,
+          "source_line": 8755,
           "timestamp": "2026-05-25T08:06:22.618740+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2368,7 +2245,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008761"
+          "id": "event-008755"
         }
       ]
     },
@@ -2376,7 +2253,7 @@
       "number": 430,
       "messages": [
         {
-          "source_line": 8762,
+          "source_line": 8756,
           "timestamp": "2026-05-25T08:06:23.180957+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2390,10 +2267,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008762"
+          "id": "event-008756"
         },
         {
-          "source_line": 8763,
+          "source_line": 8757,
           "timestamp": "2026-05-25T08:06:32.138136+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2406,7 +2283,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008763"
+          "id": "event-008757"
         }
       ]
     }

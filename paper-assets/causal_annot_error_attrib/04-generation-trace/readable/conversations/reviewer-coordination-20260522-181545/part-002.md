@@ -2636,7 +2636,7 @@ Full picture assembled. Let me send the comprehensive review.
 
 ## Round 21
 
-44 recorded events
+42 recorded events
 
 
 ### User
@@ -2679,83 +2679,7 @@ _source line 749 · 2026-05-22T08:10:25.413950+00:00_
 
 ### Tool call
 
-_source line 750 · 2026-05-22T08:10:31.416352+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 751 · 2026-05-22T08:10:31.467356+00:00_
-
-1	# Rebuttal 论点草稿
-2	
-3	> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。
-4	> 基于当前论文版本（20 configs / 140 scenarios / 11 exposure sign flips）。
-5	
-6	---
-7	
-8	## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）
-9	
-10	### Q1.1: "This is an incremental extension of Brenner (1993)."
-11	
-12	**A:** Brenner (1993) identified the *possibility* of polytomous bias away from the null for a single topology (exposure) but did not quantify it, did not analyze other causal designs, and provided no sensitivity framework. Our contribution is not "K=2 scaled up to K=3"---it is a demonstration that the *algebraic structure* of the confusion matrix changes qualitatively at K>=3. For K=2, any column-stochastic matrix with C_kk > 0.5 preserves coefficient signs; this is a dimensional property of 2x2 matrices, not a rate condition. At K>=3, the higher-dimensional matrix admits negative effective weights across categories, enabling sign reversal even with all diagonal entries exceeding 0.5. No prior work characterizes this across causal designs or provides tools to diagnose it.
-13	
-14	### Q1.2: "ASV is just E-value for measurement error."
-15	
-16	**A:** E-value (VanderWeele & Ding 2017) quantifies the strength of *unmeasured* confounding needed to explain away an observed association---a scalar sensitivity parameter for an unobserved quantity. ASV quantifies the annotation error severity (via the delta parameterization of C(delta) = (1-delta)I + delta*C_0) at which a *measured-with-error* variable crosses a bias threshold. The mathematical objects differ: E-value operates on risk ratios for a missing variable; ASV operates on confusion matrix eigenstructure for an observed-but-noisy variable. The three ASV variants (magnitude, significance, sign-flip) have no E-value counterpart because E-value does not model multi-class misclassification structure.
-17	
-18	### Q1.3: "The FWL invariance result is obvious."
-19	
-20	**A:** If it were obvious, we would expect the correction literature to mention it. Neither DSL (Egam
-…[truncated 9248 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 752 · 2026-05-22T08:10:38.300225+00:00_
+_source line 750 · 2026-05-22T08:10:38.300225+00:00_
 
 called Agent
 
@@ -2793,7 +2717,7 @@ called Agent
 
 ### Tool call
 
-_source line 753 · 2026-05-22T08:10:40.260903+00:00_
+_source line 751 · 2026-05-22T08:10:40.260903+00:00_
 
 called Glob
 
@@ -2827,7 +2751,7 @@ called Glob
 
 ### Tool result
 
-_source line 754 · 2026-05-22T08:10:40.464080+00:00_
+_source line 752 · 2026-05-22T08:10:40.464080+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/chats/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_reviewer.lock
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/dream_reports/dream_20260520T074549/best/review_context.yaml
@@ -2863,7 +2787,7 @@ _source line 754 · 2026-05-22T08:10:40.464080+00:00_
 
 ### Tool call
 
-_source line 755 · 2026-05-22T08:10:40.464621+00:00_
+_source line 753 · 2026-05-22T08:10:40.464621+00:00_
 
 called Glob
 
@@ -2897,7 +2821,7 @@ called Glob
 
 ### Tool result
 
-_source line 756 · 2026-05-22T08:10:40.665673+00:00_
+_source line 754 · 2026-05-22T08:10:40.665673+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/chats/feishu_group_oc_ffca2972572580adcf5da6bc7a846270_reviewer.lock
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/workers/worker_code_plan005-reviewer-critical-fix_20260520T145906.log
@@ -2929,7 +2853,7 @@ _source line 756 · 2026-05-22T08:10:40.665673+00:00_
 
 ### Tool call
 
-_source line 757 · 2026-05-22T08:10:40.666251+00:00_
+_source line 755 · 2026-05-22T08:10:40.666251+00:00_
 
 called Glob
 
@@ -2963,7 +2887,7 @@ called Glob
 
 ### Tool result
 
-_source line 758 · 2026-05-22T08:10:40.917365+00:00_
+_source line 756 · 2026-05-22T08:10:40.917365+00:00_
 
 No files found
 
@@ -2985,7 +2909,7 @@ No files found
 
 ### Tool call
 
-_source line 759 · 2026-05-22T08:10:40.917900+00:00_
+_source line 757 · 2026-05-22T08:10:40.917900+00:00_
 
 called Glob
 
@@ -3019,7 +2943,7 @@ called Glob
 
 ### Tool result
 
-_source line 760 · 2026-05-22T08:10:40.968334+00:00_
+_source line 758 · 2026-05-22T08:10:40.968334+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/distill_tmp/brenner1993.yaml
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/workers/worker_fix_plan009_pathological_matrices_r2_20260520T184507.log
@@ -3043,7 +2967,7 @@ _source line 760 · 2026-05-22T08:10:40.968334+00:00_
 
 ### Tool call
 
-_source line 761 · 2026-05-22T08:10:43.226915+00:00_
+_source line 759 · 2026-05-22T08:10:43.226915+00:00_
 
 called Bash
 
@@ -3077,7 +3001,7 @@ called Bash
 
 ### Tool result
 
-_source line 762 · 2026-05-22T08:10:43.429827+00:00_
+_source line 760 · 2026-05-22T08:10:43.429827+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p1.png
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p14.png
@@ -3117,7 +3041,7 @@ _source line 762 · 2026-05-22T08:10:43.429827+00:00_
 
 ### Tool call
 
-_source line 763 · 2026-05-22T08:10:43.481243+00:00_
+_source line 761 · 2026-05-22T08:10:43.481243+00:00_
 
 called Bash
 
@@ -3151,7 +3075,7 @@ called Bash
 
 ### Tool result
 
-_source line 764 · 2026-05-22T08:10:43.582097+00:00_
+_source line 762 · 2026-05-22T08:10:43.582097+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_issues.yaml
 
@@ -3173,7 +3097,7 @@ _source line 764 · 2026-05-22T08:10:43.582097+00:00_
 
 ### Tool call
 
-_source line 765 · 2026-05-22T08:10:44.937942+00:00_
+_source line 763 · 2026-05-22T08:10:44.937942+00:00_
 
 called Read
 
@@ -3207,7 +3131,7 @@ called Read
 
 ### Tool result
 
-_source line 766 · 2026-05-22T08:10:45.339888+00:00_
+_source line 764 · 2026-05-22T08:10:45.339888+00:00_
 
 1	issues:
 2	  - id: R1-N1
@@ -3291,7 +3215,7 @@ _source line 766 · 2026-05-22T08:10:45.339888+00:00_
 
 ### Tool call
 
-_source line 767 · 2026-05-22T08:10:45.340350+00:00_
+_source line 765 · 2026-05-22T08:10:45.340350+00:00_
 
 called Read
 
@@ -3325,7 +3249,7 @@ called Read
 
 ### Tool result
 
-_source line 768 · 2026-05-22T08:10:45.742459+00:00_
+_source line 766 · 2026-05-22T08:10:45.742459+00:00_
 
 1	---
 2	loop: 2
@@ -3382,7 +3306,7 @@ _source line 768 · 2026-05-22T08:10:45.742459+00:00_
 
 ### Tool call
 
-_source line 769 · 2026-05-22T08:10:45.743005+00:00_
+_source line 767 · 2026-05-22T08:10:45.743005+00:00_
 
 called Read
 
@@ -3416,7 +3340,7 @@ called Read
 
 ### Tool result
 
-_source line 770 · 2026-05-22T08:10:45.944159+00:00_
+_source line 768 · 2026-05-22T08:10:45.944159+00:00_
 
 1	{
 2	  "status": "done",
@@ -3491,7 +3415,7 @@ _source line 770 · 2026-05-22T08:10:45.944159+00:00_
 
 ### Tool call
 
-_source line 771 · 2026-05-22T08:10:45.944666+00:00_
+_source line 769 · 2026-05-22T08:10:45.944666+00:00_
 
 called Read
 
@@ -3525,7 +3449,7 @@ called Read
 
 ### Tool result
 
-_source line 772 · 2026-05-22T08:10:45.995290+00:00_
+_source line 770 · 2026-05-22T08:10:45.995290+00:00_
 
 1	{"timestamp": "2026-05-22T05:36:22.642428+00:00", "pages_reviewed": 19, "source": "compile_preview"}
 
@@ -3547,7 +3471,7 @@ _source line 772 · 2026-05-22T08:10:45.995290+00:00_
 
 ### Tool call
 
-_source line 773 · 2026-05-22T08:10:49.310016+00:00_
+_source line 771 · 2026-05-22T08:10:49.310016+00:00_
 
 called Read
 
@@ -3583,7 +3507,7 @@ called Read
 
 ### Tool result
 
-_source line 774 · 2026-05-22T08:10:49.511363+00:00_
+_source line 772 · 2026-05-22T08:10:49.511363+00:00_
 
 1	---
 2	dream_id: dream_20260520T074549
@@ -3623,7 +3547,7 @@ _source line 774 · 2026-05-22T08:10:49.511363+00:00_
 
 ### Tool call
 
-_source line 775 · 2026-05-22T08:10:49.562337+00:00_
+_source line 773 · 2026-05-22T08:10:49.562337+00:00_
 
 called Bash
 
@@ -3657,7 +3581,7 @@ called Bash
 
 ### Tool result
 
-_source line 776 · 2026-05-22T08:10:49.612993+00:00_
+_source line 774 · 2026-05-22T08:10:49.612993+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  17K May 21 17:56 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/chats/cron_hook_plan003_empirical_confusion_matrices.jsonl
 -rw-r--r-- 1 ubuntu ubuntu  37K May 21 11:18 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/logs/chats/cron_hook_plan007_correction_guidance.jsonl
@@ -3683,7 +3607,7 @@ _source line 776 · 2026-05-22T08:10:49.612993+00:00_
 
 ### Tool call
 
-_source line 777 · 2026-05-22T08:10:51.621383+00:00_
+_source line 775 · 2026-05-22T08:10:51.621383+00:00_
 
 called Bash
 
@@ -3717,7 +3641,7 @@ called Bash
 
 ### Tool result
 
-_source line 778 · 2026-05-22T08:10:51.672129+00:00_
+_source line 776 · 2026-05-22T08:10:51.672129+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/task_context/reviewer.md
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_1.md
@@ -3742,7 +3666,7 @@ _source line 778 · 2026-05-22T08:10:51.672129+00:00_
 
 ### Tool call
 
-_source line 779 · 2026-05-22T08:10:53.330051+00:00_
+_source line 777 · 2026-05-22T08:10:53.330051+00:00_
 
 called Read
 
@@ -3776,7 +3700,7 @@ called Read
 
 ### Tool result
 
-_source line 780 · 2026-05-22T08:10:53.330500+00:00_
+_source line 778 · 2026-05-22T08:10:53.330500+00:00_
 
 1	---
 2	round: 1
@@ -3849,7 +3773,7 @@ _source line 780 · 2026-05-22T08:10:53.330500+00:00_
 
 ### Tool call
 
-_source line 781 · 2026-05-22T08:10:53.381007+00:00_
+_source line 779 · 2026-05-22T08:10:53.381007+00:00_
 
 called Read
 
@@ -3883,7 +3807,7 @@ called Read
 
 ### Tool result
 
-_source line 782 · 2026-05-22T08:10:53.381642+00:00_
+_source line 780 · 2026-05-22T08:10:53.381642+00:00_
 
 1	_next_id: 20
 2	decisions:
@@ -3947,7 +3871,7 @@ _source line 782 · 2026-05-22T08:10:53.381642+00:00_
 
 ### Tool result
 
-_source line 783 · 2026-05-22T08:11:14.325837+00:00_
+_source line 781 · 2026-05-22T08:11:14.325837+00:00_
 
 Excellent! Now let me compile a comprehensive summary of all the review-related files I found.
 
@@ -3995,7 +3919,7 @@ I found several categories of original reviewer feedback and comments for this p
 
 ### Tool call
 
-_source line 784 · 2026-05-22T08:11:17.389847+00:00_
+_source line 782 · 2026-05-22T08:11:17.389847+00:00_
 
 called Read
 
@@ -4029,7 +3953,7 @@ called Read
 
 ### Tool result
 
-_source line 785 · 2026-05-22T08:11:17.440646+00:00_
+_source line 783 · 2026-05-22T08:11:17.440646+00:00_
 
 1	---
 2	round: 1
@@ -4102,7 +4026,7 @@ _source line 785 · 2026-05-22T08:11:17.440646+00:00_
 
 ### Tool call
 
-_source line 786 · 2026-05-22T08:12:39.942389+00:00_
+_source line 784 · 2026-05-22T08:12:39.942389+00:00_
 
 called Bash
 
@@ -4138,7 +4062,7 @@ called Bash
 
 ### Tool result
 
-_source line 787 · 2026-05-22T08:12:40.896300+00:00_
+_source line 785 · 2026-05-22T08:12:40.896300+00:00_
 
 K=3 exposure: plim with I = [-5.42099865e-04  1.00251903e+00 -4.98124886e-01]
 extract_tau returns plim[1] = 1.002519027440807 (this is beta_1 = 1.0)
@@ -4169,7 +4093,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 788 · 2026-05-22T08:15:02.433496+00:00_
+_source line 786 · 2026-05-22T08:15:02.433496+00:00_
 
 called ToolSearch
 
@@ -4205,7 +4129,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 789 · 2026-05-22T08:15:02.484005+00:00_
+_source line 787 · 2026-05-22T08:15:02.484005+00:00_
 
 
 
@@ -4227,7 +4151,7 @@ _source line 789 · 2026-05-22T08:15:02.484005+00:00_
 
 ### Tool call
 
-_source line 790 · 2026-05-22T08:15:56.000562+00:00_
+_source line 788 · 2026-05-22T08:15:56.000562+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4263,7 +4187,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 791 · 2026-05-22T08:16:00.016191+00:00_
+_source line 789 · 2026-05-22T08:16:00.016191+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -4285,7 +4209,7 @@ _source line 791 · 2026-05-22T08:16:00.016191+00:00_
 
 ### Assistant
 
-_source line 792 · 2026-05-22T08:16:06.486947+00:00_
+_source line 790 · 2026-05-22T08:16:06.486947+00:00_
 
 报告已发送。核心发现：Q4（83.4% vs 55% 不可比性）是最大漏洞——`extract_tau()` 只检查主系数，导致 Dirichlet 83.4% 和 empirical 55% 度量不同对象，"55% confirms 83.4%" 的说法逻辑不成立。建议将叙事重心从 DGP-dependent 的 impressive rates 转移到三个 DGP-independent 的结构性贡献上。
 
@@ -4307,12 +4231,12 @@ _source line 792 · 2026-05-22T08:16:06.486947+00:00_
 
 ## Round 22
 
-10 recorded events
+8 recorded events
 
 
 ### User
 
-_source line 793 · 2026-05-22T10:23:12.294799+00:00_
+_source line 791 · 2026-05-22T10:23:12.294799+00:00_
 
 [System 触发审查]:
 **最终复查请求：Q4 修复后的 rebuttal 草稿 + 论文 framing 对齐**
@@ -4344,83 +4268,7 @@ Agent 已按你上轮的 5 条建议修改了 rebuttal 草稿（artifacts/rebutt
 
 ### Tool call
 
-_source line 794 · 2026-05-22T10:23:21.744408+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 795 · 2026-05-22T10:23:22.247910+00:00_
-
-1	# Rebuttal 论点草稿
-2	
-3	> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。
-4	> 基于当前论文版本（20 configs / 140 scenarios / 11 exposure sign flips）。
-5	
-6	---
-7	
-8	## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）
-9	
-10	### Q1.1: "This is an incremental extension of Brenner (1993)."
-11	
-12	**A:** Brenner (1993) identified the *possibility* of polytomous bias away from the null for a single topology (exposure) but did not characterize sign-flip boundary conditions or analyze non-exposure topologies. Our contribution is not "K=2 scaled up to K=3"---it is a demonstration that the *algebraic structure* of the confusion matrix changes qualitatively at K>=3. For K=2, any column-stochastic matrix with C_kk > 0.5 preserves coefficient signs; this is a dimensional property of 2x2 matrices, not a rate condition. At K>=3, the higher-dimensional matrix admits negative effective weights across categories, enabling sign reversal even with all diagonal entries exceeding 0.5. Three results are entirely absent from prior work: (1) the 5-topology structural guarantee map, (2) the ASV sensitivity framework, (3) the FWL invariance negative result.
-13	
-14	### Q1.2: "ASV is just E-value for measurement error."
-15	
-16	**A:** The intuition is simple: E-value asks *how strong unmeasured confounding must be* to explain away an association; ASV asks *how bad annotation must be* to cross a bias threshold. But the mathematical objects are fundamentally different. E-value (VanderWeele & Ding 2017) operates on risk ratios for a *missing* variable---a scalar sensitivity parameter. ASV operates on confusion matrix eigenstructure for an *observed-but-noisy* variable via the delta parameterization C(delta) = (1-delta)I + delta*C_0. The three ASV variants (magnitude, significance, sign-flip) have no E-value counterpart because E-value does not model multi-class misclassification structure.
-17	
-18	### Q1.3: "The FWL invariance result is obvious."
-19	
-20	**A:** If it were obvious, we would expect the correction literature to men
-…[truncated 10122 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 503
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 796 · 2026-05-22T10:23:22.248437+00:00_
+_source line 792 · 2026-05-22T10:23:22.248437+00:00_
 
 called Read
 
@@ -4454,7 +4302,7 @@ called Read
 
 ### Tool result
 
-_source line 797 · 2026-05-22T10:23:22.750882+00:00_
+_source line 793 · 2026-05-22T10:23:22.750882+00:00_
 
 1	\begin{abstract}
 2	Large language models (LLMs) are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that binary measurement error theory cannot predict. We present a systematic framework characterizing how $K$-class confusion matrix structure interacts with DAG topology to determine bias direction and magnitude. We derive bias expressions for seven canonical DAG topologies under multi-class non-differential misclassification and establish a structural sign-flip guarantee: five topologies never produce sign reversal, while exposure and instrumental variable topologies can---under the full Dirichlet$(1,1,1)$ prior, 83.4\% of $K{=}3$ confusion matrices cause sign reversal in the exposure DAG; under realistic classifier accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal. We introduce Annotation Sensitivity Values (ASVs) with three complementary measures revealing a topology-dependent vulnerability spectrum from IV (maximally fragile, 52.6\% sign reversal) to M-bias (immune). We evaluate five correction methods and prove a Frisch--Waugh--Lovell invariance result: matrix-based corrections achieve 0\% bias reduction for four topologies, while PPI++ achieves 47.0\% RMSE reduction but requires gold labels and is harmful for M-bias ($-$88\%). Empirical validation on three tasks ($K{=}2,3,10$) with four LLMs confirms structural predictions: zero sign reversals across five guaranteed topologies, while 55\% of exposure configurations exhibit coefficient-level sign reversal in secondary coefficients. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -4479,7 +4327,7 @@ _source line 797 · 2026-05-22T10:23:22.750882+00:00_
 
 ### Tool call
 
-_source line 798 · 2026-05-22T10:23:22.751337+00:00_
+_source line 794 · 2026-05-22T10:23:22.751337+00:00_
 
 called Read
 
@@ -4513,7 +4361,7 @@ called Read
 
 ### Tool result
 
-_source line 799 · 2026-05-22T10:23:22.801844+00:00_
+_source line 795 · 2026-05-22T10:23:22.801844+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -4555,7 +4403,7 @@ _source line 799 · 2026-05-22T10:23:22.801844+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-22T10:24:16.292202+00:00_
+_source line 796 · 2026-05-22T10:24:16.292202+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4591,7 +4439,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 801 · 2026-05-22T10:24:20.161787+00:00_
+_source line 797 · 2026-05-22T10:24:20.161787+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -4613,7 +4461,7 @@ _source line 801 · 2026-05-22T10:24:20.161787+00:00_
 
 ### Assistant
 
-_source line 802 · 2026-05-22T10:24:26.320809+00:00_
+_source line 798 · 2026-05-22T10:24:26.320809+00:00_
 
 复查报告已发送。5 项修改全部 PASS，附带一个 pre-existing 精度问题备注（experiments.tex L18 "at least one coefficient" vs 代码实际只检查 primary coefficient）。
 
@@ -4640,7 +4488,7 @@ _source line 802 · 2026-05-22T10:24:26.320809+00:00_
 
 ### User
 
-_source line 803 · 2026-05-22T10:26:55.036720+00:00_
+_source line 799 · 2026-05-22T10:26:55.036720+00:00_
 
 [系统通知 — worker_done:worker_code_nohup_check_extract_20260522T102332]:
 Worker worker_code_nohup_check_extract_20260522T102332 已完成（status=done），请审查 Agent 的处理结果。
@@ -4662,7 +4510,7 @@ Worker worker_code_nohup_check_extract_20260522T102332 已完成（status=done�
 
 ### Tool call
 
-_source line 804 · 2026-05-22T10:27:05.410983+00:00_
+_source line 800 · 2026-05-22T10:27:05.410983+00:00_
 
 called ToolSearch
 
@@ -4698,7 +4546,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 805 · 2026-05-22T10:27:05.461526+00:00_
+_source line 801 · 2026-05-22T10:27:05.461526+00:00_
 
 
 
@@ -4720,7 +4568,7 @@ _source line 805 · 2026-05-22T10:27:05.461526+00:00_
 
 ### Tool call
 
-_source line 806 · 2026-05-22T10:27:08.982342+00:00_
+_source line 802 · 2026-05-22T10:27:08.982342+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4758,7 +4606,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 807 · 2026-05-22T10:27:09.285138+00:00_
+_source line 803 · 2026-05-22T10:27:09.285138+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 13140 chars]
@@ -4781,7 +4629,7 @@ _source line 807 · 2026-05-22T10:27:09.285138+00:00_
 
 ### Tool call
 
-_source line 808 · 2026-05-22T10:27:21.600331+00:00_
+_source line 804 · 2026-05-22T10:27:21.600331+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -4821,7 +4669,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 809 · 2026-05-22T10:27:22.054048+00:00_
+_source line 805 · 2026-05-22T10:27:22.054048+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 13140 chars]
@@ -4844,7 +4692,7 @@ _source line 809 · 2026-05-22T10:27:22.054048+00:00_
 
 ### Tool call
 
-_source line 810 · 2026-05-22T10:27:22.104899+00:00_
+_source line 806 · 2026-05-22T10:27:22.104899+00:00_
 
 called ToolSearch
 
@@ -4880,7 +4728,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 811 · 2026-05-22T10:27:22.205720+00:00_
+_source line 807 · 2026-05-22T10:27:22.205720+00:00_
 
 
 
@@ -4902,7 +4750,7 @@ _source line 811 · 2026-05-22T10:27:22.205720+00:00_
 
 ### Tool call
 
-_source line 812 · 2026-05-22T10:27:30.162532+00:00_
+_source line 808 · 2026-05-22T10:27:30.162532+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -4938,7 +4786,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 813 · 2026-05-22T10:27:30.939359+00:00_
+_source line 809 · 2026-05-22T10:27:30.939359+00:00_
 
 called Glob
 
@@ -4974,7 +4822,7 @@ called Glob
 
 ### Tool result
 
-_source line 814 · 2026-05-22T10:27:32.299243+00:00_
+_source line 810 · 2026-05-22T10:27:32.299243+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxrwxr-x 2 sonny sonny 4096 2026-05-22 01:18 vast\\ndrwxrwxr-x 2 sonny sonny 4096 2026-05-21 22:52 humaid\\ndrwxrwxr-x 2 sonny sonny 4096 2026-05-21 22:52 civil_comments\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.15}}"}
 
@@ -4996,7 +4844,7 @@ _source line 814 · 2026-05-22T10:27:32.299243+00:00_
 
 ### Tool result
 
-_source line 815 · 2026-05-22T10:27:32.350398+00:00_
+_source line 811 · 2026-05-22T10:27:32.350398+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_confounding_dag.py
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_confounding_dag.py
@@ -5034,7 +4882,7 @@ _source line 815 · 2026-05-22T10:27:32.350398+00:00_
 
 ### Tool call
 
-_source line 816 · 2026-05-22T10:27:40.192000+00:00_
+_source line 812 · 2026-05-22T10:27:40.192000+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5070,7 +4918,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 817 · 2026-05-22T10:27:40.995839+00:00_
+_source line 813 · 2026-05-22T10:27:40.995839+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5106,7 +4954,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 818 · 2026-05-22T10:27:41.148941+00:00_
+_source line 814 · 2026-05-22T10:27:41.148941+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 10560\\n-rw-rw-r-- 1 sonny sonny  826733 2026-05-22 03:27 qwen3_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-22 01:18 deepseek_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1214527 2026-05-22 01:18 deepseek_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-22 00:36 deepseek_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1214007 2026-05-22 00:36 deepseek_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-21 23:51 deepseek_zero-shot_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1216045 2026-05-21 23:51 deepseek_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny    2497 2026-05-21 23:36 qwen3_zero-shot_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny       0 2026-05-21 22:52 qwen3_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny       0 2026-05-21 22:52 qwen3_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 1195917 2026-05-21 22:52 qwen2.5-7b_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 1207705 2026-05-21 22:52 llama4_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny  280840 2026-05-21 22:52 llama4_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-20 18:24 qwen2.5-7b_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1198247 2026-05-20 18:24 qwen2.5-7b_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-20 18:23 qwen2.5-7b_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1198191 2026-05-20 18:23 qwen2.5-7b_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny    2500 2026-05-20 14:06 llama4_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 1213595 2026-05-20 14:06 llama4_few-shot-3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
 
@@ -5128,7 +4976,7 @@ _source line 818 · 2026-05-22T10:27:41.148941+00:00_
 
 ### Tool result
 
-_source line 819 · 2026-05-22T10:27:42.153488+00:00_
+_source line 815 · 2026-05-22T10:27:42.153488+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4808\\n-rw-rw-r-- 1 sonny sonny 521625 2026-05-21 22:52 qwen3_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 725563 2026-05-21 22:52 qwen3_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 729298 2026-05-21 22:52 qwen3_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny      0 2026-05-21 22:52 llama4_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny      0 2026-05-21 22:52 llama4_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny      0 2026-05-21 22:52 llama4_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny      0 2026-05-21 22:52 deepseek_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny    665 2026-05-21 22:52 deepseek_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny   2402 2026-05-21 14:53 deepseek_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 740460 2026-05-21 14:53 deepseek_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny   2402 2026-05-20 18:20 qwen2.5-7b_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 724036 2026-05-20 18:20 qwen2.5-7b_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny   2402 2026-05-20 18:19 qwen2.5-7b_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 723380 2026-05-20 18:19 qwen2.5-7b_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny   2402 2026-05-20 18:18 qwen2.5-7b_zero-shot_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 722744 2026-05-20 18:18 qwen2.5-7b_zero-shot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
 
@@ -5150,7 +4998,7 @@ _source line 819 · 2026-05-22T10:27:42.153488+00:00_
 
 ### Tool call
 
-_source line 820 · 2026-05-22T10:28:00.696579+00:00_
+_source line 816 · 2026-05-22T10:28:00.696579+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -5186,7 +5034,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 821 · 2026-05-22T10:28:01.600951+00:00_
+_source line 817 · 2026-05-22T10:28:01.600951+00:00_
 
 called Glob
 
@@ -5222,7 +5070,7 @@ called Glob
 
 ### Tool result
 
-_source line 822 · 2026-05-22T10:28:01.855311+00:00_
+_source line 818 · 2026-05-22T10:28:01.855311+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot_confusion_matrix.npz\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3_confusion_matrix.npz\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5_confusion_matrix.npz\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
 
@@ -5244,7 +5092,7 @@ _source line 822 · 2026-05-22T10:28:01.855311+00:00_
 
 ### Tool result
 
-_source line 823 · 2026-05-22T10:28:01.855774+00:00_
+_source line 819 · 2026-05-22T10:28:01.855774+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/updated_empirical_results.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json
@@ -5267,7 +5115,7 @@ _source line 823 · 2026-05-22T10:28:01.855774+00:00_
 
 ### Tool call
 
-_source line 824 · 2026-05-22T10:28:01.856063+00:00_
+_source line 820 · 2026-05-22T10:28:01.856063+00:00_
 
 called Glob
 
@@ -5303,7 +5151,7 @@ called Glob
 
 ### Tool result
 
-_source line 825 · 2026-05-22T10:28:01.956747+00:00_
+_source line 821 · 2026-05-22T10:28:01.956747+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/ppi_empirical_validation.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation.json
@@ -5326,7 +5174,7 @@ _source line 825 · 2026-05-22T10:28:01.956747+00:00_
 
 ### Tool call
 
-_source line 826 · 2026-05-22T10:28:06.375385+00:00_
+_source line 822 · 2026-05-22T10:28:06.375385+00:00_
 
 called Bash
 
@@ -5362,7 +5210,7 @@ called Bash
 
 ### Tool result
 
-_source line 827 · 2026-05-22T10:28:06.827857+00:00_
+_source line 823 · 2026-05-22T10:28:06.827857+00:00_
 
 Modify: 2026-05-22 10:27:52.098355152 +0000
 
@@ -5384,7 +5232,7 @@ Modify: 2026-05-22 10:27:52.098355152 +0000
 
 ### Tool call
 
-_source line 828 · 2026-05-22T10:28:07.179266+00:00_
+_source line 824 · 2026-05-22T10:28:07.179266+00:00_
 
 called Bash
 
@@ -5420,7 +5268,7 @@ called Bash
 
 ### Tool result
 
-_source line 829 · 2026-05-22T10:28:07.231816+00:00_
+_source line 825 · 2026-05-22T10:28:07.231816+00:00_
 
 Modify: 2026-05-21 10:43:58.430637094 +0000
 
@@ -5442,7 +5290,7 @@ Modify: 2026-05-21 10:43:58.430637094 +0000
 
 ### Tool call
 
-_source line 830 · 2026-05-22T10:28:12.604027+00:00_
+_source line 826 · 2026-05-22T10:28:12.604027+00:00_
 
 called Read
 
@@ -5476,7 +5324,7 @@ called Read
 
 ### Tool result
 
-_source line 831 · 2026-05-22T10:28:12.905270+00:00_
+_source line 827 · 2026-05-22T10:28:12.905270+00:00_
 
 File content (38842 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -5498,7 +5346,7 @@ File content (38842 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 832 · 2026-05-22T10:28:16.374450+00:00_
+_source line 828 · 2026-05-22T10:28:16.374450+00:00_
 
 called Read
 
@@ -5534,7 +5382,7 @@ called Read
 
 ### Tool result
 
-_source line 833 · 2026-05-22T10:28:16.425009+00:00_
+_source line 829 · 2026-05-22T10:28:16.425009+00:00_
 
 1	{
 2	  "confusion_matrices": {
@@ -5635,7 +5483,7 @@ _source line 833 · 2026-05-22T10:28:16.425009+00:00_
 
 ### Tool call
 
-_source line 834 · 2026-05-22T10:28:20.797085+00:00_
+_source line 830 · 2026-05-22T10:28:20.797085+00:00_
 
 called Grep
 
@@ -5673,7 +5521,7 @@ called Grep
 
 ### Tool result
 
-_source line 835 · 2026-05-22T10:28:20.848364+00:00_
+_source line 831 · 2026-05-22T10:28:20.848364+00:00_
 
 4001:    "total_configs": 22,
 4002:    "total_scenarios": 154,
@@ -5696,7 +5544,7 @@ _source line 835 · 2026-05-22T10:28:20.848364+00:00_
 
 ### Tool call
 
-_source line 836 · 2026-05-22T10:28:28.593060+00:00_
+_source line 832 · 2026-05-22T10:28:28.593060+00:00_
 
 called Grep
 
@@ -5736,7 +5584,7 @@ called Grep
 
 ### Tool result
 
-_source line 837 · 2026-05-22T10:28:28.794308+00:00_
+_source line 833 · 2026-05-22T10:28:28.794308+00:00_
 
 1405:      "sign_flip": false,
 1418:      "sign_flip": false,
@@ -5822,7 +5670,7 @@ _source line 837 · 2026-05-22T10:28:28.794308+00:00_
 
 ### Tool call
 
-_source line 838 · 2026-05-22T10:28:34.645007+00:00_
+_source line 834 · 2026-05-22T10:28:34.645007+00:00_
 
 called Read
 
@@ -5860,7 +5708,7 @@ called Read
 
 ### Tool result
 
-_source line 839 · 2026-05-22T10:28:34.695806+00:00_
+_source line 835 · 2026-05-22T10:28:34.695806+00:00_
 
 3995	      "bias_pct": 0.5679744273844888,
 3996	      "sign_flip": false,
@@ -5950,7 +5798,7 @@ _source line 839 · 2026-05-22T10:28:34.695806+00:00_
 
 ### Tool call
 
-_source line 840 · 2026-05-22T10:28:52.973927+00:00_
+_source line 836 · 2026-05-22T10:28:52.973927+00:00_
 
 called Grep
 
@@ -5992,7 +5840,7 @@ called Grep
 
 ### Tool result
 
-_source line 841 · 2026-05-22T10:28:53.275838+00:00_
+_source line 837 · 2026-05-22T10:28:53.275838+00:00_
 
 No matches found
 
@@ -6014,7 +5862,7 @@ No matches found
 
 ### Tool call
 
-_source line 842 · 2026-05-22T10:28:56.948351+00:00_
+_source line 838 · 2026-05-22T10:28:56.948351+00:00_
 
 called Grep
 
@@ -6054,7 +5902,7 @@ called Grep
 
 ### Tool result
 
-_source line 843 · 2026-05-22T10:28:56.998822+00:00_
+_source line 839 · 2026-05-22T10:28:56.998822+00:00_
 
 No matches found
 
@@ -6076,7 +5924,7 @@ No matches found
 
 ### Tool call
 
-_source line 844 · 2026-05-22T10:29:01.120202+00:00_
+_source line 840 · 2026-05-22T10:29:01.120202+00:00_
 
 called Grep
 
@@ -6116,7 +5964,7 @@ called Grep
 
 ### Tool result
 
-_source line 845 · 2026-05-22T10:29:01.221280+00:00_
+_source line 841 · 2026-05-22T10:29:01.221280+00:00_
 
 3:    "civil_comments_deepseek_few-shot-5": [
 73:    "humaid_deepseek_few-shot-3": [
@@ -6152,7 +6000,7 @@ _source line 845 · 2026-05-22T10:29:01.221280+00:00_
 
 ### Tool call
 
-_source line 846 · 2026-05-22T10:29:04.989777+00:00_
+_source line 842 · 2026-05-22T10:29:04.989777+00:00_
 
 called Read
 
@@ -6190,7 +6038,7 @@ called Read
 
 ### Tool result
 
-_source line 847 · 2026-05-22T10:29:04.990336+00:00_
+_source line 843 · 2026-05-22T10:29:04.990336+00:00_
 
 1367	    "vast_deepseek_few-shot-3": {
 1368	      "dataset": "vast",
@@ -6261,7 +6109,7 @@ _source line 847 · 2026-05-22T10:29:04.990336+00:00_
 
 ### Tool call
 
-_source line 848 · 2026-05-22T10:29:10.316582+00:00_
+_source line 844 · 2026-05-22T10:29:10.316582+00:00_
 
 called Grep
 
@@ -6299,7 +6147,7 @@ called Grep
 
 ### Tool result
 
-_source line 849 · 2026-05-22T10:29:10.367299+00:00_
+_source line 845 · 2026-05-22T10:29:10.367299+00:00_
 
 No matches found
 
@@ -6321,7 +6169,7 @@ No matches found
 
 ### Tool call
 
-_source line 850 · 2026-05-22T10:29:19.266920+00:00_
+_source line 846 · 2026-05-22T10:29:19.266920+00:00_
 
 called Grep
 
@@ -6365,7 +6213,7 @@ called Grep
 
 ### Tool result
 
-_source line 851 · 2026-05-22T10:29:19.468445+00:00_
+_source line 847 · 2026-05-22T10:29:19.468445+00:00_
 
 2127-    {
 2128-      "dataset": "humaid",
@@ -6448,7 +6296,7 @@ _source line 851 · 2026-05-22T10:29:19.468445+00:00_
 
 ### Tool call
 
-_source line 852 · 2026-05-22T10:29:23.990435+00:00_
+_source line 848 · 2026-05-22T10:29:23.990435+00:00_
 
 called Grep
 
@@ -6492,7 +6340,7 @@ called Grep
 
 ### Tool result
 
-_source line 853 · 2026-05-22T10:29:24.041154+00:00_
+_source line 849 · 2026-05-22T10:29:24.041154+00:00_
 
 2131-      "K": 10,
 2132-      "topology": "exposure",
@@ -6583,7 +6431,7 @@ _source line 853 · 2026-05-22T10:29:24.041154+00:00_
 
 ### Tool call
 
-_source line 854 · 2026-05-22T10:30:13.576587+00:00_
+_source line 850 · 2026-05-22T10:30:13.576587+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6619,7 +6467,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 855 · 2026-05-22T10:30:17.542348+00:00_
+_source line 851 · 2026-05-22T10:30:17.542348+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -6641,7 +6489,7 @@ _source line 855 · 2026-05-22T10:30:17.542348+00:00_
 
 ### Assistant
 
-_source line 856 · 2026-05-22T10:30:22.209622+00:00_
+_source line 852 · 2026-05-22T10:30:22.209622+00:00_
 
 报告已发送。Worker 提取了 2 个新 VAST DeepSeek 配置的结果，sign flip 从 11/20 (55%) 升至 13/22 (59.1%)，模式一致无异常。论文中有 ~7 处硬数字需要同步更新。
 
@@ -6663,12 +6511,12 @@ _source line 856 · 2026-05-22T10:30:22.209622+00:00_
 
 ## Round 24
 
-22 recorded events
+20 recorded events
 
 
 ### User
 
-_source line 857 · 2026-05-22T10:39:26.250540+00:00_
+_source line 853 · 2026-05-22T10:39:26.250540+00:00_
 
 [系统通知 — worker_done:worker_code_nohup_check_extract_round2_20260522T103513]:
 Worker worker_code_nohup_check_extract_round2_20260522T103513 已完成（status=done），请审查 Agent 的处理结果。
@@ -6690,7 +6538,7 @@ Worker worker_code_nohup_check_extract_round2_20260522T103513 已完成（status
 
 ### Tool call
 
-_source line 858 · 2026-05-22T10:39:40.226324+00:00_
+_source line 854 · 2026-05-22T10:39:40.226324+00:00_
 
 called Bash
 
@@ -6726,7 +6574,7 @@ called Bash
 
 ### Tool result
 
-_source line 859 · 2026-05-22T10:39:41.231318+00:00_
+_source line 855 · 2026-05-22T10:39:41.231318+00:00_
 
 Modify: 2026-05-22 10:27:52.098355152 +0000
 
@@ -6748,7 +6596,7 @@ Modify: 2026-05-22 10:27:52.098355152 +0000
 
 ### Tool call
 
-_source line 860 · 2026-05-22T10:39:41.231758+00:00_
+_source line 856 · 2026-05-22T10:39:41.231758+00:00_
 
 called Bash
 
@@ -6784,7 +6632,7 @@ called Bash
 
 ### Tool result
 
-_source line 861 · 2026-05-22T10:39:41.733017+00:00_
+_source line 857 · 2026-05-22T10:39:41.733017+00:00_
 
 Modify: 2026-05-22 10:31:48.995223381 +0000
 
@@ -6806,7 +6654,7 @@ Modify: 2026-05-22 10:31:48.995223381 +0000
 
 ### Tool call
 
-_source line 862 · 2026-05-22T10:39:41.985425+00:00_
+_source line 858 · 2026-05-22T10:39:41.985425+00:00_
 
 called Bash
 
@@ -6842,7 +6690,7 @@ called Bash
 
 ### Tool result
 
-_source line 863 · 2026-05-22T10:39:42.036049+00:00_
+_source line 859 · 2026-05-22T10:39:42.036049+00:00_
 
 Modify: 2026-05-22 10:31:28.817898496 +0000
 
@@ -6864,7 +6712,7 @@ Modify: 2026-05-22 10:31:28.817898496 +0000
 
 ### Tool call
 
-_source line 864 · 2026-05-22T10:39:50.043702+00:00_
+_source line 860 · 2026-05-22T10:39:50.043702+00:00_
 
 called Read
 
@@ -6898,7 +6746,7 @@ called Read
 
 ### Tool result
 
-_source line 865 · 2026-05-22T10:39:50.500329+00:00_
+_source line 861 · 2026-05-22T10:39:50.500329+00:00_
 
 1	\begin{abstract}
 2	Large language models (LLMs) are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that binary measurement error theory cannot predict. We present a systematic framework characterizing how $K$-class confusion matrix structure interacts with DAG topology to determine bias direction and magnitude. We derive bias expressions for seven canonical DAG topologies under multi-class non-differential misclassification and establish a structural sign-flip guarantee: five topologies never produce sign reversal, while exposure and instrumental variable topologies can---under the full Dirichlet$(1,1,1)$ prior, 83.4\% of $K{=}3$ confusion matrices cause sign reversal in the exposure DAG; under realistic classifier accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal. We introduce Annotation Sensitivity Values (ASVs) with three complementary measures revealing a topology-dependent vulnerability spectrum from IV (maximally fragile, 52.6\% sign reversal) to M-bias (immune). We evaluate five correction methods and prove a Frisch--Waugh--Lovell invariance result: matrix-based corrections achieve 0\% bias reduction for four topologies, while PPI++ achieves 47.0\% RMSE reduction but requires gold labels and is harmful for M-bias ($-$88\%). Empirical validation on three tasks ($K{=}2,3,10$) with four LLMs confirms structural predictions: zero sign reversals across five guaranteed topologies, while 59\% of exposure configurations exhibit coefficient-level sign reversal in secondary coefficients. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -6923,7 +6771,7 @@ _source line 865 · 2026-05-22T10:39:50.500329+00:00_
 
 ### Tool call
 
-_source line 866 · 2026-05-22T10:39:51.005587+00:00_
+_source line 862 · 2026-05-22T10:39:51.005587+00:00_
 
 called Read
 
@@ -6961,7 +6809,7 @@ called Read
 
 ### Tool result
 
-_source line 867 · 2026-05-22T10:39:51.058187+00:00_
+_source line 863 · 2026-05-22T10:39:51.058187+00:00_
 
 74	\label{sec:empirical}
 75	
@@ -6994,7 +6842,7 @@ _source line 867 · 2026-05-22T10:39:51.058187+00:00_
 
 ### Tool call
 
-_source line 868 · 2026-05-22T10:39:59.892696+00:00_
+_source line 864 · 2026-05-22T10:39:59.892696+00:00_
 
 called Read
 
@@ -7028,7 +6876,7 @@ called Read
 
 ### Tool result
 
-_source line 869 · 2026-05-22T10:40:00.244979+00:00_
+_source line 865 · 2026-05-22T10:40:00.244979+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -7058,74 +6906,7 @@ _source line 869 · 2026-05-22T10:40:00.244979+00:00_
 
 ### Tool call
 
-_source line 870 · 2026-05-22T10:40:00.295825+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/rebuttal_draft.md",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 871 · 2026-05-22T10:40:00.296361+00:00_
-
-1	# Rebuttal 论点草稿
-2	
-3	> 针对 Round 1 审稿降分风险逐条准备。Q/A 格式，每条 3-5 句。
-4	> 基于当前论文版本（22 configs / 154 scenarios / 13 exposure sign flips）。
-5	
-6	---
-7	
-8	## 1. Novelty 质疑（最大风险，R2 excitement 2.5/5）
-9	
-10	### Q1.1: "This is an incremental extension of Brenner (1993)."
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 872 · 2026-05-22T10:40:13.118624+00:00_
+_source line 866 · 2026-05-22T10:40:13.118624+00:00_
 
 called Read
 
@@ -7159,7 +6940,7 @@ called Read
 
 ### Tool result
 
-_source line 873 · 2026-05-22T10:40:13.169425+00:00_
+_source line 867 · 2026-05-22T10:40:13.169425+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -7187,7 +6968,7 @@ _source line 873 · 2026-05-22T10:40:13.169425+00:00_
 
 ### Tool call
 
-_source line 874 · 2026-05-22T10:40:21.210210+00:00_
+_source line 868 · 2026-05-22T10:40:21.210210+00:00_
 
 called Read
 
@@ -7225,7 +7006,7 @@ called Read
 
 ### Tool result
 
-_source line 875 · 2026-05-22T10:40:21.266265+00:00_
+_source line 869 · 2026-05-22T10:40:21.266265+00:00_
 
 13	
 14	\paragraph{Theory-MC agreement.}
@@ -7251,7 +7032,7 @@ _source line 875 · 2026-05-22T10:40:21.266265+00:00_
 
 ### Tool call
 
-_source line 876 · 2026-05-22T10:40:33.275485+00:00_
+_source line 870 · 2026-05-22T10:40:33.275485+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7287,7 +7068,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 877 · 2026-05-22T10:40:40.573397+00:00_
+_source line 871 · 2026-05-22T10:40:40.573397+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -7309,7 +7090,7 @@ _source line 877 · 2026-05-22T10:40:40.573397+00:00_
 
 ### Assistant
 
-_source line 878 · 2026-05-22T10:40:43.585260+00:00_
+_source line 872 · 2026-05-22T10:40:43.585260+00:00_
 
 MAPE 仍声称 126 scenarios / 18 configs，正确——MC 验证只覆盖原始 18 configs，新增的 4 个没有 MC 验证。
 
@@ -7338,7 +7119,7 @@ MAPE 仍声称 126 scenarios / 18 configs，正确——MC 验证只覆盖原始
 
 ### User
 
-_source line 879 · 2026-05-22T11:02:30.023481+00:00_
+_source line 873 · 2026-05-22T11:02:30.023481+00:00_
 
 [System 触发审查]:
 **Round 2 审稿报告 Action Matrix 审查**
@@ -7403,7 +7184,7 @@ _source line 879 · 2026-05-22T11:02:30.023481+00:00_
 
 ### Tool call
 
-_source line 880 · 2026-05-22T11:02:40.158371+00:00_
+_source line 874 · 2026-05-22T11:02:40.158371+00:00_
 
 called Glob
 
@@ -7439,7 +7220,7 @@ called Glob
 
 ### Tool result
 
-_source line 881 · 2026-05-22T11:02:40.409782+00:00_
+_source line 875 · 2026-05-22T11:02:40.409782+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_2.md
 
@@ -7461,7 +7242,7 @@ _source line 881 · 2026-05-22T11:02:40.409782+00:00_
 
 ### Tool call
 
-_source line 882 · 2026-05-22T11:02:40.410293+00:00_
+_source line 876 · 2026-05-22T11:02:40.410293+00:00_
 
 called Glob
 
@@ -7497,7 +7278,7 @@ called Glob
 
 ### Tool result
 
-_source line 883 · 2026-05-22T11:02:40.511117+00:00_
+_source line 877 · 2026-05-22T11:02:40.511117+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_1.md
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/review_reports/round_2.md
@@ -7520,7 +7301,7 @@ _source line 883 · 2026-05-22T11:02:40.511117+00:00_
 
 ### Tool call
 
-_source line 884 · 2026-05-22T11:02:43.423041+00:00_
+_source line 878 · 2026-05-22T11:02:43.423041+00:00_
 
 called Read
 
@@ -7554,7 +7335,7 @@ called Read
 
 ### Tool result
 
-_source line 885 · 2026-05-22T11:02:43.474052+00:00_
+_source line 879 · 2026-05-22T11:02:43.474052+00:00_
 
 1	---
 2	round: 2
@@ -7631,7 +7412,7 @@ _source line 885 · 2026-05-22T11:02:43.474052+00:00_
 
 ### Tool call
 
-_source line 886 · 2026-05-22T11:02:53.616141+00:00_
+_source line 880 · 2026-05-22T11:02:53.616141+00:00_
 
 called Read
 
@@ -7667,7 +7448,7 @@ called Read
 
 ### Tool result
 
-_source line 887 · 2026-05-22T11:02:54.068867+00:00_
+_source line 881 · 2026-05-22T11:02:54.068867+00:00_
 
 1	\section{Proofs of Proposition~\ref{prop:signflip} and Theorem~\ref{thm:monotone}}
 2	\label{app:proof}
@@ -7719,7 +7500,7 @@ _source line 887 · 2026-05-22T11:02:54.068867+00:00_
 
 ### Tool call
 
-_source line 888 · 2026-05-22T11:02:55.225802+00:00_
+_source line 882 · 2026-05-22T11:02:55.225802+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -7755,7 +7536,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 889 · 2026-05-22T11:02:57.334959+00:00_
+_source line 883 · 2026-05-22T11:02:57.334959+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    1345 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl\\n    1237 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\n    1498 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl\\n    1471 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n    1423 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl\\n       0 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl\\n     346 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl\\n    1496 /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl\\n    1499 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl\\n       0 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n       0 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl\\n    1301 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n       2 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl\\n    1500 /h
 …[truncated 1174 chars]
@@ -7778,7 +7559,7 @@ _source line 889 · 2026-05-22T11:02:57.334959+00:00_
 
 ### Tool call
 
-_source line 890 · 2026-05-22T11:04:32.850352+00:00_
+_source line 884 · 2026-05-22T11:04:32.850352+00:00_
 
 called Read
 
@@ -7816,7 +7597,7 @@ called Read
 
 ### Tool result
 
-_source line 891 · 2026-05-22T11:04:32.951467+00:00_
+_source line 885 · 2026-05-22T11:04:32.951467+00:00_
 
 60	By the law of total covariance:
 61	\[
@@ -7877,7 +7658,7 @@ _source line 891 · 2026-05-22T11:04:32.951467+00:00_
 
 ### Tool call
 
-_source line 892 · 2026-05-22T11:04:36.915495+00:00_
+_source line 886 · 2026-05-22T11:04:36.915495+00:00_
 
 called Read
 
@@ -7915,7 +7696,7 @@ called Read
 
 ### Tool result
 
-_source line 893 · 2026-05-22T11:04:36.966263+00:00_
+_source line 887 · 2026-05-22T11:04:36.966263+00:00_
 
 178	For general $g$ and $f$ (not necessarily proportional), define the worst-case bias bound
 179	\begin{equation}
@@ -7975,7 +7756,7 @@ _source line 893 · 2026-05-22T11:04:36.966263+00:00_
 
 ### Tool call
 
-_source line 894 · 2026-05-22T11:06:18.765197+00:00_
+_source line 888 · 2026-05-22T11:06:18.765197+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8011,7 +7792,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 895 · 2026-05-22T11:06:22.480427+00:00_
+_source line 889 · 2026-05-22T11:06:22.480427+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -8033,7 +7814,7 @@ _source line 895 · 2026-05-22T11:06:22.480427+00:00_
 
 ### Assistant
 
-_source line 896 · 2026-05-22T11:06:25.689470+00:00_
+_source line 890 · 2026-05-22T11:06:25.689470+00:00_
 
 关键确认完毕：confounding sign preservation 有完整的一般情形解析证明（Proposition A.4, Cauchy-Schwarz sufficient condition |τ| > B̄）。发送完整评估。
 
@@ -8060,7 +7841,7 @@ _source line 896 · 2026-05-22T11:06:25.689470+00:00_
 
 ### User
 
-_source line 897 · 2026-05-22T11:24:26.457510+00:00_
+_source line 891 · 2026-05-22T11:24:26.457510+00:00_
 
 [系统通知 — worker_done:worker_code_exp_a_stress_test_20260522T110940]:
 Worker worker_code_exp_a_stress_test_20260522T110940 已完成（status=done），请审查 Agent 的处理结果。
@@ -8082,7 +7863,7 @@ Worker worker_code_exp_a_stress_test_20260522T110940 已完成（status=done）�
 
 ### Tool call
 
-_source line 898 · 2026-05-22T11:24:36.695267+00:00_
+_source line 892 · 2026-05-22T11:24:36.695267+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8122,7 +7903,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 899 · 2026-05-22T11:24:36.866143+00:00_
+_source line 893 · 2026-05-22T11:24:36.866143+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 4612 chars]
@@ -8145,7 +7926,7 @@ _source line 899 · 2026-05-22T11:24:36.866143+00:00_
 
 ### Tool call
 
-_source line 900 · 2026-05-22T11:24:43.293255+00:00_
+_source line 894 · 2026-05-22T11:24:43.293255+00:00_
 
 called Glob
 
@@ -8181,7 +7962,7 @@ called Glob
 
 ### Tool result
 
-_source line 901 · 2026-05-22T11:24:43.444213+00:00_
+_source line 895 · 2026-05-22T11:24:43.444213+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_a_stress_test.py
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_a_stress_test_results.json
@@ -8205,7 +7986,7 @@ _source line 901 · 2026-05-22T11:24:43.444213+00:00_
 
 ### Tool call
 
-_source line 902 · 2026-05-22T11:24:43.494815+00:00_
+_source line 896 · 2026-05-22T11:24:43.494815+00:00_
 
 called Glob
 
@@ -8241,7 +8022,7 @@ called Glob
 
 ### Tool result
 
-_source line 903 · 2026-05-22T11:24:43.545513+00:00_
+_source line 897 · 2026-05-22T11:24:43.545513+00:00_
 
 No files found
 
@@ -8263,7 +8044,7 @@ No files found
 
 ### Tool call
 
-_source line 904 · 2026-05-22T11:24:47.260788+00:00_
+_source line 898 · 2026-05-22T11:24:47.260788+00:00_
 
 called Read
 
@@ -8297,7 +8078,7 @@ called Read
 
 ### Tool result
 
-_source line 905 · 2026-05-22T11:24:47.563080+00:00_
+_source line 899 · 2026-05-22T11:24:47.563080+00:00_
 
 1	{
 2	  "results": [
@@ -8386,7 +8167,7 @@ _source line 905 · 2026-05-22T11:24:47.563080+00:00_
 
 ### Tool call
 
-_source line 906 · 2026-05-22T11:24:47.563488+00:00_
+_source line 900 · 2026-05-22T11:24:47.563488+00:00_
 
 called Read
 
@@ -8420,7 +8201,7 @@ called Read
 
 ### Tool result
 
-_source line 907 · 2026-05-22T11:24:47.664070+00:00_
+_source line 901 · 2026-05-22T11:24:47.664070+00:00_
 
 1	\begin{table*}[t]
 2	\centering
@@ -8474,7 +8255,7 @@ _source line 907 · 2026-05-22T11:24:47.664070+00:00_
 
 ### Tool call
 
-_source line 908 · 2026-05-22T11:25:17.288489+00:00_
+_source line 902 · 2026-05-22T11:25:17.288489+00:00_
 
 called Read
 
@@ -8510,7 +8291,7 @@ called Read
 
 ### Tool result
 
-_source line 909 · 2026-05-22T11:25:17.339757+00:00_
+_source line 903 · 2026-05-22T11:25:17.339757+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -8595,7 +8376,7 @@ _source line 909 · 2026-05-22T11:25:17.339757+00:00_
 
 ### Tool call
 
-_source line 910 · 2026-05-22T11:25:21.959366+00:00_
+_source line 904 · 2026-05-22T11:25:21.959366+00:00_
 
 called Read
 
@@ -8633,7 +8414,7 @@ called Read
 
 ### Tool result
 
-_source line 911 · 2026-05-22T11:25:22.010057+00:00_
+_source line 905 · 2026-05-22T11:25:22.010057+00:00_
 
 80	
 81	
@@ -8714,7 +8495,7 @@ _source line 911 · 2026-05-22T11:25:22.010057+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-22T11:26:02.208397+00:00_
+_source line 906 · 2026-05-22T11:26:02.208397+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8750,7 +8531,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 913 · 2026-05-22T11:26:06.074436+00:00_
+_source line 907 · 2026-05-22T11:26:06.074436+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -8772,7 +8553,7 @@ _source line 913 · 2026-05-22T11:26:06.074436+00:00_
 
 ### Tool call
 
-_source line 914 · 2026-05-22T11:28:22.614404+00:00_
+_source line 908 · 2026-05-22T11:28:22.614404+00:00_
 
 called ToolSearch
 
@@ -8808,7 +8589,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 915 · 2026-05-22T11:28:22.614843+00:00_
+_source line 909 · 2026-05-22T11:28:22.614843+00:00_
 
 
 
@@ -8830,7 +8611,7 @@ _source line 915 · 2026-05-22T11:28:22.614843+00:00_
 
 ### Tool call
 
-_source line 916 · 2026-05-22T11:28:25.373799+00:00_
+_source line 910 · 2026-05-22T11:28:25.373799+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8868,7 +8649,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 917 · 2026-05-22T11:28:25.475423+00:00_
+_source line 911 · 2026-05-22T11:28:25.475423+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}, \"spec\": {\"command\": \"python3 plan_006_full_analysis.py --n-sim 1000\", \"server\": \"home-1x5090\", \"data_path\": \"results/{humaid,civil_comments,vast}/\", \"data_count\": \"14 configs (8 humaid + 3 civil + 3 vast)\", \"model_name\": \"llama4/deepseek/qwen3/qwen2.5-7b\", \"seed\": 42, \"checkpoint_path\": \"artifacts/plan006_full/\", \"log_path\": \"logs/workers/worker_code_plan_006_full_run_20260521T012758.log\"}, \"completed_at\": \"2026-05-21T01:40:58.748Z\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code
 …[truncated 30880 chars]
@@ -8891,7 +8672,7 @@ _source line 917 · 2026-05-22T11:28:25.475423+00:00_
 
 ### Tool call
 
-_source line 918 · 2026-05-22T11:28:32.962551+00:00_
+_source line 912 · 2026-05-22T11:28:32.962551+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8929,7 +8710,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 919 · 2026-05-22T11:28:33.113777+00:00_
+_source line 913 · 2026-05-22T11:28:33.113777+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\"}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\"}, \"plan003_empirical_confusion_matrices\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T23:12:39.443Z\", \"hypothesis\": \"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\", \"conclusion\": \"failed\"}, \"plan007_correction_guidance\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T20:48:37.062Z\", \"hypothesis\": \"不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。\", \"conclusion\": \"success\"}, \"plan009_pathological_matrices\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-20T18:57:41.687Z\", \"hypothesis\": \"病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\\\"安全区\\\"和\\\"灾难区\\\"分隔。这些结
 …[truncated 3719 chars]
@@ -8952,7 +8733,7 @@ _source line 919 · 2026-05-22T11:28:33.113777+00:00_
 
 ### Tool call
 
-_source line 920 · 2026-05-22T11:28:33.566013+00:00_
+_source line 914 · 2026-05-22T11:28:33.566013+00:00_
 
 called ToolSearch
 
@@ -8988,7 +8769,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 921 · 2026-05-22T11:28:33.666946+00:00_
+_source line 915 · 2026-05-22T11:28:33.666946+00:00_
 
 
 
@@ -9010,7 +8791,7 @@ _source line 921 · 2026-05-22T11:28:33.666946+00:00_
 
 ### Tool call
 
-_source line 922 · 2026-05-22T11:28:42.060400+00:00_
+_source line 916 · 2026-05-22T11:28:42.060400+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9048,7 +8829,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 923 · 2026-05-22T11:28:43.119880+00:00_
+_source line 917 · 2026-05-22T11:28:43.119880+00:00_
 
 called Bash
 
@@ -9084,7 +8865,7 @@ called Bash
 
 ### Tool call
 
-_source line 924 · 2026-05-22T11:28:43.973639+00:00_
+_source line 918 · 2026-05-22T11:28:43.973639+00:00_
 
 called Bash
 
@@ -9120,7 +8901,7 @@ called Bash
 
 ### Tool result
 
-_source line 925 · 2026-05-22T11:28:44.380306+00:00_
+_source line 919 · 2026-05-22T11:28:44.380306+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: ‘/home/sonny/causal_annot_error_attrib/artifacts/exp_a_stress_test_results.json’: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.25}}"}
 
@@ -9142,7 +8923,7 @@ _source line 925 · 2026-05-22T11:28:44.380306+00:00_
 
 ### Tool result
 
-_source line 926 · 2026-05-22T11:28:44.634373+00:00_
+_source line 920 · 2026-05-22T11:28:44.634373+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex
@@ -9166,7 +8947,7 @@ _source line 926 · 2026-05-22T11:28:44.634373+00:00_
 
 ### Tool result
 
-_source line 927 · 2026-05-22T11:28:44.634887+00:00_
+_source line 921 · 2026-05-22T11:28:44.634887+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_cms.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_a_stress_test_results.json
@@ -9192,7 +8973,7 @@ _source line 927 · 2026-05-22T11:28:44.634887+00:00_
 
 ### Tool call
 
-_source line 928 · 2026-05-22T11:28:50.618886+00:00_
+_source line 922 · 2026-05-22T11:28:50.618886+00:00_
 
 called Read
 
@@ -9228,7 +9009,7 @@ called Read
 
 ### Tool result
 
-_source line 929 · 2026-05-22T11:28:51.624304+00:00_
+_source line 923 · 2026-05-22T11:28:51.624304+00:00_
 
 1	{
 2	  "civil_comments/deepseek_few-shot-5": {
@@ -9329,7 +9110,7 @@ _source line 929 · 2026-05-22T11:28:51.624304+00:00_
 
 ### Tool call
 
-_source line 930 · 2026-05-22T11:28:51.624739+00:00_
+_source line 924 · 2026-05-22T11:28:51.624739+00:00_
 
 called Read
 
@@ -9365,7 +9146,7 @@ called Read
 
 ### Tool result
 
-_source line 931 · 2026-05-22T11:28:51.925769+00:00_
+_source line 925 · 2026-05-22T11:28:51.925769+00:00_
 
 1	{
 2	  "humaid/deepseek_zero-shot": {
@@ -9402,7 +9183,7 @@ _source line 931 · 2026-05-22T11:28:51.925769+00:00_
 
 ### Tool call
 
-_source line 932 · 2026-05-22T11:28:51.976420+00:00_
+_source line 926 · 2026-05-22T11:28:51.976420+00:00_
 
 called Read
 
@@ -9436,7 +9217,7 @@ called Read
 
 ### Tool result
 
-_source line 933 · 2026-05-22T11:28:52.027044+00:00_
+_source line 927 · 2026-05-22T11:28:52.027044+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -9478,7 +9259,7 @@ _source line 933 · 2026-05-22T11:28:52.027044+00:00_
 
 ### Tool call
 
-_source line 934 · 2026-05-22T11:29:00.517388+00:00_
+_source line 928 · 2026-05-22T11:29:00.517388+00:00_
 
 called Bash
 
@@ -9514,7 +9295,7 @@ called Bash
 
 ### Tool result
 
-_source line 935 · 2026-05-22T11:29:00.970084+00:00_
+_source line 929 · 2026-05-22T11:29:00.970084+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms_round2.json
 
@@ -9536,7 +9317,7 @@ _source line 935 · 2026-05-22T11:29:00.970084+00:00_
 
 ### Tool call
 
-_source line 936 · 2026-05-22T11:29:01.472103+00:00_
+_source line 930 · 2026-05-22T11:29:01.472103+00:00_
 
 called Bash
 
@@ -9572,7 +9353,7 @@ called Bash
 
 ### Tool result
 
-_source line 937 · 2026-05-22T11:29:01.673541+00:00_
+_source line 931 · 2026-05-22T11:29:01.673541+00:00_
 
 total 1128
 -rw-r--r--  1 ubuntu ubuntu   2886 May 22 11:24 exp_a_stress_test_table.tex
@@ -9624,7 +9405,7 @@ drwxr-xr-x 13 ubuntu ubuntu   4096 May 21 08:32 dream_reports
 
 ### Tool call
 
-_source line 938 · 2026-05-22T11:29:01.673983+00:00_
+_source line 932 · 2026-05-22T11:29:01.673983+00:00_
 
 called Read
 
@@ -9658,7 +9439,7 @@ called Read
 
 ### Tool result
 
-_source line 939 · 2026-05-22T11:29:01.724433+00:00_
+_source line 933 · 2026-05-22T11:29:01.724433+00:00_
 
 1	\begin{abstract}
 2	Large language models (LLMs) are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that binary measurement error theory cannot predict. We present a systematic framework characterizing how $K$-class confusion matrix structure interacts with DAG topology to determine bias direction and magnitude. We derive bias expressions for seven canonical DAG topologies under multi-class non-differential misclassification and establish a structural sign-flip guarantee: five topologies never produce sign reversal, while exposure and instrumental variable topologies can---under the full Dirichlet$(1,1,1)$ prior, 83.4\% of $K{=}3$ confusion matrices cause sign reversal in the exposure DAG; under realistic classifier accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal. We introduce Annotation Sensitivity Values (ASVs) with three complementary measures revealing a topology-dependent vulnerability spectrum from IV (maximally fragile, 52.6\% sign reversal) to M-bias (immune). We evaluate five correction methods and prove a Frisch--Waugh--Lovell invariance result: matrix-based corrections achieve 0\% bias reduction for four topologies, while PPI++ achieves 47.0\% RMSE reduction but requires gold labels and is harmful for M-bias ($-$88\%). Empirical validation on three tasks ($K{=}2,3,10$) with four LLMs confirms structural predictions: zero sign reversals across five guaranteed topologies, while 59\% of exposure configurations exhibit coefficient-level sign reversal in secondary coefficients. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -9683,7 +9464,7 @@ _source line 939 · 2026-05-22T11:29:01.724433+00:00_
 
 ### Tool call
 
-_source line 940 · 2026-05-22T11:29:05.390269+00:00_
+_source line 934 · 2026-05-22T11:29:05.390269+00:00_
 
 called Bash
 
@@ -9719,7 +9500,7 @@ called Bash
 
 ### Tool result
 
-_source line 941 · 2026-05-22T11:29:05.892330+00:00_
+_source line 935 · 2026-05-22T11:29:05.892330+00:00_
 
 total 768
 -rw-r--r-- 1 ubuntu ubuntu 786027 May 22 10:32 submitted.pdf
@@ -9742,7 +9523,7 @@ total 768
 
 ### Tool call
 
-_source line 942 · 2026-05-22T11:29:06.393882+00:00_
+_source line 936 · 2026-05-22T11:29:06.393882+00:00_
 
 called Read
 
@@ -9778,7 +9559,7 @@ called Read
 
 ### Tool result
 
-_source line 943 · 2026-05-22T11:29:06.696506+00:00_
+_source line 937 · 2026-05-22T11:29:06.696506+00:00_
 
 1	issues:
 2	  # === Round 1 issues — status updates for Round 2 ===
@@ -9850,7 +9631,7 @@ _source line 943 · 2026-05-22T11:29:06.696506+00:00_
 
 ### Tool call
 
-_source line 944 · 2026-05-22T11:29:06.697029+00:00_
+_source line 938 · 2026-05-22T11:29:06.697029+00:00_
 
 called Read
 
@@ -9884,7 +9665,7 @@ called Read
 
 ### Tool result
 
-_source line 945 · 2026-05-22T11:29:06.747510+00:00_
+_source line 939 · 2026-05-22T11:29:06.747510+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -9914,7 +9695,7 @@ _source line 945 · 2026-05-22T11:29:06.747510+00:00_
 
 ### Tool call
 
-_source line 946 · 2026-05-22T11:29:10.367304+00:00_
+_source line 940 · 2026-05-22T11:29:10.367304+00:00_
 
 called Read
 
@@ -9950,7 +9731,7 @@ called Read
 
 ### Tool result
 
-_source line 947 · 2026-05-22T11:29:10.819548+00:00_
+_source line 941 · 2026-05-22T11:29:10.819548+00:00_
 
 100	        status: pending
 101	    resolution: ""
@@ -10026,7 +9807,7 @@ _source line 947 · 2026-05-22T11:29:10.819548+00:00_
 
 ### Tool call
 
-_source line 948 · 2026-05-22T11:29:10.970443+00:00_
+_source line 942 · 2026-05-22T11:29:10.970443+00:00_
 
 called Bash
 
@@ -10062,7 +9843,7 @@ called Bash
 
 ### Tool result
 
-_source line 949 · 2026-05-22T11:29:11.021269+00:00_
+_source line 943 · 2026-05-22T11:29:11.021269+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -10099,7 +9880,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 950 · 2026-05-22T11:29:22.580402+00:00_
+_source line 944 · 2026-05-22T11:29:22.580402+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10137,7 +9918,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 951 · 2026-05-22T11:29:23.736674+00:00_
+_source line 945 · 2026-05-22T11:29:23.736674+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nsonny     980254  0.0  0.0  13216  3808 ?        Rs   04:29   0:00 ps aux --sort=-start_time\\nroot      980252  0.0  0.0      0     0 ?        I    04:29   0:00 [kworker/15:0]\\nroot      980165  0.0  0.0      0     0 ?        I    04:28   0:00 [kworker/5:2-events]\\nsonny     980163  0.0  0.0  17568  7840 ?        S    04:28   0:00 sshd: sonny@notty\\nroot      980062  0.0  0.0  17436 10836 ?        Ss   04:28   0:00 sshd: sonny [priv]\\nroot      979934  0.0  0.0      0     0 ?        I    04:27   0:00 [kworker/16:0-events]\\nroot      979880  0.0  0.0      0     0 ?        I    04:27   0:00 [kworker/24:0-events]\\nroot      979699  0.0  0.0      0     0 ?        I    04:26   0:00 [kworker/26:1-mm_percpu_wq]\\nroot      979698  0.0  0.0      0     0 ?        I    04:26   0:00 [kworker/12:0-events]\\nroot      979605  0.0  0.0      0     0 ?        I    04:26   0:00 [kworker/2:0-mm_percpu_wq]\\nsonny     979565  1.3  0.0 1239264 51744 ?       Sl   04:26   0:02 python3 annotate.py --dataset vast --model qwen3 --prompt few-shot-3 --sample 1500\\nroot      979376  0.0  0.0      0     0 ?        I    04:24   0:00 [kworker/1:1-mm_percpu_wq]\\nroot      979308  0.0  0.0      0     0 ?        I    04:24   0:00 [kworker/8:2-mm_percpu_wq]\\nroot      979053  0.0  0.0      0     0 ?        I    04:22   0:00 [kworker/14:2-mm_percpu_wq]\\nroot      978982  0.0  0.0      0     0 ?        I    04:22   0:00 [kworker/24:1-events]\\nroot      978949  0.0  0.0      0     0 ?        I    04:22   0:00 [kworker/16:1-mm_percpu_wq]\\nroot      978646  0.0  0.0      0     0 ?        I    04:20   0:00 [kworker/3:0-events]\\nroot      978550  0.0  0.0      0     0 ?        I    04:19   0:00 [kworker/15:2-events]\\nroot      978547  0.0  0.0      0     0 ?        I    04:19   0:00 [kworker/u56:4-events_unbound]\\nroot      978404  0.0  0.0      0     0 ?      
 …[truncated 6384 chars]
@@ -10160,7 +9941,7 @@ _source line 951 · 2026-05-22T11:29:23.736674+00:00_
 
 ### Tool call
 
-_source line 952 · 2026-05-22T11:29:31.276083+00:00_
+_source line 946 · 2026-05-22T11:29:31.276083+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10198,7 +9979,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 953 · 2026-05-22T11:29:32.181071+00:00_
+_source line 947 · 2026-05-22T11:29:32.181071+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny 27109 May 22 04:29 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
 
@@ -10220,7 +10001,7 @@ _source line 953 · 2026-05-22T11:29:32.181071+00:00_
 
 ### Tool call
 
-_source line 954 · 2026-05-22T11:29:32.231702+00:00_
+_source line 948 · 2026-05-22T11:29:32.231702+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10258,7 +10039,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 955 · 2026-05-22T11:29:33.186409+00:00_
+_source line 949 · 2026-05-22T11:29:33.186409+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"36 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
 
@@ -10280,7 +10061,7 @@ _source line 955 · 2026-05-22T11:29:33.186409+00:00_
 
 ### Tool call
 
-_source line 956 · 2026-05-22T11:29:33.389577+00:00_
+_source line 950 · 2026-05-22T11:29:33.389577+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10318,7 +10099,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 957 · 2026-05-22T11:29:34.297512+00:00_
+_source line 951 · 2026-05-22T11:29:34.297512+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
 
@@ -10340,7 +10121,7 @@ _source line 957 · 2026-05-22T11:29:34.297512+00:00_
 
 ### Tool call
 
-_source line 958 · 2026-05-22T11:29:43.308545+00:00_
+_source line 952 · 2026-05-22T11:29:43.308545+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10378,7 +10159,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 959 · 2026-05-22T11:29:44.213063+00:00_
+_source line 953 · 2026-05-22T11:29:44.213063+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
 
@@ -10400,7 +10181,7 @@ _source line 959 · 2026-05-22T11:29:44.213063+00:00_
 
 ### Tool call
 
-_source line 960 · 2026-05-22T11:29:44.313811+00:00_
+_source line 954 · 2026-05-22T11:29:44.313811+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10438,7 +10219,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 961 · 2026-05-22T11:29:45.468091+00:00_
+_source line 955 · 2026-05-22T11:29:45.468091+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: ‘/home/sonny/causal_annot_error_attrib/exp_a_stress_test.py’: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.14}}"}
 
@@ -10460,7 +10241,7 @@ _source line 961 · 2026-05-22T11:29:45.468091+00:00_
 
 ### Tool call
 
-_source line 962 · 2026-05-22T11:29:51.544006+00:00_
+_source line 956 · 2026-05-22T11:29:51.544006+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10498,7 +10279,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 963 · 2026-05-22T11:29:52.648987+00:00_
+_source line 957 · 2026-05-22T11:29:52.648987+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_e
 …[truncated 861 chars]
@@ -10521,7 +10302,7 @@ _source line 963 · 2026-05-22T11:29:52.648987+00:00_
 
 ### Tool call
 
-_source line 964 · 2026-05-22T11:29:59.334675+00:00_
+_source line 958 · 2026-05-22T11:29:59.334675+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10559,7 +10340,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 965 · 2026-05-22T11:29:59.986997+00:00_
+_source line 959 · 2026-05-22T11:29:59.986997+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10597,7 +10378,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 966 · 2026-05-22T11:30:00.339498+00:00_
+_source line 960 · 2026-05-22T11:30:00.339498+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl\\n     346 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl\\n    1496 /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl\\n    1499 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl\\n      41 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n       0 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n   13882 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
 
@@ -10619,7 +10400,7 @@ _source line 966 · 2026-05-22T11:30:00.339498+00:00_
 
 ### Tool result
 
-_source line 967 · 2026-05-22T11:30:00.992847+00:00_
+_source line 961 · 2026-05-22T11:30:00.992847+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      2 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-5.jsonl\\n      0 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl\\n      0 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl\\n      0 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl\\n      0 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl\\n   1496 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_few-shot-3.jsonl\\n   1492 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_few-shot-5.jsonl\\n   1079 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl\\n  10069 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
 
@@ -10641,7 +10422,7 @@ _source line 967 · 2026-05-22T11:30:00.992847+00:00_
 
 ### Tool call
 
-_source line 968 · 2026-05-22T11:30:01.043632+00:00_
+_source line 962 · 2026-05-22T11:30:01.043632+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10679,7 +10460,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 969 · 2026-05-22T11:30:02.348474+00:00_
+_source line 963 · 2026-05-22T11:30:02.348474+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"   1345 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl\\n   1237 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\n   1498 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl\\n   1471 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n   1423 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl\\n      0 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl\\n   1500 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\n  11474 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
 
@@ -10701,7 +10482,7 @@ _source line 969 · 2026-05-22T11:30:02.348474+00:00_
 
 ### Tool call
 
-_source line 970 · 2026-05-22T11:30:31.313566+00:00_
+_source line 964 · 2026-05-22T11:30:31.313566+00:00_
 
 called Bash
 
@@ -10737,7 +10518,7 @@ called Bash
 
 ### Tool result
 
-_source line 971 · 2026-05-22T11:30:31.517346+00:00_
+_source line 965 · 2026-05-22T11:30:31.517346+00:00_
 
 biases
 config_meta
@@ -10763,7 +10544,7 @@ Total: 4
 
 ### Tool call
 
-_source line 972 · 2026-05-22T11:30:35.492900+00:00_
+_source line 966 · 2026-05-22T11:30:35.492900+00:00_
 
 called Bash
 
@@ -10799,7 +10580,7 @@ called Bash
 
 ### Tool result
 
-_source line 973 · 2026-05-22T11:30:35.645982+00:00_
+_source line 967 · 2026-05-22T11:30:35.645982+00:00_
 
 civil_comments_deepseek_few-shot-5
 civil_comments_qwen2.5-7b_few-shot-3
@@ -10844,7 +10625,7 @@ Total: 22
 
 ### Tool call
 
-_source line 974 · 2026-05-22T11:31:27.541372+00:00_
+_source line 968 · 2026-05-22T11:31:27.541372+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10880,7 +10661,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 975 · 2026-05-22T11:31:28.998437+00:00_
+_source line 969 · 2026-05-22T11:31:28.998437+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -10902,7 +10683,7 @@ _source line 975 · 2026-05-22T11:31:28.998437+00:00_
 
 ### Assistant
 
-_source line 976 · 2026-05-22T11:31:34.126638+00:00_
+_source line 970 · 2026-05-22T11:31:34.126638+00:00_
 
 报告已发送。当前状态总结：
 
@@ -10936,7 +10717,7 @@ _source line 976 · 2026-05-22T11:31:34.126638+00:00_
 
 ### User
 
-_source line 977 · 2026-05-22T11:35:59.000772+00:00_
+_source line 971 · 2026-05-22T11:35:59.000772+00:00_
 
 [系统通知 — worker_done:worker_code_extract_vast_qwen3_zs_20260522T113310]:
 Worker worker_code_extract_vast_qwen3_zs_20260522T113310 已完成（status=done），请审查 Agent 的处理结果。
@@ -10958,7 +10739,7 @@ Worker worker_code_extract_vast_qwen3_zs_20260522T113310 已完成（status=done
 
 ### Tool call
 
-_source line 978 · 2026-05-22T11:36:19.089437+00:00_
+_source line 972 · 2026-05-22T11:36:19.089437+00:00_
 
 called Bash
 
@@ -10994,7 +10775,7 @@ called Bash
 
 ### Tool result
 
-_source line 979 · 2026-05-22T11:36:21.403818+00:00_
+_source line 973 · 2026-05-22T11:36:21.403818+00:00_
 
 Total configs: 22
   vast_deepseek_few-shot-3: acc=0.4967, n=1500
@@ -11029,7 +10810,7 @@ Summary:
 
 ### Tool call
 
-_source line 980 · 2026-05-22T11:36:21.457250+00:00_
+_source line 974 · 2026-05-22T11:36:21.457250+00:00_
 
 called Bash
 
@@ -11065,7 +10846,7 @@ called Bash
 
 ### Tool result
 
-_source line 981 · 2026-05-22T11:36:21.713337+00:00_
+_source line 975 · 2026-05-22T11:36:21.713337+00:00_
 
 1779446470 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json
 1779449714 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex
@@ -11090,7 +10871,7 @@ _source line 981 · 2026-05-22T11:36:21.713337+00:00_
 
 ### Tool call
 
-_source line 982 · 2026-05-22T11:36:29.304521+00:00_
+_source line 976 · 2026-05-22T11:36:29.304521+00:00_
 
 called Bash
 
@@ -11126,7 +10907,7 @@ called Bash
 
 ### Tool result
 
-_source line 983 · 2026-05-22T11:36:30.715048+00:00_
+_source line 977 · 2026-05-22T11:36:30.715048+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms_vast_qwen3_zs.json
 
@@ -11148,7 +10929,7 @@ _source line 983 · 2026-05-22T11:36:30.715048+00:00_
 
 ### Tool call
 
-_source line 984 · 2026-05-22T11:36:31.066392+00:00_
+_source line 978 · 2026-05-22T11:36:31.066392+00:00_
 
 called Bash
 
@@ -11184,7 +10965,7 @@ called Bash
 
 ### Tool result
 
-_source line 985 · 2026-05-22T11:36:31.321730+00:00_
+_source line 979 · 2026-05-22T11:36:31.321730+00:00_
 
 Total in plan011_frontier_cms: 24
   civil_comments/deepseek_few-shot-5: acc=0.7406666666666667, n=1500
@@ -11230,7 +11011,7 @@ Total in plan011_frontier_cms: 24
 
 ### Tool call
 
-_source line 986 · 2026-05-22T11:36:36.695013+00:00_
+_source line 980 · 2026-05-22T11:36:36.695013+00:00_
 
 called Read
 
@@ -11264,7 +11045,7 @@ called Read
 
 ### Tool result
 
-_source line 987 · 2026-05-22T11:36:36.847038+00:00_
+_source line 981 · 2026-05-22T11:36:36.847038+00:00_
 
 1	{
 2	  "vast/qwen3_zero-shot": {
@@ -11304,7 +11085,7 @@ _source line 987 · 2026-05-22T11:36:36.847038+00:00_
 
 ### Tool call
 
-_source line 988 · 2026-05-22T11:36:45.443225+00:00_
+_source line 982 · 2026-05-22T11:36:45.443225+00:00_
 
 called Bash
 
@@ -11340,7 +11121,7 @@ called Bash
 
 ### Tool result
 
-_source line 989 · 2026-05-22T11:36:45.749447+00:00_
+_source line 983 · 2026-05-22T11:36:45.749447+00:00_
 
 artifacts/ppi_empirical_validation.json
 docs/paper/abstract.tex
@@ -11379,7 +11160,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 990 · 2026-05-22T11:37:05.714372+00:00_
+_source line 984 · 2026-05-22T11:37:05.714372+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11415,7 +11196,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 991 · 2026-05-22T11:37:17.625589+00:00_
+_source line 985 · 2026-05-22T11:37:17.625589+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -11437,7 +11218,7 @@ _source line 991 · 2026-05-22T11:37:17.625589+00:00_
 
 ### Assistant
 
-_source line 992 · 2026-05-22T11:37:21.186125+00:00_
+_source line 986 · 2026-05-22T11:37:21.186125+00:00_
 
 审查完成。vast/qwen3_zero-shot CM 提取 PASS，等待后续整合步骤和 Round 2 其他 action items 的 worker 完成通知。
 
@@ -11464,7 +11245,7 @@ _source line 992 · 2026-05-22T11:37:21.186125+00:00_
 
 ### User
 
-_source line 993 · 2026-05-22T11:40:28.781423+00:00_
+_source line 987 · 2026-05-22T11:40:28.781423+00:00_
 
 [系统通知 — worker_done:worker_code_exp_b_logistic_dgp_20260522T112822]:
 Worker worker_code_exp_b_logistic_dgp_20260522T112822 已完成（status=done），请审查 Agent 的处理结果。
@@ -11486,7 +11267,7 @@ Worker worker_code_exp_b_logistic_dgp_20260522T112822 已完成（status=done）
 
 ### Tool call
 
-_source line 994 · 2026-05-22T11:40:40.670029+00:00_
+_source line 988 · 2026-05-22T11:40:40.670029+00:00_
 
 called Bash
 
@@ -11522,7 +11303,7 @@ called Bash
 
 ### Tool result
 
-_source line 995 · 2026-05-22T11:40:40.925313+00:00_
+_source line 989 · 2026-05-22T11:40:40.925313+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_b_logistic_results.json
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/__pycache__/exp_b_logistic_dgp.cpython-314.pyc
@@ -11547,7 +11328,7 @@ _source line 995 · 2026-05-22T11:40:40.925313+00:00_
 
 ### Tool call
 
-_source line 996 · 2026-05-22T11:40:44.552335+00:00_
+_source line 990 · 2026-05-22T11:40:44.552335+00:00_
 
 called Read
 
@@ -11581,7 +11362,7 @@ called Read
 
 ### Tool result
 
-_source line 997 · 2026-05-22T11:40:45.009791+00:00_
+_source line 991 · 2026-05-22T11:40:45.009791+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -11676,7 +11457,7 @@ _source line 997 · 2026-05-22T11:40:45.009791+00:00_
 
 ### Tool call
 
-_source line 998 · 2026-05-22T11:40:45.010321+00:00_
+_source line 992 · 2026-05-22T11:40:45.010321+00:00_
 
 called Read
 
@@ -11710,7 +11491,7 @@ called Read
 
 ### Tool result
 
-_source line 999 · 2026-05-22T11:40:45.434725+00:00_
+_source line 993 · 2026-05-22T11:40:45.434725+00:00_
 
 1	{
 2	  "results": [
@@ -11803,7 +11584,7 @@ _source line 999 · 2026-05-22T11:40:45.434725+00:00_
 
 ### Tool call
 
-_source line 1000 · 2026-05-22T11:40:45.435212+00:00_
+_source line 994 · 2026-05-22T11:40:45.435212+00:00_
 
 called Read
 
@@ -11837,7 +11618,7 @@ called Read
 
 ### Tool result
 
-_source line 1001 · 2026-05-22T11:40:45.485746+00:00_
+_source line 995 · 2026-05-22T11:40:45.485746+00:00_
 
 1	\begin{table}[t]
 2	\centering
@@ -11893,7 +11674,7 @@ _source line 1001 · 2026-05-22T11:40:45.485746+00:00_
 
 ### Tool call
 
-_source line 1002 · 2026-05-22T11:42:02.704441+00:00_
+_source line 996 · 2026-05-22T11:42:02.704441+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11929,7 +11710,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1003 · 2026-05-22T11:42:08.634483+00:00_
+_source line 997 · 2026-05-22T11:42:08.634483+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -11951,7 +11732,7 @@ _source line 1003 · 2026-05-22T11:42:08.634483+00:00_
 
 ### Assistant
 
-_source line 1004 · 2026-05-22T11:42:13.239893+00:00_
+_source line 998 · 2026-05-22T11:42:13.239893+00:00_
 
 报告已发送。Exp-B logistic DGP 实验条件 PASS：confounding τ 保证和 exposure 脆弱性在 logistic DGP 下定性保持，IV τ flip rate 也可比。主要 warning 是 IV SF_any 列的 control-function vs 2SLS 维度不匹配会误导读者。
 
@@ -11978,7 +11759,7 @@ _source line 1004 · 2026-05-22T11:42:13.239893+00:00_
 
 ### User
 
-_source line 1005 · 2026-05-22T11:43:59.022084+00:00_
+_source line 999 · 2026-05-22T11:43:59.022084+00:00_
 
 [系统通知 — worker_done:worker_code_exp_c_bootstrap_asv_20260522T112843]:
 Worker worker_code_exp_c_bootstrap_asv_20260522T112843 已完成（status=done），请审查 Agent 的处理结果。
@@ -12000,7 +11781,7 @@ Worker worker_code_exp_c_bootstrap_asv_20260522T112843 已完成（status=done�
 
 ### Tool call
 
-_source line 1006 · 2026-05-22T11:44:11.710732+00:00_
+_source line 1000 · 2026-05-22T11:44:11.710732+00:00_
 
 called Bash
 
@@ -12036,7 +11817,7 @@ called Bash
 
 ### Tool result
 
-_source line 1007 · 2026-05-22T11:44:12.065942+00:00_
+_source line 1001 · 2026-05-22T11:44:12.065942+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_c_bootstrap_figure.pdf
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_c_bootstrap_asv.py
@@ -12060,7 +11841,7 @@ _source line 1007 · 2026-05-22T11:44:12.065942+00:00_
 
 ### Tool call
 
-_source line 1008 · 2026-05-22T11:44:15.133757+00:00_
+_source line 1002 · 2026-05-22T11:44:15.133757+00:00_
 
 called Read
 
@@ -12094,7 +11875,7 @@ called Read
 
 ### Tool result
 
-_source line 1009 · 2026-05-22T11:44:15.387824+00:00_
+_source line 1003 · 2026-05-22T11:44:15.387824+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -12177,7 +11958,7 @@ _source line 1009 · 2026-05-22T11:44:15.387824+00:00_
 
 ### Tool call
 
-_source line 1010 · 2026-05-22T11:44:15.388492+00:00_
+_source line 1004 · 2026-05-22T11:44:15.388492+00:00_
 
 called Read
 
@@ -12211,7 +11992,7 @@ called Read
 
 ### Tool result
 
-_source line 1011 · 2026-05-22T11:44:15.694818+00:00_
+_source line 1005 · 2026-05-22T11:44:15.694818+00:00_
 
 1	{
 2	  "source_cm": "humaid/deepseek_zero-shot",
@@ -12339,7 +12120,7 @@ _source line 1011 · 2026-05-22T11:44:15.694818+00:00_
 
 ### Tool call
 
-_source line 1012 · 2026-05-22T11:45:16.970112+00:00_
+_source line 1006 · 2026-05-22T11:45:16.970112+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12375,7 +12156,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1013 · 2026-05-22T11:45:20.789029+00:00_
+_source line 1007 · 2026-05-22T11:45:20.789029+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -12404,7 +12185,7 @@ _source line 1013 · 2026-05-22T11:45:20.789029+00:00_
 
 ### User
 
-_source line 1014 · 2026-05-22T11:46:59.252445+00:00_
+_source line 1008 · 2026-05-22T11:46:59.252445+00:00_
 
 [系统通知 — worker_done:worker_paper_phase2_text_changes_20260522T113012]:
 Worker worker_paper_phase2_text_changes_20260522T113012 已完成（status=done），请审查 Agent 的处理结果。
@@ -12426,7 +12207,7 @@ Worker worker_paper_phase2_text_changes_20260522T113012 已完成（status=done�
 
 ### Tool call
 
-_source line 1015 · 2026-05-22T11:47:25.472193+00:00_
+_source line 1009 · 2026-05-22T11:47:25.472193+00:00_
 
 called Bash
 
@@ -12462,7 +12243,7 @@ called Bash
 
 ### Tool result
 
-_source line 1016 · 2026-05-22T11:47:25.724990+00:00_
+_source line 1010 · 2026-05-22T11:47:25.724990+00:00_
 
  artifacts/ppi_empirical_validation.json | 4076 ++++++++++++++++---------------
  docs/paper/abstract.tex                 |    2 +-
@@ -12502,7 +12283,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1017 · 2026-05-22T11:47:30.008298+00:00_
+_source line 1011 · 2026-05-22T11:47:30.008298+00:00_
 
 called Bash
 
@@ -12538,7 +12319,7 @@ called Bash
 
 ### Tool result
 
-_source line 1018 · 2026-05-22T11:47:30.110971+00:00_
+_source line 1012 · 2026-05-22T11:47:30.110971+00:00_
 
 &lt;persisted-output>
 Output too large (35.1KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib--claude-sessions-reviewer-15d8e49e/8bc69155-8f9e-4c11-b39a-4ba9e528bab0/tool-results/be6i8p135.txt
@@ -12571,7 +12352,7 @@ index 539bb8b..f689422 100644
 
 ### Tool call
 
-_source line 1019 · 2026-05-22T11:47:34.479622+00:00_
+_source line 1013 · 2026-05-22T11:47:34.479622+00:00_
 
 called Read
 
@@ -12605,7 +12386,7 @@ called Read
 
 ### Tool result
 
-_source line 1020 · 2026-05-22T11:47:34.835937+00:00_
+_source line 1014 · 2026-05-22T11:47:34.835937+00:00_
 
 1	diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
 2	index 539bb8b..f689422 100644
@@ -12635,7 +12416,7 @@ _source line 1020 · 2026-05-22T11:47:34.835937+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-22T11:50:06.022435+00:00_
+_source line 1015 · 2026-05-22T11:50:06.022435+00:00_
 
 called ToolSearch
 
@@ -12671,7 +12452,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1022 · 2026-05-22T11:50:06.073079+00:00_
+_source line 1016 · 2026-05-22T11:50:06.073079+00:00_
 
 No matching deferred tools found
 
@@ -12693,7 +12474,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1023 · 2026-05-22T11:50:07.028562+00:00_
+_source line 1017 · 2026-05-22T11:50:07.028562+00:00_
 
 called Grep
 
@@ -12731,7 +12512,7 @@ called Grep
 
 ### Tool result
 
-_source line 1024 · 2026-05-22T11:50:07.481271+00:00_
+_source line 1018 · 2026-05-22T11:50:07.481271+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:8:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/references.bib:207:@article{cheng_mayya_sedoc2024,
@@ -12757,7 +12538,7 @@ _source line 1024 · 2026-05-22T11:50:07.481271+00:00_
 
 ### Tool call
 
-_source line 1025 · 2026-05-22T11:50:07.481757+00:00_
+_source line 1019 · 2026-05-22T11:50:07.481757+00:00_
 
 called Grep
 
@@ -12795,7 +12576,7 @@ called Grep
 
 ### Tool result
 
-_source line 1026 · 2026-05-22T11:50:07.583332+00:00_
+_source line 1020 · 2026-05-22T11:50:07.583332+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:9:[Omitted long matching line]
 
@@ -12817,7 +12598,7 @@ _source line 1026 · 2026-05-22T11:50:07.583332+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-22T11:50:11.249449+00:00_
+_source line 1021 · 2026-05-22T11:50:11.249449+00:00_
 
 called Read
 
@@ -12855,7 +12636,7 @@ called Read
 
 ### Tool result
 
-_source line 1028 · 2026-05-22T11:50:14.565515+00:00_
+_source line 1022 · 2026-05-22T11:50:14.565515+00:00_
 
 1	\enlargethispage{1\baselineskip}
 2	\section{Conclusion}
@@ -12886,7 +12667,7 @@ _source line 1028 · 2026-05-22T11:50:14.565515+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-22T11:50:14.716466+00:00_
+_source line 1023 · 2026-05-22T11:50:14.716466+00:00_
 
 called Bash
 
@@ -12922,7 +12703,7 @@ called Bash
 
 ### Tool result
 
-_source line 1030 · 2026-05-22T11:50:16.925667+00:00_
+_source line 1024 · 2026-05-22T11:50:16.925667+00:00_
 
 Total configs: 0
 Unique config keys: 0
@@ -12946,7 +12727,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1031 · 2026-05-22T11:50:17.076583+00:00_
+_source line 1025 · 2026-05-22T11:50:17.076583+00:00_
 
 called Bash
 
@@ -12982,7 +12763,7 @@ called Bash
 
 ### Tool result
 
-_source line 1032 · 2026-05-22T11:50:17.429819+00:00_
+_source line 1026 · 2026-05-22T11:50:17.429819+00:00_
 
 Config references in compute script: []
 -rw-r--r-- 1 ubuntu ubuntu  73165 May 21 10:43 artifacts/ppi_empirical_validation.json
@@ -13007,7 +12788,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1033 · 2026-05-22T11:50:22.394562+00:00_
+_source line 1027 · 2026-05-22T11:50:22.394562+00:00_
 
 called Bash
 
@@ -13043,7 +12824,7 @@ called Bash
 
 ### Tool result
 
-_source line 1034 · 2026-05-22T11:50:22.600333+00:00_
+_source line 1028 · 2026-05-22T11:50:22.600333+00:00_
 
 Keys: ['confusion_matrices', 'config_meta', 'biases', 'summary']
 confusion_matrices: len=23
@@ -13070,7 +12851,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1035 · 2026-05-22T11:50:28.746294+00:00_
+_source line 1029 · 2026-05-22T11:50:28.746294+00:00_
 
 called Bash
 
@@ -13106,7 +12887,7 @@ called Bash
 
 ### Tool result
 
-_source line 1036 · 2026-05-22T11:50:29.250301+00:00_
+_source line 1030 · 2026-05-22T11:50:29.250301+00:00_
 
 Exit code 1
 Traceback (most recent call last):
@@ -13133,7 +12914,7 @@ AttributeError: 'str' object has no attribute 'get'
 
 ### Tool call
 
-_source line 1037 · 2026-05-22T11:50:33.267383+00:00_
+_source line 1031 · 2026-05-22T11:50:33.267383+00:00_
 
 called Bash
 
@@ -13169,7 +12950,7 @@ called Bash
 
 ### Tool result
 
-_source line 1038 · 2026-05-22T11:50:33.419914+00:00_
+_source line 1032 · 2026-05-22T11:50:33.419914+00:00_
 
 config_meta type: &lt;class 'dict'>
 humaid_llama4_zero-shot: {'dataset': 'humaid', 'model_prompt': 'llama4_zero-shot', 'K': 10, 'source': 'plan006'}
@@ -13195,7 +12976,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1039 · 2026-05-22T11:50:38.690370+00:00_
+_source line 1033 · 2026-05-22T11:50:38.690370+00:00_
 
 called Bash
 
@@ -13231,7 +13012,7 @@ called Bash
 
 ### Tool result
 
-_source line 1040 · 2026-05-22T11:50:38.791247+00:00_
+_source line 1034 · 2026-05-22T11:50:38.791247+00:00_
 
 1. humaid_llama4_zero-shot (K=10, dataset=humaid)
 2. humaid_llama4_few-shot-3 (K=10, dataset=humaid)
@@ -13278,7 +13059,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1041 · 2026-05-22T11:50:49.238385+00:00_
+_source line 1035 · 2026-05-22T11:50:49.238385+00:00_
 
 called Bash
 
@@ -13314,7 +13095,7 @@ called Bash
 
 ### Tool result
 
-_source line 1042 · 2026-05-22T11:50:49.339261+00:00_
+_source line 1036 · 2026-05-22T11:50:49.339261+00:00_
 
 VAST: ['vast_deepseek_few-shot-3', 'vast_deepseek_few-shot-5', 'vast_llama4_few-shot-3', 'vast_llama4_zero-shot', 'vast_qwen2.5-7b_few-shot-3', 'vast_qwen2.5-7b_few-shot-5', 'vast_qwen2.5-7b_zero-shot', 'vast_qwen3_zero-shot']
 CC: ['civil_comments_deepseek_few-shot-5', 'civil_comments_qwen2.5-7b_few-shot-3', 'civil_comments_qwen2.5-7b_few-shot-5', 'civil_comments_qwen2.5-7b_zero-shot', 'civil_comments_qwen3_few-shot-3', 'civil_comments_qwen3_few-shot-5', 'civil_comments_qwen3_zero-shot']
@@ -13346,7 +13127,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1043 · 2026-05-22T11:51:00.441373+00:00_
+_source line 1037 · 2026-05-22T11:51:00.441373+00:00_
 
 called Bash
 
@@ -13382,7 +13163,7 @@ called Bash
 
 ### Tool result
 
-_source line 1044 · 2026-05-22T11:51:00.492100+00:00_
+_source line 1038 · 2026-05-22T11:51:00.492100+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -13414,7 +13195,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1045 · 2026-05-22T11:51:05.714492+00:00_
+_source line 1039 · 2026-05-22T11:51:05.714492+00:00_
 
 called Bash
 
@@ -13450,7 +13231,7 @@ called Bash
 
 ### Tool result
 
-_source line 1046 · 2026-05-22T11:51:06.018532+00:00_
+_source line 1040 · 2026-05-22T11:51:06.018532+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -13476,7 +13257,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1047 · 2026-05-22T11:51:06.270450+00:00_
+_source line 1041 · 2026-05-22T11:51:06.270450+00:00_
 
 called Bash
 
@@ -13512,7 +13293,7 @@ called Bash
 
 ### Tool result
 
-_source line 1048 · 2026-05-22T11:51:06.321133+00:00_
+_source line 1042 · 2026-05-22T11:51:06.321133+00:00_
 
 commit b57d5a0600eede7ffbdbe64a246ecd83163dad51
 Author: Ubuntu &lt;ubuntu@ip-172-31-2-28.ap-northeast-1.compute.internal>
@@ -13557,7 +13338,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1049 · 2026-05-22T11:51:15.608108+00:00_
+_source line 1043 · 2026-05-22T11:51:15.608108+00:00_
 
 called Grep
 
@@ -13597,7 +13378,7 @@ called Grep
 
 ### Tool call
 
-_source line 1050 · 2026-05-22T11:51:15.608617+00:00_
+_source line 1044 · 2026-05-22T11:51:15.608617+00:00_
 
 called Bash
 
@@ -13633,7 +13414,7 @@ called Bash
 
 ### Tool result
 
-_source line 1051 · 2026-05-22T11:51:15.608949+00:00_
+_source line 1045 · 2026-05-22T11:51:15.608949+00:00_
 
 43:where $\lambda(C) \in [0,1]$ summarizes attenuation (Appendix~\ref{app:proof}, Proposition~3), with $\lambda(I) = 1$ under perfect classification. Misclassification ($\lambda < 1$) causes the residual indirect effect to be absorbed into the direct path estimate, producing upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserving the sign ($\tau_{\text{sign\_flip}} = 0$).
 66:\paragraph{Empirical Finding 1} (Mediation, M-bias, front-door).
@@ -13656,7 +13437,7 @@ _source line 1051 · 2026-05-22T11:51:15.608949+00:00_
 
 ### Tool result
 
-_source line 1052 · 2026-05-22T11:51:15.659484+00:00_
+_source line 1046 · 2026-05-22T11:51:15.659484+00:00_
 
 commit 30f4d93c2d22cf5fdb5a4cda0aa0171c1afa6556
 Author: Ubuntu &lt;ubuntu@ip-172-31-2-28.ap-northeast-1.compute.internal>
@@ -13699,7 +13480,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1053 · 2026-05-22T11:51:20.126315+00:00_
+_source line 1047 · 2026-05-22T11:51:20.126315+00:00_
 
 called Grep
 
@@ -13739,7 +13520,7 @@ called Grep
 
 ### Tool result
 
-_source line 1054 · 2026-05-22T11:51:20.126739+00:00_
+_source line 1048 · 2026-05-22T11:51:20.126739+00:00_
 
 No matches found
 
@@ -13761,7 +13542,7 @@ No matches found
 
 ### Tool call
 
-_source line 1055 · 2026-05-22T11:51:20.629322+00:00_
+_source line 1049 · 2026-05-22T11:51:20.629322+00:00_
 
 called Grep
 
@@ -13801,7 +13582,7 @@ called Grep
 
 ### Tool result
 
-_source line 1056 · 2026-05-22T11:51:20.679920+00:00_
+_source line 1050 · 2026-05-22T11:51:20.679920+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:9:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:77:[Omitted long matching line]
@@ -13824,7 +13605,7 @@ _source line 1056 · 2026-05-22T11:51:20.679920+00:00_
 
 ### Tool call
 
-_source line 1057 · 2026-05-22T11:51:24.293938+00:00_
+_source line 1051 · 2026-05-22T11:51:24.293938+00:00_
 
 called Grep
 
@@ -13866,7 +13647,7 @@ called Grep
 
 ### Tool result
 
-_source line 1058 · 2026-05-22T11:51:24.394860+00:00_
+_source line 1052 · 2026-05-22T11:51:24.394860+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex-8-
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex:9:[Omitted long matching line]
@@ -13893,7 +13674,7 @@ _source line 1058 · 2026-05-22T11:51:24.394860+00:00_
 
 ### Tool call
 
-_source line 1059 · 2026-05-22T11:51:29.474606+00:00_
+_source line 1053 · 2026-05-22T11:51:29.474606+00:00_
 
 called ToolSearch
 
@@ -13929,7 +13710,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1060 · 2026-05-22T11:51:29.475040+00:00_
+_source line 1054 · 2026-05-22T11:51:29.475040+00:00_
 
 
 
@@ -13951,7 +13732,7 @@ _source line 1060 · 2026-05-22T11:51:29.475040+00:00_
 
 ### Tool call
 
-_source line 1061 · 2026-05-22T11:52:06.203929+00:00_
+_source line 1055 · 2026-05-22T11:52:06.203929+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13987,7 +13768,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1062 · 2026-05-22T11:52:09.969542+00:00_
+_source line 1056 · 2026-05-22T11:52:09.969542+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -14009,7 +13790,7 @@ _source line 1062 · 2026-05-22T11:52:09.969542+00:00_
 
 ### Assistant
 
-_source line 1063 · 2026-05-22T11:52:14.938898+00:00_
+_source line 1057 · 2026-05-22T11:52:14.938898+00:00_
 
 Phase 2-5 论文修改审查报告已发送给 Director。
 
@@ -14038,7 +13819,7 @@ Phase 2-5 论文修改审查报告已发送给 Director。
 
 ### User
 
-_source line 1064 · 2026-05-22T11:54:29.742601+00:00_
+_source line 1058 · 2026-05-22T11:54:29.742601+00:00_
 
 [系统通知 — worker_done:worker_code_exp_e_asv_stability_20260522T112928]:
 Worker worker_code_exp_e_asv_stability_20260522T112928 已完成（status=done），请审查 Agent 的处理结果。
@@ -14060,7 +13841,7 @@ Worker worker_code_exp_e_asv_stability_20260522T112928 已完成（status=done�
 
 ### Tool call
 
-_source line 1065 · 2026-05-22T11:54:43.949277+00:00_
+_source line 1059 · 2026-05-22T11:54:43.949277+00:00_
 
 called Read
 
@@ -14094,7 +13875,7 @@ called Read
 
 ### Tool result
 
-_source line 1066 · 2026-05-22T11:54:44.451751+00:00_
+_source line 1060 · 2026-05-22T11:54:44.451751+00:00_
 
 1	{
 2	  "dgp_configs": [
@@ -14212,7 +13993,7 @@ _source line 1066 · 2026-05-22T11:54:44.451751+00:00_
 
 ### Tool call
 
-_source line 1067 · 2026-05-22T11:54:44.452107+00:00_
+_source line 1061 · 2026-05-22T11:54:44.452107+00:00_
 
 called Read
 
@@ -14246,7 +14027,7 @@ called Read
 
 ### Tool result
 
-_source line 1068 · 2026-05-22T11:54:45.055730+00:00_
+_source line 1062 · 2026-05-22T11:54:45.055730+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -14337,7 +14118,7 @@ _source line 1068 · 2026-05-22T11:54:45.055730+00:00_
 
 ### Tool call
 
-_source line 1069 · 2026-05-22T11:54:45.056276+00:00_
+_source line 1063 · 2026-05-22T11:54:45.056276+00:00_
 
 called Read
 
@@ -14371,7 +14152,7 @@ called Read
 
 ### Tool result
 
-_source line 1070 · 2026-05-22T11:54:45.106843+00:00_
+_source line 1064 · 2026-05-22T11:54:45.106843+00:00_
 
 1	\begin{table}[t]
 2	\centering
@@ -14409,7 +14190,7 @@ _source line 1070 · 2026-05-22T11:54:45.106843+00:00_
 
 ### Tool call
 
-_source line 1071 · 2026-05-22T11:56:08.762753+00:00_
+_source line 1065 · 2026-05-22T11:56:08.762753+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14445,7 +14226,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1072 · 2026-05-22T11:56:12.782918+00:00_
+_source line 1066 · 2026-05-22T11:56:12.782918+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -14467,7 +14248,7 @@ _source line 1072 · 2026-05-22T11:56:12.782918+00:00_
 
 ### Assistant
 
-_source line 1073 · 2026-05-22T11:56:17.338631+00:00_
+_source line 1067 · 2026-05-22T11:56:17.338631+00:00_
 
 Exp-E 审查已发送。核心问题：`ranking_stable=false`，IV δ* 跨 DGP 恒等（数学恒等式非实验发现），exposure 有 2 个 DGP 结果完全一致（beta ratio 相同）。代码正确，但结论呈现需调整——不能 claim stability。
 
@@ -14494,7 +14275,7 @@ Exp-E 审查已发送。核心问题：`ranking_stable=false`，IV δ* 跨 DGP �
 
 ### User
 
-_source line 1074 · 2026-05-22T11:57:29.756744+00:00_
+_source line 1068 · 2026-05-22T11:57:29.756744+00:00_
 
 [系统通知 — worker_done:worker_paper_integrate_expbc_20260522T115404]:
 Worker worker_paper_integrate_expbc_20260522T115404 已完成（status=done），请审查 Agent 的处理结果。
@@ -14516,7 +14297,7 @@ Worker worker_paper_integrate_expbc_20260522T115404 已完成（status=done）�
 
 ### Tool call
 
-_source line 1075 · 2026-05-22T11:57:38.394669+00:00_
+_source line 1069 · 2026-05-22T11:57:38.394669+00:00_
 
 called Bash
 
@@ -14552,7 +14333,7 @@ called Bash
 
 ### Tool result
 
-_source line 1076 · 2026-05-22T11:57:38.546806+00:00_
+_source line 1070 · 2026-05-22T11:57:38.546806+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -14579,7 +14360,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1077 · 2026-05-22T11:57:41.360183+00:00_
+_source line 1071 · 2026-05-22T11:57:41.360183+00:00_
 
 called Bash
 
@@ -14615,7 +14396,7 @@ called Bash
 
 ### Tool result
 
-_source line 1078 · 2026-05-22T11:57:41.411108+00:00_
+_source line 1072 · 2026-05-22T11:57:41.411108+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
 
@@ -14637,7 +14418,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1079 · 2026-05-22T11:57:45.576515+00:00_
+_source line 1073 · 2026-05-22T11:57:45.576515+00:00_
 
 called Bash
 
@@ -14673,7 +14454,7 @@ called Bash
 
 ### Tool result
 
-_source line 1080 · 2026-05-22T11:57:45.627303+00:00_
+_source line 1074 · 2026-05-22T11:57:45.627303+00:00_
 
  M docs/paper/abstract.tex
  M docs/paper/appendix_proofs.tex
@@ -14713,7 +14494,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1081 · 2026-05-22T11:57:51.650113+00:00_
+_source line 1075 · 2026-05-22T11:57:51.650113+00:00_
 
 called Bash
 
@@ -14749,7 +14530,7 @@ called Bash
 
 ### Tool result
 
-_source line 1082 · 2026-05-22T11:57:52.002298+00:00_
+_source line 1076 · 2026-05-22T11:57:52.002298+00:00_
 
 diff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex
 index ea69706..ae30e22 100644
@@ -14781,7 +14562,7 @@ index ea69706..ae30e22 100644
 
 ### Tool call
 
-_source line 1083 · 2026-05-22T11:57:52.002769+00:00_
+_source line 1077 · 2026-05-22T11:57:52.002769+00:00_
 
 called Bash
 
@@ -14817,7 +14598,7 @@ called Bash
 
 ### Tool result
 
-_source line 1084 · 2026-05-22T11:57:53.560704+00:00_
+_source line 1078 · 2026-05-22T11:57:53.560704+00:00_
 
 diff --git a/docs/paper/appendix_proofs.tex b/docs/paper/appendix_proofs.tex
 index 2f2dcc7..523812a 100644
@@ -14864,7 +14645,7 @@ index 2f2dcc7..523812a 100644
 
 ### Tool call
 
-_source line 1085 · 2026-05-22T11:57:57.206807+00:00_
+_source line 1079 · 2026-05-22T11:57:57.206807+00:00_
 
 called Bash
 
@@ -14900,7 +14681,7 @@ called Bash
 
 ### Tool result
 
-_source line 1086 · 2026-05-22T11:57:57.257704+00:00_
+_source line 1080 · 2026-05-22T11:57:57.257704+00:00_
 
 diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
 index 539bb8b..f689422 100644
@@ -14930,7 +14711,7 @@ index 539bb8b..f689422 100644
 
 ### Tool call
 
-_source line 1087 · 2026-05-22T11:58:55.146338+00:00_
+_source line 1081 · 2026-05-22T11:58:55.146338+00:00_
 
 called Grep
 
@@ -14970,7 +14751,7 @@ called Grep
 
 ### Tool result
 
-_source line 1088 · 2026-05-22T11:58:55.447757+00:00_
+_source line 1082 · 2026-05-22T11:58:55.447757+00:00_
 
 No matches found
 
@@ -14992,7 +14773,7 @@ No matches found
 
 ### Tool call
 
-_source line 1089 · 2026-05-22T11:58:55.499392+00:00_
+_source line 1083 · 2026-05-22T11:58:55.499392+00:00_
 
 called Bash
 
@@ -15028,7 +14809,7 @@ called Bash
 
 ### Tool result
 
-_source line 1090 · 2026-05-22T11:59:00.902831+00:00_
+_source line 1084 · 2026-05-22T11:59:00.902831+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 32604 May 22 11:55 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/exp_c_bootstrap_figure.pdf
 EXISTS
@@ -15051,7 +14832,7 @@ EXISTS
 
 ### Tool call
 
-_source line 1091 · 2026-05-22T11:59:01.104778+00:00_
+_source line 1085 · 2026-05-22T11:59:01.104778+00:00_
 
 called Bash
 
@@ -15087,7 +14868,7 @@ called Bash
 
 ### Tool result
 
-_source line 1092 · 2026-05-22T11:59:02.660310+00:00_
+_source line 1086 · 2026-05-22T11:59:02.660310+00:00_
 
 Bias entry keys: ['dataset', 'model', 'prompt', 'K', 'topology', 'tau_true', 'tau_hat', 'bias', 'bias_pct', 'sign_flip', 'source']
 Sample: {'dataset': 'civil_comments', 'model': 'deepseek', 'prompt': 'few-shot-5', 'K': 2, 'topology': 'confounding', 'tau_true': 1.9997354633722035, 'tau_hat': 2.1906977839821127, 'bias': 0.19096232060990914, 'bias_pct': 0.09549379110769214, 'sign_flip': False, 'source': 'plan011_frontier'}
@@ -15111,7 +14892,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1093 · 2026-05-22T11:59:13.553239+00:00_
+_source line 1087 · 2026-05-22T11:59:13.553239+00:00_
 
 called Bash
 
@@ -15147,7 +14928,7 @@ called Bash
 
 ### Tool result
 
-_source line 1094 · 2026-05-22T11:59:13.704620+00:00_
+_source line 1088 · 2026-05-22T11:59:13.704620+00:00_
 
 vast: mean=62.8%, max=325.5%
   IV: mean=237.5%, max=325.5%
@@ -15178,7 +14959,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1095 · 2026-05-22T11:59:32.938023+00:00_
+_source line 1089 · 2026-05-22T11:59:32.938023+00:00_
 
 called Bash
 
@@ -15214,7 +14995,7 @@ called Bash
 
 ### Tool result
 
-_source line 1096 · 2026-05-22T11:59:34.445383+00:00_
+_source line 1090 · 2026-05-22T11:59:34.445383+00:00_
 
 {
   "total_configs": 23,
@@ -15313,7 +15094,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1097 · 2026-05-22T12:00:20.948341+00:00_
+_source line 1091 · 2026-05-22T12:00:20.948341+00:00_
 
 called Grep
 
@@ -15353,7 +15134,7 @@ called Grep
 
 ### Tool result
 
-_source line 1098 · 2026-05-22T12:00:21.504424+00:00_
+_source line 1092 · 2026-05-22T12:00:21.504424+00:00_
 
 No matches found
 
@@ -15375,7 +15156,7 @@ No matches found
 
 ### Tool call
 
-_source line 1099 · 2026-05-22T12:00:21.858338+00:00_
+_source line 1093 · 2026-05-22T12:00:21.858338+00:00_
 
 called Grep
 
@@ -15415,7 +15196,7 @@ called Grep
 
 ### Tool result
 
-_source line 1100 · 2026-05-22T12:00:23.413105+00:00_
+_source line 1094 · 2026-05-22T12:00:23.413105+00:00_
 
 No matches found
 
@@ -15437,7 +15218,7 @@ No matches found
 
 ### Tool call
 
-_source line 1101 · 2026-05-22T12:00:26.979615+00:00_
+_source line 1095 · 2026-05-22T12:00:26.979615+00:00_
 
 called Grep
 
@@ -15477,7 +15258,7 @@ called Grep
 
 ### Tool result
 
-_source line 1102 · 2026-05-22T12:00:27.081458+00:00_
+_source line 1096 · 2026-05-22T12:00:27.081458+00:00_
 
 No matches found
 
@@ -15499,7 +15280,7 @@ No matches found
 
 ### Tool call
 
-_source line 1103 · 2026-05-22T12:00:30.342934+00:00_
+_source line 1097 · 2026-05-22T12:00:30.342934+00:00_
 
 called Grep
 
@@ -15539,7 +15320,7 @@ called Grep
 
 ### Tool result
 
-_source line 1104 · 2026-05-22T12:00:30.598132+00:00_
+_source line 1098 · 2026-05-22T12:00:30.598132+00:00_
 
 No matches found
 
@@ -15561,7 +15342,7 @@ No matches found
 
 ### Tool call
 
-_source line 1105 · 2026-05-22T12:00:35.471486+00:00_
+_source line 1099 · 2026-05-22T12:00:35.471486+00:00_
 
 called Grep
 
@@ -15601,7 +15382,7 @@ called Grep
 
 ### Tool result
 
-_source line 1106 · 2026-05-22T12:00:35.923405+00:00_
+_source line 1100 · 2026-05-22T12:00:35.923405+00:00_
 
 No matches found
 
@@ -15623,7 +15404,7 @@ No matches found
 
 ### Tool call
 
-_source line 1107 · 2026-05-22T12:00:36.074458+00:00_
+_source line 1101 · 2026-05-22T12:00:36.074458+00:00_
 
 called Grep
 
@@ -15663,7 +15444,7 @@ called Grep
 
 ### Tool result
 
-_source line 1108 · 2026-05-22T12:00:36.128392+00:00_
+_source line 1102 · 2026-05-22T12:00:36.128392+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:80:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:32:\label{eq:exposure}
@@ -15687,7 +15468,7 @@ _source line 1108 · 2026-05-22T12:00:36.128392+00:00_
 
 ### Tool call
 
-_source line 1109 · 2026-05-22T12:00:40.448316+00:00_
+_source line 1103 · 2026-05-22T12:00:40.448316+00:00_
 
 called Grep
 
@@ -15729,7 +15510,7 @@ called Grep
 
 ### Tool result
 
-_source line 1110 · 2026-05-22T12:00:40.498981+00:00_
+_source line 1104 · 2026-05-22T12:00:40.498981+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:94:Binarization of $K{=}3$ annotations introduces additional topology-dependent bias (Appendix~\ref{app:binarization}).
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex:612:\label{app:binarization}
@@ -15756,7 +15537,7 @@ _source line 1110 · 2026-05-22T12:00:40.498981+00:00_
 
 ### Tool call
 
-_source line 1111 · 2026-05-22T12:01:11.134775+00:00_
+_source line 1105 · 2026-05-22T12:01:11.134775+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15792,7 +15573,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1112 · 2026-05-22T12:01:16.357644+00:00_
+_source line 1106 · 2026-05-22T12:01:16.357644+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -15814,7 +15595,7 @@ _source line 1112 · 2026-05-22T12:01:16.357644+00:00_
 
 ### Assistant
 
-_source line 1113 · 2026-05-22T12:01:18.702042+00:00_
+_source line 1107 · 2026-05-22T12:01:18.702042+00:00_
 
 Binarization cross-references are clean: method.tex → `\ref{app:binarization}` → appendix_proofs.tex label. Now I have the full picture. Posting review.
 
@@ -15841,7 +15622,7 @@ Binarization cross-references are clean: method.tex → `\ref{app:binarization}`
 
 ### User
 
-_source line 1114 · 2026-05-22T12:11:00.657285+00:00_
+_source line 1108 · 2026-05-22T12:11:00.657285+00:00_
 
 [系统通知 — worker_done:worker_code_exp_d_conjecture_verify_20260522T112907]:
 Worker worker_code_exp_d_conjecture_verify_20260522T112907 已完成（status=done），请审查 Agent 的处理结果。
@@ -15863,7 +15644,7 @@ Worker worker_code_exp_d_conjecture_verify_20260522T112907 已完成（status=do
 
 ### Tool call
 
-_source line 1115 · 2026-05-22T12:11:07.227105+00:00_
+_source line 1109 · 2026-05-22T12:11:07.227105+00:00_
 
 called Read
 
@@ -15897,7 +15678,7 @@ called Read
 
 ### Tool result
 
-_source line 1116 · 2026-05-22T12:11:07.579244+00:00_
+_source line 1110 · 2026-05-22T12:11:07.579244+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -15972,7 +15753,7 @@ _source line 1116 · 2026-05-22T12:11:07.579244+00:00_
 
 ### Tool call
 
-_source line 1117 · 2026-05-22T12:11:07.579627+00:00_
+_source line 1111 · 2026-05-22T12:11:07.579627+00:00_
 
 called Read
 
@@ -16006,7 +15787,7 @@ called Read
 
 ### Tool result
 
-_source line 1118 · 2026-05-22T12:11:07.630243+00:00_
+_source line 1112 · 2026-05-22T12:11:07.630243+00:00_
 
 1	{
 2	  "random_verification": {
@@ -16095,7 +15876,7 @@ _source line 1118 · 2026-05-22T12:11:07.630243+00:00_
 
 ### Tool call
 
-_source line 1119 · 2026-05-22T12:12:51.861396+00:00_
+_source line 1113 · 2026-05-22T12:12:51.861396+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16131,7 +15912,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1120 · 2026-05-22T12:12:55.927765+00:00_
+_source line 1114 · 2026-05-22T12:12:55.927765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -16153,7 +15934,7 @@ _source line 1120 · 2026-05-22T12:12:55.927765+00:00_
 
 ### Assistant
 
-_source line 1121 · 2026-05-22T12:12:58.326722+00:00_
+_source line 1115 · 2026-05-22T12:12:58.326722+00:00_
 
 审查 Exp-D conjecture verification 实验。
 
@@ -16180,7 +15961,7 @@ _source line 1121 · 2026-05-22T12:12:58.326722+00:00_
 
 ### User
 
-_source line 1122 · 2026-05-22T12:29:10.714657+00:00_
+_source line 1116 · 2026-05-22T12:29:10.714657+00:00_
 
 [System 触发审查]:
 Exp-D v2 解析验证完成——用 Gauss-Hermite quadrature 解析 plim（零采样噪声，tol=1e-12）重跑了全部 210,000 tests。结果：violations 数几乎完全复现（141,684 vs v1 的 141,514），确认非 IV violations 是真实的代数结构现象，不是数值伪影。Worst magnitude 非 IV ≤ 0.056。
@@ -16211,7 +15992,7 @@ Exp-D v2 解析验证完成——用 Gauss-Hermite quadrature 解析 plim（零�
 
 ### Assistant
 
-_source line 1123 · 2026-05-22T12:29:25.345978+00:00_
+_source line 1117 · 2026-05-22T12:29:25.345978+00:00_
 
 收到。我之前关于 simulation noise 的假设被 v2 解析验证否定——141,684 violations 在零采样噪声下几乎完全复现，确认非 IV 的小幅非单调性是真实代数结构。IV singularity 判断正确。
 
@@ -16244,7 +16025,7 @@ _source line 1123 · 2026-05-22T12:29:25.345978+00:00_
 
 ### User
 
-_source line 1124 · 2026-05-22T13:33:20.260898+00:00_
+_source line 1118 · 2026-05-22T13:33:20.260898+00:00_
 
 [System 触发审查]:
 两件事需要你立即审查：
@@ -16281,7 +16062,7 @@ home-1x5090 有 1 张 GPU 当前空闲。Phase 1 五个实验全部为 CPU 计�
 
 ### Tool call
 
-_source line 1125 · 2026-05-22T13:33:30.000491+00:00_
+_source line 1119 · 2026-05-22T13:33:30.000491+00:00_
 
 called Grep
 
@@ -16323,7 +16104,7 @@ called Grep
 
 ### Tool result
 
-_source line 1126 · 2026-05-22T13:33:30.502818+00:00_
+_source line 1120 · 2026-05-22T13:33:30.502818+00:00_
 
 27:[Omitted long matching line]
 67:Sign preservation holds under topology-specific conditions: mediation requires $\operatorname{sign}(\tau_{\mathrm{dir}}) {=} \operatorname{sign}(\tau_{\mathrm{total}})$; front-door requires $\operatorname{sign}(\lambda\alpha_U) {=} \operatorname{sign}(\lambda\alpha_U {+} \operatorname{Cov}(T,f(A)))$; M-bias is attenuating for all $C$. Verified across 100{,}000 random matrices with zero violations (Appendix~\ref{app:conditions}); analytic proofs for general $K$ remain open.
@@ -16354,7 +16135,7 @@ _source line 1126 · 2026-05-22T13:33:30.502818+00:00_
 
 ### Tool call
 
-_source line 1127 · 2026-05-22T13:33:30.503253+00:00_
+_source line 1121 · 2026-05-22T13:33:30.503253+00:00_
 
 called Read
 
@@ -16392,7 +16173,7 @@ called Read
 
 ### Tool result
 
-_source line 1128 · 2026-05-22T13:33:30.955274+00:00_
+_source line 1122 · 2026-05-22T13:33:30.955274+00:00_
 
 80	We define three complementary measures: (1)~\textbf{Magnitude ASV} $\delta^*_{\text{mag}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta)) - \tau| > \epsilon\}$---analogous to E-values; (2)~\textbf{Significance ASV} $\delta^*_{\text{sig}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta))| < z_{\alpha/2} \cdot SE(N)\}$---relevant for attenuating topologies; (3)~\textbf{Sign-flip ASV} $\delta^*_{\text{sf}} = \min\{\delta : \text{sign}(\hat{\tau}) \neq \text{sign}(\tau)\}$---exposure and IV only. The significance ASV depends on $N$ through $SE(N)$, exhibiting a sharp phase transition at a critical $N^*$ below which all rejections are blocked.
 81	
@@ -16426,7 +16207,7 @@ _source line 1128 · 2026-05-22T13:33:30.955274+00:00_
 
 ### Tool call
 
-_source line 1129 · 2026-05-22T13:33:31.809328+00:00_
+_source line 1123 · 2026-05-22T13:33:31.809328+00:00_
 
 called Grep
 
@@ -16468,7 +16249,7 @@ called Grep
 
 ### Tool result
 
-_source line 1130 · 2026-05-22T13:33:31.859925+00:00_
+_source line 1124 · 2026-05-22T13:33:31.859925+00:00_
 
 15:Analytical probability limits match Monte Carlo estimates with grand MAPE of 2.0\% across 126 scenarios (18 LLM configurations $\times$ 7 topologies, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\% (confounding) to 5.5\% (IV); the IV maximum reflects the Wald estimator's small-denominator variance amplification.
 23:[Omitted long matching line]
@@ -16496,7 +16277,7 @@ _source line 1130 · 2026-05-22T13:33:31.859925+00:00_
 
 ### Tool call
 
-_source line 1131 · 2026-05-22T13:33:39.892733+00:00_
+_source line 1125 · 2026-05-22T13:33:39.892733+00:00_
 
 called Read
 
@@ -16534,7 +16315,7 @@ called Read
 
 ### Tool result
 
-_source line 1132 · 2026-05-22T13:33:40.244603+00:00_
+_source line 1126 · 2026-05-22T13:33:40.244603+00:00_
 
 54	\label{sec:asv_results}
 55	
@@ -16569,7 +16350,7 @@ _source line 1132 · 2026-05-22T13:33:40.244603+00:00_
 
 ### Tool call
 
-_source line 1133 · 2026-05-22T13:33:40.848350+00:00_
+_source line 1127 · 2026-05-22T13:33:40.848350+00:00_
 
 called Grep
 
@@ -16609,7 +16390,7 @@ called Grep
 
 ### Tool result
 
-_source line 1134 · 2026-05-22T13:33:40.949128+00:00_
+_source line 1128 · 2026-05-22T13:33:40.949128+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:57:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:91:For the six non-IV topologies under $C(\delta) = (1{-}\delta)I + \delta C_0$: exposure, mediation, and front-door are $\varepsilon$-approximately non-decreasing in $\delta$, and collider and M-bias (protective topologies) are $\varepsilon$-approximately non-increasing in $\delta$, with $\varepsilon < 0.06$ ($<$6\% of $\tau$). Verified across 10{,}000 random matrices per topology and $K \in \{3,5,7\}$ using analytic probability limits (Appendix~\ref{sec:conjecture_verify}).
@@ -16636,7 +16417,7 @@ _source line 1134 · 2026-05-22T13:33:40.949128+00:00_
 
 ### Tool call
 
-_source line 1135 · 2026-05-22T13:33:43.820661+00:00_
+_source line 1129 · 2026-05-22T13:33:43.820661+00:00_
 
 called Read
 
@@ -16674,7 +16455,7 @@ called Read
 
 ### Tool result
 
-_source line 1136 · 2026-05-22T13:33:43.860887+00:00_
+_source line 1130 · 2026-05-22T13:33:43.860887+00:00_
 
 870	
 871	Confounding is consistently the most robust topology (highest ASV or no violation), and M-bias remains immune (not shown). However, the relative fragility of exposure vs.\ IV inverts with coefficient sign structure: under alternating signs, exposure is most fragile ($0.090 < 0.203$); under same-sign effects, IV is most fragile ($0.203 < 0.223$). Practitioners should compute ASV with their specific DGP rather than relying on generic rankings.
@@ -16725,7 +16506,7 @@ _source line 1136 · 2026-05-22T13:33:43.860887+00:00_
 
 ### Tool call
 
-_source line 1137 · 2026-05-22T13:35:09.904373+00:00_
+_source line 1131 · 2026-05-22T13:35:09.904373+00:00_
 
 called Bash
 
@@ -16761,7 +16542,7 @@ called Bash
 
 ### Tool result
 
-_source line 1138 · 2026-05-22T13:35:10.406898+00:00_
+_source line 1132 · 2026-05-22T13:35:10.406898+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 11766 May 22 12:25 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json
 EXISTS
@@ -16784,7 +16565,7 @@ EXISTS
 
 ### Tool call
 
-_source line 1139 · 2026-05-22T13:35:10.557965+00:00_
+_source line 1133 · 2026-05-22T13:35:10.557965+00:00_
 
 called Read
 
@@ -16822,7 +16603,7 @@ called Read
 
 ### Tool result
 
-_source line 1140 · 2026-05-22T13:35:10.608849+00:00_
+_source line 1134 · 2026-05-22T13:35:10.608849+00:00_
 
 60	Under non-differential misclassification with $C_{kk} > 0$ for all $k$:
 61	\emph{(a)}~Confounding preserves sign when $\operatorname{sign}(\tau) = \operatorname{sign}(\tau {+} B_{\mathrm{OV}})$, where $B_{\mathrm{OV}} {=} \operatorname{Cov}(g(A),f(A))/\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\ref{app:confounding}).
@@ -16853,7 +16634,7 @@ _source line 1140 · 2026-05-22T13:35:10.608849+00:00_
 
 ### Tool call
 
-_source line 1141 · 2026-05-22T13:35:17.494415+00:00_
+_source line 1135 · 2026-05-22T13:35:17.494415+00:00_
 
 called Bash
 
@@ -16889,7 +16670,7 @@ called Bash
 
 ### Tool result
 
-_source line 1142 · 2026-05-22T13:35:17.595318+00:00_
+_source line 1136 · 2026-05-22T13:35:17.595318+00:00_
 
 confounding K3: violations=8467, worst=0.010868
 confounding K5: violations=8063, worst=0.005825
@@ -16934,7 +16715,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1143 · 2026-05-22T13:36:34.252414+00:00_
+_source line 1137 · 2026-05-22T13:36:34.252414+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16970,7 +16751,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1144 · 2026-05-22T13:36:38.168557+00:00_
+_source line 1138 · 2026-05-22T13:36:38.168557+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -16992,7 +16773,7 @@ _source line 1144 · 2026-05-22T13:36:38.168557+00:00_
 
 ### Assistant
 
-_source line 1145 · 2026-05-22T13:36:40.709428+00:00_
+_source line 1139 · 2026-05-22T13:36:40.709428+00:00_
 
 Now let me verify the v2 results file and check Theorem 1 consistency.
 
@@ -17019,7 +16800,7 @@ Now let me verify the v2 results file and check Theorem 1 consistency.
 
 ### User
 
-_source line 1146 · 2026-05-22T14:06:23.171156+00:00_
+_source line 1140 · 2026-05-22T14:06:23.171156+00:00_
 
 [System 触发审查]:
 Round 3 审稿报告 Action Matrix 初稿，请独立审查可行性和遗漏。
@@ -17123,7 +16904,7 @@ Limitations 加一句承认"empirical validation uses real LLM confusion matrice
 
 ### Tool call
 
-_source line 1147 · 2026-05-22T14:07:37.688543+00:00_
+_source line 1141 · 2026-05-22T14:07:37.688543+00:00_
 
 called Bash
 
@@ -17159,7 +16940,7 @@ called Bash
 
 ### Tool result
 
-_source line 1148 · 2026-05-22T14:07:38.692784+00:00_
+_source line 1142 · 2026-05-22T14:07:38.692784+00:00_
 
 Pages:           22
 Page size:       595.276 x 841.89 pts (A4)
@@ -17183,7 +16964,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1149 · 2026-05-22T14:07:39.697113+00:00_
+_source line 1143 · 2026-05-22T14:07:39.697113+00:00_
 
 called Grep
 
@@ -17225,7 +17006,7 @@ called Grep
 
 ### Tool result
 
-_source line 1150 · 2026-05-22T14:07:40.149572+00:00_
+_source line 1144 · 2026-05-22T14:07:40.149572+00:00_
 
 158:@book{gustafson2004,
 160:  author    = {Gustafson, Paul},
@@ -17248,7 +17029,7 @@ _source line 1150 · 2026-05-22T14:07:40.149572+00:00_
 
 ### Tool call
 
-_source line 1151 · 2026-05-22T14:07:40.501348+00:00_
+_source line 1145 · 2026-05-22T14:07:40.501348+00:00_
 
 called Grep
 
@@ -17290,7 +17071,7 @@ called Grep
 
 ### Tool result
 
-_source line 1152 · 2026-05-22T14:07:40.552067+00:00_
+_source line 1146 · 2026-05-22T14:07:40.552067+00:00_
 
 No matches found
 
@@ -17312,7 +17093,7 @@ No matches found
 
 ### Tool call
 
-_source line 1153 · 2026-05-22T14:07:45.271813+00:00_
+_source line 1147 · 2026-05-22T14:07:45.271813+00:00_
 
 called Bash
 
@@ -17348,7 +17129,7 @@ called Bash
 
 ### Tool result
 
-_source line 1154 · 2026-05-22T14:07:45.573432+00:00_
+_source line 1148 · 2026-05-22T14:07:45.573432+00:00_
 
 docs/paper/abstract.tex:0
 docs/paper/appendix_proofs.tex:0
@@ -17380,7 +17161,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1155 · 2026-05-22T14:07:45.624106+00:00_
+_source line 1149 · 2026-05-22T14:07:45.624106+00:00_
 
 called Read
 
@@ -17414,7 +17195,7 @@ called Read
 
 ### Tool result
 
-_source line 1156 · 2026-05-22T14:07:45.624678+00:00_
+_source line 1150 · 2026-05-22T14:07:45.624678+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -17444,7 +17225,7 @@ _source line 1156 · 2026-05-22T14:07:45.624678+00:00_
 
 ### Tool call
 
-_source line 1157 · 2026-05-22T14:07:48.938342+00:00_
+_source line 1151 · 2026-05-22T14:07:48.938342+00:00_
 
 called Read
 
@@ -17478,7 +17259,7 @@ called Read
 
 ### Tool result
 
-_source line 1158 · 2026-05-22T14:07:48.989088+00:00_
+_source line 1152 · 2026-05-22T14:07:48.989088+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -17506,7 +17287,7 @@ _source line 1158 · 2026-05-22T14:07:48.989088+00:00_
 
 ### Tool call
 
-_source line 1159 · 2026-05-22T14:07:55.215119+00:00_
+_source line 1153 · 2026-05-22T14:07:55.215119+00:00_
 
 called Bash
 
@@ -17542,7 +17323,7 @@ called Bash
 
 ### Tool result
 
-_source line 1160 · 2026-05-22T14:07:55.265817+00:00_
+_source line 1154 · 2026-05-22T14:07:55.265817+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
 
@@ -17564,7 +17345,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1161 · 2026-05-22T14:07:59.481382+00:00_
+_source line 1155 · 2026-05-22T14:07:59.481382+00:00_
 
 called Bash
 
@@ -17600,7 +17381,7 @@ called Bash
 
 ### Tool result
 
-_source line 1162 · 2026-05-22T14:07:59.582358+00:00_
+_source line 1156 · 2026-05-22T14:07:59.582358+00:00_
 
 newlabel{sec:asv_results}{{4.3}{6}
 newlabel{sec:asv_stability}{{B.7}{20}
@@ -17652,7 +17433,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1163 · 2026-05-22T14:09:37.643419+00:00_
+_source line 1157 · 2026-05-22T14:09:37.643419+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17688,7 +17469,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1164 · 2026-05-22T14:09:41.510913+00:00_
+_source line 1158 · 2026-05-22T14:09:41.510913+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -17710,7 +17491,7 @@ _source line 1164 · 2026-05-22T14:09:41.510913+00:00_
 
 ### Assistant
 
-_source line 1165 · 2026-05-22T14:09:44.605744+00:00_
+_source line 1159 · 2026-05-22T14:09:44.605744+00:00_
 
 Now I have the full picture. Key facts:
 - Total PDF: 22 pages (including appendix)
@@ -17742,7 +17523,7 @@ Now I have the full picture. Key facts:
 
 ### User
 
-_source line 1166 · 2026-05-22T14:36:13.150583+00:00_
+_source line 1160 · 2026-05-22T14:36:13.150583+00:00_
 
 [System 触发审查]:
 Phase 2+3 全部完成，请审查以下关键变化：
@@ -17785,7 +17566,7 @@ Conclusion + Limitations 在第 8 页，References 从第 9 页开始。请确�
 
 ### Tool call
 
-_source line 1167 · 2026-05-22T14:36:23.030729+00:00_
+_source line 1161 · 2026-05-22T14:36:23.030729+00:00_
 
 called Read
 
@@ -17823,7 +17604,7 @@ called Read
 
 ### Tool result
 
-_source line 1168 · 2026-05-22T14:36:23.583975+00:00_
+_source line 1162 · 2026-05-22T14:36:23.583975+00:00_
 
 80	
 81	\paragraph{Three ASV types.}
@@ -17857,7 +17638,7 @@ _source line 1168 · 2026-05-22T14:36:23.583975+00:00_
 
 ### Tool call
 
-_source line 1169 · 2026-05-22T14:36:23.584544+00:00_
+_source line 1163 · 2026-05-22T14:36:23.584544+00:00_
 
 called Read
 
@@ -17891,7 +17672,7 @@ called Read
 
 ### Tool result
 
-_source line 1170 · 2026-05-22T14:36:24.490058+00:00_
+_source line 1164 · 2026-05-22T14:36:24.490058+00:00_
 
 1	\begin{abstract}
 2	Large language models are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that depend on both the confusion matrix structure and the causal DAG topology. We derive bias expressions for seven canonical topologies under $K$-class non-differential misclassification and show that $K {\geq} 3$ introduces a structural possibility of sign reversal absent in the binary case. We prove sign preservation for confounding and collider, and verify it numerically for mediation, M-bias, and front-door; exposure and IV topologies can reverse the treatment effect sign. Under realistic LLM accuracy (diagonal ${\geq}\,0.7$), the sign reversal rate is 2.1\%, exclusively in secondary coefficients---the primary treatment effect never reverses in any of 23 empirical LLM configurations. We introduce Annotation Sensitivity Values (ASVs) revealing a vulnerability spectrum from IV (maximally fragile) to M-bias (immune), and show that matrix-based corrections are provably ineffective for four topologies due to Frisch--Waugh--Lovell invariance. Topology-aware analysis is necessary for valid causal inference with LLM-generated annotations.
@@ -17916,7 +17697,7 @@ _source line 1170 · 2026-05-22T14:36:24.490058+00:00_
 
 ### Tool call
 
-_source line 1171 · 2026-05-22T14:36:25.546202+00:00_
+_source line 1165 · 2026-05-22T14:36:25.546202+00:00_
 
 called Grep
 
@@ -17958,7 +17739,7 @@ called Grep
 
 ### Tool result
 
-_source line 1172 · 2026-05-22T14:36:25.597280+00:00_
+_source line 1166 · 2026-05-22T14:36:25.597280+00:00_
 
 1:\section{Proofs of Proposition~\ref{prop:signflip} and Theorem~\ref{thm:monotone}}
 4:We provide algebraic proofs of sign preservation for the confounding and collider topologies (Proposition~\ref{prop:signflip}(a)--(b)), an explicit counterexample for exposure (Proposition~\ref{prop:signflip}(c)), numerical verification for mediation, M-bias, and front-door (Empirical Finding~1), and the monotonicity proof for confounding (Theorem~\ref{thm:monotone}).
@@ -17997,7 +17778,7 @@ _source line 1172 · 2026-05-22T14:36:25.597280+00:00_
 
 ### Tool call
 
-_source line 1173 · 2026-05-22T14:36:35.749148+00:00_
+_source line 1167 · 2026-05-22T14:36:35.749148+00:00_
 
 called Read
 
@@ -18035,7 +17816,7 @@ called Read
 
 ### Tool result
 
-_source line 1174 · 2026-05-22T14:36:36.703151+00:00_
+_source line 1168 · 2026-05-22T14:36:36.703151+00:00_
 
 338	\paragraph{Mediation monotonicity (proportional effects).}
 339	\label{par:med_monotone}
@@ -18091,7 +17872,7 @@ _source line 1174 · 2026-05-22T14:36:36.703151+00:00_
 
 ### Tool call
 
-_source line 1175 · 2026-05-22T14:36:37.457318+00:00_
+_source line 1169 · 2026-05-22T14:36:37.457318+00:00_
 
 called Grep
 
@@ -18133,7 +17914,7 @@ called Grep
 
 ### Tool result
 
-_source line 1176 · 2026-05-22T14:36:37.507977+00:00_
+_source line 1170 · 2026-05-22T14:36:37.507977+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:56:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex:64:\emph{(b)}~Collider preserves sign when $|\tau| > \sqrt{\operatorname{Var}(g)\operatorname{Var}(h)}/\mathbb{E}[\operatorname{Var}(T{\mid}A)]$ (Berkson attenuation; Appendix~\ref{app:collider}).
@@ -18156,7 +17937,7 @@ _source line 1176 · 2026-05-22T14:36:37.507977+00:00_
 
 ### Tool call
 
-_source line 1177 · 2026-05-22T14:36:41.073423+00:00_
+_source line 1171 · 2026-05-22T14:36:41.073423+00:00_
 
 called Read
 
@@ -18194,7 +17975,7 @@ called Read
 
 ### Tool result
 
-_source line 1178 · 2026-05-22T14:36:41.978298+00:00_
+_source line 1172 · 2026-05-22T14:36:41.978298+00:00_
 
 54	
 55	\paragraph{Envelope monotonicity.}
@@ -18223,7 +18004,7 @@ _source line 1178 · 2026-05-22T14:36:41.978298+00:00_
 
 ### Tool call
 
-_source line 1179 · 2026-05-22T14:36:42.480996+00:00_
+_source line 1173 · 2026-05-22T14:36:42.480996+00:00_
 
 called Grep
 
@@ -18265,7 +18046,7 @@ called Grep
 
 ### Tool result
 
-_source line 1180 · 2026-05-22T14:36:42.531779+00:00_
+_source line 1174 · 2026-05-22T14:36:42.531779+00:00_
 
 954:[Omitted long matching line]
 
@@ -18287,7 +18068,7 @@ _source line 1180 · 2026-05-22T14:36:42.531779+00:00_
 
 ### Tool call
 
-_source line 1181 · 2026-05-22T14:36:45.997617+00:00_
+_source line 1175 · 2026-05-22T14:36:45.997617+00:00_
 
 called Read
 
@@ -18325,7 +18106,7 @@ called Read
 
 ### Tool result
 
-_source line 1182 · 2026-05-22T14:36:46.048409+00:00_
+_source line 1176 · 2026-05-22T14:36:46.048409+00:00_
 
 950	\bottomrule
 951	\end{tabular}
@@ -18361,7 +18142,7 @@ _source line 1182 · 2026-05-22T14:36:46.048409+00:00_
 
 ### Tool call
 
-_source line 1183 · 2026-05-22T14:36:54.685803+00:00_
+_source line 1177 · 2026-05-22T14:36:54.685803+00:00_
 
 called Grep
 
@@ -18405,7 +18186,7 @@ called Grep
 
 ### Tool result
 
-_source line 1184 · 2026-05-22T14:36:55.188371+00:00_
+_source line 1178 · 2026-05-22T14:36:55.188371+00:00_
 
 No matches found
 
@@ -18427,7 +18208,7 @@ No matches found
 
 ### Tool call
 
-_source line 1185 · 2026-05-22T14:36:55.991774+00:00_
+_source line 1179 · 2026-05-22T14:36:55.991774+00:00_
 
 called Grep
 
@@ -18469,7 +18250,7 @@ called Grep
 
 ### Tool result
 
-_source line 1186 · 2026-05-22T14:36:56.042395+00:00_
+_source line 1180 · 2026-05-22T14:36:56.042395+00:00_
 
 858:We replace the linear structural equations with $Y \sim \text{Bernoulli}(\sigma(\mathbf{x}^\top\boldsymbol{\beta}))$ and estimate via logistic regression (control function for IV) for all seven topologies, using $K{=}3$, six real VAST confusion matrices, 500 MC replications, and $N{=}10{,}000$. Mean sign-flip rates across the six CMs:
 877:[Omitted long matching line]
@@ -18492,7 +18273,7 @@ _source line 1186 · 2026-05-22T14:36:56.042395+00:00_
 
 ### Tool call
 
-_source line 1187 · 2026-05-22T14:37:00.110095+00:00_
+_source line 1181 · 2026-05-22T14:37:00.110095+00:00_
 
 called Read
 
@@ -18530,7 +18311,7 @@ called Read
 
 ### Tool result
 
-_source line 1188 · 2026-05-22T14:37:00.160866+00:00_
+_source line 1182 · 2026-05-22T14:37:00.160866+00:00_
 
 855	\subsection{Robustness to Nonlinear DGP}
 856	\label{sec:logistic_dgp}
@@ -18581,7 +18362,7 @@ _source line 1188 · 2026-05-22T14:37:00.160866+00:00_
 
 ### Tool call
 
-_source line 1189 · 2026-05-22T14:37:05.785895+00:00_
+_source line 1183 · 2026-05-22T14:37:05.785895+00:00_
 
 called Bash
 
@@ -18617,7 +18398,7 @@ called Bash
 
 ### Tool result
 
-_source line 1190 · 2026-05-22T14:37:06.238158+00:00_
+_source line 1184 · 2026-05-22T14:37:06.238158+00:00_
 
 newlabel{sec:conclusion}{{5}{8}
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
@@ -18640,7 +18421,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1191 · 2026-05-22T14:37:06.238685+00:00_
+_source line 1185 · 2026-05-22T14:37:06.238685+00:00_
 
 called Read
 
@@ -18674,7 +18455,7 @@ called Read
 
 ### Tool result
 
-_source line 1192 · 2026-05-22T14:37:06.741085+00:00_
+_source line 1186 · 2026-05-22T14:37:06.741085+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -18704,7 +18485,7 @@ _source line 1192 · 2026-05-22T14:37:06.741085+00:00_
 
 ### Tool call
 
-_source line 1193 · 2026-05-22T14:37:06.841993+00:00_
+_source line 1187 · 2026-05-22T14:37:06.841993+00:00_
 
 called Read
 
@@ -18742,7 +18523,7 @@ called Read
 
 ### Tool result
 
-_source line 1194 · 2026-05-22T14:37:06.892824+00:00_
+_source line 1188 · 2026-05-22T14:37:06.892824+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -18770,7 +18551,7 @@ _source line 1194 · 2026-05-22T14:37:06.892824+00:00_
 
 ### Tool call
 
-_source line 1195 · 2026-05-22T14:37:13.018647+00:00_
+_source line 1189 · 2026-05-22T14:37:13.018647+00:00_
 
 called Bash
 
@@ -18806,7 +18587,7 @@ called Bash
 
 ### Tool result
 
-_source line 1196 · 2026-05-22T14:37:13.973158+00:00_
+_source line 1190 · 2026-05-22T14:37:13.973158+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 25397 May 22 14:25 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_b_logistic_dgp.py
 -rw-r--r-- 1 ubuntu ubuntu 44385 May 22 14:33 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_b_logistic_results.json
@@ -18830,7 +18611,7 @@ _source line 1196 · 2026-05-22T14:37:13.973158+00:00_
 
 ### Tool call
 
-_source line 1197 · 2026-05-22T14:37:14.576127+00:00_
+_source line 1191 · 2026-05-22T14:37:14.576127+00:00_
 
 called Grep
 
@@ -18872,7 +18653,7 @@ called Grep
 
 ### Tool result
 
-_source line 1198 · 2026-05-22T14:37:14.576668+00:00_
+_source line 1192 · 2026-05-22T14:37:14.576668+00:00_
 
 4:@article{cinelli2020making,
 5:  author    = {Cinelli, Carlos and Hazlett, Chad},
@@ -18900,7 +18681,7 @@ _source line 1198 · 2026-05-22T14:37:14.576668+00:00_
 
 ### Tool call
 
-_source line 1199 · 2026-05-22T14:37:23.182195+00:00_
+_source line 1193 · 2026-05-22T14:37:23.182195+00:00_
 
 called Bash
 
@@ -18936,7 +18717,7 @@ called Bash
 
 ### Tool result
 
-_source line 1200 · 2026-05-22T14:37:23.283234+00:00_
+_source line 1194 · 2026-05-22T14:37:23.283234+00:00_
 
 Top-level keys: ['results', 'comparison_with_linear', 'true_params', 'config']
 Results keys: list
@@ -18960,7 +18741,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1201 · 2026-05-22T14:37:31.317369+00:00_
+_source line 1195 · 2026-05-22T14:37:31.317369+00:00_
 
 called Bash
 
@@ -18996,7 +18777,7 @@ called Bash
 
 ### Tool result
 
-_source line 1202 · 2026-05-22T14:37:31.468497+00:00_
+_source line 1196 · 2026-05-22T14:37:31.468497+00:00_
 
 confounding: lin_sf_tau=?, log_sf_tau=?, lin_sf_any=0.5726666666666667, log_sf_any=0.5593333333333333
 mediation: lin_sf_tau=?, log_sf_tau=?, lin_sf_any=0.703, log_sf_any=0.695
@@ -19025,7 +18806,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1203 · 2026-05-22T14:37:36.490404+00:00_
+_source line 1197 · 2026-05-22T14:37:36.490404+00:00_
 
 called Bash
 
@@ -19061,7 +18842,7 @@ called Bash
 
 ### Tool result
 
-_source line 1204 · 2026-05-22T14:37:36.591376+00:00_
+_source line 1198 · 2026-05-22T14:37:36.591376+00:00_
 
 confounding: ['linear_mean_sf', 'linear_mean_tau_sf', 'linear_model', 'n_cms', 'nonlinear_mean_sf', 'nonlinear_mean_tau_sf', 'nonlinear_model']
 mediation: ['linear_mean_sf', 'linear_mean_tau_sf', 'linear_model', 'n_cms', 'nonlinear_mean_sf', 'nonlinear_mean_tau_sf', 'nonlinear_model']
@@ -19090,7 +18871,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1205 · 2026-05-22T14:37:43.119398+00:00_
+_source line 1199 · 2026-05-22T14:37:43.119398+00:00_
 
 called Bash
 
@@ -19126,7 +18907,7 @@ called Bash
 
 ### Tool result
 
-_source line 1206 · 2026-05-22T14:37:43.220398+00:00_
+_source line 1200 · 2026-05-22T14:37:43.220398+00:00_
 
 Topology       Lin SF_tau Log SF_tau Lin SF_any Log SF_any
 ----------------------------------------------------------
@@ -19157,7 +18938,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1207 · 2026-05-22T14:39:31.082373+00:00_
+_source line 1201 · 2026-05-22T14:39:31.082373+00:00_
 
 called Grep
 
@@ -19201,7 +18982,7 @@ called Grep
 
 ### Tool result
 
-_source line 1208 · 2026-05-22T14:39:31.133184+00:00_
+_source line 1202 · 2026-05-22T14:39:31.133184+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:20:[Omitted long matching line]
@@ -19224,7 +19005,7 @@ _source line 1208 · 2026-05-22T14:39:31.133184+00:00_
 
 ### Tool call
 
-_source line 1209 · 2026-05-22T14:39:34.798713+00:00_
+_source line 1203 · 2026-05-22T14:39:34.798713+00:00_
 
 called Grep
 
@@ -19270,7 +19051,7 @@ called Grep
 
 ### Tool result
 
-_source line 1210 · 2026-05-22T14:39:34.900320+00:00_
+_source line 1204 · 2026-05-22T14:39:34.900320+00:00_
 
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex:5:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex:20:[Omitted long matching line]
@@ -19293,7 +19074,7 @@ _source line 1210 · 2026-05-22T14:39:34.900320+00:00_
 
 ### Tool call
 
-_source line 1211 · 2026-05-22T14:39:38.816353+00:00_
+_source line 1205 · 2026-05-22T14:39:38.816353+00:00_
 
 called Bash
 
@@ -19329,7 +19110,7 @@ called Bash
 
 ### Tool result
 
-_source line 1212 · 2026-05-22T14:39:38.867074+00:00_
+_source line 1206 · 2026-05-22T14:39:38.867074+00:00_
 
 docs/paper/experiments.tex:20:This finding persists in practically relevant subspaces. When restricting to confusion matrices with diagonal entries $\geq 0.7$ (typical of current LLM classifiers achieving $F_1 > 0.8$), the violation rate remains 13.7\% with 2.1\% sign reversal and 11.7\% amplification. Even at diagonal $\geq 0.9$, violation persists at 11.9\%. In contrast, the $K{=}2$ control confirms that all six tested binary confusion matrices maintain the classical bias-toward-null guarantee~\cite{brenner1993}, establishing that the multi-class failure is structurally distinct from the binary case.
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/reviewer_15d8e49e
@@ -19352,7 +19133,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1213 · 2026-05-22T14:40:42.511717+00:00_
+_source line 1207 · 2026-05-22T14:40:42.511717+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19388,7 +19169,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1214 · 2026-05-22T14:40:46.328249+00:00_
+_source line 1208 · 2026-05-22T14:40:46.328249+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_ca838cd3ed4c7e2d9c8e3459edd98b90:director\"}, \"error\": \"\"}"}
 
@@ -19410,7 +19191,7 @@ _source line 1214 · 2026-05-22T14:40:46.328249+00:00_
 
 ### Tool call
 
-_source line 1215 · 2026-05-22T14:43:08.284715+00:00_
+_source line 1209 · 2026-05-22T14:43:08.284715+00:00_
 
 called ToolSearch
 
@@ -19446,7 +19227,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1216 · 2026-05-22T14:43:08.336191+00:00_
+_source line 1210 · 2026-05-22T14:43:08.336191+00:00_
 
 
 
@@ -19468,7 +19249,7 @@ _source line 1216 · 2026-05-22T14:43:08.336191+00:00_
 
 ### Tool call
 
-_source line 1217 · 2026-05-22T14:43:11.400944+00:00_
+_source line 1211 · 2026-05-22T14:43:11.400944+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19504,7 +19285,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1218 · 2026-05-22T14:43:11.553035+00:00_
+_source line 1212 · 2026-05-22T14:43:11.553035+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan006_asv_empirical\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T01:39:26.646Z\", \"updated_at\": \"2026-05-21T01:40:58.748Z\", \"hypothesis\": \"真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。\", \"conclusion\": \"success\", \"metrics\": {\"total_scenarios\": 210, \"configs\": 14, \"topologies\": 7, \"k_values\": [2, 3, 10], \"models\": [\"llama4\", \"deepseek\", \"qwen3\", \"qwen2.5-7b\"], \"sign_flips\": 0, \"overall_asv_unsafe_pct\": 43.8, \"k2_mean_bias_pct\": 36.9, \"k3_mean_bias_pct\": 65.3, \"k10_mean_bias_pct\": 12.2, \"k2_iv_bias_pct\": 116.5, \"k3_iv_bias_pct\": 252.3, \"k10_iv_bias_pct\": 30.3, \"f1_disconnect\": \"civil_comments F1=0.72-0.75 but IV bias 101-131%\", \"7b_vs_235b_bias_ratio\": 1.24}}, \"plan010_annot_sensitivity_toolkit\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:42:54.354Z\", \"updated_at\": \"2026-05-20T23:43:44.830Z\", \"hypothesis\": \"封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。\", \"conclusion\": \"success\", \"metrics\": {\"tests_passed\": \"35/35\", \"modules\": 7, \"topologies\": 7, \"correction_methods\": 5, \"lines_of_code\": {\"__init__.py\": 53, \"bias.py\": 174, \"asv.py\": 119, \"correction.py\": 422, \"confusion.py\": 129, \"dgp.py\": 213, \"utils.py\": 95, \"test_core.py\": \"35 tests\"}, \"example_output\": {\"confounding_k3_bias_pct\": \"+10.20%\", \"magnitude_asv\": 0.967, \"sign_flip_asv\": null, \"recommended_with_gold\": \"ppi\", \"recommended_without_gold\": \"dsl\"}}}, \"plan003_empirical_confusion_matrices\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:13:12.825Z\", \"updated_at\": \"2026-05-20T23:12:
 …[truncated 21868 chars]
@@ -19527,7 +19308,7 @@ _source line 1218 · 2026-05-22T14:43:11.553035+00:00_
 
 ### Tool call
 
-_source line 1219 · 2026-05-22T14:43:11.603780+00:00_
+_source line 1213 · 2026-05-22T14:43:11.603780+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -19561,7 +19342,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1220 · 2026-05-22T14:43:11.654530+00:00_
+_source line 1214 · 2026-05-22T14:43:11.654530+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ROADMAP.md\", \"content\": \"# causal_annot_error_attrib — Research Dashboard\\n\\n> 最后更新: 2026-05-22 03:16 UTC | 更新原因: 模板切换+page fitting完成，更新论文状态\\n\\n> 详见 paper_framing.md（story/claims）、experiment_plan.yaml（实验列表）\\n\\n## 核心方向\\n多分类 LLM 标注误差在因果推断中的偏差传播：K×K 混淆矩阵 × 7 DAG 拓扑偏差分类 + ASV 灵敏度框架 + 校正指导。\\n\\n## 当前阶段：论文就绪，待提交审稿\\n\\n### Target Venue\\n- **EMNLP 2026**（ARR rolling review，8 页 main text + unlimited refs）\\n- ARR submission cycles: 需确认具体 cycle DDL\\n\\n### Core Claims 覆盖率\\n| Claim | 完成/总计 | 状态 |\\n|-------|-----------|------|\\n| 1. Multi-class bias taxonomy | **5/6 (83%)** | plan_001✅ plan_002✅ plan_008✅ plan_009✅ plan_010✅ plan_003⚠️(API 402) |\\n| 2. ASV framework | **3/3 (100%)** | plan_004✅ plan_005✅ plan_006✅ |\\n| 3. Correction guidance | **1/1 (100%)** | plan_007✅ |\\n\\n### 关键发现（RMSE 度量）\\n- 5/7 拓扑 τ_sign_flip=0%; 2/7 危险（exposure 83%, IV 52%）\\n- PPI++ RMSE reduction 47.0%，对 M-bias 有害 (-88.0%)\\n- MC-SIMEX 13.3% RMSE grand mean，IV 上最优 gold-free (59.4%)\\n- 跨K实证: 0 sign flips / 98 scenarios (+ 2 frontier = 112)\\n- Binarization collapse 154×\\n\\n### 论文数字一致性（全部修正 ✅）\\n| 修正 | Commit |\\n|------|--------|\\n| RMSE 统一 (Table 4 全表, Algorithm 1, abstract/intro/conclusion) | f9abfbe |\\n| 147×→154×, 3 个四舍五入修正 | 192e9de |\\n| Frontier footnote: 4→2 configs | db64fd1 |\\n| PPI++ empirical 段落重写 | ee77830 |\\n\\n## 论文写作\\n- ✅ 模板切换 AAAI→EMNLP/ACL (commit d75ff42)\\n- ✅ Page fitting 完成: main text 8 页 (Conclusion 结束于 page 8 左栏) (commits 0b3ab29, 124e019, 4b00b11)\\n- ✅ 编译通过 18 pages total (含 appendix), 0 undefined references\\n- ✅ 全部定量声明与源 JSON 完全一致\\n\\n## 近期任务\\n- [x] 模板切换: aaai2026 → ACL/EMNLP 格式\\n- [x] Page fitting: 8 页 main text 限制 ✅\\n- [ ] 提交审稿 (submit_paper_to_review)\\n- [ ] API key 确认 → plan011 frontier annotations 重跑\\n- [ ] Re-dream → BLOCKED: Phase 1 crash\\n\\n## GPU 预算\\nhome-1x5090: 1× RTX 5090（当前空闲）\\n\\n## 关键决策日志\\n\\
 …[truncated 1290 chars]
@@ -19584,7 +19365,7 @@ _source line 1220 · 2026-05-22T14:43:11.654530+00:00_
 
 ### Tool call
 
-_source line 1221 · 2026-05-22T14:43:20.549053+00:00_
+_source line 1215 · 2026-05-22T14:43:20.549053+00:00_
 
 called Bash
 
@@ -19620,7 +19401,7 @@ called Bash
 
 ### Tool result
 
-_source line 1222 · 2026-05-22T14:43:21.001416+00:00_
+_source line 1216 · 2026-05-22T14:43:21.001416+00:00_
 
 9726c15 [paper] Fix Conjecture 1 directionality: collider/M-bias are non-increasing
 6101a59 [paper] Add \newtheorem{conjecture} for Conjecture environment
@@ -19652,7 +19433,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1223 · 2026-05-22T14:43:21.102388+00:00_
+_source line 1217 · 2026-05-22T14:43:21.102388+00:00_
 
 called Bash
 
@@ -19688,7 +19469,7 @@ called Bash
 
 ### Tool result
 
-_source line 1224 · 2026-05-22T14:43:21.153187+00:00_
+_source line 1218 · 2026-05-22T14:43:21.153187+00:00_
 
  artifacts/ppi_empirical_validation.json | 4076 ++++++++++++++++---------------
  docs/paper/abstract.tex                 |    2 +-
@@ -19728,7 +19509,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1225 · 2026-05-22T14:43:25.705124+00:00_
+_source line 1219 · 2026-05-22T14:43:25.705124+00:00_
 
 called Bash
 
@@ -19764,7 +19545,7 @@ called Bash
 
 ### Tool result
 
-_source line 1226 · 2026-05-22T14:43:25.755891+00:00_
+_source line 1220 · 2026-05-22T14:43:25.755891+00:00_
 
 artifacts/ppi_empirical_validation.json
 docs/paper/abstract.tex
@@ -19803,7 +19584,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-prod_0510/projects/causal
 
 ### Tool call
 
-_source line 1227 · 2026-05-22T14:43:30.826844+00:00_
+_source line 1221 · 2026-05-22T14:43:30.826844+00:00_
 
 called Bash
 
@@ -19839,7 +19620,7 @@ called Bash
 
 ### Tool result
 
-_source line 1228 · 2026-05-22T14:43:30.928824+00:00_
+_source line 1222 · 2026-05-22T14:43:30.928824+00:00_
 
 &lt;persisted-output>
 Output too large (38.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib--claude-sessions-reviewer-15d8e49e/8bc69155-8f9e-4c11-b39a-4ba9e528bab0/tool-results/brtt36cpp.txt
@@ -19872,7 +19653,7 @@ index 539bb8b..1ca9a2f 100644
 
 ### Tool call
 
-_source line 1229 · 2026-05-22T14:43:34.141373+00:00_
+_source line 1223 · 2026-05-22T14:43:34.141373+00:00_
 
 called Read
 
@@ -19906,7 +19687,7 @@ called Read
 
 ### Tool result
 
-_source line 1230 · 2026-05-22T14:43:34.393378+00:00_
+_source line 1224 · 2026-05-22T14:43:34.393378+00:00_
 
 1	diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
 2	index 539bb8b..1ca9a2f 100644
@@ -19936,7 +19717,7 @@ _source line 1230 · 2026-05-22T14:43:34.393378+00:00_
 
 ### Tool call
 
-_source line 1231 · 2026-05-22T14:43:51.220156+00:00_
+_source line 1225 · 2026-05-22T14:43:51.220156+00:00_
 
 called ToolSearch
 
@@ -19972,7 +19753,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1232 · 2026-05-22T14:43:51.371293+00:00_
+_source line 1226 · 2026-05-22T14:43:51.371293+00:00_
 
 
 
@@ -19994,7 +19775,7 @@ _source line 1232 · 2026-05-22T14:43:51.371293+00:00_
 
 ### Tool call
 
-_source line 1233 · 2026-05-22T14:43:56.191350+00:00_
+_source line 1227 · 2026-05-22T14:43:56.191350+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -20034,7 +19815,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1234 · 2026-05-22T14:43:56.643440+00:00_
+_source line 1228 · 2026-05-22T14:43:56.643440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 511.3}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 469.9}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 564.3}], \"total_pages\": 23, \"rendered_pages\": 3, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20056,7 +19837,7 @@ _source line 1234 · 2026-05-22T14:43:56.643440+00:00_
 
 ### Tool call
 
-_source line 1235 · 2026-05-22T14:44:00.207623+00:00_
+_source line 1229 · 2026-05-22T14:44:00.207623+00:00_
 
 called Read
 
@@ -20090,7 +19871,7 @@ called Read
 
 ### Tool call
 
-_source line 1236 · 2026-05-22T14:44:00.711219+00:00_
+_source line 1230 · 2026-05-22T14:44:00.711219+00:00_
 
 called Read
 
@@ -20124,7 +19905,7 @@ called Read
 
 ### Tool result
 
-_source line 1237 · 2026-05-22T14:44:01.165429+00:00_
+_source line 1231 · 2026-05-22T14:44:01.165429+00:00_
 
 
 
@@ -20146,7 +19927,7 @@ _source line 1237 · 2026-05-22T14:44:01.165429+00:00_
 
 ### Tool call
 
-_source line 1238 · 2026-05-22T14:44:01.165989+00:00_
+_source line 1232 · 2026-05-22T14:44:01.165989+00:00_
 
 called Read
 
@@ -20180,7 +19961,7 @@ called Read
 
 ### Tool result
 
-_source line 1239 · 2026-05-22T14:44:01.418127+00:00_
+_source line 1233 · 2026-05-22T14:44:01.418127+00:00_
 
 
 
@@ -20202,7 +19983,7 @@ _source line 1239 · 2026-05-22T14:44:01.418127+00:00_
 
 ### Tool result
 
-_source line 1240 · 2026-05-22T14:44:01.920936+00:00_
+_source line 1234 · 2026-05-22T14:44:01.920936+00:00_
 
 
 
@@ -20224,7 +20005,7 @@ _source line 1240 · 2026-05-22T14:44:01.920936+00:00_
 
 ### Tool call
 
-_source line 1241 · 2026-05-22T14:44:13.317753+00:00_
+_source line 1235 · 2026-05-22T14:44:13.317753+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -20264,7 +20045,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1242 · 2026-05-22T14:44:13.418765+00:00_
+_source line 1236 · 2026-05-22T14:44:13.418765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images/main_p1.png\", \"width\": 1365, \"height\": 1930, \"size_kb\": 452.8}], \"total_pages\": 23, \"rendered_pages\": 1, \"dpi\": 165, \"output_dir\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20286,7 +20067,7 @@ _source line 1242 · 2026-05-22T14:44:13.418765+00:00_
 
 ### Tool call
 
-_source line 1243 · 2026-05-22T14:44:16.381429+00:00_
+_source line 1237 · 2026-05-22T14:44:16.381429+00:00_
 
 called Read
 
@@ -20320,7 +20101,7 @@ called Read
 
 ### Tool result
 
-_source line 1244 · 2026-05-22T14:44:17.044943+00:00_
+_source line 1238 · 2026-05-22T14:44:17.044943+00:00_
 
 
 
@@ -20342,7 +20123,7 @@ _source line 1244 · 2026-05-22T14:44:17.044943+00:00_
 
 ### Tool call
 
-_source line 1245 · 2026-05-22T14:44:27.217060+00:00_
+_source line 1239 · 2026-05-22T14:44:27.217060+00:00_
 
 called ToolSearch
 
@@ -20378,7 +20159,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1246 · 2026-05-22T14:44:27.217476+00:00_
+_source line 1240 · 2026-05-22T14:44:27.217476+00:00_
 
 
 
@@ -20400,7 +20181,7 @@ _source line 1246 · 2026-05-22T14:44:27.217476+00:00_
 
 ### Tool call
 
-_source line 1247 · 2026-05-22T14:44:32.237839+00:00_
+_source line 1241 · 2026-05-22T14:44:32.237839+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -20434,7 +20215,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1248 · 2026-05-22T14:44:32.238316+00:00_
+_source line 1242 · 2026-05-22T14:44:32.238316+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -20456,7 +20237,7 @@ _source line 1248 · 2026-05-22T14:44:32.238316+00:00_
 
 ### Assistant
 
-_source line 1249 · 2026-05-22T14:44:42.055526+00:00_
+_source line 1243 · 2026-05-22T14:44:42.055526+00:00_
 
 视觉审查确认：
 
@@ -20497,7 +20278,7 @@ _source line 1249 · 2026-05-22T14:44:42.055526+00:00_
 
 ### User
 
-_source line 1250 · 2026-05-22T15:19:18.636963+00:00_
+_source line 1244 · 2026-05-22T15:19:18.636963+00:00_
 
 [System 触发审查]:
 **Round 4 审稿报告 Action Matrix 反审请求**
@@ -20666,7 +20447,7 @@ Round 4 Fresh Review 回来了，Overall 3.5。以下是我的逐条 Action Matr
 
 ### Tool call
 
-_source line 1251 · 2026-05-22T15:19:29.850717+00:00_
+_source line 1245 · 2026-05-22T15:19:29.850717+00:00_
 
 called Read
 
@@ -20693,6 +20474,252 @@ called Read
     "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
     "offset": "320",
     "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1246 · 2026-05-22T15:19:30.353195+00:00_
+
+320	At $C{=}I$: each $A^*{=}j$ group has $A{=}j$ a.s., so $\delta_j=f(j)-f(j)=0$ and $B=0$.
+321	At $C$ uniform: $\delta_j=\tau_{\mathrm{ind}}$ for all $j$ and $B=\tau_{\mathrm{ind}}$.
+322	
+323	\emph{Sign preservation.}
+324	When $\operatorname{Cov}(g(A),f(A))>0$ (the indirect effect reinforces the direct effect, i.e., $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have the same sign), the bias $B(C)\geq 0$ cannot oppose $\tau_{\mathrm{dir}}$, so sign is preserved trivially.
+325	
+326	When $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have opposite signs but $|\tau_{\mathrm{ind}}|<|\tau_{\mathrm{dir}}|$ (i.e., $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$), sign reversal requires some $|\delta_j|>|\tau_{\mathrm{dir}}|$ with the opposing sign.
+327	Since each $\delta_j$ is a difference of weighted averages of $f$ values (with weights $P(A{=}k\mid T{=}t,A^*{=}j)$), and $B(C)$ is a convex combination of $\delta_j$, the bound $|B(C)|\leq\max_j|\delta_j|$ holds.
+328	We verify numerically that $\max_j|\delta_j|\leq|\tau_{\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.
+329	\end{proof}
+330	
+331	\paragraph{Verification for paper parameters ($K{=}3$).}
+332	With $\tau_{\mathrm{dir}}{=}0.5$, $\boldsymbol{\gamma}{=}(0,0,0)$, $\boldsymbol{\delta}{=}(0,0.8,{-}0.6)$, $\boldsymbol{\beta}{=}(0,1.0,{-}0.5)$:
+333	
+334	$\tau_{\mathrm{ind}}=\mathbb{E}[f(A)\mid T{=}1]-\mathbb{E}[f(A)\mid T{=}0]=0.351$ (computed from the softmax class probabilities).
+335	$\tau_{\mathrm{total}}=0.5+0.351=0.851>0$.
+336	Since $\tau_{\mathrm{dir}}{>}0$ and $\tau_{\mathrm{total}}{>}0$, sign preservation holds for all $C$.
+337	
+338	\paragraph{Mediation monotonicity (proportional effects).}
+339	\label{par:med_monotone}
+340	
+341	Under the interpolation $C(\delta)=(1{-}\delta)I+\delta C_0$, we prove $|B(C(\delta))|$ is non-decreasing in $\delta$ when the mediator's effect on $Y$ is proportional to its informativeness abou
+…[truncated 3702 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1247 · 2026-05-22T15:19:30.654735+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+  "offset": "55",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex",
+    "offset": "55",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1248 · 2026-05-22T15:19:30.705531+00:00_
+
+55	
+56	\paragraph{Instrumental variable ($A$ = instrument).}
+57	The Wald estimator~\cite{angrist_imbens1995} $\hat{\tau}_{\text{IV}} = \hat{\text{cov}}(A^*, Y) / \hat{\text{cov}}(A^*, X)$ has $C$ in the denominator. Misclassification can drive first-stage coefficients toward zero or reverse their sign, causing the ratio estimator to diverge or flip. Under random Dirichlet matrices, 52.6\% produce sign reversal, making IV the most fragile topology.
+58	
+59	\paragraph{Structural sign-flip guarantee.}
+60	\begin{proposition}[Sign preservation---analytic results]
+61	\label{prop:signflip}
+62	Under non-differential misclassification with $C_{kk} > 0$ for all $k$:
+63	\emph{(a)}~Confounding preserves sign when $\operatorname{sign}(\tau) = \operatorname{sign}(\tau {+} B_{\mathrm{OV}})$, where $B_{\mathrm{OV}} {=} \operatorname{Cov}(g(A),f(A))/\operatorname{Var}(T)$ is the omitted-variable bias (Cauchy--Schwarz; Appendix~\ref{app:confounding}).
+64	\emph{(b)}~Collider preserves sign when $|\tau| > \sqrt{\operatorname{Var}(g)\operatorname{Var}(h)}/\mathbb{E}[\operatorname{Var}(T{\mid}A)]$ (Berkson attenuation; Appendix~\ref{app:collider}).
+65	\emph{(c)}~Exposure can produce sign reversal for $K {\geq} 3$, even with $C_{kk} {>} 0.5$ (counterexample in Appendix~\ref{app:exposure}).
+66	\end{proposition}
+67	
+68	\paragraph{Empirical Finding 1} (Mediation, M-bias, front-door).
+69	Sign preservation holds under topology-specific conditions: mediation requires $\operatorname{sign}(\tau_{\mathrm{dir}}) {=} \operatorname{sign}(\tau_{\mathrm{total}})$; front-door requires $\operatorname{sign}(\lambda\alpha_U) {=} \operatorname{sign}(\lambda\alpha_U {+} \operatorname{Cov}(T,f(A)))$; M-bias is attenuating for all $C$. Verified across 100{,}000 random matrices with zero violations (Appendix~\ref{app:conditions}); analytic proofs for general $K$ remain open.
+70	
+71	These conditions involve true DGP parameters, which in practice must be estimated. The ASV framework (§\ref{sec:asv}) provides a com
+…[truncated 5118 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1249 · 2026-05-22T15:19:35.675708+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "200",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "200",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1250 · 2026-05-22T15:19:36.178327+00:00_
+
+200	  &\leq \mathbb{E}\bigl[\sqrt{\operatorname{Var}(g\mid A^*)\,\operatorname{Var}(f\mid A^*)}\bigr]\\
+201	  &\leq \sqrt{\mathbb{E}[\operatorname{Var}(g\mid A^*)]\;\mathbb{E}[\operatorname{Var}(f\mid A^*)]}\\
+202	  &\leq \sqrt{\operatorname{Var}(g(A))\;\operatorname{Var}(f(A))},
+203	\end{align*}
+204	where the last step uses $\mathbb{E}[\operatorname{Var}(X\mid Y)]\leq\operatorname{Var}(X)$ (law of total variance).
+205	
+206	\emph{Step 2: Conclude.}
+207	The bias satisfies
+208	\[
+209	  |B(C)| = \frac{|R(C)|}{D(C)} \leq \frac{\sqrt{\operatorname{Var}(g)\,\operatorname{Var}(f)}}{\sigma_T^2} = \bar{B}.
+210	\]
+211	When $|\tau|>\bar{B}$, the bias cannot cancel $\tau$, so $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ for all $C$.
+212	\end{proof}
+213	
+214	\paragraph{Relationship to the omitted-variable condition.}
+215	A weaker (necessary) condition for sign preservation is $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ where $\tau_{\mathrm{OV}}=\tau+\operatorname{Cov}(g,f)/\operatorname{Var}(T)$.
+216	If this fails, then $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform noise) already flips the sign.
+217	The rigorous sufficient condition $|\tau|>\bar{B}$ implies the weaker condition, since $|B_{\mathrm{OV}}|=|\operatorname{Cov}(g,f)|/\operatorname{Var}(T)\leq\bar{B}$ by Cauchy--Schwarz and $\operatorname{Var}(T)\geq\sigma_T^2$.
+218	
+219	\paragraph{Verification for paper parameters ($K{=}3$).}
+220	With $\tau{=}2.0$, $\boldsymbol{\alpha}{=}(1.5,{-}1.0)$, $\boldsymbol{\beta}^{(A)}{=}(1.0,{-}0.5)$, $\sigma_T{=}1.0$, $\mathbf{p}{=}(0.40,0.35,0.25)$:
+221	\begin{align*}
+222	  \operatorname{Var}(g) &= \sum_k p_k\alpha_k^2 - \bigl(\textstyle\sum_k p_k\alpha_k\bigr)^2 = 0.962,\\
+223	  \operatorname{Var}(f) &= \sum_k p_k(\beta_k^{(A)})^2 - \bigl(\textstyle\sum_k p_k\beta_k^{(A)}\bigr)^2 = 0.362,\\
+224	  \bar{B} &= \sqrt{0.962\times 0.362}\;/\;1.0^2 = 0.590.
+225	\end{align*}
+226	Since $|\tau|{=}2.0 > \bar{B}{=}0.590$, sign preservation 
+…[truncated 4626 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1251 · 2026-05-22T15:19:36.429896+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+  "offset": "38",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_ffca2972572580adcf5da6bc7a846270:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex",
+    "offset": "38",
+    "limit": "50"
   }
 }
 ```

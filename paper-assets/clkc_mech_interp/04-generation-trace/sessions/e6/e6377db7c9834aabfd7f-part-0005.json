@@ -7,387 +7,6 @@
       "messages": [
         {
           "source_line": 721,
-          "timestamp": "2026-05-24T18:24:23.807461+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[飞书用户 用户]: 📝 论文自检任务：缩写/专有名词定义检查\n\n请对当前论文做一次缩写定义自检。AI 写作常见问题：很多专有名词的缩写（acronym）从第一次出现就没给出全称，整篇论文都默认读者认识。这不符合学术写作规范。\n\n自检要求：\n\n1. 通读全文，列出所有缩写词（包括方法名、数据集名、指标名、模型名）\n2. 对每个缩写，确认它在【第一次出现时】用了 \"全称 (缩写)\" 格式\n   ✅ 正确：Large Language Model (LLM) ... 后续可直接用 LLM\n   ❌ 错误：摘要里用 LLM，但全文从未给出 Large Language Model\n3. 特别关注以下高发区：\n   - 你自己造的方法名/算法名（例如 SCALE、TRACE、PIVOT 这类）——是首字母缩写还是单纯命名？如果是缩写，必须说明展开\n   - 数据集/benchmark 名（MMLU、ARC、GSM8K 等常见 benchmark 也要在首次出现时给全称）\n   - 指标缩写（F1、AUC、BLEU、ROUGE-L 等）\n   - 领域术语（RLHF、DPO、CoT、ICL、PEFT 等）\n4. Abstract 和 Introduction 是首次出现的高发区，Abstract 里的缩写也要在 Abstract 里展开一次\n\n修完后请简短汇报修了哪些。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "source": "feishu:oc_6951eb3869a0070e3ae607ab60c90dad"
-          },
-          "id": "event-000721"
-        },
-        {
-          "source_line": 722,
-          "timestamp": "2026-05-24T18:24:35.167060+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "论文缩写定义自检",
-              "subagent_type": "Explore",
-              "prompt": "I need to find and read all LaTeX source files for the paper in the project clkc_mech_interp. The paper directory is at /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/\n\nFind all .tex files in that directory (main.tex, abstract.tex, introduction.tex, related_work.tex, method.tex, experiments.tex, discussion.tex, conclusion.tex, limitations.tex, and any appendix files). List their full paths.\n\nThen read the content of each file so I can check for acronym definitions. Read all of them completely."
-            }
-          },
-          "id": "event-000722"
-        },
-        {
-          "source_line": 723,
-          "timestamp": "2026-05-24T18:24:37.201819+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/**/*.tex"
-            }
-          },
-          "id": "event-000723"
-        },
-        {
-          "source_line": 724,
-          "timestamp": "2026-05-24T18:24:37.649198+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Glob",
-            "elapsed_ms": 447
-          },
-          "id": "event-000724"
-        },
-        {
-          "source_line": 725,
-          "timestamp": "2026-05-24T18:24:48.555503+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex"
-            }
-          },
-          "id": "event-000725"
-        },
-        {
-          "source_line": 726,
-          "timestamp": "2026-05-24T18:24:49.039027+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{multirow}\n15\t\\usepackage{xcolor}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\title{English-Chinese Knowledge Conflict Signals Mirror General Cross-Lingual Asymmetries}\n19\t\n20\t\\author{Anonymous ACL submission}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\begin{abstract}\n26\t\\input{abstract}\n27\t\\end{abstract}\n28\t\n29\t\\input{introduction}\n30\t\n31\t\\input{related_work}\n32\t\n33\t\\input{method}\n34\t\n35\t\\input{experiments}\n36\t\n37\t\\input{discussion}\n38\t\n39\t\\input{conclusion}\n40\t\n41\t\\input{limitations}\n42\t\n43\t\\appendix\n44\t\n45\t\\section{Use of AI Assistants}\n46\t\\label{app:ai-assistants}\n47\t\n48\tWe used Claude (Anthropic) as an AI coding and writing assistant\n49\tthroughout this work. Specifically:\n50\t\\begin{itemize}\n51\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n52\t    pipelines, and analysis utilities; debugging and refactoring.\n53\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n54\t    polishing prose, and reformatting \\LaTeX{}.\n55\t    \\item \\textbf{Literature:} summarizing related papers to inform\n56\t    related-work section.\n57\t\\end{itemize}\n58\t\n59\t\\section{Fine-Grained Causal Boundary Analysis}\n60\t\\label{app:boundary}\n61\t\n62\tTable~\\ref{tab:boundary} reports steering results across the full layer gradient from an independent replication ($N = 201$, Llama-3.1-8B-Instruct, RTX PRO 6000).\n63\t\n64\t\\begin{table}[h]\n65\t\\centering\n66\t\\caption{Causal boundary steering results (independently sampled, $N = 201$, Llama-3.1-8B-Instruct). Bonf.\\ Sig.\\ $\\alpha$s: number of $\\alpha$ values reaching significance after Bonferroni correction out of 6 tested.}\n67\t\\label{tab:boundary}\n68\t\\small\n69\t\\resizebox{\\columnwidth}{!}{%\n70\t\\begin{tabular}{lcccccc}\n71\t\\toprule\n72\n…[truncated 3343 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 483
-          },
-          "id": "event-000726"
-        },
-        {
-          "source_line": 727,
-          "timestamp": "2026-05-24T18:24:49.039358+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
-            }
-          },
-          "id": "event-000727"
-        },
-        {
-          "source_line": 728,
-          "timestamp": "2026-05-24T18:24:49.039535+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, presentation language can determine the answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, does it share structure with general cross-lingual representations, and does detectability imply causal influence on resolution?\n2\t\n3\tWe probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT, focusing on English--Chinese conflicts. Our analysis combines cross-lingual transfer, XNLI non-conflict baselines, confound exclusion, and representation steering. Conflict signals are linearly detectable across languages, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry is consistent with the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals, mirroring the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision in Llama-3.1-8B-Instruct: the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings, observed in Llama-3.1-8B-Instruct and absent in Qwen and Gemma, indicate that linear detectability does not imply causal relevance, with implications for probe-based intervention.\n4\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-000728"
-        },
-        {
-          "source_line": 729,
-          "timestamp": "2026-05-24T18:24:49.039788+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex"
-            }
-          },
-          "id": "event-000729"
-        },
-        {
-          "source_line": 730,
-          "timestamp": "2026-05-24T18:24:49.190676+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine which answer the model produces.\n5\t\\citet{zhao2026when} showed that linguistic affinity dominates conflict resolution in entity-centric factual conflicts, with models preferring answers from linguistically closer sources.\n6\tYet the internal mechanism behind this behavior remains opaque: how does the model encode the conflict signal?\n7\tCan it be detected from internal representations?\n8\tAnd if detectable, does the detected signal causally influence the model's resolution strategy?\n9\tThese questions sit at the intersection of mechanistic interpretability and multilingual NLP, and answering them requires moving beyond behavioral observations to probe model internals directly.\n10\t\n11\tExisting work on probing knowledge conflict signals has been limited to monolingual settings.\n12\t\\citet{zhao2024analysing} showed that residual stream representations carry linearly detectable conflict signals in English, and \\citet{brink2026probing} performed knowledge attribution probing to localize factual associations within model parameters.\n13\tExtending these approaches cross-lingually introduces additional challenges.\n14\tTranslation quality may confound probe transfer: a poor translation could alter conflict detection for reasons unrelated to the conflict signal itself.\n15\tToken overlap between languages, even when minimal, could provide a shortcut for cross-lingual probes.\n16\tObserved asymmetries in transfer accuracy may reflect general cross-lingual properties rather than conflict-specific phenomena, and disentangling these sources requires careful baseline comparisons.\n17\tBeyond detectability, a fundamental limitation of probing is that it establishes correlation, not causation \\citep{hewitt2019designing}.\n18\t\\citet{basu2026interpretability} demonstrated that even near-perfect probe ac\n…[truncated 4607 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 150
-          },
-          "id": "event-000730"
-        },
-        {
-          "source_line": 731,
-          "timestamp": "2026-05-24T18:24:49.191143+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex"
-            }
-          },
-          "id": "event-000731"
-        },
-        {
-          "source_line": 732,
-          "timestamp": "2026-05-24T18:24:49.341986+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Knowledge conflict detection.}\n5\t\\citet{xie2024adaptive} introduced ConflictQA and showed that models exhibit context-dependent resolution strategies, and \\citet{xu2024knowledge} provided a systematic conflict taxonomy (intra-memory, context-memory, inter-context).\n6\tMoving beyond behavioral observation, \\citet{zhao2024analysing} demonstrated linearly separable conflict signals in English residual streams, \\citet{brink2026probing} localized factual associations via probing, \\citet{pham2026where} traced intra-memory conflict pathways, and \\citet{li2025taming} proposed conflict mitigation methods.\n7\tThese studies operate exclusively in monolingual settings; extending to cross-lingual scenarios introduces confounds (translation quality, token overlap, general transfer properties) that we address with a dedicated exclusion pipeline.\n8\t\n9\t\\paragraph{Cross-lingual representations in multilingual models.}\n10\tIntermediate layers develop language-independent representations: \\citet{wu2020emerging} showed cross-lingual structure emerges without explicit alignment, and \\citet{muller2021first} found mid-layer alignment in multilingual BERT.\n11\tFor decoder-only LLMs, \\citet{wendler2024llamas} showed that Llama processes non-English inputs through an English-centric latent space, and \\citet{kargaran2024mexa} quantified this bias across language pairs.\n12\tThese findings predict our empirical observations: mid-layer steering success aligns with intermediate-layer language alignment, and the ZH$\\to$EN transfer advantage reflects English-centric structure.\n13\tBehavioral consequences have been documented by \\citet{wang2025lost}, \\citet{zhao2026when} (CLEAR benchmark), and \\citet{ifergan2024beneath, xing2024evaluating}; our work provides a mechanistic account of why such asymmetries arise.\n14\t\n15\t\\paragraph{Representation steering and causal intervention.}\n16\t\\citet{li2023iti} introduced Inference-Time Intervention for\n…[truncated 1438 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 150
-          },
-          "id": "event-000732"
-        },
-        {
-          "source_line": 733,
-          "timestamp": "2026-05-24T18:24:49.342346+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex"
-            }
-          },
-          "id": "event-000733"
-        },
-        {
-          "source_line": 734,
-          "timestamp": "2026-05-24T18:24:49.392888+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur pipeline proceeds from data construction through probing and steering, formalized below.\n5\t\n6\t\\subsection{Task Formulation}\n7\t\\label{sec:task}\n8\t\n9\tGiven a context passage $c$ and question $q$, the model produces an answer that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (from pre-trained knowledge).\n10\tWhen $c$ contradicts parametric knowledge, the choice constitutes a knowledge conflict.\n11\tWe train a logistic regression probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ on the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$ to predict a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$.\n12\t\n13\t\\subsection{Data Construction}\n14\t\\label{sec:data}\n15\t\n16\tWe build on ConflictQA \\citep{xie2024adaptive}, which pairs questions with context passages contradicting the model's parametric knowledge.\n17\tWe filter samples by querying each model without context and retaining only those answered correctly, yielding 1{,}368 samples for Llama \\citep{grattafiori2024llama}, 966 for Qwen \\citep{yang2025qwen3}, and 1{,}590 for Gemma \\citep{team2024gemma} (80/20 train/test split with stratification).\n18\tFor cross-lingual transfer, we translate all inputs into Chinese using a Qwen3-8B pipeline, with quality validated by COMET \\citep{rei2020comet} back-translation scores used in confound analysis (\\S\\ref{sec:confound_method}).\n19\t\n20\t\\subsection{Activation Extraction and Probing}\n21\t\\label{sec:extraction}\n22\t\n23\tFor each input, we construct English and Chinese versions and extract the last-token residual stream $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l$ ($L = 32$ for Llama, $36$ for Qwen, $42$ for Gemma; $d = 4096$ for Llama/Qwen, $3584$ for Gemma), following the last-token aggregation principle \\citep{belinkov2022probing}.\n24\tWe record the model's answer and assign binary labels (contextual vs.\\ parametric).\n25\t\n26\t\\label{sec:prob\n…[truncated 2957 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-000734"
-        },
-        {
-          "source_line": 735,
-          "timestamp": "2026-05-24T18:24:51.851912+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
-            }
-          },
-          "id": "event-000735"
-        },
-        {
-          "source_line": 736,
-          "timestamp": "2026-05-24T18:24:52.053425+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe three instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama}, Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2025qwen3}, and Gemma-2-9B-IT (42 layers, hidden dimension 3584) \\citep{team2024gemma}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test), 966 for Qwen (773 train / 193 test), and 1{,}590 for Gemma (1{,}274 train / 316 test), split 80/20 with stratification.\n13\tThe three models were independently verified, yielding only 3.5\\% three-way question overlap (23 questions); pairwise overlaps range from 7.2\\% (Llama $\\cap$ Gemma) to 24.8\\% (Gemma $\\cap$ Qwen), so the consistent asymmetry pattern across models constitutes largely independent replication.\n14\t\n15\t\\paragraph{Translation.}\n16\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET \\citep{rei2020comet} back-translation scores.\n17\t\n18\t\\paragraph{Probing.}\n19\tFor each layer $l$, we train an $L_2$-regularized logistic regression probe ($C = 1.0$, scikit-learn default) on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n20\tWe report balanced accuracy to account for class imbalance.\n21\tAll confidence intervals (CIs) are computed via bootstrap resampling with paired differences for asymmetry estimation.\n22\tAll activation extraction and steering exp\n…[truncated 15327 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 201
-          },
-          "id": "event-000736"
-        },
-        {
-          "source_line": 737,
-          "timestamp": "2026-05-24T18:24:52.053776+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-000737"
-        },
-        {
-          "source_line": 738,
-          "timestamp": "2026-05-24T18:24:52.355215+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Causal influence is localized to L13 regardless of detection peak.}\n5\tIn Llama, causal influence is consistently localized to layer~13 (41\\% depth; Fisher $p = 0.002$), regardless of where detection accuracy peaks: EN$\\to$EN detection peaks at L28 (88\\% depth) while ZH$\\to$ZH peaks at L13 itself, yet causal influence is found only at L13 in both cases, with all late-layer interventions producing no significant behavioral change ($p > 0.3$).\n6\tThis layer coincides with the site of cross-lingual alignment identified in prior work \\citep{muller2021first, wendler2024llamas}, suggesting that mid-layers serve a dual role in alignment and conflict resolution.\n7\tThe detection signal at later layers is best understood as a diagnostic readout of a decision already made upstream.\n8\tA practical implication follows: intervention experiments that target only the highest-accuracy layer risk missing the computationally relevant site; cross-layer sweeps are necessary.\n9\tSteering failed in both Qwen (L14, 39\\%; $n = 131$, best $p = 0.785$) and Gemma (L17, 40\\%; $n = 171$, best $p = 0.448$), with zero directional flips in both cases.\n10\tThe Gemma result is particularly informative: its 88.9\\% probe accuracy, the highest among all three models, rules out probe quality as a confound, since the direction that best separates conflict labels carries no causal influence despite being highly discriminative.\n11\tThis establishes that the causal influence of the probe direction is architecture-dependent, not a general property of mid-layer computation.\n12\t\n13\t\\paragraph{Why does steering fail in Qwen and Gemma?}\n14\tThree mechanistic hypotheses merit consideration.\n15\tFirst, the causal pathway may be non-linear: the probe direction captures the dominant linear component of the conflict signal, but the actual causal structure may involve non-linear interactions that single-direction perturbation cannot address \\citep{elhage2022toy}.\n\n…[truncated 3677 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 301
-          },
-          "id": "event-000738"
-        },
-        {
-          "source_line": 739,
-          "timestamp": "2026-05-24T18:24:52.355622+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
-            }
-          },
-          "id": "event-000739"
-        },
-        {
-          "source_line": 740,
-          "timestamp": "2026-05-24T18:24:52.508353+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that knowledge conflict signals in multilingual LLMs are linearly detectable across languages (balanced accuracies 75.0--77.6\\% within-language, all cross-lingual transfers above chance at $p < 0.001$) and that the transfer asymmetry (ZH$\\to$EN exceeding EN$\\to$ZH by ${\\sim}$6--7~pp) is consistent with the XNLI non-conflict baseline across all three architectures, reflecting general cross-lingual structure rather than conflict-specific encoding.\n5\t\n6\tIn Llama-3.1-8B-Instruct, causal influence is consistently localized to L13 (41\\% depth; Fisher $p = 0.002$) regardless of where detection accuracy peaks, and all late-layer interventions fail.\n7\tLinear detectability is neither sufficient nor predictive of causal relevance; cross-layer sweeps are necessary to identify the computationally relevant site.\n8\t\n9\tSteering failed in both Qwen and Gemma despite Gemma's 88.9\\% probe accuracy, confirming that the causal influence of the probe direction is architecture-specific.\n10\tFuture work should explore alternative intervention methods, diverse language pairs, and sparse autoencoder decomposition.\n11\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 152
-          },
-          "id": "event-000740"
-        },
-        {
-          "source_line": 741,
           "timestamp": "2026-05-24T18:24:52.508810+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -404,10 +23,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
             }
           },
-          "id": "event-000741"
+          "id": "event-000721"
         },
         {
-          "source_line": 742,
+          "source_line": 722,
           "timestamp": "2026-05-24T18:24:52.559293+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -422,10 +41,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000742"
+          "id": "event-000722"
         },
         {
-          "source_line": 743,
+          "source_line": 723,
           "timestamp": "2026-05-24T18:24:55.184065+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -442,10 +61,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex"
             }
           },
-          "id": "event-000743"
+          "id": "event-000723"
         },
         {
-          "source_line": 744,
+          "source_line": 724,
           "timestamp": "2026-05-24T18:24:55.234755+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -460,10 +79,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000744"
+          "id": "event-000724"
         },
         {
-          "source_line": 745,
+          "source_line": 725,
           "timestamp": "2026-05-24T18:24:55.536376+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -480,10 +99,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/abstract.tex"
             }
           },
-          "id": "event-000745"
+          "id": "event-000725"
         },
         {
-          "source_line": 746,
+          "source_line": 726,
           "timestamp": "2026-05-24T18:24:55.536802+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -498,10 +117,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000746"
+          "id": "event-000726"
         },
         {
-          "source_line": 747,
+          "source_line": 727,
           "timestamp": "2026-05-24T18:24:55.637461+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -518,10 +137,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-000747"
+          "id": "event-000727"
         },
         {
-          "source_line": 748,
+          "source_line": 728,
           "timestamp": "2026-05-24T18:24:55.989234+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -536,10 +155,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-000748"
+          "id": "event-000728"
         },
         {
-          "source_line": 749,
+          "source_line": 729,
           "timestamp": "2026-05-24T18:24:59.201599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -556,10 +175,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-000749"
+          "id": "event-000729"
         },
         {
-          "source_line": 750,
+          "source_line": 730,
           "timestamp": "2026-05-24T18:24:59.252237+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -574,10 +193,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000750"
+          "id": "event-000730"
         },
         {
-          "source_line": 751,
+          "source_line": 731,
           "timestamp": "2026-05-24T18:24:59.252797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +213,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex"
             }
           },
-          "id": "event-000751"
+          "id": "event-000731"
         },
         {
-          "source_line": 752,
+          "source_line": 732,
           "timestamp": "2026-05-24T18:24:59.454640+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +231,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-000752"
+          "id": "event-000732"
         },
         {
-          "source_line": 753,
+          "source_line": 733,
           "timestamp": "2026-05-24T18:24:59.455189+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -632,10 +251,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex"
             }
           },
-          "id": "event-000753"
+          "id": "event-000733"
         },
         {
-          "source_line": 754,
+          "source_line": 734,
           "timestamp": "2026-05-24T18:24:59.455630+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -650,10 +269,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000754"
+          "id": "event-000734"
         },
         {
-          "source_line": 755,
+          "source_line": 735,
           "timestamp": "2026-05-24T18:25:01.815222+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -670,10 +289,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex"
             }
           },
-          "id": "event-000755"
+          "id": "event-000735"
         },
         {
-          "source_line": 756,
+          "source_line": 736,
           "timestamp": "2026-05-24T18:25:02.066542+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -688,10 +307,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-000756"
+          "id": "event-000736"
         },
         {
-          "source_line": 757,
+          "source_line": 737,
           "timestamp": "2026-05-24T18:25:02.067079+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -708,10 +327,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-000757"
+          "id": "event-000737"
         },
         {
-          "source_line": 758,
+          "source_line": 738,
           "timestamp": "2026-05-24T18:25:02.217957+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -726,10 +345,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-000758"
+          "id": "event-000738"
         },
         {
-          "source_line": 759,
+          "source_line": 739,
           "timestamp": "2026-05-24T18:25:02.218417+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -746,10 +365,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/limitations.tex"
             }
           },
-          "id": "event-000759"
+          "id": "event-000739"
         },
         {
-          "source_line": 760,
+          "source_line": 740,
           "timestamp": "2026-05-24T18:25:02.269032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -764,10 +383,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000760"
+          "id": "event-000740"
         },
         {
-          "source_line": 761,
+          "source_line": 741,
           "timestamp": "2026-05-24T18:25:15.722047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -782,10 +401,10 @@
             "tool": "Agent",
             "elapsed_ms": 40554
           },
-          "id": "event-000761"
+          "id": "event-000741"
         },
         {
-          "source_line": 762,
+          "source_line": 742,
           "timestamp": "2026-05-24T18:25:19.838046+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -802,10 +421,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
             }
           },
-          "id": "event-000762"
+          "id": "event-000742"
         },
         {
-          "source_line": 763,
+          "source_line": 743,
           "timestamp": "2026-05-24T18:25:20.189761+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -820,10 +439,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-000763"
+          "id": "event-000743"
         },
         {
-          "source_line": 764,
+          "source_line": 744,
           "timestamp": "2026-05-24T18:25:20.190124+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -840,10 +459,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex"
             }
           },
-          "id": "event-000764"
+          "id": "event-000744"
         },
         {
-          "source_line": 765,
+          "source_line": 745,
           "timestamp": "2026-05-24T18:25:20.792701+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -858,10 +477,10 @@
             "tool": "Read",
             "elapsed_ms": 602
           },
-          "id": "event-000765"
+          "id": "event-000745"
         },
         {
-          "source_line": 766,
+          "source_line": 746,
           "timestamp": "2026-05-24T18:25:20.793150+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -878,10 +497,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex"
             }
           },
-          "id": "event-000766"
+          "id": "event-000746"
         },
         {
-          "source_line": 767,
+          "source_line": 747,
           "timestamp": "2026-05-24T18:25:20.843618+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -896,10 +515,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000767"
+          "id": "event-000747"
         },
         {
-          "source_line": 768,
+          "source_line": 748,
           "timestamp": "2026-05-24T18:25:24.785993+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -916,10 +535,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex"
             }
           },
-          "id": "event-000768"
+          "id": "event-000748"
         },
         {
-          "source_line": 769,
+          "source_line": 749,
           "timestamp": "2026-05-24T18:25:25.188029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -934,10 +553,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-000769"
+          "id": "event-000749"
         },
         {
-          "source_line": 770,
+          "source_line": 750,
           "timestamp": "2026-05-24T18:25:25.339046+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -954,10 +573,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
             }
           },
-          "id": "event-000770"
+          "id": "event-000750"
         },
         {
-          "source_line": 771,
+          "source_line": 751,
           "timestamp": "2026-05-24T18:25:25.339716+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -972,10 +591,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000771"
+          "id": "event-000751"
         },
         {
-          "source_line": 772,
+          "source_line": 752,
           "timestamp": "2026-05-24T18:25:29.556939+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -992,10 +611,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex"
             }
           },
-          "id": "event-000772"
+          "id": "event-000752"
         },
         {
-          "source_line": 773,
+          "source_line": 753,
           "timestamp": "2026-05-24T18:25:29.958800+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1010,10 +629,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-000773"
+          "id": "event-000753"
         },
         {
-          "source_line": 774,
+          "source_line": 754,
           "timestamp": "2026-05-24T18:25:30.109802+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1030,10 +649,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-000774"
+          "id": "event-000754"
         },
         {
-          "source_line": 775,
+          "source_line": 755,
           "timestamp": "2026-05-24T18:25:30.361181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1048,10 +667,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-000775"
+          "id": "event-000755"
         },
         {
-          "source_line": 776,
+          "source_line": 756,
           "timestamp": "2026-05-24T18:25:30.361532+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1068,10 +687,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
             }
           },
-          "id": "event-000776"
+          "id": "event-000756"
         },
         {
-          "source_line": 777,
+          "source_line": 757,
           "timestamp": "2026-05-24T18:25:30.462154+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1086,10 +705,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000777"
+          "id": "event-000757"
         },
         {
-          "source_line": 778,
+          "source_line": 758,
           "timestamp": "2026-05-24T18:26:41.936497+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1107,10 +726,10 @@
               "project": "clkc_mech_interp"
             }
           },
-          "id": "event-000778"
+          "id": "event-000758"
         },
         {
-          "source_line": 779,
+          "source_line": 759,
           "timestamp": "2026-05-24T18:26:46.254018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1125,10 +744,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 4317
           },
-          "id": "event-000779"
+          "id": "event-000759"
         },
         {
-          "source_line": 780,
+          "source_line": 760,
           "timestamp": "2026-05-24T18:29:27.498346+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1146,10 +765,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-000780"
+          "id": "event-000760"
         },
         {
-          "source_line": 781,
+          "source_line": 761,
           "timestamp": "2026-05-24T18:29:27.971259+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1164,10 +783,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 472
           },
-          "id": "event-000781"
+          "id": "event-000761"
         },
         {
-          "source_line": 782,
+          "source_line": 762,
           "timestamp": "2026-05-24T18:29:30.079599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1185,10 +804,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000782"
+          "id": "event-000762"
         },
         {
-          "source_line": 783,
+          "source_line": 763,
           "timestamp": "2026-05-24T18:29:30.130228+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1203,10 +822,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000783"
+          "id": "event-000763"
         },
         {
-          "source_line": 784,
+          "source_line": 764,
           "timestamp": "2026-05-24T18:29:32.497762+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1224,10 +843,10 @@
               "max_results": "5"
             }
           },
-          "id": "event-000784"
+          "id": "event-000764"
         },
         {
-          "source_line": 785,
+          "source_line": 765,
           "timestamp": "2026-05-24T18:29:32.548431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1242,10 +861,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000785"
+          "id": "event-000765"
         },
         {
-          "source_line": 786,
+          "source_line": 766,
           "timestamp": "2026-05-24T18:29:36.415053+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1262,10 +881,10 @@
               "project": "clkc_mech_interp"
             }
           },
-          "id": "event-000786"
+          "id": "event-000766"
         },
         {
-          "source_line": 787,
+          "source_line": 767,
           "timestamp": "2026-05-24T18:29:36.892995+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1280,10 +899,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 477
           },
-          "id": "event-000787"
+          "id": "event-000767"
         },
         {
-          "source_line": 788,
+          "source_line": 768,
           "timestamp": "2026-05-24T18:29:43.070277+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1300,10 +919,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex"
             }
           },
-          "id": "event-000788"
+          "id": "event-000768"
         },
         {
-          "source_line": 789,
+          "source_line": 769,
           "timestamp": "2026-05-24T18:29:43.551675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1318,10 +937,10 @@
             "tool": "Read",
             "elapsed_ms": 481
           },
-          "id": "event-000789"
+          "id": "event-000769"
         },
         {
-          "source_line": 790,
+          "source_line": 770,
           "timestamp": "2026-05-24T18:29:43.652416+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1338,10 +957,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex"
             }
           },
-          "id": "event-000790"
+          "id": "event-000770"
         },
         {
-          "source_line": 791,
+          "source_line": 771,
           "timestamp": "2026-05-24T18:29:44.104687+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1356,10 +975,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-000791"
+          "id": "event-000771"
         },
         {
-          "source_line": 792,
+          "source_line": 772,
           "timestamp": "2026-05-24T18:29:44.105277+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1376,10 +995,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex"
             }
           },
-          "id": "event-000792"
+          "id": "event-000772"
         },
         {
-          "source_line": 793,
+          "source_line": 773,
           "timestamp": "2026-05-24T18:29:44.206064+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1394,10 +1013,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000793"
+          "id": "event-000773"
         },
         {
-          "source_line": 794,
+          "source_line": 774,
           "timestamp": "2026-05-24T18:29:56.056836+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1414,10 +1033,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex"
             }
           },
-          "id": "event-000794"
+          "id": "event-000774"
         },
         {
-          "source_line": 795,
+          "source_line": 775,
           "timestamp": "2026-05-24T18:29:57.162623+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1432,10 +1051,10 @@
             "tool": "Read",
             "elapsed_ms": 1105
           },
-          "id": "event-000795"
+          "id": "event-000775"
         },
         {
-          "source_line": 796,
+          "source_line": 776,
           "timestamp": "2026-05-24T18:29:57.313593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1452,10 +1071,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex"
             }
           },
-          "id": "event-000796"
+          "id": "event-000776"
         },
         {
-          "source_line": 797,
+          "source_line": 777,
           "timestamp": "2026-05-24T18:29:57.313972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1472,10 +1091,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex"
             }
           },
-          "id": "event-000797"
+          "id": "event-000777"
         },
         {
-          "source_line": 798,
+          "source_line": 778,
           "timestamp": "2026-05-24T18:29:57.314348+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1490,10 +1109,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000798"
+          "id": "event-000778"
         },
         {
-          "source_line": 799,
+          "source_line": 779,
           "timestamp": "2026-05-24T18:29:57.314628+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1508,10 +1127,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000799"
+          "id": "event-000779"
         },
         {
-          "source_line": 800,
+          "source_line": 780,
           "timestamp": "2026-05-24T18:30:45.672039+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1528,10 +1147,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-000800"
+          "id": "event-000780"
         },
         {
-          "source_line": 801,
+          "source_line": 781,
           "timestamp": "2026-05-24T18:30:46.225305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1546,10 +1165,10 @@
             "tool": "Read",
             "elapsed_ms": 553
           },
-          "id": "event-000801"
+          "id": "event-000781"
         },
         {
-          "source_line": 802,
+          "source_line": 782,
           "timestamp": "2026-05-24T18:30:46.376329+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1566,10 +1185,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
             }
           },
-          "id": "event-000802"
+          "id": "event-000782"
         },
         {
-          "source_line": 803,
+          "source_line": 783,
           "timestamp": "2026-05-24T18:30:46.376916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1584,10 +1203,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000803"
+          "id": "event-000783"
         },
         {
-          "source_line": 804,
+          "source_line": 784,
           "timestamp": "2026-05-24T18:31:03.882137+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1606,10 +1225,10 @@
               "preview": "False"
             }
           },
-          "id": "event-000804"
+          "id": "event-000784"
         },
         {
-          "source_line": 805,
+          "source_line": 785,
           "timestamp": "2026-05-24T18:31:06.535246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1624,10 +1243,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2653
           },
-          "id": "event-000805"
+          "id": "event-000785"
         },
         {
-          "source_line": 806,
+          "source_line": 786,
           "timestamp": "2026-05-24T18:31:25.691338+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1645,10 +1264,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000806"
+          "id": "event-000786"
         },
         {
-          "source_line": 807,
+          "source_line": 787,
           "timestamp": "2026-05-24T18:31:26.166120+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1663,10 +1282,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 474
           },
-          "id": "event-000807"
+          "id": "event-000787"
         },
         {
-          "source_line": 808,
+          "source_line": 788,
           "timestamp": "2026-05-24T18:31:36.410880+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1683,10 +1302,10 @@
               "text": "缩写定义自检完成，12 项全部已在首次出现处展开：\n\n1. **XNLI** → Cross-lingual Natural Language Inference (XNLI) — abstract\n2. **EN/ZH** → English (EN)--Chinese (ZH) — abstract\n3. **COMET** → Crosslingual Optimized Metric for Evaluation of Translation — method §3.2\n4. **SAE** → Sparse Autoencoder (SAE) — related work\n5. **SpARE** → 作为方法名随 SAE 展开给出上下文 — related work\n6. **ROME** → Rank-One Model Editing; ROME — related work\n7. **TOST** → Two One-Sided Tests (TOST) — experiments §4.3\n8. **BF₀₁** → Bayes factor — experiments §4.3\n9. **SE** → standard error (SE) — experiments §4.3\n10. **MLP** → multilayer perceptron (MLP) — Figure 2 caption\n11. **AUROC** → area under the receiver operating characteristic (AUROC) — discussion\n12. **CLEAR** → 以描述性短语 \"CLEAR cross-lingual conflict benchmark\" 给出语境 — related work\n\n编译通过：0 critical warnings，正文 8 页（refs+appendix 在第 9-11 页，不计入 EMNLP 页数限制）。"
             }
           },
-          "id": "event-000808"
+          "id": "event-000788"
         },
         {
-          "source_line": 809,
+          "source_line": 789,
           "timestamp": "2026-05-24T18:31:36.989385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1701,10 +1320,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 578
           },
-          "id": "event-000809"
+          "id": "event-000789"
         },
         {
-          "source_line": 810,
+          "source_line": 790,
           "timestamp": "2026-05-24T18:31:40.333628+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1717,7 +1336,7 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director"
           },
-          "id": "event-000810"
+          "id": "event-000790"
         }
       ]
     },
@@ -1725,7 +1344,7 @@
       "number": 124,
       "messages": [
         {
-          "source_line": 811,
+          "source_line": 791,
           "timestamp": "2026-05-24T18:31:42.316200+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1739,10 +1358,10 @@
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "paper_agent"
           },
-          "id": "event-000811"
+          "id": "event-000791"
         },
         {
-          "source_line": 812,
+          "source_line": 792,
           "timestamp": "2026-05-24T18:31:49.294300+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1755,7 +1374,7 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director"
           },
-          "id": "event-000812"
+          "id": "event-000792"
         }
       ]
     },
@@ -1763,7 +1382,7 @@
       "number": 125,
       "messages": [
         {
-          "source_line": 813,
+          "source_line": 793,
           "timestamp": "2026-05-25T01:50:32.638675+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1777,10 +1396,10 @@
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000813"
+          "id": "event-000793"
         },
         {
-          "source_line": 814,
+          "source_line": 794,
           "timestamp": "2026-05-25T01:50:39.441252+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1798,10 +1417,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000814"
+          "id": "event-000794"
         },
         {
-          "source_line": 815,
+          "source_line": 795,
           "timestamp": "2026-05-25T01:50:39.491833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1816,10 +1435,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000815"
+          "id": "event-000795"
         },
         {
-          "source_line": 816,
+          "source_line": 796,
           "timestamp": "2026-05-25T01:50:45.114329+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1455,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-000816"
+          "id": "event-000796"
         },
         {
-          "source_line": 817,
+          "source_line": 797,
           "timestamp": "2026-05-25T01:50:45.165048+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,7 +1473,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 50
           },
-          "id": "event-000817"
+          "id": "event-000797"
         }
       ]
     },
@@ -1862,7 +1481,7 @@
       "number": 126,
       "messages": [
         {
-          "source_line": 818,
+          "source_line": 798,
           "timestamp": "2026-05-25T03:50:45.939991+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1876,10 +1495,10 @@
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000818"
+          "id": "event-000798"
         },
         {
-          "source_line": 819,
+          "source_line": 799,
           "timestamp": "2026-05-25T03:50:51.587005+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1896,10 +1515,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-000819"
+          "id": "event-000799"
         },
         {
-          "source_line": 820,
+          "source_line": 800,
           "timestamp": "2026-05-25T03:50:51.637642+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1914,7 +1533,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 50
           },
-          "id": "event-000820"
+          "id": "event-000800"
         }
       ]
     },
@@ -1922,7 +1541,7 @@
       "number": 127,
       "messages": [
         {
-          "source_line": 821,
+          "source_line": 801,
           "timestamp": "2026-05-25T04:12:16.264940+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1936,10 +1555,10 @@
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "feishu:oc_6951eb3869a0070e3ae607ab60c90dad"
           },
-          "id": "event-000821"
+          "id": "event-000801"
         },
         {
-          "source_line": 822,
+          "source_line": 802,
           "timestamp": "2026-05-25T04:12:22.920614+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1957,10 +1576,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000822"
+          "id": "event-000802"
         },
         {
-          "source_line": 823,
+          "source_line": 803,
           "timestamp": "2026-05-25T04:12:23.472145+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1975,10 +1594,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 551
           },
-          "id": "event-000823"
+          "id": "event-000803"
         },
         {
-          "source_line": 824,
+          "source_line": 804,
           "timestamp": "2026-05-25T04:12:27.989316+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1998,10 +1617,10 @@
               "clean": "True"
             }
           },
-          "id": "event-000824"
+          "id": "event-000804"
         },
         {
-          "source_line": 825,
+          "source_line": 805,
           "timestamp": "2026-05-25T04:12:31.749431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2016,10 +1635,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 3760
           },
-          "id": "event-000825"
+          "id": "event-000805"
         },
         {
-          "source_line": 826,
+          "source_line": 806,
           "timestamp": "2026-05-25T04:12:47.421470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2043,10 +1662,10 @@
               "reason": "Round 2 全部 16 项 review issues 已 resolved：3 Critical（framing downgrade: Mirror/English-Chinese/Llama-specific）、7 Warning（multi-seed replication、TOST power、Gemma COMET、缩写定义等）均已修复并通过 Reviewer 验证。编译 0 critical warnings，主文 8 页。"
             }
           },
-          "id": "event-000826"
+          "id": "event-000806"
         },
         {
-          "source_line": 827,
+          "source_line": 807,
           "timestamp": "2026-05-25T04:12:47.936927+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2061,10 +1680,10 @@
             "tool": "mcp__agent-ml-research__submit_paper_to_review",
             "elapsed_ms": 515
           },
-          "id": "event-000827"
+          "id": "event-000807"
         },
         {
-          "source_line": 828,
+          "source_line": 808,
           "timestamp": "2026-05-25T04:12:53.460031+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2088,10 +1707,10 @@
               "reason": "Round 2 全部 16 项 review issues 已 resolved：3 Critical（framing downgrade: Mirror/English-Chinese/Llama-specific）、7 Warning（multi-seed replication、TOST power、Gemma COMET、缩写定义等）均已修复并通过 Reviewer 验证。编译 0 critical warnings，主文 8 页。"
             }
           },
-          "id": "event-000828"
+          "id": "event-000808"
         },
         {
-          "source_line": 829,
+          "source_line": 809,
           "timestamp": "2026-05-25T04:12:53.460509+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2106,10 +1725,10 @@
             "tool": "mcp__agent-ml-research__submit_paper_to_review",
             "elapsed_ms": 0
           },
-          "id": "event-000829"
+          "id": "event-000809"
         },
         {
-          "source_line": 830,
+          "source_line": 810,
           "timestamp": "2026-05-25T04:12:59.184034+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2128,10 +1747,10 @@
               "preview": "True"
             }
           },
-          "id": "event-000830"
+          "id": "event-000810"
         },
         {
-          "source_line": 831,
+          "source_line": 811,
           "timestamp": "2026-05-25T04:13:00.724881+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2146,10 +1765,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 1540
           },
-          "id": "event-000831"
+          "id": "event-000811"
         },
         {
-          "source_line": 832,
+          "source_line": 812,
           "timestamp": "2026-05-25T04:13:05.194572+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2166,10 +1785,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-000832"
+          "id": "event-000812"
         },
         {
-          "source_line": 833,
+          "source_line": 813,
           "timestamp": "2026-05-25T04:13:05.753003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2186,10 +1805,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-000833"
+          "id": "event-000813"
         },
         {
-          "source_line": 834,
+          "source_line": 814,
           "timestamp": "2026-05-25T04:13:06.528781+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2204,10 +1823,10 @@
             "tool": "Read",
             "elapsed_ms": 1334
           },
-          "id": "event-000834"
+          "id": "event-000814"
         },
         {
-          "source_line": 835,
+          "source_line": 815,
           "timestamp": "2026-05-25T04:13:06.579821+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2222,10 +1841,10 @@
             "tool": "Read",
             "elapsed_ms": 826
           },
-          "id": "event-000835"
+          "id": "event-000815"
         },
         {
-          "source_line": 836,
+          "source_line": 816,
           "timestamp": "2026-05-25T04:13:20.117511+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2249,10 +1868,10 @@
               "reason": "Round 2 全部 16 项 review issues 已 resolved：3 Critical（Mirror/English-Chinese/Llama-specific framing）、7 Warning（multi-seed、TOST、Gemma COMET、缩写等）。编译 0 critical warnings，主文 8 页。"
             }
           },
-          "id": "event-000836"
+          "id": "event-000816"
         },
         {
-          "source_line": 837,
+          "source_line": 817,
           "timestamp": "2026-05-25T04:13:24.230452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2267,10 +1886,10 @@
             "tool": "mcp__agent-ml-research__submit_paper_to_review",
             "elapsed_ms": 4112
           },
-          "id": "event-000837"
+          "id": "event-000817"
         },
         {
-          "source_line": 838,
+          "source_line": 818,
           "timestamp": "2026-05-25T04:13:28.950968+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2287,10 +1906,10 @@
               "text": "审稿审批卡已发出（apr_20260525T041320_k4qi），推荐 continue 模式（验证 Round 2 修复效果）。请在卡片上确认。"
             }
           },
-          "id": "event-000838"
+          "id": "event-000818"
         },
         {
-          "source_line": 839,
+          "source_line": 819,
           "timestamp": "2026-05-25T04:13:29.573023+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2305,10 +1924,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 622
           },
-          "id": "event-000839"
+          "id": "event-000819"
         },
         {
-          "source_line": 840,
+          "source_line": 820,
           "timestamp": "2026-05-25T04:13:31.905212+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2321,7 +1940,7 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director"
           },
-          "id": "event-000840"
+          "id": "event-000820"
         }
       ]
     },
@@ -2329,7 +1948,7 @@
       "number": 128,
       "messages": [
         {
-          "source_line": 841,
+          "source_line": 821,
           "timestamp": "2026-05-25T04:13:33.061720+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2343,10 +1962,10 @@
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000841"
+          "id": "event-000821"
         },
         {
-          "source_line": 842,
+          "source_line": 822,
           "timestamp": "2026-05-25T04:14:13.947300+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2359,7 +1978,7 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director"
           },
-          "id": "event-000842"
+          "id": "event-000822"
         }
       ]
     }

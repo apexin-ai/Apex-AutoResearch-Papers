@@ -57,7 +57,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research w11 reference verify | 31 | 0 | [Read transcript](research-w11-reference-verify.md) | [JSON](../../sessions/dd/dd2abb050ae8dcb76c99.json) |
 | code exp63 toxicchat fpfn | 429 | 0 | [Read transcript](code-exp63-toxicchat-fpfn.md) | [JSON](../../sessions/8b/8b39fd5f90439f8becd0.json) |
 | code exp64 confidence script | 61 | 0 | [Read transcript](code-exp64-confidence-script.md) | [JSON](../../sessions/22/22b09cbc60fd690084cc.json) |
-| research rebuttal data summary — Extract all experiment data related to "exp63" from the registry JSON file at: /home/ubuntu/.claude- | 136 | 4 | [Read transcript](research-rebuttal-data-summary.md) | [JSON](../../sessions/23/2347fd76e5f8e93a69bd.json) |
 | code exp64 run confidence | 57 | 0 | [Read transcript](code-exp64-run-confidence.md) | [JSON](../../sessions/79/79829826b1a1594604dd.json) |
 | code exp64 levene test | 23 | 0 | [Read transcript](code-exp64-levene-test.md) | [JSON](../../sessions/fe/fe9f7c3a406f42d8fb70.json) |
 | research mr reference verify | 32 | 0 | [Read transcript](research-mr-reference-verify.md) | [JSON](../../sessions/8a/8acce1cdb35c8aeefd1c.json) |
@@ -92,10 +91,10 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | audit table registry traceability | 72 | 0 | [Read transcript](audit-table-registry-traceability.md) | [JSON](../../sessions/62/62cde1cf5e0108efb636.json) |
 | audit appendix consistency — I need to audit \label and \ref consistency across all .tex files in /home/ubuntu/.agent-ml-research | 90 | 3 | [Read transcript](audit-appendix-consistency.md) | [JSON](../../sessions/15/15fa827e48fd93c90af8.json) |
 | audit roberta large seed check | 58 | 0 | [Read transcript](audit-roberta-large-seed-check.md) | [JSON](../../sessions/8b/8b02d6904d6d160e3e24.json) |
-| code exp68 lora comparison | 394 | 0 | [Read transcript](code-exp68-lora-comparison.md) | [JSON](../../sessions/fa/fa2c72772064c0b06350.json) |
-| analysis exp69 mixed llm aa error | 194 | 0 | [Read transcript](analysis-exp69-mixed-llm-aa-error.md) | [JSON](../../sessions/8c/8c2c5dcfa9c870e921ce.json) |
+| code exp68 lora comparison | 392 | 0 | [Read transcript](code-exp68-lora-comparison.md) | [JSON](../../sessions/fa/fa2c72772064c0b06350.json) |
+| analysis exp69 mixed llm aa error | 192 | 0 | [Read transcript](analysis-exp69-mixed-llm-aa-error.md) | [JSON](../../sessions/8c/8c2c5dcfa9c870e921ce.json) |
 | code exp70 deberta large scale | 443 | 0 | [Read transcript](code-exp70-deberta-large-scale.md) | [JSON](../../sessions/f7/f7a1e212c59635e45ad1.json) |
-| ops exp70 status check | 54 | 0 | [Read transcript](ops-exp70-status-check.md) | [JSON](../../sessions/0d/0ddf7c88f187aa323e7f.json) |
+| ops exp70 status check | 52 | 0 | [Read transcript](ops-exp70-status-check.md) | [JSON](../../sessions/0d/0ddf7c88f187aa323e7f.json) |
 | code exp71 mixed llm disentangle | 199 | 0 | [Read transcript](code-exp71-mixed-llm-disentangle.md) | [JSON](../../sessions/33/33be874b2896502681d3.json) |
 | audit final text numbers | 46 | 0 | [Read transcript](audit-final-text-numbers.md) | [JSON](../../sessions/e0/e00ce328421d187b588e.json) |
 | audit final table numbers | 83 | 0 | [Read transcript](audit-final-table-numbers.md) | [JSON](../../sessions/9c/9ccb937c93210eb533be.json) |

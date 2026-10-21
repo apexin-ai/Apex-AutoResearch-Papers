@@ -6,184 +6,9 @@
 
 ## Round 42
 
-### User
-
-_source line 678 · 2026-05-23T08:20:55.965151+00:00_
-
-[System 触发审查]:
-请独立审查我对 R22 审稿报告的 Action Matrix。重点关注：(1) 对复发问题的修复方案是否与之前失败的方法不同；(2) evidence vs writing 分类是否正确；(3) 方案可行性。
-
----
-
-## R22 审稿报告 + 复发分析 + Action Matrix
-
-### W1 [Critical, 复发 ×3轮 (R10→R13→R14)] Framing 根本张力
-
-**问题**：「temporal measurement instability」与 DIF 无法归因机制的矛盾。Reviewer 认为 DIF≠0 在 LLM 场景下可能是预期行为（不同代模型对不同 item 有不同 ability profile 是正常的）。
-
-**历史修复**：
-- R10→R13: 从"contamination detection"改为"orthogonal constructs"framing → 失败
-- R13→R14: 重构叙事为"Temporal DIF as Structured Signal"，强调"detects what, not why" → 失败
-- 结论：纯写作手段对此问题无效
-
-**本轮修复方案（evidence + framing 双修）**：
-1. **[Evidence] Score inflation 量化**：已派 Agent 计算 DIF-corrected scores vs original scores。如果能证明"X% of reported model improvement is measurement artifact"，则无论 DIF 来源于 contamination 还是 capability evolution，实践价值都成立
-2. **[Framing] 采用 Camilli & Shepard (1994) impact vs bias 框架**：区分 DIF 中的 bias（真实测量缺陷）和 impact（合法能力差异的 item 层面体现）。论文不需要证明所有 DIF 都是 bias，只需要证明"无论 bias 还是 impact，cross-temporal score 比较都受影响"
-3. **[Writing] 替换核心术语**：将"measurement instability"替换为"temporal differential item functioning"作为描述性术语。在 Introduction 明确："We use 'temporal DIF' descriptively — whether it reflects measurement bias or legitimate capability evolution, it signals that cross-cohort score comparisons require adjustment"
-4. **[Writing] §5.2 分机制讨论 audit 行动**：contamination → 移除; capability evolution → 保留但调整比较基准; composition shift → 修正 cohort 定义
-5. **[Evidence] Base/instruct composition control**：已完成（Δ=1.08pp），排除 composition shift 解释
-
-**与之前方案的关键区别**：之前 3 轮都是纯写作修复（换术语、换 framing）。本轮增加了 evidence 维度（score inflation 量化 + composition control），使"so what"有数据支撑。
-
-### W2 [Warning, 复发 ×3轮] DEFF 估计范围过宽
-
-**历史修复**：加了 size-stratified DEFF table → 仍被 flag（核心问题是"偏好高估值的论证不够透明"）
-
-**本轮方案**：
-1. §4.2 并列呈现两个估计（"27–29% under simple-mean correction; 13.5% under weighted-mean correction"），不再将 13.5% 降级到 footnote
-2. 加入 DEFF simulation 结果（如 Agent 完成），论证 simple-mean 在 ICC-decreasing-with-family-size 场景下更准确
-3. 补充 LLM-specific 论据：model family 不是 natural population 随机抽样，weighted-mean 过度加权 mega-family
-
-### W3 [Warning, 复发 ×3轮] Semi-synthetic 生态效度
-
-**结构性局限，无法完全解决**。
-
-**本轮方案**：
-1. §4.5 标题从 "Semi-Synthetic Framework Validation" 改为 "Detection Power under Controlled Injection"
-2. Limitations 中加强 ecological validity caveat
-3. 不再用写作手段掩饰
-
-### W4 [Warning, NEW → SOLVED] Base/instruct composition control
-
-**已完成**：Balanced C% = 30.25% ± 1.32%，Δ = 1.08pp。
-
-**方案**：§4.2 加一句话："Balanced base/instruct subsampling (matching 2024's 67.9% base ratio in both cohorts) yields C% = 30.2±1.3%, confirming composition shift accounts for ≤1.1 pp (\Cref{app:composition_control})."
-
-### W5 [Warning, 复发 ×4轮] enlargethispage 过激
-
-**历史修复**：从 10→6（discussion.tex），但 experiments.tex 仍有 4，总量仍为 10。
-
-**本轮方案（必须与 W8 联合解决——Conclusion 需要更多空间，但 enlargethispage 需要减少）**：
-1. 将 §4.2 的 DEFF 校正详细讨论（约 4-5 行）移入 appendix，正文只保留两个估计 + 前向引用
-2. 将 experiments.tex 的 enlargethispage 从 4 降至 2
-3. 将 discussion.tex 的 enlargethispage 从 6 降至 2（或去掉）
-4. 腾出的空间分给 Conclusion（W8）
-5. 目标：总 enlargethispage ≤ 4\baselineskip
-
-### W6 [Warning, 从 info 升级, 复发 ×2轮] 术语不一致
-
-**本轮方案**：
-- 核心技术术语：**temporal DIF**（全文一致）
-- 全称首次出现：temporal differential item functioning
-- 在 Introduction §1 定义清晰的术语层次：measurement invariance（property）→ DIF（test）→ temporal DIF（our application）→ temporal measurement instability 仅作为"当 DIF 在时间定义 cohort 上被检测到时的描述性术语"
-- 删除或替换所有散落的 "measurement shift"、"temporal comparability" 等
-
-### W7 [Warning, 复发 ×3轮] 方法论新颖性有限
-
-**历史修复**：R10-R13 用 "rebuttal-only" 策略 → 失败（R14 仍标 warning）
-
-**本轮方案（首次在论文中做修改）**：
-1. Introduction 删除 "our contributions are methodological and empirical, not algorithmic"
-2. 替换为："While the core MH statistic is established, three LLM-specific challenges required novel methodological solutions"
-3. 在 Contribution 3 中显式列举三个创新：cross-subject matching (ΔFPR=0), family-level DEFF correction, semi-synthetic validation infrastructure
-4. Method section §3.4 "LLM-specific challenges" 段落升格为独立 subsection
-5. 如 score inflation 分析完成，加入 DIF-adjusted scoring 作为第四个方法贡献
-
-### W8 [Warning, 复发 ×3轮] Conclusion 过短
-
-**历史修复**：从 1→4 句 → 仍不够
-
-**本轮方案**：扩展到 2 段（利用 W5 腾出的空间）：
-- 第 1 段：核心发现总结（保留现有内容）
-- 第 2 段：practical implications（DIF audit as standard practice, score adjustment for cross-cohort comparison）+ future directions（mechanism attribution via causal inference, real-time DIF monitoring, extension to open-ended benchmarks）
-
-### Minor Issues
-
-**N1 [Info]** Abstract 过密：精简到 3 个关键数字（≈27-29%, Jaccard=0.206, ρ≈0.997）
-**N2 [Info]** 正交性是预期结果：改为 "empirical confirmation of a theoretically expected distinction"
-**N3 [Info]** AUROC 描述：改 "near chance" → "weak predictive power"
-**N4 [Info]** Figure 1 caption："global contamination produces no DIF" → "uniform global contamination typically produces no DIF"
-**N5 [Info]** Cluster bootstrap CI 53.2%：加注释说明极端 resample 原因
-
-### Questions 回应
-
-**Q1**: 2023 base/instruct = 79.7%/20.3%, 2024 = 67.9%/32.1%。已做 model-type-stratified analysis（Reviewer 已审查 composition control 结果）
-**Q2**: Base/instruct N 来自全部 5,227 模型（1,409 base + 478 instruct 来自有 type label 的子集）。需在正文中澄清
-**Q3**: 1:1 nearest-neighbor matching on total score, caliper = 0.02 (≈0.14 SD)。已在 appendix
-**Q4**: Simple-mean DEFF 降幅小（2pp）是因为平均 ICC 低（0.047）；weighted-mean 由 mega-family 主导，其 ICC 反而最低（0.08）却被赋予最高权重
-**Q5**: 需在 §5.2 补充分机制行动建议（见 W1 方案第 4 点）
-**Q6**: 需查 Growing Pains anchor items 与 stable items 重叠度。如果数据可用，可快速计算
-**Q7**: 需 WebSearch 查 Maeda (2025) 是否存在
-
-### 优先级排序
-
-1. **W1** (critical, 复发, evidence+framing) — 等 score inflation 结果后重构
-2. **W7** (warning, 复发, 首次改论文) — 同步 Introduction 重写
-3. **W5+W8** (warning, 复发, 联合) — 压缩§4 + 扩展 Conclusion
-4. **W4** (warning, 已解决) — 加一句话
-5. **W6** (warning, 术语统一) — 全文替换
-6. **W2** (warning, DEFF) — 并列呈现
-7. **W3** (warning, 标题改名)
-8. **N1-N5** + Questions
-
-请审查以上方案，特别关注：
-1. W1 的 "score incomparability" 定位是否比 "instability" 更站得住？
-2. W5 的压缩目标（≤4\baselineskip）是否现实？
-3. W7 的"三个 LLM-specific innovations" framing 是否 overclaim？
-4. 是否有遗漏的 issue？
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "source": "system"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 679 · 2026-05-23T08:21:03.459126+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 680 · 2026-05-23T08:21:03.961866+00:00_
+_source line 676 · 2026-05-23T08:21:03.961866+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -211,7 +36,7 @@ _source line 680 · 2026-05-23T08:21:03.961866+00:00_
 
 ### Tool call
 
-_source line 681 · 2026-05-23T08:21:03.962344+00:00_
+_source line 677 · 2026-05-23T08:21:03.962344+00:00_
 
 called Read
 
@@ -245,7 +70,7 @@ called Read
 
 ### Tool result
 
-_source line 682 · 2026-05-23T08:21:04.062999+00:00_
+_source line 678 · 2026-05-23T08:21:04.062999+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -288,7 +113,7 @@ _source line 682 · 2026-05-23T08:21:04.062999+00:00_
 
 ### Tool call
 
-_source line 683 · 2026-05-23T08:23:54.286486+00:00_
+_source line 679 · 2026-05-23T08:23:54.286486+00:00_
 
 called Agent
 
@@ -326,7 +151,7 @@ called Agent
 
 ### Tool call
 
-_source line 684 · 2026-05-23T08:23:55.893243+00:00_
+_source line 680 · 2026-05-23T08:23:55.893243+00:00_
 
 called Glob
 
@@ -360,7 +185,7 @@ called Glob
 
 ### Tool result
 
-_source line 685 · 2026-05-23T08:23:56.144594+00:00_
+_source line 681 · 2026-05-23T08:23:56.144594+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/difficulty_modeltype_interaction/interaction_analysis.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/difficulty_modeltype_interaction/interaction_regression.csv
@@ -385,7 +210,7 @@ _source line 685 · 2026-05-23T08:23:56.144594+00:00_
 
 ### Tool call
 
-_source line 686 · 2026-05-23T08:23:56.145024+00:00_
+_source line 682 · 2026-05-23T08:23:56.145024+00:00_
 
 called Glob
 
@@ -419,7 +244,7 @@ called Glob
 
 ### Tool result
 
-_source line 687 · 2026-05-23T08:23:56.245647+00:00_
+_source line 683 · 2026-05-23T08:23:56.245647+00:00_
 
 No files found
 
@@ -441,7 +266,7 @@ No files found
 
 ### Tool call
 
-_source line 688 · 2026-05-23T08:23:56.296360+00:00_
+_source line 684 · 2026-05-23T08:23:56.296360+00:00_
 
 called Glob
 
@@ -475,7 +300,7 @@ called Glob
 
 ### Tool result
 
-_source line 689 · 2026-05-23T08:23:56.296895+00:00_
+_source line 685 · 2026-05-23T08:23:56.296895+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/build_response_matrix.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/response_matrix.npz
@@ -500,7 +325,7 @@ _source line 689 · 2026-05-23T08:23:56.296895+00:00_
 
 ### Tool call
 
-_source line 690 · 2026-05-23T08:23:58.606123+00:00_
+_source line 686 · 2026-05-23T08:23:58.606123+00:00_
 
 called Bash
 
@@ -534,7 +359,7 @@ called Bash
 
 ### Tool call
 
-_source line 691 · 2026-05-23T08:23:58.658933+00:00_
+_source line 687 · 2026-05-23T08:23:58.658933+00:00_
 
 called Bash
 
@@ -568,7 +393,7 @@ called Bash
 
 ### Tool result
 
-_source line 692 · 2026-05-23T08:23:58.809952+00:00_
+_source line 688 · 2026-05-23T08:23:58.809952+00:00_
 
 total 56780
 drwxr-xr-x 101 ubuntu ubuntu    12288 May 23 08:16 .
@@ -619,7 +444,7 @@ drwxr-xr-x   2 ubuntu ubunt
 
 ### Tool result
 
-_source line 693 · 2026-05-23T08:23:58.810445+00:00_
+_source line 689 · 2026-05-23T08:23:58.810445+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/interaction_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_within_arch_temporal
@@ -647,7 +472,7 @@ _source line 693 · 2026-05-23T08:23:58.810445+00:00_
 
 ### Tool call
 
-_source line 694 · 2026-05-23T08:24:01.421161+00:00_
+_source line 690 · 2026-05-23T08:24:01.421161+00:00_
 
 called Bash
 
@@ -681,7 +506,7 @@ called Bash
 
 ### Tool result
 
-_source line 695 · 2026-05-23T08:24:01.773784+00:00_
+_source line 691 · 2026-05-23T08:24:01.773784+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_within_arch_temporal
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_composition_control
@@ -705,7 +530,7 @@ _source line 695 · 2026-05-23T08:24:01.773784+00:00_
 
 ### Tool call
 
-_source line 696 · 2026-05-23T08:24:01.774225+00:00_
+_source line 692 · 2026-05-23T08:24:01.774225+00:00_
 
 called Bash
 
@@ -739,7 +564,7 @@ called Bash
 
 ### Tool result
 
-_source line 697 · 2026-05-23T08:24:01.975353+00:00_
+_source line 693 · 2026-05-23T08:24:01.975353+00:00_
 
 total 36
 drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:14 .
@@ -766,7 +591,7 @@ drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:16 ..
 
 ### Tool call
 
-_source line 698 · 2026-05-23T08:24:01.975862+00:00_
+_source line 694 · 2026-05-23T08:24:01.975862+00:00_
 
 called Bash
 
@@ -800,7 +625,7 @@ called Bash
 
 ### Tool result
 
-_source line 699 · 2026-05-23T08:24:02.227122+00:00_
+_source line 695 · 2026-05-23T08:24:02.227122+00:00_
 
 total 40
 drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:13 .
@@ -828,7 +653,7 @@ drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:16 ..
 
 ### Tool call
 
-_source line 700 · 2026-05-23T08:24:02.227584+00:00_
+_source line 696 · 2026-05-23T08:24:02.227584+00:00_
 
 called Bash
 
@@ -862,7 +687,7 @@ called Bash
 
 ### Tool result
 
-_source line 701 · 2026-05-23T08:24:02.278692+00:00_
+_source line 697 · 2026-05-23T08:24:02.278692+00:00_
 
 total 172
 drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:15 .
@@ -891,7 +716,7 @@ drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:16 ..
 
 ### Tool call
 
-_source line 702 · 2026-05-23T08:24:03.986938+00:00_
+_source line 698 · 2026-05-23T08:24:03.986938+00:00_
 
 called Bash
 
@@ -925,7 +750,7 @@ called Bash
 
 ### Tool result
 
-_source line 703 · 2026-05-23T08:24:04.238450+00:00_
+_source line 699 · 2026-05-23T08:24:04.238450+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_e2_difficulty_modeltype_interaction_20260523T012814.log
@@ -956,7 +781,7 @@ _source line 703 · 2026-05-23T08:24:04.238450+00:00_
 
 ### Tool call
 
-_source line 704 · 2026-05-23T08:24:04.289268+00:00_
+_source line 700 · 2026-05-23T08:24:04.289268+00:00_
 
 called Bash
 
@@ -990,7 +815,7 @@ called Bash
 
 ### Tool result
 
-_source line 705 · 2026-05-23T08:24:04.339986+00:00_
+_source line 701 · 2026-05-23T08:24:04.339986+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_data_build_response_matrix_20260520T203701.log
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_data_build_response_matrix_20260520T203701_result.json
@@ -1017,7 +842,7 @@ _source line 705 · 2026-05-23T08:24:04.339986+00:00_
 
 ### Tool call
 
-_source line 706 · 2026-05-23T08:24:06.047468+00:00_
+_source line 702 · 2026-05-23T08:24:06.047468+00:00_
 
 called Bash
 
@@ -1051,7 +876,7 @@ called Bash
 
 ### Tool result
 
-_source line 707 · 2026-05-23T08:24:06.148404+00:00_
+_source line 703 · 2026-05-23T08:24:06.148404+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/distill_tmp/hendrycks2021mmlu.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/distill_tmp/liang2026dvd.yaml
@@ -1091,7 +916,7 @@ _source line 707 · 2026-05-23T08:24:06.148404+00:00_
 
 ### Tool call
 
-_source line 708 · 2026-05-23T08:24:06.450985+00:00_
+_source line 704 · 2026-05-23T08:24:06.450985+00:00_
 
 called Bash
 
@@ -1125,7 +950,7 @@ called Bash
 
 ### Tool result
 
-_source line 709 · 2026-05-23T08:24:06.551901+00:00_
+_source line 705 · 2026-05-23T08:24:06.551901+00:00_
 
 total 372
 drwxr-xr-x  13 ubuntu ubuntu  4096 May 23 08:16 .
@@ -1181,7 +1006,7 @@ drwxr-xr-x   4 ubuntu ubuntu  4096 May 23 07:50 paper
 
 ### Tool call
 
-_source line 710 · 2026-05-23T08:24:08.864486+00:00_
+_source line 706 · 2026-05-23T08:24:08.864486+00:00_
 
 called Bash
 
@@ -1215,7 +1040,7 @@ called Bash
 
 ### Tool result
 
-_source line 711 · 2026-05-23T08:24:08.916917+00:00_
+_source line 707 · 2026-05-23T08:24:08.916917+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/manifest.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_issues.yaml
@@ -1238,7 +1063,7 @@ _source line 711 · 2026-05-23T08:24:08.916917+00:00_
 
 ### Tool call
 
-_source line 712 · 2026-05-23T08:24:08.917376+00:00_
+_source line 708 · 2026-05-23T08:24:08.917376+00:00_
 
 called Bash
 
@@ -1272,7 +1097,7 @@ called Bash
 
 ### Tool result
 
-_source line 713 · 2026-05-23T08:24:09.018132+00:00_
+_source line 709 · 2026-05-23T08:24:09.018132+00:00_
 
 - id: art_20260520_c397e2
   name: DIF Power Simulation Results (1000 reps, BH-corrected)
@@ -1350,7 +1175,7 @@ _source line 713 · 2026-05-23T08:24:09.018132+00:00_
 
 ### Tool call
 
-_source line 714 · 2026-05-23T08:24:10.934973+00:00_
+_source line 710 · 2026-05-23T08:24:10.934973+00:00_
 
 called Bash
 
@@ -1384,7 +1209,7 @@ called Bash
 
 ### Tool result
 
-_source line 715 · 2026-05-23T08:24:10.985668+00:00_
+_source line 711 · 2026-05-23T08:24:10.985668+00:00_
 
     fractions for 3 cohorts. DIF removal by |Δ_MH| magnitude, with bootstrap 95% CIs.'
   description: 'Random removal baseline: 20 replicates per removal fraction. DIF removal
@@ -1415,7 +1240,7 @@ _source line 715 · 2026-05-23T08:24:10.985668+00:00_
 
 ### Tool call
 
-_source line 716 · 2026-05-23T08:24:12.342854+00:00_
+_source line 712 · 2026-05-23T08:24:12.342854+00:00_
 
 called Bash
 
@@ -1449,7 +1274,7 @@ called Bash
 
 ### Tool result
 
-_source line 717 · 2026-05-23T08:24:12.343350+00:00_
+_source line 713 · 2026-05-23T08:24:12.343350+00:00_
 
 3685:  name: R22 Base/Instruct Composition Control
 3700:  name: R22 Within-Architecture Temporal DIF
@@ -1473,7 +1298,7 @@ _source line 717 · 2026-05-23T08:24:12.343350+00:00_
 
 ### Tool call
 
-_source line 718 · 2026-05-23T08:24:13.899600+00:00_
+_source line 714 · 2026-05-23T08:24:13.899600+00:00_
 
 called Read
 
@@ -1511,7 +1336,7 @@ called Read
 
 ### Tool result
 
-_source line 719 · 2026-05-23T08:24:13.900187+00:00_
+_source line 715 · 2026-05-23T08:24:13.900187+00:00_
 
 3680	  - rebuttal
 3681	  - arr
@@ -1584,7 +1409,7 @@ _source line 719 · 2026-05-23T08:24:13.900187+00:00_
 
 ### Tool call
 
-_source line 720 · 2026-05-23T08:24:15.858567+00:00_
+_source line 716 · 2026-05-23T08:24:15.858567+00:00_
 
 called Bash
 
@@ -1618,7 +1443,7 @@ called Bash
 
 ### Tool result
 
-_source line 721 · 2026-05-23T08:24:48.984302+00:00_
+_source line 717 · 2026-05-23T08:24:48.984302+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/lr_dif_item_results.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_021/lr_dif_item_results.csv
@@ -1649,7 +1474,7 @@ _source line 721 · 2026-05-23T08:24:48.984302+00:00_
 
 ### Tool call
 
-_source line 722 · 2026-05-23T08:24:51.446432+00:00_
+_source line 718 · 2026-05-23T08:24:51.446432+00:00_
 
 called Bash
 
@@ -1683,7 +1508,7 @@ called Bash
 
 ### Tool call
 
-_source line 723 · 2026-05-23T08:24:51.446899+00:00_
+_source line 719 · 2026-05-23T08:24:51.446899+00:00_
 
 called Bash
 
@@ -1717,7 +1542,7 @@ called Bash
 
 ### Tool result
 
-_source line 724 · 2026-05-23T08:24:51.497399+00:00_
+_source line 720 · 2026-05-23T08:24:51.497399+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r22_within_arch_temporal_20260523T081014_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r22_base_instruct_composition_20260523T081029_result.json
@@ -1745,7 +1570,7 @@ _source line 724 · 2026-05-23T08:24:51.497399+00:00_
 
 ### Tool result
 
-_source line 725 · 2026-05-23T08:24:51.548116+00:00_
+_source line 721 · 2026-05-23T08:24:51.548116+00:00_
 
 total 424
 drwxr-xr-x 2 ubuntu ubuntu  4096 May 23 08:19 .
@@ -1798,7 +1623,7 @@ drwxr-xr-x 7 ubuntu ubuntu  4096 May 21 04:11 ..
 
 ### Tool call
 
-_source line 726 · 2026-05-23T08:24:55.163961+00:00_
+_source line 722 · 2026-05-23T08:24:55.163961+00:00_
 
 called Bash
 
@@ -1832,7 +1657,7 @@ called Bash
 
 ### Tool call
 
-_source line 727 · 2026-05-23T08:24:55.164480+00:00_
+_source line 723 · 2026-05-23T08:24:55.164480+00:00_
 
 called Bash
 
@@ -1866,7 +1691,7 @@ called Bash
 
 ### Tool result
 
-_source line 728 · 2026-05-23T08:24:55.215016+00:00_
+_source line 724 · 2026-05-23T08:24:55.215016+00:00_
 
 (Bash completed with no output)
 
@@ -1888,7 +1713,7 @@ _source line 728 · 2026-05-23T08:24:55.215016+00:00_
 
 ### Tool result
 
-_source line 729 · 2026-05-23T08:24:55.416253+00:00_
+_source line 725 · 2026-05-23T08:24:55.416253+00:00_
 
 (Bash completed with no output)
 
@@ -1910,7 +1735,7 @@ _source line 729 · 2026-05-23T08:24:55.416253+00:00_
 
 ### Tool call
 
-_source line 730 · 2026-05-23T08:24:57.273919+00:00_
+_source line 726 · 2026-05-23T08:24:57.273919+00:00_
 
 called Bash
 
@@ -1944,7 +1769,7 @@ called Bash
 
 ### Tool result
 
-_source line 731 · 2026-05-23T08:24:57.425070+00:00_
+_source line 727 · 2026-05-23T08:24:57.425070+00:00_
 
 (Bash completed with no output)
 
@@ -1966,7 +1791,7 @@ _source line 731 · 2026-05-23T08:24:57.425070+00:00_
 
 ### Tool call
 
-_source line 732 · 2026-05-23T08:24:57.476787+00:00_
+_source line 728 · 2026-05-23T08:24:57.476787+00:00_
 
 called Bash
 
@@ -2000,7 +1825,7 @@ called Bash
 
 ### Tool result
 
-_source line 733 · 2026-05-23T08:24:57.577665+00:00_
+_source line 729 · 2026-05-23T08:24:57.577665+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T042647/best/review_report.md
 
@@ -2022,7 +1847,7 @@ _source line 733 · 2026-05-23T08:24:57.577665+00:00_
 
 ### Tool call
 
-_source line 734 · 2026-05-23T08:24:58.983891+00:00_
+_source line 730 · 2026-05-23T08:24:58.983891+00:00_
 
 called Read
 
@@ -2056,7 +1881,7 @@ called Read
 
 ### Tool result
 
-_source line 735 · 2026-05-23T08:24:58.984537+00:00_
+_source line 731 · 2026-05-23T08:24:58.984537+00:00_
 
 1	---
 2	dream_id: dream_20260521T042647
@@ -2113,7 +1938,7 @@ _source line 735 · 2026-05-23T08:24:58.984537+00:00_
 
 ### Tool call
 
-_source line 736 · 2026-05-23T08:25:01.747126+00:00_
+_source line 732 · 2026-05-23T08:25:01.747126+00:00_
 
 called Bash
 
@@ -2147,7 +1972,7 @@ called Bash
 
 ### Tool result
 
-_source line 737 · 2026-05-23T08:25:01.999970+00:00_
+_source line 733 · 2026-05-23T08:25:01.999970+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_f025582a920d3f79beb59dfc17929017_reviewer_2.jsonl
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_c8e1a57f5b1c63676dddeadba42e57b8_reviewer.jsonl
@@ -2183,7 +2008,7 @@ _source line 737 · 2026-05-23T08:25:01.999970+00:00_
 
 ### Tool call
 
-_source line 738 · 2026-05-23T08:25:02.051009+00:00_
+_source line 734 · 2026-05-23T08:25:02.051009+00:00_
 
 called Read
 
@@ -2219,7 +2044,7 @@ called Read
 
 ### Tool result
 
-_source line 739 · 2026-05-23T08:25:02.051563+00:00_
+_source line 735 · 2026-05-23T08:25:02.051563+00:00_
 
 1	issues:
 2	  # === Round 14 新发现 ===
@@ -2289,7 +2114,7 @@ _source line 739 · 2026-05-23T08:25:02.051563+00:00_
 
 ### Tool call
 
-_source line 740 · 2026-05-23T08:25:04.313231+00:00_
+_source line 736 · 2026-05-23T08:25:04.313231+00:00_
 
 called Read
 
@@ -2325,7 +2150,7 @@ called Read
 
 ### Tool result
 
-_source line 741 · 2026-05-23T08:25:04.313739+00:00_
+_source line 737 · 2026-05-23T08:25:04.313739+00:00_
 
 &lt;tool_use_error>InputValidationError: [
   {
@@ -2358,7 +2183,7 @@ _source line 741 · 2026-05-23T08:25:04.313739+00:00_
 
 ### Tool call
 
-_source line 742 · 2026-05-23T08:25:05.720932+00:00_
+_source line 738 · 2026-05-23T08:25:05.720932+00:00_
 
 called Bash
 
@@ -2392,7 +2217,7 @@ called Bash
 
 ### Tool result
 
-_source line 743 · 2026-05-23T08:25:05.771586+00:00_
+_source line 739 · 2026-05-23T08:25:05.771586+00:00_
 
 578 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_issues.yaml
 
@@ -2414,7 +2239,7 @@ _source line 743 · 2026-05-23T08:25:05.771586+00:00_
 
 ### Tool call
 
-_source line 744 · 2026-05-23T08:25:08.638105+00:00_
+_source line 740 · 2026-05-23T08:25:08.638105+00:00_
 
 called Read
 
@@ -2452,7 +2277,7 @@ called Read
 
 ### Tool result
 
-_source line 745 · 2026-05-23T08:25:08.689064+00:00_
+_source line 741 · 2026-05-23T08:25:08.689064+00:00_
 
 300	  - id: "R13-N1"
 301	    summary: "术语一致性：measurement instability / temporal DIF / temporal comparability 交替使用"
@@ -2533,7 +2358,7 @@ _source line 745 · 2026-05-23T08:25:08.689064+00:00_
 
 ### Tool call
 
-_source line 746 · 2026-05-23T08:25:11.411249+00:00_
+_source line 742 · 2026-05-23T08:25:11.411249+00:00_
 
 called Bash
 
@@ -2567,7 +2392,7 @@ called Bash
 
 ### Tool call
 
-_source line 747 · 2026-05-23T08:25:11.464506+00:00_
+_source line 743 · 2026-05-23T08:25:11.464506+00:00_
 
 called Read
 
@@ -2601,7 +2426,7 @@ called Read
 
 ### Tool result
 
-_source line 748 · 2026-05-23T08:25:11.515212+00:00_
+_source line 744 · 2026-05-23T08:25:11.515212+00:00_
 
 1	{"timestamp": "2026-05-23T07:59:14.544171+00:00", "pages_reviewed": 4, "source": "manual"}
 
@@ -2623,7 +2448,7 @@ _source line 748 · 2026-05-23T08:25:11.515212+00:00_
 
 ### Tool result
 
-_source line 749 · 2026-05-23T08:25:11.616268+00:00_
+_source line 745 · 2026-05-23T08:25:11.616268+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_e2_difficulty_modeltype_interaction_20260523T012814_result.json
@@ -2654,7 +2479,7 @@ _source line 749 · 2026-05-23T08:25:11.616268+00:00_
 
 ### Tool call
 
-_source line 750 · 2026-05-23T08:25:13.776082+00:00_
+_source line 746 · 2026-05-23T08:25:13.776082+00:00_
 
 called Bash
 
@@ -2688,7 +2513,7 @@ called Bash
 
 ### Tool call
 
-_source line 751 · 2026-05-23T08:25:13.928178+00:00_
+_source line 747 · 2026-05-23T08:25:13.928178+00:00_
 
 called Bash
 
@@ -2722,7 +2547,7 @@ called Bash
 
 ### Tool result
 
-_source line 752 · 2026-05-23T08:25:14.079893+00:00_
+_source line 748 · 2026-05-23T08:25:14.079893+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 15195 May 23 08:20 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/AGENTS.md
 -rw------- 1 ubuntu ubuntu  3063 May 22 21:36 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/ROADMAP.md
@@ -2748,7 +2573,7 @@ _source line 752 · 2026-05-23T08:25:14.079893+00:00_
 
 ### Tool result
 
-_source line 753 · 2026-05-23T08:25:44.451160+00:00_
+_source line 749 · 2026-05-23T08:25:44.451160+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260520T205007/median/review_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/worst/review_report.md
@@ -2779,7 +2604,7 @@ _source line 753 · 2026-05-23T08:25:44.451160+00:00_
 
 ### Tool call
 
-_source line 754 · 2026-05-23T08:25:45.908918+00:00_
+_source line 750 · 2026-05-23T08:25:45.908918+00:00_
 
 called Read
 
@@ -2813,7 +2638,7 @@ called Read
 
 ### Tool result
 
-_source line 755 · 2026-05-23T08:25:45.959804+00:00_
+_source line 751 · 2026-05-23T08:25:45.959804+00:00_
 
 1	## 当前项目
 2	当前绑定项目：**irt_equated_bench_regen**
@@ -2873,7 +2698,7 @@ _source line 755 · 2026-05-23T08:25:45.959804+00:00_
 
 ### Tool call
 
-_source line 756 · 2026-05-23T08:25:48.370608+00:00_
+_source line 752 · 2026-05-23T08:25:48.370608+00:00_
 
 called Bash
 
@@ -2907,7 +2732,7 @@ called Bash
 
 ### Tool result
 
-_source line 757 · 2026-05-23T08:25:48.571970+00:00_
+_source line 753 · 2026-05-23T08:25:48.571970+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_within_arch_temporal
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_composition_control
@@ -2931,7 +2756,7 @@ _source line 757 · 2026-05-23T08:25:48.571970+00:00_
 
 ### Tool call
 
-_source line 758 · 2026-05-23T08:25:48.723028+00:00_
+_source line 754 · 2026-05-23T08:25:48.723028+00:00_
 
 called Bash
 
@@ -2965,7 +2790,7 @@ called Bash
 
 ### Tool result
 
-_source line 759 · 2026-05-23T08:25:48.874006+00:00_
+_source line 755 · 2026-05-23T08:25:48.874006+00:00_
 
 (Bash completed with no output)
 
@@ -2987,7 +2812,7 @@ _source line 759 · 2026-05-23T08:25:48.874006+00:00_
 
 ### Tool call
 
-_source line 760 · 2026-05-23T08:25:50.579976+00:00_
+_source line 756 · 2026-05-23T08:25:50.579976+00:00_
 
 called Bash
 
@@ -3021,7 +2846,7 @@ called Bash
 
 ### Tool result
 
-_source line 761 · 2026-05-23T08:25:51.032274+00:00_
+_source line 757 · 2026-05-23T08:25:51.032274+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_e2_difficulty_modeltype_interaction_20260523T012814.log
@@ -3052,7 +2877,7 @@ _source line 761 · 2026-05-23T08:25:51.032274+00:00_
 
 ### Tool call
 
-_source line 762 · 2026-05-23T08:25:51.083050+00:00_
+_source line 758 · 2026-05-23T08:25:51.083050+00:00_
 
 called Bash
 
@@ -3086,7 +2911,7 @@ called Bash
 
 ### Tool result
 
-_source line 763 · 2026-05-23T08:25:51.184012+00:00_
+_source line 759 · 2026-05-23T08:25:51.184012+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/within_arch_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/score_inflation_report.md
@@ -3121,7 +2946,7 @@ _source line 763 · 2026-05-23T08:25:51.184012+00:00_
 
 ### Tool call
 
-_source line 764 · 2026-05-23T08:25:53.142431+00:00_
+_source line 760 · 2026-05-23T08:25:53.142431+00:00_
 
 called Read
 
@@ -3155,7 +2980,7 @@ called Read
 
 ### Tool result
 
-_source line 765 · 2026-05-23T08:25:53.142959+00:00_
+_source line 761 · 2026-05-23T08:25:53.142959+00:00_
 
 1	---
 2	round: 14
@@ -3216,7 +3041,7 @@ _source line 765 · 2026-05-23T08:25:53.142959+00:00_
 
 ### Tool call
 
-_source line 766 · 2026-05-23T08:25:56.107508+00:00_
+_source line 762 · 2026-05-23T08:25:56.107508+00:00_
 
 called Bash
 
@@ -3250,7 +3075,7 @@ called Bash
 
 ### Tool call
 
-_source line 767 · 2026-05-23T08:25:56.108073+00:00_
+_source line 763 · 2026-05-23T08:25:56.108073+00:00_
 
 called Bash
 
@@ -3284,7 +3109,7 @@ called Bash
 
 ### Tool result
 
-_source line 768 · 2026-05-23T08:25:56.208936+00:00_
+_source line 764 · 2026-05-23T08:25:56.208936+00:00_
 
 total 276
 drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:14 .
@@ -3323,7 +3148,7 @@ drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:16 ..
 
 ### Tool result
 
-_source line 769 · 2026-05-23T08:25:56.209370+00:00_
+_source line 765 · 2026-05-23T08:25:56.209370+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_experiment_summary_d011_20260520T234523_result.json
@@ -3359,7 +3184,7 @@ _source line 769 · 2026-05-23T08:25:56.209370+00:00_
 
 ### Tool call
 
-_source line 770 · 2026-05-23T08:25:58.328715+00:00_
+_source line 766 · 2026-05-23T08:25:58.328715+00:00_
 
 called Bash
 
@@ -3393,7 +3218,7 @@ called Bash
 
 ### Tool result
 
-_source line 771 · 2026-05-23T08:25:58.479904+00:00_
+_source line 767 · 2026-05-23T08:25:58.479904+00:00_
 
 (Bash completed with no output)
 
@@ -3415,7 +3240,7 @@ _source line 771 · 2026-05-23T08:25:58.479904+00:00_
 
 ### Tool call
 
-_source line 772 · 2026-05-23T08:25:58.530793+00:00_
+_source line 768 · 2026-05-23T08:25:58.530793+00:00_
 
 called Bash
 
@@ -3449,7 +3274,7 @@ called Bash
 
 ### Tool result
 
-_source line 773 · 2026-05-23T08:25:58.631489+00:00_
+_source line 769 · 2026-05-23T08:25:58.631489+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/within_arch_report.md:# R22: Within-Architecture Temporal DIF
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/composition_control_report.md:# R22: Base/Instruct Composition Control
@@ -3475,7 +3300,7 @@ _source line 773 · 2026-05-23T08:25:58.631489+00:00_
 
 ### Tool call
 
-_source line 774 · 2026-05-23T08:26:00.792174+00:00_
+_source line 770 · 2026-05-23T08:26:00.792174+00:00_
 
 called Bash
 
@@ -3509,7 +3334,7 @@ called Bash
 
 ### Tool result
 
-_source line 775 · 2026-05-23T08:26:00.944365+00:00_
+_source line 771 · 2026-05-23T08:26:00.944365+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_w2_interaction_writeup_20260523T014329_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_e2_difficulty_modeltype_interaction_20260523T012814.log
@@ -3545,7 +3370,7 @@ _source line 775 · 2026-05-23T08:26:00.944365+00:00_
 
 ### Tool call
 
-_source line 776 · 2026-05-23T08:26:00.944956+00:00_
+_source line 772 · 2026-05-23T08:26:00.944956+00:00_
 
 called Bash
 
@@ -3579,7 +3404,7 @@ called Bash
 
 ### Tool result
 
-_source line 777 · 2026-05-23T08:26:00.995493+00:00_
+_source line 773 · 2026-05-23T08:26:00.995493+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  5362 May 20 20:40 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/irt_scale_analysis.md
 -rw-r--r-- 1 ubuntu ubuntu  5017 May 20 20:42 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mmlu_cf_analysis.md
@@ -3612,7 +3437,7 @@ _source line 777 · 2026-05-23T08:26:00.995493+00:00_
 
 ### Tool call
 
-_source line 778 · 2026-05-23T08:26:02.602172+00:00_
+_source line 774 · 2026-05-23T08:26:02.602172+00:00_
 
 called Read
 
@@ -3646,7 +3471,7 @@ called Read
 
 ### Tool result
 
-_source line 779 · 2026-05-23T08:26:02.602737+00:00_
+_source line 775 · 2026-05-23T08:26:02.602737+00:00_
 
 1	# ARR Responsible NLP Research Checklist — Draft Answers
 2	
@@ -3688,7 +3513,7 @@ _source line 779 · 2026-05-23T08:26:02.602737+00:00_
 
 ### Tool call
 
-_source line 780 · 2026-05-23T08:26:05.717921+00:00_
+_source line 776 · 2026-05-23T08:26:05.717921+00:00_
 
 called Bash
 
@@ -3722,7 +3547,7 @@ called Bash
 
 ### Tool result
 
-_source line 781 · 2026-05-23T08:26:06.220542+00:00_
+_source line 777 · 2026-05-23T08:26:06.220542+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/k3_power_simulation/k3_power_results.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r17_deff_reclassification/deff_reclassification_results.csv
@@ -3760,7 +3585,7 @@ _source line 781 · 2026-05-23T08:26:06.220542+00:00_
 
 ### Tool call
 
-_source line 782 · 2026-05-23T08:26:06.272972+00:00_
+_source line 778 · 2026-05-23T08:26:06.272972+00:00_
 
 called Bash
 
@@ -3794,7 +3619,7 @@ called Bash
 
 ### Tool result
 
-_source line 783 · 2026-05-23T08:26:06.323736+00:00_
+_source line 779 · 2026-05-23T08:26:06.323736+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_survey_d011.md
@@ -3818,91 +3643,9 @@ _source line 783 · 2026-05-23T08:26:06.323736+00:00_
 ---
 
 
-### Tool call
-
-_source line 784 · 2026-05-23T08:26:08.532790+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 785 · 2026-05-23T08:26:08.583665+00:00_
-
-1	# Author Response
-2	
-3	We thank the reviewers for their thorough and constructive feedback. Below we address each concern with specific revisions and new experimental evidence. All paper modifications reference the revised manuscript; appendix additions are marked with section numbers.
-4	
-5	---
-6	
-7	## Reviewer 1
-8	
-9	### [R1-W1] DEFF Correction Range (13.5%–29.2%) and Size-Stratified Analysis
-10	
-11	**Concern**: The two-fold gap between simple-mean DEFF (29.2%) and weighted-mean DEFF (13.5%) leaves the headline number's uncertainty underestimated. The reviewer requested size-stratified ICC evidence and a sensitivity curve.
-12	
-13	**Response**: We added a size-stratified DEFF analysis (Table 9 in Appendix C, revised §4.2). The key finding directly addresses the reviewer's concern:
-14	
-15	| Tier | Families | Mean size | ICC | DEFF | Adj. C% |
-16	|------|----------|-----------|-----|------|---------|
-17	| 2–10 | 9 | 5.3 | 0.246 | 2.07 | 31.3% |
-18	| 11–50 | 11 | 22.1 | 0.226 | 5.78 | 24.6% |
-19	| 51–200 | 8 | 91.4 | 0.137 | 13.34 | 13.7% |
-20	| >200 | 2 | 431.0 | 0.082 | 36.11 | 9.0% |
-21	
-22	Tier-level ICC *decreases* monotonically from 0.246 (small families) to 0.082 (mega-families), confirming that mega-families are internally heterogeneous. The weighted-mean variant's effective cluster size ($\bar{m}=254$) implies each family member is functionally identical — the stratified analysis shows this is empirically false. The conservative 13.5% bound is driven entirely by the two mega-families (Mistral, Llama-3), while small families (where ICC is highest) contribute negligible DEFF correction (Adj. C% = 31.3%).
-23	
-24	We now report the full range [13.5%, 29.2%] as power uncertainty (revised §4.2) and adopt ~27–29% as the primary estimate supported by two convergent methods (simple-mean DEFF 29.2%, cluster bootstrap lower bound 26.7%). Even the conservative 13.5% exceeds the random-split baseline by 75x. *(Revised in paper, §4.2 + Appendix C)*
-25	
-26	**Family definiti
-…[truncated 18059 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 786 · 2026-05-23T08:26:17.183646+00:00_
+_source line 780 · 2026-05-23T08:26:17.183646+00:00_
 
 Perfect! Now I have comprehensive information about the R22 action matrix and responses. Let me create a summary of what I found. Based on my search, the "R22 action matrix" consists of:
 
@@ -3954,7 +3697,7 @@ The action matrix is in the form of a comprehensive table on lines 181-203, trac
 
 ### Tool call
 
-_source line 787 · 2026-05-23T08:26:22.003046+00:00_
+_source line 781 · 2026-05-23T08:26:22.003046+00:00_
 
 called Read
 
@@ -3988,7 +3731,7 @@ called Read
 
 ### Tool result
 
-_source line 788 · 2026-05-23T08:26:22.054103+00:00_
+_source line 782 · 2026-05-23T08:26:22.054103+00:00_
 
 1	issues:
 2	  # === Round 14 新发现 ===
@@ -4058,89 +3801,7 @@ _source line 788 · 2026-05-23T08:26:22.054103+00:00_
 
 ### Tool call
 
-_source line 789 · 2026-05-23T08:26:25.919956+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 790 · 2026-05-23T08:26:26.071543+00:00_
-
-1	# Author Response
-2	
-3	We thank the reviewers for their thorough and constructive feedback. Below we address each concern with specific revisions and new experimental evidence. All paper modifications reference the revised manuscript; appendix additions are marked with section numbers.
-4	
-5	---
-6	
-7	## Reviewer 1
-8	
-9	### [R1-W1] DEFF Correction Range (13.5%–29.2%) and Size-Stratified Analysis
-10	
-11	**Concern**: The two-fold gap between simple-mean DEFF (29.2%) and weighted-mean DEFF (13.5%) leaves the headline number's uncertainty underestimated. The reviewer requested size-stratified ICC evidence and a sensitivity curve.
-12	
-13	**Response**: We added a size-stratified DEFF analysis (Table 9 in Appendix C, revised §4.2). The key finding directly addresses the reviewer's concern:
-14	
-15	| Tier | Families | Mean size | ICC | DEFF | Adj. C% |
-16	|------|----------|-----------|-----|------|---------|
-17	| 2–10 | 9 | 5.3 | 0.246 | 2.07 | 31.3% |
-18	| 11–50 | 11 | 22.1 | 0.226 | 5.78 | 24.6% |
-19	| 51–200 | 8 | 91.4 | 0.137 | 13.34 | 13.7% |
-20	| >200 | 2 | 431.0 | 0.082 | 36.11 | 9.0% |
-21	
-22	Tier-level ICC *decreases* monotonically from 0.246 (small families) to 0.082 (mega-families), confirming that mega-families are internally heterogeneous. The weighted-mean variant's effective cluster size ($\bar{m}=254$) implies each family member is functionally identical — the stratified analysis shows this is empirically false. The conservative 13.5% bound is driven entirely by the two mega-families (Mistral, Llama-3), while small families (where ICC is highest) contribute negligible DEFF correction (Adj. C% = 31.3%).
-23	
-24	We now report the full range [13.5%, 29.2%] as power uncertainty (revised §4.2) and adopt ~27–29% as the primary estimate supported by two convergent methods (simple-mean DEFF 29.2%, cluster bootstrap lower bound 26.7%). Even the conservative 13.5% exceeds the random-split baseline by 75x. *(Revised in paper, §4.2 + Appendix C)*
-25	
-26	**Family definiti
-…[truncated 18059 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 791 · 2026-05-23T08:26:35.011788+00:00_
+_source line 783 · 2026-05-23T08:26:35.011788+00:00_
 
 called Agent
 
@@ -4178,7 +3839,7 @@ called Agent
 
 ### Tool call
 
-_source line 792 · 2026-05-23T08:26:36.769203+00:00_
+_source line 784 · 2026-05-23T08:26:36.769203+00:00_
 
 called Bash
 
@@ -4212,7 +3873,7 @@ called Bash
 
 ### Tool result
 
-_source line 793 · 2026-05-23T08:26:36.870287+00:00_
+_source line 785 · 2026-05-23T08:26:36.870287+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_rebuttal_b1_b7_branch_20260522T204142.log
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_paper_rebuttal_b1_b7_branch_20260522T204142_result.json
@@ -4237,7 +3898,7 @@ _source line 793 · 2026-05-23T08:26:36.870287+00:00_
 
 ### Tool call
 
-_source line 794 · 2026-05-23T08:26:38.778127+00:00_
+_source line 786 · 2026-05-23T08:26:38.778127+00:00_
 
 called Bash
 
@@ -4271,7 +3932,7 @@ called Bash
 
 ### Tool result
 
-_source line 795 · 2026-05-23T08:26:38.828899+00:00_
+_source line 787 · 2026-05-23T08:26:38.828899+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/distill_tmp/hendrycks2021mmlu.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/distill_tmp/liang2026dvd.yaml
@@ -4311,7 +3972,7 @@ _source line 795 · 2026-05-23T08:26:38.828899+00:00_
 
 ### Tool call
 
-_source line 796 · 2026-05-23T08:26:40.586921+00:00_
+_source line 788 · 2026-05-23T08:26:40.586921+00:00_
 
 called Grep
 
@@ -4349,7 +4010,7 @@ called Grep
 
 ### Tool call
 
-_source line 797 · 2026-05-23T08:26:41.240726+00:00_
+_source line 789 · 2026-05-23T08:26:41.240726+00:00_
 
 called Grep
 
@@ -4387,7 +4048,7 @@ called Grep
 
 ### Tool call
 
-_source line 798 · 2026-05-23T08:26:41.697253+00:00_
+_source line 790 · 2026-05-23T08:26:41.697253+00:00_
 
 called Glob
 
@@ -4423,7 +4084,7 @@ called Glob
 
 ### Tool result
 
-_source line 799 · 2026-05-23T08:26:41.848296+00:00_
+_source line 791 · 2026-05-23T08:26:41.848296+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary_ec3bbf.md
@@ -4460,7 +4121,7 @@ _source line 799 · 2026-05-23T08:26:41.848296+00:00_
 
 ### Tool call
 
-_source line 800 · 2026-05-23T08:26:41.848801+00:00_
+_source line 792 · 2026-05-23T08:26:41.848801+00:00_
 
 called Glob
 
@@ -4496,7 +4157,7 @@ called Glob
 
 ### Tool result
 
-_source line 801 · 2026-05-23T08:26:41.899509+00:00_
+_source line 793 · 2026-05-23T08:26:41.899509+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260520T194223/best/imagined_experiments.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260520T194223/median/imagined_experiments.yaml
@@ -4531,7 +4192,7 @@ _source line 801 · 2026-05-23T08:26:41.899509+00:00_
 
 ### Tool result
 
-_source line 802 · 2026-05-23T08:27:00.619015+00:00_
+_source line 794 · 2026-05-23T08:27:00.619015+00:00_
 
 Found 5 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_c8e1a57f5b1c63676dddeadba42e57b8_reviewer.jsonl
@@ -4558,7 +4219,7 @@ Found 5 files
 
 ### Tool result
 
-_source line 803 · 2026-05-23T08:27:01.274219+00:00_
+_source line 795 · 2026-05-23T08:27:01.274219+00:00_
 
 Found 118 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_c8e1a57f5b1c63676dddeadba42e57b8_reviewer.jsonl
@@ -4594,7 +4255,7 @@ Found 118 files
 
 ### Tool call
 
-_source line 804 · 2026-05-23T08:27:03.536520+00:00_
+_source line 796 · 2026-05-23T08:27:03.536520+00:00_
 
 called Grep
 
@@ -4634,7 +4295,7 @@ called Grep
 
 ### Tool call
 
-_source line 805 · 2026-05-23T08:27:03.788150+00:00_
+_source line 797 · 2026-05-23T08:27:03.788150+00:00_
 
 called Bash
 
@@ -4668,7 +4329,7 @@ called Bash
 
 ### Tool result
 
-_source line 806 · 2026-05-23T08:27:03.939200+00:00_
+_source line 798 · 2026-05-23T08:27:03.939200+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r22_within_arch_temporal_20260523T081014_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_r22_base_instruct_composition_20260523T081029_result.json
@@ -4696,7 +4357,7 @@ _source line 806 · 2026-05-23T08:27:03.939200+00:00_
 
 ### Tool result
 
-_source line 807 · 2026-05-23T08:27:23.548911+00:00_
+_source line 799 · 2026-05-23T08:27:23.548911+00:00_
 
 Found 30 files limit: 30
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_25ed8e3ecef6fc922cb497fae9f34627_director.jsonl
@@ -4735,7 +4396,7 @@ Found 30 files limit: 30
 
 ### Tool call
 
-_source line 808 · 2026-05-23T08:27:26.008443+00:00_
+_source line 800 · 2026-05-23T08:27:26.008443+00:00_
 
 called Grep
 
@@ -4775,7 +4436,7 @@ called Grep
 
 ### Tool call
 
-_source line 809 · 2026-05-23T08:27:26.819930+00:00_
+_source line 801 · 2026-05-23T08:27:26.819930+00:00_
 
 called Bash
 
@@ -4809,7 +4470,7 @@ called Bash
 
 ### Tool result
 
-_source line 810 · 2026-05-23T08:27:26.920859+00:00_
+_source line 802 · 2026-05-23T08:27:26.920859+00:00_
 
 drwxr-xr-x   2 ubuntu ubuntu     4096 May 23 01:36 difficulty_modeltype_interaction
 -rw-r--r--   1 ubuntu ubuntu     4320 May 22 00:30 novelty_rebuttal_draft.md
@@ -4834,7 +4495,7 @@ drwxr-xr-x   2 ubuntu ubuntu     4096 May 23 01:36 difficulty_modeltype_interact
 
 ### Tool result
 
-_source line 811 · 2026-05-23T08:27:41.274572+00:00_
+_source line 803 · 2026-05-23T08:27:41.274572+00:00_
 
 Found 20 files limit: 20
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_c8e1a57f5b1c63676dddeadba42e57b8_paper_agent.jsonl
@@ -4871,7 +4532,7 @@ Found 20 files limit: 20
 
 ### Tool call
 
-_source line 812 · 2026-05-23T08:27:43.484450+00:00_
+_source line 804 · 2026-05-23T08:27:43.484450+00:00_
 
 called Bash
 
@@ -4905,7 +4566,7 @@ called Bash
 
 ### Tool result
 
-_source line 813 · 2026-05-23T08:27:43.886539+00:00_
+_source line 805 · 2026-05-23T08:27:43.886539+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/.git/logs/refs/heads/rebuttal-b1-b7
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/.git/refs/heads/rebuttal-b1-b7
@@ -4932,7 +4593,7 @@ _source line 813 · 2026-05-23T08:27:43.886539+00:00_
 
 ### Tool call
 
-_source line 814 · 2026-05-23T08:27:44.087811+00:00_
+_source line 806 · 2026-05-23T08:27:44.087811+00:00_
 
 called Grep
 
@@ -4970,7 +4631,7 @@ called Grep
 
 ### Tool result
 
-_source line 815 · 2026-05-23T08:27:47.399185+00:00_
+_source line 807 · 2026-05-23T08:27:47.399185+00:00_
 
 &lt;persisted-output>
 Output too large (34.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-reviewer-430cd31d/233b284a-aa80-428d-89cb-cbd47ca4c54a/tool-results/toolu_01PGdkYcaFbbSqJwQkpHkPNQ.txt
@@ -5010,89 +4671,7 @@ Found 250 files limit: 250
 
 ### Tool call
 
-_source line 816 · 2026-05-23T08:27:48.754052+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 817 · 2026-05-23T08:27:48.804849+00:00_
-
-1	# Author Response
-2	
-3	We thank the reviewers for their thorough and constructive feedback. Below we address each concern with specific revisions and new experimental evidence. All paper modifications reference the revised manuscript; appendix additions are marked with section numbers.
-4	
-5	---
-6	
-7	## Reviewer 1
-8	
-9	### [R1-W1] DEFF Correction Range (13.5%–29.2%) and Size-Stratified Analysis
-10	
-11	**Concern**: The two-fold gap between simple-mean DEFF (29.2%) and weighted-mean DEFF (13.5%) leaves the headline number's uncertainty underestimated. The reviewer requested size-stratified ICC evidence and a sensitivity curve.
-12	
-13	**Response**: We added a size-stratified DEFF analysis (Table 9 in Appendix C, revised §4.2). The key finding directly addresses the reviewer's concern:
-14	
-15	| Tier | Families | Mean size | ICC | DEFF | Adj. C% |
-16	|------|----------|-----------|-----|------|---------|
-17	| 2–10 | 9 | 5.3 | 0.246 | 2.07 | 31.3% |
-18	| 11–50 | 11 | 22.1 | 0.226 | 5.78 | 24.6% |
-19	| 51–200 | 8 | 91.4 | 0.137 | 13.34 | 13.7% |
-20	| >200 | 2 | 431.0 | 0.082 | 36.11 | 9.0% |
-21	
-22	Tier-level ICC *decreases* monotonically from 0.246 (small families) to 0.082 (mega-families), confirming that mega-families are internally heterogeneous. The weighted-mean variant's effective cluster size ($\bar{m}=254$) implies each family member is functionally identical — the stratified analysis shows this is empirically false. The conservative 13.5% bound is driven entirely by the two mega-families (Mistral, Llama-3), while small families (where ICC is highest) contribute negligible DEFF correction (Adj. C% = 31.3%).
-23	
-24	We now report the full range [13.5%, 29.2%] as power uncertainty (revised §4.2) and adopt ~27–29% as the primary estimate supported by two convergent methods (simple-mean DEFF 29.2%, cluster bootstrap lower bound 26.7%). Even the conservative 13.5% exceeds the random-split baseline by 75x. *(Revised in paper, §4.2 + Appendix C)*
-25	
-26	**Family definiti
-…[truncated 18059 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 818 · 2026-05-23T08:27:52.168924+00:00_
+_source line 808 · 2026-05-23T08:27:52.168924+00:00_
 
 called Bash
 
@@ -5126,7 +4705,7 @@ called Bash
 
 ### Tool result
 
-_source line 819 · 2026-05-23T08:27:52.269786+00:00_
+_source line 809 · 2026-05-23T08:27:52.269786+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/task_context/reviewer.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/median/review_report.md
@@ -5157,7 +4736,7 @@ _source line 819 · 2026-05-23T08:27:52.269786+00:00_
 
 ### Tool call
 
-_source line 820 · 2026-05-23T08:27:54.179105+00:00_
+_source line 810 · 2026-05-23T08:27:54.179105+00:00_
 
 called Bash
 
@@ -5191,7 +4770,7 @@ called Bash
 
 ### Tool result
 
-_source line 821 · 2026-05-23T08:27:54.380347+00:00_
+_source line 811 · 2026-05-23T08:27:54.380347+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/interaction_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/difficulty_modeltype_interaction/interaction_analysis.py
@@ -5216,7 +4795,7 @@ _source line 821 · 2026-05-23T08:27:54.380347+00:00_
 
 ### Tool call
 
-_source line 822 · 2026-05-23T08:27:54.732753+00:00_
+_source line 812 · 2026-05-23T08:27:54.732753+00:00_
 
 called Grep
 
@@ -5254,7 +4833,7 @@ called Grep
 
 ### Tool result
 
-_source line 823 · 2026-05-23T08:28:14.767632+00:00_
+_source line 813 · 2026-05-23T08:28:14.767632+00:00_
 
 Found 59 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_issues.yaml
@@ -5291,7 +4870,7 @@ Found 59 files
 
 ### Tool call
 
-_source line 824 · 2026-05-23T08:28:16.273869+00:00_
+_source line 814 · 2026-05-23T08:28:16.273869+00:00_
 
 called Read
 
@@ -5325,7 +4904,7 @@ called Read
 
 ### Tool result
 
-_source line 825 · 2026-05-23T08:28:16.274784+00:00_
+_source line 815 · 2026-05-23T08:28:16.274784+00:00_
 
 1	issues:
 2	  # === Round 14 新发现 ===
@@ -5395,7 +4974,7 @@ _source line 825 · 2026-05-23T08:28:16.274784+00:00_
 
 ### Tool call
 
-_source line 826 · 2026-05-23T08:28:19.337783+00:00_
+_source line 816 · 2026-05-23T08:28:19.337783+00:00_
 
 called Bash
 
@@ -5429,7 +5008,7 @@ called Bash
 
 ### Tool result
 
-_source line 827 · 2026-05-23T08:28:19.438610+00:00_
+_source line 817 · 2026-05-23T08:28:19.438610+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_9.md
 
@@ -5451,7 +5030,7 @@ _source line 827 · 2026-05-23T08:28:19.438610+00:00_
 
 ### Tool call
 
-_source line 828 · 2026-05-23T08:28:21.150949+00:00_
+_source line 818 · 2026-05-23T08:28:21.150949+00:00_
 
 called Read
 
@@ -5485,7 +5064,7 @@ called Read
 
 ### Tool result
 
-_source line 829 · 2026-05-23T08:28:21.251810+00:00_
+_source line 819 · 2026-05-23T08:28:21.251810+00:00_
 
 1	---
 2	round: 9
@@ -5552,97 +5131,7 @@ _source line 829 · 2026-05-23T08:28:21.251810+00:00_
 
 ### Tool call
 
-_source line 830 · 2026-05-23T08:28:24.570249+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md",
-  "offset": "170",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md",
-    "offset": "170",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 831 · 2026-05-23T08:28:24.570654+00:00_
-
-170	
-171	## Additional Corrections
-172	
-173	### [DATA-1] Rank-Bucket Data Error
-174	
-175	During internal review, we identified an error in Appendix J (§app:rank_reversal): the reversal rate for $\Delta\text{rank} \in [50, 200)$ was incorrectly reported as 6.3% (no source); the correct value from the analysis is 15.1%. We also added the missing $[200, 500)$ bucket (4.0%). The corrected distribution is: 35.2% ($< 50$), 15.1% ($[50, 200)$), 4.0% ($[200, 500)$), 0.6% ($[500, 1000)$), 0.0% ($> 1000$). *(Corrected in paper, Appendix J)*
-176	
-177	---
-178	
-179	## Summary of Changes
-180	
-181	| ID | Issue | Type | Status |
-182	|----|-------|------|--------|
-183	| R1-W1 | DEFF correction range + size-stratified analysis | Must-Fix | Revised (§4.2, Appendix C, Table 9) |
-184	| R1-W2 | Graduated de-duplication definition | Must-Fix | Revised (Appendix I) |
-185	| R1-W3 | Semi-synthetic ΔTPR generalizability | Should-Fix | Revised (§4.5, §5.1, Appendix A) + new E2/E3 |
-186	| R1-W4 | Causal ambiguity and framing | Must-Fix | Revised (§1, §5.1) + new E2/E3 |
-187	| R1-W6 | K=10 NUDIF caveat | Should-Fix | Revised (§4.2) |
-188	| R1-W10 | 1:1 matching details | Should-Fix | Revised (Appendix A) |
-189	| R1-Q1 | Family definition sensitivity | Question | Answered (Appendix C, H) |
-190	| R1-Q2 | Singleton handling | Question | Answered (Appendix C) |
-191	| R2-W1/W4 | Causal ambiguity + audit protocol | Must-Fix | Revised (§5.1, §5.2) + new E2/E3 |
-192	| R2-W2 | Ground truth meta-critique framing | Should-Fix | Revised (§1) |
-193	| R2-W3 | Methodological novelty | Should-Fix | Rebuttal-only |
-194	| R2-W6 | Item quality exclusion wording | Should-Fix | Revised (§5.1) |
-195	| R2-W7 | GSM1K exploratory weight | Nice-to-Have | Revised (§4.7) |
-196	| R2-W8 | enlargethispage format | Nice-to-Have | Revised (§4.3, §5) |
-197	| R2-W9 | Abstract scope | Nice-to-Have | Revised (Abstract) |
-198	| R2-Q1 | Difficulty-dependent contamination | Question | Answered (§5.1, Appendix A) + new E2/E3 |
-199	| R2
-…[truncated 890 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 832 · 2026-05-23T08:28:28.741758+00:00_
+_source line 820 · 2026-05-23T08:28:28.741758+00:00_
 
 called Bash
 
@@ -5676,7 +5165,7 @@ called Bash
 
 ### Tool result
 
-_source line 833 · 2026-05-23T08:28:28.792484+00:00_
+_source line 821 · 2026-05-23T08:28:28.792484+00:00_
 
 (Bash completed with no output)
 
@@ -5698,7 +5187,7 @@ _source line 833 · 2026-05-23T08:28:28.792484+00:00_
 
 ### Tool call
 
-_source line 834 · 2026-05-23T08:28:30.700040+00:00_
+_source line 822 · 2026-05-23T08:28:30.700040+00:00_
 
 called Bash
 
@@ -5732,7 +5221,7 @@ called Bash
 
 ### Tool result
 
-_source line 835 · 2026-05-23T08:28:30.801392+00:00_
+_source line 823 · 2026-05-23T08:28:30.801392+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_25ed8e3ecef6fc922cb497fae9f34627_director.jsonl
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/chats/feishu_group_oc_c8e1a57f5b1c63676dddeadba42e57b8.jsonl
@@ -5756,7 +5245,7 @@ _source line 835 · 2026-05-23T08:28:30.801392+00:00_
 
 ### Tool call
 
-_source line 836 · 2026-05-23T08:28:32.714670+00:00_
+_source line 824 · 2026-05-23T08:28:32.714670+00:00_
 
 called Bash
 
@@ -5790,7 +5279,7 @@ called Bash
 
 ### Tool result
 
-_source line 837 · 2026-05-23T08:28:32.815587+00:00_
+_source line 825 · 2026-05-23T08:28:32.815587+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/within_arch_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/composition_control_report.md
@@ -5821,7 +5310,7 @@ _source line 837 · 2026-05-23T08:28:32.815587+00:00_
 
 ### Tool call
 
-_source line 838 · 2026-05-23T08:28:34.423136+00:00_
+_source line 826 · 2026-05-23T08:28:34.423136+00:00_
 
 called Read
 
@@ -5857,7 +5346,7 @@ called Read
 
 ### Tool result
 
-_source line 839 · 2026-05-23T08:28:34.423772+00:00_
+_source line 827 · 2026-05-23T08:28:34.423772+00:00_
 
 1	---
 2	dream_id: dream_20260521T110541
@@ -5911,7 +5400,7 @@ _source line 839 · 2026-05-23T08:28:34.423772+00:00_
 
 ### Tool call
 
-_source line 840 · 2026-05-23T08:28:37.335822+00:00_
+_source line 828 · 2026-05-23T08:28:37.335822+00:00_
 
 called Bash
 
@@ -5945,7 +5434,7 @@ called Bash
 
 ### Tool result
 
-_source line 841 · 2026-05-23T08:28:37.436856+00:00_
+_source line 829 · 2026-05-23T08:28:37.436856+00:00_
 
 total 276
 drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:16 ..
@@ -5984,7 +5473,7 @@ drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:14 .
 
 ### Tool result
 
-_source line 842 · 2026-05-23T08:28:51.648780+00:00_
+_source line 830 · 2026-05-23T08:28:51.648780+00:00_
 
 Based on my comprehensive search, I have found the R22 action matrix (actually from Round 9 review analysis). Let me do a final confirmation by checking the review_issues.yaml structure more carefully for the exact Should-Fix items that map to W1-W8:
 
@@ -6044,7 +5533,7 @@ The review report found in `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/proj
 
 ### Tool call
 
-_source line 843 · 2026-05-23T08:28:54.915065+00:00_
+_source line 831 · 2026-05-23T08:28:54.915065+00:00_
 
 called Glob
 
@@ -6080,7 +5569,7 @@ called Glob
 
 ### Tool result
 
-_source line 844 · 2026-05-23T08:28:54.965804+00:00_
+_source line 832 · 2026-05-23T08:28:54.965804+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_14.md
 
@@ -6102,7 +5591,7 @@ _source line 844 · 2026-05-23T08:28:54.965804+00:00_
 
 ### Tool call
 
-_source line 845 · 2026-05-23T08:28:57.377667+00:00_
+_source line 833 · 2026-05-23T08:28:57.377667+00:00_
 
 called Read
 
@@ -6136,7 +5625,7 @@ called Read
 
 ### Tool result
 
-_source line 846 · 2026-05-23T08:28:57.478672+00:00_
+_source line 834 · 2026-05-23T08:28:57.478672+00:00_
 
 1	---
 2	round: 14
@@ -6197,7 +5686,7 @@ _source line 846 · 2026-05-23T08:28:57.478672+00:00_
 
 ### Tool call
 
-_source line 847 · 2026-05-23T08:29:05.063238+00:00_
+_source line 835 · 2026-05-23T08:29:05.063238+00:00_
 
 called Grep
 
@@ -6237,7 +5726,7 @@ called Grep
 
 ### Tool result
 
-_source line 848 · 2026-05-23T08:29:25.071105+00:00_
+_source line 836 · 2026-05-23T08:29:25.071105+00:00_
 
 &lt;persisted-output>
 Output too large (37KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-reviewer-430cd31d/233b284a-aa80-428d-89cb-cbd47ca4c54a/tool-results/toolu_01C56QgiEcrUE2GafyJUdMj7.txt
@@ -6276,7 +5765,7 @@ Found 250 files limit: 250
 
 ### Tool call
 
-_source line 849 · 2026-05-23T08:29:31.050785+00:00_
+_source line 837 · 2026-05-23T08:29:31.050785+00:00_
 
 called Grep
 
@@ -6316,7 +5805,7 @@ called Grep
 
 ### Tool result
 
-_source line 850 · 2026-05-23T08:29:51.075460+00:00_
+_source line 838 · 2026-05-23T08:29:51.075460+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T141728/logs/review_worst.log
@@ -6341,7 +5830,7 @@ Found 3 files
 
 ### Tool call
 
-_source line 851 · 2026-05-23T08:29:54.939171+00:00_
+_source line 839 · 2026-05-23T08:29:54.939171+00:00_
 
 called Grep
 
@@ -6381,7 +5870,7 @@ called Grep
 
 ### Tool result
 
-_source line 852 · 2026-05-23T08:30:14.983490+00:00_
+_source line 840 · 2026-05-23T08:30:14.983490+00:00_
 
 Found 110 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/mmlu_redux/mmlu_redux_2.0_all.csv
@@ -6418,78 +5907,7 @@ Found 110 files
 
 ### Tool call
 
-_source line 853 · 2026-05-23T08:30:20.504888+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/rebuttal_talking_points.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 854 · 2026-05-23T08:30:20.555974+00:00_
-
-1	# Rebuttal Talking Points (prepared 2026-05-23)
-2	
-3	## B1 (Q3): Difficulty-dependent contamination defense
-4	**审稿人可能追问**: difficulty × model_type 交互效应下，direction reversal 仍可被 contamination 解释。
-5	**Defense**: "We have now formally tested the difficulty × model-type interaction with two complementary analyses: (1) Logistic regression confirms the interaction is significant (OR = 4.75, p < 10⁻¹⁸⁸; N = 8,585 items); controlling for difficulty, model type remains a strong independent predictor (OR = 4.24, p < 10⁻²²⁵). (2) Mixed-mechanism semi-synthetic simulation reproduces the overall ρ and χ² reversal, but cannot replicate the near-zero instruct gradient (simulated ρ = −0.302 vs. observed −0.079, a 3.8× gap that persists across all tested parameters). This residual gap is evidence that instruct-model DIF is at least partially driven by non-contamination mechanisms (e.g., alignment-induced capability shifts)."
-6	
-7	## B5 (Q6): ≥500 threshold
-8	**审稿人可能追问**: K=3 的 power 是多少？最低需要多少模型？
-9	**Defense**: "K=3 and K=5 yield near-identical power: TPR difference < 0.02 across all 30 conditions (within Monte Carlo noise). At N ≥ 80, K=3 achieves TPR = 0.454–0.571, AUC = 0.905 at N = 100 (Table 5). Smaller corpora can therefore use fewer strata with no power loss, confirmed empirically rather than assumed from prior literature."
-10	
-11	## B8: Size-stratified DEFF
-12	**审稿人可能追问**: 为什么不用 tier-specific DEFF？哪个 tier 的 C% 才对？
-13	**Defense**: "Table A.3 provides size-stratified DEFF: tier-level ICC decreases monotonically from 0.246 (2–10 members) to 0.082 (>200 members), confirming that mega-families drive the weighted estimate's conservatism. At small family sizes DEFF correction has negligible impact (Adj. C% = 31.3%); the 13.5% lower bound is driven entirely by the two mega-families. This empirical size–ICC gradient directly undermines the homogeneity assumption underlying the weighted-mean variant, supporting the simple-mean estimate (~29%) as the more appropriate correction."
-14	
-
-…[truncated 410 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 51
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 855 · 2026-05-23T08:30:23.868612+00:00_
+_source line 841 · 2026-05-23T08:30:23.868612+00:00_
 
 called Glob
 
@@ -6525,7 +5943,7 @@ called Glob
 
 ### Tool result
 
-_source line 856 · 2026-05-23T08:30:23.919217+00:00_
+_source line 842 · 2026-05-23T08:30:23.919217+00:00_
 
 No files found
 
@@ -6547,7 +5965,7 @@ No files found
 
 ### Tool call
 
-_source line 857 · 2026-05-23T08:30:27.896997+00:00_
+_source line 843 · 2026-05-23T08:30:27.896997+00:00_
 
 called Bash
 
@@ -6583,7 +6001,7 @@ called Bash
 
 ### Tool result
 
-_source line 858 · 2026-05-23T08:30:28.149960+00:00_
+_source line 844 · 2026-05-23T08:30:28.149960+00:00_
 
 drwxr-xr-x   2 ubuntu ubuntu     4096 May 23 01:36 difficulty_modeltype_interaction
 -rw-r--r--   1 ubuntu ubuntu     4320 May 22 00:30 novelty_rebuttal_draft.md
@@ -6610,76 +6028,7 @@ drwxr-xr-x   2 ubuntu ubuntu     4096 May 23 08:14 r22_within_arch_temporal
 
 ### Tool call
 
-_source line 859 · 2026-05-23T08:30:30.614029+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/novelty_rebuttal_draft.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/novelty_rebuttal_draft.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 860 · 2026-05-23T08:30:30.714803+00:00_
-
-1	# Novelty Rebuttal Draft — Prepared 2026-05-22
-2	
-3	## If Reviewer says "incremental / just applying MH-DIF"
-4	
-5	We respectfully clarify that our primary contributions are empirical and methodological, not algorithmic—as explicitly stated in the paper (§1, Contributions):
-6	
-7	1. **Ground truth meta-critique (strongest contribution)**: We provide the first empirical demonstration that web-overlap contamination labels—the de facto ground truth for validating contamination detectors—are near-independent of differential item functioning flags (enrichment = 0.964, Jaccard = 0.206, φ = 0.012; §4.3). This exposes a category error in how the community validates contamination detection methods: global exposure ≠ differential functioning. This finding has implications beyond our specific method—it applies to any differential detector validated against web-overlap labels, including ConStat, Min-K%, and DVD.
-8	
-9	2. **Semi-synthetic validation framework**: We develop a controlled injection framework with cross-subject matching that achieves ΔFPR = 0.000 (constructive guarantee, not empirical approximation) while preserving detection power (ΔTPR = +0.508 at p = 0.5; §3.4, §4.5). This framework enables principled evaluation of any item-level differential method, filling a gap left by the inadequacy of web-overlap labels.
-10	
-11	3. **First systematic temporal audit at scale**: 5,227 models × 27,125 items across 6 benchmarks reveals 17.9–31.3% temporal measurement instability (45–174× above random baselines; §4.2, §4.7)—a phenomenon invisible in single-model or small-sample evaluations. The convergence at ~28–29% across multiple independent matching methods (nearest-neighbor, within-family ability-matched, de-duplicated K=20) establishes this as a robust empirical finding.
-12	
-13	The methodological simplicity of MH-DIF is a feature, not a limitation—it enables reproducibility and adoption without specialized IRT software, and its well-characterized statistical properties (Holla
-…[truncated 2376 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 861 · 2026-05-23T08:30:46.642460+00:00_
+_source line 845 · 2026-05-23T08:30:46.642460+00:00_
 
 called Read
 
@@ -6713,7 +6062,7 @@ called Read
 
 ### Tool result
 
-_source line 862 · 2026-05-23T08:30:46.743327+00:00_
+_source line 846 · 2026-05-23T08:30:46.743327+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -6741,7 +6090,7 @@ _source line 862 · 2026-05-23T08:30:46.743327+00:00_
 
 ### Tool call
 
-_source line 863 · 2026-05-23T08:30:51.916404+00:00_
+_source line 847 · 2026-05-23T08:30:51.916404+00:00_
 
 called Read
 
@@ -6775,7 +6124,7 @@ called Read
 
 ### Tool result
 
-_source line 864 · 2026-05-23T08:30:51.967136+00:00_
+_source line 848 · 2026-05-23T08:30:51.967136+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -6802,7 +6151,7 @@ _source line 864 · 2026-05-23T08:30:51.967136+00:00_
 
 ### Tool call
 
-_source line 865 · 2026-05-23T08:30:58.800369+00:00_
+_source line 849 · 2026-05-23T08:30:58.800369+00:00_
 
 called Read
 
@@ -6840,7 +6189,7 @@ called Read
 
 ### Tool result
 
-_source line 866 · 2026-05-23T08:30:58.951535+00:00_
+_source line 850 · 2026-05-23T08:30:58.951535+00:00_
 
 0	\section{Experiments}
 1	\label{sec:experiments}
@@ -6871,7 +6220,7 @@ _source line 866 · 2026-05-23T08:30:58.951535+00:00_
 
 ### Tool call
 
-_source line 867 · 2026-05-23T08:31:02.777078+00:00_
+_source line 851 · 2026-05-23T08:31:02.777078+00:00_
 
 called Bash
 
@@ -6907,7 +6256,7 @@ called Bash
 
 ### Tool result
 
-_source line 868 · 2026-05-23T08:31:02.877858+00:00_
+_source line 852 · 2026-05-23T08:31:02.877858+00:00_
 
 b3193a6 [framing] v3 novelty strategy: stop disclaiming, highlight LLM-specific innovations
 1e94cd3 [paper] Fix page overflow: trim §5.1 off-topic sentence + tighten Conclusion
@@ -6939,7 +6288,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/
 
 ### Tool call
 
-_source line 869 · 2026-05-23T08:31:06.543788+00:00_
+_source line 853 · 2026-05-23T08:31:06.543788+00:00_
 
 called Bash
 
@@ -6975,7 +6324,7 @@ called Bash
 
 ### Tool result
 
-_source line 870 · 2026-05-23T08:31:06.594630+00:00_
+_source line 854 · 2026-05-23T08:31:06.594630+00:00_
 
 commit b3193a6d0fb8e5ee6a4de2662bd9befac944e8d1
 Author: Ubuntu &lt;ubuntu@ip-172-31-8-29.ap-northeast-1.compute.internal>
@@ -7018,7 +6367,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/
 
 ### Tool call
 
-_source line 871 · 2026-05-23T08:31:08.807187+00:00_
+_source line 855 · 2026-05-23T08:31:08.807187+00:00_
 
 called Read
 
@@ -7052,7 +6401,7 @@ called Read
 
 ### Tool result
 
-_source line 872 · 2026-05-23T08:31:08.858150+00:00_
+_source line 856 · 2026-05-23T08:31:08.858150+00:00_
 
 1	# Paper Framing — irt_equated_bench_regen
 2	
@@ -7087,7 +6436,7 @@ _source line 872 · 2026-05-23T08:31:08.858150+00:00_
 
 ### Tool call
 
-_source line 873 · 2026-05-23T08:32:00.304166+00:00_
+_source line 857 · 2026-05-23T08:32:00.304166+00:00_
 
 called ToolSearch
 
@@ -7123,7 +6472,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 874 · 2026-05-23T08:32:00.304616+00:00_
+_source line 858 · 2026-05-23T08:32:00.304616+00:00_
 
 
 
@@ -7145,7 +6494,7 @@ _source line 874 · 2026-05-23T08:32:00.304616+00:00_
 
 ### Tool call
 
-_source line 875 · 2026-05-23T08:33:12.149591+00:00_
+_source line 859 · 2026-05-23T08:33:12.149591+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7181,7 +6530,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 876 · 2026-05-23T08:33:16.418261+00:00_
+_source line 860 · 2026-05-23T08:33:16.418261+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -7203,7 +6552,7 @@ _source line 876 · 2026-05-23T08:33:16.418261+00:00_
 
 ### Assistant
 
-_source line 877 · 2026-05-23T08:33:23.402000+00:00_
+_source line 861 · 2026-05-23T08:33:23.402000+00:00_
 
 R22 Action Matrix 审查已发送给 Director。核心结论：
 
@@ -7235,7 +6584,7 @@ R22 Action Matrix 审查已发送给 Director。核心结论：
 
 ### User
 
-_source line 878 · 2026-05-23T08:33:23.934754+00:00_
+_source line 862 · 2026-05-23T08:33:23.934754+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：R22 分析全部完成，Paper Agent 派单综合重写），请审查研究方向和计划的合理性。
@@ -7257,7 +6606,7 @@ _source line 878 · 2026-05-23T08:33:23.934754+00:00_
 
 ### Tool call
 
-_source line 879 · 2026-05-23T08:33:31.522899+00:00_
+_source line 863 · 2026-05-23T08:33:31.522899+00:00_
 
 called ToolSearch
 
@@ -7293,7 +6642,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 880 · 2026-05-23T08:33:31.523392+00:00_
+_source line 864 · 2026-05-23T08:33:31.523392+00:00_
 
 
 
@@ -7315,7 +6664,7 @@ _source line 880 · 2026-05-23T08:33:31.523392+00:00_
 
 ### Tool call
 
-_source line 881 · 2026-05-23T08:33:34.796037+00:00_
+_source line 865 · 2026-05-23T08:33:34.796037+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -7349,7 +6698,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 882 · 2026-05-23T08:33:34.898081+00:00_
+_source line 866 · 2026-05-23T08:33:34.898081+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/ROADMAP.md\", \"content\": \"# irt_equated_bench_regen — Research Dashboard\\n\\n> 最后更新: 2026-05-23 08:30 UTC | 更新原因: R22 分析全部完成，Paper Agent 派单综合重写\\n\\n## 核心方向\\n将教育测量中的 MH-DIF 应用于 LLM benchmark（5,227 models × 12,508 MMLU items），发现 ~27-29% items 展现 temporal DIF，与 web-overlap contamination 正交（Jaccard=0.206）。详见 paper_framing.md。\\n\\n## 当前阶段\\n🔬 Research + 📝 Paper Revision（R22 审稿 3.5 → 目标 4.0）+ 🚀 审稿进行中\\n\\n## 当前进展\\n- **R22 审稿**: Overall 3.5 Borderline Conference，8 个 Weaknesses (1 critical W1-framing, 7 warning)\\n- **4 项补充分析全部完成** (2026-05-23):\\n  - ✅ Score Inflation: cohort 差异 0.29 pp, 个体排名位移 ±561 (99th pctl)\\n  - ✅ Composition Control: balanced C% = 30.25% ± 1.32% (Δ=1.08pp), 排除 composition shift\\n  - ✅ DEFF Simulation: simple-mean 在 3/4 场景胜出 (size-dependent ICC)\\n  - ✅ Within-Architecture Temporal: Llama 59.2%, Qwen 6.9%, Yi 3.5%, Phi 1.3%\\n- **引用验证完成**: Camilli & Shepard (1994) 真实; Maeda (2025) 不是 prior work\\n- **Paper Agent 已派单**: 综合重写处理全部 R22 issues + 整合 4 项新分析\\n- **paper_framing.md v3**: 已从 \\\"novelty is NOT algorithmic\\\" 转为 \\\"three LLM-specific innovations\\\"\\n\\n## 近期任务\\n- [ ] Paper Agent 完成综合重写 (W1-W8, N1-N5 + 4 项新数据)\\n- [ ] 重写完成后编译验证 8 页限制\\n- [ ] 提交 R15 审稿验证修复效果\\n- [ ] 如 R15 仍 3.5 → 分析剩余 gap，迭代修复\\n- [ ] DDL 5/25 AoE 最终提交\\n\\n## GPU 预算\\n本项目无 GPU 需求（所有分析基于已有 METABENCH response matrix，本地 CPU 可跑）。\\n\\n## 关键风险\\n1. W1 (framing) 已连续 3 轮未解决 — 本次策略: 证据(composition control + within-arch) + framing(Camilli impact/bias + mechanism-conditional audit) 双管齐下\\n2. DDL 5/25 AoE — 需 Paper Agent 在 24h 内完成重写 + 至少 1 轮审稿验证\\n3. enlargethispage 目标 ≤4 — 需 DEFF 详细内容移 appendix 腾出空间\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-22 | R20审稿3.0→派Agent做size-stratified DEFF分析+批量论文修改，目标R2 | — |\\n| D039 | 2026-05-22 | 全速推进 4 组 decomposition/validation 实验 + framing 强化， | — |\\n| D038
 …[truncated 853 chars]
@@ -7372,7 +6721,7 @@ _source line 882 · 2026-05-23T08:33:34.898081+00:00_
 
 ### Tool call
 
-_source line 883 · 2026-05-23T08:34:13.018521+00:00_
+_source line 867 · 2026-05-23T08:34:13.018521+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7408,7 +6757,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 884 · 2026-05-23T08:34:17.297909+00:00_
+_source line 868 · 2026-05-23T08:34:17.297909+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -7430,7 +6779,7 @@ _source line 884 · 2026-05-23T08:34:17.297909+00:00_
 
 ### Assistant
 
-_source line 885 · 2026-05-23T08:34:21.537758+00:00_
+_source line 869 · 2026-05-23T08:34:21.537758+00:00_
 
 ROADMAP 审查已提交。两个 warning：score inflation 数据写入论文需确认在 Paper Agent 的 writing plan 中、novelty 措辞需从 "innovations" 降级为 "adaptations"。时间线和研究方向无问题。
 
@@ -7457,7 +6806,7 @@ ROADMAP 审查已提交。两个 warning：score inflation 数据写入论文需
 
 ### User
 
-_source line 886 · 2026-05-23T08:53:28.541143+00:00_
+_source line 870 · 2026-05-23T08:53:28.541143+00:00_
 
 [系统通知 — worker_done:worker_code_r22_deff_simulation_20260523T081051]:
 Worker worker_code_r22_deff_simulation_20260523T081051 已完成（status=done），请审查 Agent 的处理结果。
@@ -7479,7 +6828,7 @@ Worker worker_code_r22_deff_simulation_20260523T081051 已完成（status=done�
 
 ### Tool call
 
-_source line 887 · 2026-05-23T08:53:37.825437+00:00_
+_source line 871 · 2026-05-23T08:53:37.825437+00:00_
 
 called ToolSearch
 
@@ -7515,7 +6864,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 888 · 2026-05-23T08:53:37.926299+00:00_
+_source line 872 · 2026-05-23T08:53:37.926299+00:00_
 
 
 
@@ -7537,7 +6886,7 @@ _source line 888 · 2026-05-23T08:53:37.926299+00:00_
 
 ### Tool call
 
-_source line 889 · 2026-05-23T08:53:40.888385+00:00_
+_source line 873 · 2026-05-23T08:53:40.888385+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7575,7 +6924,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 890 · 2026-05-23T08:53:40.939148+00:00_
+_source line 874 · 2026-05-23T08:53:40.939148+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0818}}"}
 
@@ -7597,7 +6946,7 @@ _source line 890 · 2026-05-23T08:53:40.939148+00:00_
 
 ### Tool call
 
-_source line 891 · 2026-05-23T08:53:43.299064+00:00_
+_source line 875 · 2026-05-23T08:53:43.299064+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7635,7 +6984,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 892 · 2026-05-23T08:53:43.351196+00:00_
+_source line 876 · 2026-05-23T08:53:43.351196+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:20.736Z\", \"updated_at\": \"2026-05-21T16:24:02.388Z\", \"hypothesis\": \"plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。\", \"parent\": \"plan_013_q3_local_independence\", \"conclusion\": \"success\", \"metrics\": {\"n_subjects\": 8, \"n_permutations\": 1000, \"method\": \"permutation null + independence control, cross-subject matching\", \"ets_c_inflation\": {\"mean_pp\": 0.0004, \"max_pp\": 0.001, \"max_subject\": \"marketing\", \"verdict\": \"far below 3pp threshold\"}, \"p05_inflation\": {\"mean_pp\": -0.0019, \"direction\": \"slightly negative (no inflation)\", \"mean_fpr_with_ld\": 0.0412, \"mean_fpr_without_ld\": 0.0431}, \"subject_details\": {\"moral_scenarios\": {\"q3_pct\": 34.2, \"ets_c_delta_pp\": -1e-05}, \"human_aging\": {\"q3_pct\": 20.5, \"ets_c_delta_pp\": 0.0004}, \"world_religions\": {\"q3_pct\": 18.1, \"ets_c_delta_pp\": 0.0006}, \"marketing\": {\"q3_pct\": 17.5, \"ets_c_delta_pp\": 0.001}, \"professional_law\": {\"q3_pct\": 10.5, \"ets_c_delta_pp\": 0.0003}, \"college_medicine\": {\"q3_pct\": 4.6, \"ets_c_delta_pp\": 0.0005}}, \"q3_inflation_correlation\": {\"spearman_rho\": -0.238, \"p_value\": 0.57, \"significant\": false}, \"key_insight\": \"Cross-subject matching completely isolates within-subject LD from MH-DIF FPR\"}, \"notes\": \"LD inflation simulation 完成。核心发现：cross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。ETS-C 标准下 LD 膨胀仅 +0.0004pp（最大 +0.001pp），远低于 3pp 阈值。p<0.05 标准下甚至略为负（-0.0019pp，无膨胀）。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 <0.01pp。两个机制：(1) cross-subject matching 变量不含当前 subject items
 …[truncated 10919 chars]
@@ -7658,7 +7007,7 @@ _source line 892 · 2026-05-23T08:53:43.351196+00:00_
 
 ### Tool call
 
-_source line 893 · 2026-05-23T08:53:49.028910+00:00_
+_source line 877 · 2026-05-23T08:53:49.028910+00:00_
 
 called Read
 
@@ -7692,7 +7041,7 @@ called Read
 
 ### Tool result
 
-_source line 894 · 2026-05-23T08:53:49.029350+00:00_
+_source line 878 · 2026-05-23T08:53:49.029350+00:00_
 
 EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r22_deff_simulation'
 
@@ -7714,7 +7063,7 @@ EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-
 
 ### Tool call
 
-_source line 895 · 2026-05-23T08:53:53.293632+00:00_
+_source line 879 · 2026-05-23T08:53:53.293632+00:00_
 
 called Bash
 
@@ -7750,7 +7099,7 @@ called Bash
 
 ### Tool result
 
-_source line 896 · 2026-05-23T08:53:53.445478+00:00_
+_source line 880 · 2026-05-23T08:53:53.445478+00:00_
 
 total 184
 drwxr-xr-x   2 ubuntu ubuntu  4096 May 23 08:52 .
@@ -7779,7 +7128,7 @@ drwxr-xr-x 101 ubuntu ubuntu 12288 May 23 08:29 ..
 
 ### Tool call
 
-_source line 897 · 2026-05-23T08:54:03.935125+00:00_
+_source line 881 · 2026-05-23T08:54:03.935125+00:00_
 
 called Read
 
@@ -7813,7 +7162,7 @@ called Read
 
 ### Tool result
 
-_source line 898 · 2026-05-23T08:54:04.086214+00:00_
+_source line 882 · 2026-05-23T08:54:04.086214+00:00_
 
 1	# R22: DEFF Simple-Mean vs Weighted-Mean Simulation
 2	
@@ -7878,7 +7227,7 @@ _source line 898 · 2026-05-23T08:54:04.086214+00:00_
 
 ### Tool call
 
-_source line 899 · 2026-05-23T08:54:36.745891+00:00_
+_source line 883 · 2026-05-23T08:54:36.745891+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7914,7 +7263,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 900 · 2026-05-23T08:54:40.510941+00:00_
+_source line 884 · 2026-05-23T08:54:40.510941+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -7943,7 +7292,7 @@ _source line 900 · 2026-05-23T08:54:40.510941+00:00_
 
 ### User
 
-_source line 901 · 2026-05-23T09:35:36.818804+00:00_
+_source line 885 · 2026-05-23T09:35:36.818804+00:00_
 
 [System 触发审查]:
 ## R15 审稿报告 Action Matrix — 请独立审查
@@ -8072,7 +7421,7 @@ suk2026causal: 提供 preprint 链接。
 
 ### Tool call
 
-_source line 902 · 2026-05-23T09:35:49.821568+00:00_
+_source line 886 · 2026-05-23T09:35:49.821568+00:00_
 
 called Glob
 
@@ -8108,7 +7457,7 @@ called Glob
 
 ### Tool result
 
-_source line 903 · 2026-05-23T09:35:49.872390+00:00_
+_source line 887 · 2026-05-23T09:35:49.872390+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_15.md
 
@@ -8130,7 +7479,7 @@ _source line 903 · 2026-05-23T09:35:49.872390+00:00_
 
 ### Tool call
 
-_source line 904 · 2026-05-23T09:36:03.936541+00:00_
+_source line 888 · 2026-05-23T09:36:03.936541+00:00_
 
 called Read
 
@@ -8164,7 +7513,7 @@ called Read
 
 ### Tool result
 
-_source line 905 · 2026-05-23T09:36:03.988281+00:00_
+_source line 889 · 2026-05-23T09:36:03.988281+00:00_
 
 1	---
 2	round: 15
@@ -8234,7 +7583,7 @@ _source line 905 · 2026-05-23T09:36:03.988281+00:00_
 
 ### Tool call
 
-_source line 906 · 2026-05-23T09:36:08.811470+00:00_
+_source line 890 · 2026-05-23T09:36:08.811470+00:00_
 
 called Read
 
@@ -8270,7 +7619,7 @@ called Read
 
 ### Tool result
 
-_source line 907 · 2026-05-23T09:36:08.862304+00:00_
+_source line 891 · 2026-05-23T09:36:08.862304+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -8300,7 +7649,7 @@ _source line 907 · 2026-05-23T09:36:08.862304+00:00_
 
 ### Tool call
 
-_source line 908 · 2026-05-23T09:36:14.837133+00:00_
+_source line 892 · 2026-05-23T09:36:14.837133+00:00_
 
 called Grep
 
@@ -8342,7 +7691,7 @@ called Grep
 
 ### Tool result
 
-_source line 909 · 2026-05-23T09:36:34.854368+00:00_
+_source line 893 · 2026-05-23T09:36:34.854368+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/response_letter_draft.md:40:**Concern**: Binary response flipping is a worst-case uniform pattern; the real contamination mechanism may be difficulty-dependent, making ΔTPR = +0.508 an upper bound.
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T141728/logs/review_best.log:9:[Omitted long matching line]
@@ -8375,7 +7724,7 @@ _source line 909 · 2026-05-23T09:36:34.854368+00:00_
 
 ### Tool call
 
-_source line 910 · 2026-05-23T09:36:40.475000+00:00_
+_source line 894 · 2026-05-23T09:36:40.475000+00:00_
 
 called Read
 
@@ -8409,7 +7758,7 @@ called Read
 
 ### Tool result
 
-_source line 911 · 2026-05-23T09:36:40.475647+00:00_
+_source line 895 · 2026-05-23T09:36:40.475647+00:00_
 
 1	# Mixed-Mechanism Semi-Synthetic Injection
 2	
@@ -8478,7 +7827,7 @@ _source line 911 · 2026-05-23T09:36:40.475647+00:00_
 
 ### Tool call
 
-_source line 912 · 2026-05-23T09:36:46.096021+00:00_
+_source line 896 · 2026-05-23T09:36:46.096021+00:00_
 
 called Grep
 
@@ -8522,7 +7871,7 @@ called Grep
 
 ### Tool result
 
-_source line 913 · 2026-05-23T09:36:46.196959+00:00_
+_source line 897 · 2026-05-23T09:36:46.196959+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/response_letter_draft.md:40:**Concern**: Binary response flipping is a worst-case uniform pattern; the real contamination mechanism may be difficulty-dependent, making ΔTPR = +0.508 an upper bound.
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/response_letter_draft.md:40:**Concern**: Binary response flipping is a worst-case uniform pattern; the real contamination mechanism may be difficulty-dependent, making ΔTPR = +0.508 an upper bound.
@@ -8546,7 +7895,7 @@ _source line 913 · 2026-05-23T09:36:46.196959+00:00_
 
 ### Tool call
 
-_source line 914 · 2026-05-23T09:36:50.361921+00:00_
+_source line 898 · 2026-05-23T09:36:50.361921+00:00_
 
 called Grep
 
@@ -8586,7 +7935,7 @@ called Grep
 
 ### Tool result
 
-_source line 915 · 2026-05-23T09:36:50.614331+00:00_
+_source line 899 · 2026-05-23T09:36:50.614331+00:00_
 
 No matches found
 
@@ -8608,7 +7957,7 @@ No matches found
 
 ### Tool call
 
-_source line 916 · 2026-05-23T09:36:56.384849+00:00_
+_source line 900 · 2026-05-23T09:36:56.384849+00:00_
 
 called Grep
 
@@ -8648,7 +7997,7 @@ called Grep
 
 ### Tool result
 
-_source line 917 · 2026-05-23T09:36:56.435565+00:00_
+_source line 901 · 2026-05-23T09:36:56.435565+00:00_
 
 No matches found
 
@@ -8670,7 +8019,7 @@ No matches found
 
 ### Tool call
 
-_source line 918 · 2026-05-23T09:36:59.850510+00:00_
+_source line 902 · 2026-05-23T09:36:59.850510+00:00_
 
 called Bash
 
@@ -8706,7 +8055,7 @@ called Bash
 
 ### Tool result
 
-_source line 919 · 2026-05-23T09:37:00.002215+00:00_
+_source line 903 · 2026-05-23T09:37:00.002215+00:00_
 
 all_results.csv
 mixed_mechanism_report.md
@@ -8732,7 +8081,7 @@ scheme_e_results.csv
 
 ### Tool call
 
-_source line 920 · 2026-05-23T09:37:02.665917+00:00_
+_source line 904 · 2026-05-23T09:37:02.665917+00:00_
 
 called Bash
 
@@ -8768,7 +8117,7 @@ called Bash
 
 ### Tool result
 
-_source line 921 · 2026-05-23T09:37:02.766565+00:00_
+_source line 905 · 2026-05-23T09:37:02.766565+00:00_
 
 scheme,seed,n_inject_base,n_inject_instruct,n_inject_items,n_flipped_base,n_flipped_instruct,n_flipped_total,rho_overall,rho_ddelta_overall,c_pct_overall,n_c_overall,pct_focal_overall,rho_base,rho_ddelta_base,c_pct_base,n_c_base,pct_focal_base,rho_instruct,rho_ddelta_instruct,c_pct_instruct,n_c_instruct,pct_focal_instruct,chi2_reversal,p_reversal,elapsed_sec
 D_base_diff_instruct_unif,1,164,77,3001,121757,42312,164069,-0.6735766716170853,-0.9060160459082353,34.97761432683083,4375,43.93142857142857,-0.6355133078992963,-0.8793040209009231,37.671889990406136,4712,38.00933786078098,-0.27937425533319565,-0.7134855154281844,37.783818356252,4726,65.7638595006348,726.968192629643,4.0874241186018946e-160,1.2172610759735107
@@ -8792,7 +8141,7 @@ E_base_unif_instruct_diff,1,164,77,3001,98906,55180,154086,-0.6637790191129412,-
 
 ### Tool call
 
-_source line 922 · 2026-05-23T09:37:13.912276+00:00_
+_source line 906 · 2026-05-23T09:37:13.912276+00:00_
 
 called Grep
 
@@ -8834,7 +8183,7 @@ called Grep
 
 ### Tool result
 
-_source line 923 · 2026-05-23T09:37:13.963008+00:00_
+_source line 907 · 2026-05-23T09:37:13.963008+00:00_
 
 Found 3 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/semisynthetic_gradient_report.md
@@ -8859,7 +8208,7 @@ Found 3 files
 
 ### Tool call
 
-_source line 924 · 2026-05-23T09:37:18.294603+00:00_
+_source line 908 · 2026-05-23T09:37:18.294603+00:00_
 
 called Read
 
@@ -8893,7 +8242,7 @@ called Read
 
 ### Tool result
 
-_source line 925 · 2026-05-23T09:37:18.395511+00:00_
+_source line 909 · 2026-05-23T09:37:18.395511+00:00_
 
 1	# R19 Exp 4 — Difficulty-Dependent Semi-Synthetic Injection
 2	
@@ -8974,7 +8323,7 @@ _source line 925 · 2026-05-23T09:37:18.395511+00:00_
 
 ### Tool call
 
-_source line 926 · 2026-05-23T09:38:36.360979+00:00_
+_source line 910 · 2026-05-23T09:38:36.360979+00:00_
 
 called Read
 
@@ -9008,7 +8357,7 @@ called Read
 
 ### Tool result
 
-_source line 927 · 2026-05-23T09:38:36.412979+00:00_
+_source line 911 · 2026-05-23T09:38:36.412979+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -9048,7 +8397,7 @@ _source line 927 · 2026-05-23T09:38:36.412979+00:00_
 
 ### Tool call
 
-_source line 928 · 2026-05-23T09:39:55.771889+00:00_
+_source line 912 · 2026-05-23T09:39:55.771889+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9084,7 +8433,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 929 · 2026-05-23T09:39:59.486185+00:00_
+_source line 913 · 2026-05-23T09:39:59.486185+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -9106,7 +8455,7 @@ _source line 929 · 2026-05-23T09:39:59.486185+00:00_
 
 ### Assistant
 
-_source line 930 · 2026-05-23T09:40:13.998520+00:00_
+_source line 914 · 2026-05-23T09:40:13.998520+00:00_
 
 Good — I now see the current state. Discussion has already been restructured with `\enlargethispage*{4\baselineskip}` (down from 6). Let me now post my comprehensive review.
 
@@ -9133,7 +8482,7 @@ Good — I now see the current state. Discussion has already been restructured w
 
 ### User
 
-_source line 931 · 2026-05-23T09:47:59.875463+00:00_
+_source line 915 · 2026-05-23T09:47:59.875463+00:00_
 
 [系统通知 — worker_done:worker_code_r15_base_instruct_temporal_dif_20260523T094436]:
 Worker worker_code_r15_base_instruct_temporal_dif_20260523T094436 已完成（status=done），请审查 Agent 的处理结果。
@@ -9155,7 +8504,7 @@ Worker worker_code_r15_base_instruct_temporal_dif_20260523T094436 已完成（st
 
 ### Tool call
 
-_source line 932 · 2026-05-23T09:48:08.376899+00:00_
+_source line 916 · 2026-05-23T09:48:08.376899+00:00_
 
 called Glob
 
@@ -9191,7 +8540,7 @@ called Glob
 
 ### Tool result
 
-_source line 933 · 2026-05-23T09:48:08.427589+00:00_
+_source line 917 · 2026-05-23T09:48:08.427589+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r15_base_instruct_temporal_dif/base_instruct_temporal_dif.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r15_base_instruct_temporal_dif/results.csv
@@ -9215,7 +8564,7 @@ _source line 933 · 2026-05-23T09:48:08.427589+00:00_
 
 ### Tool call
 
-_source line 934 · 2026-05-23T09:48:11.289829+00:00_
+_source line 918 · 2026-05-23T09:48:11.289829+00:00_
 
 called Read
 
@@ -9249,7 +8598,7 @@ called Read
 
 ### Tool result
 
-_source line 935 · 2026-05-23T09:48:11.290204+00:00_
+_source line 919 · 2026-05-23T09:48:11.290204+00:00_
 
 1	# R15: Base-only & Instruct-only Temporal DIF
 2	
@@ -9309,7 +8658,7 @@ _source line 935 · 2026-05-23T09:48:11.290204+00:00_
 
 ### Tool call
 
-_source line 936 · 2026-05-23T09:48:13.851524+00:00_
+_source line 920 · 2026-05-23T09:48:13.851524+00:00_
 
 called Read
 
@@ -9343,7 +8692,7 @@ called Read
 
 ### Tool result
 
-_source line 937 · 2026-05-23T09:48:13.952425+00:00_
+_source line 921 · 2026-05-23T09:48:13.952425+00:00_
 
 1	subset,n_ref,n_foc,c_pct,n_dif_c,n_items,rho_diff_delta,rho_p,pct_focal_favoring,pct_ref_favoring
 2	base,861,548,32.12,4018,12508,-0.57,0.00e+00,39.9,60.1
@@ -9368,7 +8717,7 @@ _source line 937 · 2026-05-23T09:48:13.952425+00:00_
 
 ### Tool call
 
-_source line 938 · 2026-05-23T09:49:26.648910+00:00_
+_source line 922 · 2026-05-23T09:49:26.648910+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9404,7 +8753,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 939 · 2026-05-23T09:49:30.412533+00:00_
+_source line 923 · 2026-05-23T09:49:30.412533+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -9433,7 +8782,7 @@ _source line 939 · 2026-05-23T09:49:30.412533+00:00_
 
 ### User
 
-_source line 940 · 2026-05-23T10:43:33.138109+00:00_
+_source line 924 · 2026-05-23T10:43:33.138109+00:00_
 
 [System 触发审查]:
 R16 审稿报告 + Director Action Matrix 独立审视请求
@@ -9486,7 +8835,7 @@ Overall 3.5 (Borderline Conference), Fresh 模式。2 个 Must-Fix, 6 个 Should
 
 ### Tool call
 
-_source line 941 · 2026-05-23T10:43:54.521192+00:00_
+_source line 925 · 2026-05-23T10:43:54.521192+00:00_
 
 called Read
 
@@ -9520,7 +8869,7 @@ called Read
 
 ### Tool result
 
-_source line 942 · 2026-05-23T10:43:54.572301+00:00_
+_source line 926 · 2026-05-23T10:43:54.572301+00:00_
 
 1	---
 2	round: 16
@@ -9579,7 +8928,7 @@ _source line 942 · 2026-05-23T10:43:54.572301+00:00_
 
 ### Tool call
 
-_source line 943 · 2026-05-23T10:43:59.843425+00:00_
+_source line 927 · 2026-05-23T10:43:59.843425+00:00_
 
 called Read
 
@@ -9617,7 +8966,7 @@ called Read
 
 ### Tool result
 
-_source line 944 · 2026-05-23T10:43:59.843984+00:00_
+_source line 928 · 2026-05-23T10:43:59.843984+00:00_
 
 0	\section{Experiments}
 1	\label{sec:experiments}
@@ -9658,7 +9007,7 @@ _source line 944 · 2026-05-23T10:43:59.843984+00:00_
 
 ### Tool call
 
-_source line 945 · 2026-05-23T10:44:03.713928+00:00_
+_source line 929 · 2026-05-23T10:44:03.713928+00:00_
 
 called Read
 
@@ -9692,7 +9041,7 @@ called Read
 
 ### Tool result
 
-_source line 946 · 2026-05-23T10:44:03.764687+00:00_
+_source line 930 · 2026-05-23T10:44:03.764687+00:00_
 
 1	\begin{abstract}
 2	LLM benchmark scores are compared across model generations, yet whether individual items measure the same construct over time is rarely tested. We apply differential item functioning (DIF) analysis from educational measurement to six METABENCH benchmarks (5,227 MMLU models, 27,125 items across all six), validated through a semi-synthetic injection framework with cross-subject matching. Between 2023 and 2024 model cohorts, 17.9--31.3\% of items exhibit large temporal DIF (${\approx}$27--29\% for MMLU after non-independence corrections; conservative bound 13.5\%; random-split baseline 0.18\%). Web-overlap contamination labels are near-independent of DIF flags (Jaccard $= 0.206$): global exposure and differential functioning are complementary diagnostic dimensions. Temporal DIF does not threaten aggregate rankings ($\rho \approx 0.997$) but reveals structured item-level change---base and instruct models exhibit opposite DIF patterns ($\chi^2 = 562.7$)---and shifts DIF-corrected scores by ${+}2.12$\,pp on average. LLM benchmarks need psychometric monitoring, not just score reporting.
@@ -9717,7 +9066,7 @@ _source line 946 · 2026-05-23T10:44:03.764687+00:00_
 
 ### Tool call
 
-_source line 947 · 2026-05-23T10:44:08.748900+00:00_
+_source line 931 · 2026-05-23T10:44:08.748900+00:00_
 
 called Grep
 
@@ -9759,7 +9108,7 @@ called Grep
 
 ### Tool result
 
-_source line 948 · 2026-05-23T10:44:08.849802+00:00_
+_source line 932 · 2026-05-23T10:44:08.849802+00:00_
 
 Found 6 files
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/best/review_report.md
@@ -9787,7 +9136,7 @@ Found 6 files
 
 ### Tool call
 
-_source line 949 · 2026-05-23T10:44:12.422174+00:00_
+_source line 933 · 2026-05-23T10:44:12.422174+00:00_
 
 called Grep
 
@@ -9827,7 +9176,7 @@ called Grep
 
 ### Tool result
 
-_source line 950 · 2026-05-23T10:44:12.472914+00:00_
+_source line 934 · 2026-05-23T10:44:12.472914+00:00_
 
 No files found
 
@@ -9849,7 +9198,7 @@ No files found
 
 ### Tool call
 
-_source line 951 · 2026-05-23T10:44:16.692814+00:00_
+_source line 935 · 2026-05-23T10:44:16.692814+00:00_
 
 called Bash
 
@@ -9885,7 +9234,7 @@ called Bash
 
 ### Tool result
 
-_source line 952 · 2026-05-23T10:44:16.844937+00:00_
+_source line 936 · 2026-05-23T10:44:16.844937+00:00_
 
 cross_analysis.csv
 dif_results_ability.csv
@@ -9915,7 +9264,7 @@ within_family_dif.csv
 
 ### Tool call
 
-_source line 953 · 2026-05-23T10:44:19.905512+00:00_
+_source line 937 · 2026-05-23T10:44:19.905512+00:00_
 
 called Bash
 
@@ -9951,7 +9300,7 @@ called Bash
 
 ### Tool result
 
-_source line 954 · 2026-05-23T10:44:19.956915+00:00_
+_source line 938 · 2026-05-23T10:44:19.956915+00:00_
 
 item_id,subject,alpha_mh,delta_mh,se,p_value,ets_class,li_label,li_contamination_type
 abstract_algebra.1,abstract_algebra,0.8673811041189408,0.3343505559632721,0.2921867891177819,0.27995385252579175,A,False,clean
@@ -9977,7 +9326,7 @@ abstract_algebra.11,abstract_algebra,0.7175060366563377,0.780138707124792,0.2484
 
 ### Tool call
 
-_source line 955 · 2026-05-23T10:44:24.427800+00:00_
+_source line 939 · 2026-05-23T10:44:24.427800+00:00_
 
 called Grep
 
@@ -10017,7 +9366,7 @@ called Grep
 
 ### Tool result
 
-_source line 956 · 2026-05-23T10:44:24.478531+00:00_
+_source line 940 · 2026-05-23T10:44:24.478531+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001/plan_001_analysis.py:500:    print(f"\nSanity check (random split): {pct_c_san:.2f}% C")
 
@@ -10039,7 +9388,7 @@ _source line 956 · 2026-05-23T10:44:24.478531+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-23T10:44:40.823677+00:00_
+_source line 941 · 2026-05-23T10:44:40.823677+00:00_
 
 called Read
 
@@ -10077,7 +9426,7 @@ called Read
 
 ### Tool result
 
-_source line 958 · 2026-05-23T10:44:40.824206+00:00_
+_source line 942 · 2026-05-23T10:44:40.824206+00:00_
 
 490	    print("SUMMARY")
 491	    print("=" * 60)
@@ -10128,7 +9477,7 @@ _source line 958 · 2026-05-23T10:44:40.824206+00:00_
 
 ### Tool call
 
-_source line 959 · 2026-05-23T10:45:15.042167+00:00_
+_source line 943 · 2026-05-23T10:45:15.042167+00:00_
 
 called Grep
 
@@ -10168,7 +9517,7 @@ called Grep
 
 ### Tool result
 
-_source line 960 · 2026-05-23T10:45:15.092815+00:00_
+_source line 944 · 2026-05-23T10:45:15.092815+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex:90:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex:5:[Omitted long matching line]
@@ -10197,7 +9546,7 @@ _source line 960 · 2026-05-23T10:45:15.092815+00:00_
 
 ### Tool call
 
-_source line 961 · 2026-05-23T10:46:43.436666+00:00_
+_source line 945 · 2026-05-23T10:46:43.436666+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10233,7 +9582,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 962 · 2026-05-23T10:46:47.199286+00:00_
+_source line 946 · 2026-05-23T10:46:47.199286+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -10255,7 +9604,7 @@ _source line 962 · 2026-05-23T10:46:47.199286+00:00_
 
 ### Assistant
 
-_source line 963 · 2026-05-23T10:46:51.199532+00:00_
+_source line 947 · 2026-05-23T10:46:51.199532+00:00_
 
 Score inflation is now in the paper (abstract, intro, experiments, discussion, appendix). Let me now post my comprehensive review.
 
@@ -10282,7 +9631,7 @@ Score inflation is now in the paper (abstract, intro, experiments, discussion, a
 
 ### User
 
-_source line 964 · 2026-05-23T10:49:09.030391+00:00_
+_source line 948 · 2026-05-23T10:49:09.030391+00:00_
 
 [系统通知 — worker_done:worker_code_r16_random_split_null_20260523T104440]:
 Worker worker_code_r16_random_split_null_20260523T104440 已完成（status=done），请审查 Agent 的处理结果。
@@ -10304,7 +9653,7 @@ Worker worker_code_r16_random_split_null_20260523T104440 已完成（status=done
 
 ### Tool call
 
-_source line 965 · 2026-05-23T10:49:17.023924+00:00_
+_source line 949 · 2026-05-23T10:49:17.023924+00:00_
 
 called Glob
 
@@ -10340,7 +9689,7 @@ called Glob
 
 ### Tool result
 
-_source line 966 · 2026-05-23T10:49:17.024464+00:00_
+_source line 950 · 2026-05-23T10:49:17.024464+00:00_
 
 No files found
 
@@ -10362,7 +9711,7 @@ No files found
 
 ### Tool call
 
-_source line 967 · 2026-05-23T10:49:20.739960+00:00_
+_source line 951 · 2026-05-23T10:49:20.739960+00:00_
 
 called Glob
 
@@ -10398,7 +9747,7 @@ called Glob
 
 ### Tool result
 
-_source line 968 · 2026-05-23T10:49:20.790671+00:00_
+_source line 952 · 2026-05-23T10:49:20.790671+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_dif_union/dif_union_results.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r16_dif_union/dif_union_report.md
@@ -10426,7 +9775,7 @@ _source line 968 · 2026-05-23T10:49:20.790671+00:00_
 
 ### Tool call
 
-_source line 969 · 2026-05-23T10:49:33.899628+00:00_
+_source line 953 · 2026-05-23T10:49:33.899628+00:00_
 
 called Read
 
@@ -10460,7 +9809,7 @@ called Read
 
 ### Tool result
 
-_source line 970 · 2026-05-23T10:49:33.900252+00:00_
+_source line 954 · 2026-05-23T10:49:33.900252+00:00_
 
 1	# Random-Split |Δ_MH| Null Distribution Report
 2	
@@ -10533,7 +9882,7 @@ _source line 970 · 2026-05-23T10:49:33.900252+00:00_
 
 ### Tool call
 
-_source line 971 · 2026-05-23T10:49:38.265862+00:00_
+_source line 955 · 2026-05-23T10:49:38.265862+00:00_
 
 called Read
 
@@ -10567,7 +9916,7 @@ called Read
 
 ### Tool result
 
-_source line 972 · 2026-05-23T10:49:38.366622+00:00_
+_source line 956 · 2026-05-23T10:49:38.366622+00:00_
 
 1	percentile,abs_delta_mh
 2	50.0,0.29556451737880707
@@ -10597,7 +9946,7 @@ _source line 972 · 2026-05-23T10:49:38.366622+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-23T10:50:52.559932+00:00_
+_source line 957 · 2026-05-23T10:50:52.559932+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10633,7 +9982,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 974 · 2026-05-23T10:50:56.325472+00:00_
+_source line 958 · 2026-05-23T10:50:56.325472+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -10655,7 +10004,7 @@ _source line 974 · 2026-05-23T10:50:56.325472+00:00_
 
 ### Tool call
 
-_source line 975 · 2026-05-23T10:53:35.986878+00:00_
+_source line 959 · 2026-05-23T10:53:35.986878+00:00_
 
 called ToolSearch
 
@@ -10691,7 +10040,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 976 · 2026-05-23T10:53:36.087584+00:00_
+_source line 960 · 2026-05-23T10:53:36.087584+00:00_
 
 
 
@@ -10713,7 +10062,7 @@ _source line 976 · 2026-05-23T10:53:36.087584+00:00_
 
 ### Tool call
 
-_source line 977 · 2026-05-23T10:53:38.245774+00:00_
+_source line 961 · 2026-05-23T10:53:38.245774+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10749,7 +10098,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 978 · 2026-05-23T10:53:38.347131+00:00_
+_source line 962 · 2026-05-23T10:53:38.347131+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:20.736Z\", \"updated_at\": \"2026-05-21T16:24:02.388Z\", \"hypothesis\": \"plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。\", \"parent\": \"plan_013_q3_local_independence\", \"conclusion\": \"success\", \"metrics\": {\"n_subjects\": 8, \"n_permutations\": 1000, \"method\": \"permutation null + independence control, cross-subject matching\", \"ets_c_inflation\": {\"mean_pp\": 0.0004, \"max_pp\": 0.001, \"max_subject\": \"marketing\", \"verdict\": \"far below 3pp threshold\"}, \"p05_inflation\": {\"mean_pp\": -0.0019, \"direction\": \"slightly negative (no inflation)\", \"mean_fpr_with_ld\": 0.0412, \"mean_fpr_without_ld\": 0.0431}, \"subject_details\": {\"moral_scenarios\": {\"q3_pct\": 34.2, \"ets_c_delta_pp\": -1e-05}, \"human_aging\": {\"q3_pct\": 20.5, \"ets_c_delta_pp\": 0.0004}, \"world_religions\": {\"q3_pct\": 18.1, \"ets_c_delta_pp\": 0.0006}, \"marketing\": {\"q3_pct\": 17.5, \"ets_c_delta_pp\": 0.001}, \"professional_law\": {\"q3_pct\": 10.5, \"ets_c_delta_pp\": 0.0003}, \"college_medicine\": {\"q3_pct\": 4.6, \"ets_c_delta_pp\": 0.0005}}, \"q3_inflation_correlation\": {\"spearman_rho\": -0.238, \"p_value\": 0.57, \"significant\": false}, \"key_insight\": \"Cross-subject matching completely isolates within-subject LD from MH-DIF FPR\"}, \"notes\": \"LD inflation simulation 完成。核心发现：cross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。ETS-C 标准下 LD 膨胀仅 +0.0004pp（最大 +0.001pp），远低于 3pp 阈值。p<0.05 标准下甚至略为负（-0.0019pp，无膨胀）。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 <0.01pp。两个机制：(1) cross-subject matching 变量不含当前 subject items，LD 无法污染 matching；(2
 …[truncated 7659 chars]
@@ -10772,7 +10121,7 @@ _source line 978 · 2026-05-23T10:53:38.347131+00:00_
 
 ### Assistant
 
-_source line 979 · 2026-05-23T10:53:48.206509+00:00_
+_source line 963 · 2026-05-23T10:53:48.206509+00:00_
 
 无新通知。R16 random-split null 审查已提交，当前处于待命状态，等待下一个 worker 完成通知或 Director 审查请求。
 
@@ -10799,7 +10148,7 @@ _source line 979 · 2026-05-23T10:53:48.206509+00:00_
 
 ### User
 
-_source line 980 · 2026-05-23T11:04:11.936400+00:00_
+_source line 964 · 2026-05-23T11:04:11.936400+00:00_
 
 [System 触发审查]:
 R16 CRITICAL/WARNING 修复验证请求。Paper Agent 已完成所有修改，请逐项核实以下修复是否到位。
@@ -10854,7 +10203,7 @@ R16 CRITICAL/WARNING 修复验证请求。Paper Agent 已完成所有修改，�
 
 ### Tool call
 
-_source line 981 · 2026-05-23T11:04:21.279184+00:00_
+_source line 965 · 2026-05-23T11:04:21.279184+00:00_
 
 called Read
 
@@ -10888,7 +10237,7 @@ called Read
 
 ### Tool result
 
-_source line 982 · 2026-05-23T11:04:21.782411+00:00_
+_source line 966 · 2026-05-23T11:04:21.782411+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -10926,7 +10275,7 @@ _source line 982 · 2026-05-23T11:04:21.782411+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-23T11:04:21.782825+00:00_
+_source line 967 · 2026-05-23T11:04:21.782825+00:00_
 
 called Read
 
@@ -10960,7 +10309,7 @@ called Read
 
 ### Tool result
 
-_source line 984 · 2026-05-23T11:04:22.285307+00:00_
+_source line 968 · 2026-05-23T11:04:22.285307+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -10988,7 +10337,7 @@ _source line 984 · 2026-05-23T11:04:22.285307+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-23T11:04:22.285731+00:00_
+_source line 969 · 2026-05-23T11:04:22.285731+00:00_
 
 called Read
 
@@ -11022,7 +10371,7 @@ called Read
 
 ### Tool result
 
-_source line 986 · 2026-05-23T11:04:22.737438+00:00_
+_source line 970 · 2026-05-23T11:04:22.737438+00:00_
 
 1	\begin{abstract}
 2	LLM benchmark scores are compared across model generations, yet whether individual items measure the same construct over time is rarely tested. We apply differential item functioning (DIF) analysis from educational measurement to six METABENCH benchmarks (5,227 models), validated through a semi-synthetic injection framework with cross-subject matching. Between 2023 and 2024 model cohorts, 17.9--31.3\% of items exhibit large temporal DIF (${\approx}$27--29\% for MMLU after non-independence corrections; conservative bound 13.5\%; random-split baseline 0.62\%). Web-overlap contamination labels are near-independent of DIF flags: global exposure and differential functioning are complementary diagnostic dimensions. Temporal DIF does not threaten aggregate rankings ($\rho \approx 0.997$) but reveals structured item-level change---base and instruct models exhibit opposite DIF patterns---and shifts DIF-corrected scores by ${+}2.12$\,pp on average. LLM benchmarks need psychometric monitoring, not just score reporting.
@@ -11047,7 +10396,7 @@ _source line 986 · 2026-05-23T11:04:22.737438+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-23T11:04:22.737935+00:00_
+_source line 971 · 2026-05-23T11:04:22.737935+00:00_
 
 called Read
 
@@ -11081,7 +10430,7 @@ called Read
 
 ### Tool result
 
-_source line 988 · 2026-05-23T11:04:23.691317+00:00_
+_source line 972 · 2026-05-23T11:04:23.691317+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -11123,7 +10472,7 @@ _source line 988 · 2026-05-23T11:04:23.691317+00:00_
 
 ### Tool call
 
-_source line 989 · 2026-05-23T11:04:23.792251+00:00_
+_source line 973 · 2026-05-23T11:04:23.792251+00:00_
 
 called Read
 
@@ -11157,7 +10506,7 @@ called Read
 
 ### Tool result
 
-_source line 990 · 2026-05-23T11:04:23.893253+00:00_
+_source line 974 · 2026-05-23T11:04:23.893253+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -11195,7 +10544,7 @@ _source line 990 · 2026-05-23T11:04:23.893253+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-23T11:04:23.893782+00:00_
+_source line 975 · 2026-05-23T11:04:23.893782+00:00_
 
 called Read
 
@@ -11229,7 +10578,7 @@ called Read
 
 ### Tool result
 
-_source line 992 · 2026-05-23T11:04:24.196507+00:00_
+_source line 976 · 2026-05-23T11:04:24.196507+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -11256,7 +10605,7 @@ _source line 992 · 2026-05-23T11:04:24.196507+00:00_
 
 ### Tool call
 
-_source line 993 · 2026-05-23T11:04:32.868322+00:00_
+_source line 977 · 2026-05-23T11:04:32.868322+00:00_
 
 called Read
 
@@ -11290,7 +10639,7 @@ called Read
 
 ### Tool call
 
-_source line 994 · 2026-05-23T11:04:32.919169+00:00_
+_source line 978 · 2026-05-23T11:04:32.919169+00:00_
 
 called Read
 
@@ -11324,7 +10673,7 @@ called Read
 
 ### Tool result
 
-_source line 995 · 2026-05-23T11:04:33.372327+00:00_
+_source line 979 · 2026-05-23T11:04:33.372327+00:00_
 
 1	\section{Method Details}
 2	\label{app:method_details}
@@ -11364,7 +10713,7 @@ _source line 995 · 2026-05-23T11:04:33.372327+00:00_
 
 ### Tool result
 
-_source line 996 · 2026-05-23T11:04:33.372963+00:00_
+_source line 980 · 2026-05-23T11:04:33.372963+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -11394,7 +10743,7 @@ _source line 996 · 2026-05-23T11:04:33.372963+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-23T11:04:33.373302+00:00_
+_source line 981 · 2026-05-23T11:04:33.373302+00:00_
 
 called Read
 
@@ -11428,7 +10777,7 @@ called Read
 
 ### Tool result
 
-_source line 998 · 2026-05-23T11:04:33.426050+00:00_
+_source line 982 · 2026-05-23T11:04:33.426050+00:00_
 
 1	\section*{Limitations}
 2	
@@ -11454,7 +10803,7 @@ _source line 998 · 2026-05-23T11:04:33.426050+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-23T11:05:54.555160+00:00_
+_source line 983 · 2026-05-23T11:05:54.555160+00:00_
 
 called Grep
 
@@ -11494,7 +10843,7 @@ called Grep
 
 ### Tool result
 
-_source line 1000 · 2026-05-23T11:05:54.957885+00:00_
+_source line 984 · 2026-05-23T11:05:54.957885+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:24:\newblock \href {https://doi.org/10.18653/v1/2024.eacl-long.5} {Leak, cheat,
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:87:\newblock \href {https://doi.org/10.18653/v1/2024.naacl-long.482}
@@ -11527,7 +10876,7 @@ _source line 1000 · 2026-05-23T11:05:54.957885+00:00_
 
 ### Tool call
 
-_source line 1001 · 2026-05-23T11:05:55.510114+00:00_
+_source line 985 · 2026-05-23T11:05:55.510114+00:00_
 
 called Grep
 
@@ -11567,7 +10916,7 @@ called Grep
 
 ### Tool result
 
-_source line 1002 · 2026-05-23T11:05:56.013318+00:00_
+_source line 986 · 2026-05-23T11:05:56.013318+00:00_
 
 No matches found
 
@@ -11589,7 +10938,7 @@ No matches found
 
 ### Tool call
 
-_source line 1003 · 2026-05-23T11:05:56.516053+00:00_
+_source line 987 · 2026-05-23T11:05:56.516053+00:00_
 
 called Grep
 
@@ -11629,7 +10978,7 @@ called Grep
 
 ### Tool result
 
-_source line 1004 · 2026-05-23T11:05:56.566822+00:00_
+_source line 988 · 2026-05-23T11:05:56.566822+00:00_
 
 No matches found
 
@@ -11651,7 +11000,7 @@ No matches found
 
 ### Tool call
 
-_source line 1005 · 2026-05-23T11:07:07.586240+00:00_
+_source line 989 · 2026-05-23T11:07:07.586240+00:00_
 
 called Bash
 
@@ -11687,7 +11036,7 @@ called Bash
 
 ### Tool result
 
-_source line 1006 · 2026-05-23T11:07:08.089413+00:00_
+_source line 990 · 2026-05-23T11:07:08.089413+00:00_
 
 75:\c@pagewiselinenumber=\count287
 76:\c@LN@truepage=\count288
@@ -11720,7 +11069,7 @@ _source line 1006 · 2026-05-23T11:07:08.089413+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-23T11:07:08.641848+00:00_
+_source line 991 · 2026-05-23T11:07:08.641848+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11760,7 +11109,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1008 · 2026-05-23T11:07:08.742906+00:00_
+_source line 992 · 2026-05-23T11:07:08.742906+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"status\": \"DONE\", \"hypothesis\": \"plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。\"}, \"plan_036_growing_pains_lookup\": {\"status\": \"DONE\", \"hypothesis\": \"Growing Pains LLM benchmark paper 使用 FPC (Focal Point Contamination) anchor items 来检测污染。如果 FPC anchor item list 公开可得，与我们的 DIF C-flagged items 计算 Jaccard overlap 和 enrichment ratio。如果有显著 overlap (enrichment>2)，则 DIF 与 FPC 检测互补；如果无 overlap (enrichment≈1)，则证明 DIF 和 FPC 捕捉不同信号维度。\"}, \"plan_034_multi_subject_injection\": {\"status\": \"DONE\", \"hypothesis\": \"Proposition 1 声称当污染局限于单一 subject 时 ΔFPR=0（cross-subject matching 不受污染）。当同时污染 k∈{1,2,3,5,10,20} 个 subject 时，matching variable 被逐步污染，ΔFPR(k) 将随 k 单调递增。具体预测：k≤3 时 ΔFPR<0.02（matching variable 被稀释），k≥10 时 ΔFPR>0.05（matching variable 严重受污）。ΔTPR(k) 在 k=1 与 k=20 之间保持稳定（>0.3 at p=0.5），因为 detection 对 target subject 内的 signal 而非 matching quality 更敏感。\"}, \"plan_028_multi_bench_dif\": {\"status\": \"DONE\", \"hypothesis\": \"Temporal DIF (2023 vs 2024 cohort) 在 METABENCH 的 ARC, HellaSwag, WinoGrande, TruthfulQA 上均展现与 MMLU 类似的显著 C% (>15%)，证明 temporal DIF 现象跨 benchmark 泛化，不是 MMLU 特有的 artifact。所有 benchmark 的 random-split control C% < 1%。\"}, \"plan_032_dif_cleaned_mmlu\": {\"status\": \"DONE\", \"hypothesis\": \"虽然 DIF-cleaned MMLU 的全局 rank correlation 很高 (ρ≈0.997)，但局部排名变化将揭示 DIF 的实际影响：特定模型家族（尤其是 2024 年新模型如 phi-3, llama-3）将在移除 C-flagged items 后排名显著下降，而 2023 年模型排名上升。这证明 DIF items 虽然不改变全局趋势，但系统性地偏向特定模型代际，构成 benchmark fairness 问题。\"}, \"plan_033_subject_dif_concentration\": {\"status\": \"DONE\", \"hypothesis\": \"DIF 在 MMLU 57 个 subject 间分布不均匀，且 STEM vs Humanities 存在系统性差异。控制 item difficulty 和 discrimination 后，特定 subject 的 co
 …[truncated 4212 chars]
@@ -11783,7 +11132,7 @@ _source line 1008 · 2026-05-23T11:07:08.742906+00:00_
 
 ### Tool call
 
-_source line 1009 · 2026-05-23T11:07:39.309921+00:00_
+_source line 993 · 2026-05-23T11:07:39.309921+00:00_
 
 called Bash
 
@@ -11819,7 +11168,7 @@ called Bash
 
 ### Tool result
 
-_source line 1010 · 2026-05-23T11:07:39.813915+00:00_
+_source line 994 · 2026-05-23T11:07:39.813915+00:00_
 
 844:\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
 
@@ -11841,7 +11190,7 @@ _source line 1010 · 2026-05-23T11:07:39.813915+00:00_
 
 ### Tool call
 
-_source line 1011 · 2026-05-23T11:07:39.814320+00:00_
+_source line 995 · 2026-05-23T11:07:39.814320+00:00_
 
 called Bash
 
@@ -11877,7 +11226,7 @@ called Bash
 
 ### Tool result
 
-_source line 1012 · 2026-05-23T11:07:40.266265+00:00_
+_source line 996 · 2026-05-23T11:07:40.266265+00:00_
 
 null_histogram.csv
 per_item_null_stats.csv
@@ -11903,7 +11252,7 @@ random_split_summary.csv
 
 ### Tool call
 
-_source line 1013 · 2026-05-23T11:07:40.319075+00:00_
+_source line 997 · 2026-05-23T11:07:40.319075+00:00_
 
 called Glob
 
@@ -11939,7 +11288,7 @@ called Glob
 
 ### Tool result
 
-_source line 1014 · 2026-05-23T11:07:40.369769+00:00_
+_source line 998 · 2026-05-23T11:07:40.369769+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r15_random_split_control/random_split_analysis.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r15_random_split_control/random_split_results.csv
@@ -11966,7 +11315,7 @@ _source line 1014 · 2026-05-23T11:07:40.369769+00:00_
 
 ### Tool call
 
-_source line 1015 · 2026-05-23T11:07:45.689631+00:00_
+_source line 999 · 2026-05-23T11:07:45.689631+00:00_
 
 called Bash
 
@@ -12002,7 +11351,7 @@ called Bash
 
 ### Tool result
 
-_source line 1016 · 2026-05-23T11:07:46.041602+00:00_
+_source line 1000 · 2026-05-23T11:07:46.041602+00:00_
 
 844:\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
 845:\newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][8][]8}{}{}{}}
@@ -12025,7 +11374,7 @@ _source line 1016 · 2026-05-23T11:07:46.041602+00:00_
 
 ### Tool call
 
-_source line 1017 · 2026-05-23T11:07:46.042128+00:00_
+_source line 1001 · 2026-05-23T11:07:46.042128+00:00_
 
 called Read
 
@@ -12059,7 +11408,7 @@ called Read
 
 ### Tool result
 
-_source line 1018 · 2026-05-23T11:07:46.142829+00:00_
+_source line 1002 · 2026-05-23T11:07:46.142829+00:00_
 
 1	# R15-SF7: Random Split Control — 2024 Cohort
 2	
@@ -12136,7 +11485,7 @@ _source line 1018 · 2026-05-23T11:07:46.142829+00:00_
 
 ### Tool call
 
-_source line 1019 · 2026-05-23T11:08:49.555388+00:00_
+_source line 1003 · 2026-05-23T11:08:49.555388+00:00_
 
 called ToolSearch
 
@@ -12172,7 +11521,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1020 · 2026-05-23T11:08:49.606858+00:00_
+_source line 1004 · 2026-05-23T11:08:49.606858+00:00_
 
 
 
@@ -12194,7 +11543,7 @@ _source line 1020 · 2026-05-23T11:08:49.606858+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-23T11:09:29.365911+00:00_
+_source line 1005 · 2026-05-23T11:09:29.365911+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12230,7 +11579,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1022 · 2026-05-23T11:09:35.238583+00:00_
+_source line 1006 · 2026-05-23T11:09:35.238583+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -12252,7 +11601,7 @@ _source line 1022 · 2026-05-23T11:09:35.238583+00:00_
 
 ### Assistant
 
-_source line 1023 · 2026-05-23T11:09:39.145940+00:00_
+_source line 1007 · 2026-05-23T11:09:39.145940+00:00_
 
 R16 修复验证已完成并提交。全部 11 项修复到位，数据全文一致，页面符合 8 页限制，未发现新引入的问题。
 
@@ -12279,7 +11628,7 @@ R16 修复验证已完成并提交。全部 11 项修复到位，数据全文一
 
 ### User
 
-_source line 1024 · 2026-05-23T11:10:32.217136+00:00_
+_source line 1008 · 2026-05-23T11:10:32.217136+00:00_
 
 [系统通知 — worker_done:worker_code_r16_rank_displacement_per_threshold_20260523T110807]:
 Worker worker_code_r16_rank_displacement_per_threshold_20260523T110807 已完成（status=done），请审查 Agent 的处理结果。
@@ -12301,7 +11650,7 @@ Worker worker_code_r16_rank_displacement_per_threshold_20260523T110807 已完成
 
 ### Tool call
 
-_source line 1025 · 2026-05-23T11:10:42.657856+00:00_
+_source line 1009 · 2026-05-23T11:10:42.657856+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12339,7 +11688,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1026 · 2026-05-23T11:10:43.160360+00:00_
+_source line 1010 · 2026-05-23T11:10:43.160360+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:20.736Z\", \"updated_at\": \"2026-05-21T16:24:02.388Z\", \"hypothesis\": \"plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。\", \"parent\": \"plan_013_q3_local_independence\", \"conclusion\": \"success\", \"metrics\": {\"n_subjects\": 8, \"n_permutations\": 1000, \"method\": \"permutation null + independence control, cross-subject matching\", \"ets_c_inflation\": {\"mean_pp\": 0.0004, \"max_pp\": 0.001, \"max_subject\": \"marketing\", \"verdict\": \"far below 3pp threshold\"}, \"p05_inflation\": {\"mean_pp\": -0.0019, \"direction\": \"slightly negative (no inflation)\", \"mean_fpr_with_ld\": 0.0412, \"mean_fpr_without_ld\": 0.0431}, \"subject_details\": {\"moral_scenarios\": {\"q3_pct\": 34.2, \"ets_c_delta_pp\": -1e-05}, \"human_aging\": {\"q3_pct\": 20.5, \"ets_c_delta_pp\": 0.0004}, \"world_religions\": {\"q3_pct\": 18.1, \"ets_c_delta_pp\": 0.0006}, \"marketing\": {\"q3_pct\": 17.5, \"ets_c_delta_pp\": 0.001}, \"professional_law\": {\"q3_pct\": 10.5, \"ets_c_delta_pp\": 0.0003}, \"college_medicine\": {\"q3_pct\": 4.6, \"ets_c_delta_pp\": 0.0005}}, \"q3_inflation_correlation\": {\"spearman_rho\": -0.238, \"p_value\": 0.57, \"significant\": false}, \"key_insight\": \"Cross-subject matching completely isolates within-subject LD from MH-DIF FPR\"}, \"notes\": \"LD inflation simulation 完成。核心发现：cross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。ETS-C 标准下 LD 膨胀仅 +0.0004pp（最大 +0.001pp），远低于 3pp 阈值。p<0.05 标准下甚至略为负（-0.0019pp，无膨胀）。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 <0.01pp。两个机制：(1) cross-subject matching 变量不含当前 subject items
 …[truncated 5288 chars]
@@ -12362,7 +11711,7 @@ _source line 1026 · 2026-05-23T11:10:43.160360+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-23T11:10:44.165241+00:00_
+_source line 1011 · 2026-05-23T11:10:44.165241+00:00_
 
 called Glob
 
@@ -12398,7 +11747,7 @@ called Glob
 
 ### Tool result
 
-_source line 1028 · 2026-05-23T11:10:44.216139+00:00_
+_source line 1012 · 2026-05-23T11:10:44.216139+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/rank_displacement.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/score_inflation_analysis/rank_displacement.png
@@ -12424,7 +11773,7 @@ _source line 1028 · 2026-05-23T11:10:44.216139+00:00_
 
 ### Tool call
 
-_source line 1029 · 2026-05-23T11:10:48.336880+00:00_
+_source line 1013 · 2026-05-23T11:10:48.336880+00:00_
 
 called Read
 
@@ -12458,7 +11807,7 @@ called Read
 
 ### Tool result
 
-_source line 1030 · 2026-05-23T11:10:48.889331+00:00_
+_source line 1014 · 2026-05-23T11:10:48.889331+00:00_
 
 1	# Rank Displacement by ETS Threshold
 2	
@@ -12499,7 +11848,7 @@ _source line 1030 · 2026-05-23T11:10:48.889331+00:00_
 
 ### Tool call
 
-_source line 1031 · 2026-05-23T11:10:48.889864+00:00_
+_source line 1015 · 2026-05-23T11:10:48.889864+00:00_
 
 called Read
 
@@ -12533,7 +11882,7 @@ called Read
 
 ### Tool result
 
-_source line 1032 · 2026-05-23T11:10:48.940389+00:00_
+_source line 1016 · 2026-05-23T11:10:48.940389+00:00_
 
 1	threshold,n_flagged,pct_flagged,avg_abs_rank_displacement,random_mean_avg_abs_rank_displacement,random_std_avg_abs_rank_displacement,z_avg_abs_rank_displacement,max_abs_rank_displacement,random_mean_max_abs_rank_displacement,random_std_max_abs_rank_displacement,z_max_abs_rank_displacement,pairwise_flip_rate,random_mean_pairwise_flip_rate,random_std_pairwise_flip_rate,z_pairwise_flip_rate
 2	1.0,6120,0.4893,80.7802,54.0551,6.7873,3.94,1003.5,655.225,136.1286,2.56,0.0216,0.0142,0.0018,4.09
@@ -12560,7 +11909,7 @@ _source line 1032 · 2026-05-23T11:10:48.940389+00:00_
 
 ### Tool call
 
-_source line 1033 · 2026-05-23T11:11:41.751746+00:00_
+_source line 1017 · 2026-05-23T11:11:41.751746+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12596,7 +11945,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1034 · 2026-05-23T11:11:45.467285+00:00_
+_source line 1018 · 2026-05-23T11:11:45.467285+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -12618,7 +11967,7 @@ _source line 1034 · 2026-05-23T11:11:45.467285+00:00_
 
 ### Assistant
 
-_source line 1035 · 2026-05-23T11:11:48.301456+00:00_
+_source line 1019 · 2026-05-23T11:11:48.301456+00:00_
 
 审查完成，PASS。R16 rank displacement per threshold 实验结果与论文现有数据一致，所有阈值均显著（Z > 3.9），无问题。
 
@@ -12645,7 +11994,7 @@ _source line 1035 · 2026-05-23T11:11:48.301456+00:00_
 
 ### User
 
-_source line 1036 · 2026-05-23T11:43:46.093597+00:00_
+_source line 1020 · 2026-05-23T11:43:46.093597+00:00_
 
 [System 触发审查]:
 R17 审稿报告 Action Matrix — 请独立评估每条方案的可行性和完整性。
@@ -12800,7 +12149,7 @@ R17 审稿报告 Action Matrix — 请独立评估每条方案的可行性和完
 
 ### Tool call
 
-_source line 1037 · 2026-05-23T11:45:15.952027+00:00_
+_source line 1021 · 2026-05-23T11:45:15.952027+00:00_
 
 called Grep
 
@@ -12842,7 +12191,7 @@ called Grep
 
 ### Tool result
 
-_source line 1038 · 2026-05-23T11:45:16.253749+00:00_
+_source line 1022 · 2026-05-23T11:45:16.253749+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex:11:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:308:\newblock Simultaneous {DIF} amplification and cancellation: {Shealy}-{Stout}'s
@@ -12872,7 +12221,7 @@ _source line 1038 · 2026-05-23T11:45:16.253749+00:00_
 
 ### Tool call
 
-_source line 1039 · 2026-05-23T11:45:16.906742+00:00_
+_source line 1023 · 2026-05-23T11:45:16.906742+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12912,7 +12261,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1040 · 2026-05-23T11:45:17.057846+00:00_
+_source line 1024 · 2026-05-23T11:45:17.057846+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"metrics\": {\"n_subjects\": 8, \"n_permutations\": 1000, \"method\": \"permutation null + independence control, cross-subject matching\", \"ets_c_inflation\": {\"mean_pp\": 0.0004, \"max_pp\": 0.001, \"max_subject\": \"marketing\", \"verdict\": \"far below 3pp threshold\"}, \"p05_inflation\": {\"mean_pp\": -0.0019, \"direction\": \"slightly negative (no inflation)\", \"mean_fpr_with_ld\": 0.0412, \"mean_fpr_without_ld\": 0.0431}, \"subject_details\": {\"moral_scenarios\": {\"q3_pct\": 34.2, \"ets_c_delta_pp\": -1e-05}, \"human_aging\": {\"q3_pct\": 20.5, \"ets_c_delta_pp\": 0.0004}, \"world_religions\": {\"q3_pct\": 18.1, \"ets_c_delta_pp\": 0.0006}, \"marketing\": {\"q3_pct\": 17.5, \"ets_c_delta_pp\": 0.001}, \"professional_law\": {\"q3_pct\": 10.5, \"ets_c_delta_pp\": 0.0003}, \"college_medicine\": {\"q3_pct\": 4.6, \"ets_c_delta_pp\": 0.0005}}, \"q3_inflation_correlation\": {\"spearman_rho\": -0.238, \"p_value\": 0.57, \"significant\": false}, \"key_insight\": \"Cross-subject matching completely isolates within-subject LD from MH-DIF FPR\"}}}, \"count\": 1, \"total\": 20, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0769}}"}
 
@@ -12934,7 +12283,7 @@ _source line 1040 · 2026-05-23T11:45:17.057846+00:00_
 
 ### Tool call
 
-_source line 1041 · 2026-05-23T11:45:23.634880+00:00_
+_source line 1025 · 2026-05-23T11:45:23.634880+00:00_
 
 called Grep
 
@@ -12974,7 +12323,7 @@ called Grep
 
 ### Tool result
 
-_source line 1042 · 2026-05-23T11:45:24.137265+00:00_
+_source line 1026 · 2026-05-23T11:45:24.137265+00:00_
 
 449:@article{suk2026rethinking,
 450:  author  = {Suk, Youmi and Lyu, Weijun},
@@ -12997,7 +12346,7 @@ _source line 1042 · 2026-05-23T11:45:24.137265+00:00_
 
 ### Tool call
 
-_source line 1043 · 2026-05-23T11:45:25.141655+00:00_
+_source line 1027 · 2026-05-23T11:45:25.141655+00:00_
 
 called Grep
 
@@ -13037,7 +12386,7 @@ called Grep
 
 ### Tool call
 
-_source line 1044 · 2026-05-23T11:45:25.895094+00:00_
+_source line 1028 · 2026-05-23T11:45:25.895094+00:00_
 
 called Grep
 
@@ -13077,7 +12426,7 @@ called Grep
 
 ### Tool result
 
-_source line 1045 · 2026-05-23T11:45:25.945825+00:00_
+_source line 1029 · 2026-05-23T11:45:25.945825+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex:88:[Omitted long matching line]
 
@@ -13099,7 +12448,7 @@ _source line 1045 · 2026-05-23T11:45:25.945825+00:00_
 
 ### Tool result
 
-_source line 1046 · 2026-05-23T11:45:45.181141+00:00_
+_source line 1030 · 2026-05-23T11:45:45.181141+00:00_
 
 &lt;persisted-output>
 Output too large (59.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-reviewer-430cd31d/233b284a-aa80-428d-89cb-cbd47ca4c54a/tool-results/toolu_01XdgskW7KEthQ131BcbHkXi.txt
@@ -13133,7 +12482,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1047 · 2026-05-23T11:45:55.073544+00:00_
+_source line 1031 · 2026-05-23T11:45:55.073544+00:00_
 
 called Read
 
@@ -13171,7 +12520,7 @@ called Read
 
 ### Tool result
 
-_source line 1048 · 2026-05-23T11:45:55.074041+00:00_
+_source line 1032 · 2026-05-23T11:45:55.074041+00:00_
 
 449	@article{suk2026rethinking,
 450	  author  = {Suk, Youmi and Lyu, Weijun},
@@ -13202,7 +12551,7 @@ _source line 1048 · 2026-05-23T11:45:55.074041+00:00_
 
 ### Tool call
 
-_source line 1049 · 2026-05-23T11:45:55.677067+00:00_
+_source line 1033 · 2026-05-23T11:45:55.677067+00:00_
 
 called Read
 
@@ -13240,7 +12589,7 @@ called Read
 
 ### Tool result
 
-_source line 1050 · 2026-05-23T11:45:55.727817+00:00_
+_source line 1034 · 2026-05-23T11:45:55.727817+00:00_
 
 85	
 86	\paragraph{Difficulty--model-type interaction.}
@@ -13271,7 +12620,7 @@ _source line 1050 · 2026-05-23T11:45:55.727817+00:00_
 
 ### Tool call
 
-_source line 1051 · 2026-05-23T11:46:03.413676+00:00_
+_source line 1035 · 2026-05-23T11:46:03.413676+00:00_
 
 called Grep
 
@@ -13311,7 +12660,7 @@ called Grep
 
 ### Tool result
 
-_source line 1052 · 2026-05-23T11:46:03.464413+00:00_
+_source line 1036 · 2026-05-23T11:46:03.464413+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex:78:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:376:\bibitem[{Suk and Lyu(2026)}]{suk2026rethinking}
@@ -13337,7 +12686,7 @@ _source line 1052 · 2026-05-23T11:46:03.464413+00:00_
 
 ### Tool call
 
-_source line 1053 · 2026-05-23T11:46:56.059354+00:00_
+_source line 1037 · 2026-05-23T11:46:56.059354+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13373,7 +12722,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1054 · 2026-05-23T11:46:59.773985+00:00_
+_source line 1038 · 2026-05-23T11:46:59.773985+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -13395,7 +12744,7 @@ _source line 1054 · 2026-05-23T11:46:59.773985+00:00_
 
 ### Assistant
 
-_source line 1055 · 2026-05-23T11:47:08.898148+00:00_
+_source line 1039 · 2026-05-23T11:47:08.898148+00:00_
 
 R17 Action Matrix 评估已提交。核心发现：
 
@@ -13427,7 +12776,7 @@ R17 Action Matrix 评估已提交。核心发现：
 
 ### User
 
-_source line 1056 · 2026-05-23T11:53:16.270582+00:00_
+_source line 1040 · 2026-05-23T11:53:16.270582+00:00_
 
 [系统通知 — worker_done:worker_code_r17_weighted_mean_downstream_20260523T115014]:
 Worker worker_code_r17_weighted_mean_downstream_20260523T115014 已完成（status=done），请审查 Agent 的处理结果。
@@ -13449,7 +12798,7 @@ Worker worker_code_r17_weighted_mean_downstream_20260523T115014 已完成（stat
 
 ### Tool call
 
-_source line 1057 · 2026-05-23T11:53:24.303367+00:00_
+_source line 1041 · 2026-05-23T11:53:24.303367+00:00_
 
 called Glob
 
@@ -13485,7 +12834,7 @@ called Glob
 
 ### Tool result
 
-_source line 1058 · 2026-05-23T11:53:24.353930+00:00_
+_source line 1042 · 2026-05-23T11:53:24.353930+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r17_evidence/weighted_mean_downstream.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r17_evidence/weighted_mean_downstream.md
@@ -13509,7 +12858,7 @@ _source line 1058 · 2026-05-23T11:53:24.353930+00:00_
 
 ### Tool call
 
-_source line 1059 · 2026-05-23T11:53:27.817071+00:00_
+_source line 1043 · 2026-05-23T11:53:27.817071+00:00_
 
 called Read
 
@@ -13543,7 +12892,7 @@ called Read
 
 ### Tool result
 
-_source line 1060 · 2026-05-23T11:53:28.118775+00:00_
+_source line 1044 · 2026-05-23T11:53:28.118775+00:00_
 
 1	# R17 Task 1: Weighted-mean DEFF Downstream Analysis
 2	
@@ -13602,7 +12951,7 @@ _source line 1060 · 2026-05-23T11:53:28.118775+00:00_
 
 ### Tool call
 
-_source line 1061 · 2026-05-23T11:53:28.119254+00:00_
+_source line 1045 · 2026-05-23T11:53:28.119254+00:00_
 
 called Read
 
@@ -13636,7 +12985,7 @@ called Read
 
 ### Tool result
 
-_source line 1062 · 2026-05-23T11:53:28.219934+00:00_
+_source line 1046 · 2026-05-23T11:53:28.219934+00:00_
 
 1	{
 2	  "uncorrected": {
@@ -13690,7 +13039,7 @@ _source line 1062 · 2026-05-23T11:53:28.219934+00:00_
 
 ### Tool call
 
-_source line 1063 · 2026-05-23T11:54:09.941875+00:00_
+_source line 1047 · 2026-05-23T11:54:09.941875+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13726,7 +13075,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1064 · 2026-05-23T11:54:13.605726+00:00_
+_source line 1048 · 2026-05-23T11:54:13.605726+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -13755,7 +13104,7 @@ _source line 1064 · 2026-05-23T11:54:13.605726+00:00_
 
 ### User
 
-_source line 1065 · 2026-05-23T12:07:51.047639+00:00_
+_source line 1049 · 2026-05-23T12:07:51.047639+00:00_
 
 [System 触发审查]:
 R17 修复验证请求。Paper Agent 已完成全部 R17 issue 修改，我已做页面裁剪确保 8 页限制。请验证以下 CRITICAL 和 WARNING 修复：
@@ -13803,7 +13152,7 @@ R17 修复验证请求。Paper Agent 已完成全部 R17 issue 修改，我已�
 
 ### Tool call
 
-_source line 1066 · 2026-05-23T12:07:57.636041+00:00_
+_source line 1050 · 2026-05-23T12:07:57.636041+00:00_
 
 called Read
 
@@ -13837,7 +13186,7 @@ called Read
 
 ### Tool result
 
-_source line 1067 · 2026-05-23T12:07:58.138742+00:00_
+_source line 1051 · 2026-05-23T12:07:58.138742+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -13875,7 +13224,7 @@ _source line 1067 · 2026-05-23T12:07:58.138742+00:00_
 
 ### Tool call
 
-_source line 1068 · 2026-05-23T12:07:58.139117+00:00_
+_source line 1052 · 2026-05-23T12:07:58.139117+00:00_
 
 called Read
 
@@ -13909,7 +13258,7 @@ called Read
 
 ### Tool result
 
-_source line 1069 · 2026-05-23T12:07:59.092249+00:00_
+_source line 1053 · 2026-05-23T12:07:59.092249+00:00_
 
 1	\begin{abstract}
 2	LLM benchmark scores are compared across model generations, yet whether individual items measure the same construct over time is rarely tested. We apply differential item functioning (DIF) analysis from educational measurement to six METABENCH benchmarks (5,227 models), validated through a semi-synthetic injection framework with cross-subject matching. Between 2023 and 2024 model cohorts, 17.9--31.3\% of items exhibit large temporal DIF (13.5--29.2\% for MMLU after non-independence corrections; ${\geq}22\times$ random baseline). Web-overlap contamination labels are near-independent of DIF flags: global exposure and differential functioning are complementary diagnostic dimensions. Temporal DIF does not threaten aggregate rankings ($\rho \approx 0.997$) but reveals structured item-level change---base and instruct models exhibit opposite DIF patterns---and shifts DIF-corrected scores by ${+}2.12$\,pp on average. LLM benchmarks need psychometric monitoring, not just score reporting.
@@ -13934,7 +13283,7 @@ _source line 1069 · 2026-05-23T12:07:59.092249+00:00_
 
 ### Tool call
 
-_source line 1070 · 2026-05-23T12:07:59.092755+00:00_
+_source line 1054 · 2026-05-23T12:07:59.092755+00:00_
 
 called Read
 
@@ -13968,7 +13317,7 @@ called Read
 
 ### Tool result
 
-_source line 1071 · 2026-05-23T12:07:59.595481+00:00_
+_source line 1055 · 2026-05-23T12:07:59.595481+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -13996,7 +13345,7 @@ _source line 1071 · 2026-05-23T12:07:59.595481+00:00_
 
 ### Tool call
 
-_source line 1072 · 2026-05-23T12:07:59.595904+00:00_
+_source line 1056 · 2026-05-23T12:07:59.595904+00:00_
 
 called Read
 
@@ -14030,7 +13379,7 @@ called Read
 
 ### Tool result
 
-_source line 1073 · 2026-05-23T12:08:00.047948+00:00_
+_source line 1057 · 2026-05-23T12:08:00.047948+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -14069,7 +13418,7 @@ _source line 1073 · 2026-05-23T12:08:00.047948+00:00_
 
 ### Tool call
 
-_source line 1074 · 2026-05-23T12:08:00.048500+00:00_
+_source line 1058 · 2026-05-23T12:08:00.048500+00:00_
 
 called Read
 
@@ -14103,7 +13452,7 @@ called Read
 
 ### Tool result
 
-_source line 1075 · 2026-05-23T12:08:00.549931+00:00_
+_source line 1059 · 2026-05-23T12:08:00.549931+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -14130,7 +13479,7 @@ _source line 1075 · 2026-05-23T12:08:00.549931+00:00_
 
 ### Tool call
 
-_source line 1076 · 2026-05-23T12:08:00.550283+00:00_
+_source line 1060 · 2026-05-23T12:08:00.550283+00:00_
 
 called Read
 
@@ -14164,7 +13513,7 @@ called Read
 
 ### Tool result
 
-_source line 1077 · 2026-05-23T12:08:01.453650+00:00_
+_source line 1061 · 2026-05-23T12:08:01.453650+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -14202,7 +13551,7 @@ _source line 1077 · 2026-05-23T12:08:01.453650+00:00_
 
 ### Tool call
 
-_source line 1078 · 2026-05-23T12:08:01.504279+00:00_
+_source line 1062 · 2026-05-23T12:08:01.504279+00:00_
 
 called Read
 
@@ -14236,7 +13585,7 @@ called Read
 
 ### Tool result
 
-_source line 1079 · 2026-05-23T12:08:01.655435+00:00_
+_source line 1063 · 2026-05-23T12:08:01.655435+00:00_
 
 1	\section*{Limitations}
 2	
@@ -14262,7 +13611,7 @@ _source line 1079 · 2026-05-23T12:08:01.655435+00:00_
 
 ### Tool call
 
-_source line 1080 · 2026-05-23T12:08:01.655954+00:00_
+_source line 1064 · 2026-05-23T12:08:01.655954+00:00_
 
 called Read
 
@@ -14296,7 +13645,7 @@ called Read
 
 ### Tool result
 
-_source line 1081 · 2026-05-23T12:08:01.706688+00:00_
+_source line 1065 · 2026-05-23T12:08:01.706688+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -14326,7 +13675,7 @@ _source line 1081 · 2026-05-23T12:08:01.706688+00:00_
 
 ### Tool call
 
-_source line 1082 · 2026-05-23T12:09:17.872505+00:00_
+_source line 1066 · 2026-05-23T12:09:17.872505+00:00_
 
 called Grep
 
@@ -14366,7 +13715,7 @@ called Grep
 
 ### Tool result
 
-_source line 1083 · 2026-05-23T12:09:18.224499+00:00_
+_source line 1067 · 2026-05-23T12:09:18.224499+00:00_
 
 No matches found
 
@@ -14388,7 +13737,7 @@ No matches found
 
 ### Tool call
 
-_source line 1084 · 2026-05-23T12:09:19.330881+00:00_
+_source line 1068 · 2026-05-23T12:09:19.330881+00:00_
 
 called Grep
 
@@ -14430,7 +13779,7 @@ called Grep
 
 ### Tool result
 
-_source line 1085 · 2026-05-23T12:09:19.832855+00:00_
+_source line 1069 · 2026-05-23T12:09:19.832855+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex:16:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex:209:[Omitted long matching line]
@@ -14453,7 +13802,7 @@ _source line 1085 · 2026-05-23T12:09:19.832855+00:00_
 
 ### Tool call
 
-_source line 1086 · 2026-05-23T12:09:20.787415+00:00_
+_source line 1070 · 2026-05-23T12:09:20.787415+00:00_
 
 called Grep
 
@@ -14495,7 +13844,7 @@ called Grep
 
 ### Tool result
 
-_source line 1087 · 2026-05-23T12:09:21.289452+00:00_
+_source line 1071 · 2026-05-23T12:09:21.289452+00:00_
 
 No matches found
 
@@ -14517,7 +13866,7 @@ No matches found
 
 ### Tool call
 
-_source line 1088 · 2026-05-23T12:09:21.289838+00:00_
+_source line 1072 · 2026-05-23T12:09:21.289838+00:00_
 
 called Grep
 
@@ -14555,7 +13904,7 @@ called Grep
 
 ### Tool result
 
-_source line 1089 · 2026-05-23T12:09:21.340331+00:00_
+_source line 1073 · 2026-05-23T12:09:21.340331+00:00_
 
 No matches found
 
@@ -14577,7 +13926,7 @@ No matches found
 
 ### Tool call
 
-_source line 1090 · 2026-05-23T12:09:46.267493+00:00_
+_source line 1074 · 2026-05-23T12:09:46.267493+00:00_
 
 called Read
 
@@ -14615,7 +13964,7 @@ called Read
 
 ### Tool result
 
-_source line 1091 · 2026-05-23T12:09:46.819761+00:00_
+_source line 1075 · 2026-05-23T12:09:46.819761+00:00_
 
 205	\end{table}
 206	
@@ -14646,7 +13995,7 @@ _source line 1091 · 2026-05-23T12:09:46.819761+00:00_
 
 ### Tool call
 
-_source line 1092 · 2026-05-23T12:09:46.922862+00:00_
+_source line 1076 · 2026-05-23T12:09:46.922862+00:00_
 
 called Bash
 
@@ -14682,7 +14031,7 @@ called Bash
 
 ### Tool result
 
-_source line 1093 · 2026-05-23T12:09:47.073645+00:00_
+_source line 1077 · 2026-05-23T12:09:47.073645+00:00_
 
 986:Output written on main.pdf (18 pages, 663012 bytes).
 
@@ -14704,7 +14053,7 @@ _source line 1093 · 2026-05-23T12:09:47.073645+00:00_
 
 ### Tool call
 
-_source line 1094 · 2026-05-23T12:10:17.660674+00:00_
+_source line 1078 · 2026-05-23T12:10:17.660674+00:00_
 
 called Bash
 
@@ -14740,7 +14089,7 @@ called Bash
 
 ### Tool result
 
-_source line 1095 · 2026-05-23T12:10:18.113001+00:00_
+_source line 1079 · 2026-05-23T12:10:18.113001+00:00_
 
 \newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
 \newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][8][]8}{}{}{}}
@@ -14763,7 +14112,7 @@ _source line 1095 · 2026-05-23T12:10:18.113001+00:00_
 
 ### Tool call
 
-_source line 1096 · 2026-05-23T12:10:19.820055+00:00_
+_source line 1080 · 2026-05-23T12:10:19.820055+00:00_
 
 called Grep
 
@@ -14805,7 +14154,7 @@ called Grep
 
 ### Tool result
 
-_source line 1097 · 2026-05-23T12:10:19.820578+00:00_
+_source line 1081 · 2026-05-23T12:10:19.820578+00:00_
 
 No matches found
 
@@ -14827,7 +14176,7 @@ No matches found
 
 ### Tool call
 
-_source line 1098 · 2026-05-23T12:10:26.498852+00:00_
+_source line 1082 · 2026-05-23T12:10:26.498852+00:00_
 
 called Bash
 
@@ -14863,7 +14212,7 @@ called Bash
 
 ### Tool result
 
-_source line 1099 · 2026-05-23T12:10:26.550313+00:00_
+_source line 1083 · 2026-05-23T12:10:26.550313+00:00_
 
 122
 
@@ -14885,7 +14234,7 @@ _source line 1099 · 2026-05-23T12:10:26.550313+00:00_
 
 ### Tool call
 
-_source line 1100 · 2026-05-23T12:11:35.039937+00:00_
+_source line 1084 · 2026-05-23T12:11:35.039937+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14921,7 +14270,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1101 · 2026-05-23T12:11:38.809451+00:00_
+_source line 1085 · 2026-05-23T12:11:38.809451+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -14943,7 +14292,7 @@ _source line 1101 · 2026-05-23T12:11:38.809451+00:00_
 
 ### Assistant
 
-_source line 1102 · 2026-05-23T12:11:40.808150+00:00_
+_source line 1086 · 2026-05-23T12:11:40.808150+00:00_
 
 所有检查完成。提交验证报告。
 
@@ -14970,7 +14319,7 @@ _source line 1102 · 2026-05-23T12:11:40.808150+00:00_
 
 ### User
 
-_source line 1103 · 2026-05-23T12:11:41.274906+00:00_
+_source line 1087 · 2026-05-23T12:11:41.274906+00:00_
 
 [系统通知 — worker_done:worker_code_r17_web_overlap_k_distribution_20260523T120838]:
 Worker worker_code_r17_web_overlap_k_distribution_20260523T120838 已完成（status=done），请审查 Agent 的处理结果。
@@ -14992,7 +14341,7 @@ Worker worker_code_r17_web_overlap_k_distribution_20260523T120838 已完成（st
 
 ### Tool call
 
-_source line 1104 · 2026-05-23T12:11:48.055873+00:00_
+_source line 1088 · 2026-05-23T12:11:48.055873+00:00_
 
 called Glob
 
@@ -15028,7 +14377,7 @@ called Glob
 
 ### Tool result
 
-_source line 1105 · 2026-05-23T12:11:48.156756+00:00_
+_source line 1089 · 2026-05-23T12:11:48.156756+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/r17_evidence/web_overlap_k_distribution.py
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/web_overlap_k_distribution.md
@@ -15052,7 +14401,7 @@ _source line 1105 · 2026-05-23T12:11:48.156756+00:00_
 
 ### Tool call
 
-_source line 1106 · 2026-05-23T12:11:51.979941+00:00_
+_source line 1090 · 2026-05-23T12:11:51.979941+00:00_
 
 called Read
 
@@ -15086,7 +14435,7 @@ called Read
 
 ### Tool result
 
-_source line 1107 · 2026-05-23T12:11:51.980635+00:00_
+_source line 1091 · 2026-05-23T12:11:51.980635+00:00_
 
 1	# Web-Overlap Per-Subject Contamination Distribution (Li et al. 2024)
 2	
@@ -15152,7 +14501,7 @@ _source line 1107 · 2026-05-23T12:11:51.980635+00:00_
 
 ### Tool call
 
-_source line 1108 · 2026-05-23T12:12:43.093483+00:00_
+_source line 1092 · 2026-05-23T12:12:43.093483+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15188,7 +14537,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1109 · 2026-05-23T12:12:46.858291+00:00_
+_source line 1093 · 2026-05-23T12:12:46.858291+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -15217,7 +14566,7 @@ _source line 1109 · 2026-05-23T12:12:46.858291+00:00_
 
 ### User
 
-_source line 1110 · 2026-05-23T12:46:20.106956+00:00_
+_source line 1094 · 2026-05-23T12:46:20.106956+00:00_
 
 [System 触发审查]:
 **模拟审稿人完整通读请求**
@@ -15258,7 +14607,7 @@ _source line 1110 · 2026-05-23T12:46:20.106956+00:00_
 
 ### Tool call
 
-_source line 1111 · 2026-05-23T12:46:30.897200+00:00_
+_source line 1095 · 2026-05-23T12:46:30.897200+00:00_
 
 called ToolSearch
 
@@ -15294,7 +14643,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1112 · 2026-05-23T12:46:30.949902+00:00_
+_source line 1096 · 2026-05-23T12:46:30.949902+00:00_
 
 
 
@@ -15316,7 +14665,7 @@ _source line 1112 · 2026-05-23T12:46:30.949902+00:00_
 
 ### Tool call
 
-_source line 1113 · 2026-05-23T12:46:35.273403+00:00_
+_source line 1097 · 2026-05-23T12:46:35.273403+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -15356,7 +14705,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1114 · 2026-05-23T12:46:36.378904+00:00_
+_source line 1098 · 2026-05-23T12:46:36.378904+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.0}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 526.6}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 569.5}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 527.6}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 535.6}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 470.8}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.5}], \"total_pages\": 18, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15378,7 +14727,7 @@ _source line 1114 · 2026-05-23T12:46:36.378904+00:00_
 
 ### Tool call
 
-_source line 1115 · 2026-05-23T12:46:40.444744+00:00_
+_source line 1099 · 2026-05-23T12:46:40.444744+00:00_
 
 called Read
 
@@ -15412,7 +14761,7 @@ called Read
 
 ### Tool call
 
-_source line 1116 · 2026-05-23T12:46:41.101032+00:00_
+_source line 1100 · 2026-05-23T12:46:41.101032+00:00_
 
 called Read
 
@@ -15446,7 +14795,7 @@ called Read
 
 ### Tool result
 
-_source line 1117 · 2026-05-23T12:46:41.854959+00:00_
+_source line 1101 · 2026-05-23T12:46:41.854959+00:00_
 
 
 
@@ -15468,7 +14817,7 @@ _source line 1117 · 2026-05-23T12:46:41.854959+00:00_
 
 ### Tool result
 
-_source line 1118 · 2026-05-23T12:46:41.856208+00:00_
+_source line 1102 · 2026-05-23T12:46:41.856208+00:00_
 
 
 
@@ -15490,7 +14839,7 @@ _source line 1118 · 2026-05-23T12:46:41.856208+00:00_
 
 ### Tool call
 
-_source line 1119 · 2026-05-23T12:46:41.856532+00:00_
+_source line 1103 · 2026-05-23T12:46:41.856532+00:00_
 
 called Read
 
@@ -15524,7 +14873,7 @@ called Read
 
 ### Tool call
 
-_source line 1120 · 2026-05-23T12:46:42.057612+00:00_
+_source line 1104 · 2026-05-23T12:46:42.057612+00:00_
 
 called Read
 
@@ -15558,7 +14907,7 @@ called Read
 
 ### Tool result
 
-_source line 1121 · 2026-05-23T12:46:42.762386+00:00_
+_source line 1105 · 2026-05-23T12:46:42.762386+00:00_
 
 
 
@@ -15580,7 +14929,7 @@ _source line 1121 · 2026-05-23T12:46:42.762386+00:00_
 
 ### Tool result
 
-_source line 1122 · 2026-05-23T12:46:42.964117+00:00_
+_source line 1106 · 2026-05-23T12:46:42.964117+00:00_
 
 
 
@@ -15602,7 +14951,7 @@ _source line 1122 · 2026-05-23T12:46:42.964117+00:00_
 
 ### Tool call
 
-_source line 1123 · 2026-05-23T12:46:48.837097+00:00_
+_source line 1107 · 2026-05-23T12:46:48.837097+00:00_
 
 called Read
 
@@ -15636,7 +14985,7 @@ called Read
 
 ### Tool result
 
-_source line 1124 · 2026-05-23T12:46:49.591048+00:00_
+_source line 1108 · 2026-05-23T12:46:49.591048+00:00_
 
 
 
@@ -15658,7 +15007,7 @@ _source line 1124 · 2026-05-23T12:46:49.591048+00:00_
 
 ### Tool call
 
-_source line 1125 · 2026-05-23T12:46:49.742061+00:00_
+_source line 1109 · 2026-05-23T12:46:49.742061+00:00_
 
 called Read
 
@@ -15692,7 +15041,7 @@ called Read
 
 ### Tool call
 
-_source line 1126 · 2026-05-23T12:46:49.943347+00:00_
+_source line 1110 · 2026-05-23T12:46:49.943347+00:00_
 
 called Read
 
@@ -15726,7 +15075,7 @@ called Read
 
 ### Tool call
 
-_source line 1127 · 2026-05-23T12:46:50.397843+00:00_
+_source line 1111 · 2026-05-23T12:46:50.397843+00:00_
 
 called Read
 
@@ -15760,7 +15109,7 @@ called Read
 
 ### Tool result
 
-_source line 1128 · 2026-05-23T12:46:50.701191+00:00_
+_source line 1112 · 2026-05-23T12:46:50.701191+00:00_
 
 
 
@@ -15782,7 +15131,7 @@ _source line 1128 · 2026-05-23T12:46:50.701191+00:00_
 
 ### Tool result
 
-_source line 1129 · 2026-05-23T12:46:51.004038+00:00_
+_source line 1113 · 2026-05-23T12:46:51.004038+00:00_
 
 
 
@@ -15804,7 +15153,7 @@ _source line 1129 · 2026-05-23T12:46:51.004038+00:00_
 
 ### Tool result
 
-_source line 1130 · 2026-05-23T12:46:51.458480+00:00_
+_source line 1114 · 2026-05-23T12:46:51.458480+00:00_
 
 
 
@@ -15826,7 +15175,7 @@ _source line 1130 · 2026-05-23T12:46:51.458480+00:00_
 
 ### Tool call
 
-_source line 1131 · 2026-05-23T12:47:00.946046+00:00_
+_source line 1115 · 2026-05-23T12:47:00.946046+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -15866,7 +15215,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1132 · 2026-05-23T12:47:01.197207+00:00_
+_source line 1116 · 2026-05-23T12:47:01.197207+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 563.4}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 596.9}], \"total_pages\": 18, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -15888,7 +15237,7 @@ _source line 1132 · 2026-05-23T12:47:01.197207+00:00_
 
 ### Tool call
 
-_source line 1133 · 2026-05-23T12:47:06.229306+00:00_
+_source line 1117 · 2026-05-23T12:47:06.229306+00:00_
 
 called Read
 
@@ -15922,7 +15271,7 @@ called Read
 
 ### Tool call
 
-_source line 1134 · 2026-05-23T12:47:06.684284+00:00_
+_source line 1118 · 2026-05-23T12:47:06.684284+00:00_
 
 called Read
 
@@ -15956,7 +15305,7 @@ called Read
 
 ### Tool result
 
-_source line 1135 · 2026-05-23T12:47:06.836102+00:00_
+_source line 1119 · 2026-05-23T12:47:06.836102+00:00_
 
 
 
@@ -15978,7 +15327,7 @@ _source line 1135 · 2026-05-23T12:47:06.836102+00:00_
 
 ### Tool result
 
-_source line 1136 · 2026-05-23T12:47:07.389444+00:00_
+_source line 1120 · 2026-05-23T12:47:07.389444+00:00_
 
 
 
@@ -16000,7 +15349,7 @@ _source line 1136 · 2026-05-23T12:47:07.389444+00:00_
 
 ### Tool call
 
-_source line 1137 · 2026-05-23T12:47:14.317392+00:00_
+_source line 1121 · 2026-05-23T12:47:14.317392+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -16040,7 +15389,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1138 · 2026-05-23T12:47:14.820233+00:00_
+_source line 1122 · 2026-05-23T12:47:14.820233+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 562.2}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 558.4}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 480.6}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 524.7}], \"total_pages\": 18, \"rendered_pages\": 4, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16062,7 +15411,7 @@ _source line 1138 · 2026-05-23T12:47:14.820233+00:00_
 
 ### Tool call
 
-_source line 1139 · 2026-05-23T12:47:19.939402+00:00_
+_source line 1123 · 2026-05-23T12:47:19.939402+00:00_
 
 called Read
 
@@ -16096,7 +15445,7 @@ called Read
 
 ### Tool call
 
-_source line 1140 · 2026-05-23T12:47:20.443333+00:00_
+_source line 1124 · 2026-05-23T12:47:20.443333+00:00_
 
 called Read
 
@@ -16130,7 +15479,7 @@ called Read
 
 ### Tool result
 
-_source line 1141 · 2026-05-23T12:47:21.298425+00:00_
+_source line 1125 · 2026-05-23T12:47:21.298425+00:00_
 
 
 
@@ -16152,7 +15501,7 @@ _source line 1141 · 2026-05-23T12:47:21.298425+00:00_
 
 ### Tool result
 
-_source line 1142 · 2026-05-23T12:47:21.299656+00:00_
+_source line 1126 · 2026-05-23T12:47:21.299656+00:00_
 
 
 
@@ -16174,7 +15523,7 @@ _source line 1142 · 2026-05-23T12:47:21.299656+00:00_
 
 ### Tool call
 
-_source line 1143 · 2026-05-23T12:47:21.350351+00:00_
+_source line 1127 · 2026-05-23T12:47:21.350351+00:00_
 
 called Read
 
@@ -16208,7 +15557,7 @@ called Read
 
 ### Tool call
 
-_source line 1144 · 2026-05-23T12:47:21.703271+00:00_
+_source line 1128 · 2026-05-23T12:47:21.703271+00:00_
 
 called Read
 
@@ -16242,7 +15591,7 @@ called Read
 
 ### Tool result
 
-_source line 1145 · 2026-05-23T12:47:21.906076+00:00_
+_source line 1129 · 2026-05-23T12:47:21.906076+00:00_
 
 
 
@@ -16264,7 +15613,7 @@ _source line 1145 · 2026-05-23T12:47:21.906076+00:00_
 
 ### Tool result
 
-_source line 1146 · 2026-05-23T12:47:22.460872+00:00_
+_source line 1130 · 2026-05-23T12:47:22.460872+00:00_
 
 
 
@@ -16286,7 +15635,7 @@ _source line 1146 · 2026-05-23T12:47:22.460872+00:00_
 
 ### Tool call
 
-_source line 1147 · 2026-05-23T12:47:29.140012+00:00_
+_source line 1131 · 2026-05-23T12:47:29.140012+00:00_
 
 called mcp__agent-ml-research__pdf_to_images
 
@@ -16326,7 +15675,7 @@ called mcp__agent-ml-research__pdf_to_images
 
 ### Tool result
 
-_source line 1148 · 2026-05-23T12:47:29.743138+00:00_
+_source line 1132 · 2026-05-23T12:47:29.743138+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 473.7}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 431.0}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 459.1}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 381.6}], \"total_pages\": 18, \"rendered_pages\": 4, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16348,7 +15697,7 @@ _source line 1148 · 2026-05-23T12:47:29.743138+00:00_
 
 ### Tool call
 
-_source line 1149 · 2026-05-23T12:47:36.273868+00:00_
+_source line 1133 · 2026-05-23T12:47:36.273868+00:00_
 
 called Read
 
@@ -16382,7 +15731,7 @@ called Read
 
 ### Tool result
 
-_source line 1150 · 2026-05-23T12:47:36.979053+00:00_
+_source line 1134 · 2026-05-23T12:47:36.979053+00:00_
 
 
 
@@ -16404,7 +15753,7 @@ _source line 1150 · 2026-05-23T12:47:36.979053+00:00_
 
 ### Tool call
 
-_source line 1151 · 2026-05-23T12:47:37.281036+00:00_
+_source line 1135 · 2026-05-23T12:47:37.281036+00:00_
 
 called Read
 
@@ -16438,7 +15787,7 @@ called Read
 
 ### Tool call
 
-_source line 1152 · 2026-05-23T12:47:37.583109+00:00_
+_source line 1136 · 2026-05-23T12:47:37.583109+00:00_
 
 called Read
 
@@ -16472,7 +15821,7 @@ called Read
 
 ### Tool result
 
-_source line 1153 · 2026-05-23T12:47:37.840317+00:00_
+_source line 1137 · 2026-05-23T12:47:37.840317+00:00_
 
 
 
@@ -16494,7 +15843,7 @@ _source line 1153 · 2026-05-23T12:47:37.840317+00:00_
 
 ### Tool call
 
-_source line 1154 · 2026-05-23T12:47:37.941143+00:00_
+_source line 1138 · 2026-05-23T12:47:37.941143+00:00_
 
 called Read
 
@@ -16528,7 +15877,7 @@ called Read
 
 ### Tool result
 
-_source line 1155 · 2026-05-23T12:47:38.394686+00:00_
+_source line 1139 · 2026-05-23T12:47:38.394686+00:00_
 
 
 
@@ -16550,7 +15899,7 @@ _source line 1155 · 2026-05-23T12:47:38.394686+00:00_
 
 ### Tool result
 
-_source line 1156 · 2026-05-23T12:47:38.547932+00:00_
+_source line 1140 · 2026-05-23T12:47:38.547932+00:00_
 
 
 
@@ -16572,7 +15921,7 @@ _source line 1156 · 2026-05-23T12:47:38.547932+00:00_
 
 ### Tool call
 
-_source line 1157 · 2026-05-23T12:49:49.776766+00:00_
+_source line 1141 · 2026-05-23T12:49:49.776766+00:00_
 
 called Read
 
@@ -16608,7 +15957,7 @@ called Read
 
 ### Tool result
 
-_source line 1158 · 2026-05-23T12:49:54.950192+00:00_
+_source line 1142 · 2026-05-23T12:49:54.950192+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/.claude/sessions/reviewer_430cd31d.
 
@@ -16630,7 +15979,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1159 · 2026-05-23T12:49:55.703839+00:00_
+_source line 1143 · 2026-05-23T12:49:55.703839+00:00_
 
 called Grep
 
@@ -16674,7 +16023,7 @@ called Grep
 
 ### Tool result
 
-_source line 1160 · 2026-05-23T12:49:56.055927+00:00_
+_source line 1144 · 2026-05-23T12:49:56.055927+00:00_
 
 No matches found
 
@@ -16696,7 +16045,7 @@ No matches found
 
 ### Tool call
 
-_source line 1161 · 2026-05-23T12:50:03.136725+00:00_
+_source line 1145 · 2026-05-23T12:50:03.136725+00:00_
 
 called ToolSearch
 
@@ -16732,7 +16081,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1162 · 2026-05-23T12:50:03.137195+00:00_
+_source line 1146 · 2026-05-23T12:50:03.137195+00:00_
 
 
 
@@ -16754,7 +16103,7 @@ _source line 1162 · 2026-05-23T12:50:03.137195+00:00_
 
 ### Tool call
 
-_source line 1163 · 2026-05-23T12:50:07.373575+00:00_
+_source line 1147 · 2026-05-23T12:50:07.373575+00:00_
 
 called mcp__agent-ml-research__cleanup_pdf_images
 
@@ -16788,7 +16137,7 @@ called mcp__agent-ml-research__cleanup_pdf_images
 
 ### Tool result
 
-_source line 1164 · 2026-05-23T12:50:07.475923+00:00_
+_source line 1148 · 2026-05-23T12:50:07.475923+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"deleted\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16810,7 +16159,7 @@ _source line 1164 · 2026-05-23T12:50:07.475923+00:00_
 
 ### Tool call
 
-_source line 1165 · 2026-05-23T12:51:17.821247+00:00_
+_source line 1149 · 2026-05-23T12:51:17.821247+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16846,7 +16195,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1166 · 2026-05-23T12:51:22.191827+00:00_
+_source line 1150 · 2026-05-23T12:51:22.191827+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -16868,7 +16217,7 @@ _source line 1166 · 2026-05-23T12:51:22.191827+00:00_
 
 ### Assistant
 
-_source line 1167 · 2026-05-23T12:51:25.353882+00:00_
+_source line 1151 · 2026-05-23T12:51:25.353882+00:00_
 
 Now let me also load the paper-quality-lessons skill for grounding, then compile the full assessment.
 
@@ -16895,7 +16244,7 @@ Now let me also load the paper-quality-lessons skill for grounding, then compile
 
 ### User
 
-_source line 1168 · 2026-05-23T12:54:18.140091+00:00_
+_source line 1152 · 2026-05-23T12:54:18.140091+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：R17 全部修复完成, R18 提交, 匿名仓库任务进行中），请审查研究方向和计划的合理性。
@@ -16917,7 +16266,7 @@ _source line 1168 · 2026-05-23T12:54:18.140091+00:00_
 
 ### Tool call
 
-_source line 1169 · 2026-05-23T12:54:29.344052+00:00_
+_source line 1153 · 2026-05-23T12:54:29.344052+00:00_
 
 called ToolSearch
 
@@ -16953,7 +16302,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1170 · 2026-05-23T12:54:29.445915+00:00_
+_source line 1154 · 2026-05-23T12:54:29.445915+00:00_
 
 
 
@@ -16975,7 +16324,7 @@ _source line 1170 · 2026-05-23T12:54:29.445915+00:00_
 
 ### Tool call
 
-_source line 1171 · 2026-05-23T12:54:32.507944+00:00_
+_source line 1155 · 2026-05-23T12:54:32.507944+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -17009,7 +16358,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1172 · 2026-05-23T12:54:32.659305+00:00_
+_source line 1156 · 2026-05-23T12:54:32.659305+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/ROADMAP.md\", \"content\": \"# irt_equated_bench_regen — Research Dashboard\\n\\n> 最后更新: 2026-05-23 12:54 UTC | 更新原因: R17 全部修复完成, R18 提交, 匿名仓库任务进行中\\n\\n## 核心方向\\n将教育测量中的 MH-DIF 应用于 LLM benchmark（5,227 models × 12,508 MMLU items），发现 13.5-29.2% items 展现 temporal DIF（跨 6 个 benchmark 为 17.9-31.3%），与 web-overlap contamination 正交（Jaccard=0.206）。详见 paper_framing.md。\\n\\n## 当前阶段\\n📝 Paper Revision（R17 修复完成 → R18 审稿待批）+ 🚀 审稿进行中 + 📦 匿名仓库准备中\\n\\n## 当前进展\\n- **R17 审稿**: 3.5 Borderline Conference, 2 CRITICAL + 6 WARNING\\n- **R17 全部修复完成** (2026-05-23 12:09):\\n  - ✅ N1 DEFF 循环性: 区间表述 13.5-29.2% + cluster bootstrap CI 独立证据 + weighted-mean downstream\\n  - ✅ N2 ΔTPR terminology: \\\"reference-case detection power\\\" + difficulty-dependent injection 进主文\\n  - ✅ W1-W6 全部 WARNING 修复（mechanism-agnostic framing, Growing Pains 对比, k≤5 限定, 正交性两种解释, release date confound, abstract 精简）\\n  - ✅ Reviewer 逐条验证全部 PASS\\n- **R18 审稿已提交** (12:13): continue mode, 等待用户审批\\n- **Reviewer 模拟审稿人通读**: 已派出, 等待结果 (评估 3.5→4.0 gap)\\n- **匿名仓库分发**: Agent 正在执行代码匿名化 + push\\n- **页面合规**: 主文 8 页, 0 个 \\\\enlargethispage, 编译 0 critical warnings\\n- **paper_framing.md v3**: \\\"three LLM-specific methodological adaptations\\\" 策略已融入论文\\n\\n## 近期任务\\n- [ ] 等待 Reviewer 模拟审稿人通读结果 → 识别 3.5→4.0 改进点\\n- [ ] 等待 R18 审稿审批 → 验证修复效果\\n- [ ] Agent 完成匿名仓库 push\\n- [ ] 基于 Reviewer 反馈做 quick-win 改进\\n- [ ] DDL 5/25 AoE 最终提交\\n\\n## GPU 预算\\n本项目无 GPU 需求（所有分析基于已有 METABENCH response matrix，本地 CPU 可跑）。\\n\\n## 关键风险\\n1. 时间紧: DDL 5/25 AoE, 剩余 ~36h\\n2. R18 审批待用户操作\\n3. Excitement 维度 (R2 给 3/5) 是 3.5→4.0 的主要瓶颈\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-22 | R20审稿3.0→派Agent做size-stratified DEFF分析+批量论文修改，目标R2 | — |\\n| D039 | 2026-05-22 | 全速推进 4 组 decomposition/validation 实验 + framing 强化， | — |\\n| D038 | 2026-05-22 | 全速执行 base-vs-instruct DIF 分离实
 …[truncated 811 chars]
@@ -17032,7 +16381,7 @@ _source line 1172 · 2026-05-23T12:54:32.659305+00:00_
 
 ### Tool call
 
-_source line 1173 · 2026-05-23T12:55:02.875608+00:00_
+_source line 1157 · 2026-05-23T12:55:02.875608+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17068,7 +16417,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1174 · 2026-05-23T12:55:06.802433+00:00_
+_source line 1158 · 2026-05-23T12:55:06.802433+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -17097,7 +16446,7 @@ _source line 1174 · 2026-05-23T12:55:06.802433+00:00_
 
 ### User
 
-_source line 1175 · 2026-05-23T12:59:06.320839+00:00_
+_source line 1159 · 2026-05-23T12:59:06.320839+00:00_
 
 [系统通知 — worker_done:worker_code_anonymous_repo_push_20260523T125348]:
 Worker worker_code_anonymous_repo_push_20260523T125348 已完成（status=done），请审查 Agent 的处理结果。
@@ -17119,7 +16468,7 @@ Worker worker_code_anonymous_repo_push_20260523T125348 已完成（status=done�
 
 ### Tool call
 
-_source line 1176 · 2026-05-23T12:59:16.227556+00:00_
+_source line 1160 · 2026-05-23T12:59:16.227556+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17157,7 +16506,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1177 · 2026-05-23T12:59:16.328897+00:00_
+_source line 1161 · 2026-05-23T12:59:16.328897+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_035_q3_inflation_sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:20.736Z\", \"updated_at\": \"2026-05-21T16:24:02.388Z\", \"hypothesis\": \"plan_013 发现 11.3% within-subject item pairs |Q3|>0.20，存在局部依赖(LD)。MH-DIF 假设局部独立，LD 可能膨胀 Type I error。通过 Monte Carlo 模拟或 within-subject permutation null（保持 Q3 结构），量化 LD 对 MH-DIF FPR 的实际膨胀程度。预测：校准 LD 后实际 FPR 膨胀 <3pp（从 nominal 5% 到 <8%），因为 LD 温和（mean Q3=0.009）且 MH 的 total-score stratification 部分吸收了 LD 效应。\", \"parent\": \"plan_013_q3_local_independence\", \"conclusion\": \"success\", \"metrics\": {\"n_subjects\": 8, \"n_permutations\": 1000, \"method\": \"permutation null + independence control, cross-subject matching\", \"ets_c_inflation\": {\"mean_pp\": 0.0004, \"max_pp\": 0.001, \"max_subject\": \"marketing\", \"verdict\": \"far below 3pp threshold\"}, \"p05_inflation\": {\"mean_pp\": -0.0019, \"direction\": \"slightly negative (no inflation)\", \"mean_fpr_with_ld\": 0.0412, \"mean_fpr_without_ld\": 0.0431}, \"subject_details\": {\"moral_scenarios\": {\"q3_pct\": 34.2, \"ets_c_delta_pp\": -1e-05}, \"human_aging\": {\"q3_pct\": 20.5, \"ets_c_delta_pp\": 0.0004}, \"world_religions\": {\"q3_pct\": 18.1, \"ets_c_delta_pp\": 0.0006}, \"marketing\": {\"q3_pct\": 17.5, \"ets_c_delta_pp\": 0.001}, \"professional_law\": {\"q3_pct\": 10.5, \"ets_c_delta_pp\": 0.0003}, \"college_medicine\": {\"q3_pct\": 4.6, \"ets_c_delta_pp\": 0.0005}}, \"q3_inflation_correlation\": {\"spearman_rho\": -0.238, \"p_value\": 0.57, \"significant\": false}, \"key_insight\": \"Cross-subject matching completely isolates within-subject LD from MH-DIF FPR\"}, \"notes\": \"LD inflation simulation 完成。核心发现：cross-subject matching 完全隔离了 within-subject LD 对 MH-DIF FPR 的影响。ETS-C 标准下 LD 膨胀仅 +0.0004pp（最大 +0.001pp），远低于 3pp 阈值。p<0.05 标准下甚至略为负（-0.0019pp，无膨胀）。即使 moral_scenarios 有 34.2% item pairs |Q3|>0.20，ETS-C 膨胀仍 <0.01pp。两个机制：(1) cross-subject matching 变量不含当前 subject items
 …[truncated 5288 chars]
@@ -17180,7 +16529,7 @@ _source line 1177 · 2026-05-23T12:59:16.328897+00:00_
 
 ### Tool call
 
-_source line 1178 · 2026-05-23T12:59:26.470271+00:00_
+_source line 1162 · 2026-05-23T12:59:26.470271+00:00_
 
 called Glob
 
@@ -17216,7 +16565,7 @@ called Glob
 
 ### Tool result
 
-_source line 1179 · 2026-05-23T12:59:26.771823+00:00_
+_source line 1163 · 2026-05-23T12:59:26.771823+00:00_
 
 No files found
 
@@ -17238,7 +16587,7 @@ No files found
 
 ### Tool call
 
-_source line 1180 · 2026-05-23T12:59:26.922840+00:00_
+_source line 1164 · 2026-05-23T12:59:26.922840+00:00_
 
 called Glob
 
@@ -17274,7 +16623,7 @@ called Glob
 
 ### Tool result
 
-_source line 1181 · 2026-05-23T12:59:27.023772+00:00_
+_source line 1165 · 2026-05-23T12:59:27.023772+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_anonymous_repo_push_20260523T125348.log
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/logs/workers/worker_code_anonymous_repo_push_20260523T125348_result.json
@@ -17297,7 +16646,7 @@ _source line 1181 · 2026-05-23T12:59:27.023772+00:00_
 
 ### Tool call
 
-_source line 1182 · 2026-05-23T12:59:31.241599+00:00_
+_source line 1166 · 2026-05-23T12:59:31.241599+00:00_
 
 called Read
 
@@ -17331,7 +16680,7 @@ called Read
 
 ### Tool result
 
-_source line 1183 · 2026-05-23T12:59:31.342507+00:00_
+_source line 1167 · 2026-05-23T12:59:31.342507+00:00_
 
 1	{
 2	  "raw": "临时目录已清理。"
@@ -17355,7 +16704,7 @@ _source line 1183 · 2026-05-23T12:59:31.342507+00:00_
 
 ### Tool call
 
-_source line 1184 · 2026-05-23T12:59:34.554519+00:00_
+_source line 1168 · 2026-05-23T12:59:34.554519+00:00_
 
 called Read
 
@@ -17393,7 +16742,7 @@ called Read
 
 ### Tool result
 
-_source line 1185 · 2026-05-23T12:59:34.856263+00:00_
+_source line 1169 · 2026-05-23T12:59:34.856263+00:00_
 
 File content (73566 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -17415,7 +16764,7 @@ File content (73566 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 1186 · 2026-05-23T12:59:38.326890+00:00_
+_source line 1170 · 2026-05-23T12:59:38.326890+00:00_
 
 called Bash
 
@@ -17451,7 +16800,7 @@ called Bash
 
 ### Tool result
 
-_source line 1187 · 2026-05-23T12:59:38.479567+00:00_
+_source line 1171 · 2026-05-23T12:59:38.479567+00:00_
 
 &lt;persisted-output>
 Output too large (123.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen--claude-sessions-reviewer-430cd31d/233b284a-aa80-428d-89cb-cbd47ca4c54a/tool-results/b8dgv79ro.txt
@@ -17480,7 +16829,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 1188 · 2026-05-23T12:59:44.655328+00:00_
+_source line 1172 · 2026-05-23T12:59:44.655328+00:00_
 
 called Grep
 
@@ -17522,7 +16871,7 @@ called Grep
 
 ### Tool result
 
-_source line 1189 · 2026-05-23T12:59:44.705993+00:00_
+_source line 1173 · 2026-05-23T12:59:44.705993+00:00_
 
 4:[Omitted long matching line]
 5:[Omitted long matching line]
@@ -17560,7 +16909,7 @@ _source line 1189 · 2026-05-23T12:59:44.705993+00:00_
 
 ### Tool call
 
-_source line 1190 · 2026-05-23T12:59:50.428958+00:00_
+_source line 1174 · 2026-05-23T12:59:50.428958+00:00_
 
 called Read
 
@@ -17598,7 +16947,7 @@ called Read
 
 ### Tool result
 
-_source line 1191 · 2026-05-23T12:59:50.731719+00:00_
+_source line 1175 · 2026-05-23T12:59:50.731719+00:00_
 
 280	{"type":"system","subtype":"task_notification","task_id":"aac730769983e499d","tool_use_id":"toolu_01HDvU7TrsqnPdnZi9SMFgzm","status":"completed","output_file":"","summary":"Scan plan dirs for descriptions","usage":{"total_tokens":61746,"tool_uses":79,"duration_ms":80211},"uuid":"81001a45-6c46-4c15-82b1-c9c84b248192","session_id":"9f6cf3a2-d194-47dc-add5-ca7c2867e53f"}
 281	{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01HDvU7TrsqnPdnZi9SMFgzm","type":"tool_result","content":[{"type":"text","text":"Perfect! Now I have gathered all the information. Let me compile the findings into a markdown table with one-line descriptions for each directory.\n\n| Directory | Description |\n|-----------|-------------|\n| plan_001 | Purified Mantel-Haenszel DIF detection on MMLU real data with temporal (2023 vs 2024) and ability-based cohort comparisons. |\n| plan_001_real_data_dif_mmlu | Matched-ability temporal DIF within accuracy quintiles to isolate contamination effects from ability gains. |\n| plan_001b | Matched-ability DIF analysis using temporal comparisons within accuracy quintiles. |\n| plan_004 | Replicates plan_001 MH-DIF methodology on GSM8K data with standard and external matching strategies. |\n| plan_010 | Architecture-stratified DIF analysis on decoder-only models to assess whether architectural heterogeneity inflates DIF flags. |\n| plan_011 | Semi-synthetic DIF validation: injects known differential contamination into MMLU and tests MH-DIF detection power. |\n| plan_012 | IRT theta-based conditioning for MH-DIF stratification to reduce false positive rates from baseline 31%. |\n| plan_013 | Yen's Q3 local independence diagnostic for MMLU items to detect item response dependence violations. |\n| plan_013_supplement | Cross-analysis of local dependence (Q3) versus DIF concentration by subject domain. |\n| plan_014 | Within-subject temporal DIF and cross-subject matching with SIBTEST availability check for high-C% subjects. |\n| plan_015 
@@ -17622,7 +16971,7 @@ _source line 1191 · 2026-05-23T12:59:50.731719+00:00_
 
 ### Tool call
 
-_source line 1192 · 2026-05-23T13:02:03.350919+00:00_
+_source line 1176 · 2026-05-23T13:02:03.350919+00:00_
 
 called ToolSearch
 
@@ -17658,7 +17007,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1193 · 2026-05-23T13:02:03.451867+00:00_
+_source line 1177 · 2026-05-23T13:02:03.451867+00:00_
 
 
 
@@ -17680,7 +17029,7 @@ _source line 1193 · 2026-05-23T13:02:03.451867+00:00_
 
 ### Tool call
 
-_source line 1194 · 2026-05-23T13:02:09.641319+00:00_
+_source line 1178 · 2026-05-23T13:02:09.641319+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17716,7 +17065,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1195 · 2026-05-23T13:02:13.607331+00:00_
+_source line 1179 · 2026-05-23T13:02:13.607331+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -17738,7 +17087,7 @@ _source line 1195 · 2026-05-23T13:02:13.607331+00:00_
 
 ### Assistant
 
-_source line 1196 · 2026-05-23T13:02:15.804830+00:00_
+_source line 1180 · 2026-05-23T13:02:15.804830+00:00_
 
 匿名仓库推送审查已提交 Director。等待下一个审查任务。
 
@@ -17765,7 +17114,7 @@ _source line 1196 · 2026-05-23T13:02:15.804830+00:00_
 
 ### User
 
-_source line 1197 · 2026-05-23T13:04:01.958754+00:00_
+_source line 1181 · 2026-05-23T13:04:01.958754+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：模拟审稿人 Top 5 quick-wins 全部完成, 估分 3.75→~3.9），请审查研究方向和计划的合理性。
@@ -17787,7 +17136,7 @@ _source line 1197 · 2026-05-23T13:04:01.958754+00:00_
 
 ### Tool call
 
-_source line 1198 · 2026-05-23T13:04:10.080660+00:00_
+_source line 1182 · 2026-05-23T13:04:10.080660+00:00_
 
 called ToolSearch
 
@@ -17823,7 +17172,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1199 · 2026-05-23T13:04:10.081130+00:00_
+_source line 1183 · 2026-05-23T13:04:10.081130+00:00_
 
 
 
@@ -17845,7 +17194,7 @@ _source line 1199 · 2026-05-23T13:04:10.081130+00:00_
 
 ### Tool call
 
-_source line 1200 · 2026-05-23T13:04:13.795484+00:00_
+_source line 1184 · 2026-05-23T13:04:13.795484+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -17879,7 +17228,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 1201 · 2026-05-23T13:04:13.847054+00:00_
+_source line 1185 · 2026-05-23T13:04:13.847054+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/ROADMAP.md\", \"content\": \"# irt_equated_bench_regen — Research Dashboard\\n\\n> 最后更新: 2026-05-23 13:04 UTC | 更新原因: 模拟审稿人 Top 5 quick-wins 全部完成, 估分 3.75→~3.9\\n\\n## 核心方向\\n将教育测量中的 MH-DIF 应用于 LLM benchmark（5,227 models × 12,508 MMLU items），发现 13.5-29.2% items 展现 temporal DIF（跨 6 个 benchmark 为 17.9-31.3%），与 web-overlap contamination 正交（Jaccard=0.206）。详见 paper_framing.md。\\n\\n## 当前阶段\\n📝 Paper Revision（R17 全部修复 + 模拟审稿人 quick-wins 完成）→ R18 审稿待批 + 📦 匿名仓库进行中\\n\\n## 当前进展\\n- **R17 全部修复完成** (05-23 12:09): 2 CRITICAL + 6 WARNING 全部 PASS\\n- **R18 审稿已提交** (05-23 12:13): continue mode, 等待用户审批\\n- **模拟审稿人通读完成** (05-23 13:xx): 估分 3.75, Top 5 改进已执行\\n  - ✅ P1: §5.2 actionability → 3-step protocol (Monitor/Triage/Correct)\\n  - ✅ P2: Conclusion 3→5 句 (practical rec + future direction)\\n  - ✅ P3: §4.2 定义 \\\"design effect (DEFF)\\\"\\n  - ✅ P4: Figure 2 已有 error bars (5 seeds std)\\n  - ✅ P5: §4.2 Simpson's paradox 细节压缩\\n- **页面合规**: 主文 8 页, 0 个 \\\\enlargethispage, 编译通过\\n- **匿名仓库**: Agent 已处理, 等待汇报\\n\\n## 近期任务\\n- [ ] 等待 R18 审稿审批（用户操作）\\n- [ ] Agent 匿名仓库汇报\\n- [ ] DDL 5/25 AoE 最终提交\\n\\n## GPU 预算\\n本项目无 GPU 需求。\\n\\n## 关键风险\\n1. R18 审批依赖用户操作 (DDL 5/25 AoE, 剩余 ~35h)\\n2. 匿名仓库需完成后才能提交\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-22 | R20审稿3.0→派Agent做size-stratified DEFF分析+批量论文修改，目标R2 | — |\\n| D039 | 2026-05-22 | 全速推进 4 组 decomposition/validation 实验 + framing 强化， | — |\\n| D038 | 2026-05-22 | 全速执行 base-vs-instruct DIF 分离实验，作为 3.5→4.0 的核心提分点 | — |\\n| D037 | 2026-05-22 | R18 (3.5→目标4.0): 4个targeted实验 + 批量写作修复，聚焦W-C1 DEFF | r18_icc_by_family_size, r18_rank_bucket_reversal, r18_dedup_k_curve, r18_restricted_range_rho |\\n| D036 | 2026-05-22 | R17 (3.0→目标4.0): 三条 evidence chain 结构性重组 + 数据填充，提交 | r17_k_sensitivity, r17_deff_reclassification |\\n| D035 | 2026-05-22 | Round 13 (3.5): 启动 MF1 LOFO po
 …[truncated 437 chars]
@@ -17902,7 +17251,7 @@ _source line 1201 · 2026-05-23T13:04:13.847054+00:00_
 
 ### Tool call
 
-_source line 1202 · 2026-05-23T13:04:18.365420+00:00_
+_source line 1186 · 2026-05-23T13:04:18.365420+00:00_
 
 called Read
 
@@ -17936,7 +17285,7 @@ called Read
 
 ### Tool result
 
-_source line 1203 · 2026-05-23T13:04:18.416207+00:00_
+_source line 1187 · 2026-05-23T13:04:18.416207+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -17975,7 +17324,7 @@ _source line 1203 · 2026-05-23T13:04:18.416207+00:00_
 
 ### Tool call
 
-_source line 1204 · 2026-05-23T13:04:18.516973+00:00_
+_source line 1188 · 2026-05-23T13:04:18.516973+00:00_
 
 called Read
 
@@ -18009,7 +17358,7 @@ called Read
 
 ### Tool result
 
-_source line 1205 · 2026-05-23T13:04:19.220202+00:00_
+_source line 1189 · 2026-05-23T13:04:19.220202+00:00_
 
 1	\section{Conclusion}
 2	\label{sec:conclusion}
@@ -18036,7 +17385,7 @@ _source line 1205 · 2026-05-23T13:04:19.220202+00:00_
 
 ### Tool call
 
-_source line 1206 · 2026-05-23T13:04:19.371773+00:00_
+_source line 1190 · 2026-05-23T13:04:19.371773+00:00_
 
 called Read
 
@@ -18070,7 +17419,7 @@ called Read
 
 ### Tool result
 
-_source line 1207 · 2026-05-23T13:04:19.422731+00:00_
+_source line 1191 · 2026-05-23T13:04:19.422731+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -18108,7 +17457,7 @@ _source line 1207 · 2026-05-23T13:04:19.422731+00:00_
 
 ### Tool call
 
-_source line 1208 · 2026-05-23T13:04:50.046898+00:00_
+_source line 1192 · 2026-05-23T13:04:50.046898+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18144,7 +17493,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1209 · 2026-05-23T13:04:53.715905+00:00_
+_source line 1193 · 2026-05-23T13:04:53.715905+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -18166,7 +17515,7 @@ _source line 1209 · 2026-05-23T13:04:53.715905+00:00_
 
 ### Assistant
 
-_source line 1210 · 2026-05-23T13:04:56.699903+00:00_
+_source line 1194 · 2026-05-23T13:04:56.699903+00:00_
 
 ROADMAP 审查完毕，P1-P5 修改均已验证到位，无异常。等待后续任务。
 
@@ -18193,7 +17542,7 @@ ROADMAP 审查完毕，P1-P5 修改均已验证到位，无异常。等待后续
 
 ### User
 
-_source line 1211 · 2026-05-23T13:39:01.927091+00:00_
+_source line 1195 · 2026-05-23T13:39:01.927091+00:00_
 
 [System 触发审查]:
 请对当前论文做一轮针对 **impact/actionability 维度**的深度审读，目标是找出从 3.9 到 4.0 的具体 gap。
@@ -18237,7 +17586,7 @@ _source line 1211 · 2026-05-23T13:39:01.927091+00:00_
 
 ### Tool call
 
-_source line 1212 · 2026-05-23T13:39:10.672381+00:00_
+_source line 1196 · 2026-05-23T13:39:10.672381+00:00_
 
 called Read
 
@@ -18271,7 +17620,7 @@ called Read
 
 ### Tool result
 
-_source line 1213 · 2026-05-23T13:39:11.224970+00:00_
+_source line 1197 · 2026-05-23T13:39:11.224970+00:00_
 
 1	\begin{abstract}
 2	LLM benchmark scores are compared across model generations, yet whether individual items measure the same construct over time is rarely tested. We apply differential item functioning (DIF) analysis from educational measurement to six METABENCH benchmarks (5,227 models), validated through a semi-synthetic injection framework with cross-subject matching. Between 2023 and 2024 model cohorts, 17.9--31.3\% of items exhibit large temporal DIF (13.5--29.2\% for MMLU after non-independence corrections; ${\geq}22\times$ random baseline). Web-overlap contamination labels are near-independent of DIF flags: global exposure and differential functioning are complementary diagnostic dimensions. Temporal DIF does not threaten aggregate rankings ($\rho \approx 0.997$) but reveals structured item-level change---base and instruct models exhibit opposite DIF patterns---and shifts DIF-corrected scores by ${+}2.12$\,pp on average. LLM benchmarks need psychometric monitoring, not just score reporting.
@@ -18296,7 +17645,7 @@ _source line 1213 · 2026-05-23T13:39:11.224970+00:00_
 
 ### Tool call
 
-_source line 1214 · 2026-05-23T13:39:11.225352+00:00_
+_source line 1198 · 2026-05-23T13:39:11.225352+00:00_
 
 called Read
 
@@ -18330,7 +17679,7 @@ called Read
 
 ### Tool result
 
-_source line 1215 · 2026-05-23T13:39:11.476393+00:00_
+_source line 1199 · 2026-05-23T13:39:11.476393+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -18358,7 +17707,7 @@ _source line 1215 · 2026-05-23T13:39:11.476393+00:00_
 
 ### Tool call
 
-_source line 1216 · 2026-05-23T13:39:11.476812+00:00_
+_source line 1200 · 2026-05-23T13:39:11.476812+00:00_
 
 called Read
 
@@ -18392,7 +17741,7 @@ called Read
 
 ### Tool result
 
-_source line 1217 · 2026-05-23T13:39:11.527363+00:00_
+_source line 1201 · 2026-05-23T13:39:11.527363+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -18430,7 +17779,7 @@ _source line 1217 · 2026-05-23T13:39:11.527363+00:00_
 
 ### Tool call
 
-_source line 1218 · 2026-05-23T13:39:18.057877+00:00_
+_source line 1202 · 2026-05-23T13:39:18.057877+00:00_
 
 called Read
 
@@ -18466,7 +17815,7 @@ called Read
 
 ### Tool result
 
-_source line 1219 · 2026-05-23T13:39:18.711956+00:00_
+_source line 1203 · 2026-05-23T13:39:18.711956+00:00_
 
 1	\section{Method Details}
 2	\label{app:method_details}
@@ -18506,7 +17855,7 @@ _source line 1219 · 2026-05-23T13:39:18.711956+00:00_
 
 ### Tool call
 
-_source line 1220 · 2026-05-23T13:39:18.712474+00:00_
+_source line 1204 · 2026-05-23T13:39:18.712474+00:00_
 
 called Read
 
@@ -18540,7 +17889,7 @@ called Read
 
 ### Tool result
 
-_source line 1221 · 2026-05-23T13:39:18.765374+00:00_
+_source line 1205 · 2026-05-23T13:39:18.765374+00:00_
 
 1	# Paper Framing — irt_equated_bench_regen
 2	
@@ -18575,7 +17924,7 @@ _source line 1221 · 2026-05-23T13:39:18.765374+00:00_
 
 ### Tool call
 
-_source line 1222 · 2026-05-23T13:41:36.856659+00:00_
+_source line 1206 · 2026-05-23T13:41:36.856659+00:00_
 
 called Grep
 
@@ -18615,7 +17964,7 @@ called Grep
 
 ### Tool result
 
-_source line 1223 · 2026-05-23T13:41:37.308916+00:00_
+_source line 1207 · 2026-05-23T13:41:37.308916+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex:90:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex:5:[Omitted long matching line]
@@ -18640,7 +17989,7 @@ _source line 1223 · 2026-05-23T13:41:37.308916+00:00_
 
 ### Tool call
 
-_source line 1224 · 2026-05-23T13:41:37.861494+00:00_
+_source line 1208 · 2026-05-23T13:41:37.861494+00:00_
 
 called Grep
 
@@ -18680,7 +18029,7 @@ called Grep
 
 ### Tool result
 
-_source line 1225 · 2026-05-23T13:41:37.962487+00:00_
+_source line 1209 · 2026-05-23T13:41:37.962487+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex:16:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex:90:[Omitted long matching line]
@@ -18709,7 +18058,7 @@ _source line 1225 · 2026-05-23T13:41:37.962487+00:00_
 
 ### Tool call
 
-_source line 1226 · 2026-05-23T13:41:42.681236+00:00_
+_source line 1210 · 2026-05-23T13:41:42.681236+00:00_
 
 called Read
 
@@ -18747,7 +18096,7 @@ called Read
 
 ### Tool result
 
-_source line 1227 · 2026-05-23T13:41:42.681616+00:00_
+_source line 1211 · 2026-05-23T13:41:42.681616+00:00_
 
 305	\bottomrule
 306	\end{tabular}}
@@ -18804,7 +18153,7 @@ _source line 1227 · 2026-05-23T13:41:42.681616+00:00_
 
 ### Tool call
 
-_source line 1228 · 2026-05-23T13:43:25.724532+00:00_
+_source line 1212 · 2026-05-23T13:43:25.724532+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18840,7 +18189,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1229 · 2026-05-23T13:43:29.543276+00:00_
+_source line 1213 · 2026-05-23T13:43:29.543276+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -18862,7 +18211,7 @@ _source line 1229 · 2026-05-23T13:43:29.543276+00:00_
 
 ### Assistant
 
-_source line 1230 · 2026-05-23T13:43:35.835099+00:00_
+_source line 1214 · 2026-05-23T13:43:35.835099+00:00_
 
 审读完成。核心发现：论文 soundness/clarity 已到 4.0 水平，gap 在 **impact communication**——最有冲击力的发现（+2.12pp score inflation、3-step protocol）被淹没在后半部分，reviewer 在读 abstract + contributions 时感受不到实际影响。ROI 最高的改动是 W1（contribution 1 加 downstream consequence）和 W3（§5.2 加 code pointer + 绝对 threshold），合计 ~35 words，预估 +0.06-0.08。
 
@@ -18889,7 +18238,7 @@ _source line 1230 · 2026-05-23T13:43:35.835099+00:00_
 
 ### User
 
-_source line 1231 · 2026-05-23T14:21:06.355518+00:00_
+_source line 1215 · 2026-05-23T14:21:06.355518+00:00_
 
 [System 触发审查]:
 请独立审视 R19 审稿报告 + 我的逐条初步方案，判断：(1) 方案是否可行；(2) 是否有遗漏；(3) 复发问题的新方案是否足以避免再次被 flag。
@@ -19006,7 +18355,7 @@ Overall 3.5, 4 Must-Fix (N1-N4) + 6 Should-Fix (W1-W6) + 1 Divergence (D1)。
 
 ### Tool call
 
-_source line 1232 · 2026-05-23T14:22:42.865155+00:00_
+_source line 1216 · 2026-05-23T14:22:42.865155+00:00_
 
 called Grep
 
@@ -19046,7 +18395,7 @@ called Grep
 
 ### Tool result
 
-_source line 1233 · 2026-05-23T14:22:43.016285+00:00_
+_source line 1217 · 2026-05-23T14:22:43.016285+00:00_
 
 No matches found
 
@@ -19068,7 +18417,7 @@ No matches found
 
 ### Tool call
 
-_source line 1234 · 2026-05-23T14:22:44.321927+00:00_
+_source line 1218 · 2026-05-23T14:22:44.321927+00:00_
 
 called Grep
 
@@ -19108,7 +18457,7 @@ called Grep
 
 ### Tool result
 
-_source line 1235 · 2026-05-23T14:22:44.829446+00:00_
+_source line 1219 · 2026-05-23T14:22:44.829446+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex:1:\enlargethispage{2\baselineskip}
 
@@ -19130,7 +18479,7 @@ _source line 1235 · 2026-05-23T14:22:44.829446+00:00_
 
 ### Tool call
 
-_source line 1236 · 2026-05-23T14:22:45.283555+00:00_
+_source line 1220 · 2026-05-23T14:22:45.283555+00:00_
 
 called Grep
 
@@ -19172,7 +18521,7 @@ called Grep
 
 ### Tool result
 
-_source line 1237 · 2026-05-23T14:22:45.384376+00:00_
+_source line 1221 · 2026-05-23T14:22:45.384376+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:53:\bibitem[{Camilli and Shepard(1994)}]{camilli1994methods}
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.bbl:54:Gregory Camilli and Lorrie~A. Shepard. 1994.
@@ -19208,7 +18557,7 @@ _source line 1237 · 2026-05-23T14:22:45.384376+00:00_
 
 ### Tool call
 
-_source line 1238 · 2026-05-23T14:22:53.621438+00:00_
+_source line 1222 · 2026-05-23T14:22:53.621438+00:00_
 
 called Grep
 
@@ -19248,7 +18597,7 @@ called Grep
 
 ### Tool result
 
-_source line 1239 · 2026-05-23T14:22:53.772606+00:00_
+_source line 1223 · 2026-05-23T14:22:53.772606+00:00_
 
 46:[Omitted long matching line]
 
@@ -19270,7 +18619,7 @@ _source line 1239 · 2026-05-23T14:22:53.772606+00:00_
 
 ### Tool call
 
-_source line 1240 · 2026-05-23T14:22:53.823249+00:00_
+_source line 1224 · 2026-05-23T14:22:53.823249+00:00_
 
 called Read
 
@@ -19304,7 +18653,7 @@ called Read
 
 ### Tool result
 
-_source line 1241 · 2026-05-23T14:22:53.873887+00:00_
+_source line 1225 · 2026-05-23T14:22:53.873887+00:00_
 
 1	\enlargethispage{2\baselineskip}
 2	\section{Conclusion}
@@ -19332,7 +18681,7 @@ _source line 1241 · 2026-05-23T14:22:53.873887+00:00_
 
 ### Tool call
 
-_source line 1242 · 2026-05-23T14:24:53.145447+00:00_
+_source line 1226 · 2026-05-23T14:24:53.145447+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19368,7 +18717,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1243 · 2026-05-23T14:24:57.162829+00:00_
+_source line 1227 · 2026-05-23T14:24:57.162829+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director\"}, \"error\": \"\"}"}
 
@@ -19390,7 +18739,7 @@ _source line 1243 · 2026-05-23T14:24:57.162829+00:00_
 
 ### Assistant
 
-_source line 1244 · 2026-05-23T14:25:02.725236+00:00_
+_source line 1228 · 2026-05-23T14:25:02.725236+00:00_
 
 逐条审查 R19 方案，需要核实几个数据点。
 
@@ -19417,7 +18766,7 @@ _source line 1244 · 2026-05-23T14:25:02.725236+00:00_
 
 ### User
 
-_source line 1245 · 2026-05-23T16:11:02.075299+00:00_
+_source line 1229 · 2026-05-23T16:11:02.075299+00:00_
 
 [System 触发审查]:
 差异分析请求：内审 vs 外审评分偏差
@@ -19449,7 +18798,7 @@ _source line 1245 · 2026-05-23T16:11:02.075299+00:00_
 
 ### Tool call
 
-_source line 1246 · 2026-05-23T16:11:14.410608+00:00_
+_source line 1230 · 2026-05-23T16:11:14.410608+00:00_
 
 called Agent
 
@@ -19487,7 +18836,7 @@ called Agent
 
 ### Tool call
 
-_source line 1247 · 2026-05-23T16:11:16.067901+00:00_
+_source line 1231 · 2026-05-23T16:11:16.067901+00:00_
 
 called Glob
 
@@ -19521,7 +18870,7 @@ called Glob
 
 ### Tool result
 
-_source line 1248 · 2026-05-23T16:11:16.319694+00:00_
+_source line 1232 · 2026-05-23T16:11:16.319694+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260520T194223/best/review_context.yaml
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260520T194223/logs/review_best.log
@@ -19557,7 +18906,7 @@ _source line 1248 · 2026-05-23T16:11:16.319694+00:00_
 
 ### Tool call
 
-_source line 1249 · 2026-05-23T16:11:16.370589+00:00_
+_source line 1233 · 2026-05-23T16:11:16.370589+00:00_
 
 called Glob
 
@@ -19591,7 +18940,7 @@ called Glob
 
 ### Tool result
 
-_source line 1250 · 2026-05-23T16:11:16.571894+00:00_
+_source line 1234 · 2026-05-23T16:11:16.571894+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_17.md
 
@@ -19613,7 +18962,7 @@ _source line 1250 · 2026-05-23T16:11:16.571894+00:00_
 
 ### Tool call
 
-_source line 1251 · 2026-05-23T16:11:16.572376+00:00_
+_source line 1235 · 2026-05-23T16:11:16.572376+00:00_
 
 called Glob
 
@@ -19647,7 +18996,7 @@ called Glob
 
 ### Tool result
 
-_source line 1252 · 2026-05-23T16:11:16.773407+00:00_
+_source line 1236 · 2026-05-23T16:11:16.773407+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_18.md
 
@@ -19669,7 +19018,7 @@ _source line 1252 · 2026-05-23T16:11:16.773407+00:00_
 
 ### Tool call
 
-_source line 1253 · 2026-05-23T16:11:16.773810+00:00_
+_source line 1237 · 2026-05-23T16:11:16.773810+00:00_
 
 called Glob
 
@@ -19703,7 +19052,7 @@ called Glob
 
 ### Tool result
 
-_source line 1254 · 2026-05-23T16:11:16.976792+00:00_
+_source line 1238 · 2026-05-23T16:11:16.976792+00:00_
 
 No files found
 
@@ -19725,7 +19074,7 @@ No files found
 
 ### Tool call
 
-_source line 1255 · 2026-05-23T16:11:16.977287+00:00_
+_source line 1239 · 2026-05-23T16:11:16.977287+00:00_
 
 called Glob
 
@@ -19759,7 +19108,7 @@ called Glob
 
 ### Tool result
 
-_source line 1256 · 2026-05-23T16:11:17.178415+00:00_
+_source line 1240 · 2026-05-23T16:11:17.178415+00:00_
 
 No files found
 
@@ -19781,7 +19130,7 @@ No files found
 
 ### Tool call
 
-_source line 1257 · 2026-05-23T16:11:17.280642+00:00_
+_source line 1241 · 2026-05-23T16:11:17.280642+00:00_
 
 called Glob
 
@@ -19815,7 +19164,7 @@ called Glob
 
 ### Tool result
 
-_source line 1258 · 2026-05-23T16:11:17.431804+00:00_
+_source line 1242 · 2026-05-23T16:11:17.431804+00:00_
 
 No files found
 
@@ -19837,7 +19186,7 @@ No files found
 
 ### Tool call
 
-_source line 1259 · 2026-05-23T16:11:17.432393+00:00_
+_source line 1243 · 2026-05-23T16:11:17.432393+00:00_
 
 called Glob
 
@@ -19871,7 +19220,7 @@ called Glob
 
 ### Tool result
 
-_source line 1260 · 2026-05-23T16:11:17.633477+00:00_
+_source line 1244 · 2026-05-23T16:11:17.633477+00:00_
 
 No files found
 
@@ -19893,7 +19242,7 @@ No files found
 
 ### Tool call
 
-_source line 1261 · 2026-05-23T16:11:17.634026+00:00_
+_source line 1245 · 2026-05-23T16:11:17.634026+00:00_
 
 called Glob
 
@@ -19927,7 +19276,7 @@ called Glob
 
 ### Tool result
 
-_source line 1262 · 2026-05-23T16:11:17.684672+00:00_
+_source line 1246 · 2026-05-23T16:11:17.684672+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/metabench_data_summary_ec3bbf.md
@@ -19964,7 +19313,7 @@ _source line 1262 · 2026-05-23T16:11:17.684672+00:00_
 
 ### Tool call
 
-_source line 1263 · 2026-05-23T16:11:19.692951+00:00_
+_source line 1247 · 2026-05-23T16:11:19.692951+00:00_
 
 called Glob
 
@@ -19998,7 +19347,7 @@ called Glob
 
 ### Tool result
 
-_source line 1264 · 2026-05-23T16:11:20.045021+00:00_
+_source line 1248 · 2026-05-23T16:11:20.045021+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ref_audit_report.md
 
@@ -20020,7 +19369,7 @@ _source line 1264 · 2026-05-23T16:11:20.045021+00:00_
 
 ### Tool call
 
-_source line 1265 · 2026-05-23T16:11:20.146060+00:00_
+_source line 1249 · 2026-05-23T16:11:20.146060+00:00_
 
 called Bash
 
@@ -20054,7 +19403,7 @@ called Bash
 
 ### Tool result
 
-_source line 1266 · 2026-05-23T16:11:20.297209+00:00_
+_source line 1250 · 2026-05-23T16:11:20.297209+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/data/mmlu_cf_ground_truth.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_7.md
@@ -20093,7 +19442,7 @@ _source line 1266 · 2026-05-23T16:11:20.297209+00:00_
 
 ### Tool call
 
-_source line 1267 · 2026-05-23T16:11:22.054932+00:00_
+_source line 1251 · 2026-05-23T16:11:22.054932+00:00_
 
 called Bash
 
@@ -20127,7 +19476,7 @@ called Bash
 
 ### Tool result
 
-_source line 1268 · 2026-05-23T16:11:22.105633+00:00_
+_source line 1252 · 2026-05-23T16:11:22.105633+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_0.md
 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_1.md
@@ -20167,7 +19516,7 @@ _source line 1268 · 2026-05-23T16:11:22.105633+00:00_
 
 ### Tool result
 
-_source line 1269 · 2026-05-23T16:11:30.287765+00:00_
+_source line 1253 · 2026-05-23T16:11:30.287765+00:00_
 
 Excellent! Now let me compile a comprehensive summary of all review report files found:
 
@@ -20212,7 +19561,7 @@ The `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_
 
 ### Tool call
 
-_source line 1270 · 2026-05-23T16:11:34.104036+00:00_
+_source line 1254 · 2026-05-23T16:11:34.104036+00:00_
 
 called Read
 
@@ -20246,7 +19595,7 @@ called Read
 
 ### Tool result
 
-_source line 1271 · 2026-05-23T16:11:34.306409+00:00_
+_source line 1255 · 2026-05-23T16:11:34.306409+00:00_
 
 1	---
 2	round: 17
@@ -20315,7 +19664,7 @@ _source line 1271 · 2026-05-23T16:11:34.306409+00:00_
 
 ### Tool call
 
-_source line 1272 · 2026-05-23T16:11:34.306885+00:00_
+_source line 1256 · 2026-05-23T16:11:34.306885+00:00_
 
 called Read
 
@@ -20349,7 +19698,7 @@ called Read
 
 ### Tool result
 
-_source line 1273 · 2026-05-23T16:11:34.357815+00:00_
+_source line 1257 · 2026-05-23T16:11:34.357815+00:00_
 
 1	---
 2	round: 18
@@ -20409,7 +19758,7 @@ _source line 1273 · 2026-05-23T16:11:34.357815+00:00_
 
 ### Tool call
 
-_source line 1274 · 2026-05-23T16:12:30.261651+00:00_
+_source line 1258 · 2026-05-23T16:12:30.261651+00:00_
 
 called Read
 
@@ -20443,7 +19792,7 @@ called Read
 
 ### Tool result
 
-_source line 1275 · 2026-05-23T16:12:31.166008+00:00_
+_source line 1259 · 2026-05-23T16:12:31.166008+00:00_
 
 1	\begin{abstract}
 2	LLM benchmark scores are compared across model generations, yet whether individual items measure the same construct over time is rarely tested. We apply differential item functioning (DIF) analysis from educational measurement to six METABENCH benchmarks (5,227 models), validated through a semi-synthetic injection framework with cross-subject matching. Between 2023 and 2024 model cohorts, 17.9--31.3\% of items exhibit large temporal DIF (29.2\% for MMLU after non-independence correction, cluster bootstrap 95\% CI: $[26.7\%, 53.2\%]$; ${\geq}22\times$ random baseline). Web-overlap labels (a proxy for training-set contamination) are near-independent of DIF flags: global exposure and differential functioning are complementary diagnostic dimensions. Temporal DIF does not threaten aggregate rankings ($\rho \approx 0.997$) but reveals structured item-level change---base and instruct models exhibit opposite DIF patterns ($\chi^2 = 562.7$), evidence that DIF captures capability shifts beyond contamination---and shifts DIF-corrected scores by ${+}2.12$\,pp on average. We propose a three-step audit protocol (Monitor/Triage/Correct) with empirically grounded thresholds for benchmark maintainers. LLM benchmarks need psychometric monitoring, not just score reporting.
@@ -20468,7 +19817,7 @@ _source line 1275 · 2026-05-23T16:12:31.166008+00:00_
 
 ### Tool call
 
-_source line 1276 · 2026-05-23T16:12:31.266856+00:00_
+_source line 1260 · 2026-05-23T16:12:31.266856+00:00_
 
 called Read
 
@@ -20502,7 +19851,7 @@ called Read
 
 ### Tool result
 
-_source line 1277 · 2026-05-23T16:12:31.317591+00:00_
+_source line 1261 · 2026-05-23T16:12:31.317591+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -20531,7 +19880,7 @@ _source line 1277 · 2026-05-23T16:12:31.317591+00:00_
 
 ### Tool call
 
-_source line 1278 · 2026-05-23T16:12:31.318081+00:00_
+_source line 1262 · 2026-05-23T16:12:31.318081+00:00_
 
 called Read
 
@@ -20555,6 +19904,383 @@ called Read
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1263 · 2026-05-23T16:12:31.368615+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\subsection{Temporal DIF as Structured Signal}
+5	\label{sec:disc_temporal}
+6	
+7	\looseness=-1
+8	Temporal DIF detects \emph{that} items function differently across cohorts, not \emph{why}---and this is by design. We use ``temporal'' as shorthand: the 2023--2024 cohorts differ simultaneously in architecture, training data, and methodology (\Cref{sec:cohorts}), and DIF captures these confounded changes without attributing cause. Stratifying by model type reveals opposite patterns: base models ($N{=}1{,}409$) are 60.1\% reference-favoring ($\rho = -0.570$), while instruct models ($N{=}478$) are 65.6\% focal-favoring ($\rho = -0.079$; $\chi^2 = 562.7$, $p < 10^{-124}$). Following the impact-bias framework~\citep{camilli1994methods}, this reversal reflects structured item-level bias rather than uniform group impact, validating DIF as a mechanism-agnostic diagnostic (\Cref{app:mechanism_discussion}).
+9	
+10	\looseness=-1
+11	Composition downsampling ($\Delta = 1.08$\,pp), base-only, and instruct-only temporal analyses independently confirm DIF is not an artifact of cohort structure (\Cref{app:composition_control,app:baseinst_temporal,app:within_arch}), motivating periodic psychometric audits alongside score reporting.
+12	
+13	\looseness=-2
+14	Three features distinguish LLM temporal DIF from educational settings: (1)~the observed C\% (29.2\%; cluster bootstrap CI: $[26.7\%, 53.2\%]$) substantially exceeds typical educational DIF rates~\citep{clauser1998dif}; (2)~DIF flags and web-overlap labels are near-independent (Jaccard $= 0.206$), unlike educational settings where DIF correlates with construct-irrelevant variance; (3)~the near-independence admits two interpretations: DIF captures a broader signal---including capability evolution and training methodology shifts---of which contamination is one component, or DIF and contamination detection measure distinct constructs. The base/instruct reversal (OR $= 4.75$; \Cref{app:mech
+…[truncated 1213 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1264 · 2026-05-23T16:12:51.152049+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1265 · 2026-05-23T16:12:51.604214+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	We apply MH-DIF to the METABENCH response matrix~\citep{kipnis2024metabench} (5,227 models $\times$ 12,508 MMLU items~\citep{hendrycks2021mmlu}), with temporal cohorts defined by release date (2023 vs.\ 2024). Cross-benchmark validation across all six METABENCH benchmarks appears in \Cref{sec:gsm8k}.
+5	
+6	\subsection{Validation: DIF Detection Power}
+7	\label{sec:validation}
+8	
+9	\looseness=-1
+10	A Monte Carlo power analysis (1,000 replications) using empirical 2PL parameters from PSN-IRT~\citep{zhou2026psnirt} ($\bar{a} = 1.2$, $\bar{b} = -0.84$) confirms that at $N \geq 80$ per cohort, ETS~C achieves TPR of 0.68--0.80 (under uniform injection) and AUC of 0.93--0.94 for $|\Delta_{\mathrm{MH}}| \geq 1.4$ (\Cref{app:method_details}). Our temporal cohorts ($N_{\mathrm{ref}} = 1{,}080$, $N_{\mathrm{focal}} = 807$) far exceed this threshold; power varies with item discrimination (TPR 0.40--0.95 across $a = 0.5$--$2.0$; \Cref{app:power_sensitivity}).
+11	
+12	\subsection{Temporal DIF: 31\% of Items Exhibit Differential Functioning}
+13	\label{sec:temporal}
+14	
+15	\looseness=-1
+16	We compare 2023 ($N = 1{,}080$) against 2024 ($N = 807$) models; 31.3\% of items receive ETS~C classification ($|\Delta_{\mathrm{MH}}| \geq 1.5$; bootstrap 95\% CI: $[29.4\%, 38.1\%]$; family-level cluster bootstrap: $[26.7\%, 53.2\%]$, upper bound driven by mega-family over-representation; \Cref{app:uncertainty}). Two design-effect (DEFF) estimators bound the non-independence effect: simple-mean DEFF yields 29.2\% and weighted-mean DEFF yields 13.5\%, bracketing temporal C\% at 13.5--29.2\%. The cluster bootstrap 95\% CI ($[26.7\%, 53.2\%]$)---a family-level resampling method independent of DEFF methodology---excludes the weighted-mean estimate (13.5\%), providing model-independent evidence that over-correction drives the lower bound. Under weighted-mean DEFF (C\% $= 13.5\%$), all downstream conclusions hold: $\rho = 0.999$, score shift $= {+}1
+…[truncated 4151 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1266 · 2026-05-23T16:12:51.604579+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1267 · 2026-05-23T16:12:52.108265+00:00_
+
+1	\section*{Limitations}
+2	
+3	\looseness=-1
+4	Three primary limitations apply. (1)~The semi-synthetic framework uses uniform binary response flipping, a stylized injection model; reported $\Delta\mathrm{TPR}$ values may overestimate detection power. Partial memorization scenarios---where models recall item cues without deterministic answer flipping---would produce weaker and qualitatively different DIF patterns than our binary injection model. The framework detects \emph{that} items function differently but not \emph{why}---a deliberate design choice that limits immediate actionability; follow-up expert review is needed to determine whether flagged items should be retired or retained. (2)~The MH $\chi^2$ test assumes independent examinees; LLM model families violate this assumption. Two DEFF estimators (13.5--29.2\%) and family-level cluster bootstrap (95\% CI: $[26.7\%, 53.2\%]$) bound the impact, but the extreme relatedness of some families (e.g., hundreds of Llama-2 fine-tunes) exceeds the clustering levels studied in educational settings~\citep{french2010hierarchical}. (3)~Cross-subject matching assumes contamination affects a minority of domains; $\Delta\mathrm{FPR}$ rises to 0.069 when contamination spans ${\geq}20$ subjects. Although composition control experiments show a small residual shift ($\Delta = 1.08$\,pp; \Cref{app:composition_control}), base/instruct ratio changes between cohorts remain a potential confound that cannot be fully eliminated without single-architecture longitudinal data. Temporal cohorts defined by calendar year provide coarse granularity, and generalizability to partial-credit and free-form generation benchmarks is untested. Multidimensional DIF~\citep{ackerman1992didmf} may arise when MMLU's 57 subjects span distinct latent dimensions; cross-subject matching mitigates between-domain multidimensionality but not within-domain violations. IRT parameters are used only for auxiliary power analysis; all core DIF results are nonparametric. 
+…[truncated 214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1268 · 2026-05-23T16:12:52.158985+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1269 · 2026-05-23T16:12:52.209662+00:00_
+
+1	\enlargethispage{6\baselineskip}
+2	\section{Conclusion}
+3	\label{sec:conclusion}
+4	
+5	\looseness=-2
+6	Across six METABENCH benchmarks, 17.9--31.3\% of items exhibit temporal DIF across 2023--2024 model cohorts (29.2\% for MMLU; bootstrap CI: $[26.7\%, 53.2\%]$), while aggregate rankings remain preserved ($\rho \approx 0.997$). DIF flags are near-independent of web-overlap labels (Jaccard $= 0.206$); opposite base-vs-instruct patterns ($\chi^2 = 562.7$) confirm that DIF captures signal beyond contamination. Mechanism-conditional DIF audit should complement contamination screening~\citep{habba2026growingpains}; connecting DIF to specific training factors remains open.
+7	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1270 · 2026-05-23T16:14:01.411205+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+  "offset": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex",
+    "offset": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1271 · 2026-05-23T16:14:01.863553+00:00_
+
+50	\centering
+51	\includegraphics[width=\columnwidth]{fig_2_dose_response.pdf}
+52	\caption{Semi-synthetic dose-response for DIF detection on MMLU. $\Delta\mathrm{TPR}$ increases monotonically with exploitation rate $p$ under binary injection (a calibration upper bound; \Cref{sec:injection}), confirming that MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\Delta\mathrm{TPR} \approx 0$.}
+53	\label{fig:dose_response}
+54	\end{figure}
+55	
+56	\subsection{Structural Analysis}
+57	\label{sec:structural}
+58	
+59	\looseness=-1
+60	Two structural controls and a sensitivity check fail to reduce temporal C\% below 31\% (\Cref{tab:structural_comparison}): matched-ability quintiles, within-subject DIF (C\% $= 38.1\%$; cross-subject C\% is more conservative due to lower local dependence), and IRT $\theta$-conditioning ($r(\theta, \mathrm{total\ score}) = 0.9986$). Logistic regression detects an additional 17.7\% with non-uniform DIF ($|\beta_{\mathrm{interaction}}| \geq 0.5$), reaching a union of 47\% (\Cref{app:structural}). Ability-matched C\% converges to ${\sim}$28--29\% for both temporal and within-family comparisons despite vastly different unmatched rates (\Cref{app:structural}).
+61	
+62	\begin{table}[t]
+63	\centering
+64	\caption{Structural controls and sensitivity checks for temporal DIF. None reduces C\% below 31\%; $\theta$-conditioning serves as a sensitivity check confirming total-score adequacy.}
+65	\label{tab:structural_comparison}
+66	\small
+67	\resizebox{\columnwidth}{!}{%
+68	\begin{tabular}{lcccc}
+69	\toprule
+70	Approach & Mechanism & Temp.\ C\% & TPR ($p{=}0.5$) & Outcome \\
+71	\midrule
+72	Baseline (ext.) & Cross-bench.\ total score & $0.314_{\pm.009}$ & $0.834_{\pm.027}$ & Reference \\
+73	Matched-ability & Within-quintile temp.\ DIF & ${\sim}$0.31 & -- & Enrich.\ 0.94--1.04 \\
+74	$\theta$-cond.\ (sens.) & $\theta$ replaces total score & 0.312 & 0.876 & $r(\theta,\mathrm{total}) {=} 0.9986$ \\
+75	Within-subject & Per-su
+…[truncated 4245 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1272 · 2026-05-23T16:14:01.914279+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1273 · 2026-05-23T16:14:01.965126+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{DIF Methodology and Measurement Invariance.}
+5	The Mantel-Haenszel procedure for DIF detection was introduced by \citet{holland1988mh} and remains the most widely used method in educational testing due to its simplicity and well-characterized statistical properties \citep{clauser1998dif}. Alternative approaches include logistic regression DIF \citep{swaminathan1990logistic}, SIBTEST \citep{shealy1993sibtest}, Lord's $\chi^2$ test \citep{lord1980irt}, and the Raju area method \citep{raju1988area}; \citet{millsap1993dif}, \citet{zumbo1999handbook}, and \citet{penfield2007dif} provide comprehensive reviews. DIF analysis is a specific instance of measurement invariance testing \citep{meredith1993invariance, vandenberg2000invariance, millsap2011invariance}, which examines whether a measurement instrument functions equivalently across populations. MIMIC models offer a latent-variable approach to the same problem \citep{muthen1985mimic, woods2009mimic}, and \citet{teresi2007dif} reviews DIF methods across applied domains. Cross-subject matching---computing the stratification variable from domains other than the one being tested---adapts purified subtest matching from the DIF literature \citep{nandakumar1993dif,donoghue1993mh} to a new challenge: contamination control at scale, where the matching variable itself may be compromised by the phenomenon under test. We retain the standard MH statistic and develop LLM-specific adaptations around it: cross-subject matching for contamination control (with a constructive $\Delta\mathrm{FPR} = 0$ guarantee), DEFF correction for non-independence, and semi-synthetic validation absent ground-truth labels. The 5,227-examinee scale exceeds typical DIF applications~\citep{belzak2020smallsample}. The impact-versus-DIF confound is addressed through matched-ability quintile analysis, IRT $\theta$-conditioning (as sensitivity check), and a random-split control (\Cref{sec:tempor
+…[truncated 4862 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_c8e1a57f5b1c63676dddeadba42e57b8:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
 }
 ```
 

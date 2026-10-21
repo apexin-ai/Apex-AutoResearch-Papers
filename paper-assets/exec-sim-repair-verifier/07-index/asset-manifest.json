@@ -8,10 +8,10 @@
   "review_count": 18,
   "validation_count": 24,
   "chat_count": 733,
-  "worker_count": 2555,
-  "trace_count": 3511,
-  "trace_bytes": 392865548,
-  "maintenance_count": 170,
+  "worker_count": 2551,
+  "trace_count": 3507,
+  "trace_bytes": 392255818,
+  "maintenance_count": 166,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -113,7 +113,7 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "733 conversations; 2555 worker logs/results; 3511 source files",
+      "evidence": "733 conversations; 2551 worker logs/results; 3507 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
@@ -141,7 +141,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "170 project documentation files; 0 license files",
+      "evidence": "166 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

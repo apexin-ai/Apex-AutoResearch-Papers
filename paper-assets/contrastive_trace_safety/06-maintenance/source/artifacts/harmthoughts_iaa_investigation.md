@@ -63,12 +63,3 @@
 - No other papers have questioned or validated annotation quality
 - The related paper "The Point of No Return" (Merrill & Srivastava, arXiv:2605.17113) uses a different dataset for commitment point analysis but does not cite or discuss HarmThoughts
 
-## Risks for Rebuttal
-
-1. **LLM-annotated data**: A reviewer may object that 98.8% of labels come from Claude Sonnet 4.6, not humans. The JSD=0.035 validation is distributional, not per-instance.
-2. **Small human subset**: 13 traces is a very small calibration set — κ scores on this may not generalize to the full dataset.
-3. **CP is our construct**: If a reviewer questions CP reliability, we should be transparent that CP is derived from HarmThoughts labels using our own operationalization, not a label provided by Kakkar et al.
-
-## Summary for Rebuttal
-
-HarmThoughts reports Fleiss' κ of 0.74–0.80 on a human-annotated subset (13 traces, 691 sentences) with 8 screened annotators and majority-vote adjudication, plus JSD=0.035 bits between human and Claude Sonnet 4.6 annotations on the full dataset (1,018 traces). While the human IAA is in the "substantial agreement" range, the per-instance reliability of the LLM-generated labels covering 98.8% of the data has not been directly measured via traditional IAA metrics — a limitation acknowledged by the original authors ("Annotations are LLM-generated with human validation on a subset; some boundaries between semantically adjacent behaviors remain inherently ambiguous").

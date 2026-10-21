@@ -7,45 +7,6 @@
       "messages": [
         {
           "source_line": 901,
-          "timestamp": "2026-05-22T17:11:43.391417+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-            "tool_args": {
-              "text": "[severity: info] exp-005 GLA 4-architecture Jaccard 分析完成——核心发现得到 robustness 支持\n\n## 结果核实\n\n**ARC-Easy (340M, 4 arch, 6 pairs)**:\n- Mean J_helped = 0.103, J_hurt = 0.106\n- 6/6 对 permutation test 显著 (z = 4.04–7.07, all p ≤ 0.0002)\n\n**LAMBADA (340M, 4 arch, 6 pairs)**:\n- Mean J_helped = 0.122, J_hurt = 0.097  \n- 6/6 对 permutation test 显著 (z = 6.36–12.04, all p ≈ 0)\n\n**GLA 新增配对 Jaccard（关键数据）**：\n| 配对 | ARC-Easy J_h | ARC-Easy J_u | LAMBADA J_h | LAMBADA J_u |\n|------|:---:|:---:|:---:|:---:|\n| GDN-GLA | 0.114 | 0.106 | 0.124 | 0.100 |\n| RetNet-GLA | 0.112 | 0.110 | 0.123 | 0.107 |\n| HGRN2-GLA | 0.098 | 0.087 | 0.127 | 0.086 |\n\n**核心判断**：GLA 的 pairwise Jaccard 与原 3 架构之间的 Jaccard 完全一致——J ≤ 0.13，~87-90% 非重叠。4 架构扩展未改变核心发现。\n\n## 注意事项\n\n1. **LAMBADA J_helped 略高于 1.3B 参考值**：4-arch 340M mean = 0.122 vs 1.3B 3-arch ref = 0.10。这与 §4.2 中 340M α 系统性偏高的已知 scale 效应一致（experiments.tex:78），不构成新问题。\n2. **Scale 限制**：这是 340M 数据。论文主实验在 1.3B。建议在 Appendix 中明确标注 \"340M robustness check\"。\n3. **仅 GLA 有完整 pure+h3-1 配对**。DeltaNet 和 HGRN 的 pure 模型下载仍未完成。如果最终只有 GLA 一个扩展架构，仍然有价值——从 3 对增加到 6 对。\n\n## 对论文的影响\n\n这个结果可以放入 Appendix 作为 robustness evidence：\n- \"Extending to a fourth architecture (GLA) at 340M scale yields six pairwise comparisons with mean J ≤ 0.12, consistent with the three-architecture pattern at 1.3B.\"\n- 将 n=3 → n=4 后 pairwise 从 3 对增至 6 对，统计 power 显著提升。\n\n**建议 Agent 将 jaccard_4arch.json 注册为 artifact 并开始写 Appendix 段落。**",
-              "project": "entrainment_gated_ft"
-            }
-          },
-          "id": "event-000901"
-        },
-        {
-          "source_line": 902,
-          "timestamp": "2026-05-22T17:11:46.923678+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-            "elapsed_ms": 3532
-          },
-          "id": "event-000902"
-        },
-        {
-          "source_line": 903,
           "timestamp": "2026-05-22T17:13:52.193835+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -63,10 +24,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-000903"
+          "id": "event-000901"
         },
         {
-          "source_line": 904,
+          "source_line": 902,
           "timestamp": "2026-05-22T17:13:52.244499+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -81,10 +42,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000904"
+          "id": "event-000902"
         },
         {
-          "source_line": 905,
+          "source_line": 903,
           "timestamp": "2026-05-22T17:13:55.356224+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -103,10 +64,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000905"
+          "id": "event-000903"
         },
         {
-          "source_line": 906,
+          "source_line": 904,
           "timestamp": "2026-05-22T17:13:55.859416+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -121,10 +82,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 503
           },
-          "id": "event-000906"
+          "id": "event-000904"
         },
         {
-          "source_line": 907,
+          "source_line": 905,
           "timestamp": "2026-05-22T17:13:56.361739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -142,10 +103,10 @@
               "command": "ls -lt /root/entrainment_gated_ft/results/exp005_zoo_expansion/"
             }
           },
-          "id": "event-000907"
+          "id": "event-000905"
         },
         {
-          "source_line": 908,
+          "source_line": 906,
           "timestamp": "2026-05-22T17:13:57.165149+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -164,10 +125,10 @@
               "limit": "80"
             }
           },
-          "id": "event-000908"
+          "id": "event-000906"
         },
         {
-          "source_line": 909,
+          "source_line": 907,
           "timestamp": "2026-05-22T17:13:57.868977+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -182,10 +143,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1507
           },
-          "id": "event-000909"
+          "id": "event-000907"
         },
         {
-          "source_line": 910,
+          "source_line": 908,
           "timestamp": "2026-05-22T17:13:57.920630+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -200,10 +161,10 @@
             "tool": "Read",
             "elapsed_ms": 755
           },
-          "id": "event-000910"
+          "id": "event-000908"
         },
         {
-          "source_line": 911,
+          "source_line": 909,
           "timestamp": "2026-05-22T17:14:08.174123+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -221,10 +182,10 @@
               "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json"
             }
           },
-          "id": "event-000911"
+          "id": "event-000909"
         },
         {
-          "source_line": 912,
+          "source_line": 910,
           "timestamp": "2026-05-22T17:14:08.475617+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -242,10 +203,10 @@
               "command": "tail -40 /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.log"
             }
           },
-          "id": "event-000912"
+          "id": "event-000910"
         },
         {
-          "source_line": 913,
+          "source_line": 911,
           "timestamp": "2026-05-22T17:14:08.827467+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -263,10 +224,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000913"
+          "id": "event-000911"
         },
         {
-          "source_line": 914,
+          "source_line": 912,
           "timestamp": "2026-05-22T17:14:10.233725+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -281,10 +242,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2059
           },
-          "id": "event-000914"
+          "id": "event-000912"
         },
         {
-          "source_line": 915,
+          "source_line": 913,
           "timestamp": "2026-05-22T17:14:13.296733+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -299,10 +260,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4821
           },
-          "id": "event-000915"
+          "id": "event-000913"
         },
         {
-          "source_line": 916,
+          "source_line": 914,
           "timestamp": "2026-05-22T17:14:13.398087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -317,10 +278,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 4570
           },
-          "id": "event-000916"
+          "id": "event-000914"
         },
         {
-          "source_line": 917,
+          "source_line": 915,
           "timestamp": "2026-05-22T17:15:11.278656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -338,10 +299,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline/"
             }
           },
-          "id": "event-000917"
+          "id": "event-000915"
         },
         {
-          "source_line": 918,
+          "source_line": 916,
           "timestamp": "2026-05-22T17:15:12.182197+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -359,10 +320,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-pure-baseline/ 2>/dev/null"
             }
           },
-          "id": "event-000918"
+          "id": "event-000916"
         },
         {
-          "source_line": 919,
+          "source_line": 917,
           "timestamp": "2026-05-22T17:15:12.734788+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -380,10 +341,10 @@
               "command": "tail -20 /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.log"
             }
           },
-          "id": "event-000919"
+          "id": "event-000917"
         },
         {
-          "source_line": 920,
+          "source_line": 918,
           "timestamp": "2026-05-22T17:15:12.785334+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -398,10 +359,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1506
           },
-          "id": "event-000920"
+          "id": "event-000918"
         },
         {
-          "source_line": 921,
+          "source_line": 919,
           "timestamp": "2026-05-22T17:15:12.785709+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -416,10 +377,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 603
           },
-          "id": "event-000921"
+          "id": "event-000919"
         },
         {
-          "source_line": 922,
+          "source_line": 920,
           "timestamp": "2026-05-22T17:15:14.543860+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -434,10 +395,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1809
           },
-          "id": "event-000922"
+          "id": "event-000920"
         },
         {
-          "source_line": 923,
+          "source_line": 921,
           "timestamp": "2026-05-22T17:15:44.342785+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -455,10 +416,10 @@
               "command": "ls -la /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure/"
             }
           },
-          "id": "event-000923"
+          "id": "event-000921"
         },
         {
-          "source_line": 924,
+          "source_line": 922,
           "timestamp": "2026-05-22T17:15:45.045428+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -476,10 +437,10 @@
               "command": "ps aux --no-headers -o pid,etime,command -p $(pgrep -f \"run_pure_v10\" -d,) 2>/dev/null"
             }
           },
-          "id": "event-000924"
+          "id": "event-000922"
         },
         {
-          "source_line": 925,
+          "source_line": 923,
           "timestamp": "2026-05-22T17:15:46.915305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -494,10 +455,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2572
           },
-          "id": "event-000925"
+          "id": "event-000923"
         },
         {
-          "source_line": 926,
+          "source_line": 924,
           "timestamp": "2026-05-22T17:15:46.915802+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -512,10 +473,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1870
           },
-          "id": "event-000926"
+          "id": "event-000924"
         },
         {
-          "source_line": 927,
+          "source_line": 925,
           "timestamp": "2026-05-22T17:15:50.428796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -533,10 +494,10 @@
               "command": "ps aux --no-headers -w -w"
             }
           },
-          "id": "event-000927"
+          "id": "event-000925"
         },
         {
-          "source_line": 928,
+          "source_line": 926,
           "timestamp": "2026-05-22T17:15:52.988904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -551,10 +512,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2560
           },
-          "id": "event-000928"
+          "id": "event-000926"
         },
         {
-          "source_line": 929,
+          "source_line": 927,
           "timestamp": "2026-05-22T17:17:13.913969+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -572,10 +533,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000929"
+          "id": "event-000927"
         },
         {
-          "source_line": 930,
+          "source_line": 928,
           "timestamp": "2026-05-22T17:17:15.067994+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -590,10 +551,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 1154
           },
-          "id": "event-000930"
+          "id": "event-000928"
         },
         {
-          "source_line": 931,
+          "source_line": 929,
           "timestamp": "2026-05-22T17:17:25.287388+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -613,10 +574,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000931"
+          "id": "event-000929"
         },
         {
-          "source_line": 932,
+          "source_line": 930,
           "timestamp": "2026-05-22T17:17:25.338195+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -631,10 +592,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-000932"
+          "id": "event-000930"
         },
         {
-          "source_line": 933,
+          "source_line": 931,
           "timestamp": "2026-05-22T17:17:28.963219+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -653,10 +614,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000933"
+          "id": "event-000931"
         },
         {
-          "source_line": 934,
+          "source_line": 932,
           "timestamp": "2026-05-22T17:17:29.014900+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -671,10 +632,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-000934"
+          "id": "event-000932"
         },
         {
-          "source_line": 935,
+          "source_line": 933,
           "timestamp": "2026-05-22T17:17:45.681049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -692,10 +653,10 @@
               "command": "ls -la /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/"
             }
           },
-          "id": "event-000935"
+          "id": "event-000933"
         },
         {
-          "source_line": 936,
+          "source_line": 934,
           "timestamp": "2026-05-22T17:17:46.133053+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -713,10 +674,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000936"
+          "id": "event-000934"
         },
         {
-          "source_line": 937,
+          "source_line": 935,
           "timestamp": "2026-05-22T17:17:47.217706+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -731,10 +692,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1536
           },
-          "id": "event-000937"
+          "id": "event-000935"
         },
         {
-          "source_line": 938,
+          "source_line": 936,
           "timestamp": "2026-05-22T17:17:49.024799+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -749,10 +710,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2891
           },
-          "id": "event-000938"
+          "id": "event-000936"
         },
         {
-          "source_line": 939,
+          "source_line": 937,
           "timestamp": "2026-05-22T17:18:09.775310+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -765,7 +726,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000939"
+          "id": "event-000937"
         }
       ]
     },
@@ -773,7 +734,7 @@
       "number": 58,
       "messages": [
         {
-          "source_line": 940,
+          "source_line": 938,
           "timestamp": "2026-05-22T17:24:11.390827+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -787,10 +748,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "worker_done:worker_analysis_exp-005-5arch-jaccard_20260522t171842"
           },
-          "id": "event-000940"
+          "id": "event-000938"
         },
         {
-          "source_line": 941,
+          "source_line": 939,
           "timestamp": "2026-05-22T17:24:18.681571+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -810,10 +771,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000941"
+          "id": "event-000939"
         },
         {
-          "source_line": 942,
+          "source_line": 940,
           "timestamp": "2026-05-22T17:24:19.134497+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -828,10 +789,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 452
           },
-          "id": "event-000942"
+          "id": "event-000940"
         },
         {
-          "source_line": 943,
+          "source_line": 941,
           "timestamp": "2026-05-22T17:24:19.235230+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -849,10 +810,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*5arch*\" -type f"
             }
           },
-          "id": "event-000943"
+          "id": "event-000941"
         },
         {
-          "source_line": 944,
+          "source_line": 942,
           "timestamp": "2026-05-22T17:24:22.396418+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -867,10 +828,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3161
           },
-          "id": "event-000944"
+          "id": "event-000942"
         },
         {
-          "source_line": 945,
+          "source_line": 943,
           "timestamp": "2026-05-22T17:24:26.460910+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -888,10 +849,10 @@
               "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json"
             }
           },
-          "id": "event-000945"
+          "id": "event-000943"
         },
         {
-          "source_line": 946,
+          "source_line": 944,
           "timestamp": "2026-05-22T17:24:28.368153+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -906,10 +867,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1907
           },
-          "id": "event-000946"
+          "id": "event-000944"
         },
         {
-          "source_line": 947,
+          "source_line": 945,
           "timestamp": "2026-05-22T17:24:53.405851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -927,10 +888,10 @@
               "command": "head -200 /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json"
             }
           },
-          "id": "event-000947"
+          "id": "event-000945"
         },
         {
-          "source_line": 948,
+          "source_line": 946,
           "timestamp": "2026-05-22T17:24:54.660073+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -945,10 +906,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1254
           },
-          "id": "event-000948"
+          "id": "event-000946"
         },
         {
-          "source_line": 949,
+          "source_line": 947,
           "timestamp": "2026-05-22T17:25:03.745106+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -966,10 +927,10 @@
               "command": "grep -A5 '\"lambada\"' /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json"
             }
           },
-          "id": "event-000949"
+          "id": "event-000947"
         },
         {
-          "source_line": 950,
+          "source_line": 948,
           "timestamp": "2026-05-22T17:25:04.849979+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -987,10 +948,10 @@
               "command": "grep -E '\"(RetNet-DeltaNet|GLA-DeltaNet|HGRN2-DeltaNet|GDN-DeltaNet)\"' -A8 /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json"
             }
           },
-          "id": "event-000950"
+          "id": "event-000948"
         },
         {
-          "source_line": 951,
+          "source_line": 949,
           "timestamp": "2026-05-22T17:25:05.453789+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1005,10 +966,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1708
           },
-          "id": "event-000951"
+          "id": "event-000949"
         },
         {
-          "source_line": 952,
+          "source_line": 950,
           "timestamp": "2026-05-22T17:25:05.454181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1023,10 +984,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 604
           },
-          "id": "event-000952"
+          "id": "event-000950"
         },
         {
-          "source_line": 953,
+          "source_line": 951,
           "timestamp": "2026-05-22T17:25:08.792345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1044,10 +1005,10 @@
               "command": "grep -A8 \"DeltaNet\" /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json"
             }
           },
-          "id": "event-000953"
+          "id": "event-000951"
         },
         {
-          "source_line": 954,
+          "source_line": 952,
           "timestamp": "2026-05-22T17:25:09.996816+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1062,10 +1023,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1204
           },
-          "id": "event-000954"
+          "id": "event-000952"
         },
         {
-          "source_line": 955,
+          "source_line": 953,
           "timestamp": "2026-05-22T17:25:38.204807+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1084,10 +1045,10 @@
               "limit": "35"
             }
           },
-          "id": "event-000955"
+          "id": "event-000953"
         },
         {
-          "source_line": 956,
+          "source_line": 954,
           "timestamp": "2026-05-22T17:25:38.269359+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1102,10 +1063,10 @@
             "tool": "Read",
             "elapsed_ms": 64
           },
-          "id": "event-000956"
+          "id": "event-000954"
         },
         {
-          "source_line": 957,
+          "source_line": 955,
           "timestamp": "2026-05-22T17:26:05.001663+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1123,10 +1084,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000957"
+          "id": "event-000955"
         },
         {
-          "source_line": 958,
+          "source_line": 956,
           "timestamp": "2026-05-22T17:26:08.520406+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1141,10 +1102,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3518
           },
-          "id": "event-000958"
+          "id": "event-000956"
         },
         {
-          "source_line": 959,
+          "source_line": 957,
           "timestamp": "2026-05-22T17:26:21.255796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1162,10 +1123,10 @@
               "command": "tail -5 /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v10.log"
             }
           },
-          "id": "event-000959"
+          "id": "event-000957"
         },
         {
-          "source_line": 960,
+          "source_line": 958,
           "timestamp": "2026-05-22T17:26:22.962042+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1180,10 +1141,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1706
           },
-          "id": "event-000960"
+          "id": "event-000958"
         },
         {
-          "source_line": 961,
+          "source_line": 959,
           "timestamp": "2026-05-22T17:26:31.027356+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1196,7 +1157,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000961"
+          "id": "event-000959"
         }
       ]
     },
@@ -1204,7 +1165,7 @@
       "number": 59,
       "messages": [
         {
-          "source_line": 962,
+          "source_line": 960,
           "timestamp": "2026-05-22T17:37:28.874856+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1218,10 +1179,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000962"
+          "id": "event-000960"
         },
         {
-          "source_line": 963,
+          "source_line": 961,
           "timestamp": "2026-05-22T17:37:41.896684+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1238,10 +1199,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-000963"
+          "id": "event-000961"
         },
         {
-          "source_line": 964,
+          "source_line": 962,
           "timestamp": "2026-05-22T17:37:42.449246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1256,10 +1217,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-000964"
+          "id": "event-000962"
         },
         {
-          "source_line": 965,
+          "source_line": 963,
           "timestamp": "2026-05-22T17:37:42.449726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1278,10 +1239,10 @@
               "limit": "100"
             }
           },
-          "id": "event-000965"
+          "id": "event-000963"
         },
         {
-          "source_line": 966,
+          "source_line": 964,
           "timestamp": "2026-05-22T17:37:43.421676+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1296,10 +1257,10 @@
             "tool": "Read",
             "elapsed_ms": 971
           },
-          "id": "event-000966"
+          "id": "event-000964"
         },
         {
-          "source_line": 967,
+          "source_line": 965,
           "timestamp": "2026-05-22T17:37:49.597069+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1319,10 +1280,10 @@
               "run_in_background": "True"
             }
           },
-          "id": "event-000967"
+          "id": "event-000965"
         },
         {
-          "source_line": 968,
+          "source_line": 966,
           "timestamp": "2026-05-22T17:37:49.647905+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1337,10 +1298,10 @@
             "tool": "Agent",
             "elapsed_ms": 50
           },
-          "id": "event-000968"
+          "id": "event-000966"
         },
         {
-          "source_line": 969,
+          "source_line": 967,
           "timestamp": "2026-05-22T17:38:03.618151+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1360,10 +1321,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000969"
+          "id": "event-000967"
         },
         {
-          "source_line": 970,
+          "source_line": 968,
           "timestamp": "2026-05-22T17:38:04.070185+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1378,10 +1339,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-000970"
+          "id": "event-000968"
         },
         {
-          "source_line": 971,
+          "source_line": 969,
           "timestamp": "2026-05-22T17:38:04.622465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1401,10 +1362,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000971"
+          "id": "event-000969"
         },
         {
-          "source_line": 972,
+          "source_line": 970,
           "timestamp": "2026-05-22T17:38:05.124604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1419,10 +1380,10 @@
             "tool": "Grep",
             "elapsed_ms": 502
           },
-          "id": "event-000972"
+          "id": "event-000970"
         },
         {
-          "source_line": 973,
+          "source_line": 971,
           "timestamp": "2026-05-22T17:38:05.927775+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1442,10 +1403,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000973"
+          "id": "event-000971"
         },
         {
-          "source_line": 974,
+          "source_line": 972,
           "timestamp": "2026-05-22T17:38:06.029093+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1460,10 +1421,10 @@
             "tool": "Grep",
             "elapsed_ms": 101
           },
-          "id": "event-000974"
+          "id": "event-000972"
         },
         {
-          "source_line": 975,
+          "source_line": 973,
           "timestamp": "2026-05-22T17:38:20.006971+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1482,10 +1443,10 @@
               "limit": "60"
             }
           },
-          "id": "event-000975"
+          "id": "event-000973"
         },
         {
-          "source_line": 976,
+          "source_line": 974,
           "timestamp": "2026-05-22T17:38:20.007425+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1502,10 +1463,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-000976"
+          "id": "event-000974"
         },
         {
-          "source_line": 977,
+          "source_line": 975,
           "timestamp": "2026-05-22T17:38:20.007798+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1524,10 +1485,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000977"
+          "id": "event-000975"
         },
         {
-          "source_line": 978,
+          "source_line": 976,
           "timestamp": "2026-05-22T17:38:20.008122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1542,10 +1503,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000978"
+          "id": "event-000976"
         },
         {
-          "source_line": 979,
+          "source_line": 977,
           "timestamp": "2026-05-22T17:38:20.008417+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1560,10 +1521,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000979"
+          "id": "event-000977"
         },
         {
-          "source_line": 980,
+          "source_line": 978,
           "timestamp": "2026-05-22T17:38:20.013650+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1578,10 +1539,10 @@
             "tool": "Read",
             "elapsed_ms": 6
           },
-          "id": "event-000980"
+          "id": "event-000978"
         },
         {
-          "source_line": 981,
+          "source_line": 979,
           "timestamp": "2026-05-22T17:41:22.600436+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1600,10 +1561,10 @@
               "limit": "15"
             }
           },
-          "id": "event-000981"
+          "id": "event-000979"
         },
         {
-          "source_line": 982,
+          "source_line": 980,
           "timestamp": "2026-05-22T17:41:23.604944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1618,10 +1579,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-000982"
+          "id": "event-000980"
         },
         {
-          "source_line": 983,
+          "source_line": 981,
           "timestamp": "2026-05-22T17:41:23.956430+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1641,10 +1602,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000983"
+          "id": "event-000981"
         },
         {
-          "source_line": 984,
+          "source_line": 982,
           "timestamp": "2026-05-22T17:41:24.007482+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1659,10 +1620,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-000984"
+          "id": "event-000982"
         },
         {
-          "source_line": 985,
+          "source_line": 983,
           "timestamp": "2026-05-22T17:42:51.929912+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1680,10 +1641,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000985"
+          "id": "event-000983"
         },
         {
-          "source_line": 986,
+          "source_line": 984,
           "timestamp": "2026-05-22T17:42:55.493032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1698,10 +1659,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3563
           },
-          "id": "event-000986"
+          "id": "event-000984"
         },
         {
-          "source_line": 987,
+          "source_line": 985,
           "timestamp": "2026-05-22T17:43:01.896298+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1714,7 +1675,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000987"
+          "id": "event-000985"
         }
       ]
     },
@@ -1722,7 +1683,7 @@
       "number": 60,
       "messages": [
         {
-          "source_line": 988,
+          "source_line": 986,
           "timestamp": "2026-05-22T17:53:59.212923+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1736,10 +1697,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000988"
+          "id": "event-000986"
         },
         {
-          "source_line": 989,
+          "source_line": 987,
           "timestamp": "2026-05-22T17:54:07.505834+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1758,10 +1719,10 @@
               "limit": "50"
             }
           },
-          "id": "event-000989"
+          "id": "event-000987"
         },
         {
-          "source_line": 990,
+          "source_line": 988,
           "timestamp": "2026-05-22T17:54:08.057988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1776,10 +1737,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-000990"
+          "id": "event-000988"
         },
         {
-          "source_line": 991,
+          "source_line": 989,
           "timestamp": "2026-05-22T17:54:08.058434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1796,10 +1757,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-000991"
+          "id": "event-000989"
         },
         {
-          "source_line": 992,
+          "source_line": 990,
           "timestamp": "2026-05-22T17:54:08.660800+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1814,10 +1775,10 @@
             "tool": "Read",
             "elapsed_ms": 602
           },
-          "id": "event-000992"
+          "id": "event-000990"
         },
         {
-          "source_line": 993,
+          "source_line": 991,
           "timestamp": "2026-05-22T17:54:08.811722+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1836,10 +1797,10 @@
               "limit": "10"
             }
           },
-          "id": "event-000993"
+          "id": "event-000991"
         },
         {
-          "source_line": 994,
+          "source_line": 992,
           "timestamp": "2026-05-22T17:54:08.912462+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1815,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000994"
+          "id": "event-000992"
         },
         {
-          "source_line": 995,
+          "source_line": 993,
           "timestamp": "2026-05-22T17:54:57.299915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1874,10 +1835,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-000995"
+          "id": "event-000993"
         },
         {
-          "source_line": 996,
+          "source_line": 994,
           "timestamp": "2026-05-22T17:54:57.852455+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1892,10 +1853,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-000996"
+          "id": "event-000994"
         },
         {
-          "source_line": 997,
+          "source_line": 995,
           "timestamp": "2026-05-22T17:54:57.852951+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1912,10 +1873,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-000997"
+          "id": "event-000995"
         },
         {
-          "source_line": 998,
+          "source_line": 996,
           "timestamp": "2026-05-22T17:54:58.204385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1930,10 +1891,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-000998"
+          "id": "event-000996"
         },
         {
-          "source_line": 999,
+          "source_line": 997,
           "timestamp": "2026-05-22T17:54:58.556082+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1953,10 +1914,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000999"
+          "id": "event-000997"
         },
         {
-          "source_line": 1000,
+          "source_line": 998,
           "timestamp": "2026-05-22T17:54:58.606681+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1971,10 +1932,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001000"
+          "id": "event-000998"
         },
         {
-          "source_line": 1001,
+          "source_line": 999,
           "timestamp": "2026-05-22T17:55:10.560198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1993,10 +1954,10 @@
               "limit": "16"
             }
           },
-          "id": "event-001001"
+          "id": "event-000999"
         },
         {
-          "source_line": 1002,
+          "source_line": 1000,
           "timestamp": "2026-05-22T17:55:11.012110+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2011,10 +1972,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-001002"
+          "id": "event-001000"
         },
         {
-          "source_line": 1003,
+          "source_line": 1001,
           "timestamp": "2026-05-22T17:55:11.469757+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2033,10 +1994,10 @@
               "limit": "6"
             }
           },
-          "id": "event-001003"
+          "id": "event-001001"
         },
         {
-          "source_line": 1004,
+          "source_line": 1002,
           "timestamp": "2026-05-22T17:55:11.939383+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2051,10 +2012,10 @@
             "tool": "Read",
             "elapsed_ms": 469
           },
-          "id": "event-001004"
+          "id": "event-001002"
         },
         {
-          "source_line": 1005,
+          "source_line": 1003,
           "timestamp": "2026-05-22T17:55:12.140600+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2073,10 +2034,10 @@
               "limit": "14"
             }
           },
-          "id": "event-001005"
+          "id": "event-001003"
         },
         {
-          "source_line": 1006,
+          "source_line": 1004,
           "timestamp": "2026-05-22T17:55:12.191189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2091,10 +2052,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001006"
+          "id": "event-001004"
         },
         {
-          "source_line": 1007,
+          "source_line": 1005,
           "timestamp": "2026-05-22T17:57:16.676857+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2112,10 +2073,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001007"
+          "id": "event-001005"
         },
         {
-          "source_line": 1008,
+          "source_line": 1006,
           "timestamp": "2026-05-22T17:57:20.911587+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2130,10 +2091,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4234
           },
-          "id": "event-001008"
+          "id": "event-001006"
         },
         {
-          "source_line": 1009,
+          "source_line": 1007,
           "timestamp": "2026-05-22T17:57:25.382986+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2146,7 +2107,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-001009"
+          "id": "event-001007"
         }
       ]
     },
@@ -2154,7 +2115,7 @@
       "number": 61,
       "messages": [
         {
-          "source_line": 1010,
+          "source_line": 1008,
           "timestamp": "2026-05-22T17:57:25.856075+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2168,10 +2129,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-001010"
+          "id": "event-001008"
         },
         {
-          "source_line": 1011,
+          "source_line": 1009,
           "timestamp": "2026-05-22T17:57:40.016794+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2190,10 +2151,10 @@
               "limit": "34"
             }
           },
-          "id": "event-001011"
+          "id": "event-001009"
         },
         {
-          "source_line": 1012,
+          "source_line": 1010,
           "timestamp": "2026-05-22T17:57:40.017144+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2208,10 +2169,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001012"
+          "id": "event-001010"
         },
         {
-          "source_line": 1013,
+          "source_line": 1011,
           "timestamp": "2026-05-22T17:57:47.787842+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2224,7 +2185,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-001013"
+          "id": "event-001011"
         }
       ]
     },
@@ -2232,7 +2193,7 @@
       "number": 62,
       "messages": [
         {
-          "source_line": 1014,
+          "source_line": 1012,
           "timestamp": "2026-05-22T18:09:57.132309+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2246,10 +2207,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-001014"
+          "id": "event-001012"
         },
         {
-          "source_line": 1015,
+          "source_line": 1013,
           "timestamp": "2026-05-22T18:10:07.239666+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2267,10 +2228,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*6arch*\" -type f"
             }
           },
-          "id": "event-001015"
+          "id": "event-001013"
         },
         {
-          "source_line": 1016,
+          "source_line": 1014,
           "timestamp": "2026-05-22T18:10:07.792261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2289,10 +2250,10 @@
               "limit": "3"
             }
           },
-          "id": "event-001016"
+          "id": "event-001014"
         },
         {
-          "source_line": 1017,
+          "source_line": 1015,
           "timestamp": "2026-05-22T18:10:10.251229+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2307,10 +2268,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3011
           },
-          "id": "event-001017"
+          "id": "event-001015"
         },
         {
-          "source_line": 1018,
+          "source_line": 1016,
           "timestamp": "2026-05-22T18:10:10.352360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2325,10 +2286,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 2560
           },
-          "id": "event-001018"
+          "id": "event-001016"
         },
         {
-          "source_line": 1019,
+          "source_line": 1017,
           "timestamp": "2026-05-22T18:10:13.921361+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2346,10 +2307,10 @@
               "command": "head -120 /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json"
             }
           },
-          "id": "event-001019"
+          "id": "event-001017"
         },
         {
-          "source_line": 1020,
+          "source_line": 1018,
           "timestamp": "2026-05-22T18:10:15.126025+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2364,10 +2325,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1204
           },
-          "id": "event-001020"
+          "id": "event-001018"
         },
         {
-          "source_line": 1021,
+          "source_line": 1019,
           "timestamp": "2026-05-22T18:10:20.344580+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2385,10 +2346,10 @@
               "command": "grep -A4 \"HGRN\\\"\" /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json"
             }
           },
-          "id": "event-001021"
+          "id": "event-001019"
         },
         {
-          "source_line": 1022,
+          "source_line": 1020,
           "timestamp": "2026-05-22T18:10:21.047972+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2406,10 +2367,10 @@
               "command": "grep \"mean_J\" /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json"
             }
           },
-          "id": "event-001022"
+          "id": "event-001020"
         },
         {
-          "source_line": 1023,
+          "source_line": 1021,
           "timestamp": "2026-05-22T18:10:21.902037+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2424,10 +2385,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1557
           },
-          "id": "event-001023"
+          "id": "event-001021"
         },
         {
-          "source_line": 1024,
+          "source_line": 1022,
           "timestamp": "2026-05-22T18:10:23.673312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2442,10 +2403,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2625
           },
-          "id": "event-001024"
+          "id": "event-001022"
         },
         {
-          "source_line": 1025,
+          "source_line": 1023,
           "timestamp": "2026-05-22T18:11:11.463947+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2463,10 +2424,10 @@
               "command": "grep -A5 \"cross_benchmark_summary\" /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json"
             }
           },
-          "id": "event-001025"
+          "id": "event-001023"
         },
         {
-          "source_line": 1026,
+          "source_line": 1024,
           "timestamp": "2026-05-22T18:11:12.368487+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2484,10 +2445,10 @@
               "command": "grep -B1 -A1 \"2.9\" /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json"
             }
           },
-          "id": "event-001026"
+          "id": "event-001024"
         },
         {
-          "source_line": 1027,
+          "source_line": 1025,
           "timestamp": "2026-05-22T18:11:13.522775+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2502,10 +2463,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2058
           },
-          "id": "event-001027"
+          "id": "event-001025"
         },
         {
-          "source_line": 1028,
+          "source_line": 1026,
           "timestamp": "2026-05-22T18:11:15.279309+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2520,10 +2481,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2910
           },
-          "id": "event-001028"
+          "id": "event-001026"
         },
         {
-          "source_line": 1029,
+          "source_line": 1027,
           "timestamp": "2026-05-22T18:11:50.008809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2541,10 +2502,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-001029"
+          "id": "event-001027"
         },
         {
-          "source_line": 1030,
+          "source_line": 1028,
           "timestamp": "2026-05-22T18:11:53.573932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2559,10 +2520,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3565
           },
-          "id": "event-001030"
+          "id": "event-001028"
         },
         {
-          "source_line": 1031,
+          "source_line": 1029,
           "timestamp": "2026-05-22T18:11:55.882657+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2575,7 +2536,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-001031"
+          "id": "event-001029"
         }
       ]
     },
@@ -2583,7 +2544,7 @@
       "number": 63,
       "messages": [
         {
-          "source_line": 1032,
+          "source_line": 1030,
           "timestamp": "2026-05-22T18:13:23.466175+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2597,10 +2558,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system:ralph_loop"
           },
-          "id": "event-001032"
+          "id": "event-001030"
         },
         {
-          "source_line": 1033,
+          "source_line": 1031,
           "timestamp": "2026-05-22T18:14:12.783966+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2613,7 +2574,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-001033"
+          "id": "event-001031"
         }
       ]
     }

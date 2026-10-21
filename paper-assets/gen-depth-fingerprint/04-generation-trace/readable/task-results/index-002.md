@@ -146,7 +146,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | exp exp 060 14b ddr | 1 | 0 | [Read transcript](exp-exp-060-14b-ddr.md) | [JSON](../../sessions/3a/3ada8ed015e418db6c9f.json) |
 | exp exp 060 analysis | 1 | 0 | [Read transcript](exp-exp-060-analysis.md) | [JSON](../../sessions/66/66b21d283bd549d4b97f.json) |
 | exp exp 060 continuation | 1 | 0 | [Read transcript](exp-exp-060-continuation.md) | [JSON](../../sessions/b3/b332f5e75beec3c3e8bc.json) |
-| exp gpu3 rebuttal prep | 1 | 0 | [Read transcript](exp-gpu3-rebuttal-prep.md) | [JSON](../../sessions/95/953071d05386cf6a5282.json) |
 | exp independent seed control | 1 | 0 | [Read transcript](exp-independent-seed-control.md) | [JSON](../../sessions/fa/faddc2c3122337795f4b.json) |
 | exp instruct analysis gpu2 | 1 | 0 | [Read transcript](exp-instruct-analysis-gpu2.md) | [JSON](../../sessions/81/81b271719d5a18453b3f.json) |
 | exp instruct llama3 2 3b | 1 | 0 | [Read transcript](exp-instruct-llama3-2-3b.md) | [JSON](../../sessions/c4/c4c972e183fed1608f67.json) |

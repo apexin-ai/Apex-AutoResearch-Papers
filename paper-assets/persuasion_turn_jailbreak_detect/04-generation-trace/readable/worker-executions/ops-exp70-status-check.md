@@ -6,15 +6,15 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 54
+- **Events:** 52
 - **Recorded user turns:** 0
-- **Tool calls:** 19
+- **Tool calls:** 18
 - **Original source:** `logs/workers/worker_ops_exp70_status_check_20260524T025119.log`
 - **Structured JSON:** [`0ddf7c88f187aa323e7f.json`](../../sessions/0d/0ddf7c88f187aa323e7f.json)
 
 ## Before a recorded user message
 
-54 recorded events
+52 recorded events
 
 ### Log line
 
@@ -938,94 +938,6 @@ _source line 20_
 
 _source line 21_
 
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U7S2ZVkfuKDsvr7xTmaNs8`</summary>
-
-```json
-{
-  "server": "westd-33183",
-  "command": "cat /root/persuasion_turn_jailbreak_detect/results/rebuttal/deberta_large_scale/exp70_deberta_large_scale.json",
-  "account": "root"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "type": "assistant",
-  "parent_tool_use_id": null,
-  "session_id": "c80894b5-4ec3-4b95-978f-22d8b0685f5c",
-  "uuid": "3d86b2a7-a358-49ab-baf5-3d57b22ca7d6",
-  "message": {
-    "model": "claude-opus-4-6",
-    "id": "msg_01SQNdk7pxFTwpaF3KVE2ZNX",
-    "type": "message",
-    "stop_reason": null,
-    "stop_sequence": null,
-    "stop_details": null,
-    "usage": {
-      "input_tokens": 1,
-      "cache_creation_input_tokens": 2366,
-      "cache_read_input_tokens": 25260,
-      "cache_creation": {
-        "ephemeral_5m_input_tokens": 0,
-        "ephemeral_1h_input_tokens": 2366
-      },
-      "output_tokens": 9,
-      "service_tier": "standard",
-      "inference_geo": "not_available"
-    },
-    "diagnostics": null,
-    "context_management": null
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 22 · 2026-05-24T02:51:45.286Z_
-
-<details><summary>↩ Tool result · `toolu_01U7S2ZVkfuKDsvr7xTmaNs8`</summary>
-
-```text
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dd_ood\\\": {\\n    \\\"deberta_large_vanilla\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 0.9390705679862306,\\n          \\\"k1\\\": 0.9154121863799283,\\n          \\\"k2\\\": 0.940040650406504,\\n          \\\"k3\\\": 0.9283172784865052,\\n          \\\"k5\\\": 0.9390705679862306\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.8948306595365418,\\n          \\\"k1\\\": 0.883220872694557,\\n          \\\"k2\\\": 0.883220872694557,\\n          \\\"k3\\\": 0.883220872694557,\\n          \\\"k5\\\": 0.883220872694557\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 0.8592531424901366,\\n          \\\"k1\\\": 0.9390705679862306,\\n          \\\"k2\\\": 0.906208601960611,\\n          \\\"k3\\\": 0.8948306595365418,\\n          \\\"k5\\\": 0.8713662790697674\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9125678756869053,\\n          \\\"std\\\": 0.02288907590288478\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9098233750205574,\\n          \\\"std\\\": 0.023336976711004546\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.902122936905868,\\n          \\\"std\\\": 0.01911900338688198\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.8978859065835184,\\n          \\\"std\\\": 0.02952134932151384\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.8977181233376363,\\n          \\\"std\\\": 0.03264923111507222\\n        }\\n      }\\n    },\\n    \\\"deberta_large_9class\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 1.0,\\n          \\\"k3\\\": 1.0,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.9903618394184432,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 0.9808503732554366,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 1.0,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9936167910851456,\\n          \\\"std\\\": 0.009027220618848052\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9935745596122955,\\n          \\\"std\\\": 0.0045434724702557725\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9967872798061478,\\n          \\\"std\\\": 0.0045434724702557725\\n        }\\n      }\\n    }\\n  },\\n  \\\"actorattack\\\": {\\n    \\\"deberta_large_vanilla\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 0.8747039124397615,\\n          \\\"k1\\\": 0.5757837215990796,\\n          \\\"k2\\\": 0.7286953942001039,\\n          \\\"k3\\\": 0.8214257268020708,\\n          \\\"k5\\\": 0.8659526127880558\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.8948306595365418,\\n          \\\"k1\\\": 0.7947826086956522,\\n          \\\"k2\\\": 0.8645235361653272,\\n          \\\"k3\\\": 0.883220872694557,\\n          \\\"k5\\\": 0.883220872694557\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 0.8407557354925776,\\n          \\\"k1\\\": 0.7506038647342995,\\n          \\\"k2\\\": 0.8253289473684211,\\n          \\\"k3\\\": 0.8401084010840109,\\n          \\\"k5\\\": 0.8347338935574229\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.7070567316763438,\\n          \\\"std\\\": 0.09456000823307849\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.806182625911284,\\n          \\\"std\\\": 0.057080395095784185\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.8482516668602128,\\n          \\\"std\\\": 0.025876560785065814\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.861302459680012,\\n          \\\"std\\\": 0.02006597002236052\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.8700967691562936,\\n          \\\"std\\\": 0.022315072328151157\\n        }\\n      }\\n    },\\n    \\\"deberta_large_9class\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9260651629072681,\\n          \\\"k2\\\": 0.9808503732554366,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9808503732554366,\\n          \\\"k2\\\": 0.9903618394184432,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9260651629072681,\\n          \\\"k2\\\": 0.9621794871794871,\\n          \\\"k3\\\": 0.9808503732554366,\\n          \\\"k5\\\": 1.0\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9443268996899908,\\n          \\\"std\\\": 0.0258259958306142\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9777972332844556,\\n          \\\"std\\\": 0.01170619471880737\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.987191350697441,\\n          \\\"std\\\": 0.00448374814859228\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "type": "user",
-  "parent_tool_use_id": null,
-  "session_id": "c80894b5-4ec3-4b95-978f-22d8b0685f5c",
-  "uuid": "d3b30a07-d53d-4358-9123-64ab3e58da22",
-  "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dd_ood\\\\\\\": {\\\\n    \\\\\\\"deberta_large_vanilla\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.9390705679862306,\\\\n          \\\\\\\"k1\\\\\\\": 0.9154121863799283,\\\\n          \\\\\\\"k2\\\\\\\": 0.940040650406504,\\\\n          \\\\\\\"k3\\\\\\\": 0.9283172784865052,\\\\n          \\\\\\\"k5\\\\\\\": 0.9390705679862306\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.8948306595365418,\\\\n          \\\\\\\"k1\\\\\\\": 0.883220872694557,\\\\n          \\\\\\\"k2\\\\\\\": 0.883220872694557,\\\\n          \\\\\\\"k3\\\\\\\": 0.883220872694557,\\\\n          \\\\\\\"k5\\\\\\\": 0.883220872694557\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.8592531424901366,\\\\n          \\\\\\\"k1\\\\\\\": 0.9390705679862306,\\\\n          \\\\\\\"k2\\\\\\\": 0.906208601960611,\\\\n          \\\\\\\"k3\\\\\\\": 0.8948306595365418,\\\\n          \\\\\\\"k5\\\\\\\": 0.8713662790697674\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_std\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9125678756869053,\\\\n          \\\\\\\"std\\\\\\\": 0.02288907590288478\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9098233750205574,\\\\n          \\\\\\\"std\\\\\\\": 0.023336976711004546\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.902122936905868,\\\\n          \\\\\\\"std\\\\\\\": 0.01911900338688198\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8978859065835184,\\\\n          \\\\\\\"std\\\\\\\": 0.02952134932151384\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8977181233376363,\\\\n          \\\\\\\"std\\\\\\\": 0.03264923111507222\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"deberta_large_9class\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 1.0,\\\\n          \\\\\\\"k1\\\\\\\": 1.0,\\\\n          \\\\\\\"k2\\\\\\\": 1.0,\\\\n          \\\\\\\"k3\\\\\\\": 1.0,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k1\\\\\\\": 1.0,\\\\n          \\\\\\\"k2\\\\\\\": 0.9808503732554366,\\\\n          \\\\\\\"k3\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 1.0,\\\\n          \\\\\\\"k1\\\\\\\": 1.0,\\\\n          \\\\\\\"k2\\\\\\\": 1.0,\\\\n          \\\\\\\"k3\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_std\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"std\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9936167910851456,\\\\n          \\\\\\\"std\\\\\\\": 0.009027220618848052\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9935745596122955,\\\\n          \\\\\\\"std\\\\\\\": 0.0045434724702557725\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"std\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967872798061478,\\\\n          \\\\\\\"std\\\\\\\": 0.0045434724702557725\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"actorattack\\\\\\\": {\\\\n    \\\\\\\"deberta_large_vanilla\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.8747039124397615,\\\\n          \\\\\\\"k1\\\\\\\": 0.5757837215990796,\\\\n          \\\\\\\"k2\\\\\\\": 0.7286953942001039,\\\\n          \\\\\\\"k3\\\\\\\": 0.8214257268020708,\\\\n          \\\\\\\"k5\\\\\\\": 0.8659526127880558\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.8948306595365418,\\\\n          \\\\\\\"k1\\\\\\\": 0.7947826086956522,\\\\n          \\\\\\\"k2\\\\\\\": 0.8645235361653272,\\\\n          \\\\\\\"k3\\\\\\\": 0.883220872694557,\\\\n          \\\\\\\"k5\\\\\\\": 0.883220872694557\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 0.8407557354925776,\\\\n          \\\\\\\"k1\\\\\\\": 0.7506038647342995,\\\\n          \\\\\\\"k2\\\\\\\": 0.8253289473684211,\\\\n          \\\\\\\"k3\\\\\\\": 0.8401084010840109,\\\\n          \\\\\\\"k5\\\\\\\": 0.8347338935574229\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_std\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7070567316763438,\\\\n          \\\\\\\"std\\\\\\\": 0.09456000823307849\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.806182625911284,\\\\n          \\\\\\\"std\\\\\\\": 0.057080395095784185\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8482516668602128,\\\\n          \\\\\\\"std\\\\\\\": 0.025876560785065814\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.861302459680012,\\\\n          \\\\\\\"std\\\\\\\": 0.02006597002236052\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8700967691562936,\\\\n          \\\\\\\"std\\\\\\\": 0.022315072328151157\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"deberta_large_9class\\\\\\\": {\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 1.0,\\\\n          \\\\\\\"k1\\\\\\\": 0.9260651629072681,\\\\n          \\\\\\\"k2\\\\\\\": 0.9808503732554366,\\\\n          \\\\\\\"k3\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 1.0,\\\\n          \\\\\\\"k1\\\\\\\": 0.9808503732554366,\\\\n          \\\\\\\"k2\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k3\\\\\\\": 0.9903618394184432,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"full\\\\\\\": 1.0,\\\\n          \\\\\\\"k1\\\\\\\": 0.9260651629072681,\\\\n          \\\\\\\"k2\\\\\\\": 0.9621794871794871,\\\\n          \\\\\\\"k3\\\\\\\": 0.9808503732554366,\\\\n          \\\\\\\"k5\\\\\\\": 1.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_std\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9443268996899908,\\\\n          \\\\\\\"std\\\\\\\": 0.0258259958306142\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9777972332844556,\\\\n          \\\\\\\"std\\\\\\\": 0.01170619471880737\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.987191350697441,\\\\n          \\\\\\\"std\\\\\\\": 0.00448374814859228\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"std\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"std\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
-    "structuredContent": {
-      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dd_ood\\\": {\\n    \\\"deberta_large_vanilla\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 0.9390705679862306,\\n          \\\"k1\\\": 0.9154121863799283,\\n          \\\"k2\\\": 0.940040650406504,\\n          \\\"k3\\\": 0.9283172784865052,\\n          \\\"k5\\\": 0.9390705679862306\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.8948306595365418,\\n          \\\"k1\\\": 0.883220872694557,\\n          \\\"k2\\\": 0.883220872694557,\\n          \\\"k3\\\": 0.883220872694557,\\n          \\\"k5\\\": 0.883220872694557\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 0.8592531424901366,\\n          \\\"k1\\\": 0.9390705679862306,\\n          \\\"k2\\\": 0.906208601960611,\\n          \\\"k3\\\": 0.8948306595365418,\\n          \\\"k5\\\": 0.8713662790697674\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9125678756869053,\\n          \\\"std\\\": 0.02288907590288478\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9098233750205574,\\n          \\\"std\\\": 0.023336976711004546\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.902122936905868,\\n          \\\"std\\\": 0.01911900338688198\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.8978859065835184,\\n          \\\"std\\\": 0.02952134932151384\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.8977181233376363,\\n          \\\"std\\\": 0.03264923111507222\\n        }\\n      }\\n    },\\n    \\\"deberta_large_9class\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 1.0,\\n          \\\"k3\\\": 1.0,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.9903618394184432,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 0.9808503732554366,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 1.0,\\n          \\\"k2\\\": 1.0,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9936167910851456,\\n          \\\"std\\\": 0.009027220618848052\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9935745596122955,\\n          \\\"std\\\": 0.0045434724702557725\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9967872798061478,\\n          \\\"std\\\": 0.0045434724702557725\\n        }\\n      }\\n    }\\n  },\\n  \\\"actorattack\\\": {\\n    \\\"deberta_large_vanilla\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 0.8747039124397615,\\n          \\\"k1\\\": 0.5757837215990796,\\n          \\\"k2\\\": 0.7286953942001039,\\n          \\\"k3\\\": 0.8214257268020708,\\n          \\\"k5\\\": 0.8659526127880558\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 0.8948306595365418,\\n          \\\"k1\\\": 0.7947826086956522,\\n          \\\"k2\\\": 0.8645235361653272,\\n          \\\"k3\\\": 0.883220872694557,\\n          \\\"k5\\\": 0.883220872694557\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 0.8407557354925776,\\n          \\\"k1\\\": 0.7506038647342995,\\n          \\\"k2\\\": 0.8253289473684211,\\n          \\\"k3\\\": 0.8401084010840109,\\n          \\\"k5\\\": 0.8347338935574229\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.7070567316763438,\\n          \\\"std\\\": 0.09456000823307849\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.806182625911284,\\n          \\\"std\\\": 0.057080395095784185\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.8482516668602128,\\n          \\\"std\\\": 0.025876560785065814\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.861302459680012,\\n          \\\"std\\\": 0.02006597002236052\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.8700967691562936,\\n          \\\"std\\\": 0.022315072328151157\\n        }\\n      }\\n    },\\n    \\\"deberta_large_9class\\\": {\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9260651629072681,\\n          \\\"k2\\\": 0.9808503732554366,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"123\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9808503732554366,\\n          \\\"k2\\\": 0.9903618394184432,\\n          \\\"k3\\\": 0.9903618394184432,\\n          \\\"k5\\\": 1.0\\n        },\\n        \\\"456\\\": {\\n          \\\"full\\\": 1.0,\\n          \\\"k1\\\": 0.9260651629072681,\\n          \\\"k2\\\": 0.9621794871794871,\\n          \\\"k3\\\": 0.9808503732554366,\\n          \\\"k5\\\": 1.0\\n        }\\n      },\\n      \\\"mean_std\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9443268996899908,\\n          \\\"std\\\": 0.0258259958306142\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9777972332844556,\\n          \\\"std\\\": 0.01170619471880737\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.987191350697441,\\n          \\\"std\\\": 0.00448374814859228\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"std\\\": 0.0\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
-    }
-  }
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 23_
-
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VnA6CtrBkjroCbBc32vSRQ`</summary>
 
 ```json
@@ -1078,7 +990,7 @@ _source line 23_
 
 ### Tool result
 
-_source line 24 · 2026-05-24T02:51:45.986Z_
+_source line 22 · 2026-05-24T02:51:45.986Z_
 
 <details><summary>↩ Tool result · `toolu_01VnA6CtrBkjroCbBc32vSRQ`</summary>
 
@@ -1112,7 +1024,7 @@ _source line 24 · 2026-05-24T02:51:45.986Z_
 
 ### Assistant
 
-_source line 25_
+_source line 23_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1179,7 +1091,7 @@ Interesting pattern emerging here—DeBERTa-v3-large with the 9-class setup is a
 
 ### Assistant
 
-_source line 26_
+_source line 24_
 
 训练已正常完成（08:30 结束）。更新 registry。
 
@@ -1223,7 +1135,7 @@ _source line 26_
 
 ### Tool call
 
-_source line 27_
+_source line 25_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011tP16MMirvjKyVMafTo1cX`</summary>
 
@@ -1278,7 +1190,7 @@ _source line 27_
 
 ### Tool result
 
-_source line 28 · 2026-05-24T02:51:56.286Z_
+_source line 26 · 2026-05-24T02:51:56.286Z_
 
 <details><summary>↩ Tool result · `toolu_011tP16MMirvjKyVMafTo1cX`</summary>
 
@@ -1312,7 +1224,7 @@ _source line 28 · 2026-05-24T02:51:56.286Z_
 
 ### Tool call
 
-_source line 29_
+_source line 27_
 
 <details open><summary>🔧 Tool call — ToolSearch · `toolu_01Cd3VVoFZWryHdWNstnrhgF`</summary>
 
@@ -1365,7 +1277,7 @@ _source line 29_
 
 ### Tool result
 
-_source line 30 · 2026-05-24T02:51:58.714Z_
+_source line 28 · 2026-05-24T02:51:58.714Z_
 
 <details><summary>↩ Tool result · `toolu_01Cd3VVoFZWryHdWNstnrhgF`</summary>
 
@@ -1405,7 +1317,7 @@ _source line 30 · 2026-05-24T02:51:58.714Z_
 
 ### Tool call
 
-_source line 31_
+_source line 29_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Qg3QHboo3SE4S328YLYvYn`</summary>
 
@@ -1463,7 +1375,7 @@ _source line 31_
 
 ### Tool result
 
-_source line 32 · 2026-05-24T02:52:01.546Z_
+_source line 30 · 2026-05-24T02:52:01.546Z_
 
 <details><summary>↩ Tool result · `toolu_01Qg3QHboo3SE4S328YLYvYn`</summary>
 
@@ -1497,7 +1409,7 @@ _source line 32 · 2026-05-24T02:52:01.546Z_
 
 ### Assistant
 
-_source line 33_
+_source line 31_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1547,7 +1459,7 @@ The experiment doesn't exist in the registry yet. Let me check with a broader fi
 
 ### Tool call
 
-_source line 34_
+_source line 32_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014LNnfwJt9SiAHdwFyvKfs1`</summary>
 
@@ -1608,7 +1520,7 @@ _source line 34_
 
 ### Tool result
 
-_source line 35 · 2026-05-24T02:52:06.285Z_
+_source line 33 · 2026-05-24T02:52:06.285Z_
 
 <details><summary>↩ Tool result · `toolu_014LNnfwJt9SiAHdwFyvKfs1`</summary>
 
@@ -1642,7 +1554,7 @@ _source line 35 · 2026-05-24T02:52:06.285Z_
 
 ### Assistant
 
-_source line 36_
+_source line 34_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1692,7 +1604,7 @@ exp70 doesn't seem to show up. Let me search more specifically for it.
 
 ### Tool call
 
-_source line 37_
+_source line 35_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MqFJRSLWGd9sp7Zk5kZ2TB`</summary>
 
@@ -1749,7 +1661,7 @@ _source line 37_
 
 ### Tool result
 
-_source line 38 · 2026-05-24T02:52:09.297Z_
+_source line 36 · 2026-05-24T02:52:09.297Z_
 
 <details><summary>↩ Tool result · `toolu_01MqFJRSLWGd9sp7Zk5kZ2TB`</summary>
 
@@ -1783,7 +1695,7 @@ _source line 38 · 2026-05-24T02:52:09.297Z_
 
 ### Assistant
 
-_source line 39_
+_source line 37_
 
 <details><summary>Logged reasoning block</summary>
 
@@ -1833,7 +1745,7 @@ exp70_deberta_large_scale is in RUNNING status. I need to transition it to DONE.
 
 ### Assistant
 
-_source line 40_
+_source line 38_
 
 exp70 在 registry 中是 `exp70_deberta_large_scale`，状态为 RUNNING。更新为 DONE。
 
@@ -1877,7 +1789,7 @@ exp70 在 registry 中是 `exp70_deberta_large_scale`，状态为 RUNNING。更�
 
 ### Tool call
 
-_source line 41_
+_source line 39_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0139in724AtcjUX8PVZfdKcv`</summary>
 
@@ -1932,7 +1844,7 @@ _source line 41_
 
 ### Tool result
 
-_source line 42 · 2026-05-24T02:52:20.402Z_
+_source line 40 · 2026-05-24T02:52:20.402Z_
 
 <details><summary>↩ Tool result · `toolu_0139in724AtcjUX8PVZfdKcv`</summary>
 
@@ -1966,7 +1878,7 @@ _source line 42 · 2026-05-24T02:52:20.402Z_
 
 ### Tool call
 
-_source line 43_
+_source line 41_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EF8UhQZ6E4PtPdCjP9MnzP`</summary>
 
@@ -2042,7 +1954,7 @@ _source line 43_
 
 ### Tool result
 
-_source line 44 · 2026-05-24T02:52:22.913Z_
+_source line 42 · 2026-05-24T02:52:22.913Z_
 
 <details><summary>↩ Tool result · `toolu_01EF8UhQZ6E4PtPdCjP9MnzP`</summary>
 
@@ -2076,7 +1988,7 @@ _source line 44 · 2026-05-24T02:52:22.913Z_
 
 ### Tool call
 
-_source line 45_
+_source line 43_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CNr7NyGt1HnhZN5E8kU8p1`</summary>
 
@@ -2131,7 +2043,7 @@ _source line 45_
 
 ### Tool result
 
-_source line 46 · 2026-05-24T02:52:24.318Z_
+_source line 44 · 2026-05-24T02:52:24.318Z_
 
 <details><summary>↩ Tool result · `toolu_01CNr7NyGt1HnhZN5E8kU8p1`</summary>
 
@@ -2165,7 +2077,7 @@ _source line 46 · 2026-05-24T02:52:24.318Z_
 
 ### Tool call
 
-_source line 47_
+_source line 45_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BiAUS1daLuxdGmAy4BdePH`</summary>
 
@@ -2220,7 +2132,7 @@ _source line 47_
 
 ### Tool result
 
-_source line 48 · 2026-05-24T02:52:25.619Z_
+_source line 46 · 2026-05-24T02:52:25.619Z_
 
 <details><summary>↩ Tool result · `toolu_01BiAUS1daLuxdGmAy4BdePH`</summary>
 
@@ -2254,7 +2166,7 @@ _source line 48 · 2026-05-24T02:52:25.619Z_
 
 ### Tool call
 
-_source line 49_
+_source line 47_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01D9s6o993y7rFs9KfgTS5Lc`</summary>
 
@@ -2309,7 +2221,7 @@ _source line 49_
 
 ### Tool result
 
-_source line 50 · 2026-05-24T02:52:29.029Z_
+_source line 48 · 2026-05-24T02:52:29.029Z_
 
 <details><summary>↩ Tool result · `toolu_01D9s6o993y7rFs9KfgTS5Lc`</summary>
 
@@ -2343,7 +2255,7 @@ _source line 50 · 2026-05-24T02:52:29.029Z_
 
 ### Tool call
 
-_source line 51_
+_source line 49_
 
 <details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013F3erYpoM8tsEQMNpTCP6z`</summary>
 
@@ -2398,7 +2310,7 @@ _source line 51_
 
 ### Tool result
 
-_source line 52 · 2026-05-24T02:52:32.540Z_
+_source line 50 · 2026-05-24T02:52:32.540Z_
 
 <details><summary>↩ Tool result · `toolu_013F3erYpoM8tsEQMNpTCP6z`</summary>
 
@@ -2432,7 +2344,7 @@ _source line 52 · 2026-05-24T02:52:32.540Z_
 
 ### Assistant
 
-_source line 53_
+_source line 51_
 
 Registry 已更新为 DONE (negative)。
 
@@ -2498,7 +2410,7 @@ Registry 已更新为 DONE (negative)。
 
 ### Task result
 
-_source line 54_
+_source line 52_
 
 Registry 已更新为 DONE (negative)。
 

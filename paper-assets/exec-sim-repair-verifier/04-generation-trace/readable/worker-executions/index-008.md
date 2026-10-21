@@ -113,7 +113,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ssh ds456 automation verify | 56 | 0 | [Read transcript](ssh-ds456-automation-verify.md) | [JSON](../../sessions/e9/e966c1bddc5e14f9df50.json) |
 | analysis cwm overfitting | 43 | 0 | [Read transcript](analysis-cwm-overfitting.md) | [JSON](../../sessions/e4/e44447ef950942716c2f.json) |
 | analysis supplementary completeness | 110 | 0 | [Read transcript](analysis-supplementary-completeness.md) | [JSON](../../sessions/46/469085402c7ec2948542.json) |
-| writing rebuttal framework update | 21 | 0 | [Read transcript](writing-rebuttal-framework-update.md) | [JSON](../../sessions/c9/c93b73dfbc8dde3f9f8e.json) |
 | audit paper number consistency — I need you to extract all experiment metrics from a large registry JSON file for a paper number audi | 109 | 1 | [Read transcript](audit-paper-number-consistency.md) | [JSON](../../sessions/58/585cdf152daee7ba9894.json) |
 | ssh training status check | 54 | 0 | [Read transcript](ssh-training-status-check-copy-2.md) | [JSON](../../sessions/6a/6a8c40a304f10eadb488.json) |
 | ssh fix eval checkpoint bug | 126 | 0 | [Read transcript](ssh-fix-eval-checkpoint-bug.md) | [JSON](../../sessions/92/92ee6755da9957824848.json) |
@@ -132,7 +131,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ssh fix qwen eval scripts v3 | 22 | 0 | [Read transcript](ssh-fix-qwen-eval-scripts-v3.md) | [JSON](../../sessions/e1/e16b47c5d7f8298aea1e.json) |
 | ssh check qwen thinking mode | 115 | 0 | [Read transcript](ssh-check-qwen-thinking-mode.md) | [JSON](../../sessions/b3/b3653bf3bdedd0d1f271.json) |
 | writing cwm format collapse paragraph | 14 | 0 | [Read transcript](writing-cwm-format-collapse-paragraph.md) | [JSON](../../sessions/ad/adcb2c64c9df7c307486.json) |
-| writing rebuttal framework | 48 | 0 | [Read transcript](writing-rebuttal-framework.md) | [JSON](../../sessions/b2/b2a1b3f2018c1ec479c6.json) |
 | audit appendix cleanup scan | 34 | 0 | [Read transcript](audit-appendix-cleanup-scan.md) | [JSON](../../sessions/b7/b7ba4f95674ff202ba30.json) |
 | writing appendix fixes | 79 | 0 | [Read transcript](writing-appendix-fixes.md) | [JSON](../../sessions/21/2113669171e263ac4a77.json) |
 | ssh pdf visual review | 107 | 21 | [Read transcript](ssh-pdf-visual-review.md) | [JSON](../../sessions/61/61f4851f09ae8b3dae3a.json) |

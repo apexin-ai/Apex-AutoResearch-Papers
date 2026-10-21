@@ -57,10 +57,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops read all clean reeval results | 1 | 0 | [Read transcript](ops-read-all-clean-reeval-results.md) | [JSON](../../sessions/75/75df23bd64dacb821fb5.json) |
 | ops read contam reeval results | 1 | 0 | [Read transcript](ops-read-contam-reeval-results.md) | [JSON](../../sessions/30/30ae663dee1b1c8cb5b9.json) |
 | ops read multiseed results | 1 | 0 | [Read transcript](ops-read-multiseed-results.md) | [JSON](../../sessions/01/014babffdb7ae9b1ee3a.json) |
-| ops rebuttal llama5 check | 1 | 0 | [Read transcript](ops-rebuttal-llama5-check.md) | [JSON](../../sessions/4f/4fbd323080f428a1ae1c.json) |
-| ops rebuttal mia grpo check | 1 | 0 | [Read transcript](ops-rebuttal-mia-grpo-check.md) | [JSON](../../sessions/67/67fb976319bdd3eaf066.json) |
-| ops rebuttal mistral execute | 1 | 0 | [Read transcript](ops-rebuttal-mistral-execute.md) | [JSON](../../sessions/92/927546d45fc2c5edb536.json) |
-| ops rebuttal mistral prep | 1 | 0 | [Read transcript](ops-rebuttal-mistral-prep.md) | [JSON](../../sessions/73/73b49d04536b1f14ee0c.json) |
 | ops recompile push final | 1 | 0 | [Read transcript](ops-recompile-push-final.md) | [JSON](../../sessions/e8/e81f5b5a8ea3c150c03f.json) |
 | ops recompute 15s2 fixed | 1 | 0 | [Read transcript](ops-recompute-15s2-fixed.md) | [JSON](../../sessions/dc/dcb2204b6560c208d218.json) |
 | ops recompute llama d values | 1 | 0 | [Read transcript](ops-recompute-llama-d-values.md) | [JSON](../../sessions/23/23d62ecac0eaf3fe13f8.json) |
@@ -69,7 +65,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops regen figures recompile | 1 | 0 | [Read transcript](ops-regen-figures-recompile.md) | [JSON](../../sessions/79/79bbfe56c5119d261a88.json) |
 | ops regen heatmap scatter pdf | 1 | 0 | [Read transcript](ops-regen-heatmap-scatter-pdf.md) | [JSON](../../sessions/84/84548edb0088186044bd.json) |
 | ops regen recompile push | 1 | 0 | [Read transcript](ops-regen-recompile-push.md) | [JSON](../../sessions/f5/f51fbe92a3e6ab76138f.json) |
-| ops response letter | 1 | 0 | [Read transcript](ops-response-letter.md) | [JSON](../../sessions/26/266624862340ea249e83.json) |
 | ops s3 backup retry | 1 | 0 | [Read transcript](ops-s3-backup-retry.md) | [JSON](../../sessions/2f/2f46ddde2af9400dd350.json) |
 | ops s3 backup v3 | 1 | 0 | [Read transcript](ops-s3-backup-v3.md) | [JSON](../../sessions/7d/7d1cc3f9b794da08ab53.json) |
 | ops sync and push anon | 1 | 0 | [Read transcript](ops-sync-and-push-anon.md) | [JSON](../../sessions/06/063ce5146546e4ec76da.json) |
@@ -92,7 +87,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper fix heatmap data | 1 | 0 | [Read transcript](paper-fix-heatmap-data.md) | [JSON](../../sessions/84/84276355e457ea844cf2.json) |
 | paper fix heatmap mistral50 | 1 | 0 | [Read transcript](paper-fix-heatmap-mistral50.md) | [JSON](../../sessions/f1/f1b188dce671eb7fc14c.json) |
 | paper fix llama 25 d mismatch | 1 | 0 | [Read transcript](paper-fix-llama-25-d-mismatch.md) | [JSON](../../sessions/7f/7f18c4cf04089fe8e248.json) |
-| paper fix rebuttal prep data | 1 | 0 | [Read transcript](paper-fix-rebuttal-prep-data.md) | [JSON](../../sessions/06/06d9f413c78c55eac67b.json) |
 | paper investigate mistral d15 and fix | 1 | 0 | [Read transcript](paper-investigate-mistral-d15-and-fix.md) | [JSON](../../sessions/a6/a6977281839f586ef43e.json) |
 | paper mistral 50pct multiseed and appendix | 1 | 0 | [Read transcript](paper-mistral-50pct-multiseed-and-appendix.md) | [JSON](../../sessions/9a/9aa12c0d92e27d17a747.json) |
 | paper research | 1 | 0 | [Read transcript](paper-research.md) | [JSON](../../sessions/c3/c36fddf9aa2491d5091e.json) |
@@ -116,7 +110,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research exp leaderboard data recon | 1 | 0 | [Read transcript](research-exp-leaderboard-data-recon.md) | [JSON](../../sessions/1c/1cf60702491e20519319.json) |
 | research psn irt data | 1 | 0 | [Read transcript](research-psn-irt-data.md) | [JSON](../../sessions/e8/e869fc9d3dfd25bd493b.json) |
 | research psn irt model identity v3 | 1 | 0 | [Read transcript](research-psn-irt-model-identity-v3.md) | [JSON](../../sessions/bf/bfad12059064c53ba227.json) |
-| research rebuttal prep | 1 | 0 | [Read transcript](research-rebuttal-prep.md) | [JSON](../../sessions/18/18e6e51e77e4f088effb.json) |
 | research reference expansion | 1 | 0 | [Read transcript](research-reference-expansion.md) | [JSON](../../sessions/e8/e88c0f05b42ea7e2658d.json) |
 | research verify citations | 1 | 0 | [Read transcript](research-verify-citations.md) | [JSON](../../sessions/a2/a287f3df549de318cb19.json) |
 | ssh gpu audit 35694 | 1 | 0 | [Read transcript](ssh-gpu-audit-35694.md) | [JSON](../../sessions/90/90ad78318c32da9ae28f.json) |

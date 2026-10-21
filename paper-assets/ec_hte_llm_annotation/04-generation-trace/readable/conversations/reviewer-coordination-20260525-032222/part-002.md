@@ -4,921 +4,11 @@
 
 [← Part 1](part-001.md) · [Transcript overview](../reviewer-coordination-20260525-032222.md) · [Structured JSON](../../../sessions/02/0229485d97fd814d0be7.json)
 
-## Round 32
-
-### Tool result
-
-_source line 562 · 2026-05-24T07:04:05.817121+00:00_
-
-1	# ARR 提交材料清单
-2	
-3	**目标会议**: EMNLP 2026 (via ARR)
-4	**检查时间**: 2026-05-24 (最新)
-5	
-6	---
-7	
-8	## 材料总览
-9	
-10	| 材料 | 路径 | 状态 | 备注 |
-11	|------|------|------|------|
-12	| 主论文 PDF | `docs/paper/main.pdf` | ✅ | 874KB, 32页, 2026-05-24 06:00 编译 |
-13	| 主文页数 (≤8页) | — | ✅ | Sec 1–6 (Abstract–Conclusion) 在第 1–8 页 |
-14	| Limitations 章节 | `docs/paper/limitations.tex` | ✅ | 在正文中（第 8 页底），不计入 8 页限制；3 个核心点，篇幅适当 |
-15	| Limitations 唯一性 | — | ✅ | 仅在正文，appendix 中无重复 limitations section |
-16	| Abstract (≤200 words) | `docs/paper/abstract.tex` | ⚠️ | **约 207 词，超出约 7 词，需精简** |
-17	| 匿名性: 作者 | `main.tex` L26 | ✅ | `\author{Anonymous}` |
-18	| 匿名性: review 模式 | `main.tex` L2 | ✅ | `\usepackage[review]{acl}`，行号已启用 |
-19	| 匿名代码仓库 | `_anonymous_repo.json` | ✅ | `https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation` |
-20	| Appendix | `docs/paper/appendix.tex` | ✅ | 含在 main.pdf 中（第 11–32 页），ARR 允许 |
-21	| ACL 模板 | `docs/paper/acl.sty` | ✅ | 存在 |
-22	| BibTeX | `docs/paper/references.bib` | ✅ | 57 条 entries, 564 行 |
-23	| 引用解析 | — | ✅ | 编译无 undefined reference 警告 |
-24	| NLP Checklist | `docs/paper/checklist.tex` | ✅ | 已准备参考答案；main.tex 中正确注释掉（ARR 在 OpenReview form 填写） |
-25	| 图: fig1_sign_reversal.pdf | `docs/paper/figures/` | ✅ | |
-26	| 图: fig2_heatmap.pdf | `docs/paper/figures/` | ✅ | |
-27	| 图: fig3_budget.pdf | `docs/paper/figures/` | ✅ | |
-28	| 图: fig4_roc.png | `docs/paper/figures/` | ✅ | |
-29	| 图: applicability_frontier.pdf | `docs/paper/figures/` | ✅ | |
-30	| 图: treatment_dep_misclass.pdf | `docs/paper/figures/` | ✅ | |
-31	| 图: policy_reversal_zone.pdf | `docs/paper/figures/` | ✅ | |
-32	
-33	## 问题列表
-34	
-35	1. **⚠️ Abstract 超字数** — 约 207 词，EMNLP 2026 限制 200 词。需删减约 7 词。
-36	2. **🔍 匿名仓库可访问性** — URL 已配置，建议在无登录浏览器中验证仓库是否公开可访问。
-37	
-38	## 就绪度
-39	
-40	**19/21 项就绪**（1 项需修复，1 项需验证）
-41	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 563 · 2026-05-24T07:04:24.804265+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 564 · 2026-05-24T07:04:24.855038+00:00_
-
-1	\begin{abstract}
-2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
-3	When this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\times$ across subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.
-4	We derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\delta_s \cdot \Delta\tau / (1 - 2\bar{\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.
-5	This population-level identity---verified at $R^2 \geq 0.97$ across synthetic grids, semi-synthetic evaluations using 11 empirical LLM confusion matrices, and three structurally distinct CATE estimators---predicts that global correction reverses CATE sign in 14.9\% of configurations at $\tau(0) = 0.03$ and amplifies bias in all eight real LLMs tested.
-6	The identity yields a diagnostic: a condition on per-subgroup error rates alone predicts when correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero $\Delta\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles).
-7	The per-subgroup correction prescribed by the identity reduces $|\text{bias}|$ by $7.4\times$ via hierarchical Bayesian estimation; when error heterogeneity is insufficient, the diagnostic alone guides practitioners to retain global correction.
-8	\end{abstract}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 565 · 2026-05-24T07:04:39.718583+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "python3 << 'PYEOF'\nimport re\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex') as f:\n    text = f.read()\n\n# Remove \\begin{abstract} and \\end{abstract}\ntext = re.sub(r'\\\\begin\\{abstract\\}', '', text)\ntext = re.sub(r'\\\\end\\{abstract\\}', '', text)\n\n# Method 1: Raw LaTeX word count (naive split)\nwords_raw = len(text.split())\nprint(f\"Method 1 (raw split): {words_raw}\")\n\n# Method 2: Remove LaTeX commands, treat math as single tokens\ntext2 = text\n# Replace math expressions with single token\ntext2 = re.sub(r'\\$[^$]+\\$', 'MATH', text2)\n# Remove LaTeX commands like \\text{}, \\ref{}, \\cite{}\ntext2 = re.sub(r'\\\\[a-zA-Z]+\\{[^}]*\\}', 'CMD', text2)\n# Remove remaining backslash commands\ntext2 = re.sub(r'\\\\[a-zA-Z]+', '', text2)\n# Remove special chars\ntext2 = re.sub(r'[{}~]', ' ', text2)\n# Replace --- with space\ntext2 = text2.replace('---', ' ')\nwords_m2 = len([w for w in text2.split() if w.strip()])\nprint(f\"Method 2 (math=1 token, cmds=1 token): {words_m2}\")\n\n# Method 3: Approximate rendered word count\n# In rendered PDF, $\\delta_s$ = \"δs\" (1 visual word), $R^2$ = \"R²\" (1 word)\ntext3 = text\n# Each math block = ~1-2 words in rendered form\ntext3 = re.sub(r'\\$[^$]+\\$', 'X', text3)\ntext3 = re.sub(r'\\\\textbf\\{([^}]*)\\}', r'\\1', text3)\ntext3 = re.sub(r'\\\\text\\{([^}]*)\\}', r'\\1', text3)\ntext3 = re.sub(r'\\\\[a-zA-Z]+', '', text3)\ntext3 = re.sub(r'[{}~]', ' ', text3)\ntext3 = text3.replace('---', ' — ')\ntext3 = re.sub(r'\\s+', ' ', text3).strip()\nwords_m3 = len(text3.split())\nprint(f\"Method 3 (rendered approx): {words_m3}\")\nprint(f\"\\nRendered text preview: {text3[:500]}\")\nPYEOF\n",
-  "description": "Count abstract words using multiple methods"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "python3 << 'PYEOF'\nimport re\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex') as f:\n    text = f.read()\n\n# Remove \\begin{abstract} and \\end{abstract}\ntext = re.sub(r'\\\\begin\\{abstract\\}', '', text)\ntext = re.sub(r'\\\\end\\{abstract\\}', '', text)\n\n# Method 1: Raw LaTeX word count (naive split)\nwords_raw = len(text.split())\nprint(f\"Method 1 (raw split): {words_raw}\")\n\n# Method 2: Remove LaTeX commands, treat math as single tokens\ntext2 = text\n# Replace math expressions with single token\ntext2 = re.sub(r'\\$[^$]+\\$', 'MATH', text2)\n# Remove LaTeX commands like \\text{}, \\ref{}, \\cite{}\ntext2 = re.sub(r'\\\\[a-zA-Z]+\\{[^}]*\\}', 'CMD', text2)\n# Remove remaining backslash commands\ntext2 = re.sub(r'\\\\[a-zA-Z]+', '', text2)\n# Remove special chars\ntext2 = re.sub(r'[{}~]', ' ', text2)\n# Replace --- with space\ntext2 = text2.replace('---', ' ')\nwords_m2 = len([w for w in text2.split() if w.strip()])\nprint(f\"Method 2 (math=1 token, cmds=1 token): {words_m2}\")\n\n# Method 3: Approximate rendered word count\n# In rendered PDF, $\\delta_s$ = \"δs\" (1 visual word), $R^2$ = \"R²\" (1 word)\ntext3 = text\n# Each math block = ~1-2 words in rendered form\ntext3 = re.sub(r'\\$[^$]+\\$', 'X', text3)\ntext3 = re.sub(r'\\\\textbf\\{([^}]*)\\}', r'\\1', text3)\ntext3 = re.sub(r'\\\\text\\{([^}]*)\\}', r'\\1', text3)\ntext3 = re.sub(r'\\\\[a-zA-Z]+', '', text3)\ntext3 = re.sub(r'[{}~]', ' ', text3)\ntext3 = text3.replace('---', ' — ')\ntext3 = re.sub(r'\\s+', ' ', text3).strip()\nwords_m3 = len(text3.split())\nprint(f\"Method 3 (rendered approx): {words_m3}\")\nprint(f\"\\nRendered text preview: {text3[:500]}\")\nPYEOF\n",
-    "description": "Count abstract words using multiple methods"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 566 · 2026-05-24T07:04:39.820018+00:00_
-
-Method 1 (raw split): 207
-Method 2 (math=1 token, cmds=1 token): 200
-Method 3 (rendered approx): 204
-
-Rendered text preview: Standard confusion-matrix correction for noisy annotations assumes uniform error rates. When this assumption fails — as it routinely does with LLM classifiers, whose error rates vary by up to X across subgroups — correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful. We derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form X, factoring into each subgroup's deviation from the pooled
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Bash",
-  "elapsed_ms": 101
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 567 · 2026-05-24T07:05:11.375675+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: warning] Submission Checklist 审查 — Abstract 字数边界问题\n\n### Worker 产出确认\nSubmission checklist 检查了 21 项，19 项就绪。2 个问题：\n\n### 关键发现\n\n**1. [severity: warning] Abstract 字数边界**\n我独立验证了 3 种计数方法：\n- Raw LaTeX split: **207 词**（worker 报告值）\n- Math 作为单 token + 命令作为单 token: **200 词**（恰好边界）\n- 渲染近似（math=1 visual word）: **~204 词**\n\nEMNLP 2026 限制 200 words。取决于 OpenReview 如何计数：\n- 如果按渲染文本计数（常见做法），约 200-204，**边界危险**\n- 如果按 raw text，207，**超限**\n\n**建议删减 5-10 词以确保安全**。可删减候选：\n- \"concluding a beneficial treatment is harmful\"（10 词）可缩为 \"reversing effect sign\"（3 词）\n- \"factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion\"（20 词）可缩为 \"factoring into subgroup error deviation, effect heterogeneity, and inversion amplification\"（9 词）\n\n**2. [severity: info] 匿名仓库可访问性**\nURL 已配置（`_anonymous_repo.json`），worker 建议在无登录浏览器验证公开可访问性。匿名化审计已 PASS。\n\n### 其他项目全部 PASS\n- PDF 32 页, 874KB ✅\n- 主文 ≤ 8 页 ✅\n- Limitations 在正文（第 8 页底）✅\n- 匿名性（\\author{Anonymous} + review mode）✅\n- 7 个图文件全部存在 ✅\n- BibTeX 57 条, 无 undefined ref ✅\n- ACL 模板 + NLP Checklist 就绪 ✅",
-  "project": "ec_hte_llm_annotation"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: warning] Submission Checklist 审查 — Abstract 字数边界问题\n\n### Worker 产出确认\nSubmission checklist 检查了 21 项，19 项就绪。2 个问题：\n\n### 关键发现\n\n**1. [severity: warning] Abstract 字数边界**\n我独立验证了 3 种计数方法：\n- Raw LaTeX split: **207 词**（worker 报告值）\n- Math 作为单 token + 命令作为单 token: **200 词**（恰好边界）\n- 渲染近似（math=1 visual word）: **~204 词**\n\nEMNLP 2026 限制 200 words。取决于 OpenReview 如何计数：\n- 如果按渲染文本计数（常见做法），约 200-204，**边界危险**\n- 如果按 raw text，207，**超限**\n\n**建议删减 5-10 词以确保安全**。可删减候选：\n- \"concluding a beneficial treatment is harmful\"（10 词）可缩为 \"reversing effect sign\"（3 词）\n- \"factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion\"（20 词）可缩为 \"factoring into subgroup error deviation, effect heterogeneity, and inversion amplification\"（9 词）\n\n**2. [severity: info] 匿名仓库可访问性**\nURL 已配置（`_anonymous_repo.json`），worker 建议在无登录浏览器验证公开可访问性。匿名化审计已 PASS。\n\n### 其他项目全部 PASS\n- PDF 32 页, 874KB ✅\n- 主文 ≤ 8 页 ✅\n- Limitations 在正文（第 8 页底）✅\n- 匿名性（\\author{Anonymous} + review mode）✅\n- 7 个图文件全部存在 ✅\n- BibTeX 57 条, 无 undefined ref ✅\n- ACL 模板 + NLP Checklist 就绪 ✅",
-    "project": "ec_hte_llm_annotation"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 568 · 2026-05-24T07:05:15.293649+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 3917
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 569 · 2026-05-24T07:05:25.037344+00:00_
-
-Abstract 字数超限是关键发现。需要核实。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer"
-}
-```
-
-</details>
-
----
-
-
-## Round 33
-
-## Round 33
-
-8 recorded events
-
-
-### User
-
-_source line 570 · 2026-05-24T08:02:25.255388+00:00_
-
-[系统通知 — worker_done:worker_audit_negative-experiment-framing_20260524T075928]:
-Worker worker_audit_negative-experiment-framing_20260524T075928 已完成（status=done），请审查 Agent 的处理结果。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "source": "system"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 571 · 2026-05-24T08:02:34.863244+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/logs/workers/worker_audit_negative-experiment-framing_20260524T075928_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/logs/workers/worker_audit_negative-experiment-framing_20260524T075928_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 572 · 2026-05-24T08:02:34.913877+00:00_
-
-1	{
-2	  "raw": "审计完成。所有 6 个阴性/killed 实验在论文中都有诚实充分的讨论，无需补充。\n\n关键发现：\n- **exp-015/016**（real CM 失败）：主文给出 operating conditions（FNR<0.5, K≤4），Appendix 有完整 root cause 分析和 applicability frontier 图\n- **exp-030/033**（K=8 boundary）：主文、limitations、Appendix 三处覆盖，明确承认 scalability boundary\n- **exp-028**（非对称 diagnostic 退化）：theory.tex Remark 2 中 reframe 为理论便利性，framing 合理\n- **exp-007b**（killed）：无需提及，PPCI composition 讨论完整\n\n唯一潜在弱点是 exp-015/016 完整 root cause 只在 Appendix，主文措辞较间接，但符合顶会惯例。\n\n产出已写入 `artifacts/negative_experiment_framing_audit.md`。"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 573 · 2026-05-24T08:02:53.049082+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/negative_experiment_framing_audit.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/negative_experiment_framing_audit.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 574 · 2026-05-24T08:02:53.049670+00:00_
-
-1	# 阴性实验 Framing 审计
-2	
-3	## exp-007b (killed): PPCI 表 HB backfill
-4	
-5	- **论文中是否讨论**：不需要（内部决策，非阴性结果）
-6	- **PPCI composition 讨论完整性**：充分
-7	- **位置**：`method.tex:55-61`（PPCI composition 段落）、`appendix.tex:507-555`（Appendix PPCI 完整实验）
-8	- **具体情况**：论文在 method.tex 中清楚说明 EC-HTE 和 PPCI 的互补性（"Neither is redundant with the other"），并给出了 4-DGP 正交设计的完整结果（Table PPCI）。DGP-A（仅 covariate error）下 PPCI 无增益，DGP-B（仅 outcome error）下 EC-HTE 贡献可忽略——这些就是 exp-007b 放弃 HB backfill 的理由的间接体现。
-9	- **建议**：无需补充
-10	
-11	---
-12	
-13	## exp-015 (negative): GPT-4.1 real CM 上 EC-HTE 失败
-14	
-15	- **论文中是否讨论**：是，详细
-16	- **讨论位置**：
-17	  - `appendix.tex:751-828`（§Semi-Real CM Validation，完整 section）
-18	  - `appendix.tex:806-811`（root cause 分析：S0 FNR=0.526）
-19	  - `appendix.tex:818-821`（diagnostic rule，明确引用 exp-015）
-20	  - `experiments.tex:82`（operating conditions 汇总，FNR<0.50 条件）
-21	  - `limitations.tex:1`（FPR/FNR<0.5 条件）
-22	  - `experiments.tex:79`（hate speech 实测 underperformance）
-23	- **充分性**：**充分**
-24	  - Root cause 完整：S0 FNR=0.526 → CM 行近均匀 → inversion 放大噪声（appendix.tex:807）
-25	  - P(Z=1)=0.18 的 class imbalance 影响在 appendix.tex:756 和 814 中明确提及
-26	  - 三个 applicability conditions 在 appendix.tex:815 归纳，并上升到 experiments.tex:82 的 operating conditions
-27	  - 提供了 applicability frontier 图（Figure applicability_frontier.pdf）
-28	  - 明确指出 exp-015 同时违反 κ 和 effective n 两个条件（appendix.tex:820）
-29	  - 提到 subgroup-average metrics 可能 mask cell-level heterogeneity（appendix.tex:821）
-30	- **建议**：无需补充
-31	
-32	---
-33	
-34	## exp-016 (negative): GPT-3.5-Turbo real CM 上 EC-HTE 失败
-35	
-36	- **论文中是否讨论**：是
-37	- **讨论位置**：
-38	  - `appendix.tex:813-814`（第二个 semi-real 实验，明确 GPT-3.5-Turbo）
-39	  - `appendix.tex:820`（diagnostic 正确预测 exp-016 失败）
-40	  - `appendix.tex:946`（Civil Comments multi-LLM 表中 GPT-3.5-turbo FPR 数据）
-41	- **充分性**：**充分**
-42	  - Root cause 明确：high FPR variance (worst-subgroup FPR=0.39) + class imbalance P(Z=1)=0.18（appendix.tex:814）
-43	  - 与 exp-015 root cause 的一致性被明确指出（"yields similar results"）
-44	  - Diagnostic rule 在 appendix.tex:
-…[truncated 4068 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 575 · 2026-05-24T08:03:05.326637+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] 阴性实验 Framing 审计 — 确认 PASS\n\nWorker 审计了全部 6 个阴性/killed 实验（exp-007b/015/016/028/030/033），逐一核实了论文中的讨论位置（主文+appendix+limitations+operating conditions），结论：**全部诚实充分披露，无 rationalization，无需补充。**\n\n审计产出质量高——每个实验都精确标注了论文中的行号和讨论位置，交叉覆盖表清晰完整。\n\n唯一备注：exp-015/016 完整 root cause 只在 Appendix，主文用 \"underperforms\" + operating conditions 间接覆盖。Worker 判断\"符合顶会惯例\"，我同意。\n\n无 warning / critical。",
-  "project": "ec_hte_llm_annotation"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] 阴性实验 Framing 审计 — 确认 PASS\n\nWorker 审计了全部 6 个阴性/killed 实验（exp-007b/015/016/028/030/033），逐一核实了论文中的讨论位置（主文+appendix+limitations+operating conditions），结论：**全部诚实充分披露，无 rationalization，无需补充。**\n\n审计产出质量高——每个实验都精确标注了论文中的行号和讨论位置，交叉覆盖表清晰完整。\n\n唯一备注：exp-015/016 完整 root cause 只在 Appendix，主文用 \"underperforms\" + operating conditions 间接覆盖。Worker 判断\"符合顶会惯例\"，我同意。\n\n无 warning / critical。",
-    "project": "ec_hte_llm_annotation"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 576 · 2026-05-24T08:03:09.040010+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 3713
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 577 · 2026-05-24T08:03:12.586244+00:00_
-
-审计质量高，每个阴性实验都交叉验证了论文中的讨论位置。结论与我的先期审查一致。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer"
-}
-```
-
-</details>
-
----
-
-
 ## Round 34
 
-## Round 34
-
-12 recorded events
-
-
-### User
-
-_source line 578 · 2026-05-24T08:03:13.088345+00:00_
-
-[系统通知 — worker_done:worker_paper_rebuttal-polish_20260524T080019]:
-Worker worker_paper_rebuttal-polish_20260524T080019 已完成（status=done），请审查 Agent 的处理结果。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "source": "system"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 579 · 2026-05-24T08:03:24.956370+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/logs/workers/worker_paper_rebuttal-polish_20260524T080019_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/logs/workers/worker_paper_rebuttal-polish_20260524T080019_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
 ### Tool result
 
-_source line 580 · 2026-05-24T08:03:25.059008+00:00_
-
-1	{
-2	  "raw": "两个问题已打磨完成：\n\n**Q1b (Sign Reversal 频率)** — 新增独立小节，论证结构：acknowledge 频率不高 → reframe 为后果问题（类比 Type I error） → 引用完整 exp-038 数据（τ=0.01→31%, τ=0.03→14.9%, τ=0.05→6.1%, τ=0.10→0%）展示效应越小 reversal 越频繁 → takeaway 强调 EC-HTE 0% reversal 是质变而非量变。\n\n**Q3 (Real-data failure)** — 重写为 acknowledge/reframe/evidence/takeaway 结构：坦诚承认结果 → 区分 \"方法失败\" vs \"operating conditions 不满足\" → 列出具体数据点（UCB FNR≈0.55, TweetEval FNR=0.526）解释数学限制 → 引用 exp-037 calibration 结果和 GPT-4o FNR<0.30 说明条件可满足 → 强调论文贡献不依赖 EC-HTE 在所有场景成功。"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 102
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 581 · 2026-05-24T08:03:29.300759+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-  "limit": "50"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-    "limit": "50"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 582 · 2026-05-24T08:03:29.351542+00:00_
-
-1	# Rebuttal Talking Points
-2	
-3	> 基于 R19 审稿意见 + 历史复发 issue 生成（2026-05-24）。所有引用指向论文当前版本。数字标注来源：registry exp-XXX 或论文 §X.X。
-4	
-5	---
-6	
-7	## Must-Address (审稿人大概率会问)
-8	
-9	### Q1: 方法论新颖性有限 (R2-W1, recurring R0→R19)
-10	
-11	**预期质疑**: Theorem 1 是标准矩阵代数（$M_{\text{global}}^{-1} M_s - I$），EC-HTE 本质是 Dawid-Skene 直接应用。方法论贡献何在？R19 中 R1/R2 一致认为数学推导使用标准技术。
-12	
-13	**我们的回应**: 我们不声称 confusion matrix inversion 是新方法。贡献在三个层面：
-14	
-15	1. **Setting identification**: 识别 LLM annotation + HTE 交叉场景下的具体偏差结构。$\delta_s \cdot \Delta\tau / (1-2\bar{\pi})$ 的乘积形式将偏差分解为三个可独立估计的分量，揭示 sign reversal 的充要条件。此前文献（F-L 2003, Carroll 2006）关注 attenuation bias；我们刻画的是 correction-induced bias——结构上不同的量，absent from the uncorrected estimator。
-16	2. **Diagnostic**: Proposition 2 的 $\Delta\tau$-free 条件打破循环依赖——实践者无需估计 CATE 即可判断 global correction 是否有害。此功能独立于任何校正方法。
-17	3. **Systematic validation**: 520 configs MC 验证 + 11 empirical LLM CMs + 3 种 CATE estimators（DIM/CausalForest/R-learner），确认乘积形式是实证现象。
-18	
-19	Introduction Contribution 1 已加声明：'The algebraic structure follows from standard confusion-matrix calculus; our contribution is identifying that this structure produces sign reversal in the LLM annotation setting and factoring it into independently estimable components.'
-20	
-21	**支撑证据**:
-22	- Bias identity $R^2 = 0.994$ (K=2), $0.97$ (K=4) — §5.2, exp-002
-23	- 11 empirical LLM CMs: $R^2 = 0.975$ — Appendix app:realcm_bias, exp-024
-24	- Sign reversal 14.9% at $\tau(0)=0.03$ — §5.2, exp-038
-25	- Diagnostic AUC=1.0 on $\Delta\tau>0$ subgroups — §5.4, exp-005
-26	- F-L scalar correction increases $|\text{bias}|$ to 0.122 (2.1× naive); F-L per-sub to 0.168 (2.9×) — Table 1, exp-034
-27	
-28	---
-29	
-30	### Q1b: Sign Reversal 频率——14.9% 是否严重到需要专门方法？ (Q1 follow-up)
-31	
-32	**预期质疑**: 14.9% sign reversal 听起来不算高频。Reviewer 可能认为这是小概率事件，不足以 justify 一个专门的方法框架。
-33	
-34	**我们的回应**:
-35	
-36	**Acknowledge**: 14.9% 作为频率确实不是 majority case。但 sign reversal 的严重性在于后果而非频率——这是一类后果不可逆的错误。
-37	
-38	**Reframe**: Sign reversal 意味着将一个真实有益的治疗效应判定为有害（或反之）。在因果推断的应
-…[truncated 724 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 583 · 2026-05-24T08:03:42.916339+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "### Q3:",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "### Q3:",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 584 · 2026-05-24T08:03:42.967018+00:00_
-
-79:### Q3: Semi-synthetic vs real data——无 real data 成功案例 (R5-W3, R19 R1 Must-Fix)
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 585 · 2026-05-24T08:03:52.102442+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-  "offset": "49",
-  "limit": "90"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/rebuttal_talking_points.md",
-    "offset": "49",
-    "limit": "90"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 586 · 2026-05-24T08:03:52.153195+00:00_
-
-49	效应越小，sign reversal 越频繁。而小效应恰恰是需要最精确估计的场景——τ(0)=0.01 的治疗效应微妙但可能对大规模人群有重要的公共卫生意义，31% 的 sign reversal 率意味着将近三分之一的情况下，标准校正程序会得出完全相反的结论。
-50	
-51	**Takeaway**: EC-HTE 在所有配置下 sign reversal = 0%。这不是边际改善——是从 "31% 的情况下会犯方向性错误" 到 "保证不犯方向性错误" 的质变。对于决策关键型应用（clinical subgroup analysis, policy targeting），sign correctness 是 minimum requirement，不是 nice-to-have。Sign reversal 的分布恰好集中在小效应区间（需要校正帮助最多的地方），这证明专门方法不仅 justified，而且 necessary。
-52	
-53	---
-54	
-55	### Q2: AUC 三级呈现——0.63 / 0.86 / 1.0 如何理解 (R18-W1, R19 R1-W2/R2-W2)
-56	
-57	**预期质疑**: AUC=0.63 在 real LLM 上太低，削弱 'actionable diagnostic' 定位。多版本呈现有 cherry-picking 嫌疑。R2 建议 Abstract 用最保守值。
-58	
-59	**我们的回应**: 三级 AUC 是对同一诊断在不同评估条件下的完整报告，不是 cherry-picking：
-60	
-61	| AUC | 评估条件 | 含义 |
-62	|-----|---------|------|
-63	| 1.0 | 仅 $\Delta\tau > 0$ 的子群 | 存在真实异质性时，诊断完美区分 |
-64	| 0.86 | 全部合成子群（含 $\Delta\tau \approx 0$） | 含无代价误判子群后 AUC 下降 |
-65	| 0.63 | 16 semi-synthetic LLM-dataset combinations | empirical LLM CMs 中 $\Delta\tau \approx 0$ 子群比例更高 |
-66	
-67	AUC=0.63 低的根因：包含 $\Delta\tau \approx 0$ 的子群——这些子群中 global 和 stratified correction 表现相同，误判无代价。排除后 AUC=1.0。
-68	
-69	**已在论文中修复**: Abstract 完整报告三级 AUC（abstract.tex L6: 'AUC $= 1.0$ on subgroups with non-zero $\Delta\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles'）。§5.4 前置解释（experiments.tex L72-73）。
-70	
-71	**支撑证据**:
-72	- AUC=1.0 on $\Delta\tau>0$ — §5.4, exp-005
-73	- AUC=0.86 synthetic — §5.4, exp-005
-74	- AUC=0.63 semi-synthetic (empirical LLM CMs) — §5.4, exp-028
-75	- $K=2$ 时 $|\delta_0|=|\delta_1|$ 限制区分度 — Appendix app:screening
-76	
-77	---
-78	
-79	### Q3: Semi-synthetic vs real data——无 real data 成功案例 (R5-W3, R19 R1 Must-Fix)
-80	
-81	**预期质疑**: '11 real LLM-dataset combinations' 实质是 semi-synthetic。所有 CATE 为合成注入。你的方法在 real data 上为什么不 work？
-82	
-83	**我们的回应**:
-84	
-85	**Acknowledge**: EC-HTE 在现有 real datasets 上未产生改善，我们诚实报告这一结果。全文术语已统一为 'semi-synthetic evaluations using empirical LLM confusion matrices'（R19 已修复）。
-86	
-87	**Reframe**: 关键区分——这不是 "方法在 real data 上失败"，而是 "现有 real datasets 的 
-…[truncated 3335 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 587 · 2026-05-24T08:04:30.425231+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] Rebuttal Q1b/Q3 打磨确认\n\n**Q1b (Sign Reversal 频率)**：\n- Acknowledge→Reframe→Evidence→Takeaway 结构完整 ✅\n- Type I error 类比有说服力——\"频率再低，一次错误判断的代价就不可接受\"\n- exp-038 完整数据（31%→14.9%→6.1%→0%）正确引用 ✅\n- \"质变而非量变\"（EC-HTE 全配置 0%）定位准确 ✅\n\n**Q3 (Real-data failure)**：\n- 重写后结构清晰，\"operating conditions 不满足\" vs \"方法失败\" 区分是正确策略 ✅\n- FNR/Δπ 数据点与 registry 一致 ✅\n- 新增 exp-037 calibration 引用（Δπ 0.20→0.07，coverage 96.5%）丰富了 evidence ✅\n- 55/30/15 贡献权重与论文 framing 一致 ✅\n\n**此前 WARNING 修复确认**：\n- Q2 表格已从 \"16 real\" 改为 \"16 semi-synthetic\" ✅（上轮 INFO 级术语问题已修复）\n- Q3 不再出现 \"8 = (GPT-3.5~5.4 + 4 open-source)\" 的矛盾表述 ✅\n\n无新增问题。",
-  "project": "ec_hte_llm_annotation"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0ad92fc2cac0acbbdfa5caa2c2d5b6f3:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] Rebuttal Q1b/Q3 打磨确认\n\n**Q1b (Sign Reversal 频率)**：\n- Acknowledge→Reframe→Evidence→Takeaway 结构完整 ✅\n- Type I error 类比有说服力——\"频率再低，一次错误判断的代价就不可接受\"\n- exp-038 完整数据（31%→14.9%→6.1%→0%）正确引用 ✅\n- \"质变而非量变\"（EC-HTE 全配置 0%）定位准确 ✅\n\n**Q3 (Real-data failure)**：\n- 重写后结构清晰，\"operating conditions 不满足\" vs \"方法失败\" 区分是正确策略 ✅\n- FNR/Δπ 数据点与 registry 一致 ✅\n- 新增 exp-037 calibration 引用（Δπ 0.20→0.07，coverage 96.5%）丰富了 evidence ✅\n- 55/30/15 贡献权重与论文 framing 一致 ✅\n\n**此前 WARNING 修复确认**：\n- Q2 表格已从 \"16 real\" 改为 \"16 semi-synthetic\" ✅（上轮 INFO 级术语问题已修复）\n- Q3 不再出现 \"8 = (GPT-3.5~5.4 + 4 open-source)\" 的矛盾表述 ✅\n\n无新增问题。",
-    "project": "ec_hte_llm_annotation"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 588 · 2026-05-24T08:04:34.395160+00:00_
+_source line 564 · 2026-05-24T08:04:34.395160+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -940,7 +30,7 @@ _source line 588 · 2026-05-24T08:04:34.395160+00:00_
 
 ### Assistant
 
-_source line 589 · 2026-05-24T08:04:37.963104+00:00_
+_source line 565 · 2026-05-24T08:04:37.963104+00:00_
 
 Q1b 和 Q3 的打磨质量良好。确认几个关键改进。
 
@@ -967,7 +57,7 @@ Q1b 和 Q3 的打磨质量良好。确认几个关键改进。
 
 ### User
 
-_source line 590 · 2026-05-24T11:19:56.209492+00:00_
+_source line 566 · 2026-05-24T11:19:56.209492+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -988,7 +78,7 @@ _source line 590 · 2026-05-24T11:19:56.209492+00:00_
 
 ### Tool call
 
-_source line 591 · 2026-05-24T11:20:18.479316+00:00_
+_source line 567 · 2026-05-24T11:20:18.479316+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1024,7 +114,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 592 · 2026-05-24T11:20:18.680662+00:00_
+_source line 568 · 2026-05-24T11:20:18.680662+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.15}}"}
 
@@ -1046,7 +136,7 @@ _source line 592 · 2026-05-24T11:20:18.680662+00:00_
 
 ### Tool call
 
-_source line 593 · 2026-05-24T11:20:18.681077+00:00_
+_source line 569 · 2026-05-24T11:20:18.681077+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -1082,7 +172,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 594 · 2026-05-24T11:20:18.731606+00:00_
+_source line 570 · 2026-05-24T11:20:18.731606+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/report.md\", \"content\": \"# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- Rebuttal talking points 待更新（sign-reversal, F-L, κ, cross-LLM 数据）\\n- EMNLP 2026 ARR DDL: 2026-05-25（~36h）\\n\\n## 近期结论\\n\\n- **Paper fixes** (done): MF1(Remark→Proposition), MF2(hate speech main text), SF2/SF4/SF5/SF6, W-M1/W-M7 全部完成。编译 0 errors, 0 undefined refs, abstract 179 words, main text 8 pages。\\n- **Exp B stance detection** (done, mixed): TweetEval 5 targets × 3 LLMs（GPT-4o real, GPT-4o-mini/GPT-3.5-Turbo simulated）。Global sign reversal 4/30 (13.3%), EC-HTE 1/30 (3.3%)。Global bias amplification 15/30 (50%)。κ range [1.55, 15.01]。但 RMSE: naive 0.116 < EC-HTE 0.271 ≈ global 0.272（variance inflation from high-κ matrix inversion）。\\n- **exp-038** (success): Policy reversal zone τ sweep — τ=0.01→31% reversal, τ=0.03→14.9%, EC-HTE 0%。\\n- **exp-039** (success, mixed): K=8 scalability — K=2/4 EC-HTE 领先 5-7×, K=8 退化（RMSE 0.34 vs Global 0.17），coverage ≥95.6%。\\n- **exp-040** (success, mixed): Treatment-dep misclassification — γ_T≤0.05 robust, breakeven ≈0.10, γ_T≥0.15 退化。\\n- **exp-036** (success): Bootstrap SE coverage ≥95% at n_expert≥25。\\n- **exp-037** (success): Temperature calibration 降低但不消除 Δπ。\\n- **exp-035** (success): 非对称 CM coverage ≥93%。\\n\\n## Excitement 提分产出（R17 修复）\\n\\n| Artifact | 核心数字 | 状态 |\\n|----------|---------|------|\\n| sign_reversal_figure | 92% configs affected, 0% EC-HTE | ✅ 已注册 |\\n| cross_llm_heatmap | 9 LLMs, mean ρ=0.244, min=-0.80 | ✅ Reviewer PASS |\\n| bias_anatomy_heatmap | R²=0.9938, 52% grid debiasing hurts | ✅ Reviewer PASS |\\n| debiasing_hurts_summary | 26.5% of 2132 pairs hurt, real LLM 100% | ✅ 已注册 |\\n| policy_reversal_zone | τ=0.01→31% reversal, danger zone 可视化 | ✅ 已注册 |\\n| k_scalability_bars | K=2/4 优, K=8 boundary | ✅ 已注册 |\\n| treatment_dep_misclass_figure | γ_T br
 …[truncated 464 chars]
@@ -1105,7 +195,7 @@ _source line 594 · 2026-05-24T11:20:18.731606+00:00_
 
 ### Assistant
 
-_source line 595 · 2026-05-24T11:20:33.031729+00:00_
+_source line 571 · 2026-05-24T11:20:33.031729+00:00_
 
 无 RUNNING 实验，无新状态变更。report.md 仍为 2026-05-23 版本（DDL 前最后快照）。项目处于等待用户提交决策状态，无需审查操作。
 
@@ -1132,7 +222,7 @@ _source line 595 · 2026-05-24T11:20:33.031729+00:00_
 
 ### User
 
-_source line 596 · 2026-05-24T11:57:01.825353+00:00_
+_source line 572 · 2026-05-24T11:57:01.825353+00:00_
 
 [System 触发审查]:
 **Round 20 (R14 Fresh Review) 审稿报告 — 请独立审查我的修复方案**
@@ -1250,7 +340,7 @@ Q6 (子群定义 forking paths) → Limitations 已覆盖
 
 ### Tool call
 
-_source line 597 · 2026-05-24T11:58:00.295222+00:00_
+_source line 573 · 2026-05-24T11:58:00.295222+00:00_
 
 called Read
 
@@ -1288,7 +378,7 @@ called Read
 
 ### Tool result
 
-_source line 598 · 2026-05-24T11:58:00.797657+00:00_
+_source line 574 · 2026-05-24T11:58:00.797657+00:00_
 
 67	
 68	\subsection{Actionable Diagnostic}
@@ -1328,7 +418,7 @@ _source line 598 · 2026-05-24T11:58:00.797657+00:00_
 
 ### Tool call
 
-_source line 599 · 2026-05-24T11:58:01.099462+00:00_
+_source line 575 · 2026-05-24T11:58:01.099462+00:00_
 
 called Read
 
@@ -1366,7 +456,7 @@ called Read
 
 ### Tool result
 
-_source line 600 · 2026-05-24T11:58:01.151015+00:00_
+_source line 576 · 2026-05-24T11:58:01.151015+00:00_
 
 8	\subsection{Hierarchical Bayes Confusion Matrix Estimation}
 9	
@@ -1400,7 +490,7 @@ _source line 600 · 2026-05-24T11:58:01.151015+00:00_
 
 ### Tool call
 
-_source line 601 · 2026-05-24T11:58:07.326770+00:00_
+_source line 577 · 2026-05-24T11:58:07.326770+00:00_
 
 called Read
 
@@ -1434,7 +524,7 @@ called Read
 
 ### Tool result
 
-_source line 602 · 2026-05-24T11:58:08.230753+00:00_
+_source line 578 · 2026-05-24T11:58:08.230753+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -1463,7 +553,7 @@ _source line 602 · 2026-05-24T11:58:08.230753+00:00_
 
 ### Tool call
 
-_source line 603 · 2026-05-24T11:58:08.381714+00:00_
+_source line 579 · 2026-05-24T11:58:08.381714+00:00_
 
 called Read
 
@@ -1501,7 +591,7 @@ called Read
 
 ### Tool result
 
-_source line 604 · 2026-05-24T11:58:08.382145+00:00_
+_source line 580 · 2026-05-24T11:58:08.382145+00:00_
 
 38	
 39	\subsection{Variance-Adjusted CausalForest}
@@ -1534,7 +624,7 @@ _source line 604 · 2026-05-24T11:58:08.382145+00:00_
 
 ### Tool call
 
-_source line 605 · 2026-05-24T11:59:22.729021+00:00_
+_source line 581 · 2026-05-24T11:59:22.729021+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1570,7 +660,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 606 · 2026-05-24T11:59:26.351362+00:00_
+_source line 582 · 2026-05-24T11:59:26.351362+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -1592,7 +682,7 @@ _source line 606 · 2026-05-24T11:59:26.351362+00:00_
 
 ### Assistant
 
-_source line 607 · 2026-05-24T11:59:29.639994+00:00_
+_source line 583 · 2026-05-24T11:59:29.639994+00:00_
 
 逐条审查 Action Matrix。
 
@@ -1619,7 +709,7 @@ _source line 607 · 2026-05-24T11:59:29.639994+00:00_
 
 ### User
 
-_source line 608 · 2026-05-24T12:11:24.546209+00:00_
+_source line 584 · 2026-05-24T12:11:24.546209+00:00_
 
 [系统通知 — worker_done:worker_paper_r20-fixes-full_20260524T120136]:
 Worker worker_paper_r20-fixes-full_20260524T120136 已完成（status=done），请审查 Agent 的处理结果。
@@ -1641,7 +731,7 @@ Worker worker_paper_r20-fixes-full_20260524T120136 已完成（status=done），
 
 ### Tool call
 
-_source line 609 · 2026-05-24T12:11:36.070543+00:00_
+_source line 585 · 2026-05-24T12:11:36.070543+00:00_
 
 called Read
 
@@ -1675,7 +765,7 @@ called Read
 
 ### Tool result
 
-_source line 610 · 2026-05-24T12:11:36.121209+00:00_
+_source line 586 · 2026-05-24T12:11:36.121209+00:00_
 
 1	{
 2	  "raw": "全部 8 项修改已完成，编译通过。\n\n**结果**：0 errors, 0 undefined refs, 主文 8 页（未超页），abstract ~170 words。\n\n**修改清单**：\n- **MF1**: method.tex L11 + experiments.tex L81-85 新增 (A2) 讨论，配套精简 James-Stein 解释、PPCI 段、对比段\n- **MF2**: abstract.tex AUC 顺序改为 0.86 → 1.0 → 0.63\n- **SF3**: 4 篇引用已补（Gligorić NAACL'25, Knox/Lucas/Cho ARPS'22, Ura QE'18, Knox/Lowe/Mummolo APSR'20），bib 条目已添加，ura2015→ura2018 已更新\n- **SF1**: experiments.tex L78 补 Table 22 筛选结果（strict/relaxed screening）\n- **SF4**: method.tex L56 补 PPCI 组合独立性充分条件\n- **SF5**: method.tex L44 补 Eq.6 独立性假设 + 脚注\n- **SF6**: experiments.tex L85 补 class imbalance 退化\n- **Figure 2**: experiments.tex + theory.tex 中 fig:heatmap 引用已加 `(Appendix~\\ref{app:dgp})`\n\n报告已保存至 `artifacts/r20_fixes_report.md`。"
@@ -1699,7 +789,7 @@ _source line 610 · 2026-05-24T12:11:36.121209+00:00_
 
 ### Tool call
 
-_source line 611 · 2026-05-24T12:11:43.354149+00:00_
+_source line 587 · 2026-05-24T12:11:43.354149+00:00_
 
 called Read
 
@@ -1733,7 +823,7 @@ called Read
 
 ### Tool result
 
-_source line 612 · 2026-05-24T12:11:43.856389+00:00_
+_source line 588 · 2026-05-24T12:11:43.856389+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -1762,7 +852,7 @@ _source line 612 · 2026-05-24T12:11:43.856389+00:00_
 
 ### Tool call
 
-_source line 613 · 2026-05-24T12:11:44.359467+00:00_
+_source line 589 · 2026-05-24T12:11:44.359467+00:00_
 
 called Read
 
@@ -1800,7 +890,7 @@ called Read
 
 ### Tool result
 
-_source line 614 · 2026-05-24T12:11:44.861332+00:00_
+_source line 590 · 2026-05-24T12:11:44.861332+00:00_
 
 8	\subsection{Hierarchical Bayes Confusion Matrix Estimation}
 9	
@@ -1836,7 +926,7 @@ _source line 614 · 2026-05-24T12:11:44.861332+00:00_
 
 ### Tool call
 
-_source line 615 · 2026-05-24T12:11:45.062790+00:00_
+_source line 591 · 2026-05-24T12:11:45.062790+00:00_
 
 called Read
 
@@ -1874,7 +964,7 @@ called Read
 
 ### Tool result
 
-_source line 616 · 2026-05-24T12:11:45.164523+00:00_
+_source line 592 · 2026-05-24T12:11:45.164523+00:00_
 
 75	The condition number $\kappa(\hat{C}_s)$ provides a practical guard: $\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\kappa \in (1.25, 3]$ with calibrated coverage $\geq$93\% (Appendix~\ref{app:kappa_analysis}).
 76	Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$; Appendix~\ref{app:realcm_bias}) appear in Appendices~\ref{sec:budget}--\ref{app:multilm}.
@@ -1911,7 +1001,7 @@ _source line 616 · 2026-05-24T12:11:45.164523+00:00_
 
 ### Tool call
 
-_source line 617 · 2026-05-24T12:11:50.441396+00:00_
+_source line 593 · 2026-05-24T12:11:50.441396+00:00_
 
 called Read
 
@@ -1949,7 +1039,7 @@ called Read
 
 ### Tool result
 
-_source line 618 · 2026-05-24T12:11:50.492036+00:00_
+_source line 594 · 2026-05-24T12:11:50.492036+00:00_
 
 40	To account for confusion matrix correction, we propagate uncertainty through the inverse mapping:
 41	\begin{equation}
@@ -1987,7 +1077,7 @@ _source line 618 · 2026-05-24T12:11:50.492036+00:00_
 
 ### Tool call
 
-_source line 619 · 2026-05-24T12:12:00.588895+00:00_
+_source line 595 · 2026-05-24T12:12:00.588895+00:00_
 
 called Grep
 
@@ -2031,7 +1121,7 @@ called Grep
 
 ### Tool result
 
-_source line 620 · 2026-05-24T12:12:01.041072+00:00_
+_source line 596 · 2026-05-24T12:12:01.041072+00:00_
 
 543:@article{ura2018heterogeneous,
 544-  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},
@@ -2071,7 +1161,7 @@ _source line 620 · 2026-05-24T12:12:01.041072+00:00_
 
 ### Tool call
 
-_source line 621 · 2026-05-24T12:12:01.567612+00:00_
+_source line 597 · 2026-05-24T12:12:01.567612+00:00_
 
 called Grep
 
@@ -2115,7 +1205,7 @@ called Grep
 
 ### Tool result
 
-_source line 622 · 2026-05-24T12:12:01.639139+00:00_
+_source line 598 · 2026-05-24T12:12:01.639139+00:00_
 
 9-Second, Theorem~\ref{thm:bias_identity} derives a bias identity for correction-induced bias---bias created by the debiasing procedure---rather than bounding the attenuation from misclassification itself.
 10:Concretely, \citet{frazis2003estimating} derive scalar attenuation for the uncorrected estimator under homogeneous misclassification; Theorem~\ref{thm:bias_identity} characterizes a structurally distinct quantity---correction-induced bias that is subgroup-specific, potentially sign-reversing, and absent from the uncorrected estimator.
@@ -2146,7 +1236,7 @@ _source line 622 · 2026-05-24T12:12:01.639139+00:00_
 
 ### Tool call
 
-_source line 623 · 2026-05-24T12:12:33.018989+00:00_
+_source line 599 · 2026-05-24T12:12:33.018989+00:00_
 
 called Grep
 
@@ -2186,7 +1276,7 @@ called Grep
 
 ### Tool result
 
-_source line 624 · 2026-05-24T12:12:33.119795+00:00_
+_source line 600 · 2026-05-24T12:12:33.119795+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex:18:Global correction worsens bias in 50\% of $K{=}2$ configurations (260/520, excluding $\Delta\pi{=}0$), with amplification reaching 2.86$\times$ ($K{=}2$) and 2.41$\times$ ($K{=}4$); Figure~\ref{fig:heatmap} (Appendix~\ref{app:dgp}) visualizes the amplification surface.
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex:119:In our experiments (Section~\ref{sec:bias_mechanism}), global correction increases bias in 50\% of $K{=}2$ configurations (260/520), with amplification reaching $2.86\times$ ($K{=}2$) and $2.41\times$ ($K{=}4$); Figure~\ref{fig:heatmap} (Appendix~\ref{app:dgp}) visualizes the full parameter grid.
@@ -2211,7 +1301,7 @@ _source line 624 · 2026-05-24T12:12:33.119795+00:00_
 
 ### Tool call
 
-_source line 625 · 2026-05-24T12:13:06.518007+00:00_
+_source line 601 · 2026-05-24T12:13:06.518007+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2247,7 +1337,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 626 · 2026-05-24T12:13:10.402995+00:00_
+_source line 602 · 2026-05-24T12:13:10.402995+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -2269,7 +1359,7 @@ _source line 626 · 2026-05-24T12:13:10.402995+00:00_
 
 ### Assistant
 
-_source line 627 · 2026-05-24T12:13:13.356357+00:00_
+_source line 603 · 2026-05-24T12:13:13.356357+00:00_
 
 全部 8 项修改验证完毕。
 
@@ -2296,7 +1386,7 @@ _source line 627 · 2026-05-24T12:13:13.356357+00:00_
 
 ### User
 
-_source line 628 · 2026-05-24T12:13:42.920044+00:00_
+_source line 604 · 2026-05-24T12:13:42.920044+00:00_
 
 [System 触发审查]:
 **R20 修复验证请求 — 8 项修复完成，请逐条验证**
@@ -2343,7 +1433,7 @@ Agent 已完成全部 R20 审稿修复，编译通过（8 页主文，0 errors�
 
 ### Tool call
 
-_source line 629 · 2026-05-24T12:14:02.787270+00:00_
+_source line 605 · 2026-05-24T12:14:02.787270+00:00_
 
 called Grep
 
@@ -2385,7 +1475,7 @@ called Grep
 
 ### Tool result
 
-_source line 630 · 2026-05-24T12:14:03.240572+00:00_
+_source line 606 · 2026-05-24T12:14:03.240572+00:00_
 
 No matches found
 
@@ -2407,7 +1497,7 @@ No matches found
 
 ### Tool call
 
-_source line 631 · 2026-05-24T12:14:03.616175+00:00_
+_source line 607 · 2026-05-24T12:14:03.616175+00:00_
 
 called Read
 
@@ -2445,7 +1535,7 @@ called Read
 
 ### Tool result
 
-_source line 632 · 2026-05-24T12:14:03.768032+00:00_
+_source line 608 · 2026-05-24T12:14:03.768032+00:00_
 
 543	@article{ura2018heterogeneous,
 544	  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},
@@ -2501,7 +1591,7 @@ _source line 632 · 2026-05-24T12:14:03.768032+00:00_
 
 ### Tool call
 
-_source line 633 · 2026-05-24T12:14:10.546867+00:00_
+_source line 609 · 2026-05-24T12:14:10.546867+00:00_
 
 called Grep
 
@@ -2541,7 +1631,7 @@ called Grep
 
 ### Tool result
 
-_source line 634 · 2026-05-24T12:14:10.647782+00:00_
+_source line 610 · 2026-05-24T12:14:10.647782+00:00_
 
 4:%      \newtheorem{proposition}[theorem]{Proposition}
 62:Under asymmetric errors, the diagnostic (Proposition~\ref{prop:debiasing_hurts}) requires evaluating $[B_s]_{z,1}$ cell-by-cell rather than via a single scalar threshold; the AUC decreases from 0.86 to 0.66 (Appendix~\ref{app:asymmetric}), reflecting the additional complexity of cell-specific error rates.
@@ -2569,7 +1659,7 @@ _source line 634 · 2026-05-24T12:14:10.647782+00:00_
 
 ### Tool call
 
-_source line 635 · 2026-05-24T12:14:14.512493+00:00_
+_source line 611 · 2026-05-24T12:14:14.512493+00:00_
 
 called Read
 
@@ -2607,7 +1697,7 @@ called Read
 
 ### Tool result
 
-_source line 636 · 2026-05-24T12:14:14.964578+00:00_
+_source line 612 · 2026-05-24T12:14:14.964578+00:00_
 
 68	\begin{proposition}[Exact Identity under Heterogeneous Treatment Effects]
 69	\label{prop:a5_relaxation}
@@ -2640,7 +1730,7 @@ _source line 636 · 2026-05-24T12:14:14.964578+00:00_
 
 ### Tool call
 
-_source line 637 · 2026-05-24T12:14:14.965023+00:00_
+_source line 613 · 2026-05-24T12:14:14.965023+00:00_
 
 called Read
 
@@ -2678,7 +1768,7 @@ called Read
 
 ### Tool result
 
-_source line 638 · 2026-05-24T12:14:15.015521+00:00_
+_source line 614 · 2026-05-24T12:14:15.015521+00:00_
 
 100	In practice, confusion matrices are estimated from $n_{\text{expert}}$ expert labels with $\hat{C}_s = C_s + E_s$, $\|E_s\| = O_p(n_{\text{expert}}^{-1/2})$; the resulting remainder is therefore $R_n = O_p(n_{\text{expert}}^{-1/2} \cdot \kappa(C_s))$, motivating the singularity guard ($\kappa > 100 \to$ fallback) in Section~\ref{sec:method}.
 101	
@@ -2714,7 +1804,7 @@ _source line 638 · 2026-05-24T12:14:15.015521+00:00_
 
 ### Tool call
 
-_source line 639 · 2026-05-24T12:15:38.305008+00:00_
+_source line 615 · 2026-05-24T12:15:38.305008+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -2750,7 +1840,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 640 · 2026-05-24T12:15:42.022940+00:00_
+_source line 616 · 2026-05-24T12:15:42.022940+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -2772,7 +1862,7 @@ _source line 640 · 2026-05-24T12:15:42.022940+00:00_
 
 ### Assistant
 
-_source line 641 · 2026-05-24T12:15:46.779717+00:00_
+_source line 617 · 2026-05-24T12:15:46.779717+00:00_
 
 已在上一条消息中完成了主要验证。现在补充 Director 要求的具体子项检查和排版修复验证。
 
@@ -2799,7 +1889,7 @@ _source line 641 · 2026-05-24T12:15:46.779717+00:00_
 
 ### User
 
-_source line 642 · 2026-05-24T12:44:40.595599+00:00_
+_source line 618 · 2026-05-24T12:44:40.595599+00:00_
 
 [System 触发审查]:
 **Round 21 (R15 Continue) 审稿报告 — 请独立审查修复方案**
@@ -2890,7 +1980,7 @@ _source line 642 · 2026-05-24T12:44:40.595599+00:00_
 
 ### Tool call
 
-_source line 643 · 2026-05-24T12:44:55.461561+00:00_
+_source line 619 · 2026-05-24T12:44:55.461561+00:00_
 
 called Read
 
@@ -2928,7 +2018,7 @@ called Read
 
 ### Tool result
 
-_source line 644 · 2026-05-24T12:44:55.913900+00:00_
+_source line 620 · 2026-05-24T12:44:55.913900+00:00_
 
 80	
 81	\paragraph{Assumption~(A2) in practice.}
@@ -2959,7 +2049,7 @@ _source line 644 · 2026-05-24T12:44:55.913900+00:00_
 
 ### Tool call
 
-_source line 645 · 2026-05-24T12:44:55.964492+00:00_
+_source line 621 · 2026-05-24T12:44:55.964492+00:00_
 
 called Read
 
@@ -2993,7 +2083,7 @@ called Read
 
 ### Tool result
 
-_source line 646 · 2026-05-24T12:44:56.015176+00:00_
+_source line 622 · 2026-05-24T12:44:56.015176+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -3028,7 +2118,7 @@ _source line 646 · 2026-05-24T12:44:56.015176+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-24T12:45:01.687515+00:00_
+_source line 623 · 2026-05-24T12:45:01.687515+00:00_
 
 called Grep
 
@@ -3072,7 +2162,7 @@ called Grep
 
 ### Tool result
 
-_source line 648 · 2026-05-24T12:45:01.838720+00:00_
+_source line 624 · 2026-05-24T12:45:01.838720+00:00_
 
 166-When $\bar{\pi} = 0.15$, any subgroup with $\pi_s < 0.088$ experiences increased bias from global correction. \qed
 167-
@@ -3117,7 +2207,7 @@ _source line 648 · 2026-05-24T12:45:01.838720+00:00_
 
 ### Tool call
 
-_source line 649 · 2026-05-24T12:46:11.747861+00:00_
+_source line 625 · 2026-05-24T12:46:11.747861+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3153,7 +2243,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 650 · 2026-05-24T12:46:15.312654+00:00_
+_source line 626 · 2026-05-24T12:46:15.312654+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -3182,7 +2272,7 @@ _source line 650 · 2026-05-24T12:46:15.312654+00:00_
 
 ### User
 
-_source line 651 · 2026-05-24T12:54:26.534325+00:00_
+_source line 627 · 2026-05-24T12:54:26.534325+00:00_
 
 [系统通知 — worker_done:worker_research_lalonde-dataset-screening_20260524T123858]:
 Worker worker_research_lalonde-dataset-screening_20260524T123858 已完成（status=done），请审查 Agent 的处理结果。
@@ -3204,7 +2294,7 @@ Worker worker_research_lalonde-dataset-screening_20260524T123858 已完成（sta
 
 ### Tool call
 
-_source line 652 · 2026-05-24T12:54:38.429952+00:00_
+_source line 628 · 2026-05-24T12:54:38.429952+00:00_
 
 called Read
 
@@ -3238,7 +2328,7 @@ called Read
 
 ### Tool result
 
-_source line 653 · 2026-05-24T12:54:38.480640+00:00_
+_source line 629 · 2026-05-24T12:54:38.480640+00:00_
 
 1	{
 2	  "raw": "报告已写入 `artifacts/lalonde_dataset_candidates.md`。\n\n**核心结论**：\n\n- **方案 A（首选）**：**Hangartner et al. (2021) 共情反言论 Twitter 实验**。N=1,350，有匿名化推文文本（Harvard Dataverse DVN/ARZ9PU），RCT 设计，Z 可定义为\"显式 vs. 隐式仇恨言论\"，LLM 分类误差在不同推文特征子群间天然异质。可行性 4.5/5。\n\n- **方案 B（备选）**：**Hainmueller et al. (2014) 移民 Conjoint 实验**。N=13,960，R 包 `cjoint` 即装即用，ground truth Z 100% 已知，但需要额外步骤将结构化属性转化为自然语言文本。可行性 4/5。\n\n**推荐策略**：先下载验证方案 A 的文本质量；如果文本被过度匿名化或 N 不足，退回方案 B。两个方案可并行准备。"
@@ -3262,7 +2352,7 @@ _source line 653 · 2026-05-24T12:54:38.480640+00:00_
 
 ### Tool call
 
-_source line 654 · 2026-05-24T12:54:43.711001+00:00_
+_source line 630 · 2026-05-24T12:54:43.711001+00:00_
 
 called Read
 
@@ -3296,7 +2386,7 @@ called Read
 
 ### Tool result
 
-_source line 655 · 2026-05-24T12:54:43.762255+00:00_
+_source line 631 · 2026-05-24T12:54:43.762255+00:00_
 
 1	# LaLonde 式端到端验证 — 候选数据集筛选
 2	
@@ -3363,7 +2453,7 @@ _source line 655 · 2026-05-24T12:54:43.762255+00:00_
 
 ### Tool call
 
-_source line 656 · 2026-05-24T12:55:27.688632+00:00_
+_source line 632 · 2026-05-24T12:55:27.688632+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3399,7 +2489,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 657 · 2026-05-24T12:55:32.013081+00:00_
+_source line 633 · 2026-05-24T12:55:32.013081+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -3428,7 +2518,7 @@ _source line 657 · 2026-05-24T12:55:32.013081+00:00_
 
 ### User
 
-_source line 658 · 2026-05-24T12:56:44.700988+00:00_
+_source line 634 · 2026-05-24T12:56:44.700988+00:00_
 
 [系统通知 — worker_done:worker_code_exp-041_20260524T124830]:
 Worker worker_code_exp-041_20260524T124830 已完成（status=done），请审查 Agent 的处理结果。
@@ -3450,7 +2540,7 @@ Worker worker_code_exp-041_20260524T124830 已完成（status=done），请审�
 
 ### Tool call
 
-_source line 659 · 2026-05-24T12:57:03.903233+00:00_
+_source line 635 · 2026-05-24T12:57:03.903233+00:00_
 
 called Read
 
@@ -3484,7 +2574,7 @@ called Read
 
 ### Tool result
 
-_source line 660 · 2026-05-24T12:57:04.004321+00:00_
+_source line 636 · 2026-05-24T12:57:04.004321+00:00_
 
 1	{
 2	  "raw": "## exp-041 完成：关键结果\n\n**实验规模**：48 configs × 100 MC runs，总耗时 40.8s。\n\n### Bias Identity R²\n\n| Δπ | Mean R² | Range |\n|----|---------|-------|\n| 0.05 | 0.570 | [0.05, 0.84] |\n| 0.10 | 0.851 | [0.73, 0.92] |\n| 0.15 | 0.922 | [0.84, 0.97] |\n| 0.20 | 0.951 | [0.89, 0.99] |\n\nR² 随 Δπ 增大而升高——小 Δπ 时 analytic bias 极小，MC 噪声主导，R² 被压低。Δπ≥0.10 时 R²>0.85，确认 product structure 在非对称误分类下成立。FNR-dominant (r<1) 方向 R² 略高于 FPR-dominant (0.879 vs 0.768)。\n\n### Diagnostic AUC\n\n- 29/48 configs 有有效 AUC（K=2 + 小 Δπ 时数据点不足导致 NaN）\n- K=4 configs 平均 AUC = **0.74**（range 0.57–0.83）\n- K=2 configs 平均 AUC = **0.44**（仅 4 个数据点，离散化严重）\n\n### Method Comparison（全 48 configs 平均）\n\n| Method | Abs Bias | RMSE | Coverage |\n|--------|----------|------|----------|\n| Oracle | 0.058 | 0.072 | 0.946 |\n| Naive | 0.080 | 0.096 | 0.830 |\n| Global Corrected | 0.088 | 0.109 | 0.931 |\n| EC-HTE (HB) | 0.098 | 0.125 | 0.920 |\n\nEC-HTE 的 RMSE 高于 Global——这在非对称场景中符合预期：n_expert=250 拆分到 K 个子群后，per-subgroup 同时估 FPR 和 FNR 的方差远大于全局估计。EC-HTE 的主要优势体现在 coverage（0.92 vs naive 的 0.83），且 K=2 时 EC-HTE 与 Global 差距很小（RMSE 0.098 vs 0.091）。\n\n**数据文件**：\n- `results/exp041_asymmetric_grid.csv`（raw）\n- `results/exp041_asymmetric_summary.csv`（summary）"
@@ -3508,7 +2598,7 @@ _source line 660 · 2026-05-24T12:57:04.004321+00:00_
 
 ### Tool call
 
-_source line 661 · 2026-05-24T12:57:40.427894+00:00_
+_source line 637 · 2026-05-24T12:57:40.427894+00:00_
 
 called Glob
 
@@ -3544,7 +2634,7 @@ called Glob
 
 ### Tool result
 
-_source line 662 · 2026-05-24T12:57:40.528784+00:00_
+_source line 638 · 2026-05-24T12:57:40.528784+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/results/exp041_asymmetric_summary.csv
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/exp-041/data/exp041_asymmetric_summary.csv
@@ -3567,7 +2657,7 @@ _source line 662 · 2026-05-24T12:57:40.528784+00:00_
 
 ### Tool call
 
-_source line 663 · 2026-05-24T12:57:45.448548+00:00_
+_source line 639 · 2026-05-24T12:57:45.448548+00:00_
 
 called Read
 
@@ -3601,7 +2691,7 @@ called Read
 
 ### Tool result
 
-_source line 664 · 2026-05-24T12:57:45.449385+00:00_
+_source line 640 · 2026-05-24T12:57:45.449385+00:00_
 
 1	fpr_fnr_ratio,K,delta_pi,method,mean_abs_bias,rmse,coverage,r2,diagnostic_auc
 2	1:2,2,0.05,oracle,0.049217543885378655,0.06143712672208174,0.9375,0.8380934044803444,
@@ -3645,7 +2735,7 @@ _source line 664 · 2026-05-24T12:57:45.449385+00:00_
 
 ### Tool call
 
-_source line 665 · 2026-05-24T12:58:50.026669+00:00_
+_source line 641 · 2026-05-24T12:58:50.026669+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3681,7 +2771,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 666 · 2026-05-24T12:58:53.845188+00:00_
+_source line 642 · 2026-05-24T12:58:53.845188+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -3703,7 +2793,7 @@ _source line 666 · 2026-05-24T12:58:53.845188+00:00_
 
 ### Tool call
 
-_source line 667 · 2026-05-24T13:01:55.122969+00:00_
+_source line 643 · 2026-05-24T13:01:55.122969+00:00_
 
 called ToolSearch
 
@@ -3739,7 +2829,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 668 · 2026-05-24T13:01:55.123306+00:00_
+_source line 644 · 2026-05-24T13:01:55.123306+00:00_
 
 
 
@@ -3761,7 +2851,7 @@ _source line 668 · 2026-05-24T13:01:55.123306+00:00_
 
 ### Tool call
 
-_source line 669 · 2026-05-24T13:01:59.539102+00:00_
+_source line 645 · 2026-05-24T13:01:59.539102+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3797,7 +2887,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 670 · 2026-05-24T13:01:59.539520+00:00_
+_source line 646 · 2026-05-24T13:01:59.539520+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -3831,7 +2921,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 671 · 2026-05-24T13:01:59.690386+00:00_
+_source line 647 · 2026-05-24T13:01:59.690386+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-041\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T12:47:44.371Z\", \"updated_at\": \"2026-05-24T12:47:54.889Z\", \"hypothesis\": \"Under asymmetric misclassification (FPR≠FNR, ratio 1:2 to 1:5 and reverse), the bias identity retains R²≥0.95 and EC-HTE maintains coverage ≥93% across 48 configurations (6 FPR/FNR ratios × 2 K × 4 Δπ), while the symmetric diagnostic AUC degrades monotonically with FPR/FNR ratio — quantifying the exact diagnostic accuracy loss curve under asymmetry.\"}, \"exp-040\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:54:23.294Z\", \"updated_at\": \"2026-05-23T15:55:16.698Z\", \"hypothesis\": \"EC-HTE is robust to moderate treatment-dependent misclassification (γ_T≤0.05, coverage ≥89.7%) but degrades at γ_T≥0.10 because per-subgroup CM estimates become biased when expert sample treatment composition doesn't match the full sample.\", \"conclusion\": \"success\", \"metrics\": {\"gamma0_cov\": 0.945, \"gamma0_rmse\": 0.075, \"gamma005_cov\": 0.897, \"gamma005_rmse\": 0.092, \"gamma010_cov\": 0.75, \"gamma010_rmse\": 0.133, \"gamma015_cov\": 0.525, \"gamma015_rmse\": 0.177, \"gamma020_cov\": 0.37, \"gamma020_rmse\": 0.224, \"breakeven_gamma\": 0.1}}, \"exp-039\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:54:20.391Z\", \"updated_at\": \"2026-05-23T15:55:15.899Z\", \"hypothesis\": \"EC-HTE dominates at K=2/4 (bias reduction 5-7×) but degrades at K=8 with fixed n_expert=250 (~31 labels/subgroup), establishing K=8 as a scalability boundary where per-subgroup CM estimation variance exceeds bias correction gains.\", \"conclusion\": \"success\", \"metrics\": {\"K2_echte_bias\": 0.008, \"K2_echte_rmse\": 0.089, \"K2_echte_cov\": 0.938, \"K4_echte_bias\": 0.012, \"K4_echte_rmse\": 0.12, \"K4_echte_cov\": 0.956, \"K8_echte_bias\": 0.183, \"K8_echte_rmse\": 0.34, \"K8_echte_cov\": 0.956, \"K8_global_rmse\": 0.168}}, \"exp-038\": {\"status\": \"DONE\", \"creat
 …[truncated 1923 chars]
@@ -3854,7 +2944,7 @@ _source line 671 · 2026-05-24T13:01:59.690386+00:00_
 
 ### Tool result
 
-_source line 672 · 2026-05-24T13:01:59.690897+00:00_
+_source line 648 · 2026-05-24T13:01:59.690897+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/ROADMAP.md\", \"content\": \"# ec_hte_llm_annotation — Research Dashboard\\n\\n> 最后更新: 2026-05-24 06:11 UTC | 更新原因: 三路任务全部完成（终审PASS+review issues修复确认+rebuttal文档），等用户提交决策\\n\\n## 核心方向\\n识别并形式化 LLM 标注误分类异质性 × CATE 异质性的交互偏差机制，提出 EC-HTE 层级贝叶斯分层校正框架。详见 paper_framing.md。\\n\\n## 当前阶段\\n**DDL 冲刺 — EMNLP 2026 ARR 5/25（今天）**\\n\\n### 论文状态\\n- 主文 8 页（≤8 页限制），含 appendix 共 32 页\\n- 编译 0 errors, 0 undefined refs, 0 warnings\\n- Abstract ~179 words\\n- Framing 优化完成：Warning 55% / Diagnostic 30% / EC-HTE 15%\\n- 7 维终审全部 PASS（Reviewer 确认）\\n- 7 项 review_issues 修复确认（Paper Agent 确认）\\n- Rebuttal talking points 文档就绪（344 行，16 题）\\n\\n### 分数评估\\n- R17=3.5 → R18=3.0（降分原因：MF1/MF2/SF1-7 共 12 项写作问题）\\n- 12 项全部修复 + 3 项 framing 优化后，预估 3.0-3.5\\n- 天花板 ~3.5；突破需新 evidence，当前 real LLM Δπ∈[0.10, 0.20] 低于 EC-HTE 阈值 0.15\\n\\n### 实验总览\\n成功 36 / 负向 5 / killed 1 / 共 42\\n\\n### 核心 evidence 盘点\\n| Evidence | 状态 | 位置 |\\n|----------|------|------|\\n| Bias identity R²≥0.97 | ✅ 已在主文 | §5.2 |\\n| Sign reversal 14.9% (τ=0.03) | ✅ 已在主文+Fig 1 | §1, §5.2 |\\n| 8/8 real LLMs bias amplification | ✅ 已在主文 | §5.2, Fig 1C |\\n| Cross-estimator (DIM/CF/R-learner) | ✅ 主文+appendix | §5.3, App S |\\n| Diagnostic AUC 1.0/0.86/0.63 | ✅ 已在主文 | §5.4 |\\n| EC-HTE 7.4× bias reduction | ✅ 已在主文 | §5.3 |\\n| Real data EC-HTE failure + 原因 | ✅ 诚实报告 | §5.4, App A.6 |\\n| Operating conditions | ✅ 已在主文 | §5.4 |\\n| 11 LLM-dataset R²=0.975 | ✅ 已在 appendix | App V |\\n| Stance cross-task validation | ✅ 已在 appendix | App (new) |\\n\\n## 近期任务\\n- [x] Framing 优化 3 项（abstract/intro/operating conditions）\\n- [x] Stance appendix 修复 + 编译\\n- [x] 图文件完整性检查：7/7 引用文件全部存在\\n- [x] 附录可发现性：6 forward refs + 2 表格迁移\\n- [x] makecell warning 修复\\n- [x] Review issues 7 项 in_progress 全部确认修复\\n- [x] Rebuttal talking points 文档\\n- [x] 7 维终审 PASS\\n- [ ] **等用户决策：是否提交 5/25 DDL**\\n\\n## GPU 预算\\n- **当前无 GPU 资源**——如需 GPU 实验需向 Manage
 …[truncated 1017 chars]
@@ -3877,7 +2967,7 @@ _source line 672 · 2026-05-24T13:01:59.690897+00:00_
 
 ### Tool call
 
-_source line 673 · 2026-05-24T13:02:13.660984+00:00_
+_source line 649 · 2026-05-24T13:02:13.660984+00:00_
 
 called Bash
 
@@ -3913,7 +3003,7 @@ called Bash
 
 ### Tool result
 
-_source line 674 · 2026-05-24T13:02:14.062587+00:00_
+_source line 650 · 2026-05-24T13:02:14.062587+00:00_
 
 total 80388
 -rw-r--r-- 1 ubuntu ubuntu    1587 May 24 12:56 worker_code_exp-041_20260524T124830_result.json
@@ -3949,7 +3039,7 @@ total 80388
 
 ### Tool call
 
-_source line 675 · 2026-05-24T13:02:14.464084+00:00_
+_source line 651 · 2026-05-24T13:02:14.464084+00:00_
 
 called Read
 
@@ -3987,7 +3077,7 @@ called Read
 
 ### Tool result
 
-_source line 676 · 2026-05-24T13:02:14.615016+00:00_
+_source line 652 · 2026-05-24T13:02:14.615016+00:00_
 
 440	This establishes $K{=}8$ at $n_{\text{expert}}{=}250$ as a boundary condition: all correction methods provide valid inference (coverage $\geq$94\%), but per-subgroup stratification requires proportionally larger expert budgets---approximately $n_{\text{expert}} \geq 500$ (${\approx}60$ labels/subgroup)---to achieve RMSE parity with global correction.
 441	
@@ -4031,7 +3121,7 @@ _source line 676 · 2026-05-24T13:02:14.615016+00:00_
 
 ### Tool call
 
-_source line 677 · 2026-05-24T13:02:30.584531+00:00_
+_source line 653 · 2026-05-24T13:02:30.584531+00:00_
 
 called Bash
 
@@ -4067,7 +3157,7 @@ called Bash
 
 ### Tool result
 
-_source line 678 · 2026-05-24T13:02:30.685315+00:00_
+_source line 654 · 2026-05-24T13:02:30.685315+00:00_
 
 2026-05-24 13:02 UTC
 
@@ -4089,7 +3179,7 @@ _source line 678 · 2026-05-24T13:02:30.685315+00:00_
 
 ### Tool call
 
-_source line 679 · 2026-05-24T13:02:47.556872+00:00_
+_source line 655 · 2026-05-24T13:02:47.556872+00:00_
 
 called Bash
 
@@ -4125,7 +3215,7 @@ called Bash
 
 ### Tool result
 
-_source line 680 · 2026-05-24T13:02:47.657691+00:00_
+_source line 656 · 2026-05-24T13:02:47.657691+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 11020779 May 24 12:55 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/results/exp041_asymmetric_grid.csv
 -rw-r--r-- 1 ubuntu ubuntu    18924 May 24 12:55 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/results/exp041_asymmetric_summary.csv
@@ -4148,7 +3238,7 @@ _source line 680 · 2026-05-24T13:02:47.657691+00:00_
 
 ### Tool call
 
-_source line 681 · 2026-05-24T13:02:56.692079+00:00_
+_source line 657 · 2026-05-24T13:02:56.692079+00:00_
 
 called Bash
 
@@ -4184,7 +3274,7 @@ called Bash
 
 ### Tool result
 
-_source line 682 · 2026-05-24T13:02:56.792913+00:00_
+_source line 658 · 2026-05-24T13:02:56.792913+00:00_
 
 fpr_fnr_ratio,K,delta_pi,method,mean_abs_bias,rmse,coverage,r2,diagnostic_auc
 1:2,2,0.05,oracle,0.049217543885378655,0.06143712672208174,0.9375,0.8380934044803444,
@@ -4214,7 +3304,7 @@ fpr_fnr_ratio,K,delta_pi,method,mean_abs_bias,rmse,coverage,r2,diagnostic_auc
 
 ### Tool call
 
-_source line 683 · 2026-05-24T13:03:13.229936+00:00_
+_source line 659 · 2026-05-24T13:03:13.229936+00:00_
 
 called Bash
 
@@ -4250,7 +3340,7 @@ called Bash
 
 ### Tool result
 
-_source line 684 · 2026-05-24T13:03:13.330831+00:00_
+_source line 660 · 2026-05-24T13:03:13.330831+00:00_
 
 EC-HTE RMSE > Global: 48/48 configs
 EC-HTE abs_bias > Global: 47/48 configs
@@ -4281,7 +3371,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec
 
 ### Tool call
 
-_source line 685 · 2026-05-24T13:03:44.168087+00:00_
+_source line 661 · 2026-05-24T13:03:44.168087+00:00_
 
 called Bash
 
@@ -4317,7 +3407,7 @@ called Bash
 
 ### Tool result
 
-_source line 686 · 2026-05-24T13:03:44.270187+00:00_
+_source line 662 · 2026-05-24T13:03:44.270187+00:00_
 
 Config: ratio=3:1, K=2, Δπ=0.2
   Global: bias=0.0760, rmse=0.0947, cov=0.923
@@ -4354,7 +3444,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec
 
 ### Tool call
 
-_source line 687 · 2026-05-24T13:04:18.695917+00:00_
+_source line 663 · 2026-05-24T13:04:18.695917+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4390,7 +3480,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 688 · 2026-05-24T13:04:19.900711+00:00_
+_source line 664 · 2026-05-24T13:04:19.900711+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -4412,7 +3502,7 @@ _source line 688 · 2026-05-24T13:04:19.900711+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-24T13:04:28.648189+00:00_
+_source line 665 · 2026-05-24T13:04:28.648189+00:00_
 
 called Bash
 
@@ -4448,7 +3538,7 @@ called Bash
 
 ### Tool result
 
-_source line 690 · 2026-05-24T13:04:28.698798+00:00_
+_source line 666 · 2026-05-24T13:04:28.698798+00:00_
 
 (Bash completed with no output)
 
@@ -4470,7 +3560,7 @@ _source line 690 · 2026-05-24T13:04:28.698798+00:00_
 
 ### Tool call
 
-_source line 691 · 2026-05-24T13:04:44.267000+00:00_
+_source line 667 · 2026-05-24T13:04:44.267000+00:00_
 
 called Read
 
@@ -4508,7 +3598,7 @@ called Read
 
 ### Tool result
 
-_source line 692 · 2026-05-24T13:04:44.267523+00:00_
+_source line 668 · 2026-05-24T13:04:44.267523+00:00_
 
 75	The condition number $\kappa(\hat{C}_s)$ provides a practical guard: $\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\kappa \in (1.25, 3]$ with calibrated coverage $\geq$93\% (Appendix~\ref{app:kappa_analysis}).
 76	Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$; Appendix~\ref{app:realcm_bias}) appear in Appendices~\ref{sec:budget}--\ref{app:multilm}.
@@ -4545,7 +3635,7 @@ _source line 692 · 2026-05-24T13:04:44.267523+00:00_
 
 ### Tool call
 
-_source line 693 · 2026-05-24T13:05:23.048029+00:00_
+_source line 669 · 2026-05-24T13:05:23.048029+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4581,7 +3671,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 694 · 2026-05-24T13:05:24.255104+00:00_
+_source line 670 · 2026-05-24T13:05:24.255104+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -4603,7 +3693,7 @@ _source line 694 · 2026-05-24T13:05:24.255104+00:00_
 
 ### Assistant
 
-_source line 695 · 2026-05-24T13:05:30.781547+00:00_
+_source line 671 · 2026-05-24T13:05:30.781547+00:00_
 
 三条审查意见已全部发送给 Director：
 1. exp-041 总体审查（appendix L462 "4× improvement" 矛盾）
@@ -4635,7 +3725,7 @@ _source line 695 · 2026-05-24T13:05:30.781547+00:00_
 
 ### User
 
-_source line 696 · 2026-05-24T13:16:48.052318+00:00_
+_source line 672 · 2026-05-24T13:16:48.052318+00:00_
 
 [系统通知 — worker_done:worker_paper_exp041-appendix-update_20260524T131222]:
 Worker worker_paper_exp041-appendix-update_20260524T131222 已完成（status=done），请审查 Agent 的处理结果。
@@ -4657,7 +3747,7 @@ Worker worker_paper_exp041-appendix-update_20260524T131222 已完成（status=do
 
 ### Tool call
 
-_source line 697 · 2026-05-24T13:16:54.731081+00:00_
+_source line 673 · 2026-05-24T13:16:54.731081+00:00_
 
 called Read
 
@@ -4691,7 +3781,7 @@ called Read
 
 ### Tool result
 
-_source line 698 · 2026-05-24T13:16:54.781722+00:00_
+_source line 674 · 2026-05-24T13:16:54.781722+00:00_
 
 1	{
 2	  "raw": "编译通过，0 errors，0 undefined refs，33 页。\n\n修改摘要：\n\n**appendix.tex 两处修改：**\n\n1. **L462 cherry-pick 限定**：原文 \"EC-HTE reduces |bias| ... a 4× improvement\" 前加 \"In these three selected high-disparity configurations,\"，末尾加 \"; however, this advantage does not generalize across all asymmetric settings (see below).\"\n\n2. **新增 \"Comprehensive grid evaluation\" 段落**（原 L478 后，`\\section{Supplementary Main Results}` 前）：\n   - **R² 表格** (`tab:asym_r2_grid`)：6 ratios × 4 Δπ × 2 K panels，含说明 Δπ≥0.10 时 R²>0.73，Δπ=0.05 低 R² 是因 near-zero bias 导致回归 ill-conditioned\n   - **Method comparison 表格** (`tab:asym_method_grid`)：Oracle/Naive/Global/EC-HTE 的 |Bias|/RMSE/Coverage，caption 明确写 \"EC-HTE does not outperform global correction at n_expert=250\"\n   - **解释段**：EC-HTE RMSE > Global in all 48 configs (0.125 vs 0.109)，原因是 asymmetric CM 参数量翻倍导致 variance 增大，建议 n_expert ≥ 500"
@@ -4715,7 +3805,7 @@ _source line 698 · 2026-05-24T13:16:54.781722+00:00_
 
 ### Tool call
 
-_source line 699 · 2026-05-24T13:16:59.657063+00:00_
+_source line 675 · 2026-05-24T13:16:59.657063+00:00_
 
 called Read
 
@@ -4753,7 +3843,7 @@ called Read
 
 ### Tool result
 
-_source line 700 · 2026-05-24T13:17:00.210370+00:00_
+_source line 676 · 2026-05-24T13:17:00.210370+00:00_
 
 455	where $[B_s]_{z,1}$ depends only on $\{\text{FPR}_k, \text{FNR}_k, w_k\}$, not on $\Delta\tau$.
 456	Under~(A2), this reduces to $\delta_s \Delta\tau / (1 - 2\bar{\pi})$ (Theorem~\ref{thm:bias_identity}).
@@ -4803,7 +3893,7 @@ _source line 700 · 2026-05-24T13:17:00.210370+00:00_
 
 ### Tool call
 
-_source line 701 · 2026-05-24T13:17:00.361437+00:00_
+_source line 677 · 2026-05-24T13:17:00.361437+00:00_
 
 called Read
 
@@ -4841,7 +3931,7 @@ called Read
 
 ### Tool result
 
-_source line 702 · 2026-05-24T13:17:00.462458+00:00_
+_source line 678 · 2026-05-24T13:17:00.462458+00:00_
 
 80	
 81	\paragraph{Assumption~(A2) in practice.}
@@ -4875,7 +3965,7 @@ _source line 702 · 2026-05-24T13:17:00.462458+00:00_
 
 ### Tool call
 
-_source line 703 · 2026-05-24T13:17:53.144738+00:00_
+_source line 679 · 2026-05-24T13:17:53.144738+00:00_
 
 called Bash
 
@@ -4911,7 +4001,7 @@ called Bash
 
 ### Tool result
 
-_source line 704 · 2026-05-24T13:17:53.345863+00:00_
+_source line 680 · 2026-05-24T13:17:53.345863+00:00_
 
 R² at Δπ=0.10:
   ratio=1:2, K=2: R²=0.920
@@ -4960,7 +4050,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec
 
 ### Tool call
 
-_source line 705 · 2026-05-24T13:18:35.284166+00:00_
+_source line 681 · 2026-05-24T13:18:35.284166+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -4996,7 +4086,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 706 · 2026-05-24T13:18:39.205350+00:00_
+_source line 682 · 2026-05-24T13:18:39.205350+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -5018,7 +4108,7 @@ _source line 706 · 2026-05-24T13:18:39.205350+00:00_
 
 ### Assistant
 
-_source line 707 · 2026-05-24T13:18:43.500378+00:00_
+_source line 683 · 2026-05-24T13:18:43.500378+00:00_
 
 审查已发送。appendix 更新方向正确，但主文 experiments.tex 有 2 处硬伤：L84 的 R² 阈值与 appendix 表格矛盾（0.85 vs 实际最低 0.73），L90 的 n_expert 公式是数学错误（500/K 在 K=2 时 = 250，即失败设定）。等待 Director 安排修正。
 
@@ -5045,7 +4135,7 @@ _source line 707 · 2026-05-24T13:18:43.500378+00:00_
 
 ### User
 
-_source line 708 · 2026-05-24T13:50:28.898411+00:00_
+_source line 684 · 2026-05-24T13:50:28.898411+00:00_
 
 [系统通知 — worker_done:worker_research_lalonde-hangartner-step1_20260524T134750]:
 Worker worker_research_lalonde-hangartner-step1_20260524T134750 已完成（status=done），请审查 Agent 的处理结果。
@@ -5067,7 +4157,7 @@ Worker worker_research_lalonde-hangartner-step1_20260524T134750 已完成（stat
 
 ### Tool call
 
-_source line 709 · 2026-05-24T13:50:37.012364+00:00_
+_source line 685 · 2026-05-24T13:50:37.012364+00:00_
 
 called Read
 
@@ -5101,7 +4191,7 @@ called Read
 
 ### Tool result
 
-_source line 710 · 2026-05-24T13:50:37.063039+00:00_
+_source line 686 · 2026-05-24T13:50:37.063039+00:00_
 
 1	{
 2	  "raw": "## 结果：❌ NO-GO\n\nHangartner et al. (2021) 的复制数据（Harvard Dataverse, DOI: 10.7910/DVN/ARZ9PU）**不包含任何推文文本**。全部 119 个变量都是预计算数值特征：\n\n- BERT/VADER toxicity scores\n- Keyword counts\n- 用户元数据（followers, statuses 等）\n- Treatment 分组和 outcome 指标\n\nN=1580，treatment/outcome 结构完整，但没有文本就无法做 LLM 标注。这是 Twitter 数据隐私脱敏的常见做法。\n\n报告已写入 `artifacts/lalonde/hangartner_feasibility.md`。需要换一个有原始文本的 RCT 数据集。"
@@ -5125,7 +4215,7 @@ _source line 710 · 2026-05-24T13:50:37.063039+00:00_
 
 ### Tool call
 
-_source line 711 · 2026-05-24T13:51:06.546572+00:00_
+_source line 687 · 2026-05-24T13:51:06.546572+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5161,7 +4251,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 712 · 2026-05-24T13:51:10.113183+00:00_
+_source line 688 · 2026-05-24T13:51:10.113183+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -5183,7 +4273,7 @@ _source line 712 · 2026-05-24T13:51:10.113183+00:00_
 
 ### Assistant
 
-_source line 713 · 2026-05-24T13:51:13.728372+00:00_
+_source line 689 · 2026-05-24T13:51:13.728372+00:00_
 
 Hangartner 数据集无推文文本，Plan A 失败。这与我在 LaLonde 筛选审查中标注的"文本可用性风险"一致。
 
@@ -5210,7 +4300,7 @@ Hangartner 数据集无推文文本，Plan A 失败。这与我在 LaLonde 筛�
 
 ### User
 
-_source line 714 · 2026-05-24T13:51:14.208906+00:00_
+_source line 690 · 2026-05-24T13:51:14.208906+00:00_
 
 [系统通知 — worker_done:worker_paper_s5-s7-citations_20260524T134819]:
 Worker worker_paper_s5-s7-citations_20260524T134819 已完成（status=done），请审查 Agent 的处理结果。
@@ -5232,7 +4322,7 @@ Worker worker_paper_s5-s7-citations_20260524T134819 已完成（status=done）�
 
 ### Tool call
 
-_source line 715 · 2026-05-24T13:51:23.384194+00:00_
+_source line 691 · 2026-05-24T13:51:23.384194+00:00_
 
 called Read
 
@@ -5266,7 +4356,7 @@ called Read
 
 ### Tool result
 
-_source line 716 · 2026-05-24T13:51:23.384669+00:00_
+_source line 692 · 2026-05-24T13:51:23.384669+00:00_
 
 1	{
 2	  "raw": "All checks pass. Summary of changes:\n\n**S5 — Blette et al. expansion** (`related_work.tex:37-38`): Replaced 1 sentence with 2 sentences covering (a) multiple imputation vs confusion-matrix inversion, (b) cluster-RCT vs LLM-annotated data, (c) simulation-driven vs closed-form bias identity.\n\n**S6 — Northcutt et al. (2021)** added:\n- Bib entry in `references.bib` (`northcutt2021confident`)\n- Citation in `related_work.tex` annotation literature paragraph — merged with existing sentence about hierarchical estimator, contrasting CL's label cleaning goal with EC-HTE's causal bias correction.\n\n**S7 — Tan et al. (2024)** added:\n- Bib entry in `references.bib` (`tan2024llm`)\n- `\\cite{tan2024llm}` appended to existing citation list in `introduction.tex:8` alongside gilardi, tornberg, ziems.\n\n**MR3 — Negi & Wooldridge**: Skipped. No reliable 2025 measurement error paper found.\n\n**Verification**: Conclusion remains on page 8. Zero undefined references."
@@ -5290,7 +4380,7 @@ _source line 716 · 2026-05-24T13:51:23.384669+00:00_
 
 ### Tool call
 
-_source line 717 · 2026-05-24T13:51:33.080988+00:00_
+_source line 693 · 2026-05-24T13:51:33.080988+00:00_
 
 called Agent
 
@@ -5328,7 +4418,7 @@ called Agent
 
 ### Tool call
 
-_source line 718 · 2026-05-24T13:51:34.939196+00:00_
+_source line 694 · 2026-05-24T13:51:34.939196+00:00_
 
 called Read
 
@@ -5362,7 +4452,7 @@ called Read
 
 ### Tool result
 
-_source line 719 · 2026-05-24T13:51:35.140456+00:00_
+_source line 695 · 2026-05-24T13:51:35.140456+00:00_
 
 EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper'
 
@@ -5384,7 +4474,7 @@ EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-
 
 ### Tool call
 
-_source line 720 · 2026-05-24T13:51:35.140915+00:00_
+_source line 696 · 2026-05-24T13:51:35.140915+00:00_
 
 called Glob
 
@@ -5418,7 +4508,7 @@ called Glob
 
 ### Tool result
 
-_source line 721 · 2026-05-24T13:51:35.191409+00:00_
+_source line 697 · 2026-05-24T13:51:35.191409+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib
 
@@ -5440,7 +4530,7 @@ _source line 721 · 2026-05-24T13:51:35.191409+00:00_
 
 ### Tool call
 
-_source line 722 · 2026-05-24T13:51:35.392567+00:00_
+_source line 698 · 2026-05-24T13:51:35.392567+00:00_
 
 called Glob
 
@@ -5474,7 +4564,7 @@ called Glob
 
 ### Tool result
 
-_source line 723 · 2026-05-24T13:51:35.493419+00:00_
+_source line 699 · 2026-05-24T13:51:35.493419+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/checklist.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix_stance.tex
@@ -5507,7 +4597,7 @@ _source line 723 · 2026-05-24T13:51:35.493419+00:00_
 
 ### Tool call
 
-_source line 724 · 2026-05-24T13:51:37.301887+00:00_
+_source line 700 · 2026-05-24T13:51:37.301887+00:00_
 
 called Read
 
@@ -5541,7 +4631,7 @@ called Read
 
 ### Tool result
 
-_source line 725 · 2026-05-24T13:51:37.503526+00:00_
+_source line 701 · 2026-05-24T13:51:37.503526+00:00_
 
 1	% === Proximal / Sensitivity ===
 2	
@@ -5628,7 +4718,7 @@ _source line 725 · 2026-05-24T13:51:37.503526+00:00_
 
 ### Tool call
 
-_source line 726 · 2026-05-24T13:51:37.504085+00:00_
+_source line 702 · 2026-05-24T13:51:37.504085+00:00_
 
 called Read
 
@@ -5662,7 +4752,7 @@ called Read
 
 ### Tool result
 
-_source line 727 · 2026-05-24T13:51:37.705092+00:00_
+_source line 703 · 2026-05-24T13:51:37.705092+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related}
@@ -5696,7 +4786,7 @@ _source line 727 · 2026-05-24T13:51:37.705092+00:00_
 
 ### Tool call
 
-_source line 728 · 2026-05-24T13:51:37.755742+00:00_
+_source line 704 · 2026-05-24T13:51:37.755742+00:00_
 
 called Read
 
@@ -5730,7 +4820,7 @@ called Read
 
 ### Tool result
 
-_source line 729 · 2026-05-24T13:51:37.806473+00:00_
+_source line 705 · 2026-05-24T13:51:37.806473+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -5765,7 +4855,7 @@ _source line 729 · 2026-05-24T13:51:37.806473+00:00_
 
 ### Tool call
 
-_source line 730 · 2026-05-24T13:51:41.871778+00:00_
+_source line 706 · 2026-05-24T13:51:41.871778+00:00_
 
 called Grep
 
@@ -5803,7 +4893,7 @@ called Grep
 
 ### Tool result
 
-_source line 731 · 2026-05-24T13:51:41.922990+00:00_
+_source line 707 · 2026-05-24T13:51:41.922990+00:00_
 
 145:@article{northcutt2021confident,
 263:@inproceedings{tan2024llm,
@@ -5827,7 +4917,7 @@ _source line 731 · 2026-05-24T13:51:41.922990+00:00_
 
 ### Tool result
 
-_source line 732 · 2026-05-24T13:51:52.567488+00:00_
+_source line 708 · 2026-05-24T13:51:52.567488+00:00_
 
 Perfect. I've now verified all the information you requested. Here's the report:
 
@@ -5902,7 +4992,7 @@ we target LLM-annotated observational and experimental data a
 
 ### Tool call
 
-_source line 733 · 2026-05-24T13:52:15.317913+00:00_
+_source line 709 · 2026-05-24T13:52:15.317913+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5938,7 +5028,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 734 · 2026-05-24T13:52:19.405006+00:00_
+_source line 710 · 2026-05-24T13:52:19.405006+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -5960,7 +5050,7 @@ _source line 734 · 2026-05-24T13:52:19.405006+00:00_
 
 ### Assistant
 
-_source line 735 · 2026-05-24T13:52:27.852425+00:00_
+_source line 711 · 2026-05-24T13:52:27.852425+00:00_
 
 验证新增引用的真实性和文本质量。
 
@@ -5987,7 +5077,7 @@ _source line 735 · 2026-05-24T13:52:27.852425+00:00_
 
 ### User
 
-_source line 736 · 2026-05-24T13:55:26.052401+00:00_
+_source line 712 · 2026-05-24T13:55:26.052401+00:00_
 
 [System 触发审查]:
 请验证 S1-S4 写作修复 + 整体一致性审查（提交 R22 前最后一轮）
@@ -6044,7 +5134,7 @@ _source line 736 · 2026-05-24T13:55:26.052401+00:00_
 
 ### Tool call
 
-_source line 737 · 2026-05-24T13:55:35.524006+00:00_
+_source line 713 · 2026-05-24T13:55:35.524006+00:00_
 
 called Read
 
@@ -6082,7 +5172,7 @@ called Read
 
 ### Tool result
 
-_source line 738 · 2026-05-24T13:55:36.126678+00:00_
+_source line 714 · 2026-05-24T13:55:36.126678+00:00_
 
 78	
 79	\paragraph{Assumption~(A2) in practice.}
@@ -6113,7 +5203,7 @@ _source line 738 · 2026-05-24T13:55:36.126678+00:00_
 
 ### Tool call
 
-_source line 739 · 2026-05-24T13:55:36.278022+00:00_
+_source line 715 · 2026-05-24T13:55:36.278022+00:00_
 
 called Read
 
@@ -6147,7 +5237,7 @@ called Read
 
 ### Tool result
 
-_source line 740 · 2026-05-24T13:55:36.880511+00:00_
+_source line 716 · 2026-05-24T13:55:36.880511+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -6182,7 +5272,7 @@ _source line 740 · 2026-05-24T13:55:36.880511+00:00_
 
 ### Tool call
 
-_source line 741 · 2026-05-24T13:55:36.981333+00:00_
+_source line 717 · 2026-05-24T13:55:36.981333+00:00_
 
 called Read
 
@@ -6216,7 +5306,7 @@ called Read
 
 ### Tool result
 
-_source line 742 · 2026-05-24T13:55:37.032342+00:00_
+_source line 718 · 2026-05-24T13:55:37.032342+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -6251,7 +5341,7 @@ _source line 742 · 2026-05-24T13:55:37.032342+00:00_
 
 ### Tool call
 
-_source line 743 · 2026-05-24T13:55:37.082973+00:00_
+_source line 719 · 2026-05-24T13:55:37.082973+00:00_
 
 called Read
 
@@ -6285,7 +5375,7 @@ called Read
 
 ### Tool result
 
-_source line 744 · 2026-05-24T13:55:37.133686+00:00_
+_source line 720 · 2026-05-24T13:55:37.133686+00:00_
 
 1	\section{Correction Prescribed by the Identity}
 2	\label{sec:method}
@@ -6328,7 +5418,7 @@ _source line 744 · 2026-05-24T13:55:37.133686+00:00_
 
 ### Tool call
 
-_source line 745 · 2026-05-24T13:55:43.257575+00:00_
+_source line 721 · 2026-05-24T13:55:43.257575+00:00_
 
 called Read
 
@@ -6366,7 +5456,7 @@ called Read
 
 ### Tool result
 
-_source line 746 · 2026-05-24T13:55:43.810203+00:00_
+_source line 722 · 2026-05-24T13:55:43.810203+00:00_
 
 478	\end{table}
 479	
@@ -6428,7 +5518,7 @@ _source line 746 · 2026-05-24T13:55:43.810203+00:00_
 
 ### Tool call
 
-_source line 747 · 2026-05-24T13:55:43.810718+00:00_
+_source line 723 · 2026-05-24T13:55:43.810718+00:00_
 
 called Read
 
@@ -6462,7 +5552,7 @@ called Read
 
 ### Tool result
 
-_source line 748 · 2026-05-24T13:55:44.312943+00:00_
+_source line 724 · 2026-05-24T13:55:44.312943+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -6491,7 +5581,7 @@ _source line 748 · 2026-05-24T13:55:44.312943+00:00_
 
 ### Tool call
 
-_source line 749 · 2026-05-24T13:55:44.664656+00:00_
+_source line 725 · 2026-05-24T13:55:44.664656+00:00_
 
 called Read
 
@@ -6529,7 +5619,7 @@ called Read
 
 ### Tool result
 
-_source line 750 · 2026-05-24T13:55:44.715324+00:00_
+_source line 726 · 2026-05-24T13:55:44.715324+00:00_
 
 110	In our experiments (Section~\ref{sec:bias_mechanism}), global correction increases bias in 50\% of $K{=}2$ configurations (260/520), with amplification reaching $2.86\times$ ($K{=}2$) and $2.41\times$ ($K{=}4$); Figure~\ref{fig:heatmap} (Appendix~\ref{app:dgp}) visualizes the full parameter grid.
 
@@ -6551,7 +5641,7 @@ _source line 750 · 2026-05-24T13:55:44.715324+00:00_
 
 ### Tool call
 
-_source line 751 · 2026-05-24T13:56:50.360015+00:00_
+_source line 727 · 2026-05-24T13:56:50.360015+00:00_
 
 called Read
 
@@ -6585,7 +5675,7 @@ called Read
 
 ### Tool result
 
-_source line 752 · 2026-05-24T13:56:50.662475+00:00_
+_source line 728 · 2026-05-24T13:56:50.662475+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -6612,7 +5702,7 @@ _source line 752 · 2026-05-24T13:56:50.662475+00:00_
 
 ### Tool call
 
-_source line 753 · 2026-05-24T13:56:50.813541+00:00_
+_source line 729 · 2026-05-24T13:56:50.813541+00:00_
 
 called Read
 
@@ -6650,7 +5740,7 @@ called Read
 
 ### Tool result
 
-_source line 754 · 2026-05-24T13:56:50.914401+00:00_
+_source line 730 · 2026-05-24T13:56:50.914401+00:00_
 
 33	None corrects bias when the mismeasured variable is the effect modifier indexing the CATE function.
 34	\citet{imai2010causal} study treatment misclassification via instrumental variables or partial identification; \citet{ura2018heterogeneous} extends this to HTE with mismeasured endogenous treatment via IV, deriving nonparametric bounds.
@@ -6679,7 +5769,7 @@ _source line 754 · 2026-05-24T13:56:50.914401+00:00_
 
 ### Tool call
 
-_source line 755 · 2026-05-24T13:56:56.794978+00:00_
+_source line 731 · 2026-05-24T13:56:56.794978+00:00_
 
 called Grep
 
@@ -6719,7 +5809,7 @@ called Grep
 
 ### Tool result
 
-_source line 756 · 2026-05-24T13:56:58.099068+00:00_
+_source line 732 · 2026-05-24T13:56:58.099068+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex:14:\citet{northcutt2021confident} use per-class noise rates estimated from model confidence to identify mislabeled examples; our hierarchical estimator repurposes per-subgroup confusion matrix estimation for causal bias correction rather than label cleaning, adapting the Dawid--Skene architecture from label aggregation to causal inference (Section~\ref{sec:method}).
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib:145:@article{northcutt2021confident,
@@ -6745,7 +5835,7 @@ _source line 756 · 2026-05-24T13:56:58.099068+00:00_
 
 ### Tool call
 
-_source line 757 · 2026-05-24T13:56:58.300104+00:00_
+_source line 733 · 2026-05-24T13:56:58.300104+00:00_
 
 called Bash
 
@@ -6781,7 +5871,7 @@ called Bash
 
 ### Tool result
 
-_source line 758 · 2026-05-24T13:56:58.502974+00:00_
+_source line 734 · 2026-05-24T13:56:58.502974+00:00_
 
 191
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/.claude/sessions/reviewer_4d5fd1e4
@@ -6804,7 +5894,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec
 
 ### Tool call
 
-_source line 759 · 2026-05-24T13:57:21.726399+00:00_
+_source line 735 · 2026-05-24T13:57:21.726399+00:00_
 
 called Grep
 
@@ -6846,7 +5936,7 @@ called Grep
 
 ### Tool result
 
-_source line 760 · 2026-05-24T13:57:21.927513+00:00_
+_source line 736 · 2026-05-24T13:57:21.927513+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex:63:For binary $Z$, the asymmetric and symmetric scores are monotone transforms; the simpler formula suffices (Appendix~\ref{app:asymmetric}; $R^2 = 0.991$).
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex:460:Regressing analytic predictions on MC bias yields $R^2 = 0.991$ across all configurations, confirming the product structure under asymmetry.
@@ -6869,7 +5959,7 @@ _source line 760 · 2026-05-24T13:57:21.927513+00:00_
 
 ### Tool call
 
-_source line 761 · 2026-05-24T13:57:22.379635+00:00_
+_source line 737 · 2026-05-24T13:57:22.379635+00:00_
 
 called Grep
 
@@ -6911,7 +6001,7 @@ called Grep
 
 ### Tool result
 
-_source line 762 · 2026-05-24T13:57:22.480600+00:00_
+_source line 738 · 2026-05-24T13:57:22.480600+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex:10:Robustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\geq$93.5\% coverage), stance detection (Appendix~\ref{app:stance}), and treatment-dependent misclassification ($\approx$90\% at $\gamma_T \leq 0.05$; Appendices~\ref{app:hatespeech}--\ref{app:treatment_dep}).
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/limitations.tex:10:Sensitivity analysis shows robustness up to $\gamma = 0.2$ for outcome-dependent misclassification (coverage $\geq$93.5\%; Appendix~\ref{app:a1_sensitivity}) and $\gamma_T \leq 0.05$ for treatment-dependent misclassification (coverage $\geq$89.7\%; Appendix~\ref{app:treatment_dep}).
@@ -6937,7 +6027,7 @@ _source line 762 · 2026-05-24T13:57:22.480600+00:00_
 
 ### Tool call
 
-_source line 763 · 2026-05-24T13:57:50.245848+00:00_
+_source line 739 · 2026-05-24T13:57:50.245848+00:00_
 
 called Read
 
@@ -6975,7 +6065,7 @@ called Read
 
 ### Tool result
 
-_source line 764 · 2026-05-24T13:57:50.697834+00:00_
+_source line 740 · 2026-05-24T13:57:50.697834+00:00_
 
 8	For CausalForest~\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.
 9	Primary metrics are $|\text{bias}|$, RMSE, and 95\% CI coverage, averaged across subgroups and 100 MC runs.
@@ -7001,7 +6091,7 @@ _source line 764 · 2026-05-24T13:57:50.697834+00:00_
 
 ### Tool call
 
-_source line 765 · 2026-05-24T13:57:50.848931+00:00_
+_source line 741 · 2026-05-24T13:57:50.848931+00:00_
 
 called Read
 
@@ -7039,7 +6129,7 @@ called Read
 
 ### Tool result
 
-_source line 766 · 2026-05-24T13:57:50.949896+00:00_
+_source line 742 · 2026-05-24T13:57:50.949896+00:00_
 
 60	Assumption~(A2) simplifies $[B_s]_{z,1}$ to the scalar
 61	$\pm \delta_s / (1 - 2\bar{\pi})$ but is not necessary for the product structure.
@@ -7068,7 +6158,7 @@ _source line 766 · 2026-05-24T13:57:50.949896+00:00_
 
 ### Tool call
 
-_source line 767 · 2026-05-24T13:58:35.593084+00:00_
+_source line 743 · 2026-05-24T13:58:35.593084+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7104,7 +6194,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 768 · 2026-05-24T13:58:39.409996+00:00_
+_source line 744 · 2026-05-24T13:58:39.409996+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -7126,7 +6216,7 @@ _source line 768 · 2026-05-24T13:58:39.409996+00:00_
 
 ### Assistant
 
-_source line 769 · 2026-05-24T13:58:52.113002+00:00_
+_source line 745 · 2026-05-24T13:58:52.113002+00:00_
 
 发现两个未更新的旧数据引用。准备完整的验证报告。
 
@@ -7153,7 +6243,7 @@ _source line 769 · 2026-05-24T13:58:52.113002+00:00_
 
 ### User
 
-_source line 770 · 2026-05-24T14:30:19.754657+00:00_
+_source line 746 · 2026-05-24T14:30:19.754657+00:00_
 
 [System 触发审查]:
 R22 审稿报告审查 + Director 初步 Action Matrix 可行性评估
@@ -7251,7 +6341,7 @@ R22 审稿评分 3.5（Borderline Conference），与 R21 持平。用户选择�
 
 ### Tool call
 
-_source line 771 · 2026-05-24T14:31:20.417611+00:00_
+_source line 747 · 2026-05-24T14:31:20.417611+00:00_
 
 called Read
 
@@ -7289,7 +6379,7 @@ called Read
 
 ### Tool result
 
-_source line 772 · 2026-05-24T14:31:20.869994+00:00_
+_source line 748 · 2026-05-24T14:31:20.869994+00:00_
 
 38	Equations~\eqref{eq:bias_z0}--\eqref{eq:bias_z1} constitute an exact finite-population identity, not an asymptotic approximation or bound.
 39	The bias factors into three interpretable components: $\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\Delta\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\bar{\pi})$ is an amplification factor from matrix inversion.
@@ -7326,7 +6416,7 @@ _source line 772 · 2026-05-24T14:31:20.869994+00:00_
 
 ### Tool call
 
-_source line 773 · 2026-05-24T14:31:20.970832+00:00_
+_source line 749 · 2026-05-24T14:31:20.970832+00:00_
 
 called Read
 
@@ -7364,7 +6454,7 @@ called Read
 
 ### Tool result
 
-_source line 774 · 2026-05-24T14:31:21.021497+00:00_
+_source line 750 · 2026-05-24T14:31:21.021497+00:00_
 
 55	 & Global & 0.056 & 0.125 & 0.91 \\
 56	 & Strat.\ MLE & \textbf{0.010} & 0.127$^\dagger$ & 0.95 \\
@@ -7412,7 +6502,7 @@ _source line 774 · 2026-05-24T14:31:21.021497+00:00_
 
 ### Tool call
 
-_source line 775 · 2026-05-24T14:32:26.357751+00:00_
+_source line 751 · 2026-05-24T14:32:26.357751+00:00_
 
 called Read
 
@@ -7450,7 +6540,7 @@ called Read
 
 ### Tool result
 
-_source line 776 · 2026-05-24T14:32:26.458630+00:00_
+_source line 752 · 2026-05-24T14:32:26.458630+00:00_
 
 8	For CausalForest~\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.
 9	Primary metrics are $|\text{bias}|$, RMSE, and 95\% CI coverage, averaged across subgroups and 100 MC runs.
@@ -7476,7 +6566,7 @@ _source line 776 · 2026-05-24T14:32:26.458630+00:00_
 
 ### Tool call
 
-_source line 777 · 2026-05-24T14:33:38.776142+00:00_
+_source line 753 · 2026-05-24T14:33:38.776142+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7512,7 +6602,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 778 · 2026-05-24T14:33:42.390583+00:00_
+_source line 754 · 2026-05-24T14:33:42.390583+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -7534,7 +6624,7 @@ _source line 778 · 2026-05-24T14:33:42.390583+00:00_
 
 ### Assistant
 
-_source line 779 · 2026-05-24T14:33:45.951417+00:00_
+_source line 755 · 2026-05-24T14:33:45.951417+00:00_
 
 L10 已修复。现在有完整上下文来审查 R22 action matrix。
 
@@ -7561,7 +6651,7 @@ L10 已修复。现在有完整上下文来审查 R22 action matrix。
 
 ### User
 
-_source line 780 · 2026-05-24T14:52:13.381774+00:00_
+_source line 756 · 2026-05-24T14:52:13.381774+00:00_
 
 [System 触发审查]:
 R16 修复验证请求 — 贡献层次重构 + 6 条审稿修复
@@ -7625,7 +6715,7 @@ Paper Agent 已完成贡献重构和 R16 所有 W1-W6 修复。请逐条验证�
 
 ### Tool call
 
-_source line 781 · 2026-05-24T14:52:27.490362+00:00_
+_source line 757 · 2026-05-24T14:52:27.490362+00:00_
 
 called Read
 
@@ -7663,7 +6753,7 @@ called Read
 
 ### Tool result
 
-_source line 782 · 2026-05-24T14:52:27.541182+00:00_
+_source line 758 · 2026-05-24T14:52:27.541182+00:00_
 
 38	Equations~\eqref{eq:bias_z0}--\eqref{eq:bias_z1} constitute an exact finite-population identity, not an asymptotic approximation or bound.
 39	The bias factors into three interpretable components: $\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\Delta\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\bar{\pi})$ is an amplification factor from matrix inversion.
@@ -7700,7 +6790,7 @@ _source line 782 · 2026-05-24T14:52:27.541182+00:00_
 
 ### Tool call
 
-_source line 783 · 2026-05-24T14:52:27.541567+00:00_
+_source line 759 · 2026-05-24T14:52:27.541567+00:00_
 
 called Read
 
@@ -7738,7 +6828,7 @@ called Read
 
 ### Tool result
 
-_source line 784 · 2026-05-24T14:52:28.244601+00:00_
+_source line 760 · 2026-05-24T14:52:28.244601+00:00_
 
 38	
 39	\subsection{Variance-Adjusted CausalForest}
@@ -7779,7 +6869,7 @@ _source line 784 · 2026-05-24T14:52:28.244601+00:00_
 
 ### Tool call
 
-_source line 785 · 2026-05-24T14:52:28.546270+00:00_
+_source line 761 · 2026-05-24T14:52:28.546270+00:00_
 
 called Read
 
@@ -7813,7 +6903,7 @@ called Read
 
 ### Tool result
 
-_source line 786 · 2026-05-24T14:52:28.597091+00:00_
+_source line 762 · 2026-05-24T14:52:28.597091+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -7849,7 +6939,7 @@ _source line 786 · 2026-05-24T14:52:28.597091+00:00_
 
 ### Tool call
 
-_source line 787 · 2026-05-24T14:52:29.551344+00:00_
+_source line 763 · 2026-05-24T14:52:29.551344+00:00_
 
 called Read
 
@@ -7887,7 +6977,7 @@ called Read
 
 ### Tool result
 
-_source line 788 · 2026-05-24T14:52:29.652789+00:00_
+_source line 764 · 2026-05-24T14:52:29.652789+00:00_
 
 65	\footnotetext{CausalForest plug-in SE achieves 93.8\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\geq$95\% coverage at all budgets tested (Appendix~\ref{app:bootstrap_se}).}
 66	\end{table}
@@ -7926,7 +7016,7 @@ _source line 788 · 2026-05-24T14:52:29.652789+00:00_
 
 ### Tool call
 
-_source line 789 · 2026-05-24T14:52:34.693985+00:00_
+_source line 765 · 2026-05-24T14:52:34.693985+00:00_
 
 called Read
 
@@ -7960,7 +7050,7 @@ called Read
 
 ### Tool result
 
-_source line 790 · 2026-05-24T14:52:35.196224+00:00_
+_source line 766 · 2026-05-24T14:52:35.196224+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -7988,7 +7078,7 @@ _source line 790 · 2026-05-24T14:52:35.196224+00:00_
 
 ### Tool call
 
-_source line 791 · 2026-05-24T14:52:35.246779+00:00_
+_source line 767 · 2026-05-24T14:52:35.246779+00:00_
 
 called Read
 
@@ -8022,7 +7112,7 @@ called Read
 
 ### Tool result
 
-_source line 792 · 2026-05-24T14:52:36.251040+00:00_
+_source line 768 · 2026-05-24T14:52:36.251040+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -8047,7 +7137,7 @@ _source line 792 · 2026-05-24T14:52:36.251040+00:00_
 
 ### Tool call
 
-_source line 793 · 2026-05-24T14:52:36.351947+00:00_
+_source line 769 · 2026-05-24T14:52:36.351947+00:00_
 
 called Read
 
@@ -8085,7 +7175,7 @@ called Read
 
 ### Tool result
 
-_source line 794 · 2026-05-24T14:52:36.402522+00:00_
+_source line 770 · 2026-05-24T14:52:36.402522+00:00_
 
 &lt;system-reminder>Warning: the file exists but is shorter than the provided offset (48). The file has 40 lines.&lt;/system-reminder>
 
@@ -8107,7 +7197,7 @@ _source line 794 · 2026-05-24T14:52:36.402522+00:00_
 
 ### Tool call
 
-_source line 795 · 2026-05-24T14:52:43.478233+00:00_
+_source line 771 · 2026-05-24T14:52:43.478233+00:00_
 
 called Read
 
@@ -8145,7 +7235,7 @@ called Read
 
 ### Tool result
 
-_source line 796 · 2026-05-24T14:52:43.930713+00:00_
+_source line 772 · 2026-05-24T14:52:43.930713+00:00_
 
 0	\section{Related Work}
 1	\label{sec:related}
@@ -8179,7 +7269,7 @@ _source line 796 · 2026-05-24T14:52:43.930713+00:00_
 
 ### Tool call
 
-_source line 797 · 2026-05-24T14:52:44.784383+00:00_
+_source line 773 · 2026-05-24T14:52:44.784383+00:00_
 
 called Grep
 
@@ -8221,7 +7311,7 @@ called Grep
 
 ### Tool result
 
-_source line 798 · 2026-05-24T14:52:44.834961+00:00_
+_source line 774 · 2026-05-24T14:52:44.834961+00:00_
 
 No matches found
 
@@ -8243,7 +7333,7 @@ No matches found
 
 ### Tool call
 
-_source line 799 · 2026-05-24T14:52:51.964361+00:00_
+_source line 775 · 2026-05-24T14:52:51.964361+00:00_
 
 called Grep
 
@@ -8285,7 +7375,7 @@ called Grep
 
 ### Tool result
 
-_source line 800 · 2026-05-24T14:52:53.723124+00:00_
+_source line 776 · 2026-05-24T14:52:53.723124+00:00_
 
 20:\item[\textbf{(A3)}] \textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.
 25:Under (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\hat{z}, z] = P(Z{=}z \mid \hat{Z}{=}\hat{z}, S{=}s)$) coincides with $C_s$.
@@ -8309,7 +7399,7 @@ _source line 800 · 2026-05-24T14:52:53.723124+00:00_
 
 ### Tool call
 
-_source line 801 · 2026-05-24T14:52:53.723552+00:00_
+_source line 777 · 2026-05-24T14:52:53.723552+00:00_
 
 called Bash
 
@@ -8345,7 +7435,7 @@ called Bash
 
 ### Tool result
 
-_source line 802 · 2026-05-24T14:52:53.975481+00:00_
+_source line 778 · 2026-05-24T14:52:53.975481+00:00_
 
 152
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/.claude/sessions/reviewer_4d5fd1e4
@@ -8368,7 +7458,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec
 
 ### Tool call
 
-_source line 803 · 2026-05-24T14:55:04.844696+00:00_
+_source line 779 · 2026-05-24T14:55:04.844696+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8404,7 +7494,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 804 · 2026-05-24T14:55:08.812116+00:00_
+_source line 780 · 2026-05-24T14:55:08.812116+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -8426,7 +7516,7 @@ _source line 804 · 2026-05-24T14:55:08.812116+00:00_
 
 ### Assistant
 
-_source line 805 · 2026-05-24T14:55:23.540785+00:00_
+_source line 781 · 2026-05-24T14:55:23.540785+00:00_
 
 所有关键文件已读取。检查 "estimator-agnostic" 残留为零。Abstract 152 words。开始编写完整验证报告。
 
@@ -8453,7 +7543,7 @@ _source line 805 · 2026-05-24T14:55:23.540785+00:00_
 
 ### User
 
-_source line 806 · 2026-05-24T15:33:33.389638+00:00_
+_source line 782 · 2026-05-24T15:33:33.389638+00:00_
 
 [系统通知 — worker_done:worker_research_semisynthetic-pipeline-explore_20260524T152903]:
 Worker worker_research_semisynthetic-pipeline-explore_20260524T152903 已完成（status=done），请审查 Agent 的处理结果。
@@ -8475,7 +7565,7 @@ Worker worker_research_semisynthetic-pipeline-explore_20260524T152903 已完成�
 
 ### Tool call
 
-_source line 807 · 2026-05-24T15:33:45.309162+00:00_
+_source line 783 · 2026-05-24T15:33:45.309162+00:00_
 
 called Read
 
@@ -8509,7 +7599,7 @@ called Read
 
 ### Tool result
 
-_source line 808 · 2026-05-24T15:33:45.359852+00:00_
+_source line 784 · 2026-05-24T15:33:45.359852+00:00_
 
 1	{
 2	  "raw": "报告已写入 `artifacts/semisynthetic_pipeline_report.md`。\n\n核心发现：\n- **MC 模拟不需要原始文本**，只需要 per-subgroup 的 FPR/FNR 和子组权重（这些从 LLM annotation pilot 获得）\n- 每个 LLM 对应一个独立的 `run_*_hetero_tau.py` 脚本，CM 参数硬编码在文件顶部\n- 所有核心函数（DGP、CM 估计、校正、聚合）可直接复用，**唯一需要新写的是 AG News 的 LLM 标注 pilot 和子组定义**\n- 现有框架只支持 binary Z（2×2 CM），AG News 4-class 需要 binarize（最小改动方案）"
@@ -8533,7 +7623,7 @@ _source line 808 · 2026-05-24T15:33:45.359852+00:00_
 
 ### Tool call
 
-_source line 809 · 2026-05-24T15:33:53.644662+00:00_
+_source line 785 · 2026-05-24T15:33:53.644662+00:00_
 
 called Read
 
@@ -8567,7 +7657,7 @@ called Read
 
 ### Tool result
 
-_source line 810 · 2026-05-24T15:33:53.695529+00:00_
+_source line 786 · 2026-05-24T15:33:53.695529+00:00_
 
 1	# Semi-Synthetic Experiment Pipeline: Code Structure Report
 2	
@@ -8636,7 +7726,7 @@ _source line 810 · 2026-05-24T15:33:53.695529+00:00_
 
 ### Tool call
 
-_source line 811 · 2026-05-24T15:34:17.806342+00:00_
+_source line 787 · 2026-05-24T15:34:17.806342+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8672,7 +7762,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 812 · 2026-05-24T15:34:21.724449+00:00_
+_source line 788 · 2026-05-24T15:34:21.724449+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -8701,7 +7791,7 @@ _source line 812 · 2026-05-24T15:34:21.724449+00:00_
 
 ### User
 
-_source line 813 · 2026-05-24T15:36:03.478660+00:00_
+_source line 789 · 2026-05-24T15:36:03.478660+00:00_
 
 [系统通知 — worker_done:worker_research_agnews-cm-literature_20260524T152852]:
 Worker worker_research_agnews-cm-literature_20260524T152852 已完成（status=done），请审查 Agent 的处理结果。
@@ -8723,7 +7813,7 @@ Worker worker_research_agnews-cm-literature_20260524T152852 已完成（status=d
 
 ### Tool call
 
-_source line 814 · 2026-05-24T15:36:12.013795+00:00_
+_source line 790 · 2026-05-24T15:36:12.013795+00:00_
 
 called Read
 
@@ -8757,7 +7847,7 @@ called Read
 
 ### Tool result
 
-_source line 815 · 2026-05-24T15:36:12.114936+00:00_
+_source line 791 · 2026-05-24T15:36:12.114936+00:00_
 
 1	{
 2	  "raw": "报告已写入 `artifacts/agnews_cm_literature.md`。\n\n核心发现：\n- **找到完整 4×4 confusion matrix**：arXiv:2506.18501 报告了 ChatGPT 和 DeepSeek 在 AG News 上的完整 CM（n=80）\n- **主要混淆模式**：Business→World 是最大误分类方向（ChatGPT 45%误分），Sports 最容易（90-100% recall）\n- **多精度级别**：弱 LLM ~80%、中 GPT-4 ~85%、强 GPT-4o/Claude ~88-91%，可构造不同强度的 CM\n- **MNLI**：未找到标准 MNLI 的完整 CM，但从 FraCaS 数据确认 Neutral 是最难类别，已基于文献模式构造了推荐 CM\n- **推荐方案**：直接使用 arXiv:2506.18501 的 CM 结构作为基础，按目标 accuracy 水平缩放误差率"
@@ -8781,7 +7871,7 @@ _source line 815 · 2026-05-24T15:36:12.114936+00:00_
 
 ### Tool call
 
-_source line 816 · 2026-05-24T15:36:40.152759+00:00_
+_source line 792 · 2026-05-24T15:36:40.152759+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8817,7 +7907,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 817 · 2026-05-24T15:36:45.644700+00:00_
+_source line 793 · 2026-05-24T15:36:45.644700+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -8846,7 +7936,7 @@ _source line 817 · 2026-05-24T15:36:45.644700+00:00_
 
 ### User
 
-_source line 818 · 2026-05-24T15:42:11.070472+00:00_
+_source line 794 · 2026-05-24T15:42:11.070472+00:00_
 
 [System 触发审查]:
 R17 审稿报告综合修复验证请求
@@ -8897,7 +7987,7 @@ R17 审稿报告已处理完毕，以下是所有已完成修复的清单，请�
 
 ### Tool call
 
-_source line 819 · 2026-05-24T15:42:35.249679+00:00_
+_source line 795 · 2026-05-24T15:42:35.249679+00:00_
 
 called Read
 
@@ -8935,7 +8025,7 @@ called Read
 
 ### Tool result
 
-_source line 820 · 2026-05-24T15:42:35.701755+00:00_
+_source line 796 · 2026-05-24T15:42:35.701755+00:00_
 
 6	
 7	Three distinctions separate our contribution from prior measurement error analyses.
@@ -8964,7 +8054,7 @@ _source line 820 · 2026-05-24T15:42:35.701755+00:00_
 
 ### Tool call
 
-_source line 821 · 2026-05-24T15:42:36.254770+00:00_
+_source line 797 · 2026-05-24T15:42:36.254770+00:00_
 
 called Read
 
@@ -9002,7 +8092,7 @@ called Read
 
 ### Tool result
 
-_source line 822 · 2026-05-24T15:42:36.809264+00:00_
+_source line 798 · 2026-05-24T15:42:36.809264+00:00_
 
 66	\footnotetext{CausalForest plug-in SE achieves 93.8\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\geq$95\% coverage at all budgets tested (Appendix~\ref{app:bootstrap_se}).}
 67	\end{table}
@@ -9040,7 +8130,7 @@ _source line 822 · 2026-05-24T15:42:36.809264+00:00_
 
 ### Tool call
 
-_source line 823 · 2026-05-24T15:42:36.809667+00:00_
+_source line 799 · 2026-05-24T15:42:36.809667+00:00_
 
 called Read
 
@@ -9074,7 +8164,7 @@ called Read
 
 ### Tool result
 
-_source line 824 · 2026-05-24T15:42:37.412369+00:00_
+_source line 800 · 2026-05-24T15:42:37.412369+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -9102,7 +8192,7 @@ _source line 824 · 2026-05-24T15:42:37.412369+00:00_
 
 ### Tool call
 
-_source line 825 · 2026-05-24T15:42:37.463110+00:00_
+_source line 801 · 2026-05-24T15:42:37.463110+00:00_
 
 called Read
 
@@ -9140,7 +8230,7 @@ called Read
 
 ### Tool result
 
-_source line 826 · 2026-05-24T15:42:37.564030+00:00_
+_source line 802 · 2026-05-24T15:42:37.564030+00:00_
 
 10	Yet LLM annotations are not uniformly accurate: \citet{ashwin2025bias} document error rates varying by up to 5$\times$ across demographic subgroups; in our pilot, GPT-4.1 error rates range from 10.2\% to 20.0\% across text-feature subgroups ($\Delta\pi = 0.098$).
 11	
@@ -9171,7 +8261,7 @@ _source line 826 · 2026-05-24T15:42:37.564030+00:00_
 
 ### Tool call
 
-_source line 827 · 2026-05-24T15:42:44.584559+00:00_
+_source line 803 · 2026-05-24T15:42:44.584559+00:00_
 
 called Grep
 
@@ -9211,7 +8301,7 @@ called Grep
 
 ### Tool result
 
-_source line 828 · 2026-05-24T15:42:45.493376+00:00_
+_source line 804 · 2026-05-24T15:42:45.493376+00:00_
 
 5:We test on synthetic ($N{=}5{,}000$, $K \in \{2, 4\}$, controlled $\Delta\tau$ and $\Delta\pi$, 100 MC runs) and semi-synthetic DGPs spanning three NLP tasks---sentiment analysis (TweetEval~\cite{barbieri2020tweeteval}, $K{=}4$), hate speech detection (CivilComments, $K{=}4$), and stance detection ($K{=}5$; Appendix~\ref{app:stance})---with full specifications in Appendix~\ref{app:dgp}.
 10:Robustness validation covers hate speech, six OpenAI models, subgroup misspecification, confounded treatment, outcome-dependent misclassification (all $\geq$93.5\% coverage), asymmetric confusion matrices ($\geq$89.5\% coverage), stance detection (Appendix~\ref{app:stance}), and treatment-dependent misclassification ($\approx$90\% at $\gamma_T \leq 0.05$; Appendices~\ref{app:hatespeech}--\ref{app:treatment_dep}).
@@ -9236,7 +8326,7 @@ _source line 828 · 2026-05-24T15:42:45.493376+00:00_
 
 ### Tool call
 
-_source line 829 · 2026-05-24T15:42:46.498767+00:00_
+_source line 805 · 2026-05-24T15:42:46.498767+00:00_
 
 called Grep
 
@@ -9278,7 +8368,7 @@ called Grep
 
 ### Tool result
 
-_source line 830 · 2026-05-24T15:42:46.549441+00:00_
+_source line 806 · 2026-05-24T15:42:46.549441+00:00_
 
 170:Under asymmetric misclassification ($\mathrm{FPR}_s \neq \mathrm{FNR}_s$) with balanced $Z$ (A3), the naive bias becomes $\mathrm{bias}_{\mathrm{naive}}(0,s) = \mathrm{FNR}_s \cdot \Delta\tau / (1 - \mathrm{FPR}_s + \mathrm{FNR}_s)$, involving both error rates and a normalization denominator; the global correction bias depends on the full $2 \times 2$ structure of $B_s = M_{\mathrm{global}}^{-1} M_s - I$ (Remark~1 in Section~\ref{sec:theory}).
 449:For asymmetric confusion matrices $C_s = \bigl(\begin{smallmatrix} 1{-}\text{FPR}_s & \text{FPR}_s \\ \text{FNR}_s & 1{-}\text{FNR}_s \end{smallmatrix}\bigr)$, define the mixing matrix $M_s$ via Bayesian inversion and the residual matrix $B_s = M_{\text{global}}^{-1} M_s - I$.
@@ -9308,7 +8398,7 @@ _source line 830 · 2026-05-24T15:42:46.549441+00:00_
 
 ### Tool call
 
-_source line 831 · 2026-05-24T15:42:54.435339+00:00_
+_source line 807 · 2026-05-24T15:42:54.435339+00:00_
 
 called Read
 
@@ -9346,7 +8436,7 @@ called Read
 
 ### Tool result
 
-_source line 832 · 2026-05-24T15:42:54.486773+00:00_
+_source line 808 · 2026-05-24T15:42:54.486773+00:00_
 
 165	For low-error subgroups ($\pi_s < \bar{\pi}$, so $\delta_s < 0$): the condition becomes $(\bar{\pi} - \pi_s) / ((1-2\bar{\pi})\pi_s) > 1$, which gives $\pi_s < \bar{\pi} / (1 - 2\bar{\pi} + 1) = \bar{\pi} / (2(1-\bar{\pi}))$.
 166	When $\bar{\pi} = 0.15$, any subgroup with $\pi_s < 0.088$ experiences increased bias from global correction. \qed
@@ -9382,7 +8472,7 @@ _source line 832 · 2026-05-24T15:42:54.486773+00:00_
 
 ### Tool call
 
-_source line 833 · 2026-05-24T15:44:44.374408+00:00_
+_source line 809 · 2026-05-24T15:44:44.374408+00:00_
 
 called Read
 
@@ -9420,7 +8510,7 @@ called Read
 
 ### Tool call
 
-_source line 834 · 2026-05-24T15:44:44.374878+00:00_
+_source line 810 · 2026-05-24T15:44:44.374878+00:00_
 
 called Bash
 
@@ -9456,7 +8546,7 @@ called Bash
 
 ### Tool result
 
-_source line 835 · 2026-05-24T15:44:44.476302+00:00_
+_source line 811 · 2026-05-24T15:44:44.476302+00:00_
 
 0	% === Proximal / Sensitivity ===
 1	
@@ -9497,7 +8587,7 @@ _source line 835 · 2026-05-24T15:44:44.476302+00:00_
 
 ### Tool result
 
-_source line 836 · 2026-05-24T15:44:44.577140+00:00_
+_source line 812 · 2026-05-24T15:44:44.577140+00:00_
 
 629 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib
 
@@ -9519,7 +8609,7 @@ _source line 836 · 2026-05-24T15:44:44.577140+00:00_
 
 ### Tool call
 
-_source line 837 · 2026-05-24T15:44:53.065837+00:00_
+_source line 813 · 2026-05-24T15:44:53.065837+00:00_
 
 called Grep
 
@@ -9561,7 +8651,7 @@ called Grep
 
 ### Tool result
 
-_source line 838 · 2026-05-24T15:44:53.970161+00:00_
+_source line 814 · 2026-05-24T15:44:53.970161+00:00_
 
 620:@article{blette2024assessing,
 621-  title={Assessing treatment effect heterogeneity in the presence of missing effect modifier data in cluster-randomized trials},
@@ -9591,7 +8681,7 @@ _source line 838 · 2026-05-24T15:44:53.970161+00:00_
 
 ### Tool call
 
-_source line 839 · 2026-05-24T15:44:54.623192+00:00_
+_source line 815 · 2026-05-24T15:44:54.623192+00:00_
 
 called Grep
 
@@ -9633,7 +8723,7 @@ called Grep
 
 ### Tool result
 
-_source line 840 · 2026-05-24T15:44:54.673997+00:00_
+_source line 816 · 2026-05-24T15:44:54.673997+00:00_
 
 55:@article{frazis2003estimating,
 56-  title={Estimating Linear Regressions with Mismeasured, Possibly Endogenous, Binary Explanatory Variables},
@@ -9683,7 +8773,7 @@ _source line 840 · 2026-05-24T15:44:54.673997+00:00_
 
 ### Tool call
 
-_source line 841 · 2026-05-24T15:46:16.701424+00:00_
+_source line 817 · 2026-05-24T15:46:16.701424+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9719,7 +8809,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 842 · 2026-05-24T15:46:20.466114+00:00_
+_source line 818 · 2026-05-24T15:46:20.466114+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -9741,7 +8831,7 @@ _source line 842 · 2026-05-24T15:46:20.466114+00:00_
 
 ### Assistant
 
-_source line 843 · 2026-05-24T15:46:23.098919+00:00_
+_source line 819 · 2026-05-24T15:46:23.098919+00:00_
 
 所有文件已读取。Blette bib 条目已修复（之前标注的 "others" + 缺 volume/pages）。W5 公式数学验证完成。
 
@@ -9768,7 +8858,7 @@ _source line 843 · 2026-05-24T15:46:23.098919+00:00_
 
 ### User
 
-_source line 844 · 2026-05-24T15:46:23.565406+00:00_
+_source line 820 · 2026-05-24T15:46:23.565406+00:00_
 
 [系统通知 — worker_done:worker_code_agnews-mc-simulation_20260524T153816]:
 Worker worker_code_agnews-mc-simulation_20260524T153816 已完成（status=done），请审查 Agent 的处理结果。
@@ -9790,7 +8880,7 @@ Worker worker_code_agnews-mc-simulation_20260524T153816 已完成（status=done�
 
 ### Tool call
 
-_source line 845 · 2026-05-24T15:46:30.070298+00:00_
+_source line 821 · 2026-05-24T15:46:30.070298+00:00_
 
 called Read
 
@@ -9824,7 +8914,7 @@ called Read
 
 ### Tool result
 
-_source line 846 · 2026-05-24T15:46:30.120972+00:00_
+_source line 822 · 2026-05-24T15:46:30.120972+00:00_
 
 1	{
 2	  "raw": "All outputs generated. Here's the summary:\n\n**Files produced:**\n- `artifacts/exp-agnews/data/run_agnews_hetero_tau.py` — script\n- `artifacts/exp-agnews/data/agnews_raw.csv` — 9600 rows\n- `artifacts/exp-agnews/data/agnews_summary.csv` — 12 rows\n- `artifacts/exp-agnews/data/agnews_analysis.md` — full analysis\n\n**Key results (N=5000, 100 MC, AG News Business vs non-Business):**\n\n| n_expert | |Bias| Global | |Bias| EC-HTE | Winner |\n|----------|-------------|-------------|--------|\n| 250 | 0.0515 | 0.0531 | Global |\n| 500 | 0.0524 | 0.0323 | **EC-HTE** |\n| 1000 | 0.0528 | 0.0166 | **EC-HTE** |\n\n- EC-HTE wins on |Bias| at 2/3 budget levels (n_expert ≥ 500)\n- Global wins RMSE at all levels (EC-HTE has higher variance with stratified estimation)\n- Sign reversal rates near zero across all methods (all true CATEs are positive)\n- Bias identity R² = -1.3156: the symmetric π_s=(FPR+FNR)/2 approximation doesn't hold well here because FPR and FNR are highly asymmetric (e.g., long_complex: 0.25 vs 0.38), though Global's bias still clearly scales with Δτ across subgroups\n- π̄ = 0.1950, Δπ = 0.2150"
@@ -9848,7 +8938,7 @@ _source line 846 · 2026-05-24T15:46:30.120972+00:00_
 
 ### Tool call
 
-_source line 847 · 2026-05-24T15:47:04.130248+00:00_
+_source line 823 · 2026-05-24T15:47:04.130248+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9884,7 +8974,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 848 · 2026-05-24T15:47:08.104423+00:00_
+_source line 824 · 2026-05-24T15:47:08.104423+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -9913,7 +9003,7 @@ _source line 848 · 2026-05-24T15:47:08.104423+00:00_
 
 ### User
 
-_source line 849 · 2026-05-24T15:49:04.145227+00:00_
+_source line 825 · 2026-05-24T15:49:04.145227+00:00_
 
 [系统通知 — worker_done:worker_code_agnews-mc-v2_20260524T154635]:
 Worker worker_code_agnews-mc-v2_20260524T154635 已完成（status=done），请审查 Agent 的处理结果。
@@ -9935,7 +9025,7 @@ Worker worker_code_agnews-mc-v2_20260524T154635 已完成（status=done），请
 
 ### Tool call
 
-_source line 850 · 2026-05-24T15:49:12.328003+00:00_
+_source line 826 · 2026-05-24T15:49:12.328003+00:00_
 
 called Read
 
@@ -9969,7 +9059,7 @@ called Read
 
 ### Tool result
 
-_source line 851 · 2026-05-24T15:49:12.378649+00:00_
+_source line 827 · 2026-05-24T15:49:12.378649+00:00_
 
 1	{
 2	  "raw": "实验完成。关键结果：\n\n- **Asymmetric R² = 0.9534**（vs symmetric R² = -1.24），完整的非对称 bias identity 准确预测了 Global correction 的残差偏差\n- **P(Z=1)=0.5** 后 π̄ = 0.173（从之前的更高值降下来），Δπ = 0.19\n- EC-HTE 在 n_expert ≥ 500 时 |Bias| 胜出（2/3 budget levels），但 RMSE 全输（variance-bias tradeoff：stratified 估计方差更大）\n- Sign reversal 极低（Global 0.13%，EC-HTE 3%）\n- 按 n_expert 分的 asymmetric R²：250 → 0.929，500 → 0.962，1000 → 0.966\n\n三个输出文件已覆盖：`agnews_raw.csv`、`agnews_summary.csv`、`agnews_analysis.md`。"
@@ -9993,7 +9083,7 @@ _source line 851 · 2026-05-24T15:49:12.378649+00:00_
 
 ### Tool call
 
-_source line 852 · 2026-05-24T15:49:38.448875+00:00_
+_source line 828 · 2026-05-24T15:49:38.448875+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10029,7 +9119,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 853 · 2026-05-24T15:49:42.166424+00:00_
+_source line 829 · 2026-05-24T15:49:42.166424+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -10058,7 +9148,7 @@ _source line 853 · 2026-05-24T15:49:42.166424+00:00_
 
 ### User
 
-_source line 854 · 2026-05-24T16:15:35.601989+00:00_
+_source line 830 · 2026-05-24T16:15:35.601989+00:00_
 
 [System 触发审查]:
 R18 审稿报告（标注 Round 19）收到，Overall 3.5。需要你独立审视我的逐条方案是否合理。DDL 明天 5/25，时间极紧。
@@ -10152,7 +9242,7 @@ R18 审稿报告（标注 Round 19）收到，Overall 3.5。需要你独立审�
 
 ### Tool call
 
-_source line 855 · 2026-05-24T16:15:47.221982+00:00_
+_source line 831 · 2026-05-24T16:15:47.221982+00:00_
 
 called Read
 
@@ -10186,7 +9276,7 @@ called Read
 
 ### Tool result
 
-_source line 856 · 2026-05-24T16:15:47.272686+00:00_
+_source line 832 · 2026-05-24T16:15:47.272686+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -10214,7 +9304,7 @@ _source line 856 · 2026-05-24T16:15:47.272686+00:00_
 
 ### Tool call
 
-_source line 857 · 2026-05-24T16:15:47.273126+00:00_
+_source line 833 · 2026-05-24T16:15:47.273126+00:00_
 
 called Read
 
@@ -10252,7 +9342,7 @@ called Read
 
 ### Tool result
 
-_source line 858 · 2026-05-24T16:15:47.424454+00:00_
+_source line 834 · 2026-05-24T16:15:47.424454+00:00_
 
 14	
 15	We state five assumptions maintained throughout.
@@ -10288,7 +9378,7 @@ _source line 858 · 2026-05-24T16:15:47.424454+00:00_
 
 ### Tool call
 
-_source line 859 · 2026-05-24T16:15:47.424935+00:00_
+_source line 835 · 2026-05-24T16:15:47.424935+00:00_
 
 called Read
 
@@ -10322,7 +9412,7 @@ called Read
 
 ### Tool result
 
-_source line 860 · 2026-05-24T16:15:47.475368+00:00_
+_source line 836 · 2026-05-24T16:15:47.475368+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -10347,7 +9437,7 @@ _source line 860 · 2026-05-24T16:15:47.475368+00:00_
 
 ### Tool call
 
-_source line 861 · 2026-05-24T16:15:52.758180+00:00_
+_source line 837 · 2026-05-24T16:15:52.758180+00:00_
 
 called Read
 
@@ -10385,7 +9475,7 @@ called Read
 
 ### Tool result
 
-_source line 862 · 2026-05-24T16:15:53.260600+00:00_
+_source line 838 · 2026-05-24T16:15:53.260600+00:00_
 
 1	\section{Experiments}
 2	
@@ -10423,7 +9513,7 @@ _source line 862 · 2026-05-24T16:15:53.260600+00:00_
 
 ### Tool call
 
-_source line 863 · 2026-05-24T16:15:54.716443+00:00_
+_source line 839 · 2026-05-24T16:15:54.716443+00:00_
 
 called Grep
 
@@ -10467,7 +9557,7 @@ called Grep
 
 ### Tool result
 
-_source line 864 · 2026-05-24T16:15:54.767148+00:00_
+_source line 840 · 2026-05-24T16:15:54.767148+00:00_
 
 1407:\subsection{Extension to Confounded Treatment Assignment}
 1408:\label{app:confounded_dgp}
@@ -10505,7 +9595,7 @@ _source line 864 · 2026-05-24T16:15:54.767148+00:00_
 
 ### Tool call
 
-_source line 865 · 2026-05-24T16:16:59.081576+00:00_
+_source line 841 · 2026-05-24T16:16:59.081576+00:00_
 
 called Grep
 
@@ -10549,7 +9639,7 @@ called Grep
 
 ### Tool result
 
-_source line 866 · 2026-05-24T16:16:59.134940+00:00_
+_source line 842 · 2026-05-24T16:16:59.134940+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex:5:We test on synthetic ($N{=}5{,}000$, $K \in \{2, 4\}$, controlled $\Delta\tau$ and $\Delta\pi$, 100 MC runs) and semi-synthetic DGPs spanning four NLP tasks---sentiment analysis (TweetEval~\cite{barbieri2020tweeteval}, $K{=}4$), hate speech detection (CivilComments, $K{=}4$), stance detection ($K{=}5$; Appendix~\ref{app:stance}), and topic classification (AG News, $K{=}4$; Appendix~\ref{app:agnews})---with full specifications in Appendix~\ref{app:dgp}.
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex:10:Robustness validation covers hate speech, six OpenAI models, subgroup misspecification, confounded treatment, outcome-dependent misclassification (all $\geq$93.5\% coverage), asymmetric confusion matrices ($\geq$89.5\% coverage), stance detection (Appendix~\ref{app:stance}), topic classification (Appendix~\ref{app:agnews}), and treatment-dependent misclassification ($\approx$90\% at $\gamma_T \leq 0.05$; Appendices~\ref{app:hatespeech}--\ref{app:treatment_dep}).
@@ -10576,7 +9666,7 @@ _source line 866 · 2026-05-24T16:16:59.134940+00:00_
 
 ### Tool call
 
-_source line 867 · 2026-05-24T16:17:09.431673+00:00_
+_source line 843 · 2026-05-24T16:17:09.431673+00:00_
 
 called Read
 
@@ -10610,7 +9700,7 @@ called Read
 
 ### Tool result
 
-_source line 868 · 2026-05-24T16:17:09.482416+00:00_
+_source line 844 · 2026-05-24T16:17:09.482416+00:00_
 
 1	\subsection{Topic Classification: AG News Cross-Task Validation}
 2	\label{app:agnews}
@@ -10656,7 +9746,7 @@ _source line 868 · 2026-05-24T16:17:09.482416+00:00_
 
 ### Tool call
 
-_source line 869 · 2026-05-24T16:17:10.486536+00:00_
+_source line 845 · 2026-05-24T16:17:10.486536+00:00_
 
 called Grep
 
@@ -10698,7 +9788,7 @@ called Grep
 
 ### Tool result
 
-_source line 870 · 2026-05-24T16:17:10.588214+00:00_
+_source line 846 · 2026-05-24T16:17:10.588214+00:00_
 
 447:@article{etaiwi2025comparative,
 448-  title={Comparative Evaluation of ChatGPT and DeepSeek Across Key {NLP} Tasks: Strengths, Weaknesses, and Domain-Specific Performance},
@@ -10731,7 +9821,7 @@ _source line 870 · 2026-05-24T16:17:10.588214+00:00_
 
 ### Tool call
 
-_source line 871 · 2026-05-24T16:18:49.810700+00:00_
+_source line 847 · 2026-05-24T16:18:49.810700+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10767,7 +9857,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 872 · 2026-05-24T16:18:53.427911+00:00_
+_source line 848 · 2026-05-24T16:18:53.427911+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -10789,7 +9879,7 @@ _source line 872 · 2026-05-24T16:18:53.427911+00:00_
 
 ### Assistant
 
-_source line 873 · 2026-05-24T16:18:55.474747+00:00_
+_source line 849 · 2026-05-24T16:18:55.474747+00:00_
 
 AG News 已被写入主文和 appendix，但 CM 来源（arXiv:2506.18501）仍是我之前标注的可能 hallucinated 论文。这是一个严重风险。
 
@@ -10816,7 +9906,7 @@ AG News 已被写入主文和 appendix，但 CM 来源（arXiv:2506.18501）仍�
 
 ### User
 
-_source line 874 · 2026-05-24T16:18:55.954889+00:00_
+_source line 850 · 2026-05-24T16:18:55.954889+00:00_
 
 [System 触发审查]:
 补充：Review Director 的 issue tracker 提取了更细粒度的问题，我初始分析遗漏了 3 个 critical items：
@@ -10852,7 +9942,7 @@ Table 1 K=2 moderate 下 EC-HTE = Global = 0.012，无改善。7.4× 仅 extreme
 
 ### Tool call
 
-_source line 875 · 2026-05-24T16:19:14.172942+00:00_
+_source line 851 · 2026-05-24T16:19:14.172942+00:00_
 
 called Grep
 
@@ -10896,7 +9986,7 @@ called Grep
 
 ### Tool result
 
-_source line 876 · 2026-05-24T16:19:14.775690+00:00_
+_source line 852 · 2026-05-24T16:19:14.775690+00:00_
 
 166:When $\bar{\pi} = 0.15$, any subgroup with $\pi_s < 0.088$ experiences increased bias from global correction. \qed
 197:For $K{=}4$, extreme regime: $\pi \in \{0.05, 0.10, 0.15, 0.25\}$; moderate regime: $\pi \in \{0.08, 0.12, 0.16, 0.20\}$.
@@ -10939,7 +10029,7 @@ _source line 876 · 2026-05-24T16:19:14.775690+00:00_
 
 ### Tool call
 
-_source line 877 · 2026-05-24T16:19:15.127895+00:00_
+_source line 853 · 2026-05-24T16:19:15.127895+00:00_
 
 called Read
 
@@ -10977,7 +10067,7 @@ called Read
 
 ### Tool result
 
-_source line 878 · 2026-05-24T16:19:15.228608+00:00_
+_source line 854 · 2026-05-24T16:19:15.228608+00:00_
 
 25	Table~\ref{tab:main_results} presents the main results across representative configurations.
 26	In the $K{=}2$ extreme row, global correction \emph{increases} $|\text{bias}|$ relative to naive (0.059 vs.\ 0.058), confirming the over-correction mechanism of Theorem~\ref{thm:bias_identity}.
@@ -11014,7 +10104,7 @@ _source line 878 · 2026-05-24T16:19:15.228608+00:00_
 
 ### Tool call
 
-_source line 879 · 2026-05-24T16:19:34.503707+00:00_
+_source line 855 · 2026-05-24T16:19:34.503707+00:00_
 
 called Read
 
@@ -11052,7 +10142,7 @@ called Read
 
 ### Tool result
 
-_source line 880 · 2026-05-24T16:19:34.555213+00:00_
+_source line 856 · 2026-05-24T16:19:34.555213+00:00_
 
 1035	Table~\ref{tab:realcm_r2} reports per-model $R^2$ from regressing observed subgroup bias on the predicted value $\Delta\tau \cdot [B_s]_{z,1}$.
 1036	The aggregate $R^2 = 0.975$; 10 of 11 combinations achieve $R^2 \geq 0.92$.
@@ -11103,7 +10193,7 @@ _source line 880 · 2026-05-24T16:19:34.555213+00:00_
 
 ### Tool call
 
-_source line 881 · 2026-05-24T16:20:54.854036+00:00_
+_source line 857 · 2026-05-24T16:20:54.854036+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11139,7 +10229,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 882 · 2026-05-24T16:20:58.570349+00:00_
+_source line 858 · 2026-05-24T16:20:58.570349+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -11161,7 +10251,7 @@ _source line 882 · 2026-05-24T16:20:58.570349+00:00_
 
 ### Tool call
 
-_source line 883 · 2026-05-24T16:24:18.215143+00:00_
+_source line 859 · 2026-05-24T16:24:18.215143+00:00_
 
 called Agent
 
@@ -11199,7 +10289,7 @@ called Agent
 
 ### Tool call
 
-_source line 884 · 2026-05-24T16:24:19.069052+00:00_
+_source line 860 · 2026-05-24T16:24:19.069052+00:00_
 
 called ToolSearch
 
@@ -11235,7 +10325,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 885 · 2026-05-24T16:24:19.169854+00:00_
+_source line 861 · 2026-05-24T16:24:19.169854+00:00_
 
 
 
@@ -11257,7 +10347,7 @@ _source line 885 · 2026-05-24T16:24:19.169854+00:00_
 
 ### Tool call
 
-_source line 886 · 2026-05-24T16:24:20.374757+00:00_
+_source line 862 · 2026-05-24T16:24:20.374757+00:00_
 
 called Read
 
@@ -11291,7 +10381,7 @@ called Read
 
 ### Tool result
 
-_source line 887 · 2026-05-24T16:24:20.525566+00:00_
+_source line 863 · 2026-05-24T16:24:20.525566+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -11319,7 +10409,7 @@ _source line 887 · 2026-05-24T16:24:20.525566+00:00_
 
 ### Tool call
 
-_source line 888 · 2026-05-24T16:24:20.525957+00:00_
+_source line 864 · 2026-05-24T16:24:20.525957+00:00_
 
 called Read
 
@@ -11353,7 +10443,7 @@ called Read
 
 ### Tool result
 
-_source line 889 · 2026-05-24T16:24:20.626626+00:00_
+_source line 865 · 2026-05-24T16:24:20.626626+00:00_
 
 1	% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
 2	% and: \newtheorem{theorem}{Theorem}
@@ -11397,7 +10487,7 @@ _source line 889 · 2026-05-24T16:24:20.626626+00:00_
 
 ### Tool call
 
-_source line 890 · 2026-05-24T16:24:20.677236+00:00_
+_source line 866 · 2026-05-24T16:24:20.677236+00:00_
 
 called Read
 
@@ -11431,7 +10521,7 @@ called Read
 
 ### Tool result
 
-_source line 891 · 2026-05-24T16:24:20.878270+00:00_
+_source line 867 · 2026-05-24T16:24:20.878270+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -11456,7 +10546,7 @@ _source line 891 · 2026-05-24T16:24:20.878270+00:00_
 
 ### Tool call
 
-_source line 892 · 2026-05-24T16:24:20.878612+00:00_
+_source line 868 · 2026-05-24T16:24:20.878612+00:00_
 
 called Read
 
@@ -11490,7 +10580,7 @@ called Read
 
 ### Tool result
 
-_source line 893 · 2026-05-24T16:24:21.080045+00:00_
+_source line 869 · 2026-05-24T16:24:21.080045+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -11526,7 +10616,7 @@ _source line 893 · 2026-05-24T16:24:21.080045+00:00_
 
 ### Tool call
 
-_source line 894 · 2026-05-24T16:24:21.180951+00:00_
+_source line 870 · 2026-05-24T16:24:21.180951+00:00_
 
 called Read
 
@@ -11560,7 +10650,7 @@ called Read
 
 ### Tool result
 
-_source line 895 · 2026-05-24T16:24:21.233070+00:00_
+_source line 871 · 2026-05-24T16:24:21.233070+00:00_
 
 1	\section{Experiments}
 2	
@@ -11598,7 +10688,7 @@ _source line 895 · 2026-05-24T16:24:21.233070+00:00_
 
 ### Tool result
 
-_source line 896 · 2026-05-24T16:24:34.735163+00:00_
+_source line 872 · 2026-05-24T16:24:34.735163+00:00_
 
 **Status: Fixes NOT applied. Critical issues remain across all 5 files.**
 
@@ -11670,7 +10760,7 @@ Conclusion is still missing the adoption guideline. No third sentence on practic
 
 ### Tool call
 
-_source line 897 · 2026-05-24T16:24:39.655113+00:00_
+_source line 873 · 2026-05-24T16:24:39.655113+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11706,7 +10796,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 898 · 2026-05-24T16:24:39.806235+00:00_
+_source line 874 · 2026-05-24T16:24:39.806235+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-041\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T12:47:44.371Z\", \"updated_at\": \"2026-05-24T13:11:48.392Z\", \"hypothesis\": \"Under asymmetric misclassification (FPR≠FNR, ratio 1:2 to 1:5 and reverse), the bias identity retains R²≥0.95 and EC-HTE maintains coverage ≥93% across 48 configurations (6 FPR/FNR ratios × 2 K × 4 Δπ), while the symmetric diagnostic AUC degrades monotonically with FPR/FNR ratio — quantifying the exact diagnostic accuracy loss curve under asymmetry.\", \"conclusion\": \"negative\", \"metrics\": {\"r2_by_delta_pi\": {\"0.05\": 0.57, \"0.10\": 0.851, \"0.15\": 0.922, \"0.20\": 0.951}, \"r2_range_delta_pi_gte_010\": \"0.73-0.99\", \"diagnostic_auc_k4_mean\": 0.74, \"diagnostic_auc_k2_mean\": 0.44, \"method_comparison\": {\"oracle\": {\"abs_bias\": 0.058, \"rmse\": 0.072, \"coverage\": 0.946}, \"naive\": {\"abs_bias\": 0.08, \"rmse\": 0.096, \"coverage\": 0.83}, \"global\": {\"abs_bias\": 0.088, \"rmse\": 0.109, \"coverage\": 0.931}, \"echte_hb\": {\"abs_bias\": 0.098, \"rmse\": 0.125, \"coverage\": 0.92}}, \"echte_worse_than_global_all_48\": true, \"key_finding\": \"R² validates bias identity under asymmetry (≥0.85 for Δπ≥0.10). EC-HTE RMSE > Global in all 48 configs due to doubled parameter estimation variance at n_expert=250. n_expert≥500 recommended for asymmetric.\"}}, \"exp-040\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:54:23.294Z\", \"updated_at\": \"2026-05-23T15:55:16.698Z\", \"hypothesis\": \"EC-HTE is robust to moderate treatment-dependent misclassification (γ_T≤0.05, coverage ≥89.7%) but degrades at γ_T≥0.10 because per-subgroup CM estimates become biased when expert sample treatment composition doesn't match the full sample.\", \"conclusion\": \"success\", \"metrics\": {\"gamma0_cov\": 0.945, \"gamma0_rmse\": 0.075, \"gamma005_cov\": 0.897, \"gamma005_rmse\": 0.092, \"gamma010_cov\": 0.75, \"gamma010_rmse\": 0.133, \"gamma015_cov\": 0.525, 
 …[truncated 2751 chars]
@@ -11729,7 +10819,7 @@ _source line 898 · 2026-05-24T16:24:39.806235+00:00_
 
 ### Tool call
 
-_source line 899 · 2026-05-24T16:24:53.977998+00:00_
+_source line 875 · 2026-05-24T16:24:53.977998+00:00_
 
 called Read
 
@@ -11763,7 +10853,7 @@ called Read
 
 ### Tool result
 
-_source line 900 · 2026-05-24T16:24:54.079055+00:00_
+_source line 876 · 2026-05-24T16:24:54.079055+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -11791,7 +10881,7 @@ _source line 900 · 2026-05-24T16:24:54.079055+00:00_
 
 ### Tool call
 
-_source line 901 · 2026-05-24T16:24:54.079511+00:00_
+_source line 877 · 2026-05-24T16:24:54.079511+00:00_
 
 called Read
 
@@ -11825,7 +10915,7 @@ called Read
 
 ### Tool result
 
-_source line 902 · 2026-05-24T16:24:54.180482+00:00_
+_source line 878 · 2026-05-24T16:24:54.180482+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -11850,7 +10940,7 @@ _source line 902 · 2026-05-24T16:24:54.180482+00:00_
 
 ### Tool call
 
-_source line 903 · 2026-05-24T16:24:56.991459+00:00_
+_source line 879 · 2026-05-24T16:24:56.991459+00:00_
 
 called ToolSearch
 
@@ -11886,7 +10976,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 904 · 2026-05-24T16:24:57.092423+00:00_
+_source line 880 · 2026-05-24T16:24:57.092423+00:00_
 
 
 
@@ -11908,7 +10998,7 @@ _source line 904 · 2026-05-24T16:24:57.092423+00:00_
 
 ### Tool call
 
-_source line 905 · 2026-05-24T16:25:23.151711+00:00_
+_source line 881 · 2026-05-24T16:25:23.151711+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11944,7 +11034,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 906 · 2026-05-24T16:25:24.307021+00:00_
+_source line 882 · 2026-05-24T16:25:24.307021+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -11966,7 +11056,7 @@ _source line 906 · 2026-05-24T16:25:24.307021+00:00_
 
 ### Tool call
 
-_source line 907 · 2026-05-24T16:25:28.222516+00:00_
+_source line 883 · 2026-05-24T16:25:28.222516+00:00_
 
 called ToolSearch
 
@@ -12002,7 +11092,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 908 · 2026-05-24T16:25:28.323278+00:00_
+_source line 884 · 2026-05-24T16:25:28.323278+00:00_
 
 
 
@@ -12024,7 +11114,7 @@ _source line 908 · 2026-05-24T16:25:28.323278+00:00_
 
 ### Tool call
 
-_source line 909 · 2026-05-24T16:25:33.643681+00:00_
+_source line 885 · 2026-05-24T16:25:33.643681+00:00_
 
 called WebSearch
 
@@ -12058,7 +11148,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 910 · 2026-05-24T16:25:34.095935+00:00_
+_source line 886 · 2026-05-24T16:25:34.095935+00:00_
 
 called WebSearch
 
@@ -12092,7 +11182,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 911 · 2026-05-24T16:25:38.513606+00:00_
+_source line 887 · 2026-05-24T16:25:38.513606+00:00_
 
 Web search results for query: "etaiwi2025comparative arXiv 2506.18501 LLM AG News classification"
 
@@ -12125,7 +11215,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 912 · 2026-05-24T16:25:45.189863+00:00_
+_source line 888 · 2026-05-24T16:25:45.189863+00:00_
 
 Web search results for query: ""etaiwi" "comparative" LLM text classification AG News accuracy confusion matrix 2025"
 
@@ -12160,7 +11250,7 @@ If you're looking for a specific paper or research project with "etaiwi" in the 
 
 ### Tool call
 
-_source line 913 · 2026-05-24T16:25:52.992201+00:00_
+_source line 889 · 2026-05-24T16:25:52.992201+00:00_
 
 called WebSearch
 
@@ -12196,7 +11286,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 914 · 2026-05-24T16:25:59.323347+00:00_
+_source line 890 · 2026-05-24T16:25:59.323347+00:00_
 
 Web search results for query: "arxiv 2506.18501 "Comparative Evaluation of ChatGPT and DeepSeek" authors AG News accuracy"
 
@@ -12229,7 +11319,7 @@ Based on the search results, I found the paper arxiv 2506.18501 titled "Comparat
 
 ### Tool call
 
-_source line 915 · 2026-05-24T16:26:17.410216+00:00_
+_source line 891 · 2026-05-24T16:26:17.410216+00:00_
 
 called Read
 
@@ -12263,7 +11353,7 @@ called Read
 
 ### Tool result
 
-_source line 916 · 2026-05-24T16:26:17.912760+00:00_
+_source line 892 · 2026-05-24T16:26:17.912760+00:00_
 
 1	\subsection{Topic Classification: AG News Cross-Task Validation}
 2	\label{app:agnews}
@@ -12309,7 +11399,7 @@ _source line 916 · 2026-05-24T16:26:17.912760+00:00_
 
 ### Tool call
 
-_source line 917 · 2026-05-24T16:26:18.014044+00:00_
+_source line 893 · 2026-05-24T16:26:18.014044+00:00_
 
 called Read
 
@@ -12347,7 +11437,7 @@ called Read
 
 ### Tool result
 
-_source line 918 · 2026-05-24T16:26:18.114907+00:00_
+_source line 894 · 2026-05-24T16:26:18.114907+00:00_
 
 0	% === Proximal / Sensitivity ===
 1	
@@ -12418,7 +11508,7 @@ _source line 918 · 2026-05-24T16:26:18.114907+00:00_
 
 ### Tool call
 
-_source line 919 · 2026-05-24T16:26:40.003212+00:00_
+_source line 895 · 2026-05-24T16:26:40.003212+00:00_
 
 called Grep
 
@@ -12458,7 +11548,7 @@ called Grep
 
 ### Tool result
 
-_source line 920 · 2026-05-24T16:26:40.003670+00:00_
+_source line 896 · 2026-05-24T16:26:40.003670+00:00_
 
 447:@article{etaiwi2025comparative,
 448-  title={Comparative Evaluation of ChatGPT and DeepSeek Across Key {NLP} Tasks: Strengths, Weaknesses, and Domain-Specific Performance},
@@ -12488,7 +11578,7 @@ _source line 920 · 2026-05-24T16:26:40.003670+00:00_
 
 ### Tool call
 
-_source line 921 · 2026-05-24T16:26:59.144041+00:00_
+_source line 897 · 2026-05-24T16:26:59.144041+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12524,7 +11614,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 922 · 2026-05-24T16:27:00.248739+00:00_
+_source line 898 · 2026-05-24T16:27:00.248739+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -12546,7 +11636,7 @@ _source line 922 · 2026-05-24T16:27:00.248739+00:00_
 
 ### Tool call
 
-_source line 923 · 2026-05-24T16:27:08.933030+00:00_
+_source line 899 · 2026-05-24T16:27:08.933030+00:00_
 
 called Read
 
@@ -12584,7 +11674,7 @@ called Read
 
 ### Tool result
 
-_source line 924 · 2026-05-24T16:27:09.334553+00:00_
+_source line 900 · 2026-05-24T16:27:09.334553+00:00_
 
 0	\section{Experiments}
 1	
@@ -12622,7 +11712,7 @@ _source line 924 · 2026-05-24T16:27:09.334553+00:00_
 
 ### Tool call
 
-_source line 925 · 2026-05-24T16:27:09.339127+00:00_
+_source line 901 · 2026-05-24T16:27:09.339127+00:00_
 
 called Read
 
@@ -12656,7 +11746,7 @@ called Read
 
 ### Tool result
 
-_source line 926 · 2026-05-24T16:27:09.389915+00:00_
+_source line 902 · 2026-05-24T16:27:09.389915+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -12692,7 +11782,7 @@ _source line 926 · 2026-05-24T16:27:09.389915+00:00_
 
 ### Tool call
 
-_source line 927 · 2026-05-24T16:28:04.899397+00:00_
+_source line 903 · 2026-05-24T16:28:04.899397+00:00_
 
 called Read
 
@@ -12730,7 +11820,7 @@ called Read
 
 ### Tool result
 
-_source line 928 · 2026-05-24T16:28:04.899767+00:00_
+_source line 904 · 2026-05-24T16:28:04.899767+00:00_
 
 85	EC-HTE requires: (i)~$\Delta\pi > 0.15$, (ii)~$n_{\text{expert}} \geq 250$ for $K{=}2$, (iii)~FNR${}<0.50$, (iv)~$K \leq 4$, and (v)~$n_{\text{expert}} \geq 500$ under asymmetric errors (FPR$\neq$FNR); when unmet, global correction is preferable (Appendix~\ref{app:k8_subgroups}).
 86	Robustness to noisy subgroup labels ($p_{\text{flip}} \leq 0.50$) and confounded treatment (coverage $\geq$94.5\%) is verified (Appendices~\ref{app:robustness}--\ref{app:confounded_dgp}).
@@ -12758,7 +11848,7 @@ _source line 928 · 2026-05-24T16:28:04.899767+00:00_
 
 ### Tool call
 
-_source line 929 · 2026-05-24T16:28:28.087352+00:00_
+_source line 905 · 2026-05-24T16:28:28.087352+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12794,7 +11884,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 930 · 2026-05-24T16:28:29.191523+00:00_
+_source line 906 · 2026-05-24T16:28:29.191523+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -12816,7 +11906,7 @@ _source line 930 · 2026-05-24T16:28:29.191523+00:00_
 
 ### Assistant
 
-_source line 931 · 2026-05-24T16:28:34.990273+00:00_
+_source line 907 · 2026-05-24T16:28:34.990273+00:00_
 
 已上报三条审查发现，等待 Director 响应：
 
@@ -12847,7 +11937,7 @@ _source line 931 · 2026-05-24T16:28:34.990273+00:00_
 
 ### User
 
-_source line 932 · 2026-05-24T16:35:51.595716+00:00_
+_source line 908 · 2026-05-24T16:35:51.595716+00:00_
 
 [System 触发审查]:
 R19 修复验证请求 — 请核实以下已实施的修改：
@@ -12922,7 +12012,7 @@ R19 修复验证请求 — 请核实以下已实施的修改：
 
 ### Tool call
 
-_source line 933 · 2026-05-24T16:36:01.029582+00:00_
+_source line 909 · 2026-05-24T16:36:01.029582+00:00_
 
 called Read
 
@@ -12956,7 +12046,7 @@ called Read
 
 ### Tool result
 
-_source line 934 · 2026-05-24T16:36:01.985087+00:00_
+_source line 910 · 2026-05-24T16:36:01.985087+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -12984,7 +12074,7 @@ _source line 934 · 2026-05-24T16:36:01.985087+00:00_
 
 ### Tool call
 
-_source line 935 · 2026-05-24T16:36:02.036044+00:00_
+_source line 911 · 2026-05-24T16:36:02.036044+00:00_
 
 called Read
 
@@ -13018,7 +12108,7 @@ called Read
 
 ### Tool result
 
-_source line 936 · 2026-05-24T16:36:02.488369+00:00_
+_source line 912 · 2026-05-24T16:36:02.488369+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -13044,7 +12134,7 @@ _source line 936 · 2026-05-24T16:36:02.488369+00:00_
 
 ### Tool call
 
-_source line 937 · 2026-05-24T16:36:02.488819+00:00_
+_source line 913 · 2026-05-24T16:36:02.488819+00:00_
 
 called Read
 
@@ -13078,7 +12168,7 @@ called Read
 
 ### Tool result
 
-_source line 938 · 2026-05-24T16:36:02.992973+00:00_
+_source line 914 · 2026-05-24T16:36:02.992973+00:00_
 
 1	\section{Introduction}
 2	\label{sec:intro}
@@ -13114,7 +12204,7 @@ _source line 938 · 2026-05-24T16:36:02.992973+00:00_
 
 ### Tool call
 
-_source line 939 · 2026-05-24T16:36:02.993438+00:00_
+_source line 915 · 2026-05-24T16:36:02.993438+00:00_
 
 called Read
 
@@ -13148,7 +12238,7 @@ called Read
 
 ### Tool result
 
-_source line 940 · 2026-05-24T16:36:03.245187+00:00_
+_source line 916 · 2026-05-24T16:36:03.245187+00:00_
 
 1	% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
 2	% and: \newtheorem{theorem}{Theorem}
@@ -13191,7 +12281,7 @@ _source line 940 · 2026-05-24T16:36:03.245187+00:00_
 
 ### Tool call
 
-_source line 941 · 2026-05-24T16:36:03.295991+00:00_
+_source line 917 · 2026-05-24T16:36:03.295991+00:00_
 
 called Read
 
@@ -13225,7 +12315,7 @@ called Read
 
 ### Tool result
 
-_source line 942 · 2026-05-24T16:36:03.347490+00:00_
+_source line 918 · 2026-05-24T16:36:03.347490+00:00_
 
 1	\section{Experiments}
 2	
@@ -13263,7 +12353,7 @@ _source line 942 · 2026-05-24T16:36:03.347490+00:00_
 
 ### Tool call
 
-_source line 943 · 2026-05-24T16:36:19.166684+00:00_
+_source line 919 · 2026-05-24T16:36:19.166684+00:00_
 
 called Read
 
@@ -13297,7 +12387,7 @@ called Read
 
 ### Tool result
 
-_source line 944 · 2026-05-24T16:36:19.267515+00:00_
+_source line 920 · 2026-05-24T16:36:19.267515+00:00_
 
 1	\subsection{Topic Classification: AG News Cross-Task Validation}
 2	\label{app:agnews}
@@ -13340,7 +12430,7 @@ _source line 944 · 2026-05-24T16:36:19.267515+00:00_
 
 ### Tool call
 
-_source line 945 · 2026-05-24T16:36:19.268116+00:00_
+_source line 921 · 2026-05-24T16:36:19.268116+00:00_
 
 called Read
 
@@ -13374,7 +12464,7 @@ called Read
 
 ### Tool result
 
-_source line 946 · 2026-05-24T16:36:19.318830+00:00_
+_source line 922 · 2026-05-24T16:36:19.318830+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -13410,7 +12500,7 @@ _source line 946 · 2026-05-24T16:36:19.318830+00:00_
 
 ### Tool call
 
-_source line 947 · 2026-05-24T16:38:02.501882+00:00_
+_source line 923 · 2026-05-24T16:38:02.501882+00:00_
 
 called Glob
 
@@ -13446,7 +12536,7 @@ called Glob
 
 ### Tool result
 
-_source line 948 · 2026-05-24T16:38:02.953854+00:00_
+_source line 924 · 2026-05-24T16:38:02.953854+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/_figure_backups/20260524_140133/fig2_heatmap.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/_figure_backups/20260524_130405/fig2_heatmap.pdf
@@ -13472,7 +12562,7 @@ _source line 948 · 2026-05-24T16:38:02.953854+00:00_
 
 ### Tool call
 
-_source line 949 · 2026-05-24T16:38:03.408093+00:00_
+_source line 925 · 2026-05-24T16:38:03.408093+00:00_
 
 called Glob
 
@@ -13508,7 +12598,7 @@ called Glob
 
 ### Tool result
 
-_source line 950 · 2026-05-24T16:38:04.362298+00:00_
+_source line 926 · 2026-05-24T16:38:04.362298+00:00_
 
 No files found
 
@@ -13530,7 +12620,7 @@ No files found
 
 ### Tool call
 
-_source line 951 · 2026-05-24T16:38:04.362657+00:00_
+_source line 927 · 2026-05-24T16:38:04.362657+00:00_
 
 called Bash
 
@@ -13566,7 +12656,7 @@ called Bash
 
 ### Tool result
 
-_source line 952 · 2026-05-24T16:38:04.513385+00:00_
+_source line 928 · 2026-05-24T16:38:04.513385+00:00_
 
 total 2960
 drwxr-xr-x 2 ubuntu ubuntu   4096 May 24 16:26 .
@@ -13617,7 +12707,7 @@ drwxr-xr-x 5 ubuntu ubuntu   4096 May 24 16:34 ..
 
 ### Tool call
 
-_source line 953 · 2026-05-24T16:38:15.108163+00:00_
+_source line 929 · 2026-05-24T16:38:15.108163+00:00_
 
 called Grep
 
@@ -13657,7 +12747,7 @@ called Grep
 
 ### Tool result
 
-_source line 954 · 2026-05-24T16:38:15.710952+00:00_
+_source line 930 · 2026-05-24T16:38:15.710952+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_sign_reversal.py:168:         bar_w, color=C_ECHTE, alpha=0.85, label='EC-HTE',
 
@@ -13679,7 +12769,7 @@ _source line 954 · 2026-05-24T16:38:15.710952+00:00_
 
 ### Tool call
 
-_source line 955 · 2026-05-24T16:38:16.213135+00:00_
+_source line 931 · 2026-05-24T16:38:16.213135+00:00_
 
 called Grep
 
@@ -13721,7 +12811,7 @@ called Grep
 
 ### Tool result
 
-_source line 956 · 2026-05-24T16:38:16.314201+00:00_
+_source line 932 · 2026-05-24T16:38:16.314201+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_method_overview.py:4:Two-track comparison: Standard (muted rose) vs EC-HTE (blue).
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_method_overview.py:5:Colorblind-safe: red/green replaced with rose/blue throughout.
@@ -13755,7 +12845,7 @@ _source line 956 · 2026-05-24T16:38:16.314201+00:00_
 
 ### Tool call
 
-_source line 957 · 2026-05-24T16:39:42.484852+00:00_
+_source line 933 · 2026-05-24T16:39:42.484852+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13791,7 +12881,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 958 · 2026-05-24T16:39:46.152754+00:00_
+_source line 934 · 2026-05-24T16:39:46.152754+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -13813,7 +12903,7 @@ _source line 958 · 2026-05-24T16:39:46.152754+00:00_
 
 ### Assistant
 
-_source line 959 · 2026-05-24T16:39:54.085163+00:00_
+_source line 935 · 2026-05-24T16:39:54.085163+00:00_
 
 验证报告已提交。11/12 通过，唯一问题是 introduction.tex L13 "eliminates sign reversal entirely" 未同步修改为 "in the primary K=2 configuration"。等待 Director 指派 worker 修复此处。
 
@@ -13840,7 +12930,7 @@ _source line 959 · 2026-05-24T16:39:54.085163+00:00_
 
 ### User
 
-_source line 960 · 2026-05-24T17:23:53.971458+00:00_
+_source line 936 · 2026-05-24T17:23:53.971458+00:00_
 
 [System 触发审查]:
 R20 审稿报告 Action Matrix 初稿——请独立审视方案可行性、遗漏、技术细节。DDL 2026-05-25（明天），仅能做写作修复。
@@ -13961,7 +13051,7 @@ R20 审稿报告 Action Matrix 初稿——请独立审视方案可行性、遗�
 
 ### Tool call
 
-_source line 961 · 2026-05-24T17:24:05.358614+00:00_
+_source line 937 · 2026-05-24T17:24:05.358614+00:00_
 
 called WebSearch
 
@@ -13997,7 +13087,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 962 · 2026-05-24T17:24:06.362711+00:00_
+_source line 938 · 2026-05-24T17:24:06.362711+00:00_
 
 called WebSearch
 
@@ -14033,7 +13123,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 963 · 2026-05-24T17:24:07.216396+00:00_
+_source line 939 · 2026-05-24T17:24:07.216396+00:00_
 
 called WebSearch
 
@@ -14069,7 +13159,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 964 · 2026-05-24T17:24:10.180968+00:00_
+_source line 940 · 2026-05-24T17:24:10.180968+00:00_
 
 Web search results for query: "Natarajan et al 2013 NIPS "Learning with Noisy Labels" cost-sensitive"
 
@@ -14104,7 +13194,7 @@ REMINDER: You MUST include the sources above in your response to the user using 
 
 ### Tool result
 
-_source line 965 · 2026-05-24T17:24:13.042557+00:00_
+_source line 941 · 2026-05-24T17:24:13.042557+00:00_
 
 Web search results for query: "Xia et al 2019 ICML instance-dependent label noise robust learning"
 
@@ -14139,7 +13229,7 @@ It's worth noting that while your query mentioned ICML, the 2019 Xia et al. pape
 
 ### Tool result
 
-_source line 966 · 2026-05-24T17:24:13.344203+00:00_
+_source line 942 · 2026-05-24T17:24:13.344203+00:00_
 
 Web search results for query: "Patrini et al 2017 CVPR "Making Deep Neural Networks Robust to Label Noise" forward correction"
 
@@ -14180,7 +13270,7 @@ With asymmetric noise, the two loss corrections with kn
 
 ### Tool call
 
-_source line 967 · 2026-05-24T17:24:26.998325+00:00_
+_source line 943 · 2026-05-24T17:24:26.998325+00:00_
 
 called WebSearch
 
@@ -14216,7 +13306,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 968 · 2026-05-24T17:24:34.326723+00:00_
+_source line 944 · 2026-05-24T17:24:34.326723+00:00_
 
 Web search results for query: "Xia et al 2019 NeurIPS "Are anchor points really indispensable" label noise"
 
@@ -14251,7 +13341,7 @@ In label-noise learning, the noise transition matrix, denoting the probabilities
 
 ### Tool call
 
-_source line 969 · 2026-05-24T17:25:24.791163+00:00_
+_source line 945 · 2026-05-24T17:25:24.791163+00:00_
 
 called Read
 
@@ -14289,7 +13379,7 @@ called Read
 
 ### Tool result
 
-_source line 970 · 2026-05-24T17:25:25.042606+00:00_
+_source line 946 · 2026-05-24T17:25:25.042606+00:00_
 
 50	
 51	\begin{remark}
@@ -14325,7 +13415,7 @@ _source line 970 · 2026-05-24T17:25:25.042606+00:00_
 
 ### Tool call
 
-_source line 971 · 2026-05-24T17:25:25.043163+00:00_
+_source line 947 · 2026-05-24T17:25:25.043163+00:00_
 
 called Read
 
@@ -14359,7 +13449,7 @@ called Read
 
 ### Tool result
 
-_source line 972 · 2026-05-24T17:25:25.144376+00:00_
+_source line 948 · 2026-05-24T17:25:25.144376+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related}
@@ -14393,7 +13483,7 @@ _source line 972 · 2026-05-24T17:25:25.144376+00:00_
 
 ### Tool call
 
-_source line 973 · 2026-05-24T17:27:07.046250+00:00_
+_source line 949 · 2026-05-24T17:27:07.046250+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14429,7 +13519,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 974 · 2026-05-24T17:27:10.609557+00:00_
+_source line 950 · 2026-05-24T17:27:10.609557+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -14451,7 +13541,7 @@ _source line 974 · 2026-05-24T17:27:10.609557+00:00_
 
 ### Assistant
 
-_source line 975 · 2026-05-24T17:27:20.898749+00:00_
+_source line 951 · 2026-05-24T17:27:20.898749+00:00_
 
 审查报告已提交。核心发现：
 
@@ -14484,7 +13574,7 @@ _source line 975 · 2026-05-24T17:27:20.898749+00:00_
 
 ### User
 
-_source line 976 · 2026-05-24T17:39:21.072561+00:00_
+_source line 952 · 2026-05-24T17:39:21.072561+00:00_
 
 [System 触发审查]:
 R20 写作修复验证请求。以下修改已实施，请逐条验证：
@@ -14522,7 +13612,7 @@ R20 写作修复验证请求。以下修改已实施，请逐条验证：
 
 ### Tool call
 
-_source line 977 · 2026-05-24T17:39:33.151487+00:00_
+_source line 953 · 2026-05-24T17:39:33.151487+00:00_
 
 called Read
 
@@ -14556,7 +13646,7 @@ called Read
 
 ### Tool result
 
-_source line 978 · 2026-05-24T17:39:33.604074+00:00_
+_source line 954 · 2026-05-24T17:39:33.604074+00:00_
 
 1	\begin{abstract}
 2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
@@ -14584,7 +13674,7 @@ _source line 978 · 2026-05-24T17:39:33.604074+00:00_
 
 ### Tool call
 
-_source line 979 · 2026-05-24T17:39:34.156670+00:00_
+_source line 955 · 2026-05-24T17:39:34.156670+00:00_
 
 called Read
 
@@ -14622,7 +13712,7 @@ called Read
 
 ### Tool result
 
-_source line 980 · 2026-05-24T17:39:34.659207+00:00_
+_source line 956 · 2026-05-24T17:39:34.659207+00:00_
 
 0	% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
 1	% and: \newtheorem{theorem}{Theorem}
@@ -14665,7 +13755,7 @@ _source line 980 · 2026-05-24T17:39:34.659207+00:00_
 
 ### Tool call
 
-_source line 981 · 2026-05-24T17:39:34.709971+00:00_
+_source line 957 · 2026-05-24T17:39:34.709971+00:00_
 
 called Read
 
@@ -14699,7 +13789,7 @@ called Read
 
 ### Tool result
 
-_source line 982 · 2026-05-24T17:39:35.162280+00:00_
+_source line 958 · 2026-05-24T17:39:35.162280+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related}
@@ -14733,7 +13823,7 @@ _source line 982 · 2026-05-24T17:39:35.162280+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-24T17:39:35.363443+00:00_
+_source line 959 · 2026-05-24T17:39:35.363443+00:00_
 
 called Read
 
@@ -14771,7 +13861,7 @@ called Read
 
 ### Tool result
 
-_source line 984 · 2026-05-24T17:39:35.414114+00:00_
+_source line 960 · 2026-05-24T17:39:35.414114+00:00_
 
 36	
 37	\begin{table}[t]
@@ -14827,7 +13917,7 @@ _source line 984 · 2026-05-24T17:39:35.414114+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-24T17:39:45.304690+00:00_
+_source line 961 · 2026-05-24T17:39:45.304690+00:00_
 
 called Grep
 
@@ -14865,7 +13955,7 @@ called Grep
 
 ### Tool result
 
-_source line 986 · 2026-05-24T17:39:46.308765+00:00_
+_source line 962 · 2026-05-24T17:39:46.308765+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex:79:EC-HTE estimates full per-subgroup confusion matrices and does not require~(A2); under asymmetric errors the full matrix identity applies with $n_{\text{expert}} \geq 500$ (Remark~\ref{rem:asymmetric}; Appendix~\ref{app:asymmetric}).
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex:19:\item[\textbf{(A2)}] \textit{Symmetric misclassification (expository simplification):} $P(\hat{Z}{=}1 \mid Z{=}0, S{=}s) = P(\hat{Z}{=}0 \mid Z{=}1, S{=}s) = \pi_s$ for all $s$. Used only to reduce $[B_s]_{z,1}$ to the scalar $\pm\delta_s/(1{-}2\bar{\pi})$; the product-form identity holds for arbitrary asymmetric matrices without~(A2) (Remark~\ref{rem:asymmetric}).
@@ -14892,7 +13982,7 @@ _source line 986 · 2026-05-24T17:39:46.308765+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-24T17:39:47.262850+00:00_
+_source line 963 · 2026-05-24T17:39:47.262850+00:00_
 
 called Grep
 
@@ -14932,7 +14022,7 @@ called Grep
 
 ### Tool result
 
-_source line 988 · 2026-05-24T17:39:47.765178+00:00_
+_source line 964 · 2026-05-24T17:39:47.765178+00:00_
 
 637:@inproceedings{natarajan2013learning,
 638-  title={Learning with Noisy Labels},
@@ -14978,7 +14068,7 @@ _source line 988 · 2026-05-24T17:39:47.765178+00:00_
 
 ### Tool call
 
-_source line 989 · 2026-05-24T17:39:48.618716+00:00_
+_source line 965 · 2026-05-24T17:39:48.618716+00:00_
 
 called Grep
 
@@ -15018,7 +14108,7 @@ called Grep
 
 ### Tool result
 
-_source line 990 · 2026-05-24T17:39:48.669327+00:00_
+_source line 966 · 2026-05-24T17:39:48.669327+00:00_
 
 237:\citet{audinet2025benchmarking} systematically benchmark DSL and PPI methods for LLM-based parameter estimation, finding that debiasing can increase MSE when prediction error is heterogeneous---a population-level analogue of the subgroup-conditional bias amplification we formalize in Theorem~\ref{thm:bias_identity}.
 
@@ -15040,7 +14130,7 @@ _source line 990 · 2026-05-24T17:39:48.669327+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-24T17:39:54.593325+00:00_
+_source line 967 · 2026-05-24T17:39:54.593325+00:00_
 
 called Grep
 
@@ -15078,7 +14168,7 @@ called Grep
 
 ### Tool result
 
-_source line 992 · 2026-05-24T17:39:55.497167+00:00_
+_source line 968 · 2026-05-24T17:39:55.497167+00:00_
 
 No matches found
 
@@ -15100,7 +14190,7 @@ No matches found
 
 ### Tool call
 
-_source line 993 · 2026-05-24T17:39:55.547920+00:00_
+_source line 969 · 2026-05-24T17:39:55.547920+00:00_
 
 called Read
 
@@ -15138,7 +14228,7 @@ called Read
 
 ### Tool result
 
-_source line 994 · 2026-05-24T17:39:55.598559+00:00_
+_source line 970 · 2026-05-24T17:39:55.598559+00:00_
 
 75	
 76	No real LLM--dataset pair passes all screening conditions; under relaxed screening, 79\% show RMSE improvement with coverage $\geq$93\% (Appendix~\ref{app:screening}).
@@ -15171,7 +14261,7 @@ _source line 994 · 2026-05-24T17:39:55.598559+00:00_
 
 ### Tool call
 
-_source line 995 · 2026-05-24T17:40:12.998346+00:00_
+_source line 971 · 2026-05-24T17:40:12.998346+00:00_
 
 called Grep
 
@@ -15211,7 +14301,7 @@ called Grep
 
 ### Tool result
 
-_source line 996 · 2026-05-24T17:40:13.099221+00:00_
+_source line 972 · 2026-05-24T17:40:13.099221+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib:608:@article{knox2022testing,
 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib:610:  author={Knox, Dean and Lucas, Christopher and Cho, Wendy K. Tam},
@@ -15238,7 +14328,7 @@ _source line 996 · 2026-05-24T17:40:13.099221+00:00_
 
 ### Tool call
 
-_source line 997 · 2026-05-24T17:40:38.754174+00:00_
+_source line 973 · 2026-05-24T17:40:38.754174+00:00_
 
 called Grep
 
@@ -15278,7 +14368,7 @@ called Grep
 
 ### Tool result
 
-_source line 998 · 2026-05-24T17:40:38.804762+00:00_
+_source line 974 · 2026-05-24T17:40:38.804762+00:00_
 
 223:\label{app:related}
 224-
@@ -15303,7 +14393,7 @@ _source line 998 · 2026-05-24T17:40:38.804762+00:00_
 
 ### Tool call
 
-_source line 999 · 2026-05-24T17:40:42.619355+00:00_
+_source line 975 · 2026-05-24T17:40:42.619355+00:00_
 
 called Read
 
@@ -15341,7 +14431,7 @@ called Read
 
 ### Tool result
 
-_source line 1000 · 2026-05-24T17:40:42.720187+00:00_
+_source line 976 · 2026-05-24T17:40:42.720187+00:00_
 
 223	\label{app:related}
 224	
@@ -15382,7 +14472,7 @@ _source line 1000 · 2026-05-24T17:40:42.720187+00:00_
 
 ### Tool call
 
-_source line 1001 · 2026-05-24T17:41:03.752394+00:00_
+_source line 977 · 2026-05-24T17:41:03.752394+00:00_
 
 called Read
 
@@ -15420,7 +14510,7 @@ called Read
 
 ### Tool result
 
-_source line 1002 · 2026-05-24T17:41:03.853194+00:00_
+_source line 978 · 2026-05-24T17:41:03.853194+00:00_
 
 12	We show that this standard correction can make things worse.
 13	In 14.9\% of our synthetic configurations (across a grid of $\Delta\pi$ and $\tau(0)$ values; $\tau(0) = 0.03$), global correction reverses the sign of estimated CATE---a protective treatment ($\tau = +0.03$) appears harmful ($\hat{\tau} = -0.059$)---rising to 31\% at $\tau(0) = 0.01$ (Figure~\ref{fig:sign_reversal}); all eight real LLMs tested amplify bias under global correction, while EC-HTE eliminates sign reversal in the primary $K{=}2$ setting.
@@ -15444,7 +14534,7 @@ _source line 1002 · 2026-05-24T17:41:03.853194+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-24T17:42:50.034922+00:00_
+_source line 979 · 2026-05-24T17:42:50.034922+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15480,7 +14570,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1004 · 2026-05-24T17:42:53.600012+00:00_
+_source line 980 · 2026-05-24T17:42:53.600012+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -15502,7 +14592,7 @@ _source line 1004 · 2026-05-24T17:42:53.600012+00:00_
 
 ### Assistant
 
-_source line 1005 · 2026-05-24T17:43:00.868200+00:00_
+_source line 981 · 2026-05-24T17:43:00.868200+00:00_
 
 验证完成。11 条修复中 10 条通过，1 条 warning（Knox/Blette 引用从全文消失，需补回 appendix 2 行）。C1 的 A2/exact 声称问题经过 3 轮复发后终于解决。
 
@@ -15529,7 +14619,7 @@ _source line 1005 · 2026-05-24T17:43:00.868200+00:00_
 
 ### User
 
-_source line 1006 · 2026-05-24T23:13:22.792315+00:00_
+_source line 982 · 2026-05-24T23:13:22.792315+00:00_
 
 [System 触发审查]:
 【审稿报告独立审查请求 — Round 21, Overall 3.5】
@@ -15614,7 +14704,7 @@ _source line 1006 · 2026-05-24T23:13:22.792315+00:00_
 
 ### Tool call
 
-_source line 1007 · 2026-05-24T23:13:37.855755+00:00_
+_source line 983 · 2026-05-24T23:13:37.855755+00:00_
 
 called Read
 
@@ -15652,7 +14742,7 @@ called Read
 
 ### Tool result
 
-_source line 1008 · 2026-05-24T23:13:38.310016+00:00_
+_source line 984 · 2026-05-24T23:13:38.310016+00:00_
 
 68	 & Global & 0.056 & 0.125 & 0.91 \\
 69	 & Strat.\ MLE & \textbf{0.010} & 0.127$^\dagger$ & 0.95 \\
@@ -15695,7 +14785,7 @@ _source line 1008 · 2026-05-24T23:13:38.310016+00:00_
 
 ### Tool call
 
-_source line 1009 · 2026-05-24T23:13:38.863025+00:00_
+_source line 985 · 2026-05-24T23:13:38.863025+00:00_
 
 called Read
 
@@ -15733,7 +14823,7 @@ called Read
 
 ### Tool result
 
-_source line 1010 · 2026-05-24T23:13:39.315149+00:00_
+_source line 986 · 2026-05-24T23:13:39.315149+00:00_
 
 28	
 29	Our contributions are:
@@ -15762,7 +14852,7 @@ _source line 1010 · 2026-05-24T23:13:39.315149+00:00_
 
 ### Tool call
 
-_source line 1011 · 2026-05-24T23:13:39.315526+00:00_
+_source line 987 · 2026-05-24T23:13:39.315526+00:00_
 
 called Read
 
@@ -15800,7 +14890,7 @@ called Read
 
 ### Tool result
 
-_source line 1012 · 2026-05-24T23:13:39.416180+00:00_
+_source line 988 · 2026-05-24T23:13:39.416180+00:00_
 
 36	\end{theorem}
 37	
@@ -15836,7 +14926,7 @@ _source line 1012 · 2026-05-24T23:13:39.416180+00:00_
 
 ### Tool call
 
-_source line 1013 · 2026-05-24T23:13:45.190004+00:00_
+_source line 989 · 2026-05-24T23:13:45.190004+00:00_
 
 called Read
 
@@ -15870,7 +14960,7 @@ called Read
 
 ### Tool result
 
-_source line 1014 · 2026-05-24T23:13:45.742737+00:00_
+_source line 990 · 2026-05-24T23:13:45.742737+00:00_
 
 1	\section*{Limitations}
 2	\label{sec:limitations}
@@ -15899,7 +14989,7 @@ _source line 1014 · 2026-05-24T23:13:45.742737+00:00_
 
 ### Tool call
 
-_source line 1015 · 2026-05-24T23:13:46.096065+00:00_
+_source line 991 · 2026-05-24T23:13:46.096065+00:00_
 
 called Read
 
@@ -15937,7 +15027,7 @@ called Read
 
 ### Tool result
 
-_source line 1016 · 2026-05-24T23:13:46.196947+00:00_
+_source line 992 · 2026-05-24T23:13:46.196947+00:00_
 
 0	\section{Experiments}
 1	
@@ -15970,7 +15060,7 @@ _source line 1016 · 2026-05-24T23:13:46.196947+00:00_
 
 ### Tool call
 
-_source line 1017 · 2026-05-24T23:15:55.348916+00:00_
+_source line 993 · 2026-05-24T23:15:55.348916+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16006,7 +15096,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 1018 · 2026-05-24T23:15:59.014190+00:00_
+_source line 994 · 2026-05-24T23:15:59.014190+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director\"}, \"error\": \"\"}"}
 
@@ -16028,7 +15118,7 @@ _source line 1018 · 2026-05-24T23:15:59.014190+00:00_
 
 ### Assistant
 
-_source line 1019 · 2026-05-24T23:16:06.123597+00:00_
+_source line 995 · 2026-05-24T23:16:06.123597+00:00_
 
 先读取关键文件的当前状态，确认修复空间。
 
@@ -16055,7 +15145,7 @@ _source line 1019 · 2026-05-24T23:16:06.123597+00:00_
 
 ### User
 
-_source line 1020 · 2026-05-25T03:21:19.790865+00:00_
+_source line 996 · 2026-05-25T03:21:19.790865+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -16137,7 +15227,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 1021 · 2026-05-25T03:22:22.770241+00:00_
+_source line 997 · 2026-05-25T03:22:22.770241+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

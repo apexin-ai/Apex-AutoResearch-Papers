@@ -4828,7 +4828,7 @@ _source line 146 · 2026-05-19T12:46:43.483125+00:00_
 
 ## Round 7
 
-16 recorded events
+14 recorded events
 
 
 ### User
@@ -4867,137 +4867,7 @@ _source line 147 · 2026-05-19T12:48:08.547223+00:00_
 
 ### Tool call
 
-_source line 148 · 2026-05-19T12:48:17.493652+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 149 · 2026-05-19T12:48:18.498202+00:00_
-
-1	---
-2	name: rebuttal
-3	description: 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。
-4	scope: global
-5	tags:
-6	- workflow
-7	- review
-8	- writing
-9	priority: 8
-10	version: 1
-11	roles:
-12	- agent
-13	- review_reviewer
-14	- worker
-15	---
-16	
-17	# 学术 Rebuttal 撰写与优化
-18	
-19	Rebuttal 是受 venue 约束的回应流程，不只是写作任务。目标：澄清误解、解决关键问题、将审稿分析转化为可执行任务清单、生成符合目标 venue 要求的提交产物。
-20	
-21	## 输入处理
-22	
-23	审稿意见可能以多种格式到达：
-24	
-25	- **粘贴文本**：直接使用，确认是否完整
-26	- **PDF 审稿**：读取 PDF，提取所有审稿文本、评分和 confidence
-27	- **截图**：读取图片转录所有可见内容，标记截断或不清晰的部分
-28	- **OpenReview / CMT 链接**：请用户粘贴审稿文本
-29	- **LaTeX 源码或论文 PDF**：按需读取以交叉核对 reviewer 质疑的 claim
-30	
-31	如果审稿不完整（缺评分或 confidence），先确认再继续。
-32	
-33	## 流程
-34	
-35	### Stage 1：审稿分析与 Issue Board
-36	
-37	分析所有审稿意见，识别核心主题、关键技术问题和共性疑问。
-38	
-39	**关键动作**：
-40	
-41	- **评分矩阵**：列出 Reviewer ID、评分、confidence、决策逻辑摘要
-42	- **立场分类**：
-43	  - Champion（分数 >= 7，正面语言）
-44	  - Persuadable（4-6 分，摇摆）
-45	  - Entrenched（<= 3 分，强烈负面）
-46	- **决策关键问题**：低分 + 高 confidence + 多 reviewer 重复提及 + AC 可能关注的
-47	- **归类**：soundness / novelty / significance / clarity / missing baselines / missing ablations / theory gaps / limitations / ethics / minor edits
-48	- **严重性分级**：
-49	
-50	| 严重性 | 定义 |
-51	|--------|------|
-52	| **Major-Blocking** | 单独可导致拒稿（方法论缺陷、novelty 挑战） |
-53	| **Major-Addressable** | 重大但可用证据或修改解决 |
-54	| **Minor** | 清晰度、格式、typo——对决策影响小 |
-55	| **Misunderstanding** | Reviewer 遗漏了论文中已有的内容 |
-56	
-57	**输出：Issue Board**
-58	
-59	```
-60	issue_id | reviewer | severity          | category   | strategy | status
-61	R1-1     | R1       | Major-Blocking    | baselines  | (TBD)    | open
-62	R1-2     | R1       | Minor             | clarity    | (TBD)    | open
-63	R2-1     | R2       | Misunderstanding  | novelty    | (TBD)    | open
-64	```
-65	
-66	如果用户只需要分析，到此为止。
-67	
-68	### Stage 2：策略选择
-69	
-70	为 Issue Board 中每个问题选择回应策略：
-71	
-72	| 策略 | 适用场景 | 示例 |
-73	|------|---------|------|
-74	| **Accept and fix** | Reviewer 说得对，deadline 前可修 | 缺少
-…[truncated 3901 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 1004
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 150 · 2026-05-19T12:48:18.548807+00:00_
+_source line 148 · 2026-05-19T12:48:18.548807+00:00_
 
 called Read
 
@@ -5031,7 +4901,7 @@ called Read
 
 ### Tool result
 
-_source line 151 · 2026-05-19T12:48:18.649733+00:00_
+_source line 149 · 2026-05-19T12:48:18.649733+00:00_
 
 1	\paragraph{Conclusion.}
 2	We find that VLA fine-tuning reorganizes instruction routing to entry-exit layers with L1 as the primary hub, supported by seven complementary analyses.
@@ -5056,7 +4926,7 @@ _source line 151 · 2026-05-19T12:48:18.649733+00:00_
 
 ### Tool call
 
-_source line 152 · 2026-05-19T12:48:18.650112+00:00_
+_source line 150 · 2026-05-19T12:48:18.650112+00:00_
 
 called Read
 
@@ -5090,7 +4960,7 @@ called Read
 
 ### Tool result
 
-_source line 153 · 2026-05-19T12:48:18.750759+00:00_
+_source line 151 · 2026-05-19T12:48:18.750759+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.
@@ -5119,7 +4989,7 @@ _source line 153 · 2026-05-19T12:48:18.750759+00:00_
 
 ### Tool call
 
-_source line 154 · 2026-05-19T12:48:24.538593+00:00_
+_source line 152 · 2026-05-19T12:48:24.538593+00:00_
 
 called Read
 
@@ -5153,7 +5023,7 @@ called Read
 
 ### Tool result
 
-_source line 155 · 2026-05-19T12:48:24.940726+00:00_
+_source line 153 · 2026-05-19T12:48:24.940726+00:00_
 
 1	\section{Method}
 2	\label{sec:method}
@@ -5197,7 +5067,7 @@ _source line 155 · 2026-05-19T12:48:24.940726+00:00_
 
 ### Tool call
 
-_source line 156 · 2026-05-19T12:48:24.941216+00:00_
+_source line 154 · 2026-05-19T12:48:24.941216+00:00_
 
 called Read
 
@@ -5231,7 +5101,7 @@ called Read
 
 ### Tool result
 
-_source line 157 · 2026-05-19T12:48:25.042065+00:00_
+_source line 155 · 2026-05-19T12:48:25.042065+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -5267,7 +5137,7 @@ _source line 157 · 2026-05-19T12:48:25.042065+00:00_
 
 ### Tool call
 
-_source line 158 · 2026-05-19T12:49:13.335849+00:00_
+_source line 156 · 2026-05-19T12:49:13.335849+00:00_
 
 called ToolSearch
 
@@ -5303,7 +5173,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 159 · 2026-05-19T12:49:13.386550+00:00_
+_source line 157 · 2026-05-19T12:49:13.386550+00:00_
 
 
 
@@ -5325,7 +5195,7 @@ _source line 159 · 2026-05-19T12:49:13.386550+00:00_
 
 ### Tool call
 
-_source line 160 · 2026-05-19T12:49:27.726074+00:00_
+_source line 158 · 2026-05-19T12:49:27.726074+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -5361,7 +5231,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 161 · 2026-05-19T12:49:31.918698+00:00_
+_source line 159 · 2026-05-19T12:49:31.918698+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -5383,7 +5253,7 @@ _source line 161 · 2026-05-19T12:49:31.918698+00:00_
 
 ### Assistant
 
-_source line 162 · 2026-05-19T12:49:38.036277+00:00_
+_source line 160 · 2026-05-19T12:49:38.036277+00:00_
 
 已提交。两个 concern 各含 ≤150 words 英文 rebuttal 正文 + 三个第二轮防守要点。核心逻辑：
 
@@ -5413,7 +5283,7 @@ _source line 162 · 2026-05-19T12:49:38.036277+00:00_
 
 ### User
 
-_source line 163 · 2026-05-19T13:09:59.088791+00:00_
+_source line 161 · 2026-05-19T13:09:59.088791+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -5434,7 +5304,7 @@ _source line 163 · 2026-05-19T13:09:59.088791+00:00_
 
 ### Tool call
 
-_source line 164 · 2026-05-19T13:10:09.600108+00:00_
+_source line 162 · 2026-05-19T13:10:09.600108+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5472,7 +5342,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 165 · 2026-05-19T13:10:09.954232+00:00_
+_source line 163 · 2026-05-19T13:10:09.954232+00:00_
 
 called ToolSearch
 
@@ -5508,7 +5378,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 166 · 2026-05-19T13:10:10.005160+00:00_
+_source line 164 · 2026-05-19T13:10:10.005160+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.381}}"}
 
@@ -5530,7 +5400,7 @@ _source line 166 · 2026-05-19T13:10:10.005160+00:00_
 
 ### Tool result
 
-_source line 167 · 2026-05-19T13:10:10.005776+00:00_
+_source line 165 · 2026-05-19T13:10:10.005776+00:00_
 
 
 
@@ -5552,7 +5422,7 @@ _source line 167 · 2026-05-19T13:10:10.005776+00:00_
 
 ### Tool call
 
-_source line 168 · 2026-05-19T13:10:13.067390+00:00_
+_source line 166 · 2026-05-19T13:10:13.067390+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -5588,7 +5458,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 169 · 2026-05-19T13:10:13.268740+00:00_
+_source line 167 · 2026-05-19T13:10:13.268740+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- libero_finetuned_probe（准备中）\\n- behavioral_smoketest_diag（准备中）\\n- action_trajectory_cpu_analysis: Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).（准备中）\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\n- fulllayer_action_probe（准备中）\\n- l1_head_ablation_control8（准备中）\\n- l1_head_ablation_50demos（准备中）\\n\\n## 近期结论\\n- **finetuned_probe_profile** (success): LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\\n- **libero_finetuned_attention** (success): LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages. ← 基于 llama2_base_control\\n  [libero_finetuned_attention_profile](/api/workspace-files/projects/vla-ssd/artifacts/libero_f
 …[truncated 957 chars]
@@ -5611,7 +5481,7 @@ _source line 169 · 2026-05-19T13:10:13.268740+00:00_
 
 ### Tool call
 
-_source line 170 · 2026-05-19T13:10:13.269290+00:00_
+_source line 168 · 2026-05-19T13:10:13.269290+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -5647,7 +5517,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 171 · 2026-05-19T13:10:13.621087+00:00_
+_source line 169 · 2026-05-19T13:10:13.621087+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"conclusion\": \"success\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages.\", \"conclusion\": \"success\"}, \"behavioral_smoketest_diag\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T05:05:18.989Z\", \"updated_at\": \"2026-05-19T05:07:31.611Z\", \"parent\": \"behavioral_smoketest\", \"conclusion\": \"killed\", \"notes\": \"D074: C-2 closed-loop path formally abandoned. Diagnostic cancelled before completion.\"}, \"behavioral_smoketest\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:26:07.290Z\", \"updated_at\": \"2026-05-19T05:07:05.661Z\", \"parent\": \"behavioral_pilot_w4\", \"hypothesis\": \"Fine-tuned OpenVLA can successfully execute LIBERO-Goal tasks in closed-loop rollout on westd-19183, establishing a baseline success rate for subsequent ablation co
 …[truncated 469 chars]
@@ -5670,7 +5540,7 @@ _source line 171 · 2026-05-19T13:10:13.621087+00:00_
 
 ### Assistant
 
-_source line 172 · 2026-05-19T13:10:21.840286+00:00_
+_source line 170 · 2026-05-19T13:10:21.840286+00:00_
 
 服务器重启后状态确认完毕：
 
@@ -5705,7 +5575,7 @@ _source line 172 · 2026-05-19T13:10:21.840286+00:00_
 
 ### User
 
-_source line 173 · 2026-05-19T13:42:15.137099+00:00_
+_source line 171 · 2026-05-19T13:42:15.137099+00:00_
 
 [System 触发审查]:
 Abstract + Related Work 最终可读性审查：
@@ -5737,7 +5607,7 @@ Abstract + Related Work 最终可读性审查：
 
 ### Tool call
 
-_source line 174 · 2026-05-19T13:42:27.947873+00:00_
+_source line 172 · 2026-05-19T13:42:27.947873+00:00_
 
 called Read
 
@@ -5771,7 +5641,7 @@ called Read
 
 ### Tool result
 
-_source line 175 · 2026-05-19T13:42:27.998801+00:00_
+_source line 173 · 2026-05-19T13:42:27.998801+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/reviewer_7b0fefde.
 
@@ -5793,7 +5663,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 176 · 2026-05-19T13:42:28.099837+00:00_
+_source line 174 · 2026-05-19T13:42:28.099837+00:00_
 
 called Read
 
@@ -5827,7 +5697,7 @@ called Read
 
 ### Tool result
 
-_source line 177 · 2026-05-19T13:42:28.150708+00:00_
+_source line 175 · 2026-05-19T13:42:28.150708+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We present a systematic framework for token-level analysis of VLAs, applying cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes across all 32 LLM layers of OpenVLA-7B on LIBERO, with factorial trained/pretrained/untrained controls.
@@ -5856,7 +5726,7 @@ _source line 177 · 2026-05-19T13:42:28.150708+00:00_
 
 ### Tool call
 
-_source line 178 · 2026-05-19T13:42:28.151133+00:00_
+_source line 176 · 2026-05-19T13:42:28.151133+00:00_
 
 called Read
 
@@ -5890,7 +5760,7 @@ called Read
 
 ### Tool result
 
-_source line 179 · 2026-05-19T13:42:28.251864+00:00_
+_source line 177 · 2026-05-19T13:42:28.251864+00:00_
 
 1	\section{Related Work}\label{sec:related_work}
 2	
@@ -5926,7 +5796,7 @@ _source line 179 · 2026-05-19T13:42:28.251864+00:00_
 
 ### Tool call
 
-_source line 180 · 2026-05-19T13:42:32.885330+00:00_
+_source line 178 · 2026-05-19T13:42:32.885330+00:00_
 
 called Glob
 
@@ -5960,7 +5830,7 @@ called Glob
 
 ### Tool result
 
-_source line 181 · 2026-05-19T13:42:32.936043+00:00_
+_source line 179 · 2026-05-19T13:42:32.936043+00:00_
 
 No files found
 
@@ -5982,7 +5852,7 @@ No files found
 
 ### Tool call
 
-_source line 182 · 2026-05-19T13:42:35.798074+00:00_
+_source line 180 · 2026-05-19T13:42:35.798074+00:00_
 
 called Glob
 
@@ -6016,7 +5886,7 @@ called Glob
 
 ### Tool result
 
-_source line 183 · 2026-05-19T13:42:35.849639+00:00_
+_source line 181 · 2026-05-19T13:42:35.849639+00:00_
 
 /home/ubuntu/agent-ml-research/skills/global/paper-quality-lessons.skill.md
 
@@ -6038,7 +5908,7 @@ _source line 183 · 2026-05-19T13:42:35.849639+00:00_
 
 ### Tool call
 
-_source line 184 · 2026-05-19T13:42:38.259197+00:00_
+_source line 182 · 2026-05-19T13:42:38.259197+00:00_
 
 called Read
 
@@ -6072,7 +5942,7 @@ called Read
 
 ### Tool result
 
-_source line 185 · 2026-05-19T13:42:38.260150+00:00_
+_source line 183 · 2026-05-19T13:42:38.260150+00:00_
 
 1	---
 2	name: paper-quality-lessons
@@ -6166,7 +6036,7 @@ _source line 185 · 2026-05-19T13:42:38.260150+00:00_
 
 ### Tool call
 
-_source line 186 · 2026-05-19T13:43:59.203150+00:00_
+_source line 184 · 2026-05-19T13:43:59.203150+00:00_
 
 called Grep
 
@@ -6206,7 +6076,7 @@ called Grep
 
 ### Tool result
 
-_source line 187 · 2026-05-19T13:44:00.009793+00:00_
+_source line 185 · 2026-05-19T13:44:00.009793+00:00_
 
 No matches found
 
@@ -6228,7 +6098,7 @@ No matches found
 
 ### Tool call
 
-_source line 188 · 2026-05-19T13:44:00.361912+00:00_
+_source line 186 · 2026-05-19T13:44:00.361912+00:00_
 
 called Grep
 
@@ -6268,7 +6138,7 @@ called Grep
 
 ### Tool result
 
-_source line 189 · 2026-05-19T13:44:01.115738+00:00_
+_source line 187 · 2026-05-19T13:44:01.115738+00:00_
 
 No matches found
 
@@ -6290,7 +6160,7 @@ No matches found
 
 ### Tool call
 
-_source line 190 · 2026-05-19T13:44:01.479507+00:00_
+_source line 188 · 2026-05-19T13:44:01.479507+00:00_
 
 called Grep
 
@@ -6330,7 +6200,7 @@ called Grep
 
 ### Tool result
 
-_source line 191 · 2026-05-19T13:44:01.530424+00:00_
+_source line 189 · 2026-05-19T13:44:01.530424+00:00_
 
 No matches found
 
@@ -6352,7 +6222,7 @@ No matches found
 
 ### Tool call
 
-_source line 192 · 2026-05-19T13:44:04.953114+00:00_
+_source line 190 · 2026-05-19T13:44:04.953114+00:00_
 
 called Grep
 
@@ -6392,7 +6262,7 @@ called Grep
 
 ### Tool result
 
-_source line 193 · 2026-05-19T13:44:05.405955+00:00_
+_source line 191 · 2026-05-19T13:44:05.405955+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:15:%------------------------------------------------------------------
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:48:%------------------------------------------------------------------
@@ -6427,7 +6297,7 @@ _source line 193 · 2026-05-19T13:44:05.405955+00:00_
 
 ### Tool call
 
-_source line 194 · 2026-05-19T13:44:06.009135+00:00_
+_source line 192 · 2026-05-19T13:44:06.009135+00:00_
 
 called Grep
 
@@ -6467,7 +6337,7 @@ called Grep
 
 ### Tool result
 
-_source line 195 · 2026-05-19T13:44:06.059832+00:00_
+_source line 193 · 2026-05-19T13:44:06.059832+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:658:Instruction-dominant heads also show lower attention entropy ($0.465$) than non-dominant heads ($0.569$), indicating more concentrated attention distributions.
 
@@ -6489,7 +6359,7 @@ _source line 195 · 2026-05-19T13:44:06.059832+00:00_
 
 ### Tool call
 
-_source line 196 · 2026-05-19T13:44:29.715126+00:00_
+_source line 194 · 2026-05-19T13:44:29.715126+00:00_
 
 called Bash
 
@@ -6525,7 +6395,7 @@ called Bash
 
 ### Tool result
 
-_source line 197 · 2026-05-19T13:44:29.916274+00:00_
+_source line 195 · 2026-05-19T13:44:29.916274+00:00_
 
 167
 
@@ -6547,7 +6417,7 @@ _source line 197 · 2026-05-19T13:44:29.916274+00:00_
 
 ### Tool call
 
-_source line 198 · 2026-05-19T13:44:36.180211+00:00_
+_source line 196 · 2026-05-19T13:44:36.180211+00:00_
 
 called Read
 
@@ -6585,7 +6455,7 @@ called Read
 
 ### Tool result
 
-_source line 199 · 2026-05-19T13:44:36.632368+00:00_
+_source line 197 · 2026-05-19T13:44:36.632368+00:00_
 
 49	\subsection{VLA Fine-Tuning Front-Loads Instruction Routing}
 50	\label{sec:learned_routing}
@@ -6627,7 +6497,7 @@ _source line 199 · 2026-05-19T13:44:36.632368+00:00_
 
 ### Tool call
 
-_source line 200 · 2026-05-19T13:44:36.733312+00:00_
+_source line 198 · 2026-05-19T13:44:36.733312+00:00_
 
 called Read
 
@@ -6665,7 +6535,7 @@ called Read
 
 ### Tool result
 
-_source line 201 · 2026-05-19T13:44:36.834122+00:00_
+_source line 199 · 2026-05-19T13:44:36.834122+00:00_
 
 16	Three findings emerge from our analysis of OpenVLA-7B on LIBERO.
 17	\emph{First}, VLA fine-tuning front-loads instruction routing: language pretraining concentrates instruction attention at mid-depth (L9--L16, 15--22 heads), while VLA training shifts this to an entry-exit pattern (L0--L1: 21--24 heads, L31: 18 heads).
@@ -6694,7 +6564,7 @@ _source line 201 · 2026-05-19T13:44:36.834122+00:00_
 
 ### Tool call
 
-_source line 202 · 2026-05-19T13:45:50.135136+00:00_
+_source line 200 · 2026-05-19T13:45:50.135136+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6730,7 +6600,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 203 · 2026-05-19T13:45:53.950966+00:00_
+_source line 201 · 2026-05-19T13:45:53.950966+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -6752,7 +6622,7 @@ _source line 203 · 2026-05-19T13:45:53.950966+00:00_
 
 ### Assistant
 
-_source line 204 · 2026-05-19T13:45:59.977167+00:00_
+_source line 202 · 2026-05-19T13:45:59.977167+00:00_
 
 审查报告已提交。三个核心发现：
 
@@ -6785,7 +6655,7 @@ _source line 204 · 2026-05-19T13:45:59.977167+00:00_
 
 ### User
 
-_source line 205 · 2026-05-19T13:46:00.514239+00:00_
+_source line 203 · 2026-05-19T13:46:00.514239+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Manager 决定 GPU 保留不收回；更新待办状态），请审查研究方向和计划的合理性。
@@ -6807,7 +6677,7 @@ _source line 205 · 2026-05-19T13:46:00.514239+00:00_
 
 ### Tool call
 
-_source line 206 · 2026-05-19T13:46:06.497582+00:00_
+_source line 204 · 2026-05-19T13:46:06.497582+00:00_
 
 called ToolSearch
 
@@ -6843,7 +6713,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 207 · 2026-05-19T13:46:06.497974+00:00_
+_source line 205 · 2026-05-19T13:46:06.497974+00:00_
 
 
 
@@ -6865,7 +6735,7 @@ _source line 207 · 2026-05-19T13:46:06.497974+00:00_
 
 ### Tool call
 
-_source line 208 · 2026-05-19T13:46:09.359288+00:00_
+_source line 206 · 2026-05-19T13:46:09.359288+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -6899,7 +6769,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 209 · 2026-05-19T13:46:09.410107+00:00_
+_source line 207 · 2026-05-19T13:46:09.410107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 13:43 UTC | 更新原因: Manager 决定 GPU 保留不收回；更新待办状态\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning primarily reorganizes instruction routing (entry-exit L1+L31 pattern). Distributed L1 routing. Task-specific fine-tuning sharpens to entry-only.\\n\\n## 当前阶段\\n**FINAL — Reviewer 系统性审计确认 scope 内 ceiling。等待用户确认投稿。**\\n\\n## Score: 6.0-6.7/10 (Borderline Accept)\\n- CoRL 接受概率：35-45%\\n- 到 7 需要第二个 VLA 或 closed-loop，DDL 前不可行\\n- 文本 11 轮打磨到位，无进一步文本改进空间\\n\\n## 完成总结\\n- 99 个实验（70 success, 13 negative, 7 planned, 9 other）\\n- 7 项互补分析 + 4-condition training trajectory\\n- 用户 9 条指令全部执行\\n- 11 RESOLVED issues + 2 wont_fix scope limitations\\n- AI 痕迹清零，数值一致性确认\\n- 主体 8 页，27 页总，编译通过\\n- Rebuttal 预案完成（R9-N1 单模型 + R9-N2 无闭环）\\n\\n## 待办\\n- [ ] 用户确认投稿安排（Abstract May 26, Paper May 29）\\n- [x] GPU 释放 — Manager 决定保留不收回，备用（2026-05-19）\\n- [ ] Reviewer abstract + related work 可读性审查（进行中）\\n- [ ] Agent 编译验证 + 数值一致性 spot check（进行中）\\n\\n## GPU 预算\\nwestd-19183: 2 张卡保留备用（Manager 决定不收回），当前无活跃实验。GPU 时间预算剩余 ~0.1h，如需补充实验需申请追加。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D075 | 2026-05-19 | D075: 4 条件训练轨迹发现 L31 exit collapse — positive refr | libero_finetuned_attention |\\n| D074 | 2026-05-19 | D074: 放弃 C-2 closed-loop 路径——baseline SR=0/3 确认非环境 | behavioral_smoketest, matched_ablation_controls |\\n| D073 | 2026-05-19 | D073: 用户 9 条指令 — claim 全面降级(open-loop qualifier) + | specificity_control_action, task_complexity_routing, counterfactual_token_overlap |\\n| D072 | 2026-05-19 | D072: Round 9 response — 5/10 Weak Reject. Text fi | specificity_control_action, task_complexity_routing |\\n| D071 | 2026-05-18 | D071: Task complexity × routing analysis — 报告保守 2. | task_complexity_routing |\\n| D070
 …[truncated 612 chars]
@@ -6922,7 +6792,7 @@ _source line 209 · 2026-05-19T13:46:09.410107+00:00_
 
 ### Tool call
 
-_source line 210 · 2026-05-19T13:46:28.816946+00:00_
+_source line 208 · 2026-05-19T13:46:28.816946+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -6958,7 +6828,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 211 · 2026-05-19T13:46:32.698031+00:00_
+_source line 209 · 2026-05-19T13:46:32.698031+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -6987,7 +6857,7 @@ _source line 211 · 2026-05-19T13:46:32.698031+00:00_
 
 ### User
 
-_source line 212 · 2026-05-19T13:47:34.984225+00:00_
+_source line 210 · 2026-05-19T13:47:34.984225+00:00_
 
 [系统通知 — worker_done:worker_paper_final_verification_20260519T134242]:
 Worker worker_paper_final_verification_20260519T134242 已完成（status=done），请审查 Agent 的处理结果。
@@ -7009,7 +6879,7 @@ Worker worker_paper_final_verification_20260519T134242 已完成（status=done�
 
 ### Tool call
 
-_source line 213 · 2026-05-19T13:47:42.606846+00:00_
+_source line 211 · 2026-05-19T13:47:42.606846+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7047,7 +6917,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 214 · 2026-05-19T13:47:43.062957+00:00_
+_source line 212 · 2026-05-19T13:47:43.062957+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction rou
 …[truncated 849 chars]
@@ -7070,7 +6940,7 @@ _source line 214 · 2026-05-19T13:47:43.062957+00:00_
 
 ### Tool call
 
-_source line 215 · 2026-05-19T13:47:51.356209+00:00_
+_source line 213 · 2026-05-19T13:47:51.356209+00:00_
 
 called Bash
 
@@ -7106,7 +6976,7 @@ called Bash
 
 ### Tool result
 
-_source line 216 · 2026-05-19T13:47:51.709864+00:00_
+_source line 214 · 2026-05-19T13:47:51.709864+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 563793 May 19 13:47 main.pdf
 -rw-r--r-- 1 ubuntu ubuntu  12191 May 19 13:47 experiments.tex
@@ -7140,7 +7010,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 217 · 2026-05-19T13:48:00.495435+00:00_
+_source line 215 · 2026-05-19T13:48:00.495435+00:00_
 
 called Read
 
@@ -7174,7 +7044,7 @@ called Read
 
 ### Tool result
 
-_source line 218 · 2026-05-19T13:48:00.897511+00:00_
+_source line 216 · 2026-05-19T13:48:00.897511+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -7203,7 +7073,7 @@ _source line 218 · 2026-05-19T13:48:00.897511+00:00_
 
 ### Tool call
 
-_source line 219 · 2026-05-19T13:48:01.098716+00:00_
+_source line 217 · 2026-05-19T13:48:01.098716+00:00_
 
 called Read
 
@@ -7237,7 +7107,7 @@ called Read
 
 ### Tool result
 
-_source line 220 · 2026-05-19T13:48:01.150097+00:00_
+_source line 218 · 2026-05-19T13:48:01.150097+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -7281,7 +7151,7 @@ _source line 220 · 2026-05-19T13:48:01.150097+00:00_
 
 ### Tool call
 
-_source line 221 · 2026-05-19T13:48:29.869812+00:00_
+_source line 219 · 2026-05-19T13:48:29.869812+00:00_
 
 called Read
 
@@ -7317,7 +7187,7 @@ called Read
 
 ### Tool result
 
-_source line 222 · 2026-05-19T13:48:30.071143+00:00_
+_source line 220 · 2026-05-19T13:48:30.071143+00:00_
 
 PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (550.6KB)
 
@@ -7339,7 +7209,7 @@ PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 223 · 2026-05-19T13:49:00.515626+00:00_
+_source line 221 · 2026-05-19T13:49:00.515626+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7375,7 +7245,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 224 · 2026-05-19T13:49:04.875390+00:00_
+_source line 222 · 2026-05-19T13:49:04.875390+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -7397,7 +7267,7 @@ _source line 224 · 2026-05-19T13:49:04.875390+00:00_
 
 ### Assistant
 
-_source line 225 · 2026-05-19T13:49:10.352501+00:00_
+_source line 223 · 2026-05-19T13:49:10.352501+00:00_
 
 审查已提交。Worker 正确实现了三个可读性修复 + 页数合规维持，但 abstract 中 RSA 缩写展开被意外删除，需要恢复。一个 warning，无 critical。
 
@@ -7424,7 +7294,7 @@ _source line 225 · 2026-05-19T13:49:10.352501+00:00_
 
 ### User
 
-_source line 226 · 2026-05-19T13:49:10.858516+00:00_
+_source line 224 · 2026-05-19T13:49:10.858516+00:00_
 
 [系统通知 — worker_done:worker_paper_readability_microedits_20260519T134637]:
 Worker worker_paper_readability_microedits_20260519T134637 已完成（status=done），请审查 Agent 的处理结果。
@@ -7446,7 +7316,7 @@ Worker worker_paper_readability_microedits_20260519T134637 已完成（status=do
 
 ### Tool call
 
-_source line 227 · 2026-05-19T13:49:17.499819+00:00_
+_source line 225 · 2026-05-19T13:49:17.499819+00:00_
 
 called Read
 
@@ -7480,7 +7350,7 @@ called Read
 
 ### Tool result
 
-_source line 228 · 2026-05-19T13:49:17.500303+00:00_
+_source line 226 · 2026-05-19T13:49:17.500303+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -7509,7 +7379,7 @@ _source line 228 · 2026-05-19T13:49:17.500303+00:00_
 
 ### Tool call
 
-_source line 229 · 2026-05-19T13:49:33.034114+00:00_
+_source line 227 · 2026-05-19T13:49:33.034114+00:00_
 
 called Bash
 
@@ -7545,7 +7415,7 @@ called Bash
 
 ### Tool result
 
-_source line 230 · 2026-05-19T13:49:33.235509+00:00_
+_source line 228 · 2026-05-19T13:49:33.235509+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu   1469 May 19 13:49 abstract.tex
 -rw-r--r-- 1 ubuntu ubuntu 563793 May 19 13:47 main.pdf
@@ -7577,7 +7447,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 231 · 2026-05-19T13:49:54.605522+00:00_
+_source line 229 · 2026-05-19T13:49:54.605522+00:00_
 
 called Bash
 
@@ -7613,7 +7483,7 @@ called Bash
 
 ### Tool result
 
-_source line 232 · 2026-05-19T13:49:54.656229+00:00_
+_source line 230 · 2026-05-19T13:49:54.656229+00:00_
 
 2c2
 < We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, RSA, and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -7642,7 +7512,7 @@ _source line 232 · 2026-05-19T13:49:54.656229+00:00_
 
 ### Tool call
 
-_source line 233 · 2026-05-19T13:50:01.996942+00:00_
+_source line 231 · 2026-05-19T13:50:01.996942+00:00_
 
 called Bash
 
@@ -7678,7 +7548,7 @@ called Bash
 
 ### Tool result
 
-_source line 234 · 2026-05-19T13:50:02.148377+00:00_
+_source line 232 · 2026-05-19T13:50:02.148377+00:00_
 
 2:We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
 6:Second, vision encoder representations show a metric-dependent middle-layer peak (RSA/probes corroborate; CKA diverges), with training effects concentrated at the readout token ($R^2$ $+0.069$, attention $+46$pp) rather than visual geometry.
@@ -7701,7 +7571,7 @@ _source line 234 · 2026-05-19T13:50:02.148377+00:00_
 
 ### Tool call
 
-_source line 235 · 2026-05-19T13:50:09.764295+00:00_
+_source line 233 · 2026-05-19T13:50:09.764295+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -7737,7 +7607,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 236 · 2026-05-19T13:50:13.584305+00:00_
+_source line 234 · 2026-05-19T13:50:13.584305+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -7759,7 +7629,7 @@ _source line 236 · 2026-05-19T13:50:13.584305+00:00_
 
 ### Assistant
 
-_source line 237 · 2026-05-19T13:50:16.976602+00:00_
+_source line 235 · 2026-05-19T13:50:16.976602+00:00_
 
 RSA 已展开。Worker 修复了我标的 warning。
 
@@ -7786,7 +7656,7 @@ RSA 已展开。Worker 修复了我标的 warning。
 
 ### User
 
-_source line 238 · 2026-05-19T13:50:17.493486+00:00_
+_source line 236 · 2026-05-19T13:50:17.493486+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：编译验证+数值一致性通过，abstract微调完成，所有非用户依赖任务闭环），请审查研究方向和计划的合理性。
@@ -7808,7 +7678,7 @@ _source line 238 · 2026-05-19T13:50:17.493486+00:00_
 
 ### Tool call
 
-_source line 239 · 2026-05-19T13:50:24.045370+00:00_
+_source line 237 · 2026-05-19T13:50:24.045370+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -7842,7 +7712,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 240 · 2026-05-19T13:50:24.246685+00:00_
+_source line 238 · 2026-05-19T13:50:24.246685+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 13:48 UTC | 更新原因: 编译验证+数值一致性通过，abstract微调完成，所有非用户依赖任务闭环\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning primarily reorganizes instruction routing (entry-exit L1+L31 pattern). Distributed L1 routing. Task-specific fine-tuning sharpens to entry-only.\\n\\n## 当前阶段\\n**FINAL — 论文就绪，等待用户确认投稿。**\\n\\n## Score: 6.0-6.7/10 (Borderline Accept)\\n- CoRL 接受概率：35-45%\\n- 到 7 需要第二个 VLA 或 closed-loop，DDL 前不可行\\n- 文本 11 轮打磨 + abstract 结构优化完成\\n\\n## 完成总结\\n- 99 个实验（70 success, 13 negative, 7 planned, 9 other）\\n- 7 项互补分析 + 4-condition training trajectory\\n- 用户 9 条指令全部执行\\n- 11 RESOLVED issues + 2 wont_fix scope limitations\\n- AI 痕迹清零，数值一致性确认（5/5 spot check passed）\\n- 主体 8 页，27 页总，编译通过（0 errors）\\n- Rebuttal 预案完成（R9-N1 单模型 + R9-N2 无闭环）\\n- Abstract 结构优化 + experiments.tex 句法修复\\n\\n## 待办\\n- [ ] 用户确认投稿安排（Abstract May 26, Paper May 29）\\n- [x] GPU — Manager 决定保留不收回，备用（2026-05-19）\\n- [x] Reviewer abstract + related work 可读性审查（完成，2 warning 已修复）\\n- [x] Agent 编译验证 + 数值一致性 spot check（5/5 通过）\\n- [x] 3 处文本微调（abstract S2/S7 + experiments.tex:53）\\n\\n## GPU 预算\\nwestd-19183: 2 张卡保留备用（Manager 决定不收回），当前无活跃实验。GPU 时间预算剩余 ~0.1h，如需补充实验需申请追加。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D075 | 2026-05-19 | D075: 4 条件训练轨迹发现 L31 exit collapse — positive refr | libero_finetuned_attention |\\n| D074 | 2026-05-19 | D074: 放弃 C-2 closed-loop 路径——baseline SR=0/3 确认非环境 | behavioral_smoketest, matched_ablation_controls |\\n| D073 | 2026-05-19 | D073: 用户 9 条指令 — claim 全面降级(open-loop qualifier) + | specificity_control_action, task_complexity_routing, counterfactual_token_overlap |\\n| D072 | 2026-05-19 | D072: Round 9 response — 5/10 Weak Reject. Text fi | specificity_control_action, task_compl
 …[truncated 742 chars]
@@ -7865,7 +7735,7 @@ _source line 240 · 2026-05-19T13:50:24.246685+00:00_
 
 ### Assistant
 
-_source line 241 · 2026-05-19T13:50:30.255347+00:00_
+_source line 239 · 2026-05-19T13:50:30.255347+00:00_
 
 ROADMAP 更新准确，与我审查结果一致：
 
@@ -7899,7 +7769,7 @@ ROADMAP 更新准确，与我审查结果一致：
 
 ### User
 
-_source line 242 · 2026-05-19T13:51:04.939858+00:00_
+_source line 240 · 2026-05-19T13:51:04.939858+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -7920,7 +7790,7 @@ _source line 242 · 2026-05-19T13:51:04.939858+00:00_
 
 ### Tool call
 
-_source line 243 · 2026-05-19T13:51:14.906285+00:00_
+_source line 241 · 2026-05-19T13:51:14.906285+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -7958,7 +7828,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 244 · 2026-05-19T13:51:15.308337+00:00_
+_source line 242 · 2026-05-19T13:51:15.308337+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3435}}"}
 
@@ -7980,7 +7850,7 @@ _source line 244 · 2026-05-19T13:51:15.308337+00:00_
 
 ### Tool call
 
-_source line 245 · 2026-05-19T13:51:15.308848+00:00_
+_source line 243 · 2026-05-19T13:51:15.308848+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -8016,7 +7886,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 246 · 2026-05-19T13:51:15.359517+00:00_
+_source line 244 · 2026-05-19T13:51:15.359517+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- libero_finetuned_probe（准备中）\\n- behavioral_smoketest_diag（准备中）\\n- action_trajectory_cpu_analysis: Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).（准备中）\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\n- fulllayer_action_probe（准备中）\\n- l1_head_ablation_control8（准备中）\\n- l1_head_ablation_50demos（准备中）\\n\\n## 近期结论\\n- **finetuned_probe_profile** (success): LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\\n- **libero_finetuned_attention** (success): LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages. ← 基于 llama2_base_control\\n  [libero_finetuned_attention_profile](/api/workspace-files/projects/vla-ssd/artifacts/libero_f
 …[truncated 957 chars]
@@ -8039,7 +7909,7 @@ _source line 246 · 2026-05-19T13:51:15.359517+00:00_
 
 ### Assistant
 
-_source line 247 · 2026-05-19T13:51:19.302343+00:00_
+_source line 245 · 2026-05-19T13:51:19.302343+00:00_
 
 无状态漂移。0 RUNNING 实验，report.md 与重启前一致。项目仍在 FINAL 状态待用户确认投稿。
 
@@ -8066,7 +7936,7 @@ _source line 247 · 2026-05-19T13:51:19.302343+00:00_
 
 ### User
 
-_source line 248 · 2026-05-19T14:32:02.627271+00:00_
+_source line 246 · 2026-05-19T14:32:02.627271+00:00_
 
 [系统通知] 服务重启，自动恢复 ralph loop。
 
@@ -8087,7 +7957,7 @@ _source line 248 · 2026-05-19T14:32:02.627271+00:00_
 
 ### Tool call
 
-_source line 249 · 2026-05-19T14:32:13.604902+00:00_
+_source line 247 · 2026-05-19T14:32:13.604902+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -8125,7 +7995,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 250 · 2026-05-19T14:32:14.061003+00:00_
+_source line 248 · 2026-05-19T14:32:14.061003+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -8161,7 +8031,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 251 · 2026-05-19T14:32:14.061546+00:00_
+_source line 249 · 2026-05-19T14:32:14.061546+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4205}}"}
 
@@ -8183,7 +8053,7 @@ _source line 251 · 2026-05-19T14:32:14.061546+00:00_
 
 ### Tool result
 
-_source line 252 · 2026-05-19T14:32:14.112349+00:00_
+_source line 250 · 2026-05-19T14:32:14.112349+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- libero_finetuned_probe（准备中）\\n- behavioral_smoketest_diag（准备中）\\n- action_trajectory_cpu_analysis: Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051).（准备中）\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\n- fulllayer_action_probe（准备中）\\n- l1_head_ablation_control8（准备中）\\n- l1_head_ablation_50demos（准备中）\\n\\n## 近期结论\\n- **finetuned_probe_profile** (success): LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\\n- **libero_finetuned_attention** (success): LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction routing is a stable VLA property across training stages. ← 基于 llama2_base_control\\n  [libero_finetuned_attention_profile](/api/workspace-files/projects/vla-ssd/artifacts/libero_f
 …[truncated 957 chars]
@@ -8206,7 +8076,7 @@ _source line 252 · 2026-05-19T14:32:14.112349+00:00_
 
 ### Assistant
 
-_source line 253 · 2026-05-19T14:32:17.826799+00:00_
+_source line 251 · 2026-05-19T14:32:17.826799+00:00_
 
 0 RUNNING 实验，report.md 无变化。项目仍在 FINAL 状态待命，无状态漂移。
 
@@ -8233,7 +8103,7 @@ _source line 253 · 2026-05-19T14:32:17.826799+00:00_
 
 ### User
 
-_source line 254 · 2026-05-19T15:04:03.083986+00:00_
+_source line 252 · 2026-05-19T15:04:03.083986+00:00_
 
 [System 触发审查]:
 两项审查任务，目标是在 6/10 基础上找到可提升的点：
@@ -8269,7 +8139,7 @@ _source line 254 · 2026-05-19T15:04:03.083986+00:00_
 
 ### Tool call
 
-_source line 255 · 2026-05-19T15:04:12.604296+00:00_
+_source line 253 · 2026-05-19T15:04:12.604296+00:00_
 
 called Read
 
@@ -8303,7 +8173,7 @@ called Read
 
 ### Tool result
 
-_source line 256 · 2026-05-19T15:04:13.056470+00:00_
+_source line 254 · 2026-05-19T15:04:13.056470+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -8339,7 +8209,7 @@ _source line 256 · 2026-05-19T15:04:13.056470+00:00_
 
 ### Tool call
 
-_source line 257 · 2026-05-19T15:04:13.408405+00:00_
+_source line 255 · 2026-05-19T15:04:13.408405+00:00_
 
 called Read
 
@@ -8375,7 +8245,7 @@ called Read
 
 ### Tool result
 
-_source line 258 · 2026-05-19T15:04:13.610659+00:00_
+_source line 256 · 2026-05-19T15:04:13.610659+00:00_
 
 PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (550.6KB)
 
@@ -8397,7 +8267,7 @@ PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 259 · 2026-05-19T15:04:22.207862+00:00_
+_source line 257 · 2026-05-19T15:04:22.207862+00:00_
 
 called Read
 
@@ -8433,7 +8303,7 @@ called Read
 
 ### Tool call
 
-_source line 260 · 2026-05-19T15:04:22.409021+00:00_
+_source line 258 · 2026-05-19T15:04:22.409021+00:00_
 
 called Read
 
@@ -8467,7 +8337,7 @@ called Read
 
 ### Tool result
 
-_source line 261 · 2026-05-19T15:04:22.509862+00:00_
+_source line 259 · 2026-05-19T15:04:22.509862+00:00_
 
 PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (550.6KB)
 
@@ -8489,7 +8359,7 @@ PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool result
 
-_source line 262 · 2026-05-19T15:04:22.520548+00:00_
+_source line 260 · 2026-05-19T15:04:22.520548+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -8533,7 +8403,7 @@ _source line 262 · 2026-05-19T15:04:22.520548+00:00_
 
 ### Tool call
 
-_source line 263 · 2026-05-19T15:05:57.543450+00:00_
+_source line 261 · 2026-05-19T15:05:57.543450+00:00_
 
 called Read
 
@@ -8567,7 +8437,7 @@ called Read
 
 ### Tool result
 
-_source line 264 · 2026-05-19T15:05:57.995547+00:00_
+_source line 262 · 2026-05-19T15:05:57.995547+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -8604,7 +8474,7 @@ _source line 264 · 2026-05-19T15:05:57.995547+00:00_
 
 ### Tool call
 
-_source line 265 · 2026-05-19T15:05:58.698546+00:00_
+_source line 263 · 2026-05-19T15:05:58.698546+00:00_
 
 called Grep
 
@@ -8644,7 +8514,7 @@ called Grep
 
 ### Tool result
 
-_source line 266 · 2026-05-19T15:05:58.749364+00:00_
+_source line 264 · 2026-05-19T15:05:58.749364+00:00_
 
 32:\begin{figure}[t]
 35:[Omitted long matching line]
@@ -8680,7 +8550,7 @@ _source line 266 · 2026-05-19T15:05:58.749364+00:00_
 
 ### Tool call
 
-_source line 267 · 2026-05-19T15:07:02.188168+00:00_
+_source line 265 · 2026-05-19T15:07:02.188168+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -8716,7 +8586,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 268 · 2026-05-19T15:07:06.820700+00:00_
+_source line 266 · 2026-05-19T15:07:06.820700+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -8738,7 +8608,7 @@ _source line 268 · 2026-05-19T15:07:06.820700+00:00_
 
 ### Assistant
 
-_source line 269 · 2026-05-19T15:07:09.961993+00:00_
+_source line 267 · 2026-05-19T15:07:09.961993+00:00_
 
 审查完毕。提交报告。
 
@@ -8765,7 +8635,7 @@ _source line 269 · 2026-05-19T15:07:09.961993+00:00_
 
 ### User
 
-_source line 270 · 2026-05-19T15:11:06.867550+00:00_
+_source line 268 · 2026-05-19T15:11:06.867550+00:00_
 
 [系统通知 — worker_done:worker_paper_appendix_reproducibility_audit_20260519T150435]:
 Worker worker_paper_appendix_reproducibility_audit_20260519T150435 已完成（status=done），请审查 Agent 的处理结果。
@@ -8787,7 +8657,7 @@ Worker worker_paper_appendix_reproducibility_audit_20260519T150435 已完成（s
 
 ### Tool call
 
-_source line 271 · 2026-05-19T15:11:18.206117+00:00_
+_source line 269 · 2026-05-19T15:11:18.206117+00:00_
 
 called Bash
 
@@ -8823,7 +8693,7 @@ called Bash
 
 ### Tool result
 
-_source line 272 · 2026-05-19T15:11:18.409328+00:00_
+_source line 270 · 2026-05-19T15:11:18.409328+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 565444 May 19 15:10 main.pdf
 -rw-r--r-- 1 ubuntu ubuntu  45590 May 19 15:10 appendix.tex
@@ -8855,7 +8725,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 273 · 2026-05-19T15:11:27.959159+00:00_
+_source line 271 · 2026-05-19T15:11:27.959159+00:00_
 
 called Bash
 
@@ -8891,7 +8761,7 @@ called Bash
 
 ### Tool result
 
-_source line 274 · 2026-05-19T15:11:28.060020+00:00_
+_source line 272 · 2026-05-19T15:11:28.060020+00:00_
 
 780 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex
 
@@ -8913,7 +8783,7 @@ _source line 274 · 2026-05-19T15:11:28.060020+00:00_
 
 ### Tool call
 
-_source line 275 · 2026-05-19T15:11:32.733295+00:00_
+_source line 273 · 2026-05-19T15:11:32.733295+00:00_
 
 called Grep
 
@@ -8953,7 +8823,7 @@ called Grep
 
 ### Tool result
 
-_source line 276 · 2026-05-19T15:11:32.785177+00:00_
+_source line 274 · 2026-05-19T15:11:32.785177+00:00_
 
 12:All experiments ran on 2$\times$ NVIDIA RTX PRO 6000 Ada GPUs (48\,GB each); random seed is 42 unless stated otherwise.
 
@@ -8975,7 +8845,7 @@ _source line 276 · 2026-05-19T15:11:32.785177+00:00_
 
 ### Tool call
 
-_source line 277 · 2026-05-19T15:11:38.207303+00:00_
+_source line 275 · 2026-05-19T15:11:38.207303+00:00_
 
 called Read
 
@@ -9013,7 +8883,7 @@ called Read
 
 ### Tool result
 
-_source line 278 · 2026-05-19T15:11:38.704270+00:00_
+_source line 276 · 2026-05-19T15:11:38.704270+00:00_
 
 1	\paragraph{Use of Generative AI.}
 2	Generative AI tools (Claude, GPT-4) assisted with code implementation and manuscript editing; all scientific content was produced by the authors.
@@ -9060,7 +8930,7 @@ _source line 278 · 2026-05-19T15:11:38.704270+00:00_
 
 ### Tool call
 
-_source line 279 · 2026-05-19T15:11:38.710103+00:00_
+_source line 277 · 2026-05-19T15:11:38.710103+00:00_
 
 called Read
 
@@ -9098,7 +8968,7 @@ called Read
 
 ### Tool result
 
-_source line 280 · 2026-05-19T15:11:38.769143+00:00_
+_source line 278 · 2026-05-19T15:11:38.769143+00:00_
 
 755	All leave-one-out $p$-values remain $\leq 0.083$, with no single task removal causing a qualitative reversal of the effect direction.
 756	Reclassifying the boundary case (cream cheese in bowl) to the instruction-discriminative group strengthens the result ($p = 0.008$).
@@ -9144,7 +9014,7 @@ _source line 280 · 2026-05-19T15:11:38.769143+00:00_
 
 ### Tool call
 
-_source line 281 · 2026-05-19T15:11:47.259125+00:00_
+_source line 279 · 2026-05-19T15:11:47.259125+00:00_
 
 called Grep
 
@@ -9184,7 +9054,7 @@ called Grep
 
 ### Tool result
 
-_source line 282 · 2026-05-19T15:11:47.561141+00:00_
+_source line 280 · 2026-05-19T15:11:47.561141+00:00_
 
 1:\paragraph{Use of Generative AI.}
 14:\subsection{CKA Analysis Method}
@@ -9233,7 +9103,7 @@ _source line 282 · 2026-05-19T15:11:47.561141+00:00_
 
 ### Tool call
 
-_source line 283 · 2026-05-19T15:11:58.513093+00:00_
+_source line 281 · 2026-05-19T15:11:58.513093+00:00_
 
 called Read
 
@@ -9271,7 +9141,7 @@ called Read
 
 ### Tool result
 
-_source line 284 · 2026-05-19T15:11:58.563837+00:00_
+_source line 282 · 2026-05-19T15:11:58.563837+00:00_
 
 108	\subsection{Action Trajectory Analysis Details}
 109	\label{sec:action_trajectory}
@@ -9312,7 +9182,7 @@ _source line 284 · 2026-05-19T15:11:58.563837+00:00_
 
 ### Tool call
 
-_source line 285 · 2026-05-19T15:12:04.042102+00:00_
+_source line 283 · 2026-05-19T15:12:04.042102+00:00_
 
 called Read
 
@@ -9348,7 +9218,7 @@ called Read
 
 ### Tool result
 
-_source line 286 · 2026-05-19T15:12:04.294270+00:00_
+_source line 284 · 2026-05-19T15:12:04.294270+00:00_
 
 PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (552.2KB)
 
@@ -9370,7 +9240,7 @@ PDF pages extracted: 3 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 287 · 2026-05-19T15:12:20.391200+00:00_
+_source line 285 · 2026-05-19T15:12:20.391200+00:00_
 
 called ToolSearch
 
@@ -9406,7 +9276,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 288 · 2026-05-19T15:12:20.492187+00:00_
+_source line 286 · 2026-05-19T15:12:20.492187+00:00_
 
 
 
@@ -9428,7 +9298,7 @@ _source line 288 · 2026-05-19T15:12:20.492187+00:00_
 
 ### Tool call
 
-_source line 289 · 2026-05-19T15:12:24.107062+00:00_
+_source line 287 · 2026-05-19T15:12:24.107062+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9464,7 +9334,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 290 · 2026-05-19T15:12:25.513011+00:00_
+_source line 288 · 2026-05-19T15:12:25.513011+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
 
@@ -9486,7 +9356,7 @@ _source line 290 · 2026-05-19T15:12:25.513011+00:00_
 
 ### Tool call
 
-_source line 291 · 2026-05-19T15:12:42.182872+00:00_
+_source line 289 · 2026-05-19T15:12:42.182872+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -9522,7 +9392,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 292 · 2026-05-19T15:12:45.999484+00:00_
+_source line 290 · 2026-05-19T15:12:45.999484+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -9544,7 +9414,7 @@ _source line 292 · 2026-05-19T15:12:45.999484+00:00_
 
 ### Assistant
 
-_source line 293 · 2026-05-19T15:12:51.093863+00:00_
+_source line 291 · 2026-05-19T15:12:51.093863+00:00_
 
 发现硬件规格不一致。
 
@@ -9571,7 +9441,7 @@ _source line 293 · 2026-05-19T15:12:51.093863+00:00_
 
 ### User
 
-_source line 294 · 2026-05-19T15:44:50.527683+00:00_
+_source line 292 · 2026-05-19T15:44:50.527683+00:00_
 
 [System 触发审查]:
 论文提分专题讨论——目标：找到从 6/10 往上推的 actionable 改进点。
@@ -9615,7 +9485,7 @@ _source line 294 · 2026-05-19T15:44:50.527683+00:00_
 
 ### Tool call
 
-_source line 295 · 2026-05-19T15:45:03.424477+00:00_
+_source line 293 · 2026-05-19T15:45:03.424477+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9651,7 +9521,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 296 · 2026-05-19T15:45:03.980184+00:00_
+_source line 294 · 2026-05-19T15:45:03.980184+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9687,7 +9557,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 297 · 2026-05-19T15:45:04.786130+00:00_
+_source line 295 · 2026-05-19T15:45:04.786130+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"ablations\\naction_baselines.json\\naction_metrics_extended.json\\naction_probe\\naction_trajectory_L13_ablation.json\\naction_trajectory_L13_ablation.log\\naction_trajectory_L8_ablation.json\\naction_trajectory_L8_ablation.log\\naction_trajectory_analysis.json\\naction_trajectory_analysis.log\\naction_trajectory_control.json\\naction_trajectory_control.log\\naction_trajectory_extended_analysis.json\\nanalysis\\narchitecture_audit\\nattention\\nattention_decomposition.json\\nattention_normalization_entropy.json\\nbootstrap_ci_values.json\\ncka\\ncounterfactual_combined.json\\ncounterfactual_correct.json\\ncounterfactual_empty.json\\ncounterfactual_instruction.log\\ncounterfactual_paraphrased.json\\ncounterfactual_shuffled.json\\ncounterfactual_token_overlap.json\\ncounterfactual_wrong.json\\ncross_instruction\\ncross_instruction_dense\\ncross_instruction_finetuned\\ncross_instruction_spatial\\ndemo_sensitivity_25\\ndinov2\\ndinov2_libero_goal\\ndinov2_libero_goal_frame0\\ndinov2_libero_goal_linear\\ndinov2_libero_goal_pca1024\\ndinov2_shuffle\\ndose_response_cuda0.log\\ndose_response_cuda1.log\\ndose_response_curve_combined.json\\ndose_response_top12.json\\ndose_response_top16.json\\ndose_response_top20.json\\ndose_response_top24.json\\ndose_response_top28.json\\ndose_response_top32.json\\ndose_response_top4.json\\ndose_response_top8.json\\nfig_dose_response_curve.pdf\\nfig_dose_response_curve.png\\nfig_dose_response_draft.pdf\\nfig_dose_response_draft.png\\nfigure_data\\nfigures\\nfinetuned_probe_profile.log\\nfunctional_validation\\ngroundtruth_action_error.json\\ngroundtruth_action_error.log\\nl1_head_ablation\\nlibero_finetuned_attention.log\\nlibero_finetuned_attention_profile.json\\nlibero_finetuned_probe_profile.json\\nlinear_probe.log\\nlinear_probe_last_preaction.json\\nlinear_probe_results.json\\nllama2base_action_probe\\nloo_sensitivity.py\\nmatched_ablation_controls.json\\nmatched_ablation_controls.
 …[truncated 1100 chars]
@@ -9710,7 +9580,7 @@ _source line 297 · 2026-05-19T15:45:04.786130+00:00_
 
 ### Tool result
 
-_source line 298 · 2026-05-19T15:45:05.491520+00:00_
+_source line 296 · 2026-05-19T15:45:05.491520+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/subtask_predicate/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/temporal_distance_old_backup/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_prediction/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_delta/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2/action_delta/summary.json\\n/root/autodl-tmp/vla-ssd/results/oracle/oracle/layer_oracle.json\\n/root/autodl-tmp/vla-ssd/results/oracle/oracle/summary.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/dinov2_shuffle/temporal_distance/summary.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_0.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_1.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_2.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_3.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_4.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_5.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_6.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_7.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_8.json\\n/root/autodl-tmp/vla-ssd/results/untrained/temporal_distance/layer_9.json\\n/root/autodl-tmp/vla
 …[truncated 6430 chars]
@@ -9733,7 +9603,7 @@ _source line 298 · 2026-05-19T15:45:05.491520+00:00_
 
 ### Tool call
 
-_source line 299 · 2026-05-19T15:45:13.698880+00:00_
+_source line 297 · 2026-05-19T15:45:13.698880+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9769,7 +9639,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 300 · 2026-05-19T15:45:14.151624+00:00_
+_source line 298 · 2026-05-19T15:45:14.151624+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9805,7 +9675,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 301 · 2026-05-19T15:45:14.604306+00:00_
+_source line 299 · 2026-05-19T15:45:14.604306+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Task complexity x routing dependence analysis. delta_R2 = baseline_R2 - ablated_R2 (L1, ablate_all24). All negative: ablation increased R2. |delta_R2| measures sensitivity to instruction routing.\\\",\\n  \\\"tasks\\\": [\\n    {\\n      \\\"name\\\": \\\"put the wine bottle on the rack\\\",\\n      \\\"baseline_r2\\\": 0.1894,\\n      \\\"ablated_r2\\\": 0.424,\\n      \\\"delta_r2\\\": -0.2346,\\n      \\\"abs_delta_r2\\\": 0.2346,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on top of the cabinet\\\",\\n      \\\"baseline_r2\\\": 0.2561,\\n      \\\"ablated_r2\\\": 0.4567,\\n      \\\"delta_r2\\\": -0.2006,\\n      \\\"abs_delta_r2\\\": 0.2006,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the stove\\\",\\n      \\\"baseline_r2\\\": 0.2352,\\n      \\\"ablated_r2\\\": 0.395,\\n      \\\"delta_r2\\\": -0.1598,\\n      \\\"abs_delta_r2\\\": 0.1598,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the cream cheese in the bowl\\\",\\n      \\\"baseline_r2\\\": 0.186,\\n      \\\"ablated_r2\\\": 0.3454,\\n      \\\"delta_r2\\\": -0.1594,\\n      \\\"abs_delta_r2\\\": 0.1594,\\n      \\\"group\\\": \\\"simple\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"put the bowl on the plate\\\",\\n      \\\"baseline_r2\\\": 0.3754,\\n      \\\"ablated_r2\\\": 0.474,\\n      \\\"delta_r2\\\": -0.0986,\\n      \\\"abs_delta_r2\\\": 0.0986,\\n      \\\"group\\\": \\\"complex\\\"\\n    },\\n    {\\n      \\\"name\\\": \\\"open the top drawer and put the bowl inside\\\",\\n      \\\"baseline_r2\\\": 0.2649,\\n      \\\"ablated_r2\\\": 0.3403,\\n      \\\"delta_r2\\\": -0.0754,\\n      \\\"abs_delta_r2\\\": 0.0754,\\n      \\\"group\\\": \\\"complex\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
 
@@ -9827,7 +9697,7 @@ _source line 301 · 2026-05-19T15:45:14.604306+00:00_
 
 ### Tool result
 
-_source line 302 · 2026-05-19T15:45:14.755473+00:00_
+_source line 300 · 2026-05-19T15:45:14.755473+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_tasks\\\": 3,\\n    \\\"n_demos_per_task\\\": 10,\\n    \\\"n_timesteps_per_demo\\\": 50,\\n    \\\"total_forward_passes\\\": 3000,\\n    \\\"model\\\": \\\"openvla-7b\\\",\\n    \\\"ablation\\\": \\\"L1_bottom_24_heads_zeroed\\\",\\n    \\\"ablated_heads\\\": [\\n      1,\\n      3,\\n      4,\\n      5,\\n      6,\\n      7,\\n      8,\\n      9,\\n      11,\\n      12,\\n      13,\\n      15,\\n      16,\\n      17,\\n      18,\\n      20,\\n      21,\\n      23,\\n      24,\\n      26,\\n      28,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -9849,7 +9719,7 @@ _source line 302 · 2026-05-19T15:45:14.755473+00:00_
 
 ### Tool call
 
-_source line 303 · 2026-05-19T15:45:14.755950+00:00_
+_source line 301 · 2026-05-19T15:45:14.755950+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9885,7 +9755,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 304 · 2026-05-19T15:45:15.259099+00:00_
+_source line 302 · 2026-05-19T15:45:15.259099+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"per_task_r2_distribution\\\",\\n  \\\"tasks\\\": [\\n    \\\"open the middle drawer of the cabinet\\\",\\n    \\\"open the top drawer and put the bowl inside\\\",\\n    \\\"push the plate to the front of the stove\\\",\\n    \\\"put the bowl on the plate\\\",\\n    \\\"put the bowl on the stove\\\",\\n    \\\"put the bowl on top of the cabinet\\\",\\n    \\\"put the cream cheese in the bowl\\\",\\n    \\\"put the wine bottle on the rack\\\",\\n    \\\"put the wine bottle on top of the cabinet\\\",\\n    \\\"turn on the stove\\\"\\n  ],\\n  \\\"n_tasks\\\": 10,\\n  \\\"mlp_probe_5demo\\\": {\\n    \\\"description\\\": \\\"MLP(4096,256,7) probe, 5 demos/task, per-task R2 distribution\\\",\\n    \\\"conditions\\\": {\\n      \\\"baseline\\\": {\\n        \\\"L1\\\": {\\n          \\\"per_task_R2\\\": {\\n            \\\"open the middle drawer of the cabinet\\\": 0.1971,\\n            \\\"open the top drawer and put the bowl inside\\\": 0.2649,\\n            \\\"push the plate to the front of the stove\\\": 0.1901,\\n            \\\"put the bowl on the plate\\\": 0.3754,\\n            \\\"put the bowl on the stove\\\": 0.2352,\\n            \\\"put the bowl on top of the cabinet\\\": 0.2561,\\n            \\\"put the cream cheese in the bowl\\\": 0.186,\\n            \\\"put the wine bottle on the rack\\\": 0.1894,\\n            \\\"put the wine bottle on top of the cabinet\\\": 0.2789,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
@@ -9907,7 +9777,7 @@ _source line 304 · 2026-05-19T15:45:15.259099+00:00_
 
 ### Tool call
 
-_source line 305 · 2026-05-19T15:45:20.350607+00:00_
+_source line 303 · 2026-05-19T15:45:20.350607+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -9943,7 +9813,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 306 · 2026-05-19T15:45:21.256440+00:00_
+_source line 304 · 2026-05-19T15:45:21.256440+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"conditions\\\": [\\n    \\\"untrained\\\",\\n    \\\"llama2base\\\",\\n    \\\"trained\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"split\\\": \\\"sequential_80_20_no_shuffle\\\",\\n  \\\"r2_space\\\": \\\"original_denormalized\\\",\\n  \\\"results\\\": {\\n    \\\"untrained\\\": {\\n      \\\"L0\\\": {\\n        \\\"seeds\\\": [\\n          0.6403305426239967,\\n          0.6568484529852867,\\n          0.6380441457033157\\n        ],\\n        \\\"mean\\\": 0.6450743804375331,\\n        \\\"std\\\": 0.008377688264652728\\n      },\\n      \\\"L1\\\": {\\n        \\\"seeds\\\": [\\n          0.5545581728219986,\\n          0.535977229475975,\\n          0.5503205597400666\\n        ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -9965,7 +9835,7 @@ _source line 306 · 2026-05-19T15:45:21.256440+00:00_
 
 ### Tool call
 
-_source line 307 · 2026-05-19T15:45:21.257103+00:00_
+_source line 305 · 2026-05-19T15:45:21.257103+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10001,7 +9871,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 308 · 2026-05-19T15:45:21.458127+00:00_
+_source line 306 · 2026-05-19T15:45:21.458127+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10037,7 +9907,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 309 · 2026-05-19T15:45:21.759915+00:00_
+_source line 307 · 2026-05-19T15:45:21.759915+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baseline_r2\\\": 0.5169,\\n  \\\"dominant_24_r2\\\": 0.5592,\\n  \\\"dominant_24_r2_increase\\\": 0.0423,\\n  \\\"dominant_24_heads\\\": [\\n    0,\\n    1,\\n    2,\\n    4,\\n    7,\\n    8,\\n    10,\\n    11,\\n    12,\\n    14,\\n    15,\\n    16,\\n    17,\\n    18,\\n    19,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -10059,7 +9929,7 @@ _source line 309 · 2026-05-19T15:45:21.759915+00:00_
 
 ### Tool result
 
-_source line 310 · 2026-05-19T15:45:22.263167+00:00_
+_source line 308 · 2026-05-19T15:45:22.263167+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"l1_threshold_sweep\\\": {\\n    \\\"0.3\\\": {\\n      \\\"trained\\\": 32,\\n      \\\"llama2base\\\": 13,\\n      \\\"untrained\\\": 0\\n    },\\n    \\\"0.4\\\": {\\n      \\\"trained\\\": 31,\\n      \\\"llama2base\\\": 10,\\n      \\\"untrained\\\": 0\\n    },\\n    \\\"0.5\\\": {\\n      \\\"trained\\\": 24,\\n      \\\"llama2base\\\": 9,\\n      \\\"untrained\\\": 0\\n    },\\n    \\\"0.6\\\": {\\n      \\\"trained\\\": 9,\\n      \\\"llama2base\\\": 4,\\n      \\\"untrained\\\": 0\\n    },\\n    \\\"0.7\\\": {\\n      \\\"trained\\\": 5,\\n      \\\"llama2base\\\": 3,\\n      \\\"untrained\\\": 0\\n    }\\n  },\\n  \\\"key_layers_threshold_sweep\\\": {\\n    \\\"L0\\\": {\\n      \\\"0.3\\\": {\\n        \\\"trained\\\": 31,\\n        \\\"llama2base\\\": 16,\\n        \\\"untrained\\\": 0\\n      },\\n      \\\"0.4\\\": {\\n        \\\"trained\\\": 25,\\n        \\\"llama2base\\\": 11,\\n        \\\"untrained\\\": 0\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -10081,7 +9951,7 @@ _source line 310 · 2026-05-19T15:45:22.263167+00:00_
 
 ### Tool call
 
-_source line 311 · 2026-05-19T15:46:12.248687+00:00_
+_source line 309 · 2026-05-19T15:46:12.248687+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10117,7 +9987,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 312 · 2026-05-19T15:46:12.550409+00:00_
+_source line 310 · 2026-05-19T15:46:12.550409+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10153,7 +10023,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 313 · 2026-05-19T15:46:12.752107+00:00_
+_source line 311 · 2026-05-19T15:46:12.752107+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"comparisons\\\": [\\n    {\\n      \\\"comparison\\\": \\\"ablation_all24_vs_baseline_L1\\\",\\n      \\\"description\\\": \\\"Ablating 24 instruction-specialized heads vs intact baseline at L1 (50-demo action probe)\\\",\\n      \\\"delta\\\": 0.0585,\\n      \\\"ci_lower\\\": 0.042,\\n      \\\"ci_upper\\\": 0.075,\\n      \\\"p_value\\\": 0.0,\\n      \\\"n_tasks\\\": 10,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"source\\\": \\\"existing:ablation_50demos_combined.json\\\"\\n    },\\n    {\\n      \\\"comparison\\\": \\\"ablation_all24_vs_control8_L1\\\",\\n      \\\"description\\\": \\\"Specificity: instruction-specialized 24 heads vs 8 control heads at L1\\\",\\n      \\\"delta\\\": 0.0421,\\n      \\\"ci_lower\\\": 0.029,\\n      \\\"ci_upper\\\": 0.056,\\n      \\\"p_value\\\": 0.0,\\n      \\\"n_tasks\\\": 10,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"source\\\": \\\"existing:ablation_50demos_combined.json\\\"\\n    },\\n    {\\n      \\\"comparison\\\": \\\"rsa_trained_vs_untrained_image_mean_L12\\\",\\n      \\\"description\\\": \\\"RSA: trained vs untrained image_mean at best layer (L12)\\\",\\n      \\\"delta\\\": 0.078677,\\n      \\\"ci_lower\\\": 0.059594,\\n      \\\"ci_upper\\\": 0.098198,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 
@@ -10175,7 +10045,7 @@ _source line 313 · 2026-05-19T15:46:12.752107+00:00_
 
 ### Tool result
 
-_source line 314 · 2026-05-19T15:46:13.306170+00:00_
+_source line 312 · 2026-05-19T15:46:13.306170+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"exact_paired_permutation_test\\\",\\n  \\\"data_source\\\": {\\n    \\\"instruction_ablation\\\": \\\"24 heads, per-dim CV from 6 continuous dims, per-task d from 5 tasks\\\",\\n    \\\"control_ablation\\\": \\\"8 heads, same dimensions and tasks\\\"\\n  },\\n  \\\"observed\\\": {\\n    \\\"cv_inst\\\": 1.2981038667967424,\\n    \\\"cv_ctrl\\\": 2.744082737195279,\\n    \\\"cv_diff_ctrl_minus_inst\\\": 1.4459788703985368,\\n    \\\"I2_inst\\\": 0.867488144984584,\\n    \\\"I2_ctrl\\\": 0.781550231771864,\\n    \\\"I2_diff_inst_minus_ctrl\\\": 0.08593791321272004\\n  },\\n  \\\"cv_test_exact_paired\\\": {\\n    \\\"n_dims\\\": 6,\\n    \\\"n_permutations\\\": 64,\\n    \\\"null_mean\\\": -1.3877787807814457e-17,\\n    \\\"null_std\\\": 0.6756441647064374,\\n    \\\"p_value_one_sided\\\": 0.015625,\\n    \\\"significant_005\\\": true\\n  },\\n  \\\"cv_test_7d_sensitivity\\\": {\\n    \\\"observed_diff\\\": 1.3681657035654848,\\n    \\\"p_value\\\": 0.0078125\\n  },\\n  \\\"I2_test_exact_paired\\\": {\\n    \\\"n_tasks\\\": 5,\\n    \\\"n_permutations\\\": 32,\\n    \\\"null_mean\\\": 1.3877787807814457e-17,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
 
@@ -10197,7 +10067,7 @@ _source line 314 · 2026-05-19T15:46:13.306170+00:00_
 
 ### Tool call
 
-_source line 315 · 2026-05-19T15:47:53.971502+00:00_
+_source line 313 · 2026-05-19T15:47:53.971502+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10233,7 +10103,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 316 · 2026-05-19T15:47:57.885694+00:00_
+_source line 314 · 2026-05-19T15:47:57.885694+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -10255,7 +10125,7 @@ _source line 316 · 2026-05-19T15:47:57.885694+00:00_
 
 ### Assistant
 
-_source line 317 · 2026-05-19T15:48:00.888316+00:00_
+_source line 315 · 2026-05-19T15:48:00.888316+00:00_
 
 数据充分。提交完整评估。
 
@@ -10282,7 +10152,7 @@ _source line 317 · 2026-05-19T15:48:00.888316+00:00_
 
 ### User
 
-_source line 318 · 2026-05-19T15:50:49.807041+00:00_
+_source line 316 · 2026-05-19T15:50:49.807041+00:00_
 
 [系统通知 — worker_done:worker_analysis_bootstrap_task_ratio_20260519T154920]:
 Worker worker_analysis_bootstrap_task_ratio_20260519T154920 已完成（status=done），请审查 Agent 的处理结果。
@@ -10304,7 +10174,7 @@ Worker worker_analysis_bootstrap_task_ratio_20260519T154920 已完成（status=d
 
 ### Tool call
 
-_source line 319 · 2026-05-19T15:51:02.539026+00:00_
+_source line 317 · 2026-05-19T15:51:02.539026+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -10342,7 +10212,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 320 · 2026-05-19T15:51:03.043430+00:00_
+_source line 318 · 2026-05-19T15:51:03.043430+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction rou
 …[truncated 848 chars]
@@ -10365,7 +10235,7 @@ _source line 320 · 2026-05-19T15:51:03.043430+00:00_
 
 ### Tool call
 
-_source line 321 · 2026-05-19T15:51:10.177553+00:00_
+_source line 319 · 2026-05-19T15:51:10.177553+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10401,7 +10271,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 322 · 2026-05-19T15:51:11.082598+00:00_
+_source line 320 · 2026-05-19T15:51:11.082598+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -10437,7 +10307,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 323 · 2026-05-19T15:51:12.540194+00:00_
+_source line 321 · 2026-05-19T15:51:12.540194+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.35}}"}
 
@@ -10459,7 +10329,7 @@ _source line 323 · 2026-05-19T15:51:12.540194+00:00_
 
 ### Tool result
 
-_source line 324 · 2026-05-19T15:51:13.393838+00:00_
+_source line 322 · 2026-05-19T15:51:13.393838+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/vla-ssd/results/attention/full_32layer_libero_finetuned.json\\n/root/autodl-tmp/vla-ssd/results/per_task_mse_breakdown.json\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_attention_profile.json\\n/root/autodl-tmp/vla-ssd/results/matched_ablation_controls.json\\n/root/autodl-tmp/vla-ssd/results/libero_finetuned_probe_profile.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
 
@@ -10481,7 +10351,7 @@ _source line 324 · 2026-05-19T15:51:13.393838+00:00_
 
 ### Tool call
 
-_source line 325 · 2026-05-19T15:51:20.437880+00:00_
+_source line 323 · 2026-05-19T15:51:20.437880+00:00_
 
 called Bash
 
@@ -10517,7 +10387,7 @@ called Bash
 
 ### Tool result
 
-_source line 326 · 2026-05-19T15:51:22.339640+00:00_
+_source line 324 · 2026-05-19T15:51:22.339640+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_task_ratio.json
@@ -10540,7 +10410,7 @@ _source line 326 · 2026-05-19T15:51:22.339640+00:00_
 
 ### Tool call
 
-_source line 327 · 2026-05-19T15:51:22.641610+00:00_
+_source line 325 · 2026-05-19T15:51:22.641610+00:00_
 
 called Bash
 
@@ -10576,7 +10446,7 @@ called Bash
 
 ### Tool result
 
-_source line 328 · 2026-05-19T15:51:22.742704+00:00_
+_source line 326 · 2026-05-19T15:51:22.742704+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex
@@ -10617,7 +10487,7 @@ _source line 328 · 2026-05-19T15:51:22.742704+00:00_
 
 ### Tool call
 
-_source line 329 · 2026-05-19T15:51:26.060150+00:00_
+_source line 327 · 2026-05-19T15:51:26.060150+00:00_
 
 called Read
 
@@ -10651,7 +10521,7 @@ called Read
 
 ### Tool result
 
-_source line 330 · 2026-05-19T15:51:26.110882+00:00_
+_source line 328 · 2026-05-19T15:51:26.110882+00:00_
 
 1	{
 2	  "ratio_point": 2.4867,
@@ -10700,7 +10570,7 @@ _source line 330 · 2026-05-19T15:51:26.110882+00:00_
 
 ### Tool call
 
-_source line 331 · 2026-05-19T15:52:49.894471+00:00_
+_source line 329 · 2026-05-19T15:52:49.894471+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -10736,7 +10606,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 332 · 2026-05-19T15:52:53.815870+00:00_
+_source line 330 · 2026-05-19T15:52:53.815870+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -10758,7 +10628,7 @@ _source line 332 · 2026-05-19T15:52:53.815870+00:00_
 
 ### Assistant
 
-_source line 333 · 2026-05-19T15:52:57.231659+00:00_
+_source line 331 · 2026-05-19T15:52:57.231659+00:00_
 
 Worker 计算了 2.5× task-discriminability ratio 的 bootstrap CI。结果需要仔细解读。同时完成之前的提分路径分析。
 
@@ -10785,7 +10655,7 @@ Worker 计算了 2.5× task-discriminability ratio 的 bootstrap CI。结果需�
 
 ### User
 
-_source line 334 · 2026-05-19T15:56:50.718723+00:00_
+_source line 332 · 2026-05-19T15:56:50.718723+00:00_
 
 [系统通知 — worker_done:worker_paper_abstract_threestage_and_bootstrap_appendix_20260519T155518]:
 Worker worker_paper_abstract_threestage_and_bootstrap_appendix_20260519T155518 已完成（status=done），请审查 Agent 的处理结果。
@@ -10807,7 +10677,7 @@ Worker worker_paper_abstract_threestage_and_bootstrap_appendix_20260519T155518 �
 
 ### Tool call
 
-_source line 335 · 2026-05-19T15:57:08.196540+00:00_
+_source line 333 · 2026-05-19T15:57:08.196540+00:00_
 
 called Bash
 
@@ -10843,7 +10713,7 @@ called Bash
 
 ### Tool result
 
-_source line 336 · 2026-05-19T15:57:08.503800+00:00_
+_source line 334 · 2026-05-19T15:57:08.503800+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 566148 May 19 15:56 main.pdf
 -rw-r--r-- 1 ubuntu ubuntu   3410 May 19 15:56 discussion.tex
@@ -10875,7 +10745,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 337 · 2026-05-19T15:57:16.204525+00:00_
+_source line 335 · 2026-05-19T15:57:16.204525+00:00_
 
 called Read
 
@@ -10909,7 +10779,7 @@ called Read
 
 ### Tool result
 
-_source line 338 · 2026-05-19T15:57:16.204883+00:00_
+_source line 336 · 2026-05-19T15:57:16.204883+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -10939,7 +10809,7 @@ _source line 338 · 2026-05-19T15:57:16.204883+00:00_
 
 ### Tool call
 
-_source line 339 · 2026-05-19T15:57:16.611092+00:00_
+_source line 337 · 2026-05-19T15:57:16.611092+00:00_
 
 called Read
 
@@ -10973,7 +10843,7 @@ called Read
 
 ### Tool result
 
-_source line 340 · 2026-05-19T15:57:16.712148+00:00_
+_source line 338 · 2026-05-19T15:57:16.712148+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -11010,7 +10880,7 @@ _source line 340 · 2026-05-19T15:57:16.712148+00:00_
 
 ### Tool call
 
-_source line 341 · 2026-05-19T15:57:21.109978+00:00_
+_source line 339 · 2026-05-19T15:57:21.109978+00:00_
 
 called Read
 
@@ -11048,7 +10918,7 @@ called Read
 
 ### Tool result
 
-_source line 342 · 2026-05-19T15:57:21.160717+00:00_
+_source line 340 · 2026-05-19T15:57:21.160717+00:00_
 
 80	\paragraph{Dose-response gradient.}
 81	Ablating 4--32 instruction-dominant heads yields monotonic divergence ($d = 0.482 \to 0.639$; Figure~\ref{fig:dose_response}), with steep rise through 12 heads and plateau beyond 20 (Appendix~\ref{sec:action_trajectory}).
@@ -11106,7 +10976,7 @@ _source line 342 · 2026-05-19T15:57:21.160717+00:00_
 
 ### Tool call
 
-_source line 343 · 2026-05-19T15:57:26.642461+00:00_
+_source line 341 · 2026-05-19T15:57:26.642461+00:00_
 
 called Grep
 
@@ -11148,7 +11018,7 @@ called Grep
 
 ### Tool result
 
-_source line 344 · 2026-05-19T15:57:26.743426+00:00_
+_source line 342 · 2026-05-19T15:57:26.743426+00:00_
 
 No matches found
 
@@ -11170,7 +11040,7 @@ No matches found
 
 ### Tool call
 
-_source line 345 · 2026-05-19T15:57:31.276396+00:00_
+_source line 343 · 2026-05-19T15:57:31.276396+00:00_
 
 called Read
 
@@ -11208,7 +11078,7 @@ called Read
 
 ### Tool result
 
-_source line 346 · 2026-05-19T15:57:31.327597+00:00_
+_source line 344 · 2026-05-19T15:57:31.327597+00:00_
 
 748	\multicolumn{3}{l}{Mann-Whitney $U = 21.0$, $p = 0.033$, ratio $= 2.49\times$} \\
 749	\multicolumn{3}{l}{\textbf{Sensitivity}$^\dagger$: cream cheese as Instr-disc: $p = 0.008$, $6.5\times$} \\
@@ -11258,7 +11128,7 @@ _source line 346 · 2026-05-19T15:57:31.327597+00:00_
 
 ### Tool call
 
-_source line 347 · 2026-05-19T15:57:50.006119+00:00_
+_source line 345 · 2026-05-19T15:57:50.006119+00:00_
 
 called Read
 
@@ -11294,7 +11164,7 @@ called Read
 
 ### Tool call
 
-_source line 348 · 2026-05-19T15:57:50.006535+00:00_
+_source line 346 · 2026-05-19T15:57:50.006535+00:00_
 
 called Bash
 
@@ -11330,7 +11200,7 @@ called Bash
 
 ### Tool result
 
-_source line 349 · 2026-05-19T15:57:50.108339+00:00_
+_source line 347 · 2026-05-19T15:57:50.108339+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 17295 May 18 16:36 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_dose_response.pdf
 
@@ -11352,7 +11222,7 @@ _source line 349 · 2026-05-19T15:57:50.108339+00:00_
 
 ### Tool result
 
-_source line 350 · 2026-05-19T15:57:50.309713+00:00_
+_source line 348 · 2026-05-19T15:57:50.309713+00:00_
 
 PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.pdf (552.9KB)
 
@@ -11374,7 +11244,7 @@ PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_050
 
 ### Tool call
 
-_source line 351 · 2026-05-19T15:59:58.154149+00:00_
+_source line 349 · 2026-05-19T15:59:58.154149+00:00_
 
 called Bash
 
@@ -11410,7 +11280,7 @@ called Bash
 
 ### Tool result
 
-_source line 352 · 2026-05-19T15:59:58.657211+00:00_
+_source line 350 · 2026-05-19T15:59:58.657211+00:00_
 
 190
 
@@ -11432,7 +11302,7 @@ _source line 352 · 2026-05-19T15:59:58.657211+00:00_
 
 ### Tool call
 
-_source line 353 · 2026-05-19T15:59:58.961129+00:00_
+_source line 351 · 2026-05-19T15:59:58.961129+00:00_
 
 called Bash
 
@@ -11468,7 +11338,7 @@ called Bash
 
 ### Tool result
 
-_source line 354 · 2026-05-19T15:59:59.012262+00:00_
+_source line 352 · 2026-05-19T15:59:59.012262+00:00_
 
 Model conditions, representation extraction, metric definitions, and probe architectures follow \S\ref{sec:setup}--\S\ref{sec:probes}.
 Cross-benchmark experiments (\S\ref{sec:cross_benchmark_appendix}) use LIBERO-Spatial with the same protocol (10 tasks $\times$ 50 demonstrations).
@@ -11495,7 +11365,7 @@ All experiments ran on 2$\times$ NVIDIA RTX PRO 6000 Blackwell Server Edition GP
 
 ### Tool call
 
-_source line 355 · 2026-05-19T16:00:04.719129+00:00_
+_source line 353 · 2026-05-19T16:00:04.719129+00:00_
 
 called ToolSearch
 
@@ -11531,7 +11401,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 356 · 2026-05-19T16:00:04.770019+00:00_
+_source line 354 · 2026-05-19T16:00:04.770019+00:00_
 
 
 
@@ -11553,7 +11423,7 @@ _source line 356 · 2026-05-19T16:00:04.770019+00:00_
 
 ### Tool call
 
-_source line 357 · 2026-05-19T16:00:24.823839+00:00_
+_source line 355 · 2026-05-19T16:00:24.823839+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11589,7 +11459,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 358 · 2026-05-19T16:00:29.092761+00:00_
+_source line 356 · 2026-05-19T16:00:29.092761+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -11611,7 +11481,7 @@ _source line 358 · 2026-05-19T16:00:29.092761+00:00_
 
 ### Assistant
 
-_source line 359 · 2026-05-19T16:00:33.658667+00:00_
+_source line 357 · 2026-05-19T16:00:33.658667+00:00_
 
 审查报告已发送。四项修改全部验证通过：三阶段模型句已加入 abstract（190/250 词）、双面板 Figure 1 渲染正常、task-dep routing 正确迁入 Experiments、bootstrap CI 诚实披露于 appendix。GPU 规格错误已修复。唯一微观建议是 L31 vs L32 措辞统一。论文状态：PASS，可提交。
 
@@ -11638,7 +11508,7 @@ _source line 359 · 2026-05-19T16:00:33.658667+00:00_
 
 ### User
 
-_source line 360 · 2026-05-19T16:00:34.179222+00:00_
+_source line 358 · 2026-05-19T16:00:34.179222+00:00_
 
 [系统通知 — worker_done:worker_paper_fig1_dual_and_taskdep_move_20260519T155504]:
 Worker worker_paper_fig1_dual_and_taskdep_move_20260519T155504 已完成（status=done），请审查 Agent 的处理结果。
@@ -11660,7 +11530,7 @@ Worker worker_paper_fig1_dual_and_taskdep_move_20260519T155504 已完成（statu
 
 ### Tool call
 
-_source line 361 · 2026-05-19T16:00:43.656227+00:00_
+_source line 359 · 2026-05-19T16:00:43.656227+00:00_
 
 called ToolSearch
 
@@ -11696,7 +11566,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 362 · 2026-05-19T16:00:43.706908+00:00_
+_source line 360 · 2026-05-19T16:00:43.706908+00:00_
 
 
 
@@ -11718,7 +11588,7 @@ _source line 362 · 2026-05-19T16:00:43.706908+00:00_
 
 ### Tool call
 
-_source line 363 · 2026-05-19T16:00:47.486217+00:00_
+_source line 361 · 2026-05-19T16:00:47.486217+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11756,7 +11626,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 364 · 2026-05-19T16:00:47.890120+00:00_
+_source line 362 · 2026-05-19T16:00:47.890120+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction rou
 …[truncated 2614 chars]
@@ -11779,7 +11649,7 @@ _source line 364 · 2026-05-19T16:00:47.890120+00:00_
 
 ### Tool call
 
-_source line 365 · 2026-05-19T16:00:57.313853+00:00_
+_source line 363 · 2026-05-19T16:00:57.313853+00:00_
 
 called Bash
 
@@ -11815,7 +11685,7 @@ called Bash
 
 ### Tool result
 
-_source line 366 · 2026-05-19T16:00:57.515720+00:00_
+_source line 364 · 2026-05-19T16:00:57.515720+00:00_
 
 1779206185 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex
 1779206173 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex
@@ -11841,7 +11711,7 @@ _source line 366 · 2026-05-19T16:00:57.515720+00:00_
 
 ### Tool call
 
-_source line 367 · 2026-05-19T16:01:11.255569+00:00_
+_source line 365 · 2026-05-19T16:01:11.255569+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -11877,7 +11747,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 368 · 2026-05-19T16:01:15.787875+00:00_
+_source line 366 · 2026-05-19T16:01:15.787875+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -11899,7 +11769,7 @@ _source line 368 · 2026-05-19T16:01:15.787875+00:00_
 
 ### Assistant
 
-_source line 369 · 2026-05-19T16:01:19.343346+00:00_
+_source line 367 · 2026-05-19T16:01:19.343346+00:00_
 
 已确认为重复 worker，无增量修改，直接引用上轮 PASS 结论。
 
@@ -11926,7 +11796,7 @@ _source line 369 · 2026-05-19T16:01:19.343346+00:00_
 
 ### User
 
-_source line 370 · 2026-05-19T16:21:08.165352+00:00_
+_source line 368 · 2026-05-19T16:21:08.165352+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：用户指令：启动第二 VLA + 闭环验证，从 FINAL 切回 ACTIVE），请审查研究方向和计划的合理性。
@@ -11948,7 +11818,7 @@ _source line 370 · 2026-05-19T16:21:08.165352+00:00_
 
 ### Tool call
 
-_source line 371 · 2026-05-19T16:21:15.983531+00:00_
+_source line 369 · 2026-05-19T16:21:15.983531+00:00_
 
 called ToolSearch
 
@@ -11984,7 +11854,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 372 · 2026-05-19T16:21:15.983963+00:00_
+_source line 370 · 2026-05-19T16:21:15.983963+00:00_
 
 
 
@@ -12006,7 +11876,7 @@ _source line 372 · 2026-05-19T16:21:15.983963+00:00_
 
 ### Tool call
 
-_source line 373 · 2026-05-19T16:21:18.647556+00:00_
+_source line 371 · 2026-05-19T16:21:18.647556+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -12040,7 +11910,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 374 · 2026-05-19T16:21:18.750377+00:00_
+_source line 372 · 2026-05-19T16:21:18.750377+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 16:21 UTC | 更新原因: 用户指令：启动第二 VLA + 闭环验证，从 FINAL 切回 ACTIVE\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning primarily reorganizes instruction routing (entry-exit L1+L31 pattern). Distributed L1 routing. Task-specific fine-tuning sharpens to entry-only.\\n\\n## 当前阶段\\n**ACTIVE — 用户指令：追第二 VLA + 闭环验证两条升分路径。目标 7/10。**\\n\\n## Score: 6.0-6.7/10 → 目标 7.0+\\n- 审稿人说到 7 需要：第二个 VLA 或 closed-loop 验证\\n- 两条路径并行推进中\\n- GPU 预算已向 Manager 申请追加 10-15h\\n\\n## 进行中\\n- [ ] **路径 A: 第二 VLA** — Agent 调研可用 decoder-only VLA，选型中\\n- [ ] **路径 B: 闭环验证** — Agent 诊断 behavioral_smoketest SR=0/3 失败原因\\n- [ ] GPU 预算追加（Manager 审批中）\\n\\n## 已完成（D076 文本优化）\\n- [x] Dose-response 双面板进正文 Fig 1\\n- [x] Task-dep routing 移到 Experiments\\n- [x] Abstract three-stage narrative\\n- [x] Bootstrap CI appendix\\n- [x] Appendix 复现性补全 + GPU 规格修正\\n- [x] Rebuttal 预案 R9-N1 + R9-N2\\n\\n## GPU 预算\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。剩余 ~0.1h，已申请追加 10-15h。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D077 | 2026-05-19 | D077: 用户指令——启动第二 VLA + 闭环验证两条升分路径，充分利用 GPU，不够找 Man | behavioral_smoketest, matched_ablation_controls |\\n| D076 | 2026-05-19 | D076: 零 GPU 提分计划——5 项文本/结构改进，预期 +0.3-0.5 分 | task_complexity_routing, dose_response_curve, matched_ablation_controls |\\n| D075 | 2026-05-19 | D075: 4 条件训练轨迹发现 L31 exit collapse — positive refr | libero_finetuned_attention |\\n| D074 | 2026-05-19 | D074: 放弃 C-2 closed-loop 路径——baseline SR=0/3 确认非环境 | behavioral_smoketest, matched_ablation_controls |\\n| D073 | 2026-05-19 | D073: 用户 9 条指令 — claim 全面降级(open-loop qualifier) + | specificity_control_action, task_complexity_routing, counterfactual_token_overlap |\\n| D072 | 2026-05-19 | D072: Round 9 response — 5/10 We
 …[truncated 612 chars]
@@ -12063,7 +11933,7 @@ _source line 374 · 2026-05-19T16:21:18.750377+00:00_
 
 ### Tool call
 
-_source line 375 · 2026-05-19T16:21:37.349133+00:00_
+_source line 373 · 2026-05-19T16:21:37.349133+00:00_
 
 called Read
 
@@ -12101,7 +11971,7 @@ called Read
 
 ### Tool result
 
-_source line 376 · 2026-05-19T16:21:37.653202+00:00_
+_source line 374 · 2026-05-19T16:21:37.653202+00:00_
 
 0	_next_id: 78
 1	decisions:
@@ -12168,7 +12038,7 @@ _source line 376 · 2026-05-19T16:21:37.653202+00:00_
 
 ### Tool call
 
-_source line 377 · 2026-05-19T16:21:37.653676+00:00_
+_source line 375 · 2026-05-19T16:21:37.653676+00:00_
 
 called Read
 
@@ -12202,7 +12072,7 @@ called Read
 
 ### Tool result
 
-_source line 378 · 2026-05-19T16:21:37.707433+00:00_
+_source line 376 · 2026-05-19T16:21:37.707433+00:00_
 
 1	# Paper Framing — vla-ssd (Plan B → D060 Reframe)
 2	
@@ -12253,7 +12123,7 @@ _source line 378 · 2026-05-19T16:21:37.707433+00:00_
 
 ### Tool call
 
-_source line 379 · 2026-05-19T16:21:43.372448+00:00_
+_source line 377 · 2026-05-19T16:21:43.372448+00:00_
 
 called Bash
 
@@ -12289,7 +12159,7 @@ called Bash
 
 ### Tool result
 
-_source line 380 · 2026-05-19T16:21:43.577081+00:00_
+_source line 378 · 2026-05-19T16:21:43.577081+00:00_
 
 1426:- id: D074
 1428:  summary: 'D074: 放弃 C-2 closed-loop 路径——baseline SR=0/3 确认非环境 bug，checkpoint 在 LIBERO
@@ -12322,7 +12192,7 @@ _source line 380 · 2026-05-19T16:21:43.577081+00:00_
 
 ### Tool call
 
-_source line 381 · 2026-05-19T16:21:46.893349+00:00_
+_source line 379 · 2026-05-19T16:21:46.893349+00:00_
 
 called Read
 
@@ -12360,7 +12230,7 @@ called Read
 
 ### Tool result
 
-_source line 382 · 2026-05-19T16:21:46.894012+00:00_
+_source line 380 · 2026-05-19T16:21:46.894012+00:00_
 
 1426	- id: D074
 1427	  date: 2026-05-19 04:31 UTC
@@ -12420,7 +12290,7 @@ _source line 382 · 2026-05-19T16:21:46.894012+00:00_
 
 ### Tool call
 
-_source line 383 · 2026-05-19T16:22:43.517023+00:00_
+_source line 381 · 2026-05-19T16:22:43.517023+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12456,7 +12326,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 384 · 2026-05-19T16:22:47.640046+00:00_
+_source line 382 · 2026-05-19T16:22:47.640046+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -12478,7 +12348,7 @@ _source line 384 · 2026-05-19T16:22:47.640046+00:00_
 
 ### Assistant
 
-_source line 385 · 2026-05-19T16:22:54.371997+00:00_
+_source line 383 · 2026-05-19T16:22:54.371997+00:00_
 
 审查已提交。核心结论：
 
@@ -12510,7 +12380,7 @@ _source line 385 · 2026-05-19T16:22:54.371997+00:00_
 
 ### User
 
-_source line 386 · 2026-05-19T16:26:43.264344+00:00_
+_source line 384 · 2026-05-19T16:26:43.264344+00:00_
 
 [系统通知 — worker_done:worker_research_second_vla_survey_20260519T162116]:
 Worker worker_research_second_vla_survey_20260519T162116 已完成（status=done），请审查 Agent 的处理结果。
@@ -12532,7 +12402,7 @@ Worker worker_research_second_vla_survey_20260519T162116 已完成（status=done
 
 ### Tool call
 
-_source line 387 · 2026-05-19T16:26:50.704522+00:00_
+_source line 385 · 2026-05-19T16:26:50.704522+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12570,7 +12440,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 388 · 2026-05-19T16:26:51.057326+00:00_
+_source line 386 · 2026-05-19T16:26:51.057326+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction rou
 …[truncated 849 chars]
@@ -12593,7 +12463,7 @@ _source line 388 · 2026-05-19T16:26:51.057326+00:00_
 
 ### Tool call
 
-_source line 389 · 2026-05-19T16:26:56.694385+00:00_
+_source line 387 · 2026-05-19T16:26:56.694385+00:00_
 
 called Read
 
@@ -12627,7 +12497,7 @@ called Read
 
 ### Tool result
 
-_source line 390 · 2026-05-19T16:26:57.095887+00:00_
+_source line 388 · 2026-05-19T16:26:57.095887+00:00_
 
 1	# Handover — 2026-05-19
 2	
@@ -12671,7 +12541,7 @@ _source line 390 · 2026-05-19T16:26:57.095887+00:00_
 
 ### Tool call
 
-_source line 391 · 2026-05-19T16:26:57.096458+00:00_
+_source line 389 · 2026-05-19T16:26:57.096458+00:00_
 
 called Bash
 
@@ -12707,7 +12577,7 @@ called Bash
 
 ### Tool result
 
-_source line 392 · 2026-05-19T16:26:57.299121+00:00_
+_source line 390 · 2026-05-19T16:26:57.299121+00:00_
 
 total 2140
 -rw-r--r-- 1 ubuntu ubuntu  12278 May 19 16:26 second_vla_survey.md
@@ -12738,7 +12608,7 @@ drwxr-xr-x 3 ubuntu ubuntu   4096 May 19 07:19 libero_finetuned_attention
 
 ### Tool call
 
-_source line 393 · 2026-05-19T16:27:00.061775+00:00_
+_source line 391 · 2026-05-19T16:27:00.061775+00:00_
 
 called Read
 
@@ -12772,7 +12642,7 @@ called Read
 
 ### Tool result
 
-_source line 394 · 2026-05-19T16:27:00.112866+00:00_
+_source line 392 · 2026-05-19T16:27:00.112866+00:00_
 
 1	# 第二 VLA 模型调研报告
 2	
@@ -12815,7 +12685,7 @@ _source line 394 · 2026-05-19T16:27:00.112866+00:00_
 
 ### Tool call
 
-_source line 395 · 2026-05-19T16:27:51.798236+00:00_
+_source line 393 · 2026-05-19T16:27:51.798236+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -12851,7 +12721,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 396 · 2026-05-19T16:27:55.477380+00:00_
+_source line 394 · 2026-05-19T16:27:55.477380+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -12873,7 +12743,7 @@ _source line 396 · 2026-05-19T16:27:55.477380+00:00_
 
 ### Assistant
 
-_source line 397 · 2026-05-19T16:27:59.492481+00:00_
+_source line 395 · 2026-05-19T16:27:59.492481+00:00_
 
 审查已发。核心结论：OpenVLA-Phi3V 选型合理，但需验证非官方 checkpoint 可用性，并预设 L1 routing 不复现的应急 framing。SpatialVLA 作为备选仅在时间充裕时考虑。GPU 审批速度是当前实际瓶颈。
 
@@ -12900,7 +12770,7 @@ _source line 397 · 2026-05-19T16:27:59.492481+00:00_
 
 ### User
 
-_source line 398 · 2026-05-19T16:42:26.878918+00:00_
+_source line 396 · 2026-05-19T16:42:26.878918+00:00_
 
 [系统通知 — worker_done:worker_analysis_kendall_w_20260519T154932]:
 Worker worker_analysis_kendall_w_20260519T154932 已完成（status=done），请审查 Agent 的处理结果。
@@ -12922,7 +12792,7 @@ Worker worker_analysis_kendall_w_20260519T154932 已完成（status=done），�
 
 ### Tool call
 
-_source line 399 · 2026-05-19T16:42:34.553080+00:00_
+_source line 397 · 2026-05-19T16:42:34.553080+00:00_
 
 called Bash
 
@@ -12958,7 +12828,7 @@ called Bash
 
 ### Tool result
 
-_source line 400 · 2026-05-19T16:42:34.704756+00:00_
+_source line 398 · 2026-05-19T16:42:34.704756+00:00_
 
 total 2152
 -rw-r--r-- 1 ubuntu ubuntu   8858 May 19 16:41 kendall_w_cross_task.json
@@ -12994,7 +12864,7 @@ drwxr-xr-x 3 ubuntu ubuntu   4096 May 19 02:47 task_routing_loo_sensitivity
 
 ### Tool call
 
-_source line 401 · 2026-05-19T16:42:37.971134+00:00_
+_source line 399 · 2026-05-19T16:42:37.971134+00:00_
 
 called Read
 
@@ -13028,7 +12898,7 @@ called Read
 
 ### Tool result
 
-_source line 402 · 2026-05-19T16:42:37.971903+00:00_
+_source line 400 · 2026-05-19T16:42:37.971903+00:00_
 
 1	{
 2	  "cross_layer_analysis": {
@@ -13131,7 +13001,7 @@ _source line 402 · 2026-05-19T16:42:37.971903+00:00_
 
 ### Tool call
 
-_source line 403 · 2026-05-19T16:43:23.415126+00:00_
+_source line 401 · 2026-05-19T16:43:23.415126+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13167,7 +13037,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 404 · 2026-05-19T16:43:27.401054+00:00_
+_source line 402 · 2026-05-19T16:43:27.401054+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -13196,7 +13066,7 @@ _source line 404 · 2026-05-19T16:43:27.401054+00:00_
 
 ### User
 
-_source line 405 · 2026-05-19T17:05:30.341230+00:00_
+_source line 403 · 2026-05-19T17:05:30.341230+00:00_
 
 [系统通知 — worker_done:worker_debug_closedloop_diagnosis_20260519T162132]:
 Worker worker_debug_closedloop_diagnosis_20260519T162132 已完成（status=done），请审查 Agent 的处理结果。
@@ -13218,7 +13088,7 @@ Worker worker_debug_closedloop_diagnosis_20260519T162132 已完成（status=done
 
 ### Tool call
 
-_source line 406 · 2026-05-19T17:05:39.138719+00:00_
+_source line 404 · 2026-05-19T17:05:39.138719+00:00_
 
 called Bash
 
@@ -13254,7 +13124,7 @@ called Bash
 
 ### Tool result
 
-_source line 407 · 2026-05-19T17:05:39.541084+00:00_
+_source line 405 · 2026-05-19T17:05:39.541084+00:00_
 
 total 2160
 -rw-r--r-- 1 ubuntu ubuntu   6541 May 19 17:04 closedloop_diagnosis.md
@@ -13280,7 +13150,7 @@ total 2160
 
 ### Tool call
 
-_source line 408 · 2026-05-19T17:05:39.541529+00:00_
+_source line 406 · 2026-05-19T17:05:39.541529+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13318,7 +13188,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 409 · 2026-05-19T17:05:39.893543+00:00_
+_source line 407 · 2026-05-19T17:05:39.893543+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/finetuned_probe_profile.log\", \"eval_data\": \"LIBERO-Goal 10 tasks x 50 demos, 10-way cross-instruction LOOCV\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:27.391Z\", \"metrics\": {\"probe_acc_L0\": 0.1, \"probe_acc_L1\": 0.997, \"probe_acc_L2_L31\": 1, \"image_mean_control\": 0.1, \"method\": \"PCA256+LogReg_10fold_LOOCV\"}}, \"libero_finetuned_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:22:26.980Z\", \"updated_at\": \"2026-05-19T07:22:26.980Z\", \"parent\": \"libero_finetuned_attention\"}, \"libero_finetuned_attention\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:14:02.907Z\", \"updated_at\": \"2026-05-19T07:18:50.186Z\", \"parent\": \"llama2_base_control\", \"hypothesis\": \"LIBERO-Goal fine-tuning on OpenVLA preserves or enhances the L1 bookend attention routing pattern established by Bridge/OXE pre-training, demonstrating that instruction rou
 …[truncated 2614 chars]
@@ -13341,7 +13211,7 @@ _source line 409 · 2026-05-19T17:05:39.893543+00:00_
 
 ### Tool call
 
-_source line 410 · 2026-05-19T17:05:42.504709+00:00_
+_source line 408 · 2026-05-19T17:05:42.504709+00:00_
 
 called Read
 
@@ -13375,7 +13245,7 @@ called Read
 
 ### Tool result
 
-_source line 411 · 2026-05-19T17:05:42.505199+00:00_
+_source line 409 · 2026-05-19T17:05:42.505199+00:00_
 
 1	# Closed-Loop Inference Diagnosis: OpenVLA-7B on LIBERO-Goal
 2	
@@ -13444,7 +13314,7 @@ _source line 411 · 2026-05-19T17:05:42.505199+00:00_
 
 ### Tool call
 
-_source line 412 · 2026-05-19T17:06:24.002833+00:00_
+_source line 410 · 2026-05-19T17:06:24.002833+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -13480,7 +13350,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 413 · 2026-05-19T17:06:28.775121+00:00_
+_source line 411 · 2026-05-19T17:06:28.775121+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -13509,7 +13379,7 @@ _source line 413 · 2026-05-19T17:06:28.775121+00:00_
 
 ### User
 
-_source line 414 · 2026-05-19T17:18:02.114727+00:00_
+_source line 412 · 2026-05-19T17:18:02.114727+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_checkpoint_verify_20260519T164210]:
 Worker worker_code_phi3v_checkpoint_verify_20260519T164210 已完成（status=done），请审查 Agent 的处理结果。
@@ -13531,7 +13401,7 @@ Worker worker_code_phi3v_checkpoint_verify_20260519T164210 已完成（status=do
 
 ### Tool call
 
-_source line 415 · 2026-05-19T17:18:11.469301+00:00_
+_source line 413 · 2026-05-19T17:18:11.469301+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -13571,7 +13441,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 416 · 2026-05-19T17:18:12.824949+00:00_
+_source line 414 · 2026-05-19T17:18:12.824949+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"closedloop_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:07:32.792Z\", \"updated_at\": \"2026-05-19T17:08:39.446Z\", \"hypothesis\": \"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"diagnostic pipeline - 6 bugs found and fixed\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 9, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/vla-ssd/scripts/sr_official_pipeline.py\"}, \"completed_at\": \"2026-05-19T17:08:34.305Z\", \"metrics\": {\"sr_before_fix\": \"0/3\", \"sr_after_fix\": \"0/9\", \"bugs_found\": 6, \"l1_action_error\": \"0.26-0.43\"}}, \"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-
 …[truncated 1617 chars]
@@ -13594,7 +13464,7 @@ _source line 416 · 2026-05-19T17:18:12.824949+00:00_
 
 ### Tool call
 
-_source line 417 · 2026-05-19T17:18:12.875533+00:00_
+_source line 415 · 2026-05-19T17:18:12.875533+00:00_
 
 called Bash
 
@@ -13630,7 +13500,7 @@ called Bash
 
 ### Tool result
 
-_source line 418 · 2026-05-19T17:18:13.026939+00:00_
+_source line 416 · 2026-05-19T17:18:13.026939+00:00_
 
 total 2160
 -rw-r--r-- 1 ubuntu ubuntu   6541 May 19 17:04 closedloop_diagnosis.md
@@ -13656,7 +13526,7 @@ total 2160
 
 ### Tool call
 
-_source line 419 · 2026-05-19T17:18:20.695362+00:00_
+_source line 417 · 2026-05-19T17:18:20.695362+00:00_
 
 called Bash
 
@@ -13692,7 +13562,7 @@ called Bash
 
 ### Tool result
 
-_source line 420 · 2026-05-19T17:18:21.097714+00:00_
+_source line 418 · 2026-05-19T17:18:21.097714+00:00_
 
 (Bash completed with no output)
 
@@ -13714,7 +13584,7 @@ _source line 420 · 2026-05-19T17:18:21.097714+00:00_
 
 ### Tool call
 
-_source line 421 · 2026-05-19T17:18:21.098116+00:00_
+_source line 419 · 2026-05-19T17:18:21.098116+00:00_
 
 called ToolSearch
 
@@ -13750,7 +13620,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 422 · 2026-05-19T17:18:21.148544+00:00_
+_source line 420 · 2026-05-19T17:18:21.148544+00:00_
 
 
 
@@ -13772,7 +13642,7 @@ _source line 422 · 2026-05-19T17:18:21.148544+00:00_
 
 ### Tool call
 
-_source line 423 · 2026-05-19T17:18:24.561547+00:00_
+_source line 421 · 2026-05-19T17:18:24.561547+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13808,7 +13678,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 424 · 2026-05-19T17:18:24.612132+00:00_
+_source line 422 · 2026-05-19T17:18:24.612132+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -13830,7 +13700,7 @@ _source line 424 · 2026-05-19T17:18:24.612132+00:00_
 
 ### Tool call
 
-_source line 425 · 2026-05-19T17:18:24.963779+00:00_
+_source line 423 · 2026-05-19T17:18:24.963779+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13866,7 +13736,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 426 · 2026-05-19T17:18:25.014478+00:00_
+_source line 424 · 2026-05-19T17:18:25.014478+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -13888,7 +13758,7 @@ _source line 426 · 2026-05-19T17:18:25.014478+00:00_
 
 ### Tool call
 
-_source line 427 · 2026-05-19T17:18:28.076000+00:00_
+_source line 425 · 2026-05-19T17:18:28.076000+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13924,7 +13794,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 428 · 2026-05-19T17:18:29.029877+00:00_
+_source line 426 · 2026-05-19T17:18:29.029877+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -13960,7 +13830,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 429 · 2026-05-19T17:18:29.481987+00:00_
+_source line 427 · 2026-05-19T17:18:29.481987+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/models/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.05}}"}
 
@@ -13982,7 +13852,7 @@ _source line 429 · 2026-05-19T17:18:29.481987+00:00_
 
 ### Tool call
 
-_source line 430 · 2026-05-19T17:18:29.582782+00:00_
+_source line 428 · 2026-05-19T17:18:29.582782+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14018,7 +13888,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 431 · 2026-05-19T17:18:29.683532+00:00_
+_source line 429 · 2026-05-19T17:18:29.683532+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -14040,7 +13910,7 @@ _source line 431 · 2026-05-19T17:18:29.683532+00:00_
 
 ### Tool result
 
-_source line 432 · 2026-05-19T17:18:30.186381+00:00_
+_source line 430 · 2026-05-19T17:18:30.186381+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
 
@@ -14062,7 +13932,7 @@ _source line 432 · 2026-05-19T17:18:30.186381+00:00_
 
 ### Tool call
 
-_source line 433 · 2026-05-19T17:18:37.069406+00:00_
+_source line 431 · 2026-05-19T17:18:37.069406+00:00_
 
 called Bash
 
@@ -14098,7 +13968,7 @@ called Bash
 
 ### Tool result
 
-_source line 434 · 2026-05-19T17:18:37.622017+00:00_
+_source line 432 · 2026-05-19T17:18:37.622017+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_phi3v_checkpoint_verify_20260519T164210.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_phi3v_checkpoint_verify_20260519T164210_result.json
@@ -14121,7 +13991,7 @@ _source line 434 · 2026-05-19T17:18:37.622017+00:00_
 
 ### Tool call
 
-_source line 435 · 2026-05-19T17:18:37.974505+00:00_
+_source line 433 · 2026-05-19T17:18:37.974505+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -14157,7 +14027,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 436 · 2026-05-19T17:18:38.426618+00:00_
+_source line 434 · 2026-05-19T17:18:38.426618+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1580\\n-rw-r--r-- 1 root root  5342 May 20 01:11 sr_official_pipeline_v2.py\\n-rw-r--r-- 1 root root  5525 May 20 00:51 sr_official_pipeline.py\\n-rw-r--r-- 1 root root  3356 May 20 00:29 sr_corrected_3ep.py\\n-rw-r--r-- 1 root root  3829 May 20 00:28 sr_diagnostic_run.py\\n-rw-r--r-- 1 root root  5132 May 20 00:26 sr_diagnostic.py\\n-rw-r--r-- 1 root root 12088 May 19 15:27 libero_finetuned_probe_profile.py\\n-rw-r--r-- 1 root root 10584 May 19 15:16 libero_finetuned_attention_profile.py\\n-rw-r--r-- 1 root root  7341 May 19 12:46 behavioral_smoketest.py\\n-rw-r--r-- 1 root root 16671 May 19 11:34 matched_ablation_controls.py\\n-rw-r--r-- 1 root root 17982 May 19 10:08 groundtruth_action_error.py\\n-rw-r--r-- 1 root root 25209 May 19 09:40 trajectory_level_cohens_d.py\\n-rw-r--r-- 1 root root  9694 May 19 09:19 token_overlap_analysis.py\\n-rw-r--r-- 1 root root 18704 May 19 02:34 specificity_control_action.py\\n-rw-r--r-- 1 root root 11739 May 19 01:19 attention_decomposition_and_r2.py\\n-rw-r--r-- 1 root root 17743 May 19 01:04 counterfactual_instruction.py\\n-rw-r--r-- 1 root root  1127 May 19 00:36 combine_dose_response.py\\n-rw-r--r-- 1 root root  2659 May 19 00:36 plot_dose_response.py\\n-rw-r--r-- 1 root root 19002 May 19 00:08 dose_response_curve.py\\n-rw-r--r-- 1 root root  7788 May 18 23:12 permutation_test_I2.py\\n-rw-r--r-- 1 root root 13274 May 18 22:01 action_trajectory_extended_analysis.py\\n-rw-r--r-- 1 root root 18187 May 18 21:42 action_trajectory_L13_ablation.py\\n-rw-r--r-- 1 root root 18089 May 18 21:39 action_trajectory_L8_ablation.py\\n-rw-r--r-- 1 root root  7033 May 18 19:53 behavioral_sr_validation.py\\n-rw-r--r-- 1 root root  1543 May 18 19:52 sr_debug5.py\\n-rw-r--r-- 1 root root  2032 May 18 19:51 sr_debug4.py\\n-rw-r--r-- 1 root root 11062 May 18 19:50 behavioral_pilot_v2.py\\n-rw-r--r-- 1 root root 18490 May 18 19:49 action_trajectory_control.py\\n-rw-r--r-- 1 root root  258
 …[truncated 6441 chars]
@@ -14180,7 +14050,7 @@ _source line 436 · 2026-05-19T17:18:38.426618+00:00_
 
 ### Tool call
 
-_source line 437 · 2026-05-19T17:18:43.647223+00:00_
+_source line 435 · 2026-05-19T17:18:43.647223+00:00_
 
 called Read
 
@@ -14214,7 +14084,7 @@ called Read
 
 ### Tool result
 
-_source line 438 · 2026-05-19T17:18:43.697974+00:00_
+_source line 436 · 2026-05-19T17:18:43.697974+00:00_
 
 1	{
 2	  "raw": "## 验证结果汇总\n\n**TracVLA-Phi3V checkpoint 全部 5 步验证通过。**\n\n### Step 1: 下载 ✅\n两个 shards 完整下载到 `/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/` (7.9GB)\n\n### Step 2: 架构参数 ✅\n- 32 layers, 32 heads, hidden=3072, vocab=32064\n- 与 OpenVLA-7B 同为 full MHA (非 GQA), 同 vocab_size\n- 关键差异: 融合 `qkv_proj` 而非分离 q/k/v proj; 用 CLIP 而非 DINOSigLIP\n\n### Step 3: 推理验证 ✅\n- 模型加载到 cuda:1, bf16, ~7.8GB 显存\n- 生成 7 个 action token → 256-bin 离散化解码正确\n- token ids `[31835, 31918, ...]` → discretized `[228, 145, 145, 254, 233, 159, 191]`\n\n### Step 4: Attention 提取 ✅\n- `output_attentions=True` + `eager` attention → 32 层 attention 矩阵 `(1, 32, seq, seq)`\n- Attention row sum = 1.0000\n- `generate()` 也能返回逐步 attention (用于 routing 分析)\n\n### Step 5: Blockers\n- 使用 `tracevla-phi3v` (非 gated) 替代 `openvla_phi3v` (gated), 架构完全一致\n- 环境依赖: **transformers 4.48.3** (不能用 5.x), tokenizers ≥0.21\n- 注意融合 QKV: 做 routing 分析提取单独的 Q/K/V 时需要 split `qkv_proj` 输出 (dim 按 `3 * hidden_size` 切分)"
@@ -14238,7 +14108,7 @@ _source line 438 · 2026-05-19T17:18:43.697974+00:00_
 
 ### Tool call
 
-_source line 439 · 2026-05-19T17:19:25.650114+00:00_
+_source line 437 · 2026-05-19T17:19:25.650114+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14274,7 +14144,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 440 · 2026-05-19T17:19:29.418028+00:00_
+_source line 438 · 2026-05-19T17:19:29.418028+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -14296,7 +14166,7 @@ _source line 440 · 2026-05-19T17:19:29.418028+00:00_
 
 ### Assistant
 
-_source line 441 · 2026-05-19T17:19:32.026236+00:00_
+_source line 439 · 2026-05-19T17:19:32.026236+00:00_
 
 服务器上没有 phi3v 文件。Worker 可能做了本地调研或代码准备。检查本地 workspace。
 
@@ -14323,7 +14193,7 @@ _source line 441 · 2026-05-19T17:19:32.026236+00:00_
 
 ### User
 
-_source line 442 · 2026-05-19T17:26:41.528618+00:00_
+_source line 440 · 2026-05-19T17:26:41.528618+00:00_
 
 [系统通知 — worker_done:worker_exp_official_checkpoint_sr_test_20260519T170946]:
 Worker worker_exp_official_checkpoint_sr_test_20260519T170946 已完成（status=done），请审查 Agent 的处理结果。
@@ -14345,7 +14215,7 @@ Worker worker_exp_official_checkpoint_sr_test_20260519T170946 已完成（status
 
 ### Tool call
 
-_source line 443 · 2026-05-19T17:26:49.007285+00:00_
+_source line 441 · 2026-05-19T17:26:49.007285+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14383,7 +14253,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 444 · 2026-05-19T17:26:49.309202+00:00_
+_source line 442 · 2026-05-19T17:26:49.309202+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"closedloop_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:07:32.792Z\", \"updated_at\": \"2026-05-19T17:08:39.446Z\", \"hypothesis\": \"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"diagnostic pipeline - 6 bugs found and fixed\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 9, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/vla-ssd/scripts/sr_official_pipeline.py\"}, \"completed_at\": \"2026-05-19T17:08:34.305Z\", \"metrics\": {\"sr_before_fix\": \"0/3\", \"sr_after_fix\": \"0/9\", \"bugs_found\": 6, \"l1_action_error\": \"0.26-0.43\"}}, \"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-
 …[truncated 703 chars]
@@ -14406,7 +14276,7 @@ _source line 444 · 2026-05-19T17:26:49.309202+00:00_
 
 ### Tool call
 
-_source line 445 · 2026-05-19T17:26:55.031542+00:00_
+_source line 443 · 2026-05-19T17:26:55.031542+00:00_
 
 called Bash
 
@@ -14442,7 +14312,7 @@ called Bash
 
 ### Tool result
 
-_source line 446 · 2026-05-19T17:26:55.534749+00:00_
+_source line 444 · 2026-05-19T17:26:55.534749+00:00_
 
 (Bash completed with no output)
 
@@ -14464,7 +14334,7 @@ _source line 446 · 2026-05-19T17:26:55.534749+00:00_
 
 ### Tool call
 
-_source line 447 · 2026-05-19T17:26:55.535215+00:00_
+_source line 445 · 2026-05-19T17:26:55.535215+00:00_
 
 called Bash
 
@@ -14500,7 +14370,7 @@ called Bash
 
 ### Tool result
 
-_source line 448 · 2026-05-19T17:26:55.585663+00:00_
+_source line 446 · 2026-05-19T17:26:55.585663+00:00_
 
 total 2160
 -rw-r--r-- 1 ubuntu ubuntu   6541 May 19 17:04 closedloop_diagnosis.md
@@ -14526,7 +14396,7 @@ total 2160
 
 ### Tool call
 
-_source line 449 · 2026-05-19T17:27:00.153335+00:00_
+_source line 447 · 2026-05-19T17:27:00.153335+00:00_
 
 called Read
 
@@ -14560,7 +14430,7 @@ called Read
 
 ### Tool result
 
-_source line 450 · 2026-05-19T17:27:00.204175+00:00_
+_source line 448 · 2026-05-19T17:27:00.204175+00:00_
 
 1	{
 2	  "raw": "## 结果\n\n**OVERALL SR = 0.00 (0/15)**\n\n| Task | Name | SR |\n|------|------|----|\n| 0 | open_the_middle_drawer_of_the_cabinet | 0/5 |\n| 3 | open_the_top_drawer_and_put_the_bowl_inside | 0/5 |\n| 7 | turn_on_the_stove | 0/5 |\n\n所有 15 个 episode 全部跑满 400 步，R=0.000，没有任何一个 episode 获得部分奖励。\n\n**关键日志观察**：\n- Action 输出范围合理（[-1, 1]），gripper 在 -1/+1 间切换\n- 每个 episode ~57s（400步），说明推理速度正常\n- 不同 seed 没有产生任何差异——模型在所有初始条件下都无法完成任务\n\n**Path B 彻底死亡。** 官方 checkpoint 在我们的 LIBERO 环境中 SR=0，这意味着要么环境/管线还有我们未发现的不兼容问题，要么 OpenVLA 在这些特定 task 上本身就很弱。无论哪种情况，Path B 作为闭环评估管线已不可行。"
@@ -14584,7 +14454,7 @@ _source line 450 · 2026-05-19T17:27:00.204175+00:00_
 
 ### Tool call
 
-_source line 451 · 2026-05-19T17:27:33.856046+00:00_
+_source line 449 · 2026-05-19T17:27:33.856046+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -14620,7 +14490,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 452 · 2026-05-19T17:27:37.569693+00:00_
+_source line 450 · 2026-05-19T17:27:37.569693+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -14642,7 +14512,7 @@ _source line 452 · 2026-05-19T17:27:37.569693+00:00_
 
 ### Assistant
 
-_source line 453 · 2026-05-19T17:27:39.707209+00:00_
+_source line 451 · 2026-05-19T17:27:39.707209+00:00_
 
 No registry entry or new artifact. Worker 结果可能在 log 文件中。
 
@@ -14669,7 +14539,7 @@ No registry entry or new artifact. Worker 结果可能在 log 文件中。
 
 ### User
 
-_source line 454 · 2026-05-19T17:39:11.999384+00:00_
+_source line 452 · 2026-05-19T17:39:11.999384+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_analysis_pipeline_20260519T173115]:
 Worker worker_code_phi3v_analysis_pipeline_20260519T173115 已完成（status=failed），请审查 Agent 的处理结果。
@@ -14691,7 +14561,7 @@ Worker worker_code_phi3v_analysis_pipeline_20260519T173115 已完成（status=fa
 
 ### Tool call
 
-_source line 455 · 2026-05-19T17:39:28.462118+00:00_
+_source line 453 · 2026-05-19T17:39:28.462118+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -14729,7 +14599,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 456 · 2026-05-19T17:39:28.512822+00:00_
+_source line 454 · 2026-05-19T17:39:28.512822+00:00_
 
 called Read
 
@@ -14763,7 +14633,7 @@ called Read
 
 ### Tool result
 
-_source line 457 · 2026-05-19T17:39:28.866173+00:00_
+_source line 455 · 2026-05-19T17:39:28.866173+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"closedloop_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:07:32.792Z\", \"updated_at\": \"2026-05-19T17:08:39.446Z\", \"hypothesis\": \"SR=0/3 in behavioral smoketest is caused by pipeline bugs (image preprocessing, action normalization), not model quality. Fixing these bugs will yield non-zero success rate.\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"diagnostic pipeline - 6 bugs found and fixed\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 9, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/vla-ssd/scripts/sr_official_pipeline.py\"}, \"completed_at\": \"2026-05-19T17:08:34.305Z\", \"metrics\": {\"sr_before_fix\": \"0/3\", \"sr_after_fix\": \"0/9\", \"bugs_found\": 6, \"l1_action_error\": \"0.26-0.43\"}}, \"finetuned_probe_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:29:17.138Z\", \"updated_at\": \"2026-05-19T08:05:29.436Z\", \"hypothesis\": \"LIBERO fine-tuned model maintains L1=100% instruction classification despite losing L31 exit engagement (0 instruction-dominant heads), demonstrating that entry-only routing at L1 is sufficient to maintain instruction access throughout the network.\", \"spec\": {\"command\": \"/root/miniconda3/envs/libero/bin/python scripts/libero_finetuned_probe_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b-finetuned-libero-goal/\", \"log_path\": \"/root/autodl-
 …[truncated 2172 chars]
@@ -14786,7 +14656,7 @@ _source line 457 · 2026-05-19T17:39:28.866173+00:00_
 
 ### Tool result
 
-_source line 458 · 2026-05-19T17:39:28.916835+00:00_
+_source line 456 · 2026-05-19T17:39:28.916835+00:00_
 
 1	# Handover — 2026-05-19
 2	
@@ -14830,7 +14700,7 @@ _source line 458 · 2026-05-19T17:39:28.916835+00:00_
 
 ### Tool call
 
-_source line 459 · 2026-05-19T17:39:32.683266+00:00_
+_source line 457 · 2026-05-19T17:39:32.683266+00:00_
 
 called Read
 
@@ -14864,7 +14734,7 @@ called Read
 
 ### Tool result
 
-_source line 460 · 2026-05-19T17:39:32.683703+00:00_
+_source line 458 · 2026-05-19T17:39:32.683703+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/reviewer_7b0fefde.
 
@@ -14886,7 +14756,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 461 · 2026-05-19T17:39:36.715397+00:00_
+_source line 459 · 2026-05-19T17:39:36.715397+00:00_
 
 called Bash
 
@@ -14922,7 +14792,7 @@ called Bash
 
 ### Tool result
 
-_source line 462 · 2026-05-19T17:39:36.919530+00:00_
+_source line 460 · 2026-05-19T17:39:36.919530+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu  436289 May 19 17:35 worker_code_phi3v_analysis_pipeline_20260519T173115.log
 -rw-r--r-- 1 ubuntu ubuntu    1227 May 19 17:18 worker_code_phi3v_checkpoint_verify_20260519T164210_result.json
@@ -14946,7 +14816,7 @@ _source line 462 · 2026-05-19T17:39:36.919530+00:00_
 
 ### Tool call
 
-_source line 463 · 2026-05-19T17:39:42.597980+00:00_
+_source line 461 · 2026-05-19T17:39:42.597980+00:00_
 
 called Bash
 
@@ -14982,7 +14852,7 @@ called Bash
 
 ### Tool result
 
-_source line 464 · 2026-05-19T17:39:42.650531+00:00_
+_source line 462 · 2026-05-19T17:39:42.650531+00:00_
 
 &lt;persisted-output>
 Output too large (423.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-reviewer-7b0fefde/2ab22121-e01f-4b40-991c-65244a081251/tool-results/ba4uafa68.txt
@@ -15009,7 +14879,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 465 · 2026-05-19T17:39:46.315126+00:00_
+_source line 463 · 2026-05-19T17:39:46.315126+00:00_
 
 called Bash
 
@@ -15045,7 +14915,7 @@ called Bash
 
 ### Tool result
 
-_source line 466 · 2026-05-19T17:39:46.416379+00:00_
+_source line 464 · 2026-05-19T17:39:46.416379+00:00_
 
 &lt;persisted-output>
 Output too large (316.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-reviewer-7b0fefde/2ab22121-e01f-4b40-991c-65244a081251/tool-results/bftvrpxvf.txt
@@ -15073,7 +14943,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 467 · 2026-05-19T17:39:53.459083+00:00_
+_source line 465 · 2026-05-19T17:39:53.459083+00:00_
 
 called Bash
 
@@ -15109,7 +14979,7 @@ called Bash
 
 ### Tool result
 
-_source line 468 · 2026-05-19T17:39:53.560399+00:00_
+_source line 466 · 2026-05-19T17:39:53.560399+00:00_
 
 TOOL: mcp__agent-ml-research__ssh_read_only({"server": "westd-19183", "command": "cat /root/vla-ssd/scripts/cross_instruction_classify_full.py"})
 ---
@@ -15158,7 +15028,7 @@ TOOL: mcp__agent-ml-research__ssh_read_only({"server": "westd-19183", "command":
 
 ### Tool call
 
-_source line 469 · 2026-05-19T17:40:00.394715+00:00_
+_source line 467 · 2026-05-19T17:40:00.394715+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -15194,7 +15064,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 470 · 2026-05-19T17:40:01.453131+00:00_
+_source line 468 · 2026-05-19T17:40:01.453131+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
 
@@ -15216,7 +15086,7 @@ _source line 470 · 2026-05-19T17:40:01.453131+00:00_
 
 ### Tool call
 
-_source line 471 · 2026-05-19T17:40:29.479392+00:00_
+_source line 469 · 2026-05-19T17:40:29.479392+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15252,7 +15122,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 472 · 2026-05-19T17:40:33.450339+00:00_
+_source line 470 · 2026-05-19T17:40:33.450339+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -15274,7 +15144,7 @@ _source line 472 · 2026-05-19T17:40:33.450339+00:00_
 
 ### Assistant
 
-_source line 473 · 2026-05-19T17:40:35.756363+00:00_
+_source line 471 · 2026-05-19T17:40:35.756363+00:00_
 
 没有 result.json（worker 失败）。读日志尾部找错误原因。
 
@@ -15301,7 +15171,7 @@ _source line 473 · 2026-05-19T17:40:35.756363+00:00_
 
 ### User
 
-_source line 474 · 2026-05-19T17:43:58.566831+00:00_
+_source line 472 · 2026-05-19T17:43:58.566831+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：D080: Path B 关闭，全资源转 Path A Phi3V 分析），请审查研究方向和计划的合理性。
@@ -15323,7 +15193,7 @@ _source line 474 · 2026-05-19T17:43:58.566831+00:00_
 
 ### Tool call
 
-_source line 475 · 2026-05-19T17:44:05.568733+00:00_
+_source line 473 · 2026-05-19T17:44:05.568733+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -15357,7 +15227,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 476 · 2026-05-19T17:44:05.619499+00:00_
+_source line 474 · 2026-05-19T17:44:05.619499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 17:43 UTC | 更新原因: D080: Path B 关闭，全资源转 Path A Phi3V 分析\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning primarily reorganizes instruction routing (entry-exit L1+L31 pattern). Distributed L1 routing. Task-specific fine-tuning sharpens to entry-only.\\n\\n## 当前阶段\\n**ACTIVE — Path A 全速推进：TracVLA-Phi3V attention profile 分析。目标 7/10。**\\n\\n## Score: 6.0-6.7/10 → 目标 7.0+\\n- 审稿人说到 7 需要：第二个 VLA 或 closed-loop 验证\\n- Path B（闭环）三连证伪后彻底关闭（D080）\\n- Path A（第二 VLA: TracVLA-Phi3V）全速推进中\\n\\n## 进行中\\n- [ ] **cuda:0** — TracVLA-Phi3V trained attention profile extraction\\n- [ ] **cuda:1** — TracVLA-Phi3V untrained baseline attention profile extraction\\n- [ ] 提取完成后：对比 OpenVLA L1 routing pattern 是否在 Phi3V 复现\\n\\n## 已关闭\\n- [x] ~~Path B: 闭环验证~~ — D080 关闭。三连证伪：fine-tuned 0/9 → 修 bug 后 0/9 → 官方 checkpoint 0/15。OpenVLA 256-bin 离散化精度不足。\\n\\n## GPU 预算\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。Manager 批准 DDL 前无限制使用。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D080 | 2026-05-19 | Path B 彻底关闭，全资源转 Path A (TracVLA-Phi3V attention p | official_checkpoint_sr_test, closedloop_diagnosis, behavioral_smoketest |\\n| D079 | 2026-05-19 | D079: 用 TracVLA-Phi3V 做第二 VLA 分析，接受模型身份偏差（trace au | phi3v_checkpoint_verify |\\n| D078 | 2026-05-19 | D078: 闭环路径正式关闭——6 个管线 bug 修复后 SR 仍 0/9，模型动作精度不足。全部 | behavioral_smoketest, closedloop_diagnosis |\\n| D077 | 2026-05-19 | D077: 用户指令——启动第二 VLA + 闭环验证两条升分路径，充分利用 GPU，不够找 Man | behavioral_smoketest, matched_ablation_controls |\\n| D076 | 2026-05-19 | D076: 零 GPU 提分计划——5 项文本/结构改进，预期 +0.3-0.5 分 | task_complexity_routing, dose_response_curve, matched_ablation_controls |\\n| D075 | 2026-05-19 | D075: 4 条件训练轨迹发现 L31 exit collapse — positive refr | libero_f
 …[truncated 607 chars]
@@ -15380,7 +15250,7 @@ _source line 476 · 2026-05-19T17:44:05.619499+00:00_
 
 ### Tool call
 
-_source line 477 · 2026-05-19T17:44:09.346614+00:00_
+_source line 475 · 2026-05-19T17:44:09.346614+00:00_
 
 called Bash
 
@@ -15416,7 +15286,7 @@ called Bash
 
 ### Tool result
 
-_source line 478 · 2026-05-19T17:44:09.548761+00:00_
+_source line 476 · 2026-05-19T17:44:09.548761+00:00_
 
 - id: D079
   date: 2026-05-19 17:20 UTC
@@ -15468,7 +15338,7 @@ _source line 478 · 2026-05-19T17:44:09.548761+00:00_
 
 ### Tool call
 
-_source line 479 · 2026-05-19T17:44:23.531745+00:00_
+_source line 477 · 2026-05-19T17:44:23.531745+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -15504,7 +15374,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 480 · 2026-05-19T17:44:27.851083+00:00_
+_source line 478 · 2026-05-19T17:44:27.851083+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -15533,7 +15403,7 @@ _source line 480 · 2026-05-19T17:44:27.851083+00:00_
 
 ### User
 
-_source line 481 · 2026-05-19T17:53:09.581477+00:00_
+_source line 479 · 2026-05-19T17:53:09.581477+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_attention_profile_20260519T174425]:
 Worker worker_code_phi3v_attention_profile_20260519T174425 已完成（status=done），请审查 Agent 的处理结果。
@@ -15555,7 +15425,7 @@ Worker worker_code_phi3v_attention_profile_20260519T174425 已完成（status=do
 
 ### Tool call
 
-_source line 482 · 2026-05-19T17:53:17.578275+00:00_
+_source line 480 · 2026-05-19T17:53:17.578275+00:00_
 
 called Read
 
@@ -15589,7 +15459,7 @@ called Read
 
 ### Tool result
 
-_source line 483 · 2026-05-19T17:53:18.080647+00:00_
+_source line 481 · 2026-05-19T17:53:18.080647+00:00_
 
 1	{
 2	  "raw": "完成。结果摘要：\n\n**TracVLA-Phi3V Attention Profile (5 LIBERO-Goal tasks, 32 layers × 32 heads)**\n\n| 层段 | instruction-dominant heads | mean text attn | 模式 |\n|------|--------------------------|----------------|------|\n| L0 | 3/32 | 0.2249 | image-dominant |\n| **L1** | **32/32** | **0.7348** | **全 text-dominant** |\n| **L2** | **32/32** | **0.7807** | **全 text-dominant** |\n| L3-L8 | 0-3/32 | 0.27-0.35 | image-dominant |\n| L9-L28 | 3-12/32 | 0.33-0.49 | 渐进回升 |\n| L29-L31 | 17-18/32 | 0.52-0.65 | text-dominant 回升 |\n\n注意：实际 image tokens = 313（Phi3V 动态分辨率），非预期的 144。\n\nJSON 输出已保存至 `westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json`，registry 已更新为 DONE。"
@@ -15613,7 +15483,7 @@ _source line 483 · 2026-05-19T17:53:18.080647+00:00_
 
 ### Tool call
 
-_source line 484 · 2026-05-19T17:53:18.231955+00:00_
+_source line 482 · 2026-05-19T17:53:18.231955+00:00_
 
 called Bash
 
@@ -15649,7 +15519,7 @@ called Bash
 
 ### Tool result
 
-_source line 485 · 2026-05-19T17:53:18.433304+00:00_
+_source line 483 · 2026-05-19T17:53:18.433304+00:00_
 
 total 2168
 -rw-r--r-- 1 ubuntu ubuntu  37133 May 19 17:52 manifest.yaml
@@ -15675,7 +15545,7 @@ drwxr-xr-x 3 ubuntu ubuntu   4096 May 19 17:52 phi3v_attention_profile
 
 ### Tool call
 
-_source line 486 · 2026-05-19T17:53:34.385101+00:00_
+_source line 484 · 2026-05-19T17:53:34.385101+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15715,7 +15585,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 487 · 2026-05-19T17:53:34.837281+00:00_
+_source line 485 · 2026-05-19T17:53:34.837281+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_attention_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:51:12.780Z\", \"updated_at\": \"2026-05-19T17:52:12.025Z\", \"hypothesis\": \"TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 5, \"model_name\": \"tracevla-phi3v\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:52:10.521Z\", \"metrics\": {\"L1_instruction_dominant\": 32, \"L1_mean_text_attn\": 0.7348, \"L2_instruction_dominant\": 32, \"L2_mean_text_attn\": 0.7807, \"L31_instruction_dominant\": 18, \"L31_mean_text_attn\": 0.6478, \"n_tasks\": 5, \"n_img_tokens\": 313}}, \"official_checkpoint_sr_test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:40:46.356Z\", \"updated_at\": \"2026-05-19T17:43:03.201Z\", \"hypothesis\": \"Official OpenVLA checkpoint (not fine-tuned) achieves non-zero SR on LIBERO-Goal tasks, confirming the evaluation pipeline is correct and Path B failure is due to fine-tuning degradation rather than pipeline bugs.\", \"parent\": \"closedloop_diagnosis\", \"spec\": {\"command\": \"python eval_libero.py --ckpt official_openvla --tasks 0,3,7 --episodes 5 --max_steps 400\", \"server\": \"westd-19183\", \"data_path\": \"LIBERO-Goal\", \"data_count\": \"15 episodes (3 tasks x 5 seeds)\", \"model_name\":
 …[truncated 894 chars]
@@ -15738,7 +15608,7 @@ _source line 487 · 2026-05-19T17:53:34.837281+00:00_
 
 ### Tool call
 
-_source line 488 · 2026-05-19T17:53:34.988971+00:00_
+_source line 486 · 2026-05-19T17:53:34.988971+00:00_
 
 called Bash
 
@@ -15774,7 +15644,7 @@ called Bash
 
 ### Tool result
 
-_source line 489 · 2026-05-19T17:53:35.041769+00:00_
+_source line 487 · 2026-05-19T17:53:35.041769+00:00_
 
 total 12
 drwxr-xr-x  3 ubuntu ubuntu 4096 May 19 17:52 .
@@ -15799,7 +15669,7 @@ drwxr-xr-x  2 ubuntu ubuntu 4096 May 19 17:52 data
 
 ### Tool call
 
-_source line 490 · 2026-05-19T17:53:38.165154+00:00_
+_source line 488 · 2026-05-19T17:53:38.165154+00:00_
 
 called Bash
 
@@ -15835,7 +15705,7 @@ called Bash
 
 ### Tool result
 
-_source line 491 · 2026-05-19T17:53:38.229076+00:00_
+_source line 489 · 2026-05-19T17:53:38.229076+00:00_
 
 phi3v_attention_profile_pointer.txt
 
@@ -15857,7 +15727,7 @@ phi3v_attention_profile_pointer.txt
 
 ### Tool call
 
-_source line 492 · 2026-05-19T17:53:41.041969+00:00_
+_source line 490 · 2026-05-19T17:53:41.041969+00:00_
 
 called Read
 
@@ -15891,7 +15761,7 @@ called Read
 
 ### Tool result
 
-_source line 493 · 2026-05-19T17:53:41.092535+00:00_
+_source line 491 · 2026-05-19T17:53:41.092535+00:00_
 
 1	See remote: westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json
 
@@ -15913,7 +15783,7 @@ _source line 493 · 2026-05-19T17:53:41.092535+00:00_
 
 ### Tool call
 
-_source line 494 · 2026-05-19T17:53:44.957238+00:00_
+_source line 492 · 2026-05-19T17:53:44.957238+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -15949,7 +15819,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 495 · 2026-05-19T17:53:46.218477+00:00_
+_source line 493 · 2026-05-19T17:53:46.218477+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2249,\\n      \\\"per_head_text_attention\\\": [\\n        0.1229,\\n        0.1374,\\n        0.2831,\\n        0.1449,\\n        0.0907,\\n        0.1195,\\n        0.5798,\\n        0.1885,\\n        0.1737,\\n        0.147,\\n        0.2087,\\n        0.2087,\\n        0.2272,\\n        0.0758,\\n        0.1339,\\n        0.07,\\n        0.1821,\\n        0.1323,\\n        0.0865,\\n        0.3336,\\n        0.3165,\\n        0.1471,\\n        0.2822,\\n        0.3228,\\n        0.0939,\\n        0.1051,\\n        0.226,\\n        0.7681,\\n        0.6732,\\n        0.1768,\\n        0.1298,\\n        0.3087\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7348,\\n      \\\"per_head_text_attention\\\": [\\n        0.7447,\\n        0.9206,\\n        0.6545,\\n        0.5974,\\n        0.765,\\n        0.6783,\\n        0.6492,\\n        0.6648,\\n        0.9573,\\n        0.7901,\\n        0.7297,\\n        0.7013,\\n        0.6334,\\n        0.6164,\\n        0.7531,\\n        0.7017,\\n        0.796,\\n        0.7264,\\n        0.6387,\\n        0.8844,\\n        0.8475,\\n        0.6821,\\n        0.5973,\\n        0.8059,\\n        0.7111,\\n        0.5997,\\n        0.8885,\\n        0.6573,\\n        0.8089,\\n        0.8624,\\n        0.7408,\\n        0.7078\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7807,\\n      \\\"per_head_text_attention\\\": [\\n        0.7243,\\n        0.865,\\n        0.6872,\\n        0.6697,\\n        0.8581,\\n        0.7887,\\n        0.8916,\\n        0.8637,\\n        0.894,\\n        0.6582,\
 …[truncated 7487 chars]
@@ -15972,7 +15842,7 @@ _source line 495 · 2026-05-19T17:53:46.218477+00:00_
 
 ### Tool call
 
-_source line 496 · 2026-05-19T17:54:35.956031+00:00_
+_source line 494 · 2026-05-19T17:54:35.956031+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16008,7 +15878,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 497 · 2026-05-19T17:54:39.678092+00:00_
+_source line 495 · 2026-05-19T17:54:39.678092+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -16030,7 +15900,7 @@ _source line 497 · 2026-05-19T17:54:39.678092+00:00_
 
 ### Assistant
 
-_source line 498 · 2026-05-19T17:54:45.841529+00:00_
+_source line 496 · 2026-05-19T17:54:45.841529+00:00_
 
 远程数据。独立核实 JSON 结果。
 
@@ -16057,7 +15927,7 @@ _source line 498 · 2026-05-19T17:54:45.841529+00:00_
 
 ### User
 
-_source line 499 · 2026-05-19T18:01:40.794906+00:00_
+_source line 497 · 2026-05-19T18:01:40.794906+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_attention_untrained_20260519T174812]:
 Worker worker_code_phi3v_attention_untrained_20260519T174812 已完成（status=done），请审查 Agent 的处理结果。
@@ -16079,7 +15949,7 @@ Worker worker_code_phi3v_attention_untrained_20260519T174812 已完成（status=
 
 ### Tool call
 
-_source line 500 · 2026-05-19T18:01:48.762761+00:00_
+_source line 498 · 2026-05-19T18:01:48.762761+00:00_
 
 called Read
 
@@ -16113,7 +15983,7 @@ called Read
 
 ### Tool result
 
-_source line 501 · 2026-05-19T18:01:48.866188+00:00_
+_source line 499 · 2026-05-19T18:01:48.866188+00:00_
 
 1	{
 2	  "raw": "实验完成。结果总结：\n\n**Phi3V Untrained Attention Profile — 假设被否定**\n\n| | Untrained (base Phi-3-instruct) | Trained (TracVLA-Phi3V) |\n|---|---|---|\n| L1 dominant heads | **28/32** | 32/32 |\n| L1 mean_text_attn | **0.7745** | 0.7348 |\n\nVLA 训练仅增加 4 个 dominant heads (28→32)，mean_text_attn 反而略降。与 OpenVLA 的 0→24 形成鲜明对比。\n\n原因：Phi-3-mini-4k-**instruct** 已经过 instruction tuning，L1 的 instruction-dominant routing 大部分是从 instruction tuning 继承的，不是 VLA 训练学到的。OpenVLA 用的是 Llama-2 **base**（未经 instruction tuning），所以 untrained=0。\n\n脚本：`westd-19183:/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py`\n结果：`westd-19183:/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json`\nRegistry: `phi3v_attention_untrained` → DONE (negative)"
@@ -16137,7 +16007,7 @@ _source line 501 · 2026-05-19T18:01:48.866188+00:00_
 
 ### Tool call
 
-_source line 502 · 2026-05-19T18:02:10.742191+00:00_
+_source line 500 · 2026-05-19T18:02:10.742191+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -16173,7 +16043,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 503 · 2026-05-19T18:02:11.647320+00:00_
+_source line 501 · 2026-05-19T18:02:11.647320+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16213,7 +16083,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 504 · 2026-05-19T18:02:11.898717+00:00_
+_source line 502 · 2026-05-19T18:02:11.898717+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
 
@@ -16235,7 +16105,7 @@ _source line 504 · 2026-05-19T18:02:11.898717+00:00_
 
 ### Tool result
 
-_source line 505 · 2026-05-19T18:02:12.201575+00:00_
+_source line 503 · 2026-05-19T18:02:12.201575+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_attention_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:41.488Z\", \"updated_at\": \"2026-05-19T18:00:43.363Z\", \"hypothesis\": \"Base Phi-3-mini (before VLA training) does NOT show instruction-dominant routing at L1, confirming the pattern is learned during VLA training rather than inherited from the pretrained LLM — paralleling the llama2_base_control result for OpenVLA.\", \"parent\": \"llama2_base_control\", \"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-19T17:47:49.102Z\"}, \"metrics\": {\"L1_instruction_dominant_heads\": 28, \"L1_total_heads\": 32, \"L1_mean_text_attn\": 0.7745, \"L1_mean_image_attn\": 0.2255, \"L0_instruction_dominant_heads\": 3, \"all_layers_avg_dominant_heads\": 27.1, \"note\": \"Base Phi-3-mini-4k-instruct (instruction-tuned) already shows strong text-dominant attention. 28/32 at L1 vs trained TracVLA (compare when available). Unlike OpenVLA untrained=0, Phi-3-instruct has pre-existing instruction routing.\"}, \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/attention/phi3v_untrained_attention_profile.json\", \"log_path\": \"/root/vla-ssd/scripts/phi3v_attention_profile_untrained.py\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T18:00:43.363Z\"}, \"phi3v_attention_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:46:40.348Z\", \"updated_at\": \"2026-05-19T17:54:01.274Z\", \"hypothesis\": \"TracVLA-Phi3V (trained VLA with Phi-3-mini backbone) exhibits L1 instruction-dominant attention routing pattern similar to OpenVLA-7B, demonstrating that instruction routing is a general VLA property not specific to Llama-2 backbone.\", \"parent\": \"libero_finetuned_attention\", \"server\": \"westd-19183\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"westd-19183\", \"gpu\": \"cuda:1
 …[truncated 1096 chars]
@@ -16258,7 +16128,7 @@ _source line 505 · 2026-05-19T18:02:12.201575+00:00_
 
 ### Tool call
 
-_source line 506 · 2026-05-19T18:02:19.330265+00:00_
+_source line 504 · 2026-05-19T18:02:19.330265+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -16294,7 +16164,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 507 · 2026-05-19T18:02:19.380838+00:00_
+_source line 505 · 2026-05-19T18:02:19.380838+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -16316,7 +16186,7 @@ _source line 507 · 2026-05-19T18:02:19.380838+00:00_
 
 ### Tool call
 
-_source line 508 · 2026-05-19T18:02:23.346436+00:00_
+_source line 506 · 2026-05-19T18:02:23.346436+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -16352,7 +16222,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 509 · 2026-05-19T18:02:23.798524+00:00_
+_source line 507 · 2026-05-19T18:02:23.798524+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 10,\\n      \\\"instruction_dominant_heads\\\": 18,\\n      \\\"instruction_dominant_heads\\\": 23,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 31,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 29,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"instruction_dominant_heads\\\": 30,\\n      \\\"instruction_dominant_heads\\\": 31,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -16374,7 +16244,7 @@ _source line 509 · 2026-05-19T18:02:23.798524+00:00_
 
 ### Tool call
 
-_source line 510 · 2026-05-19T18:03:17.647775+00:00_
+_source line 508 · 2026-05-19T18:03:17.647775+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16410,7 +16280,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 511 · 2026-05-19T18:03:21.414261+00:00_
+_source line 509 · 2026-05-19T18:03:21.414261+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -16432,7 +16302,7 @@ _source line 511 · 2026-05-19T18:03:21.414261+00:00_
 
 ### Assistant
 
-_source line 512 · 2026-05-19T18:03:24.451390+00:00_
+_source line 510 · 2026-05-19T18:03:24.451390+00:00_
 
 需要看 untrained 的完整 32 层数据，特别是 exit 层。
 
@@ -16459,7 +16329,7 @@ _source line 512 · 2026-05-19T18:03:24.451390+00:00_
 
 ### User
 
-_source line 513 · 2026-05-19T18:18:05.238683+00:00_
+_source line 511 · 2026-05-19T18:18:05.238683+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_probe_trained_20260519T180554]:
 Worker worker_code_phi3v_probe_trained_20260519T180554 已完成（status=done），请审查 Agent 的处理结果。
@@ -16481,7 +16351,7 @@ Worker worker_code_phi3v_probe_trained_20260519T180554 已完成（status=done�
 
 ### Tool call
 
-_source line 514 · 2026-05-19T18:18:14.544093+00:00_
+_source line 512 · 2026-05-19T18:18:14.544093+00:00_
 
 called Read
 
@@ -16515,7 +16385,7 @@ called Read
 
 ### Tool result
 
-_source line 515 · 2026-05-19T18:18:14.544449+00:00_
+_source line 513 · 2026-05-19T18:18:14.544449+00:00_
 
 1	{
 2	  "raw": "全部完成。结果汇总：\n\n## Phi3V Trained Cross-Instruction 10-way Probe 结果\n\n| Token Position | L0 | L1 | L2-L31 |\n|---|---|---|---|\n| **image_mean** | 0.10 | 0.10 | 0.095-0.103 (chance) |\n| **last_preaction** | 0.10 | **0.836** | **1.000** |\n\n**C1 readout pattern 完全确认**：\n- `last_preaction`：L2 起 100%，L1 已达 83.6%\n- `image_mean`：全 32 层均为 chance level (~10%)\n- 与 OpenVLA (Llama-2 7B) 的 pattern 一致，跨架构泛化成立\n\n输出文件：\n- HDF5: `westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_cross_inst.h5` (1883 MB)\n- JSON: `westd-19183:/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_trained_probe_results.json`\n- Registry: `phi3v_probe_trained` → DONE (success)"
@@ -16539,7 +16409,7 @@ _source line 515 · 2026-05-19T18:18:14.544449+00:00_
 
 ### Tool call
 
-_source line 516 · 2026-05-19T18:18:29.012943+00:00_
+_source line 514 · 2026-05-19T18:18:29.012943+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16579,7 +16449,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 517 · 2026-05-19T18:18:29.366038+00:00_
+_source line 515 · 2026-05-19T18:18:29.366038+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_probe_trained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.161Z\", \"updated_at\": \"2026-05-19T18:17:07.393Z\", \"hypothesis\": \"The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property rather than architecture-specific.\", \"parent\": \"phi3v_attention_trained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/vla-ssd/scripts/phi3v_trained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"tracevla-phi3v-trained\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/\", \"log_path\": \"/tmp/phi3v_cross_inst_probe.log\"}, \"completed_at\": \"2026-05-19T18:17:05.815Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.102, \"last_preaction_L1\": 0.836, \"last_preaction_L2_to_L31\": 1, \"n_classes\": 10, \"train_samples\": 4000, \"test_samples\": 1000}}}, \"count\": 1, \"total\": 100, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3323}}"}
 
@@ -16601,7 +16471,7 @@ _source line 517 · 2026-05-19T18:18:29.366038+00:00_
 
 ### Tool call
 
-_source line 518 · 2026-05-19T18:18:53.878660+00:00_
+_source line 516 · 2026-05-19T18:18:53.878660+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16637,7 +16507,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 519 · 2026-05-19T18:18:57.696445+00:00_
+_source line 517 · 2026-05-19T18:18:57.696445+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -16666,7 +16536,7 @@ _source line 519 · 2026-05-19T18:18:57.696445+00:00_
 
 ### User
 
-_source line 520 · 2026-05-19T18:40:16.158881+00:00_
+_source line 518 · 2026-05-19T18:40:16.158881+00:00_
 
 [系统通知 — worker_done:worker_code_phi3v_probe_untrained_20260519T182430]:
 Worker worker_code_phi3v_probe_untrained_20260519T182430 已完成（status=done），请审查 Agent 的处理结果。
@@ -16688,7 +16558,7 @@ Worker worker_code_phi3v_probe_untrained_20260519T182430 已完成（status=done
 
 ### Tool call
 
-_source line 521 · 2026-05-19T18:40:23.608796+00:00_
+_source line 519 · 2026-05-19T18:40:23.608796+00:00_
 
 called Read
 
@@ -16722,7 +16592,7 @@ called Read
 
 ### Tool result
 
-_source line 522 · 2026-05-19T18:40:23.659456+00:00_
+_source line 520 · 2026-05-19T18:40:23.659456+00:00_
 
 1	{
 2	  "raw": "全部完成。结果汇总：\n\n**Untrained (base Phi-3-instruct) vs Trained 对比：**\n\n| Position | Layer | Untrained | Trained |\n|---|---|---|---|\n| **last_preaction** | L0 | 10% | 10% |\n| | L1 | **98.1%** | 83.6% |\n| | L2-L31 | **100%** | 100% |\n| **image_mean** | L0-L31 | ~10% | ~10% |\n\n关键发现：\n- **last_preaction**: untrained 从 L1 就达到 98.1%（甚至高于 trained 的 83.6%），L2+ 完全 100%。instruction routing 完全继承自 base Phi-3 的 instruction tuning，VLA 训练未创造此能力。\n- **image_mean**: 两个条件均为 chance（~10%），instruction 信息从未写入 image token 均值。\n- **Untrained L1 > Trained L1**: 这暗示 VLA 训练轻微扰动了 L1 的 instruction routing（83.6% vs 98.1%），但 L2+ 不受影响。\n\n输出文件：\n- HDF5: `/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5` (1.9 GB)\n- JSON: `/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_probe_results.json`\n- Registry: `phi3v_probe_untrained` → DONE (success)"
@@ -16746,7 +16616,7 @@ _source line 522 · 2026-05-19T18:40:23.659456+00:00_
 
 ### Tool call
 
-_source line 523 · 2026-05-19T18:40:27.237600+00:00_
+_source line 521 · 2026-05-19T18:40:27.237600+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16786,7 +16656,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 524 · 2026-05-19T18:40:27.641083+00:00_
+_source line 522 · 2026-05-19T18:40:27.641083+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_probe_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.888Z\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"hypothesis\": \"Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.\", \"parent\": \"phi3v_attention_untrained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"phi3v-untrained-base-instruct\", \"seed\": 42, \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5\", \"log_path\": \"/tmp/phi3v_untrained_cross_inst.log\"}, \"completed_at\": \"2026-05-19T18:39:27.410Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}}, \"count\": 1, \"total\": 101, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3539}}"}
 
@@ -16808,7 +16678,7 @@ _source line 524 · 2026-05-19T18:40:27.641083+00:00_
 
 ### Tool call
 
-_source line 525 · 2026-05-19T18:41:05.099071+00:00_
+_source line 523 · 2026-05-19T18:41:05.099071+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16844,7 +16714,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 526 · 2026-05-19T18:41:08.813656+00:00_
+_source line 524 · 2026-05-19T18:41:08.813656+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -16873,7 +16743,7 @@ _source line 526 · 2026-05-19T18:41:08.813656+00:00_
 
 ### User
 
-_source line 527 · 2026-05-19T18:41:47.680467+00:00_
+_source line 525 · 2026-05-19T18:41:47.680467+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Phi3V 四项分析全部完成，Paper Agent 集成中），请审查研究方向和计划的合理性。
@@ -16895,7 +16765,7 @@ _source line 527 · 2026-05-19T18:41:47.680467+00:00_
 
 ### Tool call
 
-_source line 528 · 2026-05-19T18:41:53.337609+00:00_
+_source line 526 · 2026-05-19T18:41:53.337609+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -16929,7 +16799,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 529 · 2026-05-19T18:41:53.438579+00:00_
+_source line 527 · 2026-05-19T18:41:53.438579+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 18:41 UTC | 更新原因: Phi3V 四项分析全部完成，Paper Agent 集成中\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning produces convergent entry-exit routing architecture regardless of starting LLM routing state. Two opposing pathways (adding vs suppressing) converge to same bookend pattern.\\n\\n## 当前阶段\\n**ACTIVE — Phi3V 分析完成，Paper Agent 正在集成结果。目标 7/10。**\\n\\n## Score: 6.0-6.7 → 目标 7.0+\\n- D083: Framing 升级为 convergent architecture through opposing pathways\\n- Phi3V 四项分析全部完成（attention trained/untrained + probe trained/untrained）\\n- Paper Agent 正在写入 cross-architecture 段落\\n- 6 条件总表 = 论文 crown jewel\\n\\n## 已完成（Path A — 第二 VLA）\\n- [x] phi3v_attention_trained: L1 32/32, 73.5% — 比 OpenVLA 更强 ✅\\n- [x] phi3v_attention_untrained: L1 28/32, 全层分布 → VLA 训练后中层抑制 ✅\\n- [x] phi3v_probe_trained: readout L1=83.6%, L2+=100%, image=chance ✅\\n- [x] phi3v_probe_untrained: readout L1=98.1%, L2+=100%, image=chance ✅\\n- [x] L1 反转发现：probe ↓ 但 attention heads ↑ = representational reorganization\\n\\n## 进行中\\n- [ ] Paper Agent 集成 cross-architecture 段落 + L1 反转讨论\\n- [ ] 集成完成后提交审稿\\n\\n## 已关闭\\n- [x] ~~Path B: 闭环验证~~ — D080。三连证伪。\\n\\n## GPU 预算\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。Manager 批准 DDL 前无限制。当前 2/2 空闲。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D083 | 2026-05-19 | D082 framing 进一步强化：从\\\"convergent property\\\"升级为\\\"conve | phi3v_attention_untrained, phi3v_attention_trained |\\n| D082 | 2026-05-19 | Framing 升级：从\\\"VLA training creates routing\\\"改为\\\"instr | phi3v_attention_untrained, phi3v_attention_trained, llama2_base_control |\\n| D081 | 2026-05-19 | Phi3V L1 routing 复现成功（32/32 vs OpenVLA 24/32），跨架构  | phi3v_attention_trained |\\n| D080 | 2026-05-19 | Path B 彻底关闭，全资源转 
 …[truncated 902 chars]
@@ -16952,7 +16822,7 @@ _source line 529 · 2026-05-19T18:41:53.438579+00:00_
 
 ### Tool call
 
-_source line 530 · 2026-05-19T18:42:06.151085+00:00_
+_source line 528 · 2026-05-19T18:42:06.151085+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -16988,7 +16858,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 531 · 2026-05-19T18:42:09.866109+00:00_
+_source line 529 · 2026-05-19T18:42:09.866109+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -17017,7 +16887,7 @@ _source line 531 · 2026-05-19T18:42:09.866109+00:00_
 
 ### User
 
-_source line 532 · 2026-05-19T18:50:17.489112+00:00_
+_source line 530 · 2026-05-19T18:50:17.489112+00:00_
 
 [系统通知 — worker_done:worker_analysis_action_trajectory_cpu_20260519T184457]:
 Worker worker_analysis_action_trajectory_cpu_20260519T184457 已完成（status=done），请审查 Agent 的处理结果。
@@ -17039,7 +16909,7 @@ Worker worker_analysis_action_trajectory_cpu_20260519T184457 已完成（status=
 
 ### Tool call
 
-_source line 533 · 2026-05-19T18:50:24.785715+00:00_
+_source line 531 · 2026-05-19T18:50:24.785715+00:00_
 
 called Read
 
@@ -17073,7 +16943,7 @@ called Read
 
 ### Tool result
 
-_source line 534 · 2026-05-19T18:50:24.836454+00:00_
+_source line 532 · 2026-05-19T18:50:24.836454+00:00_
 
 1	{
 2	  "raw": "实验完成。结果：\n\n**Temporal Coherence**\n- Instruction ablation 的 per-dim CV 显著低于 control（1.298 vs 2.744, Wilcoxon p=0.016），说明 instruction head ablation 造成的扰动更系统化/结构化\n- Demo-level lag-1 autocorrelation：instruction = -0.201, control = 0.026，但 Mann-Whitney 检验不显著（p=0.42），因为 n=5 per group 统计力不足\n- 原始逐步 action 数据未保存，无法计算真正的 step-to-step autocorrelation\n\n**Per-Head Effect Size Bootstrap (B=1000)**\n- Instruction heads: per-head d = 0.027, 95% CI [0.023, 0.030]\n- Control heads: per-head d = 0.051, 95% CI [0.040, 0.057]\n- **CI 不重叠**，差异 CI [0.017, 0.028] 排除零\n- Control heads 每头贡献 1.87x 更大的 action disruption，但 instruction heads 通过集体效应（24 vs 8 heads）实现更大总效应\n\n输出文件：`/root/autodl-tmp/vla-ssd/results/action_trajectory_cpu_analysis.json`"
@@ -17097,7 +16967,7 @@ _source line 534 · 2026-05-19T18:50:24.836454+00:00_
 
 ### Tool call
 
-_source line 535 · 2026-05-19T18:50:28.550231+00:00_
+_source line 533 · 2026-05-19T18:50:28.550231+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17137,7 +17007,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 536 · 2026-05-19T18:50:28.953682+00:00_
+_source line 534 · 2026-05-19T18:50:28.953682+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"phi3v_probe_untrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:04:38.888Z\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"hypothesis\": \"Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens.\", \"parent\": \"phi3v_attention_untrained\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_untrained_cross_inst_probe.py\", \"server\": \"westd-19183\", \"data_path\": \"/root/autodl-tmp/vla-ssd/data/libero/libero_goal/\", \"data_count\": 500, \"model_name\": \"phi3v-untrained-base-instruct\", \"seed\": 42, \"checkpoint_source\": \"n/a\", \"checkpoint_path\": \"/root/autodl-tmp/vla-ssd/results/cross_instruction/phi3v_untrained_cross_inst.h5\", \"log_path\": \"/tmp/phi3v_untrained_cross_inst.log\"}, \"completed_at\": \"2026-05-19T18:39:27.410Z\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}}, \"count\": 1, \"total\": 101, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3737}}"}
 
@@ -17159,7 +17029,7 @@ _source line 536 · 2026-05-19T18:50:28.953682+00:00_
 
 ### Tool call
 
-_source line 537 · 2026-05-19T18:50:43.966508+00:00_
+_source line 535 · 2026-05-19T18:50:43.966508+00:00_
 
 called Bash
 
@@ -17195,7 +17065,7 @@ called Bash
 
 ### Tool result
 
-_source line 538 · 2026-05-19T18:50:44.117703+00:00_
+_source line 536 · 2026-05-19T18:50:44.117703+00:00_
 
 3726:  action_trajectory_cpu_analysis:
 3785:    parent: action_trajectory_cpu_analysis
@@ -17218,7 +17088,7 @@ _source line 538 · 2026-05-19T18:50:44.117703+00:00_
 
 ### Tool call
 
-_source line 539 · 2026-05-19T18:50:47.295136+00:00_
+_source line 537 · 2026-05-19T18:50:47.295136+00:00_
 
 called Read
 
@@ -17256,7 +17126,7 @@ called Read
 
 ### Tool result
 
-_source line 540 · 2026-05-19T18:50:47.345733+00:00_
+_source line 538 · 2026-05-19T18:50:47.345733+00:00_
 
 3726	  action_trajectory_cpu_analysis:
 3727	    status: PREPARING
@@ -17307,7 +17177,7 @@ _source line 540 · 2026-05-19T18:50:47.345733+00:00_
 
 ### Tool call
 
-_source line 541 · 2026-05-19T18:51:17.294969+00:00_
+_source line 539 · 2026-05-19T18:51:17.294969+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17343,7 +17213,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 542 · 2026-05-19T18:51:21.570965+00:00_
+_source line 540 · 2026-05-19T18:51:21.570965+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -17372,7 +17242,7 @@ _source line 542 · 2026-05-19T18:51:21.570965+00:00_
 
 ### User
 
-_source line 543 · 2026-05-19T18:51:24.227686+00:00_
+_source line 541 · 2026-05-19T18:51:24.227686+00:00_
 
 [系统通知 — worker_done:worker_chart_phi3v_cross_architecture_20260519T184441]:
 Worker worker_chart_phi3v_cross_architecture_20260519T184441 已完成（status=done），请审查 Agent 的处理结果。
@@ -17394,7 +17264,7 @@ Worker worker_chart_phi3v_cross_architecture_20260519T184441 已完成（status=
 
 ### Tool call
 
-_source line 544 · 2026-05-19T18:51:32.256876+00:00_
+_source line 542 · 2026-05-19T18:51:32.256876+00:00_
 
 called Read
 
@@ -17428,7 +17298,7 @@ called Read
 
 ### Tool result
 
-_source line 545 · 2026-05-19T18:51:32.712163+00:00_
+_source line 543 · 2026-05-19T18:51:32.712163+00:00_
 
 1	{
 2	  "raw": "图表已生成并注册（`art_20260519_7fe815`）。\n\n**数据概要：**\n- **OpenVLA**: untrained 全部为 0 → trained 在 L0=20, L1=22 处出现强 entry spike，之后迅速衰减至 0\n- **Phi3V**: untrained 已经在大部分层保持 28-32 的高水平（继承自 instruction tuning）→ trained 在 L1-L2 饱和到 32，但中间层大幅下降（dip 到 0-7），尾部逐步回升至 17-18\n\n**输出文件：**\n- 服务器: `/root/autodl-tmp/vla-ssd/results/figures/fig_cross_architecture_attention.{pdf,png}`\n- 本地 artifacts: `fig_cross_architecture_attention.{pdf,png}`"
@@ -17452,7 +17322,7 @@ _source line 545 · 2026-05-19T18:51:32.712163+00:00_
 
 ### Tool call
 
-_source line 546 · 2026-05-19T18:51:33.114301+00:00_
+_source line 544 · 2026-05-19T18:51:33.114301+00:00_
 
 called Bash
 
@@ -17488,7 +17358,7 @@ called Bash
 
 ### Tool result
 
-_source line 547 · 2026-05-19T18:51:33.265938+00:00_
+_source line 545 · 2026-05-19T18:51:33.265938+00:00_
 
 total 2508
 -rw-r--r-- 1 ubuntu ubuntu  39541 May 19 18:50 manifest.yaml
@@ -17517,7 +17387,7 @@ drwxr-xr-x 3 ubuntu ubuntu   4096 May 19 18:01 phi3v_attention_untrained
 
 ### Tool call
 
-_source line 548 · 2026-05-19T18:51:36.331372+00:00_
+_source line 546 · 2026-05-19T18:51:36.331372+00:00_
 
 called Read
 
@@ -17551,7 +17421,7 @@ called Read
 
 ### Tool result
 
-_source line 549 · 2026-05-19T18:51:37.136647+00:00_
+_source line 547 · 2026-05-19T18:51:37.136647+00:00_
 
 
 
@@ -17573,7 +17443,7 @@ _source line 549 · 2026-05-19T18:51:37.136647+00:00_
 
 ### Tool call
 
-_source line 550 · 2026-05-19T18:52:21.405648+00:00_
+_source line 548 · 2026-05-19T18:52:21.405648+00:00_
 
 called Read
 
@@ -17607,7 +17477,7 @@ called Read
 
 ### Tool result
 
-_source line 551 · 2026-05-19T18:52:21.456348+00:00_
+_source line 549 · 2026-05-19T18:52:21.456348+00:00_
 
 1	import matplotlib
 2	matplotlib.use('Agg')
@@ -17678,7 +17548,7 @@ _source line 551 · 2026-05-19T18:52:21.456348+00:00_
 
 ### Tool call
 
-_source line 552 · 2026-05-19T18:53:00.628097+00:00_
+_source line 550 · 2026-05-19T18:53:00.628097+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -17714,7 +17584,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 553 · 2026-05-19T18:53:04.545732+00:00_
+_source line 551 · 2026-05-19T18:53:04.545732+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -17736,7 +17606,7 @@ _source line 553 · 2026-05-19T18:53:04.545732+00:00_
 
 ### Assistant
 
-_source line 554 · 2026-05-19T18:53:07.455152+00:00_
+_source line 552 · 2026-05-19T18:53:07.455152+00:00_
 
 图已生成。检查脚本确认数据来源正确。
 
@@ -17763,7 +17633,7 @@ _source line 554 · 2026-05-19T18:53:07.455152+00:00_
 
 ### User
 
-_source line 555 · 2026-05-19T18:55:48.303584+00:00_
+_source line 553 · 2026-05-19T18:55:48.303584+00:00_
 
 [系统通知 — worker_done:worker_chart_phi3v_cross_architecture_fix_20260519T185349]:
 Worker worker_chart_phi3v_cross_architecture_fix_20260519T185349 已完成（status=done），请审查 Agent 的处理结果。
@@ -17785,7 +17655,7 @@ Worker worker_chart_phi3v_cross_architecture_fix_20260519T185349 已完成（sta
 
 ### Tool call
 
-_source line 556 · 2026-05-19T18:55:55.644024+00:00_
+_source line 554 · 2026-05-19T18:55:55.644024+00:00_
 
 called Read
 
@@ -17819,7 +17689,7 @@ called Read
 
 ### Tool result
 
-_source line 557 · 2026-05-19T18:55:55.644551+00:00_
+_source line 555 · 2026-05-19T18:55:55.644551+00:00_
 
 1	{
 2	  "raw": "完成。修改摘要：\n\n- **OpenVLA untrained**: `full_32layer_untrained.json`(全零) → `full_32layer_llama2base.json`，标签 \"Llama-2 base\"（L1=9，非零 ✓）\n- **OpenVLA trained**: `libero_finetuned_attention_profile.json` → `full_32layer_trained.json`，标签 \"OXE-trained\"（L1=24, L31=18，完整 bookend ✓）\n- Phi3V 面板和所有布局/样式未改动\n- PDF/PNG 已覆盖原文件"
@@ -17843,7 +17713,7 @@ _source line 557 · 2026-05-19T18:55:55.644551+00:00_
 
 ### Tool call
 
-_source line 558 · 2026-05-19T18:55:59.007208+00:00_
+_source line 556 · 2026-05-19T18:55:59.007208+00:00_
 
 called Read
 
@@ -17877,7 +17747,7 @@ called Read
 
 ### Tool result
 
-_source line 559 · 2026-05-19T18:55:59.999404+00:00_
+_source line 557 · 2026-05-19T18:55:59.999404+00:00_
 
 
 
@@ -17899,7 +17769,7 @@ _source line 559 · 2026-05-19T18:55:59.999404+00:00_
 
 ### Tool call
 
-_source line 560 · 2026-05-19T18:56:09.443944+00:00_
+_source line 558 · 2026-05-19T18:56:09.443944+00:00_
 
 called Bash
 
@@ -17935,7 +17805,7 @@ called Bash
 
 ### Tool result
 
-_source line 561 · 2026-05-19T18:56:09.697504+00:00_
+_source line 559 · 2026-05-19T18:56:09.697504+00:00_
 
 1779216591 284128
 1779216591 29547
@@ -17959,7 +17829,7 @@ _source line 561 · 2026-05-19T18:56:09.697504+00:00_
 
 ### Tool call
 
-_source line 562 · 2026-05-19T18:56:18.181250+00:00_
+_source line 560 · 2026-05-19T18:56:18.181250+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -17995,7 +17865,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 563 · 2026-05-19T18:56:19.235561+00:00_
+_source line 561 · 2026-05-19T18:56:19.235561+00:00_
 
 called Bash
 
@@ -18031,7 +17901,7 @@ called Bash
 
 ### Tool result
 
-_source line 564 · 2026-05-19T18:56:19.336756+00:00_
+_source line 562 · 2026-05-19T18:56:19.336756+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3828\\n-rw-r--r-- 1 root root 323142 May 20 02:55 fig_cross_architecture_attention.png\\n-rw-r--r-- 1 root root  29211 May 20 02:55 fig_cross_architecture_attention.pdf\\n-rw-r--r-- 1 root root 259372 May 19 05:17 fig_task_complexity_routing.png\\n-rw-r--r-- 1 root root  20502 May 19 05:17 fig_task_complexity_routing.pdf\\n-rw-r--r-- 1 root root 366974 May 18 16:51 fig_threecond_multiseed_v2.png\\n-rw-r--r-- 1 root root  16917 May 18 16:51 fig_threecond_multiseed_v2.pdf\\n-rw-r--r-- 1 root root 223334 May 18 15:30 fig_threecond_multiseed.png\\n-rw-r--r-- 1 root root  17843 May 18 15:30 fig_threecond_multiseed.pdf\\n-rw-r--r-- 1 root root 107163 May 18 13:15 fig_random_subset_ablation.png\\n-rw-r--r-- 1 root root  17698 May 18 13:15 fig_random_subset_ablation.pdf\\n-rw-r--r-- 1 root root 177953 May 18 11:43 fig_ood_diagnostics.png\\n-rw-r--r-- 1 root root  24291 May 18 11:43 fig_ood_diagnostics.pdf\\n-rw-r--r-- 1 root root 114214 May 18 11:42 fig_linear_vs_mlp_probe.png\\n-rw-r--r-- 1 root root  18374 May 18 11:42 fig_linear_vs_mlp_probe.pdf\\n-rw-r--r-- 1 root root 205934 May 18 06:06 fig_action_r2_threecond.png\\n-rw-r--r-- 1 root root  21040 May 18 06:06 fig_action_r2_threecond.pdf\\n-rw-r--r-- 1 root root  14306 May 18 05:48 fig_ablation_3layer_grouped.pdf\\n-rw-r--r-- 1 root root  14168 May 18 05:48 fig_ablation_4condition_bar.pdf\\n-rw-r--r-- 1 root root 246478 May 18 04:09 fig_rsa_perlayer_curve.png\\n-rw-r--r-- 1 root root  20646 May 18 04:09 fig_rsa_perlayer_curve.pdf\\n-rw-r--r-- 1 root root 793743 May 16 15:32 cross_benchmark_comparison.png\\n-rw-r--r-- 1 root root  28225 May 16 15:32 cross_benchmark_comparison.pdf\\n-rw-r--r-- 1 root root 266726 May 16 15:32 libero_spatial_r2_perlayer.png\\n-rw-r--r-- 1 root root  22995 May 16 15:32 libero_spatial_r2_perlayer.pdf\\n-rw-r--r-- 1 root root 287904 May 16 15:32 libero_spatial_rsa_perlayer.png\\n-rw-r--r-- 1 root root  24627 May 16 15:32 libero_spat
 …[truncated 419 chars]
@@ -18054,7 +17924,7 @@ _source line 564 · 2026-05-19T18:56:19.336756+00:00_
 
 ### Tool result
 
-_source line 565 · 2026-05-19T18:56:19.387442+00:00_
+_source line 563 · 2026-05-19T18:56:19.387442+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_chart_phi3v_cross_architecture_20260519T184441.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_chart_phi3v_cross_architecture_fix_20260519T185349_result.json
@@ -18080,7 +17950,7 @@ _source line 565 · 2026-05-19T18:56:19.387442+00:00_
 
 ### Tool call
 
-_source line 566 · 2026-05-19T18:56:25.063404+00:00_
+_source line 564 · 2026-05-19T18:56:25.063404+00:00_
 
 called Bash
 
@@ -18116,7 +17986,7 @@ called Bash
 
 ### Tool result
 
-_source line 567 · 2026-05-19T18:56:25.166702+00:00_
+_source line 565 · 2026-05-19T18:56:25.166702+00:00_
 
 total 1656
 -rw-r--r-- 1 ubuntu ubuntu  29547 May 19 18:52 fig_cross_architecture_attention.pdf
@@ -18166,7 +18036,7 @@ total 1656
 
 ### Tool call
 
-_source line 568 · 2026-05-19T18:56:34.920126+00:00_
+_source line 566 · 2026-05-19T18:56:34.920126+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18202,7 +18072,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 569 · 2026-05-19T18:56:34.920651+00:00_
+_source line 567 · 2026-05-19T18:56:34.920651+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -18224,7 +18094,7 @@ _source line 569 · 2026-05-19T18:56:34.920651+00:00_
 
 ### Tool call
 
-_source line 570 · 2026-05-19T18:56:39.036646+00:00_
+_source line 568 · 2026-05-19T18:56:39.036646+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18260,7 +18130,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 571 · 2026-05-19T18:56:39.087286+00:00_
+_source line 569 · 2026-05-19T18:56:39.087286+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -18282,7 +18152,7 @@ _source line 571 · 2026-05-19T18:56:39.087286+00:00_
 
 ### Tool call
 
-_source line 572 · 2026-05-19T18:56:42.249634+00:00_
+_source line 570 · 2026-05-19T18:56:42.249634+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18318,7 +18188,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 573 · 2026-05-19T18:56:42.701714+00:00_
+_source line 571 · 2026-05-19T18:56:42.701714+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/vla-ssd/scripts/fig_cross_architecture_v2.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
 
@@ -18340,7 +18210,7 @@ _source line 573 · 2026-05-19T18:56:42.701714+00:00_
 
 ### Tool call
 
-_source line 574 · 2026-05-19T18:56:46.619077+00:00_
+_source line 572 · 2026-05-19T18:56:46.619077+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18376,7 +18246,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 575 · 2026-05-19T18:56:47.052832+00:00_
+_source line 573 · 2026-05-19T18:56:47.052832+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/vla-ssd/scripts/fig_cross_architecture_attention.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -18398,7 +18268,7 @@ _source line 575 · 2026-05-19T18:56:47.052832+00:00_
 
 ### Tool call
 
-_source line 576 · 2026-05-19T18:56:50.567242+00:00_
+_source line 574 · 2026-05-19T18:56:50.567242+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18434,7 +18304,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 577 · 2026-05-19T18:56:51.019378+00:00_
+_source line 575 · 2026-05-19T18:56:51.019378+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"import matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport json\\n\\nplt.rcParams.update({\\n    'font.family': 'DejaVu Sans',\\n    'font.size': 11,\\n    'axes.titlesize': 13,\\n    'axes.labelsize': 12,\\n    'xtick.labelsize': 10,\\n    'ytick.labelsize': 10,\\n    'legend.fontsize': 10,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'savefig.pad_inches': 0.05,\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n})\\n\\nBASE = '/root/autodl-tmp/vla-ssd/results'\\n\\n# --- Load data ---\\n# OpenVLA trained\\nwith open(f'{BASE}/attention/full_32layer_trained.json') as f:\\n    d = json.load(f)\\novla_trained = [d[f'L{i}']['n_instruction_dominant'] for i in range(32)]\\n\\n# OpenVLA untrained\\nwith open(f'{BASE}/attention/full_32layer_llama2base.json') as f:\\n    d = json.load(f)\\novla_untrained = [d[f'L{i}']['n_instruction_dominant'] for i in range(32)]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -18456,7 +18326,7 @@ _source line 577 · 2026-05-19T18:56:51.019378+00:00_
 
 ### Tool call
 
-_source line 578 · 2026-05-19T18:56:55.952084+00:00_
+_source line 576 · 2026-05-19T18:56:55.952084+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18492,7 +18362,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 579 · 2026-05-19T18:56:56.002727+00:00_
+_source line 577 · 2026-05-19T18:56:56.002727+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -18514,7 +18384,7 @@ _source line 579 · 2026-05-19T18:56:56.002727+00:00_
 
 ### Tool call
 
-_source line 580 · 2026-05-19T18:56:59.069547+00:00_
+_source line 578 · 2026-05-19T18:56:59.069547+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18550,7 +18420,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 581 · 2026-05-19T18:56:59.521680+00:00_
+_source line 579 · 2026-05-19T18:56:59.521680+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"60:         marker='o', markersize=3, label='Llama-2 base', zorder=3)\\n63:         marker='o', markersize=3.5, label='OXE-trained', zorder=4)\\n80:         marker='s', markersize=3, label='Untrained (Phi-3V base)', zorder=3)\\n83:         marker='s', markersize=3.5, label='Trained (TraceVLA)', zorder=4)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -18572,7 +18442,7 @@ _source line 581 · 2026-05-19T18:56:59.521680+00:00_
 
 ### Tool call
 
-_source line 582 · 2026-05-19T18:57:11.019032+00:00_
+_source line 580 · 2026-05-19T18:57:11.019032+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -18608,7 +18478,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 583 · 2026-05-19T18:57:11.471430+00:00_
+_source line 581 · 2026-05-19T18:57:11.471430+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"n_instruction_dominant\\\": 21,\\n    \\\"n_instruction_dominant\\\": 24,\\n    \\\"n_instruction_dominant\\\": 0,\\n    \\\"n_instruction_dominant\\\": 0,\\n    \\\"n_instruction_dominant\\\": 4,\\n    \\\"n_instruction_dominant\\\": 1,\\n    \\\"n_instruction_dominant\\\": 2,\\n    \\\"n_instruction_dominant\\\": 2,\\n    \\\"n_instruction_dominant\\\": 3,\\n    \\\"n_instruction_dominant\\\": 8,\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"n_instruction_dominant\\\": 11,\\n    \\\"n_instruction_dominant\\\": 6,\\n    \\\"n_instruction_dominant\\\": 10,\\n    \\\"n_instruction_dominant\\\": 10,\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"n_instruction_dominant\\\": 5,\\n    \\\"n_instruction_dominant\\\": 3,\\n    \\\"n_instruction_dominant\\\": 3,\\n    \\\"n_instruction_dominant\\\": 4,\\n    \\\"n_instruction_dominant\\\": 2,\\n    \\\"n_instruction_dominant\\\": 1,\\n    \\\"n_instruction_dominant\\\": 3,\\n    \\\"n_instruction_dominant\\\": 8,\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"n_instruction_dominant\\\": 6,\\n    \\\"n_instruction_dominant\\\": 10,\\n    \\\"n_instruction_dominant\\\": 7,\\n    \\\"n_instruction_dominant\\\": 7,\\n    \\\"n_instruction_dominant\\\": 8,\\n    \\\"n_instruction_dominant\\\": 18,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
 
@@ -18630,7 +18500,7 @@ _source line 583 · 2026-05-19T18:57:11.471430+00:00_
 
 ### Tool call
 
-_source line 584 · 2026-05-19T18:57:31.262114+00:00_
+_source line 582 · 2026-05-19T18:57:31.262114+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18666,7 +18536,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 585 · 2026-05-19T18:57:34.979916+00:00_
+_source line 583 · 2026-05-19T18:57:34.979916+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -18688,7 +18558,7 @@ _source line 585 · 2026-05-19T18:57:34.979916+00:00_
 
 ### Assistant
 
-_source line 586 · 2026-05-19T18:57:42.632069+00:00_
+_source line 584 · 2026-05-19T18:57:42.632069+00:00_
 
 OXE-trained 数据确认：L0=21, L1=24, L31=18 — 与论文正文一致。✅
 
@@ -18715,7 +18585,7 @@ OXE-trained 数据确认：L0=21, L1=24, L31=18 — 与论文正文一致。✅
 
 ### User
 
-_source line 587 · 2026-05-19T19:04:32.576680+00:00_
+_source line 585 · 2026-05-19T19:04:32.576680+00:00_
 
 [系统通知 — worker_done:worker_sync_pull_figures_20260519T185853]:
 Worker worker_sync_pull_figures_20260519T185853 已完成（status=done），请审查 Agent 的处理结果。
@@ -18737,7 +18607,7 @@ Worker worker_sync_pull_figures_20260519T185853 已完成（status=done），请
 
 ### Tool call
 
-_source line 588 · 2026-05-19T19:04:42.113378+00:00_
+_source line 586 · 2026-05-19T19:04:42.113378+00:00_
 
 called Bash
 
@@ -18773,7 +18643,7 @@ called Bash
 
 ### Tool result
 
-_source line 589 · 2026-05-19T19:04:42.264404+00:00_
+_source line 587 · 2026-05-19T19:04:42.264404+00:00_
 
 1779217453 323142 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_cross_architecture_attention.png
 1779217451 29211 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_cross_architecture_attention.pdf
@@ -18797,7 +18667,7 @@ _source line 589 · 2026-05-19T19:04:42.264404+00:00_
 
 ### Tool call
 
-_source line 590 · 2026-05-19T19:04:48.103309+00:00_
+_source line 588 · 2026-05-19T19:04:48.103309+00:00_
 
 called Read
 
@@ -18831,7 +18701,7 @@ called Read
 
 ### Tool result
 
-_source line 591 · 2026-05-19T19:04:48.909036+00:00_
+_source line 589 · 2026-05-19T19:04:48.909036+00:00_
 
 
 
@@ -18853,7 +18723,7 @@ _source line 591 · 2026-05-19T19:04:48.909036+00:00_
 
 ### Tool call
 
-_source line 592 · 2026-05-19T19:05:01.059971+00:00_
+_source line 590 · 2026-05-19T19:05:01.059971+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -18889,7 +18759,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 593 · 2026-05-19T19:05:05.279772+00:00_
+_source line 591 · 2026-05-19T19:05:05.279772+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -18918,7 +18788,7 @@ _source line 593 · 2026-05-19T19:05:05.279772+00:00_
 
 ### User
 
-_source line 594 · 2026-05-19T20:21:03.362063+00:00_
+_source line 592 · 2026-05-19T20:21:03.362063+00:00_
 
 [System 触发审查]:
 [Director 请求] 审稿已提交，2 张 GPU 空闲。请评估以下三个问题，给出具体建议：
@@ -18948,7 +18818,7 @@ _source line 594 · 2026-05-19T20:21:03.362063+00:00_
 
 ### Tool call
 
-_source line 595 · 2026-05-19T20:21:28.566114+00:00_
+_source line 593 · 2026-05-19T20:21:28.566114+00:00_
 
 called Read
 
@@ -18986,7 +18856,7 @@ called Read
 
 ### Tool result
 
-_source line 596 · 2026-05-19T20:21:28.968347+00:00_
+_source line 594 · 2026-05-19T20:21:28.968347+00:00_
 
 0	\section{Experiments}
 1	\label{sec:experiments}
@@ -19030,7 +18900,7 @@ _source line 596 · 2026-05-19T20:21:28.968347+00:00_
 
 ### Tool call
 
-_source line 597 · 2026-05-19T20:21:29.120129+00:00_
+_source line 595 · 2026-05-19T20:21:29.120129+00:00_
 
 called Read
 
@@ -19064,7 +18934,7 @@ called Read
 
 ### Tool result
 
-_source line 598 · 2026-05-19T20:21:29.120608+00:00_
+_source line 596 · 2026-05-19T20:21:29.120608+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -19094,7 +18964,7 @@ _source line 598 · 2026-05-19T20:21:29.120608+00:00_
 
 ### Tool call
 
-_source line 599 · 2026-05-19T20:21:34.645540+00:00_
+_source line 597 · 2026-05-19T20:21:34.645540+00:00_
 
 called Read
 
@@ -19128,7 +18998,7 @@ called Read
 
 ### Tool result
 
-_source line 600 · 2026-05-19T20:21:34.646243+00:00_
+_source line 598 · 2026-05-19T20:21:34.646243+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -19165,7 +19035,7 @@ _source line 600 · 2026-05-19T20:21:34.646243+00:00_
 
 ### Tool call
 
-_source line 601 · 2026-05-19T20:22:55.107506+00:00_
+_source line 599 · 2026-05-19T20:22:55.107506+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19201,7 +19071,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 602 · 2026-05-19T20:22:58.671291+00:00_
+_source line 600 · 2026-05-19T20:22:58.671291+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -19223,7 +19093,7 @@ _source line 602 · 2026-05-19T20:22:58.671291+00:00_
 
 ### Tool call
 
-_source line 603 · 2026-05-19T20:25:45.531075+00:00_
+_source line 601 · 2026-05-19T20:25:45.531075+00:00_
 
 called ToolSearch
 
@@ -19259,7 +19129,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 604 · 2026-05-19T20:25:45.531559+00:00_
+_source line 602 · 2026-05-19T20:25:45.531559+00:00_
 
 
 
@@ -19281,7 +19151,7 @@ _source line 604 · 2026-05-19T20:25:45.531559+00:00_
 
 ### Tool call
 
-_source line 605 · 2026-05-19T20:25:49.646350+00:00_
+_source line 603 · 2026-05-19T20:25:49.646350+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19319,7 +19189,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 606 · 2026-05-19T20:25:50.048271+00:00_
+_source line 604 · 2026-05-19T20:25:50.048271+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"specificity_random_seed_expansion\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T20:23:48.789Z\"}, \"r2_probe_seed_expansion\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T20:23:47.936Z\"}, \"phi3v_attention_trained_10tasks\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T20:23:47.008Z\"}, \"action_trajectory_cpu_analysis\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T18:51:23.913Z\", \"metrics\": {\"bootstrap_per_head_d\": {\"instruction_24h\": {\"mean\": 0.0271, \"ci_95\": [0.0258, 0.0285]}, \"control_8h\": {\"mean\": 0.0514, \"ci_95\": [0.0478, 0.0551]}, \"difference_ctrl_minus_inst\": {\"mean\": 0.0244, \"ci_95\": [0.0203, 0.0281]}, \"task_paired_t\": {\"t\": 7.356, \"p\": 0.0018}, \"all_5_tasks_ctrl_gt_inst\": true, \"interpretation\": \"Control heads ~1.9x per-head effect; instruction heads achieve larger total via 24-head collective coordination\"}, \"temporal_coherence_proxy\": {\"per_dim_cv_instruction\": 1.3, \"per_dim_cv_control\": 2.74, \"cross_task_I2_instruction\": 0.87, \"cross_task_I2_control\": 0.78, \"interpretation\": \"Instruction ablation produces more consistent (low CV) and more task-dependent (high I²) perturbation, consistent with structured language-dependent computation\"}, \"result_path\": \"/root/autodl-tmp/vla-ssd/results/action_trajectory_extended_analysis.json\"}, \"conclusion\": \"success\"}, \"phi3v_probe_untrained\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T18:39:33.794Z\", \"conclusion\": \"success\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.098, \"last_preaction_L1\": 0.981, \"last_preaction_L2\": 1, \"last_preaction_L31\": 1, \"extraction_time_min\": 3.4, \"total_forwards\": 5000}}, \"phi3v_probe_trained\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T18:17:07.393Z\", \"conclusion\": \"success\", \"metrics\": {\"image_mean_L1\": 0.1, \"image_mean_L31\": 0.102, \"last_preaction_L1\": 0.83
 …[truncated 2849 chars]
@@ -19342,7 +19212,7 @@ _source line 606 · 2026-05-19T20:25:50.048271+00:00_
 
 ### Tool call
 
-_source line 607 · 2026-05-19T20:25:50.048698+00:00_
+_source line 605 · 2026-05-19T20:25:50.048698+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -19376,7 +19246,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 608 · 2026-05-19T20:25:50.150194+00:00_
+_source line 606 · 2026-05-19T20:25:50.150194+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ROADMAP.md\", \"content\": \"# vla-ssd — Research Dashboard\\n\\n> 最后更新: 2026-05-19 18:41 UTC | 更新原因: Phi3V 四项分析全部完成，Paper Agent 集成中\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA fine-tuning produces convergent entry-exit routing architecture regardless of starting LLM routing state. Two opposing pathways (adding vs suppressing) converge to same bookend pattern.\\n\\n## 当前阶段\\n**ACTIVE — Phi3V 分析完成，Paper Agent 正在集成结果。目标 7/10。**\\n\\n## Score: 6.0-6.7 → 目标 7.0+\\n- D083: Framing 升级为 convergent architecture through opposing pathways\\n- Phi3V 四项分析全部完成（attention trained/untrained + probe trained/untrained）\\n- Paper Agent 正在写入 cross-architecture 段落\\n- 6 条件总表 = 论文 crown jewel\\n\\n## 已完成（Path A — 第二 VLA）\\n- [x] phi3v_attention_trained: L1 32/32, 73.5% — 比 OpenVLA 更强 ✅\\n- [x] phi3v_attention_untrained: L1 28/32, 全层分布 → VLA 训练后中层抑制 ✅\\n- [x] phi3v_probe_trained: readout L1=83.6%, L2+=100%, image=chance ✅\\n- [x] phi3v_probe_untrained: readout L1=98.1%, L2+=100%, image=chance ✅\\n- [x] L1 反转发现：probe ↓ 但 attention heads ↑ = representational reorganization\\n\\n## 进行中\\n- [ ] Paper Agent 集成 cross-architecture 段落 + L1 反转讨论\\n- [ ] 集成完成后提交审稿\\n\\n## 已关闭\\n- [x] ~~Path B: 闭环验证~~ — D080。三连证伪。\\n\\n## GPU 预算\\nwestd-19183: 2× RTX PRO 6000 Blackwell 96GB。Manager 批准 DDL 前无限制。当前 2/2 空闲。\\n\\n## DDL\\n- Abstract: May 26 (7 天)\\n- Paper: May 29 (10 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D083 | 2026-05-19 | D082 framing 进一步强化：从\\\"convergent property\\\"升级为\\\"conve | phi3v_attention_untrained, phi3v_attention_trained |\\n| D082 | 2026-05-19 | Framing 升级：从\\\"VLA training creates routing\\\"改为\\\"instr | phi3v_attention_untrained, phi3v_attention_trained, llama2_base_control |\\n| D081 | 2026-05-19 | Phi3V L1 routing 复现成功（32/32 vs OpenVLA 24/32），跨架构  | phi3v_attention_trained |\\n| D080 | 2026-05-19 | Path B 彻底关闭，全资源转 
 …[truncated 902 chars]
@@ -19399,7 +19269,7 @@ _source line 608 · 2026-05-19T20:25:50.150194+00:00_
 
 ### Tool call
 
-_source line 609 · 2026-05-19T20:25:50.150596+00:00_
+_source line 607 · 2026-05-19T20:25:50.150596+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -19435,7 +19305,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 610 · 2026-05-19T20:25:50.253332+00:00_
+_source line 608 · 2026-05-19T20:25:50.253332+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- libero_finetuned_probe（准备中）\\n- behavioral_smoketest_diag（准备中）\\n- behavioral_pilot_v2: Ablating L1 instruction-dominant heads (24/32) during VLA inference on LIBERO-Goal fine-tuned OpenVLA reduces task success rate, providing behavioral evidence that attention head specialization has functional consequences for task execution.（准备中）\\n- behavioral_pilot: Ablating L1 instruction-dominant heads during VLA inference will measurably change task success rate, providing behavioral evidence that these heads serve a functional role beyond representational reorganization measured by probes.（准备中）\\n- fulllayer_action_probe（准备中）\\n- l1_head_ablation_control8（准备中）\\n- l1_head_ablation_50demos（准备中）\\n\\n## 近期结论\\n- **action_trajectory_cpu_analysis** (success): Extended analysis of existing action trajectory data: (1) temporal coherence — L1 ablation disrupts step-to-step action autocorrelation more than control, (2) bootstrap CI on per-head effect size — formal test of whether instruction heads per-head d (0.027) differs significantly from control heads per-head d (0.051). ← 基于 action_trajectory_control\\n- **phi3v_probe_untrained** (success): Base Phi-3-mini-4k-instruct (untrained VLA) already encodes instruction identity at the last-preaction token position due to pre-existing instruction tuning, but not at image tokens. ← 基于 phi3v_attention_untrained\\n  [phi3v_untrained_probe_results](/api/workspace-files/projects/vla-ssd/artifacts/phi3v_probe_untrained/data/phi3v_untrained_cross_inst_probe.py)\\n- **phi3v_probe_trained** (success): The C1 readout pattern (last_preaction 100% instruction classification + image_mean at chance) observed in trained OpenVLA also holds in trained TracVLA-Phi3V, indicating this is a general VLA property ra
 …[truncated 839 chars]
@@ -19458,7 +19328,7 @@ _source line 610 · 2026-05-19T20:25:50.253332+00:00_
 
 ### Tool call
 
-_source line 611 · 2026-05-19T20:26:02.364812+00:00_
+_source line 609 · 2026-05-19T20:26:02.364812+00:00_
 
 called Bash
 
@@ -19494,7 +19364,7 @@ called Bash
 
 ### Tool result
 
-_source line 612 · 2026-05-19T20:26:02.815393+00:00_
+_source line 610 · 2026-05-19T20:26:02.815393+00:00_
 
 total 148892
 -rw-r--r-- 1 ubuntu ubuntu     257 May 19 19:04 worker_sync_pull_figures_20260519T185853_result.json
@@ -19536,7 +19406,7 @@ total 148892
 
 ### Tool call
 
-_source line 613 · 2026-05-19T20:26:02.917637+00:00_
+_source line 611 · 2026-05-19T20:26:02.917637+00:00_
 
 called Glob
 
@@ -19572,7 +19442,7 @@ called Glob
 
 ### Tool result
 
-_source line 614 · 2026-05-19T20:26:02.969081+00:00_
+_source line 612 · 2026-05-19T20:26:02.969081+00:00_
 
 No files found
 
@@ -19594,7 +19464,7 @@ No files found
 
 ### Tool call
 
-_source line 615 · 2026-05-19T20:26:06.385094+00:00_
+_source line 613 · 2026-05-19T20:26:06.385094+00:00_
 
 called Glob
 
@@ -19630,7 +19500,7 @@ called Glob
 
 ### Tool result
 
-_source line 616 · 2026-05-19T20:26:06.385579+00:00_
+_source line 614 · 2026-05-19T20:26:06.385579+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/corl_example.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/paper.tex
@@ -19670,7 +19540,7 @@ _source line 616 · 2026-05-19T20:26:06.385579+00:00_
 
 ### Tool call
 
-_source line 617 · 2026-05-19T20:26:21.859817+00:00_
+_source line 615 · 2026-05-19T20:26:21.859817+00:00_
 
 called Read
 
@@ -19704,7 +19574,7 @@ called Read
 
 ### Tool result
 
-_source line 618 · 2026-05-19T20:26:22.211223+00:00_
+_source line 616 · 2026-05-19T20:26:22.211223+00:00_
 
 1	\section{Discussion}
 2	\label{sec:discussion}
@@ -19741,7 +19611,7 @@ _source line 618 · 2026-05-19T20:26:22.211223+00:00_
 
 ### Tool call
 
-_source line 619 · 2026-05-19T20:26:22.211596+00:00_
+_source line 617 · 2026-05-19T20:26:22.211596+00:00_
 
 called Read
 
@@ -19775,7 +19645,7 @@ called Read
 
 ### Tool result
 
-_source line 620 · 2026-05-19T20:26:22.412485+00:00_
+_source line 618 · 2026-05-19T20:26:22.412485+00:00_
 
 1	Vision-language-action models (VLAs) fine-tune large language models (LLMs) on robot demonstrations, but what fine-tuning changes at the representational level remains unclear.
 2	We decompose OpenVLA-7B across all 32 LLM layers using cross-instruction probes, attention analysis, Representational Similarity Analysis (RSA), and functional probes, with factorial trained/pretrained/untrained controls on LIBERO.
@@ -19805,7 +19675,7 @@ _source line 620 · 2026-05-19T20:26:22.412485+00:00_
 
 ### Tool call
 
-_source line 621 · 2026-05-19T20:26:22.412832+00:00_
+_source line 619 · 2026-05-19T20:26:22.412832+00:00_
 
 called Read
 
@@ -19839,7 +19709,7 @@ called Read
 
 ### Tool result
 
-_source line 622 · 2026-05-19T20:26:22.464114+00:00_
+_source line 620 · 2026-05-19T20:26:22.464114+00:00_
 
 1	\section{Introduction}
 2	\label{sec:introduction}
@@ -19875,7 +19745,7 @@ _source line 622 · 2026-05-19T20:26:22.464114+00:00_
 
 ### Tool call
 
-_source line 623 · 2026-05-19T20:27:41.606613+00:00_
+_source line 621 · 2026-05-19T20:27:41.606613+00:00_
 
 called Read
 
@@ -19909,7 +19779,7 @@ called Read
 
 ### Tool result
 
-_source line 624 · 2026-05-19T20:27:42.560949+00:00_
+_source line 622 · 2026-05-19T20:27:42.560949+00:00_
 
 File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
 
@@ -19931,7 +19801,7 @@ File unchanged since last read. The content from the earlier Read tool_result in
 
 ### Tool call
 
-_source line 625 · 2026-05-19T20:27:42.611499+00:00_
+_source line 623 · 2026-05-19T20:27:42.611499+00:00_
 
 called Read
 
@@ -19969,7 +19839,7 @@ called Read
 
 ### Tool result
 
-_source line 626 · 2026-05-19T20:27:42.713151+00:00_
+_source line 624 · 2026-05-19T20:27:42.713151+00:00_
 
 60	Head counts reflect single-sample extraction; threshold sensitivity analysis (30\%--70\%) confirms ordering robustness (Appendix~\ref{sec:threshold_sensitivity}).
 61	
@@ -20006,7 +19876,7 @@ _source line 626 · 2026-05-19T20:27:42.713151+00:00_
 
 ### Tool call
 
-_source line 627 · 2026-05-19T20:28:42.759767+00:00_
+_source line 625 · 2026-05-19T20:28:42.759767+00:00_
 
 called ToolSearch
 
@@ -20042,7 +19912,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 628 · 2026-05-19T20:28:42.860711+00:00_
+_source line 626 · 2026-05-19T20:28:42.860711+00:00_
 
 
 
@@ -20064,7 +19934,7 @@ _source line 628 · 2026-05-19T20:28:42.860711+00:00_
 
 ### Tool call
 
-_source line 629 · 2026-05-19T20:28:46.927255+00:00_
+_source line 627 · 2026-05-19T20:28:46.927255+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20100,7 +19970,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 630 · 2026-05-19T20:28:47.379111+00:00_
+_source line 628 · 2026-05-19T20:28:47.379111+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -20136,7 +20006,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 631 · 2026-05-19T20:28:48.282531+00:00_
+_source line 629 · 2026-05-19T20:28:48.282531+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"tracevla-phi3v\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2249,\\n      \\\"per_head_text_attention\\\": [\\n        0.1229,\\n        0.1374,\\n        0.2831,\\n        0.1449,\\n        0.0907,\\n        0.1195,\\n        0.5798,\\n        0.1885,\\n        0.1737,\\n        0.147,\\n        0.2087,\\n        0.2087,\\n        0.2272,\\n        0.0758,\\n        0.1339,\\n        0.07,\\n        0.1821,\\n        0.1323,\\n        0.0865,\\n        0.3336,\\n        0.3165,\\n        0.1471,\\n        0.2822,\\n        0.3228,\\n        0.0939,\\n        0.1051,\\n        0.226,\\n        0.7681,\\n        0.6732,\\n        0.1768,\\n        0.1298,\\n        0.3087\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7348,\\n      \\\"per_head_text_attention\\\": [\\n        0.7447,\\n        0.9206,\\n        0.6545,\\n        0.5974,\\n        0.765,\\n        0.6783,\\n        0.6492,\\n        0.6648,\\n        0.9573,\\n        0.7901,\\n        0.7297,\\n        0.7013,\\n        0.6334,\\n        0.6164,\\n        0.7531,\\n        0.7017,\\n        0.796,\\n        0.7264,\\n        0.6387,\\n        0.8844,\\n        0.8475,\\n        0.6821,\\n        0.5973,\\n        0.8059,\\n        0.7111,\\n        0.5997,\\n        0.8885,\\n        0.6573,\\n        0.8089,\\n        0.8624,\\n        0.7408,\\n        0.7078\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 32,\\n      \\\"mean_text_attention\\\": 0.7807,\\n      \\\"per_head_text_attention\\\": [\\n        0.7243,\\n        0.865,\\n        0.6872,\\n        0.6697,\\n        0.8581,\\n        0.7887,\\n        0.8916,\\n        0.8637,\\n        0.894,\\n        0.6582,\
 …[truncated 7487 chars]
@@ -20159,7 +20029,7 @@ _source line 631 · 2026-05-19T20:28:48.282531+00:00_
 
 ### Tool result
 
-_source line 632 · 2026-05-19T20:28:48.835144+00:00_
+_source line 630 · 2026-05-19T20:28:48.835144+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"phi3v-untrained-base\\\",\\n  \\\"layers\\\": 32,\\n  \\\"heads\\\": 32,\\n  \\\"per_layer\\\": {\\n    \\\"L0\\\": {\\n      \\\"instruction_dominant_heads\\\": 3,\\n      \\\"mean_text_attention\\\": 0.2159,\\n      \\\"per_head_text_attention\\\": [\\n        0.0907,\\n        0.1143,\\n        0.1562,\\n        0.1886,\\n        0.087,\\n        0.0918,\\n        0.1977,\\n        0.106,\\n        0.1201,\\n        0.0995,\\n        0.151,\\n        0.2847,\\n        0.4628,\\n        0.0691,\\n        0.1069,\\n        0.064,\\n        0.2661,\\n        0.1384,\\n        0.0601,\\n        0.2037,\\n        0.2124,\\n        0.2906,\\n        0.2562,\\n        0.666,\\n        0.0843,\\n        0.0774,\\n        0.1853,\\n        0.8462,\\n        0.7466,\\n        0.2086,\\n        0.0648,\\n        0.2131\\n      ]\\n    },\\n    \\\"L1\\\": {\\n      \\\"instruction_dominant_heads\\\": 28,\\n      \\\"mean_text_attention\\\": 0.7745,\\n      \\\"per_head_text_attention\\\": [\\n        0.9848,\\n        0.9681,\\n        0.913,\\n        0.7025,\\n        0.9506,\\n        0.5527,\\n        0.586,\\n        0.4476,\\n        0.9989,\\n        0.8197,\\n        0.7166,\\n        0.7736,\\n        0.8217,\\n        0.2227,\\n        0.9732,\\n        0.9086,\\n        0.757,\\n        0.7404,\\n        0.7981,\\n        0.578,\\n        0.9559,\\n        0.9831,\\n        0.7333,\\n        0.9315,\\n        0.949,\\n        0.4976,\\n        0.455,\\n        0.7502,\\n        0.8056,\\n        0.9846,\\n        0.7093,\\n        0.8146\\n      ]\\n    },\\n    \\\"L2\\\": {\\n      \\\"instruction_dominant_heads\\\": 17,\\n      \\\"mean_text_attention\\\": 0.5283,\\n      \\\"per_head_text_attention\\\": [\\n        0.5087,\\n        0.8195,\\n        0.5676,\\n        0.1915,\\n        0.7469,\\n        0.7293,\\n        0.8642,\\n        0.9241,\\n        0.727,\\n        0.5142
 …[truncated 7487 chars]
@@ -20182,7 +20052,7 @@ _source line 632 · 2026-05-19T20:28:48.835144+00:00_
 
 ### Tool call
 
-_source line 633 · 2026-05-19T20:29:21.750356+00:00_
+_source line 631 · 2026-05-19T20:29:21.750356+00:00_
 
 called ToolSearch
 
@@ -20218,7 +20088,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 634 · 2026-05-19T20:29:21.801297+00:00_
+_source line 632 · 2026-05-19T20:29:21.801297+00:00_
 
 
 
@@ -20240,7 +20110,7 @@ _source line 634 · 2026-05-19T20:29:21.801297+00:00_
 
 ### Tool call
 
-_source line 635 · 2026-05-19T20:29:42.241692+00:00_
+_source line 633 · 2026-05-19T20:29:42.241692+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -20276,7 +20146,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 636 · 2026-05-19T20:29:43.497555+00:00_
+_source line 634 · 2026-05-19T20:29:43.497555+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -20288,6 +20158,101 @@ _source line 636 · 2026-05-19T20:29:43.497555+00:00_
   "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
   "tool": "mcp__agent-ml-research__reviewer_post_to_director",
   "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 635 · 2026-05-19T20:30:00.645475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_llama2base.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 636 · 2026-05-19T20:30:00.998601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19183",
+  "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19183",
+    "command": "cat /root/autodl-tmp/vla-ssd/results/attention/full_32layer_trained.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 637 · 2026-05-19T20:30:01.202283+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"L0\\\": {\\n    \\\"n_instruction_dominant\\\": 10,\\n    \\\"mean_text_attn\\\": 0.4169,\\n    \\\"mean_image_attn\\\": 0.5709,\\n    \\\"mean_bos_attn\\\": 0.0123,\\n    \\\"per_head_text_attn\\\": [\\n      0.9968,\\n      0.3581,\\n      0.1176,\\n      0.7731,\\n      0.7878,\\n      0.3213,\\n      0.2953,\\n      0.1127,\\n      0.9821,\\n      0.3115,\\n      0.6951,\\n      0.4117,\\n      0.8927,\\n      0.1291,\\n      0.2129,\\n      0.1436,\\n      0.5535,\\n      0.2146,\\n      0.9516,\\n      0.9688,\\n      0.3123,\\n      0.155,\\n      0.1769,\\n      0.1568,\\n      0.13,\\n      0.0731,\\n      0.8559,\\n      0.2342,\\n      0.2923,\\n      0.3385,\\n      0.1688,\\n      0.2166\\n    ]\\n  },\\n  \\\"L1\\\": {\\n    \\\"n_instruction_dominant\\\": 9,\\n    \\\"mean_text_attn\\\": 0.3627,\\n    \\\"mean_image_attn\\\": 0.6106,\\n    \\\"mean_bos_attn\\\": 0.0267,\\n    \\\"per_head_text_attn\\\": [\\n      0.5806,\\n      0.2172,\\n      0.3154,\\n      0.2547,\\n      0.2543,\\n      0.1904,\\n      0.2234,\\n      0.2305,\\n      0.2378,\\n      0.1894,\\n      0.3154,\\n      0.2526,\\n      0.2098,\\n      0.4152,\\n      0.339,\\n      0.6021,\\n      0.5381,\\n      0.7711,\\n      0.5301,\\n      0.2532,\\n      0.2266,\\n      0.1911,\\n      0.1412,\\n      0.5898,\\n      0.2522,\\n      0.8287,\\n      0.5397,\\n      0.8955,\\n      0.2846,\\n      0.2525,\\n      0.2778,\\n      0.2049\\n    ]\\n  },\\n  \\\"L2\\\": {\\n    \\\"n_instruction_dominant\\\": 0,\\n    \\\"mean_text_attn\\\": 0.3717,\\n    \\\"mean_image_attn\\\": 0.4263,\\n    \\\"mean_bos_attn\\\": 0.2021,\\n    \\\"per_head_text_attn\\\": [\\n      0.3528,\\n      0.385,\\n      0.4331,\\n      0.3189,\\n      0.3876,\\n      0.3827,\\n      0.1789,\\n      0.4606,\\n      0.3925,\\n      0.3859,\\n      0.287,\\n      0.3467,\\n      0.3836,\\n      0.3907,\\n      0.2881,\\n      0.4025,\\n      0.37
+…[truncated 7711 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3:reviewer",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 556
 }
 ```
 

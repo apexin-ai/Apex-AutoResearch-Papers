@@ -564,44 +564,6 @@
         },
         {
           "source_line": 569,
-          "timestamp": "2026-05-21T21:57:35.393898+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_R1W1_draft.md"
-            }
-          },
-          "id": "event-000569"
-        },
-        {
-          "source_line": 570,
-          "timestamp": "2026-05-21T21:57:35.495039+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# R1-W1: Granularity of r_crit bound\n2\t\n3\t**Weakness**: The critical mixing ratio is localized only to (0.25, 0.3], which is a coarse bound.\n4\t\n5\t**Response**:\n6\t\n7\tWe agree that finer resolution (e.g., r = 0.27, 0.28, 0.29) would narrow the bound, and we note this as natural future work. However, we believe the current resolution is sufficient for both the paper's scientific claims and practical recommendations, for three reasons.\n8\t\n9\tFirst, the practical recommendation is insensitive to the exact r_crit value. Practitioners need a safe threshold, not a precise critical point: setting r > 0.3 prevents spectral collapse regardless of whether r_crit is 0.26 or 0.29. The 5-percentage-point gap between our upper bound (0.3) and the nearest sub-critical point (0.25) already provides a safety margin.\n10\t\n11\tSecond, the qualitative boundary is robust across seeds and smoothing parameters. Both r = 0.25 seeds exhibit Type II trajectories (transient EMA-smoothed SLV violation at Gen 1--2 followed by sustained recovery), while both r = 0.3 seeds show Type III (monotonic expansion on the cross-seed mean). Recomputing the EMA for alpha in {0.3, 0.5, 0.7} yields the same interval in all cases (Section 4.4, paragraph 6).\n12\t\n13\tThird, the phase diagram's contribution is the trajectory typology itself---distinguishing collapse, transitional, and stable regimes---rather than a precise critical constant. The three-type partition and the signal attenuation finding hold at any r_crit within (0.25, 0.3].\n14\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-000570"
-        },
-        {
-          "source_line": 571,
           "timestamp": "2026-05-21T21:57:39.822359+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -620,10 +582,10 @@
               "limit": "20"
             }
           },
-          "id": "event-000571"
+          "id": "event-000569"
         },
         {
-          "source_line": 572,
+          "source_line": 570,
           "timestamp": "2026-05-21T21:57:39.822994+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -638,49 +600,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000572"
+          "id": "event-000570"
         },
         {
-          "source_line": 573,
-          "timestamp": "2026-05-21T21:57:56.657638+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_C3_novelty_draft.md",
-              "content": "# C3 Novelty Defense: Signal Attenuation\n\n**Anticipated attack**: \"Signal attenuation (mixing suppresses spectral warning signals) is trivially expected — of course if you prevent collapse, there's no collapse signal to detect.\"\n\n**Response** (~200 words):\n\nThe observation that intervention suppresses warning signals is indeed anticipated by the EWS literature (Scheffer 2009, Siteur 2016). Our contribution is not the qualitative observation but three quantitative findings that theory alone does not predict:\n\n1. **Continuous degradation curve**: Signal attenuation is not binary (present/absent). We show that the controller signal degrades *continuously* as the mixing ratio approaches r_crit, with a smooth transition from strong signal (r=0, Δ_max=0.08) through attenuated signal (r=0.2, Δ_max=0.002) to complete silence (r≥0.3, Δ_max<0.0003). This continuous relationship — empirically characterized across 5 mixing ratios × 3 seeds — has not been quantified before.\n\n2. **τ-independence**: The signal vanishes entirely above r_crit for *any* positive threshold τ, not just our chosen τ=0.002. This means the limitation cannot be resolved by tuning sensitivity — it is structural. This extends to cumulative variants of the controller signal.\n\n3. **Cross-indicator generality**: All 7 EWS indicators (SLV, RankMe, isotropy, stable rank, spectral norm, token entropy, perplexity growth rate) exhibit the same attenuation pattern. The phenomenon is not SLV-specific but affects any rate-based spectral/output indicator, suggesting a fundamental geometric property of the mixed-training regime.\n\n**Empirical anchor**: Table 3 phase diagram + §4.3 controller analysis + §4.5 alt-EWS comparison provide the quantitative evidence chain.\n\n**Framing**: C3 is positioned as \"demonstrating an inherent limitation\" with \"quantitative characterization,\" not as \"discovering\" something new. The verb choice is deliberate (commit 473d4fb).\n"
-            }
-          },
-          "id": "event-000573"
-        },
-        {
-          "source_line": 574,
-          "timestamp": "2026-05-21T21:57:56.708471+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_C3_novelty_draft.md"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Write",
-            "elapsed_ms": 50
-          },
-          "id": "event-000574"
-        },
-        {
-          "source_line": 575,
+          "source_line": 571,
           "timestamp": "2026-05-21T21:58:06.623924+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -697,10 +620,10 @@
               "text": "**进展更新**（Agent/Reviewer RESET 循环期间自行推进）\n\n1. **C3 novelty 防御草稿完成** — 针对 Reviewer 指出的最大攻击面（\"信号衰减是否 trivially expected\"），准备了 3 个量化论点：连续衰减曲线、τ-独立性、7 个 EWS 指标的跨指标普适性。保存在 `artifacts/rebuttal_C3_novelty_draft.md`。\n\n2. **Abstract \"two seeds\" → \"three seeds\" 暂不改** — 确认 L5 指的是 phase diagram r_crit 定位，当前 r=0.25 和 r=0.3 还未全部达到 3-seed（exp_014b/015/016 运行中），改了反而不准确。等实验完成后统一更新。\n\n3. **R1-W1 rebuttal 已就绪**，R1-N2 seed 覆盖按计划推进中。\n\n4. **GPU 满载**：exp_014b (cuda:0) + exp_015 (cuda:1) 正常运行。\n\nAgent/Reviewer RESET 循环仍在，已报 BLOCKED 等运维介入。"
             }
           },
-          "id": "event-000575"
+          "id": "event-000571"
         },
         {
-          "source_line": 576,
+          "source_line": 572,
           "timestamp": "2026-05-21T21:58:09.642443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -715,10 +638,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3018
           },
-          "id": "event-000576"
+          "id": "event-000572"
         },
         {
-          "source_line": 577,
+          "source_line": 573,
           "timestamp": "2026-05-21T21:58:12.541887+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -731,7 +654,7 @@
           "metadata": {
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director"
           },
-          "id": "event-000577"
+          "id": "event-000573"
         }
       ]
     },
@@ -739,7 +662,7 @@
       "number": 92,
       "messages": [
         {
-          "source_line": 578,
+          "source_line": 574,
           "timestamp": "2026-05-21T21:58:12.554599+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -753,10 +676,10 @@
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000578"
+          "id": "event-000574"
         },
         {
-          "source_line": 579,
+          "source_line": 575,
           "timestamp": "2026-05-21T21:58:18.280167+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -773,10 +696,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-000579"
+          "id": "event-000575"
         },
         {
-          "source_line": 580,
+          "source_line": 576,
           "timestamp": "2026-05-21T21:58:18.332811+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -791,7 +714,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 52
           },
-          "id": "event-000580"
+          "id": "event-000576"
         }
       ]
     },
@@ -799,7 +722,7 @@
       "number": 93,
       "messages": [
         {
-          "source_line": 581,
+          "source_line": 577,
           "timestamp": "2026-05-21T22:29:38.384291+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -813,10 +736,10 @@
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
             "source": "system:keepalive"
           },
-          "id": "event-000581"
+          "id": "event-000577"
         },
         {
-          "source_line": 582,
+          "source_line": 578,
           "timestamp": "2026-05-21T22:29:48.753997+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -834,10 +757,10 @@
               "detail": "RESET 循环 4.5h 未解决，已批准 RESET_BOTH 5 次。Agent/Reviewer session 无法使用，无法派实验或论文任务。C3 novelty 防御草稿已完成（3 个量化论点均有实验数据支撑：Table 3 phase diagram + §4.3 controller + §4.5 alt-EWS），不需要补实验。cuda:0 空闲问题——无法通过 Agent 派 exp_016 或 P1 实验，因为 Agent session 不存在。需运维确认 ralph 重置流程是否正常工作，否则我这个 session 也无法有效继续。"
             }
           },
-          "id": "event-000582"
+          "id": "event-000578"
         },
         {
-          "source_line": 583,
+          "source_line": 579,
           "timestamp": "2026-05-21T22:29:49.958459+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -852,10 +775,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 1204
           },
-          "id": "event-000583"
+          "id": "event-000579"
         },
         {
-          "source_line": 584,
+          "source_line": 580,
           "timestamp": "2026-05-21T22:29:58.542347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -873,10 +796,10 @@
               "text": "spectral_collapse_ews 项目 Agent/Reviewer RESET 循环问题\n\nMain Agent 和 Research Reviewer 的 session 重置从 17:22 UTC 开始循环——已批准 RESET_BOTH 5 次、RESET_REVIEWER 2 次，但系统每隔 ~30-60 分钟仍产生新的 RESET REQUEST。新 session 未成功启动。\n\n影响：\n- Agent 停摆 7.5h，无法派实验或论文任务\n- cuda:0 空闲（exp_014b 可能已完成但无法确认或启动 exp_016）\n- DDL May 25，还有 P0 实验数据集成和 Round 2 审稿提交待完成\n\n请确认 ralph 重置流程是否正常工作，或是否需要手动干预启动新 session。"
             }
           },
-          "id": "event-000584"
+          "id": "event-000580"
         },
         {
-          "source_line": 585,
+          "source_line": 581,
           "timestamp": "2026-05-21T22:29:58.542873+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -891,7 +814,7 @@
             "tool": "mcp__agent-ml-research__director_post_to_manager",
             "elapsed_ms": 0
           },
-          "id": "event-000585"
+          "id": "event-000581"
         }
       ]
     },
@@ -899,7 +822,7 @@
       "number": 94,
       "messages": [
         {
-          "source_line": 586,
+          "source_line": 582,
           "timestamp": "2026-05-21T22:41:40.245259+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -913,10 +836,10 @@
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000586"
+          "id": "event-000582"
         },
         {
-          "source_line": 587,
+          "source_line": 583,
           "timestamp": "2026-05-21T22:41:47.256117+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -933,10 +856,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-000587"
+          "id": "event-000583"
         },
         {
-          "source_line": 588,
+          "source_line": 584,
           "timestamp": "2026-05-21T22:41:47.306988+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -951,7 +874,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 50
           },
-          "id": "event-000588"
+          "id": "event-000584"
         }
       ]
     },
@@ -959,7 +882,7 @@
       "number": 95,
       "messages": [
         {
-          "source_line": 589,
+          "source_line": 585,
           "timestamp": "2026-05-21T23:13:10.768195+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -973,10 +896,10 @@
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
             "source": "system:keepalive"
           },
-          "id": "event-000589"
+          "id": "event-000585"
         },
         {
-          "source_line": 590,
+          "source_line": 586,
           "timestamp": "2026-05-21T23:13:20.559801+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -995,10 +918,10 @@
               "detail": "立即自行推进 3 项：(1) 检查 exp_014b 实际完成状态和 cuda:0 空闲情况；(2) 如果 exp_014b 已完成，直接准备 exp_016 启动指令；(3) 整合 C3 novelty + R1-W1 rebuttal 到统一 rebuttal 框架文档。不再等 RESET 循环解决。"
             }
           },
-          "id": "event-000590"
+          "id": "event-000586"
         },
         {
-          "source_line": 591,
+          "source_line": 587,
           "timestamp": "2026-05-21T23:13:21.163505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1013,10 +936,10 @@
             "tool": "mcp__agent-ml-research__keepalive_respond",
             "elapsed_ms": 603
           },
-          "id": "event-000591"
+          "id": "event-000587"
         },
         {
-          "source_line": 592,
+          "source_line": 588,
           "timestamp": "2026-05-21T23:13:24.528951+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1033,10 +956,10 @@
               "project": "spectral_collapse_ews"
             }
           },
-          "id": "event-000592"
+          "id": "event-000588"
         },
         {
-          "source_line": 593,
+          "source_line": 589,
           "timestamp": "2026-05-21T23:13:24.579699+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1051,10 +974,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 50
           },
-          "id": "event-000593"
+          "id": "event-000589"
         },
         {
-          "source_line": 594,
+          "source_line": 590,
           "timestamp": "2026-05-21T23:13:25.032588+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1072,10 +995,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000594"
+          "id": "event-000590"
         },
         {
-          "source_line": 595,
+          "source_line": 591,
           "timestamp": "2026-05-21T23:13:25.083287+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1090,10 +1013,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000595"
+          "id": "event-000591"
         },
         {
-          "source_line": 596,
+          "source_line": 592,
           "timestamp": "2026-05-21T23:13:29.022518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1110,10 +1033,10 @@
               "server": "rtx6000-diagprobe"
             }
           },
-          "id": "event-000596"
+          "id": "event-000592"
         },
         {
-          "source_line": 597,
+          "source_line": 593,
           "timestamp": "2026-05-21T23:13:29.073293+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1128,10 +1051,10 @@
             "tool": "mcp__agent-ml-research__get_gpu_health",
             "elapsed_ms": 50
           },
-          "id": "event-000597"
+          "id": "event-000593"
         },
         {
-          "source_line": 598,
+          "source_line": 594,
           "timestamp": "2026-05-21T23:13:47.017012+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1149,10 +1072,10 @@
               "text": "[Director 指令] 紧急状态检查 + 实验推进\n\nAgent 已空闲 ~9 小时。请立即执行以下任务：\n\n## 1. 检查实验状态（最高优先级）\nSSH 到 rtx6000-diagprobe 检查：\n```bash\n# GPU 状态\nnvidia-smi\n\n# exp_014b 是否完成\nls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/\nps aux | grep -i \"train\\|python\" | grep -v grep\n\n# exp_015 是否还在跑\nls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/\n\n# 磁盘状态\ndf -h /root/autodl-tmp\n```\n\n## 2. 如果 exp_014b 已完成\n- 确认 gen 6-10 数据完整（每代有 results.json + checkpoint）\n- 立即在 cuda:0 启动 exp_016 (r=0.3, seed44, 完整 10 gen)\n- 更新 registry\n\n## 3. 如果 exp_015 已完成\n- 确认 gen 0-10 数据完整\n- 更新 registry\n\n## 4. 论文待做（实验确认后）\n- 如果 exp_014b + exp_015 数据到位：更新 Table 3 r=0.25 行为 3-seed mean\n- Abstract L5: \"two random seeds\" → \"three random seeds\"（仅当 r=0.25 和 r=0.3 均达 3-seed 时）\n- §4.1 确认 commit d577eeb 的 \"cross-seed robust\" 修改是否在代码中\n\n报告所有发现。"
             }
           },
-          "id": "event-000598"
+          "id": "event-000594"
         },
         {
-          "source_line": 599,
+          "source_line": 595,
           "timestamp": "2026-05-21T23:13:52.099616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1167,125 +1090,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 5082
           },
-          "id": "event-000599"
+          "id": "event-000595"
         },
         {
-          "source_line": 600,
-          "timestamp": "2026-05-21T23:13:56.725972+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_R1W1_draft.md"
-            }
-          },
-          "id": "event-000600"
-        },
-        {
-          "source_line": 601,
-          "timestamp": "2026-05-21T23:13:57.028558+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# R1-W1: Granularity of r_crit bound\n2\t\n3\t**Weakness**: The critical mixing ratio is localized only to (0.25, 0.3], which is a coarse bound.\n4\t\n5\t**Response**:\n6\t\n7\tWe agree that finer resolution (e.g., r = 0.27, 0.28, 0.29) would narrow the bound, and we note this as natural future work. However, we believe the current resolution is sufficient for both the paper's scientific claims and practical recommendations, for three reasons.\n8\t\n9\tFirst, the practical recommendation is insensitive to the exact r_crit value. Practitioners need a safe threshold, not a precise critical point: setting r > 0.3 prevents spectral collapse regardless of whether r_crit is 0.26 or 0.29. The 5-percentage-point gap between our upper bound (0.3) and the nearest sub-critical point (0.25) already provides a safety margin.\n10\t\n11\tSecond, the qualitative boundary is robust across seeds and smoothing parameters. Both r = 0.25 seeds exhibit Type II trajectories (transient EMA-smoothed SLV violation at Gen 1--2 followed by sustained recovery), while both r = 0.3 seeds show Type III (monotonic expansion on the cross-seed mean). Recomputing the EMA for alpha in {0.3, 0.5, 0.7} yields the same interval in all cases (Section 4.4, paragraph 6).\n12\t\n13\tThird, the phase diagram's contribution is the trajectory typology itself---distinguishing collapse, transitional, and stable regimes---rather than a precise critical constant. The three-type partition and the signal attenuation finding hold at any r_crit within (0.25, 0.3].\n14\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "elapsed_ms": 302
-          },
-          "id": "event-000601"
-        },
-        {
-          "source_line": 602,
-          "timestamp": "2026-05-21T23:13:57.079285+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_C3_novelty_draft.md"
-            }
-          },
-          "id": "event-000602"
-        },
-        {
-          "source_line": 603,
-          "timestamp": "2026-05-21T23:13:57.079856+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# C3 Novelty Defense: Signal Attenuation\n2\t\n3\t**Anticipated attack**: \"Signal attenuation (mixing suppresses spectral warning signals) is trivially expected — of course if you prevent collapse, there's no collapse signal to detect.\"\n4\t\n5\t**Response** (~200 words):\n6\t\n7\tThe observation that intervention suppresses warning signals is indeed anticipated by the EWS literature (Scheffer 2009, Siteur 2016). Our contribution is not the qualitative observation but three quantitative findings that theory alone does not predict:\n8\t\n9\t1. **Continuous degradation curve**: Signal attenuation is not binary (present/absent). We show that the controller signal degrades *continuously* as the mixing ratio approaches r_crit, with a smooth transition from strong signal (r=0, Δ_max=0.08) through attenuated signal (r=0.2, Δ_max=0.002) to complete silence (r≥0.3, Δ_max<0.0003). This continuous relationship — empirically characterized across 5 mixing ratios × 3 seeds — has not been quantified before.\n10\t\n11\t2. **τ-independence**: The signal vanishes entirely above r_crit for *any* positive threshold τ, not just our chosen τ=0.002. This means the limitation cannot be resolved by tuning sensitivity — it is structural. This extends to cumulative variants of the controller signal.\n12\t\n13\t3. **Cross-indicator generality**: All 7 EWS indicators (SLV, RankMe, isotropy, stable rank, spectral norm, token entropy, perplexity growth rate) exhibit the same attenuation pattern. The phenomenon is not SLV-specific but affects any rate-based spectral/output indicator, suggesting a fundamental geometric property of the mixed-training regime.\n14\t\n15\t**Empirical anchor**: Table 3 phase diagram + §4.3 controller analysis + §4.5 alt-EWS comparison provide the quantitative evidence chain.\n16\t\n17\t**Framing**: C3 is positioned as \"demonstrating an inherent limitation\" with \"quantitative characterization,\" not as \"discovering\" something new. The verb choice is deliberate (commit 473d4fb).\n18\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-000603"
-        },
-        {
-          "source_line": 604,
-          "timestamp": "2026-05-21T23:14:37.179779+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_framework.md",
-              "content": "# Rebuttal Framework — Round 1 Response\n\n## Issue Tracker Summary (15/16 resolved)\n\n### Resolved (no rebuttal needed)\n- R1-N1: SLV definition rewritten (commit 66cbb53)\n- R1-N3: Signal attenuation reframed (commit 473d4fb)\n- R2-N1: Page limit fixed (commits 34cadcc + 6a9bbd7)\n- R2-N2: SIGMA equivalence honestly disclosed (commits b3add6f + 13dbdce)\n- R1-W2: Per-gen variance appendix added (commit 98a14f5)\n- R1-W3: 1B pilot claim qualified (commit 473d4fb)\n- R1-W4: Δ²_t compressed (commit 34cadcc)\n- R1-W5: n-sensitivity analysis added to Limitations\n- R2-W2: Missing literature added (commit 6a9bbd7)\n- R2-W3: C4 demoted to supporting text (commit 473d4fb)\n- R2-W4: Conclusion overclaim fixed (commit 473d4fb)\n- INT-D1: Table 3 r=0.50 data source unified (commit 94cbf2f)\n- INT-D2: Table 1 3-seed data integrity fixed (commit 94cbf2f)\n- INT-D3: D-4 baseline + CV multiplier corrected (commit 58c3536)\n\n### In Progress\n- **R1-N2** (seed replication): r=0 3-seed done; r=0.25 exp_014b+015 running; r=0.3 exp_016 queued; r=0.2/0.5 P1 planned\n\n### Open (rebuttal needed)\n- **R1-W1** (r_crit granularity): rebuttal prepared, see below\n\n---\n\n## Rebuttal Point 1: R1-W1 — r_crit Interval Granularity\n\n**Weakness**: The critical mixing ratio is localized only to (0.25, 0.3], which is a coarse bound.\n\n**Response** (~150 words):\n\nWe agree that finer resolution (e.g., r = 0.27, 0.28, 0.29) would narrow the bound, and we note this as natural future work. However, the current resolution is sufficient for three reasons.\n\nFirst, the practical recommendation is insensitive to the exact r_crit value. Practitioners need a safe threshold, not a precise critical point: setting r > 0.3 prevents spectral collapse regardless of whether r_crit is 0.26 or 0.29.\n\nSecond, the qualitative boundary is robust across three seeds and three EMA smoothing parameters (α ∈ {0.3, 0.5, 0.7}): r = 0.25 consistently shows Type II trajectories (transitional), while r = 0.3 consistently shows Type III (stable).\n\nThird, the phase diagram's contribution is the trajectory typology itself — distinguishing collapse, transitional, and stable regimes — rather than a precise critical constant.\n\n---\n\n## Rebuttal Point 2: C3 Novelty — Signal Attenuation\n\n**Anticipated attack**: \"Signal attenuation is trivially expected — preventing collapse removes the signal.\"\n\n**Response** (~200 words):\n\nThe observation that intervention suppresses warning signals is anticipated by the EWS literature (Scheffer 2009, Siteur 2016). Our contribution is not the qualitative observation but three quantitative findings that theory alone does not predict:\n\n1. **Continuous degradation**: Signal attenuation is not binary. The controller signal degrades *continuously* as the mixing ratio approaches r_crit — from strong (r=0, Δ_max=0.08) through attenuated (r=0.2, Δ_max=0.002) to complete silence (r≥0.3, Δ_max<0.0003). This continuous relationship, empirically characterized across 5 mixing ratios × 3 seeds, has not been quantified before.\n\n2. **τ-independence**: The signal vanishes above r_crit for *any* positive threshold τ, not just our chosen τ=0.002. This limitation cannot be resolved by tuning sensitivity — it is structural, extending to cumulative variants.\n\n3. **Cross-indicator generality**: All 7 EWS indicators exhibit the same attenuation pattern. The phenomenon is not SLV-specific but affects any rate-based spectral/output indicator, suggesting a fundamental geometric property of the mixed-training regime.\n\n**Evidence**: Table 3 phase diagram + §4.3 controller analysis + §4.5 alt-EWS comparison.\n\n---\n\n## Rebuttal Point 3: R1-N2 — Seed Replication\n\n**Weakness**: Most mixing ratios have only 1 seed.\n\n**Response** (to be finalized after experiments complete):\n\nWe have expanded seed coverage significantly in revision:\n- r = 0: 3 seeds (42, 43, 44) — three-phase pattern reproduced with SLV CV < 1.3%\n- r = 0.25: 3 seeds (42, 43, 44) — [pending exp_014b + exp_015 completion]\n- r = 0.3: 3 seeds (42, 43, 44) — [pending exp_016 completion]\n- r = 0.2: 2 seeds (42, 43) — [pending P1]\n- r = 0.5: 2 seeds (42, 43) — [pending P1]\n\nThe r_crit boundary conditions (r=0.25 and r=0.3) now have 3-seed coverage, confirming that the Type II/III classification is not seed-dependent. Peripheral conditions (r=0.2, r=0.5) have 2 seeds, providing adequate coverage for their role as phase diagram anchors.\n\n---\n\n## Potential Additional Attacks\n\n### \"Only Pythia, only OpenWebText, only English\"\n**Defense**: Acknowledged in Limitations. Scope is deliberately constrained to enable 10-generation depth × 5 mixing ratios × 3 seeds within computational budget. Cross-architecture generalization is future work.\n\n### \"SLV doesn't predict downstream degradation earlier\"\n**Defense**: Already addressed in §4.1 L53 — SLV's value is computational cost (<1s vs ~70min), not temporal precedence. The asymmetry finding (spectral expansion ≠ model health) is itself a contribution.\n\n### \"Phase diagram is just a grid search\"\n**Defense**: The contribution is the trajectory typology and the signal attenuation characterization, not the grid search methodology. The phase diagram provides the empirical substrate for C3.\n"
-            }
-          },
-          "id": "event-000604"
-        },
-        {
-          "source_line": 605,
-          "timestamp": "2026-05-21T23:14:37.231654+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/rebuttal_framework.md"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
-            "tool": "Write",
-            "elapsed_ms": 51
-          },
-          "id": "event-000605"
-        },
-        {
-          "source_line": 606,
+          "source_line": 596,
           "timestamp": "2026-05-21T23:14:40.595476+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1298,7 +1106,7 @@
           "metadata": {
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director"
           },
-          "id": "event-000606"
+          "id": "event-000596"
         }
       ]
     },
@@ -1306,7 +1114,7 @@
       "number": 96,
       "messages": [
         {
-          "source_line": 607,
+          "source_line": 597,
           "timestamp": "2026-05-21T23:14:40.903646+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1320,10 +1128,10 @@
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000607"
+          "id": "event-000597"
         },
         {
-          "source_line": 608,
+          "source_line": 598,
           "timestamp": "2026-05-21T23:15:40.398105+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1336,7 +1144,7 @@
           "metadata": {
             "session": "feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director"
           },
-          "id": "event-000608"
+          "id": "event-000598"
         }
       ]
     }

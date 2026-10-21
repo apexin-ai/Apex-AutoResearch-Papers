@@ -61,7 +61,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research read p1 result | 1 | 0 | [Read transcript](research-read-p1-result.md) | [JSON](../../sessions/c1/c1214b09f7d3b11efc60.json) |
 | research read p2 result | 1 | 0 | [Read transcript](research-read-p2-result.md) | [JSON](../../sessions/81/81fed1b54f28266779b2.json) |
 | research read qa probe result | 1 | 0 | [Read transcript](research-read-qa-probe-result.md) | [JSON](../../sessions/d3/d325226189c6cc6857fd.json) |
-| research rebuttal material | 1 | 0 | [Read transcript](research-rebuttal-material.md) | [JSON](../../sessions/4e/4e407da6f870da91eb49.json) |
 | research redream evidence compilation | 1 | 0 | [Read transcript](research-redream-evidence-compilation.md) | [JSON](../../sessions/e1/e1e9234723cf28c1ed59.json) |
 | research related work check 202526 | 1 | 0 | [Read transcript](research-related-work-check-202526.md) | [JSON](../../sessions/b2/b2636e4f1eb4eec936f7.json) |
 | research related work gap check | 1 | 0 | [Read transcript](research-related-work-gap-check.md) | [JSON](../../sessions/63/63aeeb8df18d7d2743d1.json) |

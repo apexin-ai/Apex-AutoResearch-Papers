@@ -7,235 +7,6 @@
       "messages": [
         {
           "source_line": 1981,
-          "timestamp": "2026-05-21T09:42:41.573580+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "**/winogrande*.json",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
-            }
-          },
-          "id": "event-001981"
-        },
-        {
-          "source_line": 1982,
-          "timestamp": "2026-05-21T09:42:41.624128+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/winogrande_per_example.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/winogrande_per_example.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/winogrande_jaccard_analysis.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/winogrande_jaccard_analysis.json"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Glob",
-            "elapsed_ms": 50
-          },
-          "id": "event-001982"
-        },
-        {
-          "source_line": 1983,
-          "timestamp": "2026-05-21T09:42:46.918515+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/piqa_jaccard_analysis.json"
-            }
-          },
-          "id": "event-001983"
-        },
-        {
-          "source_line": 1984,
-          "timestamp": "2026-05-21T09:42:46.969271+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"benchmark\": \"piqa\",\n3\t  \"n_samples\": 1838,\n4\t  \"jaccard_analysis\": {\n5\t    \"h24-1\": {\n6\t      \"GDN_vs_RetNet\": {\n7\t        \"helped\": {\n8\t          \"J\": 0.0872,\n9\t          \"J_null\": 0.0217,\n10\t          \"J_max\": 0.6875,\n11\t          \"nES\": 0.0984,\n12\t          \"p\": 0.0,\n13\t          \"n_A\": 96,\n14\t          \"n_B\": 66,\n15\t          \"n_intersection\": 13\n16\t        },\n17\t        \"hurt\": {\n18\t          \"J\": 0.0608,\n19\t          \"J_null\": 0.0216,\n20\t          \"J_max\": 0.8256,\n21\t          \"nES\": 0.0488,\n22\t          \"p\": 0.0051,\n23\t          \"n_A\": 86,\n24\t          \"n_B\": 71,\n25\t          \"n_intersection\": 9\n26\t        }\n27\t      },\n28\t      \"GDN_vs_HGRN2\": {\n29\t        \"helped\": {\n30\t          \"J\": 0.0637,\n31\t          \"J_null\": 0.0227,\n32\t          \"J_max\": 0.7396,\n33\t          \"nES\": 0.0572,\n34\t          \"p\": 0.0026,\n35\t          \"n_A\": 96,\n36\t          \"n_B\": 71,\n37\t          \"n_intersection\": 10\n38\t        },\n39\t        \"hurt\": {\n40\t          \"J\": 0.1241,\n41\t          \"J_null\": 0.0211,\n42\t          \"J_max\": 0.7907,\n43\t          \"nES\": 0.1338,\n44\t          \"p\": 0.0,\n45\t          \"n_A\": 86,\n46\t          \"n_B\": 68,\n47\t          \"n_intersection\": 17\n48\t        }\n49\t      },\n50\t      \"RetNet_vs_HGRN2\": {\n51\t        \"helped\": {\n52\t          \"J\": 0.1048,\n53\t          \"J_null\": 0.019,\n54\t          \"J_max\": 0.9296,\n55\t          \"nES\": 0.0943,\n56\t          \"p\": 0.0,\n57\t          \"n_A\": 66,\n58\t          \"n_B\": 71,\n59\t          \"n_intersection\": 13\n60\t        },\n61\t        \"hurt\": {\n62\t          \"J\": 0.0945,\n63\t          \"J_null\": 0.0193,\n64\t          \"J_max\": 0.9577,\n65\t          \"nES\": 0.0802,\n66\t          \"p\": 0.0,\n67\t          \"n_A\": 71,\n68\t          \"n_B\": 68,\n69\t          \"n_intersection\": 12\n70\t        }\n71\t      }\n72\t    },\n73\t    \"h12-1\": {\n74\t      \"GDN_vs_RetNet\": {\n75\t        \"helped\": {\n76\t          \"J\": 0.071,\n77\t          \"J_null\": 0.023,\n78\t          \"J_max\": 0.8864,\n79\t          \"nES\": 0.0555,\n80\t          \"p\": 0.0011,\n81\t          \"n_A\": 88,\n82\t       \n…[truncated 4996 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-001984"
-        },
-        {
-          "source_line": 1985,
-          "timestamp": "2026-05-21T09:42:47.170337+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/piqa_per_example.json"
-            }
-          },
-          "id": "event-001985"
-        },
-        {
-          "source_line": 1986,
-          "timestamp": "2026-05-21T09:42:47.170931+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"benchmark\": \"piqa\",\n3\t  \"n_samples\": 1838,\n4\t  \"architectures\": [\n5\t    \"GDN\",\n6\t    \"RetNet\",\n7\t    \"HGRN2\"\n8\t  ],\n9\t  \"ratios\": [\n10\t    \"pure\",\n11\t    \"h24-1\",\n12\t    \"h12-1\",\n13\t    \"h6-1\",\n14\t    \"h3-1\"\n15\t  ],\n16\t  \"per_example_classification\": {\n17\t    \"GDN\": {\n18\t      \"h24-1\": {\n19\t        \"n_helped\": 96,\n20\t        \"n_hurt\": 86,\n21\t        \"n_stayed_right\": 1244,\n22\t        \"n_stayed_wrong\": 412,\n23\t        \"net_effect\": 10\n24\t      },\n25\t      \"h12-1\": {\n26\t        \"n_helped\": 88,\n27\t        \"n_hurt\": 84,\n28\t        \"n_stayed_right\": 1246,\n29\t        \"n_stayed_wrong\": 420,\n30\t        \"net_effect\": 4\n31\t      },\n32\t      \"h6-1\": {\n33\t        \"n_helped\": 100,\n34\t        \"n_hurt\": 86,\n35\t        \"n_stayed_right\": 1244,\n36\t        \"n_stayed_wrong\": 408,\n37\t        \"net_effect\": 14\n38\t      },\n39\t      \"h3-1\": {\n40\t        \"n_helped\": 105,\n41\t        \"n_hurt\": 79,\n42\t        \"n_stayed_right\": 1251,\n43\t        \"n_stayed_wrong\": 403,\n44\t        \"net_effect\": 26\n45\t      }\n46\t    },\n47\t    \"RetNet\": {\n48\t      \"h24-1\": {\n49\t        \"n_helped\": 66,\n50\t        \"n_hurt\": 71,\n51\t        \"n_stayed_right\": 1264,\n52\t        \"n_stayed_wrong\": 437,\n53\t        \"net_effect\": -5\n54\t      },\n55\t      \"h12-1\": {\n56\t        \"n_helped\": 78,\n57\t        \"n_hurt\": 78,\n58\t        \"n_stayed_right\": 1257,\n59\t        \"n_stayed_wrong\": 425,\n60\t        \"net_effect\": 0\n61\t      },\n62\t      \"h6-1\": {\n63\t        \"n_helped\": 82,\n64\t        \"n_hurt\": 84,\n65\t        \"n_stayed_right\": 1251,\n66\t        \"n_stayed_wrong\": 421,\n67\t        \"net_effect\": -2\n68\t      },\n69\t      \"h3-1\": {\n70\t        \"n_helped\": 80,\n71\t        \"n_hurt\": 75,\n72\t        \"n_stayed_right\": 1260,\n73\t        \"n_stayed_wrong\": 423,\n74\t        \"net_effect\": 5\n75\t      }\n76\t    },\n77\t    \"HGRN2\": {\n78\t      \"h24-1\": {\n79\t        \"n_helped\": 71,\n80\t        \"n_hurt\": 68,\n81\t        \"n_stayed_right\": 1282,\n82\t        \"n_stayed_wrong\": 417,\n83\t        \"net_effect\": 3\n84\t      },\n85\t      \"h12-1\": {\n86\t        \"n_helped\": 8\n…[truncated 2782 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-001986"
-        },
-        {
-          "source_line": 1987,
-          "timestamp": "2026-05-21T09:42:47.321575+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/winogrande_jaccard_analysis.json"
-            }
-          },
-          "id": "event-001987"
-        },
-        {
-          "source_line": 1988,
-          "timestamp": "2026-05-21T09:42:47.322087+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"benchmark\": \"winogrande\",\n3\t  \"n_samples\": 1267,\n4\t  \"jaccard_analysis\": {\n5\t    \"h24-1\": {\n6\t      \"GDN_vs_RetNet\": {\n7\t        \"helped\": {\n8\t          \"J\": 0.092,\n9\t          \"J_null\": 0.0777,\n10\t          \"J_max\": 0.84,\n11\t          \"nES\": 0.0188,\n12\t          \"p\": 0.1832,\n13\t          \"n_A\": 200,\n14\t          \"n_B\": 168,\n15\t          \"n_intersection\": 31\n16\t        },\n17\t        \"hurt\": {\n18\t          \"J\": 0.1054,\n19\t          \"J_null\": 0.0778,\n20\t          \"J_max\": 0.8918,\n21\t          \"nES\": 0.0339,\n22\t          \"p\": 0.0342,\n23\t          \"n_A\": 173,\n24\t          \"n_B\": 194,\n25\t          \"n_intersection\": 35\n26\t        }\n27\t      },\n28\t      \"GDN_vs_HGRN2\": {\n29\t        \"helped\": {\n30\t          \"J\": 0.0822,\n31\t          \"J_null\": 0.0813,\n32\t          \"J_max\": 0.91,\n33\t          \"nES\": 0.001,\n34\t          \"p\": 0.5065,\n35\t          \"n_A\": 200,\n36\t          \"n_B\": 182,\n37\t          \"n_intersection\": 29\n38\t        },\n39\t        \"hurt\": {\n40\t          \"J\": 0.1081,\n41\t          \"J_null\": 0.069,\n42\t          \"J_max\": 0.896,\n43\t          \"nES\": 0.0473,\n44\t          \"p\": 0.0064,\n45\t          \"n_A\": 173,\n46\t          \"n_B\": 155,\n47\t          \"n_intersection\": 32\n48\t        }\n49\t      },\n50\t      \"RetNet_vs_HGRN2\": {\n51\t        \"helped\": {\n52\t          \"J\": 0.1218,\n53\t          \"J_null\": 0.0741,\n54\t          \"J_max\": 0.9231,\n55\t          \"nES\": 0.0562,\n56\t          \"p\": 0.001,\n57\t          \"n_A\": 168,\n58\t          \"n_B\": 182,\n59\t          \"n_intersection\": 38\n60\t        },\n61\t        \"hurt\": {\n62\t          \"J\": 0.1115,\n63\t          \"J_null\": 0.073,\n64\t          \"J_max\": 0.799,\n65\t          \"nES\": 0.053,\n66\t          \"p\": 0.0067,\n67\t          \"n_A\": 194,\n68\t          \"n_B\": 155,\n69\t          \"n_intersection\": 35\n70\t        }\n71\t      }\n72\t    },\n73\t    \"h12-1\": {\n74\t      \"GDN_vs_RetNet\": {\n75\t        \"helped\": {\n76\t          \"J\": 0.1184,\n77\t          \"J_null\": 0.0761,\n78\t          \"J_max\": 0.9198,\n79\t          \"nES\": 0.0501,\n80\t          \"p\": 0.0042,\n81\t         \n…[truncated 5095 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-001988"
-        },
-        {
-          "source_line": 1989,
-          "timestamp": "2026-05-21T09:42:48.571988+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/winogrande_per_example.json"
-            }
-          },
-          "id": "event-001989"
-        },
-        {
-          "source_line": 1990,
-          "timestamp": "2026-05-21T09:42:48.692047+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"benchmark\": \"winogrande\",\n3\t  \"n_samples\": 1267,\n4\t  \"architectures\": [\n5\t    \"GDN\",\n6\t    \"RetNet\",\n7\t    \"HGRN2\"\n8\t  ],\n9\t  \"ratios\": [\n10\t    \"pure\",\n11\t    \"h24-1\",\n12\t    \"h12-1\",\n13\t    \"h6-1\",\n14\t    \"h3-1\"\n15\t  ],\n16\t  \"per_example_classification\": {\n17\t    \"GDN\": {\n18\t      \"h24-1\": {\n19\t        \"n_helped\": 200,\n20\t        \"n_hurt\": 173,\n21\t        \"n_stayed_right\": 594,\n22\t        \"n_stayed_wrong\": 300,\n23\t        \"net_effect\": 27\n24\t      },\n25\t      \"h12-1\": {\n26\t        \"n_helped\": 187,\n27\t        \"n_hurt\": 179,\n28\t        \"n_stayed_right\": 588,\n29\t        \"n_stayed_wrong\": 313,\n30\t        \"net_effect\": 8\n31\t      },\n32\t      \"h6-1\": {\n33\t        \"n_helped\": 183,\n34\t        \"n_hurt\": 195,\n35\t        \"n_stayed_right\": 572,\n36\t        \"n_stayed_wrong\": 317,\n37\t        \"net_effect\": -12\n38\t      },\n39\t      \"h3-1\": {\n40\t        \"n_helped\": 185,\n41\t        \"n_hurt\": 183,\n42\t        \"n_stayed_right\": 584,\n43\t        \"n_stayed_wrong\": 315,\n44\t        \"net_effect\": 2\n45\t      }\n46\t    },\n47\t    \"RetNet\": {\n48\t      \"h24-1\": {\n49\t        \"n_helped\": 168,\n50\t        \"n_hurt\": 194,\n51\t        \"n_stayed_right\": 565,\n52\t        \"n_stayed_wrong\": 340,\n53\t        \"net_effect\": -26\n54\t      },\n55\t      \"h12-1\": {\n56\t        \"n_helped\": 172,\n57\t        \"n_hurt\": 190,\n58\t        \"n_stayed_right\": 569,\n59\t        \"n_stayed_wrong\": 336,\n60\t        \"net_effect\": -18\n61\t      },\n62\t      \"h6-1\": {\n63\t        \"n_helped\": 173,\n64\t        \"n_hurt\": 171,\n65\t        \"n_stayed_right\": 588,\n66\t        \"n_stayed_wrong\": 335,\n67\t        \"net_effect\": 2\n68\t      },\n69\t      \"h3-1\": {\n70\t        \"n_helped\": 176,\n71\t        \"n_hurt\": 181,\n72\t        \"n_stayed_right\": 578,\n73\t        \"n_stayed_wrong\": 332,\n74\t        \"net_effect\": -5\n75\t      }\n76\t    },\n77\t    \"HGRN2\": {\n78\t      \"h24-1\": {\n79\t        \"n_helped\": 182,\n80\t        \"n_hurt\": 155,\n81\t        \"n_stayed_right\": 593,\n82\t        \"n_stayed_wrong\": 337,\n83\t        \"net_effect\": 27\n84\t      },\n85\t      \"h12-1\": {\n86\t    \n…[truncated 2796 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 120
-          },
-          "id": "event-001990"
-        },
-        {
-          "source_line": 1991,
-          "timestamp": "2026-05-21T09:42:48.730887+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
-            }
-          },
-          "id": "event-001991"
-        },
-        {
-          "source_line": 1992,
-          "timestamp": "2026-05-21T09:42:48.731537+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\tWe analyze how attention affects cross-architecture performance variance using models from the hybrid recurrent model zoo of \\citet{wang2025hybrid}. Our analysis spans three architectures (GatedDeltaNet, RetNet, HGRN2), five attention ratios (0\\% pure recurrent, 4\\%, 7.7\\%, 14.3\\%, 25\\%), and two scales (340M and 1.3B parameters). In the h$k$-1 notation used throughout, one attention layer is interleaved per every $k{+}1$ layers; h3-1 denotes 25\\% attention. All models within each scale share identical training data and hyperparameters; they differ only in architecture and attention configuration. We evaluate on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories, plus one supplementary benchmark (COPA, $n = 100$).\n4\t\n5\t\\subsection{Task-Specific Convergence}\\label{ssec:task_convergence}\n6\t\n7\tTable~\\ref{tab:convergence} reports cross-architecture $\\sigma$ at each attention ratio for all benchmarks at 1.3B scale. LAMBADA is the only benchmark exhibiting monotonic convergence: $\\rho = -1.0$ ($p = .017$; BCa 95\\% CI $[-1.0, -0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$). This is consistent with attention compensating for differences in how recurrent architectures retrieve from context \\citep{arora2024zoology}---LAMBADA requires predicting a final word from long-range dependencies, and attention provides direct token-level access that narrows architectural differences in recall capacity \\citep{arora2024based}. No other benchmark shows significant convergence (all $|\\rho| \\leq 0.7$, $p \\geq .233$; Figure~\\ref{fig:task_specificity}). Full convergence discussion appears in Appendix~\\ref{app:convergence_detail}. Scale analysis (Appendix~\\ref{app:scale_convergence}) shows this convergence is monotonic at 1.3B but non-monotonic at 340M.\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}\n12\t\\caption{Spearman $\\rho$ betw\n…[truncated 9840 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-001992"
-        },
-        {
-          "source_line": 1993,
           "timestamp": "2026-05-21T09:45:23.532503+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -253,10 +24,10 @@
               "limit": "36"
             }
           },
-          "id": "event-001993"
+          "id": "event-001981"
         },
         {
-          "source_line": 1994,
+          "source_line": 1982,
           "timestamp": "2026-05-21T09:45:23.884099+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -271,10 +42,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-001994"
+          "id": "event-001982"
         },
         {
-          "source_line": 1995,
+          "source_line": 1983,
           "timestamp": "2026-05-21T09:45:24.386140+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -293,10 +64,10 @@
               "limit": "12"
             }
           },
-          "id": "event-001995"
+          "id": "event-001983"
         },
         {
-          "source_line": 1996,
+          "source_line": 1984,
           "timestamp": "2026-05-21T09:45:24.386525+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -311,10 +82,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001996"
+          "id": "event-001984"
         },
         {
-          "source_line": 1997,
+          "source_line": 1985,
           "timestamp": "2026-05-21T09:45:24.938911+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -331,10 +102,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-001997"
+          "id": "event-001985"
         },
         {
-          "source_line": 1998,
+          "source_line": 1986,
           "timestamp": "2026-05-21T09:45:25.340800+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -349,10 +120,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-001998"
+          "id": "event-001986"
         },
         {
-          "source_line": 1999,
+          "source_line": 1987,
           "timestamp": "2026-05-21T09:45:25.491718+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -369,10 +140,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
             }
           },
-          "id": "event-001999"
+          "id": "event-001987"
         },
         {
-          "source_line": 2000,
+          "source_line": 1988,
           "timestamp": "2026-05-21T09:45:25.492168+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -387,10 +158,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002000"
+          "id": "event-001988"
         },
         {
-          "source_line": 2001,
+          "source_line": 1989,
           "timestamp": "2026-05-21T09:45:29.556677+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -408,10 +179,10 @@
               "limit": "30"
             }
           },
-          "id": "event-002001"
+          "id": "event-001989"
         },
         {
-          "source_line": 2002,
+          "source_line": 1990,
           "timestamp": "2026-05-21T09:45:29.607335+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -426,10 +197,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002002"
+          "id": "event-001990"
         },
         {
-          "source_line": 2003,
+          "source_line": 1991,
           "timestamp": "2026-05-21T09:47:40.493477+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -449,10 +220,10 @@
               "new_string": "decompose per-example effects on four (LAMBADA, HellaSwag, PIQA, ARC-Easy)"
             }
           },
-          "id": "event-002003"
+          "id": "event-001991"
         },
         {
-          "source_line": 2004,
+          "source_line": 1992,
           "timestamp": "2026-05-21T09:47:40.945567+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -467,10 +238,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002004"
+          "id": "event-001992"
         },
         {
-          "source_line": 2005,
+          "source_line": 1993,
           "timestamp": "2026-05-21T09:47:43.003287+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -490,10 +261,10 @@
               "new_string": "On four benchmarks---LAMBADA ($N = 5{,}153$), HellaSwag ($N = 10{,}042$), PIQA ($N = 1{,}838$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions"
             }
           },
-          "id": "event-002005"
+          "id": "event-001993"
         },
         {
-          "source_line": 2006,
+          "source_line": 1994,
           "timestamp": "2026-05-21T09:47:43.355010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -508,10 +279,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-002006"
+          "id": "event-001994"
         },
         {
-          "source_line": 2007,
+          "source_line": 1995,
           "timestamp": "2026-05-21T09:47:44.961033+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -531,10 +302,10 @@
               "new_string": "ranges from 0.10 (HellaSwag) through 0.14 (PIQA) and 0.21 (ARC-Easy) to 0.30 (LAMBADA)"
             }
           },
-          "id": "event-002007"
+          "id": "event-001995"
         },
         {
-          "source_line": 2008,
+          "source_line": 1996,
           "timestamp": "2026-05-21T09:47:45.262745+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -549,10 +320,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-002008"
+          "id": "event-001996"
         },
         {
-          "source_line": 2009,
+          "source_line": 1997,
           "timestamp": "2026-05-21T09:47:45.815185+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -572,10 +343,10 @@
               "new_string": "across four benchmarks spanning three task categories (retrieval, reasoning, mixed) in three recurrent backbones"
             }
           },
-          "id": "event-002009"
+          "id": "event-001997"
         },
         {
-          "source_line": 2010,
+          "source_line": 1998,
           "timestamp": "2026-05-21T09:47:46.217167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -590,10 +361,10 @@
             "tool": "Edit",
             "elapsed_ms": 401
           },
-          "id": "event-002010"
+          "id": "event-001998"
         },
         {
-          "source_line": 2011,
+          "source_line": 1999,
           "timestamp": "2026-05-21T09:47:50.634694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -613,10 +384,10 @@
               "new_string": "on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270; comprehension) and WinoGrande (1{,}267; reasoning, two-choice) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}."
             }
           },
-          "id": "event-002011"
+          "id": "event-001999"
         },
         {
-          "source_line": 2012,
+          "source_line": 2000,
           "timestamp": "2026-05-21T09:47:50.986476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -631,10 +402,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-002012"
+          "id": "event-002000"
         },
         {
-          "source_line": 2013,
+          "source_line": 2001,
           "timestamp": "2026-05-21T09:47:51.639254+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -654,10 +425,10 @@
               "new_string": "across four benchmarks"
             }
           },
-          "id": "event-002013"
+          "id": "event-002001"
         },
         {
-          "source_line": 2014,
+          "source_line": 2002,
           "timestamp": "2026-05-21T09:47:51.639719+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -672,10 +443,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002014"
+          "id": "event-002002"
         },
         {
-          "source_line": 2015,
+          "source_line": 2003,
           "timestamp": "2026-05-21T09:47:58.919213+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -695,10 +466,10 @@
               "new_string": "HellaSwag & 10042 & .10 & .091 & .080 & $-0.8$ \\\\\nPIQA & 1838 & .14 & .091 & .094 & $0.0$ \\\\\nARC-Easy & 2376 & .21 & .092 & .096 & $-0.2$ \\\\"
             }
           },
-          "id": "event-002015"
+          "id": "event-002003"
         },
         {
-          "source_line": 2016,
+          "source_line": 2004,
           "timestamp": "2026-05-21T09:47:59.371254+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -713,10 +484,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002016"
+          "id": "event-002004"
         },
         {
-          "source_line": 2017,
+          "source_line": 2005,
           "timestamp": "2026-05-21T09:48:06.010740+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -736,10 +507,10 @@
               "new_string": "\\paragraph{Multiplicity spectrum.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.10 (HellaSwag) through 0.14 (PIQA) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent spectrum. Evaluation format does not drive multiplicity: among four-way benchmarks, HellaSwag and ARC-Easy differ $2\\times$ in $\\alpha$ (0.10 vs.\\ 0.21); among two-choice benchmarks, $\\alpha$ spans from 0.14 (PIQA) to 0.41 (WinoGrande; Appendix~\\ref{app:winogrande}) to 0.45 (BoolQ; Appendix~\\ref{app:boolq}), covering 90\\% of the full six-benchmark range within a single format. Moreover, $\\alpha$ shows no correlation with task accuracy (Spearman $\\rho = 0.03$, $p = 1.00$), ruling out both format and difficulty as drivers. Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types ($3\\times$ from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}."
             }
           },
-          "id": "event-002017"
+          "id": "event-002005"
         },
         {
-          "source_line": 2018,
+          "source_line": 2006,
           "timestamp": "2026-05-21T09:48:06.463059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -754,10 +525,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002018"
+          "id": "event-002006"
         },
         {
-          "source_line": 2019,
+          "source_line": 2007,
           "timestamp": "2026-05-21T09:48:07.868825+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -777,10 +548,10 @@
               "new_string": "{\\footnotesize Within-benchmark $\\alpha$ variation $< 0.03$ across ratios. BoolQ, WinoGrande: Appendix~\\ref{app:boolq}, \\ref{app:winogrande}.}"
             }
           },
-          "id": "event-002019"
+          "id": "event-002007"
         },
         {
-          "source_line": 2020,
+          "source_line": 2008,
           "timestamp": "2026-05-21T09:48:08.320956+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -795,10 +566,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002020"
+          "id": "event-002008"
         },
         {
-          "source_line": 2021,
+          "source_line": 2009,
           "timestamp": "2026-05-21T09:48:15.102279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -818,10 +589,10 @@
               "new_string": "\\paragraph{Coverage.} Per-example analysis covers four main benchmarks; BoolQ and WinoGrande are supplementary (Appendix~\\ref{app:boolq}, \\ref{app:winogrande}). Although $\\alpha$ does not correlate with accuracy ($\\rho = 0.03$, $p = 1.00$), benchmarks near chance level show the highest $\\alpha$; PIQA (73\\%, $\\alpha = 0.14$) and HellaSwag (61\\%, $\\alpha = 0.10$) break this pattern, but we cannot fully exclude accuracy as a confound. We examine three recurrent architectures from one model zoo; other hybrid families may produce different patterns."
             }
           },
-          "id": "event-002021"
+          "id": "event-002009"
         },
         {
-          "source_line": 2022,
+          "source_line": 2010,
           "timestamp": "2026-05-21T09:48:15.504235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -836,10 +607,10 @@
             "tool": "Edit",
             "elapsed_ms": 401
           },
-          "id": "event-002022"
+          "id": "event-002010"
         },
         {
-          "source_line": 2023,
+          "source_line": 2011,
           "timestamp": "2026-05-21T09:48:16.056522+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -859,10 +630,10 @@
               "new_string": "per-example scope (four benchmarks, two supplementary)"
             }
           },
-          "id": "event-002023"
+          "id": "event-002011"
         },
         {
-          "source_line": 2024,
+          "source_line": 2012,
           "timestamp": "2026-05-21T09:48:16.508600+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -877,10 +648,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002024"
+          "id": "event-002012"
         },
         {
-          "source_line": 2025,
+          "source_line": 2013,
           "timestamp": "2026-05-21T09:48:17.462281+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -900,10 +671,10 @@
               "new_string": "Claims are scoped to three architectures and four benchmarks spanning retrieval, reasoning, and mixed tasks"
             }
           },
-          "id": "event-002025"
+          "id": "event-002013"
         },
         {
-          "source_line": 2026,
+          "source_line": 2014,
           "timestamp": "2026-05-21T09:48:17.914375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -918,10 +689,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002026"
+          "id": "event-002014"
         },
         {
-          "source_line": 2027,
+          "source_line": 2015,
           "timestamp": "2026-05-21T09:48:19.019892+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -941,10 +712,10 @@
               "new_string": "BoolQ and WinoGrande are reported as supplementary in the Appendix due to structural limitations of near-chance binary/two-choice classification on Jaccard significance."
             }
           },
-          "id": "event-002027"
+          "id": "event-002015"
         },
         {
-          "source_line": 2028,
+          "source_line": 2016,
           "timestamp": "2026-05-21T09:48:19.020292+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -959,10 +730,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002028"
+          "id": "event-002016"
         },
         {
-          "source_line": 2029,
+          "source_line": 2017,
           "timestamp": "2026-05-21T09:48:23.436666+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -981,10 +752,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002029"
+          "id": "event-002017"
         },
         {
-          "source_line": 2030,
+          "source_line": 2018,
           "timestamp": "2026-05-21T09:48:23.537409+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -999,10 +770,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002030"
+          "id": "event-002018"
         },
         {
-          "source_line": 2031,
+          "source_line": 2019,
           "timestamp": "2026-05-21T09:48:27.603286+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1021,10 +792,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002031"
+          "id": "event-002019"
         },
         {
-          "source_line": 2032,
+          "source_line": 2020,
           "timestamp": "2026-05-21T09:48:27.603824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1039,10 +810,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002032"
+          "id": "event-002020"
         },
         {
-          "source_line": 2033,
+          "source_line": 2021,
           "timestamp": "2026-05-21T09:48:44.012731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1062,10 +833,10 @@
               "new_string": "\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.\n\n\\section{WinoGrande Supplementary Analysis}\n\\label{app:winogrande}\n\nWinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\\alpha \\approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\\bar{J}_h = 0.110$, $\\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\\sim}60\\%$) reduces statistical power to detect above-chance overlap.\n\n\\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\\% to 62\\%, close to the two-choice chance level of 50\\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\\alpha$. This structural property, shared with BoolQ (${\\sim}59\\%$ accuracy, $\\alpha \\approx 0.45$), may partially explain the elevated $\\alpha$ rather than task-intrinsic multiplicity. PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (61\\% normalized accuracy, $\\alpha = 0.10$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:winogrande_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nWinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize $\\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}\n\\end{table}"
             }
           },
-          "id": "event-002033"
+          "id": "event-002021"
         },
         {
-          "source_line": 2034,
+          "source_line": 2022,
           "timestamp": "2026-05-21T09:48:44.013624+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1080,10 +851,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002034"
+          "id": "event-002022"
         },
         {
-          "source_line": 2035,
+          "source_line": 2023,
           "timestamp": "2026-05-21T09:48:48.782367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1103,10 +874,10 @@
               "new_string": "The four-benchmark spectrum (Table~\\ref{tab:multiplicity}) confirms independence"
             }
           },
-          "id": "event-002035"
+          "id": "event-002023"
         },
         {
-          "source_line": 2036,
+          "source_line": 2024,
           "timestamp": "2026-05-21T09:48:48.782964+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1121,10 +892,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002036"
+          "id": "event-002024"
         },
         {
-          "source_line": 2037,
+          "source_line": 2025,
           "timestamp": "2026-05-21T09:49:05.229588+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1143,10 +914,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-002037"
+          "id": "event-002025"
         },
         {
-          "source_line": 2038,
+          "source_line": 2026,
           "timestamp": "2026-05-21T09:49:05.280182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1161,10 +932,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002038"
+          "id": "event-002026"
         },
         {
-          "source_line": 2039,
+          "source_line": 2027,
           "timestamp": "2026-05-21T09:49:09.947897+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1184,10 +955,10 @@
               "new_string": "the four main benchmarks"
             }
           },
-          "id": "event-002039"
+          "id": "event-002027"
         },
         {
-          "source_line": 2040,
+          "source_line": 2028,
           "timestamp": "2026-05-21T09:49:09.998950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1202,10 +973,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002040"
+          "id": "event-002028"
         },
         {
-          "source_line": 2041,
+          "source_line": 2029,
           "timestamp": "2026-05-21T09:49:47.962879+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1225,10 +996,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002041"
+          "id": "event-002029"
         },
         {
-          "source_line": 2042,
+          "source_line": 2030,
           "timestamp": "2026-05-21T09:49:48.114253+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1243,10 +1014,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-002042"
+          "id": "event-002030"
         },
         {
-          "source_line": 2043,
+          "source_line": 2031,
           "timestamp": "2026-05-21T09:52:03.626400+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1267,10 +1038,10 @@
               "-C": "2"
             }
           },
-          "id": "event-002043"
+          "id": "event-002031"
         },
         {
-          "source_line": 2044,
+          "source_line": 2032,
           "timestamp": "2026-05-21T09:52:04.079047+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1285,10 +1056,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-002044"
+          "id": "event-002032"
         },
         {
-          "source_line": 2045,
+          "source_line": 2033,
           "timestamp": "2026-05-21T09:52:04.632485+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1309,10 +1080,10 @@
               "-C": "5"
             }
           },
-          "id": "event-002045"
+          "id": "event-002033"
         },
         {
-          "source_line": 2046,
+          "source_line": 2034,
           "timestamp": "2026-05-21T09:52:04.683220+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1327,10 +1098,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002046"
+          "id": "event-002034"
         },
         {
-          "source_line": 2047,
+          "source_line": 2035,
           "timestamp": "2026-05-21T09:52:07.900747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1349,10 +1120,10 @@
               "limit": "25"
             }
           },
-          "id": "event-002047"
+          "id": "event-002035"
         },
         {
-          "source_line": 2048,
+          "source_line": 2036,
           "timestamp": "2026-05-21T09:52:07.901150+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1367,10 +1138,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002048"
+          "id": "event-002036"
         },
         {
-          "source_line": 2049,
+          "source_line": 2037,
           "timestamp": "2026-05-21T09:52:08.855876+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1389,10 +1160,10 @@
               "limit": "30"
             }
           },
-          "id": "event-002049"
+          "id": "event-002037"
         },
         {
-          "source_line": 2050,
+          "source_line": 2038,
           "timestamp": "2026-05-21T09:52:08.956774+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1407,10 +1178,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002050"
+          "id": "event-002038"
         },
         {
-          "source_line": 2051,
+          "source_line": 2039,
           "timestamp": "2026-05-21T09:52:35.474603+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1430,10 +1201,10 @@
               "new_string": "This extends the gradient observed across LAMBADA, HellaSwag, and ARC-Easy: C1 effect sizes decrease from open-ended prediction"
             }
           },
-          "id": "event-002051"
+          "id": "event-002039"
         },
         {
-          "source_line": 2052,
+          "source_line": 2040,
           "timestamp": "2026-05-21T09:52:35.926950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1448,10 +1219,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002052"
+          "id": "event-002040"
         },
         {
-          "source_line": 2053,
+          "source_line": 2041,
           "timestamp": "2026-05-21T09:52:37.984013+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1471,10 +1242,10 @@
               "new_string": "Table~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.011 (PIQA), 0.012 (HellaSwag), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \\S\\ref{ssec:per_example}."
             }
           },
-          "id": "event-002053"
+          "id": "event-002041"
         },
         {
-          "source_line": 2054,
+          "source_line": 2042,
           "timestamp": "2026-05-21T09:52:38.335833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1489,10 +1260,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-002054"
+          "id": "event-002042"
         },
         {
-          "source_line": 2055,
+          "source_line": 2043,
           "timestamp": "2026-05-21T09:52:40.042230+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1512,10 +1283,10 @@
               "new_string": "HellaSwag & .101 & .103 & .100 & .091 & .096 \\\\\nPIQA & .143 & .138 & .132 & .143 & .140 \\\\\nARC-Easy & .205 & .226 & .223 & .201 & .210 \\\\\nLAMBADA & .307 & .300 & .316 & .294 & .296 \\\\"
             }
           },
-          "id": "event-002055"
+          "id": "event-002043"
         },
         {
-          "source_line": 2056,
+          "source_line": 2044,
           "timestamp": "2026-05-21T09:52:40.042846+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1530,10 +1301,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002056"
+          "id": "event-002044"
         },
         {
-          "source_line": 2057,
+          "source_line": 2045,
           "timestamp": "2026-05-21T09:52:43.656091+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1551,10 +1322,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002057"
+          "id": "event-002045"
         },
         {
-          "source_line": 2058,
+          "source_line": 2046,
           "timestamp": "2026-05-21T09:52:43.706669+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1569,10 +1340,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002058"
+          "id": "event-002046"
         },
         {
-          "source_line": 2059,
+          "source_line": 2047,
           "timestamp": "2026-05-21T09:52:46.567725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1590,10 +1361,10 @@
               "max_pages": "8"
             }
           },
-          "id": "event-002059"
+          "id": "event-002047"
         },
         {
-          "source_line": 2060,
+          "source_line": 2048,
           "timestamp": "2026-05-21T09:52:50.882226+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1608,10 +1379,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4314
           },
-          "id": "event-002060"
+          "id": "event-002048"
         },
         {
-          "source_line": 2061,
+          "source_line": 2049,
           "timestamp": "2026-05-21T09:52:57.957799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1628,10 +1399,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-002061"
+          "id": "event-002049"
         },
         {
-          "source_line": 2062,
+          "source_line": 2050,
           "timestamp": "2026-05-21T09:52:58.460345+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1648,10 +1419,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002062"
+          "id": "event-002050"
         },
         {
-          "source_line": 2063,
+          "source_line": 2051,
           "timestamp": "2026-05-21T09:52:58.612877+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1666,10 +1437,10 @@
             "tool": "Read",
             "elapsed_ms": 655
           },
-          "id": "event-002063"
+          "id": "event-002051"
         },
         {
-          "source_line": 2064,
+          "source_line": 2052,
           "timestamp": "2026-05-21T09:52:59.473997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1684,10 +1455,10 @@
             "tool": "Read",
             "elapsed_ms": 1013
           },
-          "id": "event-002064"
+          "id": "event-002052"
         },
         {
-          "source_line": 2065,
+          "source_line": 2053,
           "timestamp": "2026-05-21T09:53:07.701527+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1705,10 +1476,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002065"
+          "id": "event-002053"
         },
         {
-          "source_line": 2066,
+          "source_line": 2054,
           "timestamp": "2026-05-21T09:53:07.752199+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1723,10 +1494,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002066"
+          "id": "event-002054"
         },
         {
-          "source_line": 2067,
+          "source_line": 2055,
           "timestamp": "2026-05-21T09:53:30.736826+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1744,10 +1515,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-002067"
+          "id": "event-002055"
         },
         {
-          "source_line": 2068,
+          "source_line": 2056,
           "timestamp": "2026-05-21T09:53:34.401471+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1762,10 +1533,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3664
           },
-          "id": "event-002068"
+          "id": "event-002056"
         },
         {
-          "source_line": 2069,
+          "source_line": 2057,
           "timestamp": "2026-05-21T09:53:39.400184+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1778,7 +1549,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-002069"
+          "id": "event-002057"
         }
       ]
     },
@@ -1786,7 +1557,7 @@
       "number": 62,
       "messages": [
         {
-          "source_line": 2070,
+          "source_line": 2058,
           "timestamp": "2026-05-21T09:53:39.965588+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1800,10 +1571,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-002070"
+          "id": "event-002058"
         },
         {
-          "source_line": 2071,
+          "source_line": 2059,
           "timestamp": "2026-05-21T09:53:48.864569+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1816,7 +1587,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-002071"
+          "id": "event-002059"
         }
       ]
     },
@@ -1824,7 +1595,7 @@
       "number": 63,
       "messages": [
         {
-          "source_line": 2072,
+          "source_line": 2060,
           "timestamp": "2026-05-21T09:59:21.558331+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1838,10 +1609,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-002072"
+          "id": "event-002060"
         },
         {
-          "source_line": 2073,
+          "source_line": 2061,
           "timestamp": "2026-05-21T09:59:29.252974+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1860,10 +1631,10 @@
               "limit": "10"
             }
           },
-          "id": "event-002073"
+          "id": "event-002061"
         },
         {
-          "source_line": 2074,
+          "source_line": 2062,
           "timestamp": "2026-05-21T09:59:29.704783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1878,10 +1649,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-002074"
+          "id": "event-002062"
         },
         {
-          "source_line": 2075,
+          "source_line": 2063,
           "timestamp": "2026-05-21T09:59:30.708372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1901,10 +1672,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-002075"
+          "id": "event-002063"
         },
         {
-          "source_line": 2076,
+          "source_line": 2064,
           "timestamp": "2026-05-21T09:59:31.060329+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1919,10 +1690,10 @@
             "tool": "Grep",
             "elapsed_ms": 351
           },
-          "id": "event-002076"
+          "id": "event-002064"
         },
         {
-          "source_line": 2077,
+          "source_line": 2065,
           "timestamp": "2026-05-21T09:59:31.061562+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1940,10 +1711,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data"
             }
           },
-          "id": "event-002077"
+          "id": "event-002065"
         },
         {
-          "source_line": 2078,
+          "source_line": 2066,
           "timestamp": "2026-05-21T09:59:31.162205+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1958,10 +1729,10 @@
             "tool": "Glob",
             "elapsed_ms": 100
           },
-          "id": "event-002078"
+          "id": "event-002066"
         },
         {
-          "source_line": 2079,
+          "source_line": 2067,
           "timestamp": "2026-05-21T09:59:48.382246+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1981,10 +1752,10 @@
               "new_string": "The rescue pattern generalizes: across all three architectures on LAMBADA, HellaSwag, and ARC-Easy, helped examples have significantly higher pure-model target probability than stayed-wrong examples (9/9 tests, $d = 0.48$--$0.60$; Appendix~\\ref{app:cm_cross})."
             }
           },
-          "id": "event-002079"
+          "id": "event-002067"
         },
         {
-          "source_line": 2080,
+          "source_line": 2068,
           "timestamp": "2026-05-21T09:59:48.433028+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1999,10 +1770,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002080"
+          "id": "event-002068"
         },
         {
-          "source_line": 2081,
+          "source_line": 2069,
           "timestamp": "2026-05-21T09:59:51.644997+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2021,10 +1792,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002081"
+          "id": "event-002069"
         },
         {
-          "source_line": 2082,
+          "source_line": 2070,
           "timestamp": "2026-05-21T09:59:52.952237+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2039,10 +1810,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 1307
           },
-          "id": "event-002082"
+          "id": "event-002070"
         },
         {
-          "source_line": 2083,
+          "source_line": 2071,
           "timestamp": "2026-05-21T09:59:59.881796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2060,10 +1831,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-002083"
+          "id": "event-002071"
         },
         {
-          "source_line": 2084,
+          "source_line": 2072,
           "timestamp": "2026-05-21T10:00:04.250939+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2078,10 +1849,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 4369
           },
-          "id": "event-002084"
+          "id": "event-002072"
         },
         {
-          "source_line": 2085,
+          "source_line": 2073,
           "timestamp": "2026-05-21T10:00:08.440590+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2094,7 +1865,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-002085"
+          "id": "event-002073"
         }
       ]
     },
@@ -2102,7 +1873,7 @@
       "number": 64,
       "messages": [
         {
-          "source_line": 2086,
+          "source_line": 2074,
           "timestamp": "2026-05-21T10:00:09.205010+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2116,10 +1887,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "system"
           },
-          "id": "event-002086"
+          "id": "event-002074"
         },
         {
-          "source_line": 2087,
+          "source_line": 2075,
           "timestamp": "2026-05-21T10:00:15.689584+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2132,7 +1903,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent"
           },
-          "id": "event-002087"
+          "id": "event-002075"
         }
       ]
     },
@@ -2140,7 +1911,7 @@
       "number": 65,
       "messages": [
         {
-          "source_line": 2088,
+          "source_line": 2076,
           "timestamp": "2026-05-21T10:28:17.451880+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2154,10 +1925,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "source": "director"
           },
-          "id": "event-002088"
+          "id": "event-002076"
         },
         {
-          "source_line": 2089,
+          "source_line": 2077,
           "timestamp": "2026-05-21T10:28:27.926324+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2174,10 +1945,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_per_example.json"
             }
           },
-          "id": "event-002089"
+          "id": "event-002077"
         },
         {
-          "source_line": 2090,
+          "source_line": 2078,
           "timestamp": "2026-05-21T10:28:28.378392+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2192,10 +1963,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002090"
+          "id": "event-002078"
         },
         {
-          "source_line": 2091,
+          "source_line": 2079,
           "timestamp": "2026-05-21T10:28:28.378900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2212,10 +1983,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_jaccard_analysis.json"
             }
           },
-          "id": "event-002091"
+          "id": "event-002079"
         },
         {
-          "source_line": 2092,
+          "source_line": 2080,
           "timestamp": "2026-05-21T10:28:28.833012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2230,10 +2001,10 @@
             "tool": "Read",
             "elapsed_ms": 454
           },
-          "id": "event-002092"
+          "id": "event-002080"
         },
         {
-          "source_line": 2093,
+          "source_line": 2081,
           "timestamp": "2026-05-21T10:28:29.485761+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2253,10 +2024,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002093"
+          "id": "event-002081"
         },
         {
-          "source_line": 2094,
+          "source_line": 2082,
           "timestamp": "2026-05-21T10:28:29.536430+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2271,10 +2042,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002094"
+          "id": "event-002082"
         },
         {
-          "source_line": 2095,
+          "source_line": 2083,
           "timestamp": "2026-05-21T10:30:31.237910+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2293,10 +2064,10 @@
               "limit": "25"
             }
           },
-          "id": "event-002095"
+          "id": "event-002083"
         },
         {
-          "source_line": 2096,
+          "source_line": 2084,
           "timestamp": "2026-05-21T10:30:31.690109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2311,10 +2082,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002096"
+          "id": "event-002084"
         },
         {
-          "source_line": 2097,
+          "source_line": 2085,
           "timestamp": "2026-05-21T10:30:31.941506+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2333,10 +2104,10 @@
               "limit": "35"
             }
           },
-          "id": "event-002097"
+          "id": "event-002085"
         },
         {
-          "source_line": 2098,
+          "source_line": 2086,
           "timestamp": "2026-05-21T10:30:31.992229+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2351,10 +2122,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002098"
+          "id": "event-002086"
         },
         {
-          "source_line": 2099,
+          "source_line": 2087,
           "timestamp": "2026-05-21T10:31:41.951262+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2375,10 +2146,10 @@
               "-C": "1"
             }
           },
-          "id": "event-002099"
+          "id": "event-002087"
         },
         {
-          "source_line": 2100,
+          "source_line": 2088,
           "timestamp": "2026-05-21T10:31:42.358898+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2393,10 +2164,10 @@
             "tool": "Grep",
             "elapsed_ms": 407
           },
-          "id": "event-002100"
+          "id": "event-002088"
         },
         {
-          "source_line": 2101,
+          "source_line": 2089,
           "timestamp": "2026-05-21T10:31:42.861846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2416,10 +2187,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002101"
+          "id": "event-002089"
         },
         {
-          "source_line": 2102,
+          "source_line": 2090,
           "timestamp": "2026-05-21T10:31:42.878145+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2434,10 +2205,10 @@
             "tool": "Grep",
             "elapsed_ms": 16
           },
-          "id": "event-002102"
+          "id": "event-002090"
         },
         {
-          "source_line": 2103,
+          "source_line": 2091,
           "timestamp": "2026-05-21T10:31:47.267714+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2456,10 +2227,10 @@
               "limit": "10"
             }
           },
-          "id": "event-002103"
+          "id": "event-002091"
         },
         {
-          "source_line": 2104,
+          "source_line": 2092,
           "timestamp": "2026-05-21T10:31:47.719937+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2474,10 +2245,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002104"
+          "id": "event-002092"
         },
         {
-          "source_line": 2105,
+          "source_line": 2093,
           "timestamp": "2026-05-21T10:31:48.172198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2496,10 +2267,10 @@
               "limit": "45"
             }
           },
-          "id": "event-002105"
+          "id": "event-002093"
         },
         {
-          "source_line": 2106,
+          "source_line": 2094,
           "timestamp": "2026-05-21T10:31:48.674374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2514,10 +2285,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002106"
+          "id": "event-002094"
         },
         {
-          "source_line": 2107,
+          "source_line": 2095,
           "timestamp": "2026-05-21T10:31:48.674875+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2536,10 +2307,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002107"
+          "id": "event-002095"
         },
         {
-          "source_line": 2108,
+          "source_line": 2096,
           "timestamp": "2026-05-21T10:31:48.725411+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2554,10 +2325,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002108"
+          "id": "event-002096"
         },
         {
-          "source_line": 2109,
+          "source_line": 2097,
           "timestamp": "2026-05-21T10:32:06.648799+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2575,10 +2346,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data"
             }
           },
-          "id": "event-002109"
+          "id": "event-002097"
         },
         {
-          "source_line": 2110,
+          "source_line": 2098,
           "timestamp": "2026-05-21T10:32:06.649251+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2596,10 +2367,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data"
             }
           },
-          "id": "event-002110"
+          "id": "event-002098"
         },
         {
-          "source_line": 2111,
+          "source_line": 2099,
           "timestamp": "2026-05-21T10:32:07.051029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2614,10 +2385,10 @@
             "tool": "Glob",
             "elapsed_ms": 402
           },
-          "id": "event-002111"
+          "id": "event-002099"
         },
         {
-          "source_line": 2112,
+          "source_line": 2100,
           "timestamp": "2026-05-21T10:32:07.051371+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2632,10 +2403,10 @@
             "tool": "Glob",
             "elapsed_ms": 402
           },
-          "id": "event-002112"
+          "id": "event-002100"
         },
         {
-          "source_line": 2113,
+          "source_line": 2101,
           "timestamp": "2026-05-21T10:32:07.202175+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2653,10 +2424,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data"
             }
           },
-          "id": "event-002113"
+          "id": "event-002101"
         },
         {
-          "source_line": 2114,
+          "source_line": 2102,
           "timestamp": "2026-05-21T10:32:07.202655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2671,10 +2442,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-002114"
+          "id": "event-002102"
         },
         {
-          "source_line": 2115,
+          "source_line": 2103,
           "timestamp": "2026-05-21T10:32:11.318982+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2691,10 +2462,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/hellaswag_alpha_by_ratio.json"
             }
           },
-          "id": "event-002115"
+          "id": "event-002103"
         },
         {
-          "source_line": 2116,
+          "source_line": 2104,
           "timestamp": "2026-05-21T10:32:12.273024+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2709,10 +2480,10 @@
             "tool": "Read",
             "elapsed_ms": 954
           },
-          "id": "event-002116"
+          "id": "event-002104"
         },
         {
-          "source_line": 2117,
+          "source_line": 2105,
           "timestamp": "2026-05-21T10:32:12.323624+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2731,10 +2502,10 @@
               "limit": "20"
             }
           },
-          "id": "event-002117"
+          "id": "event-002105"
         },
         {
-          "source_line": 2118,
+          "source_line": 2106,
           "timestamp": "2026-05-21T10:32:12.757106+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2749,10 +2520,10 @@
             "tool": "Read",
             "elapsed_ms": 433
           },
-          "id": "event-002118"
+          "id": "event-002106"
         },
         {
-          "source_line": 2119,
+          "source_line": 2107,
           "timestamp": "2026-05-21T10:32:13.159157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2771,10 +2542,10 @@
               "limit": "6"
             }
           },
-          "id": "event-002119"
+          "id": "event-002107"
         },
         {
-          "source_line": 2120,
+          "source_line": 2108,
           "timestamp": "2026-05-21T10:32:13.209781+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2789,10 +2560,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002120"
+          "id": "event-002108"
         },
         {
-          "source_line": 2121,
+          "source_line": 2109,
           "timestamp": "2026-05-21T10:33:03.302719+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2811,10 +2582,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002121"
+          "id": "event-002109"
         },
         {
-          "source_line": 2122,
+          "source_line": 2110,
           "timestamp": "2026-05-21T10:33:03.804957+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2829,10 +2600,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002122"
+          "id": "event-002110"
         },
         {
-          "source_line": 2123,
+          "source_line": 2111,
           "timestamp": "2026-05-21T10:33:03.855495+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2849,10 +2620,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-002123"
+          "id": "event-002111"
         },
         {
-          "source_line": 2124,
+          "source_line": 2112,
           "timestamp": "2026-05-21T10:33:04.307614+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2867,10 +2638,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002124"
+          "id": "event-002112"
         },
         {
-          "source_line": 2125,
+          "source_line": 2113,
           "timestamp": "2026-05-21T10:33:04.709543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2889,10 +2660,10 @@
               "limit": "6"
             }
           },
-          "id": "event-002125"
+          "id": "event-002113"
         },
         {
-          "source_line": 2126,
+          "source_line": 2114,
           "timestamp": "2026-05-21T10:33:04.760273+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2907,10 +2678,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002126"
+          "id": "event-002114"
         },
         {
-          "source_line": 2127,
+          "source_line": 2115,
           "timestamp": "2026-05-21T10:34:13.377791+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2930,10 +2701,10 @@
               "new_string": "HellaSwag & Reasoning & $0.4$ & .517 & 1.17 & 1.22 & 0.96 \\\\"
             }
           },
-          "id": "event-002127"
+          "id": "event-002115"
         },
         {
-          "source_line": 2128,
+          "source_line": 2116,
           "timestamp": "2026-05-21T10:34:14.080791+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2948,10 +2719,10 @@
             "tool": "Edit",
             "elapsed_ms": 702
           },
-          "id": "event-002128"
+          "id": "event-002116"
         },
         {
-          "source_line": 2129,
+          "source_line": 2117,
           "timestamp": "2026-05-21T10:34:15.084752+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2971,10 +2742,10 @@
               "new_string": "(9/9 tests, $d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross})"
             }
           },
-          "id": "event-002129"
+          "id": "event-002117"
         },
         {
-          "source_line": 2130,
+          "source_line": 2118,
           "timestamp": "2026-05-21T10:34:15.587035+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2989,10 +2760,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002130"
+          "id": "event-002118"
         },
         {
-          "source_line": 2131,
+          "source_line": 2119,
           "timestamp": "2026-05-21T10:34:16.038990+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3012,10 +2783,10 @@
               "new_string": "HellaSwag & 10042 & .15 & .095 & .085 & $0.1$ \\\\"
             }
           },
-          "id": "event-002131"
+          "id": "event-002119"
         },
         {
-          "source_line": 2132,
+          "source_line": 2120,
           "timestamp": "2026-05-21T10:34:16.089675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3030,10 +2801,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002132"
+          "id": "event-002120"
         },
         {
-          "source_line": 2133,
+          "source_line": 2121,
           "timestamp": "2026-05-21T10:34:30.993437+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3053,10 +2824,10 @@
               "new_string": "The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent spectrum. Evaluation format does not drive multiplicity: HellaSwag (four-way, $\\alpha = 0.15$) and PIQA (two-choice, $\\alpha = 0.14$) produce nearly identical multiplicity despite different formats; among two-choice benchmarks alone, $\\alpha$ spans from 0.14 (PIQA) to 0.41 (WinoGrande; Appendix~\\ref{app:winogrande}) to 0.45 (BoolQ; Appendix~\\ref{app:boolq}), covering the full six-benchmark range within a single format. Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}."
             }
           },
-          "id": "event-002133"
+          "id": "event-002121"
         },
         {
-          "source_line": 2134,
+          "source_line": 2122,
           "timestamp": "2026-05-21T10:34:31.445708+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3071,10 +2842,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002134"
+          "id": "event-002122"
         },
         {
-          "source_line": 2135,
+          "source_line": 2123,
           "timestamp": "2026-05-21T10:34:33.754550+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3094,10 +2865,10 @@
               "new_string": "LAMBADA ($\\alpha = 0.30$) is the only benchmark showing convergence despite having the highest multiplicity, while PIQA ($\\alpha = 0.14$) and HellaSwag ($\\alpha = 0.15$) show no convergence with the lowest multiplicity."
             }
           },
-          "id": "event-002135"
+          "id": "event-002123"
         },
         {
-          "source_line": 2136,
+          "source_line": 2124,
           "timestamp": "2026-05-21T10:34:33.805255+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3112,10 +2883,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002136"
+          "id": "event-002124"
         },
         {
-          "source_line": 2137,
+          "source_line": 2125,
           "timestamp": "2026-05-21T10:34:39.525347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3135,10 +2906,10 @@
               "new_string": "Per-example predictive multiplicity \\citep{marx2020predictive} varies across tasks ($\\alpha = 0.14$--$0.30$)"
             }
           },
-          "id": "event-002137"
+          "id": "event-002125"
         },
         {
-          "source_line": 2138,
+          "source_line": 2126,
           "timestamp": "2026-05-21T10:34:39.977438+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3153,10 +2924,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002138"
+          "id": "event-002126"
         },
         {
-          "source_line": 2139,
+          "source_line": 2127,
           "timestamp": "2026-05-21T10:34:44.480113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3176,10 +2947,10 @@
               "new_string": "The correlation between $\\alpha$ and task accuracy is moderate but not significant ($\\rho = -0.60$, $p = .24$); HellaSwag (60\\%, $\\alpha = 0.15$) and PIQA (73\\%, $\\alpha = 0.14$) show low $\\alpha$ despite varied accuracy, while benchmarks near chance level (BoolQ, WinoGrande) show the highest $\\alpha$. We cannot fully exclude accuracy as a confound."
             }
           },
-          "id": "event-002139"
+          "id": "event-002127"
         },
         {
-          "source_line": 2140,
+          "source_line": 2128,
           "timestamp": "2026-05-21T10:34:44.781613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3194,10 +2965,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-002140"
+          "id": "event-002128"
         },
         {
-          "source_line": 2141,
+          "source_line": 2129,
           "timestamp": "2026-05-21T10:34:49.704372+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3217,10 +2988,10 @@
               "new_string": "The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$). On LAMBADA, aggregate $\\sigma$ decreases gradually ($0.024 \\to 0.005$) while per-example Jaccard saturates at 4\\% attention (${\\sim}0.09$)---the two quantities are decoupled. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval)."
             }
           },
-          "id": "event-002141"
+          "id": "event-002129"
         },
         {
-          "source_line": 2142,
+          "source_line": 2130,
           "timestamp": "2026-05-21T10:34:50.005917+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3235,10 +3006,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-002142"
+          "id": "event-002130"
         },
         {
-          "source_line": 2143,
+          "source_line": 2131,
           "timestamp": "2026-05-21T10:34:51.411157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3258,10 +3029,10 @@
               "new_string": "spans a task-dependent spectrum ($\\alpha = 0.14$--$0.30$) across four benchmarks"
             }
           },
-          "id": "event-002143"
+          "id": "event-002131"
         },
         {
-          "source_line": 2144,
+          "source_line": 2132,
           "timestamp": "2026-05-21T10:34:51.863265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3276,10 +3047,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002144"
+          "id": "event-002132"
         },
         {
-          "source_line": 2145,
+          "source_line": 2133,
           "timestamp": "2026-05-21T10:34:52.365629+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3299,10 +3070,10 @@
               "new_string": "$\\alpha = 0.14$--$0.30$"
             }
           },
-          "id": "event-002145"
+          "id": "event-002133"
         },
         {
-          "source_line": 2146,
+          "source_line": 2134,
           "timestamp": "2026-05-21T10:34:52.516655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3317,10 +3088,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-002146"
+          "id": "event-002134"
         },
         {
-          "source_line": 2147,
+          "source_line": 2135,
           "timestamp": "2026-05-21T10:34:53.420322+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3340,10 +3111,10 @@
               "new_string": "$\\alpha = 0.14$--$0.30$"
             }
           },
-          "id": "event-002147"
+          "id": "event-002135"
         },
         {
-          "source_line": 2148,
+          "source_line": 2136,
           "timestamp": "2026-05-21T10:34:53.473199+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3358,10 +3129,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-002148"
+          "id": "event-002136"
         },
         {
-          "source_line": 2149,
+          "source_line": 2137,
           "timestamp": "2026-05-21T10:34:58.993138+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3381,10 +3152,10 @@
               "new_string": "HellaSwag: $+0.4$"
             }
           },
-          "id": "event-002149"
+          "id": "event-002137"
         },
         {
-          "source_line": 2150,
+          "source_line": 2138,
           "timestamp": "2026-05-21T10:34:59.495303+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3399,10 +3170,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002150"
+          "id": "event-002138"
         },
         {
-          "source_line": 2151,
+          "source_line": 2139,
           "timestamp": "2026-05-21T10:35:01.352245+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3422,10 +3193,10 @@
               "new_string": "Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA)"
             }
           },
-          "id": "event-002151"
+          "id": "event-002139"
         },
         {
-          "source_line": 2152,
+          "source_line": 2140,
           "timestamp": "2026-05-21T10:35:01.804489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3440,10 +3211,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002152"
+          "id": "event-002140"
         },
         {
-          "source_line": 2153,
+          "source_line": 2141,
           "timestamp": "2026-05-21T10:35:03.210049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3463,10 +3234,10 @@
               "new_string": "HellaSwag & .148 & .150 & .148 & .146 & .150 \\\\"
             }
           },
-          "id": "event-002153"
+          "id": "event-002141"
         },
         {
-          "source_line": 2154,
+          "source_line": 2142,
           "timestamp": "2026-05-21T10:35:03.712345+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3481,10 +3252,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002154"
+          "id": "event-002142"
         },
         {
-          "source_line": 2155,
+          "source_line": 2143,
           "timestamp": "2026-05-21T10:35:11.540333+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3504,10 +3275,10 @@
               "new_string": "All nine comparisons (three benchmarks $\\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \\texttt{acc\\_norm}."
             }
           },
-          "id": "event-002155"
+          "id": "event-002143"
         },
         {
-          "source_line": 2156,
+          "source_line": 2144,
           "timestamp": "2026-05-21T10:35:11.591053+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3522,10 +3293,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002156"
+          "id": "event-002144"
         },
         {
-          "source_line": 2157,
+          "source_line": 2145,
           "timestamp": "2026-05-21T10:35:19.051371+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3545,10 +3316,10 @@
               "new_string": "HellaSwag & GDN & $-$0.13 & $3.2 \\times 10^{-2}$ \\\\\n & RetNet & $-$0.15 & $8.7 \\times 10^{-3}$ \\\\\n & HGRN2 & $-$0.17 & $1.4 \\times 10^{-3}$ \\\\"
             }
           },
-          "id": "event-002157"
+          "id": "event-002145"
         },
         {
-          "source_line": 2158,
+          "source_line": 2146,
           "timestamp": "2026-05-21T10:35:19.353157+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3563,10 +3334,10 @@
             "tool": "Edit",
             "elapsed_ms": 301
           },
-          "id": "event-002158"
+          "id": "event-002146"
         },
         {
-          "source_line": 2159,
+          "source_line": 2147,
           "timestamp": "2026-05-21T10:35:21.309796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3586,10 +3357,10 @@
               "new_string": "HellaSwag & GDN & 0.02 & .743 & No \\\\\n & RetNet & 0.05 & .381 & No \\\\\n & HGRN2 & 0.04 & .453 & No \\\\"
             }
           },
-          "id": "event-002159"
+          "id": "event-002147"
         },
         {
-          "source_line": 2160,
+          "source_line": 2148,
           "timestamp": "2026-05-21T10:35:21.360744+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3603,6 +3374,252 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
             "tool": "Edit",
             "elapsed_ms": 50
+          },
+          "id": "event-002148"
+        },
+        {
+          "source_line": 2149,
+          "timestamp": "2026-05-21T10:35:39.724903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "offset": "513",
+              "limit": "3"
+            }
+          },
+          "id": "event-002149"
+        },
+        {
+          "source_line": 2150,
+          "timestamp": "2026-05-21T10:35:39.776845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "513\t\\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \\leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, HellaSwag, and ARC-Easy: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through four-way multiple choice ($d \\approx 0.1$--$0.3$) to binary classification ($d \\approx 0$). The gradient is quantitatively predicted by the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$); Spearman $\\rho$ between CV and mean C1 effect size equals $1.0$. BoolQ's high-frequency short completions (``\\,yes''/``\\,no'') yield elevated baseline log-likelihoods (mean $|\\text{loglik}| = 3.04$ vs.\\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.\n514\t\n515\t\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002150"
+        },
+        {
+          "source_line": 2151,
+          "timestamp": "2026-05-21T10:36:14.176396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "old_string": "This extends the gradient observed across LAMBADA, HellaSwag, and ARC-Easy: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through four-way multiple choice ($d \\approx 0.1$--$0.3$) to binary classification ($d \\approx 0$). The gradient is quantitatively predicted by the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$); Spearman $\\rho$ between CV and mean C1 effect size equals $1.0$.",
+              "new_string": "This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through ARC-Easy ($d \\approx 0.1$--$0.3$) to HellaSwag ($d \\approx 0$ under \\texttt{acc\\_norm}) and binary classification ($d \\approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$)."
+            }
+          },
+          "id": "event-002151"
+        },
+        {
+          "source_line": 2152,
+          "timestamp": "2026-05-21T10:36:14.578507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-002152"
+        },
+        {
+          "source_line": 2153,
+          "timestamp": "2026-05-21T10:36:16.736979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+              "old_string": "PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (61\\% normalized accuracy, $\\alpha = 0.10$) demonstrate that near-chance accuracy is not the sole driver",
+              "new_string": "PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (60\\% normalized accuracy, $\\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver"
+            }
+          },
+          "id": "event-002153"
+        },
+        {
+          "source_line": 2154,
+          "timestamp": "2026-05-21T10:36:16.787896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002154"
+        },
+        {
+          "source_line": 2155,
+          "timestamp": "2026-05-21T10:36:23.062570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.10.*0\\.30|\\\\alpha = 0\\.10",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002155"
+        },
+        {
+          "source_line": 2156,
+          "timestamp": "2026-05-21T10:36:23.514533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:18:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:32:\\item Per-example analysis expanded from two to three benchmarks (LAMBADA, HellaSwag, ARC-Easy) plus BoolQ as supplementary in Appendix; multiplicity spectrum $\\alpha = 0.10$--$0.30$.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:80:\\item Multiplicity is characterized as a task-dependent spectrum: $\\alpha$ ranges from 0.10 (HellaSwag) to 0.30 (LAMBADA).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:81:\\item HellaSwag exhibits the lowest multiplicity ($\\alpha = 0.10$), confirming that multiplicity magnitude is task-dependent rather than noise."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 451
+          },
+          "id": "event-002156"
+        },
+        {
+          "source_line": 2157,
+          "timestamp": "2026-05-21T10:36:24.117144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "HellaSwag.*0\\.10|0\\.10.*HellaSwag",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-002157"
+        },
+        {
+          "source_line": 2158,
+          "timestamp": "2026-05-21T10:36:24.167883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex:25:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex:50:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:491:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex:513:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:32:\\item Per-example analysis expanded from two to three benchmarks (LAMBADA, HellaSwag, ARC-Easy) plus BoolQ as supplementary in Appendix; multiplicity spectrum $\\alpha = 0.10$--$0.30$.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:80:\\item Multiplicity is characterized as a task-dependent spectrum: $\\alpha$ ranges from 0.10 (HellaSwag) to 0.30 (LAMBADA).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex:81:\\item HellaSwag exhibits the lowest multiplicity ($\\alpha = 0.10$), confirming that multiplicity magnitude is task-dependent rather than noise.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex:18:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-002158"
+        },
+        {
+          "source_line": 2159,
+          "timestamp": "2026-05-21T10:36:35.007359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+              "offset": "25",
+              "limit": "1"
+            }
+          },
+          "id": "event-002159"
+        },
+        {
+          "source_line": 2160,
+          "timestamp": "2026-05-21T10:36:35.208471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "25\tHybrid recurrent architectures that interleave attention with linear recurrence are increasingly deployed, yet how attention affects per-example behavior across backbones remains unquantified. Using the controlled model zoo of \\citet{wang2025hybrid}---three architectures, five attention ratios, two scales (340M/1.3B)---we evaluate 10 benchmarks and decompose per-example effects on four (LAMBADA, HellaSwag, PIQA, ARC-Easy). Aggregate convergence is task-specific: only LAMBADA shows monotonic variance reduction (79\\%), consistent with attention compensating for retrieval differences across recurrent backbones. Per-example predictive multiplicity \\citep{marx2020predictive} varies across tasks ($\\alpha = 0.14$--$0.30$) while pairwise Jaccard of helped/hurt sets remains uniformly low ($\\leq 0.10$). On LAMBADA, aggregate variance decreases gradually while per-example overlap saturates at the first attention level---the two are decoupled. Multiplicity magnitude depends on task type, not attention dose."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 201
           },
           "id": "event-002160"
         }

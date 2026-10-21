@@ -66,13 +66,11 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research r2n2 literature supplement | 1 | 0 | [Read transcript](research-r2n2-literature-supplement.md) | [JSON](../../sessions/d6/d6a1f001578086f158d5.json) |
 | research r3 n5 cross strategy curation | 1 | 0 | [Read transcript](research-r3-n5-cross-strategy-curation.md) | [JSON](../../sessions/38/385ba45b770feb5f8c4e.json) |
 | research related work literature check | 1 | 0 | [Read transcript](research-related-work-literature-check.md) | [JSON](../../sessions/18/1889f5127b3609461834.json) |
-| research review response plan | 1 | 0 | [Read transcript](research-review-response-plan.md) | [JSON](../../sessions/52/5277ab54c7d853607289.json) |
 | research rf training data check | 1 | 0 | [Read transcript](research-rf-training-data-check.md) | [JSON](../../sessions/e7/e7dccb4174de92433d13.json) |
 | research temp09 d1v2 inversion verify | 1 | 0 | [Read transcript](research-temp09-d1v2-inversion-verify.md) | [JSON](../../sessions/4f/4fa7cb6914f0783c529d.json) |
 | research theory analysis plan023 | 1 | 0 | [Read transcript](research-theory-analysis-plan023.md) | [JSON](../../sessions/7a/7a734d772f0ab453e340.json) |
 | research verify 4 references | 1 | 0 | [Read transcript](research-verify-4-references.md) | [JSON](../../sessions/9a/9a9c141e108e43b5ee6e.json) |
 | research verify neural baseline gap | 1 | 0 | [Read transcript](research-verify-neural-baseline-gap.md) | [JSON](../../sessions/75/75558ab1f3ee325e545e.json) |
-| research w5 rebuttal generation code | 1 | 0 | [Read transcript](research-w5-rebuttal-generation-code.md) | [JSON](../../sessions/49/4994cc16d678aefb1f21.json) |
 | review adversarial round1 | 1 | 0 | [Read transcript](review-adversarial-round1.md) | [JSON](../../sessions/59/592751d30ecf20b990a2.json) |
 | review paper consistency check | 1 | 0 | [Read transcript](review-paper-consistency-check.md) | [JSON](../../sessions/02/020ac9d370629311be55.json) |
 | ssh baseline coral diveye fix | 1 | 0 | [Read transcript](ssh-baseline-coral-diveye-fix.md) | [JSON](../../sessions/74/7489c87a204cd2eb455e.json) |

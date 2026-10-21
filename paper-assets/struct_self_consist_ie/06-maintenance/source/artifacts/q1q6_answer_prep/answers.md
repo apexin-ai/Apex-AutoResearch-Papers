@@ -18,12 +18,6 @@ TACRED 结构不兼容（单标签关系分类 vs 集合抽取），强加不可
 | RE 4B gap confirmed | 4B SciERC RE | SJ ρ=0.2673, LP cond ρ=0.1135 (p=0.074, n.s.) |
 | RE cross-family | LLaMA 3.2-3B SciERC | SJ ρ=0.3754, VC ρ=0.4602 |
 
-### Rebuttal 要点
-1. **TACRED 不适用** (D105): TACRED 是 sentence-level 单标签分类任务，SJ/FK 度量无法直接适用于非集合输出。codebase 零支持，D019+D062 已评估不可行。
-2. **单 dataset 但多维度验证**: SciERC RE 结论经 3 seeds × 2 scales (4B/8B) × 2 families (Qwen/LLaMA) = 12 configurations 验证，binary dominance pattern 全部成立。
-3. **Scope 限定方案**: Title 改为 NER-focused（如 "... in Named Entity Recognition"），RE 作为 "exploratory extension to relation extraction" 在 abstract 末句标注。
-4. **RE 结论本身有独立价值**: Binary dominance mechanism 解释了 WHY 不同 IE 子任务需要不同信号族——这是 diagnostic insight，不是 weakness。
-
 ### 论文修改位置
 - **Title**: 限定 NER scope 或加 subtitle "with exploratory evidence on RE"
 - **Abstract L1-2**: "three NER and one RE benchmark" 替代 "NER and RE benchmarks"
@@ -53,12 +47,6 @@ TACRED 结构不兼容（单标签关系分类 vs 集合抽取），强加不可
 | **Secondary (post-hoc)** | ε=0.10 non-tied Δ | +3.69pp, p=0.034 | epsilon_sweep.csv |
 | **Robustness** | ε=0.03 | tied=31.8%, Δ=+1.31pp, p=0.079 | epsilon_sweep.csv |
 
-### Rebuttal 要点
-1. **主结论不依赖 ε**: Table 2 selection 结果用 LP 原始值排序，无 threshold。全集 Δ=+0.6pp (p=0.39) 是 null result——这本身就是核心发现。
-2. **ε-free 连续指标更强**: Median LP range 0.041 nats 和 pooled within-instance ρ=0.248 直接量化 compression，无需任何 threshold。
-3. **ε sweep 重新定位**: 从 "data-driven justification" 改为 "post-hoc exploratory analysis illustrating the monotonic relationship between tied fraction and selection gain"。承认 ε=0.05 选择是 post-hoc。
-4. **Monotonic trend 本身有信息量**: ε 从 0.01→0.20，tied fraction 从 1.1%→96.4%，non-tied Δ 单调递增 (0.58→4.59pp)——趋势比任何单点更重要。
-
 ### 论文修改位置
 - **Appendix G**: 删除 "data-driven justification" 措辞，改为 "post-hoc exploratory"
 - **Section 4.2**: ε-free 连续指标 (median range, pooled ρ) 作为主要呈现
@@ -83,11 +71,6 @@ Contribution 1 不是 "发现" instance-level 信号无法 rank——而是提�
 | Same signal, task-dependent reversal | NER: SJ>LP; RE: LP>SJ | 3-seed data |
 | VerbConf paradox | VC ρ=0.297 (>LP 0.205) but overconfident 8.58/10, selection worst | exp_verbconf |
 | LP full/cond inversion | RE LP full ρ=0.266, cond ρ=0.011 (p=0.86) | exp_012_rerun_1024 |
-
-### Rebuttal 要点
-1. **Reframe 而非 retreat**: 不否认 4/5 signals 的 instance-level 性质是 definitional，但论文的贡献是 *quantifying the empirical consequences*——高 ρ 信号产出差 selection，低 ρ 信号 (LP) 反而最好 (NER)。
-2. **三指标 dissociation 非 trivial**: EM AUROC 0.749 (best for binary filtering) vs EM ρ 0.295 (worst for ranking)——同一信号在不同 use case 下排名完全反转。这需要实验展示，不能从定义推导。
-3. **结构调整**: Instance-level/per-sample 分类移入 §3.2 作为 problem formulation 前提，Contribution 1 聚焦纯 empirical dissociation。
 
 ### 论文修改位置
 - **§3.2 开头**: 新增 "Signal Granularity" 段落，定义 instance-level vs per-sample
@@ -114,11 +97,6 @@ LR ensemble 已证明组合无提升（feature redundancy），VC quartile 分�
 | Ensemble selection F1 | NER 0.6450 = SJ单独 0.6450 | exp_016_rerun_1024 |
 | LP non-tied selection | +2.86pp, p=0.0035 (n=210) | epsilon_sweep.csv |
 | Free-form CoNLL LP | range median=0.0581±0.0072, ρ_lp=0.3262±0.0120 | exp_freeform_conll_4seed |
-
-### Rebuttal 要点
-1. **组合实验已做**: 5-signal LR ensemble 在 AUROC 和 selection F1 上均不优于 best single signal——feature redundancy 导致 overfitting。
-2. **VC quartile 分层** (D105 新分析): 按 VC Q1-Q4 分层报告 LP selection Δ，展示 cascade 效应。避免 binary threshold (ε) 带来的 circularity 攻击面。
-3. **为何不做更多**: Paper scope 是 diagnostic（理解 WHY signals fail），不是 engineering（如何组合 fix it）。Trained verifiers 是 fundamentally different approach，列为 future work。
 
 ### 论文修改位置
 - **Section 5 Discussion**: 报告 LR ensemble 结果作为 negative evidence
@@ -156,13 +134,6 @@ Scale: 3B-8B range 内 gap 完全成立，所有因果结论限定范围。Seeds
 | 456 | — | — | — |
 | 3-seed signal ranking | SJ>FK>LP 一致 (12/12 NER, 9/9 RE LP>SJ>FK) | | |
 
-### Rebuttal 要点
-1. **Scale — 弱化措辞**: "Task difficulty is a stronger predictor than model scale **within the 3B-8B range tested**"——不做因果推断到 70B+。
-2. **Scale — 4 configurations 足以检测 pattern**: 2 families × 2 scales (3B/4B vs 8B)，所有 QE correlations maintained or improved at smaller scale。Gap 在 4B 更极端 (SciERC NER: all signals worse than greedy despite 13pp oracle headroom)。
-3. **Seeds — 承认 n=3 效力有限**: 删除 Kendall W=1.000 的强结论，改为 "signal ranking was consistent across all tested seeds"。
-4. **Seeds — 但 pattern consistency 是 key**: NER 信号排名 VC>SJ>EM>FK>LP 在 6/6 configs 完全稳定（3 seeds × 2 tasks）。
-5. **n_samples confound control**: Qwen3-8B n=8 vs n=16 对比存在。CoNLL SJ: n8 ρ=0.4389 → n16 ρ=0.4496 (Δ=0.011, CI crosses zero)——n_samples 不是 4B-8B 比较的 confound。
-
 ### 论文修改位置
 - **所有 scale claims**: 添加 "within the 3B-8B range" 限定
 - **Table 4 caption**: 弱化因果措辞
@@ -189,13 +160,6 @@ Binary dominance mechanism: 43-47% zero-F1 使 LP 的粗粒度生成置信度（
 | Zero-F1 rate | ~0% | 43-47% (8B), 47.6% (4B) | Binary dominance |
 | 3-seed RE ranking | — | LP>SJ>FK (9/9 一致) | 跨 seed 稳定 |
 | Free-form RE LP selection | constrained: -0.68pp | free-form: +1.69pp | 反转（但在 bootstrap CI 内） |
-
-### Rebuttal 要点
-1. **Definitive evidence**: RE LP full ρ=0.266 vs cond ρ=0.011 (p=0.86)。一旦排除 F1=0 样本，LP 对 RE quality **零预测力**。整个 RE LP 信号 = binary classification (zero vs nonzero F1)。
-2. **对比 NER**: NER LP cond ρ=0.154-0.185，在排除 trivial cases 后仍有信号——说明 NER 中 LP 真正 (weakly) 度量 quality gradient，RE 中则完全退化为 binary。
-3. **Mechanism**: RE 中 compound error propagation (entity boundary → entity type → relation type → pair matching) 导致近半样本 F1=0。SJ/FK 在全零输出上无法区分"差一点" vs "完全失败"，LP 的平均生成概率反而能捕捉 "模型对这条关系有没有信心"。
-4. **Free-form RE reversal**: constrained -0.68pp → free-form +1.69pp 在 bootstrap CI [-3.0, +4.2]pp 内，是 noise 不是 signal。但 LP 分布本身 intrinsic (std ratio 0.97)——区分 distribution compression (intrinsic) vs selection outcome (noisy, task-dependent)。
-5. **Scale consistency**: 4B RE 同样 47.6% zero-F1，LP cond ρ=0.1135 (p=0.074, n.s.)——binary dominance 跨 scale 成立。
 
 ### 论文修改位置
 - **Discussion**: 新增 "Binary Dominance in Relation Extraction" 段落，包含 full vs cond ρ 对比 + mechanism 解释

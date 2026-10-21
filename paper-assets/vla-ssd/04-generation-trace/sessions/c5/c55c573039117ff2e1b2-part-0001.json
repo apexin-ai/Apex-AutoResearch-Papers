@@ -2745,45 +2745,6 @@
         },
         {
           "source_line": 142,
-          "timestamp": "2026-05-24T01:14:51.450330+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Write"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-            "tool": "Write",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rebuttal_outline.md",
-              "content": "# CoRL 2026 Rebuttal Outline — vla-ssd\n\n> 准备于 2026-05-24 | 基于内部 Review Overall 7/10\n\n## Attack Surface 1: Single Benchmark (LIBERO only)\n\n**Reviewer Objection**: All analyses confined to LIBERO. Generalization to other embodiments unclear.\n\n**Existing Defense**:\n- Cross-suite validation: 4 suites (Goal, Spatial, Object, Long), R² exit collapse consistent (Δ=0.156–0.455) at VLM→VLA transition\n- OpenVLA trained on 970K OXE episodes (multi-platform), routing not LIBERO-specific\n- Three distinct VLA families (Llama-2-7B, Phi-3-mini, Qwen2.5-VL-3B)\n\n**Additional Rebuttal**:\n- Exit collapse only at VLM→VLA (6/6), absent at VLA→VLA (0/4) — transition-type specificity is architecture-independent\n- Two NLP controls (Llama-2-chat + Phi-3-mini-instruct, both ΔR²=0.000) confirm action-training specificity\n\n## Attack Surface 2: No Behavioral Validation (open-loop only)\n\n**Reviewer Objection**: All analyses correlational. No behavioral evidence that routing patterns affect task performance.\n\n**Existing Defense**:\n- ρ=0.583 correlation with LIBERO success rates (p=0.10, n=9)\n- Within-suite ρ=1.0 on Goal (n=3), uniformly positive across suites\n- Explicit caveat: \"directional; validating requires controlled experiments\"\n\n**Additional Rebuttal**:\n- CF experiments: Cohen's d≥0.45 across all trained conditions — instruction perturbation causes directional output shifts without degrading GT MSE (ΔMSE≈0), consistent with information-computation dissociation\n- Three-tier routing gradient explains VLA→VLA modest CF gains (Δ=+0.04–0.24) vs VLM→VLA large gains (12× on NORA)\n- Per-token normalization: 38.2× text/image ratio (trained) vs 1.5× (untrained) eliminates token-count confound\n\n## Attack Surface 3: N=2 VLM→VLA Transitions\n\n**Reviewer Objection**: Only 2 VLM→VLA transitions (TracVLA, NORA). N=2 insufficient for cross-architecture generality.\n\n**Existing Defense**:\n- Three architectures total, 10/12 matrix cells filled\n- 6/6 VLM→VLA cells show exit collapse\n\n**Additional Rebuttal**:\n- OpenVLA as negative control: VLA→VLA transition, 0/4 cells exceed Δ>0.10 threshold — the contrast itself is the architectural validation\n- Three backbone families with distinct properties: Llama-2-7B (MHA, 32L), Phi-3-mini (MHA, 32L), Qwen2.5-VL-3B (GQA, 36L)\n- L1 head count variation (Phi-3: 32/32; Qwen2.5-VL: 13-14/16) shows framework sensitivity while R² collapse remains invariant\n"
-            }
-          },
-          "id": "event-000142"
-        },
-        {
-          "source_line": 143,
-          "timestamp": "2026-05-24T01:14:51.451113+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rebuttal_outline.md"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
-            "tool": "Write",
-            "elapsed_ms": 0
-          },
-          "id": "event-000143"
-        },
-        {
-          "source_line": 144,
           "timestamp": "2026-05-24T01:15:01.520531+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2796,7 +2757,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000144"
+          "id": "event-000142"
         }
       ]
     },
@@ -2804,7 +2765,7 @@
       "number": 15,
       "messages": [
         {
-          "source_line": 145,
+          "source_line": 143,
           "timestamp": "2026-05-24T01:16:34.090968+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2818,10 +2779,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "reviewer"
           },
-          "id": "event-000145"
+          "id": "event-000143"
         },
         {
-          "source_line": 146,
+          "source_line": 144,
           "timestamp": "2026-05-24T01:17:16.430956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2839,10 +2800,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-000146"
+          "id": "event-000144"
         },
         {
-          "source_line": 147,
+          "source_line": 145,
           "timestamp": "2026-05-24T01:17:20.505373+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2857,10 +2818,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 4074
           },
-          "id": "event-000147"
+          "id": "event-000145"
         },
         {
-          "source_line": 148,
+          "source_line": 146,
           "timestamp": "2026-05-24T01:17:25.722795+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2873,7 +2834,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000148"
+          "id": "event-000146"
         }
       ]
     },
@@ -2881,7 +2842,7 @@
       "number": 16,
       "messages": [
         {
-          "source_line": 149,
+          "source_line": 147,
           "timestamp": "2026-05-24T01:20:32.197990+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2895,10 +2856,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "reviewer"
           },
-          "id": "event-000149"
+          "id": "event-000147"
         },
         {
-          "source_line": 150,
+          "source_line": 148,
           "timestamp": "2026-05-24T01:20:47.517300+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2918,10 +2879,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000150"
+          "id": "event-000148"
         },
         {
-          "source_line": 151,
+          "source_line": 149,
           "timestamp": "2026-05-24T01:20:48.724402+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2936,10 +2897,10 @@
             "tool": "Grep",
             "elapsed_ms": 1207
           },
-          "id": "event-000151"
+          "id": "event-000149"
         },
         {
-          "source_line": 152,
+          "source_line": 150,
           "timestamp": "2026-05-24T01:20:48.775383+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2959,10 +2920,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000152"
+          "id": "event-000150"
         },
         {
-          "source_line": 153,
+          "source_line": 151,
           "timestamp": "2026-05-24T01:20:48.826012+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2977,10 +2938,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-000153"
+          "id": "event-000151"
         },
         {
-          "source_line": 154,
+          "source_line": 152,
           "timestamp": "2026-05-24T01:20:59.116085+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2999,10 +2960,10 @@
               "limit": "15"
             }
           },
-          "id": "event-000154"
+          "id": "event-000152"
         },
         {
-          "source_line": 155,
+          "source_line": 153,
           "timestamp": "2026-05-24T01:20:59.176455+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3017,10 +2978,10 @@
             "tool": "Read",
             "elapsed_ms": 60
           },
-          "id": "event-000155"
+          "id": "event-000153"
         },
         {
-          "source_line": 156,
+          "source_line": 154,
           "timestamp": "2026-05-24T01:21:28.614703+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3038,10 +2999,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-000156"
+          "id": "event-000154"
         },
         {
-          "source_line": 157,
+          "source_line": 155,
           "timestamp": "2026-05-24T01:21:32.642105+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3056,10 +3017,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 4027
           },
-          "id": "event-000157"
+          "id": "event-000155"
         },
         {
-          "source_line": 158,
+          "source_line": 156,
           "timestamp": "2026-05-24T01:21:39.642792+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3072,7 +3033,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000158"
+          "id": "event-000156"
         }
       ]
     },
@@ -3080,7 +3041,7 @@
       "number": 17,
       "messages": [
         {
-          "source_line": 159,
+          "source_line": 157,
           "timestamp": "2026-05-24T01:21:41.653095+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3094,10 +3055,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "paper_agent"
           },
-          "id": "event-000159"
+          "id": "event-000157"
         },
         {
-          "source_line": 160,
+          "source_line": 158,
           "timestamp": "2026-05-24T01:21:54.277291+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3110,7 +3071,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000160"
+          "id": "event-000158"
         }
       ]
     },
@@ -3118,7 +3079,7 @@
       "number": 18,
       "messages": [
         {
-          "source_line": 161,
+          "source_line": 159,
           "timestamp": "2026-05-24T01:34:41.467945+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3132,10 +3093,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "agent"
           },
-          "id": "event-000161"
+          "id": "event-000159"
         },
         {
-          "source_line": 162,
+          "source_line": 160,
           "timestamp": "2026-05-24T01:35:14.529709+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3153,10 +3114,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-000162"
+          "id": "event-000160"
         },
         {
-          "source_line": 163,
+          "source_line": 161,
           "timestamp": "2026-05-24T01:35:19.005916+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3171,10 +3132,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 4476
           },
-          "id": "event-000163"
+          "id": "event-000161"
         },
         {
-          "source_line": 164,
+          "source_line": 162,
           "timestamp": "2026-05-24T01:35:24.007607+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3187,7 +3148,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000164"
+          "id": "event-000162"
         }
       ]
     },
@@ -3195,7 +3156,7 @@
       "number": 19,
       "messages": [
         {
-          "source_line": 165,
+          "source_line": 163,
           "timestamp": "2026-05-24T01:37:08.520637+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3209,10 +3170,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "reviewer"
           },
-          "id": "event-000165"
+          "id": "event-000163"
         },
         {
-          "source_line": 166,
+          "source_line": 164,
           "timestamp": "2026-05-24T01:37:30.182078+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3225,7 +3186,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000166"
+          "id": "event-000164"
         }
       ]
     },
@@ -3233,7 +3194,7 @@
       "number": 20,
       "messages": [
         {
-          "source_line": 167,
+          "source_line": 165,
           "timestamp": "2026-05-24T01:38:31.349700+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3247,10 +3208,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "reviewer"
           },
-          "id": "event-000167"
+          "id": "event-000165"
         },
         {
-          "source_line": 168,
+          "source_line": 166,
           "timestamp": "2026-05-24T01:38:46.988755+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3269,10 +3230,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000168"
+          "id": "event-000166"
         },
         {
-          "source_line": 169,
+          "source_line": 167,
           "timestamp": "2026-05-24T01:38:47.039430+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3287,10 +3248,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000169"
+          "id": "event-000167"
         },
         {
-          "source_line": 170,
+          "source_line": 168,
           "timestamp": "2026-05-24T01:38:50.000868+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3310,10 +3271,10 @@
               "new_string": "and comprehension-action trade-offs~\\cite{fang2025}."
             }
           },
-          "id": "event-000170"
+          "id": "event-000168"
         },
         {
-          "source_line": 171,
+          "source_line": 169,
           "timestamp": "2026-05-24T01:38:50.051586+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3328,10 +3289,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000171"
+          "id": "event-000169"
         },
         {
-          "source_line": 172,
+          "source_line": 170,
           "timestamp": "2026-05-24T01:39:08.690113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3349,10 +3310,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-000172"
+          "id": "event-000170"
         },
         {
-          "source_line": 173,
+          "source_line": 171,
           "timestamp": "2026-05-24T01:39:12.567164+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3367,10 +3328,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 3877
           },
-          "id": "event-000173"
+          "id": "event-000171"
         },
         {
-          "source_line": 174,
+          "source_line": 172,
           "timestamp": "2026-05-24T01:39:17.969649+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3383,7 +3344,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000174"
+          "id": "event-000172"
         }
       ]
     },
@@ -3391,7 +3352,7 @@
       "number": 21,
       "messages": [
         {
-          "source_line": 175,
+          "source_line": 173,
           "timestamp": "2026-05-24T01:39:19.953861+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3405,10 +3366,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "agent"
           },
-          "id": "event-000175"
+          "id": "event-000173"
         },
         {
-          "source_line": 176,
+          "source_line": 174,
           "timestamp": "2026-05-24T01:39:29.945229+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3421,7 +3382,7 @@
           "metadata": {
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
-          "id": "event-000176"
+          "id": "event-000174"
         }
       ]
     },
@@ -3429,7 +3390,7 @@
       "number": 22,
       "messages": [
         {
-          "source_line": 177,
+          "source_line": 175,
           "timestamp": "2026-05-24T01:40:48.360154+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3443,10 +3404,10 @@
             "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
             "source": "paper_agent"
           },
-          "id": "event-000177"
+          "id": "event-000175"
         },
         {
-          "source_line": 178,
+          "source_line": 176,
           "timestamp": "2026-05-24T01:41:08.458116+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3466,10 +3427,10 @@
               "-n": "True"
             }
           },
-          "id": "event-000178"
+          "id": "event-000176"
         },
         {
-          "source_line": 179,
+          "source_line": 177,
           "timestamp": "2026-05-24T01:41:08.509124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3484,10 +3445,10 @@
             "tool": "Grep",
             "elapsed_ms": 51
           },
-          "id": "event-000179"
+          "id": "event-000177"
         },
         {
-          "source_line": 180,
+          "source_line": 178,
           "timestamp": "2026-05-24T01:41:16.197089+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3504,6 +3465,40 @@
               "text": "编译最新论文并汇报结果。related_work.tex 有 3 处更新（fang2025 修复 + 2 篇新引用），需要重新编译 bib。\n\n执行：\n1. 在论文目录运行完整编译（pdflatex + bibtex + pdflatex × 2）\n2. 确认 0 critical warnings + 正文 8 页\n3. 确认新引用（liu2026forgetting, grover2025preserving）出现在 references 中\n4. 汇报 PDF 路径",
               "project": "vla-ssd"
             }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-24T01:41:20.066124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e113d3dc0a8b306b4fe074c219\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3869
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-24T01:41:23.167808+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "fang2025 修复保留完好。编译最新 PDF 并上传。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director"
           },
           "id": "event-000180"
         }

@@ -8,182 +8,7 @@
 
 ### Tool result
 
-_source line 614 · 2026-05-21T22:27:12.513912+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# =============================================================================\\n# Experiment: 340M Multi-Benchmark Evaluation\\n# Purpose: Per-example eval (HellaSwag + PIQA + ARC-Easy) for all 15 340M models\\n# Models: 3 architectures (GDN, RetNet, HGRN2) × 5 ratios (pure, h24-1, h12-1, h6-1, h3-1)\\n# =============================================================================\\n\\nset -euo pipefail\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\n\\nMODEL_BASE=\\\"/root/entrainment_gated_ft/models\\\"\\nOUTPUT_BASE=\\\"/root/entrainment_gated_ft/lm_eval_clean/340m_multi\\\"\\nEVAL_SCRIPT=\\\"/root/entrainment_gated_ft/run_lmeval_clean.py\\\"\\nTASKS=\\\"hellaswag,piqa,arc_easy\\\"\\n\\ndeclare -A MODELS=(\\n    [\\\"GDN-pure\\\"]=\\\"340M-20B-GatedDeltaNet-pure-baseline\\\"\\n    [\\\"GDN-h24-1\\\"]=\\\"340M-20B-GatedDeltaNet-New-hybrid-24-1\\\"\\n    [\\\"GDN-h12-1\\\"]=\\\"340M-20B-GatedDeltaNet-hybrid-12-1\\\"\\n    [\\\"GDN-h6-1\\\"]=\\\"340M-20B-GatedDeltaNet-hybrid-6-1\\\"\\n    [\\\"GDN-h3-1\\\"]=\\\"340M-20B-GatedDeltaNet-hybrid-3-1\\\"\\n    [\\\"RetNet-pure\\\"]=\\\"340M-20B-RetNet-pure\\\"\\n    [\\\"RetNet-h24-1\\\"]=\\\"340M-20B-RetNet-hybrid-24-1\\\"\\n    [\\\"RetNet-h12-1\\\"]=\\\"340M-20B-RetNet-hybrid-12-1\\\"\\n    [\\\"RetNet-h6-1\\\"]=\\\"340M-20B-RetNet-hybrid-6-1\\\"\\n    [\\\"RetNet-h3-1\\\"]=\\\"340M-20B-RetNet-hybrid-3-1\\\"\\n    [\\\"HGRN2-pure\\\"]=\\\"340M-20B-HGRN2-pure-baseline\\\"\\n    [\\\"HGRN2-h24-1\\\"]=\\\"340M-20B-HGRN2-hybrid-24-1\\\"\\n    [\\\"HGRN2-h12-1\\\"]=\\\"340M-20B-HGRN2-hybrid-12-1\\\"\\n    [\\\"HGRN2-h6-1\\\"]=\\\"340M-20B-HGRN2-hybrid-6-1\\\"\\n    [\\\"HGRN2-h3-1\\\"]=\\\"340M-20B-HGRN2-hybrid-3-1\\\"\\n)\\n\\nTOTAL=${#MODELS[@]}\\nDONE=0\\nSKIPPED=0\\n\\necho \\\"========================================\\\"\\necho \\\"340M Multi-Benchmark Eval\\\"\\necho \\\"Tasks: ${TASKS}\\\"\\necho \\\"Total models: ${TO
-…[truncated 1963 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 803
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 615 · 2026-05-21T22:27:24.677798+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "westb-48145",
-  "command": "ls -d /root/entrainment_gated_ft/models/340M-20B-RetNet-pure /root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline /root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline /root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-3-1 /root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-3-1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "westb-48145",
-    "command": "ls -d /root/entrainment_gated_ft/models/340M-20B-RetNet-pure /root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline /root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline /root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-3-1 /root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-3-1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 616 · 2026-05-21T22:27:25.179556+00:00_
-
-called mcp__agent-ml-research__ssh_read_only
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
-
-```json
-{
-  "server": "westb-48145",
-  "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "tool_args": {
-    "server": "westb-48145",
-    "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 617 · 2026-05-21T22:27:25.480892+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/models/340M-20B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 803
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 618 · 2026-05-21T22:27:26.433887+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 1369 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__ssh_read_only",
-  "elapsed_ms": 1254
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 619 · 2026-05-21T22:27:37.878117+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] 340M eval 脚本修复验证——新脚本 `run_340m_multi_eval.sh` 准备就绪，无问题。\n\n**核实项：**\n1. ✅ 全部 15 个模型（3 arch × 5 ratios）均在 MODELS 数组中\n2. ✅ `--log_samples` flag 已添加（关键——没有这个 flag 就没有 per-example jsonl 输出）\n3. ✅ Tasks = \"hellaswag,piqa,arc_easy\"（恰好是 1.3B 主文 per-example 分析的 3 个 benchmark，不含已有的 LAMBADA）\n4. ✅ 模型路径 `/root/entrainment_gated_ft/models/` 已验证存在（抽查 5 个模型全部有效）\n5. ✅ `--device cuda:0`（在项目 GPU 白名单内）\n6. ✅ 有 skip 逻辑：已完成的模型自动跳过\n7. ✅ GPU 当前空闲（0% util, 1.4GB/98GB）\n\n**旧脚本 `run_340m_eval.sh` 未修改**（仍只有 GDN 6 个模型、无 `--log_samples`）——这个是遗留文件，不影响新脚本。\n\n**预估运行时间**：340M 模型比 1.3B 快约 3-4×。15 模型 × 3 benchmarks，估计 1.5-2.5 GPU-hours。\n\n脚本可以立即执行。",
-  "project": "entrainment_gated_ft"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] 340M eval 脚本修复验证——新脚本 `run_340m_multi_eval.sh` 准备就绪，无问题。\n\n**核实项：**\n1. ✅ 全部 15 个模型（3 arch × 5 ratios）均在 MODELS 数组中\n2. ✅ `--log_samples` flag 已添加（关键——没有这个 flag 就没有 per-example jsonl 输出）\n3. ✅ Tasks = \"hellaswag,piqa,arc_easy\"（恰好是 1.3B 主文 per-example 分析的 3 个 benchmark，不含已有的 LAMBADA）\n4. ✅ 模型路径 `/root/entrainment_gated_ft/models/` 已验证存在（抽查 5 个模型全部有效）\n5. ✅ `--device cuda:0`（在项目 GPU 白名单内）\n6. ✅ 有 skip 逻辑：已完成的模型自动跳过\n7. ✅ GPU 当前空闲（0% util, 1.4GB/98GB）\n\n**旧脚本 `run_340m_eval.sh` 未修改**（仍只有 GDN 6 个模型、无 `--log_samples`）——这个是遗留文件，不影响新脚本。\n\n**预估运行时间**：340M 模型比 1.3B 快约 3-4×。15 模型 × 3 benchmarks，估计 1.5-2.5 GPU-hours。\n\n脚本可以立即执行。",
-    "project": "entrainment_gated_ft"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 620 · 2026-05-21T22:27:41.290808+00:00_
+_source line 614 · 2026-05-21T22:27:41.290808+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -205,7 +30,7 @@ _source line 620 · 2026-05-21T22:27:41.290808+00:00_
 
 ### Assistant
 
-_source line 621 · 2026-05-21T22:27:44.334812+00:00_
+_source line 615 · 2026-05-21T22:27:44.334812+00:00_
 
 新脚本 `run_340m_multi_eval.sh` 修复正确。让我核实模型路径映射是否全部有效。
 
@@ -232,7 +57,7 @@ _source line 621 · 2026-05-21T22:27:44.334812+00:00_
 
 ### User
 
-_source line 622 · 2026-05-21T22:59:45.773054+00:00_
+_source line 616 · 2026-05-21T22:59:45.773054+00:00_
 
 [System 触发审查]:
 **340M 结果整合预案（正向 + 负向）**
@@ -270,7 +95,7 @@ exp-340m-multi-bench 正在跑（340M HellaSwag/PIQA/ARC-Easy per-example），�
 
 ### Tool call
 
-_source line 623 · 2026-05-21T23:00:11.864056+00:00_
+_source line 617 · 2026-05-21T23:00:11.864056+00:00_
 
 called Read
 
@@ -308,7 +133,7 @@ called Read
 
 ### Tool result
 
-_source line 624 · 2026-05-21T23:00:12.316190+00:00_
+_source line 618 · 2026-05-21T23:00:12.316190+00:00_
 
 71	\subsection{Decoupling}\label{ssec:decoupling}
 72	
@@ -339,7 +164,7 @@ _source line 624 · 2026-05-21T23:00:12.316190+00:00_
 
 ### Tool call
 
-_source line 625 · 2026-05-21T23:00:12.316568+00:00_
+_source line 619 · 2026-05-21T23:00:12.316568+00:00_
 
 called Read
 
@@ -377,7 +202,7 @@ called Read
 
 ### Tool result
 
-_source line 626 · 2026-05-21T23:00:13.270814+00:00_
+_source line 620 · 2026-05-21T23:00:13.270814+00:00_
 
 24	\begin{abstract}
 25	Hybrid recurrent architectures that interleave attention with linear recurrence are increasingly deployed, yet how attention affects per-example behavior across backbones remains unquantified. Using the controlled model zoo of \citet{wang2025hybrid}---three architectures, five attention ratios, two scales (340M/1.3B)---we evaluate 10 benchmarks and decompose per-example effects on four (LAMBADA, HellaSwag, PIQA, ARC-Easy). Per-example predictive multiplicity \citep{marx2020predictive} varies across tasks ($\alpha = 0.14$--$0.30$) while pairwise Jaccard of helped/hurt sets remains uniformly low ($\leq 0.10$); multiplicity magnitude depends on task type, not attention dose. Aggregate convergence, by contrast, is task-specific: only LAMBADA shows monotonic variance reduction (79\%), consistent with attention compensating for retrieval differences across recurrent backbones. On LAMBADA, aggregate variance decreases gradually while per-example overlap saturates at the first attention level---the two are decoupled.
@@ -401,7 +226,7 @@ _source line 626 · 2026-05-21T23:00:13.270814+00:00_
 
 ### Tool call
 
-_source line 627 · 2026-05-21T23:00:13.321471+00:00_
+_source line 621 · 2026-05-21T23:00:13.321471+00:00_
 
 called Read
 
@@ -439,7 +264,7 @@ called Read
 
 ### Tool result
 
-_source line 628 · 2026-05-21T23:00:13.423884+00:00_
+_source line 622 · 2026-05-21T23:00:13.423884+00:00_
 
 535	\end{tabular}
 536	\par\vspace{1pt}
@@ -492,7 +317,7 @@ _source line 628 · 2026-05-21T23:00:13.423884+00:00_
 
 ### Tool call
 
-_source line 629 · 2026-05-21T23:01:17.377561+00:00_
+_source line 623 · 2026-05-21T23:01:17.377561+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -528,7 +353,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 630 · 2026-05-21T23:01:21.297805+00:00_
+_source line 624 · 2026-05-21T23:01:21.297805+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -550,7 +375,7 @@ _source line 630 · 2026-05-21T23:01:21.297805+00:00_
 
 ### Assistant
 
-_source line 631 · 2026-05-21T23:01:24.171858+00:00_
+_source line 625 · 2026-05-21T23:01:24.171858+00:00_
 
 准备两套整合方案。先确认当前 340M 相关文本的精确位置。
 
@@ -577,7 +402,7 @@ _source line 631 · 2026-05-21T23:01:24.171858+00:00_
 
 ### User
 
-_source line 632 · 2026-05-21T23:01:24.666083+00:00_
+_source line 626 · 2026-05-21T23:01:24.666083+00:00_
 
 [系统通知 — worker_done:worker_check_340m-eval-status_20260521T230006]:
 Worker worker_check_340m-eval-status_20260521T230006 已完成（status=done），请审查 Agent 的处理结果。
@@ -599,7 +424,7 @@ Worker worker_check_340m-eval-status_20260521T230006 已完成（status=done）�
 
 ### Tool call
 
-_source line 633 · 2026-05-21T23:01:31.515779+00:00_
+_source line 627 · 2026-05-21T23:01:31.515779+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -635,7 +460,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 634 · 2026-05-21T23:01:31.918411+00:00_
+_source line 628 · 2026-05-21T23:01:31.918411+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -671,7 +496,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 635 · 2026-05-21T23:01:34.479830+00:00_
+_source line 629 · 2026-05-21T23:01:34.479830+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h12-1\\nGDN-h24-1\\nGDN-h3-1\\nGDN-h6-1\\nGDN-pure\\nRetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.99}}"}
 
@@ -693,7 +518,7 @@ _source line 635 · 2026-05-21T23:01:34.479830+00:00_
 
 ### Tool result
 
-_source line 636 · 2026-05-21T23:01:35.935302+00:00_
+_source line 630 · 2026-05-21T23:01:35.935302+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 1253 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
 
@@ -715,7 +540,7 @@ _source line 636 · 2026-05-21T23:01:35.935302+00:00_
 
 ### Tool call
 
-_source line 637 · 2026-05-21T23:01:41.158539+00:00_
+_source line 631 · 2026-05-21T23:01:41.158539+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -751,7 +576,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 638 · 2026-05-21T23:01:42.162744+00:00_
+_source line 632 · 2026-05-21T23:01:42.162744+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -787,7 +612,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 639 · 2026-05-21T23:01:42.364014+00:00_
+_source line 633 · 2026-05-21T23:01:42.364014+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
 
@@ -809,7 +634,7 @@ _source line 639 · 2026-05-21T23:01:42.364014+00:00_
 
 ### Tool result
 
-_source line 640 · 2026-05-21T23:01:43.719160+00:00_
+_source line 634 · 2026-05-21T23:01:43.719160+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.34}}"}
 
@@ -831,7 +656,7 @@ _source line 640 · 2026-05-21T23:01:43.719160+00:00_
 
 ### Tool call
 
-_source line 641 · 2026-05-21T23:01:46.582799+00:00_
+_source line 635 · 2026-05-21T23:01:46.582799+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -867,7 +692,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 642 · 2026-05-21T23:01:47.988940+00:00_
+_source line 636 · 2026-05-21T23:01:47.988940+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3296 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1183  1.7  0.0 724128 22124 ?        Sl   May18  92:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1202  0.3  0.0 6821584 104788 ?      Sl   May18  16:36 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1203  0.0  0.0  15444  6024 ?        S    May18   0:21 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1206  0.0  0.0 3831352 18100 ?       Sl   May18   1:35 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1209  0.0  0.0 4422232 17992 ?       Sl   May18   4:46 proxy -c /init/proxy/proxy.ini\\nroot     356198  0.0  0.0 198956 111092 ?       S    May19   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot     645640  0.0  0.0  16692 10664 ?        Ss   May20   0:10 sshd: root@notty\\nroot     777364  0.0  0.0   6084  3820 ?        Ss   06:27   0:00 tmux new-session -d -s exp-340m-multi-bench rm -f /tmp/agent-ml-exit/exp-340m-multi-bench.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/entrainment_gated_ft/exp-340m-multi-bench.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-340m-multi-bench.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/entrainment_gated_ft && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_340m_multi_eval.sh\\\"'; } > ~/runs/entrainment_gated_ft/exp-340m-multi-bench.log 2>&1\\nroot     777365  0.0  0.0   4496  3644 pts/0    Ss+  06:27   0:00 bash -c rm -f /tmp/agent-ml-exit/exp-340m-multi-ben
 …[truncated 6331 chars]
@@ -890,7 +715,7 @@ _source line 642 · 2026-05-21T23:01:47.988940+00:00_
 
 ### Tool call
 
-_source line 643 · 2026-05-21T23:01:58.962398+00:00_
+_source line 637 · 2026-05-21T23:01:58.962398+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -926,7 +751,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 644 · 2026-05-21T23:02:02.425956+00:00_
+_source line 638 · 2026-05-21T23:02:02.425956+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -948,7 +773,7 @@ _source line 644 · 2026-05-21T23:02:02.425956+00:00_
 
 ### Assistant
 
-_source line 645 · 2026-05-21T23:02:05.221535+00:00_
+_source line 639 · 2026-05-21T23:02:05.221535+00:00_
 
 6/15 模型完成，GPU 空闲（0%）。可能在模型间歇或已中断。
 
@@ -975,7 +800,7 @@ _source line 645 · 2026-05-21T23:02:05.221535+00:00_
 
 ### User
 
-_source line 646 · 2026-05-22T00:20:54.236308+00:00_
+_source line 640 · 2026-05-22T00:20:54.236308+00:00_
 
 [系统通知 — worker_done:worker_check_340m-eval-urgent_20260522T002003]:
 Worker worker_check_340m-eval-urgent_20260522T002003 已完成（status=done），请审查 Agent 的处理结果。
@@ -997,7 +822,7 @@ Worker worker_check_340m-eval-urgent_20260522T002003 已完成（status=done）�
 
 ### Tool call
 
-_source line 647 · 2026-05-22T00:21:04.746040+00:00_
+_source line 641 · 2026-05-22T00:21:04.746040+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1033,7 +858,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 648 · 2026-05-22T00:21:05.097619+00:00_
+_source line 642 · 2026-05-22T00:21:05.097619+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1069,7 +894,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 649 · 2026-05-22T00:21:06.754152+00:00_
+_source line 643 · 2026-05-22T00:21:06.754152+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h12-1\\nGDN-h24-1\\nGDN-h3-1\\nGDN-h6-1\\nGDN-pure\\nHGRN2-h12-1\\nHGRN2-h24-1\\nHGRN2-h3-1\\nHGRN2-h6-1\\nHGRN2-pure\\nRetNet-h12-1\\nRetNet-h24-1\\nRetNet-h3-1\\nRetNet-h6-1\\nRetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.98}}"}
 
@@ -1091,7 +916,7 @@ _source line 649 · 2026-05-22T00:21:06.754152+00:00_
 
 ### Tool result
 
-_source line 650 · 2026-05-22T00:21:07.607437+00:00_
+_source line 644 · 2026-05-22T00:21:07.607437+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h12-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h6-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-h3-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-h24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-h24-1/samples/piqa.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-h24-1/samples/arc_easy.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-h12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/
 …[truncated 2078 chars]
@@ -1114,7 +939,7 @@ _source line 650 · 2026-05-22T00:21:07.607437+00:00_
 
 ### Tool call
 
-_source line 651 · 2026-05-22T00:21:11.622392+00:00_
+_source line 645 · 2026-05-22T00:21:11.622392+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1150,7 +975,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 652 · 2026-05-22T00:21:12.274906+00:00_
+_source line 646 · 2026-05-22T00:21:12.274906+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1186,7 +1011,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 653 · 2026-05-22T00:21:12.475988+00:00_
+_source line 647 · 2026-05-22T00:21:12.475988+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
 
@@ -1208,7 +1033,7 @@ _source line 653 · 2026-05-22T00:21:12.475988+00:00_
 
 ### Tool result
 
-_source line 654 · 2026-05-22T00:21:13.379621+00:00_
+_source line 648 · 2026-05-22T00:21:13.379621+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"========================================\\nAll complete. Evaluated: 15, Skipped: 0\\nFinish time: 2026-05-22 07:43:55\\n========================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
 
@@ -1230,7 +1055,7 @@ _source line 654 · 2026-05-22T00:21:13.379621+00:00_
 
 ### Tool call
 
-_source line 655 · 2026-05-22T00:21:19.403499+00:00_
+_source line 649 · 2026-05-22T00:21:19.403499+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1266,7 +1091,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 656 · 2026-05-22T00:21:22.980830+00:00_
+_source line 650 · 2026-05-22T00:21:22.980830+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -1288,7 +1113,7 @@ _source line 656 · 2026-05-22T00:21:22.980830+00:00_
 
 ### Assistant
 
-_source line 657 · 2026-05-22T00:21:25.256333+00:00_
+_source line 651 · 2026-05-22T00:21:25.256333+00:00_
 
 15/15 模型全部完成，45 个 jsonl 文件（15 模型 × 3 benchmarks）。
 
@@ -1315,7 +1140,7 @@ _source line 657 · 2026-05-22T00:21:25.256333+00:00_
 
 ### User
 
-_source line 658 · 2026-05-22T00:32:56.365527+00:00_
+_source line 652 · 2026-05-22T00:32:56.365527+00:00_
 
 [系统通知 — worker_done:worker_analysis_340m-multi-bench_20260522T002147]:
 Worker worker_analysis_340m-multi-bench_20260522T002147 已完成（status=done），请审查 Agent 的处理结果。
@@ -1337,7 +1162,7 @@ Worker worker_analysis_340m-multi-bench_20260522T002147 已完成（status=done�
 
 ### Tool call
 
-_source line 659 · 2026-05-22T00:33:03.831731+00:00_
+_source line 653 · 2026-05-22T00:33:03.831731+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -1375,7 +1200,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 660 · 2026-05-22T00:33:03.884072+00:00_
+_source line 654 · 2026-05-22T00:33:03.884072+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-340m-multi-bench\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:23:25.467Z\", \"updated_at\": \"2026-05-22T00:21:11.445Z\", \"hypothesis\": \"340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the scale-dependency claim needs qualification.\", \"parent\": \"exp-007\", \"spec\": {\"command\": \"bash run_340m_multi_eval.sh (run_lmeval_clean.py × 15 models × 3 tasks with --log_samples)\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/entrainment_gated_ft/models/ (15 × 340M models)\", \"data_count\": \"hellaswag=10042, piqa=1838, arc_easy=2376 per model\", \"model_name\": \"GDN/RetNet/HGRN2 × 5 ratios (340M, 15 models)\", \"seed\": \"default\", \"checkpoint_source\": \"/root/entrainment_gated_ft/models/340M-20B-*\", \"eval_data\": \"HellaSwag (10042) + PIQA (1838) + ARC-Easy (2376)\", \"pid\": \"777365\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-340m-multi-bench.log\", \"submitted_at\": \"2026-05-21T22:27:20Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"w3-winogrande-piqa-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:28:29.577Z\", \"updated_at\": \"2026-05-21T10:27:33.995Z\", \"spec\": {\"command\": \"bash run_winogrande_piqa_all.sh (run_lmeval_clean.py × 30 tasks)\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"722233\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/winogrande_piqa_eval.log\", \"submitted_at\": \"2026-05-21T08:28:29.524Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lm-
 …[truncated 1423 chars]
@@ -1398,7 +1223,7 @@ _source line 660 · 2026-05-22T00:33:03.884072+00:00_
 
 ### Tool call
 
-_source line 661 · 2026-05-22T00:33:08.452453+00:00_
+_source line 655 · 2026-05-22T00:33:08.452453+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1434,7 +1259,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 662 · 2026-05-22T00:33:09.958453+00:00_
+_source line 656 · 2026-05-22T00:33:09.958453+00:00_
 
 called Glob
 
@@ -1470,7 +1295,7 @@ called Glob
 
 ### Tool result
 
-_source line 663 · 2026-05-22T00:33:11.263699+00:00_
+_source line 657 · 2026-05-22T00:33:11.263699+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/scripts/analyze_340m_multi.py\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/340m_multi_bench_analysis.json\\n/root/entrainment_gated_ft/run_340m_multi_eval.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.82}}"}
 
@@ -1492,7 +1317,7 @@ _source line 663 · 2026-05-22T00:33:11.263699+00:00_
 
 ### Tool result
 
-_source line 664 · 2026-05-22T00:33:11.314428+00:00_
+_source line 658 · 2026-05-22T00:33:11.314428+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/exp007_340m_analysis.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json
@@ -1516,7 +1341,7 @@ _source line 664 · 2026-05-22T00:33:11.314428+00:00_
 
 ### Tool call
 
-_source line 665 · 2026-05-22T00:33:15.079162+00:00_
+_source line 659 · 2026-05-22T00:33:15.079162+00:00_
 
 called Read
 
@@ -1550,7 +1375,7 @@ called Read
 
 ### Tool result
 
-_source line 666 · 2026-05-22T00:33:15.129883+00:00_
+_source line 660 · 2026-05-22T00:33:15.129883+00:00_
 
 1	{
 2	  "scale_comparison": {
@@ -1632,7 +1457,7 @@ _source line 666 · 2026-05-22T00:33:15.129883+00:00_
 
 ### Tool call
 
-_source line 667 · 2026-05-22T00:33:50.832800+00:00_
+_source line 661 · 2026-05-22T00:33:50.832800+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1668,7 +1493,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 668 · 2026-05-22T00:33:51.635846+00:00_
+_source line 662 · 2026-05-22T00:33:51.635846+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/entrainment_gated_ft/lm_eval_clean/340m_multi/GDN-pure/results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.78}}"}
 
@@ -1690,7 +1515,7 @@ _source line 668 · 2026-05-22T00:33:51.635846+00:00_
 
 ### Tool call
 
-_source line 669 · 2026-05-22T00:33:51.686801+00:00_
+_source line 663 · 2026-05-22T00:33:51.686801+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1726,7 +1551,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 670 · 2026-05-22T00:33:51.938088+00:00_
+_source line 664 · 2026-05-22T00:33:51.938088+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1762,7 +1587,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 671 · 2026-05-22T00:33:52.791803+00:00_
+_source line 665 · 2026-05-22T00:33:52.791803+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/entrainment_gated_ft/lm_eval_clean/340m_multi/RetNet-pure/results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.09}}"}
 
@@ -1784,7 +1609,7 @@ _source line 671 · 2026-05-22T00:33:52.791803+00:00_
 
 ### Tool result
 
-_source line 672 · 2026-05-22T00:33:54.046300+00:00_
+_source line 666 · 2026-05-22T00:33:54.046300+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/entrainment_gated_ft/lm_eval_clean/340m_multi/HGRN2-pure/results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.22}}"}
 
@@ -1806,7 +1631,7 @@ _source line 672 · 2026-05-22T00:33:54.046300+00:00_
 
 ### Tool call
 
-_source line 673 · 2026-05-22T00:36:33.217810+00:00_
+_source line 667 · 2026-05-22T00:36:33.217810+00:00_
 
 called ToolSearch
 
@@ -1842,7 +1667,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 674 · 2026-05-22T00:36:33.268375+00:00_
+_source line 668 · 2026-05-22T00:36:33.268375+00:00_
 
 
 
@@ -1864,7 +1689,7 @@ _source line 674 · 2026-05-22T00:36:33.268375+00:00_
 
 ### Tool call
 
-_source line 675 · 2026-05-22T00:36:36.480341+00:00_
+_source line 669 · 2026-05-22T00:36:36.480341+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1900,7 +1725,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 676 · 2026-05-22T00:36:37.183836+00:00_
+_source line 670 · 2026-05-22T00:36:37.183836+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
 
@@ -1922,7 +1747,7 @@ _source line 676 · 2026-05-22T00:36:37.183836+00:00_
 
 ### Tool call
 
-_source line 677 · 2026-05-22T00:36:40.907168+00:00_
+_source line 671 · 2026-05-22T00:36:40.907168+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1958,7 +1783,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 678 · 2026-05-22T00:36:41.451813+00:00_
+_source line 672 · 2026-05-22T00:36:41.451813+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -1994,7 +1819,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 679 · 2026-05-22T00:36:42.037203+00:00_
+_source line 673 · 2026-05-22T00:36:42.037203+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/entrainment_gated_ft/lm_eval_clean/340m_multi/gdn_pure/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
 
@@ -2016,7 +1841,7 @@ _source line 679 · 2026-05-22T00:36:42.037203+00:00_
 
 ### Tool result
 
-_source line 680 · 2026-05-22T00:36:42.895726+00:00_
+_source line 674 · 2026-05-22T00:36:42.895726+00:00_
 
 {"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/340m_multi/gdn_pure/samples/hellaswag.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.87}}"}
 
@@ -2038,7 +1863,7 @@ _source line 680 · 2026-05-22T00:36:42.895726+00:00_
 
 ### Tool call
 
-_source line 681 · 2026-05-22T00:36:45.455174+00:00_
+_source line 675 · 2026-05-22T00:36:45.455174+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2074,7 +1899,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 682 · 2026-05-22T00:36:46.910757+00:00_
+_source line 676 · 2026-05-22T00:36:46.910757+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h12-1\\nGDN-h24-1\\nGDN-h3-1\\nGDN-h6-1\\nGDN-pure\\nHGRN2-h12-1\\nHGRN2-h24-1\\nHGRN2-h3-1\\nHGRN2-h6-1\\nHGRN2-pure\\nRetNet-h12-1\\nRetNet-h24-1\\nRetNet-h3-1\\nRetNet-h6-1\\nRetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
 
@@ -2096,7 +1921,7 @@ _source line 682 · 2026-05-22T00:36:46.910757+00:00_
 
 ### Tool call
 
-_source line 683 · 2026-05-22T00:36:49.671320+00:00_
+_source line 677 · 2026-05-22T00:36:49.671320+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2132,7 +1957,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 684 · 2026-05-22T00:36:50.374155+00:00_
+_source line 678 · 2026-05-22T00:36:50.374155+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"340M-20B-GatedDeltaNet-pure-baseline.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
 
@@ -2154,7 +1979,7 @@ _source line 684 · 2026-05-22T00:36:50.374155+00:00_
 
 ### Tool call
 
-_source line 685 · 2026-05-22T00:36:55.523287+00:00_
+_source line 679 · 2026-05-22T00:36:55.523287+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2190,7 +2015,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 686 · 2026-05-22T00:36:56.377197+00:00_
+_source line 680 · 2026-05-22T00:36:56.377197+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.3444532961561442,\\n      \\\"acc_stderr,none\\\": 0.004742185169264781,\\n      \\\"acc_norm,none\\\": 0.41505676160127464,\\n      \\\"acc_norm_stderr,none\\\": 0.004917248150601908\\n    },\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.6566920565832427,\\n      \\\"acc_stderr,none\\\": 0.011078175207348986,\\n      \\\"acc_norm,none\\\": 0.6474428726877041,\\n      \\\"acc_norm_stderr,none\\\": 0.011147074365010454\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"name\\\": \\\"arc_easy\\\",\\n      \\\"alias\\\": \\\"arc_easy\\\",\\n      \\\"sample_len\\\": 2376,\\n      \\\"acc,none\\\": 0.5669191919191919,\\n      \\\"acc_stderr,none\\\": 0.010167478013701743,\\n      \\\"acc_norm,none\\\": 0.4819023569023569,\\n      \\\"acc_norm_stderr,none\\\": 0.010253060653479045\\n    }\\n  },\\n  \\\"group_subtasks\\\": {},\\n  \\\"configs\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"task\\\": \\\"arc_easy\\\",\\n      \\\"dataset_path\\\": \\\"allenai/ai2_arc\\\",\\n      \\\"dataset_name\\\": \\\"ARC-Easy\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"test_split\\\": \\\"test\\\",\\n      \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n      \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"{{choices.text}}\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\
 …[truncated 7839 chars]
@@ -2213,7 +2038,7 @@ _source line 686 · 2026-05-22T00:36:56.377197+00:00_
 
 ### Tool call
 
-_source line 687 · 2026-05-22T00:37:05.713930+00:00_
+_source line 681 · 2026-05-22T00:37:05.713930+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2249,7 +2074,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 688 · 2026-05-22T00:37:06.668878+00:00_
+_source line 682 · 2026-05-22T00:37:06.668878+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2271,7 +2096,7 @@ _source line 688 · 2026-05-22T00:37:06.668878+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-22T00:37:06.669308+00:00_
+_source line 683 · 2026-05-22T00:37:06.669308+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2307,7 +2132,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 690 · 2026-05-22T00:37:07.623031+00:00_
+_source line 684 · 2026-05-22T00:37:07.623031+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2329,7 +2154,7 @@ _source line 690 · 2026-05-22T00:37:07.623031+00:00_
 
 ### Tool call
 
-_source line 691 · 2026-05-22T00:37:07.623440+00:00_
+_source line 685 · 2026-05-22T00:37:07.623440+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2365,7 +2190,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 692 · 2026-05-22T00:37:08.025806+00:00_
+_source line 686 · 2026-05-22T00:37:08.025806+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2387,7 +2212,7 @@ _source line 692 · 2026-05-22T00:37:08.025806+00:00_
 
 ### Tool call
 
-_source line 693 · 2026-05-22T00:37:08.076487+00:00_
+_source line 687 · 2026-05-22T00:37:08.076487+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2423,7 +2248,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 694 · 2026-05-22T00:37:08.578252+00:00_
+_source line 688 · 2026-05-22T00:37:08.578252+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2445,7 +2270,7 @@ _source line 694 · 2026-05-22T00:37:08.578252+00:00_
 
 ### Tool call
 
-_source line 695 · 2026-05-22T00:37:08.879410+00:00_
+_source line 689 · 2026-05-22T00:37:08.879410+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2481,7 +2306,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 696 · 2026-05-22T00:37:08.930097+00:00_
+_source line 690 · 2026-05-22T00:37:08.930097+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
 
@@ -2503,7 +2328,7 @@ _source line 696 · 2026-05-22T00:37:08.930097+00:00_
 
 ### Tool call
 
-_source line 697 · 2026-05-22T00:37:12.744016+00:00_
+_source line 691 · 2026-05-22T00:37:12.744016+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2539,7 +2364,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 698 · 2026-05-22T00:37:13.195489+00:00_
+_source line 692 · 2026-05-22T00:37:13.195489+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2575,7 +2400,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 699 · 2026-05-22T00:37:15.908464+00:00_
+_source line 693 · 2026-05-22T00:37:15.908464+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.3465445130452101,\\n      \\\"acc_stderr,none\\\": 0.00474896571721416,\\n      \\\"acc_norm,none\\\": 0.41196972714598684,\\n      \\\"acc_norm_stderr,none\\\": 0.004911837730582045\\n      \\\"acc,none\\\": 0.6621327529923831,\\n      \\\"acc_stderr,none\\\": 0.011035474307853661,\\n      \\\"acc_norm,none\\\": 0.6751904243743199,\\n      \\\"acc_norm_stderr,none\\\": 0.010926296238294114\\n      \\\"acc,none\\\": 0.6043771043771043,\\n      \\\"acc_stderr,none\\\": 0.01003374139343112,\\n      \\\"acc_norm,none\\\": 0.5345117845117845,\\n      \\\"acc_norm_stderr,none\\\": 0.010235314238969277\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
 
@@ -2597,7 +2422,7 @@ _source line 699 · 2026-05-22T00:37:15.908464+00:00_
 
 ### Tool result
 
-_source line 700 · 2026-05-22T00:37:15.909022+00:00_
+_source line 694 · 2026-05-22T00:37:15.909022+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.35232025492929697,\\n      \\\"acc_stderr,none\\\": 0.004767168250414642,\\n      \\\"acc_norm,none\\\": 0.43178649671380204,\\n      \\\"acc_norm_stderr,none\\\": 0.004943127583291083\\n      \\\"acc,none\\\": 0.6686615886833515,\\n      \\\"acc_stderr,none\\\": 0.010982077458957339,\\n      \\\"acc_norm,none\\\": 0.6702937976060935,\\n      \\\"acc_norm_stderr,none\\\": 0.010968357083095149\\n      \\\"acc,none\\\": 0.6111111111111112,\\n      \\\"acc_stderr,none\\\": 0.01000324833531387,\\n      \\\"acc_norm,none\\\": 0.5593434343434344,\\n      \\\"acc_norm_stderr,none\\\": 0.01018726463571219\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
 
@@ -2619,7 +2444,7 @@ _source line 700 · 2026-05-22T00:37:15.909022+00:00_
 
 ### Tool call
 
-_source line 701 · 2026-05-22T00:37:16.261025+00:00_
+_source line 695 · 2026-05-22T00:37:16.261025+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2655,7 +2480,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 702 · 2026-05-22T00:37:16.664062+00:00_
+_source line 696 · 2026-05-22T00:37:16.664062+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2691,7 +2516,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool call
 
-_source line 703 · 2026-05-22T00:37:16.865041+00:00_
+_source line 697 · 2026-05-22T00:37:16.865041+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2727,7 +2552,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 704 · 2026-05-22T00:37:17.015863+00:00_
+_source line 698 · 2026-05-22T00:37:17.015863+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.3458474407488548,\\n      \\\"acc_stderr,none\\\": 0.004746716805735668,\\n      \\\"acc_norm,none\\\": 0.40898227444732127,\\n      \\\"acc_norm_stderr,none\\\": 0.004906411984477038\\n      \\\"acc,none\\\": 0.661588683351469,\\n      \\\"acc_stderr,none\\\": 0.011039817512986966,\\n      \\\"acc_norm,none\\\": 0.6632208922742111,\\n      \\\"acc_norm_stderr,none\\\": 0.011026738925250986\\n      \\\"acc,none\\\": 0.569023569023569,\\n      \\\"acc_stderr,none\\\": 0.010161552863493767,\\n      \\\"acc_norm,none\\\": 0.4903198653198653,\\n      \\\"acc_norm_stderr,none\\\": 0.010257860554461063\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
 
@@ -2749,7 +2574,7 @@ _source line 704 · 2026-05-22T00:37:17.015863+00:00_
 
 ### Tool result
 
-_source line 705 · 2026-05-22T00:37:18.220499+00:00_
+_source line 699 · 2026-05-22T00:37:18.220499+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.34106751643098987,\\n      \\\"acc_stderr,none\\\": 0.004730991357194499,\\n      \\\"acc_norm,none\\\": 0.4085839474208325,\\n      \\\"acc_norm_stderr,none\\\": 0.004905674408614032\\n      \\\"acc,none\\\": 0.6724700761697497,\\n      \\\"acc_stderr,none\\\": 0.010949830482825447,\\n      \\\"acc_norm,none\\\": 0.6621327529923831,\\n      \\\"acc_norm_stderr,none\\\": 0.011035474307853661\\n      \\\"acc,none\\\": 0.5904882154882155,\\n      \\\"acc_stderr,none\\\": 0.010090368160989927,\\n      \\\"acc_norm,none\\\": 0.5294612794612794,\\n      \\\"acc_norm_stderr,none\\\": 0.010241957728409551\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
 
@@ -2771,7 +2596,7 @@ _source line 705 · 2026-05-22T00:37:18.220499+00:00_
 
 ### Tool result
 
-_source line 706 · 2026-05-22T00:37:19.126385+00:00_
+_source line 700 · 2026-05-22T00:37:19.126385+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.35769766978689504,\\n      \\\"acc_stderr,none\\\": 0.0047834288742733076,\\n      \\\"acc_norm,none\\\": 0.4357697669786895,\\n      \\\"acc_norm_stderr,none\\\": 0.004948439229523672\\n      \\\"acc,none\\\": 0.6784548422198041,\\n      \\\"acc_stderr,none\\\": 0.010897500107575744,\\n      \\\"acc_norm,none\\\": 0.6746463547334058,\\n      \\\"acc_norm_stderr,none\\\": 0.010931036623525334\\n      \\\"acc,none\\\": 0.6085858585858586,\\n      \\\"acc_stderr,none\\\": 0.010014917532627792,\\n      \\\"acc_norm,none\\\": 0.5336700336700336,\\n      \\\"acc_norm_stderr,none\\\": 0.010236494647406535\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
 
@@ -2793,7 +2618,7 @@ _source line 706 · 2026-05-22T00:37:19.126385+00:00_
 
 ### Tool call
 
-_source line 707 · 2026-05-22T00:38:39.089459+00:00_
+_source line 701 · 2026-05-22T00:38:39.089459+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2829,7 +2654,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 708 · 2026-05-22T00:38:39.842847+00:00_
+_source line 702 · 2026-05-22T00:38:39.842847+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/scripts/analyze_340m_multi.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
 
@@ -2851,7 +2676,7 @@ _source line 708 · 2026-05-22T00:38:39.842847+00:00_
 
 ### Tool call
 
-_source line 709 · 2026-05-22T00:38:42.904407+00:00_
+_source line 703 · 2026-05-22T00:38:42.904407+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2887,7 +2712,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 710 · 2026-05-22T00:38:43.625769+00:00_
+_source line 704 · 2026-05-22T00:38:43.625769+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Per-example multiplicity analysis for 340M multi-benchmark (HellaSwag, PIQA, ARC-Easy).\\nComputes alpha, pairwise Jaccard, convergence rho with exact permutation test.\\nAlso loads 1.3B data for scale comparison.\\\"\\\"\\\"\\nimport json, os, itertools\\nimport numpy as np\\n\\nEVAL_BASE_340M = \\\"/root/entrainment_gated_ft/lm_eval_clean/340m_multi\\\"\\nEVAL_BASE_1_3B = \\\"/root/entrainment_gated_ft/lm_eval_clean\\\"\\nOUT_DIR = \\\"/root/entrainment_gated_ft/lm_eval_clean/analysis\\\"\\n\\nARCHS = [\\\"GDN\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nHYBRID_RATIOS = [\\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nN_PERM_JACCARD = 1000\\nnp.random.seed(42)\\n\\nBENCHMARKS = {\\n    \\\"hellaswag\\\": {\\\"metric\\\": \\\"acc_norm\\\", \\\"task_file\\\": \\\"hellaswag.jsonl\\\"},\\n    \\\"piqa\\\": {\\\"metric\\\": \\\"acc\\\", \\\"task_file\\\": \\\"piqa.jsonl\\\"},\\n    \\\"arc_easy\\\": {\\\"metric\\\": \\\"acc\\\", \\\"task_file\\\": \\\"arc_easy.jsonl\\\"},\\n}\\n\\nMODEL_NAME_340M = {\\n    (\\\"GDN\\\", \\\"pure\\\"): \\\"GDN-pure\\\",\\n    (\\\"GDN\\\", \\\"h24-1\\\"): \\\"GDN-h24-1\\\",\\n    (\\\"GDN\\\", \\\"h12-1\\\"): \\\"GDN-h12-1\\\",\\n    (\\\"GDN\\\", \\\"h6-1\\\"): \\\"GDN-h6-1\\\",\\n    (\\\"GDN\\\", \\\"h3-1\\\"): \\\"GDN-h3-1\\\",\\n    (\\\"RetNet\\\", \\\"pure\\\"): \\\"RetNet-pure\\\",\\n    (\\\"RetNet\\\", \\\"h24-1\\\"): \\\"RetNet-h24-1\\\",\\n    (\\\"RetNet\\\", \\\"h12-1\\\"): \\\"RetNet-h12-1\\\",\\n    (\\\"RetNet\\\", \\\"h6-1\\\"): \\\"RetNet-h6-1\\\",\\n    (\\\"RetNet\\\", \\\"h3-1\\\"): \\\"RetNet-h3-1\\\",\\n    (\\\"HGRN2\\\", \\\"pure\\\"): \\\"HGRN2-pure\\\",\\n    (\\\"HGRN2\\\", \\\"h24-1\\\"): \\\"HGRN2-h24-1\\\",\\n    (\\\"
 …[truncated 2222 chars]
@@ -2910,7 +2735,7 @@ _source line 710 · 2026-05-22T00:38:43.625769+00:00_
 
 ### Tool call
 
-_source line 711 · 2026-05-22T00:38:47.546171+00:00_
+_source line 705 · 2026-05-22T00:38:47.546171+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -2946,7 +2771,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 712 · 2026-05-22T00:38:48.299139+00:00_
+_source line 706 · 2026-05-22T00:38:48.299139+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"            accs_list.append(correct / total_v if total_v > 0 else 0)\\n        sigma = float(np.std(accs_list))\\n        sigmas.append(sigma)\\n        convergence[ratio] = {\\\"sigma\\\": round(sigma, 6), \\\"accs\\\": [round(a, 4) for a in accs_list]}\\n        print(f\\\"  {ratio:5s}: sigma={sigma:.6f} accs={[f'{a:.4f}' for a in accs_list]}\\\")\\n\\n    attention_fracs = [0.0, 1/24, 1/12, 1/6, 1/3]\\n    rho, p_exact = exact_spearman_p(attention_fracs, sigmas)\\n    convergence[\\\"spearman\\\"] = {\\n        \\\"rho\\\": round(rho, 4),\\n        \\\"p_exact_two_tailed\\\": round(p_exact, 4),\\n        \\\"x_values\\\": attention_fracs,\\n        \\\"y_values\\\": [round(s, 6) for s in sigmas],\\n    }\\n    print(f\\\"  Spearman rho={rho:.4f}, p_exact={p_exact:.4f}\\\")\\n\\n    # D) Cross-architecture Jaccard\\n    print(\\\"\\\\n--- Jaccard analysis ---\\\")\\n    jaccard_analysis = {}\\n    for ratio in HYBRID_RATIOS:\\n        jaccard_analysis[ratio] = {}\\n        for a1, a2 in ARCH_PAIRS:\\n            pair_name = f\\\"{a1}_vs_{a2}\\\"\\n            pure_a1, hyb_a1 = all_preds[a1][\\\"pure\\\"], all_preds[a1][ratio]\\n            pure_a2, hyb_a2 = all_preds[a2][\\\"pure\\\"], all_preds[a2][ratio]\\n            helped_a1 = {d for d in range(n_samples) if pure_a1.get(d) == 0 and hyb_a1.get(d) == 1}\\n            hurt_a1 = {d for d in range(n_samples) if pure_a1.get(d) == 1 and hyb_a1.get(d) == 0}\\n            helped_a2 = {d for d in range(n_samples) if pure_a2.get(d) == 0 and hyb_a2.get(d) == 1}\\n            hurt_a2 = {d for d in range(n_samples) if pure_a2.get(d) == 1 and hyb_a2.get(d) == 0}\\n            j_helped = compute_jaccard(helped_a1, helped_a2, n_samples)\\n            j_hurt = compute_jaccard(hurt_a1, hurt_a2, n_samples)\\n            jaccard_analysis[ratio][pair_name] = {\\\"helped\\\": j_helped, \\\"hurt\\\": j_hurt}\\n            print(f\\\"  {ratio:5s} {pair_name}: J_h={j_helped['J']
 …[truncated 5659 chars]
@@ -2969,7 +2794,7 @@ _source line 712 · 2026-05-22T00:38:48.299139+00:00_
 
 ### Tool call
 
-_source line 713 · 2026-05-22T00:39:06.442346+00:00_
+_source line 707 · 2026-05-22T00:39:06.442346+00:00_
 
 called mcp__agent-ml-research__ssh_read_only
 
@@ -3005,7 +2830,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 ### Tool result
 
-_source line 714 · 2026-05-22T00:39:07.195541+00:00_
+_source line 708 · 2026-05-22T00:39:07.195541+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Per-example multiplicity analysis for 340M multi-benchmark (HellaSwag, PIQA, ARC-Easy).\\nComputes alpha, pairwise Jaccard, convergence rho with exact permutation test.\\nAlso loads 1.3B data for scale comparison.\\\"\\\"\\\"\\nimport json, os, itertools\\nimport numpy as np\\n\\nEVAL_BASE_340M = \\\"/root/entrainment_gated_ft/lm_eval_clean/340m_multi\\\"\\nEVAL_BASE_1_3B = \\\"/root/entrainment_gated_ft/lm_eval_clean\\\"\\nOUT_DIR = \\\"/root/entrainment_gated_ft/lm_eval_clean/analysis\\\"\\n\\nARCHS = [\\\"GDN\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nHYBRID_RATIOS = [\\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nN_PERM_JACCARD = 1000\\nnp.random.seed(42)\\n\\nBENCHMARKS = {\\n    \\\"hellaswag\\\": {\\\"metric\\\": \\\"acc_norm\\\", \\\"task_file\\\": \\\"hellaswag.jsonl\\\"},\\n    \\\"piqa\\\": {\\\"metric\\\": \\\"acc\\\", \\\"task_file\\\": \\\"piqa.jsonl\\\"},\\n    \\\"arc_easy\\\": {\\\"metric\\\": \\\"acc\\\", \\\"task_file\\\": \\\"arc_easy.jsonl\\\"},\\n}\\n\\nMODEL_NAME_340M = {\\n    (\\\"GDN\\\", \\\"pure\\\"): \\\"GDN-pure\\\",\\n    (\\\"GDN\\\", \\\"h24-1\\\"): \\\"GDN-h24-1\\\",\\n    (\\\"GDN\\\", \\\"h12-1\\\"): \\\"GDN-h12-1\\\",\\n    (\\\"GDN\\\", \\\"h6-1\\\"): \\\"GDN-h6-1\\\",\\n    (\\\"GDN\\\", \\\"h3-1\\\"): \\\"GDN-h3-1\\\",\\n    (\\\"RetNet\\\", \\\"pure\\\"): \\\"RetNet-pure\\\",\\n    (\\\"RetNet\\\", \\\"h24-1\\\"): \\\"RetNet-h24-1\\\",\\n    (\\\"RetNet\\\", \\\"h12-1\\\"): \\\"RetNet-h12-1\\\",\\n    (\\\"RetNet\\\", \\\"h6-1\\\"): \\\"RetNet-h6-1\\\",\\n    (\\\"RetNet\\\", \\\"h3-1\\\"): \\\"RetNet-h3-1\\\",\\n    (\\\"HGRN2\\\", \\\"pure\\\"): \\\"HGRN2-pure\\\",\\n    (\\\"HGRN2\\\", \\\"h24-1\\\"): \\\"HGRN2-h24-1\\\",\\n    (\\\"
 …[truncated 6022 chars]
@@ -3028,7 +2853,7 @@ _source line 714 · 2026-05-22T00:39:07.195541+00:00_
 
 ### Tool call
 
-_source line 715 · 2026-05-22T00:39:45.075508+00:00_
+_source line 709 · 2026-05-22T00:39:45.075508+00:00_
 
 called ToolSearch
 
@@ -3064,7 +2889,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 716 · 2026-05-22T00:39:45.153301+00:00_
+_source line 710 · 2026-05-22T00:39:45.153301+00:00_
 
 
 
@@ -3086,7 +2911,7 @@ _source line 716 · 2026-05-22T00:39:45.153301+00:00_
 
 ### Tool call
 
-_source line 717 · 2026-05-22T00:40:18.540704+00:00_
+_source line 711 · 2026-05-22T00:40:18.540704+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3122,7 +2947,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 718 · 2026-05-22T00:40:22.158145+00:00_
+_source line 712 · 2026-05-22T00:40:22.158145+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3144,7 +2969,7 @@ _source line 718 · 2026-05-22T00:40:22.158145+00:00_
 
 ### Assistant
 
-_source line 719 · 2026-05-22T00:40:29.384304+00:00_
+_source line 713 · 2026-05-22T00:40:29.384304+00:00_
 
 审查完成。核心发现：
 
@@ -3178,7 +3003,7 @@ _source line 719 · 2026-05-22T00:40:29.384304+00:00_
 
 ### User
 
-_source line 720 · 2026-05-22T00:43:58.772472+00:00_
+_source line 714 · 2026-05-22T00:43:58.772472+00:00_
 
 [系统通知 — worker_done:worker_data_340m-accuracy-extract_20260522T004140]:
 Worker worker_data_340m-accuracy-extract_20260522T004140 已完成（status=done），请审查 Agent 的处理结果。
@@ -3200,7 +3025,7 @@ Worker worker_data_340m-accuracy-extract_20260522T004140 已完成（status=done
 
 ### Tool call
 
-_source line 721 · 2026-05-22T00:44:07.202827+00:00_
+_source line 715 · 2026-05-22T00:44:07.202827+00:00_
 
 called ToolSearch
 
@@ -3236,7 +3061,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 722 · 2026-05-22T00:44:07.303578+00:00_
+_source line 716 · 2026-05-22T00:44:07.303578+00:00_
 
 
 
@@ -3258,7 +3083,7 @@ _source line 722 · 2026-05-22T00:44:07.303578+00:00_
 
 ### Tool call
 
-_source line 723 · 2026-05-22T00:44:10.018774+00:00_
+_source line 717 · 2026-05-22T00:44:10.018774+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -3294,7 +3119,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 724 · 2026-05-22T00:44:10.120228+00:00_
+_source line 718 · 2026-05-22T00:44:10.120228+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-340m-multi-bench\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:23:25.467Z\", \"updated_at\": \"2026-05-22T00:34:02.116Z\", \"hypothesis\": \"340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the scale-dependency claim needs qualification.\", \"parent\": \"exp-007\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": {\"340m_alpha_all\": 0.334, \"1_3b_alpha_all\": 0.302, \"delta\": 0.031, \"340m_alpha_pure\": 0.167, \"1_3b_alpha_pure\": 0.148, \"340m_J_helped\": 0.084, \"1_3b_J_helped\": 0.095, \"340m_J_hurt\": 0.083, \"1_3b_J_hurt\": 0.085, \"340m_convergence_rho\": 0.4, \"340m_convergence_p\": 0.517}, \"piqa\": {\"340m_alpha_all\": 0.366, \"1_3b_alpha_all\": 0.278, \"delta\": 0.089, \"340m_alpha_pure\": 0.181, \"1_3b_alpha_pure\": 0.143, \"340m_J_helped\": 0.09, \"1_3b_J_helped\": 0.091, \"340m_J_hurt\": 0.085, \"1_3b_J_hurt\": 0.094, \"340m_convergence_rho\": 0.3, \"340m_convergence_p\": 0.683}, \"arc_easy\": {\"340m_alpha_all\": 0.564, \"1_3b_alpha_all\": 0.434, \"delta\": 0.13, \"340m_alpha_pure\": 0.289, \"1_3b_alpha_pure\": 0.205, \"340m_J_helped\": 0.098, \"1_3b_J_helped\": 0.092, \"340m_J_hurt\": 0.103, \"1_3b_J_hurt\": 0.099, \"340m_convergence_rho\": -0.1, \"340m_convergence_p\": 0.95}, \"summary\": {\"mean_delta_alpha_all\": 0.084, \"scenario\": \"B_mixed\", \"pattern_invariant\": true, \"magnitude_scale_dependent\": true}, \"artifacts\": [\"340m_multi_bench_analysis.json\"]}}, \"w3-winogrande-piqa-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:28:29.577Z\", \"updated_at\": \"2026-05-21T10:27:33.995Z\", \"hypothesis\": \"WinoGrande + PIQA per-example multiplicity analysis to de
 …[truncated 5247 chars]
@@ -3317,7 +3142,7 @@ _source line 724 · 2026-05-22T00:44:10.120228+00:00_
 
 ### Assistant
 
-_source line 725 · 2026-05-22T00:44:21.557245+00:00_
+_source line 719 · 2026-05-22T00:44:21.557245+00:00_
 
 Registry entry `exp-340m-multi-bench` confirms scenario B_mixed, which aligns with my independent assessment. The registry metrics use `alpha_all` for deltas — my warning about switching to `alpha_pure` for paper integration applies.
 
@@ -3348,7 +3173,7 @@ My review has already been posted to Director covering all findings. No addition
 
 ### User
 
-_source line 726 · 2026-05-22T00:46:49.761794+00:00_
+_source line 720 · 2026-05-22T00:46:49.761794+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：exp-340m-multi-bench 完成 + Scenario B 论文整合落地），请审查研究方向和计划的合理性。
@@ -3370,7 +3195,7 @@ _source line 726 · 2026-05-22T00:46:49.761794+00:00_
 
 ### Tool call
 
-_source line 727 · 2026-05-22T00:46:56.060086+00:00_
+_source line 721 · 2026-05-22T00:46:56.060086+00:00_
 
 called ToolSearch
 
@@ -3406,7 +3231,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 728 · 2026-05-22T00:46:56.160813+00:00_
+_source line 722 · 2026-05-22T00:46:56.160813+00:00_
 
 
 
@@ -3428,7 +3253,7 @@ _source line 728 · 2026-05-22T00:46:56.160813+00:00_
 
 ### Tool call
 
-_source line 729 · 2026-05-22T00:46:58.795828+00:00_
+_source line 723 · 2026-05-22T00:46:58.795828+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -3462,7 +3287,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 730 · 2026-05-22T00:46:58.846510+00:00_
+_source line 724 · 2026-05-22T00:46:58.846510+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-22 00:46 UTC | 更新原因: exp-340m-multi-bench 完成 + Scenario B 论文整合落地\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**论文整合完成，等用户批准 Round 6 审稿卡片 (apr_20260521T100110_w6db)**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 ~2-3 天\\n\\n### 最新进展（本轮 Loop 3）\\n| 工作项 | 状态 |\\n|--------|------|\\n| exp-340m-multi-bench (D022/D023) | ✅ Done — 15/15 模型完成，Scenario B (mixed) |\\n| 340M 论文整合 (Scenario B) | ✅ Done — §4.3 + Appendix §F 更新 |\\n| α-accuracy 反相关发现 | ✅ Done — §4.3 措辞修正（capacity-related but not accuracy-driven） |\\n| 9 项写作质量提升 (Reviewer 建议) | ✅ Done |\\n| Orphan bib 误报确认 (M013) | ✅ Done |\\n| Limitations 冗余修复 | ✅ Done |\\n\\n### 340M 跨 scale 结论 (D023)\\n- **Jaccard 跨 scale 高度稳定**（0.08-0.10），architecture-specific pattern 是 structural 的\\n- **α 系统性偏高** 2-8pp，但与 accuracy 下降不相关（HellaSwag 最大 acc gap 但最小 α gap）\\n- **Framing**: \\\"scale-robust\\\"（qualitative pattern preserved）而非 \\\"scale-invariant\\\"\\n\\n### 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- 主文: 8 页（≤ 8 限制），附录 11 页，总 19 页\\n- 0 critical warnings\\n- Target: **EMNLP 2026 via ARR May (deadline May 25)**\\n- 预期 Overall Assessment: 3.0-3.5（340M 跨 scale 数据加强了 C1 robustness）\\n\\n## 近期任务\\n- [x] exp-340m-multi-bench 完成 + 论文整合\\n- [x] 写作质量提升 9 项\\n- [ ] 用户批准 Round 6 审稿卡片 → 提交\\n\\n## GPU 预算\\nwestb-48145: 1× GPU (cuda:0), 空闲。exp-340m-multi-bench 已消耗 ~3 GPU-hours。无剩余实验计划。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D023 | 2026-05-22 | exp-340m-multi-bench 结果 Scenario B (mixed)：α 系统性偏高 | exp-340m-multi-bench |\\n| D022 | 2026-05-21 | 批准 A1：340M 多 ben
 …[truncated 902 chars]
@@ -3485,7 +3310,7 @@ _source line 730 · 2026-05-22T00:46:58.846510+00:00_
 
 ### Tool call
 
-_source line 731 · 2026-05-22T00:47:15.374778+00:00_
+_source line 725 · 2026-05-22T00:47:15.374778+00:00_
 
 called Read
 
@@ -3523,7 +3348,7 @@ called Read
 
 ### Tool result
 
-_source line 732 · 2026-05-22T00:47:15.776764+00:00_
+_source line 726 · 2026-05-22T00:47:15.776764+00:00_
 
 72	
 73	A key consequence of this multiplicity is that aggregate convergence and per-example divergence operate on different timescales as attention ratio increases (Figure~\ref{fig:decoupling}).
@@ -3553,7 +3378,7 @@ _source line 732 · 2026-05-22T00:47:15.776764+00:00_
 
 ### Tool call
 
-_source line 733 · 2026-05-22T00:47:15.827350+00:00_
+_source line 727 · 2026-05-22T00:47:15.827350+00:00_
 
 called Glob
 
@@ -3589,7 +3414,7 @@ called Glob
 
 ### Tool result
 
-_source line 734 · 2026-05-22T00:47:15.878011+00:00_
+_source line 728 · 2026-05-22T00:47:15.878011+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex
 
@@ -3611,7 +3436,7 @@ _source line 734 · 2026-05-22T00:47:15.878011+00:00_
 
 ### Tool call
 
-_source line 735 · 2026-05-22T00:47:20.445040+00:00_
+_source line 729 · 2026-05-22T00:47:20.445040+00:00_
 
 called Grep
 
@@ -3653,7 +3478,7 @@ called Grep
 
 ### Tool result
 
-_source line 736 · 2026-05-22T00:47:20.495728+00:00_
+_source line 730 · 2026-05-22T00:47:20.495728+00:00_
 
 537-{\footnotesize $\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}
 538-\end{table}
@@ -3702,7 +3527,7 @@ _source line 736 · 2026-05-22T00:47:20.495728+00:00_
 
 ### Tool call
 
-_source line 737 · 2026-05-22T00:47:23.410835+00:00_
+_source line 731 · 2026-05-22T00:47:23.410835+00:00_
 
 called Read
 
@@ -3740,7 +3565,7 @@ called Read
 
 ### Tool result
 
-_source line 738 · 2026-05-22T00:47:23.411378+00:00_
+_source line 732 · 2026-05-22T00:47:23.411378+00:00_
 
 569	\subsection{Cross-Benchmark Scale Comparison}
 570	
@@ -3784,7 +3609,7 @@ _source line 738 · 2026-05-22T00:47:23.411378+00:00_
 
 ### Tool call
 
-_source line 739 · 2026-05-22T00:48:05.212996+00:00_
+_source line 733 · 2026-05-22T00:48:05.212996+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -3820,7 +3645,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 740 · 2026-05-22T00:48:08.875293+00:00_
+_source line 734 · 2026-05-22T00:48:08.875293+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
 
@@ -3842,7 +3667,7 @@ _source line 740 · 2026-05-22T00:48:08.875293+00:00_
 
 ### Assistant
 
-_source line 741 · 2026-05-22T00:48:12.920514+00:00_
+_source line 735 · 2026-05-22T00:48:12.920514+00:00_
 
 ROADMAP 和 340M 论文整合均已验证通过。所有数字与原始数据一致，alpha_pure 口径使用正确，仅有一处 info 级术语微调建议（appendix "scale-invariant" → "scale-robust"）。项目处于提交就绪状态，等用户批准。
 
@@ -3869,7 +3694,7 @@ ROADMAP 和 340M 论文整合均已验证通过。所有数字与原始数据一
 
 ### User
 
-_source line 742 · 2026-05-22T01:26:58.317765+00:00_
+_source line 736 · 2026-05-22T01:26:58.317765+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -3951,7 +3776,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 743 · 2026-05-22T01:27:34.921699+00:00_
+_source line 737 · 2026-05-22T01:27:34.921699+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

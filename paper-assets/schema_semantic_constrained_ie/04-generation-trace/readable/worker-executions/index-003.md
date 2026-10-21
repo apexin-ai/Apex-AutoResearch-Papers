@@ -121,7 +121,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis fuzzy matching threshold source | 155 | 0 | [Read transcript](analysis-fuzzy-matching-threshold-source.md) | [JSON](../../sessions/fa/fa694fbf43cb6304e68c.json) |
 | analysis rv 003 residual investigation | 139 | 0 | [Read transcript](analysis-rv-003-residual-investigation.md) | [JSON](../../sessions/d8/d8518a1a27d565f7f98a.json) |
 | analysis beam sampling feasibility check | 76 | 0 | [Read transcript](analysis-beam-sampling-feasibility-check.md) | [JSON](../../sessions/51/51720ac16fcb662bbaf4.json) |
-| writing rebuttal draft | 50 | 0 | [Read transcript](writing-rebuttal-draft.md) | [JSON](../../sessions/58/5899c573fa8083297fe8.json) |
 | code sampling support implementation | 102 | 0 | [Read transcript](code-sampling-support-implementation.md) | [JSON](../../sessions/8d/8dc112dd819374ee3c23.json) |
 | analysis w9 docred sampling results | 29 | 0 | [Read transcript](analysis-w9-docred-sampling-results.md) | [JSON](../../sessions/7f/7f6dc6e4b17f841d5e60.json) |
 | ops fix sampling experiments | 41 | 0 | [Read transcript](ops-fix-sampling-experiments.md) | [JSON](../../sessions/1b/1bc7ed1e936e5ed8612f.json) |
@@ -130,15 +129,13 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops check w9 processes | 28 | 0 | [Read transcript](ops-check-w9-processes.md) | [JSON](../../sessions/e5/e551b918936669eef4d0.json) |
 | analysis w9 scierc sampling results | 88 | 0 | [Read transcript](analysis-w9-scierc-sampling-results.md) | [JSON](../../sessions/c5/c503e102c718a7693a25.json) |
 | ops kill docred sampling and analyze | 83 | 0 | [Read transcript](ops-kill-docred-sampling-and-analyze.md) | [JSON](../../sessions/c4/c45a585025bbf5f3f349.json) |
-| writing rebuttal v1 corrections | 27 | 0 | [Read transcript](writing-rebuttal-v1-corrections.md) | [JSON](../../sessions/7d/7d7f51bdee3e4487ecc7.json) |
 | paper docred ft ablation patch | 85 | 0 | [Read transcript](paper-docred-ft-ablation-patch.md) | [JSON](../../sessions/00/00913a92a981ed76e540.json) |
-| writing sampling results integration | 13 | 0 | [Read transcript](writing-sampling-results-integration.md) | [JSON](../../sessions/2a/2aec09f57a6ec79e301f.json) |
+| writing sampling results integration | 9 | 0 | [Read transcript](writing-sampling-results-integration.md) | [JSON](../../sessions/2a/2aec09f57a6ec79e301f.json) |
 | audit data consistency p1 — Read the following .tex files in full and return their complete contents. These are in the directory | 132 | 1 | [Read transcript](audit-data-consistency-p1.md) | [JSON](../../sessions/96/967d9ab3f8d1173ddeda.json) |
 | code beam search dryrun | 279 | 0 | [Read transcript](code-beam-search-dryrun.md) | [JSON](../../sessions/29/2908ff7e26dfb970c221.json) |
 | code beam search full 551 | 101 | 0 | [Read transcript](code-beam-search-full-551.md) | [JSON](../../sessions/3a/3a690f7b52c9dbecdafd.json) |
 | code beam search docred mistral dryrun | 372 | 0 | [Read transcript](code-beam-search-docred-mistral-dryrun.md) | [JSON](../../sessions/22/2287d787bb94be6bd3fb.json) |
 | writing appendix beam search | 31 | 0 | [Read transcript](writing-appendix-beam-search.md) | [JSON](../../sessions/6e/6eb7f304d05d08c9ed54.json) |
-| writing rebuttal beam wording | 45 | 0 | [Read transcript](writing-rebuttal-beam-wording.md) | [JSON](../../sessions/ea/ea8f90d16c60d764fd8b.json) |
 | code beam search docred mistral collect | 160 | 0 | [Read transcript](code-beam-search-docred-mistral-collect.md) | [JSON](../../sessions/af/afde5d37af0cfed992ef.json) |
 | code beam mistral docred oneshot | 40 | 0 | [Read transcript](code-beam-mistral-docred-oneshot.md) | [JSON](../../sessions/d8/d8e81422b9740e45c99d.json) |
 | code beam scierc 551 collect | 38 | 0 | [Read transcript](code-beam-scierc-551-collect.md) | [JSON](../../sessions/4b/4b1822aa72b069b53826.json) |

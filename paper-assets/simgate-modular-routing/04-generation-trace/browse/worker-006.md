@@ -6,7 +6,6 @@
 |---|---:|---:|---|---|
 | `logs/workers/worker_code_anon-repo-figures-v3_20260523T141020.log` (occurrence 1) | 150 | 0 | [Read transcript](../readable/worker-executions/code-anon-repo-figures-v3.md) | [Open JSON](../sessions/4f/4f27b97794a81e6f0a5f.json) |
 | `logs/workers/worker_audit_server-data-inventory_20260523T194816.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/audit-server-data-inventory.md) | [Open JSON](../sessions/86/863ad7de002c8918b1d9.json) |
-| `logs/workers/worker_analysis_rebuttal-grounding-decomposition_20260523T205442.log` (occurrence 1) | 141 | 0 | [Read transcript](../readable/worker-executions/analysis-rebuttal-grounding-decomposition.md) | [Open JSON](../sessions/55/5540937793fdb0f1276b.json) |
 | `logs/workers/worker_code_llama-70b-setup_20260523T221712.log` (occurrence 1) | 751 | 1 | [Read transcript](../readable/worker-executions/code-llama-70b-setup.md) | [Open JSON](../sessions/40/40b81a45174fa3fe6e80.json) |
 | `logs/workers/worker_code_llama-70b-setup-v2_20260523T224530.log` (occurrence 1) | 15 | 0 | [Read transcript](../readable/worker-executions/code-llama-70b-setup-v2.md) | [Open JSON](../sessions/df/dfe0d160bb383c873b09.json) |
 | `logs/workers/worker_code_llama-70b-download-fix_20260523T224634.log` (occurrence 1) | 19 | 0 | [Read transcript](../readable/worker-executions/code-llama-70b-download-fix.md) | [Open JSON](../sessions/21/21daa32d9762f2095951.json) |

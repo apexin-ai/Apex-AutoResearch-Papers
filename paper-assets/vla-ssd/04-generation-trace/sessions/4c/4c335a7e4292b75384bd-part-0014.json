@@ -7,329 +7,6 @@
       "messages": [
         {
           "source_line": 2341,
-          "timestamp": "2026-05-28T13:19:08.143311+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "offset": "150",
-              "limit": "20"
-            }
-          },
-          "id": "event-002341"
-        },
-        {
-          "source_line": 2342,
-          "timestamp": "2026-05-28T13:19:08.193885+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "150\t\\end{wrapfigure}\n151\t\n152\t%------------------------------------------------------------------\n153\t\\FloatBarrier\n154\t\\vspace{-2pt}\n155\t\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}\n156\t\\label{sec:routing_synthesis}\n157\t\n158\t\\begin{figure}[t]\n159\t\\centering\n160\t\\begin{minipage}[t]{0.52\\columnwidth}\n161\t\\centering\n162\t\\includegraphics[width=\\linewidth]{figures/fig_multi_layer_attn.pdf}\n163\t\\end{minipage}\\hfill\n164\t\\begin{minipage}[t]{0.44\\columnwidth}\n165\t\\centering\n166\t\\includegraphics[width=\\linewidth]{figures/fig_dose_response.pdf}\n167\t\\end{minipage}\n168\t\\vspace{-6pt}\n169\t\\caption{\\textbf{Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random init). \\textbf{Right:} Dose-response ablation; trajectory divergence rises steeply through 12 heads, then plateaus. 95\\% bootstrap CIs.}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-002342"
-        },
-        {
-          "source_line": 2343,
-          "timestamp": "2026-05-28T13:19:14.705474+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{figure}[t]\n\\centering\n\\begin{minipage}[t]{0.52\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{figures/fig_multi_layer_attn.pdf}\n\\end{minipage}\\hfill\n\\begin{minipage}[t]{0.44\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{figures/fig_dose_response.pdf}\n\\end{minipage}\n\\vspace{-6pt}\n\\caption{\\textbf{Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random init). \\textbf{Right:} Dose-response ablation; trajectory divergence rises steeply through 12 heads, then plateaus. 95\\% bootstrap CIs.}",
-              "new_string": "\\begin{figure}[htbp]\n\\centering\n\\begin{minipage}[t]{0.52\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{figures/fig_multi_layer_attn.pdf}\n\\end{minipage}\\hfill\n\\begin{minipage}[t]{0.44\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth]{figures/fig_dose_response.pdf}\n\\end{minipage}\n\\vspace{-6pt}\n\\caption{\\textbf{Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random init). \\textbf{Right:} Dose-response ablation; trajectory divergence rises steeply through 12 heads, then plateaus. 95\\% bootstrap CIs.}"
-            }
-          },
-          "id": "event-002343"
-        },
-        {
-          "source_line": 2344,
-          "timestamp": "2026-05-28T13:19:14.706111+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002344"
-        },
-        {
-          "source_line": 2345,
-          "timestamp": "2026-05-28T13:19:19.340136+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && grep -n 'begin{figure}\\|begin{table}' experiments.tex introduction.tex method.tex related_work.tex discussion.tex",
-              "description": "Find all float specifiers"
-            }
-          },
-          "id": "event-002345"
-        },
-        {
-          "source_line": 2346,
-          "timestamp": "2026-05-28T13:19:19.442305+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "experiments.tex:16:\\begin{figure}[t]\nexperiments.tex:32:\\begin{figure}[t]\nexperiments.tex:54:\\begin{figure}[t]\nexperiments.tex:68:\\begin{table}[t]\nexperiments.tex:108:\\begin{figure}[t]\nexperiments.tex:158:\\begin{figure}[htbp]\nintroduction.tex:13:\\begin{figure}[t]\nmethod.tex:22:\\begin{table}[t]\nrelated_work.tex:8:\\begin{table}[htbp]\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 102
-          },
-          "id": "event-002346"
-        },
-        {
-          "source_line": 2347,
-          "timestamp": "2026-05-28T13:19:23.558276+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "True",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{figure}[t]",
-              "new_string": "\\begin{figure}[htbp]"
-            }
-          },
-          "id": "event-002347"
-        },
-        {
-          "source_line": 2348,
-          "timestamp": "2026-05-28T13:19:23.558797+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated. All occurrences were successfully replaced."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002348"
-        },
-        {
-          "source_line": 2349,
-          "timestamp": "2026-05-28T13:19:24.512751+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "True",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex",
-              "old_string": "\\begin{table}[t]",
-              "new_string": "\\begin{table}[htbp]"
-            }
-          },
-          "id": "event-002349"
-        },
-        {
-          "source_line": 2350,
-          "timestamp": "2026-05-28T13:19:24.965339+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated. All occurrences were successfully replaced."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 452
-          },
-          "id": "event-002350"
-        },
-        {
-          "source_line": 2351,
-          "timestamp": "2026-05-28T13:19:25.467469+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "True",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex",
-              "old_string": "\\begin{figure}[t]",
-              "new_string": "\\begin{figure}[htbp]"
-            }
-          },
-          "id": "event-002351"
-        },
-        {
-          "source_line": 2352,
-          "timestamp": "2026-05-28T13:19:25.919718+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex has been updated. All occurrences were successfully replaced."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 452
-          },
-          "id": "event-002352"
-        },
-        {
-          "source_line": 2353,
-          "timestamp": "2026-05-28T13:19:26.522295+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "True",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex",
-              "old_string": "\\begin{table}[t]",
-              "new_string": "\\begin{table}[htbp]"
-            }
-          },
-          "id": "event-002353"
-        },
-        {
-          "source_line": 2354,
-          "timestamp": "2026-05-28T13:19:26.623103+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/method.tex has been updated. All occurrences were successfully replaced."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-002354"
-        },
-        {
-          "source_line": 2355,
-          "timestamp": "2026-05-28T13:19:38.016885+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"^!|Output written|Warning.*undefined\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nprint(f'Total pages: {len(pages)-1}')\nfor pi, page in enumerate(pages[:12]):\n    if 'References' in page[:300]:\n        print(f'References on page {pi+1}')\n        break\n\n# Compact audit: for each page, show section headings and figure/table positions\nfor pi in range(min(10, len(pages))):\n    lines = pages[pi].strip().split('\\n')\n    elements = []\n    for i, line in enumerate(lines):\n        ls = line.strip()\n        # Section headings (numbered)\n        if any(f'{n}   ' in ls[:15] or f'{n}     ' in ls[:15] for n in ['1', '2', '3', '4', '5']):\n            for heading in ['Introduction', 'Related Work', 'Method', 'Experiments', 'Discussion', 'Experimental Setup', 'OpenVLA:', 'Exit Collapse', 'Instruction Sensitivity', 'Inherited Routing', 'Synthesis', 'References']:\n                if heading in ls:\n                    elements.append(f'§ {ls[:60].strip()}')\n                    break\n        # Figures and tables\n        if ls.startswith('Figure ') and ':' in ls[:20]:\n            elements.append(f'FIG: {ls[:60]}')\n        if ls.startswith('Table ') and ':' in ls[:20]:\n            elements.append(f'TAB: {ls[:60]}')\n    if elements:\n        print(f'p{pi+1}: ' + ' | '.join(elements))\n    else:\n        print(f'p{pi+1}: [no headings/floats]')\n\"",
-              "description": "Compile and compact audit"
-            }
-          },
-          "id": "event-002355"
-        },
-        {
-          "source_line": 2356,
-          "timestamp": "2026-05-28T13:19:41.733295+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Output written on main.pdf (38 pages, 9800637 bytes).\nTotal pages: 38\np1: § 18   1   Introduction\np2: FIG: Figure 1: Analysis framework. We analyze hidden states at im | § 48   2   Related Work | TAB: Table 1: Comparison with concurrent VLA representational ana\np3: § 82   3     Method | TAB: Table 2: Architectures studied. The reference baselines diff\np4: FIG: Figure 2:         Per-layer RSA (ρ) for\np5: § 145   4     Experiments | § 146   4.1   Experimental Setup | § 153   4.2   OpenVLA: Motivating Single-Architecture Analysis | FIG: Figure 3: Cross-architecture evaluation matrix. Each cell re | FIG: Figure 4: Per-layer action-probe R2 across three OpenVLA con | § 163   4.3 Exit Collapse: Layer-Wise Action Probing\np6: FIG: Figure 5: Layer-wise action-probe R2 (LIBERO-Goal, readout t\np7: TAB: Table 3: Peak-to-exit action-probe drop across the architect | § 183   4.4            Instruction Sensitivity: Counterfactual | § 184   Instruction Sensitivity in Action-Producing VLAs We fi | FIG: Figure 6: Counterfactual sensitivity across architecture-sui\np8: § 200   4.5   Inherited Routing: L1 Attention Profiling | FIG: Figure 8: Left: Instruction-dominant heads across all 32 lay | FIG: Figure 7: L1 instruction-dominant | § 224   5     Discussion and Conclusion\np9: [no headings/floats]\np10: [no headings/floats]\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 3716
-          },
-          "id": "event-002356"
-        },
-        {
-          "source_line": 2357,
           "timestamp": "2026-05-28T13:20:07.545900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -347,10 +24,10 @@
               "description": "Full p8 and p9 detail"
             }
           },
-          "id": "event-002357"
+          "id": "event-002341"
         },
         {
-          "source_line": 2358,
+          "source_line": 2342,
           "timestamp": "2026-05-28T13:20:09.102686+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -365,10 +42,10 @@
             "tool": "Bash",
             "elapsed_ms": 1556
           },
-          "id": "event-002358"
+          "id": "event-002342"
         },
         {
-          "source_line": 2359,
+          "source_line": 2343,
           "timestamp": "2026-05-28T13:21:15.109010+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -388,10 +65,10 @@
               "new_string": "%------------------------------------------------------------------\n\\vspace{-2pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}\n\\label{sec:cf_sensitivity}"
             }
           },
-          "id": "event-002359"
+          "id": "event-002343"
         },
         {
-          "source_line": 2360,
+          "source_line": 2344,
           "timestamp": "2026-05-28T13:21:16.665325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -406,10 +83,10 @@
             "tool": "Edit",
             "elapsed_ms": 1556
           },
-          "id": "event-002360"
+          "id": "event-002344"
         },
         {
-          "source_line": 2361,
+          "source_line": 2345,
           "timestamp": "2026-05-28T13:21:21.304157+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -429,10 +106,10 @@
               "new_string": "%------------------------------------------------------------------\n\\vspace{-2pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}\n\\label{sec:l1_priors}"
             }
           },
-          "id": "event-002361"
+          "id": "event-002345"
         },
         {
-          "source_line": 2362,
+          "source_line": 2346,
           "timestamp": "2026-05-28T13:21:21.354961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -447,10 +124,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002362"
+          "id": "event-002346"
         },
         {
-          "source_line": 2363,
+          "source_line": 2347,
           "timestamp": "2026-05-28T13:21:30.994159+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -468,10 +145,10 @@
               "description": "Compile and compact layout audit"
             }
           },
-          "id": "event-002363"
+          "id": "event-002347"
         },
         {
-          "source_line": 2364,
+          "source_line": 2348,
           "timestamp": "2026-05-28T13:21:34.657305+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -486,10 +163,10 @@
             "tool": "Bash",
             "elapsed_ms": 3663
           },
-          "id": "event-002364"
+          "id": "event-002348"
         },
         {
-          "source_line": 2365,
+          "source_line": 2349,
           "timestamp": "2026-05-28T13:21:47.657748+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -507,10 +184,10 @@
               "description": "Check Discussion placement and p8 detail"
             }
           },
-          "id": "event-002365"
+          "id": "event-002349"
         },
         {
-          "source_line": 2366,
+          "source_line": 2350,
           "timestamp": "2026-05-28T13:21:49.234828+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -525,10 +202,10 @@
             "tool": "Bash",
             "elapsed_ms": 1577
           },
-          "id": "event-002366"
+          "id": "event-002350"
         },
         {
-          "source_line": 2367,
+          "source_line": 2351,
           "timestamp": "2026-05-28T13:22:56.970152+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -548,10 +225,10 @@
               "new_string": "\\vspace{-6pt}\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\vspace{-6pt}"
             }
           },
-          "id": "event-002367"
+          "id": "event-002351"
         },
         {
-          "source_line": 2368,
+          "source_line": 2352,
           "timestamp": "2026-05-28T13:22:59.078351+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -566,10 +243,10 @@
             "tool": "Edit",
             "elapsed_ms": 2108
           },
-          "id": "event-002368"
+          "id": "event-002352"
         },
         {
-          "source_line": 2369,
+          "source_line": 2353,
           "timestamp": "2026-05-28T13:24:58.665117+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -587,10 +264,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002369"
+          "id": "event-002353"
         },
         {
-          "source_line": 2370,
+          "source_line": 2354,
           "timestamp": "2026-05-28T13:25:01.826476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -605,10 +282,10 @@
             "tool": "Bash",
             "elapsed_ms": 3161
           },
-          "id": "event-002370"
+          "id": "event-002354"
         },
         {
-          "source_line": 2371,
+          "source_line": 2355,
           "timestamp": "2026-05-28T13:25:05.741843+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -626,10 +303,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002371"
+          "id": "event-002355"
         },
         {
-          "source_line": 2372,
+          "source_line": 2356,
           "timestamp": "2026-05-28T13:25:05.993268+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -644,10 +321,10 @@
             "tool": "Bash",
             "elapsed_ms": 251
           },
-          "id": "event-002372"
+          "id": "event-002356"
         },
         {
-          "source_line": 2373,
+          "source_line": 2357,
           "timestamp": "2026-05-28T13:25:11.464828+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -665,10 +342,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002373"
+          "id": "event-002357"
         },
         {
-          "source_line": 2374,
+          "source_line": 2358,
           "timestamp": "2026-05-28T13:25:11.565797+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -683,10 +360,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002374"
+          "id": "event-002358"
         },
         {
-          "source_line": 2375,
+          "source_line": 2359,
           "timestamp": "2026-05-28T13:25:40.646759+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -705,10 +382,10 @@
               "limit": "40"
             }
           },
-          "id": "event-002375"
+          "id": "event-002359"
         },
         {
-          "source_line": 2376,
+          "source_line": 2360,
           "timestamp": "2026-05-28T13:25:41.801714+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -723,10 +400,10 @@
             "tool": "Read",
             "elapsed_ms": 1154
           },
-          "id": "event-002376"
+          "id": "event-002360"
         },
         {
-          "source_line": 2377,
+          "source_line": 2361,
           "timestamp": "2026-05-28T13:25:48.126550+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -745,10 +422,10 @@
               "limit": "45"
             }
           },
-          "id": "event-002377"
+          "id": "event-002361"
         },
         {
-          "source_line": 2378,
+          "source_line": 2362,
           "timestamp": "2026-05-28T13:25:48.377881+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -763,10 +440,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-002378"
+          "id": "event-002362"
         },
         {
-          "source_line": 2379,
+          "source_line": 2363,
           "timestamp": "2026-05-28T13:26:27.313821+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -784,10 +461,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002379"
+          "id": "event-002363"
         },
         {
-          "source_line": 2380,
+          "source_line": 2364,
           "timestamp": "2026-05-28T13:26:27.966736+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -802,10 +479,10 @@
             "tool": "Bash",
             "elapsed_ms": 652
           },
-          "id": "event-002380"
+          "id": "event-002364"
         },
         {
-          "source_line": 2381,
+          "source_line": 2365,
           "timestamp": "2026-05-28T13:27:09.743097+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -825,10 +502,10 @@
               "new_string": "\\begin{figure}[htbp]\n\\centering\n\\begin{minipage}[t]{0.52\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth,height=2.8cm,keepaspectratio]{figures/fig_multi_layer_attn.pdf}\n\\end{minipage}\\hfill\n\\begin{minipage}[t]{0.44\\columnwidth}\n\\centering\n\\includegraphics[width=\\linewidth,height=2.8cm,keepaspectratio]{figures/fig_dose_response.pdf}\n\\end{minipage}\n\\vspace{-8pt}\n\\caption{\\textbf{Left:} Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained; L16 peak for Llama-2 base; zero for random). \\textbf{Right:} Dose-response ablation; divergence rises steeply through 12 heads, then plateaus. 95\\% bootstrap CIs.}\n\\label{fig:synthesis_panels}\n\\vspace{-8pt}\n\\end{figure}"
             }
           },
-          "id": "event-002381"
+          "id": "event-002365"
         },
         {
-          "source_line": 2382,
+          "source_line": 2366,
           "timestamp": "2026-05-28T13:27:11.299282+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -843,10 +520,10 @@
             "tool": "Edit",
             "elapsed_ms": 1556
           },
-          "id": "event-002382"
+          "id": "event-002366"
         },
         {
-          "source_line": 2383,
+          "source_line": 2367,
           "timestamp": "2026-05-28T13:27:17.172264+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -866,10 +543,10 @@
               "new_string": "\\looseness=-2\nCounterfactual sensitivity (\\S\\ref{sec:cf_sensitivity}) confirms that trained VLAs use instruction content, but does not reveal whether this reliance originates from training or from backbone priors.\nL1 attention profiling addresses this by comparing head routing before and after VLA fine-tuning."
             }
           },
-          "id": "event-002383"
+          "id": "event-002367"
         },
         {
-          "source_line": 2384,
+          "source_line": 2368,
           "timestamp": "2026-05-28T13:27:17.223183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -884,10 +561,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002384"
+          "id": "event-002368"
         },
         {
-          "source_line": 2385,
+          "source_line": 2369,
           "timestamp": "2026-05-28T13:27:24.825130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -907,10 +584,10 @@
               "new_string": "\\begin{wrapfigure}{r}{0.38\\columnwidth}\n\\vspace{-10pt}\n\\centering\n\\includegraphics[width=0.36\\columnwidth]{figures/fig_l1_attention.pdf}\n\\vspace{-8pt}\n\\caption{L1 instruction-dominant heads (trained vs.\\ reference). VLMs already saturate; training does not increase counts.}\n\\label{fig:cross_arch_l1}\n\\vspace{-10pt}\n\\end{wrapfigure}"
             }
           },
-          "id": "event-002385"
+          "id": "event-002369"
         },
         {
-          "source_line": 2386,
+          "source_line": 2370,
           "timestamp": "2026-05-28T13:27:24.875948+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -925,10 +602,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002386"
+          "id": "event-002370"
         },
         {
-          "source_line": 2387,
+          "source_line": 2371,
           "timestamp": "2026-05-28T13:27:29.041601+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -948,10 +625,10 @@
               "new_string": "\\FloatBarrier\n\\vspace{-6pt}\n\\subsection{Synthesis: Training-Associated vs.\\ Inherited Routing}"
             }
           },
-          "id": "event-002387"
+          "id": "event-002371"
         },
         {
-          "source_line": 2388,
+          "source_line": 2372,
           "timestamp": "2026-05-28T13:27:29.092299+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -966,10 +643,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002388"
+          "id": "event-002372"
         },
         {
-          "source_line": 2389,
+          "source_line": 2373,
           "timestamp": "2026-05-28T13:27:32.255147+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -986,10 +663,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002389"
+          "id": "event-002373"
         },
         {
-          "source_line": 2390,
+          "source_line": 2374,
           "timestamp": "2026-05-28T13:27:32.355959+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1004,10 +681,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002390"
+          "id": "event-002374"
         },
         {
-          "source_line": 2391,
+          "source_line": 2375,
           "timestamp": "2026-05-28T13:27:35.828006+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1027,10 +704,10 @@
               "new_string": "\\vspace{-8pt}\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\vspace{-8pt}"
             }
           },
-          "id": "event-002391"
+          "id": "event-002375"
         },
         {
-          "source_line": 2392,
+          "source_line": 2376,
           "timestamp": "2026-05-28T13:27:35.929250+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1045,10 +722,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002392"
+          "id": "event-002376"
         },
         {
-          "source_line": 2393,
+          "source_line": 2377,
           "timestamp": "2026-05-28T13:27:39.240599+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1067,10 +744,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002393"
+          "id": "event-002377"
         },
         {
-          "source_line": 2394,
+          "source_line": 2378,
           "timestamp": "2026-05-28T13:27:39.341413+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1085,10 +762,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002394"
+          "id": "event-002378"
         },
         {
-          "source_line": 2395,
+          "source_line": 2379,
           "timestamp": "2026-05-28T13:27:43.055767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1108,10 +785,10 @@
               "new_string": "%------------------------------------------------------------------\n\\vspace{-4pt}\n\\subsection{Instruction Sensitivity: Counterfactual Perturbation}"
             }
           },
-          "id": "event-002395"
+          "id": "event-002379"
         },
         {
-          "source_line": 2396,
+          "source_line": 2380,
           "timestamp": "2026-05-28T13:27:43.106562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1126,10 +803,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002396"
+          "id": "event-002380"
         },
         {
-          "source_line": 2397,
+          "source_line": 2381,
           "timestamp": "2026-05-28T13:27:46.569631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1149,10 +826,10 @@
               "new_string": "%------------------------------------------------------------------\n\\vspace{-4pt}\n\\subsection{Inherited Routing: L1 Attention Profiling}"
             }
           },
-          "id": "event-002397"
+          "id": "event-002381"
         },
         {
-          "source_line": 2398,
+          "source_line": 2382,
           "timestamp": "2026-05-28T13:27:46.620290+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1167,10 +844,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002398"
+          "id": "event-002382"
         },
         {
-          "source_line": 2399,
+          "source_line": 2383,
           "timestamp": "2026-05-28T13:27:49.498447+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1188,10 +865,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002399"
+          "id": "event-002383"
         },
         {
-          "source_line": 2400,
+          "source_line": 2384,
           "timestamp": "2026-05-28T13:27:52.308019+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1206,10 +883,10 @@
             "tool": "Bash",
             "elapsed_ms": 2809
           },
-          "id": "event-002400"
+          "id": "event-002384"
         },
         {
-          "source_line": 2401,
+          "source_line": 2385,
           "timestamp": "2026-05-28T13:27:56.421968+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1227,10 +904,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002401"
+          "id": "event-002385"
         },
         {
-          "source_line": 2402,
+          "source_line": 2386,
           "timestamp": "2026-05-28T13:27:56.522848+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1245,10 +922,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002402"
+          "id": "event-002386"
         },
         {
-          "source_line": 2403,
+          "source_line": 2387,
           "timestamp": "2026-05-28T13:28:03.197980+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1266,10 +943,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002403"
+          "id": "event-002387"
         },
         {
-          "source_line": 2404,
+          "source_line": 2388,
           "timestamp": "2026-05-28T13:28:04.654088+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1284,10 +961,10 @@
             "tool": "Bash",
             "elapsed_ms": 1456
           },
-          "id": "event-002404"
+          "id": "event-002388"
         },
         {
-          "source_line": 2405,
+          "source_line": 2389,
           "timestamp": "2026-05-28T13:28:10.727316+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1305,10 +982,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002405"
+          "id": "event-002389"
         },
         {
-          "source_line": 2406,
+          "source_line": 2390,
           "timestamp": "2026-05-28T13:28:12.283451+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1323,10 +1000,10 @@
             "tool": "Bash",
             "elapsed_ms": 1556
           },
-          "id": "event-002406"
+          "id": "event-002390"
         },
         {
-          "source_line": 2407,
+          "source_line": 2391,
           "timestamp": "2026-05-28T13:28:18.802866+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1344,10 +1021,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002407"
+          "id": "event-002391"
         },
         {
-          "source_line": 2408,
+          "source_line": 2392,
           "timestamp": "2026-05-28T13:28:19.203770+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1362,10 +1039,10 @@
             "tool": "Bash",
             "elapsed_ms": 400
           },
-          "id": "event-002408"
+          "id": "event-002392"
         },
         {
-          "source_line": 2409,
+          "source_line": 2393,
           "timestamp": "2026-05-28T13:29:13.428817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1383,10 +1060,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002409"
+          "id": "event-002393"
         },
         {
-          "source_line": 2410,
+          "source_line": 2394,
           "timestamp": "2026-05-28T13:29:14.984990+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1401,10 +1078,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 1556
           },
-          "id": "event-002410"
+          "id": "event-002394"
         },
         {
-          "source_line": 2411,
+          "source_line": 2395,
           "timestamp": "2026-05-28T13:29:19.215131+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1424,10 +1101,10 @@
               "dpi": "150"
             }
           },
-          "id": "event-002411"
+          "id": "event-002395"
         },
         {
-          "source_line": 2412,
+          "source_line": 2396,
           "timestamp": "2026-05-28T13:29:20.917167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1442,10 +1119,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 1702
           },
-          "id": "event-002412"
+          "id": "event-002396"
         },
         {
-          "source_line": 2413,
+          "source_line": 2397,
           "timestamp": "2026-05-28T13:29:24.079385+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1462,10 +1139,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p1.png"
             }
           },
-          "id": "event-002413"
+          "id": "event-002397"
         },
         {
-          "source_line": 2414,
+          "source_line": 2398,
           "timestamp": "2026-05-28T13:29:24.533317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1480,10 +1157,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-002414"
+          "id": "event-002398"
         },
         {
-          "source_line": 2415,
+          "source_line": 2399,
           "timestamp": "2026-05-28T13:29:24.533779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1500,10 +1177,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p2.png"
             }
           },
-          "id": "event-002415"
+          "id": "event-002399"
         },
         {
-          "source_line": 2416,
+          "source_line": 2400,
           "timestamp": "2026-05-28T13:29:25.037439+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1518,10 +1195,10 @@
             "tool": "Read",
             "elapsed_ms": 503
           },
-          "id": "event-002416"
+          "id": "event-002400"
         },
         {
-          "source_line": 2417,
+          "source_line": 2401,
           "timestamp": "2026-05-28T13:29:25.037876+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1538,10 +1215,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-002417"
+          "id": "event-002401"
         },
         {
-          "source_line": 2418,
+          "source_line": 2402,
           "timestamp": "2026-05-28T13:29:25.542649+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1556,10 +1233,10 @@
             "tool": "Read",
             "elapsed_ms": 504
           },
-          "id": "event-002418"
+          "id": "event-002402"
         },
         {
-          "source_line": 2419,
+          "source_line": 2403,
           "timestamp": "2026-05-28T13:29:25.544670+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1576,10 +1253,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-002419"
+          "id": "event-002403"
         },
         {
-          "source_line": 2420,
+          "source_line": 2404,
           "timestamp": "2026-05-28T13:29:25.899182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1594,10 +1271,10 @@
             "tool": "Read",
             "elapsed_ms": 354
           },
-          "id": "event-002420"
+          "id": "event-002404"
         },
         {
-          "source_line": 2421,
+          "source_line": 2405,
           "timestamp": "2026-05-28T13:29:29.312547+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1614,10 +1291,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-002421"
+          "id": "event-002405"
         },
         {
-          "source_line": 2422,
+          "source_line": 2406,
           "timestamp": "2026-05-28T13:29:29.765823+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1632,10 +1309,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-002422"
+          "id": "event-002406"
         },
         {
-          "source_line": 2423,
+          "source_line": 2407,
           "timestamp": "2026-05-28T13:29:29.766420+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1652,10 +1329,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-002423"
+          "id": "event-002407"
         },
         {
-          "source_line": 2424,
+          "source_line": 2408,
           "timestamp": "2026-05-28T13:29:30.220644+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1670,10 +1347,10 @@
             "tool": "Read",
             "elapsed_ms": 454
           },
-          "id": "event-002424"
+          "id": "event-002408"
         },
         {
-          "source_line": 2425,
+          "source_line": 2409,
           "timestamp": "2026-05-28T13:29:30.221139+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1690,10 +1367,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-002425"
+          "id": "event-002409"
         },
         {
-          "source_line": 2426,
+          "source_line": 2410,
           "timestamp": "2026-05-28T13:29:30.725031+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1708,10 +1385,10 @@
             "tool": "Read",
             "elapsed_ms": 503
           },
-          "id": "event-002426"
+          "id": "event-002410"
         },
         {
-          "source_line": 2427,
+          "source_line": 2411,
           "timestamp": "2026-05-28T13:29:30.725719+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1728,10 +1405,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002427"
+          "id": "event-002411"
         },
         {
-          "source_line": 2428,
+          "source_line": 2412,
           "timestamp": "2026-05-28T13:29:31.084262+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1746,10 +1423,10 @@
             "tool": "Read",
             "elapsed_ms": 358
           },
-          "id": "event-002428"
+          "id": "event-002412"
         },
         {
-          "source_line": 2429,
+          "source_line": 2413,
           "timestamp": "2026-05-28T13:30:03.358903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1767,10 +1444,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002429"
+          "id": "event-002413"
         },
         {
-          "source_line": 2430,
+          "source_line": 2414,
           "timestamp": "2026-05-28T13:30:05.065528+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1785,10 +1462,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 1706
           },
-          "id": "event-002430"
+          "id": "event-002414"
         },
         {
-          "source_line": 2431,
+          "source_line": 2415,
           "timestamp": "2026-05-28T13:30:07.926326+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1805,10 +1482,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/_pdf_images"
             }
           },
-          "id": "event-002431"
+          "id": "event-002415"
         },
         {
-          "source_line": 2432,
+          "source_line": 2416,
           "timestamp": "2026-05-28T13:30:07.977030+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1823,10 +1500,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-002432"
+          "id": "event-002416"
         },
         {
-          "source_line": 2433,
+          "source_line": 2417,
           "timestamp": "2026-05-28T13:30:14.049495+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1848,10 +1525,10 @@
               "tags": "['paper', 'layout-fix', 'v21']"
             }
           },
-          "id": "event-002433"
+          "id": "event-002417"
         },
         {
-          "source_line": 2434,
+          "source_line": 2418,
           "timestamp": "2026-05-28T13:30:14.402380+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1866,10 +1543,10 @@
             "tool": "mcp__agent-ml-research__register_artifact",
             "elapsed_ms": 352
           },
-          "id": "event-002434"
+          "id": "event-002418"
         },
         {
-          "source_line": 2435,
+          "source_line": 2419,
           "timestamp": "2026-05-28T13:30:18.117290+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1887,10 +1564,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002435"
+          "id": "event-002419"
         },
         {
-          "source_line": 2436,
+          "source_line": 2420,
           "timestamp": "2026-05-28T13:30:18.218132+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1905,10 +1582,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002436"
+          "id": "event-002420"
         },
         {
-          "source_line": 2437,
+          "source_line": 2421,
           "timestamp": "2026-05-28T13:30:42.130858+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1926,10 +1603,10 @@
               "project": "vla-ssd"
             }
           },
-          "id": "event-002437"
+          "id": "event-002421"
         },
         {
-          "source_line": 2438,
+          "source_line": 2422,
           "timestamp": "2026-05-28T13:30:45.896229+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1944,10 +1621,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3765
           },
-          "id": "event-002438"
+          "id": "event-002422"
         },
         {
-          "source_line": 2439,
+          "source_line": 2423,
           "timestamp": "2026-05-28T13:30:53.645155+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1960,7 +1637,7 @@
           "metadata": {
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
           },
-          "id": "event-002439"
+          "id": "event-002423"
         }
       ]
     },
@@ -1968,7 +1645,7 @@
       "number": 31,
       "messages": [
         {
-          "source_line": 2440,
+          "source_line": 2424,
           "timestamp": "2026-05-28T13:30:54.176673+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1982,10 +1659,10 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "source": "director"
           },
-          "id": "event-002440"
+          "id": "event-002424"
         },
         {
-          "source_line": 2441,
+          "source_line": 2425,
           "timestamp": "2026-05-28T13:31:44.751386+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2004,10 +1681,10 @@
               "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/, find the appendix file(s) that contain \"extended_discussion\" or \"extended limitations\" content. The LaTeX label is \\label{sec:extended_discussion_appendix}. Read the relevant section content and report it back in full."
             }
           },
-          "id": "event-002441"
+          "id": "event-002425"
         },
         {
-          "source_line": 2442,
+          "source_line": 2426,
           "timestamp": "2026-05-28T13:31:47.210578+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2024,10 +1701,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/ -type f -name \"*.tex\" | head -20"
             }
           },
-          "id": "event-002442"
+          "id": "event-002426"
         },
         {
-          "source_line": 2443,
+          "source_line": 2427,
           "timestamp": "2026-05-28T13:31:47.210978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2042,10 +1719,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-002443"
+          "id": "event-002427"
         },
         {
-          "source_line": 2444,
+          "source_line": 2428,
           "timestamp": "2026-05-28T13:31:47.263442+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2064,10 +1741,10 @@
               "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/, find any Python script that generates figures/fig_matrix_heatmap.pdf (this is Figure 3 in the paper — a cross-architecture evaluation matrix heatmap). Look for scripts in directories like scripts/, src/, notebooks/, figures/, etc. Report the file path and the relevant code section that draws the red borders on cells with ΔR² > 0.10."
             }
           },
-          "id": "event-002444"
+          "id": "event-002428"
         },
         {
-          "source_line": 2445,
+          "source_line": 2429,
           "timestamp": "2026-05-28T13:31:48.869701+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2085,10 +1762,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper"
             }
           },
-          "id": "event-002445"
+          "id": "event-002429"
         },
         {
-          "source_line": 2446,
+          "source_line": 2430,
           "timestamp": "2026-05-28T13:31:48.872187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2103,10 +1780,10 @@
             "tool": "Grep",
             "elapsed_ms": 2
           },
-          "id": "event-002446"
+          "id": "event-002430"
         },
         {
-          "source_line": 2447,
+          "source_line": 2431,
           "timestamp": "2026-05-28T13:31:49.022997+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2123,10 +1800,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/**/*.py"
             }
           },
-          "id": "event-002447"
+          "id": "event-002431"
         },
         {
-          "source_line": 2448,
+          "source_line": 2432,
           "timestamp": "2026-05-28T13:31:49.224310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2141,10 +1818,10 @@
             "tool": "Glob",
             "elapsed_ms": 201
           },
-          "id": "event-002448"
+          "id": "event-002432"
         },
         {
-          "source_line": 2449,
+          "source_line": 2433,
           "timestamp": "2026-05-28T13:31:49.224808+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2161,10 +1838,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ -type f -name \"*heatmap*\" 2>/dev/null"
             }
           },
-          "id": "event-002449"
+          "id": "event-002433"
         },
         {
-          "source_line": 2450,
+          "source_line": 2434,
           "timestamp": "2026-05-28T13:31:49.640859+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2179,10 +1856,10 @@
             "tool": "Bash",
             "elapsed_ms": 416
           },
-          "id": "event-002450"
+          "id": "event-002434"
         },
         {
-          "source_line": 2451,
+          "source_line": 2435,
           "timestamp": "2026-05-28T13:31:49.691617+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2199,10 +1876,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ -type f -name \"*matrix*\" 2>/dev/null"
             }
           },
-          "id": "event-002451"
+          "id": "event-002435"
         },
         {
-          "source_line": 2452,
+          "source_line": 2436,
           "timestamp": "2026-05-28T13:31:49.893146+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2217,10 +1894,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002452"
+          "id": "event-002436"
         },
         {
-          "source_line": 2453,
+          "source_line": 2437,
           "timestamp": "2026-05-28T13:31:49.943950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2237,10 +1914,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ -type d \\( -name \"scripts\" -o -name \"src\" -o -name \"notebooks\" -o -name \"figures\" \\) 2>/dev/null"
             }
           },
-          "id": "event-002453"
+          "id": "event-002437"
         },
         {
-          "source_line": 2454,
+          "source_line": 2438,
           "timestamp": "2026-05-28T13:31:49.994629+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2255,10 +1932,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002454"
+          "id": "event-002438"
         },
         {
-          "source_line": 2455,
+          "source_line": 2439,
           "timestamp": "2026-05-28T13:31:50.195767+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2277,10 +1954,10 @@
               "output_mode": "content"
             }
           },
-          "id": "event-002455"
+          "id": "event-002439"
         },
         {
-          "source_line": 2456,
+          "source_line": 2440,
           "timestamp": "2026-05-28T13:31:50.246480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2295,10 +1972,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-002456"
+          "id": "event-002440"
         },
         {
-          "source_line": 2457,
+          "source_line": 2441,
           "timestamp": "2026-05-28T13:31:51.701895+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2315,10 +1992,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex"
             }
           },
-          "id": "event-002457"
+          "id": "event-002441"
         },
         {
-          "source_line": 2458,
+          "source_line": 2442,
           "timestamp": "2026-05-28T13:31:52.204110+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2333,10 +2010,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002458"
+          "id": "event-002442"
         },
         {
-          "source_line": 2459,
+          "source_line": 2443,
           "timestamp": "2026-05-28T13:31:53.158029+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2353,10 +2030,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py"
             }
           },
-          "id": "event-002459"
+          "id": "event-002443"
         },
         {
-          "source_line": 2460,
+          "source_line": 2444,
           "timestamp": "2026-05-28T13:31:53.208661+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2371,10 +2048,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002460"
+          "id": "event-002444"
         },
         {
-          "source_line": 2461,
+          "source_line": 2445,
           "timestamp": "2026-05-28T13:31:57.927404+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2389,10 +2066,10 @@
             "tool": "Agent",
             "elapsed_ms": 10663
           },
-          "id": "event-002461"
+          "id": "event-002445"
         },
         {
-          "source_line": 2462,
+          "source_line": 2446,
           "timestamp": "2026-05-28T13:31:58.029587+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2409,10 +2086,10 @@
               "command": "grep -n \"sec:extended_discussion_appendix\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex"
             }
           },
-          "id": "event-002462"
+          "id": "event-002446"
         },
         {
-          "source_line": 2463,
+          "source_line": 2447,
           "timestamp": "2026-05-28T13:31:58.080201+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2427,10 +2104,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002463"
+          "id": "event-002447"
         },
         {
-          "source_line": 2464,
+          "source_line": 2448,
           "timestamp": "2026-05-28T13:31:59.587143+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2449,10 +2126,10 @@
               "limit": "200"
             }
           },
-          "id": "event-002464"
+          "id": "event-002448"
         },
         {
-          "source_line": 2465,
+          "source_line": 2449,
           "timestamp": "2026-05-28T13:31:59.587748+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2467,10 +2144,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002465"
+          "id": "event-002449"
         },
         {
-          "source_line": 2466,
+          "source_line": 2450,
           "timestamp": "2026-05-28T13:32:10.732879+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2485,10 +2162,10 @@
             "tool": "Agent",
             "elapsed_ms": 25981
           },
-          "id": "event-002466"
+          "id": "event-002450"
         },
         {
-          "source_line": 2467,
+          "source_line": 2451,
           "timestamp": "2026-05-28T13:32:18.412804+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2507,10 +2184,10 @@
               "limit": "80"
             }
           },
-          "id": "event-002467"
+          "id": "event-002451"
         },
         {
-          "source_line": 2468,
+          "source_line": 2452,
           "timestamp": "2026-05-28T13:32:18.915159+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2525,10 +2202,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002468"
+          "id": "event-002452"
         },
         {
-          "source_line": 2469,
+          "source_line": 2453,
           "timestamp": "2026-05-28T13:32:18.915523+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2545,10 +2222,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/introduction.tex"
             }
           },
-          "id": "event-002469"
+          "id": "event-002453"
         },
         {
-          "source_line": 2470,
+          "source_line": 2454,
           "timestamp": "2026-05-28T13:32:20.181491+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2563,10 +2240,10 @@
             "tool": "Read",
             "elapsed_ms": 1265
           },
-          "id": "event-002470"
+          "id": "event-002454"
         },
         {
-          "source_line": 2471,
+          "source_line": 2455,
           "timestamp": "2026-05-28T13:32:20.332601+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2583,10 +2260,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002471"
+          "id": "event-002455"
         },
         {
-          "source_line": 2472,
+          "source_line": 2456,
           "timestamp": "2026-05-28T13:32:20.333163+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2601,10 +2278,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002472"
+          "id": "event-002456"
         },
         {
-          "source_line": 2473,
+          "source_line": 2457,
           "timestamp": "2026-05-28T13:32:20.433905+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2623,10 +2300,10 @@
               "limit": "50"
             }
           },
-          "id": "event-002473"
+          "id": "event-002457"
         },
         {
-          "source_line": 2474,
+          "source_line": 2458,
           "timestamp": "2026-05-28T13:32:20.685469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2641,10 +2318,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-002474"
+          "id": "event-002458"
         },
         {
-          "source_line": 2475,
+          "source_line": 2459,
           "timestamp": "2026-05-28T13:32:25.373578+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2661,10 +2338,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
             }
           },
-          "id": "event-002475"
+          "id": "event-002459"
         },
         {
-          "source_line": 2476,
+          "source_line": 2460,
           "timestamp": "2026-05-28T13:32:25.474310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2679,10 +2356,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002476"
+          "id": "event-002460"
         },
         {
-          "source_line": 2477,
+          "source_line": 2461,
           "timestamp": "2026-05-28T13:32:29.489182+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2701,10 +2378,10 @@
               "limit": "55"
             }
           },
-          "id": "event-002477"
+          "id": "event-002461"
         },
         {
-          "source_line": 2478,
+          "source_line": 2462,
           "timestamp": "2026-05-28T13:32:29.590025+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2719,10 +2396,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002478"
+          "id": "event-002462"
         },
         {
-          "source_line": 2479,
+          "source_line": 2463,
           "timestamp": "2026-05-28T13:32:37.921618+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2742,10 +2419,10 @@
               "new_string": "When vision-language models (VLMs) are fine-tuned for robotic action prediction, which representational changes are associated with training and which are inherited from the pretrained backbone?\nWe compare trained and reference checkpoints of three Vision-Language-Action (VLA) models across four LIBERO task suites via layer-wise probes, attention profiling, and counterfactual perturbations.\nWe find that VLM-to-VLA fine-tuning is associated with a consistent exit-layer collapse in action-probe decodability ($\\Delta R^2 = 0.16$--$0.46$) that is absent in VLA-to-VLA transitions ($\\Delta R^2 < 0.10$) and in three natural language processing (NLP) instruction-tuning controls ($\\Delta R^2 = 0.000$), suggesting this reorganization is specific to action-oriented training rather than a generic fine-tuning artifact.\nComplementary analyses reveal that trained VLAs develop substantial sensitivity to instruction content while the dominant attention patterns at early layers largely pre-exist in pretrained backbones.\nThese findings provide a cross-architecture decomposition of instruction routing in fine-tuned VLAs, disentangling training-associated representational changes from inherited structure."
             }
           },
-          "id": "event-002479"
+          "id": "event-002463"
         },
         {
-          "source_line": 2480,
+          "source_line": 2464,
           "timestamp": "2026-05-28T13:32:39.478345+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2760,10 +2437,10 @@
             "tool": "Edit",
             "elapsed_ms": 1556
           },
-          "id": "event-002480"
+          "id": "event-002464"
         },
         {
-          "source_line": 2481,
+          "source_line": 2465,
           "timestamp": "2026-05-28T13:32:45.149795+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2783,10 +2460,10 @@
               "new_string": "No prior work tests whether instruction routing---the internal mechanisms by which instruction tokens influence action-relevant representations---is consistent across backbone families or decomposes training-associated effects from inherited base-model priors."
             }
           },
-          "id": "event-002481"
+          "id": "event-002465"
         },
         {
-          "source_line": 2482,
+          "source_line": 2466,
           "timestamp": "2026-05-28T13:32:45.250760+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2801,10 +2478,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002482"
+          "id": "event-002466"
         },
         {
-          "source_line": 2483,
+          "source_line": 2467,
           "timestamp": "2026-05-28T13:33:04.855133+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2822,10 +2499,10 @@
               "content": "\\vspace{-6pt}\n\\section{Limitations}\n\\label{sec:limitations}\n\\vspace{-4pt}\n\n\\looseness=-2\nOur conclusions rest on $N{=}2$ VLM-to-VLA transitions plus one VLA-to-VLA case, all causal decoders on a single benchmark (LIBERO); flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} action heads may behave differently.\nAll findings are correlational ($R^2$ measures decodability, not causal reliance); the $\\Delta R^2$--success-rate correlation ($\\rho{=}0.583$, $p{=}0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) is underpowered ($n{=}9$); each architecture is analyzed at a single trained checkpoint, precluding characterization of how exit collapse develops during training; and the three-tier gradient has $n{=}1$ at Tier~2.\nAll evaluations are open-loop---we probe representational geometry on offline demonstrations without closing the loop through execution---so the link between $\\Delta R^2$ and task performance remains indirect.\nThe counterfactual sensitivity metrics differ between action-producing models (Cohen's $d$) and reference VLMs (cosine distance), preventing direct cross-condition comparison; a unified metric framework remains an open problem.\nExtending the analysis to additional general-purpose VLAs at Tier~2, non-autoregressive action heads, and closed-loop behavioral validation are priorities for future work.\n\n\\vspace{-6pt}\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\vspace{-4pt}\n\n\\looseness=-2\n$\\Delta R^2 > 0.10$ serves as a lightweight screening signal detectable with linear probes alone, without closed-loop rollouts; a VLA whose exit-layer $R^2$ drops well below its mid-layer peak likely under-utilizes its learned representations.\nBecause action-relevant structure peaks at intermediate layers, downstream modules (reward models, planners) should tap mid-layer features rather than the final hidden state; instruction sensitivity distributed across L1 heads further implies that aggressive early-layer pruning risks degrading instruction following.\nAcross three architectures spanning distinct backbone families, our analyses consistently decompose VLA instruction routing into two components: training-associated effects (exit collapse, counterfactual sensitivity) that emerge specifically during VLM-to-VLA transitions, and inherited base-model priors (L1 attention routing) that persist unchanged through fine-tuning.\nThis cross-architecture consistency suggests these representational phenomena reflect general properties of autoregressive VLA fine-tuning rather than architecture-specific artifacts, providing a reusable diagnostic framework for future VLA development.\n"
             }
           },
-          "id": "event-002483"
+          "id": "event-002467"
         },
         {
-          "source_line": 2484,
+          "source_line": 2468,
           "timestamp": "2026-05-28T13:33:04.905843+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2840,10 +2517,10 @@
             "tool": "Write",
             "elapsed_ms": 50
           },
-          "id": "event-002484"
+          "id": "event-002468"
         },
         {
-          "source_line": 2485,
+          "source_line": 2469,
           "timestamp": "2026-05-28T13:33:12.833626+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2863,10 +2540,10 @@
               "new_string": "            if val > THRESHOLD:\n                border = patches.FancyBboxPatch(\n                    (x0 + gap, y0 + gap), cell_w - 2*gap, cell_h - 2*gap,\n                    boxstyle=\"round,pad=0.02\",\n                    facecolor='none', edgecolor='#CC3333', linewidth=2.0,\n                    linestyle='--'\n                )\n                ax.add_patch(border)"
             }
           },
-          "id": "event-002485"
+          "id": "event-002469"
         },
         {
-          "source_line": 2486,
+          "source_line": 2470,
           "timestamp": "2026-05-28T13:33:12.884374+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2881,10 +2558,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002486"
+          "id": "event-002470"
         },
         {
-          "source_line": 2487,
+          "source_line": 2471,
           "timestamp": "2026-05-28T13:33:16.247436+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2903,10 +2580,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002487"
+          "id": "event-002471"
         },
         {
-          "source_line": 2488,
+          "source_line": 2472,
           "timestamp": "2026-05-28T13:33:16.348364+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2921,10 +2598,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002488"
+          "id": "event-002472"
         },
         {
-          "source_line": 2489,
+          "source_line": 2473,
           "timestamp": "2026-05-28T13:33:19.460026+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2942,10 +2619,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-002489"
+          "id": "event-002473"
         },
         {
-          "source_line": 2490,
+          "source_line": 2474,
           "timestamp": "2026-05-28T13:33:19.510710+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2960,10 +2637,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002490"
+          "id": "event-002474"
         },
         {
-          "source_line": 2491,
+          "source_line": 2475,
           "timestamp": "2026-05-28T13:33:22.962320+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2981,10 +2658,10 @@
               "timeout": "30000"
             }
           },
-          "id": "event-002491"
+          "id": "event-002475"
         },
         {
-          "source_line": 2492,
+          "source_line": 2476,
           "timestamp": "2026-05-28T13:33:24.753412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2999,10 +2676,10 @@
             "tool": "Bash",
             "elapsed_ms": 1791
           },
-          "id": "event-002492"
+          "id": "event-002476"
         },
         {
-          "source_line": 2493,
+          "source_line": 2477,
           "timestamp": "2026-05-28T13:33:27.817115+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3019,10 +2696,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/figures/fig_matrix_heatmap.pdf"
             }
           },
-          "id": "event-002493"
+          "id": "event-002477"
         },
         {
-          "source_line": 2494,
+          "source_line": 2478,
           "timestamp": "2026-05-28T13:33:27.867770+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3037,10 +2714,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002494"
+          "id": "event-002478"
         },
         {
-          "source_line": 2495,
+          "source_line": 2479,
           "timestamp": "2026-05-28T13:33:35.149651+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3060,10 +2737,10 @@
               "new_string": "\\caption{\\textbf{Cross-architecture evaluation matrix.} Each cell reports $\\Delta R^2$ (peak$-$exit). OpenVLA: VLA-to-VLA; TraceVLA and NORA: VLM-to-VLA. Gray: unavailable checkpoints. Dashed borders: $\\Delta R^2 > 0.10$.}"
             }
           },
-          "id": "event-002495"
+          "id": "event-002479"
         },
         {
-          "source_line": 2496,
+          "source_line": 2480,
           "timestamp": "2026-05-28T13:33:35.200452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3078,10 +2755,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002496"
+          "id": "event-002480"
         },
         {
-          "source_line": 2497,
+          "source_line": 2481,
           "timestamp": "2026-05-28T13:33:38.864063+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3099,10 +2776,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002497"
+          "id": "event-002481"
         },
         {
-          "source_line": 2498,
+          "source_line": 2482,
           "timestamp": "2026-05-28T13:33:41.723679+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3117,10 +2794,10 @@
             "tool": "Bash",
             "elapsed_ms": 2859
           },
-          "id": "event-002498"
+          "id": "event-002482"
         },
         {
-          "source_line": 2499,
+          "source_line": 2483,
           "timestamp": "2026-05-28T13:33:45.137943+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3137,10 +2814,10 @@
               "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdfinfo main.pdf | grep Pages"
             }
           },
-          "id": "event-002499"
+          "id": "event-002483"
         },
         {
-          "source_line": 2500,
+          "source_line": 2484,
           "timestamp": "2026-05-28T13:33:45.188622+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3155,10 +2832,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002500"
+          "id": "event-002484"
         },
         {
-          "source_line": 2501,
+          "source_line": 2485,
           "timestamp": "2026-05-28T13:33:51.779111+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3176,10 +2853,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002501"
+          "id": "event-002485"
         },
         {
-          "source_line": 2502,
+          "source_line": 2486,
           "timestamp": "2026-05-28T13:33:51.880127+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3194,10 +2871,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002502"
+          "id": "event-002486"
         },
         {
-          "source_line": 2503,
+          "source_line": 2487,
           "timestamp": "2026-05-28T13:34:11.554417+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3215,10 +2892,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-002503"
+          "id": "event-002487"
         },
         {
-          "source_line": 2504,
+          "source_line": 2488,
           "timestamp": "2026-05-28T13:34:11.605109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3233,10 +2910,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002504"
+          "id": "event-002488"
         },
         {
-          "source_line": 2505,
+          "source_line": 2489,
           "timestamp": "2026-05-28T13:34:15.519589+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3254,10 +2931,10 @@
               "timeout": "5000"
             }
           },
-          "id": "event-002505"
+          "id": "event-002489"
         },
         {
-          "source_line": 2506,
+          "source_line": 2490,
           "timestamp": "2026-05-28T13:34:15.620526+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3272,10 +2949,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002506"
+          "id": "event-002490"
         },
         {
-          "source_line": 2507,
+          "source_line": 2491,
           "timestamp": "2026-05-28T13:34:38.166593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3293,10 +2970,10 @@
               "content": "\\vspace{-8pt}\n\\section{Limitations}\n\\label{sec:limitations}\n\\vspace{-6pt}\n\n\\looseness=-2\nOur conclusions rest on $N{=}2$ VLM-to-VLA transitions plus one VLA-to-VLA case, all causal decoders on a single benchmark (LIBERO); flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} action heads may behave differently.\nAll findings are correlational ($R^2$ measures decodability, not causal reliance); the $\\Delta R^2$--success-rate correlation ($\\rho{=}0.583$, $p{=}0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) is underpowered ($n{=}9$); each architecture is analyzed at a single trained checkpoint, precluding characterization of how exit collapse develops during training; and the observational three-tier gradient has $n{=}1$ at Tier~2, limiting its inferential power.\nAll evaluations are open-loop---we probe representational geometry on offline demonstrations without closing the loop through execution---so the link between $\\Delta R^2$ and task performance remains indirect.\nThe counterfactual sensitivity metrics differ between action-producing models (Cohen's $d$) and reference VLMs (cosine distance), preventing direct cross-condition comparison.\nExtending to additional general-purpose VLAs, non-autoregressive action heads, and closed-loop validation are priorities for future work.\n\n\\vspace{-8pt}\n\\section{Conclusion}\n\\label{sec:conclusion}\n\\vspace{-6pt}\n\n\\looseness=-2\nWe presented a cross-architecture representational analysis of three VLAs spanning distinct backbone families, combining layer-wise action probes, counterfactual perturbations, and attention profiling.\nOur analyses consistently decompose instruction routing into training-associated effects---exit collapse ($\\Delta R^2 = 0.16$--$0.46$) and counterfactual sensitivity ($d = 0.45$--$1.52$) emerging during VLM-to-VLA transitions---and inherited base-model priors (L1 attention routing persisting unchanged through fine-tuning).\nThis cross-architecture consistency suggests these phenomena reflect general properties of autoregressive VLA fine-tuning; $\\Delta R^2 > 0.10$ provides a lightweight diagnostic, and mid-layer features offer a principled tap point for downstream modules.\n"
             }
           },
-          "id": "event-002507"
+          "id": "event-002491"
         },
         {
-          "source_line": 2508,
+          "source_line": 2492,
           "timestamp": "2026-05-28T13:34:39.622370+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3311,10 +2988,10 @@
             "tool": "Write",
             "elapsed_ms": 1455
           },
-          "id": "event-002508"
+          "id": "event-002492"
         },
         {
-          "source_line": 2509,
+          "source_line": 2493,
           "timestamp": "2026-05-28T13:34:43.487914+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3332,10 +3009,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002509"
+          "id": "event-002493"
         },
         {
-          "source_line": 2510,
+          "source_line": 2494,
           "timestamp": "2026-05-28T13:34:46.347747+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3350,10 +3027,10 @@
             "tool": "Bash",
             "elapsed_ms": 2859
           },
-          "id": "event-002510"
+          "id": "event-002494"
         },
         {
-          "source_line": 2511,
+          "source_line": 2495,
           "timestamp": "2026-05-28T13:34:51.481508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3373,10 +3050,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002511"
+          "id": "event-002495"
         },
         {
-          "source_line": 2512,
+          "source_line": 2496,
           "timestamp": "2026-05-28T13:34:51.632543+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3391,10 +3068,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-002512"
+          "id": "event-002496"
         },
         {
-          "source_line": 2513,
+          "source_line": 2497,
           "timestamp": "2026-05-28T13:34:55.547529+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3414,10 +3091,10 @@
               "new_string": "Although intermediate checkpoints are unavailable (\\S\\ref{sec:limitations})"
             }
           },
-          "id": "event-002513"
+          "id": "event-002497"
         },
         {
-          "source_line": 2514,
+          "source_line": 2498,
           "timestamp": "2026-05-28T13:34:55.648875+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3432,10 +3109,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-002514"
+          "id": "event-002498"
         },
         {
-          "source_line": 2515,
+          "source_line": 2499,
           "timestamp": "2026-05-28T13:34:59.363099+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3453,10 +3130,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002515"
+          "id": "event-002499"
         },
         {
-          "source_line": 2516,
+          "source_line": 2500,
           "timestamp": "2026-05-28T13:35:00.869417+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3471,10 +3148,10 @@
             "tool": "Bash",
             "elapsed_ms": 1506
           },
-          "id": "event-002516"
+          "id": "event-002500"
         },
         {
-          "source_line": 2517,
+          "source_line": 2501,
           "timestamp": "2026-05-28T13:35:04.835508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3492,10 +3169,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002517"
+          "id": "event-002501"
         },
         {
-          "source_line": 2518,
+          "source_line": 2502,
           "timestamp": "2026-05-28T13:35:04.937235+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3510,10 +3187,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-002518"
+          "id": "event-002502"
         },
         {
-          "source_line": 2519,
+          "source_line": 2503,
           "timestamp": "2026-05-28T13:35:08.450326+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3531,10 +3208,10 @@
               "timeout": "10000"
             }
           },
-          "id": "event-002519"
+          "id": "event-002503"
         },
         {
-          "source_line": 2520,
+          "source_line": 2504,
           "timestamp": "2026-05-28T13:35:08.551181+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3548,6 +3225,318 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Bash",
             "elapsed_ms": 100
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-28T13:35:13.570241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 8 -l 8 -layout main.pdf - 2>/dev/null | tail -20",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-28T13:35:13.671639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "221   depth peak (L16: 25); dose-response ablation (right) yields already saturate; training does not in-\n222   monotonic divergence (d = 0.48–0.64), causally linking L1 crease counts.\n223   gating to action computation (matched-size controls: d = 0.65 vs. 0.60; Appendix Table 27).\n\n224   5     Limitations\n225   Our conclusions rest on N=2 VLM-to-VLA transitions plus one VLA-to-VLA case, all causal\n226   decoders on a single benchmark (LIBERO); flow-matching [14] and diffusion [51] action heads may\n227   behave differently. All findings are correlational (R2 measures decodability, not causal reliance);\n228   the ∆R2 –success-rate correlation (ρ=0.583, p=0.10; Appendix A.33) is underpowered (n=9); each\n229   architecture is analyzed at a single trained checkpoint, precluding characterization of how exit\n230   collapse develops during training; and the observational three-tier gradient has n=1 at Tier 2,\n231   limiting its inferential power. All evaluations are open-loop—we probe representational geometry\n232   on offline demonstrations without closing the loop through execution—so the link between ∆R2\n233   and task performance remains indirect. The counterfactual sensitivity metrics differ between\n234   action-producing models (Cohen’s d) and reference VLMs (cosine distance), preventing direct\n235   cross-condition comparison. Extending to additional general-purpose VLAs, non-autoregressive\n236   action heads, and closed-loop validation are priorities for future work.\n\n                                                                8\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-28T13:35:17.286106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 9 -l 9 -layout main.pdf - 2>/dev/null | head -15",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-28T13:35:17.336761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "237   6   Conclusion\n238   We presented a cross-architecture representational analysis of three VLAs spanning distinct\n239   backbone families, combining layer-wise action probes, counterfactual perturbations, and atten-\n240   tion profiling. Our analyses consistently decompose instruction routing into training-associated\n241   effects—exit collapse (∆R2 = 0.16–0.46) and counterfactual sensitivity (d = 0.45–1.52) emerging\n242   during VLM-to-VLA transitions—and inherited base-model priors (L1 attention routing persisting\n243   unchanged through fine-tuning). This cross-architecture consistency suggests these phenomena\n244   reflect general properties of autoregressive VLA fine-tuning; ∆R2 > 0.10 provides a lightweight\n245   diagnostic, and mid-layer features offer a principled tap point for downstream modules.\n\n246   References\n247    [1] A. Brohan, N. Brown, J. Carbajal, Y. Chebotar, X. Chen, K. Choromanski, T. Ding, D. Driess,\n248        A. Dubey, C. Finn, et al. RT-2: Vision-language-action models transfer web knowledge to\n249        robotic control. arXiv preprint arXiv:2307.15818, 2023.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-28T13:36:01.875443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex",
+              "content": "\\vspace{-8pt}\n\\section{Limitations}\n\\label{sec:limitations}\n\\vspace{-6pt}\n\n\\looseness=-2\nOur conclusions rest on $N{=}2$ VLM-to-VLA transitions plus one VLA-to-VLA case, all causal decoders on a single benchmark (LIBERO); flow-matching~\\cite{black2024_pi0} and diffusion~\\cite{ghosh2024_octo} action heads may behave differently.\nAll findings are correlational ($R^2$ measures decodability, not causal reliance); the $\\Delta R^2$--success-rate correlation ($\\rho{=}0.583$, $p{=}0.10$; Appendix~\\ref{sec:extended_discussion_appendix}) is underpowered ($n{=}9$); each architecture is analyzed at a single trained checkpoint, precluding characterization of how exit collapse develops during training; and the observational three-tier gradient has $n{=}1$ at Tier~2, limiting its inferential power.\nAll evaluations are open-loop---we probe representational geometry on offline demonstrations without closing the loop through execution---so the link between $\\Delta R^2$ and task performance remains indirect.\nThe counterfactual sensitivity metrics differ between action-producing models (Cohen's $d$) and reference VLMs (cosine distance), preventing direct cross-condition comparison.\nExtending to additional general-purpose VLAs, non-autoregressive action heads, and closed-loop validation are priorities for future work.\n\n\\paragraph{Discussion and conclusion.}\\looseness=-2\nAcross three architectures spanning distinct backbone families, our analyses consistently decompose VLA instruction routing into training-associated effects---exit collapse and counterfactual sensitivity emerging during VLM-to-VLA transitions---and inherited base-model priors (L1 attention routing persisting unchanged through fine-tuning).\n$\\Delta R^2 > 0.10$ provides a lightweight diagnostic detectable with linear probes alone; mid-layer features offer a principled tap point for downstream modules (reward models, planners) over final hidden states.\nThis cross-architecture consistency suggests these representational phenomena reflect general properties of autoregressive VLA fine-tuning rather than architecture-specific artifacts.\n"
+            }
+          },
+          "id": "event-002509"
+        },
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-28T13:36:01.875878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-28T13:36:07.296751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E '(Output written|error|Undefined)' | head -5",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-28T13:36:10.464428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (38 pages, 9801067 bytes).\nOutput written on main.pdf (38 pages, 9801009 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 3167
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-28T13:36:14.429187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 8 -l 9 -layout main.pdf - 2>/dev/null | head -60",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-002513"
+        },
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-28T13:36:14.530082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "197   Representation-Space Sensitivity in NORA and Reference VLMs NORA and reference VLMs\n198   lack action outputs; their sensitivity is measured via cosine distance on hidden representations (dif-\n199   ferent scale from Cohen’s d; Appendix A.4). The trained-reference contrast is consistent with action-\n200   space findings: NORA Goal saturates (1.0); reference VLMs show weak sensitivity (≤ 0.19).\n\n201   4.5   Inherited Routing: L1 Attention Profiling\n\n202   Counterfactual sensitivity (§4.4) confirms that trained VLAs use instruction content, but does\n203   not reveal whether this reliance originates from training or from backbone priors. L1 attention\n204   profiling addresses this by comparing head routing before and after VLA fine-tuning. TraceVLA’s\n205   reference (Phi-3-Vision) saturates at 32/32 heads before VLA training; training slightly reduces this\n206   to 27–30/32. NORA’s reference (Qwen2.5-VL) allocates 13–14/16; training leaves this unchanged\n207   at 12–13/16. OpenVLA shows 24–26/32 in the OXE-pretrained baseline with similar trained values\n208   (Figure 7). L1 instruction routing is an inherited backbone property, not a consequence of\n209   VLA training.\n\n210   4.6   Synthesis: Training-Associated vs. Inherited Routing\n\n\n\n\n      Figure 8: Left: Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained;\n      L16 peak for Llama-2 base; zero for random). Right: Dose-response ablation; divergence rises\n      steeply through 12 heads, then plateaus. 95% bootstrap CIs.\n211   The three analyses separate two patterns: exit collapse                      Reference (untrained)\n                                                                                                           23/32\n                                                                      OpenVLA      Trained\n212   and counterfactual sensitivity are training-associated (pro-                                             26/32\n\n213   nounced in VLM-to-VLA, small in VLA\n…[truncated 2896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-28T13:36:20.240119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 8 -l 8 -layout main.pdf - 2>/dev/null | grep -c \".\"",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-28T13:36:20.341235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "53\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-28T13:36:23.704045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 8 -l 8 -layout main.pdf - 2>/dev/null | tail -15",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-28T13:36:23.754764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "226   decoders on a single benchmark (LIBERO); flow-matching [14] and diffusion [51] action heads may\n227   behave differently. All findings are correlational (R2 measures decodability, not causal reliance);\n228   the ∆R2 –success-rate correlation (ρ=0.583, p=0.10; Appendix A.33) is underpowered (n=9); each\n229   architecture is analyzed at a single trained checkpoint, precluding characterization of how exit\n230   collapse develops during training; and the observational three-tier gradient has n=1 at Tier 2,\n231   limiting its inferential power. All evaluations are open-loop—we probe representational geometry\n232   on offline demonstrations without closing the loop through execution—so the link between ∆R2\n233   and task performance remains indirect. The counterfactual sensitivity metrics differ between\n234   action-producing models (Cohen’s d) and reference VLMs (cosine distance), preventing direct\n235   cross-condition comparison. Extending to additional general-purpose VLAs, non-autoregressive\n236   action heads, and closed-loop validation are priorities for future work.\n\n\n                                                                8\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-28T13:36:27.357071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdftotext -f 9 -l 9 -layout main.pdf - 2>/dev/null | head -15",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-28T13:36:27.458755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "237   Discussion and conclusion. Across three architectures spanning distinct backbone families, our\n238   analyses consistently decompose VLA instruction routing into training-associated effects—exit\n239   collapse and counterfactual sensitivity emerging during VLM-to-VLA transitions—and inherited\n240   base-model priors (L1 attention routing persisting unchanged through fine-tuning). ∆R2 > 0.10\n241   provides a lightweight diagnostic detectable with linear probes alone; mid-layer features offer a\n242   principled tap point for downstream modules (reward models, planners) over final hidden states.\n243   This cross-architecture consistency suggests these representational phenomena reflect general\n244   properties of autoregressive VLA fine-tuning rather than architecture-specific artifacts.\n\n245   References\n246    [1] A. Brohan, N. Brown, J. Carbajal, Y. Chebotar, X. Chen, K. Choromanski, T. Ding, D. Driess,\n247        A. Dubey, C. Finn, et al. RT-2: Vision-language-action models transfer web knowledge to\n248        robotic control. arXiv preprint arXiv:2307.15818, 2023.\n\n249    [2] M. J. Kim, K. Pertsch, S. Karamcheti, T. Xiao, A. Balakrishna, S. Nair, R. Rafailov, E. Foster,\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Bash",
+            "elapsed_ms": 101
           },
           "id": "event-002520"
         }

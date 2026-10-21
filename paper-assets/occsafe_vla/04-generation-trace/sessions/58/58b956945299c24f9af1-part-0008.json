@@ -3,392 +3,10 @@
   "session_id": "58b956945299c24f9af1",
   "rounds": [
     {
-      "number": 62,
-      "messages": [
-        {
-          "source_line": 1261,
-          "timestamp": "2026-05-30T01:16:39.202800+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
-              "max_results": "1"
-            }
-          },
-          "id": "event-001261"
-        },
-        {
-          "source_line": 1262,
-          "timestamp": "2026-05-30T01:16:39.253356+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "ToolSearch",
-            "elapsed_ms": 50
-          },
-          "id": "event-001262"
-        },
-        {
-          "source_line": 1263,
-          "timestamp": "2026-05-30T01:17:41.660867+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-            "tool_args": {
-              "text": "## 论文整体叙事一致性审查报告（Full Narrative Coherence Pass）\n\n**审查范围**：main.tex (Abstract) + introduction.tex + related_work.tex + method.tex + results.tex + discussion.tex + conclusion.tex + limitations.tex + appendix.tex\n**审查维度**：(1) 叙事流一致性 (2) D081 集成质量 (3) 术语一致性 (4) 红线检查\n\n**结论**: WARNING（无 critical，3 个 warning，多个 info）\n\n---\n\n### 维度 1：叙事流一致性\n\n[severity: info] **Abstract↔Intro↔Results↔Discussion↔Conclusion 核心叙事一致。** 所有章节讲同一个故事：auxiliary spatial supervision 的安全效果取决于 how（gradient flow × normalization），而非 what（spatial content）。具体对齐：\n- Abstract 的问题 = Intro 的问题（VLA collision-prone）✓\n- Intro 的 4 条 contribution 在 Results/Discussion 均有对应段落 ✓\n- Method 的 12 conditions 设计与 Results Table 1 完全对应 ✓\n- Conclusion 总结的三条 guidelines 与 Discussion 实际分析一致 ✓\n- 无叙事漂移（Intro 讲 A，Results 验证 B 的情况不存在）\n\n[severity: info] **Related Work 定位清晰。** 两个子节分别覆盖 VLA safety/spatial 和 auxiliary task/gradient dynamics，与 Intro 的 gap 论述（两条研究线\"disconnected\"）精准对应。无孤儿章节。\n\n---\n\n### 维度 2：D081 集成质量\n\n[severity: info] **TSR invisibility 一致性。** 出现位置：Intro C1（\"invisible to standard task-success benchmarks (TSR ANOVA all p>0.27)\"）、Conclusion（\"TSR ANOVA all p>0.27\"）、Appendix §Permutation ANOVA（TSR ANOVA 完整统计）。数字和措辞一致。Abstract 未使用 \"invisible\" 一词但有同义表述。✓\n\n[severity: info] **Per-task 4× amplification 一致性。** 出现位置：Intro C1（\"fourfold\"）、Results L15（\"+6.9pp vs +1.7pp, approximately fourfold\"）、Discussion L9（\"fourfold...+6.9pp vs +1.7pp\"）、Conclusion（\"fourfold\"）、Appendix per_task_factorial（\"approximately 4× amplification\"，含 T6 +9.0pp, T5 +7.7pp, T3 +4.0pp 分解）。全部一致。✓\n\n[severity: warning] **\"7× cross-seed variance\" 数值精度问题。** Intro C3 和 Appendix L202 均声称 \"7× the variance\"。Appendix 括号内给出 (σ²=0.0040 vs ≤0.0007)，但实际 0.0040/0.0007=5.7，不等于 7。\"7×\" 在 Cell 1 (σ²≈0.0041) vs Cell 3/4 (σ²≈0.00058) 时成立（0.0041/0.00058≈7.1），但 vs Cell 2 (σ²≈0.00073) 仅 5.6×。问题出在括号内的分母 \"≤0.0007\" 包含了 Cell 2（σ=0.027, σ²=0.000729 > 0.0007），导致括号内数字与 \"7×\" 声明不匹配。Results L13 使用保守表述 \"≥2× all others\"（σ 比值），无此问题。**建议**：Appendix 修正为 \"5–7× the variance of other cells (σ²=0.0041 vs 0.0006–0.0007)\" 或统一使用 σ 比值（≈2.4×）。\n\n[severity: info] **Interaction plot caption 与正文一致。** Fig 2 caption (b) \"near-parallel lines indicate negligible interaction (p_perm=0.794)\" 与 Results L11 permutation ANOVA interaction p=0.794 一致；Table 2 caption 同样包含此值。✓\n\n---\n\n### 维度 3：术语一致性\n\n[severity: info] **\"reliably\" 出现 3 处**：Abstract (main.tex L23)、Intro C1 (introduction.tex L22)、Results (results.tex L9)。与之前确认的 3 处上限一致。✓\n\n[severity: info] **\"consistently\" 使用合理**：Intro L18（\"consistently outperforms\"）、Conclusion L4（\"consistently outperforms\"）、Results Fig 2 caption（\"consistently outperforming\"）。与 \"reliably\" 无混用冲突——\"reliably\" 用于 effect size 支撑的强声明，\"consistently\" 用于方向一致性描述。✓\n\n[severity: info] **\"additive\"/\"additively\"/\"independent\" 用法一致**：Abstract（\"additive factors\"）、Intro C1（\"additive factors\"）、Intro C2（\"additive\"）、Results（\"additive model\", \"additive main effects\"）、Discussion（\"Additive effects\", \"independent effects\"）、Conclusion（\"additively\"）。\"independent\" 仅在 Discussion 用于描述两种 pathway 的机制独立性（forward-pass vs backward-pass），不与统计意义的 \"additive\" 混淆。✓\n\n[severity: info] **\"negligible interaction\" 表述一致**：Results L11、Table 2 caption、Appendix permutation §、Discussion L11 均使用相同术语。η²=0.005 数值在 Results 和 Appendix 一致。✓\n\n---\n\n### 维度 4：红线检查\n\n[severity: info] **无过度声明**。N=14, n=3-4/cell 的统计局限性在 Results L13（\"no individual Welch t-test reaches α=0.05\"）、Appendix stat_power（\"medium power\"）、Limitations（\"single model and benchmark\"）均有诚实披露。\"reliably\" 由 g=1.89 + bootstrap CI [0.025, 0.089] 支撑，合理。TSR invisibility 声明由 ANOVA 全部 p>0.27 支撑。\n\n[severity: warning] **Limitations 字数不足**。实测约 134 词（不含 LaTeX 命令和标题），低于审查清单 §7.4 要求的 ≥150 词阈值。4 个 distinct limitations 覆盖面足够（simulation、single model、codebase sensitivity、unverified mechanism），但每段过于简短。**建议**：扩充 \"Simulation only\" 或 \"Single model\" 段落各 1-2 句（如讨论具体的 sim-to-real gap 风险、或列出其他值得测试的 VLA 架构），使总词数达到 150+。\n\n[severity: info] **无悬挂引用**。全文 grep `\\ref{}` 交叉核对所有 `\\label{}`，均有对应。已删除的 `\\label{sec:mechanism}` 无任何引用残留。✓\n\n[severity: warning] **v2 per-task 数据缺少支撑表格**。Results L15 和 Discussion L9 引用的 4× amplification 数据 (+6.9pp vs +1.7pp) 标注来源为 v2 factorial，Appendix per_task_factorial 节提供了文字分解（T6 +9.0pp, T5 +7.7pp, T3 +4.0pp）。但唯一的 per-task 表格（Tab 5, app:per_task）是 v1 数据，无 v2 per-task 表。审稿人可能要求看 v2 per-task CAR 数据表。**建议**：在 Appendix per_task_factorial 节增加一个简表，展示 4 个 factorial cell 在 hard/easy task 分组上的 v2 CAR 均值，或至少注明原始数据可在 supplementary material 获取。\n\n[severity: info] **CoRL 要求的 Limitations section 存在且独立**。✓\n\n---\n\n### 整体评估\n\n论文叙事高度一致——从 Abstract 到 Conclusion 讲同一个故事，D081 新增内容（TSR invisibility、4× amplification、7× variance、interaction plot）在各章节间数字和措辞对齐。术语使用规范，无混淆。主要改进点：(1) Appendix \"7×\" 数值精度微调；(2) Limitations 扩充至 150 词；(3) 补 v2 per-task 支撑表格以堵审稿攻击面。三项均为 warning 级别，不影响核心结论可信度。",
-              "project": "occsafe_vla"
-            }
-          },
-          "id": "event-001263"
-        },
-        {
-          "source_line": 1264,
-          "timestamp": "2026-05-30T01:17:44.721615+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-            "elapsed_ms": 3060
-          },
-          "id": "event-001264"
-        },
-        {
-          "source_line": 1265,
-          "timestamp": "2026-05-30T01:17:52.997565+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "审查报告已提交。总结：\n\n- **整体结论：WARNING**（无 critical）\n- **叙事一致性**：Abstract↔Intro↔Results↔Discussion↔Conclusion 核心故事完全对齐，无漂移\n- **D081 集成**：TSR invisibility、4× amplification、interaction plot 数据在各章节间一致\n- **3 个 WARNING**：\n  1. Appendix \"7× variance\" 括号内数字 (0.0040/0.0007=5.7) 与 \"7×\" 声明不匹配\n  2. Limitations 约 134 词，低于 150 词阈值\n  3. 缺 v2 per-task 支撑表格，仅有 v1 per-task 表，4× amplification 数据的审稿攻击面\n- **术语一致**：\"reliably\" 3 处、\"consistently\" 用于不同语境、\"additive\"/\"negligible interaction\" 全文统一\n- **无悬挂引用**，无过度声明"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
-          },
-          "id": "event-001265"
-        }
-      ]
-    },
-    {
       "number": 63,
       "messages": [
         {
-          "source_line": 1266,
-          "timestamp": "2026-05-30T01:57:21.895646+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[System 触发审查]:\n请做一次全文数据一致性扫描（data consistency audit）。\n\n背景：最近 3 轮修复暴露了同类问题——数据在多处重复出现但没有 single source of truth（7× vs 5-7×、+1.7pp vs +1.3pp、\"seven easy\" vs \"six easy\"）。需要系统性排查论文中所有类似的定时炸弹。\n\n**扫描范围**：main.tex + introduction.tex + results.tex + discussion.tex + conclusion.tex + limitations.tex + appendix.tex + Table captions + Figure captions\n\n**扫描内容**：\n\n1. **核心数字一致性** — 以下数字在多处出现，逐一核对是否全部一致：\n   - CAR 均值：Cell 1 (0.725), Cell 2 (0.773), Cell 3 (0.767), Cell 4 (0.802), Vanilla (0.745)\n   - 标准差：Cell 1 (±0.064), Cell 2 (±0.027), Cell 3 (±0.024), Cell 4 (±0.024), Vanilla (±0.024)\n   - Sample sizes：Cell 1 (n=3), Cell 2 (n=4), Cell 3 (n=4), Cell 4 (n=3), Vanilla (n=3), Total (N=14)\n   - ANOVA F/p/η²：gradient (3.20/0.104/0.180), norm (4.49/0.060/0.253), interaction (0.10/0.763/0.005)\n   - Effect sizes：gradient g=0.78, norm g=0.88, Cell 4 vs Vanilla g=1.89\n   - BF₀₁=3.50\n   - TSR ANOVA：all p>0.27\n   - Levene：W=0.71, p=0.57\n   - Per-task：+6.9pp hard vs +1.7pp easy, 4× amplification\n   - Δ values：gradient -3.0pp, norm +3.6pp\n\n2. **分组/定义一致性**：\n   - \"hard tasks\" 始终指 T3/T5/T6？\n   - \"easy tasks\" 始终指 T0-T2/T7-T9（不含 T4）？\n   - \"non-hard tasks\" 始终指 T0-T2/T4/T7-T9？\n   - \"12 conditions\" / \"twelve conditions\" 一致？\n   - Factorial cells 的命名/描述一致？\n\n3. **Table ↔ 正文 交叉核对**：\n   - Table 1 中的数字与正文引用是否一致\n   - Table 2 中的 F/p 值与正文引用是否一致\n   - 新 Table (per_task_norm) 的数字与 appendix 正文一致\n\n4. **Figure caption ↔ 正文 交叉核对**：\n   - Figure 2 caption 中的数字与 results 正文是否一致\n   - Figure 3 caption 中的描述与 results/appendix 一致\n\n5. **跨章节引用检查**：\n   - Intro 的 contribution 中引用的数字是否与 Results 中的数字一致\n   - Conclusion 中总结的数字是否与前文一致\n\n逐项列出，每个发现标注 severity（critical/warning/info）+ 具体位置（file:line）。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "source": "system"
-          },
-          "id": "event-001266"
-        },
-        {
-          "source_line": 1267,
-          "timestamp": "2026-05-30T01:57:31.191780+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
-            }
-          },
-          "id": "event-001267"
-        },
-        {
-          "source_line": 1268,
-          "timestamp": "2026-05-30T01:57:31.593186+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage[dvipsnames]{xcolor}\n4\t\\usepackage{corl_2026}\n5\t\n6\t\\usepackage{graphicx}\n7\t\\usepackage{amsmath,amssymb}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{enumitem}\n10\t\\usepackage{subcaption}\n11\t\n12\t\n13\t\\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\\\ An Empirical Investigation}\n14\t\n15\t\\author{\n16\tAnonymous Author(s)\n17\t}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\begin{abstract}\n23\tFine-tuned Vision-Language-Action (VLA) models achieve high task success yet remain collision-prone. We ask whether auxiliary spatial supervision during fine-tuning can improve collision avoidance, and conduct a systematic $2{\\times}2$ factorial study crossing gradient flow with normalization type, supplemented by ablations of label content, reference frame, and temporal extent (twelve conditions in total). The answer depends critically on \\emph{how} the auxiliary head is attached. The best configuration, detached gradients with LayerNorm, reliably outperforms the no-auxiliary baseline, raising Collision Avoidance Rate from $0.745$ to $0.802$ with a large effect size. The naive default, BatchNorm with full gradient flow, is associated with reduced safety relative to baseline. A factorial analysis disentangles two additive factors: gradient flow through BatchNorm reduces safety, possibly mediated by running-statistics corruption during auxiliary forward passes; LayerNorm, which normalizes per-token without shared batch statistics, provides a consistent safety advantage regardless of gradient flow. Surprisingly, the spatial content of the labels (ground-truth occupancy, random noise, or depth) has no detectable effect under the original codebase; the gradient pathway, not spatial information, appears to determine the outcome. These safety effects are invisible to standard task-success benchmarks (TSR ANOVA all $p{>}0.27$), explaining why fifteen prior spatial VLA methods did not detect them. The auxiliary head is discarde\n…[truncated 458 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 401
-          },
-          "id": "event-001268"
-        },
-        {
-          "source_line": 1269,
-          "timestamp": "2026-05-30T01:57:31.593517+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
-            }
-          },
-          "id": "event-001269"
-        },
-        {
-          "source_line": 1270,
-          "timestamp": "2026-05-30T01:57:31.994855+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Introduction}\n2\t\n3\tVision-language-action (VLA) models achieve high task success on manipulation benchmarks~\\cite{brohan2023rt2, kim2024openvla, kim2025oft}, but behavioral safety does not follow. On SafeLIBERO Level~I~\\cite{hu2025vlsa}, OpenVLA-7B reaches 87.8\\% Task Success Rate but only 74.5\\% Collision Avoidance Rate (CAR), with per-task collision rates reaching 43--93\\% on the three most constrained tasks (Appendix, Table~\\ref{tab:per_task}).\n4\t\n5\tTwo active research threads address related but distinct aspects. The first enriches VLAs with auxiliary spatial prediction (occupancy grids, depth maps, point clouds)~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. At least fifteen such methods have appeared in the past year~\\cite{wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2025pointvla, sun2025geovla, bhat20253dcavla, li2025qdepthvla, abouzeid2025geoaware, rao2026augvla3d, li2026corridorvla}, all reporting improved task success under the implicit assumption that spatial awareness yields safer behavior. The second targets VLA safety directly through runtime action filtering~\\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf} or constrained RL~\\cite{zhang2025safevla}. These lines are disconnected: no spatial method evaluates collision avoidance, and no safety method examines spatial representations. A recent survey~\\cite{li2026vlasafety} confirms this gap. Moreover, single-factor ablations, the dominant methodology, cannot decompose joint effects of multiple design choices; only a factorial design can determine whether factors like gradient flow and normalization type interact or combine independently.\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/fig1_architecture_pb.pdf}\n10\t\\caption{\\textbf{Training setup and factorial design.} \\textbf{(a)}~OpenVLA-7B with dual vision encoders (DINOv2 + SigLIP) and an auxiliary spatial head (bird's-eye view occupancy or depth), discarded\n…[truncated 3590 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 401
-          },
-          "id": "event-001270"
-        },
-        {
-          "source_line": 1271,
-          "timestamp": "2026-05-30T01:57:32.045524+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
-            }
-          },
-          "id": "event-001271"
-        },
-        {
-          "source_line": 1272,
-          "timestamp": "2026-05-30T01:57:32.196558+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\n5\t\\subsection{Main Results}\n6\t\n7\tTable~\\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\\times$ 10 tasks per seed). $\\Delta$CAR is computed against the matched-codebase Vanilla baseline (v2: $0.745 \\pm 0.024$, 3 seeds, for factorial conditions above the midrule; v1: 0.780 for supplementary conditions below). Random OCC ($^\\star$) uses v1 code but is included above the midrule as a factorial control; its $\\Delta$CAR is omitted due to the cross-codebase baseline mismatch. Statistical comparisons use permutation tests and Hedges' $g$ (bias-corrected effect size for small samples) against the Vanilla baseline.\n8\t\n9\t\\textbf{Detach+LN reliably outperforms Vanilla.} The best factorial configuration, detached gradients with LayerNorm, achieves CAR $0.802 \\pm 0.024$ ($n{=}3$), a $+5.7$\\,pp advantage over Vanilla ($0.745 \\pm 0.024$, $n{=}3$; Hedges' $g{=}1.89$, very large; bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$; Welch $t$ $p{=}0.045$).\n10\t\n11\t\\textbf{Two additive main effects explain the advantage.} The $2{\\times}2$ factorial (Table~\\ref{tab:factorial}, Figure~\\ref{fig:car_factorial}b) reveals two large main effects with negligible interaction (permutation ANOVA, 10{,}000 permutations: gradient flow $p_\\text{perm}{=}0.090$; normalization $p_\\text{perm}{=}0.041$; interaction $p_\\text{perm}{=}0.794$; Appendix~\\ref{app:permutation}, Table~\\ref{tab:permanova}). Bayesian model comparison provides moderate evidence favoring the additive model ($\\text{BF}_{01}{=}3.5$; Appendix~\\ref{app:permutation}). Parametric ANOVA yields consistent trends (Appendix~\\ref{app:stat_power}). Under BatchNorm, gradient flow is associated with lower safety: Full OCC (CAR $0.725$, $\\Delta{=}-2.0$\\,pp) is the sole cell below Vanilla, while Detach OCC recovers ($0.767$, $\\Delta{=}+2.2$\\,pp); the within-row deficit is 4.2\\,pp (Hedges' $g{=}0.78$, large). Under LayerNorm, gradient flow is benign: Full OCC+LN ($0.773$, $\\De\n…[truncated 8399 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 151
-          },
-          "id": "event-001272"
-        },
-        {
-          "source_line": 1273,
-          "timestamp": "2026-05-30T01:57:32.649104+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
-            }
-          },
-          "id": "event-001273"
-        },
-        {
-          "source_line": 1274,
-          "timestamp": "2026-05-30T01:57:32.649488+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Discussion}\n3\t\\label{sec:discussion}\n4\t\n5\t\\textbf{Excluded mechanism: gradient conflict.} Near-zero action--auxiliary cosine similarity (${\\approx}$46\\% conflict rate; Figure~\\ref{fig:gradient_analysis}) and comparable action gradient norms (Figure~\\ref{fig:gradient_analysis}) rule out PCGrad-style gradient conflict~\\cite{yu2020pcgrad}.\n6\t%\n7\t\\textbf{Hypothesis: BN forward-pass statistics corruption.} BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches Vanilla ($0.767$ vs.\\ $0.745$, $p{=}0.28$); the deficit requires the joint presence of BN and gradient flow. We hypothesize a \\emph{forward-pass} mechanism: BN running mean/variance update during each forward pass regardless of gradient conflict, so the auxiliary head shifts the running statistics used at inference. LayerNorm, normalizing per-token without cross-batch statistics, lacks this coupling. CKA confirms intact encoder representations (CKA $\\geq$ 0.95), localizing the effect to optimization dynamics rather than representational corruption (a targeted test: comparing BN in train vs.\\ eval mode at inference would isolate the running-statistics channel).\n8\t\n9\t\\textbf{Normalization independently affects safety.} LN provides a consistent $+$3.5--4.8\\,pp advantage over BN ($g{=}0.88$--$1.24$). This advantage amplifies fourfold on the three physically constrained tasks ($+6.9$\\,pp vs.\\ $+1.7$\\,pp; Appendix~\\ref{app:per_task_factorial}), concentrating where safety margins are thinnest. Normalization type, typically treated as an implementation detail, has outsized consequences for safety-critical VLA fine-tuning.\n10\t\n11\t\\textbf{Additive effects.} Detach+LN achieves the best safety (CAR $0.802$), outperforming Vanilla ($g{=}1.89$, bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$). The advantage arises from two independent effects (each ${\\approx}$4--5\\,pp; interaction $\\eta^2{=}0.005$). Only BN + gradient flow falls below Vanilla; removing either condition restores safety. Additivi\n…[truncated 1895 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-001274"
-        },
-        {
-          "source_line": 1275,
-          "timestamp": "2026-05-30T01:57:33.000902+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
-            }
-          },
-          "id": "event-001275"
-        },
-        {
-          "source_line": 1276,
-          "timestamp": "2026-05-30T01:57:33.452644+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Conclusion}\n3\t\n4\tWe presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \\emph{what} the auxiliary head predicts but \\emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three zero-cost guidelines follow: detach gradients under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.\n5\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 451
-          },
-          "id": "event-001276"
-        },
-        {
-          "source_line": 1277,
-          "timestamp": "2026-05-30T01:57:33.453105+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
-            }
-          },
-          "id": "event-001277"
-        },
-        {
-          "source_line": 1278,
-          "timestamp": "2026-05-30T01:57:33.954929+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Limitations}\n3\t\n4\t\\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Real-world contact dynamics, sensor noise, and control latency introduce failure modes absent in simulation that may alter the relative safety ranking. Validating on physical hardware is a necessary next step.\n5\t%\n6\t\\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects may differ for other VLA families, model scales, or collision definitions. Architectures with different normalization defaults (e.g., $\\pi_0$ with GroupNorm, Octo with LayerNorm) may exhibit different sensitivity profiles. Extending to additional architectures would strengthen generalizability.\n7\t%\n8\t\\textbf{Codebase sensitivity.} A code revision shifted CAR by up to 8.6\\,pp, exceeding the largest experimental effect; conclusions may not transfer across codebases without re-verification.\n9\t%\n10\t\\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested; a targeted BN eval-mode ablation would isolate this channel. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.\n11\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 501
-          },
-          "id": "event-001278"
-        },
-        {
-          "source_line": 1279,
-          "timestamp": "2026-05-30T01:57:34.206087+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
-            }
-          },
-          "id": "event-001279"
-        },
-        {
-          "source_line": 1280,
-          "timestamp": "2026-05-30T01:57:34.708251+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\n2\t\\section{Extended Per-Task Results}\n3\t\\label{app:per_task}\n4\t\n5\tTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven non-hard tasks.\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table reports v1 codebase results retained for completeness; all main analyses use v2 data (Table~\\ref{tab:main_results}). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown).}\n10\t\\label{tab:per_task}\n11\t\\begin{tabular}{clccccccc}\n12\t\\toprule\n13\t & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n14\t\\cmidrule(lr){3-9}\n15\tTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n16\t\\midrule\n17\tT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\n18\tT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\n19\tT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\n20\tT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\n21\tT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\n22\tT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\n23\tT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\n24\tT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\n25\tT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\n26\tT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n27\t\\midrule\n28\t\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n29\t\\bottomrule\n30\t\\end{tabular}\n31\t\\end{table}\n32\t\n33\t\\textbf{Ceiling effects.} On the seven non-hard tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal roo\n…[truncated 20927 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 502
-          },
-          "id": "event-001280"
-        },
-        {
-          "source_line": 1281,
+          "source_line": 1261,
           "timestamp": "2026-05-30T02:04:07.072089+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -406,10 +24,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-001281"
+          "id": "event-001261"
         },
         {
-          "source_line": 1282,
+          "source_line": 1262,
           "timestamp": "2026-05-30T02:04:10.133059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -424,10 +42,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3060
           },
-          "id": "event-001282"
+          "id": "event-001262"
         },
         {
-          "source_line": 1283,
+          "source_line": 1263,
           "timestamp": "2026-05-30T02:04:19.779958+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -440,7 +58,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
           },
-          "id": "event-001283"
+          "id": "event-001263"
         }
       ]
     },
@@ -448,7 +66,7 @@
       "number": 64,
       "messages": [
         {
-          "source_line": 1284,
+          "source_line": 1264,
           "timestamp": "2026-05-30T03:37:44.347693+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -462,10 +80,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
             "source": "system"
           },
-          "id": "event-001284"
+          "id": "event-001264"
         },
         {
-          "source_line": 1285,
+          "source_line": 1265,
           "timestamp": "2026-05-30T03:37:53.293408+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -483,10 +101,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-001285"
+          "id": "event-001265"
         },
         {
-          "source_line": 1286,
+          "source_line": 1266,
           "timestamp": "2026-05-30T03:37:53.344858+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -501,10 +119,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-001286"
+          "id": "event-001266"
         },
         {
-          "source_line": 1287,
+          "source_line": 1267,
           "timestamp": "2026-05-30T03:37:56.105558+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -523,10 +141,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001287"
+          "id": "event-001267"
         },
         {
-          "source_line": 1288,
+          "source_line": 1268,
           "timestamp": "2026-05-30T03:37:56.608751+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -541,10 +159,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 503
           },
-          "id": "event-001288"
+          "id": "event-001268"
         },
         {
-          "source_line": 1289,
+          "source_line": 1269,
           "timestamp": "2026-05-30T03:37:56.609285+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -563,10 +181,10 @@
               "max_chars": "0"
             }
           },
-          "id": "event-001289"
+          "id": "event-001269"
         },
         {
-          "source_line": 1290,
+          "source_line": 1270,
           "timestamp": "2026-05-30T03:37:56.961968+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -581,10 +199,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 352
           },
-          "id": "event-001290"
+          "id": "event-001270"
         },
         {
-          "source_line": 1291,
+          "source_line": 1271,
           "timestamp": "2026-05-30T03:40:12.991961+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -602,10 +220,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-001291"
+          "id": "event-001271"
         },
         {
-          "source_line": 1292,
+          "source_line": 1272,
           "timestamp": "2026-05-30T03:40:16.154243+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -620,10 +238,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3162
           },
-          "id": "event-001292"
+          "id": "event-001272"
         },
         {
-          "source_line": 1293,
+          "source_line": 1273,
           "timestamp": "2026-05-30T03:40:20.155152+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -636,7 +254,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
           },
-          "id": "event-001293"
+          "id": "event-001273"
         }
       ]
     },
@@ -644,7 +262,7 @@
       "number": 65,
       "messages": [
         {
-          "source_line": 1294,
+          "source_line": 1274,
           "timestamp": "2026-05-30T04:44:45.749221+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -658,10 +276,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
             "source": "system"
           },
-          "id": "event-001294"
+          "id": "event-001274"
         },
         {
-          "source_line": 1295,
+          "source_line": 1275,
           "timestamp": "2026-05-30T04:45:52.758571+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -680,10 +298,10 @@
               "limit": "10"
             }
           },
-          "id": "event-001295"
+          "id": "event-001275"
         },
         {
-          "source_line": 1296,
+          "source_line": 1276,
           "timestamp": "2026-05-30T04:45:53.210469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -698,10 +316,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-001296"
+          "id": "event-001276"
         },
         {
-          "source_line": 1297,
+          "source_line": 1277,
           "timestamp": "2026-05-30T04:45:53.712543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -720,10 +338,10 @@
               "limit": "12"
             }
           },
-          "id": "event-001297"
+          "id": "event-001277"
         },
         {
-          "source_line": 1298,
+          "source_line": 1278,
           "timestamp": "2026-05-30T04:45:54.114489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -738,10 +356,10 @@
             "tool": "Read",
             "elapsed_ms": 401
           },
-          "id": "event-001298"
+          "id": "event-001278"
         },
         {
-          "source_line": 1299,
+          "source_line": 1279,
           "timestamp": "2026-05-30T04:45:54.215233+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -760,10 +378,10 @@
               "limit": "15"
             }
           },
-          "id": "event-001299"
+          "id": "event-001279"
         },
         {
-          "source_line": 1300,
+          "source_line": 1280,
           "timestamp": "2026-05-30T04:45:54.316081+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -778,90 +396,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-001300"
+          "id": "event-001280"
         },
         {
-          "source_line": 1301,
-          "timestamp": "2026-05-30T04:46:47.456610+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "limit": "60"
-            }
-          },
-          "id": "event-001301"
-        },
-        {
-          "source_line": 1302,
-          "timestamp": "2026-05-30T04:46:47.557627+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Round 4 Author Response — Draft\n2\t\n3\tWe thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.\n4\t\n5\t## Summary of Changes\n6\t\n7\t- **Framing**: Entire paper restructured from \"normalization-dependent gradient flow effect\" to \"two independent additive main effects\" (RD3-C1)\n8\t- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)\n9\t- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10\t- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11\t- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12\t- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13\t\n14\t---\n15\t\n16\t## Resolved Issues\n17\t\n18\t### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n19\t\n20\t**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n21\t\n22\t**Fix**: Complete reframing. Every section now uses \"two additive factors/effects\" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of \"normalization-dependent\", \"confirms additive\", and interaction-implying language removed.\n23\t\n24\t**Verification**: Grep for \"normalization-dependent\", \"confirms additive\", \"mechanisms\", and \"protections\" returns zero hits across all .tex files. Terminology i\n…[truncated 2611 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-001302"
-        },
-        {
-          "source_line": 1303,
-          "timestamp": "2026-05-30T04:46:52.892847+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "v2 Random OCC|content.*v2|Random.*v2|RD2-N2|content irrelevance.*codebase",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "output_mode": "content",
-              "-C": "3"
-            }
-          },
-          "id": "event-001303"
-        },
-        {
-          "source_line": 1304,
-          "timestamp": "2026-05-30T04:46:52.943608+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "9-- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10-- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11-- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12:- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13-\n14----\n15-\n--\n297-\n298----\n299-\n300:### RD2-N2 [Critical] — Content irrelevance: v2 Random OCC replication\n301-\n302-**Status**: Training run (random_occ_v2_s0) interrupted by server downtime at ~step 30K. Will resume when servers recover.\n303-\n304-**Plan**:\n305:- Train v2 Random OCC (3 seeds) and compare CAR with v2 Full OCC BN\n306:- If v2 Random OCC ≈ Full OCC BN (within cross-seed variance): strengthen claim to \"cross-codebase replication\"\n307:- If v2 Random OCC ≠ Full OCC BN: downgrade to \"codebase-dependent\" with specific text changes:\n308:  - Abstract: \"the spatial content of the labels has no detectable effect\" → \"the spatial content effect is codebase-dependent: absent under v2 but present under v1\"\n309:  - Results §Content irrelevance: \"Spatial content does not detectably affect outcomes\" → \"Spatial content effects are codebase-dependent: no detectable difference under v1, but v2 Random OCC diverges from Full OCC BN by X.Xpp (p=Y.YY), suggesting implementation details modulate content sensitivity\"\n310-  - Discussion §Content irrelevance: add \"The v1/v2 discrepancy suggests that content irrelevance is not an intrinsic property of the auxiliary head architecture but depends on implementation details such as data loading and normalization order\"\n311-- Estimated cost: ~39 GPU·hours (3 runs × 13h)\n312-\n313:**Current mitigation**: All content irrelevance claims carry explicit \"under the original codebase\" caveat (7 locations verified).\n…[truncated 1297 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-001304"
-        },
-        {
-          "source_line": 1305,
+          "source_line": 1281,
           "timestamp": "2026-05-30T04:48:40.131611+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -879,10 +417,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-001305"
+          "id": "event-001281"
         },
         {
-          "source_line": 1306,
+          "source_line": 1282,
           "timestamp": "2026-05-30T04:48:43.445633+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -897,10 +435,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3314
           },
-          "id": "event-001306"
+          "id": "event-001282"
         },
         {
-          "source_line": 1307,
+          "source_line": 1283,
           "timestamp": "2026-05-30T04:48:49.973877+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -913,7 +451,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
           },
-          "id": "event-001307"
+          "id": "event-001283"
         }
       ]
     }

@@ -7,46 +7,6 @@
       "messages": [
         {
           "source_line": 901,
-          "timestamp": "2026-05-22T17:55:18.461331+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "183\t\n184\t\\paragraph{Content preservation.}\n185\tTwo independent annotators evaluated 50 NLI-scored pairs (25 gate-passed, 25 gate-rejected).\n186\tAnnotator~1 judged all 25 gate-passed pairs content-preserving (precision $100\\%$; Wilson CI $[86.7\\%, 100\\%]$); Annotator~2 judged 21/25 ($84\\%$; CI $[65.3\\%, 93.6\\%]$), with all four disagreements on verbosity-axis condensation pairs.\n187\tUnder majority vote, pass precision is $100\\%$ (inter-annotator $\\kappa = 0.44$, AC1 $= 0.65$; Appendix~\\ref{app:annotation_agreement}).\n188\tAnnotator~1's disagreements with the NLI gate occur exclusively on gate-rejected pairs; Annotator~2's four gate-passed disagreements all involve verbosity condensation where subjective meaning boundaries differ.\n189\tThis error profile ensures that any detected style bias cannot be attributed to content contamination in admitted pairs.\n190\tThe gate's estimated recall is 59.5\\% (false-negative rate 40.5\\%), reflecting conservative calibration toward high precision at the expense of coverage.\n191\tAn independent LLM cross-validation on the full dataset yields consistent results (LLM--NLI AC1 $= 0.89$).\n192\t\\label{sec:nli_threshold}\n193\tBT remains stable (${\\leq}3$pp variation) across 11 NLI thresholds (Appendix~\\ref{app:nli_sweep}), and no covariate differences exist between retained and discarded pairs ($p > 0.12$; \\S\\ref{sec:consistency}).\n194\t\n195\t\\paragraph{Detection vs.\\ amplification.}\n196\t\\label{sec:amplification}\n197\t\\citet{jeong2025comparative} show that pairwise comparison amplifies style biases (the Comparative Trap)."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
-            "tool": "Read",
-            "elapsed_ms": 452
-          },
-          "id": "event-000901"
-        },
-        {
-          "source_line": 902,
-          "timestamp": "2026-05-22T17:55:18.612380+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
-              "offset": "499",
-              "limit": "30"
-            }
-          },
-          "id": "event-000902"
-        },
-        {
-          "source_line": 903,
           "timestamp": "2026-05-22T17:55:18.663167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -61,10 +21,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000903"
+          "id": "event-000901"
         },
         {
-          "source_line": 904,
+          "source_line": 902,
           "timestamp": "2026-05-22T17:55:28.082192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -83,10 +43,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000904"
+          "id": "event-000902"
         },
         {
-          "source_line": 905,
+          "source_line": 903,
           "timestamp": "2026-05-22T17:55:28.133489+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -101,10 +61,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-000905"
+          "id": "event-000903"
         },
         {
-          "source_line": 906,
+          "source_line": 904,
           "timestamp": "2026-05-22T17:55:34.610362+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -123,10 +83,10 @@
               "preview": "True"
             }
           },
-          "id": "event-000906"
+          "id": "event-000904"
         },
         {
-          "source_line": 907,
+          "source_line": 905,
           "timestamp": "2026-05-22T17:55:36.770822+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -141,10 +101,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2160
           },
-          "id": "event-000907"
+          "id": "event-000905"
         },
         {
-          "source_line": 908,
+          "source_line": 906,
           "timestamp": "2026-05-22T17:55:52.330908+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -161,10 +121,10 @@
               "text": "D070 双标注员数据已整合进论文并重新编译：\n\n**§5.4**: 双标注员框架（A1 100% + A2 84%，多数投票 100%，κ=0.44/AC1=0.65）\n**Appendix S**: 完整双标注员统计（分歧方向性分析、4 个 verbosity 轴 disagreements）\n**Limitations**: \"84--100% pass precision...majority-vote precision 100%\"\n\n0 critical warnings，主文 ≤8 页。PDF 已更新。\n\nR12 审稿卡仍待审批，审批后 review 将使用含 D069+D070 的最新 PDF。"
             }
           },
-          "id": "event-000908"
+          "id": "event-000906"
         },
         {
-          "source_line": 909,
+          "source_line": 907,
           "timestamp": "2026-05-22T17:55:55.192067+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -179,10 +139,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2861
           },
-          "id": "event-000909"
+          "id": "event-000907"
         },
         {
-          "source_line": 910,
+          "source_line": 908,
           "timestamp": "2026-05-22T17:55:57.339530+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -195,7 +155,7 @@
           "metadata": {
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director"
           },
-          "id": "event-000910"
+          "id": "event-000908"
         }
       ]
     },
@@ -203,7 +163,7 @@
       "number": 87,
       "messages": [
         {
-          "source_line": 911,
+          "source_line": 909,
           "timestamp": "2026-05-22T17:55:59.270679+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -217,10 +177,10 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "source": "feishu:oc_5ce280de124a4e308d1827c6450ad337"
           },
-          "id": "event-000911"
+          "id": "event-000909"
         },
         {
-          "source_line": 912,
+          "source_line": 910,
           "timestamp": "2026-05-22T17:56:29.972491+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -237,10 +197,10 @@
               "text": "**正向作用明确，解决了持续 7 轮的最大审稿痛点。**\n\n**为什么正向：**\n1. **R3-W3 是论文最长寿的 Must-Fix**（R3 首次提出 → R11 仍在追）——\"缺人工标注验证 rewriting 质量\"。双标注员数据直接解决\n2. 多数投票 100% pass precision 保住了核心 claim：\"gate 不放进内容被篡改的样本\"\n3. 分歧模式可解释——4 个 disagreements 全在 verbosity 轴、A2 一致性更严格，说明是标注员校准差异而非 gate 失效\n4. AC1=0.65 (substantial) 对主观标注任务是正常水平\n\n**有什么代价：**\n- 不能再说 \"100% pass precision\"，改为 \"84-100%，majority 100%\"——但这反而更诚实、更不容易被 reviewer 追着打\n- A2 的 Wilson CI 下界 65.3% 不算漂亮，但 reviewer 关注的是 pass precision 的 claim 是否有支撑，不是要求 CI 下界很高\n\n**对评分的预期影响：**\n从\"明确弱点（无人工验证）\"→\"合理强度（双标注员、可解释分歧、majority 100%）\"。这是 3.5→4.0 路径上最关键的一块拼图。"
             }
           },
-          "id": "event-000912"
+          "id": "event-000910"
         },
         {
-          "source_line": 913,
+          "source_line": 911,
           "timestamp": "2026-05-22T17:56:32.844334+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -255,7 +215,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2871
           },
-          "id": "event-000913"
+          "id": "event-000911"
         }
       ]
     },
@@ -263,7 +223,7 @@
       "number": 88,
       "messages": [
         {
-          "source_line": 914,
+          "source_line": 912,
           "timestamp": "2026-05-22T17:57:13.939180+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -277,10 +237,10 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "source": "feishu:oc_5ce280de124a4e308d1827c6450ad337"
           },
-          "id": "event-000914"
+          "id": "event-000912"
         },
         {
-          "source_line": 915,
+          "source_line": 913,
           "timestamp": "2026-05-22T17:57:35.073779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -301,10 +261,10 @@
               "-i": "True"
             }
           },
-          "id": "event-000915"
+          "id": "event-000913"
         },
         {
-          "source_line": 916,
+          "source_line": 914,
           "timestamp": "2026-05-22T17:57:35.545722+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -319,10 +279,10 @@
             "tool": "Grep",
             "elapsed_ms": 471
           },
-          "id": "event-000916"
+          "id": "event-000914"
         },
         {
-          "source_line": 917,
+          "source_line": 915,
           "timestamp": "2026-05-22T17:57:52.860810+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -339,10 +299,10 @@
               "text": "所有标注相关内容已写入论文，全文一致性检查通过。R12 审稿卡已提交（continue mode），包含：\n- D069: R11 全部修复（novelty reframe + amplification hedging + 因果 disclaimer + recall 补报 + TOST 修复 + 批量修复）\n- D070: 双标注员数据整合（§5.4 + Appendix S + Limitations）\n\n请审批 R12 审稿卡即可启动新一轮审稿。"
             }
           },
-          "id": "event-000917"
+          "id": "event-000915"
         },
         {
-          "source_line": 918,
+          "source_line": 916,
           "timestamp": "2026-05-22T17:57:55.768984+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -357,10 +317,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 2908
           },
-          "id": "event-000918"
+          "id": "event-000916"
         },
         {
-          "source_line": 919,
+          "source_line": 917,
           "timestamp": "2026-05-22T17:57:57.863974+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -373,7 +333,7 @@
           "metadata": {
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director"
           },
-          "id": "event-000919"
+          "id": "event-000917"
         }
       ]
     },
@@ -381,7 +341,7 @@
       "number": 89,
       "messages": [
         {
-          "source_line": 920,
+          "source_line": 918,
           "timestamp": "2026-05-22T18:08:40.982076+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -395,10 +355,10 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000920"
+          "id": "event-000918"
         },
         {
-          "source_line": 921,
+          "source_line": 919,
           "timestamp": "2026-05-22T18:08:46.532635+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -415,10 +375,10 @@
               "decision": "RESET_BOTH"
             }
           },
-          "id": "event-000921"
+          "id": "event-000919"
         },
         {
-          "source_line": 922,
+          "source_line": 920,
           "timestamp": "2026-05-22T18:08:46.583317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -433,7 +393,7 @@
             "tool": "mcp__agent-ml-research__ralph_respond",
             "elapsed_ms": 50
           },
-          "id": "event-000922"
+          "id": "event-000920"
         }
       ]
     },
@@ -441,7 +401,7 @@
       "number": 90,
       "messages": [
         {
-          "source_line": 923,
+          "source_line": 921,
           "timestamp": "2026-05-22T18:26:26.659150+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -455,10 +415,10 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "source": "submission_review_report"
           },
-          "id": "event-000923"
+          "id": "event-000921"
         },
         {
-          "source_line": 924,
+          "source_line": 922,
           "timestamp": "2026-05-22T18:27:56.754127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -476,10 +436,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000924"
+          "id": "event-000922"
         },
         {
-          "source_line": 925,
+          "source_line": 923,
           "timestamp": "2026-05-22T18:27:58.360429+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -494,10 +454,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 1606
           },
-          "id": "event-000925"
+          "id": "event-000923"
         },
         {
-          "source_line": 926,
+          "source_line": 924,
           "timestamp": "2026-05-22T18:28:43.655176+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -515,10 +475,10 @@
               "project": "causal_style_decomp_judge"
             }
           },
-          "id": "event-000926"
+          "id": "event-000924"
         },
         {
-          "source_line": 927,
+          "source_line": 925,
           "timestamp": "2026-05-22T18:28:47.324502+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -533,10 +493,10 @@
             "tool": "mcp__agent-ml-research__post_to_reviewer",
             "elapsed_ms": 3669
           },
-          "id": "event-000927"
+          "id": "event-000925"
         },
         {
-          "source_line": 928,
+          "source_line": 926,
           "timestamp": "2026-05-22T18:29:03.992489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -553,10 +513,10 @@
               "text": "**R12 审稿结果：3.0 (Findings)**，比 R11 的 3.5 下降。\n\n**核心问题（4 个 Must-Fix）：**\n1. **MF1** [共识]: 标题 \"Detecting Hidden Style Bias\" 预设 pairwise 为 ground truth，与论文自身承认的三种解释矛盾\n2. **MF2** [共识]: Formality 轴 quality-style 混淆严重——GEE 数据显示 Orig OR ≥ Style OR，\"style bias\" 叙事被削弱\n3. **MF3** [分歧]: Novelty 不足（R1: 3.5 excitement, R2: 2.5）——Thurstone 领域迁移\n4. **MF4** [R1]: Bootstrap CI vs GEE sandwich SE 分工不清\n\n**上调条件：**\n- 3.5: 调标题+区分 formality/verbosity claims+澄清 CI+论证 LLM judge 超越 Thurstone\n- 4.0: 额外需 multi-Δ TOST + 增加标注 + cross-benchmark\n\n已把完整 Action Matrix 发给 Reviewer 独立审阅。等 Reviewer 反馈后综合定稿。\n\n**需要你确认的决策**：是否同意改标题副标题（\"Detecting Hidden Style Bias\" → \"Format-Dependent Style Sensitivity\"，保留 \"Likert Blindspot\"）？"
             }
           },
-          "id": "event-000928"
+          "id": "event-000926"
         },
         {
-          "source_line": 929,
+          "source_line": 927,
           "timestamp": "2026-05-22T18:29:05.811815+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -571,10 +531,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 1819
           },
-          "id": "event-000929"
+          "id": "event-000927"
         },
         {
-          "source_line": 930,
+          "source_line": 928,
           "timestamp": "2026-05-22T18:29:08.057531+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -587,7 +547,7 @@
           "metadata": {
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director"
           },
-          "id": "event-000930"
+          "id": "event-000928"
         }
       ]
     },
@@ -595,7 +555,7 @@
       "number": 91,
       "messages": [
         {
-          "source_line": 931,
+          "source_line": 929,
           "timestamp": "2026-05-22T18:29:08.631369+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -609,10 +569,10 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "source": "system:ralph_loop"
           },
-          "id": "event-000931"
+          "id": "event-000929"
         },
         {
-          "source_line": 932,
+          "source_line": 930,
           "timestamp": "2026-05-22T18:29:57.804465+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -625,7 +585,7 @@
           "metadata": {
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director"
           },
-          "id": "event-000932"
+          "id": "event-000930"
         }
       ]
     }

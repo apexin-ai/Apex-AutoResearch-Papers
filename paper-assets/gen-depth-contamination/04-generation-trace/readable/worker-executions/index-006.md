@@ -147,7 +147,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ssh audit investigate h5 h6 h4 | 284 | 0 | [Read transcript](ssh-audit-investigate-h5-h6-h4.md) | [JSON](../../sessions/22/22a6f823003f260402c2.json) |
 | code audit fix figures | 11 | 0 | [Read transcript](code-audit-fix-figures.md) | [JSON](../../sessions/4c/4c3defef5bd0f0cff2c3.json) |
 | code audit fix text | 11 | 0 | [Read transcript](code-audit-fix-text.md) | [JSON](../../sessions/57/57e53ce7e7ee42e44eec.json) |
-| ssh fix h5 tab s3c — Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contaminatio | 281 | 1 | [Read transcript](ssh-fix-h5-tab-s3c.md) | [JSON](../../sessions/6a/6add326e7b4dad0d8f14.json) |
+| ssh fix h5 tab s3c — Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contaminatio | 279 | 1 | [Read transcript](ssh-fix-h5-tab-s3c.md) | [JSON](../../sessions/6a/6add326e7b4dad0d8f14.json) |
 | code fix h6 phantom number | 40 | 0 | [Read transcript](code-fix-h6-phantom-number.md) | [JSON](../../sessions/fc/fc21300fde190688b7e0.json) |
 | ops backup archive | 375 | 0 | [Read transcript](ops-backup-archive.md) | [JSON](../../sessions/86/869766400c2c247a8e34.json) |
 | review ref audit A | 134 | 0 | [Read transcript](review-ref-audit-a.md) | [JSON](../../sessions/cb/cb1bc64c808c288496fe.json) |

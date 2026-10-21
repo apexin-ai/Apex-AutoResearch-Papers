@@ -8849,7 +8849,7 @@ Spawn a fix-and-restart worker for westd-35807.
 
 ## Round 55
 
-8 recorded events
+6 recorded events
 
 
 ### User
@@ -9002,67 +9002,9 @@ _source line 970 · 2026-05-29T04:01:19.370226+00:00_
 ---
 
 
-### Tool call
-
-_source line 971 · 2026-05-29T04:01:27.047778+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md",
-  "content": "# Rebuttal 准备——25 个阴性实验分析\n\n## 实验分类\n\n- **20/25 negative** — 支撑论文 Claims（预期内阴性结果）\n- **3/25 bug** — 历史残留（已排除，不影响结论）\n- **2/25 baseline** — 基线探测实验\n\n## Rebuttal 框架\n\n### 框架 1: 阴性结果本身就是贡献\n（待 Reviewer 报告内容填充）\n\n### 框架 2: 统计诚实性\n（待 Reviewer 报告内容填充）\n\n### 框架 3: 预期 vs 意外\n（待 Reviewer 报告内容填充）\n\n## 最可能的 Reviewer 质疑 + 回应\n\n### 质疑 1\n（待填充）\n\n### 质疑 2\n（待填充）\n\n### 质疑 3\n（待填充）\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md",
-    "content": "# Rebuttal 准备——25 个阴性实验分析\n\n## 实验分类\n\n- **20/25 negative** — 支撑论文 Claims（预期内阴性结果）\n- **3/25 bug** — 历史残留（已排除，不影响结论）\n- **2/25 baseline** — 基线探测实验\n\n## Rebuttal 框架\n\n### 框架 1: 阴性结果本身就是贡献\n（待 Reviewer 报告内容填充）\n\n### 框架 2: 统计诚实性\n（待 Reviewer 报告内容填充）\n\n### 框架 3: 预期 vs 意外\n（待 Reviewer 报告内容填充）\n\n## 最可能的 Reviewer 质疑 + 回应\n\n### 质疑 1\n（待填充）\n\n### 质疑 2\n（待填充）\n\n### 质疑 3\n（待填充）\n"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 972 · 2026-05-29T04:01:27.148560+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
 ### Assistant
 
-_source line 973 · 2026-05-29T04:01:30.547775+00:00_
+_source line 971 · 2026-05-29T04:01:30.547775+00:00_
 
 文件已创建为骨架，等 Director 发 Reviewer 报告内容后填充。继续等 westd-35807 修复 Worker 回调。
 
@@ -9089,7 +9031,7 @@ _source line 973 · 2026-05-29T04:01:30.547775+00:00_
 
 ### User
 
-_source line 974 · 2026-05-29T04:01:31.125789+00:00_
+_source line 972 · 2026-05-29T04:01:31.125789+00:00_
 
 [WORKER DONE] Worker worker_fix_lerobot-compat-35807_20260529T034201 已完成（status=done）。用 `get_worker_status('worker_fix_lerobot-compat-35807_20260529T034201')` 读取结果，然后处理。
 
@@ -9114,7 +9056,7 @@ _source line 974 · 2026-05-29T04:01:31.125789+00:00_
 
 ### Tool call
 
-_source line 975 · 2026-05-29T04:01:36.410270+00:00_
+_source line 973 · 2026-05-29T04:01:36.410270+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -9148,7 +9090,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 976 · 2026-05-29T04:01:36.511211+00:00_
+_source line 974 · 2026-05-29T04:01:36.511211+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_fix_lerobot-compat-35807_20260529T034201\", \"status\": \"done\", \"task_type\": \"fix:lerobot-compat-35807\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T03:42:01.494305+00:00\", \"ended_at\": \"2026-05-29T03:51:51.218300+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"训练已正常运行。\\n\\n## 总结\\n\\n**1. LeRobot 版本**：两台都是 0.1.0，版本相同。\\n\\n**2. 根因**：westd-45947 之前已手动 patch 了 3 处 LeRobot 代码以兼容新版 HF datasets API，但 westd-35807 没有这些 patch：\\n- `lerobot_dataset.py:508-509` — `torch.stack(hf_dataset[\\\"timestamp\\\"])` 改为 `np.array(to_dict()[\\\"timestamp\\\"])`\\n- `lerobot_dataset.py:511` — `check_timestamps_sync` 用 try/except 包裹（object_pudding 数据集 timestamp 不符合严格校验）\\n- `utils.py:272` — `hf_transform_to_torch` 增加 `dict` + `\\\"bytes\\\"` 类型处理（图像以 bytes dict 存储）\\n- `lerobot_dataset.py:698` — `_query_hf_dataset` 整个方法重写，处理多种数据类型\\n\\n**3. 修复方案**：方案 B — 把 westd-45947 上的 4 处 patch 逐一移植到 westd-35807。\\n\\n**4. 训练状态**：\\n- PID: 93395，运行 1 分 50 秒，状态 S（正常）\\n- GPU 0: 利用率 100%，显存 19061 MiB / 97887 MiB\\n- 已完成 step 0-8，loss ~0.10-0.15，速度 ~1.5s/it，预计 ~12.5h 完成 30000 steps\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -9170,7 +9112,7 @@ _source line 976 · 2026-05-29T04:01:36.511211+00:00_
 
 ### Tool call
 
-_source line 977 · 2026-05-29T04:01:57.125378+00:00_
+_source line 975 · 2026-05-29T04:01:57.125378+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9210,7 +9152,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 978 · 2026-05-29T04:01:57.477193+00:00_
+_source line 976 · 2026-05-29T04:01:57.477193+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3752}}"}
 
@@ -9232,7 +9174,7 @@ _source line 978 · 2026-05-29T04:01:57.477193+00:00_
 
 ### Tool call
 
-_source line 979 · 2026-05-29T04:02:03.098567+00:00_
+_source line 977 · 2026-05-29T04:02:03.098567+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9272,7 +9214,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 980 · 2026-05-29T04:02:04.304751+00:00_
+_source line 978 · 2026-05-29T04:02:04.304751+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-29T03:07:16.772Z\", \"updated_at\": \"2026-05-29T04:02:03.410Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=54.83±2.25%; adding seed3 reduces variance and strengthens the null result against SDF.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 3 --gpu 0 --batch_size 32 --num_train_steps 30000\\\"\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:0\"], \"pid\": \"89242\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_lora_baseline_s3.log\", \"submitted_at\": \"2026-05-29T03:07:27.092Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed3\", \"seed\": 3, \"wall_clock_seconds\": 3276.3, \"gpu_hours\": 0.91}, \"conclusion\": \"failed\", \"failure_reason\": \"LeRobot dataset API incompatibility: torch.stack() received HF Column instead of Tensor list at lerobot_dataset.py:508. Training crashed during data loading, 0 steps completed.\", \"completed_at\": \"2026-05-29T04:02:03.410Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2219}}"}
 
@@ -9294,7 +9236,7 @@ _source line 980 · 2026-05-29T04:02:04.304751+00:00_
 
 ### Tool call
 
-_source line 981 · 2026-05-29T04:02:08.571123+00:00_
+_source line 979 · 2026-05-29T04:02:08.571123+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9334,7 +9276,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 982 · 2026-05-29T04:02:09.173651+00:00_
+_source line 980 · 2026-05-29T04:02:09.173651+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:08.893Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5828}}"}
 
@@ -9356,7 +9298,7 @@ _source line 982 · 2026-05-29T04:02:09.173651+00:00_
 
 ### Tool call
 
-_source line 983 · 2026-05-29T04:02:17.052436+00:00_
+_source line 981 · 2026-05-29T04:02:17.052436+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9396,7 +9338,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 984 · 2026-05-29T04:02:17.605764+00:00_
+_source line 982 · 2026-05-29T04:02:17.605764+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:17.358Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\", \"parent\": \"train_pi05_lora_baseline_s3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5853}}"}
 
@@ -9418,7 +9360,7 @@ _source line 984 · 2026-05-29T04:02:17.605764+00:00_
 
 ### Tool call
 
-_source line 985 · 2026-05-29T04:02:23.123409+00:00_
+_source line 983 · 2026-05-29T04:02:23.123409+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9458,7 +9400,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 986 · 2026-05-29T04:02:24.327101+00:00_
+_source line 984 · 2026-05-29T04:02:24.327101+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3_v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:23.456Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\", \"parent\": \"train_pi05_lora_baseline_s3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1973}}"}
 
@@ -9480,7 +9422,7 @@ _source line 986 · 2026-05-29T04:02:24.327101+00:00_
 
 ### Tool call
 
-_source line 987 · 2026-05-29T04:02:27.537728+00:00_
+_source line 985 · 2026-05-29T04:02:27.537728+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9520,7 +9462,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 988 · 2026-05-29T04:02:28.741609+00:00_
+_source line 986 · 2026-05-29T04:02:28.741609+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3_v2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:27.845Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\", \"parent\": \"train_pi05_lora_baseline_s3\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2094}}"}
 
@@ -9542,7 +9484,7 @@ _source line 988 · 2026-05-29T04:02:28.741609+00:00_
 
 ### Tool call
 
-_source line 989 · 2026-05-29T04:02:35.616580+00:00_
+_source line 987 · 2026-05-29T04:02:35.616580+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9584,7 +9526,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 990 · 2026-05-29T04:02:35.968095+00:00_
+_source line 988 · 2026-05-29T04:02:35.968095+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.341}}"}
 
@@ -9606,7 +9548,7 @@ _source line 990 · 2026-05-29T04:02:35.968095+00:00_
 
 ### Tool call
 
-_source line 991 · 2026-05-29T04:02:44.041407+00:00_
+_source line 989 · 2026-05-29T04:02:44.041407+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -9648,7 +9590,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 992 · 2026-05-29T04:02:45.246488+00:00_
+_source line 990 · 2026-05-29T04:02:45.246488+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_lora_baseline_s3_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:44.363Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\", \"parent\": \"train_pi05_lora_baseline_s3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_pi05_lora_baseline.py --scene object_pudding --seed 3 --gpu 0 --batch_size 32 --num_train_steps 30000\\\"\", \"server\": \"westd-35807\", \"gpu\": [\"cuda:0\"], \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_lora_baseline_seed3\", \"seed\": 3, \"pid\": \"93395\", \"log_path\": \"/tmp/train_lora_s3_restart.log\", \"checkpoint_source\": \"pi05_base_weights\", \"eval_data\": \"n/a (training experiment)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1849}}"}
 
@@ -9670,7 +9612,7 @@ _source line 992 · 2026-05-29T04:02:45.246488+00:00_
 
 ### Tool call
 
-_source line 993 · 2026-05-29T04:03:01.606278+00:00_
+_source line 991 · 2026-05-29T04:03:01.606278+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -9706,7 +9648,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 994 · 2026-05-29T04:03:05.219596+00:00_
+_source line 992 · 2026-05-29T04:03:05.219596+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -9728,7 +9670,7 @@ _source line 994 · 2026-05-29T04:03:05.219596+00:00_
 
 ### Assistant
 
-_source line 995 · 2026-05-29T04:03:07.306131+00:00_
+_source line 993 · 2026-05-29T04:03:07.306131+00:00_
 
 两组实验都在跑了。汇报 Director。
 
@@ -9750,12 +9692,12 @@ _source line 995 · 2026-05-29T04:03:07.306131+00:00_
 
 ## Round 57
 
-10 recorded events
+6 recorded events
 
 
 ### User
 
-_source line 996 · 2026-05-29T04:03:56.984324+00:00_
+_source line 994 · 2026-05-29T04:03:56.984324+00:00_
 
 [Director 指令] negative_analysis.md 内容如下，直接写入：
 
@@ -9824,133 +9766,7 @@ MDE ≈ 5.6pp at 80% power，2-5pp 效应无法解析。即使存在 2-3pp 效�
 
 ### Tool call
 
-_source line 997 · 2026-05-29T04:04:14.688444+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md",
-  "content": "# Rebuttal 准备——25 个阴性实验 Failure Pattern 分析\n\n## 分类统计\n\n### A. 支持论文 Claims 的预期阴性（20/25，80%）\n\n**A1. SDF 训练信号从未出现（7 个，支撑 Claim 3）**\nstepwise 系列 (16K/20K/22K/24K/28K, 2 seeds) + Phase 2 λ=0：CAR 始终在 52-56.5% null 区间内。跨 6 个 checkpoint、2 seeds、20× λ 范围，SDF 信号从未 emerge。系统性 null，不是超参未调优。\n\n**A2. Oracle 反效果（3 个，支撑 Claim 2）**\nadaptive/fixed/feature-space 三种 oracle 策略：CAR 分别 75%/73.1%/76.9%，均低于 baseline 79-82%。机制一致：EE 推离 → 臂杆旋入障碍。\n\n**A3. Action Collapse / Fake Safety（5 个，支撑 Claim 1）**\nA1 SDF (91.5% CAR, 99.6% fake)、baselines (82-83% CAR, TSR≈0%)、A3 SDF (74.5% CAR, refined=0)。\n\n**A4. Spatial 场景全面失败（5 个，支撑 full-body SDF 必要性）**\nLoRA/Full-FT/A1/SDF 在 spatial 场景 CAR≈0%。碰撞源是 arm-body 而非 EE-obstacle。\n\n### B. Bug 污染的历史实验（3/25，12%）\noracle_a3_m024fix、oracle_a3_force_refine、eval_a3_object_m024fix：受 M027 oracle 死代码影响。已在论文中排除。\n\n### C. 基座模型基线探测（2/25，8%）\nPi0.5 base eval (CAR=28%, 98.2% fake) 和 spatial eval (CAR=13%)。\n\n## Reviewer 最可能质疑 + 回应\n\n**Q1: \"25 个 negative——没 try hard enough？超参不优？\"**\n反驳：SDF 覆盖 λ ∈ {0.005, 0.01, 0.1}（20× 范围），oracle 覆盖 3 种策略 + GT SDF，跨 2 model families，7 个 checkpoints。如果超参是问题，至少某个组合应该 work。\n\n**Q2: \"Oracle 用了 action-collapsed baseline 不公平\"**\n反驳：Pi0.5 LoRA 非 collapsed 验证（CAR 51.9% vs 56.5%, -4.6pp），per-task pattern 一致。\n\n**Q3: \"为什么不做 full-body SDF？\"**\n反驳：贡献是诊断性的——先确认 WHY EE-only 失败，再指向 full-body 作为必要路径。\n\n## Rebuttal 框架\n\n**框架 1: 阴性结果本身就是贡献**\n25 个阴性不是\"方法不 work\"，而是证明当前评估体系存在结构性缺陷。三个发现跨 100+ 实验、6000+ episodes、两个 VLA 家族稳健成立。\n\n**框架 2: 统计诚实性**\nMDE ≈ 5.6pp at 80% power，2-5pp 效应无法解析。即使存在 2-3pp 效应，其安全价值也可疑——EE-only 结构上无法防止 arm-link 碰撞。\n\n**框架 3: 预期 vs 意外**\n唯一\"意外\"是 A3 learned SDF refined_count=0——但恰好揭示 collision-free demonstrations 中 EE 本来就远离障碍物，SDF 值自然为正。不是 bug 而是 demonstration data subsumes SDF signal 的直接后果。\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md",
-    "content": "# Rebuttal 准备——25 个阴性实验 Failure Pattern 分析\n\n## 分类统计\n\n### A. 支持论文 Claims 的预期阴性（20/25，80%）\n\n**A1. SDF 训练信号从未出现（7 个，支撑 Claim 3）**\nstepwise 系列 (16K/20K/22K/24K/28K, 2 seeds) + Phase 2 λ=0：CAR 始终在 52-56.5% null 区间内。跨 6 个 checkpoint、2 seeds、20× λ 范围，SDF 信号从未 emerge。系统性 null，不是超参未调优。\n\n**A2. Oracle 反效果（3 个，支撑 Claim 2）**\nadaptive/fixed/feature-space 三种 oracle 策略：CAR 分别 75%/73.1%/76.9%，均低于 baseline 79-82%。机制一致：EE 推离 → 臂杆旋入障碍。\n\n**A3. Action Collapse / Fake Safety（5 个，支撑 Claim 1）**\nA1 SDF (91.5% CAR, 99.6% fake)、baselines (82-83% CAR, TSR≈0%)、A3 SDF (74.5% CAR, refined=0)。\n\n**A4. Spatial 场景全面失败（5 个，支撑 full-body SDF 必要性）**\nLoRA/Full-FT/A1/SDF 在 spatial 场景 CAR≈0%。碰撞源是 arm-body 而非 EE-obstacle。\n\n### B. Bug 污染的历史实验（3/25，12%）\noracle_a3_m024fix、oracle_a3_force_refine、eval_a3_object_m024fix：受 M027 oracle 死代码影响。已在论文中排除。\n\n### C. 基座模型基线探测（2/25，8%）\nPi0.5 base eval (CAR=28%, 98.2% fake) 和 spatial eval (CAR=13%)。\n\n## Reviewer 最可能质疑 + 回应\n\n**Q1: \"25 个 negative——没 try hard enough？超参不优？\"**\n反驳：SDF 覆盖 λ ∈ {0.005, 0.01, 0.1}（20× 范围），oracle 覆盖 3 种策略 + GT SDF，跨 2 model families，7 个 checkpoints。如果超参是问题，至少某个组合应该 work。\n\n**Q2: \"Oracle 用了 action-collapsed baseline 不公平\"**\n反驳：Pi0.5 LoRA 非 collapsed 验证（CAR 51.9% vs 56.5%, -4.6pp），per-task pattern 一致。\n\n**Q3: \"为什么不做 full-body SDF？\"**\n反驳：贡献是诊断性的——先确认 WHY EE-only 失败，再指向 full-body 作为必要路径。\n\n## Rebuttal 框架\n\n**框架 1: 阴性结果本身就是贡献**\n25 个阴性不是\"方法不 work\"，而是证明当前评估体系存在结构性缺陷。三个发现跨 100+ 实验、6000+ episodes、两个 VLA 家族稳健成立。\n\n**框架 2: 统计诚实性**\nMDE ≈ 5.6pp at 80% power，2-5pp 效应无法解析。即使存在 2-3pp 效应，其安全价值也可疑——EE-only 结构上无法防止 arm-link 碰撞。\n\n**框架 3: 预期 vs 意外**\n唯一\"意外\"是 A3 learned SDF refined_count=0——但恰好揭示 collision-free demonstrations 中 EE 本来就远离障碍物，SDF 值自然为正。不是 bug 而是 demonstration data subsumes SDF signal 的直接后果。\n"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 998 · 2026-05-29T04:04:14.789460+00:00_
-
-The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal/negative_analysis.md has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "Write",
-  "elapsed_ms": 100
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 999 · 2026-05-29T04:04:18.856344+00:00_
-
-called mcp__agent-ml-research__register_artifact
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
-
-```json
-{
-  "artifact_type": "document",
-  "path": "artifacts/rebuttal/negative_analysis.md",
-  "description": "Rebuttal preparation: 25 negative experiment failure pattern analysis with reviewer Q&A and framing strategies",
-  "project": "diff_collision_sdf"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "tool_args": {
-    "artifact_type": "document",
-    "path": "artifacts/rebuttal/negative_analysis.md",
-    "description": "Rebuttal preparation: 25 negative experiment failure pattern analysis with reviewer Q&A and framing strategies",
-    "project": "diff_collision_sdf"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1000 · 2026-05-29T04:04:18.906920+00:00_
-
-Error executing tool register_artifact: 2 validation errors for register_artifactArguments
-name
-  Field required [type=missing, input_value={'artifact_type': 'docume...': 'diff_collision_sdf'}, input_type=dict]
-    For further information visit https://errors.pydantic.dev/2.12/v/missing
-type
-  Field required [type=missing, input_value={'artifact_type': 'docume...': 'diff_collision_sdf'}, input_type=dict]
-    For further information visit https://errors.pydantic.dev/2.12/v/missing
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1001 · 2026-05-29T04:04:21.616926+00:00_
+_source line 995 · 2026-05-29T04:04:21.616926+00:00_
 
 called ToolSearch
 
@@ -9986,7 +9802,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1002 · 2026-05-29T04:04:21.667628+00:00_
+_source line 996 · 2026-05-29T04:04:21.667628+00:00_
 
 
 
@@ -10008,7 +9824,7 @@ _source line 1002 · 2026-05-29T04:04:21.667628+00:00_
 
 ### Tool call
 
-_source line 1003 · 2026-05-29T04:04:26.435575+00:00_
+_source line 997 · 2026-05-29T04:04:26.435575+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -10052,7 +9868,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 1004 · 2026-05-29T04:04:26.586566+00:00_
+_source line 998 · 2026-05-29T04:04:26.586566+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_31c499\", \"name\": \"negative_analysis\", \"type\": \"report\", \"description\": \"Rebuttal preparation: 25 negative experiment failure pattern analysis with reviewer Q&A and framing strategies\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/report/negative_analysis.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T04:04:26.393751+00:00\", \"tags\": [\"rebuttal\", \"negative-results\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10074,7 +9890,7 @@ _source line 1004 · 2026-05-29T04:04:26.586566+00:00_
 
 ### Assistant
 
-_source line 1005 · 2026-05-29T04:04:32.395984+00:00_
+_source line 999 · 2026-05-29T04:04:32.395984+00:00_
 
 已写入并注册 `artifacts/rebuttal/negative_analysis.md`。
 
@@ -10101,7 +9917,7 @@ _source line 1005 · 2026-05-29T04:04:32.395984+00:00_
 
 ### User
 
-_source line 1006 · 2026-05-29T04:36:08.861985+00:00_
+_source line 1000 · 2026-05-29T04:36:08.861985+00:00_
 
 [Director 指令] 紧急，立即执行：
 
@@ -10150,7 +9966,7 @@ tail -20 /root/colliforce-vla/outputs/*/train*.log 2>/dev/null || ls -lt /root/c
 
 ### Tool call
 
-_source line 1007 · 2026-05-29T04:36:24.583942+00:00_
+_source line 1001 · 2026-05-29T04:36:24.583942+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -10190,7 +10006,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 1008 · 2026-05-29T04:36:24.936199+00:00_
+_source line 1002 · 2026-05-29T04:36:24.936199+00:00_
 
 called Read
 
@@ -10224,7 +10040,7 @@ called Read
 
 ### Tool result
 
-_source line 1009 · 2026-05-29T04:36:30.510105+00:00_
+_source line 1003 · 2026-05-29T04:36:30.510105+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_gpu-check-both-urgent_20260529T043625\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_infra_gpu-check-both-urgent_20260529T043625.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_gpu-check-both-urgent_20260529T043625 started. Use get_worker_status('worker_infra_gpu-check-both-urgent_20260529T043625') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10246,7 +10062,7 @@ _source line 1009 · 2026-05-29T04:36:30.510105+00:00_
 
 ### Tool result
 
-_source line 1010 · 2026-05-29T04:36:30.510616+00:00_
+_source line 1004 · 2026-05-29T04:36:30.510616+00:00_
 
 1	# OpenReview Submission Fields — CoRL 2026
 2	
@@ -10284,7 +10100,7 @@ _source line 1010 · 2026-05-29T04:36:30.510616+00:00_
 
 ### Assistant
 
-_source line 1011 · 2026-05-29T04:36:40.178957+00:00_
+_source line 1005 · 2026-05-29T04:36:40.178957+00:00_
 
 OpenReview 字段检查完毕，内容完整：
 - Title / Abstract / Keywords(8个) / TL;DR — 全部就绪
@@ -10318,7 +10134,7 @@ GPU 检查 Worker 已派出，等回调。
 
 ### User
 
-_source line 1012 · 2026-05-29T04:37:42.203910+00:00_
+_source line 1006 · 2026-05-29T04:37:42.203910+00:00_
 
 [WORKER DONE] Worker worker_infra_gpu-check-both-urgent_20260529T043625 已完成（status=done）。用 `get_worker_status('worker_infra_gpu-check-both-urgent_20260529T043625')` 读取结果，然后处理。
 
@@ -10343,7 +10159,7 @@ _source line 1012 · 2026-05-29T04:37:42.203910+00:00_
 
 ### Tool call
 
-_source line 1013 · 2026-05-29T04:37:51.723099+00:00_
+_source line 1007 · 2026-05-29T04:37:51.723099+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -10377,7 +10193,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1014 · 2026-05-29T04:37:51.874210+00:00_
+_source line 1008 · 2026-05-29T04:37:51.874210+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_gpu-check-both-urgent_20260529T043625\", \"status\": \"done\", \"task_type\": \"infra:gpu-check-both-urgent\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T04:36:25.336840+00:00\", \"ended_at\": \"2026-05-29T04:37:40.443605+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 结果汇总\\n\\n### westd-45947 — `train_pi05_a1_obj_s3_l01`\\n- **状态: DEAD**\\n- **GPU**: 0% 利用率，0 MiB 显存占用（完全空闲）\\n- **崩溃原因**: **磁盘满** — `/root/autodl-tmp` 250G 用了 250G（100%，仅剩 4KB）\\n- **Traceback**: `shutil.copytree` 在 step 2000 保存 best checkpoint 时触发 `[Errno 28] No space left on device`\\n- **崩溃时进度**: step 1999/30000（~7%），loss=0.1440, action=0.1432, sdf=0.0358, ee=0.0425\\n- **已有 checkpoint**: step 2000 目录存在（保存成功），但 best 目录复制失败\\n\\n### westd-35807 — `train_pi05_lora_baseline_s3_v2`\\n- **状态: ALIVE** ✓\\n- **运行时间**: 47 小时\\n- **GPU 0**: 100% 利用率，19061 MiB 显存占用\\n- **当前进度**: step 2232/30000（~7%），loss=0.0911, action=0.0911\\n- **速度**: 1.21s/it，预计剩余 ~9h20m\\n\\n### 需要处理\\nwestd-45947 数据盘已满，需清理空间后重启训练。可从 step 2000 checkpoint resume。需要清理旧 checkpoint 或无用数据释放空间。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10399,7 +10215,7 @@ _source line 1014 · 2026-05-29T04:37:51.874210+00:00_
 
 ### Tool call
 
-_source line 1015 · 2026-05-29T04:38:01.062574+00:00_
+_source line 1009 · 2026-05-29T04:38:01.062574+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10439,7 +10255,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1016 · 2026-05-29T04:38:20.116662+00:00_
+_source line 1010 · 2026-05-29T04:38:20.116662+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T03:07:19.033Z\", \"updated_at\": \"2026-05-29T04:38:01.733Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=56.33±1.61%; adding seed3 tests whether the non-significant SDF effect holds with increased sample size.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"35444\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_a1_obj_s3_l01.log\", \"submitted_at\": \"2026-05-29T03:07:30.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed3_l01\", \"seed\": 3}, \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9703}}"}
 
@@ -10461,7 +10277,7 @@ _source line 1016 · 2026-05-29T04:38:20.116662+00:00_
 
 ### Tool call
 
-_source line 1017 · 2026-05-29T04:38:20.317758+00:00_
+_source line 1011 · 2026-05-29T04:38:20.317758+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -10501,7 +10317,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1018 · 2026-05-29T04:38:26.243055+00:00_
+_source line 1012 · 2026-05-29T04:38:26.243055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_fix_disk-cleanup-45947_20260529T043820\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_fix_disk-cleanup-45947_20260529T043820.log\", \"setup_data\": {}, \"message\": \"Worker worker_fix_disk-cleanup-45947_20260529T043820 started. Use get_worker_status('worker_fix_disk-cleanup-45947_20260529T043820') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -10523,7 +10339,7 @@ _source line 1018 · 2026-05-29T04:38:26.243055+00:00_
 
 ### Tool call
 
-_source line 1019 · 2026-05-29T04:38:31.264274+00:00_
+_source line 1013 · 2026-05-29T04:38:31.264274+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10563,7 +10379,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1020 · 2026-05-29T04:38:31.917692+00:00_
+_source line 1014 · 2026-05-29T04:38:31.917692+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T03:07:19.033Z\", \"updated_at\": \"2026-05-29T04:38:31.660Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=56.33±1.61%; adding seed3 tests whether the non-significant SDF effect holds with increased sample size.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"35444\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_a1_obj_s3_l01.log\", \"submitted_at\": \"2026-05-29T03:07:30.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed3_l01\", \"seed\": 3}, \"conclusion\": \"failed\", \"failure_reason\": \"Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6681}}"}
 
@@ -10585,7 +10401,7 @@ _source line 1020 · 2026-05-29T04:38:31.917692+00:00_
 
 ### Tool call
 
-_source line 1021 · 2026-05-29T04:38:48.315212+00:00_
+_source line 1015 · 2026-05-29T04:38:48.315212+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -10621,7 +10437,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1022 · 2026-05-29T04:38:49.520575+00:00_
+_source line 1016 · 2026-05-29T04:38:49.520575+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -10643,7 +10459,7 @@ _source line 1022 · 2026-05-29T04:38:49.520575+00:00_
 
 ### Assistant
 
-_source line 1023 · 2026-05-29T04:38:52.620291+00:00_
+_source line 1017 · 2026-05-29T04:38:52.620291+00:00_
 
 Report to Director and confirm OpenReview fields.
 
@@ -10670,7 +10486,7 @@ Report to Director and confirm OpenReview fields.
 
 ### User
 
-_source line 1024 · 2026-05-29T04:39:38.035591+00:00_
+_source line 1018 · 2026-05-29T04:39:38.035591+00:00_
 
 [Director 指令] westd-45947 上 SDF seed3 训练 (train_pi05_a1_obj_s3_l01) 已崩溃，GPU:0 空闲。紧急处理：
 
@@ -10700,7 +10516,7 @@ _source line 1024 · 2026-05-29T04:39:38.035591+00:00_
 
 ### Tool call
 
-_source line 1025 · 2026-05-29T04:39:48.502195+00:00_
+_source line 1019 · 2026-05-29T04:39:48.502195+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -10734,7 +10550,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1026 · 2026-05-29T04:39:48.603036+00:00_
+_source line 1020 · 2026-05-29T04:39:48.603036+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_fix_disk-cleanup-45947_20260529T043820\", \"status\": \"running\", \"task_type\": \"fix:disk-cleanup-45947\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T04:38:21.017634+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10756,7 +10572,7 @@ _source line 1026 · 2026-05-29T04:39:48.603036+00:00_
 
 ### Tool call
 
-_source line 1027 · 2026-05-29T04:40:02.054083+00:00_
+_source line 1021 · 2026-05-29T04:40:02.054083+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -10792,7 +10608,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1028 · 2026-05-29T04:40:05.617700+00:00_
+_source line 1022 · 2026-05-29T04:40:05.617700+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -10814,7 +10630,7 @@ _source line 1028 · 2026-05-29T04:40:05.617700+00:00_
 
 ### Assistant
 
-_source line 1029 · 2026-05-29T04:40:08.416387+00:00_
+_source line 1023 · 2026-05-29T04:40:08.416387+00:00_
 
 清理+重启 Worker 仍在运行中。汇报 Director 当前进展。
 
@@ -10841,7 +10657,7 @@ _source line 1029 · 2026-05-29T04:40:08.416387+00:00_
 
 ### User
 
-_source line 1030 · 2026-05-29T04:44:14.053196+00:00_
+_source line 1024 · 2026-05-29T04:44:14.053196+00:00_
 
 [WORKER DONE] Worker worker_fix_disk-cleanup-45947_20260529T043820 已完成（status=done）。用 `get_worker_status('worker_fix_disk-cleanup-45947_20260529T043820')` 读取结果，然后处理。
 
@@ -10866,7 +10682,7 @@ _source line 1030 · 2026-05-29T04:44:14.053196+00:00_
 
 ### Tool call
 
-_source line 1031 · 2026-05-29T04:44:20.311189+00:00_
+_source line 1025 · 2026-05-29T04:44:20.311189+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -10900,7 +10716,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1032 · 2026-05-29T04:44:20.413693+00:00_
+_source line 1026 · 2026-05-29T04:44:20.413693+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_fix_disk-cleanup-45947_20260529T043820\", \"status\": \"done\", \"task_type\": \"fix:disk-cleanup-45947\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T04:38:21.017634+00:00\", \"ended_at\": \"2026-05-29T04:44:12.226743+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"训练正常运行。\\n\\n## 结果汇总\\n\\n**磁盘清理**（释放 ~47.6G）:\\n\\n| 已删除 | 大小 |\\n|--------|------|\\n| seed2_l1/29999 | 7.2G |\\n| lora_baseline_seed2/29999 | 7.2G |\\n| a3_refine_object_seed0/29999 | 7.1G |\\n| a3_refine_spatial_seed0/29999 | 7.1G |\\n| baseline_object_pudding_eval/ | 19G |\\n\\n清理后：250G → 204G used，47G 可用（82%）\\n\\n**训练重启**:\\n- PID: 41134（Python 子进程）\\n- 已从 step 2000 成功 resume\\n- GPU 0: 100% 利用率，19.1GB/97.9GB 显存\\n- 当前进度：step 2003/30000，loss=0.1349，~4.4s/it\\n- 预估完成时间：约 34 小时\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -10922,7 +10738,7 @@ _source line 1032 · 2026-05-29T04:44:20.413693+00:00_
 
 ### Tool call
 
-_source line 1033 · 2026-05-29T04:44:32.001388+00:00_
+_source line 1027 · 2026-05-29T04:44:32.001388+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -10962,7 +10778,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1034 · 2026-05-29T04:44:33.306978+00:00_
+_source line 1028 · 2026-05-29T04:44:33.306978+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-29T03:07:19.033Z\", \"updated_at\": \"2026-05-29T04:44:32.373Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=56.33±1.61%; adding seed3 tests whether the non-significant SDF effect holds with increased sample size.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/colliforce-vla && export WANDB_MODE=disabled && python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000\\\"\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"pid\": \"35444\", \"log_path\": \"~/runs/diff_collision_sdf/train_pi05_a1_obj_s3_l01.log\", \"submitted_at\": \"2026-05-29T03:07:30.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed3_l01\", \"seed\": 3, \"wall_clock_seconds\": 5822.1, \"gpu_hours\": 1.62}, \"conclusion\": \"failed\", \"failure_reason\": \"Disk full on westd-45947: /root/autodl-tmp 250G/250G (0 bytes free). Crashed at step 2000 during shutil.copytree saving best checkpoint. Step 2000 checkpoint saved successfully before crash.\", \"completed_at\": \"2026-05-29T04:44:32.373Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2741}}"}
 
@@ -10984,7 +10800,7 @@ _source line 1034 · 2026-05-29T04:44:33.306978+00:00_
 
 ### Tool call
 
-_source line 1035 · 2026-05-29T04:44:37.670844+00:00_
+_source line 1029 · 2026-05-29T04:44:37.670844+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11024,7 +10840,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1036 · 2026-05-29T04:44:38.273054+00:00_
+_source line 1030 · 2026-05-29T04:44:38.273054+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:37.994Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.586}}"}
 
@@ -11046,7 +10862,7 @@ _source line 1036 · 2026-05-29T04:44:38.273054+00:00_
 
 ### Tool call
 
-_source line 1037 · 2026-05-29T04:44:41.735382+00:00_
+_source line 1031 · 2026-05-29T04:44:41.735382+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11086,7 +10902,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1038 · 2026-05-29T04:44:42.507882+00:00_
+_source line 1032 · 2026-05-29T04:44:42.507882+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01_v2\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:42.059Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\", \"parent\": \"train_pi05_a1_obj_s3_l01\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7342}}"}
 
@@ -11108,7 +10924,7 @@ _source line 1038 · 2026-05-29T04:44:42.507882+00:00_
 
 ### Tool call
 
-_source line 1039 · 2026-05-29T04:44:46.101203+00:00_
+_source line 1033 · 2026-05-29T04:44:46.101203+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11148,7 +10964,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1040 · 2026-05-29T04:44:47.356797+00:00_
+_source line 1034 · 2026-05-29T04:44:47.356797+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01_v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:46.447Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\", \"parent\": \"train_pi05_a1_obj_s3_l01\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2306}}"}
 
@@ -11170,7 +10986,7 @@ _source line 1040 · 2026-05-29T04:44:47.356797+00:00_
 
 ### Tool call
 
-_source line 1041 · 2026-05-29T04:44:49.916606+00:00_
+_source line 1035 · 2026-05-29T04:44:49.916606+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11210,7 +11026,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1042 · 2026-05-29T04:44:51.121209+00:00_
+_source line 1036 · 2026-05-29T04:44:51.121209+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01_v2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:50.236Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\", \"parent\": \"train_pi05_a1_obj_s3_l01\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1824}}"}
 
@@ -11232,7 +11048,7 @@ _source line 1042 · 2026-05-29T04:44:51.121209+00:00_
 
 ### Tool call
 
-_source line 1043 · 2026-05-29T04:44:59.452707+00:00_
+_source line 1037 · 2026-05-29T04:44:59.452707+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -11274,7 +11090,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1044 · 2026-05-29T04:45:00.657366+00:00_
+_source line 1038 · 2026-05-29T04:45:00.657366+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"train_pi05_a1_obj_s3_l01_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:59.772Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\", \"parent\": \"train_pi05_a1_obj_s3_l01\", \"spec\": {\"command\": \"python scripts/train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --gpu 0 --batch_size 32 --num_train_steps 30000 --lambda_ee 0.01 --lr 2.5e-5 --save_interval 2000 --resume\", \"server\": \"westd-45947\", \"gpu\": [\"cuda:0\"], \"data_path\": \"SafeLIBERO object_pudding training data\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed3_l01\", \"seed\": 3, \"pid\": \"41134\", \"log_path\": \"/tmp/train_sdf_s3_l01_resume.log\", \"checkpoint_source\": \"train_pi05_a1_obj_s3_l01 step 2000\", \"eval_data\": \"n/a (training experiment)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2262}}"}
 
@@ -11296,7 +11112,7 @@ _source line 1044 · 2026-05-29T04:45:00.657366+00:00_
 
 ### Tool call
 
-_source line 1045 · 2026-05-29T04:45:13.976200+00:00_
+_source line 1039 · 2026-05-29T04:45:13.976200+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -11332,7 +11148,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1046 · 2026-05-29T04:45:17.589996+00:00_
+_source line 1040 · 2026-05-29T04:45:17.589996+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -11354,7 +11170,7 @@ _source line 1046 · 2026-05-29T04:45:17.589996+00:00_
 
 ### Tool call
 
-_source line 1047 · 2026-05-29T04:47:39.378747+00:00_
+_source line 1041 · 2026-05-29T04:47:39.378747+00:00_
 
 called ToolSearch
 
@@ -11390,7 +11206,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1048 · 2026-05-29T04:47:39.429510+00:00_
+_source line 1042 · 2026-05-29T04:47:39.429510+00:00_
 
 
 
@@ -11412,7 +11228,7 @@ _source line 1048 · 2026-05-29T04:47:39.429510+00:00_
 
 ### Tool call
 
-_source line 1049 · 2026-05-29T04:47:42.541465+00:00_
+_source line 1043 · 2026-05-29T04:47:42.541465+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11448,7 +11264,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1050 · 2026-05-29T04:47:43.044464+00:00_
+_source line 1044 · 2026-05-29T04:47:43.044464+00:00_
 
 called mcp__agent-ml-research__reconcile_crons
 
@@ -11477,7 +11293,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 1051 · 2026-05-29T04:47:43.044885+00:00_
+_source line 1045 · 2026-05-29T04:47:43.044885+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_best_s0_l005\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T23:03:13.282Z\", \"updated_at\": \"2026-05-27T23:03:27.166Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, lambda=0.005) using final checkpoint step 30000. No separate best/ saved for seed0; 30000 is the only available checkpoint. Completes 3-seed best-checkpoint coverage.\", \"parent\": \"train_pi05_a1_obj_s0_l005\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000 --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\", \"server\": \"westd-35807\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed0_l005\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000\", \"eval_data\": \"safelibero_object_safety_II\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0112}}"}
 
@@ -11499,7 +11315,7 @@ _source line 1051 · 2026-05-29T04:47:43.044885+00:00_
 
 ### Tool result
 
-_source line 1052 · 2026-05-29T04:47:43.261602+00:00_
+_source line 1046 · 2026-05-29T04:47:43.261602+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
 
@@ -11521,7 +11337,7 @@ _source line 1052 · 2026-05-29T04:47:43.261602+00:00_
 
 ### Tool call
 
-_source line 1053 · 2026-05-29T04:47:43.272508+00:00_
+_source line 1047 · 2026-05-29T04:47:43.272508+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -11557,7 +11373,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 1054 · 2026-05-29T04:47:43.341787+00:00_
+_source line 1048 · 2026-05-29T04:47:43.341787+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/report.md\", \"content\": \"# Handover — 2026-05-29\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| train_pi05_a1_obj_s3_l01_v2 | SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power. | — | — | — |\\n| train_pi05_lora_baseline_s3_v2 | LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947). | — | — | — |\\n\\n## 待处理\\n- eval_oracle_pi05_lora_s0_r1: EE-only oracle SDF refinement reduces CAR on non-action-collapsed Pi0.5 LoRA models (CAR=54.83%, 0% frozen), confirming that the counterproductive effect (Claim 2) is structural rather than an artifact of action-collapsed baselines（准备中）\\n\\n## 近期结论\\n- **train_pi05_a1_obj_s3_l01** (failed): SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=56.33±1.61%; adding seed3 tests whether the non-significant SDF effect holds with increased sample size.\\n- **train_pi05_lora_baseline_s3** (failed): LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. Current 3-seed mean CAR=54.83±2.25%; adding seed3 reduces variance and strengthens the null result against SDF.\\n- **eval_oracle_pi05_lora_s0** (success): Oracle-adaptive SDF refinement will degrade CAR on Pi0.5 LoRA (non-action-collapsed model), validating Claim 2 that EE-only oracle refinement is counterproductive regardless of model architecture. ← 基于 eval_oracle_adaptive_a1\\n\\n## 趋势\\n成功 73 / 负向 25 / 失败 20 / 共 134\\navg_CAR: 0.519 ↓（近 3 次 success）\\navg_TSR: 0.506 ↑（近 3 次 success）\\n
 …[truncated 1933 chars]
@@ -11580,7 +11396,7 @@ _source line 1054 · 2026-05-29T04:47:43.341787+00:00_
 
 ### Tool call
 
-_source line 1055 · 2026-05-29T04:47:52.646073+00:00_
+_source line 1049 · 2026-05-29T04:47:52.646073+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11616,7 +11432,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1056 · 2026-05-29T04:47:52.947604+00:00_
+_source line 1050 · 2026-05-29T04:47:52.947604+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0101}}"}
 
@@ -11638,7 +11454,7 @@ _source line 1056 · 2026-05-29T04:47:52.947604+00:00_
 
 ### Tool call
 
-_source line 1057 · 2026-05-29T04:47:52.947930+00:00_
+_source line 1051 · 2026-05-29T04:47:52.947930+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11674,7 +11490,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1058 · 2026-05-29T04:47:52.998322+00:00_
+_source line 1052 · 2026-05-29T04:47:52.998322+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0099}}"}
 
@@ -11696,7 +11512,7 @@ _source line 1058 · 2026-05-29T04:47:52.998322+00:00_
 
 ### Tool call
 
-_source line 1059 · 2026-05-29T04:48:05.802853+00:00_
+_source line 1053 · 2026-05-29T04:48:05.802853+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11732,7 +11548,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1060 · 2026-05-29T04:48:05.903792+00:00_
+_source line 1054 · 2026-05-29T04:48:05.903792+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_best_s0_l005\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T23:03:13.282Z\", \"updated_at\": \"2026-05-27T23:03:27.166Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, lambda=0.005) using final checkpoint step 30000. No separate best/ saved for seed0; 30000 is the only available checkpoint. Completes 3-seed best-checkpoint coverage.\", \"parent\": \"train_pi05_a1_obj_s0_l005\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000 --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\", \"server\": \"westd-35807\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed0_l005\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000\", \"eval_data\": \"safelibero_object_safety_II\"}}, \"train_pi05_a1_obj_s0_l01\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:39:53.525Z\", \"updated_at\": \"2026-05-27T09:11:40.974Z\", \"notes\": \"Restarted from step 0 after P0 checkpoint collision fix. Speed ~1.21s/step (faster than initial 1.8s estimate). ETA ~10h from 00:14 UTC start → ~10:14 UTC. Loss at step ~716: action ~0.14, sdf ~0.035, ee ~0.10.\", \"spec\": {\"command\": \"nohup python scripts/train_a1_sdf_aux.py --config_name pi05_libero --scene object_pudding --seed 0 --gpu 1 --lambda_sdf 0.1 --total_steps 30000 > logs/train_lambda01_s0_gpu1.log 2>&1 &\", \"server\": \"westd-35807\", \"data_path\": \"safelibero_object\", \"data_count\": 0, \"model_name\": \"pi05_lora_a1_sdf\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints
 …[truncated 5857 chars]
@@ -11755,7 +11571,7 @@ _source line 1060 · 2026-05-29T04:48:05.903792+00:00_
 
 ### Tool call
 
-_source line 1061 · 2026-05-29T04:48:12.277350+00:00_
+_source line 1055 · 2026-05-29T04:48:12.277350+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -11791,7 +11607,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1062 · 2026-05-29T04:48:12.378283+00:00_
+_source line 1056 · 2026-05-29T04:48:12.378283+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_best_s0_l005\": {\"status\": \"RUNNING\"}, \"train_pi05_a1_obj_s0_l01\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_pi05_a1_obj_s2_l01\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_pi05_a1_obj_s1_l005\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_pi05_a1_obj_s2_l005\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"train_pi05_a1_obj_s1_l01\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_pi05_a1_obj_s0_l005\": {\"status\": \"PREPARING\"}, \"a1_sdf_object_pudding_s0\": {\"status\": \"PREPARING\"}, \"baseline_object_pudding_s0_v2\": {\"status\": \"PREPARING\"}, \"baseline_spatial_bowl_s0_v2\": {\"status\": \"PREPARING\"}}, \"count\": 10, \"total\": 10, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.011}}"}
 
@@ -11813,7 +11629,7 @@ _source line 1062 · 2026-05-29T04:48:12.378283+00:00_
 
 ### Tool call
 
-_source line 1063 · 2026-05-29T04:48:34.941582+00:00_
+_source line 1057 · 2026-05-29T04:48:34.941582+00:00_
 
 called ToolSearch
 
@@ -11849,7 +11665,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1064 · 2026-05-29T04:48:34.941929+00:00_
+_source line 1058 · 2026-05-29T04:48:34.941929+00:00_
 
 
 
@@ -11871,7 +11687,7 @@ _source line 1064 · 2026-05-29T04:48:34.941929+00:00_
 
 ### Tool call
 
-_source line 1065 · 2026-05-29T04:48:48.263637+00:00_
+_source line 1059 · 2026-05-29T04:48:48.263637+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -11911,7 +11727,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1066 · 2026-05-29T04:48:53.085684+00:00_
+_source line 1060 · 2026-05-29T04:48:53.085684+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-35807_20260529T044848\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_gpu-check_westd-35807_20260529T044848.log\", \"setup_data\": {}, \"message\": \"Worker worker_gpu-check_westd-35807_20260529T044848 started. Use get_worker_status('worker_gpu-check_westd-35807_20260529T044848') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -11933,7 +11749,7 @@ _source line 1066 · 2026-05-29T04:48:53.085684+00:00_
 
 ### Tool call
 
-_source line 1067 · 2026-05-29T04:48:53.086019+00:00_
+_source line 1061 · 2026-05-29T04:48:53.086019+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -11973,7 +11789,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool call
 
-_source line 1068 · 2026-05-29T04:48:53.688282+00:00_
+_source line 1062 · 2026-05-29T04:48:53.688282+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -12009,7 +11825,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Assistant
 
-_source line 1069 · 2026-05-29T05:04:14.418341+00:00_
+_source line 1063 · 2026-05-29T05:04:14.418341+00:00_
 
 派 2 个 Worker 并行检查两台服务器 GPU 状态，同时读 ROADMAP。
 
@@ -12036,7 +11852,7 @@ _source line 1069 · 2026-05-29T05:04:14.418341+00:00_
 
 ### User
 
-_source line 1070 · 2026-05-29T05:04:15.034316+00:00_
+_source line 1064 · 2026-05-29T05:04:15.034316+00:00_
 
 [Director 指令] ## 紧急任务：论文全文数据真实性与可追溯性审计
 
@@ -12135,7 +11951,7 @@ _source line 1070 · 2026-05-29T05:04:15.034316+00:00_
 
 ### Tool call
 
-_source line 1071 · 2026-05-29T05:05:39.753715+00:00_
+_source line 1065 · 2026-05-29T05:05:39.753715+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -12175,7 +11991,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1072 · 2026-05-29T05:05:48.779763+00:00_
+_source line 1066 · 2026-05-29T05:05:48.779763+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-45947_20260529T050540\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_gpu-check_westd-45947_20260529T050540.log\", \"setup_data\": {}, \"message\": \"Worker worker_gpu-check_westd-45947_20260529T050540 started. Use get_worker_status('worker_gpu-check_westd-45947_20260529T050540') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12197,7 +12013,7 @@ _source line 1072 · 2026-05-29T05:05:48.779763+00:00_
 
 ### Tool call
 
-_source line 1073 · 2026-05-29T05:05:49.232763+00:00_
+_source line 1067 · 2026-05-29T05:05:49.232763+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -12237,7 +12053,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1074 · 2026-05-29T05:06:03.137735+00:00_
+_source line 1068 · 2026-05-29T05:06:03.137735+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_results-catalog_westd-35807_20260529T050549\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_results-catalog_westd-35807_20260529T050549.log\", \"setup_data\": {}, \"message\": \"Worker worker_results-catalog_westd-35807_20260529T050549 started. Use get_worker_status('worker_results-catalog_westd-35807_20260529T050549') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -12259,7 +12075,7 @@ _source line 1074 · 2026-05-29T05:06:03.137735+00:00_
 
 ### Tool call
 
-_source line 1075 · 2026-05-29T05:06:03.641071+00:00_
+_source line 1069 · 2026-05-29T05:06:03.641071+00:00_
 
 called Agent
 
@@ -12297,7 +12113,7 @@ called Agent
 
 ### Tool call
 
-_source line 1076 · 2026-05-29T05:06:03.691766+00:00_
+_source line 1070 · 2026-05-29T05:06:03.691766+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -12333,7 +12149,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1077 · 2026-05-29T05:06:06.652546+00:00_
+_source line 1071 · 2026-05-29T05:06:06.652546+00:00_
 
 called Bash
 
@@ -12369,7 +12185,7 @@ called Bash
 
 ### Tool result
 
-_source line 1078 · 2026-05-29T05:06:07.055260+00:00_
+_source line 1072 · 2026-05-29T05:06:07.055260+00:00_
 
 (Bash completed with no output)
 
@@ -12391,7 +12207,7 @@ _source line 1078 · 2026-05-29T05:06:07.055260+00:00_
 
 ### Tool call
 
-_source line 1079 · 2026-05-29T05:06:07.055662+00:00_
+_source line 1073 · 2026-05-29T05:06:07.055662+00:00_
 
 called Glob
 
@@ -12425,7 +12241,7 @@ called Glob
 
 ### Tool result
 
-_source line 1080 · 2026-05-29T05:06:07.156471+00:00_
+_source line 1074 · 2026-05-29T05:06:07.156471+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_archive/method.tex
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/_archive/experiments.tex
@@ -12466,7 +12282,7 @@ _source line 1080 · 2026-05-29T05:06:07.156471+00:00_
 
 ### Tool call
 
-_source line 1081 · 2026-05-29T05:06:09.966009+00:00_
+_source line 1075 · 2026-05-29T05:06:09.966009+00:00_
 
 called Read
 
@@ -12500,7 +12316,7 @@ called Read
 
 ### Tool result
 
-_source line 1082 · 2026-05-29T05:06:10.066836+00:00_
+_source line 1076 · 2026-05-29T05:06:10.066836+00:00_
 
 1	\begin{abstract}
 2	Vision-Language-Action (VLA) models report high Collision Avoidance Rates (CAR) on safety benchmarks, yet we show these metrics are contaminated by action collapse, where near-zero motor output produces zero collisions through inaction rather than avoidance. We introduce displacement-filtered CAR (dfCAR), which excludes sub-threshold episodes, revealing that over 99\% of safe episodes in Pi0-family models are action-collapse artifacts. We further show that end-effector-only Signed Distance Field (SDF) supervision fails to deliver collision avoidance: ground-truth oracle refinement reduces CAR below unrefined baselines by redistributing collisions to unmonitored arm links, and SDF training supervision shows no statistically significant benefit beyond collision-free demonstrations alone. These findings suggest that collision avoidance primarily arises from demonstration data rather than EE-only geometric supervision.
@@ -12525,7 +12341,7 @@ _source line 1082 · 2026-05-29T05:06:10.066836+00:00_
 
 ### Tool call
 
-_source line 1083 · 2026-05-29T05:06:10.067253+00:00_
+_source line 1077 · 2026-05-29T05:06:10.067253+00:00_
 
 called Read
 
@@ -12559,7 +12375,7 @@ called Read
 
 ### Tool result
 
-_source line 1084 · 2026-05-29T05:06:10.117813+00:00_
+_source line 1078 · 2026-05-29T05:06:10.117813+00:00_
 
 1	\section{Introduction}\label{sec:intro}
 2	
@@ -12593,7 +12409,7 @@ _source line 1084 · 2026-05-29T05:06:10.117813+00:00_
 
 ### Tool call
 
-_source line 1085 · 2026-05-29T05:06:13.079248+00:00_
+_source line 1079 · 2026-05-29T05:06:13.079248+00:00_
 
 called Read
 
@@ -12627,7 +12443,7 @@ called Read
 
 ### Tool result
 
-_source line 1086 · 2026-05-29T05:06:13.330600+00:00_
+_source line 1080 · 2026-05-29T05:06:13.330600+00:00_
 
 1	\section{Experimental Setup and Metrics}\label{sec:method}
 2	
@@ -12672,7 +12488,7 @@ _source line 1086 · 2026-05-29T05:06:13.330600+00:00_
 
 ### Tool call
 
-_source line 1087 · 2026-05-29T05:06:13.331056+00:00_
+_source line 1081 · 2026-05-29T05:06:13.331056+00:00_
 
 called Read
 
@@ -12706,7 +12522,7 @@ called Read
 
 ### Tool result
 
-_source line 1088 · 2026-05-29T05:06:13.382640+00:00_
+_source line 1082 · 2026-05-29T05:06:13.382640+00:00_
 
 1	\section{Related Work}\label{sec:related}
 2	
@@ -12738,7 +12554,7 @@ _source line 1088 · 2026-05-29T05:06:13.382640+00:00_
 
 ### Tool call
 
-_source line 1089 · 2026-05-29T05:06:16.293366+00:00_
+_source line 1083 · 2026-05-29T05:06:16.293366+00:00_
 
 called Read
 
@@ -12772,7 +12588,7 @@ called Read
 
 ### Tool result
 
-_source line 1090 · 2026-05-29T05:06:16.293767+00:00_
+_source line 1084 · 2026-05-29T05:06:16.293767+00:00_
 
 1	\section{The Action-Collapsed Safety Problem}\label{sec:fake_safety}
 2	
@@ -12821,7 +12637,7 @@ _source line 1090 · 2026-05-29T05:06:16.293767+00:00_
 
 ### Tool call
 
-_source line 1091 · 2026-05-29T05:06:16.998603+00:00_
+_source line 1085 · 2026-05-29T05:06:16.998603+00:00_
 
 called Read
 
@@ -12855,7 +12671,7 @@ called Read
 
 ### Tool result
 
-_source line 1092 · 2026-05-29T05:06:16.999078+00:00_
+_source line 1086 · 2026-05-29T05:06:16.999078+00:00_
 
 1	\section{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\label{sec:ee_only}
 2	
@@ -12909,7 +12725,7 @@ _source line 1092 · 2026-05-29T05:06:16.999078+00:00_
 
 ### Tool call
 
-_source line 1093 · 2026-05-29T05:06:20.034582+00:00_
+_source line 1087 · 2026-05-29T05:06:20.034582+00:00_
 
 called Read
 
@@ -12943,7 +12759,7 @@ called Read
 
 ### Tool result
 
-_source line 1094 · 2026-05-29T05:06:20.688094+00:00_
+_source line 1088 · 2026-05-29T05:06:20.688094+00:00_
 
 1	\section{Avoidance Source Diagnosis}\label{sec:avoidance_source}
 2	
@@ -12991,7 +12807,7 @@ _source line 1094 · 2026-05-29T05:06:20.688094+00:00_
 
 ### Tool call
 
-_source line 1095 · 2026-05-29T05:06:20.688513+00:00_
+_source line 1089 · 2026-05-29T05:06:20.688513+00:00_
 
 called Read
 
@@ -13025,7 +12841,7 @@ called Read
 
 ### Tool result
 
-_source line 1096 · 2026-05-29T05:06:20.738973+00:00_
+_source line 1090 · 2026-05-29T05:06:20.738973+00:00_
 
 1	\section{Conclusion}\label{sec:conclusion}
 2	
@@ -13061,7 +12877,7 @@ _source line 1096 · 2026-05-29T05:06:20.738973+00:00_
 
 ### Tool call
 
-_source line 1097 · 2026-05-29T05:06:23.705828+00:00_
+_source line 1091 · 2026-05-29T05:06:23.705828+00:00_
 
 called Read
 
@@ -13095,7 +12911,7 @@ called Read
 
 ### Tool result
 
-_source line 1098 · 2026-05-29T05:06:24.208080+00:00_
+_source line 1092 · 2026-05-29T05:06:24.208080+00:00_
 
 1	\documentclass{article}
 2	
@@ -13167,7 +12983,7 @@ _source line 1098 · 2026-05-29T05:06:24.208080+00:00_
 
 ### Tool call
 
-_source line 1099 · 2026-05-29T05:06:24.308910+00:00_
+_source line 1093 · 2026-05-29T05:06:24.308910+00:00_
 
 called Read
 
@@ -13203,7 +13019,7 @@ called Read
 
 ### Tool result
 
-_source line 1100 · 2026-05-29T05:06:24.359641+00:00_
+_source line 1094 · 2026-05-29T05:06:24.359641+00:00_
 
 1	\section{Complete Multi-Seed Results}
 2	\label{sec:appendix_multiseed}
@@ -13271,7 +13087,7 @@ _source line 1100 · 2026-05-29T05:06:24.359641+00:00_
 
 ### Tool call
 
-_source line 1101 · 2026-05-29T05:06:27.970793+00:00_
+_source line 1095 · 2026-05-29T05:06:27.970793+00:00_
 
 called Read
 
@@ -13309,7 +13125,7 @@ called Read
 
 ### Tool result
 
-_source line 1102 · 2026-05-29T05:06:28.071666+00:00_
+_source line 1096 · 2026-05-29T05:06:28.071666+00:00_
 
 100	
 101	Table~\ref{tab:per_task_tsr} decomposes TSR by task for the avoidance source attribution experiments (Section~\ref{sec:avoidance_source}). All tasks retain meaningful success rates after fine-tuning, with Chocolate Pudding most resilient and Orange Juice most affected.
@@ -13362,7 +13178,7 @@ _source line 1102 · 2026-05-29T05:06:28.071666+00:00_
 
 ### Tool call
 
-_source line 1103 · 2026-05-29T05:06:32.184938+00:00_
+_source line 1097 · 2026-05-29T05:06:32.184938+00:00_
 
 called Read
 
@@ -13400,7 +13216,7 @@ called Read
 
 ### Tool result
 
-_source line 1104 · 2026-05-29T05:06:32.285807+00:00_
+_source line 1098 · 2026-05-29T05:06:32.285807+00:00_
 
 218	\vspace{2pt}
 219	\small
@@ -13443,7 +13259,7 @@ _source line 1104 · 2026-05-29T05:06:32.285807+00:00_
 
 ### Tool call
 
-_source line 1105 · 2026-05-29T05:06:39.966048+00:00_
+_source line 1099 · 2026-05-29T05:06:39.966048+00:00_
 
 called Read
 
@@ -13481,7 +13297,7 @@ called Read
 
 ### Tool result
 
-_source line 1106 · 2026-05-29T05:06:40.016729+00:00_
+_source line 1100 · 2026-05-29T05:06:40.016729+00:00_
 
 337	\multirow{2}{*}{SDF $\lambda{=}0.1$ s0}
 338	  & CAR & --- & 58.0 & 59.0 & --- & 58.5 & 57.0 & 58.1$\pm$0.9 \\
@@ -13541,7 +13357,7 @@ _source line 1106 · 2026-05-29T05:06:40.016729+00:00_
 
 ### Tool call
 
-_source line 1107 · 2026-05-29T05:06:43.529640+00:00_
+_source line 1101 · 2026-05-29T05:06:43.529640+00:00_
 
 called Read
 
@@ -13579,7 +13395,7 @@ called Read
 
 ### Tool result
 
-_source line 1108 · 2026-05-29T05:06:43.680452+00:00_
+_source line 1102 · 2026-05-29T05:06:43.680452+00:00_
 
 &lt;system-reminder>Warning: the file exists but is shorter than the provided offset (426). The file has 426 lines.&lt;/system-reminder>
 
@@ -13601,7 +13417,7 @@ _source line 1108 · 2026-05-29T05:06:43.680452+00:00_
 
 ### Tool call
 
-_source line 1109 · 2026-05-29T05:06:46.942171+00:00_
+_source line 1103 · 2026-05-29T05:06:46.942171+00:00_
 
 called Read
 
@@ -13635,7 +13451,7 @@ called Read
 
 ### Tool result
 
-_source line 1110 · 2026-05-29T05:06:47.293868+00:00_
+_source line 1104 · 2026-05-29T05:06:47.293868+00:00_
 
 1	% contingency_claim3.tex — Three pre-written §6.3 paragraphs for λ=0.1 results.
 2	% NOT \input'd into main.tex. Copy the matching scenario into claim3.tex
@@ -13685,7 +13501,7 @@ _source line 1110 · 2026-05-29T05:06:47.293868+00:00_
 
 ### Tool call
 
-_source line 1111 · 2026-05-29T05:06:47.294248+00:00_
+_source line 1105 · 2026-05-29T05:06:47.294248+00:00_
 
 called Read
 
@@ -13719,7 +13535,7 @@ called Read
 
 ### Tool result
 
-_source line 1112 · 2026-05-29T05:06:47.394788+00:00_
+_source line 1106 · 2026-05-29T05:06:47.394788+00:00_
 
 1	\section{Experimental Framework}\label{sec:framework}
 2	
@@ -13758,7 +13574,7 @@ _source line 1112 · 2026-05-29T05:06:47.394788+00:00_
 
 ### Tool call
 
-_source line 1113 · 2026-05-29T05:12:42.734146+00:00_
+_source line 1107 · 2026-05-29T05:12:42.734146+00:00_
 
 called Write
 
@@ -13794,7 +13610,7 @@ called Write
 
 ### Tool result
 
-_source line 1114 · 2026-05-29T05:12:42.785807+00:00_
+_source line 1108 · 2026-05-29T05:12:42.785807+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/audit/phase1_numbers.md
 
@@ -13816,7 +13632,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool result
 
-_source line 1115 · 2026-05-29T05:12:53.510281+00:00_
+_source line 1109 · 2026-05-29T05:12:53.510281+00:00_
 
 完成。
 
@@ -13868,7 +13684,7 @@ duration_ms: 409866&lt;/usage>
 
 ### Tool result
 
-_source line 1116 · 2026-05-29T05:12:53.511040+00:00_
+_source line 1110 · 2026-05-29T05:12:53.511040+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_a1_best_s0_l005\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T23:03:13.282Z\", \"updated_at\": \"2026-05-27T23:03:27.166Z\", \"hypothesis\": \"Pi0.5+A1 best checkpoint eval (seed0, lambda=0.005) using final checkpoint step 30000. No separate best/ saved for seed0; 30000 is the only available checkpoint. Completes 3-seed best-checkpoint coverage.\", \"parent\": \"train_pi05_a1_obj_s0_l005\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000 --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_pi05_a1_best_s0_l005.json\", \"server\": \"westd-35807\", \"data_path\": \"safelibero_object\", \"data_count\": 200, \"model_name\": \"pi05_a1_sdf_seed0_l005\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed0_l005/30000\", \"eval_data\": \"safelibero_object_safety_II\"}}, \"train_pi05_a1_obj_s0_l01\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:39:53.525Z\", \"updated_at\": \"2026-05-27T09:11:40.974Z\", \"notes\": \"Restarted from step 0 after P0 checkpoint collision fix. Speed ~1.21s/step (faster than initial 1.8s estimate). ETA ~10h from 00:14 UTC start → ~10:14 UTC. Loss at step ~716: action ~0.14, sdf ~0.035, ee ~0.10.\", \"spec\": {\"command\": \"nohup python scripts/train_a1_sdf_aux.py --config_name pi05_libero --scene object_pudding --seed 0 --gpu 1 --lambda_sdf 0.1 --total_steps 30000 > logs/train_lambda01_s0_gpu1.log 2>&1 &\", \"server\": \"westd-35807\", \"data_path\": \"safelibero_object\", \"data_count\": 0, \"model_name\": \"pi05_lora_a1_sdf\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints
 …[truncated 5857 chars]
@@ -13891,7 +13707,7 @@ _source line 1116 · 2026-05-29T05:12:53.511040+00:00_
 
 ### Tool call
 
-_source line 1117 · 2026-05-29T05:13:07.210058+00:00_
+_source line 1111 · 2026-05-29T05:13:07.210058+00:00_
 
 called Read
 
@@ -13927,7 +13743,7 @@ called Read
 
 ### Tool result
 
-_source line 1118 · 2026-05-29T05:13:07.261036+00:00_
+_source line 1112 · 2026-05-29T05:13:07.261036+00:00_
 
 1	# Phase 1 Number Extraction — Data Authenticity Audit
 2	
@@ -13986,7 +13802,7 @@ _source line 1118 · 2026-05-29T05:13:07.261036+00:00_
 
 ### Tool call
 
-_source line 1119 · 2026-05-29T05:13:11.727050+00:00_
+_source line 1113 · 2026-05-29T05:13:11.727050+00:00_
 
 called Read
 
@@ -14024,7 +13840,7 @@ called Read
 
 ### Tool result
 
-_source line 1120 · 2026-05-29T05:13:11.777892+00:00_
+_source line 1114 · 2026-05-29T05:13:11.777892+00:00_
 
 200	L7 | 0.37 | "displacement $>$\,0.37\,m" (table caption note) | result
 201	L7 | 0.05 | "p > 0.05 for $\lambda \in \{0.01, 0.1\}$" (table caption) | stat
@@ -14076,7 +13892,7 @@ _source line 1120 · 2026-05-29T05:13:11.777892+00:00_
 
 ### Tool call
 
-_source line 1121 · 2026-05-29T05:13:16.294343+00:00_
+_source line 1115 · 2026-05-29T05:13:16.294343+00:00_
 
 called Read
 
@@ -14114,7 +13930,7 @@ called Read
 
 ### Tool result
 
-_source line 1122 · 2026-05-29T05:13:16.445632+00:00_
+_source line 1116 · 2026-05-29T05:13:16.445632+00:00_
 
 399	L72 | 0.5 | "causing $\leq$0.5\,pp deviation" | result
 400	
@@ -14168,7 +13984,7 @@ _source line 1122 · 2026-05-29T05:13:16.445632+00:00_
 
 ### Tool call
 
-_source line 1123 · 2026-05-29T05:13:25.415496+00:00_
+_source line 1117 · 2026-05-29T05:13:25.415496+00:00_
 
 called Read
 
@@ -14206,7 +14022,7 @@ called Read
 
 ### Tool result
 
-_source line 1124 · 2026-05-29T05:13:25.466476+00:00_
+_source line 1118 · 2026-05-29T05:13:25.466476+00:00_
 
 698	L271 | 0.155 | "rendering the earlier two-seed departure non-significant ($p = 0.155$)" | stat
 699	
@@ -14260,7 +14076,7 @@ _source line 1124 · 2026-05-29T05:13:25.466476+00:00_
 
 ### Tool call
 
-_source line 1125 · 2026-05-29T05:13:29.832030+00:00_
+_source line 1119 · 2026-05-29T05:13:29.832030+00:00_
 
 called Read
 
@@ -14298,7 +14114,7 @@ called Read
 
 ### Tool result
 
-_source line 1126 · 2026-05-29T05:13:29.882680+00:00_
+_source line 1120 · 2026-05-29T05:13:29.882680+00:00_
 
 897	L423 | 21.8 | "The largest SDF drop ($\lambda = 0.1$, $-$21.3\,pp) matches the LoRA-only drop ($-$21.8\,pp) to within 0.5\,pp" | result
 898	L423 | 0.5 | "to within 0.5\,pp" | result
@@ -14359,7 +14175,7 @@ _source line 1126 · 2026-05-29T05:13:29.882680+00:00_
 
 ### Tool call
 
-_source line 1127 · 2026-05-29T05:13:50.505366+00:00_
+_source line 1121 · 2026-05-29T05:13:50.505366+00:00_
 
 called Glob
 
@@ -14395,7 +14211,7 @@ called Glob
 
 ### Tool result
 
-_source line 1128 · 2026-05-29T05:13:50.856974+00:00_
+_source line 1122 · 2026-05-29T05:13:50.856974+00:00_
 
 No files found
 
@@ -14417,7 +14233,7 @@ No files found
 
 ### Tool call
 
-_source line 1129 · 2026-05-29T05:13:51.509643+00:00_
+_source line 1123 · 2026-05-29T05:13:51.509643+00:00_
 
 called Glob
 
@@ -14453,7 +14269,7 @@ called Glob
 
 ### Tool result
 
-_source line 1130 · 2026-05-29T05:13:51.912615+00:00_
+_source line 1124 · 2026-05-29T05:13:51.912615+00:00_
 
 No files found
 
@@ -14475,7 +14291,7 @@ No files found
 
 ### Tool call
 
-_source line 1131 · 2026-05-29T05:13:51.913060+00:00_
+_source line 1125 · 2026-05-29T05:13:51.913060+00:00_
 
 called Glob
 
@@ -14511,7 +14327,7 @@ called Glob
 
 ### Tool result
 
-_source line 1132 · 2026-05-29T05:13:52.415033+00:00_
+_source line 1126 · 2026-05-29T05:13:52.415033+00:00_
 
 No files found
 
@@ -14533,7 +14349,7 @@ No files found
 
 ### Tool call
 
-_source line 1133 · 2026-05-29T05:13:52.415495+00:00_
+_source line 1127 · 2026-05-29T05:13:52.415495+00:00_
 
 called Glob
 
@@ -14569,7 +14385,7 @@ called Glob
 
 ### Tool result
 
-_source line 1134 · 2026-05-29T05:13:52.516267+00:00_
+_source line 1128 · 2026-05-29T05:13:52.516267+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.venv/lib/python3.14/site-packages/numpy/_core/tests/data/umath-validation-set-arccos.csv
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.venv/lib/python3.14/site-packages/numpy/_core/tests/data/umath-validation-set-arccosh.csv
@@ -14604,7 +14420,7 @@ _source line 1134 · 2026-05-29T05:13:52.516267+00:00_
 
 ### Tool call
 
-_source line 1135 · 2026-05-29T05:13:58.135297+00:00_
+_source line 1129 · 2026-05-29T05:13:58.135297+00:00_
 
 called Glob
 
@@ -14640,7 +14456,7 @@ called Glob
 
 ### Tool result
 
-_source line 1136 · 2026-05-29T05:13:58.637547+00:00_
+_source line 1130 · 2026-05-29T05:13:58.637547+00:00_
 
 No files found
 
@@ -14662,7 +14478,7 @@ No files found
 
 ### Tool call
 
-_source line 1137 · 2026-05-29T05:13:59.140612+00:00_
+_source line 1131 · 2026-05-29T05:13:59.140612+00:00_
 
 called Glob
 
@@ -14698,7 +14514,7 @@ called Glob
 
 ### Tool result
 
-_source line 1138 · 2026-05-29T05:13:59.642795+00:00_
+_source line 1132 · 2026-05-29T05:13:59.642795+00:00_
 
 No files found
 
@@ -14720,7 +14536,7 @@ No files found
 
 ### Tool call
 
-_source line 1139 · 2026-05-29T05:13:59.693366+00:00_
+_source line 1133 · 2026-05-29T05:13:59.693366+00:00_
 
 called Read
 
@@ -14754,7 +14570,7 @@ called Read
 
 ### Tool result
 
-_source line 1140 · 2026-05-29T05:14:00.095439+00:00_
+_source line 1134 · 2026-05-29T05:14:00.095439+00:00_
 
 1	lambda,CAR_mean,CAR_std,CAR_seeds,TSR_mean,TSR_std,step,note
 2	0,54.67,2.02,"56.5;52.5;55.0",51.5,,30K,LoRA-only (no SDF) 3 seeds
@@ -14791,7 +14607,7 @@ _source line 1140 · 2026-05-29T05:14:00.095439+00:00_
 
 ### Tool call
 
-_source line 1141 · 2026-05-29T05:14:00.095872+00:00_
+_source line 1135 · 2026-05-29T05:14:00.095872+00:00_
 
 called Read
 
@@ -14825,7 +14641,7 @@ called Read
 
 ### Tool result
 
-_source line 1142 · 2026-05-29T05:14:00.497715+00:00_
+_source line 1136 · 2026-05-29T05:14:00.497715+00:00_
 
 1	lambda,step,CAR,TSR,seed,note
 2	0.1,16000,55.5,49.5,0,best loss checkpoint
@@ -14855,7 +14671,7 @@ _source line 1142 · 2026-05-29T05:14:00.497715+00:00_
 
 ### Tool call
 
-_source line 1143 · 2026-05-29T05:14:00.498071+00:00_
+_source line 1137 · 2026-05-29T05:14:00.498071+00:00_
 
 called Read
 
@@ -14889,7 +14705,7 @@ called Read
 
 ### Tool result
 
-_source line 1144 · 2026-05-29T05:14:00.548586+00:00_
+_source line 1138 · 2026-05-29T05:14:00.548586+00:00_
 
 1	label,threshold_mm,dfCAR,n_active,n_total
 2	LoRA s0,2,56.5,200,200
@@ -14974,7 +14790,7 @@ _source line 1144 · 2026-05-29T05:14:00.548586+00:00_
 
 ### Tool call
 
-_source line 1145 · 2026-05-29T05:14:30.183751+00:00_
+_source line 1139 · 2026-05-29T05:14:30.183751+00:00_
 
 called Glob
 
@@ -15010,7 +14826,7 @@ called Glob
 
 ### Tool result
 
-_source line 1146 · 2026-05-29T05:14:30.685975+00:00_
+_source line 1140 · 2026-05-29T05:14:30.685975+00:00_
 
 No files found
 
@@ -15032,7 +14848,7 @@ No files found
 
 ### Tool call
 
-_source line 1147 · 2026-05-29T05:14:30.736535+00:00_
+_source line 1141 · 2026-05-29T05:14:30.736535+00:00_
 
 called Glob
 
@@ -15068,7 +14884,7 @@ called Glob
 
 ### Tool result
 
-_source line 1148 · 2026-05-29T05:14:30.787144+00:00_
+_source line 1142 · 2026-05-29T05:14:30.787144+00:00_
 
 No files found
 
@@ -15090,7 +14906,7 @@ No files found
 
 ### Tool call
 
-_source line 1149 · 2026-05-29T05:14:33.800014+00:00_
+_source line 1143 · 2026-05-29T05:14:33.800014+00:00_
 
 called Bash
 
@@ -15126,7 +14942,7 @@ called Bash
 
 ### Tool result
 
-_source line 1150 · 2026-05-29T05:14:33.900800+00:00_
+_source line 1144 · 2026-05-29T05:14:33.900800+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/related_work_survey.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/paper/dual_narrative_templates.md
@@ -15165,7 +14981,7 @@ _source line 1150 · 2026-05-29T05:14:33.900800+00:00_
 
 ### Tool call
 
-_source line 1151 · 2026-05-29T05:14:41.228230+00:00_
+_source line 1145 · 2026-05-29T05:14:41.228230+00:00_
 
 called Read
 
@@ -15199,7 +15015,7 @@ called Read
 
 ### Tool result
 
-_source line 1152 · 2026-05-29T05:14:41.680523+00:00_
+_source line 1146 · 2026-05-29T05:14:41.680523+00:00_
 
 1	# Paper Data Summary — diff_collision_sdf
 2	
@@ -15257,7 +15073,7 @@ _source line 1152 · 2026-05-29T05:14:41.680523+00:00_
 
 ### Tool call
 
-_source line 1153 · 2026-05-29T05:14:42.533717+00:00_
+_source line 1147 · 2026-05-29T05:14:42.533717+00:00_
 
 called Read
 
@@ -15291,7 +15107,7 @@ called Read
 
 ### Tool result
 
-_source line 1154 · 2026-05-29T05:14:42.584343+00:00_
+_source line 1148 · 2026-05-29T05:14:42.584343+00:00_
 
 1	# Claim 3: Avoidance Source Diagnosis — Data Summary
 2	
@@ -15358,7 +15174,7 @@ _source line 1154 · 2026-05-29T05:14:42.584343+00:00_
 
 ### Tool call
 
-_source line 1155 · 2026-05-29T05:14:43.186798+00:00_
+_source line 1149 · 2026-05-29T05:14:43.186798+00:00_
 
 called Read
 
@@ -15392,7 +15208,7 @@ called Read
 
 ### Tool call
 
-_source line 1156 · 2026-05-29T05:14:43.337646+00:00_
+_source line 1150 · 2026-05-29T05:14:43.337646+00:00_
 
 called Read
 
@@ -15426,7 +15242,7 @@ called Read
 
 ### Tool result
 
-_source line 1157 · 2026-05-29T05:14:43.388200+00:00_
+_source line 1151 · 2026-05-29T05:14:43.388200+00:00_
 
 1	30K Displacement Analysis Summary (remote: /root/autodl-tmp/eval_results/displacement_analysis_30k_summary.txt)
 2	
@@ -15456,7 +15272,7 @@ _source line 1157 · 2026-05-29T05:14:43.388200+00:00_
 
 ### Tool result
 
-_source line 1158 · 2026-05-29T05:14:43.539584+00:00_
+_source line 1152 · 2026-05-29T05:14:43.539584+00:00_
 
 1	======================================================================
 2	  EXACT PERMUTATION TEST — treatment size = 2
@@ -15523,7 +15339,7 @@ _source line 1158 · 2026-05-29T05:14:43.539584+00:00_
 
 ### Tool call
 
-_source line 1159 · 2026-05-29T05:14:43.891177+00:00_
+_source line 1153 · 2026-05-29T05:14:43.891177+00:00_
 
 called Read
 
@@ -15557,7 +15373,7 @@ called Read
 
 ### Tool result
 
-_source line 1160 · 2026-05-29T05:14:43.942524+00:00_
+_source line 1154 · 2026-05-29T05:14:43.942524+00:00_
 
 1	# SSR (Safe Success Rate) Analysis
 2	# Computed 2026-05-27 by worker_analysis_ssr_computation_20260527T113223
@@ -15618,7 +15434,7 @@ _source line 1160 · 2026-05-29T05:14:43.942524+00:00_
 
 ### Tool call
 
-_source line 1161 · 2026-05-29T05:19:22.279087+00:00_
+_source line 1155 · 2026-05-29T05:19:22.279087+00:00_
 
 called Agent
 
@@ -15656,7 +15472,7 @@ called Agent
 
 ### Tool call
 
-_source line 1162 · 2026-05-29T05:19:34.929094+00:00_
+_source line 1156 · 2026-05-29T05:19:34.929094+00:00_
 
 called Bash
 
@@ -15690,7 +15506,7 @@ called Bash
 
 ### Tool result
 
-_source line 1163 · 2026-05-29T05:19:35.080184+00:00_
+_source line 1157 · 2026-05-29T05:19:35.080184+00:00_
 
 1. LoRA-only mean CAR
    Calculated: mean = 54.83, std = 2.25
@@ -15775,7 +15591,7 @@ _source line 1163 · 2026-05-29T05:19:35.080184+00:00_
 
 ### Tool result
 
-_source line 1164 · 2026-05-29T05:19:42.212677+00:00_
+_source line 1158 · 2026-05-29T05:19:42.212677+00:00_
 
 ## Summary
 
@@ -15820,7 +15636,7 @@ duration_ms: 19918&lt;/usage>
 
 ### Tool call
 
-_source line 1165 · 2026-05-29T05:20:34.899003+00:00_
+_source line 1159 · 2026-05-29T05:20:34.899003+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15856,7 +15672,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1166 · 2026-05-29T05:20:35.401587+00:00_
+_source line 1160 · 2026-05-29T05:20:35.401587+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-35807_20260529T044848\", \"status\": \"done\", \"task_type\": \"gpu-check:westd-35807\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T04:48:48.989809+00:00\", \"ended_at\": \"2026-05-29T05:05:17.314837+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## westd-35807 服务器状态汇总\\n\\n### GPU 状态\\n| GPU | 型号 | 显存使用 | 利用率 | 温度 | 功耗 |\\n|-----|------|---------|--------|------|------|\\n| 0 | RTX PRO 6000 (98GB) | 19.1GB / 98GB | 100% | 63°C | 464W/600W |\\n\\n**GPU 1-3 空闲**（nvidia-smi 未显示）。\\n\\n### 活跃训练\\n**train_pi05_lora_baseline_s3_v2** — 正在跑\\n- PID: 93400（父进程 93395）\\n- 命令: `train_pi05_lora_baseline.py --scene object_pudding --seed 3 --gpu 0 --batch_size 32 --num_train_steps 30000`\\n- 当前进度: **step 3603 / 30000 (12%)**，运行 1h13m\\n- 速度: **~1.20 s/it**（稳定）\\n- Loss: ~0.12，lr=2.46e-05\\n- 预计剩余: ~8h48m（总约 10h）\\n- 日志: `/tmp/train_lora_s3_restart.log`\\n\\n### eval_pi05_a1_best_s0_l005\\n**已完成**。结果文件 `eval_pi05_a1_best_s0_l005.json` 最后修改时间 May 28 07:37，不再有对应进程。\\n\\n### tmux\\n`tmux ls` 被 read-only 限制，无法执行。但从进程列表看，训练是通过 nohup 启动的，非 tmux。\\n\\n### 磁盘\\n| 挂载点 | 总计 | 已用 | 可用 | 使用率 |\\n|--------|------|------|------|--------|\\n| /root/autodl-tmp | 350G | 282G | 69G | **81%** |\\n\\n### 最近 eval 结果（/root/autodl-tmp/eval_results/）\\n最新: `eval_oracle_pi05_lora_s0.json` — May 29 09:33\\n\\n### 最近训练日志（/root/colliforce-vla/logs/）\\n最新: `eval_s0_l01_30k_seed7.log` — May 27 18:23（2天前，无新日志产出）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15878,7 +15694,7 @@ _source line 1166 · 2026-05-29T05:20:35.401587+00:00_
 
 ### Tool call
 
-_source line 1167 · 2026-05-29T05:20:35.402107+00:00_
+_source line 1161 · 2026-05-29T05:20:35.402107+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15914,7 +15730,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1168 · 2026-05-29T05:20:35.804390+00:00_
+_source line 1162 · 2026-05-29T05:20:35.804390+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-45947_20260529T050540\", \"status\": \"done\", \"task_type\": \"gpu-check:westd-45947\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T05:05:40.544547+00:00\", \"ended_at\": \"2026-05-29T05:09:22.090908+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All data collected. Here's the complete report.\\n\\n---\\n\\n## Part 1: westd-45947 服务器状态\\n\\n| 指标 | 值 |\\n|------|-----|\\n| **GPU 0** | RTX PRO 6000, 72°C, 464W/600W, 19107/97887 MiB, 100% util |\\n| **活跃进程** | `train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --resume` (PID 41134) |\\n| **训练进度** | step 3099/30000 (10%), ~1.25s/it, 预计还需 ~9.3h |\\n| **磁盘** | /root/autodl-tmp: 204G/250G used (82%), 47G free |\\n| **tmux** | 无法检查 (read-only 模式限制) |\\n\\n---\\n\\n## Part 2: 实验结果文件完整目录\\n\\n### 训练日志 (`/root/colliforce-vla/logs/`)\\n\\n| 文件 | 日期 | 内容 |\\n|------|------|------|\\n| `a3_obj.log` | May 21 | A3 object 训练 — **FAILED** (AttributeError: 'GemmaModel' no 'model') |\\n| `a3_spa.log` | May 21 | A3 spatial 训练 — **FAILED** (同上) |\\n| `eval_lora_baseline_s0.log` | May 26 | LoRA baseline s0 eval → Overall TSR=8.5%, CAR=54.5% |\\n| `eval_lora_baseline_s1.log` | May 26 | LoRA baseline s1 eval → Overall TSR=4%, CAR=56% |\\n| `eval_pi05_baseline_reeval_disp.log` | May 26 | Pi0.5 base reeval (200eps), TSR=0% all tasks (model_type=baseline, 似乎不是 pi0.5 finetuned) |\\n\\n### 活跃训练 (`/tmp/`)\\n- `train_sdf_s3_l01_resume.log` — SDF seed3 lambda=0.01, resumed from step 2000, 当前 step ~3099\\n\\n---\\n\\n### Checkpoint 目录 (`/root/autodl-tmp/checkpoints/`)\\n\\n| 目录 | 子目录数 | 内容 |\\n|------|---------|------|\\n| `a1_sdf_pi05_object_pudding/` | 13 | 见下方详细列表 |\\n| `a1_sdf_pi05_spatial_bowl/` | 1 | seed0 (空) |\\n| `a3_grad_refine_object_pudding/` | 1 | seed0 (best + 30000) |\\n| `a3_grad_refine_spatial_bowl/` | 1 | seed0 (best + 30000) |\\n| `baseline_object_pudding/` | 1
 …[truncated 5225 chars]
@@ -15937,7 +15753,7 @@ _source line 1168 · 2026-05-29T05:20:35.804390+00:00_
 
 ### Tool call
 
-_source line 1169 · 2026-05-29T05:20:35.905207+00:00_
+_source line 1163 · 2026-05-29T05:20:35.905207+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -15973,7 +15789,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1170 · 2026-05-29T05:20:36.006212+00:00_
+_source line 1164 · 2026-05-29T05:20:36.006212+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_results-catalog_westd-35807_20260529T050549\", \"status\": \"done\", \"task_type\": \"results-catalog:westd-35807\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T05:05:49.639963+00:00\", \"ended_at\": \"2026-05-29T05:12:37.422777+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"审计文件已写入 `artifacts/eval_results_audit_20260529.md`。\\n\\n**汇总**：\\n\\n- **57 个 eval JSON 文件**：56 个在 `/root/autodl-tmp/eval_results/`，1 个在 `/root/colliforce-vla/eval_results/`\\n- **覆盖范围**：\\n  - **Object suite (safelibero_object)**: 53 个文件，4 tasks (orange_juice, chocolate_pudding, milk, bbq_sauce)\\n  - **Spatial suite (safelibero_spatial)**: 4 个文件，4 tasks (bowl variants)\\n- **模型类型**：lora_baseline (LoRA), baseline (full-ft/pretrained pi05), a3 (gradient refine), pi05_libero (pretrained)\\n- **lambda 变体**：l0 (no SDF), l005 (λ=0.005), l01 (λ=0.01), l1 (λ=0.1)\\n- **训练种子**：seed0, seed1, seed2\\n- **评估种子**：seed 0/1/2/3/7/42/99/123\\n- **Collision threshold**: 统一 0.001\\n- **37 个训练/eval 日志**在 `logs/`\\n- **16 个 checkpoint 子目录**跨 object_pudding 和 spatial_bowl\\n\\n所有 per-task TSR/CAR/smoothness/max_displacement/max_ee_displacement 指标已完整记录在审计文件中，可用于论文数字对账。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -15995,7 +15811,7 @@ _source line 1170 · 2026-05-29T05:20:36.006212+00:00_
 
 ### Tool call
 
-_source line 1171 · 2026-05-29T05:20:58.720892+00:00_
+_source line 1165 · 2026-05-29T05:20:58.720892+00:00_
 
 called Read
 
@@ -16031,7 +15847,7 @@ called Read
 
 ### Tool result
 
-_source line 1172 · 2026-05-29T05:20:58.771585+00:00_
+_source line 1166 · 2026-05-29T05:20:58.771585+00:00_
 
 1	# Eval Results Audit — westd-35807
 2	**Generated**: 2026-05-29
@@ -16119,7 +15935,7 @@ _source line 1172 · 2026-05-29T05:20:58.771585+00:00_
 
 ### Tool call
 
-_source line 1173 · 2026-05-29T05:21:06.801531+00:00_
+_source line 1167 · 2026-05-29T05:21:06.801531+00:00_
 
 called Read
 
@@ -16157,7 +15973,7 @@ called Read
 
 ### Tool result
 
-_source line 1174 · 2026-05-29T05:21:06.852609+00:00_
+_source line 1168 · 2026-05-29T05:21:06.852609+00:00_
 
 200	- task=0/orange_juice: TSR=0.0, CAR=0.64, smooth=0.001318, max_disp=0.033748, max_ee_disp=0.469388
 201	- task=1/chocolate_pudding: TSR=0.36, CAR=0.28, smooth=0.001735, max_disp=0.094278, max_ee_disp=0.564312
@@ -16208,7 +16024,7 @@ _source line 1174 · 2026-05-29T05:21:06.852609+00:00_
 
 ### Assistant
 
-_source line 1175 · 2026-05-29T05:24:15.377872+00:00_
+_source line 1169 · 2026-05-29T05:24:15.377872+00:00_
 
 Workers 完成。关键发现：
 
@@ -16241,7 +16057,7 @@ Workers 完成。关键发现：
 
 ### User
 
-_source line 1176 · 2026-05-29T05:24:15.886391+00:00_
+_source line 1170 · 2026-05-29T05:24:15.886391+00:00_
 
 [Director 指令] **插队小任务（5 分钟内完成）**：复查 westd-45947 训练速度。
 
@@ -16270,7 +16086,7 @@ _source line 1176 · 2026-05-29T05:24:15.886391+00:00_
 
 ### Tool call
 
-_source line 1177 · 2026-05-29T05:26:46.129165+00:00_
+_source line 1171 · 2026-05-29T05:26:46.129165+00:00_
 
 called Read
 
@@ -16308,7 +16124,7 @@ called Read
 
 ### Tool result
 
-_source line 1178 · 2026-05-29T05:26:46.581590+00:00_
+_source line 1172 · 2026-05-29T05:26:46.581590+00:00_
 
 400	- task=2/milk: TSR=0.0, CAR=0.88, smooth=0.001177, max_disp=0.009633
 401	- task=3/bbq_sauce: TSR=0.0, CAR=0.12, smooth=0.001101, max_disp=0.087434
@@ -16362,7 +16178,7 @@ _source line 1178 · 2026-05-29T05:26:46.581590+00:00_
 
 ### Tool call
 
-_source line 1179 · 2026-05-29T05:26:46.732520+00:00_
+_source line 1173 · 2026-05-29T05:26:46.732520+00:00_
 
 called Read
 
@@ -16400,7 +16216,7 @@ called Read
 
 ### Tool result
 
-_source line 1180 · 2026-05-29T05:26:46.783249+00:00_
+_source line 1174 · 2026-05-29T05:26:46.783249+00:00_
 
 0	# Phase 1 Number Extraction — Data Authenticity Audit
 1	
@@ -16459,7 +16275,7 @@ _source line 1180 · 2026-05-29T05:26:46.783249+00:00_
 
 ### Tool call
 
-_source line 1181 · 2026-05-29T05:27:19.483306+00:00_
+_source line 1175 · 2026-05-29T05:27:19.483306+00:00_
 
 called Read
 
@@ -16497,7 +16313,7 @@ called Read
 
 ### Tool result
 
-_source line 1182 · 2026-05-29T05:27:20.387616+00:00_
+_source line 1176 · 2026-05-29T05:27:20.387616+00:00_
 
 0	# Eval Results Audit — westd-35807
 1	**Generated**: 2026-05-29
@@ -16585,7 +16401,7 @@ _source line 1182 · 2026-05-29T05:27:20.387616+00:00_
 
 ### Tool call
 
-_source line 1183 · 2026-05-29T05:27:20.438369+00:00_
+_source line 1177 · 2026-05-29T05:27:20.438369+00:00_
 
 called Read
 
@@ -16623,7 +16439,7 @@ called Read
 
 ### Tool result
 
-_source line 1184 · 2026-05-29T05:27:20.489170+00:00_
+_source line 1178 · 2026-05-29T05:27:20.489170+00:00_
 
 100	L46 | 0 | "TSR\,=\,0\%" (Pi0+A1 action collapse) | result
 101	
@@ -16683,7 +16499,7 @@ _source line 1184 · 2026-05-29T05:27:20.489170+00:00_
 
 ### Tool call
 
-_source line 1185 · 2026-05-29T05:29:22.687291+00:00_
+_source line 1179 · 2026-05-29T05:29:22.687291+00:00_
 
 called Read
 
@@ -16721,7 +16537,7 @@ called Read
 
 ### Tool result
 
-_source line 1186 · 2026-05-29T05:29:23.165106+00:00_
+_source line 1180 · 2026-05-29T05:29:23.165106+00:00_
 
 300	L10 | 0.155 | "$p = 0.155$" | stat
 301	L14 | 3 | "Statistical power is limited by $n{=}3$ seeds per condition" | dataset
@@ -16781,7 +16597,7 @@ _source line 1186 · 2026-05-29T05:29:23.165106+00:00_
 
 ### Tool call
 
-_source line 1187 · 2026-05-29T05:29:23.818052+00:00_
+_source line 1181 · 2026-05-29T05:29:23.818052+00:00_
 
 called Grep
 
@@ -16821,7 +16637,7 @@ called Grep
 
 ### Tool result
 
-_source line 1188 · 2026-05-29T05:29:23.868665+00:00_
+_source line 1182 · 2026-05-29T05:29:23.868665+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/archive/analysis_claim1.tex:23:{\footnotesize $^\dagger$ Denominator $< 5$; statistically unreliable. Pi0.5 row from single-seed re-evaluation (seed~7, 200 episodes) with EE displacement recording; all safe episodes exceed 288\,mm displacement.}
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex:105:\caption{Per-task TSR (\%) at 30K training steps. Baseline reports the unified seed-7 re-evaluation (aggregate TSR\,=\,71.5\%). LoRA-only reports 3-seed means (re-evaluated with unified seed-7 protocol); SDF conditions report 3-seed means.}
@@ -16849,7 +16665,7 @@ _source line 1188 · 2026-05-29T05:29:23.868665+00:00_
 
 ### Tool call
 
-_source line 1189 · 2026-05-29T05:31:06.894305+00:00_
+_source line 1183 · 2026-05-29T05:31:06.894305+00:00_
 
 called Grep
 
@@ -16891,7 +16707,7 @@ called Grep
 
 ### Tool result
 
-_source line 1190 · 2026-05-29T05:31:07.697677+00:00_
+_source line 1184 · 2026-05-29T05:31:07.697677+00:00_
 
 310-
 311-
@@ -16928,7 +16744,7 @@ _source line 1190 · 2026-05-29T05:31:07.697677+00:00_
 
 ### Tool call
 
-_source line 1191 · 2026-05-29T05:31:07.848589+00:00_
+_source line 1185 · 2026-05-29T05:31:07.848589+00:00_
 
 called Read
 
@@ -16966,7 +16782,7 @@ called Read
 
 ### Tool result
 
-_source line 1192 · 2026-05-29T05:31:07.899401+00:00_
+_source line 1186 · 2026-05-29T05:31:07.899401+00:00_
 
 600	L238 | 58 | "three $\lambda = 0.1$ values $\{58, 58.5, 54.5\}$" | result
 601	L238 | 58.5 | "$\{58, 58.5, 54.5\}$" | result
@@ -17022,7 +16838,7 @@ _source line 1192 · 2026-05-29T05:31:07.899401+00:00_
 
 ### Tool call
 
-_source line 1193 · 2026-05-29T05:36:33.530039+00:00_
+_source line 1187 · 2026-05-29T05:36:33.530039+00:00_
 
 called Write
 
@@ -17058,7 +16874,7 @@ called Write
 
 ### Tool result
 
-_source line 1194 · 2026-05-29T05:36:33.531138+00:00_
+_source line 1188 · 2026-05-29T05:36:33.531138+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/data_audit_report.md
 
@@ -17080,7 +16896,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515/p
 
 ### Tool call
 
-_source line 1195 · 2026-05-29T05:36:39.605572+00:00_
+_source line 1189 · 2026-05-29T05:36:39.605572+00:00_
 
 called ToolSearch
 
@@ -17116,7 +16932,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1196 · 2026-05-29T05:36:39.606005+00:00_
+_source line 1190 · 2026-05-29T05:36:39.606005+00:00_
 
 
 
@@ -17138,7 +16954,7 @@ _source line 1196 · 2026-05-29T05:36:39.606005+00:00_
 
 ### Tool call
 
-_source line 1197 · 2026-05-29T05:36:51.701529+00:00_
+_source line 1191 · 2026-05-29T05:36:51.701529+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -17182,7 +16998,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 1198 · 2026-05-29T05:36:51.902645+00:00_
+_source line 1192 · 2026-05-29T05:36:51.902645+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260529_a8bf20\", \"name\": \"data_audit_report\", \"type\": \"report\", \"description\": \"Full-paper data authenticity & traceability audit report for CoRL 2026 submission. Covers ~950 numbers across 10 tex files, with reconciliation table, 11 issues found (3 source-not-found, 5 mismatch, 3 stale data), fix suggestions, and residual risks.\", \"path\": \"projects/diff_collision_sdf/artifacts/_project/report/data_audit_report.md\", \"url\": null, \"project\": \"diff_collision_sdf\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-29T05:36:51.697376+00:00\", \"tags\": [\"audit\", \"data-integrity\", \"corl2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -17204,7 +17020,7 @@ _source line 1198 · 2026-05-29T05:36:51.902645+00:00_
 
 ### Tool call
 
-_source line 1199 · 2026-05-29T05:37:21.702320+00:00_
+_source line 1193 · 2026-05-29T05:37:21.702320+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -17240,7 +17056,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1200 · 2026-05-29T05:37:25.294605+00:00_
+_source line 1194 · 2026-05-29T05:37:25.294605+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -17262,7 +17078,7 @@ _source line 1200 · 2026-05-29T05:37:25.294605+00:00_
 
 ### Assistant
 
-_source line 1201 · 2026-05-29T05:37:39.790353+00:00_
+_source line 1195 · 2026-05-29T05:37:39.790353+00:00_
 
 审计报告已完成并提交。
 
@@ -17296,7 +17112,7 @@ _source line 1201 · 2026-05-29T05:37:39.790353+00:00_
 
 ### User
 
-_source line 1202 · 2026-05-29T05:37:39.802577+00:00_
+_source line 1196 · 2026-05-29T05:37:39.802577+00:00_
 
 [WORKER DONE] Worker worker_gpu-check_westd-35807_20260529T044848 已完成（status=done）。用 `get_worker_status('worker_gpu-check_westd-35807_20260529T044848')` 读取结果，然后处理。
 
@@ -17321,7 +17137,7 @@ _source line 1202 · 2026-05-29T05:37:39.802577+00:00_
 
 ### Tool call
 
-_source line 1203 · 2026-05-29T05:37:51.488099+00:00_
+_source line 1197 · 2026-05-29T05:37:51.488099+00:00_
 
 called ToolSearch
 
@@ -17357,7 +17173,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1204 · 2026-05-29T05:37:51.538791+00:00_
+_source line 1198 · 2026-05-29T05:37:51.538791+00:00_
 
 
 
@@ -17379,7 +17195,7 @@ _source line 1204 · 2026-05-29T05:37:51.538791+00:00_
 
 ### Tool call
 
-_source line 1205 · 2026-05-29T05:37:53.648494+00:00_
+_source line 1199 · 2026-05-29T05:37:53.648494+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17413,7 +17229,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1206 · 2026-05-29T05:37:53.749370+00:00_
+_source line 1200 · 2026-05-29T05:37:53.749370+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-35807_20260529T044848\", \"status\": \"done\", \"task_type\": \"gpu-check:westd-35807\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T04:48:48.989809+00:00\", \"ended_at\": \"2026-05-29T05:05:17.314837+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## westd-35807 服务器状态汇总\\n\\n### GPU 状态\\n| GPU | 型号 | 显存使用 | 利用率 | 温度 | 功耗 |\\n|-----|------|---------|--------|------|------|\\n| 0 | RTX PRO 6000 (98GB) | 19.1GB / 98GB | 100% | 63°C | 464W/600W |\\n\\n**GPU 1-3 空闲**（nvidia-smi 未显示）。\\n\\n### 活跃训练\\n**train_pi05_lora_baseline_s3_v2** — 正在跑\\n- PID: 93400（父进程 93395）\\n- 命令: `train_pi05_lora_baseline.py --scene object_pudding --seed 3 --gpu 0 --batch_size 32 --num_train_steps 30000`\\n- 当前进度: **step 3603 / 30000 (12%)**，运行 1h13m\\n- 速度: **~1.20 s/it**（稳定）\\n- Loss: ~0.12，lr=2.46e-05\\n- 预计剩余: ~8h48m（总约 10h）\\n- 日志: `/tmp/train_lora_s3_restart.log`\\n\\n### eval_pi05_a1_best_s0_l005\\n**已完成**。结果文件 `eval_pi05_a1_best_s0_l005.json` 最后修改时间 May 28 07:37，不再有对应进程。\\n\\n### tmux\\n`tmux ls` 被 read-only 限制，无法执行。但从进程列表看，训练是通过 nohup 启动的，非 tmux。\\n\\n### 磁盘\\n| 挂载点 | 总计 | 已用 | 可用 | 使用率 |\\n|--------|------|------|------|--------|\\n| /root/autodl-tmp | 350G | 282G | 69G | **81%** |\\n\\n### 最近 eval 结果（/root/autodl-tmp/eval_results/）\\n最新: `eval_oracle_pi05_lora_s0.json` — May 29 09:33\\n\\n### 最近训练日志（/root/colliforce-vla/logs/）\\n最新: `eval_s0_l01_30k_seed7.log` — May 27 18:23（2天前，无新日志产出）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17435,7 +17251,7 @@ _source line 1206 · 2026-05-29T05:37:53.749370+00:00_
 
 ### Tool call
 
-_source line 1207 · 2026-05-29T05:38:08.685224+00:00_
+_source line 1201 · 2026-05-29T05:38:08.685224+00:00_
 
 called ToolSearch
 
@@ -17471,7 +17287,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1208 · 2026-05-29T05:38:08.736600+00:00_
+_source line 1202 · 2026-05-29T05:38:08.736600+00:00_
 
 
 
@@ -17493,7 +17309,7 @@ _source line 1208 · 2026-05-29T05:38:08.736600+00:00_
 
 ### Tool call
 
-_source line 1209 · 2026-05-29T05:38:18.022347+00:00_
+_source line 1203 · 2026-05-29T05:38:18.022347+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17531,7 +17347,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1210 · 2026-05-29T05:38:18.424338+00:00_
+_source line 1204 · 2026-05-29T05:38:18.424338+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3733}}"}
 
@@ -17553,7 +17369,7 @@ _source line 1210 · 2026-05-29T05:38:18.424338+00:00_
 
 ### Tool call
 
-_source line 1211 · 2026-05-29T05:38:29.645252+00:00_
+_source line 1205 · 2026-05-29T05:38:29.645252+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -17589,7 +17405,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1212 · 2026-05-29T05:38:29.997803+00:00_
+_source line 1206 · 2026-05-29T05:38:29.997803+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"train_pi05_a1_obj_s3_l01_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-29T04:44:37.994Z\", \"updated_at\": \"2026-05-29T04:44:59.772Z\", \"hypothesis\": \"SDF auxiliary loss (λ=0.01) seed3 on object_pudding 30K steps: v2 resume from step 2000 after disk cleanup on westd-45947 (freed 47.6GB). 4th seed for rebuttal statistical power.\", \"parent\": \"train_pi05_a1_obj_s3_l01\"}, \"train_pi05_lora_baseline_s3_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-29T04:02:08.893Z\", \"updated_at\": \"2026-05-29T04:02:44.363Z\", \"hypothesis\": \"LoRA baseline (no SDF) seed3 on object_pudding 30K steps: 4th seed for rebuttal statistical power. v2 restart after fixing LeRobot dataset API patch on westd-35807 (same 4 patches as westd-45947).\", \"parent\": \"train_pi05_lora_baseline_s3\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3558}}"}
 
@@ -17611,7 +17427,7 @@ _source line 1212 · 2026-05-29T05:38:29.997803+00:00_
 
 ### Assistant
 
-_source line 1213 · 2026-05-29T05:38:40.212748+00:00_
+_source line 1207 · 2026-05-29T05:38:40.212748+00:00_
 
 `eval_pi05_a1_best_s0_l005` 不在 registry 中（从未注册），无需更新。两个 RUNNING 实验状态正常：
 - `train_pi05_lora_baseline_s3_v2`: westd-35807 GPU 0, step 3603/30K, 1.20s/it
@@ -17642,7 +17458,7 @@ _source line 1213 · 2026-05-29T05:38:40.212748+00:00_
 
 ### User
 
-_source line 1214 · 2026-05-29T05:38:40.861080+00:00_
+_source line 1208 · 2026-05-29T05:38:40.861080+00:00_
 
 [WORKER DONE] Worker worker_gpu-check_westd-45947_20260529T050540 已完成（status=done）。用 `get_worker_status('worker_gpu-check_westd-45947_20260529T050540')` 读取结果，然后处理。
 
@@ -17667,7 +17483,7 @@ _source line 1214 · 2026-05-29T05:38:40.861080+00:00_
 
 ### Tool call
 
-_source line 1215 · 2026-05-29T05:38:45.550628+00:00_
+_source line 1209 · 2026-05-29T05:38:45.550628+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17701,7 +17517,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1216 · 2026-05-29T05:38:45.651830+00:00_
+_source line 1210 · 2026-05-29T05:38:45.651830+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu-check_westd-45947_20260529T050540\", \"status\": \"done\", \"task_type\": \"gpu-check:westd-45947\", \"project\": \"diff_collision_sdf\", \"started_at\": \"2026-05-29T05:05:40.544547+00:00\", \"ended_at\": \"2026-05-29T05:09:22.090908+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"All data collected. Here's the complete report.\\n\\n---\\n\\n## Part 1: westd-45947 服务器状态\\n\\n| 指标 | 值 |\\n|------|-----|\\n| **GPU 0** | RTX PRO 6000, 72°C, 464W/600W, 19107/97887 MiB, 100% util |\\n| **活跃进程** | `train_a1_sdf_aux_pi05.py --scene object_pudding --seed 3 --lambda_sdf 0.01 --resume` (PID 41134) |\\n| **训练进度** | step 3099/30000 (10%), ~1.25s/it, 预计还需 ~9.3h |\\n| **磁盘** | /root/autodl-tmp: 204G/250G used (82%), 47G free |\\n| **tmux** | 无法检查 (read-only 模式限制) |\\n\\n---\\n\\n## Part 2: 实验结果文件完整目录\\n\\n### 训练日志 (`/root/colliforce-vla/logs/`)\\n\\n| 文件 | 日期 | 内容 |\\n|------|------|------|\\n| `a3_obj.log` | May 21 | A3 object 训练 — **FAILED** (AttributeError: 'GemmaModel' no 'model') |\\n| `a3_spa.log` | May 21 | A3 spatial 训练 — **FAILED** (同上) |\\n| `eval_lora_baseline_s0.log` | May 26 | LoRA baseline s0 eval → Overall TSR=8.5%, CAR=54.5% |\\n| `eval_lora_baseline_s1.log` | May 26 | LoRA baseline s1 eval → Overall TSR=4%, CAR=56% |\\n| `eval_pi05_baseline_reeval_disp.log` | May 26 | Pi0.5 base reeval (200eps), TSR=0% all tasks (model_type=baseline, 似乎不是 pi0.5 finetuned) |\\n\\n### 活跃训练 (`/tmp/`)\\n- `train_sdf_s3_l01_resume.log` — SDF seed3 lambda=0.01, resumed from step 2000, 当前 step ~3099\\n\\n---\\n\\n### Checkpoint 目录 (`/root/autodl-tmp/checkpoints/`)\\n\\n| 目录 | 子目录数 | 内容 |\\n|------|---------|------|\\n| `a1_sdf_pi05_object_pudding/` | 13 | 见下方详细列表 |\\n| `a1_sdf_pi05_spatial_bowl/` | 1 | seed0 (空) |\\n| `a3_grad_refine_object_pudding/` | 1 | seed0 (best + 30000) |\\n| `a3_grad_refine_spatial_bowl/` | 1 | seed0 (best + 30000) |\\n| `baseline_object_pudding/` | 1
 …[truncated 5225 chars]
@@ -17724,7 +17540,7 @@ _source line 1216 · 2026-05-29T05:38:45.651830+00:00_
 
 ### Assistant
 
-_source line 1217 · 2026-05-29T05:39:11.366026+00:00_
+_source line 1211 · 2026-05-29T05:39:11.366026+00:00_
 
 westd-45947 状态确认：GPU 0 跑 train_pi05_a1_obj_s3_l01_v2 (step 3099/30K, 1.25s/it, ~9.3h remaining)。磁盘 82%，47GB 可用。
 
@@ -17755,7 +17571,7 @@ westd-45947 状态确认：GPU 0 跑 train_pi05_a1_obj_s3_l01_v2 (step 3099/30K,
 
 ### User
 
-_source line 1218 · 2026-05-29T05:39:12.102909+00:00_
+_source line 1212 · 2026-05-29T05:39:12.102909+00:00_
 
 [WORKER DONE] Worker worker_results-catalog_westd-35807_20260529T050549 已完成（status=done）。用 `get_worker_status('worker_results-catalog_westd-35807_20260529T050549')` 读取结果，然后处理。
 
@@ -17780,7 +17596,7 @@ _source line 1218 · 2026-05-29T05:39:12.102909+00:00_
 
 ### Assistant
 
-_source line 1219 · 2026-05-29T05:39:22.516609+00:00_
+_source line 1213 · 2026-05-29T05:39:22.516609+00:00_
 
 这个 Worker 的产出（westd-35807 eval 结果目录）已在审计中使用完毕，不需要额外处理。审计报告已提交给 Director。
 
@@ -17807,7 +17623,7 @@ _source line 1219 · 2026-05-29T05:39:22.516609+00:00_
 
 ### User
 
-_source line 1220 · 2026-05-29T05:39:23.152810+00:00_
+_source line 1214 · 2026-05-29T05:39:23.152810+00:00_
 
 [Director 指令] ## 紧急：审计高优先级问题调查 + 修复
 
@@ -17865,7 +17681,7 @@ _source line 1220 · 2026-05-29T05:39:23.152810+00:00_
 
 ### Tool call
 
-_source line 1221 · 2026-05-29T05:39:43.099818+00:00_
+_source line 1215 · 2026-05-29T05:39:43.099818+00:00_
 
 called ToolSearch
 
@@ -17901,7 +17717,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1222 · 2026-05-29T05:39:43.201098+00:00_
+_source line 1216 · 2026-05-29T05:39:43.201098+00:00_
 
 
 
@@ -17923,7 +17739,7 @@ _source line 1222 · 2026-05-29T05:39:43.201098+00:00_
 
 ### Tool call
 
-_source line 1223 · 2026-05-29T05:39:45.409680+00:00_
+_source line 1217 · 2026-05-29T05:39:45.409680+00:00_
 
 called mcp__agent-ml-research__load_project_config
 
@@ -17959,7 +17775,7 @@ called mcp__agent-ml-research__load_project_config
 
 ### Tool result
 
-_source line 1224 · 2026-05-29T05:39:45.461630+00:00_
+_source line 1218 · 2026-05-29T05:39:45.461630+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"project\": \"diff_collision_sdf\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-35807:cuda:0\", \"westd-45947:cuda:0\"], \"gpu_ids\": [\"cuda:0\"], \"project_path\": \"/root/colliforce-vla\", \"servers\": [\"westd-35807\", {\"account\": \"root\", \"server\": \"westd-45947\"}]}}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17981,7 +17797,7 @@ _source line 1224 · 2026-05-29T05:39:45.461630+00:00_
 
 ### Tool call
 
-_source line 1225 · 2026-05-29T05:40:16.375069+00:00_
+_source line 1219 · 2026-05-29T05:40:16.375069+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -18021,7 +17837,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1226 · 2026-05-29T05:40:28.676329+00:00_
+_source line 1220 · 2026-05-29T05:40:28.676329+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_audit_search-westd-35807_20260529T054016\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_audit_search-westd-35807_20260529T054016.log\", \"setup_data\": {}, \"message\": \"Worker worker_audit_search-westd-35807_20260529T054016 started. Use get_worker_status('worker_audit_search-westd-35807_20260529T054016') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18043,7 +17859,7 @@ _source line 1226 · 2026-05-29T05:40:28.676329+00:00_
 
 ### Tool call
 
-_source line 1227 · 2026-05-29T05:40:28.777231+00:00_
+_source line 1221 · 2026-05-29T05:40:28.777231+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -18083,7 +17899,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1228 · 2026-05-29T05:40:32.094031+00:00_
+_source line 1222 · 2026-05-29T05:40:32.094031+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_audit_search-westd-45947_20260529T054029\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/logs/workers/worker_audit_search-westd-45947_20260529T054029.log\", \"setup_data\": {}, \"message\": \"Worker worker_audit_search-westd-45947_20260529T054029 started. Use get_worker_status('worker_audit_search-westd-45947_20260529T054029') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18105,7 +17921,7 @@ _source line 1228 · 2026-05-29T05:40:32.094031+00:00_
 
 ### Tool call
 
-_source line 1229 · 2026-05-29T05:40:42.283174+00:00_
+_source line 1223 · 2026-05-29T05:40:42.283174+00:00_
 
 called Grep
 
@@ -18147,7 +17963,7 @@ called Grep
 
 ### Tool result
 
-_source line 1230 · 2026-05-29T05:40:42.684887+00:00_
+_source line 1224 · 2026-05-29T05:40:42.684887+00:00_
 
 234-\label{sec:appendix_null}
 235-
@@ -18173,7 +17989,7 @@ _source line 1230 · 2026-05-29T05:40:42.684887+00:00_
 
 ### Tool call
 
-_source line 1231 · 2026-05-29T05:40:43.738680+00:00_
+_source line 1225 · 2026-05-29T05:40:43.738680+00:00_
 
 called Grep
 
@@ -18215,7 +18031,7 @@ called Grep
 
 ### Tool result
 
-_source line 1232 · 2026-05-29T05:40:44.190687+00:00_
+_source line 1226 · 2026-05-29T05:40:44.190687+00:00_
 
 27-
 28-\paragraph{CAR--TSR trade-off.}\label{sec:tsr_collapse}
@@ -18241,7 +18057,7 @@ _source line 1232 · 2026-05-29T05:40:44.190687+00:00_
 
 ### Tool call
 
-_source line 1233 · 2026-05-29T05:40:44.893649+00:00_
+_source line 1227 · 2026-05-29T05:40:44.893649+00:00_
 
 called Grep
 
@@ -18283,7 +18099,7 @@ called Grep
 
 ### Tool result
 
-_source line 1234 · 2026-05-29T05:40:44.946599+00:00_
+_source line 1228 · 2026-05-29T05:40:44.946599+00:00_
 
 No matches found
 
@@ -18305,7 +18121,7 @@ No matches found
 
 ### Tool call
 
-_source line 1235 · 2026-05-29T05:40:48.309349+00:00_
+_source line 1229 · 2026-05-29T05:40:48.309349+00:00_
 
 called Read
 
@@ -18343,7 +18159,7 @@ called Read
 
 ### Tool result
 
-_source line 1236 · 2026-05-29T05:40:48.761406+00:00_
+_source line 1230 · 2026-05-29T05:40:48.761406+00:00_
 
 235	
 236	We construct a null distribution by pooling the three LoRA-only seeds and three $\lambda = 0.005$ seeds into six per-seed CAR measurements: 57.0\% (LoRA s0, re-evaluated), 52.5\% (LoRA s1), 55.0\% (LoRA s2), 57.0\% ($\lambda{=}0.005$ s0), 54.0\% ($\lambda{=}0.005$ s1), 52.5\% ($\lambda{=}0.005$ s2), yielding mean 54.67\% and standard deviation 2.07\% (Bessel-corrected, $n{-}1 = 5$). We treat these as exchangeable because SDF at $\lambda = 0.005$ produces no separation from LoRA-only. The $\lambda = 0.01$ mean of 56.33\% falls within $0.8\sigma$ of this null ($p > 0.1$), consistent with seed-to-seed variation rather than a treatment effect. The $\lambda = 0.1$ 30K mean of 57.00\% (3 seeds: 58.0\%, 58.5\%, 54.5\%) yields a two-tailed permutation $p = 0.155$ (one-tailed $p = 0.071$). The result is non-significant at conventional thresholds ($\alpha = 0.05$).
@@ -18372,7 +18188,7 @@ _source line 1236 · 2026-05-29T05:40:48.761406+00:00_
 
 ### Tool call
 
-_source line 1237 · 2026-05-29T05:40:48.812091+00:00_
+_source line 1231 · 2026-05-29T05:40:48.812091+00:00_
 
 called Read
 
@@ -18410,7 +18226,7 @@ called Read
 
 ### Tool result
 
-_source line 1238 · 2026-05-29T05:40:48.913724+00:00_
+_source line 1232 · 2026-05-29T05:40:48.913724+00:00_
 
 0	\section{End-Effector-Only SDF Cannot Ensure Full-Body Safety}\label{sec:ee_only}
 1	
@@ -18464,7 +18280,7 @@ _source line 1238 · 2026-05-29T05:40:48.913724+00:00_
 
 ### Tool call
 
-_source line 1239 · 2026-05-29T05:40:58.919803+00:00_
+_source line 1233 · 2026-05-29T05:40:58.919803+00:00_
 
 called Edit
 
@@ -18504,7 +18320,7 @@ called Edit
 
 ### Tool result
 
-_source line 1240 · 2026-05-29T05:40:58.920307+00:00_
+_source line 1234 · 2026-05-29T05:40:58.920307+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/appendix.tex has been updated successfully.
 
@@ -18526,7 +18342,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 1241 · 2026-05-29T05:41:00.225317+00:00_
+_source line 1235 · 2026-05-29T05:41:00.225317+00:00_
 
 called Edit
 
@@ -18566,7 +18382,7 @@ called Edit
 
 ### Tool result
 
-_source line 1242 · 2026-05-29T05:41:00.225793+00:00_
+_source line 1236 · 2026-05-29T05:41:00.225793+00:00_
 
 &lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
 
@@ -18588,7 +18404,7 @@ _source line 1242 · 2026-05-29T05:41:00.225793+00:00_
 
 ### Tool call
 
-_source line 1243 · 2026-05-29T05:41:01.932163+00:00_
+_source line 1237 · 2026-05-29T05:41:01.932163+00:00_
 
 called Edit
 
@@ -18628,7 +18444,7 @@ called Edit
 
 ### Tool result
 
-_source line 1244 · 2026-05-29T05:41:01.983650+00:00_
+_source line 1238 · 2026-05-29T05:41:01.983650+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex has been updated successfully.
 
@@ -18650,7 +18466,7 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
 
 ### Tool call
 
-_source line 1245 · 2026-05-29T05:41:05.094846+00:00_
+_source line 1239 · 2026-05-29T05:41:05.094846+00:00_
 
 called Read
 
@@ -18688,7 +18504,7 @@ called Read
 
 ### Tool result
 
-_source line 1246 · 2026-05-29T05:41:05.195787+00:00_
+_source line 1240 · 2026-05-29T05:41:05.195787+00:00_
 
 27	
 28	\paragraph{CAR--TSR trade-off.}\label{sec:tsr_collapse}
@@ -18714,7 +18530,7 @@ _source line 1246 · 2026-05-29T05:41:05.195787+00:00_
 
 ### Tool call
 
-_source line 1247 · 2026-05-29T05:41:08.158026+00:00_
+_source line 1241 · 2026-05-29T05:41:08.158026+00:00_
 
 called Edit
 
@@ -18754,7 +18570,7 @@ called Edit
 
 ### Tool result
 
-_source line 1248 · 2026-05-29T05:41:08.208690+00:00_
+_source line 1242 · 2026-05-29T05:41:08.208690+00:00_
 
 The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim3.tex has been updated successfully.
 
@@ -18766,6 +18582,444 @@ The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisio
   "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
   "tool": "Edit",
   "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1243 · 2026-05-29T05:41:13.332772+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+  "offset": "26",
+  "limit": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+    "offset": "26",
+    "limit": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1244 · 2026-05-29T05:41:13.483826+00:00_
+
+26	Pi0.5 Oracle-adaptive & 51.9 & 0.0 & 14.2 \\
+27	\bottomrule
+28	\end{tabular}
+29	\end{table}
+30	
+31	Per-task analysis reveals the mechanism (Appendix~\ref{sec:appendix_pertask_oracle}). On the one task where the EE is the primary collision body, oracle refinement helps (+9 points). On the remaining three, the SDF gradient pushes the EE away from obstacles but rotates intermediate arm links into obstacle volumes; the net effect is one collision traded for another. The A3 learned SDF never triggers refinement (0 steps per episode).
+32	\begin{figure}[t]
+33	\centering
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1245 · 2026-05-29T05:41:17.967963+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+  "old_string": "\\end{table}\n\nPer-task analysis reveals the mechanism",
+  "new_string": "\\end{table}\n\\footnotetext{Oracle variants are evaluated with 160 episodes (4 tasks $\\times$ 40); all other conditions use 200 episodes (4 tasks $\\times$ 50).}\n\nPer-task analysis reveals the mechanism"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex",
+    "old_string": "\\end{table}\n\nPer-task analysis reveals the mechanism",
+    "new_string": "\\end{table}\n\\footnotetext{Oracle variants are evaluated with 160 episodes (4 tasks $\\times$ 40); all other conditions use 200 episodes (4 tasks $\\times$ 50).}\n\nPer-task analysis reveals the mechanism"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1246 · 2026-05-29T05:41:18.018655+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/docs/paper/claim2.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Edit",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1247 · 2026-05-29T05:41:20.929289+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/figures/fig5_lambda_data.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/figures/fig5_lambda_data.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1248 · 2026-05-29T05:41:20.980024+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/agent_e2e2cb9d.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1249 · 2026-05-29T05:41:25.345990+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/fig5_lambda_data.csv",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/fig5_lambda_data.csv",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1250 · 2026-05-29T05:41:25.446822+00:00_
+
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/fig5_lambda_data.csv
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1251 · 2026-05-29T05:41:28.753902+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1252 · 2026-05-29T05:41:29.055548+00:00_
+
+1	lambda,CAR_mean,CAR_std,CAR_seeds,TSR_mean,TSR_std,step,note
+2	0,54.67,2.02,"56.5;52.5;55.0",51.5,,30K,LoRA-only (no SDF) 3 seeds
+3	0.005,54.5,2.29,"57.0;54.0;52.5",54.0,3.0,30K,3 seeds
+4	0.01,56.33,1.61,"57.0;57.5;54.5",53.83,1.5,30K,3 seeds
+5	0.1,57.0,2.18,"58.0;58.5;54.5",50.17,3.88,30K,3 seeds
+6	
+7	# step-wise sub-table (for inset or supplementary)
+8	# lambda,step,CAR,TSR,seed,note
+9	# 0.1,16000,pending,pending,0,best loss checkpoint eval running
+10	# 0.1,20000,55,54,0,early signal
+11	# 0.1,20000,56,51,1,early signal
+12	# 0.1,22000,pending,pending,0,next after 16K
+13	# 0.1,30000,pending,pending,0,training ~17:00 UTC
+14	# 0.1,30000,pending,pending,1,training ~17:30 UTC
+15	# 0.1,30000,pending,pending,2,training ~08:00 UTC 5/28
+16	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1253 · 2026-05-29T05:41:29.055989+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/fig5_lambda_data.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/data/fig5_lambda_data.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1254 · 2026-05-29T05:41:29.156648+00:00_
+
+1	lambda,CAR_mean,CAR_std,CAR_seeds,TSR_mean,TSR_std,step,note
+2	0,54.83,2.26,"57.0;52.5;55.0",48.75,,30K,LoRA-only (no SDF) 3 seeds
+3	0.005,54.5,2.29,"57.0;54.0;52.5",54.0,3.0,30K,3 seeds
+4	0.01,56.33,1.61,"57.0;57.5;54.5",53.83,1.5,30K,3 seeds
+5	0.1,58.25,0.35,"58.0;58.5",48.0,1.4,30K,2 seeds (s2 training)
+6	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1255 · 2026-05-29T05:41:45.762559+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv",
+  "old_string": "0,54.67,2.02,\"56.5;52.5;55.0\",51.5,,30K,LoRA-only (no SDF) 3 seeds",
+  "new_string": "0,54.83,2.25,\"57.0;52.5;55.0\",49.7,3.2,30K,LoRA-only (no SDF) 3 seeds"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv",
+    "old_string": "0,54.67,2.02,\"56.5;52.5;55.0\",51.5,,30K,LoRA-only (no SDF) 3 seeds",
+    "new_string": "0,54.83,2.25,\"57.0;52.5;55.0\",49.7,3.2,30K,LoRA-only (no SDF) 3 seeds"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1256 · 2026-05-29T05:41:46.214496+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/fig5_lambda_data.csv has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17",
+  "tool": "Edit",
+  "elapsed_ms": 451
 }
 ```
 

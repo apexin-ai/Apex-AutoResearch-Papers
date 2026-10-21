@@ -7,125 +7,6 @@
       "messages": [
         {
           "source_line": 8281,
-          "timestamp": "2026-05-24T20:18:06.360579+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
-              "limit": "20"
-            }
-          },
-          "id": "event-008281"
-        },
-        {
-          "source_line": 8282,
-          "timestamp": "2026-05-24T20:18:06.963741+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). Taxonomically redundant tasks share identical action vocabularies, reward functions, and environmental dynamics, differing only in target entity; we retain one representative per family (Appendix~\\ref{app:per-task}). This scope limits generalizability: conclusions apply to the included subset; increasing the 30-step budget might surface signal in excluded types (see Limitations). An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}). Prescreening used $n{=}5$ episodes per task type; directional consistency (18/19 types favoring deterministic) rather than point estimates drives the inclusion criterion.\n5\t\n6\t\\subsection{Death Avoidance Decomposition}\n7\t\\label{sec:death-decomp}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\includegraphics[width=\\columnwidth]{figures/label_decomposition.pdf}\n12\t\\caption{Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20 non-death labels originate from a single task type (\\texttt{find-non-living-thing}).}\n13\t\\label{fig:label-decomposition}\n14\t\\end{figure}\n15\t\n16\tOf the 95 non-tie routing labels (Figure~\\ref{fig:label-decomposition}), 75 (78.9\\%; 95\\% CI: $\n…[truncated 1444 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 603
-          },
-          "id": "event-008282"
-        },
-        {
-          "source_line": 8283,
-          "timestamp": "2026-05-24T20:18:06.964292+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
-              "limit": "10"
-            }
-          },
-          "id": "event-008283"
-        },
-        {
-          "source_line": 8284,
-          "timestamp": "2026-05-24T20:18:07.115190+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur diagnostic framework quantifies what drives routing signal in interactive environments through two components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\\S\\ref{sec:collection}--\\ref{sec:labeling}); and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). A supplementary Signal Concentration Index (SCI; Appendix~\\ref{app:sci}) measures whether signal is concentrated in a few task types. Episode-level bootstrap resampling provides 95\\% confidence intervals for all metrics.\n5\t\n6\t\\subsection{Problem Setup}\n7\t\\label{sec:problem-setup}\n8\t\n9\tConsider an interactive environment with observation space $\\mathcal{O}$ and action space $\\mathcal{A}$. An agent policy $\\pi: \\mathcal{O}^* \\rightarrow \\mathcal{A}$ maps observation histories to actions. We define two computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$: \\textbf{internal} (${\\tt int}$), where the agent predicts intermediate observations via chain-of-thought reasoning (ReAct~\\citep{react-2023}), with prediction errors compounding across steps; and \\textbf{deterministic} (${\\tt det}$), a privileged-information strategy (an umbrella term: ground-truth simulator access in ScienceWorld, code interpreter in MATH, admissible-action enumeration in ALFWorld---see \\S\\ref{sec:cross-env} for environment-specific operationalizations) that eliminates observation uncertainty; these qualitative differences affect what routing signals the framework can detect. A \\emph{routing policy} $\\rho: \\mathcal{O}^* \\rightarrow \\mathcal{M}$ selects which computation mode to use at each step; our analysis investigates what signal is available to learn $\\rho$.\n10\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Read",
-            "elapsed_ms": 150
-          },
-          "id": "event-008284"
-        },
-        {
-          "source_line": 8285,
-          "timestamp": "2026-05-24T20:18:16.855800+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
-              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/label_decomposition.pdf}\n\\caption{Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20 non-death labels originate from a single task type (\\texttt{find-non-living-thing}).}\n\\label{fig:label-decomposition}\n\\end{figure}\n\nOf the 95",
-              "new_string": "Of the 95"
-            }
-          },
-          "id": "event-008285"
-        },
-        {
-          "source_line": 8286,
-          "timestamp": "2026-05-24T20:18:16.906621+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-008286"
-        },
-        {
-          "source_line": 8287,
           "timestamp": "2026-05-24T20:18:18.765638+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -145,10 +26,10 @@
               "new_string": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/label_decomposition.pdf}\n\\caption{Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20 non-death labels originate from a single task type (\\texttt{find-non-living-thing}).}\n\\label{fig:label-decomposition}\n\\end{figure}\n\nOur diagnostic framework"
             }
           },
-          "id": "event-008287"
+          "id": "event-008281"
         },
         {
-          "source_line": 8288,
+          "source_line": 8282,
           "timestamp": "2026-05-24T20:18:18.766236+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -163,10 +44,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008288"
+          "id": "event-008282"
         },
         {
-          "source_line": 8289,
+          "source_line": 8283,
           "timestamp": "2026-05-24T20:18:23.592364+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -184,10 +65,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008289"
+          "id": "event-008283"
         },
         {
-          "source_line": 8290,
+          "source_line": 8284,
           "timestamp": "2026-05-24T20:18:23.642970+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -202,10 +83,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-008290"
+          "id": "event-008284"
         },
         {
-          "source_line": 8291,
+          "source_line": 8285,
           "timestamp": "2026-05-24T20:18:26.453676+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -223,10 +104,10 @@
               "max_pages": "8"
             }
           },
-          "id": "event-008291"
+          "id": "event-008285"
         },
         {
-          "source_line": 8292,
+          "source_line": 8286,
           "timestamp": "2026-05-24T20:18:32.930935+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -241,10 +122,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6477
           },
-          "id": "event-008292"
+          "id": "event-008286"
         },
         {
-          "source_line": 8293,
+          "source_line": 8287,
           "timestamp": "2026-05-24T20:18:39.810049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -261,10 +142,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-008293"
+          "id": "event-008287"
         },
         {
-          "source_line": 8294,
+          "source_line": 8288,
           "timestamp": "2026-05-24T20:18:40.011362+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -281,10 +162,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-008294"
+          "id": "event-008288"
         },
         {
-          "source_line": 8295,
+          "source_line": 8289,
           "timestamp": "2026-05-24T20:18:40.765647+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -299,10 +180,10 @@
             "tool": "Read",
             "elapsed_ms": 955
           },
-          "id": "event-008295"
+          "id": "event-008289"
         },
         {
-          "source_line": 8296,
+          "source_line": 8290,
           "timestamp": "2026-05-24T20:18:40.967430+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -317,10 +198,10 @@
             "tool": "Read",
             "elapsed_ms": 956
           },
-          "id": "event-008296"
+          "id": "event-008290"
         },
         {
-          "source_line": 8297,
+          "source_line": 8291,
           "timestamp": "2026-05-24T20:18:57.222214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -337,10 +218,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008297"
+          "id": "event-008291"
         },
         {
-          "source_line": 8298,
+          "source_line": 8292,
           "timestamp": "2026-05-24T20:18:57.675186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -357,10 +238,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-008298"
+          "id": "event-008292"
         },
         {
-          "source_line": 8299,
+          "source_line": 8293,
           "timestamp": "2026-05-24T20:18:59.433118+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -375,10 +256,10 @@
             "tool": "Read",
             "elapsed_ms": 2210
           },
-          "id": "event-008299"
+          "id": "event-008293"
         },
         {
-          "source_line": 8300,
+          "source_line": 8294,
           "timestamp": "2026-05-24T20:18:59.434435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -393,10 +274,10 @@
             "tool": "Read",
             "elapsed_ms": 1759
           },
-          "id": "event-008300"
+          "id": "event-008294"
         },
         {
-          "source_line": 8301,
+          "source_line": 8295,
           "timestamp": "2026-05-24T20:18:59.434825+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -413,10 +294,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-008301"
+          "id": "event-008295"
         },
         {
-          "source_line": 8302,
+          "source_line": 8296,
           "timestamp": "2026-05-24T20:18:59.635876+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -433,10 +314,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008302"
+          "id": "event-008296"
         },
         {
-          "source_line": 8303,
+          "source_line": 8297,
           "timestamp": "2026-05-24T20:19:00.395366+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -451,10 +332,10 @@
             "tool": "Read",
             "elapsed_ms": 960
           },
-          "id": "event-008303"
+          "id": "event-008297"
         },
         {
-          "source_line": 8304,
+          "source_line": 8298,
           "timestamp": "2026-05-24T20:19:00.597135+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -469,10 +350,10 @@
             "tool": "Read",
             "elapsed_ms": 961
           },
-          "id": "event-008304"
+          "id": "event-008298"
         },
         {
-          "source_line": 8305,
+          "source_line": 8299,
           "timestamp": "2026-05-24T20:19:38.320019+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -489,10 +370,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p2.png"
             }
           },
-          "id": "event-008305"
+          "id": "event-008299"
         },
         {
-          "source_line": 8306,
+          "source_line": 8300,
           "timestamp": "2026-05-24T20:19:38.923708+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -507,10 +388,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-008306"
+          "id": "event-008300"
         },
         {
-          "source_line": 8307,
+          "source_line": 8301,
           "timestamp": "2026-05-24T20:20:09.311936+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -527,10 +408,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-008307"
+          "id": "event-008301"
         },
         {
-          "source_line": 8308,
+          "source_line": 8302,
           "timestamp": "2026-05-24T20:20:09.866552+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -545,10 +426,10 @@
             "tool": "Read",
             "elapsed_ms": 554
           },
-          "id": "event-008308"
+          "id": "event-008302"
         },
         {
-          "source_line": 8309,
+          "source_line": 8303,
           "timestamp": "2026-05-24T20:20:26.805631+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -566,10 +447,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-008309"
+          "id": "event-008303"
         },
         {
-          "source_line": 8310,
+          "source_line": 8304,
           "timestamp": "2026-05-24T20:20:26.856441+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -584,10 +465,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-008310"
+          "id": "event-008304"
         },
         {
-          "source_line": 8311,
+          "source_line": 8305,
           "timestamp": "2026-05-24T20:20:41.842208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -605,10 +486,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008311"
+          "id": "event-008305"
         },
         {
-          "source_line": 8312,
+          "source_line": 8306,
           "timestamp": "2026-05-24T20:20:45.509847+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -623,10 +504,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3667
           },
-          "id": "event-008312"
+          "id": "event-008306"
         },
         {
-          "source_line": 8313,
+          "source_line": 8307,
           "timestamp": "2026-05-24T20:20:49.152651+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -639,7 +520,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008313"
+          "id": "event-008307"
         }
       ]
     },
@@ -647,7 +528,7 @@
       "number": 418,
       "messages": [
         {
-          "source_line": 8314,
+          "source_line": 8308,
           "timestamp": "2026-05-24T20:20:49.634518+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -661,10 +542,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008314"
+          "id": "event-008308"
         },
         {
-          "source_line": 8315,
+          "source_line": 8309,
           "timestamp": "2026-05-24T20:20:57.752541+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -677,7 +558,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008315"
+          "id": "event-008309"
         }
       ]
     },
@@ -685,7 +566,7 @@
       "number": 419,
       "messages": [
         {
-          "source_line": 8316,
+          "source_line": 8310,
           "timestamp": "2026-05-24T20:21:23.087886+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -699,10 +580,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008316"
+          "id": "event-008310"
         },
         {
-          "source_line": 8317,
+          "source_line": 8311,
           "timestamp": "2026-05-24T20:21:32.562207+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -719,10 +600,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-008317"
+          "id": "event-008311"
         },
         {
-          "source_line": 8318,
+          "source_line": 8312,
           "timestamp": "2026-05-24T20:21:32.613186+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -737,10 +618,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008318"
+          "id": "event-008312"
         },
         {
-          "source_line": 8319,
+          "source_line": 8313,
           "timestamp": "2026-05-24T20:21:43.526083+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -758,10 +639,10 @@
               "offset": "55"
             }
           },
-          "id": "event-008319"
+          "id": "event-008313"
         },
         {
-          "source_line": 8320,
+          "source_line": 8314,
           "timestamp": "2026-05-24T20:21:43.677096+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -776,10 +657,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-008320"
+          "id": "event-008314"
         },
         {
-          "source_line": 8321,
+          "source_line": 8315,
           "timestamp": "2026-05-24T20:21:54.563382+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -799,10 +680,10 @@
               "new_string": "\\paragraph{Per-task correlation structure.}"
             }
           },
-          "id": "event-008321"
+          "id": "event-008315"
         },
         {
-          "source_line": 8322,
+          "source_line": 8316,
           "timestamp": "2026-05-24T20:21:54.665376+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -817,10 +698,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-008322"
+          "id": "event-008316"
         },
         {
-          "source_line": 8323,
+          "source_line": 8317,
           "timestamp": "2026-05-24T20:21:59.635804+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -840,10 +721,10 @@
               "new_string": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task death rate differential vs.\\ performance gap ($n{=}11$ task types). The near-perfect correlation ($r = 0.97$) is a structural consequence of death dominance (DAF $\\to 1 \\Rightarrow r \\to 1$), not an independent finding. The sole outlier (\\texttt{find-non-living-thing}, red diamond) has zero deaths; its $\\Delta_{\\text{full}} = +9.58$ arises entirely from non-death score differences.}\n\\label{fig:decomposition}\n\\end{figure}\n\nWe analyze"
             }
           },
-          "id": "event-008323"
+          "id": "event-008317"
         },
         {
-          "source_line": 8324,
+          "source_line": 8318,
           "timestamp": "2026-05-24T20:21:59.686831+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -858,10 +739,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008324"
+          "id": "event-008318"
         },
         {
-          "source_line": 8325,
+          "source_line": 8319,
           "timestamp": "2026-05-24T20:22:09.508166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -881,10 +762,10 @@
               "new_string": "We test whether"
             }
           },
-          "id": "event-008325"
+          "id": "event-008319"
         },
         {
-          "source_line": 8326,
+          "source_line": 8320,
           "timestamp": "2026-05-24T20:22:09.508937+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -899,10 +780,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008326"
+          "id": "event-008320"
         },
         {
-          "source_line": 8327,
+          "source_line": 8321,
           "timestamp": "2026-05-24T20:22:19.753949+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -922,10 +803,10 @@
               "new_string": "At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under improvement methods. Top: all 11 tasks. Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded). No intervention approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}"
             }
           },
-          "id": "event-008327"
+          "id": "event-008321"
         },
         {
-          "source_line": 8328,
+          "source_line": 8322,
           "timestamp": "2026-05-24T20:22:19.804774+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -940,10 +821,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008328"
+          "id": "event-008322"
         },
         {
-          "source_line": 8329,
+          "source_line": 8323,
           "timestamp": "2026-05-24T20:22:24.764414+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -961,10 +842,10 @@
               "max_pages": "8"
             }
           },
-          "id": "event-008329"
+          "id": "event-008323"
         },
         {
-          "source_line": 8330,
+          "source_line": 8324,
           "timestamp": "2026-05-24T20:22:31.087634+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -979,10 +860,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6323
           },
-          "id": "event-008330"
+          "id": "event-008324"
         },
         {
-          "source_line": 8331,
+          "source_line": 8325,
           "timestamp": "2026-05-24T20:22:37.419966+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -999,10 +880,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-008331"
+          "id": "event-008325"
         },
         {
-          "source_line": 8332,
+          "source_line": 8326,
           "timestamp": "2026-05-24T20:22:37.671943+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1019,10 +900,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008332"
+          "id": "event-008326"
         },
         {
-          "source_line": 8333,
+          "source_line": 8327,
           "timestamp": "2026-05-24T20:22:38.326139+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1037,10 +918,10 @@
             "tool": "Read",
             "elapsed_ms": 906
           },
-          "id": "event-008333"
+          "id": "event-008327"
         },
         {
-          "source_line": 8334,
+          "source_line": 8328,
           "timestamp": "2026-05-24T20:22:38.577893+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1055,10 +936,10 @@
             "tool": "Read",
             "elapsed_ms": 905
           },
-          "id": "event-008334"
+          "id": "event-008328"
         },
         {
-          "source_line": 8335,
+          "source_line": 8329,
           "timestamp": "2026-05-24T20:23:16.845193+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1077,10 +958,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008335"
+          "id": "event-008329"
         },
         {
-          "source_line": 8336,
+          "source_line": 8330,
           "timestamp": "2026-05-24T20:23:16.845704+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1095,10 +976,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008336"
+          "id": "event-008330"
         },
         {
-          "source_line": 8337,
+          "source_line": 8331,
           "timestamp": "2026-05-24T20:23:40.261370+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1118,10 +999,10 @@
               "new_string": "At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic})."
             }
           },
-          "id": "event-008337"
+          "id": "event-008331"
         },
         {
-          "source_line": 8338,
+          "source_line": 8332,
           "timestamp": "2026-05-24T20:23:40.262131+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1136,10 +1017,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008338"
+          "id": "event-008332"
         },
         {
-          "source_line": 8339,
+          "source_line": 8333,
           "timestamp": "2026-05-24T20:23:47.853309+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1159,10 +1040,10 @@
               "new_string": "    \\ell \\in \\{{\\tt det\\text{-}pref},\\; {\\tt int\\text{-}pref},\\; {\\tt no\\text{-}pref}\\}\n\\end{multline}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under improvement methods. Top: all 11 tasks. Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded). No intervention approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nThe labeling function"
             }
           },
-          "id": "event-008339"
+          "id": "event-008333"
         },
         {
-          "source_line": 8340,
+          "source_line": 8334,
           "timestamp": "2026-05-24T20:23:47.904333+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1177,10 +1058,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008340"
+          "id": "event-008334"
         },
         {
-          "source_line": 8341,
+          "source_line": 8335,
           "timestamp": "2026-05-24T20:23:51.469669+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1198,10 +1079,10 @@
               "max_pages": "8"
             }
           },
-          "id": "event-008341"
+          "id": "event-008335"
         },
         {
-          "source_line": 8342,
+          "source_line": 8336,
           "timestamp": "2026-05-24T20:23:57.785349+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1216,10 +1097,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6315
           },
-          "id": "event-008342"
+          "id": "event-008336"
         },
         {
-          "source_line": 8343,
+          "source_line": 8337,
           "timestamp": "2026-05-24T20:24:02.105218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1236,10 +1117,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-008343"
+          "id": "event-008337"
         },
         {
-          "source_line": 8344,
+          "source_line": 8338,
           "timestamp": "2026-05-24T20:24:02.507943+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1256,10 +1137,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008344"
+          "id": "event-008338"
         },
         {
-          "source_line": 8345,
+          "source_line": 8339,
           "timestamp": "2026-05-24T20:24:03.014205+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1274,10 +1155,10 @@
             "tool": "Read",
             "elapsed_ms": 908
           },
-          "id": "event-008345"
+          "id": "event-008339"
         },
         {
-          "source_line": 8346,
+          "source_line": 8340,
           "timestamp": "2026-05-24T20:24:03.416611+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1292,10 +1173,10 @@
             "tool": "Read",
             "elapsed_ms": 908
           },
-          "id": "event-008346"
+          "id": "event-008340"
         },
         {
-          "source_line": 8347,
+          "source_line": 8341,
           "timestamp": "2026-05-24T20:24:12.591472+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1312,10 +1193,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png"
             }
           },
-          "id": "event-008347"
+          "id": "event-008341"
         },
         {
-          "source_line": 8348,
+          "source_line": 8342,
           "timestamp": "2026-05-24T20:24:12.946152+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1332,10 +1213,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png"
             }
           },
-          "id": "event-008348"
+          "id": "event-008342"
         },
         {
-          "source_line": 8349,
+          "source_line": 8343,
           "timestamp": "2026-05-24T20:24:13.147178+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1352,10 +1233,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008349"
+          "id": "event-008343"
         },
         {
-          "source_line": 8350,
+          "source_line": 8344,
           "timestamp": "2026-05-24T20:24:13.399287+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1370,10 +1251,10 @@
             "tool": "Read",
             "elapsed_ms": 807
           },
-          "id": "event-008350"
+          "id": "event-008344"
         },
         {
-          "source_line": 8351,
+          "source_line": 8345,
           "timestamp": "2026-05-24T20:24:14.103054+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1388,10 +1269,10 @@
             "tool": "Read",
             "elapsed_ms": 1156
           },
-          "id": "event-008351"
+          "id": "event-008345"
         },
         {
-          "source_line": 8352,
+          "source_line": 8346,
           "timestamp": "2026-05-24T20:24:14.305596+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1406,10 +1287,10 @@
             "tool": "Read",
             "elapsed_ms": 1158
           },
-          "id": "event-008352"
+          "id": "event-008346"
         },
         {
-          "source_line": 8353,
+          "source_line": 8347,
           "timestamp": "2026-05-24T20:24:33.287580+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1427,10 +1308,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-008353"
+          "id": "event-008347"
         },
         {
-          "source_line": 8354,
+          "source_line": 8348,
           "timestamp": "2026-05-24T20:24:36.903446+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1445,10 +1326,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3615
           },
-          "id": "event-008354"
+          "id": "event-008348"
         },
         {
-          "source_line": 8355,
+          "source_line": 8349,
           "timestamp": "2026-05-24T20:24:40.310692+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1461,7 +1342,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008355"
+          "id": "event-008349"
         }
       ]
     },
@@ -1469,7 +1350,7 @@
       "number": 420,
       "messages": [
         {
-          "source_line": 8356,
+          "source_line": 8350,
           "timestamp": "2026-05-24T20:24:40.789533+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1483,10 +1364,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "system"
           },
-          "id": "event-008356"
+          "id": "event-008350"
         },
         {
-          "source_line": 8357,
+          "source_line": 8351,
           "timestamp": "2026-05-24T20:24:48.543281+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1499,7 +1380,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent"
           },
-          "id": "event-008357"
+          "id": "event-008351"
         }
       ]
     },
@@ -1507,7 +1388,7 @@
       "number": 421,
       "messages": [
         {
-          "source_line": 8358,
+          "source_line": 8352,
           "timestamp": "2026-05-24T20:52:38.467959+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1521,10 +1402,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "source": "director"
           },
-          "id": "event-008358"
+          "id": "event-008352"
         },
         {
-          "source_line": 8359,
+          "source_line": 8353,
           "timestamp": "2026-05-24T20:52:52.405855+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1541,10 +1422,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-008359"
+          "id": "event-008353"
         },
         {
-          "source_line": 8360,
+          "source_line": 8354,
           "timestamp": "2026-05-24T20:52:52.456619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1559,10 +1440,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008360"
+          "id": "event-008354"
         },
         {
-          "source_line": 8361,
+          "source_line": 8355,
           "timestamp": "2026-05-24T20:52:58.583292+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1582,10 +1463,10 @@
               "new_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/pipeline_overview.pdf}\n\\caption{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\\ref{alg:labeling}.}\n\\label{fig:pipeline}\n\\end{figure*}"
             }
           },
-          "id": "event-008361"
+          "id": "event-008355"
         },
         {
-          "source_line": 8362,
+          "source_line": 8356,
           "timestamp": "2026-05-24T20:52:58.583882+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1600,10 +1481,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008362"
+          "id": "event-008356"
         },
         {
-          "source_line": 8363,
+          "source_line": 8357,
           "timestamp": "2026-05-24T20:53:03.342198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1622,10 +1503,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008363"
+          "id": "event-008357"
         },
         {
-          "source_line": 8364,
+          "source_line": 8358,
           "timestamp": "2026-05-24T20:53:08.366282+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1640,10 +1521,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5024
           },
-          "id": "event-008364"
+          "id": "event-008358"
         },
         {
-          "source_line": 8365,
+          "source_line": 8359,
           "timestamp": "2026-05-24T20:53:22.028567+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1660,10 +1541,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
             }
           },
-          "id": "event-008365"
+          "id": "event-008359"
         },
         {
-          "source_line": 8366,
+          "source_line": 8360,
           "timestamp": "2026-05-24T20:53:22.079426+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1678,10 +1559,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008366"
+          "id": "event-008360"
         },
         {
-          "source_line": 8367,
+          "source_line": 8361,
           "timestamp": "2026-05-24T20:53:30.922654+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1698,10 +1579,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
             }
           },
-          "id": "event-008367"
+          "id": "event-008361"
         },
         {
-          "source_line": 8368,
+          "source_line": 8362,
           "timestamp": "2026-05-24T20:53:31.903056+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1716,10 +1597,10 @@
             "tool": "Read",
             "elapsed_ms": 980
           },
-          "id": "event-008368"
+          "id": "event-008362"
         },
         {
-          "source_line": 8369,
+          "source_line": 8363,
           "timestamp": "2026-05-24T20:53:32.557174+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1739,10 +1620,10 @@
               "-n": "True"
             }
           },
-          "id": "event-008369"
+          "id": "event-008363"
         },
         {
-          "source_line": 8370,
+          "source_line": 8364,
           "timestamp": "2026-05-24T20:53:32.658063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1757,10 +1638,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-008370"
+          "id": "event-008364"
         },
         {
-          "source_line": 8371,
+          "source_line": 8365,
           "timestamp": "2026-05-24T20:53:35.577130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1780,10 +1661,10 @@
               "-n": "True"
             }
           },
-          "id": "event-008371"
+          "id": "event-008365"
         },
         {
-          "source_line": 8372,
+          "source_line": 8366,
           "timestamp": "2026-05-24T20:53:35.627657+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1798,10 +1679,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-008372"
+          "id": "event-008366"
         },
         {
-          "source_line": 8373,
+          "source_line": 8367,
           "timestamp": "2026-05-24T20:53:40.503838+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1820,10 +1701,10 @@
               "limit": "90"
             }
           },
-          "id": "event-008373"
+          "id": "event-008367"
         },
         {
-          "source_line": 8374,
+          "source_line": 8368,
           "timestamp": "2026-05-24T20:53:40.504609+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1838,10 +1719,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008374"
+          "id": "event-008368"
         },
         {
-          "source_line": 8375,
+          "source_line": 8369,
           "timestamp": "2026-05-24T20:53:45.679608+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1860,10 +1741,10 @@
               "limit": "50"
             }
           },
-          "id": "event-008375"
+          "id": "event-008369"
         },
         {
-          "source_line": 8376,
+          "source_line": 8370,
           "timestamp": "2026-05-24T20:53:45.730512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1878,10 +1759,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008376"
+          "id": "event-008370"
         },
         {
-          "source_line": 8377,
+          "source_line": 8371,
           "timestamp": "2026-05-24T20:54:52.965654+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1901,10 +1782,10 @@
               "new_string": "\\section{Related Work}\n\n\\paragraph{Tool Use and External Computation in LLMs.}\nMethods for augmenting LLMs with tools span self-supervised invocation~\\citep{toolformer-2023,toolace-2025}, task-level decomposition~\\citep{art-2023,chameleon-2023}, and RL-based routing~\\citep{retool-2025,tool-learning-survey-2024}. All focus on \\emph{learning to use tools}; we ask a prior question: \\emph{what signal drives the routing decision?} Concurrent work examines \\emph{when} to invoke tools~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026,tool-overuse-illusion-2026}; our decomposition yields a concrete answer: 78.9\\% of non-tie labels trace to catastrophic-failure prevention.\n\n\\paragraph{Adaptive Computation and Routing.}\nAdaptive routing ranges from learned halting~\\citep{graves2016act} and token-level recursion~\\citep{mixture-of-recursions-2025} to per-step depth~\\citep{cogrouter-2026,ares-2026} and multi-turn settings~\\citep{mtrouter-2026}; in death-dominated environments, the task-type-level binary signal is structurally inaccessible to these step-level approaches (\\S\\ref{sec:router-diagnostic}). Model-selection routing~\\citep{routellm-2024,frugalgpt-2023,automix-2024} optimizes \\emph{which} model to invoke; \\citet{budget-aware-routing-2026} train episode-level routing under sparse rewards, the closest setting to ours. Unlike token-level adaptive computation~\\citep{mixture-of-depths-2024,xin2020deebert} and MoE~\\citep{switch-transformer-2022}, our framework diagnoses aggregate routing signal at episode granularity.\n\n\\paragraph{Counterfactual Evaluation.}\nPrior work generates counterfactual explanations by perturbing individual actions~\\citep{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}; recent extensions target LLM agents~\\citep{pona2025abstract,axis-2026,cso-2026}. We instead execute complete episodes under two strategies to decompose routing signal \\emph{before} training. Counterfactual data augmentation~\\citep{kaushik2020learning} edits inputs; we execute full counterfactual \\emph{episodes}.\n\n\\paragraph{LLM Agent Environments.}\nScienceWorld~\\citep{scienceworld-2022} serves as our primary testbed; ALFWorld~\\citep{alfworld-2021} and AgentBench~\\citep{agentbench-2024} provide complementary evaluation. ReAct~\\citep{react-2023} is our internal baseline; Reflexion~\\citep{reflexion-2023} and LATS~\\citep{lats-2024} extend it. The concurrent SALT~\\citep{salt-2026} assigns step-level credit on ALFWorld, complementing our episode-level decomposition.\n\n\\paragraph{Safe RL and Causal Grounding.}\nDeath avoidance connects to constrained MDPs~\\citep{altman1999constrained}, safe RL~\\citep{garcia2015comprehensive,achiam2017cpo,moldovan2012safe}, shielding~\\citep{alshiekh2018safe}, and CVaR methods~\\citep{chow2015risk,tamar2015optimizing}; classical methods assume known dynamics, unavailable for LLM agents. \\citet{ruan2024failures} identify catastrophic actions; SafeRoute~\\citep{saferoute-2025} and Agent-SafetyBench~\\citep{agent-safetybench-2024} address agent safety evaluation. Our pure-strategy comparison is a simplified potential outcomes framework~\\citep{rubin1974estimating}, eliminating confounding without structural causal models~\\citep{pearl2009causality}."
             }
           },
-          "id": "event-008377"
+          "id": "event-008371"
         },
         {
-          "source_line": 8378,
+          "source_line": 8372,
           "timestamp": "2026-05-24T20:54:53.017397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1919,10 +1800,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008378"
+          "id": "event-008372"
         },
         {
-          "source_line": 8379,
+          "source_line": 8373,
           "timestamp": "2026-05-24T20:54:58.389773+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1941,10 +1822,10 @@
               "limit": "15"
             }
           },
-          "id": "event-008379"
+          "id": "event-008373"
         },
         {
-          "source_line": 8380,
+          "source_line": 8374,
           "timestamp": "2026-05-24T20:54:58.440554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1959,10 +1840,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008380"
+          "id": "event-008374"
         },
         {
-          "source_line": 8381,
+          "source_line": 8375,
           "timestamp": "2026-05-24T20:55:03.609551+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1981,10 +1862,10 @@
               "limit": "10"
             }
           },
-          "id": "event-008381"
+          "id": "event-008375"
         },
         {
-          "source_line": 8382,
+          "source_line": 8376,
           "timestamp": "2026-05-24T20:55:03.609933+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1999,10 +1880,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008382"
+          "id": "event-008376"
         },
         {
-          "source_line": 8383,
+          "source_line": 8377,
           "timestamp": "2026-05-24T20:55:17.318484+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2022,10 +1903,10 @@
               "new_string": "The labeling function is \\emph{death-aware}: it prioritizes survival over score, then compares scores among same-status episodes (Algorithm~\\ref{alg:labeling}). Both-dead episodes receive \\texttt{no\\_preference} because ScienceWorld's fixed $-100$ penalty makes death timing uninformative. ScienceWorld scores are integer-valued, so we use exact (in)equality with no threshold. Label distributions are reported in \\S\\ref{sec:death-decomp}.\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\subsection{Death Avoidance Factor}"
             }
           },
-          "id": "event-008383"
+          "id": "event-008377"
         },
         {
-          "source_line": 8384,
+          "source_line": 8378,
           "timestamp": "2026-05-24T20:55:17.319246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2040,10 +1921,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008384"
+          "id": "event-008378"
         },
         {
-          "source_line": 8385,
+          "source_line": 8379,
           "timestamp": "2026-05-24T20:55:33.694390+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2063,10 +1944,10 @@
               "new_string": "Note that episode-level"
             }
           },
-          "id": "event-008385"
+          "id": "event-008379"
         },
         {
-          "source_line": 8386,
+          "source_line": 8380,
           "timestamp": "2026-05-24T20:55:33.745725+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2081,10 +1962,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008386"
+          "id": "event-008380"
         },
         {
-          "source_line": 8387,
+          "source_line": 8381,
           "timestamp": "2026-05-24T20:55:38.666602+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2103,10 +1984,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008387"
+          "id": "event-008381"
         },
         {
-          "source_line": 8388,
+          "source_line": 8382,
           "timestamp": "2026-05-24T20:55:44.439069+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2121,10 +2002,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5772
           },
-          "id": "event-008388"
+          "id": "event-008382"
         },
         {
-          "source_line": 8389,
+          "source_line": 8383,
           "timestamp": "2026-05-24T20:55:56.490727+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2143,10 +2024,10 @@
               "preview": "True"
             }
           },
-          "id": "event-008389"
+          "id": "event-008383"
         },
         {
-          "source_line": 8390,
+          "source_line": 8384,
           "timestamp": "2026-05-24T20:55:59.251541+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2161,10 +2042,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2760
           },
-          "id": "event-008390"
+          "id": "event-008384"
         },
         {
-          "source_line": 8391,
+          "source_line": 8385,
           "timestamp": "2026-05-24T20:56:02.989201+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2181,10 +2062,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-008391"
+          "id": "event-008385"
         },
         {
-          "source_line": 8392,
+          "source_line": 8386,
           "timestamp": "2026-05-24T20:56:03.542950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2201,10 +2082,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-008392"
+          "id": "event-008386"
         },
         {
-          "source_line": 8393,
+          "source_line": 8387,
           "timestamp": "2026-05-24T20:56:03.596367+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2219,10 +2100,10 @@
             "tool": "Read",
             "elapsed_ms": 607
           },
-          "id": "event-008393"
+          "id": "event-008387"
         },
         {
-          "source_line": 8394,
+          "source_line": 8388,
           "timestamp": "2026-05-24T20:56:04.202010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2237,10 +2118,10 @@
             "tool": "Read",
             "elapsed_ms": 659
           },
-          "id": "event-008394"
+          "id": "event-008388"
         },
         {
-          "source_line": 8395,
+          "source_line": 8389,
           "timestamp": "2026-05-24T20:56:21.716293+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2257,10 +2138,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008395"
+          "id": "event-008389"
         },
         {
-          "source_line": 8396,
+          "source_line": 8390,
           "timestamp": "2026-05-24T20:56:22.370837+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2275,10 +2156,10 @@
             "tool": "Read",
             "elapsed_ms": 654
           },
-          "id": "event-008396"
+          "id": "event-008390"
         },
         {
-          "source_line": 8397,
+          "source_line": 8391,
           "timestamp": "2026-05-24T20:56:38.345649+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2295,10 +2176,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-008397"
+          "id": "event-008391"
         },
         {
-          "source_line": 8398,
+          "source_line": 8392,
           "timestamp": "2026-05-24T20:56:38.396512+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2313,10 +2194,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008398"
+          "id": "event-008392"
         },
         {
-          "source_line": 8399,
+          "source_line": 8393,
           "timestamp": "2026-05-24T20:57:16.438166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2336,10 +2217,10 @@
               "new_string": "We analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). An anti-cherry-picking analysis confirms death dominance holds in 18 of these 19 types ($\\overline{\\Delta\\text{DR}} = +38.2$\\,pp $>$ included tasks' $+28.7$\\,pp; Appendix~\\ref{app:per-task})."
             }
           },
-          "id": "event-008399"
+          "id": "event-008393"
         },
         {
-          "source_line": 8400,
+          "source_line": 8394,
           "timestamp": "2026-05-24T20:57:16.439704+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2354,10 +2235,10 @@
             "tool": "Edit",
             "elapsed_ms": 1
           },
-          "id": "event-008400"
+          "id": "event-008394"
         },
         {
-          "source_line": 8401,
+          "source_line": 8395,
           "timestamp": "2026-05-24T20:57:33.772936+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2377,10 +2258,10 @@
               "new_string": "DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI$_{\\text{DAF}}$: $[81.3\\%, 99.1\\%]$, episode-level bootstrap). The 78.9\\% label fraction provides the more robust, penalty-invariant characterization (\\S\\ref{sec:daf})."
             }
           },
-          "id": "event-008401"
+          "id": "event-008395"
         },
         {
-          "source_line": 8402,
+          "source_line": 8396,
           "timestamp": "2026-05-24T20:57:33.823964+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2395,10 +2276,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-008402"
+          "id": "event-008396"
         },
         {
-          "source_line": 8403,
+          "source_line": 8397,
           "timestamp": "2026-05-24T20:57:47.282210+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2418,10 +2299,10 @@
               "new_string": "\\paragraph{Per-task structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic; all 105 internal deaths are triggered by the \\texttt{focus on} action (Appendix~\\ref{app:failure-modes}). Per-task $\\Delta$DR correlates with $\\Delta_{\\text{full}}$ at $r = 0.97$ (Figure~\\ref{fig:decomposition}), a structural consequence of DAF$\\to 1$ rather than an independent finding. Figure~\\ref{fig:death-timeline} illustrates the typical death trajectory."
             }
           },
-          "id": "event-008403"
+          "id": "event-008397"
         },
         {
-          "source_line": 8404,
+          "source_line": 8398,
           "timestamp": "2026-05-24T20:57:47.282974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2436,10 +2317,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008404"
+          "id": "event-008398"
         },
         {
-          "source_line": 8405,
+          "source_line": 8399,
           "timestamp": "2026-05-24T20:58:06.872573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2459,10 +2340,10 @@
               "new_string": "\\paragraph{Binary structure and robustness.}\nAll 10 death-prone task types produce 100\\% death-asymmetry labels; only \\texttt{find-non-living-thing} (zero deaths) produces non-death signal (SCI $= 0.21$; Appendix~\\ref{app:sci}). Bootstrap 95\\% CIs: DAF $[81.3\\%, 99.1\\%]$; cluster-robust $[73.3\\%, 100.0\\%]$ ($K{=}11$; Appendix~\\ref{app:wild-cluster}). Two independent replications (Gemma-2-9B-it, DAF${=}89.7\\%$; seed=123, DAF${=}89.7\\%$) converge within 0.7~pp."
             }
           },
-          "id": "event-008405"
+          "id": "event-008399"
         },
         {
-          "source_line": 8406,
+          "source_line": 8400,
           "timestamp": "2026-05-24T20:58:06.873321+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2477,10 +2358,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008406"
+          "id": "event-008400"
         },
         {
-          "source_line": 8407,
+          "source_line": 8401,
           "timestamp": "2026-05-24T20:58:32.695696+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2500,10 +2381,10 @@
               "new_string": "Llama-3.1-8B~\\citep{llama3-2024} ($N{=}220$) and Gemma-2-9B-it~\\citep{gemma2-2024} ($N{=}220$) independently replicate death dominance: DAF $= 88.2\\%$ and $89.7\\%$ respectively, with direction consistency 10/10 on death-prone tasks (Appendix~\\ref{app:cross-model}). Three architecturally distinct models converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to two 70B-class models (\\S\\ref{sec:agent-improvement}) intensifies the pattern (DAF${=}92.4$--$101.0\\%$)."
             }
           },
-          "id": "event-008407"
+          "id": "event-008401"
         },
         {
-          "source_line": 8408,
+          "source_line": 8402,
           "timestamp": "2026-05-24T20:58:32.897287+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2518,10 +2399,10 @@
             "tool": "Edit",
             "elapsed_ms": 201
           },
-          "id": "event-008408"
+          "id": "event-008402"
         },
         {
-          "source_line": 8409,
+          "source_line": 8403,
           "timestamp": "2026-05-24T20:58:59.013171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2541,10 +2422,10 @@
               "new_string": "We test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$) yields marginal reduction ($43.5\\%$ vs.\\ $48.0\\%$). Reflexion~\\citep{reflexion-2023} reduces death to $31.4\\%$ but the gap to deterministic remains $15.1$~pp; under matched-episode analysis ($N{=}3$), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF${}>100\\%$. Scaling to Qwen2.5-72B ($N{=}255$) reduces death rate to $30.6\\%$ with DAF $= 92.4\\%$ (95\\% CI: $[86.1\\%, 97.9\\%]$). A second 70B model, Llama-3.1-70B ($N{=}220$), yields DAF $= 101.0\\%$ ($[95.3\\%, 107.5\\%]$): death avoidance more than fully accounts for the gap. Two 70B-class models confirm that scaling intensifies rather than attenuates death dominance."
             }
           },
-          "id": "event-008409"
+          "id": "event-008403"
         },
         {
-          "source_line": 8410,
+          "source_line": 8404,
           "timestamp": "2026-05-24T20:58:59.114196+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2559,10 +2440,10 @@
             "tool": "Edit",
             "elapsed_ms": 101
           },
-          "id": "event-008410"
+          "id": "event-008404"
         },
         {
-          "source_line": 8411,
+          "source_line": 8405,
           "timestamp": "2026-05-24T20:59:19.815221+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2582,10 +2463,10 @@
               "new_string": "We probe two environments as boundary cases (Figure~\\ref{fig:signal-reversal}). On MATH Level~4--5~\\citep{math-2021} ($N{=}795$), internal and code-interpreter accuracy are near-identical ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$): no routing signal without catastrophic failure. ALFWorld~\\citep{alfworld-2021} (135 games, no death mechanism, DAF $= 0\\%$) shows 94.6\\% of non-tie labels favoring the information-advantaged strategy; Llama-3.1-8B replicates at 100\\%. The framework diagnoses this qualitatively different mechanism without modification."
             }
           },
-          "id": "event-008411"
+          "id": "event-008405"
         },
         {
-          "source_line": 8412,
+          "source_line": 8406,
           "timestamp": "2026-05-24T20:59:19.815904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2600,10 +2481,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008412"
+          "id": "event-008406"
         },
         {
-          "source_line": 8413,
+          "source_line": 8407,
           "timestamp": "2026-05-24T20:59:29.077347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2623,10 +2504,10 @@
               "new_string": "Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points (Table~\\ref{tab:baselines}). The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} (Appendix~\\ref{sec:threshold-routing})."
             }
           },
-          "id": "event-008413"
+          "id": "event-008407"
         },
         {
-          "source_line": 8414,
+          "source_line": 8408,
           "timestamp": "2026-05-24T20:59:29.128146+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2641,10 +2522,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008414"
+          "id": "event-008408"
         },
         {
-          "source_line": 8415,
+          "source_line": 8409,
           "timestamp": "2026-05-24T20:59:50.389352+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2664,10 +2545,10 @@
               "new_string": "A Qwen3 LoRA router (0.6B--4B; Appendix~\\ref{app:router-details}) trained on counterfactual labels shows flat step-level balanced accuracy ($56$--$59\\%$); episode-level evaluation yields $47.1 \\pm 2.2\\%$, below majority-vote.\\footnote{Consistent with noisy-label bounds~\\citep{natarajan2013learning}: ${\\sim}$88\\% of step-level labels are uninformative with 90.5\\%/3.7\\% class imbalance (Appendix~\\ref{app:seed-robustness}).} Leave-one-task-out degrades to chance ($49.2\\%$), confirming signal is a per-task-type constant. Deployed end-to-end, the best router scores $-10.70$, not exceeding always-deterministic ($-9.47$)."
             }
           },
-          "id": "event-008415"
+          "id": "event-008409"
         },
         {
-          "source_line": 8416,
+          "source_line": 8410,
           "timestamp": "2026-05-24T20:59:50.440297+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2682,10 +2563,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-008416"
+          "id": "event-008410"
         },
         {
-          "source_line": 8417,
+          "source_line": 8411,
           "timestamp": "2026-05-24T20:59:53.854443+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2703,10 +2584,10 @@
               "offset": "80"
             }
           },
-          "id": "event-008417"
+          "id": "event-008411"
         },
         {
-          "source_line": 8418,
+          "source_line": 8412,
           "timestamp": "2026-05-24T20:59:53.855109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2721,10 +2602,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008418"
+          "id": "event-008412"
         },
         {
-          "source_line": 8419,
+          "source_line": 8413,
           "timestamp": "2026-05-24T21:00:05.345227+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2744,10 +2625,10 @@
               "new_string": "DAF increases monotonically with $P$ (Appendix~\\ref{app:penalty}); we treat the label fraction (78.9\\%) as the primary, penalty-invariant diagnostic. In ScienceWorld, $P$ affects only post-hoc score calculation; death rates and $\\Delta_{\\text{nd}}$ are $P$-invariant by design~\\citep{ng1999policy}. Uncertainty is quantified via episode-level bootstrap ($B{=}10{,}000$, percentile 95\\% CIs)."
             }
           },
-          "id": "event-008419"
+          "id": "event-008413"
         },
         {
-          "source_line": 8420,
+          "source_line": 8414,
           "timestamp": "2026-05-24T21:00:05.345825+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2762,10 +2643,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008420"
+          "id": "event-008414"
         },
         {
-          "source_line": 8421,
+          "source_line": 8415,
           "timestamp": "2026-05-24T21:00:10.019598+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2784,10 +2665,10 @@
               "preview": "False"
             }
           },
-          "id": "event-008421"
+          "id": "event-008415"
         },
         {
-          "source_line": 8422,
+          "source_line": 8416,
           "timestamp": "2026-05-24T21:00:15.640810+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2802,10 +2683,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5621
           },
-          "id": "event-008422"
+          "id": "event-008416"
         },
         {
-          "source_line": 8423,
+          "source_line": 8417,
           "timestamp": "2026-05-24T21:00:28.380909+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2823,10 +2704,10 @@
               "description": "Render pages 7-8 of PDF to check main text boundary"
             }
           },
-          "id": "event-008423"
+          "id": "event-008417"
         },
         {
-          "source_line": 8424,
+          "source_line": 8418,
           "timestamp": "2026-05-24T21:00:30.188580+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2841,10 +2722,10 @@
             "tool": "Bash",
             "elapsed_ms": 1807
           },
-          "id": "event-008424"
+          "id": "event-008418"
         },
         {
-          "source_line": 8425,
+          "source_line": 8419,
           "timestamp": "2026-05-24T21:00:33.052950+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2861,10 +2742,10 @@
               "file_path": "/tmp/check_pages-07.png"
             }
           },
-          "id": "event-008425"
+          "id": "event-008419"
         },
         {
-          "source_line": 8426,
+          "source_line": 8420,
           "timestamp": "2026-05-24T21:00:33.255210+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2881,10 +2762,10 @@
               "file_path": "/tmp/check_pages-08.png"
             }
           },
-          "id": "event-008426"
+          "id": "event-008420"
         },
         {
-          "source_line": 8427,
+          "source_line": 8421,
           "timestamp": "2026-05-24T21:00:34.117879+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2899,10 +2780,10 @@
             "tool": "Read",
             "elapsed_ms": 1064
           },
-          "id": "event-008427"
+          "id": "event-008421"
         },
         {
-          "source_line": 8428,
+          "source_line": 8422,
           "timestamp": "2026-05-24T21:00:34.320092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2917,10 +2798,10 @@
             "tool": "Read",
             "elapsed_ms": 1064
           },
-          "id": "event-008428"
+          "id": "event-008422"
         },
         {
-          "source_line": 8429,
+          "source_line": 8423,
           "timestamp": "2026-05-24T21:00:51.294724+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2938,10 +2819,10 @@
               "limit": "20"
             }
           },
-          "id": "event-008429"
+          "id": "event-008423"
         },
         {
-          "source_line": 8430,
+          "source_line": 8424,
           "timestamp": "2026-05-24T21:00:51.345529+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2956,10 +2837,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008430"
+          "id": "event-008424"
         },
         {
-          "source_line": 8431,
+          "source_line": 8425,
           "timestamp": "2026-05-24T21:01:11.200437+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2979,10 +2860,10 @@
               "new_string": "\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition. D\\%: death rate for internal/deterministic. D/I/N: det-preferred / int-preferred / no-preference labels. $\\dagger$\\,Only task with zero deaths; $n{=}40$ (two batches).}\n\\label{tab:per-task}\n\\end{table}\n\nOf the 95"
             }
           },
-          "id": "event-008431"
+          "id": "event-008425"
         },
         {
-          "source_line": 8432,
+          "source_line": 8426,
           "timestamp": "2026-05-24T21:01:11.201165+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2997,10 +2878,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-008432"
+          "id": "event-008426"
         },
         {
-          "source_line": 8433,
+          "source_line": 8427,
           "timestamp": "2026-05-24T21:01:18.432863+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3019,10 +2900,10 @@
               "limit": "10"
             }
           },
-          "id": "event-008433"
+          "id": "event-008427"
         },
         {
-          "source_line": 8434,
+          "source_line": 8428,
           "timestamp": "2026-05-24T21:01:18.433456+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3037,10 +2918,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008434"
+          "id": "event-008428"
         },
         {
-          "source_line": 8435,
+          "source_line": 8429,
           "timestamp": "2026-05-24T21:01:22.512146+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3059,10 +2940,10 @@
               "limit": "15"
             }
           },
-          "id": "event-008435"
+          "id": "event-008429"
         },
         {
-          "source_line": 8436,
+          "source_line": 8430,
           "timestamp": "2026-05-24T21:01:22.512572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3077,10 +2958,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-008436"
+          "id": "event-008430"
         },
         {
-          "source_line": 8437,
+          "source_line": 8431,
           "timestamp": "2026-05-24T21:01:41.527489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3100,10 +2981,10 @@
               "new_string": "\\subsection{Multi-Model Validation (7--9B Tier)}\n\\label{sec:cross-model}\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcrrrcl@{}}\n\\toprule\nModel & Env & $n$ & Int DR & Det DR & $\\Delta$DR & DAF [95\\% CI] & Signal \\\\\n\\midrule\nQwen2.5-7B & SW & 245 & 42.9 & 16.3 & +26.5 & 90.4 [81.3, 99.1] & death \\\\\nLlama-3.1-8B & SW & 220 & 41.4 & 11.4 & +30.0 & 88.2 [80.2, 95.1] & death \\\\\nGemma-2-9B & SW & 220 & 36.4 & 14.1 & +22.3 & 89.7 [79.5, 98.4] & death \\\\\nQwen2.5-72B & SW & 255 & 30.6 & 2.8 & +27.8 & 92.4 [86.1, 97.9] & death \\\\\nLlama-70B & SW & 220 & 48.6 & 20.0 & +28.6 & 101.0 [95.3, 107.5] & death \\\\\n\\midrule\nQwen2.5-7B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\\\\nLlama-3.1-8B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & --- & --- & --- & --- & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment summary. SW = ScienceWorld, ALF = ALFWorld. Death dominance replicates across three 7--9B families and intensifies under $10{\\times}$ scaling; ALFWorld shows information-asymmetry signal; MATH shows none. DR = death rate (\\%).}\n\\label{tab:cross-model-env}\n\\end{table}\n\nLlama-3.1-8B"
             }
           },
-          "id": "event-008437"
+          "id": "event-008431"
         },
         {
-          "source_line": 8438,
+          "source_line": 8432,
           "timestamp": "2026-05-24T21:01:41.678640+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3118,10 +2999,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-008438"
+          "id": "event-008432"
         },
         {
-          "source_line": 8439,
+          "source_line": 8433,
           "timestamp": "2026-05-24T21:01:46.500480+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3140,10 +3021,10 @@
               "limit": "35"
             }
           },
-          "id": "event-008439"
+          "id": "event-008433"
         },
         {
-          "source_line": 8440,
+          "source_line": 8434,
           "timestamp": "2026-05-24T21:01:46.552307+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3158,10 +3039,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-008440"
+          "id": "event-008434"
         },
         {
-          "source_line": 8441,
+          "source_line": 8435,
           "timestamp": "2026-05-24T21:01:52.630622+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3180,10 +3061,10 @@
               "limit": "35"
             }
           },
-          "id": "event-008441"
+          "id": "event-008435"
         },
         {
-          "source_line": 8442,
+          "source_line": 8436,
           "timestamp": "2026-05-24T21:01:52.681450+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3198,10 +3079,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008442"
+          "id": "event-008436"
         },
         {
-          "source_line": 8443,
+          "source_line": 8437,
           "timestamp": "2026-05-24T21:02:08.276826+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3221,10 +3102,10 @@
               "new_string": "\\paragraph{Task selection and anti-cherry-picking.}"
             }
           },
-          "id": "event-008443"
+          "id": "event-008437"
         },
         {
-          "source_line": 8444,
+          "source_line": 8438,
           "timestamp": "2026-05-24T21:02:08.429445+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3239,10 +3120,10 @@
             "tool": "Edit",
             "elapsed_ms": 152
           },
-          "id": "event-008444"
+          "id": "event-008438"
         },
         {
-          "source_line": 8445,
+          "source_line": 8439,
           "timestamp": "2026-05-24T21:02:13.501561+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3261,10 +3142,10 @@
               "limit": "40"
             }
           },
-          "id": "event-008445"
+          "id": "event-008439"
         },
         {
-          "source_line": 8446,
+          "source_line": 8440,
           "timestamp": "2026-05-24T21:02:13.552451+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3279,10 +3160,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-008446"
+          "id": "event-008440"
         },
         {
-          "source_line": 8447,
+          "source_line": 8441,
           "timestamp": "2026-05-24T21:02:18.173188+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3301,10 +3182,10 @@
               "limit": "30"
             }
           },
-          "id": "event-008447"
+          "id": "event-008441"
         },
         {
-          "source_line": 8448,
+          "source_line": 8442,
           "timestamp": "2026-05-24T21:02:18.274085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3319,10 +3200,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-008448"
+          "id": "event-008442"
         },
         {
-          "source_line": 8449,
+          "source_line": 8443,
           "timestamp": "2026-05-24T21:02:31.227868+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3342,10 +3223,10 @@
               "new_string": "\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} (main text, \\S\\ref{sec:cross-model}) consolidates replication results across model families and environments."
             }
           },
-          "id": "event-008449"
+          "id": "event-008443"
         },
         {
-          "source_line": 8450,
+          "source_line": 8444,
           "timestamp": "2026-05-24T21:02:31.379584+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3360,10 +3241,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-008450"
+          "id": "event-008444"
         },
         {
-          "source_line": 8451,
+          "source_line": 8445,
           "timestamp": "2026-05-24T21:02:35.647177+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3382,10 +3263,10 @@
               "preview": "True"
             }
           },
-          "id": "event-008451"
+          "id": "event-008445"
         },
         {
-          "source_line": 8452,
+          "source_line": 8446,
           "timestamp": "2026-05-24T21:02:42.072826+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3400,10 +3281,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 6425
           },
-          "id": "event-008452"
+          "id": "event-008446"
         },
         {
-          "source_line": 8453,
+          "source_line": 8447,
           "timestamp": "2026-05-24T21:02:46.942542+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3420,10 +3301,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-008453"
+          "id": "event-008447"
         },
         {
-          "source_line": 8454,
+          "source_line": 8448,
           "timestamp": "2026-05-24T21:02:47.244454+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3440,10 +3321,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-008454"
+          "id": "event-008448"
         },
         {
-          "source_line": 8455,
+          "source_line": 8449,
           "timestamp": "2026-05-24T21:02:47.350207+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3458,10 +3339,10 @@
             "tool": "Read",
             "elapsed_ms": 407
           },
-          "id": "event-008455"
+          "id": "event-008449"
         },
         {
-          "source_line": 8456,
+          "source_line": 8450,
           "timestamp": "2026-05-24T21:02:47.954355+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3476,10 +3357,10 @@
             "tool": "Read",
             "elapsed_ms": 709
           },
-          "id": "event-008456"
+          "id": "event-008450"
         },
         {
-          "source_line": 8457,
+          "source_line": 8451,
           "timestamp": "2026-05-24T21:04:52.715368+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3497,10 +3378,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-008457"
+          "id": "event-008451"
         },
         {
-          "source_line": 8458,
+          "source_line": 8452,
           "timestamp": "2026-05-24T21:04:52.767219+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3515,10 +3396,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-008458"
+          "id": "event-008452"
         },
         {
-          "source_line": 8459,
+          "source_line": 8453,
           "timestamp": "2026-05-24T21:04:55.529093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3536,10 +3417,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-008459"
+          "id": "event-008453"
         },
         {
-          "source_line": 8460,
+          "source_line": 8454,
           "timestamp": "2026-05-24T21:04:55.579801+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3553,6 +3434,128 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
             "tool": "ToolSearch",
             "elapsed_ms": 50
+          },
+          "id": "event-008454"
+        },
+        {
+          "source_line": 8455,
+          "timestamp": "2026-05-24T21:04:58.844018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "max_pages": "8",
+              "preview": "False"
+            }
+          },
+          "id": "event-008455"
+        },
+        {
+          "source_line": 8456,
+          "timestamp": "2026-05-24T21:04:58.995544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"\\\\\\\\T1/ptm/m/n/10.95 (+20) com-pose non-death rout-ing sig-nal us-ing\\\\n []\\\\n\\\\n[21]\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 825--826\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Systematic anal-y-sis of non-death la-bels.[]\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 3029) in paragraph at lines 825--826\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) All 20 non-death non-tie la-bels in the pri-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 825--826\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) mary Qwen2.5-7B anal-y-sis orig-i-nate from\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2310) in paragraph at lines 843--844\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) Hallucination-induced er-rors dom-i-nate (50%),\\\\n []\\\\n\\\\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 8\\\\n50.\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\\\\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\\\\n)\\\\nUnderfull \\\\\\\\hbox (badness 1092) in paragraph at lines 850--851\\\\n[]\\\\\\\\T1/ptm/b/n/10.95 (+20) Code: \\\\\\\\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\\\\n scripts, data-\\\\n []\\\\n\\\\n[22] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 659FA267796370957A20D0FD7B3E623A;6473.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 31061 strings out of 469438\\\\n 575492 string characters out of 5468411\\\\n 1165170 words of memory out of 5000000\\\\n 58388 multiletter control sequences out of 15000+600000\\\\n 719379 words of font info for 470 fonts, out of 8000000 for \n…[truncated 8074 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 151
+          },
+          "id": "event-008456"
+        },
+        {
+          "source_line": 8457,
+          "timestamp": "2026-05-24T21:05:06.837349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+              "project": "simgate-modular-routing",
+              "pages": "1-4",
+              "dpi": "150"
+            }
+          },
+          "id": "event-008457"
+        },
+        {
+          "source_line": 8458,
+          "timestamp": "2026-05-24T21:05:07.691363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 469.3}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 573.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 708.4}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 454.8}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 854
+          },
+          "id": "event-008458"
+        },
+        {
+          "source_line": 8459,
+          "timestamp": "2026-05-24T21:05:07.691834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+              "project": "simgate-modular-routing",
+              "pages": "5-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-008459"
+        },
+        {
+          "source_line": 8460,
+          "timestamp": "2026-05-24T21:05:08.194098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 398.5}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 441.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 470.3}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 526.5}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d:paper_agent",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 502
           },
           "id": "event-008460"
         }

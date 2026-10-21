@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/feishu_group_oc_0b622d6038b969b96148ee8a163a1a0c_reviewer_2.jsonl",
     "occurrence": 1,
-    "bytes": 2090303,
-    "sha256": "d1409af4407535792bd7ab2391c92e62b3a86b6ef75bc64ab58a77dae20f7eac"
+    "bytes": 2087764,
+    "sha256": "2cce98dae247daba2336a3b45de13bcb1501edc4a8dc17e8af9130aa8fdeb848"
   },
   "statistics": {
-    "messages": 1937,
+    "messages": 1935,
     "user_turns": 57,
-    "tool_calls": 912,
+    "tool_calls": 911,
     "roles": {
       "user": 57,
-      "tool_call": 912,
-      "tool_result": 912,
+      "tool_call": 911,
+      "tool_result": 911,
       "assistant": 56
     },
     "unparsed_lines_preserved": 0,
@@ -449,11 +449,11 @@
     {
       "number": 37,
       "boundary": "recorded_user_message",
-      "message_count": 70,
+      "message_count": 68,
       "chunks": [
         {
           "path": "bd950ab13ed0a22220bb-part-0007.json",
-          "message_count": 70
+          "message_count": 68
         }
       ]
     },
@@ -475,11 +475,11 @@
       "chunks": [
         {
           "path": "bd950ab13ed0a22220bb-part-0007.json",
-          "message_count": 52
+          "message_count": 54
         },
         {
           "path": "bd950ab13ed0a22220bb-part-0008.json",
-          "message_count": 4
+          "message_count": 2
         }
       ]
     },
@@ -523,11 +523,7 @@
       "chunks": [
         {
           "path": "bd950ab13ed0a22220bb-part-0008.json",
-          "message_count": 95
-        },
-        {
-          "path": "bd950ab13ed0a22220bb-part-0009.json",
-          "message_count": 1
+          "message_count": 96
         }
       ]
     },
@@ -537,8 +533,12 @@
       "message_count": 4,
       "chunks": [
         {
+          "path": "bd950ab13ed0a22220bb-part-0008.json",
+          "message_count": 1
+        },
+        {
           "path": "bd950ab13ed0a22220bb-part-0009.json",
-          "message_count": 4
+          "message_count": 3
         }
       ]
     },
@@ -593,11 +593,11 @@
       "chunks": [
         {
           "path": "bd950ab13ed0a22220bb-part-0009.json",
-          "message_count": 43
+          "message_count": 45
         },
         {
           "path": "bd950ab13ed0a22220bb-part-0010.json",
-          "message_count": 27
+          "message_count": 25
         }
       ]
     },
@@ -652,11 +652,11 @@
       "chunks": [
         {
           "path": "bd950ab13ed0a22220bb-part-0010.json",
-          "message_count": 23
+          "message_count": 25
         },
         {
           "path": "bd950ab13ed0a22220bb-part-0011.json",
-          "message_count": 65
+          "message_count": 63
         }
       ]
     },

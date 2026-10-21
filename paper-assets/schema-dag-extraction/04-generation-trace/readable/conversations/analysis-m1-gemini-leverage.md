@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 215
+- **Events:** 213
 - **Recorded user turns:** 0
-- **Tool calls:** 107
+- **Tool calls:** 106
 - **Original source:** `logs/chats/worker_analysis_m1_gemini_leverage_20260522T091146.jsonl`
 - **Structured JSON:** [`70d8dc4b95ae814cbeb2.json`](../../sessions/70/70d8dc4b95ae814cbeb2.json)
 
@@ -18,7 +18,7 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Before a recorded user message
 
-215 recorded events
+213 recorded events
 
 ### Tool call
 
@@ -3248,72 +3248,7 @@ artifacts/dream_reports/dream_20260516T073533/logs/review_best.log
 
 ### Tool call
 
-_source line 93 · 2026-05-22T09:21:23.820808+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/rebuttal_talking_points.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "worker_analysis_m1_gemini_leverage_20260522T091146",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/rebuttal_talking_points.md"
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 94 · 2026-05-22T09:21:23.821110+00:00_
-
-1	# Rebuttal Talking Points — ARR May 2026
-2	# Prepared: 2026-05-18 | Updated: 2026-05-21 (v23: TP14 RE none evaluation, causal wording softened, Limitations cleaned)
-3	
-4	## 1. Novelty: "SCS not new, findings not surprising"
-5	SCS's formal definition matches LLM-PEE's partitioning criterion — acknowledged in Related Work and Limitations. While LLM-PEE uses this criterion for engineering optimization (schema partitioning), our work uses it for scientific analysis: isolating confusability as an independent variable via stratified experimental design. Three findings lacked prior empirical evidence: (a) BCS predicts RE but not NER (task asymmetry); (b) schema decomposition fails due to merge amplification; (c) few-shot widens confusability gap. "Not surprising in hindsight" ≠ "already known."
-6	
-7	## 2. Effect size: "r²=1.3% too small, typical batch only 2.2pp"
-8	Pairwise r²=1.3-1.7% is modest at the pair level, but this is the mechanism-level signal; the primary evidence is batch-level BCS explaining 22% (FewRel, n=100) of cross-batch RE accuracy variance (§4.3). Correlated type pairs within batches compound the pairwise signal (Monte Carlo confirms ~3x amplification). 2.2pp is typical IQR gap; extreme batches (real in production schemas) produce 25pp gap on DocRED (expanded experiment: low_bcs acc=0.672 vs high_bcs acc=0.422 at count=16, Δ=25.04pp [21.90, 28.34]). For 80+ type production schemas, 2.2pp systematic bias accumulates over thousands of extractions. The DocRED expanded experiment (n=55, tripled sample) confirms robust Spearman correlations (r=-0.762 at count=16, r=-0.693 at count=32, both p<0.001).
-9	
-10	## 3. Generalizability: "BCS only works for RE" / "NER null untested"
-11	Task asymmetry is a core finding (C2), not a limitation. RE errors concentrate in type substitution regardless of output format (paired evidence: constrained vs unconstrained yield identical BCS correlations). NER errors scatter across missed entities, boundary misalignment, and type 
-…[truncated 8997 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "worker_analysis_m1_gemini_leverage_20260522T091146",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-### Tool call
-
-_source line 95 · 2026-05-22T09:21:23.821304+00:00_
+_source line 93 · 2026-05-22T09:21:23.821304+00:00_
 
 called Grep
 
@@ -3354,7 +3289,7 @@ called Grep
 
 ### Tool result
 
-_source line 96 · 2026-05-22T09:21:23.821443+00:00_
+_source line 94 · 2026-05-22T09:21:23.821443+00:00_
 
 artifacts/rebuttal_talking_points.md:42:Gemini count_16 correlation (r=-0.80) is single-point driven (LOO: r→-0.42, p=0.22). We report this transparently in Appendix T. The count_8 result (n=50, gap=17.6pp, CI [15.1, 20.1]) is the primary Gemini Dim2 evidence.
 artifacts/dream_reports/dream_20260516T073533/logs/review_best.log:55:[Omitted long matching line]
@@ -3379,7 +3314,7 @@ artifacts/dream_reports/dream_20260516T073533/logs/review_worst.log:101:[Omitted
 
 ### Tool call
 
-_source line 97 · 2026-05-22T09:21:23.821574+00:00_
+_source line 95 · 2026-05-22T09:21:23.821574+00:00_
 
 called Bash
 
@@ -3414,7 +3349,7 @@ called Bash
 
 ### Tool result
 
-_source line 98 · 2026-05-22T09:21:23.821703+00:00_
+_source line 96 · 2026-05-22T09:21:23.821703+00:00_
 
 (Bash completed with no output)
 
@@ -3435,7 +3370,7 @@ _source line 98 · 2026-05-22T09:21:23.821703+00:00_
 
 ### Tool call
 
-_source line 99 · 2026-05-22T09:21:23.821822+00:00_
+_source line 97 · 2026-05-22T09:21:23.821822+00:00_
 
 called Bash
 
@@ -3470,7 +3405,7 @@ called Bash
 
 ### Tool result
 
-_source line 100 · 2026-05-22T09:21:23.821970+00:00_
+_source line 98 · 2026-05-22T09:21:23.821970+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/greedy_schema_optimizer.py
@@ -3499,7 +3434,7 @@ _source line 100 · 2026-05-22T09:21:23.821970+00:00_
 
 ### Tool call
 
-_source line 101 · 2026-05-22T09:21:23.822103+00:00_
+_source line 99 · 2026-05-22T09:21:23.822103+00:00_
 
 called Read
 
@@ -3532,7 +3467,7 @@ called Read
 
 ### Tool result
 
-_source line 102 · 2026-05-22T09:21:23.822384+00:00_
+_source line 100 · 2026-05-22T09:21:23.822384+00:00_
 
 1	#!/usr/bin/env python3
 2	"""Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.
@@ -3609,7 +3544,7 @@ _source line 102 · 2026-05-22T09:21:23.822384+00:00_
 
 ### Tool call
 
-_source line 103 · 2026-05-22T09:21:23.822570+00:00_
+_source line 101 · 2026-05-22T09:21:23.822570+00:00_
 
 called Bash
 
@@ -3644,7 +3579,7 @@ called Bash
 
 ### Tool result
 
-_source line 104 · 2026-05-22T09:21:23.822717+00:00_
+_source line 102 · 2026-05-22T09:21:23.822717+00:00_
 
 Part2 total samples: 96
 
@@ -3668,7 +3603,7 @@ Part2 batches: 1
 
 ### Tool call
 
-_source line 105 · 2026-05-22T09:21:23.822861+00:00_
+_source line 103 · 2026-05-22T09:21:23.822861+00:00_
 
 called Bash
 
@@ -3703,7 +3638,7 @@ called Bash
 
 ### Tool result
 
-_source line 106 · 2026-05-22T09:21:23.822993+00:00_
+_source line 104 · 2026-05-22T09:21:23.822993+00:00_
 
 results_incremental.jsonl
 ---
@@ -3726,7 +3661,7 @@ results_incremental.jsonl
 
 ### Tool call
 
-_source line 107 · 2026-05-22T09:21:23.823151+00:00_
+_source line 105 · 2026-05-22T09:21:23.823151+00:00_
 
 called Bash
 
@@ -3761,7 +3696,7 @@ called Bash
 
 ### Tool result
 
-_source line 108 · 2026-05-22T09:21:23.823273+00:00_
+_source line 106 · 2026-05-22T09:21:23.823273+00:00_
 
 1
 
@@ -3782,7 +3717,7 @@ _source line 108 · 2026-05-22T09:21:23.823273+00:00_
 
 ### Tool call
 
-_source line 109 · 2026-05-22T09:21:23.823676+00:00_
+_source line 107 · 2026-05-22T09:21:23.823676+00:00_
 
 called Bash
 
@@ -3817,7 +3752,7 @@ called Bash
 
 ### Tool result
 
-_source line 110 · 2026-05-22T09:21:23.823977+00:00_
+_source line 108 · 2026-05-22T09:21:23.823977+00:00_
 
 2026-05-17 18:22:44,366 INFO __main__:   count_16_random_0: 192 samples, acc=0.7500 (144/192)
 2026-05-17 18:26:52,894 INFO __main__:   count_16_random_1: 192 samples, acc=0.8125 (156/192)
@@ -3860,7 +3795,7 @@ _source line 110 · 2026-05-22T09:21:23.823977+00:00_
 
 ### Tool call
 
-_source line 111 · 2026-05-22T09:21:23.824168+00:00_
+_source line 109 · 2026-05-22T09:21:23.824168+00:00_
 
 called Bash
 
@@ -3895,7 +3830,7 @@ called Bash
 
 ### Tool result
 
-_source line 112 · 2026-05-22T09:21:23.824307+00:00_
+_source line 110 · 2026-05-22T09:21:23.824307+00:00_
 
 2026-05-19 17:39:33,556 INFO __main__: PART 2: BCS-Controlled Extreme Batches
 2026-05-19 17:39:33,556 INFO __main__: Loaded extreme batches: count_8 (25 low, 25 high), count_16 (5 low, 5 high)
@@ -3920,7 +3855,7 @@ _source line 112 · 2026-05-22T09:21:23.824307+00:00_
 
 ### Tool call
 
-_source line 113 · 2026-05-22T09:21:23.824436+00:00_
+_source line 111 · 2026-05-22T09:21:23.824436+00:00_
 
 called Bash
 
@@ -3955,7 +3890,7 @@ called Bash
 
 ### Tool result
 
-_source line 114 · 2026-05-22T09:21:23.824559+00:00_
+_source line 112 · 2026-05-22T09:21:23.824559+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_gemini_flash/run_resume.log:0
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_gemini_flash/run_resume2.log:0
@@ -3977,7 +3912,7 @@ _source line 114 · 2026-05-22T09:21:23.824559+00:00_
 
 ### Tool call
 
-_source line 115 · 2026-05-22T09:21:23.824711+00:00_
+_source line 113 · 2026-05-22T09:21:23.824711+00:00_
 
 called Bash
 
@@ -4012,7 +3947,7 @@ called Bash
 
 ### Tool result
 
-_source line 116 · 2026-05-22T09:21:23.824855+00:00_
+_source line 114 · 2026-05-22T09:21:23.824855+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/cross_model_error_taxonomy.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_llama70b_cross_model_analysis.md
@@ -4038,7 +3973,7 @@ _source line 116 · 2026-05-22T09:21:23.824855+00:00_
 
 ### Tool call
 
-_source line 117 · 2026-05-22T09:21:23.825035+00:00_
+_source line 115 · 2026-05-22T09:21:23.825035+00:00_
 
 called Grep
 
@@ -4079,7 +4014,7 @@ called Grep
 
 ### Tool result
 
-_source line 118 · 2026-05-22T09:21:23.825212+00:00_
+_source line 116 · 2026-05-22T09:21:23.825212+00:00_
 
 artifacts/manifest.yaml:1541:    margin 概念化，ecological correlation，Gemini leverage，DocRED CIs，bootstrap non-independence，dataset
 artifacts/exp_fewshot_bcs_v2/report/analysis_report.md:37:4. **Absolute accuracy gains are asymmetric**: few-shot helps most when types are already distinguishable (low BCS). In high-BCS batches, the model cannot leverage demonstrations to overcome structural type overlap.
@@ -4111,7 +4046,7 @@ artifacts/review_reports/round_26.md:56:**C2. Gemini 跨模型验证受单一 le
 
 ### Tool call
 
-_source line 119 · 2026-05-22T09:21:23.825378+00:00_
+_source line 117 · 2026-05-22T09:21:23.825378+00:00_
 
 called Bash
 
@@ -4146,7 +4081,7 @@ called Bash
 
 ### Tool result
 
-_source line 120 · 2026-05-22T09:21:23.825503+00:00_
+_source line 118 · 2026-05-22T09:21:23.825503+00:00_
 
 (Bash completed with no output)
 
@@ -4167,7 +4102,7 @@ _source line 120 · 2026-05-22T09:21:23.825503+00:00_
 
 ### Tool call
 
-_source line 121 · 2026-05-22T09:21:23.825624+00:00_
+_source line 119 · 2026-05-22T09:21:23.825624+00:00_
 
 called Bash
 
@@ -4202,7 +4137,7 @@ called Bash
 
 ### Tool result
 
-_source line 122 · 2026-05-22T09:21:23.825755+00:00_
+_source line 120 · 2026-05-22T09:21:23.825755+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex
@@ -4241,7 +4176,7 @@ _source line 122 · 2026-05-22T09:21:23.825755+00:00_
 
 ### Tool call
 
-_source line 123 · 2026-05-22T09:21:23.825925+00:00_
+_source line 121 · 2026-05-22T09:21:23.825925+00:00_
 
 called Grep
 
@@ -4282,7 +4217,7 @@ called Grep
 
 ### Tool result
 
-_source line 124 · 2026-05-22T09:21:23.826053+00:00_
+_source line 122 · 2026-05-22T09:21:23.826053+00:00_
 
 No matches found
 
@@ -4303,7 +4238,7 @@ No matches found
 
 ### Tool call
 
-_source line 125 · 2026-05-22T09:21:23.826171+00:00_
+_source line 123 · 2026-05-22T09:21:23.826171+00:00_
 
 called Bash
 
@@ -4338,7 +4273,7 @@ called Bash
 
 ### Tool result
 
-_source line 126 · 2026-05-22T09:21:23.826294+00:00_
+_source line 124 · 2026-05-22T09:21:23.826294+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex
@@ -4367,7 +4302,7 @@ _source line 126 · 2026-05-22T09:21:23.826294+00:00_
 
 ### Tool call
 
-_source line 127 · 2026-05-22T09:21:23.826417+00:00_
+_source line 125 · 2026-05-22T09:21:23.826417+00:00_
 
 called Grep
 
@@ -4408,7 +4343,7 @@ called Grep
 
 ### Tool result
 
-_source line 128 · 2026-05-22T09:21:23.826563+00:00_
+_source line 126 · 2026-05-22T09:21:23.826563+00:00_
 
 42:Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B/70B, Gemini Flash) covers Dimensions~1--2 but not secondary analyses such as TOST factorial interaction (\S\ref{sec:multi_channel}) or SDGD failure analysis (\S\ref{sec:sdgd}), and proprietary-model generalization remains open.
 102:\caption{NER batch-level BCS--F1 correlation across models. $^\dagger$Partial correlation controlling for type frequency. $^\ddagger$LLaMA-70B count\_12 shows $r{=}{-}0.42$ ($p{=}0.034$, uncorrected; Bonferroni $p{=}0.069$); pooled and count\_6 are null, consistent with sampling noise at $n{=}25$. The null is observed on three models; Gemini remains untested.}
@@ -4445,7 +4380,7 @@ _source line 128 · 2026-05-22T09:21:23.826563+00:00_
 
 ### Tool call
 
-_source line 129 · 2026-05-22T09:21:23.826708+00:00_
+_source line 127 · 2026-05-22T09:21:23.826708+00:00_
 
 called Read
 
@@ -4482,7 +4417,7 @@ called Read
 
 ### Tool result
 
-_source line 130 · 2026-05-22T09:21:23.826892+00:00_
+_source line 128 · 2026-05-22T09:21:23.826892+00:00_
 
 750	
 751	Table~\ref{tab:cross_model_gemini} confirms that the count-related accuracy decline replicates on Gemini 2.5 Flash. From count 4 to count 32, both models show perfectly monotonic decline (Spearman $\rho = -1.0$). Including count 1, the Gemini count curve yields $\rho = -0.900$ ($p = 0.037$); including partial count-64 data (11/25 batches), $\rho = -0.943$ ($p = 0.005$). The decline magnitude is smaller for Gemini ($-$13.3\,pp from count 4 to 32) than for Qwen3 ($-$21.8\,pp), consistent with Gemini's higher absolute accuracy providing more headroom before degradation saturates. At each count level, Gemini matches or exceeds Qwen3, with the gap widening at higher counts (0.3\,pp at count 4 vs.\ 8.7\,pp at count 32, 9.8\,pp at partial count 64); Gemini appears more robust to schema scaling but not immune.
@@ -4517,7 +4452,7 @@ _source line 130 · 2026-05-22T09:21:23.826892+00:00_
 
 ### Tool call
 
-_source line 131 · 2026-05-22T09:21:23.827068+00:00_
+_source line 129 · 2026-05-22T09:21:23.827068+00:00_
 
 called Bash
 
@@ -4552,7 +4487,7 @@ called Bash
 
 ### Tool result
 
-_source line 132 · 2026-05-22T09:21:23.827199+00:00_
+_source line 130 · 2026-05-22T09:21:23.827199+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/anonymous_github/scripts/extreme_batch_analysis.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json
@@ -4575,7 +4510,7 @@ _source line 132 · 2026-05-22T09:21:23.827199+00:00_
 
 ### Tool call
 
-_source line 133 · 2026-05-22T09:21:23.827321+00:00_
+_source line 131 · 2026-05-22T09:21:23.827321+00:00_
 
 called Grep
 
@@ -4618,7 +4553,7 @@ called Grep
 
 ### Tool result
 
-_source line 134 · 2026-05-22T09:21:23.827451+00:00_
+_source line 132 · 2026-05-22T09:21:23.827451+00:00_
 
 Found 20 files limit: 20
 artifacts/_project/report/analysis_c3_extreme_batch_n.md
@@ -4659,7 +4594,7 @@ artifacts/dream_reports/dream_20260516T073533/logs/paper_agent_worst.log
 
 ### Tool call
 
-_source line 135 · 2026-05-22T09:21:23.827574+00:00_
+_source line 133 · 2026-05-22T09:21:23.827574+00:00_
 
 called Read
 
@@ -4694,7 +4629,7 @@ called Read
 
 ### Tool result
 
-_source line 136 · 2026-05-22T09:21:23.827733+00:00_
+_source line 134 · 2026-05-22T09:21:23.827733+00:00_
 
 1	{
 2	  "qwen3_32b_reference": {
@@ -4789,7 +4724,7 @@ _source line 136 · 2026-05-22T09:21:23.827733+00:00_
 
 ### Tool call
 
-_source line 137 · 2026-05-22T09:21:23.827937+00:00_
+_source line 135 · 2026-05-22T09:21:23.827937+00:00_
 
 called Read
 
@@ -4824,7 +4759,7 @@ called Read
 
 ### Tool result
 
-_source line 138 · 2026-05-22T09:21:23.828104+00:00_
+_source line 136 · 2026-05-22T09:21:23.828104+00:00_
 
 1	"""Cross-model error taxonomy analysis: IntraSub rate vs BCS Spearman ρ.
 2	
@@ -4905,7 +4840,7 @@ _source line 138 · 2026-05-22T09:21:23.828104+00:00_
 
 ### Tool call
 
-_source line 139 · 2026-05-22T09:21:23.828277+00:00_
+_source line 137 · 2026-05-22T09:21:23.828277+00:00_
 
 called ToolSearch
 
@@ -4940,7 +4875,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 140 · 2026-05-22T09:21:23.828406+00:00_
+_source line 138 · 2026-05-22T09:21:23.828406+00:00_
 
 
 
@@ -4961,7 +4896,7 @@ _source line 140 · 2026-05-22T09:21:23.828406+00:00_
 
 ### Tool call
 
-_source line 141 · 2026-05-22T09:21:23.828559+00:00_
+_source line 139 · 2026-05-22T09:21:23.828559+00:00_
 
 called Bash
 
@@ -4998,7 +4933,7 @@ called Bash
 
 ### Tool result
 
-_source line 142 · 2026-05-22T09:21:23.829215+00:00_
+_source line 140 · 2026-05-22T09:21:23.829215+00:00_
 
 Exit code 255
 
@@ -5019,7 +4954,7 @@ Exit code 255
 
 ### Tool call
 
-_source line 143 · 2026-05-22T09:21:23.829409+00:00_
+_source line 141 · 2026-05-22T09:21:23.829409+00:00_
 
 called Bash
 
@@ -5054,7 +4989,7 @@ called Bash
 
 ### Tool result
 
-_source line 144 · 2026-05-22T09:21:23.829562+00:00_
+_source line 142 · 2026-05-22T09:21:23.829562+00:00_
 
 (Bash completed with no output)
 
@@ -5075,7 +5010,7 @@ _source line 144 · 2026-05-22T09:21:23.829562+00:00_
 
 ### Tool call
 
-_source line 145 · 2026-05-22T09:21:23.829730+00:00_
+_source line 143 · 2026-05-22T09:21:23.829730+00:00_
 
 called Bash
 
@@ -5110,7 +5045,7 @@ called Bash
 
 ### Tool result
 
-_source line 146 · 2026-05-22T09:21:23.829947+00:00_
+_source line 144 · 2026-05-22T09:21:23.829947+00:00_
 
 Host github.com
     HostName github.com
@@ -5136,7 +5071,7 @@ Host github.com
 
 ### Tool call
 
-_source line 147 · 2026-05-22T09:21:23.830342+00:00_
+_source line 145 · 2026-05-22T09:21:23.830342+00:00_
 
 called Bash
 
@@ -5171,7 +5106,7 @@ called Bash
 
 ### Tool result
 
-_source line 148 · 2026-05-22T09:21:23.830632+00:00_
+_source line 146 · 2026-05-22T09:21:23.830632+00:00_
 
 batch_groups.json
 data
@@ -5193,7 +5128,7 @@ data
 
 ### Tool call
 
-_source line 149 · 2026-05-22T09:21:23.830800+00:00_
+_source line 147 · 2026-05-22T09:21:23.830800+00:00_
 
 called Bash
 
@@ -5228,7 +5163,7 @@ called Bash
 
 ### Tool result
 
-_source line 150 · 2026-05-22T09:21:23.830974+00:00_
+_source line 148 · 2026-05-22T09:21:23.830974+00:00_
 
 low: 5 high: 5
   low_0: BCS=0.5036
@@ -5259,7 +5194,7 @@ low: 5 high: 5
 
 ### Tool call
 
-_source line 151 · 2026-05-22T09:21:23.831106+00:00_
+_source line 149 · 2026-05-22T09:21:23.831106+00:00_
 
 called Bash
 
@@ -5294,7 +5229,7 @@ called Bash
 
 ### Tool result
 
-_source line 152 · 2026-05-22T09:21:23.831232+00:00_
+_source line 150 · 2026-05-22T09:21:23.831232+00:00_
 
 low: 25 high: 25
   low_0: BCS=0.3563
@@ -5323,7 +5258,7 @@ low: 25 high: 25
 
 ### Tool call
 
-_source line 153 · 2026-05-22T09:21:23.831372+00:00_
+_source line 151 · 2026-05-22T09:21:23.831372+00:00_
 
 called Bash
 
@@ -5358,7 +5293,7 @@ called Bash
 
 ### Tool result
 
-_source line 154 · 2026-05-22T09:21:23.831532+00:00_
+_source line 152 · 2026-05-22T09:21:23.831532+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_gemini_flash/run.log:2026-05-19 17:47:06,693 INFO __main__:   count_8_low_0: 96 samples, acc=0.8542 (82/96)
 
@@ -5379,7 +5314,7 @@ _source line 154 · 2026-05-22T09:21:23.831532+00:00_
 
 ### Tool call
 
-_source line 155 · 2026-05-22T09:21:23.831699+00:00_
+_source line 153 · 2026-05-22T09:21:23.831699+00:00_
 
 called Bash
 
@@ -5414,7 +5349,7 @@ called Bash
 
 ### Tool result
 
-_source line 156 · 2026-05-22T09:21:23.831988+00:00_
+_source line 154 · 2026-05-22T09:21:23.831988+00:00_
 
 (Bash completed with no output)
 
@@ -5435,7 +5370,7 @@ _source line 156 · 2026-05-22T09:21:23.831988+00:00_
 
 ### Tool call
 
-_source line 157 · 2026-05-22T09:21:23.832129+00:00_
+_source line 155 · 2026-05-22T09:21:23.832129+00:00_
 
 called Grep
 
@@ -5476,7 +5411,7 @@ called Grep
 
 ### Tool result
 
-_source line 158 · 2026-05-22T09:21:23.832271+00:00_
+_source line 156 · 2026-05-22T09:21:23.832271+00:00_
 
 Found 10 files
 artifacts/_project/report/analysis_c3_extreme_batch_n.md
@@ -5507,7 +5442,7 @@ artifacts/dream_reports/dream_20260515T140829/best/experiment_data.json
 
 ### Tool call
 
-_source line 159 · 2026-05-22T09:21:23.832401+00:00_
+_source line 157 · 2026-05-22T09:21:23.832401+00:00_
 
 called Read
 
@@ -5542,7 +5477,7 @@ called Read
 
 ### Tool result
 
-_source line 160 · 2026-05-22T09:21:23.832572+00:00_
+_source line 158 · 2026-05-22T09:21:23.832572+00:00_
 
 1	# C3: Extreme BCS Batch Sample Size Investigation
 2	
@@ -5596,7 +5531,7 @@ _source line 160 · 2026-05-22T09:21:23.832572+00:00_
 
 ### Tool call
 
-_source line 161 · 2026-05-22T09:21:23.832745+00:00_
+_source line 159 · 2026-05-22T09:21:23.832745+00:00_
 
 called Grep
 
@@ -5637,7 +5572,7 @@ called Grep
 
 ### Tool result
 
-_source line 162 · 2026-05-22T09:21:23.832922+00:00_
+_source line 160 · 2026-05-22T09:21:23.832922+00:00_
 
 1358:    identical", Gemini architecture family clarification, "five prompt designs". 0
 1541:    margin 概念化，ecological correlation，Gemini leverage，DocRED CIs，bootstrap non-independence，dataset
@@ -5659,7 +5594,7 @@ _source line 162 · 2026-05-22T09:21:23.832922+00:00_
 
 ### Tool call
 
-_source line 163 · 2026-05-22T09:21:23.833084+00:00_
+_source line 161 · 2026-05-22T09:21:23.833084+00:00_
 
 called Grep
 
@@ -5700,7 +5635,7 @@ called Grep
 
 ### Tool result
 
-_source line 164 · 2026-05-22T09:21:23.833216+00:00_
+_source line 162 · 2026-05-22T09:21:23.833216+00:00_
 
 No matches found
 
@@ -5721,7 +5656,7 @@ No matches found
 
 ### Tool call
 
-_source line 165 · 2026-05-22T09:21:23.833338+00:00_
+_source line 163 · 2026-05-22T09:21:23.833338+00:00_
 
 called Bash
 
@@ -5756,7 +5691,7 @@ called Bash
 
 ### Tool result
 
-_source line 166 · 2026-05-22T09:21:23.833576+00:00_
+_source line 164 · 2026-05-22T09:21:23.833576+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_dim1_dim2_20260519T173210_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_gemini_data_locate_20260518T070414_result.json
@@ -5786,7 +5721,7 @@ _source line 166 · 2026-05-22T09:21:23.833576+00:00_
 
 ### Tool call
 
-_source line 167 · 2026-05-22T09:21:23.833972+00:00_
+_source line 165 · 2026-05-22T09:21:23.833972+00:00_
 
 called Read
 
@@ -5821,7 +5756,7 @@ called Read
 
 ### Tool result
 
-_source line 168 · 2026-05-22T09:21:23.834124+00:00_
+_source line 166 · 2026-05-22T09:21:23.834124+00:00_
 
 1	{
 2	  "raw": "结果：\n\n### ALL n=10\n| 指标 | 值 | p |\n|------|----|---|\n| Pearson r | **-0.8043** | 0.0001 |\n| Spearman ρ | -0.4012 | 0.2154 |\n\n### LOO n=9（去掉 high_4, BCS=0.97, acc=0.5990）\n| 指标 | 值 | p |\n|------|----|---|\n| Pearson r | **-0.4171** | 0.2247 |\n| Spearman ρ | -0.1757 | 0.6367 |\n\n### 结论\n\n**high_4 是 count_16 Pearson 相关性的主要驱动因素。** 去掉这一个点后 Pearson r 从 -0.80 骤降到 -0.42 且不再显著（p: 0.0001 → 0.22）。Spearman 在移除前就不显著（p=0.22），移除后更弱（ρ=-0.18, p=0.64）。\n\nhigh_4 是 BCS=0.97 的极端离群点（其余 9 个 batch 的 BCS 集中在 0.50–0.62），它恰好 acc 最低（0.599），人为拉出了一个强线性趋势。count_16 的负相关本质上是单点驱动的伪相关。"
@@ -5844,7 +5779,7 @@ _source line 168 · 2026-05-22T09:21:23.834124+00:00_
 
 ### Tool call
 
-_source line 169 · 2026-05-22T09:21:23.834274+00:00_
+_source line 167 · 2026-05-22T09:21:23.834274+00:00_
 
 called Read
 
@@ -5879,7 +5814,7 @@ called Read
 
 ### Tool result
 
-_source line 170 · 2026-05-22T09:21:23.835730+00:00_
+_source line 168 · 2026-05-22T09:21:23.835730+00:00_
 
 1	{
 2	  "raw": "## Gemini Dim2 BCS-controlled 实验结果\n\n**状态**: 已完成。6720 samples, 60 batches。\n\n### 按 count level\n\n| Count Level | Batches | Low BCS Acc | High BCS Acc | Gap | Pearson r | Spearman ρ |\n|-------------|---------|-------------|--------------|-----|-----------|------------|\n| count_8 | 50 (25+25) | 0.9050 | 0.7292 | **+17.58pp** | -0.8873 | -0.7428 |\n| count_16 | 10 (5+5) | 0.8146 | 0.7281 | **+8.65pp** | -0.8043 | -0.4012 |\n\n### 全局汇总\n\n- **Pooled Pearson r = -0.8690**\n- **Pooled Spearman ρ = -0.8046**\n- BCS 越高 → accuracy 越低，负相关非常强\n\n### 要点\n\n1. **count_8 效果最显著**：low-high gap 达 17.58pp，Pearson r=-0.89，BCS 对 schema 复杂度的预测力在小 schema 上最强\n2. **count_16 gap 收窄到 8.65pp**：Spearman 仅 -0.40，可能因为只有 5 batches/group，统计功效不足\n3. **count_16_high_4 是极端异常点**：BCS=0.9706（远超其他 high batch 的 0.58-0.62），acc 仅 0.5990，拉大了 Pearson 但可能扭曲 Spearman\n4. count_8 的 low group 中多个 batch acc > 0.95（最高 0.9792），说明低 BCS schema 对 Gemini 几乎无难度"
@@ -5902,7 +5837,7 @@ _source line 170 · 2026-05-22T09:21:23.835730+00:00_
 
 ### Tool call
 
-_source line 171 · 2026-05-22T09:21:23.835946+00:00_
+_source line 169 · 2026-05-22T09:21:23.835946+00:00_
 
 called Read
 
@@ -5937,7 +5872,7 @@ called Read
 
 ### Tool result
 
-_source line 172 · 2026-05-22T09:21:23.836089+00:00_
+_source line 170 · 2026-05-22T09:21:23.836089+00:00_
 
 File content (59737 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -5958,7 +5893,7 @@ File content (59737 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 173 · 2026-05-22T09:21:23.836220+00:00_
+_source line 171 · 2026-05-22T09:21:23.836220+00:00_
 
 called Bash
 
@@ -5993,7 +5928,7 @@ called Bash
 
 ### Tool result
 
-_source line 174 · 2026-05-22T09:21:23.836755+00:00_
+_source line 172 · 2026-05-22T09:21:23.836755+00:00_
 
 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction","session_id":"d6f7e387-ec3f-473e-b3ee-2c744b7d1468","tools":["Task","AskUserQu
 3: {"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01LZb6vXDbKYY7Jns7W5B4hw","type":"message","role":"assistant","content":[{"type":"thinking","thinking":"Let me start by understanding
@@ -6021,7 +5956,7 @@ _source line 174 · 2026-05-22T09:21:23.836755+00:00_
 
 ### Tool call
 
-_source line 175 · 2026-05-22T09:21:23.837158+00:00_
+_source line 173 · 2026-05-22T09:21:23.837158+00:00_
 
 called Read
 
@@ -6056,7 +5991,7 @@ called Read
 
 ### Tool result
 
-_source line 176 · 2026-05-22T09:21:23.837324+00:00_
+_source line 174 · 2026-05-22T09:21:23.837324+00:00_
 
 1	{
 2	  "raw": "运行正常：\n- `base_url=http://47.94.22.126/v1` — TUM proxy 正确\n- `Loaded 960 samples (80 relations)` — 数据正确\n- `count_8 (25 low, 25 high), count_16 (5 low, 5 high)` — BCS batches 已加载\n- API 调用成功返回 200\n\ntmux session `gemini_part2` 在 cqa1-38874 上运行中，脚本支持 incremental resume。预计 2-4 小时完成。"
@@ -6079,7 +6014,7 @@ _source line 176 · 2026-05-22T09:21:23.837324+00:00_
 
 ### Tool call
 
-_source line 177 · 2026-05-22T09:21:23.837461+00:00_
+_source line 175 · 2026-05-22T09:21:23.837461+00:00_
 
 called Read
 
@@ -6114,7 +6049,7 @@ called Read
 
 ### Tool result
 
-_source line 178 · 2026-05-22T09:21:23.837604+00:00_
+_source line 176 · 2026-05-22T09:21:23.837604+00:00_
 
 1	{
 2	  "raw": "## Gemini Dim2 BCS-controlled 实验状态\n\n**进程状态**: 🟢 Alive（PID 622986，最新日志 05:00:32，持续 API 调用中）\n\n**已完成数据** (5376 lines):\n\n| 条件 | 行数 | Batches | 每 batch 样本数 |\n|------|------|---------|----------------|\n| count_8_low | 2400 | 25/25 ✅ | 96 |\n| count_8_high | 2400 | 25/25 ✅ | 96 |\n| count_16_low | 576 | 3/? (seeds 0,1,2 各192行，均完整) | 192 |\n| count_16_high | 0 | 0 | — |\n| count_40_* | 0 | 0 | — |\n| count_80_* | 0 | 0 | — |\n\n**进度**: 已完成 53 batches。若 part2 共 60 batches（count_8×50 + count_16×10），剩余 7 batches（count_16_low 2个 + count_16_high 5个）= 1344 行。\n\n**速度估算**:\n- 运行时间: ~3 小时（01:59 → 05:00），产出 5376 行\n- 速率: ~30 行/分钟\n- 剩余 1344 行 → **预计 ~45 分钟完成**（约 05:45）\n\n**最近日志**: 全部 200 OK，无报错，~2秒/请求，运行稳定。"
@@ -6137,7 +6072,7 @@ _source line 178 · 2026-05-22T09:21:23.837604+00:00_
 
 ### Tool call
 
-_source line 179 · 2026-05-22T09:21:23.837743+00:00_
+_source line 177 · 2026-05-22T09:21:23.837743+00:00_
 
 called Read
 
@@ -6172,7 +6107,7 @@ called Read
 
 ### Tool result
 
-_source line 180 · 2026-05-22T09:21:23.837916+00:00_
+_source line 178 · 2026-05-22T09:21:23.837916+00:00_
 
 1	{
 2	  "raw": "## 状态汇报\n\n**进程**: 运行中 (PID 622986, 启动于 01:59)\n- 命令: `python3 scripts/run_gemini_flash_fewrel.py --mode part2 --sleep 0.15`\n- 日志持续输出 HTTP 200，无报错\n\n**进度**: **192 / ~14,400 samples (1.3%), 2/100 batches**\n- 已完成: `count_8_low_0`, `count_8_low_1` (各 96 samples)\n- 当前正在处理后续 batch\n\n**预估总量**:\n| 组别 | batches | samples/batch | 小计 |\n|------|---------|---------------|------|\n| count_8 low | 25 | 96 | 2,400 |\n| count_8 high | 25 | 96 | 2,400 |\n| count_16 low | 25 | 192 | 4,800 |\n| count_16 high | 25 | 192 | 4,800 |\n| **合计** | **100** | — | **14,400** |\n\n**预估耗时**: 2 batches / 12 min → ~6 min/count_8_batch, ~12 min/count_16_batch。剩余约 **14-15 小时**。"
@@ -6195,7 +6130,7 @@ _source line 180 · 2026-05-22T09:21:23.837916+00:00_
 
 ### Tool call
 
-_source line 181 · 2026-05-22T09:21:23.838082+00:00_
+_source line 179 · 2026-05-22T09:21:23.838082+00:00_
 
 called Bash
 
@@ -6230,7 +6165,7 @@ called Bash
 
 ### Tool result
 
-_source line 182 · 2026-05-22T09:21:23.838224+00:00_
+_source line 180 · 2026-05-22T09:21:23.838224+00:00_
 
 6: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_019SYjPyAczisTWC1gMvJfo8","type":"tool_result","content":"1\t#!/usr/bin/env python3\n2\t\"\"\"Gemini 2.5 Flash cross-model validation: FewRel RE count curve + BCS-controlled.\n3\t\n4\tProves schema degradation is model-agnostic
 41: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01To3rknLxXu7PPj4DPoAVdL","type":"tool_result","content":"2026-05-19 17:34:23,435 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \"HTTP/1.1 200 OK\"\n2026-05-19 17:34:24,838 INFO httpx: HTTP Request: POS
@@ -6252,7 +6187,7 @@ _source line 182 · 2026-05-22T09:21:23.838224+00:00_
 
 ### Tool call
 
-_source line 183 · 2026-05-22T09:21:23.838469+00:00_
+_source line 181 · 2026-05-22T09:21:23.838469+00:00_
 
 called Bash
 
@@ -6289,7 +6224,7 @@ called Bash
 
 ### Tool result
 
-_source line 184 · 2026-05-22T09:21:23.838912+00:00_
+_source line 182 · 2026-05-22T09:21:23.838912+00:00_
 
 (Bash completed with no output)
 
@@ -6310,7 +6245,7 @@ _source line 184 · 2026-05-22T09:21:23.838912+00:00_
 
 ### Tool call
 
-_source line 185 · 2026-05-22T09:21:23.839208+00:00_
+_source line 183 · 2026-05-22T09:21:23.839208+00:00_
 
 called Bash
 
@@ -6345,7 +6280,7 @@ called Bash
 
 ### Tool result
 
-_source line 186 · 2026-05-22T09:21:23.839554+00:00_
+_source line 184 · 2026-05-22T09:21:23.839554+00:00_
 
 ## Gemini Dim2 BCS-controlled 实验结果
 
@@ -6388,7 +6323,7 @@ _source line 186 · 2026-05-22T09:21:23.839554+00:00_
 
 ### Tool call
 
-_source line 187 · 2026-05-22T09:21:23.839763+00:00_
+_source line 185 · 2026-05-22T09:21:23.839763+00:00_
 
 called Bash
 
@@ -6425,7 +6360,7 @@ called Bash
 
 ### Tool result
 
-_source line 188 · 2026-05-22T09:21:23.840002+00:00_
+_source line 186 · 2026-05-22T09:21:23.840002+00:00_
 
 (Bash completed with no output)
 
@@ -6446,7 +6381,7 @@ _source line 188 · 2026-05-22T09:21:23.840002+00:00_
 
 ### Tool call
 
-_source line 189 · 2026-05-22T09:21:23.840161+00:00_
+_source line 187 · 2026-05-22T09:21:23.840161+00:00_
 
 called Bash
 
@@ -6483,7 +6418,7 @@ called Bash
 
 ### Tool result
 
-_source line 190 · 2026-05-22T09:21:23.840515+00:00_
+_source line 188 · 2026-05-22T09:21:23.840515+00:00_
 
 (Bash completed with no output)
 
@@ -6504,7 +6439,7 @@ _source line 190 · 2026-05-22T09:21:23.840515+00:00_
 
 ### Tool call
 
-_source line 191 · 2026-05-22T09:21:23.840702+00:00_
+_source line 189 · 2026-05-22T09:21:23.840702+00:00_
 
 called Bash
 
@@ -6541,7 +6476,7 @@ called Bash
 
 ### Tool result
 
-_source line 192 · 2026-05-22T09:21:23.840983+00:00_
+_source line 190 · 2026-05-22T09:21:23.840983+00:00_
 
 Total lines: 48
 
@@ -6580,7 +6515,7 @@ Part1 在后台运行中。count_80 每 batch 含 960 samples（80 relations × 
 
 ### Tool call
 
-_source line 193 · 2026-05-22T09:21:23.841455+00:00_
+_source line 191 · 2026-05-22T09:21:23.841455+00:00_
 
 called Bash
 
@@ -6615,7 +6550,7 @@ called Bash
 
 ### Tool result
 
-_source line 194 · 2026-05-22T09:21:23.841659+00:00_
+_source line 192 · 2026-05-22T09:21:23.841659+00:00_
 
 结果：
 
@@ -6654,7 +6589,7 @@ high_4 是 BCS=0.97 的极端离群点（其余 9 个 batch 的 BCS 集中在 0.
 
 ### Tool call
 
-_source line 195 · 2026-05-22T09:21:23.841823+00:00_
+_source line 193 · 2026-05-22T09:21:23.841823+00:00_
 
 called Bash
 
@@ -6689,7 +6624,7 @@ called Bash
 
 ### Tool result
 
-_source line 196 · 2026-05-22T09:21:23.842150+00:00_
+_source line 194 · 2026-05-22T09:21:23.842150+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_count16_loo_20260519T231146_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_dim1_dim2_20260519T173210_result.json
@@ -6719,7 +6654,7 @@ _source line 196 · 2026-05-22T09:21:23.842150+00:00_
 
 ### Tool call
 
-_source line 197 · 2026-05-22T09:21:23.842311+00:00_
+_source line 195 · 2026-05-22T09:21:23.842311+00:00_
 
 called Bash
 
@@ -6754,7 +6689,7 @@ called Bash
 
 ### Tool result
 
-_source line 198 · 2026-05-22T09:21:23.842469+00:00_
+_source line 196 · 2026-05-22T09:21:23.842469+00:00_
 
 Keys: ['raw']
 Raw length: 903
@@ -6776,7 +6711,7 @@ Raw length: 903
 
 ### Tool call
 
-_source line 199 · 2026-05-22T09:21:23.842630+00:00_
+_source line 197 · 2026-05-22T09:21:23.842630+00:00_
 
 called Bash
 
@@ -6811,7 +6746,7 @@ called Bash
 
 ### Tool result
 
-_source line 200 · 2026-05-22T09:21:23.842902+00:00_
+_source line 198 · 2026-05-22T09:21:23.842902+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_count16_loo_20260519T231146.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_count16_loo_20260519T231146_result.json
@@ -6833,7 +6768,7 @@ _source line 200 · 2026-05-22T09:21:23.842902+00:00_
 
 ### Tool call
 
-_source line 201 · 2026-05-22T09:21:23.843071+00:00_
+_source line 199 · 2026-05-22T09:21:23.843071+00:00_
 
 called Bash
 
@@ -6868,7 +6803,7 @@ called Bash
 
 ### Tool result
 
-_source line 202 · 2026-05-22T09:21:23.843199+00:00_
+_source line 200 · 2026-05-22T09:21:23.843199+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_count16_loo_20260519T231146.log
 
@@ -6889,7 +6824,7 @@ _source line 202 · 2026-05-22T09:21:23.843199+00:00_
 
 ### Tool call
 
-_source line 203 · 2026-05-22T09:21:23.843325+00:00_
+_source line 201 · 2026-05-22T09:21:23.843325+00:00_
 
 called Bash
 
@@ -6924,7 +6859,7 @@ called Bash
 
 ### Tool result
 
-_source line 204 · 2026-05-22T09:21:23.843447+00:00_
+_source line 202 · 2026-05-22T09:21:23.843447+00:00_
 
 24 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_gemini_count16_loo_20260519T231146.log
 
@@ -6945,7 +6880,7 @@ _source line 204 · 2026-05-22T09:21:23.843447+00:00_
 
 ### Tool call
 
-_source line 205 · 2026-05-22T09:21:23.843570+00:00_
+_source line 203 · 2026-05-22T09:21:23.843570+00:00_
 
 called Bash
 
@@ -6982,7 +6917,7 @@ called Bash
 
 ### Tool result
 
-_source line 206 · 2026-05-22T09:21:23.843744+00:00_
+_source line 204 · 2026-05-22T09:21:23.843744+00:00_
 
 === Line 17, tool_result ===
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom scipy import stats\\\\nimport numpy as np\\\\n\\\\npath = \\\\'/root/schema-dag-extraction/artifacts/exp_gemini_flash/part2/results_incremental.jsonl\\\\'\\\\nresults = []\\\\nwith open(path) as f:\\\\n    for line in f:\\\\n        if line.strip():\\\\n            results.append(json.loads(line))\\\\n\\\\nbatch_stats = defaultdict(lambda: {\\\\'correct\\\\': 0, \\\\'total\\\\': 0, \\\\'bcs\\\\': 0.0})\\\\nfor r in results:\\\\n    bid = r[\\\\'batch_id\\\\']\\\\n    if not bid.startswith(\\\\'count_16\\\\'):\\\\n        continue\\\\n    s = batch_stats[bid]\\\\n    s[\\\\'total\\\\'] += 1\\\\n    s[\\\\'bcs\\\\'] = r.get(\\\\'batch_bcs\\\\', r.get(\\\\'bcs\\\\', 0))\\\\n    if r.get(\\\\'prediction\\\\') == r.get(\\\\'ground_truth\\\\'):\\\\n        s[\\\\'correct\\\\'] += 1\\\\n\\\\nprint(\\\\'=== count_16 ALL batches ===\\\\')\\\\nall_bcs = []\\\\nall_accs = []\\\\nfor bid, s in sorted(batch_stats.items()):\\\\n    acc = s[\\\\'correct\\\\'] / s[\\\\'total\\\\'] if s[\\\\'total\\\\'] > 0 else 0\\\\n    all_bcs.append(s[\\\\'bcs\\\\'])\\\\n    all_accs.append(acc)\\\\n    print(f\\\\'  {bid}: acc={acc:.4f} ({s[\\\\\\\\\\\"correct\\\\\\\\\\\"]}/{s[\\\\\\\\\\\"total\\\\\\\\\\\"]}) BCS={s[\\\\\\\\\\\"bcs\\\\\\\\\\\"]:.4f}\\\\')\\\\n\\\\npr, pp = stats.pearsonr(all_bcs, all_accs)\\\\nsr, sp = stats.spearmanr(all_bcs, all_accs)\\\\nprint(f\\\\'  ALL (n={len(all_bcs)}): Pearson r={pr:.4f} (p={pp:.4f}), Spearman rho={sr:.4f} (p={sp:.4f})\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== count_16 LEAVE-ONE-OUT (excluding high_4 BCS=0.97) ===\\\\')\\\\nloo_bcs = []\\\\nloo_accs = []\\\\nfor bid, s in sorted(batch_stats.items()):\\\\n    if bid == \\\\'count_16_high_4\\\\':\\\\n        print(f\\\\'  EXCLUDED: {bid} acc={s[\\\\\\\\\\\"correct\\\\\\\\\\\"]/s[\\\\\\\\
@@ -7005,7 +6940,7 @@ _source line 206 · 2026-05-22T09:21:23.843744+00:00_
 
 ### Tool call
 
-_source line 207 · 2026-05-22T09:21:23.843954+00:00_
+_source line 205 · 2026-05-22T09:21:23.843954+00:00_
 
 called Bash
 
@@ -7042,7 +6977,7 @@ called Bash
 
 ### Tool result
 
-_source line 208 · 2026-05-22T09:21:23.844140+00:00_
+_source line 206 · 2026-05-22T09:21:23.844140+00:00_
 
 === Line 21 ===
 2026-05-20 05:40:46,520 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
@@ -7103,7 +7038,7 @@ Total results: 6720
 
 ### Tool call
 
-_source line 209 · 2026-05-22T09:21:23.844350+00:00_
+_source line 207 · 2026-05-22T09:21:23.844350+00:00_
 
 called Bash
 
@@ -7140,7 +7075,7 @@ called Bash
 
 ### Tool result
 
-_source line 210 · 2026-05-22T09:21:23.844632+00:00_
+_source line 208 · 2026-05-22T09:21:23.844632+00:00_
 
 GEMINI 2.5 FLASH — COOK'S DISTANCE LEVERAGE ANALYSIS
 ======================================================================
@@ -7210,7 +7145,7 @@ Batch                     BCS      Acc      Resid    h_ii     Cook D     Flag
 
 ### Tool call
 
-_source line 211 · 2026-05-22T09:21:23.844906+00:00_
+_source line 209 · 2026-05-22T09:21:23.844906+00:00_
 
 called Write
 
@@ -7245,7 +7180,7 @@ called Write
 
 ### Tool result
 
-_source line 212 · 2026-05-22T09:21:23.845370+00:00_
+_source line 210 · 2026-05-22T09:21:23.845370+00:00_
 
 File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/analysis_m1_gemini_leverage.md
 
@@ -7266,7 +7201,7 @@ File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/p
 
 ### Tool call
 
-_source line 213 · 2026-05-22T09:21:23.845574+00:00_
+_source line 211 · 2026-05-22T09:21:23.845574+00:00_
 
 called mcp__agent-ml-research__register_artifact
 
@@ -7309,7 +7244,7 @@ called mcp__agent-ml-research__register_artifact
 
 ### Tool result
 
-_source line 214 · 2026-05-22T09:21:23.846085+00:00_
+_source line 212 · 2026-05-22T09:21:23.846085+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_d3537b\", \"name\": \"M1 Gemini Leverage Sensitivity Analysis\", \"type\": \"report\", \"description\": \"Cook's Distance analysis of Gemini 2.5 Flash BCS-controlled experiment. count_8 (n=50) robust (r strengthens -0.887→-0.913 after trimming). count_16 (n=10) fragile (r drops -0.804→-0.417, single-point driven by high_4 BCS=0.97). Cross-model claim supported.\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/report/analysis_m1_gemini_leverage.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T09:21:15.989627+00:00\", \"tags\": [\"gemini\", \"leverage\", \"cook-distance\", \"sensitivity\", \"cross-model\", \"rebuttal\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7330,7 +7265,7 @@ _source line 214 · 2026-05-22T09:21:23.846085+00:00_
 
 ### Assistant
 
-_source line 215 · 2026-05-22T09:21:23.846285+00:00_
+_source line 213 · 2026-05-22T09:21:23.846285+00:00_
 
 完成。核心结论：
 

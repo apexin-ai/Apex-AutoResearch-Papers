@@ -70,7 +70,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | prep mistral instruct dl v2 | 1 | 0 | [Read transcript](prep-mistral-instruct-dl-v2.md) | [JSON](../../sessions/dd/dd72584fa6df6412e601.json) |
 | prep plan 002 qwen3 0 6b download | 1 | 0 | [Read transcript](prep-plan-002-qwen3-0-6b-download.md) | [JSON](../../sessions/80/80c29f7b3a920937fe66.json) |
 | prep r28 gpu readiness | 1 | 0 | [Read transcript](prep-r28-gpu-readiness.md) | [JSON](../../sessions/5d/5db909b47a7b3558a95e.json) |
-| rebuttal w1 crossmodel cv v2 | 1 | 0 | [Read transcript](rebuttal-w1-crossmodel-cv-v2.md) | [JSON](../../sessions/c1/c18ae8eb8d2801329113.json) |
 | research arr checklist | 1 | 0 | [Read transcript](research-arr-checklist.md) | [JSON](../../sessions/21/212965076d3182561168.json) |
 | research bib full audit | 1 | 0 | [Read transcript](research-bib-full-audit.md) | [JSON](../../sessions/9f/9fda7a6dc04c62499274.json) |
 | research bibliography expansion | 1 | 0 | [Read transcript](research-bibliography-expansion.md) | [JSON](../../sessions/aa/aa7fa8e8b4160730c2c6.json) |

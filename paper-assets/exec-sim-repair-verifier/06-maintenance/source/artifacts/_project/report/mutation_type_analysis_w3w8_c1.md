@@ -246,17 +246,3 @@ Only 3 checkpoints available (different training run on westd). The home server 
 
 ---
 
-## 10. Summary for Rebuttal
-
-### W3/W8 (Mutation Type Analysis):
-- **Hardest**: boundary_removal (41.47%), dominated by false positives
-- **Easiest**: gold (94.09%), followed by return_value (83.99%) and operator_swap (82.72%)
-- **Distribution shift inflates test accuracy by ~2-3pp** vs val distribution
-- **operator_swap shift (+15.2pp) is NOT the primary difficulty driver** — model handles it at 82.72%, near overall average
-- **Repo distribution shift is more impactful**: xarray (23.7% of test, 100% trivially correct) and matplotlib (16.1%, 100%) together account for ~40% of test with perfect accuracy
-
-### C1 (Seed Variance):
-- 4B s42 (83.63%) vs s123 (75.33%) gap = 8.3pp
-- Root cause: **differential overfitting speed** — s123 overfits faster, val-best selected at overfitting inflection
-- 8B proxy analysis shows seeds trade off gold vs return_value accuracy (17.62pp swing on return_value)
-- 4B val-best predictions needed for definitive per-type breakdown (on offline home server)

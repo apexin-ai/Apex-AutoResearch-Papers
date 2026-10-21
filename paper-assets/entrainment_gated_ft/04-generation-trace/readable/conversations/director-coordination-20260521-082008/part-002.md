@@ -1,4 +1,4 @@
-# Director coordination (archived snapshot) — Part 2 of 6
+# Director coordination (archived snapshot) — Part 2 of 5
 
 **Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
 

@@ -3,123 +3,10 @@
   "session_id": "ebac95f2406b6d6dc37e",
   "rounds": [
     {
-      "number": 169,
-      "messages": [
-        {
-          "source_line": 2341,
-          "timestamp": "2026-05-23T08:32:00.053115+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 2 审稿结果]:\n审稿完成，已通过 `review_reviewer_post_to_director` 提交给 Review Director。\n\n**核心判断**: Overall 3.5 (Borderline Conference)，置信度 4/5。\n\n**主要发现**:\n- **优势**: 实验评估极为全面（3 数据集 × 4 模型 × 2 精度 × 多策略），统计报告严谨（bootstrap CIs + Bonferroni），相关工作覆盖充分，系统设计实用（+10% 延迟）\n- **核心问题**: (1) 算法创新有限，主要是 XGrammar + stateful logits processor 的系统集成；(2) CF 违规 trade-off 削弱价值主张（greedy 部署层不完整，beam 才能完全解决）；(3) zero-shot R-F1 仅 4–8%，占主文 ~3 页但缺乏实用价值\n- **格式合规**: 全部通过（8 页正文、双盲匿名、Limitations 在正文、无 TODO 残留）"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "source": "review_reviewer_2"
-          },
-          "id": "event-002341"
-        },
-        {
-          "source_line": 2342,
-          "timestamp": "2026-05-23T08:32:05.460114+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
-          },
-          "id": "event-002342"
-        }
-      ]
-    },
-    {
       "number": 170,
       "messages": [
         {
-          "source_line": 2343,
-          "timestamp": "2026-05-23T08:34:10.381479+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 2 审稿意见]:\n## Reviewer 2 交叉回应 Reviewer 1\n\n### Weaknesses 逐条回应\n\n**[AGREE] R1-W1: CF 违规占残余违规 64% 但正文讨论不足。**\n同意这是核心弱点，我的 W2 也指出了同一问题。R1 提供了更精确的量化（Table 9: 155/245 = 63.9%）。支持建议 (1) 在 §5.1 量化 CF 比例和 (2) 讨论架构限制。**但对建议 (3) 改标题有保留**：\"Type-Constrained\" 并非虚假——grammar layer 执行了 vocabulary membership（Level 1），semantic layer 执行了 domain/range（Level 2），只是 Level 3 (non-local CF) 未被完全解决。更好的方案是在 abstract/introduction 中明确界定 \"type-constrained\" 的范围，而非改标题。\n\n**[REBUT] R1-W2: Proposition 1 实际意义论证 gap。**\n部分反驳。论文 Remark（§3, p.3）已明确区分 \"theoretical impossibility (unbounded) and engineering intractability (finite but exponential); OntoCoDec's registry-based approach avoids both\"。R1 要求的区分实际上已经做了，只是作为 Remark 不够 prominent。建议提升为正式段落，但不构成 Major weakness。\n\n**[AGREE] R1-W3: WikiEvents n=20 统计效力不足。**\n完全同意，与我的 W5 一致。R1 的三条具体建议（缩减篇幅、改标题、Table 4 加注 MDE）都合理。\n\n**[AGREE] R1-W4: 70B INT4 量化限制披露不足。**\n同意 presentation issue，但严重程度略低于 R1 评判。关键是 8B 消融已确认 INT4 不影响 constraint enforcement（DR remains 0%; Appendix P）。R1 引用的 DocRED E-F1 drop（-7.07）源于 parse failure 而非量化噪声影响约束。同意 abstract 应标注 \"70B (AWQ INT4)\"，§5.5 开头应说明量化限制。\n\n**[REBUT] R1-W5: 缺少与训练基方法的系统性对比。**\n部分反驳。论文在 Appendix B 明确定位 training-based 和 decoding-time 方法为 \"complementary rather than competing\"。OntoCoDec 的核心 use case 是与 fine-tuning 组合（Table 2 已展示），而非替代 GoLLIE/ADELIE。要求 OntoCoDec vs. ADELIE 的直接对比面临方法论困难：公平对比应为 \"ADELIE alone vs. ADELIE + OntoCoDec\"，而非 OntoCoDec vs. ADELIE。不过同意论文应更明确说明为何直接对比不可行。\n\n**[AGREE] R1-W6: Fallback 频率模型依赖性。** 同意，Qwen 0次 vs. Llama 5,882次差异显著，值得正文提及。\n\n**[AGREE] R1-W7: Continuation masking prefix collision 频率。** 同意未提供量化验证。\n\n### Questions 回应\n\n**[AGREE] R1-Q1 (Backtracking):** 好问题，论文应讨论 backtracking 被排除的理由，特别是 IterGen 已探索此方向。\n**[AGREE] R1-Q2 (Type preference 冲突):** 有价值的观察，可能是 CF 的另一来源。\n**[AGREE] R1-Q3 (大规模 ontology):** 实际部署关键问题，prefix collision 在更大 ontology 下风险增加。\n**[AGREE] R1-Q4 (Entity-first 限制):** Entity-before-relation 是根本架构约束，应在 Limitations 中明确说明（当前未提及）。\n**[AGREE] R1-Q5 (Cohen's d):** 论文应 clarify。\n\n### Missing References\n\n**[REBUT] R1-Missing References:** GenIE 和 TANL 均已在 §6 被引用（\"GenIE (Josifoski et al., 2022), TANL (Paolini et al., 2021)\" 在 Schema-aware IE 段落），Appendix B 也详细讨论了 GenIE。这是 R1 的疏忽。\n\n### 与 R1 的核心分歧\n\n| Issue | R1 | R2 | 分歧点 |\n|-------|----|----|--------|\n| CF severity | Critical (改标题) | Major (界定范围即可) | 标题是否需要修改 |\n| Prop. 1 gap | Major | Minor (Remark 已区分) | 论证是否已充分 |\n| W5 训练基对比 | Major | Minor (互补定位) | 对比是否 methodologically necessary |\n| Missing refs | GenIE/TANL 需补充 | 已被引用 | 事实性分歧（R1 疏忽） |\n\n### 核心共识\n\nCF trade-off（R1-W1/我的 W2）、WikiEvents 统计效力（R1-W3/我的 W5）、70B INT4 披露（R1-W4）是两位 reviewer 一致认为最需要作者 address 的问题。Overall 评分两位均为 3.5 (Borderline Conference)，confidence 均为 4/5。\n\n---\n\n[Reviewer 1 审稿意见]:\n\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条交叉回应\n\n---\n\n### Weaknesses 回应\n\n**[AGREE] R2-W1: 算法创新有限，主要是系统集成贡献**\n\n同意R2的核心判断，但认为需要nuance。R2正确指出Proposition 1（IE类型约束超越CFG）对了解PDA局限性的研究者来说\"不意外\"——pumping lemma论证是标准的。XGrammar + stateful logits processor的组合确实是自然的设计选择。κ在n=3下p=0.138统计不显著，作为分析工具价值确实有限。\n\n但我认为R2低估了两点贡献：(1) **enabling dependency的经验发现**（grammar alone 84% DR at 8B, semantic alone仅24%, Table 1）——这个定量关系是非显然的，尤其是scale-dependent特性（70B时grammar alone接近semantic layer的水平, §5.3）；(2) **约束可判定性三级分类**（§3, p.3: context-free → prefix-decidable with state → non-local）虽然不是形式理论突破，但为IE约束解码系统设计提供了有用的conceptual framework，比\"grammar vs. semantic\"的二分法更精确。\n\n总体而言，本文更接近\"strong engineering contribution with useful empirical insights\"而非\"theoretical novelty\"——在EMNLP（重视应用和实证的venue）这是可接受的定位，但作者应降低理论贡献的措辞强度。\n\n---\n\n**[AGREE] R2-W2: CF违规trade-off显著削弱核心价值主张**\n\n强烈同意。这与我的W1（Critical）完全一致。补充R2的论点：\n\n我在审查中发现Table 9（p.21-22）的具体数据更能说明问题的严重性——S1配置下SciERC的245个残余违规中，CF违规占**63.9%**（155/245），且主要集中在GENERIC↔OtherScientificTerm（34.7%）和GENERIC↔Material（12.3%）这两个模式。这意味着系统消除了DR violations，但引入的CF violations在数量上构成了新的dominant问题。\n\nR2指出\"用户必须在'容忍CF'和'支付beam延迟'之间选择\"——我进一步注意到即使beam search（k=4）消除了所有violation类型，这也改变了系统的latency profile（1.54×, Appendix F），对于高吞吐量部署场景是一个real trade-off。论文应在Abstract/Introduction中更诚实地呈现这个tension，而非让读者到§5.1才发现。\n\n---\n\n**[REBUT] R2-W3: Zero-shot结果占据大量主文篇幅但缺乏实用价值**\n\n部分不同意R2的判断。\n\nR2的论点是zero-shot R-F1仅4-8%，\"远低于可用质量\"，因此这些实验缺乏实用价值。但zero-shot设置的价值不在于提取质量本身，而在于**作为controlled diagnostic isolating约束机制的效果**。Fine-tuning同时改变模型的类型分布和生成质量，无法cleanly isolate约束层的独立贡献。Zero-shot保持模型不变，使得violation rate changes可以直接归因于约束enforcement。\n\n具体证据：\n- Table 1的五路消融（zero-shot, p.5）是论文最informative的实验之一，cleanly展示了grammar vs. semantic vs. combined的边际贡献\n- §5.2中DocRED的\"latent violation surfacing\"（grammar-only使DR从18.46%增至26.17%）是一个重要发现，只在zero-shot下可观察到——fine-tuning后效果消失（Table 2, S1配置DR<0.1%）\n- Enabling dependency的scale-dependent特性（grammar alone 84% DR at 8B → 接近semantic at 70B）也依赖zero-shot实验\n\n但我**部分同意**R2关于**篇幅分配**的建议。当前fine-tuning composability（Table 2, §5.1后半段）确实deserves more main text空间，尤其是per-relation DR elimination patterns（当前在Appendix C Table 10, p.22，但这是核心insight）。建议将§5.1 zero-shot diagnostic压缩为1段+Table 1保留，将per-relation fine-tuning分析从附录提升到正文。\n\n---\n\n**[AGREE] R2-W4: GoLLIE比较不公平**\n\n完全同意。Table 49（p.39, Appendix Q）明确标注\"zero-shot for GoLLIE, LoRA + S1 for OntoCoDec\"——这不是fair comparison。GoLLIE是一个schema-conditioned模型，设计上需要与其annotation guidelines格式匹配才能发挥效果。在SciERC上zero-shot且不使用GoLLIE的原始schema format，几乎必然产生低coverage（54%空输出、仅5个有效预测）。\n\n更严重的是，§6（p.8）主文引用了这个结果：\"GoLLIE-7B eliminates DR at severe coverage cost (R-F1=0.5...46% empty output)\"——这给读者留下GoLLIE\"本质低质量\"的印象，但实际上是evaluation setup不匹配导致的。如果GoLLIE也在SciERC上fine-tuned（或使用其原始schema format），对比结果可能完全不同。\n\n这与我的W5一致——论文缺少与训练基方法的fair comparison，而现有的对比反而是misleading的。\n\n---\n\n**[AGREE] R2-W5: WikiEvents结果过于初步**\n\n与我的W3（Major）一致。n=20、MDE=±5.0pp（Table 31, p.31），Introduction contribution list中\"validates event extraction applicability\"这个用词过度推销了统计效力极弱的结果。\n\n补充一点：Table 4（p.7）的fine-tuning结果在n=20下尤其不可靠。论文报告的\"CF remains low (0.77-1.18%)\"基于~20个文档的fine-tuning，bootstrap CI极宽（±3-5pp），任何具体数字都应被视为directional estimates而非reliable conclusions。\n\n---\n\n**[REBUT] R2-W6: Limitations部分过长**\n\n不同意R2的判断。\n\nR2认为~1.5页Limitations接近EMNLP 2026 \"excessive additional content\"的边界。但查看Limitations内容（p.9），它覆盖了：(1) CF违规的constraint scope及其模型依赖性；(2) continuation masking的scalability限制（prefix collision at ~200 types）；(3) evaluation coverage（WikiEvents n=20、70B INT4）；(4) parse failure confounds。\n\n这些都是**substantive limitations directly affecting the paper's claims**，不是padding。特别是CF违规的讨论和continuation masking的scalability warning——如果这些被移到appendix，读者可能miss关键的caveats。事实上，在我的W1中，我指出CF gap的64%数字**应该**出现在主文而非仅在附录——Limitations是放这个数字的自然位置。\n\nEMNLP 2026规则说\"provided they do not contain excessive additional content\"——\"excessive\"指的是不相关的padding，不是substantive technical discussion of genuine limitations。当前Limitations的密度和relevance符合要求。\n\n不过，R2提到的部分具体数字（如residual DR分解、TCR讨论的detailed mechanics）可以精简，我同意有10-15%的压缩空间。\n\n---\n\n**[AGREE] R2-W7: \"Empirical enabling dependency\"表述重复**\n\n同意。我在通读论文时也注意到这一点——Abstract、§1 Introduction、§3 \"Empirical Observation\"段落、§4 Constraint Composition、§5.1消融分析中，同一个观察（grammar alone 84% at 8B, semantic alone 24%）至少出现5次且措辞高度相似。在8页主文中，这种重复消耗了宝贵空间。建议在Abstract和§1各保留一次提及，§3定义并首次展示，§5.1消融分析中引用§3——总共3次，释放约0.3页空间给fine-tuning分析。\n\n---\n\n### Questions 回应\n\n**[AGREE] R2-Q1: 约束引入的false negatives对recall的影响**\n\nR2问得好。§5.1末尾的downstream impact分析（p.5）报告0.49%被移除的三元组匹配gold label——但这只衡量了**被约束后验移除**的部分。R2正确指出还存在另一类false negatives：约束mask在生成过程中**阻止模型进入**某些合法但稀有的type combination路径，这些triple从未被生成，因此也无法被downstream analysis捕获。\n\n这是一个genuine gap。论文的constraint tightness分析（§4, κ值）间接触及了这个问题——低κ意味着masking移除的token比例高，更可能阻断合法生成路径。但没有direct quantification。建议至少在附录增加一个experiment：比较constrained vs. unconstrained生成中gold triple的recall差异（不仅是violation-free triples的precision）。\n\n---\n\n**[REBUT] R2-Q2: DocRED grammar-only增加DR的\"latent violation surfacing\"效应是否在fine-tuning后持续**\n\nR2的关切有道理，但论文数据已回答了这个问题。\n\nTable 2（p.6）显示DocRED fine-tuned S1配置下DR=0.02-0.08%（Qwen/Llama），远低于unconstrained fine-tuned的1-2%。更重要的是，Table 2中grammar-only fine-tuned配置（如有）与S1 fine-tuned的对比应能直接回答\"grammar layer在fine-tuning后是否仍surfacing violations\"。从Table 1的zero-shot消融看，grammar-only从15.37%→12.55%（SciERC），而在DocRED从18.46%→26.17%——surfacing效应是dataset-specific的（DocRED的96个relation type使grammar-level vocabulary restriction更tight，迫使模型进入更受限空间）。\n\nFine-tuning后，模型已学习了schema-compliant类型分布，grammar layer的constraining效应大幅减弱，因此surfacing现象不应持续。§5.1（p.5-6）的fine-tuning composability结果支持这一判断：S1 fine-tuned下DR接近0%，说明grammar+semantic层在fine-tuned模型上是complementary而非counterproductive的。\n\n但R2的问题揭示了一个更深的issue：**grammar layer在某些复杂schema下可能over-constrain**，这一点论文确实没有充分讨论。建议在Discussion中增加一段关于\"grammar layer对不同schema复杂度的sensitivity\"。\n\n---\n\n**[AGREE] R2-Q3: Beam search k=2作为折中**\n\n完全同意R2的关切。Appendix F（Tables 24-29）展示了k=1（greedy）和k=4/8的结果，但**k=2完全缺失**。对于实际部署，k=1→k=4的跳跃太大——k=2可能以更低的latency cost（约1.2-1.3×而非1.54×）消除大部分violations。理解violation elimination与k的关系曲线对部署决策至关重要。\n\n这也与R2-W2相关：如果k=2已足以消除CF violations，那么\"容忍CF vs. 支付beam延迟\"的trade-off会大幅缓解。\n\n---\n\n**[AGREE] R2-Q4: Entity registry的first-seen type行为**\n\n同意这是CF violations的主要机制来源，且主文解释不够清晰。§4 \"greedy limitation\"段（p.5）提到\"a right constraint: leave only the entity with its first occurrence's type as registered; the relation referencing head r₁ may see a different type than expected\"——但具体机制（何时第一次注册、后续出现如何处理、first-seen type是否可被override）需要更explicit的说明。\n\n我在Round 1审稿中的Q4也问了类似问题——entity registry假设entity-first生成顺序，同一实体在不同triple中可能被分配不同类型，但registry只保留first-seen。这是一个**architectural limitation**而非bug，但论文应在§3.3中更清楚地formalize这一行为并讨论其consequences。\n\n---\n\n**[AGREE] R2-Q5: κ在n=3下无法建立有意义的统计关系**\n\n完全同意。p=0.138在任何conventional significance level下都不显著。论文自己在p.20也承认\"n=6 is insufficient for statistical inference on this correlation\"——但κ仍然在§4中被作为分析工具presented，给读者一种\"有一定解释力\"的印象。\n\n建议两个修改：(1) 在§4中明确标注κ与DR的correlation\"is descriptive only, not statistically significant at any conventional level (p=0.138, n=3)\"；(2) 如果作者有更多ontology可以测试（如增加ACE 2005、TACRED等schema），在revision中补充数据点以增强κ的统计效力。否则应将κ的角色降级为\"descriptive metric\"而非\"analytical tool\"。\n\n---\n\n### 综合评价\n\nR2和我在三个核心问题上高度一致：\n1. **CF violations是未解决的核心缺陷**（R2-W2 ≈ R1-W1）\n2. **WikiEvents统计效力不足**（R2-W5 ≈ R1-W3）\n3. **GoLLIE/训练基方法对比不公平或缺失**（R2-W4 ≈ R1-W5）\n\n主要分歧在两点：\n- **Zero-shot实验的价值**（R2-W3）：R2认为缺乏实用价值应压缩篇幅，我认为其作为diagnostic设置的科学价值是独立于实用性的，但同意篇幅分配应调整。\n- **Limitations长度**（R2-W6）：R2认为接近\"excessive\"，我认为内容substantive且必要，但有少量压缩空间。\n\n两位Reviewer均给出 **3.5 (Borderline Conference)**，confidence 4。这一致性本身说明论文处于Conference和Findings的边界——工程执行和评估深度是clear strengths，但CF gap、overclaiming、以及fair comparison的缺失是需要在revision中解决的blocking issues。\n"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "source": "review_reviewer_2"
-          },
-          "id": "event-002343"
-        },
-        {
-          "source_line": 2344,
-          "timestamp": "2026-05-23T08:34:36.957254+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called TodoWrite"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "TodoWrite",
-            "tool_args": {
-              "todos": "[{'content': 'Step 0-1: 初始化和独立审稿', 'status': 'completed', 'activeForm': '已完成'}, {'content': 'Step 2: 交叉分享', 'status': 'completed', 'activeForm': '交叉分享审稿意见'}, {'content': 'Step 3: 收敛判断', 'status': 'completed', 'activeForm': '已确认收敛，无需 Round 2'}, {'content': 'Step 4a: 检查视觉审查状态', 'status': 'in_progress', 'activeForm': '检查视觉审查状态'}, {'content': 'Step 4b: 同步 Issue Tracker', 'status': 'pending', 'activeForm': '同步 review_issues.yaml'}, {'content': 'Step 4c: 合成报告并投递', 'status': 'pending', 'activeForm': '合成并投递审稿报告'}]"
-            }
-          },
-          "id": "event-002344"
-        },
-        {
-          "source_line": 2345,
-          "timestamp": "2026-05-23T08:34:37.007955+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "TodoWrite",
-            "elapsed_ms": 50
-          },
-          "id": "event-002345"
-        },
-        {
-          "source_line": 2346,
-          "timestamp": "2026-05-23T08:34:40.673058+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__get_visual_check_status"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
-            "tool": "mcp__agent-ml-research__get_visual_check_status",
-            "tool_args": {
-              "project": "schema_semantic_constrained_ie"
-            }
-          },
-          "id": "event-002346"
-        },
-        {
-          "source_line": 2347,
+          "source_line": 2341,
           "timestamp": "2026-05-23T08:34:40.775104+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -134,10 +21,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 102
           },
-          "id": "event-002347"
+          "id": "event-002341"
         },
         {
-          "source_line": 2348,
+          "source_line": 2342,
           "timestamp": "2026-05-23T08:34:40.775583+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -154,10 +41,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002348"
+          "id": "event-002342"
         },
         {
-          "source_line": 2349,
+          "source_line": 2343,
           "timestamp": "2026-05-23T08:34:40.826152+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -172,10 +59,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 50
           },
-          "id": "event-002349"
+          "id": "event-002343"
         },
         {
-          "source_line": 2350,
+          "source_line": 2344,
           "timestamp": "2026-05-23T08:35:25.640570+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -192,10 +79,10 @@
               "todos": "[{'content': 'Step 0-3: 初始化到收敛判断', 'status': 'completed', 'activeForm': '已完成'}, {'content': 'Step 4a: 检查视觉审查状态', 'status': 'completed', 'activeForm': '检查视觉审查状态'}, {'content': 'Step 4b: 同步 Issue Tracker', 'status': 'in_progress', 'activeForm': '同步 review_issues.yaml'}, {'content': 'Step 4c: 合成报告并投递', 'status': 'pending', 'activeForm': '合成并投递审稿报告'}]"
             }
           },
-          "id": "event-002350"
+          "id": "event-002344"
         },
         {
-          "source_line": 2351,
+          "source_line": 2345,
           "timestamp": "2026-05-23T08:35:25.641205+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -210,10 +97,10 @@
             "tool": "TodoWrite",
             "elapsed_ms": 0
           },
-          "id": "event-002351"
+          "id": "event-002345"
         },
         {
-          "source_line": 2352,
+          "source_line": 2346,
           "timestamp": "2026-05-23T08:37:18.326475+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -231,10 +118,10 @@
               "issues_yaml": "# Review Issues Tracker — schema_semantic_constrained_ie\n# Updated: Round 23 fresh review, 2026-05-23\n\n# ============================================================\n# Round 23 — New Issues\n# ============================================================\n\n- id: \"R23-W1\"\n  summary: \"CF 违规占残余违规 64%，与标题 'Type-Constrained IE' 形成 gap，正文讨论不足\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W1 (Critical) + R2-W2 (Major)。Table 9: S1 SciERC 245 残余违规中 CF=155 (63.9%)。两位 Reviewer 共识：正文应量化 CF 比例、讨论架构限制。R1 建议改标题；R2 建议界定 'type-constrained' 范围即可。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W2\"\n  summary: \"算法创新有限——主要是 XGrammar + stateful logits processor 的系统集成\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-W1 (Major)。R1 交叉回应 AGREE 但 nuance: enabling dependency 和三级分类有独立价值。共识：定位为 strong engineering contribution，降低理论贡献措辞强度。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W3\"\n  summary: \"GoLLIE 对比不公平 + 缺少与训练基方法的系统性对比\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W5 (Major) + R2-W4 (Minor)。Appendix Q GoLLIE ZS vs OntoCoDec FT 不公平。§6 引用可能误导。R2 REBUT R1: 互补定位使直接对比 methodologically difficult，但需说明原因。共识：至少解释为何直接对比不可行。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W4\"\n  summary: \"WikiEvents n=20 统计效力不足但结论呈现过度自信\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W3 (Major) + R2-W5 (Minor)。共识：MDE=±5.0pp，不应在 n=20 上报告 fine-tuning composability 结论。Introduction contribution list 'validates event extraction applicability' 过度推销。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W5\"\n  summary: \"70B 实验全在 AWQ INT4 上，Abstract 未标注，§5.3 量化限制披露过晚\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W4 (Major)。R2 交叉 AGREE 但降低严重性（8B 消融已确认 INT4 不影响 DR）。共识：Abstract 标注 '70B (AWQ INT4)'，§5.3 开头说明量化限制。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W6\"\n  summary: \"Zero-shot 实验占主文 ~3 页但 R-F1 仅 4-8%，篇幅分配失衡\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-W3 (Major)。R1 交叉 REBUT: ZS 作为 diagnostic probe 有科学价值（消融隔离约束效果），但 AGREE 篇幅分配应调整——压缩 ZS 为 1 段+Table 1，扩展 fine-tuning 分析。分歧：价值判断不同，但篇幅调整共识。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W7\"\n  summary: \"Proposition 1 实际意义论证 gap: unbounded 理论 vs bounded 工程之间逻辑跳跃\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W2 (Major)。R2 交叉 REBUT: Remark 已区分但不够 prominent。分歧：R1 Major vs R2 Minor。Director 判定 info (Remark 已覆盖，需提升 prominence)。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W8\"\n  summary: \"'Empirical enabling dependency' 在主文中重复出现 ≥6 次\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-W7 (Minor)。R1 交叉 AGREE。共识：保留 3 次（Abstract、§3 定义、§5.1 引用），释放 ~0.3 页空间。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W9\"\n  summary: \"Fallback 频率模型依赖性未在正文讨论 (Qwen 0 vs Llama 5882)\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W6 (Minor)。R2 交叉 AGREE。Table 6: Qwen 0 vs Llama 5882 次 fallback。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W10\"\n  summary: \"Continuation masking prefix collision 频率未量化\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W7 (Minor)。R2 交叉 AGREE。建议附录增加 prefix collision 频率分析。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W11\"\n  summary: \"Beam k=2 中间值缺失，k 与违规消除关系不明\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-Q3。R1 交叉 AGREE。Appendix F 仅展示 k=1 和 k=4/8，k=2 完全缺失。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W12\"\n  summary: \"Entity registry first-seen type 行为主文解释不够清晰\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-Q4 + R1-Q4。共识：CF 主要来源于 first-seen 注册机制，§3.3 应更显式 formalize。entity-first 生成顺序是架构约束，应在 Limitations 中明确。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-D1\"\n  summary: \"Limitations 长度是否 'excessive'：R2 认为偏长，R1 认为内容 substantive\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-W6 (Minor) vs R1 REBUT。R1 认为内容有实质性，不是 padding，但同意有 10-15% 压缩空间。Director 判定: info，可适度精简。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Prior Rounds — in_progress (R23 status update)\n# ============================================================\n\n- id: \"R16-W5\"\n  summary: \"核心新颖性定位——系统集成而非算法创新，novelty ceiling 有限\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 23\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"R19: 共识定位为 systems contribution。\"\n    - round: 20\n      reviewers: [1, 2]\n      note: \"R20: 论文已正确定位。\"\n    - round: 21\n      reviewers: [1, 2]\n      note: \"R21 D3: R2 'limited novelty' vs R1 'moderate novelty with strong execution'。\"\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23: 与 R23-W2 合并。R2-W1 再次指出 Prop 1 缺乏 surprise value，XGrammar+logits processor 组合自然。R1 nuance: enabling dependency 有独立价值。\"\n  action_items:\n    - round: 19\n      action: \"§7 Discussion 坦率定位 systems contribution\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 21\n      action: \"§3 method 段落论证 semantic layer 非显而易见设计选择\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W1\"\n  summary: \"Proposition 1 证明中 position→name 转换缺乏形式论证\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 23\n  mentions:\n    - round: 20\n      reviewers: [1]\n      note: \"R1-W3。\"\n    - round: 21\n      reviewers: [1]\n      note: \"R21 R1-W5 (Minor)。R2 REBUT 认为简化合理。\"\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23: R1-W2 扩展为 unbounded vs bounded gap。R2 REBUT 称 Remark 已区分。Director: 需提升 prominence 但非 Major。\"\n  action_items:\n    - round: 20\n      action: \"Appendix O 加 informal argument\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W4\"\n  summary: \"主文 Related Work §6 过于精简，ADELIE 缺失\"\n  category: related_work\n  severity: info\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 23\n  mentions:\n    - round: 20\n      reviewers: [2]\n      note: \"R2-W2。ADELIE 缺失；PICARD 对比不足；SGLang 未提及。\"\n    - round: 21\n      note: \"R21 R16: 补 Text2Event + Huang et al. 2024。\"\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23: R2-S4 评价相关工作覆盖 '充分'。R1 未提出新遗漏。本轮未被独立提及为 weakness。可能已修复。\"\n  action_items:\n    - round: 20\n      action: \"§6 提升 ADELIE；扩展 PICARD；提及 SGLang\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 21\n      action: \"补 Text2Event + Huang et al. 2024 引用\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R18-M2\"\n  summary: \"Figure 1 视觉层次不够分明 + 未可视化 fallback 路径\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 23\n  mentions:\n    - round: 18\n      reviewers: [1, 2]\n      note: \"R18: 小问题。\"\n    - round: 21\n      reviewers: [1, 2]\n      note: \"R21: Grammar-first fallback 应在 Figure 1 中体现。\"\n    - round: 23\n      note: \"R23: 视觉审查 info——Figure 1 caption 自包含，能传达核心 idea，部分文字标签偏小。本轮 Reviewer 未独立提及。\"\n  action_items:\n    - round: 21\n      action: \"Figure 1 重新生成（Paper Banana 失败，保留当前版本）\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R21-N2\"\n  summary: \"Full FT 组合性解读分歧——R-F1 不变是否意味约束无效\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 23\n  mentions:\n    - round: 21\n      reviewers: [1, 2]\n      note: \"D2: R1 误读 F1 不变=约束无效。R2 data rebuttal。Director 降级为 info。\"\n    - round: 23\n      note: \"R23 本轮未提及，可能已修复。\"\n  action_items:\n    - round: 21\n      action: \"Appendix L 更显式突出 full FT unconstrained DR=2.74%, S1→0%, F1 不变\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R21-Q1\"\n  summary: \"Beam search k=8 时 per-beam registry 内存开销未量化\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 23\n  mentions:\n    - round: 21\n      reviewers: [1, 2]\n      note: \"Q1: Appendix F 报告了 latency 但未量化 memory。\"\n    - round: 23\n      note: \"R23 本轮未提及。与 R23-W11 (beam k=2 缺失) 相关。\"\n  action_items:\n    - round: 21\n      action: \"Appendix F 补充 beam registry 内存估算\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R21-Q2\"\n  summary: \"TCR 整合到解码循环的可行性\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 23\n  mentions:\n    - round: 21\n      reviewers: [1, 2]\n      note: \"Q2: TCR 是 post-hoc 全局优化，不可嵌入 autoregressive loop。\"\n    - round: 23\n      note: \"R23 本轮未独立提及。CF 讨论中隐含（TCR 作为 CF 缓解方案效果有限）。\"\n  action_items:\n    - round: 21\n      action: \"Discussion/Appendix N 解释 TCR 不可嵌入 autoregressive 解码\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R21-Q3\"\n  summary: \"GCD/BoostCD 对比是直接运行还是等价论证\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 23\n  mentions:\n    - round: 21\n      reviewers: [1, 2]\n      note: \"Q3: Table 16-17 基于等价论证推断。\"\n    - round: 23\n      note: \"R23 本轮未提及。\"\n  action_items:\n    - round: 21\n      action: \"Table 16-17 caption 显式声明基于等价论证\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R21-Q5\"\n  summary: \"TCR vs OntoCoDec 定位不清——互补还是替代\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 21\n  last_seen_round: 23\n  mentions:\n    - round: 21\n      reviewers: [1, 2]\n      note: \"Q5: TCR 减少 CF 但不解决 DR。应定位为互补。\"\n    - round: 23\n      note: \"R23 本轮未独立提及。\"\n  action_items:\n    - round: 21\n      action: \"Appendix N 明确 TCR 互补定位\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Prior Rounds — Resolved (保留关键条目供参考)\n# ============================================================\n\n- id: \"R16-MF3\"\n  summary: \"CF trade-off 在 Abstract 中 framing 偏乐观——仅报告 1.18% 而实际范围达 12.02%\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 21\n  resolution: \"Abstract 完整重写为三段式。CF 分层报告：FT ≤1.4% (line 10), ZS up to 12% (line 11)。\"\n  resolution_round: 22\n\n- id: \"R16-W4\"\n  summary: \"70B AWQ INT4 quantization 对约束效果的影响未隔离\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 21\n  resolution: \"8B FP16 vs INT4 实验完成。DR 不受 INT4 影响（0%→0%）。新增 Appendix P。\"\n  resolution_round: 22\n\n- id: \"R16-W3\"\n  summary: \"WikiEvents fine-tuning composability 仅 n=20 文档，统计效力严重不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 21\n  resolution: \"Abstract 无 WikiEvents 引用。§1 标 'preliminary pilot study'。\"\n  resolution_round: 22\n\n- id: \"R16-W1\"\n  summary: \"κ̄/enabling dependency 统计支撑不足：R²=0.886 基于 n=6\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 21\n  resolution: \"全文加 'empirical' + 'scale-dependent' qualifier。§3 Corollary→Empirical Observation。\"\n  resolution_round: 22\n\n- id: \"R15-MF3\"\n  summary: \"正文溢出至第 9 页\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 21\n  resolution: \"主文 §1-§7 在 page 1-8。\"\n  resolution_round: 22\n\n# ============================================================\n# Won't Fix\n# ============================================================\n\n- id: \"R20-W5\"\n  summary: \"Running example 仍不充分\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 21\n  resolution: \"空间限制无法在正文加完整 running example。§3.3 有 Used-for 示例。\"\n  resolution_round: 20\n\n- id: \"R20-W6\"\n  summary: \"Zero-shot 评估实际意义有限（R-F1 仅 4-8%）\"\n  category: experiment\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 21\n  resolution: \"ZS 已定位为 diagnostic probe。\"\n  resolution_round: 20\n"
             }
           },
-          "id": "event-002352"
+          "id": "event-002346"
         },
         {
-          "source_line": 2353,
+          "source_line": 2347,
           "timestamp": "2026-05-23T08:37:18.427625+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -249,10 +136,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 101
           },
-          "id": "event-002353"
+          "id": "event-002347"
         },
         {
-          "source_line": 2354,
+          "source_line": 2348,
           "timestamp": "2026-05-23T08:37:27.064337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -269,10 +156,10 @@
               "todos": "[{'content': 'Step 0-3: 初始化到收敛判断', 'status': 'completed', 'activeForm': '已完成'}, {'content': 'Step 4a: 检查视觉审查状态', 'status': 'completed', 'activeForm': '检查视觉审查状态'}, {'content': 'Step 4b: 同步 Issue Tracker', 'status': 'completed', 'activeForm': '同步 review_issues.yaml'}, {'content': 'Step 4c: 合成报告并投递', 'status': 'in_progress', 'activeForm': '合成并投递审稿报告'}]"
             }
           },
-          "id": "event-002354"
+          "id": "event-002348"
         },
         {
-          "source_line": 2355,
+          "source_line": 2349,
           "timestamp": "2026-05-23T08:37:27.064966+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -287,10 +174,10 @@
             "tool": "TodoWrite",
             "elapsed_ms": 0
           },
-          "id": "event-002355"
+          "id": "event-002349"
         },
         {
-          "source_line": 2356,
+          "source_line": 2350,
           "timestamp": "2026-05-23T08:40:20.141340+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -312,10 +199,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-002356"
+          "id": "event-002350"
         },
         {
-          "source_line": 2357,
+          "source_line": 2351,
           "timestamp": "2026-05-23T08:40:24.673879+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -330,10 +217,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 4532
           },
-          "id": "event-002357"
+          "id": "event-002351"
         },
         {
-          "source_line": 2358,
+          "source_line": 2352,
           "timestamp": "2026-05-23T08:40:35.382318+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -350,10 +237,10 @@
               "todos": "[{'content': 'Step 0-3: 初始化到收敛判断', 'status': 'completed', 'activeForm': '已完成'}, {'content': 'Step 4a: 检查视觉审查状态', 'status': 'completed', 'activeForm': '检查视觉审查状态'}, {'content': 'Step 4b: 同步 Issue Tracker', 'status': 'completed', 'activeForm': '同步 review_issues.yaml'}, {'content': 'Step 4c: 合成报告并投递', 'status': 'completed', 'activeForm': '合成并投递审稿报告'}]"
             }
           },
-          "id": "event-002358"
+          "id": "event-002352"
         },
         {
-          "source_line": 2359,
+          "source_line": 2353,
           "timestamp": "2026-05-23T08:40:35.483387+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -368,10 +255,10 @@
             "tool": "TodoWrite",
             "elapsed_ms": 101
           },
-          "id": "event-002359"
+          "id": "event-002353"
         },
         {
-          "source_line": 2360,
+          "source_line": 2354,
           "timestamp": "2026-05-23T08:40:48.526331+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -384,7 +271,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002360"
+          "id": "event-002354"
         }
       ]
     },
@@ -392,7 +279,7 @@
       "number": 171,
       "messages": [
         {
-          "source_line": 2361,
+          "source_line": 2355,
           "timestamp": "2026-05-23T08:40:49.607475+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -406,10 +293,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002361"
+          "id": "event-002355"
         },
         {
-          "source_line": 2362,
+          "source_line": 2356,
           "timestamp": "2026-05-23T08:41:03.729353+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -422,7 +309,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002362"
+          "id": "event-002356"
         }
       ]
     },
@@ -430,7 +317,7 @@
       "number": 172,
       "messages": [
         {
-          "source_line": 2363,
+          "source_line": 2357,
           "timestamp": "2026-05-23T09:16:37.753850+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -444,10 +331,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "system"
           },
-          "id": "event-002363"
+          "id": "event-002357"
         },
         {
-          "source_line": 2364,
+          "source_line": 2358,
           "timestamp": "2026-05-23T09:16:43.298847+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -464,10 +351,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002364"
+          "id": "event-002358"
         },
         {
-          "source_line": 2365,
+          "source_line": 2359,
           "timestamp": "2026-05-23T09:16:43.354021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -482,10 +369,10 @@
             "tool": "Read",
             "elapsed_ms": 55
           },
-          "id": "event-002365"
+          "id": "event-002359"
         },
         {
-          "source_line": 2366,
+          "source_line": 2360,
           "timestamp": "2026-05-23T09:16:50.686652+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -503,10 +390,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002366"
+          "id": "event-002360"
         },
         {
-          "source_line": 2367,
+          "source_line": 2361,
           "timestamp": "2026-05-23T09:16:50.787577+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -521,10 +408,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002367"
+          "id": "event-002361"
         },
         {
-          "source_line": 2368,
+          "source_line": 2362,
           "timestamp": "2026-05-23T09:16:55.111858+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -541,10 +428,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002368"
+          "id": "event-002362"
         },
         {
-          "source_line": 2369,
+          "source_line": 2363,
           "timestamp": "2026-05-23T09:16:57.017946+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -559,10 +446,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 1906
           },
-          "id": "event-002369"
+          "id": "event-002363"
         },
         {
-          "source_line": 2370,
+          "source_line": 2364,
           "timestamp": "2026-05-23T09:16:57.018459+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -579,10 +466,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
             }
           },
-          "id": "event-002370"
+          "id": "event-002364"
         },
         {
-          "source_line": 2371,
+          "source_line": 2365,
           "timestamp": "2026-05-23T09:16:57.822297+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -597,10 +484,10 @@
             "tool": "Read",
             "elapsed_ms": 803
           },
-          "id": "event-002371"
+          "id": "event-002365"
         },
         {
-          "source_line": 2372,
+          "source_line": 2366,
           "timestamp": "2026-05-23T09:16:57.973869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -618,10 +505,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002372"
+          "id": "event-002366"
         },
         {
-          "source_line": 2373,
+          "source_line": 2367,
           "timestamp": "2026-05-23T09:16:57.974327+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -636,10 +523,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002373"
+          "id": "event-002367"
         },
         {
-          "source_line": 2374,
+          "source_line": 2368,
           "timestamp": "2026-05-23T09:17:05.675662+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -657,10 +544,10 @@
               "allowed_domains": "['aclweb.org', '2026.emnlp.org', 'openreview.net']"
             }
           },
-          "id": "event-002374"
+          "id": "event-002368"
         },
         {
-          "source_line": 2375,
+          "source_line": 2369,
           "timestamp": "2026-05-23T09:17:06.730457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -679,10 +566,10 @@
               "max_chars": "3000"
             }
           },
-          "id": "event-002375"
+          "id": "event-002369"
         },
         {
-          "source_line": 2376,
+          "source_line": 2370,
           "timestamp": "2026-05-23T09:17:08.739609+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -700,10 +587,10 @@
               "description": "Check if review_issues.yaml exists"
             }
           },
-          "id": "event-002376"
+          "id": "event-002370"
         },
         {
-          "source_line": 2377,
+          "source_line": 2371,
           "timestamp": "2026-05-23T09:17:13.157494+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -718,10 +605,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 7481
           },
-          "id": "event-002377"
+          "id": "event-002371"
         },
         {
-          "source_line": 2378,
+          "source_line": 2372,
           "timestamp": "2026-05-23T09:17:13.209882+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -736,10 +623,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 6479
           },
-          "id": "event-002378"
+          "id": "event-002372"
         },
         {
-          "source_line": 2379,
+          "source_line": 2373,
           "timestamp": "2026-05-23T09:17:13.361325+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -754,10 +641,10 @@
             "tool": "Bash",
             "elapsed_ms": 4621
           },
-          "id": "event-002379"
+          "id": "event-002373"
         },
         {
-          "source_line": 2380,
+          "source_line": 2374,
           "timestamp": "2026-05-23T09:17:19.086117+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -774,10 +661,10 @@
               "query": "EMNLP 2026 ARR submission format page limit anonymity template guidelines"
             }
           },
-          "id": "event-002380"
+          "id": "event-002374"
         },
         {
-          "source_line": 2381,
+          "source_line": 2375,
           "timestamp": "2026-05-23T09:17:21.245452+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -795,10 +682,10 @@
               "description": "List paper directory files"
             }
           },
-          "id": "event-002381"
+          "id": "event-002375"
         },
         {
-          "source_line": 2382,
+          "source_line": 2376,
           "timestamp": "2026-05-23T09:17:21.296255+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -813,10 +700,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002382"
+          "id": "event-002376"
         },
         {
-          "source_line": 2383,
+          "source_line": 2377,
           "timestamp": "2026-05-23T09:17:25.932932+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -831,10 +718,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6846
           },
-          "id": "event-002383"
+          "id": "event-002377"
         },
         {
-          "source_line": 2384,
+          "source_line": 2378,
           "timestamp": "2026-05-23T09:17:34.229071+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -851,10 +738,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
             }
           },
-          "id": "event-002384"
+          "id": "event-002378"
         },
         {
-          "source_line": 2385,
+          "source_line": 2379,
           "timestamp": "2026-05-23T09:17:34.731386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -869,10 +756,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002385"
+          "id": "event-002379"
         },
         {
-          "source_line": 2386,
+          "source_line": 2380,
           "timestamp": "2026-05-23T09:17:34.731821+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -889,10 +776,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
             }
           },
-          "id": "event-002386"
+          "id": "event-002380"
         },
         {
-          "source_line": 2387,
+          "source_line": 2381,
           "timestamp": "2026-05-23T09:17:36.137870+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -907,10 +794,10 @@
             "tool": "Read",
             "elapsed_ms": 1406
           },
-          "id": "event-002387"
+          "id": "event-002381"
         },
         {
-          "source_line": 2388,
+          "source_line": 2382,
           "timestamp": "2026-05-23T09:17:36.138251+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -927,10 +814,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
             }
           },
-          "id": "event-002388"
+          "id": "event-002382"
         },
         {
-          "source_line": 2389,
+          "source_line": 2383,
           "timestamp": "2026-05-23T09:17:36.339502+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -945,10 +832,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-002389"
+          "id": "event-002383"
         },
         {
-          "source_line": 2390,
+          "source_line": 2384,
           "timestamp": "2026-05-23T09:17:36.340028+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -965,10 +852,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002390"
+          "id": "event-002384"
         },
         {
-          "source_line": 2391,
+          "source_line": 2385,
           "timestamp": "2026-05-23T09:17:36.791989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -983,10 +870,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 451
           },
-          "id": "event-002391"
+          "id": "event-002385"
         },
         {
-          "source_line": 2392,
+          "source_line": 2386,
           "timestamp": "2026-05-23T09:17:43.720281+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1003,10 +890,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
             }
           },
-          "id": "event-002392"
+          "id": "event-002386"
         },
         {
-          "source_line": 2393,
+          "source_line": 2387,
           "timestamp": "2026-05-23T09:17:43.721157+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1021,10 +908,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002393"
+          "id": "event-002387"
         },
         {
-          "source_line": 2394,
+          "source_line": 2388,
           "timestamp": "2026-05-23T09:17:44.424355+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1041,10 +928,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex"
             }
           },
-          "id": "event-002394"
+          "id": "event-002388"
         },
         {
-          "source_line": 2395,
+          "source_line": 2389,
           "timestamp": "2026-05-23T09:17:44.826457+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1059,10 +946,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-002395"
+          "id": "event-002389"
         },
         {
-          "source_line": 2396,
+          "source_line": 2390,
           "timestamp": "2026-05-23T09:17:44.927311+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1079,10 +966,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
             }
           },
-          "id": "event-002396"
+          "id": "event-002390"
         },
         {
-          "source_line": 2397,
+          "source_line": 2391,
           "timestamp": "2026-05-23T09:17:45.580485+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1097,10 +984,10 @@
             "tool": "Read",
             "elapsed_ms": 653
           },
-          "id": "event-002397"
+          "id": "event-002391"
         },
         {
-          "source_line": 2398,
+          "source_line": 2392,
           "timestamp": "2026-05-23T09:17:45.731617+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1117,10 +1004,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
             }
           },
-          "id": "event-002398"
+          "id": "event-002392"
         },
         {
-          "source_line": 2399,
+          "source_line": 2393,
           "timestamp": "2026-05-23T09:17:45.782358+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1135,10 +1022,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002399"
+          "id": "event-002393"
         },
         {
-          "source_line": 2400,
+          "source_line": 2394,
           "timestamp": "2026-05-23T09:17:51.709200+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1155,10 +1042,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex"
             }
           },
-          "id": "event-002400"
+          "id": "event-002394"
         },
         {
-          "source_line": 2401,
+          "source_line": 2395,
           "timestamp": "2026-05-23T09:17:52.011834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1173,10 +1060,10 @@
             "tool": "Read",
             "elapsed_ms": 302
           },
-          "id": "event-002401"
+          "id": "event-002395"
         },
         {
-          "source_line": 2402,
+          "source_line": 2396,
           "timestamp": "2026-05-23T09:17:52.213223+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1193,10 +1080,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
             }
           },
-          "id": "event-002402"
+          "id": "event-002396"
         },
         {
-          "source_line": 2403,
+          "source_line": 2397,
           "timestamp": "2026-05-23T09:17:53.017152+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1211,10 +1098,10 @@
             "tool": "Read",
             "elapsed_ms": 803
           },
-          "id": "event-002403"
+          "id": "event-002397"
         },
         {
-          "source_line": 2404,
+          "source_line": 2398,
           "timestamp": "2026-05-23T09:17:53.017643+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1231,10 +1118,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex"
             }
           },
-          "id": "event-002404"
+          "id": "event-002398"
         },
         {
-          "source_line": 2405,
+          "source_line": 2399,
           "timestamp": "2026-05-23T09:17:53.419668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1249,10 +1136,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-002405"
+          "id": "event-002399"
         },
         {
-          "source_line": 2406,
+          "source_line": 2400,
           "timestamp": "2026-05-23T09:17:53.420204+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1269,10 +1156,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
             }
           },
-          "id": "event-002406"
+          "id": "event-002400"
         },
         {
-          "source_line": 2407,
+          "source_line": 2401,
           "timestamp": "2026-05-23T09:17:53.571218+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1287,10 +1174,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-002407"
+          "id": "event-002401"
         },
         {
-          "source_line": 2408,
+          "source_line": 2402,
           "timestamp": "2026-05-23T09:18:04.602261+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1308,10 +1195,10 @@
               "description": "Check PDF existence"
             }
           },
-          "id": "event-002408"
+          "id": "event-002402"
         },
         {
-          "source_line": 2409,
+          "source_line": 2403,
           "timestamp": "2026-05-23T09:18:05.356375+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1326,10 +1213,10 @@
             "tool": "Bash",
             "elapsed_ms": 754
           },
-          "id": "event-002409"
+          "id": "event-002403"
         },
         {
-          "source_line": 2410,
+          "source_line": 2404,
           "timestamp": "2026-05-23T09:18:05.859782+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1347,10 +1234,10 @@
               "description": "Check project config for external review settings"
             }
           },
-          "id": "event-002410"
+          "id": "event-002404"
         },
         {
-          "source_line": 2411,
+          "source_line": 2405,
           "timestamp": "2026-05-23T09:18:06.814202+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1365,10 +1252,10 @@
             "tool": "Bash",
             "elapsed_ms": 954
           },
-          "id": "event-002411"
+          "id": "event-002405"
         },
         {
-          "source_line": 2412,
+          "source_line": 2406,
           "timestamp": "2026-05-23T09:18:06.965236+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1386,10 +1273,10 @@
               "limit": "60"
             }
           },
-          "id": "event-002412"
+          "id": "event-002406"
         },
         {
-          "source_line": 2413,
+          "source_line": 2407,
           "timestamp": "2026-05-23T09:18:06.965824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1404,10 +1291,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002413"
+          "id": "event-002407"
         },
         {
-          "source_line": 2414,
+          "source_line": 2408,
           "timestamp": "2026-05-23T09:18:15.652539+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1425,10 +1312,10 @@
               "description": "Find project config files"
             }
           },
-          "id": "event-002414"
+          "id": "event-002408"
         },
         {
-          "source_line": 2415,
+          "source_line": 2409,
           "timestamp": "2026-05-23T09:18:17.058768+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1443,10 +1330,10 @@
             "tool": "Bash",
             "elapsed_ms": 1406
           },
-          "id": "event-002415"
+          "id": "event-002409"
         },
         {
-          "source_line": 2416,
+          "source_line": 2410,
           "timestamp": "2026-05-23T09:18:17.159573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1464,10 +1351,10 @@
               "description": "Check PDF page count"
             }
           },
-          "id": "event-002416"
+          "id": "event-002410"
         },
         {
-          "source_line": 2417,
+          "source_line": 2411,
           "timestamp": "2026-05-23T09:18:17.260460+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1482,10 +1369,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002417"
+          "id": "event-002411"
         },
         {
-          "source_line": 2418,
+          "source_line": 2412,
           "timestamp": "2026-05-23T09:18:21.780930+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1503,10 +1390,10 @@
               "pages": "1-9"
             }
           },
-          "id": "event-002418"
+          "id": "event-002412"
         },
         {
-          "source_line": 2419,
+          "source_line": 2413,
           "timestamp": "2026-05-23T09:18:22.384031+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1521,10 +1408,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-002419"
+          "id": "event-002413"
         },
         {
-          "source_line": 2420,
+          "source_line": 2414,
           "timestamp": "2026-05-23T09:19:07.463740+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1542,10 +1429,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-002420"
+          "id": "event-002414"
         },
         {
-          "source_line": 2421,
+          "source_line": 2415,
           "timestamp": "2026-05-23T09:19:07.765144+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1562,10 +1449,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002421"
+          "id": "event-002415"
         },
         {
-          "source_line": 2422,
+          "source_line": 2416,
           "timestamp": "2026-05-23T09:19:11.431758+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1580,10 +1467,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 3968
           },
-          "id": "event-002422"
+          "id": "event-002416"
         },
         {
-          "source_line": 2423,
+          "source_line": 2417,
           "timestamp": "2026-05-23T09:19:11.432195+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1598,10 +1485,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 3667
           },
-          "id": "event-002423"
+          "id": "event-002417"
         },
         {
-          "source_line": 2424,
+          "source_line": 2418,
           "timestamp": "2026-05-23T09:19:16.406191+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1620,10 +1507,10 @@
               "max_chars": "3000"
             }
           },
-          "id": "event-002424"
+          "id": "event-002418"
         },
         {
-          "source_line": 2425,
+          "source_line": 2419,
           "timestamp": "2026-05-23T09:19:17.912579+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1638,10 +1525,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 1506
           },
-          "id": "event-002425"
+          "id": "event-002419"
         },
         {
-          "source_line": 2426,
+          "source_line": 2420,
           "timestamp": "2026-05-23T09:19:18.113893+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1659,10 +1546,10 @@
               "description": "Find project YAML config files"
             }
           },
-          "id": "event-002426"
+          "id": "event-002420"
         },
         {
-          "source_line": 2427,
+          "source_line": 2421,
           "timestamp": "2026-05-23T09:19:18.164591+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1677,10 +1564,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002427"
+          "id": "event-002421"
         },
         {
-          "source_line": 2428,
+          "source_line": 2422,
           "timestamp": "2026-05-23T09:19:21.480158+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1698,10 +1585,10 @@
               "description": "Check external review config"
             }
           },
-          "id": "event-002428"
+          "id": "event-002422"
         },
         {
-          "source_line": 2429,
+          "source_line": 2423,
           "timestamp": "2026-05-23T09:19:21.530854+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1716,10 +1603,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002429"
+          "id": "event-002423"
         },
         {
-          "source_line": 2430,
+          "source_line": 2424,
           "timestamp": "2026-05-23T09:19:25.026040+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1737,10 +1624,10 @@
               "description": "Search for external review config"
             }
           },
-          "id": "event-002430"
+          "id": "event-002424"
         },
         {
-          "source_line": 2431,
+          "source_line": 2425,
           "timestamp": "2026-05-23T09:19:25.076886+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1755,10 +1642,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002431"
+          "id": "event-002425"
         },
         {
-          "source_line": 2432,
+          "source_line": 2426,
           "timestamp": "2026-05-23T09:20:09.573942+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1780,10 +1667,10 @@
               "director_session_key": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
             }
           },
-          "id": "event-002432"
+          "id": "event-002426"
         },
         {
-          "source_line": 2433,
+          "source_line": 2427,
           "timestamp": "2026-05-23T09:20:30.046759+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1798,10 +1685,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 20472
           },
-          "id": "event-002433"
+          "id": "event-002427"
         },
         {
-          "source_line": 2434,
+          "source_line": 2428,
           "timestamp": "2026-05-23T09:20:30.549909+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1823,10 +1710,10 @@
               "director_session_key": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
             }
           },
-          "id": "event-002434"
+          "id": "event-002428"
         },
         {
-          "source_line": 2435,
+          "source_line": 2429,
           "timestamp": "2026-05-23T09:20:31.963134+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1841,10 +1728,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1413
           },
-          "id": "event-002435"
+          "id": "event-002429"
         },
         {
-          "source_line": 2436,
+          "source_line": 2430,
           "timestamp": "2026-05-23T09:20:46.240604+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1857,7 +1744,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002436"
+          "id": "event-002430"
         }
       ]
     },
@@ -1865,7 +1752,7 @@
       "number": 173,
       "messages": [
         {
-          "source_line": 2437,
+          "source_line": 2431,
           "timestamp": "2026-05-23T09:27:23.658985+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1879,10 +1766,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002437"
+          "id": "event-002431"
         },
         {
-          "source_line": 2438,
+          "source_line": 2432,
           "timestamp": "2026-05-23T09:27:30.256092+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1895,7 +1782,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002438"
+          "id": "event-002432"
         }
       ]
     },
@@ -1903,7 +1790,7 @@
       "number": 174,
       "messages": [
         {
-          "source_line": 2439,
+          "source_line": 2433,
           "timestamp": "2026-05-23T09:27:41.293951+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1917,10 +1804,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002439"
+          "id": "event-002433"
         },
         {
-          "source_line": 2440,
+          "source_line": 2434,
           "timestamp": "2026-05-23T09:27:48.932106+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1933,7 +1820,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002440"
+          "id": "event-002434"
         }
       ]
     },
@@ -1941,7 +1828,7 @@
       "number": 175,
       "messages": [
         {
-          "source_line": 2441,
+          "source_line": 2435,
           "timestamp": "2026-05-23T09:27:55.895544+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1955,10 +1842,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002441"
+          "id": "event-002435"
         },
         {
-          "source_line": 2442,
+          "source_line": 2436,
           "timestamp": "2026-05-23T09:28:37.887239+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1980,10 +1867,10 @@
               "director_session_key": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
             }
           },
-          "id": "event-002442"
+          "id": "event-002436"
         },
         {
-          "source_line": 2443,
+          "source_line": 2437,
           "timestamp": "2026-05-23T09:29:01.048701+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1998,10 +1885,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 23161
           },
-          "id": "event-002443"
+          "id": "event-002437"
         },
         {
-          "source_line": 2444,
+          "source_line": 2438,
           "timestamp": "2026-05-23T09:29:01.451214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2023,10 +1910,10 @@
               "director_session_key": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
             }
           },
-          "id": "event-002444"
+          "id": "event-002438"
         },
         {
-          "source_line": 2445,
+          "source_line": 2439,
           "timestamp": "2026-05-23T09:29:02.873083+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2041,10 +1928,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1421
           },
-          "id": "event-002445"
+          "id": "event-002439"
         },
         {
-          "source_line": 2446,
+          "source_line": 2440,
           "timestamp": "2026-05-23T09:29:12.342422+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2057,7 +1944,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002446"
+          "id": "event-002440"
         }
       ]
     },
@@ -2065,7 +1952,7 @@
       "number": 176,
       "messages": [
         {
-          "source_line": 2447,
+          "source_line": 2441,
           "timestamp": "2026-05-23T09:29:14.966576+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2079,10 +1966,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002447"
+          "id": "event-002441"
         },
         {
-          "source_line": 2448,
+          "source_line": 2442,
           "timestamp": "2026-05-23T09:29:19.549017+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2095,7 +1982,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002448"
+          "id": "event-002442"
         }
       ]
     },
@@ -2103,7 +1990,7 @@
       "number": 177,
       "messages": [
         {
-          "source_line": 2449,
+          "source_line": 2443,
           "timestamp": "2026-05-23T09:32:48.938988+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2117,10 +2004,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002449"
+          "id": "event-002443"
         },
         {
-          "source_line": 2450,
+          "source_line": 2444,
           "timestamp": "2026-05-23T09:32:54.735227+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2133,7 +2020,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002450"
+          "id": "event-002444"
         }
       ]
     },
@@ -2141,7 +2028,7 @@
       "number": 178,
       "messages": [
         {
-          "source_line": 2451,
+          "source_line": 2445,
           "timestamp": "2026-05-23T09:33:01.291457+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2155,10 +2042,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002451"
+          "id": "event-002445"
         },
         {
-          "source_line": 2452,
+          "source_line": 2446,
           "timestamp": "2026-05-23T09:33:38.462195+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2175,10 +2062,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002452"
+          "id": "event-002446"
         },
         {
-          "source_line": 2453,
+          "source_line": 2447,
           "timestamp": "2026-05-23T09:33:38.613281+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2193,10 +2080,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 151
           },
-          "id": "event-002453"
+          "id": "event-002447"
         },
         {
-          "source_line": 2454,
+          "source_line": 2448,
           "timestamp": "2026-05-23T09:33:38.613819+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2213,10 +2100,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002454"
+          "id": "event-002448"
         },
         {
-          "source_line": 2455,
+          "source_line": 2449,
           "timestamp": "2026-05-23T09:33:38.665899+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2231,10 +2118,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 52
           },
-          "id": "event-002455"
+          "id": "event-002449"
         },
         {
-          "source_line": 2456,
+          "source_line": 2450,
           "timestamp": "2026-05-23T09:36:52.889312+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2252,10 +2139,10 @@
               "issues_yaml": "# Review Issues Tracker — schema_semantic_constrained_ie\n# Updated: Round 24 review completed, 2026-05-23\n\n# ============================================================\n# Round 24 — New/Recurring Issues\n# ============================================================\n\n- id: \"R24-N1\"\n  summary: \"Proposition 1 理论-实践 gap：无界证明 vs 有界场景的桥接不够清晰，呈现定位过高\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 14\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23-W2/R23-W7 合并。降低 Proposition 1 强度 + Remark 提升。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-N1: 理论不可能性(无界)与工程不可行性(有界指数级)需明确区分，proof sketch 过简，缺 DFA 可行边界条件。R2-N1: Prop 1 trivial，应定位为 motivating observation。R1 rebut R2 认为三级分类法有架构指导价值。Director 判定：呈现问题而非实质缺陷，降为 Should-Fix。\"\n  action_items:\n    - round: 23\n      action: \"降低 Proposition 1 呈现强度 + κ 加 descriptive only\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"§3 明确区分理论不可能性(无界)与工程不可行性(有界指数级)；给出 DFA 可行边界条件(如 |E|≤3, entities≤5)；将 Prop 1 定位为 'formalizing a known intuition for the IE setting'；扩展 proof sketch 至少引用 pumping lemma 核心直觉\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-N2\"\n  summary: \"κ-DR 相关性 n=3 p=0.138 在正文中呈现方式不当，Abstract/§1 仍用 'correlate' 措辞\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 12\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23-W2。加 descriptive only (n=3, p=0.138)。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-N2 + R2 AGREE。§4 标注了 descriptive，但 Abstract 第3段和 §1 Contribution 2 仍用 'rates correlate with schema restrictiveness'。附录回归线拟合3点无统计意义。全文需统一为 'observed pattern across three schemas'。\"\n  action_items:\n    - round: 23\n      action: \"κ 加 descriptive only (n=3, p=0.138)\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"Abstract/§1 将 'correlate' 替换为 'observed pattern across three schemas, insufficient for statistical inference'；附录回归线标注 'illustrative only, n=3' 或移除\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-N3\"\n  summary: \"70B 验证仅 Llama 单一模型族 + AWQ INT4 无 FP16 基线，Contribution 2 '4 models' 表述误导\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 14\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23-W5。Abstract 加 '(AWQ INT4)'，§5.3 开头加量化限制声明。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-N3 + R2 AGREE。70B 仅 1 模型族 1 精度。S2 退化 -8.45pp 解释 post-hoc。Contribution 2 '4 models spanning 8B-70B' 实为 3×8B FP16 + 1×70B INT4。建议：70B 定位为 preliminary；拆分 8B/70B 声明层级。\"\n  action_items:\n    - round: 23\n      action: \"Abstract 加 '(AWQ INT4)' + §5.3 开头加量化限制声明 + 引用 Appendix P\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"Contribution 2 拆分 8B/70B 声明(3 8B FP16 + 1 70B INT4 preliminary)；70B 段标注 'preliminary single-family validation'；为 S2 70B 退化提供机制性解释或标注 requires further investigation\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W1\"\n  summary: \"缺乏与强 baseline (GoLLIE/KnowCoder/post-hoc repair) 的公平对比——论文定位为约束执行方法但未在正文明确\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23-W3。GoLLIE 段重写标注 setup 差异。\"\n    - round: 24\n      reviewers: [2]\n      note: \"R2-N2。R1 rebut 认为已有 GCD-equiv/post-hoc filtering/GoLLIE 三类对比，且 OntoCoDec 是约束执行方法非 IE 系统。Director 判定 R1 rebuttal 部分成立，降为 Should-Fix。正文应明确声明定位。\"\n  action_items:\n    - round: 23\n      action: \"§6 GoLLIE 段重写\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"§1 或 §5 开头增加明确定位声明：'OntoCoDec is a constraint enforcement method, complementary to training-based schema-aware approaches'；考虑增加 post-hoc type repair baseline\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W2\"\n  summary: \"R-F1 41-47% 在正文中缺乏上下文定位（LLM-based generative RE 典型范围）\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [2]\n      note: \"R2-N3。R1 rebut 认为 task setting 不同、约束价值独立于 F1。Director 判定：rebuttal 成立但正文应提供上下文。Appendix 已有 SOTA 数据但正文缺失。\"\n  action_items:\n    - round: 24\n      action: \"§5 Setup 增加 1-2 句 LLM-based generative RE 的典型 F1 范围说明\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W3\"\n  summary: \"WikiEvents n=20 pilot 在正文中占半页但无统计结论，Table 3 与 Table 1/2 等位呈现具误导性\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R23-W4。降级 contribution + 标注 directional only。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W2 + R2-W1 共识：Table 3 应移至 Appendix 或在 caption 标注 'underpowered; all comparisons non-significant'。\"\n  action_items:\n    - round: 23\n      action: \"§1 contribution 降级 + §5.4 标题改 Preliminary Pilot + Table 4 caption 加 n=20,MDE±5.0pp\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"将 Table 3 移至 Appendix，正文仅用 1-2 句概述 pilot 结论；或在 Table 3 caption 增加 'underpowered; no comparison reaches statistical significance'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W4\"\n  summary: \"First-seen semantics 级联错误影响未量化：首次类型赋值错误率及其后续 CF 影响未报告\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W1 + R2 AGREE。245 CF violations 中多少源于 first-seen 错误 vs 合法类型歧义？缺少分析。\"\n  action_items:\n    - round: 24\n      action: \"增加统计：多次出现实体中 first-seen type 与 gold type 不一致的比例；分析这些不一致导致的 CF 违规数\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W5\"\n  summary: \"§7 Discussion 仅 8 行过于压缩，缺少 DR↔CF trade-off、约束执行与 training-based 方法互补性讨论\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2-W3 + R1 隐含同意。建议压缩 Related Work 释放空间。\"\n  action_items:\n    - round: 24\n      action: \"§7 扩展至少 3 段：DR↔CF trade-off 定量含义、与 training-based enforcement 互补关系、per-triple vs global enforcement 根本张力\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W6\"\n  summary: \"Contribution 2 过度打包（4 models × 2 precisions × 2 datasets + pilot + scale interaction 全塞一个 bullet）\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2-W5 + R1 AGREE。纯呈现问题。\"\n  action_items:\n    - round: 24\n      action: \"拆分 Contribution 2 为 2-3 条：消融设计 + cross-model 验证 + 统计方法论/pilot\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W7\"\n  summary: \"LoRA 超参从 SciERC 直接转移到 DocRED 未做调优，可能低估 DocRED fine-tuning 潜力\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W4 + R2 AGREE。SciERC(7 rels, 551 短句) vs DocRED(96 rels, 998 长文档) 差异大。\"\n  action_items:\n    - round: 24\n      action: \"Appendix 增加 DocRED LoRA rank/α 敏感性分析(至少 2-3 配置)；或正文承认超参转移可能低估 DocRED 潜力\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-W8\"\n  summary: \"Beam search 作为 CF 解决方案的实用性讨论不足（内存开销、beam width sensitivity、fine-tuned 下边际收益）\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2-W2 共识。k=4 1.54× latency，但未讨论 k=2 是否足够、70B 内存开销、fine-tuned 下 CF 已低至 0.11% 时 beam 边际价值。\"\n  action_items:\n    - round: 24\n      action: \"§5 beam search 段增加 beam width sensitivity 讨论(k=2 vs k=4)、fine-tuned 下 beam 边际收益评估\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-M1\"\n  summary: \"GCD-equiv 等价性验证仅在 Qwen3-8B 单一模型上进行\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W3 + R2 AGREE (severity 较低)。cross-model grammar-only 间接支持 generalizability。\"\n  action_items:\n    - round: 24\n      action: \"脚注说明 GCD-equiv 仅在 Qwen3-8B 验证，或增加一个额外模型验证\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-M2\"\n  summary: \"约束来源(训练数据 vs 形式本体)的区分在 §3 中不够明确\"\n  category: framing\n  severity: info\n  status: open\n  first_raised_round: 24\n  last_seen_round: 24\n  mentions:\n    - round: 24\n      reviewers: [2]\n      note: \"R2-W4。R1 部分 rebut(SciERC 类型系统有形式定义、WikiEvents 用 KAIROS)。\"\n  action_items:\n    - round: 24\n      action: \"§2 或 §5 Setup 更明确区分两种约束来源：形式本体(KAIROS) vs 训练数据推导 schema(SciERC/DocRED)及后者不完整性风险\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 23 — Status Update\n# ============================================================\n\n- id: \"R23-W1\"\n  summary: \"CF 违规占残余违规 64%，与标题 'Type-Constrained IE' 形成 gap，正文讨论不足\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W1 (Critical) + R2-W2 (Major)。两位共识：正文应量化 CF 比例、讨论架构限制。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"本轮 CF 讨论已大幅改善(§5.1 Cross-field violation analysis 段)，但 R1-W5/R2-W2 指出 CF 叙事仍偏乐观、beam search 实用性讨论不足。部分改善但未完全解决。\"\n  action_items:\n    - round: 23\n      action: \"§5.1 加 CF 量化段落(63.9%, GENERIC↔OtherScientificTerm 34.7%) + §4 加架构根因1句 + Abstract 加 trade-off\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W2\"\n  summary: \"算法创新有限——主要是 XGrammar + stateful logits processor 的系统集成\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R2-W1 (Major)。共识：定位为 strong engineering contribution。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2 维持 novelty 不足判断(Overall 3.0)。R1 rebut 认为三级分类法 + 系统验证超过 Findings。分歧未解决。\"\n  action_items:\n    - round: 23\n      action: \"降低 Proposition 1 呈现强度 + κ 加 descriptive only\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W3\"\n  summary: \"GoLLIE 对比不公平 + 缺少与训练基方法的系统性对比\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W5 + R2-W4。标注 setup 差异。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2 维持 baseline 不足。R1 rebut 认为已有足够多层对比，核心是定位声明缺失。合并为 R24-W1。\"\n  action_items:\n    - round: 23\n      action: \"§6 GoLLIE 段重写\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W4\"\n  summary: \"WikiEvents n=20 统计效力不足但结论呈现过度自信\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"降级 contribution + directional only。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"改善但不足。Table 3 仍在正文中与 Table 1/2 等位。合并为 R24-W3。\"\n  action_items:\n    - round: 23\n      action: \"§1 contribution 降级 + §5.4 标题改 Preliminary Pilot\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W5\"\n  summary: \"70B 实验全在 AWQ INT4 上，Abstract 未标注，§5.3 量化限制披露过晚\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"Abstract 加 (AWQ INT4)。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"已改善(AWQ INT4 标注)。但 R24-N3 进一步指出单模型族 + Contribution 2 措辞问题。合并为 R24-N3。\"\n  action_items:\n    - round: 23\n      action: \"Abstract 加 '(AWQ INT4)' + §5.3 开头加量化限制声明\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W6\"\n  summary: \"Zero-shot 实验占主文 ~3 页但 R-F1 仅 4-8%，篇幅分配失衡\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"压缩 ZS 为1段+Table 1。\"\n    - round: 24\n      note: \"本轮未被独立提及为 weakness。ZS 压缩有效。\"\n  action_items:\n    - round: 23\n      action: \"ZS 从3 subsection压缩为1段+Table 1\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"R24 本轮未提及。压缩有效。\"\n  resolution_round: 24\n\n- id: \"R23-W7\"\n  summary: \"Proposition 1 实际意义论证 gap\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"Remark 提升为 paragraph。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"合并为 R24-N1。Engineering applicability 段存在但仍需改进。\"\n  action_items:\n    - round: 23\n      action: \"§3 Remark 提升为 paragraph{Engineering applicability.}\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W8\"\n  summary: \"'Empirical enabling dependency' 在主文中重复出现 ≥6 次\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"保留 3 处，其余替换。\"\n    - round: 24\n      note: \"本轮未被提及。替换有效。\"\n  action_items:\n    - round: 23\n      action: \"全文保留3处(Abstract/§3/§5.1)，其余替换\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"R24 本轮未提及。替换有效。\"\n  resolution_round: 24\n\n- id: \"R23-W9\"\n  summary: \"Fallback 频率模型依赖性未在正文讨论\"\n  category: experiment\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"加 fallback frequency 讨论。\"\n    - round: 24\n      note: \"本轮未被独立提及。Fallback 频率已在正文讨论(§5.1 Composability 段)。\"\n  action_items:\n    - round: 23\n      action: \"FT 分析扩展段中加 fallback frequency 讨论\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"R24 本轮未提及。讨论有效。\"\n  resolution_round: 24\n\n- id: \"R23-W10\"\n  summary: \"Continuation masking prefix collision 频率未量化\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 23\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"需数据提取，DDL前跳过。\"\n    - round: 24\n      note: \"本轮未提及。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W11\"\n  summary: \"Beam k=2 中间值缺失，k 与违规消除关系不明\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"需新实验，DDL前跳过。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1-W5/R2-W2 再次提及 beam width sensitivity 缺失。合并为 R24-W8。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W12\"\n  summary: \"Entity registry first-seen type 行为主文解释不够清晰\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"§3.3 formalize + Limitations 加 entity-first 约束。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-W4 进一步要求量化 first-seen 错误影响。§3.3 描述已改善，但量化分析缺失。\"\n  action_items:\n    - round: 23\n      action: \"§3.3 加 first-seen registration formalization\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-D1\"\n  summary: \"Limitations 长度是否 'excessive'\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"精简 37%。\"\n    - round: 24\n      note: \"视觉审查确认 Limitations 长度适中(~3-4 个点)，符合 EMNLP 规范。\"\n  action_items:\n    - round: 23\n      action: \"Limitations 精简\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"R24 视觉审查确认长度适中。\"\n  resolution_round: 24\n\n# ============================================================\n# Prior Rounds — Resolved\n# ============================================================\n\n- id: \"R16-W5\"\n  summary: \"核心新颖性定位——系统集成而非算法创新\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 14\n  last_seen_round: 24\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"共识定位为 systems contribution。\"\n    - round: 23\n      reviewers: [1, 2]\n      note: \"降低理论贡献措辞。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2 维持 novelty 不足(3.0 Findings)。R1 认为超过 Findings(3.5)。分歧未解决。合并为 R23-W2。\"\n  action_items:\n    - round: 19\n      action: \"§7 定位 systems contribution\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 23\n      action: \"降低 Proposition 1 强度\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W1\"\n  summary: \"Proposition 1 证明中 position→name 转换缺乏形式论证\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 24\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"Remark 提升。\"\n    - round: 24\n      reviewers: [1]\n      note: \"R1-Q1 再次提问。R2 代论文 rebut(name-based 不改变结论)。合并为 R24-N1。\"\n  action_items:\n    - round: 20\n      action: \"Appendix O 加 informal argument\"\n      assigned_to: paper_agent\n      status: completed\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W4\"\n  summary: \"主文 Related Work §6 过于精简\"\n  category: related_work\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"R23 R2-S4 评价 '充分'。R24 未被提及为 weakness。\"\n  resolution_round: 23\n\n- id: \"R18-M2\"\n  summary: \"Figure 1 视觉层次不够分明\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"R24 视觉审查评价 'Figure 1 整体清晰，三面板设计传达核心 message'。R1 'Information density high but readable'。\"\n  resolution_round: 24\n\n# ============================================================\n# Resolved (prior rounds, unchanged)\n# ============================================================\n\n- id: \"R16-MF3\"\n  summary: \"CF trade-off 在 Abstract 中 framing 偏乐观\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 21\n  resolution: \"Abstract CF 分层报告。R23 进一步加 trade-off 表述。\"\n  resolution_round: 22\n\n- id: \"R16-W4\"\n  summary: \"70B AWQ INT4 quantization 对约束效果的影响未隔离\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 21\n  resolution: \"8B INT4 ablation 完成。新增 Appendix P。\"\n  resolution_round: 22\n\n- id: \"R16-W3\"\n  summary: \"WikiEvents fine-tuning composability 仅 n=20 文档\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 21\n  resolution: \"降级 contribution。R23 进一步降级。\"\n  resolution_round: 22\n\n- id: \"R16-W1\"\n  summary: \"κ̄/enabling dependency 统计支撑不足\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 12\n  last_seen_round: 21\n  resolution: \"全文加 empirical + scale-dependent qualifier。\"\n  resolution_round: 22\n\n- id: \"R15-MF3\"\n  summary: \"正文溢出至第 9 页\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 21\n  resolution: \"主文 §1-§7 在 page 1-8。\"\n  resolution_round: 22\n\n- id: \"R21-N2\"\n  summary: \"Full FT 组合性解读分歧\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Appendix L 修复。\"\n  resolution_round: 23\n\n- id: \"R21-Q1\"\n  summary: \"Beam search k=8 时 per-beam registry 内存开销未量化\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Appendix F 补充。\"\n  resolution_round: 23\n\n- id: \"R21-Q2\"\n  summary: \"TCR 整合到解码循环的可行性\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Discussion/Appendix N 修复。\"\n  resolution_round: 23\n\n- id: \"R21-Q3\"\n  summary: \"GCD/BoostCD 对比是直接运行还是等价论证\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Table 16-17 caption 修复。\"\n  resolution_round: 23\n\n- id: \"R21-Q5\"\n  summary: \"TCR vs OntoCoDec 定位不清\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 21\n  last_seen_round: 23\n  resolution: \"Appendix N 互补定位。\"\n  resolution_round: 23\n\n# ============================================================\n# Won't Fix\n# ============================================================\n\n- id: \"R20-W5\"\n  summary: \"Running example 仍不充分\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 21\n  resolution: \"空间限制。§3.3 有 Used-for 示例。\"\n  resolution_round: 20\n\n- id: \"R20-W6\"\n  summary: \"Zero-shot 评估实际意义有限\"\n  category: experiment\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 23\n  resolution: \"ZS 定位为 diagnostic probe。R23 压缩篇幅。\"\n  resolution_round: 23"
             }
           },
-          "id": "event-002456"
+          "id": "event-002450"
         },
         {
-          "source_line": 2457,
+          "source_line": 2451,
           "timestamp": "2026-05-23T09:36:52.992331+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2270,10 +2157,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 103
           },
-          "id": "event-002457"
+          "id": "event-002451"
         },
         {
-          "source_line": 2458,
+          "source_line": 2452,
           "timestamp": "2026-05-23T09:39:48.829211+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2295,10 +2182,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-002458"
+          "id": "event-002452"
         },
         {
-          "source_line": 2459,
+          "source_line": 2453,
           "timestamp": "2026-05-23T09:39:53.048605+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2313,10 +2200,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 4219
           },
-          "id": "event-002459"
+          "id": "event-002453"
         },
         {
-          "source_line": 2460,
+          "source_line": 2454,
           "timestamp": "2026-05-23T09:40:04.917788+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2329,7 +2216,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002460"
+          "id": "event-002454"
         }
       ]
     },
@@ -2337,7 +2224,7 @@
       "number": 179,
       "messages": [
         {
-          "source_line": 2461,
+          "source_line": 2455,
           "timestamp": "2026-05-23T09:40:06.055798+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2351,10 +2238,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002461"
+          "id": "event-002455"
         },
         {
-          "source_line": 2462,
+          "source_line": 2456,
           "timestamp": "2026-05-23T09:40:21.151176+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2367,7 +2254,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002462"
+          "id": "event-002456"
         }
       ]
     },
@@ -2375,7 +2262,7 @@
       "number": 180,
       "messages": [
         {
-          "source_line": 2463,
+          "source_line": 2457,
           "timestamp": "2026-05-23T10:25:19.024115+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2389,10 +2276,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "system"
           },
-          "id": "event-002463"
+          "id": "event-002457"
         },
         {
-          "source_line": 2464,
+          "source_line": 2458,
           "timestamp": "2026-05-23T10:25:24.868214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2409,10 +2296,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002464"
+          "id": "event-002458"
         },
         {
-          "source_line": 2465,
+          "source_line": 2459,
           "timestamp": "2026-05-23T10:25:24.919529+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2427,10 +2314,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002465"
+          "id": "event-002459"
         },
         {
-          "source_line": 2466,
+          "source_line": 2460,
           "timestamp": "2026-05-23T10:25:34.057987+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2448,10 +2335,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002466"
+          "id": "event-002460"
         },
         {
-          "source_line": 2467,
+          "source_line": 2461,
           "timestamp": "2026-05-23T10:25:34.058347+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2466,10 +2353,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002467"
+          "id": "event-002461"
         },
         {
-          "source_line": 2468,
+          "source_line": 2462,
           "timestamp": "2026-05-23T10:25:43.772538+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2486,10 +2373,10 @@
               "project": "schema_semantic_constrained_ie"
             }
           },
-          "id": "event-002468"
+          "id": "event-002462"
         },
         {
-          "source_line": 2469,
+          "source_line": 2463,
           "timestamp": "2026-05-23T10:25:44.325902+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2507,10 +2394,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002469"
+          "id": "event-002463"
         },
         {
-          "source_line": 2470,
+          "source_line": 2464,
           "timestamp": "2026-05-23T10:25:44.376698+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2525,10 +2412,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 604
           },
-          "id": "event-002470"
+          "id": "event-002464"
         },
         {
-          "source_line": 2471,
+          "source_line": 2465,
           "timestamp": "2026-05-23T10:25:44.377255+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2543,10 +2430,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 51
           },
-          "id": "event-002471"
+          "id": "event-002465"
         },
         {
-          "source_line": 2472,
+          "source_line": 2466,
           "timestamp": "2026-05-23T10:25:49.047330+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2564,10 +2451,10 @@
               "allowed_domains": "['aclweb.org', '2026.emnlp.org', 'openreview.net']"
             }
           },
-          "id": "event-002472"
+          "id": "event-002466"
         },
         {
-          "source_line": 2473,
+          "source_line": 2467,
           "timestamp": "2026-05-23T10:25:52.262316+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2585,10 +2472,10 @@
               "limit": "120"
             }
           },
-          "id": "event-002473"
+          "id": "event-002467"
         },
         {
-          "source_line": 2474,
+          "source_line": 2468,
           "timestamp": "2026-05-23T10:25:52.764639+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2603,10 +2490,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002474"
+          "id": "event-002468"
         },
         {
-          "source_line": 2475,
+          "source_line": 2469,
           "timestamp": "2026-05-23T10:25:52.765293+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2624,10 +2511,10 @@
               "file": "paper_checklist.yaml"
             }
           },
-          "id": "event-002475"
+          "id": "event-002469"
         },
         {
-          "source_line": 2476,
+          "source_line": 2470,
           "timestamp": "2026-05-23T10:25:54.220639+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2645,10 +2532,10 @@
               "description": "Check if submitted PDF exists"
             }
           },
-          "id": "event-002476"
+          "id": "event-002470"
         },
         {
-          "source_line": 2477,
+          "source_line": 2471,
           "timestamp": "2026-05-23T10:25:57.238087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2663,10 +2550,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 8190
           },
-          "id": "event-002477"
+          "id": "event-002471"
         },
         {
-          "source_line": 2478,
+          "source_line": 2472,
           "timestamp": "2026-05-23T10:25:57.238572+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2681,10 +2568,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 4473
           },
-          "id": "event-002478"
+          "id": "event-002472"
         },
         {
-          "source_line": 2479,
+          "source_line": 2473,
           "timestamp": "2026-05-23T10:25:57.389931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2699,10 +2586,10 @@
             "tool": "Bash",
             "elapsed_ms": 3169
           },
-          "id": "event-002479"
+          "id": "event-002473"
         },
         {
-          "source_line": 2480,
+          "source_line": 2474,
           "timestamp": "2026-05-23T10:26:05.327295+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2719,10 +2606,10 @@
               "query": "EMNLP 2026 submission format page limit anonymity guidelines ARR May cycle deadline"
             }
           },
-          "id": "event-002480"
+          "id": "event-002474"
         },
         {
-          "source_line": 2481,
+          "source_line": 2475,
           "timestamp": "2026-05-23T10:26:05.729285+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2740,10 +2627,10 @@
               "file": "decisions.yaml"
             }
           },
-          "id": "event-002481"
+          "id": "event-002475"
         },
         {
-          "source_line": 2482,
+          "source_line": 2476,
           "timestamp": "2026-05-23T10:26:06.984779+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2761,10 +2648,10 @@
               "description": "Check if review_issues.yaml exists"
             }
           },
-          "id": "event-002482"
+          "id": "event-002476"
         },
         {
-          "source_line": 2483,
+          "source_line": 2477,
           "timestamp": "2026-05-23T10:26:15.822774+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2779,10 +2666,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 10495
           },
-          "id": "event-002483"
+          "id": "event-002477"
         },
         {
-          "source_line": 2484,
+          "source_line": 2478,
           "timestamp": "2026-05-23T10:26:15.874087+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2797,10 +2684,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 10144
           },
-          "id": "event-002484"
+          "id": "event-002478"
         },
         {
-          "source_line": 2485,
+          "source_line": 2479,
           "timestamp": "2026-05-23T10:26:15.924974+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2815,10 +2702,10 @@
             "tool": "Bash",
             "elapsed_ms": 8940
           },
-          "id": "event-002485"
+          "id": "event-002479"
         },
         {
-          "source_line": 2486,
+          "source_line": 2480,
           "timestamp": "2026-05-23T10:26:21.899697+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2836,10 +2723,10 @@
               "description": "Get PDF page count and metadata"
             }
           },
-          "id": "event-002486"
+          "id": "event-002480"
         },
         {
-          "source_line": 2487,
+          "source_line": 2481,
           "timestamp": "2026-05-23T10:26:22.402636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2854,10 +2741,10 @@
             "tool": "Bash",
             "elapsed_ms": 502
           },
-          "id": "event-002487"
+          "id": "event-002481"
         },
         {
-          "source_line": 2488,
+          "source_line": 2482,
           "timestamp": "2026-05-23T10:26:22.503457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2875,10 +2762,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002488"
+          "id": "event-002482"
         },
         {
-          "source_line": 2489,
+          "source_line": 2483,
           "timestamp": "2026-05-23T10:26:22.554398+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2893,10 +2780,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002489"
+          "id": "event-002483"
         },
         {
-          "source_line": 2490,
+          "source_line": 2484,
           "timestamp": "2026-05-23T10:26:32.047796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2914,10 +2801,10 @@
               "limit": "100"
             }
           },
-          "id": "event-002490"
+          "id": "event-002484"
         },
         {
-          "source_line": 2491,
+          "source_line": 2485,
           "timestamp": "2026-05-23T10:26:32.048388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2932,10 +2819,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002491"
+          "id": "event-002485"
         },
         {
-          "source_line": 2492,
+          "source_line": 2486,
           "timestamp": "2026-05-23T10:26:33.052376+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2953,10 +2840,10 @@
               "pages": "1-9"
             }
           },
-          "id": "event-002492"
+          "id": "event-002486"
         },
         {
-          "source_line": 2493,
+          "source_line": 2487,
           "timestamp": "2026-05-23T10:26:34.059714+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2971,10 +2858,10 @@
             "tool": "Read",
             "elapsed_ms": 1007
           },
-          "id": "event-002493"
+          "id": "event-002487"
         },
         {
-          "source_line": 2494,
+          "source_line": 2488,
           "timestamp": "2026-05-23T10:26:34.176630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2992,10 +2879,10 @@
               "description": "Check external review config"
             }
           },
-          "id": "event-002494"
+          "id": "event-002488"
         },
         {
-          "source_line": 2495,
+          "source_line": 2489,
           "timestamp": "2026-05-23T10:26:34.227448+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3010,10 +2897,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-002495"
+          "id": "event-002489"
         },
         {
-          "source_line": 2496,
+          "source_line": 2490,
           "timestamp": "2026-05-23T10:27:19.507113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3031,10 +2918,10 @@
               "review_chat_id": "oc_01fc90ae186a4ed432770f7601995139"
             }
           },
-          "id": "event-002496"
+          "id": "event-002490"
         },
         {
-          "source_line": 2497,
+          "source_line": 2491,
           "timestamp": "2026-05-23T10:27:43.345050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3049,10 +2936,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 23837
           },
-          "id": "event-002497"
+          "id": "event-002491"
         },
         {
-          "source_line": 2498,
+          "source_line": 2492,
           "timestamp": "2026-05-23T10:27:43.395696+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3072,10 +2959,10 @@
               "text": "你是 Reviewer 1，负责审查 **方法严谨性 + 实验设计**。\n\n## 论文信息\n- 标题：OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- Venue：EMNLP 2026（通过 ARR 统一审稿）\n- Deadline：2026-05-25\n- 格式：ACL 长文，正文 8 页限制（不含 references、limitations、ethics）\n- 匿名：double-blind\n- 论文路径：artifacts/_project/paper/main.tex\n- PDF 路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/submitted.pdf\n\n## Overall Assessment 评分标准（EMNLP 2026 ARR）\n5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle，1.5 = Resubmit after next cycle，1 = Do not resubmit\n\n## 你的审查侧重\n\n### 1. 理论贡献\n- Proposition 1（Level 2 ⊄ Level 1）的证明质量：proof sketch 是否完备、是否有明显漏洞\n- 三级约束分类法（context-free / prefix-decidable with state / non-local）的定义严谨性\n- 该理论贡献的实际价值——是 formalizing known intuition 还是真正的新发现？\n\n### 2. 两层架构设计\n- Grammar layer（XGrammar）和 Semantic layer（entity registry + dynamic masking）的技术设计是否合理\n- Grammar-first fallback 机制的正确性\n- Continuation masking 的鲁棒性（对不同 tokenizer 的适应性）\n- S1 vs S2 两种解码策略的比较是否公平\n\n### 3. 实验设计\n- 消融实验的充分性（5-way ablation on SciERC, 4-way on DocRED）\n- 统计检验（bootstrap CI）的正确性和报告方式\n- κ-DR 相关性（n=3）的呈现是否恰当（是否 overclaim）\n- Baseline 选择的公平性（unconstrained、grammar-only、GCD-equiv、semantic-only、post-hoc filtering）\n- 跨模型验证的充分性（3 × 8B + 1 × 70B AWQ INT4）\n- Fine-tuning composability 的验证范围（2 × 8B full, 1 × 70B subset）\n- WikiEvents pilot（n=20）的统计效力和价值\n\n### 4. 评估指标\n- DR/RV/ET/CF 四类违规的定义和计算是否正确\n- R-F1 和 E-F1 的定义和适用性\n- violation rate 的计算口径是否一致\n\n### 5. 可重现性\n- 是否提供足够的实现细节\n- 超参数报告是否完整\n\n请给出完整的审稿意见，包含：Summary、Strengths（逐条）、Weaknesses（逐条，标注严重程度 [Critical/Major/Minor]）、Questions、Missing References、Overall Assessment（评分+置信度）。"
             }
           },
-          "id": "event-002498"
+          "id": "event-002492"
         },
         {
-          "source_line": 2499,
+          "source_line": 2493,
           "timestamp": "2026-05-23T10:28:01.062808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3090,10 +2977,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 17667
           },
-          "id": "event-002499"
+          "id": "event-002493"
         },
         {
-          "source_line": 2500,
+          "source_line": 2494,
           "timestamp": "2026-05-23T10:28:01.113383+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3113,10 +3000,10 @@
               "text": "你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 写作质量**。\n\n## 论文信息\n- 标题：OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- Venue：EMNLP 2026（通过 ARR 统一审稿）\n- Deadline：2026-05-25\n- 格式：ACL 长文，正文 8 页限制（不含 references、limitations、ethics）\n- 匿名：double-blind\n- 论文路径：artifacts/_project/paper/main.tex\n- PDF 路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_25/submitted.pdf\n\n## Overall Assessment 评分标准（EMNLP 2026 ARR）\n5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle，1.5 = Resubmit after next cycle，1 = Do not resubmit\n\n## 你的审查侧重\n\n### 1. 新颖性评估\n- OntoCoDec 相对于现有 constrained decoding 方法（XGrammar、Outlines、SGLang、PICARD、KG-Trie）的增量贡献\n- 与 schema-aware IE 方法（GoLLIE、KnowCoder、Sainz et al.）的定位差异是否清晰\n- Entity registry + dynamic masking 是否构成足够的技术新颖性\n- Proposition 1（context-free 不足以表达 domain/range constraints）是否是 well-known fact\n\n### 2. 完整性评估\n- 论文的 claim 是否都有充分的实验支持\n- Contribution 声明是否准确、是否 overclaim\n- Abstract 中的数字是否与正文一致\n- 是否有重要的实验缺失（如：更多模型族的 70B 验证、更多数据集、更多 fine-tuning 方法）\n- WikiEvents pilot（n=20）作为 \"task generalization\" 证据是否充分\n- 70B 验证仅用 AWQ INT4 单模型族，是否足以支撑 scalability claim\n\n### 3. 写作质量\n- 论文结构是否清晰、逻辑流是否通顺\n- 术语使用是否一致（DR/RV/ET/CF 的定义和使用）\n- 图表质量和信息密度\n- Abstract 是否准确反映论文内容\n- Related work 的覆盖度和定位准确性\n\n### 4. 格式合规性（EMNLP 2026 / ACL 格式）\n- 正文是否在 8 页以内\n- 匿名处理是否彻底（代码链接、数据链接、自引）\n- Limitations section 是否存在且内容充分\n- Ethics statement 是否存在\n- References 格式是否正确\n\n### 5. 遗漏的相关工作\n- 检查是否遗漏了重要的近期工作（2024-2025 年的 constrained decoding、IE、schema enforcement 相关论文）\n- 特别关注：CRANE (Banerjee et al., 2025)、EnriCo (Zaratiana et al., 2024)、IterGen (Ugare et al., 2025) 等是否被充分讨论\n\n请给出完整的审稿意见，包含：Summary、Strengths（逐条）、Weaknesses（逐条，标注严重程度 [Critical/Major/Minor]）、Questions、Missing References、Overall Assessment（评分+置信度）。"
             }
           },
-          "id": "event-002500"
+          "id": "event-002494"
         },
         {
-          "source_line": 2501,
+          "source_line": 2495,
           "timestamp": "2026-05-23T10:28:02.532027+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3131,10 +3018,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1418
           },
-          "id": "event-002501"
+          "id": "event-002495"
         },
         {
-          "source_line": 2502,
+          "source_line": 2496,
           "timestamp": "2026-05-23T10:28:15.144091+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3147,7 +3034,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002502"
+          "id": "event-002496"
         }
       ]
     },
@@ -3155,7 +3042,7 @@
       "number": 181,
       "messages": [
         {
-          "source_line": 2503,
+          "source_line": 2497,
           "timestamp": "2026-05-23T10:34:45.947414+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3169,10 +3056,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002503"
+          "id": "event-002497"
         },
         {
-          "source_line": 2504,
+          "source_line": 2498,
           "timestamp": "2026-05-23T10:34:58.904047+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3185,7 +3072,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002504"
+          "id": "event-002498"
         }
       ]
     },
@@ -3193,7 +3080,7 @@
       "number": 182,
       "messages": [
         {
-          "source_line": 2505,
+          "source_line": 2499,
           "timestamp": "2026-05-23T10:35:01.491150+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3207,10 +3094,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002505"
+          "id": "event-002499"
         },
         {
-          "source_line": 2506,
+          "source_line": 2500,
           "timestamp": "2026-05-23T10:35:16.811809+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3223,7 +3110,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002506"
+          "id": "event-002500"
         }
       ]
     },
@@ -3231,7 +3118,7 @@
       "number": 183,
       "messages": [
         {
-          "source_line": 2507,
+          "source_line": 2501,
           "timestamp": "2026-05-23T10:38:24.641960+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3245,10 +3132,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002507"
+          "id": "event-002501"
         },
         {
-          "source_line": 2508,
+          "source_line": 2502,
           "timestamp": "2026-05-23T10:38:58.327447+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3268,10 +3155,10 @@
               "text": "以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每个 Must-Fix 和 Should-Fix 问题，用 **[AGREE]** 表示同意并说明理由，或 **[REBUT]** 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 的审稿意见\n\n### Overall: 3.5 (Borderline Conference) | Soundness 3.5 | Excitement 3 | Reproducibility 4 | Confidence 4\n\n### Must-Fix 问题\n\n**N1** [Critical] κ-DR 相关性（n=3）统计上无意义，但被赋予过高叙事地位\n- §4 \"Constraint Tightness\" 段落中，κ̄ 与 DR reduction 的相关性仅基于 3 个数据点（WikiEvents κ̄=0.029, SciERC κ̄=0.333, DocRED κ̄=0.842），p=0.138。虽标注 \"descriptive\"，但在正文中配有定义式、Appendix 中有独立 case study 和 Figure 3，叙事比重暗示 κ 有解释力。n=3 时任意单调点都能产生类似相关性。且论文承认 \"entity type confusability is a critical co-factor\"，意味着 κ 是 confounded variable。\n\n**N2** [Critical] CF 作为结构性 trade-off 被低估——zero-shot greedy 下 CF rate 9.90% 是严重实用性问题\n- DR 从 15.37%→0.93%（↓94%），但 CF 从 0.08%→9.90%。Total violation（DR+CF）从 15.45% 降至 10.83%，仅降 30%。论文将 DR→CF 称为 \"severity downgrade\" 但论证不充分。Abstract 选择性报告 DR reduction 而忽略 CF increase 可能误导读者。\n\n### Should-Fix 问题\n\n**W1** [Major] Proposition 1 的实际价值：formalizing known intuition vs. genuine theoretical contribution\n**W2** [Major] Scale-dependent layer interaction 缺乏因果解释（8B semantic-only 24% vs. 70B 84%）\n**W3** [Major] Fine-tuning 仅验证 LoRA，composability claim 泛化性不足\n**W4** [Major] S1 vs. S2 对比缺乏深入分析（R-F1 差异是否显著？S2 失败 case 分析？）\n**W5** [Major] WikiEvents pilot（n=20）对论文贡献有限\n**W6** [Minor] Baseline 缺少与 training-time constraint enforcement 方法的直接对比\n\n---\n\n请逐条回应上述 N1、N2、W1-W6。"
             }
           },
-          "id": "event-002508"
+          "id": "event-002502"
         },
         {
-          "source_line": 2509,
+          "source_line": 2503,
           "timestamp": "2026-05-23T10:39:16.036050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3286,10 +3173,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 17708
           },
-          "id": "event-002509"
+          "id": "event-002503"
         },
         {
-          "source_line": 2510,
+          "source_line": 2504,
           "timestamp": "2026-05-23T10:39:16.086713+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3309,10 +3196,10 @@
               "text": "以下是 Reviewer 2 的完整审稿意见，请逐条回应。对每个 Must-Fix 和 Should-Fix 问题，用 **[AGREE]** 表示同意并说明理由，或 **[REBUT]** 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 的审稿意见\n\n### Overall: 3.5 (Borderline Conference) | Soundness 4 | Excitement 3 | Reproducibility 4 | Confidence 4\n\n### Must-Fix 问题\n\n**N1** [Critical] WikiEvents n=20 作为 \"task generalization\" 证据严重不足，但被列为 contribution\n- §1 Contribution 2 将 \"directional evidence of task generalization\" 列为贡献的一部分。n=20 的 pilot 不构成 generalization 证据，是 feasibility demonstration 而非 validation。\n\n**N2** [Critical] GoLLIE 比较存在严重方法论缺陷，但被用于定位论文差异化\n- Appendix 中 GoLLIE-7B 比较将零样本 GoLLIE-7B vs. LoRA+S1 微调的 OntoCoDec 进行对比。§6 引用此结论（\"near-complete output suppression\"）来定位差异化，但实验条件不对等。公平比较应为两者均零样本或两者均微调。\n\n### Should-Fix 问题\n\n**W1** [Major] Proposition 1 的新颖性被高估——这是 well-known fact 的领域应用\n**W2** [Major] 70B 验证仅限单一模型族，但 Contribution 3 标题为 \"scale validation\"\n**W3** [Major] DR↔CF trade-off 在零样本场景下的严重程度讨论不足\n**W4** [Minor] constraint tightness 分析（n=3, p=0.138）在正文中占据过多空间\n\n### 小问题\n\n**M1** Abstract \"F1 41-47%\" 但 Table 2 Qwen DocRED S1 R-F1=40.79，低于 41%\n**M2** CRANE (Banerjee et al., 2025) 仅在 Appendix B 讨论，S2 在 70B 下 R-F1 降低 8.45pp 与 CRANE 关于 constrained decoding 抑制 reasoning 的分析直接相关\n**M3** DocRED 使用 dev set 的说明仅在 footnote 1，应更显著\n**M4** Figure 1 缺少端到端 running example\n**M5** §3.1 \"100% preservation across all configurations\" 表述不清\n**M6** empirical constraints 0.6-1.0% 未覆盖 valid type pairs 对 schema evolution 的影响未讨论\n\n---\n\n请逐条回应上述 N1、N2、W1-W4、M1-M6。"
             }
           },
-          "id": "event-002510"
+          "id": "event-002504"
         },
         {
-          "source_line": 2511,
+          "source_line": 2505,
           "timestamp": "2026-05-23T10:39:17.395885+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3327,10 +3214,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1309
           },
-          "id": "event-002511"
+          "id": "event-002505"
         },
         {
-          "source_line": 2512,
+          "source_line": 2506,
           "timestamp": "2026-05-23T10:39:21.003924+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3343,7 +3230,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002512"
+          "id": "event-002506"
         }
       ]
     },
@@ -3351,7 +3238,7 @@
       "number": 184,
       "messages": [
         {
-          "source_line": 2513,
+          "source_line": 2507,
           "timestamp": "2026-05-23T10:39:23.543078+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3365,10 +3252,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002513"
+          "id": "event-002507"
         },
         {
-          "source_line": 2514,
+          "source_line": 2508,
           "timestamp": "2026-05-23T10:39:30.254214+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3381,7 +3268,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002514"
+          "id": "event-002508"
         }
       ]
     },
@@ -3389,7 +3276,7 @@
       "number": 185,
       "messages": [
         {
-          "source_line": 2515,
+          "source_line": 2509,
           "timestamp": "2026-05-23T10:41:49.105098+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3403,10 +3290,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002515"
+          "id": "event-002509"
         },
         {
-          "source_line": 2516,
+          "source_line": 2510,
           "timestamp": "2026-05-23T10:41:57.101006+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3419,7 +3306,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002516"
+          "id": "event-002510"
         }
       ]
     },
@@ -3427,7 +3314,7 @@
       "number": 186,
       "messages": [
         {
-          "source_line": 2517,
+          "source_line": 2511,
           "timestamp": "2026-05-23T10:41:59.594876+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3441,10 +3328,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002517"
+          "id": "event-002511"
         },
         {
-          "source_line": 2518,
+          "source_line": 2512,
           "timestamp": "2026-05-23T10:42:06.231375+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3457,7 +3344,7 @@
           "metadata": {
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director"
           },
-          "id": "event-002518"
+          "id": "event-002512"
         }
       ]
     },
@@ -3465,7 +3352,7 @@
       "number": 187,
       "messages": [
         {
-          "source_line": 2519,
+          "source_line": 2513,
           "timestamp": "2026-05-23T10:42:36.344514+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3479,10 +3366,10 @@
             "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002519"
+          "id": "event-002513"
         },
         {
-          "source_line": 2520,
+          "source_line": 2514,
           "timestamp": "2026-05-23T10:43:08.224974+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3497,6 +3384,125 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "tool_args": {
               "project": "schema_semantic_constrained_ie"
+            }
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-23T10:43:08.275765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-23T10:27:23.095879+00:00\\\", \\\"completed_at\\\": \\\"2026-05-23T10:31:47.427271+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 1-8\\\", \\\"message\\\": \\\"主文 8 页仅 3 个 display items（1 figure + 2 tables），对于实证型论文偏少（通常 5-8 个）。大量实验结果全部推入附录，审稿人在主文中缺乏足够的视觉锚点来快速评估实验力度。建议将至少 1-2 个关键结果表或 ablation 图提至主文\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 4-5\\\", \\\"message\\\": \\\"Method 段连续 2 页纯文本，无 figure/table/algorithm box 穿插。Section 3.1-3.3 的解码策略描述可考虑用 Algorithm 伪代码或流程图打断文字墙\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Related Work + Discussion/Conclusion 合占 1 整页纯文本，紧接在 Table 2（page 7）之后。Discussion 段无任何总结性图表（如 radar chart 或对比概览图）辅助审稿人快速抓取核心 takeaway\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 32\\\", \\\"message\\\": \\\"Table 35 使用红色删除线+绿色新增文字展示纠错案例。红/绿对比对色盲用户不友好，建议改为蓝/橙或增加额外视觉标记（如下划线/波浪线）\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 39\\\", \\\"message\\\": \\\"末页内容填充约 60-65%，略低于 2/3 标准。可通过调整附录末尾表格分布或微调间距改善\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 3\\\", \\\"message\\\": \\\"Figure 1 内部组件标注文字偏小（约正文 60%），在打印场景下可能影响可读性。建议适当增大关键标签字号\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 25, 28, 31\\\", \\\"message\\\": \\\"多页堆叠 4 张表格，信息密度极高。虽为附录可接受，但部分表格（如 Table 18/19、Table 24/25/26/27）内容相关可考虑合并以减少视觉碎片化\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6-7\\\", \\\"message\\\": \\\"Table 1 和 Table 2 使用 booktabs 风格、最优值加粗标注，格式专业。小数位数在同列内一致\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"Table 3 展示 prompt 模板，内部文字较小但作为附录示例可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 20\\\", \\\"message\\\": \\\"Figure 2 散点图、[page 23] Figure 3 柱状图、[page 29] Figure 4 双面板图——附录图表分辨率充足、轴标签清晰\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 7}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-23T10:43:09.733862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-23T10:43:09.985889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Review Issues Tracker — schema_semantic_constrained_ie\n2\t# Updated: R24 Action Matrix dispatched, 2026-05-23\n3\t\n4\t# ============================================================\n5\t# Round 24 — Issues with actions dispatched\n6\t# ============================================================\n7\t\n8\t- id: \"R16-W5\"\n9\t  summary: \"Proposition 1 定位过高 + 理论-实践 gap 桥接不充分\"\n10\t  category: framing\n11\t  severity: critical\n12\t  status: in_progress\n13\t  first_raised_round: 14\n14\t  last_seen_round: 24\n15\t  mentions:\n16\t    - round: 19\n17\t      reviewers: [1, 2]\n18\t      note: \"共识定位为 systems contribution。\"\n19\t    - round: 23\n20\t      reviewers: [1, 2]\n21\t      note: \"与 R23-W2/W7 合并。降低理论贡献措辞。\"\n22\t    - round: 24\n23\t      reviewers: [1, 2]\n24\t      note: \"R24-MF1 (critical)。R23 写作降级不够——需重写定位为 formalizing known intuition + DFA 可行边界 + proof sketch 扩展。R1/R2 分歧：R2 认为 trivial, R1 认为分类法有架构指导价值。\"\n25\t  action_items:\n26\t    - round: 19\n27\t      action: \"§7 Discussion 定位 systems contribution\"\n28\t      assigned_to: paper_agent\n29\t      status: completed\n30\t    - round: 21\n31\t      action: \"§3 论证 semantic layer 非显而易见\"\n32\t      assigned_to: paper_agent\n33\t      status: completed\n34\t    - round: 23\n35\t      action: \"降低 Proposition 1 强度 + κ 统计限定\"\n36\t      assigned_to: paper_agent\n37\t      status: completed\n38\t    - round: 24\n39\t      action: \"§1 C1 重写 'formalizing known intuition' + §3 DFA 可行边界(SciERC 6^10, DocRED 6^30) + proof sketch 4-5行 + 区分 theoretical impossibility vs engineering impracticality\"\n40\t      assigned_to: paper_agent\n41\t      status: in_progress\n42\t  resolution: \"\"\n43\t  resolution_round: null\n44\t\n45\t- id: \"R16-W1\"\n46\t  summary: \"κ-DR 相关性 n=3 呈现不当——Abstract/§1 仍用 correlate\"\n47\t  category: framing\n48\t  severity: critical\n49\t  status: in_progress\n50\t  first_raised_round: 12\n51\t  last_seen_round: 24\n52\t  mentions:\n53\t    - round: 22\n54\t      reviewers: [1, 2]\n55\t      note: \"R22 解决：加 empirical + scale-dependent qualifier + descriptive only。\"\n56\t    - round: 24\n57\t      reviewers: [1, 2]\n5\n…[truncated 16308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "Read",
+            "elapsed_ms": 252
+          },
+          "id": "event-002517"
+        },
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-23T10:46:42.662882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "issues_yaml": "# Review Issues Tracker — schema_semantic_constrained_ie\n# Updated: R25 fresh review, 2026-05-23\n\n# ============================================================\n# Round 25 — Active Issues\n# ============================================================\n\n- id: \"R16-W5\"\n  summary: \"Proposition 1 定位过高 + 理论-实践 gap 桥接不充分\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 14\n  last_seen_round: 25\n  mentions:\n    - round: 19\n      reviewers: [1, 2]\n      note: \"共识定位为 systems contribution。\"\n    - round: 23\n      reviewers: [1, 2]\n      note: \"与 R23-W2/W7 合并。降低理论贡献措辞。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-MF1 (critical)。R23 写作降级不够。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R1-W1+R2-W1 完全共识 [Major]。论文已改为 'formalizing a known intuition'，定位诚实但仍列为 Contribution 1 首位且 §3 篇幅过大。两位 Reviewer 认为 engineering applicability (DFA 6^17 states) 比 Proposition 1 本身更有价值。多轮复发但严重程度已从 critical 降为 warning——定位措辞已改善，问题在于展示权重。\"\n  action_items:\n    - round: 19\n      action: \"§7 Discussion 定位 systems contribution\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 21\n      action: \"§3 论证 semantic layer 非显而易见\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 23\n      action: \"降低 Proposition 1 强度 + κ 统计限定\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"§1 C1 重写 'formalizing known intuition' + §3 DFA 可行边界 + proof sketch 扩展\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 25\n      action: \"降低 Proposition 1 展示权重：从 Contribution 1 首位降级，或将 engineering applicability 作为主要论述重心而非 pumping lemma proof\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R16-W1\"\n  summary: \"κ-DR 相关性 n=3 呈现不当——正文 §4 叙事权重过高\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 25\n  mentions:\n    - round: 22\n      reviewers: [1, 2]\n      note: \"R22 解决：加 empirical + scale-dependent qualifier + descriptive only。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-MF2 (critical)。R23 只改了 §4，Abstract/§1 仍用 correlate。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R1-N1+R2-W4 完全共识。§4 已标注 descriptive (n=3, p=0.138)，但正文中 κ 仍有独立定义式+整段分析+Appendix case study。叙事权重与 n=3 证据强度不匹配。R2 建议降 Critical→Major，因未列入 Contribution。R1 指出 κ 是 confounded variable (entity type confusability)。共识：压缩 §4 至 1-2 句，详细分析移 Appendix。\"\n  action_items:\n    - round: 22\n      action: \"全文加 empirical + scale-dependent qualifier\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 23\n      action: \"加 descriptive only (n=3, p=0.138)\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"全文统一 correlate → observed pattern\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 25\n      action: \"§4 Constraint Tightness 压缩为 1-2 句描述性观察，删除 p 值报告（n=3 的 p 值本身误导），详细分析移 Appendix\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W5\"\n  summary: \"70B 验证单一模型族 + Contribution 声称 'scale validation' overclaim\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"R1-W4。Abstract 加 '(AWQ INT4)' + §5.3 量化限制声明。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-MF3 (critical)。Contribution 拆分要求。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R2-W2+R1 AGREE [Major]。Contribution 3 已标 'Single-family scale validation' 但仍用 'validation'。仅 Llama-3.1-70B AWQ INT4，无 Qwen-72B/Mistral-Large，无 FP16 对比。Scale-dependent interaction (24%→84%) 基于单一模型族单一数据点。需改 'preliminary observation/probe'。\"\n  action_items:\n    - round: 23\n      action: \"Abstract 加 '(AWQ INT4)' + §5.3 量化限制声明\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"Contribution 拆分为 C2(8B)+C3(70B preliminary)+C4(部署)\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 25\n      action: \"Contribution 3 改 'Preliminary 70B exploration' 或 'Single-model scale probe'，不用 'validation'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W4\"\n  summary: \"WikiEvents n=20 不足以支撑 task generalization contribution claim\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"降级 contribution list + Preliminary Pilot 标题。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-SF3。复发——Table 仍在正文。必须移 Appendix。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R2-N1 [Critical]+R1-W5 [Major]，完全共识。§1 Contribution 2 仍包含 'directional evidence of task generalization'。n=20, MDE≈±5.0pp 不构成 generalization 证据。两位 Reviewer 一致要求：(1)从 Contribution 删除 WikiEvents；(2)§5.2 移至 Appendix 或正文仅 1 句概述；(3)如保留改为 feasibility demonstration。多轮复发，升级为 critical。\"\n  action_items:\n    - round: 23\n      action: \"降级 contribution list + 标题改 Preliminary Pilot\"\n      assigned_to: paper_agent\n      status: completed\n    - round: 24\n      action: \"Table 移至 Appendix + 正文压缩为 1-2 句\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 25\n      action: \"从 Contribution 2 完全删除 WikiEvents 表述 + §5.2 移至 Appendix + 正文最多保留 1 句 feasibility mention\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-N2\"\n  summary: \"GoLLIE 比较方法论不公平——零样本 GoLLIE vs. 微调 OntoCoDec\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-N2 [Critical]+R1-W6 [Minor] 交叉后共识 [Critical]。Appendix S 对比 GoLLIE-7B zero-shot (5 predicted relations) vs. OntoCoDec LoRA+S1 (~1100 predictions)。§6 引用此结论('near-complete output suppression')定位差异化，但实验条件不对等——GoLLIE 未在 SciERC 训练导致输出少，非方法内在差异。R1 补充：定位为 'complementary' 合理，但附录对比表应删除或改为定性讨论。注：R23-W3 曾标 resolved(R24 R1 rebut 有效)，但 R25 fresh review 重新发现并升级。\"\n  action_items:\n    - round: 25\n      action: \"删除 Appendix S 直接对比表，改为定性讨论两种 paradigm trade-off；§6 删除或限定 'near-complete output suppression' 表述，显著说明不可比原因\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W1\"\n  summary: \"DR↔CF trade-off 在零样本场景下严重程度讨论不足\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R1-N2 [Critical]+R2-W3 [Major]，交叉后共识 [Major]。Zero-shot greedy S1: total violation 15.45%→10.83% 仅降 30% (DR↓94% 但 CF 0.08%→9.90%)。Abstract 突出 DR reduction 但 CF increase 不对称。R2 补充：(1)Abstract 确实提及 zero-shot CF 可达 12%；(2)DR/CF 质性差异真实(DR 不可恢复 vs CF 可 post-hoc)；(3)推荐配置 fine-tuned+beam 下 trade-off 很小。共识：Abstract framing 需更对称，§7 Discussion 需扩展 CF 实际影响分析。\"\n  action_items:\n    - round: 25\n      action: \"Abstract 同时报告 DR reduction 和 CF increase 的 net effect + §7 Discussion 扩展 zero-shot CF 实际影响(如 CF violations 中多少 match gold labels) + 明确推荐 beam k≥2 作为 zero-shot 部署配置\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W2\"\n  summary: \"Scale-dependent layer interaction 缺乏因果解释\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R1-W2 [Major]+R2 Q3 AGREE。Semantic-only 在 8B 仅 24% DR reduction vs. 70B 达 84%，论文仅称 'empirical observation' 无因果解释。候选假设：(1)70B vocabulary calibration 更好；(2)logit distribution 更 peaked；(3)fallback 频率差异。现有数据(Appendix C fallback tracing)应可提供部分解释但未连接。\"\n  action_items:\n    - round: 25\n      action: \"§3 或 §5 添加 1-2 句关于 scale-dependent interaction 的机制讨论，至少分析 8B vs 70B semantic-only 下的 fallback 频率差异\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W3\"\n  summary: \"S1 vs S2 对比缺乏深入分析\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R1-W4 [Major]+R2 AGREE。S2 R-F1 低于 S1 (8.03 vs 8.36) 但 CF 更优 (8.03% vs 9.90%)，差异未做统计检验。70B 下 S2 降 8.45pp 未分析具体 failure case。S2 何时优于 S1 无指导。R2 注：S1/S2 分析是次要叙事，Major 但不影响接收。\"\n  action_items:\n    - round: 25\n      action: \"提供 S1 vs S2 的 paired bootstrap test + 70B S2 failure case 分析 + 在何种条件下推荐 S2 的指导\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-M1\"\n  summary: \"Abstract F1 范围 '41-47%' 与 Table 2 数据不一致 (Qwen DocRED S1 R-F1=40.79%)\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-M1+R1 AGREE。Factual inconsistency。应改为 'R-F1 40-47%' 或加 rounding 说明。§1 也有同样问题。\"\n  action_items:\n    - round: 25\n      action: \"Abstract + §1 中 'F1 41-47%' 修正为 'R-F1 40-47%'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-M2\"\n  summary: \"CRANE (Banerjee et al., 2025) 仅在 Appendix B 讨论，应在主文提及\"\n  category: related_work\n  severity: info\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-M2+R1 AGREE。S2 在 70B 下 R-F1 降 8.45pp 正是 CRANE 预测的 constraint→reasoning interference 现象。Appendix B 已讨论但 connection 应在主文 §3.4 或 §5 70B 段明确指出。\"\n  action_items:\n    - round: 25\n      action: \"§3.4 或 §5 70B 段添加 CRANE reference，指出 S2 70B 降级与 CRANE 理论预测一致\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-M3\"\n  summary: \"DocRED dev set 使用说明应从 footnote 提升至正文\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-M3+R1 AGREE。DocRED 是两大评估数据集之一，使用 dev set 而非 test set 的 caveat 仅在 footnote 1。\"\n  action_items:\n    - round: 25\n      action: \"§5 Setup 段正文中显著说明 DocRED 使用 development set (test annotations unavailable)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-M4\"\n  summary: \"Figure 1 缺少端到端 running example\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-M4+R1 AGREE。§3.3 有文本 running example 但未可视化。一个 token-level masking step-by-step 示例会极大提升可读性。注：与 R20-W5(wont_fix due to space) 相关，但 R25 从不同角度提出。\"\n  action_items:\n    - round: 25\n      action: \"考虑在 Figure 1 或新 Figure 中添加具体的 masking 过程示例\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-M5\"\n  summary: \"Schema coverage gap 对 schema evolution 场景的影响未讨论\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 25\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R2-M6+R1 AGREE。Empirical constraints 0.6-1.0% 未覆盖 valid type pairs。新增实体类型或关系时 constraints 会 over-restrict。Limitations 应简短提及。\"\n  action_items:\n    - round: 25\n      action: \"Limitations 或 Discussion 加 1-2 句 schema evolution caveat\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Carried from prior rounds — status updated for R25\n# ============================================================\n\n- id: \"R24-SF1\"\n  summary: \"缺乏 OntoCoDec 作为 constraint enforcement method 的明确定位声明\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 24\n  last_seen_round: 25\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R2-N2, R1 rebut 部分有效。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 未作为独立 issue 提出，但 §1 已有 'orthogonal and complementary' 定位。与 R25-N2 (GoLLIE 比较公平性) 相关。\"\n  action_items:\n    - round: 24\n      action: \"§1 加定位声明\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-SF2\"\n  summary: \"R-F1 41-47% 在正文中缺乏 LLM-based generative RE 上下文定位\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 24\n  last_seen_round: 25\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"正文缺上下文。\"\n    - round: 25\n      note: \"R25 未单独提出。§5 Setup 已有 'R-F1 range (41-47% under LoRA) is consistent with recent LLM-based generative RE benchmarks' 定位。可能已部分修复。\"\n  action_items:\n    - round: 24\n      action: \"§5 Setup 加 1-2 句 LLM-based generative RE 典型 F1 范围定位\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W12\"\n  summary: \"First-seen semantics 级联错误影响未量化\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"§3.3 formalize + Limitations 加 entity-first 约束。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R24-SF4。要求数据量化。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R1 在 §5.1 Cross-field violation analysis 中注意到论文已报告 cascade error 数据 (correct locks 2.5× more frequent than cascade errors, 7.3%)。R2 未单独提出。可能已部分修复——需确认正文中数据是否充分。\"\n  action_items:\n    - round: 24\n      action: \"Agent 分析 245 CF violations 中 first-seen 级联 vs 合法歧义分解\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-SF5\"\n  summary: \"§7 Discussion 过于压缩——缺 DR↔CF trade-off 等讨论\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 25\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"需压缩 §6 释放空间。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 与 R25-W1 (CF trade-off 讨论不足) 直接相关。§7 仍仅约 0.5 页。需扩展 DR↔CF trade-off、per-triple vs global enforcement、training-based complementarity 讨论。\"\n  action_items:\n    - round: 24\n      action: \"压缩 §6 + §7 扩展为 3 段\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 25\n      action: \"§7 扩展 CF 实际影响分析 + beam search 推荐\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R24-SF7\"\n  summary: \"LoRA 超参从 SciERC 直接转移到 DocRED 缺乏论证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 24\n  last_seen_round: 25\n  mentions:\n    - round: 24\n      reviewers: [1, 2]\n      note: \"DDL 内无法补实验，承认限制。\"\n    - round: 25\n      note: \"R25 未单独提出。Limitations 已有 'LoRA hyperparameters were tuned on SciERC and transferred to DocRED without dataset-specific optimization, which may underestimate DocRED potential'。可能已修复。\"\n  action_items:\n    - round: 24\n      action: \"§5 Setup + Limitations 承认超参转移限制\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W2\"\n  summary: \"算法创新有限——主要是 XGrammar + stateful logits processor 的系统集成\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"降低 Proposition 1 强度。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"合并到 R16-W5/MF1。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 R1(Excitement 3/5)+R2(Excitement 3/5) 一致：核心方案是现有 constrained decoding 的自然延伸，entity registry + dynamic masking 概念上非 surprising。论文价值主要在实证而非概念。与 R16-W5 紧密相关。\"\n  action_items:\n    - round: 25\n      action: \"合并到 R16-W5 处理——将论文重心从理论贡献转向实证贡献和工程设计\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Prior Rounds — Resolved (confirmed in R25 or earlier)\n# ============================================================\n\n- id: \"R23-W1\"\n  summary: \"CF 违规占残余违规 64%，与标题 'Type-Constrained IE' 形成 gap\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 23\n  resolution: \"R24 未作为独立 weakness。R25 CF 讨论转向 zero-shot severity (R25-W1) 而非 title gap。\"\n  resolution_round: 24\n\n- id: \"R23-W3\"\n  summary: \"GoLLIE 对比不公平 + 缺少与训练基方法的系统性对比\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 23\n      reviewers: [1, 2]\n      note: \"§6 GoLLIE 段重写。\"\n    - round: 24\n      reviewers: [1, 2]\n      note: \"R1 rebut 有效——已有三层对比。标 resolved。\"\n    - round: 25\n      reviewers: [1, 2]\n      note: \"R25 fresh review 重新发现并升级为 R25-N2 [Critical]。R24 的 'resolved' 判断错误——§6 重写和定位声明未解决 Appendix S 对比表的方法论不公平。合并到 R25-N2。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W6\"\n  summary: \"Zero-shot 实验占主文 ~3 页但 R-F1 仅 4-8%，篇幅分配失衡\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 23\n  resolution: \"R24 未提及。R25 未提及。压缩有效。\"\n  resolution_round: 24\n\n- id: \"R23-W7\"\n  summary: \"Proposition 1 实际意义论证 gap\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"合并到 R16-W5。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W8\"\n  summary: \"'Empirical enabling dependency' 重复 ≥6 次\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 23\n  resolution: \"R24/R25 均未提及。修复有效。\"\n  resolution_round: 24\n\n- id: \"R23-W9\"\n  summary: \"Fallback 频率模型依赖性未在正文讨论\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 23\n  resolution: \"R24/R25 均未作为独立 issue。R25 R1-S6 还肯定了 fallback causal tracing (Appendix C)。\"\n  resolution_round: 24\n\n- id: \"R23-W10\"\n  summary: \"Continuation masking prefix collision 频率未量化\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"R25 R1-Q3 追问了 morphologically similar types 的失败率。未被 R25 列为 weakness 但作为 question 保留。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-W11\"\n  summary: \"Beam width sensitivity 讨论不足\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 23\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"R25 未单独提出。论文 §5 已有 beam sweep (k∈{1,2,4,8})，R1-S2 肯定了 beam search 评估。可能已修复。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R23-D1\"\n  summary: \"Limitations 长度是否 excessive\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 23\n  resolution: \"R24/R25 均评 Limitations 充分。R25 R2-S3 特别肯定了三段式 Limitations 的透明度。\"\n  resolution_round: 24\n\n- id: \"R16-MF3\"\n  summary: \"CF trade-off 在 Abstract 中 framing 偏乐观\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 21\n  resolution: \"Abstract CF 分层报告。R25 仍有相关问题(R25-W1)但性质不同——不是隐瞒 CF 而是叙事不对称。\"\n  resolution_round: 22\n\n- id: \"R16-W4\"\n  summary: \"70B AWQ INT4 quantization 对约束效果的影响未隔离\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 21\n  resolution: \"Appendix R 4 组配置验证。R25 R1-S4 肯定了 quantization robustness 验证。\"\n  resolution_round: 22\n\n- id: \"R16-W3\"\n  summary: \"WikiEvents fine-tuning composability 仅 n=20 文档\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"合并到 R23-W4。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R15-MF3\"\n  summary: \"正文溢出至第 9 页\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 21\n  resolution: \"R25 格式检查确认主文 §1-§7 在 page 1-8。\"\n  resolution_round: 22\n\n- id: \"R18-M2\"\n  summary: \"Figure 1 视觉层次不够分明\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 18\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"R25 Visual Check info: Figure 1 内部组件标注文字偏小(约正文 60%)。R2-M4 要求端到端 running example。问题从'视觉层次'转为'缺少具体示例'。合并到 R25-M4。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W1\"\n  summary: \"Proposition 1 证明中 position→name 转换缺乏形式论证\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"R25 R1 小问题中提到 Appendix O proof Case 1 的 position vs. name-based 区分不够清晰。问题仍存在但严重程度低。合并到 R16-W5。\"\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W4\"\n  summary: \"主文 Related Work §6 过于精简\"\n  category: related_work\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 23\n  resolution: \"R25 R2-S5 肯定 Related Work 三轴组织清晰有效。无关精简问题。\"\n  resolution_round: 23\n\n- id: \"R24-SF6\"\n  summary: \"Contribution 2 过度打包\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 24\n  last_seen_round: 25\n  mentions:\n    - round: 25\n      note: \"R25 仍见 Contribution 2 包含多项内容。合并到 R23-W5 处理。\"\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Won't Fix\n# ============================================================\n\n- id: \"R20-W5\"\n  summary: \"Running example 仍不充分\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 21\n  resolution: \"空间限制无法在正文加完整 running example。R25-M4 从不同角度重新提出。\"\n  resolution_round: 20\n\n- id: \"R20-W6\"\n  summary: \"Zero-shot 评估实际意义有限（R-F1 仅 4-8%）\"\n  category: experiment\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 23\n  resolution: \"ZS 定位为 diagnostic probe。R25 未复发。\"\n  resolution_round: 23\n"
+            }
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-23T10:46:42.765763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 21328}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 102
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-23T10:49:48.806273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_01fc90ae186a4ed432770f7601995139:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "project": "schema_semantic_constrained_ie",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.5",
+              "report": "# Round 25 审稿报告 — OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n\n**Target Venue**: EMNLP 2026 (ARR May cycle)\n**Reviewers**: R1（方法严谨性+实验设计）、R2（新颖性+完整性+写作质量）\n**轮次**: Round 1（fresh review，无上轮记忆）\n**收敛**: 1 轮交叉后收敛，5 个完全共识问题，1 个分歧已解决\n\n---\n\n## Summary\n\nOntoCoDec 提出将 IE 本体编译为两层 token-level 解码约束的框架：grammar layer 通过 XGrammar 保证 JSON 结构和词汇约束（Level 1: context-free），semantic layer 通过运行时 entity registry + dynamic logit masking 保证 domain/range 类型约束（Level 2: prefix-decidable with state）。核心理论贡献是 Proposition 1（pumping lemma 证明 domain/range 约束超出 CFG 表达能力）。实验覆盖 3 个 8B 模型族（Qwen3-8B, Llama-3.1-8B, Mistral-7B）× 2 个 RE 数据集（SciERC, DocRED），加 1 个 70B 单模型族验证（Llama-3.1-70B AWQ INT4）和 WikiEvents event extraction pilot（n=20）。在 zero-shot 和 LoRA fine-tuning 两种设置下，DR 违规几乎完全消除（fine-tuned ≤0.09%），但引入 CF 违规作为 trade-off。\n\n---\n\n## Strengths\n\n**S1.** [共识] 实验设计极为扎实——本文最大亮点。五路 ablation on SciERC（Table 1: unconstrained / grammar-only / GCD-equiv / semantic-only / S1 / S2）清晰解剖了每层的独立与交互贡献。GCD-equiv 通过 vLLM `guided_json` 外部验证（Appendix S）增强可信度。跨模型验证（3 tokenizer families × 2 datasets）、fine-tuning composability（Table 2, Bonferroni-corrected CIs）、beam search sweep（k∈{1,2,4,8}）、downstream impact 分析（仅 0.49% blocked triples match gold labels）均展现了罕见的实验严谨性。\n\n**S2.** [共识] 统计方法严谨。Bootstrap CI（10,000 iterations）、Bonferroni correction for multiple comparisons、Cohen's d effect sizes 的使用在 NLP 论文中不常见。per-configuration corrected p-values 的诚实报告（如 SciERC p_adj=1.00）值得肯定。\n\n**S3.** [共识] Limitations 的透明度异常高。三段式 Limitations 覆盖 constraint scope / evaluation coverage / engineering considerations，主动报告了 CF trade-off、n=3 tightness 相关性不显著、WikiEvents n=20 统计效力不足、70B 单一模型族限制等。这种自我批评的态度显著提高了论文可信度。\n\n**S4.** [共识] 工程完整性强。31 页 Appendix 覆盖了几乎所有可预见的质疑：causal tracing、cascade error analysis、order invariance、prompt sensitivity、document length effect、quantization robustness、sampling robustness。跨 3 个 tokenizer family 的 continuation masking 验证了 tokenizer-agnostic 设计。Grammar-first fallback 机制优先保证 JSON 结构完整性的设计哲学符合实际部署需求。\n\n**S5.** [共识] 问题定义精准且有实际意义。论文清晰识别了 grammar-constrained decoding 的能力边界——无法执行跨字段 domain/range 类型约束——并给出了形式化论证。15-18% 的 baseline violation rate 证实了问题的实际严重性。\n\n**S6.** [R2] 写作质量高。8 页正文在高信息密度下保持了良好的逻辑流；符号使用一致（DR/RV/ET/CF 始终如一）；Related Work 的三轴组织（constrained decoding / schema-aware IE / constraint enforcement in IE）清晰有效。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**MF1** [Critical, 完全共识] **WikiEvents n=20 不足以支撑 \"task generalization\" contribution claim**\n- §1 Contribution 2 将 WikiEvents pilot 列为贡献一部分：\"a preliminary n=20 event extraction pilot provides directional evidence of task generalization\"。n=20, MDE≈±5.0pp 不构成 generalization 证据，属 feasibility demonstration 而非 validation。零样本 WikiEvents 评估（n=246, Table 47）验证了 EV/RoV 消除，有价值；但 fine-tuning composability 的 n=20 无法支撑有置信度的结论。\n- **要求**: 从 Contribution 2 完全删除 WikiEvents 表述；§5.2 移至 Appendix 或正文仅保留 1 句 feasibility mention。\n\n**MF2** [Critical, 完全共识] **GoLLIE 比较方法论不公平，但被用于定位论文差异化**\n- Appendix S 对比 GoLLIE-7B zero-shot（5 predicted relations / 100 docs）vs. OntoCoDec LoRA+S1（~1100 predicted relations）。§6 引用此结论（\"near-complete output suppression\"）定位差异化，但实验条件不对等——GoLLIE 未在 SciERC 训练导致输出少，非方法内在差异。论文的\"complementary\"定位合理，但 Appendix S 的直接对比表支撑不了这个定位。\n- **要求**: 删除 Appendix S 直接对比表，改为定性讨论；§6 删除或显著限定\"near-complete output suppression\"表述，并显著说明不可比原因。\n\n### Should-Fix（影响评分但不一票否决）\n\n**SF1** [Major, 完全共识] **κ-DR 相关性（n=3）在正文 §4 叙事权重过高**\n- §4 \"Constraint Tightness\" 段为 κ 给出了独立定义式、三个 schema 的具体数值、p=0.138，Appendix 有独立 case study 和 Figure 3。叙事权重与 n=3 证据强度严重不匹配。κ 还是 confounded variable（entity type confusability 是 co-factor）。论文已标注\"descriptive\"但展示比重暗示 κ 有独立解释力。\n- R1 初评 Critical，R2 交叉后建议降为 Major（因未列入 Contribution），Director 采纳 Major。\n- **要求**: §4 Constraint Tightness 压缩为 1-2 句描述性观察，删除 p 值报告（n=3 的 p 值本身误导），详细分析移 Appendix。\n\n**SF2** [Major, 完全共识] **Proposition 1 新颖性有限——formalizing known intuition**\n- PDA 无法执行 random-access stack lookup 是形式语言理论基本知识。论文诚实称之为\"formalizing a known intuition\"（§1 C1），但仍列为三大贡献之首，§3 投入大量篇幅（proof sketch + engineering applicability + empirical observation）。Appendix O pumping lemma 证明正确但不深刻——构造了 copy-language 变体。Engineering applicability（DFA 6^17 states）比 Proposition 1 本身更有价值。\n- **要求**: 降低 Proposition 1 展示权重——从 Contribution 首位降级，或将 engineering applicability 作为主要论述重心。\n\n**SF3** [Major, 完全共识] **DR↔CF trade-off 在零样本场景下严重程度讨论不足**\n- Zero-shot greedy S1: total violation 15.45%→10.83%（DR↓94% 但 CF 0.08%→9.90%），净降幅仅 30%。Abstract 突出 DR reduction 但 CF increase 叙事不对称。R2 补充：(1) Abstract 确实提及 zero-shot CF 可达 12%；(2) DR/CF 质性差异真实（DR 不可恢复 vs CF 可 post-hoc）；(3) 推荐配置 fine-tuned+beam 下 trade-off 很小。\n- R1 初评 Critical，R2 交叉后提供 nuance 建议降为 Major，Director 采纳 Major。\n- **要求**: Abstract framing 更对称地报告 DR reduction 和 CF increase；§7 Discussion 扩展 zero-shot CF 实际影响分析；明确推荐 beam k≥2 作为 zero-shot 部署配置。\n\n**SF4** [Major, 完全共识] **70B 验证单一模型族但 Contribution 3 称\"scale validation\"**\n- 所有 70B 实验仅 Llama-3.1-70B AWQ INT4，无 Qwen-72B/Mistral-Large，无 FP16 对比。Scale-dependent interaction（semantic-only 24%→84%）是否为 Llama-specific 未知。论文已标 \"single-family\" 但仍用\"validation\"一词。\n- **要求**: Contribution 3 改\"Preliminary 70B exploration\"或\"Single-model scale probe\"，不用\"validation\"。\n\n**SF5** [Major, R1 提出 R2 同意] **Scale-dependent layer interaction 缺乏因果解释**\n- Semantic-only 在 8B 仅 24% DR reduction vs. 70B 达 84%，论文仅称\"empirical observation\"无因果解释。候选假设（vocabulary calibration / logit distribution / fallback 频率差异）均未讨论。现有数据（Appendix C fallback tracing）应可提供部分解释但未连接。\n- **要求**: §3 或 §5 添加 1-2 句关于可能机制的讨论，至少分析 8B vs 70B semantic-only 下的 fallback 频率差异。\n\n**SF6** [Major, R1 提出 R2 同意] **S1 vs S2 对比缺乏深入分析**\n- S1 vs S2 差异未做统计检验。70B 下 S2 R-F1 降低 8.45pp 的具体原因未分析。S2 何时优于 S1 无指导。R2 注：S1/S2 是次要叙事，Major 但不影响接收。\n- **要求**: 提供 S1 vs S2 paired bootstrap test；分析 70B S2 failure case；讨论 S2 推荐条件。\n\n### Minor\n\n**M1** [R1 提出 R2 rebut，R2 论点有效] Fine-tuning 仅验证 LoRA。R2 指出 full FT 已在 Appendix 验证，且 composability 机制上不依赖 fine-tuning 方法。Limitations 中 caveat 可适当加强。\n\n---\n\n## Reviewer Consensus（[AGREE] 标注）\n\n以下问题两位 Reviewer 完全一致：\n\n1. **WikiEvents n=20 从 Contribution 降级** — R1-W5 [Major] + R2-N1 [Critical]，R1 交叉 AGREE R2。升级为 Critical。\n2. **GoLLIE 比较方法论不公平** — R2-N2 [Critical] + R1-W6 [Minor]，R1 交叉 AGREE R2 并补充 nuance。升级为 Critical。\n3. **Proposition 1 新颖性有限** — R1-W1 [Major] + R2-W1 [Major]，双方交叉 AGREE。\n4. **κ-DR 相关性叙事权重过高** — R1-N1 + R2-W4，双方交叉 AGREE。\n5. **CF trade-off 讨论不足** — R1-N2 + R2-W3，双方交叉 AGREE（含 nuance）。\n6. **70B 单一模型族 overclaim \"validation\"** — R2-W2 [Major]，R1 交叉 AGREE。\n7. **Scale-dependent interaction 缺因果解释** — R1-W2 [Major]，R2 交叉 AGREE。\n8. **S1 vs S2 分析不足** — R1-W4 [Major]，R2 交叉 AGREE。\n\n## Reviewer Divergence（[REBUT] 标注）\n\n**唯一分歧：LoRA-only composability**\n- R1 认为仅验证 LoRA 是 Major 缺陷，composability claim 泛化性不足。\n- R2 [REBUT]：Full fine-tuning 已在 Appendix 验证；composability 机制不依赖 fine-tuning 方法（runtime logit masking 对模型权重来源不可知）；不同 PEFT 方法改变权重不改变 logits 生成方式。\n- **Director 裁定**：R2 的 rebut 有效。已验证两种 fine-tuning 方法（LoRA + full FT），且机制论证成立。降为 Minor，在 Limitations 加强 caveat 即可。\n\n---\n\n## Questions for Authors\n\n**Q1.** Schema coverage gaps 占 fine-tuning residual DR 的 33%。当 training data 的 type pair 分布不覆盖所有合法 ontology pair 时，系统会 over-restrict。能否量化 SciERC 和 DocRED 的 schema 对 ground truth ontology 的覆盖率？是否考虑过基于 ontology hierarchy 构建 constraint？\n\n**Q2.** Entity registry 的 first-seen semantics 在长文档中的行为如何？DocRED outlier 文档的 entity 数可达多少？registry 在 100+ entities 时是否有实测性能数据？\n\n**Q3.** Continuation masking 对 morphologically similar types（如 Protein vs. Protein_Complex）的实际失败率？\n\n**Q4.** 在 R-F1 仅 8-13% 的 zero-shot 设置中，violation reduction 的实际下游价值如何量化？\n\n**Q5.** Proposition 1 是否已在其他文献中以类似形式出现过？与已有 cross-serial dependency 不可由 CFG 表达的结论的本质区别？\n\n**Q6.** GoLLIE-7B 在 LoRA fine-tuning 后的 SciERC 表现如何？如果 GoLLIE fine-tuned 后输出量正常化但仍保持低 DR，则 OntoCoDec 的差异化需要重新评估。\n\n**Q7.** Scale-dependent layer interaction（semantic-only 70B 84% vs. 8B 24%）是否有理论预期支持？70B 模型更好的 vocabulary calibration 是否解释了 semantic layer 的独立有效性？\n\n---\n\n## Missing References\n\n论文对关键相关工作的覆盖充分。CRANE (Banerjee et al., 2025)、EnriCo (Zaratiana et al., 2024)、IterGen (Ugare et al., 2025)、SynCode、XGrammar、Outlines、SGLang、PICARD、KG-Trie、GoLLIE、KnowCoder、GCD、BoostCD 均已引用。\n\n唯一建议：CRANE 仅在 Appendix B 讨论，但 S2 在 70B 下 R-F1 降低 8.45pp 与 CRANE 关于 constrained decoding 抑制 reasoning 的分析直接相关，应在主文 §3.4 或 §5 70B 段至少引用。\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n未配置。\n\n---\n\n## Visual Layout Check（非评分项）\n\n状态：**done**（耗时 ~4.5 分钟）\n\n**Warnings (3)**:\n1. 主文 8 页仅 3 个 display items（1 figure + 2 tables），对于实证型论文偏少（通常 5-8 个）。大量实验结果全部推入附录，审稿人在主文中缺乏足够的视觉锚点。建议将至少 1-2 个关键结果表或 ablation 图提至主文。\n2. Method 段（§3.1-3.3）连续 2 页纯文本，无 figure/table/algorithm box 穿插。建议用 Algorithm 伪代码或流程图打断文字墙。\n3. Related Work + Discussion/Conclusion 合占 1 页纯文本，无总结性图表辅助审稿人抓取核心 takeaway。\n\n**Info (7)**:\n- Table 35 红/绿对比对色盲用户不友好\n- 末页内容填充约 60-65%\n- Figure 1 内部标注文字偏小（约正文 60%）\n- 多页附录堆叠 4 张表格，可考虑合并\n- Table 1/2 格式专业（booktabs + 加粗最优值 + 小数位一致）✓\n- Table 3 prompt 模板文字较小但可接受\n- 附录 Figure 2/3/4 分辨率和轴标签清晰 ✓\n\n---\n\n## Overall Assessment\n\n**Overall: 3.5 — Borderline Conference**\n\n| 维度 | R1 | R2 | 综合 |\n|------|----|----|------|\n| Soundness | 3.5/5 | 4/5 | 3.75 |\n| Excitement | 3/5 | 3/5 | 3.0 |\n| Reproducibility | 4/5 | 4/5 | 4.0 |\n| Confidence | 4/5 | 4/5 | 4.0 |\n| **Overall** | **3.5** | **3.5** | **3.5** |\n\n**判断依据**：论文解决了一个有实际意义的问题（LLM-based IE 中 15-18% 的本体违规率），提出了干净的两层架构，配有正确的理论证明和极其全面的消融实验。统计方法（bootstrap CI, Bonferroni, Cohen's d）在 NLP 论文中罕见且值得肯定。31 页 Appendix 和三段式 Limitations 的透明度是显著优势。\n\n主要不足：(1) 核心技术新颖性中等——entity registry + dynamic masking 是现有 constrained decoding 的自然延伸，Proposition 1 是已知结论在 IE 场景的应用（Excitement 3/5）；(2) 两个关键实验证据有缺陷——WikiEvents n=20 不支撑 task generalization claim，GoLLIE 比较方法论不公平；(3) 零样本场景下 DR→CF trade-off 的净效果被叙事不对称地呈现。\n\n**Findings vs. Conference 的关键判断维度**：论文的实验质量和透明度足以被 Findings 接收。是否能进入主会议取决于对\"扎实的工程+实验贡献 vs. 有限的概念新颖性\"的权衡。若 MF1（WikiEvents framing）和 MF2（GoLLIE 比较公平性）在 revision 中修复，且 SF2（Proposition 1 展示权重）和 SF3（CF trade-off 对称呈现）得到改善，评分有望上调至 3.5-4.0 区间。\n\n---\n\n## Detailed Comments\n\n### §1 Introduction\n- Contribution 1：Proposition 1 定位为\"formalizing a known intuition\"是诚实的，但列为首位贡献且 §3 篇幅过大，给人 substantial theoretical contribution 的印象。建议降级或重新排序。\n- Contribution 2：WikiEvents 部分应完全删除。\n- Contribution 3：\"Single-family scale validation\"中\"validation\"应改为\"exploration\"或\"probe\"。\n- \"F1 41-47%\"：Table 2 Qwen DocRED S1 R-F1=40.79%，低于 41%。修正为\"R-F1 40-47%\"。\n\n### §3 Method\n- Proposition 1 proof sketch 技术正确，但不深刻。Engineering applicability（DFA 6^17 states）比 Proposition 1 本身更 informative。\n- §3.1 \"100% preservation across all configurations\"表述不清，建议改为\"entity-before-relation ordering is maintained in all N documents across all configurations\"。\n- Continuation masking 设计合理，跨 3 个 tokenizer family 验证了 tokenizer-agnostic 性。\n\n### §4 Constraint Composition\n- Constraint Tightness 段落应压缩为 1-2 句。删除 p=0.138 报告（n=3 的 p 值本身误导）。κ 作为描述性工具仍有概念价值，但详细分析应在 Appendix。\n\n### §5 Experiments\n- 五路 ablation（Table 1）是论文最强的实验贡献。\n- Cross-field violation analysis（§5.1）数据充分：cascade error 分解（7.3% cascade vs. 2.5× correct locks）是有力证据。\n- Fine-tuning composability（Table 2）报告严谨。\n- §5.2 WikiEvents：正文应压缩至 1 句或移至 Appendix。\n- 70B results：scale-dependent interaction 需因果讨论；S2 在 70B 的降级应引用 CRANE。\n- DocRED 使用 dev set 的说明应从 footnote 1 提升至 Setup 段正文。\n\n### §6 Related Work\n- 三轴组织有效。\n- GoLLIE 段应删除或显著限定\"near-complete output suppression\"表述。\n- CRANE 应在主文提及，不仅限于 Appendix B。\n\n### §7 Discussion and Conclusion\n- 目前约 0.5 页，过于压缩。需扩展：DR↔CF trade-off 实际影响、per-triple vs. global enforcement 路线图、schema evolution 考量。\n\n### Limitations\n- 三段式结构充分，覆盖面好。\n- 建议加强 fine-tuning 方法泛化性的 caveat（不仅\"other fine-tuning methods warrant further investigation\"，应指出不同 PEFT 方法对 logit distribution 的影响可能不同）。\n- 添加 schema evolution 对 empirical constraints 的影响讨论。\n\n### Format Compliance (EMNLP 2026)\n- ✅ 正文 8 页（§1-§7 在 pages 1-8）\n- ✅ 匿名处理（Anonymous ACL submission，无身份泄露）\n- ✅ Limitations section 存在且充分\n- ✅ Ethics statement 存在\n- ✅ References ACL natbib 格式\n- ✅ \\usepackage[review]{acl} 启用 review 模式"
             }
           },
           "id": "event-002520"

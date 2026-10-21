@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 4,101
+- **Events:** 4,039
 - **Recorded user turns:** 165
-- **Tool calls:** 1,896
+- **Tool calls:** 1,865
 - **Original source:** `logs/chats/archive/feishu_group_oc_6551c2d0ac89db1b3b9e56f77fcf912d_20260525T191505_029324.jsonl`
 - **Structured JSON:** [`4bb829b2481d3f9f0b26.json`](../../sessions/4b/4bb829b2481d3f9f0b26.json)
 
@@ -20,4 +20,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](coordination-coordination-20260525-191505/part-001.md) · [Part 2](coordination-coordination-20260525-191505/part-002.md) · [Part 3](coordination-coordination-20260525-191505/part-003.md) · [Part 4](coordination-coordination-20260525-191505/part-004.md) · [Part 5](coordination-coordination-20260525-191505/part-005.md) · [Part 6](coordination-coordination-20260525-191505/part-006.md) · [Part 7](coordination-coordination-20260525-191505/part-007.md)
+[Part 1](coordination-coordination-20260525-191505/part-001.md) · [Part 2](coordination-coordination-20260525-191505/part-002.md) · [Part 3](coordination-coordination-20260525-191505/part-003.md) · [Part 4](coordination-coordination-20260525-191505/part-004.md) · [Part 5](coordination-coordination-20260525-191505/part-005.md) · [Part 6](coordination-coordination-20260525-191505/part-006.md)

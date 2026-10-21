@@ -7,48 +7,6 @@
       "messages": [
         {
           "source_line": 721,
-          "timestamp": "2026-05-22T15:09:58.578803+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__ssh_read_only"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "tool_args": {
-              "server": "westb-48145",
-              "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors"
-            }
-          },
-          "id": "event-000721"
-        },
-        {
-          "source_line": 722,
-          "timestamp": "2026-05-22T15:09:59.084886+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__ssh_read_only"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
-            "tool": "mcp__agent-ml-research__ssh_read_only",
-            "tool_args": {
-              "server": "westb-48145",
-              "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/"
-            }
-          },
-          "id": "event-000722"
-        },
-        {
-          "source_line": 723,
           "timestamp": "2026-05-22T15:09:59.988407+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -66,10 +24,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000723"
+          "id": "event-000721"
         },
         {
-          "source_line": 724,
+          "source_line": 722,
           "timestamp": "2026-05-22T15:10:03.654521+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -84,10 +42,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 5075
           },
-          "id": "event-000724"
+          "id": "event-000722"
         },
         {
-          "source_line": 725,
+          "source_line": 723,
           "timestamp": "2026-05-22T15:10:06.968933+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -102,10 +60,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7884
           },
-          "id": "event-000725"
+          "id": "event-000723"
         },
         {
-          "source_line": 726,
+          "source_line": 724,
           "timestamp": "2026-05-22T15:10:10.182385+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -120,10 +78,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 10193
           },
-          "id": "event-000726"
+          "id": "event-000724"
         },
         {
-          "source_line": 727,
+          "source_line": 725,
           "timestamp": "2026-05-22T15:10:14.824139+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -136,7 +94,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000727"
+          "id": "event-000725"
         }
       ]
     },
@@ -144,7 +102,7 @@
       "number": 43,
       "messages": [
         {
-          "source_line": 728,
+          "source_line": 726,
           "timestamp": "2026-05-22T15:39:05.451103+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -158,10 +116,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000728"
+          "id": "event-000726"
         },
         {
-          "source_line": 729,
+          "source_line": 727,
           "timestamp": "2026-05-22T15:39:12.729797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -180,10 +138,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000729"
+          "id": "event-000727"
         },
         {
-          "source_line": 730,
+          "source_line": 728,
           "timestamp": "2026-05-22T15:39:12.830508+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -198,10 +156,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 100
           },
-          "id": "event-000730"
+          "id": "event-000728"
         },
         {
-          "source_line": 731,
+          "source_line": 729,
           "timestamp": "2026-05-22T15:39:16.593413+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -219,10 +177,10 @@
               "command": "tail -40 /root/runs/entrainment_gated_ft/exp-005-gla-eval.log"
             }
           },
-          "id": "event-000731"
+          "id": "event-000729"
         },
         {
-          "source_line": 732,
+          "source_line": 730,
           "timestamp": "2026-05-22T15:39:23.719973+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -237,10 +195,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7126
           },
-          "id": "event-000732"
+          "id": "event-000730"
         },
         {
-          "source_line": 733,
+          "source_line": 731,
           "timestamp": "2026-05-22T15:39:31.165487+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -258,10 +216,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"results*\" -type f"
             }
           },
-          "id": "event-000733"
+          "id": "event-000731"
         },
         {
-          "source_line": 734,
+          "source_line": 732,
           "timestamp": "2026-05-22T15:39:40.051554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -276,10 +234,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 8886
           },
-          "id": "event-000734"
+          "id": "event-000732"
         },
         {
-          "source_line": 735,
+          "source_line": 733,
           "timestamp": "2026-05-22T15:39:52.139118+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -297,10 +255,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000735"
+          "id": "event-000733"
         },
         {
-          "source_line": 736,
+          "source_line": 734,
           "timestamp": "2026-05-22T15:39:55.652766+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -315,7 +273,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3513
           },
-          "id": "event-000736"
+          "id": "event-000734"
         }
       ]
     },
@@ -323,7 +281,7 @@
       "number": 44,
       "messages": [
         {
-          "source_line": 737,
+          "source_line": 735,
           "timestamp": "2026-05-22T15:42:01.202335+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -337,10 +295,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000737"
+          "id": "event-000735"
         },
         {
-          "source_line": 738,
+          "source_line": 736,
           "timestamp": "2026-05-22T15:42:08.784686+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -359,10 +317,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000738"
+          "id": "event-000736"
         },
         {
-          "source_line": 739,
+          "source_line": 737,
           "timestamp": "2026-05-22T15:42:08.935577+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -377,10 +335,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 150
           },
-          "id": "event-000739"
+          "id": "event-000737"
         },
         {
-          "source_line": 740,
+          "source_line": 738,
           "timestamp": "2026-05-22T15:42:12.451800+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -398,10 +356,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -newer /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_all.log -type f"
             }
           },
-          "id": "event-000740"
+          "id": "event-000738"
         },
         {
-          "source_line": 741,
+          "source_line": 739,
           "timestamp": "2026-05-22T15:42:16.568018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -416,10 +374,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4116
           },
-          "id": "event-000741"
+          "id": "event-000739"
         },
         {
-          "source_line": 742,
+          "source_line": 740,
           "timestamp": "2026-05-22T15:42:21.286811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -437,10 +395,10 @@
               "command": "tail -50 /root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log"
             }
           },
-          "id": "event-000742"
+          "id": "event-000740"
         },
         {
-          "source_line": 743,
+          "source_line": 741,
           "timestamp": "2026-05-22T15:42:22.592394+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -455,10 +413,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1305
           },
-          "id": "event-000743"
+          "id": "event-000741"
         },
         {
-          "source_line": 744,
+          "source_line": 742,
           "timestamp": "2026-05-22T15:42:26.154534+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -476,10 +434,10 @@
               "command": "head -20 /root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_gla_hardcode.sh"
             }
           },
-          "id": "event-000744"
+          "id": "event-000742"
         },
         {
-          "source_line": 745,
+          "source_line": 743,
           "timestamp": "2026-05-22T15:42:27.960065+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -494,10 +452,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1805
           },
-          "id": "event-000745"
+          "id": "event-000743"
         },
         {
-          "source_line": 746,
+          "source_line": 744,
           "timestamp": "2026-05-22T15:42:35.703580+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -515,10 +473,10 @@
               "command": "ps aux -w --no-headers --sort=-start_time"
             }
           },
-          "id": "event-000746"
+          "id": "event-000744"
         },
         {
-          "source_line": 747,
+          "source_line": 745,
           "timestamp": "2026-05-22T15:42:37.420940+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -533,10 +491,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1717
           },
-          "id": "event-000747"
+          "id": "event-000745"
         },
         {
-          "source_line": 748,
+          "source_line": 746,
           "timestamp": "2026-05-22T15:42:44.796706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -554,10 +512,10 @@
               "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000748"
+          "id": "event-000746"
         },
         {
-          "source_line": 749,
+          "source_line": 747,
           "timestamp": "2026-05-22T15:42:46.001852+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -572,10 +530,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1205
           },
-          "id": "event-000749"
+          "id": "event-000747"
         },
         {
-          "source_line": 750,
+          "source_line": 748,
           "timestamp": "2026-05-22T15:42:51.758242+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -588,7 +546,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000750"
+          "id": "event-000748"
         }
       ]
     },
@@ -596,7 +554,7 @@
       "number": 45,
       "messages": [
         {
-          "source_line": 751,
+          "source_line": 749,
           "timestamp": "2026-05-22T15:43:12.704103+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -610,10 +568,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000751"
+          "id": "event-000749"
         },
         {
-          "source_line": 752,
+          "source_line": 750,
           "timestamp": "2026-05-22T15:43:20.013804+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -631,10 +589,10 @@
               "command": "tail -20 /root/entrainment_gated_ft/results/exp005_zoo_expansion/gla_eval.log"
             }
           },
-          "id": "event-000752"
+          "id": "event-000750"
         },
         {
-          "source_line": 753,
+          "source_line": 751,
           "timestamp": "2026-05-22T15:43:20.565616+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -652,10 +610,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -o -name \"results*.json\" -type f"
             }
           },
-          "id": "event-000753"
+          "id": "event-000751"
         },
         {
-          "source_line": 754,
+          "source_line": 752,
           "timestamp": "2026-05-22T15:43:26.286177+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -670,10 +628,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 6272
           },
-          "id": "event-000754"
+          "id": "event-000752"
         },
         {
-          "source_line": 755,
+          "source_line": 753,
           "timestamp": "2026-05-22T15:43:29.347481+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -688,10 +646,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 8781
           },
-          "id": "event-000755"
+          "id": "event-000753"
         },
         {
-          "source_line": 756,
+          "source_line": 754,
           "timestamp": "2026-05-22T15:43:35.150879+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -704,7 +662,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000756"
+          "id": "event-000754"
         }
       ]
     },
@@ -712,7 +670,7 @@
       "number": 46,
       "messages": [
         {
-          "source_line": 757,
+          "source_line": 755,
           "timestamp": "2026-05-22T15:54:03.094581+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -726,10 +684,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000757"
+          "id": "event-000755"
         },
         {
-          "source_line": 758,
+          "source_line": 756,
           "timestamp": "2026-05-22T15:54:10.855303+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -747,10 +705,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000758"
+          "id": "event-000756"
         },
         {
-          "source_line": 759,
+          "source_line": 757,
           "timestamp": "2026-05-22T15:54:11.356983+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -768,10 +726,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -maxdepth 2 -type d"
             }
           },
-          "id": "event-000759"
+          "id": "event-000757"
         },
         {
-          "source_line": 760,
+          "source_line": 758,
           "timestamp": "2026-05-22T15:54:14.775485+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -786,10 +744,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3920
           },
-          "id": "event-000760"
+          "id": "event-000758"
         },
         {
-          "source_line": 761,
+          "source_line": 759,
           "timestamp": "2026-05-22T15:54:16.231677+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -804,10 +762,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4874
           },
-          "id": "event-000761"
+          "id": "event-000759"
         },
         {
-          "source_line": 762,
+          "source_line": 760,
           "timestamp": "2026-05-22T15:54:23.963234+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -825,10 +783,10 @@
               "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl"
             }
           },
-          "id": "event-000762"
+          "id": "event-000760"
         },
         {
-          "source_line": 763,
+          "source_line": 761,
           "timestamp": "2026-05-22T15:54:25.267923+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -846,10 +804,10 @@
               "command": "head -1 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl"
             }
           },
-          "id": "event-000763"
+          "id": "event-000761"
         },
         {
-          "source_line": 764,
+          "source_line": 762,
           "timestamp": "2026-05-22T15:54:26.020721+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -864,10 +822,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2057
           },
-          "id": "event-000764"
+          "id": "event-000762"
         },
         {
-          "source_line": 765,
+          "source_line": 763,
           "timestamp": "2026-05-22T15:54:26.171432+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -885,10 +843,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1/model.safetensors /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000765"
+          "id": "event-000763"
         },
         {
-          "source_line": 766,
+          "source_line": 764,
           "timestamp": "2026-05-22T15:54:27.174979+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -903,10 +861,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1907
           },
-          "id": "event-000766"
+          "id": "event-000764"
         },
         {
-          "source_line": 767,
+          "source_line": 765,
           "timestamp": "2026-05-22T15:54:29.133469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -921,10 +879,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2962
           },
-          "id": "event-000767"
+          "id": "event-000765"
         },
         {
-          "source_line": 768,
+          "source_line": 766,
           "timestamp": "2026-05-22T15:54:39.582989+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -942,10 +900,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000768"
+          "id": "event-000766"
         },
         {
-          "source_line": 769,
+          "source_line": 767,
           "timestamp": "2026-05-22T15:54:43.046535+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -960,10 +918,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3463
           },
-          "id": "event-000769"
+          "id": "event-000767"
         },
         {
-          "source_line": 770,
+          "source_line": 768,
           "timestamp": "2026-05-22T15:54:45.346106+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -976,7 +934,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000770"
+          "id": "event-000768"
         }
       ]
     },
@@ -984,7 +942,7 @@
       "number": 47,
       "messages": [
         {
-          "source_line": 771,
+          "source_line": 769,
           "timestamp": "2026-05-22T16:18:07.426885+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -998,10 +956,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000771"
+          "id": "event-000769"
         },
         {
-          "source_line": 772,
+          "source_line": 770,
           "timestamp": "2026-05-22T16:18:21.478360+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1019,10 +977,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000772"
+          "id": "event-000770"
         },
         {
-          "source_line": 773,
+          "source_line": 771,
           "timestamp": "2026-05-22T16:18:27.400981+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1037,10 +995,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 5922
           },
-          "id": "event-000773"
+          "id": "event-000771"
         },
         {
-          "source_line": 774,
+          "source_line": 772,
           "timestamp": "2026-05-22T16:18:32.523834+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1058,10 +1016,10 @@
               "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl"
             }
           },
-          "id": "event-000774"
+          "id": "event-000772"
         },
         {
-          "source_line": 775,
+          "source_line": 773,
           "timestamp": "2026-05-22T16:18:32.926006+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1079,10 +1037,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000775"
+          "id": "event-000773"
         },
         {
-          "source_line": 776,
+          "source_line": 774,
           "timestamp": "2026-05-22T16:18:34.230476+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1097,10 +1055,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1706
           },
-          "id": "event-000776"
+          "id": "event-000774"
         },
         {
-          "source_line": 777,
+          "source_line": 775,
           "timestamp": "2026-05-22T16:18:35.685292+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1115,10 +1073,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2759
           },
-          "id": "event-000777"
+          "id": "event-000775"
         },
         {
-          "source_line": 778,
+          "source_line": 776,
           "timestamp": "2026-05-22T16:18:42.081328+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1136,10 +1094,10 @@
               "command": "tail -20 /tmp/wget_hgrn.log"
             }
           },
-          "id": "event-000778"
+          "id": "event-000776"
         },
         {
-          "source_line": 779,
+          "source_line": 777,
           "timestamp": "2026-05-22T16:18:42.735000+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1157,10 +1115,10 @@
               "command": "head -5 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000779"
+          "id": "event-000777"
         },
         {
-          "source_line": 780,
+          "source_line": 778,
           "timestamp": "2026-05-22T16:18:43.738958+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1175,10 +1133,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1657
           },
-          "id": "event-000780"
+          "id": "event-000778"
         },
         {
-          "source_line": 781,
+          "source_line": 779,
           "timestamp": "2026-05-22T16:18:45.848373+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1193,10 +1151,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3113
           },
-          "id": "event-000781"
+          "id": "event-000779"
         },
         {
-          "source_line": 782,
+          "source_line": 780,
           "timestamp": "2026-05-22T16:19:06.817743+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1214,10 +1172,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000782"
+          "id": "event-000780"
         },
         {
-          "source_line": 783,
+          "source_line": 781,
           "timestamp": "2026-05-22T16:19:10.384715+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1232,10 +1190,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3566
           },
-          "id": "event-000783"
+          "id": "event-000781"
         },
         {
-          "source_line": 784,
+          "source_line": 782,
           "timestamp": "2026-05-22T16:19:13.133493+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1248,7 +1206,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000784"
+          "id": "event-000782"
         }
       ]
     },
@@ -1256,7 +1214,7 @@
       "number": 48,
       "messages": [
         {
-          "source_line": 785,
+          "source_line": 783,
           "timestamp": "2026-05-22T16:20:37.810039+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1270,10 +1228,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000785"
+          "id": "event-000783"
         },
         {
-          "source_line": 786,
+          "source_line": 784,
           "timestamp": "2026-05-22T16:20:46.690272+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1291,10 +1249,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000786"
+          "id": "event-000784"
         },
         {
-          "source_line": 787,
+          "source_line": 785,
           "timestamp": "2026-05-22T16:20:47.605320+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1312,10 +1270,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000787"
+          "id": "event-000785"
         },
         {
-          "source_line": 788,
+          "source_line": 786,
           "timestamp": "2026-05-22T16:20:56.690412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1330,10 +1288,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 10000
           },
-          "id": "event-000788"
+          "id": "event-000786"
         },
         {
-          "source_line": 789,
+          "source_line": 787,
           "timestamp": "2026-05-22T16:20:59.200849+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1348,10 +1306,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 11595
           },
-          "id": "event-000789"
+          "id": "event-000787"
         },
         {
-          "source_line": 790,
+          "source_line": 788,
           "timestamp": "2026-05-22T16:21:03.568423+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1369,10 +1327,10 @@
               "command": "ps aux --no-headers -w"
             }
           },
-          "id": "event-000790"
+          "id": "event-000788"
         },
         {
-          "source_line": 791,
+          "source_line": 789,
           "timestamp": "2026-05-22T16:21:07.439944+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1387,10 +1345,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3871
           },
-          "id": "event-000791"
+          "id": "event-000789"
         },
         {
-          "source_line": 792,
+          "source_line": 790,
           "timestamp": "2026-05-22T16:21:18.649967+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1408,10 +1366,10 @@
               "command": "tail -30 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log"
             }
           },
-          "id": "event-000792"
+          "id": "event-000790"
         },
         {
-          "source_line": 793,
+          "source_line": 791,
           "timestamp": "2026-05-22T16:21:19.039415+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1429,10 +1387,10 @@
               "command": "tail -5 /tmp/aria2c_hgrn.log"
             }
           },
-          "id": "event-000793"
+          "id": "event-000791"
         },
         {
-          "source_line": 794,
+          "source_line": 792,
           "timestamp": "2026-05-22T16:21:20.295210+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1447,10 +1405,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1645
           },
-          "id": "event-000794"
+          "id": "event-000792"
         },
         {
-          "source_line": 795,
+          "source_line": 793,
           "timestamp": "2026-05-22T16:21:26.617961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1465,10 +1423,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7578
           },
-          "id": "event-000795"
+          "id": "event-000793"
         },
         {
-          "source_line": 796,
+          "source_line": 794,
           "timestamp": "2026-05-22T16:21:41.138381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1486,10 +1444,10 @@
               "command": "head -30 /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_wget_eval_pure.sh"
             }
           },
-          "id": "event-000796"
+          "id": "event-000794"
         },
         {
-          "source_line": 797,
+          "source_line": 795,
           "timestamp": "2026-05-22T16:21:41.340887+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1507,10 +1465,10 @@
               "command": "tail -5 /root/entrainment_gated_ft/results/exp005_zoo_expansion/pure_wget_eval.log"
             }
           },
-          "id": "event-000797"
+          "id": "event-000795"
         },
         {
-          "source_line": 798,
+          "source_line": 796,
           "timestamp": "2026-05-22T16:21:46.617412+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1525,10 +1483,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 5479
           },
-          "id": "event-000798"
+          "id": "event-000796"
         },
         {
-          "source_line": 799,
+          "source_line": 797,
           "timestamp": "2026-05-22T16:21:51.587678+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1543,10 +1501,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 10246
           },
-          "id": "event-000799"
+          "id": "event-000797"
         },
         {
-          "source_line": 800,
+          "source_line": 798,
           "timestamp": "2026-05-22T16:22:01.022633+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1564,10 +1522,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000800"
+          "id": "event-000798"
         },
         {
-          "source_line": 801,
+          "source_line": 799,
           "timestamp": "2026-05-22T16:22:01.424445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1585,10 +1543,10 @@
               "command": "find /root/entrainment_gated_ft/models/ -maxdepth 1 -type d -name \"*pure*\" -o -name \"*baseline*\""
             }
           },
-          "id": "event-000801"
+          "id": "event-000799"
         },
         {
-          "source_line": 802,
+          "source_line": 800,
           "timestamp": "2026-05-22T16:22:04.034804+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1603,10 +1561,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3012
           },
-          "id": "event-000802"
+          "id": "event-000800"
         },
         {
-          "source_line": 803,
+          "source_line": 801,
           "timestamp": "2026-05-22T16:22:07.429836+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1621,10 +1579,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 6005
           },
-          "id": "event-000803"
+          "id": "event-000801"
         },
         {
-          "source_line": 804,
+          "source_line": 802,
           "timestamp": "2026-05-22T16:22:18.465979+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1642,10 +1600,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline/model.safetensors /root/entrainment_gated_ft/models/340M-20B-DeltaNet-pure/model.safetensors"
             }
           },
-          "id": "event-000804"
+          "id": "event-000802"
         },
         {
-          "source_line": 805,
+          "source_line": 803,
           "timestamp": "2026-05-22T16:22:22.315857+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1660,10 +1618,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3849
           },
-          "id": "event-000805"
+          "id": "event-000803"
         },
         {
-          "source_line": 806,
+          "source_line": 804,
           "timestamp": "2026-05-22T16:22:33.290541+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1676,7 +1634,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000806"
+          "id": "event-000804"
         }
       ]
     },
@@ -1684,7 +1642,7 @@
       "number": 49,
       "messages": [
         {
-          "source_line": 807,
+          "source_line": 805,
           "timestamp": "2026-05-22T16:26:08.709369+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1698,10 +1656,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000807"
+          "id": "event-000805"
         },
         {
-          "source_line": 808,
+          "source_line": 806,
           "timestamp": "2026-05-22T16:26:16.067811+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1719,10 +1677,10 @@
               "command": "tail -5 /tmp/aria2c_hgrn.log"
             }
           },
-          "id": "event-000808"
+          "id": "event-000806"
         },
         {
-          "source_line": 809,
+          "source_line": 807,
           "timestamp": "2026-05-22T16:26:16.519819+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1740,10 +1698,10 @@
               "command": "ls -lh /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000809"
+          "id": "event-000807"
         },
         {
-          "source_line": 810,
+          "source_line": 808,
           "timestamp": "2026-05-22T16:26:23.198115+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1758,10 +1716,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7130
           },
-          "id": "event-000810"
+          "id": "event-000808"
         },
         {
-          "source_line": 811,
+          "source_line": 809,
           "timestamp": "2026-05-22T16:26:28.802466+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1776,10 +1734,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 12282
           },
-          "id": "event-000811"
+          "id": "event-000809"
         },
         {
-          "source_line": 812,
+          "source_line": 810,
           "timestamp": "2026-05-22T16:26:33.870042+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1797,10 +1755,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/ -type f"
             }
           },
-          "id": "event-000812"
+          "id": "event-000810"
         },
         {
-          "source_line": 813,
+          "source_line": 811,
           "timestamp": "2026-05-22T16:26:34.573830+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1818,10 +1776,10 @@
               "command": "tail -10 /root/runs/entrainment_gated_ft/exp-005-pure-eval.log"
             }
           },
-          "id": "event-000813"
+          "id": "event-000811"
         },
         {
-          "source_line": 814,
+          "source_line": 812,
           "timestamp": "2026-05-22T16:26:36.480864+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1836,10 +1794,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2610
           },
-          "id": "event-000814"
+          "id": "event-000812"
         },
         {
-          "source_line": 815,
+          "source_line": 813,
           "timestamp": "2026-05-22T16:26:41.103404+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1854,10 +1812,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 6529
           },
-          "id": "event-000815"
+          "id": "event-000813"
         },
         {
-          "source_line": 816,
+          "source_line": 814,
           "timestamp": "2026-05-22T16:26:48.741262+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1875,10 +1833,10 @@
               "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader"
             }
           },
-          "id": "event-000816"
+          "id": "event-000814"
         },
         {
-          "source_line": 817,
+          "source_line": 815,
           "timestamp": "2026-05-22T16:26:49.293558+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1896,10 +1854,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-000817"
+          "id": "event-000815"
         },
         {
-          "source_line": 818,
+          "source_line": 816,
           "timestamp": "2026-05-22T16:26:51.953211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1914,10 +1872,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3211
           },
-          "id": "event-000818"
+          "id": "event-000816"
         },
         {
-          "source_line": 819,
+          "source_line": 817,
           "timestamp": "2026-05-22T16:26:54.411886+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1932,10 +1890,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 5118
           },
-          "id": "event-000819"
+          "id": "event-000817"
         },
         {
-          "source_line": 820,
+          "source_line": 818,
           "timestamp": "2026-05-22T16:27:07.546910+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1953,10 +1911,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000820"
+          "id": "event-000818"
         },
         {
-          "source_line": 821,
+          "source_line": 819,
           "timestamp": "2026-05-22T16:27:11.920887+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1971,10 +1929,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 4373
           },
-          "id": "event-000821"
+          "id": "event-000819"
         },
         {
-          "source_line": 822,
+          "source_line": 820,
           "timestamp": "2026-05-22T16:27:14.215811+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1987,7 +1945,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000822"
+          "id": "event-000820"
         }
       ]
     },
@@ -1995,7 +1953,7 @@
       "number": 50,
       "messages": [
         {
-          "source_line": 823,
+          "source_line": 821,
           "timestamp": "2026-05-22T16:28:09.085601+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2009,10 +1967,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000823"
+          "id": "event-000821"
         },
         {
-          "source_line": 824,
+          "source_line": 822,
           "timestamp": "2026-05-22T16:28:14.881812+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2030,10 +1988,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000824"
+          "id": "event-000822"
         },
         {
-          "source_line": 825,
+          "source_line": 823,
           "timestamp": "2026-05-22T16:28:21.454795+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2048,10 +2006,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 6572
           },
-          "id": "event-000825"
+          "id": "event-000823"
         },
         {
-          "source_line": 826,
+          "source_line": 824,
           "timestamp": "2026-05-22T16:28:24.805356+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2069,10 +2027,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-000826"
+          "id": "event-000824"
         },
         {
-          "source_line": 827,
+          "source_line": 825,
           "timestamp": "2026-05-22T16:28:25.608557+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2090,10 +2048,10 @@
               "command": "tail -10 /root/runs/entrainment_gated_ft/exp-005-hgrn-gla-pure.log"
             }
           },
-          "id": "event-000827"
+          "id": "event-000825"
         },
         {
-          "source_line": 828,
+          "source_line": 826,
           "timestamp": "2026-05-22T16:28:43.551414+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2108,10 +2066,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 18746
           },
-          "id": "event-000828"
+          "id": "event-000826"
         },
         {
-          "source_line": 829,
+          "source_line": 827,
           "timestamp": "2026-05-22T16:28:46.329306+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2126,10 +2084,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 20720
           },
-          "id": "event-000829"
+          "id": "event-000827"
         },
         {
-          "source_line": 830,
+          "source_line": 828,
           "timestamp": "2026-05-22T16:28:49.764937+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2147,10 +2105,10 @@
               "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
             }
           },
-          "id": "event-000830"
+          "id": "event-000828"
         },
         {
-          "source_line": 831,
+          "source_line": 829,
           "timestamp": "2026-05-22T16:28:51.272131+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2165,10 +2123,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1507
           },
-          "id": "event-000831"
+          "id": "event-000829"
         },
         {
-          "source_line": 832,
+          "source_line": 830,
           "timestamp": "2026-05-22T16:28:54.447843+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2186,10 +2144,10 @@
               "command": "tail -20 /root/runs/entrainment_gated_ft/exp-005-hgrn-chain.log"
             }
           },
-          "id": "event-000832"
+          "id": "event-000830"
         },
         {
-          "source_line": 833,
+          "source_line": 831,
           "timestamp": "2026-05-22T16:28:58.015113+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2204,10 +2162,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3567
           },
-          "id": "event-000833"
+          "id": "event-000831"
         },
         {
-          "source_line": 834,
+          "source_line": 832,
           "timestamp": "2026-05-22T16:29:04.990493+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2225,10 +2183,10 @@
               "command": "stat -c%s /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000834"
+          "id": "event-000832"
         },
         {
-          "source_line": 835,
+          "source_line": 833,
           "timestamp": "2026-05-22T16:29:05.391914+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2246,10 +2204,10 @@
               "command": "stat -c%s /root/entrainment_gated_ft/models/340M-20B-GLA-hybrid-3-1/model.safetensors"
             }
           },
-          "id": "event-000835"
+          "id": "event-000833"
         },
         {
-          "source_line": 836,
+          "source_line": 834,
           "timestamp": "2026-05-22T16:29:06.948346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2264,10 +2222,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1957
           },
-          "id": "event-000836"
+          "id": "event-000834"
         },
         {
-          "source_line": 837,
+          "source_line": 835,
           "timestamp": "2026-05-22T16:29:09.725742+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2282,10 +2240,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4333
           },
-          "id": "event-000837"
+          "id": "event-000835"
         },
         {
-          "source_line": 838,
+          "source_line": 836,
           "timestamp": "2026-05-22T16:29:20.598209+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2298,7 +2256,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000838"
+          "id": "event-000836"
         }
       ]
     },
@@ -2306,7 +2264,7 @@
       "number": 51,
       "messages": [
         {
-          "source_line": 839,
+          "source_line": 837,
           "timestamp": "2026-05-22T16:31:09.713679+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2320,10 +2278,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000839"
+          "id": "event-000837"
         },
         {
-          "source_line": 840,
+          "source_line": 838,
           "timestamp": "2026-05-22T16:31:16.925274+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2341,10 +2299,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000840"
+          "id": "event-000838"
         },
         {
-          "source_line": 841,
+          "source_line": 839,
           "timestamp": "2026-05-22T16:31:21.599607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2359,10 +2317,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4674
           },
-          "id": "event-000841"
+          "id": "event-000839"
         },
         {
-          "source_line": 842,
+          "source_line": 840,
           "timestamp": "2026-05-22T16:31:24.861279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2380,10 +2338,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-000842"
+          "id": "event-000840"
         },
         {
-          "source_line": 843,
+          "source_line": 841,
           "timestamp": "2026-05-22T16:31:25.263127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2401,10 +2359,10 @@
               "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
             }
           },
-          "id": "event-000843"
+          "id": "event-000841"
         },
         {
-          "source_line": 844,
+          "source_line": 842,
           "timestamp": "2026-05-22T16:31:26.568032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2419,10 +2377,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1706
           },
-          "id": "event-000844"
+          "id": "event-000842"
         },
         {
-          "source_line": 845,
+          "source_line": 843,
           "timestamp": "2026-05-22T16:31:28.978180+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2437,10 +2395,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3715
           },
-          "id": "event-000845"
+          "id": "event-000843"
         },
         {
-          "source_line": 846,
+          "source_line": 844,
           "timestamp": "2026-05-22T16:31:32.345049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2458,10 +2416,10 @@
               "command": "tail -30 /root/runs/entrainment_gated_ft/exp-005-batch.log"
             }
           },
-          "id": "event-000846"
+          "id": "event-000844"
         },
         {
-          "source_line": 847,
+          "source_line": 845,
           "timestamp": "2026-05-22T16:31:34.502648+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2476,10 +2434,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2157
           },
-          "id": "event-000847"
+          "id": "event-000845"
         },
         {
-          "source_line": 848,
+          "source_line": 846,
           "timestamp": "2026-05-22T16:31:42.070911+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2497,10 +2455,10 @@
               "command": "head -30 /root/runs/entrainment_gated_ft/exp-005-batch.log"
             }
           },
-          "id": "event-000848"
+          "id": "event-000846"
         },
         {
-          "source_line": 849,
+          "source_line": 847,
           "timestamp": "2026-05-22T16:31:43.676680+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2515,10 +2473,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 1605
           },
-          "id": "event-000849"
+          "id": "event-000847"
         },
         {
-          "source_line": 850,
+          "source_line": 848,
           "timestamp": "2026-05-22T16:32:06.158440+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2536,10 +2494,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000850"
+          "id": "event-000848"
         },
         {
-          "source_line": 851,
+          "source_line": 849,
           "timestamp": "2026-05-22T16:32:09.847876+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2554,7 +2512,7 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3689
           },
-          "id": "event-000851"
+          "id": "event-000849"
         }
       ]
     },
@@ -2562,7 +2520,7 @@
       "number": 52,
       "messages": [
         {
-          "source_line": 852,
+          "source_line": 850,
           "timestamp": "2026-05-22T16:32:13.138786+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2576,10 +2534,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000852"
+          "id": "event-000850"
         },
         {
-          "source_line": 853,
+          "source_line": 851,
           "timestamp": "2026-05-22T16:32:22.167913+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2592,7 +2550,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000853"
+          "id": "event-000851"
         }
       ]
     },
@@ -2600,7 +2558,7 @@
       "number": 53,
       "messages": [
         {
-          "source_line": 854,
+          "source_line": 852,
           "timestamp": "2026-05-22T16:36:40.892869+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2614,10 +2572,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000854"
+          "id": "event-000852"
         },
         {
-          "source_line": 855,
+          "source_line": 853,
           "timestamp": "2026-05-22T16:36:49.107279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2635,10 +2593,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000855"
+          "id": "event-000853"
         },
         {
-          "source_line": 856,
+          "source_line": 854,
           "timestamp": "2026-05-22T16:36:49.408660+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2656,10 +2614,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-000856"
+          "id": "event-000854"
         },
         {
-          "source_line": 857,
+          "source_line": 855,
           "timestamp": "2026-05-22T16:36:53.522491+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2674,10 +2632,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4415
           },
-          "id": "event-000857"
+          "id": "event-000855"
         },
         {
-          "source_line": 858,
+          "source_line": 856,
           "timestamp": "2026-05-22T16:36:57.046496+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2692,10 +2650,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7637
           },
-          "id": "event-000858"
+          "id": "event-000856"
         },
         {
-          "source_line": 859,
+          "source_line": 857,
           "timestamp": "2026-05-22T16:37:00.492858+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2708,7 +2666,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000859"
+          "id": "event-000857"
         }
       ]
     },
@@ -2716,7 +2674,7 @@
       "number": 54,
       "messages": [
         {
-          "source_line": 860,
+          "source_line": 858,
           "timestamp": "2026-05-22T16:40:41.563034+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2730,10 +2688,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000860"
+          "id": "event-000858"
         },
         {
-          "source_line": 861,
+          "source_line": 859,
           "timestamp": "2026-05-22T16:40:49.493868+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2751,10 +2709,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000861"
+          "id": "event-000859"
         },
         {
-          "source_line": 862,
+          "source_line": 860,
           "timestamp": "2026-05-22T16:40:56.526956+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2769,10 +2727,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 7033
           },
-          "id": "event-000862"
+          "id": "event-000860"
         },
         {
-          "source_line": 863,
+          "source_line": 861,
           "timestamp": "2026-05-22T16:40:59.595174+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2790,10 +2748,10 @@
               "command": "ls -lt /root/runs/entrainment_gated_ft/exp-005*.log"
             }
           },
-          "id": "event-000863"
+          "id": "event-000861"
         },
         {
-          "source_line": 864,
+          "source_line": 862,
           "timestamp": "2026-05-22T16:41:01.653217+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2808,10 +2766,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2058
           },
-          "id": "event-000864"
+          "id": "event-000862"
         },
         {
-          "source_line": 865,
+          "source_line": 863,
           "timestamp": "2026-05-22T16:41:04.714792+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2829,10 +2787,10 @@
               "command": "tail -15 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log"
             }
           },
-          "id": "event-000865"
+          "id": "event-000863"
         },
         {
-          "source_line": 866,
+          "source_line": 864,
           "timestamp": "2026-05-22T16:41:08.130117+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2847,10 +2805,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3415
           },
-          "id": "event-000866"
+          "id": "event-000864"
         },
         {
-          "source_line": 867,
+          "source_line": 865,
           "timestamp": "2026-05-22T16:41:14.074337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2868,10 +2826,10 @@
               "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
             }
           },
-          "id": "event-000867"
+          "id": "event-000865"
         },
         {
-          "source_line": 868,
+          "source_line": 866,
           "timestamp": "2026-05-22T16:41:17.687406+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2886,10 +2844,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 3613
           },
-          "id": "event-000868"
+          "id": "event-000866"
         },
         {
-          "source_line": 869,
+          "source_line": 867,
           "timestamp": "2026-05-22T16:41:20.536465+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2902,7 +2860,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000869"
+          "id": "event-000867"
         }
       ]
     },
@@ -2910,7 +2868,7 @@
       "number": 55,
       "messages": [
         {
-          "source_line": 870,
+          "source_line": 868,
           "timestamp": "2026-05-22T16:41:32.915628+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2924,10 +2882,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000870"
+          "id": "event-000868"
         },
         {
-          "source_line": 871,
+          "source_line": 869,
           "timestamp": "2026-05-22T16:41:40.910926+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2945,10 +2903,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.jsonl\" -type f"
             }
           },
-          "id": "event-000871"
+          "id": "event-000869"
         },
         {
-          "source_line": 872,
+          "source_line": 870,
           "timestamp": "2026-05-22T16:41:45.229989+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2963,10 +2921,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4319
           },
-          "id": "event-000872"
+          "id": "event-000870"
         },
         {
-          "source_line": 873,
+          "source_line": 871,
           "timestamp": "2026-05-22T16:41:49.800697+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2984,10 +2942,10 @@
               "command": "wc -l /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl"
             }
           },
-          "id": "event-000873"
+          "id": "event-000871"
         },
         {
-          "source_line": 874,
+          "source_line": 872,
           "timestamp": "2026-05-22T16:41:50.002812+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3005,10 +2963,10 @@
               "command": "tail -5 /root/runs/entrainment_gated_ft/exp-005-gla-pure.log"
             }
           },
-          "id": "event-000874"
+          "id": "event-000872"
         },
         {
-          "source_line": 875,
+          "source_line": 873,
           "timestamp": "2026-05-22T16:41:52.410791+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3023,10 +2981,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2610
           },
-          "id": "event-000875"
+          "id": "event-000873"
         },
         {
-          "source_line": 876,
+          "source_line": 874,
           "timestamp": "2026-05-22T16:41:55.171211+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3041,10 +2999,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 5168
           },
-          "id": "event-000876"
+          "id": "event-000874"
         },
         {
-          "source_line": 877,
+          "source_line": 875,
           "timestamp": "2026-05-22T16:42:10.289590+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3062,10 +3020,10 @@
               "project": "entrainment_gated_ft"
             }
           },
-          "id": "event-000877"
+          "id": "event-000875"
         },
         {
-          "source_line": 878,
+          "source_line": 876,
           "timestamp": "2026-05-22T16:42:13.801418+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3080,10 +3038,10 @@
             "tool": "mcp__agent-ml-research__reviewer_post_to_director",
             "elapsed_ms": 3511
           },
-          "id": "event-000878"
+          "id": "event-000876"
         },
         {
-          "source_line": 879,
+          "source_line": 877,
           "timestamp": "2026-05-22T16:42:16.239833+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3096,7 +3054,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000879"
+          "id": "event-000877"
         }
       ]
     },
@@ -3104,7 +3062,7 @@
       "number": 56,
       "messages": [
         {
-          "source_line": 880,
+          "source_line": 878,
           "timestamp": "2026-05-22T16:47:12.616059+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3118,10 +3076,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000880"
+          "id": "event-000878"
         },
         {
-          "source_line": 881,
+          "source_line": 879,
           "timestamp": "2026-05-22T16:47:20.145672+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3140,10 +3098,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000881"
+          "id": "event-000879"
         },
         {
-          "source_line": 882,
+          "source_line": 880,
           "timestamp": "2026-05-22T16:47:20.296685+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3158,10 +3116,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 151
           },
-          "id": "event-000882"
+          "id": "event-000880"
         },
         {
-          "source_line": 883,
+          "source_line": 881,
           "timestamp": "2026-05-22T16:47:23.813800+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3180,10 +3138,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000883"
+          "id": "event-000881"
         },
         {
-          "source_line": 884,
+          "source_line": 882,
           "timestamp": "2026-05-22T16:47:24.115443+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3198,10 +3156,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 301
           },
-          "id": "event-000884"
+          "id": "event-000882"
         },
         {
-          "source_line": 885,
+          "source_line": 883,
           "timestamp": "2026-05-22T16:47:29.133406+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3219,10 +3177,10 @@
               "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*analysis*\" -o -name \"*jaccard*\" -o -name \"*per_example*\""
             }
           },
-          "id": "event-000885"
+          "id": "event-000883"
         },
         {
-          "source_line": 886,
+          "source_line": 884,
           "timestamp": "2026-05-22T16:47:30.387716+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3240,10 +3198,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
             }
           },
-          "id": "event-000886"
+          "id": "event-000884"
         },
         {
-          "source_line": 887,
+          "source_line": 885,
           "timestamp": "2026-05-22T16:47:39.724832+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3258,10 +3216,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 10591
           },
-          "id": "event-000887"
+          "id": "event-000885"
         },
         {
-          "source_line": 888,
+          "source_line": 886,
           "timestamp": "2026-05-22T16:47:39.725301+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3276,10 +3234,10 @@
             "tool": "Glob",
             "elapsed_ms": 9337
           },
-          "id": "event-000888"
+          "id": "event-000886"
         },
         {
-          "source_line": 889,
+          "source_line": 887,
           "timestamp": "2026-05-22T16:47:42.914564+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3297,10 +3255,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
             }
           },
-          "id": "event-000889"
+          "id": "event-000887"
         },
         {
-          "source_line": 890,
+          "source_line": 888,
           "timestamp": "2026-05-22T16:47:42.965158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3315,10 +3273,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-000890"
+          "id": "event-000888"
         },
         {
-          "source_line": 891,
+          "source_line": 889,
           "timestamp": "2026-05-22T16:47:48.818112+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3331,7 +3289,7 @@
           "metadata": {
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer"
           },
-          "id": "event-000891"
+          "id": "event-000889"
         }
       ]
     },
@@ -3339,7 +3297,7 @@
       "number": 57,
       "messages": [
         {
-          "source_line": 892,
+          "source_line": 890,
           "timestamp": "2026-05-22T17:10:46.517148+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3353,10 +3311,10 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "source": "system"
           },
-          "id": "event-000892"
+          "id": "event-000890"
         },
         {
-          "source_line": 893,
+          "source_line": 891,
           "timestamp": "2026-05-22T17:10:53.992872+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3375,10 +3333,10 @@
               "fields": "['*']"
             }
           },
-          "id": "event-000893"
+          "id": "event-000891"
         },
         {
-          "source_line": 894,
+          "source_line": 892,
           "timestamp": "2026-05-22T17:10:54.245285+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3393,10 +3351,10 @@
             "tool": "mcp__agent-ml-research__read_registry",
             "elapsed_ms": 252
           },
-          "id": "event-000894"
+          "id": "event-000892"
         },
         {
-          "source_line": 895,
+          "source_line": 893,
           "timestamp": "2026-05-22T17:10:58.865839+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3414,10 +3372,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
             }
           },
-          "id": "event-000895"
+          "id": "event-000893"
         },
         {
-          "source_line": 896,
+          "source_line": 894,
           "timestamp": "2026-05-22T17:10:59.418122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3432,10 +3390,10 @@
             "tool": "Glob",
             "elapsed_ms": 552
           },
-          "id": "event-000896"
+          "id": "event-000894"
         },
         {
-          "source_line": 897,
+          "source_line": 895,
           "timestamp": "2026-05-22T17:10:59.819765+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3453,10 +3411,10 @@
               "command": "find /root/entrainment_gated_ft/results/ -name \"*gla*jaccard*\" -o -name \"*4arch*\" -o -name \"*6arch*\""
             }
           },
-          "id": "event-000897"
+          "id": "event-000895"
         },
         {
-          "source_line": 898,
+          "source_line": 896,
           "timestamp": "2026-05-22T17:11:04.438707+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3471,10 +3429,10 @@
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 4618
           },
-          "id": "event-000898"
+          "id": "event-000896"
         },
         {
-          "source_line": 899,
+          "source_line": 897,
           "timestamp": "2026-05-22T17:11:07.901280+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3492,10 +3450,10 @@
               "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json"
             }
           },
-          "id": "event-000899"
+          "id": "event-000897"
         },
         {
-          "source_line": 900,
+          "source_line": 898,
           "timestamp": "2026-05-22T17:11:09.962331+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3509,6 +3467,45 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
             "tool": "mcp__agent-ml-research__ssh_read_only",
             "elapsed_ms": 2061
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-22T17:11:43.391417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] exp-005 GLA 4-architecture Jaccard 分析完成——核心发现得到 robustness 支持\n\n## 结果核实\n\n**ARC-Easy (340M, 4 arch, 6 pairs)**:\n- Mean J_helped = 0.103, J_hurt = 0.106\n- 6/6 对 permutation test 显著 (z = 4.04–7.07, all p ≤ 0.0002)\n\n**LAMBADA (340M, 4 arch, 6 pairs)**:\n- Mean J_helped = 0.122, J_hurt = 0.097  \n- 6/6 对 permutation test 显著 (z = 6.36–12.04, all p ≈ 0)\n\n**GLA 新增配对 Jaccard（关键数据）**：\n| 配对 | ARC-Easy J_h | ARC-Easy J_u | LAMBADA J_h | LAMBADA J_u |\n|------|:---:|:---:|:---:|:---:|\n| GDN-GLA | 0.114 | 0.106 | 0.124 | 0.100 |\n| RetNet-GLA | 0.112 | 0.110 | 0.123 | 0.107 |\n| HGRN2-GLA | 0.098 | 0.087 | 0.127 | 0.086 |\n\n**核心判断**：GLA 的 pairwise Jaccard 与原 3 架构之间的 Jaccard 完全一致——J ≤ 0.13，~87-90% 非重叠。4 架构扩展未改变核心发现。\n\n## 注意事项\n\n1. **LAMBADA J_helped 略高于 1.3B 参考值**：4-arch 340M mean = 0.122 vs 1.3B 3-arch ref = 0.10。这与 §4.2 中 340M α 系统性偏高的已知 scale 效应一致（experiments.tex:78），不构成新问题。\n2. **Scale 限制**：这是 340M 数据。论文主实验在 1.3B。建议在 Appendix 中明确标注 \"340M robustness check\"。\n3. **仅 GLA 有完整 pure+h3-1 配对**。DeltaNet 和 HGRN 的 pure 模型下载仍未完成。如果最终只有 GLA 一个扩展架构，仍然有价值——从 3 对增加到 6 对。\n\n## 对论文的影响\n\n这个结果可以放入 Appendix 作为 robustness evidence：\n- \"Extending to a fourth architecture (GLA) at 340M scale yields six pairwise comparisons with mean J ≤ 0.12, consistent with the three-architecture pattern at 1.3B.\"\n- 将 n=3 → n=4 后 pairwise 从 3 对增至 6 对，统计 power 显著提升。\n\n**建议 Agent 将 jaccard_4arch.json 注册为 artifact 并开始写 Appendix 段落。**",
+              "project": "entrainment_gated_ft"
+            }
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-22T17:11:46.923678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3532
           },
           "id": "event-000900"
         }

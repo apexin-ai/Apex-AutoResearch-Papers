@@ -96,7 +96,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis alfworld final urgent | 49 | 0 | [Read transcript](analysis-alfworld-final-urgent.md) | [JSON](../../sessions/9c/9c26ff2bec7771ffafbb.json) |
 | code gemma parallel gpu0 | 81 | 0 | [Read transcript](code-gemma-parallel-gpu0.md) | [JSON](../../sessions/fa/fa45feff57d09d179033.json) |
 | research related work check | 81 | 0 | [Read transcript](research-related-work-check.md) | [JSON](../../sessions/d4/d4a2074a8d21a5b0f48a.json) |
-| writing rebuttal update | 12 | 0 | [Read transcript](writing-rebuttal-update.md) | [JSON](../../sessions/b4/b47e9cd31ced9b8ebe0e.json) |
 | code bootstrap ci script | 102 | 0 | [Read transcript](code-bootstrap-ci-script.md) | [JSON](../../sessions/40/4051a8b02c4312c2d604.json) |
 | check gemma dual gpu progress | 40 | 0 | [Read transcript](check-gemma-dual-gpu-progress.md) | [JSON](../../sessions/8b/8b733191f45648960abd.json) |
 | check paper polish | 53 | 0 | [Read transcript](check-paper-polish.md) | [JSON](../../sessions/96/96751d6983736bacda7d.json) |

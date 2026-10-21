@@ -7,47 +7,6 @@
       "messages": [
         {
           "source_line": 5221,
-          "timestamp": "2026-05-22T16:51:23.976917+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex",
-              "old_string": "\\vspace{-14pt}\n\\section{Conclusion}\n\\label{sec:conclusion}\n\n\\looseness=-1\nAcross six METABENCH benchmarks, 17.9--31.3\\% of items exhibit temporal DIF between 2023 and 2024 cohorts (${\\approx}$27--29\\% for MMLU after non-independence corrections; weighted-mean DEFF bound: 13.5\\%). Web-overlap labels are near-independent of DIF flags (Jaccard $= 0.206$); rankings are preserved ($\\rho \\approx 0.997$), motivating routine DIF audits.",
-              "new_string": "\\vspace{-16pt}\n\\section{Conclusion}\n\\label{sec:conclusion}\n\n\\looseness=-1\nAcross six METABENCH benchmarks, 17.9--31.3\\% of items exhibit temporal DIF between 2023 and 2024 cohorts (${\\approx}$27--29\\% for MMLU after non-independence corrections; conservative bound: 13.5\\%). Web-overlap labels are near-independent of DIF flags (Jaccard $= 0.206$); rankings are preserved ($\\rho \\approx 0.997$), motivating routine DIF audits."
-            }
-          },
-          "id": "event-005221"
-        },
-        {
-          "source_line": 5222,
-          "timestamp": "2026-05-22T16:51:23.977430+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-005222"
-        },
-        {
-          "source_line": 5223,
           "timestamp": "2026-05-22T16:51:28.801977+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -66,10 +25,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-005223"
+          "id": "event-005221"
         },
         {
-          "source_line": 5224,
+          "source_line": 5222,
           "timestamp": "2026-05-22T16:51:31.964845+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -84,10 +43,10 @@
             "tool": "Bash",
             "elapsed_ms": 3162
           },
-          "id": "event-005224"
+          "id": "event-005222"
         },
         {
-          "source_line": 5225,
+          "source_line": 5223,
           "timestamp": "2026-05-22T16:51:36.386092+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -106,10 +65,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005225"
+          "id": "event-005223"
         },
         {
-          "source_line": 5226,
+          "source_line": 5224,
           "timestamp": "2026-05-22T16:51:36.738137+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -124,10 +83,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 352
           },
-          "id": "event-005226"
+          "id": "event-005224"
         },
         {
-          "source_line": 5227,
+          "source_line": 5225,
           "timestamp": "2026-05-22T16:51:40.258887+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -144,10 +103,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-005227"
+          "id": "event-005225"
         },
         {
-          "source_line": 5228,
+          "source_line": 5226,
           "timestamp": "2026-05-22T16:51:40.662085+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -164,10 +123,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-005228"
+          "id": "event-005226"
         },
         {
-          "source_line": 5229,
+          "source_line": 5227,
           "timestamp": "2026-05-22T16:51:40.864004+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -182,10 +141,10 @@
             "tool": "Read",
             "elapsed_ms": 605
           },
-          "id": "event-005229"
+          "id": "event-005227"
         },
         {
-          "source_line": 5230,
+          "source_line": 5228,
           "timestamp": "2026-05-22T16:51:41.418150+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -200,10 +159,10 @@
             "tool": "Read",
             "elapsed_ms": 756
           },
-          "id": "event-005230"
+          "id": "event-005228"
         },
         {
-          "source_line": 5231,
+          "source_line": 5229,
           "timestamp": "2026-05-22T16:51:51.566588+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -221,10 +180,10 @@
               "description": "Commit conclusion page fix"
             }
           },
-          "id": "event-005231"
+          "id": "event-005229"
         },
         {
-          "source_line": 5232,
+          "source_line": 5230,
           "timestamp": "2026-05-22T16:51:51.667448+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -239,10 +198,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-005232"
+          "id": "event-005230"
         },
         {
-          "source_line": 5233,
+          "source_line": 5231,
           "timestamp": "2026-05-22T16:51:55.987956+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -260,10 +219,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-005233"
+          "id": "event-005231"
         },
         {
-          "source_line": 5234,
+          "source_line": 5232,
           "timestamp": "2026-05-22T16:51:56.038658+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -278,10 +237,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-005234"
+          "id": "event-005232"
         },
         {
-          "source_line": 5235,
+          "source_line": 5233,
           "timestamp": "2026-05-22T16:51:58.900498+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -299,10 +258,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-005235"
+          "id": "event-005233"
         },
         {
-          "source_line": 5236,
+          "source_line": 5234,
           "timestamp": "2026-05-22T16:51:59.051327+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -317,10 +276,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 150
           },
-          "id": "event-005236"
+          "id": "event-005234"
         },
         {
-          "source_line": 5237,
+          "source_line": 5235,
           "timestamp": "2026-05-22T16:52:08.955873+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -345,10 +304,10 @@
               "mode_reason": "R18 action items全部处理完毕，需要验证修复效果是否达到4.0目标。"
             }
           },
-          "id": "event-005237"
+          "id": "event-005235"
         },
         {
-          "source_line": 5238,
+          "source_line": 5236,
           "timestamp": "2026-05-22T16:52:10.580043+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -363,10 +322,10 @@
             "tool": "mcp__agent-ml-research__submit_paper_to_review",
             "elapsed_ms": 1624
           },
-          "id": "event-005238"
+          "id": "event-005236"
         },
         {
-          "source_line": 5239,
+          "source_line": 5237,
           "timestamp": "2026-05-22T16:52:20.083273+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -384,10 +343,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-005239"
+          "id": "event-005237"
         },
         {
-          "source_line": 5240,
+          "source_line": 5238,
           "timestamp": "2026-05-22T16:52:20.183979+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -402,10 +361,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-005240"
+          "id": "event-005238"
         },
         {
-          "source_line": 5241,
+          "source_line": 5239,
           "timestamp": "2026-05-22T16:52:22.950277+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -423,10 +382,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-005241"
+          "id": "event-005239"
         },
         {
-          "source_line": 5242,
+          "source_line": 5240,
           "timestamp": "2026-05-22T16:52:23.004386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -441,10 +400,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 54
           },
-          "id": "event-005242"
+          "id": "event-005240"
         },
         {
-          "source_line": 5243,
+          "source_line": 5241,
           "timestamp": "2026-05-22T16:52:25.766951+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -462,10 +421,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-005243"
+          "id": "event-005241"
         },
         {
-          "source_line": 5244,
+          "source_line": 5242,
           "timestamp": "2026-05-22T16:52:25.817564+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -480,10 +439,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-005244"
+          "id": "event-005242"
         },
         {
-          "source_line": 5245,
+          "source_line": 5243,
           "timestamp": "2026-05-22T16:52:28.932911+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -500,10 +459,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-005245"
+          "id": "event-005243"
         },
         {
-          "source_line": 5246,
+          "source_line": 5244,
           "timestamp": "2026-05-22T16:52:28.984099+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -518,10 +477,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-005246"
+          "id": "event-005244"
         },
         {
-          "source_line": 5247,
+          "source_line": 5245,
           "timestamp": "2026-05-22T16:52:47.863497+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -539,10 +498,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-005247"
+          "id": "event-005245"
         },
         {
-          "source_line": 5248,
+          "source_line": 5246,
           "timestamp": "2026-05-22T16:52:47.914238+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -557,10 +516,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-005248"
+          "id": "event-005246"
         },
         {
-          "source_line": 5249,
+          "source_line": 5247,
           "timestamp": "2026-05-22T16:52:52.687166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -578,10 +537,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-005249"
+          "id": "event-005247"
         },
         {
-          "source_line": 5250,
+          "source_line": 5248,
           "timestamp": "2026-05-22T16:52:52.737854+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -596,10 +555,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-005250"
+          "id": "event-005248"
         },
         {
-          "source_line": 5251,
+          "source_line": 5249,
           "timestamp": "2026-05-22T16:53:07.397796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -616,10 +575,10 @@
               "text": "**R18 全部 action items 处理完毕，R19 内审已提交**\n\n**已完成的 R18 补充实验 + 数据补丁：**\n- **W-C1 DEFF**: ICC-by-family-size 实验 → ρ=-0.009 (p=0.96)，证实 weighted DEFF over-corrects。数据已写入 §4.2 + app:icc_family\n- **W-C2 ceiling effect**: restricted-range ρ 分析 → trimming [0.1,0.9] 后 ρ=-0.552, [0.2,0.8] 后 ρ=-0.447，均 p<10⁻¹⁰⁰。排除 ceiling artifact。数据已写入 §5.1\n- **W-S3 ρ vs reversal**: rank-bucket 分析 → Δrank<50: 35.2% reversal, >1000: 0.0%。已写入 §4.6 + app:rank_reversal\n- **W-S6 de-dup K**: 完整 K curve (K=1→all)，within-K SD<1.5pp。已写入 §4.2 + app:dedup_k\n- **非数据写作修复**: 因果四条排除论证、contributions rewording、Growing Pains 区分、audit protocol thresholds、Ackerman caveat 等全部完成\n\n**编译状态：** 0 undefined refs，主文 §1-6 在 8 页内，Limitations 从第 9 页开始（EMNLP 合规）\n\nR19 已提交 continue 模式内审，等你审批 review 模式。"
             }
           },
-          "id": "event-005251"
+          "id": "event-005249"
         },
         {
-          "source_line": 5252,
+          "source_line": 5250,
           "timestamp": "2026-05-22T16:53:08.051256+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -634,10 +593,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 653
           },
-          "id": "event-005252"
+          "id": "event-005250"
         },
         {
-          "source_line": 5253,
+          "source_line": 5251,
           "timestamp": "2026-05-22T16:53:11.128390+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -655,10 +614,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-005253"
+          "id": "event-005251"
         },
         {
-          "source_line": 5254,
+          "source_line": 5252,
           "timestamp": "2026-05-22T16:53:11.180863+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -673,10 +632,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 52
           },
-          "id": "event-005254"
+          "id": "event-005252"
         },
         {
-          "source_line": 5255,
+          "source_line": 5253,
           "timestamp": "2026-05-22T16:53:14.446644+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -694,10 +653,10 @@
               "max_results": "3"
             }
           },
-          "id": "event-005255"
+          "id": "event-005253"
         },
         {
-          "source_line": 5256,
+          "source_line": 5254,
           "timestamp": "2026-05-22T16:53:14.547542+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -712,10 +671,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-005256"
+          "id": "event-005254"
         },
         {
-          "source_line": 5257,
+          "source_line": 5255,
           "timestamp": "2026-05-22T16:53:17.610623+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -732,10 +691,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005257"
+          "id": "event-005255"
         },
         {
-          "source_line": 5258,
+          "source_line": 5256,
           "timestamp": "2026-05-22T16:53:17.711751+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -750,10 +709,10 @@
             "tool": "mcp__agent-ml-research__read_roadmap",
             "elapsed_ms": 101
           },
-          "id": "event-005258"
+          "id": "event-005256"
         },
         {
-          "source_line": 5259,
+          "source_line": 5257,
           "timestamp": "2026-05-22T16:53:37.372437+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -772,10 +731,10 @@
               "content": "# irt_equated_bench_regen — Research Dashboard\n\n## 核心方向\nMH-DIF psychometric audit of LLM benchmarks at scale (5,227 models × 12,508 MMLU items)。详见 paper_framing.md。\n\n## 当前阶段\n**R19 内审已提交（continue mode, pending user approval）**。R18 评分 3.5 Borderline Conference，全部 action items 已处理（4 实验 + 批量写作修复 + 数据补丁）。DDL 5/25 AoE（~3 天）。\n\n## 评分历史\nR5=3.5 → R8(fresh)=3.5 → R9(fresh)=3.5 → R10=3.5 → R11=3.5 → R13(fresh)=3.5 → R15=3.5 → R16=3.5 → R17(fresh)=3.0 → **R18(fresh)=3.5** → R19 pending\n\n## R18→R19 改进汇总\n\n**4 个 targeted 实验（全部完成）：**\n- [x] ICC by family size: ρ=-0.009 (p=0.96), 证实 weighted DEFF over-corrects → §4.2 + app:icc_family\n- [x] Restricted-range ρ: [0.1,0.9] ρ=-0.552, [0.2,0.8] ρ=-0.447, 排除 ceiling artifact → §5.1\n- [x] Rank-bucket reversal: Δrank<50: 35.2%, >1000: 0.0% → §4.6 + app:rank_reversal\n- [x] De-dup K curve: K=1→all monotonic, within-K SD<1.5pp → §4.2 + app:dedup_k\n\n**写作修复（2 commits）：**\n- `13d57dc` — 非数据写作: 因果四条排除、contributions rewording、Growing Pains、audit thresholds、Ackerman caveat、Limitations 压缩\n- `66cbfaa` — 数据补丁: ICC/rank-bucket/de-dup K/restricted-ρ 写入正文+appendix\n- `daae58a` — 页面修复: §6 Conclusion 完全在 page 8 内\n\n**编译状态**: 0 undefined refs, 16 pages (main text 8pp + Limitations + References + Appendix), EMNLP compliant\n\n## 近期任务\n- [ ] R19 审稿报告处理\n- [ ] 最终修复（based on R19 feedback）\n- [ ] ARR 提交 (DDL 5/25 AoE)\n\n## GPU 预算\n本项目 0 GPU。所有实验为 CPU 数据分析。\n\n## 投稿目标\nEMNLP 2026 via ARR | 5/25 提交 | commitment 8/2 | 会议 10/24-29 布达佩斯 | 8 页正文 | 目标 4.0 (Conference), R18 baseline 3.5\n\n## 已知剩余 open issues（from R12 fresh review, 可在 R19 后追加处理）\n- R12-W1: Graduated de-duplication 正式定义（已有 app:dedup_k，但 Methods 缺 formal definition）\n- R12-W2: Contribution 1 framing（meta-critique → orthogonal constructs）\n- R12-W3: ICC 方法细节（家族定义、singleton 处理）\n- R17-M6: 3 篇新增引用（Kamata 2003, Alzahrani 2024, MMLU-Pro）"
             }
           },
-          "id": "event-005259"
+          "id": "event-005257"
         },
         {
-          "source_line": 5260,
+          "source_line": 5258,
           "timestamp": "2026-05-22T16:53:38.280634+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -790,10 +749,10 @@
             "tool": "mcp__agent-ml-research__update_roadmap",
             "elapsed_ms": 908
           },
-          "id": "event-005260"
+          "id": "event-005258"
         },
         {
-          "source_line": 5261,
+          "source_line": 5259,
           "timestamp": "2026-05-22T16:53:41.805194+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -810,10 +769,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images"
             }
           },
-          "id": "event-005261"
+          "id": "event-005259"
         },
         {
-          "source_line": 5262,
+          "source_line": 5260,
           "timestamp": "2026-05-22T16:53:41.855881+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -828,10 +787,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 50
           },
-          "id": "event-005262"
+          "id": "event-005260"
         },
         {
-          "source_line": 5263,
+          "source_line": 5261,
           "timestamp": "2026-05-22T16:53:46.455789+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -844,7 +803,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-005263"
+          "id": "event-005261"
         }
       ]
     },
@@ -852,7 +811,7 @@
       "number": 404,
       "messages": [
         {
-          "source_line": 5264,
+          "source_line": 5262,
           "timestamp": "2026-05-22T16:53:46.949805+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -866,10 +825,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "reviewer"
           },
-          "id": "event-005264"
+          "id": "event-005262"
         },
         {
-          "source_line": 5265,
+          "source_line": 5263,
           "timestamp": "2026-05-22T16:54:18.680367+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -887,10 +846,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-005265"
+          "id": "event-005263"
         },
         {
-          "source_line": 5266,
+          "source_line": 5264,
           "timestamp": "2026-05-22T16:54:18.781275+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -905,10 +864,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-005266"
+          "id": "event-005264"
         },
         {
-          "source_line": 5267,
+          "source_line": 5265,
           "timestamp": "2026-05-22T16:54:21.798694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -926,10 +885,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-005267"
+          "id": "event-005265"
         },
         {
-          "source_line": 5268,
+          "source_line": 5266,
           "timestamp": "2026-05-22T16:54:21.849463+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -944,10 +903,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-005268"
+          "id": "event-005266"
         },
         {
-          "source_line": 5269,
+          "source_line": 5267,
           "timestamp": "2026-05-22T16:56:15.621971+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -965,10 +924,10 @@
               "text": "R19 审稿报告已收到（3.0 Findings，从 R18 的 3.5 下降）。请审查我的逐条 Action Matrix 初步方案，重点关注：(1) 技术可行性；(2) 有无遗漏；(3) 优先级是否合理。DDL 5/25 AoE（~3天）。\n\n---\n\n## 逐条 Action Matrix\n\n### Must-Fix\n\n**W-C1 [因果模糊性 + Framing 张力]** — 两位 Reviewer 最强共识\n- 问题本质：论文自身证据 (ρ=-0.597) 更支持能力演化，但 Intro 的 Contribution 1 仍以 contamination meta-critique 定位\n- **方案**: \n  (a) Intro Contribution 1 从 \"ground truth meta-critique / category error\" 改为 \"empirical demonstration that web-overlap labels and DIF flags measure orthogonal constructs — the former indexes global exposure, the latter differential functioning\"\n  (b) §5.1 开头明确 DIF 是 cause-agnostic measurement tool，四个排除论证是\"constraining ambiguity\"而非\"identifying cause\"\n  (c) §5.2 Act 级别加 caveat：difficulty-direction signal 区分 capability evolution (equate) vs contamination (replace)，已有此句但需强化\n  (d) 不再使用\"ruling out\"语言，改为\"constraining\"\n- **分配**: Paper Agent patch\n- **风险**: 这个问题从 R10 起反复出现。framing 调整能提几分尚不确定，但至少消除 reviewer 的 \"framing 不一致\" 攻击面\n\n**W-C2 [DEFF + 方法细节缺失]** — 多个子问题\n- (a) **De-dup K=20 数据不一致**（Reviewer critical finding）: plan_022 用确定性选择得 29.1%，R18 随机选择得 19.7%。29.1% 有选择偏倚。\n  - **方案**: 移除 \"three-method convergence\"，改为 \"two independent corrections converge: simple-mean DEFF (29.2%) and cluster bootstrap lower bound (26.7%) → ~27-29%。Graduated de-duplication independently confirms C% scales with statistical power rather than family redundancy (within-K SD < 1.5pp at all K)\"\n  - **论文影响**: §4.2 需重写收敛句；app:dedup_k 保留；tab:lofo 移除 de-dup 行或标注 random-selection 值\n  - **分配**: Paper Agent patch (critical priority)\n\n- (b) **Graduated de-duplication 正式定义缺失**\n  - **方案**: 在 app:dedup_k 开头加 formal definition：\"For each family, K members are sampled uniformly at random (5 independent draws per K); remaining family members are excluded from both ref and focal cohorts. MH-DIF is then recomputed on the reduced sample.\"\n  - **分配**: Paper Agent patch\n\n- (c) **ICC 估计细节缺失**\n  - **方案**: app:icc_family 扩展：(1) family definition = METABENCH 的 model_family 字段, prefix-based; (2) singleton 模型 (3,343/5,227) 不参与 ICC 估计但保留在 DIF 分析中; (3) stratified ICC distribution 已有\n  - **分配**: Paper Agent patch\n\n- (d) **Singleton DEFF 处理 (Q2)** — 这个可能改变核心数字\n  - **问题**: 5,227 中 3,343 是 singleton (无家族)。如果它们的 DEFF=1，有效 overall DEFF ≈ 2.03 而非 3.87\n  - **方案**: 需要 Agent 快速验算。如果确实如此，corrected C% 会从 29.2% 上升到更高（DEFF 更小 → 校正更温和）。这实际对论文有利——但需要数据透明\n  - **分配**: Agent 验算 + Paper Agent 补数据\n  - **请 Reviewer 评估**: singleton DEFF=1 的处理是否合理？还是 singleton 应该被排除出 DEFF 计算？\n\n- (e) **ICC 术语错误**（Reviewer warning）: 报告中 \"ICC ≈ 0.46\" 实际是 model-level pairwise Pearson r，非 DEFF 公式中的 item-level ICC (0.0465)。论文 appendix 说 \"Within-family ICC\" 应改为 \"within-family similarity (mean pairwise Pearson r)\"\n  - **方案**: app:icc_family 术语修正\n  - **分配**: Paper Agent patch\n\n**W-C3 [方法论新颖性有限]** — R1/R2 有分歧\n- **方案**: 无法通过修改解决。Rebuttal 策略：(1) 强调 cross-subject matching 的 ΔFPR=0 是 constructive guarantee，非简单适配; (2) 强调实证贡献（5,227 models × 6 benchmarks 系统性分析前所未有）; (3) 接受 \"primarily empirical\" 定位\n- **分配**: 不做论文修改，纳入 rebuttal 准备\n- **评估**: 这是结构性限制，reviewer 共识也是 \"实证贡献若可靠可补偿\"\n\n### Should-Fix\n\n**W-M1 [Ground truth meta-critique 措辞]**\n- **方案**: Intro Contribution 1 已在 W-C1(a) 中处理。另检查全文其他 \"category error\" / \"meta-critique\" 出现\n- **分配**: Paper Agent patch (与 W-C1 合并)\n\n**W-M2 [半合成 ΔTPR 推广性]**\n- **方案**: §4.5 已有 \"upper-bound estimate under uniform binary flipping\" caveat。加一句 \"difficulty-dependent injection models remain future work\"\n- **分配**: Paper Agent patch (low priority)\n\n**W-M3 [K=10 非单调 + NUDIF 泄漏]**\n- **方案**: §4.2 K-sensitivity 句加 \"the non-monotonicity at K=10 may reflect residual non-uniform DIF interactions not captured by MH; K=5 yields the most conservative estimate\"\n- **分配**: Paper Agent patch\n- **请 Reviewer 评估**: 是否需要补充 DEFF-corrected K-sensitivity？这需要 Agent 计算\n\n**W-M4 [\"ruled out\" → \"no significant enrichment detected\"]**\n- **方案**: §5.1 \"Item quality defects are ruled out\" → \"no significant enrichment of DIF-C items among expert-annotated errors was detected\"\n- **分配**: Paper Agent patch\n\n**W-M5 [1:1 matching 细节]**\n- **方案**: appendix 加一段：nearest-neighbor matching on total score, no caliper, balance verified by Cohen's d = -0.17 on matched pairs\n- **分配**: Paper Agent patch\n\n### Nice-to-Fix\n\n**W-N1 [GSM1K 权重]**\n- 已在上一轮移除 \"exploratory\" 标签。进一步缩减：移除 Cook's D 分析，保留一句 \"GSM1K analysis (r=-0.478, p=0.005; \\Cref{app:fig_gsm1k})\"\n- **分配**: Paper Agent patch\n\n**W-N2 [页面格式]**\n- 检查 \\enlargethispage{14\\baselineskip} 是否侵入 margin。如果 margin 合规则保留（目前页面布局正常）\n- **分配**: 视觉检查后决定\n\n**W-N3 [Abstract 范围]**\n- Abstract 加 \"primarily on MMLU\" qualifier\n- **分配**: Paper Agent patch\n\n### Questions\n\n**Q1 [家族定义]**: 在 app:icc_family 说明 family = METABENCH model_family field\n**Q2 [Singleton DEFF]**: Agent 验算（见 W-C2(d)）\n**Q3 [Difficulty-dependent 污染替代解释]**: §5.1 加一句讨论这个替代解释\n**Q4 [De-dup 定义]**: 见 W-C2(b)\n**Q5 [6-month window]**: 该数据已从最新版本移除\n**Q6 [≥500 阈值]**: §5.2 加 power analysis 依据\n\n### 缺失引用\n\n- Kamata & Binici (2003): WebSearch 验证后加入 §2 或 appendix\n- Alzahrani et al. (2024): WebSearch 验证后加入 §2\n- MMLU-Pro (Wang et al., 2024): 加入 §2 related work\n\n---\n\n## 关键风险评估\n\n1. **De-dup 数据修正是最紧急的** — \"三方法收敛\" 叙事需要立即改写\n2. **Singleton DEFF (Q2)** 可能改变核心数字但方向有利\n3. **因果 framing (W-C1)** 是长期结构性问题，framing 调整可做但期望不宜过高\n4. **W-C3 方法论新颖性** 无法通过修改解决\n5. DDL 3 天，以上 Paper Agent patch 预估 1 天可完成\n\n请 Reviewer 重点审查：\n1. De-dup 修正方案是否充分？\"两方法收敛 + de-dup 独立支持\" 是否比 \"三方法收敛\" 更稳健？\n2. Singleton DEFF 处理的技术合理性\n3. W-C1 framing 调整的具体措辞建议\n4. 是否有我遗漏的审稿意见？\n5. 哪些 action items 在 3 天内可以砍掉？"
             }
           },
-          "id": "event-005269"
+          "id": "event-005267"
         },
         {
-          "source_line": 5270,
+          "source_line": 5268,
           "timestamp": "2026-05-22T16:56:19.799939+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -983,10 +942,10 @@
             "tool": "mcp__agent-ml-research__post_to_reviewer",
             "elapsed_ms": 4177
           },
-          "id": "event-005270"
+          "id": "event-005268"
         },
         {
-          "source_line": 5271,
+          "source_line": 5269,
           "timestamp": "2026-05-22T16:56:27.339175+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1006,10 +965,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-005271"
+          "id": "event-005269"
         },
         {
-          "source_line": 5272,
+          "source_line": 5270,
           "timestamp": "2026-05-22T16:56:27.591628+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1024,10 +983,10 @@
             "tool": "Grep",
             "elapsed_ms": 252
           },
-          "id": "event-005272"
+          "id": "event-005270"
         },
         {
-          "source_line": 5273,
+          "source_line": 5271,
           "timestamp": "2026-05-22T16:56:28.195648+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1048,10 +1007,10 @@
               "-i": "True"
             }
           },
-          "id": "event-005273"
+          "id": "event-005271"
         },
         {
-          "source_line": 5274,
+          "source_line": 5272,
           "timestamp": "2026-05-22T16:56:28.297034+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1066,10 +1025,10 @@
             "tool": "Grep",
             "elapsed_ms": 101
           },
-          "id": "event-005274"
+          "id": "event-005272"
         },
         {
-          "source_line": 5275,
+          "source_line": 5273,
           "timestamp": "2026-05-22T16:56:45.373887+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1086,10 +1045,10 @@
               "text": "**R19 内审结果：3.0 (Findings)，较 R18 的 3.5 下降**\n\n主要原因：\n1. **De-dup K=20 数据不一致被发现** — 论文写 29.1%（来自旧的确定性选择，有选择偏倚），R18 新实验的随机选择值为 19.7%。\"三方法收敛 ~27-29%\" 叙事需改为\"两方法收敛 + de-dup 作为独立支持证据\"\n2. **因果 framing 张力** — Intro 仍偏 contamination critique，但论文自身证据 (ρ=-0.597) 更支持能力演化。两位 Reviewer 最强共识\n3. **Graduated de-duplication 未正式定义** — 方法可复现性缺陷\n\n已提交 Reviewer 审查完整 Action Matrix（15 条逐项方案）。修复计划预估 1 天内可完成。等 Reviewer 反馈后综合定稿并派 Agent/Paper Agent 执行。"
             }
           },
-          "id": "event-005275"
+          "id": "event-005273"
         },
         {
-          "source_line": 5276,
+          "source_line": 5274,
           "timestamp": "2026-05-22T16:56:46.028930+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1104,10 +1063,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 655
           },
-          "id": "event-005276"
+          "id": "event-005274"
         },
         {
-          "source_line": 5277,
+          "source_line": 5275,
           "timestamp": "2026-05-22T16:56:50.146920+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1126,10 +1085,10 @@
               "limit": "30"
             }
           },
-          "id": "event-005277"
+          "id": "event-005275"
         },
         {
-          "source_line": 5278,
+          "source_line": 5276,
           "timestamp": "2026-05-22T16:56:50.600954+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1144,10 +1103,10 @@
             "tool": "Read",
             "elapsed_ms": 454
           },
-          "id": "event-005278"
+          "id": "event-005276"
         },
         {
-          "source_line": 5279,
+          "source_line": 5277,
           "timestamp": "2026-05-22T16:56:51.103328+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1166,10 +1125,10 @@
               "limit": "20"
             }
           },
-          "id": "event-005279"
+          "id": "event-005277"
         },
         {
-          "source_line": 5280,
+          "source_line": 5278,
           "timestamp": "2026-05-22T16:56:51.605786+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1184,10 +1143,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-005280"
+          "id": "event-005278"
         },
         {
-          "source_line": 5281,
+          "source_line": 5279,
           "timestamp": "2026-05-22T16:56:51.706673+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1206,10 +1165,10 @@
               "limit": "8"
             }
           },
-          "id": "event-005281"
+          "id": "event-005279"
         },
         {
-          "source_line": 5282,
+          "source_line": 5280,
           "timestamp": "2026-05-22T16:56:51.757388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1224,10 +1183,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005282"
+          "id": "event-005280"
         },
         {
-          "source_line": 5283,
+          "source_line": 5281,
           "timestamp": "2026-05-22T16:57:11.672912+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1247,10 +1206,10 @@
               "new_string": "Two independent non-independence corrections converge on approximately 27--29\\%: simple-mean DEFF correction (29.2\\%) and family-level cluster bootstrap lower bound (26.7\\%). The weighted-mean DEFF variant yields 13.5\\%, but its effective cluster size ($\\bar{m}{=}254$) implies each family member is functionally identical---unrealistic: within-family similarity is flat across family sizes ($\\rho_s = -0.009$, $p = 0.96$; \\Cref{app:icc_family}), so the weighted variant over-corrects. The $[13.5\\%, 29.2\\%]$ range reflects power uncertainty, not DIF magnitude disagreement ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$ unchanged). We adopt ${\\approx}$27--29\\% as our primary estimate, with 13.5\\% as a lower bound under weighted-mean DEFF (\\Cref{app:deff,app:uncertainty}); even this bound exceeds the random-split baseline by $75\\times$. Leave-one-family-out analysis confirms no single family drives the signal ($|\\Delta\\mathrm{C\\%}| \\leq 2.93$\\,pp). Graduated de-duplication independently confirms C\\% scales with power, not family redundancy: at each fixed $K$, within-$K$ SD ${<}1.5$\\,pp across random draws (\\Cref{app:dedup_k})."
             }
           },
-          "id": "event-005283"
+          "id": "event-005281"
         },
         {
-          "source_line": 5284,
+          "source_line": 5282,
           "timestamp": "2026-05-22T16:57:11.724072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1265,10 +1224,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005284"
+          "id": "event-005282"
         },
         {
-          "source_line": 5285,
+          "source_line": 5283,
           "timestamp": "2026-05-22T16:57:15.900954+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1288,10 +1247,10 @@
               "new_string": "Graduated de-dup.\\ ($K{=}20$) & Remove within-family duplicates & C\\% = 19.7\\% $\\pm$ 0.9\\% \\\\"
             }
           },
-          "id": "event-005285"
+          "id": "event-005283"
         },
         {
-          "source_line": 5286,
+          "source_line": 5284,
           "timestamp": "2026-05-22T16:57:16.103098+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1306,10 +1265,10 @@
             "tool": "Edit",
             "elapsed_ms": 202
           },
-          "id": "event-005286"
+          "id": "event-005284"
         },
         {
-          "source_line": 5287,
+          "source_line": 5285,
           "timestamp": "2026-05-22T16:57:24.895919+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1329,10 +1288,10 @@
               "new_string": "Two independent methods---cluster bootstrap lower bound (26.7\\%) and simple-mean DEFF adjustment (29.2\\%)---converge on $\\sim$27--29\\%, establishing a robust corrected estimate that remains $>$150$\\times$ the random-split baseline (0.18\\%). Graduated de-duplication at $K{=}20$ yields C\\% $= 19.7\\% \\pm 0.9\\%$ (random member selection, 5 draws), lower than the corrected estimate due to reduced statistical power ($N \\approx 450$ vs.\\ 1,887), but within-$K$ variance ${<}1.5$\\,pp at all $K$ confirms the signal is power-driven rather than redundancy-inflated (\\Cref{app:dedup_k}). The weighted-mean DEFF (13.5\\%) represents a conservative extreme; even this lower bound exceeds the baseline by 75$\\times$."
             }
           },
-          "id": "event-005287"
+          "id": "event-005285"
         },
         {
-          "source_line": 5288,
+          "source_line": 5286,
           "timestamp": "2026-05-22T16:57:24.896642+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1347,10 +1306,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005288"
+          "id": "event-005286"
         },
         {
-          "source_line": 5289,
+          "source_line": 5287,
           "timestamp": "2026-05-22T16:57:33.648936+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1370,10 +1329,10 @@
               "new_string": "Within-family similarity (mean pairwise Pearson $r$ over 12{,}508-item response vectors) shows no dependence on family size (Spearman $\\rho = -0.009$, $p = 0.96$; 30 families with $\\geq 2$ members, 1{,}884 models). Large families (Mistral, $m = 547$, $\\bar{r} = 0.47$; Llama-3, $m = 315$, $\\bar{r} = 0.53$) are no more homogeneous than small or mid-sized families. The remaining 3{,}343 singleton models (no family assignment) are retained in DIF analysis but excluded from similarity estimation. This indicates that the weighted-mean DEFF variant's effective cluster size ($\\bar{m} = 254$) reflects an arithmetic artifact of mega-family dominance rather than genuine within-family homogeneity."
             }
           },
-          "id": "event-005289"
+          "id": "event-005287"
         },
         {
-          "source_line": 5290,
+          "source_line": 5288,
           "timestamp": "2026-05-22T16:57:33.699874+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1388,10 +1347,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005290"
+          "id": "event-005288"
         },
         {
-          "source_line": 5291,
+          "source_line": 5289,
           "timestamp": "2026-05-22T16:57:43.851630+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1411,10 +1370,10 @@
               "new_string": "For each value of $K$ (max models retained per family), $K$ members are sampled uniformly at random; remaining family members are excluded from both reference and focal cohorts, and MH-DIF is recomputed on the reduced sample (5 independent draws per $K$; $K = \\text{all}$ is deterministic).\n\nC\\% increases monotonically from 0.3\\% ($K = 1$) to 31.3\\% ($K = \\text{all}$). At each fixed $K$, variance across random member draws is negligible (SD ${<} 1.5$\\,pp), confirming that the signal scales with statistical power rather than within-family redundancy. At $K{=}20$, C\\% $= 19.7\\% \\pm 0.9\\%$ ($N \\approx 450$); the gap from the full-sample 31.3\\% reflects reduced power, not reduced bias."
             }
           },
-          "id": "event-005291"
+          "id": "event-005289"
         },
         {
-          "source_line": 5292,
+          "source_line": 5290,
           "timestamp": "2026-05-22T16:57:43.852386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1429,10 +1388,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005292"
+          "id": "event-005290"
         },
         {
-          "source_line": 5293,
+          "source_line": 5291,
           "timestamp": "2026-05-22T16:57:47.618941+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1451,10 +1410,10 @@
               "limit": "3"
             }
           },
-          "id": "event-005293"
+          "id": "event-005291"
         },
         {
-          "source_line": 5294,
+          "source_line": 5292,
           "timestamp": "2026-05-22T16:57:47.669598+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1469,10 +1428,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005294"
+          "id": "event-005292"
         },
         {
-          "source_line": 5295,
+          "source_line": 5293,
           "timestamp": "2026-05-22T16:57:52.540810+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1491,10 +1450,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-005295"
+          "id": "event-005293"
         },
         {
-          "source_line": 5296,
+          "source_line": 5294,
           "timestamp": "2026-05-22T16:57:55.854198+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1509,10 +1468,10 @@
             "tool": "Bash",
             "elapsed_ms": 3313
           },
-          "id": "event-005296"
+          "id": "event-005294"
         },
         {
-          "source_line": 5297,
+          "source_line": 5295,
           "timestamp": "2026-05-22T16:57:59.370551+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1530,10 +1489,10 @@
               "description": "Check undefined refs"
             }
           },
-          "id": "event-005297"
+          "id": "event-005295"
         },
         {
-          "source_line": 5298,
+          "source_line": 5296,
           "timestamp": "2026-05-22T16:58:02.242318+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1548,10 +1507,10 @@
             "tool": "Bash",
             "elapsed_ms": 2871
           },
-          "id": "event-005298"
+          "id": "event-005296"
         },
         {
-          "source_line": 5299,
+          "source_line": 5297,
           "timestamp": "2026-05-22T16:58:06.364578+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1570,10 +1529,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005299"
+          "id": "event-005297"
         },
         {
-          "source_line": 5300,
+          "source_line": 5298,
           "timestamp": "2026-05-22T16:58:06.766931+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1588,10 +1547,10 @@
             "tool": "mcp__agent-ml-research__pdf_to_images",
             "elapsed_ms": 402
           },
-          "id": "event-005300"
+          "id": "event-005298"
         },
         {
-          "source_line": 5301,
+          "source_line": 5299,
           "timestamp": "2026-05-22T16:58:09.734929+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1608,10 +1567,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-005301"
+          "id": "event-005299"
         },
         {
-          "source_line": 5302,
+          "source_line": 5300,
           "timestamp": "2026-05-22T16:58:10.188903+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1628,10 +1587,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-005302"
+          "id": "event-005300"
         },
         {
-          "source_line": 5303,
+          "source_line": 5301,
           "timestamp": "2026-05-22T16:58:10.842942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1646,10 +1605,10 @@
             "tool": "Read",
             "elapsed_ms": 1108
           },
-          "id": "event-005303"
+          "id": "event-005301"
         },
         {
-          "source_line": 5304,
+          "source_line": 5302,
           "timestamp": "2026-05-22T16:58:11.158337+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1664,10 +1623,10 @@
             "tool": "Read",
             "elapsed_ms": 969
           },
-          "id": "event-005304"
+          "id": "event-005302"
         },
         {
-          "source_line": 5305,
+          "source_line": 5303,
           "timestamp": "2026-05-22T16:58:22.016925+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1685,10 +1644,10 @@
               "description": "Commit critical de-dup and ICC fixes"
             }
           },
-          "id": "event-005305"
+          "id": "event-005303"
         },
         {
-          "source_line": 5306,
+          "source_line": 5304,
           "timestamp": "2026-05-22T16:58:22.067723+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1703,10 +1662,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-005306"
+          "id": "event-005304"
         },
         {
-          "source_line": 5307,
+          "source_line": 5305,
           "timestamp": "2026-05-22T16:58:26.494209+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1723,10 +1682,10 @@
               "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/_pdf_images"
             }
           },
-          "id": "event-005307"
+          "id": "event-005305"
         },
         {
-          "source_line": 5308,
+          "source_line": 5306,
           "timestamp": "2026-05-22T16:58:26.595955+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1741,10 +1700,10 @@
             "tool": "mcp__agent-ml-research__cleanup_pdf_images",
             "elapsed_ms": 101
           },
-          "id": "event-005308"
+          "id": "event-005306"
         },
         {
-          "source_line": 5309,
+          "source_line": 5307,
           "timestamp": "2026-05-22T16:58:33.494051+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1763,10 +1722,10 @@
               "limit": "6"
             }
           },
-          "id": "event-005309"
+          "id": "event-005307"
         },
         {
-          "source_line": 5310,
+          "source_line": 5308,
           "timestamp": "2026-05-22T16:58:33.947421+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1781,10 +1740,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-005310"
+          "id": "event-005308"
         },
         {
-          "source_line": 5311,
+          "source_line": 5309,
           "timestamp": "2026-05-22T16:58:34.098939+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1803,10 +1762,10 @@
               "limit": "60"
             }
           },
-          "id": "event-005311"
+          "id": "event-005309"
         },
         {
-          "source_line": 5312,
+          "source_line": 5310,
           "timestamp": "2026-05-22T16:58:34.149794+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1821,10 +1780,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005312"
+          "id": "event-005310"
         },
         {
-          "source_line": 5313,
+          "source_line": 5311,
           "timestamp": "2026-05-22T16:58:42.144321+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1844,10 +1803,10 @@
               "new_string": "No significant enrichment of DIF-C items among expert-annotated errors~\\citep{gema2024mmlu} was detected (enrichment $= 1.10$, 95\\% CI $[0.92, 1.27]$, $p = 0.23$), suggesting \\emph{item quality defects} are not a primary driver."
             }
           },
-          "id": "event-005313"
+          "id": "event-005311"
         },
         {
-          "source_line": 5314,
+          "source_line": 5312,
           "timestamp": "2026-05-22T16:58:42.195017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1862,10 +1821,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005314"
+          "id": "event-005312"
         },
         {
-          "source_line": 5315,
+          "source_line": 5313,
           "timestamp": "2026-05-22T16:58:47.968669+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1885,10 +1844,10 @@
               "new_string": "\\item \\textbf{Orthogonal constructs}: We empirically demonstrate that web-overlap labels~\\citep{li2024contamination}, which index global exposure, are near-independent of DIF flags, which index differential functioning (Jaccard $= 0.206$, $\\phi = 0.012$ on 9,229 items); the two capture fundamentally different signals (\\Cref{sec:groundtruth})."
             }
           },
-          "id": "event-005315"
+          "id": "event-005313"
         },
         {
-          "source_line": 5316,
+          "source_line": 5314,
           "timestamp": "2026-05-22T16:58:48.020997+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1903,10 +1862,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-005316"
+          "id": "event-005314"
         },
         {
-          "source_line": 5317,
+          "source_line": 5315,
           "timestamp": "2026-05-22T16:58:53.143576+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1926,10 +1885,10 @@
               "new_string": "after two convergent non-independence corrections"
             }
           },
-          "id": "event-005317"
+          "id": "event-005315"
         },
         {
-          "source_line": 5318,
+          "source_line": 5316,
           "timestamp": "2026-05-22T16:58:53.194249+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1944,10 +1903,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005318"
+          "id": "event-005316"
         },
         {
-          "source_line": 5319,
+          "source_line": 5317,
           "timestamp": "2026-05-22T16:58:58.416457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1968,10 +1927,10 @@
               "-i": "True"
             }
           },
-          "id": "event-005319"
+          "id": "event-005317"
         },
         {
-          "source_line": 5320,
+          "source_line": 5318,
           "timestamp": "2026-05-22T16:58:58.517892+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1986,10 +1945,10 @@
             "tool": "Grep",
             "elapsed_ms": 101
           },
-          "id": "event-005320"
+          "id": "event-005318"
         },
         {
-          "source_line": 5321,
+          "source_line": 5319,
           "timestamp": "2026-05-22T16:59:02.788618+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2008,10 +1967,10 @@
               "limit": "6"
             }
           },
-          "id": "event-005321"
+          "id": "event-005319"
         },
         {
-          "source_line": 5322,
+          "source_line": 5320,
           "timestamp": "2026-05-22T16:59:02.939976+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2026,10 +1985,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-005322"
+          "id": "event-005320"
         },
         {
-          "source_line": 5323,
+          "source_line": 5321,
           "timestamp": "2026-05-22T16:59:02.940508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2046,10 +2005,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex"
             }
           },
-          "id": "event-005323"
+          "id": "event-005321"
         },
         {
-          "source_line": 5324,
+          "source_line": 5322,
           "timestamp": "2026-05-22T16:59:03.041201+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2064,10 +2023,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-005324"
+          "id": "event-005322"
         },
         {
-          "source_line": 5325,
+          "source_line": 5323,
           "timestamp": "2026-05-22T16:59:15.637845+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2087,10 +2046,10 @@
               "new_string": "for MMLU, two convergent non-independence corrections yield approximately 27--29\\% (conservative bound: 13.5\\%; cluster bootstrap 95\\% CI $[26.7\\%, 53.2\\%]$; random-split baseline 0.18\\%). Web-overlap contamination labels are near-independent of DIF flags (Jaccard $= 0.206$): the two constructs---global exposure and differential functioning---are empirically orthogonal."
             }
           },
-          "id": "event-005325"
+          "id": "event-005323"
         },
         {
-          "source_line": 5326,
+          "source_line": 5324,
           "timestamp": "2026-05-22T16:59:15.638393+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2105,10 +2064,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005326"
+          "id": "event-005324"
         },
         {
-          "source_line": 5327,
+          "source_line": 5325,
           "timestamp": "2026-05-22T16:59:19.305919+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2128,10 +2087,10 @@
               "new_string": "The two constructs---global exposure and differential functioning---are empirically orthogonal."
             }
           },
-          "id": "event-005327"
+          "id": "event-005325"
         },
         {
-          "source_line": 5328,
+          "source_line": 5326,
           "timestamp": "2026-05-22T16:59:19.306580+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2146,10 +2105,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005328"
+          "id": "event-005326"
         },
         {
-          "source_line": 5329,
+          "source_line": 5327,
           "timestamp": "2026-05-22T16:59:23.679347+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2168,10 +2127,10 @@
               "limit": "15"
             }
           },
-          "id": "event-005329"
+          "id": "event-005327"
         },
         {
-          "source_line": 5330,
+          "source_line": 5328,
           "timestamp": "2026-05-22T16:59:23.730236+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2186,10 +2145,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005330"
+          "id": "event-005328"
         },
         {
-          "source_line": 5331,
+          "source_line": 5329,
           "timestamp": "2026-05-22T16:59:29.361642+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2208,10 +2167,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-005331"
+          "id": "event-005329"
         },
         {
-          "source_line": 5332,
+          "source_line": 5330,
           "timestamp": "2026-05-22T16:59:33.081324+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2226,10 +2185,10 @@
             "tool": "Bash",
             "elapsed_ms": 3719
           },
-          "id": "event-005332"
+          "id": "event-005330"
         },
         {
-          "source_line": 5333,
+          "source_line": 5331,
           "timestamp": "2026-05-22T16:59:39.363060+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2247,10 +2206,10 @@
               "description": "Commit R19 framing fixes"
             }
           },
-          "id": "event-005333"
+          "id": "event-005331"
         },
         {
-          "source_line": 5334,
+          "source_line": 5332,
           "timestamp": "2026-05-22T16:59:39.413831+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2265,10 +2224,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-005334"
+          "id": "event-005332"
         },
         {
-          "source_line": 5335,
+          "source_line": 5333,
           "timestamp": "2026-05-22T16:59:51.572313+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2285,10 +2244,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex"
             }
           },
-          "id": "event-005335"
+          "id": "event-005333"
         },
         {
-          "source_line": 5336,
+          "source_line": 5334,
           "timestamp": "2026-05-22T16:59:51.623063+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2303,10 +2262,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005336"
+          "id": "event-005334"
         },
         {
-          "source_line": 5337,
+          "source_line": 5335,
           "timestamp": "2026-05-22T17:00:01.825745+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2326,10 +2285,10 @@
               "new_string": "six METABENCH benchmarks (5,227 MMLU models, 27,125 items across all six)"
             }
           },
-          "id": "event-005337"
+          "id": "event-005335"
         },
         {
-          "source_line": 5338,
+          "source_line": 5336,
           "timestamp": "2026-05-22T17:00:01.826444+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2344,10 +2303,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-005338"
+          "id": "event-005336"
         },
         {
-          "source_line": 5339,
+          "source_line": 5337,
           "timestamp": "2026-05-22T17:00:06.115796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2365,10 +2324,10 @@
               "description": "Commit abstract scope fix"
             }
           },
-          "id": "event-005339"
+          "id": "event-005337"
         },
         {
-          "source_line": 5340,
+          "source_line": 5338,
           "timestamp": "2026-05-22T17:00:06.270272+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2383,10 +2342,10 @@
             "tool": "Bash",
             "elapsed_ms": 154
           },
-          "id": "event-005340"
+          "id": "event-005338"
         },
         {
-          "source_line": 5341,
+          "source_line": 5339,
           "timestamp": "2026-05-22T17:00:18.341351+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2399,7 +2358,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-005341"
+          "id": "event-005339"
         }
       ]
     },
@@ -2407,7 +2366,7 @@
       "number": 405,
       "messages": [
         {
-          "source_line": 5342,
+          "source_line": 5340,
           "timestamp": "2026-05-22T17:00:18.892662+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2421,10 +2380,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "reviewer"
           },
-          "id": "event-005342"
+          "id": "event-005340"
         },
         {
-          "source_line": 5343,
+          "source_line": 5341,
           "timestamp": "2026-05-22T17:00:42.335024+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2443,10 +2402,10 @@
               "limit": "6"
             }
           },
-          "id": "event-005343"
+          "id": "event-005341"
         },
         {
-          "source_line": 5344,
+          "source_line": 5342,
           "timestamp": "2026-05-22T17:00:42.385889+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2461,10 +2420,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-005344"
+          "id": "event-005342"
         },
         {
-          "source_line": 5345,
+          "source_line": 5343,
           "timestamp": "2026-05-22T17:00:53.101113+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2484,10 +2443,10 @@
               "new_string": "Pairwise rank reversals between full-item and stable-item rankings concentrate among closely-ranked models. At $\\Delta\\mathrm{rank} < 50$ (mean $\\Delta\\mathrm{acc} = 0.003$, effectively statistical ties), the reversal rate is 35.2\\%. It drops to 15.1\\% for $\\Delta\\mathrm{rank} \\in [50, 200)$, 4.0\\% for $[200, 500)$, 0.6\\% for $[500, 1000)$, and 0.0\\% above 1000. Broad leaderboard structure is fully preserved; instability affects only models within each other's noise margin."
             }
           },
-          "id": "event-005345"
+          "id": "event-005343"
         },
         {
-          "source_line": 5346,
+          "source_line": 5344,
           "timestamp": "2026-05-22T17:00:53.152033+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2502,10 +2461,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-005346"
+          "id": "event-005344"
         },
         {
-          "source_line": 5347,
+          "source_line": 5345,
           "timestamp": "2026-05-22T17:01:07.072462+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2524,10 +2483,10 @@
               "limit": "8"
             }
           },
-          "id": "event-005347"
+          "id": "event-005345"
         },
         {
-          "source_line": 5348,
+          "source_line": 5346,
           "timestamp": "2026-05-22T17:01:07.123508+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2542,10 +2501,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-005348"
+          "id": "event-005346"
         },
         {
-          "source_line": 5349,
+          "source_line": 5347,
           "timestamp": "2026-05-22T17:01:23.838596+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2565,10 +2524,10 @@
               "new_string": "Of the 5{,}227 models, 3{,}343 lack family assignments; these are retained in DIF analysis but excluded from similarity estimation. Within the temporal DIF cohorts ($N_{\\mathrm{ref}} + N_{\\mathrm{foc}} = 1{,}887$), 1{,}884 (99.8\\%) belong to identified families with $\\geq 2$ members, so DEFF estimates are computed over nearly the full cohort. This indicates that the weighted-mean DEFF variant's effective cluster size ($\\bar{m} = 254$) reflects an arithmetic artifact of mega-family dominance rather than genuine within-family homogeneity."
             }
           },
-          "id": "event-005349"
+          "id": "event-005347"
         },
         {
-          "source_line": 5350,
+          "source_line": 5348,
           "timestamp": "2026-05-22T17:01:23.890112+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2583,10 +2542,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-005350"
+          "id": "event-005348"
         },
         {
-          "source_line": 5351,
+          "source_line": 5349,
           "timestamp": "2026-05-22T17:01:33.204941+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2605,10 +2564,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-005351"
+          "id": "event-005349"
         },
         {
-          "source_line": 5352,
+          "source_line": 5350,
           "timestamp": "2026-05-22T17:01:37.279015+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2623,10 +2582,10 @@
             "tool": "Bash",
             "elapsed_ms": 4074
           },
-          "id": "event-005352"
+          "id": "event-005350"
         },
         {
-          "source_line": 5353,
+          "source_line": 5351,
           "timestamp": "2026-05-22T17:01:42.759227+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2644,10 +2603,10 @@
               "description": "Commit rank-bucket + singleton fixes"
             }
           },
-          "id": "event-005353"
+          "id": "event-005351"
         },
         {
-          "source_line": 5354,
+          "source_line": 5352,
           "timestamp": "2026-05-22T17:01:42.860196+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2662,10 +2621,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-005354"
+          "id": "event-005352"
         },
         {
-          "source_line": 5355,
+          "source_line": 5353,
           "timestamp": "2026-05-22T17:02:10.803934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2683,10 +2642,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005355"
+          "id": "event-005353"
         },
         {
-          "source_line": 5356,
+          "source_line": 5354,
           "timestamp": "2026-05-22T17:02:15.200122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2701,10 +2660,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
             "elapsed_ms": 4396
           },
-          "id": "event-005356"
+          "id": "event-005354"
         },
         {
-          "source_line": 5357,
+          "source_line": 5355,
           "timestamp": "2026-05-22T17:02:59.362964+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2722,10 +2681,10 @@
               "issues_yaml": "issues:\n  # === R1-W1: DEFF 校正 (Round 10-19) ===\n  - id: \"R1-W1\"\n    summary: \"DEFF 校正范围过大（13.5%-29.2%），核心结论不确定性被低估\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 10\n    last_seen_round: 19\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"simple mean vs weighted mean DEFF 导致范围过宽\"\n      - round: 17\n        reviewers: [1, 2]\n        note: \"三方法收敛论证缺失\"\n      - round: 18\n        reviewers: []\n        note: \"三方法收敛写入 §4.2\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"De-dup K=20 29.1% 数据不一致被发现（实际 19.7%）。ICC flat across sizes (ρ=-0.009) justifies simple-mean。修正为两方法收敛。\"\n    action_items:\n      - round: 19\n        action: \"De-dup 29.1%→19.7%, three→two convergence\"\n        assigned_to: director\n        status: done\n      - round: 19\n        action: \"ICC terminology fix (model-level r, not item-level ICC)\"\n        assigned_to: director\n        status: done\n      - round: 19\n        action: \"Singleton DEFF scope clarification (99.8% in cohort have families)\"\n        assigned_to: director\n        status: done\n    resolution: \"Two-method convergence (DEFF 29.2% + bootstrap 26.7% → ~27-29%). De-dup as independent power evidence. ICC flat across family sizes justifies simple-mean.\"\n    resolution_round: 19\n\n  # === R2-W4: 因果模糊性 (Round 10-19) ===\n  - id: \"R2-W4\"\n    summary: \"Temporal DIF 与 legitimate 能力提升的概念张力，framing 不一致\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 10\n    last_seen_round: 19\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"DIF 无法区分 contamination vs legitimate improvement\"\n      - round: 17\n        reviewers: [1, 2]\n        note: \"因果模糊性仍是核心弱点\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"Intro C1 meta-critique 与 §5.1 capability evolution 证据不一致\"\n    action_items:\n      - round: 19\n        action: \"C1 meta-critique→orthogonal constructs\"\n        assigned_to: director\n        status: done\n      - round: 19\n        action: \"ruled out→no enrichment detected\"\n        assigned_to: director\n        status: done\n      - round: 19\n        action: \"Q3 替代解释加入§5.1\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"Framing committed to psychometric audit; orthogonal constructs language throughout.\"\n    resolution_round: 19\n\n  # === R12-W1: De-dup 正式定义 ===\n  - id: \"R12-W1\"\n    summary: \"Graduated de-duplication 方法从未被正式定义\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 12\n    last_seen_round: 19\n    mentions:\n      - round: 12\n        reviewers: [1, 2]\n        note: \"K 的含义、操作步骤均未给出\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"仍未定义\"\n    action_items:\n      - round: 19\n        action: \"Formal definition added to app:dedup_k\"\n        assigned_to: director\n        status: done\n    resolution: \"Formal definition in app:dedup_k: K members sampled uniformly at random, 5 draws per K.\"\n    resolution_round: 19\n\n  # === R12-W2: Ground truth meta-critique 循环论证 ===\n  - id: \"R12-W2\"\n    summary: \"Ground truth meta-critique 措辞过强\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 12\n    last_seen_round: 19\n    mentions:\n      - round: 12\n        reviewers: [1, 2]\n        note: \"category error 近乎同义反复\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"W-M1: 仍有 meta-critique 语言\"\n    action_items:\n      - round: 19\n        action: \"meta-critique→orthogonal constructs throughout\"\n        assigned_to: director\n        status: done\n    resolution: \"Contribution 1 reframed as 'Orthogonal constructs'. All 'category error' language removed.\"\n    resolution_round: 19\n\n  # === R19-W-C3: 方法论新颖性 ===\n  - id: \"R2-W1\"\n    summary: \"方法论新颖性不足：MH-DIF 是既有标准方法的直接应用\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 10\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R1/R2 共识但严重程度有分歧。R1 认为实证贡献可补偿。\"\n    action_items:\n      - round: 19\n        action: \"Rebuttal-only strategy; no paper change\"\n        assigned_to: author\n        status: done\n    resolution: \"\"\n    resolution_round: null\n\n  # === R19 Should-Fix items ===\n  - id: \"R19-M2\"\n    summary: \"Semi-synthetic ΔTPR 推广性存疑\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"Binary flipping worst-case; difficulty-dependent未测试\"\n    action_items:\n      - round: 19\n        action: \"Add future-work caveat to §4.5\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-M3\"\n    summary: \"K=10 non-uniform DIF 泄漏\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1]\n        note: \"K=10 peak may reflect NUDIF\"\n    action_items:\n      - round: 19\n        action: \"Add NUDIF caveat to K-sensitivity sentence\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-M5\"\n    summary: \"1:1 matching 细节缺失\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1]\n        note: \"匹配方法和balance check未报告\"\n    action_items:\n      - round: 19\n        action: \"Add matching details to appendix\"\n        assigned_to: paper_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R19-N3\"\n    summary: \"Abstract 范围暗示不匹配\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"5,227 是 MMLU 模型数\"\n    action_items:\n      - round: 19\n        action: \"Add 'MMLU' qualifier to Abstract\"\n        assigned_to: director\n        status: done\n    resolution: \"Abstract now reads '5,227 MMLU models'.\"\n    resolution_round: 19\n\n  # === Rank-bucket data error (found by Reviewer) ===\n  - id: \"R19-DATA1\"\n    summary: \"Appendix rank-bucket 数据错误 (6.3% should be 15.1%)\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 19\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: []\n        note: \"Research Reviewer caught: 6.3% had no source, correct value 15.1%. Missing 200-499 bucket.\"\n    action_items:\n      - round: 19\n        action: \"Fix to 15.1%, add 200-499 bucket (4.0%)\"\n        assigned_to: director\n        status: done\n    resolution: \"Data corrected in app:rank_reversal.\"\n    resolution_round: 19"
             }
           },
-          "id": "event-005357"
+          "id": "event-005355"
         },
         {
-          "source_line": 5358,
+          "source_line": 5356,
           "timestamp": "2026-05-22T17:02:59.413904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2740,10 +2699,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 50
           },
-          "id": "event-005358"
+          "id": "event-005356"
         },
         {
-          "source_line": 5359,
+          "source_line": 5357,
           "timestamp": "2026-05-22T17:03:05.065390+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2756,7 +2715,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-005359"
+          "id": "event-005357"
         }
       ]
     },
@@ -2764,7 +2723,7 @@
       "number": 406,
       "messages": [
         {
-          "source_line": 5360,
+          "source_line": 5358,
           "timestamp": "2026-05-22T17:05:33.609027+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2778,10 +2737,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-005360"
+          "id": "event-005358"
         },
         {
-          "source_line": 5361,
+          "source_line": 5359,
           "timestamp": "2026-05-22T17:06:02.343322+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2798,10 +2757,10 @@
               "text": "**R19 从 3.5 掉到 3.0 的三个原因：**\n\n**1. De-dup K=20 数据不一致（最致命）**\n论文声称\"三方法收敛 ~27-29%\"，其中 de-dup K=20 = 29.1%。但 R18 新做的随机选择实验得到 19.7%——旧的 29.1% 来自确定性选择（有选择偏倚）。Reviewer 发现后直接质疑数据 credibility，且\"三方法收敛\"叙事崩塌。\n\n**已修正**：改为\"两方法收敛\"（DEFF 29.2% + bootstrap 26.7%），de-dup 作为独立的 power-vs-redundancy 证据。\n\n**2. 因果 framing 仍在 contamination 和 capability evolution 之间摇摆**\n论文自身证据（ρ=-0.597）更支持能力演化，但 Intro Contribution 1 仍写\"ground truth meta-critique / category error\"——两种叙事不一致。两位 Reviewer 最强共识。\n\n**已修正**：C1 改为\"Orthogonal constructs\"（全局暴露 vs 差异功能），移除所有\"category error\"\"ruled out\"语言。\n\n**3. Graduated de-duplication 未正式定义**\n作为核心定量结论的三种支撑方法之一，从未在正文或附录给出操作步骤。Reviewer 标为\"不可复现\"。\n\n**已修正**：app:dedup_k 加了完整定义。\n\n**本质问题**：R18 做的 4 个新实验结果都对论文有利，但 Paper Agent 写入时引入了数据不一致（用了旧数据 29.1% 而非新数据 19.7%），且没有彻底清理旧的 meta-critique 语言。问题不在实验，在于写作整合的精度。\n\n**当前状态**：以上三个问题均已修正并提交（4 commits）。Paper Agent 正在处理剩余 Should-Fix 项。修正后回到 3.5 是合理预期。"
             }
           },
-          "id": "event-005361"
+          "id": "event-005359"
         },
         {
-          "source_line": 5362,
+          "source_line": 5360,
           "timestamp": "2026-05-22T17:06:06.112166+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2816,7 +2775,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3768
           },
-          "id": "event-005362"
+          "id": "event-005360"
         }
       ]
     },
@@ -2824,7 +2783,7 @@
       "number": 407,
       "messages": [
         {
-          "source_line": 5363,
+          "source_line": 5361,
           "timestamp": "2026-05-22T17:09:06.377679+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2838,10 +2797,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-005363"
+          "id": "event-005361"
         },
         {
-          "source_line": 5364,
+          "source_line": 5362,
           "timestamp": "2026-05-22T17:09:28.741576+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2858,10 +2817,10 @@
               "text": "不是实验指标不准确，是**同一个指标用了两种不同的计算方式，论文引用了旧方式的数字但新方式才是正确的**。\n\n具体来说，\"de-dup K=20 的 C%\" 这个指标做了两次：\n\n1. **旧实验 (plan_022)**：确定性选择——按\"代表性\"排序选 K 个模型（suffix 数量 + 准确率排序）。K=20 得 29.1%。这个选择方式有偏倚，选出来的\"代表性\"模型恰好放大了 DIF 信号。证据：K=50 时 C%=27.5% 反而低于 K=20 的 29.1%，出现了不合理的非单调性。\n\n2. **新实验 (R18)**：随机选择——每个家族随机抽 K 个成员，重复 5 次取均值。K=20 得 19.7% ± 0.9%。这个方式无偏，且 C% 随 K 单调递增（符合统计功效理论）。\n\n**问题出在写入论文时**：Paper Agent 在 appendix 写 de-dup 数据时，从旧实验 plan_022 拿了 29.1% 写进去（因为那个数字恰好与 DEFF 29.2% \"收敛\"），而不是用新实验的 19.7%。这不是实验本身的问题，是**写作时选用了错误的数据源**。\n\n所有核心实验结论不受影响——两方法收敛（DEFF 29.2% + bootstrap 26.7% → ~27-29%）依然成立，de-dup 的真正贡献（within-K SD<1.5pp 证明非 redundancy artifact）也更强。"
             }
           },
-          "id": "event-005364"
+          "id": "event-005362"
         },
         {
-          "source_line": 5365,
+          "source_line": 5363,
           "timestamp": "2026-05-22T17:09:32.352230+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2876,7 +2835,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3610
           },
-          "id": "event-005365"
+          "id": "event-005363"
         }
       ]
     },
@@ -2884,7 +2843,7 @@
       "number": 408,
       "messages": [
         {
-          "source_line": 5366,
+          "source_line": 5364,
           "timestamp": "2026-05-22T17:10:30.458753+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2898,10 +2857,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "paper_agent"
           },
-          "id": "event-005366"
+          "id": "event-005364"
         },
         {
-          "source_line": 5367,
+          "source_line": 5365,
           "timestamp": "2026-05-22T17:10:46.844832+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2919,10 +2878,10 @@
               "description": "Check recent commits"
             }
           },
-          "id": "event-005367"
+          "id": "event-005365"
         },
         {
-          "source_line": 5368,
+          "source_line": 5366,
           "timestamp": "2026-05-22T17:10:47.550018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2937,10 +2896,10 @@
             "tool": "Bash",
             "elapsed_ms": 705
           },
-          "id": "event-005368"
+          "id": "event-005366"
         },
         {
-          "source_line": 5369,
+          "source_line": 5367,
           "timestamp": "2026-05-22T17:10:47.602839+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2958,10 +2917,10 @@
               "description": "Check for uncommitted changes"
             }
           },
-          "id": "event-005369"
+          "id": "event-005367"
         },
         {
-          "source_line": 5370,
+          "source_line": 5368,
           "timestamp": "2026-05-22T17:10:47.653601+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2976,10 +2935,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-005370"
+          "id": "event-005368"
         },
         {
-          "source_line": 5371,
+          "source_line": 5369,
           "timestamp": "2026-05-22T17:11:01.877500+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3000,10 +2959,10 @@
               "preview": "False"
             }
           },
-          "id": "event-005371"
+          "id": "event-005369"
         },
         {
-          "source_line": 5372,
+          "source_line": 5370,
           "timestamp": "2026-05-22T17:11:07.351389+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3018,10 +2977,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 5473
           },
-          "id": "event-005372"
+          "id": "event-005370"
         },
         {
-          "source_line": 5373,
+          "source_line": 5371,
           "timestamp": "2026-05-22T17:11:24.154899+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3046,10 +3005,10 @@
               "mode_reason": "R19 action items 全部修复完毕，需验证 de-dup 数据修正和 framing 调整是否回到 3.5+。"
             }
           },
-          "id": "event-005373"
+          "id": "event-005371"
         },
         {
-          "source_line": 5374,
+          "source_line": 5372,
           "timestamp": "2026-05-22T17:11:28.876927+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3064,10 +3023,10 @@
             "tool": "mcp__agent-ml-research__submit_paper_to_review",
             "elapsed_ms": 4722
           },
-          "id": "event-005374"
+          "id": "event-005372"
         },
         {
-          "source_line": 5375,
+          "source_line": 5373,
           "timestamp": "2026-05-22T17:11:40.137573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3084,10 +3043,10 @@
               "text": "R19 全部 action items 处理完毕，R20 内审已提交（continue mode）。\n\n**本轮 5 commits 汇总：**\n\n| Commit | 修复内容 |\n|--------|---------|\n| `0575949` | De-dup 29.1%→19.7%, three→two convergence, ICC 术语修正 |\n| `406af3a` | meta-critique→orthogonal constructs, ruled out→no enrichment |\n| `a24199b` | Abstract: 5,227 is MMLU model count |\n| `77a4b2f` | Rank-bucket 6.3%→15.1%, singleton DEFF scope |\n| `225b4b2` | Semi-synthetic caveat, NUDIF caveat, ≥500 threshold, matching details, 2 new citations |\n\n等你审批 R20 review mode。"
             }
           },
-          "id": "event-005375"
+          "id": "event-005373"
         },
         {
-          "source_line": 5376,
+          "source_line": 5374,
           "timestamp": "2026-05-22T17:11:40.743112+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3102,10 +3061,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 605
           },
-          "id": "event-005376"
+          "id": "event-005374"
         },
         {
-          "source_line": 5377,
+          "source_line": 5375,
           "timestamp": "2026-05-22T17:11:50.606317+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3118,7 +3077,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-005377"
+          "id": "event-005375"
         }
       ]
     },
@@ -3126,7 +3085,7 @@
       "number": 409,
       "messages": [
         {
-          "source_line": 5378,
+          "source_line": 5376,
           "timestamp": "2026-05-22T17:14:15.353957+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3140,10 +3099,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-005378"
+          "id": "event-005376"
         },
         {
-          "source_line": 5379,
+          "source_line": 5377,
           "timestamp": "2026-05-22T17:14:40.018545+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3160,10 +3119,10 @@
               "text": "不是。说服力没有下降，反而更强了。\n\n**旧叙事（有缺陷）**：三方法收敛在 ~27-29%（DEFF 29.2%, de-dup 29.1%, bootstrap 26.7%）。看起来漂亮，但 de-dup 29.1% 有选择偏倚——reviewer 一复现就会发现不对，直接质疑所有数据的可信度。\n\n**新叙事（正确数据）**：\n1. **核心 claim 不变**：~27-29% 仍然成立，由两个真正独立的方法支撑（DEFF 29.2% + bootstrap 26.7%）\n2. **De-dup 提供了更强的额外证据**：不再强行凑一个收敛点，而是展示了一个完整的 K curve——在任意 K 值下，随机选哪些模型几乎不影响结果（SD < 1.5pp）。这直接证明 DIF 信号来自真实的 temporal shift，不是 family redundancy 制造的伪信号。这比单个点估计\"恰好=29.1%\"有说服力得多。\n3. **可复现性大幅提升**：reviewer 用随机选择得到 ~20% 时，与论文写的 19.7% 一致，且论文已解释为什么低于 31.3%（statistical power 不够）。不会再出现 credibility 危机。\n\n简单说：旧叙事是\"三个数字碰巧一样\"（其中一个还是假的），新叙事是\"两个独立方法 + 一条完整的 evidence curve\"。后者在学术上更站得住。"
             }
           },
-          "id": "event-005379"
+          "id": "event-005377"
         },
         {
-          "source_line": 5380,
+          "source_line": 5378,
           "timestamp": "2026-05-22T17:14:43.680841+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3178,7 +3137,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3662
           },
-          "id": "event-005380"
+          "id": "event-005378"
         }
       ]
     },
@@ -3186,7 +3145,7 @@
       "number": 410,
       "messages": [
         {
-          "source_line": 5381,
+          "source_line": 5379,
           "timestamp": "2026-05-22T17:18:44.865434+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3200,10 +3159,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-005381"
+          "id": "event-005379"
         },
         {
-          "source_line": 5382,
+          "source_line": 5380,
           "timestamp": "2026-05-22T17:19:22.052919+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3220,10 +3179,10 @@
               "text": "严格来说不是连续两轮——R17=3.0, R18=3.5, R19=3.0。但你的直觉是对的：**分数在 3.0-3.5 之间震荡，没有突破**。\n\n原因分两层：\n\n**表层原因（可修的）：每轮都在引入新 bug**\n- R17: 结构散乱 → R18 重组后升到 3.5\n- R19: 写入新数据时引入了 29.1% 不一致 + 没清理旧 framing → 跌回 3.0\n- 这类问题已经修了，不应再复发\n\n**深层原因（结构性的）：论文有两个贡献天花板**\n\n1. **方法论新颖性有限 (W-C3)**：MH-DIF 是 1988 年的标准方法，论文明确写 \"We do not modify the MH procedure\"。两位 Reviewer 共识：这是标准方法的大规模应用，不是方法创新。这个无法通过修改论文解决——它是贡献类型决定的天花板。\n\n2. **因果不可分 (W-C1)**：DIF 检测到 31% 的题目\"变了\"，但无法说清是污染、能力演化还是训练方法变化导致的。论文自己的证据 (ρ=-0.597) 更支持能力演化。这意味着即使 DIF 率很高，其操作意义（该怎么办）打了折扣。\n\n**这两个问题从 R10 就存在，历经 9 轮都没解决，因为它们不是写作问题，是贡献结构问题。**\n\n3.5 (Borderline Conference) 大概是这篇论文在当前贡献结构下的稳态上限。要突破到 4.0，需要的不是更好的写作，而是更强的实证贡献——比如一个因果分离实验（base model vs instruction-tuned 的 DIF 差异），或者基于 DIF 的实际 benchmark 改进效果。这些在 3 天内做不完。\n\n**我的判断**：修完 R19 的 bug 后应该稳在 3.5。以 3.5 提交 ARR，Findings 是有把握的，Conference 需要看 AC 和 reviewer 匹配。你怎么看？"
             }
           },
-          "id": "event-005382"
+          "id": "event-005380"
         },
         {
-          "source_line": 5383,
+          "source_line": 5381,
           "timestamp": "2026-05-22T17:19:25.466940+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3238,7 +3197,7 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3414
           },
-          "id": "event-005383"
+          "id": "event-005381"
         }
       ]
     },
@@ -3246,7 +3205,7 @@
       "number": 411,
       "messages": [
         {
-          "source_line": 5384,
+          "source_line": 5382,
           "timestamp": "2026-05-22T17:39:33.267445+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3260,10 +3219,10 @@
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
           },
-          "id": "event-005384"
+          "id": "event-005382"
         },
         {
-          "source_line": 5385,
+          "source_line": 5383,
           "timestamp": "2026-05-22T17:40:28.771911+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3280,10 +3239,10 @@
               "text": "**W-C3 方法论新颖性：补实验解决不了。** 这需要的是发明新方法（比如 LLM-specific 的 non-uniform DIF 检测器），不是跑更多实验。3 天内不现实。\n\n**W-C1 因果不可分：有一个实验可以部分解决，而且用现有数据就能做。**\n\n**实验：Base model vs Instruction-tuned model 的 DIF 分离**\n\nMETABENCH 里同时有 base 模型和对应的 instruct/chat 变体（如 Llama-3-8B vs Llama-3-8B-Instruct）。Instruction tuning 主要加 RLHF/DPO 对齐，**几乎不引入新知识**。\n\n- 分别计算：2023 base vs 2024 base 的 DIF，2023 instruct vs 2024 instruct 的 DIF\n- **如果两组 DIF pattern 相似** → 驱动因素在预训练阶段（contamination 或 capability evolution from scaling）\n- **如果 instruct 组 DIF 显著更高** → 训练方法学演化（RLHF 进步）是额外驱动因素\n- **如果 base 组 DIF 更高** → 预训练数据变化（更支持 contamination 假说）\n\n更进一步：对 DIF-C items 的 difficulty-direction gradient (ρ)，如果 base 和 instruct 的 ρ 方向/大小一致 → 不管是什么原因，效应发生在预训练层面而非对齐层面。\n\n**可行性**：CPU-only，用现有 response matrix，几小时完成。关键是 METABENCH 的 model metadata 是否标注了 base/instruct 类型——Agent 需要先确认。\n\n**对评分的影响**：这个实验不能完全\"解决\"因果问题（那需要 controlled pretraining，没人能做），但能**缩小因果解释空间**。如果做出来了，§5.1 的因果讨论就不只是排除论证，而是有正面的 decomposition 证据。这是 3.5→4.0 最有可能的提分点。\n\n要不要让 Agent 先查一下 METABENCH 有没有 base/instruct 标注？"
             }
           },
-          "id": "event-005385"
+          "id": "event-005383"
         },
         {
-          "source_line": 5386,
+          "source_line": 5384,
           "timestamp": "2026-05-22T17:40:32.652616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3298,10 +3257,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 3880
           },
-          "id": "event-005386"
+          "id": "event-005384"
         },
         {
-          "source_line": 5387,
+          "source_line": 5385,
           "timestamp": "2026-05-22T17:43:04.641976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3319,10 +3278,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-005387"
+          "id": "event-005385"
         },
         {
-          "source_line": 5388,
+          "source_line": 5386,
           "timestamp": "2026-05-22T17:43:05.129778+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3337,10 +3296,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 487
           },
-          "id": "event-005388"
+          "id": "event-005386"
         },
         {
-          "source_line": 5389,
+          "source_line": 5387,
           "timestamp": "2026-05-22T17:43:10.817442+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3358,10 +3317,10 @@
               "max_results": "4"
             }
           },
-          "id": "event-005389"
+          "id": "event-005387"
         },
         {
-          "source_line": 5390,
+          "source_line": 5388,
           "timestamp": "2026-05-22T17:43:10.817869+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3376,10 +3335,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-005390"
+          "id": "event-005388"
         },
         {
-          "source_line": 5391,
+          "source_line": 5389,
           "timestamp": "2026-05-22T17:43:14.388313+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3396,10 +3355,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005391"
+          "id": "event-005389"
         },
         {
-          "source_line": 5392,
+          "source_line": 5390,
           "timestamp": "2026-05-22T17:43:14.884235+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3416,10 +3375,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005392"
+          "id": "event-005390"
         },
         {
-          "source_line": 5393,
+          "source_line": 5391,
           "timestamp": "2026-05-22T17:43:15.377950+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3434,10 +3393,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 989
           },
-          "id": "event-005393"
+          "id": "event-005391"
         },
         {
-          "source_line": 5394,
+          "source_line": 5392,
           "timestamp": "2026-05-22T17:43:15.378312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3452,10 +3411,10 @@
             "tool": "mcp__agent-ml-research__get_project_status",
             "elapsed_ms": 494
           },
-          "id": "event-005394"
+          "id": "event-005392"
         },
         {
-          "source_line": 5395,
+          "source_line": 5393,
           "timestamp": "2026-05-22T17:43:34.728819+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3473,10 +3432,10 @@
               "project": "irt_equated_bench_regen"
             }
           },
-          "id": "event-005395"
+          "id": "event-005393"
         },
         {
-          "source_line": 5396,
+          "source_line": 5394,
           "timestamp": "2026-05-22T17:43:36.146505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3491,10 +3450,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_main_agent",
             "elapsed_ms": 1417
           },
-          "id": "event-005396"
+          "id": "event-005394"
         },
         {
-          "source_line": 5397,
+          "source_line": 5395,
           "timestamp": "2026-05-22T17:43:40.779675+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3511,10 +3470,10 @@
               "text": "已派 Agent 调研 METABENCH 是否有 base/instruct 标注。这是零成本的只读调研，结果出来后再决定是否做 base-vs-instruct DIF 分离实验。\n\n同时 R20 内审已提交（continue mode），等审稿结果回来。"
             }
           },
-          "id": "event-005397"
+          "id": "event-005395"
         },
         {
-          "source_line": 5398,
+          "source_line": 5396,
           "timestamp": "2026-05-22T17:43:41.381353+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3529,10 +3488,10 @@
             "tool": "mcp__agent-ml-research__director_reply_to_user",
             "elapsed_ms": 601
           },
-          "id": "event-005398"
+          "id": "event-005396"
         },
         {
-          "source_line": 5399,
+          "source_line": 5397,
           "timestamp": "2026-05-22T17:43:44.082432+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3545,7 +3504,7 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director"
           },
-          "id": "event-005399"
+          "id": "event-005397"
         }
       ]
     },
@@ -3553,7 +3512,7 @@
       "number": 412,
       "messages": [
         {
-          "source_line": 5400,
+          "source_line": 5398,
           "timestamp": "2026-05-22T17:43:46.565021+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3566,6 +3525,44 @@
           "metadata": {
             "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
             "source": "feishu:oc_25ed8e3ecef6fc922cb497fae9f34627"
+          },
+          "id": "event-005398"
+        },
+        {
+          "source_line": 5399,
+          "timestamp": "2026-05-22T17:43:58.746944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "irt_equated_bench_regen"
+            }
+          },
+          "id": "event-005399"
+        },
+        {
+          "source_line": 5400,
+          "timestamp": "2026-05-22T17:43:59.245690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 调研任务（只读，不需要 GPU）：\\\\n\\\\n检查 METABENCH 数据集中是否有 base model vs instruct/chat model 的标注或元数据。\\\\n\\\\n目标：我们想做一个 base-vs-inst\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":3810}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_25ed8e3ecef6fc922cb497fae9f34627:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 498
           },
           "id": "event-005400"
         }

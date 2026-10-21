@@ -4,347 +4,11 @@
 
 [← Part 1](part-001.md) · [Transcript overview](../reviewer-coordination-20260515-094149.md) · [Structured JSON](../../../sessions/cf/cfcc6fec13375ea95a7a.json)
 
-## Round 32
-
-### Tool call
-
-_source line 628 · 2026-05-15T09:03:59.352029+00:00_
-
-called Glob
-
-<details open><summary>🔧 Tool call — Glob</summary>
-
-```json
-{
-  "pattern": "**/worker_analysis_w2_rectangularity*result*.json",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Glob",
-  "tool_args": {
-    "pattern": "**/worker_analysis_w2_rectangularity*result*.json",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 629 · 2026-05-15T09:03:59.404911+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_w2_rectangularity_20260515T085632_result.json
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Glob",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 630 · 2026-05-15T09:04:07.744035+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_w2_rectangularity_20260515T085632_result.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_w2_rectangularity_20260515T085632_result.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 631 · 2026-05-15T09:04:07.794965+00:00_
-
-1	{
-2	  "raw": "报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md`。\n\n**核心数据:**\n\n| 数据集 | Relations | Rectangular | head-only over-perm | indep dom/range over-perm |\n|---|---:|---:|---:|---:|\n| SciERC | 7 | 0/7 (0.0%) | 1.50× | 1.50× |\n| DocRED | 96 | 23/96 (24.0%) | **3.46×** | 1.58× |\n\n**代码逻辑确认:** `ontology_compiler.py:38` 的 `valid_tail_types_for_head(head_type)` 在 `type_mask_processor.py:323` 被调用。head 端独立检查 `dom(r)`，tail 端在 head 已确定后条件检查 σ(r) 切片 — 最终输出 pair 必然 ∈ σ(r)（pair-based）。\n\n**论文修改方向:** §3 应改为 σ(r) ⊆ T × T 的 pair-based 表述，并加入 rectangularity 表。SciERC 100% / DocRED 76% 的 schema 非 rectangular，head-only 假设在 DocRED 上多放过 3.46× 非法 pair，是 reviewer 提出的代码-论文差距的合理性根据。"
-3	}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 632 · 2026-05-15T09:04:10.960734+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w2_rectangularity_report.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 633 · 2026-05-15T09:04:10.961499+00:00_
-
-1	# W2 Rectangularity Verification — Quantitative Evidence for Pair-Based Constraint Enforcement
-2	
-3	**生成日期:** 2026-05-15
-4	**目的:** Reviewer 指出代码做了 pair-based enforcement，但论文 §3 描述的是 independent dom/range。本报告量化两者差距，支持论文修改。
-5	
-6	---
-7	
-8	## 1. Code Logic Confirmation
-9	
-10	**Pair-based check 已在代码中实现，论文描述偏宽松。**
-11	
-12	### head_type masking (`type_mask_processor.py` `_mask_head_type`)
-13	```python
-14	allowed_dr = constraint.valid_head_types() if constraint else None
-15	```
-16	仅看 `dom(r)`，与 tail 无关 → **independent check** on head side.
-17	
-18	### tail_type masking (`type_mask_processor.py:323` `_mask_tail_type`)
-19	```python
-20	if head_type is not None:
-21	    allowed_dr = constraint.valid_tail_types_for_head(head_type)
-22	else:
-23	    allowed_dr = constraint.valid_tail_types()
-24	```
-25	其中 `valid_tail_types_for_head(head_type)` 在 `ontology_compiler.py:38` 定义为：
-26	```python
-27	def valid_tail_types_for_head(self, head_type: str) -> set[str]:
-28	    return {t for h, t in self.valid_pairs if h == head_type}
-29	```
-30	即：在 head_type 已确定的条件下，仅允许 `σ(r)` 中以该 head_type 为头的 valid tail types。
-31	
-32	### 结论
-33	- Decoding 顺序：`head_type` → `tail_type`。
-34	- head 端独立检查 `h ∈ dom(r)`；tail 端条件检查 `t ∈ {t' : (h, t') ∈ σ(r)}`。
-35	- **最终生成的 pair `(h, t)` 必然 ∈ σ(r)** —— 这就是 pair-based enforcement，比论文 §3 描述的 `(h ∈ dom(r)) ∧ (t ∈ range(r))` 更严格。
-36	
-37	---
-38	
-39	## 2. Rectangularity Definition
-40	
-41	对每个 relation `r`：
-42	- `σ(r)` = 实际 valid (head, tail) pairs 集合
-43	- `dom(r) = {h : ∃t, (h,t) ∈ σ(r)}`
-44	- `range(r) = {t : ∃h, (h,t) ∈ σ(r)}`
-45	- **Rectangular** iff `|σ(r)| = |dom(r)| × |range(r)|`，即 `σ(r) = dom(r) × range(r)`。
-46	- **Gap** = `|dom(r)| × |range(r)| - |σ(r)|`（若假定 rectangular，会被错误允许的 pair 数量）
-47	
-48	**Head-only over-permissiveness**：若 §3 表述被字面执行（仅检查 `h ∈ dom(r)`，tail 不约束），允许的 pair 数 = `|dom(r)| × |T|`，其中 `|T|` = 所有 entity types。
-49	
-50	---
-51	
-52	## 3. SciERC Results
-53	
-54	- entity types: 6, relations: 7
-55	- **rectangular: 0/7 (0.0%)**
-56	- non-rect 平均 gap: 12.00
-57	- total |σ
-…[truncated 10406 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 634 · 2026-05-15T09:04:57.499941+00:00_
-
-called mcp__agent-ml-research__reviewer_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
-
-```json
-{
-  "text": "[severity: info] W2 Rectangularity 报告审查 — PASS，数据扎实，是 rebuttal 最强项之一\n\n**报告质量**: 优秀。代码逻辑确认与我的独立分析完全一致，量化数据可直接用于 rebuttal。\n\n**核心数据验证** ✅：\n- SciERC: 0/7 rectangular — 与我之前的独立分析一致\n- DocRED: 23/96 (24%) rectangular — 新数据，rectangular 关系均为小型关系 (|σ|≤5)\n- 三种约束模式的 over-permissiveness 量化清晰：pair-based (代码实际) < independent dom/range (§3 描述) < head-only\n\n**代码逻辑确认** ✅：\n- `valid_tail_types_for_head` (ontology_compiler.py:38) 在 type_mask_processor.py:323 被调用\n- 最终输出 pair 必然 ∈ σ(r) — pair-based enforcement 已实现\n\n**rebuttal 策略评估**：\nWorker 建议的 framing 非常好——将代码-论文差距定性为 \"implementation is stricter than described\"（§3 描述偏宽松，代码实际更严格）。这不是承认错误，而是展示方法的额外严谨性。Reviewer W2 的担忧（\"over-permissive enforcement\"）恰好被实际代码驳回。\n\n**小瑕疵**（不影响使用）：\n报告 §3 全局 ratio (1.50×) 与 §6 表格 per-relation mean (1.57×) 用了不同聚合方式，在 rebuttal 中建议统一用全局 ratio（sum(|σ|)/sum(dom×range)）更直观。\n\n**建议**: 这是 rebuttal 中最容易得分的项——0 GPU 成本、代码已正确、只需修改论文 §3 表述 + 加一个 rectangularity 小表。建议优先处理。\n\n报告路径: `artifacts/rebuttal/w2_rectangularity_report.md`",
-  "project": "schema_semantic_constrained_ie"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "tool_args": {
-    "text": "[severity: info] W2 Rectangularity 报告审查 — PASS，数据扎实，是 rebuttal 最强项之一\n\n**报告质量**: 优秀。代码逻辑确认与我的独立分析完全一致，量化数据可直接用于 rebuttal。\n\n**核心数据验证** ✅：\n- SciERC: 0/7 rectangular — 与我之前的独立分析一致\n- DocRED: 23/96 (24%) rectangular — 新数据，rectangular 关系均为小型关系 (|σ|≤5)\n- 三种约束模式的 over-permissiveness 量化清晰：pair-based (代码实际) < independent dom/range (§3 描述) < head-only\n\n**代码逻辑确认** ✅：\n- `valid_tail_types_for_head` (ontology_compiler.py:38) 在 type_mask_processor.py:323 被调用\n- 最终输出 pair 必然 ∈ σ(r) — pair-based enforcement 已实现\n\n**rebuttal 策略评估**：\nWorker 建议的 framing 非常好——将代码-论文差距定性为 \"implementation is stricter than described\"（§3 描述偏宽松，代码实际更严格）。这不是承认错误，而是展示方法的额外严谨性。Reviewer W2 的担忧（\"over-permissive enforcement\"）恰好被实际代码驳回。\n\n**小瑕疵**（不影响使用）：\n报告 §3 全局 ratio (1.50×) 与 §6 表格 per-relation mean (1.57×) 用了不同聚合方式，在 rebuttal 中建议统一用全局 ratio（sum(|σ|)/sum(dom×range)）更直观。\n\n**建议**: 这是 rebuttal 中最容易得分的项——0 GPU 成本、代码已正确、只需修改论文 §3 表述 + 加一个 rectangularity 小表。建议优先处理。\n\n报告路径: `artifacts/rebuttal/w2_rectangularity_report.md`",
-    "project": "schema_semantic_constrained_ie"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 635 · 2026-05-15T09:05:01.622035+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
-  "elapsed_ms": 4122
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 636 · 2026-05-15T09:05:08.777407+00:00_
-
-报告非常扎实，与我之前独立分析完全吻合。数据量化了 over-permissiveness，为 rebuttal 提供了强力证据。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer"
-}
-```
-
-</details>
-
----
-
-
 ## Round 33
 
-## Round 33
-
-9 recorded events
-
-
-### User
-
-_source line 637 · 2026-05-15T09:05:23.539656+00:00_
-
-[系统通知 — worker_done:worker_analysis_w4_table_inconsistency_20260515T085646]:
-Worker worker_analysis_w4_table_inconsistency_20260515T085646 已完成（status=done），请审查 Agent 的处理结果。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "source": "worker_done:worker_analysis_w4_table_inconsistency_20260515t085646"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 638 · 2026-05-15T09:05:32.022971+00:00_
+_source line 630 · 2026-05-15T09:05:32.022971+00:00_
 
 called Glob
 
@@ -380,7 +44,7 @@ called Glob
 
 ### Tool result
 
-_source line 639 · 2026-05-15T09:05:32.123945+00:00_
+_source line 631 · 2026-05-15T09:05:32.123945+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_w4_table_inconsistency_20260515T085646_result.json
 
@@ -402,7 +66,7 @@ _source line 639 · 2026-05-15T09:05:32.123945+00:00_
 
 ### Tool call
 
-_source line 640 · 2026-05-15T09:05:37.707667+00:00_
+_source line 632 · 2026-05-15T09:05:37.707667+00:00_
 
 called Read
 
@@ -436,7 +100,7 @@ called Read
 
 ### Tool result
 
-_source line 641 · 2026-05-15T09:05:37.908937+00:00_
+_source line 633 · 2026-05-15T09:05:37.908937+00:00_
 
 1	{
 2	  "raw": "报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md`。\n\n**核心结论**：\n1. **Prompt 一致** — `run_extraction_docred.py:91` 是项目唯一的 prompt 构造函数，Phase 0/Phase 2 unconstrained 都调用 `schema_informed=False` 分支。\n2. **当前 jsonl 唯一** — 只有一个 `docred_unconstrained.jsonl`（2026-05-14 21:09），所有 4 个 violation report 都基于它（相同 998 docs / 17497 triples / 20171 entities）。\n3. **同一 jsonl 上 v1 vs v2**：DR=18.46% 和 RV=29.66% **完全相同**，只有 ET 不同（v1: 8.18%，v2: 2.48%）。\n4. **Table 1 数字（18.7 / 28.9 / 7.5）在当前 outputs 找不到对应文件** — 来自更早一版被覆盖的 Phase 0 推理 + v1 checker。Table 3（18.46 / 29.66 / 2.48）来自当前 jsonl + v2 checker。\n\n**推荐方案 B**：用 v2 数据替换 Table 1 DocRED 行（18.5 / 29.7 / 2.5 / 0.1），与 abstract/conclusion/Table 3 统一。Schema-informed 行建议用 v2 checker 对 `raw_outputs_docred_schema.jsonl` 重评一次。\n\n报告含 9 处需修订位置清单 + 现成的 reviewer 答复。"
@@ -460,116 +124,7 @@ _source line 641 · 2026-05-15T09:05:37.908937+00:00_
 
 ### Tool call
 
-_source line 642 · 2026-05-15T09:05:40.922163+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w4_table_inconsistency_report.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 643 · 2026-05-15T09:05:40.972959+00:00_
-
-1	# W4: Table 1 vs Table 3 DocRED Unconstrained 数据不一致 — 根因报告
-2	
-3	**调研日期**: 2026-05-15
-4	**服务器**: westd-16980
-5	**项目代码**: `/root/schema_semantic_constrained_ie/`
-6	
-7	---
-8	
-9	## 1. 审稿人观察的数字差异
-10	
-11	| 表 | 章节 | DR | RV | ET | CF |
-12	|---|---|---|---|---|---|
-13	| Table 1 (`tab:prompt_comparison`) | §5.1 / `section3_violation_landscape.tex` | **18.7** | **28.9** | **7.5** | 0.1 |
-14	| Table 3 (`tab:cross-model`) | §5.2 / `section5_crossmodel_draft.tex` | **18.46** | **29.66** | **2.48** | 0.10 |
-15	
-16	两个表都标注为同一实验 (`phase0_docred_unconstrained` ↔ `phase2_docred_unconstrained`)，使用同一模型 (Qwen3-8B)。
-17	
-18	---
-19	
-20	## 2. 关键发现
-21	
-22	### 2.1 Prompt 完全一致 ✅
-23	
-24	`run_extraction_docred.py:91 build_prompt(document_text, relation_list_str, schema_informed=False)` 是项目里唯一的 prompt 构造函数。Phase 0 unconstrained 与 Phase 2 unconstrained **调用的是同一个函数 + 同一个 `schema_informed=False` 参数**，没有任何 prompt 差异。所以差异不来自 prompt。
-25	
-26	### 2.2 输入 JSONL 完全一致 ✅
-27	
-28	服务器上当前只有 **一个** DocRED unconstrained 推理输出文件：
-29	
-30	```
-31	/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl
-32	  size = 10,503,924 bytes
-33	  mtime = 2026-05-14 21:09:47
-34	  lines = 998 docs
-35	```
-36	
-37	所有 4 个相关的 violation report 都基于这同一个文件，可由共同字段验证：
-38	- `total_documents=998, documents_checked=986, parse_failures=12`
-39	- `total_triples_extracted=17497, total_entities_extracted=20171`
-40	- 都报告 `domain_range_violations=3230`, `relation_vocabulary_violations=5189`
-41	
-42	所以差异 **不来自不同的推理输出**。
-43	
-44	### 2.3 差异完全来自 checker 版本 ✅
-45	
-46	`violation_checker_docred.py` 有两个版本：
-47	
-48	| 版本 | 行 | ET 计数逻辑 | 别名归一 |
-49	|---|---|---|---|
-50	| **v1** (`.bak` / `.bak2`) | 99-135 | triple-count: 每个 entity 在 `entities` 列表中算一次，在 relation 的 head 中算一次，tail 中算一次 | 只有 `.upper()` |
-51	| **v2** (当前 `violation_checker_docred.py`) | 109-148 | unique-count: 用 `(text.lower().strip(), normalized_type)` 去重，每个 unique entity 只算一次违规 | `ENTITY_TYPE_ALIASES` 映射 `PERSON→PER, ORGANIZATION→ORG, ...` |
-52	
-53	注意：v2 的 docstring 显式说明了「`v2: ET violation
-…[truncated 5984 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_08c152bc06b6b60d10dd15b4d91ab1f1:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 644 · 2026-05-15T09:06:09.060134+00:00_
+_source line 634 · 2026-05-15T09:06:09.060134+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -605,7 +160,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 645 · 2026-05-15T09:06:12.978887+00:00_
+_source line 635 · 2026-05-15T09:06:12.978887+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -634,7 +189,7 @@ _source line 645 · 2026-05-15T09:06:12.978887+00:00_
 
 ### User
 
-_source line 646 · 2026-05-15T09:14:32.454999+00:00_
+_source line 636 · 2026-05-15T09:14:32.454999+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Round 1 审稿应对：5 项 resolved，Paper Agent 派出 8 项写作修复，W1 CF fallback 排队），请审查研究方向和计划的合理性。
@@ -656,7 +211,7 @@ _source line 646 · 2026-05-15T09:14:32.454999+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-15T09:14:39.075840+00:00_
+_source line 637 · 2026-05-15T09:14:39.075840+00:00_
 
 called ToolSearch
 
@@ -692,7 +247,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 648 · 2026-05-15T09:14:39.176833+00:00_
+_source line 638 · 2026-05-15T09:14:39.176833+00:00_
 
 
 
@@ -714,7 +269,7 @@ _source line 648 · 2026-05-15T09:14:39.176833+00:00_
 
 ### Tool call
 
-_source line 649 · 2026-05-15T09:14:43.797933+00:00_
+_source line 639 · 2026-05-15T09:14:43.797933+00:00_
 
 called mcp__agent-ml-research__read_roadmap
 
@@ -748,7 +303,7 @@ called mcp__agent-ml-research__read_roadmap
 
 ### Tool result
 
-_source line 650 · 2026-05-15T09:14:43.798620+00:00_
+_source line 640 · 2026-05-15T09:14:43.798620+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 09:14 UTC | 更新原因: Round 1 审稿应对：5 项 resolved，Paper Agent 派出 8 项写作修复，W1 CF fallback 排队\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Round 1 审稿应对（Weak Reject → 目标 Borderline Accept+）\\n- **审稿结果**: 4 Must-Fix (W1-W4), 5 Should-Fix (W5-W9), 5 Minor (W10-W14), 2 Questions (Q7-Q8)\\n- **已 Resolved (5/16)**: W7 title, W8 novelty, W13 abstract, W14 orphan bib, §7 data error\\n- **分析完成 (5/5)**: W2 rectangularity, W3/W6 runtime, W4 table root cause, W9 tokenizer, Q7 CF distribution — 全部 Reviewer PASS\\n- **Paper Agent**: 已派出处理 8 项写作修复（W2 §3 重写, runtime 表, Limitations, prompt template 等）\\n- **W1 CF fallback**: urgent 指令已排队给 Agent，实现 registry-consistent fallback + ablation\\n- **P1 max_tokens 实验**: 两张 GPU 运行中\\n\\n## Round 1 Issue Tracker\\n| ID | Severity | Status | 简述 |\\n|----|----------|--------|------|\\n| W1 | critical | **pending** | CF fallback 实现 + ablation (~12 GPU-hrs) |\\n| W2 | critical | **in_progress** | §3 pair-based 重写 (Paper Agent) |\\n| W3 | critical | **in_progress** | Runtime 表 (Paper Agent, 数据已提取) |\\n| W4 | critical | **in_progress** | Table 1 统一 v2 数据 (Agent re-eval schema-informed) |\\n| W5 | warning | **in_progress** | Limitations: zero-shot (Paper Agent) |\\n| W6 | warning | **in_progress** | 合并到 W3 |\\n| W7 | warning | ✅ resolved | Title → Type-Constrained |\\n| W8 | warning | ✅ resolved | Contribution #2 narrowed |\\n| W9 | warning | **in_progress** | Limitations: single-token (Paper Agent) |\\n| W10 | info | **in_progress** | Prompt template appendix (Paper Agent) |\\n| W11 | info | **in_progress** | DocRED dev set footnote (Paper Agent) |\\n| W12 | info | 
 …[truncated 3007 chars]
@@ -771,7 +326,7 @@ _source line 650 · 2026-05-15T09:14:43.798620+00:00_
 
 ### Tool call
 
-_source line 651 · 2026-05-15T09:15:32.378156+00:00_
+_source line 641 · 2026-05-15T09:15:32.378156+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -807,7 +362,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 652 · 2026-05-15T09:15:37.007626+00:00_
+_source line 642 · 2026-05-15T09:15:37.007626+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -829,7 +384,7 @@ _source line 652 · 2026-05-15T09:15:37.007626+00:00_
 
 ### Assistant
 
-_source line 653 · 2026-05-15T09:15:42.603573+00:00_
+_source line 643 · 2026-05-15T09:15:42.603573+00:00_
 
 ROADMAP 结构清晰，让我核实关键数字和时间线。
 
@@ -856,7 +411,7 @@ ROADMAP 结构清晰，让我核实关键数字和时间线。
 
 ### User
 
-_source line 654 · 2026-05-15T09:38:55.037542+00:00_
+_source line 644 · 2026-05-15T09:38:55.037542+00:00_
 
 [系统通知 — worker_done:worker_eval_w4_schema_v2_recheck_20260515T091628]:
 Worker worker_eval_w4_schema_v2_recheck_20260515T091628 已完成（status=done），请审查 Agent 的处理结果。
@@ -878,7 +433,7 @@ Worker worker_eval_w4_schema_v2_recheck_20260515T091628 已完成（status=done�
 
 ### Tool call
 
-_source line 655 · 2026-05-15T09:39:29.531635+00:00_
+_source line 645 · 2026-05-15T09:39:29.531635+00:00_
 
 called Glob
 
@@ -914,7 +469,7 @@ called Glob
 
 ### Tool result
 
-_source line 656 · 2026-05-15T09:39:29.582417+00:00_
+_source line 646 · 2026-05-15T09:39:29.582417+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_eval_w4_schema_v2_recheck_20260515T091628_result.json
 
@@ -936,7 +491,7 @@ _source line 656 · 2026-05-15T09:39:29.582417+00:00_
 
 ### Tool call
 
-_source line 657 · 2026-05-15T09:39:40.947003+00:00_
+_source line 647 · 2026-05-15T09:39:40.947003+00:00_
 
 called Read
 
@@ -970,7 +525,7 @@ called Read
 
 ### Tool result
 
-_source line 658 · 2026-05-15T09:39:40.947478+00:00_
+_source line 648 · 2026-05-15T09:39:40.947478+00:00_
 
 1	{
 2	  "raw": "结果已出。v2 checker 版本为 `fixed_20260514_v2 (strip + alias + unique_et)`，核心变化是 ET 计算方式（strip 空格 + alias 归一化 + unique entity 去重）。\n\n```\nSchema-informed DocRED v2 checker results:\n- ET: 0.19% (v1: 0.61%)  ← 降了 3x，v2 alias归一化消除了误报\n- RV: 18.41% (v1: 18.41%)  ← 不变\n- DR: 12.84% (v1: 12.84%)  ← 不变\n- CF: 0.15% (v1: 0.15%)  ← 不变\n- docs_checked: 943, parse_failures: 55\n- total_triples: 16782, total_entities: 19524\n- total_violation_rate: 14.63% (v1: 14.85%)\n```\n\n**唯一变化在 ET**：v1 报了 119 个 ET violations (0.61%)，v2 降到 38 个 (0.19%)。原因是 v2 checker 做了 entity type alias 归一化（PERSON→PER, ORGANIZATION→ORG 等），81 个原本判为违规的实际上是合法别名。\n\nRV、DR、CF 三个指标完全不变——这符合预期，v2 只改了 ET 检测逻辑。\n\nF1 指标不在 violation checker 输出中（需要单独的 F1 evaluation 脚本）。"
@@ -994,7 +549,7 @@ _source line 658 · 2026-05-15T09:39:40.947478+00:00_
 
 ### Tool call
 
-_source line 659 · 2026-05-15T09:39:53.756864+00:00_
+_source line 649 · 2026-05-15T09:39:53.756864+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -1030,7 +585,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 660 · 2026-05-15T09:39:58.543968+00:00_
+_source line 650 · 2026-05-15T09:39:58.543968+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -1059,7 +614,7 @@ _source line 660 · 2026-05-15T09:39:58.543968+00:00_
 
 ### User
 
-_source line 661 · 2026-05-15T09:40:19.330084+00:00_
+_source line 651 · 2026-05-15T09:40:19.330084+00:00_
 
 [系统通知 — worker_done:worker_check_p1_maxtoken_progress_20260515T093937]:
 Worker worker_check_p1_maxtoken_progress_20260515T093937 已完成（status=done），请审查 Agent 的处理结果。
@@ -1081,7 +636,7 @@ Worker worker_check_p1_maxtoken_progress_20260515T093937 已完成（status=done
 
 ### Tool call
 
-_source line 662 · 2026-05-15T09:40:27.018839+00:00_
+_source line 652 · 2026-05-15T09:40:27.018839+00:00_
 
 called Read
 
@@ -1115,7 +670,7 @@ called Read
 
 ### Tool result
 
-_source line 663 · 2026-05-15T09:40:27.071272+00:00_
+_source line 653 · 2026-05-15T09:40:27.071272+00:00_
 
 1	{
 2	  "raw": "## 实验进度报告\n\n**GPU 状态**：cuda:0 (18GB/97GB, 89% util)、cuda:1 (18GB/97GB, 84% util) — 均健康运行\n\n---\n\n**1. `llama_docred_unconstrained_mt6144`** (PID 246947, cuda:0)\n- 存活：✅ 已运行 1h 20m 35s\n- 进度：**220/998 docs (22.0%)**\n- 速率：~22 sec/doc\n- 预估剩余：~4h 45min（约 2026-05-15 ~6h 后完成）\n- 日志：正常生成中（重复 pad_token_id 提示，属正常）\n\n**2. `llama_docred_full_s1_mt6144`** (PID 247487, cuda:1)\n- 存活：✅ 已运行 1h 18m 00s\n- 进度：**192/998 docs (19.2%)**\n- 速率：~24.4 sec/doc\n- 预估剩余：~5h 28min\n- 日志：`Grammar-first fallback` 已触发 61 次（semantic mask 会清空 grammar-valid tokens 时回退到 grammar-only）— 符合 full_s1 模式预期\n\n两个实验均健康，无错误。"
@@ -1139,7 +694,7 @@ _source line 663 · 2026-05-15T09:40:27.071272+00:00_
 
 ### Assistant
 
-_source line 664 · 2026-05-15T09:40:37.424211+00:00_
+_source line 654 · 2026-05-15T09:40:37.424211+00:00_
 
 P1 进度正常，两个实验均健康运行，无需干预。预计 ~5-6 小时后完成，届时 W1 ablation 可开始。
 
@@ -1166,7 +721,7 @@ P1 进度正常，两个实验均健康运行，无需干预。预计 ~5-6 小�
 
 ### User
 
-_source line 665 · 2026-05-15T09:40:50.985488+00:00_
+_source line 655 · 2026-05-15T09:40:50.985488+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -1248,7 +803,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 666 · 2026-05-15T09:41:49.543967+00:00_
+_source line 656 · 2026-05-15T09:41:49.543967+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

@@ -1,4 +1,4 @@
-# CWM vs CLS Training Convergence — Rebuttal Material
+# CWM vs CLS Training Convergence
 
 Source: trainer_state.json (HuggingFace Trainer log_history) at end of epoch 3 for each run.
 All runs use identical config: LoRA rank=16, alpha=32, lr=2e-4, epochs=3, bs=2, ga=16 (effective 32), max_seq_length=2048, seed varies by run.
@@ -25,16 +25,6 @@ CLS 8B repo-level (eval every 200 steps):
 - Plateau / bounce range 0.25–0.41 since step 600
 - Train_loss noisy 0.17–0.46, no clear monotonic trend
 - **Plateau reached by epoch 0.27**
-
-## Rebuttal claims
-
-1. **Identical training pipeline.** CWM and CLS use the same script (`train_cwm_baseline.py` / `train_repo_verifier.py`), same hyperparameters, same data slicing per task type. No fairness gap in training budget.
-
-2. **CWM is NOT undertrained.** At every epoch and every model size, CWM eval_loss is LOWER than the matched CLS eval_loss (function-level: CWM 0.0589 < CLS 0.0823 at 4B; CWM 0.0512 < CLS 0.0723 at 8B). The CWM training objective is easier to fit, not harder.
-
-3. **Both runs over-fit before epoch 3.** Val-best checkpoint for function-level is at epoch 2 (CWM 4B/8B, CLS 4B) or epoch 1 (CLS 8B). For repo-level CWM, val-best is at epoch 0.18 — well before any "more training would help" argument applies. We always evaluate using the val-best checkpoint via Trainer's `load_best_model_at_end=True` + `metric_for_best_model=eval_loss`, so the eventual over-fit does not affect reported numbers.
-
-4. **Rank-16 capacity is sufficient.** Final train_loss (CWM 4B = 0.0137, ep 2.93) shows the LoRA adapter is already fitting the training data tightly — further capacity (rank=32) would only enable more memorization, not more generalization. We are still running the rank=32 ablation (`cwm-rank32-ablation`, eta ~1h20m on cuda:0 westd, log: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log) to directly address this reviewer point.
 
 ## Currently running rank=32 ablation
 

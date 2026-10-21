@@ -110,7 +110,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code qwen budget sweep | 1 | 0 | [Read transcript](code-qwen-budget-sweep.md) | [JSON](../../sessions/ad/ad423ce46a58f4a15570.json) |
 | code qwen hetero tau | 1 | 0 | [Read transcript](code-qwen-hetero-tau.md) | [JSON](../../sessions/fc/fc994adb0b5d87705449.json) |
 | code r19 paper fixes | 1 | 0 | [Read transcript](code-r19-paper-fixes.md) | [JSON](../../sessions/9b/9bf311745143876f741e.json) |
-| code rebuttal talking points | 1 | 0 | [Read transcript](code-rebuttal-talking-points.md) | [JSON](../../sessions/d3/d30440cb9860dbfbbd17.json) |
 | code roc figure update | 1 | 0 | [Read transcript](code-roc-figure-update.md) | [JSON](../../sessions/d5/d51f10533566dd119f4d.json) |
 | code seeds 100 supplement | 1 | 0 | [Read transcript](code-seeds-100-supplement.md) | [JSON](../../sessions/be/be50212e9b26191105d8.json) |
 | code sf7 timing benchmark | 1 | 0 | [Read transcript](code-sf7-timing-benchmark.md) | [JSON](../../sessions/25/259af6ee212c40f125c3.json) |
@@ -132,8 +131,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper appendix forward refs and tables | 1 | 0 | [Read transcript](paper-appendix-forward-refs-and-tables.md) | [JSON](../../sessions/5e/5efea3d6c4bb28aa31d1.json) |
 | paper exp041 appendix update | 1 | 0 | [Read transcript](paper-exp041-appendix-update.md) | [JSON](../../sessions/4f/4fd91d2b749c7c2ceefe.json) |
 | paper r20 fixes full | 1 | 0 | [Read transcript](paper-r20-fixes-full.md) | [JSON](../../sessions/e4/e43260576ae5a1b9ae39.json) |
-| paper rebuttal polish | 1 | 0 | [Read transcript](paper-rebuttal-polish.md) | [JSON](../../sessions/7b/7b2ce0a2e922ef5915fc.json) |
-| paper rebuttal talking points | 1 | 0 | [Read transcript](paper-rebuttal-talking-points.md) | [JSON](../../sessions/99/99da1ed9cc8e61e85fde.json) |
 | paper s5 s7 citations | 1 | 0 | [Read transcript](paper-s5-s7-citations.md) | [JSON](../../sessions/30/30d9dbabd859cd8a2c65.json) |
 | paper writing abstract | 1 | 0 | [Read transcript](paper-writing-abstract.md) | [JSON](../../sessions/c4/c4a0d09559b7e3408aba.json) |
 | paper writing conclusion | 1 | 0 | [Read transcript](paper-writing-conclusion.md) | [JSON](../../sessions/42/4256c8a2d73cdc011937.json) |

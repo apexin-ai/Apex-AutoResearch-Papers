@@ -1,17 +1,17 @@
 {
   "project": "nlp_variance_gtheory",
-  "code_count": 396,
+  "code_count": 395,
   "data_count": 519,
   "env_count": 4,
   "tex_count": 56,
   "bib_count": 10,
   "review_count": 11,
   "validation_count": 13,
-  "chat_count": 128,
-  "worker_count": 678,
-  "trace_count": 815,
-  "trace_bytes": 139772812,
-  "maintenance_count": 77,
+  "chat_count": 127,
+  "worker_count": 674,
+  "trace_count": 810,
+  "trace_bytes": 139030609,
+  "maintenance_count": 74,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -118,14 +118,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "128 conversations; 678 worker logs/results; 815 source files",
+      "evidence": "127 conversations; 674 worker logs/results; 810 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "396 code/configuration files; 4 environment manifests",
+      "evidence": "395 code/configuration files; 4 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
@@ -146,7 +146,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "77 project documentation files; 0 license files",
+      "evidence": "74 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

@@ -1,17 +1,17 @@
 {
   "project": "vla-ssd",
-  "code_count": 348,
+  "code_count": 346,
   "data_count": 1167,
   "env_count": 0,
   "tex_count": 50,
   "bib_count": 2,
   "review_count": 15,
   "validation_count": 32,
-  "chat_count": 326,
-  "worker_count": 1435,
-  "trace_count": 1850,
-  "trace_bytes": 313328089,
-  "maintenance_count": 122,
+  "chat_count": 324,
+  "worker_count": 1429,
+  "trace_count": 1842,
+  "trace_bytes": 311723845,
+  "maintenance_count": 112,
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 0,
@@ -179,14 +179,14 @@
     {
       "name": "Generation trace",
       "status": "Organized",
-      "evidence": "326 conversations; 1435 worker logs/results; 1850 source files",
+      "evidence": "324 conversations; 1429 worker logs/results; 1842 source files",
       "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
       "path": "04-generation-trace/"
     },
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "348 code/configuration files; 0 environment manifests",
+      "evidence": "346 code/configuration files; 0 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
@@ -207,7 +207,7 @@
     {
       "name": "Maintenance",
       "status": "Partial",
-      "evidence": "122 project documentation files; 0 license files",
+      "evidence": "112 project documentation files; 0 license files",
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }

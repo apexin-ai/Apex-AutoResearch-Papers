@@ -4,1154 +4,11 @@
 
 [← Part 4](part-004.md) · [Transcript overview](../coordination-coordination-20260528-213746.md) · [Structured JSON](../../../sessions/4c/4c335a7e4292b75384bd.json)
 
-## Round 35
-
-### Tool result
-
-_source line 2870 · 2026-05-28T15:48:32.810124+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260528_6cb409\", \"name\": \"paper_v25_float_layout_fixed\", \"type\": \"paper\", \"description\": \"v25: All main-body floats migrated to [t] placement + p2-p8 每页至少一张图/表约束修复。Table 2 moved to related_work.tex landing on p3; Figure 3 moved to section start landing on p5; Figure 8 (synthesis_panels) moved earlier landing on p8; enlargethispage on p4/p8 absorbing text overflow.\", \"path\": \"projects/vla-ssd/artifacts/_project/paper/paper_v25_float_layout_fixed.pdf\", \"url\": null, \"project\": \"vla-ssd\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-28T15:48:32.470013+00:00\", \"tags\": [\"paper\", \"layout\", \"v25\", \"float-placement\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "mcp__agent-ml-research__register_artifact",
-  "elapsed_ms": 302
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2871 · 2026-05-28T15:48:49.667830+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-```json
-{
-  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (排版任务)\n\n**v25 排版修复完成** — 所有 main-body floats 统一 `[t]` + p2-p8 每页至少一张图/表\n\n**修改摘要：**\n\n| 修改 | 文件 | 效果 |\n|------|------|------|\n| Table 2 从 method.tex 移至 related_work.tex（\"Concurrent work\"段前） | related_work.tex, method.tex | p3 获得 Table 2 |\n| Figure 3 从 §4.2 后移至 `\\section{Experiments}` 后 | experiments.tex | p5 获得 Figure 3+4 |\n| Figure 8 (synthesis_panels) 从 §4.6 文末移至 §4.5 前 | experiments.tex | p8 获得 Figure 7 (重编号) |\n| method.tex §3.2 各段加 `\\looseness=-1` + wrapfigure 缩窄至 0.42col | method.tex | 压缩 Method 文本 |\n| `\\enlargethispage{2\\baselineskip}` on p4 | method.tex | Method 文本不溢出至 p5 |\n| `\\enlargethispage{3\\baselineskip}` on p8 | discussion.tex | Conclusion 完整留在 p8 |\n\n**每页 float 审计：**\n- p2: Figure 1 + Table 1 ✓\n- p3: Table 2 ✓\n- p4: Wrapfigure 2 (RSA) ✓\n- p5: Figure 3 + Figure 4 ✓\n- p6: Figure 5 ✓\n- p7: Table 3 + Figure 6 ✓\n- p8: Figure 7 (synthesis) + Wrapfigure 8 (L1 attn) ✓\n\n**约束验证：**\n- ✅ 所有 main-body figure/table 均为 `[t]`（9 个 float，0 个违规）\n- ✅ 附录 float 保持 `[h]`（不受约束）\n- ✅ 主体 8 页，References 从 p9 开始\n- ✅ 无 >1/4 页空白\n- ✅ Figure 编号因移动自动重排（LaTeX \\ref 全部正确解析）\n- ⚠️ p4 和 p8 有 `Underfull \\vbox` 警告（badness ~7600-7900），来自 enlargethispage，视觉可接受\n\nArtifact: `art_20260528_6cb409`",
-  "project": "vla-ssd"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (排版任务)\n\n**v25 排版修复完成** — 所有 main-body floats 统一 `[t]` + p2-p8 每页至少一张图/表\n\n**修改摘要：**\n\n| 修改 | 文件 | 效果 |\n|------|------|------|\n| Table 2 从 method.tex 移至 related_work.tex（\"Concurrent work\"段前） | related_work.tex, method.tex | p3 获得 Table 2 |\n| Figure 3 从 §4.2 后移至 `\\section{Experiments}` 后 | experiments.tex | p5 获得 Figure 3+4 |\n| Figure 8 (synthesis_panels) 从 §4.6 文末移至 §4.5 前 | experiments.tex | p8 获得 Figure 7 (重编号) |\n| method.tex §3.2 各段加 `\\looseness=-1` + wrapfigure 缩窄至 0.42col | method.tex | 压缩 Method 文本 |\n| `\\enlargethispage{2\\baselineskip}` on p4 | method.tex | Method 文本不溢出至 p5 |\n| `\\enlargethispage{3\\baselineskip}` on p8 | discussion.tex | Conclusion 完整留在 p8 |\n\n**每页 float 审计：**\n- p2: Figure 1 + Table 1 ✓\n- p3: Table 2 ✓\n- p4: Wrapfigure 2 (RSA) ✓\n- p5: Figure 3 + Figure 4 ✓\n- p6: Figure 5 ✓\n- p7: Table 3 + Figure 6 ✓\n- p8: Figure 7 (synthesis) + Wrapfigure 8 (L1 attn) ✓\n\n**约束验证：**\n- ✅ 所有 main-body figure/table 均为 `[t]`（9 个 float，0 个违规）\n- ✅ 附录 float 保持 `[h]`（不受约束）\n- ✅ 主体 8 页，References 从 p9 开始\n- ✅ 无 >1/4 页空白\n- ✅ Figure 编号因移动自动重排（LaTeX \\ref 全部正确解析）\n- ⚠️ p4 和 p8 有 `Underfull \\vbox` 警告（badness ~7600-7900），来自 enlargethispage，视觉可接受\n\nArtifact: `art_20260528_6cb409`",
-    "project": "vla-ssd"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2872 · 2026-05-28T15:48:53.332878+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3665
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 2873 · 2026-05-28T15:48:56.709843+00:00_
-
-v25 排版修复完成。所有 main-body floats 已统一为 `[t]`，p2-p8 每页至少一张图/表，主体 8 页，Conclusion 完整在 p8。已向 Director 汇报。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
-}
-```
-
-</details>
-
----
-
-
-## Round 36
-
-## Round 36
-
-30 recorded events
-
-
-### User
-
-_source line 2874 · 2026-05-28T15:48:56.720174+00:00_
-
-[Director 指令] **你理解错了，重做。**
-
-用户的要求是正文所有 figure/table **只用 `[t]`**，不允许 `[htbp]`。当前正文中仍有 `[htbp]` 的 float，这不符合要求。
-
-操作：
-1. 在 introduction.tex / related_work.tex / method.tex / experiments.tex / discussion.tex 中，把所有 `\begin{figure}[htbp]`、`\begin{figure}[h]`、`\begin{figure}[!t]`、`\begin{table}[htbp]` 等统一改为 `[t]`
-2. 附录 appendix.tex 不改（可以用 `[h]`）
-3. wrapfigure 不受影响
-4. 编译验证，逐页报告所有 float 的位置
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2875 · 2026-05-28T15:49:07.240117+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && for f in introduction.tex related_work.tex method.tex experiments.tex discussion.tex; do echo \"=== $f ===\" && grep -n 'begin{figure}\\|begin{table}' \"$f\" 2>/dev/null || echo \"(no floats)\"; done",
-  "description": "Check all float specifiers in main body files"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && for f in introduction.tex related_work.tex method.tex experiments.tex discussion.tex; do echo \"=== $f ===\" && grep -n 'begin{figure}\\|begin{table}' \"$f\" 2>/dev/null || echo \"(no floats)\"; done",
-    "description": "Check all float specifiers in main body files"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2876 · 2026-05-28T15:49:07.391160+00:00_
-
-=== introduction.tex ===
-13:\begin{figure}[t]
-=== related_work.tex ===
-8:\begin{table}[t]
-37:\begin{table}[t]
-=== method.tex ===
-(no floats)
-=== experiments.tex ===
-4:\begin{figure}[t]
-32:\begin{figure}[t]
-54:\begin{figure}[t]
-68:\begin{table}[t]
-107:\begin{figure}[t]
-127:\begin{figure}[t]
-=== discussion.tex ===
-(no floats)
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2877 · 2026-05-28T15:49:16.636137+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && echo \"=== 所有正文 .tex 文件中的 figure/table 环境 ===\" && grep -rn 'begin{figure}\\|begin{table}' introduction.tex related_work.tex method.tex experiments.tex discussion.tex abstract.tex main.tex 2>/dev/null | grep -v '%' | grep -v appendix",
-  "description": "Thorough check of all float specifiers"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && echo \"=== 所有正文 .tex 文件中的 figure/table 环境 ===\" && grep -rn 'begin{figure}\\|begin{table}' introduction.tex related_work.tex method.tex experiments.tex discussion.tex abstract.tex main.tex 2>/dev/null | grep -v '%' | grep -v appendix",
-    "description": "Thorough check of all float specifiers"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2878 · 2026-05-28T15:49:16.789125+00:00_
-
-=== 所有正文 .tex 文件中的 figure/table 环境 ===
-introduction.tex:13:\begin{figure}[t]
-related_work.tex:8:\begin{table}[t]
-related_work.tex:37:\begin{table}[t]
-experiments.tex:4:\begin{figure}[t]
-experiments.tex:32:\begin{figure}[t]
-experiments.tex:54:\begin{figure}[t]
-experiments.tex:68:\begin{table}[t]
-experiments.tex:107:\begin{figure}[t]
-experiments.tex:127:\begin{figure}[t]
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "elapsed_ms": 152
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2879 · 2026-05-28T15:49:21.055743+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/main.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2880 · 2026-05-28T15:49:21.106532+00:00_
-
-1	\documentclass{article}
-2	
-3	\usepackage{corl_2026}
-4	
-5	\usepackage[utf8]{inputenc}
-6	\usepackage[T1]{fontenc}
-7	\usepackage{url}
-8	\usepackage{booktabs}
-9	\usepackage{amsmath}
-10	\usepackage{amsfonts}
-11	\usepackage{txfonts}
-12	\usepackage{courier}
-13	\usepackage{nicefrac}
-14	\usepackage[expansion=false]{microtype}
-15	\usepackage{graphicx}
-16	\usepackage{enumitem}
-17	\usepackage{wrapfig}
-18	\usepackage{placeins}
-19	
-20	\renewcommand{\arraystretch}{1.15}
-21	\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
-22	\setlength{\floatsep}{6pt plus 2pt minus 2pt}
-23	\setlength{\intextsep}{4pt plus 2pt minus 2pt}
-24	\setlength{\abovecaptionskip}{4pt}
-25	\setlength{\belowcaptionskip}{1pt}
-26	
-27	\title{Instruction Routing in Fine-Tuned Vision-Language-Action Models:\\ A Cross-Architecture Analysis}
-28	
-29	\author{Anonymous}
-30	
-31	\begin{document}
-32	
-33	\maketitle
-34	
-35	\begin{abstract}
-36	\input{abstract}
-37	\end{abstract}
-38	
-39	\keywords{Vision-Language-Action models, representational analysis, attention routing, fine-tuning}
-40	
-41	\input{introduction}
-42	\input{related_work}
-43	\input{method}
-44	\input{experiments}
-45	\input{discussion}
-46	
-47	\bibliography{references}
-48	
-49	\input{appendix}
-50	
-51	\end{document}
-52	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2881 · 2026-05-28T15:49:33.103644+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
-  "description": "Compile LaTeX",
-  "timeout": "120000"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
-    "description": "Compile LaTeX",
-    "timeout": "120000"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2882 · 2026-05-28T15:49:36.027570+00:00_
-
-ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (38 pages, 9800914 bytes).
-Transcript written on main.log.
-ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (38 pages, 9800914 bytes).
-Transcript written on main.log.
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "elapsed_ms": 2923
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2883 · 2026-05-28T15:49:40.042796+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && for p in $(seq 1 9); do pdftoppm -f $p -l $p -r 150 -png main.pdf /tmp/vla_v25_p${p}; done",
-  "description": "Render pages 1-9 as images"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper && for p in $(seq 1 9); do pdftoppm -f $p -l $p -r 150 -png main.pdf /tmp/vla_v25_p${p}; done",
-    "description": "Render pages 1-9 as images"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2884 · 2026-05-28T15:49:45.961736+00:00_
-
-Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Bash",
-  "elapsed_ms": 5918
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2885 · 2026-05-28T15:49:49.225046+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p1-01.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p1-01.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2886 · 2026-05-28T15:49:49.682948+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 455
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2887 · 2026-05-28T15:49:49.683468+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p2-02.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p2-02.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2888 · 2026-05-28T15:49:49.683719+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p3-03.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p3-03.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2889 · 2026-05-28T15:49:50.137199+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p4-04.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p4-04.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2890 · 2026-05-28T15:49:50.394690+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 711
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2891 · 2026-05-28T15:49:50.402010+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 718
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2892 · 2026-05-28T15:49:50.757119+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 619
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2893 · 2026-05-28T15:49:55.123946+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p5-05.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p5-05.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2894 · 2026-05-28T15:49:55.527397+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 403
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2895 · 2026-05-28T15:49:55.528152+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p6-06.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p6-06.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2896 · 2026-05-28T15:49:56.032754+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 504
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2897 · 2026-05-28T15:49:56.033212+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p7-07.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p7-07.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2898 · 2026-05-28T15:49:56.184113+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/tmp/vla_v25_p8-08.png"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/tmp/vla_v25_p8-08.png"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2899 · 2026-05-28T15:49:56.388160+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 354
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2900 · 2026-05-28T15:49:56.743256+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Read",
-  "elapsed_ms": 559
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2901 · 2026-05-28T15:50:28.471853+00:00_
-
-called mcp__agent-ml-research__main_agent_post_to_director
-
-<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
-
-````json
-{
-  "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (排版任务)\n\n**正文 float 指定符确认 — 全部已为 `[t]`，无 `[htbp]`/`[h]`/`[!t]` 遗留**\n\n```\nintroduction.tex:13  \\begin{figure}[t]     ← Figure 1\nrelated_work.tex:8   \\begin{table}[t]      ← Table 1\nrelated_work.tex:37  \\begin{table}[t]      ← Table 2\nexperiments.tex:4    \\begin{figure}[t]     ← Figure 3\nexperiments.tex:32   \\begin{figure}[t]     ← Figure 4\nexperiments.tex:54   \\begin{figure}[t]     ← Figure 5\nexperiments.tex:68   \\begin{table}[t]      ← Table 3\nexperiments.tex:107  \\begin{figure}[t]     ← Figure 6\nexperiments.tex:127  \\begin{figure}[t]     ← Figure 7 (synthesis_panels)\nmethod.tex / discussion.tex: 无 float 环境\nappendix.tex: 保持 [h]（不受约束）\nwrapfigure ×2: 不受 [t] 约束\n```\n\n**逐页 float 位置报告（视觉验证）：**\n\n| 页 | 位置 | Float | 来源 |\n|---|------|-------|------|\n| p1 | — | 无（标题/摘要页，豁免） | — |\n| p2 | 页顶 | **Figure 1** (overview) + **Table 1** (related comparison) | introduction.tex, related_work.tex |\n| p3 | 页顶 | **Table 2** (architectures) | related_work.tex |\n| p4 | 右下内联 | **Wrapfigure 2** (RSA per-layer, 0.42col) | method.tex (wrapfigure, 豁免) |\n| p5 | 页顶 | **Figure 3** (matrix heatmap) + **Figure 4** (action R² three-cond) | experiments.tex |\n| p6 | 页顶 | **Figure 5** (R² collapse curves) | experiments.tex |\n| p7 | 页顶 | **Table 3** (cross-arch matrix) + **Figure 6** (counterfactual bar) | experiments.tex |\n| p8 | 页顶 + 右侧内联 | **Figure 7** (synthesis panels, [t]) + **Wrapfigure 8** (L1 attention, 豁免) | experiments.tex |\n| p9 | — | References 起始（正文结束于 p8） | — |\n\n**约束全满足：**\n- ✅ 正文 9 个 float 全部 `[t]`，0 个违规\n- ✅ p2-p8 每页 ≥1 个 figure/table\n- ✅ 主体 8 页，References 从 p9 开始\n- ✅ 附录 float 保持 `[h]`\n- ✅ Wrapfigure ×2 不受 `[t]` 约束\n\nArtifact: `art_20260528_6cb409` (paper_v25_float_layout_fixed.pdf)",
-  "project": "vla-ssd"
-}
-````
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-````json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "tool_args": {
-    "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A (排版任务)\n\n**正文 float 指定符确认 — 全部已为 `[t]`，无 `[htbp]`/`[h]`/`[!t]` 遗留**\n\n```\nintroduction.tex:13  \\begin{figure}[t]     ← Figure 1\nrelated_work.tex:8   \\begin{table}[t]      ← Table 1\nrelated_work.tex:37  \\begin{table}[t]      ← Table 2\nexperiments.tex:4    \\begin{figure}[t]     ← Figure 3\nexperiments.tex:32   \\begin{figure}[t]     ← Figure 4\nexperiments.tex:54   \\begin{figure}[t]     ← Figure 5\nexperiments.tex:68   \\begin{table}[t]      ← Table 3\nexperiments.tex:107  \\begin{figure}[t]     ← Figure 6\nexperiments.tex:127  \\begin{figure}[t]     ← Figure 7 (synthesis_panels)\nmethod.tex / discussion.tex: 无 float 环境\nappendix.tex: 保持 [h]（不受约束）\nwrapfigure ×2: 不受 [t] 约束\n```\n\n**逐页 float 位置报告（视觉验证）：**\n\n| 页 | 位置 | Float | 来源 |\n|---|------|-------|------|\n| p1 | — | 无（标题/摘要页，豁免） | — |\n| p2 | 页顶 | **Figure 1** (overview) + **Table 1** (related comparison) | introduction.tex, related_work.tex |\n| p3 | 页顶 | **Table 2** (architectures) | related_work.tex |\n| p4 | 右下内联 | **Wrapfigure 2** (RSA per-layer, 0.42col) | method.tex (wrapfigure, 豁免) |\n| p5 | 页顶 | **Figure 3** (matrix heatmap) + **Figure 4** (action R² three-cond) | experiments.tex |\n| p6 | 页顶 | **Figure 5** (R² collapse curves) | experiments.tex |\n| p7 | 页顶 | **Table 3** (cross-arch matrix) + **Figure 6** (counterfactual bar) | experiments.tex |\n| p8 | 页顶 + 右侧内联 | **Figure 7** (synthesis panels, [t]) + **Wrapfigure 8** (L1 attention, 豁免) | experiments.tex |\n| p9 | — | References 起始（正文结束于 p8） | — |\n\n**约束全满足：**\n- ✅ 正文 9 个 float 全部 `[t]`，0 个违规\n- ✅ p2-p8 每页 ≥1 个 figure/table\n- ✅ 主体 8 页，References 从 p9 开始\n- ✅ 附录 float 保持 `[h]`\n- ✅ Wrapfigure ×2 不受 `[t]` 约束\n\nArtifact: `art_20260528_6cb409` (paper_v25_float_layout_fixed.pdf)",
-    "project": "vla-ssd"
-  }
-}
-````
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2902 · 2026-05-28T15:50:32.235188+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-  "elapsed_ms": 3763
-}
-```
-
-</details>
-
----
-
-
-### Assistant
-
-_source line 2903 · 2026-05-28T15:50:36.082183+00:00_
-
-已汇报 Director。当前状态：正文 9 个 float 全部 `[t]`，p2-p8 每页至少一张图/表，主体 8 页，所有约束满足。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "assistant",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3"
-}
-```
-
-</details>
-
----
-
-
 ## Round 37
 
-## Round 37
-
-146 recorded events
-
-
-### User
-
-_source line 2904 · 2026-05-28T16:34:51.912573+00:00_
-
-[Director 指令] 紧急任务，DDL 明天。Paper Agent 正在处理 LaTeX 排版，你负责重新生成以下两张图：
-
-**任务 1：Figure 3 色系优化**
-找到 Figure 3 的绘图脚本，检查当前配色方案，优化为：
-- 学术论文风格、对比度充足、色盲友好
-- 与论文其他图的色系风格保持一致
-重新生成 PDF，替换到 `artifacts/_project/chart/` 对应位置。
-
-**任务 2：Figure 7 字体修正**
-Figure 7 统计图中有非 Times New Roman 的英文字体，修改绘图脚本：
-- 设置 `plt.rcParams['font.family'] = 'serif'` + `plt.rcParams['font.serif'] = ['Times New Roman']`
-- 或在 matplotlib 中用 `fontproperties` 指定
-- 确保图中所有英文文字（标题、轴标签、图例、刻度）均为 Times New Roman
-重新生成 PDF，替换到对应位置。
-
-两个任务并行处理，完成后汇报文件路径。
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "user",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "source": "director"
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
-_source line 2905 · 2026-05-28T16:35:07.646603+00:00_
-
-called Agent
-
-<details open><summary>🔧 Tool call — Agent</summary>
-
-```json
-{
-  "description": "Figure 3 色系优化",
-  "prompt": "你是 ML 研究团队的 Worker，负责优化 Figure 3 (matrix heatmap) 的配色方案。\n\n**背景**：这是一篇 CoRL 2026 投稿论文的图表。Figure 3 是一个 cross-architecture evaluation matrix heatmap，显示不同 VLA 架构在不同 LIBERO 任务 suite 上的 ΔR² 值。\n\n**任务**：\n1. 找到 Figure 3 的绘图脚本。项目目录在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/`，脚本可能在 `scripts/` 目录下，文件名可能包含 `matrix` 或 `heatmap`\n2. 阅读脚本，理解当前配色方案\n3. 优化配色为：\n   - 学术论文风格、对比度充足、色盲友好\n   - 检查论文其他图的脚本（scripts/ 目录下），确保色系风格一致\n4. 重新生成 PDF，输出到 `docs/paper/figures/fig_matrix_heatmap.pdf`\n\n**注意**：\n- 只改配色相关代码，不改数据或布局\n- 确保 dashed borders（虚线边框）用于标记 ΔR² > 0.10 的 cell 仍然保留\n- 生成的 PDF 替换原文件",
-  "run_in_background": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Agent",
-  "tool_args": {
-    "description": "Figure 3 色系优化",
-    "prompt": "你是 ML 研究团队的 Worker，负责优化 Figure 3 (matrix heatmap) 的配色方案。\n\n**背景**：这是一篇 CoRL 2026 投稿论文的图表。Figure 3 是一个 cross-architecture evaluation matrix heatmap，显示不同 VLA 架构在不同 LIBERO 任务 suite 上的 ΔR² 值。\n\n**任务**：\n1. 找到 Figure 3 的绘图脚本。项目目录在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/`，脚本可能在 `scripts/` 目录下，文件名可能包含 `matrix` 或 `heatmap`\n2. 阅读脚本，理解当前配色方案\n3. 优化配色为：\n   - 学术论文风格、对比度充足、色盲友好\n   - 检查论文其他图的脚本（scripts/ 目录下），确保色系风格一致\n4. 重新生成 PDF，输出到 `docs/paper/figures/fig_matrix_heatmap.pdf`\n\n**注意**：\n- 只改配色相关代码，不改数据或布局\n- 确保 dashed borders（虚线边框）用于标记 ΔR² > 0.10 的 cell 仍然保留\n- 生成的 PDF 替换原文件",
-    "run_in_background": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 2906 · 2026-05-28T16:35:07.647029+00:00_
-
-Async agent launched successfully.
-agentId: ab45eb83c1c7cca5b (internal ID - do not mention to user. Use SendMessage with to: 'ab45eb83c1c7cca5b' to continue this agent.)
-The agent is working in the background. You will be notified automatically when it completes.
-Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
-output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tasks/ab45eb83c1c7cca5b.output
-Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-  "tool": "Agent",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 2907 · 2026-05-28T16:35:15.776533+00:00_
+_source line 2891 · 2026-05-28T16:35:15.776533+00:00_
 
 called Agent
 
@@ -1189,7 +46,7 @@ called Agent
 
 ### Tool result
 
-_source line 2908 · 2026-05-28T16:35:15.877576+00:00_
+_source line 2892 · 2026-05-28T16:35:15.877576+00:00_
 
 Async agent launched successfully.
 agentId: abebdcfa18d42d9a2 (internal ID - do not mention to user. Use SendMessage with to: 'abebdcfa18d42d9a2' to continue this agent.)
@@ -1216,7 +73,7 @@ Do NOT Read or tail this file via the shell tool — it is the full sub-agent JS
 
 ### Tool call
 
-_source line 2909 · 2026-05-28T16:37:17.356453+00:00_
+_source line 2893 · 2026-05-28T16:37:17.356453+00:00_
 
 called Read
 
@@ -1250,7 +107,7 @@ called Read
 
 ### Tool result
 
-_source line 2910 · 2026-05-28T16:37:17.408665+00:00_
+_source line 2894 · 2026-05-28T16:37:17.408665+00:00_
 
 
 
@@ -1272,7 +129,7 @@ _source line 2910 · 2026-05-28T16:37:17.408665+00:00_
 
 ### Tool call
 
-_source line 2911 · 2026-05-28T16:39:47.002184+00:00_
+_source line 2895 · 2026-05-28T16:39:47.002184+00:00_
 
 called Bash
 
@@ -1308,7 +165,7 @@ called Bash
 
 ### Tool result
 
-_source line 2912 · 2026-05-28T16:39:47.657221+00:00_
+_source line 2896 · 2026-05-28T16:39:47.657221+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 38891 May 28 16:39 fig_dose_response.pdf
 -rw-r--r-- 1 ubuntu ubuntu 33074 May 28 16:37 fig_matrix_heatmap.pdf
@@ -1333,7 +190,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2913 · 2026-05-28T16:39:47.808666+00:00_
+_source line 2897 · 2026-05-28T16:39:47.808666+00:00_
 
 called Bash
 
@@ -1369,7 +226,7 @@ called Bash
 
 ### Tool result
 
-_source line 2914 · 2026-05-28T16:39:47.860258+00:00_
+_source line 2898 · 2026-05-28T16:39:47.860258+00:00_
 
 name                                 type              encoding         emb sub uni object ID
 ------------------------------------ ----------------- ---------------- --- --- --- ---------
@@ -1400,7 +257,7 @@ EKLTZR+TimesNewRomanPS-ItalicMT      CID TrueType      Identity-H       yes yes 
 
 ### Tool call
 
-_source line 2915 · 2026-05-28T16:39:51.793997+00:00_
+_source line 2899 · 2026-05-28T16:39:51.793997+00:00_
 
 called Bash
 
@@ -1436,7 +293,7 @@ called Bash
 
 ### Tool result
 
-_source line 2916 · 2026-05-28T16:39:52.097371+00:00_
+_source line 2900 · 2026-05-28T16:39:52.097371+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
 
@@ -1458,7 +315,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2917 · 2026-05-28T16:39:54.908169+00:00_
+_source line 2901 · 2026-05-28T16:39:54.908169+00:00_
 
 called Read
 
@@ -1492,7 +349,7 @@ called Read
 
 ### Tool call
 
-_source line 2918 · 2026-05-28T16:39:54.908610+00:00_
+_source line 2902 · 2026-05-28T16:39:54.908610+00:00_
 
 called Read
 
@@ -1526,7 +383,7 @@ called Read
 
 ### Tool result
 
-_source line 2919 · 2026-05-28T16:39:55.009992+00:00_
+_source line 2903 · 2026-05-28T16:39:55.009992+00:00_
 
 
 
@@ -1548,7 +405,7 @@ _source line 2919 · 2026-05-28T16:39:55.009992+00:00_
 
 ### Tool result
 
-_source line 2920 · 2026-05-28T16:39:55.010662+00:00_
+_source line 2904 · 2026-05-28T16:39:55.010662+00:00_
 
 
 
@@ -1570,7 +427,7 @@ _source line 2920 · 2026-05-28T16:39:55.010662+00:00_
 
 ### Tool call
 
-_source line 2921 · 2026-05-28T16:40:05.406424+00:00_
+_source line 2905 · 2026-05-28T16:40:05.406424+00:00_
 
 called Bash
 
@@ -1608,7 +465,7 @@ called Bash
 
 ### Tool result
 
-_source line 2922 · 2026-05-28T16:40:07.714360+00:00_
+_source line 2906 · 2026-05-28T16:40:07.714360+00:00_
 
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on main.pdf (37 pages, 9126905 bytes).
@@ -1636,7 +493,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2923 · 2026-05-28T16:40:17.150051+00:00_
+_source line 2907 · 2026-05-28T16:40:17.150051+00:00_
 
 called Bash
 
@@ -1672,7 +529,7 @@ called Bash
 
 ### Tool result
 
-_source line 2924 · 2026-05-28T16:40:17.503382+00:00_
+_source line 2908 · 2026-05-28T16:40:17.503382+00:00_
 
 p1: [NO FLOAT]
     first: Instruction Routing in Fine-Tuned
@@ -1721,7 +578,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2925 · 2026-05-28T16:40:42.800151+00:00_
+_source line 2909 · 2026-05-28T16:40:42.800151+00:00_
 
 called Bash
 
@@ -1757,7 +614,7 @@ called Bash
 
 ### Tool result
 
-_source line 2926 · 2026-05-28T16:40:45.910696+00:00_
+_source line 2910 · 2026-05-28T16:40:45.910696+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
 
@@ -1779,7 +636,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2927 · 2026-05-28T16:40:49.527386+00:00_
+_source line 2911 · 2026-05-28T16:40:49.527386+00:00_
 
 called Read
 
@@ -1813,7 +670,7 @@ called Read
 
 ### Tool call
 
-_source line 2928 · 2026-05-28T16:40:49.527827+00:00_
+_source line 2912 · 2026-05-28T16:40:49.527827+00:00_
 
 called Read
 
@@ -1847,7 +704,7 @@ called Read
 
 ### Tool result
 
-_source line 2929 · 2026-05-28T16:40:50.232642+00:00_
+_source line 2913 · 2026-05-28T16:40:50.232642+00:00_
 
 
 
@@ -1869,7 +726,7 @@ _source line 2929 · 2026-05-28T16:40:50.232642+00:00_
 
 ### Tool result
 
-_source line 2930 · 2026-05-28T16:40:50.237649+00:00_
+_source line 2914 · 2026-05-28T16:40:50.237649+00:00_
 
 
 
@@ -1891,7 +748,7 @@ _source line 2930 · 2026-05-28T16:40:50.237649+00:00_
 
 ### Tool call
 
-_source line 2931 · 2026-05-28T16:41:26.239616+00:00_
+_source line 2915 · 2026-05-28T16:41:26.239616+00:00_
 
 called Read
 
@@ -1925,7 +782,7 @@ called Read
 
 ### Tool call
 
-_source line 2932 · 2026-05-28T16:41:26.240082+00:00_
+_source line 2916 · 2026-05-28T16:41:26.240082+00:00_
 
 called Read
 
@@ -1959,7 +816,7 @@ called Read
 
 ### Tool call
 
-_source line 2933 · 2026-05-28T16:41:26.240317+00:00_
+_source line 2917 · 2026-05-28T16:41:26.240317+00:00_
 
 called Read
 
@@ -1993,7 +850,7 @@ called Read
 
 ### Tool result
 
-_source line 2934 · 2026-05-28T16:41:27.250454+00:00_
+_source line 2918 · 2026-05-28T16:41:27.250454+00:00_
 
 
 
@@ -2015,7 +872,7 @@ _source line 2934 · 2026-05-28T16:41:27.250454+00:00_
 
 ### Tool result
 
-_source line 2935 · 2026-05-28T16:41:27.252902+00:00_
+_source line 2919 · 2026-05-28T16:41:27.252902+00:00_
 
 
 
@@ -2037,7 +894,7 @@ _source line 2935 · 2026-05-28T16:41:27.252902+00:00_
 
 ### Tool result
 
-_source line 2936 · 2026-05-28T16:41:27.256513+00:00_
+_source line 2920 · 2026-05-28T16:41:27.256513+00:00_
 
 
 
@@ -2059,7 +916,7 @@ _source line 2936 · 2026-05-28T16:41:27.256513+00:00_
 
 ### Tool call
 
-_source line 2937 · 2026-05-28T16:42:22.722723+00:00_
+_source line 2921 · 2026-05-28T16:42:22.722723+00:00_
 
 called Bash
 
@@ -2095,7 +952,7 @@ called Bash
 
 ### Tool result
 
-_source line 2938 · 2026-05-28T16:42:22.924285+00:00_
+_source line 2922 · 2026-05-28T16:42:22.924285+00:00_
 
 10
 ---
@@ -2118,7 +975,7 @@ _source line 2938 · 2026-05-28T16:42:22.924285+00:00_
 
 ### Tool call
 
-_source line 2939 · 2026-05-28T16:42:26.839142+00:00_
+_source line 2923 · 2026-05-28T16:42:26.839142+00:00_
 
 called Bash
 
@@ -2154,7 +1011,7 @@ called Bash
 
 ### Tool result
 
-_source line 2940 · 2026-05-28T16:42:27.090521+00:00_
+_source line 2924 · 2026-05-28T16:42:27.090521+00:00_
 
 81:Figure 1: Analysis framework. We analyze hidden states at image-token averages and the readout
 493:Figure 2: Left: Cross-architecture ∆R matrix; red borders: > 0.10. Center: Per-layer actionprobe R2 for three OpenVLA conditions (3 seeds, mean ± std); all share L0 (R2 = 0.645). Right:
@@ -2196,7 +1053,7 @@ _source line 2940 · 2026-05-28T16:42:27.090521+00:00_
 
 ### Tool call
 
-_source line 2941 · 2026-05-28T16:42:58.120137+00:00_
+_source line 2925 · 2026-05-28T16:42:58.120137+00:00_
 
 called Bash
 
@@ -2232,7 +1089,7 @@ called Bash
 
 ### Tool result
 
-_source line 2942 · 2026-05-28T16:42:58.522639+00:00_
+_source line 2926 · 2026-05-28T16:42:58.522639+00:00_
 
 p4: HAS counterfactual figure/text
 p6: HAS counterfactual figure/text
@@ -2256,7 +1113,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2943 · 2026-05-28T16:43:04.093197+00:00_
+_source line 2927 · 2026-05-28T16:43:04.093197+00:00_
 
 called Bash
 
@@ -2292,7 +1149,7 @@ called Bash
 
 ### Tool result
 
-_source line 2944 · 2026-05-28T16:43:04.195260+00:00_
+_source line 2928 · 2026-05-28T16:43:04.195260+00:00_
 
 (Bash completed with no output)
 
@@ -2314,7 +1171,7 @@ _source line 2944 · 2026-05-28T16:43:04.195260+00:00_
 
 ### Tool call
 
-_source line 2945 · 2026-05-28T16:43:09.767826+00:00_
+_source line 2929 · 2026-05-28T16:43:09.767826+00:00_
 
 called Bash
 
@@ -2350,7 +1207,7 @@ called Bash
 
 ### Tool result
 
-_source line 2946 · 2026-05-28T16:43:09.818559+00:00_
+_source line 2930 · 2026-05-28T16:43:09.818559+00:00_
 
 Figure 4: Layer-wise action-probe R2 (LIBERO-Goal, readout token). Solid blue: trained;
 Figure 5: Left: Instruction-dominant heads across all 32 layers (L1, L31 entry-exit for VLA-trained;
@@ -2378,7 +1235,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2947 · 2026-05-28T16:43:35.823652+00:00_
+_source line 2931 · 2026-05-28T16:43:35.823652+00:00_
 
 called Read
 
@@ -2412,7 +1269,7 @@ called Read
 
 ### Tool result
 
-_source line 2948 · 2026-05-28T16:43:35.874636+00:00_
+_source line 2932 · 2026-05-28T16:43:35.874636+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -2464,7 +1321,7 @@ _source line 2948 · 2026-05-28T16:43:35.874636+00:00_
 
 ### Tool call
 
-_source line 2949 · 2026-05-28T16:44:25.804786+00:00_
+_source line 2933 · 2026-05-28T16:44:25.804786+00:00_
 
 called Edit
 
@@ -2504,7 +1361,7 @@ called Edit
 
 ### Tool result
 
-_source line 2950 · 2026-05-28T16:44:25.805421+00:00_
+_source line 2934 · 2026-05-28T16:44:25.805421+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -2526,7 +1383,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2951 · 2026-05-28T16:44:32.279698+00:00_
+_source line 2935 · 2026-05-28T16:44:32.279698+00:00_
 
 called Edit
 
@@ -2566,7 +1423,7 @@ called Edit
 
 ### Tool result
 
-_source line 2952 · 2026-05-28T16:44:32.330736+00:00_
+_source line 2936 · 2026-05-28T16:44:32.330736+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -2588,7 +1445,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2953 · 2026-05-28T16:44:40.987128+00:00_
+_source line 2937 · 2026-05-28T16:44:40.987128+00:00_
 
 called Edit
 
@@ -2628,7 +1485,7 @@ called Edit
 
 ### Tool result
 
-_source line 2954 · 2026-05-28T16:44:41.037871+00:00_
+_source line 2938 · 2026-05-28T16:44:41.037871+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -2650,7 +1507,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2955 · 2026-05-28T16:44:49.469103+00:00_
+_source line 2939 · 2026-05-28T16:44:49.469103+00:00_
 
 called Edit
 
@@ -2690,7 +1547,7 @@ called Edit
 
 ### Tool result
 
-_source line 2956 · 2026-05-28T16:44:49.570121+00:00_
+_source line 2940 · 2026-05-28T16:44:49.570121+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -2712,7 +1569,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2957 · 2026-05-28T16:44:56.270675+00:00_
+_source line 2941 · 2026-05-28T16:44:56.270675+00:00_
 
 called Edit
 
@@ -2752,7 +1609,7 @@ called Edit
 
 ### Tool result
 
-_source line 2958 · 2026-05-28T16:44:56.371581+00:00_
+_source line 2942 · 2026-05-28T16:44:56.371581+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -2774,7 +1631,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2959 · 2026-05-28T16:46:37.884659+00:00_
+_source line 2943 · 2026-05-28T16:46:37.884659+00:00_
 
 called Bash
 
@@ -2810,7 +1667,7 @@ called Bash
 
 ### Tool result
 
-_source line 2960 · 2026-05-28T16:46:39.090222+00:00_
+_source line 2944 · 2026-05-28T16:46:39.090222+00:00_
 
 ) [37] [38] [39] (./main.aux)
 
@@ -2851,7 +1708,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2961 · 2026-05-28T16:46:42.453129+00:00_
+_source line 2945 · 2026-05-28T16:46:42.453129+00:00_
 
 called Bash
 
@@ -2887,7 +1744,7 @@ called Bash
 
 ### Tool result
 
-_source line 2962 · 2026-05-28T16:46:43.657234+00:00_
+_source line 2946 · 2026-05-28T16:46:43.657234+00:00_
 
 ic/uhvr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texl
@@ -2914,7 +1771,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2963 · 2026-05-28T16:46:48.675632+00:00_
+_source line 2947 · 2026-05-28T16:46:48.675632+00:00_
 
 called Bash
 
@@ -2950,7 +1807,7 @@ called Bash
 
 ### Tool result
 
-_source line 2964 · 2026-05-28T16:46:48.977383+00:00_
+_source line 2948 · 2026-05-28T16:46:48.977383+00:00_
 
 === PAGE 1 ===
 Instruction Routing in Fine-Tuned
@@ -3045,7 +1902,7 @@ transition-type specificity; (2) all trained VLAs exhibit medium-to-large counte
 
 ### Tool call
 
-_source line 2965 · 2026-05-28T16:48:22.241186+00:00_
+_source line 2949 · 2026-05-28T16:48:22.241186+00:00_
 
 called Bash
 
@@ -3081,7 +1938,7 @@ called Bash
 
 ### Tool call
 
-_source line 2966 · 2026-05-28T16:48:22.241487+00:00_
+_source line 2950 · 2026-05-28T16:48:22.241487+00:00_
 
 called Bash
 
@@ -3117,7 +1974,7 @@ called Bash
 
 ### Tool result
 
-_source line 2967 · 2026-05-28T16:48:22.342075+00:00_
+_source line 2951 · 2026-05-28T16:48:22.342075+00:00_
 
 LaTeX Warning: Label `fig:result_matrix' multiply defined.
 LaTeX Warning: Label `fig:action_r2_threecond' multiply defined.
@@ -3142,7 +1999,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool result
 
-_source line 2968 · 2026-05-28T16:48:22.342387+00:00_
+_source line 2952 · 2026-05-28T16:48:22.342387+00:00_
 
 3
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
@@ -3165,7 +2022,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2969 · 2026-05-28T16:48:28.414651+00:00_
+_source line 2953 · 2026-05-28T16:48:28.414651+00:00_
 
 called Read
 
@@ -3199,7 +2056,7 @@ called Read
 
 ### Tool result
 
-_source line 2970 · 2026-05-28T16:48:28.515566+00:00_
+_source line 2954 · 2026-05-28T16:48:28.515566+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -3250,7 +2107,7 @@ _source line 2970 · 2026-05-28T16:48:28.515566+00:00_
 
 ### Tool call
 
-_source line 2971 · 2026-05-28T16:48:54.290075+00:00_
+_source line 2955 · 2026-05-28T16:48:54.290075+00:00_
 
 called Edit
 
@@ -3290,7 +2147,7 @@ called Edit
 
 ### Tool result
 
-_source line 2972 · 2026-05-28T16:48:54.391029+00:00_
+_source line 2956 · 2026-05-28T16:48:54.391029+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -3312,7 +2169,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2973 · 2026-05-28T16:49:03.677000+00:00_
+_source line 2957 · 2026-05-28T16:49:03.677000+00:00_
 
 called Edit
 
@@ -3352,7 +2209,7 @@ called Edit
 
 ### Tool result
 
-_source line 2974 · 2026-05-28T16:49:03.727776+00:00_
+_source line 2958 · 2026-05-28T16:49:03.727776+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -3374,7 +2231,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2975 · 2026-05-28T16:49:07.693040+00:00_
+_source line 2959 · 2026-05-28T16:49:07.693040+00:00_
 
 called Bash
 
@@ -3410,7 +2267,7 @@ called Bash
 
 ### Tool result
 
-_source line 2976 · 2026-05-28T16:49:10.102753+00:00_
+_source line 2960 · 2026-05-28T16:49:10.102753+00:00_
 
 dist/fonts/type1/urw/helvetic/uhvr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
@@ -3442,7 +2299,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2977 · 2026-05-28T16:49:13.514972+00:00_
+_source line 2961 · 2026-05-28T16:49:13.514972+00:00_
 
 called Bash
 
@@ -3478,7 +2335,7 @@ called Bash
 
 ### Tool result
 
-_source line 2978 · 2026-05-28T16:49:13.615823+00:00_
+_source line 2962 · 2026-05-28T16:49:13.615823+00:00_
 
 ---
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
@@ -3501,7 +2358,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2979 · 2026-05-28T16:49:17.981945+00:00_
+_source line 2963 · 2026-05-28T16:49:17.981945+00:00_
 
 called Bash
 
@@ -3537,7 +2394,7 @@ called Bash
 
 ### Tool result
 
-_source line 2980 · 2026-05-28T16:49:18.284578+00:00_
+_source line 2964 · 2026-05-28T16:49:18.284578+00:00_
 
 === PAGE 1 ===
 Instruction Routing in Fine-Tuned
@@ -3629,7 +2486,7 @@ causal attention mask restricts multimodal inte
 
 ### Tool call
 
-_source line 2981 · 2026-05-28T16:49:43.648186+00:00_
+_source line 2965 · 2026-05-28T16:49:43.648186+00:00_
 
 called Bash
 
@@ -3665,7 +2522,7 @@ called Bash
 
 ### Tool result
 
-_source line 2982 · 2026-05-28T16:49:43.749098+00:00_
+_source line 2966 · 2026-05-28T16:49:43.749098+00:00_
 
 LaTeX Warning: Reference `fig:result_matrix' on page 5 undefined on input line 
 LaTeX Warning: Reference `fig:action_r2_threecond' on page 5 undefined on input
@@ -3692,7 +2549,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2983 · 2026-05-28T16:49:50.774743+00:00_
+_source line 2967 · 2026-05-28T16:49:50.774743+00:00_
 
 called Bash
 
@@ -3728,7 +2585,7 @@ called Bash
 
 ### Tool result
 
-_source line 2984 · 2026-05-28T16:49:50.825392+00:00_
+_source line 2968 · 2026-05-28T16:49:50.825392+00:00_
 
 (Bash completed with no output)
 
@@ -3750,7 +2607,7 @@ _source line 2984 · 2026-05-28T16:49:50.825392+00:00_
 
 ### Tool call
 
-_source line 2985 · 2026-05-28T16:49:54.160144+00:00_
+_source line 2969 · 2026-05-28T16:49:54.160144+00:00_
 
 called Grep
 
@@ -3790,7 +2647,7 @@ called Grep
 
 ### Tool result
 
-_source line 2986 · 2026-05-28T16:49:54.260891+00:00_
+_source line 2970 · 2026-05-28T16:49:54.260891+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:8:We apply all three analyses (\S\ref{sec:cross_arch_analyses}) to the $3 \times 4$ architecture-suite matrix (10 of 12 cells filled; Figure~\ref{fig:result_matrix}, Table~\ref{tab:cross_arch_matrix}).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex:19:Per-layer $R^2$ probing (Figure~\ref{fig:action_r2_threecond}) reveals a corresponding gradient: the trained model peaks at L9 ($R^2 = 0.643$), Llama-2 base declines steadily from L0, and random initialization collapses to negative $R^2$ at deep layers.
@@ -3816,7 +2673,7 @@ _source line 2986 · 2026-05-28T16:49:54.260891+00:00_
 
 ### Tool call
 
-_source line 2987 · 2026-05-28T16:49:59.028502+00:00_
+_source line 2971 · 2026-05-28T16:49:59.028502+00:00_
 
 called Grep
 
@@ -3854,7 +2711,7 @@ called Grep
 
 ### Tool result
 
-_source line 2988 · 2026-05-28T16:49:59.129277+00:00_
+_source line 2972 · 2026-05-28T16:49:59.129277+00:00_
 
 65:\label{fig:rsa_perlayer}
 
@@ -3876,7 +2733,7 @@ _source line 2988 · 2026-05-28T16:49:59.129277+00:00_
 
 ### Tool call
 
-_source line 2989 · 2026-05-28T16:50:01.990153+00:00_
+_source line 2973 · 2026-05-28T16:50:01.990153+00:00_
 
 called Read
 
@@ -3914,7 +2771,7 @@ called Read
 
 ### Tool result
 
-_source line 2990 · 2026-05-28T16:50:02.090962+00:00_
+_source line 2974 · 2026-05-28T16:50:02.090962+00:00_
 
 38	
 39	\paragraph{Action probes.}\looseness=-1
@@ -3953,7 +2810,7 @@ _source line 2990 · 2026-05-28T16:50:02.090962+00:00_
 
 ### Tool call
 
-_source line 2991 · 2026-05-28T16:50:56.269556+00:00_
+_source line 2975 · 2026-05-28T16:50:56.269556+00:00_
 
 called Read
 
@@ -3989,7 +2846,7 @@ called Read
 
 ### Tool result
 
-_source line 2992 · 2026-05-28T16:50:56.320253+00:00_
+_source line 2976 · 2026-05-28T16:50:56.320253+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -4025,7 +2882,7 @@ _source line 2992 · 2026-05-28T16:50:56.320253+00:00_
 
 ### Tool call
 
-_source line 2993 · 2026-05-28T16:51:05.905268+00:00_
+_source line 2977 · 2026-05-28T16:51:05.905268+00:00_
 
 called Edit
 
@@ -4065,7 +2922,7 @@ called Edit
 
 ### Tool result
 
-_source line 2994 · 2026-05-28T16:51:05.905850+00:00_
+_source line 2978 · 2026-05-28T16:51:05.905850+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -4087,7 +2944,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 2995 · 2026-05-28T16:51:09.217555+00:00_
+_source line 2979 · 2026-05-28T16:51:09.217555+00:00_
 
 called Bash
 
@@ -4123,7 +2980,7 @@ called Bash
 
 ### Tool result
 
-_source line 2996 · 2026-05-28T16:51:11.631736+00:00_
+_source line 2980 · 2026-05-28T16:51:11.631736+00:00_
 
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on main.pdf (38 pages, 9089514 bytes).
@@ -4151,7 +3008,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 2997 · 2026-05-28T16:51:14.893541+00:00_
+_source line 2981 · 2026-05-28T16:51:14.893541+00:00_
 
 called Bash
 
@@ -4187,7 +3044,7 @@ called Bash
 
 ### Tool result
 
-_source line 2998 · 2026-05-28T16:51:14.944122+00:00_
+_source line 2982 · 2026-05-28T16:51:14.944122+00:00_
 
 (Bash completed with no output)
 
@@ -4209,7 +3066,7 @@ _source line 2998 · 2026-05-28T16:51:14.944122+00:00_
 
 ### Tool call
 
-_source line 2999 · 2026-05-28T16:51:19.310056+00:00_
+_source line 2983 · 2026-05-28T16:51:19.310056+00:00_
 
 called Bash
 
@@ -4245,7 +3102,7 @@ called Bash
 
 ### Tool result
 
-_source line 3000 · 2026-05-28T16:51:19.561669+00:00_
+_source line 2984 · 2026-05-28T16:51:19.561669+00:00_
 
 === PAGE 1 ===
 Instruction Routing in Fine-Tuned
@@ -4330,7 +3187,7 @@ transition-type specificity; (2) all trained VLAs exhibit medium-to-large counte
 
 ### Tool call
 
-_source line 3001 · 2026-05-28T16:51:41.187786+00:00_
+_source line 2985 · 2026-05-28T16:51:41.187786+00:00_
 
 called Bash
 
@@ -4366,7 +3223,7 @@ called Bash
 
 ### Tool result
 
-_source line 3002 · 2026-05-28T16:51:43.859550+00:00_
+_source line 2986 · 2026-05-28T16:51:43.859550+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 389172 May 28 16:51 /tmp/page_5-05.png
 -rw-r--r-- 1 ubuntu ubuntu 447965 May 28 16:51 /tmp/page_6-06.png
@@ -4392,7 +3249,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3003 · 2026-05-28T16:51:46.924164+00:00_
+_source line 2987 · 2026-05-28T16:51:46.924164+00:00_
 
 called Read
 
@@ -4426,7 +3283,7 @@ called Read
 
 ### Tool result
 
-_source line 3004 · 2026-05-28T16:51:47.377879+00:00_
+_source line 2988 · 2026-05-28T16:51:47.377879+00:00_
 
 
 
@@ -4448,7 +3305,7 @@ _source line 3004 · 2026-05-28T16:51:47.377879+00:00_
 
 ### Tool call
 
-_source line 3005 · 2026-05-28T16:51:47.378376+00:00_
+_source line 2989 · 2026-05-28T16:51:47.378376+00:00_
 
 called Read
 
@@ -4482,7 +3339,7 @@ called Read
 
 ### Tool result
 
-_source line 3006 · 2026-05-28T16:51:47.833480+00:00_
+_source line 2990 · 2026-05-28T16:51:47.833480+00:00_
 
 
 
@@ -4504,7 +3361,7 @@ _source line 3006 · 2026-05-28T16:51:47.833480+00:00_
 
 ### Tool call
 
-_source line 3007 · 2026-05-28T16:51:47.833809+00:00_
+_source line 2991 · 2026-05-28T16:51:47.833809+00:00_
 
 called Read
 
@@ -4538,7 +3395,7 @@ called Read
 
 ### Tool call
 
-_source line 3008 · 2026-05-28T16:51:47.884671+00:00_
+_source line 2992 · 2026-05-28T16:51:47.884671+00:00_
 
 called Read
 
@@ -4572,7 +3429,7 @@ called Read
 
 ### Tool result
 
-_source line 3009 · 2026-05-28T16:51:48.590286+00:00_
+_source line 2993 · 2026-05-28T16:51:48.590286+00:00_
 
 
 
@@ -4594,7 +3451,7 @@ _source line 3009 · 2026-05-28T16:51:48.590286+00:00_
 
 ### Tool result
 
-_source line 3010 · 2026-05-28T16:51:48.591783+00:00_
+_source line 2994 · 2026-05-28T16:51:48.591783+00:00_
 
 
 
@@ -4616,7 +3473,7 @@ _source line 3010 · 2026-05-28T16:51:48.591783+00:00_
 
 ### Tool call
 
-_source line 3011 · 2026-05-28T16:52:05.443549+00:00_
+_source line 2995 · 2026-05-28T16:52:05.443549+00:00_
 
 called Read
 
@@ -4652,7 +3509,7 @@ called Read
 
 ### Tool result
 
-_source line 3012 · 2026-05-28T16:52:05.544436+00:00_
+_source line 2996 · 2026-05-28T16:52:05.544436+00:00_
 
 95	\multicolumn{7}{l}{\footnotesize NORA Object and Long-Horizon checkpoints are unavailable.}\\
 96	\multicolumn{7}{l}{\footnotesize $^{a}$CI artifact from flat $R^2$ profile. $^{b}$Bootstrap CI unreliable (exit-layer $R^2 \approx -0.006$).}\\
@@ -4701,7 +3558,7 @@ _source line 3012 · 2026-05-28T16:52:05.544436+00:00_
 
 ### Tool call
 
-_source line 3013 · 2026-05-28T16:52:26.489162+00:00_
+_source line 2997 · 2026-05-28T16:52:26.489162+00:00_
 
 called Edit
 
@@ -4741,7 +3598,7 @@ called Edit
 
 ### Tool result
 
-_source line 3014 · 2026-05-28T16:52:26.641258+00:00_
+_source line 2998 · 2026-05-28T16:52:26.641258+00:00_
 
 &lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
 
@@ -4763,7 +3620,7 @@ _source line 3014 · 2026-05-28T16:52:26.641258+00:00_
 
 ### Tool call
 
-_source line 3015 · 2026-05-28T16:52:29.905067+00:00_
+_source line 2999 · 2026-05-28T16:52:29.905067+00:00_
 
 called Read
 
@@ -4801,7 +3658,7 @@ called Read
 
 ### Tool result
 
-_source line 3016 · 2026-05-28T16:52:29.955690+00:00_
+_source line 3000 · 2026-05-28T16:52:29.955690+00:00_
 
 115	\looseness=-1
 116	Every perturbation yields $d = 0.45$--$1.52$ (summary in Appendix Table~\ref{tab:cf_summary}; full rankings in Appendix Table~\ref{tab:counterfactual}).
@@ -4849,7 +3706,7 @@ _source line 3016 · 2026-05-28T16:52:29.955690+00:00_
 
 ### Tool call
 
-_source line 3017 · 2026-05-28T16:52:36.582851+00:00_
+_source line 3001 · 2026-05-28T16:52:36.582851+00:00_
 
 called Edit
 
@@ -4889,7 +3746,7 @@ called Edit
 
 ### Tool result
 
-_source line 3018 · 2026-05-28T16:52:36.633541+00:00_
+_source line 3002 · 2026-05-28T16:52:36.633541+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -4911,7 +3768,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 3019 · 2026-05-28T16:52:40.805307+00:00_
+_source line 3003 · 2026-05-28T16:52:40.805307+00:00_
 
 called Read
 
@@ -4949,7 +3806,7 @@ called Read
 
 ### Tool result
 
-_source line 3020 · 2026-05-28T16:52:40.857132+00:00_
+_source line 3004 · 2026-05-28T16:52:40.857132+00:00_
 
 145	\vspace{-6pt}
 146	\caption{L1 instruction-dominant heads (trained vs.\ reference). VLMs saturate; training does not increase counts.}
@@ -4987,7 +3844,7 @@ _source line 3020 · 2026-05-28T16:52:40.857132+00:00_
 
 ### Tool call
 
-_source line 3021 · 2026-05-28T16:52:47.232179+00:00_
+_source line 3005 · 2026-05-28T16:52:47.232179+00:00_
 
 called Edit
 
@@ -5027,7 +3884,7 @@ called Edit
 
 ### Tool result
 
-_source line 3022 · 2026-05-28T16:52:47.333145+00:00_
+_source line 3006 · 2026-05-28T16:52:47.333145+00:00_
 
 The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex has been updated successfully.
 
@@ -5049,7 +3906,7 @@ The file /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/
 
 ### Tool call
 
-_source line 3023 · 2026-05-28T16:52:51.097104+00:00_
+_source line 3007 · 2026-05-28T16:52:51.097104+00:00_
 
 called Bash
 
@@ -5085,7 +3942,7 @@ called Bash
 
 ### Tool result
 
-_source line 3024 · 2026-05-28T16:52:53.502526+00:00_
+_source line 3008 · 2026-05-28T16:52:53.502526+00:00_
 
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on main.pdf (38 pages, 9089799 bytes).
@@ -5113,7 +3970,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3025 · 2026-05-28T16:52:57.569828+00:00_
+_source line 3009 · 2026-05-28T16:52:57.569828+00:00_
 
 called Bash
 
@@ -5149,7 +4006,7 @@ called Bash
 
 ### Tool result
 
-_source line 3026 · 2026-05-28T16:52:57.670539+00:00_
+_source line 3010 · 2026-05-28T16:52:57.670539+00:00_
 
 (Bash completed with no output)
 
@@ -5171,7 +4028,7 @@ _source line 3026 · 2026-05-28T16:52:57.670539+00:00_
 
 ### Tool call
 
-_source line 3027 · 2026-05-28T16:53:02.087731+00:00_
+_source line 3011 · 2026-05-28T16:53:02.087731+00:00_
 
 called Bash
 
@@ -5207,7 +4064,7 @@ called Bash
 
 ### Tool result
 
-_source line 3028 · 2026-05-28T16:53:04.650957+00:00_
+_source line 3012 · 2026-05-28T16:53:04.650957+00:00_
 
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/.claude/sessions/agent_98133724
 
@@ -5229,7 +4086,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3029 · 2026-05-28T16:53:08.666516+00:00_
+_source line 3013 · 2026-05-28T16:53:08.666516+00:00_
 
 called Read
 
@@ -5263,7 +4120,7 @@ called Read
 
 ### Tool call
 
-_source line 3030 · 2026-05-28T16:53:09.018267+00:00_
+_source line 3014 · 2026-05-28T16:53:09.018267+00:00_
 
 called Read
 
@@ -5297,7 +4154,7 @@ called Read
 
 ### Tool call
 
-_source line 3031 · 2026-05-28T16:53:09.069035+00:00_
+_source line 3015 · 2026-05-28T16:53:09.069035+00:00_
 
 called Read
 
@@ -5331,7 +4188,7 @@ called Read
 
 ### Tool result
 
-_source line 3032 · 2026-05-28T16:53:09.121545+00:00_
+_source line 3016 · 2026-05-28T16:53:09.121545+00:00_
 
 
 
@@ -5353,7 +4210,7 @@ _source line 3032 · 2026-05-28T16:53:09.121545+00:00_
 
 ### Tool result
 
-_source line 3033 · 2026-05-28T16:53:09.675376+00:00_
+_source line 3017 · 2026-05-28T16:53:09.675376+00:00_
 
 
 
@@ -5375,7 +4232,7 @@ _source line 3033 · 2026-05-28T16:53:09.675376+00:00_
 
 ### Tool result
 
-_source line 3034 · 2026-05-28T16:53:09.778148+00:00_
+_source line 3018 · 2026-05-28T16:53:09.778148+00:00_
 
 
 
@@ -5397,7 +4254,7 @@ _source line 3034 · 2026-05-28T16:53:09.778148+00:00_
 
 ### Tool call
 
-_source line 3035 · 2026-05-28T16:53:36.381670+00:00_
+_source line 3019 · 2026-05-28T16:53:36.381670+00:00_
 
 called Bash
 
@@ -5433,7 +4290,7 @@ called Bash
 
 ### Tool result
 
-_source line 3036 · 2026-05-28T16:53:36.482833+00:00_
+_source line 3020 · 2026-05-28T16:53:36.482833+00:00_
 
 inference. arXiv preprint arXiv:2505.18605, 2025.
 [5] B. Grant, X. Zhao, and P. Wang. Not all features are created equal: A mechanistic study of
@@ -5480,7 +4337,7 @@ Investigating the design space of visually-conditioned language models. In Inter
 
 ### Tool call
 
-_source line 3037 · 2026-05-28T16:53:40.824960+00:00_
+_source line 3021 · 2026-05-28T16:53:40.824960+00:00_
 
 called Bash
 
@@ -5516,7 +4373,7 @@ called Bash
 
 ### Tool result
 
-_source line 3038 · 2026-05-28T16:53:41.001112+00:00_
+_source line 3022 · 2026-05-28T16:53:41.001112+00:00_
 
 Limitations
 Conclusion. Across three backbone families, our analyses consistently decompose VLA instruction routing into training-associated effects (exit collapse, counterfactual sensitivity) and inherited
@@ -5540,7 +4397,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3039 · 2026-05-28T16:53:44.824095+00:00_
+_source line 3023 · 2026-05-28T16:53:44.824095+00:00_
 
 called Bash
 
@@ -5576,7 +4433,7 @@ called Bash
 
 ### Tool result
 
-_source line 3040 · 2026-05-28T16:53:44.874593+00:00_
+_source line 3024 · 2026-05-28T16:53:44.874593+00:00_
 
 241
 242
@@ -5602,7 +4459,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3041 · 2026-05-28T16:53:57.715744+00:00_
+_source line 3025 · 2026-05-28T16:53:57.715744+00:00_
 
 called Bash
 
@@ -5638,7 +4495,7 @@ called Bash
 
 ### Tool result
 
-_source line 3042 · 2026-05-28T16:53:57.867372+00:00_
+_source line 3026 · 2026-05-28T16:53:57.867372+00:00_
 
 === Float placements in main body ===
 experiments.tex:4:\begin{figure}[t]
@@ -5671,7 +4528,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3043 · 2026-05-28T16:54:04.751437+00:00_
+_source line 3027 · 2026-05-28T16:54:04.751437+00:00_
 
 called Bash
 
@@ -5707,7 +4564,7 @@ called Bash
 
 ### Tool result
 
-_source line 3044 · 2026-05-28T16:54:04.907088+00:00_
+_source line 3028 · 2026-05-28T16:54:04.907088+00:00_
 
 === Label issues ===
 === Overfull ===
@@ -5734,7 +4591,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects
 
 ### Tool call
 
-_source line 3045 · 2026-05-28T16:54:13.539710+00:00_
+_source line 3029 · 2026-05-28T16:54:13.539710+00:00_
 
 called ToolSearch
 
@@ -5770,7 +4627,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 3046 · 2026-05-28T16:54:13.590579+00:00_
+_source line 3030 · 2026-05-28T16:54:13.590579+00:00_
 
 
 
@@ -5792,7 +4649,7 @@ _source line 3046 · 2026-05-28T16:54:13.590579+00:00_
 
 ### Tool call
 
-_source line 3047 · 2026-05-28T16:54:27.505226+00:00_
+_source line 3031 · 2026-05-28T16:54:27.505226+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -5828,7 +4685,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3048 · 2026-05-28T16:54:31.171133+00:00_
+_source line 3032 · 2026-05-28T16:54:31.171133+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -5850,7 +4707,7 @@ _source line 3048 · 2026-05-28T16:54:31.171133+00:00_
 
 ### Assistant
 
-_source line 3049 · 2026-05-28T16:54:36.206113+00:00_
+_source line 3033 · 2026-05-28T16:54:36.206113+00:00_
 
 已向 Director 汇报。图表重新生成和排版修复全部完成：
 
@@ -5881,7 +4738,7 @@ _source line 3049 · 2026-05-28T16:54:36.206113+00:00_
 
 ### User
 
-_source line 3050 · 2026-05-28T19:55:51.949076+00:00_
+_source line 3034 · 2026-05-28T19:55:51.949076+00:00_
 
 [Director 指令] **DDL 前数据完整性抽检**
 
@@ -5920,7 +4777,7 @@ DDL 明天，排版大改后需要验证 figure 数据完整性。请做以下�
 
 ### Tool call
 
-_source line 3051 · 2026-05-28T19:56:15.840699+00:00_
+_source line 3035 · 2026-05-28T19:56:15.840699+00:00_
 
 called Glob
 
@@ -5956,7 +4813,7 @@ called Glob
 
 ### Tool result
 
-_source line 3052 · 2026-05-28T19:56:16.041824+00:00_
+_source line 3036 · 2026-05-28T19:56:16.041824+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_multi_layer_attention.py
 
@@ -5978,7 +4835,7 @@ _source line 3052 · 2026-05-28T19:56:16.041824+00:00_
 
 ### Tool call
 
-_source line 3053 · 2026-05-28T19:56:16.142594+00:00_
+_source line 3037 · 2026-05-28T19:56:16.142594+00:00_
 
 called Glob
 
@@ -6014,7 +4871,7 @@ called Glob
 
 ### Tool result
 
-_source line 3054 · 2026-05-28T19:56:16.494299+00:00_
+_source line 3038 · 2026-05-28T19:56:16.494299+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_action_r2_threecond.py
 
@@ -6036,7 +4893,7 @@ _source line 3054 · 2026-05-28T19:56:16.494299+00:00_
 
 ### Tool call
 
-_source line 3055 · 2026-05-28T19:56:17.096879+00:00_
+_source line 3039 · 2026-05-28T19:56:17.096879+00:00_
 
 called Glob
 
@@ -6072,7 +4929,7 @@ called Glob
 
 ### Tool result
 
-_source line 3056 · 2026-05-28T19:56:17.450120+00:00_
+_source line 3040 · 2026-05-28T19:56:17.450120+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_counterfactual_bar.py
 
@@ -6094,7 +4951,7 @@ _source line 3056 · 2026-05-28T19:56:17.450120+00:00_
 
 ### Tool call
 
-_source line 3057 · 2026-05-28T19:56:17.500788+00:00_
+_source line 3041 · 2026-05-28T19:56:17.500788+00:00_
 
 called Glob
 
@@ -6130,7 +4987,7 @@ called Glob
 
 ### Tool result
 
-_source line 3058 · 2026-05-28T19:56:17.918589+00:00_
+_source line 3042 · 2026-05-28T19:56:17.918589+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/gen_fig_matrix_heatmap.py
 
@@ -6152,7 +5009,7 @@ _source line 3058 · 2026-05-28T19:56:17.918589+00:00_
 
 ### Tool call
 
-_source line 3059 · 2026-05-28T19:56:18.069520+00:00_
+_source line 3043 · 2026-05-28T19:56:18.069520+00:00_
 
 called Glob
 
@@ -6188,7 +5045,7 @@ called Glob
 
 ### Tool result
 
-_source line 3060 · 2026-05-28T19:56:18.170488+00:00_
+_source line 3044 · 2026-05-28T19:56:18.170488+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/experiment_data.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/median/experiment_data.json
@@ -6226,7 +5083,7 @@ _source line 3060 · 2026-05-28T19:56:18.170488+00:00_
 
 ### Tool call
 
-_source line 3061 · 2026-05-28T19:56:29.210806+00:00_
+_source line 3045 · 2026-05-28T19:56:29.210806+00:00_
 
 called Agent
 
@@ -6264,7 +5121,7 @@ called Agent
 
 ### Tool call
 
-_source line 3062 · 2026-05-28T19:56:35.284488+00:00_
+_source line 3046 · 2026-05-28T19:56:35.284488+00:00_
 
 called Read
 
@@ -6298,7 +5155,7 @@ called Read
 
 ### Tool result
 
-_source line 3063 · 2026-05-28T19:56:35.284907+00:00_
+_source line 3047 · 2026-05-28T19:56:35.284907+00:00_
 
 1	#!/usr/bin/env python3
 2	"""
@@ -6372,7 +5229,7 @@ _source line 3063 · 2026-05-28T19:56:35.284907+00:00_
 
 ### Tool call
 
-_source line 3064 · 2026-05-28T19:56:35.285228+00:00_
+_source line 3048 · 2026-05-28T19:56:35.285228+00:00_
 
 called Read
 
@@ -6406,7 +5263,7 @@ called Read
 
 ### Tool result
 
-_source line 3065 · 2026-05-28T19:56:35.285473+00:00_
+_source line 3049 · 2026-05-28T19:56:35.285473+00:00_
 
 1	Remote path: /root/autodl-tmp/vla-ssd/results/attention_decomposition.json (westd-19183)
 
@@ -6428,7 +5285,7 @@ _source line 3065 · 2026-05-28T19:56:35.285473+00:00_
 
 ### Tool call
 
-_source line 3066 · 2026-05-28T19:56:35.285675+00:00_
+_source line 3050 · 2026-05-28T19:56:35.285675+00:00_
 
 called Read
 
@@ -6462,7 +5319,7 @@ called Read
 
 ### Tool result
 
-_source line 3067 · 2026-05-28T19:56:35.285918+00:00_
+_source line 3051 · 2026-05-28T19:56:35.285918+00:00_
 
 1	{
 2	  "per_head": {
@@ -6503,7 +5360,7 @@ _source line 3067 · 2026-05-28T19:56:35.285918+00:00_
 
 ### Tool call
 
-_source line 3068 · 2026-05-28T19:56:35.286189+00:00_
+_source line 3052 · 2026-05-28T19:56:35.286189+00:00_
 
 called Glob
 
@@ -6537,7 +5394,7 @@ called Glob
 
 ### Tool result
 
-_source line 3069 · 2026-05-28T19:56:35.286435+00:00_
+_source line 3053 · 2026-05-28T19:56:35.286435+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/l1_attention_untrained.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/l1_attention_trained.pdf
@@ -6576,7 +5433,7 @@ _source line 3069 · 2026-05-28T19:56:35.286435+00:00_
 
 ### Tool call
 
-_source line 3070 · 2026-05-28T19:56:35.286684+00:00_
+_source line 3054 · 2026-05-28T19:56:35.286684+00:00_
 
 called Glob
 
@@ -6610,7 +5467,7 @@ called Glob
 
 ### Tool result
 
-_source line 3071 · 2026-05-28T19:56:35.286886+00:00_
+_source line 3055 · 2026-05-28T19:56:35.286886+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/l1_attention_untrained.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention/l1_attention_trained.pdf
@@ -6641,7 +5498,7 @@ _source line 3071 · 2026-05-28T19:56:35.286886+00:00_
 
 ### Tool call
 
-_source line 3072 · 2026-05-28T19:56:35.439298+00:00_
+_source line 3056 · 2026-05-28T19:56:35.439298+00:00_
 
 called Bash
 
@@ -6675,7 +5532,7 @@ called Bash
 
 ### Tool result
 
-_source line 3073 · 2026-05-28T19:56:35.741004+00:00_
+_source line 3057 · 2026-05-28T19:56:35.741004+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_finetuned_attention/data/libero_finetuned_attention_profile_summary.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/perlayer_rsa_summary.txt
@@ -6714,7 +5571,7 @@ _source line 3073 · 2026-05-28T19:56:35.741004+00:00_
 
 ### Tool call
 
-_source line 3074 · 2026-05-28T19:56:35.741380+00:00_
+_source line 3058 · 2026-05-28T19:56:35.741380+00:00_
 
 called Agent
 
@@ -6752,7 +5609,7 @@ called Agent
 
 ### Tool call
 
-_source line 3075 · 2026-05-28T19:56:40.408595+00:00_
+_source line 3059 · 2026-05-28T19:56:40.408595+00:00_
 
 called Bash
 
@@ -6786,7 +5643,7 @@ called Bash
 
 ### Tool result
 
-_source line 3076 · 2026-05-28T19:56:40.409085+00:00_
+_source line 3060 · 2026-05-28T19:56:40.409085+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json
@@ -6819,7 +5676,7 @@ _source line 3076 · 2026-05-28T19:56:40.409085+00:00_
 
 ### Tool call
 
-_source line 3077 · 2026-05-28T19:56:40.409399+00:00_
+_source line 3061 · 2026-05-28T19:56:40.409399+00:00_
 
 called Bash
 
@@ -6853,7 +5710,7 @@ called Bash
 
 ### Tool result
 
-_source line 3078 · 2026-05-28T19:56:40.409645+00:00_
+_source line 3062 · 2026-05-28T19:56:40.409645+00:00_
 
 total 40
 drwxr-xr-x  2 ubuntu ubuntu  4096 May 21 02:37 .
@@ -6881,7 +5738,7 @@ drwxr-xr-x 56 ubuntu ubuntu 12288 May 28 15:48 ..
 
 ### Tool call
 
-_source line 3079 · 2026-05-28T19:56:40.409942+00:00_
+_source line 3063 · 2026-05-28T19:56:40.409942+00:00_
 
 called Read
 
@@ -6915,7 +5772,7 @@ called Read
 
 ### Tool result
 
-_source line 3080 · 2026-05-28T19:56:40.410155+00:00_
+_source line 3064 · 2026-05-28T19:56:40.410155+00:00_
 
 1	{
 2	  "per_head": {
@@ -6956,7 +5813,7 @@ _source line 3080 · 2026-05-28T19:56:40.410155+00:00_
 
 ### Tool call
 
-_source line 3081 · 2026-05-28T19:56:40.410321+00:00_
+_source line 3065 · 2026-05-28T19:56:40.410321+00:00_
 
 called Read
 
@@ -6990,7 +5847,7 @@ called Read
 
 ### Tool result
 
-_source line 3082 · 2026-05-28T19:56:40.410495+00:00_
+_source line 3066 · 2026-05-28T19:56:40.410495+00:00_
 
 1	#!/usr/bin/env python3
 2	"""fig_action_r2_threecond: Per-layer action-probe R² for three OpenVLA conditions."""
@@ -7053,7 +5910,7 @@ _source line 3082 · 2026-05-28T19:56:40.410495+00:00_
 
 ### Tool call
 
-_source line 3083 · 2026-05-28T19:56:40.410660+00:00_
+_source line 3067 · 2026-05-28T19:56:40.410660+00:00_
 
 called Glob
 
@@ -7087,7 +5944,7 @@ called Glob
 
 ### Tool result
 
-_source line 3084 · 2026-05-28T19:56:40.410824+00:00_
+_source line 3068 · 2026-05-28T19:56:40.410824+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention_decomposition/data/per_task_r2_distribution.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json
@@ -7126,7 +5983,7 @@ _source line 3084 · 2026-05-28T19:56:40.410824+00:00_
 
 ### Tool call
 
-_source line 3085 · 2026-05-28T19:56:40.411012+00:00_
+_source line 3069 · 2026-05-28T19:56:40.411012+00:00_
 
 called Read
 
@@ -7160,7 +6017,7 @@ called Read
 
 ### Tool result
 
-_source line 3086 · 2026-05-28T19:56:40.411178+00:00_
+_source line 3070 · 2026-05-28T19:56:40.411178+00:00_
 
 1	{
 2	  "model": "OpenVLA",
@@ -7214,7 +6071,7 @@ _source line 3086 · 2026-05-28T19:56:40.411178+00:00_
 
 ### Tool call
 
-_source line 3087 · 2026-05-28T19:56:40.411332+00:00_
+_source line 3071 · 2026-05-28T19:56:40.411332+00:00_
 
 called Read
 
@@ -7248,7 +6105,7 @@ called Read
 
 ### Tool result
 
-_source line 3088 · 2026-05-28T19:56:40.563203+00:00_
+_source line 3072 · 2026-05-28T19:56:40.563203+00:00_
 
 1	{
 2	  "model": "OpenVLA-Untrained",
@@ -7302,7 +6159,7 @@ _source line 3088 · 2026-05-28T19:56:40.563203+00:00_
 
 ### Tool call
 
-_source line 3089 · 2026-05-28T19:56:40.563723+00:00_
+_source line 3073 · 2026-05-28T19:56:40.563723+00:00_
 
 called Bash
 
@@ -7336,7 +6193,7 @@ called Bash
 
 ### Tool result
 
-_source line 3090 · 2026-05-28T19:56:40.915350+00:00_
+_source line 3074 · 2026-05-28T19:56:40.915350+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/untrained_last_preaction_probe.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/libero_spatial_r2_perlayer.pdf
@@ -7365,7 +6222,7 @@ _source line 3090 · 2026-05-28T19:56:40.915350+00:00_
 
 ### Tool call
 
-_source line 3091 · 2026-05-28T19:56:40.915791+00:00_
+_source line 3075 · 2026-05-28T19:56:40.915791+00:00_
 
 called Agent
 
@@ -7403,7 +6260,7 @@ called Agent
 
 ### Tool call
 
-_source line 3092 · 2026-05-28T19:56:49.027362+00:00_
+_source line 3076 · 2026-05-28T19:56:49.027362+00:00_
 
 called Bash
 
@@ -7437,7 +6294,7 @@ called Bash
 
 ### Tool result
 
-_source line 3093 · 2026-05-28T19:56:49.027836+00:00_
+_source line 3077 · 2026-05-28T19:56:49.027836+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_analysis_threshold_sensitivity_20260517T134939_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_analysis_tracvla_spatial_results_and_fix_20260521T023522_result.json
@@ -7468,7 +6325,7 @@ _source line 3093 · 2026-05-28T19:56:49.027836+00:00_
 
 ### Tool call
 
-_source line 3094 · 2026-05-28T19:56:49.028207+00:00_
+_source line 3078 · 2026-05-28T19:56:49.028207+00:00_
 
 called Bash
 
@@ -7502,7 +6359,7 @@ called Bash
 
 ### Tool result
 
-_source line 3095 · 2026-05-28T19:56:49.028432+00:00_
+_source line 3079 · 2026-05-28T19:56:49.028432+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rsa_analysis.py:        "trained_mean": round(float(np.mean(trained_per_task)), 4) if trained_per_task else None,
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rsa_analysis.py:        "untrained_mean": round(float(np.mean(untrained_per_task)), 4) if untrained_per_task else None,
@@ -7527,7 +6384,7 @@ _source line 3095 · 2026-05-28T19:56:49.028432+00:00_
 
 ### Tool call
 
-_source line 3096 · 2026-05-28T19:56:49.028649+00:00_
+_source line 3080 · 2026-05-28T19:56:49.028649+00:00_
 
 called Bash
 
@@ -7561,7 +6418,7 @@ called Bash
 
 ### Tool call
 
-_source line 3097 · 2026-05-28T19:56:49.028859+00:00_
+_source line 3081 · 2026-05-28T19:56:49.028859+00:00_
 
 called Bash
 
@@ -7595,7 +6452,7 @@ called Bash
 
 ### Tool result
 
-_source line 3098 · 2026-05-28T19:56:49.036814+00:00_
+_source line 3082 · 2026-05-28T19:56:49.036814+00:00_
 
 &lt;persisted-output>
 Output too large (4.5MB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/bo9g94ivz.txt
@@ -7624,7 +6481,7 @@ Preview (first 2KB):
 
 ### Tool result
 
-_source line 3099 · 2026-05-28T19:56:49.037269+00:00_
+_source line 3083 · 2026-05-28T19:56:49.037269+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_l1_attention.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/__pycache__/plot_l1_attention.cpython-314.pyc
@@ -7657,7 +6514,7 @@ _source line 3099 · 2026-05-28T19:56:49.037269+00:00_
 
 ### Tool call
 
-_source line 3100 · 2026-05-28T19:56:49.037553+00:00_
+_source line 3084 · 2026-05-28T19:56:49.037553+00:00_
 
 called Read
 
@@ -7691,7 +6548,7 @@ called Read
 
 ### Tool result
 
-_source line 3101 · 2026-05-28T19:56:49.037813+00:00_
+_source line 3085 · 2026-05-28T19:56:49.037813+00:00_
 
 1	{
 2	  "raw": "数据完整。结果摘要：\n\n## 多层 Attention Distribution 结果\n\n| Condition | Layer | n_text_dominant | n_image_dominant | n_bos_dominant | mean_text | mean_image | mean_bos |\n|-----------|-------|-----------------|------------------|----------------|-----------|------------|----------|\n| **trained** | L8 | 4/32 | 0/32 | 21/32 | 0.4678 | 0.0315 | 0.5009 |\n| **trained** | L16 | 10/32 | 1/32 | 12/32 | 0.4840 | 0.1053 | 0.4107 |\n| **trained** | L31 | **19/32** | 1/32 | 3/32 | **0.5628** | 0.1333 | 0.3039 |\n| **untrained** | L8 | 0/32 | **32/32** | 0/32 | 0.0790 | **0.9138** | 0.0072 |\n| **untrained** | L16 | 0/32 | **32/32** | 0/32 | 0.0918 | **0.9015** | 0.0067 |\n| **untrained** | L31 | 0/32 | **32/32** | 0/32 | 0.0757 | **0.9183** | 0.0059 |\n| **llama2base** | L8 | 8/32 | 0/32 | 10/32 | 0.4878 | 0.0344 | 0.4779 |\n| **llama2base** | L16 | **25/32** | 0/32 | 7/32 | **0.6017** | 0.0335 | 0.3648 |\n| **llama2base** | L31 | 8/32 | 0/32 | 20/32 | 0.3485 | 0.0716 | 0.5800 |\n\n关键发现：\n\n1. **Trained model**: instruction attention 随层深递增（L8→L16→L31: 4→10→19 heads dominant），最终层 L31 有 19/32 heads 以 instruction 为主导，mean_text=0.56\n2. **Untrained (random)**: 所有层所有 32 heads 都是 image-dominant（~91% attention to image），text 几乎为零——无任何 language grounding\n3. **Llama2base**: L16 表现出最强 text attention（25/32 heads, mean=0.60），但 L31 反而回退到 BOS dominant（20/32 heads）——说明 Llama-2 base 有一定的 text processing 能力但 pattern 不同于 trained model\n\n结果已保存至 `/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json`。"
@@ -7715,7 +6572,7 @@ _source line 3101 · 2026-05-28T19:56:49.037813+00:00_
 
 ### Tool call
 
-_source line 3102 · 2026-05-28T19:56:49.038144+00:00_
+_source line 3086 · 2026-05-28T19:56:49.038144+00:00_
 
 called Read
 
@@ -7749,7 +6606,7 @@ called Read
 
 ### Tool result
 
-_source line 3103 · 2026-05-28T19:56:49.044403+00:00_
+_source line 3087 · 2026-05-28T19:56:49.044403+00:00_
 
 1	{
 2	  "raw": "图表已生成，保存在：\n\n- PDF: `artifacts/attention/fig_multi_layer_attention.pdf`\n- PNG: `artifacts/attention/fig_multi_layer_attention.png`\n\n两个 panel 均按要求绘制：(a) instruction-dominant heads 数量折线，(b) mean instruction attention fraction 折线。三条件用蓝实线/绿虚线/红点线区分，50% 参考线已标注。Untrained VLA 在所有层均为 0 heads、~8-12% attention，与 Trained VLA 和 Llama-2 Base 形成鲜明对比。"
@@ -7773,7 +6630,7 @@ _source line 3103 · 2026-05-28T19:56:49.044403+00:00_
 
 ### Tool call
 
-_source line 3104 · 2026-05-28T19:56:49.044707+00:00_
+_source line 3088 · 2026-05-28T19:56:49.044707+00:00_
 
 called Bash
 
@@ -7807,7 +6664,7 @@ called Bash
 
 ### Tool result
 
-_source line 3105 · 2026-05-28T19:56:49.056157+00:00_
+_source line 3089 · 2026-05-28T19:56:49.056157+00:00_
 
 (Bash completed with no output)
 
@@ -7829,7 +6686,7 @@ _source line 3105 · 2026-05-28T19:56:49.056157+00:00_
 
 ### Tool call
 
-_source line 3106 · 2026-05-28T19:56:49.079581+00:00_
+_source line 3090 · 2026-05-28T19:56:49.079581+00:00_
 
 called Read
 
@@ -7863,7 +6720,7 @@ called Read
 
 ### Tool result
 
-_source line 3107 · 2026-05-28T19:56:49.080172+00:00_
+_source line 3091 · 2026-05-28T19:56:49.080172+00:00_
 
 1	{
 2	  "untrained_last_preaction_L19": {
@@ -7929,7 +6786,7 @@ _source line 3107 · 2026-05-28T19:56:49.080172+00:00_
 
 ### Tool call
 
-_source line 3108 · 2026-05-28T19:56:49.080500+00:00_
+_source line 3092 · 2026-05-28T19:56:49.080500+00:00_
 
 called Bash
 
@@ -7963,7 +6820,7 @@ called Bash
 
 ### Tool result
 
-_source line 3109 · 2026-05-28T19:56:49.080716+00:00_
+_source line 3093 · 2026-05-28T19:56:49.080716+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_finetuned_attention/data/libero_finetuned_attention_profile_summary.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_finetuned_probe_profile.json
@@ -7986,7 +6843,7 @@ _source line 3109 · 2026-05-28T19:56:49.080716+00:00_
 
 ### Tool call
 
-_source line 3110 · 2026-05-28T19:56:49.081993+00:00_
+_source line 3094 · 2026-05-28T19:56:49.081993+00:00_
 
 called Read
 
@@ -8020,7 +6877,7 @@ called Read
 
 ### Tool result
 
-_source line 3111 · 2026-05-28T19:56:49.082410+00:00_
+_source line 3095 · 2026-05-28T19:56:49.082410+00:00_
 
 1	{
 2	  "model": "openvla-7b-finetuned-libero-goal",
@@ -8111,7 +6968,7 @@ _source line 3111 · 2026-05-28T19:56:49.082410+00:00_
 
 ### Tool call
 
-_source line 3112 · 2026-05-28T19:56:49.100718+00:00_
+_source line 3096 · 2026-05-28T19:56:49.100718+00:00_
 
 called Bash
 
@@ -8145,7 +7002,7 @@ called Bash
 
 ### Tool call
 
-_source line 3113 · 2026-05-28T19:56:49.101160+00:00_
+_source line 3097 · 2026-05-28T19:56:49.101160+00:00_
 
 called Read
 
@@ -8179,7 +7036,7 @@ called Read
 
 ### Tool result
 
-_source line 3114 · 2026-05-28T19:56:49.101481+00:00_
+_source line 3098 · 2026-05-28T19:56:49.101481+00:00_
 
 1	#!/usr/bin/env python3
 2	import matplotlib
@@ -8267,7 +7124,7 @@ _source line 3114 · 2026-05-28T19:56:49.101481+00:00_
 
 ### Tool call
 
-_source line 3115 · 2026-05-28T19:56:49.101811+00:00_
+_source line 3099 · 2026-05-28T19:56:49.101811+00:00_
 
 called Glob
 
@@ -8301,7 +7158,7 @@ called Glob
 
 ### Tool result
 
-_source line 3116 · 2026-05-28T19:56:49.107469+00:00_
+_source line 3100 · 2026-05-28T19:56:49.107469+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_token_overlap/data/counterfactual_token_overlap_pointer.txt
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json
@@ -8339,7 +7196,7 @@ _source line 3116 · 2026-05-28T19:56:49.107469+00:00_
 
 ### Tool call
 
-_source line 3117 · 2026-05-28T19:56:49.107890+00:00_
+_source line 3101 · 2026-05-28T19:56:49.107890+00:00_
 
 called Read
 
@@ -8373,7 +7230,7 @@ called Read
 
 ### Tool result
 
-_source line 3118 · 2026-05-28T19:56:49.108348+00:00_
+_source line 3102 · 2026-05-28T19:56:49.108348+00:00_
 
 1	{
 2	  "config": {
@@ -8429,7 +7286,7 @@ _source line 3118 · 2026-05-28T19:56:49.108348+00:00_
 
 ### Tool call
 
-_source line 3119 · 2026-05-28T19:56:49.108644+00:00_
+_source line 3103 · 2026-05-28T19:56:49.108644+00:00_
 
 called Read
 
@@ -8463,7 +7320,7 @@ called Read
 
 ### Tool result
 
-_source line 3120 · 2026-05-28T19:56:49.111040+00:00_
+_source line 3104 · 2026-05-28T19:56:49.111040+00:00_
 
 1	{
 2	  "config": {
@@ -8519,7 +7376,7 @@ _source line 3120 · 2026-05-28T19:56:49.111040+00:00_
 
 ### Tool call
 
-_source line 3121 · 2026-05-28T19:56:49.111433+00:00_
+_source line 3105 · 2026-05-28T19:56:49.111433+00:00_
 
 called Read
 
@@ -8553,7 +7410,7 @@ called Read
 
 ### Tool result
 
-_source line 3122 · 2026-05-28T19:56:49.111767+00:00_
+_source line 3106 · 2026-05-28T19:56:49.111767+00:00_
 
 1	{
 2	  "source": "counterfactual_10tasks_combined.json + trajectory_level_cohens_d.json",
@@ -8612,7 +7469,7 @@ _source line 3122 · 2026-05-28T19:56:49.111767+00:00_
 
 ### Tool call
 
-_source line 3123 · 2026-05-28T19:56:49.144541+00:00_
+_source line 3107 · 2026-05-28T19:56:49.144541+00:00_
 
 called Read
 
@@ -8646,7 +7503,7 @@ called Read
 
 ### Tool result
 
-_source line 3124 · 2026-05-28T19:56:49.151167+00:00_
+_source line 3108 · 2026-05-28T19:56:49.151167+00:00_
 
 1	{
 2	  "config": {
@@ -8707,7 +7564,7 @@ _source line 3124 · 2026-05-28T19:56:49.151167+00:00_
 
 ### Tool call
 
-_source line 3125 · 2026-05-28T19:56:49.207573+00:00_
+_source line 3109 · 2026-05-28T19:56:49.207573+00:00_
 
 called Agent
 
@@ -8745,7 +7602,7 @@ called Agent
 
 ### Tool call
 
-_source line 3126 · 2026-05-28T19:56:49.774167+00:00_
+_source line 3110 · 2026-05-28T19:56:49.774167+00:00_
 
 called Bash
 
@@ -8779,7 +7636,7 @@ called Bash
 
 ### Tool result
 
-_source line 3127 · 2026-05-28T19:56:49.926426+00:00_
+_source line 3111 · 2026-05-28T19:56:49.926426+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_trained.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_untrained.json
@@ -8802,7 +7659,7 @@ _source line 3127 · 2026-05-28T19:56:49.926426+00:00_
 
 ### Tool call
 
-_source line 3128 · 2026-05-28T19:56:49.979126+00:00_
+_source line 3112 · 2026-05-28T19:56:49.979126+00:00_
 
 called Bash
 
@@ -8836,7 +7693,7 @@ called Bash
 
 ### Tool result
 
-_source line 3129 · 2026-05-28T19:56:50.079962+00:00_
+_source line 3113 · 2026-05-28T19:56:50.079962+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/branch_split_rsa_results.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/rsa_permutation_null_10k.json
@@ -8864,7 +7721,7 @@ _source line 3129 · 2026-05-28T19:56:50.079962+00:00_
 
 ### Tool call
 
-_source line 3130 · 2026-05-28T19:56:50.783189+00:00_
+_source line 3114 · 2026-05-28T19:56:50.783189+00:00_
 
 called Bash
 
@@ -8898,7 +7755,7 @@ called Bash
 
 ### Tool call
 
-_source line 3131 · 2026-05-28T19:56:50.834123+00:00_
+_source line 3115 · 2026-05-28T19:56:50.834123+00:00_
 
 called Bash
 
@@ -8932,7 +7789,7 @@ called Bash
 
 ### Tool result
 
-_source line 3132 · 2026-05-28T19:56:50.885136+00:00_
+_source line 3116 · 2026-05-28T19:56:50.885136+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_multi_layer_attention.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_multi_layer_attention_extraction_20260517T063232.log
@@ -8963,7 +7820,7 @@ _source line 3132 · 2026-05-28T19:56:50.885136+00:00_
 
 ### Tool result
 
-_source line 3133 · 2026-05-28T19:56:50.935834+00:00_
+_source line 3117 · 2026-05-28T19:56:50.935834+00:00_
 
 total 820
 drwxr-xr-x  3 ubuntu ubuntu   4096 May 28 03:57 .
@@ -9001,7 +7858,7 @@ drwxr-xr-x  2 ubuntu ubuntu   4096 May 28 03:57 __pycache__
 
 ### Tool call
 
-_source line 3134 · 2026-05-28T19:56:51.239305+00:00_
+_source line 3118 · 2026-05-28T19:56:51.239305+00:00_
 
 called Read
 
@@ -9035,7 +7892,7 @@ called Read
 
 ### Tool result
 
-_source line 3135 · 2026-05-28T19:56:51.441318+00:00_
+_source line 3119 · 2026-05-28T19:56:51.441318+00:00_
 
 1	"""
 2	Regenerate fig_matrix_heatmap.pdf with correct ΔR² values from Table 1.
@@ -9120,7 +7977,7 @@ _source line 3135 · 2026-05-28T19:56:51.441318+00:00_
 
 ### Tool call
 
-_source line 3136 · 2026-05-28T19:56:51.441803+00:00_
+_source line 3120 · 2026-05-28T19:56:51.441803+00:00_
 
 called Read
 
@@ -9154,7 +8011,7 @@ called Read
 
 ### Tool result
 
-_source line 3137 · 2026-05-28T19:56:51.843539+00:00_
+_source line 3121 · 2026-05-28T19:56:51.843539+00:00_
 
 1	\section{Experiments}
 2	\label{sec:experiments}
@@ -9208,7 +8065,7 @@ _source line 3137 · 2026-05-28T19:56:51.843539+00:00_
 
 ### Tool call
 
-_source line 3138 · 2026-05-28T19:56:51.844137+00:00_
+_source line 3122 · 2026-05-28T19:56:51.844137+00:00_
 
 called Glob
 
@@ -9242,7 +8099,7 @@ called Glob
 
 ### Tool result
 
-_source line 3139 · 2026-05-28T19:56:51.894680+00:00_
+_source line 3123 · 2026-05-28T19:56:51.894680+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention_decomposition/data/per_task_r2_distribution.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json
@@ -9280,7 +8137,7 @@ _source line 3139 · 2026-05-28T19:56:51.894680+00:00_
 
 ### Tool call
 
-_source line 3140 · 2026-05-28T19:56:51.945488+00:00_
+_source line 3124 · 2026-05-28T19:56:51.945488+00:00_
 
 called Glob
 
@@ -9314,7 +8171,7 @@ called Glob
 
 ### Tool result
 
-_source line 3141 · 2026-05-28T19:56:51.996132+00:00_
+_source line 3125 · 2026-05-28T19:56:51.996132+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/action_delta_probe_projector.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/dino_action_probe.json
@@ -9340,7 +8197,7 @@ _source line 3141 · 2026-05-28T19:56:51.996132+00:00_
 
 ### Tool call
 
-_source line 3142 · 2026-05-28T19:56:52.248292+00:00_
+_source line 3126 · 2026-05-28T19:56:52.248292+00:00_
 
 called Bash
 
@@ -9374,7 +8231,7 @@ called Bash
 
 ### Tool result
 
-_source line 3143 · 2026-05-28T19:56:52.501108+00:00_
+_source line 3127 · 2026-05-28T19:56:52.501108+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_diagnose_cuda1_next_readiness_20260521T071019_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_ssh_lg_gc_trained-results_20260515T175347_result.json
@@ -9405,7 +8262,7 @@ _source line 3143 · 2026-05-28T19:56:52.501108+00:00_
 
 ### Tool call
 
-_source line 3144 · 2026-05-28T19:56:52.551780+00:00_
+_source line 3128 · 2026-05-28T19:56:52.551780+00:00_
 
 called Bash
 
@@ -9439,7 +8296,7 @@ called Bash
 
 ### Tool call
 
-_source line 3145 · 2026-05-28T19:56:52.652681+00:00_
+_source line 3129 · 2026-05-28T19:56:52.652681+00:00_
 
 called Bash
 
@@ -9473,7 +8330,7 @@ called Bash
 
 ### Tool result
 
-_source line 3146 · 2026-05-28T19:56:52.757430+00:00_
+_source line 3130 · 2026-05-28T19:56:52.757430+00:00_
 
 -rw-r--r--  1 ubuntu ubuntu    9300 May 21 01:20 nora_analysis_report.md
 
@@ -9495,7 +8352,7 @@ _source line 3146 · 2026-05-28T19:56:52.757430+00:00_
 
 ### Tool result
 
-_source line 3147 · 2026-05-28T19:56:52.757801+00:00_
+_source line 3131 · 2026-05-28T19:56:52.757801+00:00_
 
 (Bash completed with no output)
 
@@ -9517,7 +8374,7 @@ _source line 3147 · 2026-05-28T19:56:52.757801+00:00_
 
 ### Tool call
 
-_source line 3148 · 2026-05-28T19:56:52.758098+00:00_
+_source line 3132 · 2026-05-28T19:56:52.758098+00:00_
 
 called Bash
 
@@ -9551,7 +8408,7 @@ called Bash
 
 ### Tool result
 
-_source line 3149 · 2026-05-28T19:56:52.910722+00:00_
+_source line 3133 · 2026-05-28T19:56:52.910722+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_multi_layer_attention.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_multi_layer_attention_extraction_20260517T063232.log
@@ -9580,7 +8437,7 @@ _source line 3149 · 2026-05-28T19:56:52.910722+00:00_
 
 ### Tool call
 
-_source line 3150 · 2026-05-28T19:56:54.217596+00:00_
+_source line 3134 · 2026-05-28T19:56:54.217596+00:00_
 
 called Read
 
@@ -9614,7 +8471,7 @@ called Read
 
 ### Tool result
 
-_source line 3151 · 2026-05-28T19:56:54.318830+00:00_
+_source line 3135 · 2026-05-28T19:56:54.318830+00:00_
 
 1	{
 2	  "model": "OpenVLA",
@@ -9668,7 +8525,7 @@ _source line 3151 · 2026-05-28T19:56:54.318830+00:00_
 
 ### Tool call
 
-_source line 3152 · 2026-05-28T19:56:54.369579+00:00_
+_source line 3136 · 2026-05-28T19:56:54.369579+00:00_
 
 called Read
 
@@ -9702,7 +8559,7 @@ called Read
 
 ### Tool call
 
-_source line 3153 · 2026-05-28T19:56:54.370030+00:00_
+_source line 3137 · 2026-05-28T19:56:54.370030+00:00_
 
 called Read
 
@@ -9736,7 +8593,7 @@ called Read
 
 ### Tool result
 
-_source line 3154 · 2026-05-28T19:56:54.420514+00:00_
+_source line 3138 · 2026-05-28T19:56:54.420514+00:00_
 
 File content (444.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -9758,7 +8615,7 @@ File content (444.4KB) exceeds maximum allowed size (256KB). Use offset and limi
 
 ### Tool call
 
-_source line 3155 · 2026-05-28T19:56:54.623291+00:00_
+_source line 3139 · 2026-05-28T19:56:54.623291+00:00_
 
 called Bash
 
@@ -9792,7 +8649,7 @@ called Bash
 
 ### Tool result
 
-_source line 3156 · 2026-05-28T19:56:54.775114+00:00_
+_source line 3140 · 2026-05-28T19:56:54.775114+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial/cross_instruction_classification.json
 
@@ -9814,7 +8671,7 @@ _source line 3156 · 2026-05-28T19:56:54.775114+00:00_
 
 ### Tool call
 
-_source line 3157 · 2026-05-28T19:56:54.775563+00:00_
+_source line 3141 · 2026-05-28T19:56:54.775563+00:00_
 
 called Bash
 
@@ -9848,7 +8705,7 @@ called Bash
 
 ### Tool result
 
-_source line 3158 · 2026-05-28T19:56:54.775886+00:00_
+_source line 3142 · 2026-05-28T19:56:54.775886+00:00_
 
 1	{
 2	  "model": "TracVLA-Phi3V",
@@ -9901,7 +8758,7 @@ _source line 3158 · 2026-05-28T19:56:54.775886+00:00_
 
 ### Tool call
 
-_source line 3159 · 2026-05-28T19:56:54.828547+00:00_
+_source line 3143 · 2026-05-28T19:56:54.828547+00:00_
 
 called Read
 
@@ -9935,7 +8792,7 @@ called Read
 
 ### Tool result
 
-_source line 3160 · 2026-05-28T19:56:54.880770+00:00_
+_source line 3144 · 2026-05-28T19:56:54.880770+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 17963 May 28 03:55 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_instruction.py
 -rw-r--r-- 1 ubuntu ubuntu 22964 May 28 03:55 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_spatial.py
@@ -9976,7 +8833,7 @@ drwxr-xr-x  3 ubuntu ubuntu  4096 May 19 01:20 .
 
 ### Tool result
 
-_source line 3161 · 2026-05-28T19:56:55.081963+00:00_
+_source line 3145 · 2026-05-28T19:56:55.081963+00:00_
 
 1	{
 2	  "L0": 0.6392,
@@ -10036,7 +8893,7 @@ _source line 3161 · 2026-05-28T19:56:55.081963+00:00_
 
 ### Tool call
 
-_source line 3162 · 2026-05-28T19:56:55.082395+00:00_
+_source line 3146 · 2026-05-28T19:56:55.082395+00:00_
 
 called Read
 
@@ -10070,7 +8927,7 @@ called Read
 
 ### Tool result
 
-_source line 3163 · 2026-05-28T19:56:55.133640+00:00_
+_source line 3147 · 2026-05-28T19:56:55.133640+00:00_
 
 1	{
 2	  "L0_image_mean": {"mean": 0.0, "std": 0.0, "values": [0.0, 0.0]},
@@ -10121,7 +8978,7 @@ _source line 3163 · 2026-05-28T19:56:55.133640+00:00_
 
 ### Tool call
 
-_source line 3164 · 2026-05-28T19:56:56.392284+00:00_
+_source line 3148 · 2026-05-28T19:56:56.392284+00:00_
 
 called Bash
 
@@ -10155,7 +9012,7 @@ called Bash
 
 ### Tool result
 
-_source line 3165 · 2026-05-28T19:56:56.443197+00:00_
+_source line 3149 · 2026-05-28T19:56:56.443197+00:00_
 
 &lt;persisted-output>
 Output too large (220.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/b3ukgvrje.txt
@@ -10182,7 +9039,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3166 · 2026-05-28T19:56:56.795584+00:00_
+_source line 3150 · 2026-05-28T19:56:56.795584+00:00_
 
 called Bash
 
@@ -10216,7 +9073,7 @@ called Bash
 
 ### Tool result
 
-_source line 3167 · 2026-05-28T19:56:57.099418+00:00_
+_source line 3151 · 2026-05-28T19:56:57.099418+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_diag_behavioral_smoketest_action_20260523T153722_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_debug_ablation_50demos_main_check_20260517T214805_result.json
@@ -10247,7 +9104,7 @@ _source line 3167 · 2026-05-28T19:56:57.099418+00:00_
 
 ### Tool call
 
-_source line 3168 · 2026-05-28T19:56:57.099855+00:00_
+_source line 3152 · 2026-05-28T19:56:57.099855+00:00_
 
 called Bash
 
@@ -10281,7 +9138,7 @@ called Bash
 
 ### Tool result
 
-_source line 3169 · 2026-05-28T19:56:57.202247+00:00_
+_source line 3153 · 2026-05-28T19:56:57.202247+00:00_
 
 total 124
 drwxr-xr-x 2 ubuntu ubuntu  4096 May 26 20:07 .
@@ -10328,7 +9185,7 @@ drwxr-xr-x 7 ubuntu ubuntu  4096 May 16 02:23 ..
 
 ### Tool call
 
-_source line 3170 · 2026-05-28T19:56:57.553827+00:00_
+_source line 3154 · 2026-05-28T19:56:57.553827+00:00_
 
 called Glob
 
@@ -10362,7 +9219,7 @@ called Glob
 
 ### Tool result
 
-_source line 3171 · 2026-05-28T19:56:57.654613+00:00_
+_source line 3155 · 2026-05-28T19:56:57.654613+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/l1_ablation_diagnostic.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_action_r2_threecond.py
@@ -10399,7 +9256,7 @@ _source line 3171 · 2026-05-28T19:56:57.654613+00:00_
 
 ### Tool result
 
-_source line 3172 · 2026-05-28T19:56:57.755449+00:00_
+_source line 3156 · 2026-05-28T19:56:57.755449+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/tracvla_trained_metrics_20260521.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/seed_robustness_tracvla.py
@@ -10427,7 +9284,7 @@ _source line 3172 · 2026-05-28T19:56:57.755449+00:00_
 
 ### Tool call
 
-_source line 3173 · 2026-05-28T19:56:57.755822+00:00_
+_source line 3157 · 2026-05-28T19:56:57.755822+00:00_
 
 called Glob
 
@@ -10461,7 +9318,7 @@ called Glob
 
 ### Tool result
 
-_source line 3174 · 2026-05-28T19:56:58.107430+00:00_
+_source line 3158 · 2026-05-28T19:56:58.107430+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/nora_analysis_report.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_trained.json
@@ -10485,7 +9342,7 @@ _source line 3174 · 2026-05-28T19:56:58.107430+00:00_
 
 ### Tool call
 
-_source line 3175 · 2026-05-28T19:56:58.109022+00:00_
+_source line 3159 · 2026-05-28T19:56:58.109022+00:00_
 
 called Bash
 
@@ -10519,7 +9376,7 @@ called Bash
 
 ### Tool result
 
-_source line 3176 · 2026-05-28T19:56:58.160478+00:00_
+_source line 3160 · 2026-05-28T19:56:58.160478+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial_trained
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial
@@ -10542,7 +9399,7 @@ _source line 3176 · 2026-05-28T19:56:58.160478+00:00_
 
 ### Tool call
 
-_source line 3177 · 2026-05-28T19:56:58.512243+00:00_
+_source line 3161 · 2026-05-28T19:56:58.512243+00:00_
 
 called Bash
 
@@ -10576,7 +9433,7 @@ called Bash
 
 ### Tool result
 
-_source line 3178 · 2026-05-28T19:56:58.563028+00:00_
+_source line 3162 · 2026-05-28T19:56:58.563028+00:00_
 
 &lt;persisted-output>
 Output too large (241.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/bs1j6murw.txt
@@ -10603,7 +9460,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3179 · 2026-05-28T19:56:58.965049+00:00_
+_source line 3163 · 2026-05-28T19:56:58.965049+00:00_
 
 called Read
 
@@ -10637,7 +9494,7 @@ called Read
 
 ### Tool result
 
-_source line 3180 · 2026-05-28T19:56:59.065889+00:00_
+_source line 3164 · 2026-05-28T19:56:59.065889+00:00_
 
 1	{
 2	  "L0": 0.6392,
@@ -10697,7 +9554,7 @@ _source line 3180 · 2026-05-28T19:56:59.065889+00:00_
 
 ### Tool call
 
-_source line 3181 · 2026-05-28T19:56:59.066279+00:00_
+_source line 3165 · 2026-05-28T19:56:59.066279+00:00_
 
 called Read
 
@@ -10731,7 +9588,7 @@ called Read
 
 ### Tool result
 
-_source line 3182 · 2026-05-28T19:56:59.116668+00:00_
+_source line 3166 · 2026-05-28T19:56:59.116668+00:00_
 
 1	{
 2	  "L0": 0.5925,
@@ -10791,7 +9648,7 @@ _source line 3182 · 2026-05-28T19:56:59.116668+00:00_
 
 ### Tool call
 
-_source line 3183 · 2026-05-28T19:57:00.072209+00:00_
+_source line 3167 · 2026-05-28T19:57:00.072209+00:00_
 
 called Bash
 
@@ -10825,7 +9682,7 @@ called Bash
 
 ### Tool result
 
-_source line 3184 · 2026-05-28T19:57:00.324141+00:00_
+_source line 3168 · 2026-05-28T19:57:00.324141+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_trained.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_untrained.json
@@ -10859,7 +9716,7 @@ _source line 3184 · 2026-05-28T19:57:00.324141+00:00_
 
 ### Tool call
 
-_source line 3185 · 2026-05-28T19:57:00.324618+00:00_
+_source line 3169 · 2026-05-28T19:57:00.324618+00:00_
 
 called Bash
 
@@ -10893,7 +9750,7 @@ called Bash
 
 ### Tool result
 
-_source line 3186 · 2026-05-28T19:57:00.375132+00:00_
+_source line 3170 · 2026-05-28T19:57:00.375132+00:00_
 
 total 40
 drwxr-xr-x  2 ubuntu ubuntu  4096 May 21 02:37 .
@@ -10921,7 +9778,7 @@ drwxr-xr-x 56 ubuntu ubuntu 12288 May 28 15:48 ..
 
 ### Tool call
 
-_source line 3187 · 2026-05-28T19:57:00.425840+00:00_
+_source line 3171 · 2026-05-28T19:57:00.425840+00:00_
 
 called Bash
 
@@ -10955,7 +9812,7 @@ called Bash
 
 ### Tool result
 
-_source line 3188 · 2026-05-28T19:57:00.426404+00:00_
+_source line 3172 · 2026-05-28T19:57:00.426404+00:00_
 
 total 20
 drwxr-xr-x  3 ubuntu ubuntu  4096 May 21 02:12 .
@@ -10980,7 +9837,7 @@ drwxr-xr-x  3 ubuntu ubuntu  4096 May 28 03:57 intermediate
 
 ### Tool call
 
-_source line 3189 · 2026-05-28T19:57:00.627439+00:00_
+_source line 3173 · 2026-05-28T19:57:00.627439+00:00_
 
 called Bash
 
@@ -11014,7 +9871,7 @@ called Bash
 
 ### Tool result
 
-_source line 3190 · 2026-05-28T19:57:00.678137+00:00_
+_source line 3174 · 2026-05-28T19:57:00.678137+00:00_
 
 &lt;persisted-output>
 Output too large (29.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/boxwweqe9.txt
@@ -11041,7 +9898,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3191 · 2026-05-28T19:57:01.029891+00:00_
+_source line 3175 · 2026-05-28T19:57:01.029891+00:00_
 
 called Bash
 
@@ -11075,7 +9932,7 @@ called Bash
 
 ### Tool result
 
-_source line 3192 · 2026-05-28T19:57:01.482053+00:00_
+_source line 3176 · 2026-05-28T19:57:01.482053+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2base_action_probe_20260517T204531.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2base_action_probe_20260517T204531_result.json
@@ -11109,7 +9966,7 @@ _source line 3192 · 2026-05-28T19:57:01.482053+00:00_
 
 ### Tool call
 
-_source line 3193 · 2026-05-28T19:57:01.482582+00:00_
+_source line 3177 · 2026-05-28T19:57:01.482582+00:00_
 
 called Bash
 
@@ -11143,7 +10000,7 @@ called Bash
 
 ### Tool result
 
-_source line 3194 · 2026-05-28T19:57:01.633443+00:00_
+_source line 3178 · 2026-05-28T19:57:01.633443+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_action_r2_threecond.py:llama2base_mean = np.array([0.6451, 0.6276, 0.6204, 0.6287, 0.6279, 0.6220, 0.6271, 0.6321,
 
@@ -11165,7 +10022,7 @@ _source line 3194 · 2026-05-28T19:57:01.633443+00:00_
 
 ### Tool call
 
-_source line 3195 · 2026-05-28T19:57:01.935122+00:00_
+_source line 3179 · 2026-05-28T19:57:01.935122+00:00_
 
 called Bash
 
@@ -11199,7 +10056,7 @@ called Bash
 
 ### Tool result
 
-_source line 3196 · 2026-05-28T19:57:02.086107+00:00_
+_source line 3180 · 2026-05-28T19:57:02.086107+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/untrained_last_preaction_probe.json:      "put_the_wine_bottle_on_the_rack": 0.016065120697021484,
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/untrained_last_preaction_probe.json:      "put_the_wine_bottle_on_the_rack": 0.016065120697021484,
@@ -11222,7 +10079,7 @@ _source line 3196 · 2026-05-28T19:57:02.086107+00:00_
 
 ### Tool call
 
-_source line 3197 · 2026-05-28T19:57:02.136839+00:00_
+_source line 3181 · 2026-05-28T19:57:02.136839+00:00_
 
 called Bash
 
@@ -11256,7 +10113,7 @@ called Bash
 
 ### Tool result
 
-_source line 3198 · 2026-05-28T19:57:02.187558+00:00_
+_source line 3182 · 2026-05-28T19:57:02.187558+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rsa_analysis.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/rsa_unified_vla.py
@@ -11283,7 +10140,7 @@ _source line 3198 · 2026-05-28T19:57:02.187558+00:00_
 
 ### Tool call
 
-_source line 3199 · 2026-05-28T19:57:02.540157+00:00_
+_source line 3183 · 2026-05-28T19:57:02.540157+00:00_
 
 called Bash
 
@@ -11317,7 +10174,7 @@ called Bash
 
 ### Tool result
 
-_source line 3200 · 2026-05-28T19:57:02.640914+00:00_
+_source line 3184 · 2026-05-28T19:57:02.640914+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper-a-plus-backup/experiments.tex
@@ -11354,7 +10211,7 @@ _source line 3200 · 2026-05-28T19:57:02.640914+00:00_
 
 ### Tool call
 
-_source line 3201 · 2026-05-28T19:57:03.143410+00:00_
+_source line 3185 · 2026-05-28T19:57:03.143410+00:00_
 
 called Read
 
@@ -11390,7 +10247,7 @@ called Read
 
 ### Tool result
 
-_source line 3202 · 2026-05-28T19:57:03.496868+00:00_
+_source line 3186 · 2026-05-28T19:57:03.496868+00:00_
 
 1	{
 2	  "raw": "4/10 done. Continuing at ~5 min/task. ~30 min left for remaining 6 tasks + probe training. Job is running well on its own, within the time budget.\n\nThe job is submitted via `submit_training_job` with tmux session `llama2base_action_probe` on westd-19183, cuda:1.\n\n**Status summary:**\n- Script: `/root/vla-ssd/scripts/llama2base_action_probe.py`\n- Phase 1 (feature extraction): 4/10 tasks completed, ~30 min remaining\n- Phase 2 (probe training): will run automatically after extraction, ~5 min for 33 layers\n- Output: `/root/autodl-tmp/vla-ssd/results/action_probe/llama2base_action_probe.json`\n- Log: `~/runs/vla-ssd/llama2base_action_probe.log`\n- ETA: ~35-40 min total remaining (~1h total runtime)\n\nThe script will:\n1. Extract features to H5 files (image_mean + last_preaction at all 33 layers)\n2. Train MLP(4096->256->7) probes per layer with image_mean readout\n3. Save results with per-task R², comparison with trained/untrained from existing data\n4. Print full 33-layer comparison table at the end"
@@ -11414,7 +10271,7 @@ _source line 3202 · 2026-05-28T19:57:03.496868+00:00_
 
 ### Tool call
 
-_source line 3203 · 2026-05-28T19:57:03.497409+00:00_
+_source line 3187 · 2026-05-28T19:57:03.497409+00:00_
 
 called Bash
 
@@ -11448,7 +10305,7 @@ called Bash
 
 ### Tool call
 
-_source line 3204 · 2026-05-28T19:57:03.548123+00:00_
+_source line 3188 · 2026-05-28T19:57:03.548123+00:00_
 
 called Read
 
@@ -11484,7 +10341,7 @@ called Read
 
 ### Tool result
 
-_source line 3205 · 2026-05-28T19:57:03.548593+00:00_
+_source line 3189 · 2026-05-28T19:57:03.548593+00:00_
 
 1	{
 2	  "raw": "## 结果\n\n### 三条件对比表（mean R² per layer, image_mean readout）\n\n| Layer | Untrained | Llama2Base | Trained | Pattern |\n|-------|-----------|------------|---------|---------|\n| L0 | 0.6403 | 0.6403 | 0.6403 | U = L = T |\n| **L1** | **0.5546** | **0.6366** | **0.6331** | **U < L >= T** |\n| L2 | 0.5219 | 0.6124 | 0.6278 | U < L < T |\n| L3 | 0.5338 | 0.6446 | 0.6519 | U < L < T |\n| L4 | 0.5606 | 0.6447 | 0.6468 | U < L < T |\n| L5 | 0.5383 | 0.6326 | 0.6468 | U < L < T |\n| L6 | 0.5313 | 0.6413 | 0.6494 | U < L < T |\n| L7 | 0.5176 | 0.6335 | 0.6447 | U < L < T |\n| **L8** | 0.5323 | 0.6307 | **0.6553** | U < L < T |\n| L9 | 0.5350 | 0.6371 | 0.6511 | U < L < T |\n| L10 | -0.3293 | 0.6233 | 0.6427 | U < L < T |\n| L11 | -0.2806 | 0.6184 | 0.6436 | U < L < T |\n| L12 | 0.5198 | 0.6268 | 0.6086 | U < L >= T |\n| L13 | 0.4410 | 0.6047 | 0.6296 | U < L < T |\n| L14-L20 | ... | ... | ... | U < L < T |\n| L21-L31 | ~0.45 | ~0.57 | ~0.48 | U < L >= T |\n| L32 | 0.5785 | 0.5255 | 0.5390 | U >= L < T |\n\n### L1 关键数值\n- **Untrained: 0.5546**\n- **Llama2Base: 0.6366**\n- **Trained (VLA): 0.6331**\n- Delta: llama2base比untrained高 +0.082, 但比trained略高 +0.004\n\n### 整体 Pattern\n\n| 指标 | Untrained | Llama2Base | Trained |\n|------|-----------|------------|---------|\n| Peak R² | 0.6403 (L0) | 0.6447 (L4) | 0.6553 (L8) |\n| Mean (all layers) | 0.4491 | **0.6014** | 0.5849 |\n| Mean (L2-L9) | 0.5294 | 0.6347 | **0.6463** |\n| Mean (L21-L32) | 0.4686 | **0.5700** | 0.4924 |\n\n### 核心发现\n\n1. **假设部分成立**：Peak-to-peak 确认 untrained(0.64) < llama2base(0.64) < trained(0.66)，但差异很小\n\n2. **Early-mid layers (L2-L9)**：19/21 层符合 U<L<T，VLA training 在语言预训练基础上确实有增量改善\n\n3. **Late layers (L21-L31)**：10/11 层 llama2base 反超 trained。VLA training 将后层重新用于 action token generation，降低了 image_mean readout 的 action encoding\n\n4. **L1 意外发现**：llama2base(0.6366) ≈ trained(0.6331)。语言预训练已经在 L1 建立了与 VLA-trained 相当的 spatial representation\n\n### 结果文件\n`/root/autodl-tmp/vla-ssd/results/llama2base_acti
@@ -11508,7 +10365,7 @@ _source line 3205 · 2026-05-28T19:57:03.548593+00:00_
 
 ### Tool result
 
-_source line 3206 · 2026-05-28T19:57:03.599209+00:00_
+_source line 3190 · 2026-05-28T19:57:03.599209+00:00_
 
 {"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_018UhDZxxDfLd8fC7AaWGQKG","type":"message","role":"assistant","content":[{"type":"text","text":"数据完整。结果摘要：\n\n## 多层 Attention Distribution 结果\n\n| Condition | Layer | n_text_dominant | n_image_dominant | n_bos_dominant | mean_text | mean_image | mean_bos |\n|-----------|-------|-----------------|------------------|----------------|-----------|------------|----------|\n| **trained** | L8 | 4/32 | 0/32 | 21/32 | 0.4678 | 0.0315 | 0.5009 |\n| **trained** | L16 | 10/32 | 1/32 | 12/32 | 0.4840 | 0.1053 | 0.4107 |\n| **trained** | L31 | **19/32** | 1/32 | 3/32 | **0.5628** | 0.1333 | 0.3039 |\n| **untrained** | L8 | 0/32 | **32/32** | 0/32 | 0.0790 | **0.9138** | 0.0072 |\n| **untrained** | L16 | 0/32 | **32/32** | 0/32 | 0.0918 | **0.9015** | 0.0067 |\n| **untrained** | L31 | 0/32 | **32/32** | 0/32 | 0.0757 | **0.9183** | 0.0059 |\n| **llama2base** | L8 | 8/32 | 0/32 | 10/32 | 0.4878 | 0.0344 | 0.4779 |\n| **llama2base** | L16 | **25/32** | 0/32 | 7/32 | **0.6017** | 0.0335 | 0.3648 |\n| **llama2base** | L31 | 8/32 | 0/32 | 20/32 | 0.3485 | 0.0716 | 0.5800 |\n\n关键发现：\n\n1. **Trained model**: instruction attention 随层深递增（L8→L16→L31: 4→10→19 heads dominant），最终层 L31 有 19/32 heads 以 instruction 为主导，mean_text=0.56\n2. **Untrained (random)**: 所有层所有 32 heads 都是 image-dominant（~91% attention to image），text 几乎为零——无任何 language grounding\n3. **Llama2base**: L16 表现出最强 text attention（25/32 heads, mean=0.60），但 L31 反而回退到 BOS dominant（20/32 heads）——说明 Llama-2 base 有一定的 text processing 能力但 pattern 不同于 trained model\n\n结果已保存至 `/root/autodl-tmp/vla-ssd/results/attention/multi_layer_attention_summary.json`。"}],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":1003,"cache_read_input_tokens":80130,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":1003},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"},"diagnos
 …[truncated 3062 chars]
@@ -11531,7 +10388,7 @@ _source line 3206 · 2026-05-28T19:57:03.599209+00:00_
 
 ### Tool call
 
-_source line 3207 · 2026-05-28T19:57:05.257199+00:00_
+_source line 3191 · 2026-05-28T19:57:05.257199+00:00_
 
 called Bash
 
@@ -11565,7 +10422,7 @@ called Bash
 
 ### Tool call
 
-_source line 3208 · 2026-05-28T19:57:05.257688+00:00_
+_source line 3192 · 2026-05-28T19:57:05.257688+00:00_
 
 called Bash
 
@@ -11599,7 +10456,7 @@ called Bash
 
 ### Tool result
 
-_source line 3209 · 2026-05-28T19:57:05.409502+00:00_
+_source line 3193 · 2026-05-28T19:57:05.409502+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/analyze_timestep_accuracy.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_dose_response.py
@@ -11639,7 +10496,7 @@ _source line 3209 · 2026-05-28T19:57:05.409502+00:00_
 
 ### Tool call
 
-_source line 3210 · 2026-05-28T19:57:05.511146+00:00_
+_source line 3194 · 2026-05-28T19:57:05.511146+00:00_
 
 called Bash
 
@@ -11673,7 +10530,7 @@ called Bash
 
 ### Tool result
 
-_source line 3211 · 2026-05-28T19:57:05.561848+00:00_
+_source line 3195 · 2026-05-28T19:57:05.561848+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py:    0.3329, 0.4177, 0.3571, 0.2243, 0.3962, 0.3624, 0.3390, 0.3076,
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py:    0.3396, 0.3484, 0.3390, 0.3338, 0.3308, 0.3105, 0.2984, 0.2840,
@@ -11708,7 +10565,7 @@ _source line 3211 · 2026-05-28T19:57:05.561848+00:00_
 
 ### Tool result
 
-_source line 3212 · 2026-05-28T19:57:05.612781+00:00_
+_source line 3196 · 2026-05-28T19:57:05.612781+00:00_
 
 &lt;persisted-output>
 Output too large (10.7MB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/bh5jeusse.txt
@@ -11736,7 +10593,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3213 · 2026-05-28T19:57:05.663535+00:00_
+_source line 3197 · 2026-05-28T19:57:05.663535+00:00_
 
 called Bash
 
@@ -11770,7 +10627,7 @@ called Bash
 
 ### Tool result
 
-_source line 3214 · 2026-05-28T19:57:05.714394+00:00_
+_source line 3198 · 2026-05-28T19:57:05.714394+00:00_
 
 &lt;persisted-output>
 Output too large (2MB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/blpkeo2ee.txt
@@ -11799,7 +10656,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3215 · 2026-05-28T19:57:05.815303+00:00_
+_source line 3199 · 2026-05-28T19:57:05.815303+00:00_
 
 called Bash
 
@@ -11833,7 +10690,7 @@ called Bash
 
 ### Tool result
 
-_source line 3216 · 2026-05-28T19:57:06.116835+00:00_
+_source line 3200 · 2026-05-28T19:57:06.116835+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/chart/fig_three_condition_probe.pdf
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/cross_instruction/__pycache__/plot_three_condition_probe.cpython-314.pyc
@@ -11859,7 +10716,7 @@ _source line 3216 · 2026-05-28T19:57:06.116835+00:00_
 
 ### Tool call
 
-_source line 3217 · 2026-05-28T19:57:06.117315+00:00_
+_source line 3201 · 2026-05-28T19:57:06.117315+00:00_
 
 called Bash
 
@@ -11893,7 +10750,7 @@ called Bash
 
 ### Tool result
 
-_source line 3218 · 2026-05-28T19:57:06.167783+00:00_
+_source line 3202 · 2026-05-28T19:57:06.167783+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu   440 May 15 23:41 action_delta_probe_projector.json
 -rw-r--r-- 1 ubuntu ubuntu  1349 May 26 20:07 action_head_decoding_v2_summary.txt
@@ -11920,7 +10777,7 @@ _source line 3218 · 2026-05-28T19:57:06.167783+00:00_
 
 ### Tool call
 
-_source line 3219 · 2026-05-28T19:57:06.319097+00:00_
+_source line 3203 · 2026-05-28T19:57:06.319097+00:00_
 
 called Bash
 
@@ -11954,7 +10811,7 @@ called Bash
 
 ### Tool result
 
-_source line 3220 · 2026-05-28T19:57:06.369724+00:00_
+_source line 3204 · 2026-05-28T19:57:06.369724+00:00_
 
 &lt;persisted-output>
 Output too large (148.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/bq0r9d861.txt
@@ -11981,7 +10838,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3221 · 2026-05-28T19:57:07.122838+00:00_
+_source line 3205 · 2026-05-28T19:57:07.122838+00:00_
 
 called Read
 
@@ -12015,7 +10872,7 @@ called Read
 
 ### Tool result
 
-_source line 3222 · 2026-05-28T19:57:07.273806+00:00_
+_source line 3206 · 2026-05-28T19:57:07.273806+00:00_
 
 1	#!/usr/bin/env python3
 2	"""fig_r2_collapse: Three-panel per-layer R² profile (demo-split, bootstrap v3 MCCV)."""
@@ -12095,7 +10952,7 @@ _source line 3222 · 2026-05-28T19:57:07.273806+00:00_
 
 ### Tool call
 
-_source line 3223 · 2026-05-28T19:57:07.324631+00:00_
+_source line 3207 · 2026-05-28T19:57:07.324631+00:00_
 
 called Read
 
@@ -12129,7 +10986,7 @@ called Read
 
 ### Tool result
 
-_source line 3224 · 2026-05-28T19:57:07.325158+00:00_
+_source line 3208 · 2026-05-28T19:57:07.325158+00:00_
 
 1	"""Strip plot of ΔR² across four training pathway categories.
 2	Shows that exit collapse emerges at VLM→VLA transition and does not intensify at VLA→VLA.
@@ -12209,7 +11066,7 @@ _source line 3224 · 2026-05-28T19:57:07.325158+00:00_
 
 ### Tool call
 
-_source line 3225 · 2026-05-28T19:57:07.877586+00:00_
+_source line 3209 · 2026-05-28T19:57:07.877586+00:00_
 
 called Bash
 
@@ -12243,7 +11100,7 @@ called Bash
 
 ### Tool result
 
-_source line 3226 · 2026-05-28T19:57:08.129448+00:00_
+_source line 3210 · 2026-05-28T19:57:08.129448+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/libero_finetuned_probe_profile.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260527T022433/worst/experiment_data.json
@@ -12268,7 +11125,7 @@ _source line 3226 · 2026-05-28T19:57:08.129448+00:00_
 
 ### Tool call
 
-_source line 3227 · 2026-05-28T19:57:08.180822+00:00_
+_source line 3211 · 2026-05-28T19:57:08.180822+00:00_
 
 called Bash
 
@@ -12302,7 +11159,7 @@ called Bash
 
 ### Tool result
 
-_source line 3228 · 2026-05-28T19:57:08.231869+00:00_
+_source line 3212 · 2026-05-28T19:57:08.231869+00:00_
 
 total 124
 drwxr-xr-x 2 ubuntu ubuntu  4096 May 26 20:07 .
@@ -12349,7 +11206,7 @@ drwxr-xr-x 7 ubuntu ubuntu  4096 May 16 02:23 ..
 
 ### Tool call
 
-_source line 3229 · 2026-05-28T19:57:08.232491+00:00_
+_source line 3213 · 2026-05-28T19:57:08.232491+00:00_
 
 called Bash
 
@@ -12383,7 +11240,7 @@ called Bash
 
 ### Tool result
 
-_source line 3230 · 2026-05-28T19:57:08.333217+00:00_
+_source line 3214 · 2026-05-28T19:57:08.333217+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/tost_equivalence.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/rsa_permutation_null_10k.json
@@ -12411,7 +11268,7 @@ _source line 3230 · 2026-05-28T19:57:08.333217+00:00_
 
 ### Tool call
 
-_source line 3231 · 2026-05-28T19:57:08.384013+00:00_
+_source line 3215 · 2026-05-28T19:57:08.384013+00:00_
 
 called Bash
 
@@ -12445,7 +11302,7 @@ called Bash
 
 ### Tool result
 
-_source line 3232 · 2026-05-28T19:57:08.384484+00:00_
+_source line 3216 · 2026-05-28T19:57:08.384484+00:00_
 
 total 76
 drwxr-xr-x  2 ubuntu ubuntu  4096 May 20 21:40 .
@@ -12476,7 +11333,7 @@ drwxr-xr-x 56 ubuntu ubuntu 12288 May 28 15:48 ..
 
 ### Tool call
 
-_source line 3233 · 2026-05-28T19:57:10.091029+00:00_
+_source line 3217 · 2026-05-28T19:57:10.091029+00:00_
 
 called Bash
 
@@ -12510,7 +11367,7 @@ called Bash
 
 ### Tool call
 
-_source line 3234 · 2026-05-28T19:57:10.241972+00:00_
+_source line 3218 · 2026-05-28T19:57:10.241972+00:00_
 
 called Bash
 
@@ -12544,7 +11401,7 @@ called Bash
 
 ### Tool result
 
-_source line 3235 · 2026-05-28T19:57:10.292636+00:00_
+_source line 3219 · 2026-05-28T19:57:10.292636+00:00_
 
 &lt;persisted-output>
 Output too large (148.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/brcfja4y6.txt
@@ -12584,7 +11441,7 @@ Layer 1
 
 ### Tool result
 
-_source line 3236 · 2026-05-28T19:57:10.293108+00:00_
+_source line 3220 · 2026-05-28T19:57:10.293108+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py:    0.4550, 0.5002, 0.5105, 0.5059, 0.4393, 0.4509, 0.4767, 0.4736,
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_r2_collapse.py:    0.3534, 0.3478, 0.3084, 0.3002, 0.3774, 0.3783, 0.3709, 0.3646,
@@ -12615,7 +11472,7 @@ _source line 3236 · 2026-05-28T19:57:10.293108+00:00_
 
 ### Tool call
 
-_source line 3237 · 2026-05-28T19:57:10.343673+00:00_
+_source line 3221 · 2026-05-28T19:57:10.343673+00:00_
 
 called Bash
 
@@ -12649,7 +11506,7 @@ called Bash
 
 ### Tool result
 
-_source line 3238 · 2026-05-28T19:57:10.394362+00:00_
+_source line 3222 · 2026-05-28T19:57:10.394362+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_check_bootstrap_urgent_status_20260522T162657.log
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_clustered_bootstrap_probe_20260522T140930.log
@@ -12686,7 +11543,7 @@ _source line 3238 · 2026-05-28T19:57:10.394362+00:00_
 
 ### Tool call
 
-_source line 3239 · 2026-05-28T19:57:10.545332+00:00_
+_source line 3223 · 2026-05-28T19:57:10.545332+00:00_
 
 called Read
 
@@ -12722,7 +11579,7 @@ called Read
 
 ### Tool result
 
-_source line 3240 · 2026-05-28T19:57:10.947426+00:00_
+_source line 3224 · 2026-05-28T19:57:10.947426+00:00_
 
 File content (59337 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
 
@@ -12744,7 +11601,7 @@ File content (59337 tokens) exceeds maximum allowed tokens (25000). Use offset a
 
 ### Tool call
 
-_source line 3241 · 2026-05-28T19:57:11.198702+00:00_
+_source line 3225 · 2026-05-28T19:57:11.198702+00:00_
 
 called Bash
 
@@ -12778,7 +11635,7 @@ called Bash
 
 ### Tool result
 
-_source line 3242 · 2026-05-28T19:57:11.249367+00:00_
+_source line 3226 · 2026-05-28T19:57:11.249367+00:00_
 
 (Bash completed with no output)
 
@@ -12800,7 +11657,7 @@ _source line 3242 · 2026-05-28T19:57:11.249367+00:00_
 
 ### Tool call
 
-_source line 3243 · 2026-05-28T19:57:12.303643+00:00_
+_source line 3227 · 2026-05-28T19:57:12.303643+00:00_
 
 called Bash
 
@@ -12834,7 +11691,7 @@ called Bash
 
 ### Tool result
 
-_source line 3244 · 2026-05-28T19:57:12.404519+00:00_
+_source line 3228 · 2026-05-28T19:57:12.404519+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/dino_action_probe.json
@@ -12865,7 +11722,7 @@ _source line 3244 · 2026-05-28T19:57:12.404519+00:00_
 
 ### Tool call
 
-_source line 3245 · 2026-05-28T19:57:12.457158+00:00_
+_source line 3229 · 2026-05-28T19:57:12.457158+00:00_
 
 called Bash
 
@@ -12899,7 +11756,7 @@ called Bash
 
 ### Tool call
 
-_source line 3246 · 2026-05-28T19:57:12.507815+00:00_
+_source line 3230 · 2026-05-28T19:57:12.507815+00:00_
 
 called Read
 
@@ -12937,7 +11794,7 @@ called Read
 
 ### Tool result
 
-_source line 3247 · 2026-05-28T19:57:12.508261+00:00_
+_source line 3231 · 2026-05-28T19:57:12.508261+00:00_
 
 30	# ── Data ──
 31	layers = ['L1', 'L8', 'L16', 'L31']
@@ -12973,7 +11830,7 @@ _source line 3247 · 2026-05-28T19:57:12.508261+00:00_
 
 ### Tool result
 
-_source line 3248 · 2026-05-28T19:57:12.558753+00:00_
+_source line 3232 · 2026-05-28T19:57:12.558753+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v2
@@ -12996,7 +11853,7 @@ _source line 3248 · 2026-05-28T19:57:12.558753+00:00_
 
 ### Tool call
 
-_source line 3249 · 2026-05-28T19:57:12.910512+00:00_
+_source line 3233 · 2026-05-28T19:57:12.910512+00:00_
 
 called Bash
 
@@ -13030,7 +11887,7 @@ called Bash
 
 ### Tool result
 
-_source line 3250 · 2026-05-28T19:57:13.262303+00:00_
+_source line 3234 · 2026-05-28T19:57:13.262303+00:00_
 
 (Bash completed with no output)
 
@@ -13052,7 +11909,7 @@ _source line 3250 · 2026-05-28T19:57:13.262303+00:00_
 
 ### Tool call
 
-_source line 3251 · 2026-05-28T19:57:13.312909+00:00_
+_source line 3235 · 2026-05-28T19:57:13.312909+00:00_
 
 called Bash
 
@@ -13086,7 +11943,7 @@ called Bash
 
 ### Tool result
 
-_source line 3252 · 2026-05-28T19:57:13.363544+00:00_
+_source line 3236 · 2026-05-28T19:57:13.363544+00:00_
 
 (Bash completed with no output)
 
@@ -13108,7 +11965,7 @@ _source line 3252 · 2026-05-28T19:57:13.363544+00:00_
 
 ### Tool call
 
-_source line 3253 · 2026-05-28T19:57:14.267167+00:00_
+_source line 3237 · 2026-05-28T19:57:14.267167+00:00_
 
 called Read
 
@@ -13142,7 +11999,7 @@ called Read
 
 ### Tool result
 
-_source line 3254 · 2026-05-28T19:57:14.368608+00:00_
+_source line 3238 · 2026-05-28T19:57:14.368608+00:00_
 
 1	image_mean: delta=0.0206, 95% CI=[-0.0314, 0.0638], p=0.1996 (not significant)
 2	last_preaction: delta=0.0076, 95% CI=[-0.0395, 0.0558], p=0.3701 (not significant)
@@ -13166,7 +12023,7 @@ _source line 3254 · 2026-05-28T19:57:14.368608+00:00_
 
 ### Tool call
 
-_source line 3255 · 2026-05-28T19:57:14.369092+00:00_
+_source line 3239 · 2026-05-28T19:57:14.369092+00:00_
 
 called Bash
 
@@ -13200,7 +12057,7 @@ called Bash
 
 ### Tool result
 
-_source line 3256 · 2026-05-28T19:57:14.419624+00:00_
+_source line 3240 · 2026-05-28T19:57:14.419624+00:00_
 
 total 20
 drwxr-xr-x  3 ubuntu ubuntu  4096 May 23 12:08 .
@@ -13225,7 +12082,7 @@ drwxr-xr-x  2 ubuntu ubuntu  4096 May 23 16:44 report
 
 ### Tool call
 
-_source line 3257 · 2026-05-28T19:57:15.174165+00:00_
+_source line 3241 · 2026-05-28T19:57:15.174165+00:00_
 
 called Bash
 
@@ -13259,7 +12116,7 @@ called Bash
 
 ### Tool call
 
-_source line 3258 · 2026-05-28T19:57:15.174617+00:00_
+_source line 3242 · 2026-05-28T19:57:15.174617+00:00_
 
 called Bash
 
@@ -13293,7 +12150,7 @@ called Bash
 
 ### Tool result
 
-_source line 3259 · 2026-05-28T19:57:15.225162+00:00_
+_source line 3243 · 2026-05-28T19:57:15.225162+00:00_
 
 &lt;persisted-output>
 Output too large (207.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/bpzh74xgn.txt
@@ -13320,7 +12177,7 @@ Preview (first 2KB):
 
 ### Tool result
 
-_source line 3260 · 2026-05-28T19:57:15.326058+00:00_
+_source line 3244 · 2026-05-28T19:57:15.326058+00:00_
 
 trained_std = np.array([0.0084, 0.0072, 0.0061, 0.0226, 0.0073, 0.0144, 0.0053, 0.0084,
     0.0184, 0.0137, 0.0162, 0.0182, 0.0084, 0.0039, 0.0067, 0.0081,
@@ -13359,7 +12216,7 @@ ax.fill_between(layers, llama2base_mean - llama2base_std, llama2base_mean + llam
 
 ### Tool call
 
-_source line 3261 · 2026-05-28T19:57:15.376770+00:00_
+_source line 3245 · 2026-05-28T19:57:15.376770+00:00_
 
 called Bash
 
@@ -13393,7 +12250,7 @@ called Bash
 
 ### Tool result
 
-_source line 3262 · 2026-05-28T19:57:15.427437+00:00_
+_source line 3246 · 2026-05-28T19:57:15.427437+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2_base_probe_execution_20260517T050705_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_llama2_base_control_setup_20260517T045040_result.json
@@ -13430,7 +12287,7 @@ _source line 3262 · 2026-05-28T19:57:15.427437+00:00_
 
 ### Tool call
 
-_source line 3263 · 2026-05-28T19:57:15.880171+00:00_
+_source line 3247 · 2026-05-28T19:57:15.880171+00:00_
 
 called Bash
 
@@ -13464,7 +12321,7 @@ called Bash
 
 ### Tool result
 
-_source line 3264 · 2026-05-28T19:57:16.231820+00:00_
+_source line 3248 · 2026-05-28T19:57:16.231820+00:00_
 
 total 28
 drwxr-xr-x 2 ubuntu ubuntu 4096 May 23 16:44 .
@@ -13491,7 +12348,7 @@ drwxr-xr-x 3 ubuntu ubuntu 4096 May 23 12:08 ..
 
 ### Tool call
 
-_source line 3265 · 2026-05-28T19:57:16.232387+00:00_
+_source line 3249 · 2026-05-28T19:57:16.232387+00:00_
 
 called Bash
 
@@ -13525,7 +12382,7 @@ called Bash
 
 ### Tool result
 
-_source line 3266 · 2026-05-28T19:57:16.333060+00:00_
+_source line 3250 · 2026-05-28T19:57:16.333060+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_bootstrap_ci_delta_r2_20260524T203754_result.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_bootstrap_v3_mccv_20260523T064112_result.json
@@ -13552,7 +12409,7 @@ _source line 3266 · 2026-05-28T19:57:16.333060+00:00_
 
 ### Tool call
 
-_source line 3267 · 2026-05-28T19:57:17.136176+00:00_
+_source line 3251 · 2026-05-28T19:57:17.136176+00:00_
 
 called Bash
 
@@ -13586,7 +12443,7 @@ called Bash
 
 ### Tool result
 
-_source line 3268 · 2026-05-28T19:57:17.236985+00:00_
+_source line 3252 · 2026-05-28T19:57:17.236985+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_l1_attention.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/l1_ablation_diagnostic.py
@@ -13623,7 +12480,7 @@ _source line 3268 · 2026-05-28T19:57:17.236985+00:00_
 
 ### Tool call
 
-_source line 3269 · 2026-05-28T19:57:17.589267+00:00_
+_source line 3253 · 2026-05-28T19:57:17.589267+00:00_
 
 called Bash
 
@@ -13657,7 +12514,7 @@ called Bash
 
 ### Tool call
 
-_source line 3270 · 2026-05-28T19:57:17.912628+00:00_
+_source line 3254 · 2026-05-28T19:57:17.912628+00:00_
 
 called Bash
 
@@ -13691,7 +12548,7 @@ called Bash
 
 ### Tool result
 
-_source line 3271 · 2026-05-28T19:57:17.963283+00:00_
+_source line 3255 · 2026-05-28T19:57:17.963283+00:00_
 
 SCRIPT HARDCODED DATA VERIFICATION
 ==================================
@@ -13749,7 +12606,7 @@ ANALYSIS:
 
 ### Tool call
 
-_source line 3272 · 2026-05-28T19:57:18.064189+00:00_
+_source line 3256 · 2026-05-28T19:57:18.064189+00:00_
 
 called Read
 
@@ -13783,7 +12640,7 @@ called Read
 
 ### Tool result
 
-_source line 3273 · 2026-05-28T19:57:18.115183+00:00_
+_source line 3257 · 2026-05-28T19:57:18.115183+00:00_
 
 &lt;persisted-output>
 Output too large (94.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-15-projects-vla-ssd--claude-sessions-agent-98133724/5adad1c0-5991-41c4-8d31-86c703fbe238/tool-results/b08y4bmli.txt
@@ -13810,7 +12667,7 @@ Preview (first 2KB):
 
 ### Tool call
 
-_source line 3274 · 2026-05-28T19:57:18.166874+00:00_
+_source line 3258 · 2026-05-28T19:57:18.166874+00:00_
 
 called Bash
 
@@ -13844,7 +12701,7 @@ called Bash
 
 ### Tool result
 
-_source line 3275 · 2026-05-28T19:57:18.167390+00:00_
+_source line 3259 · 2026-05-28T19:57:18.167390+00:00_
 
 1	# Clustered Bootstrap v3 (MCCV) — Summary Table
 2	
@@ -13885,7 +12742,7 @@ _source line 3275 · 2026-05-28T19:57:18.167390+00:00_
 
 ### Tool call
 
-_source line 3276 · 2026-05-28T19:57:18.167717+00:00_
+_source line 3260 · 2026-05-28T19:57:18.167717+00:00_
 
 called Read
 
@@ -13919,7 +12776,7 @@ called Read
 
 ### Tool result
 
-_source line 3277 · 2026-05-28T19:57:18.218384+00:00_
+_source line 3261 · 2026-05-28T19:57:18.218384+00:00_
 
 1	#!/usr/bin/env python3
 2	"""Bootstrap CI for ΔR² gap between VLM→VLA and VLA→VLA architectures.
@@ -13996,7 +12853,7 @@ _source line 3277 · 2026-05-28T19:57:18.218384+00:00_
 
 ### Tool result
 
-_source line 3278 · 2026-05-28T19:57:18.218902+00:00_
+_source line 3262 · 2026-05-28T19:57:18.218902+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_trained.json
@@ -14027,7 +12884,7 @@ _source line 3278 · 2026-05-28T19:57:18.218902+00:00_
 
 ### Tool call
 
-_source line 3279 · 2026-05-28T19:57:18.971799+00:00_
+_source line 3263 · 2026-05-28T19:57:18.971799+00:00_
 
 called Read
 
@@ -14061,7 +12918,7 @@ called Read
 
 ### Tool result
 
-_source line 3280 · 2026-05-28T19:57:19.022507+00:00_
+_source line 3264 · 2026-05-28T19:57:19.022507+00:00_
 
 1	{
 2	  "raw": "## L1 精确数值\n\n### trained L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 24 |\n| mean_text_attn | 0.5729 |\n| mean_image_attn | 0.2173 |\n| mean_bos_attn | 0.2098 |\n| per_head_text_attn | [0.8589, 0.5308, 0.6857, 0.4749, 0.5781, 0.4976, 0.4083, 0.5673, 0.5797, 0.43, 0.7138, 0.5671, 0.5216, 0.4147, 0.704, 0.6226, 0.5382, 0.529, 0.5196, 0.65, 0.5185, 0.4537, 0.8264, 0.5683, 0.3657, 0.7706, 0.5614, 0.6854, 0.4949, 0.5971, 0.543, 0.5552] |\n\n### llama2base L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 9 |\n| mean_text_attn | 0.3627 |\n| mean_image_attn | 0.6106 |\n| mean_bos_attn | 0.0267 |\n| per_head_text_attn | [0.5806, 0.2172, 0.3154, 0.2547, 0.2543, 0.1904, 0.2234, 0.2305, 0.2378, 0.1894, 0.3154, 0.2526, 0.2098, 0.4152, 0.339, 0.6021, 0.5381, 0.7711, 0.5301, 0.2532, 0.2266, 0.1911, 0.1412, 0.5898, 0.2522, 0.8287, 0.5397, 0.8955, 0.2846, 0.2525, 0.2778, 0.2049] |\n\n### untrained L1\n| 字段 | 值 |\n|---|---|\n| n_instruction_dominant | 0 |\n| mean_text_attn | 0.0778 |\n| mean_image_attn | 0.9187 |\n| mean_bos_attn | 0.0036 |\n| per_head_text_attn | [0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778, 0.0778] |\n\n注意：untrained 的 32 个 head 的 text_attn 全部相同（0.0778），说明 untrained 模型在 L1 没有任何 head 级别的分化。"
@@ -14085,7 +12942,7 @@ _source line 3280 · 2026-05-28T19:57:19.022507+00:00_
 
 ### Tool call
 
-_source line 3281 · 2026-05-28T19:57:20.678827+00:00_
+_source line 3265 · 2026-05-28T19:57:20.678827+00:00_
 
 called Bash
 
@@ -14119,7 +12976,7 @@ called Bash
 
 ### Tool call
 
-_source line 3282 · 2026-05-28T19:57:20.830495+00:00_
+_source line 3266 · 2026-05-28T19:57:20.830495+00:00_
 
 called Bash
 
@@ -14153,7 +13010,7 @@ called Bash
 
 ### Tool call
 
-_source line 3283 · 2026-05-28T19:57:20.831003+00:00_
+_source line 3267 · 2026-05-28T19:57:20.831003+00:00_
 
 called Read
 
@@ -14189,7 +13046,7 @@ called Read
 
 ### Tool result
 
-_source line 3284 · 2026-05-28T19:57:21.133773+00:00_
+_source line 3268 · 2026-05-28T19:57:21.133773+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial_trained
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/tracvla_spatial_trained/intermediate
@@ -14214,7 +13071,7 @@ _source line 3284 · 2026-05-28T19:57:21.133773+00:00_
 
 ### Tool call
 
-_source line 3285 · 2026-05-28T19:57:21.134247+00:00_
+_source line 3269 · 2026-05-28T19:57:21.134247+00:00_
 
 called Bash
 
@@ -14248,7 +13105,7 @@ called Bash
 
 ### Tool result
 
-_source line 3286 · 2026-05-28T19:57:21.234889+00:00_
+_source line 3270 · 2026-05-28T19:57:21.234889+00:00_
 
 (Bash completed with no output)
 
@@ -14270,7 +13127,7 @@ _source line 3286 · 2026-05-28T19:57:21.234889+00:00_
 
 ### Tool call
 
-_source line 3287 · 2026-05-28T19:57:23.546846+00:00_
+_source line 3271 · 2026-05-28T19:57:23.546846+00:00_
 
 called Bash
 
@@ -14304,7 +13161,7 @@ called Bash
 
 ### Tool result
 
-_source line 3288 · 2026-05-28T19:57:23.698120+00:00_
+_source line 3272 · 2026-05-28T19:57:23.698120+00:00_
 
 (Bash completed with no output)
 
@@ -14326,7 +13183,7 @@ _source line 3288 · 2026-05-28T19:57:23.698120+00:00_
 
 ### Tool call
 
-_source line 3289 · 2026-05-28T19:57:23.748823+00:00_
+_source line 3273 · 2026-05-28T19:57:23.748823+00:00_
 
 called Bash
 
@@ -14360,7 +13217,7 @@ called Bash
 
 ### Tool result
 
-_source line 3290 · 2026-05-28T19:57:23.799511+00:00_
+_source line 3274 · 2026-05-28T19:57:23.799511+00:00_
 
 nora_goal_r2_trained.json
 nora_goal_r2_untrained.json
@@ -14384,7 +13241,7 @@ tracvla_trained_metrics_20260521.md
 
 ### Tool call
 
-_source line 3291 · 2026-05-28T19:57:25.206157+00:00_
+_source line 3275 · 2026-05-28T19:57:25.206157+00:00_
 
 called Read
 
@@ -14418,7 +13275,7 @@ called Read
 
 ### Tool call
 
-_source line 3292 · 2026-05-28T19:57:25.256852+00:00_
+_source line 3276 · 2026-05-28T19:57:25.256852+00:00_
 
 called Bash
 
@@ -14452,7 +13309,7 @@ called Bash
 
 ### Tool result
 
-_source line 3293 · 2026-05-28T19:57:25.308181+00:00_
+_source line 3277 · 2026-05-28T19:57:25.308181+00:00_
 
 1	# TracVLA Trained Metrics (2026-05-21)
 2	## ⚠️ C001: Untrained data MISSING for both. Numbers only, NO conclusions.
@@ -14531,7 +13388,7 @@ _source line 3293 · 2026-05-28T19:57:25.308181+00:00_
 
 ### Tool result
 
-_source line 3294 · 2026-05-28T19:57:25.409252+00:00_
+_source line 3278 · 2026-05-28T19:57:25.409252+00:00_
 
 ================================================================================
 OPENVLA SPATIAL (OV-G)
@@ -14572,7 +13429,7 @@ Match: MISMATCH - source has different values
 
 ### Tool result
 
-_source line 3295 · 2026-05-28T19:57:27.768445+00:00_
+_source line 3279 · 2026-05-28T19:57:27.768445+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_action_r2_threecond.py
 
@@ -14594,7 +13451,7 @@ _source line 3295 · 2026-05-28T19:57:27.768445+00:00_
 
 ### Tool result
 
-_source line 3296 · 2026-05-28T19:57:27.768938+00:00_
+_source line 3280 · 2026-05-28T19:57:27.768938+00:00_
 
 1	"""Llama-2 base action probe R²: extract features + train 33-layer probes.
 2	
@@ -14685,7 +13542,7 @@ _source line 3296 · 2026-05-28T19:57:27.768938+00:00_
 
 ### Tool call
 
-_source line 3297 · 2026-05-28T19:57:29.023799+00:00_
+_source line 3281 · 2026-05-28T19:57:29.023799+00:00_
 
 called Bash
 
@@ -14719,7 +13576,7 @@ called Bash
 
 ### Tool result
 
-_source line 3298 · 2026-05-28T19:57:29.075141+00:00_
+_source line 3282 · 2026-05-28T19:57:29.075141+00:00_
 
 (Bash completed with no output)
 
@@ -14741,7 +13598,7 @@ _source line 3298 · 2026-05-28T19:57:29.075141+00:00_
 
 ### Tool call
 
-_source line 3299 · 2026-05-28T19:57:29.228060+00:00_
+_source line 3283 · 2026-05-28T19:57:29.228060+00:00_
 
 called Bash
 
@@ -14775,7 +13632,7 @@ called Bash
 
 ### Tool result
 
-_source line 3300 · 2026-05-28T19:57:29.278739+00:00_
+_source line 3284 · 2026-05-28T19:57:29.278739+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_10tasks:
 total 20
@@ -14814,7 +13671,7 @@ drwxr-xr-x  2 ubuntu ubuntu  4096 May 19 01:20 data
 
 ### Tool call
 
-_source line 3301 · 2026-05-28T19:57:30.634063+00:00_
+_source line 3285 · 2026-05-28T19:57:30.634063+00:00_
 
 called Bash
 
@@ -14848,7 +13705,7 @@ called Bash
 
 ### Tool result
 
-_source line 3302 · 2026-05-28T19:57:30.785047+00:00_
+_source line 3286 · 2026-05-28T19:57:30.785047+00:00_
 
 (Bash completed with no output)
 
@@ -14870,7 +13727,7 @@ _source line 3302 · 2026-05-28T19:57:30.785047+00:00_
 
 ### Tool call
 
-_source line 3303 · 2026-05-28T19:57:30.785524+00:00_
+_source line 3287 · 2026-05-28T19:57:30.785524+00:00_
 
 called Bash
 
@@ -14904,7 +13761,7 @@ called Bash
 
 ### Tool result
 
-_source line 3304 · 2026-05-28T19:57:30.836134+00:00_
+_source line 3288 · 2026-05-28T19:57:30.836134+00:00_
 
 (Bash completed with no output)
 
@@ -14926,7 +13783,7 @@ _source line 3304 · 2026-05-28T19:57:30.836134+00:00_
 
 ### Tool call
 
-_source line 3305 · 2026-05-28T19:57:30.939079+00:00_
+_source line 3289 · 2026-05-28T19:57:30.939079+00:00_
 
 called Bash
 
@@ -14960,7 +13817,7 @@ called Bash
 
 ### Tool result
 
-_source line 3306 · 2026-05-28T19:57:31.039942+00:00_
+_source line 3290 · 2026-05-28T19:57:31.039942+00:00_
 
 total 20
 drwxr-xr-x 2 ubuntu ubuntu 4096 May 20 21:41 .
@@ -14985,7 +13842,7 @@ drwxr-xr-x 4 ubuntu ubuntu 4096 May 20 21:41 ..
 
 ### Tool call
 
-_source line 3307 · 2026-05-28T19:57:31.090611+00:00_
+_source line 3291 · 2026-05-28T19:57:31.090611+00:00_
 
 called Bash
 
@@ -15019,7 +13876,7 @@ called Bash
 
 ### Tool result
 
-_source line 3308 · 2026-05-28T19:57:31.241607+00:00_
+_source line 3292 · 2026-05-28T19:57:31.241607+00:00_
 
 total 16
 drwxr-xr-x 2 ubuntu ubuntu 4096 May 20 21:41 .
@@ -15044,7 +13901,7 @@ drwxr-xr-x 3 ubuntu ubuntu 4096 May 20 21:41 ..
 
 ### Tool call
 
-_source line 3309 · 2026-05-28T19:57:31.242027+00:00_
+_source line 3293 · 2026-05-28T19:57:31.242027+00:00_
 
 called Bash
 
@@ -15078,7 +13935,7 @@ called Bash
 
 ### Tool result
 
-_source line 3310 · 2026-05-28T19:57:31.292503+00:00_
+_source line 3294 · 2026-05-28T19:57:31.292503+00:00_
 
 total 40
 drwxr-xr-x  2 ubuntu ubuntu  4096 May 21 02:37 .
@@ -15106,7 +13963,7 @@ drwxr-xr-x 56 ubuntu ubuntu 12288 May 28 15:48 ..
 
 ### Tool result
 
-_source line 3311 · 2026-05-28T19:57:31.543985+00:00_
+_source line 3295 · 2026-05-28T19:57:31.543985+00:00_
 
 Excellent! Now I have the L1 data. Let me compile all the comparison data. Now let me verify the rounding and exact values used in the script:
 
@@ -15178,7 +14035,7 @@ Based on all the data I've collected, here's the comprehensive data integrity ve
 
 ### Tool call
 
-_source line 3312 · 2026-05-28T19:57:31.594706+00:00_
+_source line 3296 · 2026-05-28T19:57:31.594706+00:00_
 
 called Bash
 
@@ -15212,7 +14069,7 @@ called Bash
 
 ### Tool result
 
-_source line 3313 · 2026-05-28T19:57:31.646013+00:00_
+_source line 3297 · 2026-05-28T19:57:31.646013+00:00_
 
 SCRIPT DATA EXTRACTION COMPLETE
 
@@ -15268,7 +14125,7 @@ NORA | Spatial | 0.308 | [0.300, 0.510]
 
 ### Tool call
 
-_source line 3314 · 2026-05-28T19:57:34.205301+00:00_
+_source line 3298 · 2026-05-28T19:57:34.205301+00:00_
 
 called Bash
 
@@ -15302,7 +14159,7 @@ called Bash
 
 ### Tool result
 
-_source line 3315 · 2026-05-28T19:57:34.507985+00:00_
+_source line 3299 · 2026-05-28T19:57:34.507985+00:00_
 
 (Bash completed with no output)
 
@@ -15324,7 +14181,7 @@ _source line 3315 · 2026-05-28T19:57:34.507985+00:00_
 
 ### Tool call
 
-_source line 3316 · 2026-05-28T19:57:34.508445+00:00_
+_source line 3300 · 2026-05-28T19:57:34.508445+00:00_
 
 called Bash
 
@@ -15358,7 +14215,7 @@ called Bash
 
 ### Tool result
 
-_source line 3317 · 2026-05-28T19:57:34.558989+00:00_
+_source line 3301 · 2026-05-28T19:57:34.558989+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:Four perturbation types across 10 LIBERO-Goal tasks produce large action divergence: wrong task ($d = 1.182$), empty instruction ($1.170$), shuffled tokens ($1.096$), paraphrased ($0.996$).
 /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex:The effect replicates across LIBERO-Spatial (10 tasks): empty $1.173$, shuffled $0.979$, wrong $0.885$, paraphrased $0.807$ (Table~\ref{tab:counterfactual_spatial}).
@@ -15389,7 +14246,7 @@ _source line 3317 · 2026-05-28T19:57:34.558989+00:00_
 
 ### Tool call
 
-_source line 3318 · 2026-05-28T19:57:36.416335+00:00_
+_source line 3302 · 2026-05-28T19:57:36.416335+00:00_
 
 called Read
 
@@ -15425,7 +14282,7 @@ called Read
 
 ### Tool result
 
-_source line 3319 · 2026-05-28T19:57:36.467073+00:00_
+_source line 3303 · 2026-05-28T19:57:36.467073+00:00_
 
 1	\clearpage
 2	\appendix
@@ -15474,7 +14331,7 @@ _source line 3319 · 2026-05-28T19:57:36.467073+00:00_
 
 ### Tool call
 
-_source line 3320 · 2026-05-28T19:57:38.424627+00:00_
+_source line 3304 · 2026-05-28T19:57:38.424627+00:00_
 
 called Bash
 
@@ -15508,7 +14365,7 @@ called Bash
 
 ### Tool result
 
-_source line 3321 · 2026-05-28T19:57:38.577819+00:00_
+_source line 3305 · 2026-05-28T19:57:38.577819+00:00_
 
 Script L0 values (baseline ~0.645):
   Trained:    0.6451
@@ -15546,7 +14403,7 @@ Total layers in script: 32
 
 ### Tool call
 
-_source line 3322 · 2026-05-28T19:57:45.202779+00:00_
+_source line 3306 · 2026-05-28T19:57:45.202779+00:00_
 
 called Bash
 
@@ -15580,7 +14437,7 @@ called Bash
 
 ### Tool result
 
-_source line 3323 · 2026-05-28T19:57:45.255010+00:00_
+_source line 3307 · 2026-05-28T19:57:45.255010+00:00_
 
 ==========================================================================================
 COMPARING SCRIPT DATA TO PAPER TABLE
@@ -15655,7 +14512,7 @@ TV-L   (TraceVLA Long         )
 
 ### Tool call
 
-_source line 3324 · 2026-05-28T19:57:45.858021+00:00_
+_source line 3308 · 2026-05-28T19:57:45.858021+00:00_
 
 called Bash
 
@@ -15689,7 +14546,7 @@ called Bash
 
 ### Tool result
 
-_source line 3325 · 2026-05-28T19:57:46.009083+00:00_
+_source line 3309 · 2026-05-28T19:57:46.009083+00:00_
 
 TRAINED (OpenVLA) CONDITION:
 Layer | Script Value | Original Value | Match?
@@ -15757,7 +14614,7 @@ L 4  | 0.5147       | 0.495856
 
 ### Tool call
 
-_source line 3326 · 2026-05-28T19:57:54.354062+00:00_
+_source line 3310 · 2026-05-28T19:57:54.354062+00:00_
 
 called Bash
 
@@ -15791,7 +14648,7 @@ called Bash
 
 ### Tool result
 
-_source line 3327 · 2026-05-28T19:57:54.505087+00:00_
+_source line 3311 · 2026-05-28T19:57:54.505087+00:00_
 
 TRAINED CONDITION - Largest differences:
   L28: Script 0.4963 vs Orig 0.544006, diff=0.047706
@@ -15835,7 +14692,7 @@ Script comment about L0:
 
 ### Tool call
 
-_source line 3328 · 2026-05-28T19:57:55.761190+00:00_
+_source line 3312 · 2026-05-28T19:57:55.761190+00:00_
 
 called Bash
 
@@ -15869,7 +14726,7 @@ called Bash
 
 ### Tool result
 
-_source line 3329 · 2026-05-28T19:57:55.963282+00:00_
+_source line 3313 · 2026-05-28T19:57:55.963282+00:00_
 
 Exit code 1
 ==========================================================================================
@@ -15919,7 +14776,7 @@ KeyError: 'E'
 
 ### Tool result
 
-_source line 3330 · 2026-05-28T19:57:57.770554+00:00_
+_source line 3314 · 2026-05-28T19:57:57.770554+00:00_
 
 Perfect! Now I have all the data I need. Let me compile the complete verification report:
 
@@ -15980,7 +14837,7 @@ All OpenVLA values are NOT substantial (< 0.10 threshold), and CI includes zero 
 
 ### Tool call
 
-_source line 3331 · 2026-05-28T19:58:01.585797+00:00_
+_source line 3315 · 2026-05-28T19:58:01.585797+00:00_
 
 called Bash
 
@@ -16014,7 +14871,7 @@ called Bash
 
 ### Tool result
 
-_source line 3332 · 2026-05-28T19:58:01.737380+00:00_
+_source line 3316 · 2026-05-28T19:58:01.737380+00:00_
 
 Searching for any files containing llama2base R2 values...
 
@@ -16045,7 +14902,7 @@ Found 4-condition comparison in libero_finetuned_probe_profile.json:
 
 ### Tool call
 
-_source line 3333 · 2026-05-28T19:58:02.141114+00:00_
+_source line 3317 · 2026-05-28T19:58:02.141114+00:00_
 
 called Bash
 
@@ -16079,7 +14936,7 @@ called Bash
 
 ### Tool result
 
-_source line 3334 · 2026-05-28T19:58:02.191696+00:00_
+_source line 3318 · 2026-05-28T19:58:02.191696+00:00_
 
 ==========================================================================================
 DETAILED COMPARISON: Script vs JSON vs Paper
@@ -16126,7 +14983,7 @@ paraphrased    : 1.5532
 
 ### Tool call
 
-_source line 3335 · 2026-05-28T19:58:10.323191+00:00_
+_source line 3319 · 2026-05-28T19:58:10.323191+00:00_
 
 called Bash
 
@@ -16160,7 +15017,7 @@ called Bash
 
 ### Tool result
 
-_source line 3336 · 2026-05-28T19:58:10.574585+00:00_
+_source line 3320 · 2026-05-28T19:58:10.574585+00:00_
 
 Exit code 1
 LLAMA2BASE: Script vs Worker Analysis Result (image_mean)
@@ -16189,7 +15046,7 @@ ValueError: Invalid format specifier '.4f if worker else 'N/A':>7' for object of
 
 ### Tool call
 
-_source line 3337 · 2026-05-28T19:58:13.937801+00:00_
+_source line 3321 · 2026-05-28T19:58:13.937801+00:00_
 
 called Bash
 
@@ -16223,7 +15080,7 @@ called Bash
 
 ### Tool result
 
-_source line 3338 · 2026-05-28T19:58:14.088919+00:00_
+_source line 3322 · 2026-05-28T19:58:14.088919+00:00_
 
 LLAMA2BASE: Script vs Worker Analysis Result (image_mean readout)
 -----------------------------------------------------------------
@@ -16265,7 +15122,7 @@ Summary: All llama2base values DIFFER from worker analysis result
 
 ### Tool call
 
-_source line 3339 · 2026-05-28T19:58:19.535361+00:00_
+_source line 3323 · 2026-05-28T19:58:19.535361+00:00_
 
 called Bash
 
@@ -16299,7 +15156,7 @@ called Bash
 
 ### Tool result
 
-_source line 3340 · 2026-05-28T19:58:19.636387+00:00_
+_source line 3324 · 2026-05-28T19:58:19.636387+00:00_
 
 ================================================================================
 DATA INTEGRITY VERIFICATION REPORT
@@ -16372,7 +15229,7 @@ DETAILED VALUE COMPARISON:
 
 ### Tool call
 
-_source line 3341 · 2026-05-28T19:58:35.295525+00:00_
+_source line 3325 · 2026-05-28T19:58:35.295525+00:00_
 
 called Bash
 
@@ -16406,7 +15263,7 @@ called Bash
 
 ### Tool result
 
-_source line 3342 · 2026-05-28T19:58:35.446643+00:00_
+_source line 3326 · 2026-05-28T19:58:35.446643+00:00_
 
 ================================================================================
 DATA INTEGRITY VERIFICATION REPORT
@@ -16484,7 +15341,7 @@ Plot Script: /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/
 
 ### Tool call
 
-_source line 3343 · 2026-05-28T19:58:38.457935+00:00_
+_source line 3327 · 2026-05-28T19:58:38.457935+00:00_
 
 called Bash
 
@@ -16518,7 +15375,7 @@ called Bash
 
 ### Tool result
 
-_source line 3344 · 2026-05-28T19:58:38.558949+00:00_
+_source line 3328 · 2026-05-28T19:58:38.558949+00:00_
 
 ╔════════════════════════════════════════════════════════════════════════════════════════════╗
 ║                         COMPLETE DATA INTEGRITY VERIFICATION                              ║
@@ -16573,7 +15430,7 @@ OpenVLA Long (OV-L)
 
 ### Tool result
 
-_source line 3345 · 2026-05-28T19:58:48.056742+00:00_
+_source line 3329 · 2026-05-28T19:58:48.056742+00:00_
 
 Perfect! Now let me create one final summary document with specific file paths and evidence:
 
@@ -16626,7 +15483,7 @@ I have completed an exhaustive data integrity verification for the plotting scri
 
 ### Tool result
 
-_source line 3346 · 2026-05-28T19:59:07.334808+00:00_
+_source line 3330 · 2026-05-28T19:59:07.334808+00:00_
 
 Perfect! Now let me create one final summary document with all the detailed layer-by-layer comparisons:
 
@@ -16699,7 +15556,7 @@ trained_mean = [0.6451, 0.6429, 0.6221, 0.6211, 0.6386, 0.6304, 0.6421, 0.6339,
 
 ### Tool call
 
-_source line 3347 · 2026-05-28T20:00:22.840175+00:00_
+_source line 3331 · 2026-05-28T20:00:22.840175+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -16735,7 +15592,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3348 · 2026-05-28T20:00:26.654337+00:00_
+_source line 3332 · 2026-05-28T20:00:26.654337+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a1d032cbe70bdd2058438e67e0d57613:director\"}, \"error\": \"\"}"}
 
@@ -16757,7 +15614,7 @@ _source line 3348 · 2026-05-28T20:00:26.654337+00:00_
 
 ### Assistant
 
-_source line 3349 · 2026-05-28T20:00:32.389027+00:00_
+_source line 3333 · 2026-05-28T20:00:32.389027+00:00_
 
 已向 Director 汇报完整数据完整性抽检结果。关键发现：
 
@@ -16791,7 +15648,7 @@ _source line 3349 · 2026-05-28T20:00:32.389027+00:00_
 
 ### User
 
-_source line 3350 · 2026-05-28T21:37:01.075535+00:00_
+_source line 3334 · 2026-05-28T21:37:01.075535+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -16873,7 +15730,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 3351 · 2026-05-28T21:37:46.972025+00:00_
+_source line 3335 · 2026-05-28T21:37:46.972025+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

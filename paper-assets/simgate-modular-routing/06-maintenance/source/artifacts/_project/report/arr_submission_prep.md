@@ -90,9 +90,3 @@ Filled in the OpenReview submission form (not in the PDF). Key points to prepare
 
 ---
 
-## 5. Rebuttal Prep (pre-drafted)
-
-See `artifacts/rebuttal_prep.md` for 3 anticipated weaknesses:
-1. W: Single-environment scope → Response: framework generality claim is methodological, not empirical
-2. W: Trivial finding (death is bad) → Response: quantifying 78.9%/90% dominance is non-trivial; prior routers trained without this diagnostic
-3. W: No actionable solution → Response: diagnostic-first philosophy; 50-episode pilot as practical contribution

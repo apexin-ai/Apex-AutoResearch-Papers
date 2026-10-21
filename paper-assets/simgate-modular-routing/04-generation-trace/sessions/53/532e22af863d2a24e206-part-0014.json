@@ -3,48 +3,10 @@
   "session_id": "532e22af863d2a24e206",
   "rounds": [
     {
-      "number": 195,
-      "messages": [
-        {
-          "source_line": 2341,
-          "timestamp": "2026-05-22T08:55:56.079895+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 2 审稿结果]:\n逐条回应 Reviewer 1 的审稿意见。\n\n---\n\n## Must-Fix 回应\n\n**[REBUT] R1-N1**: Episode-level vs step-level 粒度失配，claim scope 被高估\n\nR1 认为标题和 abstract 暗示了 step-level routing 的通用发现，但证据仅在 episode level。我认为这个批评部分有道理但力度偏重，原因如下：\n\n1. 论文标题说的是 \"Routing **Signal**\" 而非 \"Routing Decision\"。论文的核心 claim 恰恰是：在 sparse-reward 环境中，可供 routing 学习的 signal 被 death avoidance 主导——这是一个关于 signal 组成的分析发现，不是关于 step-level 最优决策的 claim。\n2. 论文在 §2.2 明确论证了为什么 episode-level 是此类环境的 principled granularity（97.4% step-level ties，per-step oracle degenerates），而非 fallback。这不是粒度\"失配\"，而是作者 deliberately 选择了唯一有信息量的分析粒度。\n3. §3.6 Router Training 和 §5 Discussion paragraph 1 已经详细讨论了 step-level 路由器为何失败（episode-level 信号无法投射到 step level），且论文将此作为 negative result 完整报告。\n4. 38.8% non-tie rate（95/245）不意味着 claim 只适用于这 38.8%——61.2% no-preference episodes 同样是诊断信息（两种策略无差异 = 无需路由），这是 framework 的正常输出。\n\n但我同意 R1 一个子观点：Abstract 的表述可以更明确地标注这是 episode-level outcome analysis。当前 Abstract 说\"78.9% of non-tie routing labels arise from death asymmetry\"，可以加一个限定词使 scope 更清晰。这是 framing 层面的微调，不是 claim validity 问题。\n\n---\n\n**[AGREE] R1-N2**: DAF 的 P-dependence 使跨环境比较缺乏稳健性\n\n完全同意。这与我自己的 N1 高度一致。DAF = δP/(δP + Δ_nd) 随 P 单调递增是数学必然（§2.4 Eq. 5），Appendix K Table 8 清楚展示了 P=10 时 DAF 仅 50.4%，P=0 时 7.4%。论文在 Appendix K 最后一段自己承认了 \"this is a mathematical consequence of the decomposition, not evidence of mechanism robustness\"，但这个关键 caveat 没有出现在主文。\n\n补充一点 R1 未提到的：论文在 §2.4 最后一段\"Relationship between DAF and label fraction\"已经解释了为什么 DAF (90.4%) > label fraction (78.9%)——因为 death episodes 的 score gap 被 P 放大。这段文字实际上提供了降级 DAF 的论据，但叙事结构没有跟进这个逻辑。建议正文明确将 label fraction 78.9% 定为 primary metric，DAF 90.4% 定为 secondary / supplementary，并在 §2.4 加入 penalty sensitivity 的核心数字（至少 P=10 和 P=50 的 DAF）。\n\n---\n\n## Should-Fix 回应\n\n**[AGREE] R1-W1**: K=11 cluster bootstrap 处于文献推荐下限\n\n同意。论文在 Appendix E 和 Limitations (Statistical limitations 段) 确实承认了 K<20 的局限，并报告了 wild cluster bootstrap (p<0.001) 和 exact permutation (p=0.002) 作为补充（Table 4, Appendix E）。Cohen's d=3.02 说明效应量极大。但 Limitations 正文中没有显式引用 Cameron et al. (2008) 的 K≥20-50 建议作为对标，这是一个遗漏。\n\n不过，这个问题的实际影响有限：100% 方向一致性（10/10 death-prone tasks 均显示 internal DR > deterministic DR）加上 per-task CI 分析（Appendix F, 28/28 death-prone tasks 方向一致）提供了不依赖 cluster bootstrap 的补充证据。\n\n---\n\n**[AGREE] R1-W2**: 63% task type 排除率和 selection bias 风险\n\n同意，但认为论文已提供了充分的缓解证据。R1 指出 \"taxonomic redundancy\" 缺乏操作定义——这确实是一个弱点。论文 Appendix C 只说了 \"taxonomically redundant with a retained family representative\" 但没给出 taxonomy 标准。\n\n关于 \"agent floor tasks 被排除意味着框架只适用于有进展的 tasks\"——这一点需要区分：这些 tasks 被排除的原因是两种策略都不工作（near-zero progress），此时确实没有 routing signal 可 decompose（因为两者都失败了）。这不是框架的局限，而是 signal 不存在的正确诊断。论文在 §5 Discussion paragraph 3 最后一句提到了这一点（\"The 7 excluded agent-floor tasks... represent a symmetric failure regime that the framework correctly diagnoses as 'no signal'\"）。\n\n但我同意主文应更完整地 justify 排除标准——至少把 Table 2 (Appendix C) 的关键数字（excluded mean ΔDR=+38.2 > included +28.7 pp）提到正文中。\n\n---\n\n**[REBUT] R1-W3**: Router training 负结论受限于架构简单性\n\n部分不同意。R1 建议测试更强 backbone 或更丰富的 feature（observation history, task-type 特征），但论文的 evidence 比 R1 认为的更全面：\n\n1. **六种 router 变体收敛于同一结论**（§3.6, §5 paragraph 1）：0.6B/1.7B/4B × classification/generative，step-level accuracy 一致在 56-59% 范围。这排除了单一架构偶然失败的解释。\n2. **Task-type 特征已测试**（Appendix P, \"Leave-one-task-type-out routing\"段）：keyword-based variant 通过 task-identity leakage 达到 62.9%，但 LOTO 下降到 50.0%——这证明唯一可学习的 routing feature IS task-type identity，不是 step-level observation。\n3. **4B 的 episode-level 59.0% 也被 LOTO 打回**（Appendix P）：无 task-type identifiers 时降到 50.0%，有 task name 时升到 62.9%。\n4. **Capacity scaling**（Appendix P Table 9）显示 step-level accuracy 在 0.6B-4B 范围内是 flat 的（56-59%），增加容量无帮助。\n\n但我同意 R1 的一个子观点：负结论的 scope 确实应更精确地限定。论文说 \"no step-level learnable signal exists under current architectures and data regime\"（§3.6 最后段），这已经加了限定词，但 \"current architectures\" 的范围可以更明确（Qwen3 family with LoRA, max 4B）。\n\n---\n\n**[AGREE] R1-W4**: 72B 仅做 scaling probe 不够完整\n\n同意。72B 数据（§3.4, Table 1）只收集了 episode pairs 并计算 death rate 和 DAF，没有运行：\n- Router training（72B 作为 backbone 或 72B episodes 作为训练数据）\n- SCI 分析\n- Per-task decomposition（虽然 Appendix M Table 6 有 cross-model summary，但 72B 的 per-task 细节缺失）\n\nR1 的推理也成立：72B death rate 降到 30.6%（vs 7B 的 42.9%），意味着更多 episodes 双方都存活，Δ_nd 的信号量可能增加。如果 non-death signal 在更强模型上更 prominent，那 \"death dominance\" 的结论可能在 scale-up 后需要修正。不过，72B 的 DAF=92.4% 反而更高（因为 deterministic 也更安全了），所以至少在当前数据上 death dominance 是 scale-robust 的。\n\n---\n\n## Minor 回应\n\n**[AGREE] R1-M1**: Figure 2 仅 11 点无 task name label。同意，scatter plot 加 task name 标签会增加可读性，且论文自己说 r=0.97 是 \"a structural consequence of death dominance, not an independent finding\"（Figure 2 caption 末尾），加 label 可以帮助读者理解每个点对应什么。\n\n**[REBUT] R1-M2**: Eq. 4 decomposition 精确定义依赖 appendix。部分不同意——§2.4 的 Eq. 4 和 Eq. 5 在正文中已给出完整的数学定义（δ = E[d^int] - E[d^det], Δ_nd, DAF = 1 - Δ_nd/Δ_full），approximation residual 也在正文报告（0.23, 0.8%）。Appendix K 提供的是 penalty sensitivity 扩展分析，不是核心定义的补充。\n\n**[AGREE] R1-M3**: ALFWorld 分析仅一段话。同意。ALFWorld 有 135 games、6 task types（Appendix L Table 5 有 per-task breakdown），但主文只在 §3.4 用一段话总结。考虑到 ALFWorld 是论文三个 cross-environment probes 之一，且展示了一个质性不同的 routing mechanism (information asymmetry, DAF=0%)，主文至少应引用 Table 5 或 Figure 4 (signal_reversal.pdf)。\n\n**[AGREE] R1-M4**: Table 1 caption \"Top\"/\"Bottom\" 对比不直观。同意，Table 1 的上半部分是全 11 tasks，下半部分是 10 death-prone tasks only，两部分的 N 不同（245 vs 200），baseline 也不同。这种 layout 容易导致误读。\n\n**[AGREE] R1-M5**: Limitations 未提及 Cameron et al. K 建议。同意，与 W1 一致。Limitations \"Statistical limitations\" 段引用了 cameron-2008 和 webb-2023，但没有显式说\"推荐 K≥20-50 而我们只有 11\"。\n\n**[AGREE] R1-M6**: Related Work 缺 non-agent 场景的 adaptive computation。同意。论文引用了 Graves (2016, ACT) 和 Mixture-of-Recursions (2025)，但缺少 early exit（如 Schuster et al. 2022, CALM）和 speculative decoding 方向。这些方法虽然不在 agent 场景，但与 \"adaptive computation routing\" 这个更大的 framing 直接相关。\n\n---\n\n## Missing References 回应\n\n**[AGREE]** Schuster et al. (2022), \"Confident Adaptive Language Modeling\" — 直接相关于 adaptive computation routing 的 non-agent baseline。论文引用了 Graves (2016) 但跳过了 CALM 这个更近的 milestone。\n\n**[AGREE]** Raposo et al. (2024), \"Mixture-of-Depths\" — token-level 计算资源分配，与论文的 step-level routing 在 granularity 上有对应关系，值得引用。\n\n---\n\n## Questions 回应\n\n**Q1**: P=10 时 label distribution 是否变化？78.9% death-asymmetric label fraction 是否仍成立？\n\n回答：78.9% label fraction 不随 P 变化。这是论文的一个关键设计——Algorithm 1 (Appendix B) 的 labeling function 先比较 death status（lines 5-10），再比较 score（lines 11-16）。death-asymmetric labels（75/95）由 death status 决定，与 P 无关。P 只影响 DAF 的数值（因为 DAF 是 score-weighted 度量）。论文在 §2.4 倒数第二段明确说了：\"In ScienceWorld, P affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include P in its observation, so death rates and Δ_nd are P-invariant by design.\"\n\n但这里有一个微妙点：P=10 时，75 个 death-asymmetric labels 中有 54 个是 \"sole-signal labels\"（§3.1 第一段），即两策略在 non-death 维度上无差异，仅靠 death status 区分。在 P=0 时，这 54 个 label 会变成 no-preference（因为 score 相同）。所以虽然 labeling function 本身是 P-independent 的，但 Algorithm 1 的 death-first priority 实际上等价于给 death 一个隐式的无穷大 penalty——这与\"penalty-independent\"的叙事有微妙张力。论文在 §3.1 提到了 \"at P=0 these reduce to ties\"，但没有展开讨论这个 implication。这是一个值得作者回应的精妙问题。\n\n**Q2**: 150 个 no_pref episodes 中两策略 per-step action sequence 是否相似？\n\n回答：论文未直接分析 no_pref episodes 的 action sequence 相似度。但可从现有数据推断：§2.2 报告 97.4% step-level ties（5,935/6,094 steps），这意味着绝大多数 steps 的 intermediate score 相同，但不能推出 action sequence 相同（因为不同 actions 可能导致相同 intermediate score）。Appendix N 的 failure mode analysis 只覆盖了 death episodes。这是一个有价值的分析方向——如果 no_pref episodes 的 action sequences 高度相似，说明两种策略在非致命场景中行为趋同；如果差异大但结果相同，说明 ScienceWorld 的 evaluation function 有多解。\n\n**Q3**: 如果用 step-level heuristic labels（仅标记 death episode 最后 k 步），router 是否改善？\n\n回答：论文在 Appendix P \"Death-proximal labeling\" 段已经测试了这个想法。结果是：仅用 death event 前 k 步训练 router，step balanced accuracy 50.0%, episode balanced accuracy 50.0%, internal recall 0%——完全 collapse to majority class。这直接回答了 R1 的 Q3，且结论是否定的。论文的解释是 \"the absence of step-level signal is not an artifact of label dilution across long episodes\"（Appendix P 最后一段）。\n\n---\n\n**总结**：R1 的审稿意见整体合理。N2（DAF P-dependence）与我的 N1 高度一致，是最需要作者回应的 critical issue。N1（granularity mismatch claim scope）我认为 R1 略有过度解读，论文的 claim 实际上是关于 signal composition 而非 step-level decision。W1-W4 中 W3 的证据比 R1 认为的更充分（六种 router 变体 + LOTO），W4（72B 不完整）是一个 valid 但 scope-limited 的 concern。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
-            "source": "review_reviewer_2"
-          },
-          "id": "event-002341"
-        },
-        {
-          "source_line": 2342,
-          "timestamp": "2026-05-22T08:56:07.569338+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "Reviewer 2 交叉回应已收到。等待 Reviewer 1 对 Reviewer 2 的交叉回应。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
-          },
-          "id": "event-002342"
-        }
-      ]
-    },
-    {
       "number": 196,
       "messages": [
         {
-          "source_line": 2343,
+          "source_line": 2341,
           "timestamp": "2026-05-22T08:56:07.574569+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -58,10 +20,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002343"
+          "id": "event-002341"
         },
         {
-          "source_line": 2344,
+          "source_line": 2342,
           "timestamp": "2026-05-22T08:56:39.050112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -78,10 +40,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002344"
+          "id": "event-002342"
         },
         {
-          "source_line": 2345,
+          "source_line": 2343,
           "timestamp": "2026-05-22T08:56:39.151243+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -96,10 +58,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 101
           },
-          "id": "event-002345"
+          "id": "event-002343"
         },
         {
-          "source_line": 2346,
+          "source_line": 2344,
           "timestamp": "2026-05-22T08:56:39.151745+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -116,10 +78,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002346"
+          "id": "event-002344"
         },
         {
-          "source_line": 2347,
+          "source_line": 2345,
           "timestamp": "2026-05-22T08:56:39.252399+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -134,10 +96,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 100
           },
-          "id": "event-002347"
+          "id": "event-002345"
         },
         {
-          "source_line": 2348,
+          "source_line": 2346,
           "timestamp": "2026-05-22T09:00:12.250429+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -155,10 +117,10 @@
               "issues_yaml": "# Round 28 Review Issues (fresh review, 2026-05-22)\n# Two reviewers: R1 (方法严谨性+实验设计), R2 (新颖性+完整性+写作)\n\n# =============================================\n# Carried-over resolved issues (from prior rounds)\n# =============================================\n\n- id: \"R13-W1\"\n  summary: \"正文篇幅严重不足 long paper 要求\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"正文已扩展至 8 页\"\n  resolution_round: 14\n\n- id: \"R13-W2\"\n  summary: \"Router 训练实验存在多个 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"1.7B dip 有可检验假说，augmentation 术语修正，N 统一\"\n  resolution_round: 15\n\n- id: \"R13-W3\"\n  summary: \"Episode-level label → step-level training 的 mislabeling 未被量化\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"Limitations 和 Appendix B 已充分量化\"\n  resolution_round: 14\n\n- id: \"R13-W4\"\n  summary: \"SCI 方法贡献与实际使用不成比例\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"SCI 已降级到 Appendix A\"\n  resolution_round: 14\n\n- id: \"R13-W7\"\n  summary: \"Router negative results 解释不完整\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Router 实验定位为 diagnostic probe\"\n  resolution_round: 15\n\n- id: \"R13-m2\"\n  summary: \"Figure 3 仅含 ScienceWorld 和 MATH，缺少 ALFWorld\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 16\n  resolution: \"Figure 3 已移除，数据在 Table 2 和正文中完整呈现\"\n  resolution_round: 16\n\n- id: \"R13-m3\"\n  summary: \"Reference 格式不统一 + orphan entries\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Orphan entries 清理完毕，格式统一\"\n  resolution_round: 15\n\n- id: \"R14-W2\"\n  summary: \"Concurrent work 讨论过于压缩\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Concurrent work 展开讨论，各有明确 positioning\"\n  resolution_round: 15\n\n- id: \"R14-W3\"\n  summary: \"Selection bias from prescreening 11/30 task types\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Anti-cherry-picking analysis 到位\"\n  resolution_round: 15\n\n- id: \"R14-M1\"\n  summary: \"Table 2 caption 'Single seed' 需澄清\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Caption 已修正\"\n  resolution_round: 15\n\n- id: \"R14-M2\"\n  summary: \"Limitations section 组织松散\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"三个 paragraph headers 结构清晰\"\n  resolution_round: 15\n\n- id: \"R14-M3\"\n  summary: \"Appendix F minority-class diversity caveat 应在正文提及\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 16\n  resolution: \"§3.7 和 Appendix F 均明确提及\"\n  resolution_round: 16\n\n- id: \"R13-N2\"\n  summary: \"统计推断可靠性不足：cluster bootstrap K=11 CI 反常收窄\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Wild cluster CI 修正且降级为 sensitivity analysis；non-clustered bootstrap 为主推断\"\n  resolution_round: 24\n\n- id: \"R13-W5\"\n  summary: \"Abstract 数字堆砌\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Abstract concept-first 重组，数字从 10+ 精简至 3-4 个\"\n  resolution_round: 24\n\n- id: \"R13-W6\"\n  summary: \"Safe RL 和 LLM agent failure mode 相关引用覆盖不足\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Ng 1999, Northcutt 2021, DivideMix 已添加并在正确位置引用\"\n  resolution_round: 24\n\n- id: \"R14-W1\"\n  summary: \"核心发现存在 obvious-in-hindsight triviality 风险\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 24\n  resolution: \"§5 Non-triviality 段有效回应 novelty 质疑\"\n  resolution_round: 24\n\n- id: \"R15-N1\"\n  summary: \"'Structural' claim 推断基础不足\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Discussion 已弱化为 'robust under tested interventions'\"\n  resolution_round: 16\n\n- id: \"R15-N3\"\n  summary: \"Contribution 1 'any environment' generalizability claim 过宽\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Contribution 1 措辞已收窄\"\n  resolution_round: 16\n\n- id: \"R15-W1\"\n  summary: \"§3.7 Augmentation scaling 措辞易误读为 data scaling\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"§3.7 明确标注为 paraphrase-based augmentation\"\n  resolution_round: 16\n\n- id: \"R15-W3\"\n  summary: \"72B 缺完整 DAF decomposition\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"72B DAF decomposition 完整呈现\"\n  resolution_round: 16\n\n- id: \"R17-W4\"\n  summary: \"Related Work 第一段论文罗列\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 17\n  resolution: \"§4 已按功能类别重组（Self-supervised, Token-level, Task-level, RL-based）\"\n  resolution_round: 19\n\n- id: \"R17-W1\"\n  summary: \"Pure-strategy 设计高估 death asymmetry 对 realistic routing 的影响\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"Limitations 新增 pure-strategy upper bound 段落\"\n  resolution_round: 24\n\n- id: \"R17-W3\"\n  summary: \"Data scaling 'structural failure' 措辞\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"术语全局修正为 text augmentation\"\n  resolution_round: 24\n\n- id: \"R17-N2\"\n  summary: \"penalty-independent 表述误导：P=0 时 72% labels 退化为 ties\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"P-invariance 适用范围明确量化\"\n  resolution_round: 24\n\n- id: \"R18-N1\"\n  summary: \"Episode→step granularity gap 削弱框架实用性\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"4B router 结论 qualified；完整统计处理\"\n  resolution_round: 24\n\n- id: \"R18-W1\"\n  summary: \"Router 实验 confounds: compounding errors + train/val split 不清晰\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Router claim 从绝对否定改为有条件否定\"\n  resolution_round: 24\n\n- id: \"R18-W2\"\n  summary: \"Agent improvement 实验统计功效不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"措辞软化 + effect size detection threshold 完整报告\"\n  resolution_round: 24\n\n- id: \"R20-N1\"\n  summary: \"正文超出 8 页限制——§6 Conclusion 起始于 page 9，有 desk reject 风险\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"正文收入 8 页\"\n  resolution_round: 24\n\n- id: \"R20-N2\"\n  summary: \"4B router episode-level 59.0% 与 'fundamental non-learnability' 结论矛盾\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R18-N1 解决\"\n  resolution_round: 24\n\n- id: \"R20-N3\"\n  summary: \"'Structurally determined' overclaim — r=0.97 correlation ≠ causal/structural\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"'structurally determined' → 'empirically dominated'\"\n  resolution_round: 24\n\n- id: \"R20-W2\"\n  summary: \"Per-task n=20 导致 13/28 tasks 不显著，主文未标注为 exploratory\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Per-task 结果标注为 exploratory，power caveat 完整\"\n  resolution_round: 24\n\n- id: \"R17-M1\"\n  summary: \"Orphan bib entry + Webb 年份待核实\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"huang2022inner, selfcheckgpt-2023, wang2023voyager 已清理；Webb 2023 (CJE vol.56 no.3) 年份正确\"\n  resolution_round: 24\n\n- id: \"R19-M2\"\n  summary: \"Missing references: Altman 1999, Mihatsch 2002, Natarajan 2013\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"所有缺失引用已补充\"\n  resolution_round: 24\n\n- id: \"R18-M3\"\n  summary: \"Appendix 缺索引（17 个 appendices A-R）\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Appendix Overview with hyperlinks 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M4\"\n  summary: \"§3.1 '54 sole-identified labels' 首次出现未定义\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"术语已修正并定义\"\n  resolution_round: 24\n\n- id: \"R18-M5\"\n  summary: \"Appendix N failure categories 缺 inter-annotator agreement 声明\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Single annotator caveat 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M2\"\n  summary: \"100% internal deaths 来自 single action pattern — implication 未讨论\"\n  category: framing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"§5 已讨论 focus on [object] 单一模式\"\n  resolution_round: 24\n\n- id: \"R20-M1\"\n  summary: \"Orphan bib entries: huang2022inner, selfcheckgpt-2023, wang2023voyager\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R17-M1 解决\"\n  resolution_round: 24\n\n- id: \"R15-N2\"\n  summary: \"跨环境模态定义不一致——三个环境的 deterministic 含义不同\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"§5.4 cross-env 段加交叉引用指向 §2.1 operationalization\"\n  resolution_round: 24\n\n- id: \"R15-W2\"\n  summary: \"Oracle margin vs mislabeling 逻辑层级未明确\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"Appendix B 加 circularity caveat; Limitations 量化 0.3% 方向冲突 + 60.3% pre-event neutral\"\n  resolution_round: 24\n\n- id: \"R20-W1\"\n  summary: \"Noisy label learning 引用和讨论深度不足\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"引用已补全；额外解释句因 8 页限制无法加入，现有措辞部分覆盖\"\n  resolution_round: 24\n\n- id: \"R18-M1\"\n  summary: \"'modality' 术语在 NLP 语境下有歧义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Algorithm 1 术语修正为 computation modes\"\n  resolution_round: 24\n\n- id: \"R17-N1\"\n  summary: \"78.9% label fraction binary per-task structure\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"§3.1 binary structure 讨论充分\"\n  resolution_round: 24\n\n- id: \"R16-W1\"\n  summary: \"72B vs 7B DAF 对比基于不同 task population 且缺少实验细节\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"72B decomposition 完整报告\"\n  resolution_round: 24\n\n- id: \"R16-W2\"\n  summary: \"Router 1.7B non-monotonic dip 解释缺乏 per-class evidence\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"被 R20-N2 取代并解决\"\n  resolution_round: 24\n\n- id: \"R16-W3\"\n  summary: \"signal_reversal.pdf 存在于 figures/ 但未被任何 .tex 引用\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"Appendix L 已引用\"\n  resolution_round: 24\n\n- id: \"R19-W1\"\n  summary: \"缺少 penalty magnitude 的实际实验验证\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"P-invariance by design 论证逻辑覆盖\"\n  resolution_round: 24\n\n- id: \"R27-N1\"\n  summary: \"正文超出 8 页限制——Conclusion 溢出到 page 9（R20-N1 复发）\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 27\n  resolution: \"§5 重组为 3 段，Figure 2 缩小，§3.1 correlation/sensitivity 压缩。Conclusion 在 page 8。\"\n  resolution_round: 27\n\n- id: \"R27-N2\"\n  summary: \"DAF=90.4% 部分是 P=100 penalty 的数学必然，Abstract/Title framing 过度突出\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract 78.9% 为 headline，DAF 降为 derived measure\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] R27 修复部分有效——78.9% 确实是 headline，但 DAF=90.4% 仍在 Abstract 和 §3.1 中以核心数字出现。§2.4 将 DAF 标记为 derived penalty-dependent measure，但 P-sensitivity 的核心数字（P=10→50.4%, P=50→82.6%）仅在 Appendix K 中出现，主文未展示。\"\n  action_items:\n    - round: 28\n      action: \"§2.4 在定义 DAF 后增加 1-2 句正文讨论 P-sensitivity（至少引用 P=10 和 P=50 数值）；Abstract/Conclusion 进一步降低 DAF 的 prominence\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N3\"\n  summary: \"Deterministic strategy 实为 oracle access，跨环境含义不统一，oracle confound 未分离\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 15\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§2.1 inline 三环境 operationalization，§5 ¶2 双论据\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] §2.1 已描述差异但 Conclusion 仍写 'the diagnostic procedure transfers'，未区分 procedure transferability vs operationalization consistency。三环境 'deterministic' 的信息优势程度差异巨大（oracle > code interpreter > admissible actions），当前表述暗示跨环境一致性高于实际水平。\"\n  action_items:\n    - round: 28\n      action: \"§3.4 开头或 Conclusion 增加限定：cross-environment probes 验证 diagnostic procedure 的可复用性，不是 'deterministic' 概念的一致性\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N4\"\n  summary: \"环境覆盖过窄，generalization claims 超出证据——1 个主环境 + 2 个 boundary probes\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 15\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract/Conclusion 'preliminary evidence' + 区分 methodological vs empirical generality\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"本轮未单独提出，但 R2-N2 间接涉及——cross-env claims 需更精确限定。R27 修复基本有效。\"\n\n- id: \"R28-N1\"\n  summary: \"Episode-level labeling 与 step-level routing 的粒度失配——title/abstract scope 超出方法论覆盖范围\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[DIVERGENCE] R1 认为 critical（title 暗示 step-level routing 发现，实际是 episode-level outcome）；R2 REBUT 认为 'routing signal' ≠ 'routing decision'，episode-level 是 principled granularity，但同意 Abstract 应加 'episode-level' 限定词。双方最终共识：不影响 claim validity，但 framing 需更精确。\"\n  action_items:\n    - round: 28\n      action: \"Abstract 中在 '78.9% of non-tie routing labels' 前增加 'episode-level' 限定词\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W1\"\n  summary: \"Router negative result framing: signal-limited vs data-limited 未区分\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§5 ¶1 双解释 + 1,350 估算\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[DIVERGENCE on severity] R1 认为架构简单性是主要限制（仅 Qwen3 0.6B-4B），R2 REBUT 认为 6 种 router 变体 + LOTO + death-proximal labeling 已足够。但双方 AGREE：paraphrase augmentation 不增加新 routing signal，signal-limited vs data-limited vs feature-limited 的区分尚不完全 conclusive。\"\n  action_items:\n    - round: 28\n      action: \"§3.6 或 §5 更对称地呈现两种解释，明确当前数据量不足以完全区分 signal-limited vs data-limited\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W2\"\n  summary: \"Actionability 有限——诊断出问题但'然后怎么办'回答不足\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§5 ¶3 actionability 段完成\"\n    - round: 28\n      reviewers: [2]\n      note: \"R2-W4：缺少与 concurrent routing methods 的定性讨论——CogRouter/ARES/MTRouter 在 death-dominated 环境中是否遇到 signal collapse。R1 AGREE partially（定性讨论有价值，不需实验）。\"\n  action_items:\n    - round: 28\n      action: \"§5 或 §4 增加 2-3 句定性讨论 concurrent routing methods 在 death-dominated 环境中的预期表现\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W4\"\n  summary: \"Excluded tasks (63%) n=5 prescreening 样本量极小\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 16\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§3 加 n=5 limitation 标注\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 主文仅一句话。对 analysis 论文 63% 排除率需更充分正文 justify。缺 taxonomic redundancy 的操作定义。建议至少在 §3 增加一段展示 Table 4 的 key numbers（excluded ΔDR=+38.2 > included +28.7 pp）。\"\n  action_items:\n    - round: 28\n      action: \"§3 增加一段：排除 tasks 的 ΔDR 更高 + taxonomic redundancy 操作定义\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W5\"\n  summary: \"K=11 cluster bootstrap: primary CI [81.1%, 99.0%] 可能 anti-conservative\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§3.1 并列报告 clustered CI [73.3%, 100.0%]\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 论文处理得当（non-clustered 为主推断），但 Limitations 正文缺 Cameron et al. K≥20-50 建议的显式引用。Effect size d=3.02 缓解但不消除。\"\n  action_items:\n    - round: 28\n      action: \"Limitations Statistical limitations 段显式引用 Cameron et al. K≥20-50 建议\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-W1\"\n  summary: \"72B scaling 仅做 probe 而非完整 replication——缺 router training 和 SCI 分析\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 72B death rate 降到 30.6%，non-death signal 可能更 prominent。DAF=92.4% 反而更高（deterministic 也更安全），但未运行 router training 或 per-task decomposition 验证。\"\n  action_items:\n    - round: 28\n      action: \"Limitations 中明确 72B 实验 scope 限制；讨论更强模型下 non-death signal 是否可能超过 death signal\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-W2\"\n  summary: \"'Death' 术语限制 generality perception——binary failure vs graded failure 适用性未讨论\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Algorithm 1 依赖 binary death/alive 区分。当 failure 是 graded 时，death-first priority 不适用。Discussion/Limitations 缺少对 graded failure 的讨论。\"\n  action_items:\n    - round: 28\n      action: \"§5 或 Limitations 增加 1-2 句讨论 graded failure 场景下 framework 的调整（如设 failure threshold 二值化）\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-M1\"\n  summary: \"Missing references: Alshiekh et al. (2018) Safe RL via Shielding, Geifman & El-Yaniv (2017) Selective Classification, Schuster et al. (2022) CALM, Raposo et al. (2024) Mixture-of-Depths\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Alshiekh 与 Appendix O action-space filtering 直接相关；Geifman 是 selective prediction 经典；Schuster CALM 和 Raposo MoD 是 non-agent adaptive computation baseline。\"\n\n- id: \"R28-M2\"\n  summary: \"Pages 7-8 连续两页纯文本无 display item\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: []\n      note: \"视觉审查发现。§3.6 Router Training 结果可考虑用小 table 呈现。\"\n\n- id: \"R28-M3\"\n  summary: \"§1 Introduction 'signal diversity can collapse' 重复出现\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [2]\n      note: \"§1 para 5 和 contributions list item 2 措辞几乎相同。\"\n\n- id: \"R28-M4\"\n  summary: \"Figure 2 仅 11 点无 task name label，r=0.97 caveat 不够明确\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 建议加 task name label 增加可读性。\"\n\n- id: \"R28-M5\"\n  summary: \"Related Work 缺 non-agent adaptive computation（early exit, speculative decoding, Mixture-of-Depths）\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 论文引用 Graves (2016) 但跳过 CALM、Mixture-of-Depths 等更近的 non-agent adaptive computation 工作。\"\n\n# --- Structural / Long-standing ---\n\n- id: \"R16-N1\"\n  summary: \"核心发现 novelty/excitement deficit——方向可预期\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 16\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"Excitement 仍 2.5/5。结构性限制不可通过 writing fix 解决。Findings 定位确定。\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"R1 Excitement 3/5, R2 Excitement 3/5。核心发现（death dominance in death-penalized env）具有可预测性。结构性限制持续存在。\"\n\n- id: \"R19-N1\"\n  summary: \"Framing 内在张力：framework vs finding 定位不清\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 27\n  resolution: \"N2+N4 修复间接解决——Abstract/Conclusion 统一为 empirical analysis + reusable diagnostic methodology。\"\n  resolution_round: 27\n\n- id: \"R26-N3\"\n  summary: \"'Contradicting the routing literature's implicit assumption' 是 strawman framing\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"R27 验收确认修复完好。\"\n  resolution_round: 27"
             }
           },
-          "id": "event-002348"
+          "id": "event-002346"
         },
         {
-          "source_line": 2349,
+          "source_line": 2347,
           "timestamp": "2026-05-22T09:00:12.301684+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -173,10 +135,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 51
           },
-          "id": "event-002349"
+          "id": "event-002347"
         },
         {
-          "source_line": 2350,
+          "source_line": 2348,
           "timestamp": "2026-05-22T09:02:25.445108+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -197,10 +159,10 @@
               "overall_score": "3.0"
             }
           },
-          "id": "event-002350"
+          "id": "event-002348"
         },
         {
-          "source_line": 2351,
+          "source_line": 2349,
           "timestamp": "2026-05-22T09:02:29.813180+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -215,10 +177,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 4368
           },
-          "id": "event-002351"
+          "id": "event-002349"
         },
         {
-          "source_line": 2352,
+          "source_line": 2350,
           "timestamp": "2026-05-22T09:02:38.900971+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -231,7 +193,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002352"
+          "id": "event-002350"
         }
       ]
     },
@@ -239,7 +201,7 @@
       "number": 197,
       "messages": [
         {
-          "source_line": 2353,
+          "source_line": 2351,
           "timestamp": "2026-05-22T22:49:29.116424+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -253,10 +215,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "system"
           },
-          "id": "event-002353"
+          "id": "event-002351"
         },
         {
-          "source_line": 2354,
+          "source_line": 2352,
           "timestamp": "2026-05-22T22:49:34.954881+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -273,10 +235,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002354"
+          "id": "event-002352"
         },
         {
-          "source_line": 2355,
+          "source_line": 2353,
           "timestamp": "2026-05-22T22:49:34.955847+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -291,10 +253,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002355"
+          "id": "event-002353"
         },
         {
-          "source_line": 2356,
+          "source_line": 2354,
           "timestamp": "2026-05-22T22:49:40.880557+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -312,10 +274,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002356"
+          "id": "event-002354"
         },
         {
-          "source_line": 2357,
+          "source_line": 2355,
           "timestamp": "2026-05-22T22:49:40.931179+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -330,10 +292,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002357"
+          "id": "event-002355"
         },
         {
-          "source_line": 2358,
+          "source_line": 2356,
           "timestamp": "2026-05-22T22:49:48.212858+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -351,10 +313,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002358"
+          "id": "event-002356"
         },
         {
-          "source_line": 2359,
+          "source_line": 2357,
           "timestamp": "2026-05-22T22:49:48.214126+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -369,10 +331,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 1
           },
-          "id": "event-002359"
+          "id": "event-002357"
         },
         {
-          "source_line": 2360,
+          "source_line": 2358,
           "timestamp": "2026-05-22T22:49:51.528171+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -390,10 +352,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002360"
+          "id": "event-002358"
         },
         {
-          "source_line": 2361,
+          "source_line": 2359,
           "timestamp": "2026-05-22T22:49:51.528569+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -408,10 +370,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002361"
+          "id": "event-002359"
         },
         {
-          "source_line": 2362,
+          "source_line": 2360,
           "timestamp": "2026-05-22T22:49:51.980557+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -428,10 +390,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002362"
+          "id": "event-002360"
         },
         {
-          "source_line": 2363,
+          "source_line": 2361,
           "timestamp": "2026-05-22T22:49:52.434885+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -446,10 +408,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 454
           },
-          "id": "event-002363"
+          "id": "event-002361"
         },
         {
-          "source_line": 2364,
+          "source_line": 2362,
           "timestamp": "2026-05-22T22:49:58.847549+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -467,10 +429,10 @@
               "max_results": "2"
             }
           },
-          "id": "event-002364"
+          "id": "event-002362"
         },
         {
-          "source_line": 2365,
+          "source_line": 2363,
           "timestamp": "2026-05-22T22:49:58.847925+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -485,10 +447,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002365"
+          "id": "event-002363"
         },
         {
-          "source_line": 2366,
+          "source_line": 2364,
           "timestamp": "2026-05-22T22:50:00.355054+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -506,10 +468,10 @@
               "limit": "100"
             }
           },
-          "id": "event-002366"
+          "id": "event-002364"
         },
         {
-          "source_line": 2367,
+          "source_line": 2365,
           "timestamp": "2026-05-22T22:50:00.456424+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -524,10 +486,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-002367"
+          "id": "event-002365"
         },
         {
-          "source_line": 2368,
+          "source_line": 2366,
           "timestamp": "2026-05-22T22:50:07.589081+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -544,10 +506,10 @@
               "query": "EMNLP 2026 call for papers submission guidelines ARR"
             }
           },
-          "id": "event-002368"
+          "id": "event-002366"
         },
         {
-          "source_line": 2369,
+          "source_line": 2367,
           "timestamp": "2026-05-22T22:50:10.452003+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -565,10 +527,10 @@
               "description": "Check if submitted PDF exists"
             }
           },
-          "id": "event-002369"
+          "id": "event-002367"
         },
         {
-          "source_line": 2370,
+          "source_line": 2368,
           "timestamp": "2026-05-22T22:50:11.006172+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -583,10 +545,10 @@
             "tool": "Bash",
             "elapsed_ms": 554
           },
-          "id": "event-002370"
+          "id": "event-002368"
         },
         {
-          "source_line": 2371,
+          "source_line": 2369,
           "timestamp": "2026-05-22T22:50:11.358494+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -604,10 +566,10 @@
               "description": "List all tex files in paper directory"
             }
           },
-          "id": "event-002371"
+          "id": "event-002369"
         },
         {
-          "source_line": 2372,
+          "source_line": 2370,
           "timestamp": "2026-05-22T22:50:11.461074+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -622,10 +584,10 @@
             "tool": "Bash",
             "elapsed_ms": 102
           },
-          "id": "event-002372"
+          "id": "event-002370"
         },
         {
-          "source_line": 2373,
+          "source_line": 2371,
           "timestamp": "2026-05-22T22:50:15.628532+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -640,10 +602,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 8039
           },
-          "id": "event-002373"
+          "id": "event-002371"
         },
         {
-          "source_line": 2374,
+          "source_line": 2372,
           "timestamp": "2026-05-22T22:50:24.891817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -661,10 +623,10 @@
               "prompt": "Extract ALL submission guidelines: page limits (long paper, short paper), template requirements, anonymity rules, appendix rules, citation format, supplementary material rules, responsible NLP checklist requirements, and any other formatting requirements. Be comprehensive."
             }
           },
-          "id": "event-002374"
+          "id": "event-002372"
         },
         {
-          "source_line": 2375,
+          "source_line": 2373,
           "timestamp": "2026-05-22T22:50:25.496370+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -681,10 +643,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-002375"
+          "id": "event-002373"
         },
         {
-          "source_line": 2376,
+          "source_line": 2374,
           "timestamp": "2026-05-22T22:50:26.300137+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -699,10 +661,10 @@
             "tool": "Read",
             "elapsed_ms": 803
           },
-          "id": "event-002376"
+          "id": "event-002374"
         },
         {
-          "source_line": 2377,
+          "source_line": 2375,
           "timestamp": "2026-05-22T22:50:26.300756+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -719,10 +681,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-002377"
+          "id": "event-002375"
         },
         {
-          "source_line": 2378,
+          "source_line": 2376,
           "timestamp": "2026-05-22T22:50:26.301131+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -737,10 +699,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002378"
+          "id": "event-002376"
         },
         {
-          "source_line": 2379,
+          "source_line": 2377,
           "timestamp": "2026-05-22T22:50:26.451968+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -757,10 +719,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
             }
           },
-          "id": "event-002379"
+          "id": "event-002377"
         },
         {
-          "source_line": 2380,
+          "source_line": 2378,
           "timestamp": "2026-05-22T22:50:26.502827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -775,10 +737,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002380"
+          "id": "event-002378"
         },
         {
-          "source_line": 2381,
+          "source_line": 2379,
           "timestamp": "2026-05-22T22:50:30.070157+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -793,10 +755,10 @@
             "tool": "WebFetch",
             "elapsed_ms": 5178
           },
-          "id": "event-002381"
+          "id": "event-002379"
         },
         {
-          "source_line": 2382,
+          "source_line": 2380,
           "timestamp": "2026-05-22T22:50:39.162619+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -813,10 +775,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-002382"
+          "id": "event-002380"
         },
         {
-          "source_line": 2383,
+          "source_line": 2381,
           "timestamp": "2026-05-22T22:50:39.615436+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -831,10 +793,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002383"
+          "id": "event-002381"
         },
         {
-          "source_line": 2384,
+          "source_line": 2382,
           "timestamp": "2026-05-22T22:50:39.615934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -851,10 +813,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
             }
           },
-          "id": "event-002384"
+          "id": "event-002382"
         },
         {
-          "source_line": 2385,
+          "source_line": 2383,
           "timestamp": "2026-05-22T22:50:40.118425+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -869,10 +831,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002385"
+          "id": "event-002383"
         },
         {
-          "source_line": 2386,
+          "source_line": 2384,
           "timestamp": "2026-05-22T22:50:40.169111+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -889,10 +851,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002386"
+          "id": "event-002384"
         },
         {
-          "source_line": 2387,
+          "source_line": 2385,
           "timestamp": "2026-05-22T22:50:40.621446+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -907,10 +869,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002387"
+          "id": "event-002385"
         },
         {
-          "source_line": 2388,
+          "source_line": 2386,
           "timestamp": "2026-05-22T22:50:40.621958+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -927,10 +889,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-002388"
+          "id": "event-002386"
         },
         {
-          "source_line": 2389,
+          "source_line": 2387,
           "timestamp": "2026-05-22T22:50:41.074176+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -945,10 +907,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002389"
+          "id": "event-002387"
         },
         {
-          "source_line": 2390,
+          "source_line": 2388,
           "timestamp": "2026-05-22T22:50:42.832572+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -966,10 +928,10 @@
               "prompt": "Extract ALL formatting requirements for ARR submissions: page limits, template, anonymity policy, appendix rules, supplementary materials, responsible NLP checklist, citation format, font requirements, and any other formatting or content requirements."
             }
           },
-          "id": "event-002390"
+          "id": "event-002388"
         },
         {
-          "source_line": 2391,
+          "source_line": 2389,
           "timestamp": "2026-05-22T22:50:49.972683+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -984,10 +946,10 @@
             "tool": "WebFetch",
             "elapsed_ms": 7140
           },
-          "id": "event-002391"
+          "id": "event-002389"
         },
         {
-          "source_line": 2392,
+          "source_line": 2390,
           "timestamp": "2026-05-22T22:51:07.142032+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1006,10 +968,10 @@
               "max_chars": "5000"
             }
           },
-          "id": "event-002392"
+          "id": "event-002390"
         },
         {
-          "source_line": 2393,
+          "source_line": 2391,
           "timestamp": "2026-05-22T22:51:07.795183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1024,10 +986,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 653
           },
-          "id": "event-002393"
+          "id": "event-002391"
         },
         {
-          "source_line": 2394,
+          "source_line": 2392,
           "timestamp": "2026-05-22T22:51:07.795657+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1044,10 +1006,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002394"
+          "id": "event-002392"
         },
         {
-          "source_line": 2395,
+          "source_line": 2393,
           "timestamp": "2026-05-22T22:51:09.352360+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1062,10 +1024,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 1556
           },
-          "id": "event-002395"
+          "id": "event-002393"
         },
         {
-          "source_line": 2396,
+          "source_line": 2394,
           "timestamp": "2026-05-22T22:51:09.503434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1083,10 +1045,10 @@
               "pages": "1-8"
             }
           },
-          "id": "event-002396"
+          "id": "event-002394"
         },
         {
-          "source_line": 2397,
+          "source_line": 2395,
           "timestamp": "2026-05-22T22:51:10.158163+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1101,10 +1063,10 @@
             "tool": "Read",
             "elapsed_ms": 654
           },
-          "id": "event-002397"
+          "id": "event-002395"
         },
         {
-          "source_line": 2398,
+          "source_line": 2396,
           "timestamp": "2026-05-22T22:51:34.544305+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1122,10 +1084,10 @@
               "description": "Check PDF page count"
             }
           },
-          "id": "event-002398"
+          "id": "event-002396"
         },
         {
-          "source_line": 2399,
+          "source_line": 2397,
           "timestamp": "2026-05-22T22:51:35.548806+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1140,10 +1102,10 @@
             "tool": "Bash",
             "elapsed_ms": 1004
           },
-          "id": "event-002399"
+          "id": "event-002397"
         },
         {
-          "source_line": 2400,
+          "source_line": 2398,
           "timestamp": "2026-05-22T22:51:36.454548+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1161,10 +1123,10 @@
               "description": "Read existing review issues tracker"
             }
           },
-          "id": "event-002400"
+          "id": "event-002398"
         },
         {
-          "source_line": 2401,
+          "source_line": 2399,
           "timestamp": "2026-05-22T22:51:36.455105+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1181,10 +1143,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002401"
+          "id": "event-002399"
         },
         {
-          "source_line": 2402,
+          "source_line": 2400,
           "timestamp": "2026-05-22T22:51:36.506310+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1199,10 +1161,10 @@
             "tool": "Bash",
             "elapsed_ms": 51
           },
-          "id": "event-002402"
+          "id": "event-002400"
         },
         {
-          "source_line": 2403,
+          "source_line": 2401,
           "timestamp": "2026-05-22T22:51:36.506808+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1217,10 +1179,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 51
           },
-          "id": "event-002403"
+          "id": "event-002401"
         },
         {
-          "source_line": 2404,
+          "source_line": 2402,
           "timestamp": "2026-05-22T22:52:16.385205+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1238,10 +1200,10 @@
               "description": "Find project config files"
             }
           },
-          "id": "event-002404"
+          "id": "event-002402"
         },
         {
-          "source_line": 2405,
+          "source_line": 2403,
           "timestamp": "2026-05-22T22:52:16.488395+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1256,10 +1218,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-002405"
+          "id": "event-002403"
         },
         {
-          "source_line": 2406,
+          "source_line": 2404,
           "timestamp": "2026-05-22T22:52:19.757877+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1277,10 +1239,10 @@
               "description": "Find files with external review config"
             }
           },
-          "id": "event-002406"
+          "id": "event-002404"
         },
         {
-          "source_line": 2407,
+          "source_line": 2405,
           "timestamp": "2026-05-22T22:52:19.858716+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1295,10 +1257,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002407"
+          "id": "event-002405"
         },
         {
-          "source_line": 2408,
+          "source_line": 2406,
           "timestamp": "2026-05-22T22:52:23.924207+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1316,10 +1278,10 @@
               "description": "Find external review config broadly"
             }
           },
-          "id": "event-002408"
+          "id": "event-002406"
         },
         {
-          "source_line": 2409,
+          "source_line": 2407,
           "timestamp": "2026-05-22T22:52:24.088750+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1334,10 +1296,10 @@
             "tool": "Bash",
             "elapsed_ms": 164
           },
-          "id": "event-002409"
+          "id": "event-002407"
         },
         {
-          "source_line": 2410,
+          "source_line": 2408,
           "timestamp": "2026-05-22T22:52:43.331551+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1355,10 +1317,10 @@
               "review_chat_id": "oc_0b622d6038b969b96148ee8a163a1a0c"
             }
           },
-          "id": "event-002410"
+          "id": "event-002408"
         },
         {
-          "source_line": 2411,
+          "source_line": 2409,
           "timestamp": "2026-05-22T22:53:06.479077+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1373,10 +1335,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 23147
           },
-          "id": "event-002411"
+          "id": "event-002409"
         },
         {
-          "source_line": 2412,
+          "source_line": 2410,
           "timestamp": "2026-05-22T22:53:06.579916+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1396,10 +1358,10 @@
               "text": "你是 Reviewer 1，负责**方法严谨性 + 实验设计 + 统计分析**。\n\n## 投稿信息\n- **Venue**: EMNLP 2026 (ARR May cycle)\n- **类别**: Long Paper (8 pages max main text, unlimited references)\n- **截止日期**: 2026-05-25\n- **模板**: ACL style, `\\usepackage[review]{acl}`\n- **匿名规则**: Double-blind\n- **Limitations**: 必须有（不计页数）\n- **Ethics**: 可选（不计页数）\n- **Responsible NLP Checklist**: 在 OpenReview 表单中填写，不在 PDF 中\n\n## 论文文件\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/submitted.pdf`\n\n## 你的审查侧重\n\n### 方法严谨性\n- Episode-level counterfactual labeling (Algorithm 1) 的设计是否合理？死亡优先规则是否引入 bias？\n- DAF 的数学定义和分解是否正确？DAF 与 P 的单调关系是否被充分讨论？\n- 78.9% label fraction (penalty-independent) vs DAF 90.4% (penalty-dependent) 的双指标体系是否恰当？\n- SCI (Signal Concentration Index) 作为补充指标的价值\n\n### 实验设计\n- 11/30 task types 选择（63% 排除）的 selection bias 是否被充分 justify？\n- N=245 episodes 的样本量是否足够？统计功效分析\n- 跨模型验证 (Qwen/Llama/Gemma 7-9B tier) 的设计合理性\n- 72B scaling probe 的实验 scope 是否足够？\n- Agent improvement baselines (Retry/Reflexion) 实验设计\n- Router training negative result 的解释——signal-limited vs data-limited 是否被公平呈现？\n- Cross-environment probes (MATH/ALFWorld) 的实验设计\n\n### 统计分析\n- Bootstrap CI 方法选择（episode-level vs cluster）\n- K=11 cluster bootstrap 的可靠性\n- Wild cluster bootstrap 补充分析\n- 效应量 Cohen's d=3.02 的解释\n- 多重比较校正（Bonferroni）的应用\n- McNemar test (MATH) 的适当性\n\n### 格式检查\n- 正文是否在 8 页内\n- Limitations section 是否存在且内容充分\n- 匿名合规性\n- 参考文献格式\n\n请按以下格式输出审稿意见：\n1. **Summary** (2-3 句)\n2. **Strengths** (逐条)\n3. **Weaknesses** (逐条，标注 severity: [Critical/Major/Minor])\n4. **Questions** (需要作者回答的问题)\n5. **Missing References** (遗漏的重要相关工作)\n6. **Soundness** (1-5)\n7. **Excitement** (1-5)\n8. **Overall Assessment** (使用 EMNLP 2026 ARR 评分标准: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit)\n9. **Confidence** (1-5)"
             }
           },
-          "id": "event-002412"
+          "id": "event-002410"
         },
         {
-          "source_line": 2413,
+          "source_line": 2411,
           "timestamp": "2026-05-22T22:53:23.028190+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1414,10 +1376,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 16448
           },
-          "id": "event-002413"
+          "id": "event-002411"
         },
         {
-          "source_line": 2414,
+          "source_line": 2412,
           "timestamp": "2026-05-22T22:53:23.129070+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1437,10 +1399,10 @@
               "text": "你是 Reviewer 2，负责**新颖性 + 完整性 + 写作质量 + Related Work 覆盖**。\n\n## 投稿信息\n- **Venue**: EMNLP 2026 (ARR May cycle)\n- **类别**: Long Paper (8 pages max main text, unlimited references)\n- **截止日期**: 2026-05-25\n- **模板**: ACL style, `\\usepackage[review]{acl}`\n- **匿名规则**: Double-blind\n- **Limitations**: 必须有（不计页数）\n- **Ethics**: 可选（不计页数）\n- **Responsible NLP Checklist**: 在 OpenReview 表单中填写，不在 PDF 中\n\n## 论文文件\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_29/submitted.pdf`\n\n## 你的审查侧重\n\n### 新颖性评估\n- 核心发现 (death avoidance dominates routing signal) 是否具有足够 novelty？\n- \"Death avoidance dominates in death-penalized environment\" 是否存在 triviality 风险？\n- 方法论贡献 (episode-level counterfactual framework) 是否有独立价值？\n- 与 concurrent routing work (CogRouter, ARES, MTRouter, budget-aware routing) 的区分度\n\n### 完整性检查\n- 论文结构是否完整（Abstract → Introduction → Method → Experiments → Related Work → Discussion → Conclusion → Limitations → Ethics）\n- 实验是否充分支撑所有 claims？\n- Contributions 列表与实际内容是否匹配？\n- Cross-environment probes 的 scope 是否与 claims 匹配？\n- Title/Abstract scope 是否与内容匹配？（episode-level vs step-level, methodological vs empirical generality）\n\n### 写作质量\n- 论文整体叙事结构和可读性\n- Abstract 是否准确反映核心发现？\n- Introduction 的 framing 和 motivation 是否清晰？\n- 术语一致性（computation modes, deterministic strategy, etc.）\n- 数字密度是否过高？\n- 信息重复和冗余\n- Figures/Tables 的质量和信息传递效率\n\n### Related Work 覆盖\n- Tool use / external computation 方向的覆盖是否充分？\n- Adaptive computation / routing 方向的引用\n- Counterfactual evaluation in RL 的覆盖\n- Safe RL / causal grounding 的引用\n- 遗漏的重要相关工作（特别是 2025-2026 concurrent work）\n- Non-agent adaptive computation (early exit, speculative decoding, MoD) 是否应覆盖？\n\n### 格式检查\n- 正文是否在 8 页内\n- Limitations section 质量\n- 匿名合规性\n\n请按以下格式输出审稿意见：\n1. **Summary** (2-3 句)\n2. **Strengths** (逐条)\n3. **Weaknesses** (逐条，标注 severity: [Critical/Major/Minor])\n4. **Questions** (需要作者回答的问题)\n5. **Missing References** (遗漏的重要相关工作)\n6. **Soundness** (1-5)\n7. **Excitement** (1-5)\n8. **Overall Assessment** (使用 EMNLP 2026 ARR 评分标准: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit)\n9. **Confidence** (1-5)"
             }
           },
-          "id": "event-002414"
+          "id": "event-002412"
         },
         {
-          "source_line": 2415,
+          "source_line": 2413,
           "timestamp": "2026-05-22T22:53:24.655740+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1455,10 +1417,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1526
           },
-          "id": "event-002415"
+          "id": "event-002413"
         },
         {
-          "source_line": 2416,
+          "source_line": 2414,
           "timestamp": "2026-05-22T22:53:34.867198+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1471,7 +1433,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002416"
+          "id": "event-002414"
         }
       ]
     },
@@ -1479,7 +1441,7 @@
       "number": 198,
       "messages": [
         {
-          "source_line": 2417,
+          "source_line": 2415,
           "timestamp": "2026-05-22T22:58:33.336646+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1493,10 +1455,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002417"
+          "id": "event-002415"
         },
         {
-          "source_line": 2418,
+          "source_line": 2416,
           "timestamp": "2026-05-22T22:58:40.018548+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1509,7 +1471,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002418"
+          "id": "event-002416"
         }
       ]
     },
@@ -1517,7 +1479,7 @@
       "number": 199,
       "messages": [
         {
-          "source_line": 2419,
+          "source_line": 2417,
           "timestamp": "2026-05-22T22:58:50.966144+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1531,10 +1493,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_1"
           },
-          "id": "event-002419"
+          "id": "event-002417"
         },
         {
-          "source_line": 2420,
+          "source_line": 2418,
           "timestamp": "2026-05-22T22:59:04.519632+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1547,7 +1509,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002420"
+          "id": "event-002418"
         }
       ]
     },
@@ -1555,7 +1517,7 @@
       "number": 200,
       "messages": [
         {
-          "source_line": 2421,
+          "source_line": 2419,
           "timestamp": "2026-05-22T23:00:26.254088+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1569,10 +1531,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002421"
+          "id": "event-002419"
         },
         {
-          "source_line": 2422,
+          "source_line": 2420,
           "timestamp": "2026-05-22T23:00:58.140308+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1592,10 +1554,10 @@
               "text": "以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每条 Weakness 标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 审稿意见（完整原文）\n\n### Summary\n本文提出 episode-level counterfactual 框架诊断 LLM agent routing 信号。在 ScienceWorld 中发现 78.9% 非平局 routing 标签源于 death avoidance，提出 DAF 和 SCI 指标，覆盖 3 个 7–9B 模型家族和 MATH/ALFWorld 跨环境验证。\n\n### Strengths\nS1. 问题定位精准：diagnostic vs. prescriptive routing 的差异化清晰，Section 5 中的 practitioner guidance（DAF≈0 → always-deterministic）有实用价值。\nS2. 实验严谨：episode-level bootstrap (B=10,000)、3 模型家族 cross-model replication、4 intervention axes、sensitivity analysis (Appendix K)。\nS3. 方法论有独立价值：Algorithm 1 + DAF/SCI 可复用，不依赖特定发现。\nS4. Appendix 极详尽（16 页，A–T），可复现性高。\nS5. 跨环境 probes 虽初步但 hedging 语言诚实（\"preliminary evidence\"）。\n\n### Weaknesses\nW1. [Critical] 正文超 8 页。Sections 1–6 约 8.5 页（Discussion 延至 p.9 上半，Conclusion 结束于 p.9 中部）。EMNLP 2026 限 8 页，可能 desk reject。建议压缩 Section 4/5 或将 Figure 2 移至 appendix。\n\nW2. [Major] 核心发现 triviality 风险。ScienceWorld 的 −100 death penalty 使 death-asymmetric episodes 自然携带不成比例的 score gap。DAF 随 P 单调递增是 mathematical consequence（Appendix K 自认）。论文需正面区分 \"DAF 值 (penalty-dependent)\" 和 \"label fraction 78.9% (penalty-invariant)\"，并论证后者的非平凡性。\n\nW3. [Major] Figure 2 近似恒等关系占正文空间。r=0.97 的 scatter plot 是 DAF≈1 的可视化重述，作者自己说 \"not an independent finding\"。应移至 appendix。\n\nW4. [Major] Non-death component（21.1%）分析不足。78.9% death avoidance 之外的 routing signal 来自什么？SCI 显示集中在 top-3 task types 但无 mechanistic 解释。需 case study。\n\nW5. [Minor] 跨环境验证 scope 与泛化 claim 有张力。MATH 和 ALFWorld 各仅 5-6 task types。Discussion 中 \"framework's generality claim is methodological\" 需更多证据或更谨慎措辞。\n\nW6. [Minor] 数字密度过高。几乎每段 3-5 个带 CI 的数字，Abstract 尤其严重。建议将 secondary statistics 移至 footnotes/appendix。\n\nW7. [Minor] Related Work 缺 non-agent adaptive computation。未覆盖 Mixture-of-Depths、speculative decoding 等共享动态计算分配思想的方向。\n\nW8. [Minor] Introduction 与 Conclusion contributions 列表近乎逐字重复。页数超限下应削减冗余。\n\n### Questions\nQ1. DAF 值 (90.4%) vs label fraction (78.9%) 的区别和各自解读？这对 triviality 论证关键。\nQ2. 19 个 excluded task types 是无信号还是样本不足？\nQ3. Section 3.6 Trained Router 的 routing decision accuracy 是多少？\nQ4. Router 使用什么特征？能否直接学到 \"death-prone → deterministic\" 映射？\nQ5. \"no prior work has decomposed routing decisions in interactive environments\" 的 novelty claim 是否过强？\n\n### Missing References\n- Mixture-of-Depths (Raposo et al., 2024)\n- Speculative decoding (Leviathan et al., 2023; Chen et al., 2023)\n- LATS (Zhou et al., 2024)\n- Trial and Error (Wang et al., 2024)\n\n### Scoring\nSoundness: 3.5/5\nExcitement: 2.5/5\nReproducibility: 4/5\n\n### Overall: 3.0 — Findings\n### Confidence: 4/5"
             }
           },
-          "id": "event-002422"
+          "id": "event-002420"
         },
         {
-          "source_line": 2423,
+          "source_line": 2421,
           "timestamp": "2026-05-22T23:01:56.730193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1610,10 +1572,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 58589
           },
-          "id": "event-002423"
+          "id": "event-002421"
         },
         {
-          "source_line": 2424,
+          "source_line": 2422,
           "timestamp": "2026-05-22T23:01:57.234330+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1633,10 +1595,10 @@
               "text": "以下是 Reviewer 1 的完整审稿意见，请逐条回应：对每条 Weakness 标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 审稿意见（完整原文）\n\n### Summary\n本文提出 episode-level counterfactual diagnostic framework，将 LLM agent routing signal 分解为 death avoidance 和 non-death 两个组成部分。在 ScienceWorld（11/30 task types, N=245 episodes）上发现 78.9% 的 non-tie routing labels 源自 death asymmetry（penalty-independent），DAF=90.4%（penalty-dependent at P=100）。训练的 router 在 episode-level 泛化上低于随机基线（47.1±2.2%）。跨模型（Llama-3.1-8B, Gemma-2-9B）和跨环境（MATH, ALFWorld）probes 提供初步支撑。核心贡献是诊断性的——在构建 learned router 之前应先检查 routing signal 是否被 catastrophic failure 所主导。\n\n### Strengths\nS1. 新颖且有价值的诊断视角。现有 routing 工作直接训练 router 而不先理解 routing signal 的构成。本文首次系统分解 routing signal，填补了一个重要的方法论空白。DAF 的数学定义（§2.4, Eq. 5）清晰，penalty-independent label fraction（78.9%）作为补充指标的选择也合理。\n\nS2. 极其详尽的统计分析。20 个 appendices（A–T）提供了罕见的深度：bootstrap CI、cluster-robust t-test、wild cluster bootstrap、exact permutation test、sign test、LOO correlation robustness（Table 5）、LOO DAF sensitivity（Table 7）、penalty sensitivity analysis（Table 12–13）。论文自觉标注了 K=11 cluster bootstrap 的局限性并推荐 non-clustered CI 作为 primary inference——这种统计自省在投稿论文中非常少见。\n\nS3. 诚实的负面结果报告。Router 训练的 episode-level failure（47.1±2.2%, below chance）被详细呈现而非掩盖。step-level vs. episode-level evaluation 的 generalization gap 分析（Table 10）、text augmentation ablation（Table 11）、capacity scaling（Table 18）系统地排除了 data scarcity 和 model capacity 作为唯一解释。这种透明度增加了论文可信度。\n\nS4. Anti-cherry-picking 分析有说服力。Table 4 显示 19 个被排除 task types 的 mean ΔDR=+38.2 pp 高于 included tasks 的 +28.7 pp。Extended validation（Appendix S, Table 21, n=20 per task）进一步确认 excluded tasks 的 DAF（0.991）高于 included tasks（0.904）。这有效排除了选择偏差的质疑。\n\nS5. 跨模型复现。三个 7–9B 模型家族（Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B-it）在 ScienceWorld 上一致显示 death dominance，directional consistency 100%（10/10 death-prone tasks），internal vulnerability 近乎一致（~42% vs ~41% vs ~36%）。Table 17 的 consolidation table 是有效的 robustness evidence。\n\nS6. Algorithm 1 设计合理且假设明确。Death-priority rule（lines 5–10）的有效条件——P 超过 maximum partial score——被明确标注（Assumption note, p.13）。ScienceWorld 满足此条件（P=100, max partial=100）。Labeling Quality Audit（Appendix B）验证了 zero tie-breaking labels，95 个训练 labels 全部 genuine。\n\nS7. Failure Mode Analysis 增加 mechanistic depth。Appendix N 揭示 100% internal deaths 由同一 action pattern（focus on [object]）触发，提供了 actionable 的 mechanistic insight。Grounding ablation（Appendix O）量化了 prompt warning（-11 pp）和 action-space filtering（-19 pp）的效果。\n\n### Weaknesses\n\nW1 [Major] DAF 的 headline metric 对 penalty 的数学依赖性削弱了主要发现的 robustness。\n- 具体位置：§2.4 Eq. 5, Table 12（Appendix K）\n- 问题：DAF = δP/(δP + Δ_nd) 是 P 的单调递增函数。Abstract 和 Introduction 的 headline 数字 DAF=90.4% 是在 P=100 下计算的。Table 12 显示在 P=0 时 DAF=7.4%，P=10 时 50.4%，P=25 时 70.7%。论文确实讨论了这一依赖性（§2.4 \"DAF varies monotonically with P\"；Appendix K \"this is a mathematical consequence\"），但 abstract/introduction 仍以 DAF=90.4% 为主导叙事，penalty-independent label fraction（78.9%）被置于次要位置。\n- 影响：读者可能对 death avoidance 的 dominance 程度产生过度印象。\n- 建议：在 abstract/introduction 中将 penalty-independent label fraction（78.9%）作为 primary metric，DAF=90.4% 作为 penalty-specific supplement。\n\nW2 [Major] 63% task exclusion rate 的 justification 虽合理但对 generalizability 有实质限制。\n- 问题：19/30 task types 被排除。三个排除类别各自合理，但累积效应是分析仅基于 37% task coverage。\n- 建议：明确 taxonomic redundancy 的判断标准。对 agent-floor tasks，报告在更长 step budget 下是否出现 non-death routing signal。\n\nW3 [Major] Router negative result 可能是极端 class imbalance（9/245=3.7% internal-preferred）的 artifact，而非 routing signal 本身的 limitation。\n- 问题：在 245 episodes 中仅 9 个 internal-preferred（3.7%）。任何分类器在此 imbalance 下都倾向于 majority-class collapse。\n- 建议：明确标注 router failure 是 \"under the current data regime\" 而非 \"in general\"；讨论 selective collection strategy。\n\nW4 [Major] 跨环境 probes 的 \"deterministic\" computation mode 在三个环境中语义不同，限制了 cross-environment comparison 的 validity。\n- 问题：ScienceWorld deterministic = oracle simulator；MATH = code interpreter；ALFWorld = admissible-action enumeration。信息特权程度完全不同。\n- 建议：强调框架（procedure）是通用的，而非具体 findings 可跨环境迁移。\n\nW5 [Minor] Cohen's d=3.02 的解释需要更多 context。建议加一句解释 d=3.02 reflects near-binary directional consistency。\n\nW6 [Minor] 单一 death mechanism（focus on）限制了 failure mode analysis 的 generalizability。\n\nW7 [Minor] 72B scaling probe 的 scope 过窄。仅一个 72B 模型，无 cross-model replication at scale。\n\n### Questions\nQ1. Algorithm 1 的 death-priority rule 在 both-dead 情况下不区分死亡时间。是否丢失 signal？\nQ2. Table 3 中 find-non-living-thing 的 n=40 而其他 n=20，是否引入不对称？\nQ3. Reflexion N>5 是否有改善空间？\nQ4. Decision framework thresholds（15 pp, 75%, 50%）的选择依据？\nQ5. Δ_nd = 2.84 的 bootstrap CI 是多少？\n\n### Missing References\n- FrugalGPT (Chen et al., 2023)\n- AutoMix (Madaan et al., 2023)\n- Options framework (Sutton et al., 1999)\n\n### Scoring\nSoundness: 3.5/5\nExcitement: 3.5/5\nReproducibility: 4/5\nConfidence: 4/5\n\n### Overall: 3.5 — Borderline Conference"
             }
           },
-          "id": "event-002424"
+          "id": "event-002422"
         },
         {
-          "source_line": 2425,
+          "source_line": 2423,
           "timestamp": "2026-05-22T23:01:58.665218+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1651,10 +1613,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1430
           },
-          "id": "event-002425"
+          "id": "event-002423"
         },
         {
-          "source_line": 2426,
+          "source_line": 2424,
           "timestamp": "2026-05-22T23:02:04.446350+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1667,7 +1629,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002426"
+          "id": "event-002424"
         }
       ]
     },
@@ -1675,7 +1637,7 @@
       "number": 201,
       "messages": [
         {
-          "source_line": 2427,
+          "source_line": 2425,
           "timestamp": "2026-05-22T23:02:06.975766+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1689,11 +1651,49 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-22T23:02:12.427527+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
+          },
+          "id": "event-002426"
+        }
+      ]
+    },
+    {
+      "number": 202,
+      "messages": [
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-22T23:04:02.774762+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 的逐条回应\n\n---\n\n### W1 [Critical] 正文超 8 页\n\n**[AGREE] R2-W1:** 同意这是一个 desk reject 风险。从 PDF 排版看，Section 5 Discussion 占据了 page 8 的大部分篇幅，Section 6 Conclusion 延伸至 page 9 上方，之后才进入 Limitations。主文（Sections 1–6）约 8.3–8.5 页，超出 EMNLP 2026 的 8 页限制。R2 建议的 \"压缩 Section 4/5 或移 Figure 2 至 appendix\" 是可操作的。实际上 Section 4 Related Work 和 Section 5 Discussion 之间存在内容重叠（e.g., Discussion 中对 routing failure 的 mechanistic explanation 与 Related Work 中 safe RL 的讨论有交集），合并或压缩可行。这是 camera-ready 前必须修复的硬约束。\n\n---\n\n### W2 [Major] 核心发现 triviality 风险\n\n**[AGREE] R2-W2:** 与我的 W1 一致。DAF=90.4% 是 P=100 下的数学结果，Table 12（Appendix K）明确展示了 DAF 从 P=0 的 7.4% 到 P=500 的 97.9% 的单调递增。论文自身在 Appendix K 承认 \"this is a mathematical consequence of the decomposition (DAF = δP/(δP + Δ_nd)), not evidence of mechanism robustness\"。\n\n但需注意 R2 可能低估了 penalty-independent label fraction（78.9%）的非平凡性。78.9% 意味着：在完全不考虑 penalty 数值的情况下，仅看 binary death indicator（一方死亡、另一方存活），就已经解释了近 4/5 的 routing labels。这个指标不依赖 P，是纯粹的 event-level 统计。论文在 §3.1 和 §2.4 都讨论了两个指标的关系（\"The label fraction, invariant to penalty magnitude, serves as the primary finding\"），但 abstract/introduction 的叙事结构确实以 DAF=90.4% 为主导，需要调整优先级。\n\n建议作者在 abstract 中将 \"78.9% of non-tie routing labels arise from death asymmetry\" 作为 headline finding，DAF=90.4% 作为 \"at ScienceWorld's default penalty\" 的补充。\n\n---\n\n### W3 [Major] Figure 2 近似恒等关系\n\n**[REBUT] R2-W3:** 部分不同意将此定级为 Major。\n\nR2 的论点是正确的：r=0.97 scatter plot 是 DAF≈1 的可视化重述，论文自己在 Figure 2 caption 中承认 \"the near-perfect correlation is a structural consequence of death dominance, not an independent finding (§3.1)\"。在页数超限（W1）的前提下，移至 appendix 是合理的空间优化。\n\n但 Figure 2 有不可替代的 pedagogical 功能：它是论文 decomposition framework 的唯一可视化入口——读者通过这张图直觉理解 \"per-task death rate differential 几乎完全解释 per-task score gap\"。如果移除，Section 3.1 的核心论证将完全依赖 inline 数字（r=0.97, Spearman ρ=0.986），对非统计背景的读者不够直观。\n\n建议：保留 Figure 2 但缩小尺寸（从 full-column 缩至 half-column），释放约 1/4 页空间用于解决 W1 的页数问题。这比完全移除的信息损失更小。\n\n---\n\n### W4 [Major] Non-death component（21.1%）分析不足\n\n**[AGREE] R2-W4:** 同意这是论文的一个显著缺口。\n\n78.9% death-driven labels 之外，剩余 21.1%（=20 个 score-comparison labels + 一些 death-free episodes 的 label）的 routing signal 来源未得到充分解释。具体而言：\n\n1. **20 个 score-comparison labels**（Table 3, Appendix B）中 16 个 det-preferred、4 个 int-preferred，全部来自 both-survived episodes。论文仅报告 \"score-comparison labels contribute negligible additional signal\"（Appendix B），但未分析这 20 个 episode 中 deterministic 策略的 score advantage 来自什么——是 action grounding quality？exploration efficiency？task-specific domain knowledge？\n\n2. **`find-non-living-thing`** 是唯一 zero-death task，贡献了全部 20 个 score-comparison episodes。Table 3 显示其 Δ_full=+9.58，但论文未 deep-dive 分析这个 task 中两种 strategies 的 qualitative 差异。\n\n3. **SCI=0.2147**（Appendix A）表明 routing signal 相对分散（低 Gini coefficient），但论文称 \"top-3 task types account for only 30.8% of total death-rate differential\"——这说明 non-death signal 分布较均匀，但不解释 signal 的 mechanism。\n\n一个简短的 case study（e.g., 分析 2-3 个 score-comparison episode 的 trajectory differences）即可大幅改善。\n\n---\n\n### W5 [Minor] 跨环境验证 scope 与泛化 claim 有张力\n\n**[AGREE] R2-W5:** 与我的 W4 一致。三个环境的 \"deterministic\" computation mode 语义完全不同（§3.4, Table 14）：ScienceWorld=oracle simulator forking, MATH=code interpreter, ALFWorld=admissible-action enumeration。这限制了 cross-environment findings 的直接可比性。\n\n但需公正指出：论文在 Limitations（§Environmental scope）中明确写道 \"the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments)\"。这个 hedging 是到位的。R2 要求 \"更多证据或更谨慎措辞\"——我认为措辞已经足够谨慎，关键缺失的是更多同质环境的验证（e.g., 另一个有 death mechanism 的环境，如 NetHack 或 Crafter）。\n\n---\n\n### W6 [Minor] 数字密度过高\n\n**[REBUT] R2-W6:** 部分不同意。\n\n对于一篇诊断性/分析性论文，precise quantification 是核心贡献的载体。如果将关键数字移至 footnotes/appendix，正文的 claim 将缺乏 inline evidence。例如 Abstract 中的 \"78.9% of non-tie episode-level routing labels arise from death asymmetry\" 和 \"DAF reaches 90.4% (95% CI [81.1%, 99.0%])\" 是不可省略的——前者是 penalty-independent headline，后者提供 uncertainty quantification。\n\n但 R2 有一个合理的 point：某些 secondary statistics 可以压缩。例如 Abstract 中 \"a finding replicated across three architecturally distinct 7–9B model families (spread 2.2 pp)\" 的 \"spread 2.2 pp\" 可以移至正文。Section 3.1 中同时报告 bootstrap CI、Spearman ρ、LOO range 的 inline presentation 可以精简为保留 bootstrap CI，其余指向 appendix。\n\n---\n\n### W7 [Minor] Related Work 缺 non-agent adaptive computation\n\n**[AGREE] R2-W7:** 同意 Mixture-of-Depths（Raposo et al., 2024）和 speculative decoding（Leviathan et al., 2023; Chen et al., 2023）是相关的 adaptive computation 工作。虽然它们在 token-level 而非 episode-level 操作，但共享 \"动态分配计算资源\" 的核心思想。论文的 Related Work（Section 4）覆盖了 \"Tool Use and External Computation\"、\"Counterfactual Evaluation in RL\"、\"LLM Agent Environments\"、\"Safe RL and Causal Grounding\"、\"Adaptive Computation and Routing\" 五个类别，最后一个类别（p.7–8）讨论了 RouteLLM、CogRouter、Mixture-of-Experts，但确实缺少 non-agent 的 adaptive depth/speculation 文献。一段简短的对比（\"unlike token-level adaptive computation, our framework operates at the episode-level granularity\"）即可。\n\nLATS（Zhou et al., 2024）和 Trial and Error（Wang et al., 2024）是否遗漏需要进一步确认——论文引用了大量 agent 文献，可能以不同名称引用。\n\n---\n\n### W8 [Minor] Introduction 与 Conclusion contributions 列表重复\n\n**[AGREE] R2-W8:** 同意。在页数超限（W1）的情况下，这种冗余尤其需要消除。Conclusion 的 contributions list 可以压缩为 1–2 句 forward-looking summary，将具体 contributions 仅保留在 Introduction。这可释放约 1/4 页空间。\n\n---\n\n### 对 R2 Questions 的补充意见\n\n**Q1 (DAF vs label fraction):** 我在 W1 中已详细讨论。两个指标的区别是关键：label fraction 78.9% 是 penalty-invariant 的 event-level 统计，DAF 90.4% 是 penalty-dependent 的 score-weighted 指标。论文应更清晰地 primary/secondary 定位。\n\n**Q2 (excluded tasks):** 我在 W2 中已讨论。Table 4（Appendix C）的 extended prescreening（Group B/C 各 n=5）和 Appendix S（n=20 extended validation）提供了合理 evidence，但 \"agent floor\" tasks 的排除可能与 step budget 有关（Limitations 承认），需进一步探索。\n\n**Q3 (Trained Router accuracy):** 论文 §3.6 和 Appendix J 报告了详细数字：step-level 54.1±5.4%，episode-level 47.1±2.2%（below 50% chance）。End-to-end deployment（p.7）显示 router 将 97.0% episodes 分配给 deterministic，death rate 17.6%。\n\n**Q4 (Router features):** 论文 Appendix I 说明 router 使用 step-level observation text 作为输入（SFT + LoRA on Qwen3-1.7B）。Leave-one-task-type-out evaluation（Appendix P）显示 blind routing collapses to always-deterministic，keyword-based variant achieves 62.9% only through task-identity leakage。这表明 router 无法学到 generalizable routing features，只能学到 task-type identity。\n\n**Q5 (Novelty claim):** \"no prior work has decomposed routing decisions in interactive environments\" — 我认为这个 claim 基本成立但措辞可以更精确。现有 counterfactual evaluation 工作（Goyéniche et al., 2025; Gyevnár et al., 2025）在 agent 层面做 counterfactual analysis，但不针对 routing signal decomposition。建议修改为 \"no prior work has systematically decomposed what drives routing preferences in interactive agent environments\"。\n\n---\n\n### 对 R2 整体评分的评论\n\nR2 给出 Overall 3.0（Findings），主要 concerns 是 triviality risk（W2）和 page limit（W1）。我的评估略高（3.5, Borderline Conference），原因是：\n1. R2 的 Excitement 2.5 偏低——framework 的方法论价值超越了 ScienceWorld-specific findings，\"先诊断再构建 router\" 的理念对整个 agent routing 社区有指导意义。\n2. W1（page limit）是 formatting issue，不影响学术贡献评估。\n3. W2（triviality）被 78.9% penalty-independent label fraction 部分化解——这个数字不是 P 的函数。\n\n但我同意 R2 的 W4（non-death component 分析不足）是一个 substantive gap，降低了论文的 completeness。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
+            "source": "review_reviewer_1"
+          },
           "id": "event-002427"
         },
         {
           "source_line": 2428,
-          "timestamp": "2026-05-22T23:02:12.427527+00:00",
+          "timestamp": "2026-05-22T23:04:08.728571+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -1710,48 +1710,10 @@
       ]
     },
     {
-      "number": 202,
-      "messages": [
-        {
-          "source_line": 2429,
-          "timestamp": "2026-05-22T23:04:02.774762+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 的逐条回应\n\n---\n\n### W1 [Critical] 正文超 8 页\n\n**[AGREE] R2-W1:** 同意这是一个 desk reject 风险。从 PDF 排版看，Section 5 Discussion 占据了 page 8 的大部分篇幅，Section 6 Conclusion 延伸至 page 9 上方，之后才进入 Limitations。主文（Sections 1–6）约 8.3–8.5 页，超出 EMNLP 2026 的 8 页限制。R2 建议的 \"压缩 Section 4/5 或移 Figure 2 至 appendix\" 是可操作的。实际上 Section 4 Related Work 和 Section 5 Discussion 之间存在内容重叠（e.g., Discussion 中对 routing failure 的 mechanistic explanation 与 Related Work 中 safe RL 的讨论有交集），合并或压缩可行。这是 camera-ready 前必须修复的硬约束。\n\n---\n\n### W2 [Major] 核心发现 triviality 风险\n\n**[AGREE] R2-W2:** 与我的 W1 一致。DAF=90.4% 是 P=100 下的数学结果，Table 12（Appendix K）明确展示了 DAF 从 P=0 的 7.4% 到 P=500 的 97.9% 的单调递增。论文自身在 Appendix K 承认 \"this is a mathematical consequence of the decomposition (DAF = δP/(δP + Δ_nd)), not evidence of mechanism robustness\"。\n\n但需注意 R2 可能低估了 penalty-independent label fraction（78.9%）的非平凡性。78.9% 意味着：在完全不考虑 penalty 数值的情况下，仅看 binary death indicator（一方死亡、另一方存活），就已经解释了近 4/5 的 routing labels。这个指标不依赖 P，是纯粹的 event-level 统计。论文在 §3.1 和 §2.4 都讨论了两个指标的关系（\"The label fraction, invariant to penalty magnitude, serves as the primary finding\"），但 abstract/introduction 的叙事结构确实以 DAF=90.4% 为主导，需要调整优先级。\n\n建议作者在 abstract 中将 \"78.9% of non-tie routing labels arise from death asymmetry\" 作为 headline finding，DAF=90.4% 作为 \"at ScienceWorld's default penalty\" 的补充。\n\n---\n\n### W3 [Major] Figure 2 近似恒等关系\n\n**[REBUT] R2-W3:** 部分不同意将此定级为 Major。\n\nR2 的论点是正确的：r=0.97 scatter plot 是 DAF≈1 的可视化重述，论文自己在 Figure 2 caption 中承认 \"the near-perfect correlation is a structural consequence of death dominance, not an independent finding (§3.1)\"。在页数超限（W1）的前提下，移至 appendix 是合理的空间优化。\n\n但 Figure 2 有不可替代的 pedagogical 功能：它是论文 decomposition framework 的唯一可视化入口——读者通过这张图直觉理解 \"per-task death rate differential 几乎完全解释 per-task score gap\"。如果移除，Section 3.1 的核心论证将完全依赖 inline 数字（r=0.97, Spearman ρ=0.986），对非统计背景的读者不够直观。\n\n建议：保留 Figure 2 但缩小尺寸（从 full-column 缩至 half-column），释放约 1/4 页空间用于解决 W1 的页数问题。这比完全移除的信息损失更小。\n\n---\n\n### W4 [Major] Non-death component（21.1%）分析不足\n\n**[AGREE] R2-W4:** 同意这是论文的一个显著缺口。\n\n78.9% death-driven labels 之外，剩余 21.1%（=20 个 score-comparison labels + 一些 death-free episodes 的 label）的 routing signal 来源未得到充分解释。具体而言：\n\n1. **20 个 score-comparison labels**（Table 3, Appendix B）中 16 个 det-preferred、4 个 int-preferred，全部来自 both-survived episodes。论文仅报告 \"score-comparison labels contribute negligible additional signal\"（Appendix B），但未分析这 20 个 episode 中 deterministic 策略的 score advantage 来自什么——是 action grounding quality？exploration efficiency？task-specific domain knowledge？\n\n2. **`find-non-living-thing`** 是唯一 zero-death task，贡献了全部 20 个 score-comparison episodes。Table 3 显示其 Δ_full=+9.58，但论文未 deep-dive 分析这个 task 中两种 strategies 的 qualitative 差异。\n\n3. **SCI=0.2147**（Appendix A）表明 routing signal 相对分散（低 Gini coefficient），但论文称 \"top-3 task types account for only 30.8% of total death-rate differential\"——这说明 non-death signal 分布较均匀，但不解释 signal 的 mechanism。\n\n一个简短的 case study（e.g., 分析 2-3 个 score-comparison episode 的 trajectory differences）即可大幅改善。\n\n---\n\n### W5 [Minor] 跨环境验证 scope 与泛化 claim 有张力\n\n**[AGREE] R2-W5:** 与我的 W4 一致。三个环境的 \"deterministic\" computation mode 语义完全不同（§3.4, Table 14）：ScienceWorld=oracle simulator forking, MATH=code interpreter, ALFWorld=admissible-action enumeration。这限制了 cross-environment findings 的直接可比性。\n\n但需公正指出：论文在 Limitations（§Environmental scope）中明确写道 \"the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments)\"。这个 hedging 是到位的。R2 要求 \"更多证据或更谨慎措辞\"——我认为措辞已经足够谨慎，关键缺失的是更多同质环境的验证（e.g., 另一个有 death mechanism 的环境，如 NetHack 或 Crafter）。\n\n---\n\n### W6 [Minor] 数字密度过高\n\n**[REBUT] R2-W6:** 部分不同意。\n\n对于一篇诊断性/分析性论文，precise quantification 是核心贡献的载体。如果将关键数字移至 footnotes/appendix，正文的 claim 将缺乏 inline evidence。例如 Abstract 中的 \"78.9% of non-tie episode-level routing labels arise from death asymmetry\" 和 \"DAF reaches 90.4% (95% CI [81.1%, 99.0%])\" 是不可省略的——前者是 penalty-independent headline，后者提供 uncertainty quantification。\n\n但 R2 有一个合理的 point：某些 secondary statistics 可以压缩。例如 Abstract 中 \"a finding replicated across three architecturally distinct 7–9B model families (spread 2.2 pp)\" 的 \"spread 2.2 pp\" 可以移至正文。Section 3.1 中同时报告 bootstrap CI、Spearman ρ、LOO range 的 inline presentation 可以精简为保留 bootstrap CI，其余指向 appendix。\n\n---\n\n### W7 [Minor] Related Work 缺 non-agent adaptive computation\n\n**[AGREE] R2-W7:** 同意 Mixture-of-Depths（Raposo et al., 2024）和 speculative decoding（Leviathan et al., 2023; Chen et al., 2023）是相关的 adaptive computation 工作。虽然它们在 token-level 而非 episode-level 操作，但共享 \"动态分配计算资源\" 的核心思想。论文的 Related Work（Section 4）覆盖了 \"Tool Use and External Computation\"、\"Counterfactual Evaluation in RL\"、\"LLM Agent Environments\"、\"Safe RL and Causal Grounding\"、\"Adaptive Computation and Routing\" 五个类别，最后一个类别（p.7–8）讨论了 RouteLLM、CogRouter、Mixture-of-Experts，但确实缺少 non-agent 的 adaptive depth/speculation 文献。一段简短的对比（\"unlike token-level adaptive computation, our framework operates at the episode-level granularity\"）即可。\n\nLATS（Zhou et al., 2024）和 Trial and Error（Wang et al., 2024）是否遗漏需要进一步确认——论文引用了大量 agent 文献，可能以不同名称引用。\n\n---\n\n### W8 [Minor] Introduction 与 Conclusion contributions 列表重复\n\n**[AGREE] R2-W8:** 同意。在页数超限（W1）的情况下，这种冗余尤其需要消除。Conclusion 的 contributions list 可以压缩为 1–2 句 forward-looking summary，将具体 contributions 仅保留在 Introduction。这可释放约 1/4 页空间。\n\n---\n\n### 对 R2 Questions 的补充意见\n\n**Q1 (DAF vs label fraction):** 我在 W1 中已详细讨论。两个指标的区别是关键：label fraction 78.9% 是 penalty-invariant 的 event-level 统计，DAF 90.4% 是 penalty-dependent 的 score-weighted 指标。论文应更清晰地 primary/secondary 定位。\n\n**Q2 (excluded tasks):** 我在 W2 中已讨论。Table 4（Appendix C）的 extended prescreening（Group B/C 各 n=5）和 Appendix S（n=20 extended validation）提供了合理 evidence，但 \"agent floor\" tasks 的排除可能与 step budget 有关（Limitations 承认），需进一步探索。\n\n**Q3 (Trained Router accuracy):** 论文 §3.6 和 Appendix J 报告了详细数字：step-level 54.1±5.4%，episode-level 47.1±2.2%（below 50% chance）。End-to-end deployment（p.7）显示 router 将 97.0% episodes 分配给 deterministic，death rate 17.6%。\n\n**Q4 (Router features):** 论文 Appendix I 说明 router 使用 step-level observation text 作为输入（SFT + LoRA on Qwen3-1.7B）。Leave-one-task-type-out evaluation（Appendix P）显示 blind routing collapses to always-deterministic，keyword-based variant achieves 62.9% only through task-identity leakage。这表明 router 无法学到 generalizable routing features，只能学到 task-type identity。\n\n**Q5 (Novelty claim):** \"no prior work has decomposed routing decisions in interactive environments\" — 我认为这个 claim 基本成立但措辞可以更精确。现有 counterfactual evaluation 工作（Goyéniche et al., 2025; Gyevnár et al., 2025）在 agent 层面做 counterfactual analysis，但不针对 routing signal decomposition。建议修改为 \"no prior work has systematically decomposed what drives routing preferences in interactive agent environments\"。\n\n---\n\n### 对 R2 整体评分的评论\n\nR2 给出 Overall 3.0（Findings），主要 concerns 是 triviality risk（W2）和 page limit（W1）。我的评估略高（3.5, Borderline Conference），原因是：\n1. R2 的 Excitement 2.5 偏低——framework 的方法论价值超越了 ScienceWorld-specific findings，\"先诊断再构建 router\" 的理念对整个 agent routing 社区有指导意义。\n2. W1（page limit）是 formatting issue，不影响学术贡献评估。\n3. W2（triviality）被 78.9% penalty-independent label fraction 部分化解——这个数字不是 P 的函数。\n\n但我同意 R2 的 W4（non-death component 分析不足）是一个 substantive gap，降低了论文的 completeness。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
-            "source": "review_reviewer_1"
-          },
-          "id": "event-002429"
-        },
-        {
-          "source_line": 2430,
-          "timestamp": "2026-05-22T23:04:08.728571+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
-          },
-          "id": "event-002430"
-        }
-      ]
-    },
-    {
       "number": 203,
       "messages": [
         {
-          "source_line": 2431,
+          "source_line": 2429,
           "timestamp": "2026-05-22T23:04:11.264898+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1765,10 +1727,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002431"
+          "id": "event-002429"
         },
         {
-          "source_line": 2432,
+          "source_line": 2430,
           "timestamp": "2026-05-22T23:04:32.840145+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1785,10 +1747,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002432"
+          "id": "event-002430"
         },
         {
-          "source_line": 2433,
+          "source_line": 2431,
           "timestamp": "2026-05-22T23:04:32.942381+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1803,10 +1765,10 @@
             "tool": "mcp__agent-ml-research__get_visual_check_status",
             "elapsed_ms": 102
           },
-          "id": "event-002433"
+          "id": "event-002431"
         },
         {
-          "source_line": 2434,
+          "source_line": 2432,
           "timestamp": "2026-05-22T23:08:01.305512+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1824,10 +1786,10 @@
               "issues_yaml": "# Round 29 Review Issues (fresh review, 2026-05-22)\n# Two reviewers: R1 (方法严谨性+实验设计), R2 (新颖性+完整性+写作)\n\n# =============================================\n# Carried-over resolved issues (from prior rounds)\n# =============================================\n\n- id: \"R13-W1\"\n  summary: \"正文篇幅严重不足 long paper 要求\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"正文已扩展至 8 页\"\n  resolution_round: 14\n\n- id: \"R13-W2\"\n  summary: \"Router 训练实验存在多个 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"1.7B dip 有可检验假说，augmentation 术语修正，N 统一\"\n  resolution_round: 15\n\n- id: \"R13-W3\"\n  summary: \"Episode-level label → step-level training 的 mislabeling 未被量化\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"Limitations 和 Appendix B 已充分量化\"\n  resolution_round: 14\n\n- id: \"R13-W4\"\n  summary: \"SCI 方法贡献与实际使用不成比例\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"SCI 已降级到 Appendix A\"\n  resolution_round: 14\n\n- id: \"R13-W7\"\n  summary: \"Router negative results 解释不完整\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Router 实验定位为 diagnostic probe\"\n  resolution_round: 15\n\n- id: \"R13-m2\"\n  summary: \"Figure 3 仅含 ScienceWorld 和 MATH，缺少 ALFWorld\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 16\n  resolution: \"Figure 3 已移除，数据在 Table 2 和正文中完整呈现\"\n  resolution_round: 16\n\n- id: \"R13-m3\"\n  summary: \"Reference 格式不统一 + orphan entries\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Orphan entries 清理完毕，格式统一\"\n  resolution_round: 15\n\n- id: \"R14-W2\"\n  summary: \"Concurrent work 讨论过于压缩\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Concurrent work 展开讨论，各有明确 positioning\"\n  resolution_round: 15\n\n- id: \"R14-W3\"\n  summary: \"Selection bias from prescreening 11/30 task types\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Anti-cherry-picking analysis 到位\"\n  resolution_round: 15\n\n- id: \"R14-M1\"\n  summary: \"Table 2 caption 'Single seed' 需澄清\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Caption 已修正\"\n  resolution_round: 15\n\n- id: \"R14-M2\"\n  summary: \"Limitations section 组织松散\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"三个 paragraph headers 结构清晰\"\n  resolution_round: 15\n\n- id: \"R14-M3\"\n  summary: \"Appendix F minority-class diversity caveat 应在正文提及\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 16\n  resolution: \"§3.7 和 Appendix F 均明确提及\"\n  resolution_round: 16\n\n- id: \"R13-N2\"\n  summary: \"统计推断可靠性不足：cluster bootstrap K=11 CI 反常收窄\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Wild cluster CI 修正且降级为 sensitivity analysis；non-clustered bootstrap 为主推断\"\n  resolution_round: 24\n\n- id: \"R13-W5\"\n  summary: \"Abstract 数字堆砌\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Abstract concept-first 重组，数字从 10+ 精简至 3-4 个\"\n  resolution_round: 24\n\n- id: \"R13-W6\"\n  summary: \"Safe RL 和 LLM agent failure mode 相关引用覆盖不足\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Ng 1999, Northcutt 2021, DivideMix 已添加并在正确位置引用\"\n  resolution_round: 24\n\n- id: \"R14-W1\"\n  summary: \"核心发现存在 obvious-in-hindsight triviality 风险\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 24\n  resolution: \"§5 Non-triviality 段有效回应 novelty 质疑\"\n  resolution_round: 24\n\n- id: \"R15-N1\"\n  summary: \"'Structural' claim 推断基础不足\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Discussion 已弱化为 'robust under tested interventions'\"\n  resolution_round: 16\n\n- id: \"R15-N3\"\n  summary: \"Contribution 1 'any environment' generalizability claim 过宽\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Contribution 1 措辞已收窄\"\n  resolution_round: 16\n\n- id: \"R15-W1\"\n  summary: \"§3.7 Augmentation scaling 措辞易误读为 data scaling\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"§3.7 明确标注为 paraphrase-based augmentation\"\n  resolution_round: 16\n\n- id: \"R15-W3\"\n  summary: \"72B 缺完整 DAF decomposition\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"72B DAF decomposition 完整呈现\"\n  resolution_round: 16\n\n- id: \"R17-W4\"\n  summary: \"Related Work 第一段论文罗列\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 17\n  resolution: \"§4 已按功能类别重组（Self-supervised, Token-level, Task-level, RL-based）\"\n  resolution_round: 19\n\n- id: \"R17-W1\"\n  summary: \"Pure-strategy 设计高估 death asymmetry 对 realistic routing 的影响\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"Limitations 新增 pure-strategy upper bound 段落\"\n  resolution_round: 24\n\n- id: \"R17-W3\"\n  summary: \"Data scaling 'structural failure' 措辞\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"术语全局修正为 text augmentation\"\n  resolution_round: 24\n\n- id: \"R17-N2\"\n  summary: \"penalty-independent 表述误导：P=0 时 72% labels 退化为 ties\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"P-invariance 适用范围明确量化\"\n  resolution_round: 24\n\n- id: \"R18-N1\"\n  summary: \"Episode→step granularity gap 削弱框架实用性\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"4B router 结论 qualified；完整统计处理\"\n  resolution_round: 24\n\n- id: \"R18-W1\"\n  summary: \"Router 实验 confounds: compounding errors + train/val split 不清晰\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Router claim 从绝对否定改为有条件否定\"\n  resolution_round: 24\n\n- id: \"R18-W2\"\n  summary: \"Agent improvement 实验统计功效不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"措辞软化 + effect size detection threshold 完整报告\"\n  resolution_round: 24\n\n- id: \"R20-N1\"\n  summary: \"正文超出 8 页限制——§6 Conclusion 起始于 page 9，有 desk reject 风险\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"正文收入 8 页\"\n  resolution_round: 24\n\n- id: \"R20-N2\"\n  summary: \"4B router episode-level 59.0% 与 'fundamental non-learnability' 结论矛盾\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R18-N1 解决\"\n  resolution_round: 24\n\n- id: \"R20-N3\"\n  summary: \"'Structurally determined' overclaim — r=0.97 correlation ≠ causal/structural\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"'structurally determined' → 'empirically dominated'\"\n  resolution_round: 24\n\n- id: \"R20-W2\"\n  summary: \"Per-task n=20 导致 13/28 tasks 不显著，主文未标注为 exploratory\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Per-task 结果标注为 exploratory，power caveat 完整\"\n  resolution_round: 24\n\n- id: \"R17-M1\"\n  summary: \"Orphan bib entries + Webb 年份待核实\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"huang2022inner, selfcheckgpt-2023, wang2023voyager 已清理；Webb 2023 (CJE vol.56 no.3) 年份正确\"\n  resolution_round: 24\n\n- id: \"R19-M2\"\n  summary: \"Missing references: Altman 1999, Mihatsch 2002, Natarajan 2013\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"所有缺失引用已补充\"\n  resolution_round: 24\n\n- id: \"R18-M3\"\n  summary: \"Appendix 缺索引（17 个 appendices A-R）\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Appendix Overview with hyperlinks 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M4\"\n  summary: \"§3.1 '54 sole-identified labels' 首次出现未定义\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"术语已修正并定义\"\n  resolution_round: 24\n\n- id: \"R18-M5\"\n  summary: \"Appendix N failure categories 缺 inter-annotator agreement 声明\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Single annotator caveat 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M2\"\n  summary: \"100% internal deaths 来自 single action pattern — implication 未讨论\"\n  category: framing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"§5 已讨论 focus on [object] 单一模式\"\n  resolution_round: 24\n\n- id: \"R20-M1\"\n  summary: \"Orphan bib entries: huang2022inner, selfcheckgpt-2023, wang2023voyager\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R17-M1 解决\"\n  resolution_round: 24\n\n- id: \"R15-N2\"\n  summary: \"跨环境模态定义不一致——三个环境的 deterministic 含义不同\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"§5.4 cross-env 段加交叉引用指向 §2.1 operationalization\"\n  resolution_round: 24\n\n- id: \"R15-W2\"\n  summary: \"Oracle margin vs mislabeling 逻辑层级未明确\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"Appendix B 加 circularity caveat; Limitations 量化 0.3% 方向冲突 + 60.3% pre-event neutral\"\n  resolution_round: 24\n\n- id: \"R20-W1\"\n  summary: \"Noisy label learning 引用和讨论深度不足\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"引用已补全；额外解释句因 8 页限制无法加入，现有措辞部分覆盖\"\n  resolution_round: 24\n\n- id: \"R18-M1\"\n  summary: \"'modality' 术语在 NLP 语境下有歧义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Algorithm 1 术语修正为 computation modes\"\n  resolution_round: 24\n\n- id: \"R17-N1\"\n  summary: \"78.9% label fraction binary per-task structure\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"§3.1 binary structure 讨论充分\"\n  resolution_round: 24\n\n- id: \"R16-W1\"\n  summary: \"72B vs 7B DAF 对比基于不同 task population 且缺少实验细节\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"72B decomposition 完整报告\"\n  resolution_round: 24\n\n- id: \"R16-W2\"\n  summary: \"Router 1.7B non-monotonic dip 解释缺乏 per-class evidence\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"被 R20-N2 取代并解决\"\n  resolution_round: 24\n\n- id: \"R16-W3\"\n  summary: \"signal_reversal.pdf 存在于 figures/ 但未被任何 .tex 引用\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"Appendix L 已引用\"\n  resolution_round: 24\n\n- id: \"R19-W1\"\n  summary: \"缺少 penalty magnitude 的实际实验验证\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"P-invariance by design 论证逻辑覆盖\"\n  resolution_round: 24\n\n- id: \"R19-N1\"\n  summary: \"Framing 内在张力：framework vs finding 定位不清\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 27\n  resolution: \"N2+N4 修复间接解决——Abstract/Conclusion 统一为 empirical analysis + reusable diagnostic methodology。\"\n  resolution_round: 27\n\n- id: \"R26-N3\"\n  summary: \"'Contradicting the routing literature's implicit assumption' 是 strawman framing\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"R27 验收确认修复完好。\"\n  resolution_round: 27\n\n# =============================================\n# R27-R29 active issues\n# =============================================\n\n- id: \"R27-N2\"\n  summary: \"DAF=90.4% 部分是 P=100 penalty 的数学必然，Abstract/Title framing 过度突出\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 13\n  last_seen_round: 29\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract 78.9% 为 headline，DAF 降为 derived measure\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"部分有效——78.9% 确实是 headline，但 DAF=90.4% 仍以核心数字出现\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] §2.4 已添加 P-sensitivity 数值（P=10→50.4%, P=50→82.6%），但 Abstract 仍以 DAF=90.4% 作为主导叙事。78.9% penalty-independent label fraction 应为 headline，DAF 应标注 'at ScienceWorld default P=100'。R1 建议 Abstract 重排优先级。\"\n  action_items:\n    - round: 29\n      action: \"Abstract/Introduction 将 78.9% label fraction 作为 primary headline metric，DAF=90.4% 降为 'at P=100' 补充\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N3\"\n  summary: \"Deterministic strategy 实为 oracle access，跨环境含义不统一，oracle confound 未分离\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 15\n  last_seen_round: 29\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§2.1 inline 三环境 operationalization\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Conclusion 仍写 'the diagnostic procedure transfers'，未区分 procedure vs operationalization\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Conclusion 修正为 'the diagnostic procedure—though not the specific operationalization of deterministic—transfers' 是进步，但三环境信息特权程度差异巨大（oracle > code interpreter > admissible actions），cross-environment findings 的直接可比性仍有限。\"\n  action_items:\n    - round: 29\n      action: \"§3.4 开头增加明确 caveat：三环境的 deterministic mode 信息特权程度不同，cross-environment results 验证 diagnostic procedure 的可复用性，不是 findings 的可迁移性\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N4\"\n  summary: \"环境覆盖过窄，generalization claims 超出证据——1 个主环境 + 2 个 boundary probes\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 15\n  last_seen_round: 29\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract/Conclusion 'preliminary evidence' + 区分 methodological vs empirical generality\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"R27 修复基本有效\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Hedging 语言到位，但缺乏同质环境验证（另一个有 death mechanism 的环境如 NetHack/Crafter）。Limitations 已承认。\"\n\n- id: \"R27-W1\"\n  summary: \"Router negative result framing: signal-limited vs data-limited 未区分\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"signal-limited vs data-limited 区分尚不 conclusive\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[DIVERGENCE] R1 认为 class imbalance (9/245=3.7%) 是 confound，router failure 可能是 data-limited artifact。R2 REBUT：imbalance 是 death dominance 的直接表现非 collection bias，但同意限定结论 scope。共识：结论应标注 'under current data regime (N=245, 3.7% minority)'。\"\n  action_items:\n    - round: 29\n      action: \"§3.6 结论限定为 'under current data regime'；讨论 selective collection strategy 是否能提高 minority rate\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W2\"\n  summary: \"Actionability 有限——诊断出问题但'然后怎么办'回答不足\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [2]\n      note: \"缺少与 concurrent routing methods 的定性讨论\"\n    - round: 29\n      reviewers: []\n      note: \"本轮未单独提及，但 R2 Q5 间接涉及。§5 ¶3 actionability 段已存在。\"\n\n- id: \"R27-W4\"\n  summary: \"Excluded tasks (63%) n=5 prescreening 样本量极小\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 16\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"主文仅一句话，63% 排除率需更充分 justify\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Anti-cherry-picking analysis (Table 4, Appendix S) 有效排除选择偏差（excluded ΔDR=+38.2 > included +28.7 pp），但 taxonomic redundancy 操作定义不透明，agent-floor tasks 与 step budget 限制的关系未探索。\"\n  action_items:\n    - round: 29\n      action: \"§3 明确 taxonomic redundancy 判断标准；讨论 agent-floor tasks 在更长 step budget 下是否出现 non-death signal\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W5\"\n  summary: \"K=11 cluster bootstrap: primary CI [81.1%, 99.0%] 可能 anti-conservative\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 13\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Limitations 正文已引用 Cameron et al. K≥20-50 建议\"\n    - round: 29\n      reviewers: [1]\n      note: \"R1 认为处理得当（non-clustered 为主推断），Cohen's d=3.02 需加 context 说明反映 near-binary consistency\"\n\n- id: \"R28-N1\"\n  summary: \"Episode-level labeling 与 step-level routing 的粒度失配——title/abstract scope 超出方法论覆盖范围\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Abstract 已添加 'episode-level' 限定词\"\n    - round: 29\n      reviewers: []\n      note: \"本轮未单独提及，prior fix 似乎有效\"\n\n- id: \"R28-W1\"\n  summary: \"72B scaling 仅做 probe 而非完整 replication——缺 router training 和 SCI 分析\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 72B 仅一个模型，无 cross-model replication at scale。应标注为 'preliminary probe'。\"\n  action_items:\n    - round: 29\n      action: \"将 72B 结果定位为 'preliminary probe'；Limitations 明确缺少 at-scale cross-model replication\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-W2\"\n  summary: \"'Death' 术语限制 generality perception——binary failure vs graded failure 适用性未讨论\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Limitations 已添加 graded failure / binary death assumption 讨论\"\n    - round: 29\n      reviewers: []\n      note: \"本轮未单独提及，prior fix 似乎有效\"\n\n- id: \"R28-M1\"\n  summary: \"Missing references: Alshiekh et al. (2018), Geifman & El-Yaniv (2017), CALM, MoD\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"Alshiekh 2018 已添加。R1 建议增加 FrugalGPT (Chen 2023)、AutoMix (Madaan 2023)、Options framework (Sutton 1999)。R2 建议 Mixture-of-Depths (Raposo 2024)。8 页限制下 Related Work 扩展空间有限。\"\n  action_items:\n    - round: 29\n      action: \"评估在 Related Work 中加入 FrugalGPT、AutoMix 引用的空间可行性\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-M2\"\n  summary: \"Pages 7-8 连续两页纯文本无 display item\"\n  category: format\n  severity: info\n  status: wont_fix\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: []\n      note: \"视觉审查再次确认。8 页限制下无法在 pp.7-8 插入 display item。\"\n  resolution: \"8 页限制下无法在 pp.7-8 插入 display item，内容密度已最大化\"\n  resolution_round: 28\n\n- id: \"R28-M3\"\n  summary: \"§1 Introduction 'signal diversity can collapse' 重复出现\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [2]\n      note: \"R2-W8：Introduction 与 Conclusion contributions 列表近乎逐字重复，页数超限下应削减冗余\"\n\n- id: \"R28-M4\"\n  summary: \"Figure 2 仅 11 点无 task name label，r=0.97 caveat 不够明确\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"R2 建议移至 appendix（Major）；R1 REBUT 认为有 pedagogical 价值，建议缩小（half-column）而非移除。\"\n  resolution: \"Figure 2 已缩至 0.38\\\\textwidth。R1 认为保留合理；如需解决页数可再缩或移至 appendix。\"\n  resolution_round: 28\n\n- id: \"R28-M5\"\n  summary: \"Related Work 缺 non-agent adaptive computation（early exit, speculative decoding, MoD）\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 应至少加一句 positioning：'unlike token-level adaptive computation, our framework operates at episode-level granularity'\"\n\n# --- Structural / Long-standing ---\n\n- id: \"R16-N1\"\n  summary: \"核心发现 novelty/excitement deficit——方向可预期\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 16\n  last_seen_round: 29\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"R1 Excitement 3/5, R2 Excitement 3/5\"\n    - round: 29\n      reviewers: [1, 2]\n      note: \"R1 Excitement 3.5/5, R2 Excitement 2.5/5。核心发现（death dominance in death-penalized env）具有可预测性。R2 认为 triviality risk 显著；R1 认为 framework 的方法论价值部分化解。结构性限制持续存在。\"\n\n# =============================================\n# R29 new issues\n# =============================================\n\n- id: \"R29-N1\"\n  summary: \"正文超出 8 页限制（R20-N1/R27-N1 复发）——Conclusion 溢出至 page 9\"\n  category: format\n  severity: critical\n  status: open\n  first_raised_round: 20\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Sections 1-6 约 8.2-8.5 页，Conclusion 起始于 page 9。视觉审查确认。EMNLP 2026 限 8 页正文，desk reject 风险。R1 建议合并/压缩 §4-5（内容有交集），R2 建议移 Figure 2 至 appendix。R2-W8 指出 Introduction/Conclusion contributions 重复可释放空间。\"\n  action_items:\n    - round: 29\n      action: \"将正文压缩至 8 页内：(1) 压缩 Conclusion 为 2-3 句，删除重复 contributions 列表；(2) 缩小或移动 Figure 2；(3) 合并 §4/§5 中重叠内容\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R29-W1\"\n  summary: \"Non-death component (21.1%) 的 routing signal 来源未分析\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 20 个 score-comparison labels 全部来自 both-survived episodes，16 det-preferred / 4 int-preferred。find-non-living-thing 是唯一 zero-death task（n=40, Δ_full=+9.58），贡献全部 score-comparison episodes，但未 deep-dive 分析 trajectory differences。一个简短 case study（2-3 个 episode）即可大幅改善。\"\n  action_items:\n    - round: 29\n      action: \"Appendix 增加 non-death score-comparison episodes 的 case study（分析 find-non-living-thing 中两种策略的 qualitative 差异）\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R29-W2\"\n  summary: \"单一 death mechanism (focus on [object]) 限制 failure mode generalizability\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Appendix N 显示 100% internal deaths 由同一 action pattern 触发。这是 ScienceWorld API 特异性，action-space filtering (-19 pp, Appendix O) 已证实。但 general claim ('any environment with asymmetric fatal outcomes') 基于非常特定的 failure mechanism。\"\n  action_items:\n    - round: 29\n      action: \"Discussion 增加一句区分 ScienceWorld-specific failure mode 和 general death avoidance framework 适用范围\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R29-M1\"\n  summary: \"Missing references: FrugalGPT, AutoMix, Options framework, Mixture-of-Depths\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewers: [1, 2]\n      note: \"R1: FrugalGPT (Chen 2023), AutoMix (Madaan 2023), Options framework (Sutton 1999)。R2: Mixture-of-Depths (Raposo 2024), speculative decoding (Leviathan 2023, Chen 2023)。LATS (Zhou 2024) 可能已以不同名称引用。\""
             }
           },
-          "id": "event-002434"
+          "id": "event-002432"
         },
         {
-          "source_line": 2435,
+          "source_line": 2433,
           "timestamp": "2026-05-22T23:08:01.407363+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1842,10 +1804,10 @@
             "tool": "mcp__agent-ml-research__update_review_issues",
             "elapsed_ms": 101
           },
-          "id": "event-002435"
+          "id": "event-002433"
         },
         {
-          "source_line": 2436,
+          "source_line": 2434,
           "timestamp": "2026-05-22T23:10:04.427129+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1866,10 +1828,10 @@
               "report": "# Round 29 审稿报告 — simgate-modular-routing\n\n**论文**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n**Venue**: EMNLP 2026 (ARR May cycle), Long Paper (8 pages)\n**审稿模式**: Fresh (重新审稿)\n**Reviewer 编排**: R1 (方法严谨性+实验设计+统计分析), R2 (新颖性+完整性+写作质量+Related Work)\n\n---\n\n## Summary\n\n本文提出 episode-level counterfactual diagnostic framework，将 LLM agent routing signal 分解为 death avoidance 和 non-death 组成部分。在 ScienceWorld（11/30 task types, N=245 episodes）上发现 78.9% 的 non-tie routing labels 源自 death asymmetry（penalty-independent），DAF=90.4%（penalty-dependent, P=100）。跨模型验证（Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B-it）显示 death dominance 在三个 7-9B 模型家族中一致复现（DAF 88-90%, spread 2.2 pp）。跨环境 probes（MATH, ALFWorld）诊断出定性不同的 routing mechanism。Router training（Qwen3 LoRA, 0.6B-4B）产生 negative result（episode-level 47.1±2.2%, below chance）。\n\n---\n\n## Strengths\n\n**S1. 新颖且有价值的诊断视角 [AGREE x2]。** \"先诊断再构建 router\" 的理念填补了方法论空白。现有 routing 工作（Toolformer, ART, Chameleon, CogRouter, ARES, MTRouter）直接训练 router 而不先理解 signal 构成。本文首次系统分解 routing signal。\n\n**S2. 极其详尽的统计分析 [AGREE x2]。** 20 个 appendices（A-T）提供罕见深度：bootstrap CI、cluster-robust t-test、wild cluster bootstrap、LOO robustness、penalty sensitivity。论文自觉标注 K=11 cluster bootstrap 局限并推荐 non-clustered CI 为主推断——这种统计自省极少见。\n\n**S3. 诚实的负面结果报告 [AGREE x2]。** Router failure（47.1±2.2%）被详细呈现，step-level vs episode-level gap 分析、text augmentation ablation、capacity scaling 系统排除了 data scarcity 和 model capacity 作为唯一解释。\n\n**S4. Anti-cherry-picking 分析有效 [AGREE x2]。** 19 个排除 task types 的 mean ΔDR=+38.2 pp 高于 included +28.7 pp（Table 4），Appendix S extended validation（n=20）确认 excluded DAF (0.991) > included (0.904)。选择偏差的质疑被有效排除。\n\n**S5. 跨模型复现可信 [AGREE x2]。** 三个 7-9B 模型家族 directional consistency 100%（10/10 death-prone tasks），internal vulnerability ~36-42%，Table 17 consolidation table 是有效 robustness evidence。\n\n**S6. Algorithm 1 设计合理 [R1]。** Death-priority rule 假设明确，Labeling Quality Audit（Appendix B）验证 zero tie-breaking labels。\n\n**S7. Hedging 语言诚实 [R2]。** Cross-environment probes 标注为 \"preliminary evidence\"，区分 methodological vs empirical generality。\n\n---\n\n## Weaknesses\n\n### Must-Fix (影响接收决定)\n\n**W1. [Critical, AGREE x2] 正文超出 8 页限制（R20-N1/R27-N1 复发）。** Sections 1-6 约 8.2-8.5 页，Conclusion 起始于 page 9。EMNLP 2026 限正文 8 页，有 desk reject 风险。视觉审查独立确认此问题。\n- 可操作方案：(1) 压缩 Conclusion 为 2-3 句（删除与 Introduction 重复的 contributions 列表），(2) 缩小 Figure 2 或移至 appendix，(3) 合并 §4/§5 中重叠内容。\n\n**W2. [Critical, AGREE x2] DAF=90.4% 作为 headline metric 对 penalty 有数学依赖。** DAF = δP/(δP + Δ_nd) 是 P 的单调递增函数——P=0 时 7.4%, P=10 时 50.4%, P=100 时 90.4%（Table 12）。Abstract/Introduction 仍以 DAF=90.4% 为主导叙事，penalty-independent label fraction（78.9%）被置于次要位置。§2.4 已讨论 P-sensitivity 但叙事优先级未调整。\n- 可操作方案：Abstract/Introduction 将 78.9% 作为 primary headline metric，DAF=90.4% 降为 \"at ScienceWorld's default P=100\" 的补充。\n\n### Should-Fix (提升论文质量)\n\n**W3. [Major, AGREE x2] 63% task exclusion rate 虽有 anti-cherry-picking 证据但限制 coverage。** 19/30 task types 被排除（dev 5, redundancy 7, agent floor 7），分析仅基于 37% task coverage。Taxonomic redundancy 的操作定义不透明，agent-floor tasks 与 30-step budget 限制的关系未探索。\n- 可操作方案：§3 明确 taxonomic redundancy 判断标准；讨论更长 step budget 下 agent-floor tasks 是否出现 non-death signal。\n\n**W4. [Major, AGREE x2] 跨环境 \"deterministic\" mode 语义不一致限制 cross-environment comparison。** ScienceWorld = oracle simulator, MATH = code interpreter, ALFWorld = admissible-action enumeration——信息特权程度完全不同。Conclusion 已修正为 \"the diagnostic procedure—though not the specific operationalization—transfers\"，但 §3.4 缺 explicit caveat。\n- 可操作方案：§3.4 开头增加 caveat，区分 procedure transferability 和 finding transferability。\n\n**W5. [Major, DIVERGENCE → consensus on scope] Router negative result 的解释。** R1 认为 class imbalance（9/245=3.7%）是 confound，failure 可能是 data-limited artifact。R2 REBUT：imbalance 是 death dominance 的直接表现非 collection bias，text augmentation/capacity scaling 已部分排除。共识：结论应限定为 \"under current data regime (N=245, 3.7% minority)\"。\n- 可操作方案：§3.6 结论限定 scope；讨论 selective collection strategy（只收集 death-free episodes）是否能提高 minority rate。\n\n**W6. [Major, AGREE x2] Non-death component (21.1%) 的 routing signal 来源未分析。** 20 个 score-comparison labels 全部来自 both-survived episodes，find-non-living-thing 是唯一 zero-death task（n=40, Δ_full=+9.58），但未 deep-dive 分析 trajectory differences。\n- 可操作方案：Appendix 增加 2-3 个 non-death episode 的 case study。\n\n### Nice-to-Fix (锦上添花)\n\n**W7. [Minor, AGREE x2] 72B scaling probe scope 过窄。** 仅一个 72B 模型，无 at-scale cross-model replication。应标注为 \"preliminary probe\"。\n\n**W8. [Minor, AGREE x2] 单一 death mechanism（focus on [object]）限制 failure mode 外部效度。** 100% internal deaths 由同一 action pattern 触发，是 ScienceWorld API 特异性。\n\n**W9. [Minor, DIVERGENCE] Figure 2 近似恒等关系。** R2 认为 Major（应移至 appendix 释放空间），R1 REBUT（有 pedagogical 价值，建议缩小而非移除）。如需解决 W1 页数问题，可作为释放空间的选项。\n\n**W10. [Minor, partial DIVERGENCE] 数字密度。** R2 认为过高，R1 部分辩护（分析论文需要 precise quantification），但同意 secondary stats 可精简。\n\n**W11. [Minor, AGREE x2] Related Work 缺 non-agent adaptive computation。** 未覆盖 Mixture-of-Depths、speculative decoding 等。一句 positioning 即可。\n\n**W12. [Minor, AGREE x2] Introduction/Conclusion contributions 列表重复。** 页数超限下应削减冗余。\n\n---\n\n## Reviewer Consensus\n\n以下问题两位 Reviewer 达成一致：\n\n1. **[AGREE]** DAF penalty dependence 是核心 framing 问题，78.9% 应为 primary metric\n2. **[AGREE]** 正文超页是 desk reject 风险\n3. **[AGREE]** 跨环境 deterministic mode 不可比\n4. **[AGREE]** Non-death 21.1% 分析缺失是 substantive gap\n5. **[AGREE]** Anti-cherry-picking analysis 有效排除了选择偏差\n6. **[AGREE]** 跨模型复现（3 families）可信\n7. **[AGREE]** 统计分析深度罕见且值得肯定\n8. **[AGREE]** Router failure 结论需限定 scope\n\n## Reviewer Divergence\n\n1. **[Figure 2 处理]** R2 建议移至 appendix (Major); R1 建议缩小保留 (Minor) — 取决于页数修复策略\n2. **[Router failure 本质]** R1 认为 class imbalance confound 更严重; R2 认为 imbalance 是 finding 的表现 — 共识：限定 scope\n3. **[Excitement]** R1: 3.5/5 (framework novelty 有持久价值); R2: 2.5/5 (triviality risk 显著) — reasonable disagreement\n4. **[数字密度]** R1 认为是分析论文必要特征; R2 认为过高影响可读性 — 共识：secondary stats 可精简\n\n---\n\n## Questions (需作者澄清)\n\n1. Algorithm 1 的 death-priority rule 在 both-dead 情况下不区分死亡时间。是否丢失了有用的 routing signal？\n2. Δ_nd = 2.84 的 bootstrap CI 是多少？如果 uncertainty 较大，DAF 的 interpretability 是否受影响？\n3. Decision framework（Appendix R）的 thresholds（15 pp, 75%, 50%）仅有 4 个 retrospective data points。选择依据和 sensitivity analysis？\n4. \"No prior work has decomposed routing decisions in interactive environments\" 是否过强？建议修改为 \"no prior work has systematically decomposed what drives routing preferences\"。\n5. 19 个 excluded task types 中的 agent-floor tasks：在更长 step budget（50, 100 steps）下是否出现 non-death routing signal？\n\n---\n\n## Missing References\n\n**R1 建议**:\n- FrugalGPT (Chen et al., 2023) — LLM routing/cascading\n- AutoMix (Madaan et al., 2023) — LLM routing/cascading\n- Options framework (Sutton et al., 1999) — temporal abstraction\n\n**R2 建议**:\n- Mixture-of-Depths (Raposo et al., 2024) — non-agent adaptive computation\n- Speculative decoding (Leviathan et al., 2023; Chen et al., 2023) — adaptive computation\n\n**共识**: 至少加一句 positioning 区分 token-level adaptive computation 和 episode-level diagnostic framework。\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未请求。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**: ✅ 完成\n\n| Severity | 发现 |\n|----------|------|\n| **Critical** | 主文超 8 页限制——Conclusion 从 page 9 开始，需压缩约 15-20 行 |\n| **Warning** | Pages 7-8 连续两页纯文本无 display item，审稿人视觉疲劳风险 |\n| **Warning** | 主文 display items 偏少（3 figure + 2 table = 5 个），大量结果推到 appendix |\n| **Info** | Figure 1 pipeline 图出现在 page 2 顶部，时机合理，颜色区分度好 |\n| **Info** | Figure 2 散点图尺寸偏小但文字仍可读 |\n| **Info** | 所有表格使用 booktabs 风格，排版专业整洁 |\n| **Info** | 全文无公式渲染错误、未解析引用或 margin 溢出 |\n\n---\n\n## Overall Assessment\n\n**Overall: 3.0 — Findings**\n\n**Soundness**: 3.5/5 (R1: 3.5, R2: 3.5)\n**Excitement**: 3.0/5 (R1: 3.5, R2: 2.5)\n**Reproducibility**: 4.0/5 (R1: 4, R2: 4)\n**Confidence**: 4/5\n\n### 综合判断依据\n\n**接收方向的论据**:\n1. \"先诊断再构建 router\" 的方法论框架新颖，填补了 agent routing 领域的诊断性空白\n2. 统计分析的深度和透明度在该领域罕见（20 appendices, 多种 bootstrap 方法, LOO sensitivity）\n3. 跨模型复现（3 families, 7-9B tier）增强了 ScienceWorld 内发现的可信度\n4. 负面结果（router failure）的诚实报告对社区有警示价值\n5. Penalty-independent label fraction (78.9%) 是 robust 的核心发现\n\n**拒绝方向的论据**:\n1. **正文超页** [Critical]——desk reject 风险，优先修复\n2. **Triviality concern**——\"death avoidance dominates in death-penalized environment\" 具有可预测性（R2 Excitement 2.5/5），DAF 值对 P 的数学依赖加剧此印象\n3. **Cross-environment evidence 薄弱**——三环境的 \"deterministic\" mode 语义不同，仅 ScienceWorld 有完整验证\n4. **Non-death signal 分析缺失**——21.1% 的 routing signal 来源未解释\n5. **Router failure 解释 underdetermined**——signal-limited vs data-limited 在 3.7% minority rate 下无法区分\n\n### 定位建议\n\n论文的方法论贡献（counterfactual decomposition framework, DAF/SCI 指标）具有独立于具体发现的可复用价值，适合 **Findings** 接收。若能修复 W1（页数）、W2（DAF framing）、W6（non-death analysis），可升至 **3.5 Borderline Conference**。核心 Excitement 限制（triviality risk, 单一环境深度分析）是结构性的，难以通过 writing fix 解决。\n\n---\n\n## Detailed Comments\n\n### Abstract\n- 当前以 DAF=90.4% 为主导，应将 78.9% label fraction 提升为 headline\n- \"spread 2.2 pp\" 等 secondary stats 可移至正文\n\n### §1 Introduction\n- Contributions 列表与 Conclusion 近乎逐字重复，保留一处\n- \"no prior work has decomposed\" → \"no prior work has systematically decomposed what drives routing preferences\"\n\n### §2 Method\n- §2.4 DAF 定义后已包含 P-sensitivity 讨论，叙事层面到位\n- Algorithm 1 both-dead 情况的处理可在 footnote 中 justify\n\n### §3 Experiments\n- §3 开头明确 taxonomic redundancy 操作定义\n- §3.1 correlation/sensitivity 段中 Cohen's d=3.02 加一句 context（reflects near-binary consistency）\n- §3.4 开头加 caveat：三环境 deterministic mode 信息特权程度不同\n- §3.6 router failure 结论限定为 \"under current data regime\"\n\n### §4 Related Work\n- 加一句 non-agent adaptive computation positioning\n- 可考虑引用 FrugalGPT、AutoMix\n\n### §5 Discussion\n- 与 §4 有内容交集，合并/压缩可释放空间\n\n### §6 Conclusion\n- 压缩为 2-3 句 forward-looking summary，删除重复 contributions\n\n### Limitations\n- 内容充分（5 个方面），质量良好\n\n### Appendix\n- 增加 non-death episode case study（W6）\n- 考虑接收 Figure 2（如 R2 建议）以释放正文空间"
             }
           },
-          "id": "event-002436"
+          "id": "event-002434"
         },
         {
-          "source_line": 2437,
+          "source_line": 2435,
           "timestamp": "2026-05-22T23:10:08.545784+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1884,10 +1846,10 @@
             "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
             "elapsed_ms": 4118
           },
-          "id": "event-002437"
+          "id": "event-002435"
         },
         {
-          "source_line": 2438,
+          "source_line": 2436,
           "timestamp": "2026-05-22T23:10:22.371078+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1900,7 +1862,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002438"
+          "id": "event-002436"
         }
       ]
     },
@@ -1908,7 +1870,7 @@
       "number": 204,
       "messages": [
         {
-          "source_line": 2439,
+          "source_line": 2437,
           "timestamp": "2026-05-22T23:10:24.899678+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1922,10 +1884,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002439"
+          "id": "event-002437"
         },
         {
-          "source_line": 2440,
+          "source_line": 2438,
           "timestamp": "2026-05-22T23:10:41.262435+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1938,7 +1900,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002440"
+          "id": "event-002438"
         }
       ]
     },
@@ -1946,7 +1908,7 @@
       "number": 205,
       "messages": [
         {
-          "source_line": 2441,
+          "source_line": 2439,
           "timestamp": "2026-05-23T03:32:10.579098+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1960,10 +1922,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "system"
           },
-          "id": "event-002441"
+          "id": "event-002439"
         },
         {
-          "source_line": 2442,
+          "source_line": 2440,
           "timestamp": "2026-05-23T03:32:16.809350+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1980,10 +1942,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002442"
+          "id": "event-002440"
         },
         {
-          "source_line": 2443,
+          "source_line": 2441,
           "timestamp": "2026-05-23T03:32:16.860386+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1998,10 +1960,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002443"
+          "id": "event-002441"
         },
         {
-          "source_line": 2444,
+          "source_line": 2442,
           "timestamp": "2026-05-23T03:32:25.801413+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2019,10 +1981,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002444"
+          "id": "event-002442"
         },
         {
-          "source_line": 2445,
+          "source_line": 2443,
           "timestamp": "2026-05-23T03:32:25.801771+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2037,10 +1999,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002445"
+          "id": "event-002443"
         },
         {
-          "source_line": 2446,
+          "source_line": 2444,
           "timestamp": "2026-05-23T03:32:29.568267+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2058,10 +2020,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002446"
+          "id": "event-002444"
         },
         {
-          "source_line": 2447,
+          "source_line": 2445,
           "timestamp": "2026-05-23T03:32:29.619095+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2076,10 +2038,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002447"
+          "id": "event-002445"
         },
         {
-          "source_line": 2448,
+          "source_line": 2446,
           "timestamp": "2026-05-23T03:32:34.087928+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2096,10 +2058,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002448"
+          "id": "event-002446"
         },
         {
-          "source_line": 2449,
+          "source_line": 2447,
           "timestamp": "2026-05-23T03:32:35.999283+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2114,10 +2076,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 1911
           },
-          "id": "event-002449"
+          "id": "event-002447"
         },
         {
-          "source_line": 2450,
+          "source_line": 2448,
           "timestamp": "2026-05-23T03:32:36.150310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2134,10 +2096,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex"
             }
           },
-          "id": "event-002450"
+          "id": "event-002448"
         },
         {
-          "source_line": 2451,
+          "source_line": 2449,
           "timestamp": "2026-05-23T03:32:36.502793+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2152,10 +2114,10 @@
             "tool": "Read",
             "elapsed_ms": 352
           },
-          "id": "event-002451"
+          "id": "event-002449"
         },
         {
-          "source_line": 2452,
+          "source_line": 2450,
           "timestamp": "2026-05-23T03:32:36.955028+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2173,10 +2135,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002452"
+          "id": "event-002450"
         },
         {
-          "source_line": 2453,
+          "source_line": 2451,
           "timestamp": "2026-05-23T03:32:36.955401+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2191,10 +2153,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002453"
+          "id": "event-002451"
         },
         {
-          "source_line": 2454,
+          "source_line": 2452,
           "timestamp": "2026-05-23T03:32:37.307077+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2212,10 +2174,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002454"
+          "id": "event-002452"
         },
         {
-          "source_line": 2455,
+          "source_line": 2453,
           "timestamp": "2026-05-23T03:32:37.407833+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2230,10 +2192,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002455"
+          "id": "event-002453"
         },
         {
-          "source_line": 2456,
+          "source_line": 2454,
           "timestamp": "2026-05-23T03:32:47.422740+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2250,10 +2212,10 @@
               "query": "EMNLP 2026 call for papers submission guidelines ARR"
             }
           },
-          "id": "event-002456"
+          "id": "event-002454"
         },
         {
-          "source_line": 2457,
+          "source_line": 2455,
           "timestamp": "2026-05-23T03:32:48.930215+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2271,10 +2233,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
             }
           },
-          "id": "event-002457"
+          "id": "event-002455"
         },
         {
-          "source_line": 2458,
+          "source_line": 2456,
           "timestamp": "2026-05-23T03:32:50.236501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2289,10 +2251,10 @@
             "tool": "Glob",
             "elapsed_ms": 1306
           },
-          "id": "event-002458"
+          "id": "event-002456"
         },
         {
-          "source_line": 2459,
+          "source_line": 2457,
           "timestamp": "2026-05-23T03:32:50.387628+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2310,10 +2272,10 @@
               "description": "Check if submitted PDF exists"
             }
           },
-          "id": "event-002459"
+          "id": "event-002457"
         },
         {
-          "source_line": 2460,
+          "source_line": 2458,
           "timestamp": "2026-05-23T03:32:50.540264+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2328,10 +2290,10 @@
             "tool": "Bash",
             "elapsed_ms": 152
           },
-          "id": "event-002460"
+          "id": "event-002458"
         },
         {
-          "source_line": 2461,
+          "source_line": 2459,
           "timestamp": "2026-05-23T03:32:55.511034+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2346,10 +2308,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 8088
           },
-          "id": "event-002461"
+          "id": "event-002459"
         },
         {
-          "source_line": 2462,
+          "source_line": 2460,
           "timestamp": "2026-05-23T03:33:00.784851+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2366,10 +2328,10 @@
               "query": "EMNLP 2026 submission format page limit template anonymity requirements site:2026.emnlp.org"
             }
           },
-          "id": "event-002462"
+          "id": "event-002460"
         },
         {
-          "source_line": 2463,
+          "source_line": 2461,
           "timestamp": "2026-05-23T03:33:01.136728+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2386,10 +2348,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml"
             }
           },
-          "id": "event-002463"
+          "id": "event-002461"
         },
         {
-          "source_line": 2464,
+          "source_line": 2462,
           "timestamp": "2026-05-23T03:33:01.188079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2404,10 +2366,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-002464"
+          "id": "event-002462"
         },
         {
-          "source_line": 2465,
+          "source_line": 2463,
           "timestamp": "2026-05-23T03:33:02.243731+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2425,10 +2387,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper"
             }
           },
-          "id": "event-002465"
+          "id": "event-002463"
         },
         {
-          "source_line": 2466,
+          "source_line": 2464,
           "timestamp": "2026-05-23T03:33:02.294428+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2443,10 +2405,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-002466"
+          "id": "event-002464"
         },
         {
-          "source_line": 2467,
+          "source_line": 2465,
           "timestamp": "2026-05-23T03:33:07.519962+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2461,10 +2423,10 @@
             "tool": "WebSearch",
             "elapsed_ms": 6735
           },
-          "id": "event-002467"
+          "id": "event-002465"
         },
         {
-          "source_line": 2468,
+          "source_line": 2466,
           "timestamp": "2026-05-23T03:33:18.311370+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2481,10 +2443,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-002468"
+          "id": "event-002466"
         },
         {
-          "source_line": 2469,
+          "source_line": 2467,
           "timestamp": "2026-05-23T03:33:18.563501+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2499,10 +2461,10 @@
             "tool": "Read",
             "elapsed_ms": 252
           },
-          "id": "event-002469"
+          "id": "event-002467"
         },
         {
-          "source_line": 2470,
+          "source_line": 2468,
           "timestamp": "2026-05-23T03:33:18.563899+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2519,10 +2481,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-002470"
+          "id": "event-002468"
         },
         {
-          "source_line": 2471,
+          "source_line": 2469,
           "timestamp": "2026-05-23T03:33:18.664585+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2537,10 +2499,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002471"
+          "id": "event-002469"
         },
         {
-          "source_line": 2472,
+          "source_line": 2470,
           "timestamp": "2026-05-23T03:33:19.066518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2557,10 +2519,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
             }
           },
-          "id": "event-002472"
+          "id": "event-002470"
         },
         {
-          "source_line": 2473,
+          "source_line": 2471,
           "timestamp": "2026-05-23T03:33:19.518809+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2575,10 +2537,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002473"
+          "id": "event-002471"
         },
         {
-          "source_line": 2474,
+          "source_line": 2472,
           "timestamp": "2026-05-23T03:33:19.519208+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2595,10 +2557,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-002474"
+          "id": "event-002472"
         },
         {
-          "source_line": 2475,
+          "source_line": 2473,
           "timestamp": "2026-05-23T03:33:20.524161+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2613,10 +2575,10 @@
             "tool": "Read",
             "elapsed_ms": 1004
           },
-          "id": "event-002475"
+          "id": "event-002473"
         },
         {
-          "source_line": 2476,
+          "source_line": 2474,
           "timestamp": "2026-05-23T03:33:20.524636+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2633,10 +2595,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
             }
           },
-          "id": "event-002476"
+          "id": "event-002474"
         },
         {
-          "source_line": 2477,
+          "source_line": 2475,
           "timestamp": "2026-05-23T03:33:21.027107+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2651,10 +2613,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002477"
+          "id": "event-002475"
         },
         {
-          "source_line": 2478,
+          "source_line": 2476,
           "timestamp": "2026-05-23T03:33:21.077725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2671,10 +2633,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002478"
+          "id": "event-002476"
         },
         {
-          "source_line": 2479,
+          "source_line": 2477,
           "timestamp": "2026-05-23T03:33:21.178653+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2689,10 +2651,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002479"
+          "id": "event-002477"
         },
         {
-          "source_line": 2480,
+          "source_line": 2478,
           "timestamp": "2026-05-23T03:33:21.179101+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2709,10 +2671,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-002480"
+          "id": "event-002478"
         },
         {
-          "source_line": 2481,
+          "source_line": 2479,
           "timestamp": "2026-05-23T03:33:21.279721+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2727,10 +2689,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002481"
+          "id": "event-002479"
         },
         {
-          "source_line": 2482,
+          "source_line": 2480,
           "timestamp": "2026-05-23T03:33:39.656588+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2749,10 +2711,10 @@
               "max_chars": "3000"
             }
           },
-          "id": "event-002482"
+          "id": "event-002480"
         },
         {
-          "source_line": 2483,
+          "source_line": 2481,
           "timestamp": "2026-05-23T03:33:41.414322+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2767,10 +2729,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 1757
           },
-          "id": "event-002483"
+          "id": "event-002481"
         },
         {
-          "source_line": 2484,
+          "source_line": 2482,
           "timestamp": "2026-05-23T03:33:41.415095+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2788,10 +2750,10 @@
               "pages": "1-9"
             }
           },
-          "id": "event-002484"
+          "id": "event-002482"
         },
         {
-          "source_line": 2485,
+          "source_line": 2483,
           "timestamp": "2026-05-23T03:33:42.018646+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2806,10 +2768,10 @@
             "tool": "Read",
             "elapsed_ms": 603
           },
-          "id": "event-002485"
+          "id": "event-002483"
         },
         {
-          "source_line": 2486,
+          "source_line": 2484,
           "timestamp": "2026-05-23T03:35:04.963739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2829,10 +2791,10 @@
               "text": "你是 Reviewer 1，负责**方法严谨性 + 实验设计**。\n\n## 审稿论文\n- 标题: \"Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\"\n- 论文路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/submitted.pdf`\n- 目标 venue: **EMNLP 2026**（通过 ARR May 2026 cycle）\n- 投稿类别: Long Paper\n- Deadline: 2026-05-25\n\n## Venue 要求\n- 正文 8 页严格限制，references 无限制\n- Limitations 章节必须有（不计入页数限制，但不能含过多额外内容）\n- Ethical considerations 可选（不计入页数）\n- Double-blind 审稿（作者信息匿名）\n- ACL 模板\n- ARR Responsible NLP Checklist 在 OpenReview submission form 中填写（不在论文 PDF 中）\n\n## Overall Assessment 评分标准（EMNLP 2026 ARR）\n5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle，1.5 = Resubmit after next cycle，1 = Do not resubmit\n\n## 你的审查侧重\n1. **方法论严谨性**：counterfactual framework 的有效性、DAF 分解的数学合理性、episode-level labeling 的假设和局限\n2. **实验设计**：ScienceWorld 11/30 task types 的选择偏差问题、cross-model (Llama/Gemma/72B) 验证的充分性、router 训练实验的 confounds\n3. **统计分析**：bootstrap CI 可靠性（K=11 cluster 问题）、effect size 报告、multiple comparison 处理\n4. **可重复性**：实验描述是否充分、超参数报告是否完整\n5. **格式合规**：8 页限制、匿名性、模板使用\n\n## 输出格式\n请按以下结构输出审稿意见：\n```\n## Summary (2-3 句)\n\n## Strengths (逐条，标注 S1, S2, ...)\n\n## Weaknesses (逐条，标注 W1, W2, ...，每条标注 severity: critical/warning/info)\n- 对每个 weakness 给出具体证据（引用 Section/Table/Figure）\n\n## Questions (逐条，Q1, Q2, ...)\n\n## Missing References\n\n## Overall Assessment\n- Score: [用 EMNLP 2026 ARR 评分标准]\n- Confidence: [1-5]\n- Excitement: [1-5]\n- Soundness: [1-5]\n- 一句话总评\n```"
             }
           },
-          "id": "event-002486"
+          "id": "event-002484"
         },
         {
-          "source_line": 2487,
+          "source_line": 2485,
           "timestamp": "2026-05-23T03:35:16.019146+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2847,10 +2809,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 11055
           },
-          "id": "event-002487"
+          "id": "event-002485"
         },
         {
-          "source_line": 2488,
+          "source_line": 2486,
           "timestamp": "2026-05-23T03:35:16.170067+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2870,10 +2832,10 @@
               "text": "你是 Reviewer 2，负责**新颖性 + 完整性 + 写作质量**。\n\n## 审稿论文\n- 标题: \"Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\"\n- 论文路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_round_30/submitted.pdf`\n- 目标 venue: **EMNLP 2026**（通过 ARR May 2026 cycle）\n- 投稿类别: Long Paper\n- Deadline: 2026-05-25\n\n## Venue 要求\n- 正文 8 页严格限制，references 无限制\n- Limitations 章节必须有（不计入页数限制，但不能含过多额外内容）\n- Ethical considerations 可选（不计入页数）\n- Double-blind 审稿（作者信息匿名）\n- ACL 模板\n- ARR Responsible NLP Checklist 在 OpenReview submission form 中填写（不在论文 PDF 中）\n\n## Overall Assessment 评分标准（EMNLP 2026 ARR）\n5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle，1.5 = Resubmit after next cycle，1 = Do not resubmit\n\n## 你的审查侧重\n1. **新颖性和贡献**：核心发现（death avoidance dominates routing signal）的 novelty 程度、对 LLM agent routing 社区的贡献、是否存在 triviality 风险\n2. **Framing 和 claims**：Abstract/Title 与实际证据的匹配、generalization claims 是否超出数据支撑、\"framework\" vs \"empirical finding\" 的定位一致性\n3. **Related Work 完整性**：是否覆盖了 LLM routing、adaptive computation、safe RL、counterfactual evaluation 的关键工作；是否有重要遗漏\n4. **写作质量**：叙事连贯性、论证逻辑、术语一致性、段落组织、信息密度\n5. **完整性**：cross-environment 验证是否充分、limitations 讨论是否诚实和全面、actionability 是否到位\n\n## 输出格式\n请按以下结构输出审稿意见：\n```\n## Summary (2-3 句)\n\n## Strengths (逐条，标注 S1, S2, ...)\n\n## Weaknesses (逐条，标注 W1, W2, ...，每条标注 severity: critical/warning/info)\n- 对每个 weakness 给出具体证据（引用 Section/Table/Figure）\n\n## Questions (逐条，Q1, Q2, ...)\n\n## Missing References\n\n## Overall Assessment\n- Score: [用 EMNLP 2026 ARR 评分标准]\n- Confidence: [1-5]\n- Excitement: [1-5]\n- Soundness: [1-5]\n- 一句话总评\n```"
             }
           },
-          "id": "event-002488"
+          "id": "event-002486"
         },
         {
-          "source_line": 2489,
+          "source_line": 2487,
           "timestamp": "2026-05-23T03:35:17.834034+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2888,10 +2850,10 @@
             "tool": "mcp__agent-ml-research__director_post_to_reviewer",
             "elapsed_ms": 1663
           },
-          "id": "event-002489"
+          "id": "event-002487"
         },
         {
-          "source_line": 2490,
+          "source_line": 2488,
           "timestamp": "2026-05-23T03:35:17.834533+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2909,10 +2871,10 @@
               "review_chat_id": "oc_0b622d6038b969b96148ee8a163a1a0c"
             }
           },
-          "id": "event-002490"
+          "id": "event-002488"
         },
         {
-          "source_line": 2491,
+          "source_line": 2489,
           "timestamp": "2026-05-23T03:35:17.834833+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2929,10 +2891,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002491"
+          "id": "event-002489"
         },
         {
-          "source_line": 2492,
+          "source_line": 2490,
           "timestamp": "2026-05-23T03:35:19.818227+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2947,10 +2909,10 @@
             "tool": "mcp__agent-ml-research__dispatch_visual_check",
             "elapsed_ms": 1983
           },
-          "id": "event-002492"
+          "id": "event-002490"
         },
         {
-          "source_line": 2493,
+          "source_line": 2491,
           "timestamp": "2026-05-23T03:35:19.868930+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2965,10 +2927,10 @@
             "tool": "mcp__agent-ml-research__get_external_review_status",
             "elapsed_ms": 2034
           },
-          "id": "event-002493"
+          "id": "event-002491"
         },
         {
-          "source_line": 2494,
+          "source_line": 2492,
           "timestamp": "2026-05-23T03:35:47.218292+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2981,7 +2943,7 @@
           "metadata": {
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director"
           },
-          "id": "event-002494"
+          "id": "event-002492"
         }
       ]
     },
@@ -2989,7 +2951,7 @@
       "number": 206,
       "messages": [
         {
-          "source_line": 2495,
+          "source_line": 2493,
           "timestamp": "2026-05-23T03:40:11.890343+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3003,10 +2965,10 @@
             "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
             "source": "review_reviewer_2"
           },
-          "id": "event-002495"
+          "id": "event-002493"
         },
         {
-          "source_line": 2496,
+          "source_line": 2494,
           "timestamp": "2026-05-23T03:40:46.497558+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3023,10 +2985,10 @@
               "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
             }
           },
-          "id": "event-002496"
+          "id": "event-002494"
         },
         {
-          "source_line": 2497,
+          "source_line": 2495,
           "timestamp": "2026-05-23T03:40:46.498591+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3041,10 +3003,10 @@
             "tool": "Read",
             "elapsed_ms": 1
           },
-          "id": "event-002497"
+          "id": "event-002495"
         },
         {
-          "source_line": 2498,
+          "source_line": 2496,
           "timestamp": "2026-05-23T03:40:50.318520+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3062,10 +3024,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002498"
+          "id": "event-002496"
         },
         {
-          "source_line": 2499,
+          "source_line": 2497,
           "timestamp": "2026-05-23T03:40:50.369290+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3080,10 +3042,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002499"
+          "id": "event-002497"
         },
         {
-          "source_line": 2500,
+          "source_line": 2498,
           "timestamp": "2026-05-23T03:40:54.185180+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3101,10 +3063,10 @@
               "max_results": "10"
             }
           },
-          "id": "event-002500"
+          "id": "event-002498"
         },
         {
-          "source_line": 2501,
+          "source_line": 2499,
           "timestamp": "2026-05-23T03:40:54.185657+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3119,10 +3081,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 0
           },
-          "id": "event-002501"
+          "id": "event-002499"
         },
         {
-          "source_line": 2502,
+          "source_line": 2500,
           "timestamp": "2026-05-23T03:41:22.180131+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3139,10 +3101,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-002502"
+          "id": "event-002500"
         },
         {
-          "source_line": 2503,
+          "source_line": 2501,
           "timestamp": "2026-05-23T03:41:23.536791+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3157,10 +3119,10 @@
             "tool": "mcp__agent-ml-research__director_get_project_overview",
             "elapsed_ms": 1356
           },
-          "id": "event-002503"
+          "id": "event-002501"
         },
         {
-          "source_line": 2504,
+          "source_line": 2502,
           "timestamp": "2026-05-23T03:41:23.537282+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3178,10 +3140,10 @@
               "limit": "120"
             }
           },
-          "id": "event-002504"
+          "id": "event-002502"
         },
         {
-          "source_line": 2505,
+          "source_line": 2503,
           "timestamp": "2026-05-23T03:41:23.587906+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3196,10 +3158,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002505"
+          "id": "event-002503"
         },
         {
-          "source_line": 2506,
+          "source_line": 2504,
           "timestamp": "2026-05-23T03:41:35.348536+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3216,10 +3178,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-002506"
+          "id": "event-002504"
         },
         {
-          "source_line": 2507,
+          "source_line": 2505,
           "timestamp": "2026-05-23T03:41:35.499541+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3234,10 +3196,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-002507"
+          "id": "event-002505"
         },
         {
-          "source_line": 2508,
+          "source_line": 2506,
           "timestamp": "2026-05-23T03:41:35.550128+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3254,10 +3216,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
             }
           },
-          "id": "event-002508"
+          "id": "event-002506"
         },
         {
-          "source_line": 2509,
+          "source_line": 2507,
           "timestamp": "2026-05-23T03:41:35.600783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3272,10 +3234,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002509"
+          "id": "event-002507"
         },
         {
-          "source_line": 2510,
+          "source_line": 2508,
           "timestamp": "2026-05-23T03:41:49.134873+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3292,10 +3254,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
             }
           },
-          "id": "event-002510"
+          "id": "event-002508"
         },
         {
-          "source_line": 2511,
+          "source_line": 2509,
           "timestamp": "2026-05-23T03:41:49.887712+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3310,10 +3272,10 @@
             "tool": "Read",
             "elapsed_ms": 752
           },
-          "id": "event-002511"
+          "id": "event-002509"
         },
         {
-          "source_line": 2512,
+          "source_line": 2510,
           "timestamp": "2026-05-23T03:41:49.988679+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3330,10 +3292,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
             }
           },
-          "id": "event-002512"
+          "id": "event-002510"
         },
         {
-          "source_line": 2513,
+          "source_line": 2511,
           "timestamp": "2026-05-23T03:41:50.390729+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3348,10 +3310,10 @@
             "tool": "Read",
             "elapsed_ms": 402
           },
-          "id": "event-002513"
+          "id": "event-002511"
         },
         {
-          "source_line": 2514,
+          "source_line": 2512,
           "timestamp": "2026-05-23T03:41:50.541685+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3370,10 +3332,10 @@
               "max_chars": "12000"
             }
           },
-          "id": "event-002514"
+          "id": "event-002512"
         },
         {
-          "source_line": 2515,
+          "source_line": 2513,
           "timestamp": "2026-05-23T03:41:50.592452+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3388,10 +3350,10 @@
             "tool": "mcp__agent-ml-research__read_project_file",
             "elapsed_ms": 50
           },
-          "id": "event-002515"
+          "id": "event-002513"
         },
         {
-          "source_line": 2516,
+          "source_line": 2514,
           "timestamp": "2026-05-23T03:42:00.551312+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3408,10 +3370,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
             }
           },
-          "id": "event-002516"
+          "id": "event-002514"
         },
         {
-          "source_line": 2517,
+          "source_line": 2515,
           "timestamp": "2026-05-23T03:42:01.053248+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3426,10 +3388,10 @@
             "tool": "Read",
             "elapsed_ms": 501
           },
-          "id": "event-002517"
+          "id": "event-002515"
         },
         {
-          "source_line": 2518,
+          "source_line": 2516,
           "timestamp": "2026-05-23T03:42:01.053709+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3446,10 +3408,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002518"
+          "id": "event-002516"
         },
         {
-          "source_line": 2519,
+          "source_line": 2517,
           "timestamp": "2026-05-23T03:42:01.961048+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3464,10 +3426,10 @@
             "tool": "Read",
             "elapsed_ms": 907
           },
-          "id": "event-002519"
+          "id": "event-002517"
         },
         {
-          "source_line": 2520,
+          "source_line": 2518,
           "timestamp": "2026-05-23T03:42:01.961553+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3482,6 +3444,44 @@
             "tool": "Read",
             "tool_args": {
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-23T03:42:02.163882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\n3\tOur episode-level counterfactual framework reveals that 78.9\\% of non-tie routing labels in ScienceWorld stem from death avoidance---replicated across three model families, persistent under $10{\\times}$ scaling, and transferable to qualitatively different environments. Future work should validate this in additional catastrophic-failure settings and investigate lightweight death-prediction mechanisms that exploit task-type-level binary structure without full step-level router training.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-23T03:42:02.164464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml"
             }
           },
           "id": "event-002520"

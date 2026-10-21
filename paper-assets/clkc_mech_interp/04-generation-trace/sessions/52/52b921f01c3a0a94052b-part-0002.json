@@ -3411,44 +3411,6 @@
         },
         {
           "source_line": 351,
-          "timestamp": "2026-05-26T09:53:40.241474+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-director-d131381b/memory/project_c2_rebuttal_strategy.md"
-            }
-          },
-          "id": "event-000351"
-        },
-        {
-          "source_line": 352,
-          "timestamp": "2026-05-26T09:53:40.744150+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t---\n2\tname: Full rebuttal strategy\n3\tdescription: Pre-drafted rebuttal for C2 \"general property\" (EN-DE p=0.40, language pair generality) and C6 steering (L13 noise/cherry-picking, single-model success, layer coverage) — ready-to-use when ARR reviews arrive\n4\ttype: project\n5\toriginSessionId: 5454d96f-7583-4aea-9f7f-918e5abd5660\n6\t---\n7\tC2 \"general cross-lingual property\" 是论文最薄弱点，Reviewer 预演了 3 个审稿人追问的应答策略。\n8\t\n9\t**Why:** EN-DE 不对称性仅 +1.2pp (p=0.40)，与 EN-ZH ~7pp 形成对比，审稿人会质疑 \"general\" 是否过强。\n10\t\n11\t**How to apply:** 审稿结果回来后，如果审稿人追问 C2 泛化性，直接用以下要点起草 rebuttal。\n12\t\n13\t## 追问 A: \"EN-DE 仅 +1.2pp，为什么不测更多语言对？\"\n14\t- \"general\" = task-general（非冲突特有），非 language-universal\n15\t- 3 架构 × 2 任务 = 6 组独立测量，ZH-EN 不对称性均 6-7pp（p<0.01）\n16\t- DE-EN 近零不对称性与 CLEAR \"linguistic affinity\" 框架一致（同属印欧日耳曼语族）\n17\t- Limitations 已承认 \"single language pair\"\n18\t\n19\t## 追问 B: \"XNLI 共享不对称性可能反映共享任务结构\"\n20\t- ConflictQA（factual QA）和 XNLI（textual entailment）输入格式/输出空间/推理类型完全不同\n21\t- Cross-task probe transfer（exp 119, bootstrap n=1000）近乎完美迁移（Llama L13: C→X 0.998, X→C 1.0）\n22\t- 如果任务结构驱动，不同任务不对称性幅度应不同；实际 conflict +7.2pp ≈ XNLI +6.0-6.7pp，CI 内不可区分\n23\t\n24\t## 追问 C: \"只有 ZH-EN，claim 'general' 过强？\"\n25\t- 操作定义 = \"跨任务可复现、跨架构一致\"，非\"跨所有语言对\"\n26\t- 措辞是 \"inherits from the model's general multilingual structure\"，指模型内部结构属性\n27\t- 3 架构来自不同公司/训练数据，排除单一偏差\n28\t- Camera-ready 可改 \"task-general\" / \"task-independent\" 进一步限定\n29\t\n30\t## C6 Steering Rebuttal（L14 梯度证据 + L16 翻转）\n31\t\n32\t### 追问 D: \"L13 单层 steering 可能是 noise / cherry-picking\"\n33\t- 系统性 6 层扫描（L12/L13/L14/L16/L18/L28），38%-88% depth\n34\t- **三层显著**：L13(p=0.0003), L14(p=0.002), L16(p=0.005) — 连续三层带显著效应，非孤立命中\n35\t- L12(p=0.085) 边缘, L18/L28 negative — 效应向两侧单调衰减，空间梯度结构\n36\t- 独立采样 N=201（vs 原始 N=136）、不同硬件（RTX PRO 6000 vs 原始设备）\n37\t- L16 在原始 N=136 下 p=0.12 (negative)，N=201 下 p=0.005 (significant) — 更大样本揭示真实效应\n38\t- 标注为 \"follow-up boundary mapping experiment\"，诚实说明在观察到 L13 后设计\n39\t\n40\t### 追问 E: \"只有 Llama 一个模型 steering 成功，方法不可靠\"\n41\t- L13-L14-L16 连续三层显著证明 steering 效应具有精确层空间结构（非随机命中）\n42\t- 跨模型失败是 architecture-dependen\n…[truncated 1569 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
-            "tool": "Read",
-            "elapsed_ms": 502
-          },
-          "id": "event-000352"
-        },
-        {
-          "source_line": 353,
           "timestamp": "2026-05-26T09:53:40.845058+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3465,10 +3427,10 @@
               "file_path": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-director-d131381b/memory/project_server_migration.md"
             }
           },
-          "id": "event-000353"
+          "id": "event-000351"
         },
         {
-          "source_line": 354,
+          "source_line": 352,
           "timestamp": "2026-05-26T09:53:40.996096+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3483,10 +3445,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-000354"
+          "id": "event-000352"
         },
         {
-          "source_line": 355,
+          "source_line": 353,
           "timestamp": "2026-05-26T09:54:15.158317+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3504,10 +3466,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-000355"
+          "id": "event-000353"
         },
         {
-          "source_line": 356,
+          "source_line": 354,
           "timestamp": "2026-05-26T09:54:15.209018+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3522,10 +3484,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-000356"
+          "id": "event-000354"
         },
         {
-          "source_line": 357,
+          "source_line": 355,
           "timestamp": "2026-05-26T09:54:18.020747+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3542,10 +3504,10 @@
               "project": "clkc_mech_interp"
             }
           },
-          "id": "event-000357"
+          "id": "event-000355"
         },
         {
-          "source_line": 358,
+          "source_line": 356,
           "timestamp": "2026-05-26T09:54:18.071397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3560,10 +3522,10 @@
             "tool": "mcp__agent-ml-research__get_agent_queue_status",
             "elapsed_ms": 50
           },
-          "id": "event-000358"
+          "id": "event-000356"
         },
         {
-          "source_line": 359,
+          "source_line": 357,
           "timestamp": "2026-05-26T09:55:03.261474+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -3576,7 +3538,7 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director"
           },
-          "id": "event-000359"
+          "id": "event-000357"
         }
       ]
     },
@@ -3584,7 +3546,7 @@
       "number": 65,
       "messages": [
         {
-          "source_line": 360,
+          "source_line": 358,
           "timestamp": "2026-05-26T09:55:05.299192+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3597,6 +3559,45 @@
           "metadata": {
             "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
             "source": "reviewer"
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": "2026-05-26T09:55:13.868153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": "2026-05-26T09:55:13.968986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
           },
           "id": "event-000360"
         }

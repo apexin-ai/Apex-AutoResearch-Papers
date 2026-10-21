@@ -61,45 +61,6 @@ Notes:
 >
 > By contrast, perturbation-based detection (DetectGPT, 28.8%) and membership inference (Min-K\% Prob, 33.2%) achieve near-chance accuracy. These methods probe local token-level properties — perturbation sensitivity and training-set membership — that do not encode ordinal depth information. The depth signal resides in distributional shape, not in token-level anomalies.
 
-## 4. Rebuttal Defense Points
-
-### Q: "Why not just use Binoculars?"
-
-1. **Model-agnostic**: Our pipeline needs one matched reference model. Binoculars needs a specific observer/performer pair. When generator family is unknown or Binoculars pair unavailable, our approach works.
-2. **Interpretability**: The Depth Degradation Atlas (EDD, feature trajectories, strategy reversal) is built on our individually meaningful features. Binoculars' single cross-ppl score requires post-hoc decomposition.
-3. **Complementarity**: 78.1% vs 78.4% convergence is itself a contribution — validates depth as genuine distributional property. Practitioners choose based on infrastructure constraints.
-4. **Same calibration overhead**: Binoculars RF_multi requires 11-feature extraction + RF training — comparable to our pipeline's 19-feature extraction + RF.
-
-### Q: "Does Binoculars invalidate Claim 1?"
-
-1. Claim 1 is narrowed to: perturbation-based and membership-inference scores lack ordinal signal (confirmed: 28.8% and 33.2%).
-2. Binoculars is a partial success via implicit distributional encoding, not raw binary detection score.
-3. Three-tier result is more informative than blanket "all fail" — precisely delineates which paradigms carry ordinal info and why.
-
-### Q: "Given Binoculars matches your performance, why not just use Binoculars?"
-
-**(standalone Q&A — distinct from the shorter "why not just use" above, this is the full-length rebuttal defense)**
-
-1. **Interpretability advantage**: Our 19 individually meaningful features enable the entire Depth Degradation Atlas — feature importance analysis reveals *which* distributional properties discriminate *which* depth pairs, strategy-dependent feature trajectory reversal is discovered through per-feature analysis, and EDD is computed from per-pair AUC curves. Binoculars produces a single cross-perplexity score; the Atlas findings (EDD boundary, strategy reversal mechanism, feature universality across 9 settings) are not discoverable from Binoculars scores alone.
-
-2. **Model independence**: Our pipeline requires one reference model matched to the suspected generator family. Binoculars requires a specific observer-performer model pair (pythia-1.4b/pythia-410m tested). When the generator family is unknown, no suitable Binoculars pair may exist, whereas our approach can use any capable LM as reference. Cross-model robustness (pythia pair works on gpt2xl cells) is encouraging but not guaranteed for all model families.
-
-3. **Atlas + EDD are the primary contributions, not the classifier**: Our paper's contribution is task formalization + the Depth Degradation Atlas + EDD + systematic findings. The RF classifier is a tool; Binoculars matching its accuracy validates the underlying phenomenon (depth signal as distributional property) rather than competing with our method.
-
-4. **The convergence itself is a finding**: That two independent signal pathways (distributional shape statistics vs cross-model perplexity agreement) converge to statistically indistinguishable accuracy (78.1% vs 78.4%) is evidence that ordinal depth is a genuine distributional property, not an artifact of either method's feature engineering.
-
-5. **Feature ablation evidence** (feature_ablation_overlap_001 + feature_ablation_merged_001):
-   - 6 overlap features only → 75.93% (−2.47pp vs our 78.4%): core perplexity displacement features carry 96.8% of baseline performance
-   - Merged 30 features (19 ours + 11 Binoculars) → **82.60%** (+4.2pp vs our 78.4%): Binoculars' unique cross-model features (bino_score, xppl_mean/var/median) provide genuinely complementary signal
-   - Decomposition: 6 core features = backbone (75.93%); our 13 unique features add +2.47pp (shape statistics); Binoculars' 5 unique features add ~2.17pp (cross-model transfer); combined gain +4.2pp exceeds sum (RF nonlinear interaction)
-   - **Practical takeaway**: merging both pipelines' outputs yields 82.6%, a meaningful improvement. This answers "why not just use Binoculars" — because combining both is better than either alone, and our interpretable features enable the Atlas/EDD analysis that Binoculars cannot provide.
-
-### Q: "What about other detectors (LOKI, Ghostbuster, etc.)?"
-
-1. Three paradigms tested: perturbation, membership-inference, cross-perplexity — covers major methodological families.
-2. Fast-DetectGPT = efficiency improvement over DetectGPT with similar signal.
-3. LOKI/DivEye operate on statistical features similar to our pipeline → more comparable to our method than binary detector baselines.
-
 ## 5. Updated Narrative Summary
 
 **Old**: "Binary detection methods fail at ordinal depth — the signal requires purpose-built distributional features."

@@ -19282,7 +19282,7 @@ Supplementary 检查通过，数字一致性完整。
 
 ## Round 54
 
-10 recorded events
+8 recorded events
 
 
 ### User
@@ -19368,97 +19368,7 @@ _source line 628 · 2026-05-29T13:26:05.655746+00:00_
 
 ### Tool call
 
-_source line 629 · 2026-05-29T13:26:08.265994+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 630 · 2026-05-29T13:26:08.318944+00:00_
-
-1	# Rebuttal Preparation: Negative Experiment Analysis
-2	
-3	## Summary
-4	- Total negative experiments: 25
-5	- Method Negative: 8
-6	- Hyperparameter Sensitivity: 6
-7	- Scale/Generalization: 5
-8	- Evaluation Artifact: 3
-9	- Engineering: 3
-10	
-11	---
-12	
-13	## Category 1: Method Negative (8 experiments)
-14	
-15	Core evidence that the SDF approach — both as auxiliary training loss and as runtime gradient refinement — does not produce real collision avoidance.
-16	
-17	### Experiments
-18	
-19	| exp_id | hypothesis (short) | key metric |
-20	|--------|-------------------|------------|
-21	| eval_early_signal_s0_l1_20k | SDF λ=0.1 seed0 at 20K — early A/B/C signal | CAR=55% (within null 54.5%±2.8) |
-22	| eval_early_signal_s1_l1_20k | SDF λ=0.1 seed1 at 20K — 2nd seed confirmation | CAR=56% (within null) |
-23	| eval_stepwise_s1_l1_22k | Cross-seed validation of s0 22K CAR=60.5% anomaly | CAR=56.5% (anomaly was noise) |
-24	| eval_phase2_18k_s2 | Phase 2 λ=0 after 5K SDF — lasting effect test | CAR ≈ LoRA-only (no lasting effect) |
-25	| eval_a3_v11_object | A3 gradient refinement on object suite | CAR=74.5% < baseline 83%, refined_count=0 |
-26	| eval_a3_v10a_refine | A3 v10a with refinement enabled | CAR=79.5%, refined_count=0 |
-27	| eval_a1_lora_object_v11_rerun | A1 SDF aux loss, 800-episode deep analysis | CAR=91.5% but 99.6% fake safe (frozen) |
-28	| eval_a1_lora_spatial_v11 | A1 SDF on spatial tasks (arm-body collisions) | CAR=0.8%, all 6 safe eps are frozen |
-29	
-30	### Anticipated Questions & Responses
-31	
-32	**Q: "Why does the SDF auxiliary loss not improve collision avoidance at all?"**
-33	
-34	A: We tested SDF auxiliary loss across λ∈{0.005, 0.01, 0.1} — a 20× range — with 3 seeds each. CAR remained statistically indistinguishable from LoRA-only baselines (mean 54.8% vs 54.5%, p>0.1). Stepwise evaluation from 16K to 30K steps shows the SDF signal never emerges during training. The per-task avoidance ordering (chocolate_pudding > milk > orange_juice > bbq_sauce) is identica
-…[truncated 16914 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 631 · 2026-05-29T13:28:29.585579+00:00_
+_source line 629 · 2026-05-29T13:28:29.585579+00:00_
 
 called ToolSearch
 
@@ -19494,7 +19404,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 632 · 2026-05-29T13:28:29.636140+00:00_
+_source line 630 · 2026-05-29T13:28:29.636140+00:00_
 
 
 
@@ -19516,7 +19426,7 @@ _source line 632 · 2026-05-29T13:28:29.636140+00:00_
 
 ### Tool call
 
-_source line 633 · 2026-05-29T13:28:57.136547+00:00_
+_source line 631 · 2026-05-29T13:28:57.136547+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19552,7 +19462,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 634 · 2026-05-29T13:29:00.230103+00:00_
+_source line 632 · 2026-05-29T13:29:00.230103+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -19574,7 +19484,7 @@ _source line 634 · 2026-05-29T13:29:00.230103+00:00_
 
 ### Assistant
 
-_source line 635 · 2026-05-29T13:29:04.224757+00:00_
+_source line 633 · 2026-05-29T13:29:04.224757+00:00_
 
 Rebuttal prep 审查已提交。主要发现：Pi0.5 CAR 数值差 0.5pp 需统一；缺少架构泛化性、demo curation 实操性、dfCAR bimodal 假设泛化性三个高概率审稿人问题；Phase 2 结论措辞偏强。
 
@@ -19598,12 +19508,12 @@ Rebuttal prep 审查已提交。主要发现：Pi0.5 CAR 数值差 0.5pp 需统�
 
 ## Round 55
 
-6 recorded events
+4 recorded events
 
 
 ### User
 
-_source line 636 · 2026-05-29T14:03:19.899559+00:00_
+_source line 634 · 2026-05-29T14:03:19.899559+00:00_
 
 [System 触发审查]:
 **审查修复后的 rebuttal_prep.md**
@@ -19637,92 +19547,7 @@ Agent 已按你上一轮反馈完成 5 项修复：
 
 ### Tool call
 
-_source line 637 · 2026-05-29T14:03:29.621971+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 638 · 2026-05-29T14:03:29.873293+00:00_
-
-1	# Rebuttal Preparation: Negative Experiment Analysis
-2	
-3	## Summary
-4	- Total negative experiments: 25
-5	- Engineering Rigor: 3 (trust-building — bug discovery→fix→re-eval)
-6	- Method Negative: 8
-7	- Hyperparameter Sensitivity: 6
-8	- Scale/Generalization: 5
-9	- Evaluation Artifact: 3
-10	
-11	---
-12	
-13	## Category 1: Engineering Rigor (3 experiments)
-14	
-15	Implementation bugs that, once identified and fixed, still resulted in negative outcomes — confirming the method-level failure is not caused by engineering errors. The bug discovery→fix→re-eval narrative demonstrates scientific rigor and builds trust in the remaining results.
-16	
-17	### Experiments
-18	
-19	| exp_id | hypothesis (short) | key metric |
-20	|--------|-------------------|------------|
-21	| eval_a3_object_m024fix_v11 | M024 bug fix: delta→absolute coordinates for SDF query | CAR=77.1% < baseline, refined_count=0 |
-22	| oracle_a3_m024fix_object_v11 | M027: oracle code was dead — used learned decoder, not GT SDF | CAR=85.6%, 85.6% frozen (fake safety) |
-23	| oracle_a3_force_refine_object_v11 | M024+M026 double bug: coordinate error + decoder miscalibration | CAR=81.2%, gradient magnitude ~1e-6 to 1e-10 |
-24	
-25	### Anticipated Questions & Responses
-26	
-27	**Q: "How do you know the negative results aren't just caused by implementation bugs?"**
-28	
-29	A: We discovered and systematically fixed three bugs during development: M024 (coordinate frame mismatch: delta-action used instead of absolute position for SDF query), M026 (SDF decoder loss of calibration after joint training), and M027 (oracle evaluation dead code — the "ground-truth" SDF path was never invoked). After fixing all three, we conducted a clean oracle experiment series using verified ground-truth SDF fields with three different alpha strategies. All three oracle conditions produced CAR below the unrefined baseline (73.1–76.9% vs 79%), with >96% fake safety rate. The engineering bugs, while they invalidated early experiments, actually motivate
-…[truncated 20514 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 251
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 639 · 2026-05-29T14:04:34.568303+00:00_
+_source line 635 · 2026-05-29T14:04:34.568303+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -19758,7 +19583,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 640 · 2026-05-29T14:04:37.784567+00:00_
+_source line 636 · 2026-05-29T14:04:37.784567+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -19780,7 +19605,7 @@ _source line 640 · 2026-05-29T14:04:37.784567+00:00_
 
 ### Assistant
 
-_source line 641 · 2026-05-29T14:04:41.329157+00:00_
+_source line 637 · 2026-05-29T14:04:41.329157+00:00_
 
 复核已提交。发现 3 个需修正问题：line 143 Pi0.5 CAR 仍为 28%（遗漏同步）、"~26pp" 数字来源不明、"五个数量级"应为两个数量级。
 
@@ -19807,7 +19632,7 @@ _source line 641 · 2026-05-29T14:04:41.329157+00:00_
 
 ### User
 
-_source line 642 · 2026-05-29T14:08:14.369722+00:00_
+_source line 638 · 2026-05-29T14:08:14.369722+00:00_
 
 [系统通知 — worker_done:worker_paper_supplementary-pack_20260529T140408]:
 Worker worker_paper_supplementary-pack_20260529T140408 已完成（status=done），请审查 Agent 的处理结果。
@@ -19829,7 +19654,7 @@ Worker worker_paper_supplementary-pack_20260529T140408 已完成（status=done�
 
 ### Tool call
 
-_source line 643 · 2026-05-29T14:08:21.462786+00:00_
+_source line 639 · 2026-05-29T14:08:21.462786+00:00_
 
 called Glob
 
@@ -19865,7 +19690,7 @@ called Glob
 
 ### Tool result
 
-_source line 644 · 2026-05-29T14:08:21.914719+00:00_
+_source line 640 · 2026-05-29T14:08:21.914719+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission/submission_checklist.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission/main.pdf
@@ -19890,7 +19715,7 @@ _source line 644 · 2026-05-29T14:08:21.914719+00:00_
 
 ### Tool call
 
-_source line 645 · 2026-05-29T14:08:21.915054+00:00_
+_source line 641 · 2026-05-29T14:08:21.915054+00:00_
 
 called Glob
 
@@ -19926,7 +19751,7 @@ called Glob
 
 ### Tool result
 
-_source line 646 · 2026-05-29T14:08:21.965543+00:00_
+_source line 642 · 2026-05-29T14:08:21.965543+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/supplementary_checklist.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary_checklist.md
@@ -19953,7 +19778,7 @@ _source line 646 · 2026-05-29T14:08:21.965543+00:00_
 
 ### Tool call
 
-_source line 647 · 2026-05-29T14:08:24.876085+00:00_
+_source line 643 · 2026-05-29T14:08:24.876085+00:00_
 
 called Read
 
@@ -19987,7 +19812,7 @@ called Read
 
 ### Tool result
 
-_source line 648 · 2026-05-29T14:08:25.328121+00:00_
+_source line 644 · 2026-05-29T14:08:25.328121+00:00_
 
 1	# CoRL 2026 Submission Checklist
 2	
@@ -20053,7 +19878,7 @@ _source line 648 · 2026-05-29T14:08:25.328121+00:00_
 
 ### Tool call
 
-_source line 649 · 2026-05-29T14:08:25.328625+00:00_
+_source line 645 · 2026-05-29T14:08:25.328625+00:00_
 
 called Read
 
@@ -20087,7 +19912,7 @@ called Read
 
 ### Tool result
 
-_source line 650 · 2026-05-29T14:08:25.824378+00:00_
+_source line 646 · 2026-05-29T14:08:25.824378+00:00_
 
 1	# OpenReview Submission Fields — CoRL 2026
 2	
@@ -20125,7 +19950,7 @@ _source line 650 · 2026-05-29T14:08:25.824378+00:00_
 
 ### Tool call
 
-_source line 651 · 2026-05-29T14:08:25.824882+00:00_
+_source line 647 · 2026-05-29T14:08:25.824882+00:00_
 
 called Read
 
@@ -20159,7 +19984,7 @@ called Read
 
 ### Tool result
 
-_source line 652 · 2026-05-29T14:08:25.875565+00:00_
+_source line 648 · 2026-05-29T14:08:25.875565+00:00_
 
 1	# Supplementary Material Checklist
 2	
@@ -20233,7 +20058,7 @@ _source line 652 · 2026-05-29T14:08:25.875565+00:00_
 
 ### Tool call
 
-_source line 653 · 2026-05-29T14:08:31.796617+00:00_
+_source line 649 · 2026-05-29T14:08:31.796617+00:00_
 
 called Bash
 
@@ -20269,7 +20094,7 @@ called Bash
 
 ### Tool result
 
-_source line 654 · 2026-05-29T14:08:31.997778+00:00_
+_source line 650 · 2026-05-29T14:08:31.997778+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 846747 May 29 03:03 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/submission/submission_corl2026.zip
 -rw-r--r-- 1 ubuntu ubuntu  76954 May 29 14:07 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary/supplementary.zip
@@ -20301,7 +20126,7 @@ Archive:  /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisi
 
 ### Tool call
 
-_source line 655 · 2026-05-29T14:08:35.008854+00:00_
+_source line 651 · 2026-05-29T14:08:35.008854+00:00_
 
 called Bash
 
@@ -20337,7 +20162,7 @@ called Bash
 
 ### Tool result
 
-_source line 656 · 2026-05-29T14:08:35.059606+00:00_
+_source line 652 · 2026-05-29T14:08:35.059606+00:00_
 
 Archive:  /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/supplementary/supplementary.zip
   Length      Date    Time    Name
@@ -20394,7 +20219,7 @@ Archive:  /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collisi
 
 ### Tool call
 
-_source line 657 · 2026-05-29T14:08:38.923906+00:00_
+_source line 653 · 2026-05-29T14:08:38.923906+00:00_
 
 called Bash
 
@@ -20430,7 +20255,7 @@ called Bash
 
 ### Tool result
 
-_source line 658 · 2026-05-29T14:08:39.024838+00:00_
+_source line 654 · 2026-05-29T14:08:39.024838+00:00_
 
 # Supplementary Material: ColliForce-VLA
 
@@ -20496,7 +20321,7 @@ code/
 
 ### Tool call
 
-_source line 659 · 2026-05-29T14:08:46.855611+00:00_
+_source line 655 · 2026-05-29T14:08:46.855611+00:00_
 
 called Bash
 
@@ -20532,7 +20357,7 @@ called Bash
 
 ### Tool result
 
-_source line 660 · 2026-05-29T14:08:46.906151+00:00_
+_source line 656 · 2026-05-29T14:08:46.906151+00:00_
 
 README.md
 ---PATHS---
@@ -20557,7 +20382,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 661 · 2026-05-29T14:08:49.967547+00:00_
+_source line 657 · 2026-05-29T14:08:49.967547+00:00_
 
 called Bash
 
@@ -20593,7 +20418,7 @@ called Bash
 
 ### Tool result
 
-_source line 662 · 2026-05-29T14:08:50.018235+00:00_
+_source line 658 · 2026-05-29T14:08:50.018235+00:00_
 
 133:- This is an anonymous submission. No author-identifying information is included.
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/reviewer_fcd971d1
@@ -20616,7 +20441,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 663 · 2026-05-29T14:08:53.632120+00:00_
+_source line 659 · 2026-05-29T14:08:53.632120+00:00_
 
 called Bash
 
@@ -20652,7 +20477,7 @@ called Bash
 
 ### Tool result
 
-_source line 664 · 2026-05-29T14:08:53.732965+00:00_
+_source line 660 · 2026-05-29T14:08:53.732965+00:00_
 
 ---HARDCODED---
 code/src/train_colliforce.py:419:    """Log losses to console and wandb."""
@@ -20677,7 +20502,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 665 · 2026-05-29T14:08:58.808624+00:00_
+_source line 661 · 2026-05-29T14:08:58.808624+00:00_
 
 called Bash
 
@@ -20713,7 +20538,7 @@ called Bash
 
 ### Tool result
 
-_source line 666 · 2026-05-29T14:08:58.959677+00:00_
+_source line 662 · 2026-05-29T14:08:58.959677+00:00_
 
 All 22 Python files parse OK
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/.claude/sessions/reviewer_fcd971d1
@@ -20736,7 +20561,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 667 · 2026-05-29T14:09:03.578594+00:00_
+_source line 663 · 2026-05-29T14:09:03.578594+00:00_
 
 called Bash
 
@@ -20772,7 +20597,7 @@ called Bash
 
 ### Tool result
 
-_source line 668 · 2026-05-29T14:09:03.629131+00:00_
+_source line 664 · 2026-05-29T14:09:03.629131+00:00_
 
 === README hyperparams ===
     --scene spatial_bowl --seed 0 --gpu 0 --lambda_sdf 0.1
@@ -20820,7 +20645,7 @@ code/training/train_a1_sdf_aux_pi05.py:208:                    self.lambda_sdf, 
 
 ### Tool call
 
-_source line 669 · 2026-05-29T14:09:12.265585+00:00_
+_source line 665 · 2026-05-29T14:09:12.265585+00:00_
 
 called Bash
 
@@ -20856,7 +20681,7 @@ called Bash
 
 ### Tool result
 
-_source line 670 · 2026-05-29T14:09:12.317618+00:00_
+_source line 666 · 2026-05-29T14:09:12.317618+00:00_
 
 61:    p.add_argument("--batch_size", type=int, default=32)
 62:    p.add_argument("--num_train_steps", type=int, default=30000)
@@ -20887,7 +20712,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 671 · 2026-05-29T14:09:15.779327+00:00_
+_source line 667 · 2026-05-29T14:09:15.779327+00:00_
 
 called Bash
 
@@ -20923,7 +20748,7 @@ called Bash
 
 ### Tool result
 
-_source line 672 · 2026-05-29T14:09:15.829975+00:00_
+_source line 668 · 2026-05-29T14:09:15.829975+00:00_
 
 code/training/train_pi05_lora_baseline.py:88:            _m, pali_rank=16, pali_alpha=16.0, expert_rank=32, expert_alpha=32.0)
 code/training/train_pi05_lora_baseline.py:96:        logging.info("  LoRA PaliGemma (rank=16): %.2fM",
@@ -20959,7 +20784,7 @@ Shell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects
 
 ### Tool call
 
-_source line 673 · 2026-05-29T14:09:20.395079+00:00_
+_source line 669 · 2026-05-29T14:09:20.395079+00:00_
 
 called Bash
 
@@ -20995,7 +20820,7 @@ called Bash
 
 ### Tool result
 
-_source line 674 · 2026-05-29T14:09:20.445865+00:00_
+_source line 670 · 2026-05-29T14:09:20.445865+00:00_
 
 === Check paper hyperparams ===
 78:\cmidrule(lr){2-9}
@@ -21026,7 +20851,7 @@ _source line 674 · 2026-05-29T14:09:20.445865+00:00_
 
 ### Tool call
 
-_source line 675 · 2026-05-29T14:10:01.824009+00:00_
+_source line 671 · 2026-05-29T14:10:01.824009+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21062,7 +20887,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 676 · 2026-05-29T14:10:04.987845+00:00_
+_source line 672 · 2026-05-29T14:10:04.987845+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -21084,7 +20909,7 @@ _source line 676 · 2026-05-29T14:10:04.987845+00:00_
 
 ### Assistant
 
-_source line 677 · 2026-05-29T14:10:09.315915+00:00_
+_source line 673 · 2026-05-29T14:10:09.315915+00:00_
 
 已完成 supplementary pack 审查并上报。发现 3 处 critical（README 超参与代码/论文不一致：learning rate 2x 偏差、batch size 8x 偏差、lambda 消融范围笔误）和 3 处 warning（LoRA rank 不完整、页数矛盾、checklist 未更新）。所有 Python 文件语法正确、无匿名性泄露。
 
@@ -21106,12 +20931,12 @@ _source line 677 · 2026-05-29T14:10:09.315915+00:00_
 
 ## Round 57
 
-14 recorded events
+12 recorded events
 
 
 ### User
 
-_source line 678 · 2026-05-29T15:01:13.015843+00:00_
+_source line 674 · 2026-05-29T15:01:13.015843+00:00_
 
 [System 触发审查]:
 **[Rebuttal 覆盖度审计请求]**
@@ -21146,7 +20971,7 @@ artifacts/rebuttal_prep.md 已完成 25 个 negative 结果的 5 类分析 + 13 
 
 ### Tool call
 
-_source line 679 · 2026-05-29T15:01:21.021621+00:00_
+_source line 675 · 2026-05-29T15:01:21.021621+00:00_
 
 called Read
 
@@ -21180,7 +21005,7 @@ called Read
 
 ### Tool result
 
-_source line 680 · 2026-05-29T15:01:21.172915+00:00_
+_source line 676 · 2026-05-29T15:01:21.172915+00:00_
 
 1	# ColliForce-VLA Paper Framing
 2	
@@ -21238,7 +21063,7 @@ _source line 680 · 2026-05-29T15:01:21.172915+00:00_
 
 ### Tool call
 
-_source line 681 · 2026-05-29T15:01:21.173382+00:00_
+_source line 677 · 2026-05-29T15:01:21.173382+00:00_
 
 called ToolSearch
 
@@ -21274,7 +21099,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 682 · 2026-05-29T15:01:21.374900+00:00_
+_source line 678 · 2026-05-29T15:01:21.374900+00:00_
 
 
 
@@ -21296,7 +21121,7 @@ _source line 682 · 2026-05-29T15:01:21.374900+00:00_
 
 ### Tool call
 
-_source line 683 · 2026-05-29T15:01:24.585951+00:00_
+_source line 679 · 2026-05-29T15:01:24.585951+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -21334,7 +21159,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 684 · 2026-05-29T15:01:24.989698+00:00_
+_source line 680 · 2026-05-29T15:01:24.989698+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_phase2_18k_s2\": {\"hypothesis\": \"Phase 2 18K checkpoint (λ=0 after 5K SDF) should show CAR similar to LoRA-only (54.67%), confirming SDF gradients produce no lasting behavioral effect even at intermediate training stages.\", \"conclusion\": \"negative\"}, \"eval_spatial_bowl_sdf_s0_l005_30k\": {\"hypothesis\": \"Evaluate spatial_bowl SDF λ=0.005 seed0 30K checkpoint on safelibero_spatial. Cross-scene generalization: does SDF-trained model show improved CAR in spatial_bowl like it does in object_pudding? Comparison with spatial_bowl LoRA-only control pending (plan_015 still training).\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 51.5, \"avg_CAR\": 11.5, \"task0_TSR\": 68, \"task0_CAR\": 0, \"task1_TSR\": 42, \"task1_CAR\": 10, \"task2_TSR\": 56, \"task2_CAR\": 2, \"task3_TSR\": 40, \"task3_CAR\": 34, \"source\": \"eval_spatial_sdf_s0_l005_30k.json (authoritative)\"}}, \"eval_stepwise_s0_l1_28k\": {\"hypothesis\": \"Stepwise eval at 28K for λ=0.1 seed0 — continuing learning curve (16K=55.5→20K=55→22K=60.5→24K=52.5→26K=53.5). Expected CAR ~53-56% (Scenario B range). Last data point before 30K final eval.\", \"conclusion\": \"negative\", \"metrics\": {\"avg_TSR\": 48.5, \"avg_CAR\": 54.5, \"task0_orange_juice\": {\"TSR\": 28, \"CAR\": 50, \"avg_max_disp\": 0.0618}, \"task1_chocolate_pudding\": {\"TSR\": 68, \"CAR\": 74, \"avg_max_disp\": 0.0463}, \"task2_milk\": {\"TSR\": 44, \"CAR\": 72, \"avg_max_disp\": 0.0277}, \"task3_bbq_sauce\": {\"TSR\": 54, \"CAR\": 22, \"avg_max_disp\": 0.0878}, \"frozen_rate\": 0, \"seed\": 7}}, \"eval_stepwise_s0_l1_24k_v2\": {\"hypothesis\": \"Re-eval 24K with correct --pi05 flag. Original eval_stepwise_s0_l1_24k produced frozen=29.5% artifact due to missing --pi05. 26K v2 with --pi05 showed frozen=0%. This re-eval verifies whether 24K frozen was also an artifact. Expected: frozen=0%, CAR ≈ 54-56% (baseline range).\", \"conclusion\": \"negative\", \"metrics
 …[truncated 17601 chars]
@@ -21357,76 +21182,7 @@ _source line 684 · 2026-05-29T15:01:24.989698+00:00_
 
 ### Tool call
 
-_source line 685 · 2026-05-29T15:02:28.458560+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-  "offset": "0",
-  "limit": "10"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/rebuttal_prep.md",
-    "offset": "0",
-    "limit": "10"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 686 · 2026-05-29T15:02:28.561059+00:00_
-
-0	# Rebuttal Preparation: Negative Experiment Analysis
-1	
-2	## Summary
-3	- Total negative experiments: 25
-4	- Engineering Rigor: 3 (trust-building — bug discovery→fix→re-eval)
-5	- Method Negative: 8
-6	- Hyperparameter Sensitivity: 6
-7	- Scale/Generalization: 5
-8	- Evaluation Artifact: 3
-9	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
-  "tool": "Read",
-  "elapsed_ms": 102
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 687 · 2026-05-29T15:02:31.420643+00:00_
+_source line 681 · 2026-05-29T15:02:31.420643+00:00_
 
 called Read
 
@@ -21460,7 +21216,7 @@ called Read
 
 ### Tool result
 
-_source line 688 · 2026-05-29T15:02:31.421072+00:00_
+_source line 682 · 2026-05-29T15:02:31.421072+00:00_
 
 1	\section{Avoidance Source Diagnosis}\label{sec:avoidance_source}
 2	
@@ -21508,7 +21264,7 @@ _source line 688 · 2026-05-29T15:02:31.421072+00:00_
 
 ### Tool call
 
-_source line 689 · 2026-05-29T15:03:58.948352+00:00_
+_source line 683 · 2026-05-29T15:03:58.948352+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21544,7 +21300,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 690 · 2026-05-29T15:04:02.164756+00:00_
+_source line 684 · 2026-05-29T15:04:02.164756+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -21566,7 +21322,7 @@ _source line 690 · 2026-05-29T15:04:02.164756+00:00_
 
 ### Assistant
 
-_source line 691 · 2026-05-29T15:04:06.484131+00:00_
+_source line 685 · 2026-05-29T15:04:06.484131+00:00_
 
 审计已完成并提交。核心发现：25 个 negative 实验全部覆盖，但 paper_framing.md 的 R6（TSR collapse / catastrophic forgetting）在 rebuttal prep 中完全缺失——这是审稿人攻击 Claim 3 的高概率路径。另外 BBQ sauce per-task 高方差分析和 Phase 2 单 seed 应急策略也需补充。
 
@@ -21593,7 +21349,7 @@ _source line 691 · 2026-05-29T15:04:06.484131+00:00_
 
 ### User
 
-_source line 692 · 2026-05-29T15:05:57.330820+00:00_
+_source line 686 · 2026-05-29T15:05:57.330820+00:00_
 
 [系统通知 — worker_done:worker_paper_seed3-restart-plan_20260529T150143]:
 Worker worker_paper_seed3-restart-plan_20260529T150143 已完成（status=done），请审查 Agent 的处理结果。
@@ -21615,7 +21371,7 @@ Worker worker_paper_seed3-restart-plan_20260529T150143 已完成（status=done�
 
 ### Tool call
 
-_source line 693 · 2026-05-29T15:06:04.778223+00:00_
+_source line 687 · 2026-05-29T15:06:04.778223+00:00_
 
 called Glob
 
@@ -21651,7 +21407,7 @@ called Glob
 
 ### Tool result
 
-_source line 694 · 2026-05-29T15:06:05.079805+00:00_
+_source line 688 · 2026-05-29T15:06:05.079805+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/seed3_restart_plan.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/seed3_restart_plan.md
@@ -21674,7 +21430,7 @@ _source line 694 · 2026-05-29T15:06:05.079805+00:00_
 
 ### Tool call
 
-_source line 695 · 2026-05-29T15:06:06.184904+00:00_
+_source line 689 · 2026-05-29T15:06:06.184904+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -21712,7 +21468,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 696 · 2026-05-29T15:06:06.587605+00:00_
+_source line 690 · 2026-05-29T15:06:06.587605+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3895}}"}
 
@@ -21734,7 +21490,7 @@ _source line 696 · 2026-05-29T15:06:06.587605+00:00_
 
 ### Tool call
 
-_source line 697 · 2026-05-29T15:06:09.667900+00:00_
+_source line 691 · 2026-05-29T15:06:09.667900+00:00_
 
 called Read
 
@@ -21768,7 +21524,7 @@ called Read
 
 ### Tool result
 
-_source line 698 · 2026-05-29T15:06:09.668572+00:00_
+_source line 692 · 2026-05-29T15:06:09.668572+00:00_
 
 1	# Seed3 Restart Plan
 2	
@@ -21840,7 +21596,7 @@ _source line 698 · 2026-05-29T15:06:09.668572+00:00_
 
 ### Tool call
 
-_source line 699 · 2026-05-29T15:06:47.142896+00:00_
+_source line 693 · 2026-05-29T15:06:47.142896+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -21876,7 +21632,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 700 · 2026-05-29T15:06:50.204125+00:00_
+_source line 694 · 2026-05-29T15:06:50.204125+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -21905,7 +21661,7 @@ _source line 700 · 2026-05-29T15:06:50.204125+00:00_
 
 ### User
 
-_source line 701 · 2026-05-29T15:06:53.106952+00:00_
+_source line 695 · 2026-05-29T15:06:53.106952+00:00_
 
 [系统通知 — worker_done:worker_paper_per-task-analysis_20260529T150201]:
 Worker worker_paper_per-task-analysis_20260529T150201 已完成（status=done），请审查 Agent 的处理结果。
@@ -21927,7 +21683,7 @@ Worker worker_paper_per-task-analysis_20260529T150201 已完成（status=done）
 
 ### Tool call
 
-_source line 702 · 2026-05-29T15:07:00.086881+00:00_
+_source line 696 · 2026-05-29T15:07:00.086881+00:00_
 
 called Glob
 
@@ -21963,7 +21719,7 @@ called Glob
 
 ### Tool result
 
-_source line 703 · 2026-05-29T15:07:00.538958+00:00_
+_source line 697 · 2026-05-29T15:07:00.538958+00:00_
 
 No files found
 
@@ -21985,7 +21741,7 @@ No files found
 
 ### Tool call
 
-_source line 704 · 2026-05-29T15:07:00.690202+00:00_
+_source line 698 · 2026-05-29T15:07:00.690202+00:00_
 
 called Glob
 
@@ -22021,7 +21777,7 @@ called Glob
 
 ### Tool result
 
-_source line 705 · 2026-05-29T15:07:00.690788+00:00_
+_source line 699 · 2026-05-29T15:07:00.690788+00:00_
 
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/_project/report/per_task_analysis.md
 /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/artifacts/per_task_analysis.md
@@ -22044,7 +21800,7 @@ _source line 705 · 2026-05-29T15:07:00.690788+00:00_
 
 ### Tool call
 
-_source line 706 · 2026-05-29T15:07:03.551840+00:00_
+_source line 700 · 2026-05-29T15:07:03.551840+00:00_
 
 called Read
 
@@ -22078,7 +21834,7 @@ called Read
 
 ### Tool result
 
-_source line 707 · 2026-05-29T15:07:03.552594+00:00_
+_source line 701 · 2026-05-29T15:07:03.552594+00:00_
 
 1	# Per-Task CAR Breakdown Analysis
 2	
@@ -22150,7 +21906,7 @@ _source line 707 · 2026-05-29T15:07:03.552594+00:00_
 
 ### Tool call
 
-_source line 708 · 2026-05-29T15:08:03.317629+00:00_
+_source line 702 · 2026-05-29T15:08:03.317629+00:00_
 
 called mcp__agent-ml-research__reviewer_post_to_director
 
@@ -22186,7 +21942,7 @@ called mcp__agent-ml-research__reviewer_post_to_director
 
 ### Tool result
 
-_source line 709 · 2026-05-29T15:08:06.430931+00:00_
+_source line 703 · 2026-05-29T15:08:06.430931+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_0db37ddf884a30d7a41b32e7cfe7c3ae:director\"}, \"error\": \"\"}"}
 
@@ -22208,7 +21964,7 @@ _source line 709 · 2026-05-29T15:08:06.430931+00:00_
 
 ### Assistant
 
-_source line 710 · 2026-05-29T15:08:08.670786+00:00_
+_source line 704 · 2026-05-29T15:08:08.670786+00:00_
 
 数据与 registry / supplementary 交叉核验后发现一致性良好，分析质量高。
 
@@ -22235,7 +21991,7 @@ _source line 710 · 2026-05-29T15:08:08.670786+00:00_
 
 ### User
 
-_source line 711 · 2026-05-29T15:24:55.429354+00:00_
+_source line 705 · 2026-05-29T15:24:55.429354+00:00_
 
 [系统通知 — roadmap_updated]:
 [系统通知] ROADMAP.md 已更新（原因：Rebuttal 准备完成（16 Q&A + per-task 分析 + seed3 restart plan），更新阻塞状态），请审查研究方向和计划的合理性。
@@ -22247,6 +22003,121 @@ _source line 711 · 2026-05-29T15:24:55.429354+00:00_
   "recorded_role": "user",
   "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
   "source": "roadmap_updated"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 706 · 2026-05-29T15:25:00.728152+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_roadmap",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_roadmap",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 707 · 2026-05-29T15:25:00.828914+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 708 · 2026-05-29T15:25:04.693276+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "diff_collision_sdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "diff_collision_sdf"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 709 · 2026-05-29T15:25:04.794302+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/ROADMAP.md\", \"content\": \"# diff_collision_sdf — Research Dashboard\\n\\n> 最后更新: 2026-05-29 15:24 UTC | 更新原因: Rebuttal 准备完成（16 Q&A + per-task 分析 + seed3 restart plan），更新阻塞状态\\n\\n## 核心方向\\nVLA safety 评估 CAR 被 fake safety 污染 + SDF avoidance attribution 分析。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 论文终稿就绪 + rebuttal 准备完成，等用户确认提交\\n- **模板**: CoRL 2026 单栏格式 ✅\\n- **写作**: 正文 8 页 + refs 2 页 + appendix 8 页 = 18 页 ✅\\n- **数据**: 全表统一用 rotation-fixed reeval v2 数据源 ✅\\n- **数字一致性**: Reviewer 全文交叉核验通过 ✅\\n- **Rebuttal 准备**: rebuttal_prep.md 16 个 Q&A 覆盖 R1-R6 全部 reviewer concerns ✅\\n- **Per-task 分析**: fingerprint 100% 一致，94% 方差来自 task identity ✅\\n- **通信阻塞**: Feishu API 月配额耗尽，已报 Manager\\n\\n## 可信 Reeval 数据汇总（全部来自 seed=7, 200ep，rotation-fixed v2）\\n\\n| 模型 | Seeds | CAR | TSR | SSR |\\n|------|-------|-----|-----|-----|\\n| Pi0.5 baseline | 1 | 28.5% | 71.5% | 0.39 |\\n| LoRA-only 30K | 3 | 54.83%±2.25 | 49.7%±3.2 | 0.54 |\\n| SDF λ=0.005 30K | 3 | 54.5%±2.29 | 54.0%±3.0 | 0.51 |\\n| SDF λ=0.01 30K | 3 | 56.33%±1.61 | 53.8%±1.5 | 0.56 |\\n| SDF λ=0.1 30K | 3 | 57.00% | — | — |\\n\\n## 关键时间线\\n\\n| 事件 | 时间 | 状态 |\\n|------|------|------|\\n| 论文 + supplementary 完成 | 22:27 UTC 5/28 | ✅ |\\n| Figure 1 数值修正 | 23:30 UTC 5/28 | ✅ |\\n| Reviewer 最终验证 PASS | Loop #10 | ✅ |\\n| Rebuttal prep 完成（16 Q&A） | 15:30 UTC 5/29 | ✅ |\\n| Per-task analysis 完成 | 15:30 UTC 5/29 | ✅ |\\n| Seed3 restart plan 就绪 | 15:30 UTC 5/29 | ✅ |\\n| 等用户确认 PDF | — | 🔄 阻塞（Feishu API 配额耗尽） |\\n| **DDL** | **2026-05-29** | |\\n\\n## 基础设施\\n- **westd-35807**: 不可达（SSH 连接失败，可能实例过期）\\n- **westd-45947**: 不可达（SSH 连接失败，可能实例过期）\\n- **Feishu API**: 月配额耗尽，无法给用户发消息，已报 Manager\\n- 137 个实验已全部完成（73 success / 25 negative / 22 failed / 16 killed）\\n\\n## 近期任务\\n- [x] Rebuttal prep R6 TSR collapse Q&A 补充\\n- [x] Per-task error case 分析（BBQ 高方差）\\n- [x] Phase 2 单 seed 应急策略\\n- [x] R2/R4/R5 话术强化\\n- [x]
+…[truncated 1645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_2c646862aa8ab8cb11d510a31e342e17:reviewer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 101
 }
 ```
 

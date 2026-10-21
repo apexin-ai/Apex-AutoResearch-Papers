@@ -1,4 +1,4 @@
-# Rebuttal 准备——25 个阴性实验 Failure Pattern 分析
+# 25 个阴性实验 Failure Pattern 分析
 
 ## 分类统计
 
@@ -22,24 +22,3 @@ oracle_a3_m024fix、oracle_a3_force_refine、eval_a3_object_m024fix：受 M027 o
 ### C. 基座模型基线探测（2/25，8%）
 Pi0.5 base eval (CAR=28%, 98.2% fake) 和 spatial eval (CAR=13%)。
 
-## Reviewer 最可能质疑 + 回应
-
-**Q1: "25 个 negative——没 try hard enough？超参不优？"**
-反驳：SDF 覆盖 λ ∈ {0.005, 0.01, 0.1}（20× 范围），oracle 覆盖 3 种策略 + GT SDF，跨 2 model families，7 个 checkpoints。如果超参是问题，至少某个组合应该 work。
-
-**Q2: "Oracle 用了 action-collapsed baseline 不公平"**
-反驳：Pi0.5 LoRA 非 collapsed 验证（CAR 51.9% vs 56.5%, -4.6pp），per-task pattern 一致。
-
-**Q3: "为什么不做 full-body SDF？"**
-反驳：贡献是诊断性的——先确认 WHY EE-only 失败，再指向 full-body 作为必要路径。
-
-## Rebuttal 框架
-
-**框架 1: 阴性结果本身就是贡献**
-25 个阴性不是"方法不 work"，而是证明当前评估体系存在结构性缺陷。三个发现跨 100+ 实验、6000+ episodes、两个 VLA 家族稳健成立。
-
-**框架 2: 统计诚实性**
-MDE ≈ 5.6pp at 80% power，2-5pp 效应无法解析。即使存在 2-3pp 效应，其安全价值也可疑——EE-only 结构上无法防止 arm-link 碰撞。
-
-**框架 3: 预期 vs 意外**
-唯一"意外"是 A3 learned SDF refined_count=0——但恰好揭示 collision-free demonstrations 中 EE 本来就远离障碍物，SDF 值自然为正。不是 bug 而是 demonstration data subsumes SDF signal 的直接后果。

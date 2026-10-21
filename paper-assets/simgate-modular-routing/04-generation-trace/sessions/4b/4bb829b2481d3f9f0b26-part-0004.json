@@ -2693,166 +2693,6 @@
         },
         {
           "source_line": 678,
-          "timestamp": "2026-05-21T23:45:29.624847+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md"
-            }
-          },
-          "id": "event-000678"
-        },
-        {
-          "source_line": 679,
-          "timestamp": "2026-05-21T23:45:29.676505+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# EMNLP 2026 ARR Rebuttal Preparation\n2\t\n3\t## Attack 1: Single-Environment Generalization\n4\t\n5\t> \"ScienceWorld is just one environment. How generalizable is your framework?\"\n6\t\n7\tWe appreciate this concern and address it at two levels: the framework's generality and the specific finding's scope.\n8\t\n9\t**Framework generality is empirically demonstrated across three environments.** We apply the identical diagnostic procedure—unchanged—to ScienceWorld, MATH (§3.4), and ALFWorld (§3.4), obtaining qualitatively distinct diagnoses: death dominance (DAF=90.4%), no extractable signal (p=0.81), and information asymmetry (DAF=0%), respectively. Each diagnosis is correct: always-deterministic is optimal for ScienceWorld, neither strategy dominates in MATH, and the information-advantaged strategy wins in ALFWorld. The framework's value lies in producing the correct diagnosis for each environment without modification—it is a diagnostic tool, not a claim that all environments exhibit death dominance.\n10\t\n11\t**The specific finding (death dominance) is replicated across three model families** (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B; DAF=88–90%, 2.2pp spread) and persists under 10× scaling to 72B (DAF=92.4%). This cross-model stability confirms death dominance is an environment property, not a model artifact. Additionally, a MiniHack pilot (Appendix R) correctly returns \"no signal\" as a fourth validated condition, further confirming framework applicability.\n12\t\n13\t**Practical generalizability** is addressed by the ~50-episode pilot protocol (Appendix R), which correctly predicted all four tested conditions. The pilot is designed to be low-cost (4–8 GPU-hours vs. 200 for full router training), enabling practitioners to diagnose any new environment before committing to router development. We explicitly scope our quantitative claims to ScienceWorld while arguing the diagnostic methodology generalizes (Limitations §1).\n14\t\n15\t---\n16\t\n17\t## Attack 2: Trivial Finding\n18\t\n19\t> \"Given the -1\n…[truncated 8797 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-000679"
-        },
-        {
-          "source_line": 680,
-          "timestamp": "2026-05-21T23:45:41.926200+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-              "offset": "80",
-              "limit": "30"
-            }
-          },
-          "id": "event-000680"
-        },
-        {
-          "source_line": 681,
-          "timestamp": "2026-05-21T23:45:42.027216+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (80). The file has 80 lines.</system-reminder>"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Read",
-            "elapsed_ms": 101
-          },
-          "id": "event-000681"
-        },
-        {
-          "source_line": 682,
-          "timestamp": "2026-05-21T23:45:52.121924+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-              "old_string": "**Crucially, the primary metric is penalty-independent.** The 78.9% death-asymmetry label fraction holds at any penalty value P>0 (§2.4). DAF is a derived, P-dependent measure; we report both precisely to separate the structural finding (78.9%) from its score-space amplification. At P=0, 54 sole-signal episodes lose their discriminating power, but the remaining 41 non-tie labels still show 51.2% death asymmetry, confirming that death events carry routing-relevant information independent of penalty magnitude.\n\n---",
-              "new_string": "**Crucially, the primary metric is penalty-independent.** The 78.9% death-asymmetry label fraction holds at any penalty value P>0 (§2.4). DAF is a derived, P-dependent measure; we report both precisely to separate the structural finding (78.9%) from its score-space amplification. At P=0, 54 sole-signal episodes lose their discriminating power, but the remaining 41 non-tie labels still show 51.2% death asymmetry, confirming that death events carry routing-relevant information independent of penalty magnitude.\n\nIf death dominance were trivially obvious, diagnostic decomposition would be standard practice. Yet no prior routing work—Toolformer, ART, Chameleon, CogRouter, RouteLLM—performs signal-source diagnosis before training a router. The absence of prior diagnostic work itself argues against triviality.\n\n---"
-            }
-          },
-          "id": "event-000682"
-        },
-        {
-          "source_line": 683,
-          "timestamp": "2026-05-21T23:45:52.172976+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-000683"
-        },
-        {
-          "source_line": 684,
-          "timestamp": "2026-05-21T23:45:59.653273+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
-              "old_string": "**(iii) Directional consistency is itself informative.** All 10 death-prone task types show deterministic preference (10/10 same direction). Under the null hypothesis of random direction, P(10/10 same) = 2^{-10} ≈ 0.001. This directional consistency test does not require large per-task N.\n\n**(iv) Cross-model replication substitutes for within-model N.**",
-              "new_string": "**(iii) Directional consistency is itself informative.** All 10 death-prone task types show deterministic preference (10/10 same direction). Under the null hypothesis of random direction, P(10/10 same) = 2^{-10} ≈ 0.001. This directional consistency test does not require large per-task N. Moreover, directional consistency holds across three independently sampled model families (Qwen 10/10, Llama 10/10, Gemma 10/10 = 30/30), where model architectures provide genuinely independent sampling—stronger than within-model 10/10.\n\n**(iv) Cross-model replication substitutes for within-model N.**"
-            }
-          },
-          "id": "event-000684"
-        },
-        {
-          "source_line": 685,
-          "timestamp": "2026-05-21T23:45:59.653940+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-000685"
-        },
-        {
-          "source_line": 686,
           "timestamp": "2026-05-21T23:46:13.159651+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2870,10 +2710,10 @@
               "timeout": "120000"
             }
           },
-          "id": "event-000686"
+          "id": "event-000678"
         },
         {
-          "source_line": 687,
+          "source_line": 679,
           "timestamp": "2026-05-21T23:46:17.515332+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2888,10 +2728,10 @@
             "tool": "Bash",
             "elapsed_ms": 4355
           },
-          "id": "event-000687"
+          "id": "event-000679"
         },
         {
-          "source_line": 688,
+          "source_line": 680,
           "timestamp": "2026-05-21T23:46:29.011130+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2909,10 +2749,10 @@
               "project": "simgate-modular-routing"
             }
           },
-          "id": "event-000688"
+          "id": "event-000680"
         },
         {
-          "source_line": 689,
+          "source_line": 681,
           "timestamp": "2026-05-21T23:46:32.679092+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2927,10 +2767,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3667
           },
-          "id": "event-000689"
+          "id": "event-000681"
         },
         {
-          "source_line": 690,
+          "source_line": 682,
           "timestamp": "2026-05-21T23:46:36.130637+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2943,7 +2783,7 @@
           "metadata": {
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d"
           },
-          "id": "event-000690"
+          "id": "event-000682"
         }
       ]
     },
@@ -2951,7 +2791,7 @@
       "number": 19,
       "messages": [
         {
-          "source_line": 691,
+          "source_line": 683,
           "timestamp": "2026-05-22T00:48:48.497798+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2965,10 +2805,10 @@
             "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
             "source": "director"
           },
-          "id": "event-000691"
+          "id": "event-000683"
         },
         {
-          "source_line": 692,
+          "source_line": 684,
           "timestamp": "2026-05-22T00:49:46.747246+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2985,10 +2825,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md"
             }
           },
-          "id": "event-000692"
+          "id": "event-000684"
         },
         {
-          "source_line": 693,
+          "source_line": 685,
           "timestamp": "2026-05-22T00:49:46.798119+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3003,10 +2843,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-000693"
+          "id": "event-000685"
         },
         {
-          "source_line": 694,
+          "source_line": 686,
           "timestamp": "2026-05-22T00:50:01.966706+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3023,10 +2863,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-000694"
+          "id": "event-000686"
         },
         {
-          "source_line": 695,
+          "source_line": 687,
           "timestamp": "2026-05-22T00:50:02.117834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3041,10 +2881,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-000695"
+          "id": "event-000687"
         },
         {
-          "source_line": 696,
+          "source_line": 688,
           "timestamp": "2026-05-22T00:50:11.456456+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3064,10 +2904,10 @@
               "new_string": "### Abstract (plain text, synced with abstract.tex post-R26)\nLLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs. deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This label fraction is penalty-independent. A derived score-weighted measure, the Death Avoidance Factor, reaches 88-90% across three 7-9B model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), illustrating the framework's applicability. A ~50-episode diagnostic pilot provides preliminary signal for identifying the dominant routing mechanism given a large effect size (d = 3.02); environments with smaller effects may require larger samples, enabling informed build-vs-buy decisions before expensive router training."
             }
           },
-          "id": "event-000696"
+          "id": "event-000688"
         },
         {
-          "source_line": 697,
+          "source_line": 689,
           "timestamp": "2026-05-22T00:50:11.507252+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3082,10 +2922,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000697"
+          "id": "event-000689"
         },
         {
-          "source_line": 698,
+          "source_line": 690,
           "timestamp": "2026-05-22T00:52:30.921168+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3103,10 +2943,10 @@
               "description": "Check current PDF page count"
             }
           },
-          "id": "event-000698"
+          "id": "event-000690"
         },
         {
-          "source_line": 699,
+          "source_line": 691,
           "timestamp": "2026-05-22T00:52:31.474155+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3121,10 +2961,10 @@
             "tool": "Bash",
             "elapsed_ms": 552
           },
-          "id": "event-000699"
+          "id": "event-000691"
         },
         {
-          "source_line": 700,
+          "source_line": 692,
           "timestamp": "2026-05-22T00:52:31.524860+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3141,10 +2981,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
             }
           },
-          "id": "event-000700"
+          "id": "event-000692"
         },
         {
-          "source_line": 701,
+          "source_line": 693,
           "timestamp": "2026-05-22T00:52:31.525339+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3159,10 +2999,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-000701"
+          "id": "event-000693"
         },
         {
-          "source_line": 702,
+          "source_line": 694,
           "timestamp": "2026-05-22T00:52:35.391187+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3180,10 +3020,10 @@
               "description": "Find where References section starts in text output"
             }
           },
-          "id": "event-000702"
+          "id": "event-000694"
         },
         {
-          "source_line": 703,
+          "source_line": 695,
           "timestamp": "2026-05-22T00:52:35.693355+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3198,10 +3038,10 @@
             "tool": "Bash",
             "elapsed_ms": 302
           },
-          "id": "event-000703"
+          "id": "event-000695"
         },
         {
-          "source_line": 704,
+          "source_line": 696,
           "timestamp": "2026-05-22T00:52:39.809562+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3219,10 +3059,10 @@
               "description": "Check main text ends at page 8"
             }
           },
-          "id": "event-000704"
+          "id": "event-000696"
         },
         {
-          "source_line": 705,
+          "source_line": 697,
           "timestamp": "2026-05-22T00:52:40.161911+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3237,10 +3077,10 @@
             "tool": "Bash",
             "elapsed_ms": 352
           },
-          "id": "event-000705"
+          "id": "event-000697"
         },
         {
-          "source_line": 706,
+          "source_line": 698,
           "timestamp": "2026-05-22T00:52:46.487755+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3260,10 +3100,10 @@
               "new_string": "| main.pdf | ✅ Ready | 23 pages (8 main + 15 appendix), compiled & verified |\n| Appendices A–T | ✅ Included in main.pdf | No separate appendix file needed |"
             }
           },
-          "id": "event-000706"
+          "id": "event-000698"
         },
         {
-          "source_line": 707,
+          "source_line": 699,
           "timestamp": "2026-05-22T00:52:46.538508+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3278,10 +3118,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000707"
+          "id": "event-000699"
         },
         {
-          "source_line": 708,
+          "source_line": 700,
           "timestamp": "2026-05-22T00:52:51.358201+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3301,10 +3141,10 @@
               "new_string": "| Paper PDF\n`main.pdf` — compiled 2026-05-22 UTC, 23 pages (8 main + 15 appendix), 0 compile errors"
             }
           },
-          "id": "event-000708"
+          "id": "event-000700"
         },
         {
-          "source_line": 709,
+          "source_line": 701,
           "timestamp": "2026-05-22T00:52:51.358667+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3319,10 +3159,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000709"
+          "id": "event-000701"
         },
         {
-          "source_line": 710,
+          "source_line": 702,
           "timestamp": "2026-05-22T00:52:55.825913+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3341,10 +3181,10 @@
               "limit": "5"
             }
           },
-          "id": "event-000710"
+          "id": "event-000702"
         },
         {
-          "source_line": 711,
+          "source_line": 703,
           "timestamp": "2026-05-22T00:52:55.926799+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3359,10 +3199,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-000711"
+          "id": "event-000703"
         },
         {
-          "source_line": 712,
+          "source_line": 704,
           "timestamp": "2026-05-22T00:52:59.675217+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3382,10 +3222,10 @@
               "new_string": "`main.pdf` — compiled 2026-05-22 UTC, 23 pages (8 main + 15 appendix), 0 compile errors"
             }
           },
-          "id": "event-000712"
+          "id": "event-000704"
         },
         {
-          "source_line": 713,
+          "source_line": 705,
           "timestamp": "2026-05-22T00:52:59.776158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3400,10 +3240,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-000713"
+          "id": "event-000705"
         },
         {
-          "source_line": 714,
+          "source_line": 706,
           "timestamp": "2026-05-22T00:53:18.000291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3423,10 +3263,10 @@
               "new_string": "## 3. ARR Responsible NLP Checklist\n\nFilled in the OpenReview submission form (not in the PDF). Key points to prepare:\n\n- **Limitations section**: ✅ Present in main.pdf (5 paragraphs: environmental scope, methodological constraints, statistical limitations, pure-strategy upper bound, diagnostic scope)\n- **Ethics statement**: ✅ Present in main.pdf (public datasets, no human subjects, GPU-hours disclosed)\n- **Compute budget**: ~200 GPU-hours (140h inference + 35h training + 25h eval), disclosed in Ethics Statement\n- **Datasets used**: ScienceWorld v1.2.3 (Apache 2.0), ALFWorld (MIT), MATH (MIT)\n- **Models used**: Qwen2.5-7B/72B, Llama-3.1-8B, Gemma-2-9B-it, Qwen3-0.6B/1.7B/4B (all publicly available)\n- **Negative results**: §3.6 reports router training as \"Preliminary Negative Result\" (signal-limited, not architecture-limited); framed as diagnostic contribution\n- **Causal methodology**: Pure-strategy comparison grounded as simplified instance of potential outcomes framework (Rubin 1974), not full structural causal models; Related Work §\"Causal Grounding\" makes this explicit\n- **Statistical claims**: Pilot \"provides preliminary signal\" (not \"suffices\"); qualifier \"given a large effect size (d=3.02); environments with smaller effects may require larger samples\" added in R26\n- **Model scope**: Cross-model replication scoped to \"three 7–9B model families\" (not \"all models\"); 72B is scaling probe only"
             }
           },
-          "id": "event-000714"
+          "id": "event-000706"
         },
         {
-          "source_line": 715,
+          "source_line": 707,
           "timestamp": "2026-05-22T00:53:18.051285+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3441,10 +3281,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-000715"
+          "id": "event-000707"
         },
         {
-          "source_line": 716,
+          "source_line": 708,
           "timestamp": "2026-05-22T00:53:35.506656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3464,10 +3304,10 @@
               "new_string": "## 5. Rebuttal Prep (pre-drafted)\n\nSee `artifacts/rebuttal_prep.md` for 5 anticipated weaknesses:\n1. W: Single-environment scope → Response: framework generality demonstrated across 3 environments (ScienceWorld/MATH/ALFWorld) with distinct diagnoses; ~50-episode pilot validated on 4 conditions\n2. W: Trivial finding (death is bad) → Response: 10× scaling doesn't eliminate it (DAF=92.4%), Reflexion yields DAF>100%, 0.5B inverted-U contradicts \"weaker=more deaths\"; no prior routing work performs signal-source diagnosis; primary metric (78.9%) is penalty-independent\n3. W: No actionable solution → Response: diagnostic-first philosophy (cf. \"Attention is not Explanation\"); pilot saves ~190 GPU-hours; diagnosis itself prescribes always-deterministic; cross-env yields different prescriptions\n4. W: Router positive control missing → Response: keyword variant 62.9%, LOTO collapses to chance (49.2%), generative router also fails (46.7%), task-type classifier confirms signal-limited not architecture-limited\n5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N"
             }
           },
-          "id": "event-000716"
+          "id": "event-000708"
         },
         {
-          "source_line": 717,
+          "source_line": 709,
           "timestamp": "2026-05-22T00:53:35.657835+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3482,10 +3322,10 @@
             "tool": "Edit",
             "elapsed_ms": 151
           },
-          "id": "event-000717"
+          "id": "event-000709"
         },
         {
-          "source_line": 718,
+          "source_line": 710,
           "timestamp": "2026-05-22T00:53:46.950764+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3505,10 +3345,10 @@
               "new_string": "| PDF compiles without errors | ✅ |\n| Page limit (8 pages main text) | ✅ Exactly 8 pages |\n| Anonymous (no author names in PDF) | ✅ `\\author{Anonymous}`, `\\hypersetup{pdfauthor={}}` |\n| All \\cite → \\citep where needed | ✅ Fixed (28 instances, Round 25) |\n| No orphan bib entries | ✅ 0 orphan (54 entries, +3 from R26: pearl2009, rubin1974, bonagiri2025) |\n| Numbers consistent with registry | ✅ 12/12 checked (final consistency check) |\n| Limitations section present | ✅ |\n| Ethics statement present | ✅ |\n| Causal claims properly scoped | ✅ \"simplified instance\" not full do-calculus (R26 fix) |\n| Pilot claim hedged | ✅ \"preliminary signal...given large effect size\" (R26 fix) |"
             }
           },
-          "id": "event-000718"
+          "id": "event-000710"
         },
         {
-          "source_line": 719,
+          "source_line": 711,
           "timestamp": "2026-05-22T00:53:46.951484+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3523,10 +3363,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-000719"
+          "id": "event-000711"
         },
         {
-          "source_line": 720,
+          "source_line": 712,
           "timestamp": "2026-05-22T00:53:51.319586+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3544,6 +3384,161 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
               "old_string": "> Generated 2026-05-21 | DDL: 2026-05-25",
               "new_string": "> Updated 2026-05-22 (R26 aligned) | DDL: 2026-05-25"
+            }
+          },
+          "id": "event-000712"
+        },
+        {
+          "source_line": 713,
+          "timestamp": "2026-05-22T00:53:51.370257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000713"
+        },
+        {
+          "source_line": 714,
+          "timestamp": "2026-05-22T00:53:55.135702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md",
+              "offset": "10",
+              "limit": "6"
+            }
+          },
+          "id": "event-000714"
+        },
+        {
+          "source_line": 715,
+          "timestamp": "2026-05-22T00:53:55.186383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\tDeath Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n11\t\n12\t### Abstract (plain text, synced with abstract.tex post-R26)\n13\tLLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs. deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This label fraction is penalty-independent. A derived score-weighted measure, the Death Avoidance Factor, reaches 88-90% across three 7-9B model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), illustrating the framework's applicability. A ~50-episode diagnostic pilot provides preliminary signal for identifying the dominant routing mechanism given a large effect size (d = 3.02); environments with smaller effects may require larger samples, enabling informed build-vs-buy decisions before expensive router training.\n14\t\n15\t### Keywords"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000715"
+        },
+        {
+          "source_line": 716,
+          "timestamp": "2026-05-22T00:54:02.251006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/arr_submission_prep.md"
+            }
+          },
+          "id": "event-000716"
+        },
+        {
+          "source_line": 717,
+          "timestamp": "2026-05-22T00:54:02.351956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# ARR Submission Preparation — simgate-modular-routing\n2\t\n3\t> Updated 2026-05-22 (R26 aligned) | DDL: 2026-05-25\n4\t\n5\t---\n6\t\n7\t## 1. Submission Form Pre-fill\n8\t\n9\t### Title\n10\tDeath Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n11\t\n12\t### Abstract (plain text, synced with abstract.tex post-R26)\n13\tLLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs. deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This label fraction is penalty-independent. A derived score-weighted measure, the Death Avoidance Factor, reaches 88-90% across three 7-9B model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), illustrating the framework's applicability. A ~50-episode diagnostic pilot provides preliminary signal for identifying the dominant routing mechanism given a large effect size (d = 3.02); environments with smaller effects may require larger samples, enabling informed build-vs-buy decisions before expensive router training.\n14\t\n15\t### Keywords\n16\t1. LLM agent routing\n17\t2. counterfactual analysis\n18\t3. death avoidance\n19\t4. diagnostic framework\n20\t5. ScienceWorld\n21\n…[truncated 5063 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000717"
+        },
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-22T00:54:11.075827+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ARR 提交表单终审完成。`artifacts/arr_submission_prep.md` 已与 R26 修复后论文完全对齐：\n\n- **Paper PDF**: 23 pages (8+15), 日期更新为 2026-05-22\n- **Abstract**: 与 abstract.tex 一致（\"three 7-9B model families\"、\"preliminary signal...given large effect size\"）\n- **Responsible NLP Checklist**: 新增 4 条 R26 对齐项（negative results framing、causal methodology scope、statistical hedging、model scope）\n- **Pre-submission Verification**: bib 条目数更新（54），新增 causal claims + pilot hedging 两项检查\n- **Rebuttal Prep**: 从 3 条扩展到 5 条，覆盖 rebuttal_prep.md 中全部 Attack 1-5\n\n等待 Director 下一步指令（anonymous code repo 创建 / 最终提交）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d"
+          },
+          "id": "event-000718"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 719,
+          "timestamp": "2026-05-22T00:54:11.590923+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **Rebuttal 改进 — 基于 Reviewer 终审反馈**\n\n更新 `artifacts/rebuttal_prep.md`，以下 5 项修改：\n\n### 1. Attack 2 (Trivial Finding) — 核心论证升级\n将 \"absence of prior diagnostic work = not obvious\" 段改为更强的版本：\n> \"The routing literature's design choices **presuppose** diverse signal sources: Toolformer learns per-token API calls, CogRouter adapts per-step reasoning depth, RouteLLM learns preference-based routing. These architectures would be unnecessary if single-mechanism dominance were the default assumption. Our finding that death avoidance accounts for 78.9% of non-tie labels directly challenges these design presuppositions.\"\n\n同时将 0.5B inverted-U 从与 72B/Reflexion 并列降级为 \"suggestive observation (n=15)\"，避免 n=15 拖累整段可信度。\n\n### 2. Attack 1 — 补 ALFWorld 双模型一致性\n在 ALFWorld DAF=0% 后加半句：\"moreover, this null-death diagnosis replicated across two models (Llama 16/16, Qwen 35/37 information-asymmetric episodes)\"。\n\n### 3. Attack 3 — 两处加强\n(a) 主打 probing classifier 类比，Attention-is-not-Explanation 降为辅助\n(b) 补半句：\"always-deterministic is not only near-optimal but requires **zero additional training cost**—the framework's diagnosis directly yields a cost-free deployment strategy.\"\n\n### 4. Attack 4 — 重新 frame\n将核心论证从 \"positive control works\" 改为 \"signal granularity diagnosis\"：\n> \"The positive control's purpose is not to show a router can work, but to confirm signal granularity. Task-type features → 64.7% BA vs step features → 56-59% BA demonstrates a granularity mismatch: routing signal exists at task-type level but not at step level. Under LOTO, two independent methods—600M-4B neural routers and logistic regression on one-hot features—both collapse to chance (49.2% and 50.0%), confirming routing signal is a per-task-type constant with no cross-type generalization.\"\n\n### 5. 新增 Attack 6 (Excitement/Novelty)\n新增一个 Attack 回应 R26 核心评价 \"Excitement 2.5/5\"。核心论点：\n- Diagnostic contributions 在 Analysis track 有先例（probing classifiers / behavioral testing / BERTology）\n- 量化 magnitude 把 \"death might matter\" 变成 \"78.9%, persists across 4 interventions, 3 models, 72B scale\"——这是 information gain\n- Findings 是正确的 venue tier；contribution 是实证分析而非方法创新\n- \"The finding that 78.9% is not a number anyone predicted. It could have been 30% or 50% or 90%—the quantification is the contribution.\"\n\n### 6. 精简版\n改完后在文件末尾加一个 \"## Compressed Version (~800 words)\" section，每个 Attack 压缩到 ~130 词，为 ARR rebuttal 字数限制预备。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "source": "director"
+          },
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": "2026-05-22T00:58:23.382368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_6551c2d0ac89db1b3b9e56f77fcf912d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"---\" && grep -c \"^## Attack\" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md && echo \"attacks\" && grep \"^## \" /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/rebuttal_prep.md",
+              "description": "Count words and verify section structure"
             }
           },
           "id": "event-000720"

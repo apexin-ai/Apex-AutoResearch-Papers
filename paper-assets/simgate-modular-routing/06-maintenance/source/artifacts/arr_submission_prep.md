@@ -96,12 +96,3 @@ Filled in the OpenReview submission form (not in the PDF). Key points to prepare
 
 ---
 
-## 5. Rebuttal Prep (pre-drafted)
-
-See `artifacts/rebuttal_prep.md` for 6 anticipated weaknesses (+compressed ~800-word version for ARR limit):
-1. W: Single-environment scope → Response: methodological generality demonstrated across 3 environments (ScienceWorld/MATH/ALFWorld) with distinct diagnoses; ~50-episode pilot provides preliminary build-vs-buy signal on 4 conditions; methodological vs empirical generality explicitly distinguished
-2. W: Trivial finding (death is bad) → Response: 10× scaling doesn't eliminate it (DAF=92.4%), Reflexion yields DAF>100%, 0.5B inverted-U contradicts "weaker=more deaths"; no prior routing work performs signal-source diagnosis; headline metric (78.9% label fraction) is penalty-independent, DAF is derived
-3. W: No actionable solution → Response: diagnostic-first philosophy (cf. "Attention is not Explanation"); pilot saves ~190 GPU-hours; diagnosis itself prescribes always-deterministic; cross-env yields different prescriptions
-4. W: Router positive control missing → Response: keyword variant 62.9%, LOTO collapses to chance (49.2%), generative router also fails (46.7%), task-type classifier confirms signal-limited not architecture-limited
-5. W: Per-task statistical power (n=20) → Response: headline is aggregate (N=245, bootstrap CI [69.5%,86.3%]); directional consistency 10/10 (p≈0.001), 30/30 cross-model; cross-model replication substitutes for within-model N
-6. W: Limited excitement (2.5/5) → Response: diagnostic contributions have venue precedent (probing/CheckList/BERTology); quantification (78.9%) is the information gain; persistence across 4 interventions was non-obvious; Findings is appropriate tier

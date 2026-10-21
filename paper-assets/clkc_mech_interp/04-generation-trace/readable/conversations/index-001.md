@@ -71,7 +71,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | exp steering gemma check 120 121 | 11 | 0 | [Read transcript](exp-steering-gemma-check-120-121.md) | [JSON](../../sessions/2a/2a7e7545d6ed6d7309a5.json) |
 | exp steering qwen L18 122 | 27 | 0 | [Read transcript](exp-steering-qwen-l18-122.md) | [JSON](../../sessions/2e/2eeab8467e62eef37950.json) |
 | exp steering gemma L24 121 v2 | 29 | 0 | [Read transcript](exp-steering-gemma-l24-121-v2.md) | [JSON](../../sessions/07/07fbab89bf8691201820.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 westd-41302 的  | 842 | 128 | [Read transcript](director-coordination-20260525-041413.md) | [JSON](../../sessions/e6/e6377db7c9834aabfd7f.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 westd-41302 的  | 822 | 128 | [Read transcript](director-coordination-20260525-041413.md) | [JSON](../../sessions/e6/e6377db7c9834aabfd7f.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda: | 824 | 45 | [Read transcript](reviewer-coordination-20260525-041426.md) | [JSON](../../sessions/73/73fafb9431d8e7dc5254.json) |
 | research L28 pvalue verification | 53 | 0 | [Read transcript](research-l28-pvalue-verification.md) | [JSON](../../sessions/ed/edea456e834a4ab73bc6.json) |
 | Director coordination — 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: clkc_mech_interp - 论文路径: projects/clkc_mech_interp/docs/paper/main. | 428 | 31 | [Read transcript](director-coordination.md) | [JSON](../../sessions/58/584d2f2da6363b58e0dc.json) |
@@ -89,7 +89,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code fix fig2 whitespace | 39 | 0 | [Read transcript](code-fix-fig2-whitespace.md) | [JSON](../../sessions/8e/8ec3f324ed720fba48ee.json) |
 | Project coordination — [WORKER DONE] Worker worker_code_fix-fig4-fontcolor_20260525T192628 已完成（status=done）。用 `get_worker_s | 441 | 60 | [Read transcript](coordination-coordination.md) | [JSON](../../sessions/39/39397e0dcd88d4b1b1a4.json) |
 | audit paper data integrity | 89 | 0 | [Read transcript](audit-paper-data-integrity.md) | [JSON](../../sessions/e0/e01b8aefff2606dc274a.json) |
-| Director coordination — [Agent 回复]: [资源] GPU 1/1 (cuda:0 ZH activations 生成中) \| Worker 2 (GPU 1 / CPU 1) \| 磁盘: westd-14391 未检 | 679 | 94 | [Read transcript](director-coordination-copy-2.md) | [JSON](../../sessions/52/52b921f01c3a0a94052b.json) |
+| Director coordination — [Agent 回复]: [资源] GPU 1/1 (cuda:0 ZH activations 生成中) \| Worker 2 (GPU 1 / CPU 1) \| 磁盘: westd-14391 未检 | 677 | 94 | [Read transcript](director-coordination-copy-2.md) | [JSON](../../sessions/52/52b921f01c3a0a94052b.json) |
 | Reviewer coordination — [系统通知 — worker_done:worker_code_sync-compile-pdf_20260525T201330]: Worker worker_code_sync-compile-p | 271 | 27 | [Read transcript](reviewer-coordination.md) | [JSON](../../sessions/a1/a1f478106115b2c34262.json) |
 | code sync compile pdf v2 | 35 | 0 | [Read transcript](code-sync-compile-pdf-v2.md) | [JSON](../../sessions/d3/d32ef2212428ca06795c.json) |
 | paper fix figure3 compile | 5 | 0 | [Read transcript](paper-fix-figure3-compile.md) | [JSON](../../sessions/e1/e1a9b4f091ef0c68f968.json) |

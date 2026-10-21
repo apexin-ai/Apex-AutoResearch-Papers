@@ -71,7 +71,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops arr checklist | 55 | 0 | [Read transcript](ops-arr-checklist.md) | [JSON](../../sessions/af/afb429cb75110c2c4fe2.json) |
 | ops reference audit | 21 | 0 | [Read transcript](ops-reference-audit.md) | [JSON](../../sessions/0d/0d783a05665e65691393.json) |
 | ops arr submission form | 38 | 0 | [Read transcript](ops-arr-submission-form.md) | [JSON](../../sessions/a8/a89c2abe55bd4f7b90cf.json) |
-| ops response letter | 48 | 0 | [Read transcript](ops-response-letter.md) | [JSON](../../sessions/7b/7b5f8183755277d9fdf2.json) |
 | ops paper version license | 24 | 0 | [Read transcript](ops-paper-version-license.md) | [JSON](../../sessions/c4/c45a37c286a25950fa54.json) |
 | ops batch1 code recon | 43 | 0 | [Read transcript](ops-batch1-code-recon.md) | [JSON](../../sessions/6f/6f9881d7f7a4643b0337.json) |
 | ops modify train script | 47 | 0 | [Read transcript](ops-modify-train-script.md) | [JSON](../../sessions/4e/4e06431d030ff10c0b9a.json) |
@@ -119,10 +118,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | ops sync and push anon | 25 | 0 | [Read transcript](ops-sync-and-push-anon.md) | [JSON](../../sessions/0a/0adadbfea841804e92da.json) |
 | ops recompile push final | 22 | 0 | [Read transcript](ops-recompile-push-final.md) | [JSON](../../sessions/d3/d37b4941ff4b0194546c.json) |
 | ops compile push polish | 31 | 0 | [Read transcript](ops-compile-push-polish.md) | [JSON](../../sessions/da/da99f848de672d64a9e8.json) |
-| ops rebuttal mistral prep | 37 | 0 | [Read transcript](ops-rebuttal-mistral-prep.md) | [JSON](../../sessions/2f/2f3b342a2bcb73ee2106.json) |
-| ops rebuttal llama5 check | 68 | 0 | [Read transcript](ops-rebuttal-llama5-check.md) | [JSON](../../sessions/61/61daacf0e4dd09115bce.json) |
-| ops rebuttal mia grpo check | 69 | 0 | [Read transcript](ops-rebuttal-mia-grpo-check.md) | [JSON](../../sessions/95/952ffb09e2f2fc279b0a.json) |
-| ops rebuttal mistral execute | 78 | 0 | [Read transcript](ops-rebuttal-mistral-execute.md) | [JSON](../../sessions/a6/a647b24a8c56241f97c2.json) |
 | code p1 eval fix | 78 | 0 | [Read transcript](code-p1-eval-fix.md) | [JSON](../../sessions/3f/3f53253dc3f1c6a28648.json) |
 | ops check mistral training | 27 | 0 | [Read transcript](ops-check-mistral-training.md) | [JSON](../../sessions/79/7937732d580f44f21a43.json) |
 | eval llama 5pct reanalysis | 49 | 0 | [Read transcript](eval-llama-5pct-reanalysis.md) | [JSON](../../sessions/8f/8f6b5e0eedd5f4db30ef.json) |
@@ -141,16 +136,14 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | eval mistral contam25 read results | 37 | 0 | [Read transcript](eval-mistral-contam25-read-results.md) | [JSON](../../sessions/5d/5d8a22544c492d07d3ea.json) |
 | paper fix mistral d15 arcc ci — In the project at /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/, | 53 | 1 | [Read transcript](paper-fix-mistral-d15-arcc-ci.md) | [JSON](../../sessions/a7/a7c7f54d02bad7735236.json) |
 | paper investigate mistral d15 and fix — Search in /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam for files | 328 | 1 | [Read transcript](paper-investigate-mistral-d15-and-fix.md) | [JSON](../../sessions/a9/a97baea0be5532e6f56c.json) |
-| data mia comparison table | 35 | 0 | [Read transcript](data-mia-comparison-table.md) | [JSON](../../sessions/a5/a5fe9d99c88e4998fe75.json) |
+| data mia comparison table | 33 | 0 | [Read transcript](data-mia-comparison-table.md) | [JSON](../../sessions/a5/a5fe9d99c88e4998fe75.json) |
 | viz mistral dose response | 56 | 0 | [Read transcript](viz-mistral-dose-response.md) | [JSON](../../sessions/dd/ddd305cd9315bf41a4b5.json) |
-| analysis false positive rate | 53 | 0 | [Read transcript](analysis-false-positive-rate.md) | [JSON](../../sessions/2a/2a61a7188f7d302fabf3.json) |
+| analysis false positive rate | 51 | 0 | [Read transcript](analysis-false-positive-rate.md) | [JSON](../../sessions/2a/2a61a7188f7d302fabf3.json) |
 | paper final ddl fixes | 159 | 0 | [Read transcript](paper-final-ddl-fixes.md) | [JSON](../../sessions/77/778687d9241f25a4c948.json) |
 | paper fill 4 lines | 25 | 0 | [Read transcript](paper-fill-4-lines.md) | [JSON](../../sessions/de/deaa4e6421d04195d66d.json) |
 | paper final 8page merged | 140 | 0 | [Read transcript](paper-final-8page-merged.md) | [JSON](../../sessions/b2/b2e363bc4c2ee9a27b15.json) |
 | analysis multiseed 15pct stats — I need to extract metrics from experiments in a registry JSON file. The file is at: /home/ubuntu/.cl | 130 | 1 | [Read transcript](analysis-multiseed-15pct-stats.md) | [JSON](../../sessions/bf/bf94b688ff196a109dbd.json) |
 | analysis fpr calibration v2 | 116 | 0 | [Read transcript](analysis-fpr-calibration-v2.md) | [JSON](../../sessions/4b/4b3771a4a1e48d9400b8.json) |
 | paper fix llama 25 d mismatch | 271 | 0 | [Read transcript](paper-fix-llama-25-d-mismatch.md) | [JSON](../../sessions/59/59eba741afae3a159e36.json) |
-| research rebuttal prep | 26 | 0 | [Read transcript](research-rebuttal-prep.md) | [JSON](../../sessions/e3/e3e5befaad9f1857d03b.json) |
-| paper fix rebuttal prep data | 74 | 0 | [Read transcript](paper-fix-rebuttal-prep-data.md) | [JSON](../../sessions/55/556d82cb7fd183f1849c.json) |
 | paper update mistral 15 multiseed | 169 | 0 | [Read transcript](paper-update-mistral-15-multiseed.md) | [JSON](../../sessions/f6/f64f44a2b3ce3c9fb078.json) |
 | paper table2 footnote fix | 63 | 0 | [Read transcript](paper-table2-footnote-fix.md) | [JSON](../../sessions/5d/5debb3082c91ccd10644.json) |

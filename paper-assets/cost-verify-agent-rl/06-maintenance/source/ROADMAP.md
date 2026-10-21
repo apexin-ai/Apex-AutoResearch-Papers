@@ -27,7 +27,6 @@ Step-independent agent RL 的双机制信用分配病理诊断（信息丢失 M1
 
 ## 近期任务
 - [ ] 等待 ARR 审稿结果（预计 4-6 周）
-- [ ] 收到审稿意见后准备 rebuttal
 - [x] ARR 提交（2026-05-25）
 - [x] Round 2 全部 16/17 项审稿修改
 - [x] 数据审计 P0/P1 修复 + Reviewer 确认

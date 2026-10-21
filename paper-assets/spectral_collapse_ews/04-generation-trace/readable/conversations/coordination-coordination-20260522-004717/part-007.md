@@ -8,65 +8,7 @@
 
 ### Tool call
 
-_source line 3777 · 2026-05-21T23:24:06.173934+00:00_
-
-called ToolSearch
-
-<details open><summary>🔧 Tool call — ToolSearch</summary>
-
-```json
-{
-  "query": "select:mcp__agent-ml-research__spawn_worker",
-  "max_results": "1"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_0f7710940ce53b9afd065fcc69817759",
-  "tool": "ToolSearch",
-  "tool_args": {
-    "query": "select:mcp__agent-ml-research__spawn_worker",
-    "max_results": "1"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 3778 · 2026-05-21T23:24:06.224714+00:00_
-
-
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_0f7710940ce53b9afd065fcc69817759",
-  "tool": "ToolSearch",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 3779 · 2026-05-21T23:24:26.770879+00:00_
+_source line 3777 · 2026-05-21T23:24:26.770879+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -106,7 +48,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3780 · 2026-05-21T23:24:34.186824+00:00_
+_source line 3778 · 2026-05-21T23:24:34.186824+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_p0-exp016-status_20260521T232427\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_ssh_p0-exp016-status_20260521T232427.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_p0-exp016-status_20260521T232427 started. Use get_worker_status('worker_ssh_p0-exp016-status_20260521T232427') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -128,7 +70,7 @@ _source line 3780 · 2026-05-21T23:24:34.186824+00:00_
 
 ### Assistant
 
-_source line 3781 · 2026-05-21T23:24:37.202159+00:00_
+_source line 3779 · 2026-05-21T23:24:37.202159+00:00_
 
 Worker 已派出检查 exp_016 存活状态和 exp_015 进度。等回调后立即处理并汇报 Director。
 
@@ -155,7 +97,7 @@ Worker 已派出检查 exp_016 存活状态和 exp_015 进度。等回调后立�
 
 ### User
 
-_source line 3782 · 2026-05-21T23:24:37.711416+00:00_
+_source line 3780 · 2026-05-21T23:24:37.711416+00:00_
 
 [Director 指令] 状态确认，两卡满载无空窗，做得好。
 
@@ -197,7 +139,7 @@ P1 实验代码准备：现在就确认 `run_pipeline.py` 支持 r=0.2 和 r=0.5
 
 ### Tool call
 
-_source line 3783 · 2026-05-21T23:25:05.080273+00:00_
+_source line 3781 · 2026-05-21T23:25:05.080273+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -237,7 +179,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 3784 · 2026-05-21T23:25:12.741945+00:00_
+_source line 3782 · 2026-05-21T23:25:12.741945+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_prep-p1-experiments_20260521T232506\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_ssh_prep-p1-experiments_20260521T232506.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_prep-p1-experiments_20260521T232506 started. Use get_worker_status('worker_ssh_prep-p1-experiments_20260521T232506') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -259,7 +201,7 @@ _source line 3784 · 2026-05-21T23:25:12.741945+00:00_
 
 ### Tool call
 
-_source line 3785 · 2026-05-21T23:25:24.004821+00:00_
+_source line 3783 · 2026-05-21T23:25:24.004821+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -299,7 +241,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3786 · 2026-05-21T23:25:24.509918+00:00_
+_source line 3784 · 2026-05-21T23:25:24.509918+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -339,7 +281,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3787 · 2026-05-21T23:25:24.560628+00:00_
+_source line 3785 · 2026-05-21T23:25:24.560628+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.156Z\", \"updated_at\": \"2026-05-21T23:25:24.156Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5104}}"}
 
@@ -361,7 +303,7 @@ _source line 3787 · 2026-05-21T23:25:24.560628+00:00_
 
 ### Tool result
 
-_source line 3788 · 2026-05-21T23:25:25.068055+00:00_
+_source line 3786 · 2026-05-21T23:25:25.068055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.714Z\", \"updated_at\": \"2026-05-21T23:25:24.714Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4707}}"}
 
@@ -383,7 +325,7 @@ _source line 3788 · 2026-05-21T23:25:25.068055+00:00_
 
 ### Tool call
 
-_source line 3789 · 2026-05-21T23:25:30.806803+00:00_
+_source line 3787 · 2026-05-21T23:25:30.806803+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -423,7 +365,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3790 · 2026-05-21T23:25:31.724596+00:00_
+_source line 3788 · 2026-05-21T23:25:31.724596+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.156Z\", \"updated_at\": \"2026-05-21T23:25:30.957Z\", \"hypothesis\": \"r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3038}}"}
 
@@ -445,7 +387,7 @@ _source line 3790 · 2026-05-21T23:25:31.724596+00:00_
 
 ### Tool call
 
-_source line 3791 · 2026-05-21T23:25:31.775374+00:00_
+_source line 3789 · 2026-05-21T23:25:31.775374+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -485,7 +427,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3792 · 2026-05-21T23:25:32.129622+00:00_
+_source line 3790 · 2026-05-21T23:25:32.129622+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.714Z\", \"updated_at\": \"2026-05-21T23:25:31.938Z\", \"hypothesis\": \"r=0.5 with seed 43 reproduces Type III trajectory (monotonic expansion) observed in exp_004 (seed42). Second seed validates that 50% real mixing reliably prevents spectral collapse, strengthening the stable regime classification.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.323}}"}
 
@@ -507,7 +449,7 @@ _source line 3792 · 2026-05-21T23:25:32.129622+00:00_
 
 ### Tool call
 
-_source line 3793 · 2026-05-21T23:25:35.209003+00:00_
+_source line 3791 · 2026-05-21T23:25:35.209003+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -547,7 +489,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool call
 
-_source line 3794 · 2026-05-21T23:25:35.361436+00:00_
+_source line 3792 · 2026-05-21T23:25:35.361436+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -587,7 +529,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3795 · 2026-05-21T23:25:35.613410+00:00_
+_source line 3793 · 2026-05-21T23:25:35.613410+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_017\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.156Z\", \"updated_at\": \"2026-05-21T23:25:35.465Z\", \"hypothesis\": \"r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.\", \"parent\": \"exp_007\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3638}}"}
 
@@ -609,7 +551,7 @@ _source line 3795 · 2026-05-21T23:25:35.613410+00:00_
 
 ### Assistant
 
-_source line 3796 · 2026-05-21T23:44:38.063406+00:00_
+_source line 3794 · 2026-05-21T23:44:38.063406+00:00_
 
 收到 standing orders。Worker 已派出做 P1 实验代码预验证。现在预创建 registry 条目。
 
@@ -636,7 +578,7 @@ _source line 3796 · 2026-05-21T23:44:38.063406+00:00_
 
 ### User
 
-_source line 3797 · 2026-05-21T23:44:38.560769+00:00_
+_source line 3795 · 2026-05-21T23:44:38.560769+00:00_
 
 [WORKER DONE] Worker worker_ssh_prep-p1-experiments_20260521T232506 已完成（status=done）。用 `get_worker_status('worker_ssh_prep-p1-experiments_20260521T232506')` 读取结果，然后处理。
 
@@ -661,7 +603,7 @@ _source line 3797 · 2026-05-21T23:44:38.560769+00:00_
 
 ### Tool call
 
-_source line 3798 · 2026-05-21T23:44:46.052796+00:00_
+_source line 3796 · 2026-05-21T23:44:46.052796+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -695,7 +637,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3799 · 2026-05-21T23:44:46.254301+00:00_
+_source line 3797 · 2026-05-21T23:44:46.254301+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_prep-p1-experiments_20260521T232506\", \"status\": \"done\", \"task_type\": \"ssh:prep-p1-experiments\", \"project\": \"spectral_collapse_ews\", \"started_at\": \"2026-05-21T23:25:06.215147+00:00\", \"ended_at\": \"2026-05-21T23:26:36.649926+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部验证通过。汇总报告：\\n\\n---\\n\\n### 预验证结果\\n\\n| 检查项 | 结果 |\\n|--------|------|\\n| `run_phase1.py` 参数支持 | **通过** — `--real_ratio` 接受任意 float，r=0.2 和 r=0.5 均正确解析 |\\n| Dry-run r=0.2 seed43 | **通过** — real_ratio=0.2, k=0.0, tau=0.002, generations=10 |\\n| Dry-run r=0.5 seed43 | **通过** — real_ratio=0.5, k=0.0, tau=0.002, generations=10 |\\n| Checkpoint 目录冲突 | **无冲突** — 两个目录均不存在 |\\n| 磁盘空间 | **86G 可用**（已用 165G/250G，现有 checkpoints 占 46G） |\\n\\n### 启动脚本\\n\\n**P1-a:** `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh`\\n```bash\\n#!/bin/bash\\n# P1-a: r=0.20 seed43 — fixed_mix low-real trajectory\\n# Usage: bash launch_fixed_mix_r020_seed43.sh &lt;gpu_id>\\nset -euo pipefail\\nGPU_ID=${1:-0}\\ncd /root/spectral_collapse_ews\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1\\npython run_phase1.py \\\\\\n    --condition fixed_mix \\\\\\n    --seed 43 \\\\\\n    --generations 10 \\\\\\n    --signal log_det \\\\\\n    --tau 0.002 \\\\\\n    --k 0 \\\\\\n    --signal_mode per_gen \\\\\\n    --real_ratio 0.2 \\\\\\n    --gpu $GPU_ID\\n```\\n\\n**P1-b:** `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r050_seed43.sh`\\n```bash\\n#!/bin/bash\\n# P1-b: r=0.50 seed43 — fixed_mix standard trajectory\\n# Usage: bash launch_fixed_mix_r050_seed43.sh &lt;gpu_id>\\nset -euo pipefail\\nGPU_ID=${1:-0}\\ncd /root/spectral_collapse_ews\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1\\npython run_phase1.
 …[truncated 645 chars]
@@ -718,7 +660,7 @@ _source line 3799 · 2026-05-21T23:44:46.254301+00:00_
 
 ### Tool call
 
-_source line 3800 · 2026-05-21T23:45:07.594626+00:00_
+_source line 3798 · 2026-05-21T23:45:07.594626+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -754,7 +696,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3801 · 2026-05-21T23:45:12.020071+00:00_
+_source line 3799 · 2026-05-21T23:45:12.020071+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
 
@@ -776,7 +718,7 @@ _source line 3801 · 2026-05-21T23:45:12.020071+00:00_
 
 ### Tool call
 
-_source line 3802 · 2026-05-21T23:45:15.802864+00:00_
+_source line 3800 · 2026-05-21T23:45:15.802864+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -816,7 +758,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 3803 · 2026-05-21T23:45:16.007822+00:00_
+_source line 3801 · 2026-05-21T23:45:16.007822+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_018\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.714Z\", \"updated_at\": \"2026-05-21T23:45:15.927Z\", \"hypothesis\": \"r=0.5 with seed 43 reproduces Type III trajectory (monotonic expansion) observed in exp_004 (seed42). Second seed validates that 50% real mixing reliably prevents spectral collapse, strengthening the stable regime classification.\", \"parent\": \"exp_004\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2204}}"}
 
@@ -838,7 +780,7 @@ _source line 3803 · 2026-05-21T23:45:16.007822+00:00_
 
 ### Assistant
 
-_source line 3804 · 2026-05-21T23:45:20.171405+00:00_
+_source line 3802 · 2026-05-21T23:45:20.171405+00:00_
 
 Director 已汇报，standing orders 准备就绪。两卡满载运行，cron 回调将触发后续流程：
 - exp_015 完成 → 收集 r=0.25 3-seed 数据 + 启动 exp_017 (r=0.2 seed43) on cuda:1
@@ -867,7 +809,7 @@ Director 已汇报，standing orders 准备就绪。两卡满载运行，cron �
 
 ### User
 
-_source line 3805 · 2026-05-21T23:45:20.740506+00:00_
+_source line 3803 · 2026-05-21T23:45:20.740506+00:00_
 
 [WORKER DONE] Worker worker_ssh_p0-exp016-status_20260521T232427 已完成（status=done）。用 `get_worker_status('worker_ssh_p0-exp016-status_20260521T232427')` 读取结果，然后处理。
 
@@ -892,7 +834,7 @@ _source line 3805 · 2026-05-21T23:45:20.740506+00:00_
 
 ### Tool call
 
-_source line 3806 · 2026-05-21T23:45:27.390814+00:00_
+_source line 3804 · 2026-05-21T23:45:27.390814+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -926,7 +868,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 3807 · 2026-05-21T23:45:27.542379+00:00_
+_source line 3805 · 2026-05-21T23:45:27.542379+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_p0-exp016-status_20260521T232427\", \"status\": \"done\", \"task_type\": \"ssh:p0-exp016-status\", \"project\": \"spectral_collapse_ews\", \"started_at\": \"2026-05-21T23:24:27.780100+00:00\", \"ended_at\": \"2026-05-21T23:26:43.170028+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 状态报告\\n\\n### exp_016 (fixed_mix r=0.30, seed=44, GPU 0) — **存活，正常运行**\\n\\n- **PID 614614**: 存活，运行 8m47s\\n- **GPU 0**: 49% 利用率, 19045 MiB / 97887 MiB — Director 之前看到 0% 是瞬时快照，现在正常\\n- **进度**: Gen 0 评估已完成 (eff_rank=417.55, ppl=9.55, d4=0.7305)，Gen 1 正在生成样本 **1920/35000** (5.5%)\\n- **检查点**: `fixed_mix_r03_seed44/gen_0` (May 22 07:19)\\n\\n**预估完成时间**: 参考 exp_015 每代 ~2h 的节奏，exp_016 有 10 代（gen 1-10），剩余约 **19h**。预计 **May 23 ~02:00 服务器时间**。\\n\\n---\\n\\n### exp_015 (fixed_mix r=0.25, seed=44, GPU 1) — **存活，正常运行**\\n\\n- **GPU 1**: 49% 利用率, 25017 MiB / 97887 MiB\\n- **进度**: Gen 0-6 已完成，**Gen 7/10 正在生成样本 28800/37500** (76.8%)\\n- 已完成代数指标:\\n\\n| Gen | eff_rank | ppl | distinct-4 | train_loss |\\n|-----|----------|------|------------|------------|\\n| 0 | 417.55 | 9.55 | 0.7305 | — |\\n| 1 | 475.92 | 10.22 | 0.6379 | 1.8002 |\\n| 2 | 484.39 | 10.64 | 0.5156 | 1.6887 |\\n| 3 | 488.62 | 11.00 | 0.4518 | 1.4731 |\\n| 4 | 493.01 | 11.33 | 0.4156 | 1.3883 |\\n| 5 | 494.32 | 11.64 | 0.4008 | 1.3187 |\\n| 6 | 498.74 | 11.97 | 0.3994 | 1.2940 |\\n\\n- **每代耗时**: ~2h（从 checkpoint 时间戳推算）\\n- **剩余**: gen 7 剩约 35min + gen 8-10 共 3 代 × 2h = 6h → 共 **~6.5h**\\n- **预估完成时间**: **May 22 ~14:30 服务器时间**\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -948,7 +890,7 @@ _source line 3807 · 2026-05-21T23:45:27.542379+00:00_
 
 ### Tool call
 
-_source line 3808 · 2026-05-21T23:45:58.418009+00:00_
+_source line 3806 · 2026-05-21T23:45:58.418009+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -984,7 +926,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 3809 · 2026-05-21T23:46:03.301647+00:00_
+_source line 3807 · 2026-05-21T23:46:03.301647+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
 
@@ -1006,7 +948,7 @@ _source line 3809 · 2026-05-21T23:46:03.301647+00:00_
 
 ### Assistant
 
-_source line 3810 · 2026-05-21T23:46:05.034527+00:00_
+_source line 3808 · 2026-05-21T23:46:05.034527+00:00_
 
 两个实验都在正常运行。exp_016 的 GPU 0% 是瞬时快照，实际 49% 利用率。向 Director 汇报。
 
@@ -1033,7 +975,7 @@ _source line 3810 · 2026-05-21T23:46:05.034527+00:00_
 
 ### User
 
-_source line 3811 · 2026-05-22T00:46:26.247969+00:00_
+_source line 3809 · 2026-05-22T00:46:26.247969+00:00_
 
 [WRITE HANDOFF] 请立即写你的 handoff。
 
@@ -1115,7 +1057,7 @@ Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
 
 ### Assistant
 
-_source line 3812 · 2026-05-22T00:47:17.521551+00:00_
+_source line 3810 · 2026-05-22T00:47:17.521551+00:00_
 
 &lt;handoff>
 ### 1. 🔴 硬约束 / 红线

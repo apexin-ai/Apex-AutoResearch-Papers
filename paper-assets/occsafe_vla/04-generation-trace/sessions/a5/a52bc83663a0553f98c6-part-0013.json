@@ -7,47 +7,6 @@
       "messages": [
         {
           "source_line": 2161,
-          "timestamp": "2026-05-29T16:50:51.850481+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "mechanisms|protections",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
-              "output_mode": "content",
-              "glob": "*.tex"
-            }
-          },
-          "id": "event-002161"
-        },
-        {
-          "source_line": 2162,
-          "timestamp": "2026-05-29T16:50:51.901053+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex:23:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex:11:\\textbf{Additive protection model.} Detach+LN achieves the best safety (CAR $0.802$), reliably outperforming Vanilla ($g{=}1.89$, bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$). The advantage arises from two independent protections, detaching gradients and switching to LayerNorm, each contributing ${\\approx}$4--5\\,pp, with negligible interaction ($\\eta^2{=}0.005$; Table~\\ref{tab:anova}). Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety.\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex:209:\\textbf{Normalization effect amplification.} The LN advantage over BN averages $+6.9$\\,pp on constrained tasks versus $+1.7$\\,pp on easy tasks, an approximately $4{\\times}$ amplification. All three constrained tasks show positive LN$-$BN differences: T6 ($+9.0$\\,pp), T5 ($+7.7$\\,pp), T3 ($+4.0$\\,pp). The gradient flow effect, by contrast, does not concentrate on constrained tasks ($-1.6$\\,pp hard vs.\\ $-3.0$\\,pp easy), indicating that the two mechanisms have distinct per-task profiles.\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex:18:The central finding is that \\textbf{Detach+LN reliably outperforms Vanilla}, raising CAR from $0.745$ to $0.802$ with a large effect size. The factorial design reveals why: gradient flow through BatchNorm is associated with reduced safety, while LayerNorm provides a consistent advantage, and these two protections combine independently. Only the BN + gradient flow combination falls below Vanilla. Spatial label content showed no detectable effect under the v1 codebase (\\S\\ref{sec:res\n…[truncated 134 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-002162"
-        },
-        {
-          "source_line": 2163,
           "timestamp": "2026-05-29T16:51:26.573295+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -67,10 +26,10 @@
               "new_string": "A factorial analysis disentangles two additive factors: gradient flow through BatchNorm is associated with reduced safety, possibly mediated by running-statistics corruption during auxiliary forward passes; LayerNorm, which normalizes per-token without shared batch statistics, provides a consistent safety advantage regardless of gradient flow."
             }
           },
-          "id": "event-002163"
+          "id": "event-002161"
         },
         {
-          "source_line": 2164,
+          "source_line": 2162,
           "timestamp": "2026-05-29T16:51:26.573722+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -85,10 +44,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002164"
+          "id": "event-002162"
         },
         {
-          "source_line": 2165,
+          "source_line": 2163,
           "timestamp": "2026-05-29T16:51:32.388047+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -108,10 +67,10 @@
               "new_string": "The central finding is that \\textbf{Detach+LN consistently outperforms Vanilla}, raising CAR from $0.745$ to $0.802$ with a large effect size. The factorial design reveals why: gradient flow through BatchNorm is associated with reduced safety, while LayerNorm provides a consistent advantage, and these two effects combine additively."
             }
           },
-          "id": "event-002165"
+          "id": "event-002163"
         },
         {
-          "source_line": 2166,
+          "source_line": 2164,
           "timestamp": "2026-05-29T16:51:32.388465+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -126,10 +85,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002166"
+          "id": "event-002164"
         },
         {
-          "source_line": 2167,
+          "source_line": 2165,
           "timestamp": "2026-05-29T16:51:36.955603+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -149,10 +108,10 @@
               "new_string": "A $2{\\times}2$ factorial identifies two additive factors: gradient flow through BatchNorm degrades safety; LayerNorm provides a consistent protective effect."
             }
           },
-          "id": "event-002167"
+          "id": "event-002165"
         },
         {
-          "source_line": 2168,
+          "source_line": 2166,
           "timestamp": "2026-05-29T16:51:37.006948+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -167,10 +126,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002168"
+          "id": "event-002166"
         },
         {
-          "source_line": 2169,
+          "source_line": 2167,
           "timestamp": "2026-05-29T16:51:43.732593+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -190,10 +149,10 @@
               "new_string": "\\textbf{Additive effects.} Detach+LN achieves the best safety (CAR $0.802$), outperforming Vanilla ($g{=}1.89$, bootstrap 95\\% CI for $\\Delta$: $[0.025, 0.089]$). The advantage arises from two independent effects, detaching gradients and switching to LayerNorm, each contributing ${\\approx}$4--5\\,pp, with negligible interaction ($\\eta^2{=}0.005$; Table~\\ref{tab:anova}). Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety."
             }
           },
-          "id": "event-002169"
+          "id": "event-002167"
         },
         {
-          "source_line": 2170,
+          "source_line": 2168,
           "timestamp": "2026-05-29T16:51:43.783270+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -208,10 +167,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002170"
+          "id": "event-002168"
         },
         {
-          "source_line": 2171,
+          "source_line": 2169,
           "timestamp": "2026-05-29T16:51:51.862959+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -231,10 +190,10 @@
               "new_string": "\\textbf{Normalization is independently associated with safety differences.} LN provides a consistent $+$3.5--4.8\\,pp advantage over BN ($g{=}0.88$--$1.24$). This advantage amplifies fourfold on the three physically constrained tasks ($+6.9$\\,pp vs.\\ $+1.7$\\,pp; Appendix~\\ref{app:per_task_factorial}), concentrating where safety margins are thinnest. Normalization type, typically treated as an implementation detail, has outsized consequences for safety-critical VLA fine-tuning."
             }
           },
-          "id": "event-002171"
+          "id": "event-002169"
         },
         {
-          "source_line": 2172,
+          "source_line": 2170,
           "timestamp": "2026-05-29T16:51:51.963772+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -249,10 +208,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002172"
+          "id": "event-002170"
         },
         {
-          "source_line": 2173,
+          "source_line": 2171,
           "timestamp": "2026-05-29T16:52:02.993251+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -272,10 +231,10 @@
               "new_string": "We presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \\emph{what} the auxiliary head predicts but \\emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three guidelines follow, all at zero inference cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-truth spatial labels are unnecessary. Future work should verify the BatchNorm running-statistics hypothesis, extend to other VLA architectures and full fine-tuning, and integrate with runtime safety methods."
             }
           },
-          "id": "event-002173"
+          "id": "event-002171"
         },
         {
-          "source_line": 2174,
+          "source_line": 2172,
           "timestamp": "2026-05-29T16:52:03.044898+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -290,10 +249,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002174"
+          "id": "event-002172"
         },
         {
-          "source_line": 2175,
+          "source_line": 2173,
           "timestamp": "2026-05-29T16:52:06.306250+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -312,10 +271,10 @@
               "limit": "6"
             }
           },
-          "id": "event-002175"
+          "id": "event-002173"
         },
         {
-          "source_line": 2176,
+          "source_line": 2174,
           "timestamp": "2026-05-29T16:52:06.357187+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -330,10 +289,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002176"
+          "id": "event-002174"
         },
         {
-          "source_line": 2177,
+          "source_line": 2175,
           "timestamp": "2026-05-29T16:52:10.523114+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -353,10 +312,10 @@
               "new_string": "Detach+LN achieves the highest CAR ($0.802{\\pm}0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$)."
             }
           },
-          "id": "event-002177"
+          "id": "event-002175"
         },
         {
-          "source_line": 2178,
+          "source_line": 2176,
           "timestamp": "2026-05-29T16:52:10.624033+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -371,10 +330,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002178"
+          "id": "event-002176"
         },
         {
-          "source_line": 2179,
+          "source_line": 2177,
           "timestamp": "2026-05-29T16:52:15.040489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -394,10 +353,10 @@
               "new_string": "indicating that the two effects have distinct per-task profiles."
             }
           },
-          "id": "event-002179"
+          "id": "event-002177"
         },
         {
-          "source_line": 2180,
+          "source_line": 2178,
           "timestamp": "2026-05-29T16:52:15.091264+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -412,10 +371,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002180"
+          "id": "event-002178"
         },
         {
-          "source_line": 2181,
+          "source_line": 2179,
           "timestamp": "2026-05-29T16:52:18.955431+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -434,10 +393,10 @@
               "limit": "3"
             }
           },
-          "id": "event-002181"
+          "id": "event-002179"
         },
         {
-          "source_line": 2182,
+          "source_line": 2180,
           "timestamp": "2026-05-29T16:52:19.056288+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -452,10 +411,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002182"
+          "id": "event-002180"
         },
         {
-          "source_line": 2183,
+          "source_line": 2181,
           "timestamp": "2026-05-29T16:52:33.401465+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -475,10 +434,10 @@
               "new_string": "\\textbf{Two additive main effects explain the advantage.} The $2{\\times}2$ factorial (Table~\\ref{tab:factorial}, Figure~\\ref{fig:car_factorial}b) reveals two large main effects with negligible interaction (permutation ANOVA, 10{,}000 permutations: gradient flow $p_\\text{perm}{=}0.090$; normalization $p_\\text{perm}{=}0.041$; interaction $p_\\text{perm}{=}0.794$; Appendix~\\ref{app:permutation}). Parametric ANOVA yields consistent trends (Appendix~\\ref{app:stat_power}). Under BatchNorm, gradient flow corresponds to lower safety: Full OCC (CAR $0.725$, $\\Delta{=}-2.0$\\,pp) is the sole cell below Vanilla, while Detach OCC recovers ($0.767$, $\\Delta{=}+2.2$\\,pp); the within-row deficit is 4.2\\,pp (Hedges' $g{=}0.78$, large). Under LayerNorm, gradient flow is benign: Full OCC+LN ($0.773$, $\\Delta{=}+2.8$\\,pp, $g{=}+0.90$) exceeds Vanilla, and Detach+LN yields the highest mean ($0.802 \\pm 0.024$, $\\Delta{=}+5.7$\\,pp, $g{=}+1.89$). LN provides a consistent 3.5--4.8\\,pp advantage over BN ($g{=}0.88$--$1.24$). The normalization main effect reaches significance under permutation testing ($p_\\text{perm}{=}0.041$).\n\n\\textbf{Effect sizes and instability.} After Bonferroni correction for all pairwise comparisons, no individual Welch $t$-test reaches $\\alpha{=}0.05$, consistent with $n{=}3$--$4$; we report effect sizes and planned-comparison bootstrap CIs (Appendix~\\ref{app:stat_power}). The BN + gradient flow cell exhibits the highest instability ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all others; $\\sigma \\leq 0.027$ for all other cells).\n\n\\textbf{Per-task concentration and content irrelevance.} The normalization advantage amplifies approximately fourfold on the three physically constrained tasks ($+6.9$\\,pp vs.\\ $+1.7$\\,pp on easy tasks; T3, T5, T6; Appendix~\\ref{app:per_task_factorial}), where safety margins are thinnest. Spatial content does not detectably affect outcomes: Full OCC, Random OCC, and Depth fall within cross-seed variance ($p > 0.4$, observed under v1 for Random OCC and Depth).\n\n\\textbf{BN + gradient flow is associated with training instability.}"
             }
           },
-          "id": "event-002183"
+          "id": "event-002181"
         },
         {
-          "source_line": 2184,
+          "source_line": 2182,
           "timestamp": "2026-05-29T16:52:33.452454+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -493,10 +452,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002184"
+          "id": "event-002182"
         },
         {
-          "source_line": 2185,
+          "source_line": 2183,
           "timestamp": "2026-05-29T16:52:37.769924+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -515,10 +474,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002185"
+          "id": "event-002183"
         },
         {
-          "source_line": 2186,
+          "source_line": 2184,
           "timestamp": "2026-05-29T16:52:38.725005+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -533,10 +492,10 @@
             "tool": "Bash",
             "elapsed_ms": 955
           },
-          "id": "event-002186"
+          "id": "event-002184"
         },
         {
-          "source_line": 2187,
+          "source_line": 2185,
           "timestamp": "2026-05-29T16:52:42.086472+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -555,10 +514,10 @@
               "timeout": "60000"
             }
           },
-          "id": "event-002187"
+          "id": "event-002185"
         },
         {
-          "source_line": 2188,
+          "source_line": 2186,
           "timestamp": "2026-05-29T16:52:42.939486+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -573,10 +532,10 @@
             "tool": "Bash",
             "elapsed_ms": 853
           },
-          "id": "event-002188"
+          "id": "event-002186"
         },
         {
-          "source_line": 2189,
+          "source_line": 2187,
           "timestamp": "2026-05-29T16:52:47.858098+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -594,10 +553,10 @@
               "description": "Verify limitations on page 8"
             }
           },
-          "id": "event-002189"
+          "id": "event-002187"
         },
         {
-          "source_line": 2190,
+          "source_line": 2188,
           "timestamp": "2026-05-29T16:52:48.009072+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -612,10 +571,10 @@
             "tool": "Bash",
             "elapsed_ms": 150
           },
-          "id": "event-002190"
+          "id": "event-002188"
         },
         {
-          "source_line": 2191,
+          "source_line": 2189,
           "timestamp": "2026-05-29T16:52:53.178758+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -633,10 +592,10 @@
               "description": "Verify page structure"
             }
           },
-          "id": "event-002191"
+          "id": "event-002189"
         },
         {
-          "source_line": 2192,
+          "source_line": 2190,
           "timestamp": "2026-05-29T16:52:53.279580+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -651,10 +610,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002192"
+          "id": "event-002190"
         },
         {
-          "source_line": 2193,
+          "source_line": 2191,
           "timestamp": "2026-05-29T16:52:57.696301+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -675,10 +634,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002193"
+          "id": "event-002191"
         },
         {
-          "source_line": 2194,
+          "source_line": 2192,
           "timestamp": "2026-05-29T16:52:58.148330+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -693,10 +652,10 @@
             "tool": "Grep",
             "elapsed_ms": 452
           },
-          "id": "event-002194"
+          "id": "event-002192"
         },
         {
-          "source_line": 2195,
+          "source_line": 2193,
           "timestamp": "2026-05-29T16:52:58.851310+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -716,10 +675,10 @@
               "glob": "*.tex"
             }
           },
-          "id": "event-002195"
+          "id": "event-002193"
         },
         {
-          "source_line": 2196,
+          "source_line": 2194,
           "timestamp": "2026-05-29T16:52:58.952149+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -734,10 +693,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-002196"
+          "id": "event-002194"
         },
         {
-          "source_line": 2197,
+          "source_line": 2195,
           "timestamp": "2026-05-29T16:53:21.310164+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -755,10 +714,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002197"
+          "id": "event-002195"
         },
         {
-          "source_line": 2198,
+          "source_line": 2196,
           "timestamp": "2026-05-29T16:53:24.370624+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -773,10 +732,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3060
           },
-          "id": "event-002198"
+          "id": "event-002196"
         },
         {
-          "source_line": 2199,
+          "source_line": 2197,
           "timestamp": "2026-05-29T16:53:27.064643+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -789,7 +748,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002199"
+          "id": "event-002197"
         }
       ]
     },
@@ -797,7 +756,7 @@
       "number": 99,
       "messages": [
         {
-          "source_line": 2200,
+          "source_line": 2198,
           "timestamp": "2026-05-29T16:53:27.080999+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -811,493 +770,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002200"
+          "id": "event-002198"
         },
         {
-          "source_line": 2201,
-          "timestamp": "2026-05-29T16:53:33.661212+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-            }
-          },
-          "id": "event-002201"
-        },
-        {
-          "source_line": 2202,
-          "timestamp": "2026-05-29T16:53:33.712091+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Round 4 Author Response — Draft\n2\t\n3\tWe thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.\n4\t\n5\t## Summary of Changes\n6\t\n7\t- **Framing**: Entire paper restructured from \"normalization-dependent gradient flow effect\" to \"two independent additive main effects\" (RD3-C1)\n8\t- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)\n9\t- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10\t- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11\t- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12\t- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13\t\n14\t---\n15\t\n16\t## Resolved Issues\n17\t\n18\t### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n19\t\n20\t**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n21\t\n22\t**Fix**: Complete reframing across all sections:\n23\t- Abstract (main.tex L23): \"two independent mechanisms\" replacing interaction language\n24\t- Introduction (L22): Contribution 1 rewritten as \"A 2×2 factorial identifies two additive mechanisms: gradient flow through BatchNorm degrades safety; LayerNorm provides a consistent protective effect\"\n25\t- Results (results.tex L11): \"Two additive main effects explain the advantage\" with permutation ANOVA p-values\n26\t- Discussion (discussion.tex L11): \"Additive protection model\" framing; \"two independent protections...with \n…[truncated 19568 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 50
-          },
-          "id": "event-002202"
-        },
-        {
-          "source_line": 2203,
-          "timestamp": "2026-05-29T16:53:54.389520+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n\n**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n\n**Fix**: Complete reframing across all sections:\n- Abstract (main.tex L23): \"two independent mechanisms\" replacing interaction language\n- Introduction (L22): Contribution 1 rewritten as \"A 2×2 factorial identifies two additive mechanisms: gradient flow through BatchNorm degrades safety; LayerNorm provides a consistent protective effect\"\n- Results (results.tex L11): \"Two additive main effects explain the advantage\" with permutation ANOVA p-values\n- Discussion (discussion.tex L11): \"Additive protection model\" framing; \"two independent protections...with negligible interaction (η²=0.005)\"\n- Removed all instances of \"normalization-dependent\", \"confirms additive\", and language implying interaction\n\n**Verification**: Grep for \"normalization-dependent\" and \"confirms additive\" returns zero hits. The framing is now consistent with the ANOVA: two independent additive effects, each contributing ~4–5pp. We additionally computed BF₀₁=3.5 (Wagenmakers, 2007), providing moderate Bayesian evidence that the additive model is preferred (see D080 below).",
-              "new_string": "### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n\n**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n\n**Fix**: Complete reframing. Every section now uses \"two additive factors/effects\" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of \"normalization-dependent\", \"confirms additive\", and interaction-implying language removed.\n\n**Verification**: Grep for \"normalization-dependent\", \"confirms additive\", \"mechanisms\", and \"protections\" returns zero hits across all .tex files. Terminology is uniformly \"factors\" or \"effects\". BF₀₁=3.5 (Wagenmakers, 2007) provides moderate Bayesian evidence favoring the additive model (see D080 below)."
-            }
-          },
-          "id": "event-002203"
-        },
-        {
-          "source_line": 2204,
-          "timestamp": "2026-05-29T16:53:54.440480+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002204"
-        },
-        {
-          "source_line": 2205,
-          "timestamp": "2026-05-29T16:55:59.964448+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-            }
-          },
-          "id": "event-002205"
-        },
-        {
-          "source_line": 2206,
-          "timestamp": "2026-05-29T16:56:00.016213+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Round 4 Author Response — Draft\n2\t\n3\tWe thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.\n4\t\n5\t## Summary of Changes\n6\t\n7\t- **Framing**: Entire paper restructured from \"normalization-dependent gradient flow effect\" to \"two independent additive main effects\" (RD3-C1)\n8\t- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)\n9\t- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10\t- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11\t- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12\t- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13\t\n14\t---\n15\t\n16\t## Resolved Issues\n17\t\n18\t### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n19\t\n20\t**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n21\t\n22\t**Fix**: Complete reframing. Every section now uses \"two additive factors/effects\" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of \"normalization-dependent\", \"confirms additive\", and interaction-implying language removed.\n23\t\n24\t**Verification**: Grep for \"normalization-dependent\", \"confirms additive\", \"mechanisms\", and \"protections\" returns zero hits across all .tex files. Terminology i\n…[truncated 19207 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-002206"
-        },
-        {
-          "source_line": 2207,
-          "timestamp": "2026-05-29T16:56:14.924340+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "## Welch vs. Permutation p-Value Discrepancy\n\nThe Welch-corrected p-values (gradient 0.204, normalization 0.104) are more conservative than the permutation ANOVA p-values (gradient 0.090, normalization 0.041). This discrepancy arises from a specific data structure property:\n\n**Root cause**: Cell 1 (BN + gradient ON) has 7× the variance of other cells (σ²=0.0040 vs ≤0.0007). The Welch correction incorporates each group's variance into the standard error estimate. Because Cell 1's inflated variance enters the pooled SE for the gradient factor, it attenuates the test statistic substantially.\n\n**Why permutation is more appropriate here**: The permutation test makes no distributional or homoscedasticity assumptions — it computes the exact null distribution by shuffling labels. Cell 1's high variance affects the observed test statistic but does not disproportionately inflate the null distribution, yielding a more balanced comparison. This is precisely the scenario for which permutation tests were designed (Anderson, 2001).\n\n**Convergence under n≥5**: The planned seed expansion (RD2-N1) will produce balanced cell sizes (n≥5 per cell). With more observations, Cell 1's variance estimate stabilizes, and the Welch and permutation approaches converge. If the current effect sizes hold, we expect both methods to yield p<0.05 for the normalization effect.",
-              "new_string": "## Welch vs. Permutation p-Value Discrepancy\n\nWe report both approaches transparently. The Welch marginal test (gradient p=0.204, normalization p=0.104) and permutation ANOVA (gradient p_perm=0.090, normalization p_perm=0.041) differ because Welch penalizes Cell 1's 7× inflated variance more heavily. Neither approach is wrong — they answer slightly different questions under different assumptions about variance structure. The key point is that **all lines of evidence converge on the same directional conclusions**:\n\n1. **Effect direction**: Both Welch and permutation agree that gradient OFF > ON and LN > BN. No method reverses the sign.\n2. **Leave-one-out**: 14/14 single-observation deletions preserve both effect directions (F_gradient ∈ [1.73, 6.05]; F_norm ∈ [3.06, 7.91]).\n3. **Effect sizes**: Hedges' g = 0.78–1.89 (large to very large) across all factorial comparisons, regardless of p-value method.\n4. **Bayesian evidence**: BF₀₁ = 3.5 moderately favors the additive model.\n5. **Permutation significance**: The normalization effect reaches p=0.041 under the assumption-free permutation test.\n\nThe planned seed expansion (RD2-N1, n≥5 per cell) will stabilize Cell 1's variance estimate, at which point the two approaches are expected to converge."
-            }
-          },
-          "id": "event-002207"
-        },
-        {
-          "source_line": 2208,
-          "timestamp": "2026-05-29T16:56:14.975315+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002208"
-        },
-        {
-          "source_line": 2209,
-          "timestamp": "2026-05-29T16:56:19.492230+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "## Open Issues (Pending GPU Allocation)",
-              "new_string": "## Open Issues (Pending GPU Allocation)\n\nAll pending experiments require approximately **142 GPU·hours total**. With our 8-GPU parallel setup, we estimate completion within **~2 days** of GPU restoration."
-            }
-          },
-          "id": "event-002209"
-        },
-        {
-          "source_line": 2210,
-          "timestamp": "2026-05-29T16:56:19.593156+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 100
-          },
-          "id": "event-002210"
-        },
-        {
-          "source_line": 2211,
-          "timestamp": "2026-05-29T16:56:23.206680+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "[PENDING GPU — estimated ~65 GPU·h, ~5 days wall time with 1 GPU]",
-              "new_string": "[PENDING GPU — estimated ~65 GPU·h, ~8h wall time with 8-GPU parallelism]"
-            }
-          },
-          "id": "event-002211"
-        },
-        {
-          "source_line": 2212,
-          "timestamp": "2026-05-29T16:56:23.258088+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 51
-          },
-          "id": "event-002212"
-        },
-        {
-          "source_line": 2213,
-          "timestamp": "2026-05-29T16:56:31.549251+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "### BF₀₁ = 3.5 for Additivity (addresses RD2-N1 \"absence of evidence\" concern)\n\nA BIC-based Bayes Factor (Wagenmakers, 2007) provides moderate positive evidence that the additive (no-interaction) model is preferred over an interaction model. This addresses the \"absence of evidence ≠ evidence of absence\" concern regarding the non-significant interaction p-value: unlike a null p-value, BF₀₁=3.5 actively favors the simpler model.",
-              "new_string": "### BF₀₁ = 3.5 for Additivity (addresses RD2-N1 \"absence of evidence\" concern)\n\nA BIC-based Bayes Factor (Wagenmakers, 2007) provides moderate positive evidence that the additive (no-interaction) model is preferred over an interaction model. This directly addresses the RD2-N1 concern that \"absence of evidence ≠ evidence of absence\" — unlike a null p-value, BF₀₁=3.5 actively favors the simpler model."
-            }
-          },
-          "id": "event-002213"
-        },
-        {
-          "source_line": 2214,
-          "timestamp": "2026-05-29T16:56:31.671537+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 122
-          },
-          "id": "event-002214"
-        },
-        {
-          "source_line": 2215,
-          "timestamp": "2026-05-29T16:56:39.734700+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "### Leave-One-Out Sensitivity\n\nBoth effect directions are preserved across all 14 single-observation deletions:\n- F_gradient ∈ [1.73, 6.05], always ON < OFF\n- F_norm ∈ [3.06, 7.91], always BN < LN\n- Removing Cell 1's highest seed (0.776) strengthens both effects to significance (p_gradient=0.036, p_norm=0.020), indicating reported effects are conservative\n- Cell 1 outlier (0.654) inflates but does not create the gradient effect",
-              "new_string": "### Leave-One-Out Sensitivity (addresses RD2-N1 statistical power concern)\n\nBoth effect directions are preserved across all 14 single-observation deletions, directly addressing RD2-N1's concern about whether the effects are robust at n=3–4:\n- F_gradient ∈ [1.73, 6.05], always ON < OFF\n- F_norm ∈ [3.06, 7.91], always BN < LN\n- Removing Cell 1's highest seed (0.776) strengthens both effects to significance (p_gradient=0.036, p_norm=0.020), indicating reported effects are conservative\n- Cell 1 outlier (0.654) inflates but does not create the gradient effect"
-            }
-          },
-          "id": "event-002215"
-        },
-        {
-          "source_line": 2216,
-          "timestamp": "2026-05-29T16:56:39.785458+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002216"
-        },
-        {
-          "source_line": 2217,
-          "timestamp": "2026-05-29T16:56:46.561833+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "### TSR Factorial ANOVA (safety-specificity)\n\nApplying the same 2×2 ANOVA to Task Success Rate yields no significant effects (gradient F=0.85, p=0.380; normalization F=1.34, p=0.274; interaction F=1.08, p=0.322). The auxiliary head pathway specifically affects collision avoidance, not general task competence.",
-              "new_string": "### TSR Factorial ANOVA (safety-specificity; addresses RD3-W2 mechanism scope)\n\nApplying the same 2×2 ANOVA to Task Success Rate yields no significant effects (gradient F=0.85, p=0.380; normalization F=1.34, p=0.274; interaction F=1.08, p=0.322). The auxiliary head pathway specifically affects collision avoidance, not general task competence — providing evidence for the safety-specificity implicit in RD3-W2's mechanism discussion."
-            }
-          },
-          "id": "event-002217"
-        },
-        {
-          "source_line": 2218,
-          "timestamp": "2026-05-29T16:56:46.612528+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002218"
-        },
-        {
-          "source_line": 2219,
-          "timestamp": "2026-05-29T16:56:56.599827+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "Beyond addressing specific reviewer concerns, we added four supplementary analyses to the Appendix (app:permutation section) to preemptively strengthen the statistical evidence:",
-              "new_string": "Beyond addressing specific reviewer concerns, we added four supplementary analyses to the Appendix (app:permutation section) to preemptively strengthen the statistical evidence. We also updated the per-task analysis with v2 data, revealing that the normalization advantage amplifies 4× on physically constrained tasks (+6.9pp vs +1.7pp), demonstrating that the effect concentrates where safety matters most."
-            }
-          },
-          "id": "event-002219"
-        },
-        {
-          "source_line": 2220,
-          "timestamp": "2026-05-29T16:56:56.650753+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002220"
-        },
-        {
-          "source_line": 2221,
-          "timestamp": "2026-05-29T16:57:00.569068+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "| R4 (this) | D080 proactive | BF₀₁, TSR ANOVA, leave-one-out, Levene+Welch, per-task 4× amplification |",
-              "new_string": "| R4 (this) | D080 proactive | BF₀₁, TSR ANOVA, leave-one-out, Levene+Welch, per-task 4× amplification (LN advantage concentrates on constrained tasks) |"
-            }
-          },
-          "id": "event-002221"
-        },
-        {
-          "source_line": 2222,
-          "timestamp": "2026-05-29T16:57:00.619893+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 50
-          },
-          "id": "event-002222"
-        },
-        {
-          "source_line": 2223,
-          "timestamp": "2026-05-29T16:57:06.422963+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md"
-            }
-          },
-          "id": "event-002223"
-        },
-        {
-          "source_line": 2224,
-          "timestamp": "2026-05-29T16:57:06.473986+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t# Round 4 Author Response — Draft\n2\t\n3\tWe thank the reviewers for their detailed and constructive feedback across three rounds. Below we address each issue with specific changes made and verification.\n4\t\n5\t## Summary of Changes\n6\t\n7\t- **Framing**: Entire paper restructured from \"normalization-dependent gradient flow effect\" to \"two independent additive main effects\" (RD3-C1)\n8\t- **Statistics**: Added permutation ANOVA, Hedges' g, BF₀₁=3.5, TSR ANOVA, leave-one-out sensitivity, Levene+Welch (RD3-W1, RD2-W2, D080)\n9\t- **Format**: Discussion compressed ~30%, Limitations moved into main text, main body fits 8 pages (R1-W15, RD2-N3, RD3-W4)\n10\t- **Scope**: Title, guidelines, and conclusions explicitly limited to \"OpenVLA with LoRA fine-tuning on tabletop manipulation\" (RD2-W3, RD2-W5)\n11\t- **References**: 11+ citations added spanning BN fine-tuning, factorial design, permutation testing, uncertainty weighting (RD2-W6)\n12\t- **Pending**: Seed expansion (n≥5), v2 Random OCC, BN eval mode, λ₀ sweep — experiments designed, awaiting GPU allocation\n13\t\n14\t---\n15\t\n16\t## Resolved Issues\n17\t\n18\t### RD3-C1 [Critical] — Framing contradiction: \"normalization-dependent\" vs zero interaction\n19\t\n20\t**Issue**: The \"normalization-dependent gradient flow effect\" framing implied an interaction, but ANOVA interaction F(1,10)=0.10, p=0.763, η²=0.005 is negligible. The actual pattern is two independent additive main effects.\n21\t\n22\t**Fix**: Complete reframing. Every section now uses \"two additive factors/effects\" language. Abstract, Introduction (Contribution 1), Results, and Discussion all restructured around two independent main effects — gradient flow penalty and normalization advantage — with negligible interaction. All instances of \"normalization-dependent\", \"confirms additive\", and interaction-implying language removed.\n23\t\n24\t**Verification**: Grep for \"normalization-dependent\", \"confirms additive\", \"mechanisms\", and \"protections\" returns zero hits across all .tex files. Terminology i\n…[truncated 19797 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Read",
-            "elapsed_ms": 51
-          },
-          "id": "event-002224"
-        },
-        {
-          "source_line": 2225,
+          "source_line": 2199,
           "timestamp": "2026-05-29T16:57:10.287725+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1315,10 +791,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002225"
+          "id": "event-002199"
         },
         {
-          "source_line": 2226,
+          "source_line": 2200,
           "timestamp": "2026-05-29T16:57:10.388532+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1333,10 +809,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 100
           },
-          "id": "event-002226"
+          "id": "event-002200"
         },
         {
-          "source_line": 2227,
+          "source_line": 2201,
           "timestamp": "2026-05-29T16:57:21.429156+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1354,10 +830,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002227"
+          "id": "event-002201"
         },
         {
-          "source_line": 2228,
+          "source_line": 2202,
           "timestamp": "2026-05-29T16:57:24.491956+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1372,10 +848,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3062
           },
-          "id": "event-002228"
+          "id": "event-002202"
         },
         {
-          "source_line": 2229,
+          "source_line": 2203,
           "timestamp": "2026-05-29T16:57:29.607115+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -1388,7 +864,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002229"
+          "id": "event-002203"
         }
       ]
     },
@@ -1396,7 +872,7 @@
       "number": 100,
       "messages": [
         {
-          "source_line": 2230,
+          "source_line": 2204,
           "timestamp": "2026-05-29T18:30:22.329593+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -1410,10 +886,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002230"
+          "id": "event-002204"
         },
         {
-          "source_line": 2231,
+          "source_line": 2205,
           "timestamp": "2026-05-29T18:30:33.133235+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1430,10 +906,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
             }
           },
-          "id": "event-002231"
+          "id": "event-002205"
         },
         {
-          "source_line": 2232,
+          "source_line": 2206,
           "timestamp": "2026-05-29T18:30:33.635347+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1448,10 +924,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002232"
+          "id": "event-002206"
         },
         {
-          "source_line": 2233,
+          "source_line": 2207,
           "timestamp": "2026-05-29T18:30:33.636463+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1468,10 +944,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
             }
           },
-          "id": "event-002233"
+          "id": "event-002207"
         },
         {
-          "source_line": 2234,
+          "source_line": 2208,
           "timestamp": "2026-05-29T18:30:34.139193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1486,10 +962,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002234"
+          "id": "event-002208"
         },
         {
-          "source_line": 2235,
+          "source_line": 2209,
           "timestamp": "2026-05-29T18:30:34.189749+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1506,10 +982,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002235"
+          "id": "event-002209"
         },
         {
-          "source_line": 2236,
+          "source_line": 2210,
           "timestamp": "2026-05-29T18:30:34.641636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1524,10 +1000,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-002236"
+          "id": "event-002210"
         },
         {
-          "source_line": 2237,
+          "source_line": 2211,
           "timestamp": "2026-05-29T18:30:34.642044+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1544,10 +1020,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-002237"
+          "id": "event-002211"
         },
         {
-          "source_line": 2238,
+          "source_line": 2212,
           "timestamp": "2026-05-29T18:30:35.093934+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1562,10 +1038,10 @@
             "tool": "Read",
             "elapsed_ms": 451
           },
-          "id": "event-002238"
+          "id": "event-002212"
         },
         {
-          "source_line": 2239,
+          "source_line": 2213,
           "timestamp": "2026-05-29T18:30:35.144471+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1582,10 +1058,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex"
             }
           },
-          "id": "event-002239"
+          "id": "event-002213"
         },
         {
-          "source_line": 2240,
+          "source_line": 2214,
           "timestamp": "2026-05-29T18:30:35.596505+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1600,10 +1076,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002240"
+          "id": "event-002214"
         },
         {
-          "source_line": 2241,
+          "source_line": 2215,
           "timestamp": "2026-05-29T18:30:35.596970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1620,10 +1096,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
             }
           },
-          "id": "event-002241"
+          "id": "event-002215"
         },
         {
-          "source_line": 2242,
+          "source_line": 2216,
           "timestamp": "2026-05-29T18:30:36.149159+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1638,10 +1114,10 @@
             "tool": "Read",
             "elapsed_ms": 552
           },
-          "id": "event-002242"
+          "id": "event-002216"
         },
         {
-          "source_line": 2243,
+          "source_line": 2217,
           "timestamp": "2026-05-29T18:30:36.149592+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1658,10 +1134,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
             }
           },
-          "id": "event-002243"
+          "id": "event-002217"
         },
         {
-          "source_line": 2244,
+          "source_line": 2218,
           "timestamp": "2026-05-29T18:30:36.200076+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1676,10 +1152,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002244"
+          "id": "event-002218"
         },
         {
-          "source_line": 2245,
+          "source_line": 2219,
           "timestamp": "2026-05-29T18:31:25.896125+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1700,10 +1176,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002245"
+          "id": "event-002219"
         },
         {
-          "source_line": 2246,
+          "source_line": 2220,
           "timestamp": "2026-05-29T18:31:26.147399+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1718,10 +1194,10 @@
             "tool": "Grep",
             "elapsed_ms": 251
           },
-          "id": "event-002246"
+          "id": "event-002220"
         },
         {
-          "source_line": 2247,
+          "source_line": 2221,
           "timestamp": "2026-05-29T18:31:26.198136+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1739,10 +1215,10 @@
               "limit": "50"
             }
           },
-          "id": "event-002247"
+          "id": "event-002221"
         },
         {
-          "source_line": 2248,
+          "source_line": 2222,
           "timestamp": "2026-05-29T18:31:26.248679+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1757,10 +1233,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002248"
+          "id": "event-002222"
         },
         {
-          "source_line": 2249,
+          "source_line": 2223,
           "timestamp": "2026-05-29T18:31:29.259869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1779,10 +1255,10 @@
               "limit": "30"
             }
           },
-          "id": "event-002249"
+          "id": "event-002223"
         },
         {
-          "source_line": 2250,
+          "source_line": 2224,
           "timestamp": "2026-05-29T18:31:29.310499+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1797,10 +1273,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002250"
+          "id": "event-002224"
         },
         {
-          "source_line": 2251,
+          "source_line": 2225,
           "timestamp": "2026-05-29T18:31:32.322612+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1819,10 +1295,10 @@
               "limit": "100"
             }
           },
-          "id": "event-002251"
+          "id": "event-002225"
         },
         {
-          "source_line": 2252,
+          "source_line": 2226,
           "timestamp": "2026-05-29T18:31:32.373290+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1837,10 +1313,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002252"
+          "id": "event-002226"
         },
         {
-          "source_line": 2253,
+          "source_line": 2227,
           "timestamp": "2026-05-29T18:32:05.090200+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1860,10 +1336,10 @@
               "new_string": "gradient flow through BatchNorm reduces safety, possibly mediated by running-statistics corruption during auxiliary forward passes"
             }
           },
-          "id": "event-002253"
+          "id": "event-002227"
         },
         {
-          "source_line": 2254,
+          "source_line": 2228,
           "timestamp": "2026-05-29T18:32:05.592695+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1878,10 +1354,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002254"
+          "id": "event-002228"
         },
         {
-          "source_line": 2255,
+          "source_line": 2229,
           "timestamp": "2026-05-29T18:32:05.943888+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1901,10 +1377,10 @@
               "new_string": "gradient flow through BatchNorm degrades safety, while LayerNorm provides a consistent advantage"
             }
           },
-          "id": "event-002255"
+          "id": "event-002229"
         },
         {
-          "source_line": 2256,
+          "source_line": 2230,
           "timestamp": "2026-05-29T18:32:06.446154+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1919,10 +1395,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002256"
+          "id": "event-002230"
         },
         {
-          "source_line": 2257,
+          "source_line": 2231,
           "timestamp": "2026-05-29T18:32:07.449589+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1942,10 +1418,10 @@
               "new_string": "Under BatchNorm, gradient flow is associated with lower safety"
             }
           },
-          "id": "event-002257"
+          "id": "event-002231"
         },
         {
-          "source_line": 2258,
+          "source_line": 2232,
           "timestamp": "2026-05-29T18:32:07.902184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1960,10 +1436,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002258"
+          "id": "event-002232"
         },
         {
-          "source_line": 2259,
+          "source_line": 2233,
           "timestamp": "2026-05-29T18:32:08.353783+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1983,10 +1459,10 @@
               "new_string": "the critical window for the gradient flow safety deficit is not simply cumulative"
             }
           },
-          "id": "event-002259"
+          "id": "event-002233"
         },
         {
-          "source_line": 2260,
+          "source_line": 2234,
           "timestamp": "2026-05-29T18:32:08.906703+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2001,10 +1477,10 @@
             "tool": "Edit",
             "elapsed_ms": 552
           },
-          "id": "event-002260"
+          "id": "event-002234"
         },
         {
-          "source_line": 2261,
+          "source_line": 2235,
           "timestamp": "2026-05-29T18:32:09.207797+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2024,10 +1500,10 @@
               "new_string": "\\textbf{Normalization independently affects safety.}"
             }
           },
-          "id": "event-002261"
+          "id": "event-002235"
         },
         {
-          "source_line": 2262,
+          "source_line": 2236,
           "timestamp": "2026-05-29T18:32:09.308783+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2042,10 +1518,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002262"
+          "id": "event-002236"
         },
         {
-          "source_line": 2263,
+          "source_line": 2237,
           "timestamp": "2026-05-29T18:32:12.773568+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2063,10 +1539,10 @@
               "description": "Compile LaTeX to verify edits"
             }
           },
-          "id": "event-002263"
+          "id": "event-002237"
         },
         {
-          "source_line": 2264,
+          "source_line": 2238,
           "timestamp": "2026-05-29T18:32:13.728136+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2081,10 +1557,10 @@
             "tool": "Bash",
             "elapsed_ms": 954
           },
-          "id": "event-002264"
+          "id": "event-002238"
         },
         {
-          "source_line": 2265,
+          "source_line": 2239,
           "timestamp": "2026-05-29T18:32:16.641508+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2102,10 +1578,10 @@
               "description": "Check for LaTeX errors"
             }
           },
-          "id": "event-002265"
+          "id": "event-002239"
         },
         {
-          "source_line": 2266,
+          "source_line": 2240,
           "timestamp": "2026-05-29T18:32:16.742249+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2120,10 +1596,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002266"
+          "id": "event-002240"
         },
         {
-          "source_line": 2267,
+          "source_line": 2241,
           "timestamp": "2026-05-29T18:33:12.221809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2143,10 +1619,10 @@
               "new_string": "Additional limitations: the BN running-statistics hypothesis (\\S\\ref{sec:discussion}) is mechanistically plausible but not directly verified; targeted experiments (e.g., freezing running statistics at inference) are needed. All conditions use LoRA; effects under full fine-tuning are untested. Content and temporal ablations were conducted under the original codebase only. We do not explore other auxiliary objectives (e.g., flow prediction) or integration with runtime safety methods~\\cite{hu2025vlsa, zhang2025safevla}."
             }
           },
-          "id": "event-002267"
+          "id": "event-002241"
         },
         {
-          "source_line": 2268,
+          "source_line": 2242,
           "timestamp": "2026-05-29T18:33:12.272388+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2161,10 +1637,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002268"
+          "id": "event-002242"
         },
         {
-          "source_line": 2269,
+          "source_line": 2243,
           "timestamp": "2026-05-29T18:33:17.643931+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2184,10 +1660,10 @@
               "new_string": "Future work should verify the BatchNorm running-statistics hypothesis (e.g., freezing running statistics or comparing train vs.\\ eval mode), extend to other VLA architectures (e.g., $\\pi_0$, Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop manipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods for layered protection."
             }
           },
-          "id": "event-002269"
+          "id": "event-002243"
         },
         {
-          "source_line": 2270,
+          "source_line": 2244,
           "timestamp": "2026-05-29T18:33:17.694435+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2202,10 +1678,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002270"
+          "id": "event-002244"
         },
         {
-          "source_line": 2271,
+          "source_line": 2245,
           "timestamp": "2026-05-29T18:33:22.110296+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2223,10 +1699,10 @@
               "description": "Compile LaTeX and check output"
             }
           },
-          "id": "event-002271"
+          "id": "event-002245"
         },
         {
-          "source_line": 2272,
+          "source_line": 2246,
           "timestamp": "2026-05-29T18:33:22.963730+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2241,10 +1717,10 @@
             "tool": "Bash",
             "elapsed_ms": 853
           },
-          "id": "event-002272"
+          "id": "event-002246"
         },
         {
-          "source_line": 2273,
+          "source_line": 2247,
           "timestamp": "2026-05-29T18:33:28.031518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2262,10 +1738,10 @@
               "description": "Check for reference warnings"
             }
           },
-          "id": "event-002273"
+          "id": "event-002247"
         },
         {
-          "source_line": 2274,
+          "source_line": 2248,
           "timestamp": "2026-05-29T18:33:28.884569+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2280,10 +1756,10 @@
             "tool": "Bash",
             "elapsed_ms": 853
           },
-          "id": "event-002274"
+          "id": "event-002248"
         },
         {
-          "source_line": 2275,
+          "source_line": 2249,
           "timestamp": "2026-05-29T18:33:34.002702+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2304,10 +1780,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002275"
+          "id": "event-002249"
         },
         {
-          "source_line": 2276,
+          "source_line": 2250,
           "timestamp": "2026-05-29T18:33:34.103418+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2322,10 +1798,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-002276"
+          "id": "event-002250"
         },
         {
-          "source_line": 2277,
+          "source_line": 2251,
           "timestamp": "2026-05-29T18:33:39.122042+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2343,10 +1819,10 @@
               "description": "Check all gradient flow causal language mentions"
             }
           },
-          "id": "event-002277"
+          "id": "event-002251"
         },
         {
-          "source_line": 2278,
+          "source_line": 2252,
           "timestamp": "2026-05-29T18:33:39.222899+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2361,10 +1837,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-002278"
+          "id": "event-002252"
         },
         {
-          "source_line": 2279,
+          "source_line": 2253,
           "timestamp": "2026-05-29T18:34:06.751704+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2382,10 +1858,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002279"
+          "id": "event-002253"
         },
         {
-          "source_line": 2280,
+          "source_line": 2254,
           "timestamp": "2026-05-29T18:34:09.862687+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2400,10 +1876,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3110
           },
-          "id": "event-002280"
+          "id": "event-002254"
         },
         {
-          "source_line": 2281,
+          "source_line": 2255,
           "timestamp": "2026-05-29T18:34:16.488769+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2416,7 +1892,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002281"
+          "id": "event-002255"
         }
       ]
     },
@@ -2424,7 +1900,7 @@
       "number": 101,
       "messages": [
         {
-          "source_line": 2282,
+          "source_line": 2256,
           "timestamp": "2026-05-29T18:36:12.217822+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2438,51 +1914,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002282"
+          "id": "event-002256"
         },
         {
-          "source_line": 2283,
-          "timestamp": "2026-05-29T18:36:19.258767+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md",
-              "old_string": "(4 locations × 2 versions pre-written)",
-              "new_string": "(3 locations × 2 versions pre-written)"
-            }
-          },
-          "id": "event-002283"
-        },
-        {
-          "source_line": 2284,
-          "timestamp": "2026-05-29T18:36:19.259434+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/round4_rebuttal_draft.md has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
-            "tool": "Edit",
-            "elapsed_ms": 0
-          },
-          "id": "event-002284"
-        },
-        {
-          "source_line": 2285,
+          "source_line": 2257,
           "timestamp": "2026-05-29T18:36:19.460384+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2500,10 +1935,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002285"
+          "id": "event-002257"
         },
         {
-          "source_line": 2286,
+          "source_line": 2258,
           "timestamp": "2026-05-29T18:36:19.561192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2518,10 +1953,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002286"
+          "id": "event-002258"
         },
         {
-          "source_line": 2287,
+          "source_line": 2259,
           "timestamp": "2026-05-29T18:36:23.029457+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2541,10 +1976,10 @@
               "new_string": "with per-task collision rates reaching 43--93\\% on the three most constrained tasks (Appendix, Table~\\ref{tab:per_task})."
             }
           },
-          "id": "event-002287"
+          "id": "event-002259"
         },
         {
-          "source_line": 2288,
+          "source_line": 2260,
           "timestamp": "2026-05-29T18:36:23.080085+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2559,10 +1994,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002288"
+          "id": "event-002260"
         },
         {
-          "source_line": 2289,
+          "source_line": 2261,
           "timestamp": "2026-05-29T18:36:26.642858+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2580,10 +2015,10 @@
               "description": "Compile LaTeX to verify"
             }
           },
-          "id": "event-002289"
+          "id": "event-002261"
         },
         {
-          "source_line": 2290,
+          "source_line": 2262,
           "timestamp": "2026-05-29T18:36:27.596727+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2598,10 +2033,10 @@
             "tool": "Bash",
             "elapsed_ms": 953
           },
-          "id": "event-002290"
+          "id": "event-002262"
         },
         {
-          "source_line": 2291,
+          "source_line": 2263,
           "timestamp": "2026-05-29T18:36:32.515998+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2619,10 +2054,10 @@
               "project": "occsafe_vla"
             }
           },
-          "id": "event-002291"
+          "id": "event-002263"
         },
         {
-          "source_line": 2292,
+          "source_line": 2264,
           "timestamp": "2026-05-29T18:36:35.628068+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2637,10 +2072,10 @@
             "tool": "mcp__agent-ml-research__main_agent_post_to_director",
             "elapsed_ms": 3112
           },
-          "id": "event-002292"
+          "id": "event-002264"
         },
         {
-          "source_line": 2293,
+          "source_line": 2265,
           "timestamp": "2026-05-29T18:36:38.208398+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2653,7 +2088,7 @@
           "metadata": {
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6"
           },
-          "id": "event-002293"
+          "id": "event-002265"
         }
       ]
     },
@@ -2661,7 +2096,7 @@
       "number": 102,
       "messages": [
         {
-          "source_line": 2294,
+          "source_line": 2266,
           "timestamp": "2026-05-29T21:15:30.225001+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2675,10 +2110,10 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "source": "director"
           },
-          "id": "event-002294"
+          "id": "event-002266"
         },
         {
-          "source_line": 2295,
+          "source_line": 2267,
           "timestamp": "2026-05-29T21:15:40.695094+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2697,10 +2132,10 @@
               "limit": "3"
             }
           },
-          "id": "event-002295"
+          "id": "event-002267"
         },
         {
-          "source_line": 2296,
+          "source_line": 2268,
           "timestamp": "2026-05-29T21:15:41.197341+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2715,10 +2150,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-002296"
+          "id": "event-002268"
         },
         {
-          "source_line": 2297,
+          "source_line": 2269,
           "timestamp": "2026-05-29T21:15:41.248250+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2735,10 +2170,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002297"
+          "id": "event-002269"
         },
         {
-          "source_line": 2298,
+          "source_line": 2270,
           "timestamp": "2026-05-29T21:15:41.700401+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2753,10 +2188,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002298"
+          "id": "event-002270"
         },
         {
-          "source_line": 2299,
+          "source_line": 2271,
           "timestamp": "2026-05-29T21:15:42.202795+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2775,10 +2210,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002299"
+          "id": "event-002271"
         },
         {
-          "source_line": 2300,
+          "source_line": 2272,
           "timestamp": "2026-05-29T21:15:42.654859+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2793,10 +2228,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002300"
+          "id": "event-002272"
         },
         {
-          "source_line": 2301,
+          "source_line": 2273,
           "timestamp": "2026-05-29T21:15:43.157122+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2815,10 +2250,10 @@
               "limit": "4"
             }
           },
-          "id": "event-002301"
+          "id": "event-002273"
         },
         {
-          "source_line": 2302,
+          "source_line": 2274,
           "timestamp": "2026-05-29T21:15:43.609148+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2833,10 +2268,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-002302"
+          "id": "event-002274"
         },
         {
-          "source_line": 2303,
+          "source_line": 2275,
           "timestamp": "2026-05-29T21:15:43.609477+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2855,10 +2290,10 @@
               "limit": "3"
             }
           },
-          "id": "event-002303"
+          "id": "event-002275"
         },
         {
-          "source_line": 2304,
+          "source_line": 2276,
           "timestamp": "2026-05-29T21:15:43.659862+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2873,10 +2308,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002304"
+          "id": "event-002276"
         },
         {
-          "source_line": 2305,
+          "source_line": 2277,
           "timestamp": "2026-05-29T21:15:48.127236+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2896,10 +2331,10 @@
               "new_string": "These safety effects are invisible to standard task-success benchmarks (TSR ANOVA all $p{>}0.27$), explaining why fifteen prior spatial VLA methods did not detect them. The auxiliary head is discarded at inference, adding zero deployment cost."
             }
           },
-          "id": "event-002305"
+          "id": "event-002277"
         },
         {
-          "source_line": 2306,
+          "source_line": 2278,
           "timestamp": "2026-05-29T21:15:48.629508+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2914,10 +2349,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002306"
+          "id": "event-002278"
         },
         {
-          "source_line": 2307,
+          "source_line": 2279,
           "timestamp": "2026-05-29T21:15:50.035223+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2937,10 +2372,10 @@
               "new_string": "Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety. Additivity is consistent with two mechanistically distinct pathways: normalization type governs forward-pass statistics computation (a data-flow property), while gradient flow governs backward-pass parameter updates (an optimization property). If these pathways are orthogonal, independent corrections are expected---each fix helps regardless of the other's state."
             }
           },
-          "id": "event-002307"
+          "id": "event-002279"
         },
         {
-          "source_line": 2308,
+          "source_line": 2280,
           "timestamp": "2026-05-29T21:15:50.035634+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2955,10 +2390,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002308"
+          "id": "event-002280"
         },
         {
-          "source_line": 2309,
+          "source_line": 2281,
           "timestamp": "2026-05-29T21:15:51.441112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2978,10 +2413,10 @@
               "new_string": "Appendix~\\ref{app:permutation}). Bayesian model comparison provides moderate evidence favoring the additive model ($\\text{BF}_{01}{=}3.5$; Appendix~\\ref{app:permutation}). Parametric ANOVA yields consistent trends"
             }
           },
-          "id": "event-002309"
+          "id": "event-002281"
         },
         {
-          "source_line": 2310,
+          "source_line": 2282,
           "timestamp": "2026-05-29T21:15:51.893884+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2996,10 +2431,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002310"
+          "id": "event-002282"
         },
         {
-          "source_line": 2311,
+          "source_line": 2283,
           "timestamp": "2026-05-29T21:15:53.349364+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3019,10 +2454,10 @@
               "new_string": "Independent safety evaluation is necessary when deploying VLAs with auxiliary heads. One possibility: collision avoidance demands fine-grained trajectory control near obstacles, where small action perturbations cross obstacle boundaries; task success, a binary completion metric, tolerates larger action deviations. BN corruption may introduce action-distribution shifts that rarely affect completion but disproportionately increase boundary-crossing near obstacles."
             }
           },
-          "id": "event-002311"
+          "id": "event-002283"
         },
         {
-          "source_line": 2312,
+          "source_line": 2284,
           "timestamp": "2026-05-29T21:15:53.801470+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3037,10 +2472,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002312"
+          "id": "event-002284"
         },
         {
-          "source_line": 2313,
+          "source_line": 2285,
           "timestamp": "2026-05-29T21:15:55.207862+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3060,10 +2495,10 @@
               "new_string": "OccVLA uses a similar BEV occupancy head architecture but evaluates only task success. Our safety evaluation reveals that the same type of auxiliary head can degrade collision avoidance under default settings---a failure mode invisible to task-success benchmarks. The assumption that spatial awareness should improve safety remains untested; we address this gap."
             }
           },
-          "id": "event-002313"
+          "id": "event-002285"
         },
         {
-          "source_line": 2314,
+          "source_line": 2286,
           "timestamp": "2026-05-29T21:15:55.660031+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3078,10 +2513,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002314"
+          "id": "event-002286"
         },
         {
-          "source_line": 2315,
+          "source_line": 2287,
           "timestamp": "2026-05-29T21:15:56.613970+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3101,10 +2536,10 @@
               "new_string": "\\item \\textbf{Two additive factors govern safety, not spatial content.} Detached gradients"
             }
           },
-          "id": "event-002315"
+          "id": "event-002287"
         },
         {
-          "source_line": 2316,
+          "source_line": 2288,
           "timestamp": "2026-05-29T21:15:57.066198+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3119,10 +2554,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002316"
+          "id": "event-002288"
         },
         {
-          "source_line": 2317,
+          "source_line": 2289,
           "timestamp": "2026-05-29T21:15:57.668768+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3142,10 +2577,10 @@
               "new_string": "concentrating where safety margins are thinnest, consistent with the BN hypothesis: running-statistics perturbation is most consequential where actions must navigate tight obstacle clearances. Normalization type"
             }
           },
-          "id": "event-002317"
+          "id": "event-002289"
         },
         {
-          "source_line": 2318,
+          "source_line": 2290,
           "timestamp": "2026-05-29T21:15:57.719789+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3160,10 +2595,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002318"
+          "id": "event-002290"
         },
         {
-          "source_line": 2319,
+          "source_line": 2291,
           "timestamp": "2026-05-29T21:16:02.136728+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3181,10 +2616,10 @@
               "description": "Compile LaTeX and check pages"
             }
           },
-          "id": "event-002319"
+          "id": "event-002291"
         },
         {
-          "source_line": 2320,
+          "source_line": 2292,
           "timestamp": "2026-05-29T21:16:03.091327+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3199,10 +2634,10 @@
             "tool": "Bash",
             "elapsed_ms": 954
           },
-          "id": "event-002320"
+          "id": "event-002292"
         },
         {
-          "source_line": 2321,
+          "source_line": 2293,
           "timestamp": "2026-05-29T21:16:08.662181+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3220,10 +2655,10 @@
               "description": "Check section positions in PDF text"
             }
           },
-          "id": "event-002321"
+          "id": "event-002293"
         },
         {
-          "source_line": 2322,
+          "source_line": 2294,
           "timestamp": "2026-05-29T21:16:08.863320+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3238,10 +2673,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002322"
+          "id": "event-002294"
         },
         {
-          "source_line": 2323,
+          "source_line": 2295,
           "timestamp": "2026-05-29T21:16:15.054720+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3259,10 +2694,10 @@
               "description": "Find page numbers for Limitations and References"
             }
           },
-          "id": "event-002323"
+          "id": "event-002295"
         },
         {
-          "source_line": 2324,
+          "source_line": 2296,
           "timestamp": "2026-05-29T21:16:15.255890+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3277,10 +2712,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-002324"
+          "id": "event-002296"
         },
         {
-          "source_line": 2325,
+          "source_line": 2297,
           "timestamp": "2026-05-29T21:16:28.202781+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3300,10 +2735,10 @@
               "new_string": "concentrating where safety margins are thinnest. Normalization type"
             }
           },
-          "id": "event-002325"
+          "id": "event-002297"
         },
         {
-          "source_line": 2326,
+          "source_line": 2298,
           "timestamp": "2026-05-29T21:16:28.253479+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3318,10 +2753,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002326"
+          "id": "event-002298"
         },
         {
-          "source_line": 2327,
+          "source_line": 2299,
           "timestamp": "2026-05-29T21:16:32.971212+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3339,10 +2774,10 @@
               "description": "Recompile and check Limitations page"
             }
           },
-          "id": "event-002327"
+          "id": "event-002299"
         },
         {
-          "source_line": 2328,
+          "source_line": 2300,
           "timestamp": "2026-05-29T21:16:33.974837+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3357,10 +2792,10 @@
             "tool": "Bash",
             "elapsed_ms": 1003
           },
-          "id": "event-002328"
+          "id": "event-002300"
         },
         {
-          "source_line": 2329,
+          "source_line": 2301,
           "timestamp": "2026-05-29T21:16:42.189753+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3380,10 +2815,10 @@
               "new_string": "The assumption that spatial awareness should improve safety remains untested; we address this gap."
             }
           },
-          "id": "event-002329"
+          "id": "event-002301"
         },
         {
-          "source_line": 2330,
+          "source_line": 2302,
           "timestamp": "2026-05-29T21:16:42.290639+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3398,10 +2833,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002330"
+          "id": "event-002302"
         },
         {
-          "source_line": 2331,
+          "source_line": 2303,
           "timestamp": "2026-05-29T21:16:46.556291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3419,10 +2854,10 @@
               "description": "Recompile and check Limitations page"
             }
           },
-          "id": "event-002331"
+          "id": "event-002303"
         },
         {
-          "source_line": 2332,
+          "source_line": 2304,
           "timestamp": "2026-05-29T21:16:47.559826+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3437,10 +2872,10 @@
             "tool": "Bash",
             "elapsed_ms": 1003
           },
-          "id": "event-002332"
+          "id": "event-002304"
         },
         {
-          "source_line": 2333,
+          "source_line": 2305,
           "timestamp": "2026-05-29T21:16:57.196196+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3457,10 +2892,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
             }
           },
-          "id": "event-002333"
+          "id": "event-002305"
         },
         {
-          "source_line": 2334,
+          "source_line": 2306,
           "timestamp": "2026-05-29T21:16:57.246812+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3475,10 +2910,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002334"
+          "id": "event-002306"
         },
         {
-          "source_line": 2335,
+          "source_line": 2307,
           "timestamp": "2026-05-29T21:17:11.550871+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3498,10 +2933,10 @@
               "new_string": "CKA confirms intact encoder representations (CKA $\\geq$ 0.95), localizing the effect to optimization dynamics rather than representational corruption."
             }
           },
-          "id": "event-002335"
+          "id": "event-002307"
         },
         {
-          "source_line": 2336,
+          "source_line": 2308,
           "timestamp": "2026-05-29T21:17:11.601562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3516,10 +2951,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002336"
+          "id": "event-002308"
         },
         {
-          "source_line": 2337,
+          "source_line": 2309,
           "timestamp": "2026-05-29T21:17:15.665562+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3539,10 +2974,10 @@
               "new_string": "\\textbf{Content irrelevance.} Structured, random, and depth labels produce indistinguishable safety outcomes (observed under the original codebase), consistent with action--auxiliary orthogonality. No ground-truth spatial annotations are required."
             }
           },
-          "id": "event-002337"
+          "id": "event-002309"
         },
         {
-          "source_line": 2338,
+          "source_line": 2310,
           "timestamp": "2026-05-29T21:17:15.665979+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3557,10 +2992,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002338"
+          "id": "event-002310"
         },
         {
-          "source_line": 2339,
+          "source_line": 2311,
           "timestamp": "2026-05-29T21:17:22.289091+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3578,10 +3013,10 @@
               "description": "Recompile and check Limitations page"
             }
           },
-          "id": "event-002339"
+          "id": "event-002311"
         },
         {
-          "source_line": 2340,
+          "source_line": 2312,
           "timestamp": "2026-05-29T21:17:23.292773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3595,6 +3030,560 @@
             "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
             "tool": "Bash",
             "elapsed_ms": 1003
+          },
+          "id": "event-002312"
+        },
+        {
+          "source_line": 2313,
+          "timestamp": "2026-05-29T21:17:29.064451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-002313"
+        },
+        {
+          "source_line": 2314,
+          "timestamp": "2026-05-29T21:17:29.215408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Conclusion}\n3\t\n4\tWe presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \\emph{what} the auxiliary head predicts but \\emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three guidelines follow, all at zero inference cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-truth spatial labels are unnecessary. Future work should verify the BatchNorm running-statistics hypothesis (e.g., freezing running statistics or comparing train vs.\\ eval mode), extend to other VLA architectures (e.g., $\\pi_0$, Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop manipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods for layered protection.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-002314"
+        },
+        {
+          "source_line": 2315,
+          "timestamp": "2026-05-29T21:17:33.882844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "old_string": "The advantage arises from two independent effects, detaching gradients and switching to LayerNorm, each contributing ${\\approx}$4--5\\,pp, with negligible interaction ($\\eta^2{=}0.005$; Table~\\ref{tab:anova}). Only the BN + gradient flow cell falls below Vanilla; removing either condition restores safety.",
+              "new_string": "The advantage arises from two independent effects (each ${\\approx}$4--5\\,pp; interaction $\\eta^2{=}0.005$). Only BN + gradient flow falls below Vanilla; removing either condition restores safety."
+            }
+          },
+          "id": "event-002315"
+        },
+        {
+          "source_line": 2316,
+          "timestamp": "2026-05-29T21:17:33.933433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002316"
+        },
+        {
+          "source_line": 2317,
+          "timestamp": "2026-05-29T21:17:38.249515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "old_string": "Independent safety evaluation is necessary when deploying VLAs with auxiliary heads. One possibility: collision avoidance demands fine-grained trajectory control near obstacles, where small action perturbations cross obstacle boundaries; task success, a binary completion metric, tolerates larger action deviations. BN corruption may introduce action-distribution shifts that rarely affect completion but disproportionately increase boundary-crossing near obstacles.",
+              "new_string": "Independent safety evaluation is necessary. One possibility: collision avoidance demands fine-grained trajectory control near obstacles, where small perturbations cross obstacle boundaries; task success tolerates larger deviations. BN corruption may introduce action-distribution shifts that rarely affect completion but disproportionately increase boundary-crossing."
+            }
+          },
+          "id": "event-002317"
+        },
+        {
+          "source_line": 2318,
+          "timestamp": "2026-05-29T21:17:38.300175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002318"
+        },
+        {
+          "source_line": 2319,
+          "timestamp": "2026-05-29T21:17:42.479226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\nlines = result.stdout.split('\\n')\npage = 1\nfor line in lines:\n    if chr(12) in line:\n        page += 1\n    if 'Limitations' in line and page >= 7:\n        print(f'Page {page}: {line.strip()[:80]}')\n        break\n\"\n",
+              "description": "Recompile and check page"
+            }
+          },
+          "id": "event-002319"
+        },
+        {
+          "source_line": 2320,
+          "timestamp": "2026-05-29T21:17:43.484272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (19 pages, 3865271 bytes).\nPage 9: Limitations\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1005
+          },
+          "id": "event-002320"
+        },
+        {
+          "source_line": 2321,
+          "timestamp": "2026-05-29T21:17:53.320080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nif len(pages) >= 9:\n    p8 = pages[7]  # 0-indexed\n    lines8 = p8.strip().split('\\n')\n    print('=== END OF PAGE 8 (last 15 lines) ===')\n    for l in lines8[-15:]:\n        print(l)\n    print()\n    p9 = pages[8]\n    lines9 = p9.strip().split('\\n')\n    print('=== START OF PAGE 9 (first 15 lines) ===')\n    for l in lines9[:15]:\n        print(l)\n\"\n",
+              "description": "Check page 8/9 boundary"
+            }
+          },
+          "id": "event-002321"
+        },
+        {
+          "source_line": 2322,
+          "timestamp": "2026-05-29T21:17:53.571389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== END OF PAGE 8 (last 15 lines) ===\n\n254   6   Conclusion\n\n255   We presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. De-\n256   tached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while Batch-\n257   Norm with gradient flow reduces safety below it. The two effects combine additively, with the\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero inference cost:\n262   detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-\n263   truth spatial labels are unnecessary. Future work should verify the BatchNorm running-statistics\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 15 lines) ===\n264   hypothesis (e.g., freezing running statistics or comparing train vs. eval mode), extend to other VLA\n265   architectures (e.g., π0 , Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop ma-\n266   nipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods\n267   for layered protection.\n\n268   7   Limitations\n\n269   Our study has several limitations that qualify the scope of the conclusions.\n270   Simulation only. All experiments use simulated single-arm tabletop tasks; real-robot transfer is\n271   untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the rela-\n272   tive safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with\n273   contact-rich tasks is a necessary next step.\n274   Single model and benchmark. We study one architecture (OpenVLA-7B with LoRA) on \n…[truncated 323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-002322"
+        },
+        {
+          "source_line": 2323,
+          "timestamp": "2026-05-29T21:18:03.408222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
+              "old_string": "Future work should verify the BatchNorm running-statistics hypothesis (e.g., freezing running statistics or comparing train vs.\\ eval mode), extend to other VLA architectures (e.g., $\\pi_0$, Octo), full fine-tuning regimes, and safety benchmarks beyond tabletop manipulation, explore auxiliary loss weighting sensitivity, and integrate with runtime safety methods for layered protection.",
+              "new_string": "Future work should verify the BN running-statistics hypothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full fine-tuning, and integrate with runtime safety methods."
+            }
+          },
+          "id": "event-002323"
+        },
+        {
+          "source_line": 2324,
+          "timestamp": "2026-05-29T21:18:03.458979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002324"
+        },
+        {
+          "source_line": 2325,
+          "timestamp": "2026-05-29T21:18:10.234126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\nif len(pages) >= 9:\n    p8 = pages[7]\n    lines8 = p8.strip().split('\\n')\n    print('=== END OF PAGE 8 (last 10 lines) ===')\n    for l in lines8[-10:]:\n        print(l)\n    print()\n    p9 = pages[8]\n    lines9 = p9.strip().split('\\n')\n    print('=== START OF PAGE 9 (first 5 lines) ===')\n    for l in lines9[:5]:\n        print(l)\n\"\n",
+              "description": "Recompile and verify page boundary"
+            }
+          },
+          "id": "event-002325"
+        },
+        {
+          "source_line": 2326,
+          "timestamp": "2026-05-29T21:18:11.330359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (19 pages, 3865049 bytes).\n=== END OF PAGE 8 (last 10 lines) ===\n257   Norm with gradient flow reduces safety below it. The two effects combine additively, with the\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spa-\n259   tial labels has no detectable effect—the critical factor is not what the auxiliary head predicts but\n260   how it interacts with the shared encoder during training. The safety deficit is not accompanied\n261   by task-success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero infer-\n262   ence cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed;\n263   ground-truth spatial labels are unnecessary. Future work should verify the BN running-statistics hy-\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 5 lines) ===\n264   pothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full\n265   fine-tuning, and integrate with runtime safety methods.\n\n266   7   Limitations\n267   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1096
+          },
+          "id": "event-002326"
+        },
+        {
+          "source_line": 2327,
+          "timestamp": "2026-05-29T21:18:23.023437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
+              "old_string": "Future work should verify the BN running-statistics hypothesis (e.g., freezing running statistics), extend to other VLA architectures, benchmarks, and full fine-tuning, and integrate with runtime safety methods.",
+              "new_string": "Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods."
+            }
+          },
+          "id": "event-002327"
+        },
+        {
+          "source_line": 2328,
+          "timestamp": "2026-05-29T21:18:23.124374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002328"
+        },
+        {
+          "source_line": 2329,
+          "timestamp": "2026-05-29T21:18:27.741947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = p8.strip().split('\\n')\nprint('=== END OF PAGE 8 (last 8 lines) ===')\nfor l in lines8[-8:]:\n    print(l)\nprint()\np9 = pages[8]\nlines9 = p9.strip().split('\\n')\nprint('=== START OF PAGE 9 (first 5 lines) ===')\nfor l in lines9[:5]:\n    print(l)\n\"\n",
+              "description": "Recompile and check page boundary"
+            }
+          },
+          "id": "event-002329"
+        },
+        {
+          "source_line": 2330,
+          "timestamp": "2026-05-29T21:18:28.745957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (19 pages, 3865008 bytes).\n=== END OF PAGE 8 (last 8 lines) ===\n258   normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three guidelines follow, all at zero inference cost:\n262   detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 5 lines) ===\n263   truth spatial labels are unnecessary. Future work should verify the BN hypothesis, extend to other\n264   architectures and benchmarks, and integrate with runtime safety methods.\n\n265   7   Limitations\n266   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-002330"
+        },
+        {
+          "source_line": 2331,
+          "timestamp": "2026-05-29T21:18:36.023302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
+              "old_string": "Three guidelines follow, all at zero inference cost: detach auxiliary gradients under BatchNorm; use LayerNorm if gradient flow is needed; ground-truth spatial labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.",
+              "new_string": "Three zero-cost guidelines follow: detach gradients under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods."
+            }
+          },
+          "id": "event-002331"
+        },
+        {
+          "source_line": 2332,
+          "timestamp": "2026-05-29T21:18:36.074039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002332"
+        },
+        {
+          "source_line": 2333,
+          "timestamp": "2026-05-29T21:18:40.339992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\" && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = p8.strip().split('\\n')\nprint('=== END OF PAGE 8 (last 8 lines) ===')\nfor l in lines8[-8:]:\n    print(l)\nprint()\np9 = pages[8]\nlines9 = p9.strip().split('\\n')\nprint('=== START OF PAGE 9 (first 3 lines) ===')\nfor l in lines9[:3]:\n    print(l)\n\"\n",
+              "description": "Recompile and check page boundary"
+            }
+          },
+          "id": "event-002333"
+        },
+        {
+          "source_line": 2334,
+          "timestamp": "2026-05-29T21:18:41.467453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (19 pages, 3864976 bytes).\n=== END OF PAGE 8 (last 8 lines) ===\n259   labels has no detectable effect—the critical factor is not what the auxiliary head predicts but how\n260   it interacts with the shared encoder during training. The safety deficit is not accompanied by task-\n261   success degradation (TSR ANOVA all p>0.27). Three zero-cost guidelines follow: detach gradients\n262   under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hy-\n263   pothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.\n\n\n                                                       8\n\n=== START OF PAGE 9 (first 3 lines) ===\n264   7   Limitations\n\n265   Our study has several limitations that qualify the scope of the conclusions.\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 1127
+          },
+          "id": "event-002334"
+        },
+        {
+          "source_line": 2335,
+          "timestamp": "2026-05-29T21:19:04.699124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', '-layout', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\x0c')\np8 = pages[7]\nlines8 = [l for l in p8.strip().split('\\n') if l.strip()]\nprint(f'Page 8 has {len(lines8)} content lines')\nprint()\np9 = pages[8]\nlines9 = [l for l in p9.strip().split('\\n') if l.strip()]\n# Count Limitations lines on page 9\nlim_lines = []\nin_lim = False\nfor l in lines9:\n    if 'Limitations' in l and '7' in l:\n        in_lim = True\n    if in_lim:\n        lim_lines.append(l)\n    if 'References' in l:\n        break\nprint(f'Limitations takes {len(lim_lines)} lines on page 9')\nfor l in lim_lines:\n    print(l)\n\"\n",
+              "description": "Count lines needed for Limitations"
+            }
+          },
+          "id": "event-002335"
+        },
+        {
+          "source_line": 2336,
+          "timestamp": "2026-05-29T21:19:04.900190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 8 has 49 content lines\n\nLimitations takes 21 lines on page 9\n264   7   Limitations\n265   Our study has several limitations that qualify the scope of the conclusions.\n266   Simulation only. All experiments use simulated single-arm tabletop tasks; real-robot transfer is\n267   untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the rela-\n268   tive safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with\n269   contact-rich tasks is a necessary next step.\n270   Single model and benchmark. We study one architecture (OpenVLA-7B with LoRA) on one\n271   benchmark (SafeLIBERO Level I). The factorial effects—particularly the BN running-statistics\n272   mechanism—may differ for other VLA families, model scales, or safety benchmarks with differ-\n273   ent collision definitions. Extending to multiple architectures and benchmarks would strengthen\n274   generalizability.\n275   Codebase sensitivity. A single code revision shifted absolute CAR by up to 8.6 pp, exceeding the\n276   largest experimental effect (≤5.7 pp). Non-hyperparameter implementation details can dominate\n277   the signal of interest; our quantitative conclusions may not transfer across codebases without re-\n278   verification.\n279   Additional limitations: the BN running-statistics hypothesis (§5) is mechanistically plausible but\n280   not directly verified; targeted experiments (e.g., freezing running statistics at inference) are needed.\n281   All conditions use LoRA; effects under full fine-tuning are untested. Content and temporal ablations\n282   were conducted under the original codebase only. We do not explore other auxiliary objectives (e.g.,\n283   flow prediction) or integration with runtime safety methods [4, 22].\n284   References\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_9e0a08b1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-002336"
+        },
+        {
+          "source_line": 2337,
+          "timestamp": "2026-05-29T21:19:25.292959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-002337"
+        },
+        {
+          "source_line": 2338,
+          "timestamp": "2026-05-29T21:19:25.344919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Limitations}\n3\t\n4\tOur study has several limitations that qualify the scope of the conclusions.\n5\t\n6\t\\textbf{Simulation only.} All experiments use simulated single-arm tabletop tasks; real-robot transfer is untested. Sim-to-real gaps in dynamics, perception noise, and contact modeling may alter the relative safety ranking of conditions. Validating the Detach+LN advantage on physical hardware with contact-rich tasks is a necessary next step.\n7\t\n8\t\\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects---particularly the BN running-statistics mechanism---may differ for other VLA families, model scales, or safety benchmarks with different collision definitions. Extending to multiple architectures and benchmarks would strengthen generalizability.\n9\t\n10\t\\textbf{Codebase sensitivity.} A single code revision shifted absolute CAR by up to 8.6\\,pp, exceeding the largest experimental effect (${\\leq}5.7$\\,pp). Non-hyperparameter implementation details can dominate the signal of interest; our quantitative conclusions may not transfer across codebases without re-verification.\n11\t\n12\tAdditional limitations: the BN running-statistics hypothesis (\\S\\ref{sec:discussion}) is mechanistically plausible but not directly verified; targeted experiments (e.g., freezing running statistics at inference) are needed. All conditions use LoRA; effects under full fine-tuning are untested. Content and temporal ablations were conducted under the original codebase only. We do not explore other auxiliary objectives (e.g., flow prediction) or integration with runtime safety methods~\\cite{hu2025vlsa, zhang2025safevla}.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002338"
+        },
+        {
+          "source_line": 2339,
+          "timestamp": "2026-05-29T21:19:30.865381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex",
+              "content": "\n\\section{Limitations}\n\n\\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Sim-to-real gaps in dynamics and contact modeling may alter the relative safety ranking.\n%\n\\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects may differ for other VLA families, model scales, or collision definitions.\n%\n\\textbf{Codebase sensitivity.} A code revision shifted CAR by up to 8.6\\,pp, exceeding the largest experimental effect; conclusions may not transfer across codebases without re-verification.\n%\n\\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.\n"
+            }
+          },
+          "id": "event-002339"
+        },
+        {
+          "source_line": 2340,
+          "timestamp": "2026-05-29T21:19:30.966296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/limitations.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6",
+            "tool": "Write",
+            "elapsed_ms": 100
           },
           "id": "event-002340"
         }

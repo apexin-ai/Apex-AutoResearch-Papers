@@ -3,669 +3,10 @@
   "session_id": "f5f55a766d570843f8bc",
   "rounds": [
     {
-      "number": 353,
-      "messages": [
-        {
-          "source_line": 10261,
-          "timestamp": "2026-05-23T19:57:48.844435+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "内容与之前的审计一致，有一个新细节：数据盘实际是 1.8TB NVMe（仅用了 21GB / 2%），之前的 250GB/85% 可能是 df 显示的不同分区。无需额外汇报，已有完整报告发给 Director。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
-          },
-          "id": "event-010261"
-        }
-      ]
-    },
-    {
-      "number": 354,
-      "messages": [
-        {
-          "source_line": 10262,
-          "timestamp": "2026-05-24T04:00:39.752554+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[系统通知] 服务重启，自动恢复 ralph loop。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "source": "system:restart_recovery"
-          },
-          "id": "event-010262"
-        },
-        {
-          "source_line": 10263,
-          "timestamp": "2026-05-24T04:00:58.184107+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called ToolSearch"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "ToolSearch",
-            "tool_args": {
-              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__main_agent_post_to_director",
-              "max_results": "4"
-            }
-          },
-          "id": "event-010263"
-        },
-        {
-          "source_line": 10264,
-          "timestamp": "2026-05-24T04:00:58.235104+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": ""
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "ToolSearch",
-            "elapsed_ms": 50
-          },
-          "id": "event-010264"
-        },
-        {
-          "source_line": 10265,
-          "timestamp": "2026-05-24T04:01:00.462339+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__reconcile_crons"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__reconcile_crons"
-          },
-          "id": "event-010265"
-        },
-        {
-          "source_line": 10266,
-          "timestamp": "2026-05-24T04:01:00.971454+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__reconcile_crons",
-            "elapsed_ms": 509
-          },
-          "id": "event-010266"
-        },
-        {
-          "source_line": 10267,
-          "timestamp": "2026-05-24T04:01:01.578637+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_registry"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "tool_args": {
-              "project": "schema-dag-extraction",
-              "filters": "{'status': 'RUNNING'}"
-            }
-          },
-          "id": "event-010267"
-        },
-        {
-          "source_line": 10268,
-          "timestamp": "2026-05-24T04:01:02.085125+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4514}}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_registry",
-            "elapsed_ms": 506
-          },
-          "id": "event-010268"
-        },
-        {
-          "source_line": 10269,
-          "timestamp": "2026-05-24T04:01:02.085591+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "schema-dag-extraction",
-              "file": "report.md"
-            }
-          },
-          "id": "event-010269"
-        },
-        {
-          "source_line": 10270,
-          "timestamp": "2026-05-24T04:01:02.136988+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-23\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- prompt_sensitivity（准备中）\\\\n- prompt_sensitivity_dry4（准备中）\\\\n- prompt_sensitivity_dry3（准备中）\\\\n- prompt_sensitivity_dry2（准备中）\\\\n- prompt_sensitivity_dry（准备中）\\\\n- exp_aggregation_monte_carlo（准备中）\\\\n- exp_scs_name_def_ablation（准备中）\\\\n- exp_fewrel_contamination_check（准备中）\\\\n- exp017_gpt4o_mini_fewrel（准备中）\\\\n- exp_cross_embedding_sensitivity（准备中）\\\\n- …另有 2 项\\\\n\\\\n## 近期结论\\\\n- **exp_fewshot_bcs_count16** (success): At count=16, the accuracy gap between low-BCS and high-BCS schema batches will widen as few-shot examples increase, consistent with count=8 pattern, because demonstrations reinforce distinguishable schemas more than confusable ones. ← 基于 exp_fewshot_bcs_v2\\\\n- **exp_llama70b_ner_bcs_null** (success): Batch-level BCS does not correlate with NER F1 for LLaMA-3.1-70B-FP8, consistent with the BCS null observed in Qwen3-32B (r=0.004) and LLaMA-8B (r=-0.12). The confusability metric is not predictive of extraction quality at the batch level. ← 基于 exp012_llama_8b_r2_exp2\\\\n  [LLaMA-70B NER BCS-null analysis](/api/workspace-files/projects/schema-dag-extraction/artifacts/exp_llama70b_ner_bcs_null/data/bcs_null_analysis.json)\\\\n- **exp_gemini_flash_bcs_controlled** (success): BCS-accuracy negative correlation observed on open-weight models (Qwen3-32B, LLaMA) generalizes to proprietary API models. Gemini 2.5 Flash should show significant BCS gap on extreme-BCS batches at count 8 and count 16, confirming Dimension 2 is architecture-family-independent. ← 基于 exp_gemini_flash_cross_model\\\\n\\\\n## 趋势\\\\n成功 35 / 负向 9 / 失败 10 / 共 58\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-38874: 无 GPU 信息\\\\nwestd-24295: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp008_sdgd_zero_fewnerd: 训练失败 — unknown\\\\n- exp012_llama_fewnerd: 训练失败 — unknown\\\\\n…[truncated 585 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 51
-          },
-          "id": "event-010270"
-        },
-        {
-          "source_line": 10271,
-          "timestamp": "2026-05-24T04:01:02.288359+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__read_project_file"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "tool_args": {
-              "project": "schema-dag-extraction",
-              "file": "ROADMAP.md"
-            }
-          },
-          "id": "event-010271"
-        },
-        {
-          "source_line": 10272,
-          "timestamp": "2026-05-24T04:01:02.390292+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\\\", \\\"content\\\": \\\"# schema-dag-extraction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 12:08 UTC | 更新原因: v35 用户质量审查 7 项全部完成 + R² 数据修复\\\\n\\\\n## 核心方向\\\\nTraining-free LLM IE 中 schema 复杂度如何预测性能下降：count-related recall decline (Dim1, cross-task) + confusability-related type substitution (Dim2, RE batch-level, format-independent)。详见 paper_framing.md。\\\\n\\\\n## 当前阶段：v35 submission-ready，等待用户审批 R30 + ARR 提交（DDL 2026-05-25，3 天）\\\\n\\\\n**论文状态 v35**：\\\\n- R26 审稿 3.5 → 8 项论文修改 + 3 项补分析全部完成\\\\n- 🚨 R²=0.218 数据错误修复（r/R² 混淆）→ 80pool R²≈0.05, pooled semipartial R²=0.273\\\\n- C3 证据层级调整：pooled R²=0.273 (primary) → 80pool R²≈0.05 (secondary) → Figure 1b (illustrative)\\\\n- Figure 1b caption 标注为 illustrative（N=1 per condition）\\\\n- SDGD §5 移入 Appendix，正文保留 3-4 句摘要\\\\n- Limitations 压缩：5 条→3 点 1 段 + logit variance 归因句\\\\n- 2 篇新引用（NER Retriever, Reflect then Learn）\\\\n- ARR 预检全部 PASS（匿名化、格式、references pages 补全）\\\\n- Anonymous GitHub 包修复（API key 泄露 + configs 目录）\\\\n- Author response template 5 个 Q&A block 预写\\\\n- Camera-ready prose polish（13 处）+ appendix 表格格式统一（29 表）\\\\n\\\\n**用户质量审查 7 项（2026-05-22）**：\\\\n- C3 极端 batch N=1 → 证据层级调整 ✓\\\\n- R² 数据修复 → 0.218→0.273/0.05 ✓\\\\n- M1 Gemini leverage → PASS（count_8 稳健，count_16 已披露）\\\\n- M2 Ecological fallacy → PASS（BCS 是 Level-2 contextual variable，batch-level 分析正确）\\\\n- M4 FewRel contamination → PASS（contamination risk LOW）\\\\n- Discussion 扩展 + TOST anchoring → PASS（12→26-28 行）\\\\n- 文献蒸馏 v2 → 无需调整 framing\\\\n\\\\n**审稿轨迹**：R23 3.5 → R24 3.0（caveat backfire）→ R25 3.5（\\\\\\\"strong core\\\\\\\"）→ R26 3.5 → 用户审查 → v35\\\\n\\\\n## 近期任务\\\\n- [x] R25 全部修复（v34）\\\\n- [x] R26 全部修复（8 项论文修改 + 3 项补分析）\\\\n- [x] R²=0.218 数据错误修复\\\\n- [x] C3 证据层级调整\\\\n- [x] ARR 预检 + Anonymous GitHub 修复\\\\n- [x] Author response template\\\\n- [x] 端到端最终一致性检查（6/6 PASS）\\\\n- [x] M1/M2/M4 分析完成（全部 Reviewer PASS）\\\\n- [x] Discussion 扩展 + TOST margin anchoring（Reviewer PASS）\\\\n- [ ] R30 审稿（待用户审批）\\\\\n…[truncated 1475 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__read_project_file",
-            "elapsed_ms": 101
-          },
-          "id": "event-010272"
-        },
-        {
-          "source_line": 10273,
-          "timestamp": "2026-05-24T04:01:28.473871+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "tool_args": {
-              "project": "schema-dag-extraction",
-              "text": "[资源] GPU 1/1 (cuda:0 idle) | Worker 0 (GPU 0 / CPU 0) | 磁盘: cqa1 根 71% / 数据盘 85%\n\n**Session 重启后状态汇报**\n\n- 0 个 RUNNING 实验，0 个活跃 cron\n- DDL: 2026-05-25（明天）\n- 论文 v35: 主文 8 页，26 页总计，编译通过\n\n**上一轮 session 完成的任务**：\n1. ✅ Appendix 添加 few-shot BCS count=16 表（gap 15.7/18.4/16.7pp，CI 全排除零）\n2. ✅ results.tex: \"limited to a single dataset and count level\" → \"limited to a single dataset\"\n3. ✅ 数据审计: 全部优先检查项通过，**修复 SDGD oracle 0.802→0.724**（batch composition oracle 错误引用为 routing oracle）\n4. ✅ 匿名仓库: HTTPS push 成功（含 oracle 修复）\n5. ✅ 服务器审计: cqa1 idle (GPU 0%)，westd 不可连接\n\n**待 Director 确认**：\n- LLaMA count=16 gap: 论文 −23.9pp vs registry −24pp（四舍五入差异），是否统一为 −24.0pp？\n- westd-24295 是否可释放？\n\n等待指令。"
-            }
-          },
-          "id": "event-010273"
-        },
-        {
-          "source_line": 10274,
-          "timestamp": "2026-05-24T04:01:32.646171+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
-            "elapsed_ms": 4172
-          },
-          "id": "event-010274"
-        },
-        {
-          "source_line": 10275,
-          "timestamp": "2026-05-24T04:01:35.223798+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "初始化完成。状态汇总：\n- Registry: 0 个 RUNNING 实验，0 个活跃 cron\n- DDL: **2026-05-25**（明天）\n- 论文: v35 submission-ready，主文 8 页\n- 上一轮完成: 数据审计（SDGD oracle 修复 0.802→0.724）、count=16 few-shot Appendix、匿名仓库 push"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2"
-          },
-          "id": "event-010275"
-        }
-      ]
-    },
-    {
       "number": 355,
       "messages": [
         {
-          "source_line": 10276,
-          "timestamp": "2026-05-24T04:27:08.148538+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[Director 指令] **[最终数据自查 — DDL前最后一轮]**\n\n运维要求提交前再做一遍完整数据核查。要求：\n\n**1. 全量数字核查**\n逐一检查论文所有 `.tex` 文件中的每个数字（accuracy、R²、p-value、gap pp、样本量、VIF、TOST、百分比等），与 registry.yaml 中对应 experiment ID + artifact 路径交叉验证。覆盖范围：\n- abstract.tex\n- results.tex（含所有 inline 数字）\n- experimental_setup.tex\n- sdgd_negative.tex\n- discussion.tex\n- main.tex 中所有 appendix 表格和数字\n\n**2. 跨位置一致性**\n- Abstract 数字 = 正文数字 = table cell\n- 正文引述 \"Table X shows Y%\" 与实际 table cell 一致\n- 四舍五入位数全篇统一（accuracy 3位小数 vs 2位 vs 百分比 — 保持一致）\n- 上一轮修复的 SDGD oracle 0.724、73.4% 确认已在所有位置统一\n\n**3. Figure 数据源**\n- 每个 figure 的 plot 脚本 + 数据 csv 能对得上最终 PDF 中的图\n- 特别检查 Figure 1b（illustrative, N=1）标注是否还在\n\n**4. 已知待确认项**\n- LLaMA count=16 gap: 论文写 −23.9pp vs registry −24pp — **保持 −23.9pp**（表内自洽，四舍五入差异可接受）\n\n**5. 发现问题的处理**\n- 不一致或无法追溯 → 直接修复 tex → 编译 → commit → push 匿名仓库\n- 完成后汇报：每个核查项的结论（PASS/FIXED），如有修复列出具体改动"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "source": "director"
-          },
-          "id": "event-010276"
-        },
-        {
-          "source_line": 10277,
-          "timestamp": "2026-05-24T04:27:42.137127+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Audit abstract+intro+setup numbers",
-              "prompt": "You are doing a final data audit of a research paper before EMNLP 2026 submission (DDL tomorrow).\n\n**Your scope**: Audit every number in these 3 files:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex\n\n**Registry** (all experiment metrics): /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt\nFormat: JSON `{result: string}` where string is JSON `{data: {experiments: {...}}}`. Use python/jq to extract specific experiments.\n\n**Task**:\n1. Read each .tex file\n2. Extract EVERY number (accuracy, pp, p-value, R², VIF, sample sizes, percentages, etc.)\n3. For each number, find the source experiment in the registry and verify the value matches\n4. Check cross-file consistency (same number in abstract vs intro should match)\n5. Check rounding consistency (are all accuracies rounded the same way?)\n\n**Output format** — for each file, list every number found:\n```\n[file:line] \"quoted text with number\" → source: exp_id.metric = value → PASS/MISMATCH\n```\n\nGroup by PASS vs MISMATCH at the end. Be exhaustive — miss nothing.",
-              "model": "sonnet"
-            }
-          },
-          "id": "event-010277"
-        },
-        {
-          "source_line": 10278,
-          "timestamp": "2026-05-24T04:27:50.579085+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
-            }
-          },
-          "id": "event-010278"
-        },
-        {
-          "source_line": 10279,
-          "timestamp": "2026-05-24T04:27:50.579565+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\begin{abstract}\n2\tSchema complexity affects training-free LLM information extraction: type count drives performance decline across tasks, while inter-type confusability---quantified by embedding similarity---independently predicts type substitution errors in relation extraction. We present what is, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE---focusing on relation extraction as the primary testbed, with NER and event detection as boundary conditions---across four datasets. Using embedding-based confusability metrics (SCS/BCS) with controlled batch design, we find:\n3\t(1)~count degradation spans NER and sentence- and document-level RE (up to $-$49\\,pp); MAVEN ED shows a confounded reversal (\\S\\ref{sec:centrality_confound}); inter-type confusability (measured by BCS) independently predicts RE type substitution errors (VIF${}\\,=\\,1.18$ on FewRel), with bounded interaction on the linear scale (TOST $p=0.003$);\n4\t(2)~BCS independently explains ${\\sim}$27\\% of cross-batch RE accuracy variance on FewRel (semipartial $R^2 = 0.273$ after controlling for degree centrality; VIF${}\\,=\\,1.18$), replicating across two open-weight model families spanning three scales (8B--70B); the NER batch-level null serves as a boundary condition (dispersed error modes, BCS range compression);\n5\t(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing demonstrates that the two dimensions are in principle separable.\n6\t\\end{abstract}\n7\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010279"
-        },
-        {
-          "source_line": 10280,
-          "timestamp": "2026-05-24T04:27:50.579874+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
-            }
-          },
-          "id": "event-010280"
-        },
-        {
-          "source_line": 10281,
-          "timestamp": "2026-05-24T04:27:50.580173+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\looseness=-1\n5\tTraining-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.}\\footnote{Code and data will be released upon acceptance.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \\citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\\sim}$0.28 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable.\n6\t\n7\t\\looseness=-1\n8\tWhat explains this degradation? Prior decomposition strategies \\citep{uniner-2024,llm-pee-2025,parse-2025} conflate two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability) (hereafter Dimension~1 and Dimension~2). None isolates which factor predicts the gains (\\S\\ref{sec:related_work}).\n9\t\n10\tThis study combines correlational analyses with quasi-experimental manipulation (BCS-controlled batches) to characterize how schema properties predict extraction accuracy (Figure~\\ref{fig:framework}).\n11\t\n12\tWe ask three quest\n…[truncated 4123 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010281"
-        },
-        {
-          "source_line": 10282,
-          "timestamp": "2026-05-24T04:27:50.580451+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
-            }
-          },
-          "id": "event-010282"
-        },
-        {
-          "source_line": 10283,
-          "timestamp": "2026-05-24T04:27:50.580758+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experimental_setup}\n3\t\n4\tWe evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).\n5\t\n6\t\\begin{figure*}[t]\n7\t\\centering\n8\t\\begin{minipage}[t]{0.48\\textwidth}\n9\t\\centering\n10\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_count_curves.pdf}\n11\t\\end{minipage}\n12\t\\hfill\n13\t\\begin{minipage}[t]{0.48\\textwidth}\n14\t\\centering\n15\t\\includegraphics[width=\\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}\n16\t\\end{minipage}\n17\t\\caption{\\textbf{(a)} Count-degradation curves. Error bars: $\\pm 1$\\,SD across 3 batch-composition seeds $\\times$ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \\textbf{(b)} Illustrative BCS-controlled FewRel accuracy: each bar represents one extreme-BCS batch per condition. Slopes are consistent across pool conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps. Statistical evidence is provided by the pooled regression (\\S\\ref{sec:bcs_controlled}, semipartial $R^2 = 0.273$, $n = 204$).}\n18\t\\label{fig:main_results}\n19\t\\end{figure*}\n20\t\n21\t\\subsection{Tasks and Datasets}\n22\t\\label{sec:datasets}\n23\t\n24\t\\paragraph{Few-NERD (NER).}\n25\tFew-NERD \\citep{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains. We sample 1{,}000 instances uniformly from the test set; type frequency follows the natural long-tail distribution of Few-NERD. Evaluation uses token-level text matching. Pairwise analysis covers 1{,}953 type pairs with non-zero co-occurrence out of $\\binom{66}{2}=2{,}145$ possible pairs.\n26\t\n27\t\\paragraph{FewRel (RE).}\n28\tFewRel \\citep{fewrel-2018} conta\n…[truncated 8862 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010283"
-        },
-        {
-          "source_line": 10284,
-          "timestamp": "2026-05-24T04:27:51.083961+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Agent"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Agent",
-            "tool_args": {
-              "description": "Audit results.tex numbers",
-              "prompt": "You are doing a final data audit of a research paper before EMNLP 2026 submission (DDL tomorrow).\n\n**Your scope**: Audit every number in:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n\nThis is the densest file with the most numbers. Be exhaustive.\n\n**Registry** (all experiment metrics): /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt\nFormat: JSON `{result: string}` where string is JSON `{data: {experiments: {...}}}`. Use python/jq to extract specific experiments.\n\n**Task**:\n1. Read the file completely\n2. Extract EVERY number (accuracy, pp changes, p-values, R², VIF, correlation coefficients, sample sizes, percentages, confidence intervals, etc.)\n3. For each number, find the source experiment in the registry and verify\n4. Check that inline text references to tables match the actual table values\n5. Verify arithmetic (e.g., if text says \"gap of X pp\" check it equals high - low)\n\n**Special attention**:\n- R²=0.273 semipartial — verify source and arithmetic\n- VIF=1.18 (FewRel) vs VIF=50.9 (DocRED) — verify correct attribution\n- All extreme-batch gaps (-31.2pp, -25.5pp, -27.1pp, -17.6pp)\n- TOST p=0.003 (linear) vs p=0.209 (logit)\n- Few-shot +4.3pp widening\n- LLaMA count=16 gap: should be -23.9pp (confirmed acceptable rounding)\n\n**Output format**:\n```\n[line] \"quoted text\" → source: exp_id.metric = value → PASS/MISMATCH\n```\nGroup by PASS vs MISMATCH at the end.",
-              "model": "sonnet"
-            }
-          },
-          "id": "event-010284"
-        },
-        {
-          "source_line": 10285,
-          "timestamp": "2026-05-24T04:27:59.329193+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
-            }
-          },
-          "id": "event-010285"
-        },
-        {
-          "source_line": 10286,
-          "timestamp": "2026-05-24T04:27:59.329652+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File content (51052 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010286"
-        },
-        {
-          "source_line": 10287,
-          "timestamp": "2026-05-24T04:27:59.329944+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt",
-              "limit": "500"
-            }
-          },
-          "id": "event-010287"
-        },
-        {
-          "source_line": 10288,
-          "timestamp": "2026-05-24T04:27:59.330182+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "File content (51052 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010288"
-        },
-        {
-          "source_line": 10289,
-          "timestamp": "2026-05-24T04:27:59.330407+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "wc -l /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt",
-              "description": "Count lines in registry file"
-            }
-          },
-          "id": "event-010289"
-        },
-        {
-          "source_line": 10290,
-          "timestamp": "2026-05-24T04:27:59.330655+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "0 /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Bash",
-            "elapsed_ms": 0
-          },
-          "id": "event-010290"
-        },
-        {
-          "source_line": 10291,
-          "timestamp": "2026-05-24T04:27:59.332993+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Bash"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Bash",
-            "tool_args": {
-              "command": "ls -la /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt",
-              "description": "Check file size and metadata"
-            }
-          },
-          "id": "event-010291"
-        },
-        {
-          "source_line": 10292,
-          "timestamp": "2026-05-24T04:27:59.333387+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
-            }
-          },
-          "id": "event-010292"
-        },
-        {
-          "source_line": 10293,
-          "timestamp": "2026-05-24T04:27:59.333761+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n5\t\n6\t\\subsection{Count-Degradation Curves}\n7\t\\label{sec:count_curves}\n8\t\n9\t\\looseness=-1\n10\tFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall drops sharply from 0.72 at count 1 to 0.52 at count 2, then declines further to 0.28 before recovering to 0.41 at full-schema, where type-filtering overhead is eliminated. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}), is stable across seeds (Appendix~\\ref{app:variance-decomposition}; Jonckheere-Terpstra $p < 0.001$), and extends to LLaMA-70B and Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n11\t\n12\t\\subsection{Pairwise Confusability and Type Confusion}\n13\t\\label{sec:pairwise}\n14\t\n15\tWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n16\t\n17\t\\begin{table}[t]\n18\t\\centering\n19\t\\small\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{llrrrrr}\n22\t\\toprule\n23\t\\textbf{Dataset} & \\textbf{Embed.} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n2\n…[truncated 10773 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "elapsed_ms": 0
-          },
-          "id": "event-010293"
-        },
-        {
-          "source_line": 10294,
-          "timestamp": "2026-05-24T04:27:59.334067+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
-            }
-          },
-          "id": "event-010294"
-        },
-        {
-          "source_line": 10295,
+          "source_line": 10261,
           "timestamp": "2026-05-24T04:27:59.384557+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -680,10 +21,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-010295"
+          "id": "event-010261"
         },
         {
-          "source_line": 10296,
+          "source_line": 10262,
           "timestamp": "2026-05-24T04:27:59.385098+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -702,10 +43,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-010296"
+          "id": "event-010262"
         },
         {
-          "source_line": 10297,
+          "source_line": 10263,
           "timestamp": "2026-05-24T04:27:59.787791+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -720,10 +61,10 @@
             "tool": "Bash",
             "elapsed_ms": 454
           },
-          "id": "event-010297"
+          "id": "event-010263"
         },
         {
-          "source_line": 10298,
+          "source_line": 10264,
           "timestamp": "2026-05-24T04:28:11.100058+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -741,10 +82,10 @@
               "description": "Extract all experiment IDs from the registry"
             }
           },
-          "id": "event-010298"
+          "id": "event-010264"
         },
         {
-          "source_line": 10299,
+          "source_line": 10265,
           "timestamp": "2026-05-24T04:28:11.100532+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -759,10 +100,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-010299"
+          "id": "event-010265"
         },
         {
-          "source_line": 10300,
+          "source_line": 10266,
           "timestamp": "2026-05-24T04:28:11.100934+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -781,10 +122,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010300"
+          "id": "event-010266"
         },
         {
-          "source_line": 10301,
+          "source_line": 10267,
           "timestamp": "2026-05-24T04:28:11.101202+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -799,10 +140,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010301"
+          "id": "event-010267"
         },
         {
-          "source_line": 10302,
+          "source_line": 10268,
           "timestamp": "2026-05-24T04:28:11.101439+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -819,10 +160,10 @@
               "command": "wc -l /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
             }
           },
-          "id": "event-010302"
+          "id": "event-010268"
         },
         {
-          "source_line": 10303,
+          "source_line": 10269,
           "timestamp": "2026-05-24T04:28:11.101675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -837,10 +178,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-010303"
+          "id": "event-010269"
         },
         {
-          "source_line": 10304,
+          "source_line": 10270,
           "timestamp": "2026-05-24T04:28:11.101938+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -857,10 +198,10 @@
               "command": "wc -c /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
             }
           },
-          "id": "event-010304"
+          "id": "event-010270"
         },
         {
-          "source_line": 10305,
+          "source_line": 10271,
           "timestamp": "2026-05-24T04:28:11.102172+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -875,10 +216,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-010305"
+          "id": "event-010271"
         },
         {
-          "source_line": 10306,
+          "source_line": 10272,
           "timestamp": "2026-05-24T04:28:11.102406+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -895,10 +236,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\n\n# Try to parse as JSON\ndata = json.loads(raw)\nprint('Top-level keys:', list(data.keys())[:10])\n\"\n"
             }
           },
-          "id": "event-010306"
+          "id": "event-010272"
         },
         {
-          "source_line": 10307,
+          "source_line": 10273,
           "timestamp": "2026-05-24T04:28:11.102636+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -913,10 +254,10 @@
             "tool": "Bash",
             "elapsed_ms": 0
           },
-          "id": "event-010307"
+          "id": "event-010273"
         },
         {
-          "source_line": 10308,
+          "source_line": 10274,
           "timestamp": "2026-05-24T04:28:11.102900+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -933,10 +274,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
             }
           },
-          "id": "event-010308"
+          "id": "event-010274"
         },
         {
-          "source_line": 10309,
+          "source_line": 10275,
           "timestamp": "2026-05-24T04:28:11.103193+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -951,10 +292,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010309"
+          "id": "event-010275"
         },
         {
-          "source_line": 10310,
+          "source_line": 10276,
           "timestamp": "2026-05-24T04:28:11.103455+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -971,10 +312,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
             }
           },
-          "id": "event-010310"
+          "id": "event-010276"
         },
         {
-          "source_line": 10311,
+          "source_line": 10277,
           "timestamp": "2026-05-24T04:28:11.103704+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -989,10 +330,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010311"
+          "id": "event-010277"
         },
         {
-          "source_line": 10312,
+          "source_line": 10278,
           "timestamp": "2026-05-24T04:28:11.104008+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1009,10 +350,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex"
             }
           },
-          "id": "event-010312"
+          "id": "event-010278"
         },
         {
-          "source_line": 10313,
+          "source_line": 10279,
           "timestamp": "2026-05-24T04:28:11.104271+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1027,10 +368,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010313"
+          "id": "event-010279"
         },
         {
-          "source_line": 10314,
+          "source_line": 10280,
           "timestamp": "2026-05-24T04:28:11.104504+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1049,10 +390,10 @@
               "limit": "15"
             }
           },
-          "id": "event-010314"
+          "id": "event-010280"
         },
         {
-          "source_line": 10315,
+          "source_line": 10281,
           "timestamp": "2026-05-24T04:28:11.104662+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1067,10 +408,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010315"
+          "id": "event-010281"
         },
         {
-          "source_line": 10316,
+          "source_line": 10282,
           "timestamp": "2026-05-24T04:28:11.104803+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1087,10 +428,10 @@
               "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt"
             }
           },
-          "id": "event-010316"
+          "id": "event-010282"
         },
         {
-          "source_line": 10317,
+          "source_line": 10283,
           "timestamp": "2026-05-24T04:28:11.105008+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1105,10 +446,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-010317"
+          "id": "event-010283"
         },
         {
-          "source_line": 10318,
+          "source_line": 10284,
           "timestamp": "2026-05-24T04:28:11.255823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1127,10 +468,10 @@
               "model": "sonnet"
             }
           },
-          "id": "event-010318"
+          "id": "event-010284"
         },
         {
-          "source_line": 10319,
+          "source_line": 10285,
           "timestamp": "2026-05-24T04:28:13.113912+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1147,10 +488,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nprint('Inner keys:', list(inner.keys()))\nif 'data' in inner:\n    print('data keys:', list(inner['data'].keys()))\n    if 'experiments' in inner['data']:\n        exps = inner['data']['experiments']\n        print('Experiment IDs:', list(exps.keys()))\n\"\n"
             }
           },
-          "id": "event-010319"
+          "id": "event-010285"
         },
         {
-          "source_line": 10320,
+          "source_line": 10286,
           "timestamp": "2026-05-24T04:28:13.166483+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1165,10 +506,10 @@
             "tool": "Bash",
             "elapsed_ms": 52
           },
-          "id": "event-010320"
+          "id": "event-010286"
         },
         {
-          "source_line": 10321,
+          "source_line": 10287,
           "timestamp": "2026-05-24T04:28:13.820124+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1186,10 +527,10 @@
               "limit": "100"
             }
           },
-          "id": "event-010321"
+          "id": "event-010287"
         },
         {
-          "source_line": 10322,
+          "source_line": 10288,
           "timestamp": "2026-05-24T04:28:14.573650+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1207,10 +548,10 @@
               "description": "Extract all experiment metrics from registry JSON"
             }
           },
-          "id": "event-010322"
+          "id": "event-010288"
         },
         {
-          "source_line": 10323,
+          "source_line": 10289,
           "timestamp": "2026-05-24T04:28:14.675453+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1225,10 +566,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010323"
+          "id": "event-010289"
         },
         {
-          "source_line": 10324,
+          "source_line": 10290,
           "timestamp": "2026-05-24T04:28:14.977616+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1243,10 +584,10 @@
             "tool": "Read",
             "elapsed_ms": 1157
           },
-          "id": "event-010324"
+          "id": "event-010290"
         },
         {
-          "source_line": 10325,
+          "source_line": 10291,
           "timestamp": "2026-05-24T04:28:14.978421+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1264,10 +605,10 @@
               "limit": "50"
             }
           },
-          "id": "event-010325"
+          "id": "event-010291"
         },
         {
-          "source_line": 10326,
+          "source_line": 10292,
           "timestamp": "2026-05-24T04:28:15.279962+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1282,10 +623,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-010326"
+          "id": "event-010292"
         },
         {
-          "source_line": 10327,
+          "source_line": 10293,
           "timestamp": "2026-05-24T04:28:17.138559+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1303,10 +644,10 @@
               "description": "Extract metrics from key experiments likely referenced in the paper"
             }
           },
-          "id": "event-010327"
+          "id": "event-010293"
         },
         {
-          "source_line": 10328,
+          "source_line": 10294,
           "timestamp": "2026-05-24T04:28:17.541859+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1321,10 +662,10 @@
             "tool": "Bash",
             "elapsed_ms": 403
           },
-          "id": "event-010328"
+          "id": "event-010294"
         },
         {
-          "source_line": 10329,
+          "source_line": 10295,
           "timestamp": "2026-05-24T04:28:18.849620+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1343,10 +684,10 @@
               "limit": "300"
             }
           },
-          "id": "event-010329"
+          "id": "event-010295"
         },
         {
-          "source_line": 10330,
+          "source_line": 10296,
           "timestamp": "2026-05-24T04:28:20.256124+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1363,10 +704,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print all experiments with their metrics\nfor exp_id, exp in exps.items():\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    if metrics:\n        print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n        print(json.dumps(metrics, indent=2))\n\" 2>&1 | head -500\n"
             }
           },
-          "id": "event-010330"
+          "id": "event-010296"
         },
         {
-          "source_line": 10331,
+          "source_line": 10297,
           "timestamp": "2026-05-24T04:28:20.306834+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1381,10 +722,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-010331"
+          "id": "event-010297"
         },
         {
-          "source_line": 10332,
+          "source_line": 10298,
           "timestamp": "2026-05-24T04:28:21.668541+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1399,10 +740,10 @@
             "tool": "Read",
             "elapsed_ms": 2818
           },
-          "id": "event-010332"
+          "id": "event-010298"
         },
         {
-          "source_line": 10333,
+          "source_line": 10299,
           "timestamp": "2026-05-24T04:28:21.869991+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1420,10 +761,10 @@
               "description": "Check registry file line count"
             }
           },
-          "id": "event-010333"
+          "id": "event-010299"
         },
         {
-          "source_line": 10334,
+          "source_line": 10300,
           "timestamp": "2026-05-24T04:28:21.920634+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1438,10 +779,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-010334"
+          "id": "event-010300"
         },
         {
-          "source_line": 10335,
+          "source_line": 10301,
           "timestamp": "2026-05-24T04:28:23.929955+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1459,10 +800,10 @@
               "description": "Extract SDGD and related experiment metrics"
             }
           },
-          "id": "event-010335"
+          "id": "event-010301"
         },
         {
-          "source_line": 10336,
+          "source_line": 10302,
           "timestamp": "2026-05-24T04:28:24.033328+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1477,10 +818,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-010336"
+          "id": "event-010302"
         },
         {
-          "source_line": 10337,
+          "source_line": 10303,
           "timestamp": "2026-05-24T04:28:26.443813+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1499,10 +840,10 @@
               "limit": "350"
             }
           },
-          "id": "event-010337"
+          "id": "event-010303"
         },
         {
-          "source_line": 10338,
+          "source_line": 10304,
           "timestamp": "2026-05-24T04:28:26.745862+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1517,10 +858,10 @@
             "tool": "Read",
             "elapsed_ms": 302
           },
-          "id": "event-010338"
+          "id": "event-010304"
         },
         {
-          "source_line": 10339,
+          "source_line": 10305,
           "timestamp": "2026-05-24T04:28:26.796694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1537,10 +878,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/**/*registry*"
             }
           },
-          "id": "event-010339"
+          "id": "event-010305"
         },
         {
-          "source_line": 10340,
+          "source_line": 10306,
           "timestamp": "2026-05-24T04:28:26.797319+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1555,10 +896,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-010340"
+          "id": "event-010306"
         },
         {
-          "source_line": 10341,
+          "source_line": 10307,
           "timestamp": "2026-05-24T04:28:29.112726+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1576,10 +917,10 @@
               "description": "Extract metrics from remaining key experiments"
             }
           },
-          "id": "event-010341"
+          "id": "event-010307"
         },
         {
-          "source_line": 10342,
+          "source_line": 10308,
           "timestamp": "2026-05-24T04:28:29.213802+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1594,10 +935,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010342"
+          "id": "event-010308"
         },
         {
-          "source_line": 10343,
+          "source_line": 10309,
           "timestamp": "2026-05-24T04:28:29.415289+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1614,10 +955,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print all experiments with their metrics (continued)\nfor exp_id in ['exp_confusability_batch_composition', 'exp_maven_residualized_bcs', 'exp_fewrel_80pool_16sub_bootstrap', 'exp_fewrel_40rel_r4', 'exp_fewrel_factorial_tost', 'exp_fewrel_partial_corr_freq', 'exp_fewrel_formal', 'exp_fewrel_formal_80rel']:\n    exp = exps.get(exp_id, {})\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n    if metrics:\n        print(json.dumps(metrics, indent=2))\n    else:\n        print('No metrics')\n\"\n"
             }
           },
-          "id": "event-010343"
+          "id": "event-010309"
         },
         {
-          "source_line": 10344,
+          "source_line": 10310,
           "timestamp": "2026-05-24T04:28:29.516186+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1632,10 +973,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010344"
+          "id": "event-010310"
         },
         {
-          "source_line": 10345,
+          "source_line": 10311,
           "timestamp": "2026-05-24T04:28:31.173602+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1652,10 +993,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml"
             }
           },
-          "id": "event-010345"
+          "id": "event-010311"
         },
         {
-          "source_line": 10346,
+          "source_line": 10312,
           "timestamp": "2026-05-24T04:28:31.877059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1670,10 +1011,10 @@
             "tool": "Read",
             "elapsed_ms": 703
           },
-          "id": "event-010346"
+          "id": "event-010312"
         },
         {
-          "source_line": 10347,
+          "source_line": 10313,
           "timestamp": "2026-05-24T04:28:32.078213+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1692,10 +1033,10 @@
               "limit": "200"
             }
           },
-          "id": "event-010347"
+          "id": "event-010313"
         },
         {
-          "source_line": 10348,
+          "source_line": 10314,
           "timestamp": "2026-05-24T04:28:32.229394+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1710,10 +1051,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-010348"
+          "id": "event-010314"
         },
         {
-          "source_line": 10349,
+          "source_line": 10315,
           "timestamp": "2026-05-24T04:28:33.786584+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1731,10 +1072,10 @@
               "description": "Search for variance decomposition and VIF metrics in registry"
             }
           },
-          "id": "event-010349"
+          "id": "event-010315"
         },
         {
-          "source_line": 10350,
+          "source_line": 10316,
           "timestamp": "2026-05-24T04:28:33.937663+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1749,10 +1090,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-010350"
+          "id": "event-010316"
         },
         {
-          "source_line": 10351,
+          "source_line": 10317,
           "timestamp": "2026-05-24T04:28:35.998278+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1770,10 +1111,10 @@
               "limit": "100"
             }
           },
-          "id": "event-010351"
+          "id": "event-010317"
         },
         {
-          "source_line": 10352,
+          "source_line": 10318,
           "timestamp": "2026-05-24T04:28:36.048998+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1788,10 +1129,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-010352"
+          "id": "event-010318"
         },
         {
-          "source_line": 10353,
+          "source_line": 10319,
           "timestamp": "2026-05-24T04:28:36.400754+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1808,10 +1149,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/gen_fig_*.py"
             }
           },
-          "id": "event-010353"
+          "id": "event-010319"
         },
         {
-          "source_line": 10354,
+          "source_line": 10320,
           "timestamp": "2026-05-24T04:28:36.451559+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1826,10 +1167,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-010354"
+          "id": "event-010320"
         },
         {
-          "source_line": 10355,
+          "source_line": 10321,
           "timestamp": "2026-05-24T04:28:39.014192+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1848,10 +1189,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010355"
+          "id": "event-010321"
         },
         {
-          "source_line": 10356,
+          "source_line": 10322,
           "timestamp": "2026-05-24T04:28:39.265893+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1866,10 +1207,10 @@
             "tool": "Read",
             "elapsed_ms": 251
           },
-          "id": "event-010356"
+          "id": "event-010322"
         },
         {
-          "source_line": 10357,
+          "source_line": 10323,
           "timestamp": "2026-05-24T04:28:39.266286+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1886,10 +1227,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/*.py"
             }
           },
-          "id": "event-010357"
+          "id": "event-010323"
         },
         {
-          "source_line": 10358,
+          "source_line": 10324,
           "timestamp": "2026-05-24T04:28:39.316740+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1904,10 +1245,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-010358"
+          "id": "event-010324"
         },
         {
-          "source_line": 10359,
+          "source_line": 10325,
           "timestamp": "2026-05-24T04:28:39.783565+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1924,10 +1265,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print remaining experiments\nfor exp_id in ['exp016_fewrel_error_taxonomy', 'bootstrap_ci_analysis', 'exp015_scs_validation', 'exp008_sdgd_v2_fewnerd', 'exp008_sdgd_zero_fewnerd_r2', 'exp007_error_taxonomy', 'exp004_maven_bcs', 'exp003a_prompt_v2_rerun', 'exp002_confusability_controlled']:\n    exp = exps.get(exp_id, {})\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n    if metrics:\n        print(json.dumps(metrics, indent=2))\n    else:\n        print('No metrics')\n\"\n"
             }
           },
-          "id": "event-010359"
+          "id": "event-010325"
         },
         {
-          "source_line": 10360,
+          "source_line": 10326,
           "timestamp": "2026-05-24T04:28:39.834400+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1942,10 +1283,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-010360"
+          "id": "event-010326"
         },
         {
-          "source_line": 10361,
+          "source_line": 10327,
           "timestamp": "2026-05-24T04:28:42.395011+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1964,10 +1305,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010361"
+          "id": "event-010327"
         },
         {
-          "source_line": 10362,
+          "source_line": 10328,
           "timestamp": "2026-05-24T04:28:42.697732+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1982,10 +1323,10 @@
             "tool": "Read",
             "elapsed_ms": 302
           },
-          "id": "event-010362"
+          "id": "event-010328"
         },
         {
-          "source_line": 10363,
+          "source_line": 10329,
           "timestamp": "2026-05-24T04:28:42.698279+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2002,10 +1343,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/gen_fig_sdgd_pipeline.py"
             }
           },
-          "id": "event-010363"
+          "id": "event-010329"
         },
         {
-          "source_line": 10364,
+          "source_line": 10330,
           "timestamp": "2026-05-24T04:28:42.748987+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2020,10 +1361,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-010364"
+          "id": "event-010330"
         },
         {
-          "source_line": 10365,
+          "source_line": 10331,
           "timestamp": "2026-05-24T04:28:43.151352+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2041,10 +1382,10 @@
               "description": "Extract metrics from Llama cross-model experiments and other key experiments"
             }
           },
-          "id": "event-010365"
+          "id": "event-010331"
         },
         {
-          "source_line": 10366,
+          "source_line": 10332,
           "timestamp": "2026-05-24T04:28:43.252342+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2059,10 +1400,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010366"
+          "id": "event-010332"
         },
         {
-          "source_line": 10367,
+          "source_line": 10333,
           "timestamp": "2026-05-24T04:28:44.911076+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2080,10 +1421,10 @@
               "description": "Search for variance decomposition and factorial/VIF metrics"
             }
           },
-          "id": "event-010367"
+          "id": "event-010333"
         },
         {
-          "source_line": 10368,
+          "source_line": 10334,
           "timestamp": "2026-05-24T04:28:45.012139+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2098,10 +1439,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010368"
+          "id": "event-010334"
         },
         {
-          "source_line": 10369,
+          "source_line": 10335,
           "timestamp": "2026-05-24T04:28:47.199949+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2118,10 +1459,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/gen_fig_framework.py"
             }
           },
-          "id": "event-010369"
+          "id": "event-010335"
         },
         {
-          "source_line": 10370,
+          "source_line": 10336,
           "timestamp": "2026-05-24T04:28:48.055079+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2136,10 +1477,10 @@
             "tool": "Read",
             "elapsed_ms": 855
           },
-          "id": "event-010370"
+          "id": "event-010336"
         },
         {
-          "source_line": 10371,
+          "source_line": 10337,
           "timestamp": "2026-05-24T04:28:48.105915+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2157,10 +1498,10 @@
               "limit": "60"
             }
           },
-          "id": "event-010371"
+          "id": "event-010337"
         },
         {
-          "source_line": 10372,
+          "source_line": 10338,
           "timestamp": "2026-05-24T04:28:48.156613+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2175,10 +1516,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-010372"
+          "id": "event-010338"
         },
         {
-          "source_line": 10373,
+          "source_line": 10339,
           "timestamp": "2026-05-24T04:28:50.820324+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2195,10 +1536,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print remaining experiments\nfor exp_id in ['exp_fewrel_16rel_100batch', 'exp012_llama_fewrel_ch2', 'exp012_llama_8b_r2_exp2', 'exp012_llama_8b_r2', 'exp006_interaction_2x2', 'exp012_llama_8b_r3', 'exp012_llama_8b', 'exp_fewrel_40rel_r3', 'exp_fewrel_40rel_r2', 'exp012_llama_fewnerd_r4', 'exp012_llama_8b_fewnerd', 'exp_fewrel_40rel', 'exp012_llama_fewnerd_r3', 'exp012_llama_fewnerd_r2', 'exp012_llama_fewnerd', 'exp_fewrel_v2_bcs_controlled', 'exp_fewrel_v2_n25', 'exp_docred_confusability']:\n    exp = exps.get(exp_id, {})\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n    if metrics:\n        print(json.dumps(metrics, indent=2))\n    else:\n        print('No metrics')\n\"\n"
             }
           },
-          "id": "event-010373"
+          "id": "event-010339"
         },
         {
-          "source_line": 10374,
+          "source_line": 10340,
           "timestamp": "2026-05-24T04:28:50.921280+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2213,10 +1554,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010374"
+          "id": "event-010340"
         },
         {
-          "source_line": 10375,
+          "source_line": 10341,
           "timestamp": "2026-05-24T04:28:51.682064+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2235,10 +1576,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010375"
+          "id": "event-010341"
         },
         {
-          "source_line": 10376,
+          "source_line": 10342,
           "timestamp": "2026-05-24T04:28:52.586507+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2253,10 +1594,10 @@
             "tool": "Read",
             "elapsed_ms": 904
           },
-          "id": "event-010376"
+          "id": "event-010342"
         },
         {
-          "source_line": 10377,
+          "source_line": 10343,
           "timestamp": "2026-05-24T04:28:52.737785+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2275,10 +1616,10 @@
               "limit": "60"
             }
           },
-          "id": "event-010377"
+          "id": "event-010343"
         },
         {
-          "source_line": 10378,
+          "source_line": 10344,
           "timestamp": "2026-05-24T04:28:52.789106+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2293,10 +1634,10 @@
             "tool": "Read",
             "elapsed_ms": 51
           },
-          "id": "event-010378"
+          "id": "event-010344"
         },
         {
-          "source_line": 10379,
+          "source_line": 10345,
           "timestamp": "2026-05-24T04:28:55.207532+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2314,10 +1655,10 @@
               "description": "Search for DocRED factorial VIF and variance decomposition experiments"
             }
           },
-          "id": "event-010379"
+          "id": "event-010345"
         },
         {
-          "source_line": 10380,
+          "source_line": 10346,
           "timestamp": "2026-05-24T04:28:55.308472+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2332,10 +1673,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010380"
+          "id": "event-010346"
         },
         {
-          "source_line": 10381,
+          "source_line": 10347,
           "timestamp": "2026-05-24T04:28:55.559809+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2353,10 +1694,10 @@
               "description": "Extract remaining experiment metrics for audit"
             }
           },
-          "id": "event-010381"
+          "id": "event-010347"
         },
         {
-          "source_line": 10382,
+          "source_line": 10348,
           "timestamp": "2026-05-24T04:28:55.660999+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2371,10 +1712,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010382"
+          "id": "event-010348"
         },
         {
-          "source_line": 10383,
+          "source_line": 10349,
           "timestamp": "2026-05-24T04:28:57.619776+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2393,10 +1734,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010383"
+          "id": "event-010349"
         },
         {
-          "source_line": 10384,
+          "source_line": 10350,
           "timestamp": "2026-05-24T04:28:58.424024+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2411,10 +1752,10 @@
             "tool": "Read",
             "elapsed_ms": 804
           },
-          "id": "event-010384"
+          "id": "event-010350"
         },
         {
-          "source_line": 10385,
+          "source_line": 10351,
           "timestamp": "2026-05-24T04:28:58.625656+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2432,10 +1773,10 @@
               "description": "Check if data file for gen_fig_framework.py exists"
             }
           },
-          "id": "event-010385"
+          "id": "event-010351"
         },
         {
-          "source_line": 10386,
+          "source_line": 10352,
           "timestamp": "2026-05-24T04:28:58.676431+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2450,10 +1791,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-010386"
+          "id": "event-010352"
         },
         {
-          "source_line": 10387,
+          "source_line": 10353,
           "timestamp": "2026-05-24T04:28:59.834170+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2470,10 +1811,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print remaining experiments\nfor exp_id in ['bcs_max_to_mean_fix', 'exp_fewrel_contamination_check', 'exp017_gpt4o_mini_fewrel', 'exp_fewrel_16rel_bootstrap', 'exp_cross_embedding_sensitivity', 'exp_aggregation_monte_carlo', 'exp_scs_name_def_ablation', 'exp001_count_baseline', 'exp_fewrel_partial_corr_freq']:\n    exp = exps.get(exp_id, {})\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n    if metrics:\n        print(json.dumps(metrics, indent=2))\n    else:\n        print('No metrics')\n\"\n"
             }
           },
-          "id": "event-010387"
+          "id": "event-010353"
         },
         {
-          "source_line": 10388,
+          "source_line": 10354,
           "timestamp": "2026-05-24T04:28:59.985861+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2488,10 +1829,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-010388"
+          "id": "event-010354"
         },
         {
-          "source_line": 10389,
+          "source_line": 10355,
           "timestamp": "2026-05-24T04:29:02.096789+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2509,10 +1850,10 @@
               "description": "List all experiment IDs in registry"
             }
           },
-          "id": "event-010389"
+          "id": "event-010355"
         },
         {
-          "source_line": 10390,
+          "source_line": 10356,
           "timestamp": "2026-05-24T04:29:02.198054+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2527,10 +1868,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010390"
+          "id": "event-010356"
         },
         {
-          "source_line": 10391,
+          "source_line": 10357,
           "timestamp": "2026-05-24T04:29:05.375491+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2549,10 +1890,10 @@
               "limit": "500"
             }
           },
-          "id": "event-010391"
+          "id": "event-010357"
         },
         {
-          "source_line": 10392,
+          "source_line": 10358,
           "timestamp": "2026-05-24T04:29:07.334746+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2567,10 +1908,10 @@
             "tool": "Read",
             "elapsed_ms": 1959
           },
-          "id": "event-010392"
+          "id": "event-010358"
         },
         {
-          "source_line": 10393,
+          "source_line": 10359,
           "timestamp": "2026-05-24T04:29:07.536151+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2588,10 +1929,10 @@
               "description": "Check figure files exist and verify figure scripts"
             }
           },
-          "id": "event-010393"
+          "id": "event-010359"
         },
         {
-          "source_line": 10394,
+          "source_line": 10360,
           "timestamp": "2026-05-24T04:29:07.637059+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2606,10 +1947,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010394"
+          "id": "event-010360"
         },
         {
-          "source_line": 10395,
+          "source_line": 10361,
           "timestamp": "2026-05-24T04:29:07.838995+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2627,10 +1968,10 @@
               "description": "Search registry for VIF=1.18, semipartial R2=0.273, and n=204"
             }
           },
-          "id": "event-010395"
+          "id": "event-010361"
         },
         {
-          "source_line": 10396,
+          "source_line": 10362,
           "timestamp": "2026-05-24T04:29:07.940010+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2645,10 +1986,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010396"
+          "id": "event-010362"
         },
         {
-          "source_line": 10397,
+          "source_line": 10363,
           "timestamp": "2026-05-24T04:29:09.096298+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2666,10 +2007,10 @@
               "description": "Check bootstrap and DocRED expanded experiments for VIF/variance data"
             }
           },
-          "id": "event-010397"
+          "id": "event-010363"
         },
         {
-          "source_line": 10398,
+          "source_line": 10364,
           "timestamp": "2026-05-24T04:29:09.198013+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2684,10 +2025,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-010398"
+          "id": "event-010364"
         },
         {
-          "source_line": 10399,
+          "source_line": 10365,
           "timestamp": "2026-05-24T04:29:11.835240+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2704,10 +2045,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Remaining experiments\nfor exp_id in ['fewrel_pilot', 'exp-004', 'exp_fewshot_bcs_count16', 'exp_llama70b_ner_bcs_null', 'exp_fewrel_16rel_100batch']:\n    exp = exps.get(exp_id, {})\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f'\\\\n=== {exp_id} (conclusion={conclusion}) ===')\n    if metrics:\n        print(json.dumps(metrics, indent=2))\n    else:\n        print('No metrics')\n\n# Also get exp012_llama_8b_r2 more carefully and exp_fewrel_partial_corr_freq\nexp = exps.get('exp_fewrel_partial_corr_freq', {})\nprint('\\\\nPartial corr full data:', json.dumps(exp, indent=2)[:2000])\n\"\n"
             }
           },
-          "id": "event-010399"
+          "id": "event-010365"
         },
         {
-          "source_line": 10400,
+          "source_line": 10366,
           "timestamp": "2026-05-24T04:29:11.936158+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2722,10 +2063,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010400"
+          "id": "event-010366"
         },
         {
-          "source_line": 10401,
+          "source_line": 10367,
           "timestamp": "2026-05-24T04:29:14.045545+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2742,10 +2083,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/*bcs*"
             }
           },
-          "id": "event-010401"
+          "id": "event-010367"
         },
         {
-          "source_line": 10402,
+          "source_line": 10368,
           "timestamp": "2026-05-24T04:29:14.045955+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2760,10 +2101,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-010402"
+          "id": "event-010368"
         },
         {
-          "source_line": 10403,
+          "source_line": 10369,
           "timestamp": "2026-05-24T04:29:14.548202+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2782,10 +2123,10 @@
               "limit": "300"
             }
           },
-          "id": "event-010403"
+          "id": "event-010369"
         },
         {
-          "source_line": 10404,
+          "source_line": 10370,
           "timestamp": "2026-05-24T04:29:14.599124+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2800,10 +2141,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-010404"
+          "id": "event-010370"
         },
         {
-          "source_line": 10405,
+          "source_line": 10371,
           "timestamp": "2026-05-24T04:29:19.972560+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2822,10 +2163,10 @@
               "limit": "200"
             }
           },
-          "id": "event-010405"
+          "id": "event-010371"
         },
         {
-          "source_line": 10406,
+          "source_line": 10372,
           "timestamp": "2026-05-24T04:29:20.675787+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2840,10 +2181,10 @@
             "tool": "Read",
             "elapsed_ms": 703
           },
-          "id": "event-010406"
+          "id": "event-010372"
         },
         {
-          "source_line": 10407,
+          "source_line": 10373,
           "timestamp": "2026-05-24T04:29:21.278785+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2863,10 +2204,10 @@
               "context": "3"
             }
           },
-          "id": "event-010407"
+          "id": "event-010373"
         },
         {
-          "source_line": 10408,
+          "source_line": 10374,
           "timestamp": "2026-05-24T04:29:21.329480+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2881,10 +2222,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-010408"
+          "id": "event-010374"
         },
         {
-          "source_line": 10409,
+          "source_line": 10375,
           "timestamp": "2026-05-24T04:29:22.735579+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2902,10 +2243,10 @@
               "description": "Verify SDGD routing and NER F1 drop values"
             }
           },
-          "id": "event-010409"
+          "id": "event-010375"
         },
         {
-          "source_line": 10410,
+          "source_line": 10376,
           "timestamp": "2026-05-24T04:29:22.836490+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2920,10 +2261,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010410"
+          "id": "event-010376"
         },
         {
-          "source_line": 10411,
+          "source_line": 10377,
           "timestamp": "2026-05-24T04:29:23.439492+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2941,10 +2282,10 @@
               "description": "Search for VIF=1.18 and semipartial R2 in registry"
             }
           },
-          "id": "event-010411"
+          "id": "event-010377"
         },
         {
-          "source_line": 10412,
+          "source_line": 10378,
           "timestamp": "2026-05-24T04:29:23.540481+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2959,10 +2300,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010412"
+          "id": "event-010378"
         },
         {
-          "source_line": 10413,
+          "source_line": 10379,
           "timestamp": "2026-05-24T04:29:26.554198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2981,10 +2322,10 @@
               "limit": "150"
             }
           },
-          "id": "event-010413"
+          "id": "event-010379"
         },
         {
-          "source_line": 10414,
+          "source_line": 10380,
           "timestamp": "2026-05-24T04:29:27.809561+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2999,10 +2340,10 @@
             "tool": "Read",
             "elapsed_ms": 1255
           },
-          "id": "event-010414"
+          "id": "event-010380"
         },
         {
-          "source_line": 10415,
+          "source_line": 10381,
           "timestamp": "2026-05-24T04:29:28.714010+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3022,10 +2363,10 @@
               "context": "5"
             }
           },
-          "id": "event-010415"
+          "id": "event-010381"
         },
         {
-          "source_line": 10416,
+          "source_line": 10382,
           "timestamp": "2026-05-24T04:29:28.714438+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3040,10 +2381,10 @@
             "tool": "Grep",
             "elapsed_ms": 0
           },
-          "id": "event-010416"
+          "id": "event-010382"
         },
         {
-          "source_line": 10417,
+          "source_line": 10383,
           "timestamp": "2026-05-24T04:29:33.686733+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3063,10 +2404,10 @@
               "context": "3"
             }
           },
-          "id": "event-010417"
+          "id": "event-010383"
         },
         {
-          "source_line": 10418,
+          "source_line": 10384,
           "timestamp": "2026-05-24T04:29:33.787604+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3081,10 +2422,10 @@
             "tool": "Grep",
             "elapsed_ms": 100
           },
-          "id": "event-010418"
+          "id": "event-010384"
         },
         {
-          "source_line": 10419,
+          "source_line": 10385,
           "timestamp": "2026-05-24T04:29:34.642296+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3102,10 +2443,10 @@
               "description": "Search raw registry JSON for specific numbers cited in paper"
             }
           },
-          "id": "event-010419"
+          "id": "event-010385"
         },
         {
-          "source_line": 10420,
+          "source_line": 10386,
           "timestamp": "2026-05-24T04:29:35.044538+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3120,10 +2461,10 @@
             "tool": "Bash",
             "elapsed_ms": 402
           },
-          "id": "event-010420"
+          "id": "event-010386"
         },
         {
-          "source_line": 10421,
+          "source_line": 10387,
           "timestamp": "2026-05-24T04:29:36.150001+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3140,10 +2481,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# BCS-controlled experiment for FewRel partial corr\nfor exp_id in ['exp_fewrel_partial_corr_freq']:\n    exp = exps.get(exp_id, {})\n    print(json.dumps(exp.get('metrics', {}), indent=2))\n\n# Key numbers we need: \n# FewRel pairwise r = 0.187 from exp_fewrel_partial_corr_freq\n# FewRel n_pairs?\nprint('FewRel n_pairs (partial corr):', exps['exp_fewrel_partial_corr_freq']['metrics']['n_pairs'])\n\n# MAVEN pairwise\nprint('MAVEN pairwise from bootstrap_ci_analysis:', exps['bootstrap_ci_analysis']['metrics']['maven_minilm_pairwise_r'])\n\n# Also check exp_fewrel_partial_corr_freq for n\nprint('Check FewRel pairwise experiment:')\nif 'exp_fewrel_partial_corr_freq' in exps:\n    print(json.dumps(exps['exp_fewrel_partial_corr_freq']['metrics'], indent=2))\n\"\n"
             }
           },
-          "id": "event-010421"
+          "id": "event-010387"
         },
         {
-          "source_line": 10422,
+          "source_line": 10388,
           "timestamp": "2026-05-24T04:29:36.250895+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3158,10 +2499,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010422"
+          "id": "event-010388"
         },
         {
-          "source_line": 10423,
+          "source_line": 10389,
           "timestamp": "2026-05-24T04:29:37.206638+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3181,10 +2522,10 @@
               "context": "5"
             }
           },
-          "id": "event-010423"
+          "id": "event-010389"
         },
         {
-          "source_line": 10424,
+          "source_line": 10390,
           "timestamp": "2026-05-24T04:29:37.257343+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3199,10 +2540,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-010424"
+          "id": "event-010390"
         },
         {
-          "source_line": 10425,
+          "source_line": 10391,
           "timestamp": "2026-05-24T04:29:40.574139+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3222,10 +2563,10 @@
               "context": "3"
             }
           },
-          "id": "event-010425"
+          "id": "event-010391"
         },
         {
-          "source_line": 10426,
+          "source_line": 10392,
           "timestamp": "2026-05-24T04:29:40.785109+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3240,10 +2581,10 @@
             "tool": "Grep",
             "elapsed_ms": 210
           },
-          "id": "event-010426"
+          "id": "event-010392"
         },
         {
-          "source_line": 10427,
+          "source_line": 10393,
           "timestamp": "2026-05-24T04:29:44.759647+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3261,10 +2602,10 @@
               "description": "Find the source of semipartial R2=0.273 claim"
             }
           },
-          "id": "event-010427"
+          "id": "event-010393"
         },
         {
-          "source_line": 10428,
+          "source_line": 10394,
           "timestamp": "2026-05-24T04:29:44.860562+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3279,10 +2620,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010428"
+          "id": "event-010394"
         },
         {
-          "source_line": 10429,
+          "source_line": 10395,
           "timestamp": "2026-05-24T04:29:46.914468+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3299,10 +2640,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now let's do a comprehensive audit. \n# First collect all key numbers from the paper and find their sources\n\n# FewRel count curve: 0.86->0.50\nprint('=== FewRel count curve ===')\nprint('exp_fewrel_formal_80rel count_1:', exps['exp_fewrel_formal_80rel']['metrics']['exp1_count_curve']['count_1']['acc'])\nprint('exp_fewrel_formal_80rel count_80:', exps['exp_fewrel_formal_80rel']['metrics']['exp1_count_curve']['count_80']['acc'])\n# Paper says 0.86->0.50 for FewRel\n\n# DocRED 88.0%->38.7%\nprint('\\\\n=== DocRED count curve ===')\nif 'exp_docred_confusability' in exps:\n    cc = exps['exp_docred_confusability']['metrics']['count_curve']\n    print('count_1:', cc['count_1'], 'count_96:', cc['count_96'])\n\n# LLaMA -43pp on Few-NERD\nprint('\\\\n=== LLaMA -43pp on Few-NERD ===')\nprint('exp012_llama_8b_r2 decline:', exps['exp012_llama_8b_r2']['metrics']['exp1_recall_decline_pp'])\nprint('per_batch_r:', exps['exp012_llama_8b_r2']['metrics']['exp1_per_batch_recall_corr_vs_qwen'])\n\n# Pairwise correlations table\nprint('\\\\n=== Pairwise correlations ===')\nprint('Few-NERD Qwen3 n=1953 r=0.112:', exps['bootstrap_ci_analysis']['metrics']['fewnerd_pairwise_r'])\nprint('MAVEN MiniLM n=11026 r=0.129:', exps['bootstrap_ci_analysis']['metrics']['maven_minilm_pairwise_r'])\n\"\n"
             }
           },
-          "id": "event-010429"
+          "id": "event-010395"
         },
         {
-          "source_line": 10430,
+          "source_line": 10396,
           "timestamp": "2026-05-24T04:29:47.015307+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3317,10 +2658,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-010430"
+          "id": "event-010396"
         },
         {
-          "source_line": 10431,
+          "source_line": 10397,
           "timestamp": "2026-05-24T04:29:47.065953+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3341,10 +2682,10 @@
               "glob": "*.yaml"
             }
           },
-          "id": "event-010431"
+          "id": "event-010397"
         },
         {
-          "source_line": 10432,
+          "source_line": 10398,
           "timestamp": "2026-05-24T04:29:47.367716+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3359,10 +2700,10 @@
             "tool": "Grep",
             "elapsed_ms": 301
           },
-          "id": "event-010432"
+          "id": "event-010398"
         },
         {
-          "source_line": 10433,
+          "source_line": 10399,
           "timestamp": "2026-05-24T04:29:47.368166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3379,10 +2720,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/*.tex"
             }
           },
-          "id": "event-010433"
+          "id": "event-010399"
         },
         {
-          "source_line": 10434,
+          "source_line": 10400,
           "timestamp": "2026-05-24T04:29:47.418633+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3397,10 +2738,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-010434"
+          "id": "event-010400"
         },
         {
-          "source_line": 10435,
+          "source_line": 10401,
           "timestamp": "2026-05-24T04:29:48.727129+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3418,10 +2759,10 @@
               "description": "Compute and verify all paper claims against registry values"
             }
           },
-          "id": "event-010435"
+          "id": "event-010401"
         },
         {
-          "source_line": 10436,
+          "source_line": 10402,
           "timestamp": "2026-05-24T04:29:48.878280+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3436,10 +2777,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-010436"
+          "id": "event-010402"
         },
         {
-          "source_line": 10437,
+          "source_line": 10403,
           "timestamp": "2026-05-24T04:29:51.949131+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3461,10 +2802,10 @@
               "head_limit": "30"
             }
           },
-          "id": "event-010437"
+          "id": "event-010403"
         },
         {
-          "source_line": 10438,
+          "source_line": 10404,
           "timestamp": "2026-05-24T04:29:52.101554+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3479,10 +2820,10 @@
             "tool": "Grep",
             "elapsed_ms": 152
           },
-          "id": "event-010438"
+          "id": "event-010404"
         },
         {
-          "source_line": 10439,
+          "source_line": 10405,
           "timestamp": "2026-05-24T04:29:55.226020+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3499,10 +2840,10 @@
               "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# NER 0.72 -> 0.52 -> 0.28 -> 0.41\n# These come from the count curve experiment\nprint('=== d051 count curves ===')\nd051 = exps.get('exp_d051_count_curves_25', {}).get('metrics', {})\nprint(json.dumps(d051.get('fewnerd_s42', {}), indent=2))\n\n# Check partial corr\nprint('\\\\n=== FewRel partial corr ===')\nprint('r_partial FewRel:', -0.537, '(paper says -0.537)')\nprint('VIF FewRel:', 1.18, '(paper says 1.18)')\nprint('VIF DocRED:', 50.9, '(paper says 50.9)')\nprint('r_partial DocRED:', -0.348, '(paper says -0.348)')\n\n# Where is the FewRel partial correlation stored?\nfor exp_id, exp in exps.items():\n    metrics = exp.get('metrics', {})\n    s = json.dumps(metrics)\n    if '-0.537' in s or '0.537' in s or 'partial' in s.lower():\n        print(f'Found in {exp_id}: {s[:500]}')\n\"\n"
             }
           },
-          "id": "event-010439"
+          "id": "event-010405"
         },
         {
-          "source_line": 10440,
+          "source_line": 10406,
           "timestamp": "2026-05-24T04:29:55.276727+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3519,6 +2860,657 @@
               "command": "python3 -c \"\nimport json, re\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# The figure caption says semipartial R2=0.273, n=204\n# The 80-rel count curve experiment uses 25 batches × 7 counts + controlled...\n# Let's check exp_d051_count_curves_25 more carefully and look at the BCS regression part\nexp = experiments['exp_d051_count_curves_25']\nprint(json.dumps(exp, indent=2)[:5000])\n\"",
               "description": "Check exp_d051_count_curves_25 for the n=204 source"
             }
+          },
+          "id": "event-010406"
+        },
+        {
+          "source_line": 10407,
+          "timestamp": "2026-05-24T04:29:55.327469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== d051 count curves ===\n{\n  \"counts\": [\n    2,\n    6,\n    12,\n    22,\n    44,\n    66\n  ],\n  \"recall_mean\": [\n    0.527,\n    0.39,\n    0.306,\n    0.268,\n    0.301,\n    0.407\n  ],\n  \"n_batches\": 25,\n  \"status\": \"complete\"\n}\n\n=== FewRel partial corr ===\nr_partial FewRel: -0.537 (paper says -0.537)\nVIF FewRel: 1.18 (paper says 1.18)\nVIF DocRED: 50.9 (paper says 50.9)\nr_partial DocRED: -0.348 (paper says -0.348)\nFound in exp_maven_residualized_bcs: {\"minilm\": {\"raw_rho\": 0.208, \"raw_p\": 0.011, \"confound\": \"log_freq\", \"bcs_confound_r\": 0.201, \"partial_r\": 0.133, \"partial_p\": 0.107}, \"qwen3\": {\"raw_rho\": 0.184, \"raw_p\": 0.025, \"confound\": \"degree_centrality_0.7\", \"bcs_confound_r\": 0.854, \"partial_r\": 0.063, \"partial_p\": 0.442}, \"joint_control\": {\"qwen3_p\": 0.439, \"minilm_p\": 0.226, \"note\": \"Both n.s. after controlling log_freq + degree jointly\"}, \"key_finding\": \"MAVEN BCS-F1 positive correlation is centrality artifact. MiniLM confound=freque\nFound in exp_fewrel_partial_corr_freq: {\"pearson_r\": 0.187, \"pearson_p\": 2.56e-26, \"spearman_rho\": 0.227, \"spearman_p\": 3.63e-38, \"n_pairs\": 3160, \"bootstrap_ci_95\": [0.145, 0.231], \"partial_r_eval_freq\": 0.189, \"partial_r_change_pct\": 1.2, \"note\": \"FewRel is perfectly balanced (700 samples/type). Type frequency is zero-variance, cannot confound BCS-confusion relationship. Eval-level frequency partial correlation changes by only 1.2%.\"}\nFound in exp015_scs_validation: {\"all_pairs\": {\"n\": 1953, \"n_nonzero\": 216, \"qwen3_spearman\": 0.1682, \"qwen3_spearman_p\": \"7.3e-14\", \"qwen3_kendall\": 0.1351, \"minilm_spearman\": 0.1439, \"minilm_spearman_p\": \"1.7e-10\", \"minilm_kendall\": 0.1152}, \"nonzero_only\": {\"n\": 216, \"qwen3_spearman\": 0.2722, \"qwen3_spearman_p\": \"5.0e-05\", \"qwen3_kendall\": 0.2001, \"minilm_spearman\": 0.306, \"minilm_spearman_p\": \"4.6e-06\", \"minilm_kendall\": 0.2276}, \"key_finding\": \"Both embeddings significantly predict confusion (all p<1e-5). Qwen3 better ove\nFound in exp002_confusability_controlled: {\"data_source\": \"exp2_reeval_resu\n…[truncated 467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-010407"
+        },
+        {
+          "source_line": 10408,
+          "timestamp": "2026-05-24T04:29:55.378239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T19:07:15.133Z\",\n  \"updated_at\": \"2026-05-17T05:31:41.749Z\",\n  \"spec\": {\n    \"command\": \"bash /root/schema-dag-extraction/run_d051_batch2.sh\",\n    \"server\": \"cqa1-38874\",\n    \"data_path\": \"/root/schema-dag-extraction/data/\",\n    \"data_count\": \"FewRel 80rel + Few-NERD 66types\",\n    \"model_name\": \"Qwen3-32B-FP8\",\n    \"seed\": \"42,123,456\",\n    \"hypothesis\": \"25+ batches per count level provide reliable error bars; 3-seed variance confirms batch-to-batch > seed-to-seed variance\",\n    \"gpu_id\": 0\n  },\n  \"metrics\": {\n    \"seed42_complete\": true,\n    \"fewrel_s42\": {\n      \"counts\": [\n        4,\n        8,\n        16,\n        32,\n        40,\n        64,\n        80\n      ],\n      \"accuracy_mean\": [\n        0.87,\n        0.805,\n        0.719,\n        0.652,\n        0.606,\n        0.539,\n        0.504\n      ],\n      \"n_batches\": 25,\n      \"status\": \"complete\"\n    },\n    \"fewnerd_s42\": {\n      \"counts\": [\n        2,\n        6,\n        12,\n        22,\n        44,\n        66\n      ],\n      \"recall_mean\": [\n        0.527,\n        0.39,\n        0.306,\n        0.268,\n        0.301,\n        0.407\n      ],\n      \"n_batches\": 25,\n      \"status\": \"complete\"\n    },\n    \"fewrel_s123\": {\n      \"counts\": [\n        4,\n        8,\n        16,\n        32,\n        40,\n        64,\n        80\n      ],\n      \"accuracy_mean\": [\n        0.848,\n        0.799,\n        0.745,\n        0.638,\n        0.609,\n        0.536,\n        0.496\n      ],\n      \"n_batches\": 25,\n      \"status\": \"complete\"\n    },\n    \"fewnerd_s123\": {\n      \"counts\": [\n        2,\n        6,\n        12,\n        22,\n        44,\n        66\n      ],\n      \"recall_mean\": [\n        0.446,\n        0.422,\n        0.357,\n        0.277,\n        0.272,\n        0.407\n      ],\n      \"n_batches\": 25,\n      \"status\": \"complete\",\n      \"minimum_count\": 44,\n      \"minimum_recall\": 0.272\n    },\n    \"fewrel_s456\": {\n      \"counts\": [\n        4,\n        8,\n        16,\n        32,\n      \n…[truncated 1572 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-010408"
+        },
+        {
+          "source_line": 10409,
+          "timestamp": "2026-05-24T04:29:56.081588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/r1_statistical_supplements.json"
+            }
+          },
+          "id": "event-010409"
+        },
+        {
+          "source_line": 10410,
+          "timestamp": "2026-05-24T04:29:56.132254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"N3_2_partial_correlation\": {\n3\t    \"description\": \"Partial correlation: BCS vs accuracy, controlling for batch mean degree centrality (mean off-diagonal SCS row value per type)\",\n4\t    \"method\": \"Pearson partial correlation via residualization; VIF to check multicollinearity\",\n5\t    \"fewrel\": {\n6\t      \"n_batches\": 204,\n7\t      \"zero_order_r\": -0.5703,\n8\t      \"zero_order_p\": 0.0,\n9\t      \"zero_order_rho\": -0.4335,\n10\t      \"zero_order_rho_p\": 0.0,\n11\t      \"partial_r\": -0.5367,\n12\t      \"partial_p\": 0.0,\n13\t      \"vif_bcs\": 1.182,\n14\t      \"vif_centrality\": 1.182,\n15\t      \"bcs_semipartial_r2\": 0.273,\n16\t      \"bcs_partial_r2\": 0.288,\n17\t      \"bcs_semipartial_r2_note\": \"true ΔR² = R²_full(0.325) - R²_cent_only(0.052); partial r² = r_partial² = 0.5367² = 0.288\",\n18\t      \"bcs_deg_correlation\": 0.3925,\n19\t      \"bcs_range\": [0.4578, 0.9706],\n20\t      \"bcs_sd\": 0.1411,\n21\t      \"deg_range\": [0.4527, 0.6308]\n22\t    },\n23\t    \"docred\": {\n24\t      \"n_batches\": 110,\n25\t      \"zero_order_r\": -0.7602,\n26\t      \"zero_order_p\": 0.0,\n27\t      \"zero_order_rho\": -0.7407,\n28\t      \"zero_order_rho_p\": 0.0,\n29\t      \"partial_r\": -0.3476,\n30\t      \"partial_p\": 0.000198,\n31\t      \"vif_bcs\": 50.901,\n32\t      \"vif_centrality\": 50.901,\n33\t      \"bcs_semipartial_r2\": 0.056,\n34\t      \"bcs_partial_r2\": 0.1208,\n35\t      \"bcs_semipartial_r2_note\": \"true ΔR² = R²_full(0.595) - R²_cent_only(0.539); partial r² = r_partial² = 0.3476² = 0.1208\",\n36\t      \"bcs_deg_correlation\": 0.9901,\n37\t      \"bcs_range\": [0.3796, 0.7571],\n38\t      \"bcs_sd\": 0.1114,\n39\t      \"deg_range\": [0.4585, 0.6238]\n40\t    },\n41\t    \"fewrel_data_sources\": [\n42\t      \"fewrel_formal_full/eval_exp1.json (110 batches, 80-type pool, count_1..80)\",\n43\t      \"fewrel_formal_full/eval_exp2.json (54 batches, BCS-controlled extreme)\",\n44\t      \"fewrel_80pool_16sub (100 batches, 8-type subsets from 80-type pool)\",\n45\t      \"bcs_controlled_llama-3.1-70b-fp8 (count_8 + count_16, extreme BCS batches)\"\n46\t    ],\n47\t    \"docred_da\n…[truncated 2257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-010410"
+        },
+        {
+          "source_line": 10411,
+          "timestamp": "2026-05-24T04:29:59.150878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check all experiments for VIF, semipartial R2, residual SD\nfor exp_id, exp in exps.items():\n    metrics = exp.get('metrics', {})\n    all_text = json.dumps(exp)\n    if any(k in all_text for k in ['50.9', '5.6', '0.88', 'vif', 'semipartial', 'semi_partial']):\n        print(f'=== {exp_id}')\n        print(json.dumps(metrics, indent=2)[:500])\n        # Also print notes\n        notes = exp.get('notes', '')\n        if notes and ('50.9' in notes or '5.6' in notes or '0.88' in notes or 'vif' in notes.lower()):\n            print(f'  NOTES: {notes[:400]}')\n        print()\n\" 2>&1\n",
+              "description": "Search all registry data for VIF 50.9, semipartial R2 5.6%, and residual SD 0.88"
+            }
+          },
+          "id": "event-010411"
+        },
+        {
+          "source_line": 10412,
+          "timestamp": "2026-05-24T04:29:59.302402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp_fewshot_bcs_count16\n{}\n\n=== exp_gemini_flash_bcs_controlled\n{\n  \"count_8\": {\n    \"n_batches\": 50,\n    \"low_bcs_acc\": 0.905,\n    \"high_bcs_acc\": 0.7292,\n    \"gap_pp\": -17.6,\n    \"ci_95\": [\n      15.1,\n      20.1\n    ],\n    \"pearson_r\": -0.887,\n    \"spearman_rho\": -0.743\n  },\n  \"count_16\": {\n    \"n_batches\": 10,\n    \"low_bcs_acc\": 0.8146,\n    \"high_bcs_acc\": 0.7281,\n    \"gap_pp\": -8.7,\n    \"pearson_r\": -0.804,\n    \"spearman_rho\": -0.401,\n    \"note\": \"BCS=0.97 outlier inflates Pearson; limited power n=5/group\",\n    \"loo_excluding_bcs097\": {\n      \"pearson_r\n\n=== exp_gemini_flash_cross_model\n{\n  \"count_curve_spearman_rho\": -0.943,\n  \"count_curve_spearman_p\": 0.0048,\n  \"count_1_acc\": 0.8267,\n  \"count_4_acc\": 0.8725,\n  \"count_8_acc\": 0.8204,\n  \"count_16_acc\": 0.7868,\n  \"count_32_acc\": 0.7394,\n  \"count_64_acc\": 0.6343,\n  \"total_drop_count1_to_64_pp\": -19.2,\n  \"complete_count_levels\": \"1,4,8,16,32,64\",\n  \"part2_bcs\": {\n    \"count_8\": {\n      \"n_batches\": 50,\n      \"low_bcs_acc\": 0.905,\n      \"high_bcs_acc\": 0.7292,\n      \"gap_pp\": 17.58,\n      \"pearson_r\": -0.8873,\n      \"spearman_rho\":\n\n=== exp_docred_bcs_expanded\n{\n  \"count16\": {\n    \"BCS_effect_pp\": -25.04,\n    \"spearman_r\": -0.762,\n    \"n_batches\": 55\n  },\n  \"count32\": {\n    \"BCS_effect_pp\": -15.65,\n    \"spearman_r\": -0.693,\n    \"n_batches\": 55\n  },\n  \"interaction\": {\n    \"estimate_pp\": -9.39,\n    \"CI_95\": [\n      -12.91,\n      -5.95\n    ],\n    \"direction\": \"sub-additive\"\n  }\n}\n\n=== exp_fewrel_formal\n{\n  \"note\": \"16-rel sanity check only\",\n  \"exp1\": {\n    \"count_1\": {\n      \"mean_acc\": 0.904,\n      \"n_batches\": 16\n    },\n    \"count_4\": {\n      \"mean_acc\": 0.932,\n      \"n_batches\": 5\n    },\n    \"count_8\": {\n      \"mean_acc\": 0.867,\n      \"n_batches\": 5\n    },\n    \"count_16\": {\n      \"mean_acc\": 0.778,\n      \"n_batches\": 5,\n      \"bcs\": 0.9,\n      \"zero_variance\": true\n    }\n  },\n  \"exp2\": {\n    \"count_8_low_bcs\": {\n      \"acc\": 0.889,\n      \"bcs\": 0.782\n    },\n    \"count_8_high_bcs\": {\n      \n\n=== exp_fewrel_form\n…[truncated 3311 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-010412"
+        },
+        {
+          "source_line": 10413,
+          "timestamp": "2026-05-24T04:30:04.199769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for partial corr / VIF experiment specifically\nfor exp_id, exp in exps.items():\n    metrics = exp.get('metrics', {})\n    s = json.dumps(metrics)\n    if 'VIF' in s or 'vif' in s.lower() or '1.18' in s or '50.9' in s:\n        print(f'=== {exp_id} ===')\n        print(s[:2000])\n        print()\n\"\n"
+            }
+          },
+          "id": "event-010413"
+        },
+        {
+          "source_line": 10414,
+          "timestamp": "2026-05-24T04:30:04.300695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-010414"
+        },
+        {
+          "source_line": 10415,
+          "timestamp": "2026-05-24T04:30:10.089187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check exp_fewshot_bcs_count16 and exp_fewshot_bcs_v2 for the fewshot claim\nfor exp_id in ['exp_fewshot_bcs_count16', 'exp_fewshot_bcs_v2', 'exp_fewshot_bcs_mitigation']:\n    exp = exps.get(exp_id, {})\n    print(f'=== {exp_id} | {exp.get(\\\"conclusion\\\",\\\"\\\")}')\n    print(json.dumps(exp.get('metrics', {}), indent=2))\n    notes = exp.get('notes', '')\n    if notes:\n        print(f'  NOTES: {notes[:400]}')\n    print()\n\n# Check exp_multiseed_bcs_re (which is the fewshot-related one)\nexp = exps.get('exp_multiseed_bcs_re', {})\nprint('=== exp_multiseed_bcs_re')\nprint(json.dumps(exp.get('metrics', {}), indent=2))\n\" 2>&1\n",
+              "description": "Check fewshot BCS experiments for the discussion claim"
+            }
+          },
+          "id": "event-010415"
+        },
+        {
+          "source_line": 10416,
+          "timestamp": "2026-05-24T04:30:10.190040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp_fewshot_bcs_count16 | success\n{}\n\n=== exp_fewshot_bcs_v2 | negative\n{\n  \"0shot_low_bcs\": 0.6821,\n  \"0shot_high_bcs\": 0.4975,\n  \"0shot_delta_pp\": 18.46,\n  \"1shot_low_bcs\": 0.7538,\n  \"1shot_high_bcs\": 0.5542,\n  \"1shot_delta_pp\": 19.96,\n  \"5shot_low_bcs\": 0.7154,\n  \"5shot_high_bcs\": 0.4875,\n  \"5shot_delta_pp\": 22.79,\n  \"delta_widening_0to5shot_pp\": 4.33,\n  \"widening_p_value\": 0.014\n}\n\n=== exp_fewshot_bcs_mitigation | killed\n{}\n  NOTES: Killed: BCS grouping contrast only 0.04 (random pool top/bottom), should be ~0.43. 0-shot delta ≈ 0pp, cannot test hypothesis. Redesigning with extreme batch configs from exp_fewrel_v2_n25 (low-BCS 0.35-0.37, high-BCS 0.79-0.81). Replaced by exp_fewshot_bcs_v2.\n\n=== exp_multiseed_bcs_re\n{\n  \"seed_123\": {\n    \"shot0_delta_pp\": 21.88,\n    \"shot1_delta_pp\": 25.25,\n    \"shot5_delta_pp\": 24.25,\n    \"shot0_ci\": [\n      18.79,\n      24.83\n    ],\n    \"shot1_ci\": [\n      21.08,\n      29.29\n    ],\n    \"shot5_ci\": [\n      19.96,\n      28.29\n    ]\n  },\n  \"seed_456\": {\n    \"shot0_delta_pp\": 22.38,\n    \"shot1_delta_pp\": 24.38,\n    \"shot5_delta_pp\": 25.08,\n    \"shot0_ci\": [\n      19.58,\n      24.96\n    ],\n    \"shot1_ci\": [\n      20.58,\n      28.04\n    ],\n    \"shot5_ci\": [\n      21.62,\n      28.58\n    ]\n  },\n  \"finding\": \"Few-shot does NOT mitigate BCS effect; delta increases from ~22pp (0-shot) to ~25pp (5-shot)\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-010416"
+        },
+        {
+          "source_line": 10417,
+          "timestamp": "2026-05-24T04:30:11.435017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Print the full fewrel_partial_corr_freq data and look for partial corr data\n# These VIF numbers seem not to be in the registry - check all notes/specs\nfor exp_id, exp in exps.items():\n    s = json.dumps(exp)\n    if '1.18' in s:\n        print(f'Found 1.18 in {exp_id}')\n    if '50.9' in s:\n        print(f'Found 50.9 in {exp_id}')\n    if '0.273' in s:\n        print(f'Found 0.273 in {exp_id}')\n    if '-0.537' in s:\n        print(f'Found -0.537 in {exp_id}')\n    if '-0.348' in s:\n        print(f'Found -0.348 in {exp_id}')\n\"\n"
+            }
+          },
+          "id": "event-010417"
+        },
+        {
+          "source_line": 10418,
+          "timestamp": "2026-05-24T04:30:11.485667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 0.273 in exp_llama70b_cross_model\nFound 0.273 in exp003a_prompt_v2_rerun\nFound 0.273 in exp012_llama_8b_r2"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-010418"
+        },
+        {
+          "source_line": 10419,
+          "timestamp": "2026-05-24T04:30:13.296061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json, re\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# The figure caption mentions semipartial R2=0.273, n=204 for the pooled regression\n# This should correspond to the BCS-controlled experiment with 204 batches\n# Let's check what experiment has the pooled BCS regression\n# 25 batches * (2 count levels) + 2 extremes? No...\n# 25 (random) + 1 low + 1 high = 27 per count level, 27*8 count levels = ?\n# Or: 25 batches * 8 count levels (80-rel: 4,8,16,32,40,64,80 = 7 counts) + controlled?\n# 7 count levels * 25 batches = 175... still not 204\n# Let me check: 8 count levels (count_1 as baseline too) * 25 = 200, or maybe 204 includes count=1 (80 batches for count=1)\n# From exp_fewrel_formal_80rel: count_1 has 80 batches, others have 5 batches\n# From exp_d051_count_curves_25: 7 count levels (4,8,16,32,40,64,80) * 25 batches = 175 batches\n# Plus 2 per count level for exp2 BCS controlled\n# The paper figure caption says n=204 for BCS controlled scatter plot\n\n# Let me look for any experiment noting n=204\nfor exp_id, exp in experiments.items():\n    exp_str = json.dumps(exp)\n    if 'n_batches' in exp_str or 'n_total' in exp_str:\n        metrics = exp.get('metrics', {})\n        metrics_str = json.dumps(metrics)\n        if '204' in metrics_str or '203' in metrics_str:\n            print(f'{exp_id}: {metrics_str[:400]}')\n\n# Also search for 0.60 p value mentioned in figure caption\nprint()\nprint('=== Searching for p=0.60 (slope consistency) ===')\nfor exp_id, exp in experiments.items():\n    exp_str = json.dumps(exp)\n    if '0.60' in exp_str or '0.6)' in exp_str:\n        metrics = exp.get('metrics', {})\n        metrics_str = json.dumps(metrics)\n        if '0.60' in metrics_str or 'pool' in metrics_str.lower():\n            print(f'{exp_id}: {metrics_str[:500]}')\n            print()\n\"",
+              "description": "Search for n=204 and p=0.60 source experiments"
+            }
+          },
+          "id": "event-010419"
+        },
+        {
+          "source_line": 10420,
+          "timestamp": "2026-05-24T04:30:13.397068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_gemini_flash_cross_model: {\"count_curve_spearman_rho\": -0.943, \"count_curve_spearman_p\": 0.0048, \"count_1_acc\": 0.8267, \"count_4_acc\": 0.8725, \"count_8_acc\": 0.8204, \"count_16_acc\": 0.7868, \"count_32_acc\": 0.7394, \"count_64_acc\": 0.6343, \"total_drop_count1_to_64_pp\": -19.2, \"complete_count_levels\": \"1,4,8,16,32,64\", \"part2_bcs\": {\"count_8\": {\"n_batches\": 50, \"low_bcs_acc\": 0.905, \"high_bcs_acc\": 0.7292, \"gap_pp\": 17.58, \"p\n\n=== Searching for p=0.60 (slope consistency) ===\nexp_schema_intervention: {\"high_bcs_control\": 0.693, \"high_bcs_treatment\": 0.605, \"high_bcs_delta\": -0.0883, \"low_bcs_control\": 0.901, \"low_bcs_treatment\": 0.871, \"low_bcs_delta\": -0.0296, \"interaction_delta\": -0.0588, \"interaction_p\": \"<0.001\", \"interaction_t\": -7.23, \"rename_count_correlation_r\": -0.625, \"rename_count_correlation_p\": \"<0.001\", \"cohens_d_high\": -2.92, \"cohens_d_low\": -1.09}\n\nexp_llama70b_cross_model: {\"exp1_fewrel_count_curve\": {\"count_8_to_80_decline_pp\": -30.7, \"vs_qwen3_decline_pp\": -30.1, \"note\": \"slopes near-identical, 70B absolute ~4pp lower\"}, \"exp2_bcs_controlled\": {\"count_16_low_bcs\": 0.7083, \"count_16_high_bcs\": 0.599, \"delta_pp\": 10.94, \"ci_95\": [3.02, 20.1], \"count_8_delta_pp\": -4.2, \"count_8_note\": \"BCS range too narrow, CI crosses zero\"}, \"exp3_fewnerd_unified_protocol\": {\"metric\": \"text_match recall (unified with Qwen3 protocol: offset correction + hallucination detection + gr\n\nexp_d051_count_curves_25: {\"seed42_complete\": true, \"fewrel_s42\": {\"counts\": [4, 8, 16, 32, 40, 64, 80], \"accuracy_mean\": [0.87, 0.805, 0.719, 0.652, 0.606, 0.539, 0.504], \"n_batches\": 25, \"status\": \"complete\"}, \"fewnerd_s42\": {\"counts\": [2, 6, 12, 22, 44, 66], \"recall_mean\": [0.527, 0.39, 0.306, 0.268, 0.301, 0.407], \"n_batches\": 25, \"status\": \"complete\"}, \"fewrel_s123\": {\"counts\": [4, 8, 16, 32, 40, 64, 80], \"accuracy_mean\": [0.848, 0.799, 0.745, 0.638, 0.609, 0.536, 0.496], \"n_batches\": 25, \"status\": \"complete\"}, \"few"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-010420"
+        },
+        {
+          "source_line": 10421,
+          "timestamp": "2026-05-24T04:30:14.100780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "# Look for partial correlation / VIF data in artifact files\nls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-010421"
+        },
+        {
+          "source_line": 10422,
+          "timestamp": "2026-05-24T04:30:14.151737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nace05_code\nace05_data_prep_report.md\nacknowledgements_draft.tex\nanalysis_a2_llama_tost.md\nanalysis_c3_extreme_batch_n.md\nanalysis_m1_gemini_leverage.md\nanalysis_m2_ecological_fallacy.md\nanalysis_m4_contamination.md\nanalysis_w3_domain_control.json\nanalysis_w3_domain_control.md\nanonymous_github\nappendix_maven_residualized.md\narr_checklist_draft.md\narr_checklist_final.md\narr_submission_metadata.md\narr_submission_readiness.md\nauthor_response_template.md\nbayesian_equivalence_bf01.json\nbayesian_equivalence_bf01.py\nbcs_comparison.json\nbcs_controlled_llama-3.1-70b-fp8\nbcs_fix\nbootstrap_ci.py\ncamera_ready_20260523.pdf\ncamera_ready_deanonymization_checklist.md\ncamera_ready_latex_config.md\ncross_embedding_sensitivity\ncross_model_error_taxonomy.py\ncrossagentie_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-010422"
+        },
+        {
+          "source_line": 10423,
+          "timestamp": "2026-05-24T04:30:16.161630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ | grep -i partial"
+            }
+          },
+          "id": "event-010423"
+        },
+        {
+          "source_line": 10424,
+          "timestamp": "2026-05-24T04:30:16.212584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "semipartial_r2_verification.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-010424"
+        },
+        {
+          "source_line": 10425,
+          "timestamp": "2026-05-24T04:30:18.021179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/semipartial_r2_verification.json"
+            }
+          },
+          "id": "event-010425"
+        },
+        {
+          "source_line": 10426,
+          "timestamp": "2026-05-24T04:30:18.071902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"docred\": {\n    \"n_batches\": 110,\n    \"R2_full\": 0.594948,\n    \"R2_centrality_only\": 0.539274,\n    \"R2_BCS_only\": 0.577867,\n    \"delta_R2_BCS\": 0.055675,\n    \"delta_R2_centrality\": 0.017081,\n    \"shared_variance\": 0.522192,\n    \"old_bcs_unique_r2\": 0.1208,\n    \"old_was_partial_r_squared\": true,\n    \"verified_partial_r2_BCS\": 0.120841,\n    \"pct_shared\": \"87.8% of R2_full is shared\",\n    \"zero_order_r_BCS\": -0.7602,\n    \"zero_order_r_cent\": 0.7344,\n    \"partial_r_BCS\": -0.3476,\n    \"corr_BCS_cent\": 0.9901,\n    \"VIF_approx\": 50.9\n  },\n  \"fewrel\": {\n    \"n_batches\": 204,\n    \"R2_full\": 0.32529,\n    \"R2_centrality_only\": 0.052368,\n    \"R2_BCS_only\": 0.325261,\n    \"delta_R2_BCS\": 0.272922,\n    \"delta_R2_centrality\": 2.9e-05,\n    \"shared_variance\": 0.052339,\n    \"old_bcs_unique_r2\": 0.288,\n    \"old_was_partial_r_squared\": true,\n    \"verified_partial_r2_BCS\": 0.288004,\n    \"pct_shared\": \"16.1% of R2_full is shared\",\n    \"zero_order_r_BCS\": -0.5703,\n    \"zero_order_r_cent\": 0.2288,\n    \"partial_r_BCS\": -0.5367,\n    \"corr_BCS_cent\": 0.3925,\n    \"VIF_approx\": 1.18\n  },\n  \"error_analysis\": {\n    \"description\": \"The old 'bcs_unique_r2' was computed as r_partial^2 (squared partial correlation), not as true semipartial R2 (delta R2 = R2_full - R2_Z_only). Partial r^2 = (R2_full - R2_Z) / (1 - R2_Z), which always >= delta R2.\",\n    \"docred_error_magnitude\": \"partial_r²=0.1208 vs true ΔR²=0.0557, ratio=2.17x overestimate\",\n    \"fewrel_error_magnitude\": \"partial_r²=0.288 vs true ΔR²=0.2729, ratio=1.06x overestimate\",\n    \"original_code_line\": \"bcs_unique_r2 = r_partial**2  # line 167 in r1_statistical_supplements.py\",\n    \"correct_formula\": \"delta_R2_BCS = R2_full - R2_centrality_only\"\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-010426"
+        },
+        {
+          "source_line": 10427,
+          "timestamp": "2026-05-24T04:30:26.715971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Look at the confusability_batch_composition experiment more carefully\nexp = experiments.get('exp_confusability_batch_composition', {})\nprint('exp_confusability_batch_composition:')\nprint(json.dumps(exp, indent=2)[:3000])\n\nprint()\n# Look at BCS pooled regression - n=204 could be 25+25+25+25+27+27+... check exp_multiseed_bcs_re\nexp2 = experiments.get('exp_multiseed_bcs_re', {})\nprint('exp_multiseed_bcs_re:')\nprint(json.dumps(exp2, indent=2)[:2000])\n\n# The semipartial R2=0.273 and VIF=1.18 are cited in the context of \n# BCS independently explains ~27% of cross-batch RE accuracy variance on FewRel\n# This seems to come from a specific regression analysis - maybe exp_fewrel_factorial_tost\n# analysis_3_cross_dataset has n=200, close to 204\nprint()\nprint('analysis_3_cross_dataset n=200:')\nprint(json.dumps(experiments['exp_fewrel_factorial_tost']['metrics']['analysis_3_cross_dataset'], indent=2))\n\"",
+              "description": "Find source of n=204 pooled regression"
+            }
+          },
+          "id": "event-010427"
+        },
+        {
+          "source_line": 10428,
+          "timestamp": "2026-05-24T04:30:26.817973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_confusability_batch_composition:\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T04:52:11.857Z\",\n  \"updated_at\": \"2026-05-17T02:57:55.760Z\",\n  \"hypothesis\": \"Confusability-aware batch composition (graph coloring on SCS matrix to separate high-SCS pairs) improves per-type accuracy and reduces substitution errors compared to random batching and single-pass full schema, providing a practical application of the confusability findings.\",\n  \"spec\": {\n    \"command\": \"python3 src/run_confusability_batch_composition.py --stage extract --preprocess_path artifacts/exp_confusability_batch_composition/preprocess.json\",\n    \"server\": \"cqa1-38874\",\n    \"data_path\": \"data/fewrel_parquet/{train,val}.parquet\",\n    \"data_count\": 960,\n    \"model_name\": \"Qwen3-32B-FP8\",\n    \"seed\": 42,\n    \"description\": \"Confusability-aware batch composition: graph coloring vs random vs single-pass on FewRel 80-rel\",\n    \"pid\": 373174,\n    \"log_path\": \"/root/schema-dag-extraction/logs/exp018_confusability_batch.log\",\n    \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/\",\n    \"gpu\": [\n      \"cuda:0\"\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"confusability_aware\": {\n      \"accuracy\": 0.8021,\n      \"macro_f1\": 0.8021,\n      \"mean_batch_bcs\": 0.5524\n    },\n    \"random_batch_15seeds\": {\n      \"accuracy_mean\": 0.7877,\n      \"accuracy_std\": 0.0178,\n      \"macro_f1_mean\": 0.7877,\n      \"mean_batch_bcs\": 0.5585,\n      \"ci_95_upper\": 0.7967,\n      \"seeds_above_aware\": 2,\n      \"seeds_above_aware_values\": [\n        0.8125,\n        0.8146\n      ]\n    },\n    \"single_pass\": {\n      \"accuracy\": 0.5042,\n      \"macro_f1\": 0.5042,\n      \"mean_batch_bcs\": 0.5572\n    },\n    \"improvement\": {\n      \"confusability_vs_random_pp\": 1.44,\n      \"significant\": false,\n      \"rank_among_random\": \"13/15\",\n      \"p_rank\": 0.19,\n      \"p_z\": 0.22,\n      \"note\": \"Directional only. BCS margin 0.006 too narrow for significance at this partition granula\n…[truncated 3097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-010428"
+        },
+        {
+          "source_line": 10429,
+          "timestamp": "2026-05-24T04:30:31.493983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# The discussion says 'few-shot primarily benefits low-confusability batches'\n# Let's verify: exp_fewshot_bcs_v2\n# 0shot: low=0.6821, high=0.4975\n# 1shot: low=0.7538, high=0.5542\n# 5shot: low=0.7154, high=0.4875\n\n# Low-BCS improvement: 0.6821->0.7154 = +3.3pp at 5shot vs 0shot\n# High-BCS improvement: 0.4975->0.4875 = -1.0pp at 5shot vs 0shot (actually got WORSE)\n# So few-shot DOES primarily benefit low-confusability batches\n\nprint('Few-shot effect on low-BCS: 0shot=0.6821 -> 5shot=0.7154 = +3.3pp')\nprint('Few-shot effect on high-BCS: 0shot=0.4975 -> 5shot=0.4875 = -1.0pp (slight degradation)')\nprint('=> few-shot primarily benefits low-confusability batches -> MATCH')\nprint()\n\n# Now check the Discussion: remaining ~73% variance\n# The paper says 'remaining ~73% of variance likely reflects prompt formatting...'\n# R^2=0.52 from exp_fewrel_factorial_tost -> remaining = 48%, not 73%\n# But this might refer to a DIFFERENT R^2 model\n# Wait -- looking at discussion.tex line 10 again:\n# 'The remaining ~73% of variance likely reflects prompt formatting...'\n# This is saying SCS explains ~27%, remaining 73%.\n# But exp_fewrel_factorial_tost has R^2=0.52 for count+BCS combined model on FewRel.\n# The 73% might be from a different analysis where BCS alone explains 27% of variance.\n# Let's check if BCS alone R^2 is ~0.27 anywhere...\n\n# From exp_fewrel_16rel_bootstrap: pearson_r=-0.467 -> R^2 = 0.218 (22%)\n# From exp_fewrel_formal_80rel: no single R^2 stated\n# From exp_docred_confusability: spearman_r=-0.661 for count16 -> R^2~0.44 (44%)\n# From exp_fewrel_factorial_tost analysis_2: bcs_beta=-0.051 R^2=0.52 but that's count+BCS together\n\n# Actually re-reading: 'The remaining ~73% of variance' likely means:\n# SCS explains 27% of variance (R^2~0.27), leaving 73%\n# From exp_fewrel_16rel_bootstrap: Pearson r=-0.467, R^2=0.218~22%\n# From exp002: partial Spearman rho=-0.293, R^2~8.6% at per-type level\n# No obvious source for '27% explained by SCS' -> '73% remaining'\n\n# Check exp_fewrel_factorial_tost more carefully:\n# analysis_2_regression R^2=0.52 for count+BCS both\n# BCS-only might be smaller...\n\nprint('Discussion ~73% remaining variance:')\nprint('  R^2=0.52 from exp_fewrel_factorial_tost (count+BCS) -> remaining=48%, not 73%')\nprint('  BCS-only R^2 from exp_fewrel_16rel_bootstrap: r^2=(-0.467)^2=0.218 -> remaining=78%')\nprint('  BCS-only R^2 from pairwise (exp_fewrel_partial_corr_freq): r^2=(0.187)^2=0.035 -> remaining=96.5%')\nprint('  73% is plausible if referring to BCS-only R^2~0.27 from some analysis')\nprint('  BUT: no registry entry shows exactly R^2=0.27 or SCS explaining 27%')\nprint('  => CANNOT DIRECTLY VERIFY from registry; needs appendix/analysis file')\n\" 2>&1\n",
+              "description": "Analyze the 73% remaining variance claim in discussion"
+            }
+          },
+          "id": "event-010429"
+        },
+        {
+          "source_line": 10430,
+          "timestamp": "2026-05-24T04:30:31.594926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Few-shot effect on low-BCS: 0shot=0.6821 -> 5shot=0.7154 = +3.3pp\nFew-shot effect on high-BCS: 0shot=0.4975 -> 5shot=0.4875 = -1.0pp (slight degradation)\n=> few-shot primarily benefits low-confusability batches -> MATCH\n\nDiscussion ~73% remaining variance:\n  R^2=0.52 from exp_fewrel_factorial_tost (count+BCS) -> remaining=48%, not 73%\n  BCS-only R^2 from exp_fewrel_16rel_bootstrap: r^2=(-0.467)^2=0.218 -> remaining=78%\n  BCS-only R^2 from pairwise (exp_fewrel_partial_corr_freq): r^2=(0.187)^2=0.035 -> remaining=96.5%\n  73% is plausible if referring to BCS-only R^2~0.27 from some analysis\n  BUT: no registry entry shows exactly R^2=0.27 or SCS explaining 27%\n  => CANNOT DIRECTLY VERIFY from registry; needs appendix/analysis file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-010430"
+        },
+        {
+          "source_line": 10431,
+          "timestamp": "2026-05-24T04:30:36.774102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\n# Let's now verify the key numbers from the paper:\n\n# 1. FewRel semipartial R2 = 0.273\n# Registry: delta_R2_BCS = 0.272922 -> rounds to 0.273 PASS\n\n# 2. VIF FewRel = 1.18\n# Registry: VIF_approx = 1.18 PASS\n\n# 3. VIF DocRED = 50.9\n# Registry: VIF_approx = 50.9 PASS\n\n# 4. r_partial FewRel = -0.537\n# Registry: partial_r_BCS = -0.5367 -> rounds to -0.537 PASS\n\n# 5. r_partial DocRED = -0.348\n# Registry: partial_r_BCS = -0.3476 -> rounds to -0.348 PASS\n\n# 6. DocRED R2 full = 0.578 (paper says 0.578)\n# Registry: R2_BCS_only = 0.577867 -> rounds to 0.578 \n# But the paper says 'pooled R2 = 0.578' - actually looking at R2_full=0.594948\n# Need to verify which R2 is being reported\n\nprint('DocRED R2_full:', 0.594948)  \nprint('DocRED R2_BCS_only:', 0.577867)\nprint('Paper says: pooled R2 = 0.578')\n# So the paper uses R2_BCS_only = 0.578 as the 'pooled R2'? That is unusual\n# OR, the R2 is from a DIFFERENT computation (n=110 all batches together)\n\n# Let me check the DocRED expanded experiment\nprint('DocRED n_batches for semipartial:', 110)\n\n# 7. DocRED semipartial R2_BCS = 0.056\n# Registry: delta_R2_BCS (DocRED) = 0.055675 -> rounds to 0.056 PASS\n\n# Now FewRel 80-rel BCS gap -31.2pp\n# Registry: exp_fewrel_formal_80rel, exp2_bcs_controlled, count_8: delta_pp = -31.2 PASS\n# count_16: delta_pp = -31.2 PASS\n\n# 8. DocRED BCS gap count_16 = -25.0pp\n# Registry: exp_docred_bcs_expanded, count16, BCS_effect_pp = -25.04 -> rounds to -25.0 PASS\n\n# 9. DocRED count_16 rho = -0.762\n# Registry: spearman_r = -0.762 PASS\n\n# 10. DocRED BCS gap count_32 = -15.7pp\n# Registry: count32, BCS_effect_pp = -15.65 -> rounds to -15.7 PASS? Check\n\n# Paper says -15.7pp\nprint('Registry count_32:', -15.65)\nprint('Paper: -15.7 - difference:', abs(-15.7 - (-15.65)))\n# -15.65 rounds to -15.7? No, it rounds to -15.6 or -15.7 depending on convention\n# With one decimal: -15.65 -> rounds to -15.7 (round half up) or -15.6 (round half to even)\n# This is a borderline case\n\nprint('DocRED count_32 rho:', -0.693)\n# paper says rho = -0.693 PASS\n\n# 11. LLaMA-8B gap at count_8 = -27.1pp\n# Registry: exp012_llama_fewrel_ch2, exp2_bcs_controlled, count_8, delta_pp = -27.1 PASS\n\n# 12. LLaMA-8B gap at count_16 \n# Registry: exp012_llama_fewrel_ch2, count_16, delta_pp = -24\nprint('LLaMA-8B count_16 gap from ch2:', -24)\n# Paper says -23.9pp - let me check other experiments\n\"\n"
+            }
+          },
+          "id": "event-010431"
+        },
+        {
+          "source_line": 10432,
+          "timestamp": "2026-05-24T04:30:36.875028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DocRED R2_full: 0.594948\nDocRED R2_BCS_only: 0.577867\nPaper says: pooled R2 = 0.578\nDocRED n_batches for semipartial: 110\nRegistry count_32: -15.65\nPaper: -15.7 - difference: 0.049999999999998934\nDocRED count_32 rho: -0.693\nLLaMA-8B count_16 gap from ch2: -24"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-010432"
+        },
+        {
+          "source_line": 10433,
+          "timestamp": "2026-05-24T04:30:37.830063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Look for the semipartial regression R2=0.273 and n=204 - check exp_fewrel_v2_n25 more carefully\nexp = experiments.get('exp_fewrel_v2_n25', {})\nprint('exp_fewrel_v2_n25 full:')\nprint(json.dumps(exp, indent=2)[:3000])\n\nprint()\n# Also check the figure caption source: semipartial R2=0.273 after controlling for degree centrality \n# This comes from a partial regression of BCS on RE accuracy controlling for count/centrality\n# Let's check all experiments with 'degree' or 'centrality'\nfor exp_id, exp in experiments.items():\n    exp_str = json.dumps(exp)\n    if 'centrality' in exp_str.lower() or 'degree' in exp_str.lower():\n        print(f'=== {exp_id} ===')\n        metrics = exp.get('metrics', {})\n        print(json.dumps(metrics, indent=2)[:800])\n        print()\n\"",
+              "description": "Find semipartial R2=0.273 and centrality control regression source"
+            }
+          },
+          "id": "event-010433"
+        },
+        {
+          "source_line": 10434,
+          "timestamp": "2026-05-24T04:30:37.930979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_fewrel_v2_n25 full:\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T05:29:48.465Z\",\n  \"updated_at\": \"2026-05-16T05:29:51.354Z\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"n_low\": 25,\n    \"n_high\": 25,\n    \"low_bcs_mean_acc\": 0.8521,\n    \"high_bcs_mean_acc\": 0.5967,\n    \"delta_pp\": 25.54,\n    \"ci_95\": [\n      22.42,\n      28.62\n    ],\n    \"permutation_p\": 0,\n    \"pearson_r\": -0.919,\n    \"low_bcs_range\": [\n      0.356,\n      0.367\n    ],\n    \"high_bcs_range\": [\n      0.791,\n      0.811\n    ],\n    \"key_finding\": \"v2 prompt does NOT eliminate confusability effect. At n=25 with wider BCS separation, effect is massive (25.5pp) and highly significant. Prior n=5 result (7.9pp, CI crosses zero) was underpowered + narrow BCS contrast.\"\n  }\n}\n\n=== exp_maven_residualized_bcs ===\n{\n  \"minilm\": {\n    \"raw_rho\": 0.208,\n    \"raw_p\": 0.011,\n    \"confound\": \"log_freq\",\n    \"bcs_confound_r\": 0.201,\n    \"partial_r\": 0.133,\n    \"partial_p\": 0.107\n  },\n  \"qwen3\": {\n    \"raw_rho\": 0.184,\n    \"raw_p\": 0.025,\n    \"confound\": \"degree_centrality_0.7\",\n    \"bcs_confound_r\": 0.854,\n    \"partial_r\": 0.063,\n    \"partial_p\": 0.442\n  },\n  \"joint_control\": {\n    \"qwen3_p\": 0.439,\n    \"minilm_p\": 0.226,\n    \"note\": \"Both n.s. after controlling log_freq + degree jointly\"\n  },\n  \"key_finding\": \"MAVEN BCS-F1 positive correlation is centrality artifact. MiniLM confound=frequency, Qwen3 confound=degree centrality (r=0.854). After joint control, both correlations vanish. Confirms pairwise SCS remains valid but per-type aggregation fails on homogeneous schemas.\"\n}\n\n=== exp004_maven_bcs ===\n{\n  \"exp1_count_curve\": {\n    \"count_1\": {\n      \"n_batches\": 64,\n      \"exact_f1\": 0.009,\n      \"relaxed_f1\": 0.106,\n      \"bcs\": 0\n    },\n    \"count_6\": {\n      \"n_batches\": 5,\n      \"exact_f1\": 0.003,\n      \"relaxed_f1\": 0.103,\n      \"bcs\": 0.892\n    },\n    \"count_12\": {\n      \"n_batches\": 5,\n      \"exact_f1\": 0.008,\n      \"relaxed_f1\": 0.146,\n      \"bcs\": 0.921\n    },\n    \"count_22\":\n…[truncated 410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-010434"
+        },
+        {
+          "source_line": 10435,
+          "timestamp": "2026-05-24T04:30:39.189835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\n# Check whether sdgd_negative.tex mentions 0.802 or 0.80 anywhere (the old value)\ntext = open('/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex').read()\nprint('Checking for old oracle value 0.802 or 0.80:')\nif '0.802' in text:\n    print('  FOUND 0.802 -> MISMATCH')\nelif '0.80' in text:\n    print('  FOUND 0.80 -> check context')\nelse:\n    print('  Not found -> OK')\n\n# Also check discussion.tex and conclusion.tex\ndisc = open('/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex').read()\nprint()\nprint('discussion.tex - checking for 0.802 or 0.80:')\nif '0.802' in disc:\n    print('  FOUND 0.802 -> MISMATCH')\nelif '0.80' in disc:\n    print('  FOUND 0.80 -> check context')\nelse:\n    print('  Not found -> OK')\n\n# Check for any SDGD-related numbers in discussion\nimport re\nnums = re.findall(r'[\\d]+\\.[\\d]+', disc)\nprint(f'  All floats in discussion.tex: {nums}')\n\" 2>&1\n",
+              "description": "Check for old oracle value 0.802 in paper files"
+            }
+          },
+          "id": "event-010435"
+        },
+        {
+          "source_line": 10436,
+          "timestamp": "2026-05-24T04:30:39.240944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checking for old oracle value 0.802 or 0.80:\n  Not found -> OK\n\ndiscussion.tex - checking for 0.802 or 0.80:\n  Not found -> OK\n  All floats in discussion.tex: []"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-010436"
+        },
+        {
+          "source_line": 10437,
+          "timestamp": "2026-05-24T04:30:44.995657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# LLaMA count_16 gap - looking for -23.9pp\nfor exp_id, exp in exps.items():\n    s = json.dumps(exp)\n    if '23.9' in s or '-23.9' in s:\n        print(f'Found 23.9 in {exp_id}')\n        print(json.dumps(exp.get('metrics', {}), indent=2)[:2000])\n        print()\n\"\n"
+            }
+          },
+          "id": "event-010437"
+        },
+        {
+          "source_line": 10438,
+          "timestamp": "2026-05-24T04:30:45.098196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 23.9 in exp_docred_bcs_expanded\n{\n  \"count16\": {\n    \"BCS_effect_pp\": -25.04,\n    \"spearman_r\": -0.762,\n    \"n_batches\": 55\n  },\n  \"count32\": {\n    \"BCS_effect_pp\": -15.65,\n    \"spearman_r\": -0.693,\n    \"n_batches\": 55\n  },\n  \"interaction\": {\n    \"estimate_pp\": -9.39,\n    \"CI_95\": [\n      -12.91,\n      -5.95\n    ],\n    \"direction\": \"sub-additive\"\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-010438"
+        },
+        {
+          "source_line": 10439,
+          "timestamp": "2026-05-24T04:30:49.953536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-80bfff5d/5a2f5b57-8786-48c0-a858-956ddf05146c/tool-results/mcp-agent-ml-research-read_registry-1779563777475.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# LLaMA count=16 gap = -23.9pp - need to look in other experiments \n# The task description says 'LLaMA count=16 gap: should be -23.9pp (confirmed acceptable rounding)'\n# The ch2 has -24, but the actual computation might be -23.95 rounding to -24.0 or -23.9\n\n# Let's check exp012_llama_fewrel_ch2 more carefully\nprint(json.dumps(exps['exp012_llama_fewrel_ch2'], indent=2))\n\"\n"
+            }
+          },
+          "id": "event-010439"
+        },
+        {
+          "source_line": 10440,
+          "timestamp": "2026-05-24T04:30:50.004282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:12:56.136Z\",\n  \"updated_at\": \"2026-05-15T22:55:54.752Z\",\n  \"spec\": {\n    \"command\": \"bash scripts/run_llama_fewrel_ch2.sh\",\n    \"server\": \"cqa1-38874\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"330198\",\n    \"log_path\": \"~/runs/schema-dag-extraction/exp012_llama_fewrel_ch2.log\",\n    \"submitted_at\": \"2026-05-15T21:43:45.369Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"FewRel 80-rel\",\n    \"data_count\": 80,\n    \"model_name\": \"LLaMA-3.1-8B-Instruct\",\n    \"seed\": 42,\n    \"description\": \"LLaMA-3.1-8B-Instruct FewRel 80-rel exp2 BCS-controlled, verify confusability effect cross-model\",\n    \"checkpoint_source\": \"/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct\",\n    \"eval_data\": \"FewRel 80-rel exp2 BCS-controlled\",\n    \"wall_clock_seconds\": 3158.4,\n    \"gpu_hours\": 0.88\n  },\n  \"hypothesis\": \"LLaMA-3.1-8B-Instruct \\u5728 FewRel 80-rel RE \\u4efb\\u52a1\\u4e0a\\u9a8c\\u8bc1 Channel 2 (BCS-controlled confusability effect)\\u3002\\u8de8\\u6a21\\u578b\\u5bb6\\u65cf(Qwen\\u2192LLaMA) + \\u8de8\\u89c4\\u6a21(32B\\u21928B) + \\u8de8\\u4efb\\u52a1(NER\\u2192RE) \\u4e09\\u91cd\\u6cdb\\u5316\\u9a8c\\u8bc1\\u3002exp2 design: count 8/16 \\u00d7 low/high BCS \\u00d7 27 batches\\u3002\",\n  \"parent\": \"exp012_llama_8b_r2\",\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/\",\n  \"completed_at\": \"2026-05-15T22:36:23.818Z\",\n  \"metrics\": {\n    \"exp2_bcs_controlled\": {\n      \"count_8\": {\n        \"low_bcs_acc\": 0.7812,\n        \"high_bcs_acc\": 0.5104,\n        \"delta_pp\": -27.1\n      },\n      \"count_16\": {\n        \"low_bcs_acc\": 0.7552,\n        \"high_bcs_acc\": 0.5156,\n        \"delta_pp\": -24\n      }\n    },\n    \"overall_correlation\": {\n      \"n_batches\": 54,\n      \"pearson_r\": -0.39,\n      \"pearson_p\": 0.004,\n      \"spearman_rho\": -0.43,\n      \"spearman_p\": 0.001\n    },\n    \"cross_model_comparison\":\n…[truncated 461 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+            "tool": "Bash",
+            "elapsed_ms": 50
           },
           "id": "event-010440"
         }

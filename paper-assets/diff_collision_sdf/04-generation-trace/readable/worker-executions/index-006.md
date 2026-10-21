@@ -37,10 +37,8 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | research vlariskanon2026 check | 60 | 0 | [Read transcript](research-vlariskanon2026-check.md) | [JSON](../../sessions/13/13ddd18a3db9f90e43e6.json) |
 | paper submission checklist | 71 | 5 | [Read transcript](paper-submission-checklist.md) | [JSON](../../sessions/2d/2d128d424bbd16ad810b.json) |
 | paper supplementary check | 44 | 0 | [Read transcript](paper-supplementary-check.md) | [JSON](../../sessions/66/66829c9a1ba73ef09733.json) |
-| paper rebuttal prep | 32 | 0 | [Read transcript](paper-rebuttal-prep.md) | [JSON](../../sessions/9a/9a041717194d2e368857.json) |
 | paper supplementary pack — Explore the directory /home/ubuntu/.agent-ml-research-be-idea-gen-0515/projects/diff_collision_sdf/  | 188 | 1 | [Read transcript](paper-supplementary-pack.md) | [JSON](../../sessions/60/60f9f96ba27c73de6214.json) |
 | paper seed3 restart plan — I need to extract details for two specific experiments from a large registry JSON file. The file is  | 78 | 1 | [Read transcript](paper-seed3-restart-plan.md) | [JSON](../../sessions/6d/6d95c744006f570bc92f.json) |
 | paper per task analysis | 33 | 0 | [Read transcript](paper-per-task-analysis.md) | [JSON](../../sessions/e3/e35d210552ac1605daf1.json) |
-| paper rebuttal seed3 versions | 30 | 0 | [Read transcript](paper-rebuttal-seed3-versions.md) | [JSON](../../sessions/d0/d083e0f79e36071526d3.json) |
 | paper camera ready polish | 62 | 0 | [Read transcript](paper-camera-ready-polish.md) | [JSON](../../sessions/83/83e1910d1d5220473ed4.json) |
 | ops check train westd45947 | 0 | 0 | [Read transcript](ops-check-train-westd45947.md) | [JSON](../../sessions/60/60bce9c8b632be987b5c.json) |

@@ -14880,7 +14880,7 @@ _source line 1147 · 2026-05-15T11:29:34.099640+00:00_
 
 ## Round 64
 
-34 recorded events
+24 recorded events
 
 
 ### User
@@ -15024,439 +15024,7 @@ _source line 1152 · 2026-05-15T11:29:50.876933+00:00_
 
 ### Tool call
 
-_source line 1153 · 2026-05-15T11:30:06.557317+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1154 · 2026-05-15T11:30:06.809815+00:00_
-
-1	{
-2	  "mmlu": {
-3	    "pairwise_comparisons": [
-4	      {
-5	        "pair": [
-6	          "binary-ours",
-7	          "dsir"
-8	        ],
-9	        "mean_diff": 0.007235436547500362,
-10	        "t_stat": 24.598249063205415,
-11	        "raw_p": 1.6209310233228965e-05,
-12	        "cohens_d": 11.000671406559567,
-13	        "corrected_p": 0.00024313965349843447,
-14	        "significant": true
-15	      },
-16	      {
-17	        "pair": [
-18	          "binary-ours",
-19	          "binary-drayson"
-20	        ],
-21	        "mean_diff": 0.0028058681099558448,
-22	        "t_stat": 17.515436444289804,
-23	        "raw_p": 6.238619313918888e-05,
-24	        "cohens_d": 7.833141309001842,
-25	        "corrected_p": 0.0008734067039486444,
-26	        "significant": true
-27	      },
-28	      {
-29	        "pair": [
-30	          "binary-ours",
-31	          "no-filter"
-32	        ],
-33	        "mean_diff": 0.007662726107392115,
-34	        "t_stat": 13.593055060087883,
-35	        "raw_p": 0.00016957959325503732,
-36	        "cohens_d": 6.0789990272508,
-37	        "corrected_p": 0.0022045347123154854,
-38	        "significant": true
-39	      },
-40	      {
-41	        "pair": [
-42	          "binary-drayson",
-43	          "dsir"
-44	        ],
-45	        "mean_diff": 0.004429568437544518,
-46	        "t_stat": 12.607532539957875,
-47	        "raw_p": 0.00022784095885562328,
-48	        "cohens_d": 5.6382599575772785,
-49	        "corrected_p": 0.0027340915062674795,
-50	        "significant": true
-51	      },
-52	      {
-53	        "pair": [
-54	          "binary-ours",
-55	          "graduated_a0.9"
-56	        ],
-57	        "mean_diff": 0.0049565588947443565,
-58	        "t_stat": 8.556802169125492,
-59	        "raw_p": 0.0010241458708119772,
-60	        "cohens_d": 3.8267182640364505,
-61	        "corrected_p": 0.011265604578931748,
-62	        "significant": true
-63	      },
-64	      {
-65	        "pair": [
-66	          "binary-drayson",
-67	          "no-filter"
-68	        ],
-69	        "mean_diff": 0.00485
-…[truncated 44050 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 252
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1155 · 2026-05-15T11:32:12.549430+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1156 · 2026-05-15T11:32:13.152115+00:00_
-
-1	{
-2	  "mmlu": {
-3	    "pairwise_comparisons": [
-4	      {
-5	        "pair": [
-6	          "binary-ours",
-7	          "dsir"
-8	        ],
-9	        "mean_diff": 0.007235436547500362,
-10	        "t_stat": 24.598249063205415,
-11	        "raw_p": 1.6209310233228965e-05,
-12	        "cohens_d": 11.000671406559567,
-13	        "corrected_p": 0.00024313965349843447,
-14	        "significant": true
-15	      },
-16	      {
-17	        "pair": [
-18	          "binary-ours",
-19	          "binary-drayson"
-20	        ],
-21	        "mean_diff": 0.0028058681099558448,
-22	        "t_stat": 17.515436444289804,
-23	        "raw_p": 6.238619313918888e-05,
-24	        "cohens_d": 7.833141309001842,
-25	        "corrected_p": 0.0008734067039486444,
-26	        "significant": true
-27	      },
-28	      {
-29	        "pair": [
-30	          "binary-ours",
-31	          "no-filter"
-32	        ],
-33	        "mean_diff": 0.007662726107392115,
-34	        "t_stat": 13.593055060087883,
-35	        "raw_p": 0.00016957959325503732,
-36	        "cohens_d": 6.0789990272508,
-37	        "corrected_p": 0.0022045347123154854,
-38	        "significant": true
-39	      },
-40	      {
-41	        "pair": [
-42	          "binary-drayson",
-43	          "dsir"
-44	        ],
-45	        "mean_diff": 0.004429568437544518,
-46	        "t_stat": 12.607532539957875,
-47	        "raw_p": 0.00022784095885562328,
-48	        "cohens_d": 5.6382599575772785,
-49	        "corrected_p": 0.0027340915062674795,
-50	        "significant": true
-51	      },
-52	      {
-53	        "pair": [
-54	          "binary-ours",
-55	          "graduated_a0.9"
-56	        ],
-57	        "mean_diff": 0.0049565588947443565,
-58	        "t_stat": 8.556802169125492,
-59	        "raw_p": 0.0010241458708119772,
-60	        "cohens_d": 3.8267182640364505,
-61	        "corrected_p": 0.011265604578931748,
-62	        "significant": true
-63	      },
-64	      {
-65	        "pair": [
-66	          "binary-drayson",
-67	          "no-filter"
-68	        ],
-69	        "mean_diff": 0.00485
-…[truncated 4036 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 602
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1157 · 2026-05-15T11:32:13.253341+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1158 · 2026-05-15T11:32:13.304311+00:00_
-
-File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1159 · 2026-05-15T11:32:16.567001+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-  "offset": "200",
-  "limit": "200"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_E_paired_stats.json",
-    "offset": "200",
-    "limit": "200"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1160 · 2026-05-15T11:32:16.868659+00:00_
-
-200	        "cohens_d": 8.980868554878203,
-201	        "corrected_p": 0.0005443568241118204,
-202	        "significant": true
-203	      },
-204	      {
-205	        "pair": [
-206	          "binary-ours",
-207	          "dsir"
-208	        ],
-209	        "mean_diff": 0.007070304720175269,
-210	        "t_stat": 18.90813926584121,
-211	        "raw_p": 4.6078767183328965e-05,
-212	        "cohens_d": 8.455976945290782,
-213	        "corrected_p": 0.0006451027405666055,
-214	        "significant": true
-215	      },
-216	      {
-217	        "pair": [
-218	          "surprisal",
-219	          "graduated_a0.9"
-220	        ],
-221	        "mean_diff": -0.006054570802628945,
-222	        "t_stat": -13.78972003344619,
-223	        "raw_p": 0.00016027100933589872,
-224	        "cohens_d": -6.166950277095271,
-225	        "corrected_p": 0.0020835231213666835,
-226	        "significant": true
-227	      },
-228	      {
-229	        "pair": [
-230	          "binary-ours",
-231	          "surprisal"
-232	        ],
-233	        "mean_diff": 0.006054570802628945,
-234	        "t_stat": 13.65000295403501,
-235	        "raw_p": 0.00016681640096500788,
-236	        "cohens_d": 6.104466899659044,
-237	        "corrected_p": 0.0020017968115800945,
-238	        "significant": true
-239	      },
-240	      {
-241	        "pair": [
-242	          "binary-drayson",
-243	          "dsir"
-244	        ],
-245	        "mean_diff": 0.006014738099980099,
-246	        "t_stat": 12.16299147904681,
-247	        "raw_p": 0.00026222122214236693,
-248	        "cohens_d": 5.439455151379875,
-249	        "corrected_p": 0.0028844334435660364,
-250	        "significant": true
-251	      },
-252	      {
-253	        "pair": [
-254	          "binary-ours",
-255	          "no-filter"
-256	        ],
-257	        "mean_diff": 0.006373232423819974,
-258	        "t_stat": 10.681512417298325,
-259	        "raw_p": 0.0004351718159107605,
-260	        "cohens_d": 4.776917573517431,
-261	        "corrected_p": 0.004351718159107605,
-262	        "significant": true
-26
-…[truncated 3994 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 301
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1161 · 2026-05-15T11:32:16.871287+00:00_
+_source line 1153 · 2026-05-15T11:32:16.871287+00:00_
 
 called Glob
 
@@ -15492,7 +15060,7 @@ called Glob
 
 ### Tool result
 
-_source line 1162 · 2026-05-15T11:32:16.971989+00:00_
+_source line 1154 · 2026-05-15T11:32:16.971989+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_D_obd_n500.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_obd_n500_v2.json
@@ -15515,92 +15083,7 @@ _source line 1162 · 2026-05-15T11:32:16.971989+00:00_
 
 ### Tool call
 
-_source line 1163 · 2026-05-15T11:32:19.682961+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_obd_n500_v2.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_obd_n500_v2.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1164 · 2026-05-15T11:32:19.733580+00:00_
-
-1	{
-2	  "obd_n500_accuracy": 0.38,
-3	  "obd_n500_ci_lower": 0.34,
-4	  "obd_n500_ci_upper": 0.424,
-5	  "n_bootstrap": 1000,
-6	  "n_samples": 500,
-7	  "sample_source": "exp011_samples.jsonl (same as LLM baseline)",
-8	  "gpt55_n500_accuracy": 0.332,
-9	  "claude_n500_accuracy": 0.331,
-10	  "obd_full_accuracy": 0.3856,
-11	  "obd_full_n": 30000,
-12	  "method": "OBD-LightGBM out-of-fold predictions, same 500 samples as exp-011",
-13	  "obd_hyperparams": {
-14	    "n_estimators": 200,
-15	    "max_depth": 6,
-16	    "learning_rate": 0.05,
-17	    "num_leaves": 31,
-18	    "n_binary_classifiers": 5,
-19	    "n_folds": 5
-20	  },
-21	  "per_depth_accuracy": {
-22	    "0": 0.96,
-23	    "1": 0.39,
-24	    "2": 0.14,
-25	    "3": 0.19,
-26	    "4": 0.22
-27	  },
-28	  "conclusion": "OBD at N=500 achieves 38.0% [34.0%, 42.4%], above LLM baselines (GPT-5.5: 33.2%, Claude: 33.1%)"
-29	}
-30	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1165 · 2026-05-15T11:32:23.348063+00:00_
+_source line 1155 · 2026-05-15T11:32:23.348063+00:00_
 
 called Glob
 
@@ -15636,7 +15119,7 @@ called Glob
 
 ### Tool result
 
-_source line 1166 · 2026-05-15T11:32:23.800211+00:00_
+_source line 1156 · 2026-05-15T11:32:23.800211+00:00_
 
 No files found
 
@@ -15658,7 +15141,7 @@ No files found
 
 ### Tool call
 
-_source line 1167 · 2026-05-15T11:32:24.051593+00:00_
+_source line 1157 · 2026-05-15T11:32:24.051593+00:00_
 
 called Grep
 
@@ -15696,7 +15179,7 @@ called Grep
 
 ### Tool result
 
-_source line 1168 · 2026-05-15T11:32:24.252971+00:00_
+_source line 1158 · 2026-05-15T11:32:24.252971+00:00_
 
 No files found
 
@@ -15718,7 +15201,7 @@ No files found
 
 ### Tool call
 
-_source line 1169 · 2026-05-15T11:32:27.768487+00:00_
+_source line 1159 · 2026-05-15T11:32:27.768487+00:00_
 
 called Grep
 
@@ -15758,7 +15241,7 @@ called Grep
 
 ### Tool result
 
-_source line 1170 · 2026-05-15T11:32:27.870122+00:00_
+_source line 1160 · 2026-05-15T11:32:27.870122+00:00_
 
 Found 8 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6.jsonl
@@ -15788,7 +15271,7 @@ Found 8 files
 
 ### Tool call
 
-_source line 1171 · 2026-05-15T11:32:31.283969+00:00_
+_source line 1161 · 2026-05-15T11:32:31.283969+00:00_
 
 called Read
 
@@ -15822,7 +15305,7 @@ called Read
 
 ### Tool result
 
-_source line 1172 · 2026-05-15T11:32:31.334668+00:00_
+_source line 1162 · 2026-05-15T11:32:31.334668+00:00_
 
 1	{
 2	  "raw": "执行完成。注意 OBD OOF accuracy 这次为 43.6%（vs v2 的 38.0%），因为 LGBMClassifier 没有固定 `random_state`。配对检验结果无论如何都高度显著。\n\n## 结果摘要\n\n### OBD vs GPT-5.5 (N=500)\n| | |\n|---|---|\n| OBD accuracy | 43.6% |\n| GPT-5.5 accuracy | 33.2% |\n| Difference | **+10.4pp** |\n| Contingency | a=94, b=124, c=72, d=210 |\n| McNemar exact p | **0.0002** |\n| Bootstrap 95% CI | **[+5.0pp, +15.8pp]** |\n| CI includes 0 | NO |\n\n### OBD vs Claude (N=500)\n| | |\n|---|---|\n| OBD accuracy | 43.6% |\n| Claude accuracy | 33.0% |\n| Difference | **+10.6pp** |\n| Contingency | a=101, b=117, c=64, d=218 |\n| McNemar exact p | **0.0001** |\n| Bootstrap 95% CI | **[+5.4pp, +15.8pp]** |\n| CI includes 0 | NO |\n\nOBD 在配对检验下显著优于两个 LLM（p < 0.001），bootstrap CI 不含 0。\n\n如果需要精确复现 v2 的 38.0% OBD 准确率，需要在 `LGBMClassifier` 里加 `random_state=42`——要我加上重跑吗？结果保存在 `artifacts/exp_D_mcnemar.json`。"
@@ -15846,7 +15329,7 @@ _source line 1172 · 2026-05-15T11:32:31.334668+00:00_
 
 ### Tool call
 
-_source line 1173 · 2026-05-15T11:32:33.845551+00:00_
+_source line 1163 · 2026-05-15T11:32:33.845551+00:00_
 
 called Read
 
@@ -15880,7 +15363,7 @@ called Read
 
 ### Tool result
 
-_source line 1174 · 2026-05-15T11:32:33.946490+00:00_
+_source line 1164 · 2026-05-15T11:32:33.946490+00:00_
 
 File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55.
 
@@ -15902,7 +15385,7 @@ File does not exist. Note: your current working directory is /home/ubuntu/.agent
 
 ### Tool call
 
-_source line 1175 · 2026-05-15T11:32:40.020691+00:00_
+_source line 1165 · 2026-05-15T11:32:40.020691+00:00_
 
 called ToolSearch
 
@@ -15938,7 +15421,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1176 · 2026-05-15T11:32:40.071469+00:00_
+_source line 1166 · 2026-05-15T11:32:40.071469+00:00_
 
 
 
@@ -15960,7 +15443,7 @@ _source line 1176 · 2026-05-15T11:32:40.071469+00:00_
 
 ### Tool call
 
-_source line 1177 · 2026-05-15T11:32:42.631565+00:00_
+_source line 1167 · 2026-05-15T11:32:42.631565+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -15996,7 +15479,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1178 · 2026-05-15T11:32:42.732357+00:00_
+_source line 1168 · 2026-05-15T11:32:42.732357+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_004_7b_crossscale\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T11:08:22.198Z\", \"updated_at\": \"2026-05-15T11:09:56.921Z\", \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.078}}"}
 
@@ -16018,7 +15501,7 @@ _source line 1178 · 2026-05-15T11:32:42.732357+00:00_
 
 ### Tool call
 
-_source line 1179 · 2026-05-15T11:33:19.866012+00:00_
+_source line 1169 · 2026-05-15T11:33:19.866012+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -16054,7 +15537,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1180 · 2026-05-15T11:33:23.479830+00:00_
+_source line 1170 · 2026-05-15T11:33:23.479830+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -16076,7 +15559,7 @@ _source line 1180 · 2026-05-15T11:33:23.479830+00:00_
 
 ### Assistant
 
-_source line 1181 · 2026-05-15T11:33:28.553627+00:00_
+_source line 1171 · 2026-05-15T11:33:28.553627+00:00_
 
 已向 Director 发送完整汇报，包含：
 1. **EXP-D McNemar**: 两组均 p < 0.001，bootstrap CI 不含 0，附 random_state 差异说明及建议重跑
@@ -16107,7 +15590,7 @@ exp-004 7B 仍在运行，cron 监控中。
 
 ### User
 
-_source line 1182 · 2026-05-15T11:33:29.037814+00:00_
+_source line 1172 · 2026-05-15T11:33:29.037814+00:00_
 
 [Director 指令] [Director 指令] CRITICAL — EXP-D OBD accuracy 不一致修复（最高优先级）
 
@@ -16148,7 +15631,7 @@ Reviewer 发现 McNemar 脚本对 OBD 预测做了 capping (min(pred, 4))，v2 �
 
 ### Tool call
 
-_source line 1183 · 2026-05-15T11:33:35.000320+00:00_
+_source line 1173 · 2026-05-15T11:33:35.000320+00:00_
 
 called ToolSearch
 
@@ -16184,7 +15667,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1184 · 2026-05-15T11:33:35.065058+00:00_
+_source line 1174 · 2026-05-15T11:33:35.065058+00:00_
 
 
 
@@ -16206,7 +15689,7 @@ _source line 1184 · 2026-05-15T11:33:35.065058+00:00_
 
 ### Tool call
 
-_source line 1185 · 2026-05-15T11:33:39.634590+00:00_
+_source line 1175 · 2026-05-15T11:33:39.634590+00:00_
 
 called Read
 
@@ -16240,7 +15723,7 @@ called Read
 
 ### Tool result
 
-_source line 1186 · 2026-05-15T11:33:40.086919+00:00_
+_source line 1176 · 2026-05-15T11:33:40.086919+00:00_
 
 1	"""EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.
 2	
@@ -16323,7 +15806,7 @@ _source line 1186 · 2026-05-15T11:33:40.086919+00:00_
 
 ### Tool call
 
-_source line 1187 · 2026-05-15T11:33:40.590766+00:00_
+_source line 1177 · 2026-05-15T11:33:40.590766+00:00_
 
 called Glob
 
@@ -16359,7 +15842,7 @@ called Glob
 
 ### Tool result
 
-_source line 1188 · 2026-05-15T11:33:40.893168+00:00_
+_source line 1178 · 2026-05-15T11:33:40.893168+00:00_
 
 No files found
 
@@ -16381,7 +15864,7 @@ No files found
 
 ### Tool call
 
-_source line 1189 · 2026-05-15T11:33:40.945874+00:00_
+_source line 1179 · 2026-05-15T11:33:40.945874+00:00_
 
 called Glob
 
@@ -16417,7 +15900,7 @@ called Glob
 
 ### Tool result
 
-_source line 1190 · 2026-05-15T11:33:40.996565+00:00_
+_source line 1180 · 2026-05-15T11:33:40.996565+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_D_obd_n500.json
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py
@@ -16448,7 +15931,7 @@ _source line 1190 · 2026-05-15T11:33:40.996565+00:00_
 
 ### Tool call
 
-_source line 1191 · 2026-05-15T11:33:45.925691+00:00_
+_source line 1181 · 2026-05-15T11:33:45.925691+00:00_
 
 called Read
 
@@ -16482,7 +15965,7 @@ called Read
 
 ### Tool result
 
-_source line 1192 · 2026-05-15T11:33:46.026815+00:00_
+_source line 1182 · 2026-05-15T11:33:46.026815+00:00_
 
 1	"""EXP-D v2: OBD-LightGBM accuracy on the SAME N=500 samples as exp-011 LLM baselines.
 2	
@@ -16561,7 +16044,7 @@ _source line 1192 · 2026-05-15T11:33:46.026815+00:00_
 
 ### Tool call
 
-_source line 1193 · 2026-05-15T11:33:58.757544+00:00_
+_source line 1183 · 2026-05-15T11:33:58.757544+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16599,7 +16082,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1194 · 2026-05-15T11:33:58.858435+00:00_
+_source line 1184 · 2026-05-15T11:33:58.858435+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0799}}"}
 
@@ -16621,7 +16104,7 @@ _source line 1194 · 2026-05-15T11:33:58.858435+00:00_
 
 ### Tool call
 
-_source line 1195 · 2026-05-15T11:34:01.870219+00:00_
+_source line 1185 · 2026-05-15T11:34:01.870219+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -16659,7 +16142,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1196 · 2026-05-15T11:34:01.921055+00:00_
+_source line 1186 · 2026-05-15T11:34:01.921055+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_004_7b_crossscale\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:08:22.198Z\", \"updated_at\": \"2026-05-15T11:09:56.921Z\", \"spec\": {\"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B\", \"server\": \"westc-26893\", \"model_name\": \"Qwen/Qwen2.5-7B (fp16, 14.5GB) + Qwen2.5-1.5B-Instruct (scorer)\", \"data_count\": 5000, \"seed\": 42, \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp004_run.sh\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp004_7b\", \"note\": \"Generator=Qwen2.5-7B base (continuation), Scorer=1.5B. batch_size=4 gen/8 feat. ETA ~19h total.\"}, \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0752}}"}
 
@@ -16681,7 +16164,7 @@ _source line 1196 · 2026-05-15T11:34:01.921055+00:00_
 
 ### Tool call
 
-_source line 1197 · 2026-05-15T11:34:30.950641+00:00_
+_source line 1187 · 2026-05-15T11:34:30.950641+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -16723,7 +16206,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1198 · 2026-05-15T11:34:36.523982+00:00_
+_source line 1188 · 2026-05-15T11:34:36.523982+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_mcnemar_fixed_20260515T113431\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_D_mcnemar_fixed_20260515T113431.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_D_mcnemar_fixed_20260515T113431 started. Use get_worker_status('worker_code_exp_D_mcnemar_fixed_20260515T113431') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16745,7 +16228,7 @@ _source line 1198 · 2026-05-15T11:34:36.523982+00:00_
 
 ### Assistant
 
-_source line 1199 · 2026-05-15T11:34:41.338574+00:00_
+_source line 1189 · 2026-05-15T11:34:41.338574+00:00_
 
 Worker 已派发 (`worker_code_exp_D_mcnemar_fixed_20260515T113431`)，正在修复脚本并重跑。修复内容：
 1. `random_state=42` 统一加入所有 LGBMClassifier
@@ -16777,7 +16260,7 @@ Worker 完成后系统会回调，届时汇报 Director。
 
 ### User
 
-_source line 1200 · 2026-05-15T11:34:41.344708+00:00_
+_source line 1190 · 2026-05-15T11:34:41.344708+00:00_
 
 [Director 指令] [Director 指令] CRITICAL — OBD 可复现性 bug，优先于队列中其他非紧急任务
 
@@ -16812,7 +16295,7 @@ Reviewer 发现 OBD LightGBM 两次运行 accuracy 分别为 43.6% 和 38.0%（�
 
 ### Tool call
 
-_source line 1201 · 2026-05-15T11:34:52.593083+00:00_
+_source line 1191 · 2026-05-15T11:34:52.593083+00:00_
 
 called ToolSearch
 
@@ -16848,7 +16331,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1202 · 2026-05-15T11:34:52.643674+00:00_
+_source line 1192 · 2026-05-15T11:34:52.643674+00:00_
 
 
 
@@ -16870,7 +16353,7 @@ _source line 1202 · 2026-05-15T11:34:52.643674+00:00_
 
 ### Tool call
 
-_source line 1203 · 2026-05-15T11:34:55.384772+00:00_
+_source line 1193 · 2026-05-15T11:34:55.384772+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -16906,7 +16389,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1204 · 2026-05-15T11:34:55.486043+00:00_
+_source line 1194 · 2026-05-15T11:34:55.486043+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_mcnemar_fixed_20260515T113431\", \"status\": \"running\", \"task_type\": \"code:exp_D_mcnemar_fixed\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:34:31.487812+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ToolSearch\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"先看现有脚本和数据结构。\", \"turn_count\": 7}}, \"error\": null, \"metadata\": {}}"}
 
@@ -16928,7 +16411,7 @@ _source line 1204 · 2026-05-15T11:34:55.486043+00:00_
 
 ### Tool call
 
-_source line 1205 · 2026-05-15T11:35:48.800017+00:00_
+_source line 1195 · 2026-05-15T11:35:48.800017+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -16970,7 +16453,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1206 · 2026-05-15T11:35:54.496813+00:00_
+_source line 1196 · 2026-05-15T11:35:54.496813+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_comprehensive_20260515T113549\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_D_comprehensive_20260515T113549.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_D_comprehensive_20260515T113549 started. Use get_worker_status('worker_code_exp_D_comprehensive_20260515T113549') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -16992,7 +16475,7 @@ _source line 1206 · 2026-05-15T11:35:54.496813+00:00_
 
 ### Assistant
 
-_source line 1207 · 2026-05-15T11:36:01.302877+00:00_
+_source line 1197 · 2026-05-15T11:36:01.302877+00:00_
 
 已派发综合 Worker `worker_code_exp_D_comprehensive`，覆盖 Director 全部 4 项要求：
 1. 修复代码（random_state=42 + 概率合并替代 capping）
@@ -17025,7 +16508,7 @@ _source line 1207 · 2026-05-15T11:36:01.302877+00:00_
 
 ### User
 
-_source line 1208 · 2026-05-15T11:36:01.310593+00:00_
+_source line 1198 · 2026-05-15T11:36:01.310593+00:00_
 
 [CRON 需要判断] 实验 **exp_A_alt_scorer** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
 
@@ -17048,7 +16531,7 @@ _source line 1208 · 2026-05-15T11:36:01.310593+00:00_
 
 ### Tool call
 
-_source line 1209 · 2026-05-15T11:36:11.968059+00:00_
+_source line 1199 · 2026-05-15T11:36:11.968059+00:00_
 
 called ToolSearch
 
@@ -17084,7 +16567,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1210 · 2026-05-15T11:36:12.019561+00:00_
+_source line 1200 · 2026-05-15T11:36:12.019561+00:00_
 
 
 
@@ -17106,7 +16589,7 @@ _source line 1210 · 2026-05-15T11:36:12.019561+00:00_
 
 ### Tool call
 
-_source line 1211 · 2026-05-15T11:36:16.938967+00:00_
+_source line 1201 · 2026-05-15T11:36:16.938967+00:00_
 
 called ToolSearch
 
@@ -17142,7 +16625,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1212 · 2026-05-15T11:36:17.039827+00:00_
+_source line 1202 · 2026-05-15T11:36:17.039827+00:00_
 
 No matching deferred tools found
 
@@ -17164,7 +16647,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 1213 · 2026-05-15T11:36:20.101595+00:00_
+_source line 1203 · 2026-05-15T11:36:20.101595+00:00_
 
 called ToolSearch
 
@@ -17200,7 +16683,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1214 · 2026-05-15T11:36:20.202497+00:00_
+_source line 1204 · 2026-05-15T11:36:20.202497+00:00_
 
 
 
@@ -17222,7 +16705,7 @@ _source line 1214 · 2026-05-15T11:36:20.202497+00:00_
 
 ### Tool call
 
-_source line 1215 · 2026-05-15T11:36:22.912442+00:00_
+_source line 1205 · 2026-05-15T11:36:22.912442+00:00_
 
 called CronList
 
@@ -17251,7 +16734,7 @@ Arguments not recorded in this source.
 
 ### Tool result
 
-_source line 1216 · 2026-05-15T11:36:23.013326+00:00_
+_source line 1206 · 2026-05-15T11:36:23.013326+00:00_
 
 No scheduled jobs.
 
@@ -17273,7 +16756,7 @@ No scheduled jobs.
 
 ### Assistant
 
-_source line 1217 · 2026-05-15T11:36:26.411211+00:00_
+_source line 1207 · 2026-05-15T11:36:26.411211+00:00_
 
 exp_A_alt_scorer 的 cron 在本 session 不存在（session 切换时已自动清理）。EXP-A 在 registry 中已是 DONE 状态。这是一条残留的 cron 误报，无需任何操作。
 
@@ -17300,7 +16783,7 @@ exp_A_alt_scorer 的 cron 在本 session 不存在（session 切换时已自动�
 
 ### User
 
-_source line 1218 · 2026-05-15T11:36:26.415320+00:00_
+_source line 1208 · 2026-05-15T11:36:26.415320+00:00_
 
 [WORKER DONE] Worker worker_paper_exp_A_crossscorer_table_20260515T112213 已完成（status=done）。用 `get_worker_status('worker_paper_exp_A_crossscorer_table_20260515T112213')` 读取结果，然后处理。
 
@@ -17325,7 +16808,7 @@ _source line 1218 · 2026-05-15T11:36:26.415320+00:00_
 
 ### Tool call
 
-_source line 1219 · 2026-05-15T11:36:31.868644+00:00_
+_source line 1209 · 2026-05-15T11:36:31.868644+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17359,7 +16842,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1220 · 2026-05-15T11:36:31.919372+00:00_
+_source line 1210 · 2026-05-15T11:36:31.919372+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_exp_A_crossscorer_table_20260515T112213\", \"status\": \"done\", \"task_type\": \"paper:exp_A_crossscorer_table\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:22:14.073991+00:00\", \"ended_at\": \"2026-05-15T11:22:54.723749+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已写入 `docs/paper/tables/tab_crossscorer.tex`。\\n\\n设计说明：\\n- 按 Generator Data 分两组（Qwen-RW / Qwen-cont），每组首行为 self-scorer baseline\\n- K*=1 的行用 `\\\\textcolor{red}{1†}` 标注\\n- AUC(1v2) < 0.60 的值（0.5923, 0.5858）用 `\\\\underline{}` 标注\\n- Self-scorer baseline 缺失的列用 `---` 填充\\n- 风格与现有表格一致：booktabs、`\\\\small`、无 float wrapper\\n\\n需要 preamble 中有 `\\\\usepackage{xcolor}` 支持 `\\\\textcolor{red}{}`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17381,7 +16864,7 @@ _source line 1220 · 2026-05-15T11:36:31.919372+00:00_
 
 ### Tool call
 
-_source line 1221 · 2026-05-15T11:36:35.937400+00:00_
+_source line 1211 · 2026-05-15T11:36:35.937400+00:00_
 
 called Grep
 
@@ -17419,7 +16902,7 @@ called Grep
 
 ### Tool result
 
-_source line 1222 · 2026-05-15T11:36:35.988627+00:00_
+_source line 1212 · 2026-05-15T11:36:35.988627+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fls:17:INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fls:18:INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -17453,7 +16936,7 @@ _source line 1222 · 2026-05-15T11:36:35.988627+00:00_
 
 ### Assistant
 
-_source line 1223 · 2026-05-15T11:36:39.639222+00:00_
+_source line 1213 · 2026-05-15T11:36:39.639222+00:00_
 
 `xcolor` 已由 `acl.sty` 引入，无需额外添加。Cross-scorer 表格产出完成，无 action needed。
 
@@ -17480,7 +16963,7 @@ _source line 1223 · 2026-05-15T11:36:39.639222+00:00_
 
 ### User
 
-_source line 1224 · 2026-05-15T11:36:40.223725+00:00_
+_source line 1214 · 2026-05-15T11:36:40.223725+00:00_
 
 [WORKER DONE] Worker worker_code_exp_D_mcnemar_20260515T112338 已完成（status=done）。用 `get_worker_status('worker_code_exp_D_mcnemar_20260515T112338')` 读取结果，然后处理。
 
@@ -17505,7 +16988,7 @@ _source line 1224 · 2026-05-15T11:36:40.223725+00:00_
 
 ### Tool call
 
-_source line 1225 · 2026-05-15T11:36:46.613885+00:00_
+_source line 1215 · 2026-05-15T11:36:46.613885+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17539,7 +17022,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1226 · 2026-05-15T11:36:46.665236+00:00_
+_source line 1216 · 2026-05-15T11:36:46.665236+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_mcnemar_20260515T112338\", \"status\": \"done\", \"task_type\": \"code:exp_D_mcnemar\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:23:38.850252+00:00\", \"ended_at\": \"2026-05-15T11:26:54.991163+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"执行完成。注意 OBD OOF accuracy 这次为 43.6%（vs v2 的 38.0%），因为 LGBMClassifier 没有固定 `random_state`。配对检验结果无论如何都高度显著。\\n\\n## 结果摘要\\n\\n### OBD vs GPT-5.5 (N=500)\\n| | |\\n|---|---|\\n| OBD accuracy | 43.6% |\\n| GPT-5.5 accuracy | 33.2% |\\n| Difference | **+10.4pp** |\\n| Contingency | a=94, b=124, c=72, d=210 |\\n| McNemar exact p | **0.0002** |\\n| Bootstrap 95% CI | **[+5.0pp, +15.8pp]** |\\n| CI includes 0 | NO |\\n\\n### OBD vs Claude (N=500)\\n| | |\\n|---|---|\\n| OBD accuracy | 43.6% |\\n| Claude accuracy | 33.0% |\\n| Difference | **+10.6pp** |\\n| Contingency | a=101, b=117, c=64, d=218 |\\n| McNemar exact p | **0.0001** |\\n| Bootstrap 95% CI | **[+5.4pp, +15.8pp]** |\\n| CI includes 0 | NO |\\n\\nOBD 在配对检验下显著优于两个 LLM（p < 0.001），bootstrap CI 不含 0。\\n\\n如果需要精确复现 v2 的 38.0% OBD 准确率，需要在 `LGBMClassifier` 里加 `random_state=42`——要我加上重跑吗？结果保存在 `artifacts/exp_D_mcnemar.json`。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17561,7 +17044,7 @@ _source line 1226 · 2026-05-15T11:36:46.665236+00:00_
 
 ### Assistant
 
-_source line 1227 · 2026-05-15T11:36:51.203441+00:00_
+_source line 1217 · 2026-05-15T11:36:51.203441+00:00_
 
 这是之前的旧 Worker（未加 `random_state`）。已被 `worker_code_exp_D_comprehensive` 覆盖，后者正在执行修复版（含 random_state=42 + 概率合并 + 多种子稳定性）。无需处理此 Worker 的结果。
 
@@ -17588,7 +17071,7 @@ _source line 1227 · 2026-05-15T11:36:51.203441+00:00_
 
 ### User
 
-_source line 1228 · 2026-05-15T11:36:51.786655+00:00_
+_source line 1218 · 2026-05-15T11:36:51.786655+00:00_
 
 [WORKER DONE] Worker worker_data_pull_rebuttal_artifacts_20260515T112159 已完成（status=done）。用 `get_worker_status('worker_data_pull_rebuttal_artifacts_20260515T112159')` 读取结果，然后处理。
 
@@ -17613,7 +17096,7 @@ _source line 1228 · 2026-05-15T11:36:51.786655+00:00_
 
 ### Tool call
 
-_source line 1229 · 2026-05-15T11:36:58.543077+00:00_
+_source line 1219 · 2026-05-15T11:36:58.543077+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17647,7 +17130,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1230 · 2026-05-15T11:36:58.597135+00:00_
+_source line 1220 · 2026-05-15T11:36:58.597135+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_data_pull_rebuttal_artifacts_20260515T112159\", \"status\": \"done\", \"task_type\": \"data:pull_rebuttal_artifacts\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:22:00.017034+00:00\", \"ended_at\": \"2026-05-15T11:27:55.039630+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"全部 8 个 JSON 文件已拉取到本地 `artifacts/rebuttal/`：\\n\\n- `exp_A/` — 4 个条件（pythia_qwen_rw, pythia_qwen_cont, olmo_qwen_rw, olmo_qwen_cont）各 1 个 results.json\\n- `exp_B_14d_ablation.json`\\n- `exp_C_permutation_10k.json`\\n- `exp_D_obd_n500_v2.json`\\n- `exp_E_paired_stats.json`（39,832 bytes，与服务器一致）\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17669,7 +17152,7 @@ _source line 1230 · 2026-05-15T11:36:58.597135+00:00_
 
 ### Assistant
 
-_source line 1231 · 2026-05-15T11:37:02.703482+00:00_
+_source line 1221 · 2026-05-15T11:37:02.703482+00:00_
 
 旧 Worker 回调（McNemar 旧版、artifact pull、cross-scorer 表格）均为已完成的历史任务，无需额外操作。当前唯一活跃 Worker 是 `worker_code_exp_D_comprehensive`（修复版综合脚本），等待其回调。
 
@@ -17696,7 +17179,7 @@ _source line 1231 · 2026-05-15T11:37:02.703482+00:00_
 
 ### User
 
-_source line 1232 · 2026-05-15T11:37:56.938882+00:00_
+_source line 1222 · 2026-05-15T11:37:56.938882+00:00_
 
 [WORKER DONE] Worker worker_code_exp_D_mcnemar_fixed_20260515T113431 已完成（status=done）。用 `get_worker_status('worker_code_exp_D_mcnemar_fixed_20260515T113431')` 读取结果，然后处理。
 
@@ -17721,7 +17204,7 @@ _source line 1232 · 2026-05-15T11:37:56.938882+00:00_
 
 ### Tool call
 
-_source line 1233 · 2026-05-15T11:38:04.506852+00:00_
+_source line 1223 · 2026-05-15T11:38:04.506852+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17755,7 +17238,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1234 · 2026-05-15T11:38:04.557539+00:00_
+_source line 1224 · 2026-05-15T11:38:04.557539+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_mcnemar_fixed_20260515T113431\", \"status\": \"done\", \"task_type\": \"code:exp_D_mcnemar_fixed\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:34:31.487812+00:00\", \"ended_at\": \"2026-05-15T11:37:55.522098+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。结果摘要：\\n\\n```\\n=== FIX COMPARISON ===\\nOld (capping, no seed):     43.6%\\nOld (v2, no seed):          38.0%\\nNew (prob merge, seed=42):  44.4%  CI=[40.0%, 48.8%]\\n\\nPer-depth: d0=96%, d1=36%, d2=8%, d3=2%, d4=80%\\n\\nMcNemar vs GPT-5.5:  p=0.0001  diff=+11.2%  CI=[+5.6%, +16.8%]\\nMcNemar vs Claude:   p=1.4e-5  diff=+11.4%  CI=[+6.2%, +16.4%]\\n```\\n\\n- 500 samples 全部对齐，无 skip\\n- 两次运行结果完全一致，`random_state=42` 生效\\n- 无 `min(pred, 4)` 残留（OBD 用概率合并，LLM 保留 cap at 4）\\n- JSON 已保存到 `artifacts/rebuttal/exp_D_mcnemar_fixed.json`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17777,7 +17260,7 @@ _source line 1234 · 2026-05-15T11:38:04.557539+00:00_
 
 ### Tool call
 
-_source line 1235 · 2026-05-15T11:38:15.902904+00:00_
+_source line 1225 · 2026-05-15T11:38:15.902904+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17813,7 +17296,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1236 · 2026-05-15T11:38:15.955006+00:00_
+_source line 1226 · 2026-05-15T11:38:15.955006+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_comprehensive_20260515T113549\", \"status\": \"running\", \"task_type\": \"code:exp_D_comprehensive\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:35:49.351535+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"数据格式已确认。现在创建综合脚本。\", \"turn_count\": 7}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17835,7 +17318,7 @@ _source line 1236 · 2026-05-15T11:38:15.955006+00:00_
 
 ### Assistant
 
-_source line 1237 · 2026-05-15T11:38:18.937248+00:00_
+_source line 1227 · 2026-05-15T11:38:18.937248+00:00_
 
 综合 Worker 正在创建脚本（turn 7），进展正常。等回调。
 
@@ -17862,7 +17345,7 @@ _source line 1237 · 2026-05-15T11:38:18.937248+00:00_
 
 ### User
 
-_source line 1238 · 2026-05-15T11:40:31.918434+00:00_
+_source line 1228 · 2026-05-15T11:40:31.918434+00:00_
 
 [Director 指令] [Director 指令] EXP-D 最终方案变更（覆盖之前的概率合并指令）
 
@@ -17896,7 +17379,7 @@ Reviewer 审查发现概率合并导致 depth-4 偏倚（22%→80%），不适�
 
 ### Tool call
 
-_source line 1239 · 2026-05-15T11:40:40.538983+00:00_
+_source line 1229 · 2026-05-15T11:40:40.538983+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -17932,7 +17415,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1240 · 2026-05-15T11:40:40.589668+00:00_
+_source line 1230 · 2026-05-15T11:40:40.589668+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_comprehensive_20260515T113549\", \"status\": \"running\", \"task_type\": \"code:exp_D_comprehensive\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:35:49.351535+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"Bash\", \"Write\", \"register_artifact\"], \"last_text\": \"## 结果\\n\\n**修复后 OBD accuracy: 44.4%** (95% CI: [40.0%, 48.8%])\\n\\n| 对比 | Accuracy |\\n|------|----------|\\n| Old (capping, no seed) | 43.6% |\\n| Old (v2, no seed) | 38.0% |\\n| **New (prob merge, seed=42)** | **44.4%** |\\n\\n**多种子稳定性：5 个种子全部 44.4%，std=0.0。** GroupKFold 分折是确定性的，`random_state` 对 LightGBM 在这个数据规模/超参\", \"turn_count\": 20}}, \"error\": null, \"metadata\": {}}"}
 
@@ -17954,7 +17437,7 @@ _source line 1240 · 2026-05-15T11:40:40.589668+00:00_
 
 ### Tool call
 
-_source line 1241 · 2026-05-15T11:41:28.399058+00:00_
+_source line 1231 · 2026-05-15T11:41:28.399058+00:00_
 
 called mcp__agent-ml-research__spawn_worker
 
@@ -17996,7 +17479,7 @@ called mcp__agent-ml-research__spawn_worker
 
 ### Tool result
 
-_source line 1242 · 2026-05-15T11:41:34.023973+00:00_
+_source line 1232 · 2026-05-15T11:41:34.023973+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_final_20260515T114128\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_D_final_20260515T114128.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_D_final_20260515T114128 started. Use get_worker_status('worker_code_exp_D_final_20260515T114128') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -18018,7 +17501,7 @@ _source line 1242 · 2026-05-15T11:41:34.023973+00:00_
 
 ### Assistant
 
-_source line 1243 · 2026-05-15T11:41:38.732023+00:00_
+_source line 1233 · 2026-05-15T11:41:38.732023+00:00_
 
 已派 Worker `exp_D_final` 执行最终方案。综合 Worker（概率合并版）的结果将作为 appendix sensitivity 保留。等 final Worker 回调后一并向 Director 汇报：
 - v2 逻辑 + seed=42 的确定性 accuracy
@@ -18049,7 +17532,7 @@ _source line 1243 · 2026-05-15T11:41:38.732023+00:00_
 
 ### User
 
-_source line 1244 · 2026-05-15T11:41:38.738359+00:00_
+_source line 1234 · 2026-05-15T11:41:38.738359+00:00_
 
 [WORKER DONE] Worker worker_code_exp_D_comprehensive_20260515T113549 已完成（status=done）。用 `get_worker_status('worker_code_exp_D_comprehensive_20260515T113549')` 读取结果，然后处理。
 
@@ -18074,7 +17557,7 @@ _source line 1244 · 2026-05-15T11:41:38.738359+00:00_
 
 ### Tool call
 
-_source line 1245 · 2026-05-15T11:41:48.690593+00:00_
+_source line 1235 · 2026-05-15T11:41:48.690593+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -18108,7 +17591,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1246 · 2026-05-15T11:41:48.793135+00:00_
+_source line 1236 · 2026-05-15T11:41:48.793135+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_comprehensive_20260515T113549\", \"status\": \"done\", \"task_type\": \"code:exp_D_comprehensive\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:35:49.351535+00:00\", \"ended_at\": \"2026-05-15T11:40:55.649428+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 结果\\n\\n**修复后 OBD accuracy: 44.4%** (95% CI: [40.0%, 48.8%])\\n\\n| 对比 | Accuracy |\\n|------|----------|\\n| Old (capping, no seed) | 43.6% |\\n| Old (v2, no seed) | 38.0% |\\n| **New (prob merge, seed=42)** | **44.4%** |\\n\\n**多种子稳定性：5 个种子全部 44.4%，std=0.0。** GroupKFold 分折是确定性的，`random_state` 对 LightGBM 在这个数据规模/超参下几乎无影响，之前的 5.6pp 波动完全来自未固定种子+`n_jobs=-1` 的线程级不确定性。现在彻底消除。\\n\\n**McNemar 结论不变，且更强：**\\n- OBD vs GPT-5.5: +11.2pp, p=0.0001, CI=[+5.6%, +16.8%]\\n- OBD vs Claude: +11.4pp, p=1.4e-5, CI=[+6.2%, +16.4%]\\n\\n两个对比均显著 (p<0.001)，CI 不包含 0。可复现性验证通过（两次 seed=42 运行结果完全一致）。\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -18130,7 +17613,7 @@ _source line 1246 · 2026-05-15T11:41:48.793135+00:00_
 
 ### Assistant
 
-_source line 1247 · 2026-05-15T11:41:57.393049+00:00_
+_source line 1237 · 2026-05-15T11:41:57.393049+00:00_
 
 概率合并版结果已记录（44.4%, multi-seed std=0.0）。这将作为 appendix sensitivity analysis。
 
@@ -18154,12 +17637,12 @@ _source line 1247 · 2026-05-15T11:41:57.393049+00:00_
 
 ## Round 74
 
-12 recorded events
+10 recorded events
 
 
 ### User
 
-_source line 1248 · 2026-05-15T11:45:57.288557+00:00_
+_source line 1238 · 2026-05-15T11:45:57.288557+00:00_
 
 [WORKER DONE] Worker worker_code_exp_D_final_20260515T114128 已完成（status=done）。用 `get_worker_status('worker_code_exp_D_final_20260515T114128')` 读取结果，然后处理。
 
@@ -18184,7 +17667,7 @@ _source line 1248 · 2026-05-15T11:45:57.288557+00:00_
 
 ### Tool call
 
-_source line 1249 · 2026-05-15T11:46:03.750977+00:00_
+_source line 1239 · 2026-05-15T11:46:03.750977+00:00_
 
 called mcp__agent-ml-research__get_worker_status
 
@@ -18218,7 +17701,7 @@ called mcp__agent-ml-research__get_worker_status
 
 ### Tool result
 
-_source line 1250 · 2026-05-15T11:46:03.804036+00:00_
+_source line 1240 · 2026-05-15T11:46:03.804036+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_D_final_20260515T114128\", \"status\": \"done\", \"task_type\": \"code:exp_D_final\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-15T11:41:28.968252+00:00\", \"ended_at\": \"2026-05-15T11:45:55.875461+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。结果汇总：\\n\\n```\\n=== EXP-D FINAL (v2 logic + seed=42) ===\\nOBD accuracy: 38.0% [CI: 34.0%, 42.2%]\\nPer-depth: d0=96% d1=39% d2=14% d3=19% d4=22%\\n\\nMcNemar vs GPT-5.5: diff=+4.8pp, p=0.0809, CI=[-0.4%, 10.0%], includes_zero=YES\\nMcNemar vs Claude:   diff=+5.0pp, p=0.0693, CI=[0.0%, 10.2%], includes_zero=YES\\n\\nMulti-seed: [38.0, 38.0, 38.0, 38.0, 38.0] mean=38.0 ± 0.0\\n\\nSensitivity:\\n  v2 (no seed):         38.0%\\n  capping (no seed):    43.6%\\n  prob merge (seed=42): 44.4%\\n  v2 logic (seed=42):   38.0%  ← THIS\\n```\\n\\n关键发现：\\n- v2 逻辑 + seed=42 得到 **38.0%**，与之前 v2 no-seed 结果完全一致（多种子 std=0.0，GroupKFold 是确定性的，seed 只影响 LightGBM 内部微小差异，最终 argmax 结果不变）\\n- McNemar 两个对比均 **不显著**（p=0.081 vs GPT, p=0.069 vs Claude），CI 均包含零\\n- JSON 已保存至 `artifacts/rebuttal/exp_D_mcnemar_final.json`\"}}, \"error\": null, \"metadata\": {}}"}
 
@@ -18240,137 +17723,7 @@ _source line 1250 · 2026-05-15T11:46:03.804036+00:00_
 
 ### Tool call
 
-_source line 1251 · 2026-05-15T11:46:13.134803+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_final.json"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_final.json"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 1252 · 2026-05-15T11:46:13.185557+00:00_
-
-1	{
-2	  "method": "OBD-LightGBM OOF 6-class argmax (v2 logic), random_state=42, no capping, no prob merge",
-3	  "primary_seed": 42,
-4	  "n_samples": 500,
-5	  "obd_accuracy": 0.38,
-6	  "obd_accuracy_bootstrap_ci": [
-7	    0.34,
-8	    0.422
-9	  ],
-10	  "per_depth_accuracy": {
-11	    "0": 0.96,
-12	    "1": 0.39,
-13	    "2": 0.14,
-14	    "3": 0.19,
-15	    "4": 0.22
-16	  },
-17	  "obd_full_accuracy_6class": 0.3856,
-18	  "obd_vs_gpt55": {
-19	    "accuracy_obd": 0.38,
-20	    "accuracy_llm": 0.332,
-21	    "accuracy_diff": 0.048,
-22	    "contingency_table": {
-23	      "a": 91,
-24	      "b": 99,
-25	      "c": 75,
-26	      "d": 235
-27	    },
-28	    "mcnemar_p": 0.080927,
-29	    "bootstrap_ci_lower": -0.004,
-30	    "bootstrap_ci_upper": 0.1,
-31	    "bootstrap_n": 10000,
-32	    "ci_includes_zero": true
-33	  },
-34	  "obd_vs_claude": {
-35	    "accuracy_obd": 0.38,
-36	    "accuracy_llm": 0.33,
-37	    "accuracy_diff": 0.05,
-38	    "contingency_table": {
-39	      "a": 90,
-40	      "b": 100,
-41	      "c": 75,
-42	      "d": 235
-43	    },
-44	    "mcnemar_p": 0.069337,
-45	    "bootstrap_ci_lower": 0.0,
-46	    "bootstrap_ci_upper": 0.102,
-47	    "bootstrap_n": 10000,
-48	    "ci_includes_zero": true
-49	  },
-50	  "multi_seed": {
-51	    "seeds": [
-52	      42,
-53	      123,
-54	      456,
-55	      789,
-56	      2024
-57	    ],
-58	    "accuracies": [
-59	      0.38,
-60	      0.38,
-61	      0.38,
-62	      0.38,
-63	      0.38
-64	    ],
-65	    "mean": 0.38,
-66	    "std": 0.0
-67	  },
-68	  "sensitivity_comparison": {
-69	    "v2_no_seed": 0.38,
-70	    "capping_no_seed": 0.436,
-71	    "prob_merge_seed42": 0.444,
-72	    "v2_logic_seed42": "THIS RUN"
-73	  }
-74	}
-75	
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
-  "tool": "Read",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 1253 · 2026-05-15T11:46:16.901726+00:00_
+_source line 1241 · 2026-05-15T11:46:16.901726+00:00_
 
 called ToolSearch
 
@@ -18406,7 +17759,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1254 · 2026-05-15T11:46:16.952430+00:00_
+_source line 1242 · 2026-05-15T11:46:16.952430+00:00_
 
 
 
@@ -18428,7 +17781,7 @@ _source line 1254 · 2026-05-15T11:46:16.952430+00:00_
 
 ### Tool call
 
-_source line 1255 · 2026-05-15T11:46:23.528730+00:00_
+_source line 1243 · 2026-05-15T11:46:23.528730+00:00_
 
 called mcp__agent-ml-research__update_registry
 
@@ -18468,7 +17821,7 @@ called mcp__agent-ml-research__update_registry
 
 ### Tool result
 
-_source line 1256 · 2026-05-15T11:46:23.730572+00:00_
+_source line 1244 · 2026-05-15T11:46:23.730572+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_D_obd_n500\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:27.182Z\", \"updated_at\": \"2026-05-15T11:46:23.600Z\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"spec\": {\"command\": \"python scripts/exp_D_obd_n500_v2.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia + artifacts/exp011_samples.jsonl\", \"data_count\": 500, \"model_name\": \"N/A (CPU: OBD-LightGBM on N=500 subset)\", \"seed\": 42, \"note\": \"Bootstrap CI for OBD accuracy on same 500 samples as LLM baseline\"}, \"conclusion\": \"success\", \"metrics\": {\"obd_accuracy_final\": 0.38, \"obd_ci\": [0.34, 0.422], \"mcnemar_vs_gpt55_p\": 0.0809, \"mcnemar_vs_claude_p\": 0.0693, \"mcnemar_significant\": false, \"multi_seed_std\": 0, \"per_depth\": {\"d0\": 0.96, \"d1\": 0.39, \"d2\": 0.14, \"d3\": 0.19, \"d4\": 0.22}, \"prob_merge_accuracy\": 0.444, \"prob_merge_d4_bias\": 0.8, \"note\": \"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"completed_at\": \"2026-05-15T11:20:31.077Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1517}}"}
 
@@ -18490,7 +17843,7 @@ _source line 1256 · 2026-05-15T11:46:23.730572+00:00_
 
 ### Tool call
 
-_source line 1257 · 2026-05-15T11:46:48.235936+00:00_
+_source line 1245 · 2026-05-15T11:46:48.235936+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -18526,7 +17879,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1258 · 2026-05-15T11:46:53.379764+00:00_
+_source line 1246 · 2026-05-15T11:46:53.379764+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -18548,7 +17901,7 @@ _source line 1258 · 2026-05-15T11:46:53.379764+00:00_
 
 ### Assistant
 
-_source line 1259 · 2026-05-15T11:46:55.612569+00:00_
+_source line 1247 · 2026-05-15T11:46:55.612569+00:00_
 
 JSON 验证通过。更新 registry 并向 Director 汇报。
 
@@ -18575,7 +17928,7 @@ JSON 验证通过。更新 registry 并向 Director 汇报。
 
 ### User
 
-_source line 1260 · 2026-05-15T12:26:53.614459+00:00_
+_source line 1248 · 2026-05-15T12:26:53.614459+00:00_
 
 [Director 指令] [Director 指令] 以下任务不依赖 exp-004，立即并行处理：
 
@@ -18614,7 +17967,7 @@ exp-004 7B 跑完后，下一个优先级最高的 GPU 任务是什么？从 exp
 
 ### Tool call
 
-_source line 1261 · 2026-05-15T12:27:05.305433+00:00_
+_source line 1249 · 2026-05-15T12:27:05.305433+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18652,7 +18005,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1262 · 2026-05-15T12:27:05.858072+00:00_
+_source line 1250 · 2026-05-15T12:27:05.858072+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_D_obd_n500\": {\"status\": \"DONE\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"conclusion\": \"success\"}, \"exp_E_paired_stats\": {\"status\": \"DONE\", \"hypothesis\": \"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\", \"conclusion\": \"success\"}, \"exp_C_permutation_10k\": {\"status\": \"DONE\", \"hypothesis\": \"10K permutation resamples 替换 500 resamples，验证 p-value 精度（FR-11 Warning）\", \"conclusion\": \"success\"}, \"exp_B_14d_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\", \"conclusion\": \"success\"}, \"exp_A_alt_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\", \"conclusion\": \"success\"}, \"exp_004_7b_crossscale\": {\"status\": \"RUNNING\", \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\"}, \"exp_015_neural_probe\": {\"status\": \"DONE\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\", \"conclusion\": \"success\"}, \"exp_006_graduated_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"conclusion\": \"success\"}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"conclusion\": \"success\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/
 …[truncated 1654 chars]
@@ -18675,7 +18028,7 @@ _source line 1262 · 2026-05-15T12:27:05.858072+00:00_
 
 ### Tool call
 
-_source line 1263 · 2026-05-15T12:27:05.858470+00:00_
+_source line 1251 · 2026-05-15T12:27:05.858470+00:00_
 
 called ToolSearch
 
@@ -18711,7 +18064,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 1264 · 2026-05-15T12:27:05.908950+00:00_
+_source line 1252 · 2026-05-15T12:27:05.908950+00:00_
 
 
 
@@ -18733,7 +18086,7 @@ _source line 1264 · 2026-05-15T12:27:05.908950+00:00_
 
 ### Tool call
 
-_source line 1265 · 2026-05-15T12:27:11.782596+00:00_
+_source line 1253 · 2026-05-15T12:27:11.782596+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18771,7 +18124,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1266 · 2026-05-15T12:27:12.303431+00:00_
+_source line 1254 · 2026-05-15T12:27:12.303431+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0831}}"}
 
@@ -18793,7 +18146,7 @@ _source line 1266 · 2026-05-15T12:27:12.303431+00:00_
 
 ### Tool call
 
-_source line 1267 · 2026-05-15T12:27:12.773938+00:00_
+_source line 1255 · 2026-05-15T12:27:12.773938+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18831,7 +18184,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1268 · 2026-05-15T12:27:13.294691+00:00_
+_source line 1256 · 2026-05-15T12:27:13.294691+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.181}}"}
 
@@ -18853,7 +18206,7 @@ _source line 1268 · 2026-05-15T12:27:13.294691+00:00_
 
 ### Tool call
 
-_source line 1269 · 2026-05-15T12:27:13.295123+00:00_
+_source line 1257 · 2026-05-15T12:27:13.295123+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18891,7 +18244,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1270 · 2026-05-15T12:27:13.696607+00:00_
+_source line 1258 · 2026-05-15T12:27:13.696607+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0776}}"}
 
@@ -18913,7 +18266,7 @@ _source line 1270 · 2026-05-15T12:27:13.696607+00:00_
 
 ### Tool call
 
-_source line 1271 · 2026-05-15T12:27:14.199654+00:00_
+_source line 1259 · 2026-05-15T12:27:14.199654+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -18951,7 +18304,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool call
 
-_source line 1272 · 2026-05-15T12:27:14.300500+00:00_
+_source line 1260 · 2026-05-15T12:27:14.300500+00:00_
 
 called mcp__agent-ml-research__read_experiment_plan_with_status
 
@@ -18985,7 +18338,7 @@ called mcp__agent-ml-research__read_experiment_plan_with_status
 
 ### Tool result
 
-_source line 1273 · 2026-05-15T12:27:14.352176+00:00_
+_source line 1261 · 2026-05-15T12:27:14.352176+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0749}}"}
 
@@ -19007,7 +18360,7 @@ _source line 1273 · 2026-05-15T12:27:14.352176+00:00_
 
 ### Tool result
 
-_source line 1274 · 2026-05-15T12:27:14.404695+00:00_
+_source line 1262 · 2026-05-15T12:27:14.404695+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"claim\": 1, \"description\": \"Cross-model depth chain generation: Pythia-1.4B, nucleus p=0.95 T=1.0, C4 5K docs, depth 0-5. 验证 K* 是否跨模型一致。\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [], \"registry_id\": \"exp_001_pythia_depth\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}}, {\"id\": \"exp-002\", \"claim\": 1, \"description\": \"Cross-model depth chain generation: OLMo-1B, nucleus p=0.95 T=1.0, C4 5K docs, depth 0-5.\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [], \"registry_id\": \"exp_002_olmo_depth\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}}, {\"id\": \"exp-003\", \"claim\": [1, 3], \"description\": \"Decoding strategy ablation on Qwen2.5-1.5B: greedy / nucleus p=0.9 / T=0.7 / T=1.2, C4 5K docs, depth 0-5. 测试解码策略对 K* 的调控效应。\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": \"exp_003_decoding_ablation\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"config1_greedy\": {\"k_star\": 2,
 …[truncated 17012 chars]
@@ -19030,7 +18383,7 @@ _source line 1274 · 2026-05-15T12:27:14.404695+00:00_
 
 ### Tool call
 
-_source line 1275 · 2026-05-15T12:27:45.334537+00:00_
+_source line 1263 · 2026-05-15T12:27:45.334537+00:00_
 
 called mcp__agent-ml-research__read_registry
 
@@ -19070,7 +18423,7 @@ called mcp__agent-ml-research__read_registry
 
 ### Tool result
 
-_source line 1276 · 2026-05-15T12:27:45.436465+00:00_
+_source line 1264 · 2026-05-15T12:27:45.436465+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_D_obd_n500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:27.182Z\", \"updated_at\": \"2026-05-15T11:46:23.600Z\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"spec\": {\"command\": \"python scripts/exp_D_obd_n500_v2.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia + artifacts/exp011_samples.jsonl\", \"data_count\": 500, \"model_name\": \"N/A (CPU: OBD-LightGBM on N=500 subset)\", \"seed\": 42, \"note\": \"Bootstrap CI for OBD accuracy on same 500 samples as LLM baseline\"}, \"conclusion\": \"success\", \"metrics\": {\"obd_accuracy_final\": 0.38, \"obd_ci\": [0.34, 0.422], \"mcnemar_vs_gpt55_p\": 0.0809, \"mcnemar_vs_claude_p\": 0.0693, \"mcnemar_significant\": false, \"multi_seed_std\": 0, \"per_depth\": {\"d0\": 0.96, \"d1\": 0.39, \"d2\": 0.14, \"d3\": 0.19, \"d4\": 0.22}, \"prob_merge_accuracy\": 0.444, \"prob_merge_d4_bias\": 0.8, \"note\": \"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"completed_at\": \"2026-05-15T11:20:31.077Z\"}, \"exp_E_paired_stats\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:27.723Z\", \"updated_at\": \"2026-05-15T11:20:31.718Z\", \"hypothesis\": \"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\", \"spec\": {\"command\": \"python scripts/exp_E_paired_stats.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/\", \"data_count\": 51, \"model_name\": \"N/A (CPU: paired t-test + Holm-Bonferroni)\", \"seed\": \"N/A\", \"
 …[truncated 5044 chars]
@@ -19093,7 +18446,7 @@ _source line 1276 · 2026-05-15T12:27:45.436465+00:00_
 
 ### Tool call
 
-_source line 1277 · 2026-05-15T12:28:33.203071+00:00_
+_source line 1265 · 2026-05-15T12:28:33.203071+00:00_
 
 called mcp__agent-ml-research__main_agent_post_to_director
 
@@ -19129,7 +18482,7 @@ called mcp__agent-ml-research__main_agent_post_to_director
 
 ### Tool result
 
-_source line 1278 · 2026-05-15T12:28:36.717025+00:00_
+_source line 1266 · 2026-05-15T12:28:36.717025+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
 
@@ -19151,7 +18504,7 @@ _source line 1278 · 2026-05-15T12:28:36.717025+00:00_
 
 ### Assistant
 
-_source line 1279 · 2026-05-15T12:28:39.159186+00:00_
+_source line 1267 · 2026-05-15T12:28:39.159186+00:00_
 
 全部数据已确认。向 Director 汇报。
 
@@ -19178,7 +18531,7 @@ _source line 1279 · 2026-05-15T12:28:39.159186+00:00_
 
 ### User
 
-_source line 1280 · 2026-05-15T12:29:09.277004+00:00_
+_source line 1268 · 2026-05-15T12:29:09.277004+00:00_
 
 [Director 指令] [Director 指令] GPU 排期批准：
 
@@ -19209,7 +18562,7 @@ exp-012 具体要求：
 
 ### Tool call
 
-_source line 1281 · 2026-05-15T12:29:21.551174+00:00_
+_source line 1269 · 2026-05-15T12:29:21.551174+00:00_
 
 called Agent
 
@@ -19247,7 +18600,7 @@ called Agent
 
 ### Tool call
 
-_source line 1282 · 2026-05-15T12:29:25.571484+00:00_
+_source line 1270 · 2026-05-15T12:29:25.571484+00:00_
 
 called Glob
 
@@ -19283,7 +18636,7 @@ called Glob
 
 ### Tool result
 
-_source line 1283 · 2026-05-15T12:29:25.572080+00:00_
+_source line 1271 · 2026-05-15T12:29:25.572080+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/chats/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director.lock
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/study_status.lock
@@ -19321,7 +18674,7 @@ _source line 1283 · 2026-05-15T12:29:25.572080+00:00_
 
 ### Tool call
 
-_source line 1284 · 2026-05-15T12:29:25.572433+00:00_
+_source line 1272 · 2026-05-15T12:29:25.572433+00:00_
 
 called Grep
 
@@ -19357,7 +18710,7 @@ called Grep
 
 ### Tool result
 
-_source line 1285 · 2026-05-15T12:29:25.572698+00:00_
+_source line 1273 · 2026-05-15T12:29:25.572698+00:00_
 
 &lt;persisted-output>
 Output too large (24.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination--claude-sessions-agent-2bb8bf55/a39b36ce-d3f6-4513-9661-ca78ea85fc84/tool-results/toolu_01PEHzaVRCyGpqAX6oEwafTY.txt
@@ -19396,7 +18749,7 @@ Found 165 files
 
 ### Tool call
 
-_source line 1286 · 2026-05-15T12:29:25.575097+00:00_
+_source line 1274 · 2026-05-15T12:29:25.575097+00:00_
 
 called Grep
 
@@ -19432,7 +18785,7 @@ called Grep
 
 ### Tool result
 
-_source line 1287 · 2026-05-15T12:29:25.575513+00:00_
+_source line 1275 · 2026-05-15T12:29:25.575513+00:00_
 
 Found 124 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6.jsonl
@@ -19469,7 +18822,7 @@ Found 124 files
 
 ### Tool call
 
-_source line 1288 · 2026-05-15T12:29:25.575843+00:00_
+_source line 1276 · 2026-05-15T12:29:25.575843+00:00_
 
 called Bash
 
@@ -19503,7 +18856,7 @@ called Bash
 
 ### Tool result
 
-_source line 1289 · 2026-05-15T12:29:25.576086+00:00_
+_source line 1277 · 2026-05-15T12:29:25.576086+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/numpy/_core/tests/examples/limited_api/setup.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/numpy/_core/tests/examples/cython/setup.py
@@ -19526,7 +18879,7 @@ _source line 1289 · 2026-05-15T12:29:25.576086+00:00_
 
 ### Tool call
 
-_source line 1290 · 2026-05-15T12:29:25.676956+00:00_
+_source line 1278 · 2026-05-15T12:29:25.676956+00:00_
 
 called Agent
 
@@ -19564,7 +18917,7 @@ called Agent
 
 ### Tool call
 
-_source line 1291 · 2026-05-15T12:29:27.183594+00:00_
+_source line 1279 · 2026-05-15T12:29:27.183594+00:00_
 
 called Bash
 
@@ -19598,7 +18951,7 @@ called Bash
 
 ### Tool result
 
-_source line 1292 · 2026-05-15T12:29:27.284421+00:00_
+_source line 1280 · 2026-05-15T12:29:27.284421+00:00_
 
 (Bash completed with no output)
 
@@ -19620,7 +18973,7 @@ _source line 1292 · 2026-05-15T12:29:27.284421+00:00_
 
 ### Tool call
 
-_source line 1293 · 2026-05-15T12:29:27.636850+00:00_
+_source line 1281 · 2026-05-15T12:29:27.636850+00:00_
 
 called Bash
 
@@ -19654,7 +19007,7 @@ called Bash
 
 ### Tool result
 
-_source line 1294 · 2026-05-15T12:29:27.739097+00:00_
+_source line 1282 · 2026-05-15T12:29:27.739097+00:00_
 
 (Bash completed with no output)
 
@@ -19676,7 +19029,7 @@ _source line 1294 · 2026-05-15T12:29:27.739097+00:00_
 
 ### Tool call
 
-_source line 1295 · 2026-05-15T12:29:28.693309+00:00_
+_source line 1283 · 2026-05-15T12:29:28.693309+00:00_
 
 called Bash
 
@@ -19710,7 +19063,7 @@ called Bash
 
 ### Tool result
 
-_source line 1296 · 2026-05-15T12:29:28.743960+00:00_
+_source line 1284 · 2026-05-15T12:29:28.743960+00:00_
 
 total 260
 drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 11:46 .
@@ -19761,7 +19114,7 @@ drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 11:27 scripts
 
 ### Tool call
 
-_source line 1297 · 2026-05-15T12:29:29.849387+00:00_
+_source line 1285 · 2026-05-15T12:29:29.849387+00:00_
 
 called Bash
 
@@ -19795,7 +19148,7 @@ called Bash
 
 ### Tool result
 
-_source line 1298 · 2026-05-15T12:29:29.950208+00:00_
+_source line 1286 · 2026-05-15T12:29:29.950208+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_cross_transfer.py
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp013_cross_transfer.py
@@ -19833,7 +19186,7 @@ _source line 1298 · 2026-05-15T12:29:29.950208+00:00_
 
 ### Tool call
 
-_source line 1299 · 2026-05-15T12:29:30.302523+00:00_
+_source line 1287 · 2026-05-15T12:29:30.302523+00:00_
 
 called Bash
 
@@ -19867,7 +19220,7 @@ called Bash
 
 ### Tool result
 
-_source line 1300 · 2026-05-15T12:29:30.353243+00:00_
+_source line 1288 · 2026-05-15T12:29:30.353243+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/numpy/typing/tests/data
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/numpy/random/tests/data
@@ -19896,7 +19249,7 @@ _source line 1300 · 2026-05-15T12:29:30.353243+00:00_
 
 ### Tool call
 
-_source line 1301 · 2026-05-15T12:29:31.959846+00:00_
+_source line 1289 · 2026-05-15T12:29:31.959846+00:00_
 
 called Bash
 
@@ -19930,7 +19283,7 @@ called Bash
 
 ### Tool result
 
-_source line 1302 · 2026-05-15T12:29:32.010497+00:00_
+_source line 1290 · 2026-05-15T12:29:32.010497+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp-013/data/cross_transfer_matrix.csv
 
@@ -19952,7 +19305,7 @@ _source line 1302 · 2026-05-15T12:29:32.010497+00:00_
 
 ### Tool call
 
-_source line 1303 · 2026-05-15T12:29:32.061150+00:00_
+_source line 1291 · 2026-05-15T12:29:32.061150+00:00_
 
 called Read
 
@@ -19986,7 +19339,7 @@ called Read
 
 ### Tool result
 
-_source line 1304 · 2026-05-15T12:29:32.513264+00:00_
+_source line 1292 · 2026-05-15T12:29:32.513264+00:00_
 
 1	% === References for gen-depth-contamination ===
 2	% Source: literature_map.yaml — verified 2026-05-15
@@ -20058,7 +19411,7 @@ _source line 1304 · 2026-05-15T12:29:32.513264+00:00_
 
 ### Tool call
 
-_source line 1305 · 2026-05-15T12:29:32.764615+00:00_
+_source line 1293 · 2026-05-15T12:29:32.764615+00:00_
 
 called Grep
 
@@ -20096,7 +19449,7 @@ called Grep
 
 ### Tool result
 
-_source line 1306 · 2026-05-15T12:29:32.765084+00:00_
+_source line 1294 · 2026-05-15T12:29:32.765084+00:00_
 
 Found 4 files
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex
@@ -20122,7 +19475,7 @@ Found 4 files
 
 ### Tool call
 
-_source line 1307 · 2026-05-15T12:29:33.669375+00:00_
+_source line 1295 · 2026-05-15T12:29:33.669375+00:00_
 
 called Bash
 
@@ -20156,7 +19509,7 @@ called Bash
 
 ### Tool result
 
-_source line 1308 · 2026-05-15T12:29:33.720090+00:00_
+_source line 1296 · 2026-05-15T12:29:33.720090+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/task_context/agent.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/task_context/reviewer.md
@@ -20187,7 +19540,7 @@ _source line 1308 · 2026-05-15T12:29:33.720090+00:00_
 
 ### Tool call
 
-_source line 1309 · 2026-05-15T12:29:34.522630+00:00_
+_source line 1297 · 2026-05-15T12:29:34.522630+00:00_
 
 called Read
 
@@ -20211,6 +19564,516 @@ called Read
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1298 · 2026-05-15T12:29:34.723945+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{Model collapse and recursive degradation.}
+5	The theory of model collapse establishes that iterative training on model outputs causes irreversible tail-distribution degradation~\cite{shumailov2024collapse}, convergence to fixed points~\cite{alemohammad2024selfconsuming}, and predictable tail probability loss~\cite{dohmatob2024model}.
+6	Schaeffer et al.~\cite{schaeffer2025position} organized eight definitions of collapse; our $\Kstar$ aligns with their Family~B (collapsing variance, mode entanglement).
+7	Kazdan et al.~\cite{kazdan2025collapse} distinguished replace and accumulate regimes; our prompt-chain operates in the replace regime, making $\Kempirical = 2$ a conservative lower bound.
+8	However, this literature characterizes macro dynamics of retrain-chains but provides no per-text depth estimation tool---the gap our framework addresses.
+9	
+10	\paragraph{Beyond binary detection.}
+11	Binary detection methods---DetectGPT~\cite{mitchell2023detectgpt}, Fast-DetectGPT~\citep{bao2024fast}, Binoculars~\cite{hans2024binoculars}, DivEye~\cite{basani2026diveye}, Min-K\%++~\cite{zhang2024minkpp}, CoDeC~\cite{zawalski2026codec}---achieve strong human-vs.-machine separation.
+12	DivEye's surprisal diversity features overlap with our \texttt{surp\_*} subset but optimize for binary boundaries.
+13	Robustness concerns arise under paraphrasing~\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\cite{hao2025rewrite}---both relevant to our rewrite-mode analysis.
+14	Recent work extends beyond binary labels to collaboration degree~\cite{cheng2025beyond} and contamination type hierarchies~\cite{mehta2025beyond}, but no method addresses recursive generation depth: the question is not \emph{whether} a text is synthetic, but \emph{how many times} it has been recursively generated.
+15	
+16	\paragraph{Data selection and curation.}
+17	DSIR~\cite{xie2023dsir}, D4~\cite{tirumala2023d4}, and DoReMi~\cite{
+…[truncated 1319 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Read",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1299 · 2026-05-15T12:29:34.774717+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1300 · 2026-05-15T12:29:34.826987+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Web-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.
+5	Estimates suggest that a substantial fraction of online text is machine-generated~\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.
+6	When models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\cite{shumailov2024collapse, dohmatob2024model}.
+7	This degradation arises in both \emph{retrain-chains} (iteratively training on model outputs) and \emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\ref{sec:extended_limitations}).
+8	Yet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.
+9	
+10	The gap cuts across three communities.
+11	Binary detection methods~\cite{basani2026diveye, zhang2024minkpp, zawalski2026codec} produce no depth estimate.
+12	The model collapse literature~\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} characterizes recursive degradation at the macro level but provides no per-text depth estimation tool.
+13	Data selection methods~\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.
+14	No existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.
+15	
+16	The Data Processing Inequality guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\Kstar$.
+17	We empirically measure $\Kempirical$---the maximum depth at which a classifier reliably distinguishes adjacent generati
+…[truncated 1756 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1301 · 2026-05-15T12:29:35.278964+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -name \"resources.yaml\" -o -name \"*config*.yaml\" 2>/dev/null | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -name \"resources.yaml\" -o -name \"*config*.yaml\" 2>/dev/null | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1302 · 2026-05-15T12:29:35.329662+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1303 · 2026-05-15T12:29:37.288031+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"import.*binoculars\\|from.*binoculars\\|import.*diveye\\|from.*diveye\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination --include=\"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"import.*binoculars\\|from.*binoculars\\|import.*diveye\\|from.*diveye\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination --include=\"*.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1304 · 2026-05-15T12:29:37.389021+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1305 · 2026-05-15T12:29:39.298029+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1306 · 2026-05-15T12:29:39.348720+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1307 · 2026-05-15T12:29:39.550009+00:00_
+
+1	"""
+2	MVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)
+3	
+4	Generates recursive depth chains from C4 seed data using Qwen2.5-1.5B,
+5	extracts statistical features, and runs distinguishability analysis.
+6	
+7	Input:  C4 validation split (streamed from HuggingFace)
+8	Output: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt
+9	
+10	Key deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm
+11	"""
+12	
+13	import argparse
+14	import json
+15	import logging
+16	import math
+17	import os
+18	import sys
+19	from collections import Counter
+20	from pathlib import Path
+21	
+22	import numpy as np
+23	import torch
+24	from scipy import stats
+25	from tqdm import tqdm
+26	
+27	logging.basicConfig(
+28	    level=logging.INFO,
+29	    format="%(asctime)s [%(levelname)s] %(message)s",
+30	    datefmt="%H:%M:%S",
+31	)
+32	log = logging.getLogger(__name__)
+33	
+34	
+35	# ---------------------------------------------------------------------------
+36	# Utility: simple 4-gram BLEU (no nltk dependency)
+37	# ---------------------------------------------------------------------------
+38	
+39	def ngrams(tokens, n):
+40	    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
+41	
+42	
+43	def simple_bleu(candidate_tokens, reference_tokens, max_n=4):
+44	    """Compute sentence-level BLEU up to max_n grams with brevity penalty."""
+45	    if len(candidate_tokens) == 0:
+46	        return 0.0
+47	    precisions = []
+48	    for n in range(1, max_n + 1):
+49	        cand_ngrams = ngrams(candidate_tokens, n)
+50	        ref_ngrams = ngrams(reference_tokens, n)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Read",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1308 · 2026-05-15T12:29:39.600668+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -50 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -50 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1309 · 2026-05-15T12:29:39.751729+00:00_
+
+total 208
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 11:27 .
+drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 11:46 ..
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 08:42 __pycache__
+-rw-r--r--  1 ubuntu ubuntu 15973 May 14 08:42 analyze_exp006.py
+-rw-r--r--  1 ubuntu ubuntu  2114 May 15 11:27 draw_kstar_theta.py
+-rw-r--r--  1 ubuntu ubuntu  4096 May 15 08:12 draw_pipeline_figure.py
+-rw-r--r--  1 ubuntu ubuntu 17868 May 14 06:05 exp006_analyze_results.py
+-rw-r--r--  1 ubuntu ubuntu  8389 May 14 06:05 exp006_fill_discussion.py
+-rw-r--r--  1 ubuntu ubuntu  5951 May 15 10:25 exp_B_14d_ablation.py
+-rw-r--r--  1 ubuntu ubuntu  7851 May 15 11:25 exp_D_mcnemar.py
+-rw-r--r--  1 ubuntu ubuntu  7547 May 15 10:46 exp_D_obd_n500_v2.py
+-rw-r--r--  1 ubuntu ubuntu  6840 May 15 10:44 exp_E_paired_stats.py
+-rw-r--r--  1 ubuntu ubuntu  6238 May 13 21:02 plot_exp003_decoding_ablation.py
+-rw-r--r--  1 ubuntu ubuntu 11844 May 12 20:53 run_cross_transfer.py
+-rw-r--r--  1 ubuntu ubuntu  1755 May 12 20:40 run_exp003_ablation.sh
+-rw-r--r--  1 ubuntu ubuntu 22650 May 13 23:49 run_exp009_dose_response.py
+-rw-r--r--  1 ubuntu ubuntu  9855 May 13 06:42 run_exp013_cross_transfer.py
+-rw-r--r--  1 ubuntu ubuntu 20478 May 14 03:06 run_exp015_neural_probe.py
+-rw-r--r--  1 ubuntu ubuntu 26209 May 12 20:42 run_pipeline.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1310 · 2026-05-15T12:29:39.902797+00:00_
+
+"""exp009 Dose-Response — graduated vs binary filtering at varying synthetic injection ratios.
+
+Measures downstream LM quality (MMLU/HellaSwag) after continued pretraining on data
+with 10%/30%/50% synthetic injection, filtered by graduated vs binary-ours strategies.
+Fixed dataset size (default 5000) across all ratios ensures training cost parity.
+
+Input:  data/ directory (features.csv + depth_*.jsonl, same as exp-006)
+        Qwen2.5-1.5B-Instruct base model (local path or HF hub)
+Output: outputs/exp009/r&lt;ratio>_&lt;strategy>_s&lt;seed>/eval_results.json  (per-run)
+        outputs/exp009/analysis.json                                   (paired t-tests)
+
+Usage:
+    # Dry-run: 1 seed, 200 samples, 10 training steps, hellaswag-only eval (limit=20)
+    python run_exp009_dose_response.py --dry-run
+
+    # Full experiment (30 runs)
+    python run_exp009_dose_response.py
+
+    # Single config
+    python run_exp009_dose_response.py --ratios 0.3 --strategies graduated --seeds 42
+
+    # Analyze existing results only
+    python run_exp009_dose_response.py --analyze-only
+
+Dependencies: torch, transformers, peft, lightgbm, lm_eval, numpy, pandas, scipy
+"""
+
+import argparse
+import json
+import os
+import sys
+import time
+import traceback
+from collections import defaultdict
+
+import numpy as np
+import pandas as pd
+import torch
+from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    DataCollatorForLanguageModeling,
+    Trainer,
+    TrainingArguments,
+    set_seed,
+)
+from peft import LoraConfig, get_peft_model, TaskType
+from scipy import stats
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+  "tool": "Bash",
+  "elapsed_ms": 302
 }
 ```
 

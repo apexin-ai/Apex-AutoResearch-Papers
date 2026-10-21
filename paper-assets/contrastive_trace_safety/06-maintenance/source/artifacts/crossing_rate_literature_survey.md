@@ -170,56 +170,6 @@ After searching 30+ keyword combinations across 5 directions:
 
 ---
 
-## 5. Rebuttal Strategy
-
-### If reviewer says "CR is a straw man metric you invented":
-
-**Response A — CR addresses a documented gap:**
-> CR formalizes a phenomenon already observed but not quantified in the literature. Kaya et al. (ICML 2019) identified "overthinking" — where correct intermediate predictions flip to incorrect final predictions — and proposed a confusion metric measuring internal disagreement. PABEE (NeurIPS 2020) uses cross-layer prediction agreement as an exit criterion. Our crossing rate operationalizes this same intuition as an explicit evaluation metric: how often does the probe's binary decision flip across layers?
-
-**Response B — CR has direct analogues in other domains:**
-> The concept of counting sign changes in a sequential signal has established precedent:
-> - **Zero-crossing rate (ZCR)** is a standard signal processing metric (widely used in audio classification)
-> - **Decision Flip Rate (eDFR)** was independently proposed by Miller & Blume (2026) for clinical prediction instability
-> - **Wildi (2026)** explicitly connects sign accuracy with zero-crossing frequency in econometrics
-> - **Keoliya et al. (2025)** define an oscillation-penalizing stability metric for medical time series
-> 
-> We transfer this well-motivated concept to the novel setting of cross-layer safety probe evaluation.
-
-**Response C — CR fills a practical need for online safety monitoring:**
-> The emerging field of online safety monitoring (SafeSwitch, EMNLP 2025; TrajGuard, ACL 2026; HiddenGuard, 2024; ShieldHead, ACL 2025) deploys probes that must make decisions at every layer or every token. A probe with high accuracy but high CR is unreliable for real-time deployment — it will oscillate between "safe" and "unsafe" across adjacent layers, making the monitoring signal noisy and the intervention policy unstable. CR captures exactly this failure mode.
-
-**Response D — CR-composite has methodological precedent:**
-> Multiplicative composites of accuracy and stability have been independently proposed:
-> - CCE (Zhong et al., 2025): `S = Conf × Cons` for anomaly detection
-> - CUES (Alqudah et al., 2026): geometric mean of accuracy, calibration, equity, and stability
-> - Keoliya et al. (2025): document that "existing methods struggle to jointly optimize accuracy and stability"
-> 
-> CR-composite (BA × (1−CR)) follows this established pattern.
-
-### Recommended framing in paper:
-
-Rather than claiming CR is a metric others already use, frame it as:
-
-1. **A formalization of an observed phenomenon** (overthinking, cross-layer disagreement) that lacked a dedicated metric
-2. **A natural metric for the online monitoring setting** — where prediction trajectory stability is operationally critical
-3. **An instance of a broader pattern** (ZCR, eDFR, Lipschitz stability) applied to a new domain
-
-### Key citations to add:
-
-| Citation | Purpose |
-|----------|---------|
-| Kaya et al. (ICML 2019) | Overthinking + confusion metric = prior recognition of cross-layer prediction instability |
-| Zhou et al. / PABEE (NeurIPS 2020) | Cross-layer prediction agreement as a practically useful signal |
-| Keoliya et al. (arXiv 2025) | Accuracy-stability joint optimization difficulty; oscillation-penalizing metric |
-| Miller & Blume (arXiv 2026) | Decision Flip Rate as a flip-counting instability diagnostic |
-| Larsen (arXiv 2025) | Safety Stability Index; 18–28% of prompts exhibit decision flips |
-| SafeSwitch (EMNLP 2025) | Online safety monitoring = the deployment context where CR matters |
-| TrajGuard (ACL 2026) | Hidden-state trajectories carry "more stable risk signals" |
-| Wildi (arXiv 2026) | Sign accuracy ↔ zero-crossing rate connection in optimization |
-
----
-
 ## 6. Search Coverage Log
 
 | Direction | Keywords Searched | Papers Examined | Verified via WebFetch |

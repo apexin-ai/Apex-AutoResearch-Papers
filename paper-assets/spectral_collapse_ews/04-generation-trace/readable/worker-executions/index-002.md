@@ -129,13 +129,12 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis exp 015 | 74 | 0 | [Read transcript](analysis-exp-015.md) | [JSON](../../sessions/59/595f6077b2325e9e8393.json) |
 | paper table3 r025 3seed | 51 | 0 | [Read transcript](paper-table3-r025-3seed.md) | [JSON](../../sessions/75/7510798ca31b3b22a868.json) |
 | paper s44 mixed source fix | 29 | 0 | [Read transcript](paper-s44-mixed-source-fix.md) | [JSON](../../sessions/d1/d19e2c162d1505f50bea.json) |
-| paper s45 cv sentence | 30 | 0 | [Read transcript](paper-s45-cv-sentence.md) | [JSON](../../sessions/17/17451caec667533c93ee.json) |
+| paper s45 cv sentence | 22 | 0 | [Read transcript](paper-s45-cv-sentence.md) | [JSON](../../sessions/17/17451caec667533c93ee.json) |
 | paper page compression p0 | 127 | 0 | [Read transcript](paper-page-compression-p0.md) | [JSON](../../sessions/f8/f8d60bf4c8a716cfdf02.json) |
 | ssh exp016 017 progress | 59 | 0 | [Read transcript](ssh-exp016-017-progress.md) | [JSON](../../sessions/ec/eca9271fd0852eddaae8.json) |
 | ssh progress check 016 017 | 82 | 0 | [Read transcript](ssh-progress-check-016-017.md) | [JSON](../../sessions/fb/fbd46ad9e17002a8a98b.json) |
 | ssh disk check urgent | 54 | 0 | [Read transcript](ssh-disk-check-urgent.md) | [JSON](../../sessions/16/1627f05370ce5e0c1980.json) |
 | code collect phase table script | 80 | 0 | [Read transcript](code-collect-phase-table-script.md) | [JSON](../../sessions/d2/d2cb4694d951c6192718.json) |
-| paper response letter finalize | 28 | 0 | [Read transcript](paper-response-letter-finalize.md) | [JSON](../../sessions/af/afdd21738b032e785a16.json) |
 | ssh exp 016 progress | 35 | 0 | [Read transcript](ssh-exp-016-progress.md) | [JSON](../../sessions/d6/d6e9aab6d2d6ea0d5a88.json) |
 | ssh exp 016 quick check | 47 | 0 | [Read transcript](ssh-exp-016-quick-check.md) | [JSON](../../sessions/a8/a8c05771c3178f64c921.json) |
 | ssh exp 016 quick check 2 | 26 | 0 | [Read transcript](ssh-exp-016-quick-check-2.md) | [JSON](../../sessions/74/74a371ec6d9f9be3fa2f.json) |

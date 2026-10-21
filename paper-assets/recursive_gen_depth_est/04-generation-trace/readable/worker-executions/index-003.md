@@ -63,7 +63,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | code cross scale llama3 8b 001 | 76 | 0 | [Read transcript](code-cross-scale-llama3-8b-001.md) | [JSON](../../sessions/88/8824a3afd600ec2e1500.json) |
 | code cross model recursive chain 001 | 83 | 0 | [Read transcript](code-cross-model-recursive-chain-001.md) | [JSON](../../sessions/25/25187ebe047b8aa57f38.json) |
 | analysis cross scale qwen7b 001 | 36 | 0 | [Read transcript](analysis-cross-scale-qwen7b-001-copy-2.md) | [JSON](../../sessions/f9/f98128753bbe6eca16fa.json) |
-| research review response plan | 54 | 0 | [Read transcript](research-review-response-plan.md) | [JSON](../../sessions/68/688232a71bc13f3f535f.json) |
 | code cross scale llama3 8b 002 | 100 | 0 | [Read transcript](code-cross-scale-llama3-8b-002.md) | [JSON](../../sessions/19/19b57c5426a1595fe1c9.json) |
 | code cross model recursive chain 002 | 72 | 0 | [Read transcript](code-cross-model-recursive-chain-002.md) | [JSON](../../sessions/1a/1ab814245ebde051becc.json) |
 | writing cross scale section | 46 | 0 | [Read transcript](writing-cross-scale-section.md) | [JSON](../../sessions/b5/b57bcde885d87c903e81.json) |

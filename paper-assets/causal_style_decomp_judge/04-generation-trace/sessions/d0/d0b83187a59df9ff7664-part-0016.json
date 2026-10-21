@@ -7,47 +7,6 @@
       "messages": [
         {
           "source_line": 2701,
-          "timestamp": "2026-05-21T13:02:10.073086+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Edit"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-            "tool": "Edit",
-            "tool_args": {
-              "replace_all": "False",
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex",
-              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/pipeline_diagram.pdf}\n\\caption{CSD pipeline overview. Numbers indicate sample attrition at each stage.}\n\\label{fig:pipeline}\n\\end{figure}\n\n\\subsection{Style-Controlled Rewriting}",
-              "new_string": "\\subsection{Style-Controlled Rewriting}"
-            }
-          },
-          "id": "event-002701"
-        },
-        {
-          "source_line": 2702,
-          "timestamp": "2026-05-21T13:02:10.525612+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex has been updated successfully."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-            "tool": "Edit",
-            "elapsed_ms": 452
-          },
-          "id": "event-002702"
-        },
-        {
-          "source_line": 2703,
           "timestamp": "2026-05-21T13:02:12.834583+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -67,10 +26,10 @@
               "new_string": "    \\item \\textbf{Practical implications:} in typical evaluation settings ($n < 500$), style bias audits should employ pairwise comparison and per-axis analysis; existing Likert-based findings may systematically underestimate bias magnitude (Section~\\ref{sec:conclusion}).\n\\end{itemize}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/pipeline_diagram.pdf}\n\\caption{CSD pipeline overview. Numbers indicate sample attrition at each stage.}\n\\label{fig:pipeline}\n\\end{figure}"
             }
           },
-          "id": "event-002703"
+          "id": "event-002701"
         },
         {
-          "source_line": 2704,
+          "source_line": 2702,
           "timestamp": "2026-05-21T13:02:12.941140+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -85,10 +44,10 @@
             "tool": "Edit",
             "elapsed_ms": 106
           },
-          "id": "event-002704"
+          "id": "event-002702"
         },
         {
-          "source_line": 2705,
+          "source_line": 2703,
           "timestamp": "2026-05-21T13:02:16.911717+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -107,10 +66,10 @@
               "preview": "True"
             }
           },
-          "id": "event-002705"
+          "id": "event-002703"
         },
         {
-          "source_line": 2706,
+          "source_line": 2704,
           "timestamp": "2026-05-21T13:02:20.825410+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -125,10 +84,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 3913
           },
-          "id": "event-002706"
+          "id": "event-002704"
         },
         {
-          "source_line": 2707,
+          "source_line": 2705,
           "timestamp": "2026-05-21T13:02:24.995303+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -145,10 +104,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p2.png"
             }
           },
-          "id": "event-002707"
+          "id": "event-002705"
         },
         {
-          "source_line": 2708,
+          "source_line": 2706,
           "timestamp": "2026-05-21T13:02:25.397412+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -165,10 +124,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p3.png"
             }
           },
-          "id": "event-002708"
+          "id": "event-002706"
         },
         {
-          "source_line": 2709,
+          "source_line": 2707,
           "timestamp": "2026-05-21T13:02:25.600326+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -183,10 +142,10 @@
             "tool": "Read",
             "elapsed_ms": 605
           },
-          "id": "event-002709"
+          "id": "event-002707"
         },
         {
-          "source_line": 2710,
+          "source_line": 2708,
           "timestamp": "2026-05-21T13:02:26.156352+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -201,10 +160,10 @@
             "tool": "Read",
             "elapsed_ms": 758
           },
-          "id": "event-002710"
+          "id": "event-002708"
         },
         {
-          "source_line": 2711,
+          "source_line": 2709,
           "timestamp": "2026-05-21T13:02:34.143445+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -221,10 +180,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p4.png"
             }
           },
-          "id": "event-002711"
+          "id": "event-002709"
         },
         {
-          "source_line": 2712,
+          "source_line": 2710,
           "timestamp": "2026-05-21T13:02:34.143869+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -241,10 +200,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p5.png"
             }
           },
-          "id": "event-002712"
+          "id": "event-002710"
         },
         {
-          "source_line": 2713,
+          "source_line": 2711,
           "timestamp": "2026-05-21T13:02:35.100188+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -259,10 +218,10 @@
             "tool": "Read",
             "elapsed_ms": 956
           },
-          "id": "event-002713"
+          "id": "event-002711"
         },
         {
-          "source_line": 2714,
+          "source_line": 2712,
           "timestamp": "2026-05-21T13:02:35.201313+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -277,10 +236,10 @@
             "tool": "Read",
             "elapsed_ms": 1057
           },
-          "id": "event-002714"
+          "id": "event-002712"
         },
         {
-          "source_line": 2715,
+          "source_line": 2713,
           "timestamp": "2026-05-21T13:02:46.550459+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -298,10 +257,10 @@
               "project": "causal_style_decomp_judge"
             }
           },
-          "id": "event-002715"
+          "id": "event-002713"
         },
         {
-          "source_line": 2716,
+          "source_line": 2714,
           "timestamp": "2026-05-21T13:02:50.016493+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -316,10 +275,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3466
           },
-          "id": "event-002716"
+          "id": "event-002714"
         },
         {
-          "source_line": 2717,
+          "source_line": 2715,
           "timestamp": "2026-05-21T13:02:52.909471+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -332,7 +291,7 @@
           "metadata": {
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
           },
-          "id": "event-002717"
+          "id": "event-002715"
         }
       ]
     },
@@ -340,7 +299,7 @@
       "number": 138,
       "messages": [
         {
-          "source_line": 2718,
+          "source_line": 2716,
           "timestamp": "2026-05-21T13:02:53.427350+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -354,10 +313,10 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "source": "system"
           },
-          "id": "event-002718"
+          "id": "event-002716"
         },
         {
-          "source_line": 2719,
+          "source_line": 2717,
           "timestamp": "2026-05-21T13:03:09.219505+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -370,7 +329,7 @@
           "metadata": {
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
           },
-          "id": "event-002719"
+          "id": "event-002717"
         }
       ]
     },
@@ -378,7 +337,7 @@
       "number": 139,
       "messages": [
         {
-          "source_line": 2720,
+          "source_line": 2718,
           "timestamp": "2026-05-21T13:07:23.069000+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -392,10 +351,10 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "source": "director"
           },
-          "id": "event-002720"
+          "id": "event-002718"
         },
         {
-          "source_line": 2721,
+          "source_line": 2719,
           "timestamp": "2026-05-21T13:07:38.133606+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -415,10 +374,10 @@
               "run_in_background": "True"
             }
           },
-          "id": "event-002721"
+          "id": "event-002719"
         },
         {
-          "source_line": 2722,
+          "source_line": 2720,
           "timestamp": "2026-05-21T13:07:38.134149+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -433,10 +392,10 @@
             "tool": "Agent",
             "elapsed_ms": 0
           },
-          "id": "event-002722"
+          "id": "event-002720"
         },
         {
-          "source_line": 2723,
+          "source_line": 2721,
           "timestamp": "2026-05-21T13:07:42.098385+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -453,10 +412,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/method.tex"
             }
           },
-          "id": "event-002723"
+          "id": "event-002721"
         },
         {
-          "source_line": 2724,
+          "source_line": 2722,
           "timestamp": "2026-05-21T13:07:43.001789+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -471,10 +430,10 @@
             "tool": "Read",
             "elapsed_ms": 903
           },
-          "id": "event-002724"
+          "id": "event-002722"
         },
         {
-          "source_line": 2725,
+          "source_line": 2723,
           "timestamp": "2026-05-21T13:07:43.052325+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -493,10 +452,10 @@
               "limit": "60"
             }
           },
-          "id": "event-002725"
+          "id": "event-002723"
         },
         {
-          "source_line": 2726,
+          "source_line": 2724,
           "timestamp": "2026-05-21T13:07:43.102960+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -511,10 +470,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002726"
+          "id": "event-002724"
         },
         {
-          "source_line": 2727,
+          "source_line": 2725,
           "timestamp": "2026-05-21T13:07:48.573348+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -533,10 +492,10 @@
               "limit": "70"
             }
           },
-          "id": "event-002727"
+          "id": "event-002725"
         },
         {
-          "source_line": 2728,
+          "source_line": 2726,
           "timestamp": "2026-05-21T13:07:48.624003+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -551,10 +510,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002728"
+          "id": "event-002726"
         },
         {
-          "source_line": 2729,
+          "source_line": 2727,
           "timestamp": "2026-05-21T13:08:09.226530+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -574,10 +533,10 @@
               "new_string": "This gating mechanism provides filtering-based confounder control \\citep{veitch2020adapting} by ensuring that retained pairs differ only in style, not in content quality."
             }
           },
-          "id": "event-002729"
+          "id": "event-002727"
         },
         {
-          "source_line": 2730,
+          "source_line": 2728,
           "timestamp": "2026-05-21T13:08:09.226917+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -592,10 +551,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002730"
+          "id": "event-002728"
         },
         {
-          "source_line": 2731,
+          "source_line": 2729,
           "timestamp": "2026-05-21T13:08:13.903344+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -615,10 +574,10 @@
               "new_string": "The NLI entailment gate provides filtering-based confounder control by removing pairs where the rewrite changed semantic content, thereby blocking the $R \\to Q$ path and yielding a controlled estimate of the $S \\to Y$ effect."
             }
           },
-          "id": "event-002731"
+          "id": "event-002729"
         },
         {
-          "source_line": 2732,
+          "source_line": 2730,
           "timestamp": "2026-05-21T13:08:14.004312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -633,10 +592,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002732"
+          "id": "event-002730"
         },
         {
-          "source_line": 2733,
+          "source_line": 2731,
           "timestamp": "2026-05-21T13:08:22.235543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -656,10 +615,10 @@
               "new_string": "the first framework combining NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison to systematically quantify style bias in LLM judges."
             }
           },
-          "id": "event-002733"
+          "id": "event-002731"
         },
         {
-          "source_line": 2734,
+          "source_line": 2732,
           "timestamp": "2026-05-21T13:08:22.587256+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -674,10 +633,10 @@
             "tool": "Edit",
             "elapsed_ms": 351
           },
-          "id": "event-002734"
+          "id": "event-002732"
         },
         {
-          "source_line": 2735,
+          "source_line": 2733,
           "timestamp": "2026-05-21T13:08:24.143360+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -697,10 +656,10 @@
               "new_string": "We propose Controlled Style Decomposition (CSD), the first framework combining NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison to systematically quantify style bias in LLM judges."
             }
           },
-          "id": "event-002735"
+          "id": "event-002733"
         },
         {
-          "source_line": 2736,
+          "source_line": 2734,
           "timestamp": "2026-05-21T13:08:24.194017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -715,10 +674,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002736"
+          "id": "event-002734"
         },
         {
-          "source_line": 2737,
+          "source_line": 2735,
           "timestamp": "2026-05-21T13:08:35.492560+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -738,10 +697,10 @@
               "new_string": "To test whether the Likert Blindspot generalizes beyond a single judge, we replicate the formality analysis with Qwen3-32B, an open-source model architecturally distinct from GPT-4o.\nNote that Qwen3-32B serves as both style rewriter and target judge in our primary experiments; cross-rewriter validation (Appendix~\\ref{app:rewriter_indep}) bounds but does not eliminate potential self-preference effects."
             }
           },
-          "id": "event-002737"
+          "id": "event-002735"
         },
         {
-          "source_line": 2738,
+          "source_line": 2736,
           "timestamp": "2026-05-21T13:08:35.543192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -756,10 +715,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002738"
+          "id": "event-002736"
         },
         {
-          "source_line": 2739,
+          "source_line": 2737,
           "timestamp": "2026-05-21T13:08:40.412459+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -776,10 +735,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
             }
           },
-          "id": "event-002739"
+          "id": "event-002737"
         },
         {
-          "source_line": 2740,
+          "source_line": 2738,
           "timestamp": "2026-05-21T13:08:40.462996+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -794,10 +753,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002740"
+          "id": "event-002738"
         },
         {
-          "source_line": 2741,
+          "source_line": 2739,
           "timestamp": "2026-05-21T13:08:48.396443+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -817,10 +776,10 @@
               "new_string": "Across two target judges (GPT-4o, Qwen3-32B) and one negative control (Claude Sonnet 4), three benchmarks, and three style axes,"
             }
           },
-          "id": "event-002741"
+          "id": "event-002739"
         },
         {
-          "source_line": 2742,
+          "source_line": 2740,
           "timestamp": "2026-05-21T13:08:48.848767+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -835,10 +794,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002742"
+          "id": "event-002740"
         },
         {
-          "source_line": 2743,
+          "source_line": 2741,
           "timestamp": "2026-05-21T13:08:50.053879+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -858,10 +817,10 @@
               "new_string": "across two target judges (GPT-4o, Qwen3-32B) and one negative control (Claude Sonnet 4)"
             }
           },
-          "id": "event-002743"
+          "id": "event-002741"
         },
         {
-          "source_line": 2744,
+          "source_line": 2742,
           "timestamp": "2026-05-21T13:08:50.104585+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -876,10 +835,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002744"
+          "id": "event-002742"
         },
         {
-          "source_line": 2745,
+          "source_line": 2743,
           "timestamp": "2026-05-21T13:09:04.068914+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -900,10 +859,10 @@
               "-n": "True"
             }
           },
-          "id": "event-002745"
+          "id": "event-002743"
         },
         {
-          "source_line": 2746,
+          "source_line": 2744,
           "timestamp": "2026-05-21T13:09:04.220462+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -918,10 +877,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-002746"
+          "id": "event-002744"
         },
         {
-          "source_line": 2747,
+          "source_line": 2745,
           "timestamp": "2026-05-21T13:09:12.805400+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -941,10 +900,10 @@
               "new_string": "verbosity exhibits no observed originality confound for either judge"
             }
           },
-          "id": "event-002747"
+          "id": "event-002745"
         },
         {
-          "source_line": 2748,
+          "source_line": 2746,
           "timestamp": "2026-05-21T13:09:13.258128+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -959,10 +918,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002748"
+          "id": "event-002746"
         },
         {
-          "source_line": 2749,
+          "source_line": 2747,
           "timestamp": "2026-05-21T13:09:14.212796+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -982,10 +941,10 @@
               "new_string": "Verbosity shows no observed originality confound; formality and register show comparable style effects with varying originality confounds.}"
             }
           },
-          "id": "event-002749"
+          "id": "event-002747"
         },
         {
-          "source_line": 2750,
+          "source_line": 2748,
           "timestamp": "2026-05-21T13:09:14.715398+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1000,10 +959,10 @@
             "tool": "Edit",
             "elapsed_ms": 502
           },
-          "id": "event-002750"
+          "id": "event-002748"
         },
         {
-          "source_line": 2751,
+          "source_line": 2749,
           "timestamp": "2026-05-21T13:09:15.669439+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1023,10 +982,10 @@
               "new_string": "verbosity shows no observed originality confound (Style OR $= 13.10$ / $11.34$, Originality n.s.)"
             }
           },
-          "id": "event-002751"
+          "id": "event-002749"
         },
         {
-          "source_line": 2752,
+          "source_line": 2750,
           "timestamp": "2026-05-21T13:09:16.121544+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1041,10 +1000,10 @@
             "tool": "Edit",
             "elapsed_ms": 452
           },
-          "id": "event-002752"
+          "id": "event-002750"
         },
         {
-          "source_line": 2753,
+          "source_line": 2751,
           "timestamp": "2026-05-21T13:09:17.075720+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1064,10 +1023,10 @@
               "new_string": "with no observed originality confound (Originality n.s.)"
             }
           },
-          "id": "event-002753"
+          "id": "event-002751"
         },
         {
-          "source_line": 2754,
+          "source_line": 2752,
           "timestamp": "2026-05-21T13:09:17.076137+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1082,10 +1041,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002754"
+          "id": "event-002752"
         },
         {
-          "source_line": 2755,
+          "source_line": 2753,
           "timestamp": "2026-05-21T13:09:18.180260+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1105,10 +1064,10 @@
               "new_string": "Verbosity bias shows no observed originality confound"
             }
           },
-          "id": "event-002755"
+          "id": "event-002753"
         },
         {
-          "source_line": 2756,
+          "source_line": 2754,
           "timestamp": "2026-05-21T13:09:18.230847+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1123,10 +1082,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002756"
+          "id": "event-002754"
         },
         {
-          "source_line": 2757,
+          "source_line": 2755,
           "timestamp": "2026-05-21T13:09:21.845320+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1143,10 +1102,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/conclusion.tex"
             }
           },
-          "id": "event-002757"
+          "id": "event-002755"
         },
         {
-          "source_line": 2758,
+          "source_line": 2756,
           "timestamp": "2026-05-21T13:09:21.895858+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1161,10 +1120,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002758"
+          "id": "event-002756"
         },
         {
-          "source_line": 2759,
+          "source_line": 2757,
           "timestamp": "2026-05-21T13:09:25.709432+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1184,10 +1143,10 @@
               "new_string": "with no observed originality confound (Originality n.s.)"
             }
           },
-          "id": "event-002759"
+          "id": "event-002757"
         },
         {
-          "source_line": 2760,
+          "source_line": 2758,
           "timestamp": "2026-05-21T13:09:25.760021+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1202,10 +1161,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002760"
+          "id": "event-002758"
         },
         {
-          "source_line": 2761,
+          "source_line": 2759,
           "timestamp": "2026-05-21T13:09:30.077940+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1222,10 +1181,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/abstract.tex"
             }
           },
-          "id": "event-002761"
+          "id": "event-002759"
         },
         {
-          "source_line": 2762,
+          "source_line": 2760,
           "timestamp": "2026-05-21T13:09:30.128461+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1240,10 +1199,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002762"
+          "id": "event-002760"
         },
         {
-          "source_line": 2763,
+          "source_line": 2761,
           "timestamp": "2026-05-21T13:09:35.651255+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1263,10 +1222,10 @@
               "new_string": "while pairwise comparison reliably detects bias across the full range (BT 63--84\\%, $p < 0.001$), confirmed by seven statistical methods, with verbosity showing the strongest evidence with no observed originality confound and formality exhibiting a conditional effect moderated by content quality changes."
             }
           },
-          "id": "event-002763"
+          "id": "event-002761"
         },
         {
-          "source_line": 2764,
+          "source_line": 2762,
           "timestamp": "2026-05-21T13:09:35.701866+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1281,10 +1240,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002764"
+          "id": "event-002762"
         },
         {
-          "source_line": 2765,
+          "source_line": 2763,
           "timestamp": "2026-05-21T13:09:39.316218+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1303,10 +1262,10 @@
               "limit": "8"
             }
           },
-          "id": "event-002765"
+          "id": "event-002763"
         },
         {
-          "source_line": 2766,
+          "source_line": 2764,
           "timestamp": "2026-05-21T13:09:39.366824+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1321,10 +1280,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002766"
+          "id": "event-002764"
         },
         {
-          "source_line": 2767,
+          "source_line": 2765,
           "timestamp": "2026-05-21T13:09:45.719451+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1344,10 +1303,10 @@
               "new_string": "We failed to detect style bias for Claude at the current sample size ($n = 87$; BT $p = 0.091$, $p = 0.284$).\nFormal equivalence testing \\citep[TOST;][]{lakens2017equivalence} at $\\Delta = 10$pp is underpowered at $n = 87$; at $\\Delta = 15$pp (corresponding to a small-to-medium effect in evaluation contexts) both axes confirm equivalence, bounding any Claude style preference to ${<}15$pp---substantively distinct from GPT-4o ($13$--$23$pp) and Qwen3-32B ($17$--$27$pp)."
             }
           },
-          "id": "event-002767"
+          "id": "event-002765"
         },
         {
-          "source_line": 2768,
+          "source_line": 2766,
           "timestamp": "2026-05-21T13:09:45.720032+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1362,10 +1321,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002768"
+          "id": "event-002766"
         },
         {
-          "source_line": 2769,
+          "source_line": 2767,
           "timestamp": "2026-05-21T13:09:52.498840+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1385,10 +1344,10 @@
               "new_string": "\\multicolumn{6}{l}{\\footnotesize Negative $d$: judge rates style-manipulated variants lower on Likert.}\\\\\n\\multicolumn{6}{l}{\\footnotesize Empty cells: benchmark--axis combinations not tested; cross-benchmark}\\\\\n\\multicolumn{6}{l}{\\footnotesize validation focuses on strongest-evidence configurations.}"
             }
           },
-          "id": "event-002769"
+          "id": "event-002767"
         },
         {
-          "source_line": 2770,
+          "source_line": 2768,
           "timestamp": "2026-05-21T13:09:52.499516+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1403,10 +1362,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002770"
+          "id": "event-002768"
         },
         {
-          "source_line": 2771,
+          "source_line": 2769,
           "timestamp": "2026-05-21T13:09:58.305846+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1425,10 +1384,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002771"
+          "id": "event-002769"
         },
         {
-          "source_line": 2772,
+          "source_line": 2770,
           "timestamp": "2026-05-21T13:09:58.406904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1443,10 +1402,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-002772"
+          "id": "event-002770"
         },
         {
-          "source_line": 2773,
+          "source_line": 2771,
           "timestamp": "2026-05-21T13:10:01.524609+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1463,10 +1422,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib"
             }
           },
-          "id": "event-002773"
+          "id": "event-002771"
         },
         {
-          "source_line": 2774,
+          "source_line": 2772,
           "timestamp": "2026-05-21T13:10:01.525122+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1481,10 +1440,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-002774"
+          "id": "event-002772"
         },
         {
-          "source_line": 2775,
+          "source_line": 2773,
           "timestamp": "2026-05-21T13:10:22.431969+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1504,10 +1463,10 @@
               "new_string": "@inproceedings{jeong2025comparative,\n  title={The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences of {LLM} Evaluators},\n  author={Jeong, Hawon and Park, ChaeHun and Hong, Jimin and Lee, Hojoon and Choo, Jaegul},\n  booktitle={Proceedings of the 8th BlackboxNLP Workshop: Analyzing and Interpreting Neural Networks for NLP},\n  pages={79--108},\n  year={2025},\n  url={https://aclanthology.org/2025.blackboxnlp-1.5}\n}\n\n@article{stureborg2024inconsistent,\n  title={Large Language Models are Inconsistent and Biased Evaluators},\n  author={Stureborg, Rickard and Alikaniotis, Dimitris and Suhara, Yoshi},\n  journal={arXiv preprint arXiv:2405.01724},\n  year={2024},\n  url={https://arxiv.org/abs/2405.01724}\n}\n\n@inproceedings{park2024offsetbias,\n  title={{OffsetBias}: Leveraging Debiased Data for Tuning Evaluators},\n  author={Park, Junsoo and Jwa, Seungyeon and Ren, Meiying and Kim, Daeyoung and Choi, Sanghyuk},\n  booktitle={Findings of the Association for Computational Linguistics: {EMNLP} 2024},\n  pages={1043--1067},\n  year={2024},\n  doi={10.18653/v1/2024.findings-emnlp.57},\n  url={https://aclanthology.org/2024.findings-emnlp.57}\n}\n\n@inproceedings{panickssery2024selfpreference,"
             }
           },
-          "id": "event-002775"
+          "id": "event-002773"
         },
         {
-          "source_line": 2776,
+          "source_line": 2774,
           "timestamp": "2026-05-21T13:10:22.432679+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1522,10 +1481,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002776"
+          "id": "event-002774"
         },
         {
-          "source_line": 2777,
+          "source_line": 2775,
           "timestamp": "2026-05-21T13:10:26.351827+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1542,10 +1501,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-002777"
+          "id": "event-002775"
         },
         {
-          "source_line": 2778,
+          "source_line": 2776,
           "timestamp": "2026-05-21T13:10:26.402457+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1560,10 +1519,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002778"
+          "id": "event-002776"
         },
         {
-          "source_line": 2779,
+          "source_line": 2777,
           "timestamp": "2026-05-21T13:10:40.770694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1583,10 +1542,10 @@
               "new_string": "Multi-feature frameworks such as CASSE \\citep{casse2026concise} and FairJudge \\citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses without interventional controls.\n\\citet{stureborg2024inconsistent} demonstrate inconsistency and bias across evaluation formats, and \\citet{park2024offsetbias} show that verbosity and other surface features systematically inflate judge scores.\nCrucially, \\citet{jeong2025comparative} identify the Comparative Trap: pairwise comparison amplifies style biases relative to pointwise scoring, raising the concern that our pairwise-based detection may partly reflect format-level amplification rather than pure detection.\nWe address this directly in \\S\\ref{sec:amplification}."
             }
           },
-          "id": "event-002779"
+          "id": "event-002777"
         },
         {
-          "source_line": 2780,
+          "source_line": 2778,
           "timestamp": "2026-05-21T13:10:40.972184+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1601,10 +1560,10 @@
             "tool": "Edit",
             "elapsed_ms": 201
           },
-          "id": "event-002780"
+          "id": "event-002778"
         },
         {
-          "source_line": 2781,
+          "source_line": 2779,
           "timestamp": "2026-05-21T13:11:13.495612+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1624,10 +1583,10 @@
               "new_string": "The binarized Likert detection at $n \\approx 400$ ($d = 0.12$) confirms the efficiency gap characterization: Likert requires approximately $4.5\\times$ more data to detect the same bias.\n\nAn equally plausible interpretation is that Likert and pairwise modes measure fundamentally different constructs: absolute quality versus relative preference.\nUnder this view, the Blindspot is not measurement failure but construct divergence.\nWe cannot definitively distinguish these interpretations with current data; however, both point to the same practical conclusion: Likert-only evaluation misses style-driven preference patterns that matter for deployment.\n\n\\paragraph{Detection vs.\\ amplification.}\n\\label{sec:amplification}\n\\citet{jeong2025comparative} show that pairwise comparison amplifies style biases relative to pointwise scoring (the Comparative Trap), raising the concern that CSD's pairwise detection partly reflects format-level amplification.\nThree observations bound this risk.\nFirst, CSD's NLI gate blocks content-mediated amplification---the primary pathway in \\citet{jeong2025comparative}---by ensuring pairs differ only in style.\nSecond, Claude Sonnet 4, evaluated with the identical pairwise format on the same data, shows no style bias (BT 56.2\\%/54.1\\%, both n.s.); if amplification were format-driven, all judges should be affected.\nThird, debiased prompting reduces Qwen3-32B's BT from 66.5\\% to 60.8\\% ($p = 0.002$), and the cross-axis gradient (verbosity 77\\% $\\gg$ formality 63--67\\% $\\gg$ register 55--57\\%) is inconsistent with uniform format amplification.\nCSD cannot fully distinguish detection from amplification of micro-preferences, but the practical implication is identical: style systematically influences pairwise judge output.\n\n\\begin{figure}[t]"
             }
           },
-          "id": "event-002781"
+          "id": "event-002779"
         },
         {
-          "source_line": 2782,
+          "source_line": 2780,
           "timestamp": "2026-05-21T13:11:13.548017+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1642,10 +1601,10 @@
             "tool": "Edit",
             "elapsed_ms": 52
           },
-          "id": "event-002782"
+          "id": "event-002780"
         },
         {
-          "source_line": 2783,
+          "source_line": 2781,
           "timestamp": "2026-05-21T13:11:31.462760+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1665,10 +1624,10 @@
               "new_string": "For the evaluation community, the practical implication is clear: style bias audits should adopt content-controlled pairwise comparison (with NLI gating or equivalent), especially at the moderate effect sizes typical of real-world evaluation ($n < 500$), while acknowledging that format-level amplification of micro-preferences cannot be fully excluded \\citep{jeong2025comparative}."
             }
           },
-          "id": "event-002783"
+          "id": "event-002781"
         },
         {
-          "source_line": 2784,
+          "source_line": 2782,
           "timestamp": "2026-05-21T13:11:31.513473+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1683,10 +1642,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002784"
+          "id": "event-002782"
         },
         {
-          "source_line": 2785,
+          "source_line": 2783,
           "timestamp": "2026-05-21T13:11:36.541064+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1706,10 +1665,10 @@
               "new_string": "    blocked/.style={-{Stealth[length=5pt]}, thick, dotted, red!60},"
             }
           },
-          "id": "event-002785"
+          "id": "event-002783"
         },
         {
-          "source_line": 2786,
+          "source_line": 2784,
           "timestamp": "2026-05-21T13:11:36.541623+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1724,10 +1683,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002786"
+          "id": "event-002784"
         },
         {
-          "source_line": 2787,
+          "source_line": 2785,
           "timestamp": "2026-05-21T13:11:43.718466+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1747,10 +1706,10 @@
               "new_string": "The rewriting mechanism $R$ targets style $S$ but may inadvertently alter content quality $Q$ (dotted red, blocked by NLI gate) or introduce rewriting artifacts ($R \\to Y$, blocked by double-rewrite control)."
             }
           },
-          "id": "event-002787"
+          "id": "event-002785"
         },
         {
-          "source_line": 2788,
+          "source_line": 2786,
           "timestamp": "2026-05-21T13:11:43.819384+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1765,10 +1724,10 @@
             "tool": "Edit",
             "elapsed_ms": 100
           },
-          "id": "event-002788"
+          "id": "event-002786"
         },
         {
-          "source_line": 2789,
+          "source_line": 2787,
           "timestamp": "2026-05-21T13:11:49.692252+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1787,10 +1746,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002789"
+          "id": "event-002787"
         },
         {
-          "source_line": 2790,
+          "source_line": 2788,
           "timestamp": "2026-05-21T13:11:54.611590+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1805,10 +1764,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4919
           },
-          "id": "event-002790"
+          "id": "event-002788"
         },
         {
-          "source_line": 2791,
+          "source_line": 2789,
           "timestamp": "2026-05-21T13:12:12.846770+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1825,10 +1784,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/related_work.tex"
             }
           },
-          "id": "event-002791"
+          "id": "event-002789"
         },
         {
-          "source_line": 2792,
+          "source_line": 2790,
           "timestamp": "2026-05-21T13:12:12.897492+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1843,10 +1802,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002792"
+          "id": "event-002790"
         },
         {
-          "source_line": 2793,
+          "source_line": 2791,
           "timestamp": "2026-05-21T13:12:29.775619+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1866,10 +1825,10 @@
               "new_string": "\\citet{kiritchenko2017bws} and \\citet{novikova2018rankme} confirm that forced-choice methods (best-worst scaling, ranking) detect quality differences that rating scales miss; \\citet{louviere2015bws} provide the theoretical foundation.\nOur contribution is the first systematic quantification of this gap for LLM judge style bias, identifying the two-layer mechanism (tie inflation plus residual signal attenuation) that explains it."
             }
           },
-          "id": "event-002793"
+          "id": "event-002791"
         },
         {
-          "source_line": 2794,
+          "source_line": 2792,
           "timestamp": "2026-05-21T13:12:29.927728+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1884,10 +1843,10 @@
             "tool": "Edit",
             "elapsed_ms": 152
           },
-          "id": "event-002794"
+          "id": "event-002792"
         },
         {
-          "source_line": 2795,
+          "source_line": 2793,
           "timestamp": "2026-05-21T13:12:37.563573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1907,10 +1866,10 @@
               "new_string": "The Bradley-Terry model \\citep{bradley1952rank} underpins Chatbot Arena \\citep{zheng2023judging,chiang2024chatbot} and AlpacaFarm \\citep{dubois2023alpacafarm}; \\citet{boubdir2023elo} establish best practices, and \\citet{liusie2024comparative} show zero-shot LLM pairwise comparison matches pointwise evaluation.\nWe adopt BT because it uses all comparison data including inconsistent pairs, yielding proper effect-size CIs; our contribution is to measure the Likert--pairwise sensitivity gap for style bias and show that per-axis GEE decomposition reveals confound structures invisible to aggregate scores."
             }
           },
-          "id": "event-002795"
+          "id": "event-002793"
         },
         {
-          "source_line": 2796,
+          "source_line": 2794,
           "timestamp": "2026-05-21T13:12:37.614317+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1925,10 +1884,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002796"
+          "id": "event-002794"
         },
         {
-          "source_line": 2797,
+          "source_line": 2795,
           "timestamp": "2026-05-21T13:12:49.966274+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1948,10 +1907,10 @@
               "new_string": "The two frameworks are complementary: RATE measures aggregate quality effects via Likert ATE; CSD targets per-axis style preference via forced-choice comparison, which eliminates ties and is more sensitive to ordinal preferences.\nThe Blindspot arises because Likert tie rates cluster at 58--73\\% across all six judge--axis configurations---a structural property of integer scales that collapses real preference signal into uninformative ties before any statistical test is applied."
             }
           },
-          "id": "event-002797"
+          "id": "event-002795"
         },
         {
-          "source_line": 2798,
+          "source_line": 2796,
           "timestamp": "2026-05-21T13:12:50.017189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1966,10 +1925,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002798"
+          "id": "event-002796"
         },
         {
-          "source_line": 2799,
+          "source_line": 2797,
           "timestamp": "2026-05-21T13:13:04.523739+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1989,10 +1948,10 @@
               "new_string": "Ordinal logistic regression ($\\beta = -0.079$, $p = 0.769$) and GEE ($p = 0.587$) confirm the Blindspot is not an artifact of interval-scale assumptions---all Likert methods fail (all $p > 0.29$) while pairwise detects a clear preference ($p = 0.006$).\nFigure~\\ref{fig:power_curve} plots detection probability curves at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): Likert requires ${\\approx}4.5\\times$ more data to detect the same bias."
             }
           },
-          "id": "event-002799"
+          "id": "event-002797"
         },
         {
-          "source_line": 2800,
+          "source_line": 2798,
           "timestamp": "2026-05-21T13:13:04.574695+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2007,10 +1966,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002800"
+          "id": "event-002798"
         },
         {
-          "source_line": 2801,
+          "source_line": 2799,
           "timestamp": "2026-05-21T13:13:10.696644+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2029,10 +1988,10 @@
               "limit": "25"
             }
           },
-          "id": "event-002801"
+          "id": "event-002799"
         },
         {
-          "source_line": 2802,
+          "source_line": 2800,
           "timestamp": "2026-05-21T13:13:10.797654+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2047,10 +2006,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-002802"
+          "id": "event-002800"
         },
         {
-          "source_line": 2803,
+          "source_line": 2801,
           "timestamp": "2026-05-21T13:13:14.161299+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2069,10 +2028,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002803"
+          "id": "event-002801"
         },
         {
-          "source_line": 2804,
+          "source_line": 2802,
           "timestamp": "2026-05-21T13:13:14.211968+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2087,10 +2046,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002804"
+          "id": "event-002802"
         },
         {
-          "source_line": 2805,
+          "source_line": 2803,
           "timestamp": "2026-05-21T13:13:26.309620+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2110,10 +2069,10 @@
               "new_string": "Formality bias replicates across all six benchmark$\\times$judge configurations (BT 63--73\\%, all $p < 0.001$); Claude Sonnet 4, as negative control, shows no style preference (BT 56.2\\%/54.1\\%, both $p > 0.09$) but extreme originality sensitivity (Orig OR $= 6.66$, $p < 0.0001$; Style n.s.).\nA rewriter-independence test bounds evaluator-producer inflation at ${\\leq}22\\%$ (Appendix~\\ref{app:rewriter_indep}); AlpacaEval$\\times$GPT-4o independently validates (Style OR $= 4.91$, $p < 0.0001$; Likert n.s.)."
             }
           },
-          "id": "event-002805"
+          "id": "event-002803"
         },
         {
-          "source_line": 2806,
+          "source_line": 2804,
           "timestamp": "2026-05-21T13:13:26.360490+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2128,10 +2087,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002806"
+          "id": "event-002804"
         },
         {
-          "source_line": 2807,
+          "source_line": 2805,
           "timestamp": "2026-05-21T13:13:30.076489+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2150,10 +2109,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002807"
+          "id": "event-002805"
         },
         {
-          "source_line": 2808,
+          "source_line": 2806,
           "timestamp": "2026-05-21T13:13:33.792908+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2168,10 +2127,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 3716
           },
-          "id": "event-002808"
+          "id": "event-002806"
         },
         {
-          "source_line": 2809,
+          "source_line": 2807,
           "timestamp": "2026-05-21T13:13:41.670421+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2190,10 +2149,10 @@
               "limit": "20"
             }
           },
-          "id": "event-002809"
+          "id": "event-002807"
         },
         {
-          "source_line": 2810,
+          "source_line": 2808,
           "timestamp": "2026-05-21T13:13:41.720986+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2208,10 +2167,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002810"
+          "id": "event-002808"
         },
         {
-          "source_line": 2811,
+          "source_line": 2809,
           "timestamp": "2026-05-21T13:13:49.548989+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2231,10 +2190,10 @@
               "new_string": "The Comparative Trap \\citep{jeong2025comparative} lends support to this alternative; we address it in \\S\\ref{sec:amplification} but cannot fully exclude format-level amplification without human ground-truth ratings."
             }
           },
-          "id": "event-002811"
+          "id": "event-002809"
         },
         {
-          "source_line": 2812,
+          "source_line": 2810,
           "timestamp": "2026-05-21T13:13:49.599626+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2249,10 +2208,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002812"
+          "id": "event-002810"
         },
         {
-          "source_line": 2813,
+          "source_line": 2811,
           "timestamp": "2026-05-21T13:13:54.428434+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2271,10 +2230,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002813"
+          "id": "event-002811"
         },
         {
-          "source_line": 2814,
+          "source_line": 2812,
           "timestamp": "2026-05-21T13:13:57.642212+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2289,10 +2248,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 3213
           },
-          "id": "event-002814"
+          "id": "event-002812"
         },
         {
-          "source_line": 2815,
+          "source_line": 2813,
           "timestamp": "2026-05-21T13:14:29.059974+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2310,10 +2269,10 @@
               "project": "causal_style_decomp_judge"
             }
           },
-          "id": "event-002815"
+          "id": "event-002813"
         },
         {
-          "source_line": 2816,
+          "source_line": 2814,
           "timestamp": "2026-05-21T13:14:32.576424+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2328,10 +2287,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3516
           },
-          "id": "event-002816"
+          "id": "event-002814"
         },
         {
-          "source_line": 2817,
+          "source_line": 2815,
           "timestamp": "2026-05-21T13:14:36.640091+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2344,7 +2303,7 @@
           "metadata": {
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
           },
-          "id": "event-002817"
+          "id": "event-002815"
         }
       ]
     },
@@ -2352,7 +2311,7 @@
       "number": 140,
       "messages": [
         {
-          "source_line": 2818,
+          "source_line": 2816,
           "timestamp": "2026-05-21T13:14:37.145390+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2366,10 +2325,10 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "source": "director"
           },
-          "id": "event-002818"
+          "id": "event-002816"
         },
         {
-          "source_line": 2819,
+          "source_line": 2817,
           "timestamp": "2026-05-21T13:14:45.125375+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2388,10 +2347,10 @@
               "limit": "25"
             }
           },
-          "id": "event-002819"
+          "id": "event-002817"
         },
         {
-          "source_line": 2820,
+          "source_line": 2818,
           "timestamp": "2026-05-21T13:14:45.175942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2406,10 +2365,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002820"
+          "id": "event-002818"
         },
         {
-          "source_line": 2821,
+          "source_line": 2819,
           "timestamp": "2026-05-21T13:14:48.939452+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2428,10 +2387,10 @@
               "limit": "10"
             }
           },
-          "id": "event-002821"
+          "id": "event-002819"
         },
         {
-          "source_line": 2822,
+          "source_line": 2820,
           "timestamp": "2026-05-21T13:14:48.989942+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2446,10 +2405,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002822"
+          "id": "event-002820"
         },
         {
-          "source_line": 2823,
+          "source_line": 2821,
           "timestamp": "2026-05-21T13:15:04.308519+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2469,10 +2428,10 @@
               "new_string": "\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Verbosity Sensitivity Hierarchy}\n\\label{app:verb_sensitivity}\n\nTable~\\ref{tab:verb_sensitivity} replicates the seven-method sensitivity analysis (Table~\\ref{tab:sensitivity}) on the verbosity axis ($n = 86$ NLI-filtered pairs, Qwen3-32B judge, LLMBar).\nThe attenuation pattern is more extreme than formality: all six Likert-based methods remain non-significant (lowest $p = 0.213$) despite a stronger pairwise signal (BT 77.3\\% vs.\\ 66.5\\% for formality), and Likert effect sizes ($d = 0.036$--$0.056$) are near zero.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Sensitivity hierarchy for verbosity ($n = 86$, Qwen3-32B, LLMBar). All Likert methods fail; only BT reaches significance.}\n\\label{tab:verb_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Statistic & $p$ & Sig? \\\\\n\\midrule\nBT model & 77.3\\% $[70.3, 84.3]$ & ${<}0.001$ & Yes \\\\\n\\midrule\nLikert ATE & $d = 0.056$ & 0.691 & No \\\\\nBinarized $\\chi^2$ & OR $= 2.16$ & 0.213 & No \\\\\nOrdinal reg.\\ & $\\beta = 0.159$ & 0.575 & No \\\\\nPaired $t$-test & $d = 0.056$ & 0.607 & No \\\\\nMann-Whitney $U$ & $r = {-}0.046$ & 0.578 & No \\\\\nCohen's $d$ & $d = 0.036$ & --- & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
             }
           },
-          "id": "event-002823"
+          "id": "event-002821"
         },
         {
-          "source_line": 2824,
+          "source_line": 2822,
           "timestamp": "2026-05-21T13:15:04.308978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2487,10 +2446,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002824"
+          "id": "event-002822"
         },
         {
-          "source_line": 2825,
+          "source_line": 2823,
           "timestamp": "2026-05-21T13:15:15.812112+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2510,10 +2469,10 @@
               "new_string": " & Qwen3 & Form.\\ & .712 [.630, .788] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Verbosity Sensitivity Hierarchy}\n\\label{app:verb_sensitivity}\n\nTable~\\ref{tab:verb_sensitivity} replicates the seven-method sensitivity analysis (Table~\\ref{tab:sensitivity}) on the verbosity axis ($n = 86$ NLI-filtered pairs, Qwen3-32B judge, LLMBar).\nThe attenuation pattern is more extreme than formality: all six Likert-based methods remain non-significant (lowest $p = 0.213$) despite a stronger pairwise signal (BT 77.3\\% vs.\\ 66.5\\% for formality), and Likert effect sizes ($d = 0.036$--$0.056$) are near zero.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Sensitivity hierarchy for verbosity ($n = 86$, Qwen3-32B, LLMBar). All Likert methods fail; only BT reaches significance.}\n\\label{tab:verb_sensitivity}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Statistic & $p$ & Sig? \\\\\n\\midrule\nBT model & 77.3\\% $[70.3, 84.3]$ & ${<}0.001$ & Yes \\\\\n\\midrule\nLikert ATE & $d = 0.056$ & 0.691 & No \\\\\nBinarized $\\chi^2$ & OR $= 2.16$ & 0.213 & No \\\\\nOrdinal reg.\\ & $\\beta = 0.159$ & 0.575 & No \\\\\nPaired $t$-test & $d = 0.056$ & 0.607 & No \\\\\nMann-Whitney $U$ & $r = {-}0.046$ & 0.578 & No \\\\\nCohen's $d$ & $d = 0.036$ & --- & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
             }
           },
-          "id": "event-002825"
+          "id": "event-002823"
         },
         {
-          "source_line": 2826,
+          "source_line": 2824,
           "timestamp": "2026-05-21T13:15:15.862971+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2528,10 +2487,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002826"
+          "id": "event-002824"
         },
         {
-          "source_line": 2827,
+          "source_line": 2825,
           "timestamp": "2026-05-21T13:15:20.286628+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2550,10 +2509,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002827"
+          "id": "event-002825"
         },
         {
-          "source_line": 2828,
+          "source_line": 2826,
           "timestamp": "2026-05-21T13:15:20.337578+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2568,10 +2527,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002828"
+          "id": "event-002826"
         },
         {
-          "source_line": 2829,
+          "source_line": 2827,
           "timestamp": "2026-05-21T13:15:27.322752+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2591,10 +2550,10 @@
               "new_string": "Both pairwise methods detect the formality preference; all Likert-based methods fail regardless of whether they assume interval scaling (ATE $t$-test), ordinal scaling (ordinal logistic regression), or nonparametric ranking (Wilcoxon signed-rank).\nThe same attenuation pattern replicates on verbosity (Appendix~\\ref{app:verb_sensitivity}), where all six Likert methods remain non-significant despite a stronger pairwise signal (BT 77.3\\%, $p < 0.001$)."
             }
           },
-          "id": "event-002829"
+          "id": "event-002827"
         },
         {
-          "source_line": 2830,
+          "source_line": 2828,
           "timestamp": "2026-05-21T13:15:27.373535+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2609,10 +2568,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002830"
+          "id": "event-002828"
         },
         {
-          "source_line": 2831,
+          "source_line": 2829,
           "timestamp": "2026-05-21T13:15:31.745787+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2631,10 +2590,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002831"
+          "id": "event-002829"
         },
         {
-          "source_line": 2832,
+          "source_line": 2830,
           "timestamp": "2026-05-21T13:15:35.614619+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2649,10 +2608,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 3868
           },
-          "id": "event-002832"
+          "id": "event-002830"
         },
         {
-          "source_line": 2833,
+          "source_line": 2831,
           "timestamp": "2026-05-21T13:15:51.891963+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2670,10 +2629,10 @@
               "project": "causal_style_decomp_judge"
             }
           },
-          "id": "event-002833"
+          "id": "event-002831"
         },
         {
-          "source_line": 2834,
+          "source_line": 2832,
           "timestamp": "2026-05-21T13:15:55.564192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2688,10 +2647,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3672
           },
-          "id": "event-002834"
+          "id": "event-002832"
         },
         {
-          "source_line": 2835,
+          "source_line": 2833,
           "timestamp": "2026-05-21T13:15:58.853247+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2704,7 +2663,7 @@
           "metadata": {
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
           },
-          "id": "event-002835"
+          "id": "event-002833"
         }
       ]
     },
@@ -2712,7 +2671,7 @@
       "number": 141,
       "messages": [
         {
-          "source_line": 2836,
+          "source_line": 2834,
           "timestamp": "2026-05-21T13:15:59.358989+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -2726,10 +2685,10 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "source": "director"
           },
-          "id": "event-002836"
+          "id": "event-002834"
         },
         {
-          "source_line": 2837,
+          "source_line": 2835,
           "timestamp": "2026-05-21T13:16:05.860136+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2748,10 +2707,10 @@
               "limit": "20"
             }
           },
-          "id": "event-002837"
+          "id": "event-002835"
         },
         {
-          "source_line": 2838,
+          "source_line": 2836,
           "timestamp": "2026-05-21T13:16:05.961469+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2766,10 +2725,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-002838"
+          "id": "event-002836"
         },
         {
-          "source_line": 2839,
+          "source_line": 2837,
           "timestamp": "2026-05-21T13:16:11.429787+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2789,10 +2748,10 @@
               "new_string": "Cohen's $d$ & $d = 0.036$ & --- & No \\\\\n\\bottomrule\n\\multicolumn{4}{p{0.9\\columnwidth}}{\\footnotesize Effect sizes use style-aligned scoring (verbose $-$ concise), isolating style preference direction. Table~\\ref{tab:main_results} reports RATE-compatible ATE (counterfactual $-$ original), which conflates style and originality effects.}\n\\end{tabular}\n\\end{table}"
             }
           },
-          "id": "event-002839"
+          "id": "event-002837"
         },
         {
-          "source_line": 2840,
+          "source_line": 2838,
           "timestamp": "2026-05-21T13:16:11.480407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2807,10 +2766,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002840"
+          "id": "event-002838"
         },
         {
-          "source_line": 2841,
+          "source_line": 2839,
           "timestamp": "2026-05-21T13:16:18.403153+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2829,10 +2788,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002841"
+          "id": "event-002839"
         },
         {
-          "source_line": 2842,
+          "source_line": 2840,
           "timestamp": "2026-05-21T13:16:20.911576+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2847,10 +2806,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2508
           },
-          "id": "event-002842"
+          "id": "event-002840"
         },
         {
-          "source_line": 2843,
+          "source_line": 2841,
           "timestamp": "2026-05-21T13:16:26.390453+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2868,10 +2827,10 @@
               "project": "causal_style_decomp_judge"
             }
           },
-          "id": "event-002843"
+          "id": "event-002841"
         },
         {
-          "source_line": 2844,
+          "source_line": 2842,
           "timestamp": "2026-05-21T13:16:29.954237+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2886,10 +2845,10 @@
             "tool": "mcp__agent-ml-research__paper_agent_post_to_director",
             "elapsed_ms": 3563
           },
-          "id": "event-002844"
+          "id": "event-002842"
         },
         {
-          "source_line": 2845,
+          "source_line": 2843,
           "timestamp": "2026-05-21T13:16:33.189975+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
@@ -2902,7 +2861,7 @@
           "metadata": {
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
           },
-          "id": "event-002845"
+          "id": "event-002843"
         }
       ]
     },
@@ -2910,8 +2869,46 @@
       "number": 142,
       "messages": [
         {
-          "source_line": 2846,
+          "source_line": 2844,
           "timestamp": "2026-05-21T13:16:33.701551+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
+            "source": "system"
+          },
+          "id": "event-002844"
+        },
+        {
+          "source_line": 2845,
+          "timestamp": "2026-05-21T13:16:39.386660+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
+          },
+          "id": "event-002845"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "messages": [
+        {
+          "source_line": 2846,
+          "timestamp": "2026-05-21T13:16:39.885409+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
@@ -2928,7 +2925,7 @@
         },
         {
           "source_line": 2847,
-          "timestamp": "2026-05-21T13:16:39.386660+00:00",
+          "timestamp": "2026-05-21T13:16:45.033633+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -2945,11 +2942,11 @@
       ]
     },
     {
-      "number": 143,
+      "number": 144,
       "messages": [
         {
           "source_line": 2848,
-          "timestamp": "2026-05-21T13:16:39.885409+00:00",
+          "timestamp": "2026-05-21T13:16:45.527658+00:00",
           "recorded_role": "user",
           "role": "user",
           "content": [
@@ -2966,7 +2963,7 @@
         },
         {
           "source_line": 2849,
-          "timestamp": "2026-05-21T13:16:45.033633+00:00",
+          "timestamp": "2026-05-21T13:16:50.830122+00:00",
           "recorded_role": "assistant",
           "role": "assistant",
           "content": [
@@ -2983,48 +2980,10 @@
       ]
     },
     {
-      "number": 144,
-      "messages": [
-        {
-          "source_line": 2850,
-          "timestamp": "2026-05-21T13:16:45.527658+00:00",
-          "recorded_role": "user",
-          "role": "user",
-          "content": [
-            {
-              "type": "text",
-              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
-            "source": "system"
-          },
-          "id": "event-002850"
-        },
-        {
-          "source_line": 2851,
-          "timestamp": "2026-05-21T13:16:50.830122+00:00",
-          "recorded_role": "assistant",
-          "role": "assistant",
-          "content": [
-            {
-              "type": "text",
-              "text": "No response requested."
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent"
-          },
-          "id": "event-002851"
-        }
-      ]
-    },
-    {
       "number": 145,
       "messages": [
         {
-          "source_line": 2852,
+          "source_line": 2850,
           "timestamp": "2026-05-21T14:00:25.175609+00:00",
           "recorded_role": "user",
           "role": "user",
@@ -3038,10 +2997,10 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "source": "director"
           },
-          "id": "event-002852"
+          "id": "event-002850"
         },
         {
-          "source_line": 2853,
+          "source_line": 2851,
           "timestamp": "2026-05-21T14:00:41.873462+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3060,10 +3019,10 @@
               "limit": "50"
             }
           },
-          "id": "event-002853"
+          "id": "event-002851"
         },
         {
-          "source_line": 2854,
+          "source_line": 2852,
           "timestamp": "2026-05-21T14:00:41.974407+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3078,10 +3037,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002854"
+          "id": "event-002852"
         },
         {
-          "source_line": 2855,
+          "source_line": 2853,
           "timestamp": "2026-05-21T14:00:46.040504+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3100,10 +3059,10 @@
               "limit": "50"
             }
           },
-          "id": "event-002855"
+          "id": "event-002853"
         },
         {
-          "source_line": 2856,
+          "source_line": 2854,
           "timestamp": "2026-05-21T14:00:46.141472+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3118,10 +3077,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002856"
+          "id": "event-002854"
         },
         {
-          "source_line": 2857,
+          "source_line": 2855,
           "timestamp": "2026-05-21T14:01:00.103664+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3141,10 +3100,10 @@
               "new_string": "Four observations bound this risk.\nFirst, an NLI gate ablation directly tests the amplification hypothesis: if pairwise format amplifies bias, removing content control should amplify further.\nInstead, formality NLI-fail pairs \\emph{reverse} to BT 41.7\\% (preferring casual), while NLI-pass pairs show 66.5\\%---the gate filters content noise, not amplifies style signal (Appendix~\\ref{app:nli_ablation}; verbosity NLI-fail remains stable at 75.0\\%, consistent with its dominant style effect).\nSecond, Claude Sonnet 4, evaluated with the identical pairwise format on the same data, shows no style bias (BT 56.2\\%/54.1\\%, both n.s.); format-driven amplification should affect all judges.\nThird, the cross-axis gradient---register 55.3\\% (6\\% NLI rejection) $<$ formality 66.5\\% (12\\%) $<$ verbosity 77.3\\% (14\\%)---correlates with manipulation invasiveness, consistent with detection of varying underlying effects rather than uniform format amplification.\nFourth, debiased prompting reduces Qwen3-32B's BT from 66.5\\% to 60.8\\% ($p = 0.002$); format-fabricated bias should not respond to prompt-level intervention.\nCSD cannot fully distinguish detection from amplification of micro-preferences, but the practical implication is identical: style systematically influences pairwise judge output."
             }
           },
-          "id": "event-002857"
+          "id": "event-002855"
         },
         {
-          "source_line": 2858,
+          "source_line": 2856,
           "timestamp": "2026-05-21T14:01:00.154911+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3159,10 +3118,10 @@
             "tool": "Edit",
             "elapsed_ms": 51
           },
-          "id": "event-002858"
+          "id": "event-002856"
         },
         {
-          "source_line": 2859,
+          "source_line": 2857,
           "timestamp": "2026-05-21T14:01:11.115462+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3182,10 +3141,10 @@
               "new_string": "The Blindspot manifests in six of nine bias-positive cells; three exceptions (BT $> 69\\%$, Likert $d \\geq 0.14$) confirm that only extreme effects cross Likert's threshold.\nSame-style double-rewrite controls confirm a cross-judge rewriting artifact: judges systematically prefer LLM-polished text (formality: 31.8\\%/26.7\\% original wins for GPT-4o/Qwen3; verbosity: 6.2\\%/0\\%; Appendix~\\ref{app:artifact_control}).\nThis validates GEE decomposition: raw BT conflates style and artifact effects, while GEE's originality term absorbs them.\nFor verbosity, the artifact contributes in opposite directions across rewriting conditions (expand vs.\\ compress), canceling in GEE's \\texttt{is\\_original} term and leaving the Style OR ($13.10$) uncontaminated.\nA debiased prompt reduces Qwen3-32B's BT from $66.5\\%$ to $60.8\\%$ ($p = 0.0023$) with negligible GPT-4o effect ($63.0\\% \\to 62.6\\%$); prompt-level debiasing is insufficient."
             }
           },
-          "id": "event-002859"
+          "id": "event-002857"
         },
         {
-          "source_line": 2860,
+          "source_line": 2858,
           "timestamp": "2026-05-21T14:01:11.166197+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3200,10 +3159,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002860"
+          "id": "event-002858"
         },
         {
-          "source_line": 2861,
+          "source_line": 2859,
           "timestamp": "2026-05-21T14:01:16.433234+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3222,10 +3181,10 @@
               "limit": "5"
             }
           },
-          "id": "event-002861"
+          "id": "event-002859"
         },
         {
-          "source_line": 2862,
+          "source_line": 2860,
           "timestamp": "2026-05-21T14:01:16.533904+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3240,10 +3199,10 @@
             "tool": "Read",
             "elapsed_ms": 100
           },
-          "id": "event-002862"
+          "id": "event-002860"
         },
         {
-          "source_line": 2863,
+          "source_line": 2861,
           "timestamp": "2026-05-21T14:01:31.044348+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3263,10 +3222,10 @@
               "new_string": "\\multicolumn{4}{p{0.9\\columnwidth}}{\\footnotesize Effect sizes use style-aligned scoring (verbose $-$ concise), isolating style preference direction. Table~\\ref{tab:main_results} reports RATE-compatible ATE (counterfactual $-$ original), which conflates style and originality effects.}\n\\end{tabular}\n\\end{table}\n\n\\section{NLI Gate Ablation}\n\\label{app:nli_ablation}\n\nTable~\\ref{tab:nli_ablation} compares BT estimates across NLI-pass, NLI-fail, and all pairs.\nFor formality, NLI-fail pairs reverse to 41.7\\% (preferring casual over formal), demonstrating that the gate removes content-confounded pairs rather than amplifying style signal.\nThe small NLI-fail sample ($n \\approx 12$) limits precision; this serves as a bounding analysis.\nFor verbosity, NLI-fail pairs remain at 75.0\\%, consistent with the dominant style effect (OR $= 13.10$) overwhelming content noise.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{NLI gate ablation: BT win probability by NLI subset.}\n\\label{tab:nli_ablation}\n\\begin{tabular}{lccc}\n\\toprule\nAxis & NLI-pass & NLI-fail & All \\\\\n\\midrule\nFormality & 66.5\\% & 41.7\\% & 63.0\\% \\\\\nVerbosity & 77.3\\% & 75.0\\% & 76.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Rewriting Artifact Control}\n\\label{app:artifact_control}\n\nSame-style double-rewrite (DR) controls quantify the rewriting artifact: the proportion of pairs where the judge prefers the original over its same-style DR.\nBoth judges systematically prefer LLM-polished text across axes (Table~\\ref{tab:artifact}).\nFor verbosity, the near-zero original win rate indicates that rewriting quality dominates when content is held constant, validating the GEE decomposition that separates style from artifact effects.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Rewriting artifact: original win rate vs.\\ same-style double-rewrite.}\n\\label{tab:artifact}\n\\begin{tabular}{lcc}\n\\toprule\nAxis & GPT-4o & Qwen3-32B \\\\\n\\midrule\nFormality & 31.8\\% ($p = .023$) & 26.7\\% ($p = .003$) \\\\\nVerbosity & 6.2\\% ($p < .001$) & 0\\% ($p < .001$) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
             }
           },
-          "id": "event-002863"
+          "id": "event-002861"
         },
         {
-          "source_line": 2864,
+          "source_line": 2862,
           "timestamp": "2026-05-21T14:01:31.045055+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3281,10 +3240,10 @@
             "tool": "Edit",
             "elapsed_ms": 0
           },
-          "id": "event-002864"
+          "id": "event-002862"
         },
         {
-          "source_line": 2865,
+          "source_line": 2863,
           "timestamp": "2026-05-21T14:01:35.167470+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3303,10 +3262,10 @@
               "preview": "False"
             }
           },
-          "id": "event-002865"
+          "id": "event-002863"
         },
         {
-          "source_line": 2866,
+          "source_line": 2864,
           "timestamp": "2026-05-21T14:01:37.977547+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3321,10 +3280,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 2810
           },
-          "id": "event-002866"
+          "id": "event-002864"
         },
         {
-          "source_line": 2867,
+          "source_line": 2865,
           "timestamp": "2026-05-21T14:01:51.382516+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3343,10 +3302,10 @@
               "limit": "15"
             }
           },
-          "id": "event-002867"
+          "id": "event-002865"
         },
         {
-          "source_line": 2868,
+          "source_line": 2866,
           "timestamp": "2026-05-21T14:01:51.433228+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3361,10 +3320,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-002868"
+          "id": "event-002866"
         },
         {
-          "source_line": 2869,
+          "source_line": 2867,
           "timestamp": "2026-05-21T14:02:01.937259+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3384,10 +3343,10 @@
               "new_string": "\\citet{jeong2025comparative} show that pairwise comparison amplifies style biases (the Comparative Trap).\nFour observations bound this risk: (i)~NLI gate ablation shows formality NLI-fail pairs \\emph{reverse} to BT 41.7\\% while NLI-pass pairs show 66.5\\%---the gate filters content noise, not amplifies style signal (Appendix~\\ref{app:nli_ablation}); (ii)~Claude Sonnet 4 shows no bias with the identical pairwise format (BT 56.2\\%/54.1\\%, n.s.); (iii)~the cross-axis gradient (register 55\\% $<$ formality 67\\% $<$ verbosity 77\\%) correlates with manipulation invasiveness rather than uniform amplification; (iv)~debiased prompting reduces Qwen3-32B's BT from 66.5\\% to 60.8\\%, inconsistent with format-fabricated bias.\nCSD cannot fully separate detection from amplification of micro-preferences, but the practical implication is identical."
             }
           },
-          "id": "event-002869"
+          "id": "event-002867"
         },
         {
-          "source_line": 2870,
+          "source_line": 2868,
           "timestamp": "2026-05-21T14:02:02.001350+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3402,10 +3361,10 @@
             "tool": "Edit",
             "elapsed_ms": 64
           },
-          "id": "event-002870"
+          "id": "event-002868"
         },
         {
-          "source_line": 2871,
+          "source_line": 2869,
           "timestamp": "2026-05-21T14:02:13.454166+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3425,10 +3384,10 @@
               "new_string": "Same-style double-rewrite controls confirm a rewriting artifact (formality: 31.8\\%/26.7\\% original wins; verbosity: 6.2\\%/0\\%; Appendix~\\ref{app:artifact_control}), validating GEE decomposition: the artifact contributes in opposite directions across rewriting conditions, canceling in GEE's originality term and leaving Style ORs uncontaminated."
             }
           },
-          "id": "event-002871"
+          "id": "event-002869"
         },
         {
-          "source_line": 2872,
+          "source_line": 2870,
           "timestamp": "2026-05-21T14:02:13.504838+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3443,10 +3402,10 @@
             "tool": "Edit",
             "elapsed_ms": 50
           },
-          "id": "event-002872"
+          "id": "event-002870"
         },
         {
-          "source_line": 2873,
+          "source_line": 2871,
           "timestamp": "2026-05-21T14:04:36.018783+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3464,10 +3423,10 @@
               "max_results": "1"
             }
           },
-          "id": "event-002873"
+          "id": "event-002871"
         },
         {
-          "source_line": 2874,
+          "source_line": 2872,
           "timestamp": "2026-05-21T14:04:36.069474+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3482,10 +3441,10 @@
             "tool": "ToolSearch",
             "elapsed_ms": 50
           },
-          "id": "event-002874"
+          "id": "event-002872"
         },
         {
-          "source_line": 2875,
+          "source_line": 2873,
           "timestamp": "2026-05-21T14:04:43.202420+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3503,10 +3462,10 @@
               "max_pages": "8"
             }
           },
-          "id": "event-002875"
+          "id": "event-002873"
         },
         {
-          "source_line": 2876,
+          "source_line": 2874,
           "timestamp": "2026-05-21T14:04:47.776710+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3521,10 +3480,10 @@
             "tool": "mcp__agent-ml-research__paper_compile_and_check",
             "elapsed_ms": 4574
           },
-          "id": "event-002876"
+          "id": "event-002874"
         },
         {
-          "source_line": 2877,
+          "source_line": 2875,
           "timestamp": "2026-05-21T14:04:54.606429+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3541,10 +3500,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p8.png"
             }
           },
-          "id": "event-002877"
+          "id": "event-002875"
         },
         {
-          "source_line": 2878,
+          "source_line": 2876,
           "timestamp": "2026-05-21T14:04:54.959471+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3561,10 +3520,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p9.png"
             }
           },
-          "id": "event-002878"
+          "id": "event-002876"
         },
         {
-          "source_line": 2879,
+          "source_line": 2877,
           "timestamp": "2026-05-21T14:04:55.616376+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3579,10 +3538,10 @@
             "tool": "Read",
             "elapsed_ms": 1009
           },
-          "id": "event-002879"
+          "id": "event-002877"
         },
         {
-          "source_line": 2880,
+          "source_line": 2878,
           "timestamp": "2026-05-21T14:04:55.918703+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3596,6 +3555,46 @@
             "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
             "tool": "Read",
             "elapsed_ms": 959
+          },
+          "id": "event-002878"
+        },
+        {
+          "source_line": 2879,
+          "timestamp": "2026-05-21T14:05:08.326445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-002879"
+        },
+        {
+          "source_line": 2880,
+          "timestamp": "2026-05-21T14:05:08.326924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_pdf_images/main_p1.png"
+            }
           },
           "id": "event-002880"
         }

@@ -7,313 +7,6 @@
       "messages": [
         {
           "source_line": 1081,
-          "timestamp": "2026-05-28T05:35:19.150786+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/results\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Bash",
-            "elapsed_ms": 201
-          },
-          "id": "event-001081"
-        },
-        {
-          "source_line": 1082,
-          "timestamp": "2026-05-28T05:35:21.208660+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/**/*.json"
-            }
-          },
-          "id": "event-001082"
-        },
-        {
-          "source_line": 1083,
-          "timestamp": "2026-05-28T05:35:21.259426+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/median/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260515T222933/worst/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/action_delta_probe_projector.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/dino_action_probe.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/untrained_last_preaction_probe.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/untrained_last_preaction_probe.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/median/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260516T011810/worst/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/report/rsa_method_audit.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/branch_split_rsa_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/action_metrics_extended/data/action_metrics_extended.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/attention_decomposition/data/attention_decomposition.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ar\n…[truncated 5157 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "elapsed_ms": 50
-          },
-          "id": "event-001083"
-        },
-        {
-          "source_line": 1084,
-          "timestamp": "2026-05-28T05:35:24.172104+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/**/*bootstrap*"
-            }
-          },
-          "id": "event-001084"
-        },
-        {
-          "source_line": 1085,
-          "timestamp": "2026-05-28T05:35:27.885507+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_task_ratio.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/fig_specificity_bootstrap_30seeds.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/specificity_random_seed_expansion/chart/fig_specificity_bootstrap_30seeds.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/specificity_random_seed_expansion/chart/fig_specificity_bootstrap_30seeds.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_specificity_bootstrap_30seeds.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_progress.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v2/report/bootstrap_v2_summary_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table_347f5d.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/figures/paper/fig_specificity_bootstrap_30seeds.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_ci_delta_r2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/__pycache__/clustered_bootstrap_pr\n…[truncated 145 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "elapsed_ms": 3713
-          },
-          "id": "event-001085"
-        },
-        {
-          "source_line": 1086,
-          "timestamp": "2026-05-28T05:35:28.086633+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Glob"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "tool_args": {
-              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/**/*delta*"
-            }
-          },
-          "id": "event-001086"
-        },
-        {
-          "source_line": 1087,
-          "timestamp": "2026-05-28T05:35:28.237671+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/action_delta_probe_projector.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_ci_delta_r2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/__pycache__/bootstrap_ci_delta_r2.cpython-314.pyc"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Glob",
-            "elapsed_ms": 151
-          },
-          "id": "event-001087"
-        },
-        {
-          "source_line": 1088,
-          "timestamp": "2026-05-28T05:35:28.689600+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Grep"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Grep",
-            "tool_args": {
-              "pattern": "delta_r2|peak.*exit|0\\.086|0\\.333|0\\.455|0\\.156|0\\.308|0\\.362|0\\.358",
-              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts",
-              "type": "json"
-            }
-          },
-          "id": "event-001088"
-        },
-        {
-          "source_line": 1089,
-          "timestamp": "2026-05-28T05:35:28.740572+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "Found 18 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260527T022433/worst/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260527T022433/median/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260527T022433/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260522T021705/worst/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260522T021705/median/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/dream_reports/dream_20260522T021705/best/experiment_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/counterfactual_10tasks/data/counterfactual_10tasks_trajectory.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bonferroni_global.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/bonferroni_global.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/power_analysis.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_untrained_r2_per_layer.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/phi3v_r2_action_probe/phi3v_untrained_r2_per_layer.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/phi3v_r2_action_probe/openvla_untrained_r2_per_layer.js\n…[truncated 380 chars]"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Grep",
-            "elapsed_ms": 50
-          },
-          "id": "event-001089"
-        },
-        {
-          "source_line": 1090,
-          "timestamp": "2026-05-28T05:35:31.250549+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt"
-            }
-          },
-          "id": "event-001090"
-        },
-        {
-          "source_line": 1091,
-          "timestamp": "2026-05-28T05:35:31.401439+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\tBootstrap CI delta-R2 Gap Analysis Results\n2\tSource: westd-19183:/root/autodl-tmp/vla-ssd/results/bootstrap_ci/bootstrap_ci_results.json\n3\t\n4\tGap Test:\n5\t  VLA->VLA max CI_upper: 0.1064 (openvla_goal)\n6\t  VLM->VLA min CI_lower: 0.0906 (tracvla_spatial)\n7\t  Gap: -0.0158\n8\t  Significant: False (marginal overlap)\n9\t\n10\tVLA->VLA cells (no collapse):\n11\t  openvla_long     dR2=0.0325  CI=[0.0037, 0.1030]\n12\t  openvla_object   dR2=0.0370  CI=[-0.0038, 0.0854]\n13\t  openvla_spatial  dR2=0.0371  CI=[0.0087, 0.1020]\n14\t  openvla_goal     dR2=0.0864  CI=[-0.0560, 0.1064]\n15\t\n16\tVLM->VLA cells (exit collapse):\n17\t  tracvla_spatial  dR2=0.1557  CI=[0.0906, 0.2244]\n18\t  nora_spatial     dR2=0.3080  CI=[0.3011, 0.5119]\n19\t  tracvla_goal     dR2=0.3334  CI=[0.2069, 0.4508]\n20\t  tracvla_long     dR2=0.3579  CI=[0.1714, 0.5333]\n21\t  tracvla_object   dR2=0.3623  CI=[0.2834, 0.5038]\n22\t\n23\tFlagged (unstable exit layer):\n24\t  nora_goal        dR2=0.4551  CI=[0.9099, 1.6077]\n25\t"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 150
-          },
-          "id": "event-001091"
-        },
-        {
-          "source_line": 1092,
-          "timestamp": "2026-05-28T05:35:31.452161+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json"
-            }
-          },
-          "id": "event-001092"
-        },
-        {
-          "source_line": 1093,
-          "timestamp": "2026-05-28T05:35:31.853980+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\timage_mean: delta=0.0206, 95% CI=[-0.0314, 0.0638], p=0.1996 (not significant)\n2\tlast_preaction: delta=0.0076, 95% CI=[-0.0395, 0.0558], p=0.3701 (not significant)\n3\tFull JSON at /root/autodl-tmp/vla-ssd/results/rsa/bootstrap_training_effect.json"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 401
-          },
-          "id": "event-001093"
-        },
-        {
-          "source_line": 1094,
-          "timestamp": "2026-05-28T05:35:31.854343+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_task_ratio.json"
-            }
-          },
-          "id": "event-001094"
-        },
-        {
-          "source_line": 1095,
-          "timestamp": "2026-05-28T05:35:32.055267+00:00",
-          "recorded_role": "tool_result",
-          "role": "tool_result",
-          "content": [
-            {
-              "type": "text",
-              "text": "1\t{\n2\t  \"ratio_point\": 2.4867,\n3\t  \"ci_lower\": 1.0341,\n4\t  \"ci_upper\": 11.1175,\n5\t  \"ci_level\": 0.95,\n6\t  \"n_bootstrap\": 10000,\n7\t  \"n_complex\": 6,\n8\t  \"n_simple\": 4,\n9\t  \"complex_mean\": 0.1405,\n10\t  \"simple_mean\": 0.0565,\n11\t  \"median_ratio\": 2.5669,\n12\t  \"method\": \"percentile bootstrap\",\n13\t  \"seed\": 42,\n14\t  \"complex_tasks\": {\n15\t    \"wine on rack\": 0.2346,\n16\t    \"bowl on cabinet\": 0.2006,\n17\t    \"bowl on stove\": 0.1598,\n18\t    \"bowl on plate\": 0.0986,\n19\t    \"open top drawer + bowl\": 0.0754,\n20\t    \"wine on cabinet\": 0.074\n21\t  },\n22\t  \"simple_tasks\": {\n23\t    \"cream cheese in bowl\": 0.1594,\n24\t    \"turn on stove\": 0.0359,\n25\t    \"open middle drawer\": 0.024,\n26\t    \"push plate to stove\": 0.0067\n27\t  }\n28\t}"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "elapsed_ms": 200
-          },
-          "id": "event-001095"
-        },
-        {
-          "source_line": 1096,
-          "timestamp": "2026-05-28T05:35:32.256463+00:00",
-          "recorded_role": "tool",
-          "role": "tool_call",
-          "content": [
-            {
-              "type": "text",
-              "text": "called Read"
-            }
-          ],
-          "metadata": {
-            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
-            "tool": "Read",
-            "tool_args": {
-              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json",
-              "limit": "100"
-            }
-          },
-          "id": "event-001096"
-        },
-        {
-          "source_line": 1097,
           "timestamp": "2026-05-28T05:35:32.407510+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -328,10 +21,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-001097"
+          "id": "event-001081"
         },
         {
-          "source_line": 1098,
+          "source_line": 1082,
           "timestamp": "2026-05-28T05:35:32.458127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -348,10 +41,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/paired_cohens_d.json"
             }
           },
-          "id": "event-001098"
+          "id": "event-001082"
         },
         {
-          "source_line": 1099,
+          "source_line": 1083,
           "timestamp": "2026-05-28T05:35:32.458569+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -366,10 +59,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001099"
+          "id": "event-001083"
         },
         {
-          "source_line": 1100,
+          "source_line": 1084,
           "timestamp": "2026-05-28T05:35:35.574894+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -387,10 +80,10 @@
               "limit": "100"
             }
           },
-          "id": "event-001100"
+          "id": "event-001084"
         },
         {
-          "source_line": 1101,
+          "source_line": 1085,
           "timestamp": "2026-05-28T05:35:36.227668+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -405,10 +98,10 @@
             "tool": "Read",
             "elapsed_ms": 652
           },
-          "id": "event-001101"
+          "id": "event-001085"
         },
         {
-          "source_line": 1102,
+          "source_line": 1086,
           "timestamp": "2026-05-28T05:35:36.278758+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -425,10 +118,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -name \"*cross*arch*\" -o -name \"*matrix*\" | head -20"
             }
           },
-          "id": "event-001102"
+          "id": "event-001086"
         },
         {
-          "source_line": 1103,
+          "source_line": 1087,
           "timestamp": "2026-05-28T05:35:36.379827+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -443,10 +136,10 @@
             "tool": "Bash",
             "elapsed_ms": 101
           },
-          "id": "event-001103"
+          "id": "event-001087"
         },
         {
-          "source_line": 1104,
+          "source_line": 1088,
           "timestamp": "2026-05-28T05:35:36.483260+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -465,10 +158,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-001104"
+          "id": "event-001088"
         },
         {
-          "source_line": 1105,
+          "source_line": 1089,
           "timestamp": "2026-05-28T05:35:36.534050+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -483,10 +176,10 @@
             "tool": "Grep",
             "elapsed_ms": 50
           },
-          "id": "event-001105"
+          "id": "event-001089"
         },
         {
-          "source_line": 1106,
+          "source_line": 1090,
           "timestamp": "2026-05-28T05:35:40.197801+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -503,10 +196,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/report/matrix_summary_table.md"
             }
           },
-          "id": "event-001106"
+          "id": "event-001090"
         },
         {
-          "source_line": 1107,
+          "source_line": 1091,
           "timestamp": "2026-05-28T05:35:40.649951+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -521,10 +214,10 @@
             "tool": "Read",
             "elapsed_ms": 452
           },
-          "id": "event-001107"
+          "id": "event-001091"
         },
         {
-          "source_line": 1108,
+          "source_line": 1092,
           "timestamp": "2026-05-28T05:35:40.700573+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -541,10 +234,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/report/cross_arch_r2_table.tex"
             }
           },
-          "id": "event-001108"
+          "id": "event-001092"
         },
         {
-          "source_line": 1109,
+          "source_line": 1093,
           "timestamp": "2026-05-28T05:35:41.052764+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -559,10 +252,10 @@
             "tool": "Read",
             "elapsed_ms": 352
           },
-          "id": "event-001109"
+          "id": "event-001093"
         },
         {
-          "source_line": 1110,
+          "source_line": 1094,
           "timestamp": "2026-05-28T05:35:41.104182+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -579,10 +272,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -name \"*.json\" | xargs grep -l \"0\\.086\\|0\\.333\\|0\\.455\\|0\\.156\\|0\\.308\\|0\\.362\\|0\\.358\" 2>/dev/null"
             }
           },
-          "id": "event-001110"
+          "id": "event-001094"
         },
         {
-          "source_line": 1111,
+          "source_line": 1095,
           "timestamp": "2026-05-28T05:35:41.204938+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -597,10 +290,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001111"
+          "id": "event-001095"
         },
         {
-          "source_line": 1112,
+          "source_line": 1096,
           "timestamp": "2026-05-28T05:35:43.614823+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -617,10 +310,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json"
             }
           },
-          "id": "event-001112"
+          "id": "event-001096"
         },
         {
-          "source_line": 1113,
+          "source_line": 1097,
           "timestamp": "2026-05-28T05:35:43.816213+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -635,10 +328,10 @@
             "tool": "Read",
             "elapsed_ms": 201
           },
-          "id": "event-001113"
+          "id": "event-001097"
         },
         {
-          "source_line": 1114,
+          "source_line": 1098,
           "timestamp": "2026-05-28T05:35:43.816581+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -655,10 +348,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_untrained_r2_per_layer.json"
             }
           },
-          "id": "event-001114"
+          "id": "event-001098"
         },
         {
-          "source_line": 1115,
+          "source_line": 1099,
           "timestamp": "2026-05-28T05:35:44.118455+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -673,10 +366,10 @@
             "tool": "Read",
             "elapsed_ms": 301
           },
-          "id": "event-001115"
+          "id": "event-001099"
         },
         {
-          "source_line": 1116,
+          "source_line": 1100,
           "timestamp": "2026-05-28T05:35:44.319559+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -693,10 +386,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/untrained_last_preaction_probe.json"
             }
           },
-          "id": "event-001116"
+          "id": "event-001100"
         },
         {
-          "source_line": 1117,
+          "source_line": 1101,
           "timestamp": "2026-05-28T05:35:44.370313+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -711,10 +404,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001117"
+          "id": "event-001101"
         },
         {
-          "source_line": 1118,
+          "source_line": 1102,
           "timestamp": "2026-05-28T05:35:47.632569+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -732,10 +425,10 @@
               "limit": "150"
             }
           },
-          "id": "event-001118"
+          "id": "event-001102"
         },
         {
-          "source_line": 1119,
+          "source_line": 1103,
           "timestamp": "2026-05-28T05:35:47.683225+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -750,10 +443,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001119"
+          "id": "event-001103"
         },
         {
-          "source_line": 1120,
+          "source_line": 1104,
           "timestamp": "2026-05-28T05:36:01.390263+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -768,10 +461,10 @@
             "tool": "Agent",
             "elapsed_ms": 45051
           },
-          "id": "event-001120"
+          "id": "event-001104"
         },
         {
-          "source_line": 1121,
+          "source_line": 1105,
           "timestamp": "2026-05-28T05:36:06.542337+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -788,10 +481,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt"
             }
           },
-          "id": "event-001121"
+          "id": "event-001105"
         },
         {
-          "source_line": 1122,
+          "source_line": 1106,
           "timestamp": "2026-05-28T05:36:06.643397+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -806,10 +499,10 @@
             "tool": "Read",
             "elapsed_ms": 101
           },
-          "id": "event-001122"
+          "id": "event-001106"
         },
         {
-          "source_line": 1123,
+          "source_line": 1107,
           "timestamp": "2026-05-28T05:36:09.705291+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -826,10 +519,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/report/matrix_summary_table.md"
             }
           },
-          "id": "event-001123"
+          "id": "event-001107"
         },
         {
-          "source_line": 1124,
+          "source_line": 1108,
           "timestamp": "2026-05-28T05:36:09.756169+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -844,10 +537,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001124"
+          "id": "event-001108"
         },
         {
-          "source_line": 1125,
+          "source_line": 1109,
           "timestamp": "2026-05-28T05:36:45.801446+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -866,10 +559,10 @@
               "limit": "13"
             }
           },
-          "id": "event-001125"
+          "id": "event-001109"
         },
         {
-          "source_line": 1126,
+          "source_line": 1110,
           "timestamp": "2026-05-28T05:36:45.952414+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -884,10 +577,10 @@
             "tool": "Read",
             "elapsed_ms": 150
           },
-          "id": "event-001126"
+          "id": "event-001110"
         },
         {
-          "source_line": 1127,
+          "source_line": 1111,
           "timestamp": "2026-05-28T05:38:38.104127+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -906,10 +599,10 @@
               "prompt": "Search the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ for files related to NLP control experiments and ΔR² values. I need to find:\n1. NLP instruction-tuning control results (should show ΔR²=0.000 or near-zero)\n2. Any JSON or text files with \"nlp_control\" or \"instruction_tuning\" or \"llama\" or \"mistral\" in the name\n3. Files under results/ or artifacts/ containing NLP control probe data\n\nSearch broadly - try artifacts/, results/, and scripts/ directories. Report file paths and key content snippets."
             }
           },
-          "id": "event-001127"
+          "id": "event-001111"
         },
         {
-          "source_line": 1128,
+          "source_line": 1112,
           "timestamp": "2026-05-28T05:38:41.116093+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -926,10 +619,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*nlp*\" -o -name \"*control*\" -o -name \"*instruction*\" -o -name \"*llama*\" -o -name \"*mistral*\" 2>/dev/null | head -50"
             }
           },
-          "id": "event-001128"
+          "id": "event-001112"
         },
         {
-          "source_line": 1129,
+          "source_line": 1113,
           "timestamp": "2026-05-28T05:38:41.166961+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -944,10 +637,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001129"
+          "id": "event-001113"
         },
         {
-          "source_line": 1130,
+          "source_line": 1114,
           "timestamp": "2026-05-28T05:38:43.977904+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -964,10 +657,10 @@
               "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/results/**/*.json"
             }
           },
-          "id": "event-001130"
+          "id": "event-001114"
         },
         {
-          "source_line": 1131,
+          "source_line": 1115,
           "timestamp": "2026-05-28T05:38:43.978361+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -982,10 +675,10 @@
             "tool": "Glob",
             "elapsed_ms": 0
           },
-          "id": "event-001131"
+          "id": "event-001115"
         },
         {
-          "source_line": 1132,
+          "source_line": 1116,
           "timestamp": "2026-05-28T05:38:46.287245+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1002,10 +695,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type d -name \"results\" -o -name \"artifacts\" -o -name \"outputs\" 2>/dev/null"
             }
           },
-          "id": "event-001132"
+          "id": "event-001116"
         },
         {
-          "source_line": 1133,
+          "source_line": 1117,
           "timestamp": "2026-05-28T05:38:46.388107+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1020,10 +713,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001133"
+          "id": "event-001117"
         },
         {
-          "source_line": 1134,
+          "source_line": 1118,
           "timestamp": "2026-05-28T05:38:48.799135+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1040,10 +733,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f \\( -name \"*.json\" -o -name \"*.txt\" -o -name \"*.csv\" \\) | head -40"
             }
           },
-          "id": "event-001134"
+          "id": "event-001118"
         },
         {
-          "source_line": 1135,
+          "source_line": 1119,
           "timestamp": "2026-05-28T05:38:48.849809+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1058,10 +751,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001135"
+          "id": "event-001119"
         },
         {
-          "source_line": 1136,
+          "source_line": 1120,
           "timestamp": "2026-05-28T05:38:51.614138+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1080,10 +773,10 @@
               "output_mode": "files_with_matches"
             }
           },
-          "id": "event-001136"
+          "id": "event-001120"
         },
         {
-          "source_line": 1137,
+          "source_line": 1121,
           "timestamp": "2026-05-28T05:38:51.915675+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1098,10 +791,10 @@
             "tool": "Grep",
             "elapsed_ms": 301
           },
-          "id": "event-001137"
+          "id": "event-001121"
         },
         {
-          "source_line": 1138,
+          "source_line": 1122,
           "timestamp": "2026-05-28T05:38:54.225072+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1118,10 +811,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/plot_nlp_control_overlay.py"
             }
           },
-          "id": "event-001138"
+          "id": "event-001122"
         },
         {
-          "source_line": 1139,
+          "source_line": 1123,
           "timestamp": "2026-05-28T05:38:54.225478+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1136,10 +829,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001139"
+          "id": "event-001123"
         },
         {
-          "source_line": 1140,
+          "source_line": 1124,
           "timestamp": "2026-05-28T05:38:57.187138+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1156,10 +849,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/phi3_nlp_control/data/summary.txt"
             }
           },
-          "id": "event-001140"
+          "id": "event-001124"
         },
         {
-          "source_line": 1141,
+          "source_line": 1125,
           "timestamp": "2026-05-28T05:38:57.187595+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1174,10 +867,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001141"
+          "id": "event-001125"
         },
         {
-          "source_line": 1142,
+          "source_line": 1126,
           "timestamp": "2026-05-28T05:38:59.947664+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1194,10 +887,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/checkpoints/phi3_nlp_control_DONE_20260524T013406.json"
             }
           },
-          "id": "event-001142"
+          "id": "event-001126"
         },
         {
-          "source_line": 1143,
+          "source_line": 1127,
           "timestamp": "2026-05-28T05:38:59.948183+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1212,10 +905,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001143"
+          "id": "event-001127"
         },
         {
-          "source_line": 1144,
+          "source_line": 1128,
           "timestamp": "2026-05-28T05:39:04.032590+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1232,10 +925,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/checkpoints/qwen_nlp_control_DONE_20260524T032018.json"
             }
           },
-          "id": "event-001144"
+          "id": "event-001128"
         },
         {
-          "source_line": 1145,
+          "source_line": 1129,
           "timestamp": "2026-05-28T05:39:04.033179+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1250,10 +943,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001145"
+          "id": "event-001129"
         },
         {
-          "source_line": 1146,
+          "source_line": 1130,
           "timestamp": "2026-05-28T05:39:07.698694+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1270,10 +963,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_code_nlp_finetuning_control_v1_20260522T052432_result.json"
             }
           },
-          "id": "event-001146"
+          "id": "event-001130"
         },
         {
-          "source_line": 1147,
+          "source_line": 1131,
           "timestamp": "2026-05-28T05:39:07.699167+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1288,10 +981,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001147"
+          "id": "event-001131"
         },
         {
-          "source_line": 1148,
+          "source_line": 1132,
           "timestamp": "2026-05-28T05:39:10.560214+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1308,10 +1001,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*nlp*\" -o -name \"*control*\" | grep -E \"(nlp|control)\" | head -30"
             }
           },
-          "id": "event-001148"
+          "id": "event-001132"
         },
         {
-          "source_line": 1149,
+          "source_line": 1133,
           "timestamp": "2026-05-28T05:39:10.610905+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1326,10 +1019,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001149"
+          "id": "event-001133"
         },
         {
-          "source_line": 1150,
+          "source_line": 1134,
           "timestamp": "2026-05-28T05:39:12.869875+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1346,10 +1039,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/nlp_finetuning_control_v1/data/nlp_control_r2_profile.md"
             }
           },
-          "id": "event-001150"
+          "id": "event-001134"
         },
         {
-          "source_line": 1151,
+          "source_line": 1135,
           "timestamp": "2026-05-28T05:39:12.920519+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1364,10 +1057,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001151"
+          "id": "event-001135"
         },
         {
-          "source_line": 1152,
+          "source_line": 1136,
           "timestamp": "2026-05-28T05:39:15.631058+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1384,10 +1077,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -path \"*/phi3_nlp_control/*\" -o -path \"*/qwen_nlp_control/*\" -o -path \"*/llama*nlp*\" 2>/dev/null | head -20"
             }
           },
-          "id": "event-001152"
+          "id": "event-001136"
         },
         {
-          "source_line": 1153,
+          "source_line": 1137,
           "timestamp": "2026-05-28T05:39:15.731811+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1402,10 +1095,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001153"
+          "id": "event-001137"
         },
         {
-          "source_line": 1154,
+          "source_line": 1138,
           "timestamp": "2026-05-28T05:39:18.242290+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1422,10 +1115,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type d -name \"*nlp*\" | head -20"
             }
           },
-          "id": "event-001154"
+          "id": "event-001138"
         },
         {
-          "source_line": 1155,
+          "source_line": 1139,
           "timestamp": "2026-05-28T05:39:18.292973+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1440,10 +1133,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001155"
+          "id": "event-001139"
         },
         {
-          "source_line": 1156,
+          "source_line": 1140,
           "timestamp": "2026-05-28T05:39:21.204813+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1460,10 +1153,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/nlp_finetuning_control_v1 -type f"
             }
           },
-          "id": "event-001156"
+          "id": "event-001140"
         },
         {
-          "source_line": 1157,
+          "source_line": 1141,
           "timestamp": "2026-05-28T05:39:21.255466+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1478,10 +1171,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001157"
+          "id": "event-001141"
         },
         {
-          "source_line": 1158,
+          "source_line": 1142,
           "timestamp": "2026-05-28T05:39:23.214299+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1498,10 +1191,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/phi3_nlp_control -type f"
             }
           },
-          "id": "event-001158"
+          "id": "event-001142"
         },
         {
-          "source_line": 1159,
+          "source_line": 1143,
           "timestamp": "2026-05-28T05:39:23.264962+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1516,10 +1209,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001159"
+          "id": "event-001143"
         },
         {
-          "source_line": 1160,
+          "source_line": 1144,
           "timestamp": "2026-05-28T05:39:26.127120+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1536,10 +1229,10 @@
               "command": "grep -A 5 \"nlp_control\\|instruction_tuning\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -80"
             }
           },
-          "id": "event-001160"
+          "id": "event-001144"
         },
         {
-          "source_line": 1161,
+          "source_line": 1145,
           "timestamp": "2026-05-28T05:39:26.177773+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1554,10 +1247,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001161"
+          "id": "event-001145"
         },
         {
-          "source_line": 1162,
+          "source_line": 1146,
           "timestamp": "2026-05-28T05:39:28.487090+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1574,10 +1267,10 @@
               "command": "grep -A 50 \"llama2chat_nlp_control:\\|phi3_nlp_control:\\|qwen_nlp_control:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -150"
             }
           },
-          "id": "event-001162"
+          "id": "event-001146"
         },
         {
-          "source_line": 1163,
+          "source_line": 1147,
           "timestamp": "2026-05-28T05:39:28.537769+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1592,10 +1285,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001163"
+          "id": "event-001147"
         },
         {
-          "source_line": 1164,
+          "source_line": 1148,
           "timestamp": "2026-05-28T05:39:31.550134+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1612,10 +1305,10 @@
               "command": "grep -B 2 -A 40 \"llama.*nlp\\|nlp.*llama\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -80"
             }
           },
-          "id": "event-001164"
+          "id": "event-001148"
         },
         {
-          "source_line": 1165,
+          "source_line": 1149,
           "timestamp": "2026-05-28T05:39:31.751306+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1630,10 +1323,10 @@
             "tool": "Bash",
             "elapsed_ms": 201
           },
-          "id": "event-001165"
+          "id": "event-001149"
         },
         {
-          "source_line": 1166,
+          "source_line": 1150,
           "timestamp": "2026-05-28T05:39:34.435253+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1650,10 +1343,10 @@
               "command": "grep -E \"nlp_finetuning|nlp.*control|instruction.*control\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml | head -20"
             }
           },
-          "id": "event-001166"
+          "id": "event-001150"
         },
         {
-          "source_line": 1167,
+          "source_line": 1151,
           "timestamp": "2026-05-28T05:39:34.485948+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1668,10 +1361,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001167"
+          "id": "event-001151"
         },
         {
-          "source_line": 1168,
+          "source_line": 1152,
           "timestamp": "2026-05-28T05:39:36.953343+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1688,10 +1381,10 @@
               "command": "grep -B 5 -A 40 \"nlp_finetuning_control_v1:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/registry.yaml"
             }
           },
-          "id": "event-001168"
+          "id": "event-001152"
         },
         {
-          "source_line": 1169,
+          "source_line": 1153,
           "timestamp": "2026-05-28T05:39:37.014194+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1706,10 +1399,10 @@
             "tool": "Bash",
             "elapsed_ms": 60
           },
-          "id": "event-001169"
+          "id": "event-001153"
         },
         {
-          "source_line": 1170,
+          "source_line": 1154,
           "timestamp": "2026-05-28T05:39:39.354419+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1726,10 +1419,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f \\( -name \"*nlp*\" -o -name \"*control*\" \\) -name \"*.json\" 2>/dev/null | head -30"
             }
           },
-          "id": "event-001170"
+          "id": "event-001154"
         },
         {
-          "source_line": 1171,
+          "source_line": 1155,
           "timestamp": "2026-05-28T05:39:39.455340+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1744,10 +1437,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001171"
+          "id": "event-001155"
         },
         {
-          "source_line": 1172,
+          "source_line": 1156,
           "timestamp": "2026-05-28T05:39:42.469617+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1764,10 +1457,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/logs/workers/worker_run_phi3_nlp_control_20260523T231450_result.json"
             }
           },
-          "id": "event-001172"
+          "id": "event-001156"
         },
         {
-          "source_line": 1173,
+          "source_line": 1157,
           "timestamp": "2026-05-28T05:39:42.470000+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1782,10 +1475,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001173"
+          "id": "event-001157"
         },
         {
-          "source_line": 1174,
+          "source_line": 1158,
           "timestamp": "2026-05-28T05:39:45.682476+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1802,10 +1495,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/scripts/shuffled_token_control.py"
             }
           },
-          "id": "event-001174"
+          "id": "event-001158"
         },
         {
-          "source_line": 1175,
+          "source_line": 1159,
           "timestamp": "2026-05-28T05:39:45.733182+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1820,10 +1513,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001175"
+          "id": "event-001159"
         },
         {
-          "source_line": 1176,
+          "source_line": 1160,
           "timestamp": "2026-05-28T05:39:49.497505+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1840,10 +1533,10 @@
               "command": "grep -r \"ΔR\\|delta_r2\\|0\\.1555\\|0\\.1553\\|NLP.*control\\|instruction.*tuning\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs --include=\"*.tex\" --include=\"*.md\" | head -50"
             }
           },
-          "id": "event-001176"
+          "id": "event-001160"
         },
         {
-          "source_line": 1177,
+          "source_line": 1161,
           "timestamp": "2026-05-28T05:39:49.548253+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1858,10 +1551,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001177"
+          "id": "event-001161"
         },
         {
-          "source_line": 1178,
+          "source_line": 1162,
           "timestamp": "2026-05-28T05:39:53.362940+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1878,10 +1571,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*.json\" -path \"*nlp*\" -o -type f -name \"*control*summary*\" 2>/dev/null"
             }
           },
-          "id": "event-001178"
+          "id": "event-001162"
         },
         {
-          "source_line": 1179,
+          "source_line": 1163,
           "timestamp": "2026-05-28T05:39:53.413655+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1896,10 +1589,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001179"
+          "id": "event-001163"
         },
         {
-          "source_line": 1180,
+          "source_line": 1164,
           "timestamp": "2026-05-28T05:39:55.773100+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1916,10 +1609,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/checkpoints/nlp_finetuning_control_v1_DONE_20260522T125315.json"
             }
           },
-          "id": "event-001180"
+          "id": "event-001164"
         },
         {
-          "source_line": 1181,
+          "source_line": 1165,
           "timestamp": "2026-05-28T05:39:55.823719+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1934,10 +1627,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001181"
+          "id": "event-001165"
         },
         {
-          "source_line": 1182,
+          "source_line": 1166,
           "timestamp": "2026-05-28T05:39:58.233164+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1954,10 +1647,10 @@
               "command": "grep -A 10 \"tab:nlp_controls\\|Table.*NLP\" /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/appendix.tex | head -40"
             }
           },
-          "id": "event-001182"
+          "id": "event-001166"
         },
         {
-          "source_line": 1183,
+          "source_line": 1167,
           "timestamp": "2026-05-28T05:39:58.283804+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -1972,10 +1665,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001183"
+          "id": "event-001167"
         },
         {
-          "source_line": 1184,
+          "source_line": 1168,
           "timestamp": "2026-05-28T05:40:00.795114+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -1992,10 +1685,10 @@
               "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/results/ 2>/dev/null | head -20"
             }
           },
-          "id": "event-001184"
+          "id": "event-001168"
         },
         {
-          "source_line": 1185,
+          "source_line": 1169,
           "timestamp": "2026-05-28T05:40:00.845739+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2010,10 +1703,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001185"
+          "id": "event-001169"
         },
         {
-          "source_line": 1186,
+          "source_line": 1170,
           "timestamp": "2026-05-28T05:40:20.705256+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2028,10 +1721,10 @@
             "tool": "Agent",
             "elapsed_ms": 102601
           },
-          "id": "event-001186"
+          "id": "event-001170"
         },
         {
-          "source_line": 1187,
+          "source_line": 1171,
           "timestamp": "2026-05-28T05:40:27.080976+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2050,10 +1743,10 @@
               "prompt": "Search the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/ for files containing reference/untrained model ΔR² values and confidence interval (CI) data for Table 1 of the paper.\n\nI need to find:\n1. Bootstrap CI results for REFERENCE (untrained) models - look for files with \"reference\" or \"untrained\" in artifacts/ or results/\n2. The file `bootstrap_ci_results_summary.txt` in artifacts/_project/data/ — I need to see its full content including CI values\n3. Any JSON files with bootstrap CI data for trained AND reference conditions\n\nAlso find counterfactual experiment result files with Cohen's d values for Table 2. Look for files with \"counterfactual\" or \"cohen\" in results/ or artifacts/.\n\nReport file paths and complete content of relevant data sections."
             }
           },
-          "id": "event-001187"
+          "id": "event-001171"
         },
         {
-          "source_line": 1188,
+          "source_line": 1172,
           "timestamp": "2026-05-28T05:40:29.641294+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2070,10 +1763,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*.txt\" -o -name \"*.json\" | grep -E \"(bootstrap|reference|untrained|counterfactual|cohen)\" | head -30"
             }
           },
-          "id": "event-001188"
+          "id": "event-001172"
         },
         {
-          "source_line": 1189,
+          "source_line": 1173,
           "timestamp": "2026-05-28T05:40:29.744312+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2088,10 +1781,10 @@
             "tool": "Bash",
             "elapsed_ms": 103
           },
-          "id": "event-001189"
+          "id": "event-001173"
         },
         {
-          "source_line": 1190,
+          "source_line": 1174,
           "timestamp": "2026-05-28T05:40:32.256038+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2108,10 +1801,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f \\( -name \"*.txt\" -o -name \"*.json\" \\) 2>/dev/null | head -50"
             }
           },
-          "id": "event-001190"
+          "id": "event-001174"
         },
         {
-          "source_line": 1191,
+          "source_line": 1175,
           "timestamp": "2026-05-28T05:40:32.306681+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2126,10 +1819,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001191"
+          "id": "event-001175"
         },
         {
-          "source_line": 1192,
+          "source_line": 1176,
           "timestamp": "2026-05-28T05:40:35.042861+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2146,10 +1839,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*counterfactual*\" -o -name \"*cohens*\" -o -name \"*cohen*\" 2>/dev/null"
             }
           },
-          "id": "event-001192"
+          "id": "event-001176"
         },
         {
-          "source_line": 1193,
+          "source_line": 1177,
           "timestamp": "2026-05-28T05:40:35.143743+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2164,10 +1857,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001193"
+          "id": "event-001177"
         },
         {
-          "source_line": 1194,
+          "source_line": 1178,
           "timestamp": "2026-05-28T05:40:37.882186+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2184,10 +1877,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt"
             }
           },
-          "id": "event-001194"
+          "id": "event-001178"
         },
         {
-          "source_line": 1195,
+          "source_line": 1179,
           "timestamp": "2026-05-28T05:40:37.943641+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2202,10 +1895,10 @@
             "tool": "Read",
             "elapsed_ms": 61
           },
-          "id": "event-001195"
+          "id": "event-001179"
         },
         {
-          "source_line": 1196,
+          "source_line": 1180,
           "timestamp": "2026-05-28T05:40:40.204121+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2222,10 +1915,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_spatial.json"
             }
           },
-          "id": "event-001196"
+          "id": "event-001180"
         },
         {
-          "source_line": 1197,
+          "source_line": 1181,
           "timestamp": "2026-05-28T05:40:40.204978+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2240,10 +1933,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001197"
+          "id": "event-001181"
         },
         {
-          "source_line": 1198,
+          "source_line": 1182,
           "timestamp": "2026-05-28T05:40:42.765082+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2260,10 +1953,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/counterfactual_10tasks_trajectory.json"
             }
           },
-          "id": "event-001198"
+          "id": "event-001182"
         },
         {
-          "source_line": 1199,
+          "source_line": 1183,
           "timestamp": "2026-05-28T05:40:42.815767+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2278,10 +1971,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001199"
+          "id": "event-001183"
         },
         {
-          "source_line": 1200,
+          "source_line": 1184,
           "timestamp": "2026-05-28T05:40:45.476480+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2298,10 +1991,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/statistical_supplements/paired_cohens_d.json"
             }
           },
-          "id": "event-001200"
+          "id": "event-001184"
         },
         {
-          "source_line": 1201,
+          "source_line": 1185,
           "timestamp": "2026-05-28T05:40:45.627485+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2316,10 +2009,10 @@
             "tool": "Read",
             "elapsed_ms": 151
           },
-          "id": "event-001201"
+          "id": "event-001185"
         },
         {
-          "source_line": 1202,
+          "source_line": 1186,
           "timestamp": "2026-05-28T05:40:48.388453+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2336,10 +2029,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*bootstrap*\" | grep -E \"\\.json$\""
             }
           },
-          "id": "event-001202"
+          "id": "event-001186"
         },
         {
-          "source_line": 1203,
+          "source_line": 1187,
           "timestamp": "2026-05-28T05:40:48.439083+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2354,10 +2047,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001203"
+          "id": "event-001187"
         },
         {
-          "source_line": 1204,
+          "source_line": 1188,
           "timestamp": "2026-05-28T05:40:50.597567+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2374,10 +2067,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_training_effect.json"
             }
           },
-          "id": "event-001204"
+          "id": "event-001188"
         },
         {
-          "source_line": 1205,
+          "source_line": 1189,
           "timestamp": "2026-05-28T05:40:50.597994+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2392,10 +2085,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001205"
+          "id": "event-001189"
         },
         {
-          "source_line": 1206,
+          "source_line": 1190,
           "timestamp": "2026-05-28T05:40:53.409034+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2412,10 +2105,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_untrained_r2_per_layer.json"
             }
           },
-          "id": "event-001206"
+          "id": "event-001190"
         },
         {
-          "source_line": 1207,
+          "source_line": 1191,
           "timestamp": "2026-05-28T05:40:53.409394+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2430,10 +2123,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001207"
+          "id": "event-001191"
         },
         {
-          "source_line": 1208,
+          "source_line": 1192,
           "timestamp": "2026-05-28T05:40:56.573381+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2450,10 +2143,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*r2*\" -o -name \"*reference*\" | grep -E \"\\.(json|txt)$\" | head -20"
             }
           },
-          "id": "event-001208"
+          "id": "event-001192"
         },
         {
-          "source_line": 1209,
+          "source_line": 1193,
           "timestamp": "2026-05-28T05:40:56.674113+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2468,10 +2161,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001209"
+          "id": "event-001193"
         },
         {
-          "source_line": 1210,
+          "source_line": 1194,
           "timestamp": "2026-05-28T05:40:59.887363+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2488,10 +2181,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*nora*\" -o -name \"*tracvla*\" | grep -E \"\\.(json|txt)$\""
             }
           },
-          "id": "event-001210"
+          "id": "event-001194"
         },
         {
-          "source_line": 1211,
+          "source_line": 1195,
           "timestamp": "2026-05-28T05:40:59.938033+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2506,10 +2199,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001211"
+          "id": "event-001195"
         },
         {
-          "source_line": 1212,
+          "source_line": 1196,
           "timestamp": "2026-05-28T05:41:02.099817+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2526,10 +2219,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_untrained.json"
             }
           },
-          "id": "event-001212"
+          "id": "event-001196"
         },
         {
-          "source_line": 1213,
+          "source_line": 1197,
           "timestamp": "2026-05-28T05:41:02.100346+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2544,10 +2237,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001213"
+          "id": "event-001197"
         },
         {
-          "source_line": 1214,
+          "source_line": 1198,
           "timestamp": "2026-05-28T05:41:04.338049+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2564,10 +2257,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/nora_goal_r2_trained.json"
             }
           },
-          "id": "event-001214"
+          "id": "event-001198"
         },
         {
-          "source_line": 1215,
+          "source_line": 1199,
           "timestamp": "2026-05-28T05:41:04.388648+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2582,10 +2275,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001215"
+          "id": "event-001199"
         },
         {
-          "source_line": 1216,
+          "source_line": 1200,
           "timestamp": "2026-05-28T05:41:07.099548+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2602,10 +2295,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f \\( -name \"*tracvla*\" -o -name \"*phi3v*\" \\) -name \"*.json\" | head -20"
             }
           },
-          "id": "event-001216"
+          "id": "event-001200"
         },
         {
-          "source_line": 1217,
+          "source_line": 1201,
           "timestamp": "2026-05-28T05:41:07.150246+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2620,10 +2313,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001217"
+          "id": "event-001201"
         },
         {
-          "source_line": 1218,
+          "source_line": 1202,
           "timestamp": "2026-05-28T05:41:09.459108+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2640,10 +2333,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_untrained_r2_per_layer.json"
             }
           },
-          "id": "event-001218"
+          "id": "event-001202"
         },
         {
-          "source_line": 1219,
+          "source_line": 1203,
           "timestamp": "2026-05-28T05:41:09.459455+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2658,10 +2351,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001219"
+          "id": "event-001203"
         },
         {
-          "source_line": 1220,
+          "source_line": 1204,
           "timestamp": "2026-05-28T05:41:11.918955+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2678,10 +2371,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/ | grep -E \"bootstrap|delta|ci\""
             }
           },
-          "id": "event-001220"
+          "id": "event-001204"
         },
         {
-          "source_line": 1221,
+          "source_line": 1205,
           "timestamp": "2026-05-28T05:41:11.969622+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2696,10 +2389,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001221"
+          "id": "event-001205"
         },
         {
-          "source_line": 1222,
+          "source_line": 1206,
           "timestamp": "2026-05-28T05:41:14.881198+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2716,10 +2409,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*bootstrap*\" -name \"*.json\" | xargs ls -lh 2>/dev/null"
             }
           },
-          "id": "event-001222"
+          "id": "event-001206"
         },
         {
-          "source_line": 1223,
+          "source_line": 1207,
           "timestamp": "2026-05-28T05:41:14.932029+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2734,10 +2427,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001223"
+          "id": "event-001207"
         },
         {
-          "source_line": 1224,
+          "source_line": 1208,
           "timestamp": "2026-05-28T05:41:17.592180+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2754,10 +2447,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_task_ratio.json"
             }
           },
-          "id": "event-001224"
+          "id": "event-001208"
         },
         {
-          "source_line": 1225,
+          "source_line": 1209,
           "timestamp": "2026-05-28T05:41:17.592607+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2772,10 +2465,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001225"
+          "id": "event-001209"
         },
         {
-          "source_line": 1226,
+          "source_line": 1210,
           "timestamp": "2026-05-28T05:41:20.905502+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2792,10 +2485,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd -type f -name \"*bootstrap_ci*\" | grep results"
             }
           },
-          "id": "event-001226"
+          "id": "event-001210"
         },
         {
-          "source_line": 1227,
+          "source_line": 1211,
           "timestamp": "2026-05-28T05:41:21.006334+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2810,10 +2503,10 @@
             "tool": "Bash",
             "elapsed_ms": 100
           },
-          "id": "event-001227"
+          "id": "event-001211"
         },
         {
-          "source_line": 1228,
+          "source_line": 1212,
           "timestamp": "2026-05-28T05:41:24.822053+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2831,10 +2524,10 @@
               "limit": "200"
             }
           },
-          "id": "event-001228"
+          "id": "event-001212"
         },
         {
-          "source_line": 1229,
+          "source_line": 1213,
           "timestamp": "2026-05-28T05:41:24.822442+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2849,10 +2542,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001229"
+          "id": "event-001213"
         },
         {
-          "source_line": 1230,
+          "source_line": 1214,
           "timestamp": "2026-05-28T05:41:27.635141+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2869,10 +2562,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f \\( -name \"*goal*\" -o -name \"*spatial*\" \\) -name \"*.json\" | head -15"
             }
           },
-          "id": "event-001230"
+          "id": "event-001214"
         },
         {
-          "source_line": 1231,
+          "source_line": 1215,
           "timestamp": "2026-05-28T05:41:27.685762+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2887,10 +2580,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001231"
+          "id": "event-001215"
         },
         {
-          "source_line": 1232,
+          "source_line": 1216,
           "timestamp": "2026-05-28T05:41:35.133362+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2907,10 +2600,10 @@
               "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts -type f -name \"*.json\" | grep -E \"(r2|reference)\" | head -25"
             }
           },
-          "id": "event-001232"
+          "id": "event-001216"
         },
         {
-          "source_line": 1233,
+          "source_line": 1217,
           "timestamp": "2026-05-28T05:41:35.284415+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2925,10 +2618,10 @@
             "tool": "Bash",
             "elapsed_ms": 151
           },
-          "id": "event-001233"
+          "id": "event-001217"
         },
         {
-          "source_line": 1234,
+          "source_line": 1218,
           "timestamp": "2026-05-28T05:41:37.695661+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2945,10 +2638,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json"
             }
           },
-          "id": "event-001234"
+          "id": "event-001218"
         },
         {
-          "source_line": 1235,
+          "source_line": 1219,
           "timestamp": "2026-05-28T05:41:37.696192+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -2963,10 +2656,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001235"
+          "id": "event-001219"
         },
         {
-          "source_line": 1236,
+          "source_line": 1220,
           "timestamp": "2026-05-28T05:41:40.806076+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -2983,10 +2676,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_r2_per_layer.json"
             }
           },
-          "id": "event-001236"
+          "id": "event-001220"
         },
         {
-          "source_line": 1237,
+          "source_line": 1221,
           "timestamp": "2026-05-28T05:41:40.806582+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3001,10 +2694,10 @@
             "tool": "Read",
             "elapsed_ms": 0
           },
-          "id": "event-001237"
+          "id": "event-001221"
         },
         {
-          "source_line": 1238,
+          "source_line": 1222,
           "timestamp": "2026-05-28T05:41:44.170114+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3021,10 +2714,10 @@
               "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/ | grep -E \"(bootstrap|r2|reference|untrained)\""
             }
           },
-          "id": "event-001238"
+          "id": "event-001222"
         },
         {
-          "source_line": 1239,
+          "source_line": 1223,
           "timestamp": "2026-05-28T05:41:44.220776+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3039,10 +2732,10 @@
             "tool": "Bash",
             "elapsed_ms": 50
           },
-          "id": "event-001239"
+          "id": "event-001223"
         },
         {
-          "source_line": 1240,
+          "source_line": 1224,
           "timestamp": "2026-05-28T05:42:03.697285+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3057,10 +2750,10 @@
             "tool": "Agent",
             "elapsed_ms": 96616
           },
-          "id": "event-001240"
+          "id": "event-001224"
         },
         {
-          "source_line": 1241,
+          "source_line": 1225,
           "timestamp": "2026-05-28T05:42:07.443349+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3077,10 +2770,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/experiments.tex"
             }
           },
-          "id": "event-001241"
+          "id": "event-001225"
         },
         {
-          "source_line": 1242,
+          "source_line": 1226,
           "timestamp": "2026-05-28T05:42:07.896615+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3095,10 +2788,10 @@
             "tool": "Read",
             "elapsed_ms": 453
           },
-          "id": "event-001242"
+          "id": "event-001226"
         },
         {
-          "source_line": 1243,
+          "source_line": 1227,
           "timestamp": "2026-05-28T05:42:07.897090+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3115,10 +2808,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/bootstrap_ci_results_summary.txt"
             }
           },
-          "id": "event-001243"
+          "id": "event-001227"
         },
         {
-          "source_line": 1244,
+          "source_line": 1228,
           "timestamp": "2026-05-28T05:42:08.399130+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3133,10 +2826,10 @@
             "tool": "Read",
             "elapsed_ms": 502
           },
-          "id": "event-001244"
+          "id": "event-001228"
         },
         {
-          "source_line": 1245,
+          "source_line": 1229,
           "timestamp": "2026-05-28T05:42:08.399518+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3153,10 +2846,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/report/matrix_summary_table.md"
             }
           },
-          "id": "event-001245"
+          "id": "event-001229"
         },
         {
-          "source_line": 1246,
+          "source_line": 1230,
           "timestamp": "2026-05-28T05:42:08.450225+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3171,10 +2864,10 @@
             "tool": "Read",
             "elapsed_ms": 50
           },
-          "id": "event-001246"
+          "id": "event-001230"
         },
         {
-          "source_line": 1247,
+          "source_line": 1231,
           "timestamp": "2026-05-28T05:42:59.191307+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3193,10 +2886,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001247"
+          "id": "event-001231"
         },
         {
-          "source_line": 1248,
+          "source_line": 1232,
           "timestamp": "2026-05-28T05:43:00.497038+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3211,10 +2904,10 @@
             "tool": "Grep",
             "elapsed_ms": 1305
           },
-          "id": "event-001248"
+          "id": "event-001232"
         },
         {
-          "source_line": 1249,
+          "source_line": 1233,
           "timestamp": "2026-05-28T05:43:04.621132+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3233,10 +2926,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001249"
+          "id": "event-001233"
         },
         {
-          "source_line": 1250,
+          "source_line": 1234,
           "timestamp": "2026-05-28T05:43:05.023265+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3251,10 +2944,10 @@
             "tool": "Grep",
             "elapsed_ms": 402
           },
-          "id": "event-001250"
+          "id": "event-001234"
         },
         {
-          "source_line": 1251,
+          "source_line": 1235,
           "timestamp": "2026-05-28T05:43:09.641543+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3271,10 +2964,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v2/report/bootstrap_v2_summary_table.md"
             }
           },
-          "id": "event-001251"
+          "id": "event-001235"
         },
         {
-          "source_line": 1252,
+          "source_line": 1236,
           "timestamp": "2026-05-28T05:43:09.993364+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3289,10 +2982,10 @@
             "tool": "Read",
             "elapsed_ms": 351
           },
-          "id": "event-001252"
+          "id": "event-001236"
         },
         {
-          "source_line": 1253,
+          "source_line": 1237,
           "timestamp": "2026-05-28T05:43:10.094374+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3310,10 +3003,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd"
             }
           },
-          "id": "event-001253"
+          "id": "event-001237"
         },
         {
-          "source_line": 1254,
+          "source_line": 1238,
           "timestamp": "2026-05-28T05:43:10.145099+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3328,10 +3021,10 @@
             "tool": "Glob",
             "elapsed_ms": 50
           },
-          "id": "event-001254"
+          "id": "event-001238"
         },
         {
-          "source_line": 1255,
+          "source_line": 1239,
           "timestamp": "2026-05-28T05:43:32.178838+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3349,10 +3042,10 @@
               "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts"
             }
           },
-          "id": "event-001255"
+          "id": "event-001239"
         },
         {
-          "source_line": 1256,
+          "source_line": 1240,
           "timestamp": "2026-05-28T05:43:32.681439+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3367,10 +3060,10 @@
             "tool": "Glob",
             "elapsed_ms": 502
           },
-          "id": "event-001256"
+          "id": "event-001240"
         },
         {
-          "source_line": 1257,
+          "source_line": 1241,
           "timestamp": "2026-05-28T05:43:33.233993+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3390,10 +3083,10 @@
               "-i": "True"
             }
           },
-          "id": "event-001257"
+          "id": "event-001241"
         },
         {
-          "source_line": 1258,
+          "source_line": 1242,
           "timestamp": "2026-05-28T05:43:33.385106+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3408,10 +3101,10 @@
             "tool": "Grep",
             "elapsed_ms": 151
           },
-          "id": "event-001258"
+          "id": "event-001242"
         },
         {
-          "source_line": 1259,
+          "source_line": 1243,
           "timestamp": "2026-05-28T05:43:36.717766+00:00",
           "recorded_role": "tool",
           "role": "tool_call",
@@ -3428,10 +3121,10 @@
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/bootstrap_progress.md"
             }
           },
-          "id": "event-001259"
+          "id": "event-001243"
         },
         {
-          "source_line": 1260,
+          "source_line": 1244,
           "timestamp": "2026-05-28T05:43:36.969189+00:00",
           "recorded_role": "tool_result",
           "role": "tool_result",
@@ -3445,6 +3138,318 @@
             "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
             "tool": "Read",
             "elapsed_ms": 251
+          },
+          "id": "event-001244"
+        },
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-28T05:43:37.170382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/clustered_bootstrap_reanalysis_v3/**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts"
+            }
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-28T05:43:37.220993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table_347f5d.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/multi_threshold_table.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-28T05:43:40.585387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/clustered_bootstrap_reanalysis_v3/report/bootstrap_v3_summary_table.md"
+            }
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-28T05:43:40.585774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Clustered Bootstrap v3 (MCCV) — Summary Table\n2\t\n3\t> Generated: 2026-05-23 12:54 UTC | Method: Monte Carlo Cross-Validation (without-replacement permutation 80/20 demo split × 1000 iterations) | **20/20 conditions complete**\n4\t> Fix: v2 used with-replacement bootstrap causing train-test demo overlap; v3 uses without-replacement permutation (no leakage)\n5\t\n6\t## Main Results\n7\t\n8\t| Model | Suite | Condition | Peak Layer | Peak R² | Exit R² | Canonical Δ | CI Lower | CI Upper | Boot Mean | Boot Std | Δ∈CI | Substantial (>0.10) | Significant (CI≠0) |\n9\t|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n10\t| **TracVLA** | **goal** | **trained** | **L13** | **0.5399** | **0.2065** | **0.3334** | **0.2069** | **0.4508** | **0.3155** | **0.0642** | **Y** | **Y** | **YES** |\n11\t| TracVLA | goal | untrained | L11 | 0.5048 | 0.4403 | 0.0645 | -0.1084 | 0.0510 | -0.0232 | 0.0407 | N | N | NO |\n12\t| **TracVLA** | **spatial** | **trained** | **L13** | **0.6871** | **0.5315** | **0.1557** | **0.0906** | **0.2244** | **0.1539** | **0.0333** | **Y** | **Y** | **YES** |\n13\t| TracVLA | spatial | untrained | L4 | 0.6120 | 0.5643 | 0.0477 | -0.6067 | -0.4606 | -0.5427 | 0.0357 | N | N | YES‡ |\n14\t| **TracVLA** | **object** | **trained** | **L13** | **0.6315** | **0.2692** | **0.3623** | **0.2834** | **0.5038** | **0.3788** | **0.0582** | **Y** | **Y** | **YES** |\n15\t| TracVLA | object | untrained | L17 | 0.6274 | 0.6184 | 0.0090 | -0.0669 | 0.0169 | -0.0239 | 0.0208 | Y | N | NO |\n16\t| **TracVLA** | **long** | **trained** | **L13** | **0.5897** | **0.2319** | **0.3579** | **0.1714** | **0.5333** | **0.3236** | **0.0984** | **Y** | **Y** | **YES** |\n17\t| TracVLA | long | untrained | L9 | 0.5729 | 0.4757 | 0.0971 | -0.0208 | 0.1078 | 0.0396 | 0.0319 | Y | N | NO |\n18\t| **NORA** | **goal** | **trained** | **L8** | **0.4489** | **-0.0062** | **0.4551** | **0.9099†** | **1.6077†** | **1.2155** | **0.1786** | **N** | **Y** | **YES** |\n19\t| NORA | goal | untrained | L5 | 0.4203 | 0.\n…[truncated 2762 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-28T05:45:20.273210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json",
+              "limit": "10"
+            }
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-28T05:45:21.126844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"model\": \"OpenVLA\",\n3\t  \"num_seeds\": 15,\n4\t  \"layers\": {\n5\t    \"0\":  {\"mean\": 0.6293782009681067, \"std\": 0.01590777587362603},\n6\t    \"1\":  {\"mean\": 0.6252778359254202, \"std\": 0.017081903791733195},\n7\t    \"2\":  {\"mean\": 0.621837088962396, \"std\": 0.010432394770086556},\n8\t    \"3\":  {\"mean\": 0.6241441215078035, \"std\": 0.014337866519587874},\n9\t    \"4\":  {\"mean\": 0.6284724715352058, \"std\": 0.013520697585609172},\n10\t    \"5\":  {\"mean\": 0.6272318964203198, \"std\": 0.019330597231353806},"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 853
+          },
+          "id": "event-001250"
+        },
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-28T05:45:21.277868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_r2_per_layer.json",
+              "limit": "10"
+            }
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-28T05:45:21.679858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"model\": \"TracVLA-Phi3V\",\n3\t  \"num_seeds\": 15,\n4\t  \"layers\": {\n5\t    \"0\":  {\"mean\": -0.3300175793965658, \"std\": 0.0024442115929250957},\n6\t    \"1\":  {\"mean\": 0.44737683951854706, \"std\": 0.01347666472549912},\n7\t    \"2\":  {\"mean\": 0.5220886343717575, \"std\": 0.013551350851039149},\n8\t    \"3\":  {\"mean\": 0.5794965673486392, \"std\": 0.011067459256597707},\n9\t    \"4\":  {\"mean\": 0.5917514966924985, \"std\": 0.00920735628188394},\n10\t    \"5\":  {\"mean\": 0.6024446063240368, \"std\": 0.009504333202927895},"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-28T05:45:21.830915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-28T05:45:21.831290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWhen vision-language models are fine-tuned for robotic action prediction, which representational changes are associated with training and which are inherited from the pretrained backbone?\n2\tWe compare trained and reference checkpoints of three Vision-Language-Action models across four LIBERO task suites via layer-wise probes, attention profiling, and counterfactual perturbations.\n3\tWe find that VLM-to-VLA fine-tuning is associated with a consistent exit-layer collapse in action-probe decodability ($\\Delta R^2 = 0.16$--$0.46$) that is absent in VLA-to-VLA transitions ($\\Delta R^2 < 0.10$) and in three NLP instruction-tuning controls ($\\Delta R^2 = 0.000$), suggesting this reorganization is specific to action-oriented training rather than a generic fine-tuning artifact.\n4\tComplementary analyses reveal that trained VLAs develop substantial sensitivity to instruction content while the dominant attention patterns at early layers largely pre-exist in pretrained backbones.\n5\tThese findings provide a cross-architecture decomposition of instruction routing in fine-tuned VLAs, disentangling training-associated representational changes from inherited structure.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-28T05:45:25.244270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/openvla_r2_per_layer.json",
+              "offset": "10",
+              "limit": "30"
+            }
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-28T05:45:25.696439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\t    \"5\":  {\"mean\": 0.6272318964203198, \"std\": 0.019330597231353806},\n11\t    \"6\":  {\"mean\": 0.6314817001422247, \"std\": 0.011524755705076203},\n12\t    \"7\":  {\"mean\": 0.6324368730187416, \"std\": 0.012315648911771256},\n13\t    \"8\":  {\"mean\": 0.6354708509643872, \"std\": 0.012957347356081686},\n14\t    \"9\":  {\"mean\": 0.637229510943095, \"std\": 0.008304004114991326},\n15\t    \"10\": {\"mean\": 0.6237683342893917, \"std\": 0.014275750178811034},\n16\t    \"11\": {\"mean\": 0.6225494109590848, \"std\": 0.016471075691577266},\n17\t    \"12\": {\"mean\": 0.6261619132757187, \"std\": 0.010752665491141719},\n18\t    \"13\": {\"mean\": 0.6238025505344074, \"std\": 0.01310506809332562},\n19\t    \"14\": {\"mean\": 0.6227618340651195, \"std\": 0.01456915150758173},\n20\t    \"15\": {\"mean\": 0.6188502022624015, \"std\": 0.011546277846315773},\n21\t    \"16\": {\"mean\": 0.6187362381815912, \"std\": 0.010570666046957758},\n22\t    \"17\": {\"mean\": 0.6094301337997119, \"std\": 0.02280932230907202},\n23\t    \"18\": {\"mean\": 0.6133083292841911, \"std\": 0.01730664598528232},\n24\t    \"19\": {\"mean\": 0.6132749947905541, \"std\": 0.012662588280684714},\n25\t    \"20\": {\"mean\": 0.6112931288282077, \"std\": 0.013897431803822786},\n26\t    \"21\": {\"mean\": 0.5893784867723784, \"std\": 0.023067149681486286},\n27\t    \"22\": {\"mean\": 0.585996690193812, \"std\": 0.012667110681314478},\n28\t    \"23\": {\"mean\": 0.5778672717014949, \"std\": 0.0283171072149592},\n29\t    \"24\": {\"mean\": 0.5771134450038274, \"std\": 0.01300088241436661},\n30\t    \"25\": {\"mean\": 0.5527897679805756, \"std\": 0.05324904137024509},\n31\t    \"26\": {\"mean\": 0.5354746784766514, \"std\": 0.046278761709299746},\n32\t    \"27\": {\"mean\": 0.5516974141200385, \"std\": 0.027359679021464765},\n33\t    \"28\": {\"mean\": 0.5440060196320216, \"std\": 0.03369428877394615},\n34\t    \"29\": {\"mean\": 0.5302136395374933, \"std\": 0.033750399780437416},\n35\t    \"30\": {\"mean\": 0.5110754128297169, \"std\": 0.028921753017828702},\n36\t    \"31\": {\"mean\": 0.48756383419036864, \"std\": 0.05406441184964477},\n37\t    \"32\": {\"mean\": 0.5349928361177445, \"std\": 0.0146024975004439\n…[truncated 13 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-28T05:45:25.797272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_15/projects/vla-ssd/artifacts/_project/data/phi3v_r2_per_layer.json",
+              "offset": "10",
+              "limit": "30"
+            }
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-28T05:45:25.898305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\t    \"5\":  {\"mean\": 0.6024446063240368, \"std\": 0.009504333202927895},\n11\t    \"6\":  {\"mean\": 0.6091380843520166, \"std\": 0.012111249371055096},\n12\t    \"7\":  {\"mean\": 0.6155911266803741, \"std\": 0.013811991552874455},\n13\t    \"8\":  {\"mean\": 0.6154560745755833, \"std\": 0.00990640839271942},\n14\t    \"9\":  {\"mean\": 0.6171611827611924, \"std\": 0.012730577937484498},\n15\t    \"10\": {\"mean\": 0.6246430719892184, \"std\": 0.006608388085080074},\n16\t    \"11\": {\"mean\": 0.6339765515923499, \"std\": 0.008936482273128965},\n17\t    \"12\": {\"mean\": 0.6323633710543315, \"std\": 0.0054172386077892066},\n18\t    \"13\": {\"mean\": 0.6325304701924325, \"std\": 0.008327142305234195},\n19\t    \"14\": {\"mean\": 0.6308441186944642, \"std\": 0.009330320613318973},\n20\t    \"15\": {\"mean\": 0.6332035609086355, \"std\": 0.009915012397961867},\n21\t    \"16\": {\"mean\": 0.6310126954317092, \"std\": 0.009954055667006736},\n22\t    \"17\": {\"mean\": 0.6333489185571671, \"std\": 0.006845134314360261},\n23\t    \"18\": {\"mean\": 0.6290813817580541, \"std\": 0.012377652980742787},\n24\t    \"19\": {\"mean\": 0.6273230808973314, \"std\": 0.007598567957912835},\n25\t    \"20\": {\"mean\": 0.6275140862663589, \"std\": 0.010645768836066253},\n26\t    \"21\": {\"mean\": 0.624319456020991, \"std\": 0.007360734499030173},\n27\t    \"22\": {\"mean\": 0.6161847920219103, \"std\": 0.008212724831158834},\n28\t    \"23\": {\"mean\": 0.6133678011099498, \"std\": 0.006882683099876444},\n29\t    \"24\": {\"mean\": 0.6102222133676211, \"std\": 0.00837867692267849},\n30\t    \"25\": {\"mean\": 0.6092252897222837, \"std\": 0.009873404491878976},\n31\t    \"26\": {\"mean\": 0.6108662950992584, \"std\": 0.0075454971310194505},\n32\t    \"27\": {\"mean\": 0.604224916001161, \"std\": 0.011279920561386192},\n33\t    \"28\": {\"mean\": 0.5955912320812543, \"std\": 0.014711232420976692},\n34\t    \"29\": {\"mean\": 0.5850252799193064, \"std\": 0.010296100851591628},\n35\t    \"30\": {\"mean\": 0.5744937758644423, \"std\": 0.007860621155253354},\n36\t    \"31\": {\"mean\": 0.5568493919571241, \"std\": 0.015688769799723612},\n37\t    \"32\": {\"mean\": 0.550495391090711, \"std\": 0.00719092\n…[truncated 23 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-28T05:46:06.490563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-28T05:46:06.591535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9e9aef1687e6abd097aa0edaf0551ee3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
           },
           "id": "event-001260"
         }

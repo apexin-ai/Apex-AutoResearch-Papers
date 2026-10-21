@@ -8,7 +8,7 @@
 
 ### Tool call
 
-_source line 2500 · 2026-05-23T10:28:01.113383+00:00_
+_source line 2494 · 2026-05-23T10:28:01.113383+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -48,7 +48,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2501 · 2026-05-23T10:28:02.532027+00:00_
+_source line 2495 · 2026-05-23T10:28:02.532027+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -70,7 +70,7 @@ _source line 2501 · 2026-05-23T10:28:02.532027+00:00_
 
 ### Assistant
 
-_source line 2502 · 2026-05-23T10:28:15.144091+00:00_
+_source line 2496 · 2026-05-23T10:28:15.144091+00:00_
 
 Round 1 已启动：
 - 视觉审查 Agent：已派发（fire-and-forget）
@@ -102,7 +102,7 @@ Round 1 已启动：
 
 ### User
 
-_source line 2503 · 2026-05-23T10:34:45.947414+00:00_
+_source line 2497 · 2026-05-23T10:34:45.947414+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -260,7 +260,7 @@ _source line 2503 · 2026-05-23T10:34:45.947414+00:00_
 
 ### Assistant
 
-_source line 2504 · 2026-05-23T10:34:58.904047+00:00_
+_source line 2498 · 2026-05-23T10:34:58.904047+00:00_
 
 Reviewer 1 的审稿意见已收到。等待 Reviewer 2 完成审稿后进入交叉分享。
 
@@ -287,7 +287,7 @@ Reviewer 1 的审稿意见已收到。等待 Reviewer 2 完成审稿后进入交
 
 ### User
 
-_source line 2505 · 2026-05-23T10:35:01.491150+00:00_
+_source line 2499 · 2026-05-23T10:35:01.491150+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -319,7 +319,7 @@ _source line 2505 · 2026-05-23T10:35:01.491150+00:00_
 
 ### Assistant
 
-_source line 2506 · 2026-05-23T10:35:16.811809+00:00_
+_source line 2500 · 2026-05-23T10:35:16.811809+00:00_
 
 Reviewer 1 审稿已收到。等待 Reviewer 2 完成审稿后进入交叉分享环节。
 
@@ -346,7 +346,7 @@ Reviewer 1 审稿已收到。等待 Reviewer 2 完成审稿后进入交叉分享
 
 ### User
 
-_source line 2507 · 2026-05-23T10:38:24.641960+00:00_
+_source line 2501 · 2026-05-23T10:38:24.641960+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 审稿意见 — OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints
@@ -514,7 +514,7 @@ OntoCoDec 提出将 IE 本体编译为两层 token 级解码约束的框架：gr
 
 ### Tool call
 
-_source line 2508 · 2026-05-23T10:38:58.327447+00:00_
+_source line 2502 · 2026-05-23T10:38:58.327447+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -554,7 +554,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2509 · 2026-05-23T10:39:16.036050+00:00_
+_source line 2503 · 2026-05-23T10:39:16.036050+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -576,7 +576,7 @@ _source line 2509 · 2026-05-23T10:39:16.036050+00:00_
 
 ### Tool call
 
-_source line 2510 · 2026-05-23T10:39:16.086713+00:00_
+_source line 2504 · 2026-05-23T10:39:16.086713+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -616,7 +616,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2511 · 2026-05-23T10:39:17.395885+00:00_
+_source line 2505 · 2026-05-23T10:39:17.395885+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -638,7 +638,7 @@ _source line 2511 · 2026-05-23T10:39:17.395885+00:00_
 
 ### Assistant
 
-_source line 2512 · 2026-05-23T10:39:21.003924+00:00_
+_source line 2506 · 2026-05-23T10:39:21.003924+00:00_
 
 交叉分享已派发，等待两位 Reviewer 的逐条回应。
 
@@ -665,7 +665,7 @@ _source line 2512 · 2026-05-23T10:39:21.003924+00:00_
 
 ### User
 
-_source line 2513 · 2026-05-23T10:39:23.543078+00:00_
+_source line 2507 · 2026-05-23T10:39:23.543078+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿意见已提交给 Review Director。
@@ -694,7 +694,7 @@ _source line 2513 · 2026-05-23T10:39:23.543078+00:00_
 
 ### Assistant
 
-_source line 2514 · 2026-05-23T10:39:30.254214+00:00_
+_source line 2508 · 2026-05-23T10:39:30.254214+00:00_
 
 No response requested.
 
@@ -721,7 +721,7 @@ No response requested.
 
 ### User
 
-_source line 2515 · 2026-05-23T10:41:49.105098+00:00_
+_source line 2509 · 2026-05-23T10:41:49.105098+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 对 Reviewer 1 审稿意见的逐条回应
@@ -877,7 +877,7 @@ R1 提出的要点与我的 N2 互相印证：缺少与 training-time constraint
 
 ### Assistant
 
-_source line 2516 · 2026-05-23T10:41:57.101006+00:00_
+_source line 2510 · 2026-05-23T10:41:57.101006+00:00_
 
 Reviewer 2 的交叉回应已收到。等待 Reviewer 1 的交叉回应。
 
@@ -904,7 +904,7 @@ Reviewer 2 的交叉回应已收到。等待 Reviewer 1 的交叉回应。
 
 ### User
 
-_source line 2517 · 2026-05-23T10:41:59.594876+00:00_
+_source line 2511 · 2026-05-23T10:41:59.594876+00:00_
 
 [Reviewer 2 审稿结果]:
 已提交对 Reviewer 1 审稿意见的逐条回应。核心结论：
@@ -932,7 +932,7 @@ _source line 2517 · 2026-05-23T10:41:59.594876+00:00_
 
 ### Assistant
 
-_source line 2518 · 2026-05-23T10:42:06.231375+00:00_
+_source line 2512 · 2026-05-23T10:42:06.231375+00:00_
 
 No response requested.
 
@@ -959,7 +959,7 @@ No response requested.
 
 ### User
 
-_source line 2519 · 2026-05-23T10:42:36.344514+00:00_
+_source line 2513 · 2026-05-23T10:42:36.344514+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -1097,7 +1097,7 @@ R2 的 12 个问题中，我全部 AGREE。其中 N1（WikiEvents contribution o
 
 ### Tool call
 
-_source line 2520 · 2026-05-23T10:43:08.224974+00:00_
+_source line 2514 · 2026-05-23T10:43:08.224974+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -1131,7 +1131,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 2521 · 2026-05-23T10:43:08.275765+00:00_
+_source line 2515 · 2026-05-23T10:43:08.275765+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T10:27:23.095879+00:00\", \"completed_at\": \"2026-05-23T10:31:47.427271+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-8\", \"message\": \"主文 8 页仅 3 个 display items（1 figure + 2 tables），对于实证型论文偏少（通常 5-8 个）。大量实验结果全部推入附录，审稿人在主文中缺乏足够的视觉锚点来快速评估实验力度。建议将至少 1-2 个关键结果表或 ablation 图提至主文\"}, {\"severity\": \"warning\", \"dimension\": \"page 4-5\", \"message\": \"Method 段连续 2 页纯文本，无 figure/table/algorithm box 穿插。Section 3.1-3.3 的解码策略描述可考虑用 Algorithm 伪代码或流程图打断文字墙\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"Related Work + Discussion/Conclusion 合占 1 整页纯文本，紧接在 Table 2（page 7）之后。Discussion 段无任何总结性图表（如 radar chart 或对比概览图）辅助审稿人快速抓取核心 takeaway\"}, {\"severity\": \"info\", \"dimension\": \"page 32\", \"message\": \"Table 35 使用红色删除线+绿色新增文字展示纠错案例。红/绿对比对色盲用户不友好，建议改为蓝/橙或增加额外视觉标记（如下划线/波浪线）\"}, {\"severity\": \"info\", \"dimension\": \"page 39\", \"message\": \"末页内容填充约 60-65%，略低于 2/3 标准。可通过调整附录末尾表格分布或微调间距改善\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"Figure 1 内部组件标注文字偏小（约正文 60%），在打印场景下可能影响可读性。建议适当增大关键标签字号\"}, {\"severity\": \"info\", \"dimension\": \"page 25, 28, 31\", \"message\": \"多页堆叠 4 张表格，信息密度极高。虽为附录可接受，但部分表格（如 Table 18/19、Table 24/25/26/27）内容相关可考虑合并以减少视觉碎片化\"}, {\"severity\": \"info\", \"dimension\": \"page 6-7\", \"message\": \"Table 1 和 Table 2 使用 booktabs 风格、最优值加粗标注，格式专业。小数位数在同列内一致\"}, {\"severity\": \"info\", \"dimension\": \"page 13\", \"message\": \"Table 3 展示 prompt 模板，内部文字较小但作为附录示例可接受\"}, {\"severity\": \"info\", \"dimension\": \"page 20\", \"message\": \"Figure 2 散点图、[page 23] Figure 3 柱状图、[page 29] Figure 4 双面板图——附录图表分辨率充足、轴标签清晰\"}], \"counts\": {\"critical\": 0, \"warning\": 3, \"info\": 7}}, \"error\": null, \"metadata\": {}}"}
 
@@ -1153,7 +1153,7 @@ _source line 2521 · 2026-05-23T10:43:08.275765+00:00_
 
 ### Tool call
 
-_source line 2522 · 2026-05-23T10:43:09.733862+00:00_
+_source line 2516 · 2026-05-23T10:43:09.733862+00:00_
 
 called Read
 
@@ -1187,7 +1187,7 @@ called Read
 
 ### Tool result
 
-_source line 2523 · 2026-05-23T10:43:09.985889+00:00_
+_source line 2517 · 2026-05-23T10:43:09.985889+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R24 Action Matrix dispatched, 2026-05-23
@@ -1267,7 +1267,7 @@ _source line 2523 · 2026-05-23T10:43:09.985889+00:00_
 
 ### Tool call
 
-_source line 2524 · 2026-05-23T10:46:42.662882+00:00_
+_source line 2518 · 2026-05-23T10:46:42.662882+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -1303,7 +1303,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 2525 · 2026-05-23T10:46:42.765763+00:00_
+_source line 2519 · 2026-05-23T10:46:42.765763+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 21328}, \"error\": \"\"}"}
 
@@ -1325,7 +1325,7 @@ _source line 2525 · 2026-05-23T10:46:42.765763+00:00_
 
 ### Tool call
 
-_source line 2526 · 2026-05-23T10:49:48.806273+00:00_
+_source line 2520 · 2026-05-23T10:49:48.806273+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -1367,7 +1367,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 2527 · 2026-05-23T10:49:52.975010+00:00_
+_source line 2521 · 2026-05-23T10:49:52.975010+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -1389,7 +1389,7 @@ _source line 2527 · 2026-05-23T10:49:52.975010+00:00_
 
 ### Assistant
 
-_source line 2528 · 2026-05-23T10:50:06.546826+00:00_
+_source line 2522 · 2026-05-23T10:50:06.546826+00:00_
 
 审稿报告已投递。
 
@@ -1425,7 +1425,7 @@ _source line 2528 · 2026-05-23T10:50:06.546826+00:00_
 
 ### User
 
-_source line 2529 · 2026-05-23T10:50:09.090615+00:00_
+_source line 2523 · 2026-05-23T10:50:09.090615+00:00_
 
 [Reviewer 1 审稿结果]:
 已提交对 Reviewer 2 全部 12 个问题的逐条回应。核心判断：
@@ -1451,7 +1451,7 @@ _source line 2529 · 2026-05-23T10:50:09.090615+00:00_
 
 ### Assistant
 
-_source line 2530 · 2026-05-23T10:50:24.357658+00:00_
+_source line 2524 · 2026-05-23T10:50:24.357658+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -1487,7 +1487,7 @@ _source line 2530 · 2026-05-23T10:50:24.357658+00:00_
 
 ### User
 
-_source line 2531 · 2026-05-23T12:31:37.833459+00:00_
+_source line 2525 · 2026-05-23T12:31:37.833459+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -1518,7 +1518,7 @@ _source line 2531 · 2026-05-23T12:31:37.833459+00:00_
 
 ### Tool call
 
-_source line 2532 · 2026-05-23T12:31:44.333117+00:00_
+_source line 2526 · 2026-05-23T12:31:44.333117+00:00_
 
 called Read
 
@@ -1552,7 +1552,7 @@ called Read
 
 ### Tool result
 
-_source line 2533 · 2026-05-23T12:31:44.384320+00:00_
+_source line 2527 · 2026-05-23T12:31:44.384320+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -1642,7 +1642,7 @@ _source line 2533 · 2026-05-23T12:31:44.384320+00:00_
 
 ### Tool call
 
-_source line 2534 · 2026-05-23T12:31:53.777903+00:00_
+_source line 2528 · 2026-05-23T12:31:53.777903+00:00_
 
 called ToolSearch
 
@@ -1678,7 +1678,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2535 · 2026-05-23T12:31:53.829383+00:00_
+_source line 2529 · 2026-05-23T12:31:53.829383+00:00_
 
 
 
@@ -1700,7 +1700,7 @@ _source line 2535 · 2026-05-23T12:31:53.829383+00:00_
 
 ### Tool call
 
-_source line 2536 · 2026-05-23T12:31:56.842289+00:00_
+_source line 2530 · 2026-05-23T12:31:56.842289+00:00_
 
 called ToolSearch
 
@@ -1736,7 +1736,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2537 · 2026-05-23T12:31:56.892949+00:00_
+_source line 2531 · 2026-05-23T12:31:56.892949+00:00_
 
 
 
@@ -1758,7 +1758,7 @@ _source line 2537 · 2026-05-23T12:31:56.892949+00:00_
 
 ### Tool call
 
-_source line 2538 · 2026-05-23T12:32:00.106597+00:00_
+_source line 2532 · 2026-05-23T12:32:00.106597+00:00_
 
 called ToolSearch
 
@@ -1794,7 +1794,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2539 · 2026-05-23T12:32:00.157347+00:00_
+_source line 2533 · 2026-05-23T12:32:00.157347+00:00_
 
 No matching deferred tools found
 
@@ -1816,7 +1816,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2540 · 2026-05-23T12:32:09.151857+00:00_
+_source line 2534 · 2026-05-23T12:32:09.151857+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -1850,7 +1850,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 2541 · 2026-05-23T12:32:11.060036+00:00_
+_source line 2535 · 2026-05-23T12:32:11.060036+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-23T11:28:52Z; do not edit — regenerated by auto_build_report_facts) -->\n## 📊 当前状态（auto-derived from registry）\n\n**总计**: 153 个实验 — DONE 151, PREPARING 2\n**DONE 分布**: failed 12, killed 4, negative 15, success 120\n\n### 💾 磁盘余量\n- **westd-16980**:\n  - `/init`: 150M/150M 可用（已用 0%）\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\n  - `/usr/bin/nvidia-smi`: 432G/879G 可用（已用 49%）\n- **westd-21461**:\n  - `/init`: 150M/150M 可用（已用 1%）\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\n\n### 🏃 RUNNING\n_（无）_\n\n### 📌 最近完成 (top 5)\n- `sf2_70b_prompt_sensitivity` [failed] — 2026-05-23T11:28:47 — process dead 5× with no sentinel/W&B — auto-resolved as failed\n- `eval_70b_lora_docred_200_full_s2` [negative] — 2026-05-23T08:04:47\n- `sf2_qwen_int4_docred_s1` [success] — 2026-05-23T07:57:03\n- `sf2_llama_int4_docred_s1` [success] — 2026-05-23T07:13:24\n- `sf2_llama_int4_scierc_s1` [success] — 2026-05-23T05:35:25\n\n### 🔴 最近失败原因 (top 3)\n- `sf2_70b_prompt_sensitivity`: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n&lt;!-- AUTO-FACTS-END -->\n\n---\n\
 …[truncated 1934 chars]
@@ -1873,7 +1873,7 @@ _source line 2541 · 2026-05-23T12:32:11.060036+00:00_
 
 ### Tool call
 
-_source line 2542 · 2026-05-23T12:32:11.060414+00:00_
+_source line 2536 · 2026-05-23T12:32:11.060414+00:00_
 
 called Read
 
@@ -1907,7 +1907,7 @@ called Read
 
 ### Tool result
 
-_source line 2543 · 2026-05-23T12:32:11.813071+00:00_
+_source line 2537 · 2026-05-23T12:32:11.813071+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -2000,7 +2000,7 @@ _source line 2543 · 2026-05-23T12:32:11.813071+00:00_
 
 ### Tool call
 
-_source line 2544 · 2026-05-23T12:32:11.813578+00:00_
+_source line 2538 · 2026-05-23T12:32:11.813578+00:00_
 
 called WebSearch
 
@@ -2034,7 +2034,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 2545 · 2026-05-23T12:32:11.864092+00:00_
+_source line 2539 · 2026-05-23T12:32:11.864092+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -2068,7 +2068,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 2546 · 2026-05-23T12:32:19.601042+00:00_
+_source line 2540 · 2026-05-23T12:32:19.601042+00:00_
 
 Web search results for query: "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org"
 
@@ -2095,7 +2095,7 @@ I found information about EMNLP 2026, though the search results primarily contai
 
 ### Tool result
 
-_source line 2547 · 2026-05-23T12:32:19.601576+00:00_
+_source line 2541 · 2026-05-23T12:32:19.601576+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -2117,7 +2117,7 @@ _source line 2547 · 2026-05-23T12:32:19.601576+00:00_
 
 ### Tool call
 
-_source line 2548 · 2026-05-23T12:32:26.481406+00:00_
+_source line 2542 · 2026-05-23T12:32:26.481406+00:00_
 
 called WebSearch
 
@@ -2151,7 +2151,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 2549 · 2026-05-23T12:32:27.423574+00:00_
+_source line 2543 · 2026-05-23T12:32:27.423574+00:00_
 
 called WebSearch
 
@@ -2185,7 +2185,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 2550 · 2026-05-23T12:32:28.161510+00:00_
+_source line 2544 · 2026-05-23T12:32:28.161510+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -2223,7 +2223,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 2551 · 2026-05-23T12:32:33.633251+00:00_
+_source line 2545 · 2026-05-23T12:32:33.633251+00:00_
 
 Web search results for query: "EMNLP 2026 main conference call for papers submission deadline ARR commitment"
 
@@ -2250,7 +2250,7 @@ Based on the web search results, here is the information about the EMNLP 2026 ma
 
 ### Tool result
 
-_source line 2552 · 2026-05-23T12:32:33.984279+00:00_
+_source line 2546 · 2026-05-23T12:32:33.984279+00:00_
 
 Web search results for query: "ACL Rolling Review 2026 submission guidelines page limit format requirements"
 
@@ -2283,7 +2283,7 @@ Upon acceptance, final versions of long papers will be given one additional page
 
 ### Tool result
 
-_source line 2553 · 2026-05-23T12:32:34.038436+00:00_
+_source line 2547 · 2026-05-23T12:32:34.038436+00:00_
 
 {"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'schema_semantic_constrained_ie'.\", \"metadata\": {}}"}
 
@@ -2305,7 +2305,7 @@ _source line 2553 · 2026-05-23T12:32:34.038436+00:00_
 
 ### Tool call
 
-_source line 2554 · 2026-05-23T12:33:01.007565+00:00_
+_source line 2548 · 2026-05-23T12:33:01.007565+00:00_
 
 called Read
 
@@ -2339,7 +2339,7 @@ called Read
 
 ### Tool result
 
-_source line 2555 · 2026-05-23T12:33:01.911693+00:00_
+_source line 2549 · 2026-05-23T12:33:01.911693+00:00_
 
 1	\begin{abstract}
 2	Large language models for information extraction generate structurally valid but ontologically invalid triples---where entity types violate the ontology's domain/range constraints.
@@ -2374,7 +2374,7 @@ _source line 2555 · 2026-05-23T12:33:01.911693+00:00_
 
 ### Tool call
 
-_source line 2556 · 2026-05-23T12:33:01.962308+00:00_
+_source line 2550 · 2026-05-23T12:33:01.962308+00:00_
 
 called Read
 
@@ -2408,7 +2408,7 @@ called Read
 
 ### Tool result
 
-_source line 2557 · 2026-05-23T12:33:01.962918+00:00_
+_source line 2551 · 2026-05-23T12:33:01.962918+00:00_
 
 1	% Section 1: Introduction (compressed, 669→~550 words)
 2	
@@ -2448,7 +2448,7 @@ _source line 2557 · 2026-05-23T12:33:01.962918+00:00_
 
 ### Tool call
 
-_source line 2558 · 2026-05-23T12:33:02.415205+00:00_
+_source line 2552 · 2026-05-23T12:33:02.415205+00:00_
 
 called Read
 
@@ -2482,7 +2482,7 @@ called Read
 
 ### Tool result
 
-_source line 2559 · 2026-05-23T12:33:03.520088+00:00_
+_source line 2553 · 2026-05-23T12:33:03.520088+00:00_
 
 1	% Section 2: Background (compressed)
 2	
@@ -2523,7 +2523,7 @@ _source line 2559 · 2026-05-23T12:33:03.520088+00:00_
 
 ### Tool call
 
-_source line 2560 · 2026-05-23T12:33:03.520462+00:00_
+_source line 2554 · 2026-05-23T12:33:03.520462+00:00_
 
 called Read
 
@@ -2557,7 +2557,7 @@ called Read
 
 ### Tool result
 
-_source line 2561 · 2026-05-23T12:33:04.336562+00:00_
+_source line 2555 · 2026-05-23T12:33:04.336562+00:00_
 
 1	% Section 3 — Method (Draft)
 2	% OntoCoDec: Type-Valid Information Extraction
@@ -2602,7 +2602,7 @@ _source line 2561 · 2026-05-23T12:33:04.336562+00:00_
 
 ### Tool call
 
-_source line 2562 · 2026-05-23T12:33:04.387929+00:00_
+_source line 2556 · 2026-05-23T12:33:04.387929+00:00_
 
 called Bash
 
@@ -2638,7 +2638,7 @@ called Bash
 
 ### Tool result
 
-_source line 2563 · 2026-05-23T12:33:04.790427+00:00_
+_source line 2557 · 2026-05-23T12:33:04.790427+00:00_
 
 -rw-r--r-- 1 ubuntu ubuntu 617668 May 23 12:24 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_26/submitted.pdf
 PDF_EXISTS
@@ -2661,7 +2661,7 @@ PDF_EXISTS
 
 ### Tool call
 
-_source line 2564 · 2026-05-23T12:33:04.941315+00:00_
+_source line 2558 · 2026-05-23T12:33:04.941315+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -2699,7 +2699,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 2565 · 2026-05-23T12:33:05.042886+00:00_
+_source line 2559 · 2026-05-23T12:33:05.042886+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 88\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-
 …[truncated 1469 chars]
@@ -2722,7 +2722,7 @@ _source line 2565 · 2026-05-23T12:33:05.042886+00:00_
 
 ### Tool call
 
-_source line 2566 · 2026-05-23T12:33:13.628026+00:00_
+_source line 2560 · 2026-05-23T12:33:13.628026+00:00_
 
 called Read
 
@@ -2756,7 +2756,7 @@ called Read
 
 ### Tool result
 
-_source line 2567 · 2026-05-23T12:33:14.593182+00:00_
+_source line 2561 · 2026-05-23T12:33:14.593182+00:00_
 
 1	% Section: Constraint Composition (compressed, 787→~500 words)
 2	
@@ -2800,7 +2800,7 @@ _source line 2567 · 2026-05-23T12:33:14.593182+00:00_
 
 ### Tool call
 
-_source line 2568 · 2026-05-23T12:33:14.759966+00:00_
+_source line 2562 · 2026-05-23T12:33:14.759966+00:00_
 
 called Read
 
@@ -2834,7 +2834,7 @@ called Read
 
 ### Tool result
 
-_source line 2569 · 2026-05-23T12:33:15.563590+00:00_
+_source line 2563 · 2026-05-23T12:33:15.563590+00:00_
 
 1	% §5 Setup (compressed from Violation Landscape)
 2	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
@@ -2872,7 +2872,7 @@ _source line 2569 · 2026-05-23T12:33:15.563590+00:00_
 
 ### Tool call
 
-_source line 2570 · 2026-05-23T12:33:15.714598+00:00_
+_source line 2564 · 2026-05-23T12:33:15.714598+00:00_
 
 called Read
 
@@ -2906,7 +2906,7 @@ called Read
 
 ### Tool result
 
-_source line 2571 · 2026-05-23T12:33:16.317593+00:00_
+_source line 2565 · 2026-05-23T12:33:16.317593+00:00_
 
 1	% Section 5 — SciERC Results (Draft)
 2	% Data source: Phase 2 SciERC registry experiments
@@ -2990,7 +2990,7 @@ _source line 2571 · 2026-05-23T12:33:16.317593+00:00_
 
 ### Tool call
 
-_source line 2572 · 2026-05-23T12:33:16.318054+00:00_
+_source line 2566 · 2026-05-23T12:33:16.318054+00:00_
 
 called Read
 
@@ -3024,7 +3024,7 @@ called Read
 
 ### Tool result
 
-_source line 2573 · 2026-05-23T12:33:16.468925+00:00_
+_source line 2567 · 2026-05-23T12:33:16.468925+00:00_
 
 1	% Section 5 — Event Extraction on WikiEvents (summary; full results in Appendix)
 2	
@@ -3052,7 +3052,7 @@ _source line 2573 · 2026-05-23T12:33:16.468925+00:00_
 
 ### Tool call
 
-_source line 2574 · 2026-05-23T12:33:21.689868+00:00_
+_source line 2568 · 2026-05-23T12:33:21.689868+00:00_
 
 called Read
 
@@ -3086,7 +3086,7 @@ called Read
 
 ### Tool result
 
-_source line 2575 · 2026-05-23T12:33:22.141993+00:00_
+_source line 2569 · 2026-05-23T12:33:22.141993+00:00_
 
 1	% Runtime overhead (inline paragraph, no subsection header to save space)
 2	
@@ -3128,7 +3128,7 @@ _source line 2575 · 2026-05-23T12:33:22.141993+00:00_
 
 ### Tool call
 
-_source line 2576 · 2026-05-23T12:33:22.142530+00:00_
+_source line 2570 · 2026-05-23T12:33:22.142530+00:00_
 
 called Read
 
@@ -3162,7 +3162,7 @@ called Read
 
 ### Tool result
 
-_source line 2577 · 2026-05-23T12:33:23.196976+00:00_
+_source line 2571 · 2026-05-23T12:33:23.196976+00:00_
 
 1	\section{Related Work}
 2	\label{sec:related_work}
@@ -3201,7 +3201,7 @@ _source line 2577 · 2026-05-23T12:33:23.196976+00:00_
 
 ### Tool call
 
-_source line 2578 · 2026-05-23T12:33:23.247705+00:00_
+_source line 2572 · 2026-05-23T12:33:23.247705+00:00_
 
 called Read
 
@@ -3235,7 +3235,7 @@ called Read
 
 ### Tool result
 
-_source line 2579 · 2026-05-23T12:33:23.700110+00:00_
+_source line 2573 · 2026-05-23T12:33:23.700110+00:00_
 
 1	% Section 7 — Discussion and Conclusion
 2	
@@ -3272,7 +3272,7 @@ _source line 2579 · 2026-05-23T12:33:23.700110+00:00_
 
 ### Tool call
 
-_source line 2580 · 2026-05-23T12:33:23.700508+00:00_
+_source line 2574 · 2026-05-23T12:33:23.700508+00:00_
 
 called Read
 
@@ -3306,7 +3306,7 @@ called Read
 
 ### Tool result
 
-_source line 2581 · 2026-05-23T12:33:23.751001+00:00_
+_source line 2575 · 2026-05-23T12:33:23.751001+00:00_
 
 1	\begin{figure*}[t]
 2	\centering
@@ -3334,7 +3334,7 @@ _source line 2581 · 2026-05-23T12:33:23.751001+00:00_
 
 ### Tool call
 
-_source line 2582 · 2026-05-23T12:33:35.275558+00:00_
+_source line 2576 · 2026-05-23T12:33:35.275558+00:00_
 
 called Bash
 
@@ -3370,7 +3370,7 @@ called Bash
 
 ### Tool result
 
-_source line 2583 · 2026-05-23T12:33:35.878405+00:00_
+_source line 2577 · 2026-05-23T12:33:35.878405+00:00_
 
 Pages:           40
 Page size:       595.276 x 841.89 pts (A4)
@@ -3393,7 +3393,7 @@ Page size:       595.276 x 841.89 pts (A4)
 
 ### Tool call
 
-_source line 2584 · 2026-05-23T12:33:36.230203+00:00_
+_source line 2578 · 2026-05-23T12:33:36.230203+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -3431,7 +3431,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 2585 · 2026-05-23T12:33:37.184472+00:00_
+_source line 2579 · 2026-05-23T12:33:37.184472+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-23 05:48 UTC | 更新原因: R21 审稿修复完成 + 新实验进展更新\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）将 IE schema 翻译为 token-level constraints，消除 LLM-based IE 的 type violations。**目标: EMNLP 2026 ARR May 25 提交**。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: R21 审稿修复完成 → 最后实验收尾 → Final compile\\n\\n**R21 审稿 (Overall 3.5 Borderline Conference)**:\\n- ✅ 全部 15 个 patch 已写入论文（Abstract 重写、enabling dependency→empirical、Table 1 caption、Limitations 等）\\n- ✅ SF2 INT4 量化对比实验完成 → Appendix P (quantization robustness)\\n- ✅ D4 GoLLIE-7B 复现完成 → Appendix Q (GoLLIE comparison)\\n- ✅ SF5 Bonferroni per-config p-values + Cohen's d → Appendix C\\n- ✅ 论文编译通过，主文 8 页，39 页总计，无 undefined reference\\n\\n**正在跑的实验**:\\n- 🔄 eval_70b_lora_docred_200_full_s2（westd-21461 cuda:1）— 68.5%，~2h\\n- 🔄 70B Prompt Sensitivity（westd-21461 cuda:0）— Worker 已启动\\n- 🔄 westd-16980: 检查 DocRED INT4 可行性\\n\\n## 近期任务\\n- [ ] S2 完成 → 写入 appendix_70b_ablation.tex\\n- [ ] 70B PS 完成 → 评估写入 appendix_prompt_sensitivity.tex\\n- [ ] DocRED INT4（如可行）→ 扩展 Appendix P 量化表\\n- [ ] Final compile + 提交 R23 审稿\\n- [ ] May 25 EMNLP ARR 提交\\n\\n## GPU 预算\\nwestd-21461 cuda:0,1 — 正在跑 (70B PS + S2)\\nwestd-16980 cuda:0,1 — 检查 DocRED INT4 可行性中\\n\\n## 时间线\\n- **May 23 05:45**: R21 patch 完成 + 新实验数据写入\\n- **May 23 ~08:00**: S2 + 70B PS 完成，结果写入\\n- **May 23-24**: Final compile → R23 审稿 → 修复 → 冻结\\n- **May 25**: EMNLP 2026 ARR 提交\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D087 | 2026-05-23 | DocRED FT Semantic-only DR 重验后修正叙事：去掉 \\\"39-72%\\\" ran | w8_llama_docred_ft_semantic_only, w8_qwen_docred_ft_semantic_only |\\n| D086 | 2026-05-23 | R25 审稿报告全面修复：14 项 Action Matrix，全部为写作层面修改 | — |\\n| D085 | 2026-05-22 | Dream dream_20260522T052642 分析完成：Best=2.5, Median= | — |\\n| D084
 …[truncated 770 chars]
@@ -3454,7 +3454,7 @@ _source line 2585 · 2026-05-23T12:33:37.184472+00:00_
 
 ### Tool call
 
-_source line 2586 · 2026-05-23T12:33:37.185014+00:00_
+_source line 2580 · 2026-05-23T12:33:37.185014+00:00_
 
 called Bash
 
@@ -3490,7 +3490,7 @@ called Bash
 
 ### Tool result
 
-_source line 2587 · 2026-05-23T12:33:38.190788+00:00_
+_source line 2581 · 2026-05-23T12:33:38.190788+00:00_
 
 # Review Issues Tracker — schema_semantic_constrained_ie
 # Updated: R25 fresh review, 2026-05-23
@@ -3574,7 +3574,7 @@ _source line 2587 · 2026-05-23T12:33:38.190788+00:00_
 
 ### Tool call
 
-_source line 2588 · 2026-05-23T12:33:38.191297+00:00_
+_source line 2582 · 2026-05-23T12:33:38.191297+00:00_
 
 called Bash
 
@@ -3610,7 +3610,7 @@ called Bash
 
 ### Tool result
 
-_source line 2589 · 2026-05-23T12:33:38.241866+00:00_
+_source line 2583 · 2026-05-23T12:33:38.241866+00:00_
 
 (Bash completed with no output)
 
@@ -3632,7 +3632,7 @@ _source line 2589 · 2026-05-23T12:33:38.241866+00:00_
 
 ### Tool call
 
-_source line 2590 · 2026-05-23T12:34:08.185512+00:00_
+_source line 2584 · 2026-05-23T12:34:08.185512+00:00_
 
 called Bash
 
@@ -3668,7 +3668,7 @@ called Bash
 
 ### Tool result
 
-_source line 2591 · 2026-05-23T12:34:09.089502+00:00_
+_source line 2585 · 2026-05-23T12:34:09.089502+00:00_
 
 (Bash completed with no output)
 
@@ -3690,7 +3690,7 @@ _source line 2591 · 2026-05-23T12:34:09.089502+00:00_
 
 ### Tool call
 
-_source line 2592 · 2026-05-23T12:34:09.140121+00:00_
+_source line 2586 · 2026-05-23T12:34:09.140121+00:00_
 
 called WebSearch
 
@@ -3724,7 +3724,7 @@ called WebSearch
 
 ### Tool result
 
-_source line 2593 · 2026-05-23T12:34:14.561955+00:00_
+_source line 2587 · 2026-05-23T12:34:14.561955+00:00_
 
 Web search results for query: ""EMNLP 2026" "call for papers" page limit anonymity guidelines site:2026.emnlp.org"
 
@@ -3759,7 +3759,7 @@ The main conference papers page limit information appears to follow ARR submissi
 
 ### Tool call
 
-_source line 2594 · 2026-05-23T12:34:43.800651+00:00_
+_source line 2588 · 2026-05-23T12:34:43.800651+00:00_
 
 called mcp__agent-ml-research__dispatch_visual_check
 
@@ -3795,7 +3795,7 @@ called mcp__agent-ml-research__dispatch_visual_check
 
 ### Tool result
 
-_source line 2595 · 2026-05-23T12:35:07.055865+00:00_
+_source line 2589 · 2026-05-23T12:35:07.055865+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -3817,7 +3817,7 @@ _source line 2595 · 2026-05-23T12:35:07.055865+00:00_
 
 ### Tool call
 
-_source line 2596 · 2026-05-23T12:35:08.009662+00:00_
+_source line 2590 · 2026-05-23T12:35:08.009662+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -3859,7 +3859,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2597 · 2026-05-23T12:35:25.411801+00:00_
+_source line 2591 · 2026-05-23T12:35:25.411801+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -3881,7 +3881,7 @@ _source line 2597 · 2026-05-23T12:35:25.411801+00:00_
 
 ### Tool call
 
-_source line 2598 · 2026-05-23T12:35:25.562917+00:00_
+_source line 2592 · 2026-05-23T12:35:25.562917+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -3923,7 +3923,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2599 · 2026-05-23T12:35:27.022911+00:00_
+_source line 2593 · 2026-05-23T12:35:27.022911+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -3945,7 +3945,7 @@ _source line 2599 · 2026-05-23T12:35:27.022911+00:00_
 
 ### Assistant
 
-_source line 2600 · 2026-05-23T12:35:44.943358+00:00_
+_source line 2594 · 2026-05-23T12:35:44.943358+00:00_
 
 已完成初始化：
 
@@ -3978,7 +3978,7 @@ _source line 2600 · 2026-05-23T12:35:44.943358+00:00_
 
 ### User
 
-_source line 2601 · 2026-05-23T12:43:34.047991+00:00_
+_source line 2595 · 2026-05-23T12:43:34.047991+00:00_
 
 [Reviewer 2 审稿意见]:
 
@@ -4181,7 +4181,7 @@ _source line 2601 · 2026-05-23T12:43:34.047991+00:00_
 
 ### Assistant
 
-_source line 2602 · 2026-05-23T12:43:40.680004+00:00_
+_source line 2596 · 2026-05-23T12:43:40.680004+00:00_
 
 Reviewer 2 报告已收到。等待 Reviewer 1 报告。
 
@@ -4208,7 +4208,7 @@ Reviewer 2 报告已收到。等待 Reviewer 1 报告。
 
 ### User
 
-_source line 2603 · 2026-05-23T12:43:53.959840+00:00_
+_source line 2597 · 2026-05-23T12:43:53.959840+00:00_
 
 [Reviewer 2 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -4232,7 +4232,7 @@ _source line 2603 · 2026-05-23T12:43:53.959840+00:00_
 
 ### Assistant
 
-_source line 2604 · 2026-05-23T12:44:02.597078+00:00_
+_source line 2598 · 2026-05-23T12:44:02.597078+00:00_
 
 Reviewer 2 报告已收到（Overall 3.0 Findings）。等待 Reviewer 1 报告。
 
@@ -4259,7 +4259,7 @@ Reviewer 2 报告已收到（Overall 3.0 Findings）。等待 Reviewer 1 报告�
 
 ### User
 
-_source line 2605 · 2026-05-23T12:44:30.157329+00:00_
+_source line 2599 · 2026-05-23T12:44:30.157329+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -4440,7 +4440,7 @@ OntoCoDec 提出将 IE 本体约束编译为 token-level 解码约束的框架�
 
 ### Tool call
 
-_source line 2606 · 2026-05-23T12:45:35.495644+00:00_
+_source line 2600 · 2026-05-23T12:45:35.495644+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -4482,7 +4482,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2607 · 2026-05-23T12:46:00.481970+00:00_
+_source line 2601 · 2026-05-23T12:46:00.481970+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -4504,7 +4504,7 @@ _source line 2607 · 2026-05-23T12:46:00.481970+00:00_
 
 ### Tool call
 
-_source line 2608 · 2026-05-23T12:46:00.733567+00:00_
+_source line 2602 · 2026-05-23T12:46:00.733567+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -4546,7 +4546,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2609 · 2026-05-23T12:46:02.143916+00:00_
+_source line 2603 · 2026-05-23T12:46:02.143916+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -4568,7 +4568,7 @@ _source line 2609 · 2026-05-23T12:46:02.143916+00:00_
 
 ### Assistant
 
-_source line 2610 · 2026-05-23T12:46:05.698139+00:00_
+_source line 2604 · 2026-05-23T12:46:05.698139+00:00_
 
 交叉分享已发送，等待两位 Reviewer 的逐条回应。
 
@@ -4595,7 +4595,7 @@ _source line 2610 · 2026-05-23T12:46:05.698139+00:00_
 
 ### User
 
-_source line 2611 · 2026-05-23T12:46:08.253629+00:00_
+_source line 2605 · 2026-05-23T12:46:08.253629+00:00_
 
 [Reviewer 1 审稿结果]:
 审稿报告已提交给 Review Director。
@@ -4624,7 +4624,7 @@ _source line 2611 · 2026-05-23T12:46:08.253629+00:00_
 
 ### Assistant
 
-_source line 2612 · 2026-05-23T12:46:16.653321+00:00_
+_source line 2606 · 2026-05-23T12:46:16.653321+00:00_
 
 No response requested.
 
@@ -4651,7 +4651,7 @@ No response requested.
 
 ### User
 
-_source line 2613 · 2026-05-23T12:47:42.148806+00:00_
+_source line 2607 · 2026-05-23T12:47:42.148806+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -4779,7 +4779,7 @@ R2 的两个 Critical issues（W1 监督 baseline 对比, W2 GoLLIE 对比）在
 
 ### Assistant
 
-_source line 2614 · 2026-05-23T12:47:47.450718+00:00_
+_source line 2608 · 2026-05-23T12:47:47.450718+00:00_
 
 No response requested.
 
@@ -4806,7 +4806,7 @@ No response requested.
 
 ### User
 
-_source line 2615 · 2026-05-23T12:47:50.820264+00:00_
+_source line 2609 · 2026-05-23T12:47:50.820264+00:00_
 
 [Reviewer 1 审稿结果]:
 已提交对 Reviewer 2 全部意见的逐条交叉回应。
@@ -4834,7 +4834,7 @@ _source line 2615 · 2026-05-23T12:47:50.820264+00:00_
 
 ### Assistant
 
-_source line 2616 · 2026-05-23T12:47:58.911740+00:00_
+_source line 2610 · 2026-05-23T12:47:58.911740+00:00_
 
 No response requested.
 
@@ -4861,7 +4861,7 @@ No response requested.
 
 ### User
 
-_source line 2617 · 2026-05-23T12:49:45.595097+00:00_
+_source line 2611 · 2026-05-23T12:49:45.595097+00:00_
 
 [Reviewer 2 审稿意见]:
 
@@ -5033,7 +5033,7 @@ Reviewer 1 的审稿质量很高。在 8 个 Weaknesses 中，我 [AGREE] 6 个�
 
 ### Tool call
 
-_source line 2618 · 2026-05-23T12:50:24.982284+00:00_
+_source line 2612 · 2026-05-23T12:50:24.982284+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -5067,7 +5067,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 2619 · 2026-05-23T12:50:25.183915+00:00_
+_source line 2613 · 2026-05-23T12:50:25.183915+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T12:34:47.518278+00:00\", \"completed_at\": \"2026-05-23T12:38:30.265026+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-2\", \"message\": \"前两页为纯文本（Title/Abstract/Introduction/Background），无任何 display item。审稿人在前两页没有视觉锚点，需要翻到第 3 页才看到 Figure 1。建议考虑将核心结果的精简版（如 DR reduction 对比小表或 teaser figure）提前到第 1 页底部或第 2 页顶部\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"Figure 1（架构概览，figure* 全宽）是论文第一个 display item，出现在第 3 页顶部。图表清晰，caption 自包含，传达了两层约束编译架构的核心 message。位置可接受但不算早\"}, {\"severity\": \"warning\", \"dimension\": \"page 1-8\", \"message\": \"正文 8 页仅有 3 个 display items（Figure 1 + Table 1 + Table 2），对于一篇实证为主的论文偏少（通常 5-8 个）。大量实验证据（~47 个表 + 3 个图）被推到 appendix，正文视觉密度不足\"}, {\"severity\": \"warning\", \"dimension\": \"page 7-8\", \"message\": \"Related Work（p7）+ Discussion and Conclusion（p8）连续两页纯文本，无任何 figure/table/equation 穿插。审稿人在正文尾段容易疲劳\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1 和 Table 2 集中在同一页。两表均使用 booktabs 风格，最优值加粗，小数精度统一，格式专业。但两个关键结果表挤在一页略显拥挤\"}, {\"severity\": \"info\", \"dimension\": \"page 4-5\", \"message\": \"公式渲染正确，行内公式未导致行距异常。Method 部分公式与文字交替节奏可接受\"}, {\"severity\": \"info\", \"dimension\": \"page 9\", \"message\": \"Limitations 段落简短合理（约一段），符合 EMNLP 要求。Ethics Statement 排版正常。References 从该页底部开始\"}, {\"severity\": \"info\", \"dimension\": \"page 10-12\", \"message\": \"References 页排版正常，无 overfull，无 [?] 未解析引用，格式统一\"}, {\"severity\": \"info\", \"dimension\": \"page 13\", \"message\": \"Table 3（Prompt Templates）格式清晰，代码块排版整洁\"}, {\"severity\": \"warning\", \"dimension\": \"page 14-17\", \"message\": \"Appendix B（Extended Related Work）连续 4 页纯文本，无任何 display item。虽然是 appendix，但审稿人翻阅时会感到单调\"}, {\"severity\": \"info\", \"dimension\": \"page 20\", \"message\": \"Figure 2（散点图）清晰可读，使用不同标记形状区分数据点，灰度打印友好\"}, {\"severity\": \"info\", \"dimension\": \"page 24\", \"message\": \"Figure 3（条形图）清晰，颜色区分度好\"}, {\"se
 …[truncated 925 chars]
@@ -5090,7 +5090,7 @@ _source line 2619 · 2026-05-23T12:50:25.183915+00:00_
 
 ### Tool call
 
-_source line 2620 · 2026-05-23T12:50:25.184422+00:00_
+_source line 2614 · 2026-05-23T12:50:25.184422+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -5124,7 +5124,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 2621 · 2026-05-23T12:50:25.235011+00:00_
+_source line 2615 · 2026-05-23T12:50:25.235011+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -5146,7 +5146,7 @@ _source line 2621 · 2026-05-23T12:50:25.235011+00:00_
 
 ### Tool call
 
-_source line 2622 · 2026-05-23T12:50:50.654944+00:00_
+_source line 2616 · 2026-05-23T12:50:50.654944+00:00_
 
 called Read
 
@@ -5182,7 +5182,7 @@ called Read
 
 ### Tool result
 
-_source line 2623 · 2026-05-23T12:50:50.750767+00:00_
+_source line 2617 · 2026-05-23T12:50:50.750767+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: Post-R25 framing patch, 2026-05-23
@@ -5253,7 +5253,7 @@ _source line 2623 · 2026-05-23T12:50:50.750767+00:00_
 
 ### Tool call
 
-_source line 2624 · 2026-05-23T12:53:18.610057+00:00_
+_source line 2618 · 2026-05-23T12:53:18.610057+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -5289,7 +5289,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 2625 · 2026-05-23T12:53:18.711259+00:00_
+_source line 2619 · 2026-05-23T12:53:18.711259+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 12713}, \"error\": \"\"}"}
 
@@ -5311,7 +5311,7 @@ _source line 2625 · 2026-05-23T12:53:18.711259+00:00_
 
 ### Tool call
 
-_source line 2626 · 2026-05-23T12:56:09.088482+00:00_
+_source line 2620 · 2026-05-23T12:56:09.088482+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -5355,7 +5355,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 2627 · 2026-05-23T12:56:13.290462+00:00_
+_source line 2621 · 2026-05-23T12:56:13.290462+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -5377,7 +5377,7 @@ _source line 2627 · 2026-05-23T12:56:13.290462+00:00_
 
 ### Assistant
 
-_source line 2628 · 2026-05-23T12:56:29.136933+00:00_
+_source line 2622 · 2026-05-23T12:56:29.136933+00:00_
 
 **Round 26 审稿完成。**
 
@@ -5416,7 +5416,7 @@ R1 (3.5) 与 R2 (3.0) 的分歧主要在 novelty 评估和监督 baseline/GoLLIE
 
 ### User
 
-_source line 2629 · 2026-05-23T12:56:31.703916+00:00_
+_source line 2623 · 2026-05-23T12:56:31.703916+00:00_
 
 [Reviewer 2 审稿结果]:
 已完成对 Reviewer 1 全部审稿意见的逐条回应，汇报给 Review Director。
@@ -5444,7 +5444,7 @@ _source line 2629 · 2026-05-23T12:56:31.703916+00:00_
 
 ### Assistant
 
-_source line 2630 · 2026-05-23T12:56:47.189204+00:00_
+_source line 2624 · 2026-05-23T12:56:47.189204+00:00_
 
 审稿报告已投递至 Research Director。
 
@@ -5484,7 +5484,7 @@ Issue Tracker 已同步更新（12 个 open issues + 历史 resolved issues）�
 
 ### User
 
-_source line 2631 · 2026-05-25T21:14:38.196800+00:00_
+_source line 2625 · 2026-05-25T21:14:38.196800+00:00_
 
 系统通知：审稿审批已通过。请开始审稿。
 
@@ -5515,7 +5515,7 @@ _source line 2631 · 2026-05-25T21:14:38.196800+00:00_
 
 ### Tool call
 
-_source line 2632 · 2026-05-25T21:14:44.230213+00:00_
+_source line 2626 · 2026-05-25T21:14:44.230213+00:00_
 
 called Read
 
@@ -5549,7 +5549,7 @@ called Read
 
 ### Tool result
 
-_source line 2633 · 2026-05-25T21:14:44.282101+00:00_
+_source line 2627 · 2026-05-25T21:14:44.282101+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -5639,7 +5639,7 @@ _source line 2633 · 2026-05-25T21:14:44.282101+00:00_
 
 ### Tool call
 
-_source line 2634 · 2026-05-25T21:14:49.370099+00:00_
+_source line 2628 · 2026-05-25T21:14:49.370099+00:00_
 
 called ToolSearch
 
@@ -5675,7 +5675,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2635 · 2026-05-25T21:14:49.421165+00:00_
+_source line 2629 · 2026-05-25T21:14:49.421165+00:00_
 
 
 
@@ -5697,7 +5697,7 @@ _source line 2635 · 2026-05-25T21:14:49.421165+00:00_
 
 ### Tool call
 
-_source line 2636 · 2026-05-25T21:14:53.598278+00:00_
+_source line 2630 · 2026-05-25T21:14:53.598278+00:00_
 
 called ToolSearch
 
@@ -5733,7 +5733,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2637 · 2026-05-25T21:14:53.649166+00:00_
+_source line 2631 · 2026-05-25T21:14:53.649166+00:00_
 
 No matching deferred tools found
 
@@ -5755,7 +5755,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2638 · 2026-05-25T21:14:58.620261+00:00_
+_source line 2632 · 2026-05-25T21:14:58.620261+00:00_
 
 called ToolSearch
 
@@ -5791,7 +5791,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2639 · 2026-05-25T21:14:58.620755+00:00_
+_source line 2633 · 2026-05-25T21:14:58.620755+00:00_
 
 
 
@@ -5813,7 +5813,7 @@ _source line 2639 · 2026-05-25T21:14:58.620755+00:00_
 
 ### Tool call
 
-_source line 2640 · 2026-05-25T21:15:06.406661+00:00_
+_source line 2634 · 2026-05-25T21:15:06.406661+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -5847,7 +5847,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 2641 · 2026-05-25T21:15:06.960077+00:00_
+_source line 2635 · 2026-05-25T21:15:06.960077+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-23\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **r16_70b_lora_scierc_eval** (success): 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale\n- **p1_llama_ee_ft** (killed): —\n- **sf2_70b_prompt_sensitivity** (success): 70B LLaMA-3.1 constrained decoding should show consistent violation reduction across different prompt styles, similar to the 8B result where ΔDR was 94.0-94.6% regardless of prompt variant.\n\n## 趋势\n成功 133 / 负向 15 / 失败 11 / 共 164\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestd-16980: 无 GPU 信息\nwestd-21461: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\n- w1_cf_fallback_docred: 已被终止 — unknown\n- w1_cf_fallback_llama_scierc: 已被终止 — unknown\n- w1_cf_fallback_llama_docred: 已被终止 — unknown\n- w9_qwen_docred_zs_sampling: 训练失败 — unknown\n- p8b_docred_latency: 训练失败 — unknown\n- p1_ee_ft_composability: 训练失败 — unknown\n- p1_ee_ft_composability_r2: 训练失败 — unknown\n- p1_ee_ft_composability_r3: 训练失败 — unknown\n- p1_ee_ft_composabil
 …[truncated 269 chars]
@@ -5870,7 +5870,7 @@ _source line 2641 · 2026-05-25T21:15:06.960077+00:00_
 
 ### Tool call
 
-_source line 2642 · 2026-05-25T21:15:07.010744+00:00_
+_source line 2636 · 2026-05-25T21:15:07.010744+00:00_
 
 called Read
 
@@ -5904,7 +5904,7 @@ called Read
 
 ### Tool result
 
-_source line 2643 · 2026-05-25T21:15:07.061417+00:00_
+_source line 2637 · 2026-05-25T21:15:07.061417+00:00_
 
 1	\documentclass[11pt]{article}
 2	
@@ -5995,7 +5995,7 @@ _source line 2643 · 2026-05-25T21:15:07.061417+00:00_
 
 ### Tool call
 
-_source line 2644 · 2026-05-25T21:15:07.061817+00:00_
+_source line 2638 · 2026-05-25T21:15:07.061817+00:00_
 
 called WebSearch
 
@@ -6029,7 +6029,7 @@ called WebSearch
 
 ### Tool call
 
-_source line 2645 · 2026-05-25T21:15:07.262979+00:00_
+_source line 2639 · 2026-05-25T21:15:07.262979+00:00_
 
 called Read
 
@@ -6063,7 +6063,7 @@ called Read
 
 ### Tool result
 
-_source line 2646 · 2026-05-25T21:15:07.363879+00:00_
+_source line 2640 · 2026-05-25T21:15:07.363879+00:00_
 
 This PDF has 39 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: "1-5"). Maximum 20 pages per request.
 
@@ -6085,7 +6085,7 @@ This PDF has 39 pages, which is too many to read at once. Use the pages paramete
 
 ### Assistant
 
-_source line 2647 · 2026-05-25T21:19:32.812447+00:00_
+_source line 2641 · 2026-05-25T21:19:32.812447+00:00_
 
 开始审稿流程。先执行初始化和资料检查。
 
@@ -6112,7 +6112,7 @@ _source line 2647 · 2026-05-25T21:19:32.812447+00:00_
 
 ### User
 
-_source line 2648 · 2026-05-25T21:25:01.207383+00:00_
+_source line 2642 · 2026-05-25T21:25:01.207383+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 — Round 1 审稿意见
@@ -6247,7 +6247,7 @@ _source line 2648 · 2026-05-25T21:25:01.207383+00:00_
 
 ### Tool call
 
-_source line 2649 · 2026-05-25T21:25:46.008022+00:00_
+_source line 2643 · 2026-05-25T21:25:46.008022+00:00_
 
 called Read
 
@@ -6281,7 +6281,7 @@ called Read
 
 ### Tool result
 
-_source line 2650 · 2026-05-25T21:25:46.009018+00:00_
+_source line 2644 · 2026-05-25T21:25:46.009018+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -6371,7 +6371,7 @@ _source line 2650 · 2026-05-25T21:25:46.009018+00:00_
 
 ### Tool call
 
-_source line 2651 · 2026-05-25T21:25:46.009337+00:00_
+_source line 2645 · 2026-05-25T21:25:46.009337+00:00_
 
 called ToolSearch
 
@@ -6407,7 +6407,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2652 · 2026-05-25T21:25:46.009551+00:00_
+_source line 2646 · 2026-05-25T21:25:46.009551+00:00_
 
 
 
@@ -6429,7 +6429,7 @@ _source line 2652 · 2026-05-25T21:25:46.009551+00:00_
 
 ### Tool call
 
-_source line 2653 · 2026-05-25T21:25:46.009806+00:00_
+_source line 2647 · 2026-05-25T21:25:46.009806+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -6463,7 +6463,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool call
 
-_source line 2654 · 2026-05-25T21:25:46.414075+00:00_
+_source line 2648 · 2026-05-25T21:25:46.414075+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -6497,7 +6497,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool call
 
-_source line 2655 · 2026-05-25T21:25:46.565046+00:00_
+_source line 2649 · 2026-05-25T21:25:46.565046+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -6531,7 +6531,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 2656 · 2026-05-25T21:25:46.615837+00:00_
+_source line 2650 · 2026-05-25T21:25:46.615837+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-23\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **r16_70b_lora_scierc_eval** (success): 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale\n- **p1_llama_ee_ft** (killed): —\n- **sf2_70b_prompt_sensitivity** (success): 70B LLaMA-3.1 constrained decoding should show consistent violation reduction across different prompt styles, similar to the 8B result where ΔDR was 94.0-94.6% regardless of prompt variant.\n\n## 趋势\n成功 133 / 负向 15 / 失败 11 / 共 164\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestd-16980: 无 GPU 信息\nwestd-21461: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\n- w1_cf_fallback_docred: 已被终止 — unknown\n- w1_cf_fallback_llama_scierc: 已被终止 — unknown\n- w1_cf_fallback_llama_docred: 已被终止 — unknown\n- w9_qwen_docred_zs_sampling: 训练失败 — unknown\n- p8b_docred_latency: 训练失败 — unknown\n- p1_ee_ft_composability: 训练失败 — unknown\n- p1_ee_ft_composability_r2: 训练失败 — unknown\n- p1_ee_ft_composability_r3: 训练失败 — unknown\n- p1_ee_ft_composabil
 …[truncated 269 chars]
@@ -6554,7 +6554,7 @@ _source line 2656 · 2026-05-25T21:25:46.615837+00:00_
 
 ### Tool result
 
-_source line 2657 · 2026-05-25T21:25:46.616387+00:00_
+_source line 2651 · 2026-05-25T21:25:46.616387+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -6576,7 +6576,7 @@ _source line 2657 · 2026-05-25T21:25:46.616387+00:00_
 
 ### Tool result
 
-_source line 2658 · 2026-05-25T21:25:46.616723+00:00_
+_source line 2652 · 2026-05-25T21:25:46.616723+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-25T21:16:38.989379+00:00\", \"completed_at\": \"2026-05-25T21:20:29.968146+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本无任何 display item，首个视觉锚点（Figure 1）到 page 3 才出现。对于实证贡献为主的论文，在 page 1 或 2 加入 teaser figure 或核心结果 preview 可强化审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 5 的 x 轴 relation type 标签旋转后字号偏小（约为正文 60-70%），建议适当增大或使用缩写\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 和 Figure 3 使用红色和蓝/绿色组合，大部分情况可区分，但红绿搭配对 deuteranopia 色盲可能有风险；建议改用 blue+orange 双色方案\"}, {\"severity\": \"info\", \"dimension\": \"page 12-16\", \"message\": \"Appendix B（Extended Related Work）+ C（Extended Discussion）连续 5 页纯文本，虽为 appendix 可接受，但密度极高\"}, {\"severity\": \"info\", \"dimension\": \"page 39\", \"message\": \"末页内容约占 80%，Section T (Use of AI Assistants) 列表较简短，整体可接受\"}], \"counts\": {\"critical\": 0, \"warning\": 1, \"info\": 4}}, \"error\": null, \"metadata\": {}}"}
 
@@ -6598,7 +6598,7 @@ _source line 2658 · 2026-05-25T21:25:46.616723+00:00_
 
 ### Assistant
 
-_source line 2659 · 2026-05-25T21:26:21.418287+00:00_
+_source line 2653 · 2026-05-25T21:26:21.418287+00:00_
 
 收到 Reviewer 2 的审稿意见。让我先加载审稿流程并检查当前状态。
 
@@ -6625,7 +6625,7 @@ _source line 2659 · 2026-05-25T21:26:21.418287+00:00_
 
 ### User
 
-_source line 2660 · 2026-05-25T21:26:22.416369+00:00_
+_source line 2654 · 2026-05-25T21:26:22.416369+00:00_
 
 [系统通知] Reviewer 2 的审稿进程异常终止。
 可能原因：消息处理超时（20 分钟 deadline）或子进程崩溃。
@@ -6772,7 +6772,7 @@ _source line 2660 · 2026-05-25T21:26:22.416369+00:00_
 
 ### Tool call
 
-_source line 2661 · 2026-05-25T21:26:49.691373+00:00_
+_source line 2655 · 2026-05-25T21:26:49.691373+00:00_
 
 called ToolSearch
 
@@ -6808,7 +6808,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2662 · 2026-05-25T21:26:49.742057+00:00_
+_source line 2656 · 2026-05-25T21:26:49.742057+00:00_
 
 No matching deferred tools found
 
@@ -6830,7 +6830,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2663 · 2026-05-25T21:26:55.128527+00:00_
+_source line 2657 · 2026-05-25T21:26:55.128527+00:00_
 
 called ToolSearch
 
@@ -6866,7 +6866,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2664 · 2026-05-25T21:26:55.179357+00:00_
+_source line 2658 · 2026-05-25T21:26:55.179357+00:00_
 
 
 
@@ -6888,7 +6888,7 @@ _source line 2664 · 2026-05-25T21:26:55.179357+00:00_
 
 ### Tool call
 
-_source line 2665 · 2026-05-25T21:27:24.608478+00:00_
+_source line 2659 · 2026-05-25T21:27:24.608478+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -6926,7 +6926,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool call
 
-_source line 2666 · 2026-05-25T21:27:25.060724+00:00_
+_source line 2660 · 2026-05-25T21:27:25.060724+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -6960,7 +6960,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool call
 
-_source line 2667 · 2026-05-25T21:27:25.413789+00:00_
+_source line 2661 · 2026-05-25T21:27:25.413789+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -6994,7 +6994,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 2668 · 2026-05-25T21:27:28.485860+00:00_
+_source line 2662 · 2026-05-25T21:27:28.485860+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -7016,7 +7016,7 @@ _source line 2668 · 2026-05-25T21:27:28.485860+00:00_
 
 ### Tool result
 
-_source line 2669 · 2026-05-25T21:27:28.486314+00:00_
+_source line 2663 · 2026-05-25T21:27:28.486314+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-25T21:16:38.989379+00:00\", \"completed_at\": \"2026-05-25T21:20:29.968146+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本无任何 display item，首个视觉锚点（Figure 1）到 page 3 才出现。对于实证贡献为主的论文，在 page 1 或 2 加入 teaser figure 或核心结果 preview 可强化审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 5 的 x 轴 relation type 标签旋转后字号偏小（约为正文 60-70%），建议适当增大或使用缩写\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 和 Figure 3 使用红色和蓝/绿色组合，大部分情况可区分，但红绿搭配对 deuteranopia 色盲可能有风险；建议改用 blue+orange 双色方案\"}, {\"severity\": \"info\", \"dimension\": \"page 12-16\", \"message\": \"Appendix B（Extended Related Work）+ C（Extended Discussion）连续 5 页纯文本，虽为 appendix 可接受，但密度极高\"}, {\"severity\": \"info\", \"dimension\": \"page 39\", \"message\": \"末页内容约占 80%，Section T (Use of AI Assistants) 列表较简短，整体可接受\"}], \"counts\": {\"critical\": 0, \"warning\": 1, \"info\": 4}}, \"error\": null, \"metadata\": {}}"}
 
@@ -7038,7 +7038,7 @@ _source line 2669 · 2026-05-25T21:27:28.486314+00:00_
 
 ### Tool result
 
-_source line 2670 · 2026-05-25T21:27:28.536946+00:00_
+_source line 2664 · 2026-05-25T21:27:28.536946+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -7060,7 +7060,7 @@ _source line 2670 · 2026-05-25T21:27:28.536946+00:00_
 
 ### Tool call
 
-_source line 2671 · 2026-05-25T21:27:37.485760+00:00_
+_source line 2665 · 2026-05-25T21:27:37.485760+00:00_
 
 called ToolSearch
 
@@ -7096,7 +7096,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2672 · 2026-05-25T21:27:37.536520+00:00_
+_source line 2666 · 2026-05-25T21:27:37.536520+00:00_
 
 
 
@@ -7118,7 +7118,7 @@ _source line 2672 · 2026-05-25T21:27:37.536520+00:00_
 
 ### Tool call
 
-_source line 2673 · 2026-05-25T21:27:40.060502+00:00_
+_source line 2667 · 2026-05-25T21:27:40.060502+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -7152,7 +7152,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 2674 · 2026-05-25T21:27:41.187871+00:00_
+_source line 2668 · 2026-05-25T21:27:41.187871+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-23\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **r16_70b_lora_scierc_eval** (success): 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale\n- **p1_llama_ee_ft** (killed): —\n- **sf2_70b_prompt_sensitivity** (success): 70B LLaMA-3.1 constrained decoding should show consistent violation reduction across different prompt styles, similar to the 8B result where ΔDR was 94.0-94.6% regardless of prompt variant.\n\n## 趋势\n成功 133 / 负向 15 / 失败 11 / 共 164\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestd-16980: 无 GPU 信息\nwestd-21461: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\n- w1_cf_fallback_docred: 已被终止 — unknown\n- w1_cf_fallback_llama_scierc: 已被终止 — unknown\n- w1_cf_fallback_llama_docred: 已被终止 — unknown\n- w9_qwen_docred_zs_sampling: 训练失败 — unknown\n- p8b_docred_latency: 训练失败 — unknown\n- p1_ee_ft_composability: 训练失败 — unknown\n- p1_ee_ft_composability_r2: 训练失败 — unknown\n- p1_ee_ft_composability_r3: 训练失败 — unknown\n- p1_ee_ft_composabil
 …[truncated 269 chars]
@@ -7175,7 +7175,7 @@ _source line 2674 · 2026-05-25T21:27:41.187871+00:00_
 
 ### Tool call
 
-_source line 2675 · 2026-05-25T21:27:50.216065+00:00_
+_source line 2669 · 2026-05-25T21:27:50.216065+00:00_
 
 called ToolSearch
 
@@ -7211,7 +7211,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2676 · 2026-05-25T21:27:50.266777+00:00_
+_source line 2670 · 2026-05-25T21:27:50.266777+00:00_
 
 
 
@@ -7233,7 +7233,7 @@ _source line 2676 · 2026-05-25T21:27:50.266777+00:00_
 
 ### Tool call
 
-_source line 2677 · 2026-05-25T21:27:54.799599+00:00_
+_source line 2671 · 2026-05-25T21:27:54.799599+00:00_
 
 called Glob
 
@@ -7269,7 +7269,7 @@ called Glob
 
 ### Tool result
 
-_source line 2678 · 2026-05-25T21:27:57.909734+00:00_
+_source line 2672 · 2026-05-25T21:27:57.909734+00:00_
 
 No files found
 
@@ -7291,7 +7291,7 @@ No files found
 
 ### Assistant
 
-_source line 2679 · 2026-05-25T21:28:47.842993+00:00_
+_source line 2673 · 2026-05-25T21:28:47.842993+00:00_
 
 状态更新：
 - **Reviewer 2**: 已重新分配，等待审稿返回
@@ -7323,7 +7323,7 @@ _source line 2679 · 2026-05-25T21:28:47.842993+00:00_
 
 ### User
 
-_source line 2680 · 2026-05-25T21:34:03.267467+00:00_
+_source line 2674 · 2026-05-25T21:34:03.267467+00:00_
 
 [Reviewer 2 审稿意见]:
 ## 总体评分
@@ -7423,7 +7423,7 @@ Related work 覆盖极为全面（主文 2 页 + 附录 4+ 页），未发现明
 
 ### Tool call
 
-_source line 2681 · 2026-05-25T21:34:26.808401+00:00_
+_source line 2675 · 2026-05-25T21:34:26.808401+00:00_
 
 called ToolSearch
 
@@ -7459,7 +7459,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2682 · 2026-05-25T21:34:26.858997+00:00_
+_source line 2676 · 2026-05-25T21:34:26.858997+00:00_
 
 No matching deferred tools found
 
@@ -7481,7 +7481,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2683 · 2026-05-25T21:34:28.766151+00:00_
+_source line 2677 · 2026-05-25T21:34:28.766151+00:00_
 
 called ToolSearch
 
@@ -7517,7 +7517,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2684 · 2026-05-25T21:34:28.816782+00:00_
+_source line 2678 · 2026-05-25T21:34:28.816782+00:00_
 
 
 
@@ -7539,7 +7539,7 @@ _source line 2684 · 2026-05-25T21:34:28.816782+00:00_
 
 ### Tool call
 
-_source line 2685 · 2026-05-25T21:34:31.076469+00:00_
+_source line 2679 · 2026-05-25T21:34:31.076469+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -7573,7 +7573,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 2686 · 2026-05-25T21:34:31.680356+00:00_
+_source line 2680 · 2026-05-25T21:34:31.680356+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-23\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **r16_70b_lora_scierc_eval** (success): 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale\n- **p1_llama_ee_ft** (killed): —\n- **sf2_70b_prompt_sensitivity** (success): 70B LLaMA-3.1 constrained decoding should show consistent violation reduction across different prompt styles, similar to the 8B result where ΔDR was 94.0-94.6% regardless of prompt variant.\n\n## 趋势\n成功 133 / 负向 15 / 失败 11 / 共 164\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestd-16980: 无 GPU 信息\nwestd-21461: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\n- w1_cf_fallback_docred: 已被终止 — unknown\n- w1_cf_fallback_llama_scierc: 已被终止 — unknown\n- w1_cf_fallback_llama_docred: 已被终止 — unknown\n- w9_qwen_docred_zs_sampling: 训练失败 — unknown\n- p8b_docred_latency: 训练失败 — unknown\n- p1_ee_ft_composability: 训练失败 — unknown\n- p1_ee_ft_composability_r2: 训练失败 — unknown\n- p1_ee_ft_composability_r3: 训练失败 — unknown\n- p1_ee_ft_composabil
 …[truncated 269 chars]
@@ -7596,7 +7596,7 @@ _source line 2686 · 2026-05-25T21:34:31.680356+00:00_
 
 ### Tool call
 
-_source line 2687 · 2026-05-25T21:34:37.704815+00:00_
+_source line 2681 · 2026-05-25T21:34:37.704815+00:00_
 
 called ToolSearch
 
@@ -7632,7 +7632,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2688 · 2026-05-25T21:34:37.705366+00:00_
+_source line 2682 · 2026-05-25T21:34:37.705366+00:00_
 
 No matching deferred tools found
 
@@ -7654,7 +7654,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2689 · 2026-05-25T21:34:40.869387+00:00_
+_source line 2683 · 2026-05-25T21:34:40.869387+00:00_
 
 called ToolSearch
 
@@ -7690,7 +7690,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2690 · 2026-05-25T21:34:41.020547+00:00_
+_source line 2684 · 2026-05-25T21:34:41.020547+00:00_
 
 
 
@@ -7712,7 +7712,7 @@ _source line 2690 · 2026-05-25T21:34:41.020547+00:00_
 
 ### Tool call
 
-_source line 2691 · 2026-05-25T21:34:57.267630+00:00_
+_source line 2685 · 2026-05-25T21:34:57.267630+00:00_
 
 called ToolSearch
 
@@ -7748,7 +7748,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2692 · 2026-05-25T21:34:57.318256+00:00_
+_source line 2686 · 2026-05-25T21:34:57.318256+00:00_
 
 No matching deferred tools found
 
@@ -7770,7 +7770,7 @@ No matching deferred tools found
 
 ### Tool call
 
-_source line 2693 · 2026-05-25T21:35:00.144169+00:00_
+_source line 2687 · 2026-05-25T21:35:00.144169+00:00_
 
 called ToolSearch
 
@@ -7806,7 +7806,7 @@ called ToolSearch
 
 ### Tool result
 
-_source line 2694 · 2026-05-25T21:35:00.194865+00:00_
+_source line 2688 · 2026-05-25T21:35:00.194865+00:00_
 
 
 
@@ -7828,7 +7828,7 @@ _source line 2694 · 2026-05-25T21:35:00.194865+00:00_
 
 ### Tool call
 
-_source line 2695 · 2026-05-25T21:35:05.918847+00:00_
+_source line 2689 · 2026-05-25T21:35:05.918847+00:00_
 
 called Glob
 
@@ -7864,7 +7864,7 @@ called Glob
 
 ### Tool result
 
-_source line 2696 · 2026-05-25T21:35:06.421232+00:00_
+_source line 2690 · 2026-05-25T21:35:06.421232+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml
 
@@ -7886,7 +7886,7 @@ _source line 2696 · 2026-05-25T21:35:06.421232+00:00_
 
 ### Tool call
 
-_source line 2697 · 2026-05-25T21:35:06.421584+00:00_
+_source line 2691 · 2026-05-25T21:35:06.421584+00:00_
 
 called Glob
 
@@ -7922,7 +7922,7 @@ called Glob
 
 ### Tool result
 
-_source line 2698 · 2026-05-25T21:35:06.873633+00:00_
+_source line 2692 · 2026-05-25T21:35:06.873633+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_reports/round_2.md
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_reports/round_3.md
@@ -7961,7 +7961,7 @@ _source line 2698 · 2026-05-25T21:35:06.873633+00:00_
 
 ### Tool call
 
-_source line 2699 · 2026-05-25T21:35:07.125859+00:00_
+_source line 2693 · 2026-05-25T21:35:07.125859+00:00_
 
 called Glob
 
@@ -7997,7 +7997,7 @@ called Glob
 
 ### Tool result
 
-_source line 2700 · 2026-05-25T21:35:07.226653+00:00_
+_source line 2694 · 2026-05-25T21:35:07.226653+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_round_27/submitted.pdf
 
@@ -8019,7 +8019,7 @@ _source line 2700 · 2026-05-25T21:35:07.226653+00:00_
 
 ### Tool call
 
-_source line 2701 · 2026-05-25T21:35:43.376603+00:00_
+_source line 2695 · 2026-05-25T21:35:43.376603+00:00_
 
 called Read
 
@@ -8055,7 +8055,7 @@ called Read
 
 ### Tool result
 
-_source line 2702 · 2026-05-25T21:35:43.377294+00:00_
+_source line 2696 · 2026-05-25T21:35:43.377294+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R26 fixes verified by Reviewer, 2026-05-23
@@ -8127,7 +8127,7 @@ _source line 2702 · 2026-05-25T21:35:43.377294+00:00_
 
 ### Tool call
 
-_source line 2703 · 2026-05-25T21:35:47.844973+00:00_
+_source line 2697 · 2026-05-25T21:35:47.844973+00:00_
 
 called Read
 
@@ -8165,7 +8165,7 @@ called Read
 
 ### Tool result
 
-_source line 2704 · 2026-05-25T21:35:47.895693+00:00_
+_source line 2698 · 2026-05-25T21:35:47.895693+00:00_
 
 100	  category: writing
 101	  severity: warning
@@ -8253,7 +8253,7 @@ _source line 2704 · 2026-05-25T21:35:47.895693+00:00_
 
 ### Assistant
 
-_source line 2705 · 2026-05-25T21:36:40.351134+00:00_
+_source line 2699 · 2026-05-25T21:36:40.351134+00:00_
 
 **Reviewer 2 初审已收到** — Overall 3.5 (Borderline Conference)
 
@@ -8287,7 +8287,7 @@ _source line 2705 · 2026-05-25T21:36:40.351134+00:00_
 
 ### User
 
-_source line 2706 · 2026-05-25T21:36:42.946841+00:00_
+_source line 2700 · 2026-05-25T21:36:42.946841+00:00_
 
 [Reviewer 2 审稿结果]:
 Let me fetch the official review form details and read the paper pages.
@@ -8309,7 +8309,7 @@ Let me fetch the official review form details and read the paper pages.
 
 ### Tool call
 
-_source line 2707 · 2026-05-25T21:37:09.577201+00:00_
+_source line 2701 · 2026-05-25T21:37:09.577201+00:00_
 
 called mcp__agent-ml-research__director_get_project_overview
 
@@ -8343,7 +8343,7 @@ called mcp__agent-ml-research__director_get_project_overview
 
 ### Tool result
 
-_source line 2708 · 2026-05-25T21:37:10.280367+00:00_
+_source line 2702 · 2026-05-25T21:37:10.280367+00:00_
 
 {"result":"# 项目 schema_semantic_constrained_ie 概况\n\n## 实验状态 (164 个)\n\n- **llama_scierc_full_s1**: DONE (success) — \n- **llama_scierc_unconstrained**: DONE (success) — \n- **phase2_scierc_full_s1**: DONE (success) — \n- **phase2_scierc_semantic_only**: DONE (success) — \n- **phase2_scierc_grammar_only**: DONE (success) — \n- **phase2_scierc_unconstrained**: DONE (success) — \n- **phase2_docred_full_s1**: DONE (success) — \n- **phase2_docred_semantic_only**: DONE (success) — \n- **phase2_docred_unconstrained**: DONE (success) — \n- **mvp_phase0_docred_schema_r2**: DONE (killed) — \n- **phase2_s2_pilot50**: DONE (success) — \n- **mvp_phase0_docred_schema**: DONE (success) — \n- **mvp_phase0_violation_rate_docred**: DONE (success) — \n- **mvp_phase0_scierc_schema**: DONE (success) — \n- **mvp_phase0_violation_rate**: DONE (success) — \n\n## 最新报告\n# Handover — 2026-05-23\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **r16_70b_lora_scierc_eval** (success): 70B AWQ INT4 LoRA fine-tuned on SciERC will achieve higher R-F1 than 8B FT (Qwen 47.15, Llama 46.13) and S1 constraints will maintain DR→0% at 70B scale\n- **p1_llama_ee_ft** (killed): —\n- **sf2_70b_prompt_sensitivity** (success): 70B LLaMA-3.1 constrained decoding should show consistent violation reduction across different prompt styles, similar to the 8B result where ΔDR was 94.0-94.6% regardless of prompt variant.\n\n## 趋势\n成功 133 / 负向 15 / 失败 11 / 共 164\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestd-16980: 无 GPU 信息\nwestd-21461: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\n- w1_cf_fallback_docred: 已被终止 — unknown\n- w1_cf_fallback_llama_scierc: 已被终止 — unknown\n- w1_cf_fallback_llama_docred: 已被终止 — unknown\n- w9_qwen_docred_zs_sampling: 训练失败 — unknown\n- p8b_docred_latency: 训练失败 — unknown\n- p1_ee_ft_composability: 训练失败 — unknown\n- p1_ee_ft_composability_r2: 训练失败 — unknown\n- p1_ee_ft_composability_r3: 训练失败 — unknown\n- p1_ee_ft_composabil
 …[truncated 269 chars]
@@ -8366,7 +8366,7 @@ _source line 2708 · 2026-05-25T21:37:10.280367+00:00_
 
 ### Tool call
 
-_source line 2709 · 2026-05-25T21:37:10.280784+00:00_
+_source line 2703 · 2026-05-25T21:37:10.280784+00:00_
 
 called mcp__agent-ml-research__get_external_review_status
 
@@ -8400,7 +8400,7 @@ called mcp__agent-ml-research__get_external_review_status
 
 ### Tool result
 
-_source line 2710 · 2026-05-25T21:37:10.532155+00:00_
+_source line 2704 · 2026-05-25T21:37:10.532155+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
 
@@ -8422,7 +8422,7 @@ _source line 2710 · 2026-05-25T21:37:10.532155+00:00_
 
 ### Tool call
 
-_source line 2711 · 2026-05-25T21:37:10.532570+00:00_
+_source line 2705 · 2026-05-25T21:37:10.532570+00:00_
 
 called mcp__agent-ml-research__get_visual_check_status
 
@@ -8456,7 +8456,7 @@ called mcp__agent-ml-research__get_visual_check_status
 
 ### Tool result
 
-_source line 2712 · 2026-05-25T21:37:10.984744+00:00_
+_source line 2706 · 2026-05-25T21:37:10.984744+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-25T21:16:38.989379+00:00\", \"completed_at\": \"2026-05-25T21:20:29.968146+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"page 1-2\", \"message\": \"连续 2 页纯文本无任何 display item，首个视觉锚点（Figure 1）到 page 3 才出现。对于实证贡献为主的论文，在 page 1 或 2 加入 teaser figure 或核心结果 preview 可强化审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 5 的 x 轴 relation type 标签旋转后字号偏小（约为正文 60-70%），建议适当增大或使用缩写\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 和 Figure 3 使用红色和蓝/绿色组合，大部分情况可区分，但红绿搭配对 deuteranopia 色盲可能有风险；建议改用 blue+orange 双色方案\"}, {\"severity\": \"info\", \"dimension\": \"page 12-16\", \"message\": \"Appendix B（Extended Related Work）+ C（Extended Discussion）连续 5 页纯文本，虽为 appendix 可接受，但密度极高\"}, {\"severity\": \"info\", \"dimension\": \"page 39\", \"message\": \"末页内容约占 80%，Section T (Use of AI Assistants) 列表较简短，整体可接受\"}], \"counts\": {\"critical\": 0, \"warning\": 1, \"info\": 4}}, \"error\": null, \"metadata\": {}}"}
 
@@ -8478,7 +8478,7 @@ _source line 2712 · 2026-05-25T21:37:10.984744+00:00_
 
 ### Tool call
 
-_source line 2713 · 2026-05-25T21:37:10.985310+00:00_
+_source line 2707 · 2026-05-25T21:37:10.985310+00:00_
 
 called mcp__agent-ml-research__read_project_file
 
@@ -8516,7 +8516,7 @@ called mcp__agent-ml-research__read_project_file
 
 ### Tool result
 
-_source line 2714 · 2026-05-25T21:37:11.036058+00:00_
+_source line 2708 · 2026-05-25T21:37:11.036058+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 88\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-
 …[truncated 1469 chars]
@@ -8539,7 +8539,7 @@ _source line 2714 · 2026-05-25T21:37:11.036058+00:00_
 
 ### Assistant
 
-_source line 2715 · 2026-05-25T21:39:16.685374+00:00_
+_source line 2709 · 2026-05-25T21:39:16.685374+00:00_
 
 服务器重启，恢复上下文。我没有 `feishu_read_chat_history` 和 `get_project_status` 工具，用已有工具恢复状态。
 
@@ -8566,7 +8566,7 @@ _source line 2715 · 2026-05-25T21:39:16.685374+00:00_
 
 ### User
 
-_source line 2716 · 2026-05-25T21:49:40.130603+00:00_
+_source line 2710 · 2026-05-25T21:49:40.130603+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -8659,7 +8659,7 @@ _source line 2716 · 2026-05-25T21:49:40.130603+00:00_
 
 ### Tool call
 
-_source line 2717 · 2026-05-25T21:50:34.033163+00:00_
+_source line 2711 · 2026-05-25T21:50:34.033163+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -8699,7 +8699,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2718 · 2026-05-25T21:50:53.933292+00:00_
+_source line 2712 · 2026-05-25T21:50:53.933292+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_1\"}, \"error\": \"\"}"}
 
@@ -8721,7 +8721,7 @@ _source line 2718 · 2026-05-25T21:50:53.933292+00:00_
 
 ### Tool call
 
-_source line 2719 · 2026-05-25T21:50:54.134918+00:00_
+_source line 2713 · 2026-05-25T21:50:54.134918+00:00_
 
 called mcp__agent-ml-research__director_post_to_reviewer
 
@@ -8761,7 +8761,7 @@ called mcp__agent-ml-research__director_post_to_reviewer
 
 ### Tool result
 
-_source line 2720 · 2026-05-25T21:50:55.442532+00:00_
+_source line 2714 · 2026-05-25T21:50:55.442532+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:reviewer_2\"}, \"error\": \"\"}"}
 
@@ -8783,7 +8783,7 @@ _source line 2720 · 2026-05-25T21:50:55.442532+00:00_
 
 ### Assistant
 
-_source line 2721 · 2026-05-25T21:50:59.854918+00:00_
+_source line 2715 · 2026-05-25T21:50:59.854918+00:00_
 
 交叉分享已派发。两位 Reviewer 正在审阅对方的审稿意见并准备 [AGREE]/[REBUT] 回应。
 
@@ -8812,7 +8812,7 @@ _source line 2721 · 2026-05-25T21:50:59.854918+00:00_
 
 ### User
 
-_source line 2722 · 2026-05-25T21:51:02.376175+00:00_
+_source line 2716 · 2026-05-25T21:51:02.376175+00:00_
 
 [Reviewer 1 审稿结果]:
 Round 27 初审完成。
@@ -8838,7 +8838,7 @@ Round 27 初审完成。
 
 ### Assistant
 
-_source line 2723 · 2026-05-25T21:51:13.565071+00:00_
+_source line 2717 · 2026-05-25T21:51:13.565071+00:00_
 
 这是 Reviewer 1 的初审摘要，与之前收到的完整初审一致。交叉分享任务已派发给两位 Reviewer，等待他们的 `[AGREE]/[REBUT]` 交叉回应。
 
@@ -8865,7 +8865,7 @@ _source line 2723 · 2026-05-25T21:51:13.565071+00:00_
 
 ### User
 
-_source line 2724 · 2026-05-25T21:52:35.229438+00:00_
+_source line 2718 · 2026-05-25T21:52:35.229438+00:00_
 
 [Reviewer 1 审稿意见]:
 
@@ -8945,7 +8945,7 @@ R2 对各组件的 characterization 基本准确，但低估了：
 
 ### Assistant
 
-_source line 2725 · 2026-05-25T21:52:58.995152+00:00_
+_source line 2719 · 2026-05-25T21:52:58.995152+00:00_
 
 Reviewer 1 交叉回应已收到。
 
@@ -8989,7 +8989,7 @@ Reviewer 1 交叉回应已收到。
 
 ### User
 
-_source line 2726 · 2026-05-25T21:53:01.565085+00:00_
+_source line 2720 · 2026-05-25T21:53:01.565085+00:00_
 
 [Reviewer 1 审稿结果]:
 交叉回应已提交。
@@ -9013,7 +9013,7 @@ _source line 2726 · 2026-05-25T21:53:01.565085+00:00_
 
 ### Assistant
 
-_source line 2727 · 2026-05-25T21:53:10.787447+00:00_
+_source line 2721 · 2026-05-25T21:53:10.787447+00:00_
 
 Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
@@ -9046,7 +9046,7 @@ Reviewer 1 交叉回应已收到。等待 Reviewer 2 的交叉回应。
 
 ### User
 
-_source line 2728 · 2026-05-25T21:57:19.948049+00:00_
+_source line 2722 · 2026-05-25T21:57:19.948049+00:00_
 
 [Reviewer 2 审稿意见]:
 ## Reviewer 2 交叉回应 Reviewer 1 初审
@@ -9149,7 +9149,7 @@ Appendix F（p26-28）beam search 实现需每个 beam step 独立维护 entity 
 
 ### Tool call
 
-_source line 2729 · 2026-05-25T21:57:57.830877+00:00_
+_source line 2723 · 2026-05-25T21:57:57.830877+00:00_
 
 called Read
 
@@ -9185,7 +9185,7 @@ called Read
 
 ### Tool result
 
-_source line 2730 · 2026-05-25T21:57:59.287383+00:00_
+_source line 2724 · 2026-05-25T21:57:59.287383+00:00_
 
 1	---
 2	name: review-director-session-start
@@ -9275,7 +9275,7 @@ _source line 2730 · 2026-05-25T21:57:59.287383+00:00_
 
 ### Tool call
 
-_source line 2731 · 2026-05-25T21:57:59.438456+00:00_
+_source line 2725 · 2026-05-25T21:57:59.438456+00:00_
 
 called Read
 
@@ -9309,7 +9309,7 @@ called Read
 
 ### Tool result
 
-_source line 2732 · 2026-05-25T21:57:59.440560+00:00_
+_source line 2726 · 2026-05-25T21:57:59.440560+00:00_
 
 1	# Review Issues Tracker — schema_semantic_constrained_ie
 2	# Updated: R26 fixes verified by Reviewer, 2026-05-23
@@ -9381,7 +9381,7 @@ _source line 2732 · 2026-05-25T21:57:59.440560+00:00_
 
 ### Tool call
 
-_source line 2733 · 2026-05-25T21:59:59.284079+00:00_
+_source line 2727 · 2026-05-25T21:59:59.284079+00:00_
 
 called mcp__agent-ml-research__update_review_issues
 
@@ -9417,7 +9417,7 @@ called mcp__agent-ml-research__update_review_issues
 
 ### Tool result
 
-_source line 2734 · 2026-05-25T21:59:59.335146+00:00_
+_source line 2728 · 2026-05-25T21:59:59.335146+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/review_issues.yaml\", \"bytes\": 12936}, \"error\": \"\"}"}
 
@@ -9439,7 +9439,7 @@ _source line 2734 · 2026-05-25T21:59:59.335146+00:00_
 
 ### Tool call
 
-_source line 2735 · 2026-05-25T22:02:34.934999+00:00_
+_source line 2729 · 2026-05-25T22:02:34.934999+00:00_
 
 called mcp__agent-ml-research__submit_review_report_to_research_director
 
@@ -9483,7 +9483,7 @@ called mcp__agent-ml-research__submit_review_report_to_research_director
 
 ### Tool result
 
-_source line 2736 · 2026-05-25T22:02:39.097007+00:00_
+_source line 2730 · 2026-05-25T22:02:39.097007+00:00_
 
 {"result":"{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
 
@@ -9505,7 +9505,7 @@ _source line 2736 · 2026-05-25T22:02:39.097007+00:00_
 
 ### Assistant
 
-_source line 2737 · 2026-05-25T22:02:48.080515+00:00_
+_source line 2731 · 2026-05-25T22:02:48.080515+00:00_
 
 Round 27 审稿报告已投递。
 
@@ -9540,7 +9540,7 @@ Round 27 审稿报告已投递。
 
 ### User
 
-_source line 2738 · 2026-05-25T22:02:50.613051+00:00_
+_source line 2732 · 2026-05-25T22:02:50.613051+00:00_
 
 [Reviewer 2 审稿结果]:
 已完成对 Reviewer 1 全部 Must-Fix 和 Should-Fix 的逐条交叉回应，并汇报给 Review Director。
@@ -9571,7 +9571,7 @@ _source line 2738 · 2026-05-25T22:02:50.613051+00:00_
 
 ### Assistant
 
-_source line 2739 · 2026-05-25T22:02:59.561237+00:00_
+_source line 2733 · 2026-05-25T22:02:59.561237+00:00_
 
 Round 27 审稿报告已投递完成。
 

@@ -53,7 +53,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis provenance audit c032 c023 c021 — Find all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ | 176 | 1 | [Read transcript](analysis-provenance-audit-c032-c023-c021.md) | [JSON](../../sessions/2a/2ae718891d1ffc73d490.json) |
 | analysis provenance audit d105 | 176 | 0 | [Read transcript](analysis-provenance-audit-d105.md) | [JSON](../../sessions/f0/f005d5a65cb9501d2ddb.json) |
 | analysis vc quartile d105 | 68 | 0 | [Read transcript](analysis-vc-quartile-d105.md) | [JSON](../../sessions/d7/d7b75b25c1be8c5ead04.json) |
-| research q1q6 answer prep d105 | 49 | 0 | [Read transcript](research-q1q6-answer-prep-d105.md) | [JSON](../../sessions/5e/5ed591fd75d52bf1cf38.json) |
+| research q1q6 answer prep d105 | 47 | 0 | [Read transcript](research-q1q6-answer-prep-d105.md) | [JSON](../../sessions/5e/5ed591fd75d52bf1cf38.json) |
 | research bertoldi citation check | 21 | 0 | [Read transcript](research-bertoldi-citation-check.md) | [JSON](../../sessions/8e/8ee43028ee10a35d9404.json) |
 | code exp entity token lp | 72 | 0 | [Read transcript](code-exp-entity-token-lp.md) | [JSON](../../sessions/ea/ea231a1254f4622a383f.json) |
 | code exp entity token lp — This session is being continued from a previous conversation that ran out of context. The summary be | 383 | 1 | [Read transcript](code-exp-entity-token-lp-copy-2.md) | [JSON](../../sessions/99/99d19849513d05b4ae6a.json) |
@@ -61,7 +61,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis d108 mbr within rho | 86 | 0 | [Read transcript](analysis-d108-mbr-within-rho.md) | [JSON](../../sessions/2d/2db4178682745ef75538.json) |
 | analysis d108 greedy f1 extraction | 73 | 0 | [Read transcript](analysis-d108-greedy-f1-extraction.md) | [JSON](../../sessions/88/889414253225e45c6e64.json) |
 | analysis d108 lp vc combination | 86 | 0 | [Read transcript](analysis-d108-lp-vc-combination.md) | [JSON](../../sessions/c9/c9a93f99ef8e009b50db.json) |
-| analysis d108 q4q5 answers | 83 | 0 | [Read transcript](analysis-d108-q4q5-answers.md) | [JSON](../../sessions/17/17a56a037b64d13abab2.json) |
 | analysis d110 4b degeneracy | 70 | 0 | [Read transcript](analysis-d110-4b-degeneracy.md) | [JSON](../../sessions/00/001ac9241721027c8da7.json) |
 | analysis d112 mf3 random vs single | 113 | 0 | [Read transcript](analysis-d112-mf3-random-vs-single.md) | [JSON](../../sessions/ab/ab98ea69fb9bdd6bb4b6.json) |
 | analysis d112 q5 hybrid strategy | 71 | 0 | [Read transcript](analysis-d112-q5-hybrid-strategy.md) | [JSON](../../sessions/73/73045a62b42621c70010.json) |

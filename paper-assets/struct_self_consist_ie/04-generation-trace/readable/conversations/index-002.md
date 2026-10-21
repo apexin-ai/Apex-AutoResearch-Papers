@@ -58,7 +58,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | exec exp021 inference now | 17 | 0 | [Read transcript](exec-exp021-inference-now.md) | [JSON](../../sessions/4c/4c6b1386708a97c3f49f.json) |
 | code exp 028 fewnerd 5epoch | 39 | 0 | [Read transcript](code-exp-028-fewnerd-5epoch.md) | [JSON](../../sessions/5a/5a0db7b6857afeaebea4.json) |
 | analysis r17 lora rank8 lp compression | 29 | 0 | [Read transcript](analysis-r17-lora-rank8-lp-compression.md) | [JSON](../../sessions/d3/d32dcfdff04fc6002fa8.json) |
-| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #9。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 be-a6k-1 的 cud | 8,201 | 1,068 | [Read transcript](director-coordination-20260521-014101.md) | [JSON](../../sessions/79/796e9fb62a327a2e399b.json) |
+| Director coordination (archived snapshot) — [HANDOFF] 你是 Director，这是 Loop #9。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 只能用 be-a6k-1 的 cud | 8,199 | 1,068 | [Read transcript](director-coordination-20260521-014101.md) | [JSON](../../sessions/79/796e9fb62a327a2e399b.json) |
 | Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #15。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda | 4,840 | 284 | [Read transcript](reviewer-coordination-20260519-051813.md) | [JSON](../../sessions/f7/f7c7ed9c238ee4500ccb.json) |
 | check exp028 and gpu status | 11 | 0 | [Read transcript](check-exp028-and-gpu-status.md) | [JSON](../../sessions/f6/f697ea62a6c5a8c6732f.json) |
 | analysis mlp verifier upgrade | 47 | 0 | [Read transcript](analysis-mlp-verifier-upgrade.md) | [JSON](../../sessions/25/254b8ee34d712f62e5f8.json) |
@@ -141,7 +141,7 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper writing d157 prescriptive | 7 | 0 | [Read transcript](paper-writing-d157-prescriptive.md) | [JSON](../../sessions/6f/6f8901eae4d40481eccc.json) |
 | research reference verification r22 | 87 | 0 | [Read transcript](research-reference-verification-r22.md) | [JSON](../../sessions/93/93fe89b176ed236cb056.json) |
 | code fig overview triple contribution | 85 | 0 | [Read transcript](code-fig-overview-triple-contribution.md) | [JSON](../../sessions/fe/febaf9c2061cec23db6f.json) |
-| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #16。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - autodl-5090  | 6,224 | 345 | [Read transcript](reviewer-coordination-20260521-014108.md) | [JSON](../../sessions/38/38bc42d26428e5449b02.json) |
+| Reviewer coordination (archived snapshot) — [HANDOFF] 你是 Research Reviewer，这是 Loop #16。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - autodl-5090  | 6,212 | 345 | [Read transcript](reviewer-coordination-20260521-014108.md) | [JSON](../../sessions/38/38bc42d26428e5449b02.json) |
 | code dev set lp alignment gating | 129 | 0 | [Read transcript](code-dev-set-lp-alignment-gating.md) | [JSON](../../sessions/b7/b7742b33ef71774240c0.json) |
 | analysis theta sensitivity sweep | 33 | 0 | [Read transcript](analysis-theta-sensitivity-sweep.md) | [JSON](../../sessions/59/59a9374e407c985ff02b.json) |
 | analysis multiseed entity construction | 87 | 0 | [Read transcript](analysis-multiseed-entity-construction.md) | [JSON](../../sessions/54/54ff87ca1df269f180be.json) |

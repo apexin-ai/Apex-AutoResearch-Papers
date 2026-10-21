@@ -1,16 +1,5 @@
 # Reviewer Prep — 数据溯源应对话术
 
-## Rebuttal 预实验总结
-
-| 实验 | 结论 | 一句话 |
-|------|------|--------|
-| exp68_lora_comparison | success | LoRA r=8（0.16% 参数）DD=0.994/AA=0.962，与 full DAPT（DD=0.997/AA=0.972）差距 ≤1pp——classification objective 本身驱动 OOD 泛化，参数更新量不是关键 |
-| exp69_mixed_llm_aa_error | success | AA F1=0.504 完全由 recall 崩溃导致（29.2%，precision 97.8%），攻击族难度梯度 FITD>DD>AA 与策略多样性正相关 |
-| exp70_deberta_large_scale | negative | DeBERTa-v3-large 9-class DD=0.997/AA=1.000，比 vanilla +10pp/+13pp——355M "DAPT 有害" 是 RoBERTa-specific，非通用 scale 效应 |
-| exp71_mixed_llm_disentangle | success | 350+350 mixed AA=0.709 vs 250+250 AA=0.504（+20.5pp, 44% gap）vs 350 Qwen-only AA=0.972（残差 26.3pp, 56% gap）——数据量和分布异质性都有显著贡献，异质性略占主导 |
-
----
-
 ## 话术 1：Binary DD-Full 1.000±.000 的 seed42 registry 缺失
 
 **问题**：Registry 中 Binary 变体仅有 seed123 和 seed456 的 DD OOD 指标（mf1_binary_seed123, mf1_binary_seed456），seed42 的 Binary DD 值来自 plan_013_none_collapse（0.9904），与 seed_level 表（1.000）不一致。

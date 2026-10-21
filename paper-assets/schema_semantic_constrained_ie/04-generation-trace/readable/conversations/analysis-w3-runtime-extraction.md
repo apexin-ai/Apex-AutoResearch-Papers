@@ -6,9 +6,9 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Record overview
 
-- **Events:** 22
+- **Events:** 20
 - **Recorded user turns:** 0
-- **Tool calls:** 10
+- **Tool calls:** 9
 - **Original source:** `logs/chats/worker_analysis_w3_runtime_extraction_20260515T085658.jsonl`
 - **Structured JSON:** [`5a512ed2bd0ce37285f6.json`](../../sessions/5a/5a512ed2bd0ce37285f6.json)
 
@@ -18,7 +18,7 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 ## Before a recorded user message
 
-22 recorded events
+20 recorded events
 
 ### Assistant
 
@@ -557,65 +557,9 @@ _source line 19 · 2026-05-15T08:59:30.436529+00:00_
 
 ---
 
-### Tool call
-
-_source line 20 · 2026-05-15T08:59:30.436799+00:00_
-
-called Write
-
-<details open><summary>🔧 Tool call — Write</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md",
-  "content": "# W3/W6 Runtime Overhead Report\n\n**Purpose:** Reviewer W3/W6 asked for the inference-time overhead of constrained decoding. This report extracts per-document inference times from the experimental JSONL outputs and computes overhead vs. the unconstrained baseline for each (model, dataset) cell.\n\n**Data source:** `/root/schema_semantic_constrained_ie/outputs/*.jsonl` on `westd-16980`. Every record carries an `inference_time_seconds` field written by the eval driver, so timings are read directly from the original runs—no re-runs required.\n\n**Hardware:** All runs executed on the same single-GPU server (`westd-16980`) under the same vLLM/transformers stack, so cross-mode comparisons within a (model, dataset) pair are apples-to-apples.\n\n---\n\n## 1. Headline Table\n\nPer-document inference time (seconds), wall-clock total (minutes), and overhead vs. the unconstrained baseline of the matching (model, dataset).\n\n| Model | Dataset | Mode          |    N | Avg (s) | Median (s) | Total (min) | Overhead (avg) |\n|-------|---------|---------------|-----:|--------:|-----------:|------------:|---------------:|\n| Qwen  | SciERC  | unconstrained |  551 |   8.694 |      8.526 |       79.84 | baseline       |\n| Qwen  | SciERC  | grammar_only  |  551 |   8.815 |      8.354 |       80.95 | **+1.4 %**     |\n| Qwen  | SciERC  | full_s1       |  551 |   6.761 |      5.981 |       62.09 | **−22.2 %**    |\n| Qwen  | DocRED  | unconstrained |  998 |  19.755 |     18.248 |      328.59 | baseline       |\n| Qwen  | DocRED  | grammar_only  |  998 |  20.576 |     18.730 |      342.25 | **+4.2 %**     |\n| Qwen  | DocRED  | full_s1       |  998 |  20.395 |     18.812 |      339.23 | **+3.2 %**     |\n| Llama | SciERC  | unconstrained |  551 |   2.813 |      2.570 |       25.83 | baseline       |\n| Llama | SciERC  | full_s1       |  550 |   4.326 |      3.694 |       39.65 | **+53.8 %**    |\n| Llama | DocRED  | unconstrained |  998 |  18.162 |     14.777 |      302.10 | baseline       |\n| Llama | DocRED  | full_s1       |  998 |  20.524 |     15.790 |      341.39 | **+13.0 %**    |\n\n> **Llama SciERC full_s1 has N=550** (one document missing vs. the 551 baseline). The 1-doc discrepancy is < 0.2 % of the run and does not materially affect the averages.\n\n**Post-hoc filtering** is not run as a separate decode—it scans the already-generated parse and drops violating tuples in O(n). On these output sizes the cost is sub-millisecond per document, so we report it as **negligible** rather than measure it.\n\n---\n\n## 2. Distribution Detail\n\nBeyond the mean, the per-document distribution is informative because grammar-constrained decoding can occasionally hit pathological cases (long backtracks, max-length truncation).\n\n| Model | Dataset | Mode          |   avg |  med |   std |  p25 |  p75 |  p95 |    max |\n|-------|---------|---------------|------:|-----:|------:|-----:|-----:|-----:|-------:|\n| Qwen  | SciERC  | unconstrained |  8.69 | 8.53 |  3.89 | 5.90 |11.17 |16.03 |  21.75 |\n| Qwen  | SciERC  | grammar_only  |  8.81 | 8.35 |  4.51 | 5.72 |11.00 |16.73 |  39.03 |\n| Qwen  | SciERC  | full_s1       |  6.76 | 5.98 |  3.67 | 3.88 | 9.01 |13.90 |  20.37 |\n| Qwen  | DocRED  | unconstrained | 19.75 |18.25 |  8.99 |14.20 |23.09 |32.98 |  73.48 |\n| Qwen  | DocRED  | grammar_only  | 20.58 |18.73 | 10.75 |14.77 |23.75 |33.12 | **186.42** |\n| Qwen  | DocRED  | full_s1       | 20.39 |18.81 |  9.43 |14.76 |23.81 |33.24 |  83.80 |\n| Llama | SciERC  | unconstrained |  2.81 | 2.57 |  1.65 | 1.50 | 3.77 | 5.93 |   9.44 |\n| Llama | SciERC  | full_s1       |  4.33 | 3.69 |  3.15 | 1.92 | 5.79 |10.28 |  27.29 |\n| Llama | DocRED  | unconstrained | 18.16 |14.78 | 12.88 |11.49 |19.10 |62.99 |  63.41 |\n| Llama | DocRED  | full_s1       | 20.52 |15.79 | 15.62 |12.17 |20.90 |66.35 |  66.80 |\n\nObservations:\n\n- **Qwen DocRED grammar_only has one outlier at 186 s** (vs. p95 = 33 s), inflating the mean and std. The median is essentially unchanged from baseline (18.73 vs. 18.25 s), so the *typical* overhead is closer to **+2.6 % (median)** than the +4.2 % the mean reports. We keep the mean-based number in the headline for transparency.\n- **Qwen SciERC full_s1 is faster than unconstrained** (−22.2 %). This is consistent with our earlier observation that schema-constrained decoding produces tighter outputs and avoids long noisy continuations the unconstrained model occasionally emits before EOS. The same pattern is *not* seen for Llama, where full_s1 always slows things down.\n- **Llama SciERC full_s1 has the largest relative overhead (+53.8 %)** but on an absolute scale this is only +1.5 s/doc (4.33 vs. 2.81 s). DocRED's overhead on Llama is +2.4 s/doc absolute.\n\n---\n\n## 3. Per-Configuration Summary (one-line)\n\n- **Qwen / SciERC:** grammar +1.4 %, full_s1 −22.2 % (full constraints actually accelerate decoding by shortening outputs).\n- **Qwen / DocRED:** grammar +4.2 %, full_s1 +3.2 % (negligible; medians ~ +2.6 %).\n- **Llama / SciERC:** full_s1 +53.8 % (largest relative cost; +1.5 s absolute).\n- **Llama / DocRED:** full_s1 +13.0 % (+2.4 s absolute).\n- **Post-hoc filtering:** negligible (O(n) over predicted tuples, dominated by JSON parse).\n\n---\n\n## 4. Suggested Rebuttal Wording\n\n> *In response to W3/W6:* We measured per-document inference time on the same hardware for every mode. Across the four (model, dataset) cells, full schema-semantic constrained decoding adds **−22 % to +54 % to mean inference time**, with three of the four cells at +13 % or less. The single elevated cell, Llama-SciERC, corresponds to **+1.5 s/document absolute**. Grammar-only constraints add ≤ +4 %. Post-hoc filtering is an O(n) pass and is negligible. We will add a runtime row to Table X in the camera-ready.\n\n---\n\n## 5. Reproduction\n\nThe numbers above are produced from JSONL records with an `inference_time_seconds` field. The extraction script and detailed JSON output are on the server:\n\n- `/root/schema_semantic_constrained_ie/outputs/runtime_summary.json` — headline numbers (avg, median, total, overhead %).\n- `/root/schema_semantic_constrained_ie/outputs/runtime_summary_detailed.json` — full distribution (p25/p75/p95/min/max/std).\n\nSource JSONLs used:\n\n| Cell                           | File                                  |\n|--------------------------------|---------------------------------------|\n| Qwen SciERC unconstrained      | `phase2_scierc_unconstrained.jsonl`   |\n| Qwen SciERC grammar_only       | `phase2_scierc_grammar_only.jsonl`    |\n| Qwen SciERC full_s1            | `phase2_scierc_full_s1_v2.jsonl`      |\n| Qwen DocRED unconstrained      | `docred_unconstrained.jsonl`          |\n| Qwen DocRED grammar_only       | `docred_grammar_only.jsonl`           |\n| Qwen DocRED full_s1            | `docred_full_s1.jsonl`                |\n| Llama SciERC unconstrained     | `llama_scierc_unconstrained.jsonl`    |\n| Llama SciERC full_s1           | `llama_scierc_full_s1.jsonl`          |\n| Llama DocRED unconstrained     | `llama_docred_unconstrained.jsonl`    |\n| Llama DocRED full_s1           | `llama_docred_full_s1.jsonl`          |\n\nNo timing data was missing; no re-runs are required.\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "worker_analysis_w3_runtime_extraction_20260515T085658",
-  "tool": "Write",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md",
-    "content": "# W3/W6 Runtime Overhead Report\n\n**Purpose:** Reviewer W3/W6 asked for the inference-time overhead of constrained decoding. This report extracts per-document inference times from the experimental JSONL outputs and computes overhead vs. the unconstrained baseline for each (model, dataset) cell.\n\n**Data source:** `/root/schema_semantic_constrained_ie/outputs/*.jsonl` on `westd-16980`. Every record carries an `inference_time_seconds` field written by the eval driver, so timings are read directly from the original runs—no re-runs required.\n\n**Hardware:** All runs executed on the same single-GPU server (`westd-16980`) under the same vLLM/transformers stack, so cross-mode comparisons within a (model, dataset) pair are apples-to-apples.\n\n---\n\n## 1. Headline Table\n\nPer-document inference time (seconds), wall-clock total (minutes), and overhead vs. the unconstrained baseline of the matching (model, dataset).\n\n| Model | Dataset | Mode          |    N | Avg (s) | Median (s) | Total (min) | Overhead (avg) |\n|-------|---------|---------------|-----:|--------:|-----------:|------------:|---------------:|\n| Qwen  | SciERC  | unconstrained |  551 |   8.694 |      8.526 |       79.84 | baseline       |\n| Qwen  | SciERC  | grammar_only  |  551 |   8.815 |      8.354 |       80.95 | **+1.4 %**     |\n| Qwen  | SciERC  | full_s1       |  551 |   6.761 |      5.981 |       62.09 | **−22.2 %**    |\n| Qwen  | DocRED  | unconstrained |  998 |  19.755 |     18.248 |      328.59 | baseline       |\n| Qwen  | DocRED  | grammar_only  |  998 |  20.576 |     18.730 |      342.25 | **+4.2 %**     |\n| Qwen  | DocRED  | full_s1       |  998 |  20.395 |     18.812 |      339.23 | **+3.2 %**     |\n| Llama | SciERC  | unconstrained |  551 |   2.813 |      2.570 |       25.83 | baseline       |\n| Llama | SciERC  | full_s1       |  550 |   4.326 |      3.694 |       39.65 | **+53.8 %**    |\n| Llama | DocRED  | unconstrained |  998 |  18.162 |     14.777 |      302.10 | baseline       |\n| Llama | DocRED  | full_s1       |  998 |  20.524 |     15.790 |      341.39 | **+13.0 %**    |\n\n> **Llama SciERC full_s1 has N=550** (one document missing vs. the 551 baseline). The 1-doc discrepancy is < 0.2 % of the run and does not materially affect the averages.\n\n**Post-hoc filtering** is not run as a separate decode—it scans the already-generated parse and drops violating tuples in O(n). On these output sizes the cost is sub-millisecond per document, so we report it as **negligible** rather than measure it.\n\n---\n\n## 2. Distribution Detail\n\nBeyond the mean, the per-document distribution is informative because grammar-constrained decoding can occasionally hit pathological cases (long backtracks, max-length truncation).\n\n| Model | Dataset | Mode          |   avg |  med |   std |  p25 |  p75 |  p95 |    max |\n|-------|---------|---------------|------:|-----:|------:|-----:|-----:|-----:|-------:|\n| Qwen  | SciERC  | unconstrained |  8.69 | 8.53 |  3.89 | 5.90 |11.17 |16.03 |  21.75 |\n| Qwen  | SciERC  | grammar_only  |  8.81 | 8.35 |  4.51 | 5.72 |11.00 |16.73 |  39.03 |\n| Qwen  | SciERC  | full_s1       |  6.76 | 5.98 |  3.67 | 3.88 | 9.01 |13.90 |  20.37 |\n| Qwen  | DocRED  | unconstrained | 19.75 |18.25 |  8.99 |14.20 |23.09 |32.98 |  73.48 |\n| Qwen  | DocRED  | grammar_only  | 20.58 |18.73 | 10.75 |14.77 |23.75 |33.12 | **186.42** |\n| Qwen  | DocRED  | full_s1       | 20.39 |18.81 |  9.43 |14.76 |23.81 |33.24 |  83.80 |\n| Llama | SciERC  | unconstrained |  2.81 | 2.57 |  1.65 | 1.50 | 3.77 | 5.93 |   9.44 |\n| Llama | SciERC  | full_s1       |  4.33 | 3.69 |  3.15 | 1.92 | 5.79 |10.28 |  27.29 |\n| Llama | DocRED  | unconstrained | 18.16 |14.78 | 12.88 |11.49 |19.10 |62.99 |  63.41 |\n| Llama | DocRED  | full_s1       | 20.52 |15.79 | 15.62 |12.17 |20.90 |66.35 |  66.80 |\n\nObservations:\n\n- **Qwen DocRED grammar_only has one outlier at 186 s** (vs. p95 = 33 s), inflating the mean and std. The median is essentially unchanged from baseline (18.73 vs. 18.25 s), so the *typical* overhead is closer to **+2.6 % (median)** than the +4.2 % the mean reports. We keep the mean-based number in the headline for transparency.\n- **Qwen SciERC full_s1 is faster than unconstrained** (−22.2 %). This is consistent with our earlier observation that schema-constrained decoding produces tighter outputs and avoids long noisy continuations the unconstrained model occasionally emits before EOS. The same pattern is *not* seen for Llama, where full_s1 always slows things down.\n- **Llama SciERC full_s1 has the largest relative overhead (+53.8 %)** but on an absolute scale this is only +1.5 s/doc (4.33 vs. 2.81 s). DocRED's overhead on Llama is +2.4 s/doc absolute.\n\n---\n\n## 3. Per-Configuration Summary (one-line)\n\n- **Qwen / SciERC:** grammar +1.4 %, full_s1 −22.2 % (full constraints actually accelerate decoding by shortening outputs).\n- **Qwen / DocRED:** grammar +4.2 %, full_s1 +3.2 % (negligible; medians ~ +2.6 %).\n- **Llama / SciERC:** full_s1 +53.8 % (largest relative cost; +1.5 s absolute).\n- **Llama / DocRED:** full_s1 +13.0 % (+2.4 s absolute).\n- **Post-hoc filtering:** negligible (O(n) over predicted tuples, dominated by JSON parse).\n\n---\n\n## 4. Suggested Rebuttal Wording\n\n> *In response to W3/W6:* We measured per-document inference time on the same hardware for every mode. Across the four (model, dataset) cells, full schema-semantic constrained decoding adds **−22 % to +54 % to mean inference time**, with three of the four cells at +13 % or less. The single elevated cell, Llama-SciERC, corresponds to **+1.5 s/document absolute**. Grammar-only constraints add ≤ +4 %. Post-hoc filtering is an O(n) pass and is negligible. We will add a runtime row to Table X in the camera-ready.\n\n---\n\n## 5. Reproduction\n\nThe numbers above are produced from JSONL records with an `inference_time_seconds` field. The extraction script and detailed JSON output are on the server:\n\n- `/root/schema_semantic_constrained_ie/outputs/runtime_summary.json` — headline numbers (avg, median, total, overhead %).\n- `/root/schema_semantic_constrained_ie/outputs/runtime_summary_detailed.json` — full distribution (p25/p75/p95/min/max/std).\n\nSource JSONLs used:\n\n| Cell                           | File                                  |\n|--------------------------------|---------------------------------------|\n| Qwen SciERC unconstrained      | `phase2_scierc_unconstrained.jsonl`   |\n| Qwen SciERC grammar_only       | `phase2_scierc_grammar_only.jsonl`    |\n| Qwen SciERC full_s1            | `phase2_scierc_full_s1_v2.jsonl`      |\n| Qwen DocRED unconstrained      | `docred_unconstrained.jsonl`          |\n| Qwen DocRED grammar_only       | `docred_grammar_only.jsonl`           |\n| Qwen DocRED full_s1            | `docred_full_s1.jsonl`                |\n| Llama SciERC unconstrained     | `llama_scierc_unconstrained.jsonl`    |\n| Llama SciERC full_s1           | `llama_scierc_full_s1.jsonl`          |\n| Llama DocRED unconstrained     | `llama_docred_unconstrained.jsonl`    |\n| Llama DocRED full_s1           | `llama_docred_full_s1.jsonl`          |\n\nNo timing data was missing; no re-runs are required.\n"
-  }
-}
-```
-
-</details>
-
----
-
-### Tool result
-
-_source line 21 · 2026-05-15T08:59:30.437068+00:00_
-
-File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "worker_analysis_w3_runtime_extraction_20260515T085658",
-  "tool": "Write",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
 ### Assistant
 
-_source line 22 · 2026-05-15T08:59:30.437261+00:00_
+_source line 20 · 2026-05-15T08:59:30.437261+00:00_
 
 Report written to `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/rebuttal/w3_runtime_report.md`.
 

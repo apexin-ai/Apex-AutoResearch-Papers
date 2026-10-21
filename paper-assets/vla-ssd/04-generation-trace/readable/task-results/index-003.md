@@ -134,7 +134,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | monitor gpu progress check | 1 | 0 | [Read transcript](monitor-gpu-progress-check.md) | [JSON](../../sessions/62/62c1628078bc2b57e54a.json) |
 | ops download figures | 1 | 0 | [Read transcript](ops-download-figures.md) | [JSON](../../sessions/3c/3cc5e6ef41ff25300adc.json) |
 | paper abstract threestage and bootstrap appendix | 1 | 0 | [Read transcript](paper-abstract-threestage-and-bootstrap-appendix.md) | [JSON](../../sessions/23/237185078027fabfb215.json) |
-| paper anticipated rebuttal v1 | 1 | 0 | [Read transcript](paper-anticipated-rebuttal-v1.md) | [JSON](../../sessions/fe/fe73acbef2bb9ea1e65f.json) |
 | paper appendix cpu analysis tables | 1 | 0 | [Read transcript](paper-appendix-cpu-analysis-tables.md) | [JSON](../../sessions/b9/b98b4959402c0a1ab81c.json) |
 | paper appendix reproducibility audit | 1 | 0 | [Read transcript](paper-appendix-reproducibility-audit.md) | [JSON](../../sessions/3f/3f74efd36c450b0f387d.json) |
 | paper compile current v1 | 1 | 0 | [Read transcript](paper-compile-current-v1.md) | [JSON](../../sessions/e1/e1a82e5953c3c338f4b2.json) |
@@ -148,7 +147,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | paper number consistency check | 1 | 0 | [Read transcript](paper-number-consistency-check.md) | [JSON](../../sessions/a9/a92f4dfe677038c5a8e5.json) |
 | paper page compress and hedge | 1 | 0 | [Read transcript](paper-page-compress-and-hedge.md) | [JSON](../../sessions/c5/c539378c1eb85bee3090.json) |
 | paper readability microedits | 1 | 0 | [Read transcript](paper-readability-microedits.md) | [JSON](../../sessions/be/bef885c15da2dd780e03.json) |
-| paper rebuttal v2 | 1 | 0 | [Read transcript](paper-rebuttal-v2.md) | [JSON](../../sessions/9b/9b151cfde620c02bc648.json) |
 | paper research bib completion | 1 | 0 | [Read transcript](paper-research-bib-completion.md) | [JSON](../../sessions/e5/e595f4e6a0f90774fbc1.json) |
 | paper reviewer fixes round12 | 1 | 0 | [Read transcript](paper-reviewer-fixes-round12.md) | [JSON](../../sessions/b9/b90144cd40fdd8cfb2b9.json) |
 | paper writing | 1 | 0 | [Read transcript](paper-writing-copy-7.md) | [JSON](../../sessions/dc/dcedecc62be137c6622d.json) |

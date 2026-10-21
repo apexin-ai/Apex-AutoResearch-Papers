@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/chats/archive/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director_20260522T182957_806539.jsonl",
     "occurrence": 1,
-    "bytes": 1063212,
-    "sha256": "229557d50d9e7ce97d4493911b9a54f60f11da2991f39be89fb9faf4cb0fa4d8"
+    "bytes": 1060631,
+    "sha256": "cba4cae6ad9c3eac1a3c2bde758b46492edd2287af9a8f7fa5bce35355a6f49a"
   },
   "statistics": {
-    "messages": 932,
+    "messages": 930,
     "user_turns": 91,
-    "tool_calls": 384,
+    "tool_calls": 383,
     "roles": {
       "user": 91,
-      "tool_call": 384,
-      "tool_result": 384,
+      "tool_call": 383,
+      "tool_result": 383,
       "assistant": 73
     },
     "unparsed_lines_preserved": 0,
@@ -550,7 +550,7 @@
     {
       "number": 48,
       "boundary": "recorded_user_message",
-      "message_count": 112,
+      "message_count": 110,
       "chunks": [
         {
           "path": "b7d231640182a2ab7b9e-part-0002.json",
@@ -558,7 +558,7 @@
         },
         {
           "path": "b7d231640182a2ab7b9e-part-0003.json",
-          "message_count": 73
+          "message_count": 71
         }
       ]
     },
@@ -679,11 +679,11 @@
       "chunks": [
         {
           "path": "b7d231640182a2ab7b9e-part-0003.json",
-          "message_count": 30
+          "message_count": 32
         },
         {
           "path": "b7d231640182a2ab7b9e-part-0004.json",
-          "message_count": 24
+          "message_count": 22
         }
       ]
     },
@@ -836,8 +836,12 @@
       "message_count": 4,
       "chunks": [
         {
+          "path": "b7d231640182a2ab7b9e-part-0004.json",
+          "message_count": 2
+        },
+        {
           "path": "b7d231640182a2ab7b9e-part-0005.json",
-          "message_count": 4
+          "message_count": 2
         }
       ]
     },
@@ -980,11 +984,11 @@
       "chunks": [
         {
           "path": "b7d231640182a2ab7b9e-part-0005.json",
-          "message_count": 2
+          "message_count": 4
         },
         {
           "path": "b7d231640182a2ab7b9e-part-0006.json",
-          "message_count": 10
+          "message_count": 8
         }
       ]
     },

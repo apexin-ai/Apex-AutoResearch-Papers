@@ -59,7 +59,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis n3 fold std bootstrap — Explore the project at /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_ | 157 | 1 | [Read transcript](analysis-n3-fold-std-bootstrap.md) | [JSON](../../sessions/b6/b6b58fdb1d3ac50c62e5.json) |
 | analysis w1 feature correlation permutation | 179 | 0 | [Read transcript](analysis-w1-feature-correlation-permutation.md) | [JSON](../../sessions/32/32cdf25298d0aff5bf63.json) |
 | analysis w6 cross strategy per class recall — In /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est, find and read:  | 160 | 1 | [Read transcript](analysis-w6-cross-strategy-per-class-recall.md) | [JSON](../../sessions/19/1952c15652693994957d.json) |
-| research w5 rebuttal generation code | 23 | 0 | [Read transcript](research-w5-rebuttal-generation-code.md) | [JSON](../../sessions/1b/1b9aa6920925c3237b8f.json) |
 | check olmo d4d5 002 status | 34 | 0 | [Read transcript](check-olmo-d4d5-002-status.md) | [JSON](../../sessions/8c/8c80d2276d8ab151128f.json) |
 | code n2 deberta finetune | 495 | 0 | [Read transcript](code-n2-deberta-finetune.md) | [JSON](../../sessions/ab/ab239b47041383c88958.json) |
 | analysis depth extension gpt2xl d4d5 001 | 52 | 0 | [Read transcript](analysis-depth-extension-gpt2xl-d4d5-001.md) | [JSON](../../sessions/27/27dd15e2f3ee6da30212.json) |

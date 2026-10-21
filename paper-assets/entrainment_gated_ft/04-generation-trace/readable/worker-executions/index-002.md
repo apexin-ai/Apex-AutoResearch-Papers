@@ -12,8 +12,6 @@ Open a Markdown transcript for a human-readable view, or the JSON file for the s
 | analysis exp003 p2 data check | 56 | 0 | [Read transcript](analysis-exp003-p2-data-check.md) | [JSON](../../sessions/f0/f07f964ad8a8a35b5ec2.json) |
 | analysis within arch helped stability | 47 | 0 | [Read transcript](analysis-within-arch-helped-stability.md) | [JSON](../../sessions/55/5524bef0b9faf93eea90.json) |
 | paper appendix h within arch | 90 | 0 | [Read transcript](paper-appendix-h-within-arch.md) | [JSON](../../sessions/6c/6ce0f62cfef63e14293d.json) |
-| analysis confidence margin rebuttal | 7 | 0 | [Read transcript](analysis-confidence-margin-rebuttal.md) | [JSON](../../sessions/52/5201f30c916511de002d.json) |
-| analysis confidence margin rebuttal v2 | 50 | 0 | [Read transcript](analysis-confidence-margin-rebuttal-v2.md) | [JSON](../../sessions/2f/2fa1d03a6bda3d755543.json) |
 | analysis confidence margin within category | 49 | 0 | [Read transcript](analysis-confidence-margin-within-category.md) | [JSON](../../sessions/97/9787701e975297584338.json) |
 | paper appendix i confidence margin | 65 | 0 | [Read transcript](paper-appendix-i-confidence-margin.md) | [JSON](../../sessions/4f/4f4b9de8732e3b1cc96c.json) |
 | paper fix appendix i overfull | 52 | 0 | [Read transcript](paper-fix-appendix-i-overfull.md) | [JSON](../../sessions/45/4591bf713d7ce8036c57.json) |

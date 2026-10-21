@@ -66,35 +66,6 @@ The **performance gap** (0.3pp) is small because:
 >
 > By contrast, perturbation-based detection (DetectGPT, ~28.5%) and membership inference (Min-K\% Prob, 33.2%) achieve near-chance accuracy, confirming that local token-level perturbation sensitivity and training set membership signals do not carry ordinal depth information. The depth signal resides in **distributional shape**, not in token-level anomalies.
 
-## 4. Rebuttal Defense Points
-
-### Q: "Why not just use Binoculars? It matches your accuracy."
-
-**Defense**:
-1. **Model-agnostic advantage**: Our 19-feature pipeline requires only a single reference model (matched to the suspected generator family). Binoculars requires a specific observer-performer model pair (pythia-1.4b/pythia-410m in the tested configuration). When the generator model family is unknown or the Binoculars pair is unavailable, our approach remains applicable.
-
-2. **Interpretability**: Our features are individually meaningful and analyzable (the entire Depth Degradation Atlas is built on them). Binoculars produces a single opaque cross-perplexity score that must be post-hoc decomposed for analysis. The Atlas findings (EDD, feature trajectory reversal, strategy-dependent degradation) are not discoverable from Binoculars scores alone.
-
-3. **Complementarity, not competition**: The 78.1% vs 78.4% convergence is itself a contribution — it validates that depth signal is a genuine distributional property. A practitioner can choose either method based on their constraints (reference model availability, interpretability needs, existing infrastructure). The paper provides the first systematic comparison.
-
-4. **Binoculars RF_multi requires the same calibration machinery**: The 78.1% accuracy requires extracting 11 features from Binoculars scores and training an RF classifier — at that point, the practitioner is already building a feature-based pipeline. The marginal cost of computing our additional 13 features (surface statistics + shape statistics) is negligible compared to the computational cost of running the Binoculars observer/performer forward passes.
-
-### Q: "Does Binoculars invalidate your Claim 1 (binary detectors lack ordinal resolution)?"
-
-**Defense**:
-1. **Claim 1 has been narrowed**: We now claim that **perturbation-based** (DetectGPT) and **membership-inference** (Min-K%) detection scores lack ordinal resolution. This is empirically confirmed (28.5% and 33.2%, near chance).
-
-2. **Binoculars is a partial success, not a full one**: Raw Binoculars score with simple thresholding achieves only 69.8% — below our 78.4%. The 78.1% requires multi-feature RF calibration, which is closer to our approach than to vanilla binary detection.
-
-3. **The finding strengthens the paper**: The three-tier result (perturbation=fail, membership=fail, cross-perplexity=partial success) is a more nuanced and informative finding than a blanket "all binary detectors fail." It precisely delineates which detection paradigms carry ordinal information and why.
-
-### Q: "What about other binary detectors (LOKI, Fast-DetectGPT, etc.)?"
-
-**Defense**:
-1. We tested three representative paradigms: perturbation-based (DetectGPT), membership-inference (Min-K%), and cross-perplexity (Binoculars). These cover the major methodological families.
-2. Fast-DetectGPT is an efficiency improvement over DetectGPT with similar underlying signal — we use the Fast-DetectGPT implementation.
-3. LOKI and DivEye operate on similar statistical features to our pipeline and are thus more comparable to our method than to binary detector baselines.
-
 ## 5. Updated Narrative Summary
 
 **Old narrative**: "Binary detection methods fail at ordinal depth estimation — the signal requires purpose-built distributional features."
